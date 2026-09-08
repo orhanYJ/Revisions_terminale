@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Grammatica — Italiano LVB</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#F7F2E5">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --carta:#F7F2E5; --carta2:#FFFDF6; --inchiostro:#28231A; --grigio:#6B6455;
+  --verde:#1B7A43; --verde-s:#0E5A30; --verde-c:#E4F0E5;
+  --rosso:#C0182E; --rosso-c:#F9E7E7;
+  --azzurro:#1B5FA6; --azzurro-c:#E3EDF7;
+  --ocra:#B98F1F; --linea:#E2D9C2; --ombra:0 2px 10px rgba(60,50,20,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--carta);color:var(--inchiostro);
+  font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.6}
+h1,h2,h3,.serif{font-family:"Bodoni MT","Bodoni 72",Didot,"Playfair Display",Georgia,"Times New Roman",serif}
+
+/* ---------- Header ---------- */
+header{background:var(--carta2);border-bottom:1px solid var(--linea);padding:22px 24px 0;position:sticky;top:0;z-index:50;box-shadow:var(--ombra)}
+.h-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;max-width:1200px;margin:0 auto}
+h1{margin:0;font-size:2rem;letter-spacing:.5px}
+h1 .picc{font-size:.95rem;color:var(--grigio);font-family:"Segoe UI",sans-serif;font-weight:400;letter-spacing:.3px}
+.tric{display:flex;height:4px;max-width:1200px;margin:12px auto 0;border-radius:2px;overflow:hidden}
+.tric span{flex:1}
+.tric .t1{background:var(--verde)} .tric .t2{background:#fff;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)} .tric .t3{background:var(--rosso)}
+nav.tabs{display:flex;gap:4px;max-width:1200px;margin:10px auto 0;flex-wrap:wrap}
+nav.tabs button{border:1px solid var(--linea);border-bottom:none;background:var(--carta);
+  padding:9px 18px;font-size:.95rem;cursor:pointer;border-radius:8px 8px 0 0;color:var(--grigio);font-family:inherit}
+nav.tabs button.att{background:var(--carta2);color:var(--inchiostro);font-weight:600;border-color:var(--ocra);border-bottom:2px solid var(--carta2);margin-bottom:-1px}
+.cerca-wrap{margin-left:auto;position:relative}
+#cerca{border:1px solid var(--linea);border-radius:18px;padding:7px 14px;width:230px;font-size:.9rem;background:var(--carta);font-family:inherit}
+#cerca:focus{outline:2px solid var(--ocra)}
+#risultati{position:absolute;right:0;top:110%;background:var(--carta2);border:1px solid var(--linea);border-radius:10px;
+  box-shadow:0 8px 24px rgba(60,50,20,.18);width:330px;max-height:380px;overflow:auto;display:none;z-index:60}
+#risultati a{display:block;padding:10px 14px;text-decoration:none;color:var(--inchiostro);border-bottom:1px solid var(--linea);font-size:.9rem}
+#risultati a:hover{background:var(--verde-c)}
+#risultati a .dove{color:var(--grigio);font-size:.78rem;display:block}
+#risultati .nulla{padding:12px 14px;color:var(--grigio);font-size:.9rem}
+
+/* ---------- Layout ---------- */
+.corpo{display:flex;max-width:1200px;margin:0 auto;gap:26px;padding:24px}
+aside{width:265px;flex-shrink:0}
+.indice{position:sticky;top:130px;max-height:calc(100vh - 150px);overflow:auto;padding-right:6px}
+.gruppo h3{font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--grigio);
+  font-family:"Segoe UI",sans-serif;margin:18px 0 6px;border-bottom:1px solid var(--linea);padding-bottom:4px}
+.indice a{display:flex;gap:8px;align-items:baseline;padding:5px 8px;border-radius:6px;text-decoration:none;color:var(--inchiostro);font-size:.88rem;line-height:1.35}
+.indice a:hover{background:var(--verde-c)}
+.indice a.att{background:var(--inchiostro);color:var(--carta2)}
+.indice a .num{color:var(--ocra);font-size:.75rem;min-width:20px;font-variant-numeric:tabular-nums}
+main{flex:1;min-width:0}
+
+/* ---------- Badges niveau ---------- */
+.liv{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:1px;padding:2px 9px;border-radius:10px;color:#fff;vertical-align:middle;font-family:"Segoe UI",sans-serif}
+.liv.a2{background:var(--verde)} .liv.b1{background:var(--azzurro)} .liv.b2{background:var(--rosso)}
+
+/* ---------- Chapitres ---------- */
+section.cap{display:none;background:var(--carta2);border:1px solid var(--linea);border-radius:12px;padding:30px 34px 24px;box-shadow:var(--ombra)}
+section.cap.att{display:block;animation:app .25s ease}
+@keyframes app{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){section.cap.att{animation:none}}
+.cap-head{margin-bottom:8px}
+.cap-head h2{margin:4px 0 10px;font-size:1.7rem;line-height:1.2}
+.cap-tric{display:flex;height:3px;width:120px;border-radius:2px;overflow:hidden;margin-bottom:18px}
+.cap-tric span{flex:1}
+.cap-tric .t1{background:var(--verde)} .cap-tric .t2{background:var(--linea)} .cap-tric .t3{background:var(--rosso)}
+section.cap h3{font-size:1.15rem;margin:26px 0 8px;color:var(--verde-s)}
+section.cap h4{margin:0 0 8px;font-size:.95rem}
+p.intro{color:var(--grigio);font-style:italic;margin-top:0}
+.es{background:var(--carta);border-left:3px solid var(--ocra);padding:8px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.95rem}
+.es i{color:var(--verde-s);font-weight:600;font-style:italic}
+.es .tr{color:var(--grigio)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.92rem;background:var(--carta2)}
+th{background:var(--inchiostro);color:var(--carta2);font-weight:600;text-align:left;padding:7px 11px;font-size:.85rem}
+td{border:1px solid var(--linea);padding:6px 11px;vertical-align:top}
+tr:nth-child(even) td{background:var(--carta)}
+td i, table i{color:var(--verde-s)}
+.tbl-scroll{overflow-x:auto}
+.box{border-radius:10px;padding:16px 20px;margin:20px 0}
+.box ul{margin:6px 0 0;padding-left:20px}
+.box li{margin-bottom:7px}
+.box li:last-child{margin-bottom:0}
+.evita{background:var(--rosso-c);border:1px solid #E5B8BC}
+.evita h4{color:var(--rosso)}
+.punti{background:var(--verde-c);border:1px solid #BBD5BE}
+.punti h4{color:var(--verde-s)}
+.nota{background:var(--azzurro-c);border:1px solid #BCD0E6;border-radius:10px;padding:12px 18px;margin:16px 0;font-size:.93rem}
+.nota b:first-child{color:var(--azzurro)}
+.nav-cap{display:flex;justify-content:space-between;gap:12px;margin-top:30px;border-top:1px solid var(--linea);padding-top:16px}
+.nav-cap button{border:1px solid var(--linea);background:var(--carta);border-radius:8px;padding:9px 16px;cursor:pointer;font-size:.9rem;color:var(--inchiostro);font-family:inherit;max-width:48%}
+.nav-cap button:hover{background:var(--verde-c)}
+.nav-cap button:disabled{opacity:.35;cursor:default}
+mark{background:#F5E29B;padding:0 2px;border-radius:3px}
+
+/* ---------- Mobile ---------- */
+#btn-indice{display:none}
+@media (max-width:820px){
+  .corpo{flex-direction:column;padding:14px}
+  aside{width:100%}
+  .indice{position:static;max-height:none;display:none;background:var(--carta2);border:1px solid var(--linea);border-radius:10px;padding:10px 14px}
+  .indice.aperto{display:block}
+  #btn-indice{display:block;width:100%;margin-bottom:10px;padding:10px;border:1px solid var(--linea);border-radius:10px;background:var(--carta2);font-size:.95rem;cursor:pointer;font-family:inherit}
+  section.cap{padding:20px 18px}
+  h1{font-size:1.5rem}
+  #cerca{width:150px}
+  #risultati{width:280px}
+  .cerca-wrap{margin-left:0;width:100%}
+  #cerca{width:100%}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="h-top">
+    <h1>La Grammatica <span class="picc">· Italiano LVB · consolidamento A2 → B2</span></h1>
+    <div class="cerca-wrap">
+      <input id="cerca" type="search" placeholder="Cerca nel manuale…" autocomplete="off">
+      <div id="risultati"></div>
+    </div>
+  </div>
+  <nav class="tabs">
+    <button data-tab="gram" class="att">Grammatica</button>
+    <button data-tab="coniug">Coniugazione</button>
+    <button data-tab="less">Lessico e funzioni</button>
+  </nav>
+  <div class="tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div>
+</header>
+
+<div class="corpo">
+  <aside>
+    <button id="btn-indice">☰ Indice dei capitoli</button>
+    <div class="indice" id="indice"></div>
+  </aside>
+  <main id="contenuto">
+<!-- ============ GRAMMATICA A2 ============ -->
+
+<section class="cap" id="g01" data-liv="A2" data-tab="gram" data-titolo="Gli articoli">
+<div class="cap-head"><span class="liv a2">A2</span><h2>Gli articoli — determinativi, indeterminativi, partitivi</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">La forme de l'article dépend de la première lettre du mot qui suit. C'est LE mécanisme de base de l'italien : il faut le rendre automatique.</p>
+
+<h3>1. Articoli determinativi (le, la, les)</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Devant…</th><th>Masc. sing.</th><th>Masc. plur.</th><th>Fém. sing.</th><th>Fém. plur.</th></tr>
+<tr><td>consonne « normale »</td><td><i>il</i> libro</td><td><i>i</i> libri</td><td><i>la</i> casa</td><td><i>le</i> case</td></tr>
+<tr><td>s+consonne, z, gn, ps, pn, x, y</td><td><i>lo</i> studente, <i>lo</i> zaino, <i>lo</i> gnocco</td><td><i>gli</i> studenti, <i>gli</i> zaini</td><td><i>la</i> studentessa</td><td><i>le</i> studentesse</td></tr>
+<tr><td>voyelle</td><td><i>l'</i>amico</td><td><i>gli</i> amici</td><td><i>l'</i>amica</td><td><i>le</i> amiche</td></tr>
+</table></div>
+<p class="es"><i>Lo sport, lo zio, gli italiani, l'università, le amiche.</i> <span class="tr">→ le sport, l'oncle, les Italiens, l'université, les amies.</span></p>
+
+<h3>2. Articoli indeterminativi (un, une)</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Devant…</th><th>Masculin</th><th>Féminin</th></tr>
+<tr><td>consonne « normale »</td><td><i>un</i> ragazzo</td><td><i>una</i> ragazza</td></tr>
+<tr><td>s+cons., z, gn, ps…</td><td><i>uno</i> studente, <i>uno</i> zaino</td><td><i>una</i> zia</td></tr>
+<tr><td>voyelle</td><td><i>un</i> amico (sans apostrophe !)</td><td><i>un'</i>amica (avec apostrophe)</td></tr>
+</table></div>
+
+<h3>3. Articoli partitivi (du, de la, des)</h3>
+<p>Formés de <i>di</i> + article défini : <i>del pane, della pasta, dei ragazzi, degli amici, delle idee</i>. Le pluriel (<i>dei/degli/delle</i>) sert de pluriel à « un/una » : <i>Ho comprato dei libri</i> → J'ai acheté des livres.</p>
+<div class="nota"><b>Nota :</b> au négatif, le partitif disparaît souvent : <i>Non ho pane</i> ou <i>Non ho del pane</i> (la première forme est plus naturelle, contrairement au français « je n'ai pas DE pain »).</div>
+
+<h3>4. Emplois différents du français</h3>
+<p>L'italien met l'article défini là où le français ne le met pas toujours :</p>
+<p class="es"><i>L'Italia è bella. Mi piace il calcio. Il lunedì vado in piscina. Sono le tre. Ho i capelli neri.</i> <span class="tr">→ pays, goûts généraux, jour habituel (« le lundi » = tous les lundis), heure, parties du corps.</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare — les pièges du francophone</h4><ul>
+<li>❌ <i>il studente</i> → ✅ <i>lo studente</i>. Devant s+consonne et z, c'est toujours <b>lo / uno / gli</b>.</li>
+<li>❌ <i>un'amico</i> → ✅ <i>un amico</i>. L'apostrophe sur <i>un'</i> n'existe qu'au <b>féminin</b>.</li>
+<li>❌ <i>gli case</i> → ✅ <i>le case</i>. <i>Gli</i> est uniquement masculin pluriel.</li>
+<li>Ne pas calquer « des » : ❌ <i>Ho mangiato des pasta</i>… le partitif italien est <i>di + articolo</i> et souvent facultatif.</li>
+<li>❌ <i>Vado a il cinema</i> → ✅ <i>Vado al cinema</i> : préposition + article se contractent presque toujours (voir cap. 4).</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave — les bons réflexes</h4><ul>
+<li>Réflexe « première lettre » : avant d'écrire un article, regarder le début du mot suivant (s+cons/z/gn → <i>lo/uno/gli</i> ; voyelle → <i>l'/gli/un/un'</i>).</li>
+<li><i>Il lunedì</i> = tous les lundis ; <i>lunedì</i> sans article = lundi prochain/dernier. Nuance très rentable à l'écrit.</li>
+<li>Devant les possessifs, article obligatoire : <i>la mia casa</i> (voir cap. 5) — grosse différence avec le français.</li>
+<li>Astuce mémoire : <i>lo</i> s'emploie exactement là où le pluriel est <i>gli</i>.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g02" data-liv="A2" data-tab="gram" data-titolo="Nomi: genere e numero">
+<div class="cap-head"><span class="liv a2">A2</span><h2>I nomi — genere e numero (pluriels réguliers et pièges)</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Pas de « -s » du pluriel en italien : c'est la voyelle finale qui change. Trois modèles couvrent presque tout, le reste est une liste de pièges à connaître.</p>
+
+<h3>1. Les trois modèles de base</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Singulier</th><th>Pluriel</th><th>Exemples</th></tr>
+<tr><td>-o (masc.)</td><td>-i</td><td><i>libro → libri, ragazzo → ragazzi</i></td></tr>
+<tr><td>-a (fém.)</td><td>-e</td><td><i>casa → case, ragazza → ragazze</i></td></tr>
+<tr><td>-e (masc. ou fém.)</td><td>-i</td><td><i>il padre → i padri, la notte → le notti</i></td></tr>
+</table></div>
+
+<h3>2. Pluriels avec changement orthographique</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Cas</th><th>Règle</th><th>Exemples</th></tr>
+<tr><td>-ca / -ga</td><td>→ -che / -ghe (le son dur se garde)</td><td><i>amica → amiche, riga → righe</i></td></tr>
+<tr><td>-co / -go (accent sur l'avant-dernière syllabe)</td><td>→ -chi / -ghi le plus souvent</td><td><i>parco → parchi, albergo → alberghi</i> (mais <i>amico → amici, greco → greci</i> !)</td></tr>
+<tr><td>-co / -go (accent avant)</td><td>→ -ci / -gi le plus souvent</td><td><i>medico → medici, psicologo → psicologi</i></td></tr>
+<tr><td>-cia / -gia (i non accentué, précédé de consonne)</td><td>→ -ce / -ge</td><td><i>arancia → arance, spiaggia → spiagge</i></td></tr>
+<tr><td>-cia / -gia (précédé de voyelle, ou i accentué)</td><td>→ -cie / -gie</td><td><i>camicia → camicie, farmacia → farmacie</i></td></tr>
+<tr><td>-io (i non accentué)</td><td>→ -i (un seul i)</td><td><i>figlio → figli, occhio → occhi</i> (mais <i>zio → zii</i>)</td></tr>
+</table></div>
+
+<h3>3. Invariables et irréguliers célèbres</h3>
+<ul>
+<li><b>Invariables :</b> mots accentués sur la finale (<i>la città → le città, il caffè → i caffè</i>), mots étrangers (<i>il film → i film, lo sport → gli sport</i>), abréviations (<i>la foto → le foto, il cinema → i cinema</i>).</li>
+<li><b>Masculins en -a :</b> <i>il problema → i problemi, il programma, il tema, il sistema, il clima, il poeta, il turista</i> (→ <i>i turisti / le turiste</i>).</li>
+<li><b>Féminins en -o :</b> <i>la mano → le mani</i> (LA main !), <i>la radio → le radio</i>.</li>
+<li><b>Pluriels en -a (féminins !) :</b> <i>l'uovo → le uova, il braccio → le braccia, il dito → le dita, il paio → le paia, il centinaio → le centinaia</i>.</li>
+<li><b>À part :</b> <i>l'uomo → gli uomini</i>.</li>
+</ul>
+<p class="es"><i>Il problema è serio, i problemi sono seri. Mi lavo le mani. Ho comprato sei uova.</i> <span class="tr">→ noter les accords : problema masculin, mano féminin, uova féminin pluriel.</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>i problemas, le fotos</i> → jamais de -s. ✅ <i>i problemi, le foto</i>.</li>
+<li>❌ <i>la problema</i> → ✅ <i>il problema</i>. Les mots grecs en -ma sont masculins.</li>
+<li>❌ <i>il mano</i> → ✅ <i>la mano</i>. Et pluriel <i>le mani</i>.</li>
+<li>❌ <i>gli amichi</i> → ✅ <i>gli amici</i> (mais <i>i parchi</i> !). Vérifier cas par cas les -co/-go.</li>
+<li>❌ <i>le braccie</i> → ✅ <i>le braccia</i>. Les parties du corps « doubles » ont souvent un pluriel en -a.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Mémoriser la triade <b>-o→-i, -a→-e, -e→-i</b> jusqu'au réflexe : elle règle 90 % des cas.</li>
+<li>Un mot accentué sur la dernière voyelle (<i>città, università, caffè</i>) ne bouge jamais : seul l'article change.</li>
+<li>Pour -cia/-gia : consonne avant → <i>-ce/-ge</i> ; voyelle avant → <i>-cie/-gie</i>. (<i>arancia → arance</i>, <i>camicia → camicie</i>.)</li>
+<li>Les pluriels en -a (<i>uova, braccia, dita</i>) s'accordent au féminin : <i>le uova fresche</i>.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g03" data-liv="A2" data-tab="gram" data-titolo="Aggettivi: accordo e posizione">
+<div class="cap-head"><span class="liv a2">A2</span><h2>Gli aggettivi — accord, position, <i>bello</i>, <i>buono</i>, <i>grande</i></h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Deux familles d'adjectifs, une position par défaut différente du français dans certains cas, et trois adjectifs caméléons à connaître par cœur.</p>
+
+<h3>1. Les deux familles</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Type</th><th>Masc. sing.</th><th>Fém. sing.</th><th>Masc. plur.</th><th>Fém. plur.</th></tr>
+<tr><td>en -o (4 formes)</td><td><i>alto</i></td><td><i>alta</i></td><td><i>alti</i></td><td><i>alte</i></td></tr>
+<tr><td>en -e (2 formes)</td><td colspan="2"><i>grande, intelligente</i></td><td colspan="2"><i>grandi, intelligenti</i></td></tr>
+</table></div>
+<p class="es"><i>Una ragazza intelligente, due ragazzi intelligenti, delle case grandi.</i> <span class="tr">→ les adjectifs en -e ont la même forme au masculin et au féminin.</span></p>
+
+<h3>2. La position</h3>
+<p>Position normale : <b>après</b> le nom (<i>una macchina rossa, un film interessante</i>). Avant le nom, l'adjectif prend souvent une valeur subjective ou figurée :</p>
+<p class="es"><i>un uomo grande</i> (grand de taille) / <i>un grand'uomo</i> (un grand homme) · <i>un amico vecchio</i> (âgé) / <i>un vecchio amico</i> (de longue date) · <i>una famiglia povera</i> (pauvre) / <i>una povera famiglia</i> (malheureuse).</p>
+
+<h3>3. Bello, buono, grande, santo</h3>
+<ul>
+<li><b>Bello</b> devant le nom se comporte comme l'article défini : <i>bel libro, bello zaino, bell'amico, bei libri, begli occhi, bella casa, belle case</i>.</li>
+<li><b>Buono</b> au singulier se comporte comme l'article indéfini : <i>buon giorno, buono studente, buon'idea, buona sera</i>.</li>
+<li><b>Grande</b> peut devenir <i>gran</i> devant consonne (<i>un gran film</i>) et <i>grand'</i> devant voyelle (<i>un grand'uomo</i>).</li>
+<li><b>Santo</b> : <i>San Marco, Santo Stefano, Sant'Antonio, Santa Maria</i>.</li>
+</ul>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>una ragazza intelligenta</i> → ✅ <i>intelligente</i>. Les adjectifs en -e n'ont pas de féminin en -a.</li>
+<li>❌ <i>bello libro</i> → ✅ <i>bel libro</i>. Devant le nom, <i>bello</i> se décline comme l'article.</li>
+<li>❌ <i>i belli occhi</i> → ✅ <i>i begli occhi</i> (comme <i>gli</i>).</li>
+<li>Attention à l'accord avec des noms trompeurs : <i>il problema serio</i> (masc.), <i>la mano destra</i> (fém.).</li>
+<li>Ne pas antéposer systématiquement comme en anglais : ❌ <i>una rossa macchina</i> → ✅ <i>una macchina rossa</i>.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Accord toujours en genre ET en nombre, y compris attribut : <i>Le case sono vecchie.</i></li>
+<li><i>Molto</i> adverbe est invariable (<i>sono molto stanche</i>) ; <i>molto</i> adjectif s'accorde (<i>molte case</i>). Même logique pour <i>troppo, poco, tanto</i>.</li>
+<li>Le duo « avant = figuré, après = littéral » (<i>vecchio amico / amico vecchio</i>) est un excellent point à placer à l'oral.</li>
+<li><i>Buon giorno / buona sera / buon appetito</i> : buono tronqué, à connaître en bloc.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g04" data-liv="A2" data-tab="gram" data-titolo="Preposizioni semplici e articolate">
+<div class="cap-head"><span class="liv a2">A2</span><h2>Le preposizioni — semplici e articolate</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Huit prépositions simples ; cinq d'entre elles fusionnent obligatoirement avec l'article défini. C'est un tableau à savoir par cœur, sans exception.</p>
+
+<h3>1. Le preposizioni articolate</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>il</th><th>lo</th><th>l'</th><th>la</th><th>i</th><th>gli</th><th>le</th></tr>
+<tr><td><b>di</b></td><td>del</td><td>dello</td><td>dell'</td><td>della</td><td>dei</td><td>degli</td><td>delle</td></tr>
+<tr><td><b>a</b></td><td>al</td><td>allo</td><td>all'</td><td>alla</td><td>ai</td><td>agli</td><td>alle</td></tr>
+<tr><td><b>da</b></td><td>dal</td><td>dallo</td><td>dall'</td><td>dalla</td><td>dai</td><td>dagli</td><td>dalle</td></tr>
+<tr><td><b>in</b></td><td>nel</td><td>nello</td><td>nell'</td><td>nella</td><td>nei</td><td>negli</td><td>nelle</td></tr>
+<tr><td><b>su</b></td><td>sul</td><td>sullo</td><td>sull'</td><td>sulla</td><td>sui</td><td>sugli</td><td>sulle</td></tr>
+</table></div>
+<p><i>Con, per, tra/fra</i> ne se contractent pas (sauf <i>col</i> = con il, courant à l'oral).</p>
+
+<h3>2. Les emplois qui piègent les francophones</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Idée</th><th>Italien</th><th>Exemple</th></tr>
+<tr><td>aller/être + ville</td><td><b>a</b></td><td><i>Vado a Roma. Abito a Marsiglia.</i></td></tr>
+<tr><td>aller/être + pays, région</td><td><b>in</b></td><td><i>Vado in Italia, in Sicilia, in Francia.</i></td></tr>
+<tr><td>chez quelqu'un</td><td><b>da</b></td><td><i>Vado dal medico. Sono da Marco.</i></td></tr>
+<tr><td>provenance / agent / depuis</td><td><b>da</b></td><td><i>Vengo dalla stazione. Amato da tutti. Studio l'italiano da sei anni.</i></td></tr>
+<tr><td>« il y a » + durée écoulée</td><td><b>fa</b> (postposé)</td><td><i>Due anni fa.</i> → il y a deux ans.</td></tr>
+<tr><td>possession, matière, contenu</td><td><b>di</b></td><td><i>Il libro di Marco, una maglia di lana, un bicchiere di vino.</i></td></tr>
+<tr><td>usage / destination</td><td><b>da</b></td><td><i>Una tazza da tè, gli occhiali da sole, qualcosa da mangiare.</i></td></tr>
+<tr><td>moyen de transport</td><td><b>in</b></td><td><i>In treno, in macchina, in aereo</i> (mais <i>a piedi</i>).</td></tr>
+</table></div>
+
+<h3>3. Verbes + préposition à mémoriser</h3>
+<p class="es"><i>Cominciare a, riuscire a, aiutare qualcuno a, continuare a</i> · <i>finire di, cercare di, avere bisogno di, avere voglia di, smettere di</i> · <i>pensare a</i> (qqn/qqch) mais <i>pensare di</i> + infinitif · <i>dipendere da</i> · <i>partecipare a</i> · <i>innamorarsi di</i>.</p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Vado in Roma</i> → ✅ <i>a Roma</i> (ville = a, pays/région = in).</li>
+<li>❌ <i>Vado al medico / a casa di il medico</i> → ✅ <i>dal medico</i>. « Chez » = <b>da</b>.</li>
+<li>❌ <i>C'è due anni</i> pour « il y a deux ans » → ✅ <i>due anni fa</i>. <i>C'è/ci sono</i> = existence uniquement.</li>
+<li>❌ <i>Studio l'italiano per sei anni / dopo sei anni</i> → ✅ <i>da sei anni</i> (action qui dure encore, avec présent !).</li>
+<li>❌ <i>una tazza di tè</i> quand on veut dire une tasse À thé → <i>da tè</i> = usage, <i>di tè</i> = contenu.</li>
+<li>❌ <i>telefonare qualcuno</i> → ✅ <i>telefonare A qualcuno</i>.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Le tableau des <i>articolate</i> doit être récitable dans les deux sens : <i>nella, sugli, dall'…</i></li>
+<li><i>Da</i> a quatre visages : chez / provenance / depuis / usage. Le repérer dans les textes fait gagner beaucoup en compréhension.</li>
+<li>« Depuis » + présent italien : <i>Vivo qui da tre anni</i> = j'habite ici depuis trois ans. Structure très valorisée à l'écrit.</li>
+<li>Fiche mentale « verbe + prep » : ajouter chaque nouveau verbe rencontré avec sa préposition, jamais seul.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g05" data-liv="A2" data-tab="gram" data-titolo="I possessivi">
+<div class="cap-head"><span class="liv a2">A2</span><h2>I possessivi — et la règle de la famille</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le possessif italien s'accorde avec la chose possédée (jamais avec le possesseur) et il est presque toujours précédé de l'article. Presque.</p>
+
+<h3>1. Les formes</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>Masc. sing.</th><th>Fém. sing.</th><th>Masc. plur.</th><th>Fém. plur.</th></tr>
+<tr><td>je</td><td>il mio</td><td>la mia</td><td>i miei</td><td>le mie</td></tr>
+<tr><td>tu</td><td>il tuo</td><td>la tua</td><td>i tuoi</td><td>le tue</td></tr>
+<tr><td>il/elle/Lei</td><td>il suo</td><td>la sua</td><td>i suoi</td><td>le sue</td></tr>
+<tr><td>nous</td><td>il nostro</td><td>la nostra</td><td>i nostri</td><td>le nostre</td></tr>
+<tr><td>vous</td><td>il vostro</td><td>la vostra</td><td>i vostri</td><td>le vostre</td></tr>
+<tr><td>ils/elles</td><td>il loro</td><td>la loro</td><td>i loro</td><td>le loro</td></tr>
+</table></div>
+<p class="es"><i>La mia macchina, i miei libri, le sue idee.</i> <span class="tr">→ article + possessif + nom : c'est le schéma par défaut.</span></p>
+
+<h3>2. La règle de la famille</h3>
+<p><b>Pas d'article</b> avec les noms de famille au <b>singulier</b> : <i>mia madre, tuo padre, sua sorella, nostro zio</i>.</p>
+<p>Mais l'article <b>revient</b> si : pluriel (<i>i miei fratelli</i>), <i>loro</i> (<i>la loro madre</i>), nom modifié (<i>la mia sorella minore</i>), diminutif/affectif (<i>la mia mamma, il mio papà</i>).</p>
+
+<h3>3. Emplois particuliers</h3>
+<ul>
+<li><i>Suo</i> = « son/sa » (à lui OU à elle) ; <i>Suo</i> avec majuscule = « votre » de politesse (<i>il Suo passaporto</i>).</li>
+<li>Possessif après le nom = expressions : <i>a casa mia, colpa mia, da parte mia, mamma mia!</i></li>
+<li><i>Proprio</i> renforce ou remplace <i>suo/loro</i> quand le possesseur est le sujet : <i>Ognuno pensa ai propri interessi.</i></li>
+<li><i>I miei</i> tout seul = mes parents : <i>Stasera esco con i miei.</i></li>
+</ul>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Mia macchina è rossa</i> → ✅ <i>La mia macchina…</i> L'article est obligatoire (sauf famille sing.).</li>
+<li>❌ <i>La mia madre</i> → ✅ <i>mia madre</i>. Mais ✅ <i>la mia mamma</i>, ✅ <i>i miei genitori</i>.</li>
+<li>❌ <i>il loro padre</i> sans article → non : avec <i>loro</i>, l'article reste TOUJOURS (<i>il loro padre</i> est correct, <i>loro padre</i> ne l'est pas).</li>
+<li>Ne pas confondre <i>suo</i> (à lui/elle) et <i>loro</i> (à eux) : « leur maison » = <i>la loro casa</i>, jamais <i>la sua casa</i>.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Formule à retenir : <b>article + possessif</b>, exception unique = parent proche au singulier, non modifié.</li>
+<li><i>Loro</i> est invariable et garde toujours l'article : deux règles pour le prix d'une.</li>
+<li>Le possessif est souvent omis quand la possession est évidente : <i>Mi metto la giacca</i> (je mets MA veste), <i>Ho perso le chiavi.</i> Plus idiomatique que le calque du français.</li>
+<li>Placer <i>a casa mia / colpa mia</i> à l'oral : petit marqueur d'aisance.</li>
+</ul></div>
+</section>
+<section class="cap" id="g06" data-liv="A2" data-tab="gram" data-titolo="I dimostrativi: questo e quello">
+<div class="cap-head"><span class="liv a2">A2</span><h2>I dimostrativi — <i>questo</i> e <i>quello</i></h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Deux démonstratifs seulement : <i>questo</i> (proche) et <i>quello</i> (éloigné). Le piège : devant un nom, <i>quello</i> se décline comme l'article défini.</p>
+
+<h3>1. Questo (ce…-ci, proche de moi)</h3>
+<p>Quatre formes régulières : <i>questo, questa, questi, queste</i> ; élision possible au singulier : <i>quest'anno, quest'idea</i>.</p>
+
+<h3>2. Quello adjectif (ce…-là, éloigné)</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Devant…</th><th>Singulier</th><th>Pluriel</th></tr>
+<tr><td>consonne (masc.)</td><td><i>quel</i> ragazzo</td><td><i>quei</i> ragazzi</td></tr>
+<tr><td>s+cons., z… (masc.)</td><td><i>quello</i> studente</td><td><i>quegli</i> studenti</td></tr>
+<tr><td>voyelle (masc.)</td><td><i>quell'</i>amico</td><td><i>quegli</i> amici</td></tr>
+<tr><td>féminin</td><td><i>quella</i> casa, <i>quell'</i>amica</td><td><i>quelle</i> case</td></tr>
+</table></div>
+
+<h3>3. Quello pronom</h3>
+<p>Comme pronom, formes régulières : <i>quello, quella, quelli, quelle</i>. <i>Preferisco quelli rossi.</i> → Je préfère ceux qui sont rouges. Aussi : <i>quello che</i> = ce que (voir cap. 21).</p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>quello ragazzo</i> → ✅ <i>quel ragazzo</i>. La forme pleine <i>quello</i> ne s'utilise devant un nom que si l'article serait <i>lo</i>.</li>
+<li>❌ <i>quelli studenti</i> → ✅ <i>quegli studenti</i>. <i>Quelli</i> est uniquement pronom.</li>
+<li>Pas de « -ci / -là » à traduire : ✅ <i>questo libro</i> = ce livre-ci ; le renforcement <i>qui/lì</i> existe (<i>questo qui, quello lì</i>) mais reste familier.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Réutiliser la mécanique des articles : <i>quel/quei</i> ↔ <i>il/i</i> ; <i>quello/quegli</i> ↔ <i>lo/gli</i> ; <i>quell'/quegli</i> ↔ <i>l'/gli</i>. Rien de neuf à apprendre.</li>
+<li><i>Bello</i> suit exactement le même schéma (cap. 3) : deux mots, une seule règle.</li>
+<li><i>Quello che dici è vero</i> : « ce que » = <i>quello che / ciò che</i>, très utile à l'écrit.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g07" data-liv="A2" data-tab="gram" data-titolo="Il presente indicativo">
+<div class="cap-head"><span class="liv a2">A2</span><h2>Il presente indicativo — les trois groupes et les irréguliers vitaux</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le présent porte plus de poids qu'en français : il exprime aussi le futur proche et « être en train de ». Ses terminaisons sont la base de tout le système verbal.</p>
+
+<h3>1. Les trois conjugaisons</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>-ARE <i>parlare</i></th><th>-ERE <i>credere</i></th><th>-IRE <i>dormire</i></th><th>-IRE (-isc) <i>finire</i></th></tr>
+<tr><td>io</td><td>parlo</td><td>credo</td><td>dormo</td><td>fin<b>isc</b>o</td></tr>
+<tr><td>tu</td><td>parli</td><td>credi</td><td>dormi</td><td>fin<b>isc</b>i</td></tr>
+<tr><td>lui/lei</td><td>parla</td><td>crede</td><td>dorme</td><td>fin<b>isc</b>e</td></tr>
+<tr><td>noi</td><td>parliamo</td><td>crediamo</td><td>dormiamo</td><td>finiamo</td></tr>
+<tr><td>voi</td><td>parlate</td><td>credete</td><td>dormite</td><td>finite</td></tr>
+<tr><td>loro</td><td>parlano</td><td>credono</td><td>dormono</td><td>fin<b>isc</b>ono</td></tr>
+</table></div>
+<p>Verbes en -isc courants : <i>finire, capire, preferire, pulire, spedire, costruire, colpire</i>. L'infixe -isc- disparaît à <i>noi</i> et <i>voi</i>.</p>
+
+<h3>2. Particularités orthographiques</h3>
+<ul>
+<li>-care/-gare gardent le son dur : <i>cerchi, cerchiamo ; paghi, paghiamo</i> (ajout du h).</li>
+<li>-ciare/-giare ne doublent pas le i : <i>cominci, mangiamo</i> (pas <i>mangiiamo</i>).</li>
+</ul>
+
+<h3>3. Les irréguliers du quotidien (à réciter)</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Verbe</th><th>Présent</th></tr>
+<tr><td>essere</td><td><i>sono, sei, è, siamo, siete, sono</i></td></tr>
+<tr><td>avere</td><td><i>ho, hai, ha, abbiamo, avete, hanno</i></td></tr>
+<tr><td>andare</td><td><i>vado, vai, va, andiamo, andate, vanno</i></td></tr>
+<tr><td>fare</td><td><i>faccio, fai, fa, facciamo, fate, fanno</i></td></tr>
+<tr><td>stare</td><td><i>sto, stai, sta, stiamo, state, stanno</i></td></tr>
+<tr><td>dare</td><td><i>do, dai, dà, diamo, date, danno</i></td></tr>
+<tr><td>dire</td><td><i>dico, dici, dice, diciamo, dite, dicono</i></td></tr>
+<tr><td>venire</td><td><i>vengo, vieni, viene, veniamo, venite, vengono</i></td></tr>
+<tr><td>uscire</td><td><i>esco, esci, esce, usciamo, uscite, escono</i></td></tr>
+<tr><td>potere</td><td><i>posso, puoi, può, possiamo, potete, possono</i></td></tr>
+<tr><td>volere</td><td><i>voglio, vuoi, vuole, vogliamo, volete, vogliono</i></td></tr>
+<tr><td>dovere</td><td><i>devo, devi, deve, dobbiamo, dovete, devono</i></td></tr>
+<tr><td>sapere</td><td><i>so, sai, sa, sappiamo, sapete, sanno</i></td></tr>
+<tr><td>bere</td><td><i>bevo, bevi, beve, beviamo, bevete, bevono</i></td></tr>
+</table></div>
+
+<h3>4. Emplois du présent</h3>
+<p class="es"><i>Domani parto per Napoli.</i> <span class="tr">→ futur proche : le présent suffit.</span> · <i>Vivo qui da due anni.</i> <span class="tr">→ « depuis » : présent obligatoire (le français dit pareil, l'anglais non).</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>Ne jamais oublier que le sujet est dans la terminaison : les pronoms <i>io, tu…</i> ne s'expriment que pour insister. ❌ <i>Io parlo, io vado, io penso…</i> à chaque phrase sonne très français.</li>
+<li>❌ <i>tu parlas, lui parle</i> → attention aux calques : <i>tu parli, lui parla</i>.</li>
+<li>❌ <i>cerciamo</i> → ✅ <i>cerchiamo</i> ; ❌ <i>paghiamo</i> sans h → le h protège le son dur.</li>
+<li>❌ <i>capo, capi</i> pour capire → ✅ <i>capisco, capisci</i>. Vérifier si le verbe en -ire est du type -isc.</li>
+<li><i>Lui ha</i> avec h, <i>lui a</i> sans h n'existe pas : <b>ho, hai, ha, hanno</b> prennent un h muet (≠ <i>o</i> « ou », <i>a</i> « à », <i>anno</i> « année »).</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>La 3e pers. pluriel est toujours accentuée comme le singulier : <i>PARlano, CREdono</i> (ne pas dire « parlAno »).</li>
+<li><i>Noi</i> finit toujours en <b>-iamo</b>, dans les trois groupes et à tous les modes : point d'appui fiable.</li>
+<li>Présent + <i>da</i> = depuis : <i>Studio italiano da sette anni</i> — formule parfaite pour se présenter à l'oral.</li>
+<li>Les 14 irréguliers du tableau couvrent l'immense majorité des textes : les réciter régulièrement à voix haute.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g08" data-liv="A2" data-tab="gram" data-titolo="Il passato prossimo">
+<div class="cap-head"><span class="liv a2">A2</span><h2>Il passato prossimo — auxiliaires, participes, accords</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le temps du passé n° 1 à l'oral comme à l'écrit. Il fonctionne comme le passé composé français, mais le choix de l'auxiliaire et les accords ont leurs propres règles.</p>
+
+<h3>1. Formation</h3>
+<p><b>Présent de <i>avere</i> ou <i>essere</i> + participe passé</b>. Participes réguliers : -are → -ato, -ere → -uto, -ire → -ito (<i>parlato, creduto, dormito</i>).</p>
+
+<h3>2. Essere ou avere ?</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Avere</th><th>Essere</th></tr>
+<tr><td>verbes transitifs (avec COD) : <i>Ho mangiato una pizza. Ho visto Maria.</i></td><td>mouvement/état : <i>andare, venire, arrivare, partire, entrare, uscire, tornare, restare, stare, nascere, morire, diventare</i></td></tr>
+<tr><td>beaucoup d'intransitifs : <i>ho dormito, ho camminato, ho viaggiato, ho riso</i></td><td>tous les réfléchis : <i>mi sono alzato/a</i></td></tr>
+<tr><td><i>piovere</i> : les deux (<i>ha/è piovuto</i>)</td><td>verbes type <i>piacere</i> : <i>mi è piaciuto, è successo, è costato, è sembrato, è bastato</i></td></tr>
+</table></div>
+<p class="es"><i>Sono andata a Roma e ho visitato i musei.</i> <span class="tr">→ mouvement avec essere (accord !), action transitive avec avere.</span></p>
+<div class="nota"><b>Cas malins :</b> <i>dovere/potere/volere</i> prennent en principe l'auxiliaire de l'infinitif qui suit : <i>Sono dovuto partire</i> / <i>Ho dovuto studiare</i> (mais <i>ho dovuto</i> partout est toléré). <i>Cambiare, cominciare, finire</i> : avere avec COD, essere sans (<i>Il film è finito / Ho finito i compiti</i>).</div>
+
+<h3>3. Les accords</h3>
+<ul>
+<li>Avec <b>essere</b> : accord avec le sujet, toujours. <i>Maria è partita. I ragazzi sono usciti.</i></li>
+<li>Avec <b>avere</b> : pas d'accord… sauf si un pronom COD <i>lo, la, li, le</i> précède : <i>La pizza? L'ho mangiata. I libri? Li ho letti.</i> (accord obligatoire ; avec <i>mi/ti/ci/vi</i> il est facultatif).</li>
+</ul>
+
+<h3>4. Participes irréguliers indispensables</h3>
+<p class="es"><i>fatto (fare), detto (dire), letto (leggere), scritto (scrivere), visto (vedere), preso (prendere), messo (mettere), chiesto (chiedere), risposto (rispondere), aperto (aprire), offerto (offrire), morto (morire), nato (nascere), rimasto (rimanere), scelto (scegliere), vinto (vincere), vissuto (vivere), successo (succedere), rotto (rompere), chiuso (chiudere), deciso (decidere), perso (perdere), speso (spendere), sceso (scendere).</i> <span class="tr">→ liste complète dans l'onglet Coniugazione.</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Ho andato</i> → ✅ <i>Sono andato/a</i>. Les verbes de mouvement + essere, avec accord.</li>
+<li>❌ <i>Maria è partito</i> → ✅ <i>è partita</i>. Avec essere, l'accord n'est pas une option.</li>
+<li>❌ <i>L'ho mangiato</i> en parlant de <i>la pizza</i> → ✅ <i>L'ho mangiata</i>.</li>
+<li>❌ <i>Ho vissuto</i> systématique : « j'ai vécu deux ans à Rome » = <i>Ho vissuto / Sono vissuto due anni a Roma</i> (les deux existent), mais avec COD, toujours avere : <i>Ho vissuto un'esperienza incredibile</i>.</li>
+<li>❌ <i>Sono stato andare</i>… ne pas empiler : le passé de <i>andare</i> = <i>sono andato</i>, celui de <i>stare</i> et <i>essere</i> = <i>sono stato</i> (identiques !).</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Astuce « la maison d'essere » : mouvement d'un point à un autre, changement d'état, naissance/mort, réfléchis, <i>piacere &amp; co</i>. Tout le reste → avere.</li>
+<li>L'accord après <i>lo/la/li/le</i> est un excellent marqueur de niveau à l'écrit : <i>Le foto? Le ho stampate.</i></li>
+<li><i>Essere</i> et <i>stare</i> partagent le participe <i>stato</i> : <i>Sono stato malato</i> (j'ai été malade), <i>Sono stato a Roma</i> (je suis allé/resté à Rome).</li>
+<li>Apprendre chaque participe irrégulier AVEC son auxiliaire : <i>è nato, è morto, è successo, ha fatto…</i></li>
+</ul></div>
+</section>
+
+<section class="cap" id="g09" data-liv="A2" data-tab="gram" data-titolo="L'imperfetto e l'opposizione col passato prossimo">
+<div class="cap-head"><span class="liv a2">A2</span><h2>L'imperfetto — formes et duel avec le passato prossimo</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le temps le plus régulier de l'italien : quatre verbes irréguliers en tout. La vraie difficulté n'est pas la forme, c'est le choix imperfetto / passato prossimo.</p>
+
+<h3>1. Formation</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>parlare</th><th>credere</th><th>dormire</th><th>essere</th></tr>
+<tr><td>io</td><td>parlavo</td><td>credevo</td><td>dormivo</td><td>ero</td></tr>
+<tr><td>tu</td><td>parlavi</td><td>credevi</td><td>dormivi</td><td>eri</td></tr>
+<tr><td>lui/lei</td><td>parlava</td><td>credeva</td><td>dormiva</td><td>era</td></tr>
+<tr><td>noi</td><td>parlavamo</td><td>credevamo</td><td>dormivamo</td><td>eravamo</td></tr>
+<tr><td>voi</td><td>parlavate</td><td>credevate</td><td>dormivate</td><td>eravate</td></tr>
+<tr><td>loro</td><td>parlavano</td><td>credevano</td><td>dormivano</td><td>erano</td></tr>
+</table></div>
+<p>Irréguliers (ils reprennent l'ancien radical) : <i>fare → facevo, dire → dicevo, bere → bevevo, tradurre → traducevo</i> (+ <i>porre → ponevo</i>).</p>
+
+<h3>2. Emplois de l'imperfetto</h3>
+<ul>
+<li><b>Description</b> dans le passé : <i>Era una bella giornata, il sole splendeva.</i></li>
+<li><b>Habitude</b> : <i>Da bambino andavo al mare ogni estate.</i> → Quand j'étais petit, j'allais…</li>
+<li><b>Action-cadre</b> interrompue : <i>Dormivo quando hai chiamato.</i></li>
+<li><b>États mentaux et physiques</b> : <i>Avevo fame, ero stanco, volevo partire.</i></li>
+</ul>
+
+<h3>3. Le duel : imperfetto vs passato prossimo</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Imperfetto = la toile de fond</th><th>Passato prossimo = l'événement</th></tr>
+<tr><td>Comment c'était (durée floue, pas de bornes)</td><td>Ce qui s'est passé (action complète, datable)</td></tr>
+<tr><td><i>Pioveva.</i> (il pleuvait, décor)</td><td><i>Ieri è piovuto tutto il giorno.</i> (fait accompli, borné)</td></tr>
+<tr><td><i>Conoscevo Maria.</i> = je la connaissais</td><td><i>Ho conosciuto Maria.</i> = j'ai fait sa connaissance</td></tr>
+<tr><td><i>Sapevo la verità.</i> = je savais</td><td><i>Ho saputo la verità.</i> = j'ai appris</td></tr>
+<tr><td><i>Volevo venire.</i> = je voulais (intention)</td><td><i>Ho voluto venire.</i> = j'ai voulu (et je l'ai fait)</td></tr>
+</table></div>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Quando ero arrivato, pioveva</i> pour « quand je suis arrivé » → ✅ <i>Quando sono arrivato, pioveva.</i> L'événement ponctuel reste au passato prossimo.</li>
+<li>❌ <i>parlavono</i> → ✅ <i>parlavano</i>. Et l'accent tonique reste sur -A- : <i>parlAvano</i>.</li>
+<li>❌ <i>ero fatto, era detto</i> comme imparfaits de fare/dire → ✅ <i>facevo, dicevo</i>.</li>
+<li>Ne pas traduire « c'était » systématiquement par <i>è stato</i> : la description passée = <i>era</i>. <i>È stato</i> = bilan d'événement (<i>È stata una bella serata!</i>).</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Question-test : « Combien de temps ? Jusqu'à quand ? » Si la réponse est bornée ou sans importance → imperfetto ; si l'action est close et compte comme un fait → passato prossimo.</li>
+<li>Le couple <i>Mentre + imperfetto, passato prossimo</i> est une structure en or : <i>Mentre studiavo, è arrivato un messaggio.</i></li>
+<li><i>Conoscere, sapere, volere, potere, dovere</i> changent de sens selon le temps (tableau ci-dessus) : très apprécié des correcteurs.</li>
+<li>À l'oral, raconter = alterner : décor à l'imperfetto, actions au passato prossimo. S'entraîner en racontant sa journée.</li>
+</ul></div>
+</section>
+<section class="cap" id="g10" data-liv="A2" data-tab="gram" data-titolo="Il futuro semplice e anteriore">
+<div class="cap-head"><span class="liv a2">A2</span><h2>Il futuro — semplice e anteriore</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Terminaisons uniques pour tous les verbes ; seule la voyelle du radical change. Bonus : le futur italien sert aussi à exprimer une supposition.</p>
+
+<h3>1. Formation</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>parlare → parler-</th><th>credere → creder-</th><th>dormire → dormir-</th></tr>
+<tr><td>io</td><td>parlerò</td><td>crederò</td><td>dormirò</td></tr>
+<tr><td>tu</td><td>parlerai</td><td>crederai</td><td>dormirai</td></tr>
+<tr><td>lui/lei</td><td>parlerà</td><td>crederà</td><td>dormirà</td></tr>
+<tr><td>noi</td><td>parleremo</td><td>crederemo</td><td>dormiremo</td></tr>
+<tr><td>voi</td><td>parlerete</td><td>crederete</td><td>dormirete</td></tr>
+<tr><td>loro</td><td>parleranno</td><td>crederanno</td><td>dormiranno</td></tr>
+</table></div>
+<p>Noter : les verbes en -ARE passent à <b>-er-</b> (<i>parlerò</i>, pas <i>parlarò</i>). Orthographe : <i>cercherò, pagherò</i> (h) ; <i>comincerò, mangerò</i> (le i tombe).</p>
+
+<h3>2. Radicaux irréguliers (valables aussi au conditionnel !)</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Type</th><th>Verbes</th></tr>
+<tr><td>voyelle qui tombe</td><td><i>andare → andrò, avere → avrò, dovere → dovrò, potere → potrò, sapere → saprò, vedere → vedrò, vivere → vivrò, cadere → cadrò</i></td></tr>
+<tr><td>double r</td><td><i>volere → vorrò, venire → verrò, rimanere → rimarrò, bere → berrò, tenere → terrò</i></td></tr>
+<tr><td>à part</td><td><i>essere → sarò, fare → farò, dare → darò, stare → starò</i></td></tr>
+</table></div>
+
+<h3>3. Le futuro anteriore</h3>
+<p><i>Avrò/sarò + participio</i> : action future antérieure à une autre. <i>Quando avrò finito, ti chiamerò.</i> → Quand j'aurai fini, je t'appellerai.</p>
+
+<h3>4. Le futur de probabilité (très italien !)</h3>
+<p class="es"><i>Che ore sono? — Saranno le otto.</i> <span class="tr">→ Il doit être environ 8 h.</span> · <i>Dov'è Marco? — Sarà uscito.</i> <span class="tr">→ Il a dû sortir.</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>parlarò</i> → ✅ <i>parlerò</i>. Le -a- des verbes en -are devient -e-.</li>
+<li>❌ <i>volerò</i> (voler = futur de volare !) pour « je voudrai » → ✅ <i>vorrò</i>.</li>
+<li>❌ <i>Quando finirò, ti chiamerò</i> n'est pas faux, mais après <i>quando/appena</i>, l'italien préfère marquer l'antériorité : <i>Quando avrò finito…</i></li>
+<li>Après <i>se</i> (si hypothétique), le futur est possible en italien, contrairement au français : <i>Se avrò tempo, verrò</i> — mais ne jamais y mettre de conditionnel.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Un radical de futur appris = un conditionnel gratuit : <i>vorrò → vorrei, sarò → sarei</i> (mêmes radicaux, voir cap. 17).</li>
+<li>Le futur de probabilité (<i>Sarà stanco</i> = il doit être fatigué) est une tournure élégante à placer à l'oral.</li>
+<li>Accents obligatoires à l'écrit sur <i>-ò</i> et <i>-à</i> : <i>parlerò, parlerà</i>.</li>
+<li>Pour un futur proche et sûr, le présent suffit : <i>Domani vado a Roma.</i> Le futur ajoute distance ou incertitude.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g11" data-liv="A2" data-tab="gram" data-titolo="I verbi riflessivi">
+<div class="cap-head"><span class="liv a2">A2</span><h2>I verbi riflessivi e reciproci</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Même logique qu'en français (<i>mi, ti, si, ci, vi, si</i>), avec deux différences clés : l'auxiliaire est toujours <i>essere</i>, et le pronom s'accroche à l'infinitif.</p>
+
+<h3>1. Conjugaison type : alzarsi (se lever)</h3>
+<p class="es"><i>Mi alzo, ti alzi, si alza, ci alziamo, vi alzate, si alzano.</i> · Passé : <i>Mi sono alzato/a presto.</i></p>
+
+<h3>2. Le pronom se déplace</h3>
+<ul>
+<li>Avec un infinitif, le pronom se soude à la fin : <i>Devo alzarmi presto</i> (ou <i>Mi devo alzare</i> : les deux sont corrects).</li>
+<li>À l'impératif affirmatif aussi : <i>Alzati! Sbrigati!</i> (voir cap. 16).</li>
+<li>Au gérondif : <i>alzandomi</i>.</li>
+</ul>
+
+<h3>3. Réciproques et pronominaux courants</h3>
+<p class="es"><i>Ci vediamo domani! Ci sentiamo!</i> <span class="tr">→ On se voit demain ! On s'appelle ! (réciproque)</span></p>
+<p>Verbes très fréquents : <i>svegliarsi, alzarsi, lavarsi, vestirsi, divertirsi, annoiarsi, arrabbiarsi, sposarsi, fermarsi, ricordarsi (di), dimenticarsi (di), accorgersi (di), trovarsi, sentirsi, chiamarsi, iscriversi (a), laurearsi, trasferirsi, abituarsi (a).</i></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Mi ho alzato</i> → ✅ <i>Mi sono alzato/a</i>. Réfléchi = <b>essere</b>, sans exception, avec accord.</li>
+<li>❌ <i>Devo mi alzare</i> → ✅ <i>Devo alzarmi</i> ou <i>Mi devo alzare</i>. Jamais le pronom coincé entre les deux verbes.</li>
+<li>❌ <i>Io chiamo Orhan</i> pour se présenter → ✅ <i>Mi chiamo Orhan</i> (<i>chiamare</i> = appeler quelqu'un).</li>
+<li>Attention aux verbes réfléchis en italien mais pas en français : <i>laurearsi</i> (obtenir son diplôme), <i>congratularsi con</i> (féliciter), <i>ammalarsi</i> (tomber malade).</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Formule passé : <b>mi/ti/si… + essere + participe accordé</b>. <i>Le ragazze si sono divertite.</i></li>
+<li><i>Ci vediamo, ci sentiamo, ci becchiamo</i> (fam.) : clôtures de dialogue parfaites pour l'oral.</li>
+<li>Beaucoup de verbes existent en version simple/pronominale avec nuance : <i>ricordare</i> (rappeler) / <i>ricordarsi di</i> (se souvenir de) ; <i>sentire</i> (entendre) / <i>sentirsi</i> (se sentir).</li>
+<li>La montée du pronom avec les modaux (<i>mi devo alzare</i>) est un signe d'italien naturel : varier les deux constructions.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g12" data-liv="A2" data-tab="gram" data-titolo="Piacere e costruzioni simili">
+<div class="cap-head"><span class="liv a2">A2</span><h2><i>Piacere</i> e i verbi «alla rovescia»</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">« J'aime la pizza » se dit littéralement « la pizza plaît à moi ». Le sujet grammatical est la chose aimée : tout découle de ce renversement.</p>
+
+<h3>1. La construction</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Français</th><th>Italien</th><th>Analyse</th></tr>
+<tr><td>J'aime la pizza</td><td><i>Mi piace la pizza</i></td><td>la pizza = sujet → piace (3e sing.)</td></tr>
+<tr><td>J'aime les pâtes</td><td><i>Mi piacciono gli spaghetti</i></td><td>sujet pluriel → piacciono</td></tr>
+<tr><td>J'aime danser</td><td><i>Mi piace ballare</i></td><td>infinitif = singulier</td></tr>
+<tr><td>Marco aime le foot</td><td><i>A Marco piace il calcio</i></td><td>personne = <i>a</i> + nom ou pronom indirect</td></tr>
+</table></div>
+<p>Pronoms indirects : <i>mi, ti, gli/le, ci, vi, gli</i> — ou formes toniques : <i>a me, a te, a lui/a lei, a noi, a voi, a loro</i>.</p>
+
+<h3>2. Au passé</h3>
+<p class="es"><i>Il film mi è piaciuto. La mostra ci è piaciuta molto. I musei? Non mi sono piaciuti.</i> <span class="tr">→ essere + accord avec la chose aimée.</span></p>
+
+<h3>3. La même famille</h3>
+<p><i>Mancare</i> (manquer : <i>Mi manchi</i> = tu me manques !), <i>servire</i> (avoir besoin : <i>Mi serve una penna</i>), <i>bastare</i> (<i>Mi bastano dieci euro</i>), <i>interessare, sembrare, succedere, dispiacere</i> (<i>Mi dispiace</i> = je suis désolé), <i>fare male</i> (<i>Mi fa male la testa</i> = j'ai mal à la tête).</p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Io piaccio la pizza</i> → ✅ <i>Mi piace la pizza</i>. (<i>Io piaccio</i> = je plais !)</li>
+<li>❌ <i>Mi piace gli spaghetti</i> → ✅ <i>Mi piacciono</i> : accord avec le sujet réel.</li>
+<li>❌ <i>Tu mi manques</i> calqué en <i>Tu mi manchi</i>… est correct ! Mais comprendre le sens inverse : <i>Mi manchi</i> = tu manques à moi. ❌ <i>Ti manco</i> ne veut pas dire « tu me manques » mais « je te manque ».</li>
+<li>❌ <i>A Marco gli piace</i> → doublon à éviter à l'écrit : <i>A Marco piace</i> suffit.</li>
+<li>❌ <i>Il film m'ha piaciuto</i> → ✅ <i>mi è piaciuto</i> : auxiliaire essere.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Réflexe en deux questions : QUI apprécie ? → pronom indirect. QU'EST-CE qui est apprécié ? → c'est le sujet, il commande le verbe.</li>
+<li><i>Mi piacerebbe + infinitif</i> = j'aimerais… : la formule reine pour exprimer un souhait à l'oral.</li>
+<li>Nuancer : <i>mi piace molto / mi piace un sacco (fam.) / non mi piace per niente / odio</i>.</li>
+<li><i>Anche a me / Neanche a me</i> = moi aussi / moi non plus (en réponse à <i>mi piace</i>) — et non <i>anch'io</i> dans ce cas !</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g13" data-liv="A2" data-tab="gram" data-titolo="C'è, ci sono; le particelle ci e ne">
+<div class="cap-head"><span class="liv a2">A2</span><h2><i>C'è / ci sono</i> e le particelle <i>ci</i> e <i>ne</i></h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Deux petites particules omniprésentes. <i>Ci</i> remplace un lieu (« y »), <i>ne</i> remplace une quantité ou un complément en <i>di</i> (« en »). Les maîtriser change immédiatement le niveau perçu.</p>
+
+<h3>1. C'è / ci sono (il y a)</h3>
+<p class="es"><i>C'è un problema. Ci sono molti turisti.</i> <span class="tr">→ accord obligatoire avec ce qui suit : singulier → c'è, pluriel → ci sono.</span></p>
+<p>Au passé : <i>c'era / c'erano</i> (description), <i>c'è stato / ci sono stati</i> (événement).</p>
+
+<h3>2. Ci (= y)</h3>
+<ul>
+<li>Lieu : <i>Vai a Roma? — Sì, ci vado domani.</i> → j'y vais.</li>
+<li>Avec <i>a</i> + chose : <i>Pensi all'esame? — Sì, ci penso sempre.</i> → j'y pense.</li>
+<li>Dans des verbes figés : <i>crederci</i> (y croire), <i>riuscirci</i> (y arriver), <i>tenerci</i> (y tenir), <i>metterci</i> (mettre du temps), <i>volerci</i> (falloir) — voir cap. 22.</li>
+</ul>
+
+<h3>3. Ne (= en)</h3>
+<ul>
+<li>Quantité : <i>Quanti caffè bevi? — Ne bevo tre.</i> → j'en bois trois. <i>Ne voglio un po'. Non ne ho.</i></li>
+<li>Complément en <i>di</i> : <i>Parliamo del progetto? — Sì, parliamone. Che ne pensi?</i> → qu'en penses-tu ?</li>
+<li>Au passé, <b>accord</b> avec la quantité : <i>Quante pizze hai mangiato? — Ne ho mangiate due.</i></li>
+</ul>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>C'è molti turisti</i> → ✅ <i>Ci sono molti turisti</i>. L'accord est obligatoire (le français « il y a » est invariable, pas l'italien).</li>
+<li>❌ utiliser <i>c'è</i> pour le temps : « il y a deux ans » = <i>due anni fa</i> (cap. 4), jamais <i>c'è due anni</i>.</li>
+<li>❌ <i>Ho tre</i> pour « j'en ai trois » → ✅ <i>Ne ho tre</i>. Avec un nombre sans nom, <i>ne</i> est obligatoire.</li>
+<li>❌ <i>Ne ho mangiato due</i> (en parlant de pizzas) → ✅ <i>Ne ho mangiate due</i> : accord avec ne quantitatif.</li>
+<li>Ne pas confondre <i>ci</i> (y) et <i>ci</i> (nous) : <i>Ci vediamo</i> = on se voit ; <i>Ci vado</i> = j'y vais. Le contexte tranche.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Test rapide : le complément commence par <i>a</i>/lieu → <i>ci</i> ; par <i>di</i>/quantité → <i>ne</i>.</li>
+<li><i>Che ne pensi? / Che ne dici?</i> : deux ouvertures de dialogue idéales à l'oral d'interaction.</li>
+<li><i>Ce n'è / ce ne sono</i> : combinaison c'è + ne : <i>Quanti musei ci sono? — Ce ne sono molti.</i> Très élégant.</li>
+<li>Répondre à une question avec <i>ci/ne</i> au lieu de répéter le nom : exactement ce qu'attend un examinateur en interaction.</li>
+</ul></div>
+</section>
+<!-- ============ GRAMMATICA B1 ============ -->
+
+<section class="cap" id="g14" data-liv="B1" data-tab="gram" data-titolo="Pronomi diretti e indiretti">
+<div class="cap-head"><span class="liv b1">B1</span><h2>I pronomi diretti e indiretti</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le cœur du système : distinguer COD (diretto) et COI (indiretto), car les formes divergent à la 3e personne — exactement là où le français ne fait presque pas de différence.</p>
+
+<h3>1. Les formes atones (avant le verbe)</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Personne</th><th>Diretto (COD)</th><th>Indiretto (COI = a + qqn)</th></tr>
+<tr><td>io</td><td>mi</td><td>mi</td></tr>
+<tr><td>tu</td><td>ti</td><td>ti</td></tr>
+<tr><td>lui</td><td><b>lo</b></td><td><b>gli</b></td></tr>
+<tr><td>lei / Lei</td><td><b>la / La</b></td><td><b>le / Le</b></td></tr>
+<tr><td>noi</td><td>ci</td><td>ci</td></tr>
+<tr><td>voi</td><td>vi</td><td>vi</td></tr>
+<tr><td>loro (m.)</td><td><b>li</b></td><td><b>gli</b> (loro à l'écrit soutenu)</td></tr>
+<tr><td>loro (f.)</td><td><b>le</b></td><td><b>gli</b></td></tr>
+</table></div>
+<p class="es"><i>Vedo Marco → Lo vedo. Telefono a Marco → Gli telefono. Scrivo a Maria → Le scrivo. Invito le ragazze → Le invito.</i></p>
+
+<h3>2. Position</h3>
+<ul>
+<li>Avant le verbe conjugué : <i>Ti chiamo stasera.</i></li>
+<li>Soudé à l'infinitif (qui perd son -e) : <i>Voglio vederti / Ti voglio vedere.</i></li>
+<li>Soudé au gérondif et à l'impératif : <i>vedendolo, chiamami!</i></li>
+</ul>
+
+<h3>3. Accord au passato prossimo</h3>
+<p class="es"><i>Hai visto Maria? — Sì, l'ho vista. Hai comprato i biglietti? — Sì, li ho comprati.</i> <span class="tr">→ avec lo/la/li/le devant avere, l'accord du participe est obligatoire.</span></p>
+
+<h3>4. Formes toniques (après le verbe, pour insister)</h3>
+<p><i>me, te, lui, lei, noi, voi, loro</i> : <i>Cercano te, non me. Parlo con lui. Secondo me…</i></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Lo telefono</i> → ✅ <i>Gli telefono</i>. Vérifier la construction italienne, pas la française : <i>telefonare A, chiedere A, rispondere A, dire A</i> → pronom indirect.</li>
+<li>❌ <i>Le vedo</i> pour « je le vois » → ✅ <i>Lo vedo</i>. <i>Le</i> = à elle (COI) ou les (fém. COD).</li>
+<li>❌ <i>Gli scrivo</i> pour « je lui écris » à une femme → ✅ <i>Le scrivo</i>. <i>Gli</i> ≠ <i>le</i> : c'est LA distinction B1.</li>
+<li>❌ <i>aiutare a qualcuno</i> → ✅ <i>aiutare qualcuno</i> (COD !) : <i>Lo aiuto</i>. De même <i>ascoltare, aspettare, cercare, guardare</i> sont directs (pas de préposition, contrairement au français « écouter/attendre/chercher qqn » qui trompe dans l'autre sens en anglais).</li>
+<li>❌ <i>Li ho visto</i> → ✅ <i>Li ho visti</i>. Accord obligatoire.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Toute la difficulté tient en quatre cases : <b>lo/la/li/le</b> (COD) vs <b>gli/le/gli</b> (COI). Les réciter en binômes : <i>lo vedo / gli parlo ; la vedo / le parlo</i>.</li>
+<li>Question-test : le verbe se construit-il avec <i>a</i> ? (<i>parlare a, dare a, chiedere a</i>…) → indirect.</li>
+<li><i>La</i> majuscule = « vous » de politesse COD (<i>La ringrazio</i>), <i>Le</i> = COI (<i>Le scrivo per…</i>) : indispensable pour une lettre formelle au bac.</li>
+<li>La double position avec modal (<i>ti voglio vedere / voglio vederti</i>) : les deux sont justes, alterner pour la fluidité.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g15" data-liv="B1" data-tab="gram" data-titolo="I pronomi combinati">
+<div class="cap-head"><span class="liv b1">B1</span><h2>I pronomi combinati — <i>me lo, te la, glielo…</i></h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Quand un COI et un COD se rencontrent, l'italien les fusionne : le COI passe en premier et son -i devient -e. Un tableau, une règle, beaucoup d'effet.</p>
+
+<h3>1. Le tableau</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>+ lo</th><th>+ la</th><th>+ li</th><th>+ le</th><th>+ ne</th></tr>
+<tr><td>mi</td><td>me lo</td><td>me la</td><td>me li</td><td>me le</td><td>me ne</td></tr>
+<tr><td>ti</td><td>te lo</td><td>te la</td><td>te li</td><td>te le</td><td>te ne</td></tr>
+<tr><td>gli / le / Le</td><td><b>glielo</b></td><td><b>gliela</b></td><td><b>glieli</b></td><td><b>gliele</b></td><td><b>gliene</b></td></tr>
+<tr><td>ci</td><td>ce lo</td><td>ce la</td><td>ce li</td><td>ce le</td><td>ce ne</td></tr>
+<tr><td>vi</td><td>ve lo</td><td>ve la</td><td>ve li</td><td>ve le</td><td>ve ne</td></tr>
+<tr><td>si (réfléchi)</td><td>se lo</td><td>se la</td><td>se li</td><td>se le</td><td>se ne</td></tr>
+</table></div>
+<p class="es"><i>Mi presti il libro? — Sì, te lo presto. Hai dato le chiavi a Marco? — Sì, gliele ho date.</i> <span class="tr">→ noter l'accord : glieLE ho datE.</span></p>
+
+<h3>2. Points de fonctionnement</h3>
+<ul>
+<li><b>Glielo</b> s'écrit en un mot et vaut pour « à lui », « à elle » ET « à vous (Lei) » : le contexte précise.</li>
+<li>Avec infinitif/impératif, tout se soude : <i>Puoi prestarmelo? Dammelo! Parlagliene.</i></li>
+<li>Réfléchi + COD : <i>Me la cavo</i> (je me débrouille), <i>Se n'è andato</i> (il s'en est allé).</li>
+</ul>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Mi lo presti?</i> → ✅ <i>Me lo presti?</i> Le -i devient -e devant lo/la/li/le/ne.</li>
+<li>❌ ordre français « le lui » : ✅ l'italien met toujours l'indirect d'abord : <i>glielo</i> (= le lui, littéralement « lui le »).</li>
+<li>❌ <i>gli lo, le lo</i> → ✅ <i>glielo</i>, soudé, avec -e-.</li>
+<li>❌ <i>Gliele ho dato</i> → ✅ <i>Gliele ho date</i> : l'accord suit le COD même dans un combiné.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Règle unique : <b>indirect + direct</b>, -i → -e, 3e personne = <i>glie-</i> soudé.</li>
+<li>S'entraîner avec des mini-dialogues : <i>Chi ti ha regalato questa maglia? — Me l'ha regalata mia zia.</i></li>
+<li><i>Ce la faccio / non ce la faccio</i> (j'y arrive / je n'y arrive pas) : combiné figé ultra courant (cap. 22).</li>
+<li>Placer un <i>gliel'ho detto</i> bien accordé à l'oral : effet garanti sur l'examinateur.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g16" data-liv="B1" data-tab="gram" data-titolo="L'imperativo">
+<div class="cap-head"><span class="liv b1">B1</span><h2>L'imperativo — ordres, conseils, politesse</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Trois choses à savoir : la 2e personne des verbes en -are finit en -a ; la négation au <i>tu</i> utilise l'infinitif ; la forme de politesse est en réalité un subjonctif.</p>
+
+<h3>1. Les formes</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>parlare</th><th>prendere</th><th>dormire</th><th>finire</th></tr>
+<tr><td>(tu)</td><td>parl<b>a</b>!</td><td>prendi!</td><td>dormi!</td><td>finisci!</td></tr>
+<tr><td>(Lei)</td><td>parl<b>i</b>!</td><td>prend<b>a</b>!</td><td>dorm<b>a</b>!</td><td>finisc<b>a</b>!</td></tr>
+<tr><td>(noi)</td><td>parliamo!</td><td>prendiamo!</td><td>dormiamo!</td><td>finiamo!</td></tr>
+<tr><td>(voi)</td><td>parlate!</td><td>prendete!</td><td>dormite!</td><td>finite!</td></tr>
+</table></div>
+<p>Impératifs courts irréguliers (tu) : <i>va' (vai), fa' (fai), da' (dai), sta' (stai), di'</i> ; et <i>sii</i> (essere), <i>abbi</i> (avere), <i>sappi</i> (sapere).</p>
+
+<h3>2. La négation</h3>
+<p class="es"><i>(tu) Non parlare! Non ti preoccupare!</i> <span class="tr">→ non + infinitif à la 2e pers. sing.</span> · <i>(voi) Non parlate!</i> <span class="tr">→ forme normale.</span></p>
+
+<h3>3. Impératif + pronoms</h3>
+<ul>
+<li>Tu/noi/voi : pronom soudé après : <i>Ascoltami! Diamoci del tu! Scrivetele!</i></li>
+<li>Avec les formes courtes, la consonne double : <i>dimmi! (di' + mi), dammi!, fallo!, vacci!</i> (sauf gli : <i>digli</i>).</li>
+<li>Lei : pronom AVANT : <i>Mi dica! Si accomodi! Non si preoccupi!</i></li>
+</ul>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Parli!</i> pour tutoyer → ✅ <i>Parla!</i> En -are, le tu impératif finit en -a (l'inverse du présent : c'est LE piège).</li>
+<li>❌ <i>Non parla!</i> → ✅ <i>Non parlare!</i> Négation au tu = infinitif.</li>
+<li>❌ <i>Mi ascolta!</i> pour « écoute-moi » → ✅ <i>Ascoltami!</i> (pronom soudé), mais ✅ <i>Mi ascolti!</i> au Lei.</li>
+<li>❌ <i>dami, dime</i> → ✅ <i>dammi, dimmi</i> : double consonne après les impératifs courts.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Mémo croisé -are : présent <i>tu parli / lui parla</i>, impératif <i>parla (tu) / parli (Lei)</i>. Les terminaisons s'échangent.</li>
+<li>Le Lei de l'impératif = subjonctif présent : apprendre l'un, c'est préparer l'autre (cap. 26).</li>
+<li>Expressions prêtes à l'emploi : <i>Senti… / Scusa! / Scusi! / Dai! (allez !) / Guarda… / Mi dica.</i></li>
+<li><i>Non ti preoccupare / Non preoccuparti</i> : les deux ordres du pronom sont admis à la forme négative du tu.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g17" data-liv="B1" data-tab="gram" data-titolo="Il condizionale">
+<div class="cap-head"><span class="liv b1">B1</span><h2>Il condizionale — presente e passato</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Mêmes radicaux que le futur, terminaisons en -ei. Le conditionnel passé a un emploi que le français ignore : le « futur dans le passé ».</p>
+
+<h3>1. Formation</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>parlare</th><th>essere</th><th>volere</th></tr>
+<tr><td>io</td><td>parlerei</td><td>sarei</td><td>vorrei</td></tr>
+<tr><td>tu</td><td>parleresti</td><td>saresti</td><td>vorresti</td></tr>
+<tr><td>lui/lei</td><td>parlerebbe</td><td>sarebbe</td><td>vorrebbe</td></tr>
+<tr><td>noi</td><td>parleremmo</td><td>saremmo</td><td>vorremmo</td></tr>
+<tr><td>voi</td><td>parlereste</td><td>sareste</td><td>vorreste</td></tr>
+<tr><td>loro</td><td>parlerebbero</td><td>sarebbero</td><td>vorrebbero</td></tr>
+</table></div>
+<p>Tous les radicaux irréguliers du futur s'appliquent : <i>avrei, dovrei, potrei, saprei, vedrei, verrei, rimarrei, farei, darei, starei, berrei</i>.</p>
+
+<h3>2. Emplois du présent</h3>
+<ul>
+<li>Politesse/souhait : <i>Vorrei un caffè. Mi piacerebbe visitare Venezia.</i></li>
+<li>Conseil : <i>Dovresti riposarti. Al posto tuo, non lo farei.</i></li>
+<li>Hypothèse (avec se + subjonctif, cap. 29) : <i>Se potessi, verrei.</i></li>
+<li>Information non vérifiée (style journalistique) : <i>Secondo la stampa, il ministro sarebbe pronto a dimettersi.</i></li>
+</ul>
+
+<h3>3. Le conditionnel passé et le futur dans le passé</h3>
+<p><i>Avrei/sarei + participio</i> : <i>Avrei voluto vederti.</i> → J'aurais voulu te voir.</p>
+<p class="es"><i>Ha detto che sarebbe venuto.</i> <span class="tr">→ Il a dit qu'il VIENDRAIT. Après un verbe au passé, le « futur du passé » se rend par le conditionnel PASSÉ, jamais présent.</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Ha detto che verrebbe</i> → ✅ <i>Ha detto che sarebbe venuto.</i> Le calque du français est ici une vraie faute, très surveillée.</li>
+<li>❌ <i>parleremo</i> (futur) / <i>parleremmo</i> (conditionnel) : le double m change tout. Prononcer et écrire les deux m.</li>
+<li>❌ <i>Se sarei ricco…</i> → ✅ <i>Se fossi ricco…</i> Jamais de conditionnel après <i>se</i> hypothétique (cap. 29).</li>
+<li>❌ <i>volerei</i> → ✅ <i>vorrei</i>.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Futur appris = conditionnel connu : radical identique, terminaisons <i>-ei, -esti, -ebbe, -emmo, -este, -ebbero</i>.</li>
+<li><i>Vorrei, mi piacerebbe, dovrei, potrei</i> : le quatuor de la politesse et du conseil, à dégainer sans réfléchir.</li>
+<li>Le conditionnel passé « futur dans le passé » (<i>sapevo che avrebbe vinto</i>) est un des marqueurs les plus nets du niveau B1+/B2.</li>
+<li>Le conditionnel journalistique (<i>ci sarebbero dieci feriti</i> = il y aurait dix blessés) : précieux pour commenter un article de presse.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g18" data-liv="B1" data-tab="gram" data-titolo="Il trapassato prossimo">
+<div class="cap-head"><span class="liv b1">B1</span><h2>Il trapassato prossimo — le plus-que-parfait</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le temps de l'« avant l'avant » : une action passée antérieure à une autre action passée. Formation limpide, emploi identique au français — un chapitre pour engranger des points faciles.</p>
+
+<h3>1. Formation</h3>
+<p><b>Imperfetto de avere/essere + participe passé</b> : <i>avevo parlato, ero andato/a, mi ero alzato/a</i>.</p>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>avec avere</th><th>avec essere</th></tr>
+<tr><td>io</td><td>avevo finito</td><td>ero partito/a</td></tr>
+<tr><td>tu</td><td>avevi finito</td><td>eri partito/a</td></tr>
+<tr><td>lui/lei</td><td>aveva finito</td><td>era partito/a</td></tr>
+<tr><td>noi</td><td>avevamo finito</td><td>eravamo partiti/e</td></tr>
+<tr><td>voi</td><td>avevate finito</td><td>eravate partiti/e</td></tr>
+<tr><td>loro</td><td>avevano finito</td><td>erano partiti/e</td></tr>
+</table></div>
+
+<h3>2. Emploi</h3>
+<p class="es"><i>Quando sono arrivato, il film era già cominciato.</i> <span class="tr">→ le film avait commencé AVANT mon arrivée.</span> · <i>Non ho mangiato la torta che avevi preparato.</i></p>
+<p>Mots-signaux : <i>già, appena, prima, ancora</i> : <i>Non avevo mai visto niente di simile.</i></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>Choix d'auxiliaire et accords : exactement les mêmes règles qu'au passato prossimo. ❌ <i>Aveva partito</i> → ✅ <i>Era partito</i>.</li>
+<li>Ne pas employer le trapassato pour une simple antériorité chronologique dans un récit au passato prossimo enchaîné : <i>Mi sono alzato, ho fatto colazione e sono uscito</i> (pas de trapassato ici).</li>
+<li>❌ <i>Dopo che ho mangiato, ero uscito</i> → l'ordre logique : ✅ <i>Dopo che avevo mangiato, sono uscito.</i></li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Formule : imperfetto d'auxiliaire + participe. Si le passato prossimo est su, le trapassato est gratuit.</li>
+<li><i>Già</i> se place entre l'auxiliaire et le participe : <i>era già partito</i>.</li>
+<li>Dans un récit au bac, une phrase avec trapassato bien placé (<i>non ci ero mai stato prima</i>) valorise immédiatement la copie.</li>
+</ul></div>
+</section>
+<section class="cap" id="g19" data-liv="B1" data-tab="gram" data-titolo="Il passato remoto">
+<div class="cap-head"><span class="liv b1">B1</span><h2>Il passato remoto — le savoir reconnaître (et un peu l'utiliser)</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">L'équivalent du passé simple. Indispensable en <b>compréhension</b> : tous les récits littéraires et historiques l'utilisent. En production, le passato prossimo suffit presque toujours.</p>
+
+<h3>1. Formes régulières</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>parlare</th><th>credere</th><th>dormire</th></tr>
+<tr><td>io</td><td>parlai</td><td>credei / credetti</td><td>dormii</td></tr>
+<tr><td>tu</td><td>parlasti</td><td>credesti</td><td>dormisti</td></tr>
+<tr><td>lui/lei</td><td>parlò</td><td>credé / credette</td><td>dormì</td></tr>
+<tr><td>noi</td><td>parlammo</td><td>credemmo</td><td>dormimmo</td></tr>
+<tr><td>voi</td><td>parlaste</td><td>credeste</td><td>dormiste</td></tr>
+<tr><td>loro</td><td>parlarono</td><td>crederono / credettero</td><td>dormirono</td></tr>
+</table></div>
+
+<h3>2. Le schéma 1-3-3 des irréguliers</h3>
+<p>Les irréguliers ne le sont qu'aux personnes 1, 3 et 6 (io, lui, loro) ; les autres restent régulières. Exemple <i>prendere</i> : <i><b>presi</b>, prendesti, <b>prese</b>, prendemmo, prendeste, <b>presero</b></i>.</p>
+<div class="tbl-scroll"><table>
+<tr><th>Verbe</th><th>io / lui / loro</th><th>Verbe</th><th>io / lui / loro</th></tr>
+<tr><td>essere</td><td>fui / fu / furono</td><td>vedere</td><td>vidi / vide / videro</td></tr>
+<tr><td>avere</td><td>ebbi / ebbe / ebbero</td><td>venire</td><td>venni / venne / vennero</td></tr>
+<tr><td>fare</td><td>feci / fece / fecero</td><td>volere</td><td>volli / volle / vollero</td></tr>
+<tr><td>dire</td><td>dissi / disse / dissero</td><td>sapere</td><td>seppi / seppe / seppero</td></tr>
+<tr><td>dare</td><td>diedi / diede / diedero</td><td>nascere</td><td>nacqui / nacque / nacquero</td></tr>
+<tr><td>stare</td><td>stetti / stette / stettero</td><td>vivere</td><td>vissi / visse / vissero</td></tr>
+<tr><td>mettere</td><td>misi / mise / misero</td><td>scrivere</td><td>scrissi / scrisse / scrissero</td></tr>
+<tr><td>leggere</td><td>lessi / lesse / lessero</td><td>chiedere</td><td>chiesi / chiese / chiesero</td></tr>
+<tr><td>decidere</td><td>decisi / decise / decisero</td><td>conoscere</td><td>conobbi / conobbe / conobbero</td></tr>
+<tr><td>vincere</td><td>vinsi / vinse / vinsero</td><td>rimanere</td><td>rimasi / rimase / rimasero</td></tr>
+</table></div>
+<p class="es"><i>Dante nacque a Firenze nel 1265 e morì a Ravenna nel 1321.</i> <span class="tr">→ le temps naturel des biographies et de l'histoire.</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>Ne pas confondre <i>parlò</i> (passé, accent) et <i>parlo</i> (présent) : l'accent écrit est décisif.</li>
+<li>❌ mélanger passato remoto et passato prossimo dans la même phrase de récit : choisir un registre et s'y tenir.</li>
+<li>Ne pas paniquer en compréhension : le schéma 1-3-3 + le contexte suffisent à identifier le verbe (<i>scrisse → scrivere, vide → vedere</i>).</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Priorité compréhension : savoir remonter de <i>fu, fece, disse, andò</i> à l'infinitif. C'est ce que testent les textes littéraires du bac.</li>
+<li>En production, une phrase de biographie au remoto (<i>Leonardo dipinse la Gioconda</i>) montre l'aisance sans risque.</li>
+<li>Astuce : beaucoup d'irréguliers du remoto partagent le radical du participe passé : <i>messo/misi, scritto/scrissi, deciso/decisi, chiesto/chiesi</i>.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g20" data-liv="B1" data-tab="gram" data-titolo="Comparativi e superlativi">
+<div class="cap-head"><span class="liv b1">B1</span><h2>Comparativi e superlativi — <i>più, meno, il più, -issimo</i></h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Système simple (<i>più/meno… di</i>), une vraie difficulté (<i>di</i> ou <i>che</i> ?), et une famille d'irréguliers à double forme (<i>più buono / migliore</i>).</p>
+
+<h3>1. Le comparatif</h3>
+<ul>
+<li>Supériorité/infériorité : <i>Roma è più grande di Firenze. Questo libro è meno interessante di quello.</i></li>
+<li>Égalité : <i>(così)… come / (tanto)… quanto</i> : <i>È alto come me. Studia quanto te.</i></li>
+</ul>
+
+<h3>2. Di ou che ?</h3>
+<div class="tbl-scroll"><table>
+<tr><th><b>di</b> — on compare deux êtres/choses sur une qualité</th><th><b>che</b> — tous les autres cas</th></tr>
+<tr><td>devant nom ou pronom : <i>Marco è più alto di Luca / di me.</i></td><td>deux adjectifs : <i>È più furbo che intelligente.</i></td></tr>
+<tr><td>devant un nombre : <i>più di venti euro</i></td><td>deux verbes : <i>È più facile dire che fare.</i></td></tr>
+<tr><td></td><td>deux quantités/noms comparés entre eux : <i>Bevo più tè che caffè.</i></td></tr>
+<tr><td></td><td>devant préposition : <i>È più bello in estate che in inverno.</i></td></tr>
+</table></div>
+
+<h3>3. Superlatifs</h3>
+<ul>
+<li>Relatif : <i>il più / il meno + adj (+ di)</i> : <i>È la città più bella d'Italia.</i> Pas de second article : <i>la città più bella</i> (≠ fr. « la ville LA plus belle »).</li>
+<li>Absolu : <i>-issimo</i> : <i>bellissimo, buonissimo, stanchissima</i> ; ou <i>molto bello</i>.</li>
+</ul>
+
+<h3>4. Les irréguliers à connaître par cœur</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Adjectif</th><th>Comparatif</th><th>Superlatif</th><th>Adverbe</th></tr>
+<tr><td>buono</td><td>migliore (più buono)</td><td>il migliore / ottimo</td><td>bene → <b>meglio</b></td></tr>
+<tr><td>cattivo</td><td>peggiore</td><td>il peggiore / pessimo</td><td>male → <b>peggio</b></td></tr>
+<tr><td>grande</td><td>maggiore</td><td>il maggiore / massimo</td><td></td></tr>
+<tr><td>piccolo</td><td>minore</td><td>il minore / minimo</td><td></td></tr>
+</table></div>
+<p class="es"><i>Questa pizza è migliore. Oggi sto meglio. Mia sorella maggiore.</i> <span class="tr">→ migliore = adjectif (meilleur), meglio = adverbe (mieux).</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>più meglio, più migliore</i> → ✅ <i>meglio, migliore</i> tout court : jamais de <i>più</i> devant un comparatif irrégulier.</li>
+<li>❌ <i>Questa pizza è meglio</i> → à l'écrit, préférer ✅ <i>è migliore</i> (adjectif avec un nom). <i>Meglio</i> = mieux (adverbe).</li>
+<li>❌ <i>più grande que</i>, <i>più che me</i> → ✅ <i>più grande di me</i>. Devant pronom/nom simple : <b>di</b>.</li>
+<li>❌ <i>la città la più bella</i> → ✅ <i>la città più bella</i> : l'article ne se répète pas.</li>
+<li>❌ <i>Bevo più tè di caffè</i> → ✅ <i>più tè che caffè</i> (deux noms comparés entre eux).</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Test <i>di/che</i> : je compare deux entités sur une qualité → <i>di</i> ; je compare deux qualités, actions ou quantités → <i>che</i>.</li>
+<li>Retenir les paires <i>migliore/meglio</i> et <i>peggiore/peggio</i> : adjectif vs adverbe, l'erreur classique même chez les Italiens.</li>
+<li><i>Sempre più / sempre meno</i> = de plus en plus / de moins en moins : <i>La situazione è sempre più difficile</i> — connecteur d'argumentation précieux.</li>
+<li><i>-issimo</i> est productif et sympathique à l'oral : <i>interessantissimo, difficilissimo</i>.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g21" data-liv="B1" data-tab="gram" data-titolo="I pronomi relativi">
+<div class="cap-head"><span class="liv b1">B1</span><h2>I pronomi relativi — <i>che, cui, il quale, chi</i></h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Deux mots règlent presque tout : <i>che</i> (sujet ou COD) et <i>cui</i> (après préposition). Le reste est du raffinement.</p>
+
+<h3>1. Che — qui/que</h3>
+<p class="es"><i>Il ragazzo che parla è mio cugino. Il libro che leggo è bellissimo.</i> <span class="tr">→ che = sujet ET COD, invariable.</span></p>
+
+<h3>2. Cui — après préposition</h3>
+<p class="es"><i>L'amico con cui parto. La città in cui vivo. Il motivo per cui ti chiamo. La persona a cui penso.</i></p>
+<ul>
+<li><i>a cui</i> peut perdre son <i>a</i> : <i>la persona cui penso</i> (soutenu).</li>
+<li><b>il/la cui</b> + nom = dont (possession) : <i>Lo scrittore il cui romanzo ho letto…</i> → l'écrivain dont j'ai lu le roman. L'article s'accorde avec la chose possédée.</li>
+</ul>
+
+<h3>3. Il quale / la quale / i quali / le quali</h3>
+<p>Variante soutenue et précise (elle lève les ambiguïtés de genre) : <i>la sorella di Marco, la quale vive a Milano… / l'amico del quale ti ho parlato.</i></p>
+
+<h3>4. Chi et quello che</h3>
+<ul>
+<li><i>Chi</i> = celui qui / ceux qui (personne, toujours singulier) : <i>Chi dorme non piglia pesci.</i></li>
+<li><i>Quello che / ciò che</i> = ce qui, ce que : <i>Non capisco quello che dici. Ciò che conta è partecipare.</i></li>
+</ul>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>la città dove que vivo</i>, <i>con che</i> → après préposition, jamais <i>che</i> : ✅ <i>con cui, in cui</i>.</li>
+<li>❌ traduire « dont » par <i>di che</i> → ✅ <i>di cui</i> : <i>il film di cui parlo</i>. Et « dont » possessif = <i>il cui</i>.</li>
+<li>❌ <i>Chi sono venuti…</i> → <i>chi</i> commande toujours le singulier : ✅ <i>Chi è venuto ha capito.</i></li>
+<li><i>Dove</i> ne s'emploie que pour un lieu : <i>la città dove vivo</i> = <i>in cui vivo</i>, mais ❌ <i>il giorno dove…</i> → ✅ <i>il giorno in cui…</i></li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Arbre de décision : pas de préposition → <i>che</i> ; préposition → <i>prep + cui</i> ; « dont » possessif → <i>il cui</i>.</li>
+<li><i>Cui</i> est invariable : seule la préposition (ou l'article dans <i>il cui</i>) change.</li>
+<li>Les proverbes en <i>chi</i> (<i>Chi va piano va sano e va lontano</i>) : parfaits en ouverture ou conclusion d'oral.</li>
+<li>Employer <i>ciò che</i> à l'écrit formel plutôt que <i>quello che</i> : petit gain stylistique.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g22" data-liv="B1" data-tab="gram" data-titolo="Verbi pronominali idiomatici: volerci, metterci, farcela, andarsene">
+<div class="cap-head"><span class="liv b1">B1</span><h2>I verbi pronominali idiomatici — <i>volerci, metterci, farcela, andarsene…</i></h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Des verbes fusionnés avec <i>ci, ne, la</i> qui ont un sens propre. Ils sont partout à l'oral : les connaître transforme la compréhension des dialogues et des films.</p>
+
+<h3>1. Volerci vs metterci (le temps nécessaire)</h3>
+<div class="tbl-scroll"><table>
+<tr><th>volerci = il faut (impersonnel)</th><th>metterci = mettre (personnel)</th></tr>
+<tr><td><i>Ci vuole un'ora per arrivare.</i></td><td><i>Io ci metto un'ora per arrivare.</i></td></tr>
+<tr><td><i>Ci vogliono due ore.</i> (accord avec la durée !)</td><td><i>Quanto ci metti? Ci ho messo dieci minuti.</i></td></tr>
+<tr><td><i>Ci vuole pazienza.</i> → il faut de la patience</td><td>sujet = la personne</td></tr>
+</table></div>
+
+<h3>2. Les autres incontournables</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Verbe</th><th>Sens</th><th>Exemple</th></tr>
+<tr><td><b>farcela</b></td><td>y arriver, réussir</td><td><i>Non ce la faccio più! Ce l'ho fatta!</i></td></tr>
+<tr><td><b>andarsene</b></td><td>s'en aller</td><td><i>Me ne vado. Se n'è andato senza salutare.</i></td></tr>
+<tr><td><b>cavarsela</b></td><td>s'en sortir, se débrouiller</td><td><i>In italiano me la cavo.</i></td></tr>
+<tr><td><b>avercela con</b></td><td>en vouloir à</td><td><i>Perché ce l'hai con me?</i></td></tr>
+<tr><td><b>tenerci a</b></td><td>tenir à</td><td><i>Ci tengo molto a questo progetto.</i></td></tr>
+<tr><td><b>entrarci</b></td><td>avoir à voir avec</td><td><i>Che c'entra? Non c'entra niente!</i></td></tr>
+<tr><td><b>smetterla / piantarla</b></td><td>arrêter (fam.)</td><td><i>Smettila! Piantala!</i></td></tr>
+<tr><td><b>prendersela</b></td><td>se vexer, s'en prendre à</td><td><i>Non te la prendere!</i></td></tr>
+<tr><td><b>fregarsene</b> (fam.)</td><td>s'en ficher</td><td><i>Non me ne frega niente.</i> (registre familier !)</td></tr>
+</table></div>
+
+<h3>3. Conjugaison type : andarsene</h3>
+<p class="es"><i>Me ne vado, te ne vai, se ne va, ce ne andiamo, ve ne andate, se ne vanno.</i> · Passé : <i>me ne sono andato/a.</i> · Impératif : <i>Vattene!</i></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Bisogna un'ora</i> → ✅ <i>Ci vuole un'ora</i>. (<i>Bisogna</i> existe mais seulement + infinitif : <i>Bisogna partire</i>.)</li>
+<li>❌ <i>Ci vuole due ore</i> → ✅ <i>Ci vogliono due ore</i> : volerci s'accorde.</li>
+<li>❌ <i>Me ne ho andato</i> → ✅ <i>Me ne sono andato</i> : essere, et accord.</li>
+<li>❌ traduire « partir » toujours par <i>partire</i> : quitter un lieu (s'en aller) = <i>andarsene</i> ; <i>partire</i> = partir en voyage/quitter en transport.</li>
+<li><i>Fregarsene</i> et <i>chissenefrega</i> sont familiers : à comprendre, à ne pas écrire dans une copie.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Duo à contraster en une phrase : <i>Per andare a scuola ci vogliono venti minuti, ma io ci metto mezz'ora.</i></li>
+<li><i>Ce l'ho fatta!</i> (j'ai réussi !) et <i>Non ce la faccio più</i> (je n'en peux plus) : deux phrases à connaître en bloc.</li>
+<li>Au passé, tous ces verbes en -sela/-sene prennent essere avec accord sur la/ne figé : <i>se l'è cavata, se ne sono andati.</i></li>
+<li>En compréhension orale, repérer <i>ce/ne/la</i> collés au verbe = probablement un idiomatique : chercher le sens global, pas mot à mot.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g23" data-liv="B1" data-tab="gram" data-titolo="Il gerundio: stare + gerundio, stare per">
+<div class="cap-head"><span class="liv b1">B1</span><h2>Il gerundio — <i>stare + gerundio</i>, <i>stare per</i></h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le gérondif italien s'emploie sans « en » : il exprime le déroulement (<i>sto studiando</i>), la manière, la cause ou la condition. Trois formes irrégulières seulement.</p>
+
+<h3>1. Formation</h3>
+<p>-are → <b>-ando</b> (<i>parlando</i>) ; -ere/-ire → <b>-endo</b> (<i>credendo, dormendo</i>). Irréguliers : <i>fare → facendo, dire → dicendo, bere → bevendo</i> (+ <i>tradurre → traducendo</i>).</p>
+
+<h3>2. Stare + gerundio (être en train de)</h3>
+<p class="es"><i>Sto studiando. Stavo dormendo quando hai chiamato. Cosa stai facendo?</i> <span class="tr">→ action en cours, présent ou imparfait. Jamais aux temps composés.</span></p>
+
+<h3>3. Stare per (être sur le point de)</h3>
+<p class="es"><i>Il treno sta per partire. Stavo per chiamarti.</i> <span class="tr">→ imminence.</span></p>
+
+<h3>4. Le gérondif subordonné</h3>
+<ul>
+<li>Manière/moyen : <i>Ha imparato l'italiano guardando film.</i> → en regardant des films.</li>
+<li>Cause : <i>Essendo stanco, sono rimasto a casa.</i> → comme j'étais fatigué…</li>
+<li>Condition : <i>Studiando di più, avresti risultati migliori.</i></li>
+<li>Pronoms soudés : <i>vedendolo, parlandone, alzandosi.</i></li>
+</ul>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>en parlando</i>, <i>in parlando</i> → le gérondif s'emploie SEUL : ✅ <i>parlando</i>.</li>
+<li>❌ <i>Sono studiando</i> → ✅ <i>Sto studiando</i>. C'est <i>stare</i>, pas <i>essere</i>.</li>
+<li>❌ <i>Sto per studiando</i> → ✅ <i>sto per studiare</i> : après <i>stare per</i>, infinitif.</li>
+<li>Le sujet du gérondif doit être celui de la principale : ❌ <i>Camminando per strada, la pioggia è cominciata</i> (c'est la pluie qui marche ?) → reformuler : <i>Mentre camminavo per strada, è cominciata la pioggia.</i></li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li><i>Sto + gerundio</i> = « je suis en train de », mais l'italien l'utilise plus souvent que le français cette tournure : réflexe à prendre pour décrire une image à l'oral !</li>
+<li>Décrire un document au bac : <i>Nella foto, un ragazzo sta usando il telefono…</i> — formule passe-partout.</li>
+<li><i>Pur + gerundio</i> = bien que : <i>Pur essendo giovane, è molto maturo.</i> Très chic à l'écrit (voir cap. 32).</li>
+<li>Trois irréguliers à retenir en chœur : <i>facendo, dicendo, bevendo</i>.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g24" data-liv="B1" data-tab="gram" data-titolo="Il si impersonale e il si passivante">
+<div class="cap-head"><span class="liv b1">B1</span><h2>Il <i>si</i> impersonale e passivante — « on »</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le « on » français se traduit par <i>si</i> + verbe à la 3e personne. Petite subtilité : le verbe s'accorde avec ce qui suit.</p>
+
+<h3>1. La construction</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Type</th><th>Exemple</th><th>Accord</th></tr>
+<tr><td>si impersonale (sans COD)</td><td><i>In Italia si mangia bene. Si parte alle otto.</i></td><td>3e singulier</td></tr>
+<tr><td>si passivante (avec nom)</td><td><i>Si parla italiano. Si vendono case.</i></td><td>accord avec le nom : <i>si vendONO casE</i></td></tr>
+</table></div>
+
+<h3>2. Particularités</h3>
+<ul>
+<li>Adjectif après <i>si</i> + essere/verbe d'état : <b>pluriel</b> : <i>Quando si è giovani, si è ottimisti.</i></li>
+<li>Verbe réfléchi : <i>si</i> devient <i>ci si</i> : <i>Ci si alza presto. Ci si diverte molto.</i></li>
+<li>Au passé : auxiliaire <b>essere</b> : <i>Si è parlato di politica. Si sono visti molti turisti.</i></li>
+<li>Alternatives à « on » : <i>uno</i> (<i>Uno non sa mai cosa dire</i>), la 2e personne générique (<i>tu</i>), <i>la gente</i> + singulier.</li>
+</ul>
+<p class="es"><i>Come si dice «devoir» in italiano? Come si scrive? Si può entrare?</i> <span class="tr">→ trois questions de survie en classe, toutes avec si.</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>On parla italiano</i>, <i>On si mangia</i>… → « on » n'existe pas : ✅ <i>si parla</i>.</li>
+<li>❌ <i>Si vende case</i> → ✅ <i>Si vendono case</i> : accord avec le nom pluriel.</li>
+<li>❌ <i>La gente sono</i> → ✅ <i>La gente è</i> : gente est singulier ! <i>La gente pensa che…</i></li>
+<li>❌ <i>Si si alza presto</i> → ✅ <i>Ci si alza presto</i> : jamais deux si.</li>
+<li>❌ <i>Quando si è giovane</i> → ✅ <i>giovani</i> : adjectif au pluriel après si impersonnel.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Réflexe accord : un nom pluriel suit ? → verbe au pluriel. (<i>Si studiano le lingue.</i>)</li>
+<li>Le <i>si</i> impersonnel est parfait pour généraliser dans un essai : <i>Si dice spesso che… / Si potrebbe pensare che…</i></li>
+<li><i>Come si dice…?</i> : à utiliser sans complexe à l'oral en cas de trou de mémoire — bien mieux qu'un silence.</li>
+<li><i>La gente</i> = singulier, <i>le persone</i> = pluriel : choisir selon l'accord qu'on maîtrise.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g25" data-liv="B1" data-tab="gram" data-titolo="Le forme implicite: infinito, participio, prima di, dopo aver">
+<div class="cap-head"><span class="liv b1">B1</span><h2>Le forme implicite — infinitif et participe en subordonnée</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Quand le sujet ne change pas, l'italien adore raccourcir avec l'infinitif. Ces structures allègent le style et évitent bien des subjonctifs.</p>
+
+<h3>1. Prima di / dopo</h3>
+<p class="es"><i>Prima di uscire, chiudi la finestra.</i> <span class="tr">→ avant de sortir.</span> · <i>Dopo aver mangiato, sono uscito.</i> <span class="tr">→ après avoir mangé : dopo + infinitif PASSÉ obligatoire.</span> · <i>Dopo essersi alzata, ha fatto colazione.</i></p>
+
+<h3>2. Autres structures infinitives</h3>
+<ul>
+<li><i>Senza + inf.</i> : <i>È partito senza salutare.</i> → sans dire au revoir.</li>
+<li><i>Invece di + inf.</i> : <i>Invece di studiare, gioca.</i> → au lieu d'étudier.</li>
+<li><i>Per + inf.</i> (but) : <i>Studio per riuscire.</i></li>
+<li><i>Da + inf.</i> (à faire) : <i>Ho molte cose da fare. È un film da vedere.</i></li>
+<li>Infinitif sujet : <i>Viaggiare è bello. Fumare fa male.</i> (sans article, contrairement à « le fait de… »)</li>
+</ul>
+
+<h3>3. Le participe passé absolu (style écrit)</h3>
+<p class="es"><i>Finita la lezione, siamo usciti.</i> <span class="tr">→ une fois le cours fini… Structure compacte typique de l'écrit.</span> · <i>Arrivati a casa, hanno cenato.</i></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Dopo mangiare</i> → ✅ <i>Dopo aver mangiato</i>. Après <i>dopo</i>, l'infinitif est toujours composé.</li>
+<li>❌ <i>Prima di che esco</i> → ✅ <i>Prima di uscire</i> (même sujet) ou <i>Prima che io esca</i> (+ subjonctif si sujets différents, cap. 32).</li>
+<li>❌ <i>Sono contento di che…</i> → ✅ <i>Sono contento di + infinitif</i> (même sujet) : <i>Sono contento di essere qui.</i></li>
+<li>❌ <i>Il viaggiare è bello</i> pour une généralité → plus naturel : <i>Viaggiare è bello.</i></li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Règle d'or : même sujet → infinitif (<i>penso di partire</i>) ; sujets différents → <i>che</i> + subjonctif (<i>penso che lui parta</i>). Elle prépare directement le chapitre du subjonctif.</li>
+<li><i>Dopo aver + participe</i> et <i>prima di + infinitif</i> : deux connecteurs de récit à placer dans toute production écrite.</li>
+<li><i>Da + infinitif</i> après nom = idée d'obligation/possibilité : <i>un problema da risolvere, niente da dire.</i></li>
+<li>Le participe absolu (<i>Detto questo…</i> = cela dit) : marqueur d'écrit soigné.</li>
+</ul></div>
+</section>
+<!-- ============ GRAMMATICA B2 ============ -->
+
+<section class="cap" id="g26" data-liv="B2" data-tab="gram" data-titolo="Il congiuntivo presente e passato">
+<div class="cap-head"><span class="liv b2">B2</span><h2>Il congiuntivo — presente e passato</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le subjonctif italien est plus fréquent que le français : il suit systématiquement les verbes d'opinion (<i>penso che, credo che</i>), là où le français met l'indicatif. C'est LE marqueur du niveau B2.</p>
+
+<h3>1. Formation du présent</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>parlare</th><th>credere</th><th>dormire</th><th>finire</th></tr>
+<tr><td>che io</td><td>parli</td><td>creda</td><td>dorma</td><td>finisca</td></tr>
+<tr><td>che tu</td><td>parli</td><td>creda</td><td>dorma</td><td>finisca</td></tr>
+<tr><td>che lui/lei</td><td>parli</td><td>creda</td><td>dorma</td><td>finisca</td></tr>
+<tr><td>che noi</td><td>parliamo</td><td>crediamo</td><td>dormiamo</td><td>finiamo</td></tr>
+<tr><td>che voi</td><td>parliate</td><td>crediate</td><td>dormiate</td><td>finiate</td></tr>
+<tr><td>che loro</td><td>parlino</td><td>credano</td><td>dormano</td><td>finiscano</td></tr>
+</table></div>
+<p>Trois personnes identiques au singulier → le pronom sujet devient utile : <i>che io parta, che tu parta.</i></p>
+<p>Irréguliers clés (souvent bâtis sur le présent en -o) : <i>essere → sia, avere → abbia, andare → vada, fare → faccia, dire → dica, venire → venga, potere → possa, volere → voglia, dovere → debba, sapere → sappia, stare → stia, dare → dia, uscire → esca, bere → beva, rimanere → rimanga, scegliere → scelga, piacere → piaccia.</i></p>
+
+<h3>2. Le congiuntivo passato</h3>
+<p><i>abbia/sia + participio</i> : <i>Penso che sia partito. Credo che abbiano capito.</i> → antériorité par rapport au présent.</p>
+
+<h3>3. Quand l'employer ? Les déclencheurs</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Catégorie</th><th>Déclencheurs</th><th>Exemple</th></tr>
+<tr><td>opinion</td><td><i>penso che, credo che, mi sembra che, immagino che, suppongo che</i></td><td><i>Penso che tu abbia ragione.</i></td></tr>
+<tr><td>volonté, souhait</td><td><i>voglio che, spero che, preferisco che, mi auguro che</i></td><td><i>Spero che tutto vada bene.</i></td></tr>
+<tr><td>sentiment</td><td><i>sono contento che, mi dispiace che, ho paura che, temo che</i></td><td><i>Mi dispiace che tu non venga.</i></td></tr>
+<tr><td>doute, irréalité</td><td><i>dubito che, non sono sicuro che, è possibile che, può darsi che</i></td><td><i>Dubito che sia vero.</i></td></tr>
+<tr><td>impersonnels</td><td><i>è importante che, bisogna che, è meglio che, è giusto che, sembra che</i></td><td><i>È importante che tu studi.</i></td></tr>
+<tr><td>indéfinis</td><td><i>benché, sebbene, affinché, purché, a meno che, prima che, senza che</i> (cap. 32)</td><td><i>Benché sia tardi, esco.</i></td></tr>
+</table></div>
+<p><b>Indicatif</b> en revanche après les verbes de certitude et de perception : <i>so che, è vero che, sono sicuro che, vedo che, dico che, secondo me + indicatif.</i></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Penso che è una buona idea</i> → ✅ <i>Penso che SIA una buona idea.</i> Après <i>penso/credo che</i>, subjonctif obligatoire (grande différence avec le français !).</li>
+<li>❌ <i>Secondo me sia giusto</i> → ✅ <i>Secondo me È giusto</i> : <i>secondo me</i> prend l'indicatif (pas de <i>che</i>).</li>
+<li>❌ <i>Penso che io parta</i> quand le sujet est le même → préférer l'infinitif : ✅ <i>Penso DI partire</i>.</li>
+<li>❌ <i>Spero che stai bene</i> → ✅ <i>Spero che tu stia bene</i> (et exprimer le <i>tu</i>, sinon ambigu).</li>
+<li>❌ <i>che loro parlino</i> prononcé « parlIno » → accent sur PAR : <i>PARlino</i>.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Formule magique -are : présent indicatif en -a → subjonctif en -i ; autres groupes : -e/-i → -a. Les terminaisons s'échangent, comme à l'impératif de politesse (cap. 16).</li>
+<li>Apprendre les subjonctifs irréguliers via la 1re personne du présent : <i>vado → vada, faccio → faccia, esco → esca, bevo → beva.</i></li>
+<li>Trio de sécurité pour l'oral : <i>Penso che sia… / Credo che ci siano… / Spero che vada bene.</i> Trois formes qui couvrent 80 % des besoins.</li>
+<li>Même sujet → <i>di</i> + infinitif ; sujets différents → <i>che</i> + subjonctif. Ce réflexe évite la moitié des fautes.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g27" data-liv="B2" data-tab="gram" data-titolo="Il congiuntivo imperfetto e trapassato">
+<div class="cap-head"><span class="liv b2">B2</span><h2>Il congiuntivo imperfetto e trapassato</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le subjonctif imparfait est vivant et obligatoire en italien courant : après un verbe principal au passé ou au conditionnel, et dans les hypothèses. Formation très régulière.</p>
+
+<h3>1. Formation de l'imperfetto congiuntivo</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>parlare</th><th>credere</th><th>dormire</th><th>essere</th></tr>
+<tr><td>che io</td><td>parlassi</td><td>credessi</td><td>dormissi</td><td>fossi</td></tr>
+<tr><td>che tu</td><td>parlassi</td><td>credessi</td><td>dormissi</td><td>fossi</td></tr>
+<tr><td>che lui/lei</td><td>parlasse</td><td>credesse</td><td>dormisse</td><td>fosse</td></tr>
+<tr><td>che noi</td><td>parlassimo</td><td>credessimo</td><td>dormissimo</td><td>fossimo</td></tr>
+<tr><td>che voi</td><td>parlaste</td><td>credeste</td><td>dormiste</td><td>foste</td></tr>
+<tr><td>che loro</td><td>parlassero</td><td>credessero</td><td>dormissero</td><td>fossero</td></tr>
+</table></div>
+<p>Irréguliers : <i>essere → fossi</i> ; <i>fare → facessi, dire → dicessi, bere → bevessi</i> (radical ancien) ; <i>dare → dessi, stare → stessi</i>.</p>
+
+<h3>2. Le trapassato congiuntivo</h3>
+<p><i>avessi/fossi + participio</i> : <i>Pensavo che fosse già partito. Se avessi saputo!</i></p>
+
+<h3>3. Quand ? Deux déclencheurs principaux</h3>
+<ul>
+<li><b>Principale au passé</b> : <i>Penso che sia giusto → Pensavo che fosse giusto. Volevo che tu venissi.</i></li>
+<li><b>Hypothèse irréelle</b> avec <i>se</i> (cap. 29) : <i>Se fossi ricco… Se avessi studiato…</i></li>
+<li>Aussi après conditionnel : <i>Vorrei che tu fossi qui.</i> → Je voudrais que tu sois là.</li>
+</ul>
+<p class="es"><i>Magari fosse vero!</i> <span class="tr">→ Si seulement c'était vrai ! (magari + subj. imparfait = souhait).</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Vorrei che tu sia qui</i> → ✅ <i>Vorrei che tu fossi qui</i> : après conditionnel, subjonctif IMPARFAIT.</li>
+<li>❌ <i>Pensavo che era…</i> → ✅ <i>Pensavo che fosse…</i></li>
+<li>❌ <i>Se sarei / Se sarò ricco…</i> pour l'irréel → ✅ <i>Se fossi ricco…</i></li>
+<li>Ne pas confondre <i>parlasse</i> (subj.) et <i>parlerebbe</i> (cond.) : dans la subordonnée en <i>se</i>, toujours le subjonctif ; le conditionnel reste dans la principale.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Terminaisons en <b>-ssi</b> très reconnaissables : <i>parlassi, fossi, avessi</i>. Une seule série pour les trois groupes.</li>
+<li>Chaîne mentale : présent → <i>penso che sia</i> ; passé → <i>pensavo che fosse</i> ; conditionnel → <i>vorrei che fosse</i>.</li>
+<li><i>Se avessi saputo!</i> / <i>Magari!</i> : exclamations idiomatiques qui valorisent l'oral.</li>
+<li><i>Dessi</i> et <i>stessi</i> (dare, stare) ressemblent à essere : les réviser ensemble.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g28" data-liv="B2" data-tab="gram" data-titolo="La concordanza dei tempi">
+<div class="cap-head"><span class="liv b2">B2</span><h2>La concordanza dei tempi — faire s'accorder les temps</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le tableau de bord qui relie tout : selon le temps de la principale et la chronologie (avant, pendant, après), quel temps mettre dans la subordonnée ?</p>
+
+<h3>1. Principale au présent</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Rapport</th><th>Indicatif (certitude)</th><th>Subjonctif (opinion…)</th></tr>
+<tr><td>simultané</td><td><i>So che parte.</i></td><td><i>Penso che parta.</i></td></tr>
+<tr><td>antérieur</td><td><i>So che è partito.</i></td><td><i>Penso che sia partito.</i></td></tr>
+<tr><td>postérieur</td><td><i>So che partirà.</i></td><td><i>Penso che partirà / parta.</i></td></tr>
+</table></div>
+
+<h3>2. Principale au passé</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Rapport</th><th>Indicatif</th><th>Subjonctif</th></tr>
+<tr><td>simultané</td><td><i>Sapevo che partiva.</i></td><td><i>Pensavo che partisse.</i></td></tr>
+<tr><td>antérieur</td><td><i>Sapevo che era partito.</i></td><td><i>Pensavo che fosse partito.</i></td></tr>
+<tr><td>postérieur</td><td><i>Sapevo che sarebbe partito.</i> (cond. passé !)</td><td><i>Pensavo che sarebbe partito.</i></td></tr>
+</table></div>
+<p class="es"><i>Ha detto che avrebbe telefonato appena fosse arrivato.</i> <span class="tr">→ discours au passé : futur → conditionnel passé, et subjonctif dans la temporelle.</span></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Pensavo che sia partito</i> → ✅ <i>che fosse partito</i> : principale au passé → subjonctif imparfait/trapassato, jamais présent.</li>
+<li>❌ <i>Sapevo che partirà / partirebbe</i> → ✅ <i>che sarebbe partito</i> : le futur du passé = conditionnel passé (cap. 17).</li>
+<li>Ne pas paniquer devant le tableau : la logique est temporelle (avant/pendant/après), pas arbitraire.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Mémoriser deux phrases-étalons et transposer : <i>Penso che sia / Pensavo che fosse</i> ; <i>So che verrà / Sapevo che sarebbe venuto.</i></li>
+<li>Question à se poser : 1) certitude ou opinion ? (indicatif/subjonctif) 2) avant, pendant, après la principale ? (temps).</li>
+<li>Réviser ce chapitre juste avant un écrit : c'est celui qui structure les phrases complexes d'un essai.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g29" data-liv="B2" data-tab="gram" data-titolo="Il periodo ipotetico">
+<div class="cap-head"><span class="liv b2">B2</span><h2>Il periodo ipotetico — les trois types de « si »</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Trois degrés de réalité, trois combinaisons de temps. Le type 2 est le plus rentable : c'est celui des essais et des débats (« si j'étais…, je ferais… »).</p>
+
+<h3>1. Les trois types</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Type</th><th>Se + …</th><th>Principale</th><th>Exemple</th></tr>
+<tr><td><b>1. Realtà</b> (probable)</td><td>indicatif (présent/futur)</td><td>indicatif / impératif</td><td><i>Se piove, resto a casa. Se avrò tempo, verrò.</i></td></tr>
+<tr><td><b>2. Possibilità</b> (hypothétique présent)</td><td>congiuntivo imperfetto</td><td>condizionale presente</td><td><i>Se fossi ricco, comprerei una casa a Roma.</i></td></tr>
+<tr><td><b>3. Irrealtà</b> (passé, irréel)</td><td>congiuntivo trapassato</td><td>condizionale passato</td><td><i>Se avessi studiato, avrei superato l'esame.</i></td></tr>
+</table></div>
+
+<h3>2. Variantes utiles</h3>
+<ul>
+<li>Mixte 3→2 (conséquence présente d'un passé) : <i>Se avessi accettato quel lavoro, ora vivrei a Milano.</i></li>
+<li>À l'oral familier, le type 3 s'entend avec double imparfait : <i>Se lo sapevo, venivo</i> — à comprendre, à ne PAS écrire.</li>
+<li>Équivalents de <i>se</i> : <i>nel caso in cui + subj., a condizione che + subj., purché + subj.</i></li>
+</ul>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Se sarei ricco…</i> → ✅ <i>Se fossi ricco…</i> JAMAIS de conditionnel après <i>se</i>. La faute la plus stigmatisée d'Italie — les Italiens eux-mêmes en plaisantent.</li>
+<li>❌ <i>Se fossi ricco, comprassi…</i> → ✅ <i>comprerei</i> : le subjonctif reste dans la subordonnée, le conditionnel dans la principale. Chacun chez soi.</li>
+<li>❌ calquer le français « si j'aurais su » (déjà fautif en français !) : la version correcte est <i>Se avessi saputo…</i></li>
+<li>Ne pas confondre <i>se</i> hypothétique et <i>se</i> interrogatif indirect (<i>Non so se verrà</i> : indicatif/futur possible ici).</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Formules-étalons à réciter : <i>Se posso, vengo / Se potessi, verrei / Se avessi potuto, sarei venuto.</i> Tout le système en trois lignes.</li>
+<li>Type 2 pour argumenter : <i>Se ognuno facesse la sua parte, la situazione migliorerebbe.</i> Structure en or pour les essais.</li>
+<li>Le type 1 accepte le futur des deux côtés (<i>Se avrò tempo, verrò</i>) : différence élégante avec le français.</li>
+<li>Repérer le duo -ssi/-rei : <i>fossi…farei, avessi…avrei</i> — la musique du type 2.</li>
+</ul></div>
+</section>
+<section class="cap" id="g30" data-liv="B2" data-tab="gram" data-titolo="La forma passiva">
+<div class="cap-head"><span class="liv b2">B2</span><h2>La forma passiva — <i>essere, venire, andare</i></h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Le passif italien a trois auxiliaires possibles, chacun avec sa nuance : c'est une richesse que le français n'a pas, et un excellent point de style à l'écrit.</p>
+
+<h3>1. Essere + participio (le passif standard)</h3>
+<p class="es"><i>La pizza è stata inventata a Napoli. Il museo è visitato da milioni di turisti.</i> <span class="tr">→ agent introduit par <b>da</b>. Accord du participe avec le sujet.</span></p>
+
+<h3>2. Venire + participio (action en cours, temps simples seulement)</h3>
+<p class="es"><i>Il pane viene fatto ogni mattina. Le regole vengono spesso ignorate.</i> <span class="tr">→ insiste sur le processus, très fréquent dans la presse. Impossible aux temps composés.</span></p>
+
+<h3>3. Andare + participio (obligation : « doit être »)</h3>
+<p class="es"><i>Questo modulo va compilato entro venerdì. I rifiuti vanno riciclati.</i> <span class="tr">→ « doit être rempli », « doivent être recyclés ». Concis et très idiomatique.</span></p>
+
+<h3>4. Le si passivante (rappel)</h3>
+<p><i>Si vendono libri usati</i> = des livres d'occasion sont vendus (cap. 24). Alternative fréquente au passif complet quand l'agent n'importe pas.</p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>è stato inventato per Napoli / par…</i> → l'agent = <b>da</b> : ✅ <i>da un cuoco napoletano</i>.</li>
+<li>❌ <i>è venuto fatto</i> → ✅ <i>viene fatto / è stato fatto</i> : venire passif n'existe qu'aux temps simples.</li>
+<li>❌ oublier l'accord : <i>Le lettere sono state spedite</i> (pas <i>spedito</i>).</li>
+<li>Ne pas abuser du passif là où l'italien préfère le <i>si</i> : « on m'a dit » = <i>mi hanno detto / mi è stato detto</i> — la première est plus naturelle à l'oral.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Trois nuances : <i>essere</i> = état/fait, <i>venire</i> = processus, <i>andare</i> = obligation. Les employer à bon escient est un marqueur B2 net.</li>
+<li><i>Va detto che… / Va sottolineato che…</i> (il faut dire que…) : introducteurs parfaits pour un essai ou un commentaire.</li>
+<li>Transformer actif ↔ passif est un exercice classique de contrôle : s'entraîner avec des titres de presse.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g31" data-liv="B2" data-tab="gram" data-titolo="Il discorso indiretto">
+<div class="cap-head"><span class="liv b2">B2</span><h2>Il discorso indiretto — rapporter des paroles</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Rapporter ce que quelqu'un a dit : les temps, les pronoms et les marqueurs de lieu/temps glissent. Compétence clé pour résumer un texte ou un dialogue au bac.</p>
+
+<h3>1. Verbe introducteur au présent : rien ne change</h3>
+<p class="es"><i>Dice: «Sono stanco» → Dice che è stanco.</i></p>
+
+<h3>2. Verbe introducteur au passé : les glissements</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Discours direct</th><th>Discours indirect</th></tr>
+<tr><td>presente (<i>«Sono stanco»</i>)</td><td>imperfetto (<i>Ha detto che era stanco</i>)</td></tr>
+<tr><td>passato prossimo (<i>«Ho vinto»</i>)</td><td>trapassato (<i>Ha detto che aveva vinto</i>)</td></tr>
+<tr><td>futuro (<i>«Verrò»</i>)</td><td>condizionale passato (<i>Ha detto che sarebbe venuto</i>)</td></tr>
+<tr><td>imperativo (<i>«Vieni!»</i>)</td><td>di + infinito (<i>Mi ha detto di venire</i>) / che + congiuntivo imperfetto</td></tr>
+</table></div>
+
+<h3>3. Les autres glissements</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Direct</th><th>Indirect</th></tr>
+<tr><td>io → </td><td>lui/lei</td></tr>
+<tr><td>questo →</td><td>quello</td></tr>
+<tr><td>qui/qua →</td><td>lì/là</td></tr>
+<tr><td>ora/adesso →</td><td>allora</td></tr>
+<tr><td>oggi →</td><td>quel giorno</td></tr>
+<tr><td>ieri →</td><td>il giorno prima / precedente</td></tr>
+<tr><td>domani →</td><td>il giorno dopo / seguente</td></tr>
+<tr><td>venire →</td><td>souvent andare</td></tr>
+</table></div>
+<p class="es"><i>«Ti aspetto qui domani» → Ha detto che lo aspettava lì il giorno dopo.</i></p>
+<p>Question rapportée : <i>Mi ha chiesto se venivo / se sarei venuto. Mi ha chiesto dove abitavo.</i></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Ha detto che verrà</i> → ✅ <i>che sarebbe venuto</i> : le futur du passé, encore lui (cap. 17, 28).</li>
+<li>❌ <i>Mi ha detto che vieni!</i> pour un ordre → ✅ <i>Mi ha detto DI venire</i>.</li>
+<li>❌ garder <i>oggi/domani/qui</i> tels quels quand le contexte a changé.</li>
+<li>Ne pas oublier de changer les possessifs : <i>«la mia casa» → la sua casa</i>.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Trois glissements verbaux à automatiser : présent→imparfait, passé composé→plus-que-parfait, futur→conditionnel passé.</li>
+<li>L'ordre rapporté avec <i>di + infinitif</i> est la forme la plus simple et la plus sûre.</li>
+<li>Compétence directement utile pour le compte rendu : <i>L'autore afferma che… / Il giornalista si chiede se…</i></li>
+</ul></div>
+</section>
+
+<section class="cap" id="g32" data-liv="B2" data-tab="gram" data-titolo="Connettivi e subordinate: benché, affinché, purché…">
+<div class="cap-head"><span class="liv b2">B2</span><h2>Connettivi e subordinate — concession, but, condition, cause</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Les connecteurs qui structurent une argumentation, classés en deux familles : ceux qui exigent le subjonctif et ceux qui se contentent de l'indicatif.</p>
+
+<h3>1. + Congiuntivo obligatoire</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Connecteur</th><th>Sens</th><th>Exemple</th></tr>
+<tr><td><b>benché / sebbene</b></td><td>bien que</td><td><i>Benché sia difficile, ci provo.</i></td></tr>
+<tr><td><b>affinché / perché</b> (but)</td><td>afin que</td><td><i>Te lo spiego affinché tu capisca.</i></td></tr>
+<tr><td><b>purché / a condizione che</b></td><td>pourvu que</td><td><i>Vengo purché tu venga con me.</i></td></tr>
+<tr><td><b>a meno che non</b></td><td>à moins que</td><td><i>Partiamo, a meno che non piova.</i></td></tr>
+<tr><td><b>prima che</b></td><td>avant que</td><td><i>Usciamo prima che faccia buio.</i></td></tr>
+<tr><td><b>senza che</b></td><td>sans que</td><td><i>È uscito senza che nessuno lo vedesse.</i></td></tr>
+<tr><td><b>nel caso in cui</b></td><td>au cas où</td><td><i>Nel caso in cui tu abbia bisogno…</i></td></tr>
+<tr><td><b>nonostante / malgrado</b></td><td>malgré (+ que)</td><td><i>Nonostante piova, esco.</i></td></tr>
+</table></div>
+
+<h3>2. + Indicativo</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Connecteur</th><th>Sens</th><th>Exemple</th></tr>
+<tr><td><b>perché / poiché / siccome</b></td><td>parce que / puisque</td><td><i>Siccome pioveva, sono rimasto.</i></td></tr>
+<tr><td><b>quindi / perciò / dunque</b></td><td>donc</td><td><i>Piove, quindi resto a casa.</i></td></tr>
+<tr><td><b>mentre</b></td><td>pendant que / alors que</td><td><i>Mentre studiavo, ascoltavo musica.</i></td></tr>
+<tr><td><b>appena</b></td><td>dès que</td><td><i>Appena arrivo, ti chiamo.</i></td></tr>
+<tr><td><b>anche se</b></td><td>même si</td><td><i>Anche se è tardi, esco.</i></td></tr>
+<tr><td><b>infatti</b></td><td>en effet</td><td><i>Non è venuto: infatti era malato.</i></td></tr>
+<tr><td><b>invece / però / tuttavia</b></td><td>en revanche / pourtant</td><td><i>Io studio, lui invece gioca.</i></td></tr>
+</table></div>
+<div class="nota"><b>Attention à <i>perché</i> :</b> cause (+ indicatif : <i>Studio perché voglio riuscire</i>) mais but (+ subjonctif : <i>Parlo lentamente perché tutti capiscano</i>). Le mode change le sens !</div>
+<p>Raccourcis élégants : <i>pur + gerundio</i> (= benché : <i>pur essendo stanco…</i>), <i>prima di / senza / per + infinitif</i> quand le sujet ne change pas (cap. 25).</p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Benché è difficile</i> → ✅ <i>Benché sia difficile</i>. Benché/sebbene/nonostante + subjonctif, toujours.</li>
+<li>❌ <i>Anche se sia…</i> → ✅ <i>Anche se è…</i> : <i>anche se</i> prend l'indicatif (contrairement à benché !).</li>
+<li>❌ <i>Prima che uscire</i> → ✅ <i>prima di uscire</i> (même sujet) / <i>prima che tu esca</i> (sujets différents).</li>
+<li>❌ <i>donc</i> → <i>dunque</i> partout : varier <i>quindi, perciò, di conseguenza</i>.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Règle d'or : les connecteurs qui projettent vers l'incertain (but, concession, condition, antériorité) → subjonctif ; ceux qui constatent (cause, conséquence, temps réel) → indicatif.</li>
+<li>Kit argumentation : <i>innanzitutto, inoltre, tuttavia, d'altra parte, in conclusione</i> — l'ossature d'un essai.</li>
+<li>Un <i>benché + subjonctif</i> bien placé dans une copie vaut de l'or : le préparer à l'avance.</li>
+<li><i>Pur + gérondif</i> : même sens que benché, zéro risque de faute de subjonctif.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="g33" data-liv="B2" data-tab="gram" data-titolo="Falsi amici e gallicismi: gli errori tipici dei francofoni">
+<div class="cap-head"><span class="liv b2">B2</span><h2>Falsi amici e gallicismi — le chapitre anti-pièges</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">La proximité entre le français et l'italien est un atout… et un piège permanent. Voici la synthèse des erreurs que fait « naturellement » un francophone — et comment les désamorcer.</p>
+
+<h3>1. Falsi amici classiques</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Mot italien</th><th>Sens réel</th><th>Pour dire…</th><th>Il faut…</th></tr>
+<tr><td><i>fermare</i></td><td>arrêter</td><td>fermer</td><td><i>chiudere</i></td></tr>
+<tr><td><i>salire</i></td><td>monter</td><td>salir</td><td><i>sporcare</i></td></tr>
+<tr><td><i>attendere</i></td><td>attendre (soutenu)</td><td>—</td><td>courant : <i>aspettare</i></td></tr>
+<tr><td><i>sentire</i></td><td>entendre, sentir, ressentir</td><td>sentir (odeur act.)</td><td><i>annusare</i> ; « sentir bon » : <i>profumare</i></td></tr>
+<tr><td><i>cantina</i></td><td>cave</td><td>cantine</td><td><i>mensa</i></td></tr>
+<tr><td><i>camera</i></td><td>chambre</td><td>caméra</td><td><i>telecamera</i></td></tr>
+<tr><td><i>fattoria</i></td><td>ferme</td><td>usine</td><td><i>fabbrica</i></td></tr>
+<tr><td><i>morbido</i></td><td>doux, moelleux</td><td>morbide</td><td><i>morboso</i></td></tr>
+<tr><td><i>caldo</i></td><td>chaud (!)</td><td>froid</td><td><i>freddo</i></td></tr>
+<tr><td><i>subire</i></td><td>subir</td><td>tout de suite = <i>subito</i></td><td>ne pas confondre !</td></tr>
+<tr><td><i>guadagnare</i></td><td>gagner (argent)</td><td>gagner (match)</td><td><i>vincere</i></td></tr>
+<tr><td><i>domandare</i></td><td>demander (question)</td><td>demander (objet/service)</td><td><i>chiedere</i></td></tr>
+<tr><td><i>importante</i></td><td>important</td><td>« peu importe »</td><td><i>non importa</i></td></tr>
+<tr><td><i>confrontare</i></td><td>comparer</td><td>affronter</td><td><i>affrontare</i></td></tr>
+<tr><td><i>regalare</i></td><td>offrir</td><td>régaler</td><td><i>offrire (da mangiare)</i></td></tr>
+</table></div>
+
+<h3>2. Gallicismes de construction</h3>
+<div class="tbl-scroll"><table>
+<tr><th>Calque fautif</th><th>Forme correcte</th><th>Règle</th></tr>
+<tr><td>❌ <i>Sono venuto per vederti</i> (toujours)</td><td>✅ <i>Sono venuto a vederti</i></td><td>mouvement + a + infinitif</td></tr>
+<tr><td>❌ <i>È in train de…</i></td><td>✅ <i>Sta + gerundio</i></td><td>cap. 23</td></tr>
+<tr><td>❌ <i>Io sono 17 anni</i></td><td>✅ <i>Ho 17 anni</i></td><td>avere pour l'âge</td></tr>
+<tr><td>❌ <i>Fa caldo? Io sono caldo!</i></td><td>✅ <i>Ho caldo</i></td><td>avere caldo/freddo/fame/sete/paura/ragione</td></tr>
+<tr><td>❌ <i>C'è tre anni</i></td><td>✅ <i>Tre anni fa</i></td><td>cap. 4</td></tr>
+<tr><td>❌ <i>Penso che è…</i></td><td>✅ <i>Penso che sia…</i></td><td>cap. 26</td></tr>
+<tr><td>❌ <i>La gente sono…</i></td><td>✅ <i>La gente è…</i></td><td>gente singulier</td></tr>
+<tr><td>❌ <i>Mi manques</i> → <i>ti manco?</i></td><td>✅ <i>Mi manchi</i></td><td>cap. 12</td></tr>
+<tr><td>❌ <i>visitare un amico</i></td><td>✅ <i>andare a trovare un amico</i></td><td>visitare = lieux (ou médecin !)</td></tr>
+<tr><td>❌ <i>giocare del piano</i></td><td>✅ <i>suonare il pianoforte</i></td><td>giocare = jeux, suonare = musique</td></tr>
+<tr><td>❌ <i>ritornare a casa</i> partout</td><td>✅ <i>tornare a casa</i></td><td>tornare est le verbe courant</td></tr>
+<tr><td>❌ <i>assistere al corso</i> (= regarder)</td><td>✅ <i>frequentare / seguire un corso</i></td><td>assistere a = assister en spectateur</td></tr>
+</table></div>
+
+<h3>3. Les doubles consonnes, marqueur d'orthographe</h3>
+<p class="es"><i>anno</i> (année) / <i>ano</i> (!) · <i>cassa</i> (caisse) / <i>casa</i> (maison) · <i>penna</i> (stylo) / <i>pena</i> (peine) · <i>sette</i> (sept) / <i>sete</i> (soif) · <i>capello</i> (cheveu) / <i>cappello</i> (chapeau).</p>
+<p>Le français simplifie souvent : <i>appartamento, professore (1 f, 2 s), indirizzo, ricco, pubblico, obbligo, febbraio</i>.</p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>Ne jamais « italianiser » un mot français au hasard à l'écrit : en cas de doute, reformuler avec un mot sûr ou une périphrase.</li>
+<li>❌ <i>professore</i> avec deux f, <i>publico</i>, <i>obligo</i> → vérifier les doubles : <i>professore, pubblico, obbligo</i>.</li>
+<li>❌ <i>attualmente</i> = actuellement ✅, mais ❌ <i>eventualmente</i> ≠ éventuellement : il signifie « le cas échéant » — et <i>finalmente</i> = enfin (soulagement), pas « finalement » (= <i>alla fine</i>).</li>
+<li>❌ <i>magazzino</i> = entrepôt ; le magasin = <i>negozio</i>.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Tenir une liste personnelle « mes 20 pièges » et la relire avant chaque contrôle : les erreurs de calque sont récurrentes, donc prévisibles.</li>
+<li>Le trio <i>avere caldo / avere fame / avere 17 anni</i> : trois « être » français qui deviennent <i>avere</i>.</li>
+<li>En relecture de copie, chasser dans l'ordre : 1) penso che + subjonctif, 2) auxiliaires essere/avere, 3) doubles consonnes, 4) prépositions (a/in/da).</li>
+<li>La proximité FR/IT reste un atout majeur en compréhension : s'en servir pour lire, s'en méfier pour écrire.</li>
+</ul></div>
+</section>
+<!-- ============ CONIUGAZIONE ============ -->
+
+<section class="cap" id="c01" data-liv="rif" data-tab="coniug" data-titolo="Gli ausiliari: essere e avere">
+<div class="cap-head"><span class="liv b1">Rif.</span><h2>Gli ausiliari — <i>essere</i> e <i>avere</i></h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Les deux verbes à savoir dans tous les temps, sans hésitation : ils portent tout le système des temps composés.</p>
+
+<h3>Essere (participio: stato · ausiliare: essere · gerundio: essendo)</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>Presente</th><th>Imperfetto</th><th>Futuro</th><th>Pass. remoto</th><th>Condizionale</th><th>Cong. pres.</th><th>Cong. imperf.</th></tr>
+<tr><td>io</td><td>sono</td><td>ero</td><td>sarò</td><td>fui</td><td>sarei</td><td>sia</td><td>fossi</td></tr>
+<tr><td>tu</td><td>sei</td><td>eri</td><td>sarai</td><td>fosti</td><td>saresti</td><td>sia</td><td>fossi</td></tr>
+<tr><td>lui/lei</td><td>è</td><td>era</td><td>sarà</td><td>fu</td><td>sarebbe</td><td>sia</td><td>fosse</td></tr>
+<tr><td>noi</td><td>siamo</td><td>eravamo</td><td>saremo</td><td>fummo</td><td>saremmo</td><td>siamo</td><td>fossimo</td></tr>
+<tr><td>voi</td><td>siete</td><td>eravate</td><td>sarete</td><td>foste</td><td>sareste</td><td>siate</td><td>foste</td></tr>
+<tr><td>loro</td><td>sono</td><td>erano</td><td>saranno</td><td>furono</td><td>sarebbero</td><td>siano</td><td>fossero</td></tr>
+</table></div>
+
+<h3>Avere (participio: avuto · ausiliare: avere · gerundio: avendo)</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>Presente</th><th>Imperfetto</th><th>Futuro</th><th>Pass. remoto</th><th>Condizionale</th><th>Cong. pres.</th><th>Cong. imperf.</th></tr>
+<tr><td>io</td><td>ho</td><td>avevo</td><td>avrò</td><td>ebbi</td><td>avrei</td><td>abbia</td><td>avessi</td></tr>
+<tr><td>tu</td><td>hai</td><td>avevi</td><td>avrai</td><td>avesti</td><td>avresti</td><td>abbia</td><td>avessi</td></tr>
+<tr><td>lui/lei</td><td>ha</td><td>aveva</td><td>avrà</td><td>ebbe</td><td>avrebbe</td><td>abbia</td><td>avesse</td></tr>
+<tr><td>noi</td><td>abbiamo</td><td>avevamo</td><td>avremo</td><td>avemmo</td><td>avremmo</td><td>abbiamo</td><td>avessimo</td></tr>
+<tr><td>voi</td><td>avete</td><td>avevate</td><td>avrete</td><td>aveste</td><td>avreste</td><td>abbiate</td><td>aveste</td></tr>
+<tr><td>loro</td><td>hanno</td><td>avevano</td><td>avranno</td><td>ebbero</td><td>avrebbero</td><td>abbiano</td><td>avessero</td></tr>
+</table></div>
+<div class="nota"><b>Temps composés :</b> passato prossimo (<i>ho avuto / sono stato</i>), trapassato (<i>avevo avuto / ero stato</i>), futuro anteriore (<i>avrò avuto / sarò stato</i>), condizionale passato (<i>avrei avuto / sarei stato</i>), congiuntivo passato (<i>abbia avuto / sia stato</i>), congiuntivo trapassato (<i>avessi avuto / fossi stato</i>).</div>
+</section>
+
+<section class="cap" id="c02" data-liv="rif" data-tab="coniug" data-titolo="I verbi regolari: parlare, credere, dormire, finire">
+<div class="cap-head"><span class="liv b1">Rif.</span><h2>I verbi regolari — i quattro modelli</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Quatre modèles : -are, -ere, -ire et -ire avec infixe -isc-. Tout verbe régulier se conjugue sur l'un d'eux.</p>
+
+<h3>Parlare (participio: parlato)</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>Presente</th><th>Imperfetto</th><th>Futuro</th><th>Pass. remoto</th><th>Condizionale</th><th>Cong. pres.</th><th>Cong. imperf.</th></tr>
+<tr><td>io</td><td>parlo</td><td>parlavo</td><td>parlerò</td><td>parlai</td><td>parlerei</td><td>parli</td><td>parlassi</td></tr>
+<tr><td>tu</td><td>parli</td><td>parlavi</td><td>parlerai</td><td>parlasti</td><td>parleresti</td><td>parli</td><td>parlassi</td></tr>
+<tr><td>lui/lei</td><td>parla</td><td>parlava</td><td>parlerà</td><td>parlò</td><td>parlerebbe</td><td>parli</td><td>parlasse</td></tr>
+<tr><td>noi</td><td>parliamo</td><td>parlavamo</td><td>parleremo</td><td>parlammo</td><td>parleremmo</td><td>parliamo</td><td>parlassimo</td></tr>
+<tr><td>voi</td><td>parlate</td><td>parlavate</td><td>parlerete</td><td>parlaste</td><td>parlereste</td><td>parliate</td><td>parlaste</td></tr>
+<tr><td>loro</td><td>parlano</td><td>parlavano</td><td>parleranno</td><td>parlarono</td><td>parlerebbero</td><td>parlino</td><td>parlassero</td></tr>
+</table></div>
+
+<h3>Credere (participio: creduto)</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>Presente</th><th>Imperfetto</th><th>Futuro</th><th>Pass. remoto</th><th>Condizionale</th><th>Cong. pres.</th><th>Cong. imperf.</th></tr>
+<tr><td>io</td><td>credo</td><td>credevo</td><td>crederò</td><td>credei/credetti</td><td>crederei</td><td>creda</td><td>credessi</td></tr>
+<tr><td>tu</td><td>credi</td><td>credevi</td><td>crederai</td><td>credesti</td><td>crederesti</td><td>creda</td><td>credessi</td></tr>
+<tr><td>lui/lei</td><td>crede</td><td>credeva</td><td>crederà</td><td>credé/credette</td><td>crederebbe</td><td>creda</td><td>credesse</td></tr>
+<tr><td>noi</td><td>crediamo</td><td>credevamo</td><td>crederemo</td><td>credemmo</td><td>crederemmo</td><td>crediamo</td><td>credessimo</td></tr>
+<tr><td>voi</td><td>credete</td><td>credevate</td><td>crederete</td><td>credeste</td><td>credereste</td><td>crediate</td><td>credeste</td></tr>
+<tr><td>loro</td><td>credono</td><td>credevano</td><td>crederanno</td><td>crederono/credettero</td><td>crederebbero</td><td>credano</td><td>credessero</td></tr>
+</table></div>
+
+<h3>Dormire (participio: dormito)</h3>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>Presente</th><th>Imperfetto</th><th>Futuro</th><th>Pass. remoto</th><th>Condizionale</th><th>Cong. pres.</th><th>Cong. imperf.</th></tr>
+<tr><td>io</td><td>dormo</td><td>dormivo</td><td>dormirò</td><td>dormii</td><td>dormirei</td><td>dorma</td><td>dormissi</td></tr>
+<tr><td>tu</td><td>dormi</td><td>dormivi</td><td>dormirai</td><td>dormisti</td><td>dormiresti</td><td>dorma</td><td>dormissi</td></tr>
+<tr><td>lui/lei</td><td>dorme</td><td>dormiva</td><td>dormirà</td><td>dormì</td><td>dormirebbe</td><td>dorma</td><td>dormisse</td></tr>
+<tr><td>noi</td><td>dormiamo</td><td>dormivamo</td><td>dormiremo</td><td>dormimmo</td><td>dormiremmo</td><td>dormiamo</td><td>dormissimo</td></tr>
+<tr><td>voi</td><td>dormite</td><td>dormivate</td><td>dormirete</td><td>dormiste</td><td>dormireste</td><td>dormiate</td><td>dormiste</td></tr>
+<tr><td>loro</td><td>dormono</td><td>dormivano</td><td>dormiranno</td><td>dormirono</td><td>dormirebbero</td><td>dormano</td><td>dormissero</td></tr>
+</table></div>
+
+<h3>Finire, type -isc (participio: finito)</h3>
+<p>Identique à <i>dormire</i> sauf au présent (indicatif et subjonctif) et à l'impératif :</p>
+<div class="tbl-scroll"><table>
+<tr><th></th><th>Presente</th><th>Cong. presente</th></tr>
+<tr><td>io</td><td>finisco</td><td>finisca</td></tr>
+<tr><td>tu</td><td>finisci</td><td>finisca</td></tr>
+<tr><td>lui/lei</td><td>finisce</td><td>finisca</td></tr>
+<tr><td>noi</td><td>finiamo</td><td>finiamo</td></tr>
+<tr><td>voi</td><td>finite</td><td>finiate</td></tr>
+<tr><td>loro</td><td>finiscono</td><td>finiscano</td></tr>
+</table></div>
+<p>Sur ce modèle : <i>capire, preferire, pulire, spedire, costruire, colpire, unire, guarire, chiarire, sostituire.</i></p>
+</section>
+
+<section class="cap" id="c03" data-liv="rif" data-tab="coniug" data-titolo="Gli irregolari essenziali (schede)">
+<div class="cap-head"><span class="liv b1">Rif.</span><h2>Gli irregolari essenziali — schede rapide</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Pour chaque verbe : seulement les temps irréguliers. Ce qui n'est pas indiqué se conjugue régulièrement.</p>
+
+<div class="tbl-scroll"><table>
+<tr><th>Verbo</th><th>Presente</th><th>Futuro/Cond.</th><th>Pass. remoto (1-3-6)</th><th>Participio</th><th>Cong. pres.</th><th>Altro</th></tr>
+<tr><td><b>andare</b> (essere)</td><td>vado, vai, va, andiamo, andate, vanno</td><td>andrò / andrei</td><td>regolare</td><td>andato</td><td>vada, andiamo, andiate, vadano</td><td>imper. va'/vai</td></tr>
+<tr><td><b>fare</b></td><td>faccio, fai, fa, facciamo, fate, fanno</td><td>farò / farei</td><td>feci, fece, fecero</td><td>fatto</td><td>faccia</td><td>imperf. facevo; ger. facendo; imper. fa'</td></tr>
+<tr><td><b>dire</b></td><td>dico, dici, dice, diciamo, dite, dicono</td><td>dirò / direi</td><td>dissi, disse, dissero</td><td>detto</td><td>dica</td><td>imperf. dicevo; ger. dicendo; imper. di'</td></tr>
+<tr><td><b>dare</b></td><td>do, dai, dà, diamo, date, danno</td><td>darò / darei</td><td>diedi, diede, diedero</td><td>dato</td><td>dia</td><td>cong. imp. dessi; imper. da'</td></tr>
+<tr><td><b>stare</b> (essere)</td><td>sto, stai, sta, stiamo, state, stanno</td><td>starò / starei</td><td>stetti, stette, stettero</td><td>stato</td><td>stia</td><td>cong. imp. stessi; imper. sta'</td></tr>
+<tr><td><b>venire</b> (essere)</td><td>vengo, vieni, viene, veniamo, venite, vengono</td><td>verrò / verrei</td><td>venni, venne, vennero</td><td>venuto</td><td>venga</td><td></td></tr>
+<tr><td><b>uscire</b> (essere)</td><td>esco, esci, esce, usciamo, uscite, escono</td><td>regolare</td><td>regolare</td><td>uscito</td><td>esca</td><td></td></tr>
+<tr><td><b>dovere</b></td><td>devo, devi, deve, dobbiamo, dovete, devono</td><td>dovrò / dovrei</td><td>dovetti</td><td>dovuto</td><td>debba, dobbiamo, dobbiate, debbano</td><td></td></tr>
+<tr><td><b>potere</b></td><td>posso, puoi, può, possiamo, potete, possono</td><td>potrò / potrei</td><td>potei</td><td>potuto</td><td>possa</td><td></td></tr>
+<tr><td><b>volere</b></td><td>voglio, vuoi, vuole, vogliamo, volete, vogliono</td><td>vorrò / vorrei</td><td>volli, volle, vollero</td><td>voluto</td><td>voglia</td><td></td></tr>
+<tr><td><b>sapere</b></td><td>so, sai, sa, sappiamo, sapete, sanno</td><td>saprò / saprei</td><td>seppi, seppe, seppero</td><td>saputo</td><td>sappia</td><td>imper. sappi</td></tr>
+<tr><td><b>bere</b></td><td>bevo, bevi, beve, beviamo, bevete, bevono</td><td>berrò / berrei</td><td>bevvi, bevve, bevvero</td><td>bevuto</td><td>beva</td><td>imperf. bevevo; ger. bevendo</td></tr>
+<tr><td><b>rimanere</b> (essere)</td><td>rimango, rimani, rimane, rimaniamo, rimanete, rimangono</td><td>rimarrò / rimarrei</td><td>rimasi, rimase, rimasero</td><td>rimasto</td><td>rimanga</td><td></td></tr>
+<tr><td><b>tenere</b></td><td>tengo, tieni, tiene, teniamo, tenete, tengono</td><td>terrò / terrei</td><td>tenni, tenne, tennero</td><td>tenuto</td><td>tenga</td><td></td></tr>
+<tr><td><b>scegliere</b></td><td>scelgo, scegli, sceglie, scegliamo, scegliete, scelgono</td><td>regolare</td><td>scelsi, scelse, scelsero</td><td>scelto</td><td>scelga</td><td></td></tr>
+<tr><td><b>salire</b> (essere/avere)</td><td>salgo, sali, sale, saliamo, salite, salgono</td><td>regolare</td><td>regolare</td><td>salito</td><td>salga</td><td></td></tr>
+<tr><td><b>piacere</b> (essere)</td><td>piaccio, piaci, piace, piacciamo, piacete, piacciono</td><td>regolare</td><td>piacqui, piacque, piacquero</td><td>piaciuto</td><td>piaccia</td><td></td></tr>
+<tr><td><b>morire</b> (essere)</td><td>muoio, muori, muore, moriamo, morite, muoiono</td><td>morirò / morirei</td><td>morii</td><td>morto</td><td>muoia</td><td></td></tr>
+<tr><td><b>sedersi</b></td><td>mi siedo, ti siedi, si siede, ci sediamo, vi sedete, si siedono</td><td>regolare</td><td>regolare</td><td>seduto</td><td>si sieda</td><td></td></tr>
+</table></div>
+</section>
+
+<section class="cap" id="c04" data-liv="rif" data-tab="coniug" data-titolo="Participi passati irregolari (lista)">
+<div class="cap-head"><span class="liv b1">Rif.</span><h2>I participi passati irregolari — la lista</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">À réviser en boucle : ces participes reviennent dans toutes les copies. (essere) = auxiliaire essere.</p>
+<div class="tbl-scroll"><table>
+<tr><th>Infinito</th><th>Participio</th><th>Infinito</th><th>Participio</th></tr>
+<tr><td>accendere</td><td>acceso</td><td>perdere</td><td>perso (perduto)</td></tr>
+<tr><td>aggiungere</td><td>aggiunto</td><td>piangere</td><td>pianto</td></tr>
+<tr><td>aprire</td><td>aperto</td><td>porre</td><td>posto</td></tr>
+<tr><td>bere</td><td>bevuto</td><td>prendere</td><td>preso</td></tr>
+<tr><td>chiedere</td><td>chiesto</td><td>produrre</td><td>prodotto</td></tr>
+<tr><td>chiudere</td><td>chiuso</td><td>promettere</td><td>promesso</td></tr>
+<tr><td>coprire</td><td>coperto</td><td>ridere</td><td>riso</td></tr>
+<tr><td>correre</td><td>corso</td><td>rimanere (essere)</td><td>rimasto</td></tr>
+<tr><td>cuocere</td><td>cotto</td><td>risolvere</td><td>risolto</td></tr>
+<tr><td>decidere</td><td>deciso</td><td>rispondere</td><td>risposto</td></tr>
+<tr><td>dipingere</td><td>dipinto</td><td>rompere</td><td>rotto</td></tr>
+<tr><td>dire</td><td>detto</td><td>scegliere</td><td>scelto</td></tr>
+<tr><td>discutere</td><td>discusso</td><td>scendere (essere)</td><td>sceso</td></tr>
+<tr><td>essere (essere)</td><td>stato</td><td>scrivere</td><td>scritto</td></tr>
+<tr><td>fare</td><td>fatto</td><td>soffrire</td><td>sofferto</td></tr>
+<tr><td>leggere</td><td>letto</td><td>spegnere</td><td>spento</td></tr>
+<tr><td>mettere</td><td>messo</td><td>spendere</td><td>speso</td></tr>
+<tr><td>morire (essere)</td><td>morto</td><td>succedere (essere)</td><td>successo</td></tr>
+<tr><td>muovere</td><td>mosso</td><td>tradurre</td><td>tradotto</td></tr>
+<tr><td>nascere (essere)</td><td>nato</td><td>vedere</td><td>visto (veduto)</td></tr>
+<tr><td>offrire</td><td>offerto</td><td>venire (essere)</td><td>venuto</td></tr>
+<tr><td>togliere</td><td>tolto</td><td>vincere</td><td>vinto</td></tr>
+<tr><td></td><td></td><td>vivere</td><td>vissuto</td></tr>
+</table></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Familles utiles : -ndere → -so (<i>prendere→preso, scendere→sceso, spendere→speso, accendere→acceso</i>) ; -ggere → -tto (<i>leggere→letto</i>) ; -mettere → -messo.</li>
+<li>Réviser par blocs de dix, à voix haute, avec l'auxiliaire : <i>è nato, è morto, ha fatto, ha detto…</i></li>
+</ul></div>
+</section>
+<!-- ============ LESSICO ============ -->
+
+<section class="cap" id="l01" data-liv="rif" data-tab="less" data-titolo="Funzioni comunicative: opinione, accordo, ipotesi">
+<div class="cap-head"><span class="liv b1">Rif.</span><h2>Le funzioni comunicative — le frasi che servono sempre</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Les formules toutes faites de l'interaction et de l'argumentation : à mémoriser en bloc, avec leur mode (indicatif ou subjonctif) déjà intégré.</p>
+
+<h3>1. Esprimer son opinion</h3>
+<p class="es"><i>Secondo me + indicatif · Penso che / Credo che / Mi sembra che + subjonctif · A mio parere / A mio avviso · Sono convinto che + subjonctif · Direi che…</i></p>
+
+<h3>2. Accord et désaccord</h3>
+<div class="tbl-scroll"><table>
+<tr><th>D'accord</th><th>Pas d'accord / nuance</th></tr>
+<tr><td><i>Sono d'accordo (con te). Hai ragione. È vero. Esatto! Appunto! Infatti!</i></td><td><i>Non sono d'accordo. Non è detto. Sì, ma… Dipende. Ne dubito. Non direi. Ti sbagli.</i></td></tr>
+<tr><td><i>Anch'io. / Anche a me (avec piacere).</i></td><td><i>Io no. / A me no. · Io invece penso che…</i></td></tr>
+<tr><td><i>Neanch'io</i> (moi non plus)</td><td><i>Da una parte…, dall'altra…</i></td></tr>
+</table></div>
+
+<h3>3. Cause, conséquence, but</h3>
+<p class="es"><i>perché, siccome, poiché, dato che, visto che</i> (cause) · <i>quindi, perciò, dunque, di conseguenza</i> (conséquence) · <i>per + infinitif, affinché + subjonctif</i> (but).</p>
+
+<h3>4. Hypothèse et concession</h3>
+<p class="es"><i>Se fossi in te… (à ta place) · Può darsi che + subj. · Forse / Magari · Benché / Anche se · Comunque (de toute façon) · In ogni caso.</i></p>
+
+<h3>5. Raconter et structurer</h3>
+<p class="es"><i>Prima di tutto / Innanzitutto · Poi / In seguito · Mentre · Nel frattempo · Alla fine · Insomma (bref) · Per concludere / In conclusione.</i></p>
+
+<h3>6. Interagir à l'oral (gagner du temps, réparer)</h3>
+<p class="es"><i>Allora… / Dunque… / Ecco… (alors, eh bien) · Cioè (c'est-à-dire) · Come si dice…? · Scusi, può ripetere? · Non ho capito bene · Vorrei aggiungere che… · Che ne pensi?</i></p>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>Secondo me sia…</i> → ✅ <i>Secondo me è…</i> ; mais ✅ <i>Penso che sia…</i> Ne pas mélanger les deux constructions.</li>
+<li>❌ <i>Sono d'accordo avec toi</i> → ✅ <i>d'accordo CON te</i>.</li>
+<li>❌ <i>Anch'io</i> pour répondre à <i>Mi piace</i> → ✅ <i>Anche a me</i>.</li>
+<li>❌ <i>enfin</i> → <i>finalmente</i> pour conclure : ✅ <i>infine / per concludere</i> (<i>finalmente</i> = soulagement).</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Apprendre chaque formule AVEC son mode : <i>penso che sia</i> est une seule unité mentale.</li>
+<li>Pour l'oral : trois débuts (<i>Allora, secondo me…</i>), trois transitions (<i>inoltre, però, quindi</i>), une conclusion (<i>insomma</i>) — le squelette est prêt.</li>
+<li><i>Magari</i> mérite une fiche à lui seul : « peut-être » (<i>Magari arriva domani</i>), « si seulement ! » (<i>Magari!</i>), « quitte à » (<i>magari + subj.</i>).</li>
+</ul></div>
+</section>
+
+<section class="cap" id="l02" data-liv="rif" data-tab="less" data-titolo="Verbi ad alta frequenza e loro costruzioni">
+<div class="cap-head"><span class="liv b1">Rif.</span><h2>I verbi ad alta frequenza — con le loro costruzioni</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Les verbes qui reviennent dans tous les textes et tous les sujets, appris avec leur préposition et leur auxiliaire : c'est la construction qui fait la note.</p>
+
+<div class="tbl-scroll"><table>
+<tr><th>Verbo</th><th>Costruzione</th><th>Esempio</th></tr>
+<tr><td>andare (essere)</td><td>a + ville / in + pays / da + personne / a + inf.</td><td><i>Vado a Roma, in Italia, dal medico, a studiare.</i></td></tr>
+<tr><td>venire (essere)</td><td>a + inf. ; venire da = provenir</td><td><i>Vieni a vedere! Vengo da Milano.</i></td></tr>
+<tr><td>cominciare / iniziare</td><td><b>a</b> + inf.</td><td><i>Comincio a capire.</i></td></tr>
+<tr><td>finire / smettere</td><td><b>di</b> + inf.</td><td><i>Ho finito di mangiare. Smetti di parlare!</i></td></tr>
+<tr><td>riuscire (essere)</td><td><b>a</b> + inf.</td><td><i>Non riesco a dormire.</i> (= je n'arrive pas à)</td></tr>
+<tr><td>cercare</td><td><b>di</b> + inf. ; cercare qcs (COD)</td><td><i>Cerco di fare del mio meglio. Cerco le chiavi.</i></td></tr>
+<tr><td>provare</td><td><b>a</b> + inf.</td><td><i>Prova a chiamarlo.</i></td></tr>
+<tr><td>pensare</td><td>a + qqn/qqch ; di + inf. ; che + subj.</td><td><i>Penso a te. Penso di partire. Penso che sia giusto.</i></td></tr>
+<tr><td>credere</td><td>a/in + qqch ; di + inf. ; che + subj.</td><td><i>Non ci credo. Credo di sì.</i></td></tr>
+<tr><td>chiedere</td><td>qcs <b>a</b> qcn ; di + inf.</td><td><i>Ho chiesto un favore a Marco. Mi ha chiesto di aiutarlo.</i></td></tr>
+<tr><td>dire</td><td>qcs a qcn ; di + inf.</td><td><i>Digli la verità. Mi ha detto di aspettare.</i></td></tr>
+<tr><td>sapere / conoscere</td><td>sapere + inf. (savoir faire) ; conoscere + nom</td><td><i>So nuotare. Conosco Roma.</i></td></tr>
+<tr><td>avere bisogno / voglia</td><td><b>di</b> + nom/inf.</td><td><i>Ho bisogno di aiuto. Ho voglia di gelato.</i></td></tr>
+<tr><td>aiutare</td><td>qcn (COD !) <b>a</b> + inf.</td><td><i>Lo aiuto a studiare.</i></td></tr>
+<tr><td>aspettare</td><td>qcn/qcs (COD, sans préposition)</td><td><i>Aspetto l'autobus. Ti aspetto.</i></td></tr>
+<tr><td>diventare (essere)</td><td>+ nom/adj (devenir)</td><td><i>È diventato famoso.</i></td></tr>
+<tr><td>sembrare (essere)</td><td>+ adj ; che + subj.</td><td><i>Sembra facile. Sembra che piova.</i></td></tr>
+<tr><td>bisogna (invar.)</td><td>+ inf. (il faut)</td><td><i>Bisogna partire presto.</i></td></tr>
+<tr><td>portare / prendere</td><td>porter, apporter / prendre</td><td><i>Porto io il dolce! Prendo un caffè.</i></td></tr>
+<tr><td>mettere / mettersi a</td><td>mettre / se mettre à</td><td><i>Si è messo a piovere.</i></td></tr>
+<tr><td>lasciare</td><td>laisser + COD ; + inf.</td><td><i>Lascia stare! Lasciami parlare.</i></td></tr>
+<tr><td>trovare / trovarsi</td><td>trouver / se trouver, se sentir</td><td><i>Mi trovo bene qui.</i></td></tr>
+<tr><td>succedere (essere)</td><td>arriver (événement)</td><td><i>Che cosa è successo?</i></td></tr>
+</table></div>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ <i>aspettare per, cercare per</i> (calque anglais/français) → ✅ COD direct : <i>aspetto il treno, cerco lavoro</i>.</li>
+<li>❌ <i>riuscire de</i> → ✅ <i>riuscire A</i> ; ❌ <i>finire a</i> → ✅ <i>finire DI</i>. Les prépositions ne se devinent pas, elles s'apprennent.</li>
+<li>❌ <i>sapere Roma</i> → ✅ <i>conoscere Roma</i>. <i>Sapere</i> = savoir un fait/savoir faire ; <i>conoscere</i> = connaître qqn/un lieu.</li>
+<li>❌ <i>arrivare</i> pour « arriver à qqn » : « il m'est arrivé quelque chose » = ✅ <i>mi è successo qualcosa</i>.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li>Le trio des semi-auxiliaires : <i>cominciare a / continuare a / finire di</i> — début, milieu, fin.</li>
+<li><i>Credo di sì / credo di no, penso di sì</i> : réponses courtes très naturelles.</li>
+<li><i>Bisogna + infinitif</i> (il faut) vs <i>ci vuole + nom</i> (il faut du/de la) : deux outils complémentaires (cap. 22).</li>
+<li>Chaque nouveau verbe → le noter en phrase complète, jamais isolé.</li>
+</ul></div>
+</section>
+
+<section class="cap" id="l03" data-liv="rif" data-tab="less" data-titolo="Le piccole parole: magari, anzi, mica, ormai…">
+<div class="cap-head"><span class="liv b1">Rif.</span><h2>Le piccole parole che fanno la differenza</h2><div class="cap-tric"><span class="t1"></span><span class="t2"></span><span class="t3"></span></div></div>
+<p class="intro">Adverbes et particules omniprésents dans l'italien réel. Les reconnaître débloque la compréhension orale ; les utiliser donne un ton authentique.</p>
+
+<div class="tbl-scroll"><table>
+<tr><th>Parola</th><th>Senso</th><th>Esempio</th></tr>
+<tr><td><b>magari</b></td><td>peut-être / si seulement !</td><td><i>Magari vengo. — Vieni? — Magari!</i></td></tr>
+<tr><td><b>anzi</b></td><td>au contraire, et même</td><td><i>Non mi disturbi, anzi!</i></td></tr>
+<tr><td><b>addirittura</b></td><td>carrément, même</td><td><i>Ha addirittura pianto.</i></td></tr>
+<tr><td><b>mica</b> (fam.)</td><td>pas du tout (renforce la négation)</td><td><i>Non è mica facile!</i></td></tr>
+<tr><td><b>ormai</b></td><td>désormais, maintenant (c'est trop tard)</td><td><i>Ormai è troppo tardi.</i></td></tr>
+<tr><td><b>appena</b></td><td>à peine / dès que / venir de</td><td><i>Sono appena arrivato.</i> (je viens d'arriver)</td></tr>
+<tr><td><b>invece</b></td><td>au contraire, par contre</td><td><i>Io studio, lui invece dorme.</i></td></tr>
+<tr><td><b>purtroppo</b></td><td>malheureusement</td><td><i>Purtroppo non posso venire.</i></td></tr>
+<tr><td><b>per fortuna</b></td><td>heureusement</td><td><i>Per fortuna è andato tutto bene.</i></td></tr>
+<tr><td><b>quasi</b></td><td>presque</td><td><i>Ho quasi finito.</i></td></tr>
+<tr><td><b>proprio</b></td><td>vraiment, exactement</td><td><i>È proprio bello! Proprio tu?</i></td></tr>
+<tr><td><b>pure</b></td><td>aussi / donc (concession)</td><td><i>Vieni pure! Fai pure.</i> (je t'en prie, vas-y)</td></tr>
+<tr><td><b>infatti</b></td><td>en effet</td><td><i>Sembrava stanco: infatti dormiva poco.</i></td></tr>
+<tr><td><b>insomma</b></td><td>bref / bof</td><td><i>Insomma, non è andata bene. — Com'era? — Insomma…</i></td></tr>
+<tr><td><b>comunque</b></td><td>de toute façon, quoi qu'il en soit</td><td><i>Comunque ci vediamo domani.</i></td></tr>
+<tr><td><b>piuttosto</b></td><td>plutôt</td><td><i>Piuttosto che uscire, resto a casa.</i></td></tr>
+<tr><td><b>almeno</b></td><td>au moins</td><td><i>Almeno provaci!</i></td></tr>
+<tr><td><b>nemmeno / neanche / neppure</b></td><td>même pas, non plus</td><td><i>Non lo so nemmeno io.</i></td></tr>
+<tr><td><b>ancora</b></td><td>encore / toujours pas (avec non)</td><td><i>Non è ancora arrivato.</i></td></tr>
+<tr><td><b>già</b></td><td>déjà / eh oui</td><td><i>L'ho già visto. — Già!</i></td></tr>
+</table></div>
+
+<div class="box evita"><h4>⚠️ Da evitare</h4><ul>
+<li>❌ traduire <i>magari</i> par « magasin » ou l'ignorer : c'est un mot-clé du dialogue italien, intraduisible mot à mot.</li>
+<li>❌ <i>encore</i> → <i>ancora</i> systématique : « pas encore » = <i>non ancora</i>, mais « encore ! » (répétition agacée) = <i>di nuovo!</i></li>
+<li>❌ confondre <i>appena</i> (à peine/dès que) avec <i>a peine</i> physique : « ça vaut la peine » = <i>ne vale la pena</i>.</li>
+<li><i>Mica</i> est familier : parfait à l'oral entre pairs, à éviter dans une lettre formelle.</li>
+</ul></div>
+<div class="box punti"><h4>✅ Punti chiave</h4><ul>
+<li><i>Sono appena arrivato</i> = « je viens d'arriver » : l'italien n'a pas « venir de », c'est <i>appena</i> + passé qui le rend.</li>
+<li>Réagir en un mot à l'oral : <i>Davvero? Appunto! Già! Magari! Insomma…</i> — la ponctuation orale de l'italien.</li>
+<li>En choisir cinq et les placer volontairement pendant une semaine : c'est ainsi qu'ils deviennent naturels.</li>
+</ul></div>
+</section>
+  </main>
+</div>
+
+<script>
+(function(){
+  var caps = Array.prototype.slice.call(document.querySelectorAll('section.cap'));
+  var indice = document.getElementById('indice');
+  var tabsBtns = Array.prototype.slice.call(document.querySelectorAll('nav.tabs button'));
+  var tabAtt = 'gram';
+  var gruppi = {
+    gram: [['A2','Livello A2 · Consolidare'],['B1','Livello B1 · Approfondire'],['B2','Livello B2 · Padroneggiare']],
+    coniug: [['rif','Tavole di coniugazione']],
+    less: [['rif','Lessico e funzioni']]
+  };
+
+  function capsDelTab(tab){
+    return caps.filter(function(c){ return c.getAttribute('data-tab') === tab; });
+  }
+
+  function costruisciIndice(){
+    indice.innerHTML = '';
+    var lista = capsDelTab(tabAtt);
+    gruppi[tabAtt].forEach(function(g){
+      var liv = g[0], titolo = g[1];
+      var delLiv = lista.filter(function(c){ return c.getAttribute('data-liv') === liv; });
+      if(!delLiv.length) return;
+      var div = document.createElement('div');
+      div.className = 'gruppo';
+      var h = document.createElement('h3');
+      h.textContent = titolo;
+      div.appendChild(h);
+      delLiv.forEach(function(c){
+        var a = document.createElement('a');
+        a.href = '#' + c.id;
+        var n = document.createElement('span');
+        n.className = 'num';
+        n.textContent = lista.indexOf(c) + 1;
+        a.appendChild(n);
+        a.appendChild(document.createTextNode(c.getAttribute('data-titolo')));
+        a.setAttribute('data-cap', c.id);
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          mostraCap(c.id);
+        });
+        div.appendChild(a);
+      });
+      indice.appendChild(div);
+    });
+  }
+
+  function mostraCap(id, senzaScroll){
+    caps.forEach(function(c){ c.classList.remove('att'); });
+    var cap = document.getElementById(id);
+    if(!cap) return;
+    cap.classList.add('att');
+    tabAtt = cap.getAttribute('data-tab');
+    tabsBtns.forEach(function(b){ b.classList.toggle('att', b.getAttribute('data-tab') === tabAtt); });
+    costruisciIndice();
+    Array.prototype.slice.call(indice.querySelectorAll('a')).forEach(function(a){
+      a.classList.toggle('att', a.getAttribute('data-cap') === id);
+    });
+    aggiornaNav(cap);
+    var ind = document.getElementById('indice');
+    if(window.innerWidth <= 820) ind.classList.remove('aperto');
+    if(!senzaScroll) window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function aggiornaNav(cap){
+    var vecchia = cap.querySelector('.nav-cap');
+    if(vecchia) vecchia.parentNode.removeChild(vecchia);
+    var lista = capsDelTab(tabAtt);
+    var i = lista.indexOf(cap);
+    var div = document.createElement('div');
+    div.className = 'nav-cap';
+    var prev = document.createElement('button');
+    var next = document.createElement('button');
+    if(i > 0){
+      prev.textContent = '← ' + lista[i-1].getAttribute('data-titolo');
+      prev.addEventListener('click', function(){ mostraCap(lista[i-1].id); });
+    } else { prev.textContent = '←'; prev.disabled = true; }
+    if(i < lista.length - 1){
+      next.textContent = lista[i+1].getAttribute('data-titolo') + ' →';
+      next.addEventListener('click', function(){ mostraCap(lista[i+1].id); });
+    } else { next.textContent = '→'; next.disabled = true; }
+    div.appendChild(prev);
+    div.appendChild(next);
+    cap.appendChild(div);
+  }
+
+  tabsBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      tabAtt = b.getAttribute('data-tab');
+      var prima = capsDelTab(tabAtt)[0];
+      if(prima) mostraCap(prima.id);
+    });
+  });
+
+  /* ---- Ricerca ---- */
+  var cerca = document.getElementById('cerca');
+  var risultati = document.getElementById('risultati');
+  var nomiTab = {gram:'Grammatica', coniug:'Coniugazione', less:'Lessico'};
+
+  function normalizza(s){
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  cerca.addEventListener('input', function(){
+    var q = normalizza(cerca.value.trim());
+    if(q.length < 2){ risultati.style.display = 'none'; risultati.innerHTML = ''; return; }
+    var trovati = [];
+    caps.forEach(function(c){
+      var testo = normalizza(c.textContent);
+      var n = testo.split(q).length - 1;
+      if(n > 0) trovati.push([c, n]);
+    });
+    trovati.sort(function(a, b){ return b[1] - a[1]; });
+    risultati.innerHTML = '';
+    if(!trovati.length){
+      var d = document.createElement('div');
+      d.className = 'nulla';
+      d.textContent = 'Nessun risultato per «' + cerca.value.trim() + '»';
+      risultati.appendChild(d);
+    } else {
+      trovati.slice(0, 12).forEach(function(t){
+        var c = t[0];
+        var a = document.createElement('a');
+        a.href = '#' + c.id;
+        a.textContent = c.getAttribute('data-titolo');
+        var dove = document.createElement('span');
+        dove.className = 'dove';
+        dove.textContent = nomiTab[c.getAttribute('data-tab')] + ' · ' + t[1] + (t[1] === 1 ? ' occorrenza' : ' occorrenze');
+        a.appendChild(dove);
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          risultati.style.display = 'none';
+          cerca.value = '';
+          mostraCap(c.id);
+        });
+        risultati.appendChild(a);
+      });
+    }
+    risultati.style.display = 'block';
+  });
+
+  document.addEventListener('click', function(e){
+    if(!risultati.contains(e.target) && e.target !== cerca) risultati.style.display = 'none';
+  });
+
+  /* ---- Indice mobile ---- */
+  document.getElementById('btn-indice').addEventListener('click', function(){
+    document.getElementById('indice').classList.toggle('aperto');
+  });
+
+  /* ---- Avvio ---- */
+  mostraCap('g01', true);
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js');
+  });
+}
+</script>
+</body>
+</html>
