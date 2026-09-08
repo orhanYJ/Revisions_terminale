@@ -1,0 +1,26 @@
+{
+  "name": "ACL Oral — Dystopian Writing",
+  "short_name": "ACL Oral",
+  "description": "Révision de l'oral ACL (BFI) — Dystopian Writing : analyses bilingues des œuvres du corpus.",
+  "lang": "fr",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "./",
+  "start_url": "./index.html",
+  "background_color": "#12100e",
+  "theme_color": "#12100e",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
