@@ -115,6 +115,12 @@
     background:var(--carte); border:1px solid var(--filet); padding:8px 14px; font-size:14px; color:var(--pale);
   }
   .choix-modele button.actif{border-color:var(--encre); color:var(--encre)}
+  .compteur{margin-top:40px; border-top:1px solid var(--filet); padding-top:16px}
+  .compteur .reste{font-family:var(--serif); font-size:17px; color:var(--encre); margin:0}
+  .compteur .detail{font-size:13px; color:var(--pale); margin:6px 0 0; line-height:1.5}
+  .compteur .barre{height:4px; background:var(--filet); margin-top:12px}
+  .compteur .barre i{display:block; height:100%; background:var(--encre)}
+  .compteur .barre i.bas{background:var(--rouge)}
   .journal{margin-top:40px; border-top:1px solid var(--filet); padding-top:16px}
   .journal h2{font-size:17px}
   .journal li{font-size:14px; color:var(--pale); line-height:1.6; list-style:none}
@@ -143,6 +149,11 @@
       <button data-modele="claude-sonnet-5">Sonnet 5 — plus fin</button>
       <button data-modele="claude-haiku-4-5-20251001">Haiku 4.5 — plus rapide</button>
     </div>
+    <label class="aide" for="champ-plafond" style="display:block;margin-top:28px">
+      Plafond de dépense par mois, en dollars. L'atelier s'arrête quand il est atteint.
+    </label>
+    <input id="champ-plafond" class="champ" type="number" min="1" max="200" step="1"
+           inputmode="numeric" style="margin-top:8px">
     <p id="erreur-cle" class="aide" style="color:var(--rouge);min-height:20px;margin-top:16px"></p>
     <button id="valider-cle" class="principal">Enregistrer</button>
   </div>
@@ -162,8 +173,13 @@
       <h2>Tes derniers bilans</h2>
       <ul id="liste-bilans"></ul>
     </div>
+    <div class="compteur" id="compteur">
+      <p class="reste" id="compteur-reste"></p>
+      <div class="barre"><i id="compteur-barre"></i></div>
+      <p class="detail" id="compteur-detail"></p>
+    </div>
     <p style="margin-top:32px">
-      <button id="ouvrir-reglages" class="lien">Changer de clé ou de modèle</button>
+      <button id="ouvrir-reglages" class="lien">Changer de clé, de modèle ou de plafond</button>
     </p>
   </div>
 </section>
@@ -300,10 +316,78 @@ Les notes vont de 1 à 5. Chaque commentaire fait une phrase et cite un mot ou u
 let etat = { mode: null, notion: null, messages: [], attente: false };
 const $ = (s) => document.querySelector(s);
 
+/* ============================ compteur de dépense ============================
+   Anthropic ne permet pas de lire le solde d'un compte depuis le navigateur :
+   cela exige une clé d'administration, qu'on ne met pas sur le téléphone d'un
+   élève. On compte donc ici, à partir des tokens que l'API renvoie à chaque
+   réponse — chiffres exacts, tarifs appliqués localement.
+   Tarifs en dollars par million de tokens (entrée / sortie), septembre 2026. */
+const TARIFS = {
+  "claude-sonnet-5":            { entree: 3, sortie: 15, parMessage: 0.010 },
+  "claude-haiku-4-5-20251001":  { entree: 1, sortie: 5,  parMessage: 0.004 }
+};
+
+function moisCourant() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+}
+
+function plafond() {
+  const v = parseFloat(RANGEMENT.lire("atelier.plafond"));
+  return (isFinite(v) && v > 0) ? v : 5;
+}
+
+function conso() {
+  let c;
+  try { c = JSON.parse(RANGEMENT.lire("atelier.conso") || "null"); } catch (e) { c = null; }
+  if (!c || c.mois !== moisCourant()) c = { mois: moisCourant(), cout: 0, appels: 0 };
+  return c;
+}
+
+function compter(usage, modele) {
+  if (!usage) return;
+  const t = TARIFS[modele] || TARIFS["claude-sonnet-5"];
+  const c = conso();
+  c.cout += (usage.input_tokens || 0) / 1e6 * t.entree
+          + (usage.output_tokens || 0) / 1e6 * t.sortie;
+  c.appels += 1;
+  RANGEMENT.ecrire("atelier.conso", JSON.stringify(c));
+}
+
+/* Coût moyen d'un échange : mesuré si on a de quoi mesurer, estimé sinon. */
+function coutMoyen() {
+  const c = conso();
+  if (c.appels >= 3) return c.cout / c.appels;
+  const m = RANGEMENT.lire("atelier.modele") || "claude-sonnet-5";
+  return (TARIFS[m] || TARIFS["claude-sonnet-5"]).parMessage;
+}
+
+function messagesRestants() {
+  const reste = plafond() - conso().cout;
+  return Math.max(0, Math.floor(reste / coutMoyen()));
+}
+
+function majCompteur() {
+  const c = conso(), p = plafond(), n = messagesRestants();
+  const part = Math.min(1, c.cout / p);
+  $("#compteur-reste").textContent = n > 0
+    ? "Encore " + n + " message" + (n > 1 ? "s" : "") + " ce mois-ci"
+    : "Plafond du mois atteint";
+  const barre = $("#compteur-barre");
+  barre.style.width = Math.round(part * 100) + "%";
+  barre.classList.toggle("bas", part > 0.85);
+  const mois = new Date().toLocaleDateString("fr-FR", { month: "long" });
+  $("#compteur-detail").textContent = n > 0
+    ? "Dépensé en " + mois + " : " + c.cout.toFixed(2) + " $ sur " + p.toFixed(2) + " $. "
+      + "Estimation d'après les tokens comptés, pas le relevé Anthropic."
+    : "Demande à ton père de relever le plafond, ou attends le mois prochain.";
+}
+
 /* ============================ appel du modèle ============================ */
 async function appel(system, messages) {
   const cle = RANGEMENT.lire("atelier.cle");
   const modele = RANGEMENT.lire("atelier.modele") || "claude-sonnet-5";
+  if (conso().cout >= plafond()) throw new Error("plafond");
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -318,10 +402,12 @@ async function appel(system, messages) {
   if (r.status === 429) throw new Error("trafic");
   if (!r.ok) throw new Error("reseau");
   const data = await r.json();
+  compter(data.usage, modele);
   return data.content.map(b => b.type === "text" ? b.text : "").join("").trim();
 }
 
 function messageErreur(e) {
+  if (e.message === "plafond") return "Le plafond de dépense du mois est atteint. L'atelier reprendra quand il sera relevé, ou le mois prochain.";
   if (e.message === "cle") return "La clé a été refusée. Vérifie-la, ou recharge du crédit sur ton compte.";
   if (e.message === "trafic") return "Trop de demandes d'un coup. Attends quelques secondes et renvoie.";
   return "La connexion a échoué. Vérifie le réseau et renvoie ton message.";
@@ -339,6 +425,7 @@ function ecranCle() {
   const cle = RANGEMENT.lire("atelier.cle");
   if (cle) $("#champ-cle").value = cle;
   marquerModele(RANGEMENT.lire("atelier.modele") || "claude-sonnet-5");
+  $("#champ-plafond").value = plafond();
   montrer("ecran-cle");
 }
 function marquerModele(m) {
@@ -351,7 +438,10 @@ document.querySelectorAll("#choix-modele button").forEach(b =>
 $("#valider-cle").addEventListener("click", () => {
   const v = $("#champ-cle").value.trim();
   if (!v.startsWith("sk-")) { $("#erreur-cle").textContent = "Une clé Anthropic commence par sk-ant-."; return; }
+  const p = parseFloat($("#champ-plafond").value);
+  if (!isFinite(p) || p <= 0) { $("#erreur-cle").textContent = "Le plafond doit être un nombre de dollars supérieur à zéro."; return; }
   RANGEMENT.ecrire("atelier.cle", v);
+  RANGEMENT.ecrire("atelier.plafond", String(p));
   $("#erreur-cle").textContent = "";
   accueil();
 });
@@ -366,6 +456,7 @@ function accueil() {
     $("#liste-bilans").innerHTML = journal.slice(-5).reverse().map(b =>
       `<li>${b.date} · ${b.mode} — ${b.moyenne}/5 · ${b.progres}</li>`).join("");
   }
+  majCompteur();
   montrer("ecran-accueil");
 }
 

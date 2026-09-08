@@ -31,6 +31,19 @@ lancement ; elle est conservée dans le `localStorage` de son appareil sous
 
 Modèles proposés : `claude-sonnet-5` (par défaut) et `claude-haiku-4-5-20251001`.
 
+## Plafond de dépense
+
+L'application compte elle-même ce qu'elle dépense, à partir des `usage`
+(tokens d'entrée et de sortie) renvoyés par l'API à chaque réponse, et applique
+les tarifs de septembre 2026 : Sonnet 5 à 3 $ / 15 $ par million de tokens,
+Haiku 4.5 à 1 $ / 5 $. Le compteur se remet à zéro au changement de mois
+(`atelier.conso`), le plafond est réglable dans les réglages
+(`atelier.plafond`, 5 $ par défaut). Au-delà, les appels sont bloqués.
+
+Ce n'est pas le solde réel du compte Anthropic : le lire exigerait une clé
+d'administration, qu'on ne met pas sur le téléphone d'un élève. Le vrai
+garde-fou reste le plafond mensuel défini dans la console Anthropic.
+
 ## Mise à jour
 
 Remplacer les fichiers sous le même nom pour garder l'URL et l'icône stables.
