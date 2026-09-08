@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="clair">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spé Physique-Chimie — Terminale</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#E45C10">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg:#FBF8F4; --surface:#FFFFFF; --ink:#24170C; --ink-2:#5C4A39; --muted:#8A7360;
+  --orange:#E45C10; --orange-deep:#A33E00; --halo:#FAE9DB; --halo-2:#F4DCC6;
+  --line:#E8DCCF; --ok:#2E7D32; --ok-bg:#E8F3E9; --ko:#B3261E; --ko-bg:#FBEAE8;
+  --code:#F4EDE4; --shadow:0 1px 2px rgba(94,58,22,.08),0 4px 14px rgba(94,58,22,.07);
+}
+html[data-theme="sombre"]{
+  --bg:#1A120B; --surface:#251A10; --ink:#F2E7DA; --ink-2:#CBB49C; --muted:#9A8470;
+  --orange:#FF8B3E; --orange-deep:#FFC08A; --halo:#33220F; --halo-2:#3E2A13;
+  --line:#3C2C1C; --ok:#7FC784; --ok-bg:#1E3020; --ko:#F2917F; --ko-bg:#3A1F1B;
+  --code:#2E2014; --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:'Avenir Next','Segoe UI Variable','Segoe UI',system-ui,sans-serif;
+  line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+/* ---------- Header ---------- */
+header{
+  position:sticky;top:0;z-index:50;background:var(--bg);
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:10px;padding:10px 14px;
+}
+.brand{font-weight:800;font-size:.95rem;letter-spacing:-.01em;cursor:pointer;user-select:none}
+.brand b{color:var(--orange)}
+.crumb{font-size:.82rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.btn-theme{
+  margin-left:auto;flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  border-radius:99px;padding:6px 12px;font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;
+}
+.btn-theme:hover{border-color:var(--orange)}
+main{max-width:860px;margin:0 auto;padding:18px 16px 90px}
+
+/* ---------- Accueil ---------- */
+.hero{padding:26px 0 8px}
+.hero h1{
+  font-size:clamp(1.7rem,6vw,2.6rem);font-weight:800;letter-spacing:-.03em;line-height:1.08;
+}
+.hero h1 span{color:var(--orange)}
+.hero p{margin-top:10px;color:var(--ink-2);max-width:56ch}
+.hero .eq{
+  margin:20px 0 6px;font-family:Charter,'Bitstream Charter',Cambria,Georgia,serif;
+  font-size:clamp(1.15rem,4.5vw,1.7rem);color:var(--orange-deep);font-style:italic;
+}
+.theme-bloc{margin-top:30px}
+.theme-bloc>h2{
+  font-size:1.02rem;font-weight:800;letter-spacing:-.01em;
+  display:flex;align-items:baseline;gap:10px;padding-bottom:8px;border-bottom:2px solid var(--orange);
+}
+.theme-bloc>h2 .tno{color:var(--orange);font-size:1.35rem}
+.chap-list{list-style:none;margin-top:6px}
+.chap-list li{border-bottom:1px solid var(--line)}
+.chap-link{
+  display:flex;align-items:center;gap:12px;padding:11px 4px;text-decoration:none;color:var(--ink);
+}
+.chap-link .no{
+  flex:none;width:2.1em;font-weight:800;font-size:1.05rem;color:var(--orange);
+  font-variant-numeric:tabular-nums;
+}
+.chap-link .ti{font-weight:600;font-size:.95rem}
+.chap-link .st{margin-left:auto;flex:none;font-size:.72rem;font-weight:700;border-radius:99px;padding:3px 9px}
+.st-actif{background:var(--orange);color:#fff}
+html[data-theme="sombre"] .st-actif{color:#1A120B}
+.st-verrou{background:var(--halo);color:var(--muted)}
+li.verrou .chap-link{cursor:default;opacity:.62}
+li.actif .chap-link:hover .ti{color:var(--orange-deep)}
+.note-notes{margin-top:34px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:12px;font-size:.88rem;color:var(--ink-2)}
+.note-notes b{color:var(--ink)}
+
+/* ---------- Page chapitre ---------- */
+.chap-hero{padding:24px 0 4px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.chap-hero .sur{font-size:.85rem;font-weight:700;color:var(--muted)}
+.chap-hero h1{font-size:clamp(1.45rem,5.5vw,2.1rem);font-weight:800;letter-spacing:-.02em;line-height:1.12;margin-top:2px}
+.chap-hero .grand-eq{
+  margin:18px 0 16px;font-family:Charter,Cambria,Georgia,serif;font-style:italic;
+  font-size:clamp(1.05rem,4.2vw,1.5rem);color:var(--orange-deep);
+}
+.pills{display:flex;gap:8px;flex-wrap:wrap;padding:12px 0 16px}
+.pills a{
+  text-decoration:none;font-size:.8rem;font-weight:700;color:var(--orange-deep);
+  border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 12px;
+}
+.pills a:hover{border-color:var(--orange)}
+section.part{margin-top:34px}
+section.part>h2{
+  font-size:1.25rem;font-weight:800;letter-spacing:-.015em;
+  padding-bottom:6px;border-bottom:2px solid var(--orange);margin-bottom:16px;
+}
+section.part>h2 small{display:block;font-size:.8rem;font-weight:600;color:var(--muted);letter-spacing:0}
+h3{font-size:1.05rem;font-weight:800;margin:26px 0 8px;letter-spacing:-.01em}
+h4{font-size:.95rem;font-weight:700;margin:18px 0 6px;color:var(--orange-deep)}
+
+/* Corps de cours : serif lisible */
+.prose{font-family:Charter,'Bitstream Charter','Sitka Text',Cambria,Georgia,serif;font-size:1.02rem;line-height:1.68;color:var(--ink)}
+.prose p{margin:10px 0}
+.prose ul,.prose ol{margin:10px 0 10px 22px}
+.prose li{margin:5px 0}
+.prose strong{font-weight:700}
+.prose .lvl{font-size:.72rem;font-weight:700;font-family:'Avenir Next','Segoe UI',sans-serif;color:var(--orange-deep);background:var(--halo);border-radius:4px;padding:2px 7px;vertical-align:2px;margin-right:6px;white-space:nowrap}
+
+/* Encadrés différenciés */
+.def{border-left:4px solid var(--orange);background:var(--surface);box-shadow:var(--shadow);border-radius:0 10px 10px 0;padding:12px 15px;margin:14px 0}
+.def .t{font-family:'Avenir Next','Segoe UI',sans-serif;font-weight:800;font-size:.85rem;color:var(--orange-deep);margin-bottom:4px}
+.formule{background:var(--halo);border:1px solid var(--halo-2);border-radius:10px;padding:13px 15px;margin:14px 0}
+.formule .t{font-family:'Avenir Next','Segoe UI',sans-serif;font-weight:800;font-size:.85rem;color:var(--orange-deep);margin-bottom:6px}
+.formule .fr{font-size:.88rem;color:var(--ink-2);margin-top:7px;font-style:italic}
+.piege{border:1px dashed var(--ko);background:var(--ko-bg);border-radius:10px;padding:11px 14px;margin:14px 0;font-size:.95rem}
+.piege .t{font-family:'Avenir Next','Segoe UI',sans-serif;font-weight:800;font-size:.82rem;color:var(--ko);margin-bottom:3px}
+.methode{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0;box-shadow:var(--shadow)}
+.methode .t{font-family:'Avenir Next','Segoe UI',sans-serif;font-weight:800;font-size:.85rem;margin-bottom:8px}
+.methode ol{margin-left:20px}
+.methode ol li{margin:6px 0}
+.exemple{background:var(--code);border-radius:10px;padding:12px 15px;margin:12px 0}
+.exemple .t{font-family:'Avenir Next','Segoe UI',sans-serif;font-weight:800;font-size:.82rem;color:var(--ink-2);margin-bottom:5px}
+
+/* Maths / chimie inline */
+.m{font-family:Charter,Cambria,Georgia,serif;font-style:italic;white-space:nowrap}
+.m .u{font-style:normal}
+.ch{font-family:Charter,Cambria,Georgia,serif;font-style:normal;white-space:nowrap}
+sub,sup{font-size:.72em}
+.eqc{font-family:Charter,Cambria,Georgia,serif;text-align:center;font-size:1.08rem;margin:12px 0;overflow-x:auto;padding:4px 0}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.92em;line-height:1.15;margin:0 2px}
+.frac>span:first-child{border-bottom:1px solid currentColor;padding:0 4px}
+.frac>span:last-child{padding:0 4px}
+
+/* Tableaux */
+table.tb{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem;background:var(--surface)}
+.tb th{background:var(--halo);color:var(--orange-deep);font-weight:700;text-align:left;padding:8px 10px;border:1px solid var(--line)}
+.tb td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+.tb-wrap{overflow-x:auto;margin:12px 0}
+.tb-wrap table.tb{margin:0;min-width:520px}
+
+/* Schémas SVG */
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 10px 8px;margin:16px 0;text-align:center;box-shadow:var(--shadow)}
+.fig svg{max-width:100%;height:auto}
+.fig .cap{font-size:.83rem;color:var(--muted);margin-top:6px;font-style:italic;font-family:Charter,Georgia,serif}
+
+/* Exercices */
+.exo-niveaux{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.exo-niveaux button{
+  font:inherit;font-size:.82rem;font-weight:700;border-radius:99px;padding:7px 14px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);
+}
+.exo-niveaux button.on{background:var(--orange);border-color:var(--orange);color:#fff}
+html[data-theme="sombre"] .exo-niveaux button.on{color:#1A120B}
+.exo{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0;box-shadow:var(--shadow)}
+.exo .head{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.exo .head .n{font-weight:800;color:var(--orange)}
+.exo .head .diff{margin-left:auto;font-size:.72rem;font-weight:700;border-radius:99px;padding:3px 9px;flex:none}
+.d1{background:var(--ok-bg);color:var(--ok)} .d2{background:var(--halo);color:var(--orange-deep)} .d3{background:var(--ko-bg);color:var(--ko)}
+.qcm-opt{display:block;width:100%;text-align:left;font:inherit;font-size:.94rem;margin:6px 0;padding:9px 12px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.qcm-opt:hover{border-color:var(--orange)}
+.qcm-opt.bon{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);font-weight:700}
+.qcm-opt.faux{background:var(--ko-bg);border-color:var(--ko);color:var(--ko)}
+.qcm-exp{display:none;margin-top:8px;font-size:.9rem;background:var(--code);border-radius:8px;padding:10px 12px}
+.qcm-exp.vu{display:block}
+details.corr{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+details.corr summary{cursor:pointer;font-weight:700;font-size:.88rem;color:var(--orange-deep);list-style:none}
+details.corr summary::before{content:"▸ ";}
+details.corr[open] summary::before{content:"▾ ";}
+details.corr .in{margin-top:8px}
+.pq{border-left:3px solid var(--orange);padding:2px 0 2px 12px;margin:10px 0;font-size:.92rem;color:var(--ink-2);font-style:italic}
+.pq b{font-style:normal;color:var(--orange-deep)}
+
+/* Placeholders */
+.placeholder{border:1.5px dashed var(--line);border-radius:12px;padding:16px;margin:14px 0;color:var(--muted);font-size:.92rem;background:transparent}
+.placeholder b{color:var(--ink-2)}
+
+/* Fiche mémo à l'écran */
+.btn-print{
+  font:inherit;font-weight:700;font-size:.9rem;border:none;border-radius:10px;cursor:pointer;
+  background:var(--orange);color:#fff;padding:11px 18px;margin:10px 0;
+}
+html[data-theme="sombre"] .btn-print{color:#1A120B}
+#fiche-memo{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:12px;box-shadow:var(--shadow)}
+#fiche-memo h3{margin-top:14px;font-size:.98rem;border-bottom:1px solid var(--line);padding-bottom:3px}
+#fiche-memo h3:first-child{margin-top:0}
+#fiche-memo ul{margin:6px 0 6px 18px;font-size:.9rem}
+#fiche-memo li{margin:3px 0}
+#fiche-memo .fbloc{margin:8px 0;padding:8px 10px;background:var(--halo);border-radius:8px;font-size:.9rem}
+.retour{display:inline-block;margin-top:26px;font-weight:700;color:var(--orange-deep);text-decoration:none;font-size:.9rem}
+
+.page{display:none}
+.page.on{display:block}
+footer{max-width:860px;margin:0 auto;padding:0 16px 40px;color:var(--muted);font-size:.8rem}
+
+.tile-tp{display:flex;align-items:center;gap:14px;margin-top:26px;padding:15px 16px;border:1.5px solid var(--orange);border-radius:14px;background:var(--halo);text-decoration:none;color:var(--ink)}
+.tile-tp b{font-size:.97rem}
+.tile-tp small{color:var(--ink-2);font-size:.82rem;line-height:1.4}
+.tile-tp .chev{margin-left:auto;flex:none;color:var(--orange)}
+.tile-tp:hover{box-shadow:var(--shadow)}
+
+/* ---------- Accordéons rappels, icônes, filigranes ---------- */
+details.rap{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin:12px 0;box-shadow:var(--shadow)}
+details.rap summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:11px;padding:13px 15px;font-family:'Avenir Next','Segoe UI Variable','Segoe UI',system-ui,sans-serif;font-weight:800;font-size:.97rem;letter-spacing:-.01em}
+details.rap summary::-webkit-details-marker{display:none}
+details.rap summary .lvlmini{font-size:.68rem;font-weight:700;color:var(--orange-deep);background:var(--halo);border-radius:4px;padding:2px 7px;margin-left:2px;flex:none}
+details.rap summary .chev{margin-left:auto;flex:none;color:var(--orange);transition:transform .18s}
+details.rap[open] summary .chev{transform:rotate(90deg)}
+details.rap .rin{padding:2px 16px 15px;border-top:1px solid var(--line)}
+.ico{flex:none;width:20px;height:20px;color:var(--orange)}
+h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-right:8px}
+.hero,.chap-hero{position:relative}
+.wm{position:absolute;pointer-events:none;color:var(--orange);opacity:.07;z-index:0}
+.hero>*:not(.wm),.chap-hero>*:not(.wm){position:relative;z-index:1}
+@media (max-width:640px){.wm{opacity:.05}}
+
+/* ---------- Impression : uniquement la fiche mémo ---------- */
+@media print{
+  @page{size:A4;margin:11mm 12mm}
+  body{background:#fff;color:#000;font-size:9.2pt}
+  header,footer,.pills,.chap-hero,.btn-print,.retour,section.part:not(#s-fiche),.no-print,.wm{display:none !important}
+  .page{display:none !important}
+  #page-ch1.on{display:block !important}
+  #s-fiche{margin:0}
+  #s-fiche>h2{border-color:#E45C10;color:#000;font-size:13pt}
+  #fiche-memo{border:none;box-shadow:none;padding:0;column-count:2;column-gap:7mm;border-radius:0}
+  #fiche-memo h3{break-after:avoid;color:#A33E00;border-color:#ccc;font-size:10pt;margin-top:8pt}
+  #fiche-memo ul{font-size:8.6pt}
+  #fiche-memo .fbloc{background:#FAE9DB;font-size:8.6pt;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #fiche-memo .fmicro{break-inside:avoid}
+}
+@media (max-width:560px){
+  .prose{font-size:.98rem}
+  main{padding:14px 13px 80px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand" onclick="go('accueil')">Spé <b>Φχ</b> — Tle</div>
+  <div class="crumb" id="crumb"></div>
+  <button class="btn-theme" id="btnTheme" onclick="basculeTheme()">Sombre</button>
+</header>
+<main>
+<!-- ================= ACCUEIL ================= -->
+<div class="page on" id="page-accueil">
+  <div class="hero">
+    <svg class="wm" style="right:-30px;top:-14px;width:240px" viewBox="0 0 240 220" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="3">
+        <path d="M60 40 L100 18 L140 40 L140 84 L100 106 L60 84 Z"/>
+        <path d="M140 84 L180 62 L220 84 L220 128 L180 150 L140 128 Z"/>
+        <path d="M60 128 L100 106 L140 128 L140 172 L100 194 L60 172 Z"/>
+        <circle cx="100" cy="18" r="6" fill="currentColor" stroke="none"/>
+        <circle cx="220" cy="128" r="6" fill="currentColor" stroke="none"/>
+        <circle cx="60" cy="172" r="6" fill="currentColor" stroke="none"/>
+      </g>
+    </svg>
+    <h1>Physique-Chimie<br>de spécialité, <span>comprise</span>.</h1>
+    <div class="eq">HCl<sub>(g)</sub> + H<sub>2</sub>O<sub>(l)</sub> → Cl<sup>−</sup><sub>(aq)</sub> + H<sub>3</sub>O<sup>+</sup><sub>(aq)</sub></div>
+    <p>Un chapitre débloqué à chaque fois qu'il est entamé en classe, construit à partir des plans de travail et des TP du prof. L'objectif n'est pas de réciter : c'est de comprendre pourquoi chaque formule dit ce qu'elle dit.</p>
+  </div>
+
+  <a class="tile-tp" href="#" onclick="go('tpece');return false;">
+    <svg class="ico" style="width:26px;height:26px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 3v6l-5.5 10.5A1.8 1.8 0 0 0 5.6 22h12.8a1.8 1.8 0 0 0 1.6-2.5L14.5 9V3"/><path d="M7.5 3h9"/><path d="M7 15h10"/></svg>
+    <span><b>TP · ECE — gestes, montages et Latis Pro</b><br><small>Tutos des compétences expérimentales de 2nde et 1ère : verrerie, titrage, reflux, circuits, acquisition, pointage vidéo…</small></span>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+  </a>
+
+  <div class="theme-bloc">
+    <h2><span class="tno">1</span> Constitution et transformations de la matière</h2>
+    <ul class="chap-list">
+      <li class="actif"><a class="chap-link" href="#" onclick="go('ch1');return false;"><span class="no">1</span><span class="ti">Transformations acides-bases</span><span class="st st-actif">En cours</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">2</span><span class="ti">Méthodes physiques d'analyse</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">3</span><span class="ti">Méthodes chimiques d'analyse</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">8</span><span class="ti">Sens d'évolution spontanée d'un système chimique</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">9</span><span class="ti">Force des acides et des bases</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">10</span><span class="ti">Forcer l'évolution d'un système</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">15</span><span class="ti">Modélisation macroscopique de l'évolution d'un système</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">16</span><span class="ti">Modélisation microscopique de l'évolution d'un système</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">17</span><span class="ti">Synthèses organiques</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">20</span><span class="ti">Évolution temporelle d'un système siège d'une transformation nucléaire</span><span class="st st-verrou">À venir</span></a></li>
+    </ul>
+  </div>
+
+  <div class="theme-bloc">
+    <h2><span class="tno">2</span> Ondes et signaux</h2>
+    <ul class="chap-list">
+      <li class="verrou"><a class="chap-link"><span class="no">4</span><span class="ti">La lunette astronomique</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">5</span><span class="ti">Diffraction</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">6</span><span class="ti">Interférences</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">7</span><span class="ti">Atténuation des ondes et effet Doppler</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">14</span><span class="ti">Dynamique du dipôle RC</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">21</span><span class="ti">La lumière, un flux de photons</span><span class="st st-verrou">À venir</span></a></li>
+    </ul>
+  </div>
+
+  <div class="theme-bloc">
+    <h2><span class="tno">3</span> Mouvements et interactions</h2>
+    <ul class="chap-list">
+      <li class="verrou"><a class="chap-link"><span class="no">11</span><span class="ti">Mouvement et deuxième loi de Newton</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">12</span><span class="ti">Mouvement dans un champ uniforme</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">13</span><span class="ti">Mouvement dans un champ de gravitation</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="no">19</span><span class="ti">Modélisation de l'écoulement d'un fluide</span><span class="st st-verrou">À venir</span></a></li>
+    </ul>
+  </div>
+
+  <div class="theme-bloc">
+    <h2><span class="tno">4</span> Conversions et transferts d'énergie</h2>
+    <ul class="chap-list">
+      <li class="verrou"><a class="chap-link"><span class="no">18</span><span class="ti">L'énergie : conversions et transferts</span><span class="st st-verrou">À venir</span></a></li>
+    </ul>
+  </div>
+
+  <div class="note-notes">
+    <b>Rappel du fonctionnement de l'année</b> — Note A (40 %) : quiz de leçon, comptes-rendus de TP, oraux, QCM en début de cours → d'où l'intérêt des QCM de ce site avant chaque séance. Note B (60 %) : DS de fin de chapitre(s) et TP notés. DS prévus : 30 sept, 13 nov, 9 déc, <b>27 janv</b>, 17 mars, 5 mai. ECE blanc semaine du 15 février, ECE bac semaine du 3 juin.
+  </div>
+</div>
+
+<!-- ================= CHAPITRE 1 ================= -->
+<div class="page" id="page-ch1">
+  <div class="chap-hero">
+    <svg class="wm" style="right:-10px;top:-8px;width:190px" viewBox="0 0 190 170" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="3.5">
+        <path d="M78 18 L78 62 L46 132 Q40 152 62 152 L118 152 Q140 152 134 132 L102 62 L102 18"/>
+        <line x1="68" y1="18" x2="112" y2="18"/>
+        <path d="M56 116 L124 116" stroke-dasharray="7 6"/>
+      </g>
+      <text x="146" y="70" font-family="Georgia,serif" font-style="italic" font-size="42" fill="currentColor" stroke="none">pH</text>
+    </svg>
+    <div class="sur">Thème 1 · Constitution et transformations de la matière</div>
+    <h1>Chapitre 1 — Transformations acides-bases</h1>
+    <div class="grand-eq">HCl<sub>(g)</sub> + H<sub>2</sub>O<sub>(l)</sub> → Cl<sup>−</sup><sub>(aq)</sub> + H<sub>3</sub>O<sup>+</sup><sub>(aq)</sub></div>
+  </div>
+  <nav class="pills">
+    <a href="#s-rappels">Rappels lycée</a>
+    <a href="#s-cours">Cours complet</a>
+    <a href="#s-formules">Toutes les formules</a>
+    <a href="#s-tp">TP 1</a>
+    <a href="#s-exos">Exercices</a>
+    <a href="#s-fiche">Fiche mémo</a>
+  </nav>
+
+  <!-- ========== RAPPELS ========== -->
+  <section class="part" id="s-rappels">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>Rappels lycée<small>Tout ce qu'il faut avoir en tête avant d'attaquer — du collège à la 1ère</small></h2>
+    <div class="prose">
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 C8 8.5 6 11.5 6 14.5a6 6 0 0 0 12 0C18 11.5 16 8.5 12 3Z"/></svg>Acide, basique, neutre : ce que tu sais depuis le collège<span class="lvlmini">Collège</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Une solution aqueuse peut être <strong>acide</strong>, <strong>basique</strong> ou <strong>neutre</strong>. On la classe grâce au <strong>pH</strong>, un nombre généralement compris entre 0 et 14 (à 25 °C) :</p>
+      <ul>
+        <li><strong>pH &lt; 7</strong> : solution acide (jus de citron ≈ 2,5 ; vinaigre ≈ 3 ; suc gastrique ≈ 1,5).</li>
+        <li><strong>pH = 7</strong> : solution neutre (eau pure).</li>
+        <li><strong>pH &gt; 7</strong> : solution basique (eau savonneuse ≈ 10 ; déboucheur d'évier ≈ 14).</li>
+      </ul>
+      <div class="fig">
+        <svg viewBox="0 0 640 118" role="img" aria-label="Échelle de pH de 0 à 14">
+          <defs><linearGradient id="gph" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#C5221F"/><stop offset=".25" stop-color="#E8710A"/>
+            <stop offset=".45" stop-color="#F9AB00"/><stop offset=".5" stop-color="#188038"/>
+            <stop offset=".62" stop-color="#12805C"/><stop offset="1" stop-color="#1A73E8"/>
+          </linearGradient></defs>
+          <rect x="30" y="52" width="580" height="20" rx="5" fill="url(#gph)"/>
+          <g stroke="currentColor" stroke-width="1.4">
+            <line x1="30" y1="72" x2="30" y2="80"/><line x1="320" y1="72" x2="320" y2="80"/><line x1="610" y1="72" x2="610" y2="80"/>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="13" font-weight="bold">
+            <text x="30" y="96" text-anchor="middle">0</text><text x="320" y="96" text-anchor="middle">7</text><text x="610" y="96" text-anchor="middle">14</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11" opacity=".8">
+            <text x="92" y="26" text-anchor="middle">suc gastrique 1,5</text>
+            <text x="150" y="44" text-anchor="middle">citron 2,5</text>
+            <text x="320" y="26" text-anchor="middle">eau pure 7</text>
+            <text x="444" y="44" text-anchor="middle">savon ≈ 10</text>
+            <text x="586" y="26" text-anchor="middle">déboucheur 14</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="12" font-weight="bold" opacity=".75">
+            <text x="120" y="114" text-anchor="middle">acide</text><text x="320" y="114" text-anchor="middle">neutre</text><text x="520" y="114" text-anchor="middle">basique</text>
+          </g>
+        </svg>
+        <div class="cap">L'échelle de pH à 25 °C. Ce chapitre expliquera ce que ce nombre mesure vraiment.</div>
+      </div>
+      <p>Tu sais aussi depuis le collège que diluer une solution acide fait <strong>monter</strong> son pH vers 7 (elle devient « moins acide »), et que les solutions très acides ou très basiques sont corrosives. Ce chapitre va enfin expliquer <strong>ce qui rend une solution acide au niveau microscopique</strong>, et donner au pH une définition mathématique précise.</p>
+
+      </div></details>
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="9" r="4.5"/><circle cx="16.5" cy="15.5" r="4.5"/><path d="M6.2 9h3.6M8 7.2v3.6M14.7 15.5h3.6"/></svg>Ions et solutions aqueuses<span class="lvlmini">2nde</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Un <strong>ion</strong> est un atome (ou groupe d'atomes) qui a gagné ou perdu des électrons : un <strong>cation</strong> est chargé + (il a perdu des électrons), un <strong>anion</strong> est chargé − (il en a gagné). En solution aqueuse, les composés ioniques se dissocient : le chlorure de sodium NaCl donne des ions <span class="ch">Na<sup>+</sup><sub>(aq)</sub></span> et <span class="ch">Cl<sup>−</sup><sub>(aq)</sub></span>. L'indice <strong>(aq)</strong> signifie que l'espèce est dissoute dans l'eau, entourée de molécules d'eau.</p>
+      <p>Point crucial pour ce chapitre : une solution est toujours <strong>électriquement neutre</strong>. Il y a autant de charges + que de charges −. On ne peut donc jamais avoir un ion « tout seul » en solution : si des <span class="ch">H<sub>3</sub>O<sup>+</sup></span> apparaissent, des anions apparaissent en même temps.</p>
+
+      </div></details>
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21h14"/><path d="M7 21V8l5-5 5 5v13"/><path d="M9.5 13h5"/></svg>Quantité de matière et concentration<span class="lvlmini">2nde · 1ère</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>La <strong>mole</strong> est le « paquet » du chimiste : 1 mol = 6,02 × 10<sup>23</sup> entités (constante d'Avogadro <span class="m">N<sub class="u">A</sub></span>). On relie masse et quantité de matière par la masse molaire :</p>
+      <div class="eqc"><span class="m">n = <span class="frac"><span>m</span><span>M</span></span></span> &nbsp;&nbsp; avec <span class="m">n</span> en mol, <span class="m">m</span> en g, <span class="m">M</span> en g·mol<sup>−1</sup></div>
+      <p>La <strong>concentration molaire</strong> d'une espèce X dissoute dans un volume <span class="m">V</span> de solution s'écrit avec des crochets :</p>
+      <div class="eqc"><span class="m">[X] = <span class="frac"><span>n(X)</span><span>V</span></span></span> &nbsp;&nbsp; en mol·L<sup>−1</sup></div>
+      <p>Ces crochets vont être partout dans le chapitre : <span class="ch">[H<sub>3</sub>O<sup>+</sup>]</span> se lit « concentration en ions oxonium ».</p>
+
+      </div></details>
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v5L4.5 18.5A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.5-2.5L14 8V3"/><path d="M8 3h8"/><path d="M6.5 15.5h11"/></svg>La dilution<span class="lvlmini">2nde · 1ère</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Diluer, c'est ajouter du solvant (de l'eau) sans ajouter de soluté. La quantité de matière de soluté <strong>ne change pas</strong> pendant la dilution — seules les molécules d'eau deviennent plus nombreuses autour. D'où la relation de dilution :</p>
+      <div class="eqc"><span class="m">C<sub class="u">mère</sub> × V<sub class="u">prélevé</sub> = C<sub class="u">fille</sub> × V<sub class="u">fille</sub></span></div>
+      <p>Une <strong>dilution d'un facteur 10</strong> signifie <span class="m">C<sub class="u">fille</sub> = C<sub class="u">mère</sub>/10</span> : on prélève par exemple 10,0 mL de solution mère à la pipette jaugée, et on complète à 100,0 mL dans une fiole jaugée. C'est exactement le geste du TP 1.</p>
+
+      <div class="fig">
+        <svg viewBox="0 0 560 210" role="img" aria-label="Dilution au dixième : pipette jaugée puis fiole jaugée">
+          <g stroke="currentColor" stroke-width="1.7" fill="none">
+            <line x1="120" y1="18" x2="120" y2="58"/>
+            <ellipse cx="120" cy="86" rx="11" ry="26"/>
+            <line x1="120" y1="112" x2="120" y2="168"/>
+            <line x1="112" y1="34" x2="128" y2="34"/>
+          </g>
+          <g stroke="currentColor" stroke-width="1.7" fill="none">
+            <line x1="356" y1="30" x2="356" y2="100"/><line x1="380" y1="30" x2="380" y2="100"/>
+            <path d="M356 100 L336 158 Q332 182 368 182 Q404 182 400 158 L380 100"/>
+          </g>
+          <line x1="350" y1="56" x2="386" y2="56" stroke="#E45C10" stroke-width="2.4"/>
+          <path d="M200 96 L 300 96" fill="none" stroke="#E45C10" stroke-width="2.2" marker-end="url(#fl4)"/>
+          <defs><marker id="fl4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="#E45C10"/></marker></defs>
+          <g fill="currentColor" font-family="sans-serif" font-size="12" opacity=".85">
+            <text x="120" y="196" text-anchor="middle">pipette jaugée 10,0 mL</text>
+            <text x="120" y="209" text-anchor="middle">(solution mère, C)</text>
+            <text x="368" y="203" text-anchor="middle">fiole jaugée 100,0 mL, eau jusqu'au trait</text>
+          </g>
+          <g fill="#E45C10" font-family="sans-serif" font-size="12.5" font-weight="bold">
+            <text x="250" y="84" text-anchor="middle">verser puis compléter</text>
+            <text x="444" y="60">trait de jauge</text>
+          </g>
+          <g fill="currentColor" font-family="Georgia,serif" font-size="16" font-style="italic">
+            <text x="470" y="140">C → C/10</text>
+          </g>
+        </svg>
+        <div class="cap">Dilution au dixième : 10,0 mL de mère complétés à 100,0 mL. Même quantité de soluté, dix fois plus de volume.</div>
+      </div>
+
+      </div></details>
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="4" r="1.4" fill="currentColor" stroke="none"/><circle cx="12" cy="20" r="1.4" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r="1.4" fill="currentColor" stroke="none"/><circle cx="20" cy="12" r="1.4" fill="currentColor" stroke="none"/></svg>Le schéma de Lewis<span class="lvlmini">1ère</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Le schéma de Lewis représente <strong>tous les électrons de valence</strong> d'une molécule ou d'un ion :</p>
+      <ul>
+        <li>un <strong>doublet liant</strong> = un trait entre deux atomes = 2 électrons partagés (une liaison covalente) ;</li>
+        <li>un <strong>doublet non liant</strong> = un trait sur un atome = 2 électrons qui appartiennent à cet atome sans être partagés ;</li>
+        <li>chaque atome cherche à s'entourer de 8 électrons (<strong>règle de l'octet</strong>), sauf l'hydrogène qui en veut 2 (<strong>règle du duet</strong>).</li>
+      </ul>
+      <div class="fig">
+        <svg viewBox="0 0 470 160" role="img" aria-label="Schéma de Lewis annoté de la molécule d'eau">
+          <g stroke="currentColor" stroke-width="1.8" fill="none">
+            <line x1="168" y1="96" x2="200" y2="96"/><line x1="238" y1="96" x2="270" y2="96"/>
+            <line x1="203" y1="66" x2="235" y2="66"/><line x1="203" y1="56" x2="235" y2="56"/>
+          </g>
+          <g fill="currentColor" font-family="Georgia,serif" font-size="22">
+            <text x="148" y="103">H</text><text x="209" y="103">O</text><text x="274" y="103">H</text>
+          </g>
+          <path d="M300 40 Q 260 40 240 54" fill="none" stroke="#E45C10" stroke-width="1.6" marker-end="url(#fl2)"/>
+          <path d="M120 140 Q 160 138 180 104" fill="none" stroke="#E45C10" stroke-width="1.6" marker-end="url(#fl2)"/>
+          <defs><marker id="fl2" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#E45C10"/></marker></defs>
+          <g fill="#E45C10" font-family="sans-serif" font-size="12.5" font-weight="bold">
+            <text x="306" y="38">doublets non liants</text>
+            <text x="306" y="53" font-weight="normal" fill="currentColor" opacity=".7">2 e⁻ gardés par O, non partagés</text>
+            <text x="24" y="146">doublet liant</text>
+            <text x="24" y="131" font-weight="normal" fill="currentColor" opacity=".7">2 e⁻ partagés = 1 liaison</text>
+          </g>
+        </svg>
+        <div class="cap">L'eau : O respecte l'octet (2 liaisons + 2 doublets non liants = 8 e⁻), chaque H respecte le duet (1 liaison = 2 e⁻).</div>
+      </div>
+      <p>Nombres de liaisons habituels à connaître par cœur : <strong>C</strong> fait 4 liaisons (0 doublet non liant), <strong>N</strong> fait 3 liaisons (1 doublet non liant), <strong>O</strong> fait 2 liaisons (2 doublets non liants), <strong>H</strong> fait 1 liaison. Un ion porte une charge quand ce compte est modifié : O avec 1 liaison et 3 doublets non liants porte une charge −, N avec 4 liaisons porte une charge +. Ce réflexe servira directement pour dessiner <span class="ch">HO<sup>−</sup></span>, <span class="ch">H<sub>3</sub>O<sup>+</sup></span>, les ions carboxylate et ammonium.</p>
+
+      </div></details>
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="12" r="3.4"/><circle cx="17.6" cy="12" r="4.6"/><path d="M10.4 12h2.6"/></svg>Électronégativité et polarité<span class="lvlmini">1ère</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>L'<strong>électronégativité</strong> mesure la capacité d'un atome à attirer vers lui les électrons d'une liaison. O et N sont nettement plus électronégatifs que H et C. Une liaison O–H est donc <strong>polarisée</strong> : l'oxygène tire la couverture électronique (δ−), l'hydrogène est appauvri (δ+).</p>
+      <div class="fig">
+        <svg viewBox="0 0 440 120" role="img" aria-label="Polarisation de la liaison O–H">
+          <g stroke="currentColor" stroke-width="1.8"><line x1="150" y1="66" x2="262" y2="66"/></g>
+          <g fill="currentColor" font-family="Georgia,serif" font-size="24">
+            <text x="126" y="74">H</text><text x="268" y="74">O</text>
+          </g>
+          <g fill="currentColor" font-family="Georgia,serif" font-size="15" font-style="italic">
+            <text x="126" y="40">δ+</text><text x="272" y="40">δ−</text>
+          </g>
+          <path d="M170 88 L 240 88" fill="none" stroke="#E45C10" stroke-width="2" marker-end="url(#fl3)"/>
+          <defs><marker id="fl3" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#E45C10"/></marker></defs>
+          <g fill="currentColor" font-family="sans-serif" font-size="12" opacity=".75">
+            <text x="206" y="108" text-anchor="middle">O, plus électronégatif, attire les électrons de la liaison</text>
+          </g>
+        </svg>
+        <div class="cap">Liaison polarisée : le H appauvri en électrons (δ+) est prêt à partir en H<sup>+</sup> — en laissant son électron à O.</div>
+      </div>
+      <p>C'est le cœur physique du chapitre : un atome H lié à un O (ou un N) est fragile côté électrons — il peut partir <strong>sans emporter son électron</strong>, c'est-à-dire partir sous forme de <span class="ch">H<sup>+</sup></span>. Voilà pourquoi les acides du chapitre ont presque tous un H porté par un oxygène.</p>
+
+      </div></details>
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h10M4 15h10"/><path d="M16 12l5 0M18.5 9.5 21 12l-2.5 2.5"/></svg>Équation de réaction et avancement<span class="lvlmini">2nde · 1ère</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Une équation de réaction traduit la conservation des <strong>éléments</strong> et de la <strong>charge électrique</strong> : on l'ajuste avec des nombres stœchiométriques. Le <strong>tableau d'avancement</strong> suit les quantités de matière au fil de la transformation (état initial → en cours → état final) et permet d'identifier le <strong>réactif limitant</strong>, celui qui s'épuise en premier et arrête la réaction. On le réutilisera dès qu'on calculera des quantités d'ions formés.</p>
+
+      </div></details>
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M5.5 18.5 Q8 8.5 20 6.5"/></svg>La fonction logarithme décimal<span class="lvlmini">Maths Tle</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>C'est l'outil mathématique du chapitre (capacité explicitement exigée par le plan de travail, p. 21 du livre). Le logarithme décimal répond à la question : <em>« 10 puissance combien donne ce nombre ? »</em></p>
+      <div class="eqc"><span class="m">log(10<sup>x</sup>) = x</span> &nbsp;&nbsp;et réciproquement&nbsp;&nbsp; <span class="m">10<sup>log(x)</sup> = x</span></div>
+      <ul>
+        <li><span class="m">log(1) = 0</span>, <span class="m">log(10) = 1</span>, <span class="m">log(100) = 2</span>, <span class="m">log(0,01) = −2</span>, <span class="m">log(10<sup>−3</sup>) = −3</span>.</li>
+        <li>Multiplier un nombre par 10 <strong>ajoute 1</strong> à son log ; le diviser par 10 <strong>retire 1</strong>. C'est exactement pour ça que diluer un acide fort d'un facteur 10 fait monter le pH d'une unité.</li>
+        <li>Sur la calculatrice : touche <strong>log</strong> pour le sens direct, <strong>10<sup>x</sup></strong> (souvent 2nde + log) pour la réciproque.</li>
+      </ul>
+      <div class="fig">
+        <svg viewBox="0 0 480 200" role="img" aria-label="Diviser par 10 retire 1 au logarithme">
+          <g fill="currentColor" font-family="Georgia,serif" font-size="17" text-anchor="end">
+            <text x="180" y="46">1000</text><text x="180" y="78">100</text><text x="180" y="110">10</text><text x="180" y="142">1</text><text x="180" y="174">0,1</text>
+          </g>
+          <g fill="currentColor" font-family="Georgia,serif" font-size="17">
+            <text x="300" y="46">3</text><text x="300" y="78">2</text><text x="300" y="110">1</text><text x="300" y="142">0</text><text x="300" y="174">−1</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="12" font-weight="bold" opacity=".7">
+            <text x="150" y="20" text-anchor="end">nombre</text><text x="296" y="20">log</text>
+          </g>
+          <g stroke="#E45C10" stroke-width="1.8" fill="none">
+            <path d="M92 48 Q 78 60 92 72" marker-end="url(#fl5)"/>
+            <path d="M92 112 Q 78 124 92 136" marker-end="url(#fl5)"/>
+            <path d="M368 48 Q 382 60 368 72" marker-end="url(#fl5)"/>
+            <path d="M368 112 Q 382 124 368 136" marker-end="url(#fl5)"/>
+          </g>
+          <defs><marker id="fl5" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#E45C10"/></marker></defs>
+          <g fill="#E45C10" font-family="sans-serif" font-size="12.5" font-weight="bold">
+            <text x="30" y="98">÷ 10</text><text x="404" y="98">− 1</text>
+          </g>
+        </svg>
+        <div class="cap">Le log transforme les multiplications en additions : ÷10 sur le nombre ⟺ −1 sur le log. Toute la logique du pH est là.</div>
+      </div>
+      <div class="piege"><div class="t">Piège classique</div>Ne confonds pas <strong>log</strong> (logarithme décimal, base 10 — celui de la chimie) et <strong>ln</strong> (logarithme népérien, base e — celui de l'analyse en maths). Un pH calculé avec ln est faux.</div>
+    </div></details>
+    </div>
+  </section>
+  <!-- ========== COURS ========== -->
+  <section class="part" id="s-cours">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6 Q7.5 3.5 3 5.5 V19 Q7.5 17 12 19 Q16.5 17 21 19 V5.5 Q16.5 3.5 12 6 Z"/><path d="M12 6v13"/></svg>Cours<small>Se construira au fil de tes notes de classe — voici le périmètre annoncé par le plan de travail</small></h2>
+    <div class="prose">
+      <p>Le plan de travail fixe les « à savoir et savoir-faire » du chapitre. Cette liste sert de checklist : chaque point sera développé ici au fur et à mesure que vous le traiterez en classe, à partir de tes notes.</p>
+      <ul>
+        <li>Identifier, à partir d'observations ou de données expérimentales, un transfert d'ion hydrogène, les couples acide-base mis en jeu, et établir l'équation d'une réaction acide-base.</li>
+        <li>Couples acide-base de l'eau, de l'acide carbonique, d'acides carboxyliques, d'amines.</li>
+        <li>Représenter le schéma de Lewis et la formule semi-développée d'un acide carboxylique, d'un ion carboxylate, d'une amine et d'un ion ammonium.</li>
+        <li>Identifier le caractère amphotère d'une espèce chimique.</li>
+        <li>Déterminer, à partir de la valeur de la concentration en ions oxonium H<sub>3</sub>O<sup>+</sup>, la valeur du pH de la solution, et inversement.</li>
+        <li>Mesurer le pH de solutions d'acide chlorhydrique obtenues par dilutions successives d'un facteur 10 (→ TP 1).</li>
+        <li>Capacité mathématique : utiliser la fonction logarithme décimal et sa réciproque (revue dans les Rappels ci-dessus).</li>
+      </ul>
+      <p>Mots-clés du prof : transformation modélisée par des transferts d'ion hydrogène H<sup>+</sup> (acide et base de Brönsted, couple acide-base, réaction acide-base) · espèce amphotère · définition du pH :</p>
+      <div class="formule"><div class="t">Donnée par le plan de travail</div>
+        <div class="eqc"><span class="m">pH = −log <span class="frac"><span>[H<sub>3</sub>O<sup>+</sup>]</span><span>c°</span></span></span> &nbsp;&nbsp;avec c° = 1 mol·L<sup>−1</sup> (concentration standard)</div>
+      </div>
+      <div class="placeholder"><b>En attente de tes notes de cours.</b> Envoie tes notes (photos ou texte) après chaque séance du mercredi/vendredi : je développe ici les notions traitées — et uniquement celles-là — avec explications, exemples et schémas, en suivant ce que ton prof a dit et la manière dont il l'a dit.</div>
+    </div>
+  </section>
+  <!-- ========== FORMULES ========== -->
+  <section class="part" id="s-formules">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14.5l3-1 3.5 7.5L14.5 4H21"/></svg>Toutes les formules<small>S'enrichit avec le chapitre — pour l'instant : la définition donnée par le prof + les outils des années passées</small></h2>
+    <div class="tb-wrap"><table class="tb">
+      <tr><th>Relation</th><th>Grandeurs et unités</th><th>Ce que ça dit</th><th>Statut</th></tr>
+      <tr><td><span class="m">pH = −log([H<sub>3</sub>O<sup>+</sup>]/c°)</span></td><td>pH sans unité ; [H<sub>3</sub>O<sup>+</sup>] en mol·L<sup>−1</sup> ; c° = 1 mol·L<sup>−1</sup></td><td>Le pH compte l'exposant de la concentration en oxonium, signe changé.</td><td>Plan de travail</td></tr>
+      <tr><td><span class="m">n = m/M</span></td><td>n en mol, m en g, M en g·mol<sup>−1</sup></td><td>Convertit une masse pesée en quantité de matière.</td><td>Acquis 1ère</td></tr>
+      <tr><td><span class="m">[X] = n(X)/V</span></td><td>mol·L<sup>−1</sup> ; V en L</td><td>Concentration molaire d'une espèce dissoute.</td><td>Acquis 1ère</td></tr>
+      <tr><td><span class="m">C<sub class="u">m</sub>V<sub class="u">m</sub> = C<sub class="u">f</sub>V<sub class="u">f</sub></span></td><td>concentrations en mol·L<sup>−1</sup>, volumes de même unité</td><td>Dilution : la quantité de soluté prélevée se conserve.</td><td>Acquis 2nde/1ère</td></tr>
+      <tr><td><span class="m">log(10<sup>x</sup>) = x ; 10<sup>log x</sup> = x</span></td><td>x sans unité</td><td>Le log décimal et la puissance de 10 se défont l'un l'autre.</td><td>Capacité maths</td></tr>
+    </table></div>
+  </section>
+
+  <!-- ========== TP ========== -->
+  <section class="part" id="s-tp">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 3v6l-5.5 10.5A1.8 1.8 0 0 0 5.6 22h12.8a1.8 1.8 0 0 0 1.6-2.5L14.5 9V3"/><path d="M7.5 3h9"/><path d="M7 15h10"/></svg>TP 1 — Mesures de pH<small>Objectif : tester la relation entre le pH et la concentration en ions oxonium apportée</small></h2>
+    <div class="prose">
+      <h3>Ce que le TP cherche à montrer</h3>
+      <p>On mesure le pH de différentes solutions d'acide chlorhydrique <span class="ch">(H<sub>3</sub>O<sup>+</sup><sub>(aq)</sub>, Cl<sup>−</sup><sub>(aq)</sub>)</span> obtenues par dilutions successives d'un facteur 10, pour tester la relation entre le pH et la concentration en ions oxonium <span class="ch">[H<sub>3</sub>O<sup>+</sup>]</span>.</p>
+      <h3>L'essentiel des documents</h3>
+      <ul>
+        <li><strong>Doc 1 — L'acide chlorhydrique.</strong> Le chlorure d'hydrogène HCl (« esprit de sel », acide muriatique) est un acide fort et corrosif ; c'est le constituant principal du suc gastrique. Découvert par l'alchimiste perse Jabir Ibn Hayyan (VIII<sup>e</sup> s.).</li>
+        <li><strong>Doc 2 — Hélianthine.</strong> Indicateur coloré acido-basique : rouge-rose si pH &lt; 3,3, jaune si pH &gt; 4,4. Plus le pH est petit, plus [H<sub>3</sub>O<sup>+</sup>] est élevée.</li>
+        <li><strong>Doc 3 — Test des ions chlorure.</strong> Les ions <span class="ch">Cl<sup>−</sup></span> forment avec les ions argent <span class="ch">Ag<sup>+</sup></span> un précipité blanc de chlorure d'argent AgCl, qui noircit à la lumière.</li>
+        <li><strong>L'expérience du jet d'eau</strong> : HCl gazeux est si soluble dans l'eau que celle-ci se précipite dans le ballon qui en contient — preuve de sa dissolution massive.</li>
+      </ul>
+      <div class="fig">
+        <svg viewBox="0 0 440 250" role="img" aria-label="Expérience du jet d'eau">
+          <g stroke="currentColor" stroke-width="1.8" fill="none">
+            <circle cx="220" cy="74" r="50"/>
+            <line x1="208" y1="120" x2="208" y2="196"/><line x1="232" y1="120" x2="232" y2="196"/>
+            <path d="M120 186 L120 226 L320 226 L320 186"/>
+            <line x1="120" y1="200" x2="320" y2="200" opacity=".55"/>
+          </g>
+          <path d="M220 196 L220 132 Q220 108 232 96" fill="none" stroke="#E45C10" stroke-width="2.2" stroke-dasharray="5 4" marker-end="url(#fl6)"/>
+          <defs><marker id="fl6" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="#E45C10"/></marker></defs>
+          <g fill="currentColor" font-family="sans-serif" font-size="12" opacity=".85">
+            <text x="220" y="52" text-anchor="middle">ballon rempli de</text>
+            <text x="220" y="68" text-anchor="middle">HCl gazeux</text>
+            <text x="342" y="214">eau du</text><text x="342" y="228">cristallisoir</text>
+          </g>
+          <g fill="#E45C10" font-family="sans-serif" font-size="12.5" font-weight="bold">
+            <text x="122" y="150">jet d'eau aspiré</text>
+            <text x="122" y="165" font-weight="normal" fill="currentColor" opacity=".75">HCl se dissout si vite que la</text>
+            <text x="122" y="179" font-weight="normal" fill="currentColor" opacity=".75">pression chute dans le ballon</text>
+          </g>
+        </svg>
+        <div class="cap">Le jet d'eau : la dissolution massive de HCl<sub>(g)</sub> dépressurise le ballon, l'eau y est propulsée. Preuve de la très grande solubilité.</div>
+      </div>
+      <h3>Questions corrigées</h3>
+      <div class="exo"><div class="head"><span class="n">Q1</span><span>Espèces chimiques présentes dans le ballon à l'état initial et à l'état final</span></div>
+        <details class="corr"><summary>Correction expliquée</summary><div class="in prose">
+          <p><strong>État initial</strong> : du chlorure d'hydrogène <span class="ch">HCl<sub>(g)</sub></span> dans le ballon, et de l'eau <span class="ch">H<sub>2</sub>O<sub>(l)</sub></span> dans le cristallisoir.</p>
+          <p><strong>État final</strong> : les tests l'établissent. L'hélianthine vire au rouge (pH &lt; 3,3) → présence d'ions oxonium <span class="ch">H<sub>3</sub>O<sup>+</sup><sub>(aq)</sub></span> en quantité notable. Le test à l'argent donne un précipité blanc noircissant à la lumière → présence d'ions chlorure <span class="ch">Cl<sup>−</sup><sub>(aq)</sub></span>. Il reste aussi de l'eau, en large excès.</p>
+          <div class="pq"><b>Pourquoi cette logique ?</b> En TP, on ne « sait » pas ce qui s'est formé : on le <em>prouve</em>, un test par espèce. C'est le réflexe attendu en ECE.</div>
+        </div></details>
+      </div>
+      <div class="exo"><div class="head"><span class="n">Q2</span><span>Équation de la réaction entre le chlorure d'hydrogène et l'eau</span></div>
+        <details class="corr"><summary>Ta réponse, vérifiée et commentée</summary><div class="in prose">
+          <p>Ton équation est juste :</p>
+          <div class="eqc"><span class="ch">HCl<sub>(g)</sub> + H<sub>2</sub>O<sub>(l)</sub> → Cl<sup>−</sup><sub>(aq)</sub> + H<sub>3</sub>O<sup>+</sup><sub>(aq)</sub></span></div>
+          <p>Contrôles qui la valident : éléments H, O, Cl conservés ; charge totale 0 → −1 + 1 = 0 ; et les produits sont exactement les espèces prouvées en Q1. HCl a cédé un ion hydrogène à l'eau — c'est le « transfert d'ion hydrogène H<sup>+</sup> » annoncé dans les mots-clés du chapitre.</p>
+        </div></details>
+      </div>
+      <div class="placeholder"><b>Suite du TP manquante.</b> Je n'ai que la première page (documents + Q1–Q2). Envoie les pages suivantes (protocole des dilutions, mesures, exploitation) et tes réponses : je complète la section dans la foulée.</div>
+    </div>
+  </section>
+
+  <!-- ========== EXERCICES ========== -->
+  <section class="part" id="s-exos">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.2-4.2L16 5l3 3L8.2 18.8Z"/><path d="M14 7l3 3"/></svg>Exercices<small>Trois niveaux prévus : 🟢 QCM · 🟠 application · 🔴 type bac</small></h2>
+    <div class="placeholder">
+      <b>Les exercices arrivent avec le cours.</b> Dès que tu m'envoies tes notes sur les premières notions traitées, je crée ici les QCM, les applications et les exercices type bac correspondants — uniquement sur ce qui a été vu. Utile aussi pour préparer les interrogations de début de séance (note A).
+    </div>
+    <h3 style="margin-top:22px">Exercices du plan de travail</h3>
+    <div class="placeholder">
+      <b>Obligatoires :</b> 5, 10, 13, 15, 16, 17, 18, 21, 44 p. 28 et suivantes · <b>Revoir les bases :</b> QCM interactif p. 27, 12 et 14 p. 28 · <b>Aller plus loin :</b> 31 et 42 p. 32.<br><br>
+      Je n'ai pas le manuel : envoie une photo des énoncés (par lots si tu veux) et j'ajoute chaque exercice avec sa correction rédigée et le raisonnement expliqué.
+    </div>
+  </section>
+
+  <!-- ========== FICHE MÉMO ========== -->
+  <section class="part" id="s-fiche">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M7 13h10v8H7z"/></svg>Fiche mémo — Chapitre 1<small>A4 recto-verso imprimable, uniquement l'exigible</small></h2>
+    <div class="placeholder" id="fiche-memo-placeholder">
+      <b>La fiche se remplit en fin de chapitre.</b> Elle condensera ce qui aura été réellement traité en classe : définitions, couples, formules, méthodes. Bonus pratique : ton prof ramasse et note les premières fiches de synthèse — celle-ci pourra servir de base de vérification à ta fiche manuscrite.
+    </div>
+    <a class="retour" href="#" onclick="go('accueil');return false;">← Retour au programme</a>
+  </section>
+</div>
+<!-- ================= TP / ECE ================= -->
+<div class="page" id="page-tpece">
+  <div class="chap-hero">
+    <svg class="wm" style="right:-6px;top:-6px;width:150px" viewBox="0 0 150 170" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="3.5">
+        <line x1="70" y1="12" x2="70" y2="120"/><line x1="86" y1="12" x2="86" y2="120"/>
+        <line x1="62" y1="30" x2="70" y2="30"/><line x1="62" y1="50" x2="70" y2="50"/><line x1="62" y1="70" x2="70" y2="70"/>
+        <path d="M70 120 L64 132 L92 132 L86 120"/><line x1="78" y1="132" x2="78" y2="152"/>
+      </g>
+    </svg>
+    <div class="sur">Compétences expérimentales · acquis de 2nde et 1ère</div>
+    <h1>TP · ECE — gestes, montages et Latis Pro</h1>
+    <div class="grand-eq">« Proposer un protocole · Mettre en œuvre · Exploiter »</div>
+  </div>
+  <nav class="pills">
+    <a href="#t-methode">L'épreuve ECE</a>
+    <a href="#t-verrerie">Verrerie</a>
+    <a href="#t-chimie">Gestes de chimie</a>
+    <a href="#t-elec">Mesures électriques</a>
+    <a href="#t-latis">Latis Pro</a>
+    <a href="#t-exploit">Exploiter et conclure</a>
+  </nav>
+
+  <!-- ===== Méthode ECE ===== -->
+  <section class="part" id="t-methode">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>L'épreuve ECE, mode d'emploi<small>1 h, seul·e face au sujet — savoir ce qu'on attend de toi enlève la moitié du stress</small></h2>
+    <div class="prose">
+      <p>L'ECE dure <strong>1 heure</strong> et suit presque toujours le même scénario en trois actes, annoncés par les verbes du sujet :</p>
+      <ul>
+        <li><strong>« Proposer / élaborer un protocole »</strong> — tu rédiges une démarche à partir des documents : matériel choisi (et pourquoi), étapes numérotées, grandeurs mesurées, schéma si utile. On note la <em>pertinence</em>, pas l'élégance littéraire.</li>
+        <li><strong>« Mettre en œuvre »</strong> — tu réalises le montage et les mesures. On évalue les <em>gestes</em> : rinçages, lecture du ménisque, sécurité, organisation de la paillasse.</li>
+        <li><strong>« Exploiter / valider »</strong> — calculs, courbe, comparaison à une valeur de référence, conclusion avec incertitude.</li>
+      </ul>
+      <div class="methode"><div class="t">Les appels au professeur</div>
+        <ol>
+          <li>Le sujet comporte des <strong>appels</strong> (🖐 « Appel n°1 ») : lève la main et fais vérifier <em>avant de continuer</em>. C'est prévu pour te remettre sur les rails, jamais pour te piéger.</li>
+          <li>Si tu es bloqué·e, appelle quand même : le professeur peut débloquer avec une aide (« coup de pouce »), au prix de quelques points seulement. Rester bloqué 20 minutes coûte bien plus cher.</li>
+          <li>Verbalise ce que tu fais pendant les vérifications : « je rince la burette avec la solution titrante » montre que le geste est compris.</li>
+        </ol>
+      </div>
+      <div class="piege"><div class="t">Sécurité : les non-négociables</div>
+        Blouse en coton fermée, lunettes dès qu'un flacon est ouvert, cheveux longs attachés, gants selon les pictogrammes du sujet, paillasse dégagée, on ne pipette jamais à la bouche (propipette !), et les déchets vont dans les bidons prévus — jamais à l'évier sans consigne.
+      </div>
+      <p>Gestion du temps : lis le sujet <strong>en entier</strong> avant de toucher au matériel (3 min), garde 10 min pour l'exploitation finale, et note tes mesures au fur et à mesure — une valeur non notée est une valeur perdue.</p>
+    </div>
+  </section>
+
+  <!-- ===== Verrerie ===== -->
+  <section class="part" id="t-verrerie">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 3v6l-5.5 10.5A1.8 1.8 0 0 0 5.6 22h12.8a1.8 1.8 0 0 0 1.6-2.5L14.5 9V3"/><path d="M7.5 3h9"/></svg>La verrerie : qui fait quoi<small>Choisir la bonne pièce est souvent LA question piégée du protocole</small></h2>
+    <div class="prose">
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21h16"/><path d="M6 21V10h4v11M14 21V6h4v15"/></svg>La planche : 6 pièces, 3 niveaux de précision<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 660 250" role="img" aria-label="Planche de verrerie">
+          <g fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M28 96 L28 168 Q28 176 36 176 L84 176 Q92 176 92 168 L92 96"/><path d="M28 96 L22 90"/>
+            <path d="M136 96 L128 160 Q125 176 143 176 L173 176 Q191 176 188 160 L180 96"/><line x1="130" y1="96" x2="186" y2="96"/>
+            <path d="M238 60 L238 168 Q238 176 246 176 L258 176 Q266 176 266 168 L266 60"/><line x1="234" y1="176" x2="270" y2="184" opacity="0"/><line x1="240" y1="184" x2="264" y2="184"/><line x1="252" y1="176" x2="252" y2="184"/>
+            <line x1="238" y1="80" x2="248" y2="80"/><line x1="238" y1="104" x2="248" y2="104"/><line x1="238" y1="128" x2="248" y2="128"/><line x1="238" y1="152" x2="248" y2="152"/>
+            <line x1="332" y1="30" x2="332" y2="78"/><ellipse cx="332" cy="104" rx="10" ry="24"/><line x1="332" y1="128" x2="332" y2="188"/><line x1="325" y1="48" x2="339" y2="48"/>
+            <line x1="416" y1="38" x2="416" y2="102"/><line x1="436" y1="38" x2="436" y2="102"/><path d="M416 102 L400 158 Q396 180 426 180 Q456 180 452 158 L436 102"/><line x1="411" y1="62" x2="441" y2="62" stroke="#E45C10" stroke-width="2.2"/>
+            <line x1="530" y1="18" x2="530" y2="182"/><line x1="548" y1="18" x2="548" y2="182"/>
+            <line x1="522" y1="42" x2="530" y2="42"/><line x1="522" y1="66" x2="530" y2="66"/><line x1="522" y1="90" x2="530" y2="90"/><line x1="522" y1="114" x2="530" y2="114"/><line x1="522" y1="138" x2="530" y2="138"/>
+            <path d="M530 182 L526 196 L552 196 L548 182"/><line x1="539" y1="196" x2="539" y2="214"/><circle cx="539" cy="189" r="4" fill="currentColor" stroke="none" opacity=".6"/>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5" text-anchor="middle">
+            <text x="60" y="200">bécher</text><text x="158" y="200">erlenmeyer</text><text x="252" y="204">éprouvette</text><text x="332" y="208">pipette jaugée</text><text x="426" y="200">fiole jaugée</text><text x="539" y="232">burette graduée</text>
+          </g>
+          <g font-family="sans-serif" font-size="10.5" text-anchor="middle" font-weight="bold">
+            <text x="60" y="216" fill="#B3261E">approximatif</text><text x="158" y="216" fill="#B3261E">approximatif</text><text x="252" y="220" fill="#B08000">± 5 %</text><text x="332" y="224" fill="#188038">précis</text><text x="426" y="216" fill="#188038">précis</text><text x="539" y="248" fill="#188038">précis</text>
+          </g>
+        </svg>
+        <div class="cap">Le trait de jauge (orange) définit un volume unique et précis. Les graduations d'un bécher ne servent qu'à estimer.</div>
+      </div>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Besoin</th><th>Pièce à choisir</th><th>Pourquoi</th></tr>
+        <tr><td>Contenir, mélanger, dissoudre</td><td>bécher, erlenmeyer</td><td>Leurs graduations sont décoratives : jamais pour mesurer un volume.</td></tr>
+        <tr><td>Volume approximatif (rinçage, excès)</td><td>éprouvette graduée</td><td>Rapide, précision moyenne.</td></tr>
+        <tr><td>Prélever un volume précis</td><td>pipette jaugée (+ propipette)</td><td>Un ou deux traits, volume certifié.</td></tr>
+        <tr><td>Préparer un volume précis de solution</td><td>fiole jaugée</td><td>Le trait de jauge définit V à ± 0,1 mL près.</td></tr>
+        <tr><td>Verser un volume variable et mesuré</td><td>burette graduée</td><td>On lit le volume versé par différence — l'outil du titrage.</td></tr>
+      </table></div>
+      <p>Réflexe de protocole : si l'énoncé dit « prélever <strong>10,0 mL</strong> » (avec la décimale), c'est une pipette jaugée. S'il dit « environ 20 mL », une éprouvette suffit.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M2.5 12 C5.5 6.5 8.5 4.5 12 4.5 s6.5 2 9.5 7.5 C18.5 17.5 15.5 19.5 12 19.5 s-6.5-2-9.5-7.5Z"/></svg>Lire un volume : le ménisque<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 420 210" role="img" aria-label="Lecture du ménisque">
+          <rect x="216" y="96" width="34" height="80" fill="#4A90D9" opacity=".22"/>
+          <g fill="none" stroke="currentColor" stroke-width="1.8">
+            <line x1="216" y1="20" x2="216" y2="176"/><line x1="250" y1="20" x2="250" y2="176"/>
+            <line x1="208" y1="48" x2="216" y2="48"/><line x1="208" y1="72" x2="216" y2="72"/><line x1="208" y1="96" x2="216" y2="96"/><line x1="208" y1="120" x2="216" y2="120"/><line x1="208" y1="144" x2="216" y2="144"/>
+          </g>
+          <path d="M216 96 Q233 106 250 96" fill="none" stroke="#1A73E8" stroke-width="2.2"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="12" text-anchor="end">
+            <text x="203" y="52">15</text><text x="203" y="100">16</text><text x="203" y="148">17</text>
+          </g>
+          <circle cx="76" cy="101" r="13" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="76" cy="101" r="4.5" fill="currentColor"/>
+          <line x1="92" y1="101" x2="230" y2="101" stroke="#E45C10" stroke-width="1.8" stroke-dasharray="6 5"/>
+          <g fill="#E45C10" font-family="sans-serif" font-size="12.5" font-weight="bold">
+            <text x="270" y="106">bas du ménisque</text>
+            <text x="270" y="122" font-weight="normal" fill="currentColor" opacity=".75">sur la ligne de visée → V = 16,0 mL</text>
+            <text x="30" y="140">œil à hauteur</text>
+            <text x="30" y="156" font-weight="normal" fill="currentColor" opacity=".75">du ménisque</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5" opacity=".75">
+            <text x="270" y="44">œil trop haut → lecture trop grande</text>
+            <text x="270" y="60">œil trop bas → lecture trop petite</text>
+          </g>
+        </svg>
+        <div class="cap">La surface d'un liquide dans un tube est courbe (ménisque). Convention : on lit toujours la tangente au <strong>bas</strong> du ménisque, l'œil exactement à sa hauteur (sinon : erreur de parallaxe).</div>
+      </div>
+      <p>Sur une burette, les graduations croissent vers le bas : le volume versé est <span class="m">V<sub class="u">versé</sub> = V<sub class="u">final</sub> − V<sub class="u">initial</sub></span>. Astuce d'ECE : ajuste le zéro au trait 0,0 avant de commencer, la lecture devient directe.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v5L4.5 18.5A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.5-2.5L14 8V3"/><path d="M8 3h8"/></svg>Préparer une solution : dissolution et dilution<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <h4>Par dissolution d'un solide</h4>
+      <div class="fig">
+        <svg viewBox="0 0 660 210" role="img" aria-label="Étapes de la dissolution">
+          <g fill="#E45C10" font-family="sans-serif" font-size="13" font-weight="bold">
+            <circle cx="40" cy="30" r="12" fill="#E45C10"/><text x="40" y="34.5" text-anchor="middle" fill="#fff">1</text>
+            <circle cx="210" cy="30" r="12" fill="#E45C10"/><text x="210" y="34.5" text-anchor="middle" fill="#fff">2</text>
+            <circle cx="380" cy="30" r="12" fill="#E45C10"/><text x="380" y="34.5" text-anchor="middle" fill="#fff">3</text>
+            <circle cx="540" cy="30" r="12" fill="#E45C10"/><text x="540" y="34.5" text-anchor="middle" fill="#fff">4</text>
+          </g>
+          <g fill="none" stroke="currentColor" stroke-width="1.7">
+            <rect x="20" y="118" width="88" height="30" rx="4"/><rect x="30" y="126" width="30" height="14" rx="2"/>
+            <path d="M56 104 Q70 92 84 104 L80 112 L60 112 Z"/>
+            <path d="M196 78 L232 78 L218 100 L218 122 M210 100 L210 122" stroke-linejoin="round"/>
+            <line x1="200" y1="122" x2="200" y2="148" opacity="0"/>
+            <path d="M204 122 L204 132 M224 122 L224 132"/><path d="M204 132 L196 160 Q194 172 214 172 Q234 172 232 160 L224 132"/>
+            <line x1="366" y1="88" x2="366" y2="132"/><line x1="386" y1="88" x2="386" y2="132"/><path d="M366 132 L352 164 Q349 180 376 180 Q403 180 400 164 L386 132"/>
+            <line x1="362" y1="106" x2="390" y2="106" stroke="#E45C10" stroke-width="2"/>
+            <rect x="356" y="150" width="40" height="22" fill="#4A90D9" opacity=".25" stroke="none"/>
+            <line x1="526" y1="82" x2="526" y2="126"/><line x1="546" y1="82" x2="546" y2="126"/><path d="M526 126 L512 158 Q509 174 536 174 Q563 174 560 158 L546 126"/>
+            <line x1="522" y1="100" x2="550" y2="100" stroke="#E45C10" stroke-width="2"/>
+            <rect x="516" y="102" width="40" height="64" fill="#4A90D9" opacity=".25" stroke="none"/>
+            <path d="M574 96 Q586 86 584 74" marker-end="url(#fle)"/>
+          </g>
+          <defs><marker id="fle" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="currentColor"/></marker></defs>
+          <g fill="currentColor" font-family="sans-serif" font-size="11" text-anchor="middle">
+            <text x="64" y="60">peser m = n × M</text><text x="64" y="74" opacity=".7">coupelle + tare</text>
+            <text x="214" y="60">verser via entonnoir</text><text x="214" y="74" opacity=".7">rincer la coupelle !</text>
+            <text x="380" y="60">eau aux 2/3, agiter</text><text x="380" y="74" opacity=".7">jusqu'à dissolution</text>
+            <text x="543" y="60">compléter au trait</text><text x="543" y="74" opacity=".7">boucher, retourner</text>
+          </g>
+        </svg>
+        <div class="cap">Le rinçage de la coupelle et de l'entonnoir (à l'eau distillée, vers la fiole) garantit que TOUT le solide pesé finit dans la solution.</div>
+      </div>
+      <h4>Par dilution d'une solution mère</h4>
+      <p>Le geste complet est schématisé dans les rappels du chapitre 1 (pipette jaugée → fiole jaugée). L'enchaînement à réciter : calculer <span class="m">V<sub class="u">m</sub> = C<sub class="u">f</sub>V<sub class="u">f</sub>/C<sub class="u">m</sub></span> → prélever à la pipette jaugée → verser en fiole jaugée → compléter au trait à l'eau distillée → homogénéiser.</p>
+      <div class="piege"><div class="t">Le piège des rinçages</div>La pipette se rince <strong>avec la solution à prélever</strong> (un fond, qu'on jette) — jamais avec de l'eau juste avant le prélèvement, sinon la solution prélevée est diluée. La fiole, elle, peut être rincée à l'eau distillée : cette eau fera partie du volume final de toute façon.</div>
+      </div></details>
+    </div>
+  </section>
+  <!-- ===== Gestes de chimie ===== -->
+  <section class="part" id="t-chimie">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12M10 3v6.5L4.8 19a1.6 1.6 0 0 0 1.5 2.3h11.4a1.6 1.6 0 0 0 1.5-2.3L14 9.5V3"/><circle cx="10" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="13.5" cy="18" r="1" fill="currentColor" stroke="none"/></svg>Gestes et montages de chimie<small>Titrage, dosage par étalonnage, synthèse : les grands classiques de 1ère qui reviennent en Tle</small></h2>
+    <div class="prose">
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="13"/><path d="M9 13h6l-1 4h-4z"/><path d="M8 21h8"/></svg>Le titrage colorimétrique<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>But : déterminer la concentration d'une espèce (la solution <strong>titrée</strong>, dans le bécher) en lui faisant consommer progressivement un réactif de concentration connue (la solution <strong>titrante</strong>, dans la burette), jusqu'à l'<strong>équivalence</strong> — l'instant où les réactifs ont été introduits dans les proportions stœchiométriques, repéré ici par un changement de couleur.</p>
+      <div class="fig">
+        <svg viewBox="0 0 460 330" role="img" aria-label="Montage de titrage colorimétrique">
+          <g fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="70" y1="24" x2="70" y2="296"/><rect x="34" y="296" width="110" height="10" rx="3"/>
+            <line x1="70" y1="70" x2="196" y2="70"/><path d="M196 62 L214 62 L214 78 L196 78"/>
+            <line x1="206" y1="30" x2="206" y2="196"/><line x1="226" y1="30" x2="226" y2="196"/>
+            <line x1="199" y1="56" x2="206" y2="56"/><line x1="199" y1="82" x2="206" y2="82"/><line x1="199" y1="108" x2="206" y2="108"/><line x1="199" y1="134" x2="206" y2="134"/><line x1="199" y1="160" x2="206" y2="160"/>
+            <path d="M206 196 L202 208 L230 208 L226 196"/><line x1="216" y1="208" x2="216" y2="226"/>
+            <circle cx="216" cy="201" r="5" fill="currentColor" stroke="none" opacity=".55"/>
+            <path d="M178 238 L178 288 Q178 296 186 296 L246 296 Q254 296 254 288 L254 238"/>
+            <rect x="150" y="306" width="132" height="22" rx="4"/>
+            <circle cx="170" cy="317" r="5"/><circle cx="188" cy="317" r="5"/>
+          </g>
+          <rect x="180" y="258" width="72" height="36" fill="#4A90D9" opacity=".22"/>
+          <rect x="200" y="284" width="32" height="7" rx="3.5" fill="#E45C10" opacity=".85"/>
+          <rect x="204" y="30" width="20" height="130" fill="#E45C10" opacity=".14"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
+            <text x="250" y="52">burette graduée :</text><text x="250" y="66" font-weight="bold">solution titrante</text><text x="250" y="80" opacity=".7">concentration connue C₁</text>
+            <text x="268" y="252">bécher : solution titrée</text><text x="268" y="266" opacity=".7">volume précis V₂ (pipette !)</text><text x="268" y="280" opacity=".7">+ indicateur coloré</text>
+            <text x="290" y="322">agitateur magnétique</text>
+            <text x="96" y="290" opacity=".7">potence</text>
+          </g>
+          <g fill="#E45C10" font-family="sans-serif" font-size="11.5" font-weight="bold">
+            <text x="118" y="264">barreau aimanté</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5" opacity=".65">
+            <text x="150" y="344">+ feuille blanche sous le bécher pour bien voir le virage</text>
+          </g>
+        </svg>
+        <div class="cap">Le montage canonique. La solution titrée est TOUJOURS prélevée à la pipette jaugée : son volume entre dans le calcul final.</div>
+      </div>
+      <div class="methode"><div class="t">Protocole gagnant</div>
+        <ol>
+          <li><strong>Rincer la burette avec la solution titrante</strong> (pas à l'eau !), la remplir, chasser la bulle du bec, ajuster le zéro.</li>
+          <li>Prélever V₂ de solution titrée à la pipette jaugée, verser au bécher, ajouter quelques gouttes d'indicateur, mettre l'agitation.</li>
+          <li><strong>Titrage rapide</strong> : verser mL par mL pour encadrer grossièrement le volume équivalent (la couleur change puis revient de moins en moins vite… puis persiste).</li>
+          <li><strong>Titrage précis</strong> : refaire un titrage en versant vite jusqu'à 1–2 mL avant l'équivalence repérée, puis <strong>goutte à goutte</strong>. L'équivalence = la première goutte qui fait persister le changement de couleur. Lire V<sub>E</sub>.</li>
+          <li>Exploiter avec la relation d'équivalence tirée de l'équation support (proportions stœchiométriques).</li>
+        </ol>
+      </div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20L21 8"/><circle cx="7" cy="17" r="1.2" fill="currentColor" stroke="none"/><circle cx="11" cy="14.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="19" cy="9.5" r="1.2" fill="currentColor" stroke="none"/><path d="M3 20V4M3 20h18"/></svg>Dosage par étalonnage (spectrophotométrie)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Autre stratégie de dosage, <strong>sans réaction chimique</strong> : on compare la solution inconnue à une <strong>gamme d'étalonnage</strong> — une série de solutions de concentrations connues — via une grandeur physique mesurable. Pour une solution colorée, cette grandeur est l'<strong>absorbance A</strong> (la capacité à absorber la lumière), mesurée au spectrophotomètre.</p>
+      <div class="fig">
+        <svg viewBox="0 0 620 130" role="img" aria-label="Principe du spectrophotomètre">
+          <g fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="52" cy="60" r="17"/>
+            <line x1="52" y1="34" x2="52" y2="24"/><line x1="52" y1="86" x2="52" y2="96"/><line x1="26" y1="60" x2="16" y2="60"/><line x1="73" y1="39" x2="80" y2="32"/><line x1="73" y1="81" x2="80" y2="88"/>
+            <rect x="130" y="38" width="96" height="44" rx="5"/>
+            <rect x="290" y="30" width="44" height="60"/>
+            <rect x="410" y="38" width="82" height="44" rx="5"/>
+          </g>
+          <rect x="294" y="44" width="36" height="42" fill="#E45C10" opacity=".28"/>
+          <line x1="238" y1="60" x2="284" y2="60" stroke="#E45C10" stroke-width="4" marker-end="url(#flsp)"/>
+          <line x1="340" y1="60" x2="400" y2="60" stroke="#E45C10" stroke-width="1.6" marker-end="url(#flsp)"/>
+          <defs><marker id="flsp" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#E45C10"/></marker></defs>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5" text-anchor="middle">
+            <text x="52" y="118">source</text>
+            <text x="178" y="55">sélection de la</text><text x="178" y="70">longueur d'onde λ</text>
+            <text x="312" y="110">cuve</text>
+            <text x="451" y="55">capteur →</text><text x="451" y="70">affiche A</text>
+          </g>
+          <g fill="#E45C10" font-family="Georgia,serif" font-size="13" font-style="italic">
+            <text x="255" y="50">I₀</text><text x="366" y="50">I &lt; I₀</text>
+          </g>
+        </svg>
+        <div class="cap">La solution absorbe une partie de la lumière : A mesure cette absorption. On règle λ sur la couleur la mieux absorbée (le maximum du spectre).</div>
+      </div>
+      <p>La <strong>loi de Beer-Lambert</strong> dit que pour une solution pas trop concentrée, l'absorbance est <strong>proportionnelle</strong> à la concentration : <span class="m">A = k × C</span>. D'où la méthode :</p>
+      <div class="fig">
+        <svg viewBox="0 0 500 270" role="img" aria-label="Courbe d'étalonnage A en fonction de C">
+          <g stroke="currentColor" stroke-width="1.8" fill="none">
+            <line x1="60" y1="230" x2="60" y2="24"/><line x1="60" y1="230" x2="470" y2="230"/>
+          </g>
+          <line x1="60" y1="230" x2="440" y2="46" stroke="#E45C10" stroke-width="2.2"/>
+          <g stroke="currentColor" stroke-width="2">
+            <path d="M120 196 l8 8 M128 196 l-8 8"/><path d="M188 166 l8 8 M196 166 l-8 8"/><path d="M262 128 l8 8 M270 128 l-8 8"/><path d="M330 96 l8 8 M338 96 l-8 8"/><path d="M400 62 l8 8 M408 62 l-8 8"/>
+          </g>
+          <line x1="60" y1="115" x2="296" y2="115" stroke="#1A73E8" stroke-width="1.7" stroke-dasharray="6 5"/>
+          <line x1="296" y1="115" x2="296" y2="230" stroke="#1A73E8" stroke-width="1.7" stroke-dasharray="6 5" marker-end="url(#flbl)"/>
+          <defs><marker id="flbl" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#1A73E8"/></marker></defs>
+          <g fill="currentColor" font-family="Georgia,serif" font-size="15" font-style="italic">
+            <text x="38" y="34">A</text><text x="452" y="252">C</text>
+          </g>
+          <g fill="#1A73E8" font-family="sans-serif" font-size="12" font-weight="bold">
+            <text x="66" y="108">A mesurée (inconnue)</text><text x="304" y="224">C cherchée</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5" opacity=".8">
+            <text x="330" y="130">croix : gamme étalon</text>
+            <text x="330" y="146">droite : modélisation</text>
+            <text x="330" y="162">(passe par l'origine)</text>
+          </g>
+        </svg>
+        <div class="cap">Préparer la gamme par dilutions, mesurer A de chaque étalon, tracer, modéliser par une droite passant par l'origine (Latis Pro sait le faire), puis lire la concentration inconnue par la droite.</div>
+      </div>
+      <div class="piege"><div class="t">Le blanc</div>Avant toute mesure : « faire le blanc » — mettre une cuve de solvant pur et régler A = 0. Sinon la cuve et le solvant s'ajoutent à toutes tes mesures. Et on tient la cuve par les faces dépolies, jamais par les faces optiques.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="17" r="4.5"/><path d="M10 12.7V4h4v8.7"/><path d="M8.5 4h7"/></svg>Synthèse : le chauffage à reflux<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Deux objectifs contradictoires en synthèse : <strong>chauffer</strong> (pour accélérer la réaction) sans <strong>rien perdre</strong> (les vapeurs s'échapperaient). Le reflux résout le conflit : les vapeurs montent, rencontrent le réfrigérant, se condensent et retombent dans le ballon. On chauffe fort, à perte nulle.</p>
+      <div class="fig">
+        <svg viewBox="0 0 420 360" role="img" aria-label="Montage de chauffage à reflux">
+          <g fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="60" y1="20" x2="60" y2="330" /><rect x="26" y="330" width="110" height="10" rx="3"/>
+            <line x1="60" y1="80" x2="182" y2="80"/><path d="M182 72 L200 72 L200 88 L182 88"/>
+            <line x1="196" y1="40" x2="196" y2="196"/><line x1="216" y1="40" x2="216" y2="196"/>
+            <line x1="188" y1="56" x2="188" y2="180"/><line x1="224" y1="56" x2="224" y2="180"/>
+            <path d="M188 56 L196 56 M188 180 L196 180 M216 56 L224 56 M216 180 L224 180"/>
+            <path d="M224 168 L242 176" marker-end="url(#flrf)"/><path d="M242 66 L224 60" opacity="0"/><path d="M224 64 L242 58" marker-end="url(#flrf)"/>
+            <circle cx="206" cy="252" r="44"/>
+            <path d="M196 196 L196 214 M216 196 L216 214"/>
+            <path d="M162 300 A 52 52 0 0 0 250 300 L256 322 L156 322 Z"/>
+            <path d="M170 334 L242 334 M180 346 L232 346 M190 358 L222 358" stroke-width="2.4"/>
+          </g>
+          <defs><marker id="flrf" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="currentColor"/></marker></defs>
+          <rect x="176" y="252" width="60" height="30" fill="#4A90D9" opacity=".22" clip-path="none"/>
+          <g fill="currentColor" opacity=".7">
+            <circle cx="196" cy="284" r="2.2"/><circle cx="208" cy="288" r="2.2"/><circle cx="219" cy="283" r="2.2"/>
+          </g>
+          <path d="M206 236 Q202 224 206 212" fill="none" stroke="#E45C10" stroke-width="1.8" stroke-dasharray="4 4" marker-end="url(#flrfo)"/>
+          <path d="M212 214 Q216 226 212 238" fill="none" stroke="#1A73E8" stroke-width="1.8" marker-end="url(#flrfb)"/>
+          <defs>
+            <marker id="flrfo" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#E45C10"/></marker>
+            <marker id="flrfb" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#1A73E8"/></marker>
+          </defs>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
+            <text x="252" y="180">entrée d'eau (en bas)</text>
+            <text x="252" y="58">sortie d'eau (en haut)</text>
+            <text x="252" y="110" font-weight="bold">réfrigérant à eau</text>
+            <text x="252" y="126" opacity=".7">ouvert en haut : jamais</text><text x="252" y="140" opacity=".7">de montage fermé !</text>
+            <text x="252" y="258">ballon + mélange</text>
+            <text x="252" y="274" opacity=".7">+ grains de pierre ponce</text>
+            <text x="252" y="288" opacity=".7">(ébullition régulière)</text>
+            <text x="252" y="330">chauffe-ballon</text>
+            <text x="252" y="352">support élévateur</text>
+            <text x="86" y="322" opacity=".7">potence</text>
+          </g>
+          <g font-family="sans-serif" font-size="10.5" font-weight="bold">
+            <text x="130" y="222" fill="#E45C10">vapeurs ↑</text>
+            <text x="128" y="240" fill="#1A73E8">condensat ↓</text>
+          </g>
+        </svg>
+        <div class="cap">L'eau du réfrigérant entre par le bas et sort par le haut (remplissage complet de la chemise). Le support élévateur permet de retirer le chauffage instantanément en cas d'emballement.</div>
+      </div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3h8l-2.5 8v6.5L16 21H8l2.5-3.5V11Z"/><path d="M9.5 14h5"/></svg>Extraction et séparation : l'ampoule à décanter<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 380 300" role="img" aria-label="Ampoule à décanter">
+          <g fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="70" y1="16" x2="70" y2="270"/><rect x="36" y="270" width="104" height="10" rx="3"/>
+            <line x1="70" y1="70" x2="150" y2="70"/><circle cx="192" cy="118" r="44" opacity="0"/>
+            <path d="M176 28 L208 28 L208 44 L176 44 Z"/>
+            <path d="M180 44 L152 128 Q146 150 164 168 L220 168 Q238 150 232 128 L204 44"/>
+            <path d="M186 168 L186 188 M198 188 L198 168"/>
+            <rect x="176" y="188" width="32" height="10" rx="3"/>
+            <line x1="192" y1="198" x2="192" y2="222"/>
+            <path d="M154 240 L154 262 Q154 270 162 270 L222 270 Q230 270 230 262 L230 240"/>
+          </g>
+          <path d="M158 118 L226 118" stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 4"/>
+          <path d="M157 120 L227 120 L221 158 Q216 166 192 166 Q168 166 163 158 Z" fill="#4A90D9" opacity=".25"/>
+          <path d="M166 84 L218 84 L226 118 L158 118 Z" fill="#E45C10" opacity=".2"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
+            <text x="248" y="94" font-weight="bold">phase organique</text><text x="248" y="108" opacity=".7">la moins dense au-dessus</text>
+            <text x="248" y="140" font-weight="bold">phase aqueuse</text><text x="248" y="154" opacity=".7">souvent la plus dense</text>
+            <text x="248" y="196">robinet : on soutire la</text><text x="248" y="210">phase du bas, bouchon ôté</text>
+            <text x="248" y="258">bécher de récupération</text>
+            <text x="96" y="262" opacity=".7">anneau + potence</text>
+            <text x="214" y="24" opacity=".7">bouchon</text>
+          </g>
+        </svg>
+        <div class="cap">Qui est en haut ? Réponse par les densités du sujet, jamais par habitude : certains solvants organiques (dichlorométhane…) sont PLUS denses que l'eau.</div>
+      </div>
+      <div class="methode"><div class="t">Le geste</div>
+        <ol>
+          <li>Verser les deux liquides, boucher, retourner et <strong>dégazer</strong> aussitôt (ouvrir le robinet, ampoule inclinée vers le haut, loin des visages) — surtout s'il peut se former un gaz.</li>
+          <li>Agiter vigoureusement en dégazant régulièrement, puis reposer sur l'anneau, ôter le bouchon, laisser <strong>décanter</strong> (les phases se séparent).</li>
+          <li>Soutirer la phase inférieure par le robinet ; la phase supérieure sort par le col. Identifier chaque phase grâce aux densités.</li>
+        </ol>
+      </div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14l-5 6v5l-4 5v-10Z" transform="translate(0,-1)"/><path d="M4 21h16"/></svg>Filtration Büchner et CCM<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <h4>Filtration sur Büchner (sous vide)</h4>
+      <div class="fig">
+        <svg viewBox="0 0 440 240" role="img" aria-label="Filtration sur Büchner">
+          <g fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M148 30 L228 30 L228 78 L148 78 Z"/>
+            <line x1="152" y1="72" x2="224" y2="72" stroke-width="1.4" stroke-dasharray="3 3"/>
+            <path d="M180 78 L180 96 M196 78 L196 96"/>
+            <line x1="160" y1="96" x2="160" y2="130"/><line x1="216" y1="96" x2="216" y2="130"/>
+            <path d="M160 130 L136 196 Q131 214 158 214 L218 214 Q245 214 240 196 L216 130"/>
+            <path d="M216 116 L266 116 L266 108 M266 116 L266 124" stroke-width="0" opacity="0"/>
+            <path d="M216 118 L272 118" /><path d="M272 112 L272 124" opacity="0"/>
+            <path d="M272 118 Q292 118 300 104" stroke-dasharray="5 4"/>
+            <rect x="300" y="66" width="54" height="38" rx="5"/>
+            <path d="M327 66 L327 46 L348 46"/>
+          </g>
+          <rect x="150" y="52" width="76" height="20" fill="#4A90D9" opacity=".22"/>
+          <g fill="currentColor" opacity=".7"><circle cx="170" cy="60" r="2.4"/><circle cx="186" cy="56" r="2.4"/><circle cx="203" cy="61" r="2.4"/></g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
+            <text x="26" y="40">entonnoir Büchner</text><text x="26" y="54" opacity=".7">+ papier filtre humecté,</text><text x="26" y="68" opacity=".7">à plat, couvrant les trous</text>
+            <text x="26" y="178">fiole à vide</text><text x="26" y="192" opacity=".7">(verre épais + tubulure)</text>
+            <text x="284" y="146">vers la trompe à eau</text><text x="284" y="160" opacity=".7">(aspiration)</text>
+            <text x="300" y="34">robinet</text>
+          </g>
+        </svg>
+        <div class="cap">L'aspiration accélère la filtration et essore le solide. On casse le vide (débrancher le tuyau) AVANT de fermer la trompe, sinon l'eau remonte dans la fiole.</div>
+      </div>
+      <h4>Chromatographie sur couche mince (CCM)</h4>
+      <div class="fig">
+        <svg viewBox="0 0 460 240" role="img" aria-label="CCM : cuve et plaque révélée">
+          <g fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M40 40 L40 200 L170 200 L170 40"/>
+            <line x1="40" y1="182" x2="170" y2="182" stroke-width="0"/>
+            <path d="M64 60 L146 190" opacity="0"/>
+            <rect x="76" y="56" width="58" height="136" transform="rotate(6 105 124)"/>
+            <path d="M28 40 L182 40" stroke-dasharray="5 4" stroke-width="1.4"/>
+            <rect x="280" y="34" width="120" height="170"/>
+          </g>
+          <rect x="42" y="176" width="126" height="22" fill="#E45C10" opacity=".2"/>
+          <line x1="82" y1="170" x2="136" y2="176" stroke="#E45C10" stroke-width="1.8" transform="rotate(6 105 124)"/>
+          <line x1="286" y1="178" x2="394" y2="178" stroke="#E45C10" stroke-width="1.8"/>
+          <line x1="286" y1="52" x2="394" y2="52" stroke="#1A73E8" stroke-width="1.8" stroke-dasharray="6 5"/>
+          <g fill="currentColor">
+            <ellipse cx="308" cy="126" rx="7" ry="9" opacity=".8"/>
+            <ellipse cx="340" cy="90" rx="7" ry="9" opacity=".55"/>
+            <ellipse cx="372" cy="126" rx="7" ry="9" opacity=".8"/><ellipse cx="372" cy="90" rx="7" ry="9" opacity=".55"/>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11" text-anchor="middle">
+            <text x="308" y="198">A</text><text x="340" y="198">B</text><text x="372" y="198">M</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
+            <text x="24" y="226">cuve fermée : éluant SOUS la ligne de dépôt</text>
+            <text x="280" y="226">plaque révélée (UV ou révélateur)</text>
+          </g>
+          <g font-family="sans-serif" font-size="10.5">
+            <text x="404" y="56" fill="#1A73E8">front de l'éluant</text>
+            <text x="404" y="182" fill="#E45C10">ligne de dépôt</text>
+          </g>
+        </svg>
+        <div class="cap">Lecture : M (le mélange) contient A et B, car ses taches sont aux mêmes hauteurs. Ligne de dépôt au crayon à papier (l'encre migrerait), dépôts petits et concentrés, cuve fermée pour saturer en vapeurs.</div>
+      </div>
+      </div></details>
+    </div>
+  </section>
+  <!-- ===== Mesures électriques ===== -->
+  <section class="part" id="t-elec">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-11h-6z"/></svg>Mesures électriques<small>Brancher un multimètre sans griller le fusible : le geste de base de tous les TP d'élec</small></h2>
+    <div class="prose">
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 15l2.5-6 2 4.5L14.5 9"/></svg>Ampèremètre en série, voltmètre en dérivation<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 520 260" role="img" aria-label="Circuit avec ampèremètre en série et voltmètre en dérivation">
+          <g fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M60 60 L200 60 M260 60 L340 60 M380 60 L460 60 L460 200 L60 200 L60 60"/>
+            <rect x="200" y="46" width="60" height="28"/>
+            <circle cx="360" cy="60" r="20"/>
+            <line x1="52" y1="118" x2="68" y2="118" stroke-width="2.6"/><line x1="56" y1="142" x2="64" y2="142" stroke-width="4"/>
+            <path d="M60 60 L60 118 M60 142 L60 200"/>
+            <circle cx="230" cy="150" r="20"/>
+            <path d="M200 60 L200 106 L230 130 M260 60 L260 106 L230 130" stroke-width="0" opacity="0"/>
+            <path d="M186 60 L186 150 L210 150 M274 60 L274 150 L250 150" stroke-width="1.8"/>
+          </g>
+          <line x1="120" y1="46" x2="150" y2="46" stroke="#E45C10" stroke-width="2" marker-end="url(#flc)"/>
+          <defs><marker id="flc" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#E45C10"/></marker></defs>
+          <g fill="currentColor" font-family="Georgia,serif" font-size="16" font-style="italic">
+            <text x="355" y="66">A</text><text x="224" y="156">V</text>
+          </g>
+          <g fill="#E45C10" font-family="Georgia,serif" font-size="14" font-style="italic"><text x="132" y="38">I</text></g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
+            <text x="206" y="36">dipôle étudié (R)</text>
+            <text x="330" y="30" font-weight="bold">ampèremètre : EN SÉRIE</text>
+            <text x="330" y="44" opacity=".7">le courant le traverse</text>
+            <text x="150" y="236" font-weight="bold">voltmètre : EN DÉRIVATION</text>
+            <text x="150" y="250" opacity=".7">branché aux bornes du dipôle</text>
+            <text x="24" y="100" opacity=".7">générateur</text>
+          </g>
+        </svg>
+        <div class="cap">Schéma normalisé. Moyen mnémotechnique : l'ampèremètre s'insère dans le fil (on coupe le circuit), le voltmètre se pose par-dessus (on ne coupe rien).</div>
+      </div>
+      <div class="methode"><div class="t">Réglages du multimètre</div>
+        <ol>
+          <li><strong>Bornes</strong> : COM toujours ; l'autre fiche sur V pour une tension, sur A (ou mA) pour une intensité. Se tromper de borne en mode ampèremètre = court-circuit = fusible grillé.</li>
+          <li><strong>Calibre</strong> : commencer par le plus grand, descendre jusqu'au plus petit calibre supérieur à la valeur mesurée (meilleure précision).</li>
+          <li>Mode continu (⎓) ou alternatif (∿) selon le générateur.</li>
+          <li>Circuit ouvert pendant les branchements, vérification par le prof si demandé, puis on ferme.</li>
+        </ol>
+      </div>
+      <p>Application classique : la <strong>caractéristique U(I)</strong> d'un dipôle — on fait varier la tension du générateur, on relève des couples (I, U), on trace U en fonction de I. Pour une résistance, la modélisation donne une droite passant par l'origine de pente R (loi d'Ohm <span class="m">U = R × I</span>) — modélisation à faire dans Latis Pro, voir plus bas.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- ===== Latis Pro ===== -->
+  <section class="part" id="t-latis">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="14" rx="2"/><path d="M6 13c1.5-4 3-4 4.5 0s3 4 4.5 0 2-2.5 3-1.5"/><path d="M9 21h6"/></svg>Latis Pro : le tutoriel<small>Le logiciel d'acquisition et de traitement du labo — apprivoisé une bonne fois pour toutes</small></h2>
+    <div class="prose">
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 9v11"/></svg>Repérer l'interface<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 660 380" role="img" aria-label="Interface de Latis Pro">
+          <rect x="10" y="10" width="640" height="360" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+          <line x1="10" y1="44" x2="650" y2="44" stroke="currentColor" stroke-width="1.6"/>
+          <line x1="10" y1="76" x2="650" y2="76" stroke="currentColor" stroke-width="1.2" opacity=".6"/>
+          <line x1="160" y1="76" x2="160" y2="370" stroke="currentColor" stroke-width="1.2" opacity=".6"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="12.5">
+            <text x="26" y="32">Fichier</text><text x="86" y="32">Édition</text><text x="150" y="32">Affichage</text><text x="228" y="32">Traitements</text><text x="322" y="32">Options</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11" opacity=".7">
+            <text x="26" y="65">🖫</text><text x="50" y="65">⚙</text><text x="74" y="65">🔍</text><text x="98" y="65">▶</text>
+          </g>
+          <g fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="24" y="94" width="52" height="24" rx="4"/><rect x="84" y="94" width="52" height="24" rx="4"/>
+            <rect x="22" y="146" width="118" height="96" rx="5"/>
+            <rect x="22" y="258" width="118" height="76" rx="5"/>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
+            <text x="34" y="110">EA0</text><text x="94" y="110">EA1</text>
+            <text x="30" y="140" opacity=".75">Acquisition :</text>
+            <text x="30" y="166">Points : 1000</text>
+            <text x="30" y="186">Te : 20 µs</text>
+            <text x="30" y="206">Durée : 20 ms</text>
+            <text x="30" y="228" opacity="0">.</text>
+            <text x="30" y="252" opacity=".75">Déclenchement :</text>
+            <text x="30" y="278">Source : EA0</text>
+            <text x="30" y="298">Seuil : 0,1 V</text>
+            <text x="30" y="318">Sens : montant</text>
+          </g>
+          <g stroke="currentColor" fill="none" stroke-width="1.6">
+            <line x1="200" y1="330" x2="620" y2="330"/><line x1="200" y1="330" x2="200" y2="100"/>
+          </g>
+          <path d="M210 220 q13 -85 26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0" fill="none" stroke="#E45C10" stroke-width="2"/>
+          <g fill="#E45C10" font-family="sans-serif" font-size="12.5" font-weight="bold">
+            <circle cx="52" cy="106" r="11" fill="#E45C10"/><text x="52" y="110.5" text-anchor="middle" fill="#fff">1</text>
+            <circle cx="80" cy="196" r="11" fill="#E45C10"/><text x="80" y="200.5" text-anchor="middle" fill="#fff">2</text>
+            <circle cx="80" cy="300" r="11" fill="#E45C10"/><text x="80" y="304.5" text-anchor="middle" fill="#fff">3</text>
+            <circle cx="420" cy="120" r="11" fill="#E45C10"/><text x="420" y="124.5" text-anchor="middle" fill="#fff">4</text>
+          </g>
+        </svg>
+        <div class="cap">❶ Les <strong>capteurs branchés</strong> (entrées EA0, EA1…) — on les glisse-dépose sur les axes du graphe. ❷ Panneau <strong>Acquisition</strong> (nombre de points, période d'échantillonnage Te, durée totale). ❸ Panneau <strong>Déclenchement</strong>. ❹ Zone graphique où les courbes s'affichent.</div>
+      </div>
+      <p>Vocabulaire à maîtriser : <strong>Te</strong>, la période d'échantillonnage, est l'intervalle entre deux mesures ; <strong>durée totale = nombre de points × Te</strong>. Le menu <strong>Traitements</strong> concentre presque tout ce qui nous sert (calculs, modélisation).</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12 L12 5.5" /><path d="M9 3.5h6"/></svg>Régler et lancer une acquisition<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="methode"><div class="t">La check-list, dans l'ordre</div>
+        <ol>
+          <li><strong>Brancher</strong> le capteur (micro, sonde tension…) sur une entrée de l'interface (Sysam) — son icône EA0 apparaît en haut à gauche.</li>
+          <li><strong>Glisser EA0</strong> sur l'axe vertical du graphe (et le temps est déjà en abscisse).</li>
+          <li><strong>Régler la durée</strong> : elle doit contenir ce que tu veux voir. Pour un signal périodique : vise 3 à 5 périodes à l'écran (ex. son de 440 Hz, T ≈ 2,3 ms → durée ≈ 10 ms). Ajuste points/Te en conséquence — Te doit être PETIT devant la période, sinon la courbe est anguleuse et fausse.</li>
+          <li><strong>Déclenchement</strong> (pour un phénomène bref ou pour figer une courbe propre) : source = la voie, seuil = une valeur que le signal franchit, sens montant. L'acquisition ne démarre qu'au franchissement — indispensable pour un claquement de mains.</li>
+          <li><strong>Lancer avec F10</strong> (ou le bouton d'acquisition). Recommencer autant que nécessaire : une acquisition ratée ne coûte rien.</li>
+        </ol>
+      </div>
+      <div class="piege"><div class="t">Les deux ratés classiques</div>Courbe plate : capteur sur la mauvaise entrée, ou voie non glissée sur l'axe. Écran figé qui ne se lance pas : le déclenchement attend un seuil jamais franchi (seuil trop haut) — baisse-le ou désactive le déclenchement.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="4.5"/></svg>Mesurer avec les réticules (période, décalage…)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p><strong>Clic droit sur le graphe → Réticule</strong> : un pointeur en croix suit la courbe et affiche les coordonnées (t ; valeur) du point visé. Un second clic droit permet un <strong>Nouveau réticule</strong> lié au premier : l'écran affiche alors les écarts Δt et Δy entre les deux — exactement ce qu'il faut pour mesurer une durée.</p>
+      <div class="methode"><div class="t">Mesurer une période proprement</div>
+        <ol>
+          <li>Poser le réticule 1 sur un maximum bien net de la courbe.</li>
+          <li>Poser le réticule 2 non pas sur le maximum suivant, mais <strong>5 périodes plus loin</strong> : lire Δt.</li>
+          <li><span class="m">T = Δt/5</span> — l'erreur de pointage est divisée par 5. Puis <span class="m">f = 1/T</span>.</li>
+        </ol>
+      </div>
+      <p>Le zoom (loupe, ou molette selon les versions) aide à poser les réticules au pixel près. Pour revenir à la vue complète : clic droit → échelle automatique / Calibrage.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h3M17 12h3"/><circle cx="12" cy="12" r="2"/><path d="M7 12a5 5 0 0 1 10 0M5 12a7 7 0 0 1 14 0" opacity=".6"/></svg>TP classique : la célérité du son<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 620 300" role="img" aria-label="Mesure de la célérité du son avec deux microphones">
+          <g fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M40 60 L64 42 M40 60 L64 78"/>
+            <circle cx="150" cy="60" r="9"/><line x1="150" y1="69" x2="150" y2="92"/><line x1="138" y1="92" x2="162" y2="92"/>
+            <circle cx="390" cy="60" r="9"/><line x1="390" y1="69" x2="390" y2="92"/><line x1="378" y1="92" x2="402" y2="92"/>
+            <rect x="480" y="40" width="110" height="44" rx="6"/>
+            <path d="M159 62 Q300 90 480 66" stroke-width="1.4" stroke-dasharray="4 4"/>
+            <path d="M399 62 Q440 76 480 70" stroke-width="1.4" stroke-dasharray="4 4"/>
+          </g>
+          <line x1="150" y1="116" x2="390" y2="116" stroke="#E45C10" stroke-width="1.8" marker-start="url(#fld2)" marker-end="url(#fld)"/>
+          <defs>
+            <marker id="fld" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#E45C10"/></marker>
+            <marker id="fld2" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto"><path d="M7,0 L1,3.5 L7,7 z" fill="#E45C10"/></marker>
+          </defs>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5" text-anchor="middle">
+            <text x="52" y="100">clap</text><text x="150" y="110" opacity="0">.</text>
+            <text x="150" y="138">micro 1 → EA0</text><text x="390" y="138">micro 2 → EA1</text>
+            <text x="535" y="58">interface Sysam</text><text x="535" y="74">→ Latis Pro</text>
+          </g>
+          <g fill="#E45C10" font-family="Georgia,serif" font-size="14" font-style="italic"><text x="262" y="110">d</text></g>
+          <g stroke="currentColor" fill="none" stroke-width="1.5">
+            <line x1="70" y1="270" x2="590" y2="270"/><line x1="70" y1="270" x2="70" y2="170"/>
+            <line x1="70" y1="222" x2="590" y2="222" opacity=".35"/>
+          </g>
+          <path d="M100 196 L196 196 l6 -18 8 34 8 -26 8 12 6 -2 L590 196" fill="none" stroke="#E45C10" stroke-width="1.8" transform="translate(0,0)"/>
+          <path d="M100 248 L282 248 l6 -18 8 34 8 -26 8 12 6 -2 L590 248" fill="none" stroke="#1A73E8" stroke-width="1.8"/>
+          <line x1="202" y1="176" x2="202" y2="262" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 4"/>
+          <line x1="288" y1="176" x2="288" y2="262" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 4"/>
+          <line x1="202" y1="176" x2="288" y2="176" stroke="currentColor" stroke-width="1.6" marker-end="url(#fldt)"/>
+          <defs><marker id="fldt" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="currentColor"/></marker></defs>
+          <g fill="currentColor" font-family="Georgia,serif" font-size="14" font-style="italic"><text x="238" y="170">τ</text></g>
+          <g font-family="sans-serif" font-size="10.5"><text x="596" y="200" fill="#E45C10">EA0</text><text x="596" y="252" fill="#1A73E8">EA1</text></g>
+        </svg>
+        <div class="cap">Le son parcourt la distance d entre les deux micros pendant le retard τ mesuré aux réticules entre les deux débuts de signal : <span class="m">v = d/τ</span>. Attendu : ≈ 340 m·s<sup>−1</sup> dans l'air à 20 °C.</div>
+      </div>
+      <p>Réglages types : d = 1,000 m (mesurée au mètre, micros bien alignés) ; acquisition ~10 ms, quelques milliers de points ; <strong>déclenchement sur EA0</strong>, seuil bas, sens montant — sinon impossible d'attraper un claquement. τ attendu ≈ 3 ms : les réticules se posent sur le début de chaque salve.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18M15 9v12"/></svg>La Feuille de calculs : créer de nouvelles grandeurs<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p><strong>Traitements → Feuille de calculs</strong>. On y fabrique une nouvelle courbe à partir des existantes en tapant une formule, une ligne par grandeur, du type :</p>
+      <div class="exemple"><div class="t">Exemples de formules</div>
+        <p style="font-family:ui-monospace,Consolas,monospace;font-size:.92rem">U2 = 2*EA0<br>P = EA0*EA1<br>Ec = 0.5*0.058*(Vx^2+Vy^2)</p>
+        <p>On valide (touche Entrée / F2 selon versions) : la nouvelle grandeur apparaît dans la liste des courbes, prête à être glissée sur un graphe.</p>
+      </div>
+      <p>Cas d'usage typiques : convertir une tension de capteur en grandeur physique (via la sensibilité donnée dans le sujet), calculer une énergie cinétique après un pointage vidéo, ou une somme/différence de signaux. Pour dériver une grandeur (vitesse à partir de la position), le plus simple reste <strong>Traitements → Calculs spécifiques → Dérivée</strong>.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20L20 6"/><circle cx="7" cy="16.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="11" cy="14.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="14" cy="10.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="18" cy="8.5" r="1.3" fill="currentColor" stroke="none"/></svg>La Modélisation : faire passer une droite dans les points<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="methode"><div class="t">Pas à pas</div>
+        <ol>
+          <li><strong>Traitements → Modélisation</strong> : une fenêtre s'ouvre.</li>
+          <li>Glisser la courbe à modéliser (depuis la liste des courbes) dans la zone prévue.</li>
+          <li><strong>Choisir le modèle</strong> : Droite (y = a·x, pour Beer-Lambert, loi d'Ohm…), Affine (y = a·x + b), Parabole, etc. Le choix se justifie par la physique, pas par l'esthétique.</li>
+          <li>Cliquer <strong>« Calculer le modèle »</strong> : Latis Pro affiche les coefficients (a, b…) avec leurs unités implicites, et superpose la droite aux points.</li>
+          <li>Noter les coefficients ET juger l'accord : les points s'écartent-ils de façon aléatoire (bien) ou systématique — points en courbe sous la droite — (modèle inadapté) ?</li>
+        </ol>
+      </div>
+      <p>C'est l'outil qui transforme un nuage de mesures en résultat : la pente de U(I) donne R, la pente de A(C) donne le k de Beer-Lambert (et permet la lecture inverse), la pente de x(t) donne une vitesse.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 9h19M6.5 5v14M17.5 5v14"/><circle cx="12" cy="14" r="1.3" fill="currentColor" stroke="none"/></svg>Le pointage vidéo (mécanique)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 560 300" role="img" aria-label="Pointage vidéo dans Latis Pro">
+          <rect x="20" y="20" width="380" height="260" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
+          <g stroke="#E45C10" stroke-width="1.6">
+            <line x1="56" y1="248" x2="380" y2="248"/><line x1="56" y1="248" x2="56" y2="40"/>
+          </g>
+          <g fill="currentColor">
+            <circle cx="90" cy="90" r="5"/><circle cx="130" cy="98" r="5"/><circle cx="170" cy="114" r="5"/><circle cx="210" cy="138" r="5"/><circle cx="250" cy="170" r="5"/><circle cx="290" cy="210" r="5"/>
+          </g>
+          <circle cx="330" cy="258" r="0" fill="none"/>
+          <line x1="330" y1="60" x2="330" y2="160" stroke="#1A73E8" stroke-width="1.8" marker-start="url(#flpv2)" marker-end="url(#flpv)"/>
+          <defs>
+            <marker id="flpv" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#1A73E8"/></marker>
+            <marker id="flpv2" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto"><path d="M7,0 L1,3.5 L7,7 z" fill="#1A73E8"/></marker>
+          </defs>
+          <g fill="#1A73E8" font-family="sans-serif" font-size="11.5" font-weight="bold"><text x="340" y="116">étalon 1,00 m</text></g>
+          <g fill="#E45C10" font-family="sans-serif" font-size="11.5" font-weight="bold"><text x="62" y="36">origine + axes</text></g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
+            <text x="96" y="70" opacity=".8">positions cliquées image par image</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
+            <text x="420" y="60" font-weight="bold">Résultat :</text>
+            <text x="420" y="82">Mouvement X(t)</text>
+            <text x="420" y="102">Mouvement Y(t)</text>
+            <text x="420" y="130" opacity=".75">→ courbes x(t), y(t)</text>
+            <text x="420" y="150" opacity=".75">→ vitesses par Dérivée</text>
+            <text x="420" y="170" opacity=".75">→ énergies en Feuille</text>
+            <text x="420" y="188" opacity=".75">de calculs</text>
+          </g>
+        </svg>
+        <div class="cap">La trajectoire d'un mobile filmé devient un tableau de coordonnées exploitables. La qualité du pointage fait toute la qualité des courbes.</div>
+      </div>
+      <div class="methode"><div class="t">Pas à pas</div>
+        <ol>
+          <li><strong>Édition → Analyse de séquences vidéos</strong>, puis ouvrir le fichier vidéo du sujet.</li>
+          <li><strong>Sélection de l'origine</strong> : cliquer le point choisi comme (0 ; 0) — souvent la position initiale du mobile — et orienter les axes.</li>
+          <li><strong>Étalonnage</strong> (« sélection de l'étalon ») : cliquer les deux extrémités d'un objet de longueur connue visible à l'image (règle, porte…) et entrer sa valeur. Sans cette étape, tout serait en pixels !</li>
+          <li><strong>Pointer</strong> : image par image, cliquer la position du mobile (toujours le même point du mobile — son centre). La vidéo avance automatiquement à chaque clic.</li>
+          <li>Fermer : les grandeurs <strong>Mouvement X</strong> et <strong>Mouvement Y</strong> apparaissent dans la liste des courbes. Les glisser sur un graphe, dériver pour les vitesses, calculer les énergies en feuille de calculs.</li>
+        </ol>
+      </div>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- ===== Exploiter ===== -->
+  <section class="part" id="t-exploit">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M6 20V9M12 20V4M18 20v-8"/></svg>Exploiter et conclure<small>La dernière partie de tout TP — et souvent la plus payante en points</small></h2>
+    <div class="prose">
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 7-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>Chiffres significatifs, incertitude, conclusion<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <ul>
+        <li><strong>Chiffres significatifs</strong> : le résultat d'un calcul en garde autant que la donnée qui en a le moins. On arrondit à la toute fin, jamais dans les étapes intermédiaires.</li>
+        <li><strong>Incertitude par répétition (type A)</strong> : si le sujet fait répéter n mesures, la valeur retenue est la moyenne, et l'incertitude-type se calcule à partir de l'écart-type (formule fournie par le sujet ou la calculatrice : <span class="m">u = s/√n</span>).</li>
+        <li><strong>Comparer à une référence</strong> : la question « le résultat est-il compatible ? » se traite avec l'écart normalisé fourni par le sujet : <span class="m">z = |m − m<sub class="u">réf</sub>|/u</span>. Si <span class="m">z ≤ 2</span> : compatible. Sinon : incompatible → on propose une cause d'écart <em>plausible et précise</em> (parallaxe, goutte en trop, étalonnage…), pas « erreur de manipulation ».</li>
+      </ul>
+      <div class="exemple"><div class="t">Conclusion type (3 phrases, toujours les mêmes)</div>
+        <p>« La mesure donne v = 336 m·s<sup>−1</sup> avec u(v) = 5 m·s<sup>−1</sup>. L'écart normalisé avec la valeur de référence (340 m·s<sup>−1</sup>) vaut z = 0,8 ≤ 2. Le résultat est donc compatible avec la valeur attendue : la mesure valide le modèle. »</p>
+      </div>
+      </div></details>
+    </div>
+    <a class="retour" href="#" onclick="go('accueil');return false;">← Retour au programme</a>
+  </section>
+</div>
+
+</main>
+<footer>Spé Physique-Chimie Terminale · construit sur les plans de travail, les TP et tes notes de cours · le réglage clair/sombre n'est pas mémorisé entre deux ouvertures (fichier autonome, sans stockage local).</footer>
+<script>
+function go(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('on');});
+  var page=document.getElementById('page-'+id);
+  if(page){page.classList.add('on');}
+  var noms={accueil:'', ch1:'Chapitre 1 · Transformations acides-bases', tpece:'TP · ECE — gestes et Latis Pro'};
+  document.getElementById('crumb').textContent = noms[id] || '';
+  window.scrollTo(0,0);
+}
+function basculeTheme(){
+  var h=document.documentElement;
+  var sombre = h.getAttribute('data-theme')==='sombre';
+  h.setAttribute('data-theme', sombre ? 'clair' : 'sombre');
+  document.getElementById('btnTheme').textContent = sombre ? 'Sombre' : 'Clair';
+}
+function filtreNiv(btn){
+  document.querySelectorAll('.exo-niveaux button').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  var niv=btn.getAttribute('data-niv');
+  document.querySelectorAll('#s-exos .exo').forEach(function(e){
+    e.style.display = (niv==='all' || e.classList.contains(niv)) ? '' : 'none';
+  });
+}
+document.querySelectorAll('.qcm-opt').forEach(function(opt){
+  opt.addEventListener('click', function(){
+    var exo=opt.closest('.exo');
+    if(exo.dataset.fait){return;}
+    exo.dataset.fait='1';
+    exo.querySelectorAll('.qcm-opt').forEach(function(o){
+      if(o.getAttribute('data-r')==='1'){o.classList.add('bon');}
+      else if(o===opt){o.classList.add('faux');}
+      o.disabled=true;
+    });
+    exo.querySelector('.qcm-exp').classList.add('vu');
+  });
+});
+</script>
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js');});}
+</script>
+</body>
+</html>
