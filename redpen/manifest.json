@@ -1,0 +1,25 @@
+{
+  "name": "The Red Pen — English C1",
+  "short_name": "Red Pen",
+  "description": "Grammaire & syntaxe anglaises B1→C1 — fiches, copies corrigées et exercices auto-corrigés",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0e1622",
+  "theme_color": "#c9a45c",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
