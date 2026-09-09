@@ -284,6 +284,26 @@ textarea.cit.filled{border-color:var(--rule);background:#fff;}
 .bq{border-left:2px solid var(--gilt-dim);margin:12px 0 16px 10px;padding:4px 18px;font-style:italic;
   font-size:.97rem;color:var(--ink-2);}
 
+/* atelier : copie / reecriture */
+.rewrite{margin:22px 0 34px;}
+.rw-step{font-family:var(--display);font-style:italic;font-size:1.05rem;color:#8A6E2E;margin:0 0 8px;}
+.rw-before{border-left:2px solid var(--ribbon);background:rgba(142,36,54,.045);padding:13px 18px;
+  font-size:.96rem;color:var(--ink-2);margin:0 0 14px;}
+.rw-before em{font-style:italic;}
+.rw-why{margin:0 0 16px;font-size:.96rem;}
+.rw-why b{color:var(--ribbon);}
+.rw-after{background:#fff;border:1px solid var(--rule);border-left:2px solid var(--gilt);
+  border-radius:2px;padding:20px 22px;margin:0 0 14px;}
+.rw-after p{font-size:1rem;line-height:1.72;margin-bottom:12px;}
+.rw-after p:last-child{margin-bottom:0;}
+.rw-move{border-top:1px solid var(--rule);padding-top:12px;margin-top:2px;font-size:.93rem;color:var(--ink-2);}
+.rw-move b{color:var(--ink);}
+.verdict{display:grid;gap:10px;margin:18px 0;}
+@media(min-width:640px){.verdict{grid-template-columns:repeat(3,1fr);}}
+.verdict div{background:var(--page-2);border-left:2px solid var(--gilt);padding:12px 15px;}
+.verdict .n{font-family:var(--display);font-size:1.5rem;color:var(--cloth);display:block;line-height:1.1;}
+.verdict .l{font-size:.88rem;color:var(--ink-2);}
+
 /* recherche */
 .search{position:fixed;inset:0;z-index:90;background:rgba(14,23,41,.6);display:none;}
 .search.open{display:block;}
@@ -353,6 +373,7 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
       <button data-route="epreuve" data-fr="L'épreuve" data-en="The Exam">L'épreuve</button>
       <button data-route="methode" data-fr="Méthode" data-en="Method">Méthode</button>
       <button data-route="oeuvres" data-fr="Œuvres" data-en="Set Texts">Œuvres</button>
+      <button data-route="atelier" data-fr="Atelier" data-en="Workshop">Atelier</button>
       <button data-route="outils" data-fr="Outils" data-en="Toolkit">Outils</button>
     </div>
     <div class="tools">
@@ -1432,6 +1453,323 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p data-lang="fr"><em>Brick Lane</em> (Monica Ali) : étude commencée en Première, à terminer en Terminale. Conformément à la règle, la section sera construite une fois l'étude achevée en classe — dis-moi alors jusqu'où vous êtes allés et transmets tes notes.</p>
     <p data-lang="en"><em>Brick Lane</em> (Monica Ali): study begun in Première, to be completed in the final year. As per our rule, the section will be built once classroom study is finished — tell me then how far you got and pass on your notes.</p>
     <p class="ph-marker">&lt;!-- SECTION-BRICK-LANE-ICI --&gt;</p>
+  </div>
+</div>
+</section>
+<section class="area" data-route="atelier" data-fr="Atelier" data-en="Workshop">
+<div class="pane" id="atelier-bilan" data-route="atelier/bilan" data-fr="Le bilan" data-en="The verdict">
+<h2 data-lang="fr">Le bilan</h2><h2 data-lang="en">The verdict</h2>
+  <p data-lang="fr">Deux copies rédigées en <b>deux heures, en temps limité</b>, en Première. <em>Dancing at Lughnasa</em> : 11/20, palier KP11. <em>Brick Lane</em> : 13/20, palier KP14. Les notes portées en haut de chaque copie — B1− puis 16/20, B2− puis 20/20 — sont les notes de <b>langue (LVA)</b>, pas de littérature.</p>
+  <p data-lang="en">Two essays written <b>under timed conditions, two hours each</b>, in Year 12. <em>Dancing at Lughnasa</em>: 11/20, band KP11. <em>Brick Lane</em>: 13/20, band KP14. The marks at the top of each script — B1− then 16/20, B2− then 20/20 — are the <b>language (LVA)</b> marks, not the literature ones.</p>
+
+  <div class="verdict">
+    <div><span class="n">16 &amp; 20</span><span class="l" data-lang="fr">langue</span><span class="l" data-lang="en">language</span></div>
+    <div><span class="n">11 &amp; 13</span><span class="l" data-lang="fr">littérature</span><span class="l" data-lang="en">literature</span></div>
+    <div><span class="n">KP17</span><span class="l" data-lang="fr">à portée : voir ci-dessous</span><span class="l" data-lang="en">within reach: see below</span></div>
+  </div>
+
+  <div class="margin-note">
+    <span class="mn-label" data-lang="fr">Ce que cet écart signifie</span>
+    <span class="mn-label" data-lang="en">What that gap means</span>
+    <p data-lang="fr">Ton anglais est noté 16 et 20. Ta littérature, 11 et 13. Ce n'est donc pas la langue qui te plafonne — et le pack d'exemplars du BFI le confirme : la copie notée 19/20 comporte des fautes d'anglais, ce que l'examinateur relève explicitement comme la preuve qu'on atteint le haut du barème sans expression parfaite. Ce qui te sépare de KP17, ce sont six habitudes de raisonnement, toutes identifiables et toutes réparables.</p>
+    <p data-lang="en">Your English is marked 16 and 20. Your literature, 11 and 13. Language is not the ceiling — and the BFI exemplar pack confirms it: the script awarded 19/20 contains errors of English, which the examiner explicitly notes as proof that the top band is reachable without perfect expression. What separates you from KP17 is six habits of reasoning, all identifiable and all fixable.</p>
+  </div>
+
+  <h3 data-lang="fr">Ce qui marche déjà — et qui vaut plus que ta note</h3>
+  <h3 data-lang="en">What already works — and is worth more than your mark</h3>
+
+  <ul class="dash">
+    <li data-lang="fr"><b>Tu repères des structures, pas seulement des répliques.</b> Avoir vu que Gerry sert à Agnes le compliment mot pour mot déjà servi à Chris — « You're a great dancer, Aggie » — c'est de l'ironie dramatique structurelle. Beaucoup de candidats ne la voient pas.</li>
+    <li data-lang="en"><b>You notice structures, not just lines.</b> Spotting that Gerry pays Agnes the compliment he has already paid Chris, word for word — "You're a great dancer, Aggie" — is structural dramatic irony. Many candidates never see it.</li>
+    <li data-lang="fr"><b>Tu entends les silences.</b> Sur <em>Brick Lane</em>, remarquer que Nazneen ne prononce jamais le mot « pregnant » : analyser une absence est une compétence de haut de barème.</li>
+    <li data-lang="en"><b>You hear silences.</b> On <em>Brick Lane</em>, noticing that Nazneen never says the word "pregnant": analysing an absence is a top-band skill.</li>
+    <li data-lang="fr"><b>Tu choisis des citations utiles.</b> Le rouge à lèvres de Chris, « That'd be you, Kate » de Maggie, la lecture du Coran : ce sont exactement les bons moments. Le problème n'est jamais le choix de la preuve.</li>
+    <li data-lang="en"><b>You pick usable quotations.</b> Chris's lipstick, Maggie's "That'd be you, Kate", the Qur'an reading: these are exactly the right moments. The evidence is never the problem.</li>
+  </ul>
+
+  <h3 data-lang="fr">Les six défauts, par ordre de coût</h3>
+  <h3 data-lang="en">The six flaws, in order of cost</h3>
+
+  <div class="tbl-wrap"><table>
+    <tbody><tr>
+      <th data-lang="fr">Le défaut</th><th data-lang="en">The flaw</th>
+      <th data-lang="fr">Les mots du prof</th><th data-lang="en">Your teacher's words</th>
+      <th data-lang="fr">Le geste correctif</th><th data-lang="en">The corrective move</th>
+    </tr>
+    <tr>
+      <td data-lang="fr"><b>1. Tu prêtes des pensées à l'auteur</b><br>« Friel demonstrates his thoughts: he thinks that women are naive. »</td>
+      <td data-lang="en"><b>1. You ascribe thoughts to the author</b><br>"Friel demonstrates his thoughts: he thinks that women are naive."</td>
+      <td data-lang="fr">« Don't ascribe ideas to the author » (en tête de copie) · « Don't make assumptions about what the author thinks! »</td>
+      <td data-lang="en">"Don't ascribe ideas to the author" (top of the script) · "Don't make assumptions about what the author thinks!"</td>
+      <td data-lang="fr">Sujet grammatical : <b>la pièce</b>, <b>la scène</b>, <b>le texte</b> — jamais l'écrivain. « The play stages… », « The scene withholds… »</td>
+      <td data-lang="en">Grammatical subject: <b>the play</b>, <b>the scene</b>, <b>the text</b> — never the writer. "The play stages…", "The scene withholds…"</td>
+    </tr>
+    <tr>
+      <td data-lang="fr"><b>2. « Society »</b><br>Barré trois fois dans la copie.</td>
+      <td data-lang="en"><b>2. "Society"</b><br>Struck through three times.</td>
+      <td data-lang="fr">« SOCIETY is a meaningless word » · « Don't write about SOCIETY. There is no monolithic thing like that. »</td>
+      <td data-lang="en">"SOCIETY is a meaningless word" · "Don't write about SOCIETY. There is no monolithic thing like that."</td>
+      <td data-lang="fr">Remplace par <b>un agent nommé</b> : Kate, Father Carlin, la paroisse, les voisines de Ballybeg, l'usine de gants.</td>
+      <td data-lang="en">Replace with <b>a named agent</b>: Kate, Father Carlin, the parish, the Ballybeg neighbours, the glove factory.</td>
+    </tr>
+    <tr>
+      <td data-lang="fr"><b>3. Tu ne réponds pas aux mots de la question</b><br>« Feminist » n'apparaît nulle part dans ta copie sur Lughnasa.</td>
+      <td data-lang="en"><b>3. You don't answer the words of the question</b><br>"Feminist" appears nowhere in your Lughnasa script.</td>
+      <td data-lang="fr">« Make sure you take all the words from the question explicitly into account, otherwise you end up a bit off topic. »</td>
+      <td data-lang="en">"Make sure you take all the words from the question explicitly into account, otherwise you end up a bit off topic."</td>
+      <td data-lang="fr">Cinq minutes de décomposition avant d'écrire : chaque mot de la question t'engage à quelque chose de précis.</td>
+      <td data-lang="en">Five minutes of unpacking before you write: every word of the question commits you to something specific.</td>
+    </tr>
+    <tr>
+      <td data-lang="fr"><b>4. Tu affirmes au lieu de démontrer</b></td>
+      <td data-lang="en"><b>4. You assert instead of demonstrating</b></td>
+      <td data-lang="fr">« HOW? WHEN? » · « strong and imprecise assertion. Be more careful » · « you're jumping to conclusions as if this were explicit »</td>
+      <td data-lang="en">"HOW? WHEN?" · "strong and imprecise assertion. Be more careful" · "you're jumping to conclusions as if this were explicit"</td>
+      <td data-lang="fr">Une affirmation forte réclame la phrase suivante : le mécanisme. Pas « la société l'empêche », mais <b>qui</b>, <b>par quel moyen</b>, <b>à quel moment de la pièce</b>.</td>
+      <td data-lang="en">A strong claim demands the next sentence: the mechanism. Not "society prevents her", but <b>who</b>, <b>by what means</b>, <b>at what point in the play</b>.</td>
+    </tr>
+    <tr>
+      <td data-lang="fr"><b>5. Tu cites sans analyser les mots</b><br>« The words calmed her stomach » : tu passes.</td>
+      <td data-lang="en"><b>5. You quote without analysing the words</b><br>"The words calmed her stomach": you move on.</td>
+      <td data-lang="fr">« Interesting wording that ought to be analysed » · « in your analysis of quotes, take all words into account, especially the ones that play the most deliberate »</td>
+      <td data-lang="en">"Interesting wording that ought to be analysed" · "in your analysis of quotes, take all words into account, especially the ones that seem the most deliberate"</td>
+      <td data-lang="fr">Choisis <b>deux mots</b> dans la citation et demande : pourquoi celui-là et pas son synonyme ? Le ventre, pas le cœur ni l'esprit.</td>
+      <td data-lang="en">Pick <b>two words</b> in the quotation and ask: why this one and not its synonym? The stomach, not the heart or the mind.</td>
+    </tr>
+    <tr>
+      <td data-lang="fr"><b>6. Tout est binaire</b><br>Oppression / libération, naïveté / lucidité.</td>
+      <td data-lang="en"><b>6. Everything is binary</b><br>Oppression / liberation, naivety / lucidity.</td>
+      <td data-lang="fr">« Avoid black on white simplistic thinking, focus on ambiguity instead » · « that's true but not all! »</td>
+      <td data-lang="en">"Avoid black on white simplistic thinking, focus on ambiguity instead" · "that's true but not all!"</td>
+      <td data-lang="fr">La formule à installer : <b>« Read one way… Read another… The play declines to settle it. »</b> C'est le geste qui sépare KP14 de KP20.</td>
+      <td data-lang="en">The formula to install: <b>"Read one way… Read another… The play declines to settle it."</b> That is the move separating KP14 from KP20.</td>
+    </tr>
+  </tbody></table></div>
+
+  <div class="method-note">
+    <span class="mn-label" data-lang="fr">L'ordre de bataille</span>
+    <span class="mn-label" data-lang="en">Order of battle</span>
+    <p data-lang="fr">Les défauts <b>1</b> et <b>2</b> sont mécaniques : une règle chacun, applicables dès la prochaine copie, et ils valent probablement deux points à eux seuls. Les défauts <b>3</b> et <b>6</b> sont ce qui sépare 13 de 17 : ils demandent de l'entraînement, pas une règle. Le <b>5</b> se travaille citation par citation, et tu as déjà une banque de vingt-et-une fiches pour ça.</p>
+    <p data-lang="en">Flaws <b>1</b> and <b>2</b> are mechanical: one rule each, applicable from your next essay onwards, and probably worth two marks between them. Flaws <b>3</b> and <b>6</b> are what separates 13 from 17: they need practice, not a rule. Flaw <b>5</b> is worked quotation by quotation, and you already have a bank of twenty-one entries for that.</p>
+  </div>
+
+</div>
+<div class="pane" id="atelier-lughnasa" data-route="atelier/lughnasa" data-fr="Lughnasa réécrit" data-en="Lughnasa rewritten">
+<div class="leaf" data-route="atelier/lughnasa/question" data-fr="Décomposer la question" data-en="Unpacking the question">
+<h2 data-lang="fr">Décomposer la question</h2><h2 data-lang="en">Unpacking the question</h2>
+<div class="card">
+    <span class="tag">To what extent is <em>Dancing at Lughnasa</em> a feminist play?</span>
+    <p data-lang="fr">Voilà la question à laquelle tu répondais. Le mot <em>feminist</em> n'apparaît pas une seule fois dans ta copie. C'est la cause principale du 11 : le barème plafonne à ce palier une dissertation qui, aussi solide soit-elle, ne répond pas à la question posée.</p>
+    <p data-lang="en">This is the question you were answering. The word <em>feminist</em> does not appear once in your script. That is the main cause of the 11: the mark scheme caps at that band any essay which, however sound, does not answer the question set.</p>
+  </div>
+
+  <p data-lang="fr">Chaque mot d'un sujet t'engage à quelque chose. Cinq minutes de décomposition avant d'écrire, et le hors-sujet devient presque impossible.</p>
+  <p data-lang="en">Every word of a question commits you to something. Five minutes of unpacking before you write, and drifting off topic becomes almost impossible.</p>
+
+  <div class="tbl-wrap"><table>
+    <tbody><tr>
+      <th data-lang="fr">Le mot</th><th data-lang="en">The word</th>
+      <th data-lang="fr">Ce à quoi il t'engage</th><th data-lang="en">What it commits you to</th>
+    </tr>
+    <tr>
+      <td><b>To what extent</b></td>
+      <td data-lang="fr">Une réponse <b>graduée</b>, jamais oui ou non. Le correcteur cherche un mot de degré dans ta thèse : <em>largely</em>, <em>only partially</em>, <em>in one sense but not another</em>. Sans ce mot, tu n'as pas répondu.</td>
+      <td data-lang="en">A <b>graded</b> answer, never yes or no. The examiner looks for a word of degree in your thesis: <em>largely</em>, <em>only partially</em>, <em>in one sense but not another</em>. Without that word, you have not answered.</td>
+    </tr>
+    <tr>
+      <td><b>feminist</b></td>
+      <td data-lang="fr">Un terme <b>contesté</b> : il faut le définir avant de s'en servir. La copie du pack notée 19/20 est explicitement créditée pour cela — <em>« defined terms »</em>. Trois sens au moins sont disponibles ici, et la pièce ne se comporte pas pareil dans les trois.</td>
+      <td data-lang="en">A <b>contested</b> term: define it before using it. The 19/20 script in the exemplar pack is explicitly credited for exactly this — <em>"defined terms"</em>. At least three senses are available here, and the play behaves differently in each.</td>
+    </tr>
+    <tr>
+      <td><b>play</b></td>
+      <td data-lang="fr">C'est une <b>pièce</b>, pas un roman. Une partie de ta preuve doit venir de la scène : didascalies, entrées et sorties, silences, musique, ce que le public voit et que les personnages ignorent. Ta copie n'utilise presque que des répliques.</td>
+      <td data-lang="en">It is a <b>play</b>, not a novel. Part of your evidence must come from the stage: stage directions, entrances and exits, silences, music, what the audience sees and the characters do not. Your script uses almost nothing but dialogue.</td>
+    </tr>
+    <tr>
+      <td><b>is</b></td>
+      <td data-lang="fr">Présent. La question porte sur <b>ce que le texte fait</b>, pas sur ce que Friel pensait en 1990. À elle seule, cette remarque supprime ton défaut le plus coûteux.</td>
+      <td data-lang="en">Present tense. The question is about <b>what the text does</b>, not what Friel believed in 1990. On its own, this observation removes your costliest flaw.</td>
+    </tr>
+  </tbody></table></div>
+
+  <div class="method-note">
+    <span class="mn-label" data-lang="fr">Les trois sens de « feminist » disponibles ici</span>
+    <span class="mn-label" data-lang="en">The three senses of "feminist" available here</span>
+    <p data-lang="fr"><b>1.</b> La pièce <em>expose</em> les conditions qui contraignent la vie des femmes. <b>2.</b> La pièce <em>approuve</em> leur sortie de ces conditions. <b>3.</b> La pièce leur donne <em>l'autorité de raconter</em> leur propre expérience. Ce sont trois choses différentes, et <em>Lughnasa</em> ne répond pas de la même façon aux trois — c'est exactement là qu'une réponse graduée devient possible.</p>
+    <p data-lang="en"><b>1.</b> The play <em>exposes</em> the conditions constraining women's lives. <b>2.</b> The play <em>endorses</em> their escape from those conditions. <b>3.</b> The play grants them <em>the authority to narrate</em> their own experience. These are three different things, and <em>Lughnasa</em> does not answer the same way to all three — which is precisely where a graded answer becomes possible.</p>
+  </div>
+</div>
+<div class="leaf" data-route="atelier/lughnasa/intro" data-fr="L'introduction et la thèse" data-en="The introduction and thesis">
+<h2 data-lang="fr">L'introduction et la thèse</h2><h2 data-lang="en">The introduction and thesis</h2>
+<div class="rewrite">
+    <div class="rw-step" data-lang="fr">Ce que tu as écrit</div>
+    <div class="rw-step" data-lang="en">What you wrote</div>
+    <div class="rw-before">
+      <p><em>Dancing at Lughnasa is a play wrote in 1990. Its playwright, Brian Friel, represents an Irish family Mundy. The family is composed of five Mundy sisters, a priest and the youngest sister's son. They stay in their home, isolated in County Donegal. Although the play suggests that women must exit the patriarchal society and its repetitive system, it reveals a harsh critique of women's personalities through their choices and way of living when they are free.</em></p>
+    </div>
+
+    <div class="rw-step" data-lang="fr">Le problème</div>
+    <div class="rw-step" data-lang="en">The problem</div>
+    <div class="rw-why">
+      <p data-lang="fr">Les trois premières phrases sont du résumé : elles ne rapportent aucun point. La thèse, elle, existe — c'est déjà mieux que beaucoup de copies — mais elle répond à une autre question que celle posée. <b>Aucun mot de degré</b>, <b>aucune définition de « feminist »</b>, et le verbe « reveals » prépare déjà l'idée que la pièce livre l'opinion de son auteur.</p>
+      <p data-lang="en">The first three sentences are plot summary: they earn nothing. The thesis does exist — better than many scripts manage — but it answers a different question from the one set. <b>No word of degree</b>, <b>no definition of "feminist"</b>, and the verb "reveals" already sets up the idea that the play delivers its author's opinion.</p>
+    </div>
+
+    <div class="rw-step" data-lang="fr">Version visant KP17–20</div>
+    <div class="rw-step" data-lang="en">A KP17–20 version</div>
+    <div class="rw-after">
+      <p>A play may be called feminist in at least three distinct senses: because it exposes the conditions that constrain women's lives, because it endorses their escape from those conditions, or because it grants women the authority to narrate their own experience. <em>Dancing at Lughnasa</em> satisfies the first almost completely, the second only partially, and the third not at all — the five Mundy sisters are remembered, framed and finally dismissed by a man, and the audience never hears the summer of 1936 except through Michael's voice.</p>
+      <p>This essay will argue that the play's feminism lies less in any position it takes than in the pressure it places on its audience. Friel is exact about the machinery closing around five unmarried women in rural Donegal, and consistently withholds the judgement that would let us settle what we have watched. To call the play feminist is therefore accurate about its diagnosis and misleading about its politics.</p>
+    </div>
+
+    <div class="rw-move">
+      <p data-lang="fr"><b>Le geste.</b> Trois changements, aucun n'exige un anglais meilleur que le tien. <b>(a)</b> On définit le terme contesté avant de s'en servir — trois sens, énoncés en une phrase. <b>(b)</b> On gradue : <em>almost completely / only partially / not at all</em>. La question « to what extent » est répondue avant la fin du premier paragraphe. <b>(c)</b> Le résumé disparaît, et l'observation sur Michael narrateur — que ta copie ne fait jamais — remplace quatre lignes d'intrigue. C'est une idée de haut de barème : une pièce sur cinq femmes dont aucune ne raconte l'histoire.</p>
+      <p data-lang="en"><b>The move.</b> Three changes, none requiring better English than yours. <b>(a)</b> The contested term is defined before use — three senses, in one sentence. <b>(b)</b> It is graded: <em>almost completely / only partially / not at all</em>. The "to what extent" question is answered before the end of the first paragraph. <b>(c)</b> The summary goes, and the observation about Michael as narrator — which your script never makes — replaces four lines of plot. It is a top-band idea: a play about five women, none of whom tells the story.</p>
+    </div>
+  </div>
+</div>
+<div class="leaf" data-route="atelier/lughnasa/kate" data-fr="Paragraphe 1 — Kate" data-en="Paragraph 1 — Kate">
+<h2 data-lang="fr">Paragraphe 1 — Kate</h2><h2 data-lang="en">Paragraph 1 — Kate</h2>
+<div class="rewrite">
+    <div class="rw-step" data-lang="fr">Ce que tu as écrit</div>
+    <div class="rw-step" data-lang="en">What you wrote</div>
+    <div class="rw-before">
+      <p><em>First of all, Friel highlights the negative patriarchal system that restrains women's life. When Kate says "For god's sake, Rose, shut up, would you?" responding to Rose's provocations, she talks in small words and curses, even wildly. The audience can feel the anger that Kate keeps during his repression due to the patriarchal system. This strong emotion makes the reader shocked and highlights the difficulty of being restrained as a woman.</em></p>
+    </div>
+
+    <div class="rw-step" data-lang="fr">Le problème</div>
+    <div class="rw-step" data-lang="en">The problem</div>
+    <div class="rw-why">
+      <p data-lang="fr">C'est le paragraphe le plus annoté : <em>« poorly worded »</em>, <em>« you're jumping to conclusions as if this were explicit »</em>, et « the patriarchal system » souligné. Trois défauts empilés. <b>Le mécanisme est absent</b> : « due to the patriarchal system » ne nomme personne. <b>L'affirmation devance la preuve</b> : « the audience can feel » est indémontrable. Et surtout, <b>tu passes à côté de ta meilleure carte</b> — Kate est simultanément la geôlière et la plus exposée des cinq, et ta copie ne le voit pas.</p>
+      <p data-lang="en">This is your most heavily annotated paragraph: <em>"poorly worded"</em>, <em>"you're jumping to conclusions as if this were explicit"</em>, and "the patriarchal system" underlined. Three flaws stacked. <b>The mechanism is missing</b>: "due to the patriarchal system" names nobody. <b>The claim outruns the evidence</b>: "the audience can feel" cannot be demonstrated. And above all, <b>you miss your best card</b> — Kate is at once the jailer and the most exposed of the five, and your script never sees it.</p>
+    </div>
+
+    <div class="rw-step" data-lang="fr">Version visant KP17–20</div>
+    <div class="rw-step" data-lang="en">A KP17–20 version</div>
+    <div class="rw-after">
+      <p>Kate's authority inside the cottage is real, and it is borrowed. She polices her sisters' speech — "shut up, would you?" — with a sharpness that has no equivalent anywhere else in her language, and the play is careful to show where that sharpness comes from. Her wage from the parish school is the household's only reliable income, and she holds it at Father Carlin's discretion; by the second act she has lost it, and the loss is announced in a single sentence, without scene or protest.</p>
+      <p>When she forbids her sisters the harvest dance, then, she is not enforcing an abstract system. She is protecting the post that feeds seven people, from a priest who can withdraw it and eventually does. The play thereby refuses the simplest feminist shape available to it, in which women's constraint arrives from men and is resisted by women. Here the constraint is transmitted by a woman, at cost to herself, and her cruelty is audible as fear.</p>
+    </div>
+
+    <div class="rw-move">
+      <p data-lang="fr"><b>Le geste.</b> « The patriarchal system » a disparu, remplacé par ce qui produit réellement l'effet : <b>un salaire, une école paroissiale, un prêtre nommé, un renvoi</b>. C'est la règle n°2 appliquée. Note aussi que la preuve devient scénique — la perte du poste arrive « sans scène ni protestation », ce qui répond au mot <em>play</em> de la question. Et la dernière phrase installe l'ambiguïté que ton prof réclamait : Kate est à la fois l'oppresseur et l'opprimée, sans que la pièce tranche.</p>
+      <p data-lang="en"><b>The move.</b> "The patriarchal system" is gone, replaced by what actually produces the effect: <b>a wage, a parish school, a named priest, a dismissal</b>. That is rule 2 applied. Note too that the evidence turns theatrical — the loss of the post arrives "without scene or protest", which answers the word <em>play</em> in the question. And the last sentence installs the ambiguity your teacher was asking for: Kate is both oppressor and oppressed, and the play does not adjudicate.</p>
+    </div>
+  </div>
+</div>
+<div class="leaf" data-route="atelier/lughnasa/chris" data-fr="Paragraphe 2 — le rouge à lèvres" data-en="Paragraph 2 — the lipstick">
+<h2 data-lang="fr">Paragraphe 2 — le rouge à lèvres</h2><h2 data-lang="en">Paragraph 2 — the lipstick</h2>
+<div class="rewrite">
+    <div class="rw-step" data-lang="fr">Ce que tu as écrit</div>
+    <div class="rw-step" data-lang="en">What you wrote</div>
+    <div class="rw-before">
+      <p><em>Additionally, at the beginning of the play, Chris asks herself: "D'you know what I think I might do? I think I just might start wearing lipstick." The symbol of the lipstick is meaningful; we can use it to mask ourselves. Thus, Chris decides to fuel the engine of oppression by erasing her real feelings. Therefore, Friel describes women as people who collaborate with society to stay jailed.</em></p>
+    </div>
+
+    <div class="rw-step" data-lang="fr">Le problème</div>
+    <div class="rw-step" data-lang="en">The problem</div>
+    <div class="rw-why">
+      <p data-lang="fr">La citation est excellente et l'analyse la gâche en deux temps. D'abord <b>le binaire</b> : le rouge à lèvres ne peut être qu'un instrument d'oppression, jamais autre chose. Ensuite <b>le défaut n°1 dans sa forme la plus nette</b> : « Friel describes women as people who collaborate » — c'est une opinion prêtée à un homme vivant, pas une lecture d'une pièce. Le prof barre « society » au passage. Enfin tu ne regardes pas <b>les mots de la citation</b> : « I think I just might » est l'une des phrases les plus hésitantes de toute la pièce, et tu ne la commentes pas.</p>
+      <p data-lang="en">The quotation is excellent and the analysis spoils it twice over. First <b>the binary</b>: the lipstick can only be an instrument of oppression, never anything else. Then <b>flaw 1 in its clearest form</b>: "Friel describes women as people who collaborate" is an opinion attributed to a living man, not a reading of a play. Your teacher strikes "society" in passing. Finally you never look at <b>the words of the quotation</b>: "I think I just might" is one of the most hesitant phrases in the entire play, and you leave it uncommented.</p>
+    </div>
+
+    <div class="rw-step" data-lang="fr">Version visant KP17–20</div>
+    <div class="rw-step" data-lang="en">A KP17–20 version</div>
+    <div class="rw-after">
+      <p>Chris's decision to wear lipstick is the point at which the play's feminism becomes hardest to settle, and the hesitancy is written into the line itself. "I think I just might" stacks three hedges — a verb of opinion, an adverb of minimisation, a modal of the weakest kind — around an action that costs nothing and harms no one. She is asking permission of herself, and there is nobody else in the room from whom permission could be sought.</p>
+      <p>Read one way, this is capitulation: she is making herself ready for a man who has already left once and will leave again, and the lipstick is a mask over the face the play has told us alters when she is happy. Read another, it is the only act of self-fashioning her circumstances permit. She has no wage, no property, no prospect of marriage and a child born outside it; the tube of lipstick is the single object in the cottage over which she exercises a decision. The play declines to tell us which reading to take, and that refusal is the argument: the same object is at once the instrument of her subjection and the last territory she governs.</p>
+    </div>
+
+    <div class="rw-move">
+      <p data-lang="fr"><b>Le geste.</b> Trois choses. <b>(a)</b> On analyse les mots : « I think I just might » est décomposé en trois atténuateurs empilés — c'est la règle n°5, et ça occupe une phrase entière. <b>(b)</b> On installe la double lecture avec la formule à mémoriser : <em>Read one way… Read another… The play declines…</em>. <b>(c)</b> Friel a disparu de la phrase. Ce n'est plus lui qui « décrit les femmes », c'est la pièce qui refuse de trancher — et ce refus devient lui-même l'argument, ce qui est un mouvement de KP20.</p>
+      <p data-lang="en"><b>The move.</b> Three things. <b>(a)</b> The words are analysed: "I think I just might" is broken into three stacked hedges — that is rule 5, and it fills a whole sentence. <b>(b)</b> The double reading is installed with the formula worth memorising: <em>Read one way… Read another… The play declines…</em>. <b>(c)</b> Friel has left the sentence. It is no longer he who "describes women"; it is the play that refuses to settle — and that refusal becomes the argument itself, which is a KP20 move.</p>
+    </div>
+  </div>
+</div>
+<div class="leaf" data-route="atelier/lughnasa/gerry" data-fr="Paragraphe 3 — Gerry" data-en="Paragraph 3 — Gerry">
+<h2 data-lang="fr">Paragraphe 3 — Gerry</h2><h2 data-lang="en">Paragraph 3 — Gerry</h2>
+<div class="rewrite">
+    <div class="rw-step" data-lang="fr">Ce que tu as écrit</div>
+    <div class="rw-step" data-lang="en">What you wrote</div>
+    <div class="rw-before">
+      <p><em>But the most striking is when he repeats the exact same words he said to Chris, but this time, to Agnes: "You're a great dancer, Aggie. You should be a professional dancer". Agnes continues to dance with him, demonstrating that she lets Gerry seducing her, while knowing that he is the father of her nephew. Thereby, Brian Friel demonstrates his thoughts: he thinks that women are naive and always under influence in their relationships.</em></p>
+    </div>
+
+    <div class="rw-step" data-lang="fr">Le problème</div>
+    <div class="rw-step" data-lang="en">The problem</div>
+    <div class="rw-why">
+      <p data-lang="fr">C'est ta meilleure observation de toute la copie, et la dernière phrase l'annule. Repérer une répétition mot pour mot d'un acte à l'autre, c'est voir la structure de la pièce et non sa surface — peu de candidats le font. Puis arrive « Brian Friel demonstrates his thoughts », et l'analyse devient de la lecture de pensée. Le prof écrit en marge : <em>« Don't make assumptions about what the author thinks! »</em> Rien d'autre n'était à changer dans ce paragraphe.</p>
+      <p data-lang="en">This is your best observation in the whole script, and the last sentence cancels it. Spotting a word-for-word repetition across two acts is seeing the play's structure rather than its surface — few candidates do it. Then "Brian Friel demonstrates his thoughts" arrives, and the analysis becomes mind-reading. Your teacher writes in the margin: <em>"Don't make assumptions about what the author thinks!"</em> Nothing else in this paragraph needed changing.</p>
+    </div>
+
+    <div class="rw-step" data-lang="fr">Version visant KP17–20</div>
+    <div class="rw-step" data-lang="en">A KP17–20 version</div>
+    <div class="rw-after">
+      <p>Gerry's charm is exposed not by anything a character says about him but by repetition across the two acts. "You're a great dancer, Aggie" is, word for word, the compliment already paid to Chris; the audience holds both scenes together and hears the recycling, while each sister hears the compliment only once. This is dramatic irony working structurally rather than locally, and it achieves something no speech could: it implicates us, since we know Agnes is being handled and we watch her go on dancing anyway.</p>
+      <p>What the moment establishes is not that women are credulous. It is that Gerry's language is a currency he can spend twice without devaluation, and that the sisters' isolation — no visitors, no other men, one wireless that works when it chooses — is what allows a counterfeit to pass. The play locates the flaw in the economy of the cottage rather than in the character of the women inside it, and that distinction is where its feminism is strongest.</p>
+    </div>
+
+    <div class="rw-move">
+      <p data-lang="fr"><b>Le geste.</b> Même preuve, même observation, une seule chose change : la conclusion porte sur <b>la technique de la pièce et la situation des personnages</b>, plus sur les croyances de l'écrivain. On nomme aussi le procédé — <em>structural dramatic irony</em> — ce qui te fait gagner du crédit sur le critère « appreciation of the writer's method ». Et la phrase « it implicates us » est un mouvement de haut de barème : l'examinateur a explicitement crédité une copie du pack pour sa <em>sensitivity to the audience response</em>.</p>
+      <p data-lang="en"><b>The move.</b> Same evidence, same observation, one thing changes: the conclusion is about <b>the play's technique and the characters' situation</b>, no longer about the writer's beliefs. The device is also named — <em>structural dramatic irony</em> — which earns credit under "appreciation of the writer's method". And "it implicates us" is a top-band move: the examiner explicitly credited one script in the pack for its <em>sensitivity to the audience response</em>.</p>
+    </div>
+  </div>
+</div>
+<div class="leaf" data-route="atelier/lughnasa/fin" data-fr="La conclusion" data-en="The conclusion">
+<h2 data-lang="fr">La conclusion</h2><h2 data-lang="en">The conclusion</h2>
+<div class="rewrite">
+    <div class="rw-step" data-lang="fr">Ce que tu as écrit</div>
+    <div class="rw-step" data-lang="en">What you wrote</div>
+    <div class="rw-before">
+      <p><em>In a nutshell, the play invites women to leave the cyclic patriarchal system. However, he still critics human personalities, especially feminine ones. He describes the gender as naive and easy to influence, whether in the society or in their own choices as a human. They contribute to their own oppression, that they should exit, because of their nature.</em></p>
+    </div>
+
+    <div class="rw-step" data-lang="fr">Le problème</div>
+    <div class="rw-step" data-lang="en">The problem</div>
+    <div class="rw-why">
+      <p data-lang="fr">La conclusion concentre tes trois défauts les plus chers. Le « he » est entouré par le prof : la pièce est redevenue un homme. « Society » est barré une dernière fois. Et <b>« because of their nature »</b> est la phrase la plus coûteuse de la copie : elle attribue l'oppression des personnages à une essence féminine, ce qui n'est ni dans le texte ni défendable — et qui, sur une question portant précisément sur le féminisme, se lit comme une réponse à côté. Rien de tout cela ne vient d'un défaut d'anglais.</p>
+      <p data-lang="en">The conclusion concentrates your three costliest flaws. Your teacher circles "he": the play has become a man again. "Society" is struck one last time. And <b>"because of their nature"</b> is the most expensive sentence in the script: it attributes the characters' oppression to a feminine essence, which is neither in the text nor defensible — and which, on a question about feminism specifically, reads as an answer beside the point. None of this comes from a weakness in English.</p>
+    </div>
+
+    <div class="rw-step" data-lang="fr">Version visant KP17–20</div>
+    <div class="rw-step" data-lang="en">A KP17–20 version</div>
+    <div class="rw-after">
+      <p>To call <em>Dancing at Lughnasa</em> a feminist play is accurate about its diagnosis and misleading about its politics. No play of its decade is more exact about the machinery that closes around five unmarried women in 1936 Donegal: the hand-knitting that vanishes when a factory opens in the town, the schoolteacher's post held at a priest's discretion, the dance they are old enough to want and not permitted to attend.</p>
+      <p>But diagnosis is not advocacy. The sisters are never shown choosing constraint out of some weakness in them; they are shown with a range of available actions so narrow that the only exit Agnes and Rose find is to disappear into London and die there, and the play delivers that ending in a monologue, off stage, in the past tense, so that no one can intervene. If the play argues anything, it is that "why did they not leave?" is the wrong question. That is a colder feminism than one which supplies an answer, and a more demanding one.</p>
+    </div>
+
+    <div class="rw-move">
+      <p data-lang="fr"><b>Le geste.</b> Une conclusion qui reformule au lieu de répéter. Elle rappelle le degré annoncé en introduction — <em>accurate about its diagnosis, misleading about its politics</em> — puis apporte une preuve neuve : le sort d'Agnes et Rose, raconté hors scène et au passé, de sorte que le public ne peut rien empêcher. C'est encore une preuve scénique, donc une réponse au mot <em>play</em>. Et la dernière phrase ouvre au lieu de fermer, ce qui est précisément ce que le barème appelle <em>a mature, imaginative response</em>.</p>
+      <p data-lang="en"><b>The move.</b> A conclusion that reframes instead of repeating. It restates the degree announced in the introduction — <em>accurate about its diagnosis, misleading about its politics</em> — then brings fresh evidence: the fate of Agnes and Rose, narrated off stage and in the past tense, so that the audience can prevent nothing. That is theatrical evidence again, and so an answer to the word <em>play</em>. And the last sentence opens rather than closes, which is exactly what the mark scheme calls <em>a mature, imaginative response</em>.</p>
+    </div>
+  </div>
+
+  <div class="margin-note">
+    <span class="mn-label" data-lang="fr">Ce que cette réécriture n'a pas fait</span>
+    <span class="mn-label" data-lang="en">What this rewrite did not do</span>
+    <p data-lang="fr">Elle n'a introduit aucune citation que tu n'avais pas, aucune connaissance que tu n'as pas, et aucun anglais plus difficile que le tien. Les quatre citations sont les tiennes. Ce qui a changé tient en cinq gestes : définir le terme, nommer l'agent, analyser les mots, tenir deux lectures, et parler de la pièce au lieu de l'auteur.</p>
+    <p data-lang="en">It introduced no quotation you did not have, no knowledge you do not possess, and no English harder than your own. All four quotations are yours. What changed comes down to five moves: define the term, name the agent, analyse the words, hold two readings, and write about the play rather than the author.</p>
+  </div>
+</div>
+
+</div>
+<div class="pane" id="atelier-bricklane" data-route="atelier/bricklane" data-fr="Brick Lane réécrit" data-en="Brick Lane rewritten">
+<h2 data-lang="fr">Brick Lane réécrit</h2><h2 data-lang="en">Brick Lane rewritten</h2>
+  <div class="placeholder">
+    <span class="eyebrow" data-lang="fr">Question : « Is it fair to say that Nazneen is a victim of fate in the first four chapters of Brick Lane? »</span>
+    <span class="eyebrow" data-lang="en">Question: "Is it fair to say that Nazneen is a victim of fate in the first four chapters of Brick Lane?"</span>
+    <p data-lang="fr">Copie de 13/20, palier KP14. Même traitement que pour Lughnasa : décomposition de la question mot à mot (<em>fair</em>, <em>victim</em>, <em>fate</em>, <em>first four chapters</em>), puis réécriture paragraphe par paragraphe. L’accent portera sur le défaut n° 5 — le prof relève « interesting wording that ought to be analysed » sur « the words calmed her stomach », et cette citation vaut à elle seule un paragraphe entier.</p>
+    <p data-lang="en">A 13/20 script, band KP14. Same treatment as Lughnasa: word-by-word unpacking of the question (<em>fair</em>, <em>victim</em>, <em>fate</em>, <em>first four chapters</em>), then a paragraph-by-paragraph rewrite. The focus will be flaw 5 — your teacher notes "interesting wording that ought to be analysed" against "the words calmed her stomach", and that quotation is worth a full paragraph on its own.</p>
+  </div>
+</div>
+<div class="pane" id="atelier-exercices" data-route="atelier/exercices" data-fr="Exercices ciblés" data-en="Targeted drills">
+<h2 data-lang="fr">Exercices ciblés</h2><h2 data-lang="en">Targeted drills</h2>
+  <div class="placeholder">
+    <span class="eyebrow" data-lang="fr">Cinq exercices courts, construits sur tes propres phrases</span>
+    <span class="eyebrow" data-lang="en">Five short drills, built from your own sentences</span>
+    <p data-lang="fr">À venir : décomposer une question en cinq minutes · remplacer « society » par un agent nommé · réécrire six phrases qui prêtent des pensées à l’auteur · analyser deux mots d’une citation · écrire une phrase qui tient deux lectures. Chaque exercice partira de phrases tirées de tes deux copies, avec corrigé.</p>
+    <p data-lang="en">To come: unpack a question in five minutes · replace "society" with a named agent · rewrite six sentences that ascribe thoughts to the author · analyse two words of a quotation · write one sentence holding two readings. Each drill will start from sentences taken out of your own two scripts, with model answers.</p>
   </div>
 </div>
 </section>
