@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-currentlang="fr"><head>
+<html lang="fr" data-currentlang="fr" class="js"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>ACL Écrit — British Literature · BFI 2027</title>
@@ -152,12 +152,18 @@ html[data-currentlang="en"] em[data-lang="en"]{display:inline;}
 /* ══════════ LA PAGE ══════════ */
 main{padding:26px 18px 100px;}
 @media(min-width:900px){main{padding:34px 0 120px 40px;}}
-.area{display:none;}
-.area.on{display:block;}
-.pane{display:none;}
-.pane.on{display:block;}
-.leaf{display:none;}
-.leaf.on{display:block;}
+/* Sans JS, tout reste affiche : le site se degrade en une longue page lisible. */
+.area,.pane,.leaf{display:block;}
+html.js .area,html.js .pane,html.js .leaf{display:none;}
+html.js .area.on,html.js .pane.on,html.js .leaf.on{display:block;}
+html.js .pane.on.showall .leaf{display:block;}
+html.js .pane.on.showall .leaf + .leaf{margin-top:52px;padding-top:34px;border-top:1px solid var(--rule);}
+.showall-bar{display:none;margin:0 0 20px;}
+html.js .pane.on .showall-bar{display:block;}
+.showall-bar button{font-family:var(--body);font-size:.86rem;color:var(--ink-2);background:none;
+  border:1px solid var(--rule);border-radius:2px;padding:7px 13px;cursor:pointer;}
+.showall-bar button:hover{border-color:var(--gilt);color:var(--ink);}
+.showall-bar button.on{border-color:var(--gilt);background:rgba(196,160,82,.12);color:var(--ink);}
 .pane,.leaf{max-width:52rem;}
 main p,main li,main .card,main .margin-note,main .method-note,main .placeholder,
 main .cit-entry,main ul.dash,main ol.steps,main .check,main .filter{max-width:var(--measure);}
@@ -304,6 +310,7 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
   font-family:var(--display);font-style:italic;font-size:.92rem;color:var(--ink-2);}
 @media(min-width:900px){footer{padding-left:40px;}}
 </style>
+<noscript><style>html.js .area,html.js .pane,html.js .leaf{display:block!important;}.topbar,.trail,.edge{display:none!important;}</style></noscript>
 </head>
 <body>
 
@@ -362,8 +369,8 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
 <div class="frame">
   <aside class="edge" id="edge"></aside>
   <main id="main">
-<section class="area" data-route="epreuve" data-fr="L'épreuve" data-en="The Exam">
-<div class="pane" id="epreuve-format" data-route="epreuve/format" data-fr="Le format" data-en="The shape of the paper">
+<section class="area on" data-route="epreuve" data-fr="L'épreuve" data-en="The Exam">
+<div class="pane on" id="epreuve-format" data-route="epreuve/format" data-fr="Le format" data-en="The shape of the paper">
 <h2 data-lang="fr">Le format</h2><h2 data-lang="en">The shape of the paper</h2>
 
   <p data-lang="fr">L'épreuve écrite d'ACL britannique est l'équivalent d'un A-Level de littérature anglaise : elle compte pour un <b>coefficient 20</b>, dure <b>quatre heures</b>, se passe entièrement <b>en anglais</b>, et les sujets comme la modération des copies sont réalisés en partenariat avec Cambridge International Education. Elle remplace l'épreuve de LVA du tronc commun.</p>
@@ -1598,6 +1605,28 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
 
   /* ---------- affichage ---------- */
   var state = null;
+  var showAll = false;
+
+  function injectShowAll() {
+    areasEl.forEach(function (a) {
+      kids(a, 'pane').forEach(function (p) {
+        if (!kids(p, 'leaf').length) return;
+        var bar = document.createElement('div');
+        bar.className = 'showall-bar';
+        bar.innerHTML = '<button type="button" data-showall="1"></button>';
+        p.insertBefore(bar, p.firstChild);
+      });
+    });
+  }
+
+  function labelShowAll() {
+    $$('.showall-bar button').forEach(function (b) {
+      b.textContent = showAll
+        ? (LANG === 'fr' ? 'Revenir section par section' : 'Back to one section at a time')
+        : (LANG === 'fr' ? 'Tout afficher sur une page' : 'Show everything on one page');
+      b.classList.toggle('on', showAll);
+    });
+  }
 
   function show(hash, keepScroll) {
     var s = resolve(hash);
@@ -1608,6 +1637,7 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
       kids(a, 'pane').forEach(function (p) {
         var pOn = on && p === s.pane;
         p.classList.toggle('on', pOn);
+        p.classList.toggle('showall', pOn && showAll);
         kids(p, 'leaf').forEach(function (l) { l.classList.toggle('on', pOn && l === s.leaf); });
       });
     });
@@ -1618,7 +1648,15 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     });
     renderEdge();
     renderTrail();
-    if (!keepScroll) window.scrollTo({ top: 0, behavior: 'auto' });
+    labelShowAll();
+    if (keepScroll) return;
+    if (showAll && s.leaf) {
+      var y = s.leaf.getBoundingClientRect().top + window.pageYOffset -
+              (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--bar'), 10) || 0) - 12;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'auto' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
   }
 
   function go(route, e) {
@@ -1760,6 +1798,7 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     $('#btn-en').classList.toggle('on', l === 'en');
     $$('.areas button').forEach(function (b) { b.textContent = b.getAttribute('data-' + l); });
     IDX = null;
+    labelShowAll();
     if (state) { renderEdge(); renderTrail(); }
     if (sheet.classList.contains('open')) openSheet();
   }
@@ -1850,6 +1889,14 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     closeSearch();
     go(b.getAttribute('data-go'));
   });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-showall]') : null;
+    if (!b) return;
+    showAll = !showAll;
+    show(location.hash, true);
+    labelShowAll();
+    if (!showAll) window.scrollTo({ top: 0, behavior: 'auto' });
+  });
   trailBtn.addEventListener('click', openSheet);
   $('#sheet-close').addEventListener('click', closeSheet);
   sheet.addEventListener('click', function (e) { if (e.target === sheet) closeSheet(); });
@@ -1866,8 +1913,17 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
   window.addEventListener('resize', measure);
 
   /* ---------- démarrage ---------- */
+  injectShowAll();
   initCitations();
-  show(location.hash);
+  document.documentElement.classList.add('js');
+  try {
+    show(location.hash);
+  } catch (err) {
+    // Le routeur a echoue : on retire le mode JS pour que la totalite du contenu
+    // reste lisible en une seule page plutot que d'afficher une page vide.
+    document.documentElement.classList.remove('js');
+    throw err;
+  }
   var refit = function () { $$('textarea.cit').forEach(function (a) { a.style.height = 'auto'; a.style.height = Math.max(70, a.scrollHeight + 2) + 'px'; }); };
   refit();
   window.addEventListener('resize', refit);
