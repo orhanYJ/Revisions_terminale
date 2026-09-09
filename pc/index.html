@@ -1103,78 +1103,485 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
     <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="14" rx="2"/><path d="M6 13c1.5-4 3-4 4.5 0s3 4 4.5 0 2-2.5 3-1.5"/><path d="M9 21h6"/></svg>Latis Pro : le tutoriel<small>Le logiciel d'acquisition et de traitement du labo — apprivoisé une bonne fois pour toutes</small></h2>
     <div class="prose">
 
-      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 9v11"/></svg>Repérer l'interface<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Latis Pro pilote l'interface <strong>Sysam SP5</strong> posée sur la paillasse : elle mesure jusqu'à huit tensions à la fois sur ses entrées <span class="m">EA0</span> à <span class="m">EA7</span>, et le logiciel affiche, mesure et modélise ce qu'elle a capté. Tout le reste n'est que du glisser-déposer : dans Latis Pro, <strong>on ne tape presque jamais un nom de courbe, on la traîne à la souris</strong> vers l'endroit qui doit la recevoir. Les douze fiches ci-dessous suivent l'ordre réel d'un TP : régler, acquérir, afficher, mesurer, calculer, modéliser.</p>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 9v11"/></svg>1 · L'écran : trois zones, pas une de plus<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
       <div class="fig">
-        <svg viewBox="0 0 660 380" role="img" aria-label="Interface de Latis Pro">
-          <rect x="10" y="10" width="640" height="360" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
-          <line x1="10" y1="44" x2="650" y2="44" stroke="currentColor" stroke-width="1.6"/>
-          <line x1="10" y1="76" x2="650" y2="76" stroke="currentColor" stroke-width="1.2" opacity=".6"/>
-          <line x1="160" y1="76" x2="160" y2="370" stroke="currentColor" stroke-width="1.2" opacity=".6"/>
+        <svg viewBox="0 0 480 322" role="img" aria-label="Fenêtre principale de Latis Pro : boîte de paramétrage à gauche, plan de travail à droite">
+          <rect x="8" y="8" width="464" height="306" rx="8" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <line x1="8" y1="34" x2="472" y2="34" stroke="currentColor" stroke-width="1.4"/>
+          <line x1="8" y1="62" x2="472" y2="62" stroke="currentColor" stroke-width="1" opacity=".55"/>
           <g fill="currentColor" font-family="sans-serif" font-size="12.5">
-            <text x="26" y="32">Fichier</text><text x="86" y="32">Édition</text><text x="150" y="32">Affichage</text><text x="228" y="32">Traitements</text><text x="322" y="32">Options</text>
+            <text x="18" y="26">Fichier</text><text x="66" y="26">Édition</text><text x="118" y="26">Traitements</text><text x="200" y="26">Outils</text><text x="246" y="26">Exécuter</text><text x="308" y="26">Fenêtres</text><text x="368" y="26">Aide</text>
           </g>
-          <g fill="currentColor" font-family="sans-serif" font-size="11" opacity=".7">
-            <text x="26" y="65">🖫</text><text x="50" y="65">⚙</text><text x="74" y="65">🔍</text><text x="98" y="65">▶</text>
+          <g fill="none" stroke="currentColor" stroke-width="1.2" opacity=".65">
+            <rect x="18" y="42" width="15" height="14" rx="2"/><rect x="39" y="42" width="15" height="14" rx="2"/><rect x="60" y="42" width="15" height="14" rx="2"/><rect x="81" y="42" width="15" height="14" rx="2"/><rect x="102" y="42" width="15" height="14" rx="2"/><rect x="123" y="42" width="15" height="14" rx="2"/>
           </g>
-          <g fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="24" y="94" width="52" height="24" rx="4"/><rect x="84" y="94" width="52" height="24" rx="4"/>
-            <rect x="22" y="146" width="118" height="96" rx="5"/>
-            <rect x="22" y="258" width="118" height="76" rx="5"/>
+          <line x1="172" y1="62" x2="172" y2="314" stroke="currentColor" stroke-width="1" opacity=".55"/>
+
+          <g fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="16" y="70" width="48" height="19" rx="4"/><rect x="68" y="70" width="48" height="19" rx="4"/><rect x="120" y="70" width="44" height="19" rx="4"/>
           </g>
-          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
-            <text x="34" y="110">EA0</text><text x="94" y="110">EA1</text>
-            <text x="30" y="140" opacity=".75">Acquisition :</text>
-            <text x="30" y="166">Points : 1000</text>
-            <text x="30" y="186">Te : 20 µs</text>
-            <text x="30" y="206">Durée : 20 ms</text>
-            <text x="30" y="228" opacity="0">.</text>
-            <text x="30" y="252" opacity=".75">Déclenchement :</text>
-            <text x="30" y="278">Source : EA0</text>
-            <text x="30" y="298">Seuil : 0,1 V</text>
-            <text x="30" y="318">Sens : montant</text>
+          <rect x="68" y="70" width="48" height="19" rx="4" fill="var(--orange)" opacity=".16"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5" text-anchor="middle">
+            <text x="40" y="83">Courbes</text><text x="92" y="83">Acquis.</text><text x="142" y="83">Émiss.</text>
           </g>
-          <g stroke="currentColor" fill="none" stroke-width="1.6">
-            <line x1="200" y1="330" x2="620" y2="330"/><line x1="200" y1="330" x2="200" y2="100"/>
+          <g fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="16" y="98" width="148" height="88" rx="5"/>
+            <rect x="16" y="196" width="148" height="72" rx="5"/>
+            <rect x="26" y="120" width="30" height="17" rx="3"/><rect x="62" y="120" width="30" height="17" rx="3"/><rect x="98" y="120" width="30" height="17" rx="3"/>
           </g>
-          <path d="M210 220 q13 -85 26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0 t26 0" fill="none" stroke="#E45C10" stroke-width="2"/>
-          <g fill="#E45C10" font-family="sans-serif" font-size="12.5" font-weight="bold">
-            <circle cx="52" cy="106" r="11" fill="#E45C10"/><text x="52" y="110.5" text-anchor="middle" fill="#fff">1</text>
-            <circle cx="80" cy="196" r="11" fill="#E45C10"/><text x="80" y="200.5" text-anchor="middle" fill="#fff">2</text>
-            <circle cx="80" cy="300" r="11" fill="#E45C10"/><text x="80" y="304.5" text-anchor="middle" fill="#fff">3</text>
-            <circle cx="420" cy="120" r="11" fill="#E45C10"/><text x="420" y="124.5" text-anchor="middle" fill="#fff">4</text>
+          <rect x="26" y="120" width="30" height="17" rx="3" fill="var(--orange)" opacity=".18"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5">
+            <text x="24" y="113" opacity=".72">Entrées analogiques</text>
+            <text x="41" y="132.5" text-anchor="middle">EA0</text><text x="77" y="132.5" text-anchor="middle">EA1</text><text x="113" y="132.5" text-anchor="middle">EA2</text>
+            <text x="26" y="156">Temporelle</text><text x="26" y="171">1000 pts · 20 ms</text>
+            <text x="24" y="211" opacity=".72">Liste des courbes</text>
+            <text x="26" y="231">Tension</text><text x="26" y="247">Intensité</text><text x="26" y="263">Puissance</text>
+          </g>
+
+          <g fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="182" y="70" width="282" height="164" rx="5"/>
+            <rect x="182" y="244" width="282" height="60" rx="5"/>
+            <line x1="206" y1="212" x2="446" y2="212"/><line x1="206" y1="212" x2="206" y2="88"/>
+            <line x1="182" y1="262" x2="464" y2="262"/><line x1="276" y1="244" x2="276" y2="304"/><line x1="370" y1="244" x2="370" y2="304"/>
+          </g>
+          <path d="M210 150 q15 -52 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="var(--orange)" stroke-width="2"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5">
+            <text x="192" y="257">Temps</text><text x="286" y="257">Tension</text><text x="380" y="257">P</text>
+            <text x="192" y="278" opacity=".6">0,000</text><text x="286" y="278" opacity=".6">1,42</text><text x="380" y="278" opacity=".6">0,71</text>
+            <text x="192" y="294" opacity=".6">0,001</text><text x="286" y="294" opacity=".6">1,38</text><text x="380" y="294" opacity=".6">0,69</text>
+          </g>
+          <g font-family="sans-serif" font-size="11.5" font-weight="bold">
+            <circle cx="150" cy="170" r="10" fill="var(--orange)"/><text x="150" y="174" text-anchor="middle" fill="#fff">1</text>
+            <circle cx="440" cy="90" r="10" fill="var(--orange)"/><text x="440" y="94" text-anchor="middle" fill="#fff">2</text>
+            <circle cx="440" cy="290" r="10" fill="var(--orange)"/><text x="440" y="294" text-anchor="middle" fill="#fff">3</text>
           </g>
         </svg>
-        <div class="cap">❶ Les <strong>capteurs branchés</strong> (entrées EA0, EA1…) — on les glisse-dépose sur les axes du graphe. ❷ Panneau <strong>Acquisition</strong> (nombre de points, période d'échantillonnage Te, durée totale). ❸ Panneau <strong>Déclenchement</strong>. ❹ Zone graphique où les courbes s'affichent.</div>
+        <div class="cap">❶ La <strong>boîte de paramétrage</strong> : trois pages qui s'échangent par les boutons du haut — Liste des courbes, Paramétrage de l'acquisition, Paramétrage de l'émission. ❷ Le <strong>plan de travail</strong> : jusqu'à quatre fenêtres graphiques. ❸ Le <strong>tableur</strong>, qui partage le plan de travail avec les graphes et les afficheurs.</div>
       </div>
-      <p>Vocabulaire à maîtriser : <strong>Te</strong>, la période d'échantillonnage, est l'intervalle entre deux mesures ; <strong>durée totale = nombre de points × Te</strong>. Le menu <strong>Traitements</strong> concentre presque tout ce qui nous sert (calculs, modélisation).</p>
+      <p>Le bouton de bascule est la première chose à comprendre : au même endroit s'affichent <strong>tantôt les réglages de l'acquisition, tantôt la liste des courbes</strong>. Si tu cherches ta courbe et que tu vois des cases « nombre de points », tu es simplement sur la mauvaise page.</p>
+      <div class="def"><div class="t">Le principe qui explique tout le reste</div>Dans Latis Pro, <strong>chaque courbe transporte sa propre abscisse</strong>. C'est pour ça qu'on peut la lâcher n'importe où — sur un axe, dans une colonne du tableur, dans le champ d'un traitement — sans jamais préciser « en fonction de quoi ». Le glisser-déposer depuis la liste des courbes est donc le geste universel du logiciel.</div>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Menu</th><th>Ce qu'on y trouve</th></tr>
+        <tr><td>Traitements</td><td>Tableur, Feuille de calculs, Modélisation, Lissage, Calculs spécifiques (dérivée, intégrale, FFT), Vecteurs</td></tr>
+        <tr><td>Édition</td><td>Analyse de séquences vidéos, Feuille de notes, Marqueurs d'acquisition</td></tr>
+        <tr><td>Outils</td><td>Mesures automatiques, Options générales</td></tr>
+        <tr><td>Exécuter</td><td>Lancer l'acquisition (raccourci F10)</td></tr>
+        <tr><td>Fenêtres</td><td>Nouvelle fenêtre graphique, Afficheurs, Mosaïque</td></tr>
+      </table></div>
+      <div class="exemple"><div class="t">Les raccourcis qui font gagner du temps</div><span class="m">F10</span> lancer l'acquisition · <span class="m">Échap</span> l'interrompre sans rien perdre · <span class="m">F2</span> exécuter la feuille de calculs · <span class="m">F3</span> ouvrir la feuille de calculs · <span class="m">F4</span> modélisation · <span class="m">F11</span> tableur · <span class="m">F12</span> poser un marqueur pendant l'acquisition · <span class="m">F1</span> aide sur la fonction en cours.</div>
       </div></details>
 
-      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 12 L12 5.5" /><path d="M9 3.5h6"/></svg>Régler et lancer une acquisition<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2.2" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="2.2" fill="currentColor" stroke="none"/><circle cx="7" cy="18" r="2.2" fill="currentColor" stroke="none"/></svg>2 · La boîte de paramétrage de l'acquisition<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 460 306" role="img" aria-label="Boîte de paramétrage de l'acquisition de Latis Pro">
+          <rect x="8" y="8" width="444" height="290" rx="7" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <line x1="8" y1="34" x2="452" y2="34" stroke="currentColor" stroke-width="1.4"/>
+          <text x="20" y="26" fill="currentColor" font-family="sans-serif" font-size="12.5" font-weight="bold">Acquisition</text>
+
+          <text x="20" y="55" fill="currentColor" font-family="sans-serif" font-size="11" opacity=".72">Entrées analogiques</text>
+          <g fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="20" y="62" width="42" height="20" rx="3"/><rect x="68" y="62" width="42" height="20" rx="3"/><rect x="116" y="62" width="42" height="20" rx="3"/><rect x="164" y="62" width="42" height="20" rx="3"/>
+            <rect x="20" y="88" width="42" height="20" rx="3"/><rect x="68" y="88" width="42" height="20" rx="3"/><rect x="116" y="88" width="42" height="20" rx="3"/><rect x="164" y="88" width="42" height="20" rx="3"/>
+            <rect x="222" y="64" width="13" height="13" rx="2"/>
+          </g>
+          <rect x="20" y="62" width="42" height="20" rx="3" fill="var(--orange)" opacity=".18"/>
+          <rect x="68" y="62" width="42" height="20" rx="3" fill="var(--orange)" opacity=".18"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="11" text-anchor="middle">
+            <text x="41" y="76">EA0</text><text x="89" y="76">EA1</text><text x="137" y="76">EA2</text><text x="185" y="76">EA3</text>
+            <text x="41" y="102">EA4</text><text x="89" y="102">EA5</text><text x="137" y="102">EA6</text><text x="185" y="102">EA7</text>
+          </g>
+          <text x="242" y="75" fill="currentColor" font-family="sans-serif" font-size="11">Ajouter les courbes</text>
+
+          <line x1="20" y1="122" x2="440" y2="122" stroke="currentColor" stroke-width="1" opacity=".45"/>
+          <g fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="20" y="132" width="76" height="21" rx="3"/><rect x="100" y="132" width="76" height="21" rx="3"/><rect x="180" y="132" width="76" height="21" rx="3"/><rect x="260" y="132" width="46" height="21" rx="3"/>
+          </g>
+          <rect x="20" y="132" width="76" height="21" rx="3" fill="var(--orange)" opacity=".18"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5" text-anchor="middle">
+            <text x="58" y="146">Temporelle</text><text x="138" y="146">Périodique</text><text x="218" y="146">Pas à pas</text><text x="283" y="146">XY</text>
+          </g>
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="142" y="164" width="62" height="19" rx="3"/><rect x="142" y="190" width="62" height="19" rx="3"/>
+            <rect x="222" y="216" width="13" height="13" rx="2"/>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="11">
+            <text x="24" y="177">Nombre de points</text><text x="24" y="203">Durée totale</text>
+            <text x="150" y="177">1000</text><text x="150" y="203">20 ms</text>
+            <text x="24" y="227">Te = 20 µs</text><text x="242" y="227">Mode permanent</text>
+          </g>
+
+          <line x1="20" y1="242" x2="440" y2="242" stroke="currentColor" stroke-width="1" opacity=".45"/>
+          <text x="24" y="260" fill="currentColor" font-family="sans-serif" font-size="11" opacity=".72">Déclenchement</text>
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="24" y="268" width="52" height="19" rx="3"/><rect x="118" y="268" width="58" height="19" rx="3"/><rect x="230" y="268" width="62" height="19" rx="3"/><rect x="344" y="268" width="44" height="19" rx="3"/>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5">
+            <text x="30" y="281">EA0</text><text x="82" y="281">Seuil</text><text x="124" y="281">0,05 V</text><text x="182" y="281">Sens</text><text x="236" y="281">montant</text><text x="298" y="281">Pré-Trig</text><text x="350" y="281">0 %</text>
+          </g>
+          <g font-family="sans-serif" font-size="11" font-weight="bold">
+            <circle cx="424" cy="72" r="10" fill="var(--orange)"/><text x="424" y="76" text-anchor="middle" fill="#fff">1</text>
+            <circle cx="424" cy="143" r="10" fill="var(--orange)"/><text x="424" y="147" text-anchor="middle" fill="#fff">2</text>
+            <circle cx="424" cy="195" r="10" fill="var(--orange)"/><text x="424" y="199" text-anchor="middle" fill="#fff">3</text>
+            <circle cx="424" cy="277" r="10" fill="var(--orange)"/><text x="424" y="281" text-anchor="middle" fill="#fff">4</text>
+          </g>
+        </svg>
+        <div class="cap">❶ On <strong>active une entrée en cliquant dessus</strong> — un second clic la désactive. ❷ L'onglet fixe le protocole. ❸ On saisit deux valeurs sur trois : Latis Pro calcule la troisième. ❹ Le déclenchement décide de l'<em>instant</em> où l'acquisition démarre.</div>
+      </div>
       <div class="methode"><div class="t">La check-list, dans l'ordre</div>
         <ol>
-          <li><strong>Brancher</strong> le capteur (micro, sonde tension…) sur une entrée de l'interface (Sysam) — son icône EA0 apparaît en haut à gauche.</li>
-          <li><strong>Glisser EA0</strong> sur l'axe vertical du graphe (et le temps est déjà en abscisse).</li>
-          <li><strong>Régler la durée</strong> : elle doit contenir ce que tu veux voir. Pour un signal périodique : vise 3 à 5 périodes à l'écran (ex. son de 440 Hz, T ≈ 2,3 ms → durée ≈ 10 ms). Ajuste points/Te en conséquence — Te doit être PETIT devant la période, sinon la courbe est anguleuse et fausse.</li>
-          <li><strong>Déclenchement</strong> (pour un phénomène bref ou pour figer une courbe propre) : source = la voie, seuil = une valeur que le signal franchit, sens montant. L'acquisition ne démarre qu'au franchissement — indispensable pour un claquement de mains.</li>
-          <li><strong>Lancer avec F10</strong> (ou le bouton d'acquisition). Recommencer autant que nécessaire : une acquisition ratée ne coûte rien.</li>
+          <li><strong>Câbler d'abord.</strong> Les capteurs Eurosmart sont reconnus automatiquement et activent seuls leur entrée ; une tension prise aux douilles bananes, elle, se mesure entre l'entrée et la <strong>masse du boîtier</strong> — sans ce fil de masse, la courbe est du bruit.</li>
+          <li><strong>Activer la ou les voies</strong> en cliquant sur EA0, EA1… Clic droit sur le bouton → <em>Propriétés de la courbe</em> pour la renommer tout de suite en <span class="m">U<sub>C</sub></span> plutôt que « EA0 » : le compte-rendu sera lisible.</li>
+          <li><strong>Choisir l'onglet</strong> du protocole (fiche suivante) — <em>Temporelle</em> dans neuf cas sur dix.</li>
+          <li><strong>Régler l'échelle de temps.</strong> Entre le nombre de points et la durée totale, Latis Pro déduit <span class="m">Te = durée / nombre de points</span>. Pour un signal périodique, vise 3 à 5 périodes à l'écran et au moins une vingtaine de points par période : un son de 440 Hz a <span class="m">T ≈ 2,3 ms</span>, donc une durée d'environ 10 ms avec 1000 points.</li>
+          <li><strong>Déclencher si le phénomène est bref.</strong> Source = la voie, seuil = une valeur que le signal franchit réellement, sens montant. Le <strong>Pré-Trig</strong> (en %) affiche en plus ce qui s'est passé <em>avant</em> le franchissement : à 25 % sur 80 s, tu vois les 20 s qui précèdent. Laisse-le à 0 % sauf consigne.</li>
+          <li><strong>Lancer avec F10</strong>, arrêter avec <strong>Échap</strong> — les points déjà acquis sont conservés. Une acquisition ratée ne coûte rien : recommence.</li>
         </ol>
       </div>
-      <div class="piege"><div class="t">Les deux ratés classiques</div>Courbe plate : capteur sur la mauvaise entrée, ou voie non glissée sur l'axe. Écran figé qui ne se lance pas : le déclenchement attend un seuil jamais franchi (seuil trop haut) — baisse-le ou désactive le déclenchement.</div>
+      <div class="piege"><div class="t">Les trois ratés classiques</div><strong>Courbe plate :</strong> capteur sur la mauvaise entrée, ou pas de masse. <strong>Rien ne se lance après F10 :</strong> le déclenchement attend un seuil jamais franchi — baisse-le ou repasse sur « Aucune ». <strong>Sinusoïde anguleuse :</strong> Te trop grand devant la période, il n'y a pas assez de points par oscillation ; la courbe affichée n'est alors pas le signal.</div>
+      <p>Coche <strong>Mode permanent</strong> pendant le montage : l'acquisition se relance sans fin, comme un oscilloscope, et tu vois en direct l'effet de chaque réglage. Chaque passage écrase le précédent — décoche-le avant l'acquisition que tu veux garder. À l'inverse, <strong>Ajouter les courbes</strong> conserve les acquisitions successives, qui deviennent <span class="m">Tension{1}</span>, <span class="m">Tension{2}</span>… pratique pour superposer trois décharges de condensateur.</p>
       </div></details>
 
-      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="4.5"/></svg>Mesurer avec les réticules (période, décalage…)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
-      <p><strong>Clic droit sur le graphe → Réticule</strong> : un pointeur en croix suit la courbe et affiche les coordonnées (t ; valeur) du point visé. Un second clic droit permet un <strong>Nouveau réticule</strong> lié au premier : l'écran affiche alors les écarts Δt et Δy entre les deux — exactement ce qu'il faut pour mesurer une durée.</p>
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" opacity=".35"/><path d="M7 3v18"/><path d="M4 9l3-3 3 3"/></svg>3 · Quel protocole choisir : les quatre onglets<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>C'est le réglage que les élèves ratent le plus souvent, parce qu'ils ne savent pas que les trois autres onglets existent. Le bon protocole rend certains TP presque automatiques.</p>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Onglet</th><th>Ce qu'il fait</th><th>Quand le prendre</th></tr>
+        <tr><td><strong>Temporelle</strong></td><td>Mesure à intervalle fixe pendant une durée donnée. Mode <em>lent</em> : tu ne donnes que la durée, le logiciel optimise les points. Mode <em>avancé</em> : tu imposes durée et nombre de points.</td><td>Tout ce qui évolue dans le temps : décharge d'un condensateur, refroidissement, suivi de pH au cours du temps, chute d'un mobile.</td></tr>
+        <tr><td><strong>Périodique</strong></td><td>Optimisé pour les signaux répétitifs. Mode <em>automatique</em> : tu indiques le nombre de périodes voulu, plus un curseur de qualité — l'équivalent d'un « autoset » d'oscilloscope.</td><td>Sons, tensions sinusoïdales, sortie d'un GBF, signaux d'un montage alimenté en alternatif.</td></tr>
+        <tr><td><strong>Pas à pas</strong></td><td>Tu tapes toi-même une grandeur au clavier ; à chaque saisie, Latis Pro mesure les voies branchées et place le point. La grandeur saisie sert d'abscisse.</td><td><strong>Le titrage.</strong> Tu entres le volume versé, la sonde donne le pH ou la conductivité, et la courbe se construit point par point pendant que tu titres.</td></tr>
+        <tr><td><strong>XY</strong></td><td>Trace une grandeur en fonction d'une autre, en ne prenant un point que lorsque la grandeur de référence a varié d'un pas fixé.</td><td>Caractéristique <span class="m">U(I)</span> d'un dipôle, courbe pression-température : on évite d'accumuler cent points au même endroit.</td></tr>
+      </table></div>
+      <div class="def"><div class="t">Le réflexe titrage</div>Onglet <strong>Pas à pas</strong> → nom de l'abscisse : <span class="m">V</span>, unité mL → cocher le mode clavier si une deuxième grandeur est saisie à la main → F10. À chaque volume tapé, le pH mesuré s'ajoute. L'option <strong>Trier par abscisse croissante</strong> permet de réintercaler un point oublié sans que la courbe ne parte en arrière.</div>
+      <div class="piege"><div class="t">Piège du mode permanent</div>Le mode permanent n'existe pas pour tous les protocoles, et il ne mémorise rien : c'est un mode d'observation. Une acquisition « perdue » est presque toujours une acquisition faite en mode permanent.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4v16h15"/><path d="M8 15l4-6 3 4 3-5"/><path d="M14 3l3 3-3 3" opacity=".5"/></svg>4 · Afficher une courbe : les trois zones de dépôt<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 460 268" role="img" aria-label="Les trois zones de dépôt d'une fenêtre graphique de Latis Pro">
+          <rect x="8" y="20" width="104" height="180" rx="6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <text x="20" y="38" fill="currentColor" font-family="sans-serif" font-size="10.5" opacity=".72">Liste des courbes</text>
+          <g fill="currentColor" font-family="sans-serif" font-size="11">
+            <text x="22" y="60">Tension</text><text x="22" y="82">Intensité</text><text x="22" y="104">Puissance</text><text x="22" y="126">Mouvement X</text><text x="22" y="148">Mouvement Y</text>
+          </g>
+          <rect x="16" y="48" width="88" height="17" rx="3" fill="var(--orange)" opacity=".18"/>
+          <path d="M108 56 C150 56 148 96 172 106" fill="none" stroke="var(--orange)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#flgd)"/>
+          <defs><marker id="flgd" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--orange)"/></marker></defs>
+
+          <rect x="140" y="20" width="312" height="196" rx="6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <line x1="200" y1="176" x2="400" y2="176" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="200" y1="176" x2="200" y2="46" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="400" y1="176" x2="400" y2="46" stroke="currentColor" stroke-width="1.5" opacity=".5"/>
+          <path d="M204 166 C238 96 268 152 302 112 S368 66 396 70" fill="none" stroke="var(--orange)" stroke-width="2"/>
+          <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="4 3">
+            <rect x="160" y="56" width="34" height="104" rx="4"/>
+            <rect x="406" y="56" width="34" height="104" rx="4"/>
+            <rect x="232" y="184" width="136" height="24" rx="4"/>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="10" text-anchor="middle">
+            <text x="177" y="172">ordonnée</text><text x="177" y="184">principale</text>
+            <text x="423" y="172">ordonnée</text><text x="423" y="184">secondaire</text>
+            <text x="300" y="200">abscisse</text>
+          </g>
+        </svg>
+        <div class="cap">On attrape le nom de la courbe dans la liste et on le lâche : à gauche de l'axe vertical pour l'ordonnée principale, contre le bord droit pour un second axe, sous l'axe horizontal pour changer l'abscisse.</div>
+      </div>
+      <p>Par défaut, chaque courbe s'affiche en fonction de sa propre abscisse — le temps, le plus souvent. Pour tracer <span class="m">U</span> en fonction de <span class="m">I</span> plutôt qu'en fonction du temps, il suffit de <strong>lâcher I sous l'axe horizontal</strong>. Le second axe vertical sert quand les deux grandeurs n'ont ni la même unité ni le même ordre de grandeur : pH et conductivité sur le même graphe, par exemple.</p>
+      <div class="methode"><div class="t">Les gestes de la liste des courbes</div>
+        <ol>
+          <li><strong>Double-clic sur le nom</strong> → boîte de propriétés : nom, unité, couleur, style de tracé. C'est là qu'on remplace « Mouvement X » par <span class="m">x</span> en mètres.</li>
+          <li><strong>Clic droit sur le nom affiché dans le graphe → Retirer</strong> : la courbe quitte l'écran mais reste dans la liste.</li>
+          <li><strong>Touche Suppr</strong> après sélection dans la liste : là, la courbe est vraiment détruite.</li>
+          <li><strong>Clic droit → Passer sur l'autre ordonnée</strong> quand une courbe écrase l'autre.</li>
+        </ol>
+      </div>
+      <p>Pour régler les échelles : double-clic sur un axe pour saisir un minimum et un maximum, molette de la souris pour zoomer, ou <strong>clic droit → Calibrage</strong> qui redimensionne d'un coup pour faire tenir toutes les courbes. Les axes se tirent aussi directement à la souris.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="4.5"/></svg>5 · Le clic droit sur le graphe, et le réticule<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Latis Pro ne cache pas ses outils dans des menus lointains : presque tout ce qui sert à mesurer sur une courbe est dans le <strong>menu contextuel</strong>, obtenu par un clic droit au milieu de la fenêtre graphique.</p>
+      <div class="fig">
+        <svg viewBox="0 0 400 250" role="img" aria-label="Menu contextuel d'une fenêtre graphique de Latis Pro">
+          <rect x="8" y="14" width="190" height="222" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="8" y="44" width="190" height="24" fill="var(--orange)" opacity=".16"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="12">
+            <text x="22" y="36">Calibrage</text>
+            <text x="22" y="61">Réticule</text>
+            <text x="22" y="86">Loupe +</text>
+            <text x="22" y="111">Tangente</text>
+            <text x="22" y="136">Méthode des tangentes</text>
+            <text x="22" y="161">Flèches et commentaires</text>
+            <text x="22" y="186">Copie graphique</text>
+            <text x="22" y="211">Marqueurs d'acquisition</text>
+            <text x="22" y="232">Nouvelle fenêtre</text>
+          </g>
+          <line x1="8" y1="96" x2="198" y2="96" stroke="currentColor" stroke-width="1" opacity=".4"/>
+          <line x1="8" y1="171" x2="198" y2="171" stroke="currentColor" stroke-width="1" opacity=".4"/>
+          <path d="M200 56 L232 56" stroke="currentColor" stroke-width="1.2" opacity=".5"/>
+          <rect x="234" y="30" width="158" height="128" rx="6" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
+            <text x="246" y="50">Libre</text>
+            <text x="246" y="72">Lié à la courbe</text>
+            <text x="246" y="94">Nouvelle origine</text>
+            <text x="246" y="116">Mesurer l'abscisse</text>
+            <text x="246" y="138">Mesurer l'ordonnée</text>
+            <text x="246" y="154" opacity=".6">Terminer</text>
+          </g>
+          <rect x="236" y="80" width="154" height="20" fill="var(--orange)" opacity=".16"/>
+        </svg>
+        <div class="cap">Le sous-menu du réticule. <strong>Lié à la courbe</strong> force le pointeur à suivre exactement le tracé ; <strong>Nouvelle origine</strong> remet le zéro là où on pointe, ce qui transforme les coordonnées lues en écarts.</div>
+      </div>
       <div class="methode"><div class="t">Mesurer une période proprement</div>
         <ol>
-          <li>Poser le réticule 1 sur un maximum bien net de la courbe.</li>
-          <li>Poser le réticule 2 non pas sur le maximum suivant, mais <strong>5 périodes plus loin</strong> : lire Δt.</li>
-          <li><span class="m">T = Δt/5</span> — l'erreur de pointage est divisée par 5. Puis <span class="m">f = 1/T</span>.</li>
+          <li>Clic droit → <strong>Réticule</strong>, puis clic droit à nouveau → <strong>Lié à la courbe</strong> : le pointeur ne peut plus flotter à côté du tracé.</li>
+          <li>Amène-le sur un maximum bien net, puis clic droit → <strong>Nouvelle origine</strong>. Les coordonnées affichées sont maintenant comptées à partir de ce point.</li>
+          <li>Déplace-toi non pas jusqu'au maximum suivant, mais <strong>5 périodes plus loin</strong>, et lis l'abscisse : c'est directement <span class="m">Δt</span>.</li>
+          <li><span class="m">T = Δt / 5</span> — l'erreur de pointage est divisée par cinq — puis <span class="m">f = 1/T</span>. Clic droit → <em>Origine initiale</em> pour revenir au repère normal.</li>
         </ol>
       </div>
-      <p>Le zoom (loupe, ou molette selon les versions) aide à poser les réticules au pixel près. Pour revenir à la vue complète : clic droit → échelle automatique / Calibrage.</p>
+      <p>Les options <strong>Mesurer l'abscisse</strong> et <strong>Mesurer l'ordonnée</strong> ne se contentent pas d'afficher la valeur : elles l'envoient dans le tableur comme <strong>constante</strong>, immédiatement réutilisable dans un calcul. C'est la façon propre de récupérer un <span class="m">V<sub>E</sub></span> lu sur une courbe de titrage sans le recopier à la main.</p>
+      <div class="exemple"><div class="t">Les autres outils du menu</div><strong>Loupe +</strong> : on trace un rectangle à la souris, et on peut empiler les zooms (<em>Loupe −</em> pour reculer). <strong>Copie graphique</strong> : envoie la fenêtre, ou une zone sélectionnée, dans le presse-papier — c'est comme ça qu'on colle un graphe dans un compte-rendu. <strong>Flèches et commentaires</strong> : annotations sauvegardées avec le fichier. <strong>Marqueurs d'acquisition</strong> : témoins posés en direct avec <span class="m">F12</span> pendant l'acquisition, pour signaler « ici j'ai versé le réactif ».</div>
+      <div class="piege"><div class="t">Le réticule libre ment</div>En mode <em>Libre</em>, le réticule suit la souris, pas la courbe : les coordonnées lues sont celles du curseur, qui peut être à côté du tracé. Prends toujours <em>Lié à la courbe</em> avant de relever une valeur.</div>
       </div></details>
 
-      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h3M17 12h3"/><circle cx="12" cy="12" r="2"/><path d="M7 12a5 5 0 0 1 10 0M5 12a7 7 0 0 1 14 0" opacity=".6"/></svg>TP classique : la célérité du son<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19c4 0 5-12 8-12s4 12 8 12" /><path d="M12 4v16" opacity=".4" stroke-dasharray="3 3"/></svg>6 · Trouver le point d'équivalence d'un titrage<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Deux méthodes, toutes deux intégrées au logiciel. Elles doivent donner le même volume — si elles divergent, c'est que la courbe est trop pauvre en points autour du saut.</p>
+      <div class="fig">
+        <svg viewBox="0 0 440 262" role="img" aria-label="Méthode des tangentes sur une courbe de titrage pH-métrique">
+          <line x1="56" y1="216" x2="410" y2="216" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="56" y1="216" x2="56" y2="26" stroke="currentColor" stroke-width="1.5"/>
+          <text x="26" y="34" fill="currentColor" font-family="sans-serif" font-size="11">pH</text>
+          <text x="386" y="238" fill="currentColor" font-family="sans-serif" font-size="11">V (mL)</text>
+          <path d="M60 196 C130 188 180 178 210 150 C226 134 234 96 250 80 C280 60 350 52 406 48" fill="none" stroke="var(--orange)" stroke-width="2.4"/>
+          <g stroke="currentColor" stroke-width="1.4" opacity=".85">
+            <line x1="80" y1="196" x2="236" y2="166"/>
+            <line x1="228" y1="98" x2="384" y2="68"/>
+          </g>
+          <line x1="154" y1="147" x2="310" y2="117" stroke="currentColor" stroke-width="1.4" stroke-dasharray="6 4"/>
+          <circle cx="232" cy="132" r="5" fill="var(--orange)"/>
+          <line x1="232" y1="132" x2="232" y2="216" stroke="var(--orange)" stroke-width="1.3" stroke-dasharray="4 3"/>
+          <line x1="232" y1="132" x2="56" y2="132" stroke="var(--orange)" stroke-width="1.3" stroke-dasharray="4 3"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5">
+            <text x="86" y="188">Droite 1</text>
+            <text x="330" y="64">Droite 3</text>
+            <text x="256" y="112">médiane</text>
+            <text x="24" y="136">pH<tspan font-size="8" dy="3">E</tspan></text>
+          </g>
+          <text x="232" y="234" fill="var(--orange)" font-family="sans-serif" font-size="11.5" font-weight="bold" text-anchor="middle">V</text>
+          <text x="240" y="238" fill="var(--orange)" font-family="sans-serif" font-size="8.5" font-weight="bold">E</text>
+        </svg>
+        <div class="cap">Deux tangentes parallèles encadrent le saut ; la parallèle à mi-distance coupe la courbe au point d'équivalence, dont on lit l'abscisse <span class="m">V<sub>E</sub></span> et l'ordonnée <span class="m">pH<sub>E</sub></span>.</div>
+      </div>
+      <div class="methode"><div class="t">Méthode 1 — les tangentes</div>
+        <ol>
+          <li>Clic droit sur le graphe → <strong>Méthode des tangentes</strong>.</li>
+          <li>Latis Pro trace deux tangentes parallèles à la courbe, l'une avant le saut, l'autre après, puis la parallèle située à mi-chemin entre les deux.</li>
+          <li>L'intersection de cette médiane avec la courbe de pH est le point d'équivalence. On relève ses coordonnées au réticule.</li>
+        </ol>
+      </div>
+      <div class="methode"><div class="t">Méthode 2 — la dérivée</div>
+        <ol>
+          <li><strong>Traitements → Calculs spécifiques → Dérivée</strong>.</li>
+          <li>Glisse la <em>courbe</em> pH = fct(V) dans le champ <strong>Courbe</strong> — pas la variable pH toute seule. Laisse le champ Résultat vide, la courbe dérivée sera créée automatiquement.</li>
+          <li>Affiche <span class="m">dpH/dV</span> : son maximum tombe exactement sur <span class="m">V<sub>E</sub></span>. Réticule lié à la courbe, sommet du pic, lecture de l'abscisse.</li>
+        </ol>
+      </div>
+      <div class="piege"><div class="t">Ce qui fait rater la mesure</div>Un titrage acquis avec dix points espacés de 2 mL ne donne rien d'exploitable : le saut tombe entre deux points. Il faut <strong>resserrer les ajouts autour de l'équivalence</strong> (0,2 mL), quitte à rester large avant et après. La dérivée amplifie ce défaut : sur une courbe trop creuse, elle sort un pic déformé, voire deux.</div>
+      <p>L'outil <strong>Tangente</strong> du même menu est plus simple et souvent oublié : il trace la tangente au point survolé et propose de <strong>stocker son coefficient directeur dans le tableur</strong>. C'est la façon rapide de mesurer une vitesse de réaction à un instant donné sur une courbe <span class="m">[A] = f(t)</span>, ou la vitesse initiale à <span class="m">t = 0</span>.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/><path d="M8 12l2.5 2.5L14.5 9"/></svg>7 · Les mesures automatiques : période et fréquence en un geste<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p><strong>Outils → Mesures automatiques</strong>. On glisse une courbe dans le champ de la boîte de dialogue, et Latis Pro renvoie d'un coup ses valeurs minimale, maximale et moyenne, et — si le signal est périodique — sa <strong>période, sa fréquence et sa valeur efficace</strong>. Le logiciel met en surbrillance la portion de courbe sur laquelle il a calculé.</p>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Ce que tu veux</th><th>Outil le plus rapide</th><th>À écrire dans le compte-rendu</th></tr>
+        <tr><td>Un ordre de grandeur de <span class="m">f</span> pendant le TP</td><td>Mesures automatiques</td><td>Rien — c'est du repérage</td></tr>
+        <tr><td>Une valeur de <span class="m">T</span> défendable</td><td>Réticule sur 5 périodes</td><td>Le <span class="m">Δt</span> lu, la division par 5, le calcul de <span class="m">f</span></td></tr>
+        <tr><td>Une valeur efficace</td><td>Mesures automatiques</td><td>La valeur, en précisant la portion de signal utilisée</td></tr>
+      </table></div>
+      <div class="piege"><div class="t">Ne remplace pas la mesure attendue</div>Aux ECE comme en compte-rendu, une valeur sortie d'un bouton « mesure automatique » sans méthode ne rapporte pas les points de la compétence <em>Analyser</em>. Sers-t'en pour <strong>vérifier</strong> ta mesure au réticule : si les deux sont d'accord, tu peux avancer sereinement ; si elles divergent d'un facteur 2, tu as pointé le mauvais maximum.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M15 9v11"/></svg>8 · Le tableur (F11) : voir et fabriquer des valeurs<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Le tableur affiche les valeurs numériques des courbes qu'on y glisse, et permet d'en créer de nouvelles. Il s'ouvre par <strong>F11</strong> ou l'icône correspondante, et occupe une case du plan de travail comme une fenêtre graphique.</p>
+      <div class="methode"><div class="t">Les quatre gestes utiles</div>
+        <ol>
+          <li><strong>Afficher une courbe :</strong> glisse son nom depuis la liste vers une colonne. Double-clic sur l'en-tête de colonne pour faire apparaître aussi son abscisse.</li>
+          <li><strong>Saisir des mesures à la main :</strong> menu <em>Variables → Nouvelle</em>, donne le nom et l'unité de l'ordonnée, puis tape les valeurs. C'est la porte d'entrée quand les mesures viennent d'une burette et d'un pH-mètre de paillasse, sans capteur.</li>
+          <li><strong>Calculer une colonne :</strong> clique sur la <em>case du nom</em> de la variable pour sélectionner toute la colonne, puis tape la formule dans la case <span class="m">fx</span>. Elle commence obligatoirement par <strong>=</strong> — par exemple <span class="m">= Upn * I</span>.</li>
+          <li><strong>Basculer l'affichage :</strong> le bouton <span class="m">Fx</span> montre les formules, le bouton <span class="m">3.48</span> montre les résultats.</li>
+        </ol>
+      </div>
+      <div class="exemple"><div class="t">Les fonctions qui servent en Terminale</div><span class="m">sqrt(x)</span> racine · <span class="m">sqr(x)</span> carré · <span class="m">x^2</span> puissance · <span class="m">exp(x)</span>, <span class="m">ln(x)</span>, <span class="m">log(x)</span> · <span class="m">abs(x)</span> · <span class="m">sin</span>, <span class="m">cos</span>, <span class="m">tan</span> · <span class="m">deriv(x;Temps)</span> pour dériver par rapport au temps · <span class="m">min</span>, <span class="m">max</span>, <span class="m">int</span> (partie entière).</div>
+      <div class="piege"><div class="t">Les deux fautes de frappe qui bloquent tout</div><strong>Multiplications oubliées :</strong> <span class="m">=mgz</span> ne veut rien dire pour le logiciel, il faut <span class="m">=m*g*z</span>. <strong>Le caractère « ² » du clavier est refusé :</strong> écris <span class="m">=0.5*m*v^2</span> ou <span class="m">=0.5*m*v*v</span>. Ajoute-y le classique : le <strong>point décimal</strong>, jamais la virgule.</div>
+      <p>Pour appliquer un calcul saisi sur une cellule à toute une série, on tire le petit carré noir en bas à droite de la cellule, exactement comme dans un tableur ordinaire. Les cellules sont indexables : <span class="m">Température[13]</span> désigne la treizième valeur, et <span class="m">Température[n-1]</span> la valeur précédente — utile pour calculer une variation entre deux points successifs.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14v18H5z"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg>9 · La feuille de calculs (F3) : créer des grandeurs<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p><strong>Traitements → Feuille de calculs</strong>, ou <span class="m">F3</span>. C'est un tableur « à plat » : une ligne par grandeur, et une colonne de résultats à droite. Contrairement au tableur, les formules n'ont <em>pas</em> de signe <span class="m">=</span> d'entrée : la syntaxe est <span class="m">NOMVAR = EXPRESSION {commentaire}</span>, le nom faisant au plus dix caractères et ne devant pas être déjà celui d'une courbe.</p>
+      <div class="exemple"><div class="t">Une session type, en quatre lignes</div>
+      <span class="m">m = 0.058</span> {masse de la balle en kg}<br>
+      <span class="m">g = 9.81</span><br>
+      <span class="m">Epp = m*g*y</span> {énergie potentielle}<br>
+      <span class="m">Ec = 0.5*m*(vx*vx+vy*vy)</span><br>
+      <span class="m">Em = Ec+Epp</span>
+      </div>
+      <div class="methode"><div class="t">Ce qui se passe quand tu appuies sur F2</div>
+        <ol>
+          <li><strong>Entrée</strong> passe à la ligne suivante, elle ne calcule rien. C'est <strong>F2</strong> — ou le menu <em>Calcul → Exécuter</em> — qui déclenche tout.</li>
+          <li>Dans la colonne de droite, un <strong>nombre</strong> signifie que le résultat est une constante ; elle apparaît aussi dans la zone <em>Scalaires</em>, en bas de la liste des courbes.</li>
+          <li>Un <strong><span class="m">[n]</span></strong> signifie qu'une courbe de <span class="m">n</span> points a été créée. Elle est immédiatement glissable sur un graphe.</li>
+          <li>Un <strong><span class="m">= ?</span></strong> signifie que la ligne n'a pas pu être calculée : nom de courbe mal orthographié, opérateur manquant, ou grandeur pas encore définie plus haut.</li>
+        </ol>
+      </div>
+      <div class="piege"><div class="t">L'ordre des lignes compte</div>La feuille se lit de haut en bas : une constante doit être <strong>déclarée avant</strong> la ligne qui l'utilise. Et les unités ne s'écrivent pas — <span class="m">m = 58 g</span> est refusé, il faut <span class="m">m = 0.058</span> et se souvenir qu'on travaille en kilogrammes.</div>
+      <p>Cas d'usage le plus fréquent en Terminale : convertir la tension brute d'un capteur en grandeur physique via la sensibilité donnée dans le sujet (<span class="m">P = 250*EA0 + 900</span>), et calculer les énergies après un pointage vidéo.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19L20 6"/><circle cx="7" cy="17" r="1.6"/><circle cx="11" cy="14.5" r="1.6"/><circle cx="15" cy="11" r="1.6"/><circle cx="18.5" cy="8" r="1.6"/></svg>10 · La modélisation (F4) : du nuage de points au résultat<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 460 254" role="img" aria-label="Fenêtre de modélisation de Latis Pro avec le panneau des coefficients ouvert">
+          <rect x="8" y="10" width="444" height="234" rx="7" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <line x1="8" y1="36" x2="452" y2="36" stroke="currentColor" stroke-width="1.4"/>
+          <text x="20" y="28" fill="currentColor" font-family="sans-serif" font-size="12.5" font-weight="bold">Modélisation</text>
+
+          <text x="22" y="58" fill="currentColor" font-family="sans-serif" font-size="11">Courbe à modéliser</text>
+          <rect x="22" y="64" width="150" height="24" rx="4" fill="none" stroke="var(--orange)" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <text x="34" y="80" fill="currentColor" font-family="sans-serif" font-size="11">A = fct(C)</text>
+          <text x="22" y="104" fill="currentColor" font-family="sans-serif" font-size="11">Courbe modèle</text>
+          <rect x="22" y="110" width="150" height="24" rx="4" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <text x="34" y="126" fill="currentColor" font-family="sans-serif" font-size="10.5" opacity=".55">(créée si vide)</text>
+
+          <g fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="22" y="150" width="118" height="24" rx="4"/>
+            <rect x="22" y="184" width="118" height="24" rx="4"/>
+            <rect x="150" y="184" width="24" height="24" rx="4"/>
+          </g>
+          <rect x="150" y="184" width="24" height="24" rx="4" fill="var(--orange)" opacity=".18"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5" text-anchor="middle">
+            <text x="81" y="166">Choisir un modèle</text><text x="81" y="200">Calculer le modèle</text><text x="162" y="200">&gt;&gt;</text>
+          </g>
+
+          <line x1="192" y1="46" x2="192" y2="230" stroke="currentColor" stroke-width="1" opacity=".45"/>
+          <text x="206" y="60" fill="currentColor" font-family="sans-serif" font-size="11" opacity=".72">y = a·x + b</text>
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="206" y="70" width="14" height="14" rx="2"/><rect x="206" y="98" width="14" height="14" rx="2"/>
+            <rect x="248" y="68" width="90" height="18" rx="3"/><rect x="248" y="96" width="90" height="18" rx="3"/>
+          </g>
+          <path d="M209 77l3 3 5-6" stroke="var(--orange)" stroke-width="1.8" fill="none"/>
+          <path d="M209 105l3 3 5-6" stroke="var(--orange)" stroke-width="1.8" fill="none"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="11">
+            <text x="228" y="81">a</text><text x="228" y="109">b</text>
+            <text x="254" y="81">1,84 × 10³</text><text x="254" y="109">2,1 × 10⁻³</text>
+            <text x="206" y="140">écart type</text><text x="440" y="140" text-anchor="end">3,2 × 10⁻³</text>
+            <text x="206" y="162">coefficient de corrélation</text><text x="440" y="162" text-anchor="end">0,9987</text>
+          </g>
+          <line x1="206" y1="176" x2="440" y2="176" stroke="currentColor" stroke-width="1" opacity=".4"/>
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <line x1="216" y1="226" x2="436" y2="226"/><line x1="216" y1="226" x2="216" y2="188"/>
+          </g>
+          <g fill="currentColor">
+            <circle cx="240" cy="218" r="2.4"/><circle cx="272" cy="212" r="2.4"/><circle cx="306" cy="206" r="2.4"/><circle cx="340" cy="199" r="2.4"/><circle cx="374" cy="194" r="2.4"/><circle cx="408" cy="190" r="2.4"/>
+          </g>
+          <line x1="230" y1="221" x2="418" y2="188" stroke="var(--orange)" stroke-width="1.8"/>
+        </svg>
+        <div class="cap">Le panneau de droite n'apparaît qu'après un clic sur <strong>&gt;&gt;</strong> : c'est là que se lisent les coefficients, l'écart type et le coefficient de corrélation. Décocher une case fige le coefficient à une valeur qu'on impose.</div>
+      </div>
+      <div class="methode"><div class="t">Pas à pas</div>
+        <ol>
+          <li><strong>Traitements → Modélisation</strong>, ou <span class="m">F4</span>.</li>
+          <li>Glisse la <strong>courbe</strong> — c'est-à-dire l'objet noté <span class="m">A = fct(C)</span> dans la liste, pas la variable <span class="m">A</span> seule — dans le champ <em>Courbe à modéliser</em>. Laisse le champ <em>Courbe modèle</em> vide.</li>
+          <li><strong>Choisir un modèle</strong> : les modèles s'affichent sous forme de vignettes graphiques. Droite <span class="m">y = a·x</span> pour Beer-Lambert ou la loi d'Ohm, affine <span class="m">y = a·x + b</span>, exponentielle pour une décharge de condensateur, parabole pour une chute. <strong>Le choix se justifie par la physique, pas par l'allure.</strong></li>
+          <li><strong>Calculer le modèle</strong> : la courbe modèle se superpose aux points.</li>
+          <li><strong>&gt;&gt;</strong> pour ouvrir le panneau avancé : coefficients, écart type, coefficient de corrélation. C'est de là que sort le résultat du TP.</li>
+        </ol>
+      </div>
+      <p>On peut ne modéliser qu'une <strong>portion</strong> de courbe : la boîte étant ouverte, le curseur devient une cible rouge sur le graphe ; on clique le premier puis le dernier point de la zone, qui se met en surbrillance. Indispensable quand seul le régime linéaire du début nous intéresse.</p>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>La pente donne…</th><th>Dans quel TP</th></tr>
+        <tr><td>La résistance <span class="m">R</span></td><td>Caractéristique <span class="m">U(I)</span> d'un conducteur ohmique</td></tr>
+        <tr><td>Le coefficient <span class="m">k</span> de Beer-Lambert</td><td>Droite d'étalonnage <span class="m">A(C)</span> — puis lecture inverse pour la concentration inconnue</td></tr>
+        <tr><td>Une vitesse</td><td>Position <span class="m">x(t)</span> sur un mouvement rectiligne uniforme</td></tr>
+        <tr><td>La constante de temps <span class="m">τ</span></td><td>Modèle exponentiel d'une charge ou décharge de condensateur</td></tr>
+      </table></div>
+      <div class="piege"><div class="t">Le coefficient de corrélation ne prouve rien tout seul</div>Un <span class="m">r</span> proche de 1 dit que le modèle colle, pas qu'il est le bon. Regarde la répartition des écarts : dispersés au hasard autour de la droite, c'est bon signe ; tous d'un côté au début puis de l'autre à la fin, le modèle est inadapté, même avec un joli <span class="m">r</span>.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18c3 0 3-12 6-12s3 12 6 12 3-6 6-6"/></svg>11 · Les calculs spécifiques : dérivée, intégrale, FFT, lissage<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p><strong>Traitements → Calculs spécifiques</strong>. Toutes ces boîtes fonctionnent pareil : un champ <em>Courbe</em> où l'on glisse la courbe source, un champ <em>Résultat</em> qu'on peut laisser vide.</p>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Traitement</th><th>Ce qu'il produit</th><th>À quoi ça sert chez toi</th></tr>
+        <tr><td>Dérivée</td><td>La courbe <span class="m">dy/dx</span> (une case permet la dérivée seconde)</td><td>Vitesse à partir de <span class="m">x(t)</span> ; maximum de <span class="m">dpH/dV</span> à l'équivalence ; vitesse de réaction</td></tr>
+        <tr><td>Intégrale</td><td>La courbe des aires cumulées</td><td>Énergie transférée à partir d'une courbe de puissance</td></tr>
+        <tr><td>FFT</td><td>Le spectre en fréquences du signal</td><td>Identifier le fondamental et les harmoniques d'un son ; retrouver <span class="m">f</span> sans réticule</td></tr>
+        <tr><td>Lissage</td><td>La même courbe débruitée, avec un curseur d'intensité</td><td>Signal parasité — <strong>en dernier recours</strong></td></tr>
+        <tr><td>Statistiques</td><td>Courbes de min, max, moyenne, écart type</td><td>Analyse d'une série de mesures répétées</td></tr>
+      </table></div>
+      <div class="piege"><div class="t">Une courbe, jamais une variable</div>C'est l'erreur numéro un sur tous ces traitements. Dans la liste, <span class="m">A</span> est une variable ; <span class="m">A = fct(C)</span> est une courbe. Seule la seconde peut être glissée dans un champ de traitement — sinon la boîte reste vide ou renvoie n'importe quoi.</div>
+      <div class="piege"><div class="t">Le lissage abîme ce qu'il nettoie</div>Chaque passage réduit un peu l'amplitude et arrondit les inflexions. Deux ou trois lissages successifs peuvent transformer un pic réel en bosse molle. Mieux vaut refaire une acquisition propre, ou filtrer le montage, que lisser trois fois. Et si tu lisses, dis-le dans le compte-rendu.</div>
+      <p>La <strong>FFT</strong> mérite un mot : elle transforme un enregistrement de son en spectre de raies. Le mode normal suffit ; garde l'option <em>sélection de périodes</em> cochée, sans quoi le spectre se brouille. Le fondamental est la raie de plus basse fréquence, les harmoniques sont ses multiples — c'est ce qui distingue deux instruments jouant la même note.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="14" height="12" rx="2"/><path d="M16.5 11l5-3v8l-5-3z"/></svg>12 · Le pointage vidéo, et les vecteurs vitesse<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="fig">
+        <svg viewBox="0 0 460 268" role="img" aria-label="Fenêtre d'analyse de séquences vidéo de Latis Pro">
+          <rect x="8" y="10" width="444" height="248" rx="7" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <line x1="8" y1="36" x2="452" y2="36" stroke="currentColor" stroke-width="1.4"/>
+          <text x="20" y="28" fill="currentColor" font-family="sans-serif" font-size="12.5" font-weight="bold">Analyse de séquences vidéos</text>
+
+          <rect x="20" y="48" width="272" height="164" rx="4" fill="none" stroke="currentColor" stroke-width="1.3"/>
+          <line x1="52" y1="196" x2="278" y2="196" stroke="currentColor" stroke-width="1.2" opacity=".7"/>
+          <line x1="52" y1="196" x2="52" y2="60" stroke="currentColor" stroke-width="1.2" opacity=".7"/>
+          <circle cx="52" cy="196" r="3.5" fill="var(--orange)"/>
+          <text x="58" y="210" fill="currentColor" font-family="sans-serif" font-size="9.5" opacity=".7">origine</text>
+          <g fill="var(--orange)">
+            <circle cx="74" cy="176" r="3"/><circle cx="102" cy="150" r="3"/><circle cx="130" cy="132" r="3"/><circle cx="158" cy="122" r="3"/><circle cx="186" cy="120" r="3"/><circle cx="214" cy="128" r="3"/><circle cx="242" cy="144" r="3"/><circle cx="268" cy="168" r="3"/>
+          </g>
+          <line x1="196" y1="72" x2="264" y2="72" stroke="currentColor" stroke-width="1.6"/>
+          <line x1="196" y1="67" x2="196" y2="77" stroke="currentColor" stroke-width="1.6"/>
+          <line x1="264" y1="67" x2="264" y2="77" stroke="currentColor" stroke-width="1.6"/>
+          <text x="230" y="64" fill="currentColor" font-family="sans-serif" font-size="9.5" text-anchor="middle">étalon 1,00 m</text>
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="20" y="222" width="20" height="18" rx="3"/><rect x="44" y="222" width="20" height="18" rx="3"/><rect x="68" y="222" width="20" height="18" rx="3"/><rect x="92" y="222" width="20" height="18" rx="3"/>
+            <line x1="140" y1="231" x2="280" y2="231"/>
+          </g>
+          <circle cx="196" cy="231" r="5" fill="var(--orange)"/>
+          <text x="116" y="235" fill="currentColor" font-family="sans-serif" font-size="9.5" opacity=".7">zoom</text>
+
+          <g fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="298" y="48" width="146" height="24" rx="4"/>
+            <rect x="298" y="80" width="146" height="24" rx="4"/>
+            <rect x="298" y="112" width="146" height="24" rx="4"/>
+            <rect x="298" y="144" width="146" height="24" rx="4"/>
+            <rect x="298" y="176" width="146" height="24" rx="4"/>
+            <rect x="298" y="208" width="146" height="24" rx="4"/>
+          </g>
+          <rect x="298" y="176" width="146" height="24" rx="4" fill="var(--orange)" opacity=".18"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="9.8" text-anchor="middle">
+            <text x="371" y="64">Sélection d'un fichier</text>
+            <text x="371" y="96">Sélection de l'origine</text>
+            <text x="371" y="128">Sélection de l'étalon</text>
+            <text x="371" y="160">Sens des axes</text>
+            <text x="371" y="192" font-size="9">Sélection manuelle des points</text>
+            <text x="371" y="224">Terminer la sélection</text>
+          </g>
+        </svg>
+        <div class="cap">Les boutons se prennent de haut en bas, dans cet ordre. Le curseur de zoom, en bas, permet de pointer le mobile au pixel près.</div>
+      </div>
+      <div class="methode"><div class="t">Pas à pas</div>
+        <ol>
+          <li><strong>Édition → Analyse de séquences vidéos.</strong> Le fichier <span class="m">.avi</span> doit être ouvert <em>depuis ce module</em>, pas par le menu Fichier.</li>
+          <li><strong>Sélection de l'origine :</strong> clique le point qui sera le <span class="m">(0 ; 0)</span> — souvent la position initiale du mobile, ou le sol.</li>
+          <li><strong>Sélection de l'étalon :</strong> clique les deux extrémités d'un objet de longueur connue visible à l'image, puis saisis sa longueur réelle en mètres. <strong>Sans cette étape, tout reste en pixels.</strong></li>
+          <li><strong>Sens des axes</strong>, puis rembobine jusqu'à la première image de l'étude.</li>
+          <li><strong>Sélection manuelle des points :</strong> clique la position du mobile, image par image. Vise toujours <em>le même point</em> du mobile — son centre. La vidéo avance seule à chaque clic.</li>
+          <li><strong>Terminer la sélection manuelle</strong>, puis ferme la fenêtre : <span class="m">Mouvement X</span> et <span class="m">Mouvement Y</span> apparaissent dans la liste des courbes. Double-clic pour les renommer en <span class="m">x</span> et <span class="m">y</span>, unité m.</li>
+        </ol>
+      </div>
+      <div class="def"><div class="t">Traitements → Vecteurs</div>Glisse <span class="m">x</span> puis <span class="m">y</span> dans les deux champs : Latis Pro trace, en survolant chaque point, le <strong>vecteur vitesse en bleu et le vecteur accélération en rouge</strong>, avec leurs normes affichées à gauche. Le clic droit permet d'afficher tous les vecteurs, un sur trois, ou de lancer une animation. C'est la vérification visuelle directe de la deuxième loi de Newton : l'accélération pointe dans le sens de la résultante des forces.</div>
+      <div class="piege"><div class="t">Ce qui rend un pointage inexploitable</div>Caméra qui bouge pendant la prise de vue ; étalon oublié ; point de visée qui change en cours de route (la tête du mobile puis son centre) ; trop peu d'images sur la partie intéressante. La dérivée amplifie chaque tremblement de clic : une courbe de position à peu près correcte peut donner une courbe de vitesse en dents de scie. La <strong>sélection automatique</strong> des points n'est fiable que sur un fond parfaitement uni — en pratique, elle sert rarement.</div>
+      </div></details>
+
+<details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h3M17 12h3"/><circle cx="12" cy="12" r="2"/><path d="M7 12a5 5 0 0 1 10 0M5 12a7 7 0 0 1 14 0" opacity=".6"/></svg>13 · TP classique : la célérité du son<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
       <div class="fig">
         <svg viewBox="0 0 620 300" role="img" aria-label="Mesure de la célérité du son avec deux microphones">
           <g fill="none" stroke="currentColor" stroke-width="2">
@@ -1209,80 +1616,13 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
           <g fill="currentColor" font-family="Georgia,serif" font-size="14" font-style="italic"><text x="238" y="170">τ</text></g>
           <g font-family="sans-serif" font-size="10.5"><text x="596" y="200" fill="#E45C10">EA0</text><text x="596" y="252" fill="#1A73E8">EA1</text></g>
         </svg>
-        <div class="cap">Le son parcourt la distance d entre les deux micros pendant le retard τ mesuré aux réticules entre les deux débuts de signal : <span class="m">v = d/τ</span>. Attendu : ≈ 340 m·s<sup>−1</sup> dans l'air à 20 °C.</div>
+        <div class="cap">Le son parcourt la distance d entre les deux micros pendant le retard τ mesuré au réticule entre les deux débuts de signal : <span class="m">v = d/τ</span>. Attendu : ≈ 340 m·s<sup>−1</sup> dans l'air à 20 °C.</div>
       </div>
-      <p>Réglages types : d = 1,000 m (mesurée au mètre, micros bien alignés) ; acquisition ~10 ms, quelques milliers de points ; <strong>déclenchement sur EA0</strong>, seuil bas, sens montant — sinon impossible d'attraper un claquement. τ attendu ≈ 3 ms : les réticules se posent sur le début de chaque salve.</p>
-      </div></details>
-
-      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18M15 9v12"/></svg>La Feuille de calculs : créer de nouvelles grandeurs<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
-      <p><strong>Traitements → Feuille de calculs</strong>. On y fabrique une nouvelle courbe à partir des existantes en tapant une formule, une ligne par grandeur, du type :</p>
-      <div class="exemple"><div class="t">Exemples de formules</div>
-        <p style="font-family:ui-monospace,Consolas,monospace;font-size:.92rem">U2 = 2*EA0<br>P = EA0*EA1<br>Ec = 0.5*0.058*(Vx^2+Vy^2)</p>
-        <p>On valide (touche Entrée / F2 selon versions) : la nouvelle grandeur apparaît dans la liste des courbes, prête à être glissée sur un graphe.</p>
-      </div>
-      <p>Cas d'usage typiques : convertir une tension de capteur en grandeur physique (via la sensibilité donnée dans le sujet), calculer une énergie cinétique après un pointage vidéo, ou une somme/différence de signaux. Pour dériver une grandeur (vitesse à partir de la position), le plus simple reste <strong>Traitements → Calculs spécifiques → Dérivée</strong>.</p>
-      </div></details>
-
-      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20L20 6"/><circle cx="7" cy="16.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="11" cy="14.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="14" cy="10.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="18" cy="8.5" r="1.3" fill="currentColor" stroke="none"/></svg>La Modélisation : faire passer une droite dans les points<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
-      <div class="methode"><div class="t">Pas à pas</div>
-        <ol>
-          <li><strong>Traitements → Modélisation</strong> : une fenêtre s'ouvre.</li>
-          <li>Glisser la courbe à modéliser (depuis la liste des courbes) dans la zone prévue.</li>
-          <li><strong>Choisir le modèle</strong> : Droite (y = a·x, pour Beer-Lambert, loi d'Ohm…), Affine (y = a·x + b), Parabole, etc. Le choix se justifie par la physique, pas par l'esthétique.</li>
-          <li>Cliquer <strong>« Calculer le modèle »</strong> : Latis Pro affiche les coefficients (a, b…) avec leurs unités implicites, et superpose la droite aux points.</li>
-          <li>Noter les coefficients ET juger l'accord : les points s'écartent-ils de façon aléatoire (bien) ou systématique — points en courbe sous la droite — (modèle inadapté) ?</li>
-        </ol>
-      </div>
-      <p>C'est l'outil qui transforme un nuage de mesures en résultat : la pente de U(I) donne R, la pente de A(C) donne le k de Beer-Lambert (et permet la lecture inverse), la pente de x(t) donne une vitesse.</p>
-      </div></details>
-
-      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 9h19M6.5 5v14M17.5 5v14"/><circle cx="12" cy="14" r="1.3" fill="currentColor" stroke="none"/></svg>Le pointage vidéo (mécanique)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
-      <div class="fig">
-        <svg viewBox="0 0 560 300" role="img" aria-label="Pointage vidéo dans Latis Pro">
-          <rect x="20" y="20" width="380" height="260" rx="6" fill="none" stroke="currentColor" stroke-width="2"/>
-          <g stroke="#E45C10" stroke-width="1.6">
-            <line x1="56" y1="248" x2="380" y2="248"/><line x1="56" y1="248" x2="56" y2="40"/>
-          </g>
-          <g fill="currentColor">
-            <circle cx="90" cy="90" r="5"/><circle cx="130" cy="98" r="5"/><circle cx="170" cy="114" r="5"/><circle cx="210" cy="138" r="5"/><circle cx="250" cy="170" r="5"/><circle cx="290" cy="210" r="5"/>
-          </g>
-          <circle cx="330" cy="258" r="0" fill="none"/>
-          <line x1="330" y1="60" x2="330" y2="160" stroke="#1A73E8" stroke-width="1.8" marker-start="url(#flpv2)" marker-end="url(#flpv)"/>
-          <defs>
-            <marker id="flpv" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="#1A73E8"/></marker>
-            <marker id="flpv2" markerWidth="7" markerHeight="7" refX="2" refY="3.5" orient="auto"><path d="M7,0 L1,3.5 L7,7 z" fill="#1A73E8"/></marker>
-          </defs>
-          <g fill="#1A73E8" font-family="sans-serif" font-size="11.5" font-weight="bold"><text x="340" y="116">étalon 1,00 m</text></g>
-          <g fill="#E45C10" font-family="sans-serif" font-size="11.5" font-weight="bold"><text x="62" y="36">origine + axes</text></g>
-          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
-            <text x="96" y="70" opacity=".8">positions cliquées image par image</text>
-          </g>
-          <g fill="currentColor" font-family="sans-serif" font-size="11.5">
-            <text x="420" y="60" font-weight="bold">Résultat :</text>
-            <text x="420" y="82">Mouvement X(t)</text>
-            <text x="420" y="102">Mouvement Y(t)</text>
-            <text x="420" y="130" opacity=".75">→ courbes x(t), y(t)</text>
-            <text x="420" y="150" opacity=".75">→ vitesses par Dérivée</text>
-            <text x="420" y="170" opacity=".75">→ énergies en Feuille</text>
-            <text x="420" y="188" opacity=".75">de calculs</text>
-          </g>
-        </svg>
-        <div class="cap">La trajectoire d'un mobile filmé devient un tableau de coordonnées exploitables. La qualité du pointage fait toute la qualité des courbes.</div>
-      </div>
-      <div class="methode"><div class="t">Pas à pas</div>
-        <ol>
-          <li><strong>Édition → Analyse de séquences vidéos</strong>, puis ouvrir le fichier vidéo du sujet.</li>
-          <li><strong>Sélection de l'origine</strong> : cliquer le point choisi comme (0 ; 0) — souvent la position initiale du mobile — et orienter les axes.</li>
-          <li><strong>Étalonnage</strong> (« sélection de l'étalon ») : cliquer les deux extrémités d'un objet de longueur connue visible à l'image (règle, porte…) et entrer sa valeur. Sans cette étape, tout serait en pixels !</li>
-          <li><strong>Pointer</strong> : image par image, cliquer la position du mobile (toujours le même point du mobile — son centre). La vidéo avance automatiquement à chaque clic.</li>
-          <li>Fermer : les grandeurs <strong>Mouvement X</strong> et <strong>Mouvement Y</strong> apparaissent dans la liste des courbes. Les glisser sur un graphe, dériver pour les vitesses, calculer les énergies en feuille de calculs.</li>
-        </ol>
-      </div>
+      <p>Réglages types : d = 1,000 m (mesurée au mètre, micros bien alignés) ; acquisition ~10 ms, quelques milliers de points ; <strong>déclenchement sur EA0</strong>, seuil bas, sens montant — sinon impossible d'attraper un claquement. τ attendu ≈ 3 ms. Pour le mesurer : réticule <strong>lié à la courbe</strong> posé sur le début de la première salve, puis <strong>Nouvelle origine</strong>, puis lecture de l’abscisse au début de la seconde salve — c’est directement <span class="m">τ</span>. Zoome à la loupe avant de pointer : à cette échelle, deux pixels d’erreur déplacent le résultat de plusieurs m·s<sup>−1</sup>.</p>
       </div></details>
     </div>
   </section>
 
-  <!-- ===== Exploiter ===== -->
   <section class="part" id="t-exploit">
     <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16M6 20V9M12 20V4M18 20v-8"/></svg>Exploiter et conclure<small>La dernière partie de tout TP — et souvent la plus payante en points</small></h2>
     <div class="prose">
