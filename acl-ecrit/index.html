@@ -33,7 +33,7 @@
   --bar:0px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--bar) + 8px);}
 body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.72;font-weight:400;}
 @media(min-width:900px){body{font-size:17.5px;}}
 
@@ -220,6 +220,8 @@ th{background:var(--cloth);color:var(--gilt-2);font-family:var(--display);font-w
   letter-spacing:0;text-transform:none;border-bottom:none;}
 tr:last-child td{border-bottom:none;}
 tbody tr:nth-child(even) td{background:var(--page-2);}
+[data-route="oeuvres/lughnasa/deroule"] td:first-child,
+[data-route="oeuvres/lughnasa/personnages"] td:first-child{white-space:nowrap;}
 
 /* glossaire */
 .gloss{display:grid;grid-template-columns:1fr;gap:0;max-width:none;border-top:1px solid var(--rule);}
