@@ -1,204 +1,370 @@
 <!DOCTYPE html>
 <html lang="fr" data-currentlang="fr"><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACL Écrit — BFI Britannique 2027</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ACL Écrit — British Literature · BFI 2027</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1B2233">
+<meta name="theme-color" content="#16233F">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Spectral:ital,wght@0,300;0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#FCFBF6;
-  --paper-deep:#F3F0E6;
-  --ink:#1B2233;
-  --ink-soft:#4A5266;
-  --cam-blue:#7BA697;
-  --cam-blue-deep:#4E7A6B;
-  --exam-red:#B3202C;
-  --rule:#D8D3C4;
-  --display:'Libre Caslon Text', Georgia, serif;
-  --body:'Source Serif 4', Georgia, serif;
-  --mono:'IBM Plex Mono', 'Courier New', monospace;
+  /* toile de reliure */
+  --cloth:#16233F;
+  --cloth-2:#0E1729;
+  --cloth-line:#2E3E60;
+  /* dorure */
+  --gilt:#C4A052;
+  --gilt-2:#E6CB8B;
+  --gilt-dim:rgba(196,160,82,.34);
+  /* page */
+  --page:#FBF9F3;
+  --page-2:#F2EEE3;
+  --rule:#DCD5C4;
+  --ink:#1E2330;
+  --ink-2:#5B6272;
+  --ribbon:#8E2436;
+  --display:'EB Garamond','Palatino Linotype',Palatino,Georgia,serif;
+  --body:'Spectral',Charter,Cambria,Georgia,serif;
+  --measure:40rem;
+  --bar:0px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--page);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.72;font-weight:400;}
+@media(min-width:900px){body{font-size:17.5px;}}
+
+/* bilinguisme */
 [data-lang]{display:none;}
 html[data-currentlang="fr"] [data-lang="fr"]{display:revert;}
 html[data-currentlang="en"] [data-lang="en"]{display:revert;}
-span[data-lang]{display:none;}
-html[data-currentlang="fr"] span[data-lang="fr"]{display:inline;}
-html[data-currentlang="en"] span[data-lang="en"]{display:inline;}
+span[data-lang],b[data-lang],em[data-lang]{display:none;}
+html[data-currentlang="fr"] span[data-lang="fr"],
+html[data-currentlang="fr"] b[data-lang="fr"],
+html[data-currentlang="fr"] em[data-lang="fr"]{display:inline;}
+html[data-currentlang="en"] span[data-lang="en"],
+html[data-currentlang="en"] b[data-lang="en"],
+html[data-currentlang="en"] em[data-lang="en"]{display:inline;}
 
-/* ---------- Header : page de garde d'examen ---------- */
-header{max-width:880px;margin:36px auto 0;padding:0 20px;}
-.cover{border:2.5px solid var(--ink);background:#fff;padding:34px 38px 30px;position:relative;}
-.cover::after{content:"";position:absolute;inset:6px;border:1px solid var(--rule);pointer-events:none;}
-.cover-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:14px;margin-bottom:18px;}
-.paper-ref{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;color:var(--ink-soft);}
-.paper-ref b{color:var(--exam-red);font-weight:600;}
-h1{font-family:var(--display);font-size:clamp(1.7rem,4.5vw,2.5rem);font-weight:700;line-height:1.15;margin-bottom:6px;}
-.subtitle{font-style:italic;color:var(--ink-soft);font-size:1.02rem;}
-.cover-instructions{margin-top:20px;border:1px solid var(--ink);padding:14px 18px;background:var(--paper);}
-.cover-instructions .ci-title{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--exam-red);margin-bottom:8px;}
-.cover-instructions ul{list-style:none;}
-.cover-instructions li{padding:3px 0 3px 20px;position:relative;font-size:.95rem;}
-.cover-instructions li::before{content:"—";position:absolute;left:0;color:var(--cam-blue-deep);}
-.lang-switch{position:fixed;top:14px;right:14px;z-index:50;display:flex;border:1.5px solid var(--ink);background:#fff;box-shadow:3px 3px 0 rgba(27,34,51,.15);}
-.lang-switch button{font-family:var(--mono);font-size:.8rem;padding:7px 13px;border:none;background:transparent;cursor:pointer;color:var(--ink);}
-.lang-switch button.active{background:var(--ink);color:var(--paper);}
+::selection{background:var(--gilt-dim);}
+:focus-visible{outline:2px solid var(--gilt);outline-offset:2px;}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important;}}
 
-/* ---------- Nav ---------- */
-nav{max-width:880px;margin:26px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:8px;}
-nav button{font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;padding:9px 14px;background:#fff;border:1.5px solid var(--ink);cursor:pointer;color:var(--ink);transition:all .15s;}
-nav button:hover{background:var(--paper-deep);}
-nav button.active{background:var(--cam-blue-deep);border-color:var(--cam-blue-deep);color:#fff;}
+/* ══════════ LE PLAT — couverture ══════════ */
+.board{background:var(--cloth);color:var(--page);position:relative;
+  background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.028) 1px,transparent 0);
+  background-size:4px 4px;}
+.board-in{max-width:74rem;margin:0 auto;padding:30px 18px 28px;}
+@media(min-width:900px){.board-in{padding:64px 24px 56px;}}
+.board .stamp{border-top:2px solid var(--gilt);border-bottom:1px solid var(--gilt-dim);
+  padding:18px 0 14px;position:relative;max-width:48rem;}
+@media(min-width:900px){.board .stamp{padding:26px 0 20px;}}
+.board .stamp::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:1px;background:var(--gilt-dim);}
+.board h1{font-family:var(--display);font-weight:500;color:var(--gilt-2);
+  font-size:clamp(2rem,7.5vw,3.4rem);line-height:1.08;letter-spacing:.005em;}
+.board .imprint{font-family:var(--display);font-style:italic;font-size:clamp(.98rem,3vw,1.2rem);
+  color:rgba(251,249,243,.72);margin-top:10px;line-height:1.34;max-width:34rem;}
+.board .facts{display:grid;gap:1px 26px;margin-top:18px;font-size:.88rem;line-height:1.5;color:rgba(251,249,243,.66);}
+@media(min-width:560px){.board .facts{grid-template-columns:repeat(3,max-content);}}
+.board .facts b{color:var(--gilt-2);font-weight:400;font-family:var(--display);}
+.rubric{margin-top:22px;border:1px solid var(--cloth-line);border-left:3px solid var(--gilt);
+  padding:15px 18px;background:rgba(0,0,0,.16);max-width:48rem;}
+@media(min-width:900px){.rubric{margin-top:32px;padding:20px 22px;}}
+.rubric h2{font-family:var(--display);font-size:1.1rem;font-weight:500;color:var(--gilt-2);margin-bottom:10px;}
+.rubric ul{list-style:none;}
+.rubric li{padding:4px 0 4px 18px;position:relative;font-size:.93rem;line-height:1.5;color:rgba(251,249,243,.86);max-width:42rem;}
+.rubric li::before{content:"";position:absolute;left:0;top:.78em;width:7px;height:1px;background:var(--gilt);}
+.rubric b{color:#fff;font-weight:600;}
 
-/* ---------- Sections ---------- */
-main{max-width:880px;margin:0 auto;padding:28px 20px 90px;}
-section.tab{display:none;}
-section.tab.visible{display:block;}
-h2{font-family:var(--display);font-size:1.55rem;margin:34px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--ink);}
-h2:first-child{margin-top:10px;}
-h3{font-family:var(--display);font-size:1.15rem;margin:26px 0 10px;color:var(--cam-blue-deep);}
-p{margin-bottom:12px;}
-em{font-style:italic;}
-.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--exam-red);display:block;margin-top:8px;}
+/* ══════════ LES BARRES ══════════ */
+.topbar{position:sticky;top:0;z-index:60;background:var(--cloth-2);border-bottom:1px solid var(--cloth-line);
+  box-shadow:0 1px 0 var(--gilt-dim);}
+.topbar-in{max-width:74rem;margin:0 auto;padding:0 12px;display:flex;align-items:stretch;gap:6px;}
+@media(min-width:900px){.topbar-in{padding:0 24px;}}
+.areas{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;}
+.areas::-webkit-scrollbar{display:none;}
+.areas button{font-family:var(--display);font-size:.94rem;font-weight:500;letter-spacing:.01em;
+  white-space:nowrap;padding:13px 7px 11px;background:none;border:none;cursor:pointer;
+  color:rgba(251,249,243,.62);border-bottom:2px solid transparent;transition:color .15s,border-color .15s;}
+@media(min-width:700px){.areas button{font-size:1.05rem;padding:14px 16px 12px;}}
+.areas button:hover{color:var(--gilt-2);}
+.areas button[aria-current="true"]{color:var(--gilt-2);border-bottom-color:var(--gilt);}
+.tools{display:flex;align-items:center;gap:2px;padding-left:5px;border-left:1px solid var(--cloth-line);flex-shrink:0;}
+.tools button{background:none;border:1px solid transparent;color:rgba(251,249,243,.6);cursor:pointer;
+  font-family:var(--body);font-size:.78rem;padding:6px 5px;border-radius:2px;line-height:1;}
+@media(min-width:700px){.tools button{font-size:.84rem;padding:6px 10px;}}
+.tools button:hover{color:var(--gilt-2);border-color:var(--cloth-line);}
+.tools button.on{color:var(--cloth);background:var(--gilt);}
+.tools .sep{width:1px;height:16px;background:var(--cloth-line);margin:0 1px;}
+#btn-search .lbl{display:none;}
+#btn-search .ico{font-size:1.15rem;}
+@media(min-width:700px){#btn-search .lbl{display:inline;}#btn-search .ico{display:none;}}
 
-/* cartes & encadrés */
-.card{background:#fff;border:1.5px solid var(--ink);padding:20px 24px;margin:16px 0;}
-.card.soft{border-color:var(--rule);background:var(--paper-deep);}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-@media(max-width:640px){.two-col{grid-template-columns:1fr;}}
-.tag{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--cam-blue-deep);color:var(--cam-blue-deep);margin-bottom:10px;}
-.tag.red{border-color:var(--exam-red);color:var(--exam-red);}
+/* fil d'Ariane mobile */
+.trail{position:sticky;top:var(--bar);z-index:55;background:var(--page);border-bottom:1px solid var(--rule);}
+.trail button{width:100%;text-align:left;background:none;border:none;cursor:pointer;font-family:var(--body);
+  color:var(--ink);font-size:.9rem;padding:10px 16px;display:flex;align-items:baseline;gap:9px;
+  white-space:nowrap;overflow:hidden;}
+.trail .chev{color:var(--gilt);flex-shrink:0;font-size:.8rem;}
+.trail .now{font-weight:600;}
+.trail .up{color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;flex:0 1 auto;min-width:0;}
+.trail .now{flex:0 0 auto;max-width:60%;overflow:hidden;text-overflow:ellipsis;}
+@media(min-width:900px){.trail{display:none;}}
 
-/* marginalia : annotation d'examinateur */
-.margin-note{border-left:3px solid var(--exam-red);padding:10px 16px;margin:14px 0;background:rgba(179,32,44,.045);font-size:.95rem;}
-.margin-note .mn-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--exam-red);display:block;margin-bottom:4px;}
+/* ══════════ LA TRANCHE — rail latéral ══════════ */
+.frame{max-width:74rem;margin:0 auto;display:block;}
+@media(min-width:900px){.frame{display:grid;grid-template-columns:15rem minmax(0,1fr);gap:0;padding:0 24px;}}
+.edge{display:none;}
+@media(min-width:900px){
+  .edge{display:block;position:sticky;top:var(--bar);align-self:start;max-height:calc(100vh - var(--bar));
+    overflow-y:auto;padding:28px 22px 40px 0;border-right:1px solid var(--rule);}
+}
+.edge ul{list-style:none;}
+.edge a{display:block;text-decoration:none;color:var(--ink-2);font-size:.94rem;line-height:1.4;
+  padding:7px 12px 7px 14px;border-left:2px solid transparent;transition:color .12s,border-color .12s;}
+.edge a:hover{color:var(--ink);border-left-color:var(--rule);}
+.edge a[aria-current="true"]{color:var(--ink);border-left-color:var(--gilt);font-weight:600;}
+.edge .lv3{margin:2px 0 8px;padding-left:12px;border-left:1px solid var(--rule);}
+.edge .lv3 a{font-size:.88rem;padding:5px 10px 5px 12px;}
+.edge .rail-head{font-family:var(--display);font-style:italic;color:var(--ink-2);font-size:.92rem;
+  padding:0 0 8px 14px;margin-bottom:6px;border-bottom:1px solid var(--rule);}
+
+/* sommaire mobile en surcouche */
+.sheet{position:fixed;inset:0;z-index:80;background:rgba(14,23,41,.55);display:none;}
+.sheet.open{display:block;}
+.sheet-in{position:absolute;inset:0 0 0 0;background:var(--page);overflow-y:auto;padding:0 0 40px;}
+.sheet-top{position:sticky;top:0;background:var(--cloth-2);color:var(--gilt-2);display:flex;
+  justify-content:space-between;align-items:center;padding:13px 18px;font-family:var(--display);font-size:1.05rem;}
+.sheet-top button{background:none;border:none;color:var(--gilt-2);font-size:1.4rem;cursor:pointer;line-height:1;padding:0 4px;}
+.sheet-in .grp{padding:16px 18px 8px;}
+.sheet-in .grp > .lbl{font-family:var(--display);font-size:1.15rem;color:var(--ink);margin-bottom:6px;
+  padding-bottom:6px;border-bottom:1px solid var(--gilt-dim);}
+.sheet-in ul{list-style:none;}
+.sheet-in a{display:block;text-decoration:none;color:var(--ink-2);padding:9px 4px 9px 14px;
+  border-left:2px solid transparent;font-size:.97rem;}
+.sheet-in a[aria-current="true"]{color:var(--ink);border-left-color:var(--gilt);font-weight:600;}
+.sheet-in .lv3{padding-left:14px;border-left:1px solid var(--rule);margin:0 0 6px 6px;}
+.sheet-in .lv3 a{font-size:.92rem;padding:7px 4px 7px 12px;}
+
+/* ══════════ LA PAGE ══════════ */
+main{padding:26px 18px 100px;}
+@media(min-width:900px){main{padding:34px 0 120px 40px;}}
+.area{display:none;}
+.area.on{display:block;}
+.pane{display:none;}
+.pane.on{display:block;}
+.leaf{display:none;}
+.leaf.on{display:block;}
+.pane,.leaf{max-width:52rem;}
+main p,main li,main .card,main .margin-note,main .method-note,main .placeholder,
+main .cit-entry,main ul.dash,main ol.steps,main .check,main .filter{max-width:var(--measure);}
+main .tbl-wrap,main .gloss,main .two-col,main .essay,main .card .two-col{max-width:none;}
+main .card p,main .card li,main .essay p,main .cit-entry p{max-width:100%;}
+
+h2{font-family:var(--display);font-weight:500;font-size:clamp(1.6rem,5vw,2.15rem);line-height:1.15;
+  margin:0 0 6px;letter-spacing:.005em;}
+h2 + h2{margin-top:0;}
+.pane > h2, .leaf > h2{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--gilt-dim);}
+h3{font-family:var(--display);font-weight:500;font-size:1.32rem;margin:34px 0 12px;color:var(--ink);}
+.leaf > h3:first-of-type,.pane > h3:first-of-type{margin-top:0;}
+h4{font-family:var(--display);font-weight:600;font-size:1.08rem;margin:20px 0 8px;}
+p{margin-bottom:14px;}
+b,strong{font-weight:600;}
+a{color:var(--ink);text-decoration-color:var(--gilt);text-underline-offset:3px;}
+
+/* l'ancien « eyebrow » : plus de capitales, une italique dorée */
+.eyebrow{display:block;font-family:var(--display);font-style:italic;font-size:1.02rem;
+  color:#8A6E2E;margin:2px 0 8px;letter-spacing:0;text-transform:none;}
+
+/* blocs de contenu : plus d'encadrés durs, des surfaces et des filets */
+.card{background:#fff;border:1px solid var(--rule);border-radius:2px;padding:20px 22px;margin:18px 0;
+  box-shadow:0 1px 0 rgba(30,35,48,.04);}
+.card.soft{background:var(--page-2);border-color:transparent;border-left:2px solid var(--gilt-dim);box-shadow:none;}
+.card > :last-child,.margin-note > :last-child,.method-note > :last-child{margin-bottom:0;}
+.tag{display:inline-block;font-family:var(--display);font-size:1.06rem;font-weight:600;letter-spacing:0;
+  text-transform:none;padding:0 0 6px;border:none;color:var(--cloth);margin-bottom:10px;
+  border-bottom:1px solid var(--gilt);}
+.tag.red{font-style:italic;font-weight:400;font-size:.98rem;color:var(--ribbon);border-bottom-color:rgba(142,36,54,.3);}
+.two-col{display:grid;grid-template-columns:1fr;gap:14px;max-width:none;}
+@media(min-width:760px){.two-col{grid-template-columns:1fr 1fr;}}
+
+/* notes : signet rouge / note dorée */
+.margin-note{border-left:2px solid var(--ribbon);background:rgba(142,36,54,.04);padding:14px 18px;margin:18px 0;font-size:.96rem;}
+.margin-note .mn-label{display:block;font-family:var(--display);font-style:italic;font-size:1rem;
+  color:var(--ribbon);text-transform:none;letter-spacing:0;margin-bottom:5px;}
+.method-note{border-left:2px solid var(--gilt);background:rgba(196,160,82,.08);padding:14px 18px;margin:0 0 22px;font-size:.95rem;}
+.method-note .mn-label{display:block;font-family:var(--display);font-style:italic;font-size:1rem;
+  color:#8A6E2E;text-transform:none;letter-spacing:0;margin-bottom:5px;}
 
 /* listes */
-ul.dash{list-style:none;margin:0 0 14px;}
-ul.dash li{padding:4px 0 4px 22px;position:relative;}
-ul.dash li::before{content:"—";position:absolute;left:2px;color:var(--cam-blue-deep);}
-ol.steps{counter-reset:step;list-style:none;margin:0 0 14px;}
-ol.steps li{counter-increment:step;padding:10px 0 10px 46px;position:relative;border-bottom:1px dashed var(--rule);}
-ol.steps li::before{content:counter(step);position:absolute;left:0;top:10px;width:30px;height:30px;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.85rem;background:#fff;}
+ul.dash{list-style:none;margin:0 0 16px;}
+ul.dash li{padding:5px 0 5px 20px;position:relative;}
+ul.dash li::before{content:"";position:absolute;left:0;top:.92em;width:9px;height:1px;background:var(--gilt);}
+ol.steps{counter-reset:step;list-style:none;margin:0 0 16px;}
+ol.steps li{counter-increment:step;padding:12px 0 12px 44px;position:relative;border-bottom:1px solid var(--rule);}
+ol.steps li:last-child{border-bottom:none;}
+ol.steps li::before{content:counter(step);position:absolute;left:0;top:11px;width:26px;height:26px;
+  border:1px solid var(--gilt);border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:.92rem;color:#8A6E2E;background:var(--page);}
+main ul:not(.dash):not(.check):not(.rubric ul){padding-left:20px;margin-bottom:14px;}
+main ol:not(.steps){padding-left:22px;margin-bottom:14px;}
 
 /* tableaux */
-table{width:100%;border-collapse:collapse;margin:14px 0;background:#fff;font-size:.94rem;}
-th,td{border:1px solid var(--rule);padding:9px 12px;text-align:left;vertical-align:top;}
-th{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;}
-tr:nth-child(even) td{background:var(--paper-deep);}
+.tbl-wrap{overflow-x:auto;margin:18px 0;max-width:none;}
+table{width:100%;border-collapse:collapse;font-size:.94rem;background:#fff;}
+th,td{border-bottom:1px solid var(--rule);padding:11px 14px;text-align:left;vertical-align:top;}
+th{background:var(--cloth);color:var(--gilt-2);font-family:var(--display);font-weight:500;font-size:1rem;
+  letter-spacing:0;text-transform:none;border-bottom:none;}
+tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:var(--page-2);}
 
 /* glossaire */
-.gloss{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-@media(max-width:640px){.gloss{grid-template-columns:1fr;}}
-.gloss .term{background:#fff;border:1px solid var(--rule);padding:10px 14px;font-size:.92rem;}
-.gloss .term b{font-family:var(--mono);font-size:.84rem;color:var(--cam-blue-deep);display:block;margin-bottom:3px;}
+.gloss{display:grid;grid-template-columns:1fr;gap:0;max-width:none;border-top:1px solid var(--rule);}
+@media(min-width:760px){.gloss{grid-template-columns:1fr 1fr;column-gap:28px;}}
+.gloss .term{background:none;border:none;border-bottom:1px solid var(--rule);padding:11px 2px;font-size:.94rem;}
+.gloss .term b{font-family:var(--display);font-size:1.06rem;font-weight:600;color:var(--cloth);display:block;margin-bottom:2px;}
+.gloss .term.hide{display:none;}
+.filter{display:flex;gap:10px;align-items:center;margin:14px 0 6px;}
+.filter input{flex:1;max-width:22rem;font-family:var(--body);font-size:.95rem;padding:9px 12px;
+  border:1px solid var(--rule);border-radius:2px;background:#fff;color:var(--ink);}
+.filter input:focus{outline:none;border-color:var(--gilt);}
+.filter .count{font-family:var(--display);font-style:italic;color:var(--ink-2);font-size:.92rem;}
 
-/* placeholders œuvres */
-.placeholder{border:2px dashed var(--cam-blue-deep);background:rgba(123,166,151,.07);padding:22px 24px;margin:16px 0;}
-.placeholder .ph-marker{font-family:var(--mono);font-size:.78rem;color:var(--exam-red);letter-spacing:.06em;}
+/* placeholders : la page encore blanche */
+.placeholder{border:none;border-left:2px dashed var(--gilt);background:rgba(196,160,82,.06);
+  padding:18px 22px;margin:18px 0;}
+.placeholder .ph-marker{font-family:var(--body);font-size:.82rem;color:var(--ink-2);opacity:.65;}
 
-/* checklist */
-.check{list-style:none;}
-.check li{padding:8px 0;border-bottom:1px dashed var(--rule);display:flex;gap:12px;align-items:flex-start;}
-.check input{margin-top:5px;accent-color:var(--cam-blue-deep);width:16px;height:16px;flex-shrink:0;}
+/* checklists */
+.check{list-style:none;padding-left:0!important;}
+.check li{padding:9px 0;border-bottom:1px solid var(--rule);display:flex;gap:12px;align-items:flex-start;}
+.check li:last-child{border-bottom:none;}
+.check input{margin-top:6px;accent-color:var(--cloth);width:16px;height:16px;flex-shrink:0;}
 
-
-
-.cit-entry{background:#fff;border:1.5px solid var(--ink);padding:16px 20px;margin:14px 0;}
-.cit-head{font-family:var(--mono);font-size:.76rem;letter-spacing:.05em;color:var(--ink-soft);margin-bottom:8px;display:flex;gap:10px;flex-wrap:wrap;align-items:baseline;}
-.cit-head b{color:var(--ink);font-size:.88rem;letter-spacing:0;}
-.cit-num{border:1px solid var(--ink);padding:1px 6px;background:var(--paper);}
-.cit-ki{color:var(--cam-blue-deep);font-weight:600;}
-.cit-entry .locator{font-size:.93rem;margin-bottom:8px;}
-.cit-entry .analyse{font-size:.92rem;background:var(--paper-deep);border-left:3px solid var(--cam-blue-deep);padding:10px 14px;margin:10px 0 0;}
-
+/* fiches de citation */
+.cit-entry{background:#fff;border:1px solid var(--rule);border-left:2px solid var(--cloth);border-radius:2px;
+  padding:18px 20px;margin:16px 0;}
+.cit-head{font-family:var(--body);font-size:.86rem;color:var(--ink-2);margin-bottom:10px;
+  display:flex;gap:10px;flex-wrap:wrap;align-items:baseline;}
+.cit-head b{font-family:var(--display);color:var(--ink);font-size:1.1rem;font-weight:600;letter-spacing:0;}
+.cit-num{border:none;padding:0;background:none;font-family:var(--display);color:var(--gilt);font-size:1.05rem;}
+.cit-ki{color:#8A6E2E;font-style:italic;}
+.cit-entry .locator{font-size:.93rem;margin-bottom:10px;color:var(--ink-2);}
+.cit-entry .analyse{font-size:.94rem;background:var(--page-2);border-left:2px solid var(--gilt-dim);
+  padding:12px 16px;margin:12px 0 0;}
+textarea.cit{width:100%;min-height:70px;border:1px solid var(--rule);border-radius:2px;background:#fff;
+  font-family:var(--display);font-size:1.04rem;line-height:1.6;padding:10px 12px;resize:vertical;color:var(--ink);}
+textarea.cit:focus{outline:none;border-color:var(--gilt);}
+textarea.cit.filled{border-color:var(--rule);background:#fff;}
+.cit-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0 6px;}
+.cit-bar button{font-family:var(--body);font-size:.88rem;padding:9px 16px;border:1px solid var(--cloth);
+  background:var(--cloth);color:var(--page);border-radius:2px;cursor:pointer;}
+.cit-bar button:hover{background:var(--cloth-2);}
+.cit-status{font-family:var(--display);font-style:italic;font-size:.92rem;color:var(--ink-2);}
 
 /* essays modèles */
-.essay{background:#fff;border:1.5px solid var(--ink);padding:28px 32px;margin:18px 0;}
-.essay .q-title{font-family:var(--display);font-size:1.08rem;font-style:italic;border-bottom:1px solid var(--rule);padding-bottom:10px;margin-bottom:16px;}
-.essay p.body{font-size:.97rem;text-align:justify;margin-bottom:14px;}
+.essay{background:#fff;border:1px solid var(--rule);border-radius:2px;padding:26px 24px;margin:20px 0;}
+@media(min-width:760px){.essay{padding:34px 40px;}}
+.essay .q-title{font-family:var(--display);font-size:1.18rem;font-style:italic;border-bottom:1px solid var(--gilt-dim);
+  padding-bottom:12px;margin-bottom:18px;}
+.essay p.body{font-size:1rem;text-align:left;margin-bottom:16px;}
 .qslot{font-style:italic;}
-.qslot.missing{color:var(--exam-red);font-style:normal;font-family:var(--mono);font-size:.8rem;}
-.bq{border-left:3px solid var(--rule);margin:10px 0 14px 14px;padding:6px 16px;font-style:italic;font-size:.95rem;color:var(--ink-soft);}
-.method-note{border-left:3px solid var(--cam-blue-deep);background:rgba(123,166,151,.08);padding:10px 16px;margin:0 0 20px;font-size:.9rem;}
-.method-note .mn-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cam-blue-deep);display:block;margin-bottom:4px;}
+.qslot.missing{color:var(--ribbon);font-style:normal;font-size:.85rem;}
+.bq{border-left:2px solid var(--gilt-dim);margin:12px 0 16px 10px;padding:4px 18px;font-style:italic;
+  font-size:.97rem;color:var(--ink-2);}
 
-/* banque de citations remplissable */
-.cit-cell{min-width:220px;}
-textarea.cit{width:100%;min-height:64px;border:1.5px dashed var(--cam-blue-deep);background:rgba(123,166,151,.06);font-family:var(--body);font-size:.92rem;padding:8px 10px;resize:vertical;color:var(--ink);}
-textarea.cit:focus{outline:none;border-style:solid;background:#fff;}
-textarea.cit.filled{border-style:solid;border-color:var(--cam-blue-deep);background:#fff;}
-.cit-bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px;}
-.cit-bar button{font-family:var(--mono);font-size:.75rem;padding:7px 12px;border:1.5px solid var(--ink);background:#fff;cursor:pointer;}
-.cit-bar button:hover{background:var(--paper-deep);}
-.cit-status{font-family:var(--mono);font-size:.72rem;color:var(--cam-blue-deep);}
+/* recherche */
+.search{position:fixed;inset:0;z-index:90;background:rgba(14,23,41,.6);display:none;}
+.search.open{display:block;}
+.search-in{max-width:44rem;margin:0 auto;background:var(--page);min-height:100%;}
+@media(min-width:760px){.search-in{margin:8vh auto;min-height:0;max-height:80vh;display:flex;flex-direction:column;
+  border-radius:3px;box-shadow:0 24px 60px rgba(14,23,41,.4);overflow:hidden;}}
+.search-top{display:flex;gap:8px;align-items:center;background:var(--cloth-2);padding:12px 14px;}
+.search-top input{flex:1;font-family:var(--display);font-size:1.15rem;padding:9px 12px;border:1px solid var(--cloth-line);
+  background:rgba(255,255,255,.06);color:var(--page);border-radius:2px;}
+.search-top input::placeholder{color:rgba(251,249,243,.45);}
+.search-top input:focus{outline:none;border-color:var(--gilt);}
+.search-top button{background:none;border:none;color:var(--gilt-2);font-size:1.4rem;cursor:pointer;padding:0 6px;line-height:1;}
+.search-res{overflow-y:auto;padding:8px 0 24px;}
+.search-res .hit{display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  padding:13px 20px;border-bottom:1px solid var(--rule);font-family:var(--body);color:var(--ink);}
+.search-res .hit:hover{background:var(--page-2);}
+.search-res .hit .path{font-family:var(--display);font-style:italic;color:#8A6E2E;font-size:.92rem;display:block;margin-bottom:3px;}
+.search-res .hit .snip{font-size:.92rem;color:var(--ink-2);line-height:1.55;}
+.search-res .hit mark{background:var(--gilt-dim);color:var(--ink);padding:0 1px;}
+.search-res .empty{padding:26px 20px;font-family:var(--display);font-style:italic;color:var(--ink-2);}
 
-footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);padding:30px 20px 40px;letter-spacing:.08em;}
+/* pied */
+footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;text-align:center;
+  font-family:var(--display);font-style:italic;font-size:.92rem;color:var(--ink-2);}
+@media(min-width:900px){footer{padding-left:40px;}}
 </style>
 </head>
 <body>
 
-<div class="lang-switch">
-  <button id="btn-fr" class="active" onclick="setLang('fr')">FR</button>
-  <button id="btn-en" onclick="setLang('en')" class="">EN</button>
-</div>
-
-<header>
-  <div class="cover">
-    <div class="cover-top">
-      <span class="paper-ref">BFI · <b>ACL/BRIT/W</b> · SESSION 2027</span>
-      <span class="paper-ref">COEF. 20 · 4 HOURS</span>
+<header class="board">
+  <div class="board-in">
+    <div class="stamp">
+      <h1 data-lang="fr">Littérature britannique</h1>
+      <h1 data-lang="en">British Literature</h1>
+      <p class="imprint" data-lang="fr">Épreuve écrite d’approfondissement culturel et linguistique — Baccalauréat français international, section britannique</p>
+      <p class="imprint" data-lang="en">Written paper in cultural and linguistic deepening — French International Baccalaureate, British section</p>
     </div>
-    <h1 data-lang="fr">ACL Écrit — Littérature britannique</h1>
-    <h1 data-lang="en">ACL Written Paper — British Literature</h1>
-    <p class="subtitle" data-lang="fr">Parcours bilingue · Épreuve écrite d'approfondissement culturel et linguistique · Terminale BFI</p>
-    <p class="subtitle" data-lang="en">Bilingual pathway · Written paper in Cultural and Linguistic Deepening · Final year, BFI</p>
-    <div class="cover-instructions">
-      <div class="ci-title" data-lang="fr">Instructions aux candidats</div>
-      <div class="ci-title" data-lang="en">Instructions to candidates</div>
+    <div class="facts">
+      <div data-lang="fr">Session <b>2027</b></div>
+      <div data-lang="en">Session <b>2027</b></div>
+      <div data-lang="fr">Durée <b>4 heures</b></div>
+      <div data-lang="en">Length <b>4 hours</b></div>
+      <div data-lang="fr">Coefficient <b>20</b></div>
+      <div data-lang="en">Weighting <b>20</b></div>
+    </div>
+    <div class="rubric">
+      <h2 data-lang="fr">Instructions aux candidats</h2>
+      <h2 data-lang="en">Instructions to candidates</h2>
       <ul>
-        <li data-lang="fr">Vous produirez <b>deux</b> travaux en anglais en <b>quatre heures</b>.</li>
-        <li data-lang="en">You will produce <b>two</b> pieces of writing in English in <b>four hours</b>.</li>
-        <li data-lang="fr">Soit un commentaire d'extrait de Shakespeare (Part One) + un essay (Part Two), soit deux essays de Part Two issus de deux sections différentes.</li>
-        <li data-lang="en">Either one Shakespeare passage commentary (Part One) + one Part Two essay, or two Part Two essays from two different sections.</li>
-        <li data-lang="fr">L'épreuve est de niveau A-Level, sous l'égide de Cambridge International Education.</li>
+        <li data-lang="fr">Produisez <b>deux</b> travaux rédigés en anglais.</li>
+        <li data-lang="en">Produce <b>two</b> pieces of writing in English.</li>
+        <li data-lang="fr">Soit un commentaire d’extrait de Shakespeare (Part One) et un essay (Part Two), soit deux essays de Part Two pris dans deux sections différentes.</li>
+        <li data-lang="en">Either one Shakespeare passage commentary (Part One) and one Part Two essay, or two Part Two essays from two different sections.</li>
+        <li data-lang="fr">L’épreuve est de niveau A-Level, sous l’égide de Cambridge International Education.</li>
         <li data-lang="en">The paper is set at A-Level standard, under the aegis of Cambridge International Education.</li>
       </ul>
     </div>
   </div>
 </header>
 
-<nav>
-  <button class="" data-target="tab-epreuve"><span data-lang="fr">L'épreuve</span><span data-lang="en">The Exam</span></button>
-  <button data-target="tab-commentary">Commentary</button>
-  <button data-target="tab-essay">Essay</button>
-  <button data-target="tab-toolbox"><span data-lang="fr">Boîte à outils</span><span data-lang="en">Toolbox</span></button>
-  <button data-target="tab-lughnasa" class="active">Lughnasa</button>
-  <button data-target="tab-essays">Essays</button>
-  <button data-target="tab-oeuvres"><span data-lang="fr">Œuvres</span><span data-lang="en">Set Texts</span></button>
-  <button data-target="tab-plan"><span data-lang="fr">Plan de travail</span><span data-lang="en">Work Plan</span></button>
-</nav>
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="areas" role="tablist">
+      <button data-route="epreuve" data-fr="L'épreuve" data-en="The Exam">L'épreuve</button>
+      <button data-route="methode" data-fr="Méthode" data-en="Method">Méthode</button>
+      <button data-route="oeuvres" data-fr="Œuvres" data-en="Set Texts">Œuvres</button>
+      <button data-route="outils" data-fr="Outils" data-en="Toolkit">Outils</button>
+    </div>
+    <div class="tools">
+      <button id="btn-search" title="Rechercher" aria-label="Rechercher"><span class="ico">⌕</span><span class="lbl">Rechercher</span></button>
+      <span class="sep"></span>
+      <button id="btn-fr" class="on">FR</button>
+      <button id="btn-en">EN</button>
+    </div>
+  </div>
+</div>
 
-<main>
+<div class="trail"><button id="trail-btn" aria-label="Sommaire"></button></div>
 
-<!-- ============ TAB 1 : L'ÉPREUVE ============ -->
-<section class="tab" id="tab-epreuve">
-  <h2 data-lang="fr">L'épreuve écrite en un coup d'œil</h2>
-  <h2 data-lang="en">The written paper at a glance</h2>
+<div class="frame">
+  <aside class="edge" id="edge"></aside>
+  <main id="main">
+<section class="area" data-route="epreuve" data-fr="L'épreuve" data-en="The Exam">
+<div class="pane" id="epreuve-format" data-route="epreuve/format" data-fr="Le format" data-en="The shape of the paper">
+<h2 data-lang="fr">Le format</h2><h2 data-lang="en">The shape of the paper</h2>
 
   <p data-lang="fr">L'épreuve écrite d'ACL britannique est l'équivalent d'un A-Level de littérature anglaise : elle compte pour un <b>coefficient 20</b>, dure <b>quatre heures</b>, se passe entièrement <b>en anglais</b>, et les sujets comme la modération des copies sont réalisés en partenariat avec Cambridge International Education. Elle remplace l'épreuve de LVA du tronc commun.</p>
   <p data-lang="en">The British ACL written paper is the equivalent of an English Literature A-Level: it carries a <b>coefficient of 20</b>, lasts <b>four hours</b>, is written entirely <b>in English</b>, and both the papers and the moderation are handled in partnership with Cambridge International Education. It replaces the common-core LVA exam.</p>
 
-  <h3 data-lang="fr">La structure du sujet</h3>
-  <h3 data-lang="en">How the paper is structured</h3>
 
   <div class="two-col">
     <div class="card">
@@ -220,11 +386,12 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <p data-lang="en"><b>Option A:</b> one Part One question (Shakespeare commentary) + one Part Two question (essay). <b>Option B:</b> two Part Two questions, which must come from <b>two different sections</b> (e.g. one Prose question + one Poetry question). Either way: two pieces in four hours.</p>
   </div>
 
-  <h3 data-lang="fr">Ce que le correcteur évalue</h3>
-  <h3 data-lang="en">What the examiner assesses</h3>
+</div>
+<div class="pane" id="epreuve-notation" data-route="epreuve/notation" data-fr="Ce qui est noté" data-en="What is assessed">
+<h2 data-lang="fr">Ce qui est noté</h2><h2 data-lang="en">What is assessed</h2>
   <p data-lang="fr">Les grilles officielles (« key points », publiées sur Éduscol) mettent la focale sur <b>l'analyse littéraire</b>, pas sur la simple maîtrise de la langue. Concrètement, quatre attentes reviennent partout :</p>
   <p data-lang="en">The official grids (the "key points" published on Éduscol) put the focus squarely on <b>literary analysis</b>, not on language proficiency alone. In practice, four expectations come up everywhere:</p>
-  <table>
+  <div class="tbl-wrap"><table>
     <tbody><tr>
       <th data-lang="fr">Attente</th><th data-lang="en">Expectation</th>
       <th data-lang="fr">Ce que ça veut dire</th><th data-lang="en">What it means</th>
@@ -245,10 +412,11 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
       <td><span data-lang="fr">Qualité de l'anglais écrit</span><span data-lang="en">Quality of written English</span></td>
       <td><span data-lang="fr">Registre soutenu, vocabulaire critique précis, syntaxe variée, orthographe irréprochable des noms et titres.</span><span data-lang="en">Formal register, precise critical vocabulary, varied syntax, flawless spelling of names and titles.</span></td>
     </tr>
-  </tbody></table>
+  </tbody></table></div>
 
-  <h3 data-lang="fr">Gérer les quatre heures</h3>
-  <h3 data-lang="en">Managing the four hours</h3>
+</div>
+<div class="pane" id="epreuve-temps" data-route="epreuve/temps" data-fr="Les quatre heures" data-en="The four hours">
+<h2 data-lang="fr">Les quatre heures</h2><h2 data-lang="en">The four hours</h2>
   <ul class="dash">
     <li data-lang="fr"><b>~2h par production</b>, dont 15–20 min de lecture du sujet et de plan, et 5–10 min de relecture.</li>
     <li data-lang="en"><b>~2h per piece</b>, including 15–20 min for reading the question and planning, and 5–10 min for proofreading.</li>
@@ -264,13 +432,39 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <p data-lang="fr">Les <b>sujets des sessions 2024 et 2025</b> sont publiés sur Éduscol (page « Baccalauréat français international »), avec les grilles d'aide à l'évaluation. C'est ta meilleure banque d'entraînement : mêmes formats, mêmes types de questions.</p>
     <p data-lang="en">The <b>2024 and 2025 past papers</b> are published on Éduscol (the "Baccalauréat français international" page), together with the assessment grids. That is your best practice bank: same formats, same question types.</p>
   </div>
+</div>
+<div class="pane" id="epreuve-plan" data-route="epreuve/plan" data-fr="Plan de travail" data-en="Work plan">
+<h2 data-lang="fr">Plan de travail</h2><h2 data-lang="en">Work plan</h2>
+
+  <h3 data-lang="fr">Dès la rentrée</h3>
+  <h3 data-lang="en">From the start of term</h3>
+  <ul class="check">
+    <li><input type="checkbox"><span><span data-lang="fr">Noter les trois œuvres choisies par le lycée et me les transmettre pour construire les sections.</span><span data-lang="en">Note down the three texts chosen by the school and pass them on so we can build the sections.</span></span></li>
+    <li><input type="checkbox"><span><span data-lang="fr">Se procurer les éditions prescrites (New Cambridge pour Shakespeare ; éditions précisées au BO pour Blake / Clarke / Hughes le cas échéant).</span><span data-lang="en">Get hold of the prescribed editions (New Cambridge for Shakespeare; BO-specified editions for Blake / Clarke / Hughes if relevant).</span></span></li>
+    <li><input type="checkbox"><span><span data-lang="fr">Télécharger les sujets 2024 et 2025 sur Éduscol pour connaître le format réel.</span><span data-lang="en">Download the 2024 and 2025 past papers from Éduscol to see the real format.</span></span></li>
+  </ul>
+
+  <h3 data-lang="fr">Au fil de l'année</h3>
+  <h3 data-lang="en">Through the year</h3>
+  <ul class="check">
+    <li><input type="checkbox"><span><span data-lang="fr">Lire chaque œuvre deux fois : une lecture d'intrigue, une lecture d'annotation (thèmes, images, passages-clés).</span><span data-lang="en">Read each text twice: once for plot, once for annotation (themes, imagery, key passages).</span></span></li>
+    <li><input type="checkbox"><span><span data-lang="fr">Constituer une banque de citations par œuvre, classée par thème — courtes, exactes, apprises par cœur (comme pour <em>1984</em> : privilégier les passages qui prouvent une vraie lecture plutôt que les slogans célèbres).</span><span data-lang="en">Build a quotation bank per text, sorted by theme — short, exact, learnt by heart (as with <em>1984</em>: favour passages that prove real reading over famous slogans).</span></span></li>
+    <li><input type="checkbox"><span><span data-lang="fr">Un essay ou commentary chronométré (2h) par mois à partir de janvier, corrigé avec les grilles Éduscol.</span><span data-lang="en">One timed essay or commentary (2h) per month from January, marked against the Éduscol grids.</span></span></li>
+    <li><input type="checkbox"><span><span data-lang="fr">Décider tôt de ta stratégie (Option A avec Shakespeare, ou Option B deux essays) et t'entraîner en priorité dessus — tout en gardant l'autre option jouable en secours.</span><span data-lang="en">Decide early on your strategy (Option A with Shakespeare, or Option B with two essays) and train primarily for it — while keeping the other option playable as a backup.</span></span></li>
+  </ul>
+
+  <h3 data-lang="fr">Dernière ligne droite</h3>
+  <h3 data-lang="en">The home straight</h3>
+  <ul class="check">
+    <li><input type="checkbox"><span><span data-lang="fr">Réviser les banques de citations jusqu'à pouvoir en réciter 15–20 par œuvre sans hésiter.</span><span data-lang="en">Revise the quotation banks until you can recite 15–20 per text without hesitation.</span></span></li>
+    <li><input type="checkbox"><span><span data-lang="fr">Refaire les sujets des sessions passées en conditions réelles (4h, deux productions).</span><span data-lang="en">Redo past-session papers under real conditions (4h, two pieces).</span></span></li>
+    <li><input type="checkbox"><span><span data-lang="fr">Relire la boîte à outils : verbes d'analyse et amorces doivent être des réflexes.</span><span data-lang="en">Reread the toolbox: analytical verbs and sentence stems must be reflexes.</span></span></li>
+  </ul>
+</div>
 </section>
-
-
-<!-- ============ TAB 2 : COMMENTARY ============ -->
-<section class="tab" id="tab-commentary">
-  <h2 data-lang="fr">Méthode du commentary (Shakespeare)</h2>
-  <h2 data-lang="en">Commentary method (Shakespeare)</h2>
+<section class="area" data-route="methode" data-fr="Méthode" data-en="Method">
+<div class="pane" id="methode-commentary" data-route="methode/commentary" data-fr="Le commentary" data-en="The commentary">
+<h2 data-lang="fr">Le commentary</h2><h2 data-lang="en">The commentary</h2>
 
   <p data-lang="fr">Le commentary est un cousin de l'analyse linéaire française, mais avec deux différences majeures : il s'organise <b>par idées</b> (et non ligne à ligne), et il exige de replacer sans cesse l'extrait dans <b>l'économie de la pièce entière</b>. C'est un exercice de <em>close reading</em> théâtral : tu analyses un texte écrit pour être joué.</p>
   <p data-lang="en">The commentary is a cousin of the French analyse linéaire, but with two major differences: it is organised <b>by ideas</b> (not line by line), and it constantly requires you to place the passage within <b>the design of the whole play</b>. It is an exercise in theatrical <em>close reading</em>: you are analysing a text written to be performed.</p>
@@ -346,20 +540,16 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <p data-lang="fr"><b>Point</b> — une idée interprétative claire en tête de paragraphe. <b>Evidence</b> — une citation courte, intégrée à ta propre phrase entre guillemets. <b>Analysis</b> — au moins deux tiers du paragraphe : nomme le procédé, décris son effet, rattache-le à ta thèse et, si possible, à un écho ailleurs dans la pièce. Termine par une phrase qui fait le lien avec le paragraphe suivant.</p>
     <p data-lang="en"><b>Point</b> — one clear interpretive idea at the top of the paragraph. <b>Evidence</b> — a short quotation, embedded in your own sentence within quotation marks. <b>Analysis</b> — at least two thirds of the paragraph: name the device, describe its effect, connect it to your thesis and, where possible, to an echo elsewhere in the play. End with a sentence that bridges into the next paragraph.</p>
   </div>
-</section>
-
-
-<!-- ============ TAB 3 : ESSAY ============ -->
-<section class="tab" id="tab-essay">
-  <h2 data-lang="fr">Méthode de l'essay (Set Texts)</h2>
-  <h2 data-lang="en">Essay method (Set Texts)</h2>
+</div>
+<div class="pane" id="methode-essay" data-route="methode/essay" data-fr="L'essay" data-en="The essay">
+<h2 data-lang="fr">L'essay</h2><h2 data-lang="en">The essay</h2>
 
   <p data-lang="fr">L'essay à l'anglaise ne ressemble ni à la dissertation française ni au commentaire composé : c'est une <b>démonstration pilotée par une thèse</b>. Dès l'introduction, tu annonces ta réponse à la question ; chaque paragraphe apporte ensuite une pièce au dossier. Le correcteur A-Level valorise l'engagement critique : une position claire, nuancée, et défendue par le texte.</p>
   <p data-lang="en">The English-style essay is neither the French dissertation nor the commentaire composé: it is a <b>thesis-driven argument</b>. From the introduction onwards, you announce your answer to the question; each paragraph then adds a piece to the case. The A-Level examiner rewards critical engagement: a clear, nuanced position defended by the text.</p>
 
   <h3 data-lang="fr">Reconnaître les types de sujets</h3>
   <h3 data-lang="en">Recognising the question types</h3>
-  <table>
+  <div class="tbl-wrap"><table>
     <tbody><tr>
       <th data-lang="fr">Type</th><th data-lang="en">Type</th>
       <th data-lang="fr">Exemple de formulation</th><th data-lang="en">Sample wording</th>
@@ -385,7 +575,7 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
       <td><span data-lang="fr">Explore the writer's use of X…</span><span data-lang="en">Explore the writer's use of X…</span></td>
       <td><span data-lang="fr">Relie systématiquement la technique au sens : jamais le procédé pour le procédé.</span><span data-lang="en">Systematically tie the technique to meaning: never the device for its own sake.</span></td>
     </tr>
-  </tbody></table>
+  </tbody></table></div>
 
   <h3 data-lang="fr">Construire l'essay en cinq temps</h3>
   <h3 data-lang="en">Building the essay in five moves</h3>
@@ -431,116 +621,9 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <li data-lang="fr"><b>La neutralité</b> : un essay sans position est un essay sans note haute. Ose une lecture, puis nuance-la.</li>
     <li data-lang="en"><b>Fence-sitting</b>: an essay without a stance is an essay without a top mark. Commit to a reading, then qualify it.</li>
   </ul>
-</section>
-
-
-<!-- ============ TAB 4 : TOOLBOX ============ -->
-<section class="tab" id="tab-toolbox">
-  <h2 data-lang="fr">Boîte à outils critique</h2>
-  <h2 data-lang="en">Critical toolbox</h2>
-
-  <h3 data-lang="fr">Verbes d'analyse — bannir « shows »</h3>
-  <h3 data-lang="en">Analytical verbs — banning "shows"</h3>
-  <p data-lang="fr">Le verbe « shows » est le signe d'une copie faible. Varie selon la nuance exacte :</p>
-  <p data-lang="en">The verb "shows" is the mark of a weak script. Vary it according to the exact nuance:</p>
-  <table>
-    <tbody><tr>
-      <th data-lang="fr">Nuance</th><th data-lang="en">Nuance</th>
-      <th data-lang="fr">Verbes</th><th data-lang="en">Verbs</th>
-    </tr>
-    <tr>
-      <td><span data-lang="fr">Suggérer, évoquer</span><span data-lang="en">Suggesting, evoking</span></td>
-      <td>suggests · implies · evokes · connotes · hints at · intimates</td>
-    </tr>
-    <tr>
-      <td><span data-lang="fr">Souligner, renforcer</span><span data-lang="en">Emphasising, reinforcing</span></td>
-      <td>underscores · heightens · foregrounds · accentuates · reinforces · amplifies</td>
-    </tr>
-    <tr>
-      <td><span data-lang="fr">Révéler, incarner</span><span data-lang="en">Revealing, embodying</span></td>
-      <td>reveals · exposes · embodies · encapsulates · crystallises · dramatises</td>
-    </tr>
-    <tr>
-      <td><span data-lang="fr">Opposer, renverser</span><span data-lang="en">Contrasting, overturning</span></td>
-      <td>juxtaposes · contrasts · subverts · undercuts · complicates · destabilises</td>
-    </tr>
-    <tr>
-      <td><span data-lang="fr">Annoncer, préparer</span><span data-lang="en">Anticipating, preparing</span></td>
-      <td>foreshadows · anticipates · prefigures · sets up · plants</td>
-    </tr>
-  </tbody></table>
-
-  <h3 data-lang="fr">Glossaire — Drama</h3>
-  <h3 data-lang="en">Glossary — Drama</h3>
-  <div class="gloss">
-    <div class="term"><b>soliloquy</b><span data-lang="fr">Monologue d'un personnage seul en scène : accès direct à sa pensée intime.</span><span data-lang="en">A speech by a character alone on stage: direct access to their inner thoughts.</span></div>
-    <div class="term"><b>aside</b><span data-lang="fr">Aparté : réplique adressée au public, inaudible pour les autres personnages.</span><span data-lang="en">A remark addressed to the audience, unheard by the other characters.</span></div>
-    <div class="term"><b>dramatic irony</b><span data-lang="fr">Le public sait ce qu'un personnage ignore : source de tension ou de comique.</span><span data-lang="en">The audience knows what a character does not: a source of tension or comedy.</span></div>
-    <div class="term"><b>blank verse</b><span data-lang="fr">Vers non rimé en pentamètre iambique, la voix « noble » du théâtre shakespearien.</span><span data-lang="en">Unrhymed iambic pentameter, the "elevated" voice of Shakespearean drama.</span></div>
-    <div class="term"><b>iambic pentameter</b><span data-lang="fr">Vers de cinq iambes (non accentué / accentué) : les ruptures de rythme portent du sens.</span><span data-lang="en">A line of five iambs (unstressed / stressed): disruptions of the rhythm carry meaning.</span></div>
-    <div class="term"><b>prose (in drama)</b><span data-lang="fr">Chez Shakespeare, signale souvent le comique, la folie, la ruse ou le rang social.</span><span data-lang="en">In Shakespeare, often signals comedy, madness, cunning or social rank.</span></div>
-    <div class="term"><b>stichomythia</b><span data-lang="fr">Échange rapide vers à vers : duel verbal, tension maximale.</span><span data-lang="en">Rapid line-for-line exchange: a verbal duel, maximum tension.</span></div>
-    <div class="term"><b>foil</b><span data-lang="fr">Personnage-repoussoir dont le contraste éclaire le protagoniste.</span><span data-lang="en">A contrasting character whose difference illuminates the protagonist.</span></div>
-    <div class="term"><b>hamartia</b><span data-lang="fr">L'erreur ou la faille tragique qui précipite la chute du héros.</span><span data-lang="en">The tragic error or flaw that precipitates the hero's fall.</span></div>
-    <div class="term"><b>catharsis</b><span data-lang="fr">Purgation des émotions (terreur, pitié) opérée par la tragédie sur le public.</span><span data-lang="en">The purging of emotions (terror, pity) worked on the audience by tragedy.</span></div>
-    <div class="term"><b>stagecraft</b><span data-lang="fr">L'art de la scène : entrées, objets, espace, tout ce que le texte fait voir.</span><span data-lang="en">The craft of staging: entrances, props, space, everything the text makes visible.</span></div>
-    <div class="term"><b>comic relief</b><span data-lang="fr">Détente comique insérée dans la tension tragique — souvent pour mieux la relancer.</span><span data-lang="en">Comic release inserted into tragic tension — often the better to renew it.</span></div>
-  </div>
-
-  <h3 data-lang="fr">Glossaire — Poetry</h3>
-  <h3 data-lang="en">Glossary — Poetry</h3>
-  <div class="gloss">
-    <div class="term"><b>enjambment</b><span data-lang="fr">La phrase déborde le vers : effet d'élan, de débordement ou de suspension.</span><span data-lang="en">The sentence runs over the line: momentum, overflow or suspension.</span></div>
-    <div class="term"><b>caesura</b><span data-lang="fr">Pause marquée au milieu du vers : rupture, hésitation, bascule.</span><span data-lang="en">A marked pause mid-line: rupture, hesitation, pivot.</span></div>
-    <div class="term"><b>volta</b><span data-lang="fr">Le « tournant » d'un poème (surtout du sonnet) : renversement de l'argument.</span><span data-lang="en">The "turn" of a poem (especially the sonnet): the argument reverses.</span></div>
-    <div class="term"><b>rhyme scheme</b><span data-lang="fr">Schéma des rimes (ABAB…) : sa régularité ou ses accrocs font sens.</span><span data-lang="en">The pattern of rhymes (ABAB…): its regularity or its snags carry meaning.</span></div>
-    <div class="term"><b>assonance / sibilance</b><span data-lang="fr">Répétition de voyelles / de sons en « s » : texture sonore à relier à un effet.</span><span data-lang="en">Repetition of vowel sounds / "s" sounds: sonic texture to be tied to an effect.</span></div>
-    <div class="term"><b>lyric voice / speaker</b><span data-lang="fr">Le « je » du poème, à ne jamais confondre avec le poète lui-même.</span><span data-lang="en">The poem's "I", never to be confused with the poet themselves.</span></div>
-    <div class="term"><b>extended metaphor / conceit</b><span data-lang="fr">Métaphore filée, parfois audacieuse, qui structure tout le poème.</span><span data-lang="en">A sustained, sometimes daring metaphor that structures the whole poem.</span></div>
-    <div class="term"><b>imagery cluster</b><span data-lang="fr">Réseau d'images récurrentes (équiv. du champ lexical relié à une isotopie).</span><span data-lang="en">A network of recurring images (close to the French champ lexical / isotopie).</span></div>
-  </div>
-
-  <h3 data-lang="fr">Glossaire — Prose &amp; général</h3>
-  <h3 data-lang="en">Glossary — Prose &amp; general</h3>
-  <div class="gloss">
-    <div class="term"><b>omniscient narrator</b><span data-lang="fr">Narrateur qui sait tout, entre dans toutes les consciences.</span><span data-lang="en">A narrator who knows everything and enters every mind.</span></div>
-    <div class="term"><b>first-person narrator</b><span data-lang="fr">Narrateur-personnage : point de vue limité, potentiellement peu fiable.</span><span data-lang="en">A character-narrator: limited, potentially unreliable point of view.</span></div>
-    <div class="term"><b>unreliable narrator</b><span data-lang="fr">Narrateur dont le récit doit être mis en doute par le lecteur.</span><span data-lang="en">A narrator whose account the reader must call into question.</span></div>
-    <div class="term"><b>free indirect discourse</b><span data-lang="fr">Discours indirect libre : la voix du narrateur épouse la pensée du personnage.</span><span data-lang="en">Free indirect style: the narrator's voice merges with the character's thought.</span></div>
-    <div class="term"><b>bildungsroman</b><span data-lang="fr">Roman d'apprentissage : formation d'un personnage de la jeunesse à la maturité.</span><span data-lang="en">A novel of formation: a character's growth from youth to maturity.</span></div>
-    <div class="term"><b>pathetic fallacy</b><span data-lang="fr">La nature ou le décor reflète l'état intérieur des personnages.</span><span data-lang="en">Nature or setting mirrors the characters' inner state.</span></div>
-    <div class="term"><b>motif</b><span data-lang="fr">Élément récurrent (objet, image, phrase) qui accumule du sens au fil de l'œuvre.</span><span data-lang="en">A recurring element (object, image, phrase) that accrues meaning across the work.</span></div>
-    <div class="term"><b>irony (verbal / situational)</b><span data-lang="fr">Dire le contraire de ce qu'on pense / résultat contraire à l'attente.</span><span data-lang="en">Saying the opposite of what is meant / an outcome contrary to expectation.</span></div>
-    <div class="term"><b>register</b><span data-lang="fr">Niveau de langue d'un passage (soutenu, familier, juridique…) et ses effets.</span><span data-lang="en">The level of language of a passage (formal, colloquial, legalistic…) and its effects.</span></div>
-    <div class="term"><b>syntax</b><span data-lang="fr">Construction des phrases : longueur, ordre, accumulations, ruptures.</span><span data-lang="en">Sentence construction: length, order, accumulation, disruption.</span></div>
-    <div class="term"><b>tone</b><span data-lang="fr">L'attitude du texte envers son sujet : ironique, élégiaque, satirique…</span><span data-lang="en">The text's attitude towards its subject: ironic, elegiac, satirical…</span></div>
-    <div class="term"><b>characterisation</b><span data-lang="fr">L'ensemble des moyens par lesquels un personnage est construit.</span><span data-lang="en">The full range of means by which a character is constructed.</span></div>
-  </div>
-
-  <h3 data-lang="fr">Amorces de phrases (essay &amp; commentary)</h3>
-  <h3 data-lang="en">Sentence stems (essay &amp; commentary)</h3>
-  <div class="card soft">
-    <ul class="dash">
-      <li data-lang="fr"><b>Poser la thèse :</b> "While it is tempting to read X as…, the text ultimately suggests that…" · "X's presentation of Y is best understood as…"</li>
-      <li data-lang="en"><b>Stating the thesis:</b> "While it is tempting to read X as…, the text ultimately suggests that…" · "X's presentation of Y is best understood as…"</li>
-      <li data-lang="fr"><b>Intégrer une citation :</b> "The description of the city as '…' evokes…" · "In insisting that '…', the speaker betrays…"</li>
-      <li data-lang="en"><b>Embedding a quotation:</b> "The description of the city as '…' evokes…" · "In insisting that '…', the speaker betrays…"</li>
-      <li data-lang="fr"><b>Approfondir :</b> "More strikingly still,…" · "This effect is compounded by…" · "What appears at first to be X proves, on closer reading,…"</li>
-      <li data-lang="en"><b>Going deeper:</b> "More strikingly still,…" · "This effect is compounded by…" · "What appears at first to be X proves, on closer reading,…"</li>
-      <li data-lang="fr"><b>Concéder puis répondre :</b> "Admittedly,… Yet…" · "It could be argued that… ; however, this reading overlooks…"</li>
-      <li data-lang="en"><b>Conceding then answering:</b> "Admittedly,… Yet…" · "It could be argued that… ; however, this reading overlooks…"</li>
-      <li data-lang="fr"><b>Conclure :</b> "Ultimately,…" · "Far from merely X, the work thus…" · "It is precisely this tension that gives the text its power."</li>
-      <li data-lang="en"><b>Concluding:</b> "Ultimately,…" · "Far from merely X, the work thus…" · "It is precisely this tension that gives the text its power."</li>
-    </ul>
-  </div>
-</section>
-
-
-
-<!-- ============ TAB ESSAYS ============ -->
-<section class="tab" id="tab-essays">
-  <h2 data-lang="fr">Essays modèles — viser KP20</h2>
-  <h2 data-lang="en">Model essays — aiming at KP20</h2>
+</div>
+<div class="pane" id="methode-modeles" data-route="methode/modeles" data-fr="Essays modèles" data-en="Model essays">
+<h2 data-lang="fr">Essays modèles</h2><h2 data-lang="en">Model essays</h2>
 
   <p data-lang="fr">Tout ce qui suit est construit uniquement à partir des connaissances du site — key issues, fiches de citations, détails, déroulé. Les citations en italique dans l'essay sont <b>les tiennes</b> : la page les lit directement dans ta banque (fiche indiquée entre crochets). L'essay lui-même est en anglais, langue de l'épreuve ; les annotations méthodologiques sont bilingues.</p>
   <p data-lang="en">Everything below is built solely from the site's material — key issues, quotation entries, details, sequence table. The italicised quotations in the essay are <b>yours</b>: the page reads them straight from your bank (entry number in brackets). The essay itself is in English, the language of the exam; the method annotations are bilingual.</p>
@@ -594,17 +677,33 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <p data-lang="fr" style="font-size:.9rem;color:var(--ink-soft);">Exercice recommandé : rédige ce plan en 2h chrono, puis envoie-moi le résultat — je le corrige contre les descripteurs KP du barème.</p>
     <p data-lang="en" style="font-size:.9rem;color:var(--ink-soft);">Recommended exercise: write this plan up in a timed 2h, then send me the result — I will mark it against the KP descriptors.</p>
   </div>
+</div>
+<div class="pane" id="methode-amorces" data-route="methode/amorces" data-fr="Amorces de phrases" data-en="Sentence stems">
+<h2 data-lang="fr">Amorces de phrases</h2><h2 data-lang="en">Sentence stems</h2>
+  <div class="card soft">
+    <ul class="dash">
+      <li data-lang="fr"><b>Poser la thèse :</b> "While it is tempting to read X as…, the text ultimately suggests that…" · "X's presentation of Y is best understood as…"</li>
+      <li data-lang="en"><b>Stating the thesis:</b> "While it is tempting to read X as…, the text ultimately suggests that…" · "X's presentation of Y is best understood as…"</li>
+      <li data-lang="fr"><b>Intégrer une citation :</b> "The description of the city as '…' evokes…" · "In insisting that '…', the speaker betrays…"</li>
+      <li data-lang="en"><b>Embedding a quotation:</b> "The description of the city as '…' evokes…" · "In insisting that '…', the speaker betrays…"</li>
+      <li data-lang="fr"><b>Approfondir :</b> "More strikingly still,…" · "This effect is compounded by…" · "What appears at first to be X proves, on closer reading,…"</li>
+      <li data-lang="en"><b>Going deeper:</b> "More strikingly still,…" · "This effect is compounded by…" · "What appears at first to be X proves, on closer reading,…"</li>
+      <li data-lang="fr"><b>Concéder puis répondre :</b> "Admittedly,… Yet…" · "It could be argued that… ; however, this reading overlooks…"</li>
+      <li data-lang="en"><b>Conceding then answering:</b> "Admittedly,… Yet…" · "It could be argued that… ; however, this reading overlooks…"</li>
+      <li data-lang="fr"><b>Conclure :</b> "Ultimately,…" · "Far from merely X, the work thus…" · "It is precisely this tension that gives the text its power."</li>
+      <li data-lang="en"><b>Concluding:</b> "Ultimately,…" · "Far from merely X, the work thus…" · "It is precisely this tension that gives the text its power."</li>
+    </ul>
+  </div>
+</div>
 </section>
-
-<!-- ============ TAB 5 : ŒUVRES ============ -->
-<section class="tab" id="tab-oeuvres">
-  <h2 data-lang="fr">Les trois œuvres du parcours bilingue</h2>
-  <h2 data-lang="en">The three set texts of the bilingual pathway</h2>
+<section class="area" data-route="oeuvres" data-fr="Œuvres" data-en="Set Texts">
+<div class="pane" id="oeuvres-panorama" data-route="oeuvres/panorama" data-fr="Le programme" data-en="The set-text list">
+<h2 data-lang="fr">Le programme</h2><h2 data-lang="en">The set-text list</h2>
 
   <p data-lang="fr">Tu étudieras <b>une pièce de Shakespeare + deux œuvres de genres différents</b>, choisies par ton lycée dans le programme limitatif (BO n°17 du 24 avril 2025). Les sections ci-dessous sont volontairement vides : on les construira <b>après l'étude en classe</b>, comme pour l'ACL oral. En attendant, voici la carte complète des possibles.</p>
   <p data-lang="en">You will study <b>one Shakespeare play + two works of different genres</b>, chosen by your school from the set-text list (BO No. 17, 24 April 2025). The sections below are deliberately empty: we will build them <b>after each work is studied in class</b>, as we did for the oral ACL. In the meantime, here is the full map of possibilities.</p>
 
-  <table>
+  <div class="tbl-wrap"><table>
     <tbody><tr>
       <th data-lang="fr">Section</th><th data-lang="en">Section</th>
       <th data-lang="fr">Œuvres possibles (session 2027)</th><th data-lang="en">Possible texts (2027 session)</th>
@@ -625,30 +724,13 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
       <td>Poetry</td>
       <td>Blake, <em>Songs of Innocence and of Experience</em> (sélection) · Gillian Clarke, <em>Collected Poems</em> (sélection) · Ted Hughes, <em>Birthday Letters</em> (sélection)</td>
     </tr>
-  </tbody></table>
+  </tbody></table></div>
 
-  <div class="placeholder">
-    <span class="eyebrow" data-lang="fr">Œuvre 1 — Shakespeare : Twelfth Night (Terminale)</span>
-    <span class="eyebrow" data-lang="en">Text 1 — Shakespeare: Twelfth Night (final year)</span>
-    <p data-lang="fr"><em>Twelfth Night</em> est confirmée — étude entière en Terminale, pas encore commencée. Section à construire au fil des cours : synopsis acte par acte, personnages (Viola/Cesario, Orsino, Olivia, Malvolio, Feste…), thèmes (travestissement, désir, mélancolie sous la fête), banque de citations, passages-clés pour le commentary.</p>
-    <p data-lang="en"><em>Twelfth Night</em> is confirmed — full study in the final year, not yet begun. Section to be built as lessons progress: act-by-act synopsis, characters (Viola/Cesario, Orsino, Olivia, Malvolio, Feste…), themes (disguise, desire, melancholy beneath the festivity), quotation bank, key passages for the commentary.</p>
-    <p class="ph-marker">&lt;!-- SECTION-SHAKESPEARE-ICI --&gt;</p>
-  </div>
 
-  <div class="placeholder">
-    <span class="eyebrow" data-lang="fr">Œuvre 2 — Drama : Dancing at Lughnasa (étudiée en Première)</span>
-    <span class="eyebrow" data-lang="en">Text 2 — Drama: Dancing at Lughnasa (studied in Première)</span>
-    <p data-lang="fr">Étude achevée : la section complète est en ligne dans l'onglet <b>Lughnasa</b> (contexte, synopsis, personnages, thèmes, techniques, repères de citations, sujets d'essay).</p>
-    <p data-lang="en">Study complete: the full section is live in the <b>Lughnasa</b> tab (context, synopsis, characters, themes, techniques, quotation markers, essay questions).</p>
-  </div>
 
-  <div class="placeholder">
-    <span class="eyebrow" data-lang="fr">Œuvre 3 — Prose : Brick Lane (en cours, fin d'étude en Terminale)</span>
-    <span class="eyebrow" data-lang="en">Text 3 — Prose: Brick Lane (in progress, to be finished in the final year)</span>
-    <p data-lang="fr"><em>Brick Lane</em> (Monica Ali) : étude commencée en Première, à terminer en Terminale. Conformément à la règle, la section sera construite une fois l'étude achevée en classe — dis-moi alors jusqu'où vous êtes allés et transmets tes notes.</p>
-    <p data-lang="en"><em>Brick Lane</em> (Monica Ali): study begun in Première, to be completed in the final year. As per our rule, the section will be built once classroom study is finished — tell me then how far you got and pass on your notes.</p>
-    <p class="ph-marker">&lt;!-- SECTION-BRICK-LANE-ICI --&gt;</p>
-  </div>
+
+
+
 
   <div class="margin-note">
     <span class="mn-label" data-lang="fr">Coup d'avance possible cet été</span>
@@ -656,48 +738,24 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <p data-lang="fr"><em>Twelfth Night</em> étant confirmée, lire la pièce une fois (ou regarder une bonne captation, par exemple celle du Globe) avant la rentrée te donnerait une vraie longueur d'avance — sans analyse, juste la familiarité avec l'intrigue et les personnages.</p>
     <p data-lang="en">With <em>Twelfth Night</em> confirmed, reading the play once (or watching a good filmed production, e.g. the Globe's) before term starts would give you a real head start — no analysis, just familiarity with plot and characters.</p>
   </div>
-</section>
-
-<!-- ============ TAB 6 : PLAN DE TRAVAIL ============ -->
-<section class="tab" id="tab-plan">
-  <h2 data-lang="fr">Plan de travail — Terminale</h2>
-  <h2 data-lang="en">Work plan — final year</h2>
-
-  <h3 data-lang="fr">Dès la rentrée</h3>
-  <h3 data-lang="en">From the start of term</h3>
-  <ul class="check">
-    <li><input type="checkbox"><span><span data-lang="fr">Noter les trois œuvres choisies par le lycée et me les transmettre pour construire les sections.</span><span data-lang="en">Note down the three texts chosen by the school and pass them on so we can build the sections.</span></span></li>
-    <li><input type="checkbox"><span><span data-lang="fr">Se procurer les éditions prescrites (New Cambridge pour Shakespeare ; éditions précisées au BO pour Blake / Clarke / Hughes le cas échéant).</span><span data-lang="en">Get hold of the prescribed editions (New Cambridge for Shakespeare; BO-specified editions for Blake / Clarke / Hughes if relevant).</span></span></li>
-    <li><input type="checkbox"><span><span data-lang="fr">Télécharger les sujets 2024 et 2025 sur Éduscol pour connaître le format réel.</span><span data-lang="en">Download the 2024 and 2025 past papers from Éduscol to see the real format.</span></span></li>
-  </ul>
-
-  <h3 data-lang="fr">Au fil de l'année</h3>
-  <h3 data-lang="en">Through the year</h3>
-  <ul class="check">
-    <li><input type="checkbox"><span><span data-lang="fr">Lire chaque œuvre deux fois : une lecture d'intrigue, une lecture d'annotation (thèmes, images, passages-clés).</span><span data-lang="en">Read each text twice: once for plot, once for annotation (themes, imagery, key passages).</span></span></li>
-    <li><input type="checkbox"><span><span data-lang="fr">Constituer une banque de citations par œuvre, classée par thème — courtes, exactes, apprises par cœur (comme pour <em>1984</em> : privilégier les passages qui prouvent une vraie lecture plutôt que les slogans célèbres).</span><span data-lang="en">Build a quotation bank per text, sorted by theme — short, exact, learnt by heart (as with <em>1984</em>: favour passages that prove real reading over famous slogans).</span></span></li>
-    <li><input type="checkbox"><span><span data-lang="fr">Un essay ou commentary chronométré (2h) par mois à partir de janvier, corrigé avec les grilles Éduscol.</span><span data-lang="en">One timed essay or commentary (2h) per month from January, marked against the Éduscol grids.</span></span></li>
-    <li><input type="checkbox"><span><span data-lang="fr">Décider tôt de ta stratégie (Option A avec Shakespeare, ou Option B deux essays) et t'entraîner en priorité dessus — tout en gardant l'autre option jouable en secours.</span><span data-lang="en">Decide early on your strategy (Option A with Shakespeare, or Option B with two essays) and train primarily for it — while keeping the other option playable as a backup.</span></span></li>
-  </ul>
-
-  <h3 data-lang="fr">Dernière ligne droite</h3>
-  <h3 data-lang="en">The home straight</h3>
-  <ul class="check">
-    <li><input type="checkbox"><span><span data-lang="fr">Réviser les banques de citations jusqu'à pouvoir en réciter 15–20 par œuvre sans hésiter.</span><span data-lang="en">Revise the quotation banks until you can recite 15–20 per text without hesitation.</span></span></li>
-    <li><input type="checkbox"><span><span data-lang="fr">Refaire les sujets des sessions passées en conditions réelles (4h, deux productions).</span><span data-lang="en">Redo past-session papers under real conditions (4h, two pieces).</span></span></li>
-    <li><input type="checkbox"><span><span data-lang="fr">Relire la boîte à outils : verbes d'analyse et amorces doivent être des réflexes.</span><span data-lang="en">Reread the toolbox: analytical verbs and sentence stems must be reflexes.</span></span></li>
-  </ul>
-</section>
-
-<!-- ============ TAB LUGHNASA ============ -->
-<section class="tab visible" id="tab-lughnasa">
-  <h2><em>Dancing at Lughnasa</em> — Brian Friel (1990)</h2>
+</div>
+<div class="pane" id="oeuvres-twelfth" data-route="oeuvres/twelfth" data-fr="Twelfth Night" data-en="Twelfth Night">
+<h2 data-lang="fr">Twelfth Night</h2><h2 data-lang="en">Twelfth Night</h2>
+  <div class="placeholder">
+    <span class="eyebrow" data-lang="fr">Œuvre 1 — Shakespeare : Twelfth Night (Terminale)</span>
+    <span class="eyebrow" data-lang="en">Text 1 — Shakespeare: Twelfth Night (final year)</span>
+    <p data-lang="fr"><em>Twelfth Night</em> est confirmée — étude entière en Terminale, pas encore commencée. Section à construire au fil des cours : synopsis acte par acte, personnages (Viola/Cesario, Orsino, Olivia, Malvolio, Feste…), thèmes (travestissement, désir, mélancolie sous la fête), banque de citations, passages-clés pour le commentary.</p>
+    <p data-lang="en"><em>Twelfth Night</em> is confirmed — full study in the final year, not yet begun. Section to be built as lessons progress: act-by-act synopsis, characters (Viola/Cesario, Orsino, Olivia, Malvolio, Feste…), themes (disguise, desire, melancholy beneath the festivity), quotation bank, key passages for the commentary.</p>
+    <p class="ph-marker">&lt;!-- SECTION-SHAKESPEARE-ICI --&gt;</p>
+  </div>
+</div>
+<div class="pane" id="oeuvres-lughnasa" data-route="oeuvres/lughnasa" data-fr="Dancing at Lughnasa" data-en="Dancing at Lughnasa">
+<div class="leaf" data-route="oeuvres/lughnasa/contexte" data-fr="Contexte" data-en="Context">
+<h2 data-lang="fr">Contexte</h2><h2 data-lang="en">Context</h2>
 
   <p data-lang="fr">Une <b>memory play</b> : Michael, adulte, se souvient de l'été 1936 chez ses cinq tantes, les sœurs Mundy, dans leur cottage près de Ballybeg (comté de Donegal, Irlande). Il avait sept ans. En apparence, il ne se passe presque rien ; en réalité, la pièce capte le dernier été d'un monde avant sa dislocation — famille, économie, croyances.</p>
   <p data-lang="en">A <b>memory play</b>: the adult Michael remembers the summer of 1936 at the home of his five aunts, the Mundy sisters, in their cottage outside Ballybeg (County Donegal, Ireland). He was seven. On the surface, almost nothing happens; in truth, the play captures a world's last summer before its disintegration — family, livelihood, beliefs.</p>
 
-  <h3 data-lang="fr">Contexte à mobiliser</h3>
-  <h3 data-lang="en">Context to draw on</h3>
   <ul class="dash">
     <li data-lang="fr"><b>L'Irlande de 1936</b> : l'État catholique et rural de De Valera, où la respectabilité pèse sur les femmes non mariées — cinq sœurs célibataires, dont une mère « fille-mère » (Chris), vivent sous surveillance sociale constante.</li>
     <li data-lang="en"><b>Ireland in 1936</b>: De Valera's Catholic, rural state, where respectability weighs on unmarried women — five single sisters, one of them an unwed mother (Chris), live under constant social scrutiny.</li>
@@ -709,11 +767,12 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <li data-lang="en"><b>Chekhovian influence</b>: as in Chekhov (whom Friel translated), catastrophe happens offstage; onstage, people talk, wait, dance.</li>
   </ul>
 
-  <h3 data-lang="fr">Le déroulé, séquence par séquence</h3>
-  <h3 data-lang="en">The play, sequence by sequence</h3>
+</div>
+<div class="leaf" data-route="oeuvres/lughnasa/deroule" data-fr="Le déroulé" data-en="The sequence">
+<h2 data-lang="fr">Le déroulé</h2><h2 data-lang="en">The sequence</h2>
   <p data-lang="fr">Les numéros de pages renvoient au PDF de travail (75 p.).</p>
   <p data-lang="en">Page numbers refer to the working PDF (75 pp.).</p>
-  <table>
+  <div class="tbl-wrap"><table>
     <tbody><tr>
       <th>p.</th>
       <th data-lang="fr">Séquence</th><th data-lang="en">Sequence</th>
@@ -789,11 +848,12 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
       <td><b><span data-lang="fr">Tableau final et monologue de la danse</span><span data-lang="en">Final tableau and the dance monologue</span></b></td>
       <td><span data-lang="fr">Les personnages oscillent imperceptiblement ; les cerfs-volants révèlent enfin leurs faces peintes, cruelles et grimaçantes — masques païens de l'enfant ; Michael dit que dans ce souvenir l'atmosphère est plus réelle que les faits, et que se souvenir, c'est danser.</span><span data-lang="en">The characters sway almost imperceptibly; the kites at last reveal their painted faces, cruel and grinning — the child's pagan masks; Michael says that in this memory atmosphere is more real than incident, and that to remember is to dance.</span></td>
     </tr>
-  </tbody></table>
+  </tbody></table></div>
 
-  <h3 data-lang="fr">Les personnages et leurs fonctions</h3>
-  <h3 data-lang="en">The characters and their functions</h3>
-  <table>
+</div>
+<div class="leaf" data-route="oeuvres/lughnasa/personnages" data-fr="Personnages" data-en="Characters">
+<h2 data-lang="fr">Personnages</h2><h2 data-lang="en">Characters</h2>
+  <div class="tbl-wrap"><table>
     <tbody><tr>
       <th data-lang="fr">Personnage</th><th data-lang="en">Character</th>
       <th data-lang="fr">Qui</th><th data-lang="en">Who</th>
@@ -839,10 +899,11 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
       <td><span data-lang="fr">Père gallois de Michael, vendeur de gramophones, futur engagé de la guerre d'Espagne.</span><span data-lang="en">Michael's Welsh father, gramophone salesman, soon off to the Spanish Civil War.</span></td>
       <td><span data-lang="fr">Le charme de l'ailleurs et de la promesse non tenue ; il parle peu vrai mais danse juste.</span><span data-lang="en">The lure of elsewhere and of the unkept promise; his words ring false but his dancing rings true.</span></td>
     </tr>
-  </tbody></table>
+  </tbody></table></div>
 
-  <h3 data-lang="fr">Les sept key issues</h3>
-  <h3 data-lang="en">The seven key issues</h3>
+</div>
+<div class="leaf" data-route="oeuvres/lughnasa/enjeux" data-fr="Les sept key issues" data-en="The seven key issues">
+<h2 data-lang="fr">Les sept key issues</h2><h2 data-lang="en">The seven key issues</h2>
   <p data-lang="fr">Ce sont les axes retenus par ton professeur — et ce sont eux que les sujets d'essay viseront. Pour chacun : l'analyse, les exemples ancrés dans le texte (pages du PDF), et l'angle payant le jour de l'épreuve.</p>
   <p data-lang="en">These are the axes your teacher set out — and they are what essay questions will target. For each: the analysis, examples anchored in the text (PDF pages), and the angle that pays off on exam day.</p>
 
@@ -1084,8 +1145,9 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     </div>
   </div>
 
-  <h3 data-lang="fr">Techniques dramatiques signatures</h3>
-  <h3 data-lang="en">Signature dramatic techniques</h3>
+</div>
+<div class="leaf" data-route="oeuvres/lughnasa/techniques" data-fr="Techniques dramatiques" data-en="Dramatic technique">
+<h2 data-lang="fr">Techniques dramatiques</h2><h2 data-lang="en">Dramatic technique</h2>
   <ul class="dash">
     <li data-lang="fr"><b>Le narrateur-cadre</b> : Michael ouvre, interrompt et clôt la pièce ; ses monologues au présent encadrent des scènes au passé reconstruit.</li>
     <li data-lang="en"><b>The framing narrator</b>: Michael opens, interrupts and closes the play; his present-tense monologues frame scenes of reconstructed past.</li>
@@ -1101,14 +1163,15 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <li data-lang="en"><b>Precise musical and choreographic stage directions</b>: in Friel, the staging score (who dances, and how) signifies as much as the dialogue.</li>
   </ul>
 
-  <h3 data-lang="fr">Banque de citations — 21 fiches analysées</h3>
-  <h3 data-lang="en">Quotation bank — 21 analysed entries</h3>
+</div>
+<div class="leaf" data-route="oeuvres/lughnasa/citations" data-fr="Banque de citations" data-en="Quotation bank">
+<h2 data-lang="fr">Banque de citations</h2><h2 data-lang="en">Quotation bank</h2>
   <p data-lang="fr">Vingt-et-une fiches, classées dans l'ordre de la pièce. Chacune te donne la <b>page exacte du PDF</b>, la phrase à chercher, les key issues qu'elle sert, et une analyse pour savoir quoi en faire en essay. Ouvre la page indiquée, colle la citation dans la case, enregistre avec 💾. Kate a son arc en quatre fiches (04, 09, 11, 16), Jack en trois (12, 13, 15) : la banque double comme étude des personnages.</p>
   <p data-lang="en">Twenty-one entries, in the order of the play. Each gives you the <b>exact PDF page</b>, the sentence to find, the key issues it serves, and an analysis telling you what to do with it in an essay. Open the page, paste the quotation into the box, save with 💾. Kate has her arc in four entries (04, 09, 11, 16), Jack in three (12, 13, 15): the bank doubles as character study.</p>
   
   <div class="cit-bar">
     <button type="button" onclick="citSaveFile()">💾 <span data-lang="fr">Enregistrer les citations dans le fichier</span><span data-lang="en">Save the quotations into the file</span></button>
-    <span class="cit-status" id="cit-status">modifie - pense a enregistrer</span>
+    <span class="cit-status" id="cit-status"></span>
   </div>
   <p data-lang="fr" style="font-size:.85rem;color:var(--ink-soft);">Colle tes citations dans les cases, puis clique sur le bouton : le navigateur télécharge une copie du site avec tes citations <b>intégrées au fichier</b>. Remplace l'ancien fichier par celui-là — tes citations font désormais partie du site, sur tous tes appareils.</p>
   <p data-lang="en" style="font-size:.85rem;color:var(--ink-soft);">Paste your quotations into the boxes, then click the button: the browser downloads a copy of the site with your quotations <b>embedded in the file</b>. Replace the old file with this one — your quotations are now part of the site, on all your devices.</p>
@@ -1282,8 +1345,9 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <p class="analyse" data-lang="en"><b>Analysis.</b> The anaphora — four sentences launched by the same word — turns the text itself into a dance: the form performs what the content describes, hypnotic repetition included. And the founding paradox: the sentence declaring words unnecessary is made of words — the play admits it can only show the unsayable by saying it. The dream conclusion for almost any essay: every topic in the play (memory, language, rite, freedom) converges on these lines.</p>
   </div>
 
-  <h3 data-lang="fr">Les détails qui font les bonnes copies</h3>
-  <h3 data-lang="en">The details that make top scripts</h3>
+</div>
+<div class="leaf" data-route="oeuvres/lughnasa/details" data-fr="Les détails qui comptent" data-en="Fine detail">
+<h2 data-lang="fr">Les détails qui comptent</h2><h2 data-lang="en">Fine detail</h2>
   <ul class="dash">
     <li data-lang="fr"><b>Les visages des cerfs-volants</b> (p. 73) : révélés au public seulement dans le tableau final — des faces grimaçantes, cruelles, peintes de façon primitive par l'enfant lui-même. Le paganisme n'est pas qu'en Ouganda ou dans les collines : il est déjà dans la maison, dans l'imaginaire du petit Michael.</li>
     <li data-lang="en"><b>The kite faces</b> (p. 73): revealed to the audience only in the final tableau — cruel, grinning, primitively painted faces, the child's own work. Paganism is not just in Uganda or the back hills: it is already in the house, in young Michael's imagination.</li>
@@ -1303,8 +1367,9 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <li data-lang="en"><b>The soundtrack</b>: "The Mason's Apron" (the sisters' dance, p. 22), "The Isle of Capri" (Maggie's refuge-song, pp. 6, 37), "Anything Goes" (Gerry and Agnes, p. 67 — the risqué lyrics comment on the scene), "It is Time to Say Goodnight" (finale, p. 74, not from the radio: the music comes from memory itself).</li>
   </ul>
 
-  <h3 data-lang="fr">Sujets d'essay pour s'entraîner</h3>
-  <h3 data-lang="en">Practice essay questions</h3>
+</div>
+<div class="leaf" data-route="oeuvres/lughnasa/sujets" data-fr="Sujets d’entraînement" data-en="Practice questions">
+<h2 data-lang="fr">Sujets d’entraînement</h2><h2 data-lang="en">Practice questions</h2>
   <ol class="steps">
     <li>
       <span data-lang="fr">"Discuss the significance of dance in <em>Dancing at Lughnasa</em>." — le sujet-roi : transgression, langage du corps, rite païen, mémoire. Structure possible par fonctions de la danse.</span>
@@ -1334,78 +1399,470 @@ footer{text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--in
     <p data-lang="fr">Cette section est bâtie sur l'œuvre elle-même. Si tu me transmets tes notes de Première (problématiques du prof, passages étudiés en détail), je les intègre pour coller aux attentes exactes de ta classe. <span class="ph-marker">&lt;!-- NOTES-COURS-LUGHNASA-ICI --&gt;</span></p>
     <p data-lang="en">This section is built from the play itself. If you pass on your Première notes (your teacher's questions, the passages studied in detail), I will fold them in to match your class's exact expectations. <span class="ph-marker">&lt;!-- CLASS-NOTES-LUGHNASA-HERE --&gt;</span></p>
   </div>
+</div>
+
+</div>
+<div class="pane" id="oeuvres-bricklane" data-route="oeuvres/bricklane" data-fr="Brick Lane" data-en="Brick Lane">
+<h2 data-lang="fr">Brick Lane</h2><h2 data-lang="en">Brick Lane</h2>
+  <div class="placeholder">
+    <span class="eyebrow" data-lang="fr">Œuvre 3 — Prose : Brick Lane (en cours, fin d'étude en Terminale)</span>
+    <span class="eyebrow" data-lang="en">Text 3 — Prose: Brick Lane (in progress, to be finished in the final year)</span>
+    <p data-lang="fr"><em>Brick Lane</em> (Monica Ali) : étude commencée en Première, à terminer en Terminale. Conformément à la règle, la section sera construite une fois l'étude achevée en classe — dis-moi alors jusqu'où vous êtes allés et transmets tes notes.</p>
+    <p data-lang="en"><em>Brick Lane</em> (Monica Ali): study begun in Première, to be completed in the final year. As per our rule, the section will be built once classroom study is finished — tell me then how far you got and pass on your notes.</p>
+    <p class="ph-marker">&lt;!-- SECTION-BRICK-LANE-ICI --&gt;</p>
+  </div>
+</div>
 </section>
+<section class="area" data-route="outils" data-fr="Outils" data-en="Toolkit">
+<div class="pane" id="outils-verbes" data-route="outils/verbes" data-fr="Verbes d'analyse" data-en="Analytical verbs">
+<h2 data-lang="fr">Verbes d'analyse</h2><h2 data-lang="en">Analytical verbs</h2>
+  <p data-lang="fr">Le verbe « shows » est le signe d'une copie faible. Varie selon la nuance exacte :</p>
+  <p data-lang="en">The verb "shows" is the mark of a weak script. Vary it according to the exact nuance:</p>
+  <div class="tbl-wrap"><table>
+    <tbody><tr>
+      <th data-lang="fr">Nuance</th><th data-lang="en">Nuance</th>
+      <th data-lang="fr">Verbes</th><th data-lang="en">Verbs</th>
+    </tr>
+    <tr>
+      <td><span data-lang="fr">Suggérer, évoquer</span><span data-lang="en">Suggesting, evoking</span></td>
+      <td>suggests · implies · evokes · connotes · hints at · intimates</td>
+    </tr>
+    <tr>
+      <td><span data-lang="fr">Souligner, renforcer</span><span data-lang="en">Emphasising, reinforcing</span></td>
+      <td>underscores · heightens · foregrounds · accentuates · reinforces · amplifies</td>
+    </tr>
+    <tr>
+      <td><span data-lang="fr">Révéler, incarner</span><span data-lang="en">Revealing, embodying</span></td>
+      <td>reveals · exposes · embodies · encapsulates · crystallises · dramatises</td>
+    </tr>
+    <tr>
+      <td><span data-lang="fr">Opposer, renverser</span><span data-lang="en">Contrasting, overturning</span></td>
+      <td>juxtaposes · contrasts · subverts · undercuts · complicates · destabilises</td>
+    </tr>
+    <tr>
+      <td><span data-lang="fr">Annoncer, préparer</span><span data-lang="en">Anticipating, preparing</span></td>
+      <td>foreshadows · anticipates · prefigures · sets up · plants</td>
+    </tr>
+  </tbody></table></div>
 
-</main>
+</div>
+<div class="pane" id="outils-glossaire" data-route="outils/glossaire" data-fr="Glossaire critique" data-en="Critical glossary">
+<h2 data-lang="fr">Glossaire critique</h2><h2 data-lang="en">Critical glossary</h2>
+  <div class="filter">
+    <input id="gloss-filter" type="search" placeholder="Filtrer les termes…" aria-label="Filtrer les termes">
+    <span class="count" id="gloss-count"></span>
+  </div>
+  <h3 data-lang="fr">Drama</h3>
+  <h3 data-lang="en">Drama</h3>
+  <div class="gloss">
+    <div class="term"><b>soliloquy</b><span data-lang="fr">Monologue d'un personnage seul en scène : accès direct à sa pensée intime.</span><span data-lang="en">A speech by a character alone on stage: direct access to their inner thoughts.</span></div>
+    <div class="term"><b>aside</b><span data-lang="fr">Aparté : réplique adressée au public, inaudible pour les autres personnages.</span><span data-lang="en">A remark addressed to the audience, unheard by the other characters.</span></div>
+    <div class="term"><b>dramatic irony</b><span data-lang="fr">Le public sait ce qu'un personnage ignore : source de tension ou de comique.</span><span data-lang="en">The audience knows what a character does not: a source of tension or comedy.</span></div>
+    <div class="term"><b>blank verse</b><span data-lang="fr">Vers non rimé en pentamètre iambique, la voix « noble » du théâtre shakespearien.</span><span data-lang="en">Unrhymed iambic pentameter, the "elevated" voice of Shakespearean drama.</span></div>
+    <div class="term"><b>iambic pentameter</b><span data-lang="fr">Vers de cinq iambes (non accentué / accentué) : les ruptures de rythme portent du sens.</span><span data-lang="en">A line of five iambs (unstressed / stressed): disruptions of the rhythm carry meaning.</span></div>
+    <div class="term"><b>prose (in drama)</b><span data-lang="fr">Chez Shakespeare, signale souvent le comique, la folie, la ruse ou le rang social.</span><span data-lang="en">In Shakespeare, often signals comedy, madness, cunning or social rank.</span></div>
+    <div class="term"><b>stichomythia</b><span data-lang="fr">Échange rapide vers à vers : duel verbal, tension maximale.</span><span data-lang="en">Rapid line-for-line exchange: a verbal duel, maximum tension.</span></div>
+    <div class="term"><b>foil</b><span data-lang="fr">Personnage-repoussoir dont le contraste éclaire le protagoniste.</span><span data-lang="en">A contrasting character whose difference illuminates the protagonist.</span></div>
+    <div class="term"><b>hamartia</b><span data-lang="fr">L'erreur ou la faille tragique qui précipite la chute du héros.</span><span data-lang="en">The tragic error or flaw that precipitates the hero's fall.</span></div>
+    <div class="term"><b>catharsis</b><span data-lang="fr">Purgation des émotions (terreur, pitié) opérée par la tragédie sur le public.</span><span data-lang="en">The purging of emotions (terror, pity) worked on the audience by tragedy.</span></div>
+    <div class="term"><b>stagecraft</b><span data-lang="fr">L'art de la scène : entrées, objets, espace, tout ce que le texte fait voir.</span><span data-lang="en">The craft of staging: entrances, props, space, everything the text makes visible.</span></div>
+    <div class="term"><b>comic relief</b><span data-lang="fr">Détente comique insérée dans la tension tragique — souvent pour mieux la relancer.</span><span data-lang="en">Comic release inserted into tragic tension — often the better to renew it.</span></div>
+  </div>
+  <h3 data-lang="fr">Poetry</h3>
+  <h3 data-lang="en">Poetry</h3>
+  <div class="gloss">
+    <div class="term"><b>enjambment</b><span data-lang="fr">La phrase déborde le vers : effet d'élan, de débordement ou de suspension.</span><span data-lang="en">The sentence runs over the line: momentum, overflow or suspension.</span></div>
+    <div class="term"><b>caesura</b><span data-lang="fr">Pause marquée au milieu du vers : rupture, hésitation, bascule.</span><span data-lang="en">A marked pause mid-line: rupture, hesitation, pivot.</span></div>
+    <div class="term"><b>volta</b><span data-lang="fr">Le « tournant » d'un poème (surtout du sonnet) : renversement de l'argument.</span><span data-lang="en">The "turn" of a poem (especially the sonnet): the argument reverses.</span></div>
+    <div class="term"><b>rhyme scheme</b><span data-lang="fr">Schéma des rimes (ABAB…) : sa régularité ou ses accrocs font sens.</span><span data-lang="en">The pattern of rhymes (ABAB…): its regularity or its snags carry meaning.</span></div>
+    <div class="term"><b>assonance / sibilance</b><span data-lang="fr">Répétition de voyelles / de sons en « s » : texture sonore à relier à un effet.</span><span data-lang="en">Repetition of vowel sounds / "s" sounds: sonic texture to be tied to an effect.</span></div>
+    <div class="term"><b>lyric voice / speaker</b><span data-lang="fr">Le « je » du poème, à ne jamais confondre avec le poète lui-même.</span><span data-lang="en">The poem's "I", never to be confused with the poet themselves.</span></div>
+    <div class="term"><b>extended metaphor / conceit</b><span data-lang="fr">Métaphore filée, parfois audacieuse, qui structure tout le poème.</span><span data-lang="en">A sustained, sometimes daring metaphor that structures the whole poem.</span></div>
+    <div class="term"><b>imagery cluster</b><span data-lang="fr">Réseau d'images récurrentes (équiv. du champ lexical relié à une isotopie).</span><span data-lang="en">A network of recurring images (close to the French champ lexical / isotopie).</span></div>
+  </div>
+  <h3 data-lang="fr">Prose &amp; général</h3>
+  <h3 data-lang="en">Prose &amp; general</h3>
+  <div class="gloss">
+    <div class="term"><b>omniscient narrator</b><span data-lang="fr">Narrateur qui sait tout, entre dans toutes les consciences.</span><span data-lang="en">A narrator who knows everything and enters every mind.</span></div>
+    <div class="term"><b>first-person narrator</b><span data-lang="fr">Narrateur-personnage : point de vue limité, potentiellement peu fiable.</span><span data-lang="en">A character-narrator: limited, potentially unreliable point of view.</span></div>
+    <div class="term"><b>unreliable narrator</b><span data-lang="fr">Narrateur dont le récit doit être mis en doute par le lecteur.</span><span data-lang="en">A narrator whose account the reader must call into question.</span></div>
+    <div class="term"><b>free indirect discourse</b><span data-lang="fr">Discours indirect libre : la voix du narrateur épouse la pensée du personnage.</span><span data-lang="en">Free indirect style: the narrator's voice merges with the character's thought.</span></div>
+    <div class="term"><b>bildungsroman</b><span data-lang="fr">Roman d'apprentissage : formation d'un personnage de la jeunesse à la maturité.</span><span data-lang="en">A novel of formation: a character's growth from youth to maturity.</span></div>
+    <div class="term"><b>pathetic fallacy</b><span data-lang="fr">La nature ou le décor reflète l'état intérieur des personnages.</span><span data-lang="en">Nature or setting mirrors the characters' inner state.</span></div>
+    <div class="term"><b>motif</b><span data-lang="fr">Élément récurrent (objet, image, phrase) qui accumule du sens au fil de l'œuvre.</span><span data-lang="en">A recurring element (object, image, phrase) that accrues meaning across the work.</span></div>
+    <div class="term"><b>irony (verbal / situational)</b><span data-lang="fr">Dire le contraire de ce qu'on pense / résultat contraire à l'attente.</span><span data-lang="en">Saying the opposite of what is meant / an outcome contrary to expectation.</span></div>
+    <div class="term"><b>register</b><span data-lang="fr">Niveau de langue d'un passage (soutenu, familier, juridique…) et ses effets.</span><span data-lang="en">The level of language of a passage (formal, colloquial, legalistic…) and its effects.</span></div>
+    <div class="term"><b>syntax</b><span data-lang="fr">Construction des phrases : longueur, ordre, accumulations, ruptures.</span><span data-lang="en">Sentence construction: length, order, accumulation, disruption.</span></div>
+    <div class="term"><b>tone</b><span data-lang="fr">L'attitude du texte envers son sujet : ironique, élégiaque, satirique…</span><span data-lang="en">The text's attitude towards its subject: ironic, elegiac, satirical…</span></div>
+    <div class="term"><b>characterisation</b><span data-lang="fr">L'ensemble des moyens par lesquels un personnage est construit.</span><span data-lang="en">The full range of means by which a character is constructed.</span></div>
+  </div>
 
-<footer>ACL/BRIT/W · 2027 · REVISION SITE</footer>
+</div>
+</section>
+  </main>
+</div>
+
+<footer>
+  <span data-lang="fr">Orhan le magnifique — révisions Terminale BFI</span>
+  <span data-lang="en">Orhan le magnifique — BFI final-year revision</span>
+</footer>
+
+<div class="sheet" id="sheet">
+  <div class="sheet-in">
+    <div class="sheet-top">
+      <span data-lang="fr">Sommaire</span><span data-lang="en">Contents</span>
+      <button id="sheet-close" aria-label="Fermer">&times;</button>
+    </div>
+    <div id="sheet-body"></div>
+  </div>
+</div>
+
+<div class="search" id="search">
+  <div class="search-in">
+    <div class="search-top">
+      <input id="search-input" type="search" placeholder="Chercher dans tout le site…" aria-label="Recherche">
+      <button id="search-close" aria-label="Fermer">&times;</button>
+    </div>
+    <div class="search-res" id="search-res"></div>
+  </div>
+</div>
 
 <script type="application/json" id="cit-data">{"CIT-MEM-1":" When I cast my mind back to that summer of  \n1936 different kinds of memories offer themselves to me.","CIT-MEM-2":"And even though I was only a child of seven at the time I know I had  \na sense of unease, some awareness of a widening breach be- \ntween what seemed to be and what was, of things changing  \ntoo quickly before my eyes, of becoming what they ought not \nto be.","CIT-AGNES-1":"I don’t care how young \nthey are, how drunk and dirty and sweaty they are.  I want to \ndance, Kate.  It’s the Festival of Lughnasa.  I’m only thirty-five. \nI want to dance. ","CIT-KATE-0":" Do you want the whole countryside to be laughing \nat us?  -- women of our years?  -- mature women, dancing? \nWhat’s come over you all?  And this is Father Jack’s home -- \nwe must never forget that – ever.","CIT-MAGGIE-1":"The colours are so beautiful.  (She gets to her feet.) \nTrouble is – just one quick glimpse – that’s all you ever get. \nAnd if you miss that … ","CIT-PAGAN-1":"I know those people from the back hills!  I’ve taught them! \nSavages – that’s what they are!  And what pagan practices they \nhave are no concern of our s—none whatever!  It’s a sorry \nday to hear talk like that in a Christian home, a Catholic \nhome!  All I can say is that I’m shocked and disappointed to \nhear your repeating rubbish like that, Rose! ","CIT-DANSE-2":"For about ten seconds she dances along – a white-faced, frantic dervish. \n\nhen ROSE’s face lights up.  Suddenly she flings away her knitting, \n23 \nleaps to her feet, shouts, grabs MAGGIE’s hand.  They dance \nand sing – shout together; Rose’s Willingtons pounding out their \nown erratic rhythm.  Now after another five seconds AGNES looks \naround, leaps up, joins MAGIE and ROSE.  Of all the sisters she  \nmoves most gracefully, most sensuously.  Then after the same interval \nCHRIS, who has been folding Jack’s surplice, tosses it quickly over her \nhead and joins in the dance.  The moment she tosses the vestment over \nher head KATE cries out in remonstration\n\n But the \nmovements seem caricatured; and the sound is too loud; and the beat \nis too fast; and the almost recognizable dance is made grotesque \nbecause – for example – instead of holding hands, they have their \narms tightly around one another’s neck, on another’s waist.","CIT-AGNES-2":"We both do – Rose and I. \nPaint the house.  Sweep the chimney.  Cut the grass.  Save the \nturf.  What you have here, Kate, are two unpaid servants. ","CIT-KATE-3":" That’s the only thing that Evans creature could ever \ndo well – was dance.  (Pause.)  And look at her, the fool.  For \nGod’s sake, would you look at that fool of a woman?  (Pause.) \nHer whole face alters when she’s happy, doesn’t it?  (Pause.) \nThey dance so well together.  They’re such a beautiful couple. \n(Pause.)  She’s as beautiful as Bernie O’Donnell any day, isn’t she?","CIT-GERRY-1":"But you’d walk out on me again.  You wouldn’t \nintend to but that’s what would happen because that’s your  \nnature and you can’t help yourself. ","CIT-KATE-1":"And then suddenly, suddenly you realize that hair \ncracks are appearing everywhere; that control is slipping away; \nthat the whole thing is so fragile that it can’t be held together \nmuch longer.  It’s all about to collapse, Maggie.","CIT-JACK-3":"That’s what we do in Ryanga when we want to please \nthe spirits – or to appease them: we kill a rooster or a  \nyoung goat.  It’s a very exciting exhibition – that’s not the  \nword, is it?  -- demonstration? – no – show?  No, no; what’s \nthe word I’m looking for?  Spectacle?  That’s not it.  The word \nto describe a sacred and mysterious…?  (Slowly, deliberately.)  You \nhave a ritual killing.  You offer up sacrifice.  You have dancing \nand incantations.  What is the name for that whole – for \nthat -- ?  Gone.  Lost it.  My vocabulary has deserted me.  Never \nmind.  Doesn’t matter …","CIT-JACK-2":"In Ryanga women were eager to have love-children. \nThe more love-children you have, the more fortunate your \nhousehold is thought to be","CIT-MICHAEL-1":"No singing, no melody, no words.  Only the swish and \nwhisper of their feet across the grass. \nI watched the ceremony from behind that bush.","CIT-JACK-1":"Oh, yes, the Ryangans are a remarkable people: there is \nno distinction between the religious and the secular in their \nculture.  And of course their capacity for fun, for laughing, for \npractical jokes -- they’ve such open hearts!  In some respects \nthey’re not unlike us.  You’d love them, Maggie.  You should \ncome back with me! ","CIT-KATE-2":" Completely changed.  He’s not our Jack at all.  And \nit’s what he’s changed into that frightens me.","CIT-GERRY-2":"Not so sure I know either.  Who wants salesmen that \ncan’t sell?  And there’s bound to be something right about the  \ncause, isn’t there?  And it’s somewhere to go – isn’t it?  Maybe \nthat’s the important thing for a man:  a named destination – \ndemocracy, Ballybeg, heaven.  Women’s illusions aren’t so easily \nsatisfied – they make better drifters.  (Laughs.)  Anyhow he \nheld out a pen to sign on the dotted line and it was only \nwhen I was writing my name that I glanced over the lectern \nand saw the box.","CIT-ROSE-1":"And that’s all I’m going to tell you.  (To all.)  That’s al any of you are going \nto hear. ","CIT-DISLOC-1":"We are gone for good.  This is best for \n\nall.  Do not try to find us.’  It was written in Agnes’s resolute \nhand. ","CIT-MICHAEL-2":"But much of the spirit and fun had gone out of their \nlives; and when my time came to go away, in the selfish way \nof young men I was happy to escape.","CIT-DANSE-1":"Dancing \nwith eyes half closed because to open them would break the spell.  \n Dancing as if language had surrendered to movement  -- as if this ritual, this wordless ceremony, was now the \nway to speak, to whisper private and sacred things, to be in \ntouch with some otherness.  Dancing as if the very heart of life \nand all its hopes might be found in those assuaging notes and  \nthose hushed rhythms and in those silent and hypnotic movements. \nDancing as if language no longer existed because  \nwords were no longer necessary … "}</script>
 <script>
-function setLang(l){
-  document.documentElement.setAttribute('data-currentlang', l);
-  document.getElementById('btn-fr').classList.toggle('active', l === 'fr');
-  document.getElementById('btn-en').classList.toggle('active', l === 'en');
-}
-document.querySelectorAll('nav button').forEach(function(b){
-  b.addEventListener('click', function(){
-    document.querySelectorAll('nav button').forEach(function(x){ x.classList.remove('active'); });
-    b.classList.add('active');
-    document.querySelectorAll('section.tab').forEach(function(s){ s.classList.remove('visible'); });
-    document.getElementById(b.getAttribute('data-target')).classList.add('visible');
-    window.scrollTo({top:0, behavior:'smooth'});
-  });
-});
+(function () {
+  'use strict';
 
-// Banque de citations : citations embarquées dans le fichier + sauvegarde
-(function(){
-  var KEY='acl-lughnasa-citations';
-  var areas=document.querySelectorAll('textarea.cit');
-  function fileData(){
-    try{ return JSON.parse(document.getElementById('cit-data').textContent||'{}'); }catch(e){ return {}; }
+  var LANG = document.documentElement.getAttribute('data-currentlang') || 'fr';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+
+  var areasEl = $$('.area');
+  var edge = $('#edge');
+  var sheet = $('#sheet');
+  var sheetBody = $('#sheet-body');
+  var trailBtn = $('#trail-btn');
+  var searchEl = $('#search');
+  var searchInput = $('#search-input');
+  var searchRes = $('#search-res');
+  var IDX = null;
+
+  function label(el) { return el.getAttribute('data-' + LANG) || el.getAttribute('data-fr') || ''; }
+  function kids(el, cls) { return $$(':scope > .' + cls, el); }
+
+  /* ---------- carte du site ---------- */
+  function areaByRoute(r) {
+    for (var i = 0; i < areasEl.length; i++) {
+      if (areasEl[i].getAttribute('data-route') === r) return areasEl[i];
+    }
+    return null;
   }
-  function lsGet(){ try{ return JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ return {}; } }
-  function lsSet(d){ try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){} }
-  // Init : les citations du fichier d'abord, puis les saisies locales non sauvegardees
-  var base=fileData(), local=lsGet();
-  areas.forEach(function(a){
-    var id=a.getAttribute('data-cit');
-    var v=(local[id]&&local[id].trim())?local[id]:(base[id]||'');
-    if(v){ a.value=v; a.classList.add('filled'); }
-    a.addEventListener('input', function(){
-      var d=lsGet(); d[id]=a.value; lsSet(d);
-      a.classList.toggle('filled', a.value.trim().length>0);
-      var st=document.getElementById('cit-status');
-      if(st){ st.textContent='modifie - pense a enregistrer'; }
+  function childByRoute(parent, cls, r) {
+    var list = kids(parent, cls);
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].getAttribute('data-route') === r) return list[i];
+    }
+    return null;
+  }
+
+  function resolve(hash) {
+    var seg = (hash || '').replace(/^#\/?/, '').split('/').filter(Boolean);
+    var area = (seg[0] && areaByRoute(seg[0])) || areasEl[0];
+    var pl = kids(area, 'pane');
+    var pane = (seg[1] && childByRoute(area, 'pane', seg[0] + '/' + seg[1])) || pl[0];
+    var leaf = null;
+    if (pane) {
+      var ll = kids(pane, 'leaf');
+      if (ll.length) {
+        leaf = (seg[2] && childByRoute(pane, 'leaf', pane.getAttribute('data-route') + '/' + seg[2])) || ll[0];
+      }
+    }
+    return { area: area, pane: pane, leaf: leaf };
+  }
+
+  function routeOf(s) { return (s.leaf || s.pane || s.area).getAttribute('data-route'); }
+
+  /* ---------- affichage ---------- */
+  var state = null;
+
+  function show(hash, keepScroll) {
+    var s = resolve(hash);
+    state = s;
+    areasEl.forEach(function (a) {
+      var on = a === s.area;
+      a.classList.toggle('on', on);
+      kids(a, 'pane').forEach(function (p) {
+        var pOn = on && p === s.pane;
+        p.classList.toggle('on', pOn);
+        kids(p, 'leaf').forEach(function (l) { l.classList.toggle('on', pOn && l === s.leaf); });
+      });
     });
+    $$('.areas button').forEach(function (b) {
+      var cur = b.getAttribute('data-route') === s.area.getAttribute('data-route');
+      b.setAttribute('aria-current', cur ? 'true' : 'false');
+      if (cur && b.scrollIntoView) { try { b.scrollIntoView({ inline: 'nearest', block: 'nearest' }); } catch (err) {} }
+    });
+    renderEdge();
+    renderTrail();
+    if (!keepScroll) window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  function go(route, e) {
+    if (e) e.preventDefault();
+    if (('#' + route) === location.hash) { show(location.hash); return; }
+    location.hash = route;
+  }
+
+  /* ---------- rail latéral (bureau) ---------- */
+  function treeHTML(area, opts) {
+    var cur = routeOf(state);
+    var out = '<ul>';
+    kids(area, 'pane').forEach(function (p) {
+      var pr = p.getAttribute('data-route');
+      var isCur = (state.pane === p);
+      var lv = kids(p, 'leaf');
+      var mark = (isCur && !lv.length) ? ' aria-current="true"' : '';
+      out += '<li><a href="#' + pr + '"' + mark + '>' + label(p) + '</a>';
+      if (lv.length && (isCur || opts.expandAll)) {
+        out += '<div class="lv3"><ul>';
+        lv.forEach(function (l) {
+          var lr = l.getAttribute('data-route');
+          out += '<li><a href="#' + lr + '"' + (lr === cur ? ' aria-current="true"' : '') + '>' + label(l) + '</a></li>';
+        });
+        out += '</ul></div>';
+      }
+      out += '</li>';
+    });
+    return out + '</ul>';
+  }
+
+  function renderEdge() {
+    edge.innerHTML = '<div class="rail-head">' + label(state.area) + '</div>' + treeHTML(state.area, {});
+  }
+
+  function renderTrail() {
+    var up = label(state.area);
+    var now = label(state.pane || state.area);
+    if (state.leaf) { up += ' › ' + now; now = label(state.leaf); }
+    trailBtn.innerHTML = '<span class="chev">\u2630</span><span class="up">' + up + ' \u203A</span><span class="now">' + now + '</span>';
+  }
+
+  /* ---------- sommaire mobile ---------- */
+  function openSheet() {
+    var out = '';
+    areasEl.forEach(function (a) {
+      out += '<div class="grp"><div class="lbl">' + label(a) + '</div>' + treeHTML(a, { expandAll: true }) + '</div>';
+    });
+    sheetBody.innerHTML = out;
+    sheet.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSheet() { sheet.classList.remove('open'); document.body.style.overflow = ''; }
+
+  /* ---------- recherche ---------- */
+  function fold(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function targets() {
+    var out = [];
+    areasEl.forEach(function (a) {
+      kids(a, 'pane').forEach(function (p) {
+        var lv = kids(p, 'leaf');
+        if (lv.length) {
+          lv.forEach(function (l) {
+            out.push({ el: l, route: l.getAttribute('data-route'), path: label(a) + ' › ' + label(p) + ' › ' + label(l) });
+          });
+        } else {
+          out.push({ el: p, route: p.getAttribute('data-route'), path: label(a) + ' › ' + label(p) });
+        }
+      });
+    });
+    return out;
+  }
+
+  function buildIndex() {
+    IDX = targets().map(function (o) {
+      var c = o.el.cloneNode(true);
+      $$('[data-lang]', c).forEach(function (n) {
+        if (n.getAttribute('data-lang') !== LANG) { n.parentNode.removeChild(n); }
+      });
+      $$('textarea', c).forEach(function (n) { n.parentNode.removeChild(n); });
+      var txt = (c.textContent || '').replace(/\s+/g, ' ').trim();
+      $$('textarea.cit', o.el).forEach(function (a) { if (a.value) txt += ' ' + a.value.replace(/\s+/g, ' '); });
+      return { route: o.route, path: o.path, txt: txt, low: fold(txt) };
+    });
+  }
+
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  function runSearch(q) {
+    if (!IDX) buildIndex();
+    var f = fold(q.trim());
+    if (f.length < 2) {
+      searchRes.innerHTML = '<div class="empty" data-lang="fr">Tape au moins deux lettres.</div>' +
+        '<div class="empty" data-lang="en">Type at least two letters.</div>';
+      return;
+    }
+    var hits = [];
+    IDX.forEach(function (r) {
+      var i = r.low.indexOf(f);
+      if (i < 0) return;
+      var n = 0, p = 0;
+      while ((p = r.low.indexOf(f, p)) >= 0) { n++; p += f.length; }
+      var a = Math.max(0, i - 70), b = Math.min(r.txt.length, i + f.length + 90);
+      var snip = (a > 0 ? '…' : '') + esc(r.txt.slice(a, b)) + (b < r.txt.length ? '…' : '');
+      var re = new RegExp('(' + q.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+      snip = snip.replace(re, '<mark>$1</mark>');
+      hits.push({ route: r.route, path: r.path, snip: snip, n: n });
+    });
+    hits.sort(function (x, y) { return y.n - x.n; });
+    if (!hits.length) {
+      searchRes.innerHTML = '<div class="empty" data-lang="fr">Rien trouvé pour « ' + esc(q) + ' ».</div>' +
+        '<div class="empty" data-lang="en">Nothing found for “' + esc(q) + '”.</div>';
+      return;
+    }
+    searchRes.innerHTML = hits.slice(0, 40).map(function (h) {
+      return '<button class="hit" data-go="' + h.route + '"><span class="path">' + h.path +
+        '</span><span class="snip">' + h.snip + '</span></button>';
+    }).join('');
+  }
+
+  function openSearch() {
+    searchEl.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    searchInput.value = '';
+    runSearch('');
+    setTimeout(function () { searchInput.focus(); }, 40);
+  }
+  function closeSearch() { searchEl.classList.remove('open'); document.body.style.overflow = ''; }
+
+  /* ---------- langue ---------- */
+  function setLang(l) {
+    LANG = l;
+    document.documentElement.setAttribute('data-currentlang', l);
+    document.documentElement.setAttribute('lang', l === 'fr' ? 'fr' : 'en');
+    $('#btn-fr').classList.toggle('on', l === 'fr');
+    $('#btn-en').classList.toggle('on', l === 'en');
+    $$('.areas button').forEach(function (b) { b.textContent = b.getAttribute('data-' + l); });
+    IDX = null;
+    if (state) { renderEdge(); renderTrail(); }
+    if (sheet.classList.contains('open')) openSheet();
+  }
+
+  /* ---------- banque de citations ---------- */
+  function initCitations() {
+    var areasT = $$('textarea.cit');
+    if (!areasT.length) return;
+    var base = {};
+    try { base = JSON.parse(($('#cit-data') || {}).textContent || '{}'); } catch (e) { base = {}; }
+    function fit(a) {
+      a.style.height = 'auto';
+      a.style.height = Math.max(70, a.scrollHeight + 2) + 'px';
+    }
+    areasT.forEach(function (a) {
+      var id = a.getAttribute('data-cit');
+      if (base[id]) { a.value = base[id]; a.classList.add('filled'); }
+      a.addEventListener('input', function () { fit(a); });
+      a.addEventListener('input', function () {
+        a.classList.toggle('filled', a.value.trim().length > 0);
+        IDX = null;
+        var st = $('#cit-status');
+        if (st) st.textContent = LANG === 'fr' ? 'modifié — pense à enregistrer' : 'edited — remember to save';
+      });
+    });
+    window.citSaveFile = function () {
+      var d = {};
+      areasT.forEach(function (a) { d[a.getAttribute('data-cit')] = a.value; });
+      $('#cit-data').textContent = JSON.stringify(d).replace(/</g, '\\u003c');
+      var e1 = edge.innerHTML, e2 = sheetBody.innerHTML, e3 = searchRes.innerHTML, e4 = trailBtn.innerHTML;
+      edge.innerHTML = ''; sheetBody.innerHTML = ''; searchRes.innerHTML = ''; trailBtn.innerHTML = '';
+      $$('.area, .pane, .leaf').forEach(function (n) { n.classList.remove('on'); });
+      var html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      edge.innerHTML = e1; sheetBody.innerHTML = e2; searchRes.innerHTML = e3; trailBtn.innerHTML = e4;
+      show(location.hash, true);
+      var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'index.html';
+      document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 600);
+      var st = $('#cit-status');
+      if (st) {
+        st.textContent = LANG === 'fr' ? 'fichier téléchargé — remplace l’ancien' : 'file downloaded — replace the old one';
+        setTimeout(function () { st.textContent = ''; }, 5000);
+      }
+    };
+  }
+
+  /* ---------- filtre de glossaire ---------- */
+  function initGlossFilter() {
+    var input = $('#gloss-filter');
+    if (!input) return;
+    var count = $('#gloss-count');
+    var terms = $$('#outils-glossaire .term');
+    input.addEventListener('input', function () {
+      var f = fold(input.value.trim());
+      var n = 0;
+      terms.forEach(function (t) {
+        var hit = !f || fold(t.textContent).indexOf(f) >= 0;
+        t.classList.toggle('hide', !hit);
+        if (hit) n++;
+      });
+      count.textContent = n + (LANG === 'fr' ? ' termes' : ' terms');
+    });
+    count.textContent = terms.length + (LANG === 'fr' ? ' termes' : ' terms');
+  }
+
+  /* ---------- hauteur de barre ---------- */
+  function measure() {
+    var h = $('.topbar').offsetHeight;
+    document.documentElement.style.setProperty('--bar', h + 'px');
+  }
+
+  /* ---------- branchements ---------- */
+  $$('.areas button').forEach(function (b) {
+    b.addEventListener('click', function () { go(b.getAttribute('data-route')); });
   });
-  window.citSaveFile=function(){
-    // 1. Ecrire les valeurs courantes dans le bloc JSON embarque
-    var d={};
-    areas.forEach(function(a){ d[a.getAttribute('data-cit')]=a.value; });
-    var json=JSON.stringify(d).replace(/</g,'\\u003c');
-    document.getElementById('cit-data').textContent=json;
-    // 2. Serialiser la page complete et la telecharger
-    var html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
-    var blob=new Blob([html], {type:'text/html;charset=utf-8'});
-    var aEl=document.createElement('a');
-    aEl.href=URL.createObjectURL(blob);
-    aEl.download='acl-ecrit.html';
-    document.body.appendChild(aEl); aEl.click();
-    setTimeout(function(){ URL.revokeObjectURL(aEl.href); aEl.remove(); }, 500);
-    lsSet(d);
-    var st=document.getElementById('cit-status');
-    if(st){ st.textContent='fichier telecharge - remplace l ancien'; setTimeout(function(){ st.textContent=''; }, 4000); }
-  };
+  $('#btn-fr').addEventListener('click', function () { setLang('fr'); });
+  $('#btn-en').addEventListener('click', function () { setLang('en'); });
+  $('#btn-search').addEventListener('click', openSearch);
+  $('#search-close').addEventListener('click', closeSearch);
+  searchEl.addEventListener('click', function (e) { if (e.target === searchEl) closeSearch(); });
+  searchInput.addEventListener('input', function () { runSearch(searchInput.value); });
+  searchRes.addEventListener('click', function (e) {
+    var b = e.target.closest('.hit');
+    if (!b) return;
+    closeSearch();
+    go(b.getAttribute('data-go'));
+  });
+  trailBtn.addEventListener('click', openSheet);
+  $('#sheet-close').addEventListener('click', closeSheet);
+  sheet.addEventListener('click', function (e) { if (e.target === sheet) closeSheet(); });
+  sheetBody.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    closeSheet();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeSearch(); closeSheet(); }
+    if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); openSearch(); }
+  });
+  window.addEventListener('hashchange', function () { show(location.hash); });
+  window.addEventListener('resize', measure);
+
+  /* ---------- démarrage ---------- */
+  initCitations();
+  show(location.hash);
+  var refit = function () { $$('textarea.cit').forEach(function (a) { a.style.height = 'auto'; a.style.height = Math.max(70, a.scrollHeight + 2) + 'px'; }); };
+  refit();
+  window.addEventListener('resize', refit);
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(refit); }
+  initGlossFilter();
+  measure();
+
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
 })();
-
-// PWA : service worker (uniquement en contexte http/https)
-if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
-  window.addEventListener('load', function(){
-    navigator.serviceWorker.register('sw.js').catch(function(){});
-  });
-}
 </script>
-
-
 </body></html>
