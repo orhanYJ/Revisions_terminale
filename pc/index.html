@@ -148,6 +148,11 @@ table.tb{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem;back
 .fig svg{max-width:100%;height:auto}
 .fig .cap{font-size:.83rem;color:var(--muted);margin-top:6px;font-style:italic;font-family:Charter,Georgia,serif}
 
+/* Enonces d'exercices */
+.enonce{border-left:4px solid var(--line);padding:10px 0 10px 15px;margin:12px 0;font-size:.97rem}
+.exo-comp{font-size:.82rem;color:var(--muted);margin:2px 0 8px}
+.rap summary .lvl{margin-right:9px}
+
 /* Exercices */
 .exo-niveaux{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
 .exo-niveaux button{
@@ -621,14 +626,296 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
 
   <!-- ========== EXERCICES ========== -->
   <section class="part" id="s-exos">
-    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.2-4.2L16 5l3 3L8.2 18.8Z"/><path d="M14 7l3 3"/></svg>Exercices<small>Trois niveaux prévus : 🟢 QCM · 🟠 application · 🔴 type bac</small></h2>
-    <div class="placeholder">
-      <b>Les exercices arrivent avec le cours.</b> Dès que tu m'envoies tes notes sur les premières notions traitées, je crée ici les QCM, les applications et les exercices type bac correspondants — uniquement sur ce qui a été vu. Utile aussi pour préparer les interrogations de début de séance (note A).
-    </div>
-    <h3 style="margin-top:22px">Exercices du plan de travail</h3>
-    <div class="placeholder">
-      <b>Obligatoires :</b> 5, 10, 13, 15, 16, 17, 18, 21, 44 p. 28 et suivantes · <b>Revoir les bases :</b> QCM interactif p. 27, 12 et 14 p. 28 · <b>Aller plus loin :</b> 31 et 42 p. 32.<br><br>
-      Je n'ai pas le manuel : envoie une photo des énoncés (par lots si tu veux) et j'ajoute chaque exercice avec sa correction rédigée et le raisonnement expliqué.
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.2-4.2L16 5l3 3L8.2 18.8Z"/><path d="M14 7l3 3"/></svg>Exercices<small>Les treize exercices du plan de travail, corrigés et expliqués</small></h2>
+    <div class="prose">
+
+      <p>Chaque exercice est présenté avec son énoncé, puis sa correction et l'explication du raisonnement, cachées derrière un bouton : lis l'énoncé, cherche, et n'ouvre la correction qu'après. Les énoncés sont reformulés — mêmes données, mêmes questions, même difficulté que dans le manuel.</p>
+
+      <div class="methode"><div class="t">Le plan de travail du chapitre</div>
+        <p><span class="lvl d1">Obligatoires</span> 5 · 10 · 13 · 15 · 16 · 17 · 18 · 21 · 44</p>
+        <p><span class="lvl d2">Revoir les bases</span> 12 · 14 · et le QCM interactif du manuel</p>
+        <p><span class="lvl d3">Aller plus loin</span> 31 · 42</p>
+        <p><span class="lvl">Pratique expérimentale</span> TP 1 — Mesures de pH</p>
+      </div>
+
+      <h3 style="margin-top:26px">Les sept savoir-faire, et où on les travaille</h3>
+      <p>Le tableau croisé du plan de travail, relu dans l'autre sens : pour chaque compétence, les exercices qui l'entraînent. C'est la façon utile de le lire avant un contrôle — tu repères la compétence qui te fait peur, et tu sais exactement quoi refaire.</p>
+
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Savoir-faire</th><th>Exercices</th></tr>
+        <tr><td><strong>C1</strong> — Identifier un transfert d'ion hydrogène, les couples mis en jeu, et établir l'équation d'une réaction acide-base</td><td>5 · 12 · 13 · 14 · 15 · 16 · 17 · 44</td></tr>
+        <tr><td><strong>C2</strong> — Connaître les couples acide-base de l'eau, de l'acide carbonique, des acides carboxyliques, des amines</td><td>5 · 12 · 13 · 14 · 15 · 17 · 44</td></tr>
+        <tr><td><strong>C3</strong> — Représenter le schéma de Lewis et la formule semi-développée d'un acide carboxylique, d'un ion carboxylate, d'une amine, d'un ion ammonium</td><td>16 · 17 · 18</td></tr>
+        <tr><td><strong>C4</strong> — Identifier le caractère amphotère d'une espèce chimique</td><td>18 · 44</td></tr>
+        <tr><td><strong>C5</strong> — Déterminer le pH à partir de <span class="ch">[H<sub>3</sub>O<sup>+</sup>]</span>, et inversement</td><td>10 · 21 · 31 · 42</td></tr>
+        <tr><td><strong>C6</strong> — Mesurer le pH de solutions d'acide chlorhydrique diluées d'un facteur 10, pour tester la relation entre pH et concentration</td><td>TP 1</td></tr>
+        <tr><td><strong>C7</strong> — Capacité mathématique : utiliser la fonction logarithme décimal et sa réciproque</td><td>10 · 21 · 31 · 42</td></tr>
+      </table></div>
+
+      <div class="piege"><div class="t">Ce que le tableau dit de l'évaluation</div>C1 et C2 concentrent huit exercices sur treize : le cœur du chapitre, c'est <strong>reconnaître un couple acide-base et écrire sa demi-équation</strong>. C5 et C7 arrivent ensuite avec quatre exercices, toujours les mêmes quatre — la manipulation du logarithme est un bloc à part, qu'on travaille séparément. C3 et C4 ne sont vus que sur trois et deux exercices : ce sont les points les plus vite oubliés.</div>
+
+      <h3 style="margin-top:26px">Les exercices</h3>
+
+      <details class="rap"><summary><span class="lvl d1">Obl.</span>5 · Couple acide-base<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C1</strong> · <strong>C2</strong></p>
+      <div class="enonce">Montrer que <span class="ch">CH<sub>3</sub>COOH(aq)</span> et <span class="ch">CH<sub>3</sub>COO<sup>−</sup>(aq)</span> forment bien un couple acide-base, en écrivant la demi-équation qui les relie.</div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <div class="eqc">CH<sub>3</sub>COOH(aq) ⇌ CH<sub>3</sub>COO<sup>−</sup>(aq) + H<sup>+</sup></div>
+        <p>L'acide éthanoïque peut céder un ion hydrogène : c'est un acide. L'ion éthanoate peut le capter à nouveau : c'est une base. Les deux espèces sont reliées par une demi-équation de la forme <span class="ch">AH ⇌ A<sup>−</sup> + H<sup>+</sup></span>, donc elles forment bien un couple, noté <span class="ch">CH<sub>3</sub>COOH(aq)/CH<sub>3</sub>COO<sup>−</sup>(aq)</span>.</p>
+        <p><strong>Le point qui fait la différence :</strong> l'hydrogène cédé est celui du groupe carboxyle, porté par un atome d'oxygène. La liaison O—H est fortement polarisée, l'hydrogène y porte une charge partielle positive et part facilement. Les trois hydrogènes du groupe <span class="ch">CH<sub>3</sub></span> ne partent jamais : la liaison C—H est trop peu polarisée.</p>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d1">Obl.</span>10 · pH et acidité<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C5</strong> · <strong>C7</strong></p>
+      <div class="enonce">Une eau gazeuse a un pH égal à 5,5.<br><strong>1.</strong> Dire si elle est acide, neutre ou basique.<br><strong>2.</strong> Calculer sa concentration en ions oxonium <span class="ch">H<sub>3</sub>O<sup>+</sup>(aq)</span>.</div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> À 25 °C, une solution neutre a un pH de 7. Ici pH = 5,5 &lt; 7, donc l'eau gazeuse est <strong>acide</strong>.</p>
+        <p><strong>2.</strong> On part de la relation réciproque du pH :</p>
+        <div class="eqc">[H<sub>3</sub>O<sup>+</sup>] = c° · 10<sup>−pH</sup> = 1 × 10<sup>−5,5</sup> = 3,2 × 10<sup>−6</sup> mol·L<sup>−1</sup></div>
+        <p><strong>Pourquoi elle est acide :</strong> le gaz dissous dans l'eau gazeuse est du dioxyde de carbone, qui forme <span class="ch">(CO<sub>2</sub>, H<sub>2</sub>O)</span> — un acide du couple <span class="ch">(CO<sub>2</sub>, H<sub>2</sub>O)(aq)/HCO<sub>3</sub><sup>−</sup>(aq)</span>. Il cède un H<sup>+</sup> à l'eau, ce qui fait monter <span class="ch">[H<sub>3</sub>O<sup>+</sup>]</span> et descendre le pH.</p>
+        <div class="piege"><div class="t">Sur la calculatrice</div>La touche est <span class="m">10<sup>x</sup></span> (souvent en seconde fonction de <span class="m">log</span>), pas <span class="m">e<sup>x</sup></span>. Avec <span class="m">e<sup>x</sup></span> tu obtiendrais 4,1 × 10<sup>−3</sup> — un facteur mille d'écart, invisible si on ne réfléchit pas à l'ordre de grandeur.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d2">Base</span>12 · Identifier des couples acide-base (1)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C1</strong> · <strong>C2</strong></p>
+      <div class="enonce">Parmi les cinq couples suivants, repérer ceux qui sont des couples acide-base et écrire pour chacun la demi-équation associée.<br><strong>a.</strong> <span class="ch">H<sub>3</sub>O<sup>+</sup>(aq)/H<sub>2</sub>O(l)</span> · <strong>b.</strong> <span class="ch">Fe<sup>3+</sup>(aq)/Fe<sup>2+</sup>(aq)</span> · <strong>c.</strong> <span class="ch">HgO(s)/Hg(l)</span> · <strong>d.</strong> <span class="ch">H<sup>+</sup>(aq)/H<sub>2</sub>(g)</span> · <strong>e.</strong> <span class="ch">HNO<sub>3</sub>(aq)/NO<sub>3</sub><sup>−</sup>(aq)</span></div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p>Seuls <strong>a</strong> et <strong>e</strong> sont des couples acide-base.</p>
+        <div class="eqc">a. &nbsp; H<sub>3</sub>O<sup>+</sup>(aq) ⇌ H<sub>2</sub>O(l) + H<sup>+</sup></div>
+        <div class="eqc">e. &nbsp; HNO<sub>3</sub>(aq) ⇌ NO<sub>3</sub><sup>−</sup>(aq) + H<sup>+</sup></div>
+        <p>Les trois autres sont des couples oxydant/réducteur, parce qu'on ne peut pas passer d'une espèce à l'autre en échangeant seulement des ions hydrogène :</p>
+        <div class="eqc">b. &nbsp; Fe<sup>3+</sup>(aq) + e<sup>−</sup> ⇌ Fe<sup>2+</sup>(aq)</div>
+        <div class="eqc">c. &nbsp; HgO(s) + 2 H<sup>+</sup> + 2 e<sup>−</sup> ⇌ Hg(l) + H<sub>2</sub>O(l)</div>
+        <div class="eqc">d. &nbsp; 2 H<sup>+</sup>(aq) + 2 e<sup>−</sup> ⇌ H<sub>2</sub>(g)</div>
+        <div class="piege"><div class="t">Le piège, c'est le c</div>Des ions H<sup>+</sup> apparaissent bien dans la demi-équation de <span class="ch">HgO/Hg</span> — mais des électrons aussi. <strong>Le critère de tri est l'électron, jamais le proton.</strong> S'il faut un e<sup>−</sup> pour équilibrer, c'est de l'oxydoréduction, quel que soit le nombre de H<sup>+</sup> présents.</div>
+        <p>Même chose pour le <strong>d</strong>, qui trompe parce que les deux espèces ne contiennent que de l'hydrogène : passer de <span class="ch">H<sup>+</sup></span> à <span class="ch">H<sub>2</sub></span>, c'est gagner un électron, pas céder un proton.</p>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d1">Obl.</span>13 · Identifier des couples acide-base (2)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C1</strong> · <strong>C2</strong></p>
+      <div class="enonce">Parmi les cinq couples suivants, repérer ceux qui sont des couples acide-base et écrire leur demi-équation.<br><strong>a.</strong> <span class="ch">O<sub>2</sub>(g)/H<sub>2</sub>O<sub>2</sub>(aq)</span> · <strong>b.</strong> <span class="ch">H<sub>2</sub>O<sub>2</sub>(aq)/H<sub>2</sub>O(l)</span> · <strong>c.</strong> <span class="ch">H<sub>2</sub>O(l)/HO<sup>−</sup>(aq)</span> · <strong>d.</strong> <span class="ch">CH<sub>3</sub>CHO(aq)/C<sub>2</sub>H<sub>5</sub>OH(aq)</span> · <strong>e.</strong> <span class="ch">(CO<sub>2</sub>, H<sub>2</sub>O)(aq)/HCO<sub>3</sub><sup>−</sup>(aq)</span></div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p>Seuls <strong>c</strong> et <strong>e</strong> sont des couples acide-base.</p>
+        <div class="eqc">c. &nbsp; H<sub>2</sub>O(l) ⇌ HO<sup>−</sup>(aq) + H<sup>+</sup></div>
+        <div class="eqc">e. &nbsp; (CO<sub>2</sub>, H<sub>2</sub>O)(aq) ⇌ HCO<sub>3</sub><sup>−</sup>(aq) + H<sup>+</sup></div>
+        <p>Les trois autres échangent des électrons :</p>
+        <div class="eqc">a. &nbsp; O<sub>2</sub>(g) + 2 H<sup>+</sup> + 2 e<sup>−</sup> ⇌ H<sub>2</sub>O<sub>2</sub>(aq)</div>
+        <div class="eqc">b. &nbsp; H<sub>2</sub>O<sub>2</sub>(aq) + 2 H<sup>+</sup> + 2 e<sup>−</sup> ⇌ 2 H<sub>2</sub>O(l)</div>
+        <div class="eqc">d. &nbsp; CH<sub>3</sub>CHO(aq) + 2 H<sup>+</sup> + 2 e<sup>−</sup> ⇌ C<sub>2</sub>H<sub>5</sub>OH(aq)</div>
+        <p><strong>La méthode, en une phrase :</strong> compte les atomes d'hydrogène de chaque côté, puis vérifie les charges. Si l'écart se comble avec des H<sup>+</sup> seuls, c'est acide-base ; s'il faut ajouter des électrons, c'est de l'oxydoréduction.</p>
+        <p><strong>À retenir du e :</strong> l'écriture <span class="ch">(CO<sub>2</sub>, H<sub>2</sub>O)</span> signale que le dioxyde de carbone dissous n'existe qu'associé à une molécule d'eau. La formule compacte <span class="ch">H<sub>2</sub>CO<sub>3</sub></span> décrit la même espèce mais masque cette association — c'est le couple de l'acide carbonique, celui des eaux gazeuses et du sang.</p>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d2">Base</span>14 · Espèce conjuguée<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C1</strong> · <strong>C2</strong></p>
+      <div class="enonce">Compléter les couples acide-base suivants.<br><strong>a.</strong> <span class="ch">HF(aq)/…</span> · <strong>b.</strong> <span class="ch">…/CH<sub>3</sub>COO<sup>−</sup>(aq)</span> · <strong>c.</strong> <span class="ch">(CO<sub>2</sub>, H<sub>2</sub>O)(aq)/…</span> · <strong>d.</strong> <span class="ch">…/SO<sub>3</sub><sup>2−</sup>(aq)</span></div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>a.</strong> <span class="ch">HF(aq)/F<sup>−</sup>(aq)</span> &nbsp;·&nbsp; <strong>b.</strong> <span class="ch">CH<sub>3</sub>COOH(aq)/CH<sub>3</sub>COO<sup>−</sup>(aq)</span> &nbsp;·&nbsp; <strong>c.</strong> <span class="ch">(CO<sub>2</sub>, H<sub>2</sub>O)(aq)/HCO<sub>3</sub><sup>−</sup>(aq)</span> &nbsp;·&nbsp; <strong>d.</strong> <span class="ch">HSO<sub>3</sub><sup>−</sup>(aq)/SO<sub>3</sub><sup>2−</sup>(aq)</span></p>
+        <div class="methode"><div class="t">La règle mécanique</div>
+        <p>Pour passer de l'acide à la base : <strong>on retire un H et on retire une charge +</strong> (ce qui revient à ajouter une charge −). Dans l'autre sens : on ajoute un H et une charge +.</p>
+        <p>Exemple sur le d : la base est <span class="ch">SO<sub>3</sub><sup>2−</sup></span>. On ajoute un H, la charge passe de −2 à −1, donc l'acide est <span class="ch">HSO<sub>3</sub><sup>−</sup></span>.</p>
+        </div>
+        <div class="piege"><div class="t">L'erreur classique</div>Ajouter le H sans toucher à la charge, et écrire <span class="ch">HSO<sub>3</sub><sup>2−</sup></span>. Vérifie toujours en écrivant la demi-équation complète : <span class="ch">HSO<sub>3</sub><sup>−</sup> ⇌ SO<sub>3</sub><sup>2−</sup> + H<sup>+</sup></span>. Les charges s'équilibrent bien (−1 à gauche, −2 + 1 = −1 à droite).</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d1">Obl.</span>15 · Réaction acide-base : l'aspirine<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C1</strong> · <strong>C2</strong></p>
+      <div class="enonce">On dissout de l'aspirine dans l'eau ; il se produit la réaction d'équation :
+        <div class="eqc">C<sub>9</sub>H<sub>8</sub>O<sub>4</sub>(aq) + H<sub>2</sub>O(l) ⇌ C<sub>9</sub>H<sub>7</sub>O<sub>4</sub><sup>−</sup>(aq) + H<sub>3</sub>O<sup>+</sup>(aq)</div>
+        <strong>1.</strong> Identifier les deux couples acide-base mis en jeu.<br><strong>2.</strong> Dire si l'eau joue ici le rôle d'un acide ou d'une base.</div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> Une réaction acide-base met toujours en jeu <strong>deux</strong> couples : l'acide de l'un cède le H<sup>+</sup> que la base de l'autre capte. On repère les deux paires d'espèces qui ne diffèrent que d'un H<sup>+</sup> :</p>
+        <p>· <span class="ch">C<sub>9</sub>H<sub>8</sub>O<sub>4</sub>(aq)/C<sub>9</sub>H<sub>7</sub>O<sub>4</sub><sup>−</sup>(aq)</span> — l'aspirine et sa base conjuguée, l'ion acétylsalicylate.<br>· <span class="ch">H<sub>3</sub>O<sup>+</sup>(aq)/H<sub>2</sub>O(l)</span> — le couple de l'eau côté acide.</p>
+        <p><strong>2.</strong> L'eau part sous la forme <span class="ch">H<sub>2</sub>O</span> et arrive sous la forme <span class="ch">H<sub>3</sub>O<sup>+</sup></span> : elle a <strong>capté</strong> un ion hydrogène. Elle joue donc le rôle d'une <strong>base</strong>.</p>
+        <div class="def"><div class="t">Ce qu'il faut avoir compris</div>L'eau change de rôle selon ce qu'on met dedans : face à un acide elle est base, face à une base elle est acide. C'est exactement ce qu'on appelle son caractère <strong>amphotère</strong>, et c'est pour ça qu'elle apparaît dans deux couples : <span class="ch">H<sub>3</sub>O<sup>+</sup>/H<sub>2</sub>O</span> et <span class="ch">H<sub>2</sub>O/HO<sup>−</sup></span>.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d1">Obl.</span>16 · Pyridine<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C1</strong> · <strong>C3</strong></p>
+      <div class="enonce">La pyridine est un composé cyclique formé de cinq atomes de carbone et d'un atome d'azote, à l'odeur rappelant le poisson. Elle sert de précurseur en pharmacie et dans la fabrication d'insecticides.<br><strong>1.</strong> Représenter son schéma de Lewis.<br><strong>2.</strong> Dire si la pyridine peut avoir un caractère acide, en justifiant.<br><strong>3.</strong> Même question pour le caractère basique.<br><strong>4.</strong> Représenter le schéma de Lewis de son acide conjugué ou de sa base conjuguée.<br><strong>5.</strong> Écrire le couple acide-base de la pyridine.</div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <div class="fig">
+          <svg viewBox="0 0 420 190" role="img" aria-label="Schémas de Lewis de la pyridine et de l'ion pyridinium">
+            <g fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M70 40 L110 62 L110 108 L70 130 L30 108 L30 62 Z"/>
+              <path d="M104 68 L104 102 M68 122 L36 105 M36 66 L68 48" stroke-width="1.4"/>
+            </g>
+            <g fill="currentColor" font-family="sans-serif" font-size="13" text-anchor="middle">
+              <text x="70" y="36">N</text>
+            </g>
+            <circle cx="70" cy="20" r="2.6" fill="var(--orange)"/><circle cx="80" cy="20" r="2.6" fill="var(--orange)"/>
+            <text x="150" y="90" fill="currentColor" font-family="sans-serif" font-size="12">doublet non liant</text>
+            <text x="150" y="106" fill="currentColor" font-family="sans-serif" font-size="12">→ capte un H<tspan font-size="9" dy="-4">+</tspan></text>
+            <path d="M146 84 C120 70 100 40 88 24" fill="none" stroke="var(--orange)" stroke-width="1.4" stroke-dasharray="4 3"/>
+            <g fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M330 40 L370 62 L370 108 L330 130 L290 108 L290 62 Z"/>
+              <path d="M364 68 L364 102 M328 122 L296 105 M296 66 L322 51" stroke-width="1.4"/>
+            </g>
+            <g fill="currentColor" font-family="sans-serif" font-size="13" text-anchor="middle">
+              <text x="330" y="36">N</text><text x="356" y="26">H</text>
+            </g>
+            <line x1="336" y1="32" x2="350" y2="26" stroke="currentColor" stroke-width="1.6"/>
+            <text x="300" y="24" fill="var(--orange)" font-family="sans-serif" font-size="15" font-weight="bold">+</text>
+            <text x="70" y="164" fill="currentColor" font-family="sans-serif" font-size="12" text-anchor="middle">pyridine</text>
+            <text x="330" y="164" fill="currentColor" font-family="sans-serif" font-size="12" text-anchor="middle">ion pyridinium</text>
+          </svg>
+          <div class="cap">Le cycle porte six sommets : cinq carbones (chacun avec un H, non représenté) et un azote. Tout se joue sur le doublet non liant de l'azote.</div>
+        </div>
+        <p><strong>1.</strong> Cycle à six sommets, alternance de liaisons simples et doubles, cinq carbones portant chacun un atome d'hydrogène, et un atome d'azote portant <strong>un doublet non liant</strong> et aucun hydrogène. L'azote respecte ainsi la règle de l'octet : deux liaisons dans le cycle, une double liaison, et son doublet.</p>
+        <p><strong>2.</strong> <strong>Non.</strong> Pour être acide, il faut pouvoir céder un H<sup>+</sup>, donc porter un hydrogène sur une liaison polarisée. Ici l'azote n'a aucun hydrogène, et les seuls hydrogènes présents sont portés par des carbones : la liaison C—H est trop peu polarisée pour libérer un proton.</p>
+        <p><strong>3.</strong> <strong>Oui.</strong> L'azote est électronégatif et porte un doublet non liant disponible : il peut capter un ion hydrogène. La pyridine est donc une base.</p>
+        <p><strong>4.</strong> Son acide conjugué est l'<strong>ion pyridinium</strong> : même cycle, mais l'azote porte désormais un atome d'hydrogène, son doublet ayant servi à former la liaison N—H. L'édifice porte une charge <span class="ch">+</span>.</p>
+        <p><strong>5.</strong> Le couple s'écrit <span class="ch">C<sub>5</sub>H<sub>5</sub>NH<sup>+</sup>(aq)/C<sub>5</sub>H<sub>5</sub>N(aq)</span>, avec la demi-équation :</p>
+        <div class="eqc">C<sub>5</sub>H<sub>5</sub>NH<sup>+</sup>(aq) ⇌ C<sub>5</sub>H<sub>5</sub>N(aq) + H<sup>+</sup></div>
+        <div class="piege"><div class="t">L'ordre d'écriture</div>Un couple s'écrit <strong>toujours acide en premier</strong>. Écrire « pyridine/ion pyridinium » est faux, même si les deux espèces sont les bonnes.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d1">Obl.</span>17 · Acide dans l'huile<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C1</strong> · <strong>C2</strong> · <strong>C3</strong></p>
+      <div class="enonce">L'acide palmitique, ou acide hexadécanoïque, est contenu dans l'huile de palme. Sa formule est <span class="ch">CH<sub>3</sub>(CH<sub>2</sub>)<sub>14</sub>COOH</span>.<br><strong>1.</strong> Justifier sa dénomination d'« acide ».<br><strong>2.</strong> Identifier l'atome d'hydrogène responsable du caractère acide.<br><strong>3.</strong> Représenter le schéma de Lewis de sa base conjuguée.</div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> La molécule se termine par un groupe <span class="ch">—COOH</span>, le <strong>groupe carboxyle</strong> : c'est un acide carboxylique. Ce groupe possède un hydrogène mobile qui lui confère son caractère acide, d'où le nom.</p>
+        <p><strong>2.</strong> C'est <strong>l'hydrogène du groupe carboxyle</strong>, celui qui est lié à un atome d'oxygène. La molécule en compte trente-deux au total, mais les trente et un autres sont portés par des atomes de carbone et ne partiront jamais : seule la liaison O—H est assez polarisée.</p>
+        <p><strong>3.</strong> La base conjuguée est l'<strong>ion palmitate</strong> <span class="ch">CH<sub>3</sub>(CH<sub>2</sub>)<sub>14</sub>COO<sup>−</sup>(aq)</span>.</p>
+        <div class="fig">
+          <svg viewBox="0 0 400 150" role="img" aria-label="Schéma de Lewis du groupe carboxylate de l'ion palmitate">
+            <g fill="currentColor" font-family="sans-serif" font-size="15">
+              <text x="30" y="80">R</text><text x="150" y="80">C</text><text x="150" y="34">O</text><text x="250" y="80">O</text>
+            </g>
+            <line x1="48" y1="75" x2="140" y2="75" stroke="currentColor" stroke-width="1.7"/>
+            <line x1="152" y1="66" x2="152" y2="44" stroke="currentColor" stroke-width="1.7"/>
+            <line x1="160" y1="66" x2="160" y2="44" stroke="currentColor" stroke-width="1.7"/>
+            <line x1="166" y1="75" x2="242" y2="75" stroke="currentColor" stroke-width="1.7"/>
+            <text x="266" y="42" fill="var(--orange)" font-family="sans-serif" font-size="15" font-weight="bold">−</text>
+            <g fill="currentColor">
+              <circle cx="138" cy="22" r="2.4"/><circle cx="138" cy="32" r="2.4"/><circle cx="176" cy="22" r="2.4"/><circle cx="176" cy="32" r="2.4"/>
+              <circle cx="250" cy="54" r="2.4"/><circle cx="264" cy="54" r="2.4"/><circle cx="250" cy="94" r="2.4"/><circle cx="264" cy="94" r="2.4"/><circle cx="280" cy="66" r="2.4"/><circle cx="280" cy="80" r="2.4"/>
+            </g>
+            <text x="30" y="110" fill="currentColor" font-family="sans-serif" font-size="11">R = CH<tspan font-size="8" dy="3">3</tspan><tspan dy="-3">(CH</tspan><tspan font-size="8" dy="3">2</tspan><tspan dy="-3">)</tspan><tspan font-size="8" dy="3">14</tspan></text>
+            <text x="300" y="60" fill="currentColor" font-family="sans-serif" font-size="11">l'oxygène porte</text>
+            <text x="300" y="76" fill="currentColor" font-family="sans-serif" font-size="11">trois doublets</text>
+            <text x="300" y="92" fill="currentColor" font-family="sans-serif" font-size="11">non liants</text>
+          </svg>
+          <div class="cap">Le groupe carboxylate : l'oxygène qui a perdu son hydrogène porte la charge négative et trois doublets non liants.</div>
+        </div>
+        <p>Sur le schéma, le carbone du groupe est lié à la chaîne carbonée, doublement lié à un oxygène et simplement lié à l'autre. C'est ce second oxygène qui a perdu l'hydrogène : il porte la charge négative et trois doublets non liants, contre deux pour l'oxygène de la double liaison.</p>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d1">Obl.</span>18 · Alanine<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C3</strong> · <strong>C4</strong></p>
+      <div class="enonce">L'alanine est l'un des acides aminés les plus fréquents dans les protéines. Sa formule semi-développée est <span class="ch">CH<sub>3</sub>—CH(NH<sub>2</sub>)—COOH</span>.<br><strong>1.</strong> Déterminer son schéma de Lewis.<br><strong>2.</strong> Identifier ses groupes caractéristiques.<br>En solution aqueuse, ce composé existe sous la forme d'un amphion, ou ion dipolaire, de formule <span class="ch">CH<sub>3</sub>CH(NH<sub>3</sub><sup>+</sup>)COO<sup>−</sup>(aq)</span>.<br><strong>3.</strong> Justifier le caractère amphotère de l'alanine.</div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> Le carbone central est lié à quatre voisins : un groupe méthyle <span class="ch">CH<sub>3</sub></span>, un atome d'hydrogène, un groupe amino <span class="ch">NH<sub>2</sub></span> et un groupe carboxyle <span class="ch">COOH</span>. L'azote porte un doublet non liant, chaque oxygène du carboxyle porte respectivement deux et deux doublets non liants.</p>
+        <p><strong>2.</strong> Deux groupes caractéristiques : le groupe <strong>amino</strong> <span class="ch">—NH<sub>2</sub></span> et le groupe <strong>carboxyle</strong> <span class="ch">—COOH</span>. C'est la définition même d'un acide aminé.</p>
+        <p><strong>3.</strong> Il faut montrer que l'amphion possède <em>à la fois</em> un caractère acide et un caractère basique. Regardons ses deux extrémités :</p>
+        <div class="eqc">côté acide : &nbsp; —NH<sub>3</sub><sup>+</sup> ⇌ —NH<sub>2</sub> + H<sup>+</sup></div>
+        <div class="eqc">côté base : &nbsp; —COO<sup>−</sup> + H<sup>+</sup> ⇌ —COOH</div>
+        <p>Le groupe ammonium peut céder un ion hydrogène, donc l'alanine est un acide. Le groupe carboxylate peut en capter un, donc elle est aussi une base. Elle possède les deux caractères : elle est <strong>amphotère</strong>.</p>
+        <div class="def"><div class="t">Pourquoi un amphion ?</div>Dans la molécule neutre, le groupe carboxyle est acide et le groupe amino est basique — ils sont voisins. Le proton du carboxyle passe donc sur l'azote de la même molécule. Résultat : deux charges opposées, une charge globale nulle, et une espèce qui se comporte comme un sel plutôt que comme une molécule organique ordinaire.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d1">Obl.</span>21 · Préparation d'acide nitrique<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C5</strong> · <strong>C7</strong></p>
+      <div class="enonce">L'acide nitrique <span class="ch">HNO<sub>3</sub>(l)</span> réagit totalement avec l'eau. On prépare 50,0 mL de solution aqueuse à partir d'un volume de solution mère contenant 1,0 g d'acide nitrique.<br><strong>1.</strong> Déterminer le pH de la solution réalisée.<br><strong>2.</strong> Prévoir la valeur du pH si l'on doublait la quantité d'acide apporté.<br><em>Données : M(H) = 1,0 g·mol<sup>−1</sup> · M(N) = 14,0 g·mol<sup>−1</sup> · M(O) = 16,0 g·mol<sup>−1</sup></em></div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> Masse molaire de l'acide nitrique :</p>
+        <div class="eqc">M(HNO<sub>3</sub>) = 1,0 + 14,0 + 3 × 16,0 = 63,0 g·mol<sup>−1</sup></div>
+        <p>Quantité de matière apportée, puis concentration :</p>
+        <div class="eqc">n = m/M = 1,0 / 63,0 = 1,6 × 10<sup>−2</sup> mol</div>
+        <div class="eqc">c = n/V = 1,6 × 10<sup>−2</sup> / 50,0 × 10<sup>−3</sup> = 0,32 mol·L<sup>−1</sup></div>
+        <p>La réaction avec l'eau est <strong>totale</strong>, et une molécule d'acide nitrique libère <strong>un seul</strong> ion hydrogène :</p>
+        <div class="eqc">HNO<sub>3</sub>(l) + H<sub>2</sub>O(l) → NO<sub>3</sub><sup>−</sup>(aq) + H<sub>3</sub>O<sup>+</sup>(aq)</div>
+        <p>Donc <span class="ch">[H<sub>3</sub>O<sup>+</sup>] = c = 0,32 mol·L<sup>−1</sup></span>, d'où :</p>
+        <div class="eqc">pH = −log(0,32) = 0,50</div>
+        <p><strong>2.</strong> Doubler la quantité d'acide double la concentration. Or doubler la concentration ne double pas le pH, elle le <strong>diminue de log 2</strong> :</p>
+        <div class="eqc">pH′ = −log(2c) = −log(c) − log(2) = pH − 0,30 = 0,20</div>
+        <div class="def"><div class="t">Le réflexe à installer</div>Chaque fois que la concentration est <strong>multipliée</strong> par un facteur F, le pH est <strong>diminué</strong> de log F. D'où les deux cas qu'on rencontre partout : diluer 10 fois fait monter le pH d'une unité, doubler la concentration le fait baisser de 0,30.</div>
+        <div class="piege"><div class="t">Vérifie l'ordre de grandeur</div>Un pH de 0,50 paraît absurde quand on a l'habitude de l'échelle 0-14, mais une solution à 0,32 mol·L<sup>−1</sup> d'acide fort est effectivement très acide. Si tu trouves un pH négatif, ce n'est pas forcément une erreur — mais vérifie quand même ton calcul de concentration.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d3">Aller plus loin</span>31 · Potentiels en tous genres<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C5</strong> · <strong>C7</strong></p>
+      <div class="enonce">Le chimiste danois Søren Sørensen a introduit la notion de pH : le « p » vient de l'allemand <em>potenz</em>, potentiel, et le « H » est le symbole de l'hydrogène. Il définit le pH par <span class="ch">pH = −log([H<sub>3</sub>O<sup>+</sup>]/c°)</span>. De manière analogue, on définit <span class="ch">pOH = −log([HO<sup>−</sup>]/c°)</span>. À 25 °C, <span class="ch">pH + pOH = 14</span>.<br><strong>1.</strong> Déterminer la masse d'hydroxyde de sodium <span class="ch">(Na<sup>+</sup>(aq) ; HO<sup>−</sup>(aq))</span>, de masse molaire M = 40,0 g·mol<sup>−1</sup>, qu'il faut dissoudre pour obtenir 1,0 L de solution de pH égal à 12.<br><strong>2.</strong> Indiquer le protocole à suivre.</div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> L'énoncé donne le pH mais l'espèce apportée est une base : on passe donc par le pOH.</p>
+        <div class="eqc">pOH = 14 − pH = 14 − 12 = 2</div>
+        <div class="eqc">[HO<sup>−</sup>] = c° · 10<sup>−pOH</sup> = 1 × 10<sup>−2</sup> mol·L<sup>−1</sup></div>
+        <p>L'hydroxyde de sodium est totalement dissocié dans l'eau, et chaque motif libère <strong>un</strong> ion hydroxyde. La quantité de matière à apporter dans 1,0 L est donc :</p>
+        <div class="eqc">n = [HO<sup>−</sup>] × V = 1,0 × 10<sup>−2</sup> × 1,0 = 1,0 × 10<sup>−2</sup> mol</div>
+        <div class="eqc">m = n × M = 1,0 × 10<sup>−2</sup> × 40,0 = <strong>0,40 g</strong></div>
+        <div class="methode"><div class="t">2. Le protocole</div>
+        <ol>
+          <li>Mettre <strong>gants et lunettes</strong> : la soude est corrosive et sa dissolution est exothermique.</li>
+          <li>Peser 0,40 g de pastilles d'hydroxyde de sodium dans une coupelle, sur une balance au centigramme.</li>
+          <li>Verser le solide dans une <strong>fiole jaugée de 1,0 L</strong> contenant déjà environ un tiers d'eau distillée — <em>on verse toujours le solide dans l'eau, jamais l'inverse</em>.</li>
+          <li>Rincer la coupelle à l'eau distillée au-dessus de la fiole, pour ne perdre aucune trace de solide.</li>
+          <li>Boucher et agiter jusqu'à dissolution complète.</li>
+          <li>Compléter à l'eau distillée jusqu'au trait de jauge, en finissant à la pissette ou au compte-gouttes, <strong>bas du ménisque tangent au trait</strong>.</li>
+          <li>Boucher et homogénéiser par retournements successifs.</li>
+        </ol>
+        </div>
+        <div class="def"><div class="t">Pourquoi le pOH existe</div>Le produit ionique de l'eau impose <span class="ch">[H<sub>3</sub>O<sup>+</sup>] × [HO<sup>−</sup>] = 10<sup>−14</sup></span> à 25 °C. En passant au logarithme, ce produit devient une somme : pH + pOH = 14. C'est le même contenu physique, écrit dans l'échelle qui arrange le calcul — celle du pH pour un acide, celle du pOH pour une base.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d3">Aller plus loin</span>42 · Acide dans les batteries<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C5</strong> · <strong>C7</strong> — <em>d'après un sujet de Bac S, Afrique, 2008</em></p>
+      <div class="enonce">La batterie d'une voiture est composée de cellules d'accumulateurs montées en série. L'électrolyte utilisé est une solution aqueuse d'acide sulfurique à environ 33 % en masse. On cherche à mesurer la concentration <span class="m">c</span> en soluté <span class="ch">H<sub>2</sub>SO<sub>4</sub>(l)</span> apporté. L'électrolyte S<sub>0</sub> a été préparé par dissolution de <span class="ch">H<sub>2</sub>SO<sub>4</sub>(l)</span> dans l'eau ; la réaction est totale :
+        <div class="eqc">H<sub>2</sub>SO<sub>4</sub>(l) + 2 H<sub>2</sub>O(l) → 2 H<sub>3</sub>O<sup>+</sup>(aq) + SO<sub>4</sub><sup>2−</sup>(aq)</div>
+        <strong>1.</strong> Justifier le terme de « diacide » employé pour l'acide sulfurique.<br>
+        L'électrolyte S<sub>0</sub> étant trop concentré, on le dilue 1 000 fois pour l'étudier ; on obtient une solution S<sub>1</sub>.<br>
+        <strong>2.</strong> Choisir la verrerie nécessaire parmi : fioles jaugées de 10,00 mL, 50,00 mL, 100,00 mL et 1,00 L ; pipettes graduées de 1,0 mL, 2,0 mL et 10,0 mL ; pipettes jaugées de 1,00 mL, 2,00 mL et 10,00 mL ; béchers de 50 mL, 100 mL et 1 L.<br>
+        <strong>3.</strong> On mesure le pH de S<sub>1</sub> : pH = 2,1. Vérifier que ce résultat est en accord avec la composition théorique de la batterie.<br>
+        <em>Données : densité de l'acide sulfurique à 33 % en masse d = 1,25 · masse volumique de l'eau ρ<sub>eau</sub> = 1,00 × 10<sup>3</sup> g·L<sup>−1</sup> · M(H) = 1,0 g·mol<sup>−1</sup>, M(S) = 32,1 g·mol<sup>−1</sup>, M(O) = 16,0 g·mol<sup>−1</sup></em></div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> L'équation montre qu'<strong>une</strong> molécule d'acide sulfurique libère <strong>deux</strong> ions oxonium : elle cède donc deux ions hydrogène. C'est ce qu'on appelle un diacide. La formule le laissait déjà deviner — deux atomes d'hydrogène portés par des oxygènes.</p>
+        <p><strong>2.</strong> Le facteur de dilution vaut <span class="ch">F = V<sub>fille</sub>/V<sub>mère</sub> = 1000</span>. Il faut donc un rapport de 1000 entre la fiole et la pipette :</p>
+        <div class="eqc">1,00 L / 1,00 mL = 1000 ✓</div>
+        <p>On utilise donc une <strong>pipette jaugée de 1,00 mL</strong> (avec sa poire à pipeter), une <strong>fiole jaugée de 1,00 L</strong>, et un <strong>bécher de 50 mL</strong> pour y verser un peu de S<sub>0</sub> et y plonger la pipette. Les pipettes graduées sont écartées : elles sont bien moins précises que les pipettes jaugées.</p>
+        <p><strong>3.</strong> On calcule la concentration attendue, puis le pH théorique, et on compare à la mesure.</p>
+        <p>Masse volumique de l'électrolyte : <span class="ch">ρ = d × ρ<sub>eau</sub> = 1,25 × 1,00 × 10<sup>3</sup> = 1,25 × 10<sup>3</sup> g·L<sup>−1</sup></span>.</p>
+        <p>Dans un litre, la masse d'acide sulfurique pur vaut 33 % de cette masse :</p>
+        <div class="eqc">m = 0,33 × 1,25 × 10<sup>3</sup> = 4,1 × 10<sup>2</sup> g</div>
+        <div class="eqc">M(H<sub>2</sub>SO<sub>4</sub>) = 2 × 1,0 + 32,1 + 4 × 16,0 = 98,1 g·mol<sup>−1</sup></div>
+        <div class="eqc">c<sub>0</sub> = m / (M × V) = 4,1 × 10<sup>2</sup> / 98,1 = 4,2 mol·L<sup>−1</sup></div>
+        <p>Après dilution d'un facteur 1000 : <span class="ch">c<sub>1</sub> = 4,2 × 10<sup>−3</sup> mol·L<sup>−1</sup></span>. Comme la réaction est totale et que l'acide est un <em>diacide</em> :</p>
+        <div class="eqc">[H<sub>3</sub>O<sup>+</sup>] = 2 × c<sub>1</sub> = 8,4 × 10<sup>−3</sup> mol·L<sup>−1</sup></div>
+        <div class="eqc">pH<sub>théo</sub> = −log(8,4 × 10<sup>−3</sup>) = 2,1</div>
+        <p>La valeur mesurée est 2,1 : <strong>l'accord est excellent</strong>, la composition annoncée de la batterie est cohérente avec la mesure.</p>
+        <div class="piege"><div class="t">Le facteur 2 qu'on oublie</div>Si on écrit <span class="ch">[H<sub>3</sub>O<sup>+</sup>] = c<sub>1</sub></span> en oubliant que l'acide est un diacide, on trouve pH = 2,4 au lieu de 2,1 — et on conclut à tort que la mesure ne colle pas. L'écart n'est que de 0,3 unité, précisément log 2 : c'est la signature de cette erreur, apprends à la reconnaître.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl d1">Obl.</span>44 · Lingettes au citron<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire travaillés : <strong>C1</strong> · <strong>C2</strong> · <strong>C4</strong></p>
+      <div class="enonce">La triméthylamine <span class="ch">(CH<sub>3</sub>)<sub>3</sub>N</span> est une amine volatile qui se dégage parfois du poisson et lui donne sa forte odeur. Sous sa forme acide, cette amine n'est pas odorante. Le jus de citron contient environ 6 g d'acide citrique <span class="ch">C<sub>6</sub>H<sub>8</sub>O<sub>7</sub>(aq)</span> pour 100 g de jus ; l'acide citrique est un triacide, de formule <span class="ch">HOOC—CH<sub>2</sub>—C(OH)(COOH)—CH<sub>2</sub>—COOH</span>.<br><strong>1.</strong> Identifier les groupes caractéristiques de l'acide citrique et de la triméthylamine.<br><strong>2.</strong> Justifier le terme « triacide » pour l'acide citrique.<br><strong>3.</strong> Déterminer les trois couples acide-base issus de cet acide.<br><strong>4.</strong> Parmi les espèces appartenant à ces couples, préciser lesquelles sont amphotères.<br><strong>5.</strong> Justifier l'utilisation de lingettes au citron à table pour se débarrasser de l'odeur de poisson sur les mains, en s'appuyant sur l'équation d'une réaction.</div>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> L'acide citrique porte <strong>trois groupes carboxyle</strong> <span class="ch">—COOH</span> et <strong>un groupe hydroxyle</strong> <span class="ch">—OH</span> sur le carbone central. La triméthylamine porte un <strong>groupe amino</strong> : c'est une amine tertiaire, son azote étant lié à trois groupes méthyle et portant un doublet non liant.</p>
+        <p><strong>2.</strong> Chacun des trois groupes carboxyle possède un hydrogène mobile. La molécule peut donc céder <strong>trois</strong> ions hydrogène, l'un après l'autre : c'est un triacide.</p>
+        <p><strong>3.</strong> On retire les protons un par un, en notant que chaque départ ajoute une charge négative :</p>
+        <div class="eqc">C<sub>6</sub>H<sub>8</sub>O<sub>7</sub>(aq)/C<sub>6</sub>H<sub>7</sub>O<sub>7</sub><sup>−</sup>(aq)</div>
+        <div class="eqc">C<sub>6</sub>H<sub>7</sub>O<sub>7</sub><sup>−</sup>(aq)/C<sub>6</sub>H<sub>6</sub>O<sub>7</sub><sup>2−</sup>(aq)</div>
+        <div class="eqc">C<sub>6</sub>H<sub>6</sub>O<sub>7</sub><sup>2−</sup>(aq)/C<sub>6</sub>H<sub>5</sub>O<sub>7</sub><sup>3−</sup>(aq)</div>
+        <p><strong>4.</strong> Les deux espèces <strong>intermédiaires</strong>, <span class="ch">C<sub>6</sub>H<sub>7</sub>O<sub>7</sub><sup>−</sup></span> et <span class="ch">C<sub>6</sub>H<sub>6</sub>O<sub>7</sub><sup>2−</sup></span>, sont amphotères : chacune est la base d'un couple et l'acide du couple suivant. En revanche <span class="ch">C<sub>6</sub>H<sub>8</sub>O<sub>7</sub></span> n'est qu'un acide, et <span class="ch">C<sub>6</sub>H<sub>5</sub>O<sub>7</sub><sup>3−</sup></span> n'est qu'une base.</p>
+        <p><strong>5.</strong> La triméthylamine est une base : son azote capte un ion hydrogène grâce à son doublet non liant. L'acide citrique le lui fournit :</p>
+        <div class="eqc">(CH<sub>3</sub>)<sub>3</sub>N(aq) + C<sub>6</sub>H<sub>8</sub>O<sub>7</sub>(aq) → (CH<sub>3</sub>)<sub>3</sub>NH<sup>+</sup>(aq) + C<sub>6</sub>H<sub>7</sub>O<sub>7</sub><sup>−</sup>(aq)</div>
+        <p>L'amine volatile est convertie en <strong>ion triméthylammonium</strong>. Un ion est retenu en solution et ne s'évapore pas : il ne peut plus atteindre le nez. L'odeur disparaît non pas parce que la molécule est détruite, mais parce qu'elle a changé de forme et perdu sa volatilité.</p>
+        <div class="def"><div class="t">Le raisonnement à retenir</div>Une odeur suppose une espèce <strong>volatile</strong>. Transformer une molécule neutre en ion, c'est la rendre non volatile. C'est le principe de toutes les astuces de cuisine au citron ou au vinaigre — et à l'inverse, celui du bicarbonate contre les odeurs acides.</div>
+      </div></details>
+      </div></details>
+
+      <div class="methode"><div class="t">Et la compétence C6 ?</div>Elle ne s'entraîne pas sur papier : c'est celle du <strong>TP 1 — Mesures de pH</strong>, où l'on dilue l'acide chlorhydrique d'un facteur 10 à chaque étape pour tester la relation entre pH et concentration. Elle est traitée dans la section TP ci-dessus, avec les questions corrigées et l'analyse des incertitudes.</div>
+
     </div>
   </section>
 
