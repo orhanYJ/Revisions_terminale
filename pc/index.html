@@ -537,26 +537,239 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
   </section>
   <!-- ========== COURS ========== -->
   <section class="part" id="s-cours">
-    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6 Q7.5 3.5 3 5.5 V19 Q7.5 17 12 19 Q16.5 17 21 19 V5.5 Q16.5 3.5 12 6 Z"/><path d="M12 6v13"/></svg>Cours<small>Se construira au fil de tes notes de classe — voici le périmètre annoncé par le plan de travail</small></h2>
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5Z"/><path d="M8 7.5h7M8 11h5"/></svg>Cours<small>Les trois séances et le TP 1, remis dans l'ordre</small></h2>
     <div class="prose">
-      <p>Le plan de travail fixe les « à savoir et savoir-faire » du chapitre. Cette liste sert de checklist : chaque point sera développé ici au fur et à mesure que vous le traiterez en classe, à partir de tes notes.</p>
-      <ul>
-        <li>Identifier, à partir d'observations ou de données expérimentales, un transfert d'ion hydrogène, les couples acide-base mis en jeu, et établir l'équation d'une réaction acide-base.</li>
-        <li>Couples acide-base de l'eau, de l'acide carbonique, d'acides carboxyliques, d'amines.</li>
-        <li>Représenter le schéma de Lewis et la formule semi-développée d'un acide carboxylique, d'un ion carboxylate, d'une amine et d'un ion ammonium.</li>
-        <li>Identifier le caractère amphotère d'une espèce chimique.</li>
-        <li>Déterminer, à partir de la valeur de la concentration en ions oxonium H<sub>3</sub>O<sup>+</sup>, la valeur du pH de la solution, et inversement.</li>
-        <li>Mesurer le pH de solutions d'acide chlorhydrique obtenues par dilutions successives d'un facteur 10 (→ TP 1).</li>
-        <li>Capacité mathématique : utiliser la fonction logarithme décimal et sa réciproque (revue dans les Rappels ci-dessus).</li>
-      </ul>
-      <p>Mots-clés du prof : transformation modélisée par des transferts d'ion hydrogène H<sup>+</sup> (acide et base de Brönsted, couple acide-base, réaction acide-base) · espèce amphotère · définition du pH :</p>
-      <div class="formule"><div class="t">Donnée par le plan de travail</div>
-        <div class="eqc"><span class="m">pH = −log <span class="frac"><span>[H<sub>3</sub>O<sup>+</sup>]</span><span>c°</span></span></span> &nbsp;&nbsp;avec c° = 1 mol·L<sup>−1</sup> (concentration standard)</div>
+
+      <p>Ce chapitre répond à une seule question : <strong>qu'est-ce qui rend une solution acide ?</strong> La réponse tient en une phrase — un transfert d'ion hydrogène d'une espèce vers une autre — mais il faut trois choses pour la comprendre : savoir <em>pourquoi</em> certaines molécules lâchent un H, savoir <em>comment</em> on écrit ce transfert, et savoir le <em>mesurer</em>. C'est le plan des huit fiches ci-dessous.</p>
+
+      <details class="rap" open><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="12" r="3.5"/><circle cx="17" cy="12" r="3.5"/><path d="M11.5 12h2"/></svg>1 · D'où vient le caractère acide : la liaison polarisée<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Dans une liaison covalente, deux atomes partagent un doublet d'électrons. Ce partage n'est équitable que si les deux atomes attirent les électrons avec la même force. Dès qu'un des deux est plus <strong>électronégatif</strong>, il tire le doublet vers lui : la liaison est <strong>polarisée</strong>, et des charges partielles apparaissent.</p>
+      <div class="def"><div class="t">Les atomes à surveiller</div>Par électronégativité décroissante, ceux que tu rencontreras en Terminale : <strong>F &gt; O &gt; N &gt; Cl</strong>. Une liaison entre l'un d'eux et un hydrogène est fortement polarisée. Une liaison <span class="ch">C—H</span>, en revanche, ne l'est presque pas — c'est la clé de tout ce chapitre.</div>
+      <p>L'hydrogène, moins électronégatif, se retrouve avec une charge partielle positive <span class="ch">δ<sup>+</sup></span>. Il n'est plus solidement retenu : une espèce riche en électrons peut venir le capturer. C'est exactement ce qui se passe quand le chlorure d'hydrogène rencontre l'eau.</p>
+      <div class="fig">
+        <svg viewBox="0 0 450 140" role="img" aria-label="Dissolution du chlorure d'hydrogène dans l'eau : la liaison H—Cl polarisée est rompue par l'eau">
+          <g fill="currentColor" font-family="sans-serif" font-size="16">
+            <text x="30" y="82">H</text><text x="84" y="82">Cl</text>
+            <text x="176" y="82">O</text><text x="160" y="60">H</text><text x="192" y="60">H</text>
+            <text x="316" y="82">H</text><text x="330" y="82" font-size="11" dy="4">3</text><text x="340" y="82">O</text>
+            <text x="352" y="72" font-size="12">+</text>
+            <text x="372" y="82">+</text><text x="396" y="82">Cl</text><text x="416" y="72" font-size="12">−</text>
+          </g>
+          <line x1="46" y1="76" x2="78" y2="76" stroke="currentColor" stroke-width="1.8"/>
+          <line x1="170" y1="70" x2="166" y2="64" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="188" y1="70" x2="192" y2="64" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="176" cy="98" r="2.4" fill="currentColor"/><circle cx="186" cy="98" r="2.4" fill="currentColor"/>
+          <g fill="var(--orange)" font-family="sans-serif" font-size="12" font-weight="bold">
+            <text x="26" y="54">δ+</text><text x="82" y="54">δ−</text>
+          </g>
+          <path d="M40 46 C90 14 140 30 166 72" fill="none" stroke="var(--orange)" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#fc1)"/>
+          <defs><marker id="fc1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 z" fill="var(--orange)"/></marker></defs>
+          <text x="106" y="16" fill="var(--orange)" font-family="sans-serif" font-size="11">l'eau capte le H<tspan font-size="8" dy="-3">+</tspan></text>
+          <path d="M240 76 L280 76" stroke="currentColor" stroke-width="1.8" marker-end="url(#fc2)"/>
+          <defs><marker id="fc2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 z" fill="currentColor"/></marker></defs>
+          <text x="240" y="106" fill="currentColor" font-family="sans-serif" font-size="10" opacity=".7">réaction totale</text>
+        </svg>
+        <div class="cap">L'oxygène de l'eau porte des doublets non liants : il vient chercher l'hydrogène δ<sup>+</sup> du chlorure d'hydrogène, dont la liaison se rompt.</div>
       </div>
-      <div class="placeholder"><b>En attente de tes notes de cours.</b> Envoie tes notes (photos ou texte) après chaque séance du mercredi/vendredi : je développe ici les notions traitées — et uniquement celles-là — avec explications, exemples et schémas, en suivant ce que ton prof a dit et la manière dont il l'a dit.</div>
+      <div class="eqc">HCl(g) + H<sub>2</sub>O(l) → Cl<sup>−</sup>(aq) + H<sub>3</sub>O<sup>+</sup>(aq)</div>
+      <div class="piege"><div class="t">Le test à faire sur toute molécule</div>Cherche un hydrogène porté par <strong>O, N, F ou Cl</strong>. S'il n'y en a pas, la molécule n'a pas de caractère acide, quel que soit son nombre d'hydrogènes. L'acide palmitique compte trente-deux hydrogènes : un seul est mobile, celui du groupe <span class="ch">—COOH</span>.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h10M4 8l3-3M4 8l3 3"/><path d="M20 16H10m10 0l-3-3m3 3l-3 3"/></svg>2 · Acide et base au sens de Brønsted<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="def"><div class="t">Les deux définitions</div>
+      <p>Un <strong>acide</strong> est une espèce chimique capable de <strong>céder</strong> un ou plusieurs ions hydrogène <span class="ch">H<sup>+</sup></span>.</p>
+      <p>Une <strong>base</strong> est une espèce chimique capable de <strong>capter</strong> un ou plusieurs ions hydrogène <span class="ch">H<sup>+</sup></span>.</p>
+      </div>
+      <p>L'ion <span class="ch">H<sup>+</sup></span> est un atome d'hydrogène privé de son unique électron : il ne reste que le noyau, c'est-à-dire <strong>un proton</strong>. D'où le vocabulaire — on parle indifféremment de transfert d'ion hydrogène ou de transfert de proton.</p>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Type de réaction</th><th>Ce qui est échangé</th><th>Ce qui apparaît dans la demi-équation</th></tr>
+        <tr><td>Oxydoréduction</td><td>un ou plusieurs <strong>électrons</strong></td><td><span class="ch">e<sup>−</sup></span> — et souvent des H<sup>+</sup> en plus</td></tr>
+        <tr><td>Acide-base</td><td>un ou plusieurs <strong>protons</strong></td><td><span class="ch">H<sup>+</sup></span> seul, jamais d'électron</td></tr>
+      </table></div>
+      <div class="piege"><div class="t">Le critère de tri</div>Ce qui distingue les deux familles, c'est <strong>l'électron, jamais le proton</strong>. Une demi-équation d'oxydoréduction peut contenir des ions H<sup>+</sup> — <span class="ch">HgO(s) + 2 H<sup>+</sup> + 2 e<sup>−</sup> ⇌ Hg(l) + H<sub>2</sub>O(l)</span> en est l'exemple type. Dès qu'un e<sup>−</sup> est nécessaire pour équilibrer, ce n'est plus de l'acide-base.</div>
+      <p>Deux exemples vus en classe. Le sulfure d'hydrogène est un acide, car il peut libérer un proton : <span class="ch">H<sub>2</sub>S → H<sup>+</sup> + HS<sup>−</sup></span>. L'ammoniac est une base, car son azote peut en capter un grâce à son doublet non liant : <span class="ch">NH<sub>3</sub> + H<sup>+</sup> → NH<sub>4</sub><sup>+</sup></span>.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16"/><path d="M7 9l5-5 5 5"/><path d="M7 15l5 5 5-5"/></svg>3 · Les espèces amphotères<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="def"><div class="t">Définition</div>Une espèce <strong>amphotère</strong> possède à la fois un caractère acide et un caractère basique : elle peut céder <em>ou</em> capter un ion hydrogène, selon ce qu'elle rencontre.</div>
+      <p>L'eau en est l'exemple central, et c'est pour cela qu'elle apparaît dans <strong>deux</strong> couples.</p>
+      <div class="fig">
+        <svg viewBox="0 0 440 170" role="img" aria-label="L'eau est amphotère : elle donne H3O+ en captant un proton, HO− en en cédant un">
+          <rect x="176" y="62" width="90" height="38" rx="8" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <text x="221" y="86" fill="currentColor" font-family="sans-serif" font-size="17" text-anchor="middle">H₂O</text>
+          <text x="60" y="36" fill="currentColor" font-family="sans-serif" font-size="17" text-anchor="middle">H₃O⁺</text>
+          <text x="382" y="146" fill="currentColor" font-family="sans-serif" font-size="17" text-anchor="middle">HO⁻</text>
+          <path d="M174 66 C140 46 110 38 84 34" fill="none" stroke="var(--orange)" stroke-width="1.8" marker-end="url(#fa1)"/>
+          <path d="M268 96 C302 116 332 130 358 138" fill="none" stroke="var(--orange)" stroke-width="1.8" marker-end="url(#fa1)"/>
+          <defs><marker id="fa1" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 z" fill="var(--orange)"/></marker></defs>
+          <text x="56" y="88" fill="currentColor" font-family="sans-serif" font-size="12">capte un H⁺</text>
+          <text x="56" y="104" fill="currentColor" font-family="sans-serif" font-size="11" opacity=".7">elle est base</text>
+          <text x="290" y="88" fill="currentColor" font-family="sans-serif" font-size="12">cède un H⁺</text>
+          <text x="290" y="104" fill="currentColor" font-family="sans-serif" font-size="11" opacity=".7">elle est acide</text>
+        </svg>
+        <div class="cap">Deux couples pour une seule molécule : <span class="ch">H<sub>3</sub>O<sup>+</sup>/H<sub>2</sub>O</span> et <span class="ch">H<sub>2</sub>O/HO<sup>−</sup></span>.</div>
+      </div>
+      <div class="methode"><div class="t">Comment prouver qu'une espèce est amphotère</div>Il faut écrire <strong>deux</strong> demi-équations : une où l'espèce cède un H<sup>+</sup>, une où elle en capte un. Une seule ne suffit jamais. Sur l'alanine sous forme d'amphion, cela donne <span class="ch">—NH<sub>3</sub><sup>+</sup> ⇌ —NH<sub>2</sub> + H<sup>+</sup></span> d'un côté, <span class="ch">—COO<sup>−</sup> + H<sup>+</sup> ⇌ —COOH</span> de l'autre.</div>
+      <p>Autre cas à connaître : l'<strong>ion hydrogénocarbonate</strong> <span class="ch">HCO<sub>3</sub><sup>−</sup></span>, base du couple de l'acide carbonique et acide du couple suivant. Plus généralement, dans un polyacide, <strong>toutes les espèces intermédiaires sont amphotères</strong> — seule la forme la plus protonée est purement acide, et la plus déprotonée purement basique.</p>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="7" height="12" rx="2"/><rect x="14" y="6" width="7" height="12" rx="2"/><path d="M10 12h4"/></svg>4 · Le couple acide-base et l'équation protonique<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <div class="def"><div class="t">Définition</div>Deux espèces forment un <strong>couple acide-base</strong>, noté <span class="ch">AH/A<sup>−</sup></span>, si l'on peut passer de l'une à l'autre par l'échange d'un seul ion hydrogène. On écrit alors l'<strong>équation protonique</strong> du couple :
+      <div class="eqc">AH(aq) ⇌ A<sup>−</sup>(aq) + H<sup>+</sup>(aq)</div>
+      <span class="ch">AH</span> est l'acide, <span class="ch">A<sup>−</sup></span> sa <strong>base conjuguée</strong>. On écrit toujours l'acide en premier.</div>
+      <p>Trois remarques qui évitent des points perdus.</p>
+      <p><strong>La double flèche</strong> ⇌ signale que l'équation se lit dans les deux sens : le couple existe indépendamment de la réaction qu'on étudie.</p>
+      <p><strong>Les charges doivent s'équilibrer.</strong> En passant de l'acide à la base, on retire un H et on retire une charge positive. C'est la règle mécanique qui permet de compléter n'importe quel couple : la base de <span class="ch">HSO<sub>3</sub><sup>−</sup></span> est <span class="ch">SO<sub>3</sub><sup>2−</sup></span>, pas <span class="ch">SO<sub>3</sub><sup>−</sup></span>.</p>
+      <p><strong>La notation <span class="ch">AH/A<sup>−</sup></span> n'est qu'une forme générique.</strong> L'acide peut être un ion positif et la base une molécule neutre : c'est le cas de <span class="ch">NH<sub>4</sub><sup>+</sup>/NH<sub>3</sub></span> ou de <span class="ch">H<sub>3</sub>O<sup>+</sup>/H<sub>2</sub>O</span>. Seul compte l'écart d'un H<sup>+</sup> et d'une charge.</p>
+      <div class="piege"><div class="t">L'ion H<sup>+</sup> seul n'existe pas</div>Un proton nu ne survit pas en solution : il est immédiatement capté par une molécule d'eau. L'équation protonique est donc une écriture <strong>formelle</strong>, utile pour définir le couple, mais elle ne décrit pas une transformation réelle. Une vraie réaction met toujours en jeu <em>deux</em> couples.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h9l-2.5-2.5M19 17h-9l2.5 2.5"/><path d="M5 7l2.5 2.5M19 17l-2.5-2.5" opacity=".4"/></svg>5 · La réaction acide-base : deux couples en jeu<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Une réaction acide-base est un <strong>transfert d'ion hydrogène de l'acide d'un couple vers la base d'un autre couple</strong>. Chaque réactif se transforme en son conjugué.</p>
+      <div class="fig">
+        <svg viewBox="0 0 450 180" role="img" aria-label="Une réaction acide-base met en jeu deux couples, avec transfert d'un ion hydrogène">
+          <rect x="16" y="26" width="418" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/>
+          <rect x="16" y="104" width="418" height="52" rx="8" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".45"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="16">
+            <text x="56" y="58">A<tspan font-size="11" dy="4">1</tspan><tspan dy="-4">H</tspan></text>
+            <text x="316" y="58">A<tspan font-size="11" dy="4">1</tspan><tspan dy="-10" font-size="12">−</tspan></text>
+            <text x="56" y="136">A<tspan font-size="11" dy="4">2</tspan><tspan dy="-10" font-size="12">−</tspan></text>
+            <text x="316" y="136">A<tspan font-size="11" dy="4">2</tspan><tspan dy="-4">H</tspan></text>
+          </g>
+          <path d="M110 52 L300 52" stroke="currentColor" stroke-width="1.6" marker-end="url(#fr1)"/>
+          <path d="M110 130 L300 130" stroke="currentColor" stroke-width="1.6" marker-end="url(#fr1)"/>
+          <defs><marker id="fr1" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 z" fill="currentColor"/></marker></defs>
+          <path d="M62 66 C34 84 34 100 58 120" fill="none" stroke="var(--orange)" stroke-width="2" marker-end="url(#fr2)"/>
+          <defs><marker id="fr2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 z" fill="var(--orange)"/></marker></defs>
+          <text x="118" y="96" fill="var(--orange)" font-family="sans-serif" font-size="14" font-weight="bold">H⁺</text>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5" opacity=".72">
+            <text x="150" y="44">l'acide du couple 1 devient sa base conjuguée</text>
+            <text x="150" y="122">la base du couple 2 devient son acide conjugué</text>
+            <text x="24" y="20">couple 1</text><text x="24" y="172">couple 2</text>
+          </g>
+        </svg>
+        <div class="cap">Le proton quitte l'acide du couple 1 et arrive sur la base du couple 2. Les deux couples changent de forme en même temps.</div>
+      </div>
+      <div class="eqc">A<sub>1</sub>H(aq) + A<sub>2</sub><sup>−</sup>(aq) → A<sub>1</sub><sup>−</sup>(aq) + A<sub>2</sub>H(aq)</div>
+      <div class="methode"><div class="t">Écrire l'équation en trois gestes</div>
+      <ol>
+        <li>Écrire l'équation protonique du couple dont l'acide réagit : <span class="ch">A<sub>1</sub>H ⇌ A<sub>1</sub><sup>−</sup> + H<sup>+</sup></span>.</li>
+        <li>Écrire celle du couple dont la base réagit, <strong>dans l'autre sens</strong> : <span class="ch">A<sub>2</sub><sup>−</sup> + H<sup>+</sup> ⇌ A<sub>2</sub>H</span>.</li>
+        <li>Additionner les deux : les H<sup>+</sup> se simplifient, et il reste l'équation de la réaction.</li>
+      </ol>
+      </div>
+      <p>Sur la dissolution du chlorure d'hydrogène, les deux couples sont <span class="ch">HCl/Cl<sup>−</sup></span> et <span class="ch">H<sub>3</sub>O<sup>+</sup>/H<sub>2</sub>O</span>. L'acide chlorhydrique cède, l'eau capte. Sur la dissolution de l'aspirine, ce sont <span class="ch">C<sub>9</sub>H<sub>8</sub>O<sub>4</sub>/C<sub>9</sub>H<sub>7</sub>O<sub>4</sub><sup>−</sup></span> et <span class="ch">H<sub>3</sub>O<sup>+</sup>/H<sub>2</sub>O</span> : l'eau y joue encore le rôle de base.</p>
+      <div class="piege"><div class="t">Repérer les couples dans une équation donnée</div>Cherche les <strong>paires d'espèces qui ne diffèrent que d'un H<sup>+</sup></strong>, une de chaque côté de la flèche. Il y en a toujours exactement deux. Si tu n'en trouves qu'une, tu as oublié l'eau — elle est presque toujours l'un des deux partenaires.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>6 · Les couples à connaître par cœur<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Le programme en exige quatre familles. Elles reviennent dans presque tous les exercices du chapitre.</p>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Famille</th><th>Couple</th><th>Où on la rencontre</th></tr>
+        <tr><td><strong>L'eau</strong></td><td><span class="ch">H<sub>3</sub>O<sup>+</sup>(aq)/H<sub>2</sub>O(l)</span><br><span class="ch">H<sub>2</sub>O(l)/HO<sup>−</sup>(aq)</span></td><td>Dans toute solution aqueuse, sans exception</td></tr>
+        <tr><td><strong>L'acide carbonique</strong></td><td><span class="ch">(CO<sub>2</sub>, H<sub>2</sub>O)(aq)/HCO<sub>3</sub><sup>−</sup>(aq)</span><br><span class="ch">HCO<sub>3</sub><sup>−</sup>(aq)/CO<sub>3</sub><sup>2−</sup>(aq)</span></td><td>Eaux gazeuses, pluies, océans, régulation du pH sanguin</td></tr>
+        <tr><td><strong>Les acides carboxyliques</strong></td><td><span class="ch">R—COOH(aq)/R—COO<sup>−</sup>(aq)</span></td><td>Vinaigre, citron, aspirine, acides gras, acides aminés</td></tr>
+        <tr><td><strong>Les amines</strong></td><td><span class="ch">R—NH<sub>3</sub><sup>+</sup>(aq)/R—NH<sub>2</sub>(aq)</span></td><td>Odeur du poisson, médicaments, acides aminés</td></tr>
+      </table></div>
+      <p>Les deux dernières familles se reconnaissent à leur <strong>groupe caractéristique</strong>. Le groupe <strong>carboxyle</strong> <span class="ch">—COOH</span> porte un hydrogène sur un oxygène : liaison O—H très polarisée, donc caractère acide. Le groupe <strong>amino</strong> <span class="ch">—NH<sub>2</sub></span> porte un azote avec un doublet non liant disponible : donc caractère basique.</p>
+      <div class="eqc">R—COOH(aq) ⇌ R—COO<sup>−</sup>(aq) + H<sup>+</sup>(aq)</div>
+      <div class="eqc">R—NH<sub>3</sub><sup>+</sup>(aq) ⇌ R—NH<sub>2</sub>(aq) + H<sup>+</sup>(aq)</div>
+      <div class="piege"><div class="t">Le sens du couple des amines</div>C'est l'erreur la plus fréquente : dans le couple des amines, <strong>l'acide est l'ion ammonium, la base est l'amine</strong>. Une amine porte bien des liaisons N—H polarisées, mais ce qui la définit au lycée, c'est son <em>doublet non liant</em>, donc son aptitude à capter un proton. Elle se comporte comme une base — son acide conjugué est l'ion ammonium correspondant.</div>
+      <div class="def"><div class="t">L'écriture <span class="ch">(CO<sub>2</sub>, H<sub>2</sub>O)</span></div>Le dioxyde de carbone dissous reste associé à une molécule d'eau. On écrit donc <span class="ch">(CO<sub>2</sub>, H<sub>2</sub>O)(aq)</span> plutôt que <span class="ch">H<sub>2</sub>CO<sub>3</sub></span> — même espèce, mais la notation rappelle l'association. C'est cet acide qui rend une eau gazeuse acide, et qui acidifie les océans.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18h16"/><path d="M6 18V9M11 18v-6M16 18V5"/></svg>7 · Le pH : définition et relation réciproque<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>La concentration en ions oxonium d'une solution courante varie de 1 mol·L<sup>−1</sup> à 10<sup>−14</sup> mol·L<sup>−1</sup> : quatorze ordres de grandeur. Manipuler ces nombres est pénible, d'où l'idée de Sørensen en 1909 — passer au logarithme, et remplacer une échelle de puissances par une échelle de 0 à 14.</p>
+      <div class="formule">
+        <div class="eqc">pH = − log <span class="frac"><span>[H<sub>3</sub>O<sup>+</sup>]</span><span>c°</span></span> &nbsp;&nbsp; avec c° = 1 mol·L<sup>−1</sup></div>
+        <div class="eqc">[H<sub>3</sub>O<sup>+</sup>] = c° × 10<sup>−pH</sup></div>
+      </div>
+      <div class="def"><div class="t">À quoi sert le c°</div>Le logarithme n'accepte qu'un <strong>nombre sans unité</strong>. La concentration standard <span class="ch">c° = 1 mol·L<sup>−1</sup></span> est là pour annuler l'unité du numérateur. Conséquence pratique : <span class="ch">[H<sub>3</sub>O<sup>+</sup>]</span> doit <strong>impérativement</strong> être exprimée en mol·L<sup>−1</sup>, jamais en mmol·L<sup>−1</sup> ni en g·L<sup>−1</sup>.</div>
+      <div class="fig">
+        <svg viewBox="0 0 450 160" role="img" aria-label="Échelle de pH de 0 à 14 avec les concentrations en ions oxonium correspondantes">
+          <line x1="30" y1="70" x2="420" y2="70" stroke="currentColor" stroke-width="2"/>
+          <g stroke="currentColor" stroke-width="1.4">
+            <line x1="30" y1="64" x2="30" y2="76"/><line x1="30" y1="64" x2="30" y2="76"/>
+            <line x1="225" y1="60" x2="225" y2="80"/><line x1="420" y1="64" x2="420" y2="76"/>
+            <line x1="86" y1="66" x2="86" y2="74" opacity=".5"/><line x1="142" y1="66" x2="142" y2="74" opacity=".5"/>
+            <line x1="309" y1="66" x2="309" y2="74" opacity=".5"/><line x1="364" y1="66" x2="364" y2="74" opacity=".5"/>
+          </g>
+          <rect x="30" y="46" width="195" height="8" fill="var(--orange)" opacity=".3"/>
+          <rect x="225" y="46" width="195" height="8" fill="currentColor" opacity=".18"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="12" text-anchor="middle">
+            <text x="30" y="92">0</text><text x="225" y="92">7</text><text x="420" y="92">14</text>
+            <text x="126" y="40" font-size="11">solutions acides</text><text x="322" y="40" font-size="11">solutions basiques</text>
+            <text x="225" y="40" font-size="11" opacity=".7">neutre</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5" text-anchor="middle" opacity=".72">
+            <text x="30" y="112">10⁰</text><text x="225" y="112">10⁻⁷</text><text x="420" y="112">10⁻¹⁴</text>
+          </g>
+          <g font-family="sans-serif" font-size="10">
+            <circle cx="97" cy="70" r="3.5" fill="var(--orange)"/><text x="97" y="150" fill="currentColor" text-anchor="middle">citron</text>
+            <line x1="97" y1="74" x2="97" y2="138" stroke="var(--orange)" stroke-width="1" stroke-dasharray="3 3"/>
+            <circle cx="236" cy="70" r="3.5" fill="var(--orange)"/><text x="250" y="150" fill="currentColor" text-anchor="middle">sang</text>
+            <line x1="236" y1="74" x2="248" y2="138" stroke="var(--orange)" stroke-width="1" stroke-dasharray="3 3"/>
+            <circle cx="392" cy="70" r="3.5" fill="var(--orange)"/><text x="392" y="150" fill="currentColor" text-anchor="middle">soude</text>
+            <line x1="392" y1="74" x2="392" y2="138" stroke="var(--orange)" stroke-width="1" stroke-dasharray="3 3"/>
+          </g>
+        </svg>
+        <div class="cap">Concentrations en mol·L<sup>−1</sup>. À 25 °C : pH &lt; 7 acide, pH = 7 neutre, pH &gt; 7 basique. Le jus de citron est vers 2,4 ; le sang à 7,4 ; une solution de soude concentrée vers 13.</div>
+      </div>
+      <div class="methode"><div class="t">Sur la calculatrice</div>Le <span class="m">log</span> du pH est le <strong>logarithme décimal</strong>, de base 10 — jamais <span class="m">ln</span>. Et pour la réciproque, la touche est <span class="m">10<sup>x</sup></span>, souvent en seconde fonction de <span class="m">log</span>, jamais <span class="m">e<sup>x</sup></span>. Confondre les deux introduit un facteur mille sans que rien n'ait l'air anormal.</div>
+      <div class="piege"><div class="t">Chiffres significatifs : la règle est inhabituelle</div>Seule la partie décimale du pH est significative, puisque la partie entière ne fait qu'indiquer la puissance de dix. Une concentration connue avec <strong>deux</strong> chiffres significatifs donne donc un pH à <strong>deux décimales</strong> : <span class="ch">[H<sub>3</sub>O<sup>+</sup>] = 3,2 × 10<sup>−6</sup></span> conduit à pH = 5,49, et non à 5,5 ni à 5,494.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3.5 4.2 5.5 7 5.5 9.5A5.5 5.5 0 0 1 6.5 12.5C6.5 10 8.5 7.2 12 3Z"/></svg>8 · pH et dilution : ce que le TP 1 a montré<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>Le logarithme transforme les multiplications en additions. Diviser une concentration par un facteur F ne divise donc pas le pH : elle l'<strong>augmente de log F</strong>.</p>
+      <div class="formule">
+        <div class="eqc">c → c/F &nbsp;&nbsp;⟹&nbsp;&nbsp; pH → pH + log F</div>
+      </div>
+      <p>D'où les deux cas à avoir en tête : <strong>diluer dix fois fait monter le pH d'exactement une unité</strong> ; doubler la concentration le fait baisser de 0,30. C'est précisément ce que le TP 1 cherchait à vérifier, avec six solutions d'acide chlorhydrique obtenues par dilutions successives d'un facteur 10.</p>
+      <div class="fig">
+        <svg viewBox="0 0 450 250" role="img" aria-label="pH mesuré en fonction du pH théorique pour les six solutions du TP 1">
+          <line x1="60" y1="212" x2="420" y2="212" stroke="currentColor" stroke-width="1.6"/>
+          <line x1="60" y1="212" x2="60" y2="24" stroke="currentColor" stroke-width="1.6"/>
+          <line x1="60" y1="212" x2="400" y2="62" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <g fill="var(--orange)">
+            <circle cx="60" cy="194" r="4"/><circle cx="128" cy="168" r="4"/><circle cx="196" cy="142" r="4"/>
+            <circle cx="264" cy="119" r="4"/><circle cx="332" cy="85" r="4"/><circle cx="400" cy="40" r="4"/>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5" text-anchor="middle">
+            <text x="60" y="228">0</text><text x="128" y="228">1</text><text x="196" y="228">2</text><text x="264" y="228">3</text><text x="332" y="228">4</text><text x="400" y="228">5</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="10.5" text-anchor="end">
+            <text x="54" y="216">0</text><text x="54" y="156">2</text><text x="54" y="96">4</text><text x="54" y="36">6</text>
+          </g>
+          <text x="240" y="245" fill="currentColor" font-family="sans-serif" font-size="11" text-anchor="middle">pH théorique = − log c</text>
+          <text x="18" y="120" fill="currentColor" font-family="sans-serif" font-size="11" text-anchor="middle" transform="rotate(-90 18 120)">pH mesuré</text>
+          <text x="330" y="140" fill="currentColor" font-family="sans-serif" font-size="10.5" opacity=".7">accord parfait</text>
+          <line x1="326" y1="136" x2="300" y2="112" stroke="currentColor" stroke-width="1" opacity=".5"/>
+          <g fill="currentColor" font-family="sans-serif" font-size="10">
+            <text x="72" y="190">S₀</text><text x="140" y="164">S₁</text><text x="208" y="138">S₂</text><text x="256" y="106">S₃</text><text x="344" y="81">S₄</text><text x="382" y="34">S₅</text>
+          </g>
+        </svg>
+        <div class="cap">Les six mesures d'Orhan, comparées à la droite théorique. L'accord est excellent au milieu, il se dégrade aux deux extrémités.</div>
+      </div>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Solution</th><th>S₀</th><th>S₁</th><th>S₂</th><th>S₃</th><th>S₄</th><th>S₅</th></tr>
+        <tr><td>pH théorique</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><td>pH mesuré</td><td>0,53</td><td>1,40</td><td>2,26</td><td>3,04</td><td>4,16</td><td>5,66</td></tr>
+        <tr><td>Écart</td><td>0,53</td><td>0,40</td><td>0,26</td><td><strong>0,04</strong></td><td><strong>0,16</strong></td><td>0,66</td></tr>
+      </table></div>
+      <p>Avec une incertitude-type <span class="ch">u(pH) = 0,1</span>, le critère de validation impose un écart inférieur à <span class="ch">2 × u(pH)</span>, soit 0,2. <strong>Seules S₃ et S₄ passent le test.</strong> Ce n'est pas un défaut de manipulation, et c'est le point le plus intéressant du TP.</p>
+      <div class="piege"><div class="t">Pourquoi le modèle décroche aux extrémités</div>
+      <p><strong>Côté concentré (S₀, S₁)</strong> — à 1 mol·L<sup>−1</sup>, les ions sont si nombreux qu'ils interagissent entre eux. Tout se passe comme si leur concentration efficace était inférieure à celle qu'on a apportée : le pH mesuré est plus élevé que prévu.</p>
+      <p><strong>Côté dilué (S₅)</strong> — à 10<sup>−5</sup> mol·L<sup>−1</sup>, deux sources d'ions oxonium deviennent non négligeables devant l'acide : l'eau elle-même, qui fournit 10<sup>−7</sup> mol·L<sup>−1</sup>, et surtout le dioxyde de carbone de l'air dissous dans l'eau distillée. Là encore le pH réel s'écarte de la valeur calculée.</p>
+      <p><strong>Côté matériel</strong> — annoncer <span class="ch">u(pH) = 0,01</span> parce que l'écran affiche deux décimales est illusoire : l'étalonnage, la dérive de l'électrode et l'agitation dominent largement. Retenir 0,1 est le choix honnête.</p>
+      </div>
+      <div class="def"><div class="t">La conclusion à savoir formuler</div>La relation <span class="ch">pH = −log([H<sub>3</sub>O<sup>+</sup>]/c°)</span> est validée dans le <strong>domaine intermédiaire</strong>, disons entre 10<sup>−4</sup> et 10<sup>−2</sup> mol·L<sup>−1</sup>. Elle cesse de décrire correctement les solutions très concentrées et très diluées. Un modèle a toujours un domaine de validité : savoir le délimiter fait partie de la compétence évaluée.</div>
+      </div></details>
+
+      <div class="methode"><div class="t">Et maintenant</div>Les sept savoir-faire du plan de travail et les treize exercices qui les entraînent sont dans la section <a href="#s-exos">Exercices</a>. Les questions du TP 1, avec l'analyse complète des incertitudes, sont dans la section <a href="#s-tp">TP</a>.</div>
+
     </div>
   </section>
-  <!-- ========== FORMULES ========== -->
+
   <section class="part" id="s-formules">
     <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 14.5l3-1 3.5 7.5L14.5 4H21"/></svg>Toutes les formules<small>S'enrichit avec le chapitre — pour l'instant : la définition donnée par le prof + les outils des années passées</small></h2>
     <div class="tb-wrap"><table class="tb">
