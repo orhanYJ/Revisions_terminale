@@ -159,7 +159,12 @@ table.tb{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem;back
 .qcm-score{font-size:.86rem;font-weight:800;color:var(--orange-deep)}
 .btn-reset{font:inherit;font-size:.82rem;font-weight:700;border-radius:99px;padding:6px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
 .btn-reset:hover{border-color:var(--orange)}
-.qcm-opt:disabled{cursor:default}
+.qcm-opt:disabled{cursor:default;opacity:1}
+.qcm-opt.bon::after,.qcm-opt.faux::after{display:block;margin-top:5px;font-size:.73rem;font-weight:800;letter-spacing:.01em}
+.qcm-opt.bon::after{content:"✓ bonne réponse"}
+.qcm-opt.faux::after{content:"✕ ton choix — raté"}
+.qcm-opt.bon.choisi::after{content:"✓ ton choix — correct"}
+.qcm-opt.bon:not(.choisi){border-style:dashed}
 /* Exercices */
 .exo-niveaux{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
 .exo-niveaux button{
@@ -2585,6 +2590,7 @@ document.querySelectorAll('.qcm-opt').forEach(function(opt){
     var exo=opt.closest('.exo');
     if(exo.dataset.fait){return;}
     exo.dataset.fait='1';
+    opt.classList.add('choisi');
     exo.querySelectorAll('.qcm-opt').forEach(function(o){
       if(o.getAttribute('data-r')==='1'){o.classList.add('bon');}
       else if(o===opt){o.classList.add('faux');}
@@ -2609,7 +2615,7 @@ function qcmReset(btn){
   serie.querySelectorAll('.exo').forEach(function(e){
     delete e.dataset.fait;
     e.querySelectorAll('.qcm-opt').forEach(function(o){
-      o.classList.remove('bon','faux'); o.disabled=false;
+      o.classList.remove('bon','faux','choisi'); o.disabled=false;
     });
     var x=e.querySelector('.qcm-exp'); if(x){x.classList.remove('vu');}
   });
