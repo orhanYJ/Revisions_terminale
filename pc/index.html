@@ -153,6 +153,13 @@ table.tb{width:100%;border-collapse:collapse;margin:12px 0;font-size:.92rem;back
 .exo-comp{font-size:.82rem;color:var(--muted);margin:2px 0 8px}
 .rap summary .lvl{margin-right:9px}
 
+.exo .q{font-weight:700;font-size:.95rem;margin-bottom:10px}
+.qcm-serie{margin:16px 0}
+.qcm-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0 4px}
+.qcm-score{font-size:.86rem;font-weight:800;color:var(--orange-deep)}
+.btn-reset{font:inherit;font-size:.82rem;font-weight:700;border-radius:99px;padding:6px 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn-reset:hover{border-color:var(--orange)}
+.qcm-opt:disabled{cursor:default}
 /* Exercices */
 .exo-niveaux{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
 .exo-niveaux button{
@@ -347,6 +354,7 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
     <a href="#s-formules">Toutes les formules</a>
     <a href="#s-tp">TP 1</a>
     <a href="#s-exos">Exercices</a>
+    <a href="#s-qcm">QCM express</a>
     <a href="#s-fiche">Fiche mémo</a>
   </nav>
 
@@ -833,7 +841,129 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
           <p>Contrôles qui la valident : éléments H, O, Cl conservés ; charge totale 0 → −1 + 1 = 0 ; et les produits sont exactement les espèces prouvées en Q1. HCl a cédé un ion hydrogène à l'eau — c'est le « transfert d'ion hydrogène H<sup>+</sup> » annoncé dans les mots-clés du chapitre.</p>
         </div></details>
       </div>
-      <div class="placeholder"><b>Suite du TP manquante.</b> Je n'ai que la première page (documents + Q1–Q2). Envoie les pages suivantes (protocole des dilutions, mesures, exploitation) et tes réponses : je complète la section dans la foulée.</div>
+      <h3 style="margin-top:26px">II · Préparer les solutions par dilution</h3>
+      <p><strong>Doc 4 — Protocole d'une dilution.</strong> Prélever le volume <span class="ch">V<sub>mère</sub></span> à la pipette jaugée, le verser dans une fiole jaugée, remplir aux trois quarts d'eau distillée, boucher et agiter, puis compléter jusqu'au trait de jauge, boucher et agiter à nouveau.</p>
+      <p><strong>Doc 5 — Solutions mère et fille.</strong> Diluer ne change pas la quantité de soluté, seulement le volume qui la contient. D'où la relation de conservation :</p>
+      <div class="formule"><div class="eqc">C<sub>mère</sub> × V<sub>mère</sub> = C<sub>fille</sub> × V<sub>fille</sub></div><div class="fr">d'où le facteur de dilution F = C<sub>mère</sub>/C<sub>fille</sub> = V<sub>fille</sub>/V<sub>mère</sub></div></div>
+
+      <div class="exo">
+        <div class="q"><span class="lvl">Q3</span> Choisir le matériel nécessaire à la préparation de S<sub>1</sub>, S<sub>2</sub>, S<sub>3</sub>, S<sub>4</sub> et S<sub>5</sub>, et justifier chaque réponse</div>
+        <details class="corr"><summary>Correction expliquée</summary><div class="in prose">
+        <p>Les six solutions vont de 1,0 mol·L<sup>−1</sup> à 1,0 × 10<sup>−5</sup> mol·L<sup>−1</sup> : chaque solution est <strong>dix fois moins concentrée</strong> que la précédente. Le facteur de dilution est donc le même à chaque étape :</p>
+        <div class="eqc">F = C<sub>mère</sub>/C<sub>fille</sub> = 10 &nbsp;&nbsp;⟹&nbsp;&nbsp; V<sub>fille</sub>/V<sub>mère</sub> = 10</div>
+        <p>Il faut un rapport de 10 entre la fiole et la pipette. Avec le matériel de paillasse, le couple naturel est <strong>pipette jaugée de 10,0 mL</strong> et <strong>fiole jaugée de 100,0 mL</strong>. On répète cinq fois, chaque solution servant de mère à la suivante.</p>
+        <div class="fig">
+          <svg viewBox="0 0 360 150" role="img" aria-label="Cascade de cinq dilutions successives d'un facteur 10">
+            <defs>
+              <g id="fiole">
+                <path d="M-3 10 L-3 28 L-12 50 Q-14 56 -8 56 L8 56 Q14 56 12 50 L3 28 L3 10 Z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+                <line x1="-7" y1="34" x2="7" y2="34" stroke="var(--orange)" stroke-width="1.2"/>
+              </g>
+              <marker id="fdil" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto"><path d="M0,0 L6,3.5 L0,7 z" fill="var(--orange)"/></marker>
+            </defs>
+            <use href="#fiole" x="26" y="12"/><use href="#fiole" x="88" y="12"/><use href="#fiole" x="150" y="12"/>
+            <use href="#fiole" x="212" y="12"/><use href="#fiole" x="274" y="12"/><use href="#fiole" x="336" y="12"/>
+            <g stroke="var(--orange)" stroke-width="1.6" marker-end="url(#fdil)">
+              <line x1="43" y1="46" x2="73" y2="46"/><line x1="105" y1="46" x2="135" y2="46"/><line x1="167" y1="46" x2="197" y2="46"/>
+              <line x1="229" y1="46" x2="259" y2="46"/><line x1="291" y1="46" x2="321" y2="46"/>
+            </g>
+            <g fill="currentColor" font-family="sans-serif" font-size="12" text-anchor="middle" font-weight="bold">
+              <text x="26" y="92">S₀</text><text x="88" y="92">S₁</text><text x="150" y="92">S₂</text><text x="212" y="92">S₃</text><text x="274" y="92">S₄</text><text x="336" y="92">S₅</text>
+            </g>
+            <g fill="currentColor" font-family="sans-serif" font-size="10" text-anchor="middle" opacity=".72">
+              <text x="26" y="108">1,0</text><text x="88" y="108">10⁻¹</text><text x="150" y="108">10⁻²</text><text x="212" y="108">10⁻³</text><text x="274" y="108">10⁻⁴</text><text x="336" y="108">10⁻⁵</text>
+              <text x="180" y="132">concentrations en mol·L⁻¹</text>
+            </g>
+          </svg>
+          <div class="cap">Cinq dilutions successives et identiques : à chaque flèche, pipette jaugée de 10,0 mL puis fiole jaugée de 100,0 mL. La solution fille devient la mère de l’étape suivante.</div>
+        </div>
+        <div class="methode"><div class="t">Le matériel, et sa justification</div>
+        <ul>
+          <li><strong>Pipette jaugée de 10,0 mL</strong> — et non graduée : une pipette jaugée délivre un volume unique mais avec une incertitude bien plus faible. Sur cinq dilutions enchaînées, les erreurs se multiplient.</li>
+          <li><strong>Poire à pipeter</strong> — jamais la bouche, l'acide chlorhydrique est corrosif.</li>
+          <li><strong>Fiole jaugée de 100,0 mL</strong> — le seul récipient dont le volume est garanti. Un bécher gradué ne convient pas.</li>
+          <li><strong>Bécher</strong> — pour y verser un peu de solution mère et y plonger la pipette. On ne pipette jamais directement dans la fiole ou le flacon de stock : on le contaminerait.</li>
+          <li><strong>Eau distillée</strong> en pissette, et gants + lunettes.</li>
+        </ul>
+        </div>
+        <div class="piege"><div class="t">La variante qui marche aussi</div>On peut sauter une étape en changeant de couple : pour obtenir S<sub>5</sub> directement à partir de S<sub>3</sub>, le facteur vaut 100, donc pipette jaugée de 10,0 mL et fiole jaugée de 1,00 L. C'est correct, mais on perd la régularité de la cascade — et surtout, chaque étape sautée est une vérification en moins.</div>
+        </div></details>
+      </div>
+
+      <h3 style="margin-top:26px">III · Mesurer le pH</h3>
+      <p><strong>Doc 6 — Le pH.</strong> Introduit en 1909 par Søren Sørensen pour décrire le degré d'acidité sur une échelle de 0 à 14 : <span class="ch">pH = −log([H<sub>3</sub>O<sup>+</sup>]/c°)</span> avec <span class="ch">c° = 1 mol·L<sup>−1</sup></span>, et réciproquement <span class="ch">[H<sub>3</sub>O<sup>+</sup>] = c° × 10<sup>−pH</sup></span>.</p>
+      <p><strong>Doc 7 — Le pH-mètre.</strong> Un boîtier électronique et une électrode. Il doit être <strong>étalonné</strong> avec deux solutions tampons, dont le pH reste stable malgré un ajout d'acide, de base ou une dilution : d'abord celle de pH = 7, puis celle de pH = 4.</p>
+      <p><strong>Doc 8 — Régressi.</strong> <span class="m">Fichier &gt; Nouveau &gt; Clavier</span> pour saisir les valeurs. Le bouton <span class="m">Coord</span> de la fenêtre graphique change les grandeurs en abscisse et en ordonnée ; l'onglet <span class="m">Grandeur</span> et le bouton <span class="m">Y+</span> permettent d'en créer de nouvelles.</p>
+
+      <div class="exo">
+        <div class="q"><span class="lvl">Q4</span> Mesurer le pH des différentes solutions</div>
+        <details class="corr"><summary>Tes mesures, et ce qu'elles valent</summary><div class="in prose">
+        <div class="tb-wrap"><table class="tb">
+          <tr><th>Solution</th><th>S₀</th><th>S₁</th><th>S₂</th><th>S₃</th><th>S₄</th><th>S₅</th></tr>
+          <tr><td>[H₃O⁺] apportée (mol·L⁻¹)</td><td>1,0</td><td>10⁻¹</td><td>10⁻²</td><td>10⁻³</td><td>10⁻⁴</td><td>10⁻⁵</td></tr>
+          <tr><td>pH mesuré</td><td>0,53</td><td>1,40</td><td>2,26</td><td>3,04</td><td>4,16</td><td>5,66</td></tr>
+        </table></div>
+        <p>La série est cohérente : le pH croît bien à chaque dilution, et l'écart entre deux mesures voisines vaut à peu près une unité — ce qui est déjà, en soi, la confirmation qualitative attendue.</p>
+        <div class="methode"><div class="t">Les gestes qui décident de la qualité de ces chiffres</div>
+        <ol>
+          <li><strong>Étalonner d'abord</strong>, tampon 7 puis tampon 4, avant toute mesure.</li>
+          <li><strong>Rincer l'électrode à l'eau distillée</strong> entre chaque solution, et l'essuyer en tamponnant — jamais en frottant, le bulbe de verre est fragile.</li>
+          <li><strong>Mesurer de la plus diluée à la plus concentrée</strong> : ainsi un reste de solution mal rincé ne fausse jamais une solution plus diluée.</li>
+          <li><strong>Attendre la stabilisation</strong> de l'affichage avant de relever — c'est souvent dix à vingt secondes.</li>
+        </ol>
+        </div>
+        </div></details>
+      </div>
+
+      <div class="exo">
+        <div class="q"><span class="lvl">Q5 · Q6</span> Tracer pH<sub>exp</sub> = f(c), créer pH<sub>théo</sub> = −log(c), comparer</div>
+        <details class="corr"><summary>Correction expliquée</summary><div class="in prose">
+        <div class="methode"><div class="t">Dans Régressi</div>
+        <ol>
+          <li><span class="m">Fichier &gt; Nouveau &gt; Clavier</span>, puis créer deux grandeurs : <span class="m">c</span> en mol·L<sup>−1</sup> et <span class="m">pHexp</span> sans unité. Saisir les six couples de valeurs.</li>
+          <li>Afficher la courbe <span class="ch">pH<sub>exp</sub> = f(c)</span> — au besoin via le bouton <span class="m">Coord</span> pour mettre <span class="m">c</span> en abscisse.</li>
+          <li>Onglet <span class="m">Grandeur</span>, bouton <span class="m">Y+</span> : créer <span class="m">pHtheo = -log(c)</span>.</li>
+          <li>Afficher les deux courbes sur le même graphe, puis imprimer.</li>
+        </ol>
+        </div>
+        <p><strong>Ce qu'on observe.</strong> Les deux courbes sont des décroissances très rapides, presque confondues. Cinq des six points sont tassés contre l'axe vertical, parce que les concentrations s'étalent sur cinq ordres de grandeur : sur un axe linéaire allant jusqu'à 1,0, les valeurs 10<sup>−3</sup>, 10<sup>−4</sup> et 10<sup>−5</sup> sont indiscernables de zéro.</p>
+        <div class="piege"><div class="t">Pourquoi ce graphe n'est pas le bon outil</div>Superposer <span class="ch">pH<sub>exp</sub></span> et <span class="ch">pH<sub>théo</sub></span> en fonction de <span class="ch">c</span> montre qu'elles se ressemblent, mais ne permet <strong>pas de juger l'écart</strong> : tout se joue dans la zone écrasée près de l'origine. Pour comparer vraiment, il faut tracer le pH en fonction de <span class="ch">−log c</span> : on obtient alors une droite de pente 1 passant par l'origine, et le moindre écart devient visible. C'est le graphe de la fiche 8 du cours, et c'est aussi ce que fait la question 7 par le calcul.</div>
+        </div></details>
+      </div>
+
+      <h3 style="margin-top:26px">IV · Valider le protocole</h3>
+      <p><strong>Doc 9 — Comparaison à une valeur de référence.</strong> Une mesure est compatible avec une valeur théorique si le quotient suivant est inférieur ou égal à 2 :</p>
+      <div class="formule"><div class="eqc"><span class="frac"><span>|X<sub>mes</sub> − X<sub>théo</sub>|</span><span>u(X)</span></span> ≤ 2</div><div class="fr">Si le quotient dépasse 2, il faut analyser les sources d'erreurs et modifier le protocole.</div></div>
+
+      <div class="exo">
+        <div class="q"><span class="lvl">Q7</span> Compléter le tableau et conclure</div>
+        <details class="corr"><summary>Ta réponse, vérifiée et commentée</summary><div class="in prose">
+        <p><strong>Le choix de u(pH) est la vraie question.</strong> Tu as écarté la valeur de 0,01 au motif que l'affichage dérivait en permanence, et retenu <span class="ch">u(pH) = 0,1</span>. C'est le bon raisonnement : l'incertitude d'une mesure de pH n'est pas la résolution de l'écran. Elle est dominée par la qualité de l'étalonnage, la dérive de l'électrode et l'homogénéité de la solution — tous largement au-dessus du centième d'unité.</p>
+        <div class="tb-wrap"><table class="tb">
+          <tr><th>Solution</th><th>S₀</th><th>S₁</th><th>S₂</th><th>S₃</th><th>S₄</th><th>S₅</th></tr>
+          <tr><td>pH<sub>théo</sub></td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+          <tr><td>pH<sub>mes</sub></td><td>0,53</td><td>1,40</td><td>2,26</td><td>3,04</td><td>4,16</td><td>5,66</td></tr>
+          <tr><td>Quotient (u = 0,1)</td><td>5,3</td><td>4,0</td><td>2,6</td><td><strong>0,4</strong></td><td><strong>1,6</strong></td><td>6,6</td></tr>
+          <tr><td>Compatible ?</td><td>non</td><td>non</td><td>non</td><td><strong>oui</strong></td><td><strong>oui</strong></td><td>non</td></tr>
+        </table></div>
+        <p><strong>Conclusion à rédiger :</strong> seules S₃ et S₄ satisfont le critère. La relation <span class="ch">pH = −log([H<sub>3</sub>O<sup>+</sup>]/c°)</span> n'est donc validée que dans un <strong>domaine intermédiaire</strong> de concentration, entre 10<sup>−4</sup> et 10<sup>−3</sup> mol·L<sup>−1</sup> environ pour cette série. Le désaccord aux deux extrémités n'est pas une erreur de manipulation : il a des causes physiques identifiables.</p>
+        <div class="piege"><div class="t">Les trois sources d'erreur à citer</div>
+        <p><strong>Solutions concentrées (S₀, S₁).</strong> À 1 mol·L<sup>−1</sup>, les ions sont si nombreux qu'ils s'attirent mutuellement. Leur concentration <em>efficace</em> devient inférieure à celle qu'on a apportée, et le pH mesuré est plus élevé que prévu — ce qu'on observe bien : +0,53 sur S₀.</p>
+        <p><strong>Solution très diluée (S₅).</strong> À 10<sup>−5</sup> mol·L<sup>−1</sup>, deux apports parasites ne sont plus négligeables : l'eau elle-même, qui fournit des ions oxonium, et surtout le dioxyde de carbone de l'air dissous dans l'eau distillée, qui est un acide. Le pH réel s'écarte de la valeur calculée à partir du seul acide chlorhydrique.</p>
+        <p><strong>Erreurs accumulées.</strong> Cinq dilutions enchaînées : l'imprécision de chaque pipetage se répercute sur toutes les solutions suivantes. C'est la raison pour laquelle S₅ est la plus fragile de la série.</p>
+        </div>
+        <div class="methode"><div class="t">Ce qu'on proposerait pour améliorer</div>
+        <ol>
+          <li>Préparer chaque solution <strong>directement à partir de S₀</strong> plutôt qu'en cascade, pour ne pas cumuler les erreurs.</li>
+          <li>Utiliser de l'eau distillée <strong>fraîchement bouillie et refroidie</strong>, donc dégazée, pour S₄ et S₅.</li>
+          <li><strong>Réétalonner</strong> le pH-mètre en cours de série, et mesurer chaque solution deux fois.</li>
+          <li>Limiter l'étude au domaine où le modèle est valide, et le dire explicitement.</li>
+        </ol>
+        </div>
+        </div></details>
+      </div>
+
+      <div class="def"><div class="t">Ce que ce TP vaut pour l'ECE</div>Il contient les trois actes de l'épreuve : <strong>proposer</strong> un protocole de dilution avec justification du matériel (Q3), <strong>mettre en œuvre</strong> les gestes de pipetage et l'étalonnage du pH-mètre (Q4), <strong>exploiter et valider</strong> avec un critère chiffré et une analyse des sources d'erreur (Q7). Le dernier acte est celui qui rapporte le plus de points, et celui que les élèves bâclent le plus souvent.</div>
     </div>
   </section>
 
@@ -1132,11 +1262,295 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
     </div>
   </section>
 
+  <!-- ========== QCM ========== -->
+  <section class="part" id="s-qcm">
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2A2.6 2.6 0 0 1 14.6 10c0 1.7-2.6 2.1-2.6 3.8"/><circle cx="12" cy="17.3" r=".9" fill="currentColor"/></svg>QCM express<small>Trois séries de sept questions — cinq minutes chacune</small></h2>
+    <div class="prose">
+      <p>À faire dans le bus, la veille d'une interro, ou juste après avoir lu le cours. Une seule tentative par question : la bonne réponse s'affiche en vert, la tienne en rouge si elle était fausse, et l'explication apparaît dessous. Le bouton <em>Recommencer</em> remet la série à zéro.</p>
+
+      <h3 style="margin-top:22px">Série 1 · Acides, bases, couples</h3>
+      <div class="qcm-serie">
+
+        <div class="exo"><div class="q">1. Un acide au sens de Brønsted est une espèce capable de…</div>
+          <button class="qcm-opt" data-r="0">capter un ou plusieurs ions H⁺</button>
+          <button class="qcm-opt" data-r="1">céder un ou plusieurs ions H⁺</button>
+          <button class="qcm-opt" data-r="0">céder un ou plusieurs électrons</button>
+          <button class="qcm-opt" data-r="0">capter un ou plusieurs électrons</button>
+          <div class="qcm-exp">Acide = donneur de proton. Celui qui <em>capte</em> le proton est la base. Les électrons, eux, ne concernent que l'oxydoréduction.</div>
+        </div>
+
+        <div class="exo"><div class="q">2. Le couple Fe³⁺(aq)/Fe²⁺(aq) est…</div>
+          <button class="qcm-opt" data-r="0">un couple acide-base</button>
+          <button class="qcm-opt" data-r="1">un couple oxydant-réducteur</button>
+          <button class="qcm-opt" data-r="0">les deux à la fois</button>
+          <button class="qcm-opt" data-r="0">ni l'un ni l'autre</button>
+          <div class="qcm-exp">On passe de l'un à l'autre en échangeant un électron : <span class="ch">Fe³⁺ + e⁻ ⇌ Fe²⁺</span>. Aucun ion hydrogène n'intervient.</div>
+        </div>
+
+        <div class="exo"><div class="q">3. La demi-équation <span class="ch">HgO(s) + 2 H⁺ + 2 e⁻ ⇌ Hg(l) + H₂O(l)</span> contient des ions H⁺. Que conclure ?</div>
+          <button class="qcm-opt" data-r="0">C'est acide-base, puisque des H⁺ apparaissent</button>
+          <button class="qcm-opt" data-r="1">C'est de l'oxydoréduction, puisque des électrons apparaissent</button>
+          <button class="qcm-opt" data-r="0">C'est les deux en même temps</button>
+          <button class="qcm-opt" data-r="0">On ne peut pas trancher sans les potentiels</button>
+          <div class="qcm-exp">Le critère de tri est <strong>l'électron, jamais le proton</strong>. Une demi-équation redox contient très souvent des H⁺ en plus des électrons — ça ne la rend pas acide-base pour autant.</div>
+        </div>
+
+        <div class="exo"><div class="q">4. La base conjuguée de <span class="ch">HSO₃⁻(aq)</span> est…</div>
+          <button class="qcm-opt" data-r="0">SO₃⁻(aq)</button>
+          <button class="qcm-opt" data-r="1">SO₃²⁻(aq)</button>
+          <button class="qcm-opt" data-r="0">H₂SO₃(aq)</button>
+          <button class="qcm-opt" data-r="0">HSO₃²⁻(aq)</button>
+          <div class="qcm-exp">On retire un H <strong>et</strong> une charge positive : de −1 on passe à −2. Vérification par la demi-équation <span class="ch">HSO₃⁻ ⇌ SO₃²⁻ + H⁺</span>, où les charges s'équilibrent bien.</div>
+        </div>
+
+        <div class="exo"><div class="q">5. Une espèce amphotère est une espèce qui…</div>
+          <button class="qcm-opt" data-r="0">réagit totalement avec l'eau</button>
+          <button class="qcm-opt" data-r="1">peut céder ou capter un ion H⁺ selon le milieu</button>
+          <button class="qcm-opt" data-r="0">a un pH égal à 7</button>
+          <button class="qcm-opt" data-r="0">forme un couple avec elle-même</button>
+          <div class="qcm-exp">Elle possède les deux caractères. Pour le prouver, il faut écrire <strong>deux</strong> demi-équations : une où elle cède un H⁺, une où elle en capte un.</div>
+        </div>
+
+        <div class="exo"><div class="q">6. Dans <span class="ch">HCl(g) + H₂O(l) → Cl⁻(aq) + H₃O⁺(aq)</span>, l'eau joue le rôle…</div>
+          <button class="qcm-opt" data-r="0">d'acide</button>
+          <button class="qcm-opt" data-r="1">de base</button>
+          <button class="qcm-opt" data-r="0">de solvant inerte</button>
+          <button class="qcm-opt" data-r="0">d'oxydant</button>
+          <div class="qcm-exp">Elle part en <span class="ch">H₂O</span> et arrive en <span class="ch">H₃O⁺</span> : elle a capté un proton, donc elle est base. Face à une base, elle jouerait l'acide — c'est son caractère amphotère.</div>
+        </div>
+
+        <div class="exo"><div class="q">7. Combien de couples interviennent dans une réaction acide-base ?</div>
+          <button class="qcm-opt" data-r="0">Un seul</button>
+          <button class="qcm-opt" data-r="1">Exactement deux</button>
+          <button class="qcm-opt" data-r="0">Trois</button>
+          <button class="qcm-opt" data-r="0">Autant qu'il y a d'espèces</button>
+          <div class="qcm-exp">L'ion H⁺ ne peut pas rester seul en solution : il faut un couple qui le cède et un autre qui le capte. Si tu n'en repères qu'un dans une équation, tu as oublié l'eau.</div>
+        </div>
+
+        <div class="qcm-bar"><span class="qcm-score"></span><button class="btn-reset" onclick="qcmReset(this)">Recommencer la série</button></div>
+      </div>
+
+      <h3 style="margin-top:26px">Série 2 · Formules, groupes et familles</h3>
+      <div class="qcm-serie">
+
+        <div class="exo"><div class="q">1. Dans <span class="ch">CH₃COOH</span>, l'hydrogène cédé est…</div>
+          <button class="qcm-opt" data-r="0">n'importe lequel des quatre</button>
+          <button class="qcm-opt" data-r="1">celui du groupe carboxyle, porté par un oxygène</button>
+          <button class="qcm-opt" data-r="0">l'un des trois du groupe méthyle</button>
+          <button class="qcm-opt" data-r="0">les quatre en même temps</button>
+          <div class="qcm-exp">Seule la liaison <span class="ch">O—H</span> est assez polarisée. Les liaisons <span class="ch">C—H</span> du groupe méthyle ne libèrent jamais de proton.</div>
+        </div>
+
+        <div class="exo"><div class="q">2. Le couple acide-base d'une amine s'écrit…</div>
+          <button class="qcm-opt" data-r="0">R—NH₂ / R—NH₃⁺</button>
+          <button class="qcm-opt" data-r="1">R—NH₃⁺ / R—NH₂</button>
+          <button class="qcm-opt" data-r="0">R—NH₂ / R—NH⁻</button>
+          <button class="qcm-opt" data-r="0">R—NH₃⁺ / R—NH⁻</button>
+          <div class="qcm-exp">L'acide s'écrit toujours en premier — et ici l'acide est l'<strong>ion ammonium</strong>. L'amine, avec son doublet non liant sur l'azote, est la base.</div>
+        </div>
+
+        <div class="exo"><div class="q">3. Le groupe caractéristique d'un acide carboxylique est…</div>
+          <button class="qcm-opt" data-r="0">—OH</button>
+          <button class="qcm-opt" data-r="0">—CHO</button>
+          <button class="qcm-opt" data-r="1">—COOH</button>
+          <button class="qcm-opt" data-r="0">—NH₂</button>
+          <div class="qcm-exp">Le groupe carboxyle. Sa base conjuguée est le groupe carboxylate <span class="ch">—COO⁻</span>, dont l'oxygène porte la charge et trois doublets non liants.</div>
+        </div>
+
+        <div class="exo"><div class="q">4. L'acide du couple de l'acide carbonique s'écrit…</div>
+          <button class="qcm-opt" data-r="0">CO₂(g)</button>
+          <button class="qcm-opt" data-r="1">(CO₂, H₂O)(aq)</button>
+          <button class="qcm-opt" data-r="0">HCO₃⁻(aq)</button>
+          <button class="qcm-opt" data-r="0">CO₃²⁻(aq)</button>
+          <div class="qcm-exp">Le dioxyde de carbone dissous reste associé à une molécule d'eau, d'où cette notation. <span class="ch">HCO₃⁻</span> est sa base conjuguée — et aussi l'acide du couple suivant.</div>
+        </div>
+
+        <div class="exo"><div class="q">5. Dans un triacide, les espèces amphotères sont…</div>
+          <button class="qcm-opt" data-r="0">aucune</button>
+          <button class="qcm-opt" data-r="0">la forme la plus acide uniquement</button>
+          <button class="qcm-opt" data-r="1">les deux formes intermédiaires</button>
+          <button class="qcm-opt" data-r="0">les quatre espèces</button>
+          <div class="qcm-exp">Chaque intermédiaire est la base d'un couple et l'acide du suivant. Seules la forme la plus protonée et la forme la plus déprotonée n'ont qu'un seul caractère.</div>
+        </div>
+
+        <div class="exo"><div class="q">6. Une liaison <span class="ch">C—H</span> est…</div>
+          <button class="qcm-opt" data-r="0">fortement polarisée</button>
+          <button class="qcm-opt" data-r="1">très peu polarisée</button>
+          <button class="qcm-opt" data-r="0">de nature ionique</button>
+          <button class="qcm-opt" data-r="0">systématiquement rompue en solution aqueuse</button>
+          <div class="qcm-exp">Carbone et hydrogène ont des électronégativités voisines. C'est pour ça qu'un hydrogène acide est toujours porté par O, N, F ou Cl — jamais par un carbone.</div>
+        </div>
+
+        <div class="exo"><div class="q">7. À combien de couples acide-base l'eau appartient-elle ?</div>
+          <button class="qcm-opt" data-r="0">Aucun</button>
+          <button class="qcm-opt" data-r="0">Un seul</button>
+          <button class="qcm-opt" data-r="1">Deux</button>
+          <button class="qcm-opt" data-r="0">Trois</button>
+          <div class="qcm-exp"><span class="ch">H₃O⁺/H₂O</span> où elle est base, et <span class="ch">H₂O/HO⁻</span> où elle est acide. C'est la traduction directe de son caractère amphotère.</div>
+        </div>
+
+        <div class="qcm-bar"><span class="qcm-score"></span><button class="btn-reset" onclick="qcmReset(this)">Recommencer la série</button></div>
+      </div>
+
+      <h3 style="margin-top:26px">Série 3 · pH, logarithme et dilution</h3>
+      <div class="qcm-serie">
+
+        <div class="exo"><div class="q">1. Une solution a un pH de 5,5 à 25 °C. Elle est…</div>
+          <button class="qcm-opt" data-r="1">acide</button>
+          <button class="qcm-opt" data-r="0">neutre</button>
+          <button class="qcm-opt" data-r="0">basique</button>
+          <button class="qcm-opt" data-r="0">impossible à classer sans la concentration</button>
+          <div class="qcm-exp">5,5 &lt; 7, donc acide. C'est le cas d'une eau gazeuse, acidifiée par le dioxyde de carbone dissous.</div>
+        </div>
+
+        <div class="exo"><div class="q">2. <span class="ch">[H₃O⁺] = 1,0 × 10⁻³ mol·L⁻¹</span>. Le pH vaut…</div>
+          <button class="qcm-opt" data-r="1">3,00</button>
+          <button class="qcm-opt" data-r="0">−3,00</button>
+          <button class="qcm-opt" data-r="0">0,30</button>
+          <button class="qcm-opt" data-r="0">11,0</button>
+          <div class="qcm-exp"><span class="ch">pH = −log(10⁻³) = 3</span>. Le signe moins est déjà dans la formule : un pH de solution courante n'est jamais négatif.</div>
+        </div>
+
+        <div class="exo"><div class="q">3. Pour retrouver <span class="ch">[H₃O⁺]</span> à partir du pH, la touche à utiliser est…</div>
+          <button class="qcm-opt" data-r="0">eˣ</button>
+          <button class="qcm-opt" data-r="1">10ˣ</button>
+          <button class="qcm-opt" data-r="0">ln</button>
+          <button class="qcm-opt" data-r="0">√</button>
+          <div class="qcm-exp"><span class="ch">[H₃O⁺] = c° × 10⁻ᵖᴴ</span>. Le logarithme du pH est décimal : sa réciproque est la puissance de dix, souvent en seconde fonction de la touche log.</div>
+        </div>
+
+        <div class="exo"><div class="q">4. On dilue une solution acide dix fois. Son pH…</div>
+          <button class="qcm-opt" data-r="0">diminue d'une unité</button>
+          <button class="qcm-opt" data-r="1">augmente d'une unité</button>
+          <button class="qcm-opt" data-r="0">est divisé par dix</button>
+          <button class="qcm-opt" data-r="0">ne change pas</button>
+          <div class="qcm-exp">Diviser la concentration par F augmente le pH de log F, soit 1 pour F = 10. C'est exactement ce que le TP 1 a cherché à vérifier.</div>
+        </div>
+
+        <div class="exo"><div class="q">5. On double la concentration en ions oxonium. Le pH…</div>
+          <button class="qcm-opt" data-r="1">baisse de 0,30</button>
+          <button class="qcm-opt" data-r="0">baisse de 2</button>
+          <button class="qcm-opt" data-r="0">est divisé par 2</button>
+          <button class="qcm-opt" data-r="0">augmente de 0,30</button>
+          <div class="qcm-exp">log 2 ≈ 0,30. Retiens ce nombre : un écart de 0,30 entre deux pH est la signature d'un facteur 2 sur la concentration — c'est aussi l'erreur typique quand on oublie qu'un acide est un diacide.</div>
+        </div>
+
+        <div class="exo"><div class="q">6. <span class="ch">[H₃O⁺] = 3,2 × 10⁻⁶ mol·L⁻¹</span>, donnée avec deux chiffres significatifs. Le pH s'écrit…</div>
+          <button class="qcm-opt" data-r="0">5,5</button>
+          <button class="qcm-opt" data-r="1">5,49</button>
+          <button class="qcm-opt" data-r="0">5,494</button>
+          <button class="qcm-opt" data-r="0">6</button>
+          <div class="qcm-exp">Seule la partie décimale du pH est significative, la partie entière n'indiquant que la puissance de dix. Deux chiffres significatifs sur la concentration donnent donc <strong>deux décimales</strong> sur le pH.</div>
+        </div>
+
+        <div class="exo"><div class="q">7. Dans <span class="ch">pH = −log([H₃O⁺]/c°)</span>, à quoi sert c° ?</div>
+          <button class="qcm-opt" data-r="0">À convertir la concentration en mol·L⁻¹</button>
+          <button class="qcm-opt" data-r="1">À rendre l'argument du logarithme sans unité</button>
+          <button class="qcm-opt" data-r="0">À corriger l'effet de la température</button>
+          <button class="qcm-opt" data-r="0">À rien, c'est une convention d'écriture</button>
+          <div class="qcm-exp">Un logarithme n'accepte qu'un nombre pur. <span class="ch">c° = 1 mol·L⁻¹</span> annule l'unité — ce qui impose au passage d'exprimer <span class="ch">[H₃O⁺]</span> en mol·L⁻¹, et pas en mmol·L⁻¹.</div>
+        </div>
+
+        <div class="qcm-bar"><span class="qcm-score"></span><button class="btn-reset" onclick="qcmReset(this)">Recommencer la série</button></div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ========== FICHE MÉMO ========== -->
   <section class="part" id="s-fiche">
-    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="8" rx="2"/><path d="M7 13h10v8H7z"/></svg>Fiche mémo — Chapitre 1<small>A4 recto-verso imprimable, uniquement l'exigible</small></h2>
-    <div class="placeholder" id="fiche-memo-placeholder">
-      <b>La fiche se remplit en fin de chapitre.</b> Elle condensera ce qui aura été réellement traité en classe : définitions, couples, formules, méthodes. Bonus pratique : ton prof ramasse et note les premières fiches de synthèse — celle-ci pourra servir de base de vérification à ta fiche manuscrite.
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></svg>Fiche mémo — Chapitre 1<small>A4 recto-verso imprimable — uniquement l'exigible</small></h2>
+    <button class="btn-print no-print" onclick="window.print()">Imprimer la fiche</button>
+    <div id="fiche-memo">
+
+      <h3>1 · Définitions</h3>
+      <ul>
+        <li><strong>Acide</strong> (Brønsted) : espèce capable de <strong>céder</strong> un ou plusieurs ions hydrogène H⁺.</li>
+        <li><strong>Base</strong> : espèce capable de <strong>capter</strong> un ou plusieurs ions hydrogène H⁺.</li>
+        <li>H⁺ est un atome d'hydrogène sans son électron, c'est-à-dire un <strong>proton</strong>.</li>
+        <li><strong>Amphotère</strong> : espèce possédant les deux caractères.</li>
+      </ul>
+      <div class="fbloc"><strong>Redox ou acide-base ?</strong> Le critère est <strong>l'électron</strong>. Si un e⁻ est nécessaire pour équilibrer la demi-équation, c'est de l'oxydoréduction — même si des H⁺ y figurent aussi.</div>
+
+      <h3>2 · Couple acide-base</h3>
+      <ul>
+        <li>Deux espèces qui ne diffèrent que d'un H⁺. Noté <strong>AH/A⁻</strong>, l'acide toujours en premier.</li>
+        <li><strong>Équation protonique :</strong> AH(aq) ⇌ A⁻(aq) + H⁺(aq).</li>
+        <li>De l'acide à la base : on retire un H <strong>et</strong> une charge +.</li>
+        <li>L'ion H⁺ n'existe pas seul en solution : l'équation protonique est une écriture formelle.</li>
+      </ul>
+
+      <h3>3 · Réaction acide-base</h3>
+      <ul>
+        <li>Transfert d'un H⁺ de l'acide d'un couple vers la base d'un autre couple. <strong>Toujours deux couples.</strong></li>
+        <li>A₁H + A₂⁻ → A₁⁻ + A₂H</li>
+        <li><strong>Méthode :</strong> écrire l'équation protonique du couple 1 dans le sens direct, celle du couple 2 dans le sens inverse, puis additionner — les H⁺ se simplifient.</li>
+        <li><strong>Repérer les couples</strong> dans une équation donnée : chercher les deux paires d'espèces qui ne diffèrent que d'un H⁺.</li>
+      </ul>
+
+      <h3>4 · Les couples exigibles</h3>
+      <ul>
+        <li><strong>Eau :</strong> H₃O⁺(aq)/H₂O(l) &nbsp;et&nbsp; H₂O(l)/HO⁻(aq)</li>
+        <li><strong>Acide carbonique :</strong> (CO₂, H₂O)(aq)/HCO₃⁻(aq) &nbsp;et&nbsp; HCO₃⁻(aq)/CO₃²⁻(aq)</li>
+        <li><strong>Acides carboxyliques :</strong> R—COOH(aq)/R—COO⁻(aq)</li>
+        <li><strong>Amines :</strong> R—NH₃⁺(aq)/R—NH₂(aq)</li>
+      </ul>
+      <div class="fbloc"><strong>Piège des amines :</strong> l'acide est l'ion ammonium, la base est l'amine. Jamais l'inverse.</div>
+
+      <h3>5 · Groupes et polarité</h3>
+      <ul>
+        <li>Électronégativité décroissante : <strong>F &gt; O &gt; N &gt; Cl</strong>. Une liaison entre l'un d'eux et H est polarisée.</li>
+        <li>Une liaison <strong>C—H n'est presque pas polarisée</strong> : elle ne libère jamais de H⁺.</li>
+        <li><strong>Groupe carboxyle —COOH</strong> : l'hydrogène est porté par un oxygène → caractère acide. Base conjuguée : carboxylate —COO⁻, dont l'oxygène porte la charge et trois doublets non liants.</li>
+        <li><strong>Groupe amino —NH₂</strong> : l'azote porte un doublet non liant → caractère basique. Acide conjugué : ammonium —NH₃⁺.</li>
+      </ul>
+      <div class="fmicro"><strong>Test rapide sur une molécule :</strong> y a-t-il un H porté par O, N, F ou Cl ? Sinon, pas de caractère acide, quel que soit le nombre d'hydrogènes.</div>
+
+      <h3>6 · Amphotère : comment le prouver</h3>
+      <ul>
+        <li>Écrire <strong>deux</strong> demi-équations : une où l'espèce cède un H⁺, une où elle en capte un. Une seule ne suffit jamais.</li>
+        <li>Cas types : H₂O ; HCO₃⁻ ; l'amphion d'un acide aminé (—NH₃⁺ acide, —COO⁻ base).</li>
+        <li>Dans un polyacide, <strong>toutes les espèces intermédiaires</strong> sont amphotères.</li>
+      </ul>
+
+      <h3>7 · Le pH</h3>
+      <div class="fbloc">
+        <strong>pH = − log ( [H₃O⁺] / c° )</strong> &nbsp; avec c° = 1 mol·L⁻¹<br>
+        <strong>[H₃O⁺] = c° × 10<sup>−pH</sup></strong>
+      </div>
+      <ul>
+        <li>Le c° sert à <strong>rendre l'argument du log sans unité</strong> : [H₃O⁺] doit être en mol·L⁻¹, obligatoirement.</li>
+        <li>À 25 °C : pH &lt; 7 acide · pH = 7 neutre · pH &gt; 7 basique.</li>
+        <li>Calculatrice : <strong>log</strong> et <strong>10ˣ</strong>, jamais ln ni eˣ.</li>
+        <li><strong>Chiffres significatifs :</strong> seule la partie décimale compte. Deux chiffres significatifs sur la concentration → deux décimales sur le pH (3,2 × 10⁻⁶ → pH = 5,49).</li>
+      </ul>
+
+      <h3>8 · Dilution</h3>
+      <ul>
+        <li><strong>C<sub>mère</sub> × V<sub>mère</sub> = C<sub>fille</sub> × V<sub>fille</sub></strong> &nbsp;·&nbsp; F = C<sub>mère</sub>/C<sub>fille</sub> = V<sub>fille</sub>/V<sub>mère</sub></li>
+        <li>Diviser la concentration par F <strong>augmente</strong> le pH de log F.</li>
+        <li>Diluer 10 fois → pH + 1. Doubler la concentration → pH − 0,30.</li>
+        <li><strong>Matériel :</strong> pipette jaugée (jamais graduée) + fiole jaugée, rapport des volumes égal à F.</li>
+      </ul>
+
+      <h3>9 · TP 1 en trois lignes</h3>
+      <ul>
+        <li>Six solutions d'acide chlorhydrique de 1,0 à 10⁻⁵ mol·L⁻¹, par dilutions successives d'un facteur 10.</li>
+        <li>Validation : |pH<sub>mes</sub> − pH<sub>théo</sub>| / u(pH) ≤ 2, avec u(pH) = 0,1 — <em>pas</em> la résolution de l'écran.</li>
+        <li>Résultat : seules S₃ et S₄ passent. Le modèle n'est valide que dans un <strong>domaine intermédiaire</strong>.</li>
+        <li>Causes des écarts : interactions entre ions si trop concentré ; eau et CO₂ dissous si trop dilué ; erreurs cumulées sur cinq dilutions.</li>
+      </ul>
+
+      <h3>10 · Les six erreurs qui coûtent des points</h3>
+      <ul>
+        <li>Confondre redox et acide-base à cause des H⁺ présents dans la demi-équation.</li>
+        <li>Oublier d'ajuster la charge en passant de l'acide à la base.</li>
+        <li>Écrire le couple à l'envers (base en premier).</li>
+        <li>Oublier qu'un diacide libère <strong>deux</strong> H⁺ : le pH est alors décalé de 0,30.</li>
+        <li>Utiliser eˣ au lieu de 10ˣ : facteur mille d'écart, invisible à l'œil.</li>
+        <li>Annoncer une incertitude égale à la résolution de l'appareil.</li>
+      </ul>
+
     </div>
     <a class="retour" href="#" onclick="go('accueil');return false;">← Retour au programme</a>
   </section>
@@ -2177,8 +2591,31 @@ document.querySelectorAll('.qcm-opt').forEach(function(opt){
       o.disabled=true;
     });
     exo.querySelector('.qcm-exp').classList.add('vu');
+    var serie=opt.closest('.qcm-serie');
+    if(serie){majScore(serie);}
   });
 });
+function majScore(serie){
+  var exos=serie.querySelectorAll('.exo'), faits=0, bons=0;
+  exos.forEach(function(e){
+    if(e.dataset.fait){faits++; if(!e.querySelector('.qcm-opt.faux')){bons++;}}
+  });
+  var z=serie.querySelector('.qcm-score');
+  if(z){z.textContent = faits ? bons+' / '+faits+' correctes' : '';}
+}
+function qcmReset(btn){
+  var serie=btn.closest('.qcm-serie');
+  if(!serie){return;}
+  serie.querySelectorAll('.exo').forEach(function(e){
+    delete e.dataset.fait;
+    e.querySelectorAll('.qcm-opt').forEach(function(o){
+      o.classList.remove('bon','faux'); o.disabled=false;
+    });
+    var x=e.querySelector('.qcm-exp'); if(x){x.classList.remove('vu');}
+  });
+  majScore(serie);
+  serie.scrollIntoView({behavior:'smooth',block:'start'});
+}
 </script>
 <script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js');});}
