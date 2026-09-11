@@ -88,7 +88,41 @@ li.actif .chap-link:hover .ti{color:var(--orange-deep)}
   margin:18px 0 16px;font-family:Charter,Cambria,Georgia,serif;font-style:italic;
   font-size:clamp(1.05rem,4.2vw,1.5rem);color:var(--orange-deep);
 }
-.pills{display:flex;gap:8px;flex-wrap:wrap;padding:12px 0 16px}
+.pills{
+  position:sticky;top:var(--hh,55px);z-index:40;background:var(--bg);
+  display:flex;gap:7px;flex-wrap:wrap;padding:9px 0 10px;
+  border-bottom:1px solid var(--line);margin-bottom:4px;
+}
+html.js .pills{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+html.js .pills::-webkit-scrollbar{display:none}
+html.js .pills a{flex:none}
+.pills a.actif{background:var(--orange);border-color:var(--orange);color:#fff}
+html[data-theme="sombre"] .pills a.actif{color:#1A120B}
+html.js .page .part{display:none}
+html.js .page .part.vu{display:block}
+html.js .part{margin-top:16px}
+.tabnav{display:flex;justify-content:space-between;gap:10px;margin:38px 0 4px}
+.tabnav button{
+  font:inherit;font-size:.82rem;font-weight:700;border-radius:99px;padding:8px 15px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--orange-deep);max-width:47%;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.tabnav button:disabled{opacity:0;pointer-events:none}
+.tabnav button:hover:not(:disabled){border-color:var(--orange)}
+.haut{
+  position:fixed;right:14px;bottom:16px;z-index:60;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:var(--surface);color:var(--orange-deep);
+  font-size:1.15rem;line-height:1;cursor:pointer;box-shadow:var(--shadow);
+  display:none;align-items:center;justify-content:center;
+}
+.haut.vu{display:flex}
+.som{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 4px}
+.som button{
+  font:inherit;font-size:.78rem;font-weight:700;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink);border-radius:8px;padding:5px 9px;cursor:pointer;
+}
+.som button:hover{border-color:var(--orange);color:var(--orange-deep)}
+.som-t{font-size:.8rem;font-weight:800;color:var(--muted);margin-top:14px}
 .pills a{
   text-decoration:none;font-size:.8rem;font-weight:700;color:var(--orange-deep);
   border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 12px;
@@ -243,7 +277,8 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
   header,footer,.pills,.chap-hero,.btn-print,.retour,section.part:not(#s-fiche),.no-print,.wm{display:none !important}
   .page{display:none !important}
   #page-ch1.on{display:block !important}
-  #s-fiche{margin:0}
+  #s-fiche{margin:0;display:block !important}
+  .tabnav,.haut,.som,.som-t{display:none !important}
   #s-fiche>h2{border-color:#E45C10;color:#000;font-size:13pt}
   #fiche-memo{border:none;box-shadow:none;padding:0;column-count:2;column-gap:7mm;border-radius:0}
   #fiche-memo h3{break-after:avoid;color:#A33E00;border-color:#ccc;font-size:10pt;margin-top:8pt}
@@ -975,7 +1010,7 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
 
   <!-- ========== EXERCICES ========== -->
   <section class="part" id="s-exos">
-    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.2-4.2L16 5l3 3L8.2 18.8Z"/><path d="M14 7l3 3"/></svg>Exercices<small>Les treize exercices du plan de travail, corrigés et expliqués</small></h2>
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.2-4.2L16 5l3 3L8.2 18.8Z"/><path d="M14 7l3 3"/></svg>Exercices<small>Treize du plan de travail, dix maison, trois problèmes type bac — tous corrigés</small></h2>
     <div class="prose">
 
       <p>Chaque exercice est présenté avec son énoncé, puis sa correction et l'explication du raisonnement, cachées derrière un bouton : lis l'énoncé, cherche, et n'ouvre la correction qu'après. Les énoncés sont reformulés — mêmes données, mêmes questions, même difficulté que dans le manuel.</p>
@@ -2841,10 +2876,85 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
 </main>
 <footer>Spé Physique-Chimie Terminale · construit sur les plans de travail, les TP et tes notes de cours · le réglage clair/sombre n'est pas mémorisé entre deux ouvertures (fichier autonome, sans stockage local).</footer>
 <script>
+document.documentElement.classList.add('js');
+
+function titreOnglet(page,part){
+  var a=page.querySelector('.pills a[href="#'+part.id+'"]');
+  return a ? a.textContent.trim() : part.id;
+}
+function creerTabNav(page){
+  var parts=[].slice.call(page.querySelectorAll('.part'));
+  parts.forEach(function(p,i){
+    if(p.dataset.nav){return;}
+    p.dataset.nav='1';
+    var d=document.createElement('div'); d.className='tabnav';
+    var b1=document.createElement('button'); b1.type='button';
+    var b2=document.createElement('button'); b2.type='button';
+    if(i>0){b1.textContent='\u2190 '+titreOnglet(page,parts[i-1]); b1.setAttribute('data-go',parts[i-1].id);}
+    else{b1.textContent='\u2190'; b1.disabled=true;}
+    if(i<parts.length-1){b2.textContent=titreOnglet(page,parts[i+1])+' \u2192'; b2.setAttribute('data-go',parts[i+1].id);}
+    else{b2.textContent='\u2192'; b2.disabled=true;}
+    d.appendChild(b1); d.appendChild(b2);
+    p.appendChild(d);
+  });
+}
+function onglet(id,defiler){
+  var page=document.querySelector('.page.on'); if(!page){return;}
+  var parts=page.querySelectorAll('.part'); if(!parts.length){return;}
+  var trouve=false;
+  parts.forEach(function(p){ if(p.id===id){trouve=true;} });
+  if(!trouve){id=parts[0].id;}
+  parts.forEach(function(p){ p.classList.toggle('vu', p.id===id); });
+  var nav=page.querySelector('.pills'), actif=null;
+  if(nav){
+    nav.querySelectorAll('a').forEach(function(a){
+      var v=(a.getAttribute('href')==='#'+id);
+      a.classList.toggle('actif',v);
+      if(v){actif=a;}
+    });
+    if(actif){nav.scrollLeft = actif.offsetLeft - nav.clientWidth/2 + actif.clientWidth/2;}
+  }
+  page.dataset.onglet=id;
+  if(defiler!==false){
+    var h=document.querySelector('header');
+    window.scrollTo(0, nav ? Math.max(0, nav.offsetTop-(h?h.offsetHeight:0)) : 0);
+  }
+}
+function creerSommaireExos(){
+  var sec=document.getElementById('s-exos');
+  if(!sec || sec.dataset.som){return;}
+  var items=[].slice.call(sec.querySelectorAll('details.rap'));
+  if(!items.length){return;}
+  sec.dataset.som='1';
+  var box=document.createElement('div'); box.className='som';
+  items.forEach(function(d){
+    var s=d.querySelector('summary'); if(!s){return;}
+    var c=s.cloneNode(true);
+    c.querySelectorAll('svg,.lvl').forEach(function(e){e.parentNode.removeChild(e);});
+    var lab=c.textContent.split('\u00b7')[0].trim();
+    if(!lab){return;}
+    d.id='x'+lab.replace(/[^A-Za-z0-9]/g,'');
+    var b=document.createElement('button'); b.type='button';
+    b.textContent=lab; b.setAttribute('data-ex',d.id);
+    b.title=c.textContent.trim();
+    box.appendChild(b);
+  });
+  var titre=document.createElement('div');
+  titre.className='som-t'; titre.textContent='Acc\u00e8s direct \u2014 '+box.children.length+' exercices';
+  var hote=sec.querySelector('.prose');
+  if(hote){hote.insertBefore(box,hote.firstChild); hote.insertBefore(titre,box);}
+}
+
 function go(id){
   document.querySelectorAll('.page').forEach(function(p){p.classList.remove('on');});
   var page=document.getElementById('page-'+id);
-  if(page){page.classList.add('on');}
+  if(page){
+    page.classList.add('on');
+    creerTabNav(page);
+    if(id==='ch1'){creerSommaireExos();}
+    var prem=page.querySelector('.part');
+    onglet(page.dataset.onglet || (prem?prem.id:''), false);
+  }
   var noms={accueil:'', ch1:'Chapitre 1 · Transformations acides-bases', tpece:'TP · ECE — gestes et Latis Pro'};
   document.getElementById('crumb').textContent = noms[id] || '';
   window.scrollTo(0,0);
@@ -2863,6 +2973,48 @@ function filtreNiv(btn){
     e.style.display = (niv==='all' || e.classList.contains(niv)) ? '' : 'none';
   });
 }
+document.addEventListener('click', function(ev){
+  var s=ev.target.closest ? ev.target.closest('.som button[data-ex]') : null;
+  if(s){
+    var c=document.getElementById(s.getAttribute('data-ex'));
+    if(c){c.open=true; c.scrollIntoView({block:'start'}); window.scrollBy(0,-(hauteurBarres()+12));}
+    return;
+  }
+  var b=ev.target.closest ? ev.target.closest('.tabnav button[data-go]') : null;
+  if(b){onglet(b.getAttribute('data-go')); return;}
+  var a=ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
+  if(a){
+    var cible=document.getElementById(a.getAttribute('href').slice(1));
+    if(cible && cible.classList.contains('part')){ev.preventDefault(); onglet(cible.id);}
+  }
+});
+
+var btnHaut=document.createElement('button');
+btnHaut.className='haut'; btnHaut.type='button';
+btnHaut.setAttribute('aria-label','Revenir en haut');
+btnHaut.textContent='\u2191';
+btnHaut.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+document.body.appendChild(btnHaut);
+window.addEventListener('scroll',function(){
+  btnHaut.classList.toggle('vu', window.scrollY>420);
+},{passive:true});
+
+function hauteurBarres(){
+  var h=document.querySelector('header'), n=document.querySelector('.page.on .pills');
+  return (h?h.offsetHeight:0)+(n?n.offsetHeight:0);
+}
+function calerBarres(){
+  var h=document.querySelector('header');
+  if(h){document.documentElement.style.setProperty('--hh', h.offsetHeight+'px');}
+}
+calerBarres();
+window.addEventListener('resize', calerBarres, {passive:true});
+
+(function(){
+  var page=document.querySelector('.page.on');
+  if(page){creerTabNav(page); var prem=page.querySelector('.part'); if(prem){onglet(prem.id,false);}}
+})();
+
 document.querySelectorAll('.qcm-opt').forEach(function(opt){
   opt.addEventListener('click', function(){
     var exo=opt.closest('.exo');
