@@ -261,6 +261,11 @@ tbody tr:nth-child(even) td{background:var(--page-2);}
 .cit-num{border:none;padding:0;background:none;font-family:var(--display);color:var(--gilt);font-size:1.05rem;}
 .cit-ki{color:#8A6E2E;font-style:italic;}
 .cit-entry .locator{font-size:.93rem;margin-bottom:10px;color:var(--ink-2);}
+.cit-entry .micro{font-size:.93rem;margin:0 0 6px;color:var(--ink-2);}
+.cit-entry .micro b{color:var(--cloth);font-family:var(--display);font-size:1.02rem;font-weight:600;}
+.cit-entry .micro .w{font-family:var(--display);font-size:1.05rem;color:var(--ink);}
+.cit-entry .micro em{color:var(--ink);font-style:italic;}
+.cit-entry .micro.span-note{color:#8A6E2E;font-family:var(--display);font-style:italic;font-size:.97rem;margin-bottom:10px;}
 .cit-entry .analyse{font-size:.94rem;background:var(--page-2);border-left:2px solid var(--gilt-dim);
   padding:12px 16px;margin:12px 0 0;}
 textarea.cit{width:100%;min-height:70px;border:1px solid var(--rule);border-radius:2px;background:#fff;
@@ -286,7 +291,8 @@ textarea.cit.filled{border-color:var(--rule);background:#fff;}
   border-radius:2px;padding:13px 16px;margin:0 0 14px;cursor:pointer;}
 .reveal:hover{background:rgba(196,160,82,.15);}
 .recall .cit-entry:not(.shown) .bq{display:none;}
-.recall .cit-entry:not(.shown) .analyse{display:none;}
+.recall .cit-entry:not(.shown) .analyse,
+.recall .cit-entry:not(.shown) .micro{display:none;}
 .recall .cit-entry:not(.shown) .reveal{display:block;}
 .recall .cit-entry.shown{border-left-color:var(--gilt);}
 .shuffled > h3[data-lang]{display:none;}  /* specificite alignee sur les regles de langue */
@@ -1938,8 +1944,8 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
 </div>
 <div class="leaf" data-route="oeuvres/bricklane/citations" data-fr="Banque de 41 citations" data-en="Quotation bank">
 <h2 data-lang="fr">Banque de 41 citations</h2><h2 data-lang="en">Quotation bank</h2>
-<p data-lang="fr">Vingt-cinq citations courtes, dans l'ordre du roman, couvrant les quatre chapitres. Chacune est localisée par sa scène, pas par une page. Les libellés d'enjeux renvoient à l'onglet <em>Enjeux</em>.</p>
-  <p data-lang="en">Forty-one short quotations, in the order of the novel, across the first eight chapters. Each is located by its scene, not a page. The issue labels refer to the <em>Key issues</em> tab.</p>
+<p data-lang="fr">Vingt-cinq citations courtes, dans l'ordre du roman, couvrant les quatre chapitres. Chacune est localisée par sa scène, pas par une page. Deux lignes comptent plus que le reste : <b>Les mots</b> — ce qu’il faut réellement retenir, souvent un seul mot — et <b>En copie</b>, une phrase modèle qui l’intègre. Apprends la phrase modèle, pas la citation. Les libellés d'enjeux renvoient à l'onglet <em>Enjeux</em>.</p>
+  <p data-lang="en">Forty-one short quotations, in the order of the novel, across the first eight chapters. Each is located by its scene, not a page. Two lines matter more than the rest: <b>The words</b> — what actually has to be memorised, often a single word — and <b>In an essay</b>, a model sentence embedding it. Learn the model sentence, not the quotation. The issue labels refer to the <em>Key issues</em> tab.</p>
 
   <div class="margin-note">
     <span class="mn-label" data-lang="fr">Pourquoi les citations sont courtes</span>
@@ -1956,7 +1962,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"Or you can just see what Fate will do. […] Of course, Fate will decide everything in the end, whatever route you follow."</p>
     <p class="locator" data-lang="fr">Ch. 1, la naissance. Banesa vient de proposer l'hôpital ; chercher « two routes you can follow ».</p>
     <p class="locator" data-lang="en">Ch. 1, the birth. Banesa has just proposed the hospital; search for "two routes you can follow".</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"see" · "whatever route"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The midwife frames two routes and then annuls the difference: the family may "see" what Fate will do, since Fate decides "whatever route you follow".</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Le verbe est <em>see</em> : regarder, ne rien faire. Et l'alternative est truquée — la sage-femme a faim, elle lorgne le poulet depuis son arrivée, et seule la seconde option la garde utile et payée. Et la seconde phrase annule la première : si le Destin décide de toute façon, <em>quelle que soit la route</em>, alors l’alternative proposée n’en était pas une. La phrase la plus solennelle du roman est prononcée par quelqu’un qui y a un intérêt, et elle se contredit en deux temps. À employer pour montrer que la doctrine du destin a des bénéficiaires.</p>
       <p data-lang="en"><b>Analysis.</b> The verb is <em>see</em>: watch, do nothing. And the alternative is rigged — the midwife is hungry, has eyed the chicken since she arrived, and only the second option keeps her useful and paid. And the second sentence cancels the first: if Fate decides everything anyway, <em>whatever route you follow</em>, then the alternative offered was never one. The most solemn sentence in the novel is spoken by someone with an interest in it, and it contradicts itself within two beats. Use it to show that the doctrine of fate has beneficiaries.</p>
     </div>
@@ -1967,7 +1975,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"we must not stand in the way of Fate"</p>
     <p class="locator" data-lang="fr">Ch. 1, immédiatement après ; elle ajoute que l'enfant ne doit pas gaspiller d'énergie à lutter.</p>
     <p class="locator" data-lang="en">Ch. 1, immediately after; she adds that the child must not waste energy fighting.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"must not stand"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Rupban’s refusal is itself a decision — the family "must not stand in the way of Fate" is chosen against Mumtaz, who wanted the city.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Noter le paradoxe : c'est <b>une décision</b>. Rupban choisit de ne pas choisir, contre l'avis de Mumtaz qui voulait la ville. Le destin, dans cette scène, est le nom donné à un acte de volonté maternelle. Citation idéale pour compliquer le mot <em>victim</em> : Nazneen n'a pas subi le destin, elle a subi la décision de sa mère.</p>
       <p data-lang="en"><b>Analysis.</b> Note the paradox: it is <b>a decision</b>. Rupban chooses not to choose, against Mumtaz who wanted the city. Fate, in this scene, is the name given to an act of maternal will. An ideal quotation for complicating the word <em>victim</em>: Nazneen did not suffer fate, she suffered her mother's decision.</p>
     </div>
@@ -1978,7 +1988,11 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"What could not be changed must be borne. And since nothing could be changed, everything had to be borne."</p>
     <p class="locator" data-lang="fr">Ch. 1, après le récit de la naissance ; suivi de « This principle ruled her life. »</p>
     <p class="locator" data-lang="en">Ch. 1, after the birth narrative; followed by "This principle ruled her life."</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"borne" · "since"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The maxim turns on itself: what cannot be changed "must be borne", and "since nothing could be changed, everything had to be borne".</em></p>
+    <p class="micro span-note" data-lang="fr">Ici la phrase entière est nécessaire : l’effet est dans la circularité, donc dans la syntaxe.</p>
+    <p class="micro span-note" data-lang="en">Here the whole sentence is needed: the effect is the circularity, and so the syntax.</p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Les deux phrases disent la même chose dans les deux sens. La première va du changement impossible à l’endurance ; la seconde repart de l’endurance pour conclure à l’impossibilité. Le raisonnement tourne en rond, et la circularité est le sujet : c’est pourquoi il faut les deux phrases et pas une. Ce n'est pas une sagesse, c'est une boucle logique — une prémisse qui se déduit de sa propre conclusion. Le narrateur la qualifie de mantra. Citation centrale pour parler de la <em>forme</em> de la croyance et non de son contenu.</p>
       <p data-lang="en"><b>Analysis.</b> The two sentences say the same thing in both directions. The first moves from impossible change to endurance; the second starts from endurance to conclude impossibility. The reasoning circles, and the circularity is the point: which is why both sentences are needed, not one. This is not wisdom but a logical loop — a premise deduced from its own conclusion. The narrator calls it a mantra. A central quotation for discussing the <em>form</em> of the belief rather than its content.</p>
     </div>
@@ -1989,7 +2003,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"startled by her own agency"</p>
     <p class="locator" data-lang="fr">Ch. 1, même paragraphe ; le narrateur saute à ses trente-quatre ans, comparaison avec un nourrisson qui se frappe l'œil de son propre poing.</p>
     <p class="locator" data-lang="en">Ch. 1, same paragraph; the narrator leaps to her thirty-fourth year, with the comparison to an infant striking its own eye.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"startled by her own agency"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The narrator plants the ending in the first chapter: Nazneen will one day be "startled by her own agency".</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> <b>La citation la plus utile du roman pour ta question.</b> Dès le chapitre 1, le narrateur annonce qu'elle finira par faire son avenir elle-même. Le mot <em>agency</em> est le terme technique exact que la question appelle. Et la comparaison est ambivalente : le nourrisson se frappe lui-même, donc l'agentivité arrive sans maîtrise ni intention. À utiliser pour graduer la réponse plutôt que la trancher.</p>
       <p data-lang="en"><b>Analysis.</b> <b>The single most useful quotation for your question.</b> As early as chapter 1 the narrator announces that she will end up making her own future. The word <em>agency</em> is the exact technical term the question calls for. And the comparison is double-edged: the infant strikes itself, so agency arrives without mastery or intention. Use it to grade your answer rather than settle it.</p>
     </div>
@@ -2000,7 +2016,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"how to know which way it is calling you?"</p>
     <p class="locator" data-lang="fr">Ch. 1, Londres, après le doigt coupé ; elle vient de se demander si Hasina ne suivait pas son destin en s'enfuyant.</p>
     <p class="locator" data-lang="en">Ch. 1, London, after the cut finger; she has just wondered whether Hasina was following her fate by running away.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"calling"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Nazneen dismantles the doctrine herself, asking which way fate "is calling you" — a fate that calls expects an answer, and therefore an addressee.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Elle repère seule la faille : si le destin est inévitable, la rébellion en fait partie, et la doctrine ne dit plus rien sur la conduite à tenir. Le verbe <em>calling</em> est intéressant — un destin qui appelle attend une réponse, donc un interlocuteur. Preuve que la passivité de Nazneen n'est pas une absence de pensée.</p>
       <p data-lang="en"><b>Analysis.</b> She spots the flaw unaided: if fate is inevitable, rebellion is part of it, and the doctrine no longer says anything about how to act. The verb <em>calling</em> repays attention — a fate that calls expects an answer, and therefore an addressee. Proof that Nazneen's passivity is not an absence of thought.</p>
     </div>
@@ -2011,7 +2029,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"The words calmed her stomach and she was pleased."</p>
     <p class="locator" data-lang="fr">Ch. 1, avant le dîner ; elle vient d'ouvrir le Coran au hasard sur un verset disant que tout appartient à Dieu.</p>
     <p class="locator" data-lang="en">Ch. 1, before the dinner; she has just opened the Qur'an at random on a verse saying all belongs to God.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"stomach" · "calmed" · "pleased"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The verse does not convince Nazneen; it "calmed her stomach", and the choice of organ locates consolation in the body rather than in belief.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> C'est la citation que ton prof t'a reproché de ne pas analyser. Trois mots à interroger. <b>Stomach</b> : pas le cœur, pas l'âme — l'organe de l'anxiété et de la faim ; la consolation religieuse agit sur le corps, comme un remède. <b>Calmed</b> : un calmant ne résout rien, il apaise ; le verset ne change pas sa situation, il en supprime la sensation. <b>Pleased</b> : mot faible et domestique, celui d'une tâche accomplie. Ensemble, ils décrivent une foi qui fonctionne comme une technique. Le roman ne le dit pas ; il choisit le vocabulaire qui le laisse entendre.</p>
       <p data-lang="en"><b>Analysis.</b> This is the quotation your teacher told you to analyse. Three words to interrogate. <b>Stomach</b>: not the heart, not the soul — the organ of anxiety and hunger; religious consolation works on the body, like a remedy. <b>Calmed</b>: a sedative resolves nothing, it soothes; the verse does not change her situation, it removes the sensation of it. <b>Pleased</b>: a weak, domestic word, the word for a task completed. Together they describe a faith functioning as a technique. The novel does not say this; it chooses the vocabulary that implies it.</p>
     </div>
@@ -2022,7 +2042,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"Eyes are a bit too close together."</p>
     <p class="locator" data-lang="fr">Ch. 1, conversation téléphonique surprise une semaine après le mariage ; il détaille son front, sa taille, ses hanches.</p>
     <p class="locator" data-lang="en">Ch. 1, the telephone call overheard a week after the wedding; he itemises her forehead, her height, her hips.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"too close together"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Chanu itemises his wife on the telephone — eyes "a bit too close together", hips "wide enough" — in the vocabulary of a transaction he pronounces himself satisfied with.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> L'inventaire est fait dans le vocabulaire d'une transaction : ni belle ni trop laide, hanches assez larges pour porter des enfants, tout bien considéré satisfait. Le mariage arrangé n'apparaît pas ici comme un décret du destin mais comme un marché entre deux hommes, évalué par l'acheteur. Et le détail est réutilisé : au ch. 4, elle se regarde dans le miroir et reprend ses propres termes.</p>
       <p data-lang="en"><b>Analysis.</b> The inventory is conducted in the vocabulary of a transaction: not beautiful but not too ugly, hips wide enough to carry children, all things considered satisfied. The arranged marriage appears here not as a decree of fate but as a deal between two men, appraised by the buyer. And the detail returns: in ch. 4 she looks in the mirror and reuses his terms.</p>
     </div>
@@ -2036,7 +2058,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"We would not need very much"</p>
     <p class="locator" data-lang="fr">Ch. 2, le dîner ; Dr Azad vient de dire que personne n'économise jamais assez pour rentrer.</p>
     <p class="locator" data-lang="en">Ch. 2, the dinner; Dr Azad has just said that nobody ever saves enough to return.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"We"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Her single intervention of the evening opens with a pronoun she has not been granted: "We would not need very much."</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Elle parle une fois en une soirée, et ce qu'elle dit contredit son mari sur son propre terrain. Le pronom est <em>we</em> : elle s'inclut dans une décision dont on ne l'a pas jugée partie prenante. Les deux hommes se tournent vers elle, elle parle ensuite à son assiette, et sa nuque brûle. La honte du corps mesure l'ampleur de la transgression — ce qui indique exactement combien la parole lui coûte, et donc combien elle en a.</p>
       <p data-lang="en"><b>Analysis.</b> She speaks once in an evening, and what she says contradicts her husband on his own ground. The pronoun is <em>we</em>: she includes herself in a decision she has not been treated as party to. Both men turn to her, she then speaks to her plate, and the back of her neck burns. The body's shame measures the size of the transgression — which tells us exactly what speech costs her, and therefore how much of it she has.</p>
     </div>
@@ -2047,7 +2071,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"Where's the need anyway?"</p>
     <p class="locator" data-lang="fr">Ch. 2, après le patinage à la télévision ; elle vient de demander à apprendre l'anglais.</p>
     <p class="locator" data-lang="en">Ch. 2, after the skating on television; she has just asked to learn English.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"the need"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Chanu does not forbid her English; he asks where "the need" is, a question true only because he keeps her indoors.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> La réponse n'est pas un refus, c'est pire : une question qui rend la demande absurde. Il ne lui interdit pas l'anglais, il lui explique qu'elle n'en a pas l'usage — ce qui n'est vrai que parce qu'il l'empêche de sortir. <b>Citation à opposer directement au mot <em>fate</em> de la question :</b> l'obstacle est un homme, dans une pièce, avec un raisonnement circulaire.</p>
       <p data-lang="en"><b>Analysis.</b> The answer is not a refusal but something worse: a question that makes the request absurd. He does not forbid her English, he explains that she has no use for it — which is true only because he keeps her indoors. <b>A quotation to set directly against the word <em>fate</em> in the question:</b> the obstacle is a man, in a room, with a circular argument.</p>
     </div>
@@ -2058,7 +2084,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"She did not let the razor slip."</p>
     <p class="locator" data-lang="fr">Ch. 2, après le discours de Chanu sur les sorties ; elle lui coupe les cors, comme chaque fois.</p>
     <p class="locator" data-lang="en">Ch. 2, after Chanu's speech about going out; she is cutting his corns, as always.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"did not let"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The negative implies its opposite: she "did not let the razor slip", and docility becomes a choice renewed with a blade in her hand.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Six mots, une négation. Dire qu'elle ne laisse pas glisser le rasoir suppose qu'elle le pourrait, et le place juste après les trois paragraphes où il lui interdit de sortir. La docilité devient un choix renouvelé, lame en main. <b>À apparier obligatoirement avec la citation 16</b> : trois chapitres plus loin, le rasoir glisse. Deux phrases presque identiques, une seule négation de différence — c'est le genre de rapprochement qui fait monter une copie.</p>
       <p data-lang="en"><b>Analysis.</b> Six words, one negative. To say she does not let the razor slip presumes she could, and places it immediately after the three paragraphs in which he forbids her to go out. Docility becomes a renewed choice, blade in hand. <b>Pair it necessarily with quotation 16</b>: three chapters on, the razor slips. Two near-identical sentences, one negative apart — the kind of pairing that lifts an essay.</p>
     </div>
@@ -2069,7 +2097,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"she had conquered everything: her body, the laws of nature"</p>
     <p class="locator" data-lang="fr">Ch. 2, la télévision ; la patineuse s'arrête net et lève les bras.</p>
     <p class="locator" data-lang="en">Ch. 2, the television; the skater stops dead and flings up her arms.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"conquered"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The skater has "conquered" her body and the laws of nature — precisely the two things Nazneen has no command of.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> L'expression exacte de ce qui manque à Nazneen : la maîtrise du corps et l'exemption des lois naturelles. Mais la phrase suivante corrige aussitôt — Nazneen se dit que la patineuse doit être terrifiée, parce que de telles choses ne peuvent pas se garder. Elle ne peut pas contempler la liberté sans lui adjoindre sa perte. Le patinage revient au ch. 4 en rêve éveillé : motif à suivre.</p>
       <p data-lang="en"><b>Analysis.</b> The exact expression of what Nazneen lacks: mastery of the body and exemption from natural law. But the next sentence corrects it at once — Nazneen decides the skater must be terrified, because such things cannot be held. She cannot contemplate freedom without attaching its loss. Skating returns in ch. 4 as a daydream: a motif to track.</p>
     </div>
@@ -2080,7 +2110,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"she defied everything and everyone"</p>
     <p class="locator" data-lang="fr">Ch. 2, la nuit à la fenêtre de la cuisine ; Nazneen décide soudain que la femme a sauté.</p>
     <p class="locator" data-lang="en">Ch. 2, at the kitchen window at night; Nazneen suddenly decides the woman jumped.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"defied"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Nazneen chooses the version in which the woman jumped and "defied everything and everyone"; the act of interpretation is the only freedom available to her.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Personne ne sait si la femme est tombée ou a sauté. Nazneen <b>choisit</b> la version : bras ouverts, yeux ouverts, un grand sourire. C'est un acte d'interprétation, donc de volonté — et elle choisit la version où une femme agit. Le roman lui accorde ici une liberté qu'elle n'a nulle part ailleurs : celle de décider du sens. À manier avec soin (le sujet est un suicide), mais c'est une preuve rare d'agentivité intérieure.</p>
       <p data-lang="en"><b>Analysis.</b> Nobody knows whether the woman fell or jumped. Nazneen <b>chooses</b> the version: arms wide, eyes wide, a big smile. It is an act of interpretation, and so of will — and she chooses the version in which a woman acts. The novel grants her here a freedom she has nowhere else: deciding the meaning. Handle carefully (the subject is a suicide), but it is rare evidence of inward agency.</p>
     </div>
@@ -2091,7 +2123,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"Your mother was wearing her best sari."</p>
     <p class="locator" data-lang="fr">Ch. 2, la mort d'Amma ; Mumtaz le répète, et ajoute que ce n'était pourtant pas un jour particulier.</p>
     <p class="locator" data-lang="en">Ch. 2, Amma's death; Mumtaz repeats it, adding that it was not a special day after all.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"best sari"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The novel never writes the word suicide; it repeats that Amma was "wearing her best sari" on a day that was not special, and leaves the reader to assemble it.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Le roman ne prononce jamais le mot suicide. Il aligne trois faits — une lance calée dans une réserve à riz, le plus beau sari un jour ordinaire, une tante qui y revient deux fois sans conclure — et laisse le lecteur assembler. <b>Conséquence pour ta question :</b> la sainte de la résignation, modèle imité par Nazneen toute son enfance, a mis fin à ses jours par un acte de volonté. La doctrine du destin est minée à sa racine, au chapitre 2.</p>
       <p data-lang="en"><b>Analysis.</b> The novel never says the word suicide. It lines up three facts — a spear wedged in a rice store, the best sari on an ordinary day, an aunt returning to it twice without concluding — and lets the reader assemble them. <b>Consequence for your question:</b> the saint of resignation, the model Nazneen imitated throughout her childhood, ended her life by an act of will. The doctrine of fate is undermined at its root, in chapter 2.</p>
     </div>
@@ -2102,7 +2136,11 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"'What? Are you . . . ?'"</p>
     <p class="locator" data-lang="fr">Ch. 2, fin ; la conversation sur la dureté du matelas. La réponse de Nazneen est imprimée comme un tiret.</p>
     <p class="locator" data-lang="en">Ch. 2, end; the conversation about the hardness of the mattress. Nazneen's reply is printed as a dash.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">le tiret · the dash</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The announcement is typographic rather than verbal: a dash stands where the word should be, and neither husband nor wife says "pregnant".</em></p>
+    <p class="micro span-note" data-lang="fr">Ici il faut l’échange entier : ce qui s’analyse est la typographie, pas un mot.</p>
+    <p class="micro span-note" data-lang="en">Here the whole exchange is needed: what is analysed is the typography, not a word.</p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> C'est ton observation, et elle est plus forte que tu ne l'avais dite : le mot n'est pas seulement évité, <b>la typographie le remplace par un blanc</b>. Ni l'un ni l'autre ne le prononce. Et l'annonce est enterrée dans une dispute sur un matelas, ce qui rend la nouvelle presque inaudible. Le silence n'est pas ici une pudeur : c'est le mode de communication du couple, et le roman le rend visible sur la page.</p>
       <p data-lang="en"><b>Analysis.</b> This is your observation, and it is stronger than you put it: the word is not merely avoided, <b>the typography replaces it with a blank</b>. Neither of them says it. And the announcement is buried inside an argument about a mattress, which makes the news almost inaudible. The silence is not modesty here: it is the couple's mode of communication, and the novel makes it visible on the page.</p>
     </div>
@@ -2116,7 +2154,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"They could not see her any more than she could see God."</p>
     <p class="locator" data-lang="fr">Ch. 3, dans la Cité, parmi les costumes sombres ; suivi de « She enjoyed this thought ».</p>
     <p class="locator" data-lang="en">Ch. 3, in the City, among the dark suits; followed by "She enjoyed this thought".</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"see God"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Invisibility is put theologically — the City "could not see her any more than she could see God" — and for one page she occupies the narrator’s own position.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> La comparaison la met à la place de Dieu, et elle s'en effraie deux paragraphes plus loin au point d'en pleurer. Mais entre les deux, elle en jouit : invisible, elle se met à scruter les autres. <b>L'exclusion se retourne en position d'observation</b> — et c'est exactement la position du narrateur. Le roman offre ici à son personnage, une page durant, son propre pouvoir.</p>
       <p data-lang="en"><b>Analysis.</b> The comparison puts her in God's place, and two paragraphs later it frightens her to tears. But in between she enjoys it: invisible, she begins to scrutinise the others. <b>Exclusion converts into a position of observation</b> — precisely the narrator's position. For one page the novel lends its character its own power.</p>
     </div>
@@ -2127,7 +2167,11 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"It was very little. But it was something."</p>
     <p class="locator" data-lang="fr">Ch. 3, sous la pluie, après avoir répondu « sorry » à l'homme aux lunettes épaisses.</p>
     <p class="locator" data-lang="en">Ch. 3, in the rain, after answering "sorry" to the man with thick lenses.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"very little" · "something"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The narrator calibrates the act himself: "It was very little. But it was something."</em></p>
+    <p class="micro span-note" data-lang="fr">Les deux phrases sont indissociables : la seconde corrige la première sans l’annuler.</p>
+    <p class="micro span-note" data-lang="en">The two sentences are inseparable: the second corrects the first without cancelling it.</p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> <b>La phrase-étalon du roman.</b> Le narrateur mesure lui-même l'acte et refuse de le grossir : deux propositions courtes, la seconde corrigeant la première sans l'annuler. C'est la forme grammaticale d'une réponse graduée — exactement ce qu'une question en <em>to what extent</em> ou en <em>is it fair to say</em> demande. Si tu ne retiens qu'une citation de la banque, retiens celle-ci.</p>
       <p data-lang="en"><b>Analysis.</b> <b>The novel's benchmark sentence.</b> The narrator measures the act himself and refuses to inflate it: two short clauses, the second correcting the first without cancelling it. It is the grammatical form of a graded answer — exactly what a <em>to what extent</em> or <em>is it fair to say</em> question demands. If you keep one quotation from this bank, keep this one.</p>
     </div>
@@ -2138,7 +2182,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"it was her heart that was ablaze, with mutiny"</p>
     <p class="locator" data-lang="fr">Ch. 3, la cuisine ; elle vient de se brûler la langue au dal après le refus de Chanu d'aller à Dhaka.</p>
     <p class="locator" data-lang="en">Ch. 3, the kitchen; she has just burned her tongue on the dal after Chanu's refusal to go to Dhaka.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"mutiny"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The word is "mutiny", not revolt — insubordination inside a hierarchy one continues to belong to.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> <em>Mutiny</em>, pas <em>rebellion</em> ni <em>revolt</em> : le mot désigne une insubordination <b>à l'intérieur</b> d'une hiérarchie à laquelle on continue d'appartenir. Un mutin ne quitte pas le navire. C'est la définition exacte de sa position, et le champ lexical se poursuit : insurrections, État à détruire de l'intérieur, actions de guérilla. Le roman applique un vocabulaire militaire à des chaussettes et à un sandwich, et l'ironie de l'écart est le sujet.</p>
       <p data-lang="en"><b>Analysis.</b> <em>Mutiny</em>, not <em>rebellion</em> or <em>revolt</em>: the word names insubordination <b>inside</b> a hierarchy one continues to belong to. A mutineer does not leave the ship. That is the exact definition of her position, and the lexical field continues: insurrections, a state to be destroyed from within, guerrilla actions. The novel applies military vocabulary to socks and a sandwich, and the irony of the gap is the point.</p>
     </div>
@@ -2149,7 +2195,11 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"If you think you are powerless, then you are. Everything is within you, where God put it."</p>
     <p class="locator" data-lang="fr">Ch. 3, salle d'attente du Dr Azad ; conclusion de l'histoire du puits et de la grève.</p>
     <p class="locator" data-lang="en">Ch. 3, Dr Azad's waiting room; the conclusion of the story of the well and the strike.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"powerless" · "within you"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Mrs Islam does not deny God but relocates Him: "If you think you are powerless, then you are", because everything is "within you, where God put it".</em></p>
+    <p class="micro span-note" data-lang="fr">Les deux phrases sont nécessaires : la seconde est celle qui déplace Dieu.</p>
+    <p class="micro span-note" data-lang="en">Both sentences are needed: the second is the one that relocates God.</p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Le roman place la doctrine inverse de celle du chapitre 1 dans la bouche de son personnage le plus autoritaire. La seconde phrase est la plus retorse : elle ne s’oppose pas à Dieu, elle le déplace — la puissance vient toujours de Lui, mais elle est déposée <em>en toi</em>. C’est la même théologie que celle d’Amma, retournée. Mrs Islam ajoute ensuite : si ton mari ne fait pas ce qu’il faut, demande-toi ce que <em>toi</em> tu as laissé de non fait. <b>C'est la citation qui permet de tenir deux lectures</b> — le roman n'endosse pas le fatalisme, il fait s'affronter deux doctrines sans arbitrer. Réserve pour elle qu'au fil du roman Mrs Islam se révélera usurière : sa parole est juste et sa personne, douteuse.</p>
       <p data-lang="en"><b>Analysis.</b> The novel places the doctrine opposite to chapter 1's in the mouth of its most authoritative character. The second sentence is the cunning one: it does not oppose God, it relocates Him — power still comes from Him, but it is deposited <em>inside you</em>. It is Amma’s theology, turned inside out. Mrs Islam then adds: if your husband does not do what is required, ask what <em>you</em> have left undone. <b>This is the quotation that lets you hold two readings</b> — the novel does not endorse fatalism, it sets two doctrines against each other without adjudicating. Reserve the point that later in the novel Mrs Islam proves to be a moneylender: her statement is sound and her person is not.</p>
     </div>
@@ -2160,7 +2210,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"What will happen will happen."</p>
     <p class="locator" data-lang="fr">Ch. 3, Chanu dans la cuisine, manteau et gants encore mis, à propos de la fuite de Hasina.</p>
     <p class="locator" data-lang="en">Ch. 3, Chanu in the kitchen, still in coat and gloves, about Hasina's flight.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"will happen"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The tautology is empty and total — "What will happen will happen" — and it is spoken by the one character with the money and the passport to act.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> La tautologie est parfaitement vide : elle n'énonce rien et justifie tout. Dans la bouche du seul personnage qui a un passeport, de l'argent et la liberté de se déplacer, elle sert à ne pas bouger. Nazneen le formule elle-même peu après : il ne peut accepter aucune chose de sa vie, sauf celle-là. <b>Argument majeur contre une lecture qui ferait du fatalisme une affaire de femmes.</b></p>
       <p data-lang="en"><b>Analysis.</b> The tautology is perfectly empty: it states nothing and justifies everything. In the mouth of the one character with a passport, money and freedom of movement, it serves to keep him still. Nazneen puts it herself shortly after: he can accept nothing in his life except this. <b>A major argument against any reading that makes fatalism a women's matter.</b></p>
     </div>
@@ -2171,7 +2223,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"I like to watch this woman. She have courage."</p>
     <p class="locator" data-lang="fr">Ch. 3, lettre de Hasina lue sur le banc ; elle décrit une mendiante au corps replié qui résiste à l'homme venu la charger sur sa charrette.</p>
     <p class="locator" data-lang="en">Ch. 3, Hasina's letter read on the bench; she describes a beggar woman with a folded body who resists the man who comes to load her onto his cart.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"courage"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The novel’s moral benchmark is entrusted to its least schooled voice: of a crippled beggar who resists, Hasina writes that "she have courage".</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Deux phrases courtes, une faute d'accord — et le jugement le plus net du chapitre. Hasina nomme <em>courage</em> ce que personne d'autre ne regarde : une femme infirme qui se traîne en arrière en criant plutôt que d'être emportée. Le roman confie son étalon moral à sa voix la moins scolaire. <b>À utiliser contre toute lecture qui associerait agentivité et éducation.</b></p>
       <p data-lang="en"><b>Analysis.</b> Two short sentences, one agreement error — and the sharpest judgement in the chapter. Hasina calls <em>courage</em> what nobody else looks at: a crippled woman shuffling backwards and shouting rather than be carried off. The novel entrusts its moral benchmark to its least schooled voice. <b>Use against any reading linking agency to education.</b></p>
     </div>
@@ -2182,7 +2236,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"If God wanted us to ask questions, he would have made us men."</p>
     <p class="locator" data-lang="fr">Ch. 3, dernière phrase du chapitre ; Amma répond à l'enfant qui demandait où va son père.</p>
     <p class="locator" data-lang="en">Ch. 3, the chapter's final sentence; Amma answers the child asking where her father goes.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"ask questions" · "men"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The doctrine ends not in obedience but in silence: if God had wanted women to "ask questions", He "would have made us men".</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Position capitale : c'est le dernier mot du chapitre où Nazneen a marché seule dans Londres et parlé anglais à un inconnu. La structure du chapitre oppose donc silencieusement un acte et son interdit. Et la phrase pousse la doctrine à son terme : le destin ne demande pas seulement l'obéissance mais <b>le renoncement à la question</b>. Rappelle-toi de la citation 13 en l'employant : celle qui prononce cette phrase mourra d'un acte de volonté.</p>
       <p data-lang="en"><b>Analysis.</b> A crucial position: it is the last word of the chapter in which Nazneen walked alone across London and spoke English to a stranger. The chapter's structure silently sets an act against its prohibition. And the sentence pushes the doctrine to its conclusion: fate demands not merely obedience but <b>the surrender of the question</b>. Remember quotation 13 when using it: the woman who says this will die by an act of will.</p>
     </div>
@@ -2196,7 +2252,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"He's staying here."</p>
     <p class="locator" data-lang="fr">Ch. 4, Mrs Islam veut emmener Raqib ; Nazneen répond trois fois la même chose, puis le texte énumère ce qu'elle aurait pu ajouter.</p>
     <p class="locator" data-lang="en">Ch. 4, Mrs Islam wants to take Raqib; Nazneen gives the same answer three times, then the text lists what she could have added.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"staying here"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Three words, repeated and unsoftened — "He’s staying here" — and the novel measures her courage by the four apologies she refuses to add.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Trois mots, aucune justification, aucune formule de politesse. Le roman souligne le geste en creux : il détaille les quatre phrases d'adoucissement qu'elle aurait pu employer, puis conclut que tout ce qu'elle a dit est cette phrase. <b>L'acte est ce qu'elle omet.</b> Note aussi le déclencheur : elle tremble, et c'est la chaleur du corps de l'enfant qui arme sa résolution — l'agentivité lui vient par la maternité, ce qui complique toute lecture où la maternité serait le piège.</p>
       <p data-lang="en"><b>Analysis.</b> Three words, no justification, no politeness formula. The novel underlines the gesture by omission: it itemises the four softening sentences she might have used, then concludes that all she said was this one. <b>The act is what she leaves out.</b> Note the trigger too: she trembles, and the warmth of the child's body fires her resolve — agency reaches her through motherhood, which complicates any reading in which motherhood is the trap.</p>
     </div>
@@ -2207,7 +2265,11 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"He can see, thought Nazneen. He can comment. But he cannot act."</p>
     <p class="locator" data-lang="fr">Ch. 4, pendant la coupe de cheveux ; le bébé pleure et Chanu commente sa frustration au lieu de ramasser le pain.</p>
     <p class="locator" data-lang="en">Ch. 4, during the haircut; the baby cries and Chanu comments on his frustration instead of picking up the bread.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"see" · "comment" · "act"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The gradation stops dead on its third term: he "can see", he "can comment", "but he cannot act".</em></p>
+    <p class="micro span-note" data-lang="fr">La figure n’existe qu’à trois termes : couper le premier la détruit.</p>
+    <p class="micro span-note" data-lang="en">The figure needs all three terms: cutting the first destroys it.</p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Trois propositions, trois verbes, une gradation qui s’arrête net. <em>See</em>, <em>comment</em>, <em>act</em> : le troisième terme, seul, est nié. Et le « thought Nazneen » du début donne l’attribution que la suite abandonne — les deux phrases suivantes sont du discours indirect libre pur, sans guillemets, et le narrateur ne la contredit pas. Elle vient d'énumérer tout ce qui ne se fera jamais — le diplôme, la promotion, la maison de Dhaka, la bibliothèque. <b>La femme qu'on dit passive est celle qui voit clair ; l'homme qui parle est celui qui n'agit pas.</b> Ta copie faisait de Nazneen la seule figure de la passivité : le texte l'attribue explicitement à Chanu, et par la voix de Nazneen.</p>
       <p data-lang="en"><b>Analysis.</b> Three clauses, three verbs, a gradation that stops dead. <em>See</em>, <em>comment</em>, <em>act</em>: only the third is negated. And the opening "thought Nazneen" supplies the attribution the rest abandons — the two following sentences are pure free indirect discourse, unmarked, and the narrator does not contradict her. She has just itemised everything that will never be done — the degree, the promotion, the Dhaka house, the library. <b>The woman called passive is the one who sees clearly; the man who talks is the one who does not act.</b> Your essay made Nazneen the sole figure of passivity: the text assigns it explicitly to Chanu, and in Nazneen's voice.</p>
     </div>
@@ -2218,7 +2280,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"Matters of life and death were simply beyond her scope."</p>
     <p class="locator" data-lang="fr">Ch. 4, souvenir d'enfance ; Nazneen a dix ans, Mustafa est ligoté à l'arbre et la supplie.</p>
     <p class="locator" data-lang="en">Ch. 4, a childhood memory; Nazneen is ten, Mustafa is tied to the tree and begging her.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"simply"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>One adverb carries the abdication: matters of life and death were "simply beyond her scope", and three men with sticks arrive while she fetches water.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse. La preuve la plus dure du roman.</b> L'adverbe <em>simply</em> fait tout le travail : il présente comme une évidence ce qui est une abdication. L'enfant raisonne ensuite comme sa mère — s'il vit encore à mon retour, c'est qu'il aura survécu — et part chercher de l'eau. Trois hommes passent avec des bâtons. <b>La doctrine du destin cesse d'être une consolation privée et devient une permission publique.</b> Emploie-la sans accabler l'enfant : le roman montre ce qu'on lui a enseigné, il ne la condamne pas.</p>
       <p data-lang="en"><b>Analysis. The novel's hardest evidence.</b> The adverb <em>simply</em> does all the work: it presents as self-evident what is an abdication. The child then reasons like her mother — if he is still alive when I return, he will have survived anyway — and goes for water. Three men pass carrying sticks. <b>The doctrine of fate stops being a private consolation and becomes a public permission.</b> Use it without blaming the child: the novel shows what she was taught, it does not condemn her.</p>
     </div>
@@ -2229,7 +2293,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"It was her place to sit and wait. […] How difficult it was, this business of sitting still."</p>
     <p class="locator" data-lang="fr">Ch. 4, dans le bus vers la maison du Dr Azad ; entre les deux, trois phrases sur l’envie de se lever et de courir.</p>
     <p class="locator" data-lang="en">Ch. 4, on the bus to Dr Azad's house; three sentences about wanting to get up and run stand between the two.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"business"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Stillness is work: "this business of sitting still" turns submission into a daily performance rather than a natural state.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Le mot <em>business</em> est le levier : il transforme l'immobilité en <b>travail</b>, en tâche exigeante qui coûte un effort continu. La première phrase énonce l’assignation au passé et à la troisième personne, comme un fait extérieur ; la seconde bascule dans sa voix à elle et en fait un effort. Entre les deux, trois phrases sur l’envie de courir ; deux phrases plus bas, elle négocie avec la chose sans nom qui la rend à la fois agitée et inerte. La soumission n'est donc pas un état naturel mais une performance quotidienne — ce qui répond directement au mot <em>victim</em> de ta question.</p>
       <p data-lang="en"><b>Analysis.</b> The word <em>business</em> is the lever: it turns stillness into <b>work</b>, a demanding task costing continuous effort. The first sentence states the assignment in the past tense and the third person, like an external fact; the second slips into her own voice and turns it into an effort. Between them, three sentences about wanting to run; two sentences later she is bargaining with the nameless thing that makes her both restless and listless. Submission is therefore not a natural state but a daily performance — which answers the word <em>victim</em> in your question directly.</p>
     </div>
@@ -2243,7 +2309,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"Why do you make it so complicated?"</p>
     <p class="locator" data-lang="fr">Ch. 5, chez les Azad ; Chanu vient d'énumérer assimilation, aliénation et identité.</p>
     <p class="locator" data-lang="en">Ch. 5, at the Azads'; Chanu has just listed assimilation, alienation and identity.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"complicated"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Mrs Azad meets a vocabulary of assimilation and alienation with six words — "Why do you make it so complicated?" — and wins before the argument starts.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Elle oppose à un vocabulaire universitaire une question de six mots, et la victoire est acquise avant l'argument. Ce qui suit est une série d'énoncés qu'elle présente comme des faits, pas des thèses. <b>Le roman confie sa contradiction la plus efficace à son personnage le moins raffiné</b> — comme il confiait le mot <em>courage</em> à Hasina (fiche 20). À employer dès qu'un sujet porte sur l'identité ou l'intégration : c'est le contre-argument prêt à l'emploi.</p>
       <p data-lang="en"><b>Analysis.</b> She meets an academic vocabulary with a six-word question, and the victory is won before the argument. What follows is a series of statements she presents as facts, not theses. <b>The novel entrusts its most effective contradiction to its least refined character</b> — as it entrusted the word <em>courage</em> to Hasina (entry 20). Use it whenever a question turns on identity or integration: it is the ready-made counter-argument.</p>
     </div>
@@ -2254,7 +2322,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"unhappiness greater than his own"</p>
     <p class="locator" data-lang="fr">Ch. 5, dans la chambre, pendant que Mrs Azad caresse la tête du bébé en fumant.</p>
     <p class="locator" data-lang="en">Ch. 5, in the bedroom, while Mrs Azad strokes the baby's head and smokes.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"greater than his own"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Nazneen works out what four chapters have withheld: the doctor visits as a man of science, to observe "unhappiness greater than his own".</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Nazneen déduit toute seule ce que le lecteur cherchait depuis quatre chapitres : le docteur ne vient ni pour la nourriture, ni pour les livres, mais comme homme de science observant un spécimen rare. Le comparatif est cruel et il vaut dans les deux sens — leur ménage est donc pire que celui des Azad. <b>Preuve que la femme réputée naïve est la seule à voir juste</b> : à opposer systématiquement à toute lecture de Nazneen en victime passive.</p>
       <p data-lang="en"><b>Analysis.</b> Nazneen works out on her own what the reader has been hunting for four chapters: the doctor comes neither for the food nor the books, but as a man of science observing a rare specimen. The comparative is cruel and cuts both ways — their household is therefore worse than the Azads'. <b>Proof that the woman reputed naive is the only one who sees straight</b>: set it against any reading of Nazneen as a passive victim.</p>
     </div>
@@ -2268,7 +2338,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"The city shattered. Everything was in pieces."</p>
     <p class="locator" data-lang="fr">Ch. 6, première ligne, vue depuis l'intérieur de l'ambulance.</p>
     <p class="locator" data-lang="en">Ch. 6, first line, seen from inside the ambulance.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"shattered"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The catastrophe is displaced onto the setting — "The city shattered" — and the mother’s fear is never named.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Deux phrases de quatre mots. La ville se brise, pas l'enfant, pas la mère : le roman déplace la catastrophe sur le décor et refuse de nommer la peur. C'est un procédé nommable — <b>pathetic fallacy</b> — et il vaut d'être identifié comme tel. Note aussi que Londres n'a jamais été aussi visible que cette nuit-là : pendant quatre chapitres Nazneen n'a vu la ville que par une fenêtre ; il faut la perte d'un enfant pour qu'elle la traverse.</p>
       <p data-lang="en"><b>Analysis.</b> Two four-word sentences. The city shatters, not the child, not the mother: the novel displaces the catastrophe onto the setting and refuses to name the fear. It is a nameable device — <b>pathetic fallacy</b> — and worth identifying as such. Note too that London has never been so visible as on that night: for four chapters Nazneen saw the city only through a window; it takes losing a child for her to cross it.</p>
     </div>
@@ -2279,7 +2351,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"She willed him to live and he did."</p>
     <p class="locator" data-lang="fr">Ch. 6, au chevet de Raqib ; précédé de la comparaison avec la mangouste immobile devant le serpent.</p>
     <p class="locator" data-lang="en">Ch. 6, at Raqib's cotside; preceded by the comparison with the mongoose still before a snake.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"willed" · "and he did"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The coordination is flat and therefore brutal: "She willed him to live and he did" — and the child dies a few pages later.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Six mots qui renversent le chapitre 1. La coordination est plate — <em>and he did</em> — et c'est exactement ce qui la rend brutale : aucune justification, aucun miracle, une conséquence posée comme un fait. <b>Piège à éviter absolument :</b> l'enfant meurt quelques pages plus tard. Si tu cites cette phrase pour prouver que la volonté triomphe, la suite du chapitre te dément. Cite-la pour montrer que le roman fait naître l'agentivité <em>et</em> refuse de la récompenser.</p>
       <p data-lang="en"><b>Analysis.</b> Six words overturning chapter 1. The coordination is flat — <em>and he did</em> — and that is exactly what makes it brutal: no justification, no miracle, a consequence stated as fact. <b>A trap to avoid absolutely:</b> the child dies a few pages later. If you quote this to prove will triumphs, the rest of the chapter refutes you. Quote it to show the novel gives birth to agency <em>and</em> refuses to reward it.</p>
     </div>
@@ -2290,7 +2364,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"Not accepting. Fighting."</p>
     <p class="locator" data-lang="fr">Ch. 6, seule dans l'appartement, en griffonnant dans la marge d'une lettre à Hasina.</p>
     <p class="locator" data-lang="en">Ch. 6, alone in the flat, doodling in the margin of a letter to Hasina.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"Not accepting. Fighting."</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>She names it in the margin of a letter she never sends, in two words without a verb: "Not accepting. Fighting."</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Deux mots isolés, sans verbe conjugué, sans sujet — la pensée surprise avant qu'elle ne devienne phrase. Et l'endroit compte autant que les mots : ce sont des notes en marge, elle les gribouille entre un dessin de fleur et un oiseau raté, et elle les raye du texte définitif. <b>Elle sait ce qui lui est arrivé et elle ne l'envoie pas.</b> À rapprocher de la fiche 31, deux lignes plus loin.</p>
       <p data-lang="en"><b>Analysis.</b> Two isolated words, no finite verb, no subject — thought caught before it becomes a sentence. And the place matters as much as the words: these are marginal notes, scribbled between a drawn flower and a failed bird, and she crosses them out of the fair copy. <b>She knows what has happened to her and she does not send it.</b> Pair with entry 31, two lines further on.</p>
     </div>
@@ -2301,7 +2377,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"Nobody else moving this pen."</p>
     <p class="locator" data-lang="fr">Ch. 6, même page ; elle vient d'écrire « I move my pen. This way. That way. »</p>
     <p class="locator" data-lang="en">Ch. 6, same page; she has just written "I move my pen. This way. That way."</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"Nobody else"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>To prove she exists as an agent she moves a pen and observes that there is "nobody else moving this pen".</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> La démonstration la plus modeste et la plus radicale du roman : pour se prouver qu'elle existe comme agent, elle bouge un stylo et constate que personne d'autre ne le bouge. La négation fait tout le travail — <em>nobody else</em> — comme dans la fiche 10 le rasoir qui ne glisse pas. <b>Rapproche les deux phrases dans une copie :</b> au chapitre 2 la main obéit, au chapitre 6 la main se découvre. C'est le genre de rapprochement qui fait monter une note.</p>
       <p data-lang="en"><b>Analysis.</b> The novel's most modest and most radical demonstration: to prove to herself that she exists as an agent, she moves a pen and observes that nobody else is moving it. The negative does all the work — <em>nobody else</em> — as with the razor that does not slip in entry 10. <b>Put the two sentences side by side in an essay:</b> in chapter 2 the hand obeys, in chapter 6 the hand discovers itself. That is the kind of pairing that lifts a mark.</p>
     </div>
@@ -2312,7 +2390,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"everything can be changed"</p>
     <p class="locator" data-lang="fr">Ch. 6, souvenir de la toilette funèbre ; Mumtaz rapporte les paroles d'Amma en claquant des doigts.</p>
     <p class="locator" data-lang="en">Ch. 6, the memory of washing the body; Mumtaz reports Amma's words with a snap of her fingers.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"everything can be changed"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Mumtaz reports, with a snap of her fingers, that Amma held that "everything can be changed" — the saint of resignation said the opposite of the family legend.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse. La révélation la plus explosive du roman sur la question du destin.</b> La sainte de la résignation disait le contraire de ce que Nazneen a passé sa vie à croire. Ce n'est pas Amma qui a enseigné la soumission : c'est le récit familial construit autour d'elle, entretenu par Abba et par la répétition. <b>Conséquence pour un essay :</b> la doctrine du destin n'est pas une croyance héritée, c'est une fabrication — et les fiches 01, 02 et 13 en donnent les fabricants.</p>
       <p data-lang="en"><b>Analysis. The most explosive revelation in the novel on the question of fate.</b> The saint of resignation said the opposite of what Nazneen spent her life believing. It was not Amma who taught submission: it was the family narrative built around her, maintained by Abba and by repetition. <b>Consequence for an essay:</b> the doctrine of fate is not an inherited belief but a manufacture — and entries 01, 02 and 13 supply the manufacturers.</p>
     </div>
@@ -2323,7 +2403,11 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"Where Nazneen turned in, he turned out"</p>
     <p class="locator" data-lang="fr">Ch. 6, à l'hôpital ; suivi de la liste des « outils » de Chanu — diplômes, maison, bibliothèque.</p>
     <p class="locator" data-lang="en">Ch. 6, at the hospital; followed by the list of Chanu's "tools" — degrees, house, library.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"turned in" · "turned out"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The chiasmus is the argument: "Where Nazneen turned in, he turned out", and the symmetry makes them fellow travellers rather than jailer and prisoner.</em></p>
+    <p class="micro span-note" data-lang="fr">Le chiasme suppose les deux membres : un seul ne dit rien.</p>
+    <p class="micro span-note" data-lang="en">A chiasmus requires both limbs: one alone says nothing.</p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Le chiasme est parfaitement symétrique, et la symétrie est l'argument : ils font la même chose en sens inverse. <b>Cette phrase interdit de traiter Chanu en simple oppresseur</b> et donne, en une ligne, le plan d'un paragraphe entier sur le couple. Note la générosité du procédé : c'est Nazneen qui pense cela de lui, au moment où leur enfant se meurt, et elle en conclut qu'ils ont voyagé ensemble.</p>
       <p data-lang="en"><b>Analysis.</b> The chiasmus is perfectly symmetrical, and the symmetry is the argument: they are doing the same thing in opposite directions. <b>This sentence forbids treating Chanu as a mere oppressor</b> and hands you, in one line, the plan of a whole paragraph on the marriage. Note the generosity of the device: it is Nazneen who thinks this of him, as their child is dying, and she concludes that they have travelled together.</p>
     </div>
@@ -2337,7 +2421,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"I am all that I have."</p>
     <p class="locator" data-lang="fr">Ch. 7, mars 1995 ; elle énumère à Ahmed ce qu'elle n'a pas, pour le dissuader de l'épouser.</p>
     <p class="locator" data-lang="en">Ch. 7, March 1995; she lists for Ahmed what she does not have, to dissuade him from marrying her.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"all that I have"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Five words hold destitution and sovereignty at once: "I am all that I have."</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Cinq mots, deux lectures opposées et le roman ne choisit pas. <b>Dénuement</b> : je ne possède rien d'autre que moi-même. <b>Souveraineté</b> : je suis à moi. Souviens-toi de la réplique de Shahnaz au chapitre 7 — elle refuse la dot en disant qu'elle est la dot. Les deux femmes formulent la même chose, l'une en position de force, l'autre à terre. <b>Citation idéale pour un paragraphe en « read one way… read another »</b>.</p>
       <p data-lang="en"><b>Analysis.</b> Five words, two opposed readings, and the novel does not choose. <b>Destitution</b>: I own nothing but myself. <b>Sovereignty</b>: I belong to myself. Recall Shahnaz's line in chapter 7 — she refuses a dowry by saying she is the dowry. The two women formulate the same thing, one from strength, one from the floor. <b>An ideal quotation for a "read one way… read another" paragraph.</b></p>
     </div>
@@ -2348,7 +2434,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"Everything has happen is because of me."</p>
     <p class="locator" data-lang="fr">Ch. 7, mai 1991, dans la lettre écrite après le viol ; suivie de la liste de ses « torts ».</p>
     <p class="locator" data-lang="en">Ch. 7, May 1991, in the letter written after the rape; followed by the list of her "faults".</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"because of me"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>She itemises her free acts and converts them into charges — "Everything has happen is because of me" — and her attacker drops off the list.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> À manier avec sérieux. Ce qu'elle énumère ensuite, ce sont exactement ses <em>actes libres</em> : avoir pris un mari, l'avoir quitté, être allée à l'usine, avoir laissé un collègue la raccompagner. <b>Elle convertit son agentivité en chef d'accusation, et son agresseur disparaît de la liste.</b> C'est le revers exact de la fiche 31 : là, bouger le stylo prouvait qu'elle existait ; ici, avoir bougé prouve qu'elle est coupable. Une copie qui tient ces deux fiches ensemble montre qu'elle a compris le roman.</p>
       <p data-lang="en"><b>Analysis.</b> To be handled seriously. What she goes on to list are precisely her <em>free acts</em>: taking a husband, leaving him, going to the factory, letting a colleague walk her home. <b>She converts her agency into an indictment, and her attacker drops off the list.</b> It is the exact obverse of entry 31: there, moving the pen proved she existed; here, having moved proves she is guilty. An essay holding these two entries together shows it has understood the novel.</p>
     </div>
@@ -2359,7 +2447,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"How I love the walls keep me here."</p>
     <p class="locator" data-lang="fr">Ch. 7, avril 1995, trois semaines après son mariage avec Ahmed, sans sortir de l'appartement.</p>
     <p class="locator" data-lang="en">Ch. 7, April 1995, three weeks after marrying Ahmed, without leaving the flat.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"love the walls"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The sister who crossed everything ends by loving enclosure: "How I love the walls keep me here."</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> La symétrie la plus douloureuse du roman. Nazneen a passé quatre chapitres à regarder par la fenêtre d'un appartement dont elle ne sortait pas ; Hasina, qui a tout traversé, finit par <em>aimer</em> des murs. Le verbe est au présent et la phrase est adressée à la sœur enfermée. <b>Pour une question sur la liberté, cette fiche est indispensable</b> : elle empêche d'opposer simplement la sœur libre et la sœur captive, puisque la libre en vient à désirer la captivité.</p>
       <p data-lang="en"><b>Analysis.</b> The novel's most painful symmetry. Nazneen spent four chapters looking out of the window of a flat she did not leave; Hasina, who crossed everything, ends by <em>loving</em> walls. The verb is present tense and the sentence is addressed to the enclosed sister. <b>For a question on freedom this entry is indispensable</b>: it prevents any simple opposition of free sister and captive sister, since the free one comes to desire captivity.</p>
     </div>
@@ -2370,7 +2460,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"We waiting and suffering. That is why we here."</p>
     <p class="locator" data-lang="fr">Ch. 7, juin 1990 ; Renu, veuve à quinze ans, consolant Hasina après une humiliation à l'usine.</p>
     <p class="locator" data-lang="en">Ch. 7, June 1990; Renu, widowed at fifteen, consoling Hasina after a humiliation at the factory.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"waiting and suffering"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The doctrine travels: on a factory bench in Narayanganj, Renu says "we waiting and suffering", and Hasina notes she is reminded of their mother.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> La doctrine de Gouripur, prononcée mot pour mot sur un banc d'usine à Narayanganj par une femme qui n'a jamais rencontré Amma. Hasina le note elle-même : Renu lui rappelle leur mère. <b>Le fatalisme n'est donc ni villageois ni générationnel : c'est ce que disent les femmes qui n'ont pas de sortie.</b> Et Hasina y répond dans la même lettre par le refus le plus net du roman — elle n'attend pas, elle ne souffre pas, que Renu souffre si ça lui plaît.</p>
       <p data-lang="en"><b>Analysis.</b> The doctrine of Gouripur, spoken word for word on a factory bench in Narayanganj by a woman who never met Amma. Hasina notes it herself: Renu reminds her of their mother. <b>Fatalism is therefore neither rural nor generational: it is what women with no exit say.</b> And Hasina answers in the same letter with the novel's flattest refusal — she is not waiting, she is not suffering, and Renu may suffer if she likes it.</p>
     </div>
@@ -2384,7 +2476,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"I didn't ask to be born here."</p>
     <p class="locator" data-lang="fr">Ch. 8, fin d'une correction ; c'est la phrase qu'elle crie chaque fois et que toute la famille connaît d'avance.</p>
     <p class="locator" data-lang="en">Ch. 8, the end of a flogging; the line she shouts every time and that the whole family knows in advance.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"didn’t ask"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>Shahana turns her father’s exile against him — "I didn’t ask to be born here" — and the whole family knows the line before it comes.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Trois choses. <b>(1)</b> Elle retourne contre son père son propre thème : lui n'a pas choisi de rester, elle n'a pas choisi de naître. <b>(2)</b> C'est la formule exacte de la naissance non consentie — donc le thème du chapitre 1 rejoué par la génération suivante. <b>(3)</b> Le texte précise que tout le monde connaît la fin d'avance : la révolte est devenue un rituel domestique, aussi codifié que les corrections. <b>Le roman refuse la scène d'émancipation même à l'adolescente rebelle.</b></p>
       <p data-lang="en"><b>Analysis.</b> Three things. <b>(1)</b> She turns her father's own theme against him: he did not choose to stay, she did not choose to be born. <b>(2)</b> It is the exact formula of non-consented birth — chapter 1's theme replayed by the next generation. <b>(3)</b> The text specifies that everyone knows the ending in advance: revolt has become a domestic ritual, as codified as the beatings. <b>The novel denies even the rebellious teenager her scene of emancipation.</b></p>
     </div>
@@ -2395,7 +2489,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"They demanded to be understood."</p>
     <p class="locator" data-lang="fr">Ch. 8, dans la chambre des filles ; le texte vient d'écarter Razia, les manuels et les « phrases clés ».</p>
     <p class="locator" data-lang="en">Ch. 8, in the girls' bedroom; the text has just dismissed Razia, textbooks and "key phrases".</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"demanded"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The girls do not teach their mother English; they "demanded to be understood", and requirement succeeds where every route Chanu could close had failed.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> Le verbe <em>demand</em> fait tout : les filles n'enseignent pas, elles exigent — et l'exigence suffit là où la pédagogie échouait. Mets cette phrase en face de la fiche 09, où Chanu demandait où était le besoin. <b>L'anglais que le mari a refusé arrive par la seule voie qu'il ne pouvait pas fermer</b>, et il arrive sans que Nazneen l'ait décidé. Le roman place ainsi sa conquête la plus importante hors du cadre de la volonté — ce qui, pour une question sur l'agentivité, est une complication précieuse et non un contre-exemple.</p>
       <p data-lang="en"><b>Analysis.</b> The verb <em>demand</em> does everything: the girls do not teach, they require — and requirement succeeds where pedagogy failed. Set this against entry 09, where Chanu asked where the need was. <b>The English her husband refused arrives by the one route he could not close</b>, and it arrives without Nazneen deciding it. The novel thus places her most important conquest outside the frame of the will — which, for a question on agency, is a valuable complication rather than a counter-example.</p>
     </div>
@@ -2406,7 +2502,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"You will find a way. God always gives a way."</p>
     <p class="locator" data-lang="fr">Ch. 8, sur le pas de la porte, après avoir réclamé cinquante livres à une femme qui n'en a pas.</p>
     <p class="locator" data-lang="en">Ch. 8, on the doorstep, having demanded fifty pounds from a woman who has none.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"gives a way"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>The theology of chapter three returns as a collection method: "God always gives a way", said to a woman who owes fifty pounds at thirty-three per cent.</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> À rapprocher obligatoirement de la fiche 18. Au chapitre 3, la même femme disait que si l'on se croit impuissant on l'est, et que la force est en soi, déposée par Dieu — et c'était admirable. Cinq chapitres plus tard, la même théologie sert à réclamer une dette à trente-trois pour cent. <b>Le roman ne réfute donc pas la doctrine de Mrs Islam, il en montre l'usage.</b> C'est la meilleure démonstration disponible du principe qui gouverne tout le livre : ce qui compte n'est pas ce qu'une phrase dit, mais qui la prononce, à qui, et pour obtenir quoi.</p>
       <p data-lang="en"><b>Analysis.</b> Must be paired with entry 18. In chapter 3 the same woman said that if you think you are powerless then you are, and that strength is within you, put there by God — and it was admirable. Five chapters later the same theology is used to collect a debt at thirty-three per cent. <b>The novel does not refute Mrs Islam's doctrine, it shows its use.</b> It is the best available demonstration of the principle governing the whole book: what matters is not what a sentence says but who says it, to whom, and to obtain what.</p>
     </div>
@@ -2417,7 +2515,9 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
     <p class="bq">"A loss of pride is a terrible thing."</p>
     <p class="locator" data-lang="fr">Ch. 8, après la leçon sur le Bengale du seizième siècle ; il parle au mur, à l'endroit où ses diplômes étaient accrochés dans l'ancien appartement.</p>
     <p class="locator" data-lang="en">Ch. 8, after the lesson on sixteenth-century Bengal; he speaks to the wall, at the place where his certificates hung in the old flat.</p>
-    <div class="analyse">
+        <p class="micro"><b data-lang="fr">Les mots.</b><b data-lang="en">The words.</b> <span class="w">"loss of pride"</span></p>
+    <p class="micro"><b data-lang="fr">En copie.</b><b data-lang="en">In an essay.</b> <em>He addresses the bare wall where his certificates used to hang: "A loss of pride is a terrible thing."</em></p>
+<div class="analyse">
       <p data-lang="fr"><b>Analyse.</b> La didascalie vaut plus que la phrase : il s'adresse à un mur nu, précisément là où ses certificats étaient accrochés avant le déménagement. <b>Il parle de sa propre fierté en croyant parler de celle d'une nation</b>, et le texte ne le dit pas — il place seulement le regard au bon endroit. C'est le sommet de l'ironie tendre que le roman réserve à Chanu : ridicule dans la forme, exact sur le fond. Excellente citation de clôture pour un paragraphe sur l'exil, la classe ou la masculinité blessée.</p>
       <p data-lang="en"><b>Analysis.</b> The stage direction is worth more than the line: he addresses a bare wall, precisely where his certificates hung before the move. <b>He is talking about his own pride while believing he is talking about a nation's</b>, and the text does not say so — it merely puts his gaze in the right place. It is the summit of the tender irony the novel reserves for Chanu: ridiculous in form, exact in substance. An excellent closing quotation for a paragraph on exile, class or wounded masculinity.</p>
     </div>
