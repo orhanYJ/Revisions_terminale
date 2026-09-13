@@ -1,5 +1,5 @@
 /* ACL Oral — Dystopian Writing · service worker */
-const CACHE = 'acloral-v1';
+const CACHE = 'acloral-v2-butler';
 
 /* Fichiers de l'app à précacher (chemins relatifs au scope ./). */
 const ASSETS = [
