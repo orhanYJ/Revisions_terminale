@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sensibiliser ou réguler — Projet CDM · Orhan Yildiz-Jalaguier</title>
+<meta name="description" content="Projet de Connaissance du Monde : à l'ère du numérique, qu'est-ce qui change vraiment les comportements de santé des adolescents ?">
+<meta name="theme-color" content="#26202E">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+/* ─────────────────────────────────────────────
+   Palette : l'heure qui précède le sommeil.
+   Chaud = sommeil. Froid = écran. Vert = environnement.
+   ───────────────────────────────────────────── */
+:root{
+  --nuit:        #26202E;
+  --nuit-creux:  #1B1622;
+  --nuit-clair:  #322A3B;
+  --ivoire:      #F3EADD;
+  --ivoire-bas:  #BCAE9F;
+  --ambre:       #E8A34F;
+  --ambre-bas:   #A8763A;
+  --mousse:      #93A87C;
+  --ecran:       #7D95CE;
+
+  --serif: "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --hum:   Optima,"Gill Sans","Gill Sans MT","Avenir Next",Avenir,"Trebuchet MS",sans-serif;
+
+  --mesure: 34rem;
+  --marge: 1.6rem;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{animation:none !important;transition:none !important}
+}
+
+body{
+  margin:0;
+  background:var(--nuit);
+  color:var(--ivoire);
+  font-family:var(--serif);
+  font-size:1.0625rem;
+  line-height:1.72;
+  overflow-x:hidden;
+}
+
+/* La lueur de lampe : un seul moment orchestré, au chargement. */
+.lueur{
+  position:fixed;
+  top:-28vh; left:50%;
+  width:120vw; max-width:1100px;
+  aspect-ratio:1;
+  transform:translateX(-50%);
+  background:radial-gradient(circle at 50% 50%,
+    rgba(232,163,79,.17) 0%,
+    rgba(232,163,79,.07) 38%,
+    rgba(232,163,79,0) 68%);
+  pointer-events:none;
+  z-index:0;
+  opacity:0;
+  animation:allume 2.6s ease-out .15s forwards;
+}
+@keyframes allume{to{opacity:1}}
+
+.enveloppe{position:relative;z-index:1}
+
+/* ── Navigation ─────────────────────────────── */
+.barre{
+  position:sticky; top:0; z-index:20;
+  background:rgba(38,32,46,.93);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+  border-bottom:1px solid rgba(243,234,221,.09);
+}
+.barre nav{
+  display:flex; gap:.15rem;
+  overflow-x:auto;
+  scrollbar-width:none;
+  padding:.5rem var(--marge);
+  max-width:64rem; margin:0 auto;
+}
+.barre nav::-webkit-scrollbar{display:none}
+.barre a{
+  flex:0 0 auto;
+  font-family:var(--hum);
+  font-size:.8rem;
+  letter-spacing:.012em;
+  color:var(--ivoire-bas);
+  text-decoration:none;
+  padding:.42rem .72rem;
+  border-radius:999px;
+  white-space:nowrap;
+}
+.barre a:hover,.barre a:focus-visible{color:var(--ivoire);background:rgba(243,234,221,.07)}
+
+/* ── Trame générale ─────────────────────────── */
+main{max-width:64rem;margin:0 auto;padding:0 var(--marge)}
+section{padding:3.6rem 0;max-width:var(--mesure)}
+section:first-of-type{padding-top:2.4rem}
+
+h1,h2,h3{font-family:var(--hum);font-weight:500;letter-spacing:-.005em}
+h1{
+  font-size:clamp(1.95rem,7.4vw,3.1rem);
+  line-height:1.14;
+  margin:0 0 1.2rem;
+  max-width:16ch;
+}
+h2{
+  font-size:clamp(1.42rem,4.6vw,1.85rem);
+  line-height:1.24;
+  margin:0 0 .5rem;
+}
+h3{
+  font-size:1.06rem;
+  line-height:1.35;
+  margin:2rem 0 .45rem;
+  color:var(--ambre);
+}
+p{margin:0 0 1.05rem}
+a{color:var(--ambre)}
+
+.chapo{
+  font-size:1.14rem;
+  color:var(--ivoire-bas);
+  line-height:1.66;
+}
+.souffle{
+  font-family:var(--hum);
+  font-size:.82rem;
+  color:var(--ivoire-bas);
+  margin:0 0 1.9rem;
+}
+
+/* ── Hero ───────────────────────────────────── */
+.ouverture{padding-top:3.4rem;padding-bottom:1rem}
+.ouverture h1{max-width:18ch}
+.signature{
+  font-family:var(--hum);
+  font-size:.86rem;
+  color:var(--ivoire-bas);
+  line-height:1.6;
+  margin-top:2.2rem;
+  padding-top:1.1rem;
+  border-top:1px solid rgba(243,234,221,.13);
+}
+.vo{
+  font-style:italic;
+  color:var(--ivoire-bas);
+  font-size:1rem;
+  margin-top:-.3rem;
+}
+
+/* ── Formes organiques ──────────────────────── */
+.galet{
+  background:var(--nuit-clair);
+  border-radius:2.4rem 1.5rem 2.2rem 1.7rem / 1.7rem 2.3rem 1.6rem 2.4rem;
+  padding:1.5rem 1.55rem;
+  margin:1.5rem 0;
+}
+.galet p:last-child{margin-bottom:0}
+.galet h3{margin-top:0}
+
+.onde{display:block;width:100%;height:52px;opacity:.5}
+
+/* ── Les quatre notions ─────────────────────── */
+.notions{list-style:none;padding:0;margin:1.4rem 0 0}
+.notions li{
+  padding:.95rem 0 .95rem 1.5rem;
+  border-left:2px solid var(--mousse);
+  border-radius:0 1.4rem 1.4rem 0;
+  margin-bottom:.7rem;
+  background:linear-gradient(90deg,rgba(147,168,124,.11),rgba(147,168,124,0) 72%);
+}
+.notions b{font-family:var(--hum);font-weight:500;color:var(--ivoire);display:block}
+.notions span{color:var(--ivoire-bas);font-size:.97rem}
+
+/* ── Fiches de lecture ──────────────────────── */
+.fiche{
+  margin:2.4rem 0;
+  padding-left:1.35rem;
+  border-left:2px solid var(--ambre-bas);
+}
+.fiche > h3{margin-top:0}
+.ref{
+  font-family:var(--hum);
+  font-size:.78rem;
+  color:var(--ivoire-bas);
+  margin-bottom:.9rem;
+  line-height:1.5;
+}
+.chiffres{list-style:none;padding:0;margin:1rem 0}
+.chiffres li{
+  display:flex;
+  gap:.85rem;
+  align-items:baseline;
+  padding:.55rem 0;
+  border-bottom:1px dotted rgba(243,234,221,.16);
+}
+.chiffres li:last-child{border-bottom:0}
+.chiffres b{
+  font-family:var(--hum);
+  font-weight:500;
+  font-size:1.22rem;
+  color:var(--ambre);
+  flex:0 0 auto;
+  min-width:4.6rem;
+  line-height:1.2;
+}
+.chiffres span{font-size:.97rem;color:var(--ivoire-bas)}
+
+.retenir{
+  font-family:var(--hum);
+  font-size:.98rem;
+  line-height:1.6;
+  color:var(--ivoire);
+  background:rgba(232,163,79,.09);
+  border-radius:1.6rem 1.1rem 1.5rem 1.2rem / 1.2rem 1.5rem 1.1rem 1.6rem;
+  padding:1.05rem 1.2rem;
+  margin-top:1.1rem;
+}
+.retenir em{font-style:normal;color:var(--ambre)}
+
+.reserve{
+  font-size:.95rem;
+  color:var(--ivoire-bas);
+  border-left:2px solid var(--ecran);
+  padding:.2rem 0 .2rem .9rem;
+  margin:1.1rem 0;
+}
+.reserve b{font-family:var(--hum);font-weight:500;color:var(--ecran)}
+
+/* ── Chronologie australienne ───────────────── */
+.chrono{list-style:none;padding:0;margin:1.6rem 0 0;position:relative}
+.chrono::before{
+  content:"";
+  position:absolute;
+  left:5px; top:.6rem; bottom:.6rem;
+  width:2px;
+  background:linear-gradient(180deg,var(--ambre-bas),rgba(125,149,206,.55));
+}
+.chrono li{position:relative;padding:0 0 1.5rem 1.75rem}
+.chrono li::before{
+  content:"";
+  position:absolute;
+  left:0; top:.52rem;
+  width:12px;height:12px;
+  border-radius:60% 40% 55% 45%;
+  background:var(--ambre);
+}
+.chrono time{
+  display:block;
+  font-family:var(--hum);
+  font-size:.78rem;
+  color:var(--ambre);
+  margin-bottom:.15rem;
+}
+.chrono p{margin:0;font-size:.99rem;color:var(--ivoire-bas)}
+.chrono strong{color:var(--ivoire);font-weight:400}
+
+/* ── Deux colonnes (partenaires) ────────────── */
+.duo{display:grid;gap:1.1rem;margin-top:1.5rem}
+@media (min-width:44rem){
+  .duo{grid-template-columns:1fr 1fr}
+  section{max-width:none}
+  section > p,section > .chapo,section > h2,section > h3,
+  section > ul,section > ol,section > .fiche,section > .chrono,
+  section > .souffle,section > .galet,section > .retenir{max-width:var(--mesure)}
+  .duo{max-width:52rem}
+  .plan{max-width:52rem}
+}
+.carte{
+  background:var(--nuit-clair);
+  border-radius:2rem 1.3rem 1.9rem 1.4rem / 1.4rem 2rem 1.3rem 1.9rem;
+  padding:1.35rem 1.4rem;
+}
+.carte h3{margin:0 0 .2rem;color:var(--ivoire);font-size:1rem}
+.carte .role{
+  font-family:var(--hum);
+  font-size:.76rem;
+  color:var(--mousse);
+  margin-bottom:.7rem;
+}
+.carte p{font-size:.96rem;color:var(--ivoire-bas);margin-bottom:0}
+.carte.attente{border:1px dashed rgba(125,149,206,.45);background:transparent}
+.carte.attente .role{color:var(--ecran)}
+
+/* ── Plan des dix minutes ───────────────────── */
+.plan{list-style:none;counter-reset:etape;padding:0;margin:1.5rem 0 0}
+.plan li{
+  counter-increment:etape;
+  position:relative;
+  padding:.9rem 0 .9rem 3.2rem;
+  border-bottom:1px solid rgba(243,234,221,.1);
+}
+.plan li:last-child{border-bottom:0}
+.plan li::before{
+  content:counter(etape);
+  position:absolute; left:0; top:.85rem;
+  width:2.1rem;height:2.1rem;
+  display:grid;place-items:center;
+  border-radius:58% 42% 50% 50% / 45% 52% 48% 55%;
+  background:rgba(232,163,79,.16);
+  color:var(--ambre);
+  font-family:var(--hum);
+  font-size:.88rem;
+}
+.plan b{font-family:var(--hum);font-weight:500;display:block;color:var(--ivoire)}
+.plan span{font-size:.96rem;color:var(--ivoire-bas)}
+.plan .minutage{
+  font-family:var(--hum);
+  font-size:.74rem;
+  color:var(--ambre-bas);
+  float:right;
+  margin-left:.7rem;
+}
+
+/* ── Terrain ────────────────────────────────── */
+.etapes{padding-left:1.15rem;margin:1.2rem 0}
+.etapes li{margin-bottom:.75rem;color:var(--ivoire-bas)}
+.etapes li::marker{color:var(--ambre-bas)}
+.etapes b{color:var(--ivoire);font-family:var(--hum);font-weight:500}
+
+/* ── Pied ───────────────────────────────────── */
+footer{
+  background:var(--nuit-creux);
+  margin-top:3rem;
+  padding:2.8rem var(--marge) 3.4rem;
+}
+.dedans{max-width:var(--mesure);margin:0 auto}
+footer h2{font-size:1.15rem;margin-bottom:1rem}
+footer ol{padding-left:1.15rem;margin:0 0 1.8rem}
+footer li{
+  font-size:.87rem;
+  line-height:1.55;
+  color:var(--ivoire-bas);
+  margin-bottom:.75rem;
+}
+footer li::marker{color:var(--ambre-bas)}
+.colophon{
+  font-family:var(--hum);
+  font-size:.76rem;
+  color:var(--ivoire-bas);
+  line-height:1.6;
+  padding-top:1.2rem;
+  border-top:1px solid rgba(243,234,221,.12);
+}
+
+:focus-visible{outline:2px solid var(--ambre);outline-offset:3px;border-radius:3px}
+::selection{background:rgba(232,163,79,.3)}
+</style>
+</head>
+<body>
+
+<div class="lueur" aria-hidden="true"></div>
+
+<div class="enveloppe">
+
+<div class="barre">
+  <nav aria-label="Sections du dossier">
+    <a href="#question">La question</a>
+    <a href="#probleme">Le problème</a>
+    <a href="#lectures">Trois lectures</a>
+    <a href="#australie">Le cas australien</a>
+    <a href="#partenaires">Partenaires</a>
+    <a href="#terrain">Mon terrain</a>
+    <a href="#position">Ma position</a>
+  </nav>
+</div>
+
+<main>
+
+<!-- ══ OUVERTURE ══════════════════════════════ -->
+<section id="question" class="ouverture">
+  <h1>À l'ère du numérique, qu'est-ce qui change vraiment les comportements de santé des adolescents&nbsp;?</h1>
+  <p class="vo">In the digital age, what actually changes teenagers' health behaviour — awareness or regulation?</p>
+  <p class="chapo">Deux réponses s'affrontent&nbsp;: leur expliquer, ou le leur interdire. J'ai pris un cas précis pour trancher — le sommeil et les écrans — et j'ai regardé ce que disent les essais, les lois déjà votées, et les adolescents autour de moi.</p>
+  <p class="signature">
+    Orhan Yildiz-Jalaguier · Terminale, section anglaise<br>
+    Cité Scolaire Internationale Jacques Chirac, Marseille<br>
+    Baccalauréat Français International — Connaissance du Monde
+  </p>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,30 C180,8 320,48 520,30 C700,14 840,44 1020,28 C1110,20 1160,26 1200,24"
+        fill="none" stroke="#E8A34F" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ LE PROBLÈME ════════════════════════════ -->
+<section id="probleme">
+  <h2>Un risque de santé récent, mondial, et presque invisible</h2>
+  <p class="souffle">Ce que le sommeil des adolescents révèle de la santé publique aujourd'hui</p>
+
+  <p>Le manque de sommeil pendant l'enfance et l'adolescence a des conséquences documentées sur l'attention, la mémoire, la composition corporelle, la régulation émotionnelle et les résultats scolaires. Les recommandations publiques varient peu d'un pays à l'autre&nbsp;: environ neuf à onze heures pour un enfant de 6 à 13 ans, huit à dix pour un adolescent de 14 à 17 ans. Une large part des jeunes ne les atteint pas.</p>
+
+  <p>Ce qui rend ce risque intéressant, c'est qu'il ne ressemble à aucune menace sanitaire classique. Il n'y a ni agent pathogène, ni exposition subie&nbsp;: le comportement est volontaire, agréable, socialement valorisé, et son coût n'apparaît que des années plus tard. C'est exactement le type de problème que la santé publique du XXI<sup>e</sup> siècle doit apprendre à traiter.</p>
+
+  <h3>Les quatre notions qui structurent mon analyse</h3>
+  <ul class="notions">
+    <li>
+      <b>Santé globale</b>
+      <span>Le même comportement, les mêmes appareils, les mêmes plateformes, du Royaume-Uni à la Chine. Un problème qui ne s'arrête à aucune frontière et qu'aucun État ne peut résoudre seul.</span>
+    </li>
+    <li>
+      <b>Transition épidémiologique</b>
+      <span>On ne meurt plus d'infections mais de maladies chroniques liées aux modes de vie. Le sommeil dégradé s'inscrit dans cette bascule&nbsp;: il alimente l'obésité, l'hypertension, les troubles de l'humeur.</span>
+    </li>
+    <li>
+      <b>Déterminants sociaux de la santé</b>
+      <span>L'heure de début des cours, la présence d'un écran dans la chambre, le contrôle parental, la pression scolaire. Le sommeil n'est pas qu'un choix individuel&nbsp;: c'est un produit de l'environnement.</span>
+    </li>
+    <li>
+      <b>Les trois niveaux de prévention</b>
+      <span>Sensibiliser relève du primaire. Interdire aussi, mais par la contrainte. Repérer un adolescent déjà en dette de sommeil relève du secondaire. Mes deux hypothèses jouent au même niveau, avec des moyens opposés.</span>
+    </li>
+  </ul>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,26 C160,44 300,10 480,26 C660,42 800,12 980,28 C1090,37 1150,30 1200,32"
+        fill="none" stroke="#93A87C" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ TROIS LECTURES ═════════════════════════ -->
+<section id="lectures">
+  <h2>Trois lectures qui répondent à ma question</h2>
+  <p class="souffle">Une sur la sensibilisation, une sur la culture, une sur la loi</p>
+
+  <div class="fiche">
+    <h3>La sensibilisation seule ne change pas les comportements</h3>
+    <p class="ref">Gaskin, Venegas Hargous, Stephens et al., <i>SLEEP Advances</i>, 2024 — revue systématique, accès libre</p>
+
+    <p>Une revue systématique de vingt-et-une études randomisées portant sur 10&nbsp;867 enfants et adolescents dans treize pays. L'éducation au sommeil y est de loin l'intervention la plus fréquente. Ces programmes sont courts&nbsp;: quatre semaines et environ deux cents minutes d'exposition en médiane.</p>
+
+    <p>La conclusion des auteurs est nette&nbsp;: les interventions d'éducation au sommeil se sont révélées typiquement inefficaces sur le comportement. Là où un effet apparaît, il est transitoire, il ne concerne qu'une minorité des variables mesurées, et il a souvent disparu au suivi suivant. Le seul levier qui produit un effet net est d'un tout autre ordre&nbsp;: retarder l'heure de début des cours.</p>
+
+    <ul class="chiffres">
+      <li><b>21</b><span>essais randomisés retenus, sur 10&nbsp;867 jeunes de treize pays</span></li>
+      <li><b>9/14</b><span>études où l'éducation seule modifie les rythmes de sommeil au premier suivi — mais seulement 3 sur 9 aux suivis ultérieurs, et 0 sur 5 pour l'hygiène de sommeil</span></li>
+      <li><b>0,71</b><span>taille d'effet sur l'heure de réveil quand on retarde l'heure des cours d'une heure&nbsp;; 0,29 sur la durée de sommeil</span></li>
+    </ul>
+
+    <p class="retenir">Informer augmente le savoir, pas le comportement. <em>Le savoir accru ne se traduit pas en changement durable.</em> Les auteurs recommandent d'abandonner les dispositifs purement éducatifs au profit d'approches multi-composantes impliquant l'établissement entier, les familles et la collectivité.</p>
+
+    <p class="reserve"><b>Ma réserve.</b> Tous les résultats de la revue présentent un risque de biais élevé ou des réserves méthodologiques, et les auteurs n'ont pas pu conduire la méta-analyse prévue faute de données exploitables. Le résultat sur l'horaire de cours vient d'une seule étude, à risque de biais élevé. Prudence donc&nbsp;: cette revue montre surtout l'absence de preuve d'efficacité, ce qui n'est pas tout à fait la preuve d'une absence d'effet.</p>
+  </div>
+
+  <div class="fiche">
+    <h3>Le même écran n'a pas le même effet selon le pays</h3>
+    <p class="ref">Yang &amp; Zhang, <i>Frontiers in Psychology</i>, volume 16 (2025), publié le 5 janvier 2026 — accès libre</p>
+
+    <p>Sept cent trente-et-un adolescents chinois et britanniques, d'âge moyen treize ans, ont rempli une échelle de temps d'écran de loisir, l'échelle de self-control perçu de l'enfant et une partie de la Youth Self-Rating Insomnia Scale. Six cent quarante réponses ont été retenues après nettoyage.</p>
+
+    <p>Le temps d'écran est négativement associé à la qualité du sommeil. Mais l'intérêt de l'étude est ailleurs&nbsp;: elle identifie par où passe cet effet. Le self-control joue un rôle médiateur — l'écran ne vole pas directement des heures de sommeil, il érode d'abord la capacité à s'arrêter. Et la culture du pays modère ce chemin.</p>
+
+    <ul class="chiffres">
+      <li><b>640</b><span>adolescents chinois et britanniques analysés, âge moyen 12,93 ans</span></li>
+      <li><b>b&nbsp;=&nbsp;0,22</b><span>association entre temps d'écran et qualité du sommeil, p &lt; 0,001</span></li>
+      <li><b>b&nbsp;=&nbsp;0,50</b><span>effet modérateur de la culture nationale sur le chemin écran → self-control, p = 0,007</span></li>
+    </ul>
+
+    <p class="retenir">Le mécanisme n'est pas seulement biologique. <em>C'est la capacité de s'arrêter qui cède avant le sommeil.</em> Et le contexte culturel change la force de cet effet — ce qui condamne l'idée d'une solution unique transposable partout.</p>
+
+    <p class="reserve"><b>Ma réserve.</b> Étude transversale&nbsp;: elle mesure une association à un instant donné, pas une causalité. On ne peut pas exclure que les adolescents ayant peu de self-control soient simplement ceux qui passent le plus de temps devant un écran, plutôt que l'inverse.</p>
+  </div>
+
+  <div class="fiche">
+    <h3>La loi la plus stricte du monde n'a rien changé</h3>
+    <p class="ref">Zendle, Flick, Gordon-Petrovskaya, Ballou, Xiao &amp; Drachen, <i>Nature Human Behaviour</i>, 2023</p>
+
+    <p>En novembre 2019, la Chine a limité les joueurs de moins de dix-huit ans à une heure et demie de jeu par jour, trois heures les jours fériés. Les auteurs ont analysé des données de télémétrie couvrant plus de sept milliards d'heures de jeu, fournies par un acteur de l'industrie, avant et après la mise en œuvre.</p>
+
+    <p>Ils ne trouvent aucune preuve crédible d'une réduction du jeu intensif. Les comptes deviennent même très légèrement plus susceptibles de jouer beaucoup — mais les auteurs, ayant préenregistré le seuil d'effet qui les intéresserait, refusent d'interpréter ce mouvement comme une hausse réelle. Les résultats résistent à plusieurs analyses de sensibilité, y compris sur les ajustements réglementaires de 2021.</p>
+
+    <ul class="chiffres">
+      <li><b>7 Md</b><span>d'heures de jeu analysées en Chine continentale</span></li>
+      <li><b>1,14×</b><span>probabilité de jouer intensivement après la loi — sous le seuil d'effet minimal de 2,0 fixé à l'avance, donc sans portée pratique</span></li>
+      <li><b>1,5 h</b><span>de jeu quotidien autorisé aux moins de 18 ans depuis novembre 2019</span></li>
+    </ul>
+
+    <p class="retenir">Un État capable d'imposer une identification nationale et un couvre-feu technique n'a pas réduit le jeu intensif. <em>Si la contrainte échoue là, où peut-elle réussir&nbsp;?</em></p>
+
+    <p class="reserve"><b>Ma réserve.</b> Le titre de l'article est lui-même prudent&nbsp;: il parle d'<i>un segment</i> de l'industrie. Les données proviennent d'un seul acteur industriel, et ne couvrent donc pas tout le jeu vidéo chinois. C'est une limite que les auteurs assument, et que je dois assumer avec eux.</p>
+  </div>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,32 C170,12 310,46 500,28 C690,10 830,42 1010,26 C1100,18 1155,24 1200,22"
+        fill="none" stroke="#7D95CE" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ AUSTRALIE ══════════════════════════════ -->
+<section id="australie">
+  <h2>Le cas australien&nbsp;: une expérience grandeur nature, en cours</h2>
+  <p class="souffle">Ce qui se passe pendant que j'écris ce dossier</p>
+
+  <p>Le 10 décembre 2025, l'Australie est devenue le premier pays au monde à interdire les réseaux sociaux aux moins de seize ans. Les plateformes concernées — Instagram, Facebook, TikTok, Snapchat, X, Reddit, YouTube et d'autres — doivent bloquer les jeunes utilisateurs, sous peine d'amendes lourdes. Ni les parents ni les enfants ne sont sanctionnés&nbsp;: la charge repose entièrement sur les entreprises.</p>
+
+  <p>Je n'aurais pas pu rêver meilleur objet d'étude. Le Royaume-Uni, où travaillent mes deux partenaires, a choisi la voie inverse&nbsp;: obligations de conception, sensibilisation, responsabilisation des plateformes, mais pas d'interdiction d'âge. Deux démocraties anglophones comparables, deux stratégies opposées, et une mesure qui vient d'entrer en vigueur.</p>
+
+  <ol class="chrono">
+    <li>
+      <time>10 décembre 2025</time>
+      <p><strong>L'interdiction entre en vigueur.</strong> Les critiques préviennent qu'elle sera très difficile à faire appliquer et qu'elle risque d'isoler les adolescents les plus vulnérables.</p>
+    </li>
+    <li>
+      <time>16 janvier 2026</time>
+      <p><strong>4,7 millions de comptes désactivés</strong> en un mois selon le régulateur eSafety. Le Premier ministre parle d'une réussite et d'une fierté nationale.</p>
+    </li>
+    <li>
+      <time>Mars 2026 — évaluation à trois mois</time>
+      <p><strong>L'usage n'a presque pas bougé.</strong> Avant l'interdiction, près de 86&nbsp;% des enfants interrogés utilisaient au moins une plateforme concernée&nbsp;; trois mois après, ce chiffre reste au-dessus de 81&nbsp;%. L'usage quotidien passe d'environ 60&nbsp;% à 58&nbsp;%. La moitié des enfants ayant conservé leur compte déclarent que la plateforme n'a jamais vérifié leur âge.</p>
+    </li>
+    <li>
+      <time>Juin 2026</time>
+      <p><strong>Une analyse indépendante confirme.</strong> Publiée par le <i>BMJ</i>, elle trouve que plus de 85&nbsp;% des moins de seize ans utilisaient encore ces plateformes au suivi, majoritairement via leur propre compte, les vérifications d'âge étant courantes mais facilement contournées.</p>
+    </li>
+  </ol>
+
+  <div class="galet">
+    <h3>Pourquoi ce cas est le cœur de ma démonstration</h3>
+    <p>La Chine avait déjà montré qu'un couvre-feu numérique ne réduisait pas l'usage intensif. On pouvait objecter&nbsp;: régime autoritaire, données d'un seul acteur, contexte incomparable. L'Australie répond à cette objection. Une démocratie, une loi votée au grand jour, un régulateur transparent qui publie lui-même les chiffres de son propre échec relatif — et le même résultat.</p>
+    <p>Deux pays, deux systèmes politiques, deux méthodes de mesure indépendantes, une seule conclusion&nbsp;: la contrainte frontale ne suffit pas non plus.</p>
+  </div>
+
+  <p class="reserve"><b>Ma réserve.</b> Trois mois, c'est très court pour juger une loi, et les chercheurs le disent eux-mêmes. Les données du <i>BMJ</i> sont auto-déclarées, régionales et sur petit échantillon. Par ailleurs l'interdiction a produit un effet réel mais indirect que je ne dois pas négliger&nbsp;: elle a déplacé la conversation mondiale sur la régulation du design des plateformes. L'échec sur l'usage n'est pas forcément un échec politique.</p>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,24 C165,42 305,12 490,28 C675,44 815,14 995,30 C1095,39 1152,32 1200,34"
+        fill="none" stroke="#E8A34F" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ PARTENAIRES ════════════════════════════ -->
+<section id="partenaires">
+  <h2>Mes partenaires internationaux</h2>
+  <p class="souffle">Une praticienne, une chercheuse, et un régulateur à convaincre</p>
+
+  <p>Le projet exige un partenaire international apportant un regard extérieur et expert. J'en ai obtenu deux à l'été 2026, sur des angles complémentaires&nbsp;: le terrain et la recherche. Le cas australien m'en fait chercher un troisième, cette fois du côté de ceux qui font appliquer la loi.</p>
+
+  <div class="duo">
+    <div class="carte">
+      <h3>Chloe</h3>
+      <p class="role">Sleep practitioner · The Sleep Charity, Royaume-Uni</p>
+      <p>Elle accompagne des familles sur le sommeil des enfants et des adolescents. Elle m'apporte ce qu'aucun article ne donne&nbsp;: ce qui se passe quand on essaie réellement de faire changer une habitude, famille par famille. Réponses par email au fil de l'année.</p>
+    </div>
+    <div class="carte">
+      <h3>Dr Amanda Ferguson</h3>
+      <p class="role">Assistant Research Professor · Université de Cambridge, équipe d'Amy Orben</p>
+      <p>Elle travaille sur la manière dont les adolescents utilisent et interprètent les réseaux sociaux. Elle m'aide à comprendre l'usage réel avant de juger une loi qui prétend l'encadrer. Cadre convenu&nbsp;: environ cinq questions écrites, une heure au total, à l'automne.</p>
+    </div>
+    <div class="carte">
+      <h3>Professor Bei Bei</h3>
+      <p class="role">Turner Institute for Brain and Mental Health · Monash University, Australie</p>
+      <p>Son laboratoire dirige l'étude CLASS, qui suit une cohorte d'adolescents australiens sur toute leur scolarité secondaire et croise sommeil, rythmes circadiens, santé mentale et résultats scolaires. Un membre de son équipe travaille précisément sur l'usage du téléphone avant le coucher. Partenariat accepté en septembre 2026 ; cinq questions écrites prévues pour octobre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TERRAIN ════════════════════════════════ -->
+<section id="terrain">
+  <h2>Mon enquête de terrain</h2>
+  <p class="souffle">Tester une hypothèse plutôt qu'afficher un message</p>
+
+  <p>En Première, j'avais réalisé une campagne de sensibilisation sur le sommeil et les écrans&nbsp;: des affiches en salle de SVT. Elle a été bien reçue, mais je n'ai jamais su si elle avait changé quoi que ce soit. C'est précisément le reproche que Gaskin adresse à tout ce champ de recherche. Cette année, je refais l'exercice en le mesurant.</p>
+
+  <ol class="etapes">
+    <li><b>Un questionnaire avant.</b> Heure d'extinction des écrans, heure de coucher, durée de sommeil estimée, présence d'un téléphone dans la chambre. Court, anonyme, quelques minutes.</li>
+    <li><b>L'intervention.</b> Un atelier, pas un exposé — l'exposé frontal étant exactement le format dont la revue montre l'inefficacité.</li>
+    <li><b>Le même questionnaire après.</b> À distance de l'intervention, pas juste à la sortie&nbsp;: c'est au second suivi que les effets s'effondrent dans la littérature. C'est donc là qu'il faut mesurer.</li>
+  </ol>
+
+  <h3>L'atelier auprès d'élèves de primaire</h3>
+  <p>Plutôt qu'une présentation, une série d'ateliers courts en rotation, d'une dizaine de minutes chacun. Un jeu de vrai ou faux avec cartons levés. Une frise à construire soi-même en classant les activités du soir selon qu'elles aident ou empêchent de dormir. Une démonstration à la lampe montrant pourquoi un écran paraît plus agressif dans une pièce sombre.</p>
+  <p>Ce choix n'est pas seulement pédagogique&nbsp;: il découle directement de ma lecture. Si l'éducation passive ne change rien, alors ma propre intervention doit essayer autre chose. Et si mon atelier ne change rien non plus, ce résultat négatif fait partie de ma démonstration.</p>
+
+  <div class="galet">
+    <h3>Ce que mon enquête peut et ne peut pas dire</h3>
+    <p>Quelques dizaines d'élèves d'un seul établissement ne constituent pas un échantillon représentatif, et aucune comparaison internationale sérieuse ne peut en sortir. Mon enquête illustre et interroge&nbsp;; elle ne démontre pas.</p>
+    <p>Pour les chiffres comparatifs entre pays, je m'appuie sur l'enquête HBSC de l'Organisation mondiale de la santé, qui fait passer tous les quatre ans le même questionnaire aux 11, 13 et 15 ans dans une cinquantaine de pays et régions d'Europe, d'Asie centrale et d'Amérique du Nord — dont le Royaume-Uni, la France et le Canada. C'est ce protocole commun qui rend les comparaisons entre pays légitimes, et c'est exactement ce que mon questionnaire de classe ne peut pas offrir.</p>
+  </div>
+</section>
+
+<svg class="onde" viewBox="0 0 1200 52" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,28 C175,10 315,44 505,26 C695,8 835,40 1015,24 C1105,16 1158,22 1200,20"
+        fill="none" stroke="#93A87C" stroke-width="1.4" opacity=".45"/>
+</svg>
+
+<!-- ══ POSITION ═══════════════════════════════ -->
+<section id="position">
+  <h2>Ma position</h2>
+  <p class="souffle">Ni la sensibilisation, ni la loi</p>
+
+  <p>Les trois lectures et le cas australien convergent vers une réponse que je n'attendais pas en commençant. Sensibiliser ne change pas durablement les comportements. Interdire non plus — ni en Chine, ni en Australie, ni sans doute ailleurs, tant que la mesure porte sur l'individu plutôt que sur ce qui l'entoure.</p>
+
+  <p>Ce qui a fonctionné, dans toute la littérature que j'ai lue, ne relève d'aucune des deux catégories. Retarder l'heure de début des cours ne demande à aucun adolescent de faire un effort et ne lui interdit rien. Cette mesure déplace l'environnement, et le comportement suit. C'est la seule intervention de la revue Gaskin qui produise un effet net.</p>
+
+  <p>Ma réponse est donc un déplacement de la question elle-même. L'opposition entre sensibiliser et réguler est mal posée, parce qu'elle suppose dans les deux cas que la cible est l'adolescent. Le levier efficace agit sur le contexte&nbsp;: les horaires, l'architecture des plateformes, la présence de l'écran dans la chambre. Et pour que ce contexte change, il faut à la fois une loi qui contraigne les concepteurs plutôt que les usagers, et une littératie en santé qui permette aux adolescents de comprendre pourquoi.</p>
+
+  <h3>Le plan des dix minutes</h3>
+  <ol class="plan">
+    <li>
+      <span class="minutage">2 min</span>
+      <b>Le problème</b>
+      <span>Un risque sanitaire mondial, récent, sans agent pathogène. Les quatre notions posées rapidement.</span>
+    </li>
+    <li>
+      <span class="minutage">3 min</span>
+      <b>La sensibilisation à l'épreuve</b>
+      <span>Gaskin, mon enquête avant/après, et ce que dit Chloe du terrain britannique.</span>
+    </li>
+    <li>
+      <span class="minutage">3 min</span>
+      <b>La loi à l'épreuve</b>
+      <span>Australie et Chine. Deux systèmes politiques, un même résultat. Yang &amp; Zhang pour la variable culturelle.</span>
+    </li>
+    <li>
+      <span class="minutage">2 min</span>
+      <b>Ma réponse</b>
+      <span>Ni l'un ni l'autre&nbsp;: agir sur l'environnement, et pourquoi cela change la question.</span>
+    </li>
+  </ol>
+
+  <p style="margin-top:1.6rem">Gardé en réserve pour l'entretien&nbsp;: le détail méthodologique des essais de Gaskin, la limite du seul acteur industriel chez Zendle, la question de la liberté et de l'applicabilité des interdictions, et le cas français du téléphone au collège.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="dedans">
+    <h2>Sources</h2>
+    <ol>
+      <li>Gaskin C.&nbsp;J., Venegas Hargous C., Stephens L.&nbsp;D. <i>et al.</i>, «&nbsp;Sleep behavioral outcomes of school-based interventions for promoting sleep health in children and adolescents aged 5 to 18 years: a systematic review&nbsp;», <i>SLEEP Advances</i>, 2024, 5(1), zpae019. Accès libre.</li>
+      <li>Yang J. &amp; Zhang S., «&nbsp;The impact of entertainment screen time on sleep quality in Chinese and British adolescents: a moderated mediation model&nbsp;», <i>Frontiers in Psychology</i>, vol. 16, publié le 5 janvier 2026. Accès libre.</li>
+      <li>Zendle D., Flick C., Gordon-Petrovskaya E., Ballou N., Xiao L.&nbsp;Y. &amp; Drachen A., «&nbsp;No evidence that Chinese playtime mandates reduced heavy gaming in one segment of the video games industry&nbsp;», <i>Nature Human Behaviour</i>, 2023, 7(10), p. 1753–1766.</li>
+      <li>eSafety Commissioner (Australie), rapports sur les restrictions d'âge sur les réseaux sociaux, janvier et mars 2026.</li>
+      <li>Analyse indépendante de la <i>Social Media Minimum Age Act</i> australienne, publiée par le <i>BMJ</i>, juin 2026.</li>
+      <li>Organisation mondiale de la santé, étude <i>Health Behaviour in School-aged Children</i> (HBSC), cycle 2021-2022 et explorateur de données par pays.</li>
+    </ol>
+
+    <p class="colophon">
+      Projet de Connaissance du Monde — oral coefficient 20.<br>
+      Dossier de travail, mis à jour au fil de l'année. Dernière révision&nbsp;: septembre 2026.
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script>
+document.documentElement.classList.remove('no-js');
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
