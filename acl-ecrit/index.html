@@ -278,6 +278,24 @@ textarea.cit.filled{border-color:var(--rule);background:#fff;}
 .cit-bar button:hover{background:var(--cloth-2);}
 .cit-status{font-family:var(--display);font-style:italic;font-size:.92rem;color:var(--ink-2);}
 
+/* format scene par scene (reprise du format Parable) */
+.scene{margin:0 0 18px;}
+.vref{font-family:var(--display);font-style:italic;font-size:.95rem;color:#8A6E2E;
+  white-space:nowrap;margin-right:8px;}
+.scene strong:first-of-type{font-family:var(--display);font-weight:600;font-size:1.06rem;color:var(--cloth);}
+.rubric-h{font-family:var(--display);font-size:1.28rem;font-weight:500;color:var(--ink);
+  margin:34px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--gilt-dim);}
+.panel{background:var(--page-2);border-left:2px solid var(--gilt);padding:16px 20px;margin:18px 0;}
+.panel h5{font-family:var(--display);font-size:1.08rem;font-weight:600;margin:0 0 10px;color:var(--cloth);}
+.panel ul{list-style:none;margin:0;padding:0;}
+.panel li{padding:5px 0 5px 18px;position:relative;font-size:.95rem;}
+.panel li::before{content:"";position:absolute;left:0;top:.88em;width:9px;height:1px;background:var(--gilt);}
+.panel li strong{color:var(--cloth);}
+.fiche-ref{border-left:2px solid var(--cloth);background:#fff;border:1px solid var(--rule);
+  border-left-width:2px;border-radius:2px;padding:14px 18px;margin:20px 0 0;font-size:.94rem;}
+.fiche-ref b{font-family:var(--display);font-size:1.04rem;color:var(--cloth);display:block;margin-bottom:6px;}
+.fiche-ref a{color:var(--ink);text-decoration-color:var(--gilt);}
+
 /* banque de citations : mode revision */
 .bank-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px 0 22px;
   padding-bottom:14px;border-bottom:1px solid var(--rule);}
@@ -1504,98 +1522,175 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
 </div>
 <div class="leaf" data-route="oeuvres/bricklane/ch1" data-fr="Chapitre 1" data-en="Chapter 1">
 <h2 data-lang="fr">Chapitre 1</h2><h2 data-lang="en">Chapter 1</h2>
-<h3 data-lang="fr">Le déroulé</h3>
-  <h3 data-lang="en">What happens</h3>
-  <ul class="dash">
-    <li data-lang="fr"><b>Gouripur, 1967.</b> Rupban accouche à sept mois en plumant un poulet. L'enfant naît bleue et paraît morte ; la sage-femme Banesa, qui a cent vingt ans depuis dix ans, la déclare perdue. Le bébé crie.</li>
-    <li data-lang="en"><b>Gouripur, 1967.</b> Rupban gives birth at seven months while plucking a chicken. The child is born blue and appears dead; the midwife Banesa, one hundred and twenty years old for the past decade, declares her lost. The baby cries.</li>
-    <li data-lang="fr"><b>Le choix.</b> Banesa propose deux routes : l'hôpital en ville, coûteux, ou attendre ce que fera le Destin. Mumtaz, la tante, veut la ville. Rupban refuse. L'enfant ne se nourrit pas pendant cinq jours, puis se nourrit.</li>
-    <li data-lang="en"><b>The choice.</b> Banesa offers two routes: the city hospital, expensive, or waiting to see what Fate will do. Mumtaz, the aunt, wants the city. Rupban refuses. The child does not feed for five days, then feeds.</li>
-    <li data-lang="fr"><b>La légende.</b> L'épisode devient <em>How You Were Left To Your Fate</em>, récit fondateur répété à l'enfant. Nazneen n'en questionne jamais la logique.</li>
-    <li data-lang="en"><b>The legend.</b> The episode becomes <em>How You Were Left To Your Fate</em>, a founding story retold to the child. Nazneen never questions its logic.</li>
-    <li data-lang="fr"><b>Deux sœurs, deux routes.</b> Hasina s'enfuit à seize ans avec le neveu du scieur. Le père s'assied seize jours entre deux citronniers, une hache à portée. Peu après, il marie Nazneen à un homme de quarante ans qu'elle n'a vu qu'en photographie.</li>
-    <li data-lang="en"><b>Two sisters, two routes.</b> Hasina elopes at sixteen with the saw-mill owner's nephew. Her father sits for sixteen days between two lemon trees with an axe to hand. Soon after, he marries Nazneen to a man of forty she has seen only in a photograph.</li>
-    <li data-lang="fr"><b>Tower Hamlets, 1985.</b> Six mois de mariage. Nazneen seule dans l'appartement, la tattoo lady à la fenêtre d'en face, le ménage fait avant midi, le dîner pour le Dr Azad à préparer. Elle ouvre le Coran au hasard.</li>
-    <li data-lang="en"><b>Tower Hamlets, 1985.</b> Six months married. Nazneen alone in the flat, the tattoo lady at the window opposite, the housework done before noon, dinner for Dr Azad to prepare. She opens the Qur'an at random.</li>
-    <li data-lang="fr"><b>La conversation surprise.</b> Une semaine après le mariage, elle a entendu Chanu au téléphone détailler son physique à un tiers et conclure qu'il est satisfait.</li>
-    <li data-lang="en"><b>The overheard call.</b> A week after the wedding she heard Chanu on the telephone itemising her looks to a third party and concluding that he is satisfied.</li>
-    <li data-lang="fr"><b>Les visiteuses.</b> Mrs Islam et Razia passent. On parle d'une femme tombée du seizième étage — un accident, dit-on, mais tout le monde chuchote dans le dos du mari. Nazneen n'arrive pas à poser sa question.</li>
-    <li data-lang="en"><b>The visitors.</b> Mrs Islam and Razia call. Talk turns to a woman who fell from the sixteenth floor — an accident, they say, though everyone whispers behind the husband's back. Nazneen cannot bring herself to ask.</li>
-  </ul>
+<p class="scene" data-lang="fr"><span class="vref">Scène 1</span> <strong>La naissance.</strong> Gouripur, district de Mymensingh, 1967. Rupban accouche à sept mois en plumant un poulet — le détail n'est pas pittoresque, il installe d'emblée l'économie du village : on ne s'arrête pas de travailler pour naître. L'enfant sort bleue, silencieuse, et paraît morte. Elle crie. Le roman ouvre donc sur une résurrection dont personne ne tirera de conclusion.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 1</span> <strong>The birth.</strong> Gouripur, Mymensingh district, 1967. Rupban gives birth at seven months while plucking a chicken — the detail is not local colour, it establishes the village economy at once: you do not stop work to be born. The child comes out blue, silent, apparently dead. She cries. The novel therefore opens on a resurrection from which nobody will draw any conclusion.</p>
 
-  <h3 data-lang="fr">Ce qu'il faut voir</h3>
-  <h3 data-lang="en">What to see</h3>
+  <p class="scene" data-lang="fr"><span class="vref">Scène 2</span> <strong>Banesa et les deux routes.</strong> La sage-femme, qui a cent vingt ans depuis une décennie, propose une alternative : emmener l'enfant à l'hôpital de la ville, ou attendre ce que fera le Destin. Deux éléments à ne jamais séparer. D'abord, elle annule aussitôt sa propre alternative — le Destin décidera de toute façon, <em>quelle que soit la route suivie</em>. Ensuite, elle a faim : elle n'a pas mangé de viande depuis des mois et lorgne le poulet depuis son arrivée. <strong>L'énoncé le plus solennel du roman est prononcé par quelqu'un qui a un intérêt matériel à ce qu'on ne bouge pas.</strong> Le texte ne le souligne jamais.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 2</span> <strong>Banesa and the two routes.</strong> The midwife, a hundred and twenty years old for the past decade, offers an alternative: take the child to the city hospital, or wait and see what Fate will do. Two things never to separate. First, she cancels her own alternative immediately — Fate will decide anyway, <em>whatever route you follow</em>. Second, she is hungry: she has not eaten meat in months and has eyed the chicken since she arrived. <strong>The novel's most solemn statement is spoken by someone with a material interest in nobody moving.</strong> The text never points this out.</p>
 
-  <div class="card">
-    <span class="tag" data-lang="fr">La doctrine du destin a un intérêt financier</span>
-    <span class="tag" data-lang="en">The doctrine of fate has a financial interest</span>
-    <p data-lang="fr">C'est <b>Banesa</b> qui énonce la doctrine, et Banesa a faim. Elle n'a pas mangé de viande depuis des mois et lorgne le poulet depuis son arrivée. L'alternative qu'elle présente — hôpital coûteux ou attente — n'est pas neutre : la seconde option la laisse sur place, utile, payée en volaille. Le roman place donc l'énoncé le plus solennel du livre dans la bouche d'une femme qui y a un intérêt matériel. Rien dans le texte ne le souligne. C'est au lecteur de le voir.</p>
-    <p data-lang="en">It is <b>Banesa</b> who states the doctrine, and Banesa is hungry. She has not eaten meat for months and has had her eye on the chicken since she arrived. The alternative she presents — expensive hospital or waiting — is not neutral: the second option keeps her on the spot, useful, paid in poultry. The novel thus puts the most solemn statement in the book into the mouth of a woman with a material interest in it. Nothing in the text underlines this. The reader has to see it.</p>
+  <p class="scene" data-lang="fr"><span class="vref">Scène 3</span> <strong>Le choix de Rupban.</strong> Mumtaz, la tante, veut la ville. Rupban refuse : on ne doit pas se mettre en travers du Destin, et lutter contre lui affaiblit le sang. Le paradoxe est capital et presque toujours manqué : <strong>c'est une décision.</strong> Rupban choisit de ne pas choisir, contre l'avis d'une autre femme qui voulait agir. Le destin est ici le nom donné à un acte de volonté maternelle. L'enfant ne se nourrit pas pendant cinq jours, puis se nourrit.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 3</span> <strong>Rupban's choice.</strong> Mumtaz, the aunt, wants the city. Rupban refuses: one must not stand in the way of Fate, and fighting it weakens the blood. The paradox is crucial and almost always missed: <strong>it is a decision.</strong> Rupban chooses not to choose, against another woman who wanted to act. Fate here is the name given to an act of maternal will. The child does not feed for five days, then feeds.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 4</span> <strong>La légende devient une identité.</strong> L'épisode se fige en récit : <em>How You Were Left To Your Fate</em>, raconté et reraconté à l'enfant. Le narrateur en dégage la maxime — ce qui ne peut être changé doit être supporté — puis en retourne aussitôt les termes : puisque rien ne pouvait être changé, tout devait être supporté. <strong>Le raisonnement est circulaire, et la circularité est le sujet</strong> : une prémisse déduite de sa propre conclusion. Nazneen n'en interroge jamais la logique.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 4</span> <strong>The legend becomes an identity.</strong> The episode hardens into narrative: <em>How You Were Left To Your Fate</em>, told and retold to the child. The narrator extracts the maxim — what cannot be changed must be borne — then immediately reverses its terms: since nothing could be changed, everything had to be borne. <strong>The reasoning is circular, and the circularity is the point</strong>: a premise deduced from its own conclusion. Nazneen never questions its logic.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 5</span> <strong>La prolepse.</strong> Une phrase saute par-dessus tout le roman : à trente-quatre ans, Nazneen ne pourra plus attendre que l'avenir se révèle et devra le faire elle-même, surprise par sa propre <em>agency</em>. La comparaison est ambivalente — un nourrisson qui agite un poing et se frappe l'œil : l'agentivité arrive sans maîtrise ni intention. <strong>Cette scène rend intenable toute lecture de Nazneen en pure victime du destin, et elle est disponible à la page deux.</strong></p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 5</span> <strong>The prolepsis.</strong> One sentence leaps over the whole novel: at thirty-four Nazneen will no longer be able to wait for the future to reveal itself and will have to make it, startled by her own <em>agency</em>. The comparison is double-edged — an infant waving a fist and striking its own eye: agency arrives without mastery or intent. <strong>This scene makes any reading of Nazneen as a pure victim of fate untenable, and it is available on page two.</strong></p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 6</span> <strong>Deux sœurs, deux routes.</strong> Hasina s'enfuit à seize ans avec le neveu du scieur. Le père s'assied seize jours entre deux citronniers, une hache à portée de main. Peu après, il marie Nazneen à un homme de quarante ans qu'elle n'a vu qu'en photographie. Le roman installe ici son <strong>expérience contrôlée</strong> : même village, même père, même doctrine, décisions opposées. Retiens que le mariage suit la fuite — le père agit pour éviter une seconde humiliation, pas pour accomplir un destin.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 6</span> <strong>Two sisters, two routes.</strong> Hasina elopes at sixteen with the saw-mill owner's nephew. Her father sits for sixteen days between two lemon trees with an axe within reach. Soon after, he marries Nazneen to a man of forty she has seen only in a photograph. Here the novel sets up its <strong>controlled experiment</strong>: same village, same father, same doctrine, opposite decisions. Note that the marriage follows the elopement — the father acts to avoid a second humiliation, not to fulfil a destiny.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 7</span> <strong>Tower Hamlets, 1985.</strong> Coupure sèche, sans transition. Six mois de mariage, un appartement, une fenêtre, une femme tatouée à la fenêtre d'en face qui la regarde en retour. Le ménage est fini avant midi. Nazneen se coupe le doigt et regarde le sang, curieuse. <strong>Le roman fait passer dix-huit ans en un blanc typographique</strong> : ce qui ne peut pas être changé ne sera pas raconté, et cette règle gouvernera aussi le saut de treize ans du chapitre 8.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 7</span> <strong>Tower Hamlets, 1985.</strong> A hard cut, no transition. Six months married, a flat, a window, a tattooed woman at the window opposite who looks back. The housework is done before noon. Nazneen cuts her finger and watches the blood, curious. <strong>The novel passes eighteen years in a typographic blank</strong>: what cannot be changed will not be narrated, and the same rule will govern the thirteen-year jump in chapter 8.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 8</span> <strong>Le Coran ouvert au hasard.</strong> Elle tombe sur un verset affirmant que tout appartient à Dieu. Les mots <em>calment son ventre</em> et elle en est <em>contente</em>. Trois choix lexicaux à ne pas laisser passer : l'organe est celui de l'angoisse et de la faim, pas du cœur ni de l'âme ; <em>calmed</em> est le verbe d'un calmant, pas d'une conviction ; <em>pleased</em> est le mot faible d'une tâche accomplie. <strong>La consolation religieuse est décrite comme une technique corporelle</strong>, et le roman ne le dit jamais — il choisit le vocabulaire qui le laisse entendre.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 8</span> <strong>The Qur'an opened at random.</strong> She lands on a verse stating that all belongs to God. The words <em>calm her stomach</em> and she is <em>pleased</em>. Three lexical choices not to let pass: the organ is the one of anxiety and hunger, not the heart or the soul; <em>calmed</em> is the verb of a sedative, not a conviction; <em>pleased</em> is the weak word of a task completed. <strong>Religious consolation is described as a bodily technique</strong>, and the novel never says so — it chooses the vocabulary that implies it.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 9</span> <strong>La conversation téléphonique.</strong> Souvenir : une semaine après le mariage, elle a entendu Chanu détailler son physique à un tiers — front, taille, yeux un peu trop rapprochés, hanches assez larges pour porter des enfants — et conclure qu'il est satisfait. <strong>Le mariage arrangé n'est pas présenté comme un décret du destin mais comme un marché entre hommes, évalué par l'acheteur.</strong> Le détail reviendra au chapitre 4, quand elle se décrira devant un miroir avec les mots de son mari.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 9</span> <strong>The telephone call.</strong> A memory: a week after the wedding she heard Chanu itemise her to a third party — forehead, height, eyes a bit too close together, hips wide enough to bear children — and conclude that he is satisfied. <strong>The arranged marriage is presented not as a decree of fate but as a deal between men, appraised by the buyer.</strong> The detail returns in chapter 4, when she describes herself in a mirror using her husband's words.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 10</span> <strong>Hasina, et la faille dans la doctrine.</strong> Pensant à sa sœur, Nazneen raisonne seule : si le destin ne peut être changé, la fuite de Hasina était peut-être <em>aussi</em> son destin — auquel cas, comment savoir dans quelle direction il appelle ? <strong>Elle démonte la doctrine familiale toute seule, dans sa tête, au premier chapitre.</strong> Le verbe <em>calling</em> mérite qu'on s'y arrête : un destin qui appelle attend une réponse, donc un interlocuteur.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 10</span> <strong>Hasina, and the flaw in the doctrine.</strong> Thinking of her sister, Nazneen reasons alone: if fate cannot be changed, Hasina's flight was perhaps <em>also</em> her fate — in which case how is one to know which way it is calling? <strong>She dismantles the family doctrine by herself, in her head, in the first chapter.</strong> The verb <em>calling</em> repays attention: a fate that calls expects an answer, and therefore an addressee.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 11</span> <strong>Les visiteuses et la chute.</strong> Mrs Islam, respectable et pieuse, parle de garder le purdah dans la tête ; Razia est plus rude et plus libre. On évoque une femme tombée du seizième étage — un accident, officiellement, mais tout le monde chuchote dans le dos du mari. Nazneen ne parvient pas à poser sa question : <em>il était trop tard pour demander</em>. Le chapitre se clôt donc sur <strong>une mort qu'on ne nomme pas et une question qu'on ne pose pas</strong> — les deux modes de silence qui gouverneront tout le roman.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 11</span> <strong>The visitors and the fall.</strong> Mrs Islam, respectable and pious, speaks of keeping purdah in the mind; Razia is coarser and freer. Talk turns to a woman who fell from the sixteenth floor — officially an accident, though everyone whispers behind the husband's back. Nazneen cannot bring herself to ask: <em>it was too late now to ask</em>. The chapter therefore closes on <strong>a death that is not named and a question that is not asked</strong> — the two modes of silence that will govern the whole novel.</p>
+
+  <div class="rubric-h" data-lang="fr">Lexique du roman — chapitre 1</div>
+  <div class="rubric-h" data-lang="en">The novel's vocabulary — chapter 1</div>
+  <div class="tbl-wrap"><table>
+    <tbody><tr>
+      <th data-lang="fr">Terme</th><th data-lang="en">Term</th>
+      <th data-lang="fr">À savoir</th><th data-lang="en">What to know</th>
+    </tr>
+    <tr><td><b>Gouripur</b></td>
+      <td data-lang="fr">Le village, district de Mymensingh, Pakistan oriental — pas encore le Bangladesh en 1967. Toujours le nommer.</td>
+      <td data-lang="en">The village, Mymensingh district, East Pakistan — not yet Bangladesh in 1967. Always name it.</td></tr>
+    <tr><td><b>How You Were Left To Your Fate</b></td>
+      <td data-lang="fr">Le récit fondateur, avec ses majuscules. C'est un <em>titre</em>, donc une histoire qu'on raconte, pas un fait.</td>
+      <td data-lang="en">The founding story, capitals included. It is a <em>title</em>, therefore a story told, not a fact.</td></tr>
+    <tr><td><b>Banesa</b></td>
+      <td data-lang="fr">La sage-femme. Cent vingt ans depuis dix ans — l'invraisemblance est signalée par le texte lui-même.</td>
+      <td data-lang="en">The midwife. A hundred and twenty for the past ten years — the text flags the implausibility itself.</td></tr>
+    <tr><td><b>Rupban · Amma</b></td>
+      <td data-lang="fr">La mère. <em>Amma</em> est le nom que lui donne Nazneen. Célèbre pour ses pleurs ; son « stoïcisme en larmes » est un personnage construit.</td>
+      <td data-lang="en">The mother. <em>Amma</em> is what Nazneen calls her. Famous for weeping; her "tearful stoicism" is a constructed persona.</td></tr>
+    <tr><td><b>Mumtaz</b></td>
+      <td data-lang="fr">La tante. Celle qui voulait l'hôpital — la voix de l'action, minoritaire dès la première page.</td>
+      <td data-lang="en">The aunt. The one who wanted the hospital — the voice of action, in the minority from page one.</td></tr>
+    <tr><td><b>purdah</b></td>
+      <td data-lang="fr">La réclusion des femmes. Mrs Islam la déclare intériorisée : on la garde « dans la tête ».</td>
+      <td data-lang="en">The seclusion of women. Mrs Islam declares it internalised: one keeps it "in the mind".</td></tr>
+    <tr><td><b>tattoo lady</b></td>
+      <td data-lang="fr">La voisine d'en face, jamais nommée. Le seul être humain que Nazneen voit tous les jours.</td>
+      <td data-lang="en">The neighbour opposite, never named. The only human being Nazneen sees every day.</td></tr>
+  </tbody></table></div>
+
+  <div class="panel">
+    <h5 data-lang="fr">Vocabulaire d'analyse</h5>
+    <h5 data-lang="en">Vocabulary for analysis</h5>
+    <ul>
+      <li>the doctrine of fate is a <strong>family narrative</strong>, not a belief — say "the story of <em>How You Were Left To Your Fate</em>", not "her fatalism"</li>
+      <li>Rupban's refusal is an <strong>act of will</strong> disguised as submission</li>
+      <li>Banesa's alternative is <strong>rigged</strong>: she annuls it in her next sentence</li>
+      <li>the maxim is <strong>circular</strong> — a premise deduced from its own conclusion</li>
+      <li>the jump to her thirty-fourth year is a <strong>prolepsis</strong>, and it names <strong>agency</strong> outright</li>
+      <li>the two sisters function as a <strong>controlled experiment</strong></li>
+      <li>the eighteen-year gap is an <strong>ellipsis</strong>, not an oversight</li>
+      <li>religious consolation is rendered <strong>somatically</strong> — the stomach, not the soul</li>
+      <li>Chanu's telephone inventory is <strong>transactional</strong>, not romantic</li>
+      <li>the chapter closes on a <strong>double silence</strong>: an unnamed death, an unasked question</li>
+    </ul>
   </div>
 
-  <div class="card">
-    <span class="tag" data-lang="fr">Le roman annonce la fin du destin dès la page deux</span>
-    <span class="tag" data-lang="en">The novel announces the end of fate on page two</span>
-    <p data-lang="fr">Une phrase du chapitre 1 saute par-dessus tout le roman : à trente-quatre ans, Nazneen ne pourra plus attendre que l'avenir se révèle et devra le faire elle-même, et elle sera <em>surprise par sa propre agentivité</em>. <b>Cette prolepse rend intenable toute lecture de Nazneen en pure victime du destin</b>, et elle est disponible dès le premier chapitre. Elle prouve aussi que le roman a une trajectoire : « victime du destin » n'est pas un état, c'est un point de départ.</p>
-    <p data-lang="en">One sentence in chapter 1 leaps over the whole novel: at thirty-four Nazneen will no longer be able to wait for the future to be revealed and will have to make it herself, and she will be <em>startled by her own agency</em>. <b>This prolepsis makes any reading of Nazneen as a pure victim of fate untenable</b>, and it is available from the first chapter. It also proves the novel has a trajectory: "victim of fate" is not a state, it is a starting point.</p>
-  </div>
-
-  <div class="card">
-    <span class="tag" data-lang="fr">Nazneen doute d'elle-même, en silence</span>
-    <span class="tag" data-lang="en">Nazneen doubts, silently</span>
-    <p data-lang="fr">Quand elle pense à Hasina, elle raisonne seule : si le destin ne peut être changé, alors la fuite de Hasina était peut-être <em>aussi</em> son destin — auquel cas comment savoir dans quelle direction il appelle ? Elle démonte la doctrine familiale toute seule, dans sa tête, au chapitre 1. Ta copie disait que Nazneen accepte simplement sa soumission. Le texte montre qu'elle y réfléchit et qu'elle n'en sort pas.</p>
-    <p data-lang="en">When she thinks of Hasina she reasons alone: if fate cannot be changed, then Hasina's flight was perhaps <em>also</em> her fate — in which case how is one to know which way it is calling? She dismantles the family doctrine by herself, in her head, in chapter 1. Your essay said Nazneen simply accepts her submission. The text shows her thinking about it and failing to get out.</p>
+  <div class="fiche-ref">
+    <b data-lang="fr">Les fiches de ce chapitre</b><b data-lang="en">This chapter's quotation entries</b>
+    <p data-lang="fr"><a href="#oeuvres/bricklane/citations">01</a> Banesa · <a href="#oeuvres/bricklane/citations">02</a> Rupban choisit · <a href="#oeuvres/bricklane/citations">03</a> la doctrine · <a href="#oeuvres/bricklane/citations">04</a> la prolepse · <a href="#oeuvres/bricklane/citations">05</a> which way it is calling · <a href="#oeuvres/bricklane/citations">06</a> le Coran et le ventre · <a href="#oeuvres/bricklane/citations">07</a> l'inventaire de Chanu</p>
+    <p data-lang="en"><a href="#oeuvres/bricklane/citations">01</a> Banesa · <a href="#oeuvres/bricklane/citations">02</a> Rupban chooses · <a href="#oeuvres/bricklane/citations">03</a> the doctrine · <a href="#oeuvres/bricklane/citations">04</a> the prolepsis · <a href="#oeuvres/bricklane/citations">05</a> which way it is calling · <a href="#oeuvres/bricklane/citations">06</a> the Qur'an and the stomach · <a href="#oeuvres/bricklane/citations">07</a> Chanu's inventory</p>
   </div>
 </div>
 <div class="leaf" data-route="oeuvres/bricklane/ch2" data-fr="Chapitre 2" data-en="Chapter 2">
 <h2 data-lang="fr">Chapitre 2</h2><h2 data-lang="en">Chapter 2</h2>
-<h3 data-lang="fr">Le déroulé</h3>
-  <h3 data-lang="en">What happens</h3>
-  <ul class="dash">
-    <li data-lang="fr"><b>Le dîner.</b> Dr Azad parle bas, boit deux verres d'eau avant de manger, diagnostique chez ses compatriotes un « Going Home Syndrome ». Chanu mange bruyamment et tache sa chemise.</li>
-    <li data-lang="en"><b>The dinner.</b> Dr Azad speaks quietly, drinks two glasses of water before eating, and diagnoses a "Going Home Syndrome" in his countrymen. Chanu eats noisily and stains his shirt.</li>
-    <li data-lang="fr"><b>La seule phrase de Nazneen.</b> Elle intervient une fois pour dire qu'ils n'auraient pas besoin de beaucoup, qu'ils pourraient vivre à peu de frais. Les deux hommes la regardent. Chanu comble le silence par un rire.</li>
-    <li data-lang="en"><b>Nazneen's one sentence.</b> She speaks once, to say that they would not need very much, that they could live cheaply. Both men look at her. Chanu fills the silence with a laugh.</li>
-    <li data-lang="fr"><b>Le récit de Chanu.</b> Seize ans en Angleterre, un diplôme dans la valise, l'espoir d'un tapis rouge. Il raconte l'humiliation devant un invité qui consulte sa montre.</li>
-    <li data-lang="en"><b>Chanu's account.</b> Sixteen years in England, a degree certificate in the suitcase, the hope of a red carpet. He recounts his humiliation to a guest who keeps checking his watch.</li>
-    <li data-lang="fr"><b>Le regard échangé.</b> Le Dr Azad regarde Nazneen, elle lui rend son regard sans le vouloir, et se retrouve prise dans une complicité qui dit sur son mari ce qu'elle ne devrait pas dire.</li>
-    <li data-lang="en"><b>The exchanged look.</b> Dr Azad looks at Nazneen, she returns the gaze without meaning to, and finds herself caught in a complicity saying something about her husband she ought not to be saying.</li>
-    <li data-lang="fr"><b>Le patinage.</b> À la télévision, un couple de patineurs. Nazneen demande le nom, ne parvient pas à dire <em>ice skating</em> sans voyelle parasite, demande à apprendre l'anglais. Chanu refuse sans le dire.</li>
-    <li data-lang="en"><b>The skating.</b> On television, a skating pair. Nazneen asks the name, cannot say <em>ice skating</em> without an intrusive vowel, and asks to learn English. Chanu refuses without saying so.</li>
-    <li data-lang="fr"><b>La femme tombée.</b> Seule à la fenêtre la nuit, Nazneen décide que la femme a sauté, bras et yeux grands ouverts, en souriant.</li>
-    <li data-lang="en"><b>The woman who fell.</b> Alone at the window at night, Nazneen decides that the woman jumped, arms and eyes wide, smiling.</li>
-    <li data-lang="fr"><b>Le sari et Hume.</b> Devant la boutique, Chanu répond à une question sur une couleur par une leçon d'épistémologie. Il achète le sari.</li>
-    <li data-lang="en"><b>The sari and Hume.</b> Outside the shop, Chanu answers a question about a colour with a lesson in epistemology. He buys the sari.</li>
-    <li data-lang="fr"><b>La mort d'Amma.</b> Révélée en quelques lignes : trouvée empalée sur une lance dans la réserve à riz. Mumtaz répète, deux fois, qu'elle portait son plus beau sari un jour ordinaire.</li>
-    <li data-lang="en"><b>Amma's death.</b> Revealed in a few lines: found impaled on a spear in the rice store. Mumtaz repeats, twice, that she was wearing her best sari on an ordinary day.</li>
-    <li data-lang="fr"><b>L'annonce.</b> Nazneen annonce sa grossesse au détour d'une conversation sur la dureté du matelas. Le mot lui-même n'est jamais prononcé : le texte imprime un tiret à sa place.</li>
-    <li data-lang="en"><b>The announcement.</b> Nazneen announces her pregnancy in the middle of a conversation about the hardness of the mattress. The word itself is never spoken: the text prints a dash in its place.</li>
-  </ul>
+<p class="scene" data-lang="fr"><span class="vref">Scène 1</span> <strong>Le dîner : deux hommes, deux corps.</strong> Dr Azad parle bas, boit deux verres d'eau avant de manger, mange peu. Chanu mange bruyamment et tache sa chemise. <strong>Le roman caractérise par le corps avant de caractériser par la parole</strong> — et l'opposition prépare le renversement du chapitre 5, où l'on découvrira laquelle des deux maisons est la plus malheureuse.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 1</span> <strong>The dinner: two men, two bodies.</strong> Dr Azad speaks quietly, drinks two glasses of water before eating, eats little. Chanu eats noisily and stains his shirt. <strong>The novel characterises through the body before it characterises through speech</strong> — and the contrast prepares the reversal of chapter 5, where we learn which of the two households is the unhappier.</p>
 
-  <h3 data-lang="fr">Ce qu'il faut voir</h3>
-  <h3 data-lang="en">What to see</h3>
+  <p class="scene" data-lang="fr"><span class="vref">Scène 2</span> <strong>Going Home Syndrome.</strong> Le docteur diagnostique chez ses compatriotes un mal : ils viennent pour quelques années, économisent, et ne repartent jamais. Chanu l'écarte d'un revers de main — lui, il a des projets. <strong>Le lecteur est prévenu dès le chapitre 2 de ce qui occupera Chanu pendant les vingt années du roman</strong> : le diagnostic est posé avant les symptômes, et il tombe sur l'homme qui vient de le rejeter.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 2</span> <strong>Going Home Syndrome.</strong> The doctor diagnoses an affliction among his countrymen: they come for a few years, they save, they never leave. Chanu waves it away — he has plans. <strong>The reader is warned in chapter 2 of what will occupy Chanu for the novel's twenty years</strong>: the diagnosis precedes the symptoms, and it lands on the man who has just dismissed it.</p>
 
-  <div class="card">
-    <span class="tag" data-lang="fr">Amma ne s'est pas résignée : elle s'est tuée</span>
-    <span class="tag" data-lang="en">Amma did not submit: she killed herself</span>
-    <p data-lang="fr">Le roman ne l'écrit jamais. Il donne trois indices et laisse faire : la lance « coincée » dans une réserve où personne n'a de raison d'en mettre, le plus beau sari un jour sans occasion, et Mumtaz qui revient dessus <em>deux fois</em> sans conclure. Ajoute la phrase du narrateur : en mourant, Amma a prouvé que la vie était imprévisible et hors de contrôle.</p>
-    <p data-lang="en">The novel never writes it. It gives three clues and leaves them: the spear "wedged" in a store where no one has reason to keep one, the best sari on a day that was not special, and Mumtaz returning to it <em>twice</em> without concluding. Add the narrator's sentence: in dying, Amma proved life unpredictable and beyond control.</p>
-    <p data-lang="fr"><b>Pourquoi c'est décisif pour ta question.</b> La sainte de la résignation, le modèle que Nazneen a passé sa vie à imiter, a fini par un acte de volonté violent. Le fondement même de sa soumission est miné dès le chapitre 2. C'est l'argument le plus fort disponible contre une lecture en « victime du destin », et ta copie ne le mentionne pas.</p>
-    <p data-lang="en"><b>Why this is decisive for your question.</b> The saint of resignation, the model Nazneen has spent her life imitating, ended in a violent act of will. The very foundation of her submission is undermined as early as chapter 2. It is the strongest argument available against a "victim of fate" reading, and your essay does not mention it.</p>
+  <p class="scene" data-lang="fr"><span class="vref">Scène 3</span> <strong>La seule phrase de Nazneen.</strong> Elle intervient une fois en une soirée pour dire qu'ils n'auraient pas besoin de beaucoup, qu'ils pourraient vivre à peu de frais. Trois choses. Le pronom est <em>we</em> : elle s'inclut dans une décision dont on ne l'a pas jugée partie prenante. Le contenu contredit son mari sur son propre terrain. Et le corps enregistre la transgression — les deux hommes se tournent vers elle, elle parle ensuite à son assiette, sa nuque brûle. <strong>La honte physique mesure exactement ce que la parole lui coûte, et donc la quantité de courage qu'il a fallu.</strong></p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 3</span> <strong>Nazneen's one sentence.</strong> She speaks once in an evening, to say that they would not need very much, that they could live cheaply. Three things. The pronoun is <em>we</em>: she includes herself in a decision she has not been treated as party to. The content contradicts her husband on his own ground. And the body registers the transgression — both men turn to her, she then speaks to her plate, the back of her neck burns. <strong>The physical shame measures exactly what speech costs her, and therefore how much courage it took.</strong></p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 4</span> <strong>Le récit de l'humiliation.</strong> Chanu raconte : seize ans en Angleterre, un diplôme dans la valise, l'attente d'un tapis rouge. Le détail qui fait la scène est que l'invité regarde sa montre pendant le récit. <strong>Le roman humilie Chanu deux fois — dans l'histoire qu'il raconte, et dans la manière dont on l'écoute la raconter.</strong></p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 4</span> <strong>The story of the humiliation.</strong> Chanu tells it: sixteen years in England, a degree in the suitcase, the expectation of a red carpet. The detail that makes the scene is that his guest keeps checking his watch while he tells it. <strong>The novel humiliates Chanu twice — inside the story he tells, and in the way he is listened to while telling it.</strong></p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 5</span> <strong>Le regard échangé.</strong> Dr Azad regarde Nazneen, elle lui rend son regard sans l'avoir voulu, et se retrouve prise dans une complicité qui dit sur son mari ce qu'elle ne devrait pas dire. <strong>C'est le premier acte déloyal du roman, et il est muet.</strong> À comparer impérativement au chapitre 5, où un autre regard échangé — avec Chanu cette fois — fera d'eux des alliés. Deux regards, trois chapitres d'écart, deux camps.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 5</span> <strong>The exchanged look.</strong> Dr Azad looks at Nazneen, she returns the gaze without meaning to, and finds herself caught in a complicity that says about her husband what she ought not to be saying. <strong>It is the novel's first act of disloyalty, and it is silent.</strong> Compare it necessarily with chapter 5, where another exchanged glance — with Chanu this time — will make them allies. Two glances, three chapters apart, two sides.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 6</span> <strong>Le patinage, et l'anglais refusé.</strong> À la télévision, un couple de patineurs. Nazneen demande le nom de ce sport et n'arrive pas à dire <em>ice skating</em> sans voyelle parasite. Elle demande alors à apprendre l'anglais. Chanu ne refuse pas : il demande où est le besoin. <strong>La réponse est pire qu'une interdiction — c'est une question qui rend la demande absurde</strong>, et qui n'est vraie que parce qu'il l'empêche de sortir. La patineuse, elle, a conquis son corps et les lois de la nature : précisément les deux choses dont Nazneen n'a pas la maîtrise.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 6</span> <strong>The skating, and the English refused.</strong> On television, a skating pair. Nazneen asks the name of the sport and cannot say <em>ice skating</em> without an intrusive vowel. She then asks to learn English. Chanu does not refuse: he asks where the need is. <strong>The answer is worse than a prohibition — it is a question that makes the request absurd</strong>, and it is true only because he keeps her indoors. The skater, meanwhile, has conquered her body and the laws of nature: precisely the two things Nazneen has no command of.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 7</span> <strong>Le discours sur les sorties, et le rasoir.</strong> Chanu explique pourquoi elle ne devrait pas sortir, tout en affirmant qu'il ne l'empêche de rien et qu'il est occidentalisé maintenant — trois phrases, deux contradictions. Pendant ce temps, elle lui coupe les cors, et le texte précise qu'elle <em>ne laisse pas</em> le rasoir glisser. <strong>La formulation est négative, et une négation n'a de sens que si la possibilité existe.</strong> La docilité devient un choix renouvelé, lame en main, juste après qu'on lui a interdit de sortir. Au chapitre 3, le rasoir glissera.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 7</span> <strong>The speech about going out, and the razor.</strong> Chanu explains why she should not go out, while insisting that he stops her from nothing and that he is westernised now — three sentences, two contradictions. Meanwhile she is cutting his corns, and the text specifies that she <em>does not let</em> the razor slip. <strong>The phrasing is negative, and a negative only means something if the possibility exists.</strong> Docility becomes a choice renewed, blade in hand, immediately after she has been forbidden to go out. In chapter 3 the razor will slip.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 8</span> <strong>La femme du seizième étage.</strong> Seule à la fenêtre de la cuisine, la nuit, Nazneen décide soudain que la femme a sauté : bras ouverts, yeux ouverts, un grand sourire, défiant tout et tout le monde. Personne ne sait si elle est tombée ou a sauté. <strong>Nazneen choisit la version, et c'est un acte d'interprétation, donc de volonté</strong> — elle choisit celle où une femme agit. Le roman lui accorde ici une liberté qu'elle n'a nulle part ailleurs : décider du sens.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 8</span> <strong>The woman from the sixteenth floor.</strong> Alone at the kitchen window at night, Nazneen suddenly decides that the woman jumped: arms wide, eyes wide, a big smile, defying everything and everyone. Nobody knows whether she fell or jumped. <strong>Nazneen chooses the version, and that is an act of interpretation, and so of will</strong> — she chooses the one in which a woman acts. The novel grants her here a freedom she has nowhere else: deciding the meaning.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 9</span> <strong>Le sari et Hume.</strong> Devant la boutique, Nazneen dit qu'elle trouve un sari joli mais que ça lui est égal. Chanu répond par une leçon d'épistémologie sur la cause et l'effet, puis achète le sari. <strong>C'est le mécanisme comique fondamental du personnage</strong> : il traite toute question domestique comme une question philosophique, et il a raison sur le fond au mauvais moment. Le roman se moque de sa forme, jamais de son intelligence.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 9</span> <strong>The sari and Hume.</strong> Outside the shop, Nazneen says she thinks a sari is nice but that she does not mind. Chanu answers with a lesson in epistemology on cause and effect, then buys the sari. <strong>This is the character's basic comic mechanism</strong>: he treats every domestic question as a philosophical one, and he is right in substance at the wrong moment. The novel mocks his form, never his intelligence.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 10</span> <strong>La mort d'Amma.</strong> Révélée en quelques lignes, sans scène : trouvée empalée sur une lance dans la réserve à riz. Mumtaz répète, deux fois, qu'elle portait son plus beau sari — et ajoute que ce n'était pourtant pas un jour particulier. Le narrateur conclut qu'en mourant, elle a prouvé la vie imprévisible et hors de contrôle. <strong>Le roman ne prononce jamais le mot suicide : il aligne trois faits et laisse le lecteur assembler.</strong> Conséquence décisive pour tout le livre : la sainte de la résignation a fini par un acte de volonté violent.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 10</span> <strong>Amma's death.</strong> Revealed in a few lines, with no scene: found impaled on a spear in the rice store. Mumtaz repeats, twice, that she was wearing her best sari — adding that it was not a special day after all. The narrator concludes that in dying she proved life unpredictable and beyond control. <strong>The novel never says the word suicide: it lines up three facts and leaves the reader to assemble them.</strong> A decisive consequence for the whole book: the saint of resignation ended in a violent act of will.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 11</span> <strong>Razia, et la fille retirée de l'école.</strong> La petite-fille de Jorina est retirée du collège à seize ans pour être mariée ; elle avait supplié qu'on la laisse passer ses examens. <strong>Le roman place ici un obstacle parfaitement nommable</strong> — des parents, une décision, une date — au milieu d'un livre qu'on lit comme une méditation sur le destin. C'est exactement la distinction qu'un sujet sur <em>fate</em> attend qu'on fasse.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 11</span> <strong>Razia, and the girl taken out of school.</strong> Jorina's granddaughter is taken out of school at sixteen to be married; she had begged to be allowed to sit her exams. <strong>The novel plants here a perfectly nameable obstacle</strong> — parents, a decision, a date — in the middle of a book read as a meditation on fate. This is exactly the distinction a question on <em>fate</em> expects you to make.</p>
+
+  <p class="scene" data-lang="fr"><span class="vref">Scène 12</span> <strong>L'annonce, et le mot manquant.</strong> Nazneen annonce sa grossesse au milieu d'une discussion sur la dureté du matelas. Chanu commence sa question et ne la finit pas ; la réponse de Nazneen est imprimée comme un tiret. <strong>Le mot n'est pas évité, il est typographiquement absent de la page.</strong> Aucun des deux ne le prononce, et la nouvelle est enterrée dans une dispute sur un lit. Le silence n'est pas ici une pudeur : c'est le mode de communication du couple, et le roman le rend visible à l'œil.</p>
+  <p class="scene" data-lang="en"><span class="vref">Scene 12</span> <strong>The announcement, and the missing word.</strong> Nazneen announces her pregnancy in the middle of an argument about the hardness of the mattress. Chanu begins his question and does not finish it; Nazneen's answer is printed as a dash. <strong>The word is not avoided, it is typographically absent from the page.</strong> Neither of them says it, and the news is buried inside a quarrel about a bed. The silence is not modesty here: it is the couple's mode of communication, and the novel makes it visible to the eye.</p>
+
+  <div class="rubric-h" data-lang="fr">Lexique du roman — chapitre 2</div>
+  <div class="rubric-h" data-lang="en">The novel's vocabulary — chapter 2</div>
+  <div class="tbl-wrap"><table>
+    <tbody><tr>
+      <th data-lang="fr">Terme</th><th data-lang="en">Term</th>
+      <th data-lang="fr">À savoir</th><th data-lang="en">What to know</th>
+    </tr>
+    <tr><td><b>Going Home Syndrome</b></td>
+      <td data-lang="fr">Le diagnostic du Dr Azad. Majuscules du roman : c'est une formule, à citer telle quelle.</td>
+      <td data-lang="en">Dr Azad's diagnosis. The novel's capitals: it is a coinage, quote it as it stands.</td></tr>
+    <tr><td><b>Dr Azad</b></td>
+      <td data-lang="fr">Médecin, sobre, taciturne. Sa maison au chapitre 5 renversera tout ce qu'on croit savoir de lui.</td>
+      <td data-lang="en">A doctor, sober, taciturn. His house in chapter 5 will overturn everything you think you know of him.</td></tr>
+    <tr><td><b>ice e-skating</b></td>
+      <td data-lang="fr">La prononciation de Nazneen, avec sa voyelle parasite. Le motif du patinage revient aux chapitres 4 et 6.</td>
+      <td data-lang="en">Nazneen's pronunciation, with its intrusive vowel. The skating motif returns in chapters 4 and 6.</td></tr>
+    <tr><td><b>Razia</b></td>
+      <td data-lang="fr">L'amie. Grande, rude, libre de parole. Deviendra veuve au chapitre 6 et le constatera sans pleurer.</td>
+      <td data-lang="en">The friend. Tall, coarse, free-spoken. Will be widowed in chapter 6 and will note it without weeping.</td></tr>
+    <tr><td><b>Hume</b></td>
+      <td data-lang="fr">Le philosophe cité par Chanu devant une boutique de saris. Cause et effet, deux objets d'enquête humaine.</td>
+      <td data-lang="en">The philosopher Chanu cites outside a sari shop. Cause and effect, two proper objects of human enquiry.</td></tr>
+  </tbody></table></div>
+
+  <div class="panel">
+    <h5 data-lang="fr">Vocabulaire d'analyse</h5>
+    <h5 data-lang="en">Vocabulary for analysis</h5>
+    <ul>
+      <li>the novel characterises <strong>somatically</strong> before it characterises through speech</li>
+      <li>the diagnosis is <strong>proleptic</strong>: it lands on the man who has just dismissed it</li>
+      <li>Nazneen's single sentence is a <strong>transgression</strong>, and the burning neck is its <strong>index</strong></li>
+      <li>the exchanged look is <strong>silent disloyalty</strong> — say that, not "she is attracted to him"</li>
+      <li>Chanu does not forbid; he makes the request <strong>unintelligible</strong></li>
+      <li>"she did not let the razor slip" is a <strong>negative that implies its opposite</strong></li>
+      <li>choosing how the woman fell is an <strong>act of interpretation</strong>, the only freedom available to her</li>
+      <li>Amma's death is built by <strong>juxtaposition</strong>: the novel never writes "suicide"</li>
+      <li>Jorina's granddaughter is a <strong>nameable obstacle</strong>, not an instance of fate</li>
+      <li>the missing word is a <strong>typographic absence</strong>, not an omission of the narrator</li>
+    </ul>
   </div>
 
-  <div class="card">
-    <span class="tag" data-lang="fr">Le rasoir qui ne glisse pas</span>
-    <span class="tag" data-lang="en">The razor that does not slip</span>
-    <p data-lang="fr">Une phrase de six mots : elle coupe les cors de son mari et elle <b>ne laisse pas</b> le rasoir glisser. La formulation est négative, et une négation n'a de sens que si la possibilité existe. Le roman ne dit pas qu'elle est docile ; il dit qu'à chaque fois elle choisit de ne pas blesser. C'est de l'agentivité déguisée en obéissance. Garde ce détail : au chapitre 3, le rasoir glissera.</p>
-    <p data-lang="en">A six-word sentence: she cuts her husband's corns and she <b>does not let</b> the razor slip. The phrasing is negative, and a negative only means something if the possibility exists. The novel does not say she is docile; it says that each time she chooses not to wound. This is agency disguised as obedience. Keep this detail: in chapter 3 the razor will slip.</p>
-  </div>
-
-  <div class="card">
-    <span class="tag" data-lang="fr">L'obstacle porte un nom, et ce n'est pas le destin</span>
-    <span class="tag" data-lang="en">The obstacle has a name, and it is not fate</span>
-    <p data-lang="fr">Nazneen demande à apprendre l'anglais. Chanu répond que ça viendra, puis : où est le besoin ? Plus loin, il lui explique pourquoi elle ne devrait pas sortir, tout en affirmant qu'il ne l'empêche de rien et qu'il est occidentalisé. Ce n'est pas le destin qui la tient dans l'appartement : c'est un homme, avec un raisonnement, qui se contredit en trois phrases. La question t'invitait à distinguer les deux.</p>
-    <p data-lang="en">Nazneen asks to learn English. Chanu says it will come, then: where's the need? Later he explains why she should not go out, while insisting that he stops her from nothing and that he is westernised. It is not fate keeping her in the flat: it is a man, with a rationale, contradicting himself in three sentences. The question was inviting you to tell the two apart.</p>
+  <div class="fiche-ref">
+    <b data-lang="fr">Les fiches de ce chapitre</b><b data-lang="en">This chapter's quotation entries</b>
+    <p data-lang="fr"><a href="#oeuvres/bricklane/citations">08</a> la seule phrase · <a href="#oeuvres/bricklane/citations">09</a> where's the need · <a href="#oeuvres/bricklane/citations">10</a> le rasoir tenu · <a href="#oeuvres/bricklane/citations">11</a> la patineuse · <a href="#oeuvres/bricklane/citations">12</a> elle a sauté · <a href="#oeuvres/bricklane/citations">13</a> le plus beau sari · <a href="#oeuvres/bricklane/citations">14</a> le mot manquant</p>
+    <p data-lang="en"><a href="#oeuvres/bricklane/citations">08</a> the one sentence · <a href="#oeuvres/bricklane/citations">09</a> where's the need · <a href="#oeuvres/bricklane/citations">10</a> the razor held · <a href="#oeuvres/bricklane/citations">11</a> the skater · <a href="#oeuvres/bricklane/citations">12</a> she jumped · <a href="#oeuvres/bricklane/citations">13</a> the best sari · <a href="#oeuvres/bricklane/citations">14</a> the missing word</p>
   </div>
 </div>
 <div class="leaf" data-route="oeuvres/bricklane/ch3" data-fr="Chapitre 3" data-en="Chapter 3">
