@@ -1,0 +1,13 @@
+{
+  "name": "1984 — Orwell · BFI",
+  "short_name": "1984",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#12100e",
+  "theme_color": "#12100e",
+  "description": "Orwell, 1984 — révision pour l'oral BFI : contexte, intrigue, personnages, key issues, citations",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

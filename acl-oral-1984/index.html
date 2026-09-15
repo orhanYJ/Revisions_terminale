@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1984 · BFI — Orwell, révision pour l’oral</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#12100e">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="1984">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --char:#12100e;        /* charbon, fond */
+    --char-2:#1b1815;      /* panneau */
+    --char-3:#26211c;      /* survol / relief */
+    --ash:#ded3c9;         /* texte cendre */
+    --ash-dim:#9a8f84;     /* secondaire */
+    --ember:#d5642a;       /* braise, accent */
+    --ember-soft:#e89a5c;  /* braise claire */
+    --ember-glow:#f0b877;  /* lueur */
+    --blood:#8f3324;       /* rouge sombre */
+    --line:#332c25;
+    --gold:#c9a24a;        /* holy things / altar */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--char);color:var(--ash);
+    font-family:'Spectral',Georgia,serif;font-size:17px;line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ember);color:var(--char)}
+
+  /* ---------------- Layout ---------------- */
+  .shell{display:flex;min-height:100vh}
+  nav.rail{
+    width:264px;flex-shrink:0;position:sticky;top:0;height:100vh;overflow-y:auto;
+    background:linear-gradient(180deg,#161311,#100e0c);
+    border-right:1px solid var(--line);padding:30px 0 40px;
+  }
+  .rail .brand{padding:0 26px 20px;border-bottom:1px solid var(--line);margin-bottom:16px}
+  .rail .kicker{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ember);}
+  .rail h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:25px;line-height:1.05;margin-top:9px;color:var(--ash)}
+  .rail .sub{font-size:12.5px;color:var(--ash-dim);margin-top:7px;font-family:'JetBrains Mono';letter-spacing:.02em}
+
+  .rail .grp{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ash-dim);padding:16px 26px 7px;opacity:.7}
+  .navlink{display:flex;gap:11px;align-items:baseline;padding:8px 26px;cursor:pointer;
+    color:var(--ash-dim);font-size:14.5px;border-left:2px solid transparent;transition:.15s;font-family:'Spectral'}
+  .navlink .n{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--line);min-width:16px}
+  .navlink:hover{color:var(--ash);background:var(--char-3)}
+  .navlink.active{color:var(--ember-soft);border-left-color:var(--ember);background:#23130b}
+  .navlink.active .n{color:var(--ember)}
+  .navlink.soon{opacity:.4;cursor:default}
+  .navlink.soon:hover{background:none;color:var(--ash-dim)}
+  .navlink.ext{text-decoration:none;display:block}
+  .tagout{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.06em;
+    color:var(--ember);border:1px solid var(--line);border-radius:3px;padding:1px 5px;
+    margin-left:6px;vertical-align:middle}
+  .tagsoon{font-family:'JetBrains Mono';font-size:8.5px;letter-spacing:.1em;border:1px solid var(--line);
+    border-radius:3px;padding:1px 4px;color:var(--ash-dim);margin-left:auto}
+
+  main{flex:1;max-width:940px;margin:0 auto;padding:0 0 140px}
+  .pad{padding:0 60px}
+  @media(max-width:960px){.pad{padding:0 30px}}
+
+  section{display:none;animation:rise .5s ease}
+  section.on{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* ---------------- Hero ---------------- */
+  .hero{position:relative;padding:80px 60px 54px;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:180px;
+    background:radial-gradient(120% 100% at 30% 120%, rgba(213,100,42,.22), transparent 70%);pointer-events:none}
+  @media(max-width:960px){.hero{padding:54px 30px 40px}}
+  .hero .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--ember);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+  .hero .eyebrow::before{content:"";width:32px;height:1px;background:var(--ember)}
+  .hero h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,7vw,78px);
+    line-height:.98;letter-spacing:-.015em;color:var(--ash);margin-bottom:6px}
+  .hero h2 em{font-style:italic;color:var(--ember-glow)}
+  .hero .byl{font-family:'JetBrains Mono';font-size:12.5px;letter-spacing:.06em;color:var(--ash-dim);margin-top:18px}
+  .hero .dek{font-size:20px;color:var(--ash-dim);max-width:60ch;margin-top:22px;font-style:italic;font-family:'Cormorant Garamond';font-weight:500}
+
+  /* ---------------- Typography blocks ---------------- */
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ember);margin:0 0 14px;display:flex;align-items:center;gap:11px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--ember)}
+  h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:33px;line-height:1.08;margin:52px 0 4px;color:var(--ash);letter-spacing:-.01em}
+  h3 + .rubric{font-family:'JetBrains Mono';font-size:11px;letter-spacing:.08em;color:var(--ash-dim);
+    text-transform:uppercase;margin-bottom:20px}
+  h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;margin:34px 0 10px;color:var(--ember-soft)}
+  h5{font-family:'JetBrains Mono';font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--gold);margin:26px 0 9px}
+  p{margin-bottom:16px}
+  p.big{font-size:19px}
+  .lead{font-size:20px;color:var(--ash);margin:22px 0 10px;font-family:'Cormorant Garamond';font-weight:500;font-style:italic;line-height:1.5}
+  strong,b{color:var(--ember-glow);font-weight:600}
+  em{color:var(--ash)}
+  .pad ul,.pad ol{margin:0 0 18px 24px}
+  .pad li{margin-bottom:9px}
+  .pad li::marker{color:var(--ember)}
+
+  /* ---------------- Poem ---------------- */
+  .poem{background:linear-gradient(180deg,#171310,#120f0d);border:1px solid var(--line);
+    border-radius:4px;padding:34px 40px;margin:26px 0;position:relative;overflow:hidden}
+  .poem::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;
+    background:linear-gradient(180deg,var(--ember-glow),var(--ember),var(--blood),#1a1512)}
+  .poem .vln{display:flex;gap:18px;font-family:'Spectral';font-size:16px;line-height:1.9;color:var(--ash)}
+  .poem .vln .ln{font-family:'JetBrains Mono';font-size:10px;color:#4d4238;min-width:22px;text-align:right;
+    padding-top:6px;user-select:none;flex-shrink:0}
+  .poem .vln.hl{background:rgba(213,100,42,.09);margin:0 -14px;padding-left:14px;padding-right:14px;border-radius:3px}
+  .poem .vln.hl span:last-child{color:var(--ember-glow)}
+
+  /* ---------------- Panels ---------------- */
+  .panel{background:var(--char-2);border:1px solid var(--line);border-radius:5px;padding:24px 28px;margin:22px 0}
+  .panel.ember{border-left:3px solid var(--ember)}
+  .panel.gold{border-left:3px solid var(--gold)}
+  .panel.blood{border-left:3px solid var(--blood)}
+  .panel h4,.panel h5{margin-top:0}
+
+  blockquote{border-left:2px solid var(--ember);margin:20px 0;padding:6px 0 6px 22px;
+    font-family:'Cormorant Garamond';font-style:italic;font-size:22px;line-height:1.4;color:var(--ember-glow)}
+  blockquote .src{display:block;font-family:'JetBrains Mono';font-style:normal;font-size:11px;
+    letter-spacing:.05em;color:var(--ash-dim);margin-top:10px}
+
+  .cite{font-family:'Cormorant Garamond';font-style:italic;color:var(--ember-glow);font-size:1.05em}
+  .term{font-family:'JetBrains Mono';font-size:.82em;color:var(--gold);letter-spacing:.02em}
+  .vref{font-family:'JetBrains Mono';font-size:11px;color:var(--ash-dim);background:var(--char-3);
+    padding:1px 6px;border-radius:3px;border:1px solid var(--line)}
+
+  /* ---------------- Tables ---------------- */
+  table{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+  th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ember);font-weight:500}
+  td strong{color:var(--ember-glow)}
+  tr:hover td{background:var(--char-2)}
+
+  /* ---------------- Pills / chips ---------------- */
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0}
+  .chip{font-family:'JetBrains Mono';font-size:11px;padding:4px 11px;border-radius:20px;
+    border:1px solid var(--line);color:var(--ash-dim)}
+  .chip.on{border-color:var(--ember);color:var(--ember-soft);background:rgba(213,100,42,.08)}
+  .chip.gold{border-color:var(--gold);color:var(--gold)}
+
+  /* ---------------- Key issue map ---------------- */
+  .kimap{display:grid;grid-template-columns:1fr;gap:12px;margin:22px 0}
+  .ki{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;
+    background:var(--char-2);border:1px solid var(--line);border-radius:5px;padding:16px 20px}
+  .ki .rank{font-family:'Cormorant Garamond';font-size:38px;font-weight:700;line-height:1;color:var(--ember);opacity:.5}
+  .ki.core .rank{opacity:1;color:var(--ember-glow)}
+  .ki h5{margin:0 0 5px;color:var(--ash)}
+  .ki p{margin:0;font-size:14.5px;color:var(--ash-dim)}
+  .ki .strength{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:2px 7px;border-radius:20px;margin-left:8px;vertical-align:middle}
+  .s-core{background:rgba(213,100,42,.16);color:var(--ember-glow);border:1px solid var(--ember)}
+  .s-strong{background:rgba(201,162,74,.12);color:var(--gold);border:1px solid var(--gold)}
+  .s-second{background:var(--char-3);color:var(--ash-dim);border:1px solid var(--line)}
+
+  /* ---------------- Bridge cards ---------------- */
+  .bridge{background:linear-gradient(135deg,#1c1611,#141110);border:1px solid var(--line);
+    border-left:3px solid var(--gold);border-radius:5px;padding:20px 24px;margin:16px 0}
+  .bridge .to{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .bridge .to b{color:var(--ember-glow)}
+
+  /* ---------------- Tableau comparatif ---------------- */
+  .compare{width:100%;border-collapse:collapse;margin:22px 0;font-size:14px}
+  .compare th,.compare td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
+  .compare thead th{background:#1c1611;color:var(--gold);font-family:'JetBrains Mono';font-size:10.5px;
+    letter-spacing:.08em;text-transform:uppercase;font-weight:400}
+  .compare tbody th{background:var(--char-2);color:var(--ember-glow);font-family:'Spectral';font-weight:600;
+    font-size:13.5px;white-space:nowrap}
+  .compare tbody tr:nth-child(even) td{background:rgba(255,255,255,.012)}
+  .compare .wk{font-family:'Cormorant Garamond';font-style:italic;color:var(--ash)}
+  .compare-wrap{overflow-x:auto;margin:22px 0}
+
+  /* œuvres mobilisées dans une thèse */
+  .tworks{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+  .tworks .wtag{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.06em;padding:4px 11px;
+    border-radius:20px;border:1px solid var(--gold);color:var(--gold);background:rgba(201,162,74,.08)}
+  .tworks .wtag.piv{border-color:var(--ember);color:var(--ember-glow);background:rgba(213,100,42,.12)}
+  .thesis h4{margin:18px 0 6px;color:var(--ash)}
+
+  /* triangle des ponts */
+  .triwrap{display:flex;justify-content:center;margin:26px 0 10px}
+  .tri{width:100%;max-width:560px;height:auto}
+  .tri line{stroke:var(--line);stroke-width:1.5}
+  .tri .node circle{fill:var(--ember);stroke:var(--char);stroke-width:2}
+  .tri .nt{fill:var(--ash);font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;font-weight:600}
+  .tri .ns{fill:var(--ash-dim);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.05em}
+  .tri .elab text{fill:var(--gold);font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.04em}
+
+  /* renvoi vers l'onglet Ponts */
+  .seealso{display:flex;align-items:center;gap:10px;background:var(--char-2);border:1px solid var(--line);
+    border-left:3px solid var(--gold);border-radius:5px;padding:11px 16px;margin:14px 0 22px;
+    font-size:13.5px;color:var(--ash-dim);cursor:pointer;transition:.15s}
+  .seealso:hover{background:#1f1b16;color:var(--ash)}
+  .seealso .ar{font-family:'JetBrains Mono';color:var(--gold);font-size:14px}
+  .seealso b{color:var(--ember-glow);font-weight:600}
+
+  /* ---------------- Thesis / oral box ---------------- */
+  .thesis{background:radial-gradient(120% 130% at 100% 0%, rgba(213,100,42,.14), transparent 60%),var(--char-2);
+    border:1px solid var(--ember);border-radius:6px;padding:28px 30px;margin:26px 0}
+  .thesis .lbl{font-family:'JetBrains Mono';font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-bottom:12px}
+  .thesis blockquote{border:none;margin:0;padding:0;font-size:24px;color:var(--ash)}
+
+  .plan{counter-reset:step;margin:20px 0}
+  .plan .step{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .plan .step::before{counter-increment:step;content:counter(step);font-family:'Cormorant Garamond';
+    font-size:30px;font-weight:700;color:var(--ember);line-height:1}
+  .plan .step h5{margin:0 0 5px}
+  .plan .step p{margin:0;font-size:14.5px;color:var(--ash-dim)}
+  .plan .step .t{font-family:'JetBrains Mono';font-size:10px;color:var(--gold);float:right}
+
+  /* memory quotes */
+  .memq{background:var(--char-2);border:1px dashed var(--line);border-radius:5px;padding:6px 20px;margin:20px 0}
+  .memq .q{display:flex;gap:16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line)}
+  .memq .q:last-child{border-bottom:none}
+  .memq .q .v{font-family:'JetBrains Mono';font-size:10px;color:var(--ember);min-width:44px}
+  .memq .q .txt{font-family:'Cormorant Garamond';font-style:italic;font-size:19px;color:var(--ash)}
+  .memq .q .why{font-size:12.5px;color:var(--ash-dim);font-family:'Spectral';margin-top:2px}
+
+  /* language toggle */
+  .langtoggle{display:inline-flex;margin-top:14px;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  .langtoggle button{background:transparent;border:none;color:var(--ash-dim);font-family:'JetBrains Mono';
+    font-size:11px;letter-spacing:.1em;padding:5px 14px;cursor:pointer;transition:.15s}
+  .langtoggle button:hover{color:var(--ash)}
+  .langtoggle button.on{background:var(--ember);color:var(--char);font-weight:700}
+  /* bilingual visibility — default EN */
+  [data-lang="fr"]{display:none}
+  html.lang-fr [data-lang="fr"]{display:block}
+  html.lang-fr [data-lang="en"]{display:none}
+  /* inline variants keep flow */
+  span[data-lang]{display:inline}
+  html.lang-fr span[data-lang="en"]{display:none}
+  html:not(.lang-fr) span[data-lang="fr"]{display:none}
+
+  /* qcard — fiches citations détaillées */
+  .qcard{background:linear-gradient(180deg,#1a1512,#141110);border:1px solid var(--line);
+    border-left:3px solid var(--ember);border-radius:5px;padding:22px 26px;margin:20px 0}
+  .qhead{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;margin-bottom:16px;
+    padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .qhead .qref{font-family:'JetBrains Mono';font-size:11px;color:var(--ember);border:1px solid var(--ember);
+    border-radius:3px;padding:2px 8px;flex-shrink:0}
+  .qhead .qtext{font-family:'Cormorant Garamond';font-style:italic;font-size:22px;color:var(--ember-glow);line-height:1.25}
+  .qgrid{display:grid;grid-template-columns:1fr 2fr;gap:20px;margin-bottom:16px}
+  @media(max-width:720px){.qgrid{grid-template-columns:1fr;gap:10px}}
+  .qgrid h6{font-family:'JetBrains Mono';font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--gold);margin:0 0 5px;font-weight:700}
+  .qgrid p{margin:0;font-size:14.5px;color:var(--ash-dim);line-height:1.6}
+  .qissues{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .qoral{background:rgba(213,100,42,.08);border-radius:4px;padding:12px 15px;font-size:14.5px;
+    color:var(--ash);line-height:1.55}
+  .qoral .olbl{font-family:'JetBrains Mono';font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ember);display:inline-block;margin-right:8px;vertical-align:1px}
+
+  .foot{margin:60px 0 0;padding:24px 60px 0;border-top:1px solid var(--line);font-size:12.5px;color:var(--ash-dim);font-family:'JetBrains Mono';line-height:1.7}
+  @media(max-width:960px){.foot{padding:24px 30px 0}}
+
+  .mtoggle{display:none}
+  @media(max-width:880px){
+    nav.rail{position:fixed;left:-280px;z-index:60;transition:.28s;box-shadow:0 0 50px rgba(0,0,0,.7)}
+    nav.rail.open{left:0}
+    .mtoggle{display:flex;position:fixed;top:14px;left:14px;z-index:70;background:var(--char-2);
+      border:1px solid var(--ember);color:var(--ember);width:46px;height:46px;border-radius:6px;
+      align-items:center;justify-content:center;font-size:20px;cursor:pointer}
+    .hero{padding-top:70px}
+  }
+
+  /* --- part-split additions --- */
+  .partnav{display:flex;justify-content:space-between;align-items:center;gap:12px;
+    margin:44px 0 10px;padding-top:22px;border-top:1px solid var(--line)}
+  .partnav button{background:var(--char-2);border:1px solid var(--line);color:var(--ash);
+    font-family:'Spectral',serif;font-size:13.5px;padding:9px 15px;border-radius:5px;
+    cursor:pointer;transition:border-color .15s,color .15s}
+  .partnav button:hover{border-color:var(--ember);color:var(--ember-soft)}
+  .partnav .ar{font-family:'JetBrains Mono',monospace;color:var(--ember)}
+  .totop{position:fixed;right:18px;bottom:18px;z-index:60;width:42px;height:42px;
+    border-radius:50%;background:var(--char-2);border:1px solid var(--line);color:var(--ember);
+    font-size:17px;line-height:1;cursor:pointer;opacity:0;pointer-events:none;
+    transition:opacity .2s;display:flex;align-items:center;justify-content:center}
+  .totop.show{opacity:1;pointer-events:auto}
+  .totop:hover{border-color:var(--ember)}
+  .navlink.ext{text-decoration:none;color:var(--ash-dim);display:block}
+  .navlink.ext:hover{color:var(--ash)}
+  @media(max-width:860px){ .partnav button{font-size:12.5px} }
+</style>
+</head>
+<body>
+<button class="mtoggle" onclick="document.querySelector('nav.rail').classList.toggle('open')">☰</button>
+<div class="shell">
+  <nav class="rail">
+    <div class="brand">
+      <div class="kicker">BFI · Section anglaise</div>
+      <h1>1984</h1>
+      <div class="sub">George Orwell · 1949</div>
+      <div class="langtoggle" id="langtoggle">
+        <button data-l="en" class="on">EN</button><button data-l="fr">FR</button>
+      </div>
+    </div>
+
+    <div class="grp"><span data-lang="fr">Le roman</span><span data-lang="en">The novel</span></div>
+    <div class="navlink active" data-s="hub"><span class="n">◆</span> <span data-lang="fr">Vue d'ensemble</span><span data-lang="en">Overview</span></div>
+    <div class="navlink" data-s="p1"><span class="n">1</span> <span data-lang="fr">Contexte</span><span data-lang="en">Context</span></div>
+    <div class="navlink" data-s="p2"><span class="n">2</span> <span data-lang="fr">L’intrigue</span><span data-lang="en">The plot</span></div>
+    <div class="navlink" data-s="p3"><span class="n">3</span> <span data-lang="fr">Le monde du roman</span><span data-lang="en">The world of the novel</span></div>
+    <div class="navlink" data-s="p4"><span class="n">4</span> <span data-lang="fr">Les personnages</span><span data-lang="en">The characters</span></div>
+    <div class="navlink" data-s="p5"><span class="n">5</span> <span data-lang="fr">Axes thématiques</span><span data-lang="en">Thematic axes</span></div>
+    <div class="navlink" data-s="p6"><span class="n">6</span> <span data-lang="fr">Les 8 key issues</span><span data-lang="en">The 8 key issues</span></div>
+    <div class="navlink" data-s="p7"><span class="n">7</span> <span data-lang="fr">Ponts entre œuvres</span><span data-lang="en">Bridges</span></div>
+    <div class="navlink" data-s="p8"><span class="n">8</span> <span data-lang="fr">Fiches-citations</span><span data-lang="en">Quotation cards</span></div>
+
+    <div class="grp"><span data-lang="fr">Retour</span><span data-lang="en">Back</span></div>
+    <a class="navlink ext" href="../acl-oral/"><span class="n">↵</span> <span data-lang="fr">Oral Dystopie — corpus complet</span><span data-lang="en">Oral Dystopia — full corpus</span></a>
+    <a class="navlink ext" href="../acl-oral-butler/"><span class="n">R2</span> <span data-lang="fr">Parable of the Sower</span><span data-lang="en">Parable of the Sower</span></a>
+  </nav>
+
+  <main>
+
+    <section id="hub" class="on">
+      <div class="hero">
+
+        <div class="eyebrow"><span data-lang="fr">Roman 1 · analyse complète</span><span data-lang="en">Novel 1 · full analysis</span></div>
+        <h2>Nineteen Eighty-Four</h2>
+        <div class="byl"><span data-lang="fr">George Orwell · 1949 · roman en trois parties</span><span data-lang="en">George Orwell · 1949 · novel in three parts</span></div>
+        <div class="dek"><span data-lang="fr">La dystopie politique par excellence : un État total qui ne se contente pas d'opprimer les corps, mais entreprend de coloniser les esprits — jusqu'à faire aimer le tyran. Winston Smith tente de garder une pensée à lui ; le roman est le récit méthodique de sa défaite.</span><span data-lang="en">The political dystopia par excellence: a total state that does not merely oppress bodies, but sets out to colonise minds — until the tyrant is loved. Winston Smith tries to keep a thought of his own; the novel is the methodical account of his defeat.</span></div>
+      </div>
+      <div class="body">
+        <div class="panel gold">
+          <h5><span data-lang="fr">Comment lire cette fiche</span><span data-lang="en">How to use this page</span></h5>
+          <p style="margin-bottom:0" data-lang="fr">Le roman est découpé en <strong>huit parties</strong>, une par entrée de menu. Commence par l’intrigue si tu révises, par les key issues si tu prépares une question précise, par les fiches-citations la veille de l’oral.</p>
+          <p style="margin-bottom:0" data-lang="en">The novel is split into <strong>eight parts</strong>, one per menu entry. Start with the plot if you are revising, with the key issues if you are preparing a specific question, with the quotation cards the night before the oral.</p>
+        </div>
+        <div class="kimap">
+          <div class="ki"><div class="rank">1</div><div><h5><span data-lang="fr">Contexte</span><span data-lang="en">Context</span></h5><p><span data-lang="fr">Contexte : écrire le totalitarisme depuis ses ruines</span><span data-lang="en">Context: writing totalitarianism from its ruins</span></p><p style="margin-top:8px"><button onclick="goTab('p1')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
+          <div class="ki"><div class="rank">2</div><div><h5><span data-lang="fr">L’intrigue</span><span data-lang="en">The plot</span></h5><p><span data-lang="fr">L'intrigue en bref</span><span data-lang="en">The plot in brief</span></p><p style="margin-top:8px"><button onclick="goTab('p2')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
+          <div class="ki"><div class="rank">3</div><div><h5><span data-lang="fr">Le monde du roman</span><span data-lang="en">The world of the novel</span></h5><p><span data-lang="fr">Le monde du roman : l'arsenal du contrôle</span><span data-lang="en">The world of the novel: the arsenal of control</span></p><p style="margin-top:8px"><button onclick="goTab('p3')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
+          <div class="ki"><div class="rank">4</div><div><h5><span data-lang="fr">Les personnages</span><span data-lang="en">The characters</span></h5><p><span data-lang="fr">Les personnages comme incarnations d'enjeux</span><span data-lang="en">Characters as embodiments of issues</span></p><p style="margin-top:8px"><button onclick="goTab('p4')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
+          <div class="ki"><div class="rank">5</div><div><h5><span data-lang="fr">Axes thématiques</span><span data-lang="en">Thematic axes</span></h5><p><span data-lang="fr">Les grands axes thématiques</span><span data-lang="en">The major thematic axes</span></p><p style="margin-top:8px"><button onclick="goTab('p5')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
+          <div class="ki"><div class="rank">6</div><div><h5><span data-lang="fr">Les 8 key issues</span><span data-lang="en">The 8 key issues</span></h5><p><span data-lang="fr">1984 &amp; les 8 key issues</span><span data-lang="en">1984 &amp; the 8 key issues</span></p><p style="margin-top:8px"><button onclick="goTab('p6')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
+          <div class="ki"><div class="rank">7</div><div><h5><span data-lang="fr">Ponts entre œuvres</span><span data-lang="en">Bridges</span></h5><p><span data-lang="fr">Ponts vers les autres œuvres</span><span data-lang="en">Bridges to the other works</span></p><p style="margin-top:8px"><button onclick="goTab('p7')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
+          <div class="ki"><div class="rank">8</div><div><h5><span data-lang="fr">Fiches-citations</span><span data-lang="en">Quotation cards</span></h5><p><span data-lang="fr">Fiches-citations à mémoriser</span><span data-lang="en">Quotation cards to memorise</span></p><p style="margin-top:8px"><button onclick="goTab('p8')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="p1">
+      <div class="hero">
+        <div class="eyebrow"><span data-lang="fr">Partie 1 sur 8</span><span data-lang="en">Part 1 of 8</span></div>
+        <h2><span data-lang="fr">Contexte : écrire le totalitarisme depuis ses ruines</span><span data-lang="en">Context: writing totalitarianism from its ruins</span></h2>
+        <div class="byl"><span data-lang="fr">Orwell, 1949 : l'avertissement d'un socialiste désabusé</span><span data-lang="en">Orwell, 1949: the warning of a disillusioned socialist</span></div>
+      </div>
+      <div class="body">
+        <p data-lang="fr"><strong>George Orwell</strong> (pseudonyme d'Eric Blair, 1903–1950) écrit <span class="cite">1984</span> en 1948 — il inverse les deux derniers chiffres pour le titre — et le publie en juin 1949, un an avant sa mort de la tuberculose. Le roman naît d'une double expérience politique : Orwell a combattu le fascisme en Espagne (1936–37) dans les rangs républicains, mais il y a vu de ses yeux les <strong>purges staliniennes contre ses propres alliés</strong> — une trahison qui fera de lui un ennemi acharné du totalitarisme, <em>de gauche comme de droite</em>. C'est une clé de lecture essentielle : <span class="cite">1984</span> n'est pas un pamphlet anti-communiste ou anti-fasciste, c'est une charge contre le <strong>mécanisme totalitaire lui-même</strong>, quelle que soit son étiquette.</p><p data-lang="en"><strong>George Orwell</strong> (pen name of Eric Blair, 1903–1950) wrote <span class="cite">1984</span> in 1948 — he swapped the last two digits for the title — and published it in June 1949, a year before his death from tuberculosis. The novel grows from a double political experience: Orwell fought fascism in Spain (1936–37) on the Republican side, but there he saw with his own eyes the <strong>Stalinist purges against his own allies</strong> — a betrayal that made him a fierce enemy of totalitarianism, <em>of the left as of the right</em>. This is an essential key: <span class="cite">1984</span> is not an anti-communist or anti-fascist pamphlet, it is an attack on the <strong>totalitarian mechanism itself</strong>, whatever its label.</p>
+        <p data-lang="fr">Le monde de 1949 nourrit chaque page : la guerre froide qui commence, la bombe atomique, la propagande de masse, les « ministères » de la Seconde Guerre mondiale, le culte de Staline et de Hitler. Orwell extrapole — comme Byron extrapolait le Tambora — un présent inquiétant jusqu'à son terme logique : et si l'État perfectionnait ces outils jusqu'à contrôler non seulement les actes, mais la <em>pensée</em> et jusqu'à la <em>réalité</em> ? Le monde d'Océania (superpuissance née de la fusion de l'Amérique et de l'Empire britannique) est cet aboutissement.</p><p data-lang="en">The world of 1949 feeds every page: the beginning of the Cold War, the atomic bomb, mass propaganda, the "ministries" of the Second World War, the cults of Stalin and Hitler. Orwell extrapolates — as Byron extrapolated Tambora — a disturbing present to its logical end: what if the state perfected these tools until it controlled not only acts, but <em>thought</em> and even <em>reality</em>? The world of Oceania (a superpower born of the fusion of America and the British Empire) is that endpoint.</p>
+        <div class="panel ember">
+          <h5><span data-lang="fr">À placer à l'oral</span><span data-lang="en">Use it in the oral</span></h5>
+          <p style="margin-bottom:0" data-lang="fr">Insiste sur le fait qu'Orwell écrit en tant que <em>socialiste</em> qui a vu le totalitarisme de l'intérieur : « <span class="cite">1984</span> n'attaque pas une idéologie particulière, mais la logique du pouvoir total — c'est pourquoi le roman reste lisible quelle que soit l'époque ou le camp. » Cela te distingue immédiatement de la lecture scolaire « Orwell = anti-communisme ».</p><p style="margin-bottom:0" data-lang="en">Stress that Orwell writes as a <em>socialist</em> who saw totalitarianism from within: "<span class="cite">1984</span> does not attack a particular ideology, but the logic of total power — which is why the novel stays legible in any era or camp." This immediately sets you apart from the school reading "Orwell = anti-communism".</p>
+        </div>
+
+        <!-- 2 INTRIGUE -->
+        
+        <div class="partnav">
+          <button onclick="goTab('hub')"><span class="ar">←</span> <span data-lang="fr">Vue d’ensemble</span><span data-lang="en">Overview</span></button>
+          <button onclick="goTab('p2')"><span data-lang="fr">L’intrigue</span><span data-lang="en">The plot</span> <span class="ar">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="p2">
+      <div class="hero">
+        <div class="eyebrow"><span data-lang="fr">Partie 2 sur 8</span><span data-lang="en">Part 2 of 8</span></div>
+        <h2><span data-lang="fr">L'intrigue en bref</span><span data-lang="en">The plot in brief</span></h2>
+        <div class="byl"><span data-lang="fr">Des repères, pas un résumé — une trajectoire en trois parties</span><span data-lang="en">Markers, not a summary — a trajectory in three parts</span></div>
+      </div>
+      <div class="body">
+        <p data-lang="fr">La structure du roman <em>est</em> déjà une thèse : trois parties qui dessinent une courbe implacable, de l'éveil de la révolte à son écrasement total. Retiens cette architecture — elle t'organise n'importe quel développement.</p><p data-lang="en">The novel's structure is <em>already</em> a thesis: three parts tracing a relentless curve, from the awakening of revolt to its total crushing. Remember this architecture — it will organise any development for you.</p>
+        <table class="tbl">
+          <tr><th><span data-lang="fr">Partie</span><span data-lang="en">Part</span></th><th><span data-lang="fr">Mouvement</span><span data-lang="en">Movement</span></th><th><span data-lang="fr">Ce qui s'y joue</span><span data-lang="en">What is at stake</span></th></tr>
+          <tr><td><strong><span data-lang="fr">Partie 1</span><span data-lang="en">Part 1</span></strong></td><td><span data-lang="fr">Le monde &amp; l'éveil</span><span data-lang="en">The world &amp; the awakening</span></td><td><span data-lang="fr">Winston, employé au Commissariat aux Archives, commence un journal interdit. Présentation d'Océania, du Parti, de la surveillance. Premier acte de rébellion : penser.</span><span data-lang="en">Winston, a clerk at the Records Department, begins a forbidden diary. Oceania, the Party, surveillance are introduced. First act of rebellion: to think.</span></td></tr>
+          <tr><td><strong><span data-lang="fr">Partie 2</span><span data-lang="en">Part 2</span></strong></td><td><span data-lang="fr">L'amour &amp; l'illusion</span><span data-lang="en">Love &amp; illusion</span></td><td><span data-lang="fr">La liaison avec Julia, la chambre louée au-dessus de la boutique, l'illusion d'un refuge. Le recrutement par O'Brien dans la (fausse) Fraternité. Le piège se referme.</span><span data-lang="en">The affair with Julia, the rented room above the shop, the illusion of a refuge. Recruitment by O'Brien into the (false) Brotherhood. The trap closes.</span></td></tr>
+          <tr><td><strong><span data-lang="fr">Partie 3</span><span data-lang="en">Part 3</span></strong></td><td><span data-lang="fr">La torture &amp; la défaite</span><span data-lang="en">Torture &amp; defeat</span></td><td><span data-lang="fr">Le Ministère de l'Amour, les séances avec O'Brien, la rééducation, puis la Salle 101. Winston trahit Julia, puis aime Big Brother. La défaite est totale.</span><span data-lang="en">The Ministry of Love, the sessions with O'Brien, the re-education, then Room 101. Winston betrays Julia, then loves Big Brother. The defeat is total.</span></td></tr>
+        </table>
+        <p data-lang="fr">Le point structurel décisif : le roman <strong>refuse le schéma héroïque</strong>. On attend que la révolte de Winston mène quelque part ; elle ne mène qu'à sa reddition. La dernière phrase — « <span class="cite">He loved Big Brother</span> » — n'est pas une chute ironique, c'est l'aboutissement logique de tout le livre. Orwell veut que le lecteur ressente l'<em>inéluctabilité</em> de la défaite, exactement comme la coulée continue de Byron.</p><p data-lang="en">The decisive structural point: the novel <strong>refuses the heroic pattern</strong>. We expect Winston's revolt to lead somewhere; it leads only to his surrender. The last sentence — "<span class="cite">He loved Big Brother</span>" — is not an ironic twist, it is the logical outcome of the whole book. Orwell wants the reader to feel the <em>inevitability</em> of the defeat, exactly like Byron's continuous downward flow.</p>
+        <div class="panel">
+          <h5><span data-lang="fr">Repères de lecture</span><span data-lang="en">Reading markers</span></h5>
+          <p data-lang="fr">Œuvre encore récente : plutôt que de reproduire de longs extraits, voici les <strong>passages-clés localisés</strong> pour les retrouver vite dans ton édition. Les citations exactes sont disséquées dans les fiches (section 8).</p><p data-lang="en">A still-recent work: rather than reproduce long extracts, here are the <strong>key passages located</strong> so you can find them fast in your edition. The exact quotations are dissected in the cards (section 8).</p>
+          <div class="memq">
+            <div class="q"><span class="v">P1 ch.1</span><span><span class="txt" data-lang="fr">Incipit, l'horloge qui sonne treize heures ; premier regard sur Big Brother et les télécrans.</span><span class="txt" data-lang="en">The opening, the clock striking thirteen; first sight of Big Brother and the telescreens.</span></span></div>
+            <div class="q"><span class="v">P1 ch.3</span><span><span class="txt" data-lang="fr">La nature du passé réécrit ; le travail de Winston aux Archives.</span><span class="txt" data-lang="en">The nature of the rewritten past; Winston's work at the Records Department.</span></span></div>
+            <div class="q"><span class="v">P1 ch.5</span><span><span class="txt" data-lang="fr">Syme et la novlangue ; le dîner à la cantine.</span><span class="txt" data-lang="en">Syme and Newspeak; the canteen dinner.</span></span></div>
+            <div class="q"><span class="v">P1 ch.7</span><span><span class="txt" data-lang="fr">« If there is hope, it lies in the proles » ; le journal.</span><span class="txt" data-lang="en">"If there is hope, it lies in the proles"; the diary.</span></span></div>
+            <div class="q"><span class="v">P2 ch.4</span><span><span class="txt" data-lang="fr">La chambre louée, le presse-papiers en corail, l'illusion du refuge.</span><span class="txt" data-lang="en">The rented room, the coral paperweight, the illusion of refuge.</span></span></div>
+            <div class="q"><span class="v">P3 ch.2–3</span><span><span class="txt" data-lang="fr">Les séances avec O'Brien ; « 2+2=5 » ; la doctrine du pouvoir.</span><span class="txt" data-lang="en">The sessions with O'Brien; "2+2=5"; the doctrine of power.</span></span></div>
+            <div class="q"><span class="v">P3 ch.5</span><span><span class="txt" data-lang="fr">La Salle 101, les rats, la trahison de Julia.</span><span class="txt" data-lang="en">Room 101, the rats, the betrayal of Julia.</span></span></div>
+            <div class="q"><span class="v">P3 ch.6</span><span><span class="txt" data-lang="fr">Le café, la défaite intérieure, « He loved Big Brother ».</span><span class="txt" data-lang="en">The café, the inner defeat, "He loved Big Brother".</span></span></div>
+          </div>
+        </div>
+
+        <!-- 3 LE MONDE / CONCEPTS -->
+        
+        <div class="partnav">
+          <button onclick="goTab('p1')"><span class="ar">←</span> <span data-lang="fr">Contexte</span><span data-lang="en">Context</span></button>
+          <button onclick="goTab('p3')"><span data-lang="fr">Le monde du roman</span><span data-lang="en">The world of the novel</span> <span class="ar">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="p3">
+      <div class="hero">
+        <div class="eyebrow"><span data-lang="fr">Partie 3 sur 8</span><span data-lang="en">Part 3 of 8</span></div>
+        <h2><span data-lang="fr">Le monde du roman : l'arsenal du contrôle</span><span data-lang="en">The world of the novel: the arsenal of control</span></h2>
+        <div class="byl"><span data-lang="fr">Les concepts qui font la puissance de 1984 à l'oral</span><span data-lang="en">The concepts that make 1984 powerful in the oral</span></div>
+      </div>
+      <div class="body">
+        <p data-lang="fr">C'est ici que <span class="cite">1984</span> devient une mine pour l'oral : Orwell a forgé tout un <strong>appareil conceptuel</strong> du totalitarisme, et maîtriser ce vocabulaire précis te distingue immédiatement. Ne te contente pas de « il y a de la surveillance » : nomme les mécanismes.</p><p data-lang="en">This is where <span class="cite">1984</span> becomes a goldmine for the oral: Orwell forged a whole <strong>conceptual apparatus</strong> of totalitarianism, and mastering this precise vocabulary sets you apart at once. Do not settle for "there is surveillance": name the mechanisms.</p>
+        <div class="panel"><h5><span data-lang="fr">La surveillance totale — le télécran</span><span data-lang="en">Total surveillance — the telescreen</span></h5><p data-lang="fr">Le <span class="term">telescreen</span> reçoit et émet en même temps : on ne peut jamais savoir si l'on est observé, ce qui pousse chacun à s'autosurveiller en permanence. Orwell anticipe l'idée que le contrôle le plus efficace n'est pas celui qui voit tout, mais celui qui pourrait voir à tout moment — le doute suffit à discipliner. À rapprocher du panoptique.</p><p data-lang="en">The <span class="term">telescreen</span> receives and transmits at once: you can never know whether you are being watched, which drives everyone to self-surveil constantly. Orwell anticipates the idea that the most effective control is not the one that sees everything, but the one that <em>might</em> see at any moment — doubt alone is enough to discipline. Compare with the panopticon.</p></div>
+        <div class="panel"><h5><span data-lang="fr">La langue-prison — la novlangue</span><span data-lang="en">Language as prison — Newspeak</span></h5><p data-lang="fr">La <span class="term">Newspeak</span> (novlangue) est l'invention la plus profonde du roman : en <em>réduisant</em> le vocabulaire, le Parti veut rendre la dissidence littéralement <strong>impensable</strong> — sans mots pour la liberté, pas de pensée de la liberté. Syme l'explique froidement (P1 ch.5) : le but est de « détruire des mots ». C'est ta meilleure arme contre l'idée naïve que le langage ne fait que « décrire » : ici il <em>fabrique</em> le pensable.</p><p data-lang="en">The <span class="term">Newspeak</span> is the novel's most profound invention: by <em>shrinking</em> vocabulary, the Party wants to make dissent literally <strong>unthinkable</strong> — without words for freedom, no thought of freedom. Syme explains it coldly (P1 ch.5): the goal is to "destroy words". This is your best weapon against the naïve idea that language merely "describes": here it <em>manufactures</em> the thinkable.</p></div>
+        <div class="panel"><h5><span data-lang="fr">La contradiction assumée — la doublepensée</span><span data-lang="en">Embraced contradiction — doublethink</span></h5><p data-lang="fr">La <span class="term">doublethink</span> (doublepensée) est la capacité de tenir simultanément deux croyances contradictoires et de les accepter toutes deux. Elle rend la propagande invulnérable : les slogans « <span class="cite">War is Peace</span> » ne sont pas des mensonges qu'on croit malgré leur absurdité, mais des vérités qu'on tient <em>et</em> dont on sait qu'elles sont fausses, sans que cela pose problème. C'est le cœur psychologique du système.</p><p data-lang="en">The <span class="term">doublethink</span> is the capacity to hold two contradictory beliefs at once and accept both. It makes propaganda invulnerable: the slogans "<span class="cite">War is Peace</span>" are not lies believed despite their absurdity, but truths one holds <em>and</em> knows to be false, without this causing any problem. It is the psychological heart of the system.</p></div>
+        <div class="panel"><h5><span data-lang="fr">La maîtrise du temps — la réécriture du passé</span><span data-lang="en">Mastery of time — rewriting the past</span></h5><p data-lang="fr">Le travail même de Winston consiste à <strong>falsifier les archives</strong> pour que le passé colle toujours à la ligne présente du Parti. « <span class="cite">Who controls the past controls the future</span> » (P1 ch.3) : en s'emparant de la mémoire, le Parti supprime tout point de comparaison, donc toute critique possible. Le passé devient un « palimpseste » sans cesse récrit. La dystopie n'attaque pas que l'avenir — elle colonise le temps entier.</p><p data-lang="en">Winston's very job is to <strong>falsify the records</strong> so that the past always fits the Party's present line. "<span class="cite">Who controls the past controls the future</span>" (P1 ch.3): by seizing memory, the Party removes every point of comparison, and so every possible critique. The past becomes a "palimpsest" endlessly rewritten. Dystopia does not only attack the future — it colonises the whole of time.</p></div>
+        <div class="panel"><h5><span data-lang="fr">La haine organisée &amp; le bouc émissaire</span><span data-lang="en">Organised hatred &amp; the scapegoat</span></h5><p data-lang="fr">Les <span class="term">Two Minutes Hate</span> et la figure d'ennemi public Emmanuel Goldstein canalisent l'émotion collective : le Parti ne réprime pas la passion, il la <em>dirige</em> vers un exutoire inoffensif pour lui. La haine, savamment entretenue, soude la population et détourne la colère de sa vraie cible. Mécanisme intemporel de tout régime autoritaire.</p><p data-lang="en">The <span class="term">Two Minutes Hate</span> and the public-enemy figure Emmanuel Goldstein channel collective emotion: the Party does not repress passion, it <em>directs</em> it toward an outlet harmless to itself. Hatred, carefully maintained, binds the population and diverts anger from its true target. A timeless mechanism of every authoritarian regime.</p></div>
+
+        <!-- 4 PERSONNAGES -->
+        
+        <div class="partnav">
+          <button onclick="goTab('p2')"><span class="ar">←</span> <span data-lang="fr">L’intrigue</span><span data-lang="en">The plot</span></button>
+          <button onclick="goTab('p4')"><span data-lang="fr">Les personnages</span><span data-lang="en">The characters</span> <span class="ar">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="p4">
+      <div class="hero">
+        <div class="eyebrow"><span data-lang="fr">Partie 4 sur 8</span><span data-lang="en">Part 4 of 8</span></div>
+        <h2><span data-lang="fr">Les personnages comme incarnations d'enjeux</span><span data-lang="en">Characters as embodiments of issues</span></h2>
+        <div class="byl"><span data-lang="fr">Chacun porte une idée — c'est ainsi qu'il faut les mobiliser</span><span data-lang="en">Each carries an idea — that is how to mobilise them</span></div>
+      </div>
+      <div class="body">
+        <div class="panel"><h5>Winston Smith <span data-lang="fr">— la conscience individuelle</span><span data-lang="en">— individual consciousness</span></h5><p data-lang="fr">Winston n'est pas un héros : c'est un homme <em>ordinaire</em>, physiquement faible (l'ulcère à la cheville, la toux), dont la seule grandeur est de vouloir garder une pensée à lui. Son nom même est ironique — Winston (Churchill, la résistance) Smith (l'homme le plus commun). Il incarne l'<strong>individu</strong> contre le collectif, et sa défaite dit que, face au totalitarisme parfait, l'individu seul ne peut pas gagner. Sa rébellion tient d'abord dans un geste minuscule : écrire un journal, c'est-à-dire penser pour soi.</p><p data-lang="en">Winston is not a hero: he is an <em>ordinary</em> man, physically weak (the varicose ulcer, the cough), whose only greatness is wanting to keep a thought of his own. His very name is ironic — Winston (Churchill, resistance) Smith (the commonest of men). He embodies the <strong>individual</strong> against the collective, and his defeat says that, against perfect totalitarianism, the lone individual cannot win. His rebellion lies first in a tiny gesture: keeping a diary, that is, thinking for himself.</p></div>
+        <div class="panel"><h5>Julia <span data-lang="fr">— la révolte du corps</span><span data-lang="en">— the revolt of the body</span></h5><p data-lang="fr">Julia rebelle par le <em>désir</em>, pas par les idées : elle se moque de la théorie politique, mais couche, contrebande du vrai café, vit ses plaisirs — une résistance <strong>charnelle et privée</strong>. Là où Winston veut comprendre le système, Julia veut simplement lui échapper dans l'instant. Le Parti, qui a fait du sexe « <span class="cite">a slightly disgusting minor operation</span> », voit juste : réprimer le corps est politique. Julia montre que le désir est déjà une dissidence.</p><p data-lang="en">Julia rebels through <em>desire</em>, not ideas: she scorns political theory, but sleeps around, smuggles real coffee, lives her pleasures — a <strong>carnal, private</strong> resistance. Where Winston wants to understand the system, Julia simply wants to escape it in the moment. The Party, which has made sex "<span class="cite">a slightly disgusting minor operation</span>", sees clearly: repressing the body is political. Julia shows that desire is already dissidence.</p></div>
+        <div class="panel"><h5>O'Brien <span data-lang="fr">— le pouvoir à l'état pur</span><span data-lang="en">— power in its pure state</span></h5><p data-lang="fr">O'Brien est la grande réussite du roman : à la fois bourreau et intellectuel séduisant, il incarne le Parti qui <em>pense</em>. Sa doctrine (P3) est glaçante de cohérence : le pouvoir n'est pas un moyen au service d'un idéal, il est sa <strong>propre fin</strong>. Le Parti veut le pouvoir « <span class="cite">entirely for its own sake</span> ». Il déchire ainsi le dernier voile réconfortant — l'idée qu'un tyran croit au moins à quelque chose. Non : il n'y a que la volonté de faire souffrir et de durer. O'Brien est l'anti-Winston : l'intelligence mise au service de la domination nue.</p><p data-lang="en">O'Brien is the novel's great achievement: at once torturer and seductive intellectual, he embodies the Party that <em>thinks</em>. His doctrine (P3) is chilling in its coherence: power is not a means serving an ideal, it is its <strong>own end</strong>. The Party wants power "<span class="cite">entirely for its own sake</span>". He thus tears away the last comforting veil — the idea that a tyrant at least believes in something. No: there is only the will to make suffer and to endure. O'Brien is the anti-Winston: intelligence placed at the service of naked domination.</p></div>
+        <div class="panel"><h5>Syme, Parsons <span data-lang="fr">— les deux façons de disparaître</span><span data-lang="en">— the two ways of vanishing</span></h5><p data-lang="fr">Deux personnages secondaires très utiles, car ils éclairent le système par contraste. <strong>Syme</strong>, le linguiste de la novlangue, est trop <em>intelligent</em> : il comprend et approuve le projet, mais le Parti n'aime pas ceux qui voient clair — Winston prédit, à juste titre, « <span class="cite">Syme will be vaporized</span> ». <strong>Parsons</strong>, lui, est le zélé <em>borné</em>, dénoncé par ses propres enfants, et qui s'en dit fier. Ensemble ils montrent que le régime broie aussi bien le lucide que le fidèle : l'orthodoxie parfaite exige l'<em>inconscience</em>. « <span class="cite">Orthodoxy is unconsciousness</span> » (Syme, P1 ch.5).</p><p data-lang="en">Two very useful secondary characters, because they illuminate the system by contrast. <strong>Syme</strong>, the Newspeak linguist, is too <em>intelligent</em>: he understands and approves the project, but the Party dislikes those who see clearly — Winston rightly predicts, "<span class="cite">Syme will be vaporized</span>". <strong>Parsons</strong> is the <em>obtuse</em> zealot, denounced by his own children, and proud of it. Together they show that the regime grinds down the lucid as readily as the loyal: perfect orthodoxy demands <em>unconsciousness</em>. "<span class="cite">Orthodoxy is unconsciousness</span>" (Syme, P1 ch.5).</p></div>
+
+
+        <!-- 5 THEMES -->
+        
+        <div class="partnav">
+          <button onclick="goTab('p3')"><span class="ar">←</span> <span data-lang="fr">Le monde du roman</span><span data-lang="en">The world of the novel</span></button>
+          <button onclick="goTab('p5')"><span data-lang="fr">Axes thématiques</span><span data-lang="en">Thematic axes</span> <span class="ar">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="p5">
+      <div class="hero">
+        <div class="eyebrow"><span data-lang="fr">Partie 5 sur 8</span><span data-lang="en">Part 5 of 8</span></div>
+        <h2><span data-lang="fr">Les grands axes thématiques</span><span data-lang="en">The major thematic axes</span></h2>
+        <div class="byl"><span data-lang="fr">Transversaux — à mobiliser selon la key issue</span><span data-lang="en">Cross-cutting — to mobilise according to the key issue</span></div>
+      </div>
+      <div class="body">
+        <div class="panel"><h5><span data-lang="fr">Le pouvoir comme fin en soi</span><span data-lang="en">Power as an end in itself</span></h5><p data-lang="fr">La thèse la plus radicale du roman, portée par O’Brien : le Parti ne cherche ni le bien commun, ni la richesse, ni même une idéologie — seulement le pouvoir, « <span class="cite">entirely for its own sake</span> ». La dystopie d’Orwell arrache le dernier alibi du tyran : il n’y a pas de cause derrière la domination, juste le plaisir de dominer.</p><p data-lang="en">The novel’s most radical thesis, carried by O’Brien: the Party seeks neither the common good, nor wealth, nor even an ideology — only power, “<span class="cite">entirely for its own sake</span>”. Orwell’s dystopia strips the tyrant of his last alibi: there is no cause behind domination, only the pleasure of dominating.</p></div>
+        <div class="panel"><h5><span data-lang="fr">Le langage comme instrument de contrôle</span><span data-lang="en">Language as an instrument of control</span></h5><p data-lang="fr">La novlangue, la doublepensée, les slogans : Orwell fait du langage le champ de bataille central. Contrôler les mots, c’est contrôler ce qui est pensable. C’est l’axe le plus original du roman et son legs le plus durable (le mot « orwellien »).</p><p data-lang="en">Newspeak, doublethink, the slogans: Orwell makes language the central battlefield. To control words is to control what is thinkable. It is the novel’s most original axis and its most lasting legacy (the word “Orwellian”).</p></div>
+        <div class="panel"><h5><span data-lang="fr">La destruction de la vérité et du passé</span><span data-lang="en">The destruction of truth and the past</span></h5><p data-lang="fr">Falsification des archives, passé-palimpseste, « <span class="cite">2+2=5</span> » : le Parti ne veut pas seulement mentir, il veut abolir la notion même de vérité objective. Si le réel n’existe que dans l’esprit, et que le Parti contrôle l’esprit, alors le Parti contrôle le réel.</p><p data-lang="en">Falsified records, the past-as-palimpsest, “<span class="cite">2+2=5</span>”: the Party does not merely want to lie, it wants to abolish the very notion of objective truth. If reality exists only in the mind, and the Party controls the mind, then the Party controls reality.</p></div>
+        <div class="panel"><h5><span data-lang="fr">L’amour et le corps comme dernier bastion</span><span data-lang="en">Love and the body as the last bastion</span></h5><p data-lang="fr">La liaison Winston/Julia est un acte politique : aimer, désirer, c’est garder un espace privé que le Parti ne possède pas. D’où l’acharnement du régime à réprimer le sexe et l’affection. La défaite finale n’est pas la torture, mais le moment où Winston <em>trahit</em> Julia (« <span class="cite">Do it to Julia!</span> ») : le Parti a pris jusqu’au dernier réduit intime.</p><p data-lang="en">The Winston/Julia affair is a political act: to love, to desire, is to keep a private space the Party does not own. Hence the regime’s fury in repressing sex and affection. The final defeat is not the torture, but the moment Winston <em>betrays</em> Julia (“<span class="cite">Do it to Julia!</span>”): the Party has taken even the last intimate stronghold.</p></div>
+
+        <!-- 6 KEY ISSUES -->
+        
+        <div class="partnav">
+          <button onclick="goTab('p4')"><span class="ar">←</span> <span data-lang="fr">Les personnages</span><span data-lang="en">The characters</span></button>
+          <button onclick="goTab('p6')"><span data-lang="fr">Les 8 key issues</span><span data-lang="en">The 8 key issues</span> <span class="ar">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="p6">
+      <div class="hero">
+        <div class="eyebrow"><span data-lang="fr">Partie 6 sur 8</span><span data-lang="en">Part 6 of 8</span></div>
+        <h2><span data-lang="fr">1984 &amp; les 8 key issues</span><span data-lang="en">1984 &amp; the 8 key issues</span></h2>
+        <div class="byl"><span data-lang="fr">Où le roman frappe fort, où il n’est qu’un appoint</span><span data-lang="en">Where the novel hits hard, where it is only a supplement</span></div>
+      </div>
+      <div class="body">
+        <div class="kimap">
+          <div class="ki core"><div class="rank">1</div><div><h5>Power &amp; control <span class="strength s-core"><span data-lang="fr">œuvre pivot</span><span data-lang="en">pivot work</span></span></h5><p data-lang="fr">C’est <em>l’</em>œuvre reine du corpus sur cet enjeu — aucune autre ne va aussi loin. 1984 dissèque le pouvoir total dans tous ses rouages : surveillance (télécran), langue (novlangue), temps (réécriture), corps (répression du désir), esprit (doublepensée). Et surtout, O’Brien en livre la doctrine nue : le pouvoir est une fin en soi (« <span class="cite">entirely for its own sake</span> »), symbolisée par « <span class="cite">a boot stamping on a human face — for ever</span> ». <strong>À l’oral :</strong> c’est ta pièce maîtresse absolue. Structure ton propos par <em>niveaux</em> de contrôle (les actes → la langue → la pensée → la réalité), et culmine sur la thèse d’O’Brien. Puis nuance avec Wright : chez elle le pouvoir est épistémique (Adam-savant), chez Orwell il est politique et collectif (le Parti).</p><p data-lang="en">This is <em>the</em> reigning work of the corpus on this issue — none goes as far. 1984 dissects total power in all its workings: surveillance (telescreen), language (Newspeak), time (rewriting), body (repression of desire), mind (doublethink). And above all, O’Brien delivers its naked doctrine: power is an end in itself (“<span class="cite">entirely for its own sake</span>”), symbolised by “<span class="cite">a boot stamping on a human face — for ever</span>”. <strong>In the oral:</strong> this is your absolute centrepiece. Structure your point by <em>levels</em> of control (acts → language → thought → reality), and climax on O’Brien’s thesis. Then qualify with Wright: in her, power is epistemic (Adam-the-scientist), in Orwell it is political and collective (the Party).</p></div></div>
+          <div class="ki core"><div class="rank">7</div><div><h5>Resistance &amp; rebellion <span class="strength s-core"><span data-lang="fr">œuvre pivot</span><span data-lang="en">pivot work</span></span></h5><p data-lang="fr">Angle pivot, à traiter avec finesse car c’est une rébellion <em>vouée à l’échec</em>. La révolte de Winston est réelle mais dérisoire : elle tient dans un journal, une liaison, une chambre louée. Le roman démonte l’idée même de résistance en révélant que la Fraternité est peut-être un piège du Parti, et que O’Brien, le « recruteur », est le bourreau. La rébellion n’est pas écrasée de l’extérieur : elle est <em>retournée de l’intérieur</em>. <strong>À l’oral :</strong> oppose la rébellion à celle de Butler (Lauren, qui construit vraiment) ou à l’appel de Wright (« it’s time you took over »). Formule : « Chez Orwell, la révolte n’échoue pas faute de courage — elle échoue parce que le système a prévu jusqu’à la forme de sa propre contestation. »</p><p data-lang="en">A pivot angle, to be handled with care because it is a rebellion <em>doomed to fail</em>. Winston’s revolt is real but derisory: it lies in a diary, an affair, a rented room. The novel dismantles the very idea of resistance by revealing that the Brotherhood may be a Party trap, and that O’Brien, the “recruiter”, is the torturer. The rebellion is not crushed from outside: it is <em>turned from within</em>. <strong>In the oral:</strong> contrast this revolt with Butler’s (Lauren, who genuinely builds) or with Wright’s call (“it’s time you took over”). Formula: “In Orwell, revolt fails not for lack of courage — it fails because the system has anticipated even the shape of its own contestation.”</p></div></div>
+          <div class="ki"><div class="rank">3</div><div><h5>Violence &amp; threat <span class="strength s-strong"><span data-lang="fr">fort</span><span data-lang="en">strong</span></span></h5><p data-lang="fr">Angle fort, mais spécifie le <em>type</em> de violence. Chez Orwell, elle est <strong>bureaucratique et psychologique</strong> avant d’être physique : la vraie terreur, c’est la disparition sans trace (« <span class="cite">vaporized</span> »), l’enfant qui dénonce ses parents, la menace permanente et invisible. La torture de la Partie 3 n’est pas gratuite : elle vise la <em>rééducation</em>, pas la douleur pour elle-même. La Salle 101 est l’aboutissement — la menace ajustée à la peur intime de chacun (les rats pour Winston). <strong>À l’oral :</strong> oppose à Byron. Chez Byron la menace est cosmique et sans auteur ; chez Orwell elle est <em>organisée, ciblée, intelligente</em> — une violence qui connaît sa victime mieux qu’elle-même.</p><p data-lang="en">A strong angle, but specify the <em>type</em> of violence. In Orwell it is <strong>bureaucratic and psychological</strong> before being physical: the true terror is the traceless disappearance (“<span class="cite">vaporized</span>”), the child who denounces its parents, the permanent invisible threat. The torture of Part 3 is not gratuitous: it aims at <em>re-education</em>, not pain for its own sake. Room 101 is the culmination — the threat fitted to each person’s intimate fear (the rats for Winston). <strong>In the oral:</strong> contrast with Byron. In Byron the threat is cosmic and authorless; in Orwell it is <em>organised, targeted, intelligent</em> — a violence that knows its victim better than she knows herself.</p></div></div>
+          <div class="ki"><div class="rank">5</div><div><h5>Isolation &amp; alienation <span class="strength s-strong"><span data-lang="fr">fort</span><span data-lang="en">strong</span></span></h5><p data-lang="fr">Angle fort et subtil. Le Parti fabrique délibérément l’<strong>isolement</strong> : il détruit les liens (famille, amitié, amour) parce que toute solidarité est une menace. Winston est seul même au milieu de la foule ; la seule intimité possible (avec Julia) est traquée puis brisée. Le comble : à la fin, Winston est isolé jusque <em>de lui-même</em> — le Parti a colonisé son intériorité, il ne lui reste plus de « moi » privé. <strong>À l’oral :</strong> montre la gradation — isolement social (les liens interdits), puis isolement intérieur (la pensée même colonisée). Compare à Byron (les deux derniers hommes) et à Atwood (la voix coupée de son corps) : trois solitudes, l’une politique, l’une existentielle, l’une psychique.</p><p data-lang="en">A strong, subtle angle. The Party deliberately manufactures <strong>isolation</strong>: it destroys bonds (family, friendship, love) because all solidarity is a threat. Winston is alone even in the crowd; the only possible intimacy (with Julia) is hunted down and broken. The culmination: by the end, Winston is isolated even <em>from himself</em> — the Party has colonised his inner life, no private “self” remains. <strong>In the oral:</strong> show the gradation — social isolation (forbidden bonds), then inner isolation (thought itself colonised). Compare with Byron (the last two men) and Atwood (the voice cut off from its body): three solitudes, one political, one existential, one psychic.</p></div></div>
+          <div class="ki"><div class="rank">2</div><div><h5>Love &amp; relationships <span class="strength s-strong"><span data-lang="fr">fort</span><span data-lang="en">strong</span></span></h5><p data-lang="fr">Angle fort et émotionnellement décisif. L’amour de Winston et Julia est le seul contre-pouvoir du roman : un espace que le Parti ne possède pas encore. C’est pourquoi le régime s’acharne à le détruire — non par pruderie, mais par stratégie. La défaite ultime n’est pas physique : c’est « <span class="cite">Do it to Julia!</span> », le moment où Winston, en Salle 101, la trahit pour sauver sa peau. Le Parti gagne quand il fait <em>cesser l’amour</em>. <strong>À l’oral :</strong> le pont avec Byron est saisissant — « <span class="cite">no love was left</span> » chez Byron (l’amour meurt d’extinction) répond au « Do it to Julia » d’Orwell (l’amour tué par la torture d’État). Deux façons d’abolir le dernier lien humain.</p><p data-lang="en">A strong and emotionally decisive angle. Winston and Julia’s love is the novel’s only counter-power: a space the Party does not yet own. This is why the regime is so bent on destroying it — not from prudery, but from strategy. The ultimate defeat is not physical: it is “<span class="cite">Do it to Julia!</span>”, the moment when Winston, in Room 101, betrays her to save himself. The Party wins when it makes <em>love cease</em>. <strong>In the oral:</strong> the bridge to Byron is striking — “<span class="cite">no love was left</span>” in Byron (love dying of extinction) answers Orwell’s “Do it to Julia” (love killed by state torture). Two ways of abolishing the last human bond.</p></div></div>
+          <div class="ki"><div class="rank">4</div><div><h5>Hopes &amp; dreams <span class="strength s-second"><span data-lang="fr">appoint</span><span data-lang="en">supplement</span></span></h5><p data-lang="fr">Appoint, mais riche par son ambiguïté. Le roman contient une lueur — « <span class="cite">If there is hope, it lies in the proles</span> » (P1 ch.7) : l’espoir d’une masse non endoctrinée. Mais Orwell la mine aussitôt : les prolétaires sont maintenus dans l’ignorance et l’abrutissement, incapables de conscience politique. L’espoir existe donc, mais <em>hors d’atteinte</em>. <strong>À l’oral :</strong> à mobiliser en nuance dans une gradation d’espoir avec les poèmes — chez Orwell l’espoir est <em>théorique mais stérilisé</em> (les proles), ce qui complète le « fearful hope » de Byron et l’Earthseed de Butler.</p><p data-lang="en">A supplement, but rich in its ambiguity. The novel contains a gleam — “<span class="cite">If there is hope, it lies in the proles</span>” (P1 ch.7): the hope of a non-indoctrinated mass. But Orwell undermines it at once: the proles are kept in ignorance and stupor, incapable of political consciousness. Hope therefore exists, but <em>out of reach</em>. <strong>In the oral:</strong> use it as a nuance in a hope-gradation with the poems — in Orwell hope is <em>theoretical but sterilised</em> (the proles), completing Byron’s “fearful hope” and Butler’s Earthseed.</p></div></div>
+        </div>
+        <p style="color:var(--ash-dim);font-size:14.5px" data-lang="fr"><strong>Appoints :</strong> <span class="term">Use &amp; effects of settings</span> (le Londres délabré, les Ministères-pyramides sont forts, mais moins centraux que chez Byron ou Atwood) et <span class="term">Resilience &amp; survival</span> (Winston ne survit pas vraiment — il capitule ; à manier par contraste). Pas de faux-fuyant : le roman est si riche qu’il touche à presque tout, mais concentre-toi sur Power, Resistance, Violence.</p><p style="color:var(--ash-dim);font-size:14.5px" data-lang="en"><strong>Supplements:</strong> <span class="term">Use &amp; effects of settings</span> (dilapidated London, the pyramid-Ministries are strong, but less central than in Byron or Atwood) and <span class="term">Resilience &amp; survival</span> (Winston does not truly survive — he capitulates; use by contrast). No dodging: the novel is so rich it touches almost everything, but focus on Power, Resistance, Violence.</p>
+
+        <!-- 7 PONTS -->
+        
+        <div class="partnav">
+          <button onclick="goTab('p5')"><span class="ar">←</span> <span data-lang="fr">Axes thématiques</span><span data-lang="en">Thematic axes</span></button>
+          <button onclick="goTab('p7')"><span data-lang="fr">Ponts entre œuvres</span><span data-lang="en">Bridges</span> <span class="ar">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="p7">
+      <div class="hero">
+        <div class="eyebrow"><span data-lang="fr">Partie 7 sur 8</span><span data-lang="en">Part 7 of 8</span></div>
+        <h2><span data-lang="fr">Ponts vers les autres œuvres</span><span data-lang="en">Bridges to the other works</span></h2>
+        <div class="byl"><span data-lang="fr">Le roman-pivot du corpus : il dialogue avec tous les poèmes</span><span data-lang="en">The corpus’s pivot novel: it speaks to every poem</span></div>
+      </div>
+      <div class="body">
+        <div class="seealso" onclick="goTab('bridges')"><span class="ar">⇄</span> <span data-lang="fr">Vois aussi l’onglet <b>Ponts entre œuvres</b> pour le triangle des poèmes. Les liaisons roman↔poèmes ci-dessous s’y ajouteront quand tu auras aussi étudié Butler.</span><span data-lang="en">See also the <b>Bridges between works</b> tab for the poem triangle. The novel↔poem links below will be added there once you have also studied Butler.</span></div>
+        <div class="bridge">
+          <div class="to">1984 → <b>Eve to Her Daughters</b> (Wright)</div>
+          <p style="margin-bottom:0" data-lang="fr">Deux visages du pouvoir total. Chez Orwell, il est <strong>politique et collectif</strong> (le Parti, O’Brien) et s’exerce sur les corps et les esprits ; chez Wright, il est <strong>individuel et épistémique</strong> (Adam-savant qui se croit dieu). Point commun décisif : dans les deux, la volonté de contrôle finit par vouloir usurper la place de Dieu — O’Brien fait du Parti une divinité (« <span class="cite">You do not exist</span> »), Adam « <span class="cite">turned himself into God</span> ». <strong>Formule :</strong> « Wright montre l’orgueil qui se détruit lui-même, Orwell l’orgueil qui triomphe et perdure. »</p><p style="margin-bottom:0" data-lang="en">Two faces of total power. In Orwell it is <strong>political and collective</strong> (the Party, O’Brien) and works on bodies and minds; in Wright it is <strong>individual and epistemic</strong> (Adam-the-scientist who believes himself a god). The decisive common ground: in both, the will to control ends by trying to usurp God’s place — O’Brien makes the Party a deity (“<span class="cite">You do not exist</span>”), Adam “<span class="cite">turned himself into God</span>”. <strong>Formula:</strong> “Wright shows pride destroying itself, Orwell pride that triumphs and endures.”</p>
+        </div>
+        <div class="bridge">
+          <div class="to">1984 → <b>Darkness</b> (Byron)</div>
+          <p style="margin-bottom:0" data-lang="fr">Contraste sur la <em>nature</em> de la dystopie. Chez Orwell, l’ennemi est <strong>humain, organisé, intentionnel</strong> (on peut le nommer, le haïr) ; chez Byron, il est <strong>cosmique et impersonnel</strong> (le soleil s’éteint, nul n’est coupable). Point commun : dans les deux, l’humain perd son humanité — mais Orwell la lui fait <em>arracher</em> par un système, Byron la lui fait <em>perdre</em> par régression. Le « <span class="cite">no love was left</span> » de Byron répond au « <span class="cite">Do it to Julia</span> » d’Orwell : deux morts de l’amour, l’une par extinction, l’autre par torture.</p><p style="margin-bottom:0" data-lang="en">A contrast on the <em>nature</em> of dystopia. In Orwell, the enemy is <strong>human, organised, intentional</strong> (it can be named, hated); in Byron, it is <strong>cosmic and impersonal</strong> (the sun goes out, no one is to blame). Common ground: in both, the human loses its humanity — but Orwell has it <em>torn away</em> by a system, Byron has it <em>lost</em> through regression. Byron’s “<span class="cite">no love was left</span>” answers Orwell’s “<span class="cite">Do it to Julia</span>”: two deaths of love, one by extinction, the other by torture.</p>
+        </div>
+        <div class="bridge">
+          <div class="to">1984 → <b>Morning in the Burned House</b> (Atwood)</div>
+          <p style="margin-bottom:0" data-lang="fr">Deux échelles de l’aliénation. Orwell montre une aliénation <strong>imposée de l’extérieur</strong> (l’État colonise la pensée de Winston) ; Atwood, une aliénation <strong>vécue de l’intérieur</strong> (la voix coupée de son propre corps par le deuil). Point de contact : les deux aboutissent à un moi qui ne s’appartient plus. <strong>Formule :</strong> « Chez Orwell on vous arrache votre intériorité, chez Atwood elle se dissout d’elle-même — deux façons de perdre le contact avec soi. »</p><p style="margin-bottom:0" data-lang="en">Two scales of alienation. Orwell shows an alienation <strong>imposed from outside</strong> (the state colonises Winston’s thought); Atwood, an alienation <strong>lived from within</strong> (the voice cut off from its own body by grief). Point of contact: both end in a self that no longer belongs to itself. <strong>Formula:</strong> “In Orwell your inner life is torn from you, in Atwood it dissolves of its own accord — two ways of losing contact with the self.”</p>
+        </div>
+
+        <!-- 8 FICHES -->
+        
+        <div class="partnav">
+          <button onclick="goTab('p6')"><span class="ar">←</span> <span data-lang="fr">Les 8 key issues</span><span data-lang="en">The 8 key issues</span></button>
+          <button onclick="goTab('p8')"><span data-lang="fr">Fiches-citations</span><span data-lang="en">Quotation cards</span> <span class="ar">→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="p8">
+      <div class="hero">
+        <div class="eyebrow"><span data-lang="fr">Partie 8 sur 8</span><span data-lang="en">Part 8 of 8</span></div>
+        <h2><span data-lang="fr">Fiches-citations à mémoriser</span><span data-lang="en">Quotation cards to memorise</span></h2>
+        <div class="byl"><span data-lang="fr">Priorité aux citations « de lecteur » — celles qui prouvent une vraie lecture</span><span data-lang="en">Priority to “reader” quotations — the ones that prove a real reading</span></div>
+      </div>
+      <div class="body">
+        <div class="panel ember"><p style="margin-bottom:0" data-lang="fr"><strong>Stratégie :</strong> les slogans célèbres (« Big Brother is watching you », « War is Peace », « boot stamping on a human face ») sont sur toutes les fiches du net — l’examinateur les a entendus mille fois. Utilise-les <em>brièvement</em>, en les nommant comme tels, et mise sur les citations plus fines ci-dessous : ce sont elles qui prouvent que tu as lu le roman, pas une fiche.</p><p style="margin-bottom:0" data-lang="en"><strong>Strategy:</strong> the famous slogans (“Big Brother is watching you”, “War is Peace”, “boot stamping on a human face”) are on every online sheet — the examiner has heard them a thousand times. Use them <em>briefly</em>, naming them as such, and rely on the finer quotations below: these are what prove you read the novel, not a crib sheet.</p></div>
+
+        <div class="qcard">
+          <blockquote>We shall meet in the place where there is no darkness.<span class="src"><span data-lang="fr">P1 · le rêve prémonitoire</span><span data-lang="en">P1 · the premonitory dream</span></span></blockquote>
+          <h6><span data-lang="fr">Procédé</span><span data-lang="en">Device</span></h6>
+          <p data-lang="fr">Ironie dramatique ; phrase que Winston croit porteuse d’espoir.</p><p data-lang="en">Dramatic irony; a phrase Winston believes carries hope.</p>
+          <h6><span data-lang="fr">Effet</span><span data-lang="en">Effect</span></h6>
+          <p data-lang="fr">Winston rêve ces mots (attribués à O’Brien) et y voit une promesse de retrouvailles lumineuses. Le sens s’inverse cruellement : « le lieu sans ténèbres » est le Ministère de l’Amour, où les lumières ne s’éteignent jamais — non pour éclairer l’espoir, mais pour empêcher tout répit sous la torture. L’espérance était le piège.</p><p data-lang="en">Winston dreams these words (attributed to O’Brien) and reads them as a promise of luminous reunion. The meaning reverses cruelly: “the place with no darkness” is the Ministry of Love, where the lights never go out — not to light up hope, but to allow no respite under torture. The hope was the trap.</p>
+          <div class="qoral"><span class="olbl"><span data-lang="fr">À l’oral</span><span data-lang="en">In the oral</span></span> <span data-lang="fr">Citation « de lecteur » idéale pour <span class="term">Hopes &amp; dreams</span> : « Orwell piège l’espoir lui-même — la phrase que Winston prend pour une promesse est en réalité l’annonce de sa salle de torture. »</span><span data-lang="en">An ideal “reader” quotation for <span class="term">Hopes &amp; dreams</span>: “Orwell traps hope itself — the phrase Winston takes for a promise is in fact the announcement of his torture chamber.”</span></div>
+        </div>
+        <div class="qcard">
+          <blockquote>Orthodoxy is unconsciousness.<span class="src"><span data-lang="fr">Syme · P1 ch.5</span><span data-lang="en">Syme · P1 ch.5</span></span></blockquote>
+          <h6><span data-lang="fr">Procédé</span><span data-lang="en">Device</span></h6>
+          <p data-lang="fr">Formule aphoristique ; paradoxe assumé.</p><p data-lang="en">Aphoristic formula; an embraced paradox.</p>
+          <h6><span data-lang="fr">Effet</span><span data-lang="en">Effect</span></h6>
+          <p data-lang="fr">Syme, le linguiste, énonce sans le voir sa propre condamnation : le Parti exige non pas l’adhésion consciente mais l’<em>absence</em> de conscience. Bien penser, c’est ne pas penser. C’est pourquoi Syme, trop intelligent, sera « vaporisé » : il comprend trop bien le système pour être un bon sujet. La lucidité est un crime.</p><p data-lang="en">Syme, the linguist, unknowingly pronounces his own sentence: the Party demands not conscious assent but the <em>absence</em> of consciousness. To think correctly is not to think at all. This is why Syme, too intelligent, will be “vaporized”: he understands the system too well to be a good subject. Lucidity is a crime.</p>
+          <div class="qoral"><span class="olbl"><span data-lang="fr">À l’oral</span><span data-lang="en">In the oral</span></span> <span data-lang="fr">Excellente pour <span class="term">Power &amp; control</span> et pour montrer une lecture fine : « Le régime ne veut pas des croyants, il veut des inconscients — et il élimine même les zélés trop lucides, comme Syme. »</span><span data-lang="en">Excellent for <span class="term">Power &amp; control</span> and to show a close reading: “The regime wants not believers but the unconscious — and it eliminates even the too-lucid zealots, like Syme.”</span></div>
+        </div>
+        <div class="qcard">
+          <blockquote>If there is hope, it lies in the proles.<span class="src"><span data-lang="fr">Winston · P1 ch.7</span><span data-lang="en">Winston · P1 ch.7</span></span></blockquote>
+          <h6><span data-lang="fr">Procédé</span><span data-lang="en">Device</span></h6>
+          <p data-lang="fr">Aphorisme ; espoir aussitôt miné par le récit.</p><p data-lang="en">Aphorism; a hope at once undermined by the narrative.</p>
+          <h6><span data-lang="fr">Effet</span><span data-lang="en">Effect</span></h6>
+          <p data-lang="fr">Winston mise son dernier espoir sur les 85 % de prolétaires, seuls assez nombreux pour renverser le Parti. Mais Orwell retourne aussitôt l’idée : les proles sont maintenus dans un abrutissement volontaire (loterie, bière, pornographie), incapables de conscience politique. L’espoir existe en théorie, mais le système l’a stérilisé à la source. Un espoir « hors d’atteinte ».</p><p data-lang="en">Winston stakes his last hope on the 85% who are proles, the only mass numerous enough to overthrow the Party. But Orwell reverses the idea at once: the proles are kept in a deliberate stupor (lottery, beer, pornography), incapable of political consciousness. Hope exists in theory, but the system has sterilised it at the source. A hope “out of reach”.</p>
+          <div class="qoral"><span class="olbl"><span data-lang="fr">À l’oral</span><span data-lang="en">In the oral</span></span> <span data-lang="fr">Pour <span class="term">Hopes &amp; dreams</span> et <span class="term">Resistance</span> : « Orwell place l’espoir chez les prolétaires — puis montre que le Parti les a rendus incapables de s’en servir. L’espoir existe, mais désarmé. »</span><span data-lang="en">For <span class="term">Hopes &amp; dreams</span> and <span class="term">Resistance</span>: “Orwell places hope in the proles — then shows the Party has made them incapable of using it. Hope exists, but disarmed.”</span></div>
+        </div>
+        <div class="qcard">
+          <blockquote>Do it to Julia!<span class="src"><span data-lang="fr">Winston · P3 ch.5 · la Salle 101</span><span data-lang="en">Winston · P3 ch.5 · Room 101</span></span></blockquote>
+          <h6><span data-lang="fr">Procédé</span><span data-lang="en">Device</span></h6>
+          <p data-lang="fr">Cri ; point de rupture morale du roman.</p><p data-lang="en">A cry; the novel’s point of moral rupture.</p>
+          <h6><span data-lang="fr">Effet</span><span data-lang="en">Effect</span></h6>
+          <p data-lang="fr">Face aux rats de la Salle 101, Winston hurle qu’on les inflige à Julia plutôt qu’à lui. C’est la <em>vraie</em> défaite — pas la douleur, mais la trahison de la seule personne aimée. Le Parti ne voulait pas seulement le briser : il voulait qu’il détruise lui-même son dernier lien humain. Après cela, il n’y a plus de Winston à sauver.</p><p data-lang="en">Faced with the rats of Room 101, Winston screams that they be inflicted on Julia rather than himself. This is the <em>real</em> defeat — not the pain, but the betrayal of the one person he loved. The Party wanted not merely to break him: it wanted him to destroy his own last human bond. After this, there is no Winston left to save.</p>
+          <div class="qoral"><span class="olbl"><span data-lang="fr">À l’oral</span><span data-lang="en">In the oral</span></span> <span data-lang="fr">Ta citation-choc pour <span class="term">Love &amp; relationships</span> : « La victoire du Parti n’est pas la torture, c’est <em>Do it to Julia</em> — le moment où l’amour lui-même est retourné en arme contre l’aimé. » À opposer au « no love was left » de Byron.</span><span data-lang="en">Your shock quotation for <span class="term">Love &amp; relationships</span>: “The Party’s victory is not the torture, it is <em>Do it to Julia</em> — the moment love itself is turned into a weapon against the beloved.” Set it against Byron’s “no love was left”.</span></div>
+        </div>
+        <div class="qcard">
+          <blockquote>The Party seeks power entirely for its own sake.<span class="src"><span data-lang="fr">O’Brien · P3 ch.3</span><span data-lang="en">O’Brien · P3 ch.3</span></span></blockquote>
+          <h6><span data-lang="fr">Procédé</span><span data-lang="en">Device</span></h6>
+          <p data-lang="fr">Doctrine explicite ; renversement du cynisme attendu.</p><p data-lang="en">Explicit doctrine; a reversal of the expected cynicism.</p>
+          <h6><span data-lang="fr">Effet</span><span data-lang="en">Effect</span></h6>
+          <p data-lang="fr">O’Brien détruit le dernier réconfort : on croit qu’un régime opprime <em>pour</em> quelque chose (un idéal, la richesse, le bien du peuple). Non — le pouvoir est sa propre fin. C’est plus glaçant que toute cruauté, car cela ôte tout sens, toute négociation possible. Le mal n’a pas de but : il <em>est</em> le but.</p><p data-lang="en">O’Brien destroys the last comfort: we assume a regime oppresses <em>for</em> something (an ideal, wealth, the people’s good). No — power is its own end. This is more chilling than any cruelty, because it removes all meaning, all possible negotiation. Evil has no goal: it <em>is</em> the goal.</p>
+          <div class="qoral"><span class="olbl"><span data-lang="fr">À l’oral</span><span data-lang="en">In the oral</span></span> <span data-lang="fr">Le cœur de <span class="term">Power &amp; control</span> : « Orwell arrache au tyran son dernier alibi — le Parti ne veut rien d’autre que le pouvoir lui-même. Face à cela, aucune raison, aucun compromis n’est possible. »</span><span data-lang="en">The heart of <span class="term">Power &amp; control</span>: “Orwell strips the tyrant of his last alibi — the Party wants nothing but power itself. Against that, no reason, no compromise is possible.”</span></div>
+        </div>
+        <div class="qcard">
+          <blockquote>Freedom is the freedom to say that two and two make four.<span class="src"><span data-lang="fr">Winston · P1 ch.7 · le journal</span><span data-lang="en">Winston · P1 ch.7 · the diary</span></span></blockquote>
+          <h6><span data-lang="fr">Procédé</span><span data-lang="en">Device</span></h6>
+          <p data-lang="fr">Réduction de la liberté à une vérité arithmétique.</p><p data-lang="en">Reduction of freedom to an arithmetical truth.</p>
+          <h6><span data-lang="fr">Effet</span><span data-lang="en">Effect</span></h6>
+          <p data-lang="fr">Winston résume la liberté à sa forme la plus nue : le droit d’affirmer un fait objectif. Le drame du roman est que, sous la torture d’O’Brien, il finira par voir <em>vraiment</em> cinq doigts au lieu de quatre. La liberté ultime n’est pas politique, elle est cognitive : garder le droit au réel. Quand le Parti prend « 2+2=5 », il a pris jusqu’à la réalité.</p><p data-lang="en">Winston reduces freedom to its barest form: the right to affirm an objective fact. The novel’s drama is that, under O’Brien’s torture, he will end by <em>genuinely</em> seeing five fingers instead of four. Ultimate freedom is not political but cognitive: to keep the right to the real. When the Party takes “2+2=5”, it has taken even reality.</p>
+          <div class="qoral"><span class="olbl"><span data-lang="fr">À l’oral</span><span data-lang="en">In the oral</span></span> <span data-lang="fr">Pour <span class="term">Power &amp; control</span> et le thème de la vérité : « La liberté chez Orwell se joue sur un fait : 2+2=4. Le totalitarisme parfait, c’est quand l’État te fait voir cinq doigts — il ne contrôle plus tes actes, mais ta perception du réel. »</span><span data-lang="en">For <span class="term">Power &amp; control</span> and the theme of truth: “Freedom in Orwell hinges on a fact: 2+2=4. Perfect totalitarianism is when the state makes you see five fingers — it no longer controls your acts, but your perception of the real.”</span></div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <span data-lang="fr">Nineteen Eighty-Four · George Orwell · 1949. Citations courtes en usage de révision ; aucun texte intégral reproduit.<br>
+        Les rattachements aux key issues et les ponts entre œuvres sont des propositions de travail — à confronter à ton cours.</span><span data-lang="en">Nineteen Eighty-Four · George Orwell · 1949. Short quotations for revision use; no full text reproduced.<br>
+        The key-issue pairings and the bridges between works are working proposals — to be checked against your course.</span>
+      
+        <div class="partnav">
+          <button onclick="goTab('p7')"><span class="ar">←</span> <span data-lang="fr">Ponts entre œuvres</span><span data-lang="en">Bridges</span></button>
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+<button class="totop" id="totop" aria-label="Haut de page">↑</button>
+
+<script>
+  const lt=document.getElementById('langtoggle');
+  lt.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+    const l=b.dataset.l;
+    document.documentElement.classList.toggle('lang-fr', l==='fr');
+    lt.querySelectorAll('button').forEach(x=>x.classList.toggle('on', x.dataset.l===l));
+  }));
+
+  const links=document.querySelectorAll('.navlink:not(.soon):not(.ext)');
+  const secs=document.querySelectorAll('section');
+  window.goTab=function(id){
+    const l=[...links].find(x=>x.dataset.s===id);
+    if(l) l.click();
+  };
+  links.forEach(l=>l.addEventListener('click',()=>{
+    links.forEach(x=>x.classList.remove('active'));
+    secs.forEach(x=>x.classList.remove('on'));
+    l.classList.add('active');
+    document.getElementById(l.dataset.s).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+    const r=document.querySelector('nav.rail'); if(r) r.classList.remove('open');
+  }));
+
+  const tt=document.getElementById('totop');
+  tt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  addEventListener('scroll',()=>tt.classList.toggle('show', scrollY>700), {passive:true});
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function(){});
+    });
+  }
+</script>
+</body>
+</html>
