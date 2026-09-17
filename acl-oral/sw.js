@@ -1,6 +1,6 @@
 // Network-first for pages, cache-first for static assets.
 // The page must never go stale: a published change has to appear on next load.
-const CACHE = 'acloral-v6';
+const CACHE = 'acloral-v7';
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {

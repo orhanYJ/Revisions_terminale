@@ -1,6 +1,6 @@
 // Network-first for pages, cache-first for static assets.
 // The page must never go stale: a published change has to appear on next load.
-const CACHE = 'sower-v2';
+const CACHE = 'sower-v4';
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {

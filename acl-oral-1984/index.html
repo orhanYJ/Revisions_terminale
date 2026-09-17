@@ -291,6 +291,44 @@
   .navlink.ext{text-decoration:none;color:var(--ash-dim);display:block}
   .navlink.ext:hover{color:var(--ash)}
   @media(max-width:860px){ .partnav button{font-size:12.5px} }
+
+  /* === refonte : filigranes, étiquettes apaisées, suivi de révision === */
+  .hero .eyebrow,.eyebrow{font-family:'Spectral',serif;font-style:italic;font-size:15px;letter-spacing:0;
+    text-transform:none;color:var(--ember-soft);gap:10px}
+  .hero .eyebrow::before,.eyebrow::before{width:22px}
+  .hero .byl{font-family:'Spectral',serif;font-size:14.5px;letter-spacing:0;color:var(--ash-dim);max-width:60ch;line-height:1.5}
+  .rail .kicker{font-family:'Spectral',serif;font-style:italic;font-size:12.5px;letter-spacing:0;text-transform:none;color:var(--ash-dim)}
+  .rail .sub{font-family:'Spectral',serif;letter-spacing:0;font-size:13px}
+  .rail .grp{font-family:'Spectral',serif;font-style:italic;font-size:12.5px;letter-spacing:0;text-transform:none;opacity:.85}
+  .rubric{font-family:'Spectral',serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:14px}
+  h6,.qgrid h6{font-family:'Spectral',serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:13px}
+  .hero{min-height:250px}
+  .hero .wm{position:absolute;right:-24px;top:-14px;width:min(46%,400px);height:auto;opacity:.11;pointer-events:none;color:var(--ember)}
+  .hero > *:not(.wm){position:relative;z-index:1}
+  .rail .prog{padding:14px 26px 4px}
+  .rail .prog .lbl{font-family:'Spectral',serif;font-size:12.5px;color:var(--ash-dim);margin-bottom:6px}
+  .rail .prog .cnt{color:var(--ember-soft)}
+  .rail .prog .bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+  .rail .prog .bar i{display:block;height:100%;width:0;background:var(--ember);transition:width .4s ease}
+  .navlink.done .n{color:var(--ember-soft)}
+  .navlink.done::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--ember);margin-left:auto;align-self:center;flex:none}
+  .reviewed{margin:36px 0 6px;display:flex;justify-content:flex-end}
+  .reviewed button{background:none;border:1px solid var(--line);color:var(--ash-dim);font-family:'Spectral',serif;
+    font-size:13.5px;padding:9px 16px;border-radius:5px;cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+  .reviewed button:hover{border-color:var(--ember);color:var(--ash)}
+  .reviewed button.on{border-color:var(--ember);color:var(--ember-soft);background:rgba(213,100,42,.08)}
+  .reviewed .onl{display:none !important}.reviewed button.on .onl{display:inline !important}.reviewed button.on .off{display:none !important}
+  section{animation:none}
+  section.on{animation:tabin .45s ease}
+  @keyframes tabin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  section.on .hero .wm{animation:wmin .9s ease}
+  @keyframes wmin{from{opacity:0;transform:translateY(12px)}to{opacity:.11;transform:none}}
+  @media(prefers-reduced-motion:reduce){section.on,section.on .hero .wm{animation:none}.rail .prog .bar i{transition:none}}
+  button:focus-visible,.navlink:focus-visible,.chip:focus-visible,.langtoggle button:focus-visible{outline:2px solid var(--ember-soft);outline-offset:2px}
+  @media(max-width:880px){.hero .wm{width:52%;right:-30px;top:-6px;opacity:.09}}
+  .panel h5,.ki h5,.kimap h5{font-family:'Spectral',serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:15.5px}
+  .ki .rank{font-family:'Cormorant Garamond',serif}
+  h3 + .rubric,.rubric{font-family:'Spectral',serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:14px}
 </style>
 </head>
 <body>
@@ -298,13 +336,14 @@
 <div class="shell">
   <nav class="rail">
     <div class="brand">
-      <div class="kicker">BFI · Section anglaise</div>
+      <div class="kicker">BFI, Section anglaise</div>
       <h1>1984</h1>
-      <div class="sub">George Orwell · 1949</div>
+      <div class="sub">George Orwell, 1949</div>
       <div class="langtoggle" id="langtoggle">
         <button data-l="en" class="on">EN</button><button data-l="fr">FR</button>
       </div>
     </div>
+    <div class="prog"><div class="lbl"><span class="cnt">0 / 8</span> <span data-lang="fr">parties révisées</span><span data-lang="en">parts reviewed</span></div><div class="bar"><i></i></div></div>
 
     <div class="grp"><span data-lang="fr">Le roman</span><span data-lang="en">The novel</span></div>
     <div class="navlink active" data-s="hub"><span class="n">◆</span> <span data-lang="fr">Vue d'ensemble</span><span data-lang="en">Overview</span></div>
@@ -325,11 +364,17 @@
   <main>
 
     <section id="hub" class="on">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="68" y="98" width="264" height="192" rx="16"/>
+<circle cx="200" cy="194" r="48"/><circle cx="200" cy="194" r="19"/>
+<path d="M132 290l-20 40M268 290l20 40"/>
+<path d="M90 128h220M90 148h220M90 168h220M90 220h220M90 240h220M90 260h220" stroke-width="1.4" opacity=".55"/>
+<path d="M40 60v-20h20M360 60v-20h-20M40 340v20h20M360 340v20h-20" stroke-width="2.5" opacity=".7"/>
+</svg>
 
-        <div class="eyebrow"><span data-lang="fr">Roman 1 · analyse complète</span><span data-lang="en">Novel 1 · full analysis</span></div>
+        <div class="eyebrow"><span data-lang="fr">Roman 1, analyse complète</span><span data-lang="en">Novel 1, full analysis</span></div>
         <h2>Nineteen Eighty-Four</h2>
-        <div class="byl"><span data-lang="fr">George Orwell · 1949 · roman en trois parties</span><span data-lang="en">George Orwell · 1949 · novel in three parts</span></div>
+        <div class="byl"><span data-lang="fr">George Orwell, 1949, roman en trois parties</span><span data-lang="en">George Orwell, 1949, novel in three parts</span></div>
         <div class="dek"><span data-lang="fr">La dystopie politique par excellence : un État total qui ne se contente pas d'opprimer les corps, mais entreprend de coloniser les esprits — jusqu'à faire aimer le tyran. Winston Smith tente de garder une pensée à lui ; le roman est le récit méthodique de sa défaite.</span><span data-lang="en">The political dystopia par excellence: a total state that does not merely oppress bodies, but sets out to colonise minds — until the tyrant is loved. Winston Smith tries to keep a thought of his own; the novel is the methodical account of his defeat.</span></div>
       </div>
       <div class="body">
@@ -339,23 +384,29 @@
           <p style="margin-bottom:0" data-lang="en">The novel is split into <strong>eight parts</strong>, one per menu entry. Start with the plot if you are revising, with the key issues if you are preparing a specific question, with the quotation cards the night before the oral.</p>
         </div>
         <div class="kimap">
-          <div class="ki"><div class="rank">1</div><div><h5><span data-lang="fr">Contexte</span><span data-lang="en">Context</span></h5><p><span data-lang="fr">Contexte : écrire le totalitarisme depuis ses ruines</span><span data-lang="en">Context: writing totalitarianism from its ruins</span></p><p style="margin-top:8px"><button onclick="goTab('p1')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
-          <div class="ki"><div class="rank">2</div><div><h5><span data-lang="fr">L’intrigue</span><span data-lang="en">The plot</span></h5><p><span data-lang="fr">L'intrigue en bref</span><span data-lang="en">The plot in brief</span></p><p style="margin-top:8px"><button onclick="goTab('p2')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
-          <div class="ki"><div class="rank">3</div><div><h5><span data-lang="fr">Le monde du roman</span><span data-lang="en">The world of the novel</span></h5><p><span data-lang="fr">Le monde du roman : l'arsenal du contrôle</span><span data-lang="en">The world of the novel: the arsenal of control</span></p><p style="margin-top:8px"><button onclick="goTab('p3')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
-          <div class="ki"><div class="rank">4</div><div><h5><span data-lang="fr">Les personnages</span><span data-lang="en">The characters</span></h5><p><span data-lang="fr">Les personnages comme incarnations d'enjeux</span><span data-lang="en">Characters as embodiments of issues</span></p><p style="margin-top:8px"><button onclick="goTab('p4')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
-          <div class="ki"><div class="rank">5</div><div><h5><span data-lang="fr">Axes thématiques</span><span data-lang="en">Thematic axes</span></h5><p><span data-lang="fr">Les grands axes thématiques</span><span data-lang="en">The major thematic axes</span></p><p style="margin-top:8px"><button onclick="goTab('p5')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
-          <div class="ki"><div class="rank">6</div><div><h5><span data-lang="fr">Les 8 key issues</span><span data-lang="en">The 8 key issues</span></h5><p><span data-lang="fr">1984 &amp; les 8 key issues</span><span data-lang="en">1984 &amp; the 8 key issues</span></p><p style="margin-top:8px"><button onclick="goTab('p6')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
-          <div class="ki"><div class="rank">7</div><div><h5><span data-lang="fr">Ponts entre œuvres</span><span data-lang="en">Bridges</span></h5><p><span data-lang="fr">Ponts vers les autres œuvres</span><span data-lang="en">Bridges to the other works</span></p><p style="margin-top:8px"><button onclick="goTab('p7')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
-          <div class="ki"><div class="rank">8</div><div><h5><span data-lang="fr">Fiches-citations</span><span data-lang="en">Quotation cards</span></h5><p><span data-lang="fr">Fiches-citations à mémoriser</span><span data-lang="en">Quotation cards to memorise</span></p><p style="margin-top:8px"><button onclick="goTab('p8')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;padding:4px 10px;border-radius:4px;cursor:pointer"><span data-lang="fr">OUVRIR</span><span data-lang="en">OPEN</span></button></p></div></div>
+          <div class="ki"><div class="rank">1</div><div><h5><span data-lang="fr">Contexte</span><span data-lang="en">Context</span></h5><p><span data-lang="fr">Contexte : écrire le totalitarisme depuis ses ruines</span><span data-lang="en">Context: writing totalitarianism from its ruins</span></p><p style="margin-top:8px"><button onclick="goTab('p1')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'Spectral',serif;font-size:13px;padding:5px 12px;border-radius:4px;cursor:pointer"><span data-lang="fr">Ouvrir</span><span data-lang="en">Open</span></button></p></div></div>
+          <div class="ki"><div class="rank">2</div><div><h5><span data-lang="fr">L’intrigue</span><span data-lang="en">The plot</span></h5><p><span data-lang="fr">L'intrigue en bref</span><span data-lang="en">The plot in brief</span></p><p style="margin-top:8px"><button onclick="goTab('p2')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'Spectral',serif;font-size:13px;padding:5px 12px;border-radius:4px;cursor:pointer"><span data-lang="fr">Ouvrir</span><span data-lang="en">Open</span></button></p></div></div>
+          <div class="ki"><div class="rank">3</div><div><h5><span data-lang="fr">Le monde du roman</span><span data-lang="en">The world of the novel</span></h5><p><span data-lang="fr">Le monde du roman : l'arsenal du contrôle</span><span data-lang="en">The world of the novel: the arsenal of control</span></p><p style="margin-top:8px"><button onclick="goTab('p3')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'Spectral',serif;font-size:13px;padding:5px 12px;border-radius:4px;cursor:pointer"><span data-lang="fr">Ouvrir</span><span data-lang="en">Open</span></button></p></div></div>
+          <div class="ki"><div class="rank">4</div><div><h5><span data-lang="fr">Les personnages</span><span data-lang="en">The characters</span></h5><p><span data-lang="fr">Les personnages comme incarnations d'enjeux</span><span data-lang="en">Characters as embodiments of issues</span></p><p style="margin-top:8px"><button onclick="goTab('p4')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'Spectral',serif;font-size:13px;padding:5px 12px;border-radius:4px;cursor:pointer"><span data-lang="fr">Ouvrir</span><span data-lang="en">Open</span></button></p></div></div>
+          <div class="ki"><div class="rank">5</div><div><h5><span data-lang="fr">Axes thématiques</span><span data-lang="en">Thematic axes</span></h5><p><span data-lang="fr">Les grands axes thématiques</span><span data-lang="en">The major thematic axes</span></p><p style="margin-top:8px"><button onclick="goTab('p5')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'Spectral',serif;font-size:13px;padding:5px 12px;border-radius:4px;cursor:pointer"><span data-lang="fr">Ouvrir</span><span data-lang="en">Open</span></button></p></div></div>
+          <div class="ki"><div class="rank">6</div><div><h5><span data-lang="fr">Les 8 key issues</span><span data-lang="en">The 8 key issues</span></h5><p><span data-lang="fr">1984 &amp; les 8 key issues</span><span data-lang="en">1984 &amp; the 8 key issues</span></p><p style="margin-top:8px"><button onclick="goTab('p6')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'Spectral',serif;font-size:13px;padding:5px 12px;border-radius:4px;cursor:pointer"><span data-lang="fr">Ouvrir</span><span data-lang="en">Open</span></button></p></div></div>
+          <div class="ki"><div class="rank">7</div><div><h5><span data-lang="fr">Ponts entre œuvres</span><span data-lang="en">Bridges</span></h5><p><span data-lang="fr">Ponts vers les autres œuvres</span><span data-lang="en">Bridges to the other works</span></p><p style="margin-top:8px"><button onclick="goTab('p7')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'Spectral',serif;font-size:13px;padding:5px 12px;border-radius:4px;cursor:pointer"><span data-lang="fr">Ouvrir</span><span data-lang="en">Open</span></button></p></div></div>
+          <div class="ki"><div class="rank">8</div><div><h5><span data-lang="fr">Fiches-citations</span><span data-lang="en">Quotation cards</span></h5><p><span data-lang="fr">Fiches-citations à mémoriser</span><span data-lang="en">Quotation cards to memorise</span></p><p style="margin-top:8px"><button onclick="goTab('p8')" style="background:none;border:1px solid var(--line);color:var(--ember-soft);font-family:'Spectral',serif;font-size:13px;padding:5px 12px;border-radius:4px;cursor:pointer"><span data-lang="fr">Ouvrir</span><span data-lang="en">Open</span></button></p></div></div>
         </div>
       </div>
     </section>
 
     <section id="p1">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="68" y="98" width="264" height="192" rx="16"/>
+<circle cx="200" cy="194" r="48"/><circle cx="200" cy="194" r="19"/>
+<path d="M132 290l-20 40M268 290l20 40"/>
+<path d="M90 128h220M90 148h220M90 168h220M90 220h220M90 240h220M90 260h220" stroke-width="1.4" opacity=".55"/>
+<path d="M40 60v-20h20M360 60v-20h-20M40 340v20h20M360 340v20h-20" stroke-width="2.5" opacity=".7"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Partie 1 sur 8</span><span data-lang="en">Part 1 of 8</span></div>
         <h2><span data-lang="fr">Contexte : écrire le totalitarisme depuis ses ruines</span><span data-lang="en">Context: writing totalitarianism from its ruins</span></h2>
-        <div class="byl"><span data-lang="fr">Orwell, 1949 : l'avertissement d'un socialiste désabusé</span><span data-lang="en">Orwell, 1949: the warning of a disillusioned socialist</span></div>
+        <div class="byl"><span data-lang="fr">Orwell, 1949 : l'avertissement d'un socialiste désabusé</span><span data-lang="en">Orwell, 1949: the warning of a disillusioned socialist</span><span data-lang="fr">, environ 1 min de lecture</span><span data-lang="en">, about 1 min to read</span></div>
       </div>
       <div class="body">
         <p data-lang="fr"><strong>George Orwell</strong> (pseudonyme d'Eric Blair, 1903–1950) écrit <span class="cite">1984</span> en 1948 — il inverse les deux derniers chiffres pour le titre — et le publie en juin 1949, un an avant sa mort de la tuberculose. Le roman naît d'une double expérience politique : Orwell a combattu le fascisme en Espagne (1936–37) dans les rangs républicains, mais il y a vu de ses yeux les <strong>purges staliniennes contre ses propres alliés</strong> — une trahison qui fera de lui un ennemi acharné du totalitarisme, <em>de gauche comme de droite</em>. C'est une clé de lecture essentielle : <span class="cite">1984</span> n'est pas un pamphlet anti-communiste ou anti-fasciste, c'est une charge contre le <strong>mécanisme totalitaire lui-même</strong>, quelle que soit son étiquette.</p><p data-lang="en"><strong>George Orwell</strong> (pen name of Eric Blair, 1903–1950) wrote <span class="cite">1984</span> in 1948 — he swapped the last two digits for the title — and published it in June 1949, a year before his death from tuberculosis. The novel grows from a double political experience: Orwell fought fascism in Spain (1936–37) on the Republican side, but there he saw with his own eyes the <strong>Stalinist purges against his own allies</strong> — a betrayal that made him a fierce enemy of totalitarianism, <em>of the left as of the right</em>. This is an essential key: <span class="cite">1984</span> is not an anti-communist or anti-fascist pamphlet, it is an attack on the <strong>totalitarian mechanism itself</strong>, whatever its label.</p>
@@ -371,14 +422,21 @@
           <button onclick="goTab('hub')"><span class="ar">←</span> <span data-lang="fr">Vue d’ensemble</span><span data-lang="en">Overview</span></button>
           <button onclick="goTab('p2')"><span data-lang="fr">L’intrigue</span><span data-lang="en">The plot</span> <span class="ar">→</span></button>
         </div>
+        <div class="reviewed"><button data-id="p1"><span class="off"><span data-lang="fr">Marquer cette partie comme révisée</span><span data-lang="en">Mark this part as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
 
     <section id="p2">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="68" y="98" width="264" height="192" rx="16"/>
+<circle cx="200" cy="194" r="48"/><circle cx="200" cy="194" r="19"/>
+<path d="M132 290l-20 40M268 290l20 40"/>
+<path d="M90 128h220M90 148h220M90 168h220M90 220h220M90 240h220M90 260h220" stroke-width="1.4" opacity=".55"/>
+<path d="M40 60v-20h20M360 60v-20h-20M40 340v20h20M360 340v20h-20" stroke-width="2.5" opacity=".7"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Partie 2 sur 8</span><span data-lang="en">Part 2 of 8</span></div>
         <h2><span data-lang="fr">L'intrigue en bref</span><span data-lang="en">The plot in brief</span></h2>
-        <div class="byl"><span data-lang="fr">Des repères, pas un résumé — une trajectoire en trois parties</span><span data-lang="en">Markers, not a summary — a trajectory in three parts</span></div>
+        <div class="byl"><span data-lang="fr">Des repères, pas un résumé — une trajectoire en trois parties</span><span data-lang="en">Markers, not a summary — a trajectory in three parts</span><span data-lang="fr">, environ 2 min de lecture</span><span data-lang="en">, about 2 min to read</span></div>
       </div>
       <div class="body">
         <p data-lang="fr">La structure du roman <em>est</em> déjà une thèse : trois parties qui dessinent une courbe implacable, de l'éveil de la révolte à son écrasement total. Retiens cette architecture — elle t'organise n'importe quel développement.</p><p data-lang="en">The novel's structure is <em>already</em> a thesis: three parts tracing a relentless curve, from the awakening of revolt to its total crushing. Remember this architecture — it will organise any development for you.</p>
@@ -410,14 +468,21 @@
           <button onclick="goTab('p1')"><span class="ar">←</span> <span data-lang="fr">Contexte</span><span data-lang="en">Context</span></button>
           <button onclick="goTab('p3')"><span data-lang="fr">Le monde du roman</span><span data-lang="en">The world of the novel</span> <span class="ar">→</span></button>
         </div>
+        <div class="reviewed"><button data-id="p2"><span class="off"><span data-lang="fr">Marquer cette partie comme révisée</span><span data-lang="en">Mark this part as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
 
     <section id="p3">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="68" y="98" width="264" height="192" rx="16"/>
+<circle cx="200" cy="194" r="48"/><circle cx="200" cy="194" r="19"/>
+<path d="M132 290l-20 40M268 290l20 40"/>
+<path d="M90 128h220M90 148h220M90 168h220M90 220h220M90 240h220M90 260h220" stroke-width="1.4" opacity=".55"/>
+<path d="M40 60v-20h20M360 60v-20h-20M40 340v20h20M360 340v20h-20" stroke-width="2.5" opacity=".7"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Partie 3 sur 8</span><span data-lang="en">Part 3 of 8</span></div>
         <h2><span data-lang="fr">Le monde du roman : l'arsenal du contrôle</span><span data-lang="en">The world of the novel: the arsenal of control</span></h2>
-        <div class="byl"><span data-lang="fr">Les concepts qui font la puissance de 1984 à l'oral</span><span data-lang="en">The concepts that make 1984 powerful in the oral</span></div>
+        <div class="byl"><span data-lang="fr">Les concepts qui font la puissance de 1984 à l'oral</span><span data-lang="en">The concepts that make 1984 powerful in the oral</span><span data-lang="fr">, environ 2 min de lecture</span><span data-lang="en">, about 2 min to read</span></div>
       </div>
       <div class="body">
         <p data-lang="fr">C'est ici que <span class="cite">1984</span> devient une mine pour l'oral : Orwell a forgé tout un <strong>appareil conceptuel</strong> du totalitarisme, et maîtriser ce vocabulaire précis te distingue immédiatement. Ne te contente pas de « il y a de la surveillance » : nomme les mécanismes.</p><p data-lang="en">This is where <span class="cite">1984</span> becomes a goldmine for the oral: Orwell forged a whole <strong>conceptual apparatus</strong> of totalitarianism, and mastering this precise vocabulary sets you apart at once. Do not settle for "there is surveillance": name the mechanisms.</p>
@@ -433,14 +498,21 @@
           <button onclick="goTab('p2')"><span class="ar">←</span> <span data-lang="fr">L’intrigue</span><span data-lang="en">The plot</span></button>
           <button onclick="goTab('p4')"><span data-lang="fr">Les personnages</span><span data-lang="en">The characters</span> <span class="ar">→</span></button>
         </div>
+        <div class="reviewed"><button data-id="p3"><span class="off"><span data-lang="fr">Marquer cette partie comme révisée</span><span data-lang="en">Mark this part as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
 
     <section id="p4">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="68" y="98" width="264" height="192" rx="16"/>
+<circle cx="200" cy="194" r="48"/><circle cx="200" cy="194" r="19"/>
+<path d="M132 290l-20 40M268 290l20 40"/>
+<path d="M90 128h220M90 148h220M90 168h220M90 220h220M90 240h220M90 260h220" stroke-width="1.4" opacity=".55"/>
+<path d="M40 60v-20h20M360 60v-20h-20M40 340v20h20M360 340v20h-20" stroke-width="2.5" opacity=".7"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Partie 4 sur 8</span><span data-lang="en">Part 4 of 8</span></div>
         <h2><span data-lang="fr">Les personnages comme incarnations d'enjeux</span><span data-lang="en">Characters as embodiments of issues</span></h2>
-        <div class="byl"><span data-lang="fr">Chacun porte une idée — c'est ainsi qu'il faut les mobiliser</span><span data-lang="en">Each carries an idea — that is how to mobilise them</span></div>
+        <div class="byl"><span data-lang="fr">Chacun porte une idée — c'est ainsi qu'il faut les mobiliser</span><span data-lang="en">Each carries an idea — that is how to mobilise them</span><span data-lang="fr">, environ 2 min de lecture</span><span data-lang="en">, about 2 min to read</span></div>
       </div>
       <div class="body">
         <div class="panel"><h5>Winston Smith <span data-lang="fr">— la conscience individuelle</span><span data-lang="en">— individual consciousness</span></h5><p data-lang="fr">Winston n'est pas un héros : c'est un homme <em>ordinaire</em>, physiquement faible (l'ulcère à la cheville, la toux), dont la seule grandeur est de vouloir garder une pensée à lui. Son nom même est ironique — Winston (Churchill, la résistance) Smith (l'homme le plus commun). Il incarne l'<strong>individu</strong> contre le collectif, et sa défaite dit que, face au totalitarisme parfait, l'individu seul ne peut pas gagner. Sa rébellion tient d'abord dans un geste minuscule : écrire un journal, c'est-à-dire penser pour soi.</p><p data-lang="en">Winston is not a hero: he is an <em>ordinary</em> man, physically weak (the varicose ulcer, the cough), whose only greatness is wanting to keep a thought of his own. His very name is ironic — Winston (Churchill, resistance) Smith (the commonest of men). He embodies the <strong>individual</strong> against the collective, and his defeat says that, against perfect totalitarianism, the lone individual cannot win. His rebellion lies first in a tiny gesture: keeping a diary, that is, thinking for himself.</p></div>
@@ -455,14 +527,21 @@
           <button onclick="goTab('p3')"><span class="ar">←</span> <span data-lang="fr">Le monde du roman</span><span data-lang="en">The world of the novel</span></button>
           <button onclick="goTab('p5')"><span data-lang="fr">Axes thématiques</span><span data-lang="en">Thematic axes</span> <span class="ar">→</span></button>
         </div>
+        <div class="reviewed"><button data-id="p4"><span class="off"><span data-lang="fr">Marquer cette partie comme révisée</span><span data-lang="en">Mark this part as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
 
     <section id="p5">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="68" y="98" width="264" height="192" rx="16"/>
+<circle cx="200" cy="194" r="48"/><circle cx="200" cy="194" r="19"/>
+<path d="M132 290l-20 40M268 290l20 40"/>
+<path d="M90 128h220M90 148h220M90 168h220M90 220h220M90 240h220M90 260h220" stroke-width="1.4" opacity=".55"/>
+<path d="M40 60v-20h20M360 60v-20h-20M40 340v20h20M360 340v20h-20" stroke-width="2.5" opacity=".7"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Partie 5 sur 8</span><span data-lang="en">Part 5 of 8</span></div>
         <h2><span data-lang="fr">Les grands axes thématiques</span><span data-lang="en">The major thematic axes</span></h2>
-        <div class="byl"><span data-lang="fr">Transversaux — à mobiliser selon la key issue</span><span data-lang="en">Cross-cutting — to mobilise according to the key issue</span></div>
+        <div class="byl"><span data-lang="fr">Transversaux — à mobiliser selon la key issue</span><span data-lang="en">Cross-cutting — to mobilise according to the key issue</span><span data-lang="fr">, environ 1 min de lecture</span><span data-lang="en">, about 1 min to read</span></div>
       </div>
       <div class="body">
         <div class="panel"><h5><span data-lang="fr">Le pouvoir comme fin en soi</span><span data-lang="en">Power as an end in itself</span></h5><p data-lang="fr">La thèse la plus radicale du roman, portée par O’Brien : le Parti ne cherche ni le bien commun, ni la richesse, ni même une idéologie — seulement le pouvoir, « <span class="cite">entirely for its own sake</span> ». La dystopie d’Orwell arrache le dernier alibi du tyran : il n’y a pas de cause derrière la domination, juste le plaisir de dominer.</p><p data-lang="en">The novel’s most radical thesis, carried by O’Brien: the Party seeks neither the common good, nor wealth, nor even an ideology — only power, “<span class="cite">entirely for its own sake</span>”. Orwell’s dystopia strips the tyrant of his last alibi: there is no cause behind domination, only the pleasure of dominating.</p></div>
@@ -476,14 +555,21 @@
           <button onclick="goTab('p4')"><span class="ar">←</span> <span data-lang="fr">Les personnages</span><span data-lang="en">The characters</span></button>
           <button onclick="goTab('p6')"><span data-lang="fr">Les 8 key issues</span><span data-lang="en">The 8 key issues</span> <span class="ar">→</span></button>
         </div>
+        <div class="reviewed"><button data-id="p5"><span class="off"><span data-lang="fr">Marquer cette partie comme révisée</span><span data-lang="en">Mark this part as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
 
     <section id="p6">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="68" y="98" width="264" height="192" rx="16"/>
+<circle cx="200" cy="194" r="48"/><circle cx="200" cy="194" r="19"/>
+<path d="M132 290l-20 40M268 290l20 40"/>
+<path d="M90 128h220M90 148h220M90 168h220M90 220h220M90 240h220M90 260h220" stroke-width="1.4" opacity=".55"/>
+<path d="M40 60v-20h20M360 60v-20h-20M40 340v20h20M360 340v20h-20" stroke-width="2.5" opacity=".7"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Partie 6 sur 8</span><span data-lang="en">Part 6 of 8</span></div>
         <h2><span data-lang="fr">1984 &amp; les 8 key issues</span><span data-lang="en">1984 &amp; the 8 key issues</span></h2>
-        <div class="byl"><span data-lang="fr">Où le roman frappe fort, où il n’est qu’un appoint</span><span data-lang="en">Where the novel hits hard, where it is only a supplement</span></div>
+        <div class="byl"><span data-lang="fr">Où le roman frappe fort, où il n’est qu’un appoint</span><span data-lang="en">Where the novel hits hard, where it is only a supplement</span><span data-lang="fr">, environ 4 min de lecture</span><span data-lang="en">, about 4 min to read</span></div>
       </div>
       <div class="body">
         <div class="kimap">
@@ -502,14 +588,21 @@
           <button onclick="goTab('p5')"><span class="ar">←</span> <span data-lang="fr">Axes thématiques</span><span data-lang="en">Thematic axes</span></button>
           <button onclick="goTab('p7')"><span data-lang="fr">Ponts entre œuvres</span><span data-lang="en">Bridges</span> <span class="ar">→</span></button>
         </div>
+        <div class="reviewed"><button data-id="p6"><span class="off"><span data-lang="fr">Marquer cette partie comme révisée</span><span data-lang="en">Mark this part as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
 
     <section id="p7">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="68" y="98" width="264" height="192" rx="16"/>
+<circle cx="200" cy="194" r="48"/><circle cx="200" cy="194" r="19"/>
+<path d="M132 290l-20 40M268 290l20 40"/>
+<path d="M90 128h220M90 148h220M90 168h220M90 220h220M90 240h220M90 260h220" stroke-width="1.4" opacity=".55"/>
+<path d="M40 60v-20h20M360 60v-20h-20M40 340v20h20M360 340v20h-20" stroke-width="2.5" opacity=".7"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Partie 7 sur 8</span><span data-lang="en">Part 7 of 8</span></div>
         <h2><span data-lang="fr">Ponts vers les autres œuvres</span><span data-lang="en">Bridges to the other works</span></h2>
-        <div class="byl"><span data-lang="fr">Le roman-pivot du corpus : il dialogue avec tous les poèmes</span><span data-lang="en">The corpus’s pivot novel: it speaks to every poem</span></div>
+        <div class="byl"><span data-lang="fr">Le roman-pivot du corpus : il dialogue avec tous les poèmes</span><span data-lang="en">The corpus’s pivot novel: it speaks to every poem</span><span data-lang="fr">, environ 2 min de lecture</span><span data-lang="en">, about 2 min to read</span></div>
       </div>
       <div class="body">
         <div class="seealso" onclick="goTab('bridges')"><span class="ar">⇄</span> <span data-lang="fr">Vois aussi l’onglet <b>Ponts entre œuvres</b> pour le triangle des poèmes. Les liaisons roman↔poèmes ci-dessous s’y ajouteront quand tu auras aussi étudié Butler.</span><span data-lang="en">See also the <b>Bridges between works</b> tab for the poem triangle. The novel↔poem links below will be added there once you have also studied Butler.</span></div>
@@ -532,14 +625,21 @@
           <button onclick="goTab('p6')"><span class="ar">←</span> <span data-lang="fr">Les 8 key issues</span><span data-lang="en">The 8 key issues</span></button>
           <button onclick="goTab('p8')"><span data-lang="fr">Fiches-citations</span><span data-lang="en">Quotation cards</span> <span class="ar">→</span></button>
         </div>
+        <div class="reviewed"><button data-id="p7"><span class="off"><span data-lang="fr">Marquer cette partie comme révisée</span><span data-lang="en">Mark this part as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
 
     <section id="p8">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="68" y="98" width="264" height="192" rx="16"/>
+<circle cx="200" cy="194" r="48"/><circle cx="200" cy="194" r="19"/>
+<path d="M132 290l-20 40M268 290l20 40"/>
+<path d="M90 128h220M90 148h220M90 168h220M90 220h220M90 240h220M90 260h220" stroke-width="1.4" opacity=".55"/>
+<path d="M40 60v-20h20M360 60v-20h-20M40 340v20h20M360 340v20h-20" stroke-width="2.5" opacity=".7"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Partie 8 sur 8</span><span data-lang="en">Part 8 of 8</span></div>
         <h2><span data-lang="fr">Fiches-citations à mémoriser</span><span data-lang="en">Quotation cards to memorise</span></h2>
-        <div class="byl"><span data-lang="fr">Priorité aux citations « de lecteur » — celles qui prouvent une vraie lecture</span><span data-lang="en">Priority to “reader” quotations — the ones that prove a real reading</span></div>
+        <div class="byl"><span data-lang="fr">Priorité aux citations « de lecteur » — celles qui prouvent une vraie lecture</span><span data-lang="en">Priority to “reader” quotations — the ones that prove a real reading</span><span data-lang="fr">, environ 4 min de lecture</span><span data-lang="en">, about 4 min to read</span></div>
       </div>
       <div class="body">
         <div class="panel ember"><p style="margin-bottom:0" data-lang="fr"><strong>Stratégie :</strong> les slogans célèbres (« Big Brother is watching you », « War is Peace », « boot stamping on a human face ») sont sur toutes les fiches du net — l’examinateur les a entendus mille fois. Utilise-les <em>brièvement</em>, en les nommant comme tels, et mise sur les citations plus fines ci-dessous : ce sont elles qui prouvent que tu as lu le roman, pas une fiche.</p><p style="margin-bottom:0" data-lang="en"><strong>Strategy:</strong> the famous slogans (“Big Brother is watching you”, “War is Peace”, “boot stamping on a human face”) are on every online sheet — the examiner has heard them a thousand times. Use them <em>briefly</em>, naming them as such, and rely on the finer quotations below: these are what prove you read the novel, not a crib sheet.</p></div>
@@ -603,6 +703,7 @@
           <button onclick="goTab('p7')"><span class="ar">←</span> <span data-lang="fr">Ponts entre œuvres</span><span data-lang="en">Bridges</span></button>
           <span></span>
         </div>
+        <div class="reviewed"><button data-id="p8"><span class="off"><span data-lang="fr">Marquer cette partie comme révisée</span><span data-lang="en">Mark this part as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
 
@@ -638,6 +739,29 @@
   addEventListener('scroll',()=>tt.classList.toggle('show', scrollY>700), {passive:true});
 </script>
 
+
+<script>
+  // ---- Suivi de révision : un bouton par unité, une jauge dans le menu ----
+  (function(){
+    const KEY='orwellReviewed', ids=["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8"];
+    let done=new Set(); try{done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'))}catch(e){}
+    function save(){try{localStorage.setItem(KEY,JSON.stringify([...done]))}catch(e){}}
+    function render(){
+      ids.forEach(id=>{
+        const on=done.has(id);
+        const l=document.querySelector('.navlink[data-s="'+id+'"]'); if(l) l.classList.toggle('done',on);
+        const b=document.querySelector('#'+id+' .reviewed button'); if(b) b.classList.toggle('on',on);
+      });
+      const n=done.size,t=ids.length;
+      const bar=document.querySelector('.rail .prog .bar i'); if(bar) bar.style.width=(100*n/t)+'%';
+      document.querySelectorAll('.rail .prog .cnt').forEach(e=>e.textContent=n+' / '+t);
+    }
+    document.querySelectorAll('.reviewed button').forEach(b=>b.addEventListener('click',()=>{
+      const id=b.dataset.id; if(done.has(id)) done.delete(id); else done.add(id); save(); render();
+    }));
+    render();
+  })();
+</script>
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {

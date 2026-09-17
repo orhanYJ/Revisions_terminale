@@ -273,6 +273,44 @@
       align-items:center;justify-content:center;font-size:20px;cursor:pointer}
     .hero{padding-top:70px}
   }
+
+  /* === refonte : filigranes, étiquettes apaisées, suivi de révision === */
+  .hero .eyebrow,.eyebrow{font-family:'Spectral',serif;font-style:italic;font-size:15px;letter-spacing:0;
+    text-transform:none;color:var(--ember-soft);gap:10px}
+  .hero .eyebrow::before,.eyebrow::before{width:22px}
+  .hero .byl{font-family:'Spectral',serif;font-size:14.5px;letter-spacing:0;color:var(--ash-dim);max-width:60ch;line-height:1.5}
+  .rail .kicker{font-family:'Spectral',serif;font-style:italic;font-size:12.5px;letter-spacing:0;text-transform:none;color:var(--ash-dim)}
+  .rail .sub{font-family:'Spectral',serif;letter-spacing:0;font-size:13px}
+  .rail .grp{font-family:'Spectral',serif;font-style:italic;font-size:12.5px;letter-spacing:0;text-transform:none;opacity:.85}
+  .rubric{font-family:'Spectral',serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:14px}
+  h6,.qgrid h6{font-family:'Spectral',serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:13px}
+  .hero{min-height:250px}
+  .hero .wm{position:absolute;right:-24px;top:-14px;width:min(46%,400px);height:auto;opacity:.11;pointer-events:none;color:var(--ember)}
+  .hero > *:not(.wm){position:relative;z-index:1}
+  .rail .prog{padding:14px 26px 4px}
+  .rail .prog .lbl{font-family:'Spectral',serif;font-size:12.5px;color:var(--ash-dim);margin-bottom:6px}
+  .rail .prog .cnt{color:var(--ember-soft)}
+  .rail .prog .bar{height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+  .rail .prog .bar i{display:block;height:100%;width:0;background:var(--ember);transition:width .4s ease}
+  .navlink.done .n{color:var(--ember-soft)}
+  .navlink.done::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--ember);margin-left:auto;align-self:center;flex:none}
+  .reviewed{margin:36px 0 6px;display:flex;justify-content:flex-end}
+  .reviewed button{background:none;border:1px solid var(--line);color:var(--ash-dim);font-family:'Spectral',serif;
+    font-size:13.5px;padding:9px 16px;border-radius:5px;cursor:pointer;transition:border-color .15s,color .15s,background .15s}
+  .reviewed button:hover{border-color:var(--ember);color:var(--ash)}
+  .reviewed button.on{border-color:var(--ember);color:var(--ember-soft);background:rgba(213,100,42,.08)}
+  .reviewed .onl{display:none !important}.reviewed button.on .onl{display:inline !important}.reviewed button.on .off{display:none !important}
+  section{animation:none}
+  section.on{animation:tabin .45s ease}
+  @keyframes tabin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  section.on .hero .wm{animation:wmin .9s ease}
+  @keyframes wmin{from{opacity:0;transform:translateY(12px)}to{opacity:.11;transform:none}}
+  @media(prefers-reduced-motion:reduce){section.on,section.on .hero .wm{animation:none}.rail .prog .bar i{transition:none}}
+  button:focus-visible,.navlink:focus-visible,.chip:focus-visible,.langtoggle button:focus-visible{outline:2px solid var(--ember-soft);outline-offset:2px}
+  @media(max-width:880px){.hero .wm{width:52%;right:-30px;top:-6px;opacity:.09}}
+  .panel h5,.ki h5,.kimap h5{font-family:'Spectral',serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:15.5px}
+  .ki .rank{font-family:'Cormorant Garamond',serif}
+  h3 + .rubric,.rubric{font-family:'Spectral',serif;font-style:italic;letter-spacing:0;text-transform:none;font-size:14px}
 </style>
 </head>
 <body>
@@ -280,13 +318,14 @@
 <div class="shell">
   <nav class="rail">
     <div class="brand">
-      <div class="kicker">BFI · Section anglaise</div>
+      <div class="kicker">BFI, Section anglaise</div>
       <h1>Oral Dystopie</h1>
-      <div class="sub">Synoptic Topic · 2 romans · 6 poèmes</div>
+      <div class="sub">Synoptic Topic, 2 romans, 6 poèmes</div>
       <div class="langtoggle" id="langtoggle">
         <button data-l="en" class="on">EN</button><button data-l="fr">FR</button>
       </div>
     </div>
+    <div class="prog"><div class="lbl"><span class="cnt">0 / 3</span> <span data-lang="fr">poèmes révisés</span><span data-lang="en">poems reviewed</span></div><div class="bar"><i></i></div></div>
 
     <div class="grp">Le cadre</div>
     <div class="navlink active" data-s="hub"><span class="n">◆</span> Vue d'ensemble</div>
@@ -310,7 +349,15 @@
 
     <!-- ============ HUB ============ -->
     <section class="on" id="hub">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<circle cx="200" cy="52" r="14"/><path d="M200 66v22"/>
+<path d="M140 108h120l-18-20h-84z"/>
+<path d="M148 112h104l18 176H130z"/>
+<path d="M172 112l-8 176M228 112l8 176" stroke-width="2" opacity=".7"/>
+<path d="M200 236c-14-12-18-30-6-48 4-6 6-10 6-18 0 8 2 12 6 18 12 18 8 36-6 48z"/>
+<path d="M124 292h152v16H124z"/>
+<circle cx="200" cy="206" r="58" stroke-dasharray="3 9" stroke-width="1.5" opacity=".6"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Outil de révision — oral uniquement</span><span data-lang="en">Revision tool — oral exam only</span></div>
         <h2><span data-lang="fr">Réviser la <em>dystopie</em></span><span data-lang="en">Revising <em>dystopia</em></span></h2>
         <div class="dek"><span data-lang="fr">Un corpus qui se répond : deux romans, six poèmes, huit enjeux. L'oral n'évalue pas une œuvre isolée — il évalue ta capacité à les faire dialoguer autour d'un seul enjeu.</span><span data-lang="en">A corpus in dialogue with itself: two novels, six poems, eight issues. The oral does not test a single work in isolation — it tests your ability to make them speak to one another around one issue.</span></div>
@@ -347,7 +394,15 @@
 
     <!-- ============ METHOD ============ -->
     <section id="method">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<circle cx="200" cy="52" r="14"/><path d="M200 66v22"/>
+<path d="M140 108h120l-18-20h-84z"/>
+<path d="M148 112h104l18 176H130z"/>
+<path d="M172 112l-8 176M228 112l8 176" stroke-width="2" opacity=".7"/>
+<path d="M200 236c-14-12-18-30-6-48 4-6 6-10 6-18 0 8 2 12 6 18 12 18 8 36-6 48z"/>
+<path d="M124 292h152v16H124z"/>
+<circle cx="200" cy="206" r="58" stroke-dasharray="3 9" stroke-width="1.5" opacity=".6"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Le cadre</span><span data-lang="en">The framework</span></div>
         <h2><span data-lang="fr">Méthode de <em>l'oral</em></span><span data-lang="en">Oral <em>method</em></span></h2>
         <div class="dek"><span data-lang="fr">Cinq minutes, c'est court. Rien n'est laissé au hasard : une thèse, deux mouvements, un corpus qui se répond.</span><span data-lang="en">Five minutes is short. Nothing is left to chance: one thesis, two movements, a corpus that answers itself.</span></div>
@@ -384,7 +439,15 @@
 
     <!-- ============ ISSUES ============ -->
     <section id="issues">
-      <div class="hero">
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<circle cx="200" cy="52" r="14"/><path d="M200 66v22"/>
+<path d="M140 108h120l-18-20h-84z"/>
+<path d="M148 112h104l18 176H130z"/>
+<path d="M172 112l-8 176M228 112l8 176" stroke-width="2" opacity=".7"/>
+<path d="M200 236c-14-12-18-30-6-48 4-6 6-10 6-18 0 8 2 12 6 18 12 18 8 36-6 48z"/>
+<path d="M124 292h152v16H124z"/>
+<circle cx="200" cy="206" r="58" stroke-dasharray="3 9" stroke-width="1.5" opacity=".6"/>
+</svg>
         <div class="eyebrow"><span data-lang="fr">Le cadre</span><span data-lang="en">The framework</span></div>
         <h2><span data-lang="fr">Les huit <em>key issues</em></span><span data-lang="en">The eight <em>key issues</em></span></h2>
         <div class="dek"><span data-lang="fr">Chaque enjeu est un sujet d'oral possible. La compétence : savoir, pour chacun, quelles œuvres mobiliser et comment les faire se répondre.</span><span data-lang="en">Each issue is a possible oral topic. The skill: knowing, for each one, which works to mobilise and how to make them answer one another.</span></div>
@@ -411,8 +474,16 @@
 
     <!-- ============ THESES TRANSVERSALES ============ -->
     <section id="thesis">
-      <div class="hero">
-        <div class="eyebrow"><span data-lang="fr">Le cadre · outil transversal</span><span data-lang="en">The framework · cross-cutting tool</span></div>
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<circle cx="200" cy="52" r="14"/><path d="M200 66v22"/>
+<path d="M140 108h120l-18-20h-84z"/>
+<path d="M148 112h104l18 176H130z"/>
+<path d="M172 112l-8 176M228 112l8 176" stroke-width="2" opacity=".7"/>
+<path d="M200 236c-14-12-18-30-6-48 4-6 6-10 6-18 0 8 2 12 6 18 12 18 8 36-6 48z"/>
+<path d="M124 292h152v16H124z"/>
+<circle cx="200" cy="206" r="58" stroke-dasharray="3 9" stroke-width="1.5" opacity=".6"/>
+</svg>
+        <div class="eyebrow"><span data-lang="fr">Le cadre, outil transversal</span><span data-lang="en">The framework, cross-cutting tool</span></div>
         <h2><span data-lang="fr">Thèses <em>transversales</em></span><span data-lang="en">Cross-cutting <em>theses</em></span></h2>
         <div class="dek"><span data-lang="fr">L'oral ne récompense pas l'analyse d'une œuvre isolée, mais ta capacité à défendre une <em>idée</em> qui traverse le corpus. Voici cinq thèses solides, chacune articulée sur deux ou trois œuvres, plus un tableau qui les fait dialoguer d'un coup d'œil.</span><span data-lang="en">The oral does not reward the analysis of a single work, but your ability to defend an <em>idea</em> that runs across the corpus. Here are five solid theses, each built on two or three works, plus a table that makes them speak to one another at a glance.</span></div>
       </div>
@@ -557,8 +628,16 @@
 
     <!-- ============ PONTS ENTRE OEUVRES ============ -->
     <section id="bridges">
-      <div class="hero">
-        <div class="eyebrow"><span data-lang="fr">Le cadre · outil transversal</span><span data-lang="en">The framework · cross-cutting tool</span></div>
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<circle cx="200" cy="52" r="14"/><path d="M200 66v22"/>
+<path d="M140 108h120l-18-20h-84z"/>
+<path d="M148 112h104l18 176H130z"/>
+<path d="M172 112l-8 176M228 112l8 176" stroke-width="2" opacity=".7"/>
+<path d="M200 236c-14-12-18-30-6-48 4-6 6-10 6-18 0 8 2 12 6 18 12 18 8 36-6 48z"/>
+<path d="M124 292h152v16H124z"/>
+<circle cx="200" cy="206" r="58" stroke-dasharray="3 9" stroke-width="1.5" opacity=".6"/>
+</svg>
+        <div class="eyebrow"><span data-lang="fr">Le cadre, outil transversal</span><span data-lang="en">The framework, cross-cutting tool</span></div>
         <h2><span data-lang="fr">Ponts entre <em>œuvres</em></span><span data-lang="en">Bridges between <em>works</em></span></h2>
         <div class="dek"><span data-lang="fr">Trois poèmes, trois fins du monde qui se répondent. Cet onglet réunit les liaisons directes du triangle <span class="cite">Darkness</span> · <span class="cite">Eve</span> · <span class="cite">Morning</span> — chacune travaillée dans les deux sens : ce qui les rapproche, ce qui les oppose, et la formule prête pour l'oral.</span><span data-lang="en">Three poems, three ends of the world that answer one another. This tab gathers the direct links of the triangle <span class="cite">Darkness</span> · <span class="cite">Eve</span> · <span class="cite">Morning</span> — each worked in both directions: what draws them together, what sets them apart, and the ready formula for the oral.</span></div>
       </div>
@@ -651,10 +730,18 @@
 
     <!-- ============ DARKNESS ============ -->
     <section id="darkness">
-      <div class="hero">
-        <div class="eyebrow"><span data-lang="fr">Poème 1 · analyse complète</span><span data-lang="en">Poem 1 · full analysis</span></div>
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<circle cx="200" cy="52" r="14"/><path d="M200 66v22"/>
+<path d="M140 108h120l-18-20h-84z"/>
+<path d="M148 112h104l18 176H130z"/>
+<path d="M172 112l-8 176M228 112l8 176" stroke-width="2" opacity=".7"/>
+<path d="M200 236c-14-12-18-30-6-48 4-6 6-10 6-18 0 8 2 12 6 18 12 18 8 36-6 48z"/>
+<path d="M124 292h152v16H124z"/>
+<circle cx="200" cy="206" r="58" stroke-dasharray="3 9" stroke-width="1.5" opacity=".6"/>
+</svg>
+        <div class="eyebrow"><span data-lang="fr">Poème 1, analyse complète</span><span data-lang="en">Poem 1, full analysis</span></div>
         <h2><em>Darkness</em></h2>
-        <div class="byl"><span data-lang="fr">George Gordon, Lord Byron · juillet 1816 · 82 vers, blank verse</span><span data-lang="en">George Gordon, Lord Byron · July 1816 · 82 lines, blank verse</span></div>
+        <div class="byl"><span data-lang="fr">George Gordon, Lord Byron, juillet 1816, 82 vers, blank verse</span><span data-lang="en">George Gordon, Lord Byron, July 1816, 82 lines, blank verse</span><span data-lang="fr">, environ 27 min de lecture</span><span data-lang="en">, about 27 min to read</span></div>
         <div class="dek"><span data-lang="fr">Le soleil s'éteint et l'humanité, privée de lumière, régresse jusqu'à la bête puis jusqu'au néant. Le poème dystopique le plus radical du corpus : ici, aucun tyran, aucun système — seulement la fin.</span><span data-lang="en">The sun goes out and humanity, stripped of light, regresses to the beast and then to nothingness. The most radical dystopian poem of the corpus: here there is no tyrant, no system — only the end.</span></div>
       </div>
       <div class="pad">
@@ -895,15 +982,24 @@
       </div>
       <div class="foot">
         <span data-lang="fr">Darkness · Lord Byron · 1816 · domaine public. Analyse construite pour l'oral BFI (Synoptic Topic : dystopie).<br>Les rattachements aux key issues et les ponts entre œuvres sont des propositions de travail — à confronter à ton cours.</span><span data-lang="en">Darkness · Lord Byron · 1816 · public domain. Analysis built for the BFI oral (Synoptic Topic: dystopia).<br>The key-issue pairings and the bridges between works are working proposals — to be checked against your course.</span>
+        <div class="reviewed"><button data-id="darkness"><span class="off"><span data-lang="fr">Marquer ce poème comme révisé</span><span data-lang="en">Mark this poem as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
 
     <!-- ============ EVE TO HER DAUGHTERS ============ -->
     <section id="eve">
-      <div class="hero">
-        <div class="eyebrow"><span data-lang="fr">Poème 2 · analyse complète</span><span data-lang="en">Poem 2 · full analysis</span></div>
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<circle cx="200" cy="52" r="14"/><path d="M200 66v22"/>
+<path d="M140 108h120l-18-20h-84z"/>
+<path d="M148 112h104l18 176H130z"/>
+<path d="M172 112l-8 176M228 112l8 176" stroke-width="2" opacity=".7"/>
+<path d="M200 236c-14-12-18-30-6-48 4-6 6-10 6-18 0 8 2 12 6 18 12 18 8 36-6 48z"/>
+<path d="M124 292h152v16H124z"/>
+<circle cx="200" cy="206" r="58" stroke-dasharray="3 9" stroke-width="1.5" opacity=".6"/>
+</svg>
+        <div class="eyebrow"><span data-lang="fr">Poème 2, analyse complète</span><span data-lang="en">Poem 2, full analysis</span></div>
         <h2><em>Eve to Her Daughters</em></h2>
-        <div class="byl"><span data-lang="fr">Judith Wright · 1966 · monologue en vers libre</span><span data-lang="en">Judith Wright · 1966 · free-verse monologue</span></div>
+        <div class="byl"><span data-lang="fr">Judith Wright, 1966, monologue en vers libre</span><span data-lang="en">Judith Wright, 1966, free-verse monologue</span><span data-lang="fr">, environ 20 min de lecture</span><span data-lang="en">, about 20 min to read</span></div>
         <div class="dek"><span data-lang="fr">Ève, vieillie, s'adresse à ses filles et raconte l'après-Éden : comment Adam, blessé dans son orgueil, a entrepris de refaire le monde par la machine — jusqu'à s'inventer lui-même dieu, sous un ciel désormais chargé de « fall-out ». Une dystopie de la raison technicienne et de la bombe.</span><span data-lang="en">An aged Eve speaks to her daughters and tells of life after Eden: how Adam, wounded in his pride, set out to remake the world through machines — until he made himself a god, beneath a sky now heavy with "fall-out". A dystopia of technological reason and of the bomb.</span></div>
       </div>
       <div class="pad">
@@ -1053,13 +1149,22 @@
         <span data-lang="fr">Eve to Her Daughters · Judith Wright · 1966. Œuvre sous droits : le texte intégral n'est pas reproduit ici (bloc à compléter par tes soins).<br>
         Les rattachements aux key issues et les ponts entre œuvres sont des propositions de travail — à confronter à ton cours.</span><span data-lang="en">Eve to Her Daughters · Judith Wright · 1966. Work in copyright: the full text is not reproduced here (block for you to complete).<br>
         The key-issue pairings and the bridges between works are working proposals — to be checked against your course.</span>
+        <div class="reviewed"><button data-id="eve"><span class="off"><span data-lang="fr">Marquer ce poème comme révisé</span><span data-lang="en">Mark this poem as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
     <section id="morning">
-      <div class="hero">
-        <div class="eyebrow"><span data-lang="fr">Poème 3 · analyse complète</span><span data-lang="en">Poem 3 · full analysis</span></div>
+      <div class="hero"><svg class="wm" viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<circle cx="200" cy="52" r="14"/><path d="M200 66v22"/>
+<path d="M140 108h120l-18-20h-84z"/>
+<path d="M148 112h104l18 176H130z"/>
+<path d="M172 112l-8 176M228 112l8 176" stroke-width="2" opacity=".7"/>
+<path d="M200 236c-14-12-18-30-6-48 4-6 6-10 6-18 0 8 2 12 6 18 12 18 8 36-6 48z"/>
+<path d="M124 292h152v16H124z"/>
+<circle cx="200" cy="206" r="58" stroke-dasharray="3 9" stroke-width="1.5" opacity=".6"/>
+</svg>
+        <div class="eyebrow"><span data-lang="fr">Poème 3, analyse complète</span><span data-lang="en">Poem 3, full analysis</span></div>
         <h2>Morning in the Burned House</h2>
-        <div class="byl"><span data-lang="fr">Margaret Atwood · 1995 · vers libre, ~36 vers</span><span data-lang="en">Margaret Atwood · 1995 · free verse, ~36 lines</span></div>
+        <div class="byl"><span data-lang="fr">Margaret Atwood, 1995, vers libre, ~36 vers</span><span data-lang="en">Margaret Atwood, 1995, free verse, ~36 lines</span><span data-lang="fr">, environ 20 min de lecture</span><span data-lang="en">, about 20 min to read</span></div>
         <div class="dek"><span data-lang="fr">Une voix prend son petit-déjeuner dans une maison qui a brûlé — « there is no house, there is no breakfast, / yet here I am ». Élégie au père mort, le poème est une <em>dystopie de l'intime</em> : l'apocalypse à l'échelle d'une seule conscience, où la mémoire ressuscite un monde détruit et finit par consumer le corps même qui se souvient.</span><span data-lang="en">A voice eats breakfast in a house that has burned down — "there is no house, there is no breakfast, / yet here I am". An elegy for the dead father, the poem is a <em>dystopia of the intimate</em>: apocalypse on the scale of a single consciousness, where memory resurrects a destroyed world and ends by consuming the very body that remembers.</span></div>
       </div>
 
@@ -1228,6 +1333,7 @@
         <span data-lang="fr">Morning in the Burned House · Margaret Atwood · 1995. Œuvre sous droits : le texte intégral n'est pas reproduit ici (bloc à compléter par tes soins).<br>
         Les rattachements aux key issues et les ponts entre œuvres sont des propositions de travail — à confronter à ton cours.</span><span data-lang="en">Morning in the Burned House · Margaret Atwood · 1995. Work in copyright: the full text is not reproduced here (block for you to complete).<br>
         The key-issue pairings and the bridges between works are working proposals — to be checked against your course.</span>
+        <div class="reviewed"><button data-id="morning"><span class="off"><span data-lang="fr">Marquer ce poème comme révisé</span><span data-lang="en">Mark this poem as reviewed</span></span><span class="onl"><span data-lang="fr">Révisé ✓ (annuler)</span><span data-lang="en">Reviewed ✓ (undo)</span></span></button></div>
       </div>
     </section>
 
@@ -1396,6 +1502,29 @@ Of aid from them — She was the Universe.`;
     window.scrollTo({top:0,behavior:'smooth'});
     document.querySelector('nav.rail').classList.remove('open');
   }));
+</script>
+
+<script>
+  // ---- Suivi de révision : un bouton par unité, une jauge dans le menu ----
+  (function(){
+    const KEY='oralReviewed', ids=["darkness", "eve", "morning"];
+    let done=new Set(); try{done=new Set(JSON.parse(localStorage.getItem(KEY)||'[]'))}catch(e){}
+    function save(){try{localStorage.setItem(KEY,JSON.stringify([...done]))}catch(e){}}
+    function render(){
+      ids.forEach(id=>{
+        const on=done.has(id);
+        const l=document.querySelector('.navlink[data-s="'+id+'"]'); if(l) l.classList.toggle('done',on);
+        const b=document.querySelector('#'+id+' .reviewed button'); if(b) b.classList.toggle('on',on);
+      });
+      const n=done.size,t=ids.length;
+      const bar=document.querySelector('.rail .prog .bar i'); if(bar) bar.style.width=(100*n/t)+'%';
+      document.querySelectorAll('.rail .prog .cnt').forEach(e=>e.textContent=n+' / '+t);
+    }
+    document.querySelectorAll('.reviewed button').forEach(b=>b.addEventListener('click',()=>{
+      const id=b.dataset.id; if(done.has(id)) done.delete(id); else done.add(id); save(); render();
+    }));
+    render();
+  })();
 </script>
 <script>
   if ('serviceWorker' in navigator) {
