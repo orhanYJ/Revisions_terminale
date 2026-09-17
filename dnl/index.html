@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DNL History-Geography — Terminale BFI</title>
+<title>Revision Atlas — History & Geography, Terminale BFI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <style>
@@ -444,9 +444,210 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .ki-item.hist-n::before{background:var(--hist)}
 .ki-item.geo-n::before{background:var(--geo)}
 </style>
+<style id="atlas-skin">
+/* ================= ATLAS SKIN — surcharge visuelle ================= */
+:root{
+  --ink:#1F2433; --paper:#F2ECDE; --paper-2:#EAE2CF; --paper-3:#E2D9C3;
+  --slate:#17233F; --slate-2:#22325A; --ocean:#D8E3E6; --ocean-2:#C6D6DB;
+  --hist:#8E2F2A; --hist-soft:#E8D4CF; --geo:#2C5F5B; --geo-soft:#CFDDD8;
+  --line:#CBBFA3; --line-2:#B9AB89; --muted:#6B6350; --gold:#B8924F; --gold-2:#8E6F37;
+}
+body{
+  font-family:'Inter',system-ui,sans-serif;background-color:var(--paper);color:var(--ink);
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><path d='M0 60H120M60 0V120' stroke='%23B8924F' stroke-opacity='.10' stroke-width='.8'/><path d='M0 0H120M0 120H120M0 0V120M120 0V120' stroke='%23B8924F' stroke-opacity='.06' stroke-width='.8'/><circle cx='60' cy='60' r='1.1' fill='%23B8924F' fill-opacity='.18'/></svg>");
+  background-size:120px 120px;
+}
+.ic{flex-shrink:0;vertical-align:middle}
+
+/* ---------- Sidebar : le dos de l'atlas ---------- */
+.sidebar{background:var(--slate);color:var(--paper);
+  background-image:linear-gradient(180deg,rgba(255,255,255,.035),rgba(0,0,0,0) 30%),
+    repeating-linear-gradient(90deg,transparent 0 118px,rgba(184,146,79,.08) 118px 119px);
+  border-right:1px solid rgba(184,146,79,.35);}
+.brand{width:100%;text-align:left;display:flex;align-items:center;gap:14px;padding:22px 20px 18px;
+  border-bottom:1px solid rgba(184,146,79,.35);background:none;cursor:pointer;color:var(--paper);transition:background .15s}
+.brand:hover,.brand.here{background:rgba(184,146,79,.08)}
+.brand-rose{color:var(--gold);flex-shrink:0}
+.brand-txt{min-width:0}
+.brand-kicker{font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:0;text-transform:none;color:var(--gold);margin-bottom:3px;font-weight:600}
+.brand-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:23px;font-weight:700;line-height:1.05;letter-spacing:0}
+.brand-sub{font-size:12px;color:rgba(242,236,222,.6);margin-top:3px}
+.tool-btn{background:rgba(242,236,222,.06);border:1px solid rgba(184,146,79,.35);color:var(--paper);border-radius:6px}
+.tool-btn:hover{background:rgba(184,146,79,.16);border-color:var(--gold)}
+.tool-ico{color:var(--gold)}
+.tool-kbd{background:none;border:1px solid rgba(242,236,222,.3);color:rgba(242,236,222,.6);border-radius:4px;padding:0 5px;font-size:10.5px;margin-left:auto}
+.subj-tab{border-radius:6px;background:rgba(242,236,222,.05);border:1px solid transparent}
+.subj-tab.active{background:rgba(184,146,79,.14);border-color:rgba(184,146,79,.5);color:#fff}
+.theme-head{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:0;text-transform:none;font-weight:600;
+  color:rgba(242,236,222,.78);padding:18px 12px 8px;display:flex;align-items:center;gap:9px;line-height:1.35}
+.theme-head .theme-ico{color:var(--gold)}
+.chap-btn{align-items:center;gap:9px;border-radius:6px;padding:8px 10px}
+.chap-btn .chap-ico{color:rgba(242,236,222,.5)}
+.chap-btn.active .chap-ico,.chap-btn:hover .chap-ico{color:var(--gold)}
+.chap-code{font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;font-weight:700;color:var(--gold);min-width:24px}
+.chap-btn.soon{opacity:.55}
+.chap-btn.soon .chap-title::after{content:'';display:none}
+.chap-btn.soon .chap-title{font-style:italic}
+.chap-btn.active::before{width:3px;border-radius:0;height:70%;background:var(--gold)}
+.chap-btn.hist.active::before,.chap-btn.geo.active::before{background:var(--gold)}
+
+/* ---------- Frontispice ---------- */
+.home{padding-top:30px}
+.frontis{position:relative;overflow:hidden;border:1px solid var(--line-2);border-radius:4px;
+  background:linear-gradient(180deg,#F7F2E6,#EFE7D5);box-shadow:0 1px 0 #fff inset;padding:0}
+.frontis::before{content:'';position:absolute;inset:8px;border:1px solid rgba(184,146,79,.55);border-radius:2px;pointer-events:none}
+.frontis::after{content:'';position:absolute;inset:11px;border:1px solid rgba(184,146,79,.25);pointer-events:none}
+.frontis-world{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.frontis-world path{fill:var(--gold);fill-opacity:.085;stroke:var(--gold);stroke-opacity:.42;stroke-width:.55;stroke-linejoin:round}
+.frontis-inner{position:relative;display:flex;align-items:center;gap:24px;padding:46px 46px 40px}
+.frontis-text{flex:1;min-width:0}
+.frontis-kicker{font-size:13px;color:var(--gold-2);font-weight:600;margin-bottom:10px}
+.frontis-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(44px,7vw,74px);line-height:.95;color:var(--slate);letter-spacing:-.01em;margin:0 0 12px}
+.frontis-sub{font-size:16px;color:var(--muted);max-width:44ch;line-height:1.5}
+.frontis-tools{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.ft-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:6px;border:1px solid var(--line-2);
+  background:#fff;color:var(--slate);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;transition:.15s}
+.ft-btn:hover{border-color:var(--gold);background:#FFFDF7}
+.ft-btn .ic{color:var(--gold-2)}
+.frontis-progress{display:flex;align-items:center;gap:12px;margin-top:22px;font-size:12.5px;color:var(--muted)}
+.fp-bar{width:150px;height:5px;border-radius:3px;background:rgba(184,146,79,.2);overflow:hidden;position:relative}
+.fp-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gold);border-radius:3px}
+.frontis-rose{color:var(--slate);flex-shrink:0;opacity:.92}
+.compass{color:inherit}
+@media(prefers-reduced-motion:no-preference){
+  .frontis-rose .compass{animation:roseSettle 1.6s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes roseSettle{from{transform:rotate(-28deg);opacity:0}to{transform:rotate(0);opacity:.92}}
+}
+
+/* ---------- Planches ---------- */
+.plates{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:40px;align-items:start}
+.subj-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:700;color:var(--slate);
+  display:flex;align-items:center;gap:14px;margin:0 0 16px}
+.subj-rule{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-2));}
+.subj-rule:last-child{background:linear-gradient(90deg,var(--gold-2),transparent)}
+.subj-col.geo .subj-title{color:var(--geo)}
+.subj-col.hist .subj-title{color:var(--hist)}
+.theme-card{display:flex;gap:16px;padding:16px;margin-bottom:14px;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.55)}
+.theme-card.geo{background:rgba(216,227,230,.5)}
+.plate{flex-shrink:0}
+.plate-bg{fill:#FBF8F0}
+.plate.geo .plate-bg{fill:var(--ocean)}
+.plate-frame{fill:none;stroke:var(--gold);stroke-width:.9}
+.plate-grat{fill:none;stroke:var(--gold);stroke-width:.5;opacity:.45}
+.plate-motif{fill:none;stroke:var(--gold-2);stroke-width:.9;opacity:.7}
+.plate-icon{fill:none;stroke:var(--hist);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.plate.geo .plate-icon{stroke:var(--geo)}
+.plate-corner{fill:none;stroke:var(--gold-2);stroke-width:1}
+.tc-body{flex:1;min-width:0}
+.tc-num{font-size:12px;font-weight:600;color:var(--gold-2)}
+.tc-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-weight:700;line-height:1.15;color:var(--slate);margin:2px 0 10px}
+.tc-list{list-style:none;margin:0;padding:0}
+.tc-chap{width:100%;display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:5px;background:none;border:none;
+  font:inherit;font-size:13.5px;color:var(--ink);text-align:left;cursor:pointer;transition:background .12s}
+.tc-chap:hover{background:rgba(184,146,79,.12)}
+.tc-chap .tc-ico{color:var(--muted)}
+.tc-chap.ok .tc-ico{color:var(--hist)}
+.geo .tc-chap.ok .tc-ico{color:var(--geo)}
+.tc-code{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:15px;color:var(--gold-2);min-width:24px}
+.tc-title{flex:1;min-width:0;line-height:1.3}
+.tc-chap.soon .tc-title{color:var(--muted)}
+.tc-state{color:var(--geo);flex-shrink:0}
+.tc-state.soon{font-size:11px;color:var(--muted);font-style:italic}
+
+/* ---------- Chapitre : cartouche ---------- */
+.chap-hero{padding:36px 0 0}
+.hero-band{margin-bottom:16px}
+.hero-code{font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;font-weight:700;letter-spacing:.02em;border-radius:3px;padding:5px 11px}
+.hero-theme{font-family:'Inter',sans-serif;font-size:12.5px;letter-spacing:0;text-transform:none;color:var(--muted);font-weight:500}
+.hero-cartouche{position:relative;display:flex;align-items:center;gap:20px;padding:24px 28px;margin-bottom:22px;
+  border:1px solid var(--line-2);background:linear-gradient(180deg,#F8F3E8,#F2ECDE)}
+.hero-cartouche::before{content:'';position:absolute;inset:5px;border:1px solid rgba(184,146,79,.55);pointer-events:none}
+.hero-cartouche::after{content:'';position:absolute;inset:8px;border:1px solid rgba(184,146,79,.22);pointer-events:none}
+.hero-icon{flex-shrink:0;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--gold);color:var(--hist);background:rgba(255,255,255,.6)}
+.hero-icon.geo{color:var(--geo)}
+.hero-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(32px,5vw,50px);line-height:1;letter-spacing:0;margin:0}
+.hero-cartouche .hero-title{margin-bottom:0}
+.fiche-toggle{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:0;border-radius:6px}
+.objective{border-radius:6px;border-color:var(--line);background:rgba(255,255,255,.55);align-items:flex-start}
+.objective .obj-label{font-family:'Inter',sans-serif;font-size:12.5px;letter-spacing:0;text-transform:none;font-weight:600;color:var(--gold-2);padding-top:1px}
+.bigpic{border-left:2px solid var(--gold);background:linear-gradient(90deg,rgba(184,146,79,.10),rgba(184,146,79,0));border-radius:0}
+.bigpic-label{font-family:'Inter',sans-serif;font-size:12.5px;letter-spacing:0;text-transform:none;color:var(--gold-2)}
+
+/* ---------- Étiquettes : fin des capitales monospace ---------- */
+.section-head{border-bottom:1px solid var(--line-2);position:relative;padding-bottom:12px}
+.section-head::after{content:'';position:absolute;left:0;bottom:-4px;width:64px;height:1px;background:var(--gold)}
+.section-num{font-family:'Cormorant Garamond',Georgia,serif;color:var(--gold);font-size:30px;font-weight:700}
+.section-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:25px;font-weight:700;letter-spacing:0}
+.idea-marker{font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-weight:700;color:var(--gold-2);padding-top:0}
+.idea-title{font-family:'Inter',sans-serif;font-weight:600}
+.schema-cap,.timeline-cap,.kf-head,.chaplink-label,.exam-blabel,.vocab-grouphead,.srch-grouphead,.foot-dir,.ki-head,.kt-head,.exam-qtag,.hero-theme{
+  font-family:'Inter',sans-serif;letter-spacing:0;text-transform:none}
+.schema-cap{font-size:13px;font-weight:600;color:var(--slate);background:var(--paper-2);border-radius:0}
+.schema-cap .fig{color:var(--gold-2);font-family:'Cormorant Garamond',Georgia,serif;font-size:14px;letter-spacing:.04em}
+.schema{border-radius:6px;border-color:var(--line-2);overflow:hidden}
+.timeline-cap{font-size:13px;font-weight:600;color:var(--slate)}
+.timeline{border-radius:6px;border-color:var(--line-2)}
+.tl-date{font-family:'Inter',sans-serif;font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--slate)}
+.tl-item.hist .tl-dot,.tl-item.geo .tl-dot{border-color:var(--gold)}
+.kf-head{font-size:13px;font-weight:600;background:var(--slate);border-bottom:1px solid var(--gold)}
+.kf-card{border-radius:6px;border-color:var(--line-2)}
+.kf-num{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;color:var(--hist)}
+.chaplink{border-radius:6px}
+.chaplink-label{font-size:12.5px;font-weight:600;color:var(--gold-2)}
+.example{border-radius:6px}
+.example::before{content:'ex.';font-family:'Cormorant Garamond',Georgia,serif;font-size:12px;letter-spacing:.02em;font-style:italic;padding:1px 8px;border-radius:3px;font-weight:700}
+.fr-toggle{font-family:'Inter',sans-serif;font-size:11.5px;letter-spacing:0;border-radius:4px}
+.exam-blabel{font-size:12.5px;font-weight:600}
+.exam-qtag{font-size:11px;opacity:.75}
+.exam-card{border-radius:6px}
+.vocab-head h3,.exam-head h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:700}
+.vocab-grouphead{font-size:13px;font-weight:600;color:var(--gold-2)}
+.vocab{border-radius:6px}
+.foot-btn{border-radius:6px;border-color:var(--line-2);display:flex;flex-direction:column}
+.foot-btn.home{flex:0 0 auto;max-width:none;width:52px;align-items:center;justify-content:center;color:var(--gold-2);padding:0}
+.foot-btn.home:hover{color:var(--slate)}
+.foot-dir{font-size:11.5px;font-weight:600;color:var(--gold-2)}
+.foot-name b{font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:var(--gold-2);margin-right:2px}
+.chap-foot{gap:10px;align-items:stretch}
+.gloss-tab{border-radius:4px}
+.lang-toggle{border-radius:4px}
+.srch-panel{border-radius:8px}
+
+/* ---------- Chapitre en attente ---------- */
+.pending-note{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;margin:18px 0 22px;border:1px dashed var(--line-2);
+  border-radius:6px;background:rgba(255,255,255,.5);font-size:14px;line-height:1.55;color:var(--ink)}
+.pending-ico{color:var(--gold-2);margin-top:2px}
+.ki-head,.kt-head{font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:8px;border-bottom:1px solid;padding-bottom:8px}
+.ki-head .ic,.kt-head .ic{opacity:.85}
+.kt-chip{border-radius:4px}
+
+/* ---------- Mobile ---------- */
+@media(max-width:860px){
+  .mobile-bar{background:var(--slate);border-bottom:1px solid rgba(184,146,79,.5)}
+  .mobile-bar .mb-code{font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;color:var(--gold);display:flex;align-items:center}
+  .home{padding-top:16px}
+  .frontis-inner{flex-direction:column-reverse;padding:28px 22px 26px;gap:8px;align-items:flex-start}
+  .frontis-rose{align-self:center;opacity:.85}
+  .frontis-rose .compass{width:120px;height:120px}
+  .frontis-title{font-size:44px}
+  .plates{grid-template-columns:1fr;gap:26px;margin-top:28px}
+  .theme-card{padding:12px;gap:12px}
+  .plate{width:88px;height:88px}
+  .hero-cartouche{padding:18px 16px;gap:14px}
+  .hero-icon{width:50px;height:50px}
+  .hero-icon .ic{width:26px;height:26px}
+  .foot-btn.home{display:none}
+}
+/* ---------- finitions ---------- */
+.hero-code,.chap-code,.tc-code,.foot-name b,.section-num,.mobile-bar .mb-code{font-variant-numeric:lining-nums}
+.chap-root.pending .pending-note{font-style:normal}
+
+</style>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#F5F1E8" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1B2A4A" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F2ECDE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17233F" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="DNL">
@@ -1656,7 +1857,7 @@ function Timeline({
     className: "timeline-cap"
   }, React.createElement("span", {
     className: "tc-icon"
-  }, "◷"), FR ? " Chronologie — dates clés" : " Timeline — key dates"), React.createElement("div", {
+  }, React.createElement(Icon, { name: "clock", size: 16 })), FR ? " Chronologie — dates clés" : " Timeline — key dates"), React.createElement("div", {
     className: "tl-track"
   }, React.createElement("div", {
     className: "tl-line"
@@ -1682,7 +1883,7 @@ function KeyFigures({
     className: "kf-card"
   }, React.createElement("div", {
     className: "kf-head"
-  }, FR ? "◆ Personnages clés" : "◆ Key figures"), React.createElement("div", {
+  }, React.createElement(Icon, { name: "people", size: 16 }), FR ? "Personnages clés" : "Key figures"), React.createElement("div", {
     className: "kf-body"
   }, data.people.map((p, i) => React.createElement("div", {
     className: "kf-row",
@@ -1695,7 +1896,7 @@ function KeyFigures({
     className: "kf-card num"
   }, React.createElement("div", {
     className: "kf-head"
-  }, FR ? "▤ Chiffres clés" : "▤ Key numbers"), React.createElement("div", {
+  }, React.createElement(Icon, { name: "target", size: 16 }), FR ? "Chiffres clés" : "Key numbers"), React.createElement("div", {
     className: "kf-body"
   }, data.numbers.map((n, i) => React.createElement("div", {
     className: "kf-row",
@@ -1743,7 +1944,7 @@ function ExamCard({
     className: "exam-block"
   }, React.createElement("div", {
     className: "exam-blabel intro"
-  }, "▸ Introduction"), React.createElement("ul", {
+  }, "Introduction"), React.createElement("ul", {
     className: "exam-list"
   }, item.intro.map((x, i) => React.createElement("li", {
     key: i
@@ -1751,7 +1952,7 @@ function ExamCard({
     className: "exam-block"
   }, React.createElement("div", {
     className: "exam-blabel arg"
-  }, "▸ Arguments"), item.args.map((a, i) => React.createElement("div", {
+  }, "Arguments"), item.args.map((a, i) => React.createElement("div", {
     className: "exam-arg",
     key: i
   }, React.createElement("div", {
@@ -1766,7 +1967,7 @@ function ExamCard({
     className: "exam-block"
   }, React.createElement("div", {
     className: "exam-blabel ccl"
-  }, "▸ Conclusion"), React.createElement("ul", {
+  }, "Conclusion"), React.createElement("ul", {
     className: "exam-list"
   }, item.ccl.map((x, i) => React.createElement("li", {
     key: i
@@ -1781,11 +1982,7 @@ function Exam({
     className: "exam"
   }, React.createElement("div", {
     className: "exam-head"
-  }, React.createElement("span", {
-    style: {
-      fontSize: 18
-    }
-  }, "✎"), React.createElement("h3", null, FR ? "Examen — sujets de dissertation" : "Exam — essay questions")), React.createElement("div", {
+  }, React.createElement(Icon, { name: "quill", size: 22 }), React.createElement("h3", null, FR ? "Examen — sujets de dissertation" : "Exam — essay questions")), React.createElement("div", {
     className: "exam-intro-note"
   }, FR ? "Sujets possibles sur ce chapitre. Clique pour dérouler un corrigé en points clés (intro → arguments → conclusion)." : "Possible essay questions on this chapter. Click to expand a point-form model answer (intro → arguments → conclusion)."), items.map((it, i) => React.createElement(ExamCard, {
     key: i,
@@ -1804,11 +2001,197 @@ function ChapterLink({ link, lang, kind }) {
     : (FR ? "Fil du programme — vers la suite" : "Course thread — what comes next");
   return React.createElement("div", { className: "chaplink " + kind },
     React.createElement("div", { className: "chaplink-label" },
-      React.createElement("span", { className: "chaplink-icon" }, kind === "intro" ? "↳ " : "→ "),
+      React.createElement("span", { className: "chaplink-icon" }, React.createElement(Icon, { name: "link", size: 14 })),
       label),
     React.createElement("p", { className: "chaplink-text" }, txt)
   );
 }
+const WORLD_WM = {"viewBox": "0 0 740 400", "d": "M408.1,292.2L401.7,290.5L396,282.3L399.6,282.6L405.1,277.7L411.7,280L411.8,287L408.1,292.2ZM406.2,277.7L399.1,282.8L392.2,282L389.3,278.4L389.3,272.2L393.4,272.1L393.5,267.7L405.2,273.1L405.3,270.4L402.3,269L402.4,264.3L407.2,262.2L413.2,267.1L412.2,274.3L406.2,277.7ZM451.7,211.3L434.3,219.5L431.5,214L432.8,209.2L440.7,210.3L449,206.1L451.7,211.3ZM431.3,213.9L431.3,213.6L431.4,213.7L431.4,213.8ZM431.6,217.3L431.7,217.1L431.8,217.1L431.8,217.1L431.7,217.2L431.6,217.3ZM431.7,216.7L431.7,216.7L431.6,216.6L431.7,216.4L431.8,216.5L431.8,216.6L431.7,216.7ZM454.3,219.5L455.7,219.6L454.1,220.1L453.2,219.6L454.3,219.5ZM556.8,224.2L556.6,224.8L556.3,224.1L556.8,224.2ZM564.6,200.5L559.9,206L566.4,213.7L567.7,219.5L558.2,227.8L557.5,224.1L563.8,220L564.1,213.9L556.4,205.3L557.8,202.4L552.8,198.6L559.2,196.4L564.6,200.5ZM561.9,227.6L561.8,227.6L562,227.5L562,227.5L562,227.6L561.9,227.6L561.9,227.6ZM562.9,224.2L562.9,224.1L563,224L563.1,224L563.1,224L563.1,224.1L562.9,224.2ZM562.4,202L562.3,201.9L562.3,201.9L562.3,201.7L562.4,201.9L562.5,202L562.4,202ZM563.7,201.4L563.5,201.4L563.6,201.1L563.7,201L563.9,201.1L564,201.1L563.7,201.4ZM563.7,201.8L563.7,201.7L563.9,201.5L563.8,201.7ZM562.7,202.1L562.6,201.9L562.9,202L562.8,202.1L562.7,202.1ZM220.2,226.8L220.3,226.6L220.5,226.5L220.6,226.5L220.5,226.6L220.2,226.8ZM214.4,222.8L213.8,223L213.3,222.7L213.9,222.8ZM211.4,223.1L211.1,223L211.3,222.9L211.5,223ZM220,227.3L220.2,226.9L220.3,226.9L220.3,227.2ZM222.5,228.4L219.3,233.3L220.8,235.6L216.3,238.1L212.4,236.7L215.2,240.9L209.3,243.9L206.1,239.7L206.9,232.8L197.5,230.9L194.9,226.5L199.1,221L197.4,225.3L199.1,226.7L198.7,222.9L201.7,220.4L205.5,223.9L218.3,223.4L216.2,223.8L220.4,226L218.8,227.8L222.5,228.4ZM369.9,151.1L369.9,151.1L369.9,151.1L369.9,151.1L369.9,151.1L369.9,151.1ZM684.7,276.7L685.1,276.2L685.4,276.6L685.5,277.4L684.6,277.7L684.2,275.6L684.7,276.7ZM686,278.7L686.6,279.6L686,279.7L685.4,278.6L685.6,278.2L686,278.7ZM688.1,280.2L687.5,280.2L687.5,279.7L687.7,279.9ZM687.5,279.2L687,279.1L687.5,278.6L687.5,279.2ZM688.2,282.1L687.6,282.3L687.5,282.1L687.7,281.8L688.2,282.1ZM686.8,277.4L686.6,277.4L686.5,277.3L686.8,277L687.1,277L687,277.3L686.8,277.4ZM687.5,278.4L687.4,277.8L687.5,277.4L687.7,278.4L687.5,278.4ZM687.5,277.2L687.3,276.4L687.4,276.3L687.5,277.1ZM685.5,277.9L685.3,277.8L685.3,277.7L685.6,277.7L685.5,277.9L685.5,277.9ZM686.2,274.9L685.9,274.8L686,274.6L686.3,274.6L686.2,274.9ZM686.1,274.1L685.9,273.7L686.2,273.9L686.1,274ZM690.9,287.6L690.7,287.5L690.9,287.4L691,287.5ZM690.1,286.3L689.7,286.1L689.7,285.6L689.9,285.6L690.2,286.1ZM689.8,284.9L689.2,284.5L689.4,284.1L689.7,284.4L689.9,284.8ZM489.3,150.1L487.7,152.2L493.7,154.1L490.7,155.9L486.1,154.1L482,157.7L482.8,163.5L480.2,163.2L464,148.7L458.7,152.7L458.7,142.4L463.9,140.8L470.9,146.7L476.9,146.1L480.6,153.2L484,154.6L489.3,150.1ZM488.6,153.7L488.4,153.5L488.4,153.6L488.6,153.8ZM489.6,156.6L489.4,156.3L489.2,156L489.5,156L489.7,156.5ZM490.8,156.5L490.7,156.4L490.8,156.3L490.9,156.3L490.8,156.5ZM235.6,318.7L232.5,321.5L226.4,320.2L227,310L234.9,314.5L235.6,318.7ZM676.9,234.6L676.8,234.6L676.8,234.5L676.8,234.5L676.9,234.5L676.9,234.6ZM626.1,226.1L626.1,226L626.2,225.8L626.4,225.8L626.2,225.9ZM653.8,230.4L653.6,230.4L653.7,230.3L653.8,230.3L653.8,230.4ZM654.2,230.2L654.2,230.2L654.3,230.1L654.3,230.2L654.2,230.2ZM667.3,231.5L667.1,231.3L667,231.2L667.3,231.2L667.4,231.4L667.3,231.5ZM690.4,233.6L690.4,233.5L690.5,233.3L690.7,233.1L690.5,233.3L690.4,233.6ZM688.8,230.5L688.6,230.5L688.5,230.4L688.5,230.4L688.7,230.4L688.8,230.5L688.8,230.5ZM694.5,231L694.8,231.2L694.7,231.1L694.5,231.1L694.4,231ZM693.7,230.9L693.9,230.9L693.7,230.9L693.4,230.7ZM684.8,222.5L684.8,222.5L684.8,222.5L684.9,222.5L684.9,222.5L684.9,222.5L684.8,222.5ZM641.6,206.5L641.6,206.5L641.5,206.3L641.6,206.4L641.7,206.4L641.7,206.4L641.6,206.5ZM641.6,211.6L641.5,211.6L641.6,211.5L641.7,211.6ZM640.7,216.3L640.5,216.3L640.7,216.2L640.8,216.2ZM641.7,208L641.8,207.7L641.9,207.7L641.9,207.8L641.8,207.9L641.7,208ZM641.8,214.2L641.6,214.2L641.8,213.9L641.8,214L641.8,214.2ZM641.5,214.6L641.4,214.5L641.4,214.4L641.5,214.3L641.5,214.3L641.6,214.5L641.5,214.6ZM212.1,207.4L211.9,207.3L212.1,207.3L212.2,207.3L212.3,207.4L212.1,207.4ZM212.5,207.4L212.4,207.4L212.4,207.3L212.4,207.3L212.6,207.3L212.5,207.4ZM212.6,208.6L212.8,208.6L212.6,208.7L212.2,208.7L212.2,208.6L212.4,208.5L212.6,208.6ZM639.6,218.1L639.5,217.8L640,217.4L639.8,217.8ZM209.7,207.2L210.7,207.6L209.6,208.2L207.6,208.2L207.3,207.3L209.7,207.2ZM210.9,207.9L210.8,207.8L211.2,207.7L211.3,207.8L210.9,207.9ZM206.1,208L206,207.9L206.1,207.8L206.1,207.9L206.1,207.9ZM73.8,105.1L73.4,104.9L73.5,104.4L74.1,104.6L73.8,104.9ZM73.6,106L73.2,105.5L74,105.3L73.6,106ZM70.6,98.7L70,98.5L69.9,98.2L70.4,98.3L70.6,98.7ZM48.5,90.2L48.3,90.2L48.2,90.1L48.5,89.9L48.6,89.9L48.5,90.1L48.5,90.2ZM49.6,92.3L49.9,91.7L50.3,91.5L50,91.8L49.6,92.3ZM42.5,91.4L42.1,91.3L42.2,91.1L42.5,90.9L42.8,91.1L42.6,91.3L42.5,91.4ZM34.4,90.1L34.6,89.5L34.7,89.6L34.5,90ZM17.5,109.6L17.2,109.4L17.1,109.3L17.2,109.3L17.5,109.3L17.5,109.3L17.5,109.6ZM19.4,110.7L19.3,110.4L19.4,110.4L19.5,110.6ZM19.2,110.3L19,110.3L18.9,110.1L19,109.9L19.2,110ZM32.7,100.3L34.1,101.1L30.4,104.1L29.3,101.1L32.7,100.3ZM79.2,107.5L78.2,111.4L77.3,106.6L75,108.4L76.2,106.2L68.5,93.9L69.1,98.4L66.8,95.3L65.1,95.4L65.9,98.5L59.4,93.4L60.2,91.5L50.5,91.5L46,86.8L42.1,87L41.8,91.6L35,94.8L35.8,88.5L40.5,87.9L39.4,85.3L32.4,90.3L29.9,98.9L18.9,108.3L11.4,111.1L23.4,101.3L24.7,95L21.9,97.1L20.6,95.6L20.3,97.9L17.5,95.3L13.8,96.9L14.2,88.7L10.7,92.3L8,89.9L8.4,87.8L11.2,88.4L8,87.7L8.5,78.8L16.6,75L15.9,69.7L12.5,72.4L8,72L8,62.1L16.1,63.5L13.4,59.6L17.7,62.3L8,54.5L8,49.1L14.4,40.6L18,39L18.5,40.9L18.8,37.8L22.5,37.4L25.4,33.9L26.4,37.5L28.1,35.9L33.9,37.5L34.6,39.9L52.4,41.9L56.9,44.7L56.9,90.3L60.9,90.1L64,95.9L68.2,92.4L79.2,107.5ZM11.3,111.2L11.9,111.7L8.3,112.4L9.2,110.8L11,110.4L11.3,111.2ZM72.7,108.7L71.9,109.6L71.8,108.8L72.7,108.7ZM76.9,110.7L76.4,110.9L76.2,109.6L76.9,110.7ZM75,107.1L73.9,106.5L74.5,105.1L75.2,106L75,107.1ZM77.3,109.2L75.6,109.3L76.8,107.1L77.3,109.2ZM72.7,103.3L73.2,104.7L73,105L71.3,103.1ZM73.6,111L74,111.4L73.1,110.7L72.4,109.5L73.5,110.9ZM46,89.8L46.5,89.9L45.5,90.4L45.3,89.8L46,89.8ZM43,92.3L44.5,90L44.7,90.5L43,92.3ZM43.4,89.8L43.1,90.8L43,90.2L43.2,89.7ZM42.6,88.1L42.4,88L42.5,87.7L42.7,87.8L42.8,88.1ZM32.2,102.9L31.7,103L31.9,102.5L32.7,102.7L32.2,102.9ZM33.5,97.6L33.3,97.2L33.8,97.1L33.7,97.3ZM31.9,100.1L31.8,100L31.4,99.7L31.5,99.6L31.9,99.8L31.9,100.1ZM27.2,107.7L26.9,107.7L27.1,107.3L27.2,107.2L27.2,107.6ZM28.9,105.4L28.9,105.2L29.4,104.7L29.4,105ZM29.9,105.1L29.8,104.8L30.2,104.7L30.2,104.9L30.1,105L29.9,105.1ZM16.8,109.4L17.2,109.9L16.5,109.9L16.8,109.4ZM13.5,111.1L13.3,110.9L13.5,110.6L13.6,110.7L13.6,111L13.5,111.1ZM12.8,112.7L12.5,112.5L12.8,112.4L13,112.6ZM18.3,110.2L17.7,110.8L17.8,110.1L18.5,109.6L18.3,110.2ZM16.2,97.3L15.9,96.8L16.7,96.3L16.2,97.3ZM708.6,121.2L708.5,120.9L708.7,120.9L708.7,121.1ZM710.1,122.9L708.8,122L709.7,122.4L710.4,122.8ZM698.7,119.6L698.2,119.4L698.7,119.1L698.7,119.6ZM69.4,102.3L69.9,106.1L67.5,103.2L69.4,102.3ZM70.4,98.9L71.6,100.9L70.6,99.3L71.4,102L70.2,103.1L69.3,98.1L70.4,98.9ZM68,98.9L69.3,101.4L66.2,99.9L68,98.9ZM72.5,105.8L75.3,109.7L73.2,108.4L71.7,107.1ZM71.4,104.1L71.5,105.9L70.8,106.7L71.1,105.3L70.4,104.2L70.7,103.5L71.4,104.1ZM33.7,98.1L34.4,98.8L32.6,99.5L32.9,98.4L33.7,98.1ZM710.9,121.2L710.6,121L710.8,120.7L711.1,121.1ZM706.2,121.4L706.3,120.9L706.6,120.5L706.8,120.6L706.3,121.2ZM697.3,117.5L698.2,118L696.9,118.2L696.3,117.7L697.3,117.5ZM27.1,206L26.6,203.2L28.8,204.8L27.1,206ZM24.3,201.2L24.8,201.2L24.6,201.5L23.7,201.3L23.9,201.1ZM25.4,201.8L26.4,202.1L25.7,202.5L24.9,201.8L25.4,201.8ZM22.8,200.6L22.9,201L22.1,200.9L21.7,200.3L22.8,200.6ZM19.3,199.7L18.6,199.3L19.1,198.9L19.6,199.1L19.3,199.7ZM17.8,199.8L17.7,199.6L18.1,199.4L17.9,199.7ZM24.5,202.1L24.3,202L24.4,201.7L24.6,201.9L24.6,202.1ZM192.2,142.4L199.9,141.7L203.5,135.2L206.2,136.3L207.9,142.9L201.4,145.9L199.6,149.9L201.9,151.7L193.7,152.9L192,158.9L190.4,157.2L189.6,163.7L189.8,157.6L188.8,161.3L186.9,160L190.5,167.1L189.7,165L188,166L190,166.9L187.4,167.8L188.5,169.7L178.5,178L180.6,192L173.8,181.4L165,179.6L160.5,180.3L162.3,183.6L150.7,181.9L145.1,187.1L145.9,190.8L142.4,189.4L137.6,181.7L133.9,183.6L127.4,177L118,178.1L110.5,174.7L105.6,175.2L98.5,170.2L94.7,162.7L96.7,161.4L93.7,161.5L90.9,155.3L91.6,138.9L93.2,139.1L90.2,132.4L94.1,133.1L94.3,136.2L94.1,130.5L150.9,129.4L157.9,133.3L164.3,132.6L172.9,137.9L176.3,142.2L175.9,151.7L192.2,142.4ZM196.5,153.8L193.5,154.6L194.4,153.8L196.9,153.2L196.5,153.8ZM205.3,144.4L205.2,144.6L205,144.2L205.3,144L205.3,144.4ZM193.1,154.9L193.4,154.5L193.5,154.6L193.3,154.8L193.1,154.9ZM200.1,152.7L200.2,152.6L200.5,152.3L200.7,152.6ZM199.1,152.3L199.1,152.2L199.1,151.9L199.2,151.8L199.1,152.3ZM201.6,152.9L201.6,152.7L201.7,152.6L201.8,152.8L201.6,152.9ZM190.2,167L190.1,166.8L190.2,166.8L190.3,166.9L190.3,167L190.2,167ZM190.2,168.6L190.6,167.9L190.5,167.2L190.6,168L190.2,168.6ZM189.6,168.8L189.5,168.8L189.8,168.7L190,168.6L189.6,168.8ZM188.4,170L188.6,169.7L189,169.3L189.1,169.3L188.8,169.6L188.5,170L188.4,170ZM177.1,189.5L176.9,189.4L177,189.4L177.2,189.4ZM177.1,189.3L177,189.1L176.9,188.9L177,188.9L177.1,189.2L177.1,189.3ZM180.2,192.8L180.4,192.5L180.5,192.3L180.6,192.1L180.8,191.9L180.2,192.8ZM157.2,182.4L156.9,182.1L157.1,182.1L157.4,182.2L157.4,182.3L157.2,182.4ZM146.6,186.1L146.7,185.9L147,185.6L146.8,185.8L146.6,186.1ZM147.1,185.5L147.3,185.4L147.8,185.1L147.9,185L147.6,185.2L147.1,185.5ZM145.9,187.6L146.1,187L146.6,186.3L146,187.5ZM150.6,183.2L151,182.9L151.1,182.8L151.2,182.8L151,183L150.7,183.2L150.6,183.2ZM146.3,190.2L145.9,188.6L145.9,187.7L146.3,189.8L146.3,190.2ZM99,171.5L98.9,171.5L98.9,171.5L99,171.4L99.1,171.4L99.1,171.5L99,171.5ZM100.8,173.5L100.6,173.4L100.8,173.4L100.9,173.5ZM103,174.5L102.8,174.2L102.7,174L103.1,174.4L103,174.5ZM99.5,171.8L99.3,171.6L99.8,171.6L99.7,171.8ZM100.4,171.5L100.7,171.5L100.2,171.7L100,171.5L100,171.4ZM103.2,173.3L102.9,173.2L102.7,173L102.7,172.9L103.2,173.3ZM94.1,131.5L93.9,131.5L93.9,131.7L93.7,131.4L94.1,131.5ZM93.7,132.1L93.4,132L93.3,131.7L93.4,131.6L93.6,132ZM94.6,133.5L94.8,133.6L94.4,133L94.5,132.4L94.5,132.9ZM198.9,152.3L198.9,152.2L198.9,152L199,152L199,152.1L199,152.3L198.9,152.3ZM193.1,157.5L193.1,157.4L193.4,156.9L193.3,157.1L193.1,157.5ZM190.8,161.8L191.3,160.9L191.3,161L190.9,161.8ZM188.4,170L188.3,170L188.2,169.9L188.1,169.9L188.2,169.9L188.4,170L188.4,170ZM178.6,193.6L178.5,193.5L178.5,193.3L178.7,193.5L178.6,193.6ZM179.6,193.2L179.6,193.1L179.7,193.1L179.8,193.1L179.7,193.1L179.7,193.2L179.6,193.2ZM180,193L180.1,192.9L180.1,192.9L180.1,192.9L180,193ZM179.1,193.4L179,193.4L179.1,193.3L179.5,193.3L179.3,193.3L179.2,193.4L179.1,193.4ZM178.4,179.5L178.3,179.3L178.3,179.1L178.4,179L178.5,178.9L178.4,179.5ZM178,193.6L178.1,193.6L178.2,193.4L178.2,193.5L178.2,193.6L178.2,193.6L178,193.6ZM181,187.7L180.6,186.7L180.5,186.4L181,187.5ZM177.7,193.8L177.7,193.7L177.7,193.7L177.8,193.7L177.8,193.7L177.7,193.7L177.7,193.8ZM163.1,182L163.1,182L163.2,181.9L163.3,181.8L163.2,181.9L163.1,182ZM163.9,180.7L163.7,180.7L163.6,180.6L163.6,180.6L163.9,180.7L163.9,180.7L163.9,180.7ZM164.7,180.7L164.4,180.7L164.4,180.7L164.5,180.6L164.8,180.6L164.9,180.6L164.7,180.7ZM162.5,181.1L162.3,181.1L162.4,181L162.6,180.8L162.5,181ZM163.3,181.7L163.3,181.4L163.3,181.1L163.4,181.2L163.4,181.4L163.3,181.7L163.3,181.7ZM171.1,182.1L171.1,182.1L171.4,182L171.7,181.9L171.1,182.1ZM93.9,136L93.8,135.9L93.9,135.7L94,135.9ZM94.9,135.4L94.8,135.4L94.7,135.3L94.8,135.2ZM94.7,134.8L94.5,134.7L94.6,134.4L94.6,134.5L94.7,134.8ZM94,132.2L93.8,132.1L93.8,131.9L93.9,131.8L94,132.1L94,132.2ZM204.5,144.8L204.4,144.6L204.4,144.6L204.6,144.7ZM269,377.2L270.4,377.6L271.5,379.4L270.8,379.8L269.4,378L267,376.8L269,377.2ZM492.3,260.6L492.1,260.3L492.3,260.4L492.3,260.2L492.3,260.6ZM332.7,278.5L332.7,278.4L332.9,278.3L333,278.3L333,278.4L332.9,278.5L332.7,278.5ZM315.1,261.7L315.1,261.7L315.2,261.5L315.3,261.6L315.3,261.7L315.1,261.7ZM82.8,296.8L82.8,296.7L82.8,296.6L82.9,296.7L82.8,296.8ZM215.7,207.7L215.7,207.6L216,207.5L216.1,207.5L216,207.6L215.7,207.7ZM224.8,367.8L226.6,368.9L223.4,371L224.8,367.8ZM221.9,368.3L223.6,368.3L220.5,370.5L221.7,369.2L221.6,368.8L221.9,368.3ZM220.2,369.3L220.3,369.7L220,369.8L219.8,369.5L220.1,369.3ZM225.3,370.3L225.2,370.2L225.1,370.1L225.2,370L225.3,370L225.3,370L225.3,370.3ZM221.6,368L221.6,367.6L222,367.7L221.9,368ZM222.7,370.8L222.6,370.7L222.6,370.4L222.8,370.6L222.7,370.8ZM178.6,205.2L179,205.2L178.7,205.3L178.5,205.1L178.6,205.2ZM181.4,204.4L181.1,204.5L181.2,204.4L181.4,204.4L181.4,204.4ZM181.6,204.4L181.7,204.3L181.8,204.3L181.9,204.3L181.7,204.4ZM212.3,175.8L212.2,175.8L212.6,175.5L212.5,175.8ZM213.1,207.1L213.1,207.1L213.1,207.1L213.1,207L213.3,207L213.2,207.1L213.1,207.1ZM212.6,207.2L212.6,207.2L212.7,207.1L212.8,207.1L212.9,207.1L212.8,207.2L212.6,207.2ZM213.4,206.6L213.3,206.5L213.2,206.5L213.3,206.5L213.4,206.6ZM198.4,199.9L198,199.9L198.1,199.7L198.4,199.9L198.4,199.9ZM197.9,199.8L197.7,199.6L197.6,199.6L197.8,199.5L197.9,199.7ZM197.2,199.8L197.4,199.9L197.3,199.9L197,199.9L197,199.7ZM217.7,210.9L217.6,210.9L217.6,210.7L217.7,210.6L217.7,210.6L217.8,210.8L217.7,210.9ZM340.4,129.9L340.2,129.9L339.9,129.9L340.3,129.7L340.4,129.9ZM339.3,129.1L339.1,129L339.1,129L339.3,128.9L339.4,128.9L339.4,128.9L339.3,129.1ZM335.1,113.8L334.7,113.8L335.1,113.1L335.5,112.6L335.5,113.3ZM338.9,122.2L333.8,121.2L336.1,116.7L338.9,116.4L338.3,110.7L334,111L334.7,106.4L332.7,109.2L334.3,97.2L338.3,97L336.1,101.1L340.9,101.5L336.8,106.6L340.4,107.6L344.6,117.8L348.1,118.9L345.4,122.6L347.4,123.5L344.9,124.9L333,127.1L338.9,122.2ZM336,116.4L335.6,117L335.2,116.2L336,116.4ZM339.1,94.6L339.2,94.4L339.3,94.3L339.6,94.4L339.6,94.5L339.3,94.6L339.1,94.6ZM342.3,89.5L342.5,88.6L342.4,88.8L342.4,89.3ZM341.9,89.6L341.9,92L341.1,90.4L341.3,89.4L341.9,89.6ZM342.9,88.2L342.7,88.7L342.6,88.2L342.7,88.2L342.9,88.2ZM337.9,96.4L337.6,96L337.8,95.9L338,96.3L337.9,96.4ZM338.5,96.6L338.3,96.2L338.6,96.2L338.5,96.6ZM338.2,95.5L338.9,95.7L337.7,95.7L338.1,95L338.2,95.5ZM338.8,94.9L338.5,94.4L338.3,94.2L338.8,94.6L338.9,94.8ZM330.9,104.8L331.1,104.5L331.3,104.5L331,104.8ZM333.8,108.9L333.5,108.3L333.7,108L334,108.1L334.1,108.9ZM331.9,105.9L332,104.5L332.8,105.1L331.9,105.9ZM332.1,107.7L331.6,108.4L331.3,107.6L332,107.2L332.1,107.7ZM332.3,107.6L332.1,107.3L332.3,106.9L332.8,106.5ZM331.6,98.7L330.2,100.4L330.1,98.7L330.8,98.7L331.8,97.5L331.6,98.7ZM331.6,103.4L331.5,103.3L331.6,103L331.7,103.2L331.7,103.4ZM332,101.5L332.1,102.2L332.9,102.2L332.4,103.1L330.7,101.6L331.5,100.7L332,101.5ZM330,100.9L329.2,101L329.3,100.8L329.6,100.7L330,100.9ZM329.6,102.8L329.4,102.5L329.4,101.8L329.7,102.8ZM329.2,103.4L329.1,103.3L329.3,103.2L329.4,103.3L329.2,103.4ZM331.7,113.7L327.9,112.5L330.3,109.9L333.4,112.3L331.7,113.7ZM342.2,125.2L341.3,125.2L341.8,124.8L342.2,125.2ZM459.5,191.4L456.9,198L449.7,194.8L454.4,194.8L459.5,191.4ZM459.3,192.1L459.2,192L459.1,192.2L459.3,192.2ZM453.1,194.4L453.3,194.2L453.4,194L453.4,194.3L453.3,194.4ZM451.8,194.3L451.7,194.2L451.7,194.2L451.8,194.1L451.9,194.2L451.8,194.3L451.8,194.3ZM454.5,194.6L454.2,194.7L453.9,194.6L454.3,194.4L454.5,194.6ZM455.6,194L455.4,194L455.4,193.8L455.5,193.9L455.6,194ZM422.4,136.3L415.8,140.3L409.4,138.7L410.9,137.7L409.3,135.9L403.2,141.7L403.5,138.3L406,138.3L403.9,133.6L400.7,132.1L395.3,134.4L389.6,132.3L394.2,121.3L406.8,123.2L407.7,120.7L413.3,119.7L417.1,126.1L426.2,128.6L425.6,133.9L422.4,136.3ZM410.1,139.1L409.2,138.9L408.8,138.6L408.9,138.6L409.8,138.9ZM413.4,247.5L404.8,248.2L407.8,237.8L414.7,238L415.8,242.1L413.4,247.5ZM452.8,159.5L452.6,158.8L452.8,158.7L452.8,159.4ZM459.2,152.7L464,148.7L480.2,163.2L471.6,168.7L469.2,165L461.3,161L454.5,163.2L452.1,155.2L456.1,153.4L454.2,150.5L452.3,153L451.6,151.5L454.9,149.9L459.2,152.7ZM397,156L397,155.7L397.4,155.6L397.5,155.9ZM429.3,152.2L431.8,152L435.9,157.2L434.9,164.1L419.2,164.6L418.2,167L418,164.3L411.4,166.5L407,164.4L405.1,166.2L400.5,164.8L402.1,164L398.1,160.8L399.9,160.3L397.9,156.3L405.4,154.3L404,153L412.4,150.8L422.8,153.8L429.3,152.2ZM401.6,151.3L403.6,153.6L397.9,156.1L398.2,151.5L401.6,151.3ZM368,173.7L363.9,180.7L359.8,172L362,164.2L367.1,163.9L365,171.5L368,173.7ZM367.2,169.9L367.3,169.8L367.5,169.6L367.5,169.6L367.5,169.7L367.2,169.9ZM366.8,172.3L366.5,172.3L366.4,172L367,172L366.9,172.2ZM220.5,222.5L220.7,222.3L221.1,222.2L220.6,222.5ZM219.7,224.7L218.3,224.8L219.1,224.4L218.8,223.4L220.3,223.2L219.7,224.7ZM346.3,223.1L346.9,233L344.3,223.5L346.3,223.1ZM600.6,262.4L600.5,262.3L600.6,262.1L600.7,262.1L600.8,262.1L600.6,262.4ZM599.5,264.6L599.8,263.1L604.1,262.7L599.5,264.6ZM597.8,264.4L598.2,264.5L598,264.7L597.6,264.7L597.8,264.4ZM553.7,221.6L553.6,221.6L553.6,221.4L553.7,221.4L553.8,221.4L553.7,221.6ZM553.4,220.8L553.3,220.8L553.1,220.5L553.2,220.5L553.4,220.7L553.4,220.8ZM545.2,229.4L545,229.5L545,228.7L545.2,229.1ZM548.7,203.2L550.9,204.7L550.4,209.1L556.5,207.4L560,213.1L558.8,216.1L553.2,217.5L554.4,221.4L548.5,217.9L546.7,225.5L552.7,232.7L550.8,233.9L545,228.6L547.7,221.2L544.7,214.2L546.2,211.6L543.1,207L544.4,204.3L548.7,203.2ZM548.6,225.6L548.4,225.4L548.5,225.3L548.6,225.5ZM548.6,225.9L548.4,226.1L548.3,225.8L548.5,225.8L548.6,225.9ZM547.7,232.1L547.6,231.9L547.7,231.7L547.8,232L547.8,232.1L547.7,232.1ZM545.6,229.2L545.5,228.8L545.6,228.9L545.6,229.2L545.6,229.2ZM544.9,226.9L544.9,226.8L544.9,226.7L545,226.7L545,226.8L545,226.9L544.9,226.9ZM546.6,230.1L546.5,230.1L546.5,230L546.5,229.8L546.5,229.8L546.6,229.9L546.6,230.1ZM425.2,258.5L424.4,258L424.7,257.1L425.2,258.5ZM425.8,255.5L425.8,256.1L425.5,256.5L425.5,255.9L425.8,255.4ZM411.5,264.6L407.5,262.8L404.6,257.7L407.3,247.4L414,247.5L424.5,255L426.8,267.1L415.8,269.2L414.5,265.4L411.5,264.6ZM425.4,261.8L425.4,261.6L425.9,261.1L425.7,261.6L425.4,261.8ZM482.8,163.5L482,157.7L488,153.5L489.2,155.8L485.8,157.5L494.7,157.7L497.7,162.9L490.7,164.9L489.1,160.3L485.8,163.8L482.8,163.5ZM488.5,153.8L488.4,153.5L488.5,153.6L488.6,153.8ZM488.5,156.8L488.3,156.7L488.3,156.6L488.4,156.6L488.7,156.7L488.5,156.8ZM591.2,198.3L589.5,195.7L592.5,192.1L591.2,198.3ZM586.1,193.9L586,194L585.8,194L585.7,193.9L585.9,193.9L586,193.8L586.1,193.9ZM417.9,166.8L419.2,164.6L430.9,163.8L428.1,170.5L419.6,175.7L417.5,174.7L417.9,166.8ZM364,135L365.2,138.8L356.7,139.1L358.7,135.2L364,135ZM383.2,100.2L383.1,101.7L381.5,103.5L381.6,100.9L382.9,99.8L383.2,100.2ZM378.1,106.1L378,104.8L379.2,101.9L378.1,106.1ZM367.9,95.9L370.8,85.9L369.3,76L373.2,73.7L374.2,63.8L378.7,54.6L382,50.9L385.2,52.1L386.6,48.2L392.7,54.3L393.8,65.4L390.1,65.2L386.9,74.7L379.9,81.1L379.7,88.6L383.2,92.5L377.6,97L378,104L373.4,109.1L370.8,109.1L367.9,95.9ZM383.5,100L383.3,99.8L383.8,99.5L383.6,99.7ZM382,95.5L382,95.3L382.2,95.1L382.1,95.4ZM382.4,93.8L382.3,93.6L382.5,93.4L382.6,93.4L382.4,93.7ZM409.7,300.3L408.3,303.2L407.3,301.3L409.7,300.3ZM233.9,234.6L233.6,240.4L228.9,241.3L226.5,235.4L228.3,233.2L233.9,234.6ZM413.3,237.3L401.8,236.4L393.9,228.3L395.5,224.4L408,225.4L409.9,220.7L412.2,220.3L414.1,227.6L411.8,229.3L416.4,234.2L413.3,237.3ZM414,226L411.2,220.3L408,225.4L398.9,226L397.1,224L392.5,227.4L389,219.1L391.4,213.1L393.4,213L395.5,199.4L419.7,199.4L423.2,208.1L420,210.1L418.2,219.2L414,226ZM507.5,225.7L507.3,225.5L507.4,225.4L507.5,225.6L507.5,225.7ZM507.5,227L507.3,226.9L507.2,226.8L507.1,226.8L507.4,226.8L507.4,226.9L507.5,227ZM507.8,225.3L511.5,230.5L508.7,233.3L507.8,225.3ZM347.7,159.8L347.4,159.8L347.4,159.6L347.6,159.7L347.8,159.8ZM351.1,156.9L351.6,157.1L350.8,158.1L349.3,157.4L350.9,156.3L351.1,156.9ZM353.2,156.7L352.3,156.3L352.8,156.1L353.3,156.5ZM347.4,159.3L347,159.2L347.7,158.6L347.4,159.3ZM340.9,147L351.1,151L346,154.1L342.9,162.6L333,166.6L329.2,162.7L331.8,151.9L326.5,151.1L325.8,147.6L328.8,145.9L340.9,147ZM311,185.5L310.5,185.9L310,185.1L311.6,184.6L311,185.5ZM316.4,183.9L316.4,183.4L317,183.1L317.1,183.2L316.5,183.8ZM315.3,185.8L316.2,184.2L316.1,185.3L315.3,185.8ZM313.1,185.7L312.5,186.4L312.5,185.5L313.1,185.7ZM309.4,185.9L309.2,185.6L309.3,185.4L309.6,185.5L309.6,185.7L309.4,185.9ZM307.8,186.7L307.5,186.5L307.7,186.4L308,186.3ZM308.1,184.8L307.9,183.9L308.4,184.2L308.1,184.8ZM602.8,162L606.3,159.9L608.8,166.5L602.6,170.8L602.8,162ZM606.9,169.8L606.6,169.5L606.9,169.1L607.1,169.6ZM605.7,169.8L605.3,169.8L605.2,169.4L605.6,169.4ZM601.8,170.7L601.7,170.6L601.9,170.3L602.2,170.3L602.2,170.5L601.8,170.7ZM602.5,162.5L602.3,162.5L602.2,162.1L602.5,162.1L602.5,162.5ZM603,170.9L602.9,170.8L602.8,170.7L602.8,170.6L602.9,170.6L603,170.8L603,170.9ZM605.1,170.2L605,170L605.1,169.9L605.1,170.1L605.1,170.2ZM602.3,165.5L602.2,165.4L602.1,165.1L602.3,165.2L602.3,165.4L602.3,165.5ZM601.8,169.9L601.6,169.7L601.5,169.5L601.8,169.5L601.8,169.9ZM611.4,162.9L611.3,162.8L611.5,162.7L611.5,162.9ZM602.1,173.6L601.9,173.1L603.3,172.8L602.1,173.6ZM404.4,291.8L408.3,292.3L409.7,296.6L407.3,302.1L411.6,302.3L406.3,311.9L396.7,319.3L382.2,320.1L378.9,305.2L383.8,307L385.3,297.6L386.7,302.2L388.8,302.3L391.7,298.7L396.7,299.5L404.4,291.8ZM403.4,309.7L402.9,306.3L399.7,308.7L401.4,311.1L403.4,309.7ZM421.6,354.2L421.2,354L421.4,353.7L421.7,353.9L421.7,354.1ZM429.2,248.7L428.1,239.6L436.2,235.4L443.7,227.1L444.3,222.3L449,221.1L442.3,236.2L429.2,248.7ZM444.3,222.9L442.4,229L434.2,227L431.5,223.7L432.7,221.8L435,224L444.3,222.9ZM670.1,262.9L669.9,262.7L670,262.6L670.1,262.7L670.1,262.9ZM684.8,269.4L684.6,269.2L684.8,269.2L684.9,269.4ZM683.2,267.5L682.8,267.7L682.7,267.5L683.3,267.3L683.2,267.5ZM671.8,269.7L671.4,269.4L670.8,269.2L671,269L671.8,269.7ZM674,265.4L673.8,265.3L673.7,264.9L673.7,264.6ZM669.1,264.1L668.9,264L669.1,263.8L669.3,264ZM671.3,263.9L671.6,264.1L671.4,264.2L671.2,264L671.2,263.8ZM666.4,262.4L666.4,263L665.1,262.3L665.7,261.7L666.4,262.4ZM667.1,263.5L667.1,263.4L667.2,263.2L667.2,263.4L667.3,263.4L667.1,263.5L667.1,263.5ZM666.8,263.4L666.5,263L666.7,262.9L667,262.9L666.9,263.1ZM665.5,263.3L665.2,262.8L665.5,262.8L665.4,263.1ZM664,261.6L663.9,261.4L663.8,260.9L664.3,261.2L664.1,261.6ZM663.9,262.2L663.8,261.8L663.8,261.7L663.9,262.1ZM665,262L664.6,261.6L665,261.5L665.1,261.9ZM662.1,260L662,259.9L662.1,259.7L662.1,259.7L662.4,259.8L662.3,259.9L662.1,260ZM666,263.4L665.6,263.3L665.8,263.2L666,263.3L666,263.4ZM670.8,264.7L672.5,265.7L670.5,265.5L670,264.6L670.8,264.7ZM670.6,262.9L668.7,261.9L667.7,260.9L669.2,261.6L670.6,262.9ZM665.8,260.5L664.9,260.4L663.6,258.9L665.8,260.5ZM672.9,263L673.6,265.1L672.4,263.8L672,262.5L672.9,263ZM674.6,266.8L675.7,267.6L674,267.1L673.5,266.3L674.6,266.8ZM390.4,130.4L382.7,134.2L378.9,132.3L384.2,128.6L390.4,130.4ZM378,138L375.8,141.1L372.2,140.9L372.4,138L378,138ZM556.2,242.8L556,242.5L556.4,242.5L556.6,242.6L556.2,242.8ZM323.5,228.1L321,231.3L317.4,226.9L321.5,224.9L323.5,228.1ZM318.9,230.3L318.1,229.9L318.9,229.8L318.9,230.3ZM457.8,255.2L457.7,255L457.5,254.8L457.8,255ZM388.4,143L390.9,143.7L390.2,150L383.6,146.6L383.1,139.7L385.7,139.1L388.4,143ZM319.7,215.2L321.3,219.9L310.4,220L310.6,218.3L316.3,217.7L310.7,217.4L308.7,215L314,210.9L319.7,215.2ZM419.7,191.9L419.4,191.5L419,191.2L419.5,191.5L419.8,191.9ZM430.3,210.8L430.5,211.1L430,210.9L429.9,210.2L430.1,210.8ZM450,206L444.5,206.8L440.7,210.3L433.1,209.1L431.8,211.6L415.1,185.7L415.8,182.7L421,181.2L419.9,177.7L424.8,176.2L435.7,183.1L443.3,184.6L451.5,197.1L458,199.4L456.6,203.8L450,206ZM419.1,191.1L419,190.9L419.1,190.9L419.1,191.1ZM359.6,242.3L359.5,242.1L359.6,241.9L359.7,242L359.6,242.2ZM357.9,245.3L357.7,244.9L358,244.6L358.3,244.9ZM369.8,145.6L369.8,145.5L369.9,145.3L370,145.3L370,145.4L370,145.6L369.8,145.6ZM219.7,218.4L219.6,218.1L219.7,217.9L219.8,218L219.7,218.3ZM219.6,218.7L219.6,218.7L219.6,218.7L219.7,218.6L219.7,218.6ZM219.4,219.3L219.4,219.3L219.4,219.2L219.4,219.3ZM220.2,217.2L220,216.9L220.1,216.5L220.3,216.4L220.3,216.9ZM216.9,210L216.8,209.9L216.8,209.8L216.9,209.8L217,209.9L217,210L216.9,210ZM216.7,209.7L216.4,209.5L216.4,209.4L216.7,209.6L216.7,209.7ZM404.9,248.2L406.7,247.6L407.4,250.2L403.5,250.9L404.9,248.2ZM642.1,146.8L642.1,146.8L642.1,146.9L642,146.8L642,146.8ZM642.9,146.4L642.8,146.3L642.9,146.3L643,146.3L642.9,146.4ZM642.3,147L642.4,146.9L642.5,146.9L642.4,146.9L642.3,147ZM624,110.8L623.3,110.7L624.3,110.2L624,110.8ZM651.5,95.5L651.4,95.3L651.8,94.9L651.9,95.2L651.5,95.5ZM589.3,23L588.5,22.4L589.4,22.2L589.8,22.7L589.3,23ZM598.4,17.2L598.1,16.8L598.3,16.5L598.7,16.9L598.5,17.2ZM500.8,20.2L500,19.9L499.7,19.6L499.8,19.4L500,19.4L501,20.1L500.8,20.2ZM611,150L611.6,142.9L616,142L619.2,132.9L611.7,134.5L610.8,130.9L604.6,127.9L600.8,117.3L596.6,115.6L589.4,118.2L590.8,120.5L584.9,128.8L577.6,126.4L570.3,130L565.8,129.4L562.1,126.3L555.2,126.7L552.8,123L546.2,120.4L543.1,128.1L532.9,124.5L522.6,130.2L514.5,124.1L509.2,123.1L507.6,124.8L501.2,112.5L494.2,116L494.7,113.8L489.5,113.3L488.8,109.4L485.2,109.1L469.4,114L471.1,117.5L466.9,121L470,123L468.8,125.1L462.4,123.8L455.7,125.6L453.3,122.5L448.1,121.7L443.7,125.3L444.1,127.4L441,126.4L439.7,132.3L444.9,138.5L439.8,143.7L443.6,151.3L442.1,153L436.2,148.8L426,146.9L419.2,141.9L424.6,136.4L422.4,135.5L425.6,133.9L426.2,128.6L417.1,126.1L413.3,119.7L409.3,120.5L408.5,116.8L411.2,115.9L407.5,108.4L402.2,106.7L400.9,103.8L401.6,92.6L406,91.9L401.2,89.3L408.8,79.2L405.7,75.3L403.8,60.1L405.7,55.8L402.5,49L409.7,42.9L412.1,48.1L417.6,47.4L428.1,55.6L428.5,60.2L423.3,64.1L409.6,58.5L415.5,65.1L416,72.1L420.9,75L419.7,68.5L425.6,71.4L425.7,66.5L430.6,61.8L434.5,64.4L433,50.2L438.1,51.4L439.7,54.8L436.1,57.2L439.3,60.4L443.9,54.6L451.4,52.1L454.2,48.5L453.4,52.6L464.7,48.4L466.3,52.1L468.7,43.5L475.4,45.4L484.2,52.1L485.5,48.7L480.9,45.3L480.4,36L486,23.6L490.3,23.9L493,25.4L491.1,33.6L492.5,48.6L494.6,51.4L490.4,61L485.3,60.6L491.5,63.2L497,55.3L497.7,49.2L500.4,48.6L501.9,55.2L505.5,56.2L502.7,55.4L502.9,49L495,47.3L496.1,38.7L493.6,33.7L497.6,28.8L497,24.6L499,34.8L505.7,36.8L499.6,30.7L504,30.7L502.4,29L504.6,27.4L514,31.9L512.1,39L513.8,37.2L513.9,42.1L514.9,32.2L509.3,26.8L508.9,19.3L521.7,16.9L519.5,19.8L521.3,22.6L519.7,20.5L523.1,17.5L522,16.1L566.8,16.1L558.9,24.8L570.4,18.4L568.3,18.2L569.1,16.1L573.2,18.3L574.6,16.4L576.3,25.8L577.1,19.2L586.1,19.1L587.1,22.5L594.7,24.1L598.5,17.9L607.8,22.5L606.4,26.5L608.2,29.5L605,27.3L611.7,38.1L615,30.6L617.2,33.8L622.1,32.6L625.8,35.7L626.4,32.7L630,33.4L628.7,30.4L630.4,28.8L628.3,27.9L632.7,24.3L642.8,27.1L638.8,28.8L644,28.1L640.6,32.1L644.8,27.9L649.4,29L650.5,30.8L648.2,32L655.5,37.5L668.2,36.9L672.7,44.9L672.6,51L675.7,44.7L686.8,44.2L690.4,49.7L693.2,48.2L692.2,42L703.3,43.2L711.6,48.5L711.6,69.1L708.6,71.3L705.2,69L700.5,70.9L706.4,70.5L710.4,78L709.8,81.7L705.5,79.7L691.9,91.7L689.6,89.1L683.6,92.1L683.8,89.5L680.9,92.2L678.5,91.4L674.8,99.1L677.4,100.2L677.6,106.1L675.9,105.5L675.1,111.4L670.8,113.6L670.9,117L667.7,117.4L664.2,124.2L662.6,104.4L664.4,100.2L678.4,87.7L679.4,81.8L681.8,80.9L677.6,80.7L677.1,85L671.2,88.9L671.3,83.5L664.9,84.5L659.2,92.2L660.9,94.8L653.1,96L654.8,94.4L649.2,92.5L647.8,94.5L634.8,94.9L620.3,110.9L623.5,111.9L623.5,114.8L625.3,113.1L624.4,115.6L629.4,113.1L632.8,116.5L630.3,132.2L620.1,146.6L616.1,148.9L613.6,147.2L611,150ZM462.3,16.3L460,21.2L455.2,20.8L456,16.1L462.3,16.3ZM458.3,21.4L457.3,30.5L461.1,39.1L453.4,37.3L455,35.7L453.4,33.1L449.4,31.5L453.3,21.7L458.3,21.4ZM709.1,37.6L711.6,33.1L711.6,36.6L709.1,37.6ZM636.1,113.6L639.6,131.6L636.2,130.1L635.2,134.3L637.3,138.4L635.3,137.4L634.3,139.8L633.4,119.9L636.1,113.6ZM417.6,68.7L417.5,69.5L417,68.6L417.6,68.7ZM431.5,61L431.1,60.5L431.3,60.4L431.6,60.7L431.5,61ZM452.6,34.7L452.6,36.7L451,34.5L452.6,34.7ZM687.3,112.3L686.1,111.3L686.1,111L686.5,111.4L687.2,112.1ZM672.1,37.7L671.7,37.4L671.7,36.9L672.1,37.2L672.1,37.7ZM673.7,49L673,46.1L673.9,44.8L673.7,49ZM625.4,33.8L624,33.1L625.7,32.8L625.4,33.8ZM496.7,24.2L495.8,23.5L495.8,22.5L497.4,22.9L496.7,24.2ZM498.2,20.2L499.6,19.3L499.2,20.1L498.2,20.2ZM481.7,45.9L481.2,45.7L481.8,45.1L481.7,45.9ZM480.3,39.6L480,39.2L479.9,38.2L480,37.9L480,38.4L480.3,39.6ZM487,62L486.3,60.6L487.4,60.9L487,62ZM442.3,141.1L442.2,140.8L442.2,140.6L442.3,140.5L442.4,140.8L442.4,141L442.3,141.1ZM447.1,47.9L443,48.8L444.3,45.5L447.1,47.9ZM631.1,16.7L630.4,16.1L632.1,16.1L631.1,16.7ZM635,17.2L637.1,21.7L629.6,20.8L632.2,17.1L635,17.2ZM622.1,17L621.6,16.1L622.4,16.2L622.1,17ZM626,110.3L626.4,110.4L625.3,111.8L624.9,111L624.4,111.3L625.1,109.8L626,110.3ZM689,45.2L687.5,42.6L690.1,43.6L689,45.2ZM677.9,97.5L678.5,95.5L680,94.6L680.2,96L677.9,97.5ZM684.4,111.6L682.5,109.5L683.6,109.4L684.4,111.6ZM660,129.6L659.8,129.3L660.4,128.5L660.2,129L660.2,129.5ZM663.4,125.3L663.1,125.1L663.1,124.8L663.6,124.6L663.6,124.9L663.4,125.3ZM662.2,126.7L661.4,127.2L661,126.5L662.9,124.8L662.2,126.7ZM658.7,131.3L658.6,131.2L658.8,130.7L659,130.8L658.7,131.1ZM661.7,124.7L661.6,124.5L661.8,124.3L662,124.6L661.7,124.7ZM656.7,134.4L656.5,134.4L656.5,134.4L656.6,134.1L656.7,134.1L656.7,134.2L656.7,134.4ZM654.1,137.2L653.9,137.1L654.2,136.9L654.8,136.2L655.1,136.1L654.1,137.2ZM649.5,140.7L650.3,139.4L651.6,138.9L649.5,140.7ZM647.2,141.7L644.1,144.1L646.2,141.3L646.6,141.7L648,140.9L648.1,141.4L647.2,141.7ZM643.7,146.1L643.5,145.9L643.9,145.7L644.1,145.8L643.7,146.1ZM643,144.1L641.1,146L642.5,143.9L643,144.1ZM488,23L487.3,20.8L489.4,19.7L490.6,22.1L488,23ZM501.8,28.2L501.3,27.6L502.7,25.8L504.2,26.4L503.1,28L501.8,28.2ZM506.5,25.3L504.9,24.3L506,22.6L506.7,23.9L506.5,25.3ZM467.9,43.3L464.7,43.3L464.4,40L467.9,43.3ZM387,109.9L390.5,110.3L390.9,112.8L384.6,112.5L387,109.9ZM413.1,139.1L418.7,142.2L413.1,144L410.8,141.3L413.1,139.1ZM402.3,141.4L405.1,141.7L402.8,146L391.1,145.7L385.8,139.2L391.7,133.3L399.1,132.7L402.3,141.4ZM448.9,193.7L448.1,193.2L448,191.7L449.1,190.1L449.8,192.6L448.9,193.7ZM309.7,174.5L310.5,174.6L309.8,174.9L309.3,174.5ZM326.8,150.8L331.8,151.9L328.5,164.1L326.2,164L326.6,158.7L325.2,159.6L326.8,150.8ZM293.5,164.2L293.2,164.2L293.2,164L293.4,164.1L293.5,164.2ZM280.9,158L280.7,157.9L280.9,157.5L281,157.8ZM289.2,159.9L288.7,159.7L288.7,159.5L289.2,159.5L289.4,159.7L289.2,159.9ZM287.8,160.1L287.2,159.9L287,159.8L286.8,159.6L287.5,159.9L287.9,160.1L287.8,160.1ZM285.9,160.2L286,159.9L286.1,160L286.1,160.1ZM287.3,160.4L286.9,160.5L286.5,160.5L286.3,160.2L286.6,160.1L287.3,160.4ZM292.3,161.9L293.1,162.1L292,162.1L291.8,161.8L292.3,161.9ZM392.8,122.6L391,130.4L383.2,129.2L374.7,124.6L373.5,114.2L381.4,111.1L391.2,112.7L392.8,122.6ZM591.8,206.9L594.4,210L592.8,216.2L597,216.9L597.5,219.6L589.4,214.8L591.8,206.9ZM583.6,228.3L587.7,223.9L588.2,222.1L588.6,223.9L583.6,228.3ZM594.6,221.7L593.2,224L593.1,221.1L594.6,221.7ZM595.5,226.9L594.1,225.3L595.9,222.8L595.5,226.9ZM598.7,222.2L600,224.2L599.5,224.8L598.9,223.1L598,221.8ZM600.1,219.8L601,222.7L598,219.6L600.1,219.8ZM590.8,217.7L592.4,218.5L591.8,220.3L589.9,217.8L590.8,217.7ZM601.7,226.4L602.7,230.6L601.9,232.5L600.8,230.6L600.1,234L596.7,229.4L593.2,231.2L596.2,227.6L601.7,226.4ZM596,226.1L597.5,222.3L597.4,224.1L596,226.1ZM593,206.3L593,206.1L593.1,205.9L593.3,206L593,206.3ZM592.4,205.3L592.1,205.2L592,205.1L592.3,205.1ZM593.2,203L593.1,203L593.2,202.8L593.3,202.7L593.4,202.7L593.2,203L593.2,203ZM593,202.2L592.9,202.2L592.9,202.1L593,201.9L593,201.9L593.1,202.1L593,202.2ZM591.7,233.1L592.1,233.2L591.7,233.3L591.1,233.4L591.4,233ZM583.2,229.4L583.1,229.3L583.1,229L583.1,228.9L583.3,228.9L583.3,229.3L583.2,229.4ZM588.8,224L588.9,223.6L589.3,223.7L589.1,223.9ZM589.6,220.4L589.9,220.7L589.4,220.8L589,220.1L589.6,220.4ZM589.2,221.4L589.1,221.2L589.2,220.8L589.4,221L589.3,221.4ZM594.6,224L594.4,223.9L594.6,223.4L594.8,223.4L594.6,223.9ZM598.6,225.4L597,225.3L598.2,224.6L598.6,225.4ZM589.7,234.8L589.4,234.9L588.9,235.1L589.6,234.5L589.7,234.8ZM593.3,232.3L593,231.8L594,231.9L593.3,232.3ZM601.6,225.4L601.5,225.1L601.7,225L601.7,225.2L601.8,225.4L601.6,225.4ZM600.8,225.1L600.4,224.7L600.8,224L600.8,225.1ZM589.8,217.2L589.4,217L589.5,216.9L589.8,217.1ZM593.3,217.5L593.4,218.2L592.9,217.8L593.3,217.5ZM593.3,220.5L593.2,220.1L593.3,219.8L593.6,219.4L593.5,220ZM594.5,220.2L594.2,219.9L594.3,219.7L594.7,219.9L594.7,220.1ZM596.1,219.3L595.5,218.7L595.3,218.4L595.8,218.9ZM596.9,220L596.6,219.6L596.6,219.3L596.9,219.8ZM597.2,220.4L597.5,221.3L596.4,220.3L595.7,220.9L595.8,219.5L597.2,220.4ZM598.1,217.5L597.5,217.4L597.8,216.4L598.1,217.5ZM593.7,216.6L593.2,216.2L593.2,216.2L593.2,216.1L593.2,216.1L593.7,216.5L593.7,216.6ZM593.4,214.5L593.1,215.2L593,214.4L593.4,214.5ZM598,223.7L598.1,223.4L598.2,223.5L598.2,223.5L598.2,223.6L598,223.7L598,223.7ZM600,225L599.8,224.8L599.7,224.6L599.8,224.6L599.9,224.7L600,224.9L600,225ZM595.3,230.3L595,230.5L594.9,230.3L595.1,230.3L595.2,230.3ZM601,231.3L600.9,231L600.8,230.9L600.9,230.7L601,230.8L601,231.2L601,231.3ZM598.4,221.8L598.1,221.5L598.4,221.4L598.7,221.7L598.4,221.8ZM599,226.8L598.7,226.6L598.8,226.5L599,226.6L599,226.8ZM591.8,205.9L591.7,205.7L591.7,205.5L591.8,205.8ZM589,221.9L588.9,222.1L588.7,221.9L588.8,221.9L589,221.7ZM597,222.5L596.9,222.5L596.8,222.3L596.9,222.3L596.9,222.2L597,222.5ZM593.9,219.7L593.9,219.7L593.8,219.6L593.9,219.5L593.9,219.5L594,219.7L593.9,219.7ZM601.4,225.8L601.3,225.7L601.4,225.4L601.4,225.4L601.5,225.6L601.4,225.8L601.4,225.8ZM599.1,221.7L599,221.6L598.9,221.3L599.1,221.5L599.1,221.7ZM583.7,228.6L583.7,228.5L583.7,228.4L583.8,228.4L583.8,228.4L583.8,228.6L583.7,228.6ZM596.8,226.7L596.5,226.7L596.4,226.5L596.6,226.4L596.8,226.5ZM201.8,254.2L195.8,255.9L193.6,260.8L197.3,265.9L200.6,264.7L200.4,268L204.4,271.1L204.1,279.2L200.9,283.5L189.6,275.6L178.6,254.9L180.7,252.3L180.4,254.5L183.3,255.6L191.1,245.5L195.3,250.1L201.6,250.8L200.2,253.1L201.8,254.2ZM225.9,287.6L226.3,291.7L230.6,292.1L231.4,295.6L233.9,296L230.9,303.6L225,303.4L227.1,299L216.7,291.9L218.6,286.3L224,285.5L225.9,287.6ZM656.3,255.3L655.1,252.7L652.1,250.7L656.6,253.8L656.3,255.3ZM654.4,254.2L654.7,256.6L651.4,258.2L647,257L654.4,254.2ZM632,264.1L632.3,250.7L645.4,257.7L644.8,260.7L652.2,266.4L645.9,266.1L639.4,260.9L634.5,262.2L635.9,264.3L632,264.1ZM646.3,257.3L645.9,256.9L646,256.6L646.5,257.2ZM642.2,255.1L642,254.9L642.2,254.7L642.3,254.7L642.3,255.1ZM655.8,252L655.7,251.9L655.6,251.7L655.7,251.7L655.8,251.6L655.9,251.8L655.8,252ZM654.7,251.5L654.4,251.3L654.4,251.2L654.7,251.4ZM649.9,248.7L649.8,248.6L649.5,248.3L649.7,248.2L649.9,248.6ZM652.7,265.9L652.9,266.3L652.3,265.8L652.1,265.4L652.6,265.9ZM651.1,264.9L650.6,264.6L650.8,264.3L651.2,264.6L651.1,264.9ZM652.7,263.4L652.6,263L652.6,262.7L652.7,262.9L652.7,263.4ZM659.1,268.8L658.8,268.9L658.6,268.8L658.8,268.7L659.1,268.7L659.1,268.8ZM637.3,262.8L636.8,262.5L637.3,262.6L637.3,262.8ZM644.5,256.5L644.3,256.2L644.6,256L644.8,256.4L644.5,256.5ZM645.1,249.5L645.1,249.6L644.2,249.9L643.3,249.8L644,249.4ZM650.9,250.9L650.3,250.5L651.3,250.4L650.9,250.9ZM651.8,264.7L652.3,265.2L651.3,265.1L651.8,264.7ZM655.9,263.8L656.5,264.1L656.4,264.3L655.8,264ZM658,269.1L657.7,269.3L657.3,269L657,268.9L657.2,268.7ZM637.4,263.2L636.8,262.8L636.6,262.7L637.1,262.8L637.4,263.2ZM646,250.2L645.8,250.1L646,250L646.1,250.1ZM654.4,251.2L654.4,251L654.4,250.9L654.5,251L654.5,251.1L654.4,251.2L654.4,251.2ZM652.2,267.2L652.1,267.2L652,267.2L652.1,267.1L652.2,267.1L652.3,267.1L652.2,267.2ZM657.9,253.8L657.7,253.8L657.8,253.7L657.9,253.7L657.9,253.8L657.9,253.8ZM662.5,259.3L661.2,259L660.1,257.5L660.1,256.5L662.3,258.4L662.5,259.3ZM659.9,256.5L659.7,255.9L659.9,255.6L660.1,256.1L659.9,256.5ZM186.7,227.7L185.6,230.6L182.9,226.9L180,230.6L175.2,228.4L175.6,225.8L186.7,227.7ZM183.6,228.6L183.5,228.3L183.6,228.1L183.7,228.1L183.7,228.4L183.6,228.6ZM178,230.4L177.6,230.1L177.8,229.8L177.9,230.1L178.1,230.4ZM176.8,226.3L176.6,226.1L176.7,226.1L176.7,226.1L176.8,226.2L176.8,226.3ZM183.2,228.6L183.1,228.5L183.2,228.4L183.2,228.4L183.3,228.5L183.2,228.6ZM612,239.2L612,239.2L612,239.2L612.1,239.2L612,239.2ZM618.9,230.4L618.9,229.9L619.1,229.6L619,230.2ZM501.2,167.7L500.7,169.8L495.3,170L498.1,175.7L496.7,178.8L491.1,186L486.3,187.9L489.3,194.2L483.4,195.5L480,191.4L470.1,192.3L473.6,187.8L468.6,181.6L479.5,181.6L480.8,178.2L485.6,176.9L491.7,164.8L497.6,164.1L501.2,167.7ZM464.1,203.3L464.1,203L464.6,202.3L464.5,202.8L464.3,203.3ZM452.6,210.7L450.5,205.9L456.6,203.8L459.5,192.8L466.5,198.9L462.3,206L452.6,210.7ZM459.3,191.3L458.9,190.3L459.6,189.7L459.3,191.3ZM459.2,192.3L459.2,192.1L459.3,192L459.3,192.2ZM386.3,48.3L385.2,52.1L382,50.9L378.7,54.6L374.2,63.8L373.2,73.7L369.3,76L370.8,85.9L368.3,95.8L366.1,92.5L361.2,98.9L357.9,99.1L355.8,96.6L357.6,93.3L355,94.6L358.8,89.4L355,93L354.7,87.2L360,86.5L354.9,86.6L354.7,83.5L358.2,83.7L355,82.4L361,79.9L358.2,79.9L359.9,78.2L362.1,79.4L362,76L367.7,75L364.1,75.1L370.5,68.3L370.6,64L373.1,63L371.2,61.7L375.9,58.3L374,58L376.3,57.5L375.7,53.6L377.8,54.7L377.9,51.9L380.3,51.7L378.2,51.1L381.7,45.7L384.7,43.8L384.6,46L386,42.9L385.5,46.5L386.6,43.1L389.3,43.6L388.1,41.2L390.8,40.4L392.1,42.7L394.8,36.5L397.1,37.4L395.6,42L400.8,35.9L402,41.1L403.3,37.4L407.6,40.2L403.2,41.8L407.5,45.2L403.6,48.3L403.9,44.6L401.1,42.2L397.7,44.4L395.4,50.7L390.2,50L388.6,46.9L386.3,48.3ZM354.4,87.1L354.3,86.6L354.5,86.5L354.6,87ZM354.9,90.7L354.6,90.5L354.6,90.1L354.6,89.7L354.8,89.9L354.9,90.7ZM405.2,44L405.5,43.2L405.8,43.6L405.2,44ZM368.8,66.5L368.5,66.3L368.7,65.9L369,66.1L368.8,66.5ZM361.5,75.7L361.7,75.4L362.3,75L362.5,75.2L362.4,75.5L361.5,75.7ZM360.8,77.2L360.4,76.8L361,76.6L360.8,77.2ZM392.3,37.9L391.1,39.4L390.1,39.5L389.4,38.6L391.3,38.3L392.2,37.5L392.3,37.9ZM397.2,35.9L397.8,36.3L397.5,36.7L396.1,36.3L396.7,35.6L397.2,35.9ZM392.7,39.6L392,40.8L391.2,40.3L392.5,38.9L392.7,39.6ZM393.1,39.4L393,38.1L393.6,38.7L393.1,39.4ZM372.9,52.7L371.5,54L371.6,53.1L372.9,52.7ZM370.7,55L370.9,53.9L371.3,53.7L371.2,54.3L371,54.7ZM375.8,49.3L375.6,50.6L373.9,50.4L375.2,48.4L375.8,49.3ZM384.9,41.4L385.3,42.2L384.8,42.2L384.5,41L384.9,41.4ZM386.8,42.2L386.1,41.9L386.6,41.2L386.8,42.2ZM384,42.6L384.5,42.8L382.8,45.1L381.3,45L382.6,43.9L383.5,41.2L384,42.6ZM369.9,65L370,64.6L370.3,64.4L370.6,64.5L370,64.9ZM369.6,64.3L370.1,63.4L370.2,64.1L369.6,64.3ZM367.3,70.2L366.4,70L367.2,69.5L367.3,70.2ZM380.4,45.3L381.1,47.3L379.3,48.4L379.2,46.4ZM376.7,51L373.6,52.6L377.2,46.7L376.7,51ZM326.1,37.6L328.2,35.4L328.2,36.3L326.1,37.6ZM606.2,159.9L600.2,162.2L600.2,157.5L598.1,156.3L609.9,148.2L609,154L604.6,157.1L606.2,159.9ZM599.1,157.6L599.1,157.4L599.2,157.3L599.3,157.3L599.2,157.5L599.1,157.6ZM359.2,236.5L359.1,236.4L359.2,236.2L359.3,236.2L359.5,236.2L359.4,236.4L359.2,236.5ZM372.6,217.6L374.2,221.8L367.8,232.1L365.2,231.1L361.9,235.8L357.1,236.7L354,232.7L350,232.4L353.5,217.3L364.1,219.1L372.6,217.6ZM371.9,217.2L364.1,219.1L354,217.1L351.8,221.4L344.8,215.5L351.7,213.7L353.1,205.6L368.9,196L375.1,197.2L377.1,203L376.1,210.4L371.9,217.2ZM174.9,214.6L173.6,223.4L165.7,218.9L174.9,214.6ZM697.8,338L700,337.3L699.9,339.4L696.4,343.9L697.5,345.2L693.7,346.3L692.8,350.9L689.4,353.2L684.5,351.9L695.8,336.6L697.8,338ZM698.9,337L699,336.7L699.2,336.6L699.3,336.7L698.9,337ZM684.6,350.4L684.4,350.5L684.1,350.4L684.5,350.3ZM685.1,349.3L685,349.2L684.9,349.1L685,348.9L685.1,348.9L685.1,349.3ZM687.4,354L687.5,354.6L686.2,355.1L686.7,353.4L687.4,354ZM702.5,325L702.1,324.8L702.2,324.4L702.3,324.5L702.5,325ZM697.9,321.6L703.5,328.3L708.6,328.5L702,338.9L701.7,334.9L698.9,332.9L701.3,327L697.9,321.6ZM689.6,371.8L689.3,371.8L689.2,371.6L689.4,371.6L689.6,371.8ZM683.5,366.2L682.8,366.1L683.3,365.2L683.5,366.2ZM18.7,289.8L18.5,289.7L18.5,289.7L18.7,289.6L18.7,289.8L18.7,289.8ZM356.5,124.9L351.5,122.3L353.2,122.6L354.2,117.7L358.4,116L356.5,124.9ZM353.1,123L352.3,123.4L351.3,122.9L353.1,123ZM357.1,115.9L357.1,115.8L357.1,115.8L357.3,115.7L357.4,115.7L357.1,115.9ZM356.2,116L356,115.9L356.5,115.9L356.6,115.9ZM354.5,116.7L354.5,116.6L354.8,116.4L354.9,116.4L354.5,116.7ZM355.2,116.2L355.1,116.1L355.6,116L355.8,116L355.9,116L355.4,116.2L355.2,116.2ZM354.3,117.5L354.1,117.4L354.1,117.4L354.2,117.2L354.5,116.9L354.5,117.2L354.3,117.5ZM352.8,121.9L352.8,122L352.3,121.8L352.1,121.8L352.2,121.7L352.8,121.9ZM358.1,115.5L358.1,115.4L358.3,115.3L358.4,115.3L358.2,115.5L358.1,115.5ZM205.3,220.7L205.2,220.4L205.1,220.3L205.1,220.1L205.4,220.5ZM216.1,209.2L216,209.2L216.1,209.1L216.1,209.1L216.1,209.2ZM215.5,208.9L215.5,208.8L215.5,208.8L215.5,208.9ZM202,219.9L201.7,219.7L201.6,219.5L201.8,219.6L202,219.8ZM204.2,220.7L203.5,220.1L203.5,220L203.8,220.3L204.3,220.6ZM524.3,186.2L524.1,189.5L521.3,189.5L507.8,183.6L511,180.3L519.8,186.1L524.3,186.2ZM685,246.5L684.9,246.5L685,246.4L685,246.5ZM392.6,281.9L396,282.3L392.7,283.7L387.3,283.4L385.3,306L378.1,306.4L368.5,281.1L392.6,281.9ZM408.6,292.1L411.8,287L411.7,280L406.1,276.4L414.6,275.1L416.4,280.9L417.7,276.1L415.1,269.3L427,266.9L427.2,277.4L415.2,286.4L416.2,297.1L410,302.3L408.6,292.1ZM415.1,270L415,270L415,270.2L415.2,270.1ZM415.4,270.2L415.4,270.1L415.3,270.1L415.2,270.2L415.2,270.3L415.4,270.2ZM340,169L342,176.2L336.8,177.2L337,179L326.8,184.2L326.7,187.8L321.3,188.5L314.4,200.5L309.8,200.7L315.1,189.9L323.7,182.7L325.7,175.1L332.4,167.2L340,169ZM326.5,186.7L326.8,190.5L320,190.5L318,200.9L309.6,201.9L314.4,200.5L321.3,188.5L326.5,186.7ZM383.6,146.6L386,148.4L384,151.2L382.1,149.4L383.6,146.6ZM523.6,129.9L532.9,124.5L543.1,128.1L546.2,120.4L552.8,123L555.2,126.7L562.1,126.3L565.8,129.4L570.3,130L577.6,126.4L581.8,127.4L580.3,133.9L586.2,133.6L589,137.5L583.9,137.8L576.2,143.2L572.7,142.2L572.8,146.1L569.7,148.7L558.6,152L541.1,148.9L539,144.5L529.8,141.9L528.7,134.5L523.6,129.9ZM398.8,132.6L403.9,133.6L406,138.3L403.8,138L402,141.1L398.8,132.6ZM359.6,146L359.6,146L359.6,145.9L359.6,145.9L359.7,146L359.7,146L359.6,146ZM106.2,175.1L118,178.1L127.4,177L133.9,183.6L137.6,181.7L142.4,189.4L146.4,190.6L145.1,199.3L149.1,206.5L157.8,207.1L160.2,201.6L166.8,200.2L165.3,207.5L158.9,208.5L160,212.2L157.4,212.2L156.3,215.4L152,211.7L147.7,213.1L133.5,207.4L114,178.4L110.1,176.7L110.7,180.9L121.3,196.7L110,186.5L111.9,184.9L106.2,175.1ZM167.1,203.2L167.1,202.7L167.4,202.6L167.6,202.6L167.2,203.1ZM127.2,200.4L127,200.2L127.1,200L127.3,200.2L127.2,200.4ZM118.2,206.5L118,206.4L118,206.3L118.2,206.2L118.2,206.4L118.3,206.5L118.2,206.5ZM119.1,193L118.8,192.8L118.7,192.5L119,192.6L119.1,193ZM113.7,183.5L112.9,182.6L113,182.3L113.3,182.8L113.7,183.4ZM109.6,185.8L109.4,185.4L109.5,185L109.7,185.5L109.6,185.8ZM115.5,184.1L115,183.9L115.5,183L115.5,184.1ZM103.3,183.8L103,183.2L103.2,183.1L103.3,183.4L103.4,183.7ZM167.7,201.2L167.6,201.1L167.6,201L167.7,201.1ZM157.3,206.7L157.7,206.4L157.8,206.4L157.5,206.6ZM120.5,194.6L120.4,194.2L120.6,194.6L120.6,194.6ZM110.5,177.2L110.4,177L110.6,177L110.6,177.2ZM118,190.5L117.9,190.5L117.7,190.8L117.8,190.3L117.9,190.4ZM116.7,194.2L116.1,193.8L116.2,193.7L116.4,193.8L116.7,194.1L116.7,194.2ZM115.9,193.8L115.5,193.2L115.7,193L115.8,193.5ZM461.8,288.2L461.5,287.5L462.1,287L462.4,287.5L461.8,288.2ZM311,204.6L310.9,204.4L311.1,204.1L311.1,204.4ZM319.4,214.8L314.9,211L310.8,212.7L309.9,200.9L318,200.9L320,190.5L326.8,190.5L326.8,187.5L334.7,192.7L331.1,192.7L333.3,213.4L321,213.1L319.4,214.8ZM374.1,167.1L373.8,166.9L374,166.7L374.2,167ZM373.6,166.6L373.4,166.5L373.7,166.5L373.7,166.5ZM321.3,219.8L319.5,214.9L321,213.1L333.3,213.4L331.1,192.7L334.7,192.7L353.1,205.6L351.7,213.7L339.2,216.1L332.2,224.5L328.2,224.6L325.7,219.7L321.3,219.8ZM494.2,238.8L494.2,238.7L494.3,238.7L494.3,238.8L494.2,238.8ZM494.4,236.9L494.4,236.9L494.4,236.7L494.5,236.8L494.4,236.9ZM548.7,232.1L554.8,234.4L557.1,242.6L551.1,239.5L548.7,232.1ZM584.2,236.9L580.4,236.8L578.1,242.4L569.9,243.7L567.9,241.6L571.3,242.6L577.1,236L579.7,236.5L582.6,231.1L587.7,234.4L584.2,236.9ZM557,239.9L556.9,239.8L557,239.5L557.1,239.8ZM549,234.7L548.9,234.3L549.1,234.3L549,234.6ZM548.3,232.4L548.1,232.5L547.8,232.5L547.9,232.3L548.1,232.2ZM583.3,230.9L583.3,230.6L583.7,230.4L583.7,230.6L583.4,230.8ZM551,239.3L551,239.3L551,239.2L551.1,239.1L551.2,239.2L551.1,239.3L551,239.3ZM571.6,240.5L571.5,239.8L571.6,239.8L571.7,240.2L571.7,240.5ZM584.6,236.9L584.5,236.8L584.6,236.7L584.9,236.9ZM415.2,270.3L415.2,270.2L415.3,270.1L415.4,270.1L415.4,270.2L415.2,270.3ZM415.1,270.2L415,270.1L415.1,270L415.2,270.1ZM412.1,274.1L411.6,264.7L414.8,265.8L415,272.9L417.7,276.1L416.1,280.9L414.9,275.5L412.1,274.1ZM445.6,271.2L447.5,277.2L445.8,277.5L440.7,297.6L436.7,299.4L432.7,292.3L435.1,286.9L434.2,281.4L445.6,271.2ZM443.1,273L442.8,272.7L443,272.6L443.1,272.8L443.1,273ZM446.1,280.8L446.2,280.5L446.5,280L446.5,280L446.3,280.4L446.1,280.8ZM388.6,150.2L391.3,152.6L386.7,153.8L388.6,150.2ZM357,127L357.8,128.1L356.8,129.1L356.2,127.6L357,127ZM387.1,109.5L387.5,108.8L387.6,108.3L387.5,108.8L387.2,109.5ZM390.9,112.6L387.7,109.3L388.8,105.7L395.2,105.4L398.7,108.1L396.9,113.6L390.9,112.6ZM363.9,136.4L363.8,136L364,135.8L364,136.1L364.1,136.3ZM364.2,180.6L368,173.6L383.5,180.6L388.6,174.2L395.4,176.6L395.5,203.8L393.4,204.9L377.1,196.2L373.5,198L365.7,193.9L363.7,190.1L364.2,180.6ZM321.1,231.2L324.8,228L329.3,233.4L329.1,236.5L321.1,231.2ZM402.9,309.9L401.1,311L399.7,308.8L402.8,306.3L404.4,307.8L402.9,309.9ZM418.2,170L419,170.5L418.7,172L418.1,172L416.9,173.8L416.1,173.8L418.2,170ZM398.6,108.1L395.2,105.4L387.4,106.7L388.8,101.1L392.7,103.3L395.7,99.2L400.6,101.3L402,106.2L398.6,108.1ZM552.9,198.8L557.8,202.4L556.4,205.3L563.6,212.3L563.6,215.4L559.1,216.1L560,213.1L556.5,207.4L550.3,209L550.9,204.7L548.8,202.5L552.9,198.8ZM489.3,155.6L493.7,154.1L487.6,152.1L489.8,148.8L494.4,149.7L495.9,147.4L508.1,150.3L494.8,157.7L485.8,157.5L489.3,155.6ZM489.7,156.5L489.5,156L489.2,156L489.4,156.3L489.6,156.6ZM490.9,156.3L490.8,156.3L490.7,156.4L490.8,156.5L490.9,156.3ZM488.7,156.7L488.4,156.6L488.3,156.6L488.3,156.7L488.5,156.8L488.7,156.7ZM442.8,182.2L442.6,181.6L442.7,181.3L443.1,181.9ZM442.9,184.6L439.4,183.3L440.8,181.1L442.9,184.6ZM386.3,148.5L388.9,149L386.7,151.3L386.3,148.5ZM697.1,239.1L697.1,239.1L697.3,239L697.3,239L697.3,239L697.1,239.1ZM696.9,239.3L696.9,239.2L697.1,239.1L697,239.2ZM697.4,241.7L697.2,241.5L697.2,241.5L697.3,241.5L697.4,241.7ZM697.3,241.9L697.4,241.8L697.4,241.7L697.4,241.9L697.3,241.9ZM697.5,243.4L697.3,243.7L697.5,243.4L697.3,243.4L697.4,243.3ZM700.3,247.1L700.3,246.7L700.2,246.6L700.4,246.9ZM701,248L700.9,247.9L700.8,247.7L700.9,247.8L701,248ZM697.4,242.7L697.6,242.6L697.7,242.6L697.7,242.6L697.5,242.7L697.4,242.7ZM690.3,247.2L690.2,247.2L690.2,247.1L690.3,247.1L690.3,247.2L690.3,247.2L690.3,247.2ZM28.5,253.8L28.4,253.7L28.4,253.7L28.5,253.6L28.5,253.7L28.5,253.8ZM34.9,268.9L34.9,268.9L34.9,268.8L34.9,268.8L34.9,268.9ZM26.6,256.9L26.5,256.9L26.5,256.9L26.6,256.9L26.6,256.9ZM24,241.9L23.1,241.5L23.4,241.6L23.3,241.3L23.6,241.6ZM19.7,237.6L19.5,237.6L19.6,237.5L19.5,237.6L19.5,237.4ZM428,249.8L428.3,249.6L428.4,249.6L428.4,249.7L428,249.8ZM413.6,247.1L415.8,242.1L413.8,236.8L416.4,234.2L422.2,238L429.9,237.3L428.1,239.6L429.2,248.9L424.8,254.9L413.6,247.1ZM446.8,142.9L446.5,142.3L446.7,142.3L446.7,142.8ZM447,142.5L447,142.4L447.1,142.2L447.2,142.2L447.2,142.4L447.1,142.5L447,142.5ZM451.9,141.3L451.7,141L451.9,140.9L451.9,141.2ZM489,150.3L484,154.6L480.6,153.2L476.9,146.1L470.9,146.7L463.7,140.8L458.7,142.4L458.7,152.7L454.9,149.9L451.6,151.5L451.7,148.6L447,143.8L453,141.5L452.9,137.3L443.6,137.8L439.7,132.3L440.3,127.8L441.4,126L444.1,127.4L443.7,125.3L448.1,121.7L453.3,122.5L455.7,125.6L462.4,123.8L468.8,125.1L470,123L466.9,121L471.1,117.5L469.4,114L485.2,109.1L488.8,109.4L489.5,113.3L494.7,113.8L494.2,116L501.2,112.5L507.6,124.8L509.2,123.1L514.5,124.1L522.6,130.2L519.4,132.3L518.8,136.4L513.8,136L512.8,142.1L507.4,142.8L508.1,150.3L495.9,147.4L494.4,149.7L489,150.3ZM417.7,174.7L423.6,173.1L424.6,175.9L419.9,177.7L422,180L418.1,183.1L415.8,182.7L417.7,174.7ZM616.4,166.2L616.1,166L616.4,165.8L616.5,166.1ZM626.5,162L626.6,161.6L626.6,161.1L626.9,161.2L626.7,162ZM619.5,171.1L619.2,170.9L619.6,170.3L619.6,170.6ZM610.7,180.7L610.4,180.3L610.9,180.3L610.9,180.6ZM611.4,180.3L611.6,179.6L611.8,179.3L611.7,180ZM609.6,176L609.7,175.8L609.7,175.3L610,175.3L609.6,176ZM608,171.4L608,171.2L608,170.8L608.3,170.9L608.3,171L608.2,171.3L608,171.4ZM608.3,170.8L608.3,170.3L608.5,169.9L608.6,170.1L608.4,170.7ZM607,174.6L607.3,174.6L607.2,174.9L607,175L606.9,174.6ZM610.2,175.5L610.1,175.3L610.6,175.2L610.4,175.4ZM632.1,141.6L632,141.1L632.2,141.1L632.2,141.5ZM632.5,142.1L632.3,141.8L632.6,141.7L632.7,142L632.5,142.1ZM628.9,150.6L628.8,150.4L629,150.2L629,150.6L628.9,150.6ZM618.5,170.5L618.3,170.6L618.2,170.4L618.5,170.3L618.5,170.4ZM628.9,169.9L628.8,169.9L628.7,169.8L628.7,169.7L628.9,169.7L628.9,169.8L628.9,169.9ZM607.7,174.5L607.7,174.1L607.9,174L607.8,174.2ZM608.5,173.6L608.4,173.5L608.5,173.2L608.8,173.2L608.6,173.5ZM609.1,172.3L609,172.2L609,172L609.1,171.9L609.2,172L609.2,172.2L609.1,172.3ZM614.8,171.4L614.7,171.3L614.8,171.2L614.9,171.3ZM614.4,171.8L614.6,171.8L614.4,172L614.1,171.9L614.1,171.7L614.4,171.8ZM609,177.3L609,177.1L609.2,177L609.2,177.1L609.1,177.3L609,177.3ZM634.5,189.1L634.3,188.8L634.4,188.8L634.4,188.8L634.5,189L634.5,189.1L634.5,189.1ZM638.1,145L641,144.3L641.3,147.6L636.6,150.9L631,149.3L632.4,151.4L630,152.2L633.4,141.3L638.1,145ZM612.3,172.6L613.7,174.4L611,178.8L608.8,173.2L612.3,172.6ZM618.8,171.1L615.5,174.6L613.8,173.2L618.8,171.1ZM632.6,152.6L634.1,157.8L630.8,168.7L623.5,169L621.2,172.9L619.3,169.7L611.5,171.7L615.6,167.8L621.5,167.8L623.6,163.1L624.2,164.7L627.1,163.1L632.6,152.6ZM597.9,194.2L597.7,194.2L597.6,193.9L597.8,193.9L598.1,193.7L597.9,194.2ZM597,194.4L596.7,194.3L596.9,194.2L596.9,194L597.3,194.2L597,194.4ZM600.2,193.4L600,193L600.1,193.2L600.3,193.3ZM605.9,189.1L604.8,190.2L605.3,188.9L606.1,188.5L605.9,189.1ZM607.5,186.6L607.4,186.2L607.5,186.1L607.6,186.4L607.5,186.6ZM608.3,185.6L607.9,185.3L609,184.7L608.3,185.6ZM608.3,185.7L608.1,185.7L608,185.4L608.1,185.5L608.2,185.6L608.3,185.6L608.3,185.7ZM629.7,173.9L629.6,173.8L629.6,173.7L629.7,173.9ZM187.2,207.2L189.1,208.3L187.8,208.1L187.1,208.7L184.7,207.5L187.2,207.2ZM358.9,139.8L369.3,136.3L372.4,138L372.8,140.6L369.5,141.1L369.8,144.6L382.2,155.7L379,155L377.3,161.7L376.5,156.3L367.2,149.8L365.3,145.4L362.4,144.1L359.8,145.9L358.9,139.8ZM369.9,151.1L369.9,151.1L369.9,151.1L369.9,151.1L369.9,151.1L369.9,151.1ZM370,145.4L370,145.3L369.9,145.3L369.8,145.5L369.8,145.6L370,145.6L370,145.4ZM365.8,148.6L365.8,148.9L365.2,148.8L365.4,148.6L365.7,148.5ZM372.8,154.4L372.8,154.3L373,154.3L372.9,154.4ZM369,164.7L368.9,164.5L369,164.5L369.1,164.7ZM376.1,161.2L375.3,164.9L369.9,162.1L376.1,161.2ZM364.3,154.1L362.1,159.1L361.2,153.9L364.3,154.1ZM361.7,159L361.6,158.8L361.6,158.6L361.6,158.6L361.7,158.7L361.8,158.7L361.7,159ZM361.3,153.6L361.3,153.5L361.5,153.3L361.5,153.4L361.3,153.6ZM417.6,173.2L415.7,182.4L414.3,178.4L417.6,173.2ZM414.9,177.6L414.6,178L414.3,178.4L414.3,178.1L414.8,177.5ZM417.1,175.9L415.6,178L415.8,176.9L416.6,175.2ZM324.2,114.4L324,114.2L323.7,114L324.1,114L324.2,114.3ZM329.5,110.4L327.9,112.5L332,114L331.6,120L324.6,122.6L323.3,120.3L326.6,118.6L324.3,118.9L326.3,116.8L323.9,116.1L323.9,113.3L329.5,110.4ZM431.1,163.8L435.6,163.6L438.9,167.2L437.1,171.7L443.5,181.3L435.7,183.1L424.3,176.2L423.6,173.1L428.1,170.5L431.1,163.8ZM458.9,188.6L457.3,189.1L458.2,188.3L459.2,188.2L458.9,188.6ZM455,163.2L460.1,160.8L469.2,165L468,174.1L470.6,179.1L468.6,181.6L473.6,187.8L469.8,192.5L461.4,190.9L460.2,187.9L456,189.3L449.7,186.2L446.6,180.8L442.4,180.1L437.1,171.7L438.9,167.2L434.7,161.8L435.4,156.9L438.6,159.2L442.4,157.1L444.6,162.4L448.4,164.6L455,163.2ZM543.8,243L544.2,243.6L543.7,244.2L542.5,242.5L543.1,242.3L543.8,243ZM546.6,249L545.6,247.9L545.8,247.4L547,248.7L546.6,249ZM582.1,263.5L580.8,263.3L581.9,262.2L582.6,262.6L582.1,263.5ZM580.2,262.2L580.5,262.6L579.2,263.5L578,262L580.2,262.2ZM560.9,249L562,251.7L558.9,249.6L560.9,249ZM595.8,255.1L595.3,255.5L595.8,256.2L594.6,257L595.2,254.5L595.8,255.1ZM594.6,256.3L593.9,256.3L594.7,254.8L594.6,256.3ZM565.1,238L564.8,237.2L565.3,236.8L565.6,237.6L565.1,238ZM565.2,251.7L564,252L564.1,250.6L565.2,250.9L565.2,251.7ZM621,246.8L622.5,247.8L621.5,247.7L621,246.8ZM621.6,248.8L623.3,248.9L623.1,249.2L622.3,249.2L620.8,248.7ZM611.6,245.5L612.2,246.2L610.1,245.8L611.6,245.5ZM606.2,241.3L606,240.7L606.8,240.1L606.2,241.3ZM605.7,248.9L604.3,248.7L604.8,248.1L605.7,248.9ZM601.6,250.4L601.3,249.9L601.3,249.4L601.4,249.8L601.6,250.4ZM602.2,249.1L601.1,249.3L600.3,249.2L600.5,249.1L602.2,249.1ZM599.6,249L598.1,249.2L598.8,248.7L599.6,249ZM612.3,261.8L612,261.1L613.1,260L612.3,261.8ZM603.1,261.2L601.1,261.7L601.4,261.1L603.1,261.2ZM598.6,262.2L599.7,262.5L598.3,262.7L598.6,262.2ZM611.6,248.1L611,247.4L611.8,247.4L611.6,248.1ZM541.5,234.7L555.9,244.8L557.9,250.7L560.8,251.7L560.2,257.3L557.8,257.5L550.7,250.7L539.1,235.5L538.7,234L541.5,234.7ZM594.6,263.1L588.8,263.2L594,263.1L594.9,262L594.6,263.1ZM589.4,264.7L590.1,266.5L587.1,264.9L589.4,264.7ZM585.8,262.5L587.5,263.2L582.6,263.7L585.1,263.3L584.6,262.2ZM598.8,243.7L589.6,244.9L590.6,248.2L596.2,247.4L592,249.2L595.1,254.4L592.3,255L590.8,250.8L590.1,256.8L588.3,256.9L586.8,250.9L589.4,243.9L599.4,241.9L598.8,243.7ZM563.7,257.9L573.8,259.5L578.2,263.4L561.6,260.5L559.1,259.3L563.7,257.9ZM567.9,241.5L569.9,243.7L578.1,242.4L580.4,236.8L582.8,236.5L587.2,243.4L585,243.2L581.1,252.6L578.3,253.9L577.7,252L569.3,251.4L566.6,244.3L567.9,241.5ZM605.2,243.7L607,242.2L606.4,247.2L605.2,243.7ZM609.6,251.5L611.3,253.3L605.3,252.1L609.6,251.5ZM603.6,251.9L604,252.8L603,253.2L601.5,252.3L601.7,251.7L603.6,251.9ZM599.3,263.9L599.4,265.2L596.7,266.6L596.8,265.1L599.3,263.9ZM619.3,257.1L619.1,258.4L618.1,257.9L618.8,256.5L619.3,257.1ZM618.9,258.7L618,259.4L618.1,258L618.9,258.7ZM626.6,262.6L625.3,262.3L626.3,260.7L627.5,260.5L628,261.2L626.6,262.6ZM632,250.7L632,264.1L630.3,261.6L627.7,262.2L625.5,256.1L617.5,251.6L615.7,253.8L613.7,251.1L617.6,249.7L611.7,248.2L617.7,246.9L620.3,252.3L625.6,248.4L632,250.7ZM627.7,262.6L627.1,262.4L627.6,262.1L627.7,262.6ZM552,241.3L551.4,241.8L551.4,241.2L552,241.3ZM553.3,243.5L553.1,243.1L553.1,242.6L553.4,242.8L553.4,243.2ZM553.5,242.7L553.1,242.4L552.6,242.2L552.6,242.1L553.5,242.7ZM554.6,244L553.5,243.7L553.6,243.1L554.6,244ZM554.8,243.7L554.5,243.5L554,243.3L554.1,243L554.9,243.6ZM554.9,244.3L554.9,244.1L555.1,244L555.1,244.3ZM555.4,244.1L555.3,243.7L555.5,243.7L555.6,243.9L555.4,244.1ZM556.8,243.1L556.9,243.2L556.5,243.3L556.5,243.1L556.8,243.1ZM557.8,243.1L557.8,243.7L557.1,243.3L557.8,243.1ZM558.3,245.8L557.5,245.8L557.7,245.4L558.3,245.8ZM557.8,246.3L557.3,246.8L557.2,246.2L557.8,246.3ZM555.8,246.2L555.5,246L555.8,245.9L556.1,246.1L555.8,246.2ZM567.8,248L567.7,247.5L568.3,247.5L567.8,248ZM576.6,260L574.4,259.9L577,259.5L576.6,260ZM619.7,247.7L619.4,247.5L619.6,247.3L619.7,247.5L619.8,247.7ZM603.9,246.5L603.7,246.3L603.9,245.9L604,246.1L604,246.4ZM604.9,246.4L605.1,247.2L604.1,246.4L604.9,246.4ZM615.4,257.6L615.6,257L616,256.3L616.1,256.3L615.7,257.1L615.4,257.6ZM615.2,257.6L615.1,257.4L615.1,256.9L615.4,257.2ZM606.1,253L605.4,252.9L606.2,252.6L606.1,253ZM603.1,237.2L603.1,236.7L603,236.1L603.4,236.6ZM600.7,238.5L600.5,238.1L600.4,237.8L600.7,238.3ZM611.2,262.5L611.7,262L612,262L611.5,262.3L611.2,262.5ZM609.2,261.9L608.8,261.6L608.8,261.4L609.3,261.4L609.3,261.7ZM605.6,262.1L605.8,262.1L605.2,262.2L605.2,262ZM610.4,249L610.1,249.6L609.1,249.3L610.4,249ZM553.1,256.6L552.8,256.3L552.9,256.2L553.4,256.4L553.1,256.6ZM549.4,252.2L549.1,251.8L548.8,251.2L549.4,251.5L549.3,251.8ZM548.7,251.2L548.4,251.1L548.4,250.7L548.4,250.6L548.9,250.9L548.7,251.2ZM548.1,250.2L547.5,249.8L547.6,249.5L547.9,249.9L548.1,250.2ZM545.2,246.6L545,245.4L545.5,245.9L545.2,246.6ZM541.1,240.6L540,240L539.9,239.5L540.7,240L541.1,240.6ZM593.3,256.6L593,256L593,255.8L593.3,255.9L593.4,256.5ZM595.8,247.9L596.4,248.4L595.7,248.7L595.6,248.1L595.1,248.6L595,248L595.8,247.9ZM593.1,246.3L592.8,246.4L592.6,246.5L592.9,246.3ZM590.2,258.6L590.2,258.2L590.2,257.9L590.2,257.2L590.4,257.6L590.2,258.6ZM579.6,259.7L579.5,259.4L580,259.5L579.9,259.6ZM581.3,253.7L581.1,252.8L581.6,252L581.7,252.6L581.7,253.3ZM595.1,267.8L595.5,267.4L596.1,266.9L596.2,267.3L595.3,267.8ZM597.9,262.6L597.4,262.7L597.5,262.4L597.9,262.2L597.9,262.6ZM597,262.4L596.5,262.9L596,262.7L596.4,262.3L597,262.4ZM596,262.6L595.4,262.5L595.6,262.3L596,262.3L596,262.6ZM619.1,258.8L619.1,258.6L619.2,258.6L619.3,258.7L619.3,258.8L619.1,258.8ZM555.4,243.4L555.2,243.2L555.3,243.1L555.4,243.3ZM556.3,243.8L556.1,243.7L556.1,243.6L556.1,243.6L556.2,243.7L556.3,243.8L556.3,243.8ZM557,243.8L556.8,243.5L556.9,243.5L557.1,243.6L557,243.8ZM558,245.3L557.9,245.2L557.6,244.9L558,245.2L558,245.3ZM561.3,239.1L561.1,239L561.1,238.9L561.1,238.8L561.2,238.8L561.3,239L561.3,239.1ZM560.1,239.6L560.1,239.3L560.1,239.2L560.3,239.3L560.2,239.6ZM566.5,239.6L566.4,239.5L566.5,239.3L566.6,239.3L566.6,239.5L566.5,239.6ZM566.5,248.8L566.4,248.6L566.6,248.5L566.7,248.6L566.7,248.7L566.5,248.8ZM563.6,251.4L563.5,251.3L563.7,251.2L563.7,251.3ZM562.5,251.6L562.3,251.5L562.2,251.4L562.5,251.4L562.5,251.6ZM577.8,260.1L577.6,259.9L577.7,259.9L577.8,260ZM574.3,257.4L574.1,257.3L574.3,257.1L574.4,257.3ZM559,259L558.9,258.9L559.1,258.8L559.2,258.8L559,259ZM543,241.2L542.6,240.9L542.8,240.9L543,241L543,241.2ZM539,233.6L538.7,233.4L538.8,233.4L539,233.5L539,233.6ZM596.4,248.9L596.4,248.5L596.5,248.5L596.5,248.7L596.6,248.9ZM595.7,254.1L595.3,253.9L595.3,253.6L595.8,253.6L595.9,253.8ZM597.1,249.5L597,249.5L596.9,249.3L597,249.2L597.1,249.4L597.1,249.5ZM595.5,249.3L595.5,249.2L595.5,249.1L595.6,249.1L595.6,249L595.7,249.1L595.5,249.3ZM588.1,263.3L588.1,262.9L588.2,262.8L588.3,262.9L588.1,263.3ZM587.3,262.3L587.3,262.1L587.4,262.1L587.5,262.2L587.4,262.3ZM580.2,263.4L580,263.3L580.2,263.2L580.3,263.4ZM584.6,236.9L585,237.1L584.6,237.2L584.4,236.9ZM584.4,238.8L584.2,238.5L584.4,238.4L584.5,238.7ZM597.5,257.7L597.4,257.6L597.3,257.5L597.3,257.4L597.4,257.5L597.5,257.6L597.5,257.7ZM596.6,256.4L596.5,256.3L596.5,256.2L596.6,256.2ZM590.6,260L590.5,260L590.5,259.8L590.8,259.8L590.8,259.9L590.8,260L590.6,260ZM584.2,262.5L584.2,262.4L584.1,262.2L584.5,262.1L584.3,262.5ZM581.9,252.8L581.7,252.6L581.9,252.4L582,252.3L581.9,252.5L581.9,252.8ZM604.2,243.9L604.1,243.8L604.2,243.7L604.3,243.8ZM618.5,249.8L618.5,249.6L618.6,249.6L618.6,249.7ZM617,254.2L616.8,254.1L616.4,253.9L616.4,253.8L616.7,254L616.9,254.1L617,254.2ZM611.4,247.1L610.6,247.1L610.8,247.1L611.3,247.1ZM610.8,246.5L610.7,246.3L610.9,246.3L611,246.3L610.9,246.5ZM608.6,245.8L608.6,245.7L608.3,245.5L608.2,245.3L608.7,245.7L608.7,245.8L608.6,245.8ZM604.4,245.5L604.3,245.4L604.4,245.1L604.4,245.4ZM604.3,244.1L604.3,244L604.4,243.9L604.4,244L604.3,244.1ZM604.1,247L603.8,247L604,246.7L604.1,247ZM607,252.7L606.9,252.7L606.7,252.6L606.9,252.6L607,252.6ZM606.4,252.8L606.4,252.6L606.5,252.6L606.6,252.6L606.7,252.7L606.4,252.8ZM602.9,237.6L602.8,237.4L602.8,237.2L602.9,237.2L603,237.4L602.9,237.5L602.9,237.6ZM603.2,237.7L603.1,237.6L603.1,237.5L603.2,237.7L603.2,237.7ZM600.2,240L600.2,239.7L600.3,239.8L600.3,240ZM613.7,260.2L613.5,260.1L613.3,260L613.6,259.9L613.7,260.2ZM606.8,260.1L606.6,260L606.8,259.9L606.9,260L606.9,260.1ZM604.2,261L604.3,260.8L604.5,260.9L604.4,261ZM596,266.6L596.2,266.3L596.4,266.3L596.2,266.4L596,266.6ZM593,267.2L592.7,267.1L593,266.8L593.3,266.8L593.1,267.1ZM619.4,258.6L619.4,258.5L619.5,258.4L619.5,258.3L619.6,258.3L619.5,258.6L619.4,258.6ZM619.1,259.2L619.1,259.1L619.2,259L619.3,259L619.1,259.2ZM605.4,251.6L605.2,251.6L605.2,251.5L605.4,251.4L605.5,251.4L605.4,251.6ZM604.8,252.3L604.6,252.2L604.5,252.1L604.6,252.1L604.6,252L604.8,252.2L604.8,252.3ZM595.2,263L595.2,262.9L595.4,262.7L595.6,262.7L595.4,262.8L595.2,263ZM483.7,195.2L489.4,194.1L486.3,187.9L491.1,186L498.1,175.9L495.3,170L503.2,167.9L505.6,170.9L505.1,178.1L509.7,180.7L507.8,184L513.2,187L524,189.6L524.2,186L526.3,188.6L532.2,188.5L531.4,186.4L537.5,182.8L540.4,182.5L543,185.4L542.4,188L538.5,189.1L536.5,195.2L534.8,194.8L534.1,199.4L532.6,195.7L530.4,195.9L533.1,192.8L524.7,189.2L526.1,200.2L523.9,198.6L520.7,203.8L508.4,212.8L506.5,226.6L502.6,228.9L494.1,211.4L493.6,199.9L491.7,198.8L488.7,202.2L485.2,199L488.3,197L483.7,195.2ZM535.9,231.6L535.5,231.1L535.6,230.7L535.9,230.7L536,231.4ZM535.5,230.6L535.4,230.4L535.4,230.4L535.5,230.3L535.6,230.3L535.7,230.4L535.5,230.6ZM534.5,228.6L534.4,228.6L534.3,228.5L534.3,228.4L534.4,228.3L534.5,228.5L534.5,228.6ZM534.9,229.3L534.8,229.1L534.9,229L535.1,229.2L534.9,229.3ZM535.2,229L535.1,228.9L535.1,228.8L535.2,228.6L535.2,228.7L535.2,229ZM533.7,226.7L533.6,226.6L533.7,226.5L533.8,226.6L533.7,226.7ZM533.1,223.8L532.9,223.6L532.9,223.3L533.2,223L533.3,223.4L533.1,223.8ZM533.4,222.1L533.4,221.9L533.5,221.9L533.5,222ZM533.6,221.8L533.2,221L534.3,217.5L533.6,221.8ZM534.3,221L534.1,220.8L534.1,220.7L534.2,220.7L534.2,220.7L534.3,221ZM533.5,219.1L533.5,218.8L533.6,218.8L533.6,218.7L533.6,218.8L533.6,218.9L533.5,219.1ZM492.9,222.4L492.9,222.3L493,222.3L493,222.4L492.9,222.4ZM493.5,228.5L493.4,228.5L493.5,228.5L493.6,228.4L493.5,228.5ZM313,63.3L314.7,62.5L316.8,69.2L307.2,76.6L298.3,74.9L300.5,71.2L295.6,70.3L300,69L299.6,67L294.6,66.9L296.5,63.6L298.8,64.8L297.8,62.2L300.9,64.4L301.4,68.1L303.1,64L304.8,65.6L306.1,63.5L307.5,65.8L307.1,63.8L310.9,62L313,63.3ZM389.8,132.3L391.2,133.7L387.4,138.8L381.1,140.2L377.3,137L379.5,133.5L389.8,132.3ZM174.4,214.4L167,218.7L162.3,215.7L165.6,212.5L174.4,214.4ZM167.9,211.7L168,211.6L168.4,211.4L168.3,211.5ZM169.2,211.5L169.3,211.3L169.5,211.3L169.4,211.4ZM198.2,204.4L198.1,208L192.7,207.3L197,206.7L194.8,204.2L198.2,204.4ZM196,206.6L195,206.2L195.3,206L195.8,206.2L196,206.6ZM196.4,203.7L195.9,203.7L195.7,203.6L196.1,203.6ZM220.2,234.3L221,229.5L223.8,228.9L224.8,232.3L227.9,233L226.1,237L229.3,241.4L223.7,242.6L222.2,235L220.2,234.3ZM310.5,220L316.5,219.3L316.5,221.3L313.8,223L313.8,220.8L310.5,220ZM311.5,222.7L311.5,222.6L311.7,222.4L311.8,222.6L311.5,222.7ZM312.1,222.7L312,222.7L312,222.5L312.1,222.5L312.1,222.7ZM312.4,222.5L312.3,222.4L312.5,222.2L312.6,222.2L312.5,222.3L312.4,222.5ZM312.8,221.8L312.8,221.6L312.9,221.7L312.8,221.7ZM312,221.9L311.8,221.8L311.9,221.6L312.1,221.9ZM311.8,221.3L311.7,221.2L311.6,221.1L311.6,221L311.8,221L311.9,221L311.8,221.3ZM323.4,228L321.7,225L317.4,226.9L313.8,223.2L316.5,219.3L326.2,220L328.8,228.3L325.9,230.7L323.4,228ZM156.5,215.4L157.4,212.2L160,212.2L158.9,208.5L162.7,208.5L162.5,212.6L164.6,212.9L162.3,215.7L156.5,215.4ZM218.5,220.7L218.6,220.5L218.8,220.3L218.8,220.6L218.5,220.7ZM401.3,165.3L401.2,165.1L401.3,165L401.3,165.1L401.3,165.3ZM386.6,160.8L386.9,161.3L386,161L386.4,160.3L386.6,160.8ZM387.3,162.3L387,162.4L386.6,162L386.7,161.7L387,161.9L387.3,162.3ZM386.6,159.9L386.4,160L386.6,159.4L386.8,159.9ZM386.7,160.7L386.6,160.3L386.7,160.3L386.7,160.4L386.8,160.6L386.7,160.7ZM385.5,157.9L384.6,156.9L385.2,156.9L385.1,157.6ZM392.4,159.3L393.7,159.8L394.5,161.6L391.1,159.2L392.1,158.8L392.4,159.3ZM392.9,158.7L392.8,158.7L392.6,158.4L393,158.6L392.9,158.7ZM393.1,158.5L393.2,158.3L393.4,158.2L393.3,158.4L393.2,158.5L393.1,158.5ZM394.6,159.5L394.6,159.4L394.4,159.2L394.4,159L394.6,159.2L394.6,159.5ZM394.8,154.7L394.5,154.4L394.7,154.1L395,154.3L395,154.5L394.8,154.7ZM392.5,161.8L392.3,161.7L392.3,161.7L392.4,161.5L392.5,161.6L392.5,161.8ZM391.5,166.2L391.2,166.1L391.3,165.7L391.4,165.8L391.5,166.1ZM399.9,168.1L399.7,167.6L400,167.1L400,167.7L399.9,168.1ZM399.4,164.2L399.3,163.9L399.6,164.1L399.6,164.1L399.4,164.2ZM399.4,164.8L399.7,164.5L400.1,164.3L400,164.6L399.6,164.7L399.4,164.8ZM396.4,164.3L396.2,163.9L396.6,163.6L396.7,164L396.4,164.3ZM395.9,164.1L395.7,164L396,163.7L396,163.9L395.9,164.1ZM396.4,165.8L396.3,165.7L396.3,165.5L396.3,165.4L396.5,165.6ZM396.2,165L396.1,164.8L396,164.7L396.1,164.6L396.3,164.8L396.3,164.9L396.2,165ZM399.5,162.1L399.7,162.3L399.1,162.4L398.7,162.2L399.2,162ZM397.5,162.7L397.7,162.5L398.2,162.4L398.1,162.5L397.6,162.7ZM397.1,164.6L397.1,164.6L397.2,164.5L397.5,164.2L397.5,164.4L397.1,164.6ZM398.3,165.2L398.1,165.2L398.2,165.1L398.3,165L398.5,165.1ZM394,162.7L394,162.5L394.1,162.3L394.2,162.3L394.3,162.4L394.2,162.6L394,162.7ZM394.2,163.3L394.2,163L394.3,162.9L394.4,163L394.2,163.3ZM394.5,164.8L394.1,165L394.2,164.7L394.4,164.8L394.5,164.7ZM395.4,163.1L395.3,163.1L395.3,163L395.3,162.9L395.3,162.8L395.4,162.8L395.4,163.1ZM395.4,162.3L395,161.8L395,161.5L395.4,161.8L395.5,162.1ZM395.9,162.7L395.6,162.5L395.5,162.3L395.7,162.4L396,162.5ZM394.9,164.3L394.8,164.1L394.9,164L394.9,164.3ZM397.5,161.1L397.5,160.6L397.6,159.9L397.8,160.3L397.7,160.9ZM398.3,158.2L398.5,159L397.2,158.4L398.3,158.2ZM396.7,155.2L396.4,155L396.7,154.9L396.8,154.9L396.8,155L396.9,155.1L396.7,155.2ZM396.3,156.4L396,156.6L395.8,156.7L396,156.2L396.4,156.3ZM396.1,163L396.1,162.8L396.2,162.8L396.4,162.9L396.4,162.9L396.3,163L396.1,163ZM394.4,163.8L394.4,163.6L394.5,163.6L394.5,163.8ZM401.1,166.8L401.2,165.9L402.1,165.5L401.1,166.8ZM393.3,167.8L397,168.8L397.9,169.1L392.6,168.5L393.3,167.8ZM398.4,151.7L397.8,154.3L393,154.3L393.3,156.4L390.7,154.9L392.1,158.4L390.5,159.3L393.6,162.3L390.9,162.7L391.7,165.5L389.2,164.8L387.6,161.7L391.8,161.2L385.9,158L387.3,154L398.4,151.7ZM344.5,222.7L346.9,233L338.2,235L338.7,222.8L344.5,222.7ZM363.6,134.7L359.9,134.7L361.1,130.5L357.4,129L356.5,124.2L359.2,115.2L364.5,115.6L362.2,110.9L366.8,114.1L372.5,113.5L375.1,123.3L369.2,126.3L372.7,131.2L371,135.1L363.6,134.7ZM372.5,112.9L371.4,112.9L371.7,111.6L372.5,112.9ZM373.5,114.3L372.9,114.5L372.7,113.6L373.5,114.3ZM367.2,112.6L367,112.4L367.1,112.2L367.5,112.5L367.2,112.6ZM361.4,111.4L361.7,110.3L361.6,110.9L362.1,110.9L361.4,111.4ZM361.9,111.6L361.6,111.5L361.8,111.4L362,111.4L361.9,111.6ZM433.1,153.2L429.2,152.2L426.1,146.7L437.8,149.5L439.3,153.4L433.1,153.2ZM311.2,217.4L316.3,218L310.3,218.5L313,217.7L310.7,217.4ZM371.6,241.1L374,243.7L373.5,250.2L370.2,249.1L367.2,253.4L362.3,246.6L364.2,243.2L367.6,243.4L367.7,240.7L371.6,241.1ZM363.8,149L363.2,152.5L362,149.8L363.8,149ZM359.8,134.9L356.7,138.9L358.3,138.3L359.8,145.9L357,147.9L352.5,146.5L348.6,149.9L340.9,147.2L342.3,140.9L343.4,142.4L342.2,138.6L334.8,132.1L341.6,131.6L340.7,128.3L345.4,129L349.7,123.8L361.1,130.5L359.8,134.9ZM342,140L341.7,139.6L341.7,139.4L342.1,139.8ZM436.5,272.1L436.5,271.8L436.5,271.4L436.7,271.6L436.6,272ZM458,290L457.3,289.7L457.3,289L458.4,289.5L458,290ZM220.4,215.6L219.9,215.5L219.7,214.8L220.2,215L220.5,215.5ZM219.2,211.9L219.1,211.3L219.7,211.8L219.2,211.9ZM218.7,212.4L218.5,211.6L219,211.8L218.7,212.4ZM219.5,212.6L219.5,212.4L219.6,212.3L219.7,212.5L219.5,212.6ZM233.1,240.6L234.5,233.6L238.8,235.9L236.9,240.7L233.1,240.6ZM229.9,137.3L229.9,137.1L230,137.1L230,137.2L229.9,137.3ZM229.6,137.2L229.6,136.8L229.5,136.3L229.7,136.4L229.8,137ZM215.8,207.9L215.8,207.9L215.9,207.8L216,207.8L216,207.9L216,207.9L215.8,207.9ZM216.3,208.3L216.3,208.3L216.3,208.2L216.4,208.3L216.4,208.3L216.3,208.3ZM35.6,279.9L35.5,279.8L35.6,279.8L35.6,279.9ZM38.9,281.8L38.8,281.7L38.8,281.6L39,281.6L38.9,281.8ZM35.6,280.3L35.6,280.1L35.7,280.1L35.7,280.3ZM40.3,282.2L40,282.4L39.3,281.9L39.9,281.7ZM61.3,265.4L61.3,265.5L60.9,265.6L60.7,265.4L61.3,265.4ZM60.8,265.9L60.8,265.8L60.8,265.7L60.9,265.7L60.9,265.8L60.8,265.9ZM61.7,267L61.7,266.8L61.8,266.8L61.8,266.9L61.8,266.9L61.7,267L61.7,267ZM58.6,263.7L58.5,263.5L58.5,263.4L58.9,263.5L58.8,263.7ZM58.8,264.8L58.7,264.6L58.7,264.6L58.8,264.5L58.9,264.6L58.8,264.7L58.8,264.8ZM57.3,282.5L57.3,282.3L57.7,282L57.3,282.3L57.3,282.5ZM59.8,263.7L59.8,263.6L59.9,263.6L60,263.7L59.8,263.7ZM57.6,283.6L57.6,283.6L57.4,283.5L57.4,283.5L57.6,283.6L57.6,283.6ZM57.3,283.2L57.2,283.1L57,282.9L57.2,283L57.3,283.2ZM66.5,284L66.4,283.8L66.2,283.7L66.4,283.8L66.5,284ZM65.2,283.5L65,283.3L65,283.3L65.2,283.5L65.2,283.5ZM62,289L62,288.8L62,288.7L62,288.9ZM53.8,278.7L53.9,278.5L53.9,278.5L53.9,278.7L53.8,278.7ZM52.1,279.9L51.9,279.8L51.7,279.8L51.8,279.8L51.9,279.8L52,279.8L52.1,279.9ZM51.6,279.8L51.4,279.7L51.5,279.7L51.6,279.8L51.7,279.8L51.6,279.8ZM48.7,278.3L48.6,278.2L48.5,278L48.5,278L48.5,278L48.7,278.2L48.7,278.3ZM47.8,279.2L47.7,279L47.5,278.8L47.7,278.9L47.8,279.2ZM679.6,287.7L685.1,292L684,292L681.5,290.4L679.7,288.7L679.1,287.7L679.6,287.7ZM686.1,292.9L686,292.8L686,292.6L686.2,292.8ZM670.7,285.6L670.7,285.3L670.7,285.1L670.8,285.4L670.7,285.6L670.7,285.6ZM687.3,290.2L687,290.6L686.8,290.1L687.3,290.2ZM684.1,288.6L684.2,288L684.4,288L684.3,288.3L684.2,288.6ZM685.8,289.6L685.2,288.6L685.7,288.6L685.8,289.6ZM485.8,360.7L488.4,361.2L484.9,362.6L485.8,360.7ZM485.7,360.6L485.5,360.1L486,360L485.7,360.6ZM450.1,352.6L449.9,352.4L450.1,352.4L450.2,352.6ZM385.3,90.1L385.8,90.5L384.9,91.2L384.6,90.6L385.3,90.1ZM384.6,90.8L384.5,90.9L384.4,90.9L384.4,90.5L384.6,90.8ZM386.5,91.5L386.3,91.4L386.1,91.4L386.3,91.2L386.5,91.4ZM393.6,64.5L392.7,54.3L386.6,48.2L388.6,46.9L390.2,50L395.4,50.7L398.6,43.1L401.1,42.2L403.9,44.6L402.6,51.3L405.7,55.8L403.8,59.5L405.7,75.3L408.8,79.2L401.2,89.3L391.5,92.3L388.2,89.1L387.5,80.4L396.1,70.1L393.6,64.5ZM389.2,90.2L389.1,89.8L389.2,89.7L389.3,90.1ZM387.8,77.7L388.2,77.8L388,78L387.8,77.4ZM390,90.1L390.1,90.8L389.5,90.3L390,90.1ZM388.2,89.5L387.9,89.5L387.8,89L387.9,88.9L388.3,89.3ZM388.8,91.1L388.8,91.1L388.8,90.8L388.9,90.7L389.1,90.7L389,90.9L388.8,91.1ZM388.4,91.1L388.4,90.9L388.6,90.8L388.6,91.1ZM394.9,69.6L394.8,69L395.5,69.2L394.9,69.6ZM711.3,279.1L710.7,280.1L711.3,279.6L711.5,280.1L708.5,280.1L711.3,279.1ZM708.1,281.5L708.9,282.9L706.1,282.9L708.1,281.5ZM711.5,280.6L711.4,280.5L711.5,280.3L711.6,280.1L711.6,280.3L711.6,280.5L711.5,280.6ZM708.5,284.9L707.9,285.1L707.5,285.1L708.1,284.8ZM705.9,280.9L706,280.7L706.1,280.7L706,280.9ZM710.4,281.4L710.3,281.1L710.4,281.1L710.4,281.2L710.5,281.3L710.4,281.4L710.4,281.4ZM710.3,283L710.1,282.7L710.2,282.6L710.3,282.9L710.3,283ZM709.1,282.2L709.1,282.1L709.1,281.9L709.2,281.9L709.3,282.1L709.2,282.2L709.1,282.2ZM711.6,279.6L711.6,279.6L711.6,279.5L711.6,279.6L711.6,279.6ZM705.7,271.1L705.5,271.1L705.6,271.1L705.7,271.1L705.7,271.1ZM700.6,290.8L700.6,290.8L700.6,290.7L700.6,290.7L700.6,290.7L700.7,290.8L700.6,290.8ZM416.4,234.2L411.8,229.1L419,216L421.8,214.8L427.8,216.3L430.9,219.8L429.8,222.9L432,222.8L434.2,227L442.4,229L436.2,235.4L425.1,238.4L416.4,234.2ZM400.2,101.3L394.2,100L392.4,94.8L401.6,93.6L400.2,101.3ZM390.8,97.1L390.1,98.6L389.8,98.8L389.1,97.5ZM391.1,96.4L390.5,96.8L389.5,95.8L390.8,95.2L391.4,95.9L391.1,96.4ZM391.9,97.3L391.6,96.9L392.1,96.9L392.1,97.3ZM418.9,215.4L420,210.1L423.2,208.1L425.6,214.2L432.4,219.3L426.4,215.6L418.9,215.4ZM426.3,212.4L426.1,212.3L426.1,212.3L426.2,212.2L426.2,212.1L426.2,212.2L426.3,212.4ZM426.5,213.1L426,213.2L426,212.6L426.5,213.1ZM362.4,237.7L362.8,237.8L362.4,238.7L361.7,238.7L362.4,237.7ZM367.6,241.5L367.6,243.4L363.6,243.1L364.5,240.7L367.6,241.5ZM162.3,215.7L165.4,218.1L160.8,217.1L162.3,215.7ZM419,199.4L395.5,199.4L395.5,177.6L414.3,178.1L414.3,186.4L410.5,182.1L419,199.4ZM190.9,245.7L183.3,255.6L180.4,254.5L181.3,243.7L183.7,242.4L190.9,245.7ZM181,251.6L180.8,251.1L181.4,250.9L181,251.6ZM183.5,242.9L183.4,242.8L183.5,242.7L183.6,242.6L183.6,242.9L183.5,242.9ZM160.2,247L159.9,246.6L160.6,246.5L160.2,247ZM161.9,247.4L161.8,247.2L162.1,246.9L162.5,246.8L162.3,247.1ZM157.8,246.4L157.6,246.2L157.6,246L158.1,246.1L158,246.3ZM160,248.1L160,247.9L160.1,248L160.1,248.1ZM158.5,245.5L159.3,246.9L158.2,247.5L157.9,247.2L158.7,246.5L157.7,245.4L158.5,245.5ZM159.7,246.2L159.2,246L159.4,245.7L159.8,246L159.7,246.2ZM198.1,207.6L198.5,204L205.1,206.8L198.1,207.6ZM219.3,214L219.1,213.4L219.2,213.1L219.5,213.3L219.5,213.9ZM432.5,222.1L429.7,221.4L432.4,219.3L432.5,222.1ZM299.4,16.2L303,17.2L302.4,20L298.9,21.4L292.5,17.2L293.9,19.7L291.4,21.5L288.9,20.2L290.4,21.6L288.3,22.3L295.3,20.4L299.6,23.9L299,29.3L294.3,23L290.1,25.3L293.9,24L293.3,27.8L299.7,31.8L300.4,39.8L298.7,37.4L296.9,39.9L294,34.7L289.3,32.5L292,35.4L286.6,36.6L285.2,39.9L290.2,39.8L288.7,42.7L292.2,40.5L299.1,42.4L290.5,50.3L281.3,53.7L278.6,51.6L273.9,62.3L267.5,66.5L268.5,62.8L266.9,62.4L266.6,65.9L262.5,66.8L263.1,68.7L260.7,69.2L262.6,71.9L259.7,72.7L261.8,75.4L256.9,79.9L258.6,83.7L257.4,88.4L254.9,89.1L256.2,91.8L252,90.7L253.3,88.8L250.7,89.1L251,86.5L246.4,88.5L244.9,82.8L241.9,81L243,78.5L241.7,79.5L239.5,75.8L242,73.1L239.4,73.7L239.7,71.9L242.3,70.8L240.6,68.4L238.3,72.5L237.4,67.7L240.3,65.6L236,66.5L235.6,64.2L240,60L235.3,63.8L237.7,60L234.6,58.6L237.4,55.3L241.3,56.6L237.8,54.9L234.9,56.4L236.1,52.9L239.6,53.4L240.1,51.7L235.6,52.4L237.2,50.1L240.4,50.6L241.9,42.5L237.9,42.3L233.3,38.4L241.2,40.1L238.9,36.4L240.5,36.5L236.4,35.4L238.9,32.2L235.5,32.8L235.1,27.7L234.5,33.6L231.1,33L232.9,24.2L231,23.4L230.2,16.1L299.4,16.2ZM237.6,43.4L238.5,45.3L234.9,47L232.7,41.5L237.6,43.4ZM240.1,45.5L239.8,43.5L240.3,43.1L241.2,43.5L240.1,45.5ZM235.1,36.3L234.5,35.5L235.2,34.6L235.1,36.3ZM232,25.2L231.3,26.3L229.9,25.2L231.9,24.4L232,25.2ZM292.7,37.4L291,39.9L287.3,39.7L288.2,37.1L292.7,37.4ZM268.7,66.8L268.6,66L269.1,66.1L269,66.8ZM249.9,88.8L249.1,88.3L250.3,87.6L249.9,88.8ZM238.8,37.4L238.2,36.7L239.3,37.3L238.8,37.4ZM331,84.1L330.6,83.8L330.6,83.5L331,83.9ZM330.9,85.6L330.5,85.1L330.4,84.7L330.8,85L330.8,85.5ZM330,82.7L330,82.9L329.7,82.9L329.4,82.5L329.8,82.4L330,82.7ZM330.9,82.7L330.6,83.2L329.9,81.9L331,82.1L330.9,82.7ZM331.3,82.3L331.2,82.2L331.1,81.9L331.3,81.8L331.3,82.3ZM370.1,108.1L368.7,111.3L366.9,107.9L369.9,106.5L370.1,108.1ZM364.3,111.2L362.2,110.9L361.2,104.7L366.1,100.5L364.3,111.2ZM366.3,108.5L366.5,110.1L364.9,110L364.6,108.7L366.3,108.5ZM368,111.1L368.3,111.8L367,111.3L367.1,110.7L368,111.1ZM366.3,111.4L366.3,110.9L366.8,110L366.5,111.2ZM370,110.7L369.2,110.8L369.5,110.3L370,110.7ZM370.1,108.6L370,108.3L370.2,108.1L370.3,108.2L370.1,108.6ZM365.8,111.1L365.3,110.7L365.4,110.7L365.7,110.9L365.9,111.1ZM364.8,111L364.5,110.9L364.5,110.3L364.9,110.6L365,110.9ZM366.1,107.8L366,107.5L366,107.1L366.2,107.2L366.2,107.5L366.1,107.8ZM367,102.4L366.8,102.1L367.3,102L367,102.3ZM375.2,110.5L374.5,110.2L374.6,109.5L375.4,110L375.2,110.5ZM382.9,128.9L379.1,131.7L373.4,131.8L369.2,126.3L375.4,124.1L382.9,128.9ZM413.8,169L411.2,168.7L415,167.5L413.8,169ZM411.2,168.8L414,169.2L411.7,170.2L410.4,169.2L411.2,168.8ZM178.1,196.9L193.3,203.4L186,204.1L187.1,202.4L177.7,197.9L171.5,199.8L178.1,196.9ZM186,199.6L185.8,199.4L185.7,199.2L186.2,199.4ZM185.3,198.8L185,198.6L185,198.4L185.3,198.7ZM184.4,198.2L184.7,198.2L184.6,198.4L184.1,198.3L184.1,198.2ZM185.6,199.1L185.4,198.9L185.5,198.9L185.8,199.1ZM175.9,200.5L174.9,200.4L175.3,199.5L175.9,200.5ZM182.7,198L182.2,197.7L182.2,197.6L182.7,197.9ZM372.3,141L375.8,141.1L377.8,137.9L384.1,141.9L376.7,141.9L380.4,148.3L372.3,141ZM378.8,148.2L379.5,148.3L379.1,148.3L378.6,148.3L378.8,148.2ZM379.4,147.8L378.3,147.7L377.9,147.5L378.5,147.5L379.3,147.7L379.4,147.8ZM378.4,147.3L378,147.2L378.1,147L378.8,147.1L378.9,147.3L378.4,147.3ZM375.6,145.2L375.3,145L375.3,144.9L375.2,144.8L375.6,145.1L375.6,145.2ZM374.5,142.5L374.1,142.3L374.1,142L374.5,142.2L374.5,142.5ZM374.8,143.2L374.4,143.1L374.4,142.9L374.6,142.9L374.8,143.1ZM375.4,144.4L374.9,143.9L374.7,143.4L375.3,144L375.4,144.4ZM375.5,145.5L375.4,145.5L374.9,144.9L375,144.9L375.5,145.5ZM376,145.6L375.9,145.5L375.7,145.4L375.6,145.2L375.9,145.4L376,145.6ZM374,143.5L373.7,142.6L373.7,141.9L374,142.5L374.1,143.4ZM380.7,148.9L379.9,148.7L380,148.7L380.1,148.6L380.4,148.7L380.7,148.9ZM382.1,149.4L380.9,148.7L379.6,148L380.9,148.5L381.9,149.2ZM338.2,235L337.9,235L338,234.9L338.2,234.9L338.2,235ZM328.3,224.6L331.8,223.4L339,226L338.8,234.9L329.1,236.5L329.3,233.4L327,232.1L328.3,224.6ZM176.1,225.8L175.5,228.9L169.3,223L173.9,223L176.1,225.8ZM406.9,262.2L402.4,264.3L402.4,269.3L405.3,270.4L403.9,273L400,269.2L389.9,268.4L388.9,260.3L380.4,262L377.8,257.4L369.4,257.2L377.1,253.1L383.4,235.4L390.2,237L399.8,234.8L405,236L408.3,241L403.4,250.3L406.9,262.2ZM367.3,253.1L370.2,249.1L373.5,250.2L374,243.7L371.6,241L377.3,242L378.3,238.3L382.5,238.3L376.9,253.4L369,255.6L367.3,253.1ZM435.3,270.5L435.2,270.8L434.8,270.4L435.1,270.3L435.2,270.2ZM434,270.8L433.6,270.8L433.5,270.7L433.5,270.6L433.6,270.6L433.8,270.7L434,270.8ZM433.1,269.9L432.7,269.5L432.8,268.8L433,269.3L433.2,269.9ZM199,221.1L194.9,226.6L197.5,230.9L206.9,232.8L206.1,239.7L208.1,242.6L202.1,241.9L201.8,254.1L200.2,253.1L201.6,250.8L195.7,250.3L192,245.8L183.3,242.1L187.3,237.4L186.7,227.7L187.9,229.2L191.7,222.7L199,221.1ZM185.1,240.3L185,240.1L185.2,240L185.2,240.2ZM585.5,194L585.3,193.9L585.4,193.8L585.5,193.8L585.5,194ZM592.9,177.7L591.7,177L592.2,177L592.5,177.3L593,177.7ZM593.9,181.4L593.4,181.2L593.3,180.9L593.9,181.1L593.9,181.3ZM593.7,182L593.4,181.8L593.6,181.7L593.7,182ZM594.1,181.6L594.1,181.6L594,181.4L594,181.3L594.1,181.3L594.1,181.5L594.1,181.6ZM588.7,191.8L588.7,191.5L588.8,191.2L588.9,191.4L588.9,191.6ZM569.7,201.5L569.9,201.5L569.5,201.6L569.5,201.4ZM591.6,185.7L591.6,185.6L591.8,185.5L591.8,185.7ZM576.1,197.7L575.9,197.6L575.8,197.4L576,197.5L576.1,197.7ZM574.5,200.3L574.4,200.1L574.6,199.9L574.6,200.1ZM574,200.2L574,200.2L574.1,200.1L574.2,200L574.2,200.2L574,200.2ZM564.6,200.4L559.2,196.4L551.9,198.3L551.9,201.3L546.9,199.2L546.1,194.7L543.5,195.2L545.7,186.9L540.9,185L540.4,182.5L532.1,186.5L527.8,185.2L525.8,187.5L505.2,178.2L505.6,170.9L496.2,163.7L497.7,162.9L495.1,156.7L508.1,150.8L507.4,142.8L512.8,142.1L513.8,136L518.8,136.4L519.4,132.3L523.5,129.9L528.7,134.5L529.8,141.9L539,144.5L541.1,148.9L558.6,152L567.7,149.6L572.8,146.1L572.7,142.2L576.2,143.2L583.9,137.8L589,137.5L586.2,133.6L580.3,133.9L582.5,127.9L587.7,127.1L591.2,116.5L599.9,116.9L604.6,127.9L610.8,130.9L611.7,134.5L618.9,132.5L617.5,138.8L615.8,142.2L611.7,142.7L611.8,148.4L609.4,148.1L605.9,152.5L602.9,151.6L591.7,159.6L593,153.6L584.7,158.6L587.4,163.6L594.7,163.1L587.5,169.5L593,176.7L589.3,176.6L593.1,179.1L589.6,180.7L593.5,181.5L587.5,190.2L588.5,191.8L582,197.3L576,197L574.8,199.7L569.7,200.8L569.8,203L568,200.1L564.6,200.4ZM570.8,203.9L568.9,207.2L566.2,206.9L567.3,204L570.8,203.9ZM575.9,198.9L576,198.9L576.1,198.9L576,199L575.9,198.9ZM577,198.3L577.5,198.2L577.7,198.4L577.3,198.6L577,198.3ZM577.4,199L577.3,198.8L577.5,198.8L577.5,198.9ZM576.8,198.9L576.7,198.9L577.1,198.7L577,198.9ZM121.3,303L121.3,302.9L121.4,302.8L121.6,302.9L121.8,302.9L121.6,303L121.3,303ZM183.4,318.4L183.5,318.3L183.7,318.2L183.9,318.3L183.4,318.4ZM201,283.5L203.6,282.8L207.8,293.6L204.7,297.5L205.2,302.6L200.6,312.7L202,319.8L197.4,340.7L199.4,347.1L197.5,347.7L198.3,353.2L194.5,361.8L197.8,370L204.9,371L200.1,372.6L199.1,376.4L196.8,374.5L199.4,372.8L195.5,374.2L198.7,372L195.4,373.6L193.5,371.9L193,370.3L196.6,370.9L191.4,366L194.4,365.6L192.3,364.1L193.9,362.3L192.4,357.3L194.8,357.7L192.3,356.6L192.9,353.6L190.1,353.4L193.5,349.6L193.9,353L196.3,347.2L197,338.6L194.1,339.3L193.6,337.2L194.3,327.4L198.8,315.9L201,283.5ZM204.5,373.2L204.5,379.8L197.9,378.9L201.1,378.6L200.7,375.5L203.3,378.7L201,372.5L204.5,373.2ZM207.6,381L205.7,381.1L205.2,380.2L207.4,380.2L207.6,381ZM193.9,343.8L193.5,339.4L194.8,340.5L194.7,342.7ZM192.6,361.3L192.4,363.5L192.1,361.7L190.4,362.8L191.8,359.5L192.6,361.3ZM190.3,359.6L190.8,357.3L191.2,359.2L190.3,359.6ZM192.8,373.1L194.7,373.8L194.4,374.4L192.7,373.3L192.8,373.1ZM192.4,359.2L191.7,359.2L191,357.4L191.8,356.8L192.4,359.2ZM195.8,375.3L196,377.2L193.9,375.2L195.8,375.3ZM192,369.4L192.5,369.9L192.2,370.9L191.3,369.3L191.9,368.8L192,369.4ZM204,380.3L205.7,382.6L202,381.1L204,380.3ZM199.4,377.2L199.4,378.1L197.8,377.8L197.2,376.9L197.7,376.4L199.4,377.2ZM194,346.8L193.6,349.4L192.3,347.4L194,346.8ZM195.2,348L194.7,347.4L195.1,346.5L196.1,347L195.2,348ZM191.4,348.1L191.3,348L191.3,347.8L191.5,347.9L191.5,348.1ZM190.9,366L190.7,365L191.3,365.1L190.9,366ZM191.3,360.1L190.2,361L190.4,359.9L191.3,360.1ZM191.2,356.8L191.1,356.5L191.7,356.4L191.4,356.8ZM191.9,344.5L191.9,344.3L192.1,344.2L192.2,344.3L192.2,344.4ZM194.3,347.9L194.1,347.7L194,347.3L194.2,347.1L194.4,347.7ZM192.4,367.9L191.5,368L191,368.8L191.2,367.6L192.3,367.4L192.4,367.9ZM191,364.7L190.9,363.5L191.9,364.1L191,364.7ZM194,345.2L193.7,345.3L193.3,345.2L193.9,344.9L194,345.2ZM193.2,369.8L192.7,369.5L192.7,369.1L193,369.4L193.3,369.7ZM192.8,350.5L192.2,350.3L193,348.9L192.8,350.5ZM206.6,383.5L206.1,383.4L206.3,383.2L206.8,383.3L206.6,383.5ZM208.8,381.3L208.6,381.2L208.6,381L208.8,380.9L209,381L208.8,381.3ZM199.8,380L201.2,380.5L200.6,380.9L198.8,380L199.8,380ZM207.2,383.1L206.7,382.9L207.1,382.4L207.2,383.1ZM393.4,205.8L393.4,213L391.4,213.1L389,219.1L391.1,223L382.4,228.9L376.1,230L373,225.5L376.4,224.9L375.3,221.1L371.9,215.8L376.1,210.4L377.1,203L375.1,197.2L377.1,196.2L393.4,205.8ZM393.9,227.7L400.4,235L390.2,237L384.3,234.9L377.5,240.8L375.2,237.4L373.9,233.1L376.1,230L382.4,228.9L390.4,222.8L393.9,227.7ZM293,210.4L292.8,210L293.5,209.8L293,210.4ZM296.6,214.6L296,214.3L296.1,213.8L296.2,213.9L296.7,214.4ZM293.6,210.7L293.3,210.6L293.5,210.4L293.7,210.5L293.6,210.7ZM297.9,211.9L298.2,212L298,212.4L297.8,212ZM294.8,214.8L294.6,214.7L294.5,214.5L294.9,214.4L294.9,214.8ZM295.5,211.1L295.1,211.1L294.7,211L295,211ZM297.8,211.1L297.6,210.9L297.7,210.6L297.8,210.8L297.8,211.1ZM297.2,214.2L297.1,214L297.2,213.8L297.4,213.9L297.2,214.2ZM74.2,113.8L76,113.6L74.6,116.8L74.2,113.8ZM76,117.1L76.9,120.3L74.2,117L76,117.1ZM86.1,125.7L93,132.3L83.7,126.9L82.8,124.8L86.1,125.7ZM79.4,107.1L75.7,104.8L68.2,92.4L64,95.9L60.9,90.1L56.9,90.3L56.9,44.7L68.7,50.2L67.3,47.8L70.4,44.5L70.9,47L80,41.5L73,49.9L75.7,46L77.4,47.3L82,43.8L83.5,39.2L88.1,46.3L90.5,41.7L90.9,46.4L95.6,43.7L110,49.3L112.1,51.8L109.9,55.1L120.1,54.1L125.7,62.4L124.3,55L128.8,50.6L122.8,52.4L128,48.9L131.4,53.7L136.1,55.5L142.8,55.5L143.4,53.6L145.8,56.1L143.3,52L148.8,52.7L149.2,61.3L149.8,53.9L153.9,50.7L153.1,48.4L151.6,49.7L153.8,45.7L147.6,41.4L147.8,35L151.7,30.2L157.8,41.6L155.1,44.7L160.1,45.8L158.4,46.8L160.5,52.6L162.4,47L164.6,48.9L166.3,58.4L171.4,49.7L170.1,43.5L176.5,44.7L178.8,49.7L176.1,51.6L178.4,59L174.4,62.6L170.9,59.8L173.5,63.4L167.7,61.8L169.2,63.9L166.5,67.7L158,64.7L167,68.4L164.8,73.3L160.8,73.5L159.3,76.1L153.4,73.4L159.5,77.3L155.8,82.4L154.4,81.5L151.2,89.5L150.8,95.3L152.1,98.3L154.5,96.6L155.2,103.5L159.8,102.4L170.4,110.3L176.5,110.3L177.6,120.1L182.7,124.9L184.5,120L181.9,111.7L187.1,108.2L188.5,104.3L184.4,96.9L186.9,91.4L185.2,81.7L194.2,81L198.8,86.7L202.8,87.2L202.4,91.2L200.4,91.4L203.1,94.3L201.4,96.5L205,96.4L203.7,99.8L209.2,96.4L209.9,97.8L213,90.4L220.9,110.3L227.4,112L221.4,116.5L227.4,113.5L227.6,115.9L230.4,115.9L231,120.2L222,126.5L208.9,126.6L202.7,132.8L199.7,132.1L202.2,133.2L200.3,136.1L187.8,146.3L184,146.3L183.5,148.5L175.9,151.7L176.1,141.4L164.3,132.6L157.9,133.3L150.4,129.3L93.5,130.5L89.9,124.5L87.6,125.8L84.1,123.6L86.1,121.8L84,122.5L83.9,120.2L86.1,120.6L85.5,118L83.3,121.5L82.4,114.5L80.3,116.6L78.8,115.2L79.4,107.1ZM111.1,26.2L114.6,23.4L117.6,25.3L116.8,28.1L120.2,23.4L124.7,32.5L123.8,22L127.3,21.9L131.2,35.9L138.6,42.4L138.4,44.6L133.5,44.7L136.8,48.3L131.2,49.2L127,45.9L121.2,50.3L114,51.4L112.6,47.3L106.8,46L105.6,42L116.8,40.8L112.5,38.4L104.7,38.8L103.1,36.7L109.4,33.4L104,34L102.1,32.1L103.6,25.8L110.7,20.7L111.1,26.2ZM108,18L109.1,20.2L101.9,25.5L97.9,33.7L93.5,35.9L87.9,30.3L91,16.1L106.6,16.1L108,18ZM142.3,18.1L146.5,17.7L143.8,23.7L147.8,26.4L147.5,31.2L143.8,31.2L143.3,34.6L135,24.9L136.1,22.8L139.6,24.9L140.9,21.8L137.5,19.7L139.5,20.1L140.3,16.6L142.3,18.1ZM171.4,68.2L180.7,75.2L179.2,76.6L174.6,73.4L170.7,78.1L169.6,75.5L166.7,76L169.5,65.3L171.4,68.2ZM156.2,16.2L159.7,16.5L159.8,18.4L156.4,25.2L152.4,25L152.7,29.9L150.4,29.9L149.4,18.5L151.4,18.6L150.6,16.1L156.2,16.2ZM145.8,44.8L150.2,49.4L147.9,51.4L141.6,48.7L144.2,43.8L145.8,44.8ZM220,139.7L222.5,139.7L219.2,140.3L221.3,136.5L220,139.7ZM207.5,141.9L206.2,136.3L203.3,135.2L199.9,141.7L192.1,142.4L210.9,129.6L213.3,132.2L208.5,133.5L212.5,134.4L212.9,138.8L220,141.7L211.2,146.6L209.6,143.9L215.3,141.4L212.2,141.4L212.7,139.7L207.5,141.9ZM231.3,122.7L228.6,128.5L229.9,126.9L231.6,130.2L235.2,129.4L236.2,137.6L234,136.9L234,134L231,136.9L232.8,134.5L223.5,134.3L228.9,123L231.3,122.7ZM168,36.6L171.4,36.5L171.8,32.5L169.3,30.2L170.5,28.5L172.6,29.8L169.8,24.9L172.7,24.7L170.2,22.6L177.4,18.1L180.8,24.9L179.5,30.7L181.7,27.1L184.2,30.9L184,27.7L186.4,28.9L184.7,26.1L187.7,25.2L191.2,27.2L189.7,32L193.2,30.2L191.5,35.1L193.9,31.6L193.2,34L195.3,34.7L195.8,32.2L199.2,34.2L196.4,37.5L200.4,36.2L198.8,41.9L201.1,37.8L204.9,39L201.6,42.4L206.1,40.9L207.5,44.1L203.3,45.5L208.5,47.5L203.1,49.3L208.4,51.5L208,53.7L209.5,52.5L208.8,54.8L210,53.6L211.1,55.8L212.1,53.8L214.3,56.4L212.6,57.5L215.9,58.1L214.6,60.3L217.8,59.1L219.5,61.2L216.9,62.4L216.7,66.3L215.1,65.2L214.8,69.7L211.1,65.6L213,62.8L210.3,64.5L207.8,61.3L206.1,62L207.1,64.9L204.3,63.5L213,75.1L211.7,80.4L204,75.5L209.7,83.6L199,78.4L195.1,71.4L185.3,71.8L186.8,67.2L190.7,70.1L189.9,67.9L194.5,67L192.7,63.6L197.2,58L192.1,48.2L188.3,50.2L190.2,47.2L185.8,41.1L183.3,39L183.8,42.6L178.2,42L179.5,44.2L163.3,39.5L162.1,36.1L166.8,36.4L161.3,33.4L162.5,22.5L165.6,18.1L171.1,17.7L167.8,24.2L171.1,34.3L168,36.6ZM217.6,130.2L214.9,129.2L213,127.7L216.3,128.2L218.6,129.8L217.6,130.2ZM214.4,138.2L218,138.3L214.9,138.9L214,136.4L214.4,138.2ZM177.4,79L173.8,82.4L174.6,79L177.4,79ZM182.4,81.4L182.8,82.7L181.7,84.9L180.8,83.9L180.8,82.6L181.6,81.3L182.4,81.4ZM191.2,52.7L190.9,57.2L187.6,58L188,52.7L191.2,52.7ZM182.6,18.7L186.7,19.5L189.1,24.4L181.7,24.5L179.6,18.2L182.6,18.7ZM179.7,118.4L177.2,117.3L179,116.8L179.7,118.4ZM183.6,106.5L183.7,105.9L184,105.3L184,106.2ZM183.4,106.3L181.3,107.3L182.8,104.7L183.4,106.3ZM181.3,106.2L181.3,105.8L181.7,105.6L182.2,105.3L182,105.7ZM129.7,23.9L127.1,18.3L131.1,18.9L129.7,23.9ZM77.4,112.4L77.5,111.9L77.8,111.9L77.7,112.1ZM77.2,121L77.1,120.8L77.1,120.4L77.3,120.5L77.2,121ZM78.8,114.3L77.9,114.4L78.5,113.7L78.8,114.3ZM79.6,116.9L78.5,115.3L79.5,116L79.6,116.9ZM78.4,111.1L78.9,110.4L78.7,111.2L78.2,111.4ZM82.4,118.8L82.1,119.9L81.9,118.3L81.2,118.1L81.4,116.5L82.2,117.1L82.4,118.8ZM87.4,129.6L87.1,129.5L87.1,129.3L87.4,129.3ZM91.3,128.9L90.6,128.4L90.3,128.1L90.8,128.2L91.3,128.9ZM86.2,128.6L85.6,128.1L85.6,127.8L86.2,128.1L86.2,128.6ZM89.2,127.2L88.9,126.2L89.2,126.1L89.4,126.5L89.2,127ZM81.5,119.3L80.9,118.4L80.9,118.1L81.4,118.6L81.5,119.3ZM83.6,122.6L83.3,122.4L83.2,121.9L83.5,121.9L83.6,122.5ZM82.6,119.5L82.6,119.2L82.7,118.2L82.9,119L82.7,119.5ZM80.7,117.5L80.4,117.1L80.4,116.8L80.7,117.3ZM81.1,117.1L80.8,117L80.9,116.5L81,116.5L81.1,117.1ZM92.7,131.3L92.6,131.2L92.5,130.7L92.7,130.9L92.8,131.2L92.7,131.3ZM222.3,145.6L221.9,145.5L222.3,145.4L222.7,145.3L222.3,145.6ZM220.1,141L219.9,140.9L220,140.7L220.2,140.9L220.1,141ZM218.3,135.8L218,135.8L219.1,134.6L218.6,135.3ZM212.9,134.1L212.6,134.3L212.6,134.2L212.8,133.9L212.9,133.9ZM212.8,133.8L212.9,133.6L212.9,133.5L213,133.5L213,133.5L213,133.7L212.8,133.8ZM209.2,144.5L209.3,144.4L209.4,144.2L209.5,144.2L209.3,144.4L209.2,144.5ZM208.1,143.5L208.2,143.1L208.3,143L208.4,143L208.4,143.3L208.3,143.3L208.1,143.5ZM194.3,141.1L193.7,141.1L194.7,140.4L194.3,141.1ZM194,140.8L193.9,140.8L194.2,140.5L194.5,140.4L194.2,140.7L194,140.8ZM199.5,137L199.8,136.7L200.1,136.6L199.7,136.9ZM231.2,125L231.1,125L231.1,124.8L231.4,124.8L231.3,124.9L231.2,125ZM232.9,128.8L232.6,128.6L232.8,128.7L233.2,128.5ZM231.5,121.2L231.5,121L231.8,120.8L231.6,121.2ZM234.3,128.3L233.8,128.6L233.8,128.2L234.1,128.1ZM233.8,135.3L233.8,135.1L233.9,134.8L234.1,134.8ZM212.7,80.7L213,81.3L212.1,81.3L212.7,80.7ZM205.2,90.6L205.9,89.2L206.2,89.7L205.2,90.6ZM200.9,80.7L199.3,79.3L200.8,79.9L200.9,80.7ZM212.2,85.9L211.1,84.6L212.4,84.6L212.2,85.9ZM211.9,83.7L212.2,84.3L211.6,84L211.5,83.4L211.9,83.7ZM203.3,95.7L203.1,95.7L203.1,95.1L203.4,95.2L203.5,95.4ZM213.1,90.3L212.3,89.8L212.4,89.4L213,89.8ZM220.1,106.9L219.7,106.7L219.9,106.4L220.2,106.6ZM218.8,101.3L218.1,101.4L218.1,101.1L218.4,101.1ZM205.9,45.4L205.4,44.9L206.2,44.5L205.9,45.4ZM216.4,59.2L216.5,58.8L217.1,58.3L217.1,58.6ZM181.6,104.1L181.5,103.9L181.6,103.7L181.7,103.9L181.6,104.1ZM181.9,101.3L181.7,101.6L181.7,101.2L181.9,100.9L181.9,101.3ZM182.3,104.6L182.2,104.1L182.3,104L182.4,104.3L182.3,104.5ZM181.5,116.5L181.3,116.5L181.2,116.3L181.4,116.3L181.5,116.5ZM182.5,121L182.1,120.8L182.8,120.5L182.5,121ZM92.9,130.8L92.3,130.3L92.7,130.6L92.9,130.8ZM89.6,127.2L89.6,126.8L89.6,126.6L89.7,126.9L89.8,127.1L89.6,127.2ZM193.4,55.2L192.1,53.6L194.7,54.1L193.4,55.2ZM185.9,76.8L186.4,77.6L185.5,78.2L184.3,76.8L185.9,76.8ZM180.7,93.1L180.7,92.8L180.9,92.6L181,92.8L180.8,93ZM181,92.5L181.2,92.1L181.4,92L181.5,92.3L181,92.5ZM146.8,23.8L146.5,22.4L147,22L147.5,23L146.8,23.8ZM143.5,17.2L142.7,17.5L141.9,16.7L142.8,16.1L145.1,16.1L143.5,17.2ZM160.6,46.4L160.3,47L160,46.2L160.5,45.9L160.6,46.4ZM159.8,47.3L159.6,46.8L159.4,46.4L159.9,46.6L160,47.2ZM193.5,80.4L192.3,80L192.6,79.9L193.6,80.2L193.5,80.4ZM191.6,52.1L190.7,51.1L191,50.2L192,51.5L191.6,52.1ZM184.1,88.6L184.2,88.3L184.9,88.1L184.7,88.4L184.1,88.6ZM183.3,53L183,52.6L183.5,52.1L183.7,52.5L183.3,53ZM187.9,77L186.7,76L187.2,75.6L188.2,76.4L187.9,77ZM182.6,44.2L181.3,44.8L179.7,44.5L181.4,44.2L182.6,44.2ZM185.5,44.6L183.7,45.7L185,44.2L185.5,44.6ZM186,74.4L185.5,74.1L186.2,73.9L186,74.4ZM175.2,63.1L175.2,63.4L174.8,63.1L174.8,62.8ZM182.8,49.4L182.9,48.2L184.8,46.2L183.7,48.9L182.8,49.4ZM187.2,47.7L186.7,46.9L187.1,45.9L188.1,46.3L187.2,47.7ZM167.5,42L168.1,42.5L167.6,42.8L166.4,42.1L167.5,42ZM174,65.7L174.8,65.9L174.5,66.3L173,65.6L172.4,63.8L173.6,64.6L174,65.7ZM167.8,55.4L167.2,53.6L167.7,52.3L168.3,53L167.8,55.4ZM171.7,66.6L171,65.8L171.1,64.3L171.7,66.6ZM154.7,83.8L154.4,83.5L154.9,83.6L154.7,83.8ZM140.1,49.7L139.3,49.8L139.5,48.2L140.1,49.7ZM140.5,48.7L140.1,48.2L140.2,47.8L140.5,48L140.5,48.7ZM139.9,39.7L139.3,38.6L140,39L139.9,39.7ZM150,45.5L149.6,46.5L149.2,45.2L148.7,46.2L149.1,44.8L150,45.5ZM138,46.2L137.9,45.1L138.5,45.6L138,46.2ZM136.7,50.8L135.9,50.3L136.5,49.4L137.1,50L136.7,50.8ZM131.2,51.8L130.4,50.8L131.2,50.9L131.2,51.8ZM124.3,57.7L123.9,57.1L124.1,55.8L124.4,56.8L124.3,57.7ZM122.1,54.2L122.4,54.3L122.4,54.6L122,54.4L121.8,54.1L122.1,54.2ZM124.3,59.4L124.6,59.8L124.4,60.1L124.1,59.6L124.3,59.4ZM121.5,54.1L121.2,53.8L121.3,53.5L121.5,53.8L121.5,53.9L121.5,54.1L121.5,54.1ZM60.8,45.3L60.4,45L60.9,44.7L61.3,45L60.8,45.3ZM362,235.5L364.5,231.5L368.7,230.9L374,218.6L376.4,224.9L373,225.5L376.2,229.5L373.9,233.1L377.4,241.9L364.6,240.9L362,235.5ZM554.6,222.3L554.6,222.2L554.6,222L554.7,222.2ZM555.1,223.5L555,223.3L555,223.3L555.2,223.4L555.1,223.5ZM563.8,215.2L563.8,220L560.4,221.5L561,223.3L554.9,223L554.6,216L563.8,215.2ZM548.5,202.9L543.1,207L546.2,211.6L544.7,214.2L547.7,221.2L545.5,224.8L543.8,211.1L542,209.4L539.4,212.7L536.7,212.3L536.2,205L532.5,200.9L538.5,189.1L542.4,188L543.7,184.7L545.9,189.1L543.5,195.2L546.1,194.7L546.8,199.1L550.8,200L548.5,202.9ZM545,223.3L544.9,223.4L544.8,223.2L544.5,223.1L544.7,222.9L545,223.3ZM544.6,225.2L544.7,225L545,224.8L544.8,225L544.6,225.2ZM544.8,221.9L544.8,221.7L545,221.2L544.9,221.7ZM545.3,221L545.3,220.6L545.6,220.8L545.4,221ZM545.4,221.7L545.3,221.7L545.2,221.3L545.4,221.2L545.4,221.7ZM545.3,219.6L545,220.1L545,219.3L545.3,219.6ZM544.6,220.5L544.4,220.3L544.6,220.2L544.6,220.3L544.6,220.5ZM537.1,212.7L537.2,212.2L537.4,211.9L537.4,212.3L537.1,212.7ZM543.4,211.8L543.3,211.4L543.4,211.3L543.5,211.4L543.5,211.5L543.4,211.8ZM535.5,206.6L535.2,206.2L535.7,206.2L535.6,206.5L535.5,206.6ZM535.2,204.3L535.1,204.2L535,204L535,203.9L535.2,204L535.2,204.3ZM535.9,204.9L536.1,205L535.8,205.3L535.5,204.9L535.6,204.7ZM545.4,222.9L545.4,222.9L545.3,222.9L545.4,222.7L545.5,222.9L545.4,222.9ZM544.5,221.5L544.4,221.4L544.4,221L544.5,221.3L544.5,221.3L544.5,221.4L544.5,221.5ZM544.5,220L544.3,220.1L544.4,219.9L544.5,219.9L544.5,220ZM545,218.8L544.9,218.4L544.9,218.2L545,218.3L545,218.8ZM537.8,212.8L537.7,212.7L537.7,212.7L537.9,212.5L537.9,212.6L537.9,212.7L537.8,212.8ZM534.2,204.1L534.1,204.1L534,203.8L534,203.6L534.1,203.7L534.2,203.9L534.2,204.1ZM406.8,250.4L404.5,254.5L403.7,250.8L406.8,250.4ZM345.8,222.9L338.7,222.8L338.9,226.1L333.2,224L336,218L343.1,214.3L349,219.6L345.8,222.9ZM401.4,150.9L391.2,152.7L390.2,145.3L401.4,145.3L401.4,150.9ZM579.4,235.5L579.7,236.5L579.1,236.1L579.4,235.5ZM578.9,235.5L578.3,237.2L577.1,236L578.9,235.5ZM208.6,243.4L215.1,241.1L212.4,236.7L216.3,238.1L220.8,234.7L224.5,243L230.3,240.3L236.5,241L239.6,236.6L242.7,243.1L237.1,248.6L240.7,247.3L241.7,249.5L243.9,248.9L243.4,250.8L248.1,246.7L253.3,248.9L253.3,251.9L263,251.2L272.6,256.8L273.2,262.6L265.3,271.7L264.7,282.1L260.9,291.4L245.1,298.9L245,306.3L238.4,314.6L241.3,310.7L239.9,309.7L235.7,318.6L234.9,314.5L227,310L235.1,301L230.8,292.3L226.2,291.5L225.5,279.1L221.8,279L221.1,273.8L212.1,270.1L211.1,265.3L200.4,268L200.6,264.7L197.3,265.9L193.6,260.9L195.8,255.9L201.9,254L202.1,241.9L207,241.1L208.6,243.4ZM243.5,245.9L245.8,246L245,248.1L241.5,249.1L241.2,246L243.5,245.9ZM254.6,294L254.3,294.1L254,294L254.3,293.8L254.4,293.9L254.6,294ZM245.4,301.3L245.5,300.7L245.5,301.1L245.4,301.3ZM252.2,295.7L251.9,295.7L252.1,295.2L252.2,295.4L252.2,295.5L252.2,295.7ZM253.6,251.6L253.6,251.2L253.7,251L253.8,251.1L253.8,251.4ZM265.4,272.4L265.6,272.1L265.8,272L265.8,272.1L265.4,272.4ZM265.1,273.3L265,273.2L265,273L265.2,273L265.1,273.3ZM252.8,248.2L252.7,248.2L252.7,248.2L253,248L252.8,248.2ZM243.2,245L242.5,245.5L241.8,245.3L242.3,244.9L243.2,245ZM241.7,241.5L241.5,241.3L241.7,241L241.8,241L241.9,241.5ZM240.6,246.1L240.5,245.6L241.2,245.5L240.6,246.1ZM243.1,245.7L242.9,245.5L243.3,245.3L243.8,245.3L243.8,245.5L243.1,245.7ZM241.6,245.4L241.5,244.9L241.7,244.3L241.8,244.2L241.7,245.1ZM242,244.7L242,244.4L242.3,244.2L242.4,244.1L242.5,244.3L242,244.7ZM238.6,248.4L240,246.5L239.9,247.5L238.6,248.4ZM245.5,304.5L245.6,303.8L245.8,303.5L245.8,303.9L245.6,304.4ZM396,282.4L404.4,291.8L396.4,299.7L391.7,298.7L386.8,302.3L385.2,291.4L387.3,291.4L387.3,283.4L396,282.4ZM384,142.8L382.2,149.3L376.6,143.1L384,142.8ZM202.7,281.7L204.4,271.1L202.6,267.9L211.1,265.3L211.6,269.6L221.1,273.8L221.8,279L225.5,279.1L227.2,283.2L226,287.4L224,285.5L218.6,286.3L216.7,291.9L213.3,293.2L209.4,291L206.2,293.4L202.7,281.7ZM531.4,186.5L532.2,188.5L525.5,187.9L527.8,185.2L531.4,186.5ZM347.8,232.6L346.1,223.4L350.4,220L352.3,223.7L350,232.4L347.8,232.6ZM162.7,208.3L164.9,207.6L163.2,212.6L162.7,208.3ZM165,208.3L165.1,208.1L165.3,207.7L165.1,208.2ZM165.2,209.6L165.2,209.3L165.4,209.1L165.5,209.1L165.3,209.3ZM353.3,122.9L356.4,123.7L356.3,128.8L349.8,124.5L353.3,122.9ZM408.9,120.5L406.8,123.2L396,121L392.6,122.4L392.4,114.3L396.9,113.6L398.7,108.1L401.7,106.4L406.2,107.5L411.2,115.9L408.5,116.8L408.9,120.5ZM223.1,218.5L222.9,218.4L223,218L223.3,218.3L223.1,218.5ZM526.1,199L524.7,189.2L533.1,192.8L530.4,195.7L531.2,197.2L532.6,195.7L532.8,202L529.3,195.9L528.5,199.8L526.1,199ZM530.2,199.2L530.3,198.3L530.4,198.6L530.5,198.8L530.4,199L530.2,199.2ZM531.1,198.6L530.9,198.3L531,198L531.2,198.3L531.2,198.6ZM529.3,199.3L529.3,197.5L529.8,198.3L529.3,199.3ZM531.8,199.9L531.8,199.6L531.9,199.6L531.9,199.8ZM531.9,200.5L531.9,200.3L531.9,200L532,200.1L532,200.5ZM529.4,197.4L529.3,197.3L529.2,197.2L529.2,197.2L529.2,197.1L529.4,197.3L529.4,197.4ZM447.7,190.9L447.5,190.3L447.6,189.9L447.7,190.2L447.7,190.9ZM186.1,194.5L186.3,195.5L185.4,194.5L186.1,194.5ZM187,190.7L187,189.2L185.5,188.4L186.4,188.4L187.3,189.3L187,190.7ZM195.5,201.3L194.2,201.6L194.2,201.4L195,201.2L195.6,200.9ZM185.9,193.7L185.3,194.3L184.5,193.6L185,192.3L185.9,193.7ZM184.7,188.9L185.6,188.9L183.9,189.3L184,189.1L184.4,188.8ZM186.5,192.7L186.3,192.7L186.6,192.5L186.9,192.6L186.8,192.7ZM193.5,197.8L193.1,197.8L193,197.7L193,197.5L193.2,197.7L193.5,197.8ZM192.6,195.1L192.5,195L192.5,194.7L192.6,194.7L192.7,194.7L192.7,194.8L192.6,195.1ZM193,199L193.6,198.5L193.8,198.1L193.9,197.8L193.4,198.7ZM188.5,191.9L189.3,192.4L189.2,193.5L189.2,192.5L187.9,191.8L188.1,191.4L188.5,191.9ZM190.1,196.2L189.6,195.9L189.5,195.7L189.9,196L190.2,196.2ZM191.9,197.5L191.3,196.7L190.9,195.9L191.4,196.9ZM190.9,194.6L190.6,194.6L190.3,193.9L190.1,193.4L190.5,194ZM195.7,198.5L196.1,198.6L195.9,198.6L195.3,198.6L195.7,198.5ZM195.5,200.6L195.5,200.5L195.6,200.4L195.8,200.5L195.5,200.6ZM435.8,157.1L437.8,157.4L438.6,159.2L437.3,158.9L435.8,157.1ZM444.1,160.4L442.4,157.1L439.3,159.1L436.7,152.4L443.8,151.4L447.2,155.5L444.1,160.4ZM437.4,154.5L437.3,154.5L437.3,154.6L437.4,154.6ZM436.3,153.5L436.2,153.4L436.3,153.3L436.3,153.4L436.3,153.5ZM364.1,135.4L371,135.1L370.6,133L375.1,130.4L379.5,133.5L374.2,138.3L364.1,135.4ZM636.5,270.2L643.2,285.1L648,287.8L656.9,300.3L656.6,312.2L650.3,328.1L643.1,332.3L640,329L637.2,331.4L633.1,330.3L629.6,327.4L628.6,322.6L626.3,323.2L626.1,319.6L623.7,322.3L625.5,315.7L621.7,321.6L618.3,315.7L612,313.1L584.5,321.9L579.3,320.1L580.5,313.6L575.3,300.8L577.4,301.1L577,291.2L591.3,286.2L594,280.7L595.3,279.4L596.5,281.7L601.6,274.2L608.9,276.7L610.4,271.5L615.2,270.3L613.3,268.5L623,270L620.7,276.1L630.1,282.1L632.7,279.5L634.5,267.9L636.5,270.2ZM656.6,299.9L656.7,298.8L656.9,297.7L657.1,297.5L656.7,299.6ZM628.9,279.9L628.3,279.8L629.2,279.3L628.9,279.9ZM623.4,273.9L623.8,274.8L622.6,274.7L622.7,274L623.4,273.9ZM610.7,269.4L609.7,269.6L610.1,268.7L610.7,269.4ZM611.2,268.8L612.2,268.4L612.8,268.9L611.6,269.9L610.5,268.9L610.4,268.4L611.2,268.8ZM575.3,300.6L574.8,299.4L574.9,299.3L575.2,300.1L575.3,300.3L575.3,300.6ZM625.6,323.6L626.2,323.8L624.8,324.4L623,323.9L624.6,323.2L625.6,323.6ZM640.9,330.4L640.8,330.3L640.8,330.2L640.8,330.1L641.1,330.1L641.2,330.2L640.9,330.4ZM640.9,330.7L640.8,330.7L640.7,330.5L640.9,330.6ZM648.4,287.7L648.3,287.7L648.4,287.5L648.5,287.7ZM648.2,287.4L648.2,287.3L648.3,287.1L648.3,287.4ZM652.8,294.8L652.9,294.9L653,295.3L652.5,294.8L652.8,294.8ZM651.4,292.1L651.4,292L651.5,291.9L651.5,292.1ZM650.2,291.9L650.2,291.8L650.2,291.6L650.2,291.5L650.3,291.7L650.3,291.8L650.2,291.9ZM657.5,304.3L657.3,304.2L657.4,303.6L657.6,303.6ZM657.4,303.4L657.3,303L657.4,302.7L657.4,303.1L657.4,303.4ZM634.5,267.5L634.4,267.4L634.4,267.3L634.4,267.2L634.5,267.1L634.7,267.4L634.5,267.5ZM634.7,266.4L634.5,266.4L634.5,266.3L634.6,266.2L634.7,266.2L634.8,266.3L634.7,266.4ZM634.4,266.3L634.3,266.2L634.4,266L634.5,266.1L634.4,266.2L634.4,266.3ZM642.9,283.4L642.9,283.8L642.5,283.4L642.7,283.3L642.9,283.4ZM622.9,268.9L623.2,268.4L623.4,268.2L623.4,268.4ZM622.2,269.4L622.8,269L622.8,269L622.6,269.2ZM624,278.1L623.9,277.9L623.8,277.8L623.9,277.6L624.1,277.9L624,278.1ZM623.6,277.7L623.6,277.5L623.7,277.4L623.7,277.6L623.6,277.7L623.6,277.7ZM623,277.7L622.9,277.6L623.1,277.5L623.1,277.7ZM628.8,280.9L628.9,280.7L629.1,280.7L628.9,280.8ZM622.3,273.9L622.1,273.8L622.2,273.7L622.4,273.6L622.4,273.9ZM614.9,268.6L614.8,268.2L614.8,268L614.9,268L615,268.3L614.9,268.6ZM599.7,275.6L599.7,275.3L599.8,275.2L599.8,275.5ZM598.5,277.3L598.5,277.2L598.4,277L598.5,276.9L598.6,277.1L598.5,277.3ZM579.8,288.9L579.7,288.8L579.9,288.5L580,288.8ZM640.5,336.7L646.8,336.8L646.3,343.2L642.4,344.3L640.5,336.7ZM638,334.9L638.2,333.4L638.5,334.4L638,334.9ZM646.7,334.4L646.6,335.3L645.9,334.2L646.2,333.8L646.7,334.4ZM644.9,344.1L644.5,343.9L644.7,343.9L644.8,343.7L645,343.7ZM646.4,341.9L646.4,341.8L646.5,341.6L646.7,341.8L646.6,341.9ZM645.1,343.4L645,343.2L645,343.1L645,343L645.2,343.4ZM639.7,336.1L639.6,335.9L639.7,335.8L639.8,335.7L639.8,335.7L639.8,335.9L639.7,336.1ZM647.2,335.5L647.1,335.9L646.6,335.8L646.5,335.5L647.2,335.5ZM646.7,336.1L646.6,336L646.6,335.9L646.7,335.9L646.8,335.9L646.8,335.9L646.7,336.1ZM668.5,379.4L668.4,379.2L668.6,378.5L668.7,378.4L668.7,378.8L668.5,379.3L668.5,379.4ZM560.1,267.1L559.8,267L560,266.8L560.1,266.8L560.1,267.1ZM542,270.5L542,270.5L542,270.3L542,270.4L542,270.4ZM542.1,270.5L542.1,270.5L542.2,270.4L542.2,270.4ZM494.6,374L494,373.2L495.1,373.7L494.6,374ZM687.1,307.3L687.1,307.5L687,307.4L687,307.4L687,307.3ZM596.6,271L596.5,271L596.5,270.9L596.6,271L596.6,271ZM435.7,156.9L433.1,153.3L437.5,154L439.3,159.1L435.7,156.9ZM436.3,153.4L436.3,153.3L436.2,153.4L436.3,153.5L436.3,153.4ZM437.3,154.7L437.3,154.5L437.4,154.5L437.4,154.6ZM226.9,310.1L225.1,319.9L228.9,326.4L225.9,330.4L217.4,331.4L217.3,336.9L211.8,336.7L211.8,339.9L214.8,341.9L212,341.8L210.6,348.4L206.7,351.2L210.4,356L206.2,363.3L203.8,363.5L202.8,368.6L205,371L197.8,370L194.5,361.8L198.3,353.2L197.5,347.7L199.4,347.1L197.8,336.4L204.7,297.5L209.4,291L213.3,293.2L216.4,291.4L227.1,299L225,303.4L230.9,303.6L234.4,299.4L234.7,302.9L226.9,310.1ZM204.5,379L204.5,372.2L211.6,379.1L204.5,379ZM213.1,379.4L214.4,379.3L212.7,379.9L213.1,379.4ZM218.3,332.5L218,332.4L217.9,332.1L218.3,332.3L218.3,332.5ZM218.6,210.2L218.3,210L218.7,210L218.7,210.1ZM218.5,209L218.3,208.8L218.4,208.7L218.5,208.7L218.6,209ZM371.1,254.9L369.9,255.8L370,257.1L369.4,257.2L369,255.6L370.4,254.5L371.1,254.9ZM393.4,268L393.4,272.1L389.3,272.2L389.3,278.4L392.2,282L368.5,281.1L372.7,268.1L369.6,257.9L377.8,257.4L380.4,262L388.9,260.3L389.9,268.4L393.4,268ZM347.9,149.5L347.5,149.7L347.4,149.3L347.7,149.1L348,149.4ZM362,164.4L359.8,172L364.6,183.6L363.7,190.1L368.9,196L356.4,204.9L351.3,206L326.8,187.5L326.8,184.2L337,179L336.8,177.2L342,176.2L340,168.9L347.1,165.3L362,164.4ZM384,151.1L384.6,149.1L386.4,150.4L385.7,157.2L384,151.1ZM480.8,163.1L485.8,163.8L489.1,160.3L490.7,164.9L497.2,163.5L489.8,166.3L489.4,171.5L487,171.6L485.6,176.9L480.8,178.2L479.5,181.6L468.6,181.6L470.6,179.1L468,174.1L469.4,167.6L472.4,168.5L476.7,163.7L480.8,163.1ZM501.6,168.6L501.1,167.5L503.2,167.9L501.6,168.6ZM216,207.9L216,208L216,208L215.8,208L215.8,207.9L215.8,207.9L216,207.9ZM710,262.9L710,262.8L710,262.7L710,262.8L710,262.9Z"};
+/* ==== ATLAS — iconographie (trait 1.6, viewBox 24, currentColor) ==== */
+const ICON_PATHS = {
+  /* --- thèmes d'histoire --- */
+  T_H1: "M3 18 L8 12 L11 15 L21 5 M21 5 L16 5 M21 5 L21 10 M3 21 L21 21",                       /* courbe qui chute puis sol */
+  T_H2: "M12 3 A8 8 0 1 0 12 19 A8 8 0 1 0 12 3 M12 3 L12 19 M4 11 L20 11 M7 6 L17 16 M17 6 L7 16", /* globe partagé */
+  T_H3: "M3 12 A9 5 0 0 1 21 12 M3 12 L21 12 M12 7 L12 17 M6 15 L9 12 M15 12 L18 15 M12 3 L12 5",   /* ligne de partage / horizon */
+  T_H4: "M12 3 A9 9 0 0 1 12 21 M12 3 A9 9 0 0 0 12 21 M12 3 L12 21 M5 8 L19 8 M5 16 L19 16 M8 8 L8 16 M16 8 L16 16", /* monde ceint */
+  /* --- thèmes de géographie --- */
+  T_G1: "M2 15 Q5 12 8 15 T14 15 T20 15 M2 19 Q5 16 8 19 T14 19 T20 19 M12 3 L12 11 M8 7 L16 7 M9 11 L15 11", /* ancre sur vagues */
+  T_G2: "M4 20 L4 12 L10 9 L10 20 M10 20 L20 20 L20 5 L14 5 L14 20 M7 12 L7 20 M17 8 L17 11 M17 14 L17 17", /* ville-monde */
+  T_G3: "M12 3 L14.6 8.2 L20.5 9.1 L16.3 13.1 L17.3 19 L12 16.2 L6.7 19 L7.7 13.1 L3.5 9.1 L9.4 8.2 Z",     /* étoile (UE) */
+  T_G4: "M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z M12 2 L12 22 M3 7 L21 17 M21 7 L3 17",                      /* hexagone */
+  /* --- chapitres --- */
+  H1: "M3 19 L8 13 L11 16 L21 6 M21 6 L16 6 M21 6 L21 11",                                                  /* krach */
+  H2: "M6 20 L6 10 M12 20 L12 4 M18 20 L18 10 M4 20 L20 20 M9 6 L15 6",                                     /* colonnes / podium */
+  H3: "M2 13 L9 12 L15 6 L17 7 L14 12 L21 12 L21 14 L14 14 L15 20 L13 20 L11 14 L4 15 Z",                  /* avion */
+  H4: "M3 21 L3 9 L12 4 L21 9 L21 21 M9 21 L9 13 L15 13 L15 21 M12 4 L12 1",                                /* mur / maison partagée */
+  H5: "M12 3 L14.6 8.2 L20.5 9.1 L16.3 13.1 L17.3 19 L12 16.2 L6.7 19 L7.7 13.1 L3.5 9.1 L9.4 8.2 Z M12 8 L12 16", /* étoile pleine */
+  H6: "M4 21 L4 11 L10 11 L10 21 M14 21 L14 6 L20 6 L20 21 M2 21 L22 21 M7 8 L7 2 L17 2 M7 5 L11 5",        /* grue */
+  H7: "M8 3 L16 3 L16 21 L8 21 Z M8 8 L16 8 M8 16 L16 16 M12 11 A1.5 2 0 1 0 12 15 A1.5 2 0 1 0 12 11",     /* baril */
+  H8: "M4 21 L4 9 L20 9 L20 21 Z M9 9 L9 5 L15 5 L15 9 M8 14 L16 14 M11 12 L11 16",                          /* urne */
+  H9: "M3 12 L10 12 M7 8 L10 12 L7 16 M21 12 L14 12 M17 8 L14 12 L17 16 M12 3 L12 21",                      /* forces opposées */
+  H10: "M12 4 A8 8 0 1 0 12 20 A8 8 0 1 0 12 4 M12 6 L12.8 8 L15 8 L13.3 9.4 L14 11.6 L12 10.3 L10 11.6 L10.7 9.4 L9 8 L11.2 8 Z", /* étoile en cercle */
+  G1: "M2 16 L5 20 L19 20 L22 16 Z M4 16 L4 10 L20 10 L20 16 M8 10 L8 6 L16 6 L16 10 M11 3 L13 3",           /* porte-conteneurs */
+  G2: "M12 2 L12 22 M4 8 L20 8 M6 16 L18 16 M8 4 L16 4 M2 12 L22 12",                                      /* lignes de rivalité */
+  G3: "M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z M2 15 Q6 12 10 15 T18 15 T22 15",                              /* hexagone sur vagues */
+  G4: "M12 12 m-3 0 a3 3 0 1 0 6 0 a3 3 0 1 0 -6 0 M12 9 L12 3 M12 15 L12 21 M9 12 L3 12 M15 12 L21 12 M5 5 L9 9 M19 5 L15 9 M5 19 L9 15 M19 19 L15 15", /* nœud / réseau */
+  G5: "M4 21 L20 21 M6 21 L6 10 M10 21 L10 10 M14 21 L14 10 M18 21 L18 10 M3 10 L21 10 L12 4 Z",             /* parlement */
+  G6: "M9 3 L13 3 L14 7 L16 8 L14 12 L15 15 L12 16 L11 20 L8 19 L9 15 L6 13 L7 9 L9 7 Z M15 9 L18 10 L17 12 L15 11 Z", /* silhouette Grande-Bretagne */
+  G7: "M3 21 L3 4 M3 21 L21 21 M6 18 L6 12 M11 18 L11 8 M16 18 L16 14 M21 18 L21 6",                         /* histogramme */
+  G8: "M12 4 A8 8 0 1 0 12 20 A8 8 0 1 0 12 4 M12 4 L14 8 L11 11 L14 14 L11 17 L12 20",                      /* cercle fissuré */
+  G9: "M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z M12 8 L13 11 L16 11 L13.5 13 L14.5 16 L12 14 L9.5 16 L10.5 13 L8 11 L11 11 Z", /* hexagone étoilé */
+  G10: "M12 2 L21 7 L21 17 L12 22 L3 17 L3 7 Z M12 6 L12 18 M6 12 L18 12 M12 12 L15 9",                      /* hexagone + boussole */
+  /* --- interface --- */
+  search: "M10 4 A6 6 0 1 0 10 16 A6 6 0 1 0 10 4 M14.5 14.5 L20 20",
+  book: "M4 4 L11 4 L12 6 L13 4 L20 4 L20 19 L13 19 L12 21 L11 19 L4 19 Z M12 6 L12 21",
+  home: "M3 11 L12 3 L21 11 M5 10 L5 20 L10 20 L10 14 L14 14 L14 20 L19 20 L19 10",
+  cards: "M4 6 L15 6 L15 20 L4 20 Z M8 4 L19 4 L19 17",
+  clock: "M12 3 A9 9 0 1 0 12 21 A9 9 0 1 0 12 3 M12 7 L12 12 L16 14",
+  people: "M9 4 A3 3 0 1 0 9 10 A3 3 0 1 0 9 4 M3 20 Q3 14 9 14 Q15 14 15 20 M17 6 A2.5 2.5 0 1 0 17 11 M17 13 Q21 13 21 19",
+  target: "M12 3 A9 9 0 1 0 12 21 A9 9 0 1 0 12 3 M12 8 A4 4 0 1 0 12 16 A4 4 0 1 0 12 8 M12 11 L12 13",
+  quill: "M20 4 Q10 6 6 18 M6 18 L4 20 M6 18 Q12 16 18 8 M9 15 L13 11",
+  link: "M9 15 L15 9 M10 6 L12 4 A4 4 0 0 1 20 12 L18 14 M14 18 L12 20 A4 4 0 0 1 4 12 L6 10",
+  check: "M4 12 L10 18 L20 6",
+  flag: "M5 21 L5 3 M5 4 L18 4 L15 8 L18 12 L5 12",
+};
+const ICON_SUBJECT = {};
+
+const Icon = ({ name, size, className, style, title }) => {
+  const d = ICON_PATHS[name];
+  if (!d) return null;
+  return React.createElement("svg", {
+    className: "ic" + (className ? " " + className : ""), viewBox: "0 0 24 24", width: size || 20, height: size || 20,
+    fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round", strokeLinejoin: "round",
+    "aria-hidden": title ? undefined : "true", role: title ? "img" : undefined, style: style },
+    title ? React.createElement("title", null, title) : null,
+    React.createElement("path", { d: d }));
+};
+
+/* thème -> icône */
+const THEME_ICON = { hist: ["T_H1", "T_H2", "T_H3", "T_H4"], geo: ["T_G1", "T_G2", "T_G3", "T_G4"] };
+
+/* Rose des vents — élément signature du frontispice */
+const CompassRose = ({ size, className }) => {
+  const pts = [];
+  for (let i = 0; i < 16; i++) {
+    const a = (i * Math.PI) / 8;
+    const r = i % 4 === 0 ? 46 : i % 2 === 0 ? 30 : 18;
+    pts.push([50 + r * Math.sin(a), 50 - r * Math.cos(a)]);
+  }
+  const star = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(2) + " " + p[1].toFixed(2)).join(" ") + "Z";
+  const ticks = [];
+  for (let i = 0; i < 72; i++) {
+    const a = (i * Math.PI) / 36;
+    const r1 = i % 6 === 0 ? 44 : 47, r2 = 49;
+    ticks.push("M" + (50 + r1 * Math.sin(a)).toFixed(2) + " " + (50 - r1 * Math.cos(a)).toFixed(2) +
+               "L" + (50 + r2 * Math.sin(a)).toFixed(2) + " " + (50 - r2 * Math.cos(a)).toFixed(2));
+  }
+  return React.createElement("svg", { viewBox: "0 0 100 100", width: size || 160, height: size || 160,
+      className: "compass" + (className ? " " + className : ""), "aria-hidden": "true" },
+    React.createElement("circle", { cx: 50, cy: 50, r: 49.2, fill: "none", stroke: "currentColor", strokeWidth: 0.5 }),
+    React.createElement("circle", { cx: 50, cy: 50, r: 43, fill: "none", stroke: "currentColor", strokeWidth: 0.35, opacity: 0.6 }),
+    React.createElement("path", { d: ticks.join(""), stroke: "currentColor", strokeWidth: 0.6, fill: "none" }),
+    React.createElement("path", { d: star, fill: "currentColor", fillOpacity: 0.12, stroke: "currentColor", strokeWidth: 0.7, strokeLinejoin: "round" }),
+    React.createElement("path", { d: "M50 4 L53 50 L50 96 L47 50 Z", fill: "currentColor", fillOpacity: 0.55 }),
+    React.createElement("path", { d: "M4 50 L50 47 L96 50 L50 53 Z", fill: "currentColor", fillOpacity: 0.3 }),
+    React.createElement("circle", { cx: 50, cy: 50, r: 2.4, fill: "currentColor" }),
+    React.createElement("text", { x: 50, y: 12.5, textAnchor: "middle", fontSize: 7.5, fontFamily: "Cormorant Garamond, Georgia, serif", fontWeight: 700, fill: "currentColor" }, "N"));
+};
+
+/* ==== ATLAS — planches de thème et frontispice ==== */
+
+/* Planche illustrée : globe gradué en fond, icône du thème en grand, motif de sol (histoire) ou de vagues (géo) */
+const ThemePlate = ({ subject, idx, size }) => {
+  const geo = subject === "geo";
+  const icon = ICON_PATHS[THEME_ICON[subject][idx]];
+  const merid = [];
+  for (let i = -3; i <= 3; i++) {
+    const rx = Math.abs(i) * 14;
+    if (i === 0) merid.push("M60 12 L60 108");
+    else merid.push("M60 12 A" + rx + " 48 0 0 " + (i > 0 ? 1 : 0) + " 60 108");
+  }
+  const par = [];
+  for (let j = -2; j <= 2; j++) {
+    const y = 60 + j * 19;
+    const hw = Math.sqrt(1 - Math.pow((y - 60) / 48, 2)) * 48;
+    par.push("M" + (60 - hw).toFixed(1) + " " + y + " L" + (60 + hw).toFixed(1) + " " + y);
+  }
+  return React.createElement("svg", { viewBox: "0 0 120 120", width: size || 120, height: size || 120,
+      className: "plate " + subject, "aria-hidden": "true" },
+    React.createElement("rect", { x: 1.5, y: 1.5, width: 117, height: 117, rx: 3, className: "plate-bg" }),
+    React.createElement("rect", { x: 5, y: 5, width: 110, height: 110, rx: 1.5, className: "plate-frame" }),
+    React.createElement("g", { className: "plate-grat" },
+      React.createElement("circle", { cx: 60, cy: 60, r: 48 }),
+      React.createElement("path", { d: merid.join("") }),
+      React.createElement("path", { d: par.join("") })),
+    geo
+      ? React.createElement("path", { className: "plate-motif", d: "M8 96 Q16 90 24 96 T40 96 T56 96 T72 96 T88 96 T104 96 T112 96 M8 104 Q16 98 24 104 T40 104 T56 104 T72 104 T88 104 T104 104 T112 104" })
+      : React.createElement("path", { className: "plate-motif", d: "M8 100 L112 100 M14 106 L18 100 M26 106 L30 100 M38 106 L42 100 M50 106 L54 100 M62 106 L66 100 M74 106 L78 100 M86 106 L90 100 M98 106 L102 100" }),
+    React.createElement("g", { transform: "translate(60 58) scale(2.4) translate(-12 -12)" },
+      React.createElement("path", { className: "plate-icon", d: icon })),
+    React.createElement("path", { className: "plate-corner", d: "M9 15 L9 9 L15 9 M105 9 L111 9 L111 15 M111 105 L111 111 L105 111 M15 111 L9 111 L9 105" }));
+};
+
+/* Compteur honnête d'avancement */
+const builtCount = () => FLAT.filter(c => CHAPTERS[c.code] && !CHAPTERS[c.code].pending).length;
+
+/* Page d'accueil — le frontispice de l'atlas */
+const Home = ({ lang, go, openSearch, openGloss }) => {
+  const FR = lang === "fr";
+  const built = builtCount();
+  const total = FLAT.length;
+  const themeName = (t) => {
+    const m = t.name.match(/^Theme (\d+)\s*[—-]\s*(.*)$/);
+    return m ? [FR ? "Thème " + m[1] : "Theme " + m[1], m[2]] : ["", t.name];
+  };
+  return React.createElement("div", { className: "home" },
+    React.createElement("section", { className: "frontis" },
+      React.createElement("svg", { className: "frontis-world", viewBox: WORLD_WM.viewBox, preserveAspectRatio: "xMidYMid slice", "aria-hidden": "true" },
+        React.createElement("path", { d: WORLD_WM.d })),
+      React.createElement("div", { className: "frontis-inner" },
+        React.createElement("div", { className: "frontis-text" },
+          React.createElement("div", { className: "frontis-kicker" }, FR ? "Terminale BFI, DNL enseignée en anglais" : "Terminale BFI, DNL taught in English"),
+          React.createElement("h1", { className: "frontis-title" }, FR ? "Atlas de révision" : "Revision Atlas"),
+          React.createElement("div", { className: "frontis-sub" }, FR ? "Histoire et géographie, dans l'ordre du cours de M. Ros." : "History and geography, in the order of M. Ros's course."),
+          React.createElement("div", { className: "frontis-tools" },
+            React.createElement("button", { className: "ft-btn", onClick: openSearch },
+              React.createElement(Icon, { name: "search", size: 18 }), FR ? "Rechercher" : "Search"),
+            React.createElement("button", { className: "ft-btn", onClick: openGloss },
+              React.createElement(Icon, { name: "book", size: 18 }), FR ? "Glossaire" : "Glossary")),
+          React.createElement("div", { className: "frontis-progress" },
+            React.createElement("span", { className: "fp-bar" },
+              React.createElement("span", { className: "fp-fill", style: { width: (100 * built / total) + "%" } })),
+            React.createElement("span", { className: "fp-txt" },
+              built + " / " + total + (FR ? " chapitres construits" : " chapters built")))),
+        React.createElement("div", { className: "frontis-rose" }, React.createElement(CompassRose, { size: 190 })))),
+    React.createElement("div", { className: "plates" },
+      ["hist", "geo"].map(subj => React.createElement("section", { key: subj, className: "subj-col " + subj },
+        React.createElement("h2", { className: "subj-title" },
+          React.createElement("span", { className: "subj-rule" }),
+          FR ? (subj === "hist" ? "Histoire" : "Géographie") : STRUCTURE[subj].label,
+          React.createElement("span", { className: "subj-rule" })),
+        STRUCTURE[subj].themes.map((t, ti) => {
+          const [num, name] = themeName(t);
+          return React.createElement("article", { key: ti, className: "theme-card " + subj },
+            React.createElement(ThemePlate, { subject: subj, idx: ti, size: 116 }),
+            React.createElement("div", { className: "tc-body" },
+              React.createElement("div", { className: "tc-num" }, num),
+              React.createElement("h3", { className: "tc-name" }, name),
+              React.createElement("ul", { className: "tc-list" },
+                t.chapters.map(c => {
+                  const d = CHAPTERS[c[0]];
+                  const ok = d && !d.pending;
+                  const title = (FR && d && d.fr && d.fr.title) ? d.fr.title : c[1];
+                  return React.createElement("li", { key: c[0] },
+                    React.createElement("button", { className: "tc-chap" + (ok ? " ok" : " soon"), onClick: () => go(c[0]) },
+                      React.createElement(Icon, { name: c[0], size: 18, className: "tc-ico" }),
+                      React.createElement("span", { className: "tc-code" }, c[0]),
+                      React.createElement("span", { className: "tc-title" }, title),
+                      ok ? React.createElement(Icon, { name: "check", size: 14, className: "tc-state" })
+                         : React.createElement("span", { className: "tc-state soon" }, FR ? "à venir" : "soon")));
+                }))));
+        })))));
+};
+
 function ChapterPending({ data, accent, lang }) {
   const FR = lang === "fr";
   const theme = (FR && data.fr && data.fr.theme) ? data.fr.theme : data.theme;
@@ -1816,22 +2199,29 @@ function ChapterPending({ data, accent, lang }) {
   const issues = data.keyIssues || [];
   const terms = data.keyTerms || [];
   return React.createElement("div", { className: "chap-root pending" },
-    React.createElement("div", { className: "chap-hero" },
+    React.createElement("div", { className: "chap-hero " + accent },
       React.createElement("div", { className: "hero-band" },
         React.createElement("span", { className: "hero-code " + accent }, data.code),
         React.createElement("span", { className: "hero-theme" }, theme)),
-      React.createElement("h1", { className: "hero-title" }, title)),
+      React.createElement("div", { className: "hero-cartouche" },
+        React.createElement("span", { className: "hero-icon " + accent }, React.createElement(Icon, { name: data.code, size: 34 })),
+        React.createElement("h1", { className: "hero-title" }, title))),
     React.createElement("div", { className: "pending-note" },
-      React.createElement("span", { className: "pending-ico" }, "✎ "),
-      FR ? "Ce chapitre sera construit à partir de ton cours. La structure officielle, les Key Issues et les Key Terms sont déjà en place."
-         : "This chapter will be built from your class notes. The official structure, Key Issues and Key Terms are already in place."),
+      React.createElement(Icon, { name: "quill", size: 22, className: "pending-ico" }),
+      React.createElement("div", null,
+        React.createElement("strong", null, FR ? "Chapitre à construire." : "Chapter to be built."),
+        " ",
+        FR ? "Il sera rédigé à partir de tes notes de cours, une fois la leçon faite. La structure officielle, les Key Issues et les Key Terms sont déjà en place."
+           : "It will be written from your class notes once the lesson has been taught. The official structure, Key Issues and Key Terms are already in place.")),
     issues.length ? React.createElement("div", { className: "ki-block" },
-      React.createElement("div", { className: "ki-head " + accent }, FR ? "Key Issues (problématiques d'oral)" : "Key Issues (oral topics)"),
+      React.createElement("div", { className: "ki-head " + accent },
+        React.createElement(Icon, { name: "target", size: 18 }), FR ? "Key Issues — problématiques d'oral" : "Key Issues — oral topics"),
       React.createElement("ol", { className: "ki-list" },
         issues.map((q, i) => React.createElement("li", { key: i, className: "ki-item " + accent + "-n" }, q)))
     ) : null,
     terms.length ? React.createElement("div", { className: "kt-block" },
-      React.createElement("div", { className: "kt-head " + accent }, FR ? "Key Terms (à définir dans le glossaire)" : "Key Terms (to define in the glossary)"),
+      React.createElement("div", { className: "kt-head " + accent },
+        React.createElement(Icon, { name: "book", size: 18 }), FR ? "Key Terms — à définir dans le glossaire" : "Key Terms — to define in the glossary"),
       React.createElement("div", { className: "kt-chips" },
         terms.map((t, i) => React.createElement("span", { className: "kt-chip " + accent, key: i }, t)))
     ) : null
@@ -1862,9 +2252,11 @@ function Chapter({
     className: "fiche-toggle" + (fiche ? " on" : ""),
     onClick: () => setFiche(f => !f),
     title: FR ? "Basculer en fiche condensée" : "Toggle condensed revision card"
-  }, fiche ? (FR ? "◨ Vue complète" : "◨ Full view") : (FR ? "▤ Fiche condensée" : "▤ Condensed card"))), React.createElement("h1", {
+  }, fiche ? (FR ? "◨ Vue complète" : "◨ Full view") : (FR ? "▤ Fiche condensée" : "▤ Condensed card"))), React.createElement("div", { className: "hero-cartouche" },
+    React.createElement("span", { className: "hero-icon " + accent }, React.createElement(Icon, { name: data.code, size: 34 })),
+    React.createElement("h1", {
     className: "hero-title"
-  }, pick("title", data.title)), React.createElement("div", {
+  }, pick("title", data.title))), React.createElement("div", {
     className: "objective"
   }, React.createElement("span", {
     className: "obj-label"
@@ -1872,7 +2264,7 @@ function Chapter({
     className: "bigpic"
   }, React.createElement("div", {
     className: "bigpic-label"
-  }, FR ? "◆ Vue d'ensemble" : "◆ Big picture"), React.createElement("p", null, pick("bigPicture", data.bigPicture)))), React.createElement(ChapterLink, { link: data.link, lang: lang, kind: "intro" }), React.createElement("div", {
+  }, FR ? "Vue d'ensemble" : "Big picture"), React.createElement("p", null, pick("bigPicture", data.bigPicture)))), React.createElement(ChapterLink, { link: data.link, lang: lang, kind: "intro" }), React.createElement("div", {
     className: "fiche-note"
   }, FR ? "Fiche condensée : titres des idées + repères visuels. Désactivez pour le détail, les exemples et le vocabulaire." : "Condensed card: idea titles + visuals only. Turn off for full text, examples and vocabulary."), data.timeline && React.createElement(Timeline, {
     items: FR && data.fr && data.fr.timeline ? data.fr.timeline : data.timeline,
@@ -1908,7 +2300,7 @@ function Chapter({
     className: "vocab-head"
   }, React.createElement("span", {
     className: "vh-icon"
-  }, "📘"), React.createElement("h3", null, FR ? "Vocabulaire" : "Vocabulary")), data.vocab.map((grp, gi) => React.createElement("div", {
+  }, React.createElement(Icon, { name: "book", size: 22 })), React.createElement("h3", null, FR ? "Vocabulaire" : "Vocabulary")), data.vocab.map((grp, gi) => React.createElement("div", {
     className: "vocab-group",
     key: gi
   }, React.createElement("div", {
@@ -2023,7 +2415,7 @@ function SearchOverlay({ open, onClose, onJump, lang }) {
   return React.createElement("div", { className: "srch-scrim", onClick: onClose },
     React.createElement("div", { className: "srch-panel", onClick: e => e.stopPropagation() },
       React.createElement("div", { className: "srch-bar" },
-        React.createElement("span", { className: "srch-ico" }, "🔍"),
+        React.createElement("span", { className: "srch-ico" }, React.createElement(Icon, { name: "search", size: 18 })),
         React.createElement("input", {
           ref: inputRef, className: "srch-input", value: q,
           onChange: e => setQ(e.target.value),
@@ -2071,7 +2463,7 @@ function GlossaryOverlay({ open, onClose, onJump, lang }) {
   return React.createElement("div", { className: "srch-scrim", onClick: onClose },
     React.createElement("div", { className: "srch-panel gloss", onClick: e => e.stopPropagation() },
       React.createElement("div", { className: "srch-bar" },
-        React.createElement("span", { className: "srch-ico" }, "📘"),
+        React.createElement("span", { className: "srch-ico" }, React.createElement(Icon, { name: "book", size: 18 })),
         React.createElement("input", {
           className: "srch-input", value: q, onChange: e => setQ(e.target.value),
           placeholder: FR ? "Filtrer le glossaire (EN ou FR)…" : "Filter the glossary (EN or FR)…",
@@ -2107,7 +2499,7 @@ function GlossaryOverlay({ open, onClose, onJump, lang }) {
 function App(
 ) {
   const [subject, setSubject] = useState("hist");
-  const [current, setCurrent] = useState("H1");
+  const [current, setCurrent] = useState(null);
   const [navOpen, setNavOpen] = useState(false);
   const [lang, setLang] = useState("en");
   const [searchOpen, setSearchOpen] = useState(false);
@@ -2121,11 +2513,12 @@ function App(
     window.addEventListener("keydown", h);
     return () => window.removeEventListener("keydown", h);
   }, []);
-  const cur = FLAT.find(c => c.code === current);
-  const idx = FLAT.findIndex(c => c.code === current);
+  const FR = lang === "fr";
+  const cur = current ? FLAT.find(c => c.code === current) : null;
+  const idx = current ? FLAT.findIndex(c => c.code === current) : -1;
   const prev = idx > 0 ? FLAT[idx - 1] : null;
-  const next = idx < FLAT.length - 1 ? FLAT[idx + 1] : null;
-  const data = CHAPTERS[current];
+  const next = idx >= 0 && idx < FLAT.length - 1 ? FLAT[idx + 1] : null;
+  const data = current ? CHAPTERS[current] : null;
   const accent = cur ? cur.subject : "hist";
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -2136,122 +2529,80 @@ function App(
     if (target) setSubject(target.subject);
     setCurrent(code);
   };
-  return React.createElement("div", {
-    className: "app"
-  }, React.createElement("div", {
-    className: "scrim" + (navOpen ? " show" : ""),
-    onClick: () => setNavOpen(false)
-  }), React.createElement("div", {
-    className: "lang-fab desk-only"
-  }, React.createElement("button", {
+  const home = () => setCurrent(null);
+  const chapTitle = c => {
+    const d = CHAPTERS[c.code];
+    return (FR && d && d.fr && d.fr.title) ? d.fr.title : c.name;
+  };
+  const langToggle = React.createElement("button", {
     className: "lang-toggle" + (lang === "fr" ? " fr" : ""),
     onClick: () => setLang(l => l === "fr" ? "en" : "fr"),
-    title: lang === "fr" ? "Voir en anglais" : "Voir en français"
-  }, React.createElement("span", {
-    className: "lt-seg" + (lang === "en" ? " on" : "")
-  }, "EN"), React.createElement("span", {
-    className: "lt-seg" + (lang === "fr" ? " on" : "")
-  }, "FR"))), React.createElement("aside", {
-    className: "sidebar" + (navOpen ? " open" : "")
-  }, React.createElement("div", {
-    className: "brand"
-  }, React.createElement("div", {
-    className: "brand-kicker"
-  }, "Terminale · BFI"), React.createElement("div", {
-    className: "brand-title"
-  }, "History & Geography"), React.createElement("div", {
-    className: "brand-sub"
-  }, "DNL — leçons en anglais")), React.createElement("div", {
-    className: "tool-row"
-  }, React.createElement("button", {
-    className: "tool-btn search",
-    onClick: () => setSearchOpen(true)
-  }, React.createElement("span", { className: "tool-ico" }, "🔍"), React.createElement("span", { className: "tool-lbl" }, lang === "fr" ? "Rechercher" : "Search"), React.createElement("span", { className: "tool-kbd" }, "/")), React.createElement("button", {
-    className: "tool-btn gloss",
-    onClick: () => setGlossOpen(true)
-  }, React.createElement("span", { className: "tool-ico" }, "📘"), React.createElement("span", { className: "tool-lbl" }, lang === "fr" ? "Glossaire" : "Glossary"))), React.createElement("div", {
-    className: "subject-tabs"
-  }, ["hist", "geo"].map(s => React.createElement("button", {
-    key: s,
-    className: "subj-tab " + s + (subject === s ? " active" : ""),
-    onClick: () => setSubject(s)
-  }, React.createElement("span", {
-    className: "dot"
-  }), STRUCTURE[s].label))), React.createElement("nav", {
-    className: "nav"
-  }, STRUCTURE[subject].themes.map((t, i) => React.createElement("div", {
-    className: "theme-group",
-    key: i
-  }, React.createElement("div", {
-    className: "theme-head"
-  }, t.name), t.chapters.map(c => {
-    const filled = !!CHAPTERS[c[0]];
-    return React.createElement("button", {
-      key: c[0],
-      className: "chap-btn " + subject + (current === c[0] ? " active" : "") + (filled ? "" : " soon"),
-      onClick: () => go(c[0])
-    }, React.createElement("span", {
-      className: "chap-code"
-    }, c[0]), React.createElement("span", {
-      className: "chap-title"
-    }, c[1]));
-  }))))), React.createElement("div", {
-    className: "main"
-  }, React.createElement("div", {
-    className: "mobile-bar"
-  }, React.createElement("button", {
-    className: "burger",
-    onClick: () => setNavOpen(o => !o)
-  }, React.createElement("span", null), React.createElement("span", null), React.createElement("span", null)), React.createElement("span", {
-    className: "mb-code"
-  }, cur ? cur.code : ""), React.createElement("span", {
-    className: "mb-title"
-  }, cur ? cur.name : ""), React.createElement("div", {
-    className: "lang-mob mob-only"
-  }, React.createElement("button", {
-    className: "lang-toggle" + (lang === "fr" ? " fr" : ""),
-    onClick: () => setLang(l => l === "fr" ? "en" : "fr"),
-    title: lang === "fr" ? "Voir en anglais" : "Voir en français"
-  }, React.createElement("span", {
-    className: "lt-seg" + (lang === "en" ? " on" : "")
-  }, "EN"), React.createElement("span", {
-    className: "lt-seg" + (lang === "fr" ? " on" : "")
-  }, "FR")))), data ? React.createElement(Chapter, {
-    data: data,
-    accent: accent,
-    lang: lang,
-    fiche: fiche,
-    setFiche: setFiche
-  }) : React.createElement(Placeholder, {
-    code: cur.code,
-    name: cur.name
-  }), React.createElement("div", {
-    className: "chap-foot"
-  }, React.createElement("button", {
-    className: "foot-btn" + (prev ? "" : " disabled"),
-    onClick: () => prev && go(prev.code)
-  }, React.createElement("div", {
-    className: "foot-dir"
-  }, "← Précédent"), React.createElement("div", {
-    className: "foot-name"
-  }, prev ? prev.code + " · " + prev.name : "—")), React.createElement("button", {
-    className: "foot-btn next" + (next ? "" : " disabled"),
-    onClick: () => next && go(next.code)
-  }, React.createElement("div", {
-    className: "foot-dir"
-  }, "Suivant →"), React.createElement("div", {
-    className: "foot-name"
-  }, next ? next.code + " · " + next.name : "—")))), React.createElement(SearchOverlay, {
-    open: searchOpen,
-    onClose: () => setSearchOpen(false),
-    onJump: go,
-    lang: lang
-  }), React.createElement(GlossaryOverlay, {
-    open: glossOpen,
-    onClose: () => setGlossOpen(false),
-    onJump: go,
-    lang: lang
-  }));
+    title: FR ? "Voir en anglais" : "Voir en français"
+  }, React.createElement("span", { className: "lt-seg" + (lang === "en" ? " on" : "") }, "EN"),
+     React.createElement("span", { className: "lt-seg" + (lang === "fr" ? " on" : "") }, "FR"));
+
+  return React.createElement("div", { className: "app" },
+    React.createElement("div", { className: "scrim" + (navOpen ? " show" : ""), onClick: () => setNavOpen(false) }),
+    React.createElement("div", { className: "lang-fab desk-only" }, langToggle),
+    React.createElement("aside", { className: "sidebar" + (navOpen ? " open" : "") },
+      React.createElement("button", { className: "brand" + (current ? "" : " here"), onClick: home, title: FR ? "Accueil" : "Home" },
+        React.createElement(CompassRose, { size: 44, className: "brand-rose" }),
+        React.createElement("div", { className: "brand-txt" },
+          React.createElement("div", { className: "brand-kicker" }, "Terminale BFI"),
+          React.createElement("div", { className: "brand-title" }, "History & Geography"),
+          React.createElement("div", { className: "brand-sub" }, FR ? "Atlas de révision" : "Revision atlas"))),
+      React.createElement("div", { className: "tool-row" },
+        React.createElement("button", { className: "tool-btn search", onClick: () => setSearchOpen(true) },
+          React.createElement(Icon, { name: "search", size: 17, className: "tool-ico" }),
+          React.createElement("span", { className: "tool-lbl" }, FR ? "Rechercher" : "Search"),
+          React.createElement("span", { className: "tool-kbd" }, "/")),
+        React.createElement("button", { className: "tool-btn gloss", onClick: () => setGlossOpen(true) },
+          React.createElement(Icon, { name: "book", size: 17, className: "tool-ico" }),
+          React.createElement("span", { className: "tool-lbl" }, FR ? "Glossaire" : "Glossary"))),
+      React.createElement("div", { className: "subject-tabs" },
+        ["hist", "geo"].map(s => React.createElement("button", {
+          key: s, className: "subj-tab " + s + (subject === s ? " active" : ""), onClick: () => setSubject(s)
+        }, React.createElement("span", { className: "dot" }), FR ? (s === "hist" ? "Histoire" : "Géographie") : STRUCTURE[s].label))),
+      React.createElement("nav", { className: "nav" },
+        STRUCTURE[subject].themes.map((t, i) => React.createElement("div", { className: "theme-group", key: i },
+          React.createElement("div", { className: "theme-head " + subject },
+            React.createElement(Icon, { name: THEME_ICON[subject][i], size: 18, className: "theme-ico" }),
+            React.createElement("span", null, t.name.replace(/^Theme (\d+)\s*[—-]\s*/, FR ? "Thème $1 · " : "Theme $1 · "))),
+          t.chapters.map(c => {
+            const d = CHAPTERS[c[0]];
+            const filled = !!(d && !d.pending);
+            return React.createElement("button", {
+              key: c[0],
+              className: "chap-btn " + subject + (current === c[0] ? " active" : "") + (filled ? "" : " soon"),
+              onClick: () => go(c[0])
+            }, React.createElement(Icon, { name: c[0], size: 16, className: "chap-ico" }),
+               React.createElement("span", { className: "chap-code" }, c[0]),
+               React.createElement("span", { className: "chap-title" }, (FR && d && d.fr && d.fr.title) ? d.fr.title : c[1]));
+          }))))),
+    React.createElement("div", { className: "main" },
+      React.createElement("div", { className: "mobile-bar" },
+        React.createElement("button", { className: "burger", "aria-label": "Menu", onClick: () => setNavOpen(o => !o) },
+          React.createElement("span", null), React.createElement("span", null), React.createElement("span", null)),
+        cur ? React.createElement("span", { className: "mb-code" }, cur.code)
+            : React.createElement("span", { className: "mb-code" }, React.createElement(CompassRose, { size: 22 })),
+        React.createElement("span", { className: "mb-title" }, cur ? chapTitle(cur) : "History & Geography"),
+        React.createElement("div", { className: "lang-mob mob-only" }, langToggle)),
+      !current
+        ? React.createElement(Home, { lang: lang, go: go, openSearch: () => setSearchOpen(true), openGloss: () => setGlossOpen(true) })
+        : data
+          ? React.createElement(Chapter, { data: data, accent: accent, lang: lang, fiche: fiche, setFiche: setFiche })
+          : React.createElement(Placeholder, { code: cur.code, name: cur.name }),
+      current && React.createElement("div", { className: "chap-foot" },
+        React.createElement("button", { className: "foot-btn" + (prev ? "" : " disabled"), onClick: () => prev ? go(prev.code) : home() },
+          React.createElement("div", { className: "foot-dir" }, prev ? (FR ? "← Précédent" : "← Previous") : (FR ? "← Accueil" : "← Home")),
+          React.createElement("div", { className: "foot-name" }, prev ? React.createElement(React.Fragment, null, React.createElement("b", null, prev.code), " ", chapTitle(prev)) : (FR ? "Retour à l'atlas" : "Back to the atlas"))),
+        React.createElement("button", { className: "foot-btn home", onClick: home, title: FR ? "Accueil" : "Home" },
+          React.createElement(Icon, { name: "home", size: 20 })),
+        React.createElement("button", { className: "foot-btn next" + (next ? "" : " disabled"), onClick: () => next && go(next.code) },
+          React.createElement("div", { className: "foot-dir" }, FR ? "Suivant →" : "Next →"),
+          React.createElement("div", { className: "foot-name" }, next ? React.createElement(React.Fragment, null, React.createElement("b", null, next.code), " ", chapTitle(next)) : "—")))),
+    React.createElement(SearchOverlay, { open: searchOpen, onClose: () => setSearchOpen(false), onJump: go, lang: lang }),
+    React.createElement(GlossaryOverlay, { open: glossOpen, onClose: () => setGlossOpen(false), onJump: go, lang: lang }));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App, null));
 </script>
