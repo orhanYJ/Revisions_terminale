@@ -3193,12 +3193,13 @@ const side = $("#side");
 
 /* ---------- index plat ---------- */
 const CH = {};          // id -> chapitre enrichi
+const TH = {};          // id -> {theme, kind} : permet une page par thème
 const ORDER = {p:[], t:[]};
 function indexAll(tree, kind){
-  tree.forEach(th => th.parts.forEach(pa => pa.chapters.forEach(c => {
+  tree.forEach(th => { TH[th.id] = {theme:th, kind:kind}; th.parts.forEach(pa => pa.chapters.forEach(c => {
     c.kind = kind; c.theme = th; c.part = pa;
     CH[c.id] = c; ORDER[kind].push(c.id);
-  })));
+  })); });
 }
 indexAll(PREMIERE,"p");
 indexAll(TERMINALE,"t");
@@ -3319,7 +3320,7 @@ function pageAccueil(){
     const n = th.parts.reduce((a,p)=>a+p.chapters.length,0);
     const fait = th.parts.reduce((a,p)=>a+p.chapters.filter(c=>c.html).length,0);
     const pct = Math.round(fait/n*100);
-    h += `<button class="card withspec" style="--c:${th.color}" onclick="go('terminale')">
+    h += `<button class="card withspec" style="--c:${th.color}" onclick="go('${th.id}')">
       ${spec(th.specs[0])}
       <div class="tag" style="color:${th.color}">${leafDot(th.color)}${th.n}</div>
       <h3>${th.title}</h3>
@@ -3331,7 +3332,7 @@ function pageAccueil(){
   h += '<h2 class="sec">'+SPRIG+'Rappels de Première — prêts à réviser</h2><div class="grid">';
   PREMIERE.forEach(th => {
     const n = th.parts.reduce((a,p)=>a+p.chapters.length,0);
-    h += `<button class="card withspec" style="--c:${th.color}" onclick="go('premiere')">
+    h += `<button class="card withspec" style="--c:${th.color}" onclick="go('${th.id}')">
       ${spec(th.specs[0])}
       <div class="tag" style="color:${th.color}">${leafDot(th.color)}${th.n}</div>
       <h3>${th.title}</h3>
@@ -3351,17 +3352,22 @@ function pageAccueil(){
   return h;
 }
 
-function pageListe(kind){
+function pageListe(kind, seul){
   motifSeed = 0;
-  const tree = kind==="t" ? TERMINALE : PREMIERE;
-  const titre = kind==="t" ? "Programme de Terminale" : "Rappels de Première";
-  const sous = kind==="t"
-    ? "Le découpage suit celui de la classe : chapitre, puis unités. Le cours arrive unité par unité ; partout ailleurs, les objectifs et les rappels de Première sont déjà en place."
-    : "Quinze fiches complètes couvrant tout le programme de spécialité de Première.";
+  const tree = seul ? [seul] : (kind==="t" ? TERMINALE : PREMIERE);
+  const racine = kind==="t" ? "terminale" : "premiere";
+  const nomRacine = kind==="t" ? "Programme de Terminale" : "Rappels de Première";
+  const titre = seul ? seul.title : nomRacine;
+  const sous = seul
+    ? seul.parts.map(p=>p.title.replace(/^[A-C]\. /,"")).join(" · ")
+    : (kind==="t"
+      ? "Le découpage suit celui de la classe : chapitre, puis unités. Le cours arrive unité par unité ; partout ailleurs, les objectifs et les rappels de Première sont déjà en place."
+      : "Quinze fiches complètes couvrant tout le programme de spécialité de Première.");
   let h = `<div class="pagehead" style="--c:${tree[0].color}">${bot(tree[0].motif,"pagebot")}
+    ${seul ? `<div class="crumb"><a href="#${racine}">${nomRacine}</a> › <span>${seul.n}</span></div>` : ""}
     <h1 class="page">${titre}</h1><p class="lede">${sous}</p></div>`;
   tree.forEach(th => {
-    h += `<h2 class="sec" style="color:${th.color}">${leafDot(th.color)}${th.n} — ${th.title}</h2>`;
+    if(!seul) h += `<h2 class="sec" style="color:${th.color}">${leafDot(th.color)}${th.n} — ${th.title}</h2>`;
     th.parts.forEach(pa => {
       h += `<div style="font-family:var(--serif);font-size:16px;font-weight:600;color:var(--ink);margin:20px 0 10px">${pa.title}</div><div class="grid">`;
       let lastChap = null;
@@ -3384,6 +3390,20 @@ function pageListe(kind){
       h += '</div>';
     });
   });
+  if(seul){
+    const voisins = (kind==="t" ? TERMINALE : PREMIERE).filter(t => t.id !== seul.id);
+    h += `<h2 class="sec">${SPRIG}Les autres thèmes</h2><div class="grid">`;
+    voisins.forEach(t => {
+      const n = t.parts.reduce((a,p)=>a+p.chapters.length,0);
+      h += `<button class="card" style="--c:${t.color}" onclick="go('${t.id}')">
+        <div class="tag" style="color:${t.color}">${leafDot(t.color)}${t.n}</div>
+        <h3>${t.title}</h3>
+        <p>${t.parts.map(p=>p.title.replace(/^[A-C]\. /,"")).join(" · ")}</p>
+        <div class="meta">${n} ${kind==="t" ? "chapitre"+(n>1?"s":"") : "fiche"+(n>1?"s":"")}</div>
+      </button>`;
+    });
+    h += '</div>';
+  }
   return h;
 }
 
@@ -3665,6 +3685,7 @@ function render(){
   else if(r === "terminale") html = pageListe("t");
   else if(r === "premiere") html = pageListe("p");
   else if(r === "recherche") html = pageRecherche($("#q").value);
+  else if(TH[r]) html = pageListe(TH[r].kind, TH[r].theme);
   else if(CH[r]) html = pageChapitre(CH[r]);
   else html = pageAccueil();
   view.innerHTML = html;
@@ -3676,15 +3697,22 @@ function render(){
   side.querySelectorAll("a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#"+r));
   const on = side.querySelector("a.on");
   if(on) on.closest(".grp").classList.add("open");
-  const ch = CH[r];
+  const ch = CH[r], th = TH[r];
   document.querySelectorAll("#bottomnav button").forEach(b => {
     const k = b.dataset.go;
     // toujours un booléen : avec undefined, classList.toggle inverse la classe au lieu de la retirer
     const actif = k === r
       || (!!ch && k === "terminale" && ch.kind === "t")
-      || (!!ch && k === "premiere"  && ch.kind === "p");
+      || (!!ch && k === "premiere"  && ch.kind === "p")
+      || (!!th && k === "terminale" && th.kind === "t")
+      || (!!th && k === "premiere"  && th.kind === "p");
     b.classList.toggle("on", actif);
   });
+  // sur la page d'un thème, déplier son groupe dans le volet latéral
+  if(th){
+    const grp = side.querySelector('.grp[data-g="'+r+'"]');
+    if(grp) grp.classList.add("open");
+  }
   side.classList.remove("open"); $("#backdrop").classList.remove("on");
 }
 window.addEventListener("hashchange", render);
