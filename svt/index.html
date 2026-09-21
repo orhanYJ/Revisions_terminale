@@ -98,6 +98,77 @@ body::after{
 html[data-theme="dark"] body::after{opacity:.22}
 
 
+/* --- réviser : bloc de fin d'unité --- */
+.revbloc{margin:34px 0 10px;padding-top:6px;border-top:1px solid var(--line-2)}
+.revtit{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--ink);margin:18px 0 4px}
+.revsous{font-size:14px;color:var(--ink-2);margin:0 0 6px}
+.revbloc .qcta{margin:12px 0 0}
+.revn{
+  flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--sans);font-size:13px;font-weight:700;
+  background:color-mix(in srgb,var(--leaf) 14%,transparent);color:var(--leaf-2);
+}
+/* --- code couleur de Mme Philip --- */
+.codecol{display:flex;flex-direction:column;gap:6px;margin:4px 0 14px}
+.codecol span{padding:6px 11px;border-radius:8px;font-size:13.5px;font-weight:600;border-left:4px solid}
+.codecol .c1{color:var(--violet);border-color:var(--violet);background:var(--violet-soft)}
+.codecol .c2{color:var(--leaf-2);border-color:var(--leaf);background:color-mix(in srgb,var(--leaf) 12%,transparent)}
+.codecol .c3{color:var(--rose);border-color:var(--rose);background:var(--rose-soft)}
+.codecol .c4{color:var(--bark);border-color:var(--amber);background:var(--amber-soft)}
+/* --- cartes de vocabulaire --- */
+.vcard{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px 20px 24px;box-shadow:var(--shadow-s);text-align:center;
+}
+.vcard .qtag{margin-bottom:16px}
+.vmot{font-family:var(--serif);font-size:27px;font-weight:600;line-height:1.25;color:var(--ink);margin:6px 0 4px}
+.vdef{font-size:16px;line-height:1.62;color:var(--ink);text-align:left;margin:6px 0 4px}
+.vconsigne{font-size:13.5px;color:var(--ink-3);margin:14px 0 4px;font-style:italic}
+.vrep{margin:18px 0 4px;padding:16px 16px;border-radius:var(--r-s);background:var(--panel-2);border:1px dashed var(--line-2)}
+.vboutons{display:flex;gap:10px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.vbt{
+  flex:1 1 130px;max-width:190px;padding:13px 16px;border-radius:999px;cursor:pointer;
+  font-family:var(--sans);font-size:14.5px;font-weight:600;border:1.5px solid;
+  transition:transform .15s,filter .15s;
+}
+.vbt:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.vbt.oui{color:#fff;background:var(--leaf);border-color:var(--leaf)}
+.vbt.non{color:var(--rose);background:transparent;border-color:var(--rose)}
+/* --- entraînement à la rédaction --- */
+.redex{margin:30px 0 8px;padding-top:4px}
+.redhead{display:flex;align-items:flex-start;gap:13px;margin-bottom:10px}
+.rednum{
+  flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--serif);font-size:17px;font-weight:600;
+  background:var(--leaf);color:#fff;margin-top:2px;
+}
+.redtit{font-family:var(--serif);font-size:20px;font-weight:600;line-height:1.3;color:var(--ink);margin:0}
+.redduree{font-size:12.5px;color:var(--ink-3)}
+.redcons{font-size:15px;line-height:1.62;color:var(--ink);margin:0 0 12px;
+  padding:13px 15px;border-radius:var(--r-s);background:var(--panel-2);border-left:3px solid var(--leaf)}
+.redta{
+  width:100%;box-sizing:border-box;min-height:190px;resize:vertical;
+  padding:14px 15px;border:1px solid var(--line-2);border-radius:var(--r-s);
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.6;
+}
+.redta:focus{outline:2px solid var(--leaf);outline-offset:1px;border-color:transparent}
+.redbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:2px}
+.redbar>span{font-size:12.5px;color:var(--ink-3)}
+.redcor{
+  margin:20px 0 0;padding:18px 18px 10px;border-radius:var(--r);
+  background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow-s);
+  font-size:15px;line-height:1.66;
+}
+.redcor p{margin:0 0 12px}
+.redsrc{font-size:11.5px !important;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--bark);margin-bottom:12px !important}
+.pintit{font-family:var(--serif);font-weight:600;font-size:16px;color:var(--leaf-2);margin:16px 0 6px !important}
+.redcheck{margin:14px 0 0;padding:16px 16px 12px;border-radius:var(--r);background:var(--panel-2);border:1px solid var(--line-2)}
+.redcheck h4{margin:0 0 10px;font-size:14.5px;color:var(--ink)}
+.redpt{display:flex;align-items:flex-start;gap:10px;padding:6px 0;font-size:14.5px;line-height:1.5;color:var(--ink);cursor:pointer}
+.redpt input{flex:none;width:18px;height:18px;margin-top:2px;accent-color:var(--leaf)}
+.redscore{margin:10px 0 0;font-weight:700;color:var(--leaf-2);font-size:14.5px}
+
 /* --- QCM --- */
 .hp{
   display:inline-block;margin-left:8px;vertical-align:2px;
@@ -137,6 +208,8 @@ html[data-theme="dark"] body::after{opacity:.22}
 .qcta:hover{transform:translateY(-2px);box-shadow:var(--shadow-m);border-color:var(--leaf)}
 .qcta b{display:block;font-family:var(--serif);font-size:17px;color:var(--ink);margin-bottom:3px}
 .qcta span{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+.qcta div span{display:block}
+.qcta div{line-height:1.5}
 .qcta .fl{flex:none;margin-left:auto;font-size:20px;color:var(--leaf)}
 .pastille{
   display:inline-block;margin-left:7px;
@@ -4167,6 +4240,362 @@ function pageQcm(id){
 }
 </script>
 <script>
+/* ================================================================
+   RÉVISION ACTIVE — consigne de Mme Philip :
+   « apprendre le vocabulaire + ne pas seulement lire, mais
+     s'entraîner à rédiger seul et comparer à la correction »
+   Deux outils : cartes de vocabulaire (VOCAB), rédaction (REDAC).
+   Aucune persistance : tout vit le temps de la page.
+   ================================================================ */
+
+/* ---------------- vocabulaire, par chapitre ---------------- */
+const VOCAB = {
+ "1": {
+  titre: "Chapitre 1 — L'origine du génotype des individus",
+  unites: ["t1u1", "t1u2"],
+  mots: [
+   {m:"Clone", prof:true, u:"t1u1",
+    d:"Ensemble de cellules qui, par mitoses successives, se copient pour donner des cellules filles génétiquement identiques à la cellule de départ. Le mot désigne aussi l'unique cellule qui en est à l'origine."},
+   {m:"Sous-clone", prof:true, u:"t1u1",
+    d:"Groupe de cellules d'un clone issues d'une cellule ayant subi une mutation au cours des mitoses : toutes ses descendantes portent cette mutation et sont génétiquement différentes du reste du clone."},
+   {m:"Tumeur", prof:true, u:"t1u1",
+    d:"Ensemble de sous-clones formés lorsque des mutations touchent des gènes contrôlant le cycle cellulaire et la stabilité du génome (p53, TERT) : les cellules se multiplient indéfiniment et accumulent les mutations. Elle est à l'origine du cancer."},
+   {m:"Mitose", prof:true, u:"t1u1",
+    d:"Division cellulaire au cours de laquelle chaque chromosome, préalablement répliqué, transmet une chromatide à chacune des deux cellules filles. C'est une reproduction conforme : elle conserve le caryotype et produit des clones."},
+   {m:"Méiose", prof:true, u:"t1u2",
+    d:"Succession de deux divisions cellulaires qui, à partir d'une cellule diploïde (2n), produit quatre cellules haploïdes (n) génétiquement différentes : les gamètes. Elle ne transmet que la moitié de l'information génétique et la brasse."},
+   {m:"Brassage interchromosomique", prof:true, u:"t1u2",
+    d:"Répartition aléatoire et indépendante des chromosomes homologues d'origine paternelle et maternelle dans les gamètes. Préparé en métaphase I, il s'effectue en anaphase I. Il concerne les gènes situés sur des paires de chromosomes différentes et donne des gamètes équiprobables."},
+   {m:"Brassage intrachromosomique", prof:true, u:"t1u2",
+    d:"Échange de portions de chromatides entre chromatides non sœurs de chromosomes homologues, par crossing-over, en prophase I de méiose. Il crée de nouvelles combinaisons d'allèles sur un même chromosome et donne des gamètes recombinés minoritaires."},
+
+   {m:"Mutation", u:"t1u1",
+    d:"Modification aléatoire et héréditaire de la séquence de l'ADN, due à une erreur de réplication non corrigée ou à un agent mutagène."},
+   {m:"Mutation somatique", u:"t1u1",
+    d:"Mutation survenant dans une cellule du corps : elle peut modifier le phénotype de l'individu mais n'est pas transmise à sa descendance."},
+   {m:"Mutation germinale", u:"t1u1",
+    d:"Mutation survenant dans une cellule de la lignée reproductrice : elle peut ne rien changer chez l'individu mais être transmise à toute sa descendance."},
+   {m:"Séquence régulatrice", u:"t1u1",
+    d:"Portion d'ADN hors de la partie codante d'un gène, qui commande son expression. Une mutation y tombant ne change pas la protéine mais sa quantité : surexpression ou inactivation (exemple : TERT)."},
+   {m:"Diploïde / haploïde", u:"t1u2",
+    d:"Diploïde (2n) : deux exemplaires de chaque chromosome, en paires d'homologues — les cellules somatiques. Haploïde (n) : un seul exemplaire de chaque chromosome — les gamètes. Chez l'humain, 2n = 46 et n = 23."},
+   {m:"Fécondation", u:"t1u2",
+    d:"Réunion au hasard de deux gamètes haploïdes, qui rassemble deux génomes d'origine indépendante et rétablit la diploïdie dans la cellule-œuf."},
+   {m:"Crossing-over", u:"t1u2",
+    d:"Échange réciproque de segments entre deux chromatides non sœurs de chromosomes homologues appariés, en prophase I. C'est le mécanisme du brassage intrachromosomique."},
+   {m:"Test-cross", u:"t1u2",
+    d:"Croisement entre un individu double hétérozygote de la F1 et un double homozygote récessif. Le parent récessif ne masquant rien, les phénotypes obtenus révèlent directement les gamètes produits par la F1."},
+   {m:"Phénotype recombiné", u:"t1u2",
+    d:"Phénotype présentant une combinaison d'allèles nouvelle, différente de celle des deux parents. C'est là qu'est créée la diversité génétique."},
+   {m:"Gènes partiellement liés", u:"t1u2",
+    d:"Gènes situés sur la même paire de chromosomes. Dans un test-cross, ils donnent deux phénotypes parentaux majoritaires et deux phénotypes recombinés minoritaires."}
+  ]
+ }
+};
+
+/* ---------------- entraînement à la rédaction, par unité ---------------- */
+const METHODE_PHILIP = `
+<div class="box def"><h4>La méthode de Mme Philip</h4>
+<p><b>L'introduction, « type 2 », en trois temps :</b></p>
+<ol>
+  <li>une <b>phrase d'amorce</b> qui pose le contexte en restituant des connaissances ;</li>
+  <li>une ou deux phrases qui <b>définissent les termes</b> et amorcent le problème ;</li>
+  <li>l'<b>annonce de la problématique</b>, sous forme de question.</li>
+</ol>
+<p>On va à l'essentiel. Pas d'annonce de plan : elle n'est ni nécessaire ni obligatoire pour ce type d'exercice.</p>
+<p><b>Le paragraphe argumenté</b> relie à chaque fois quatre éléments :</p>
+<div class="codecol">
+  <span class="c1">ce que j'observe dans le document</span>
+  <span class="c2">ce que j'extrais comme information</span>
+  <span class="c3">les connaissances du cours que j'ajoute</span>
+  <span class="c4">ce que je déduis EN METTANT EN RELATION</span>
+</div>
+<p>Les <b>phrases de transition</b>, avec des connecteurs logiques, marquent le passage d'un paragraphe à l'autre : ce sont elles qui permettent d'évaluer ta démarche.</p></div>`;
+
+const REDAC = {
+
+t1u1: [
+ {id:"intro1", titre:"Rédiger l'introduction de l'unité", duree:"10 min",
+  consigne:"Sans regarder le cours, rédige l'introduction de l'unité 1 en 5 à 8 lignes : contexte, définitions, problématique.",
+  source:"Proposition de correction, construite à partir du cours",
+  corrige:`<p>Tout organisme pluricellulaire est issu d'une cellule unique, la cellule-œuf, qui se multiplie par mitoses successives. La mitose étant une reproduction conforme, toutes les cellules issues de cette multiplication forment un <b>clone</b> : un ensemble de cellules génétiquement identiques à la cellule de départ. Au sein d'une espèce, le patrimoine génétique est ainsi maintenu stable et se conserve au cours des générations.</p>
+<p>Pourtant, un même organe issu de cellules clonales, comme la peau du chat, peut présenter des phénotypes différents. C'est que la réplication de l'ADN ne se fait pas toujours à l'identique : des <b>mutations</b>, modifications de la séquence de l'ADN, peuvent survenir au cours des mitoses.</p>
+<p>Nous nous demanderons donc : <b>quelles sont les conséquences des modifications génétiques pouvant survenir au cours de la multiplication d'un clone cellulaire ?</b></p>`,
+  points:[
+   "Amorce : tout organisme vient d'une cellule-œuf multipliée par mitoses",
+   "La mitose est une reproduction conforme",
+   "Définition d'un clone",
+   "Stabilité du patrimoine génétique au sein de l'espèce",
+   "Constat qui pose problème : des phénotypes différents dans un même organe",
+   "Définition d'une mutation",
+   "Problématique formulée sous forme de question",
+   "Pas d'annonce de plan"
+  ]},
+
+ {id:"parag1", titre:"Le paragraphe argumenté de l'activité 2", duree:"30 min",
+  consigne:"Problématique : <b>quelles sont les causes et les conséquences des modifications génétiques pouvant survenir au cours de la multiplication d'un clone cellulaire ?</b> Réponds par une introduction, un paragraphe argumenté et une conclusion, en t'appuyant sur les documents de l'activité 2 : colonies de levures ade2, modélisation d'une tumeur, rôle de p53, embryons de souris, séquences du gène TERT.",
+  source:"Correction de Mme Philip, remise en ordre et légèrement mise en forme",
+  corrige:`<p class="pintit">Introduction</p>
+<p>La réplication de l'ADN et la mitose sont deux processus qui permettent le plus souvent la reproduction à l'identique d'une cellule-mère de départ et aboutissent à la formation de clones cellulaires. Cependant, cette réplication ne se fait pas toujours à l'identique : des modifications génétiques peuvent avoir lieu, ce sont les mutations, des altérations de la séquence d'ADN. Nous nous demanderons alors quelles sont les conséquences de ces mutations lors des mitoses successives des clones cellulaires.</p>
+<p class="pintit">Paragraphe argumenté</p>
+<p>L'apparition de mutations peut se faire au hasard, lors d'erreurs de réplication de la polymérase, mais elle est aussi déclenchée par certains facteurs de l'environnement : tabac, UV, etc. Des mutations apparaissent spontanément dans le génotype et peuvent avoir lieu chez un organisme uni ou pluricellulaire.</p>
+<p>Pour mettre en évidence ces mutations chez les unicellulaires, on observe le devenir d'une cellule de levure ade2 (être vivant unicellulaire) de phénotype « couleur rouge » : nous voyons qu'en majorité, les colonies de levures développées en 7 jours conservent le phénotype rouge de départ. Chaque colonie de levures rouges est issue de la multiplication d'une levure initiale ade2 rouge : c'est la mitose qui permet une reproduction du matériel génétique conforme à la levure de départ. Cependant, on voit que des colonies de couleur blanche sont apparues : il y a donc eu une modification du phénotype des levures au cours de leur multiplication. En effet, des mutations peuvent apparaître au cours de la mitose : cela donne naissance à un sous-clone. La mutation de ce sous-clone est alors transmise à toutes les levures dérivant de ce sous-clone : cela aboutit à la formation d'une colonie de cellules clonales mutées blanches.</p>
+<p>Pour des organismes pluricellulaires, la conséquence de la mutation ne sera pas la même. En effet, on observe avec les embryons de souris que lorsque les mutations se déroulent dans des cellules de la lignée somatique, elles donnent naissance à des sous-clones et modifient le phénotype de l'individu, mais ne se transmettent pas à la descendance. Lorsqu'elles se déroulent dans des cellules de la lignée germinale, elles donnent naissance à des sous-clones, modifient le phénotype de l'individu ET se transmettent à la descendance.</p>
+<p><i>Nous allons maintenant voir que les mutations de l'ADN au cours des mitoses peuvent avoir de graves conséquences.</i></p>
+<p>On sait que p53 est une protéine qui se lie à l'ADN et favorise l'expression de gènes qui doivent réparer les dommages cellulaires, ou qui stimulent l'apoptose. Or les cellules tumorales présentent une mutation du gène p53 qui altère la protéine : elles échappent donc à la réparation des mutations, et continuent de se multiplier en présence de ces mutations graves. Cela explique la formation d'une colonie constituée de plusieurs sous-clones, similaires génétiquement mais non identiques entre eux. En effet, la modélisation des cellules tumorales colorées nous montre que certaines sont de couleurs identiques : elles partagent un patrimoine génétique identique ; d'autres sont de couleurs « proches », donc génétiquement similaires ; certaines sont plus éloignées génétiquement. Au sein d'une colonie de cellules tumorales, il y a donc eu apparition de mutations aboutissant à des sous-clones dérivant de la cellule de départ par une ou plusieurs mutations. Des mutations des gènes responsables de la production des protéines de réparation de l'ADN peuvent donc avoir comme conséquence le MAINTIEN des mutations au cours des mitoses, aboutissant à la création de tumeurs et déclenchant des cancers le plus souvent mortels.</p>
+<p>Les mutations menant à une activation anormale du gène TERT, qui contrôle la mitose, sont aussi détectées dans 90 % des cellules cancéreuses. En comparant la séquence d'une cellule saine, prélevée chez le témoin, à celle des cellules tumorales, on observe que les mutations sont présentes au niveau de la séquence régulatrice du gène TERT : on relève 2 substitutions, d'un nucléotide C par un nucléotide T. Cette modification de la séquence régulatrice aboutit à la surexpression du gène TERT, donc à la multiplication infinie des cellules mutantes, et à la création du cancer.</p>
+<p>Ainsi, les mutations peuvent aussi se dérouler sur la séquence régulatrice du gène et impliquer l'inactivation ou la surexpression de celui-ci, sans modifier directement la séquence protéique.</p>
+<p class="pintit">Conclusion</p>
+<p>Chez les êtres vivants pluricellulaires, les mutations seront héréditaires et auront des conséquences sur le phénotype des générations futures si et seulement si elles se déroulent dans les cellules germinales. Selon qu'elles touchent la séquence codante ou la séquence régulatrice d'un gène, et selon la fonction de ce gène, elles peuvent aller jusqu'à la formation de tumeurs.</p>`,
+  points:[
+   "Intro : amorce réplication + mitose → clones",
+   "Intro : définition de la mutation en lien avec le problème",
+   "Intro : problématique posée",
+   "Causes : erreurs de réplication au hasard + facteurs de l'environnement (tabac, UV)",
+   "Levures : rouge majoritaire → la mitose est conforme",
+   "Levures : colonies blanches → mutation → sous-clone transmis à toute la descendance",
+   "Pluricellulaires : somatique non transmise, germinale transmise",
+   "Phrase de transition avec connecteur logique",
+   "p53 : rôle normal (réparation, apoptose) puis conséquence de sa mutation",
+   "Tumeur = plusieurs sous-clones génétiquement proches mais différents",
+   "TERT : 2 substitutions dans la séquence régulatrice → surexpression → multiplication infinie",
+   "Conclusion qui répond à la problématique",
+   "Chaque argument relie ce que je vois, ce que je sais et ce que j'en déduis"
+  ]}
+],
+
+t1u2: [
+ {id:"intro2", titre:"Rédiger l'introduction de l'unité", duree:"10 min",
+  consigne:"Sans regarder le cours, rédige l'introduction de l'unité 2 en 5 à 8 lignes : contexte, définitions, problématique.",
+  source:"Proposition de correction, construite à partir du cours",
+  corrige:`<p>Chez l'espèce humaine, le caryotype (2n = 46) est stable d'une génération à l'autre. Cette stabilité repose sur deux phénomènes complémentaires : la <b>méiose</b>, qui produit des gamètes haploïdes (n = 23) ne possédant qu'un exemplaire de chaque paire de chromosomes, et la <b>fécondation</b>, qui réunit deux gamètes et rétablit la diploïdie dans la cellule-œuf.</p>
+<p>Pourtant, les enfants issus des mêmes parents sont tous génétiquement différents. C'est que, contrairement à la mitose qui produit des clones, la méiose ne transmet que la moitié de l'information génétique de la cellule de départ, et s'accompagne d'un <b>brassage</b> des allèles d'origine paternelle et maternelle.</p>
+<p>Nous nous demanderons donc : <b>comment expliquer la diversité génétique des individus lors de la reproduction sexuée ?</b></p>`,
+  points:[
+   "Amorce : caryotype stable, 2n = 46",
+   "Méiose : 2n → n, gamètes haploïdes",
+   "Fécondation : n + n → 2n, cellule-œuf",
+   "Constat qui pose problème : enfants des mêmes parents tous différents",
+   "Opposition mitose (clones) / méiose (moitié de l'information + brassage)",
+   "Problématique formulée sous forme de question",
+   "Pas d'annonce de plan"
+  ]},
+
+ {id:"meiose", titre:"Montrer que la méiose est source de diversité", duree:"25 min",
+  consigne:"<b>Montrer comment la méiose permet la formation de gamètes génétiquement différents.</b> Réponds par une introduction, un développement structuré et une conclusion. Un schéma est valorisé.",
+  source:"Proposition de correction, construite à partir du cours",
+  corrige:`<p class="pintit">Introduction</p>
+<p>La méiose est la succession de deux divisions cellulaires qui, à partir d'une cellule diploïde, produit quatre cellules haploïdes : les gamètes. Elle ne se contente pas de diviser le nombre de chromosomes par deux : les gamètes obtenus sont génétiquement tous différents. Nous nous demanderons comment la méiose produit cette diversité.</p>
+<p class="pintit">Le brassage interchromosomique</p>
+<p>Au cours de la première division de méiose, les chromosomes homologues — l'un d'origine paternelle, l'autre d'origine maternelle — restent associés par paires. Ce brassage est <b>préparé en métaphase I</b> : les paires se placent de part et d'autre du plan équatorial dans une position aléatoire. Il <b>s'effectue en anaphase I</b>, lorsque les homologues se séparent et migrent vers des pôles opposés. La séparation de chaque paire étant un événement indépendant de celle des autres, chaque gamète reçoit une combinaison unique de chromosomes paternels et maternels.</p>
+<p>Ce brassage concerne les gènes situés sur des paires de chromosomes différentes. Pour n paires, il produit 2<sup>n</sup> gamètes équiprobables, soit 2<sup>23</sup>, environ 8 millions, chez l'humain.</p>
+<p class="pintit">Le brassage intrachromosomique</p>
+<p>Auparavant, en <b>prophase I</b>, les chromosomes homologues s'apparient étroitement. Des échanges de portions de chromatides peuvent alors se produire entre chromatides <b>non sœurs</b> : ce sont les crossing-over, visibles sous forme de chiasmas. Ils créent de nouvelles combinaisons d'allèles sur un même chromosome.</p>
+<p>Ce brassage concerne les gènes situés sur la même paire de chromosomes. Il produit des gamètes recombinés, minoritaires, car le crossing-over ne se produit pas dans toutes les cellules, ni toujours au même endroit.</p>
+<p class="pintit">Conclusion</p>
+<p>Les deux brassages se cumulent à chaque méiose, si bien que chaque gamète est génétiquement unique. La fécondation, qui réunit au hasard deux de ces gamètes, amplifie encore cette diversité : chaque individu issu de la reproduction sexuée est génétiquement unique.</p>`,
+  points:[
+   "Définition de la méiose : 2n → n, quatre cellules haploïdes",
+   "Problématique posée en introduction",
+   "Interchromosomique : préparé en métaphase I",
+   "Interchromosomique : effectué en anaphase I, séparation des homologues",
+   "Répartition aléatoire ET indépendante des paires",
+   "2 puissance n gamètes, 2 puissance 23 chez l'humain",
+   "Intrachromosomique : prophase I, appariement des homologues",
+   "Crossing-over entre chromatides non sœurs",
+   "Gamètes recombinés minoritaires, et pourquoi",
+   "Les deux brassages se cumulent",
+   "Rôle amplificateur de la fécondation",
+   "Un schéma légendé (valorisé)"
+  ]},
+
+ {id:"testcross", titre:"Interpréter un test-cross", duree:"20 min",
+  consigne:"Chez la drosophile, on croise une F1 double hétérozygote [ailes normales ; corps gris] avec un double homozygote récessif [ailes courtes ; corps noir]. On obtient : 40 % [ailes normales ; corps gris], 42,5 % [ailes courtes ; corps noir], 7,5 % [ailes courtes ; corps gris] et 10 % [ailes normales ; corps noir]. <b>Les deux gènes sont-ils indépendants ou liés ? Justifie, et explique l'origine de chaque phénotype.</b>",
+  source:"Proposition de correction, construite à partir du cours",
+  corrige:`<p>Le test-cross croise la F1 double hétérozygote avec un double homozygote récessif. Celui-ci ne transmet que des allèles récessifs et ne masque donc rien : les phénotypes obtenus reflètent <b>directement les gamètes produits par la F1</b>.</p>
+<p>On obtient quatre phénotypes, mais <b>pas en proportions égales</b>. Deux sont majoritaires : [ailes normales ; corps gris] (40 %) et [ailes courtes ; corps noir] (42,5 %). Ils sont identiques à ceux de la génération parentale : ce sont les <b>phénotypes parentaux</b>. Deux sont minoritaires : [ailes courtes ; corps gris] (7,5 %) et [ailes normales ; corps noir] (10 %). Ils présentent une combinaison nouvelle : ce sont des <b>phénotypes recombinés</b>.</p>
+<p>Si les gènes étaient indépendants, le brassage interchromosomique aurait produit quatre types de gamètes équiprobables, donc quatre phénotypes à 25 % chacun. Ce n'est pas le cas : les deux gènes sont <b>partiellement liés</b>, c'est-à-dire situés sur la même paire de chromosomes.</p>
+<p>Les phénotypes parentaux, majoritaires (82,5 %), proviennent de gamètes dans lesquels les allèles sont restés liés sur le même chromosome. Les phénotypes recombinés, minoritaires (17,5 %), proviennent de gamètes recombinés formés par <b>crossing-over</b> entre chromatides non sœurs, lors de la prophase I de la méiose de la F1 : c'est le brassage intrachromosomique. Ils sont minoritaires car le crossing-over ne se produit pas dans toutes les cellules.</p>`,
+  points:[
+   "Principe du test-cross : le parent récessif ne masque rien",
+   "Les phénotypes révèlent les gamètes de la F1",
+   "Identification des deux phénotypes parentaux, majoritaires",
+   "Identification des deux phénotypes recombinés, minoritaires",
+   "Comparaison à l'hypothèse de gènes indépendants (4 × 25 %)",
+   "Conclusion : gènes partiellement liés",
+   "Origine des recombinés : crossing-over en prophase I",
+   "Explication de leur caractère minoritaire",
+   "Les pourcentages sont cités à l'appui"
+  ]}
+]
+
+};
+
+/* ---------------- moteur des cartes ---------------- */
+let VS = null;
+
+function vocChap(r){ return r.slice(4); }
+
+function pageVoc(num){
+  const v = VOCAB[num];
+  if(!v) return `<div class="pagehead"><h1 class="page">Vocabulaire indisponible</h1></div>`;
+  const c = CH[v.unites[0]];
+  motifSeed = 0;
+  return `<div class="pagehead" style="--c:${c.theme.color}">${bot(c.theme.motif, "pagebot")}
+      <div class="crumb"><a href="#${v.unites[0]}">${v.titre}</a> › <span>Vocabulaire</span></div>
+      <h1 class="page">Le vocabulaire du chapitre</h1>
+      <p class="lede">Ne pas relire : se tester. Pour chaque carte, dis la définition à voix haute ou écris-la, puis vérifie.</p>
+    </div>
+    <div id="voczone"></div>`;
+}
+
+function vocAccueil(num){
+  const z = document.getElementById("voczone");
+  const v = VOCAB[num];
+  if(!z || !v) return;
+  const nP = v.mots.filter(x => x.prof).length;
+  const liste = v.mots.filter(x => x.prof).map(x => x.m).join(", ");
+  z.innerHTML = `
+    <div class="box retenir"><h4>La liste de Mme Philip</h4><p>${liste}.</p></div>
+    <div class="qmodes">
+      <button class="qmode" onclick="vocInit('${num}','prof','mot')"><b>La liste de la prof</b><span class="fl">→</span><span>${nP} mots — je vois le mot, je donne la définition</span></button>
+      <button class="qmode" onclick="vocInit('${num}','prof','def')"><b>La liste, dans l'autre sens</b><span class="fl">→</span><span>${nP} définitions — je dois retrouver le mot exact</span></button>
+      <button class="qmode" onclick="vocInit('${num}','tout','mot')"><b>Tout le vocabulaire du chapitre</b><span class="fl">→</span><span>${v.mots.length} mots, la liste de la prof et les autres notions clés</span></button>
+    </div>`;
+}
+
+function vocInit(num, portee, sens, seulement){
+  const v = VOCAB[num];
+  let idx = [];
+  v.mots.forEach((x, i) => { if(portee === "tout" || x.prof) idx.push(i); });
+  if(seulement && seulement.length) idx = seulement;
+  VS = {num, portee, sens, liste: melange(idx), pos: 0, su: [], rate: [], vu: false};
+  vocRendre();
+}
+
+function vocRendre(){
+  const z = document.getElementById("voczone");
+  if(!z || !VS) return;
+  const x = VOCAB[VS.num].mots[VS.liste[VS.pos]];
+  const recto = VS.sens === "mot" ? `<div class="vmot">${x.m}</div>` : `<div class="vdef">${x.d}</div>`;
+  const verso = VS.sens === "mot" ? `<div class="vdef">${x.d}</div>` : `<div class="vmot">${x.m}</div>`;
+  const q = VS.sens === "mot" ? "Donne la définition, à voix haute ou par écrit." : "Quel est le mot exact ?";
+  const pct = Math.round(VS.pos / VS.liste.length * 100);
+  z.innerHTML = `<div class="qprog"><span>Carte ${VS.pos + 1} / ${VS.liste.length}</span>
+      <span class="bar"><i style="width:${pct}%"></i></span><span>${VS.su.length} sue${VS.su.length > 1 ? "s" : ""}</span></div>
+    <div class="vcard">
+      ${x.prof ? '<span class="qtag rap">Liste de la prof</span>' : '<span class="qtag cou">Notion du chapitre</span>'}
+      ${recto}
+      <p class="vconsigne">${q}</p>
+      <div id="vverso">
+        <button class="qnext" onclick="vocRetourner()">Voir la réponse</button>
+      </div>
+    </div>`;
+  VS.vu = false;
+}
+
+function vocRetourner(){
+  if(!VS || VS.vu) return;
+  VS.vu = true;
+  const x = VOCAB[VS.num].mots[VS.liste[VS.pos]];
+  const verso = VS.sens === "mot" ? `<div class="vdef">${x.d}</div>` : `<div class="vmot">${x.m}</div>`;
+  document.getElementById("vverso").innerHTML = `<div class="vrep">${verso}</div>
+    <p class="vconsigne">Honnêtement, tu la savais ?</p>
+    <div class="vboutons">
+      <button class="vbt oui" onclick="vocNoter(true)">Je savais</button>
+      <button class="vbt non" onclick="vocNoter(false)">À revoir</button>
+    </div>`;
+}
+
+function vocNoter(ok){
+  if(!VS || !VS.vu) return;
+  const i = VS.liste[VS.pos];
+  (ok ? VS.su : VS.rate).push(i);
+  if(VS.pos >= VS.liste.length - 1){ vocBilan(); return; }
+  VS.pos++;
+  vocRendre();
+  const z = document.getElementById("voczone");
+  if(z) z.scrollIntoView({block:"start", behavior:"smooth"});
+}
+
+function vocBilan(){
+  const z = document.getElementById("voczone");
+  if(!z || !VS) return;
+  const v = VOCAB[VS.num];
+  const n = VS.liste.length, s = VS.su.length;
+  const autre = VS.sens === "mot" ? "def" : "mot";
+  const rates = VS.rate.map(i => v.mots[i].m);
+  z.innerHTML = `<div class="qbilan ${s === n ? "bon" : "moyen"}">
+      <div class="qscore">${s} / ${n}</div>
+      <p>${s === n ? "Tout est su. Passe maintenant à la rédaction : c'est là que le vocabulaire doit servir." : "Mots à revoir : <b>" + rates.join(", ") + "</b>."}</p>
+    </div>
+    <div class="qactions">
+      ${VS.rate.length ? `<button class="qnext" onclick="vocInit('${VS.num}','${VS.portee}','${VS.sens}',[${VS.rate.join(",")}])">Revoir les ${VS.rate.length} mot${VS.rate.length > 1 ? "s" : ""} ratés</button>` : ""}
+      <button class="qnext ghost" onclick="vocInit('${VS.num}','${VS.portee}','${autre}')">Refaire dans l'autre sens</button>
+      <button class="qnext ghost" onclick="vocAccueil('${VS.num}')">Choisir une autre série</button>
+    </div>`;
+  z.scrollIntoView({block:"start", behavior:"smooth"});
+}
+
+/* ---------------- moteur de rédaction ---------------- */
+function pageRedac(id){
+  const c = CH[id], L = REDAC[id];
+  if(!c || !L) return `<div class="pagehead"><h1 class="page">Exercices indisponibles</h1></div>`;
+  motifSeed = 0;
+  let h = `<div class="pagehead" style="--c:${c.theme.color}">${bot(c.theme.motif, "pagebot")}
+      <div class="crumb"><a href="#${id}">${c.title}</a> › <span>Rédiger</span></div>
+      <h1 class="page">S'entraîner à rédiger</h1>
+      <p class="lede">Écris d'abord, seul et sans le cours. Ensuite seulement, compare avec la correction et coche ce que tu avais.</p>
+    </div>
+    <details class="tp"><summary><span class="lab">Méthode</span>Comment rédiger, d'après Mme Philip</summary><div class="tpin">${METHODE_PHILIP}</div></details>`;
+  L.forEach((ex, k) => {
+    h += `<section class="redex" id="ex-${ex.id}">
+      <div class="redhead"><span class="rednum">${k + 1}</span><div><h2 class="redtit">${ex.titre}</h2><span class="redduree">${ex.duree} environ</span></div></div>
+      <p class="redcons">${ex.consigne}</p>
+      <textarea class="redta" id="ta-${ex.id}" rows="9" placeholder="Rédige ici, ou sur une copie. Ton texte n'est pas enregistré : il reste tant que tu ne quittes pas la page." oninput="redCompter('${ex.id}')"></textarea>
+      <div class="redbar"><span id="nb-${ex.id}">0 mot</span>
+        <button class="qnext" onclick="redReveler('${id}','${ex.id}')">J'ai fini — voir la correction</button></div>
+      <div id="cor-${ex.id}"></div>
+    </section>`;
+  });
+  return h;
+}
+
+function redCompter(eid){
+  const t = document.getElementById("ta-" + eid), n = document.getElementById("nb-" + eid);
+  if(!t || !n) return;
+  const k = (t.value.trim().match(/\S+/g) || []).length;
+  n.textContent = k + " mot" + (k > 1 ? "s" : "");
+}
+
+function redReveler(uid, eid){
+  const ex = REDAC[uid].find(e => e.id === eid);
+  const z = document.getElementById("cor-" + eid);
+  if(!ex || !z || z.innerHTML) return;
+  z.innerHTML = `<div class="redcor">
+      <p class="redsrc">${ex.source}</p>
+      ${ex.corrige}
+    </div>
+    <div class="redcheck">
+      <h4>Ce qu'il fallait avoir — coche ce qui est dans ta copie</h4>
+      ${ex.points.map((p, i) => `<label class="redpt"><input type="checkbox" onchange="redScore('${eid}',${ex.points.length})"><span>${p}</span></label>`).join("")}
+      <p class="redscore" id="sc-${eid}">0 / ${ex.points.length}</p>
+    </div>`;
+  z.scrollIntoView({block:"start", behavior:"smooth"});
+}
+
+function redScore(eid, n){
+  const z = document.getElementById("cor-" + eid), s = document.getElementById("sc-" + eid);
+  if(!z || !s) return;
+  const k = z.querySelectorAll("input:checked").length;
+  let m = "";
+  if(k === n) m = " — complet. Réécris-la de mémoire dans quelques jours pour vérifier que ça tient.";
+  else if(k >= n * 0.7) m = " — solide. Reprends seulement les points manquants.";
+  else if(k > 0) m = " — il manque l'essentiel. Relis la correction, puis réécris sans la regarder.";
+  s.textContent = k + " / " + n + m;
+}
+</script>
+<script>
 /* =======================================================================
    APPLICATION
    ======================================================================= */
@@ -4365,7 +4794,8 @@ function pageListe(kind, seul){
         const etat = (c.kind==="p" || c.html
           ? '<span style="color:var(--leaf-2);font-weight:600">' + (c.kind==="p" ? "Fiche complète" : "Cours complet") + '</span>'
           : '<span style="color:var(--bark);font-weight:600">Objectifs + rappels 1ère</span>')
-          + (QCM[c.id] ? ' <span class="pastille">QCM</span>' : '');
+          + (QCM[c.id] ? ' <span class="pastille">QCM</span>' : '')
+          + (typeof REDAC !== "undefined" && REDAC[c.id] ? ' <span class="pastille">Rédaction</span>' : '');
         return `<button class="card" style="--c:${th.color}" onclick="go('${c.id}')">
           ${iconMark(c.id)}
           <div class="tag" style="color:${th.color}">${kind==="t"?(c.chap?c.num:"Chapitre "+c.num):"Fiche "+c.num}</div>
@@ -4431,13 +4861,24 @@ function pageChapitre(c){
     if(c.html){
       if(c.notions) h += '<div class="notions">'+c.notions.map(n=>'<span class="notion">'+n+'</span>').join("")+'</div>';
       h += '<article>'+c.html+'</article>';
-      if(QCM[c.id]) h += `<button class="qcta" onclick="go('qcm-${c.id}')">
-        <div>
-          <b>Se tester sur ce chapitre</b>
-          <span>${QCM[c.id].filter(q=>q.t==="cours").length} questions de cours, ${QCM[c.id].filter(q=>q.t==="rappel").length} de rappels de 1ère.</span>
-        </div>
-        <span class="fl">→</span>
-      </button>`;
+      const vc = c.chap && VOCAB[c.chap.num];
+      if(vc || REDAC[c.id] || QCM[c.id]){
+        h += `<section class="revbloc"><h3 class="revtit">Réviser cette unité</h3>
+          <p class="revsous">Dans cet ordre : apprendre les mots, puis rédiger sans le cours, puis se tester.</p>`;
+        if(vc) h += `<button class="qcta" onclick="go('voc-${c.chap.num}')"><span class="revn">1</span><div>
+            <b>Le vocabulaire</b>
+            <span>La liste de Mme Philip en cartes : ${vc.mots.filter(x=>x.prof).map(x=>x.m.toLowerCase()).join(", ")}.</span>
+          </div><span class="fl">→</span></button>`;
+        if(REDAC[c.id]) h += `<button class="qcta" onclick="go('red-${c.id}')"><span class="revn">2</span><div>
+            <b>S'entraîner à rédiger</b>
+            <span>${REDAC[c.id].map(e=>e.titre.toLowerCase()).join(" ; ")} — puis comparer à la correction.</span>
+          </div><span class="fl">→</span></button>`;
+        if(QCM[c.id]) h += `<button class="qcta" onclick="go('qcm-${c.id}')"><span class="revn">3</span><div>
+            <b>Le QCM</b>
+            <span>${QCM[c.id].filter(q=>q.t==="cours").length} questions de cours, ${QCM[c.id].filter(q=>q.t==="rappel").length} de rappels de 1ère.</span>
+          </div><span class="fl">→</span></button>`;
+        h += `</section>`;
+      }
     } else {
       h += `<div class="soon">
       ${spec("seedling")}
@@ -4688,10 +5129,13 @@ function render(){
   else if(r === "recherche") html = pageRecherche($("#q").value);
   else if(TH[r]) html = pageListe(TH[r].kind, TH[r].theme);
   else if(r.startsWith("qcm-") && CH[r.slice(4)]) html = pageQcm(r.slice(4));
+  else if(r.startsWith("voc-") && VOCAB[r.slice(4)]) html = pageVoc(r.slice(4));
+  else if(r.startsWith("red-") && REDAC[r.slice(4)]) html = pageRedac(r.slice(4));
   else if(CH[r]) html = pageChapitre(CH[r]);
   else html = pageAccueil();
   view.innerHTML = html;
   if(r.startsWith("qcm-") && QCM[r.slice(4)]) qcmAccueil(r.slice(4));
+  if(r.startsWith("voc-") && VOCAB[r.slice(4)]) vocAccueil(r.slice(4));
   mountSchemas(view);
   glFermer();
   if(CH[r] && CH[r].html) tagGlossaire(view);
@@ -4700,7 +5144,9 @@ function render(){
   side.querySelectorAll("a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#"+r));
   const on = side.querySelector("a.on");
   if(on) on.closest(".grp").classList.add("open");
-  const ch = CH[r], th = TH[r];
+  const ch = CH[r] || CH[r.replace(/^(qcm|red)-/, "")]
+    || (r.startsWith("voc-") && VOCAB[r.slice(4)] ? CH[VOCAB[r.slice(4)].unites[0]] : undefined);
+  const th = TH[r];
   document.querySelectorAll("#bottomnav button").forEach(b => {
     const k = b.dataset.go;
     // toujours un booléen : avec undefined, classList.toggle inverse la classe au lieu de la retirer
