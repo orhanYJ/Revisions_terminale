@@ -2911,6 +2911,237 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
       </div></details>
       </div></details>
 
+
+      <h3 style="margin-top:30px">Compléments du manuel</h3>
+      <div class="def"><div class="t">Pourquoi ceux-là en plus</div>Ces cinq exercices sont dans le chapitre du manuel mais <strong>pas dans le plan de travail</strong>. Je les ajoute parce qu'ils sont les seuls à faire travailler quatre choses exigibles au bac : la chaîne complète de la conductimétrie, le calcul d'une incertitude d'appareil, la stœchiométrie dans Kohlrausch, et la lecture d'un spectre infrarouge d'amide.</div>
+
+      <details class="rap"><summary><span class="lvl dmaison">Hors plan</span>14 · Cellule de conductimétrie<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire : <em>prérequis</em> · chaîne complète G → σ</p>
+      <div class="enonce">On plonge une cellule de conductimétrie dans une solution. Déterminer la valeur de conductivité affichée par l'appareil.<br><em>Données : surface des plaques S = 0,16 cm² · distance entre les plaques ℓ = 0,40 cm · tension mesurée U = 2,00 V · intensité mesurée I = 6,3 mA · résolution de l'appareil : arrondi au millième pour la gamme 2 mS·cm<sup>−1</sup>, au centième pour la gamme 20 mS·cm<sup>−1</sup></em></div>
+      <details class="corr"><summary>Un indice</summary><div class="in prose">Deux étapes seulement : d'abord la conductance à partir de U et I, ensuite la conductivité à partir de la géométrie. Et si tu gardes les centimètres partout, tu obtiendras directement des mS·cm<sup>−1</sup>, ce qui est justement l'unité de l'appareil.</div></details>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>Première étape — la conductance :</strong></p>
+        <div class="eqc">G = <span class="frac"><span>I</span><span>U</span></span> = <span class="frac"><span>6,3 × 10<sup>−3</sup></span><span>2,00</span></span> = 3,15 × 10<sup>−3</sup> S = 3,15 mS</div>
+        <p><strong>Deuxième étape — la conductivité :</strong></p>
+        <div class="eqc">σ = G × <span class="frac"><span>ℓ</span><span>S</span></span> = 3,15 × <span class="frac"><span>0,40</span><span>0,16</span></span> = 3,15 × 2,5 = 7,875 mS·cm<sup>−1</sup></div>
+        <p><strong>Troisième étape — l'affichage.</strong> La valeur dépasse 2 mS·cm<sup>−1</sup> : l'appareil bascule sur la gamme 20, arrondie au centième. Il affichera donc <strong>7,88 mS·cm<sup>−1</sup></strong>.</p>
+        <div class="def"><div class="t">L'astuce des unités cohérentes</div>En gardant ℓ et S en centimètres, le rapport ℓ/S est en cm<sup>−1</sup> et le résultat sort directement en mS·cm<sup>−1</sup>. Si tu veux l'unité SI, convertis à la fin : <span class="ch">7,875 mS·cm<sup>−1</sup> = 0,79 S·m<sup>−1</sup></span>.</div>
+        <div class="piege"><div class="t">Ne pas inventer de chiffres</div>Écrire 7,875 mS·cm<sup>−1</sup> comme valeur affichée est faux : l'appareil ne sait pas afficher le millième dans cette gamme. La question porte précisément sur ce point — la résolution de l'instrument limite le nombre de chiffres qu'on a le droit d'annoncer.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl dmaison">Hors plan</span>22 · Incertitude d'un appareil de mesure<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire : évaluer les incertitudes</p>
+      <div class="enonce">La notice d'un conductimètre annonce : gamme 0 – 20 mS·cm<sup>−1</sup>, résolution d = 0,01 mS·cm<sup>−1</sup>. L'incertitude liée à la résolution se calcule par <span class="ch">u(σ) = d / (2√3)</span>.<br><strong>1.</strong> Préciser la signification des deux indications fournies.<br><strong>2.</strong> Calculer l'incertitude u(σ).<br><strong>3.</strong> L'appareil affiche σ = 2,73 mS·cm<sup>−1</sup>. Donner un encadrement de la conductivité mesurée.</div>
+      <details class="corr"><summary>Un indice</summary><div class="in prose">La « gamme » et la « résolution » ne disent pas la même chose : l'une décrit ce que l'appareil peut mesurer, l'autre la finesse avec laquelle il l'affiche.</div></details>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> La <strong>gamme</strong> est l'intervalle des valeurs que l'appareil peut mesurer : au-delà de 20 mS·cm<sup>−1</sup>, il sature et la mesure n'a plus de sens. La <strong>résolution</strong> est la plus petite variation que l'affichage peut distinguer : ici le centième, ce qui veut dire que l'appareil ne fait aucune différence entre deux solutions dont les conductivités diffèrent de moins de 0,01 mS·cm<sup>−1</sup>.</p>
+        <p><strong>2.</strong></p>
+        <div class="eqc">u(σ) = <span class="frac"><span>0,01</span><span>2√3</span></span> = <span class="frac"><span>0,01</span><span>3,46</span></span> = 2,9 × 10<sup>−3</sup> mS·cm<sup>−1</sup></div>
+        <p><strong>3.</strong> On écrit le résultat avec son incertitude :</p>
+        <div class="eqc">σ = 2,730 ± 0,003 mS·cm<sup>−1</sup> &nbsp;&nbsp;soit&nbsp;&nbsp; 2,727 &lt; σ &lt; 2,733 mS·cm<sup>−1</sup></div>
+        <div class="def"><div class="t">D'où vient le 2√3</div>L'appareil affiche 2,73, ce qui signifie que la vraie valeur est quelque part entre 2,725 et 2,735 — un intervalle de largeur d, sans qu'aucune position y soit plus probable qu'une autre. Pour une telle distribution uniforme, l'écart type vaut <span class="ch">d/(2√3)</span>. Ce n'est pas à démontrer, mais savoir que l'incertitude est <strong>plus petite</strong> que la résolution, et non égale, évite de surestimer l'erreur.</div>
+        <div class="piege"><div class="t">Le lien avec le TP 1 du chapitre 1</div>C'est exactement le raisonnement inverse de celui que tu avais tenu sur le pH-mètre. Là, l'incertitude dominante n'était <em>pas</em> la résolution mais l'étalonnage et la dérive, d'où u(pH) = 0,1 et non 0,01. Ici, en revanche, l'énoncé impose de ne considérer que la résolution — d'où un résultat bien plus fin.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl dmaison">Hors plan</span>25 · Solubilité du chlorure de plomb<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire : <strong>C2</strong> · stœchiométrie et conversion en g·L<sup>−1</sup></p>
+      <div class="enonce">On veut connaître la solubilité du chlorure de plomb <span class="ch">(Pb<sup>2+</sup>(aq) ; 2 Cl<sup>−</sup>(aq))</span>, c'est-à-dire la concentration maximale qu'on peut atteindre par dissolution dans l'eau. On prépare une solution saturée dont on mesure la conductivité : <span class="ch">σ = 1 040 mS·m<sup>−1</sup></span>.<br><strong>1.</strong> Calculer la concentration en quantité de matière c de la solution.<br><strong>2.</strong> En déduire la solubilité s du chlorure de plomb, en g·L<sup>−1</sup>.<br><em>Données : M(Pb) = 207,2 g·mol<sup>−1</sup> · M(Cl) = 35,5 g·mol<sup>−1</sup> · λ(Pb<sup>2+</sup>) = 13,9 × 10<sup>−3</sup> S·m²·mol<sup>−1</sup> · λ(Cl<sup>−</sup>) = 7,63 × 10<sup>−3</sup> S·m²·mol<sup>−1</sup></em></div>
+      <details class="corr"><summary>Un indice</summary><div class="in prose">La formule du composé contient l'information décisive : combien d'ions chlorure pour un ion plomb ? Ce coefficient doit apparaître dans la loi de Kohlrausch.</div></details>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> La dissolution libère <strong>deux</strong> ions chlorure pour un ion plomb :</p>
+        <div class="eqc">[Pb<sup>2+</sup>] = c &nbsp;&nbsp;et&nbsp;&nbsp; [Cl<sup>−</sup>] = 2c</div>
+        <div class="eqc">σ = c × (λ<sub>Pb²⁺</sub> + 2 λ<sub>Cl⁻</sub>) = c × (13,9 + 2 × 7,63) × 10<sup>−3</sup> = c × 29,2 × 10<sup>−3</sup></div>
+        <p>Conversion de la conductivité : <span class="ch">1 040 mS·m<sup>−1</sup> = 1,040 S·m<sup>−1</sup></span>.</p>
+        <div class="eqc">c = <span class="frac"><span>1,040</span><span>29,2 × 10<sup>−3</sup></span></span> = 35,7 mol·m<sup>−3</sup> = <strong>3,57 × 10<sup>−2</sup> mol·L<sup>−1</sup></strong></div>
+        <p><strong>2.</strong> La solubilité en masse s'obtient en multipliant par la masse molaire du composé entier :</p>
+        <div class="eqc">M(PbCl<sub>2</sub>) = 207,2 + 2 × 35,5 = 278,2 g·mol<sup>−1</sup></div>
+        <div class="eqc">s = c × M = 3,57 × 10<sup>−2</sup> × 278,2 = <strong>9,9 g·L<sup>−1</sup></strong></div>
+        <div class="piege"><div class="t">Le piège du coefficient 2, deux fois</div>Il intervient à deux endroits différents et pour deux raisons différentes : une fois dans la <strong>loi de Kohlrausch</strong>, parce qu'il y a deux fois plus d'ions chlorure ; une fois dans la <strong>masse molaire</strong>, parce qu'il y a deux atomes de chlore dans la formule. Oublier l'un ou l'autre change le résultat, mais pas du même facteur.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl dmaison">Hors plan</span>32 · Copie d'élève à commenter<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire : <strong>C2</strong> · regard critique</p>
+      <div class="enonce">On mesure la conductivité d'une solution de bromure de magnésium <span class="ch">(Mg<sup>2+</sup>(aq) ; 2 Br<sup>−</sup>(aq))</span> : <span class="ch">σ = 1,14 mS·m<sup>−1</sup></span>. Un élève rédige la copie suivante, dont le correcteur a barré trois lignes. Proposer une justification pour chaque erreur relevée, puis rédiger la correction.
+        <div class="eqc" style="opacity:.7">σ = λ(Mg<sup>2+</sup>) · [Mg<sup>2+</sup>] + λ(Br<sup>−</sup>) · [Br<sup>−</sup>]</div>
+        <div class="eqc" style="opacity:.7"><s>σ = (λ(Mg<sup>2+</sup>) + λ(Br<sup>−</sup>)) · c</s></div>
+        <div class="eqc" style="opacity:.7"><s>c = σ / (λ(Mg<sup>2+</sup>) + λ(Br<sup>−</sup>))</s></div>
+        <div class="eqc" style="opacity:.7"><s>c = 1,14 / (10,6 + 7,81) = 0,061 9 mol·L<sup>−1</sup></s></div>
+        <em>Conclusion de l'élève : « La concentration n'étant pas très élevée, la loi de Kohlrausch est valide. »</em><br>
+        <em>Données : λ(Mg<sup>2+</sup>) = 10,6 mS·m²·mol<sup>−1</sup> · λ(Br<sup>−</sup>) = 7,81 mS·m²·mol<sup>−1</sup></em></div>
+      <details class="corr"><summary>Un indice</summary><div class="in prose">La première ligne, non barrée, est juste. C'est au moment de remplacer <span class="ch">[Br<sup>−</sup>]</span> par une expression en fonction de c que tout dérape. Regarde aussi l'unité annoncée à la fin.</div></details>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <div class="methode"><div class="t">Les trois erreurs</div>
+        <ol>
+          <li><strong>La stœchiométrie est perdue.</strong> L'élève écrit <span class="ch">[Br<sup>−</sup>] = c</span>, alors que la formule <span class="ch">MgBr<sub>2</sub></span> impose <span class="ch">[Br<sup>−</sup>] = 2c</span>. La factorisation correcte est <span class="ch">σ = (λ<sub>Mg²⁺</sub> + 2 λ<sub>Br⁻</sub>) · c</span>.</li>
+          <li><strong>L'expression isolée hérite de l'erreur.</strong> Le dénominateur doit être <span class="ch">λ<sub>Mg²⁺</sub> + 2 λ<sub>Br⁻</sub></span>.</li>
+          <li><strong>L'unité du résultat est fausse.</strong> Les λ sont en mS·m²·mol<sup>−1</sup> et σ en mS·m<sup>−1</sup> : le quotient sort en <strong>mol·m<sup>−3</sup></strong>, pas en mol·L<sup>−1</sup>. L'élève annonce une unité qu'il n'a pas obtenue, et se trompe donc d'un facteur mille en plus de l'erreur de stœchiométrie.</li>
+        </ol>
+        </div>
+        <p><strong>La correction :</strong></p>
+        <div class="eqc">σ = (λ<sub>Mg²⁺</sub> + 2 λ<sub>Br⁻</sub>) × c = (10,6 + 2 × 7,81) × c = 26,2 × c</div>
+        <div class="eqc">c = <span class="frac"><span>1,14</span><span>26,2</span></span> = 4,35 × 10<sup>−2</sup> mol·m<sup>−3</sup> = <strong>4,35 × 10<sup>−5</sup> mol·L<sup>−1</sup></strong></div>
+        <p><strong>Sur la conclusion.</strong> Le raisonnement de l'élève est <strong>circulaire</strong> : il utilise la loi de Kohlrausch pour calculer c, puis se sert de ce c pour affirmer que la loi était valide. On ne peut pas valider un modèle avec un résultat obtenu grâce à ce modèle.</p>
+        <p>La formulation correcte est <em>a posteriori</em> : « la concentration trouvée, de l'ordre de 4 × 10<sup>−5</sup> mol·L<sup>−1</sup>, correspond à une solution très diluée ; l'hypothèse de départ est donc cohérente avec le résultat obtenu. » La nuance entre « je valide » et « je vérifie la cohérence » est exactement ce que l'exercice évalue.</p>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl dmaison">Hors plan</span>34 · Famille des amides<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire : <strong>C3</strong> · lecture fine d'un spectre infrarouge</p>
+      <div class="enonce">On donne le spectre infrarouge d'un composé organique X de formule brute <span class="ch">C<sub>3</sub>H<sub>7</sub>NO</span>. On rappelle que la liaison N—H donne <strong>une</strong> bande pour un groupe NH, et <strong>deux</strong> bandes pour un groupe NH<sub>2</sub>.<br><strong>1.</strong> Repérer sur le spectre les bandes caractéristiques des liaisons C=O et N—H.<br><strong>2.</strong> X est un amide, c'est-à-dire qu'il contient un enchaînement <span class="ch">O=C—N</span> et au moins une liaison N—H. Établir les formules semi-développées des trois molécules possibles.<br><strong>3.</strong> Identifier X grâce à son spectre, en justifiant.</div>
+      <details class="corr"><summary>Un indice</summary><div class="in prose">Pour la question 2, place d'abord l'enchaînement O=C—N, puis répartis les trois carbones et les hydrogènes restants de toutes les façons possibles — sans jamais retirer le dernier hydrogène de l'azote.</div></details>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> Deux zones à repérer : une bande <strong>forte et fine vers 1700 cm<sup>−1</sup></strong>, caractéristique de la liaison <span class="ch">C=O</span>, et une ou deux bandes <strong>entre 3300 et 3500 cm<sup>−1</sup></strong>, caractéristiques de la liaison <span class="ch">N—H</span>.</p>
+        <p><strong>2.</strong> Trois structures respectent la formule brute, l'enchaînement O=C—N et la présence d'au moins un N—H :</p>
+        <div class="eqc">CH<sub>3</sub>—CH<sub>2</sub>—CO—NH<sub>2</sub> &nbsp;&nbsp;(propanamide)</div>
+        <div class="eqc">CH<sub>3</sub>—CO—NH—CH<sub>3</sub> &nbsp;&nbsp;(N-méthyléthanamide)</div>
+        <div class="eqc">H—CO—NH—CH<sub>2</sub>—CH<sub>3</sub> &nbsp;&nbsp;(N-éthylméthanamide)</div>
+        <p>La première porte un groupe <span class="ch">NH<sub>2</sub></span>, les deux autres un groupe <span class="ch">NH</span>.</p>
+        <p><strong>3.</strong> Le spectre présente <strong>deux</strong> bandes dans la zone 3300 – 3500 cm<sup>−1</sup>. D'après l'indication de l'énoncé, cela correspond à un groupe <span class="ch">NH<sub>2</sub></span>, donc à un azote portant deux hydrogènes. X est le <strong>propanamide</strong>.</p>
+        <div class="def"><div class="t">Ce que l'exercice apprend vraiment</div>L'infrarouge ne distingue normalement pas deux isomères de la même famille. Ici il y parvient, mais <strong>uniquement</strong> grâce à une information supplémentaire fournie par l'énoncé : le décompte des bandes N—H. Sans cette donnée, le spectre aurait seulement dit « il y a un amide ». C'est la limite de la méthode, et savoir l'énoncer fait partie de la réponse.</div>
+        <div class="piege"><div class="t">Si le spectre n'avait montré qu'une bande</div>On ne pourrait pas trancher entre le N-méthyléthanamide et le N-éthylméthanamide : tous deux portent un seul N—H et un C=O, et leurs spectres se ressemblent dans la zone des groupes caractéristiques. Il faudrait une autre technique — ou la zone d'empreinte digitale, hors programme.</div>
+      </div></details>
+      </div></details>
+
+      <h3 style="margin-top:30px">Problèmes type bac</h3>
+      <div class="def"><div class="t">Pourquoi ceux-là sont différents</div>Ce ne sont plus des applications directes du cours, mais les <strong>trois formats qui tombent réellement à l'épreuve</strong> : l'analyse de documents, l'exercice à progression guidée, et la résolution de problème sans questions intermédiaires. Ce qui est évalué n'est plus le calcul mais la <strong>démarche</strong> — trier ce qui est utile dans les documents, l'articuler, et conclure en répondant à la question posée. Je les ai écrits pour ce site, sur le modèle des sujets officiels.</div>
+
+      <details class="rap"><summary><span class="lvl dmaison">Bac · analyse de documents</span>P1 · Le sérum physiologique est-il conforme ?<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire : <strong>C2</strong> · <strong>C5</strong> — durée conseillée : 35 min</p>
+      <div class="enonce">
+        <p><strong>Doc 1 — L'étiquette.</strong> Sérum physiologique stérile, dosette de 5 mL. Composition : chlorure de sodium <strong>9,0 g·L<sup>−1</sup></strong>, eau purifiée. Une préparation pharmaceutique est déclarée conforme si sa concentration s'écarte de moins de <strong>5 %</strong> de la valeur annoncée.</p>
+        <p><strong>Doc 2 — Données.</strong> M(Na) = 23,0 g·mol<sup>−1</sup> · M(Cl) = 35,5 g·mol<sup>−1</sup> · λ(Na<sup>+</sup>) = 5,01 × 10<sup>−3</sup> S·m²·mol<sup>−1</sup> · λ(Cl<sup>−</sup>) = 7,63 × 10<sup>−3</sup> S·m²·mol<sup>−1</sup>.</p>
+        <p><strong>Doc 3 — La notice du conductimètre.</strong> Gamme de mesure : 0 – 20 mS·cm<sup>−1</sup>. La loi de Kohlrausch n'est vérifiée que pour des concentrations inférieures à environ 10<sup>−2</sup> mol·L<sup>−1</sup>.</p>
+        <p><strong>Doc 4 — La mesure.</strong> On dilue le sérum d'un facteur 10, puis on mesure la conductivité de la solution obtenue : <span class="ch">σ = 1,90 mS·cm<sup>−1</sup></span>.</p>
+        <p><strong>1.</strong> Expliquer pourquoi le sérum physiologique conduit le courant électrique, et écrire l'équation de dissolution du chlorure de sodium.<br>
+        <strong>2.</strong> Calculer la conductivité qu'aurait un sérum parfaitement conforme, sans dilution. Montrer que la mesure directe est déconseillée, pour deux raisons.<br>
+        <strong>3.</strong> À partir du document 4, déterminer la concentration en masse de chlorure de sodium du sérum.<br>
+        <strong>4.</strong> Conclure sur la conformité du produit, en utilisant le critère du document 1.<br>
+        <strong>5.</strong> Rédiger une conclusion argumentée d'une dizaine de lignes.</p>
+      </div>
+      <details class="corr"><summary>Un indice</summary><div class="in prose">Pour la question 2, calcule d'abord la concentration molaire correspondant à l'étiquette, puis compare-la au domaine de validité du document 3 — <em>avant</em> de regarder la gamme de l'appareil. Les deux raisons demandées ne sont pas de même nature.</div></details>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> Le chlorure de sodium est un composé ionique : sa dissolution libère des ions, porteurs de charge, qui se déplacent sous l'effet du champ électrique.</p>
+        <div class="eqc">NaCl(s) → Na<sup>+</sup>(aq) + Cl<sup>−</sup>(aq)</div>
+        <p>Les deux ions sont formés en proportions égales : <span class="ch">[Na<sup>+</sup>] = [Cl<sup>−</sup>] = c</span>.</p>
+        <p><strong>2.</strong> Concentration molaire attendue :</p>
+        <div class="eqc">M(NaCl) = 23,0 + 35,5 = 58,5 g·mol<sup>−1</sup></div>
+        <div class="eqc">c = <span class="frac"><span>9,0</span><span>58,5</span></span> = 0,154 mol·L<sup>−1</sup> = 154 mol·m<sup>−3</sup></div>
+        <div class="eqc">σ = c × (λ<sub>Na⁺</sub> + λ<sub>Cl⁻</sub>) = 154 × 12,64 × 10<sup>−3</sup> = 1,95 S·m<sup>−1</sup> = <strong>19,5 mS·cm<sup>−1</sup></strong></div>
+        <p>Deux raisons, de natures différentes, déconseillent la mesure directe :</p>
+        <ul>
+          <li><strong>Le modèle ne tient plus.</strong> 0,154 mol·L<sup>−1</sup> dépasse largement les 10<sup>−2</sup> mol·L<sup>−1</sup> au-delà desquels la loi de Kohlrausch cesse d'être vérifiée. Même bien mesurée, la conductivité ne donnerait plus la bonne concentration.</li>
+          <li><strong>L'appareil est à sa limite.</strong> 19,5 mS·cm<sup>−1</sup> est tout juste sous le plafond de 20 : la mesure serait faite en bout de gamme, là où la précision est la plus mauvaise, et le moindre écart la ferait saturer.</li>
+        </ul>
+        <p><strong>3.</strong> Conversion : <span class="ch">σ = 1,90 mS·cm<sup>−1</sup> = 0,190 S·m<sup>−1</sup></span>. Pour la solution diluée :</p>
+        <div class="eqc">c<sub>diluée</sub> = <span class="frac"><span>0,190</span><span>12,64 × 10<sup>−3</sup></span></span> = 15,0 mol·m<sup>−3</sup></div>
+        <p>On remonte la dilution d'un facteur 10, puis on convertit en concentration en masse :</p>
+        <div class="eqc">c<sub>sérum</sub> = 150 mol·m<sup>−3</sup> = 0,150 mol·L<sup>−1</sup></div>
+        <div class="eqc">c<sub>m</sub> = 0,150 × 58,5 = <strong>8,8 g·L<sup>−1</sup></strong></div>
+        <p><strong>4.</strong> Écart relatif à la valeur annoncée :</p>
+        <div class="eqc"><span class="frac"><span>|8,8 − 9,0|</span><span>9,0</span></span> = 0,022 = <strong>2,2 %</strong></div>
+        <p>2,2 % est inférieur au seuil de 5 % : <strong>le produit est conforme à son étiquette.</strong></p>
+        <div class="methode"><div class="t">5. Un modèle de conclusion</div>
+        <p>Le sérum physiologique est une solution de chlorure de sodium, donc une solution ionique dont la conductivité est directement liée à la concentration par la loi de Kohlrausch. Une mesure directe n'est toutefois pas exploitable : à 0,154 mol·L<sup>−1</sup>, on sort à la fois du domaine de validité du modèle et de la plage confortable de l'appareil.</p>
+        <p>Une dilution d'un facteur 10 ramène la solution à 1,5 × 10<sup>−2</sup> mol·L<sup>−1</sup> et la conductivité à 1,90 mS·cm<sup>−1</sup>, soit un dixième de la gamme — des conditions où la loi est vérifiée et la mesure fiable. En remontant la dilution, on obtient une concentration en masse de 8,8 g·L<sup>−1</sup>.</p>
+        <p>L'écart à la valeur annoncée vaut 2,2 %, inférieur au seuil de conformité de 5 %. Le produit est donc conforme. Ce résultat reste soumis aux incertitudes de la dilution et de la lecture du conductimètre, qui pourraient être évaluées en répétant la mesure sur plusieurs dosettes.</p>
+        </div>
+        <div class="piege"><div class="t">Les deux raisons ne sont pas interchangeables</div>Beaucoup de copies n'en donnent qu'une, généralement la saturation de l'appareil. La plus importante est pourtant l'autre : <strong>un modèle hors de son domaine de validité donne un résultat faux même avec un appareil parfait</strong>. C'est la leçon commune au TP 1 du chapitre 1 et à ce chapitre.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl dmaison">Bac · exercice guidé</span>P2 · La solution de Lugol<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire : <strong>C1</strong> · <strong>C4</strong> · <strong>C5</strong> — durée conseillée : 30 min</p>
+      <div class="enonce">
+        <p>La solution de Lugol est un antiseptique de couleur brun-jaune, dont l'espèce active est le <strong>diiode</strong> <span class="ch">I<sub>2</sub>(aq)</span>. L'étiquette annonce une teneur de <strong>1,0 g·L<sup>−1</sup></strong> en diiode. On cherche à la vérifier par spectrophotométrie.</p>
+        <p><strong>1.</strong> Le spectre du diiode présente un maximum d'absorption à λ = 470 nm. Justifier ce choix de longueur d'onde pour le dosage, et vérifier qu'il est cohérent avec la couleur observée.<br>
+        <strong>2.</strong> Montrer, par le calcul, qu'une mesure directe de l'absorbance du Lugol est impossible.<br>
+        <strong>3.</strong> Proposer une dilution adaptée et décrire le protocole pour préparer 100,0 mL de solution diluée.<br>
+        <strong>4.</strong> On mesure sur la solution diluée <span class="ch">A = 0,29</span>. Déterminer la concentration en masse de diiode du Lugol.<br>
+        <strong>5.</strong> Conclure sur la conformité, puis citer deux limites de la méthode.</p>
+        <p><em>Données : M(I) = 126,9 g·mol<sup>−1</sup> · ε<sub>470</sub>(I<sub>2</sub>) = 750 L·mol<sup>−1</sup>·cm<sup>−1</sup> · cuve ℓ = 1,0 cm · gamme du spectrophotomètre 0 &lt; A &lt; 2,5</em></p>
+      </div>
+      <details class="corr"><summary>Un indice</summary><div class="in prose">Pour la question 2, calcule la concentration molaire correspondant à l'étiquette avant d'appliquer Beer-Lambert. Et n'oublie pas que le diiode s'écrit I<sub>2</sub> : sa masse molaire n'est pas celle de l'iode.</div></details>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <p><strong>1.</strong> On travaille à λ<sub>max</sub> pour deux raisons : la <strong>sensibilité</strong> y est maximale, et la <strong>courbe y est plate</strong>, donc une imprécision sur le réglage de la longueur d'onde n'affecte presque pas la mesure.</p>
+        <p>Cohérence avec la couleur : 470 nm correspond au <strong>bleu</strong>. La solution absorbe le bleu et laisse passer sa complémentaire, le <strong>jaune</strong> — ce qui correspond bien à l'aspect brun-jaune décrit. ✓</p>
+        <p><strong>2.</strong> Masse molaire du diiode :</p>
+        <div class="eqc">M(I<sub>2</sub>) = 2 × 126,9 = 253,8 g·mol<sup>−1</sup></div>
+        <div class="eqc">c = <span class="frac"><span>1,0</span><span>253,8</span></span> = 3,9 × 10<sup>−3</sup> mol·L<sup>−1</sup></div>
+        <div class="eqc">A = ε × ℓ × c = 750 × 1,0 × 3,9 × 10<sup>−3</sup> = <strong>3,0</strong></div>
+        <p>3,0 dépasse le plafond de 2,5 : l'appareil saturerait et la mesure n'aurait aucune valeur. <strong>Une mesure directe est donc impossible.</strong></p>
+        <p><strong>3.</strong> Une dilution d'un <strong>facteur 10</strong> ramènerait l'absorbance à environ 0,30, confortablement au milieu de la gamme.</p>
+        <div class="methode"><div class="t">Le protocole</div>
+        <ol>
+          <li>Verser un peu de Lugol dans un bécher.</li>
+          <li>Prélever <strong>10,0 mL</strong> à la pipette jaugée, munie d'une poire à pipeter.</li>
+          <li>Les transférer dans une <strong>fiole jaugée de 100,0 mL</strong>.</li>
+          <li>Compléter aux trois quarts d'eau distillée, boucher, agiter.</li>
+          <li>Compléter jusqu'au trait de jauge, bas du ménisque tangent au trait, puis homogénéiser par retournements.</li>
+        </ol>
+        </div>
+        <p><strong>4.</strong> Pour la solution diluée :</p>
+        <div class="eqc">c<sub>diluée</sub> = <span class="frac"><span>A</span><span>ε × ℓ</span></span> = <span class="frac"><span>0,29</span><span>750 × 1,0</span></span> = 3,9 × 10<sup>−4</sup> mol·L<sup>−1</sup></div>
+        <p>On remonte le facteur 10, puis on convertit :</p>
+        <div class="eqc">c<sub>Lugol</sub> = 3,9 × 10<sup>−3</sup> mol·L<sup>−1</sup></div>
+        <div class="eqc">c<sub>m</sub> = 3,9 × 10<sup>−3</sup> × 253,8 = <strong>0,98 g·L<sup>−1</sup></strong></div>
+        <p><strong>5.</strong> L'écart à l'étiquette vaut <span class="ch">|0,98 − 1,0|/1,0 = 2 %</span> : le produit est <strong>conforme</strong>.</p>
+        <div class="methode"><div class="t">Deux limites à citer</div>
+        <ul>
+          <li><strong>Le dosage suppose une seule espèce absorbante.</strong> La solution de Lugol contient aussi de l'iodure de potassium, nécessaire pour solubiliser le diiode. S'il absorbait à 470 nm, une partie du signal ne viendrait pas du diiode et le résultat serait surestimé.</li>
+          <li><strong>La valeur de ε est tabulée, pas mesurée ici.</strong> Elle dépend du solvant et de la température. Un dosage par étalonnage, avec une gamme de solutions de diiode de concentrations connues, serait plus fiable qu'un calcul direct à partir d'un ε de la littérature.</li>
+        </ul>
+        </div>
+        <div class="piege"><div class="t">L'erreur de masse molaire</div>Utiliser M = 126,9 g·mol<sup>−1</sup> au lieu de 253,8 double la concentration molaire et fait conclure à une non-conformité massive. Le diiode est une molécule <strong>diatomique</strong> : sa masse molaire est le double de celle de l'atome.</div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl dmaison">Bac · résolution de problème</span>P3 · Trois flacons sans étiquette<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Savoir-faire : <strong>C2</strong> · <strong>C3</strong> — durée conseillée : 25 min · <em>aucune question intermédiaire : la démarche est à construire</em></p>
+      <div class="enonce">
+        <p>Trois flacons ont perdu leur étiquette. On sait qu'ils contiennent, dans un ordre inconnu, trois solutions aqueuses <strong>toutes incolores</strong> et <strong>toutes de concentration apportée 0,10 mol·L<sup>−1</sup></strong> :</p>
+        <ul>
+          <li>une solution de <strong>propan-1-ol</strong> <span class="ch">CH<sub>3</sub>—CH<sub>2</sub>—CH<sub>2</sub>—OH</span> ;</li>
+          <li>une solution d'<strong>acide propanoïque</strong> <span class="ch">CH<sub>3</sub>—CH<sub>2</sub>—COOH</span> ;</li>
+          <li>une solution de <strong>chlorure de sodium</strong> <span class="ch">(Na<sup>+</sup>(aq) ; Cl<sup>−</sup>(aq))</span>.</li>
+        </ul>
+        <p>Le laboratoire dispose d'un <strong>conductimètre</strong> et d'un <strong>spectromètre infrarouge</strong>.</p>
+        <p><strong>Quelles mesures réaliser, dans quel ordre, et comment conclure ? Justifier par une démarche argumentée.</strong></p>
+        <p><em>Rappel : le chlorure de sodium se dissocie totalement dans l'eau. L'acide propanoïque ne réagit que partiellement avec l'eau. Un alcool ne libère pas d'ion en solution aqueuse.</em></p>
+      </div>
+      <details class="corr"><summary>Un indice</summary><div class="in prose">Ne cherche pas une mesure par flacon. Demande-toi plutôt quelle <em>unique</em> grandeur prend trois valeurs nettement différentes selon le flacon — et pourquoi.</div></details>
+      <details class="corr"><summary>Voir la correction</summary><div class="in prose">
+        <div class="methode"><div class="t">La démarche</div>
+        <ol>
+          <li><strong>Commencer par la conductimétrie.</strong> C'est la mesure la plus rapide, non destructive, et surtout elle suffit à elle seule à trier les trois flacons — à condition d'avoir compris que les trois solutés se comportent très différemment vis-à-vis des ions.</li>
+          <li><strong>Prévoir les trois comportements.</strong>
+            <ul>
+              <li>Le <strong>chlorure de sodium</strong> est totalement dissocié : à 0,10 mol·L<sup>−1</sup>, on attend une conductivité <strong>élevée</strong>, de l'ordre du S·m<sup>−1</sup>.</li>
+              <li>L'<strong>acide propanoïque</strong> réagit partiellement avec l'eau et libère quelques ions oxonium et propanoate : la conductivité est <strong>faible mais nettement non nulle</strong>.</li>
+              <li>Le <strong>propan-1-ol</strong> est une molécule qui se dissout sans former d'ions : la conductivité est <strong>quasi nulle</strong>, celle de l'eau distillée.</li>
+            </ul>
+          </li>
+          <li><strong>Classer.</strong> Le flacon le plus conducteur est le chlorure de sodium, le moins conducteur le propan-1-ol, l'intermédiaire l'acide propanoïque. <strong>Une seule série de trois mesures identifie les trois flacons.</strong></li>
+          <li><strong>Confirmer par infrarouge.</strong> La conductimétrie repose sur un classement relatif ; l'infrarouge apporte une identification indépendante, fondée sur la structure des molécules.</li>
+        </ol>
+        </div>
+        <div class="tb-wrap"><table class="tb">
+          <tr><th>Flacon</th><th>Conductivité attendue</th><th>Spectre infrarouge</th></tr>
+          <tr><td>Chlorure de sodium</td><td>élevée</td><td>aucune bande organique : ni O—H d'alcool, ni C=O</td></tr>
+          <tr><td>Acide propanoïque</td><td>faible mais non nulle</td><td>O—H très large (2500 – 3200) <strong>et</strong> C=O fine vers 1700</td></tr>
+          <tr><td>Propan-1-ol</td><td>quasi nulle</td><td>O—H large vers 3400, <strong>pas</strong> de C=O</td></tr>
+        </table></div>
+        <div class="def"><div class="t">Réponse rédigée, telle qu'on l'attend</div>On mesure d'abord la conductivité des trois solutions. Le chlorure de sodium, électrolyte totalement dissocié, donne la conductivité la plus élevée ; l'acide propanoïque, qui ne réagit que partiellement avec l'eau, donne une conductivité faible mais non nulle ; le propan-1-ol, qui ne libère aucun ion, donne une conductivité quasi nulle. Ce seul classement identifie les trois flacons. On confirme ensuite par spectroscopie infrarouge : le spectre présentant à la fois une bande O—H très large et une bande C=O fine vers 1700 cm<sup>−1</sup> est celui de l'acide propanoïque ; celui présentant un O—H large sans C=O est celui du propan-1-ol ; celui ne présentant aucune de ces bandes correspond à la solution de chlorure de sodium.</div>
+        <div class="piege"><div class="t">Ce qui distingue une bonne copie</div>
+        <p><strong>Justifier chaque niveau de conductivité</strong>, et pas seulement les classer. Dire « NaCl conduit le mieux » sans expliquer qu'il est totalement dissocié, et surtout sans expliquer pourquoi l'acide conduit <em>un peu</em>, vaut peu de points.</p>
+        <p><strong>Articuler les deux techniques</strong> au lieu de les juxtaposer : la conductimétrie trie, l'infrarouge confirme. Une copie qui propose six mesures sans hiérarchie montre qu'elle n'a pas choisi de stratégie.</p>
+        </div>
+        <div class="piege"><div class="t">Le piège du flacon intermédiaire</div>Beaucoup d'élèves supposent que seul le composé ionique conduit, et que les deux composés moléculaires se comportent pareil. C'est faux : l'acide propanoïque <strong>est</strong> un acide au sens du chapitre 1, donc il cède des ions hydrogène à l'eau et forme des ions. La conductimétrie ne sépare pas « ionique » et « moléculaire » — elle mesure la présence d'ions, d'où qu'ils viennent.</div>
+      </div></details>
+      </div></details>
+
     </div>
   </section>
 
