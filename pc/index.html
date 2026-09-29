@@ -2205,10 +2205,11 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
   </section>
 
   <section class="part" id="c2-cours">
-    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5Z"/><path d="M8 7.5h7M8 11h5"/></svg>Cours<small>Huit fiches : mesurer sans détruire, et en déduire une concentration</small></h2>
+    <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5Z"/><path d="M8 7.5h7M8 11h5"/></svg>Cours<small>Neuf fiches : mesurer sans détruire, et comprendre <em>pourquoi</em> ça marche</small></h2>
     <div class="prose">
 
       <p>Tout le chapitre répond à une seule question : <strong>comment connaître la composition d'une solution sans la transformer ?</strong> Deux grandeurs physiques le permettent — l'absorbance pour les espèces colorées, la conductivité pour les espèces ioniques — et toutes deux sont <em>proportionnelles à la concentration</em>. C'est cette proportionnalité qui rend possible le dosage par étalonnage.</p>
+      <div class="def"><div class="t">Ce que ce cours cherche à faire</div>Retenir <span class="ch">A = εℓc</span> et <span class="ch">σ = Σλ[X]</span> prend cinq minutes, et ne sert à rien le jour où l'énoncé décale légèrement le problème. Chaque fiche explique donc <strong>d'où vient la formule</strong>, <strong>pourquoi ses unités sont celles-là</strong>, et <strong>pourquoi elle cesse de marcher</strong> en dehors de son domaine. Une formule comprise se retrouve ; une formule apprise s'oublie.</div>
 
       <details class="rap" open><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4M17 12h4"/><rect x="8" y="7" width="8" height="10" rx="1"/></svg>1 · Mesurer sans détruire<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
       <div class="def"><div class="t">Méthode physique, méthode chimique</div>
@@ -2257,16 +2258,60 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
         <div class="fr">I₀ : intensité entrante · I : intensité sortante · A est <strong>sans unité</strong></div>
       </div>
       <p>Comme <span class="ch">I &lt; I<sub>0</sub></span>, le rapport dépasse 1 et l'absorbance est toujours positive. Une solution qui n'absorbe rien donne <span class="ch">I = I<sub>0</sub></span> donc <span class="ch">A = 0</span>.</p>
+      <div class="def"><div class="t">Pourquoi un logarithme, et pas une simple différence ?</div>
+      <p>Parce que l'absorption est un phénomène <strong>multiplicatif</strong>, pas additif. Découpe la cuve en tranches fines : chaque tranche contient le même nombre de molécules, donc chacune absorbe la <em>même fraction</em> de la lumière qu'elle reçoit — pas la même quantité.</p>
+      <p>Si une tranche laisse passer la moitié de ce qui entre, deux tranches en laissent le quart, trois le huitième. L'intensité décroît en étant <strong>divisée</strong> à chaque étape, jamais diminuée d'une constante.</p>
+      </div>
+      <div class="fig">
+        <svg viewBox="0 0 420 165" role="img" aria-label="L'intensité lumineuse est divisée par deux à chaque tranche de solution traversée">
+          <rect x="60" y="38" width="240" height="74" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <g stroke="currentColor" stroke-width="0.9" opacity=".35">
+            <line x1="108" y1="38" x2="108" y2="112"/><line x1="156" y1="38" x2="156" y2="112"/>
+            <line x1="204" y1="38" x2="204" y2="112"/><line x1="252" y1="38" x2="252" y2="112"/>
+          </g>
+          <g fill="var(--orange)">
+            <rect x="24" y="47" width="36" height="56"/>
+            <rect x="60" y="47" width="48" height="56"/>
+            <rect x="108" y="61" width="48" height="28"/>
+            <rect x="156" y="68" width="48" height="14"/>
+            <rect x="204" y="71.5" width="48" height="7"/>
+            <rect x="252" y="73.5" width="48" height="3"/>
+            <rect x="300" y="74" width="60" height="2"/>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="9.5" text-anchor="middle">
+            <text x="42" y="30">100 %</text><text x="108" y="30">50</text><text x="156" y="30">25</text>
+            <text x="204" y="30">12</text><text x="252" y="30">6</text><text x="300" y="30">3</text>
+          </g>
+          <g fill="currentColor" font-family="sans-serif" font-size="10">
+            <text x="24" y="132">I₀</text><text x="336" y="132">I</text>
+            
+          </g>
+        </svg>
+        <div class="cap">Une décroissance multiplicative : 100 → 50 → 25 → 12 → 6 → 3. Le logarithme transforme cette suite de divisions en une suite de soustractions régulières.</div>
+      </div>
+      <div class="def"><div class="t">Et c'est de là que vient toute la loi</div>
+      <p>Le logarithme change les <strong>produits en sommes</strong>. En le prenant, chaque tranche n'ajoute plus un facteur mais une <em>quantité constante</em> : sur le schéma, log 2 ≈ 0,30 par tranche. L'absorbance devient donc proportionnelle au <strong>nombre de tranches</strong> traversées.</p>
+      <p>Or le nombre de molécules rencontrées par la lumière dépend de deux choses seulement : la <strong>longueur</strong> du trajet et la <strong>concentration</strong>. D'où, immédiatement :</p>
+      <div class="eqc">A ∝ ℓ &nbsp;&nbsp;et&nbsp;&nbsp; A ∝ c &nbsp;&nbsp;donc&nbsp;&nbsp; A = ε × ℓ × c</div>
+      <p>La loi de Beer-Lambert n'est donc pas une formule tombée du ciel : c'est la conséquence directe du fait que <strong>seul compte le nombre de molécules sur le chemin du faisceau</strong>.</p>
+      </div>
+      <div class="exemple"><div class="t">La conséquence pratique, qu'on retrouve dans le TP 2</div>Puisque seul compte le <em>produit</em> ℓ × c, une cuve cinq fois plus longue remplace exactement une solution cinq fois plus concentrée. C'est pour cela qu'on propose, à la fin du TP 2, de passer d'une cuve de 1,0 cm à une cuve de 5,0 cm : on multiplie le signal par cinq sans toucher à l'échantillon.</div>
       <div class="formule">
         <div class="t">Loi de Beer-Lambert</div>
         <div class="eqc">A = ε × ℓ × c</div>
         <div class="fr">ε : coefficient d'absorption molaire, en L·mol<sup>−1</sup>·cm<sup>−1</sup> · ℓ : longueur de la cuve, en cm · c : concentration, en mol·L<sup>−1</sup></div>
       </div>
       <div class="methode"><div class="t">Vérifier que A est bien sans unité</div>L·mol<sup>−1</sup>·cm<sup>−1</sup> × cm × mol·L<sup>−1</sup> : les litres se simplifient, les moles aussi, les centimètres aussi. Il ne reste rien. <strong>Cette vérification est le meilleur moyen de savoir si tu as pris les bonnes unités</strong> — si ça ne se simplifie pas, une des trois grandeurs est dans la mauvaise unité.</div>
+      <div class="def"><div class="t">D'où vient l'unité bizarre de ε</div>
+      <p>Elle n'est pas choisie, elle est <strong>imposée</strong>. ε est défini comme le facteur qui relie A à ℓ et c :</p>
+      <div class="eqc">ε = <span class="frac"><span>A</span><span>ℓ × c</span></span></div>
+      <p>A est sans unité, ℓ est en cm et c en mol·L<sup>−1</sup>. L'unité de ε est donc l'<strong>inverse</strong> du produit des deux : <span class="ch">1 / (cm × mol·L<sup>−1</sup>) = L·mol<sup>−1</sup>·cm<sup>−1</sup></span>.</p>
+      <p>Autrement dit, cette unité est la <em>trace</em> des unités choisies pour ℓ et c. Si on avait décidé de mesurer les cuves en mètres, ε serait en L·mol<sup>−1</sup>·m<sup>−1</sup>. Il n'y a rien à mémoriser : il suffit de savoir que A doit sortir sans unité, et l'unité de ε se reconstruit toute seule.</p>
+      </div>
       <p>Le coefficient <span class="ch">ε</span> mesure la <strong>capacité d'une espèce à absorber la lumière</strong>. Il dépend de l'espèce <em>et</em> de la longueur d'onde : la même molécule a un ε élevé à son maximum d'absorption, et quasi nul ailleurs.</p>
       <div class="def"><div class="t">En pratique, on écrit A = k × c</div>Pendant un dosage, on ne change ni la cuve, ni la longueur d'onde, ni l'appareil. Donc <span class="ch">ε</span> et <span class="ch">ℓ</span> sont constants et leur produit forme un coefficient unique <span class="ch">k = ε × ℓ</span>. L'absorbance devient simplement proportionnelle à la concentration — c'est ce qui rend la droite d'étalonnage possible.</div>
       <div class="piege"><div class="t">Trois limites à ne pas oublier</div>
-      <p><strong>L'appareil sature.</strong> Au-delà d'une absorbance d'environ 2 à 2,5, le capteur ne reçoit presque plus de lumière et la mesure perd son sens. Si un calcul prédit A = 4,4, il faut <strong>diluer</strong>.</p>
+      <p><strong>L'appareil sature — et on peut chiffrer pourquoi.</strong> Par définition, <span class="ch">A = 1</span> signifie qu'il ne passe qu'un <strong>dixième</strong> de la lumière, <span class="ch">A = 2</span> un <strong>centième</strong>, <span class="ch">A = 3</span> un <strong>millième</strong>. Au-delà de 2,5, le capteur reçoit moins de trois millipour cent du faisceau : le bruit électronique devient comparable au signal, et la mesure perd tout sens. Si un calcul prédit A = 4,4 — soit quatre cent-millièmes de la lumière transmise — il faut <strong>diluer</strong>.</p>
       <p><strong>La solution doit être diluée.</strong> À forte concentration, les molécules interagissent et la proportionnalité se perd.</p>
       <p><strong>Une seule espèce doit absorber</strong> à la longueur d'onde choisie. Sinon les absorbances s'ajoutent et on ne sait plus ce qu'on mesure.</p>
       </div>
@@ -2280,6 +2325,11 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
         <li><strong>La sensibilité est maximale :</strong> une petite variation de concentration produit la plus grande variation d'absorbance possible.</li>
         <li><strong>La courbe y est plate :</strong> au sommet d'un maximum, une petite erreur sur le réglage de la longueur d'onde ne change presque rien à l'absorbance. Sur un flanc raide, la même erreur fausserait tout.</li>
       </ol>
+      </div>
+      <div class="def"><div class="t">Pourquoi « plate » au sommet : la raison est mathématique</div>
+      <p>Au sommet d'une courbe, la <strong>pente est nulle</strong>. Un petit écart δλ sur le réglage ne produit donc pas un écart proportionnel sur A, mais un écart en <strong>δλ²</strong> — c'est-à-dire négligeable dès que δλ est petit.</p>
+      <p>Sur un flanc, la pente n'est pas nulle : un écart δλ produit un écart sur A <em>proportionnel</em> à δλ, donc bien plus grand. Un réglage imprécis de 2 nm est sans conséquence à λ<sub>max</sub>, et catastrophique 30 nm plus loin.</p>
+      <p>C'est le même argument qui explique pourquoi on pèse au voisinage d'un équilibre, ou pourquoi on règle un instrument sur un extremum : <strong>là où la dérivée s'annule, l'erreur ne se propage plus au premier ordre</strong>.</p>
       </div>
       <div class="def"><div class="t">Deuxième information : quelle espèce est présente</div>La position de <span class="ch">λ<sub>max</sub></span> et l'allure générale du spectre sont une <strong>signature</strong> de l'espèce colorée. On compare le spectre de l'échantillon à des spectres de référence : s'ils présentent le même maximum et la même allure, c'est la même espèce.</div>
       <p>Le lien avec la couleur est direct : la longueur d'onde absorbée détermine la couleur perçue, qui en est la <strong>complémentaire</strong>. Un maximum vers 630 nm — de l'orange-rouge — donne une solution bleue ; un maximum vers 470 nm — du bleu — donne une solution jaune.</p>
@@ -2321,6 +2371,17 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
       <p>La <strong>conductance G</strong> est ce que l'appareil mesure : <span class="ch">G = I/U = 1/R</span>, en <strong>siemens (S)</strong>. Mais elle <strong>dépend de la géométrie de la sonde</strong> : la même solution mesurée avec deux cellules différentes donne deux conductances différentes.</p>
       <p>La <strong>conductivité σ</strong> caractérise <em>la solution elle-même</em>, en <strong>S·m<sup>−1</sup></strong>, et ne dépend plus de la sonde. C'est elle qu'on tabule et qu'on compare.</p>
       </div>
+      <div class="def"><div class="t">Pourquoi la conductance dépend de la sonde — et comment on s'en débarrasse</div>
+      <p>Imagine les ions comme des voitures allant d'une plaque à l'autre. Deux paramètres géométriques décident du débit :</p>
+      <ul>
+        <li><strong>La surface S des plaques</strong> est le nombre de voies de circulation. Doubler S, c'est ouvrir deux fois plus de voies en parallèle : le courant double. Donc <span class="ch">G ∝ S</span>.</li>
+        <li><strong>La distance L entre les plaques</strong> est la longueur du trajet. Doubler L, c'est doubler la distance à parcourir contre les frottements : le courant est divisé par deux. Donc <span class="ch">G ∝ 1/L</span>.</li>
+      </ul>
+      <div class="eqc">G = σ × <span class="frac"><span>S</span><span>L</span></span> &nbsp;&nbsp;⟹&nbsp;&nbsp; σ = G × <span class="frac"><span>L</span><span>S</span></span></div>
+      <p>Le coefficient de proportionnalité σ est <strong>ce qui reste quand on a retiré la géométrie</strong> : la capacité intrinsèque de la solution à conduire. Mesurer G puis multiplier par L/S, c'est exactement annuler l'effet de la sonde.</p>
+      </div>
+      <div class="exemple"><div class="t">Tu connais déjà cette formule sous un autre nom</div>Pour un fil électrique, <span class="ch">R = ρ × L/S</span> : même géométrie, même raisonnement. La résistivité ρ est à la résistance ce que la conductivité σ est à la conductance — et d'ailleurs <span class="ch">σ = 1/ρ</span>. La conductimétrie n'invente rien : elle applique à une solution ce qu'on sait d'un conducteur solide.</div>
+      <div class="def"><div class="t">D'où vient l'unité de σ</div>Là encore, elle se reconstruit : <span class="ch">σ = G × L/S</span>, donc l'unité est <span class="ch">S × m / m² = S·m<sup>−1</sup></span>. Et la constante de cellule <span class="ch">K = L/S</span> est en <span class="ch">m/m² = m<sup>−1</sup></span> — c'est pour cela que la notice d'un conductimètre annonce « K = 1,0 cm<sup>−1</sup> ».</div>
       <div class="formule">
         <div class="eqc">σ = G × <span class="frac"><span>L</span><span>S</span></span> &nbsp;&nbsp;ou&nbsp;&nbsp; σ = K × G &nbsp;&nbsp;avec&nbsp; K = <span class="frac"><span>L</span><span>S</span></span></div>
         <div class="fr">L : distance entre les plaques · S : surface d'une plaque · K : constante de cellule, propre à la sonde, en m<sup>−1</sup> ou cm<sup>−1</sup></div>
@@ -2337,6 +2398,16 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
         <div class="fr">λ<sub>i</sub> : conductivité molaire ionique, en S·m²·mol<sup>−1</sup> · [X<sub>i</sub>] en mol·m<sup>−3</sup> · σ en S·m<sup>−1</sup></div>
       </div>
       <div class="def"><div class="t">Ce que représente λ</div>La conductivité molaire ionique <span class="ch">λ</span> mesure la <strong>capacité d'un ion à conduire le courant</strong>. Elle est tabulée et propre à chaque ion. Les ions <span class="ch">H<sub>3</sub>O<sup>+</sup></span> et <span class="ch">HO<sup>−</sup></span> ont des valeurs bien plus élevées que les autres : les solutions acides ou basiques conduisent remarquablement bien.</div>
+      <div class="def"><div class="t">Pourquoi les contributions s'additionnent</div>
+      <p>Parce que chaque ion transporte sa charge <strong>indépendamment des autres</strong>. Le courant total qui traverse la cellule est la somme des courants portés par chaque espèce, exactement comme le débit d'une autoroute est la somme des débits de ses voies. Additionner les λ[X], c'est additionner des courants.</p>
+      <p>Cette additivité est aussi la <strong>raison de la limite du modèle</strong> : elle suppose que les ions s'ignorent. Elle ne peut donc tenir qu'en solution diluée.</p>
+      </div>
+      <div class="def"><div class="t">D'où vient l'unité de λ</div>De sa définition, comme toujours. <span class="ch">λ = σ / [X]</span>, donc l'unité est <span class="ch">(S·m<sup>−1</sup>) / (mol·m<sup>−3</sup>) = S·m²·mol<sup>−1</sup></span>. Le mètre carré n'a rien de mystérieux : c'est le résultat de la division de m<sup>−1</sup> par m<sup>−3</sup>. Et c'est <strong>cette unité qui impose</strong> d'exprimer les concentrations en mol·m<sup>−3</sup> — pas une convention arbitraire.</div>
+      <div class="exemple"><div class="t">Pourquoi H₃O⁺ et HO⁻ conduisent deux à cinq fois mieux que les autres ions</div>
+      <p>Parce qu'ils ne se déplacent pas vraiment. Un ion sodium doit traverser physiquement la solution, en écartant les molécules d'eau sur son passage — c'est lent. Un ion oxonium, lui, peut se contenter de <strong>passer son proton à la molécule d'eau voisine</strong>, qui devient à son tour un ion oxonium et recommence.</p>
+      <p>La charge progresse alors de proche en proche, par relais, sans qu'aucun atome ne parcoure vraiment la distance — comme une vague dans un stade avance bien plus vite que les spectateurs. D'où une conductivité molaire ionique exceptionnellement élevée.</p>
+      </div>
+      <div class="def"><div class="t">Pourquoi le modèle décroche en solution concentrée</div>Quand les ions se rapprochent, chacun s'entoure d'un nuage d'ions de charge opposée qui le retient. Sa mobilité diminue, donc sa contribution à la conductivité aussi. Résultat : σ croît <strong>moins vite</strong> que la concentration, et les points de la courbe d'étalonnage s'infléchissent vers le bas — exactement ce qu'on observe sur l'étalon le plus concentré du TP 3.</div>
       <div class="methode"><div class="t">Le cas simple : un ion de chaque</div>
       <p>Pour une solution de chlorure de sodium de concentration <span class="ch">c</span>, on a <span class="ch">[Na<sup>+</sup>] = [Cl<sup>−</sup>] = c</span>, donc :</p>
       <div class="eqc">σ = λ<sub>Na⁺</sub> × c + λ<sub>Cl⁻</sub> × c = c × (λ<sub>Na⁺</sub> + λ<sub>Cl⁻</sub>)</div>
@@ -2392,11 +2463,21 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
       <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8c2 0 2 8 4 8s2-11 4-11 2 9 4 9 2-4 3-4h3"/></svg>7 · La spectroscopie infrarouge<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
       <p>L'infrarouge ne sert pas à doser mais à <strong>identifier</strong> : il révèle quels groupes caractéristiques une molécule contient.</p>
       <div class="def"><div class="t">Ce que fait le rayonnement infrarouge</div>Il fait <strong>vibrer les liaisons</strong>. Une liaison peut s'allonger et se raccourcir — vibration d'<strong>élongation</strong>, symétrique ou antisymétrique quand l'atome central en porte deux — ou changer d'angle avec sa voisine — vibration de <strong>déformation</strong>. Chaque type de liaison absorbe à des fréquences qui lui sont propres.</div>
+      <div class="def"><div class="t">Pourquoi une liaison absorbe à une fréquence précise</div>
+      <p>Une liaison chimique se comporte comme un <strong>ressort reliant deux masses</strong>. Un tel système possède une fréquence propre, celle à laquelle il oscille naturellement. Quand le rayonnement infrarouge arrive exactement à cette fréquence, il y a <strong>résonance</strong> : la liaison absorbe l'énergie et se met à vibrer plus fort. À toute autre fréquence, le rayonnement passe sans être absorbé.</p>
+      <p>La fréquence propre d'un ressort dépend de deux choses, et c'est ce qui explique toute la table des bandes :</p>
+      <ul>
+        <li><strong>La raideur de la liaison.</strong> Plus elle est forte, plus la fréquence est élevée. C'est pourquoi une double liaison <span class="ch">C=O</span> absorbe vers 1700 cm<sup>−1</sup>, alors qu'une simple liaison <span class="ch">C—O</span>, plus souple, absorbe bien plus bas.</li>
+        <li><strong>La masse des atomes.</strong> Plus ils sont légers, plus ça vibre vite. L'hydrogène étant l'atome le plus léger, toutes les liaisons qui le contiennent — <span class="ch">O—H</span>, <span class="ch">N—H</span>, <span class="ch">C—H</span> — se retrouvent tout en haut du spectre, au-dessus de 2800 cm<sup>−1</sup>.</li>
+      </ul>
+      <p>La table des bandes caractéristiques n'est donc pas une liste arbitraire à apprendre : c'est un <strong>classement par raideur et par masse</strong>.</p>
+      </div>
       <div class="formule">
         <div class="t">Le nombre d'onde</div>
         <div class="eqc">σ = <span class="frac"><span>1</span><span>λ</span></span> &nbsp;&nbsp;en cm<sup>−1</sup></div>
         <div class="fr">En infrarouge, l'axe horizontal porte le nombre d'onde, pas la longueur d'onde. Il se lit de droite à gauche, de 4000 à 500 cm<sup>−1</sup>.</div>
       </div>
+      <div class="def"><div class="t">Pourquoi le nombre d'onde plutôt que la longueur d'onde</div>Parce qu'il est <strong>proportionnel à l'énergie</strong> du rayonnement, alors que la longueur d'onde lui est inversement proportionnelle. Un axe gradué en nombres d'onde est donc directement un axe d'énergie : à droite les vibrations molles et peu énergétiques, à gauche les liaisons raides et légères. Lire un spectre infrarouge de gauche à droite, c'est descendre l'échelle des énergies de vibration.</div>
       <div class="fig">
         <svg viewBox="0 0 420 200" role="img" aria-label="Spectre infrarouge en transmittance avec les bandes caractéristiques">
           <line x1="44" y1="160" x2="400" y2="160" stroke="currentColor" stroke-width="1.5"/>
@@ -2425,6 +2506,11 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
         <tr><td>C—H</td><td>2800 – 3000</td><td>présente dans presque tout</td><td>peu discriminante</td></tr>
         <tr><td>C=O</td><td>1700 – 1750</td><td>forte et <strong>fine</strong></td><td>aldéhyde, cétone, acide, ester, amide</td></tr>
       </table></div>
+      <div class="def"><div class="t">Pourquoi la bande O—H est large et celle du C=O est fine</div>
+      <p>C'est l'indice le plus utile du spectre, et il a une explication simple. Les groupes <span class="ch">O—H</span> forment des <strong>liaisons hydrogène</strong> entre eux et avec l'eau. Chaque O—H se retrouve donc dans un environnement légèrement différent : certains fortement liés à un voisin, d'autres libres. Un O—H engagé dans une liaison hydrogène est un peu assoupli, donc il vibre un peu plus lentement.</p>
+      <p>Résultat : au lieu d'une fréquence unique, on obtient une <strong>distribution</strong> de fréquences, et la bande s'étale. Le <span class="ch">C=O</span>, lui, ne forme pas de liaison hydrogène par lui-même : tous les C=O de l'échantillon vibrent quasiment à la même fréquence, d'où une bande étroite.</p>
+      <p>Cela explique aussi pourquoi le O—H d'un <strong>acide carboxylique</strong> est encore plus large que celui d'un alcool : les acides s'associent deux par deux par une double liaison hydrogène particulièrement solide, ce qui assouplit fortement le O—H et étale la bande jusque vers 2500 cm<sup>−1</sup>.</p>
+      </div>
       <div class="methode"><div class="t">Lire un spectre, en trois questions</div>
       <ol>
         <li><strong>Y a-t-il une bande large vers 3000 – 3600 ?</strong> Si oui, il y a un O—H : alcool si elle est vers 3400 et assez nette, acide carboxylique si elle s'étale très bas.</li>
@@ -2445,6 +2531,48 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
         <tr><td>Liaisons chimiques</td><td>vibrations moléculaires</td><td>infrarouge</td><td>élongations et déformations</td></tr>
       </table></div>
       <div class="def"><div class="t">Le calcul qui le montre</div>Le visible est autour de 600 nm, soit <span class="ch">6 × 10<sup>−7</sup> m</span>. Un noyau mesure <span class="ch">10<sup>−15</sup> m</span> : huit ordres de grandeur d'écart. <strong>La lumière visible n'a aucun effet sur un noyau.</strong> En revanche elle est à l'échelle du nuage électronique, qu'elle perturbe — d'où la couleur des solutions.</div>
+      </div></details>
+
+      <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h13"/><path d="M18 14v6M15 17h6"/></svg>9 · D'où viennent toutes les unités<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p>C'est le point qui fait perdre le plus de points du chapitre, et pourtant il n'y a <strong>rien à mémoriser</strong> : chaque unité se reconstruit en trente secondes à partir de la relation qui définit la grandeur.</p>
+      <div class="def"><div class="t">Le principe, une fois pour toutes</div>Une unité n'est jamais décidée : elle est <strong>imposée par la formule</strong>. Isole la grandeur, remplace chaque symbole par son unité, simplifie. Ce que tu obtiens <em>est</em> l'unité — et si le résultat ne ressemble pas à celui du tableau de données, c'est qu'une des grandeurs n'est pas dans la bonne unité.</div>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Grandeur</th><th>Relation qui la définit</th><th>Dérivation de l'unité</th><th>Résultat</th></tr>
+        <tr><td>Absorbance A</td><td>A = log(I₀/I)</td><td>logarithme d'un rapport de deux intensités</td><td><strong>sans unité</strong></td></tr>
+        <tr><td>Coefficient ε</td><td>ε = A / (ℓ × c)</td><td>1 / (cm × mol·L<sup>−1</sup>)</td><td><strong>L·mol<sup>−1</sup>·cm<sup>−1</sup></strong></td></tr>
+        <tr><td>Conductance G</td><td>G = I / U</td><td>A / V, appelé siemens</td><td><strong>S</strong></td></tr>
+        <tr><td>Conductivité σ</td><td>σ = G × L/S</td><td>S × m / m²</td><td><strong>S·m<sup>−1</sup></strong></td></tr>
+        <tr><td>Constante de cellule K</td><td>K = L / S</td><td>m / m²</td><td><strong>m<sup>−1</sup></strong></td></tr>
+        <tr><td>Conductivité molaire λ</td><td>λ = σ / [X]</td><td>(S·m<sup>−1</sup>) / (mol·m<sup>−3</sup>)</td><td><strong>S·m²·mol<sup>−1</sup></strong></td></tr>
+        <tr><td>Nombre d'onde σ</td><td>σ = 1 / λ</td><td>1 / cm</td><td><strong>cm<sup>−1</sup></strong></td></tr>
+      </table></div>
+      <div class="piege"><div class="t">Le chapitre travaille dans deux systèmes d'unités incompatibles</div>
+      <p><strong>Côté Beer-Lambert</strong>, tout est en unités de paillasse : la cuve en <strong>centimètres</strong>, la concentration en <strong>mol·L<sup>−1</sup></strong>. C'est ce que le tableau de ε impose.</p>
+      <p><strong>Côté Kohlrausch</strong>, tout est en unités du système international : les distances en <strong>mètres</strong>, la concentration en <strong>mol·m<sup>−3</sup></strong>. C'est ce que le tableau des λ impose.</p>
+      <p>Passer d'un exercice à l'autre sans changer de système est l'erreur numéro un. Le réflexe : <strong>regarde d'abord l'unité des données tabulées</strong>, elle t'indique dans quel système travailler.</p>
+      </div>
+      <div class="methode"><div class="t">Les quatre conversions, et pourquoi elles valent ça</div>
+      <ul>
+        <li><strong>1 mol·L<sup>−1</sup> = 10<sup>3</sup> mol·m<sup>−3</sup></strong> — parce qu'un mètre cube contient mille litres. La même quantité de matière répartie dans mille fois plus de volume, ou la même concentration exprimée par mille fois plus de volume : c'est bien un facteur mille <em>vers le haut</em>.</li>
+        <li><strong>1 mmol·L<sup>−1</sup> = 1 mol·m<sup>−3</sup></strong> — les deux facteurs mille se compensent exactement. Une concentration donnée en millimoles par litre est <em>déjà</em> dans la bonne unité pour Kohlrausch, ce qui explique que les tableaux d'exercices l'utilisent si souvent.</li>
+        <li><strong>1 cm² = 10<sup>−4</sup> m²</strong> — parce que le facteur 10<sup>−2</sup> de la longueur est <em>élevé au carré</em>. C'est l'erreur classique de l'exercice 12 : écrire 10<sup>−2</sup> au lieu de 10<sup>−4</sup> fausse le résultat d'un facteur cent.</li>
+        <li><strong>1 mS·cm<sup>−1</sup> = 0,1 S·m<sup>−1</sup></strong> — parce qu'on divise 10<sup>−3</sup> S par 10<sup>−2</sup> m, ce qui donne 10<sup>−1</sup>. Les deux préfixes ne se simplifient pas, ils se divisent.</li>
+      </ul>
+      </div>
+      <div class="methode"><div class="t">La méthode qui rend toute erreur d'unité impossible</div>
+      <ol>
+        <li><strong>Écris la formule</strong> sans aucun nombre.</li>
+        <li><strong>Écris sous chaque symbole son unité</strong>, telle qu'elle est donnée dans l'énoncé — pas telle que tu voudrais qu'elle soit.</li>
+        <li><strong>Simplifie les unités seules.</strong> Si tu n'obtiens pas l'unité attendue, arrête-toi : une conversion manque, et aucun calcul ne la rattrapera.</li>
+        <li><strong>Seulement ensuite</strong>, remplace par les nombres.</li>
+      </ol>
+      </div>
+      <div class="exemple"><div class="t">Sur un exemple : l'exercice 15</div>
+      <p>On cherche σ à partir de <span class="ch">σ = c × (λ₊ + λ₋)</span>, avec c = 0,200 mol·L<sup>−1</sup> et des λ en S·m²·mol<sup>−1</sup>.</p>
+      <p><strong>Étape 2 :</strong> mol·L<sup>−1</sup> × S·m²·mol<sup>−1</sup> = S·m²·L<sup>−1</sup>. Ce n'est pas du S·m<sup>−1</sup> : <strong>il manque une conversion</strong>, et on le voit avant d'avoir touché à la calculatrice.</p>
+      <p>Après conversion en mol·m<sup>−3</sup> : mol·m<sup>−3</sup> × S·m²·mol<sup>−1</sup> = S·m<sup>−1</sup> ✓. On peut calculer.</p>
+      </div>
+      <div class="def"><div class="t">Pourquoi ça vaut le coup</div>Les quatre erreurs relevées dans tes copies de ce chapitre sont toutes des erreurs de manipulation, pas de compréhension : une conversion oubliée, deux rapports inversés, un préfixe mal lu. Aucune ne résiste à la méthode ci-dessus, qui coûte trente secondes par question.</div>
       </div></details>
 
     </div>
@@ -3139,6 +3267,299 @@ h2 .ico2{width:21px;height:21px;color:var(--orange);vertical-align:-3px;margin-r
         <p><strong>Articuler les deux techniques</strong> au lieu de les juxtaposer : la conductimétrie trie, l'infrarouge confirme. Une copie qui propose six mesures sans hiérarchie montre qu'elle n'a pas choisi de stratégie.</p>
         </div>
         <div class="piege"><div class="t">Le piège du flacon intermédiaire</div>Beaucoup d'élèves supposent que seul le composé ionique conduit, et que les deux composés moléculaires se comportent pareil. C'est faux : l'acide propanoïque <strong>est</strong> un acide au sens du chapitre 1, donc il cède des ions hydrogène à l'eau et forme des ions. La conductimétrie ne sépare pas « ionique » et « moléculaire » — elle mesure la présence d'ions, d'où qu'ils viennent.</div>
+      </div></details>
+      </div></details>
+
+
+      <h3 style="margin-top:30px">Exercices bilan</h3>
+      <div class="def"><div class="t">Ce que ces deux-là ont de particulier</div>Ils sont longs — comptez une heure chacun — et c'est voulu : à eux deux, ils mobilisent <strong>toutes les notions exigibles du chapitre</strong>, sans exception. Chaque partie enchaîne sur la précédente comme dans un vrai sujet de bac, et aucune question n'est là pour faire du remplissage. Je les ai écrits pour ce site.</div>
+      <div class="tb-wrap"><table class="tb">
+        <tr><th>Notion exigible</th><th>Bilan 1</th><th>Bilan 2</th></tr>
+        <tr><td>Définition de l'absorbance, A = log(I₀/I)</td><td>—</td><td>✓</td></tr>
+        <tr><td>Loi de Beer-Lambert, rôle et unité de ε</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Saturation du spectrophotomètre, dilution</td><td>✓</td><td>—</td></tr>
+        <tr><td>Spectre UV-visible, λ<sub>max</sub>, couleur complémentaire</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Conductance, conductivité, constante de cellule</td><td>✓</td><td>—</td></tr>
+        <tr><td>Loi de Kohlrausch et stœchiométrie</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Domaines de validité des deux lois</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Dosage par étalonnage complet</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Spectroscopie infrarouge, nombre d'onde, bandes</td><td>—</td><td>✓</td></tr>
+        <tr><td>Familles et groupes caractéristiques</td><td>—</td><td>✓</td></tr>
+        <tr><td>Toutes les conversions d'unités du chapitre</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Incertitudes, encadrement, critère de comparaison</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Identifier / doser : choisir la bonne technique</td><td>✓</td><td>✓</td></tr>
+      </table></div>
+
+      <details class="rap"><summary><span class="lvl dmaison">Bilan · 1 h</span>B1 · Le contrôle d'une solution de Dakin<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Couvre <strong>C1</strong> · <strong>C2</strong> · <strong>C4</strong> · <strong>C5</strong> · unités · incertitudes · domaines de validité</p>
+      <div class="enonce">
+        <p>La solution de Dakin est un antiseptique de couleur rose. Son étiquette annonce deux constituants :</p>
+        <ul>
+          <li>l'<strong>hypochlorite de sodium</strong> <span class="ch">(Na<sup>+</sup>(aq) ; ClO<sup>−</sup>(aq))</span>, espèce active, à <strong>0,50 % en masse</strong> ;</li>
+          <li>le <strong>permanganate de potassium</strong> <span class="ch">(K<sup>+</sup>(aq) ; MnO<sub>4</sub><sup>−</sup>(aq))</span>, présent à l'état de traces, qui donne sa couleur rose et stabilise la solution, à <strong>0,010 g·L<sup>−1</sup></strong>.</li>
+        </ul>
+        <p>Un laboratoire de contrôle doit vérifier ces deux indications.</p>
+
+        <p><strong>Partie A — Identifier le colorant</strong></p>
+        <p>Le spectre UV-visible de la solution présente un maximum d'absorption à <span class="ch">λ<sub>max</sub> = 525 nm</span>.<br>
+        <strong>A1.</strong> Justifier la couleur rose observée à partir de cette valeur.<br>
+        <strong>A2.</strong> Choisir la longueur d'onde à laquelle réaliser le dosage, et donner les <em>deux</em> raisons de ce choix.<br>
+        <strong>A3.</strong> Expliquer en quoi l'opération réalisée dans cette partie A diffère de celle des parties suivantes.</p>
+
+        <p><strong>Partie B — Doser le permanganate par spectrophotométrie</strong></p>
+        <p>On dispose d'une solution mère de permanganate de potassium à <span class="ch">1,0 × 10<sup>−3</sup> mol·L<sup>−1</sup></span>.<br>
+        <strong>B1.</strong> Calculer la concentration en quantité de matière en permanganate qu'annonce l'étiquette.<br>
+        <strong>B2.</strong> Montrer que la solution mère est utilisable directement dans le spectrophotomètre, mais qu'une mère deux fois plus concentrée ne le serait pas.<br>
+        <strong>B3.</strong> Justifier le choix de la gamme d'étalonnage suivante, puis calculer les volumes de solution mère à prélever pour préparer chaque étalon dans une fiole jaugée de 50,0 mL.</p>
+        <div class="tb-wrap"><table class="tb">
+          <tr><th>Étalon</th><td>S₁</td><td>S₂</td><td>S₃</td><td>S₄</td><td>S₅</td></tr>
+          <tr><th>c (× 10⁻⁵ mol·L⁻¹)</th><td>2,0</td><td>4,0</td><td>6,0</td><td>8,0</td><td>10,0</td></tr>
+          <tr><th>Absorbance A</th><td>0,048</td><td>0,096</td><td>0,143</td><td>0,192</td><td>0,240</td></tr>
+        </table></div>
+        <p><strong>B4.</strong> Vérifier que la loi de Beer-Lambert est respectée et déterminer le coefficient directeur k de la droite d'étalonnage.<br>
+        <strong>B5.</strong> Vérifier que ce coefficient est cohérent avec la valeur tabulée de ε.<br>
+        <strong>B6.</strong> L'absorbance du Dakin vaut <span class="ch">A = 0,151</span>. Déterminer sa concentration en permanganate, puis sa concentration en masse.<br>
+        <strong>B7.</strong> Conclure sur la conformité de cette indication de l'étiquette.</p>
+
+        <p><strong>Partie C — Doser l'hypochlorite par conductimétrie</strong></p>
+        <p>La cellule conductimétrique est constituée de deux plaques de surface <span class="ch">S = 1,0 cm²</span>, distantes de <span class="ch">L = 1,0 cm</span>. On dilue la solution de Dakin d'un facteur 10, puis on mesure entre les plaques <span class="ch">U = 2,00 V</span> et <span class="ch">I = 1,56 mA</span>.<br>
+        <strong>C1.</strong> Justifier la nécessité de diluer avant la mesure.<br>
+        <strong>C2.</strong> Calculer la conductance G, puis la constante de cellule K, puis la conductivité σ. Exprimer σ en S·m<sup>−1</sup> et en mS·cm<sup>−1</sup>.<br>
+        <strong>C3.</strong> Écrire l'équation de dissolution de l'hypochlorite de sodium et exprimer σ en fonction de la concentration c.<br>
+        <strong>C4.</strong> Calculer c pour la solution diluée, puis pour le Dakin.<br>
+        <strong>C5.</strong> En déduire le pourcentage en masse d'hypochlorite de sodium du Dakin, et conclure.</p>
+
+        <p><strong>Partie D — Évaluer et conclure</strong></p>
+        <p>Le conductimètre a une résolution <span class="ch">d = 0,01 mS·cm<sup>−1</sup></span>, et l'incertitude associée vaut <span class="ch">u(σ) = d/(2√3)</span>.<br>
+        <strong>D1.</strong> Calculer u(σ) et donner un encadrement de la conductivité mesurée.<br>
+        <strong>D2.</strong> Le fabricant garantit une teneur de 0,50 % ± 0,05 %. Conclure de façon argumentée.<br>
+        <strong>D3.</strong> Expliquer pourquoi on n'aurait pas pu doser l'hypochlorite par spectrophotométrie, ni le permanganate par conductimétrie.</p>
+
+        <p><em>Données : M(K) = 39,1 · M(Mn) = 54,9 · M(O) = 16,0 · M(Na) = 23,0 · M(Cl) = 35,5 g·mol<sup>−1</sup> · ε<sub>525</sub>(MnO₄<sup>−</sup>) = 2,4 × 10<sup>3</sup> L·mol<sup>−1</sup>·cm<sup>−1</sup> · cuve ℓ = 1,0 cm · gamme du spectrophotomètre 0 &lt; A &lt; 2,5 · λ(Na<sup>+</sup>) = 5,01 × 10<sup>−3</sup> et λ(ClO<sup>−</sup>) = 6,7 × 10<sup>−3</sup> S·m²·mol<sup>−1</sup> · masse volumique du Dakin ρ = 1,0 × 10<sup>3</sup> g·L<sup>−1</sup> · la loi de Kohlrausch n'est vérifiée que pour c &lt; 10<sup>−2</sup> mol·L<sup>−1</sup></em></p>
+      </div>
+
+      <details class="corr"><summary>Un indice pour chaque partie</summary><div class="in prose">
+        <p><strong>Partie A :</strong> 525 nm est au milieu du visible. Cherche sa complémentaire dans le tableau des couleurs.</p>
+        <p><strong>Partie B :</strong> pour B5, souviens-toi que le coefficient directeur d'une droite A = f(c) n'est pas ε tout seul.</p>
+        <p><strong>Partie C :</strong> garde les centimètres jusqu'au bout pour K, tu obtiendras une conductivité directement en mS·cm<sup>−1</sup>. Et n'oublie pas de remonter la dilution à la fin.</p>
+        <p><strong>Partie D :</strong> pour D3, demande-toi ce que chaque technique <em>voit</em> : l'une ne voit que les espèces colorées, l'autre que les ions.</p>
+      </div></details>
+
+      <details class="corr"><summary>Voir la correction complète</summary><div class="in prose">
+
+        <p class="som-t">PARTIE A — IDENTIFIER</p>
+        <p><strong>A1.</strong> 525 nm correspond au <strong>vert</strong>. La solution absorbe donc le vert et laisse passer tout le reste du visible. L'œil perçoit la couleur complémentaire du vert, c'est-à-dire le <strong>pourpre</strong> — ce qui correspond bien au rose observé. ✓</p>
+        <p><strong>A2.</strong> On travaille à <span class="ch">λ = 525 nm</span>, le maximum d'absorption, pour deux raisons :</p>
+        <ul>
+          <li><strong>La sensibilité est maximale</strong> : c'est là qu'une variation donnée de concentration produit la plus grande variation d'absorbance, donc la meilleure précision sur le résultat.</li>
+          <li><strong>La courbe y est plate</strong> : la pente est nulle au sommet, donc une petite erreur δλ sur le réglage n'a qu'un effet du second ordre sur A. Sur un flanc de courbe, la même erreur aurait un effet proportionnel à δλ, bien plus grand.</li>
+        </ul>
+        <p><strong>A3.</strong> La partie A <strong>identifie</strong> : elle répond à « quelle espèce est présente ? », en comparant la <em>position</em> du maximum et l'<em>allure</em> du spectre à une référence. Les parties B et C <strong>dosent</strong> : elles répondent à « combien y en a-t-il ? », en mesurant une <em>intensité</em> et en la convertissant par étalonnage. La hauteur du spectre ne dit rien de l'identité ; sa position ne dit rien de la quantité.</p>
+
+        <p class="som-t">PARTIE B — DOSER PAR SPECTROPHOTOMÉTRIE</p>
+        <p><strong>B1.</strong></p>
+        <div class="eqc">M(KMnO<sub>4</sub>) = 39,1 + 54,9 + 4 × 16,0 = 158,0 g·mol<sup>−1</sup></div>
+        <div class="eqc">c = <span class="frac"><span>0,010</span><span>158,0</span></span> = 6,3 × 10<sup>−5</sup> mol·L<sup>−1</sup></div>
+        <p><strong>B2.</strong> Pour la solution mère :</p>
+        <div class="eqc">A = ε × ℓ × c = 2,4 × 10<sup>3</sup> × 1,0 × 1,0 × 10<sup>−3</sup> = 2,4</div>
+        <p>2,4 est inférieur à 2,5 : la mère est mesurable, tout juste. Une mère à <span class="ch">2,0 × 10<sup>−3</sup> mol·L<sup>−1</sup></span> donnerait <span class="ch">A = 4,8</span>, bien au-delà de la gamme : le capteur ne recevrait plus que 16 millionièmes du faisceau, le bruit dominerait et la mesure n'aurait aucun sens.</p>
+        <p><strong>B3.</strong> La gamme va de 2,0 à 10,0 × 10<sup>−5</sup> mol·L<sup>−1</sup>. Or la valeur attendue d'après l'étiquette est 6,3 × 10<sup>−5</sup> mol·L<sup>−1</sup> : elle est <strong>encadrée</strong> par les étalons, et même située au milieu de la gamme. Aucune extrapolation ne sera nécessaire. ✓</p>
+        <p>Volumes à prélever, par conservation de la quantité de matière :</p>
+        <div class="eqc">V<sub>mère</sub> = <span class="frac"><span>c<sub>fille</sub> × V<sub>fille</sub></span><span>c<sub>mère</sub></span></span> = <span class="frac"><span>c<sub>fille</sub> × 50,0</span><span>1,0 × 10<sup>−3</sup></span></span></div>
+        <div class="tb-wrap"><table class="tb">
+          <tr><th>Étalon</th><td>S₁</td><td>S₂</td><td>S₃</td><td>S₄</td><td>S₅</td></tr>
+          <tr><th>c (× 10⁻⁵ mol·L⁻¹)</th><td>2,0</td><td>4,0</td><td>6,0</td><td>8,0</td><td>10,0</td></tr>
+          <tr><th>V<sub>mère</sub> (mL)</th><td>1,0</td><td>2,0</td><td>3,0</td><td>4,0</td><td>5,0</td></tr>
+        </table></div>
+        <p>Chacun de ces volumes correspond à une pipette jaugée existante, et la fiole est la même pour tous — la gamme a manifestement été construite pour ça.</p>
+        <p><strong>B4.</strong> On calcule le rapport A/c pour chaque étalon : 2400 · 2400 · 2383 · 2400 · 2400. Il est constant à moins de 1 % près, et une concentration nulle donnerait une absorbance nulle : <strong>les points sont alignés sur une droite passant par l'origine</strong>, la loi de Beer-Lambert est vérifiée sur tout le domaine étudié.</p>
+        <div class="eqc">k = <span class="frac"><span>0,240</span><span>10,0 × 10<sup>−5</sup></span></span> = 2,4 × 10<sup>3</sup> L·mol<sup>−1</sup></div>
+        <p><strong>B5.</strong> Le coefficient directeur d'une droite <span class="ch">A = f(c)</span> vaut <span class="ch">k = ε × ℓ</span>, et non ε seul :</p>
+        <div class="eqc">ε × ℓ = 2,4 × 10<sup>3</sup> × 1,0 = 2,4 × 10<sup>3</sup> L·mol<sup>−1</sup></div>
+        <p>C'est exactement la valeur trouvée expérimentalement. <strong>L'étalonnage est cohérent avec la donnée tabulée</strong>, ce qui valide à la fois le protocole et la cuve utilisée. Les unités concordent aussi : L·mol<sup>−1</sup>·cm<sup>−1</sup> × cm = L·mol<sup>−1</sup>.</p>
+        <p><strong>B6.</strong></p>
+        <div class="eqc">c = <span class="frac"><span>A</span><span>k</span></span> = <span class="frac"><span>0,151</span><span>2,4 × 10<sup>3</sup></span></span> = 6,3 × 10<sup>−5</sup> mol·L<sup>−1</sup></div>
+        <p>Cette valeur est bien à l'intérieur du domaine étalonné (entre S₃ et S₄), donc exploitable.</p>
+        <div class="eqc">c<sub>m</sub> = c × M = 6,3 × 10<sup>−5</sup> × 158,0 = 9,9 × 10<sup>−3</sup> g·L<sup>−1</sup></div>
+        <p><strong>B7.</strong> L'étiquette annonce 0,010 g·L<sup>−1</sup>, soit 1,0 × 10<sup>−2</sup>. L'écart relatif vaut :</p>
+        <div class="eqc"><span class="frac"><span>|9,9 × 10<sup>−3</sup> − 1,0 × 10<sup>−2</sup>|</span><span>1,0 × 10<sup>−2</sup></span></span> = 1 %</div>
+        <p>L'écart est de l'ordre de l'incertitude de lecture : <strong>l'indication de l'étiquette est confirmée.</strong></p>
+
+        <p class="som-t">PARTIE C — DOSER PAR CONDUCTIMÉTRIE</p>
+        <p><strong>C1.</strong> L'étiquette annonce 0,50 % en masse, soit environ 5 g·L<sup>−1</sup>, c'est-à-dire de l'ordre de <span class="ch">7 × 10<sup>−2</sup> mol·L<sup>−1</sup></span>. C'est <strong>sept fois au-delà de la limite de validité de la loi de Kohlrausch</strong> rappelée dans les données. À cette concentration, les ions se gênent mutuellement, leur mobilité diminue, et la conductivité n'est plus proportionnelle à la concentration : le résultat serait faux même avec un appareil parfait. La dilution ramène la solution dans le domaine où le modèle est valable.</p>
+        <p><strong>C2.</strong></p>
+        <div class="eqc">G = <span class="frac"><span>I</span><span>U</span></span> = <span class="frac"><span>1,56 × 10<sup>−3</sup></span><span>2,00</span></span> = 7,8 × 10<sup>−4</sup> S = 0,78 mS</div>
+        <div class="eqc">K = <span class="frac"><span>L</span><span>S</span></span> = <span class="frac"><span>1,0 cm</span><span>1,0 cm²</span></span> = 1,0 cm<sup>−1</sup> = 1,0 × 10<sup>2</sup> m<sup>−1</sup></div>
+        <div class="eqc">σ = K × G = 1,0 × 10<sup>2</sup> × 7,8 × 10<sup>−4</sup> = <strong>7,8 × 10<sup>−2</sup> S·m<sup>−1</sup></strong></div>
+        <p>En unités de paillasse : <span class="ch">σ = 1,0 cm<sup>−1</sup> × 0,78 mS = 0,78 mS·cm<sup>−1</sup></span>. On vérifie la cohérence : <span class="ch">0,78 mS·cm<sup>−1</sup> × 0,1 = 7,8 × 10<sup>−2</sup> S·m<sup>−1</sup></span> ✓</p>
+        <p><strong>C3.</strong></p>
+        <div class="eqc">NaClO(s) → Na<sup>+</sup>(aq) + ClO<sup>−</sup>(aq)</div>
+        <p>Un ion de chaque, donc <span class="ch">[Na<sup>+</sup>] = [ClO<sup>−</sup>] = c</span> :</p>
+        <div class="eqc">σ = c × (λ<sub>Na⁺</sub> + λ<sub>ClO⁻</sub>)</div>
+        <p><strong>C4.</strong> Les λ étant en S·m²·mol<sup>−1</sup>, le résultat sortira en mol·m<sup>−3</sup> :</p>
+        <div class="eqc">c<sub>diluée</sub> = <span class="frac"><span>7,8 × 10<sup>−2</sup></span><span>(5,01 + 6,7) × 10<sup>−3</sup></span></span> = <span class="frac"><span>7,8 × 10<sup>−2</sup></span><span>1,17 × 10<sup>−2</sup></span></span> = 6,7 mol·m<sup>−3</sup> = 6,7 × 10<sup>−3</sup> mol·L<sup>−1</sup></div>
+        <p>Vérification du domaine : 6,7 × 10<sup>−3</sup> &lt; 10<sup>−2</sup> mol·L<sup>−1</sup>, la loi de Kohlrausch est bien applicable ici. ✓ On remonte ensuite la dilution :</p>
+        <div class="eqc">c<sub>Dakin</sub> = 10 × 6,7 × 10<sup>−3</sup> = <strong>6,7 × 10<sup>−2</sup> mol·L<sup>−1</sup></strong></div>
+        <p><strong>C5.</strong></p>
+        <div class="eqc">M(NaClO) = 23,0 + 35,5 + 16,0 = 74,5 g·mol<sup>−1</sup></div>
+        <div class="eqc">c<sub>m</sub> = 6,7 × 10<sup>−2</sup> × 74,5 = 5,0 g·L<sup>−1</sup></div>
+        <p>Le pourcentage en masse se calcule en rapportant cette masse à la masse totale d'un litre de solution :</p>
+        <div class="eqc">% = <span class="frac"><span>5,0</span><span>1,0 × 10<sup>3</sup></span></span> = 5,0 × 10<sup>−3</sup> = <strong>0,50 %</strong></div>
+        <p>La valeur trouvée coïncide avec celle de l'étiquette. <strong>L'indication est confirmée.</strong></p>
+
+        <p class="som-t">PARTIE D — ÉVALUER ET CONCLURE</p>
+        <p><strong>D1.</strong></p>
+        <div class="eqc">u(σ) = <span class="frac"><span>0,01</span><span>2√3</span></span> = 2,9 × 10<sup>−3</sup> mS·cm<sup>−1</sup></div>
+        <div class="eqc">σ = 0,780 ± 0,003 mS·cm<sup>−1</sup> &nbsp;&nbsp;soit&nbsp;&nbsp; 0,777 &lt; σ &lt; 0,783 mS·cm<sup>−1</sup></div>
+        <p>L'incertitude relative vaut <span class="ch">0,003/0,780 = 0,4 %</span>.</p>
+        <p><strong>D2.</strong> Le fabricant tolère 0,50 % ± 0,05 %, soit un intervalle de ± 10 % en valeur relative. L'incertitude due à la résolution du conductimètre, 0,4 %, est <strong>vingt-cinq fois plus petite</strong> que cette tolérance : elle ne peut pas expliquer à elle seule un écart à la norme, et la mesure est assez fine pour trancher.</p>
+        <p>La valeur trouvée, 0,50 %, tombe au centre de l'intervalle garanti. <strong>Le produit est conforme sur ses deux constituants.</strong></p>
+        <p>On notera toutefois que l'incertitude dominante n'est pas celle de l'appareil mais celle de la <strong>dilution d'un facteur 10</strong> : une erreur de 1 % sur le pipetage se répercute intégralement sur le résultat final, soit plus du double de l'incertitude de lecture. Pour aller plus loin, il faudrait répéter la préparation plusieurs fois.</p>
+        <p><strong>D3.</strong> Chaque technique ne « voit » qu'une catégorie d'espèces.</p>
+        <ul>
+          <li><strong>L'hypochlorite ne peut pas être dosé par spectrophotométrie</strong> parce qu'il est <em>incolore</em> : il n'absorbe pas dans le visible, donc il ne produit aucun signal exploitable. La couleur rose de la solution vient entièrement du permanganate.</li>
+          <li><strong>Le permanganate ne peut pas être dosé par conductimétrie</strong> parce qu'il est présent à l'état de <em>traces</em> : à 6,3 × 10<sup>−5</sup> mol·L<sup>−1</sup>, sa contribution à la conductivité est mille fois plus faible que celle de l'hypochlorite à 6,7 × 10<sup>−2</sup> mol·L<sup>−1</sup>. Elle serait entièrement noyée dans le signal de l'espèce majoritaire.</li>
+        </ul>
+        <div class="def"><div class="t">La leçon de l'exercice</div>Le choix d'une méthode physique ne dépend pas de ce qu'on veut mesurer, mais de <strong>ce que l'espèce visée rend observable</strong> : une couleur pour la spectrophotométrie, des ions en quantité suffisante pour la conductimétrie. Ici, chaque constituant impose sa technique — et c'est parce qu'ils sont de natures différentes qu'on peut les doser séparément dans le même flacon, sans interférence.</div>
+        <div class="piege"><div class="t">Les quatre pièges de cet exercice</div>
+        <p><strong>B5 :</strong> confondre le coefficient directeur k et ε. Le premier vaut ε × ℓ.</p>
+        <p><strong>C2 :</strong> convertir 1,0 cm<sup>−1</sup> en 10<sup>−2</sup> m<sup>−1</sup> au lieu de 10<sup>2</sup>. La constante de cellule est un <em>inverse</em> de longueur : passer du cm au m la <strong>multiplie</strong> par 100.</p>
+        <p><strong>C4 :</strong> oublier de remonter la dilution, et annoncer 0,050 % au lieu de 0,50 %.</p>
+        <p><strong>C5 :</strong> diviser par 1,0 × 10<sup>3</sup> g·L<sup>−1</sup> et non par 100. Un pourcentage en masse se rapporte à la <em>masse totale</em> de solution, pas à un volume.</p>
+        </div>
+      </div></details>
+      </div></details>
+
+      <details class="rap"><summary><span class="lvl dmaison">Bilan · 1 h</span>B2 · Identifier et doser un principe actif<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+      <p class="exo-comp">Couvre <strong>C1</strong> · <strong>C3</strong> · <strong>C4</strong> · <strong>C5</strong> · familles et groupes · nombre d'onde · unités · incertitudes</p>
+      <div class="enonce">
+        <p>Un laboratoire reçoit un flacon de poudre blanche sans étiquette. Le bon de livraison indique seulement qu'il s'agit de l'un des trois composés suivants, tous de formule brute proche et tous dérivés du benzène :</p>
+        <ul>
+          <li>l'<strong>alcool benzylique</strong> <span class="ch">C<sub>6</sub>H<sub>5</sub>—CH<sub>2</sub>—OH</span> ;</li>
+          <li>le <strong>benzaldéhyde</strong> <span class="ch">C<sub>6</sub>H<sub>5</sub>—CHO</span> ;</li>
+          <li>l'<strong>acide benzoïque</strong> <span class="ch">C<sub>6</sub>H<sub>5</sub>—COOH</span>.</li>
+        </ul>
+
+        <p><strong>Partie A — Identifier le composé par spectroscopie infrarouge</strong></p>
+        <p><strong>A1.</strong> Pour chacun des trois composés, nommer la famille et le groupe caractéristique.<br>
+        <strong>A2.</strong> Prévoir, pour chacun, les bandes caractéristiques attendues sur son spectre infrarouge.<br>
+        <strong>A3.</strong> Le spectre du composé X, tracé en transmittance, présente une bande <strong>très large de 2500 à 3200 cm<sup>−1</sup></strong> et une bande <strong>fine et intense à 1690 cm<sup>−1</sup></strong>. Identifier X en justifiant l'élimination des deux autres candidats.<br>
+        <strong>A4.</strong> Expliquer pourquoi la bande située entre 2500 et 3200 cm<sup>−1</sup> est aussi large, alors que celle de 1690 cm<sup>−1</sup> est fine.<br>
+        <strong>A5.</strong> Expliquer pourquoi l'axe d'un spectre infrarouge est gradué en nombre d'onde plutôt qu'en longueur d'onde, puis convertir 1690 cm<sup>−1</sup> en longueur d'onde exprimée en micromètres.<br>
+        <strong>A6.</strong> Décrire l'allure qu'aurait ce même spectre s'il avait été tracé en absorbance.</p>
+
+        <p><strong>Partie B — Doser le composé par spectrophotométrie</strong></p>
+        <p>Le composé X absorbe fortement à <span class="ch">λ = 230 nm</span>, avec <span class="ch">ε = 1,0 × 10<sup>4</sup> L·mol<sup>−1</sup>·cm<sup>−1</sup></span>.<br>
+        <strong>B1.</strong> Expliquer pourquoi le composé apparaît blanc, alors qu'il absorbe très fortement à 230 nm.<br>
+        <strong>B2.</strong> Rappeler la définition de l'absorbance et justifier qu'elle est sans unité.<br>
+        <strong>B3.</strong> Retrouver l'unité de ε à partir de la loi de Beer-Lambert.<br>
+        On réalise une gamme d'étalonnage, mesurée en cuve de 1,00 cm :</p>
+        <div class="tb-wrap"><table class="tb">
+          <tr><th>c (× 10⁻⁵ mol·L⁻¹)</th><td>2,0</td><td>4,0</td><td>6,0</td><td>8,0</td><td>10,0</td></tr>
+          <tr><th>Absorbance A</th><td>0,20</td><td>0,40</td><td>0,59</td><td>0,80</td><td>1,00</td></tr>
+        </table></div>
+        <p><strong>B4.</strong> Vérifier la loi de Beer-Lambert et déterminer l'équation de la droite d'étalonnage.<br>
+        On pèse <span class="ch">m = 0,220 g</span> de poudre, qu'on dissout dans une fiole jaugée de 250,0 mL. On prélève 1,00 mL de cette solution qu'on dilue dans une fiole de 100,0 mL, et on mesure sur cette dernière <span class="ch">A = 0,72</span>.<br>
+        <strong>B5.</strong> Déterminer la concentration de la solution mesurée, puis celle de la solution initiale.<br>
+        <strong>B6.</strong> Calculer la concentration qu'on aurait si la poudre était parfaitement pure, et en déduire le degré de pureté de l'échantillon.<br>
+        <strong>B7.</strong> La cuve est annoncée à 1,00 ± 0,01 cm. Estimer l'effet de cette incertitude sur le résultat, et dire si elle remet la conclusion en cause.</p>
+
+        <p><strong>Partie C — Choisir la bonne technique</strong></p>
+        <p>Un stagiaire propose de doser le composé par conductimétrie, en invoquant qu'il s'agit d'un acide.<br>
+        <strong>C1.</strong> Écrire l'équation de la réaction du composé X avec l'eau, sachant qu'elle n'est pas totale.<br>
+        <strong>C2.</strong> Expliquer pourquoi la conductimétrie serait ici un mauvais choix, en donnant deux arguments distincts.<br>
+        <strong>C3.</strong> Proposer une situation dans laquelle la conductimétrie serait, au contraire, la méthode la plus adaptée pour ce même composé.<br>
+        <strong>C4.</strong> Rédiger une conclusion générale comparant les trois techniques rencontrées dans ce chapitre : ce que chacune permet d'obtenir, et ce qu'elle ne permet pas.</p>
+
+        <p><em>Données : M(H) = 1,0 · M(C) = 12,0 · M(O) = 16,0 g·mol<sup>−1</sup> · bandes caractéristiques : O—H d'alcool 3200–3600 (forte, large) · O—H d'acide carboxylique 2500–3200 (très large) · C—H 2800–3000 · C=O 1650–1750 (forte, fine)</em></p>
+      </div>
+
+      <details class="corr"><summary>Un indice pour chaque partie</summary><div class="in prose">
+        <p><strong>Partie A :</strong> deux bandes suffisent à trancher entre trois candidats, à condition de raisonner par <em>croisement</em> : présence ou absence de O—H, présence ou absence de C=O.</p>
+        <p><strong>Partie B :</strong> attention, il y a <em>deux</em> étapes de dilution à remonter — la fiole de 250 mL n'en est pas une, mais le passage de 1,00 mL à 100,0 mL en est une.</p>
+        <p><strong>Partie C :</strong> pour C2, pense à ce qu'exige la loi de Kohlrausch pour être exploitable : une relation <em>connue</em> entre la concentration apportée et la concentration des ions.</p>
+      </div></details>
+
+      <details class="corr"><summary>Voir la correction complète</summary><div class="in prose">
+
+        <p class="som-t">PARTIE A — IDENTIFIER PAR INFRAROUGE</p>
+        <p><strong>A1.</strong></p>
+        <div class="tb-wrap"><table class="tb">
+          <tr><th>Composé</th><th>Groupe caractéristique</th><th>Famille</th><th>Terminaison</th></tr>
+          <tr><td>C₆H₅—CH₂—OH</td><td>hydroxyle —OH</td><td>alcool</td><td>-ol</td></tr>
+          <tr><td>C₆H₅—CHO</td><td>carbonyle —CHO en bout de chaîne</td><td>aldéhyde</td><td>-al (nom d'usage : benzaldéhyde)</td></tr>
+          <tr><td>C₆H₅—COOH</td><td>carboxyle —COOH</td><td>acide carboxylique</td><td>acide …oïque</td></tr>
+        </table></div>
+        <p><strong>A2.</strong></p>
+        <ul>
+          <li><strong>Alcool benzylique :</strong> une bande O—H forte et large vers 3200–3600 cm<sup>−1</sup>, et <strong>pas</strong> de C=O.</li>
+          <li><strong>Benzaldéhyde :</strong> une bande C=O forte et fine vers 1700 cm<sup>−1</sup>, et <strong>pas</strong> de O—H.</li>
+          <li><strong>Acide benzoïque :</strong> les <strong>deux</strong> — un O—H très large de 2500 à 3200 cm<sup>−1</sup>, et un C=O fin vers 1700 cm<sup>−1</sup>.</li>
+        </ul>
+        <p>Les trois composés portent aussi des liaisons C—H vers 2800–3000 cm<sup>−1</sup>, mais celles-ci ne discriminent rien puisqu'elles sont présentes partout.</p>
+        <p><strong>A3.</strong> Le spectre présente <strong>à la fois</strong> le O—H très large et le C=O fin. Or :</p>
+        <ul>
+          <li>l'<strong>alcool benzylique</strong> est éliminé : il n'a pas de C=O, donc rien ne devrait apparaître vers 1690 cm<sup>−1</sup> ;</li>
+          <li>le <strong>benzaldéhyde</strong> est éliminé : il n'a aucun O—H, donc rien ne devrait apparaître entre 2500 et 3200 cm<sup>−1</sup> ;</li>
+          <li>seul l'<strong>acide benzoïque</strong> possède les deux groupes simultanément.</li>
+        </ul>
+        <p>De plus, l'étendue de la bande O—H, qui descend jusqu'à 2500 cm<sup>−1</sup>, est caractéristique d'un <em>acide carboxylique</em> et non d'un alcool, dont le O—H reste confiné au-dessus de 3200. <strong>X est l'acide benzoïque.</strong></p>
+        <div class="piege"><div class="t">Ce qui distingue une bonne copie</div>Conclure « il y a un O—H donc c'est l'alcool » est l'erreur classique : l'acide carboxylique en possède un aussi. C'est <strong>le croisement des deux critères</strong> qui identifie, et la justification doit éliminer explicitement les deux autres candidats.</div>
+        <p><strong>A4.</strong> Une liaison absorbe à la fréquence propre de son « ressort ». Or les groupes O—H forment des <strong>liaisons hydrogène</strong> entre molécules voisines : chaque O—H se retrouve dans un environnement légèrement différent, plus ou moins associé, donc légèrement plus ou moins souple. Au lieu d'une fréquence unique, on obtient une <strong>distribution</strong> de fréquences, et la bande s'étale.</p>
+        <p>L'acide carboxylique pousse ce phénomène à l'extrême : ses molécules s'associent deux par deux par une <em>double</em> liaison hydrogène, particulièrement solide, ce qui assouplit fortement le O—H et fait descendre la bande jusqu'à 2500 cm<sup>−1</sup>.</p>
+        <p>Le C=O, lui, n'établit pas de liaison hydrogène par lui-même : tous les C=O de l'échantillon vibrent pratiquement à la même fréquence, d'où une bande <strong>étroite</strong>.</p>
+        <p><strong>A5.</strong> Le nombre d'onde est <strong>proportionnel à l'énergie</strong> du rayonnement, alors que la longueur d'onde lui est inversement proportionnelle. Un axe gradué en nombres d'onde est donc directement un axe d'énergie de vibration, ce qui permet de comparer les liaisons entre elles sans calcul.</p>
+        <div class="eqc">λ = <span class="frac"><span>1</span><span>σ</span></span> = <span class="frac"><span>1</span><span>1690</span></span> = 5,92 × 10<sup>−4</sup> cm = 5,92 × 10<sup>−6</sup> m = <strong>5,92 µm</strong></div>
+        <p>Cette valeur est bien dans le domaine de l'infrarouge, situé entre 0,8 et 50 µm environ — très au-delà du visible, qui s'arrête vers 0,8 µm. ✓</p>
+        <p><strong>A6.</strong> Absorbance et transmittance sont <strong>inverses l'une de l'autre</strong>. Le même spectre tracé en absorbance présenterait donc les mêmes bandes, aux mêmes nombres d'onde, mais sous forme de <strong>pics dirigés vers le haut</strong> au lieu de creux dirigés vers le bas. La ligne de base, proche de 100 % en transmittance, serait proche de 0 en absorbance.</p>
+
+        <p class="som-t">PARTIE B — DOSER PAR SPECTROPHOTOMÉTRIE</p>
+        <p><strong>B1.</strong> Le composé absorbe à 230 nm, c'est-à-dire dans l'<strong>ultraviolet</strong>, domaine auquel l'œil humain est totalement insensible. Dans le visible, entre 400 et 750 nm, il n'absorbe pratiquement rien : toute la lumière blanche est renvoyée, et la poudre paraît blanche.</p>
+        <div class="def"><div class="t">« Incolore » ne veut pas dire « n'absorbe pas »</div>Le spectrophotomètre travaille aussi dans l'UV, là où l'œil ne voit rien. Une espèce incolore peut donc parfaitement être dosée par spectrophotométrie — c'est même le cas de très nombreux principes actifs.</div>
+        <p><strong>B2.</strong> <span class="ch">A = log(I₀/I)</span>, où I₀ est l'intensité entrante et I l'intensité sortante. C'est le logarithme d'un <strong>rapport de deux intensités</strong> : les unités se simplifient, donc A est sans unité. Comme <span class="ch">I &lt; I₀</span>, le rapport dépasse 1 et A est toujours positive.</p>
+        <p><strong>B3.</strong> On isole ε dans la loi de Beer-Lambert :</p>
+        <div class="eqc">ε = <span class="frac"><span>A</span><span>ℓ × c</span></span> &nbsp;&nbsp;⟹&nbsp;&nbsp; unité = <span class="frac"><span>1</span><span>cm × mol·L<sup>−1</sup></span></span> = <strong>L·mol<sup>−1</sup>·cm<sup>−1</sup></strong></div>
+        <p>L'unité de ε n'est donc pas une convention à retenir : c'est la conséquence du fait que A doit sortir sans unité, ℓ étant en cm et c en mol·L<sup>−1</sup>.</p>
+        <p><strong>B4.</strong> Les rapports A/c valent 1,00 · 1,00 · 0,98 · 1,00 · 1,00 × 10<sup>4</sup>. Ils sont constants à 2 % près, et une concentration nulle donne une absorbance nulle : les points sont alignés sur une droite passant par l'origine, <strong>la loi de Beer-Lambert est vérifiée</strong>.</p>
+        <div class="eqc">A = 1,0 × 10<sup>4</sup> × c &nbsp;&nbsp;(c en mol·L<sup>−1</sup>)</div>
+        <p>On vérifie au passage que <span class="ch">k = ε × ℓ = 1,0 × 10<sup>4</sup> × 1,00 = 1,0 × 10<sup>4</sup></span> ✓ — le protocole est cohérent avec la donnée tabulée.</p>
+        <p><strong>B5.</strong> Pour la solution mesurée :</p>
+        <div class="eqc">c<sub>mesurée</sub> = <span class="frac"><span>0,72</span><span>1,0 × 10<sup>4</sup></span></span> = 7,2 × 10<sup>−5</sup> mol·L<sup>−1</sup></div>
+        <p>Cette valeur tombe bien entre les étalons à 6,0 et 8,0 × 10<sup>−5</sup> mol·L<sup>−1</sup> : aucune extrapolation. ✓</p>
+        <p>La dilution est passée de 1,00 mL à 100,0 mL, soit un facteur 100 :</p>
+        <div class="eqc">c<sub>initiale</sub> = 100 × 7,2 × 10<sup>−5</sup> = <strong>7,2 × 10<sup>−3</sup> mol·L<sup>−1</sup></strong></div>
+        <p><strong>B6.</strong> Si la poudre était pure :</p>
+        <div class="eqc">M(C<sub>7</sub>H<sub>6</sub>O<sub>2</sub>) = 7 × 12,0 + 6 × 1,0 + 2 × 16,0 = 122,0 g·mol<sup>−1</sup></div>
+        <div class="eqc">n = <span class="frac"><span>0,220</span><span>122,0</span></span> = 1,80 × 10<sup>−3</sup> mol</div>
+        <div class="eqc">c<sub>théorique</sub> = <span class="frac"><span>1,80 × 10<sup>−3</sup></span><span>0,2500</span></span> = 7,21 × 10<sup>−3</sup> mol·L<sup>−1</sup></div>
+        <div class="eqc">pureté = <span class="frac"><span>7,2 × 10<sup>−3</sup></span><span>7,21 × 10<sup>−3</sup></span></span> = 0,999 ≈ <strong>100 %</strong></div>
+        <p>L'échantillon est, aux incertitudes de mesure près, <strong>pur</strong>.</p>
+        <p><strong>B7.</strong> La concentration se calcule par <span class="ch">c = A/(ε × ℓ)</span> : elle est <strong>inversement proportionnelle</strong> à ℓ. Une incertitude relative de <span class="ch">0,01/1,00 = 1 %</span> sur la longueur de cuve se reporte donc intégralement, soit 1 % sur c.</p>
+        <p>La pureté trouvée serait alors comprise entre 99 % et 101 %. <strong>La conclusion n'est pas remise en cause</strong> : dans tous les cas l'échantillon est pur à mieux que 1 %. On notera simplement qu'annoncer « 99,9 % » est un excès de précision — la cuve seule ne permet pas de descendre sous le pour cent.</p>
+
+        <p class="som-t">PARTIE C — CHOISIR LA BONNE TECHNIQUE</p>
+        <p><strong>C1.</strong> L'acide benzoïque est un acide carboxylique : il cède l'hydrogène de son groupe carboxyle à l'eau, sans que la réaction soit totale, d'où la double flèche.</p>
+        <div class="eqc">C<sub>6</sub>H<sub>5</sub>COOH(aq) + H<sub>2</sub>O(l) ⇌ C<sub>6</sub>H<sub>5</sub>COO<sup>−</sup>(aq) + H<sub>3</sub>O<sup>+</sup>(aq)</div>
+        <p><strong>C2.</strong> Deux arguments distincts, et l'énoncé attend les deux :</p>
+        <ul>
+          <li><strong>La relation entre concentration apportée et concentration des ions est inconnue.</strong> La loi de Kohlrausch relie σ aux concentrations des <em>ions effectivement présents</em>. Pour un composé totalement dissocié, ces concentrations se déduisent immédiatement de la concentration apportée. Ici la réaction n'est pas totale : seule une fraction indéterminée des molécules a libéré des ions. On ne peut donc pas remonter de σ à la concentration apportée.</li>
+          <li><strong>Le signal serait beaucoup trop faible.</strong> Cette fraction étant petite, la solution ne contient que peu d'ions : sa conductivité serait très basse, proche de celle de l'eau, et la mesure serait noyée dans le bruit et dans la contribution des impuretés ioniques du solvant.</li>
+        </ul>
+        <p><strong>C3.</strong> La conductimétrie redeviendrait la bonne méthode si l'on disposait du composé sous forme de son <strong>sel</strong>, le benzoate de sodium <span class="ch">(Na<sup>+</sup>(aq) ; C<sub>6</sub>H<sub>5</sub>COO<sup>−</sup>(aq))</span> — un conservateur alimentaire courant. Étant un composé ionique totalement dissocié, il donnerait <span class="ch">[Na<sup>+</sup>] = [C<sub>6</sub>H<sub>5</sub>COO<sup>−</sup>] = c</span>, donc une conductivité directement proportionnelle à la concentration apportée, exploitable par étalonnage.</p>
+        <div class="methode"><div class="t">C4. Conclusion générale — les trois techniques du chapitre</div>
+        <div class="tb-wrap"><table class="tb">
+          <tr><th>Technique</th><th>Ce qu'elle permet</th><th>Ce qu'elle ne permet pas</th><th>Condition</th></tr>
+          <tr><td><strong>Spectroscopie infrarouge</strong></td><td>Identifier les <em>groupes caractéristiques</em>, donc la famille du composé</td><td>Doser ; distinguer deux isomères de la même famille</td><td>Aucune — toute liaison vibre</td></tr>
+          <tr><td><strong>Spectrophotométrie UV-visible</strong></td><td>Identifier une espèce par son λ<sub>max</sub> ; la doser par étalonnage</td><td>Voir une espèce qui n'absorbe pas ; distinguer deux espèces absorbant au même λ</td><td>L'espèce doit absorber, dans le visible ou dans l'UV</td></tr>
+          <tr><td><strong>Conductimétrie</strong></td><td>Doser une espèce ionique par étalonnage</td><td>Identifier une espèce ; doser une espèce moléculaire ou minoritaire</td><td>Dissociation totale, solution diluée</td></tr>
+        </table></div>
+        <p>Les trois sont <strong>complémentaires et non interchangeables</strong>. L'infrarouge répond à « quelle famille ? », l'UV-visible à « quelle espèce, et combien ? » pour les espèces absorbantes, la conductimétrie à « combien ? » pour les espèces ioniques. Le raisonnement du chimiste consiste d'abord à identifier ce que son espèce rend observable, puis à choisir la technique correspondante — jamais l'inverse.</p>
+        </div>
+        <div class="piege"><div class="t">Les trois pièges de cet exercice</div>
+        <p><strong>A3 :</strong> se contenter de la bande O—H pour conclure, sans éliminer explicitement les deux autres candidats.</p>
+        <p><strong>B5 :</strong> compter la fiole de 250,0 mL comme une dilution. Ce n'en est pas une : c'est la <em>préparation</em> de la solution initiale. Seul le passage de 1,00 mL à 100,0 mL est une dilution, de facteur 100.</p>
+        <p><strong>B6 :</strong> utiliser la masse molaire du benzène ou oublier les deux oxygènes. L'acide benzoïque est C<sub>7</sub>H<sub>6</sub>O<sub>2</sub>, de masse molaire 122,0 g·mol<sup>−1</sup>.</p>
+        </div>
       </div></details>
       </div></details>
 
