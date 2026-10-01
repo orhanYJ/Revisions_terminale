@@ -801,6 +801,287 @@ nav.bottom{display:none}
   main{padding:0}
   .card,.box,figure.schema{break-inside:avoid}
 }
+
+/* =====================================================================
+   COUCHE D'ANIMATION — « tout ce qu'on fait fait pousser quelque chose »
+   Tout est rangé sous html.mo : si l'utilisateur a demandé de réduire
+   les animations, la classe n'est jamais posée et rien ne bouge.
+   ===================================================================== */
+
+/* --- bouton son --- */
+#sonbtn svg .onde{transition:opacity .2s}
+#sonbtn[aria-pressed="false"] svg .onde{opacity:0}
+#sonbtn[aria-pressed="true"] svg .barre{opacity:0}
+#sonbtn svg .barre{transition:opacity .2s}
+
+/* --- tige de lecture, au bord inférieur de la barre du haut --- */
+#mo-seve{
+  position:absolute;left:0;right:0;bottom:-1px;height:3px;pointer-events:none;
+  opacity:0;transition:opacity .3s;
+}
+#mo-seve.on{opacity:1}
+#mo-seve .s-fond{position:absolute;inset:1px 0;background:color-mix(in srgb,var(--leaf) 14%,transparent)}
+#mo-seve .s-fill{
+  position:absolute;left:0;top:0;bottom:0;width:100%;
+  background:linear-gradient(90deg,var(--leaf-2),var(--leaf),var(--lime));
+  transform-origin:left center;transform:scaleX(0);border-radius:0 3px 3px 0;
+}
+#mo-seve .s-bourgeon{
+  position:absolute;top:-4px;width:7px;height:9px;margin-left:-3.5px;
+  border-radius:0 90% 0 90%;transform:rotate(-40deg) scale(.55);
+  background:var(--line-2);transition:background .3s, transform .45s cubic-bezier(.3,1.7,.5,1);
+}
+#mo-seve .s-bourgeon.vu{background:var(--leaf);transform:rotate(-40deg) scale(1)}
+
+/* --- le marqueur des titres de partie pousse quand on l'atteint --- */
+html.mo article h2::before{transform:scaleY(.15);transform-origin:center bottom;opacity:.4;
+  transition:transform .7s cubic-bezier(.2,.9,.25,1), opacity .5s}
+html.mo article h2.mo-vu::before{transform:scaleY(1);opacity:1}
+
+/* --- « À retenir » : un reflet de lumière la première fois qu'on l'atteint --- */
+html.mo .box.retenir{overflow:hidden}
+html.mo .box.retenir::after{
+  content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:skewX(-18deg);opacity:0;
+}
+html.mo .box.retenir.mo-vu::after{animation:mo-reflet 1.3s .2s ease-out 1 both}
+@keyframes mo-reflet{0%{left:-60%;opacity:0}15%{opacity:1}100%{left:120%;opacity:0}}
+html[data-theme="dark"].mo .box.retenir::after{background:linear-gradient(100deg,transparent,rgba(210,240,170,.18),transparent)}
+
+/* --- barres de progression des cartes : elles se remplissent --- */
+html.mo .card .bar i{transform-origin:left center;animation:mo-remplit 1s .25s cubic-bezier(.2,.8,.2,1) both}
+@keyframes mo-remplit{from{transform:scaleX(0)}}
+
+/* --- réponse tactile à l'appui --- */
+html.mo .card:active, html.mo .qmode:active, html.mo .qcta:active,
+html.mo .qopt:active:not(:disabled), html.mo .qnext:active, html.mo .vbt:active{
+  transform:scale(.975);transition:transform .08s;
+}
+
+/* --- barre du bas : l'icône active pousse --- */
+html.mo #bottomnav button.on svg{animation:mo-pousse-ic .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes mo-pousse-ic{0%{transform:translateY(3px) scale(.8)}60%{transform:translateY(-2px) scale(1.08)}100%{transform:none}}
+
+/* --- transition de thème en douceur --- */
+html.mo-theme, html.mo-theme body, html.mo-theme .card, html.mo-theme .box, html.mo-theme header.top,
+html.mo-theme .side, html.mo-theme #bottomnav, html.mo-theme .qcard, html.mo-theme .vcard{
+  transition:background-color .4s ease, color .4s ease, border-color .4s ease !important;
+}
+
+/* =====================================================================
+   ACCUEIL — la plante du programme
+   ===================================================================== */
+.hero.mo-hero{padding-right:190px;min-height:250px}
+.hero.mo-hero h1{max-width:22ch}
+.mo-plante{position:absolute;right:26px;bottom:14px;width:150px;height:238px;margin:0;pointer-events:none}
+.mo-plante svg{width:100%;height:100%;overflow:visible}
+.mo-plante .tige{fill:none;stroke:#E9F5DC;stroke-width:3;stroke-linecap:round}
+.mo-plante .sol{fill:none;stroke:rgba(255,255,255,.28);stroke-width:2;stroke-linecap:round}
+.mo-plante .feuille{fill:var(--lime)}
+.mo-plante .nerv{fill:none;stroke:var(--leaf-2);stroke-width:1.1;stroke-linecap:round;opacity:.7}
+.mo-plante .bourgeon{fill:rgba(233,245,220,.5)}
+.mo-plante .apex{fill:#E9F5DC}
+html.mo .mo-plante .tige{stroke-dasharray:1;stroke-dashoffset:1;animation:mo-trace var(--dur,1.2s) .15s cubic-bezier(.45,.05,.3,1) forwards}
+@keyframes mo-trace{to{stroke-dashoffset:0}}
+html.mo .mo-plante .g-feuille{transform-box:fill-box;transform-origin:0 50%;transform:scale(0);
+  animation:mo-deroule .7s cubic-bezier(.3,1.5,.55,1) forwards}
+@keyframes mo-deroule{to{transform:scale(1)}}
+html.mo .mo-plante .bourgeon, html.mo .mo-plante .apex{transform-box:fill-box;transform-origin:center;transform:scale(0);
+  animation:mo-bourgeonne .45s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes mo-bourgeonne{to{transform:scale(1)}}
+
+@media (max-width:620px){
+  .hero.mo-hero{padding-right:24px;min-height:0}
+  .hero.mo-hero h1{padding-right:56px;max-width:none}
+  .mo-plante{right:14px;top:18px;bottom:auto;width:50px;height:88px}
+  .mo-plante .tige{stroke-width:4.4}
+  .mo-plante .bourgeon{r:3}
+}
+
+/* =====================================================================
+   TRANSITIONS ENTRE PAGES : la nouvelle page s'ouvre depuis le doigt
+   (réalisées en JS avec clip-path ; rien ici)
+   ===================================================================== */
+
+/* =====================================================================
+   QCM — la tige de la série
+   ===================================================================== */
+.qprog .mo-tige{flex:1;display:flex;align-items:center;justify-content:space-between;height:26px;position:relative;margin:0 6px;min-width:0}
+.mo-tige::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;border-radius:2px;background:var(--line-2)}
+.mo-tige .t-fill{position:absolute;left:0;top:50%;height:2px;margin-top:-1px;border-radius:2px;background:var(--leaf);
+  transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.mo-tige i{position:relative;z-index:1;flex:none;width:5px;height:5px;border-radius:50%;background:var(--line-2)}
+.mo-tige i.cur{background:var(--leaf);box-shadow:0 0 0 3px color-mix(in srgb,var(--leaf) 26%,transparent)}
+.mo-tige i.ok, .mo-tige i.ko{background:var(--leaf)}
+.mo-tige i.ok::after{
+  content:"";position:absolute;left:50%;width:8px;height:12px;margin-left:-1px;border-radius:0 100% 0 100%;
+  background:var(--leaf);transform-origin:0 100%;
+}
+.mo-tige i.ok:nth-child(odd)::after{bottom:3px;transform:rotate(-28deg)}
+.mo-tige i.ok:nth-child(even)::after{top:3px;transform-origin:0 0;transform:rotate(208deg)}
+.mo-tige i.ko{background:var(--bark)}
+.mo-tige i.ko::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;
+  border-radius:50%;box-shadow:0 0 0 2px color-mix(in srgb,var(--bark) 30%,transparent)}
+html.mo .mo-tige i.neuf.ok::after{animation:mo-feuille-q .55s cubic-bezier(.3,1.7,.5,1) both}
+html.mo .mo-tige i.neuf.ok:nth-child(even)::after{animation-name:mo-feuille-q2}
+@keyframes mo-feuille-q{from{transform:rotate(-28deg) scale(0)}}
+@keyframes mo-feuille-q2{from{transform:rotate(208deg) scale(0)}}
+html.mo .mo-tige i.neuf.ko{animation:mo-fane .5s ease both}
+@keyframes mo-fane{0%{transform:scale(1.8)}100%{transform:none}}
+
+.mo-serie{
+  flex:none;font-size:11.5px;font-weight:700;color:var(--leaf-2);
+  background:color-mix(in srgb,var(--lime) 30%,transparent);
+  padding:3px 9px;border-radius:999px;white-space:nowrap;
+}
+html.mo .mo-serie.pop{animation:mo-pop .5s cubic-bezier(.3,1.7,.5,1)}
+@keyframes mo-pop{0%{transform:scale(.4);opacity:0}100%{transform:none;opacity:1}}
+
+/* --- carte de question : elle arrive, les réponses poussent une à une --- */
+html.mo .qcard{animation:mo-arrive .45s cubic-bezier(.2,.85,.25,1) both}
+@keyframes mo-arrive{from{opacity:0;transform:translateX(26px)}}
+html.mo .qopt{position:relative;overflow:hidden;animation:mo-sort .4s cubic-bezier(.2,.9,.3,1) both;
+  animation-delay:calc(var(--i,0) * 55ms + 120ms)}
+@keyframes mo-sort{from{opacity:0;transform:translateY(10px) scale(.98)}}
+html.mo .qopt.ok{animation:mo-sort .4s both, mo-bon .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes mo-bon{0%{transform:scale(1)}40%{transform:scale(1.025)}100%{transform:none}}
+.mo-onde{position:absolute;border-radius:50%;pointer-events:none;width:12px;height:12px;margin:-6px 0 0 -6px;
+  background:color-mix(in srgb,var(--leaf) 45%,transparent)}
+html.mo .mo-onde{animation:mo-chloro .75s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes mo-chloro{from{transform:scale(1);opacity:.9}to{transform:scale(60);opacity:0}}
+html.mo .qopt.mo-attire{animation:mo-sort .4s both, mo-attire 1.1s ease-in-out 2}
+@keyframes mo-attire{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--leaf) 0%,transparent)}50%{box-shadow:0 0 0 5px color-mix(in srgb,var(--leaf) 30%,transparent)}}
+
+/* --- l'explication se déplie --- */
+html.mo .qfb{animation:mo-deplie .45s cubic-bezier(.2,.8,.25,1) both;transform-origin:top center}
+@keyframes mo-deplie{from{opacity:0;transform:translateY(-8px) scaleY(.92)}}
+html.mo .qfb + .qnext, html.mo .qactions .qnext{animation:mo-pop .45s .15s cubic-bezier(.3,1.6,.5,1) both}
+html.mo .qactions .qnext:nth-child(2){animation-delay:.25s}
+html.mo .qactions .qnext:nth-child(3){animation-delay:.35s}
+
+/* --- menu des séries --- */
+html.mo .qmodes .qmode{animation:mo-sort .45s cubic-bezier(.2,.9,.3,1) both;animation-delay:calc(var(--i,0) * 70ms + 80ms)}
+
+/* --- bilan : un anneau qui se remplit, une fleur si c'est réussi --- */
+.mo-anneau{position:relative;width:156px;height:156px;margin:26px auto 40px}
+.mo-anneau .qscore{font-size:32px !important;letter-spacing:-.5px}
+.mo-anneau svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.mo-anneau .a-fond{fill:none;stroke:var(--line-2);stroke-width:7}
+.mo-anneau .a-arc{fill:none;stroke:var(--leaf);stroke-width:7;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;
+  transition:stroke-dashoffset 1.1s cubic-bezier(.25,.8,.25,1)}
+.qbilan.moyen .mo-anneau .a-arc{stroke:var(--bark)}
+.mo-anneau .qscore{position:absolute;inset:0;display:grid;place-items:center;margin:0 !important}
+.mo-petale{position:absolute;left:50%;top:50%;width:22px;height:34px;margin:-34px 0 0 -11px;border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;
+  transform-origin:50% 100%;opacity:0;pointer-events:none}
+html.mo .mo-petale{animation:mo-eclot .7s cubic-bezier(.3,1.5,.5,1) forwards}
+@keyframes mo-eclot{from{opacity:0;transform:rotate(var(--r)) translateY(-44px) scale(.2)}to{opacity:.9;transform:rotate(var(--r)) translateY(-66px) scale(1)}}
+html:not(.mo) .mo-petale{opacity:.9;transform:rotate(var(--r)) translateY(-66px)}
+html.mo .mo-cpt{animation:mo-pop .45s cubic-bezier(.3,1.7,.5,1)}
+
+/* =====================================================================
+   CARTES DE VOCABULAIRE — elles se retournent comme une feuille
+   ===================================================================== */
+html.mo .vcard{animation:mo-leve .5s cubic-bezier(.2,.85,.25,1) both;will-change:transform}
+@keyframes mo-leve{from{opacity:0;transform:translateY(22px) rotate(-1.5deg)}}
+.vcard.retournee > .vmot, .vcard.retournee > .vdef{font-size:15px;opacity:.6;margin:0 0 2px}
+.vcard.retournee > .vconsigne{display:none}
+html.mo .vrep{animation:none}
+
+/* =====================================================================
+   RÉDACTION — la correction se déplie, chaque critère coché pousse
+   ===================================================================== */
+html.mo .redcor{animation:mo-deplie .5s cubic-bezier(.2,.8,.25,1) both}
+html.mo .redcheck{animation:mo-deplie .5s .12s cubic-bezier(.2,.8,.25,1) both}
+html.mo .redpt input:checked{animation:mo-coche .45s cubic-bezier(.3,1.8,.5,1)}
+@keyframes mo-coche{0%{transform:scale(.6)}100%{transform:none}}
+.mo-jauge{height:6px;border-radius:999px;background:var(--line-2);overflow:hidden;margin-top:9px}
+.mo-jauge i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--leaf),var(--lime));
+  transition:width .5s cubic-bezier(.2,.8,.2,1)}
+html.mo .redex .redcons{animation:none}
+
+/* =====================================================================
+   PANNEAUX REPLIABLES : ouverture animée en JS ; le chevron tourne déjà
+   ===================================================================== */
+details.tp .tpin{will-change:auto}
+
+/* =====================================================================
+   PARTICULES — feuilles et pétales
+   ===================================================================== */
+#mo-couche{position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden}
+.mo-f{position:absolute;left:0;top:0;width:10px;height:14px;border-radius:0 85% 0 85%;will-change:transform,opacity}
+.mo-f.pet{width:11px;height:11px;border-radius:50% 50% 50% 0}
+
+@media (prefers-reduced-motion:reduce){
+  #mo-couche{display:none}
+}
+
+/* barre du haut : place pour le bouton son sur téléphone */
+.searchwrap, #q{min-width:0}
+@media (max-width:440px){
+  .top-in{gap:8px;padding:10px 12px}
+  .brand{gap:8px}
+  .brand .logo{width:32px;height:32px}
+  .brand b{font-size:16.5px}
+  header.top .iconbtn{width:38px;height:38px;border-radius:13px}
+}
+
+/* badge de série, en haut à droite de la carte de question */
+.qcard{position:relative}
+.qcard .mo-serie{position:absolute;top:20px;right:18px}
+
+/* =====================================================================
+   COMPLÉMENT D'ANIMATION
+   ===================================================================== */
+/* A. barre du bas : la pastille glisse sous l'onglet actif */
+nav.bottom{isolation:isolate}
+nav.bottom button{position:relative;z-index:1}
+.mo-pastille{
+  position:absolute;left:0;top:7px;bottom:7px;z-index:0;border-radius:17px;
+  background:var(--leaf-soft);opacity:0;pointer-events:none;
+  transition:transform .48s cubic-bezier(.3,1.3,.45,1), width .48s cubic-bezier(.3,1.3,.45,1), opacity .2s;
+}
+html[data-theme="dark"] .mo-pastille{background:color-mix(in srgb,var(--leaf) 18%,transparent)}
+nav.bottom.a-pastille button.on{background:transparent}
+
+/* B. fin de lecture : la tige fleurit au bout */
+#mo-seve .s-fleur{
+  position:absolute;right:4px;top:50%;width:22px;height:22px;margin-top:-11px;z-index:2;pointer-events:none;
+}
+#mo-seve .s-fleur svg{width:100%;height:100%;overflow:visible}
+#mo-seve .s-fleur ellipse{fill:var(--lime);stroke:var(--leaf-2);stroke-width:.6}
+#mo-seve .s-fleur .coeur{fill:var(--amber)}
+html.mo #mo-seve .s-fleur{animation:mo-eclosion .75s cubic-bezier(.3,1.6,.5,1) both}
+html.mo #mo-seve .s-fleur svg{animation:mo-tourne 1.4s cubic-bezier(.2,.8,.3,1) both}
+@keyframes mo-eclosion{from{transform:scale(0)}}
+@keyframes mo-tourne{from{transform:rotate(-90deg)}}
+
+/* C. bloc « Réviser » : les étapes poussent dans l'ordre 1, 2, 3 */
+html.mo.mo2 .revbloc:not(.mo-vu) .qcta{opacity:0;transform:translateY(16px)}
+html.mo.mo2 .revbloc.mo-vu .qcta{animation:mo-revpousse .62s cubic-bezier(.25,1.25,.4,1) both;animation-delay:calc(var(--i,0) * 120ms)}
+html.mo.mo2 .revbloc.mo-vu .revn{animation:mo-revnum .55s cubic-bezier(.3,1.8,.5,1) both;animation-delay:calc(var(--i,0) * 120ms + 160ms)}
+@keyframes mo-revpousse{from{opacity:0;transform:translateY(16px) scale(.985)}}
+@keyframes mo-revnum{from{transform:scale(0) rotate(-30deg)}}
+
+/* D. tige de série dense : plus de 14 questions, feuilles plus fines */
+.mo-tige.dense i{width:4px;height:4px}
+.mo-tige.dense i.ok::after{width:6px;height:9px}
+
+/* glossaire : la bulle éclot depuis le mot */
+html.mo .glpop{transform:translateY(9px) scale(.88);
+  transition:opacity .16s ease, transform .36s cubic-bezier(.3,1.45,.5,1), visibility .16s}
+html.mo .glpop.on{transform:none}
+html.mo .gl.act{transition:background-color .25s}
+
+/* entrée dans un chapitre : le spécimen bourgeonne */
+html.mo .chaphead .specimen{animation:mo-specimen .8s .1s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes mo-specimen{from{opacity:0;transform:scale(.55) rotate(-10deg)}}
+
+
+@media (prefers-reduced-motion:reduce){
+  .mo-pastille{transition:none}
+}
+
 </style>
 </head>
 <body>
@@ -4220,7 +4501,7 @@ function qcmBilan(){
       <p>${mot}</p>${detail}
     </div>
     <div class="qactions">
-      ${faux.length ? `<button class="qnext" onclick="qcmInit('${QS.id}',null,[${faux.join(",")}])">Refaire mes ${faux.length} erreur${faux.length > 1 ? "s" : ""}</button>` : ""}
+      ${faux.length ? `<button class="qnext" onclick="qcmInit('${QS.id}',null,[${faux.join(",")}])">${faux.length > 1 ? "Refaire mes " + faux.length + " erreurs" : "Refaire mon erreur"}</button>` : ""}
       <button class="qnext ghost" onclick="qcmAccueil('${QS.id}')">Choisir une autre série</button>
       <button class="qnext ghost" onclick="go('${QS.id}')">Retourner au cours</button>
     </div>`;
@@ -4530,7 +4811,7 @@ function vocBilan(){
       <p>${s === n ? "Tout est su. Passe maintenant à la rédaction : c'est là que le vocabulaire doit servir." : "Mots à revoir : <b>" + rates.join(", ") + "</b>."}</p>
     </div>
     <div class="qactions">
-      ${VS.rate.length ? `<button class="qnext" onclick="vocInit('${VS.num}','${VS.portee}','${VS.sens}',[${VS.rate.join(",")}])">Revoir les ${VS.rate.length} mot${VS.rate.length > 1 ? "s" : ""} ratés</button>` : ""}
+      ${VS.rate.length ? `<button class="qnext" onclick="vocInit('${VS.num}','${VS.portee}','${VS.sens}',[${VS.rate.join(",")}])">${VS.rate.length > 1 ? "Revoir les " + VS.rate.length + " mots ratés" : "Revoir le mot raté"}</button>` : ""}
       <button class="qnext ghost" onclick="vocInit('${VS.num}','${VS.portee}','${autre}')">Refaire dans l'autre sens</button>
       <button class="qnext ghost" onclick="vocAccueil('${VS.num}')">Choisir une autre série</button>
     </div>`;
@@ -5197,6 +5478,635 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(function () {});
   });
 }
+</script>
+<script>
+/* =====================================================================
+   COUCHE D'ANIMATION — « tout ce qu'on fait fait pousser quelque chose »
+   Se branche sur les fonctions existantes sans les réécrire : chaque
+   fonction d'origine est appelée telle quelle, l'animation vient après.
+   Aucune persistance (règle du site) : le réglage du son vit le temps
+   de la session.
+   ===================================================================== */
+(function(){
+"use strict";
+
+const R = document.documentElement;
+const MQ = window.matchMedia ? matchMedia("(prefers-reduced-motion: reduce)") : {matches:false};
+let calme = MQ.matches;
+if(!calme) R.classList.add("mo");
+if(MQ.addEventListener) MQ.addEventListener("change", e => { calme = e.matches; R.classList.toggle("mo", !calme); });
+
+const route = () => decodeURIComponent(location.hash.slice(1)) || "accueil";
+const cv = n => getComputedStyle(R).getPropertyValue(n).trim();
+const centre = el => { const r = el.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+
+/* ---------- position du dernier appui (origine des ondes et des transitions) ---------- */
+let pt = null, ptT = 0;
+addEventListener("pointerdown", e => { pt = {x:e.clientX, y:e.clientY}; ptT = performance.now(); }, {capture:true, passive:true});
+const ptRecent = ms => pt && performance.now() - ptT < ms;
+
+/* =====================================================================
+   1. SONS DE SYNTHÈSE — aucun fichier, Web Audio, courts et doux
+   ===================================================================== */
+const SON = {on:true, ctx:null};
+function ac(){
+  if(!SON.ctx){
+    const C = window.AudioContext || window.webkitAudioContext;
+    if(!C) return null;
+    try{ SON.ctx = new C(); }catch(e){ return null; }
+  }
+  if(SON.ctx.state === "suspended") SON.ctx.resume();
+  return SON.ctx;
+}
+function note(f, t0, dur, type, vol, f2){
+  const c = ac(); if(!c) return;
+  const t = c.currentTime + t0;
+  const o = c.createOscillator(), g = c.createGain();
+  o.type = type || "sine";
+  o.frequency.setValueAtTime(f, t);
+  if(f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(vol, t + 0.012);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g); g.connect(c.destination);
+  o.start(t); o.stop(t + dur + 0.03);
+}
+function souffle(dur, vol, fr){
+  const c = ac(); if(!c) return;
+  const n = Math.floor(c.sampleRate * dur), buf = c.createBuffer(1, n, c.sampleRate), d = buf.getChannelData(0);
+  for(let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 1.6);
+  const s = c.createBufferSource(); s.buffer = buf;
+  const bp = c.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = fr; bp.Q.value = 0.9;
+  const g = c.createGain(); g.gain.value = vol;
+  s.connect(bp); bp.connect(g); g.connect(c.destination); s.start();
+}
+const son = {
+  bon(){ if(!SON.on) return; note(784,0,.2,"sine",.06); note(1175,.07,.3,"sine",.05); note(1568,.14,.4,"triangle",.018); },
+  faux(){ if(!SON.on) return; note(233,0,.28,"triangle",.05,175); },
+  doux(){ if(!SON.on) return; note(392,0,.16,"sine",.035,330); },
+  flip(){ if(!SON.on) return; souffle(.16,.035,2600); },
+  coche(){ if(!SON.on) return; note(1320,0,.08,"sine",.04); note(1760,.04,.1,"sine",.022); },
+  fin(ok){ if(!SON.on) return; (ok ? [523,659,784,1047,1319] : [392,494,587]).forEach((f,i) => note(f, i * .085, .55, "sine", ok ? .05 : .032)); }
+};
+
+/* bouton son, à côté du bouton de thème */
+(function(){
+  const tb = document.getElementById("themebtn");
+  if(!tb || document.getElementById("sonbtn")) return;
+  const b = document.createElement("button");
+  b.className = "iconbtn"; b.id = "sonbtn"; b.type = "button";
+  b.setAttribute("aria-pressed", "true"); b.setAttribute("aria-label", "Sons activés");
+  b.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="onde" d="M15.6 9.3a4 4 0 010 5.4M18.3 6.7a7.6 7.6 0 010 10.6"/><path class="barre" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>';
+  b.addEventListener("click", () => {
+    SON.on = !SON.on;
+    b.setAttribute("aria-pressed", String(SON.on));
+    b.setAttribute("aria-label", SON.on ? "Sons activés" : "Sons coupés");
+    if(SON.on) son.coche();
+  });
+  tb.parentNode.insertBefore(b, tb);
+})();
+
+/* =====================================================================
+   2. PARTICULES — feuilles et pétales
+   ===================================================================== */
+let couche = null;
+function coucheP(){
+  if(!couche){ couche = document.createElement("div"); couche.id = "mo-couche"; couche.setAttribute("aria-hidden", "true"); document.body.appendChild(couche); }
+  return couche;
+}
+function gerbe(x, y, n, o){
+  if(calme) return;
+  o = o || {};
+  const L = coucheP();
+  const cols = o.cols || [cv("--leaf"), cv("--lime"), cv("--leaf-2"), cv("--leaf-3") || cv("--leaf")];
+  const force = o.force || 1, spread = o.spread || Math.PI * 1.25;
+  const a0 = o.angle != null ? o.angle : -Math.PI / 2;
+  for(let i = 0; i < n; i++){
+    const f = document.createElement("i");
+    f.className = "mo-f" + (o.petales && i % 2 ? " pet" : "");
+    f.style.background = cols[i % cols.length];
+    L.appendChild(f);
+    const a = a0 + (Math.random() - .5) * spread;
+    const d = (46 + Math.random() * 92) * force;
+    const dx = Math.cos(a) * d, dy = Math.sin(a) * d;
+    const rot = (Math.random() - .5) * 560, s = .65 + Math.random() * .75;
+    const dur = 950 + Math.random() * 650;
+    const anim = f.animate([
+      {transform:`translate(${x}px,${y}px) rotate(0deg) scale(${s * .35})`, opacity:1},
+      {transform:`translate(${x + dx}px,${y + dy}px) rotate(${rot * .55}deg) scale(${s})`, opacity:1, offset:.42},
+      {transform:`translate(${x + dx * 1.18}px,${y + dy + 74 * force}px) rotate(${rot}deg) scale(${s * .85})`, opacity:0}
+    ], {duration:dur, easing:"cubic-bezier(.15,.7,.35,1)"});
+    anim.onfinish = () => f.remove();
+  }
+}
+
+/* =====================================================================
+   3. ACCUEIL — la plante du programme : une feuille par unité rédigée
+   ===================================================================== */
+let planteVue = false;
+function plante(fait, tot){
+  const W = 150, H = 238, base = 226, haut = 16;
+  const dur = planteVue ? .7 : 1.25;
+  planteVue = true;
+  const X = t => 76 + 9 * Math.sin(t * Math.PI * 2.1 + .4) * (1 - t * .35);
+  const Y = t => base - (base - haut) * t;
+  const pts = [];
+  for(let k = 0; k <= 48; k++){ const t = k / 48; pts.push(X(t).toFixed(1) + " " + Y(t).toFixed(1)); }
+  let g = "";
+  for(let i = 0; i < tot; i++){
+    const t = (i + 1) / (tot + 1), x = X(t), y = Y(t), gauche = i % 2 === 0;
+    const delai = (.15 + t * dur * .92).toFixed(2);
+    if(i < fait){
+      const s = (1.18 - t * .5).toFixed(2), ang = gauche ? 200 : -20;
+      g += `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${ang}) scale(${s})"><g class="g-feuille" style="animation-delay:${delai}s"><path class="feuille" d="M0 0C7-9 22-11 34-2C24 7 9 8 0 0Z"/><path class="nerv" d="M2 0C12-2 22-3 31-2"/></g></g>`;
+    } else {
+      g += `<circle class="bourgeon" cx="${(x + (gauche ? -3.4 : 3.4)).toFixed(1)}" cy="${(y - 1).toFixed(1)}" r="2.8" style="animation-delay:${delai}s"/>`;
+    }
+  }
+  const xa = X(1).toFixed(1);
+  return `<figure class="mo-plante" role="img" aria-label="${fait} unité${fait > 1 ? "s" : ""} rédigée${fait > 1 ? "s" : ""} sur ${tot} : une feuille par unité, la plante grandit avec le programme">
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <path class="sol" d="M40 ${base + 3}C60 ${base - 1} 92 ${base - 1} 112 ${base + 3}"/>
+      <path class="tige" pathLength="1" style="--dur:${dur}s" d="M${pts.join(" L")}"/>
+      ${g}
+      <path class="apex" style="animation-delay:${(.15 + dur).toFixed(2)}s" d="M${xa} ${haut}c-3.4-5.4-1.4-10.6 0-13 1.4 2.4 3.4 7.6 0 13z"/>
+    </svg></figure>`;
+}
+if(typeof window.pageAccueil === "function"){
+  const _pa = window.pageAccueil;
+  window.pageAccueil = function(){
+    let h = _pa.apply(this, arguments);
+    try{
+      const ids = ORDER.t, fait = ids.filter(id => CH[id] && CH[id].html).length, tot = ids.length;
+      h = h.replace(/<svg class="blob"[\s\S]*?<\/svg>\s*/g, "");
+      h = h.replace('<div class="hero">', '<div class="hero mo-hero">' + plante(fait, tot));
+      h = h.replace(/<h1>[\s\S]*?<\/h1>/, "<h1>Réviser la SVT, une unité après l’autre</h1>");
+      h = h.replace(/<span class="chip">\d+ chapitres de Terminale<\/span>/, "");
+      h = h.replace('<div class="chips">', `<div class="chips"><span class="chip">${fait} unité${fait > 1 ? "s" : ""} rédigée${fait > 1 ? "s" : ""} sur ${tot}</span>`);
+    }catch(e){}
+    return h;
+  };
+}
+
+/* =====================================================================
+   4. TIGE DE LECTURE — elle pousse avec le défilement, un bourgeon par partie
+   ===================================================================== */
+const seve = (function(){
+  const top = document.querySelector("header.top");
+  if(!top) return {preparer(){}};
+  const el = document.createElement("div");
+  el.id = "mo-seve"; el.setAttribute("aria-hidden", "true");
+  el.innerHTML = '<div class="s-fond"></div><div class="s-fill"></div>';
+  top.appendChild(el);
+  const fill = el.querySelector(".s-fill");
+  let marques = [], actif = false, tick = false;
+  const H = () => document.documentElement.scrollHeight - innerHeight;
+  function maj(){
+    tick = false;
+    if(!actif) return;
+    const h = H(), p = h > 0 ? Math.min(1, Math.max(0, scrollY / h)) : 0;
+    fill.style.transform = `scaleX(${p})`;
+    marques.forEach(m => m[1].classList.toggle("vu", p >= m[0] - .002));
+  }
+  function mesurer(){
+    el.querySelectorAll(".s-bourgeon").forEach(b => b.remove());
+    marques = [];
+    if(!actif) return;
+    const h = H(); if(h <= 0) return;
+    document.querySelectorAll("#view article h2").forEach(t => {
+      const y = t.getBoundingClientRect().top + scrollY - innerHeight * .4;
+      const f = Math.min(1, Math.max(0, y / h));
+      const b = document.createElement("i"); b.className = "s-bourgeon"; b.style.left = (f * 100) + "%";
+      el.appendChild(b); marques.push([f, b]);
+    });
+    maj();
+  }
+  addEventListener("scroll", () => { if(actif && !tick){ tick = true; requestAnimationFrame(maj); } }, {passive:true});
+  addEventListener("resize", () => { if(actif) mesurer(); });
+  return {
+    preparer(r){
+      const c = typeof CH !== "undefined" ? CH[r] : null;
+      actif = !!(c && (c.html || c.kind === "p") && document.querySelector("#view article"));
+      el.classList.toggle("on", actif);
+      fill.style.transform = "scaleX(0)";
+      mesurer();
+      if(actif){ setTimeout(mesurer, 120); setTimeout(mesurer, 900); }
+    }
+  };
+})();
+
+/* =====================================================================
+   5. PRÉPARATION DE CHAQUE PAGE + TRANSITION D'OUVERTURE
+   ===================================================================== */
+let cibles = [], tickM = false;
+const REDK = {};
+/* tout titre ou encadré passé au-dessus de 84 % de l'écran est marqué « vu » —
+   y compris ceux qu'on a sautés en défilant vite */
+function marquer(){
+  tickM = false;
+  if(!cibles.length) return;
+  const lim = innerHeight * .84;
+  cibles = cibles.filter(el => {
+    if(el.getBoundingClientRect().top < lim){ el.classList.add("mo-vu"); return false; }
+    return true;
+  });
+}
+addEventListener("scroll", () => { if(cibles.length && !tickM){ tickM = true; requestAnimationFrame(marquer); } }, {passive:true});
+function preparerPage(){
+  const r = route();
+  seve.preparer(r);
+  cibles = [...document.querySelectorAll("#view article h2, #view .box.retenir")];
+  marquer();
+  if(r.startsWith("red-")) Object.keys(REDK).forEach(k => delete REDK[k]);
+}
+function ouvrir(){
+  if(calme) return;
+  const v = document.getElementById("view");
+  if(!v || !v.animate) return;
+  const r = v.getBoundingClientRect();
+  let x = "50%", y = "0px";
+  if(ptRecent(1200)){ x = Math.round(pt.x - r.left) + "px"; y = Math.round(pt.y - r.top) + "px"; }
+  try{
+    v.animate([
+      {clipPath:`circle(0px at ${x} ${y})`, opacity:.35},
+      {clipPath:`circle(160vmax at ${x} ${y})`, opacity:1}
+    ], {duration:560, easing:"cubic-bezier(.3,.65,.15,1)"});
+  }catch(e){
+    v.animate([{opacity:.3, transform:"translateY(8px)"}, {opacity:1, transform:"none"}], {duration:380, easing:"ease-out"});
+  }
+}
+addEventListener("hashchange", () => requestAnimationFrame(() => { preparerPage(); ouvrir(); }));
+
+/* =====================================================================
+   6. PANNEAUX REPLIABLES — ouverture et fermeture en douceur
+   ===================================================================== */
+document.addEventListener("click", e => {
+  const s = e.target.closest && e.target.closest("details.tp > summary");
+  if(!s || calme) return;
+  const d = s.parentElement, inner = d.querySelector(":scope > .tpin");
+  if(!inner || !inner.animate) return;
+  e.preventDefault();
+  if(d.dataset.anim) return;
+  d.dataset.anim = "1";
+  inner.style.overflow = "hidden";
+  const fin = () => { inner.style.overflow = ""; delete d.dataset.anim; };
+  if(d.open){
+    const cs = getComputedStyle(inner), h = inner.offsetHeight;
+    const a = inner.animate([
+      {height:h + "px", paddingTop:cs.paddingTop, paddingBottom:cs.paddingBottom, opacity:1},
+      {height:"0px", paddingTop:"0px", paddingBottom:"0px", opacity:0}
+    ], {duration:280, easing:"cubic-bezier(.4,0,.2,1)"});
+    a.onfinish = () => { d.open = false; fin(); };
+  } else {
+    d.open = true;
+    const cs = getComputedStyle(inner), h = inner.offsetHeight;
+    const a = inner.animate([
+      {height:"0px", paddingTop:"0px", paddingBottom:"0px", opacity:0},
+      {height:h + "px", paddingTop:cs.paddingTop, paddingBottom:cs.paddingBottom, opacity:1}
+    ], {duration:400, easing:"cubic-bezier(.2,.8,.25,1)"});
+    a.onfinish = fin;
+  }
+}, true);
+
+/* changement de thème en fondu */
+(function(){
+  const tb = document.getElementById("themebtn");
+  if(!tb) return;
+  let t = 0;
+  tb.addEventListener("click", () => {
+    if(calme) return;
+    R.classList.add("mo-theme"); clearTimeout(t);
+    t = setTimeout(() => R.classList.remove("mo-theme"), 480);
+  }, true);
+})();
+
+/* =====================================================================
+   7. QCM — la tige de la série, l'onde de chlorophylle, la fleur du bilan
+   ===================================================================== */
+function apres(nom, fn){
+  const o = window[nom]; if(typeof o !== "function") return;
+  window[nom] = function(){ const r = o.apply(this, arguments); try{ fn.apply(this, arguments); }catch(e){} return r; };
+}
+const MZ = {res:[], serie:0, neuf:-1};
+
+function tigeHTML(){
+  const n = QS.liste.length;
+  const w = n > 1 ? (QS.pos / (n - 1)) * 100 : 0;
+  let h = `<span class="t-fill" style="width:${w}%"></span>`;
+  for(let i = 0; i < n; i++){
+    const r = MZ.res[i];
+    const c = r === true ? "ok" : r === false ? "ko" : (i === QS.pos ? "cur" : "");
+    h += `<i class="${c}${i === MZ.neuf ? " neuf" : ""}"></i>`;
+  }
+  return h;
+}
+function badgeSerie(pop){
+  const c = document.querySelector("#qcmzone .qcard"); if(!c) return;
+  let s = c.querySelector(".mo-serie");
+  if(!s){ s = document.createElement("span"); s.className = "mo-serie"; c.appendChild(s); }
+  s.textContent = MZ.serie + " d’affilée";
+  if(pop){ s.classList.remove("pop"); void s.offsetWidth; s.classList.add("pop"); }
+}
+function onde(btn){
+  if(calme) return;
+  const r = btn.getBoundingClientRect();
+  let x = r.width * .1, y = r.height / 2;
+  if(ptRecent(1500) && pt.x >= r.left && pt.x <= r.right && pt.y >= r.top && pt.y <= r.bottom){ x = pt.x - r.left; y = pt.y - r.top; }
+  const o = document.createElement("span");
+  o.className = "mo-onde"; o.style.left = x + "px"; o.style.top = y + "px";
+  btn.appendChild(o); setTimeout(() => o.remove(), 900);
+}
+
+if(typeof window.qcmInit === "function"){
+  const _i = window.qcmInit;
+  window.qcmInit = function(){ MZ.res = []; MZ.serie = 0; MZ.neuf = -1; return _i.apply(this, arguments); };
+}
+apres("qcmRendre", function(){
+  const z = document.getElementById("qcmzone"); if(!z || !QS) return;
+  z.querySelectorAll(".qopt").forEach((b, i) => b.style.setProperty("--i", i));
+  const bar = z.querySelector(".qprog .bar");
+  if(bar){ const t = document.createElement("span"); t.className = "mo-tige"; t.innerHTML = tigeHTML(); bar.replaceWith(t); }
+  MZ.neuf = -1;
+  if(MZ.serie >= 3) badgeSerie(false);
+});
+if(typeof window.qcmChoisir === "function"){
+  const _c = window.qcmChoisir;
+  window.qcmChoisir = function(oi){
+    if(!QS || QS.repondu) return _c.apply(this, arguments);
+    const q = QCM[QS.id][QS.liste[QS.pos]], juste = oi === q.b, pos = QS.pos;
+    const r = _c.apply(this, arguments);
+    try{
+      MZ.res[pos] = juste; MZ.neuf = pos;
+      const z = document.getElementById("qcmzone");
+      const t = z.querySelector(".mo-tige"); if(t) t.innerHTML = tigeHTML();
+      const cpt = z.querySelector(".qprog > span:last-child");
+      if(cpt && cpt !== t){ cpt.textContent = QS.score + " bonne" + (QS.score > 1 ? "s" : ""); if(juste) cpt.classList.add("mo-cpt"); }
+      const btn = z.querySelector(`.qopt[data-o="${oi}"]`);
+      if(juste){
+        MZ.serie++;
+        son.bon();
+        if(btn){ onde(btn); const c = centre(btn); gerbe(c[0], c[1], MZ.serie >= 3 ? 16 : 10); }
+        if(MZ.serie >= 3) badgeSerie(true);
+      } else {
+        MZ.serie = 0;
+        son.faux();
+        if(btn && btn.animate && !calme) btn.animate(
+          [{transform:"translateX(0)"},{transform:"translateX(-7px)"},{transform:"translateX(6px)"},{transform:"translateX(-4px)"},{transform:"translateX(2px)"},{transform:"translateX(0)"}],
+          {duration:430, easing:"ease-out"});
+        const bonne = z.querySelector(`.qopt[data-o="${q.b}"]`); if(bonne) bonne.classList.add("mo-attire");
+        const s = z.querySelector(".mo-serie"); if(s) s.remove();
+      }
+    }catch(e){}
+    return r;
+  };
+}
+
+function compter(el, s, n){
+  if(calme){ el.textContent = s + " / " + n; return; }
+  const t0 = performance.now(), D = 1000;
+  (function f(t){
+    const k = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = Math.round(s * e) + " / " + n;
+    if(k < 1) requestAnimationFrame(f);
+  })(t0);
+}
+function bilanAnim(s, n){
+  const b = document.querySelector(".qbilan"), sc = b && b.querySelector(".qscore");
+  if(!b || !sc) return;
+  const p = n ? s / n : 0;
+  const w = document.createElement("div"); w.className = "mo-anneau";
+  w.innerHTML = '<svg viewBox="0 0 120 120" aria-hidden="true"><circle class="a-fond" cx="60" cy="60" r="52"/><circle class="a-arc" cx="60" cy="60" r="52" pathLength="1"/></svg>';
+  sc.replaceWith(w); w.appendChild(sc);
+  const arc = w.querySelector(".a-arc");
+  if(calme) arc.style.transition = "none";
+  requestAnimationFrame(() => requestAnimationFrame(() => { arc.style.strokeDashoffset = String(1 - p); }));
+  compter(sc, s, n);
+  if(p >= .8){
+    const cols = [cv("--rose"), cv("--amber"), cv("--lime"), cv("--violet")];
+    setTimeout(() => {
+      for(let i = 0; i < 8; i++){
+        const e = document.createElement("span");
+        e.className = "mo-petale";
+        e.style.setProperty("--r", (i * 45) + "deg");
+        e.style.background = p === 1 ? cols[i % 4] : cv("--lime");
+        e.style.animationDelay = (i * 45) + "ms";
+        w.insertBefore(e, w.firstChild);
+      }
+      const c = centre(w);
+      gerbe(c[0], c[1], p === 1 ? 34 : 22, {force:1.4, spread:Math.PI * 2, petales:true, cols});
+      son.fin(true);
+    }, calme ? 0 : 950);
+  } else setTimeout(() => son.fin(false), 700);
+}
+if(typeof window.qcmBilan === "function"){
+  const _b = window.qcmBilan;
+  window.qcmBilan = function(){
+    const n = QS ? QS.liste.length : 0, s = QS ? QS.score : 0;
+    const r = _b.apply(this, arguments);
+    try{ bilanAnim(s, n); }catch(e){}
+    return r;
+  };
+}
+apres("qcmAccueil", () => document.querySelectorAll("#qcmzone .qmode").forEach((b, i) => b.style.setProperty("--i", i)));
+
+/* =====================================================================
+   8. CARTES DE VOCABULAIRE — retournement, puis la carte s'envole
+   ===================================================================== */
+apres("vocAccueil", () => document.querySelectorAll("#voczone .qmode").forEach((b, i) => b.style.setProperty("--i", i)));
+apres("vocRendre", function(){
+  const z = document.getElementById("voczone"); if(!z || !VS) return;
+  const bar = z.querySelector(".qprog .bar"); if(!bar) return;
+  const n = VS.liste.length, w = n > 1 ? (VS.pos / (n - 1)) * 100 : 0;
+  let h = `<span class="t-fill" style="width:${w}%"></span>`;
+  for(let i = 0; i < n; i++){
+    const id = VS.liste[i];
+    const c = i < VS.pos ? (VS.su.includes(id) ? "ok" : "ko") : (i === VS.pos ? "cur" : "");
+    h += `<i class="${c}${i === VS.pos - 1 ? " neuf" : ""}"></i>`;
+  }
+  const t = document.createElement("span"); t.className = "mo-tige"; t.innerHTML = h; bar.replaceWith(t);
+});
+if(typeof window.vocRetourner === "function"){
+  const _v = window.vocRetourner;
+  window.vocRetourner = function(){
+    if(!VS || VS.vu) return;
+    const card = document.querySelector("#voczone .vcard");
+    son.flip();
+    if(calme || !card || !card.animate){ _v.apply(this, arguments); if(card) card.classList.add("retournee"); return; }
+    const a = card.animate([{transform:"perspective(1000px) rotateY(0deg)"}, {transform:"perspective(1000px) rotateY(90deg)"}],
+                           {duration:170, easing:"cubic-bezier(.5,0,.75,0)"});
+    a.onfinish = () => {
+      _v.apply(this, arguments);
+      card.classList.add("retournee");
+      card.animate([{transform:"perspective(1000px) rotateY(-90deg)"}, {transform:"perspective(1000px) rotateY(0deg)"}],
+                   {duration:280, easing:"cubic-bezier(.2,.9,.3,1.15)"});
+    };
+  };
+}
+if(typeof window.vocNoter === "function"){
+  const _n = window.vocNoter;
+  window.vocNoter = function(ok){
+    if(!VS || !VS.vu) return;
+    const card = document.querySelector("#voczone .vcard");
+    if(ok){ son.bon(); if(card){ const c = centre(card); gerbe(c[0], c[1] - 20, 12); } } else son.doux();
+    if(calme || !card || !card.animate) return _n.apply(this, arguments);
+    card.querySelectorAll(".vbt").forEach(b => b.disabled = true);
+    const dir = ok ? 1 : -1;
+    const self = this, args = arguments;
+    card.animate([{transform:"translateX(0) rotate(0deg)", opacity:1},
+                  {transform:`translateX(${dir * 115}%) rotate(${dir * 9}deg)`, opacity:0}],
+                 {duration:300, easing:"cubic-bezier(.5,0,.8,.4)", fill:"forwards"})
+      .onfinish = () => _n.apply(self, args);
+  };
+}
+if(typeof window.vocBilan === "function"){
+  const _vb = window.vocBilan;
+  window.vocBilan = function(){
+    const r = _vb.apply(this, arguments);
+    try{ if(VS) bilanAnim(VS.su.length, VS.liste.length); }catch(e){}
+    return r;
+  };
+}
+
+/* =====================================================================
+   9. RÉDACTION — la correction se déplie, chaque critère coché pousse
+   ===================================================================== */
+apres("redReveler", function(uid, eid){
+  const sc = document.getElementById("sc-" + eid);
+  if(sc && !(sc.nextElementSibling && sc.nextElementSibling.classList.contains("mo-jauge"))){
+    const j = document.createElement("div"); j.className = "mo-jauge"; j.innerHTML = "<i></i>"; sc.after(j);
+  }
+  son.flip();
+});
+apres("redScore", function(eid, n){
+  const z = document.getElementById("cor-" + eid); if(!z) return;
+  const k = z.querySelectorAll("input:checked").length;
+  const j = z.querySelector(".mo-jauge i"); if(j) j.style.width = (k / n * 100) + "%";
+  const avant = REDK[eid] || 0; REDK[eid] = k;
+  if(k > avant){
+    son.coche();
+    const a = document.activeElement;
+    if(a && a.type === "checkbox"){ const c = centre(a); gerbe(c[0], c[1], 5, {force:.55}); }
+    if(k === n){
+      const box = z.querySelector(".redcheck");
+      if(box) setTimeout(() => { const c = centre(box); gerbe(c[0], c[1], 26, {force:1.3, spread:Math.PI * 2, petales:true}); son.fin(true); }, 160);
+    }
+  }
+});
+
+/* =====================================================================
+   10. DÉMARRAGE — refaire l'accueil avec la plante, puis préparer la page
+   ===================================================================== */
+coucheP();
+if(route() === "accueil" && typeof window.render === "function"){ try{ window.render(); }catch(e){} }
+preparerPage();
+
+/* outils partagés avec la couche complémentaire */
+window.MO = {son, gerbe, centre, onde, estCalme: () => calme};
+
+})();
+
+</script>
+<script>
+/* =====================================================================
+   COMPLÉMENT D'ANIMATION — même principe que la couche principale :
+   « tout ce qu'on fait fait pousser quelque chose ».
+   A. barre du bas : une pastille glisse vers l'onglet choisi
+   B. fin de lecture : la tige de lecture fleurit
+   C. bloc « Réviser » : les trois étapes poussent l'une après l'autre
+   D. tige de série dense : feuilles réduites quand la série est longue
+   Tout ce qui cache un élément en attendant son apparition est rangé
+   sous html.mo2, posée ici : si ce script ne tourne pas, rien n'est caché.
+   ===================================================================== */
+(function(){
+"use strict";
+const MO = window.MO;
+if(!MO) return;
+const R = document.documentElement;
+const calme = () => MO.estCalme();
+R.classList.add("mo2");
+
+/* ---------------- A. barre du bas ---------------- */
+const nav = document.getElementById("bottomnav");
+let pastille = null;
+function placerPastille(sansAnim){
+  if(!nav) return;
+  if(!pastille){
+    pastille = document.createElement("span");
+    pastille.className = "mo-pastille";
+    pastille.setAttribute("aria-hidden", "true");
+    nav.prepend(pastille);
+    nav.classList.add("a-pastille");
+    sansAnim = true;
+  }
+  const on = nav.querySelector("button.on");
+  if(!on || getComputedStyle(nav).display === "none"){ pastille.style.opacity = "0"; return; }
+  const rn = nav.getBoundingClientRect(), rb = on.getBoundingClientRect();
+  const fige = sansAnim || calme();
+  if(fige) pastille.style.transition = "none";
+  pastille.style.width = rb.width + "px";
+  pastille.style.transform = "translateX(" + (rb.left - rn.left - nav.clientLeft) + "px)";
+  pastille.style.opacity = "1";
+  if(fige){ void pastille.offsetWidth; pastille.style.transition = ""; }
+}
+addEventListener("resize", () => placerPastille(true));
+
+/* ---------------- B. fin de lecture ---------------- */
+const seve = document.getElementById("mo-seve");
+let fleuri = false, tickB = false;
+function finLecture(){
+  tickB = false;
+  if(fleuri || !seve || !seve.classList.contains("on")) return;
+  const h = document.documentElement.scrollHeight - innerHeight;
+  if(h < 400) return;                       /* page trop courte pour parler de lecture */
+  if(scrollY < h - 6) return;
+  fleuri = true;
+  const f = document.createElement("i");
+  f.className = "s-fleur";
+  f.innerHTML = '<svg viewBox="-10 -10 20 20" aria-hidden="true">'
+    + [0, 72, 144, 216, 288].map(a => '<ellipse cx="0" cy="-4.6" rx="3" ry="4.6" transform="rotate(' + a + ')"/>').join("")
+    + '<circle r="2.6" class="coeur"/></svg>';
+  seve.appendChild(f);
+  if(!calme()){
+    const r = f.getBoundingClientRect();
+    MO.gerbe(r.left + r.width / 2, r.top + r.height / 2 + 6, 14, {force:.9, petales:true});
+  }
+  MO.son.bon();
+}
+addEventListener("scroll", () => { if(!fleuri && !tickB){ tickB = true; requestAnimationFrame(finLecture); } }, {passive:true});
+
+/* ---------------- C. bloc « Réviser » ---------------- */
+let obs = null;
+function preparerRevision(){
+  const b = document.querySelector("#view .revbloc");
+  if(!b) return;
+  b.querySelectorAll(".qcta").forEach((c, i) => c.style.setProperty("--i", i));
+  const montrer = () => { b.classList.add("mo-vu"); if(obs){ obs.disconnect(); obs = null; } };
+  if(calme() || !("IntersectionObserver" in window)){ montrer(); return; }
+  if(obs) obs.disconnect();
+  obs = new IntersectionObserver(es => { if(es.some(e => e.isIntersecting)) montrer(); }, {threshold:.25});
+  obs.observe(b);
+}
+
+/* ---------------- D. tige de série dense ---------------- */
+function densifier(){
+  document.querySelectorAll(".mo-tige").forEach(t => t.classList.toggle("dense", t.querySelectorAll("i").length > 14));
+}
+function apres(nom, fn){
+  const o = window[nom]; if(typeof o !== "function") return;
+  window[nom] = function(){ const r = o.apply(this, arguments); try{ fn.apply(this, arguments); }catch(e){} return r; };
+}
+["qcmRendre", "qcmChoisir", "vocRendre"].forEach(n => apres(n, densifier));
+
+/* ---------------- préparation de chaque page ---------------- */
+function preparer(sansAnim){
+  fleuri = false;
+  if(seve) seve.querySelectorAll(".s-fleur").forEach(x => x.remove());
+  placerPastille(sansAnim);
+  preparerRevision();
+}
+addEventListener("hashchange", () => requestAnimationFrame(() => requestAnimationFrame(() => preparer(false))));
+preparer(true);
+})();
 </script>
 </body>
 </html>
