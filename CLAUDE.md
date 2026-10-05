@@ -48,7 +48,7 @@ Préférence de travail de Cengiz : **conseiller de changer de modèle ou de niv
 | `svt/` | Spé SVT Terminale (Mme Philip) | ~544 Ko | JS natif, données en constantes |
 | `pc/` | Spé Physique-Chimie | ~817 Ko | JS natif |
 | `dnl/` | DNL Histoire-Géo (M. Ros) — « Revision Atlas » | **~5,3 Mo** | React 18.2 UMD (cdnjs) |
-| `philo/` | « L'Index raisonné » (M. Bellon) | ~2,2 Mo | React 18.2 UMD précompilé inline |
+| `philo/` | « L'Index raisonné » (M. Bellon) | ~2,3 Mo | React 18.2 UMD précompilé inline |
 | `acl-ecrit/` | Hub ACL écrit : épreuve, méthode, atelier, boîte à outils, Twelfth Night | ~152 Ko | JS natif |
 | `acl-lughnasa/` | *Dancing at Lughnasa* (Friel) | ~236 Ko | JS natif |
 | `acl-bricklane/` | *Brick Lane* (Ali) | ~339 Ko | JS natif |
@@ -117,6 +117,8 @@ React 18.2 UMD précompilé inline. Constantes : `NOTIONS` (17 notions du progra
 
 M. Thomas Bellon ne traite **pas** les notions une par une : il fait des chapitres par problème qui croisent plusieurs notions (chapitre 1 « la liberté » en quatre parties : métaphysique, morale, politique, peut-être esthétique). La couche « cours » prévue au-dessus de l'index par notion stocke des **distinctions** (couples de termes), chacune avec les deux termes, le contenu du cours, l'exemple de Bellon, le repère, l'auteur et une phrase de transition réutilisable en dissertation.
 
+État : la couche « Le cours de M. Bellon » est publiée depuis le 05/10/2026 (`philo-v2`) : chapitre I « La liberté », partie 1 (liberté métaphysique) rédigée, parties 2 à 4 en attente ; page « L'explication de texte » sur le texte de Kant.
+
 ### Physique-Chimie (`pc/`)
 
 JS natif, 21 chapitres dans l'ordre du professeur, thème orange sur sombre. Chapitres 1 à 3 ouverts (le 3, méthodes chimiques d'analyse / titrage, ajouté le 02/10/2026) ; le reste est en placeholder. Pour chaque chapitre : plan de travail du professeur, **plus** d'autres exercices du manuel (Le Livre Scolaire) et des exercices type bac créés par Claude **signalés comme tels**, dont des exercices bilan couvrant toutes les notions exigibles. Le chapitre 1 reste à reprendre sur ce modèle. Visuels de labo complexes : prompts pour Nano Banana (anglais, fond blanc, style vectoriel plat de manuel, annotations en français, flèches `#E45C10`).
@@ -179,7 +181,6 @@ Orientation décidée par Cengiz (29/09/2026) : les **animations explicatives d�
 
 1. **DNL charge React depuis cdnjs et des polices Google** : cela contredit la règle « aucune dépendance externe, fonctionne hors ligne », et le service worker ne précache pas ces ressources. Soit on les inline (React coûte de l'ordre de 140 Ko), soit on assume l'écart. À arbitrer avec Cengiz.
 2. **Livré mais pas publié, d'après la mémoire de projet** (à vérifier dans le dépôt avant de refaire) :
-   - `philo/` : la couche « Le cours de M. Bellon » (chapitre I, 11 maillons, 9e fiche Kant) est absente de `main` : le `sw.js` y est encore à `philo-v1` alors que la livraison était annoncée en `philo-v2`.
    - `svt/anim/*.html` : les animations plein écran (méiose / crossing-over, ouvertes depuis un bouton sur le schéma) sont absentes du dépôt.
 3. **Le pipeline DNL d'origine n'est pas dans le dépôt.** Il vivait dans un conteneur éphémère (`compiled.js`, `shell_before.html`, `shell_after.html`, un dossier `geo/` avec les scripts de cartes, l'injecteur d'enrichissement, le script d'audit). Dans le dépôt, **`dnl/index.html` est la seule source** : l'éditer par injections ancrées. Si Cengiz a conservé les anciens scripts de cartes, les rapatrier.
 4. **`test.html`** à la racine est un reliquat.
@@ -223,7 +224,7 @@ Orientation décidée par Cengiz (29/09/2026) : les **animations explicatives d�
 - **DNL** : chapitres restants au fil des cours de M. Ros ; section « Oral » simulant le tirage croisé ; intégrer la liste officielle des 10 Key Issues + 10 Key Terms (distribuée vers fin avril) ; QCM et flashcards par chapitre ; rappels de Première (thème 4 d'histoire, la Première Guerre mondiale, jamais traité en classe par Orhan, à rédiger au niveau des chapitres de Terminale).
 - **SVT** : unités 3 et 4 du chapitre 1 quand la classe y sera, puis les chapitres suivants unité par unité depuis les notes et diaporamas de Mme Philip ; refonte animée par schémas motion design.
 - **PC** : reprendre le chapitre 1 sur le modèle du chapitre 2 ; chapitres suivants selon la progression ; animation de conductimétrie.
-- **Philo** : publier la couche « cours » si elle manque ; ouvrir les trois autres parties du chapitre I au fil du cours. Point ouvert à poser à M. Bellon : l'exemple de la chute libre illustre-t-il la liberté comme mouvement sans obstacle, ou la ruine-t-il ? Erreur à corriger dans le brouillon d'Orhan sur le Kant : il a noté « la liberté vient de la suppression de tous les désirs », le texte dit l'inverse (« tu dois, donc tu peux »).
+- **Philo** : ouvrir les trois autres parties du chapitre I au fil du cours. Point ouvert à poser à M. Bellon : l'exemple de la chute libre illustre-t-il la liberté comme mouvement sans obstacle, ou la ruine-t-il ? Erreur à corriger dans le brouillon d'Orhan sur le Kant : il a noté « la liberté vient de la suppression de tous les désirs », le texte dit l'inverse (« tu dois, donc tu peux »).
 - **Italien, Red Pen** : extension selon la progression d'Orhan.
 - **CDM** : faire valider la nouvelle problématique ; envoyer en octobre les cinq questions aux quatre partenaires (Orhan relance, la date a été promise par écrit) ; terrain en collège (25 min, un vendredi après-midi) et questionnaire de suivi deux semaines après.
 - **Site d'animations** SVT / physique-chimie, à créer.
