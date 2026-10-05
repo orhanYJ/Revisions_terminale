@@ -1,0 +1,105 @@
+/* =====================================================================
+   COUCHE DE MOUVEMENT — « chaque bonne réponse trace une route sur l'atlas »
+   Feuille maintenue à part de index.html (application React) : elle ne
+   cible que des classes stables et n'impose rien sans html.mo, classe
+   posée par motion.js seulement si l'appareil n'a pas demandé à réduire
+   les animations. Les entrées passent par l'API Web Animations : aucun
+   attribut géré par React n'est jamais réécrit.
+   ===================================================================== */
+
+/* ---------- couches propres à la couche de mouvement ---------- */
+#mo-couche{position:fixed;inset:0;pointer-events:none;z-index:300;overflow:hidden}
+.mo-astre{position:absolute;width:var(--s,10px);height:var(--s,10px);margin:calc(var(--s,10px) / -2) 0 0 calc(var(--s,10px) / -2);background:var(--c,#B08D4C);
+  clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);animation:mo-astre var(--t,.95s) cubic-bezier(.15,.75,.3,1) forwards}
+.mo-onde{position:absolute;width:0;height:0;transform:translate(-50%,-50%);border-radius:50%;border:2px solid var(--c,#B08D4C);animation:mo-onde .7s cubic-bezier(.2,.7,.3,1) forwards}
+.mo-plus{position:absolute;transform:translate(-50%,-50%);font:700 26px/1 'Cormorant Garamond',Georgia,serif;color:var(--c,#3E6259);white-space:nowrap;
+  text-shadow:0 1px 0 #fff,0 0 12px rgba(255,255,255,.9);animation:mo-plus 1.05s cubic-bezier(.2,.8,.3,1) forwards}
+.mo-ruban{position:absolute;transform:translate(-50%,-50%);padding:7px 16px 7px 14px;border-radius:3px;background:var(--slate,#1B2A4A);color:#F5F1E8;
+  font:600 13.5px/1.1 Inter,system-ui,sans-serif;white-space:nowrap;box-shadow:0 10px 26px rgba(27,42,74,.35);border:1px solid rgba(176,141,76,.7);
+  animation:mo-ruban 1.9s cubic-bezier(.2,.9,.3,1) forwards}
+.mo-ruban b{color:#E2C28A;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;margin-right:6px}
+.mo-tampon{position:absolute;width:0;height:0;transform:translate(-50%,-50%);border-radius:50%;
+  border:3px double var(--c,#A63D40);animation:mo-tampon .9s cubic-bezier(.2,.8,.2,1) forwards}
+
+/* ---------- le voyage : progression de lecture ---------- */
+#mo-voyage{position:fixed;left:var(--g,0px);width:var(--l,100vw);top:var(--h,0px);height:22px;margin-top:-11px;z-index:25;pointer-events:none;opacity:0;transition:opacity .4s ease}
+#mo-voyage.on{opacity:1}
+#mo-voyage .v-route{position:absolute;left:0;right:0;top:50%;height:0;border-top:1.5px dashed rgba(176,141,76,.5)}
+#mo-voyage .v-fait{position:absolute;left:0;top:50%;height:2px;margin-top:-1px;width:calc(var(--p,0) * 100%);background:linear-gradient(90deg,rgba(176,141,76,.2),#B08D4C);border-radius:2px}
+#mo-voyage .v-port{position:absolute;right:-4px;top:50%;width:16px;height:16px;margin-top:-8px;color:#B08D4C;opacity:.8}
+#mo-voyage .v-nef{position:absolute;top:50%;left:calc(var(--p,0) * 100%);width:24px;height:24px;margin:-17px 0 0 -12px;color:var(--slate,#1B2A4A);
+  filter:drop-shadow(0 1px 1px rgba(255,255,255,.9))}
+#mo-voyage .v-nef svg{width:100%;height:100%;display:block}
+
+/* ---------- les pastilles qui glissent ---------- */
+.nav{position:relative}
+.mo-pastille-nav{position:absolute;left:0;top:0;border-radius:6px;background:rgba(245,241,232,.13);pointer-events:none;opacity:0;z-index:0}
+.mo-pastille-nav::before{content:'';position:absolute;left:0;top:15%;height:70%;width:3px;background:var(--gold,#B08D4C)}
+.mo-pastille-onglet{position:absolute;left:0;top:0;border-radius:999px;background:var(--slate,#1B2A4A);pointer-events:none;opacity:0;z-index:0;
+  box-shadow:0 4px 14px rgba(27,42,74,.25)}
+
+/* ---------- le frontispice : routes et navire ---------- */
+.mo-routes{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.mo-routes .r-trait{fill:none;stroke:#B08D4C;stroke-width:1.3;stroke-linecap:round;stroke-dasharray:5 6;opacity:.75}
+.mo-routes .r-port{fill:#FBF8F0;stroke:#A63D40;stroke-width:1.2}
+.mo-routes .r-nef{fill:var(--slate,#1B2A4A)}
+.fp-bar .mo-reflet{position:absolute;top:0;bottom:0;width:40px;left:-40px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);pointer-events:none}
+
+/* le son, dans la légende du quiz */
+.mo-son{margin-left:auto;display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--line,#cdc4ae);background:#FFFDF8;
+  color:var(--slate,#1B2A4A);cursor:pointer;flex:none;padding:0}
+.mo-son svg{width:16px;height:16px}
+.mo-son[aria-pressed="false"] .ondes{display:none}
+.mo-son[aria-pressed="true"] .barre{display:none}
+.mo-son:hover{border-color:var(--gold,#B08D4C)}
+
+@media print{#mo-couche,#mo-voyage,.mo-pastille-nav,.mo-pastille-onglet,.mo-routes,.mo-son,.mo-reflet{display:none !important}}
+
+/* =====================================================================
+   MOUVEMENT — uniquement sous html.mo
+   ===================================================================== */
+/* les pastilles remplacent les fonds actifs pour pouvoir glisser */
+html.mo .nav.mo-a-pastille .chap-btn.active{background:transparent}
+html.mo .nav.mo-a-pastille .chap-btn.active::before{opacity:0}
+html.mo .nav.mo-a-pastille .chap-btn{z-index:1}
+html.mo .mo-pastille-nav{transition:transform .5s cubic-bezier(.3,1.25,.4,1),height .35s ease,width .35s ease,opacity .3s ease}
+html.mo .chap-tabs.mo-a-pastille .chap-tab{position:relative;z-index:1;transition:color .3s ease,border-color .3s ease,background-color .3s ease}
+html.mo .chap-tabs.mo-a-pastille .chap-tab.on{background:transparent;border-color:transparent}
+html.mo .mo-pastille-onglet{transition:transform .5s cubic-bezier(.3,1.3,.4,1),width .5s cubic-bezier(.3,1.3,.4,1),opacity .3s ease}
+
+/* planches : profondeur pour l'inclinaison */
+html.mo .plates{perspective:1100px}
+html.mo .theme-card{transform-style:preserve-3d;will-change:transform}
+html.mo .theme-card .plate-grat{transform-box:fill-box;transform-origin:50% 50%;transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
+html.mo .theme-card:hover .plate-grat{transform:rotate(28deg)}
+html.mo .tc-chap.ok .tc-ico{transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+html.mo .tc-chap.ok:hover .tc-ico{transform:scale(1.25) rotate(-8deg)}
+html.mo .tc-chap.ok:hover{background:rgba(184,146,79,.16)}
+
+html.mo .fold-chev{transition:transform .45s cubic-bezier(.3,1.5,.5,1),background-color .3s ease,color .3s ease}
+html.mo .section.fold.open .fold-chev{transform:rotate(180deg);background:var(--gold,#B08D4C);color:#fff;border-color:var(--gold,#B08D4C)}
+html.mo .section.fold:not(.open):hover{border-color:var(--gold,#B08D4C);box-shadow:0 6px 20px rgba(27,42,74,.08)}
+html.mo .section.fold{transition:border-color .3s ease,box-shadow .3s ease}
+
+/* le navire se balance sur sa route */
+html.mo #mo-voyage .v-nef svg{animation:mo-houle 2.6s ease-in-out infinite}
+html.mo #mo-voyage.fin .v-port{animation:mo-ancre .9s cubic-bezier(.3,1.6,.5,1)}
+
+/* changer de page : la nouvelle s'ouvre depuis le doigt */
+::view-transition-old(root){animation:mo-vt-recul .55s cubic-bezier(.4,0,.2,1) both}
+::view-transition-new(root){animation:mo-vt-cercle .62s cubic-bezier(.3,.7,.2,1) both}
+
+@keyframes mo-astre{0%{opacity:0;transform:translate(0,0) rotate(0) scale(.2)}
+  12%{opacity:1;transform:translate(calc(var(--dx)*.3),calc(var(--dy)*.3)) rotate(calc(var(--r)*.25)) scale(1.2)}
+  70%{opacity:1}
+  100%{opacity:0;transform:translate(var(--dx),calc(var(--dy) + var(--g,30px))) rotate(var(--r)) scale(.6)}}
+@keyframes mo-onde{from{opacity:.95;width:0;height:0}to{opacity:0;width:calc(var(--k,7) * 14px);height:calc(var(--k,7) * 14px)}}
+@keyframes mo-plus{0%{opacity:0;transform:translate(-50%,-30%) scale(.6)}20%{opacity:1;transform:translate(-50%,-80%) scale(1.15)}
+  100%{opacity:0;transform:translate(-50%,-260%) scale(1)}}
+@keyframes mo-ruban{0%{opacity:0;transform:translate(-50%,-10%) scale(.7) rotate(-6deg)}14%{opacity:1;transform:translate(-50%,-70%) scale(1.08) rotate(1deg)}
+  24%{transform:translate(-50%,-70%) scale(1) rotate(0)}80%{opacity:1;transform:translate(-50%,-80%)}100%{opacity:0;transform:translate(-50%,-140%)}}
+@keyframes mo-tampon{0%{opacity:.95;width:calc(var(--d,90px) * .5);height:calc(var(--d,90px) * .5)}100%{opacity:0;width:calc(var(--d,90px) * 2.1);height:calc(var(--d,90px) * 2.1)}}
+@keyframes mo-houle{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-2px) rotate(3deg)}}
+@keyframes mo-ancre{0%{transform:scale(1)}40%{transform:scale(1.7) rotate(-14deg)}100%{transform:scale(1)}}
+@keyframes mo-vt-recul{to{opacity:.35;transform:scale(.975)}}
+@keyframes mo-vt-cercle{from{clip-path:circle(0 at var(--vx,50%) var(--vy,40%))}to{clip-path:circle(150% at var(--vx,50%) var(--vy,40%))}}
