@@ -1,0 +1,93 @@
+/* =====================================================================
+   COUCHE DE MOUVEMENT — « une braise veille sur chaque page »
+   Feuille maintenue à part de index.html, commune aux trois sites ACL
+   oral (corpus Dystopie, 1984, Parable of the Sower). Niveau léger : la
+   braise répond aux gestes, rien de plus. Chaque œuvre anime son
+   filigrane :
+   — le corpus : la lanterne des feux de veille de Byron, dont la flamme
+     s'attise ;
+   — 1984 : le télécran, dont l'œil suit la main ;
+   — Butler : la pousse d'Earthseed, qui déplie ses feuilles sous les
+     étoiles.
+   Les ajouts sont stylés sans condition ; tout ce qui bouge est sous
+   html.mo, classe posée par motion.js seulement si l'appareil n'a pas
+   demandé à réduire les animations. Rien n'est caché sans script.
+   ===================================================================== */
+
+/* le fil de braise de la lecture, en haut de l'écran */
+#mo-braise{position:fixed;top:0;right:0;left:var(--g,0px);height:2px;z-index:58;pointer-events:none;opacity:0;transition:opacity .4s ease}
+#mo-braise.on{opacity:1}
+#mo-braise .b-fil{position:absolute;left:0;top:0;bottom:0;width:calc(var(--p,0) * 100%);
+  background:linear-gradient(90deg,rgba(143,51,36,.5),var(--ember,#d5642a) 60%,var(--ember-glow,#f0b877))}
+#mo-braise .b-tete{position:absolute;top:1px;left:calc(var(--p,0) * 100%);width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;
+  background:radial-gradient(circle,#ffe2b8 0,rgba(240,184,119,.75) 30%,rgba(213,100,42,0) 70%);opacity:min(1,calc(var(--p,0) * 80))}
+
+/* le guide de la navigation : une barre de braise qui glisse dans le rail */
+/* le rail est déjà positionné (collant sur grand écran, fixe sur téléphone) : le tison s'y place */
+.mo-tison{position:absolute;left:0;top:0;width:2px;height:0;background:var(--ember,#d5642a);pointer-events:none;opacity:0;
+  box-shadow:0 0 8px rgba(213,100,42,.6)}
+
+/* les étincelles du « révisé » */
+.reviewed button{position:relative}
+.mo-etincelle{position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px;border-radius:50%;pointer-events:none;
+  background:var(--ember-glow,#f0b877);box-shadow:0 0 6px var(--ember,#d5642a);opacity:0}
+
+@media print{#mo-braise,.mo-tison,.mo-etincelle{display:none !important}
+  html.mo .mo-attente,html.mo .mo-sombre{opacity:1 !important;transform:none !important}}
+
+/* =====================================================================
+   MOUVEMENT — uniquement sous html.mo
+   ===================================================================== */
+html.mo .mo-tison{opacity:1}
+html.mo nav.rail.mo-glisse .navlink.active{border-left-color:transparent}
+
+/* en entrant dans une page, le filigrane se trace à la braise */
+html.mo section.mo-entre .hero .wm .mo-l{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);
+  animation:mo-trace 1.7s cubic-bezier(.45,0,.3,1) forwards;animation-delay:calc(var(--k,0) * .12s + .1s)}
+
+/* la lanterne : la flamme s'attise */
+.hero .wm .mo-flamme{transform-box:fill-box;transform-origin:50% 100%;fill:currentColor;fill-opacity:0}
+html.mo .hero.mo-attise .wm .mo-flamme{animation:mo-vacille 2.4s ease-in-out}
+html.mo .hero.mo-attise .wm .mo-halo{transform-box:fill-box;transform-origin:50% 50%;animation:mo-tourne 2.4s cubic-bezier(.3,0,.3,1)}
+/* le télécran : l'œil suit, les lignes grésillent */
+.hero .wm .mo-iris{transition:transform .35s cubic-bezier(.2,.8,.3,1)}
+html.mo .hero.mo-attise .wm .mo-trame{animation:mo-gresille .9s steps(6,end)}
+/* la pousse : les feuilles se déplient, les étoiles scintillent */
+.hero .wm .mo-feuille{transform-box:fill-box}
+.hero .wm .mo-feuille.g{transform-origin:100% 100%}
+.hero .wm .mo-feuille.d{transform-origin:0 100%}
+html.mo section.mo-entre .hero .wm .mo-feuille{animation:mo-deplie 1.2s cubic-bezier(.3,1.4,.5,1) .9s backwards}
+html.mo .hero.mo-attise .wm .mo-feuille{animation:mo-brise 1.6s ease-in-out}
+.hero .wm .mo-etoiles{transform-box:fill-box;transform-origin:50% 50%}
+html.mo .hero.mo-attise .wm .mo-etoiles{animation:mo-scintille 1.6s ease-in-out}
+
+/* « révisé » : des étincelles montent, le point du rail prend feu, la jauge s'embrase */
+html.mo .mo-etincelle{animation:mo-etincelle .9s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:var(--d,0s)}
+html.mo .navlink.done.mo-allume::after{animation:mo-braise 1.2s ease-out}
+html.mo .rail .prog .bar.mo-allume i{animation:mo-jauge 1.2s ease-out}
+html.mo .reviewed button.on.mo-allume{animation:mo-braise-btn 1s ease-out}
+
+/* les blocs du dessous arrivent quand on les atteint */
+html.mo .mo-attente{opacity:0;transform:translateY(16px)}
+html.mo .mo-vu{transition:opacity .6s ease-out,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--k,0) * .07s)}
+/* les vers s'éclairent à la lueur du feu, à mesure qu'on les atteint */
+html.mo .poem .vln.mo-sombre{opacity:.18}
+html.mo .poem .vln.mo-lueur{transition:opacity .8s ease-out;transition-delay:calc(var(--k,0) * .06s)}
+
+/* Butler : changer de mode fond le texte ; une scène atteinte par l'index rougeoie */
+html.mo .mo-repere{animation:mo-repere 1.8s ease-out}
+
+@keyframes mo-trace{to{stroke-dashoffset:0}}
+@keyframes mo-vacille{0%{fill-opacity:0;transform:none}15%{fill-opacity:.45;transform:scale(1.08,1.14)}30%{transform:scale(.95,.92) skewX(3deg)}
+  45%{fill-opacity:.35;transform:scale(1.05,1.1) skewX(-3deg)}60%{transform:scale(.97,.95)}80%{fill-opacity:.25;transform:scale(1.02,1.04)}100%{fill-opacity:0;transform:none}}
+@keyframes mo-tourne{from{transform:rotate(0)}to{transform:rotate(60deg)}}
+@keyframes mo-gresille{0%,100%{opacity:.55}20%{opacity:.15}40%{opacity:.9}60%{opacity:.3}80%{opacity:.8}}
+@keyframes mo-deplie{from{transform:scale(.1) rotate(-8deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes mo-brise{0%,100%{transform:none}30%{transform:rotate(-6deg)}65%{transform:rotate(4deg)}}
+@keyframes mo-scintille{0%,100%{opacity:1;transform:none}25%{opacity:.2;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}75%{opacity:.4}}
+@keyframes mo-etincelle{0%{opacity:0;transform:translate(0,0) scale(1)}15%{opacity:1}100%{opacity:0;transform:translate(var(--x,0),var(--y,-40px)) scale(.3)}}
+@keyframes mo-braise{0%{box-shadow:0 0 0 0 rgba(240,184,119,.9);transform:scale(1)}40%{box-shadow:0 0 0 7px rgba(213,100,42,0);transform:scale(1.8)}100%{box-shadow:0 0 0 0 rgba(213,100,42,0);transform:scale(1)}}
+@keyframes mo-jauge{0%{filter:none}30%{filter:brightness(1.8) drop-shadow(0 0 4px #f0b877)}100%{filter:none}}
+@keyframes mo-braise-btn{0%{box-shadow:0 0 0 0 rgba(213,100,42,.55)}100%{box-shadow:0 0 0 12px rgba(213,100,42,0)}}
+@keyframes mo-repere{0%{box-shadow:-14px 0 0 -11px rgba(240,184,119,0);background-color:rgba(213,100,42,0)}
+  20%{box-shadow:-14px 0 0 -11px rgba(240,184,119,1);background-color:rgba(213,100,42,.12)}100%{box-shadow:-14px 0 0 -11px rgba(240,184,119,0);background-color:rgba(213,100,42,0)}}

@@ -255,6 +255,15 @@ function lecture(){
     clearTimeout(arret); arret = setTimeout(function(){ tranche.classList.remove("ecrit"); }, 260);
   }
   yAvant = scrollY;
+  if(scrollY >= h - 2) auBout();
+}
+/* tout en bas de la page, la marge de l'observateur ne peut plus être franchie : on montre ce qui reste */
+function auBout(){
+  $$(".mo-attente").forEach(function(el){
+    if(el.getBoundingClientRect().top >= innerHeight) return;
+    el.classList.remove("mo-attente");
+    if(io) io.unobserve(el);
+  });
 }
 addEventListener("scroll", function(){ if(!tick){ tick = true; requestAnimationFrame(lecture); } }, {passive:true});
 addEventListener("resize", function(){ lecture(); guides(true); });
