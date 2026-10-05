@@ -1,0 +1,99 @@
+/* =====================================================================
+   COUCHE DE MOUVEMENT — « l'écran s'éteint, la lampe s'allume »
+   Feuille maintenue à part de index.html.
+   La page garde son unique moment orchestré au chargement (la lueur de
+   lampe). Tout le reste répond à la lecture, lentement : la veillée
+   avance, la lumière froide de l'écran se retire, la chaleur gagne.
+   Ce qui bouge est rangé sous html.mo, posée par motion.js seulement si
+   l'appareil n'a pas demandé à réduire les animations. Ce qui attend son
+   apparition porte .mo-attente, posée par le même script : sans lui,
+   rien n'est caché.
+   ===================================================================== */
+
+/* ---------- A. la lumière froide de l'écran, en bas de page ---------- */
+#mo-ecran{position:fixed;left:50%;bottom:-34vh;width:140vw;max-width:1250px;aspect-ratio:1.5;transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 50%,rgba(125,149,206,.2) 0%,rgba(125,149,206,.075) 40%,rgba(125,149,206,0) 70%);
+  pointer-events:none;z-index:0;opacity:var(--o,1)}
+
+/* ---------- B. la veillée : le filet de lecture sous la barre ---------- */
+#mo-veillee{position:fixed;left:0;right:0;top:var(--haut,0px);height:2px;margin-top:-1px;z-index:21;pointer-events:none}
+#mo-veillee .v-trait{position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--ecran),var(--mousse) 55%,var(--ambre));
+  clip-path:inset(0 calc((1 - var(--p,0)) * 100%) 0 0)}
+#mo-veillee .v-tete{position:absolute;top:50%;left:calc(var(--p,0) * 100%);width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;
+  background:color-mix(in oklab,var(--ecran),var(--ambre) calc(var(--p,0) * 100%));
+  box-shadow:0 0 10px 2px color-mix(in oklab,var(--ecran),var(--ambre) calc(var(--p,0) * 100%))}
+
+/* ---------- C. la section en cours, dans la barre ---------- */
+.barre nav{position:relative}
+.barre nav a{position:relative;z-index:1}
+.barre nav a.mo-ici{color:var(--ivoire)}
+.mo-pastille{position:absolute;left:0;top:0;border-radius:999px;background:rgba(232,163,79,.14);
+  box-shadow:inset 0 0 0 1px rgba(232,163,79,.22);pointer-events:none;z-index:0;opacity:0}
+
+/* ---------- D. la chronologie australienne ---------- */
+.chrono .mo-fil{position:absolute;left:5px;top:.6rem;width:2px;height:calc(100% - 1.2rem);transform-origin:50% 0;transform:scaleY(var(--f,1));
+  background:linear-gradient(180deg,var(--ambre),var(--ecran));box-shadow:0 0 8px rgba(232,163,79,.35);pointer-events:none}
+
+/* ---------- E. le ciel du pied de page : une bande sous le colophon, jamais sur le texte ---------- */
+footer{position:relative;overflow:hidden}
+footer.mo-avec-ciel{padding-bottom:7.5rem}
+footer .dedans{position:relative;z-index:1}
+.mo-ciel{position:absolute;left:0;right:0;bottom:0;height:6.2rem;pointer-events:none;z-index:0}
+.mo-etoile{position:absolute;width:var(--t,2px);height:var(--t,2px);border-radius:50%;background:var(--ivoire);opacity:var(--a,.5);
+  box-shadow:0 0 6px rgba(243,234,221,.6)}
+.mo-lune{position:absolute;right:13%;top:22%;width:20px;height:20px;border-radius:50%;box-shadow:-5px 4px 0 0 var(--ivoire);
+  transform:rotate(-12deg);opacity:.85;filter:drop-shadow(0 0 6px rgba(243,234,221,.45))}
+
+@media print{#mo-ecran,#mo-veillee,.mo-pastille,.mo-fil,.mo-ciel{display:none !important}
+  .mo-attente,.mo-attente *{opacity:1 !important;transform:none !important;stroke-dashoffset:0 !important}}
+
+/* =====================================================================
+   MOUVEMENT — uniquement sous html.mo
+   ===================================================================== */
+html.mo #mo-ecran{transition:opacity .9s ease-out}
+html.mo .mo-pastille{transition:transform .6s cubic-bezier(.3,.9,.3,1),width .6s cubic-bezier(.3,.9,.3,1),opacity .4s ease}
+html.mo .barre nav a{transition:color .5s ease}
+html.mo .chrono .mo-fil{transition:transform .5s ease-out}
+
+/* la chronologie : le fil sombre attend, chaque date s'allume quand le fil l'atteint */
+html.mo .chrono.mo-suivi::before{opacity:.22}
+html.mo .chrono.mo-suivi li::before{transition:background-color .7s ease,box-shadow .9s ease,transform .7s cubic-bezier(.3,1.4,.5,1);background:var(--nuit-clair);box-shadow:inset 0 0 0 1.5px var(--ambre-bas)}
+html.mo .chrono.mo-suivi li.mo-allume::before{background:var(--ambre);box-shadow:0 0 0 4px rgba(232,163,79,.14),0 0 16px 2px rgba(232,163,79,.5);transform:scale(1.15)}
+html.mo .chrono.mo-suivi li time{transition:color .7s ease}
+html.mo .chrono.mo-suivi li:not(.mo-allume) time{color:var(--ambre-bas)}
+
+/* les ondes se tracent quand on les atteint */
+html.mo .onde.mo-attente path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+html.mo .onde.mo-vu path{stroke-dasharray:var(--len);stroke-dashoffset:0;transition:stroke-dashoffset 2.2s cubic-bezier(.35,.1,.25,1)}
+
+/* les quatre notions s'installent, la mousse d'abord */
+html.mo .notions.mo-attente li{opacity:0;transform:translateX(-14px)}
+html.mo .notions.mo-vu li{transition:opacity .9s ease-out,transform 1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--k,0) * .18s)}
+
+/* les chiffres qui comptent s'allument une fois */
+html.mo .chiffres.mo-vu b{animation:mo-luit 1.8s ease-out backwards;animation-delay:calc(var(--k,0) * .22s)}
+
+/* le plan des dix minutes : les étapes s'éclairent dans l'ordre de l'oral */
+html.mo .plan.mo-vu li::before{animation:mo-etape 1.3s ease-out backwards;animation-delay:calc(var(--k,0) * .32s)}
+html.mo .plan.mo-vu .minutage{animation:mo-apparait 1s ease-out backwards;animation-delay:calc(var(--k,0) * .32s + .25s)}
+
+/* le ciel : les étoiles naissent une à une, scintillent deux fois, restent */
+html.mo .mo-etoile{animation:mo-nait 1.6s ease-out backwards,mo-scintille 2.4s ease-in-out 2;animation-delay:var(--d,0s),calc(var(--d,0s) + 1.6s)}
+html.mo .mo-lune{animation:mo-lune 3s ease-out 3.4s backwards}
+
+@media (hover:hover){
+  html.mo .carte,html.mo .galet{transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s ease}
+  html.mo .carte:hover,html.mo .galet:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(10,6,14,.35)}
+}
+
+@keyframes mo-luit{0%{color:var(--ambre-bas);text-shadow:none}
+  35%{color:#FFD9A0;text-shadow:0 0 14px rgba(232,163,79,.85),0 0 2px rgba(255,217,160,.6)}
+  100%{color:var(--ambre);text-shadow:0 0 0 rgba(232,163,79,0)}}
+@keyframes mo-etape{0%{background:rgba(232,163,79,.04);color:var(--ambre-bas)}
+  40%{background:rgba(232,163,79,.55);color:var(--nuit);box-shadow:0 0 18px rgba(232,163,79,.45)}
+  100%{background:rgba(232,163,79,.16);color:var(--ambre);box-shadow:none}}
+@keyframes mo-apparait{from{opacity:0}to{opacity:1}}
+@keyframes mo-nait{from{opacity:0;transform:scale(.2)}to{opacity:var(--a,.5);transform:none}}
+@keyframes mo-lune{from{opacity:0;transform:rotate(-40deg) translateY(10px)}to{opacity:.85;transform:rotate(-12deg)}}
+@keyframes mo-scintille{0%,100%{opacity:var(--a,.5)}50%{opacity:calc(var(--a,.5) * .25)}}
