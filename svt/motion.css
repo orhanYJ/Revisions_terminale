@@ -1,0 +1,33 @@
+/* =====================================================================
+   COMPLÉMENT DE MOUVEMENT — « tout ce qu'on fait fait pousser quelque chose »
+   Feuille maintenue à part de index.html. Elle s'ajoute aux deux couches
+   écrites dans la page (html.mo et html.mo2) sans en reprendre aucune :
+   un jardin vivant à l'accueil, une double hélice d'ADN dans l'en-tête
+   des chapitres, des blocs qui poussent en arrivant, des schémas qui
+   invitent au toucher, des pluies de feuilles et de pétales au QCM.
+   Tout ce qui bouge est sous html.mo, posée par la couche de la page
+   seulement si l'appareil n'a pas demandé à réduire les animations.
+   ===================================================================== */
+
+canvas.mo3-jardin,canvas.mo3-helice{position:absolute;pointer-events:none}
+canvas.mo3-jardin{z-index:0}
+canvas.mo3-helice{z-index:0}
+.chaphead .ph-txt,.chaphead .medal{position:relative;z-index:1}
+canvas.mo3-pluie{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:120}
+.mo3-soleil{position:fixed;inset:0;pointer-events:none;z-index:119;opacity:0;
+  background:radial-gradient(circle at var(--x,50%) var(--y,50%),rgba(240,247,216,.9),rgba(183,217,76,.35) 24%,rgba(47,125,82,.12) 46%,transparent 70%)}
+html[data-theme="dark"] .mo3-soleil{mix-blend-mode:screen}
+.mo3-eclosion{position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(circle at var(--x,50%) var(--y,50%),rgba(183,217,76,.38),rgba(47,125,82,.12) 35%,transparent 65%)}
+
+@media print{canvas.mo3-jardin,canvas.mo3-helice,canvas.mo3-pluie,.mo3-soleil,.mo3-eclosion{display:none !important}}
+
+/* =====================================================================
+   MOUVEMENT — uniquement sous html.mo
+   ===================================================================== */
+/* la plante du programme se penche dans le vent de la main */
+html.mo .mo-plante{transform-origin:50% 100%;transform:rotate(var(--mo3-vent,0deg));transition:transform .9s cubic-bezier(.2,.9,.3,1.3)}
+
+/* le bouton d'étape d'un schéma invite au toucher */
+html.mo .schema .mo3-invite{animation:mo3-invite 1.1s ease-in-out 3}
+@keyframes mo3-invite{0%,100%{box-shadow:0 0 0 0 rgba(183,217,76,0)}50%{box-shadow:0 0 0 7px rgba(183,217,76,.45)}}
