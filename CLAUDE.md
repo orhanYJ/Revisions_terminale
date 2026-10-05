@@ -91,7 +91,7 @@ Direction artistique « végétale » : papier crème `#F7F4EC`, encre forêt `#
 
 Consigne de la prof : apprendre le vocabulaire listé et s'entraîner à rédiger seul plutôt que relire. Chaque unité est outillée en conséquence (vocabulaire, rédaction avec correction, QCM).
 
-État : chapitre 1 « L'origine du génotype des individus », unités 1 et 2 rédigées. **Unités 3 et 4 volontairement non écrites** tant que la classe n'y est pas. Orhan se dit très faible en géologie : ces chapitres doivent être particulièrement solides.
+État : chapitre 1 « L'origine du génotype des individus » **terminé** (le chapitre 2 de Mme Philip s'ouvre sur « Nous avons vu les transferts verticaux »). Il compte deux unités seulement, d'après l'en-tête de la fiche de TP « Chap 1 – Unité 2 » : unité 1 (`t1u1`, clones), unité 2 (`t1u2`, brassages) et sa suite sur une page séparée (`t1u2b`, « Accidents génétiques lors de la méiose », ajoutée le 05/10/2026 depuis l'exposé collectif « support Eva », le TP globines et les notes d'Orhan). Il n'y a pas d'unités 3 et 4. Le diaporama des accidents a été rédigé par les élèves et contient des erreurs (corrigées dans le site, signalées en encadrés). Chapitre 2 « Complexification des génomes » (`t2`) : traité en classe jusqu'à la syncytine au 05/10/2026 (TP type bac syncytine fait à distance, **non corrigé**) ; transduction et endosymbioses pas encore vues. Orhan se dit très faible en géologie : ces chapitres doivent être particulièrement solides.
 
 ### DNL Histoire-Géo (`dnl/`)
 
@@ -223,7 +223,7 @@ Orientation décidée par Cengiz (29/09/2026) : les **animations explicatives d�
 - **ACL écrit** : paragraphes PEEL modèles ; chapitres 11 à 21 de *Brick Lane* puis outillage d'attaque ; notes de cours du professeur pour Lughnasa.
 - **ACL oral** : trois poèmes restants ; Butler à partir du chapitre 14 **seulement quand la classe y sera**.
 - **DNL** : chapitres restants au fil des cours de M. Ros ; section « Oral » simulant le tirage croisé ; intégrer la liste officielle des 10 Key Issues + 10 Key Terms (distribuée vers fin avril) ; QCM et flashcards par chapitre ; rappels de Première (thème 4 d'histoire, la Première Guerre mondiale, jamais traité en classe par Orhan, à rédiger au niveau des chapitres de Terminale).
-- **SVT** : unités 3 et 4 du chapitre 1 quand la classe y sera, puis les chapitres suivants unité par unité depuis les notes et diaporamas de Mme Philip ; refonte animée par schémas motion design.
+- **SVT** : chapitre 2 (complexification des génomes) jusqu'à la syncytine, puis la suite au fil du cours, puis les chapitres suivants unité par unité depuis les notes et diaporamas de Mme Philip ; refonte animée par schémas motion design.
 - **PC** : reprendre le chapitre 1 sur le modèle du chapitre 2 ; chapitres suivants selon la progression ; animation de conductimétrie.
 - **Philo** : ouvrir les trois autres parties du chapitre I au fil du cours. Point ouvert à poser à M. Bellon : l'exemple de la chute libre illustre-t-il la liberté comme mouvement sans obstacle, ou la ruine-t-il ? Erreur à corriger dans le brouillon d'Orhan sur le Kant : il a noté « la liberté vient de la suppression de tous les désirs », le texte dit l'inverse (« tu dois, donc tu peux »).
 - **Italien, Red Pen** : extension selon la progression d'Orhan.
