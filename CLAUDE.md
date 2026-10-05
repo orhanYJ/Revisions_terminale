@@ -109,7 +109,7 @@ Programme réel de M. Aurélien Ros (Histoire) : T1 « The fragilisation of demo
 
 Structure imposée par Cengiz pour la question a) du DBQ : jugement dès la première ligne (largely / significantly / partly / slightly useful), document présenté en une phrase, paragraphe d'atouts à plusieurs arguments, paragraphe de limites à plusieurs arguments.
 
-État : H1 (« The Wall Street Crash and its Impact ») réécrit en entier à partir du diaporama de M. Ros ; H2 (régimes totalitaires) construit jusqu'à la partie I ; les autres chapitres sont des placeholders. Un script d'audit (`audit_idee_exemple.py`) vérifiait l'ancrage date/chiffre/nom propre de chaque exemple dans les deux langues : **il n'est pas dans le dépôt**.
+État : H1 (« The Wall Street Crash and its Impact ») réécrit en entier à partir du diaporama de M. Ros ; H2 (régimes totalitaires) construit jusqu'à la fin de la partie II (II.1 culte de la personnalité et du parti, II.2 contrôle de la société et homme nouveau, II.3 terreur de masse, d'après les notes et les Worksheets 3 et 4, rédigée le 05/10/2026) ; la partie III est commencée en classe (III.1, Worksheet 5 : expansions allemande, italienne, japonaise) mais pas encore rédigée ; les autres chapitres sont des placeholders. Un script d'audit (`audit_idee_exemple.py`) vérifiait l'ancrage date/chiffre/nom propre de chaque exemple dans les deux langues : **il n'est pas dans le dépôt**.
 
 ### Philosophie (`philo/`)
 
@@ -172,7 +172,7 @@ Orientation décidée par Cengiz (29/09/2026) : les **animations explicatives d�
 
 - Chaque site a un `manifest.json` (`display: standalone`, `start_url: "./"`, `scope: "./"`, icônes 192 et 512 en `any maskable`) et un `sw.js`.
 - Stratégie : **réseau d'abord pour la page** (une nouvelle version est visible dès le prochain lancement, sans vider le cache), **cache d'abord pour les assets**.
-- Chaque `sw.js` porte un nom de cache versionné en tête de fichier (`svt-v5`, `dnl-v15-mouvement`, `philo-v1`, `redpen-v2`, `cdm-v2`, `fenuareo-v1`, etc.). **Incrémenter ce nom à chaque livraison qui ajoute ou modifie un fichier annexe.**
+- Chaque `sw.js` porte un nom de cache versionné en tête de fichier (`svt-v5`, `dnl-v16-h2-partie2`, `philo-v3`, `redpen-v2`, `cdm-v2`, `fenuareo-v2`, etc.). **Incrémenter ce nom à chaque livraison qui ajoute ou modifie un fichier annexe.**
 - Le dépôt étant public, ne rien y mettre qu'on ne veuille pas voir en ligne.
 
 ---
