@@ -1,0 +1,101 @@
+/* =====================================================================
+   COUCHE DE MOUVEMENT — « la chouette de Minerve prend son envol »
+   Feuille maintenue à part de index.html (application React) : elle ne
+   cible que des classes stables et n'impose rien sans html.mo, classe
+   posée par motion.js seulement si l'appareil n'a pas demandé à réduire
+   les animations. Les entrées passent par l'API Web Animations : aucun
+   attribut géré par React n'est jamais réécrit. Les couleurs suivent le
+   thème choisi (variables --saffron, --teal, --crimson, --ink…).
+   ===================================================================== */
+
+/* ---------- couches propres à la couche de mouvement ---------- */
+#mo-couche{position:fixed;inset:0;pointer-events:none;z-index:300;overflow:hidden}
+.mo-feuille{position:absolute;width:var(--s,12px);height:calc(var(--s,12px) * .55);margin:calc(var(--s,12px) * -.27) 0 0 calc(var(--s,12px) / -2);
+  background:var(--c,#c8862a);border-radius:0 100% 0 100%;animation:mo-feuille var(--t,1s) cubic-bezier(.15,.75,.3,1) forwards}
+.mo-onde{position:absolute;width:0;height:0;transform:translate(-50%,-50%);border-radius:50%;border:2px solid var(--c,#c8862a);animation:mo-onde .75s cubic-bezier(.2,.7,.3,1) forwards}
+.mo-ruban{position:absolute;transform:translate(-50%,-50%);padding:8px 18px 8px 14px;border-radius:3px;background:var(--ink,#1c2438);color:var(--ivory,#f3eee2);
+  font:600 14px/1.2 'Spectral',Georgia,serif;font-style:italic;white-space:nowrap;box-shadow:0 10px 26px rgba(0,0,0,.25);border:1px solid var(--saffron,#c8862a);
+  animation:mo-ruban 2.3s cubic-bezier(.2,.9,.3,1) forwards}
+.mo-ruban b{color:var(--saffron,#c8862a);font-style:normal;font-size:17px;margin-right:7px}
+/* la chouette en vol */
+.mo-envol{position:absolute;left:0;top:0;width:74px;height:46px;color:var(--ink,#1c2438);filter:drop-shadow(0 4px 6px rgba(0,0,0,.18))}
+.mo-envol svg{width:100%;height:100%;overflow:visible;display:block}
+.mo-envol .aile{transform-box:fill-box;animation:mo-battre .32s ease-in-out infinite alternate}
+.mo-envol .aile.g{transform-origin:100% 60%}
+.mo-envol .aile.d{transform-origin:0 60%}
+.mo-envol .oeil{fill:var(--saffron,#c8862a)}
+
+/* ---------- les idées qui flottent dans l'en-tête de l'accueil ---------- */
+.hero{position:relative}
+canvas.mo-idees{position:absolute;left:-40px;right:-40px;top:-30px;bottom:-20px;width:calc(100% + 80px);height:calc(100% + 50px);pointer-events:none;z-index:0}
+.hero > :not(canvas){position:relative;z-index:1}
+
+/* ---------- la pastille de la barre latérale ---------- */
+.mo-pastille{position:absolute;left:0;top:0;border-radius:5px;background:var(--saffron,#c8862a);pointer-events:none;opacity:0;z-index:0;
+  box-shadow:0 4px 14px rgba(0,0,0,.25)}
+
+/* ---------- le vol de lecture ---------- */
+#mo-vol{position:fixed;left:var(--g,0px);width:var(--l,100vw);top:var(--h,0px);height:24px;margin-top:-12px;z-index:35;pointer-events:none;opacity:0;transition:opacity .4s ease}
+#mo-vol.on{opacity:1}
+#mo-vol .v-fil{position:absolute;left:0;top:50%;height:2px;margin-top:-1px;width:calc(var(--p,0) * 100%);border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--saffron,#c8862a))}
+#mo-vol .v-chouette{position:absolute;top:50%;left:calc(var(--p,0) * 100%);width:22px;height:22px;margin:-15px 0 0 -11px;color:var(--saffron-deep,#a5661b)}
+#mo-vol .v-chouette svg{width:100%;height:100%;display:block;overflow:visible}
+
+/* le son des cartes */
+.mo-son{position:fixed;right:16px;bottom:16px;z-index:60;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;padding:0;cursor:pointer;
+  border:1px solid var(--rule,#d8ccb0);background:var(--paper,#faf6ec);color:var(--ink,#1c2438);box-shadow:0 4px 14px rgba(0,0,0,.12);
+  opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s ease,transform .3s ease}
+.mo-son.vu{opacity:1;pointer-events:auto;transform:none}
+.mo-son svg{width:18px;height:18px}
+.mo-son[aria-pressed="false"] .ondes{display:none}
+.mo-son[aria-pressed="true"] .barre{display:none}
+.mo-son:hover{border-color:var(--saffron,#c8862a)}
+
+@media print{#mo-couche,#mo-vol,.mo-pastille,canvas.mo-idees,.mo-son{display:none !important}}
+
+/* =====================================================================
+   MOUVEMENT — uniquement sous html.mo
+   ===================================================================== */
+/* la pastille remplace le fond de l'entrée active pour pouvoir glisser */
+html.mo .sidebar.mo-a-pastille .navitem.on{background:transparent}
+html.mo .sidebar.mo-a-pastille .navitem{position:relative;z-index:1}
+html.mo .mo-pastille{transition:transform .5s cubic-bezier(.3,1.25,.4,1),height .35s ease,width .35s ease,opacity .3s ease}
+
+/* les cartes de l'index s'inclinent sous la main */
+html.mo .index-grid{perspective:1100px}
+html.mo .index-cell{transform-style:preserve-3d;transition:background .13s,box-shadow .3s ease}
+html.mo .index-cell:hover{box-shadow:0 14px 30px rgba(0,0,0,.10);z-index:2}
+
+/* les flashcards rebondissent en se retournant */
+html.mo .flash-inner{transition:transform .65s cubic-bezier(.3,1.35,.45,1)}
+html.mo .flash:hover .flash-face{border-color:var(--saffron,#c8862a)}
+html.mo .approf-ico{transition:transform .4s cubic-bezier(.3,1.6,.5,1),background-color .3s ease}
+html.mo .approf.open .approf-ico{transform:rotate(180deg);background:var(--saffron,#c8862a);color:var(--navon-text,#fff)}
+
+/* la chouette de lecture bat des ailes tant qu'on défile */
+html.mo #mo-vol.vole .v-chouette .aile{animation:mo-battre .22s ease-in-out infinite alternate}
+#mo-vol .v-chouette .aile{transform-box:fill-box}
+#mo-vol .v-chouette .aile.g{transform-origin:100% 50%}
+#mo-vol .v-chouette .aile.d{transform-origin:0 50%}
+html.mo #mo-vol.fin .v-chouette{animation:mo-perche .9s cubic-bezier(.3,1.6,.5,1)}
+
+/* changer de page : la nouvelle s'ouvre depuis le doigt ; un onglet glisse */
+::view-transition-old(root){animation:mo-vt-recul .55s cubic-bezier(.4,0,.2,1) both}
+::view-transition-new(root){animation:mo-vt-cercle .65s cubic-bezier(.3,.7,.2,1) both}
+html[data-mo-vt="onglet"]::view-transition-old(root){animation:mo-vt-sort .3s ease-in both}
+html[data-mo-vt="onglet"]::view-transition-new(root){animation:mo-vt-entre .42s cubic-bezier(.2,.8,.2,1) both}
+
+@keyframes mo-feuille{0%{opacity:0;transform:translate(0,0) rotate(0) scale(.2)}
+  12%{opacity:1;transform:translate(calc(var(--dx)*.3),calc(var(--dy)*.3)) rotate(calc(var(--r)*.25)) scale(1.15)}
+  70%{opacity:1}
+  100%{opacity:0;transform:translate(var(--dx),calc(var(--dy) + var(--g,40px))) rotate(var(--r)) scale(.7)}}
+@keyframes mo-onde{from{opacity:.9;width:0;height:0}to{opacity:0;width:calc(var(--k,7) * 14px);height:calc(var(--k,7) * 14px)}}
+@keyframes mo-ruban{0%{opacity:0;transform:translate(-50%,-10%) scale(.7) rotate(-5deg)}14%{opacity:1;transform:translate(-50%,-70%) scale(1.07) rotate(1deg)}
+  24%{transform:translate(-50%,-70%) scale(1) rotate(0)}82%{opacity:1;transform:translate(-50%,-80%)}100%{opacity:0;transform:translate(-50%,-140%)}}
+@keyframes mo-battre{from{transform:scaleY(1)}to{transform:scaleY(-.35)}}
+@keyframes mo-perche{0%{transform:scale(1)}40%{transform:scale(1.6) rotate(-10deg)}100%{transform:scale(1)}}
+@keyframes mo-vt-recul{to{opacity:.3;transform:scale(.975)}}
+@keyframes mo-vt-cercle{from{clip-path:circle(0 at var(--vx,50%) var(--vy,40%))}to{clip-path:circle(150% at var(--vx,50%) var(--vy,40%))}}
+@keyframes mo-vt-sort{to{opacity:0;transform:translateX(calc(var(--vs,1) * -24px))}}
+@keyframes mo-vt-entre{from{opacity:0;transform:translateX(calc(var(--vs,1) * 32px))}}
