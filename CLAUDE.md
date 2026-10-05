@@ -87,7 +87,7 @@ JS natif. Constantes principales dans `index.html` :
 - `SCHEMAS` : schémas SVG interactifs (`SCHEMAS.mitose = {...}`).
 - `QCM` (clés comme `t1u1`), `REDAC` (rédaction avec correction), `METHODE_PHILIP`, `SPECIMENS`, `ICONS`, `VOCAB`.
 
-Direction artistique « végétale » : papier crème `#F7F4EC`, encre forêt `#17281E`, vert `#2F7D52`, citron `#B7D94C`. Mode sombre. Le mouvement est directement dans `index.html`.
+Direction artistique « végétale » : papier crème `#F7F4EC`, encre forêt `#17281E`, vert `#2F7D52`, citron `#B7D94C`. Mode sombre. Le mouvement est en deux couches : une écrite dans `index.html`, un complément dans `motion.css` / `motion.js` (voir §5).
 
 Consigne de la prof : apprendre le vocabulaire listé et s'entraîner à rédiger seul plutôt que relire. Chaque unité est outillée en conséquence (vocabulaire, rédaction avec correction, QCM).
 
@@ -119,7 +119,7 @@ M. Thomas Bellon ne traite **pas** les notions une par une : il fait des chapitr
 
 ### Physique-Chimie (`pc/`)
 
-JS natif, 21 chapitres dans l'ordre du professeur, thème orange sur sombre. Seul le chapitre 1 est entièrement ouvert, le chapitre 2 est fait ; le reste est en placeholder. Pour chaque chapitre : plan de travail du professeur, **plus** d'autres exercices du manuel (Le Livre Scolaire) et des exercices type bac créés par Claude **signalés comme tels**, dont des exercices bilan couvrant toutes les notions exigibles. Le chapitre 1 reste à reprendre sur ce modèle. Visuels de labo complexes : prompts pour Nano Banana (anglais, fond blanc, style vectoriel plat de manuel, annotations en français, flèches `#E45C10`).
+JS natif, 21 chapitres dans l'ordre du professeur, thème orange sur sombre. Chapitres 1 à 3 ouverts (le 3, méthodes chimiques d'analyse / titrage, ajouté le 02/10/2026) ; le reste est en placeholder. Pour chaque chapitre : plan de travail du professeur, **plus** d'autres exercices du manuel (Le Livre Scolaire) et des exercices type bac créés par Claude **signalés comme tels**, dont des exercices bilan couvrant toutes les notions exigibles. Le chapitre 1 reste à reprendre sur ce modèle. Visuels de labo complexes : prompts pour Nano Banana (anglais, fond blanc, style vectoriel plat de manuel, annotations en français, flèches `#E45C10`).
 
 ### ACL écrit (`acl-ecrit/`, `acl-lughnasa/`, `acl-bricklane/`)
 
@@ -135,7 +135,7 @@ Barème BFI (/20, paliers « Key Points ») : KP20 remarquable, KP17 très bon, 
 Le hub porte les onglets de cadrage, l'onglet de thèses transversales, le diagramme SVG « Ponts entre œuvres » et les six poèmes : trois analysés (*Darkness* de Byron, *Eve to Her Daughters* de Wright, *Morning in the Burned House* d'Atwood), trois différés (*The Hollow Men*, *The Second Coming*, *The Unknown Citizen*).
 
 - **1984** : huit parties, un onglet chacune ; peu de citations (6).
-- **Butler** : chapitres 1 à 6 complets, 110 scènes, 25 citations vérifiées contre le texte. **La classe s'est arrêtée au chapitre 6** : ne rien écrire au-delà jusqu'à nouvel ordre.
+- **Butler** : chapitres 1 à 13 complets, scène par scène, bilingues, citations vérifiées contre le texte (ch. 1-6 : 110 scènes, 25 citations ; ch. 7-9 : 54 scènes, 12 citations ; ch. 10-13 ajoutés ensuite), modes détaillé / express. **Ne rien écrire au-delà du chapitre 13** tant que Cengiz n'a pas confirmé que la classe y est.
 
 ### Italien, Red Pen, CDM
 
@@ -159,7 +159,7 @@ Sur les sites animés, le mouvement est maintenu **à part du contenu** dans `mo
 - Quand un `index.html` régénéré remplace l'ancien, **réinsérer ce bloc** s'il a disparu.
 - Quand `motion.css` ou `motion.js` change, **incrémenter `?v=N`** et le numéro de cache du `sw.js` (les service workers servent ces fichiers cache d'abord).
 - Tout ce qui bouge est rangé sous `html.mo`, classe posée seulement si l'appareil n'a pas demandé de réduire les animations. **Rien n'est jamais caché en attendant une animation.**
-- SVT et PC portent leur mouvement directement dans `index.html`.
+- SVT et PC ont deux couches : une première écrite directement dans `index.html`, qui expose des outils sur `window.MO`, et un complément dans `motion.css` / `motion.js` qui réutilise ces outils sans rien réécrire.
 
 Orientation décidée par Cengiz (29/09/2026) : les **animations explicatives détaillées** de SVT et de physique-chimie (50 à 100 visées) iront dans un **site à part** dédié aux animations ; pour DNL, philo, ACL, etc., seules de petites animations motivantes sont intégrées au site. Style voulu : des schémas qui **se déroulent** (chromosomes qui se rapprochent, se superposent, se séparent), légendes qui apparaissent au fil de l'animation, rendu doux et organique. Cengiz juge que des schémas qui se contentent de se dessiner « ne servent à rien » : il veut voir le phénomène se produire. L'animation méiose / crossing-over du 29/09 a été jugée « parfaite » et sert de référence.
 
@@ -218,7 +218,7 @@ Orientation décidée par Cengiz (29/09/2026) : les **animations explicatives d�
 ## 9. Reste à faire
 
 - **ACL écrit** : paragraphes PEEL modèles ; chapitres 11 à 21 de *Brick Lane* puis outillage d'attaque ; notes de cours du professeur pour Lughnasa.
-- **ACL oral** : trois poèmes restants ; Butler à partir du chapitre 7 **seulement quand la classe y sera**.
+- **ACL oral** : trois poèmes restants ; Butler à partir du chapitre 14 **seulement quand la classe y sera**.
 - **DNL** : chapitres restants au fil des cours de M. Ros ; section « Oral » simulant le tirage croisé ; intégrer la liste officielle des 10 Key Issues + 10 Key Terms (distribuée vers fin avril) ; QCM et flashcards par chapitre ; rappels de Première (thème 4 d'histoire, la Première Guerre mondiale, jamais traité en classe par Orhan, à rédiger au niveau des chapitres de Terminale).
 - **SVT** : unités 3 et 4 du chapitre 1 quand la classe y sera, puis les chapitres suivants unité par unité depuis les notes et diaporamas de Mme Philip ; refonte animée par schémas motion design.
 - **PC** : reprendre le chapitre 1 sur le modèle du chapitre 2 ; chapitres suivants selon la progression ; animation de conductimétrie.
