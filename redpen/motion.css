@@ -1,0 +1,77 @@
+/* =====================================================================
+   COUCHE DE MOUVEMENT — « le stylo rouge corrige sous tes yeux »
+   Feuille maintenue à part de index.html. Niveau léger : l'encre répond
+   aux gestes, rien de plus. Les ajouts (trait de lecture, marques du
+   quiz) sont stylés sans condition ; tout ce qui bouge est sous html.mo,
+   classe posée par motion.js seulement si l'appareil n'a pas demandé à
+   réduire les animations. Rien n'est jamais caché en attendant une
+   animation. Le site réécrit les classes du body à chaque changement de
+   thème : cette couche ne pose donc rien sur le body.
+   ===================================================================== */
+
+/* le trait de lecture : une ligne d'encre et sa plume */
+#mo-encre{position:fixed;left:0;right:0;top:var(--haut,0px);height:2px;z-index:40;pointer-events:none;opacity:0;transition:opacity .4s ease}
+#mo-encre.on{opacity:1}
+#mo-encre .e-trait{position:absolute;left:0;top:0;bottom:0;width:calc(var(--p,0) * 100%);background:var(--red,#b4372b);border-radius:2px;
+  background-image:linear-gradient(90deg,transparent,rgba(255,255,255,.18) 50%,transparent)}
+#mo-encre .e-plume{position:absolute;top:50%;left:calc(var(--p,0) * 100%);width:16px;height:16px;margin:-15px 0 0 -3px;color:var(--red,#b4372b)}
+#mo-encre .e-plume svg{width:100%;height:100%;display:block}
+
+/* les marques à l'encre du quiz */
+.opts button{position:relative}
+.mo-marque{position:absolute;pointer-events:none;overflow:visible}
+.mo-marque path,.mo-marque ellipse{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.mo-coche{right:12px;top:50%;width:26px;height:22px;margin-top:-12px}
+.mo-coche path{stroke:var(--green,#2e7d4f);stroke-width:3.2}
+.mo-cercle{left:-12px;top:-7px;width:calc(100% + 24px);height:calc(100% + 14px)}
+.mo-cercle path{stroke:var(--red,#b4372b);stroke-width:2.2}
+.score{position:relative}
+.mo-note{left:-16px;top:-11px;width:calc(100% + 32px);height:calc(100% + 22px)}
+.mo-note path{stroke:var(--red,#b4372b);stroke-width:2.2}
+
+@media print{#mo-encre,.mo-marque{display:none !important}}
+
+/* =====================================================================
+   MOUVEMENT — uniquement sous html.mo
+   ===================================================================== */
+/* une fiche s'ouvre : le stylo barre chaque faute, puis écrit la correction */
+html.mo .card.mo-corrige .err{position:relative;text-decoration:none}
+html.mo .card.mo-corrige .err::after{content:"";position:absolute;left:-2px;right:-2px;top:56%;height:1.6px;background:var(--red);border-radius:1px;
+  transform-origin:0 50%;transform:scaleX(0) rotate(-1.5deg);animation:mo-barre .42s cubic-bezier(.5,0,.3,1) forwards;animation-delay:calc(var(--k,0) * .32s + .15s)}
+html.mo .card.mo-corrige .fix{display:inline-block;clip-path:inset(-4px 100% -4px 0);animation:mo-ecrit .55s cubic-bezier(.45,0,.3,1) forwards;animation-delay:calc(var(--k,0) * .32s + .45s)}
+html.mo .card.mo-corrige li.w::before,html.mo .card.mo-corrige li.r::before{animation:mo-signe .4s cubic-bezier(.3,1.6,.5,1) backwards;animation-delay:calc(var(--k,0) * .32s + .1s)}
+html.mo .card.mo-ouvre > *:not(h2){animation:mo-deplie .45s cubic-bezier(.2,.8,.2,1) backwards}
+html.mo .card.mo-ouvre > :nth-child(3){animation-delay:.05s}
+html.mo .card.mo-ouvre > :nth-child(4){animation-delay:.1s}
+html.mo .card.mo-ouvre > :nth-child(n+5){animation-delay:.15s}
+html.mo .card h2::after{transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+html.mo .card:not(.collapsed) h2::after{transform:rotate(180deg)}
+
+/* changer d'onglet : les fiches arrivent une à une */
+html.mo .panel.mo-arrive > .card{animation:mo-deplie .5s cubic-bezier(.2,.8,.2,1) backwards}
+html.mo .panel.mo-arrive > .card:nth-of-type(2){animation-delay:.04s}
+html.mo .panel.mo-arrive > .card:nth-of-type(3){animation-delay:.08s}
+html.mo .panel.mo-arrive > .card:nth-of-type(4){animation-delay:.12s}
+html.mo .panel.mo-arrive > .card:nth-of-type(5){animation-delay:.16s}
+html.mo .panel.mo-arrive > .card:nth-of-type(n+6){animation-delay:.2s}
+
+/* le filet sous le titre se trace, une fois */
+html.mo .filet-titre.mo-trace{animation:mo-filet .9s cubic-bezier(.5,0,.3,1) .2s backwards}
+html.mo .filet-titre.mo-trace::after{animation:mo-signe .5s cubic-bezier(.3,1.6,.5,1) .9s backwards}
+
+/* les marques du quiz se tracent à la main */
+html.mo .mo-marque path,html.mo .mo-marque ellipse{stroke-dasharray:var(--l,100);stroke-dashoffset:var(--l,100);animation:mo-trace .45s cubic-bezier(.5,0,.3,1) forwards}
+html.mo .mo-cercle path,html.mo .mo-note path{animation-duration:.6s}
+html.mo .opts button.bad.mo-secoue{animation:mo-secoue .4s ease-in-out}
+
+#mo-encre .e-plume svg{transform-origin:20% 90%}
+html.mo #mo-encre.ecrit .e-plume svg{animation:mo-plume .5s ease-in-out infinite}
+
+@keyframes mo-barre{to{transform:scaleX(1) rotate(-1.5deg)}}
+@keyframes mo-ecrit{to{clip-path:inset(-4px 0 -4px 0)}}
+@keyframes mo-signe{from{opacity:0;transform:scale(.3) rotate(-25deg)}to{opacity:1;transform:none}}
+@keyframes mo-deplie{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes mo-filet{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes mo-trace{to{stroke-dashoffset:0}}
+@keyframes mo-secoue{0%,100%{transform:none}25%{transform:translateX(-5px)}50%{transform:translateX(4px)}75%{transform:translateX(-2px)}}
+@keyframes mo-plume{0%,100%{transform:rotate(0)}50%{transform:rotate(-9deg) translateY(1px)}}
