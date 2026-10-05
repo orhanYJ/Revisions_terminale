@@ -1,0 +1,63 @@
+/* =====================================================================
+   COUCHE DE MOUVEMENT — « chaque leçon vue, la pirogue avance d'un coup de pagaie »
+   Feuille maintenue à part de index.html (qui garde son entrée à lui :
+   honu qui dérive, houle, macron tracé, cartes qui se lèvent). Niveau
+   léger : rien ne bouge sans un geste. Les ajouts (la pirogue, les ronds
+   dans l'eau) sont stylés sans condition ; tout ce qui bouge est sous
+   html.mo, classe posée par motion.js seulement si l'appareil n'a pas
+   demandé à réduire les animations. Rien n'est caché sans script.
+   ===================================================================== */
+
+/* la pirogue sur la barre de progression */
+.progbar-in{position:relative}
+.mo-vaa{position:absolute;left:0;top:0;width:26px;height:15px;pointer-events:none;color:var(--lagon);
+  transform:translate(var(--x,0px),var(--y,0px));z-index:2}
+.mo-vaa svg{width:100%;height:100%;display:block;overflow:visible}
+.mo-vaa .coque{fill:currentColor}
+.mo-vaa .ama{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
+.mo-vaa .rameur{fill:var(--corail)}
+.mo-vaa .pagaie{stroke:var(--encre);stroke-width:1.2;stroke-linecap:round;opacity:.7}
+
+/* les ronds dans l'eau */
+.exo-opt,.exo-in{position:relative}
+.exo-opt{overflow:hidden}
+.mo-rond{position:absolute;left:var(--x,50%);top:var(--y,50%);width:0;height:0;border-radius:50%;pointer-events:none;
+  border:2px solid var(--lagon);opacity:0;transform:translate(-50%,-50%)}
+.exo{position:relative}
+
+@media print{.mo-vaa,.mo-rond{display:none !important}
+  html.mo .mo-attente{opacity:1 !important;transform:none !important}}
+
+/* =====================================================================
+   MOUVEMENT — uniquement sous html.mo
+   ===================================================================== */
+html.mo .mo-vaa{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+html.mo .mo-vaa.mo-rame svg{animation:mo-tangue .9s ease-in-out}
+html.mo .mo-vaa.mo-rame .pagaie{transform-box:fill-box;transform-origin:50% 0;animation:mo-pagaie .45s ease-in-out 2}
+
+/* ouvrir une leçon : l'en-tête se lève, le macron du titre se trace */
+html.mo .lecon.mo-ouvre .l-tags{animation:mo-lever .5s cubic-bezier(.2,.7,.2,1) backwards}
+html.mo .lecon.mo-ouvre .l-titre{animation:mo-lever .6s cubic-bezier(.2,.7,.2,1) .06s backwards}
+html.mo .lecon.mo-ouvre .l-titre::after{transform-origin:left center;animation:mo-macron .8s cubic-bezier(.65,0,.2,1) .35s backwards}
+html.mo .lecon.mo-ouvre .l-obj{animation:mo-lever .6s cubic-bezier(.2,.7,.2,1) .16s backwards}
+html.mo .lecon.mo-ouvre .l-corps > :nth-child(-n+2){animation:mo-lever .6s cubic-bezier(.2,.7,.2,1) .24s backwards}
+
+/* les blocs du dessous arrivent quand on les atteint */
+html.mo .mo-attente{opacity:0;transform:translateY(16px)}
+html.mo .mo-vu{transition:opacity .6s ease-out,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--k,0) * .07s)}
+
+/* exercices : juste, des ronds dans le lagon ; faux, la houle */
+html.mo .mo-rond{animation:mo-rond 1s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:var(--d,0s)}
+html.mo .mo-houle{animation:mo-houle .55s ease-in-out}
+
+/* revenir au sommaire : le point de la leçon lue se remplit (la carte, elle, salue par
+   motion.js : les cartes portent déjà l'animation d'entrée du site, qu'on ne relance pas) */
+html.mo .hcard.mo-salue .hcard-dot{animation:mo-point .9s cubic-bezier(.3,1.6,.5,1) .15s}
+
+@keyframes mo-lever{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes mo-macron{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes mo-tangue{0%,100%{transform:none}25%{transform:translateY(-3px) rotate(-6deg)}55%{transform:translateY(1px) rotate(4deg)}80%{transform:rotate(-2deg)}}
+@keyframes mo-pagaie{0%,100%{transform:rotate(0)}50%{transform:rotate(-38deg)}}
+@keyframes mo-rond{0%{width:0;height:0;opacity:.75}100%{width:var(--r,160px);height:var(--r,160px);opacity:0}}
+@keyframes mo-houle{0%,100%{transform:none}20%{transform:translateX(-4px) rotate(-.4deg)}45%{transform:translateX(4px) rotate(.4deg)}70%{transform:translateX(-2px)}}
+@keyframes mo-point{0%{transform:scale(1);box-shadow:0 0 0 0 color-mix(in srgb,var(--vert) 60%,transparent)}40%{transform:scale(1.7)}100%{transform:scale(1);box-shadow:0 0 0 9px transparent}}

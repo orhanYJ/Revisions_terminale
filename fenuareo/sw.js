@@ -1,7 +1,7 @@
 /* Service worker — FenuaReo — reo tahiti
    Stratégie : réseau d'abord pour la page (mises à jour immédiates),
    repli cache hors ligne. Assets : cache d'abord. */
-const CACHE = "fenuareo-v1";
+const CACHE = "fenuareo-v2";
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {
