@@ -109,7 +109,7 @@ Programme réel de M. Aurélien Ros (Histoire) : T1 « The fragilisation of demo
 
 Structure imposée par Cengiz pour la question a) du DBQ : jugement dès la première ligne (largely / significantly / partly / slightly useful), document présenté en une phrase, paragraphe d'atouts à plusieurs arguments, paragraphe de limites à plusieurs arguments.
 
-État : H1 (« The Wall Street Crash and its Impact ») réécrit en entier à partir du diaporama de M. Ros ; H2 (régimes totalitaires) complet (parties I à III, version Claude.ai du 05/10/2026, partie II corrigée et complétée le même jour d'après les notes d'Orhan et les Worksheets 3 et 4) ; H3 (« World War Two ») commencé (introduction et I.1) ; les autres chapitres sont des placeholders. Un script d'audit (`audit_idee_exemple.py`) vérifiait l'ancrage date/chiffre/nom propre de chaque exemple dans les deux langues : **il n'est pas dans le dépôt**.
+État : H1 (« The Wall Street Crash and its Impact ») réécrit en entier à partir du diaporama de M. Ros ; H2 (régimes totalitaires) complet (parties I à III, version Claude.ai du 05/10/2026, partie II corrigée et complétée le même jour d'après les notes d'Orhan et les Worksheets 3 et 4) ; H3 (« World War Two ») commencé (introduction et I.1) ; les autres chapitres sont des placeholders. Onglet **Entraînement** (bouton de la barre latérale et de l'accueil, composant `TrainingPage`, ajouté le 06/10/2026) : volet Quiz livré (réunit `H1_QCM`, `H2_QCM`, `H3_QCM` sans les recopier + `TRAIN_QCM` : vue d'ensemble, liens entre chapitres, réflexes d'épreuve BFI, questions hors cours sourcées, rappels de Première ; chronologie générée depuis les frises) ; volets Essais et DBQ à venir (format officiel : essai « Explain » + « Assess / How far », DBQ a) « How useful » + b) ; les images des DBQ pourront être chargées en ligne, exception à la règle hors connexion décidée par Cengiz). Un script d'audit (`audit_idee_exemple.py`) vérifiait l'ancrage date/chiffre/nom propre de chaque exemple dans les deux langues : **il n'est pas dans le dépôt**.
 
 ### Philosophie (`philo/`)
 
@@ -173,7 +173,7 @@ Orientation décidée par Cengiz (29/09/2026) : les **animations explicatives d�
 
 - Chaque site a un `manifest.json` (`display: standalone`, `start_url: "./"`, `scope: "./"`, icônes 192 et 512 en `any maskable`) et un `sw.js`.
 - Stratégie : **réseau d'abord pour la page** (une nouvelle version est visible dès le prochain lancement, sans vider le cache), **cache d'abord pour les assets**.
-- Chaque `sw.js` porte un nom de cache versionné en tête de fichier (`svt-v5`, `dnl-v18-h2-corrige`, `philo-v3`, `redpen-v2`, `cdm-v2`, `fenuareo-v2`, etc.). **Incrémenter ce nom à chaque livraison qui ajoute ou modifie un fichier annexe.**
+- Chaque `sw.js` porte un nom de cache versionné en tête de fichier (`svt-v5`, `dnl-v19-entrainement`, `philo-v3`, `redpen-v2`, `cdm-v2`, `fenuareo-v2`, etc.). **Incrémenter ce nom à chaque livraison qui ajoute ou modifie un fichier annexe.**
 - Le dépôt étant public, ne rien y mettre qu'on ne veuille pas voir en ligne.
 
 ---

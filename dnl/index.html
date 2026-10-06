@@ -959,6 +959,61 @@ html.mo .mo-ph-cap.new{animation:mo-capin .45s var(--mo-ease)}
 <meta name="apple-mobile-web-app-title" content="DNL">
 <link rel="apple-touch-icon" href="icon-192.png">
 <script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js");});}</script>
+<style id="train-skin">
+/* ENTRAÎNEMENT — onglet transversal (quiz, puis essais et DBQ) */
+.train-btn{display:flex;align-items:center;gap:8px;width:calc(100% - 4px);margin:8px 2px 4px;padding:9px 11px;border-radius:6px;border:1px solid var(--gold);background:rgba(184,146,79,.16);color:var(--paper);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:.15s}
+.train-btn:hover,.train-btn.here{background:rgba(184,146,79,.32)}
+.train-btn .train-sub{margin-left:auto;font-weight:400;font-size:11px;opacity:.75}
+.train-root .train-kicker{font-size:12.5px;font-weight:600;color:var(--gold-2);margin-bottom:5px;letter-spacing:.04em;text-transform:uppercase}
+.tr-tabs{display:flex;gap:4px;margin:26px 0 0;border-bottom:1px solid var(--line-2)}
+.tr-tab{flex:1;padding:10px 6px 9px;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:0;border-bottom:3px solid transparent;cursor:pointer}
+.tr-tab.on{color:var(--slate);border-bottom-color:var(--gold)}
+.tr-soon{display:inline-block;margin-left:6px;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--gold-2);background:var(--paper-2);border-radius:8px;padding:1px 6px;vertical-align:2px}
+.schema.tr-card{margin-top:14px}
+.tr-set{margin:0 0 14px}
+.tr-set-l{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.tr-chips{display:flex;flex-wrap:wrap;gap:6px}
+.tr-chip{border:1px solid var(--slate);border-radius:14px;padding:5px 12px;font-family:inherit;font-size:12.5px;background:#fff;color:var(--slate);cursor:pointer}
+.tr-chip.on{background:var(--slate);color:#fff}
+.tr-avail{font-size:12.5px;color:var(--muted);margin:4px 0 10px}
+.tr-btn{border:1px solid var(--slate);background:var(--slate);color:#fff;border-radius:4px;padding:10px 16px;font-family:inherit;font-size:13.5px;cursor:pointer}
+.tr-btn.full{display:block;width:100%;margin-top:10px}
+.tr-btn[disabled]{opacity:.45;cursor:default}
+.tr-link{display:inline-block;margin-top:8px;padding:0;border:0;background:none;font-family:inherit;font-size:12.5px;color:var(--gold-2);text-decoration:underline;cursor:pointer}
+.tr-link.quit{display:block;margin:14px auto 0;color:var(--muted)}
+.tr-help{margin-top:18px;padding-top:12px;border-top:1px dashed var(--line);font-size:13px;line-height:1.55;color:var(--muted)}
+.tr-help p{margin:0 0 8px}
+.tr-top{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.tr-badges{display:flex;flex-wrap:wrap;gap:5px;margin:2px 0 8px}
+.tr-badge{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:3px;padding:2px 7px;background:var(--paper-2);color:var(--slate)}
+.tr-badge.ty{background:#fff;border:1px solid var(--line-2);color:var(--muted)}
+.tr-badge.ty-o{border-color:var(--hist);color:var(--hist)}
+.tr-badge.ty-m{border-color:var(--geo);color:var(--geo)}
+.tr-badge.ty-c,.tr-badge.ty-l{border-color:var(--gold);color:var(--gold-2)}
+.tr-q{font-size:15px;font-weight:600;color:var(--slate);line-height:1.45;margin-bottom:10px}
+.tr-opt{display:flex;align-items:flex-start;gap:9px;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:5px;padding:9px 12px;margin-bottom:6px;font-family:inherit;font-size:13.5px;line-height:1.4;color:var(--ink);cursor:pointer}
+.tr-opt[disabled]{cursor:default}
+.tr-opt .tr-num{flex:0 0 auto;min-width:12px;color:var(--gold)}
+.tr-opt.picked{border-color:var(--slate);background:var(--paper)}
+.tr-opt.good{border-color:var(--geo);background:#E4EEDF}
+.tr-opt.bad{border-color:var(--hist);background:#F3DCDA}
+.tr-opt.dim{opacity:.7}
+.tr-date{margin-left:auto;padding-left:10px;font-size:12px;font-weight:700;color:var(--slate);white-space:nowrap}
+.tr-expl{border-left:3px solid var(--hist);background:var(--paper);padding:8px 12px;font-size:13px;line-height:1.5;margin-top:4px}
+.tr-expl.ok{border-left-color:var(--geo)}
+.tr-src{margin-top:6px;font-size:11.5px;font-style:italic;color:var(--muted)}
+.tr-end{text-align:center;padding:8px 0}
+.tr-score{font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;color:var(--slate)}
+.tr-by{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:8px 0 14px}
+.tr-missed{text-align:left;margin:6px 0 12px}
+.tr-h{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.tr-miss{border-top:1px solid var(--line);padding:8px 0}
+.tr-miss-q{font-size:13px;font-weight:600;color:var(--slate);line-height:1.4}
+.tr-miss-a{font-size:13px;color:var(--geo);margin-top:3px;line-height:1.4}
+.tr-note{font-size:12.5px;color:var(--muted);margin:8px 0}
+.tr-row{display:flex;justify-content:center;gap:8px;margin-top:6px}
+@media (max-width:600px){.tr-tab{font-size:13px}.tr-soon{display:block;width:max-content;margin:3px auto 0;font-size:9px}.tr-date{white-space:normal}}
+</style>
 </head>
 <body>
 <div id="root"></div>
@@ -4430,7 +4485,7 @@ const ThemePlate = ({ subject, idx, size }) => {
 const builtCount = () => FLAT.filter(c => CHAPTERS[c.code] && !CHAPTERS[c.code].pending).length;
 
 /* Page d'accueil — le frontispice de l'atlas */
-const Home = ({ lang, go, openSearch, openGloss }) => {
+const Home = ({ lang, go, openSearch, openGloss, openTrain }) => {
   const FR = lang === "fr";
   const built = builtCount();
   const total = FLAT.length;
@@ -4451,7 +4506,9 @@ const Home = ({ lang, go, openSearch, openGloss }) => {
             React.createElement("button", { className: "ft-btn", onClick: openSearch },
               React.createElement(Icon, { name: "search", size: 18 }), FR ? "Rechercher" : "Search"),
             React.createElement("button", { className: "ft-btn", onClick: openGloss },
-              React.createElement(Icon, { name: "book", size: 18 }), FR ? "Glossaire" : "Glossary")),
+              React.createElement(Icon, { name: "book", size: 18 }), FR ? "Glossaire" : "Glossary"),
+            React.createElement("button", { className: "ft-btn", onClick: openTrain },
+              React.createElement(Icon, { name: "target", size: 18 }), FR ? "Entraînement" : "Practice")),
           React.createElement("div", { className: "frontis-progress" },
             React.createElement("span", { className: "fp-bar" },
               React.createElement("span", { className: "fp-fill", style: { width: (100 * built / total) + "%" } })),
@@ -5199,6 +5256,750 @@ function GlossaryOverlay({ open, onClose, onJump, lang }) {
   );
 }
 
+/* ===================== ENTRAÎNEMENT — banque de questions ajoutées =====================
+   Format : TQ(chapitre, type, question EN, question FR, options [[EN, FR] ×4], index de la bonne,
+              explication EN, explication FR, extra)
+   chapitre : "H1" "H2" "H3" "1re" ou "X" (liens entre chapitres)
+   type : "l" vue d'ensemble · "m" réflexes d'épreuve · "o" hors cours (source externe) · "p" rappel de 1re
+   extra : { p: "P-H11" } renvoi vers la fiche de Première ; { src: [EN, FR] } source d'une question hors cours */
+const TQ = (c, t, qe, qf, o, a, we, wf, x) => Object.assign({ c: c, t: t, q: [qe, qf], o: o, a: a, w: [we, wf] }, x || {});
+const TRAIN_QCM = [
+/* ---------- H1 — vue d'ensemble ---------- */
+TQ("H1", "l", "Which chain best sums up chapter 1?", "Quel enchaînement résume le mieux le chapitre 1 ?",
+ [["US crash → bank failures → world depression through loans and gold → economic nationalism, democracies in retreat, militarism elsewhere", "Krach américain → faillites bancaires → dépression mondiale par les prêts et l'or → nationalisme économique, démocraties en repli, militarisme ailleurs"],
+  ["European war → US crash → New Deal → world recovery by 1933", "Guerre européenne → krach américain → New Deal → reprise mondiale dès 1933"],
+  ["Smoot–Hawley tariff → Wall Street crash → end of the Gold Standard → Front populaire", "Tarif Smoot-Hawley → krach de Wall Street → fin de l'étalon-or → Front populaire"],
+  ["German reparations → Black Thursday → League of Nations sanctions → Neutrality Acts", "Réparations allemandes → jeudi noir → sanctions de la SDN → Neutrality Acts"]], 0,
+ "This is the chapter's objective: how a crash in one country became a world depression, and how the depression pushed democracies inward while three regimes chose militarism.",
+ "C'est l'objectif du chapitre : comment un krach dans un pays devient une dépression mondiale, et comment cette dépression replie les démocraties pendant que trois régimes choisissent le militarisme."),
+TQ("H1", "l", "Why did an American crisis become a world crisis?", "Pourquoi une crise américaine devient-elle une crise mondiale ?",
+ [["Because Europe's finances rested on American credit, and currencies tied to gold transmitted the shock", "Parce que les finances européennes reposent sur le crédit américain et que les monnaies liées à l'or transmettent le choc"],
+  ["Because the United States declared a trade war on Europe in October 1929", "Parce que les États-Unis déclarent une guerre commerciale à l'Europe en octobre 1929"],
+  ["Because every country had a stock market as large as Wall Street", "Parce que chaque pays a une Bourse aussi grande que Wall Street"],
+  ["Because the League of Nations ordered its members to stop trading", "Parce que la SDN ordonne à ses membres de cesser de commercer"]], 0,
+ "Two channels in I.2: the recall of American loans (the Dawes circuit) and the Gold Standard, which forced other countries to raise their rates.",
+ "Deux canaux en I.2 : le rappel des prêts américains (le circuit Dawes) et l'étalon-or, qui oblige les autres pays à relever leurs taux."),
+TQ("H1", "l", "What is the difference between the Crash and the Depression?", "Quelle différence entre le krach et la Dépression ?",
+ [["The Crash is the collapse of share prices in October 1929; the Depression is the long collapse of production, jobs and trade in the 1930s", "Le krach est l'effondrement des cours en octobre 1929 ; la Dépression est l'effondrement durable de la production, de l'emploi et du commerce dans les années 1930"],
+  ["They are two names for the same event", "Ce sont deux noms pour le même événement"],
+  ["The Depression came first, in 1927, and caused the Crash", "La Dépression vient d'abord, en 1927, et provoque le krach"],
+  ["The Crash hit Europe, the Depression only the United States", "Le krach frappe l'Europe, la Dépression seulement les États-Unis"]], 0,
+ "The course insists: the Depression really began when banks started failing. Keeping the two apart is the first step of any essay on the crisis.",
+ "Le cours insiste : la Dépression commence vraiment avec les faillites bancaires. Distinguer les deux est le premier pas de tout essai sur la crise."),
+TQ("H1", "l", "Which of these was NOT a measure of economic nationalism?", "Laquelle de ces mesures n'est PAS du nationalisme économique ?",
+ [["The Reciprocal Tariff Agreement Act (1934)", "Le Reciprocal Tariff Agreement Act (1934)"],
+  ["The Smoot–Hawley Tariff (1930)", "Le tarif Smoot-Hawley (1930)"],
+  ["The British Import Duties Act (1932)", "L'Import Duties Act britannique (1932)"],
+  ["French import quotas", "Les quotas d'importation français"]], 0,
+ "The RTAA went the other way: it let Roosevelt cut tariffs country by country to rebuild trade (II.1).",
+ "Le RTAA va dans l'autre sens : il permet à Roosevelt de baisser les droits de douane pays par pays pour relancer le commerce (II.1)."),
+TQ("H1", "l", "What did the great democracies have in common in the 1930s, according to chapter 1?", "Qu'ont en commun les grandes démocraties dans les années 1930, d'après le chapitre 1 ?",
+ [["They put domestic recovery first and avoided international commitments", "Elles font passer le redressement intérieur avant tout et évitent les engagements internationaux"],
+  ["They formed a military alliance against Germany as early as 1933", "Elles forment une alliance militaire contre l'Allemagne dès 1933"],
+  ["They all left the Gold Standard in 1931", "Elles quittent toutes l'étalon-or en 1931"],
+  ["They all elected left-wing governments", "Elles élisent toutes des gouvernements de gauche"]], 0,
+ "American isolationism and Franco-British appeasement are two faces of the same retreat (II.3).",
+ "L'isolationnisme américain et l'apaisement franco-britannique sont les deux faces d'un même repli (II.3)."),
+TQ("H1", "l", "Which country was barely touched by the Depression, and why?", "Quel pays est à peine touché par la Dépression, et pourquoi ?",
+ [["The USSR, because it stood outside the capitalist trading system", "L'URSS, parce qu'elle est hors du système commercial capitaliste"],
+  ["Germany, because of the Dawes Plan", "L'Allemagne, grâce au plan Dawes"],
+  ["Brazil, because coffee prices held up", "Le Brésil, parce que le prix du café se maintient"],
+  ["Britain, because of the Gold Standard", "Le Royaume-Uni, grâce à l'étalon-or"]], 0,
+ "A world-wide depression does not mean every country suffered in the same way: economies not integrated into world markets were largely spared (I.3).",
+ "Une dépression mondiale ne veut pas dire que tous les pays souffrent pareil : les économies peu intégrées aux marchés mondiaux sont largement épargnées (I.3)."),
+TQ("H1", "l", "The course gives militarism three dimensions. Which one is NOT among them?", "Le cours donne trois dimensions au militarisme. Laquelle n'en fait PAS partie ?",
+ [["A planned economy with collective farms", "Une économie planifiée avec des fermes collectives"],
+  ["The building up of armed forces", "Le renforcement des forces armées"],
+  ["Control of the government by the military", "Le contrôle du gouvernement par les militaires"],
+  ["An aggressive foreign policy", "Une politique étrangère agressive"]], 0,
+ "Collective farms belong to Stalin's USSR (chapter 2). The three dimensions of militarism are armed forces, military control of government and aggression (II.2).",
+ "Les fermes collectives relèvent de l'URSS de Staline (chapitre 2). Les trois dimensions du militarisme sont l'armée, le contrôle du gouvernement par les militaires et l'agression (II.2)."),
+TQ("H1", "l", "What does the name “Hooverville” tell a historian?", "Que dit le nom « Hooverville » à un historien ?",
+ [["That public opinion held the president responsible: the name is a political verdict", "Que l'opinion tient le président pour responsable : le nom est un verdict politique"],
+  ["That Hoover built the shanty towns to house the unemployed", "Que Hoover a fait construire les bidonvilles pour loger les chômeurs"],
+  ["That the shanty towns were outside the cities", "Que les bidonvilles sont hors des villes"],
+  ["That the Depression ended under Hoover", "Que la Dépression prend fin sous Hoover"]], 0,
+ "The course reads the name itself as a source: the poor gave the president's name to the slums in the middle of the richest country in the world.",
+ "Le cours lit le nom lui-même comme une source : les pauvres donnent le nom du président aux taudis, au cœur du pays le plus riche du monde."),
+TQ("H1", "l", "Which formula sums up the logic of the New Deal?", "Quelle formule résume la logique du New Deal ?",
+ [["Relief, Recovery, Reform: the federal state protects people and repairs the system", "Relief, Recovery, Reform : l'État fédéral protège les gens et répare le système"],
+  ["Autarky, rearmament, conquest", "Autarcie, réarmement, conquête"],
+  ["Austerity, the Gold Standard, free trade", "Austérité, étalon-or, libre-échange"],
+  ["Neutrality, isolation, protection", "Neutralité, isolement, protection"]], 0,
+ "Expansionary economics and a welfare state, in two stages: the First New Deal (1933–35) and the Second (1935).",
+ "Une politique de relance et un État-providence, en deux temps : le premier New Deal (1933-35) et le second (1935)."),
+TQ("H1", "l", "What is the link chapter 1 draws between the Depression and the war?", "Quel lien le chapitre 1 établit-il entre la Dépression et la guerre ?",
+ [["The Depression turned democracies inward and pushed three regimes towards expansion, which opened the way to aggression", "La Dépression replie les démocraties et pousse trois régimes vers l'expansion, ce qui ouvre la voie à l'agression"],
+  ["The Depression led directly to declarations of war in 1931", "La Dépression mène directement à des déclarations de guerre dès 1931"],
+  ["The Depression had no political consequences", "La Dépression n'a pas de conséquences politiques"],
+  ["The Depression ended because the democracies attacked Germany", "La Dépression prend fin parce que les démocraties attaquent l'Allemagne"]], 0,
+ "This is the Key Issue “economic nationalism, key factor in the slide towards war?”: an indirect cause, which chapter 2 will weigh against ideology.",
+ "C'est la Key Issue « le nationalisme économique, facteur clé du glissement vers la guerre ? » : une cause indirecte, que le chapitre 2 met en balance avec l'idéologie."),
+
+/* ---------- H2 — vue d'ensemble ---------- */
+TQ("H2", "l", "What separates a totalitarian regime from an ordinary dictatorship?", "Qu'est-ce qui distingue un régime totalitaire d'une dictature ordinaire ?",
+ [["It wants to transform people into a “New Man”, not only to make them obey", "Il veut transformer les gens en « homme nouveau », pas seulement les faire obéir"],
+  ["It has a single leader", "Il a un chef unique"],
+  ["It uses a police force", "Il utilise une police"],
+  ["It holds no elections at all", "Il n'organise aucune élection"]], 0,
+ "A dictatorship asks you to keep quiet; a totalitarian regime asks you to change (II.2).",
+ "Une dictature demande de se taire ; un régime totalitaire demande de changer (II.2)."),
+TQ("H2", "l", "M. Ros sums up the common path of the three regimes in three steps. Which ones?", "M. Ros résume le chemin commun des trois régimes en trois étapes. Lesquelles ?",
+ [["Born from the overthrow of a democratic framework; paved the way to war; all ended in failure", "Nés du renversement d'un cadre démocratique ; ont préparé la guerre ; ont tous échoué"],
+  ["Born from a revolution; won a majority; lasted until 1991", "Nés d'une révolution ; ont gagné une majorité ; ont duré jusqu'en 1991"],
+  ["Born in 1922; allied in 1936; defeated in 1945", "Nés en 1922 ; alliés en 1936 ; vaincus en 1945"],
+  ["Born from the crash; ended unemployment; defended the League", "Nés du krach ; ont mis fin au chômage ; ont défendu la SDN"]], 0,
+ "Introduction of the chapter: three regimes, opposite ideologies, one trajectory.",
+ "Introduction du chapitre : trois régimes, des idéologies opposées, une même trajectoire."),
+TQ("H2", "l", "Match each regime with its supreme goal.", "Associe chaque régime à son but suprême.",
+ [["Fascism: the nation · Nazism: the race · Stalinism: a classless society", "Fascisme : la nation · nazisme : la race · stalinisme : la société sans classes"],
+  ["Fascism: the race · Nazism: the nation · Stalinism: the empire", "Fascisme : la race · nazisme : la nation · stalinisme : l'empire"],
+  ["Fascism: the Church · Nazism: the army · Stalinism: the nation", "Fascisme : l'Église · nazisme : l'armée · stalinisme : la nation"],
+  ["All three: the same goal, world revolution", "Les trois : le même but, la révolution mondiale"]], 0,
+ "Same totalitarian method, opposite ideologies — the key to comparing them in an essay.",
+ "Même méthode totalitaire, idéologies opposées : c'est la clé de la comparaison dans un essai."),
+TQ("H2", "l", "How did Mussolini and Hitler come to power?", "Comment Mussolini et Hitler arrivent-ils au pouvoir ?",
+ [["They were legally appointed by a king and a president, after pressure and street violence", "Ils sont nommés légalement par un roi et un président, après pression et violence de rue"],
+  ["They both won an absolute majority in a free election", "Ils gagnent tous deux une majorité absolue lors d'une élection libre"],
+  ["They both seized power by an armed coup that succeeded", "Ils prennent tous deux le pouvoir par un coup d'État armé réussi"],
+  ["They were imposed by the victors of 1918", "Ils sont imposés par les vainqueurs de 1918"]], 0,
+ "Victor Emmanuel III appointed Mussolini in October 1922; Hindenburg appointed Hitler on 30 January 1933. Neither man had a majority (I.2).",
+ "Victor-Emmanuel III nomme Mussolini en octobre 1922 ; Hindenburg nomme Hitler le 30 janvier 1933. Aucun des deux n'a de majorité (I.2)."),
+TQ("H2", "l", "What warning does Hannah Arendt give in the introduction?", "Quel avertissement Hannah Arendt donne-t-elle en introduction ?",
+ [["These regimes also rested on the confidence of the masses, not on terror alone", "Ces régimes reposent aussi sur la confiance des masses, pas seulement sur la terreur"],
+  ["These regimes were never popular", "Ces régimes n'ont jamais été populaires"],
+  ["Totalitarianism is the same thing as dictatorship", "Le totalitarisme est la même chose que la dictature"],
+  ["Only Stalin used terror", "Seul Staline a utilisé la terreur"]], 0,
+ "Understanding totalitarianism means explaining support as well as terror.",
+ "Comprendre le totalitarisme, c'est expliquer l'adhésion autant que la terreur."),
+TQ("H2", "l", "Why does the course write “less oppressive terror?” with a question mark for Fascist Italy?", "Pourquoi le cours écrit-il « une terreur moins oppressive ? » avec un point d'interrogation pour l'Italie fasciste ?",
+ [["Italian terror was real but smaller in scale, and the regime faced counter-powers: the Church and the king", "La terreur italienne est réelle mais d'une autre ampleur, et le régime bute sur des contre-pouvoirs : l'Église et le roi"],
+  ["Because Italy had no political police", "Parce que l'Italie n'a pas de police politique"],
+  ["Because Mussolini never used violence", "Parce que Mussolini n'utilise jamais la violence"],
+  ["Because Italy had more camps than Germany", "Parce que l'Italie a plus de camps que l'Allemagne"]], 0,
+ "Matteotti was murdered and the OVRA existed, but opponents were mostly sent to internal exile (confino). A totalitarian ambition is not always totalitarian control.",
+ "Matteotti est assassiné et l'OVRA existe, mais les opposants sont surtout envoyés en relégation (confino). Une ambition totalitaire n'est pas toujours un contrôle totalitaire."),
+TQ("H2", "l", "What is the function of the “enemy of the nation” in all three regimes?", "À quoi sert l'« ennemi de la nation » dans les trois régimes ?",
+ [["It makes violence against part of the population acceptable to the rest", "Il rend la violence contre une partie de la population acceptable pour le reste"],
+  ["It explains the economic crisis to foreign governments", "Il explique la crise économique aux gouvernements étrangers"],
+  ["It justifies leaving the League of Nations", "Il justifie la sortie de la SDN"],
+  ["It replaces the political police", "Il remplace la police politique"]], 0,
+ "Kulaks in the USSR, Jews and the “unfit” in Germany, “enemies of the State” in Italy: Worksheet 4's common logic (II.3).",
+ "Koulaks en URSS, Juifs et « inaptes » en Allemagne, « ennemis de l'État » en Italie : la logique commune de la Worksheet 4 (II.3)."),
+TQ("H2", "l", "Why was war a “core value” and not an accident for these regimes?", "Pourquoi la guerre est-elle une « valeur centrale » et non un accident pour ces régimes ?",
+ [["Their ideologies required expansion: living space, a new Roman empire, a New Order in Asia", "Leurs idéologies exigent l'expansion : espace vital, nouvel empire romain, Ordre nouveau en Asie"],
+  ["They were attacked first by the democracies", "Elles sont attaquées d'abord par les démocraties"],
+  ["The League of Nations asked them to defend it", "La SDN leur demande de la défendre"],
+  ["Their economies had no unemployment", "Leurs économies n'ont pas de chômage"]], 0,
+ "Part III.1: aggression abroad was the logical continuation of the programme at home.",
+ "Partie III.1 : l'agression à l'extérieur prolonge logiquement le programme intérieur."),
+TQ("H2", "l", "According to the course, how did the First World War lead to totalitarianism?", "D'après le cours, comment la Grande Guerre mène-t-elle au totalitarisme ?",
+ [["It created the conditions everywhere — brutalisation, grievances, fear of revolution — but ideology and local circumstances decided the outcome", "Elle crée partout les conditions (brutalisation, griefs, peur de la révolution), mais l'idéologie et les circonstances locales décident de l'issue"],
+  ["It caused the three regimes directly and in the same way", "Elle cause directement les trois régimes, de la même manière"],
+  ["It had nothing to do with them", "Elle n'a rien à voir avec eux"],
+  ["It only mattered for Russia", "Elle ne compte que pour la Russie"]], 0,
+ "This is the line of the model essay of the chapter: being born after the war is not the same as being caused by it.",
+ "C'est la ligne de l'essai modèle du chapitre : naître après la guerre n'est pas être causé par elle."),
+TQ("H2", "l", "Which of these is a DIFFERENCE between Fascism and Nazism?", "Lequel de ces points est une DIFFÉRENCE entre fascisme et nazisme ?",
+ [["Racism was at the core of Nazism from the start, but entered Fascism only in 1938", "Le racisme est au cœur du nazisme dès le départ, mais n'entre dans le fascisme qu'en 1938"],
+  ["Both had one leader", "Les deux ont un chef unique"],
+  ["Both used paramilitary squads", "Les deux utilisent des milices paramilitaires"],
+  ["Both rejected parliamentarism", "Les deux rejettent le parlementarisme"]], 0,
+ "La Difesa della Razza appeared in August 1938, after the alliance with Hitler; the other three points are similarities.",
+ "La Difesa della Razza paraît en août 1938, après l'alliance avec Hitler ; les trois autres points sont des ressemblances."),
+
+/* ---------- H3 — vue d'ensemble (introduction et I.1 seulement) ---------- */
+TQ("H3", "l", "What makes the Second World War different from earlier wars, according to the course?", "Qu'est-ce qui distingue la Seconde Guerre mondiale des guerres précédentes, d'après le cours ?",
+ [["It was an ideological war that aimed to destroy the enemy's civilisation, not only its armies", "C'est une guerre idéologique qui vise à détruire la civilisation de l'ennemi, pas seulement ses armées"],
+  ["It was fought only in Europe", "Elle se déroule seulement en Europe"],
+  ["It was shorter than the First World War", "Elle est plus courte que la Première Guerre mondiale"],
+  ["It involved no civilians", "Elle n'implique pas de civils"]], 0,
+ "The course calls it the ideological crucible of the twentieth century, with about 60 million dead.",
+ "Le cours en fait le creuset idéologique du XXe siècle, avec environ 60 millions de morts."),
+TQ("H3", "l", "Why did France lose in six weeks in 1940 despite a huge army?", "Pourquoi la France perd-elle en six semaines en 1940 malgré une armée énorme ?",
+ [["Its strategy was defensive and old-fashioned, and the main German attack came through the Ardennes, where nobody expected it", "Sa stratégie est défensive et dépassée, et l'attaque allemande principale passe par les Ardennes, là où personne ne l'attend"],
+  ["Its army was much smaller than the British army", "Son armée est bien plus petite que l'armée britannique"],
+  ["It had no fortifications at all", "Elle n'a aucune fortification"],
+  ["The USSR attacked it from the east", "L'URSS l'attaque par l'est"]], 0,
+ "105 French divisions against Britain's 34, but the Maginot Line did not cover the Belgian border, and the Blitzkrieg broke through between 13 and 20 May.",
+ "105 divisions françaises contre 34 britanniques, mais la ligne Maginot ne couvre pas la frontière belge, et la Blitzkrieg perce entre le 13 et le 20 mai."),
+TQ("H3", "l", "Which three figures sum up what occupied France gave the New European Order?", "Quels trois chiffres résument ce que la France occupée apporte au Nouvel Ordre européen ?",
+ [["20 million Reichsmarks a day, the STO, some 80,000 Jews deported", "20 millions de Reichsmarks par jour, le STO, quelque 80 000 Juifs déportés"],
+  ["105 divisions, 34 divisions, 338,000 evacuated", "105 divisions, 34 divisions, 338 000 évacués"],
+  ["3 zones, 2 governments, 1 armistice", "3 zones, 2 gouvernements, 1 armistice"],
+  ["60 million dead, 1937, 1947", "60 millions de morts, 1937, 1947"]], 0,
+ "Money, workers and racial policy: the three dimensions in the course's conclusion on France.",
+ "L'argent, les travailleurs et la politique raciale : les trois dimensions de la conclusion du cours sur la France."),
+TQ("H3", "l", "Why is France called a “special case” in the New European Order?", "Pourquoi la France est-elle un « cas particulier » dans le Nouvel Ordre européen ?",
+ [["Decision-making was not unified: German occupation forces and a French government coexisted", "Le pouvoir n'y est pas unifié : forces d'occupation allemandes et gouvernement français coexistent"],
+  ["It was never occupied", "Elle n'est jamais occupée"],
+  ["It was annexed to Germany as a whole", "Elle est annexée en entier par l'Allemagne"],
+  ["It was governed by Italy", "Elle est gouvernée par l'Italie"]], 0,
+ "Occupied zone under the German Military Command, “free zone” governed from Vichy until November 1942.",
+ "Zone occupée sous commandement militaire allemand, « zone libre » gouvernée depuis Vichy jusqu'en novembre 1942."),
+TQ("H3", "l", "What do Vichy's anti-Jewish measures of October 1940 and March 1941 show?", "Que montrent les mesures antijuives de Vichy d'octobre 1940 et de mars 1941 ?",
+ [["That Vichy persecuted on its own initiative, not only under German orders", "Que Vichy persécute de sa propre initiative, pas seulement sur ordre allemand"],
+  ["That Vichy protected Jews from the occupier", "Que Vichy protège les Juifs de l'occupant"],
+  ["That the measures applied only in Alsace", "Que les mesures ne s'appliquent qu'en Alsace"],
+  ["That Germany had annexed the free zone", "Que l'Allemagne a annexé la zone libre"]], 0,
+ "The decree defining who was a Jew (October 1940) and the Office for Jewish Affairs (March 1941) were French initiatives.",
+ "Le décret définissant qui est juif (octobre 1940) et le Commissariat aux questions juives (mars 1941) sont des initiatives françaises."),
+
+/* ---------- Liens entre chapitres ---------- */
+TQ("X", "l", "Manchuria (1931) and Abyssinia (1935) are used in the course to show the same thing. What?", "La Mandchourie (1931) et l'Abyssinie (1935) servent dans le cours à montrer la même chose. Laquelle ?",
+ [["The League of Nations was powerless whenever the great powers would not back it", "La SDN est impuissante dès que les grandes puissances ne la soutiennent pas"],
+  ["The Depression did not reach Asia or Africa", "La Dépression n'atteint ni l'Asie ni l'Afrique"],
+  ["Britain and France were ready to fight for collective security", "Le Royaume-Uni et la France sont prêts à se battre pour la sécurité collective"],
+  ["The United States joined the League in the 1930s", "Les États-Unis rejoignent la SDN dans les années 1930"]], 0,
+ "Chapter 1 (II.3) studies Manchuria, chapter 2 (III.1) Abyssinia: two aggressions, the same failure.",
+ "Le chapitre 1 (II.3) étudie la Mandchourie, le chapitre 2 (III.1) l'Abyssinie : deux agressions, le même échec."),
+TQ("X", "l", "Which historian's thesis does chapter 1 (the crisis of 1929) support most directly?", "Quelle thèse d'historien le chapitre 1 (la crise de 1929) soutient-il le plus directement ?",
+ [["Paul N. Hehn: the war was an economic conflict", "Paul N. Hehn : la guerre est un conflit économique"],
+  ["A. J. P. Taylor: the war came from Hitler's ideology alone", "A. J. P. Taylor : la guerre vient de la seule idéologie d'Hitler"],
+  ["Hannah Arendt: totalitarianism rested on the masses", "Hannah Arendt : le totalitarisme repose sur les masses"],
+  ["George Mosse: brutalisation", "George Mosse : la brutalisation"]], 0,
+ "Hehn reads the war as born of the crash and its consequences. Careful: Taylor blames the democracies' failure, not ideology alone.",
+ "Hehn lit la guerre comme née du krach et de ses conséquences. Attention : Taylor accuse l'échec des démocraties, pas la seule idéologie."),
+TQ("X", "l", "Jay Winter's “Thirty Years War” (1914–1945) is supported by which element of the course?", "La « guerre de Trente Ans » de Jay Winter (1914-1945) est appuyée par quel élément du cours ?",
+ [["Brutalisation, the mutilated victory and the Versailles Diktat feeding the regimes of the interwar years", "La brutalisation, la victoire mutilée et le Diktat de Versailles qui nourrissent les régimes de l'entre-deux-guerres"],
+  ["The New Deal's Second Hundred Days", "Les seconds Cent Jours du New Deal"],
+  ["The Reciprocal Tariff Agreement Act", "Le Reciprocal Tariff Agreement Act"],
+  ["The cult of Stakhanov", "Le culte de Stakhanov"]], 0,
+ "Chapter 2, part I.1: the legacy of WW1. It links the Première recaps (P-H9 to P-H11) to Terminale.",
+ "Chapitre 2, partie I.1 : l'héritage de la Grande Guerre. Il relie les rappels de Première (P-H9 à P-H11) à la Terminale.", { p: "P-H11" }),
+TQ("X", "l", "Which of these is NOT one of the reasons the course gives for appeasement?", "Laquelle de ces raisons n'est PAS donnée par le cours pour expliquer l'apaisement ?",
+ [["Britain and France had secretly agreed to share Czechoslovakia with Germany", "Le Royaume-Uni et la France s'étaient secrètement entendus pour partager la Tchécoslovaquie avec l'Allemagne"],
+  ["The memory of the slaughter of 1914–1918 and deep pacifism", "Le souvenir du massacre de 1914-1918 et un pacifisme profond"],
+  ["Doubts about the Commonwealth following Britain again", "Le doute sur le Commonwealth suivant à nouveau le Royaume-Uni"],
+  ["The feeling that Germany had been treated unfairly in 1919", "Le sentiment que l'Allemagne a été traitée injustement en 1919"]], 0,
+ "No such secret deal existed: at Munich the democracies gave way, they did not plan a partition. The other three are among the course's reasons (H1 II.3, H2 III.2).",
+ "Aucun accord secret de ce genre : à Munich, les démocraties cèdent, elles ne planifient pas un partage. Les trois autres sont des raisons du cours (H1 II.3, H2 III.2)."),
+TQ("X", "l", "Rearmament ended the Depression in Germany and later in the United States. What does the comparison show?", "Le réarmement met fin à la Dépression en Allemagne puis aux États-Unis. Que montre la comparaison ?",
+ [["Recovery came from state spending on arms — early in Germany, towards war; late in the US, after war had begun", "La reprise vient de la dépense publique d'armement : tôt en Allemagne, vers la guerre ; tard aux États-Unis, une fois la guerre commencée"],
+  ["Free trade alone ended the crisis everywhere", "Le libre-échange seul met fin à la crise partout"],
+  ["The Gold Standard saved both economies", "L'étalon-or sauve les deux économies"],
+  ["Rearmament had no economic effect", "Le réarmement n'a aucun effet économique"]], 0,
+ "Chapter 1, II.2 and II.3: “the same cure as Germany's, applied late and on the other side”.",
+ "Chapitre 1, II.2 et II.3 : « le même remède que l'Allemagne, appliqué tard et de l'autre côté »."),
+TQ("X", "l", "What is the relation between Lebensraum (chapter 2) and the New European Order (chapter 3)?", "Quel lien entre le Lebensraum (chapitre 2) et le Nouvel Ordre européen (chapitre 3) ?",
+ [["The New Order is the programme of living space carried out through war: conquest, exploitation, racial policy", "Le Nouvel Ordre est le programme d'espace vital réalisé par la guerre : conquête, exploitation, politique raciale"],
+  ["They are opposed: the New Order abandoned Lebensraum", "Ils s'opposent : le Nouvel Ordre abandonne le Lebensraum"],
+  ["Lebensraum was an Italian idea, the New Order a Japanese one", "Le Lebensraum est une idée italienne, le Nouvel Ordre une idée japonaise"],
+  ["There is none: one is geography, the other economics", "Aucun : l'un relève de la géographie, l'autre de l'économie"]], 0,
+ "Both are Key Terms. Ratzel's theory (1901) became Mein Kampf's eastern policy (1925), then the Order Hitler defined before the Reichstag on 11 December 1941.",
+ "Ce sont deux Key Terms. La théorie de Ratzel (1901) devient la politique orientale de Mein Kampf (1925), puis l'Ordre défini par Hitler devant le Reichstag le 11 décembre 1941."),
+TQ("X", "l", "How does chapter 2 combine the two causes of the war in its conclusion?", "Comment le chapitre 2 combine-t-il les deux causes de la guerre dans sa conclusion ?",
+ [["Totalitarian ideology supplied the will to expand; the democracies' reluctance supplied the opportunity", "L'idéologie totalitaire fournit la volonté d'expansion ; la réticence des démocraties en fournit l'occasion"],
+  ["The democracies wanted war, the dictatorships wanted peace", "Les démocraties veulent la guerre, les dictatures veulent la paix"],
+  ["Only the economic crisis matters", "Seule la crise économique compte"],
+  ["Only the Treaty of Versailles matters", "Seul le traité de Versailles compte"]], 0,
+ "This pairing is the answer to the Key Issue on the collapse of global peace — and a ready-made conclusion for an essay.",
+ "Ce couple répond à la Key Issue sur l'effondrement de la paix mondiale, et fournit une conclusion d'essai toute prête."),
+TQ("X", "l", "The Neutrality Acts (chapter 1) and Roosevelt's telegram of April 1939 (chapter 2) show the same limit. Which?", "Les Neutrality Acts (chapitre 1) et le télégramme de Roosevelt d'avril 1939 (chapitre 2) montrent la même limite. Laquelle ?",
+ [["The United States could ask and condemn, but had given itself no means to constrain", "Les États-Unis peuvent demander et condamner, mais se sont privés de tout moyen de contraindre"],
+  ["The United States was already at war with Germany", "Les États-Unis sont déjà en guerre contre l'Allemagne"],
+  ["Roosevelt controlled the League of Nations", "Roosevelt contrôle la SDN"],
+  ["Congress wanted to intervene but Roosevelt refused", "Le Congrès veut intervenir mais Roosevelt refuse"]], 0,
+ "Words without means: the Stimson note of 1932 already showed the same pattern.",
+ "Des mots sans moyens : la note Stimson de 1932 montrait déjà la même chose."),
+TQ("X", "l", "Which evidence best SUPPORTS the view that economic nationalism was a key factor in the slide to war?", "Quel élément SOUTIENT le mieux l'idée que le nationalisme économique est un facteur clé du glissement vers la guerre ?",
+ [["Japan seizing Manchuria for grain and minerals as world markets closed", "Le Japon s'emparant de la Mandchourie pour ses grains et ses minerais quand les marchés mondiaux se ferment"],
+  ["The Night of the Long Knives", "La nuit des Longs Couteaux"],
+  ["The Lateran Accords", "Les accords du Latran"],
+  ["The Stakhanov record", "Le record de Stakhanov"]], 0,
+ "Chapter 2, III.1: Japan's expansion had an economic dimension, autarky in a world closing its markets — exactly the mechanism of chapter 1.",
+ "Chapitre 2, III.1 : l'expansion japonaise a une dimension économique, l'autarcie dans un monde qui ferme ses marchés, exactement le mécanisme du chapitre 1."),
+TQ("X", "l", "Which evidence best CHALLENGES the view that the democracies were mainly to blame for the war?", "Quel élément NUANCE le mieux l'idée que les démocraties sont les principales responsables de la guerre ?",
+ [["Mein Kampf announced the conquest of the East as early as 1925", "Mein Kampf annonce la conquête de l'Est dès 1925"],
+  ["The Anglo-German Naval Agreement of 1935", "L'accord naval anglo-allemand de 1935"],
+  ["The refusal of an oil embargo on Italy", "Le refus d'un embargo pétrolier contre l'Italie"],
+  ["The Munich Agreement", "Les accords de Munich"]], 0,
+ "The will to war came from the ideology; the other three show the democracies' weakness and support the opposite view.",
+ "La volonté de guerre vient de l'idéologie ; les trois autres montrent la faiblesse des démocraties et soutiennent la thèse inverse."),
+
+/* ---------- Réflexes d'épreuve (format officiel BFI) ---------- */
+TQ("X", "m", "In the BFI written exam, what does Sujet A contain?", "À l'écrit du BFI, que contient le sujet A ?",
+ [["A history essay and a geography document-based question", "Un essai d'histoire et une étude de documents de géographie"],
+  ["Two history essays", "Deux essais d'histoire"],
+  ["A history DBQ and a geography DBQ", "Un DBQ d'histoire et un DBQ de géographie"],
+  ["One essay chosen freely among four", "Un essai au choix parmi quatre"]], 0,
+ "Sujet B is the reverse: a geography essay and a history DBQ. You cannot mix A and B. 4 hours in all.",
+ "Le sujet B est l'inverse : essai de géographie et DBQ d'histoire. On ne peut pas mélanger A et B. 4 heures en tout.",
+ { src: ["BFI 2024 paper (Eduscol) and ASIBA student guide", "Sujet BFI 2024 (Eduscol) et guide élève de l'ASIBA"] }),
+TQ("X", "m", "What command word opens the first part of a BFI essay question?", "Quel verbe de consigne ouvre la première partie d'un sujet d'essai du BFI ?",
+ [["Explain", "Explain (expliquer)"], ["Describe", "Describe (décrire)"], ["List", "List (énumérer)"], ["Summarise", "Summarise (résumer)"]], 0,
+ "“Explain” calls for a number of well-argued reasons — you should find yourself writing “because”. The second part asks you to assess or evaluate.",
+ "« Explain » appelle plusieurs raisons bien argumentées : on doit se surprendre à écrire « because ». La seconde partie demande d'évaluer.",
+ { src: ["ASIBA student guide", "Guide élève de l'ASIBA"] }),
+TQ("X", "m", "What does the second part of an essay (“How far do you agree…?”, “Assess…”) require?", "Qu'exige la seconde partie d'un essai (« How far do you agree… ? », « Assess… ») ?",
+ [["Arguments for and against, weighing factors, and a substantiated judgement", "Des arguments pour et contre, une hiérarchie des facteurs et un jugement étayé"],
+  ["A narrative of events in chronological order", "Un récit des événements dans l'ordre chronologique"],
+  ["A list of definitions", "Une liste de définitions"],
+  ["A summary of the first part", "Un résumé de la première partie"]], 0,
+ "Treat each part as a separate question: leave a gap or label them a) and b), even though the paper does not.",
+ "Traite chaque partie comme une question à part : laisse un blanc ou note a) et b), même si le sujet ne le fait pas.",
+ { src: ["ASIBA student guide", "Guide élève de l'ASIBA"] }),
+TQ("X", "m", "What does part a) of a DBQ ask?", "Que demande la question a) d'un DBQ ?",
+ [["How useful the documents are in a given context: strengths, limits, provenance, and the documents taken together", "L'utilité des documents dans un contexte donné : atouts, limites, provenance, et les documents pris ensemble"],
+  ["A summary of each document, one after the other", "Un résumé de chaque document, l'un après l'autre"],
+  ["An essay using only your own knowledge", "Un essai fondé seulement sur tes connaissances"],
+  ["A description of the images", "Une description des images"]], 0,
+ "Better answers interpret rather than list, consider the documents' weaknesses, and compare them — sometimes pointing out contradictions.",
+ "Les meilleures réponses interprètent au lieu d'énumérer, examinent les faiblesses des documents et les comparent, en relevant parfois leurs contradictions.",
+ { src: ["ASIBA student guide", "Guide élève de l'ASIBA"] }),
+TQ("X", "m", "In part b) of a DBQ, what must you use?", "Dans la question b) d'un DBQ, que faut-il utiliser ?",
+ [["The documents AND your own knowledge, going beyond what the documents say", "Les documents ET tes connaissances, en allant au-delà de ce que disent les documents"],
+  ["The documents only", "Les documents seulement"],
+  ["Your own knowledge only, without quoting the documents", "Tes connaissances seulement, sans citer les documents"],
+  ["A comparison with geography", "Une comparaison avec la géographie"]], 0,
+ "Part b) is a short essay: refer to the documents, then extend with examples from the course.",
+ "La question b) est un court essai : renvoie aux documents, puis élargis avec des exemples du cours.",
+ { src: ["ASIBA student guide", "Guide élève de l'ASIBA"] }),
+TQ("X", "m", "How should you divide the four hours of the written exam?", "Comment répartir les quatre heures de l'écrit ?",
+ [["About two hours for each of the two questions", "Environ deux heures pour chacune des deux questions"],
+  ["Three hours on the essay, one on the DBQ", "Trois heures pour l'essai, une pour le DBQ"],
+  ["One hour on each of the four parts, without planning", "Une heure par partie, sans plan"],
+  ["As long as needed on the first question", "Autant qu'il faut sur la première question"]], 0,
+ "History and geography each count for half the final mark.",
+ "L'histoire et la géographie comptent chacune pour la moitié de la note.",
+ { src: ["ASIBA student guide", "Guide élève de l'ASIBA"] }),
+TQ("X", "m", "What should the first line of an answer to DBQ part a) be?", "Que doit être la première ligne d'une réponse à la question a) du DBQ ?",
+ [["A judgement: “Documents A and B are largely / partly useful for understanding…”", "Un jugement : « Documents A and B are largely / partly useful for understanding… »"],
+  ["The date of the first document", "La date du premier document"],
+  ["A definition of the key term", "Une définition du terme clé"],
+  ["A quotation from the document", "Une citation du document"]], 0,
+ "The structure used on this site: judgement first (largely / significantly / partly / slightly useful), the document in one sentence, a paragraph of strengths, a paragraph of limits.",
+ "La structure suivie sur ce site : le jugement d'abord (largely / significantly / partly / slightly useful), le document en une phrase, un paragraphe d'atouts, un paragraphe de limites."),
+TQ("X", "m", "Which is a valid LIMIT of a document for a historian?", "Lequel est une LIMITE valable d'un document pour un historien ?",
+ [["Its date gives only a snapshot, and its author gives only one point of view", "Sa date ne donne qu'un instantané, et son auteur un seul point de vue"],
+  ["It is old", "Il est ancien"],
+  ["It is in English", "Il est en anglais"],
+  ["It is short", "Il est court"]], 0,
+ "Limits come from provenance, purpose, date and content (what the document leaves out) — never from its age or length alone.",
+ "Les limites viennent de la provenance, du but, de la date et du contenu (ce que le document ne dit pas), jamais de son âge ou de sa longueur seuls.",
+ { src: ["ASIBA, “How to structure an 8 mark DBQ”", "ASIBA, « How to structure an 8 mark DBQ »"] }),
+TQ("X", "m", "David Low's cartoons (The Doormat, 1933; On the Throne of Justice, 1935; Stepping Stones to Glory, 1936) share which value and which limit as sources?", "Les dessins de David Low (The Doormat, 1933 ; On the Throne of Justice, 1935 ; Stepping Stones to Glory, 1936) ont en commun quelle valeur et quelle limite comme sources ?",
+ [["They show contemporary British criticism of the League and of appeasement, but from one committed point of view", "Ils montrent la critique britannique de l'époque contre la SDN et l'apaisement, mais d'un point de vue engagé"],
+  ["They are neutral official documents", "Ce sont des documents officiels neutres"],
+  ["They were drawn after 1945, so they have no value", "Ils sont dessinés après 1945, donc sans valeur"],
+  ["They prove what Hitler planned", "Ils prouvent ce qu'Hitler planifiait"]], 0,
+ "A cartoon is excellent evidence of opinion at a date, weak evidence of what decision-makers actually knew or intended.",
+ "Un dessin de presse est une excellente source sur l'opinion à une date, une source faible sur ce que les décideurs savaient ou voulaient."),
+TQ("X", "m", "What did the history DBQ of the 2024 BFI exam (Sujet B) deal with?", "Sur quoi portait le DBQ d'histoire du BFI 2024 (sujet B) ?",
+ [["The policy of appeasement, with a David Low cartoon on Munich and a report of Chamberlain's speech of December 1938", "La politique d'apaisement, avec un dessin de David Low sur Munich et un compte rendu d'un discours de Chamberlain de décembre 1938"],
+  ["The New Deal, with a photograph by Dorothea Lange", "Le New Deal, avec une photographie de Dorothea Lange"],
+  ["Stalin's Five-Year Plan", "Le plan quinquennal de Staline"],
+  ["The fall of France in 1940", "La défaite française de 1940"]], 0,
+ "Questions: a) How useful are Documents A and B for understanding the policy of appeasement in the 1930s? b) Assess the role of western democracies in the collapse of global peace during the 1930s. It is on your programme.",
+ "Questions : a) How useful are Documents A and B for understanding the policy of appeasement in the 1930s? b) Assess the role of western democracies in the collapse of global peace during the 1930s. C'est ton programme.",
+ { src: ["BFI 2024 paper, British section (Eduscol)", "Sujet BFI 2024, section britannique (Eduscol)"] }),
+
+/* ---------- Hors cours : sources externes ---------- */
+TQ("H2", "o", "In November 1923, at the height of German hyperinflation, roughly how many marks did one US dollar buy?", "En novembre 1923, au sommet de l'hyperinflation allemande, combien de marks valait environ un dollar ?",
+ [["About 4.2 trillion", "Environ 4 200 milliards"], ["About 4,200", "Environ 4 200"], ["About 42 million", "Environ 42 millions"], ["About 420", "Environ 420"]], 0,
+ "Savings were wiped out the same year as Hitler's failed coup in Munich — one reason the middle classes later feared any new crisis.",
+ "L'épargne est anéantie l'année même du putsch manqué d'Hitler à Munich, une raison pour laquelle les classes moyennes redouteront ensuite toute nouvelle crise.",
+ { src: ["Encyclopaedia Britannica, “Weimar Republic”", "Encyclopaedia Britannica, « Weimar Republic »"] }),
+TQ("H2", "o", "What did the Enabling Act of 23 March 1933 allow?", "Que permet la loi des pleins pouvoirs du 23 mars 1933 ?",
+ [["Hitler's government could make laws without the Reichstag", "Le gouvernement d'Hitler peut faire des lois sans le Reichstag"],
+  ["The SA could be dissolved", "La SA peut être dissoute"],
+  ["Germany could leave the League of Nations", "L'Allemagne peut quitter la SDN"],
+  ["The Jews were deprived of citizenship", "Les Juifs sont privés de la citoyenneté"]], 0,
+ "Voted under SA pressure a month after the Reichstag fire decree: the legal façade of the dictatorship.",
+ "Votée sous la pression de la SA un mois après le décret de l'incendie du Reichstag : la façade légale de la dictature.",
+ { src: ["Encyclopaedia Britannica, “Enabling Act”", "Encyclopaedia Britannica, « Enabling Act »"] }),
+TQ("H2", "o", "Who was the leader of the SA killed during the Night of the Long Knives (30 June 1934)?", "Quel chef de la SA est tué pendant la nuit des Longs Couteaux (30 juin 1934) ?",
+ [["Ernst Röhm", "Ernst Röhm"], ["Heinrich Himmler", "Heinrich Himmler"], ["Joseph Goebbels", "Joseph Goebbels"], ["Hermann Göring", "Hermann Göring"]], 0,
+ "Hitler sacrificed his own street army to reassure the generals and the conservative elites — terror turned against the regime's own men.",
+ "Hitler sacrifie sa propre armée de rue pour rassurer les généraux et les élites conservatrices : la terreur se retourne contre les hommes du régime.",
+ { src: ["Encyclopaedia Britannica, “Night of the Long Knives”", "Encyclopaedia Britannica, « Night of the Long Knives »"] }),
+TQ("H2", "o", "What happened when President Hindenburg died in August 1934?", "Que se passe-t-il à la mort du président Hindenburg en août 1934 ?",
+ [["Hitler merged the offices of chancellor and president and became Führer; soldiers swore an oath to him personally", "Hitler fusionne les fonctions de chancelier et de président et devient Führer ; les soldats lui prêtent serment personnellement"],
+  ["A new presidential election was won by the Social Democrats", "Une nouvelle élection présidentielle est gagnée par les sociaux-démocrates"],
+  ["The monarchy was restored", "La monarchie est restaurée"],
+  ["The army took power from Hitler", "L'armée prend le pouvoir à Hitler"]], 0,
+ "The last institution above Hitler disappeared: the cult of the leader now had a legal form.",
+ "La dernière institution au-dessus d'Hitler disparaît : le culte du chef prend une forme légale.",
+ { src: ["Encyclopaedia Britannica, “Adolf Hitler”", "Encyclopaedia Britannica, « Adolf Hitler »"] }),
+TQ("H2", "o", "What was Kristallnacht (9–10 November 1938)?", "Qu'est-ce que la Nuit de cristal (9-10 novembre 1938) ?",
+ [["A pogrom across Germany: synagogues burned, Jewish shops wrecked, about 30,000 Jewish men sent to camps", "Un pogrom dans toute l'Allemagne : synagogues incendiées, magasins juifs saccagés, environ 30 000 hommes juifs envoyés en camp"],
+  ["The night the Reichstag burned", "La nuit de l'incendie du Reichstag"],
+  ["The purge of the SA leadership", "La purge des chefs de la SA"],
+  ["The German entry into Vienna", "L'entrée allemande à Vienne"]], 0,
+ "It came six weeks after Munich: the regime's racial violence went into the open while the democracies were appeasing it.",
+ "Elle survient six semaines après Munich : la violence raciale du régime s'affiche au grand jour pendant que les démocraties l'apaisent.",
+ { src: ["United States Holocaust Memorial Museum, “Kristallnacht”", "United States Holocaust Memorial Museum, « Kristallnacht »"] }),
+TQ("H2", "o", "What was the Hoare–Laval Pact of December 1935?", "Qu'est-ce que le pacte Hoare-Laval de décembre 1935 ?",
+ [["A secret Franco-British plan to give Italy a large part of Ethiopia; it leaked and caused a scandal", "Un plan secret franco-britannique pour céder à l'Italie une grande partie de l'Éthiopie ; il fuite et fait scandale"],
+  ["A military alliance against Germany", "Une alliance militaire contre l'Allemagne"],
+  ["An oil embargo on Italy", "Un embargo pétrolier contre l'Italie"],
+  ["A trade agreement with the United States", "Un accord commercial avec les États-Unis"]], 0,
+ "The British Foreign Secretary, Samuel Hoare, had to resign. A perfect example of appeasement before the word became famous.",
+ "Le ministre britannique des Affaires étrangères, Samuel Hoare, doit démissionner. Un exemple parfait d'apaisement avant que le mot ne devienne célèbre.",
+ { src: ["Encyclopaedia Britannica, “Hoare–Laval Pact”", "Encyclopaedia Britannica, « Hoare-Laval Pact »"] }),
+TQ("H2", "o", "Who addressed the League of Nations in Geneva in June 1936 to denounce the Italian invasion?", "Qui vient dénoncer l'invasion italienne devant la SDN à Genève en juin 1936 ?",
+ [["Emperor Haile Selassie of Ethiopia", "L'empereur d'Éthiopie Hailé Sélassié"], ["Winston Churchill", "Winston Churchill"], ["Léon Blum", "Léon Blum"], ["Franklin D. Roosevelt", "Franklin D. Roosevelt"]], 0,
+ "He warned that collective security itself was at stake. The League lifted its sanctions on Italy the following month.",
+ "Il avertit que c'est la sécurité collective elle-même qui est en jeu. La SDN lève ses sanctions contre l'Italie le mois suivant.",
+ { src: ["Encyclopaedia Britannica, “Haile Selassie I”", "Encyclopaedia Britannica, « Haile Selassie I »"] }),
+TQ("H2", "o", "What did Stalin's article “Dizzy with Success” (March 1930) do?", "Que fait l'article de Staline « Le vertige du succès » (mars 1930) ?",
+ [["It blamed local officials for excesses and briefly slowed forced collectivisation", "Il accuse les responsables locaux des excès et ralentit brièvement la collectivisation forcée"],
+  ["It launched the first Five-Year Plan", "Il lance le premier plan quinquennal"],
+  ["It announced the Great Purge", "Il annonce la Grande Terreur"],
+  ["It praised the kulaks", "Il fait l'éloge des koulaks"]], 0,
+ "Many peasants left the kolkhozes in 1930 — then collectivisation resumed and reached 90% by 1936 (Worksheet 2).",
+ "Beaucoup de paysans quittent les kolkhozes en 1930, puis la collectivisation reprend et atteint 90 % en 1936 (Worksheet 2).",
+ { src: ["Encyclopaedia Britannica, “collectivization”", "Encyclopaedia Britannica, « collectivization »"] }),
+TQ("H2", "o", "What was Mussolini's “Battle for Grain”, launched in 1925?", "Qu'est-ce que la « bataille du blé » lancée par Mussolini en 1925 ?",
+ [["A propaganda campaign to make Italy self-sufficient in wheat", "Une campagne de propagande pour rendre l'Italie autosuffisante en blé"],
+  ["A war against Ethiopia", "Une guerre contre l'Éthiopie"],
+  ["A strike of farm workers", "Une grève des ouvriers agricoles"],
+  ["A trade deal with Germany", "Un accord commercial avec l'Allemagne"]], 0,
+ "Autarky and mobilisation: the same logic as the Nazi economy, applied to the fields.",
+ "Autarcie et mobilisation : la même logique que l'économie nazie, appliquée aux champs.",
+ { src: ["Encyclopaedia Britannica, “Benito Mussolini”", "Encyclopaedia Britannica, « Benito Mussolini »"] }),
+TQ("H1", "o", "What was the “Bonus Army” of 1932?", "Qu'est-ce que la « Bonus Army » de 1932 ?",
+ [["First World War veterans who camped in Washington to demand early payment of a promised bonus, and were driven out by the army", "Des anciens combattants de 1914-1918 qui campent à Washington pour réclamer le versement anticipé d'une prime promise, et sont chassés par l'armée"],
+  ["A New Deal programme of public works", "Un programme de grands travaux du New Deal"],
+  ["An army raised to fight in Manchuria", "Une armée levée pour combattre en Mandchourie"],
+  ["A group of bankers who saved Wall Street", "Un groupe de banquiers qui sauve Wall Street"]], 0,
+ "Troops under General MacArthur burned their camp in July 1932 — a blow to Hoover a few months before his defeat.",
+ "Les troupes du général MacArthur brûlent leur camp en juillet 1932 : un coup dur pour Hoover quelques mois avant sa défaite.",
+ { src: ["Library of Congress / Encyclopaedia Britannica, “Bonus Army”", "Library of Congress / Encyclopaedia Britannica, « Bonus Army »"] }),
+TQ("H1", "o", "What were Roosevelt's “fireside chats”, the first of which was broadcast on 12 March 1933?", "Que sont les « causeries au coin du feu » de Roosevelt, dont la première est diffusée le 12 mars 1933 ?",
+ [["Radio talks explaining his policy directly to Americans — the first one on the banking crisis", "Des allocutions radio expliquant directement sa politique aux Américains, la première sur la crise bancaire"],
+  ["Secret meetings with bankers", "Des réunions secrètes avec des banquiers"],
+  ["Debates in Congress", "Des débats au Congrès"],
+  ["Newspaper articles written by his wife", "Des articles de presse écrits par sa femme"]], 0,
+ "Restoring confidence was part of the cure: the Depression had begun with a loss of trust in the banks.",
+ "Rétablir la confiance fait partie du remède : la Dépression a commencé par une perte de confiance dans les banques.",
+ { src: ["Franklin D. Roosevelt Presidential Library", "Bibliothèque présidentielle Franklin D. Roosevelt"] }),
+TQ("H1", "o", "What did Keynes argue in his General Theory (1936)?", "Que défend Keynes dans sa Théorie générale (1936) ?",
+ [["That in a depression the state should spend to sustain demand and fight unemployment", "Qu'en période de dépression, l'État doit dépenser pour soutenir la demande et lutter contre le chômage"],
+  ["That the Gold Standard must be defended at any cost", "Qu'il faut défendre l'étalon-or à tout prix"],
+  ["That tariffs end depressions", "Que les droits de douane mettent fin aux dépressions"],
+  ["That the state should cut spending until prices fall", "Que l'État doit réduire ses dépenses jusqu'à la baisse des prix"]], 0,
+ "The course uses Keynes as the yardstick for judging the Front populaire; his book theorised what the New Deal had done by experiment.",
+ "Le cours prend Keynes comme repère pour juger le Front populaire ; son livre théorise ce que le New Deal avait fait par l'expérience.",
+ { src: ["Encyclopaedia Britannica, “John Maynard Keynes”", "Encyclopaedia Britannica, « John Maynard Keynes »"] }),
+TQ("H1", "o", "Which novel tells the story of a family driven from Oklahoma by the Dust Bowl?", "Quel roman raconte l'histoire d'une famille chassée de l'Oklahoma par le Dust Bowl ?",
+ [["The Grapes of Wrath, by John Steinbeck (1939)", "Les Raisins de la colère, de John Steinbeck (1939)"],
+  ["The Great Gatsby, by F. Scott Fitzgerald (1925)", "Gatsby le Magnifique, de F. Scott Fitzgerald (1925)"],
+  ["Nineteen Eighty-Four, by George Orwell (1949)", "1984, de George Orwell (1949)"],
+  ["Of Mice and Men, by John Steinbeck (1937)", "Des souris et des hommes, de John Steinbeck (1937)"]], 0,
+ "The Joads, like Florence Owens Thompson in Migrant Mother, end up as migrant workers in California.",
+ "Les Joad, comme Florence Owens Thompson dans Migrant Mother, finissent travailleurs migrants en Californie.",
+ { src: ["Encyclopaedia Britannica, “The Grapes of Wrath”", "Encyclopaedia Britannica, « The Grapes of Wrath »"] }),
+TQ("X", "o", "Back from Munich on 30 September 1938, what did Chamberlain claim to bring home?", "De retour de Munich le 30 septembre 1938, que Chamberlain affirme-t-il rapporter ?",
+ [["“Peace for our time”", "« La paix pour notre temps »"], ["“Blood, toil, tears and sweat”", "« Du sang, de la peine, des larmes et de la sueur »"], ["“A date which will live in infamy”", "« Une date qui restera marquée d'infamie »"], ["“Never again”", "« Plus jamais ça »"]], 0,
+ "He waved the paper signed with Hitler. Six months later Germany occupied Prague. (“Blood, toil…” is Churchill in May 1940.)",
+ "Il brandit le papier signé avec Hitler. Six mois plus tard, l'Allemagne occupe Prague. (« Du sang, de la peine… » est de Churchill, en mai 1940.)",
+ { src: ["Imperial War Museums / UK National Archives", "Imperial War Museums / Archives nationales britanniques"] }),
+TQ("X", "o", "Who described the Sudeten crisis on 27 September 1938 as “a quarrel in a far away country between people of whom we know nothing”?", "Qui décrit la crise des Sudètes, le 27 septembre 1938, comme « une querelle dans un pays lointain entre des gens dont nous ne savons rien » ?",
+ [["Neville Chamberlain, in a radio broadcast", "Neville Chamberlain, dans une allocution radio"], ["Édouard Daladier", "Édouard Daladier"], ["Winston Churchill", "Winston Churchill"], ["Adolf Hitler", "Adolf Hitler"]], 0,
+ "A short quotation that captures one reason for appeasement: Britain did not see central Europe as its business.",
+ "Une citation courte qui résume une raison de l'apaisement : le Royaume-Uni ne voit pas l'Europe centrale comme son affaire.",
+ { src: ["UK National Archives", "Archives nationales britanniques"] }),
+TQ("X", "o", "Who signed the Nazi-Soviet pact in Moscow on 23 August 1939?", "Qui signe le pacte germano-soviétique à Moscou le 23 août 1939 ?",
+ [["The foreign ministers Ribbentrop and Molotov", "Les ministres des Affaires étrangères Ribbentrop et Molotov"], ["Hitler and Stalin in person", "Hitler et Staline en personne"], ["Göring and Trotsky", "Göring et Trotski"], ["Chamberlain and Molotov", "Chamberlain et Molotov"]], 0,
+ "Hence its other name, the Molotov–Ribbentrop pact. Its secret protocol divided Poland and the Baltic region into spheres of influence.",
+ "D'où son autre nom, pacte Molotov-Ribbentrop. Son protocole secret partage la Pologne et la région balte en zones d'influence.",
+ { src: ["Encyclopaedia Britannica, “German-Soviet Nonaggression Pact”", "Encyclopaedia Britannica, « German-Soviet Nonaggression Pact »"] }),
+TQ("H3", "o", "When and how did General de Gaulle call on the French to continue the fight?", "Quand et comment le général de Gaulle appelle-t-il les Français à continuer le combat ?",
+ [["On 18 June 1940, on the BBC from London", "Le 18 juin 1940, à la BBC depuis Londres"], ["On 22 June 1940, at Rethondes", "Le 22 juin 1940, à Rethondes"], ["On 10 July 1940, at Vichy", "Le 10 juillet 1940, à Vichy"], ["On 14 June 1940, in Paris", "Le 14 juin 1940, à Paris"]], 0,
+ "Few people heard the broadcast itself; its importance grew afterwards, as Free France took shape.",
+ "Peu de gens entendent l'émission elle-même ; son importance grandit ensuite, avec la France libre.",
+ { src: ["Fondation Charles de Gaulle / BBC", "Fondation Charles de Gaulle / BBC"] }),
+TQ("H3", "o", "What did the National Assembly vote on 10 July 1940 in Vichy?", "Que vote l'Assemblée nationale le 10 juillet 1940 à Vichy ?",
+ [["Full powers to Marshal Pétain, by 569 votes to 80", "Les pleins pouvoirs au maréchal Pétain, par 569 voix contre 80"], ["The continuation of the war from North Africa", "La poursuite de la guerre depuis l'Afrique du Nord"], ["The STO", "Le STO"], ["The declaration of war on Germany", "La déclaration de guerre à l'Allemagne"]], 0,
+ "The end of the Third Republic: an authoritarian “French State” replaced it the next day.",
+ "La fin de la IIIe République : un « État français » autoritaire la remplace dès le lendemain.",
+ { src: ["Assemblée nationale, “Les 80 parlementaires du 10 juillet 1940”", "Assemblée nationale, « Les 80 parlementaires du 10 juillet 1940 »"] }),
+TQ("H3", "o", "After meeting Hitler at Montoire (24 October 1940), what did Pétain announce?", "Après sa rencontre avec Hitler à Montoire (24 octobre 1940), qu'annonce Pétain ?",
+ [["That he was entering “the path of collaboration”", "Qu'il entre « dans la voie de la collaboration »"], ["That France would resume the war", "Que la France reprend la guerre"], ["That he was resigning", "Qu'il démissionne"], ["That Alsace was returned to France", "Que l'Alsace est rendue à la France"]], 0,
+ "Radio speech of 30 October 1940: collaboration was a choice proclaimed by Vichy, not only a German demand.",
+ "Discours radiodiffusé du 30 octobre 1940 : la collaboration est un choix proclamé par Vichy, pas seulement une exigence allemande.",
+ { src: ["Encyclopaedia Britannica, “Philippe Pétain”", "Encyclopaedia Britannica, « Philippe Pétain »"] }),
+TQ("H3", "o", "What was the Vel d'Hiv round-up of 16–17 July 1942?", "Qu'est-ce que la rafle du Vél d'Hiv des 16 et 17 juillet 1942 ?",
+ [["The arrest of about 13,000 Jews in Paris by the French police, before their deportation", "L'arrestation d'environ 13 000 Juifs à Paris par la police française, avant leur déportation"], ["A German air raid on Paris", "Un bombardement allemand sur Paris"], ["A Resistance operation", "Une opération de la Résistance"], ["The arrest of British soldiers after Dunkirk", "L'arrestation de soldats britanniques après Dunkerque"]], 0,
+ "It is the great round-up the course mentions: carried out by French police, not by the Milice, which did not exist yet.",
+ "C'est la grande rafle évoquée par le cours : menée par la police française, et non par la Milice, qui n'existe pas encore.",
+ { src: ["Mémorial de la Shoah", "Mémorial de la Shoah"] }),
+TQ("H3", "o", "What were the “little ships” of Dunkirk?", "Que sont les « petits navires » de Dunkerque ?",
+ [["Civilian boats — fishing boats, pleasure craft, ferries — that helped carry soldiers off the beaches", "Des bateaux civils (pêche, plaisance, bacs) qui aident à évacuer les soldats des plages"], ["German submarines", "Des sous-marins allemands"], ["French battleships", "Des cuirassés français"], ["Hospital ships of the Red Cross only", "Seulement des navires-hôpitaux de la Croix-Rouge"]], 0,
+ "They ferried men to the larger ships offshore. The episode became a founding myth of British resistance in 1940.",
+ "Ils font la navette vers les grands navires au large. L'épisode devient un mythe fondateur de la résistance britannique de 1940.",
+ { src: ["Imperial War Museums, “Dunkirk”", "Imperial War Museums, « Dunkirk »"] }),
+TQ("H3", "o", "After whom was the Maginot Line named?", "D'où vient le nom de la ligne Maginot ?",
+ [["André Maginot, French minister of war", "André Maginot, ministre français de la Guerre"], ["A Belgian general", "D'un général belge"], ["The village where it began", "Du village où elle commence"], ["A German engineer", "D'un ingénieur allemand"]], 0,
+ "Built from 1929 onwards, it embodied the defensive strategy the course describes.",
+ "Construite à partir de 1929, elle incarne la stratégie défensive décrite par le cours.",
+ { src: ["Encyclopaedia Britannica, “Maginot Line”", "Encyclopaedia Britannica, « Maginot Line »"] }),
+
+/* ---------- Rappels de Première ---------- */
+TQ("1re", "p", "What did the secret Treaty of London (April 1915) promise Italy?", "Que promet à l'Italie le traité secret de Londres (avril 1915) ?",
+ [["Trentino, South Tyrol and Istria, if it entered the war on the Allied side", "Le Trentin, le Haut-Adige et l'Istrie, si elle entre en guerre aux côtés des Alliés"], ["Libya and Ethiopia", "La Libye et l'Éthiopie"], ["Corsica and Nice", "La Corse et Nice"], ["Nothing: it was a neutrality pact", "Rien : c'est un pacte de neutralité"]], 0,
+ "Promises only partly kept in 1919: the root of the “mutilated victory” that fed Fascism (H2, I.1).",
+ "Des promesses en partie seulement tenues en 1919 : la racine de la « victoire mutilée » qui nourrit le fascisme (H2, I.1).", { p: "P-H9" }),
+TQ("1re", "p", "What did Russia lose by the Treaty of Brest-Litovsk (3 March 1918)?", "Que perd la Russie par le traité de Brest-Litovsk (3 mars 1918) ?",
+ [["Poland, the Baltic lands, Finland and Ukraine — about a third of its population", "La Pologne, les pays baltes, la Finlande et l'Ukraine, environ un tiers de sa population"], ["Only Siberia", "Seulement la Sibérie"], ["Nothing: it was a victory", "Rien : c'est une victoire"], ["Alsace-Lorraine", "L'Alsace-Lorraine"]], 0,
+ "The Bolsheviks paid this price to leave the war — then the civil war began.",
+ "C'est le prix payé par les bolcheviks pour sortir de la guerre ; puis la guerre civile commence.", { p: "P-H9" }),
+TQ("1re", "p", "What myth did the German right spread after 1918?", "Quel mythe la droite allemande répand-elle après 1918 ?",
+ [["The stab in the back: the army had been betrayed at home, not beaten at the front", "Le coup de poignard dans le dos : l'armée aurait été trahie à l'arrière, et non battue au front"], ["That Germany had won the war", "Que l'Allemagne a gagné la guerre"], ["That the United States had started the war", "Que les États-Unis ont commencé la guerre"], ["That Russia had betrayed the Allies", "Que la Russie a trahi les Alliés"]], 0,
+ "The same myth reappears in H2 (I.1) with the 1919 postcard blaming the Jews.",
+ "Le même mythe revient en H2 (I.1) avec la carte postale de 1919 qui accuse les Juifs.", { p: "P-H9" }),
+TQ("1re", "p", "How does the course define “total war”?", "Comment le cours définit-il la « guerre totale » ?",
+ [["The mobilisation of all of a society's resources and the blurring of the line between front and rear", "La mobilisation de toutes les ressources d'une société et l'effacement de la frontière entre front et arrière"], ["A war fought on every continent", "Une guerre menée sur tous les continents"], ["A war with no peace treaty", "Une guerre sans traité de paix"], ["A war won by total victory", "Une guerre gagnée par une victoire totale"]], 0,
+ "Ministry of Munitions, rationing, propaganda, war loans: the state directs everything. The Second World War pushes the logic further.",
+ "Ministère des Munitions, rationnement, propagande, emprunts : l'État dirige tout. La Seconde Guerre mondiale pousse la logique plus loin.", { p: "P-H10" }),
+TQ("1re", "p", "Who crushed the Spartacist uprising of January 1919 and murdered Luxemburg and Liebknecht?", "Qui écrase la révolte spartakiste de janvier 1919 et assassine Luxemburg et Liebknecht ?",
+ [["The Freikorps, volunteer units of ex-soldiers", "Les corps francs, unités volontaires d'anciens soldats"], ["The SS", "La SS"], ["The French army", "L'armée française"], ["The Red Army", "L'Armée rouge"]], 0,
+ "An example of brutalisation: ex-soldiers carry the violence of the front into politics (H2, I.1).",
+ "Un exemple de brutalisation : les anciens soldats transportent la violence du front dans la politique (H2, I.1).", { p: "P-H10" }),
+TQ("1re", "p", "At what amount were German reparations fixed in 1921?", "À quel montant les réparations allemandes sont-elles fixées en 1921 ?",
+ [["132 billion gold marks", "132 milliards de marks-or"], ["800 million marks", "800 millions de marks"], ["2.5 billion marks", "2,5 milliards de marks"], ["4.2 trillion marks", "4 200 milliards de marks"]], 0,
+ "The debt behind the Dawes Plan of 1924 (800 million lent, then 2.5 billion a year paid) — the circuit of H1, I.2.",
+ "La dette derrière le plan Dawes de 1924 (800 millions prêtés, puis 2,5 milliards versés par an) : le circuit de H1, I.2.", { p: "P-H11" }),
+TQ("1re", "p", "What did Keynes call the Treaty of Versailles in The Economic Consequences of the Peace (1919)?", "Comment Keynes qualifie-t-il le traité de Versailles dans Les Conséquences économiques de la paix (1919) ?",
+ [["A “Carthaginian peace”", "Une « paix carthaginoise »"], ["A “peace without victory”", "Une « paix sans victoire »"], ["A “mutilated victory”", "Une « victoire mutilée »"], ["A “scrap of paper”", "Un « chiffon de papier »"]], 0,
+ "A peace that crushes the loser. The same Keynes reappears in H1 as the economist of public spending.",
+ "Une paix qui écrase le vaincu. Le même Keynes revient en H1 comme l'économiste de la dépense publique.", { p: "P-H11" }),
+TQ("1re", "p", "Why did the League of Nations start “without its founder”?", "Pourquoi la SDN naît-elle « sans son fondateur » ?",
+ [["The US Senate rejected the Treaty of Versailles (November 1919, March 1920)", "Le Sénat américain rejette le traité de Versailles (novembre 1919, mars 1920)"], ["Wilson died in 1919", "Wilson meurt en 1919"], ["Germany vetoed the United States", "L'Allemagne met son veto aux États-Unis"], ["The League was founded in Washington", "La SDN est fondée à Washington"]], 0,
+ "The missing keystone of the Punch cartoon of 1919 (H1, II.3): a structural weakness from the start.",
+ "La clé de voûte manquante du dessin de Punch de 1919 (H1, II.3) : une faiblesse de structure dès l'origine.", { p: "P-H11" }),
+TQ("1re", "p", "How many German speakers did the 1919 settlement leave inside Czechoslovakia?", "Combien de germanophones les traités de 1919 laissent-ils en Tchécoslovaquie ?",
+ [["About three million, in the Sudetenland", "Environ trois millions, dans les Sudètes"], ["About 30,000", "Environ 30 000"], ["None", "Aucun"], ["About thirty million", "Environ trente millions"]], 0,
+ "The minority Hitler claimed at Munich in 1938: Première and Terminale meet here.",
+ "La minorité que réclame Hitler à Munich en 1938 : la Première et la Terminale se rejoignent ici.", { p: "P-H11" }),
+TQ("1re", "p", "What did the Oxford Union vote in February 1933?", "Que vote l'Oxford Union en février 1933 ?",
+ [["That it would “in no circumstances fight for its King and Country”", "Qu'elle ne se battrait « en aucun cas pour son roi et son pays »"], ["That Britain should rearm at once", "Que le Royaume-Uni doit réarmer immédiatement"], ["That Hitler should be removed", "Qu'il faut renverser Hitler"], ["That women should get the vote", "Que les femmes doivent voter"]], 0,
+ "Pacifism born of the memory of the war — one of the foundations of appeasement (H2, III.2).",
+ "Un pacifisme né de la mémoire de la guerre, l'un des fondements de l'apaisement (H2, III.2).", { p: "P-H11" })
+];
+
+/* ===================== ENTRAÎNEMENT — page et quiz transversal =====================
+   Réunit les QCM des chapitres (H1_QCM, H2_QCM, H3_QCM, non recopiés) et TRAIN_QCM,
+   et fabrique des questions de chronologie à partir des frises des chapitres.
+   Rien n'est enregistré : chaque série repart de zéro. */
+const TRAIN_CHAPS = ["H1", "H2", "H3"];
+const TRAIN_PREM = ["P-H9", "P-H10", "P-H11"];
+const TRAIN_FROM = (code, arr) => arr.map(q => ({ c: code, t: q[0] === "k" ? "k" : q[0] === "p" ? "p" : "m", q: [q[1], q[2]], o: q[3], a: q[4], w: [q[5], q[6]], p: q[7] }));
+let TRAIN_POOL_ = null;
+const trainPool = () => TRAIN_POOL_ || (TRAIN_POOL_ = [].concat(TRAIN_FROM("H1", H1_QCM), TRAIN_FROM("H2", H2_QCM), TRAIN_FROM("H3", H3_QCM), TRAIN_QCM));
+const trainShuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+const TRAIN_TYPES = [
+  ["all", "All types", "Tous les types"],
+  ["k", "Precise knowledge", "Connaissances précises"],
+  ["l", "Big picture & links", "Vue d'ensemble et liens"],
+  ["c", "Chronology", "Chronologie"],
+  ["m", "Exam reflexes", "Réflexes d'épreuve"],
+  ["p", "Première recaps", "Rappels de 1re"],
+  ["o", "Beyond the course", "Hors cours"]];
+const TRAIN_SCOPES = [["all", "All", "Tout"], ["H1", "H1", "H1"], ["H2", "H2", "H2"], ["H3", "H3", "H3"], ["1re", "1re", "1re"], ["X", "Across chapters", "Entre chapitres"]];
+const TRAIN_TYPE_LABEL = { k: ["Knowledge", "Connaissance"], l: ["Big picture", "Vue d'ensemble"], c: ["Chronology", "Chronologie"], m: ["Exam reflex", "Réflexe d'épreuve"], p: ["Première recap", "Rappel de 1re"], o: ["Beyond the course", "Hors cours"] };
+const TRAIN_SCOPE_LABEL = c => c === "X" ? ["Across chapters", "Entre chapitres"] : c === "1re" ? ["Première", "Première"] : [c, c];
+
+/* chronologie : clé de tri tirée de la date anglaise de la frise */
+const TRAIN_MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+const trainDateKey = s => {
+  const m = String(s).match(/(\d{4})/);
+  if (!m) return null;
+  const pre = s.slice(0, m.index).toLowerCase();
+  let mon = 0;
+  TRAIN_MONTHS.forEach((x, i) => { if (pre.indexOf(x) >= 0) mon = i + 1; });
+  return { year: +m[1], key: +m[1] * 100 + mon };
+};
+const trainEvents = scope => {
+  const src = [];
+  const add = (code, d) => {
+    if (!d || !d.timeline) return;
+    const fr = d.fr && d.fr.timeline && d.fr.timeline.length === d.timeline.length ? d.fr.timeline : d.timeline;
+    d.timeline.forEach((t, i) => { const k = trainDateKey(t[0]); if (k) src.push({ c: code, year: k.year, key: k.key, date: [t[0], fr[i][0]], ev: [t[1], fr[i][1]] }); });
+  };
+  if (scope === "all" || scope === "X" || TRAIN_CHAPS.indexOf(scope) >= 0) TRAIN_CHAPS.forEach(c => { if (scope === "all" || scope === "X" || scope === c) add(c, CHAPTERS[c]); });
+  if (scope === "all" || scope === "X" || scope === "1re") TRAIN_PREM.forEach(c => add("1re", PREM_FULL[c]));
+  return src;
+};
+const trainChrono = (scope, n) => {
+  const ev = trainEvents(scope), out = [];
+  for (let k = 0; k < n; k++) {
+    const pick = [], years = {};
+    trainShuffle(ev).forEach(e => { if (pick.length < 4 && !years[e.year]) { years[e.year] = 1; pick.push(e); } });
+    if (pick.length < 4) break;
+    const chs = pick.map(e => e.c).filter((c, i, a) => a.indexOf(c) === i);
+    out.push({ kind: "order", t: "c", c: chs.length === 1 ? chs[0] : "X", ev: pick.slice().sort((a, b) => a.key - b.key) });
+  }
+  return out;
+};
+const trainSeries = (scope, type, size) => {
+  const pool = trainPool().filter(q => (scope === "all" || q.c === scope) && (type === "all" || q.t === type));
+  let qs = trainShuffle(pool);
+  if (type === "c") return trainChrono(scope, size === "all" ? 15 : size);
+  const n = size === "all" ? qs.length : Math.min(size, qs.length);
+  qs = qs.slice(0, n);
+  if (type === "all") {
+    const nc = Math.max(1, Math.round(qs.length / 5));
+    const ch = trainChrono(scope, nc);
+    if (size !== "all") qs = qs.slice(0, Math.max(0, n - ch.length));
+    qs = trainShuffle(qs.concat(ch));
+  }
+  return qs;
+};
+const trainCount = (scope, type) => type === "c" ? (trainEvents(scope).length >= 4 ? Infinity : 0)
+  : trainPool().filter(q => (scope === "all" || q.c === scope) && (type === "all" || q.t === type)).length;
+
+const trainChip = (on, label, onClick, key) => React.createElement("button", { key: key, className: "tr-chip" + (on ? " on" : ""), onClick: onClick }, label);
+const trainGoChap = c => { if (c && c.indexOf("P-") === 0) openPrem(c); else window.dispatchEvent(new CustomEvent("go-chap", { detail: c })); };
+
+/* badge d'une question : chapitre, type, hors cours */
+const TrainBadge = ({ q, FR }) => {
+  const L = FR ? 1 : 0;
+  return React.createElement("div", { className: "tr-badges" },
+    React.createElement("span", { className: "tr-badge sc" }, TRAIN_SCOPE_LABEL(q.c)[L]),
+    React.createElement("span", { className: "tr-badge ty ty-" + q.t }, TRAIN_TYPE_LABEL[q.t][L]));
+};
+
+/* question à remettre dans l'ordre */
+const TrainOrder = ({ q, FR, onDone }) => {
+  const L = FR ? 1 : 0;
+  const shown = React.useMemo(() => trainShuffle(q.ev.map((_, i) => i)), [q]);
+  const [seq, setSeq] = useState([]);
+  const done = seq.length === q.ev.length;
+  const good = done && seq.every((v, i) => v === i);
+  const tap = (i, el) => {
+    if (done || seq.indexOf(i) >= 0) return;
+    const s = seq.concat([i]);
+    setSeq(s);
+    if (s.length === q.ev.length) { const ok = s.every((v, k) => v === k); onDone(ok); if (window.MO) setTimeout(() => window.MO.repondre(ok, el), 0); }
+  };
+  return React.createElement("div", null,
+    React.createElement("div", { className: "tr-q" }, FR ? "Remets ces événements dans l'ordre chronologique : touche le plus ancien d'abord." : "Put these events in chronological order: tap the earliest first."),
+    shown.map(i => {
+      const n = seq.indexOf(i);
+      return React.createElement("button", { key: i, className: "tr-opt mo-opt" + (n >= 0 ? " picked" : "") + (done ? (n === i ? " good" : " bad") : ""), "data-good": done && n === i ? 1 : 0, disabled: done, onClick: ev => tap(i, ev.currentTarget) },
+        React.createElement("b", { className: "tr-num" }, n >= 0 ? String(n + 1) : "·"),
+        React.createElement("span", null, q.ev[i].ev[L]),
+        done && React.createElement("span", { className: "tr-date" }, q.ev[i].date[L]));
+    }),
+    !done && seq.length > 0 && React.createElement("button", { className: "tr-link", onClick: () => setSeq([]) }, FR ? "Effacer et recommencer" : "Clear and start again"),
+    done && React.createElement("div", { className: "tr-expl mo-expl" + (good ? " ok" : " ko") },
+      React.createElement("b", null, good ? (FR ? "Juste. " : "Right. ") : (FR ? "Pas tout à fait. Le bon ordre : " : "Not quite. The right order: ")),
+      good ? (FR ? "Les dates sont affichées à côté de chaque événement." : "The dates are shown next to each event.")
+        : q.ev.map(e => e.date[L]).join(" → ")));
+};
+
+/* déroulé d'une série */
+const TrainRun = ({ FR, items, onBack }) => {
+  const L = FR ? 1 : 0;
+  const [pos, setPos] = useState(0);
+  const [pick, setPick] = useState(null);
+  const [res, setRes] = useState([]);
+  const q = items[pos];
+  const perm = React.useMemo(() => q && q.o ? trainShuffle(q.o.map((_, i) => i)) : [], [pos, items]);
+  const record = ok => setRes(r => r.concat([{ i: pos, ok: ok }]));
+  const okN = res.filter(r => r.ok).length;
+  if (pos >= items.length) {
+    const by = {};
+    res.forEach(r => { const c = items[r.i].c; by[c] = by[c] || [0, 0]; by[c][1]++; if (r.ok) by[c][0]++; });
+    const missed = res.filter(r => !r.ok).map(r => items[r.i]);
+    return React.createElement("div", { className: "tr-end" },
+      React.createElement("div", { className: "mo-end-score tr-score", "data-ok": okN, "data-n": res.length, ref: el => { if (el && window.MO) window.MO.finQuiz(el); } }, okN + " / " + res.length),
+      React.createElement("div", { className: "tr-by" }, Object.keys(by).map(c => React.createElement("span", { key: c, className: "tr-badge sc" }, TRAIN_SCOPE_LABEL(c)[L] + " · " + by[c][0] + "/" + by[c][1]))),
+      missed.length ? React.createElement("div", { className: "tr-missed" },
+        React.createElement("div", { className: "tr-h" }, FR ? "À revoir" : "To review"),
+        missed.map((m, k) => React.createElement("div", { key: k, className: "tr-miss" },
+          React.createElement("div", { className: "tr-miss-q" }, m.kind === "order" ? (FR ? "Chronologie : " : "Chronology: ") + m.ev.map(e => e.date[L] + " " + e.ev[L]).join(" → ") : m.q[L]),
+          m.o && React.createElement("div", { className: "tr-miss-a" }, "→ " + m.o[m.a][L]),
+          (TRAIN_CHAPS.indexOf(m.c) >= 0 || m.p) && React.createElement("button", { className: "tr-link", onClick: () => trainGoChap(m.p || m.c) },
+            (FR ? "Revoir " : "Review ") + (m.p ? (FR ? "la fiche 1re " : "1re recap ") + m.p.slice(2) : (FR ? "le chapitre " : "chapter ") + m.c))))) :
+        React.createElement("div", { className: "tr-note" }, FR ? "Sans faute." : "Perfect."),
+      React.createElement("div", { className: "tr-row" },
+        React.createElement("button", { className: "tr-btn", onClick: onBack }, FR ? "Nouvelle série" : "New series")),
+      React.createElement("div", { className: "tr-note" }, FR ? "Rien n'est enregistré : la série repart de zéro." : "Nothing is saved: each series starts from zero."));
+  }
+  const answered = q.kind === "order" ? res.length > pos : pick !== null;
+  return React.createElement("div", null,
+    React.createElement("div", { className: "tr-top" },
+      React.createElement("span", null, (FR ? "Question " : "Question ") + (pos + 1) + " / " + items.length),
+      React.createElement("span", { key: "sc" + okN + "-" + res.length, className: "mo-tick" }, (FR ? "Score : " : "Score: ") + okN + " / " + res.length)),
+    React.createElement("div", { className: "mo-qbar", "aria-hidden": true }, React.createElement("i", { style: { width: (100 * (pos + (answered ? 1 : 0)) / items.length) + "%" } })),
+    React.createElement(TrainBadge, { q: q, FR: FR }),
+    q.kind === "order" ? React.createElement(TrainOrder, { key: "o" + pos, q: q, FR: FR, onDone: record }) :
+      React.createElement("div", null,
+        React.createElement("div", { className: "tr-q" }, q.q[L]),
+        perm.map((i, slot) => {
+          const good = i === q.a, mine = i === pick;
+          return React.createElement("button", { key: i, className: "tr-opt mo-opt" + (answered ? (good ? " good" : mine ? " bad" : " dim") : ""), "data-good": good ? 1 : 0, disabled: answered,
+            onClick: ev => { const el = ev.currentTarget; setPick(i); record(good); if (window.MO) setTimeout(() => window.MO.repondre(good, el), 0); } },
+            React.createElement("b", { className: "tr-num" }, "ABCD"[slot]), React.createElement("span", null, q.o[i][L]));
+        }),
+        answered && React.createElement("div", { className: "tr-expl mo-expl" + (pick === q.a ? " ok" : " ko") },
+          React.createElement("b", null, pick === q.a ? (FR ? "Juste. " : "Right. ") : (FR ? "Non, réponse " : "No, answer ") + (pick === q.a ? "" : "ABCD"[perm.indexOf(q.a)] + ". ")),
+          q.w[L],
+          q.src && React.createElement("div", { className: "tr-src" }, (FR ? "Source : " : "Source: ") + q.src[L]),
+          q.p && React.createElement("button", { className: "tr-link", onClick: () => openPrem(q.p) }, "→ " + (FR ? "fiche 1re " : "1re recap ") + q.p.slice(2)))),
+    answered && React.createElement("button", { className: "tr-btn full", onClick: () => { setPos(p => p + 1); setPick(null); } },
+      pos + 1 < items.length ? (FR ? "Question suivante →" : "Next question →") : (FR ? "Voir le bilan" : "See the results")),
+    React.createElement("button", { className: "tr-link quit", onClick: onBack }, FR ? "Arrêter la série" : "Stop the series"));
+};
+
+/* volet Quiz : réglages puis série */
+const TrainQuiz = ({ FR }) => {
+  const L = FR ? 1 : 0;
+  const [scope, setScope] = useState("all");
+  const [type, setType] = useState("all");
+  const [size, setSize] = useState(10);
+  const [run, setRun] = useState(null);
+  if (run) return React.createElement(TrainRun, { key: run.k, FR: FR, items: run.items, onBack: () => setRun(null) });
+  const n = trainCount(scope, type);
+  const avail = n === Infinity ? (FR ? "Questions de chronologie tirées des frises, en nombre illimité" : "Chronology questions drawn from the timelines, unlimited")
+    : n + (FR ? (n > 1 ? " questions disponibles" : " question disponible") : (n > 1 ? " questions available" : " question available"));
+  const row = (label, chips) => React.createElement("div", { className: "tr-set" }, React.createElement("div", { className: "tr-set-l" }, label), React.createElement("div", { className: "tr-chips" }, chips));
+  return React.createElement("div", null,
+    row(FR ? "Chapitre" : "Chapter", TRAIN_SCOPES.map(s => trainChip(scope === s[0], s[1 + L], () => setScope(s[0]), s[0]))),
+    row(FR ? "Type de question" : "Question type", TRAIN_TYPES.map(t => trainChip(type === t[0], t[1 + L], () => setType(t[0]), t[0]))),
+    row(FR ? "Longueur" : "Length", [10, 20, "all"].map(s => trainChip(size === s, s === "all" ? (FR ? "Tout" : "All") : String(s), () => setSize(s), String(s)))),
+    React.createElement("div", { className: "tr-avail" }, avail),
+    React.createElement("button", { className: "tr-btn full", disabled: !n, onClick: () => { const items = trainSeries(scope, type, size); if (items.length) setRun({ k: Date.now(), items: items }); } },
+      n ? (FR ? "Commencer la série" : "Start the series") : (FR ? "Aucune question pour ce choix" : "No question for this choice")),
+    React.createElement("div", { className: "tr-help" },
+      React.createElement("p", null, FR
+        ? "Les questions viennent des quiz de chaque chapitre, auxquels s'ajoutent des questions de vue d'ensemble, des liens entre chapitres, des réflexes d'épreuve (format officiel du BFI) et des questions hors cours, chacune avec sa source. La chronologie est fabriquée à partir des frises des chapitres."
+        : "The questions come from each chapter's quiz, plus big-picture questions, links between chapters, exam reflexes (official BFI format) and questions beyond the course, each with its source. Chronology questions are built from the chapters' timelines."),
+      React.createElement("p", null, FR
+        ? "Ne porte que sur ce qui a été vu en classe : H1, H2, H3 (introduction et partie I.1) et les rappels de Première."
+        : "Covers only what has been taught in class: H1, H2, H3 (introduction and part I.1) and the Première recaps.")));
+};
+
+/* page Entraînement */
+const TRAIN_TABS = [["quiz", "Quiz", "Quiz"], ["essay", "Essays", "Essais"], ["dbq", "DBQ", "DBQ"]];
+const TrainingPage = ({ lang }) => {
+  const FR = lang === "fr";
+  const L = FR ? 1 : 0;
+  const [tab, setTab] = useState("quiz");
+  const soon = k => k !== "quiz";
+  return React.createElement("div", { className: "chap-root train-root" },
+    React.createElement("div", { className: "chap-hero" },
+      React.createElement("div", { className: "hero-cartouche" },
+        React.createElement("span", { className: "hero-icon" }, React.createElement(Icon, { name: "target", size: 30 })),
+        React.createElement("div", null,
+          React.createElement("div", { className: "train-kicker" }, FR ? "Quiz · essais · études de documents" : "Quiz · essays · document questions"),
+          React.createElement("h1", { className: "hero-title" }, FR ? "Entraînement" : "Practice")))),
+    React.createElement("div", { className: "tr-tabs", role: "tablist" }, TRAIN_TABS.map(t => React.createElement("button", { key: t[0], role: "tab", "aria-selected": tab === t[0], className: "tr-tab" + (tab === t[0] ? " on" : ""), onClick: () => setTab(t[0]) },
+      t[1 + L], soon(t[0]) && React.createElement("span", { className: "tr-soon" }, FR ? "bientôt" : "soon")))),
+    React.createElement("div", { className: "schema tr-card" },
+      React.createElement("div", { className: "schema-body" },
+        tab === "quiz" ? React.createElement(TrainQuiz, { FR: FR }) :
+          React.createElement("div", { className: "tr-help" },
+            React.createElement("p", null, tab === "essay"
+              ? (FR ? "En préparation : sujets au format officiel (une partie « Explain », une partie « Assess / How far »), sujets officiels recopiés avec leur source et sujets créés sur ce modèle, chronomètre, grille d'auto-correction et plan modèle à découvrir après l'essai."
+                    : "In preparation: questions in the official format (an “Explain” part, an “Assess / How far” part), official questions copied with their source and new ones built on that model, a timer, a self-marking grid and a model plan revealed after the attempt.")
+              : (FR ? "En préparation : études de documents au format officiel, avec questions a) « How useful… » et b), documents et images d'époque, et corrigés."
+                    : "In preparation: document questions in the official format, with a) “How useful…” and b) questions, period documents and images, and model answers."))))));
+};
+
 function App(
 ) {
   const [subject, setSubject] = useState("hist");
@@ -5209,10 +6010,11 @@ function App(
   const [glossOpen, setGlossOpen] = useState(false);
   const [fiche, setFiche] = useState(false);
   const [prem, setPrem] = useState(null);
+  const [train, setTrain] = useState(false);
   useEffect(() => {
-    const h = e => { setPrem(e.detail || "index"); setSubject("prem"); };
+    const h = e => { setTrain(false); setPrem(e.detail || "index"); setSubject("prem"); };
     window.addEventListener("open-prem", h);
-    const g = e => { if (e.detail) { setPrem(null); const t = FLAT.find(c => c.code === e.detail); if (t) setSubject(t.subject); setCurrent(e.detail); } };
+    const g = e => { if (e.detail) { setTrain(false); setPrem(null); const t = FLAT.find(c => c.code === e.detail); if (t) setSubject(t.subject); setCurrent(e.detail); } };
     window.addEventListener("go-chap", g);
     return () => { window.removeEventListener("open-prem", h); window.removeEventListener("go-chap", g); };
   }, []);
@@ -5235,16 +6037,17 @@ function App(
     window.scrollTo(0, 0);
     setNavOpen(false);
     glFermer();
-  }, [current, prem]);
+  }, [current, prem, train]);
   useEffect(() => { glFermer(); }, [lang]);
   const go = code => {
+    setTrain(false);
     if (code && code.indexOf("P-") === 0) { setPrem(code); setSubject("prem"); return; }
     setPrem(null);
     const target = FLAT.find(c => c.code === code);
     if (target) setSubject(target.subject);
     setCurrent(code);
   };
-  const home = () => { setCurrent(null); setPrem(null); };
+  const home = () => { setTrain(false); setCurrent(null); setPrem(null); };
   const chapTitle = c => {
     const d = CHAPTERS[c.code];
     return (FR && d && d.fr && d.fr.title) ? d.fr.title : c.name;
@@ -5260,7 +6063,7 @@ function App(
     React.createElement("div", { className: "scrim" + (navOpen ? " show" : ""), onClick: () => setNavOpen(false) }),
     React.createElement("div", { className: "lang-fab desk-only" }, langToggle),
     React.createElement("aside", { className: "sidebar" + (navOpen ? " open" : "") },
-      React.createElement("button", { className: "brand" + (current || prem ? "" : " here"), onClick: home, title: FR ? "Accueil" : "Home" },
+      React.createElement("button", { className: "brand" + (current || prem || train ? "" : " here"), onClick: home, title: FR ? "Accueil" : "Home" },
         React.createElement(CompassRose, { size: 44, className: "brand-rose" }),
         React.createElement("div", { className: "brand-txt" },
           React.createElement("div", { className: "brand-kicker" }, "Terminale BFI"),
@@ -5274,6 +6077,10 @@ function App(
         React.createElement("button", { className: "tool-btn gloss", onClick: () => setGlossOpen(true) },
           React.createElement(Icon, { name: "book", size: 17, className: "tool-ico" }),
           React.createElement("span", { className: "tool-lbl" }, FR ? "Glossaire" : "Glossary"))),
+      React.createElement("button", { className: "train-btn" + (train ? " here" : ""), onClick: () => setTrain(true) },
+        React.createElement(Icon, { name: "target", size: 17, className: "tool-ico" }),
+        React.createElement("span", null, FR ? "Entraînement" : "Practice"),
+        React.createElement("span", { className: "train-sub" }, FR ? "quiz · essais · DBQ" : "quiz · essays · DBQ")),
       React.createElement("div", { className: "subject-tabs" },
         ["hist", "geo", "prem"].map(s => React.createElement("button", {
           key: s, className: "subj-tab " + s + (subject === s ? " active" : ""), onClick: () => setSubject(s)
@@ -5290,7 +6097,7 @@ function App(
               React.createElement("span", { className: "prem-dot " + g.subject }),
               React.createElement("span", null, (g.subject === "hist" ? (FR ? "Histoire" : "History") : (FR ? "Géographie" : "Geography")) + " · " + (FR ? g.theme[1] : g.theme[0]).replace(/^Th(e|è)me (\d+)/, "T$2"))),
             g.units.map(u => React.createElement("button", {
-              key: u.id, className: "chap-btn prem" + (prem === u.id ? " active" : ""), onClick: () => setPrem(u.id)
+              key: u.id, className: "chap-btn prem" + (prem === u.id && !train ? " active" : ""), onClick: () => setPrem(u.id)
             }, React.createElement("span", { className: "chap-code" }, u.id.slice(2)),
                React.createElement("span", { className: "chap-title" }, FR ? u.title[1] : u.title[0])))))) :
       React.createElement("nav", { className: "nav" },
@@ -5303,7 +6110,7 @@ function App(
             const filled = !!(d && !d.pending);
             return React.createElement("button", {
               key: c[0],
-              className: "chap-btn " + subject + (current === c[0] ? " active" : "") + (filled ? "" : " soon"),
+              className: "chap-btn " + subject + (current === c[0] && !train ? " active" : "") + (filled ? "" : " soon"),
               onClick: () => go(c[0])
             }, React.createElement(Icon, { name: c[0], size: 16, className: "chap-ico" }),
                React.createElement("span", { className: "chap-code" }, c[0]),
@@ -5313,19 +6120,21 @@ function App(
       React.createElement("div", { className: "mobile-bar" },
         React.createElement("button", { className: "burger", "aria-label": "Menu", onClick: () => setNavOpen(o => !o) },
           React.createElement("span", null), React.createElement("span", null), React.createElement("span", null)),
-        prem ? React.createElement("span", { className: "mb-code" }, React.createElement("span", { className: "tab-1re" }, "1", React.createElement("sup", null, "re")))
+        train ? React.createElement("span", { className: "mb-code" }, React.createElement(Icon, { name: "target", size: 20 }))
+        : prem ? React.createElement("span", { className: "mb-code" }, React.createElement("span", { className: "tab-1re" }, "1", React.createElement("sup", null, "re")))
         : cur ? React.createElement("span", { className: "mb-code" }, cur.code)
             : React.createElement("span", { className: "mb-code" }, React.createElement(CompassRose, { size: 22 })),
-        React.createElement("span", { className: "mb-title" }, prem ? (prem === "index" ? (FR ? "Rappels de Première" : "Première recaps") : (FR ? PREM_BY_ID[prem].title[1] : PREM_BY_ID[prem].title[0])) : cur ? chapTitle(cur) : "History & Geography"),
+        React.createElement("span", { className: "mb-title" }, train ? (FR ? "Entraînement" : "Practice") : prem ? (prem === "index" ? (FR ? "Rappels de Première" : "Première recaps") : (FR ? PREM_BY_ID[prem].title[1] : PREM_BY_ID[prem].title[0])) : cur ? chapTitle(cur) : "History & Geography"),
         React.createElement("div", { className: "lang-mob mob-only" }, langToggle)),
-      prem
+      train ? React.createElement(TrainingPage, { lang: lang })
+      : prem
         ? (prem === "index" ? React.createElement(PremIndex, { lang: lang }) : React.createElement(PremUnit, { id: prem, lang: lang, go: go }))
       : !current
-        ? React.createElement(Home, { lang: lang, go: go, openSearch: () => setSearchOpen(true), openGloss: () => setGlossOpen(true) })
+        ? React.createElement(Home, { lang: lang, go: go, openSearch: () => setSearchOpen(true), openGloss: () => setGlossOpen(true), openTrain: () => setTrain(true) })
         : data
           ? React.createElement(Chapter, { data: data, accent: accent, lang: lang, fiche: fiche, setFiche: setFiche })
           : React.createElement(Placeholder, { code: cur.code, name: cur.name }),
-      current && !prem && React.createElement("div", { className: "chap-foot" },
+      current && !prem && !train && React.createElement("div", { className: "chap-foot" },
         React.createElement("button", { className: "foot-btn" + (prev ? "" : " disabled"), onClick: () => prev ? go(prev.code) : home() },
           React.createElement("div", { className: "foot-dir" }, prev ? (FR ? "← Précédent" : "← Previous") : (FR ? "← Accueil" : "← Home")),
           React.createElement("div", { className: "foot-name" }, prev ? React.createElement(React.Fragment, null, React.createElement("b", null, prev.code), " ", chapTitle(prev)) : (FR ? "Retour à l'atlas" : "Back to the atlas"))),
