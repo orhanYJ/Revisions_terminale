@@ -2,7 +2,7 @@
    Chaque page déclare ANIM.lancer({ END, SCENES, CALL, CUES, QUIZ, draw, bascule }).
    draw(c) reçoit l'instant c.t et l'option c.opt, et renvoie les couches SVG :
    { tf, cp, cells, nuc, sp, chr, let, fx, lab, st }.
-   Intégration dans le cours : ?embed=1 (lecteur seul) et ?theme=dark|light. */
+   Intégration dans le cours : ?embed=1 (lecteur, puis quiz sous le lecteur à la demande), ?theme=dark|light, ?t0=secondes. */
 window.ANIM = (() => {
 'use strict';
 const $ = s => document.querySelector(s);
@@ -217,7 +217,7 @@ function updateUI(){
     postH();
   }
   if(E.optBtn) E.optBtn.hidden = !C.bascule || t < C.bascule.des;
-  E.toQuiz.hidden = EMBED || !C.QUIZ || i < C.SCENES.length - 1;
+  E.toQuiz.hidden = !C.QUIZ || i < C.SCENES.length - 1 || (EMBED && document.documentElement.classList.contains('quizon'));
 }
 function setPlayIcon(){
   E.playIc.innerHTML = playing ? '<rect x="3" y="2" width="5" height="18" rx="1.5" fill="currentColor"/><rect x="12" y="2" width="5" height="18" rx="1.5" fill="currentColor"/>' : '<path d="M3 2v18l15-9z" fill="currentColor"/>';
@@ -319,6 +319,13 @@ function lancer(cfg){
   if(window.ResizeObserver) new ResizeObserver(postH).observe(document.body);
   const t0 = parseFloat(PARAMS.get('t0'));
   if(t0 > 0 && t0 < C.END) t = t0;
+  /* intégré au cours : le quiz s'ouvre sous le lecteur, dans la même page */
+  if(EMBED) E.toQuiz.addEventListener('click', ev => {
+    ev.preventDefault();
+    document.documentElement.classList.add('quizon'); E.toQuiz.hidden = true; postH();
+    const z = $('#quiz');
+    if(z && window.parent !== window) window.parent.postMessage({type:'anim-goto', id:C.id, y:z.getBoundingClientRect().top + window.scrollY}, '*');
+  });
   setPlayIcon(); setMute(); quiz(); render(); postH();
 }
 

@@ -710,10 +710,18 @@ html[data-theme="dark"] figure.schema .stitle{color:var(--leaf)}
 figure.animfig{margin:26px 0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 14px 14px;box-shadow:var(--shadow-s)}
 figure.animfig .stitle{font-size:11.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--leaf-2);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 html[data-theme="dark"] figure.animfig .stitle{color:var(--leaf)}
-figure.animfig iframe{display:block;width:100%;height:780px;border:0;background:var(--panel)}
+figure.animfig iframe{display:block;width:100%;height:780px;border:0;background:transparent;color-scheme:light}
+html[data-theme="dark"] figure.animfig iframe{color-scheme:dark}
 figure.animfig .animfull{display:inline-block;margin-top:10px;font-size:14px;font-weight:600;color:var(--leaf-2);text-decoration:none}
 html[data-theme="dark"] figure.animfig .animfull{color:var(--leaf)}
 figure.animfig .animfull:hover{text-decoration:underline}
+/* téléphone : l'animation fait partie de la page (pleine largeur, sans cadre ni lien vers une autre page) */
+@media(max-width:760px){
+  figure.animfig{margin:22px -17px;padding:0;background:none;border:0;border-radius:0;box-shadow:none}
+  figure.animfig .stitle{margin:0 17px 10px}
+  figure.animfig iframe{height:640px}
+  figure.animfig .animfull{display:none}
+}
 figure.schema figcaption{
   font-size:13px;color:var(--ink-2);margin-top:14px;padding-top:13px;border-top:1px solid var(--line);line-height:1.58;
 }
@@ -1413,863 +1421,7 @@ html.mo .chaphead .specimen{animation:mo-specimen .8s .1s cubic-bezier(.3,1.5,.5
    ======================================================================= */
 const SCHEMAS = {};
 
-/* ---------- 1. Mitose & cycle cellulaire ---------- */
-SCHEMAS.mitose = {
-  title: "La mitose, étape par étape",
-  caption: "Cellule modèle à <b>2n = 4 chromosomes</b> : deux grands (une paire) et deux petits (une autre paire). Suis le compte d'une vignette à l'autre — il ne change jamais. Ce qui change, c'est le <b>nombre de chromatides par chromosome</b> : 2 avant l'anaphase, 1 après.",
-  mode: "steps",
-  svg: `<svg viewBox="0 0 760 254" role="img" aria-label="Les phases de la mitose">
-    <defs>
-      <g id="cXL"><path d="M-7,-13 L7,13 M7,-13 L-7,13" stroke-width="6" stroke-linecap="round" fill="none"/><circle cx="0" cy="0" r="3.6" fill="currentColor" stroke="none"/></g>
-      <g id="cXS"><path d="M-5.5,-9.5 L5.5,9.5 M5.5,-9.5 L-5.5,9.5" stroke-width="5.4" stroke-linecap="round" fill="none"/><circle cx="0" cy="0" r="3.2" fill="currentColor" stroke="none"/></g>
-      <g id="cIL"><path d="M0,-13 L0,13" stroke-width="6" stroke-linecap="round" fill="none"/></g>
-      <g id="cIS"><path d="M0,-9.5 L0,9.5" stroke-width="5.4" stroke-linecap="round" fill="none"/></g>
-      <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--ink-2)"/></marker>
-    </defs>
-
-    <g id="mi-0" class="ph">
-      <circle cx="80" cy="120" r="54" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="2"/>
-      <circle cx="80" cy="120" r="30" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
-      <path d="M64,112 q8,-8 16,0 t16,0 M64,124 q8,8 16,0 t16,0" stroke="var(--accent)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-      <text x="80" y="202" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">Interphase</text>
-      <text x="80" y="218" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">G1 – S – G2</text>
-      <text x="80" y="236" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent-2)">2n = 4</text>
-    </g>
-
-    <g id="mi-1" class="ph">
-      <circle cx="230" cy="120" r="54" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="2"/>
-      <path d="M186,120 L274,120" stroke="var(--ink-2)" stroke-width="1" stroke-dasharray="3 4" opacity=".5"/>
-      <circle cx="186" cy="120" r="4" fill="var(--violet)"/><circle cx="274" cy="120" r="4" fill="var(--violet)"/>
-      <g stroke="var(--rose)" color="var(--rose)"><use href="#cXL" x="208" y="98"/><use href="#cXL" x="250" y="143"/></g>
-      <g stroke="var(--blue)" color="var(--blue)"><use href="#cXS" x="252" y="102"/><use href="#cXS" x="210" y="142"/></g>
-      <text x="230" y="202" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">Prophase</text>
-      <text x="230" y="218" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">condensation</text>
-      <text x="230" y="236" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent-2)">4 chromosomes à 2 chromatides</text>
-    </g>
-
-    <g id="mi-2" class="ph">
-      <circle cx="380" cy="120" r="54" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="2"/>
-      <path d="M380,64 L380,176" stroke="var(--amber)" stroke-width="2" stroke-dasharray="5 4"/>
-      <path d="M336,120 L380,82 M336,120 L380,109 M336,120 L380,136 M336,120 L380,162" stroke="var(--violet)" stroke-width="1.2" opacity=".6"/>
-      <path d="M424,120 L380,82 M424,120 L380,109 M424,120 L380,136 M424,120 L380,162" stroke="var(--violet)" stroke-width="1.2" opacity=".6"/>
-      <circle cx="336" cy="120" r="4" fill="var(--violet)"/><circle cx="424" cy="120" r="4" fill="var(--violet)"/>
-      <g stroke="var(--rose)" color="var(--rose)"><use href="#cXL" x="380" y="82"/><use href="#cXL" x="380" y="136"/></g>
-      <g stroke="var(--blue)" color="var(--blue)"><use href="#cXS" x="380" y="109"/><use href="#cXS" x="380" y="162"/></g>
-      <text x="380" y="202" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">Métaphase</text>
-      <text x="380" y="218" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">plaque équatoriale</text>
-      <text x="380" y="236" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent-2)">les 4 chromosomes alignés</text>
-    </g>
-
-    <g id="mi-3" class="ph">
-      <circle cx="530" cy="120" r="54" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="2"/>
-      <circle cx="486" cy="120" r="4" fill="var(--violet)"/><circle cx="574" cy="120" r="4" fill="var(--violet)"/>
-      <path d="M490,120 L500,105 M490,120 L500,136 M570,120 L560,105 M570,120 L560,136" stroke="var(--violet)" stroke-width="1.2" opacity=".55"/>
-      <g stroke="var(--rose)" color="var(--rose)"><use href="#cIL" x="503" y="100"/><use href="#cIL" x="503" y="141"/><use href="#cIL" x="557" y="100"/><use href="#cIL" x="557" y="141"/></g>
-      <g stroke="var(--blue)" color="var(--blue)"><use href="#cIS" x="517" y="108"/><use href="#cIS" x="517" y="133"/><use href="#cIS" x="543" y="108"/><use href="#cIS" x="543" y="133"/></g>
-      <text x="530" y="202" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">Anaphase</text>
-      <text x="530" y="218" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">migration</text>
-      <text x="530" y="236" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent-2)">4 chromatides par pôle</text>
-    </g>
-
-    <g id="mi-4" class="ph">
-      <path d="M626,120 a54,54 0 0,1 108,0 a54,54 0 0,1 -108,0" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="2"/>
-      <path d="M680,66 q10,54 0,108 q-10,-54 0,-108" fill="var(--bg)" stroke="var(--ink-2)" stroke-width="2"/>
-      <circle cx="655" cy="120" r="21" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.8"/>
-      <circle cx="705" cy="120" r="21" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.8"/>
-      <g stroke="var(--rose)" stroke-width="3.4" stroke-linecap="round">
-        <path d="M645,113 v14M665,113 v14M695,113 v14M715,113 v14"/>
-      </g>
-      <g stroke="var(--blue)" stroke-width="3.4" stroke-linecap="round">
-        <path d="M651.5,115 v10M658.5,115 v10M701.5,115 v10M708.5,115 v10"/>
-      </g>
-      <text x="680" y="202" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink)">Télophase</text>
-      <text x="680" y="218" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">+ cytodiérèse</text>
-      <text x="680" y="236" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent-2)">2n = 4 dans chaque cellule</text>
-    </g>
-
-    <path d="M140,120 L166,120 M290,120 L316,120 M440,120 L466,120 M590,120 L616,120" stroke="var(--ink-2)" stroke-width="1.6" marker-end="url(#ar)" opacity=".55"/>
-  </svg>`,
-  groups: ["mi-0","mi-1","mi-2","mi-3","mi-4"],
-  steps: [
-    {label:"Interphase", info:"<b>Interphase</b> — la cellule grandit (G1), <b>réplique son ADN</b> (phase S), puis se prépare (G2). Les 4 chromosomes sont là, mais décondensés : invisibles au microscope. Chacun passe de 1 à 2 chromatides. <b>La quantité d'ADN double, le nombre de chromosomes ne bouge pas : il reste 4.</b>"},
-    {label:"Prophase", info:"<b>Prophase</b> — les <b>4 chromosomes</b> se condensent et deviennent visibles, chacun formé de <b>2 chromatides sœurs</b> reliées par un centromère (la forme en X). L'enveloppe nucléaire disparaît, le fuseau se met en place entre les deux pôles."},
-    {label:"Métaphase", info:"<b>Métaphase</b> — les <b>4 chromosomes</b> s'alignent sur la <b>plaque équatoriale</b>, chaque centromère accroché aux fibres des deux pôles. C'est l'étape du caryotype : les chromosomes sont au maximum de leur condensation."},
-    {label:"Anaphase", info:"<b>Anaphase</b> — les centromères se clivent : les 4 chromosomes libèrent <b>8 chromatides</b>, qui migrent vers les pôles opposés. Chaque pôle reçoit <b>4 chromatides</b>, soit un lot complet de 4 chromosomes à 1 chromatide."},
-    {label:"Télophase", info:"<b>Télophase + cytodiérèse</b> — les chromosomes se décondensent, les enveloppes nucléaires se reforment, le cytoplasme se partage. Chaque cellule fille possède <b>2n = 4 chromosomes</b>, exactement comme la cellule mère : ce sont des clones."}
-  ]
-};
-
-/* ---------- 2. Réplication de l'ADN ---------- */
-SCHEMAS.replication = {
-  title: "La fourche de réplication",
-  caption: "La réplication est <b>semi-conservative</b> : chaque molécule fille garde un brin parental et un brin néoformé. L'ADN polymérase ne travaille que dans le sens 5'→3', ce qui impose un brin <b>continu</b> et un brin <b>discontinu</b>.",
-  mode: "hotspots",
-  svg: `<svg viewBox="0 0 700 300" role="img" aria-label="Fourche de réplication de l'ADN">
-    <g stroke-linecap="round">
-      <path d="M40,150 C120,150 150,150 200,150" stroke="var(--ink-2)" stroke-width="9" fill="none"/>
-      <path d="M40,166 C120,166 150,166 200,166" stroke="var(--ink-2)" stroke-width="9" fill="none"/>
-      <path d="M200,150 C260,150 300,110 380,100 L640,100" stroke="var(--ink-2)" stroke-width="9" fill="none"/>
-      <path d="M200,166 C260,166 300,206 380,216 L640,216" stroke="var(--ink-2)" stroke-width="9" fill="none"/>
-      <path d="M380,118 L640,118" stroke="var(--accent)" stroke-width="9" fill="none"/>
-      <path d="M400,198 L470,198 M490,198 L560,198 M580,198 L640,198" stroke="var(--accent)" stroke-width="9" fill="none"/>
-    </g>
-    <g stroke="var(--line)" stroke-width="2">
-      <path d="M60,150 L60,166 M90,150 L90,166 M120,150 L120,166 M150,150 L150,166 M180,150 L180,166"/>
-      <path d="M400,100 L400,118 M440,100 L440,118 M480,100 L480,118 M520,100 L520,118 M560,100 L560,118 M600,100 L600,118"/>
-      <path d="M410,198 L410,216 M450,198 L450,216 M500,198 L500,216 M540,198 L540,216 M590,198 L590,216 M620,198 L620,216"/>
-    </g>
-    <g class="hot" data-spot="helicase">
-      <rect class="hitbg" x="176" y="118" width="60" height="80" rx="10" fill="var(--violet)"/>
-      <path d="M206,132 l22,26 l-22,26 l-22,-26 z" fill="var(--violet-soft)" stroke="var(--violet)" stroke-width="2.5"/>
-      <text x="206" y="112" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--violet)">hélicase</text>
-    </g>
-    <g class="hot" data-spot="direct">
-      <rect class="hitbg" x="378" y="80" width="264" height="46" rx="10" fill="var(--accent)"/>
-      <circle cx="368" cy="109" r="17" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/>
-      <text x="368" y="113" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent)">pol</text>
-      <text x="510" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">brin continu (direct)</text>
-      <path d="M340,109 L310,109" stroke="var(--accent)" stroke-width="2" marker-end="url(#ar2)"/>
-    </g>
-    <g class="hot" data-spot="okazaki">
-      <rect class="hitbg" x="378" y="188" width="264" height="46" rx="10" fill="var(--accent)"/>
-      <circle cx="480" cy="240" r="17" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/>
-      <text x="480" y="244" text-anchor="middle" font-size="10" font-weight="700" fill="var(--accent)">pol</text>
-      <text x="510" y="268" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">brin discontinu — fragments d'Okazaki</text>
-      <path d="M505,232 L535,222" stroke="var(--accent)" stroke-width="2" marker-end="url(#ar2)"/>
-    </g>
-    <g class="hot" data-spot="parental">
-      <rect class="hitbg" x="36" y="140" width="170" height="38" rx="10" fill="var(--ink-2)"/>
-      <text x="118" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink-2)">ADN parental (double hélice)</text>
-    </g>
-    <g class="hot" data-spot="oeil">
-      <rect class="hitbg" x="248" y="130" width="98" height="42" rx="10" fill="var(--amber)"/>
-      <text x="296" y="148" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--amber)">une fourche</text>
-      <text x="296" y="162" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--amber)">parmi des milliers</text>
-    </g>
-    <text x="352" y="30" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink-2)">Clique sur les éléments du schéma</text>
-    <defs><marker id="ar2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--accent)"/></marker></defs>
-  </svg>`,
-  spots: {
-    helicase:"<b>L'hélicase</b> ouvre la double hélice en rompant les liaisons hydrogène entre les bases complémentaires (A-T : 2 liaisons, C-G : 3 liaisons). Elle crée la <b>fourche de réplication</b> qui progresse le long de la molécule.",
-    direct:"<b>Brin continu (direct)</b> — l'ADN polymérase synthétise sans interruption car elle avance dans le même sens que l'ouverture de la fourche. Elle ajoute les nucléotides <b>par complémentarité</b> (A face à T, C face à G) toujours dans le sens 5'→3'.",
-    okazaki:"<b>Brin discontinu</b> — de ce côté, l'ADN polymérase doit travailler à contresens de l'ouverture. Elle synthétise donc de courts <b>fragments d'Okazaki</b>, recollés ensuite par une ligase.",
-    parental:"<b>ADN parental</b> — deux brins antiparallèles, complémentaires. Chacun sert de <b>matrice</b> : c'est ce qui garantit que les deux molécules filles sont identiques à la molécule mère.",
-    oeil:"<b>Une fourche parmi des milliers</b> — le schéma n'en montre qu'une seule, mais chez les eucaryotes, la réplication démarre simultanément en de nombreuses <b>origines de réplication</b>, et progresse de façon bidirectionnelle. C'est ce qui permet de copier 3 milliards de paires de bases en quelques heures."
-  }
-};
-
-/* ---------- 3. Expression du patrimoine génétique ---------- */
-SCHEMAS.expression = {
-  title: "De l'ADN à la protéine",
-  caption: "Chez les eucaryotes, <b>transcription et traduction sont séparées dans l'espace</b> (noyau / cytoplasme) et dans le temps, avec une étape de maturation entre les deux.",
-  mode: "steps",
-  svg: `<svg viewBox="0 0 720 340" role="img" aria-label="Transcription, maturation et traduction">
-    <rect x="14" y="14" width="330" height="312" rx="22" fill="var(--blue-soft)" stroke="var(--blue)" stroke-width="2"/>
-    <text x="34" y="40" font-size="12.5" font-weight="700" fill="var(--blue)">NOYAU</text>
-    <text x="380" y="40" font-size="12.5" font-weight="700" fill="var(--accent)">CYTOPLASME</text>
-    <g id="ex-0">
-      <path d="M50,90 h250" stroke="var(--ink-2)" stroke-width="8" stroke-linecap="round"/>
-      <path d="M50,106 h250" stroke="var(--ink-2)" stroke-width="8" stroke-linecap="round"/>
-      <text x="50" y="76" font-size="11.5" font-weight="700" fill="var(--ink-2)">ADN — gène</text>
-      <ellipse cx="176" cy="98" rx="34" ry="26" fill="var(--violet-soft)" stroke="var(--violet)" stroke-width="2.5"/>
-      <text x="176" y="102" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--violet)">ARN pol</text>
-      <path d="M196,124 q30,16 60,12" stroke="var(--rose)" stroke-width="6" fill="none" stroke-linecap="round"/>
-    </g>
-    <g id="ex-1">
-      <text x="50" y="160" font-size="11.5" font-weight="700" fill="var(--rose)">ARN pré-messager</text>
-      <g stroke="var(--rose)" stroke-width="8" stroke-linecap="round">
-        <path d="M50,178 h44"/><path d="M126,178 h50"/><path d="M208,178 h48"/><path d="M288,178 h20"/>
-      </g>
-      <g stroke="var(--ink-2)" stroke-width="8" stroke-linecap="round" opacity=".45">
-        <path d="M96,178 h28"/><path d="M178,178 h28"/><path d="M258,178 h28"/>
-      </g>
-      <text x="72" y="198" text-anchor="middle" font-size="9.5" fill="var(--rose)">exon</text>
-      <text x="110" y="198" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">intron</text>
-    </g>
-    <g id="ex-2">
-      <path d="M50,232 h162" stroke="var(--rose)" stroke-width="8" stroke-linecap="round"/>
-      <text x="50" y="218" font-size="11.5" font-weight="700" fill="var(--rose)">ARN messager mature</text>
-      <text x="50" y="252" font-size="9.5" fill="var(--ink-2)">= les 4 exons raboutés, introns retirés</text>
-      <path d="M212,232 q62,0 92,26" stroke="var(--rose)" stroke-width="2.5" fill="none" stroke-dasharray="5 5" marker-end="url(#ar3)"/>
-      <text x="270" y="222" font-size="10.5" fill="var(--ink-2)">pore nucléaire</text>
-    </g>
-    <g id="ex-3">
-      <path d="M372,268 h286" stroke="var(--rose)" stroke-width="8" stroke-linecap="round"/>
-      <ellipse cx="470" cy="258" rx="42" ry="34" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/>
-      <path d="M428,254 h84" stroke="var(--accent)" stroke-width="2"/>
-      <text x="470" y="248" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--accent)">ribosome</text>
-      <g fill="none" stroke="var(--violet)" stroke-width="2.5">
-        <path d="M452,286 l0,18 l-10,8 M488,286 l0,18 l10,8"/>
-      </g>
-      <text x="470" y="322" text-anchor="middle" font-size="10.5" fill="var(--violet)">ARNt + acide aminé</text>
-      <g id="ex-3b">
-        <circle cx="560" cy="200" r="11" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2.5"/>
-        <circle cx="586" cy="184" r="11" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2.5"/>
-        <circle cx="614" cy="192" r="11" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2.5"/>
-        <circle cx="638" cy="172" r="11" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2.5"/>
-        <path d="M560,200 L586,184 L614,192 L638,172" stroke="var(--amber)" stroke-width="2.5" fill="none"/>
-        <text x="600" y="150" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--amber)">protéine</text>
-      </g>
-    </g>
-    <defs><marker id="ar3" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--rose)"/></marker></defs>
-  </svg>`,
-  groups: ["ex-0","ex-1","ex-2","ex-3"],
-  steps: [
-    {label:"1. Transcription", info:"<b>Transcription</b> (dans le noyau) — l'ARN polymérase ouvre localement l'ADN et copie le <b>brin transcrit</b> par complémentarité, en remplaçant la thymine par l'<b>uracile</b>. Le produit est un ARN pré-messager, simple brin."},
-    {label:"2. Maturation", info:"<b>Maturation / épissage</b> — les <b>introns</b> (non codants) sont excisés, les <b>exons</b> sont raboutés. Grâce à l'<b>épissage alternatif</b>, un même gène peut donner plusieurs ARN messagers différents, donc plusieurs protéines : le nombre de protéines dépasse largement le nombre de gènes."},
-    {label:"3. Export", info:"<b>Sortie du noyau</b> — l'ARN messager mature franchit un pore nucléaire et rejoint le cytoplasme. L'ADN, lui, ne quitte jamais le noyau : l'ARNm est la <b>copie de travail</b>, jetable."},
-    {label:"4. Traduction", info:"<b>Traduction</b> — le ribosome lit l'ARNm <b>codon par codon</b> (3 nucléotides). Chaque ARN de transfert apporte l'acide aminé correspondant à l'anticodon. Les acides aminés sont liés par des liaisons peptidiques : la <b>séquence des nucléotides détermine la séquence des acides aminés</b>, donc la forme et la fonction de la protéine."}
-  ]
-};
-
-/* ---------- 4. Enzyme et site actif ---------- */
-SCHEMAS.enzyme = {
-  title: "Enzyme, substrat et site actif",
-  caption: "Une enzyme est un <b>catalyseur biologique</b> : elle accélère une réaction sans être consommée et sans modifier le sens de la réaction. Sa spécificité vient de la <b>complémentarité de forme</b> entre le site actif et le substrat.",
-  mode: "steps",
-  svg: `<svg viewBox="0 0 700 260" role="img" aria-label="Cycle catalytique d'une enzyme">
-    <g id="en-0">
-      <path d="M60,190 h140 a10,10 0 0,0 0,-40 h-14 a26,26 0 0,1 -46,-24 h-80 z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
-      <text x="90" y="215" font-size="11.5" font-weight="700" fill="var(--accent)">enzyme</text>
-      <text x="152" y="140" font-size="10.5" font-weight="700" fill="var(--accent)">site actif</text>
-      <g transform="translate(150,72)">
-        <circle cx="0" cy="0" r="16" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2.5"/>
-        <circle cx="26" cy="8" r="16" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2.5"/>
-        <text x="13" y="-24" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--amber)">substrat</text>
-      </g>
-    </g>
-    <g id="en-1">
-      <path d="M270,190 h140 a10,10 0 0,0 0,-40 h-14 a26,26 0 0,1 -46,-24 h-80 z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
-      <g transform="translate(360,138)">
-        <circle cx="0" cy="0" r="16" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2.5"/>
-        <circle cx="26" cy="8" r="16" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2.5"/>
-      </g>
-      <text x="300" y="215" font-size="11.5" font-weight="700" fill="var(--accent)">complexe E–S</text>
-      <path d="M348,104 L360,118" stroke="var(--amber)" stroke-width="2.5" marker-end="url(#ar4)"/>
-    </g>
-    <g id="en-2">
-      <path d="M490,190 h140 a10,10 0 0,0 0,-40 h-14 a26,26 0 0,1 -46,-24 h-80 z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
-      <g transform="translate(566,92)">
-        <circle cx="-14" cy="0" r="16" fill="var(--rose-soft)" stroke="var(--rose)" stroke-width="2.5"/>
-        <circle cx="34" cy="4" r="16" fill="var(--rose-soft)" stroke="var(--rose)" stroke-width="2.5"/>
-        <path d="M4,4 L14,4" stroke="var(--rose)" stroke-width="2" stroke-dasharray="3 3"/>
-      </g>
-      <text x="524" y="215" font-size="11.5" font-weight="700" fill="var(--accent)">enzyme régénérée</text>
-      <text x="566" y="58" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--rose)">produits</text>
-    </g>
-    <path d="M230,160 L256,160 M450,160 L476,160" stroke="var(--ink-2)" stroke-width="1.8" marker-end="url(#ar5)" opacity=".6"/>
-    <defs>
-      <marker id="ar4" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--amber)"/></marker>
-      <marker id="ar5" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--ink-2)"/></marker>
-    </defs>
-  </svg>`,
-  groups: ["en-0","en-1","en-2"],
-  steps: [
-    {label:"1. Reconnaissance", info:"<b>Rencontre enzyme–substrat</b> — seule une molécule dont la forme est <b>complémentaire du site actif</b> peut s'y loger. C'est la <b>spécificité de substrat</b> : la saccharase n'hydrolyse que le saccharose."},
-    {label:"2. Complexe E–S", info:"<b>Formation du complexe enzyme–substrat</b> — le substrat se fixe par des liaisons faibles ; le site actif s'ajuste (ajustement induit). Le rapprochement et la déformation du substrat <b>abaissent l'énergie d'activation</b> : la réaction devient beaucoup plus rapide."},
-    {label:"3. Libération", info:"<b>Catalyse et libération</b> — les produits, de forme différente, quittent le site actif. L'enzyme est <b>intacte et immédiatement réutilisable</b> : c'est la <b>spécificité d'action</b> (une enzyme catalyse un seul type de réaction). Attention : pH et température modifient la forme du site actif, donc l'activité."}
-  ]
-};
-
-/* ---------- 5. Structure du globe ---------- */
-SCHEMAS.globe = {
-  title: "Structure interne du globe",
-  caption: "Deux découpages coexistent : un découpage <b>chimique</b> (croûte / manteau / noyau, révélé par les discontinuités sismiques) et un découpage <b>mécanique</b> (lithosphère rigide / asthénosphère ductile). Ne pas les confondre est LE réflexe attendu.",
-  mode: "hotspots",
-  svg: `<svg viewBox="0 0 790 330" role="img" aria-label="Coupe du globe terrestre">
-    <g class="hot" data-spot="noyauint">
-      <circle cx="120" cy="300" r="60" fill="var(--rose-soft)" stroke="var(--rose)" stroke-width="2"/>
-      <rect class="hitbg" x="60" y="240" width="120" height="60" fill="var(--rose)"/>
-    </g>
-    <g class="hot" data-spot="noyauext">
-      <path d="M120,120 a180,180 0 0,1 180,180 h-60 a120,120 0 0,0 -120,-120 z" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2"/>
-      <path class="hitbg" d="M120,120 a180,180 0 0,1 180,180 h-60 a120,120 0 0,0 -120,-120 z" fill="var(--amber)"/>
-    </g>
-    <g class="hot" data-spot="manteauinf">
-      <path d="M120,44 a256,256 0 0,1 256,256 h-76 a180,180 0 0,0 -180,-180 z" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="2"/>
-      <path class="hitbg" d="M120,44 a256,256 0 0,1 256,256 h-76 a180,180 0 0,0 -180,-180 z" fill="var(--ink-2)"/>
-    </g>
-    <g class="hot" data-spot="asthenosphere">
-      <path d="M120,16 a284,284 0 0,1 284,284 h-28 a256,256 0 0,0 -256,-256 z" fill="var(--violet-soft)" stroke="var(--violet)" stroke-width="2"/>
-      <path class="hitbg" d="M120,16 a284,284 0 0,1 284,284 h-28 a256,256 0 0,0 -256,-256 z" fill="var(--violet)"/>
-    </g>
-    <g class="hot" data-spot="litho">
-      <path d="M120,4 a296,296 0 0,1 296,296 h-12 a284,284 0 0,0 -284,-284 z" fill="var(--accent)" stroke="var(--accent-2)" stroke-width="1.5"/>
-      <path class="hitbg" d="M120,4 a296,296 0 0,1 296,296 h-12 a284,284 0 0,0 -284,-284 z" fill="var(--accent-2)"/>
-    </g>
-    <g stroke="var(--ink-2)" stroke-width="1.2" stroke-dasharray="4 4">
-      <path d="M416,300 L610,300"/><path d="M404,300 L610,282"/><path d="M376,300 L610,246"/><path d="M300,300 L610,182"/><path d="M180,300 L610,118"/>
-    </g>
-    <g font-size="11.5" fill="var(--ink)">
-      <text x="502" y="296" font-weight="700">Croûte + manteau sup. rigide = <tspan fill="var(--accent)">LITHOSPHÈRE</tspan></text>
-      <text x="502" y="278">Manteau ductile = <tspan fill="var(--violet)" font-weight="700">ASTHÉNOSPHÈRE</tspan></text>
-      <text x="502" y="242">Manteau inférieur — solide</text>
-      <text x="502" y="178">Noyau externe — <tspan fill="var(--amber)" font-weight="700">liquide</tspan></text>
-      <text x="502" y="114">Graine — solide (fer)</text>
-    </g>
-    <text x="300" y="24" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink-2)">Clique sur une enveloppe</text>
-  </svg>`,
-  spots: {
-    litho:"<b>Lithosphère</b> (0 à ~100 km) — croûte + partie supérieure du manteau, l'ensemble se comportant de façon <b>rigide et cassante</b> (d'où les séismes). Elle est découpée en plaques. Croûte continentale : granitique, épaisse (~30 km), peu dense (2,7) ; croûte océanique : basaltique, fine (~7 km), plus dense (2,9).",
-    asthenosphere:"<b>Asthénosphère</b> — même composition que le manteau supérieur (péridotite), mais comportement <b>ductile</b> : elle se déforme lentement. Elle correspond à la <b>LVZ</b> (zone à moindre vitesse), où les ondes sismiques ralentissent car la roche est proche de sa température de fusion.",
-    manteauinf:"<b>Manteau inférieur</b> — solide, il représente l'essentiel du volume terrestre. Les <b>tomographies sismiques</b> y révèlent des zones plus froides (plaques plongeantes) et plus chaudes (panaches), preuves d'une <b>convection</b> à l'échelle du manteau entier.",
-    noyauext:"<b>Noyau externe</b> — alliage de fer <b>liquide</b> (2900 à 5100 km). Les ondes S, qui ne se propagent pas dans les liquides, y sont stoppées : c'est ce qui a permis de le mettre en évidence (zone d'ombre). Ses mouvements engendrent le <b>champ magnétique terrestre</b>.",
-    noyauint:"<b>Graine (noyau interne)</b> — fer solide malgré une température de plus de 5000 °C, à cause de la pression colossale. Sa cristallisation progressive libère de l'énergie qui entretient les mouvements du noyau externe."
-  }
-};
-
-/* ---------- 6. Dynamique de la lithosphère ---------- */
-SCHEMAS.tectonique = {
-  title: "Dorsale, subduction : le cycle de la lithosphère océanique",
-  caption: "La lithosphère océanique <b>naît</b> à la dorsale, s'<b>épaissit et se refroidit</b> en s'en éloignant (donc devient plus dense), puis <b>plonge</b> en subduction. Cette densification est le moteur principal du mouvement des plaques.",
-  mode: "hotspots",
-  svg: `<svg viewBox="0 0 740 330" role="img" aria-label="Coupe dorsale et zone de subduction">
-    <rect x="0" y="0" width="740" height="86" fill="var(--blue-soft)"/>
-    <text x="20" y="26" font-size="11.5" font-weight="700" fill="var(--blue)">océan</text>
-    <path d="M0,300 h740 v30 h-740z" fill="var(--violet-soft)"/>
-    <text x="20" y="322" font-size="11.5" font-weight="700" fill="var(--violet)">asthénosphère</text>
-    <path d="M0,86 h740 v214 h-740 z" fill="var(--violet-soft)" opacity=".5"/>
-    <g class="hot" data-spot="dorsale">
-      <path d="M60,110 L150,74 L240,110 L240,150 L60,150 z" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="2"/>
-      <path d="M150,74 L150,180" stroke="var(--rose)" stroke-width="3" stroke-dasharray="6 4"/>
-      <path d="M150,180 q0,40 -6,60 M150,180 q0,40 6,60" stroke="var(--rose)" stroke-width="10" fill="none" opacity=".7" stroke-linecap="round"/>
-      <rect class="hitbg" x="56" y="66" width="190" height="120" fill="var(--rose)"/>
-      <text x="150" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="var(--rose)">dorsale</text>
-      <path d="M110,92 L80,92 M190,92 L220,92" stroke="var(--rose)" stroke-width="2.5" marker-end="url(#ar6)"/>
-    </g>
-    <g class="hot" data-spot="lo">
-      <path d="M240,110 L470,116 L470,164 L240,150 z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
-      <rect class="hitbg" x="240" y="108" width="230" height="58" fill="var(--accent)"/>
-      <text x="350" y="140" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent)">lithosphère océanique</text>
-      <text x="330" y="182" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">refroidit · s'épaissit · se densifie →</text>
-    </g>
-    <g class="hot" data-spot="fosse">
-      <path d="M470,116 L500,142 L470,142 z" fill="var(--blue)" opacity=".55"/>
-      <rect class="hitbg" x="452" y="100" width="70" height="60" fill="var(--blue)"/>
-      <text x="474" y="94" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--blue)">fosse</text>
-    </g>
-    <g class="hot" data-spot="plongeante">
-      <path d="M470,116 L640,290 L604,300 L452,152 z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
-      <rect class="hitbg" x="452" y="116" width="190" height="184" fill="var(--accent)"/>
-      <g fill="var(--rose)">
-        <circle cx="510" cy="164" r="4"/><circle cx="536" cy="192" r="4"/><circle cx="560" cy="220" r="4"/><circle cx="586" cy="250" r="4"/><circle cx="612" cy="278" r="4"/>
-      </g>
-      <text x="640" y="230" font-size="11" font-weight="700" fill="var(--rose)">plan de</text>
-      <text x="640" y="244" font-size="11" font-weight="700" fill="var(--rose)">Bénioff</text>
-    </g>
-    <g class="hot" data-spot="magmatisme">
-      <path d="M500,142 L740,130 L740,190 L520,186 z" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2"/>
-      <rect class="hitbg" x="500" y="126" width="240" height="64" fill="var(--amber)"/>
-      <path d="M600,110 l16,26 h-32 z" fill="var(--rose)"/>
-      <path d="M560,230 q26,-50 40,-96" stroke="var(--rose)" stroke-width="6" fill="none" opacity=".65" stroke-linecap="round"/>
-      <text x="660" y="112" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--rose)">arc volcanique</text>
-      <text x="620" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="var(--amber)">croûte continentale</text>
-    </g>
-    <text x="370" y="26" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--ink-2)">Clique sur les zones du schéma</text>
-    <defs><marker id="ar6" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--rose)"/></marker></defs>
-  </svg>`,
-  spots: {
-    dorsale:"<b>Dorsale océanique</b> — frontière <b>divergente</b>. La remontée de l'asthénosphère provoque une <b>fusion partielle par décompression</b> de la péridotite : le magma forme des basaltes (coulées en coussins) et des gabbros. C'est l'<b>accrétion</b> : de la lithosphère océanique neuve, chaude et peu dense.",
-    lo:"<b>Vieillissement de la lithosphère océanique</b> — en s'éloignant de la dorsale, elle se refroidit, s'<b>épaissit</b> (l'isotherme 1300 °C s'enfonce) et devient <b>plus dense que l'asthénosphère</b> au-delà de ~30 Ma. Les sédiments s'accumulent et le plancher s'enfonce : la profondeur augmente avec l'âge.",
-    fosse:"<b>Fosse océanique</b> — la dépression la plus profonde du globe (jusqu'à 11 km), marquant l'endroit où la plaque plonge. Elle s'accompagne d'un prisme d'accrétion formé par le raclage des sédiments.",
-    plongeante:"<b>Plaque plongeante et plan de Bénioff</b> — les foyers sismiques dessinent un plan incliné qui suit la plaque en profondeur : c'est la <b>preuve directe</b> de la subduction. La plaque, plus dense, s'enfonce sous l'effet de son propre poids (<i>slab pull</i>) : c'est le moteur essentiel de la tectonique.",
-    magmatisme:"<b>Magmatisme de subduction</b> — en s'enfonçant, la plaque subit une hausse de pression et de température : ses minéraux hydratés se <b>déshydratent</b>. L'eau libérée abaisse le point de fusion de la péridotite sus-jacente (<b>fusion partielle par hydratation</b>) → magmas visqueux → volcanisme explosif d'arc, à ~100 km au-dessus du plan de Bénioff."
-  }
-};
-
-/* ---------- 7. Écosystème & flux ---------- */
-SCHEMAS.ecosysteme = {
-  title: "Flux de matière et d'énergie dans un écosystème",
-  caption: "Un écosystème = <b>biocénose + biotope + interactions</b>. L'énergie le <b>traverse</b> (elle est dégradée à chaque niveau, d'où la forme en pyramide), tandis que la matière y est <b>recyclée</b> par les décomposeurs.",
-  mode: "hotspots",
-  svg: `<svg viewBox="0 0 700 340" role="img" aria-label="Flux d'énergie et cycle de la matière">
-    <g class="hot" data-spot="soleil">
-      <circle cx="70" cy="60" r="30" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2.5"/>
-      <g stroke="var(--amber)" stroke-width="2.5" stroke-linecap="round"><path d="M70,16 v10 M70,94 v10 M26,60 h10 M104,60 h10 M39,29 l7,7 M94,84 l7,7 M101,29 l-7,7 M46,84 l-7,7"/></g>
-      <rect class="hitbg" x="30" y="20" width="80" height="80" fill="var(--amber)"/>
-      <text x="70" y="122" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--amber)">énergie solaire</text>
-    </g>
-    <g class="hot" data-spot="prod">
-      <path d="M200,300 L280,300 L280,220 L200,220 z" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/>
-      <text x="240" y="266" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)">producteurs</text>
-      <text x="240" y="282" text-anchor="middle" font-size="10.5" fill="var(--accent)">primaires</text>
-      <rect class="hitbg" x="198" y="218" width="84" height="84" fill="var(--accent)"/>
-    </g>
-    <g class="hot" data-spot="cons1">
-      <path d="M214,206 L266,206 L266,146 L214,146 z" fill="var(--blue-soft)" stroke="var(--blue)" stroke-width="2.5"/>
-      <text x="240" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="var(--blue)">herbivores</text>
-      <rect class="hitbg" x="212" y="144" width="56" height="64" fill="var(--blue)"/>
-    </g>
-    <g class="hot" data-spot="cons2">
-      <path d="M224,132 L256,132 L256,86 L224,86 z" fill="var(--rose-soft)" stroke="var(--rose)" stroke-width="2.5"/>
-      <text x="240" y="114" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--rose)">carniv.</text>
-      <rect class="hitbg" x="222" y="84" width="36" height="50" fill="var(--rose)"/>
-    </g>
-    <path d="M104,68 q60,60 96,148" stroke="var(--amber)" stroke-width="3" fill="none" marker-end="url(#ar7)"/>
-    <g stroke="var(--ink-2)" stroke-width="2.4" fill="none" opacity=".75">
-      <path d="M290,258 q40,0 40,-40 q0,-30 -40,-30" marker-end="url(#ar8)"/>
-      <path d="M290,176 q34,0 34,-32 q0,-26 -34,-26" marker-end="url(#ar8)"/>
-    </g>
-    <g class="hot" data-spot="chaleur">
-      <path d="M300,300 q90,-10 90,-90 q0,-70 -40,-100" stroke="var(--rose)" stroke-width="2.4" fill="none" stroke-dasharray="7 5" marker-end="url(#ar9)"/>
-      <rect class="hitbg" x="300" y="100" width="110" height="200" fill="var(--rose)"/>
-      <text x="410" y="200" font-size="11.5" font-weight="700" fill="var(--rose)">pertes de chaleur</text>
-      <text x="410" y="216" font-size="10.5" fill="var(--ink-2)">respiration ≈ 90 % à chaque niveau</text>
-    </g>
-    <g class="hot" data-spot="deco">
-      <ellipse cx="560" cy="292" rx="88" ry="30" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="2.5"/>
-      <text x="560" y="290" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">décomposeurs</text>
-      <text x="560" y="305" text-anchor="middle" font-size="10" fill="var(--ink-2)">sels minéraux, CO₂</text>
-      <ellipse class="hitbg" cx="560" cy="292" rx="88" ry="30" fill="var(--ink-2)"/>
-      <path d="M290,290 q100,26 180,4" stroke="var(--ink-2)" stroke-width="2.4" fill="none" marker-end="url(#ar8)"/>
-      <path d="M560,258 q0,-160 -280,-176" stroke="var(--accent)" stroke-width="2.4" fill="none" stroke-dasharray="7 5" marker-end="url(#ar10)"/>
-      <text x="470" y="66" font-size="11" font-weight="700" fill="var(--accent)">recyclage de la matière</text>
-    </g>
-    <defs>
-      <marker id="ar7" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="var(--amber)"/></marker>
-      <marker id="ar8" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="var(--ink-2)"/></marker>
-      <marker id="ar9" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="var(--rose)"/></marker>
-      <marker id="ar10" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="var(--accent)"/></marker>
-    </defs>
-  </svg>`,
-  spots: {
-    soleil:"<b>Énergie solaire</b> — source d'énergie primaire de presque tous les écosystèmes. Moins de <b>1 %</b> de l'énergie lumineuse reçue est effectivement convertie en matière organique par les végétaux : c'est la <b>productivité primaire</b>.",
-    prod:"<b>Producteurs primaires</b> — organismes <b>autotrophes</b> (végétaux chlorophylliens, phytoplancton) : ils fabriquent leur matière organique à partir de CO₂, d'eau et de sels minéraux grâce à la photosynthèse. Ils constituent la <b>biomasse</b> à la base de tout réseau trophique.",
-    cons1:"<b>Consommateurs primaires</b> — hétérotrophes herbivores. Ils ne récupèrent qu'une petite partie de la biomasse végétale : une grande part n'est pas consommée, une autre n'est pas assimilée (excréments).",
-    cons2:"<b>Consommateurs secondaires et tertiaires</b> — chaque maillon supplémentaire perd encore ~90 % de l'énergie. C'est pourquoi les <b>chaînes trophiques comportent rarement plus de 4 ou 5 maillons</b> et que les prédateurs supérieurs sont peu nombreux.",
-    chaleur:"<b>Pertes d'énergie</b> — à chaque niveau, la respiration cellulaire dissipe l'essentiel de l'énergie sous forme de <b>chaleur</b>. L'énergie ne circule donc pas en boucle : elle <b>traverse</b> l'écosystème, ce qui impose un apport permanent d'énergie solaire.",
-    deco:"<b>Décomposeurs</b> (bactéries, champignons, détritivores) — ils dégradent la matière organique morte de tous les niveaux et libèrent des <b>sels minéraux et du CO₂</b> réutilisables par les producteurs. Contrairement à l'énergie, la <b>matière est recyclée</b> : l'écosystème fonctionne en cycle fermé pour la matière, en flux ouvert pour l'énergie."
-  }
-};
-
-/* ---------- 8. Réponse immunitaire ---------- */
-SCHEMAS.immunite = {
-  title: "De l'immunité innée à l'immunité adaptative",
-  caption: "L'immunité innée est <b>immédiate, non spécifique et sans mémoire</b> ; l'immunité adaptative est <b>lente à se mettre en place, spécifique d'un antigène et dotée d'une mémoire</b>. La cellule dendritique fait le lien entre les deux.",
-  mode: "steps",
-  svg: `<svg viewBox="0 0 720 300" role="img" aria-label="Réponse immunitaire innée puis adaptative">
-    <g id="im-0">
-      <path d="M30,220 h200" stroke="var(--amber)" stroke-width="5" stroke-linecap="round"/>
-      <circle cx="80" cy="196" r="11" fill="var(--rose)"/><circle cx="110" cy="188" r="11" fill="var(--rose)"/><circle cx="140" cy="198" r="11" fill="var(--rose)"/>
-      <text x="110" y="168" text-anchor="middle" font-size="11" font-weight="700" fill="var(--rose)">bactéries</text>
-      <path d="M40,240 q60,-8 120,0" stroke="var(--rose)" stroke-width="3" fill="none" opacity=".6"/>
-      <text x="130" y="262" text-anchor="middle" font-size="11" fill="var(--ink-2)">rougeur · chaleur · gonflement · douleur</text>
-    </g>
-    <g id="im-1">
-      <circle cx="200" cy="150" r="30" fill="var(--blue-soft)" stroke="var(--blue)" stroke-width="2.5"/>
-      <path d="M176,132 q-14,-10 -6,-24 M224,132 q14,-10 6,-24 M200,120 v-18" stroke="var(--blue)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <text x="200" y="155" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--blue)">phagocyte</text>
-      <circle cx="200" cy="150" r="7" fill="var(--rose)"/>
-      <path d="M160,180 L186,164" stroke="var(--blue)" stroke-width="2.5" marker-end="url(#ar11)"/>
-    </g>
-    <g id="im-2">
-      <circle cx="330" cy="120" r="30" fill="var(--violet-soft)" stroke="var(--violet)" stroke-width="2.5"/>
-      <g stroke="var(--violet)" stroke-width="2.5" stroke-linecap="round"><path d="M330,90 v-14 M304,104 l-13,-8 M356,104 l13,-8 M304,136 l-13,8 M356,136 l13,8"/></g>
-      <path d="M322,102 l8,-10 l8,10" stroke="var(--rose)" stroke-width="3" fill="none"/>
-      <text x="330" y="176" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--violet)">cellule dendritique</text>
-      <text x="330" y="190" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">présente l'antigène</text>
-      <path d="M240,140 L292,128" stroke="var(--violet)" stroke-width="2.5" marker-end="url(#ar12)"/>
-    </g>
-    <g id="im-3">
-      <circle cx="470" cy="90" r="26" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/>
-      <text x="470" y="94" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">LT4</text>
-      <circle cx="470" cy="210" r="26" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/>
-      <text x="470" y="214" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">LB</text>
-      <circle cx="590" cy="150" r="26" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2.5"/>
-      <text x="590" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="var(--accent)">LT8</text>
-      <path d="M362,112 L442,96 M362,140 L442,196" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#ar13)"/>
-      <path d="M496,100 q40,10 68,32 M496,200 q40,-10 68,-32" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#ar13)"/>
-      <text x="530" y="76" font-size="9.5" fill="var(--ink-2)">interleukines</text>
-    </g>
-    <g id="im-4">
-      <g transform="translate(660,206)">
-        <path d="M0,0 l-12,-20 M0,0 l12,-20 M0,0 v16" stroke="var(--amber)" stroke-width="4" fill="none" stroke-linecap="round"/>
-      </g>
-      <text x="660" y="248" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--amber)">anticorps</text>
-      <circle cx="660" cy="96" r="24" fill="var(--amber-soft)" stroke="var(--amber)" stroke-width="2.5" stroke-dasharray="5 4"/>
-      <text x="660" y="94" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--amber)">cellules</text>
-      <text x="660" y="106" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--amber)">mémoire</text>
-      <path d="M496,206 L630,206" stroke="var(--amber)" stroke-width="2" marker-end="url(#ar14)"/>
-      <path d="M490,70 q80,-20 148,10" stroke="var(--amber)" stroke-width="2" stroke-dasharray="4 4" fill="none" marker-end="url(#ar14)"/>
-    </g>
-    <defs>
-      <marker id="ar11" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--blue)"/></marker>
-      <marker id="ar12" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--violet)"/></marker>
-      <marker id="ar13" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--accent)"/></marker>
-      <marker id="ar14" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--amber)"/></marker>
-    </defs>
-  </svg>`,
-  groups: ["im-0","im-1","im-2","im-3","im-4"],
-  steps: [
-    {label:"1. Inflammation", info:"<b>Réaction inflammatoire aiguë</b> — dès la lésion, les cellules sentinelles détectent des motifs communs aux microbes et libèrent des <b>médiateurs</b> (histamine, prostaglandines). D'où les <b>4 signes cardinaux</b> : rougeur, chaleur, gonflement, douleur. Réponse <b>immédiate et non spécifique</b>."},
-    {label:"2. Phagocytose", info:"<b>Phagocytose</b> — macrophages et granulocytes adhèrent au microbe, l'englobent dans une vésicule (phagosome), puis le digèrent grâce aux enzymes des lysosomes. Souvent, l'infection s'arrête là : l'immunité innée suffit."},
-    {label:"3. Présentation", info:"<b>Cellule présentatrice d'antigène</b> — la cellule dendritique, après phagocytose, migre vers un ganglion lymphatique et <b>expose des fragments d'antigène</b> à sa surface. C'est le <b>pont entre innée et adaptative</b> : sans elle, pas de réponse spécifique."},
-    {label:"4. Sélection clonale", info:"<b>Sélection et amplification clonales</b> — parmi des millions de lymphocytes, seuls ceux dont le récepteur reconnaît l'antigène sont <b>sélectionnés</b>. Les LT4 auxiliaires, activés, sécrètent des <b>interleukines</b> qui font proliférer et se différencier les LB et les LT8. Délai : plusieurs jours."},
-    {label:"5. Effecteurs & mémoire", info:"<b>Phase effectrice et mémoire</b> — les LB deviennent des plasmocytes sécrétant des <b>anticorps</b> qui neutralisent l'antigène ; les LT8 deviennent cytotoxiques et détruisent les cellules infectées. Une partie devient des <b>cellules mémoire</b> : la réponse secondaire sera plus rapide, plus intense et plus durable — c'est le principe de la <b>vaccination</b>."}
-  ]
-};
-
-/* ---------- 9. Structure d'un anticorps ---------- */
-SCHEMAS.anticorps = {
-  title: "Structure d'un anticorps",
-  caption: "Un anticorps est une <b>immunoglobuline en forme de Y</b>, sécrétée par les plasmocytes. Ses <b>deux sites de fixation sont identiques</b> : le même anticorps ne reconnaît qu'un seul type d'antigène — c'est pour ça que le même triangle revient dans les deux vignettes.",
-  mode: "hotspots",
-  svg: `<svg viewBox="0 0 560 320" role="img" aria-label="Structure d'un anticorps et complexe immun">
-    <g class="hot" data-spot="variable">
-      <rect class="hitbg" x="96" y="46" width="168" height="104" rx="14" fill="var(--amber)"/>
-      <path d="M120,64 L164,144 M240,64 L196,144" stroke="var(--amber)" stroke-width="16" stroke-linecap="round" fill="none"/>
-      <path d="M108,68 L132,54 M228,54 L252,68" stroke="var(--amber)" stroke-width="16" stroke-linecap="round"/>
-      <text x="180" y="20" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--amber)">deux sites de fixation identiques</text>
-    </g>
-    <g class="hot" data-spot="constante">
-      <rect class="hitbg" x="150" y="138" width="60" height="132" rx="14" fill="var(--accent)"/>
-      <path d="M164,144 L180,204 L196,144" stroke="var(--accent)" stroke-width="16" stroke-linejoin="round" fill="none"/>
-      <path d="M180,204 L180,262" stroke="var(--accent)" stroke-width="16" stroke-linecap="round"/>
-      <text x="180" y="288" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent)">partie constante</text>
-    </g>
-    <g class="hot" data-spot="antigene">
-      <rect class="hitbg" x="98" y="26" width="164" height="32" rx="10" fill="var(--rose)"/>
-      <path d="M106,54 l14,-22 l14,22 z" fill="var(--rose)"/>
-      <path d="M226,54 l14,-22 l14,22 z" fill="var(--rose)"/>
-    </g>
-    <g class="hot" data-spot="complexe">
-      <rect class="hitbg" x="364" y="58" width="132" height="172" rx="14" fill="var(--rose)"/>
-      <path d="M395,96 L420,142 M465,96 L440,142" stroke="var(--amber)" stroke-width="11" stroke-linecap="round" fill="none"/>
-      <path d="M387,99 L403,90 M457,90 L473,99" stroke="var(--amber)" stroke-width="11" stroke-linecap="round"/>
-      <path d="M420,142 L430,178 L440,142" stroke="var(--accent)" stroke-width="11" stroke-linejoin="round" fill="none"/>
-      <path d="M430,178 L430,214" stroke="var(--accent)" stroke-width="11" stroke-linecap="round"/>
-      <path d="M383,86 l12,-18 l12,18 z" fill="var(--rose)"/>
-      <path d="M453,86 l12,-18 l12,18 z" fill="var(--rose)"/>
-      <text x="430" y="240" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--rose)">complexe immun</text>
-      <text x="430" y="258" text-anchor="middle" font-size="10" fill="var(--ink-2)">2 antigènes reliés par 1 anticorps</text>
-    </g>
-  </svg>`,
-  spots: {
-    variable:"<b>Parties variables</b> — leur séquence d'acides aminés diffère d'un anticorps à l'autre. Elles forment <b>deux sites de fixation identiques</b>, complémentaires d'un déterminant antigénique précis (épitope). D'où la <b>spécificité</b> : un anticorps ne reconnaît qu'un antigène.",
-    constante:"<b>Partie constante</b> — identique pour une même classe d'immunoglobuline. Elle est reconnue par les <b>récepteurs des phagocytes</b> : l'anticorps sert de « poignée » qui facilite la phagocytose du complexe (opsonisation).",
-    antigene:"<b>Antigène</b> — molécule reconnue comme étrangère. Un même antigène porte plusieurs <b>déterminants antigéniques (épitopes)</b>, ce qui explique qu'une infection déclenche la production de plusieurs anticorps différents.",
-    complexe:"<b>Complexe immun</b> — l'anticorps étant <b>bivalent</b>, il fixe deux antigènes à la fois et les relie entre eux. De proche en proche, des milliers d'anticorps forment un agrégat qui précipite. L'antigène est <b>neutralisé</b>, puis le complexe est éliminé par phagocytose : les anticorps ne détruisent pas, ils neutralisent et signalent."
-  }
-};
-</script>
-<script>
-/* Planche d'herbier — 9 vignettes découpées et encodées en WebP */
-/* ---------- 10. Évolution clonale ---------- */
-SCHEMAS.clonal = {
-  title: "De la cellule initiale à la tumeur",
-  caption: "Toutes ces cellules descendent d'une seule. La mitose est fidèle, mais pas infaillible : chaque erreur non réparée fonde un <b>sous-clone</b> qui la transmettra à toute sa descendance. Les points colorés marquent des mutations, un ton par mutation.",
-  mode: "steps",
-  groups: ["ec-0","ec-1","ec-2","ec-3","ec-4"],
-  steps: [
-    {label:"Cellule initiale", info:"<b>Une seule cellule</b> est à l'origine de tout. Chez l'humain, la cellule-œuf donne par mitoses successives les ~1,25 × 10<sup>12</sup> cellules du nouveau-né."},
-    {label:"Le clone", info:"Par <b>mitoses successives</b>, elle produit des cellules filles génétiquement identiques : c'est un <b>clone</b>. Le caryotype est conservé d'une génération cellulaire à l'autre."},
-    {label:"Une mutation", info:"La réplication n'est jamais parfaite, et des agents mutagènes s'y ajoutent. Une erreur non corrigée s'installe dans <b>une</b> cellule du clone. Ordre de grandeur : 6,4 × 10<sup>9</sup> nucléotides par cellule et un taux de 2,66 × 10<sup>-9</sup> par nucléotide — soit une poignée de mutations par cellule, déjà présentes à la naissance."},
-    {label:"Un sous-clone", info:"Cette cellule se divise à son tour : <b>toutes ses descendantes portent la mutation</b>. Elles forment un <b>sous-clone</b>, génétiquement distinct du reste du clone. C'est ce que montrent les colonies de levures ade2 : une colonie rouge dont un secteur devient blanc."},
-    {label:"Accumulation", info:"Si les mutations touchent des gènes du <b>contrôle du cycle</b> (p53) ou de la <b>capacité de division</b> (TERT), la cellule échappe à la réparation et à l'apoptose. Les sous-clones s'empilent : la tumeur est un patchwork de lignées génétiquement différentes — c'est l'<b>hétérogénéité tumorale</b>."}
-  ],
-  svg: `<svg viewBox="0 0 792 244" role="img" aria-label="Évolution clonale, de la cellule initiale à la tumeur">
-    <defs>
-      <marker id="ecar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--ink-3)"/></marker>
-    </defs>
-
-    <g id="ec-0" class="ph">
-      <circle cx="62" cy="104" r="21" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="2"/>
-      <circle cx="62" cy="104" r="9" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.8"/>
-      <text x="62" y="160" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">Cellule initiale</text>
-      <text x="62" y="176" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">un génome</text>
-      <path d="M92,104 L122,104" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#ecar)"/>
-      <text x="107" y="94" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">mitoses</text>
-    </g>
-
-    <g id="ec-1" class="ph">
-      <g fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="1.6">
-        <circle cx="152" cy="74" r="13"/><circle cx="182" cy="74" r="13"/>
-        <circle cx="152" cy="104" r="13"/><circle cx="182" cy="104" r="13"/>
-        <circle cx="152" cy="134" r="13"/><circle cx="182" cy="134" r="13"/>
-      </g>
-      <g fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4">
-        <circle cx="152" cy="74" r="5"/><circle cx="182" cy="74" r="5"/>
-        <circle cx="152" cy="104" r="5"/><circle cx="182" cy="104" r="5"/>
-        <circle cx="152" cy="134" r="5"/><circle cx="182" cy="134" r="5"/>
-      </g>
-      <text x="167" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">Clone</text>
-      <text x="167" y="192" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">cellules identiques</text>
-      <path d="M204,104 L234,104" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#ecar)"/>
-    </g>
-
-    <g id="ec-2" class="ph">
-      <g fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="1.6">
-        <circle cx="264" cy="74" r="13"/><circle cx="294" cy="74" r="13"/>
-        <circle cx="264" cy="104" r="13"/><circle cx="294" cy="104" r="13"/>
-        <circle cx="264" cy="134" r="13"/><circle cx="294" cy="134" r="13"/>
-      </g>
-      <g fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4">
-        <circle cx="264" cy="74" r="5"/><circle cx="294" cy="74" r="5"/>
-        <circle cx="264" cy="104" r="5"/><circle cx="264" cy="134" r="5"/><circle cx="294" cy="134" r="5"/>
-      </g>
-      <circle cx="294" cy="104" r="13" fill="var(--rose-soft)" stroke="var(--rose)" stroke-width="2.2"/>
-      <circle cx="294" cy="104" r="5" fill="var(--rose)"/>
-      <path d="M302,90 L340,58" stroke="var(--rose)" stroke-width="1.4"/>
-      <text x="348" y="54" text-anchor="end" font-size="10" font-weight="700" fill="var(--rose)">mutation</text>
-      <text x="279" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">Une cellule mute</text>
-      <text x="279" y="192" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">erreur non réparée</text>
-      <path d="M316,118 L346,128" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#ecar)"/>
-    </g>
-
-    <g id="ec-3" class="ph">
-      <g fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="1.6">
-        <circle cx="386" cy="70" r="13"/><circle cx="416" cy="70" r="13"/>
-        <circle cx="386" cy="100" r="13"/>
-      </g>
-      <g fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.4">
-        <circle cx="386" cy="70" r="5"/><circle cx="416" cy="70" r="5"/><circle cx="386" cy="100" r="5"/>
-      </g>
-      <g fill="var(--rose-soft)" stroke="var(--rose)" stroke-width="2">
-        <circle cx="416" cy="100" r="13"/><circle cx="386" cy="130" r="13"/><circle cx="416" cy="130" r="13"/>
-      </g>
-      <g fill="var(--rose)"><circle cx="416" cy="100" r="5"/><circle cx="386" cy="130" r="5"/><circle cx="416" cy="130" r="5"/></g>
-      <path d="M368,116 a26,26 0 0,0 0,30 a46,20 0 0,0 64,0 a26,26 0 0,0 0,-46" fill="none" stroke="var(--rose)" stroke-width="1.5" stroke-dasharray="4 4" opacity=".75"/>
-      <text x="401" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="var(--rose)">Sous-clone</text>
-      <text x="401" y="192" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">la mutation est transmise</text>
-      <path d="M440,104 L472,104" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#ecar)"/>
-    </g>
-
-    <g id="ec-4" class="ph">
-      <g fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="1.5">
-        <circle cx="512" cy="62" r="12"/><circle cx="540" cy="62" r="12"/><circle cx="568" cy="62" r="12"/><circle cx="596" cy="62" r="12"/>
-        <circle cx="512" cy="90" r="12"/><circle cx="540" cy="90" r="12"/><circle cx="568" cy="90" r="12"/><circle cx="596" cy="90" r="12"/>
-        <circle cx="512" cy="118" r="12"/><circle cx="540" cy="118" r="12"/><circle cx="568" cy="118" r="12"/><circle cx="596" cy="118" r="12"/>
-        <circle cx="512" cy="146" r="12"/><circle cx="540" cy="146" r="12"/><circle cx="568" cy="146" r="12"/><circle cx="596" cy="146" r="12"/>
-      </g>
-      <g stroke="var(--rose)" stroke-width="2" fill="var(--rose-soft)">
-        <circle cx="540" cy="62" r="12"/><circle cx="512" cy="90" r="12"/><circle cx="568" cy="118" r="12"/><circle cx="596" cy="146" r="12"/>
-      </g>
-      <g stroke="var(--violet)" stroke-width="2" fill="var(--violet-soft)">
-        <circle cx="596" cy="62" r="12"/><circle cx="568" cy="90" r="12"/><circle cx="540" cy="146" r="12"/>
-      </g>
-      <g stroke="var(--blue)" stroke-width="2" fill="var(--blue-soft)">
-        <circle cx="568" cy="62" r="12"/><circle cx="540" cy="118" r="12"/><circle cx="512" cy="146" r="12"/>
-      </g>
-      <g stroke="var(--amber)" stroke-width="2" fill="var(--amber-soft)">
-        <circle cx="596" cy="90" r="12"/><circle cx="512" cy="118" r="12"/>
-      </g>
-      <text x="554" y="186" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">Tumeur</text>
-      <text x="554" y="202" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">sous-clones empilés</text>
-      <g font-size="9.5" fill="var(--ink-2)">
-        <text x="630" y="74">p53 : frein cassé</text>
-        <text x="630" y="92">TERT : division sans fin</text>
-        <text x="630" y="116" font-size="10.5" font-weight="700" fill="var(--ink)">hétérogénéité</text>
-        <text x="630" y="131" font-size="10.5" font-weight="700" fill="var(--ink)">tumorale</text>
-      </g>
-    </g>
-  </svg>`
-};
-
-/* ---------- 11. Brassage interchromosomique ---------- */
-SCHEMAS.interchrom = {
-  title: "Le brassage interchromosomique",
-  caption: "Cellule modèle à <b>2n = 4</b> : une paire longue (rouge/bleu) et une paire courte (rouge/bleu). Le rouge vient du père, le bleu de la mère. Ce que le hasard décide, en métaphase I, c'est <b>de quel côté</b> chaque paire se range — et les paires décident indépendamment les unes des autres.",
-  mode: "steps",
-  groups: ["ic-0","ic-1","ic-2","ic-3"],
-  steps: [
-    {label:"Cellule mère", info:"La cellule germinale est <b>diploïde</b> : chaque paire contient un chromosome d'origine paternelle et un d'origine maternelle. Après la phase S, chaque chromosome a deux chromatides."},
-    {label:"Métaphase I — cas A", info:"Les paires d'homologues s'alignent sur la plaque équatoriale. Ici, les deux chromosomes paternels se rangent du même côté. En <b>anaphase I</b>, les homologues de chaque paire migrent vers des pôles opposés : on obtient deux gamètes, l'un tout paternel, l'autre tout maternel."},
-    {label:"Métaphase I — cas B", info:"Même cellule, autre tirage : la paire courte s'est rangée dans l'autre sens. L'orientation de chaque paire est <b>aléatoire et indépendante</b> des autres. Deux nouveaux gamètes apparaissent, mélangeant les deux origines."},
-    {label:"Compter", info:"Avec 2 paires : 2<sup>2</sup> = 4 gamètes possibles. Avec les 23 paires humaines : <b>2<sup>23</sup> = 8 388 608</b> gamètes génétiquement différents, tous équiprobables. La fécondation en combine ensuite deux au hasard."}
-  ],
-  svg: `<svg viewBox="0 0 744 250" role="img" aria-label="Brassage interchromosomique lors de la méiose">
-    <defs>
-      <g id="chL"><path d="M0,-17 L0,17" stroke-width="5.5" stroke-linecap="round" fill="none"/></g>
-      <g id="chS"><path d="M0,-11 L0,11" stroke-width="5.5" stroke-linecap="round" fill="none"/></g>
-      <g id="chXL"><path d="M-4,-17 L-4,17 M4,-17 L4,17" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="0" cy="0" r="2.8" fill="currentColor" stroke="none"/></g>
-      <g id="chXS"><path d="M-4,-11 L-4,11 M4,-11 L4,11" stroke-width="4" stroke-linecap="round" fill="none"/><circle cx="0" cy="0" r="2.8" fill="currentColor" stroke="none"/></g>
-      <marker id="icar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--ink-3)"/></marker>
-    </defs>
-
-    <g id="ic-0" class="ph">
-      <ellipse cx="78" cy="112" rx="58" ry="62" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="2"/>
-      <g stroke="var(--rose)" color="var(--rose)"><use href="#chXL" x="52" y="96"/><use href="#chXS" x="96" y="96"/></g>
-      <g stroke="var(--blue)" color="var(--blue)"><use href="#chXL" x="66" y="136"/><use href="#chXS" x="108" y="134"/></g>
-      <text x="78" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">Cellule germinale</text>
-      <text x="78" y="212" text-anchor="middle" font-size="10.5" fill="var(--ink-2)">2n = 4, après réplication</text>
-      <g font-size="9.5"><text x="20" y="44" fill="var(--rose)" font-weight="700">père</text><text x="112" y="44" fill="var(--blue)" font-weight="700">mère</text></g>
-    </g>
-
-    <g id="ic-1" class="ph">
-      <ellipse cx="268" cy="66" rx="52" ry="40" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="1.8"/>
-      <path d="M268,30 L268,102" stroke="var(--amber)" stroke-width="1.8" stroke-dasharray="4 4"/>
-      <g stroke="var(--rose)" color="var(--rose)"><use href="#chXL" x="248" y="66"/><use href="#chXS" x="232" y="66"/></g>
-      <g stroke="var(--blue)" color="var(--blue)"><use href="#chXL" x="288" y="66"/><use href="#chXS" x="304" y="66"/></g>
-      <text x="268" y="22" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink)">Métaphase I — cas A</text>
-      <path d="M324,66 L356,66" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#icar)"/>
-      <g>
-        <circle cx="398" cy="44" r="22" fill="var(--panel)" stroke="var(--ink-2)" stroke-width="1.6"/>
-        <g stroke="var(--rose)" color="var(--rose)"><use href="#chL" x="390" y="44"/><use href="#chS" x="406" y="44"/></g>
-        <circle cx="398" cy="94" r="22" fill="var(--panel)" stroke="var(--ink-2)" stroke-width="1.6"/>
-        <g stroke="var(--blue)" color="var(--blue)"><use href="#chL" x="390" y="94"/><use href="#chS" x="406" y="94"/></g>
-      </g>
-    </g>
-
-    <g id="ic-2" class="ph">
-      <ellipse cx="268" cy="176" rx="52" ry="40" fill="var(--panel-2)" stroke="var(--ink-2)" stroke-width="1.8"/>
-      <path d="M268,140 L268,212" stroke="var(--amber)" stroke-width="1.8" stroke-dasharray="4 4"/>
-      <g stroke="var(--rose)" color="var(--rose)"><use href="#chXL" x="248" y="176"/><use href="#chXS" x="304" y="176"/></g>
-      <g stroke="var(--blue)" color="var(--blue)"><use href="#chXL" x="288" y="176"/><use href="#chXS" x="232" y="176"/></g>
-      <text x="268" y="132" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--ink)">Métaphase I — cas B</text>
-      <path d="M324,176 L356,176" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#icar)"/>
-      <g>
-        <circle cx="398" cy="154" r="22" fill="var(--panel)" stroke="var(--ink-2)" stroke-width="1.6"/>
-        <g stroke="var(--rose)" color="var(--rose)"><use href="#chL" x="390" y="154"/></g>
-        <g stroke="var(--blue)" color="var(--blue)"><use href="#chS" x="406" y="154"/></g>
-        <circle cx="398" cy="204" r="22" fill="var(--panel)" stroke="var(--ink-2)" stroke-width="1.6"/>
-        <g stroke="var(--blue)" color="var(--blue)"><use href="#chL" x="390" y="204"/></g>
-        <g stroke="var(--rose)" color="var(--rose)"><use href="#chS" x="406" y="204"/></g>
-      </g>
-    </g>
-
-    <g id="ic-3" class="ph">
-      <path d="M428,124 L462,124" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#icar)"/>
-      <rect x="474" y="30" width="252" height="188" rx="16" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.6"/>
-      <text x="600" y="54" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--accent-2)">4 types de gamètes, équiprobables</text>
-      <g font-size="10" fill="var(--ink-2)">
-        <text x="600" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">2 paires → 2² = 4</text>
-        <text x="600" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">3 paires → 2³ = 8</text>
-        <text x="600" y="150" text-anchor="middle" font-size="15" font-weight="700" fill="var(--accent-2)">23 paires → 2²³</text>
-        <text x="600" y="172" text-anchor="middle" font-size="15" font-weight="700" fill="var(--accent-2)">= 8 388 608</text>
-        <text x="600" y="198" text-anchor="middle" font-size="10.5">et la fécondation en combine deux au hasard</text>
-      </g>
-    </g>
-  </svg>`
-};
-
-/* ---------- 12. Brassage intrachromosomique ---------- */
-SCHEMAS.crossing = {
-  title: "Le crossing-over, brassage intrachromosomique",
-  caption: "Deux gènes <b>liés</b> — portés par la même paire de chromosomes. Un chromosome vient du père (rouge, allèles A et B), l'autre de la mère (bleu, allèles a et b). Sans crossing-over, A voyage toujours avec B. Un échange en prophase I casse cette solidarité et fabrique des combinaisons neuves.",
-  mode: "steps",
-  groups: ["co-0","co-1","co-2","co-3"],
-  steps: [
-    {label:"Prophase I", info:"Les chromosomes homologues s'apparient étroitement : c'est l'<b>appariement</b>. Chacun porte deux chromatides. Les deux gènes étudiés sont sur le même bras — ils sont <b>liés</b>."},
-    {label:"Chiasma", info:"Deux chromatides non sœurs se croisent en un point d'<b>enjambement</b> (chiasma). Le croisement est visible au microscope et se produit en un endroit variable du chromosome."},
-    {label:"Échange", info:"Les deux chromatides se cassent au même niveau et <b>échangent leurs segments</b>. La liaison entre les allèles est rompue sur ces deux chromatides seulement."},
-    {label:"Les 4 chromatides", info:"Bilan : <b>2 chromatides parentales</b> (combinaisons d'origine, A-B et a-b) et <b>2 chromatides recombinées</b> (A-b et a-B). Comme le crossing-over n'a lieu que sur une partie des cellules, les <b>gamètes parentaux restent majoritaires</b> et les recombinés minoritaires — ce qui distingue les gènes liés des gènes indépendants."}
-  ],
-  svg: `<svg viewBox="0 0 772 250" role="img" aria-label="Crossing-over entre chromosomes homologues">
-    <defs>
-      <marker id="coar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--ink-3)"/></marker>
-    </defs>
-
-    <g id="co-0" class="ph">
-      <g stroke="var(--rose)" stroke-width="6" stroke-linecap="round">
-        <path d="M46,56 L46,168"/><path d="M60,56 L60,168"/>
-      </g>
-      <g stroke="var(--blue)" stroke-width="6" stroke-linecap="round">
-        <path d="M92,56 L92,168"/><path d="M106,56 L106,168"/>
-      </g>
-      <circle cx="53" cy="112" r="4" fill="var(--ink)"/><circle cx="99" cy="112" r="4" fill="var(--ink)"/>
-      <g font-size="11" font-weight="700">
-        <text x="30" y="82" text-anchor="end" fill="var(--rose)">A</text>
-        <text x="30" y="152" text-anchor="end" fill="var(--rose)">B</text>
-        <text x="124" y="82" fill="var(--blue)">a</text>
-        <text x="124" y="152" fill="var(--blue)">b</text>
-      </g>
-      <text x="76" y="200" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">Appariement</text>
-      <text x="76" y="216" text-anchor="middle" font-size="10" fill="var(--ink-2)">prophase I</text>
-      <path d="M144,112 L180,112" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#coar)"/>
-    </g>
-
-    <g id="co-1" class="ph">
-      <g stroke="var(--rose)" stroke-width="6" stroke-linecap="round" fill="none">
-        <path d="M210,56 L210,168"/><path d="M224,56 L256,168"/>
-      </g>
-      <g stroke="var(--blue)" stroke-width="6" stroke-linecap="round" fill="none">
-        <path d="M270,56 L270,168"/><path d="M256,56 L224,168"/>
-      </g>
-      <circle cx="240" cy="112" r="9" fill="none" stroke="var(--amber)" stroke-width="2.4"/>
-      <text x="240" y="200" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--amber)">Chiasma</text>
-      <text x="240" y="216" text-anchor="middle" font-size="10" fill="var(--ink-2)">enjambement</text>
-      <path d="M300,112 L336,112" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#coar)"/>
-    </g>
-
-    <g id="co-2" class="ph">
-      <g stroke="var(--rose)" stroke-width="6" stroke-linecap="round" fill="none">
-        <path d="M366,56 L366,168"/><path d="M380,56 L380,108"/>
-      </g>
-      <g stroke="var(--blue)" stroke-width="6" stroke-linecap="round" fill="none">
-        <path d="M426,56 L426,168"/><path d="M412,56 L412,108"/>
-      </g>
-      <g stroke="var(--blue)" stroke-width="6" stroke-linecap="round" fill="none"><path d="M380,116 L380,168"/></g>
-      <g stroke="var(--rose)" stroke-width="6" stroke-linecap="round" fill="none"><path d="M412,116 L412,168"/></g>
-      <path d="M374,112 L418,112" stroke="var(--amber)" stroke-width="1.6" stroke-dasharray="3 3"/>
-      <text x="396" y="200" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink)">Échange</text>
-      <text x="396" y="216" text-anchor="middle" font-size="10" fill="var(--ink-2)">segments permutés</text>
-      <path d="M452,112 L488,112" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#coar)"/>
-    </g>
-
-    <g id="co-3" class="ph">
-      <rect x="500" y="30" width="256" height="190" rx="16" fill="var(--panel)" stroke="var(--line-2)" stroke-width="1.6"/>
-      <g stroke-width="6" stroke-linecap="round">
-        <path d="M542,52 L542,96" stroke="var(--rose)"/><path d="M542,104 L542,148" stroke="var(--rose)"/>
-        <path d="M590,52 L590,96" stroke="var(--rose)"/><path d="M590,104 L590,148" stroke="var(--blue)"/>
-        <path d="M638,52 L638,96" stroke="var(--blue)"/><path d="M638,104 L638,148" stroke="var(--rose)"/>
-        <path d="M686,52 L686,96" stroke="var(--blue)"/><path d="M686,104 L686,148" stroke="var(--blue)"/>
-      </g>
-      <g font-size="11" font-weight="700" text-anchor="middle" fill="var(--ink)">
-        <text x="542" y="168">A-B</text><text x="590" y="168">A-b</text><text x="638" y="168">a-B</text><text x="686" y="168">a-b</text>
-      </g>
-      <g font-size="9.5" text-anchor="middle">
-        <text x="614" y="192" fill="var(--ink-2)">parentaux : A-B et a-b — majoritaires</text>
-        <text x="614" y="208" fill="var(--amber)" font-weight="700">recombinés : A-b et a-B — minoritaires</text>
-      </g>
-    </g>
-  </svg>`
-};
-
-/* ---------- 15. Transferts horizontaux (chapitre 2) ---------- */
-SCHEMAS.thg = {
-  title: "Quatre façons de recevoir un gène venu d'ailleurs",
-  caption: "Dans les quatre cas, un organisme intègre de l'ADN qui ne vient pas de ses parents : c'est un <b>transfert horizontal</b>. En rose, l'ADN transféré ; en bleu, le chromosome bactérien ; en orangé, les plasmides.",
-  mode: "steps",
-  groups: ["th-0","th-1","th-2","th-3"],
-  steps: [
-    {label:"Transformation", info:"De l'ADN est libéré en permanence dans le milieu par des cellules détruites. Une bactérie peut absorber cet <b>ADN libre</b> et l'intégrer à son propre ADN : c'est la <b>transformation</b>, mise en évidence par Griffith en 1928 chez le pneumocoque."},
-    {label:"Conjugaison", info:"Deux bactéries, de la même espèce ou d'espèces différentes, s'unissent par un <b>pont cytoplasmique</b>. Un <b>plasmide</b>, petite molécule d'ADN circulaire, est copié et transmis à la bactérie receveuse. C'est la principale voie de diffusion des gènes de <b>résistance aux antibiotiques</b>."},
-    {label:"Transgenèse naturelle", info:"La bactérie <i>Agrobacterium tumefaciens</i> injecte un fragment de son plasmide pTi, l'<b>ADN-T</b>, dans une cellule végétale, où il s'insère dans le génome chromosomique. Les gènes de l'ADN-T font produire à la plante des facteurs de croissance (tumeur, appelée galle) et des molécules nutritives pour la bactérie."},
-    {label:"Rétrovirus", info:"Un rétrovirus injecte son <b>ARN</b> dans la cellule hôte. Une enzyme virale le copie en <b>ADN</b> (transcription inverse), qui s'<b>intègre aux chromosomes</b> de l'hôte. Si la cellule infectée est une cellule germinale, ce gène viral peut ensuite être transmis à la descendance : 8 à 10 % du génome humain est d'origine virale."}
-  ],
-  svg: `<svg viewBox="0 0 800 270" role="img" aria-label="Transformation, conjugaison, transgenèse par Agrobacterium et intégration d'un rétrovirus"><defs><marker id="thar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--ink-3)"/></marker></defs><g id="th-0" class="ph"><text x="100" y="20" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">1. Transformation</text><path d="M40,58 q4.0,-4 8,0 q4.0,4 8,0 q4.0,-4 8,0 q4.0,4 8,0" fill="none" stroke="var(--rose)" stroke-width="2.6" stroke-linecap="round"/><path d="M118,50 q4.0,-4 8,0 q4.0,4 8,0 q4.0,-4 8,0" fill="none" stroke="var(--rose)" stroke-width="2.6" stroke-linecap="round"/><path d="M84,72 q4.0,-4 8,0 q4.0,4 8,0 q4.0,-4 8,0" fill="none" stroke="var(--rose)" stroke-width="2.6" stroke-linecap="round"/><text x="100" y="94" text-anchor="middle" font-size="9.5" fill="var(--rose)" font-weight="700">ADN libre dans le milieu</text><path d="M100,100 L100,122" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#thar)"/><rect x="40" y="128" width="120" height="62" rx="31.0" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><path d="M70,160 q7.5,-14 15.0,-8.4 t15.0,4.2 t15.0,-2.8000000000000003 t15.0,7.0 q0,14 -15.0,12.6 t-15.0,-2.8000000000000003 t-15.0,4.2 t-15.0,-8.4z" fill="none" stroke="var(--blue)" stroke-width="2.4"/><path d="M84,152 q6,-6 12,-3" fill="none" stroke="var(--rose)" stroke-width="3.4" stroke-linecap="round"/><text x="100" y="212" text-anchor="middle" font-size="10" fill="var(--ink-2)">il entre dans la bactérie</text><text x="100" y="227" text-anchor="middle" font-size="10" fill="var(--ink-2)">et s'intègre à son ADN</text></g><g id="th-1" class="ph"><text x="300" y="20" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">2. Conjugaison</text><rect x="212" y="60" width="76" height="46" rx="23.0" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><rect x="312" y="60" width="76" height="46" rx="23.0" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><path d="M288,78 L312,78 M288,88 L312,88" stroke="var(--ink-3)" stroke-width="1.8"/><path d="M224,83 q4.5,-10 9.0,-6.0 t9.0,3.0 t9.0,-2.0 t9.0,5.0 q0,10 -9.0,9.0 t-9.0,-2.0 t-9.0,3.0 t-9.0,-6.0z" fill="none" stroke="var(--blue)" stroke-width="2.4"/><path d="M340,83 q4.5,-10 9.0,-6.0 t9.0,3.0 t9.0,-2.0 t9.0,5.0 q0,10 -9.0,9.0 t-9.0,-2.0 t-9.0,3.0 t-9.0,-6.0z" fill="none" stroke="var(--blue)" stroke-width="2.4"/><circle cx="272" cy="76" r="7" fill="none" stroke="var(--amber)" stroke-width="2.6"/><circle cx="326" cy="92" r="7" fill="none" stroke="var(--amber)" stroke-width="2.6"/><path d="M278,83 L318,83" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#thar)"/><text x="250" y="50" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">donneuse</text><text x="350" y="50" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">receveuse</text><text x="300" y="126" text-anchor="middle" font-size="9.5" fill="var(--ink-2)" font-weight="700">pont cytoplasmique</text><circle cx="232" cy="156" r="8" fill="none" stroke="var(--amber)" stroke-width="2.6"/><text x="246" y="160" text-anchor="start" font-size="9.5" fill="var(--amber)" font-weight="700">plasmide copié et transmis</text><text x="300" y="196" text-anchor="middle" font-size="10" fill="var(--ink-2)">gènes de résistance aux</text><text x="300" y="211" text-anchor="middle" font-size="10" fill="var(--ink-2)">antibiotiques, de virulence…</text><text x="300" y="227" text-anchor="middle" font-size="10" fill="var(--ink-2)">même entre espèces différentes</text></g><g id="th-2" class="ph"><text x="500" y="20" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">3. Transgenèse naturelle</text><rect x="410" y="64" width="70" height="40" rx="20.0" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><path d="M422,84 q3.5,-8 7.0,-4.8 t7.0,2.4 t7.0,-1.6 t7.0,4.0 q0,8 -7.0,7.2 t-7.0,-1.6 t-7.0,2.4 t-7.0,-4.8z" fill="none" stroke="var(--blue)" stroke-width="2.4"/><circle cx="464" cy="84" r="9" fill="none" stroke="var(--amber)" stroke-width="2.6"/><path d="M457.7,77.7 A9,9 0 0 1 470.3,77.7" fill="none" stroke="var(--rose)" stroke-width="4.2"/><text x="445" y="120" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">Agrobacterium</text><text x="445" y="133" text-anchor="middle" font-size="9.5" fill="var(--amber)" font-weight="700">plasmide pTi</text><path d="M482,78 L512,78" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#thar)"/><text x="497" y="70" text-anchor="middle" font-size="9" fill="var(--rose)" font-weight="700">ADN-T</text><path d="M520,48 L578,40 L594,92 L580,140 L524,146 L512,96z" fill="var(--leaf-soft)" stroke="var(--leaf)" stroke-width="3.2"/><circle cx="553" cy="94" r="22" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.6"/><path d="M536,96 q8,-8 17,0 t17,0" fill="none" stroke="var(--ink)" stroke-width="1.8"/><path d="M548,94 q5,-4 10,0" fill="none" stroke="var(--rose)" stroke-width="3.4" stroke-linecap="round"/><text x="553" y="162" text-anchor="middle" font-size="9.5" fill="var(--leaf)" font-weight="700">cellule végétale</text><text x="500" y="196" text-anchor="middle" font-size="10" fill="var(--ink-2)">l'ADN-T s'insère dans le</text><text x="500" y="211" text-anchor="middle" font-size="10" fill="var(--ink-2)">génome de la plante :</text><text x="500" y="227" text-anchor="middle" font-size="10" fill="var(--rose)" font-weight="700">tumeur (galle)</text></g><g id="th-3" class="ph"><text x="700" y="20" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">4. Rétrovirus</text><circle cx="634" cy="70" r="16" fill="var(--panel)" stroke="var(--plum)" stroke-width="2"/><path d="M650.0,70.0 L655.0,70.0" stroke="var(--plum)" stroke-width="2" stroke-linecap="round"/><path d="M645.3,81.3 L648.8,84.8" stroke="var(--plum)" stroke-width="2" stroke-linecap="round"/><path d="M634.0,86.0 L634.0,91.0" stroke="var(--plum)" stroke-width="2" stroke-linecap="round"/><path d="M622.7,81.3 L619.2,84.8" stroke="var(--plum)" stroke-width="2" stroke-linecap="round"/><path d="M618.0,70.0 L613.0,70.0" stroke="var(--plum)" stroke-width="2" stroke-linecap="round"/><path d="M622.7,58.7 L619.2,55.2" stroke="var(--plum)" stroke-width="2" stroke-linecap="round"/><path d="M634.0,54.0 L634.0,49.0" stroke="var(--plum)" stroke-width="2" stroke-linecap="round"/><path d="M645.3,58.7 L648.8,55.2" stroke="var(--plum)" stroke-width="2" stroke-linecap="round"/><path d="M624,70 q5.0,-3 10,0 q5.0,3 10,0" fill="none" stroke="var(--rose)" stroke-width="2.2" stroke-linecap="round"/><text x="634" y="104" text-anchor="middle" font-size="9.5" fill="var(--plum)" font-weight="700">virus à ARN</text><rect x="662" y="44" width="128" height="140" rx="22" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.6"/><path d="M654,74 L672,74" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#thar)"/><path d="M678,66 q4.5,-3 9,0 q4.5,3 9,0" fill="none" stroke="var(--rose)" stroke-width="2.2" stroke-linecap="round"/><text x="700" y="62" text-anchor="start" font-size="9" fill="var(--rose)" font-weight="700">ARN</text><path d="M694,74 L694,92" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#thar)"/><text x="702" y="88" text-anchor="start" font-size="8.5" fill="var(--ink-2)">transcription inverse</text><path d="M680,102 L712,102 M680,107 L712,107" stroke="var(--rose)" stroke-width="2.2"/><text x="718" y="108" text-anchor="start" font-size="9" fill="var(--rose)" font-weight="700">ADN viral</text><circle cx="728" cy="150" r="24" fill="var(--paper-2)" stroke="var(--ink-3)" stroke-width="1.4"/><path d="M708,150 L722,150" stroke="var(--ink)" stroke-width="2.2"/><path d="M722,150 L736,150" stroke="var(--rose)" stroke-width="3.4"/><path d="M736,150 L750,150" stroke="var(--ink)" stroke-width="2.2"/><path d="M700,112 L712,132" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#thar)"/><text x="728" y="190" text-anchor="middle" font-size="9" fill="var(--ink-3)">noyau</text><text x="700" y="211" text-anchor="middle" font-size="10" fill="var(--ink-2)">l'ADN viral s'intègre</text><text x="700" y="227" text-anchor="middle" font-size="10" fill="var(--ink-2)">aux chromosomes de l'hôte</text></g></svg>`
-};
-
-/* ---------- 16. Transgenèse de l'insuline (chapitre 2) ---------- */
-SCHEMAS.insuline = {
-  title: "Produire de l'insuline humaine par transgenèse bactérienne",
-  caption: "L'humain reproduit, en le dirigeant, ce que la nature fait déjà : il utilise un <b>plasmide</b> comme <b>vecteur</b> pour faire entrer un gène humain dans une bactérie. Comme le code génétique est universel, la bactérie lit ce gène et fabrique la protéine humaine.",
-  mode: "steps",
-  groups: ["in-0","in-1","in-2","in-3","in-4"],
-  steps: [
-    {label:"1. Gène d'intérêt", info:"On identifie et on isole le <b>gène d'intérêt</b> : ici, le gène humain qui code l'insuline, l'hormone qui fait baisser la glycémie et qui manque aux personnes diabétiques de type 1."},
-    {label:"2. Ouvrir", info:"On <b>ouvre</b> un plasmide bactérien, c'est-à-dire qu'on coupe la boucle d'ADN en un point précis."},
-    {label:"3. Insérer", info:"On insère le gène humain dans l'ouverture : l'ADN du plasmide et l'ADN humain forment un <b>plasmide recombinant</b>. Le plasmide joue le rôle de <b>vecteur</b> : il transporte le gène d'intérêt."},
-    {label:"4. Transférer", info:"On fait entrer le plasmide recombinant dans une bactérie, qui devient une <b>bactérie transformée</b>. Elle exprime le gène humain : transcription puis traduction, avec le même code génétique que nos cellules."},
-    {label:"5. Produire", info:"La bactérie se multiplie par <b>divisions successives</b> et transmet le plasmide à toutes ses descendantes. Des milliards de bactéries transformées produisent de grandes quantités d'insuline humaine, que l'on purifie pour les patients."}
-  ],
-  svg: `<svg viewBox="0 0 800 250" role="img" aria-label="Étapes d'une transgenèse bactérienne pour produire de l'insuline humaine"><defs><marker id="inar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--ink-3)"/></marker></defs><g id="in-0" class="ph"><text x="80.0" y="20" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="700">1. Gène d'intérêt</text><circle cx="80" cy="105" r="46" fill="var(--rose-soft)" stroke="var(--ink-3)" stroke-width="1.6"/><circle cx="80" cy="105" r="22" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.4"/><path d="M64.0,105 L74.0,105" stroke="var(--ink)" stroke-width="2.2"/><path d="M74.0,105 L86.0,105" stroke="var(--rose)" stroke-width="4"/><path d="M86.0,105 L96.0,105" stroke="var(--ink)" stroke-width="2.2"/><text x="80.0" y="170" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">cellule humaine</text><text x="80.0" y="206" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">on repère le gène de</text><text x="80.0" y="221" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">l'insuline humaine</text><path d="M150,110 L166,110" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#inar)"/></g><g id="in-1" class="ph"><text x="240.0" y="20" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="700">2. Ouvrir</text><path d="M260.0,92 A26,26 0 1 0 260.0,118" fill="none" stroke="var(--amber)" stroke-width="4"/><text x="240.0" y="170" text-anchor="middle" font-size="9.5" fill="var(--amber)" font-weight="700">plasmide bactérien</text><path d="M268.0,101 L276.0,109 M276.0,101 L268.0,109" stroke="var(--ink-3)" stroke-width="1.6"/><text x="240.0" y="206" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">on coupe le plasmide</text><text x="240.0" y="221" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">d'une bactérie</text><path d="M310,110 L326,110" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#inar)"/></g><g id="in-2" class="ph"><text x="400.0" y="20" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="700">3. Insérer</text><path d="M420.0,92 A26,26 0 1 0 420.0,118" fill="none" stroke="var(--amber)" stroke-width="4"/><path d="M420.0,92 A26,26 0 0 1 420.0,118" fill="none" stroke="var(--rose)" stroke-width="5"/><text x="400.0" y="170" text-anchor="middle" font-size="9.5" fill="var(--rose)" font-weight="700">plasmide recombinant</text><text x="400.0" y="206" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">on y insère le gène :</text><text x="400.0" y="221" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">le plasmide sert de vecteur</text><path d="M470,110 L486,110" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#inar)"/></g><g id="in-3" class="ph"><text x="560.0" y="20" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="700">4. Transférer</text><rect x="504.0" y="78" width="112" height="58" rx="29.0" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><path d="M522.0,107 q6.0,-12 12.0,-7.199999999999999 t12.0,3.5999999999999996 t12.0,-2.4000000000000004 t12.0,6.0 q0,12 -12.0,10.8 t-12.0,-2.4000000000000004 t-12.0,3.5999999999999996 t-12.0,-7.199999999999999z" fill="none" stroke="var(--blue)" stroke-width="2.4"/><circle cx="590.0" cy="107" r="10" fill="none" stroke="var(--amber)" stroke-width="2.6"/><path d="M583.0,100.0 A10,10 0 0 1 597.0,100.0" fill="none" stroke="var(--rose)" stroke-width="4.2"/><text x="560.0" y="170" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">bactérie transformée</text><text x="560.0" y="206" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">on fait entrer le plasmide</text><text x="560.0" y="221" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">dans une bactérie</text><path d="M630,110 L646,110" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#inar)"/></g><g id="in-4" class="ph"><text x="720.0" y="20" text-anchor="middle" font-size="11" fill="var(--ink)" font-weight="700">5. Produire</text><rect x="662.0" y="70" width="44" height="28" rx="14.0" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><circle cx="694.0" cy="84" r="5" fill="none" stroke="var(--amber)" stroke-width="2.6"/><path d="M690.5,80.5 A5,5 0 0 1 697.5,80.5" fill="none" stroke="var(--rose)" stroke-width="4.2"/><rect x="712.0" y="70" width="44" height="28" rx="14.0" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><circle cx="744.0" cy="84" r="5" fill="none" stroke="var(--amber)" stroke-width="2.6"/><path d="M740.5,80.5 A5,5 0 0 1 747.5,80.5" fill="none" stroke="var(--rose)" stroke-width="4.2"/><rect x="687.0" y="118" width="44" height="28" rx="14.0" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><circle cx="719.0" cy="132" r="5" fill="none" stroke="var(--amber)" stroke-width="2.6"/><path d="M715.5,128.5 A5,5 0 0 1 722.5,128.5" fill="none" stroke="var(--rose)" stroke-width="4.2"/><circle cx="770.0" cy="84" r="2.6" fill="var(--rose)"/><circle cx="774.0" cy="108" r="2.6" fill="var(--rose)"/><circle cx="762.0" cy="128" r="2.6" fill="var(--rose)"/><circle cx="664.0" cy="132" r="2.6" fill="var(--rose)"/><circle cx="750.0" cy="150" r="2.6" fill="var(--rose)"/><circle cx="680.0" cy="108" r="2.6" fill="var(--rose)"/><text x="720.0" y="170" text-anchor="middle" font-size="9.5" fill="var(--rose)" font-weight="700">insuline humaine</text><text x="720.0" y="206" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">elle se divise et toutes</text><text x="720.0" y="221" text-anchor="middle" font-size="9.5" fill="var(--ink-2)">ses descendantes produisent</text></g></svg>`
-};
-
-/* ---------- 17. Endosymbiose (chapitre 2, partie III) ---------- */
-SCHEMAS.endosymbiose = {
-  title: "De la cyanobactérie au chloroplaste",
-  caption: "Le scénario de Lynn Margulis, pour le chloroplaste. La même histoire, avec une α-protéobactérie, explique l'origine des mitochondries. En vert, la bactérie et ses gènes ; en rose, les protéines fabriquées à partir des gènes du noyau.",
-  mode: "steps",
-  groups: ["en-0","en-1","en-2","en-3"],
-  steps: [
-    {label:"Deux cellules", info:"Une <b>cellule eucaryote ancestrale</b>, sans chloroplaste, et une <b>cyanobactérie</b> libre, capable de photosynthèse, avec son chromosome circulaire de 1 500 à 10 000 gènes."},
-    {label:"Phagocytose incomplète", info:"La cellule eucaryote <b>phagocyte</b> la cyanobactérie : elle l'enferme dans une vésicule formée à partir de sa propre membrane. Mais la bactérie n'est pas digérée. Elle est désormais entourée de <b>deux membranes</b> : la sienne, et celle de la vésicule. C'est l'origine de la double membrane des chloroplastes."},
-    {label:"Transfert de gènes", info:"Au fil des générations, de nombreux gènes de la bactérie passent dans le <b>noyau</b> de la cellule hôte (environ 1 400 pour le chloroplaste) : c'est un <b>transfert horizontal</b>. Le noyau prend le relais pour coder les protéines de l'organite."},
-    {label:"Le chloroplaste actuel", info:"Le chloroplaste ne garde que <b>87 gènes</b>. Environ <b>2 300 protéines</b> codées par le noyau, dont la petite sous-unité de la RubisCo, sont fabriquées dans le cytoplasme puis importées dans l'organite. Bénéfices mutuels : la cellule fait la photosynthèse, l'organite vit dans un milieu stable."}
-  ],
-  svg: `<svg viewBox="0 0 800 255" role="img" aria-label="Endosymbiose à l'origine du chloroplaste"><defs><marker id="enar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7z" fill="var(--ink-3)"/></marker></defs><g id="en-0" class="ph"><text x="100" y="20" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">1. Deux cellules</text><rect x="14" y="46" width="132" height="118" rx="26" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><circle cx="60" cy="104" r="20" fill="var(--rose-soft)" stroke="var(--ink-3)" stroke-width="1.4"/><rect x="152" y="92" width="40" height="18" rx="9.0" fill="var(--leaf-soft)" stroke="var(--leaf)" stroke-width="2"/><circle cx="172.0" cy="101.0" r="5" fill="none" stroke="var(--leaf)" stroke-width="1.6"/><text x="80" y="186" text-anchor="middle" font-size="9.5" fill="var(--ink-3)">cellule eucaryote</text><text x="172" y="124" text-anchor="middle" font-size="9" fill="var(--leaf)" font-weight="700">cyano-</text><text x="172" y="135" text-anchor="middle" font-size="9" fill="var(--leaf)" font-weight="700">bactérie</text><text x="100" y="214" text-anchor="middle" font-size="10" fill="var(--ink-2)">une cellule eucaryote</text><text x="100" y="229" text-anchor="middle" font-size="10" fill="var(--ink-2)">et une bactérie libre</text></g><g id="en-1" class="ph"><text x="300" y="20" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">2. Phagocytose incomplète</text><rect x="226" y="46" width="150" height="118" rx="26" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><circle cx="268" cy="104" r="20" fill="var(--rose-soft)" stroke="var(--ink-3)" stroke-width="1.4"/><ellipse cx="334" cy="104" rx="32" ry="18" fill="none" stroke="var(--ink-3)" stroke-width="1.8" stroke-dasharray="4 2.5"/><rect x="312" y="95" width="44" height="18" rx="9.0" fill="var(--leaf-soft)" stroke="var(--leaf)" stroke-width="2"/><circle cx="334.0" cy="104.0" r="5" fill="none" stroke="var(--leaf)" stroke-width="1.6"/><path d="M356,150 L346,124" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#enar)"/><text x="330" y="186" text-anchor="middle" font-size="9.5" fill="var(--leaf)" font-weight="700">2 membranes</text><text x="300" y="214" text-anchor="middle" font-size="10" fill="var(--ink-2)">la bactérie, enfermée dans une</text><text x="300" y="229" text-anchor="middle" font-size="10" fill="var(--ink-2)">vésicule, n'est pas digérée</text></g><g id="en-2" class="ph"><text x="500" y="20" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">3. Transfert de gènes</text><rect x="426" y="46" width="150" height="118" rx="26" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><circle cx="466" cy="104" r="22" fill="var(--rose-soft)" stroke="var(--ink-3)" stroke-width="1.4"/><path d="M454,110 l5,-3" stroke="var(--leaf)" stroke-width="3" stroke-linecap="round"/><path d="M461,110 l5,-3" stroke="var(--leaf)" stroke-width="3" stroke-linecap="round"/><path d="M468,110 l5,-3" stroke="var(--leaf)" stroke-width="3" stroke-linecap="round"/><ellipse cx="536" cy="104" rx="30" ry="17" fill="none" stroke="var(--ink-3)" stroke-width="1.8" stroke-dasharray="4 2.5"/><rect x="516" y="96" width="40" height="16" rx="8.0" fill="var(--leaf-soft)" stroke="var(--leaf)" stroke-width="2"/><circle cx="536.0" cy="104.0" r="5" fill="none" stroke="var(--leaf)" stroke-width="1.6"/><path d="M512,96 L494,99.2" stroke="var(--leaf)" stroke-width="1.6" marker-end="url(#enar)"/><path d="M512,104 L494,104.0" stroke="var(--leaf)" stroke-width="1.6" marker-end="url(#enar)"/><path d="M512,112 L494,108.8" stroke="var(--leaf)" stroke-width="1.6" marker-end="url(#enar)"/><text x="500" y="186" text-anchor="middle" font-size="9.5" fill="var(--leaf)" font-weight="700">vers le noyau</text><text x="500" y="214" text-anchor="middle" font-size="10" fill="var(--ink-2)">des gènes du symbiote passent</text><text x="500" y="229" text-anchor="middle" font-size="10" fill="var(--ink-2)">dans le noyau de l'hôte</text></g><g id="en-3" class="ph"><text x="700" y="20" text-anchor="middle" font-size="11.5" fill="var(--ink)" font-weight="700">4. Le chloroplaste actuel</text><rect x="626" y="46" width="156" height="118" rx="26" fill="var(--panel)" stroke="var(--ink-3)" stroke-width="1.8"/><circle cx="664" cy="104" r="22" fill="var(--rose-soft)" stroke="var(--ink-3)" stroke-width="1.4"/><path d="M652,110 l5,-3" stroke="var(--leaf)" stroke-width="3" stroke-linecap="round"/><path d="M659,110 l5,-3" stroke="var(--leaf)" stroke-width="3" stroke-linecap="round"/><path d="M666,110 l5,-3" stroke="var(--leaf)" stroke-width="3" stroke-linecap="round"/><ellipse cx="738" cy="104" rx="30" ry="18" fill="var(--leaf-soft)" stroke="var(--leaf)" stroke-width="2.4"/><ellipse cx="738" cy="104" rx="25" ry="13.5" fill="none" stroke="var(--leaf)" stroke-width="1.2"/><path d="M726,96 L726,112" stroke="var(--leaf)" stroke-width="2"/><path d="M734,96 L734,112" stroke="var(--leaf)" stroke-width="2"/><path d="M742,96 L742,112" stroke="var(--leaf)" stroke-width="2"/><path d="M750,96 L750,112" stroke="var(--leaf)" stroke-width="2"/><circle cx="750" cy="104" r="3.6" fill="none" stroke="var(--ink)" stroke-width="1.2"/><circle cx="690" cy="90" r="2.2" fill="var(--rose)"/><circle cx="698" cy="96" r="2.2" fill="var(--rose)"/><circle cx="704" cy="96" r="2.2" fill="var(--rose)"/><path d="M688,92 L706,96" stroke="var(--ink-3)" stroke-width="1.5" marker-end="url(#enar)"/><text x="738" y="140" text-anchor="middle" font-size="9.5" fill="var(--leaf)" font-weight="700">87 gènes</text><text x="664" y="140" text-anchor="middle" font-size="9" fill="var(--rose)" font-weight="700">protéines</text><text x="664" y="151" text-anchor="middle" font-size="9" fill="var(--rose)" font-weight="700">importées</text><text x="700" y="214" text-anchor="middle" font-size="10" fill="var(--ink-2)">un organite à double membrane,</text><text x="700" y="229" text-anchor="middle" font-size="10" fill="var(--ink-2)">dépendant du noyau</text></g></svg>`
-};
+/* Les schémas fixes ont été remplacés par les animations de anim/ (voir mountAnims). */
 
 
 const SPEC_BG = "#F5F1E5";
@@ -2626,7 +1778,7 @@ const PREMIERE = [
 <p>Pendant la phase S, chaque chromosome passe de <b>1 à 2 chromatides</b> : la <b>quantité d'ADN double</b>, mais le <b>nombre de chromosomes ne change pas</b>. En anaphase, les chromatides se séparent : la quantité d'ADN par cellule est divisée par deux, le nombre de chromosomes reste identique.</p></div>
 
 <h2>2. Les quatre phases de la mitose</h2>
-<div data-schema="mitose"></div>
+<div data-anim="mitose"></div>
 
 <h2>3. Ce que la mitose garantit</h2>
 <p>La mitose produit deux cellules filles <b>génétiquement identiques entre elles et à la cellule mère</b> : ce sont des <span class="kw">clones</span>. Cette conformité repose sur deux mécanismes enchaînés :</p>
@@ -2664,7 +1816,7 @@ const PREMIERE = [
 <p>L'expérience de <b>Meselson et Stahl</b> (1958), sur des bactéries cultivées sur azote lourd puis léger, a tranché entre trois hypothèses. Résultat : chaque molécule fille est constituée d'<b>un brin parental et d'un brin néoformé</b>. On parle de réplication <span class="kw">semi-conservative</span>.</p>
 
 <h2>2. Le déroulement à la fourche de réplication</h2>
-<div data-schema="replication"></div>
+<div data-anim="replication"></div>
 
 <h2>3. Pourquoi la copie est fidèle</h2>
 <p>La fidélité repose entièrement sur la <span class="kw">complémentarité des bases</span> : A avec T, C avec G. Chaque brin parental sert de <b>matrice</b>, donc la séquence de la molécule fille est entièrement déterminée par celle de la molécule mère. L'ADN polymérase possède en outre une activité de <b>relecture</b> qui corrige la plupart des erreurs d'appariement.</p>
@@ -2695,7 +1847,7 @@ const PREMIERE = [
   notions:["transcription","épissage alternatif","code génétique","traduction","phénotype"],
   html:`
 <h2>1. Du gène à la protéine : deux étapes séparées</h2>
-<div data-schema="expression"></div>
+<div data-anim="expression"></div>
 
 <h2>2. Le code génétique</h2>
 <p>Le <span class="kw">code génétique</span> est la table de correspondance entre les <b>codons</b> (triplets de nucléotides de l'ARNm) et les acides aminés. Ses propriétés sont à connaître par cœur :</p>
@@ -2738,7 +1890,7 @@ const PREMIERE = [
 <p>Une <span class="kw">enzyme</span> est une protéine qui <b>accélère une réaction chimique</b> sans être consommée ni modifiée en fin de réaction. Elle ne crée pas la réaction et ne change pas son sens : elle abaisse l'<b>énergie d'activation</b>, c'est-à-dire la barrière énergétique à franchir.</p>
 
 <h2>2. Le site actif</h2>
-<div data-schema="enzyme"></div>
+<div data-anim="enzyme"></div>
 
 <h2>3. Deux spécificités à distinguer</h2>
 <div class="tablewrap"><table>
@@ -2889,7 +2041,7 @@ const PREMIERE = [
 <p>La vitesse des ondes dépend des propriétés du milieu (densité, rigidité, état). Une <b>variation brutale de vitesse</b> signale un changement de milieu : c'est une <span class="kw">discontinuité</span>. Une <b>zone d'ombre</b> pour les ondes S entre 103° et 180° de l'épicentre a permis d'affirmer que le noyau externe est <b>liquide</b>.</p>
 
 <h2>2. Deux découpages superposés</h2>
-<div data-schema="globe"></div>
+<div data-anim="globe"></div>
 
 <h2>3. Les discontinuités à connaître</h2>
 <div class="tablewrap"><table>
@@ -2925,7 +2077,7 @@ const PREMIERE = [
   notions:["accrétion","subduction","densité","convection","slab pull"],
   html:`
 <h2>1. Naissance et mort de la lithosphère océanique</h2>
-<div data-schema="tectonique"></div>
+<div data-anim="tectonique"></div>
 
 <h2>2. Le moteur : une histoire de densité</h2>
 <p>Le mécanisme central du chapitre tient en une chaîne logique qu'il faut savoir dérouler :</p>
@@ -2994,7 +2146,7 @@ const PREMIERE = [
 <p>Les interactions sont de plusieurs types : <b>trophiques</b> (qui mange qui), mais aussi <b>compétition</b>, <b>prédation</b>, <b>coopération</b>, <b>symbiose</b> (mycorhizes entre champignons et racines, indispensables à l'absorption minérale) ou <b>parasitisme</b>.</p>
 
 <h2>2. Flux d'énergie et cycle de la matière</h2>
-<div data-schema="ecosysteme"></div>
+<div data-anim="ecosysteme"></div>
 
 <h2>3. Perturbations et résilience</h2>
 <p>Un écosystème n'est pas figé : il est en <b>équilibre dynamique</b>. Face à une perturbation (incendie, tempête, pollution, espèce invasive), deux issues :</p>
@@ -3203,7 +2355,7 @@ const PREMIERE = [
 <p>Elle est <b>très ancienne dans l'évolution</b> : on la retrouve chez tous les animaux, ce qui montre son efficacité. Elle suffit à régler la grande majorité des infections.</p>
 
 <h2>2. La réaction inflammatoire aiguë</h2>
-<div data-schema="immunite"></div>
+<div data-anim="immunite"></div>
 
 <h2>3. Les quatre signes cardinaux et leur explication</h2>
 <div class="tablewrap"><table>
@@ -3262,7 +2414,7 @@ const PREMIERE = [
 </table></div>
 
 <h2>4. Les anticorps</h2>
-<div data-schema="anticorps"></div>
+<div data-anim="anticorps"></div>
 
 <h2>5. La mémoire immunitaire</h2>
 <p>Une partie des lymphocytes sélectionnés devient des <b>cellules mémoire</b>, à longue durée de vie. Lors d'un second contact avec le même antigène, la réponse est :</p>
@@ -3432,7 +2584,7 @@ const TERMINALE = [
 </details>
 
 <h2>C. Le mécanisme de la conformité : la mitose</h2>
-<div data-schema="mitose"></div>
+<div data-anim="mitose"></div>
 
 <h3>1. Ce qui varie, ce qui ne varie pas</h3>
 <p>C'est la distinction qui fait tomber la moitié des copies. Reprends le cycle cellulaire :</p>
@@ -3487,7 +2639,7 @@ const TERMINALE = [
 </details>
 
 <h2>E. L'évolution clonale : quand une erreur devient une lignée</h2>
-<div data-schema="clonal"></div>
+<div data-anim="clonal"></div>
 
 <h3>1. Le sous-clone</h3>
 <div class="box def"><h4>Sous-clone</h4>
@@ -3725,7 +2877,7 @@ const TERMINALE = [
 <div class="box def"><h4>Définition</h4>
 <p>Le <span class="kw">brassage interchromosomique</span> est le mécanisme de la méiose qui <b>répartit au hasard les chromosomes paternels et maternels</b> dans les cellules reproductrices. Il concerne les gènes portés par des paires de chromosomes différentes, c'est-à-dire des <b>gènes indépendants</b>.</p></div>
 
-<div data-schema="interchrom"></div>
+<div data-anim="meiose" data-t0="36"></div>
 
 <h3>1. Le mécanisme, en deux temps</h3>
 <p>La formulation compte, et les deux verbes sont attendus :</p>
@@ -3760,7 +2912,7 @@ const TERMINALE = [
 <p>Lorsque les phénotypes recombinés sont en proportions <b>inférieures</b> à celles des phénotypes parentaux dans le résultat d'un test-cross, cela signifie que les gènes sont <b>partiellement liés</b> : situés sur la même paire de chromosomes, avec échange possible de portions de chromatide entre l'un et l'autre chromosome de la paire.</p>
 <p>L'individu de la F1 produit donc quatre types de gamètes <b>non équiprobables</b>.</p></div>
 
-<div data-schema="crossing"></div>
+<div data-anim="meiose" data-t0="22"></div>
 
 <h3>1. Le crossing-over</h3>
 <div class="box def"><h4>Le mécanisme</h4>
@@ -4213,9 +3365,9 @@ const TERMINALE = [
 <p>En 1944, Oswald Avery et ses collègues reprennent l'expérience in vitro. Ils purifient séparément les différentes molécules des pneumocoques S tués et testent chacune sur des R vivants. Seul l'extrait d'ADN transforme les R en S, et il perd ce pouvoir si on le détruit par une enzyme qui dégrade l'ADN. C'est l'une des premières preuves que l'ADN est le support de l'information génétique. (Source extérieure au cours.)</p></div>
 
 <h2>C. Les transferts horizontaux chez les bactéries</h2>
-<p>Les bactéries échangent des gènes de trois façons, que le schéma ci-dessous résume avec le cas des virus, étudié dans la partie D.</p>
+<p>Les bactéries échangent des gènes de trois façons, que l'animation ci-dessous montre avec le cas des virus, étudié dans la partie D.</p>
 
-<div data-schema="thg"></div>
+<div data-anim="thg"></div>
 
 <h3>1. La transformation</h3>
 <div class="box def"><h4>L'idée</h4>
@@ -4260,7 +3412,7 @@ const TERMINALE = [
 <p>En quoi les connaissances sur les transferts horizontaux de matériel génétique ont-elles permis des applications biotechnologiques ?</p></div>
 <p>L'humain utilise les propriétés des plasmides bactériens comme <span class="kw">vecteurs</span> d'un gène d'intérêt. L'exemple du cours est la production d'<b>insuline humaine</b> par des bactéries :</p>
 
-<div data-schema="insuline"></div>
+<div data-anim="insuline"></div>
 
 <ol>
   <li>on identifie le <b>gène d'intérêt</b> (le gène de l'insuline humaine) ;</li>
@@ -4401,7 +3553,7 @@ const TERMINALE = [
 <p>Dans les années 1960, la biologiste <b>Lynn Margulis</b> propose une théorie selon laquelle les organites énergétiques, mitochondries et chloroplastes, seraient des « descendants » de bactéries. Ces bactéries, après avoir été <b>phagocytées</b> par des cellules eucaryotes primitives, n'auraient pas été digérées : elles seraient devenues, par endosymbiose, des composants permanents des cellules eucaryotes. On parle de <b>phagocytose incomplète</b>.</p>
 <p>On observe encore aujourd'hui ce type d'événement : des photographies au microscope électronique montrent une amibe (cellule eucaryote) en train de phagocyter une bactérie, qui se retrouve enfermée dans une vésicule. Il arrive que les bactéries phagocytées ne soient pas digérées.</p>
 
-<div data-schema="endosymbiose"></div>
+<div data-anim="endosymbiose"></div>
 
 <h2>C. Les arguments en faveur de l'origine bactérienne des organites</h2>
 
@@ -6591,7 +5743,7 @@ function pageAccueil(){
     </svg>
     <h1>Réviser la SVT,<br><em>chapitre après chapitre</em></h1>
     <p>Le cours de Terminale se remplit unité par unité, au rythme de la classe. Les <b>rappels de Première</b> sont déjà rédigés en entier, et chaque unité renvoie vers les bases dont elle a besoin.</p>
-    <div class="chips"><span class="chip">${nT} chapitres de Terminale</span><span class="chip">${nP} fiches de rappel</span><span class="chip">${Object.keys(SCHEMAS).length} schémas interactifs</span><span class="chip">Hors ligne</span></div>
+    <div class="chips"><span class="chip">${nT} chapitres de Terminale</span><span class="chip">${nP} fiches de rappel</span><span class="chip">${Object.keys(ANIMS).length} animations</span><span class="chip">Hors ligne</span></div>
   </div>`;
   h += '<h2 class="sec">'+SPRIG+'Programme de Terminale</h2><div class="grid">';
   TERMINALE.forEach(th => {
@@ -6622,7 +5774,7 @@ function pageAccueil(){
   h += '<h2 class="sec">'+SPRIG+"Comment s'en servir</h2>"+
   `<div class="box def"><h4>Mode d'emploi</h4>
   <ul>
-    <li><b>Les rappels de Première</b> sont complets : cours, schémas interactifs, pièges classiques et encadrés « Vers la Terminale ».</li>
+    <li><b>Les rappels de Première</b> sont complets : cours, animations, pièges classiques et encadrés « Vers la Terminale ».</li>
     <li><b>Les chapitres de Terminale</b> suivent le découpage de la classe : chapitre, puis unités. Ceux qui sont rédigés portent la mention « Cours complet » ; les autres affichent leurs objectifs et un bouton <b>Rappels de 1ère</b> vers les fiches utiles.</li>
     <li><b>La recherche</b> (en haut) balaie tout le contenu : tape une notion, un mot du cours, un nom de molécule.</li>
     <li>Le fichier est <b>autonome</b> : aucune connexion nécessaire, il fonctionne depuis un téléphone comme depuis un ordinateur.</li>
@@ -6801,26 +5953,45 @@ function pageRecherche(q){
 
 /* ---------- schémas ---------- */
 const ANIMS = {
+  mitose:"La mitose",
+  replication:"La réplication de l'ADN",
+  expression:"De l'ADN à la protéine",
+  enzyme:"Enzyme, substrat et site actif",
+  globe:"La structure du globe terrestre",
+  tectonique:"Dorsale, subduction : le cycle de la lithosphère océanique",
+  ecosysteme:"Flux d'énergie et cycle de la matière dans un écosystème",
+  immunite:"De l'immunité innée à l'immunité adaptative",
+  anticorps:"Structure et action des anticorps",
+  clonal:"De la cellule initiale à la tumeur",
+  meiose:"Méiose et brassage génétique",
   nondisj:"Quand les chromosomes migrent mal",
   coinegal:"Le crossing-over inégal",
-  globines:"Une famille multigénique : les globines"
+  globines:"Une famille multigénique : les globines",
+  thg:"Les transferts horizontaux de gènes",
+  insuline:"Produire de l'insuline par transgenèse",
+  endosymbiose:"L'endosymbiose à l'origine du chloroplaste"
 };
 function mountAnims(root){
   root.querySelectorAll("[data-anim]").forEach(slot => {
-    const id = slot.dataset.anim, titre = ANIMS[id] || "";
+    const id = slot.dataset.anim, titre = ANIMS[id] || "", t0 = slot.dataset.t0 ? `&amp;t0=${slot.dataset.t0}` : "";
     const th = document.documentElement.getAttribute("data-theme") || "light";
     const fig = document.createElement("figure");
     fig.className = "animfig";
     fig.innerHTML = `<div class="stitle">${SPRIG}Animation · ${titre}</div>
-      <iframe src="anim/${id}.html?embed=1&amp;theme=${th}" title="Animation : ${titre}" loading="lazy" data-anim-id="${id}"></iframe>
-      <a class="animfull" href="anim/${id}.html">Ouvrir en plein écran, avec le quiz →</a>`;
+      <iframe src="anim/${id}.html?embed=1&amp;theme=${th}${t0}" title="Animation : ${titre}" loading="lazy" data-anim-id="${id}"></iframe>
+      <a class="animfull" href="anim/${id}.html">Ouvrir en plein écran →</a>`;
     slot.replaceWith(fig);
   });
 }
 window.addEventListener("message", e => {
   const d = e.data || {};
-  if(d.type !== "anim-h" || !d.h) return;
-  document.querySelectorAll("iframe[data-anim-id]").forEach(fr => { if(fr.contentWindow === e.source) fr.style.height = Math.ceil(d.h) + "px"; });
+  if(d.type !== "anim-h" && d.type !== "anim-goto") return;
+  document.querySelectorAll("iframe[data-anim-id]").forEach(fr => {
+    if(fr.contentWindow !== e.source) return;
+    if(d.type === "anim-h" && d.h) fr.style.height = Math.ceil(d.h) + "px";
+    /* le quiz s'est ouvert sous l'animation : on fait défiler la page jusqu'à lui */
+    if(d.type === "anim-goto") setTimeout(() => window.scrollTo({top: fr.getBoundingClientRect().top + scrollY + (d.y || 0) - 80, behavior: "smooth"}), 60);
+  });
 });
 function mountSchemas(root){
   root.querySelectorAll("[data-schema]").forEach(slot => {
@@ -7061,16 +6232,24 @@ $("#backdrop").onclick = () => { side.classList.remove("open"); $("#backdrop").c
 document.querySelectorAll("#bottomnav button").forEach(b => b.onclick = () => {
   if(b.dataset.go === "recherche"){ go("recherche"); $("#q").focus(); } else go(b.dataset.go);
 });
+/* Recherche pendant la frappe : on ne touche jamais à location.hash ici.
+   Sur Android, une navigation par ancre pendant que le clavier compose un mot
+   remet le curseur au début du champ (les lettres s'écrivent alors à l'envers).
+   pushState change l'adresse sans navigation ; le curseur est en plus restauré. */
 let tmr;
+function chercher(){
+  const q = $("#q"), a = q.selectionStart, b = q.selectionEnd;
+  if(location.hash !== "#recherche") history.pushState(null, "", "#recherche");
+  render();
+  if(document.activeElement === q && a !== null && (q.selectionStart !== a || q.selectionEnd !== b)){
+    try{ q.setSelectionRange(a, b); }catch(e){}
+  }
+}
 $("#q").addEventListener("input", () => {
   clearTimeout(tmr);
-  tmr = setTimeout(() => {
-    if($("#q").value.trim().length >= 2){
-      if(location.hash !== "#recherche") go("recherche"); else render();
-    }
-  }, 200);
+  tmr = setTimeout(() => { if($("#q").value.trim().length >= 2) chercher(); }, 250);
 });
-$("#q").addEventListener("keydown", e => { if(e.key === "Enter"){ go("recherche"); render(); } });
+$("#q").addEventListener("keydown", e => { if(e.key === "Enter"){ clearTimeout(tmr); chercher(); $("#q").blur(); } });
 
 let theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 function applyTheme(){

@@ -80,7 +80,7 @@
       </div>
     </section>
   </div>
-  <p class="note">Schéma simplifié : un gène très court (4 exons, 3 introns) et une protéine de 9 acides aminés seulement ; les vraies protéines en comptent souvent plusieurs centaines. Les codons et les acides aminés respectent le code génétique. Les extrémités non traduites de l'ARNm ne sont pas représentées.</p>
+  <p class="note">Schéma simplifié : un gène très court (4 exons, 3 introns) et une protéine de 9 acides aminés seulement ; les vraies protéines en comptent souvent plusieurs centaines. Les codons, anticodons et acides aminés respectent le code génétique.</p>
   <section class="quiz" id="quiz" aria-labelledby="quizTitle">
     <h2 id="quizTitle">Vérifie que tu as compris</h2>
     <div class="qcard" id="qcard">
@@ -368,7 +368,7 @@ function draw(c){
       const oo = lin(t, ta, ta + .4)*(1 - lv);
       const tr = trna(p[0], p[1], ANTI(R.P[cI].cod), oo);
       fx += tr.s; tops.push(oo > 0 ? tr.top : null);
-      if(cI === 0) { st.trna0 = [p[0] + 12, p[1] - 26]; st.anti0 = [p[0] + 9, p[1]]; }
+      if(lv === 0 && kAtL(t, ta, tb) > .97){ st.trna0 = [p[0] + 12, p[1] - 26]; st.anti0 = [p[0] + 9, p[1]]; }
     }
     /* configuration de la chaîne */
     let newest = 0, u = 1;

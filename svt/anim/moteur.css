@@ -101,13 +101,28 @@ button{font:inherit;color:inherit}
 @keyframes fly{from{transform:translate(0,0) scale(1);opacity:1}to{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
 
 /* intégration dans le cours (iframe) : seulement le lecteur et la légende */
-html.embed,html.embed body{background:#FFFDF8}
-:root[data-theme="dark"].embed,:root[data-theme="dark"].embed body{background:#16211B}
-@media (prefers-color-scheme: dark){:root.embed:not([data-theme="light"]),:root.embed:not([data-theme="light"]) body{background:#16211B}}
+/* fond transparent : l'iframe prend le fond de la page (le cours règle color-scheme sur l'iframe) */
+html.embed,html.embed body{background:transparent}
 html.embed .wrap{padding:2px 0 4px;max-width:none}
 html.embed .head,html.embed .note,html.embed .quiz{display:none}
+html.embed.quizon .quiz{display:block;margin-top:22px}
 html.embed .player{grid-template-columns:1fr;align-items:start}
 @media (min-width:760px){html.embed .player{grid-template-columns:minmax(0,1fr) minmax(280px,.9fr);gap:18px}}
 html.embed .stage svg{max-height:none}
-
-@media (prefers-reduced-motion:reduce){.cap.in,.opt.bad{animation:none}.burst{display:none}}
+/* téléphone : image bord à bord, commandes juste dessous, puis le texte de l'étape et la légende */
+@media (max-width:759px){
+  html.embed .wrap{padding:0 0 6px}
+  html.embed .player{gap:8px}
+  html.embed .stage{border-radius:0;box-shadow:none}
+  html.embed .panel{padding:0 17px;gap:10px}
+  html.embed .controls{order:-1;background:none;border:0;padding:2px 0 0}
+  html.embed .bar{margin-top:2px}
+  html.embed .ctl{width:42px;height:42px}
+  html.embed .ctl.play{width:52px;height:52px}
+  html.embed .switch{margin-top:6px;font-size:.88rem}
+  html.embed .cap{min-height:0;padding:14px 15px 12px}
+  html.embed .cap h2{font-size:1.12rem}
+  html.embed .legend{order:2;font-size:.8rem;gap:4px 14px}
+  html.embed .sw{width:16px;height:8px}
+  html.embed .quiz{padding:0 17px;margin-top:16px}
+}
