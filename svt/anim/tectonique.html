@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>Dorsale, subduction : le cycle de la lithosphère océanique</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#p8">← SVT Terminale</a> · Rappels de Première, fiche 8 : la dynamique de la lithosphère</p>
+    <h1>Dorsale, subduction : le cycle de la lithosphère océanique</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation en coupe : à la dorsale, l'asthénosphère remonte et fond par décompression, la lithosphère océanique naît et s'écarte ; en s'éloignant elle refroidit, s'épaissit et se densifie, puis plonge en subduction ; les séismes dessinent le plan de Bénioff, l'eau libérée fait fondre le manteau au-dessus et un volcan d'arc entre en éruption">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#B4553A"></span>lithosphère océanique jeune, chaude</li>
+        <li><span class="sw" style="background:#3D6F95"></span>lithosphère océanique âgée, froide</li>
+        <li><span class="sw" style="background:#4A2A50"></span>asthénosphère</li>
+        <li><span class="sw" style="background:#FF6A2B"></span>magma</li>
+        <li><span class="sw" style="background:#5AB8FF"></span>eau libérée</li>
+        <li><span class="sw" style="background:#FF7A6B"></span>foyers des séismes</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma non à l'échelle : les épaisseurs sont exagérées et les distances raccourcies. Le déplacement des plaques (quelques centimètres par an) est très accéléré.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, sm, lerp, f, op, flash, halo, arc, mix, label, AMB, MAG, CYA} = ANIM.H;
+const ROUGE = '#FF7A6B', GRIS = '#9FB0CC', BLANC = '#F2F5FA';
+const ASTH = '#4A2A50', EAU = '#17406E', SED = '#E8D08A', CRUST = '#2E3646';
+const CHAUD = '#B4553A', FROID = '#3D6F95', CCONT = '#B89A7A', CLM = '#3B5B6B';
+const MAGMA = '#FF6A2B', FUSION = '#FF9A3D', H2O = '#5AB8FF', CENDRE = '#9A98A6';
+/* géométrie de la coupe */
+const SL = 112, XR = 40, UT = 165, XT = XR + UT, TH = 58;
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const A = d => Math.sqrt(clamp(d/UT, 0, 1));
+const ysf = d => 132 + 36*A(d);            /* toit de la roche (sous les sédiments) */
+const sed = d => 7*A(d)*A(d);              /* épaisseur des sédiments */
+const ylb = d => ysf(d) + 3 + 55*A(d);     /* base de la lithosphère : isotherme 1300 °C */
+const dPath = pts => 'M' + pts.map(p => f(p[0]) + ' ' + f(p[1])).join('L');
+const poly = (pts, fill, o=1, extra='') => o > 0 ? `<path d="${dPath(pts)}Z" fill="${fill}" opacity="${op(o)}" ${extra}/>` : '';
+const txt = (x, y, s, col, size=11, o=1, anc='middle') => o > 0 ? `<text x="${f(x)}" y="${f(y)}" dy=".36em" font-size="${size}" font-weight="700" fill="${col}" text-anchor="${anc}" stroke="#0A1222" stroke-width="3" paint-order="stroke" opacity="${op(o)}">${s}</text>` : '';
+
+/* la plaque plongeante : son toit, de la fosse vers la profondeur */
+const SLAB = [];
+{ let x = XT, y = ysf(UT);
+  for(let s=0; s<=440; s+=2){ const th = (12 + 46*sm(s/110))*Math.PI/180; SLAB.push({s, x, y, th}); x += 2*Math.cos(th); y += 2*Math.sin(th); } }
+function slabAt(s){
+  const i = clamp(Math.floor(s/2), 0, SLAB.length-2), u = clamp((s - SLAB[i].s)/2, 0, 1), a = SLAB[i], b = SLAB[i+1];
+  const th = lerp(a.th, b.th, u), x = lerp(a.x, b.x, u), y = lerp(a.y, b.y, u);
+  return {x, y, th, nx:-Math.sin(th), ny:Math.cos(th)};
+}
+const slabTopY = x => { for(let i=1; i<SLAB.length; i++) if(SLAB[i].x >= x){ const a = SLAB[i-1], b = SLAB[i]; return lerp(a.y, b.y, (x - a.x)/(b.x - a.x)); } return 999; };
+/* une colonne de lithosphère repérée par sa distance u à la dorsale (le long de la plaque) */
+function column(u, side=1){
+  if(side < 0 || u <= UT){ const x = XR + side*u; return {top:[x, ysf(u) - sed(u)], rock:[x, ysf(u)], bot:[x, ylb(u)], x}; }
+  const p = slabAt(u - UT), sd = sed(UT)*clamp(1 - (u-UT)/14, 0, 1);
+  return {top:[p.x - p.nx*sd, p.y - p.ny*sd], rock:[p.x, p.y], bot:[p.x + p.nx*TH, p.y + p.ny*TH], x:p.x};
+}
+/* déplacement des plaques (tapis roulant) */
+const V = 9;
+const Dp = t => { const x = t - 7.2; return V*(x <= 0 ? 0 : x < 1 ? x*x/2 : x - .5); };
+const D0 = Dp(30.5) - UT;     /* la parcelle suivie atteint la fosse à 30,5 s */
+
+/* le continent */
+const CTOP = [[213,171],[222,160],[232,140],[242,121],[250,112],[262,106],[280,101],[292,88],[300,72],[303,65],[307,65],[310,72],[318,88],[330,101],[350,103],[400,101]];
+const crustBot = x => x >= 262 ? 150 : lerp(171, 150, (x-213)/49);
+const XS_C = Array.from({length:38}, (_,i) => 213 + i*5).concat([400]);
+const VX = 305, VY = 65;
+
+/* points de la plaque océanique droite (avec la plaque plongeante) */
+const RIGHT_TOP = [], RIGHT_BOT = [];
+for(let d=0; d<=UT; d+=5) RIGHT_TOP.push([XR + d, ysf(d) - sed(d)]);
+for(let s=2; s<=440; s+=6){ const c = column(UT + s); RIGHT_TOP.push(c.top); }
+for(let s=440; s>=0; s-=6){ const c = column(UT + s); RIGHT_BOT.push(c.bot); }
+for(let d=UT; d>=0; d-=5){ const x = XR + d; if(x <= RIGHT_BOT[RIGHT_BOT.length-1][0] - 1) RIGHT_BOT.push([x, ylb(d)]); }
+const LEFT_TOP = [], LEFT_BOT = [];
+for(let d=0; d<=XR+2; d+=4) LEFT_TOP.push([XR - d, ysf(d) - sed(d)]);
+for(let d=XR+2; d>=0; d-=4) LEFT_BOT.push([XR - d, ylb(d)]);
+
+/* courants de l'asthénosphère sous la dorsale */
+const FLOW = [];
+for(const s of [1,-1]) for(const dx of [7,18]){
+  const pts = []; const xe = s > 0 ? 196 : -10;
+  for(let y=430; y>=232; y-=12) pts.push([XR + s*dx, y]);
+  for(let i=1; i<=8; i++){ const a = i/8*Math.PI/2; pts.push([XR + s*(dx + 40*(1 - Math.cos(a))), 232 - 40*Math.sin(a) + 26]); }
+  const yb = pts[pts.length-1][1]; for(let x = XR + s*(dx+40); s > 0 ? x <= xe : x >= xe; x += s*12) pts.push([x, yb + (s > 0 ? (x - XR)*.12 : 0)]);
+  FLOW.push(pts);
+}
+function along(pts, u){
+  let acc = 0;
+  for(let i=1; i<pts.length; i++){ const L = Math.hypot(pts[i][0]-pts[i-1][0], pts[i][1]-pts[i-1][1]); if(acc + L >= u){ const v = (u - acc)/L; return [lerp(pts[i-1][0],pts[i][0],v), lerp(pts[i-1][1],pts[i][1],v)]; } acc += L; }
+  return null;
+}
+const FLEN = FLOW.map(p => { let a = 0; for(let i=1; i<p.length; i++) a += Math.hypot(p[i][0]-p[i-1][0], p[i][1]-p[i-1][1]); return a; });
+
+/* foyers des séismes, le long du plan de Bénioff */
+const FOYERS = [16,40,64,88,112,138,166,196,226,258].map((s, i) => { const p = slabAt(s); const dep = 5 + (i % 3)*4; return {x:p.x + p.nx*dep, y:p.y + p.ny*dep, t:37.8 + i*.62}; });
+/* gouttes d'eau libérées par la plaque */
+const GOUTTES = Array.from({length:14}, (_,i) => { const s = 96 + (i*23) % 50, p = slabAt(s); return {x:p.x - 2, y:p.y - 2, t:46.6 + i*.5, ph:i*1.7}; });
+const ZF = [VX + 2, 199];   /* zone de fusion partielle du manteau sus-jacent */
+
+function draw(c){
+  const {t, k} = c;
+  const st = {}; let cells = '', sp = '', ch = '', lt = '', fx = '', lab = '';
+  const D = Dp(t);
+
+  /* ---------- fond : asthénosphère et océan ---------- */
+  cells += `<defs><linearGradient id="tecR" gradientUnits="userSpaceOnUse" x1="${XR}" y1="0" x2="${XT}" y2="0"><stop offset="0" stop-color="${CHAUD}"/><stop offset=".35" stop-color="${mix(CHAUD, FROID, .55)}"/><stop offset="1" stop-color="${FROID}"/></linearGradient>` +
+           `<linearGradient id="tecL" gradientUnits="userSpaceOnUse" x1="${XR}" y1="0" x2="${XR - UT}" y2="0"><stop offset="0" stop-color="${CHAUD}"/><stop offset=".35" stop-color="${mix(CHAUD, FROID, .55)}"/><stop offset="1" stop-color="${FROID}"/></linearGradient></defs>`;
+  cells += `<rect x="0" y="${SL}" width="400" height="${430 - SL}" fill="${ASTH}"/>`;
+  const water = [[0,SL],[250,SL]].concat(CTOP.slice(0,5).reverse(), [[XT, ysf(UT) - sed(UT)]]);
+  for(let d=UT; d>=0; d-=5) water.push([XR + d, ysf(d) - sed(d)]);
+  for(let d=0; d<=XR; d+=5) water.push([XR - d, ysf(d) - sed(d)]);
+  cells += poly(water, EAU);
+  cells += `<path d="M0 ${SL}H250" stroke="#7FB4E6" stroke-width="1.4" stroke-opacity=".7"/>`;
+
+  /* ---------- courants de l'asthénosphère ---------- */
+  const fl = k(7.6,8.6)*(1 - .6*k(17,18));
+  if(fl > 0) FLOW.forEach((pts, j) => {
+    for(let n=0; n<7; n++){
+      const u = ((t - 7.6)*14 + n*FLEN[j]/7 + j*9) % FLEN[j]; if(u < 0) continue;
+      const p = along(pts, u); if(!p) continue;
+      const o = fl*clamp(u/30,0,1)*clamp((FLEN[j]-u)/30,0,1);
+      cells += `<circle cx="${f(p[0])}" cy="${f(p[1])}" r="1.8" fill="#D9B8F0" opacity="${op(.6*o)}"/>`;
+    }
+  });
+  /* fusion partielle par décompression, sous la dorsale */
+  const fd = k(9.2,10.6);
+  if(fd > 0){
+    cells += poly([[XR-3,138],[XR+3,138],[XR+20,212],[XR-20,212]], FUSION, .28*fd);
+    for(let i=0; i<12; i++){
+      const yy = 150 + (i*29) % 58, xx = XR + ((i*17) % 31 - 15)*(yy - 138)/74, tw = .5 + .5*Math.sin(t*5 + i*2.1);
+      ch += `<circle cx="${f(xx)}" cy="${f(yy)}" r="1.6" fill="${FUSION}" opacity="${op(fd*(.4 + .6*tw))}"/>`;
+    }
+    /* le magma monte vers la dorsale */
+    for(let i=0; i<4; i++){ const p = ((t - 9.6)*.9 + i/4) % 1; if(t < 9.6) continue; ch += `<circle cx="${f(XR + 2*Math.sin(i*2 + t))}" cy="${f(lerp(205, 140, p))}" r="${f(2.6 - p)}" fill="${MAGMA}" opacity="${op(fd*Math.sin(p*Math.PI))}"/>`; }
+  }
+
+  /* ---------- plaques océaniques ---------- */
+  cells += poly(RIGHT_TOP.concat(RIGHT_BOT), 'url(#tecR)');
+  cells += poly(LEFT_TOP.concat(LEFT_BOT), 'url(#tecL)');
+  /* croûte océanique (basalte, gabbro) et sédiments */
+  const crR = [], crRb = [];
+  for(let d=0; d<=UT; d+=5){ crR.push([XR + d, ysf(d)]); }
+  for(let s=2; s<=200; s+=6){ const c = column(UT + s); crR.push(c.rock); }
+  for(let s=200; s>=2; s-=6){ const p = slabAt(s); crRb.push([p.x + p.nx*6, p.y + p.ny*6]); }
+  for(let d=UT; d>=0; d-=5) crRb.push([XR + d, ysf(d) + Math.min(6, 2 + 4*A(d)*3)]);
+  cells += poly(crR.concat(crRb), CRUST, .85);
+  const crL = [], crLb = [];
+  for(let d=0; d<=XR; d+=5) crL.push([XR - d, ysf(d)]);
+  for(let d=XR; d>=0; d-=5) crLb.push([XR - d, ysf(d) + Math.min(6, 2 + 4*A(d)*3)]);
+  cells += poly(crL.concat(crLb), CRUST, .85);
+  const sR = [], sRb = [];
+  for(let d=8; d<=UT; d+=5){ sR.push([XR + d, ysf(d) - sed(d)]); sRb.unshift([XR + d, ysf(d)]); }
+  cells += poly(sR.concat(sRb), SED, .9);
+  const sL = [], sLb = [];
+  for(let d=8; d<=XR; d+=4){ sL.push([XR - d, ysf(d) - sed(d)]); sLb.unshift([XR - d, ysf(d)]); }
+  cells += poly(sL.concat(sLb), SED, .9);
+  /* prisme d'accrétion : les sédiments raclés à la fosse */
+  cells += poly([[XT+2, ysf(UT) - sed(UT) - 1],[213,163],[222,158],[219,170],[212,171]], SED, .85);
+
+  /* repères qui avancent avec la plaque */
+  const mo = k(7.2,8.4);
+  if(mo > 0){
+    for(let n=0; n<34; n++){
+      const u = n*20 + (D % 20); if(u < 3) continue;
+      const cR = column(u, 1); if(u < UT + 420) sp += `<line x1="${f(cR.top[0])}" y1="${f(cR.top[1])}" x2="${f(cR.bot[0])}" y2="${f(cR.bot[1])}" stroke="#FFFFFF" stroke-opacity="${op(.22*mo*clamp(u/12,0,1))}" stroke-width="1.2"/>`;
+      if(u < XR){ const cL = column(u, -1); sp += `<line x1="${f(cL.top[0])}" y1="${f(cL.top[1])}" x2="${f(cL.bot[0])}" y2="${f(cL.bot[1])}" stroke="#FFFFFF" stroke-opacity="${op(.22*mo*clamp(u/12,0,1))}" stroke-width="1.2"/>`; }
+    }
+    /* flèches d'écartement */
+    const ar = mo*(1 - k(16,17.5)) + k(64.5,65.5);
+    if(ar > 0) for(const s of [1,-1]){
+      const x1 = XR + s*12, x2 = XR + s*34, y = 98;
+      sp += `<g opacity="${op(ar)}"><line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${AMB}" stroke-width="2.4" stroke-linecap="round"/><path d="M${x2 + s*6} ${y}l${-s*8} -5v10z" fill="${AMB}"/></g>`;
+    }
+  }
+  /* la dorsale : chambre magmatique et lithosphère neuve */
+  const ch0 = k(10.4,11.6);
+  if(ch0 > 0){
+    ch += `<ellipse cx="${XR}" cy="${f(ysf(0) + 9)}" rx="${f(7 + 1.2*Math.sin(t*3))}" ry="3.6" fill="${MAGMA}" opacity="${op(.9*ch0)}"/>`;
+    ch += `<path d="M${XR} ${f(ysf(0)+6)}V${f(ysf(0)-1)}" stroke="#FFD08A" stroke-width="2.4" stroke-linecap="round" opacity="${op(ch0*(.6 + .4*Math.sin(t*6)))}"/>`;
+  }
+  st.ridge = [XR, ysf(0)]; st.fusD = [XR, 182]; st.accr = [XR + 10, ysf(10) + 8];
+
+  /* ---------- la parcelle suivie ---------- */
+  const uh = D - D0, po = k(17,17.8)*(1 - k(45.5,46.5));
+  if(po > 0 && uh > 8){
+    const a = [], b = [];
+    for(let u = uh - 7; u <= uh + 7.01; u += 2){ const cc = column(u); a.push(cc.top); b.unshift(cc.bot); }
+    sp += poly(a.concat(b), '#FFFFFF', .14*po) + `<path d="${dPath(a.concat(b))}Z" fill="none" stroke="${AMB}" stroke-width="2" opacity="${op(po)}"/>`;
+    const cc = column(uh); st.parc = [lerp(cc.top[0], cc.bot[0], .5), lerp(cc.top[1], cc.bot[1], .5)]; st.parcTop = cc.top;
+  }
+  /* jauge de densité */
+  const jg = k(18,19)*(1 - k(36,37));
+  if(jg > 0){
+    const ua = clamp(uh, 0, UT), Lp = 70 + 22*ua/UT, La = 84, dense = Lp > La;
+    lab += `<g opacity="${op(jg)}"><rect x="8" y="8" width="196" height="54" rx="10" fill="#0A1222" fill-opacity=".8" stroke="${GRIS}" stroke-opacity=".35"/>` +
+      `<text x="16" y="20" font-size="9.5" font-weight="700" fill="${GRIS}" text-anchor="start">densité</text>` +
+      `<text x="16" y="35" dy=".36em" font-size="9.5" font-weight="700" fill="#D9B8F0" text-anchor="start">asthénosphère</text>` +
+      `<rect x="102" y="31" width="${La}" height="8" rx="4" fill="#9A6BC4"/>` +
+      `<text x="16" y="51" dy=".36em" font-size="9.5" font-weight="700" fill="${AMB}" text-anchor="start">lithosphère suivie</text>` +
+      `<rect x="102" y="47" width="${f(Lp)}" height="8" rx="4" fill="${mix(CHAUD, FROID, ua/UT)}" stroke="${AMB}" stroke-width="1"/>` +
+      `<line x1="${102 + La}" y1="27" x2="${102 + La}" y2="59" stroke="#FFFFFF" stroke-dasharray="2 2" stroke-opacity=".6"/></g>`;
+    if(dense) lab += txt(150, 20, 'plus dense !', ROUGE, 9.5, jg*k(23.6,24.2));
+  }
+
+  /* ---------- isotherme 1300 °C ---------- */
+  const iso = k(18.6,21);
+  if(iso > 0){
+    const pts = []; const xm = lerp(XR, XT, iso);
+    for(let x = XR; x <= xm; x += 3) pts.push([x, ylb(x - XR)]);
+    if(iso >= 1) for(let s=6; s<=420; s+=6){ const cc = column(UT + s); pts.push(cc.bot); }
+    sp += `<path d="${dPath(pts)}" fill="none" stroke="#FFC27A" stroke-width="1.8" stroke-dasharray="6 4" opacity="${op(.9*(1 - .5*k(28,29)))}"/>`;
+    const pl = []; const xmL = lerp(XR, 0, iso); for(let x = XR; x >= xmL; x -= 3) pl.push([x, ylb(XR - x)]);
+    sp += `<path d="${dPath(pl)}" fill="none" stroke="#FFC27A" stroke-width="1.8" stroke-dasharray="6 4" opacity="${op(.9*(1 - .5*k(28,29)))}"/>`;
+    st.iso = [150, ylb(110)];
+  }
+  /* âge croissant */
+  const ag = k(21,22)*(1 - k(27.6,28.4));
+  if(ag > 0){
+    lab += `<g opacity="${op(ag)}"><line x1="60" y1="100" x2="190" y2="100" stroke="${GRIS}" stroke-width="1.6"/><path d="M196 100l-8 -4.5v9z" fill="${GRIS}"/></g>`;
+    lab += txt(XR, 100, '0 Ma', GRIS, 9.5, ag) + txt(125, 89, 'âge croissant', GRIS, 9.5, ag);
+  }
+
+  /* ---------- le continent ---------- */
+  const cTopB = XS_C.map(x => [x, crustBot(x)]);
+  cells += poly(CTOP.concat(cTopB.slice().reverse()), CCONT);
+  const lmBot = XS_C.map(x => [x, Math.min(184, slabTopY(x) - .5)]);
+  cells += poly(cTopB.concat(lmBot.slice().reverse()), CLM);
+  st.fosse = [214, 171];
+
+  /* traction de la plaque plongeante */
+  const sp1 = k(30.6,31.8)*(1 - k(36.4,37.2)) + k(65,66)*.9;
+  if(sp1 > 0){
+    const pts = []; for(let s=150; s<=232; s+=6){ const p = slabAt(s); pts.push([p.x + p.nx*29, p.y + p.ny*29]); }
+    const e = pts[pts.length-1], pe = slabAt(232), dx = Math.cos(pe.th), dy = Math.sin(pe.th);
+    sp += `<g opacity="${op(sp1)}"><path d="${dPath(pts)}" fill="none" stroke="${BLANC}" stroke-width="5" stroke-linecap="round"/><path d="M${f(e[0] + dx*12)} ${f(e[1] + dy*12)}L${f(e[0] - dy*8)} ${f(e[1] + dx*8)}L${f(e[0] + dy*8)} ${f(e[1] - dx*8)}Z" fill="${BLANC}"/></g>`;
+    st.pull = pts[6];
+  }
+
+  /* ---------- séismes : plan de Bénioff ---------- */
+  const fo = 1 - k(63.5,64.5)*.6;
+  for(const F of FOYERS){
+    if(t < F.t - .3) continue;
+    fx += flash(F.x, F.y, F.t, 1.2);
+    const o = k(F.t, F.t + .3)*fo;
+    lt += `<circle cx="${f(F.x)}" cy="${f(F.y)}" r="3.4" fill="${ROUGE}" stroke="#FFE3DE" stroke-width="1" opacity="${op(o)}"/>`;
+  }
+  const bp = k(44,45.4);
+  if(bp > 0){
+    const a = FOYERS[0], b = FOYERS[FOYERS.length-1], pts = [];
+    for(let s=10; s<=lerp(10, 268, bp); s+=6){ const p = slabAt(s); pts.push([p.x + p.nx*9, p.y + p.ny*9]); }
+    if(pts.length > 1) sp += `<path d="${dPath(pts)}" fill="none" stroke="${ROUGE}" stroke-width="2" stroke-dasharray="7 5" opacity="${op(fo)}"/>`;
+  }
+  st.f1 = [FOYERS[2].x, FOYERS[2].y]; st.f2 = [FOYERS[5].x, FOYERS[5].y]; st.f3 = [FOYERS[8].x, FOYERS[8].y];
+  { const p = slabAt(200); st.benioff = [p.x + p.nx*9, p.y + p.ny*9]; }
+
+  /* ---------- l'eau libérée, la fusion du manteau sus-jacent ---------- */
+  for(const g of GOUTTES){
+    const tau = t - g.t; if(tau < 0 || tau > 4.2) continue;
+    const y = lerp(g.y, ZF[1] + 6, ease(clamp(tau/3.6,0,1))), x = lerp(g.x, ZF[0] + 10*Math.sin(g.ph), ease(clamp(tau/3.6,0,1))) + 2*Math.sin(tau*4 + g.ph);
+    const o = clamp(tau*3,0,1)*(1 - clamp((tau - 3.4)/.8,0,1));
+    ch += `<circle cx="${f(x)}" cy="${f(y)}" r="2.6" fill="${H2O}" opacity="${op(o)}"/><circle cx="${f(x-.8)}" cy="${f(y-.8)}" r=".9" fill="#FFFFFF" opacity="${op(o)}"/>`;
+  }
+  { const p = slabAt(118); st.eau = [p.x - 2, p.y - 2]; const q = slabAt(150); st.nofond = [q.x + q.nx*30, q.y + q.ny*30]; }
+  const ff = k(49.6,51.4);
+  if(ff > 0){
+    cells += `<ellipse cx="${ZF[0]}" cy="${ZF[1]}" rx="${f(14*ff)}" ry="${f(8*ff)}" fill="${FUSION}" opacity="${op(.35*ff)}"/>`;
+    for(let i=0; i<9; i++){ const a = i*2.4, rr = 9*((i*37) % 10)/10, tw = .5 + .5*Math.sin(t*5 + i*1.9);
+      ch += `<circle cx="${f(ZF[0] + Math.cos(a)*rr*1.4)}" cy="${f(ZF[1] + Math.sin(a)*rr*.7)}" r="1.6" fill="${FUSION}" opacity="${op(ff*(.4 + .6*tw))}"/>`; }
+  }
+  st.zf = ZF;
+  /* le magma monte vers le volcan */
+  const mg = k(52.5,53.5);
+  if(mg > 0){
+    for(let i=0; i<5; i++){
+      const p = ((t - 52.5)*.55 + i/5) % 1; if(t < 52.5) continue;
+      ch += `<circle cx="${f(ZF[0] - 2 + 2.5*Math.sin(p*9 + i))}" cy="${f(lerp(ZF[1] - 6, 140, p))}" r="${f(3 - p*.8)}" fill="${MAGMA}" opacity="${op(mg*Math.sin(p*Math.PI)*(1 - k(63.5,64.5)*.5))}"/>`;
+    }
+  }
+  const rv = k(56.4,58.4);
+  if(rv > 0){
+    ch += `<ellipse cx="${VX}" cy="132" rx="${f(13*rv)}" ry="${f(6*rv)}" fill="${MAGMA}" opacity="${op(.85)}"/>`;
+    const cd = k(58.2,58.9);
+    if(cd > 0) ch += `<path d="M${VX} 127V${f(lerp(127, VY + 2, cd))}" stroke="${MAGMA}" stroke-width="3.2" stroke-linecap="round"/>`;
+  }
+  st.reserv = [VX, 132]; st.crat = [VX, VY];
+  /* éruption explosive */
+  if(t > 58.8){
+    fx += flash(VX, VY - 2, 59.1, 1.4);
+    const fade = 1 - k(63.6,64.6);
+    for(let i=0; i<18; i++){
+      const tb = 59 + i*.24, tau = t - tb; if(tau < 0) continue;
+      const h = 12*tau + 6*Math.sqrt(tau)*4, y = VY - 4 - Math.min(h, 52 + (i % 4)*2), x = VX + (i % 3 - 1)*5 + tau*3.5;
+      const r = Math.min(5 + tau*4.5, 15 + (i % 3)*2), o = clamp(tau*4,0,1)*clamp(1.4 - tau*.16, 0, 1)*fade;
+      if(o > 0) fx += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" fill="${CENDRE}" opacity="${op(.55*o)}"/>`;
+    }
+    for(let i=0; i<7; i++){
+      const t0 = 59.1 + (i % 3)*.5, u = clamp((t - t0)/1.6, 0, 1); if(t < t0 || u >= 1) continue;
+      const P = arc([VX, VY], [VX + (i - 3)*16, VY + 30 + (i % 2)*8], 46 + (i % 3)*10, u);
+      fx += `<circle cx="${f(P[0])}" cy="${f(P[1])}" r="2.2" fill="#FF8A5C" opacity="${op(fade)}"/>`;
+    }
+    st.panache = [VX + 8, VY - 34];
+  }
+
+  /* ---------- noms (étape 1) ---------- */
+  const n1 = k(.6,1.6)*(1 - k(6.4,7.2));
+  lab += label(126, 238, 'asthénosphère (ductile)', '#D9B8F0', 10.5, n1);
+  lab += label(118, 128, 'océan', '#8FC3F0', 10.5, n1);
+  lab += label(352, 128, 'continent', CCONT, 10.5, n1);
+  st.litho = [120, ylb(80) - 18];
+
+  return {cells, sp, chr:ch, let:lt, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:7, title:"Un océan, de la dorsale à la fosse",
+  text:"Coupe à travers un océan. À gauche, la <strong>dorsale</strong>, une frontière divergente. À droite, la <strong>fosse</strong>, au bord d'un continent. La <strong>lithosphère</strong>, rigide, repose sur l'<strong>asthénosphère</strong>, ductile. Suivons la vie de la lithosphère océanique.",
+  state:"Dorsale, plancher océanique, fosse"},
+ {t:7, e:17, title:"À la dorsale : décompression et accrétion",
+  text:"Sous la dorsale, l'<strong>asthénosphère remonte</strong>. En montant, la pression diminue : la péridotite fond en partie. C'est la <strong>fusion partielle par décompression</strong>. Le magma, basaltique, monte et fabrique de la lithosphère neuve : basaltes (coulées en coussins) et gabbros. C'est l'<strong>accrétion</strong>. Les deux plaques s'écartent comme deux tapis roulants.",
+  state:"Lithosphère neuve : chaude, mince, peu dense"},
+ {t:17, e:28, title:"En s'éloignant, elle refroidit et s'épaissit",
+  text:"Suivons un morceau de lithosphère (encadré doré). En s'éloignant de la dorsale, il <strong>refroidit</strong>. L'<strong>isotherme 1300 °C</strong>, base de la lithosphère, s'enfonce : la lithosphère <strong>s'épaissit</strong>. En refroidissant, elle se contracte et <strong>se densifie</strong>. Les sédiments s'accumulent et le plancher s'enfonce : l'océan est plus profond là où le plancher est plus vieux.",
+  state:"Refroidissement, épaississement, densification"},
+ {t:28, e:37, title:"Plus dense que l'asthénosphère, elle plonge",
+  text:"Au-delà d'environ <strong>30 millions d'années</strong>, la lithosphère est <strong>plus dense que l'asthénosphère</strong> : elle devient instable. À la <strong>fosse</strong>, elle plonge sous son propre poids : c'est la <strong>subduction</strong>. Cette <strong>traction de la plaque plongeante</strong> (<i>slab pull</i>) est le moteur principal du déplacement des plaques. Elle ne plonge pas parce que l'autre plaque la pousse.",
+  state:"Subduction : la plaque plonge sous son propre poids"},
+ {t:37, e:46, title:"Les séismes dessinent le plan de Bénioff",
+  text:"En s'enfonçant, la plaque provoque des <strong>séismes</strong>, de plus en plus profonds à mesure qu'on s'éloigne de la fosse. Leurs foyers dessinent un plan incliné qui suit la plaque en profondeur : le <strong>plan de Bénioff</strong>. C'est la <strong>preuve directe</strong> de la subduction.",
+  state:"Foyers sismiques alignés sur un plan incliné"},
+ {t:46, e:56, title:"L'eau libérée fait fondre le manteau au-dessus",
+  text:"En s'enfonçant, la plaque subit une hausse de pression et de température : ses minéraux hydratés se <strong>déshydratent</strong>. L'<strong>eau libérée</strong> monte dans le manteau situé au-dessus et <strong>abaisse le point de fusion de sa péridotite</strong> : c'est la <strong>fusion partielle par hydratation</strong>. Attention : ce n'est pas la plaque plongeante qui fond.",
+  state:"Fusion partielle du manteau situé au-dessus"},
+ {t:56, e:64, title:"Un volcan d'arc explosif",
+  text:"Le magma, <strong>visqueux, riche en silice et en gaz</strong>, monte à travers la plaque supérieure. Il alimente un <strong>volcanisme explosif</strong> d'arc, à l'aplomb de la plaque plongeante. Refroidi en surface, il donne des andésites et des rhyolites ; refroidi lentement en profondeur, des granodiorites.",
+  state:"Volcanisme d'arc : éruption explosive"},
+ {t:64, e:72, title:"Bilan : naissance et mort de la lithosphère océanique",
+  text:"La lithosphère océanique <strong>naît</strong> à la dorsale (accrétion), <strong>vieillit</strong> en s'éloignant (elle refroidit, s'épaissit, se densifie), puis <strong>disparaît</strong> en subduction, entraînée par son propre poids. Deux magmatismes à ne pas confondre : fusion par <strong>décompression</strong> à la dorsale, fusion par <strong>hydratation</strong> en subduction.",
+  state:"Aucun plancher océanique n'a plus de 200 Ma"}
+];
+
+const CALL = [
+  {a:1.2, b:6.6, text:"dorsale", lab:[60,40], anc:st=>[st.ridge]},
+  {a:1.8, b:6.6, text:"fosse", lab:[214,40], anc:st=>[st.fosse]},
+  {a:2.6, b:6.6, text:"lithosphère océanique (rigide)", lab:[118,76], anc:st=>[st.litho]},
+  {a:9.8, b:16.6, text:"fusion partielle par décompression", lab:[150,300], col:FUSION, anc:st=>[st.fusD]},
+  {a:11.6, b:16.6, text:"accrétion : lithosphère neuve", lab:[150,40], col:MAGMA, anc:st=>[st.accr]},
+  {a:19.4, b:23.6, text:"isotherme 1300 °C", lab:[150,300], col:'#FFC27A', anc:st=>[st.iso].filter(Boolean)},
+  {a:22.4, b:27.8, text:"elle refroidit, s'épaissit", lab:[240,84], anc:st=>[st.parcTop].filter(Boolean)},
+  {a:29, b:33.4, text:"fosse", lab:[214,84], anc:st=>[st.fosse]},
+  {a:31.6, b:36.8, text:"traction de la plaque plongeante (slab pull)", lab:[200,410], anc:st=>[st.pull].filter(Boolean)},
+  {a:39.6, b:45.8, text:"foyers des séismes", lab:[120,300], col:ROUGE, anc:st=>[st.f1, st.f2, st.f3]},
+  {a:44.8, b:45.9, text:"plan de Bénioff", lab:[150,380], col:ROUGE, anc:st=>[st.benioff]},
+  {a:47.6, b:52.6, text:"eau libérée par la plaque", lab:[120,250], col:H2O, anc:st=>[st.eau]},
+  {a:50.4, b:55.8, text:"fusion partielle par hydratation", lab:[110,200], col:FUSION, anc:st=>[st.zf]},
+  {a:52.6, b:55.8, text:"la plaque, elle, ne fond pas", lab:[150,330], anc:st=>[st.nofond]},
+  {a:57, b:63.6, text:"magma visqueux, riche en silice et en gaz", lab:[150,200], col:MAGMA, anc:st=>[st.reserv]},
+  {a:59.6, b:63.8, text:"éruption explosive", lab:[110,30], anc:st=>[st.panache].filter(Boolean)},
+  {a:64.6, b:71.8, text:"naissance : accrétion", lab:[96,40], col:MAGMA, anc:st=>[st.accr]},
+  {a:65.2, b:71.8, text:"disparition : subduction", lab:[150,410], anc:st=>[st.pull].filter(Boolean)},
+  {a:66, b:71.8, text:"fusion par décompression", lab:[110,280], col:FUSION, anc:st=>[st.fusD]},
+  {a:66.6, b:71.8, text:"fusion par hydratation", lab:[110,200], col:H2O, anc:st=>[st.zf]}
+];
+
+const CUES = [[.2,'step'],[7.2,'step'],[7.8,'whoosh'],[9.6,'fuse'],[17.2,'step'],[17.4,'pop'],[23.8,'error'],[28.2,'step'],[30.6,'whoosh'],[37.2,'step'],
+  [44.2,'pinch'],[46.2,'step'],[50,'fuse'],[56.2,'step'],[58.4,'pop'],[59.1,'spark'],[59.3,'whoosh'],[64.2,'final']];
+for(const F of FOYERS) CUES.push([F.t,'mut']);
+for(const g of GOUTTES.slice(0,4)) CUES.push([g.t,'pop']);
+
+const QUIZ = [
+ {q:"Pourquoi la lithosphère océanique plonge-t-elle en subduction ?", o:["Parce que la plaque d'en face la pousse","Parce qu'elle est devenue plus dense que l'asthénosphère","Parce qu'elle fond en arrivant à la fosse"], a:1,
+  ex:"En vieillissant, elle refroidit, s'épaissit et se densifie. Au-delà d'environ 30 Ma, elle est plus dense que l'asthénosphère et plonge sous son propre poids : c'est le slab pull."},
+ {q:"Quelle est la cause de la fusion partielle sous une dorsale ?", o:["L'eau apportée par une plaque plongeante","La décompression de l'asthénosphère qui remonte","La chaleur du noyau, qui fait fondre la croûte"], a:1,
+  ex:"En remontant, la péridotite de l'asthénosphère subit une baisse de pression : elle fond en partie. Le magma basaltique forme la nouvelle lithosphère (accrétion)."},
+ {q:"Dans une zone de subduction, qu'est-ce qui fond ?", o:["La plaque plongeante","La péridotite du manteau situé au-dessus de la plaque plongeante","Les sédiments de la fosse"], a:1,
+  ex:"L'eau libérée par la plaque plongeante abaisse le point de fusion de la péridotite du manteau sus-jacent. La plaque plongeante, elle, ne fond pas : c'est le piège classique."},
+ {q:"Que montrent les foyers sismiques alignés sur le plan de Bénioff ?", o:["La position de la plaque plongeante en profondeur","L'emplacement de la dorsale","La limite entre la croûte et le manteau"], a:0,
+  ex:"Les foyers, de plus en plus profonds en s'éloignant de la fosse, dessinent un plan incliné qui suit la plaque : c'est la preuve directe de la subduction."}
+];
+
+ANIM.lancer({id:'tectonique', END:72, SCENES, CALL, CUES, QUIZ, draw, graine:29});
+})();
+</script>
+</body>
+</html>

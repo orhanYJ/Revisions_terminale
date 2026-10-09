@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>Structure et action des anticorps</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#p14">← SVT Terminale</a> · Rappels de Première, fiche 14 : l'immunité adaptative</p>
+    <h1>Structure et action des anticorps</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation d'un anticorps en Y formé de quatre chaînes, sécrété par un plasmocyte, qui se fixe sur des antigènes pour former un complexe immun, ensuite englobé et digéré par un macrophage">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#3FD9C8"></span>partie constante</li>
+        <li><span class="sw" style="background:#FF5CA8"></span>partie variable</li>
+        <li><span class="sw" style="background:#8E7CFF"></span>antigène</li>
+        <li><span class="sw" style="background:#F5C451"></span>déterminant antigénique reconnu</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : les formes des déterminants sont symboliques. Un vrai complexe immun réunit un très grand nombre d'anticorps et d'antigènes, et un anticorps est bien plus petit qu'un macrophage.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, smooth, strand, wobblyEllipse, cellPath, flash, halo, mix, label, AMB, MAG, CYA} = ANIM.H;
+const VERT = '#B7D94C', ROUGE = '#FF7A6B', VIOLET = '#8E7CFF', ORANGE = '#FF9F43';
+const CYA2 = '#A6F0E7', MAG2 = '#FFA6D2', GRIS1 = '#8FA6C8', GRIS2 = '#C3CFE3';
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return keys[0].slice(1);
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return a.slice(1).map((v,n) => lerp(v, b[n+1], u)); }
+  }
+  return keys[keys.length-1].slice(1);
+}
+const nrm = v => { const L = Math.hypot(v[0], v[1]) || 1; return [v[0]/L, v[1]/L]; };
+const add = (a, b, m=1) => [a[0] + b[0]*m, a[1] + b[1]*m];
+const rot = (v, a) => { const c = Math.cos(a), s = Math.sin(a); return [v[0]*c - v[1]*s, v[0]*s + v[1]*c]; };
+const perp = v => [-v[1], v[0]];
+const dot = (a, b) => a[0]*b[0] + a[1]*b[1];
+const dirDeg = d => [Math.cos(d*Math.PI/180), Math.sin(d*Math.PI/180)];
+const jit = (tt, ph, A) => [A*(Math.sin(1.2*tt + ph) + .5*Math.sin(2.7*tt + 2*ph)), A*(Math.cos(1.0*tt + 1.3*ph) + .5*Math.sin(2.1*tt + ph))];
+
+/* ---------- l'anticorps : 4 chaînes (2 lourdes, 2 légères) ---------- */
+const LA = 30, LS = 26, G = 2.6, CL = 3.4, W = 3.6, R = 15;
+const LH = .88*LA + R + 7;            /* distance charnière - centre de l'antigène fixé */
+function abGeo(H, us, th, s){
+  const up = [-us[0], -us[1]], uL = rot(up, -th), uR = rot(up, th), out = [];
+  for(const [u, uo] of [[uL, uR], [uR, uL]]){
+    let nO = perp(u); if(dot(nO, uo) > 0) nO = [-nO[0], -nO[1]];
+    let nS = perp(us); if(dot(nS, u) < 0) nS = [-nS[0], -nS[1]];
+    const P = st => add(add(H, us, LS*s*st), nS, G*s);
+    const A = (a, lat) => add(add(H, u, LA*s*a), nO, lat*s);
+    out.push({u, nO, P, A,
+      hc:[P(1), P(.5), P(.1), A(.18,-CL*.6), A(.42,-CL), A(.69,-CL)],
+      hv:[A(.66,-CL), A(.84,-CL-.6), A(1,-CL-2.2)],
+      lc:[A(.3,CL), A(.5,CL), A(.69,CL)],
+      lv:[A(.66,CL), A(.84,CL+.6), A(1,CL+2.2)],
+      site:A(.93,0), mid:A(.5,CL), stem:P(.6), tip:A(.84,0)});
+  }
+  return out;
+}
+/* o : opacité ; rev : couleurs constante / variable révélées ; off : décalage de chaque chaîne (construction) */
+function abDraw(H, us, th, s, o, rev=1, off=null, co=null){
+  if(o <= 0) return '';
+  const g = abGeo(H, us, th, s), w = W*s;
+  const hcC = mix(GRIS1, CYA, rev), hvC = mix(GRIS1, MAG, rev), lcC = mix(GRIS2, CYA2, rev), lvC = mix(GRIS2, MAG2, rev);
+  const sh = (pts, d) => d ? pts.map(p => [p[0] + d[0], p[1] + d[1]]) : pts;
+  let out = '';
+  g.forEach((a, i) => { const d = off && off[i], oo = o*(co ? co[i] : 1); out += strand(smooth(sh(a.hc, d)), hcC, w, oo) + strand(smooth(sh(a.hv, d)), hvC, w, oo); });
+  g.forEach((a, i) => { const d = off && off[i+2], oo = o*(co ? co[i+2] : 1); out += strand(smooth(sh(a.lc, d)), lcC, w, oo) + strand(smooth(sh(a.lv, d)), lvC, w, oo); });
+  return out;
+}
+
+/* ---------- l'antigène et ses déterminants ---------- */
+function agDraw(x, y, r0, eps, o, t, ph){
+  if(o <= 0) return '';
+  let s = `<g opacity="${op(o)}">`;
+  for(const e of eps){
+    const a = (e.a + r0)*Math.PI/180, d = [Math.cos(a), Math.sin(a)], n = perp(d), c = [x, y];
+    if(e.k === 'tri'){ const b1 = add(add(c, d, R-1), n, 5.5), b2 = add(add(c, d, R-1), n, -5.5), ap = add(c, d, R+7.5);
+      s += `<path d="M${f(b1[0])} ${f(b1[1])}L${f(ap[0])} ${f(ap[1])}L${f(b2[0])} ${f(b2[1])}Z" fill="${AMB}" stroke="#FFFFFF" stroke-opacity=".6" stroke-linejoin="round"/>`; }
+    else { const q = add(c, d, R+3), p1 = add(add(q, d, -4), n, -4), p2 = add(add(q, d, -4), n, 4), p3 = add(add(q, d, 4), n, 4), p4 = add(add(q, d, 4), n, -4);
+      s += `<path d="M${f(p1[0])} ${f(p1[1])}L${f(p2[0])} ${f(p2[1])}L${f(p3[0])} ${f(p3[1])}L${f(p4[0])} ${f(p4[1])}Z" fill="${VERT}" stroke="#FFFFFF" stroke-opacity=".6" stroke-linejoin="round"/>`; }
+  }
+  const d = wobblyEllipse(x, y, R, R, ph, 2.2);
+  return s + `<path d="${d}" fill="${VIOLET}" stroke="#D6CEFF" stroke-width="1.4"/><circle cx="${f(x-4)}" cy="${f(y-5)}" r="4" fill="#FFFFFF" fill-opacity=".22"/></g>`;
+}
+function epPoint(x, y, r0, e, dist){ const a = (e.a + r0)*Math.PI/180; return [x + Math.cos(a)*dist, y + Math.sin(a)*dist]; }
+
+/* ---------- disposition finale du complexe immun ---------- */
+const D = 70, CC = [204, 206];
+const AGF = [CC];
+[-90, 30, 150].forEach(a => AGF.push(add(CC, dirDeg(a), D)));
+[[1,-30],[2,90],[3,210]].forEach(([i, a]) => AGF.push(add(AGF[i], dirDeg(a), D)));
+const EDGES = [[0,1],[0,2],[0,3],[1,4],[2,5],[3,6]];
+function boundGeo(A, B, pRef){
+  const M = [(A[0]+B[0])/2, (A[1]+B[1])/2], dv = nrm([B[0]-A[0], B[1]-A[1]]), d = Math.hypot(B[0]-A[0], B[1]-A[1])/2;
+  let p = perp(dv); if(dot(p, pRef) < 0) p = [-p[0], -p[1]];
+  const h = Math.sqrt(Math.max(1, LH*LH - d*d));
+  return {H: add(M, p, h), us: p, th: Math.atan2(d, h)};
+}
+const PREF = EDGES.map(([a, b], i) => {
+  const A = AGF[a], B = AGF[b], p = perp(nrm([B[0]-A[0], B[1]-A[1]]));
+  if(i < 3) return p;                                  /* autour du centre : même sens de rotation */
+  const M = [(A[0]+B[0])/2, (A[1]+B[1])/2], c1 = add(M, p, 30), c2 = add(M, p, -30);
+  return Math.hypot(c1[0]-CC[0], c1[1]-CC[1]) > Math.hypot(c2[0]-CC[0], c2[1]-CC[1]) ? p : [-p[0], -p[1]];
+});
+const BGF = EDGES.map(([a, b], i) => boundGeo(AGF[a], AGF[b], PREF[i]));
+/* déterminants : ceux qui serviront tournés vers les charnières, d'autres libres */
+const EPS = AGF.map(() => []);
+EDGES.forEach(([a, b], i) => { for(const j of [a, b]){ const v = [BGF[i].H[0]-AGF[j][0], BGF[i].H[1]-AGF[j][1]]; EPS[j].push({a: Math.atan2(v[1], v[0])*180/Math.PI, k:'tri', ab:i}); } });
+const angDist = (x, y) => { const d = Math.abs(((x - y) % 360 + 540) % 360 - 180); return d; };
+EPS.forEach((L, j) => {
+  const want = [['tri', j % 2 ? 1 : 2], ['sq', 1]];
+  for(const [kind, n] of want){ let c = 0;
+    for(let a0 = 0; a0 < 360 && c < n; a0 += 15){ const a = a0 + j*37; if(L.every(e => angDist(e.a, a) > 62)){ L.push({a, k:kind}); c++; } } }
+});
+
+/* chronologie : arrivée des antigènes, fixation des anticorps */
+const TA = [32, 32.6, 33.9, 35.1, 36.3, 37.3, 38.3];
+const TB = [33.1, 34.4, 35.6, 36.8, 37.8, 38.8];
+const AGS = [[24,338,280],[23,352,112],[25,358,350],[24.5,262,326],[26,312,66],[23.5,286,180],[26.5,372,206]];
+const AGK = AGF.map((P, j) => { const [t0, x, y] = AGS[j]; return [[t0-2.2, x + 120, y], [t0 + 2, x, y], [TA[j]-2.4, lerp(x, P[0], .55), lerp(y, P[1], .55)], [TA[j], P[0], P[1]]]; });
+/* anticorps libres : sortie du plasmocyte, dérive, approche de leur place */
+const PLX = [78, 345];
+const ABS = [[0,0,0],[16.4,46,176],[17.4,150,132],[18.4,46,70],[19.4,214,62],[20.4,128,34]];
+const ABK = BGF.map((B, i) => {
+  const a = Math.atan2(B.us[1], B.us[0])*180/Math.PI, near = add(B.H, B.us, 26);
+  const fit = prev => a + 360*Math.round((prev - a)/360);
+  if(i === 0) return [[18, 150, 250, 90], [24, 210, 214, 70], [TB[0]-1.6, near[0], near[1], fit(70)]];
+  const [te, x, y] = ABS[i];
+  return [[te, 116, 300, 320], [te + 3, x, y, 300 + i*50], [24 + i, x + 10, y + 14, 340 + i*40], [TB[i]-1.6, near[0], near[1], fit(340 + i*40)]];
+});
+
+function draw(c){
+  const {t, k} = c;
+  const st = {}; let cells = '', nuc = '', ch = '', fx = '', lab = '', cp = '', lt = '';
+
+  /* ----- transformation du complexe (phagocytose) ----- */
+  const zf = k(40.5,43.5), z = lerp(1, .6, zf), cx2 = lerp(CC[0], 248, zf), cy2 = lerp(CC[1], 214, zf);
+  const T = p => [cx2 + z*(p[0] - CC[0]), cy2 + z*(p[1] - CC[1])];
+  const dig = k(54,57.5);           /* digestion */
+
+  /* ----- plasmocyte ----- */
+  const po = k(15.4,16.6)*(1 - k(28.5,30.5));
+  if(po > 0){
+    const px = PLX[0] - 60*k(28.5,30.5), py = PLX[1];
+    const d = wobblyEllipse(px, py, 64, 56, 1.3, 1.4);
+    cells += `<g opacity="${op(po)}"><path d="${d}" fill="url(#cyto)"/><path d="${d}" fill="none" stroke="#86A9DB" stroke-width="2"/>`;
+    for(let i=0; i<4; i++) cells += `<path d="M${f(px+2+i*6)} ${f(py-34+i*3)} q${f(26-i*3)} ${f(30)} 0 ${f(66-i*6)}" fill="none" stroke="#7FA3D6" stroke-opacity=".45" stroke-width="1.6"/>`;
+    cells += `<circle cx="${f(px-20)}" cy="${f(py+12)}" r="22" fill="#24375E" stroke="#86A9DB" stroke-width="1.5"/>`;
+    for(let i=0; i<7; i++){ const a = i/7*6.283; cells += `<circle cx="${f(px-20+Math.cos(a)*14)}" cy="${f(py+12+Math.sin(a)*14)}" r="3.2" fill="#86A9DB" fill-opacity=".55"/>`; }
+    cells += `<circle cx="${f(px-20)}" cy="${f(py+12)}" r="4" fill="#86A9DB" fill-opacity=".55"/></g>`;
+    st.pl = [px + 20, py - 10];
+  }
+
+  /* ----- antigènes ----- */
+  const agPos = [], agRot = [], agg = [];
+  const J = jit(t, .4, 2.2);
+  for(let j=0; j<AGF.length; j++){
+    const a = k(TA[j]-2.4, TA[j]); agg.push(a);
+    const [x, y] = kf(AGK[j], t), ji = jit(t, j*1.7, 4*(1 - a));
+    agPos.push([x + ji[0] + J[0]*a, y + ji[1] + J[1]*a]);
+    agRot.push((1 - a)*(35*Math.sin(.45*t + j*1.9)));
+  }
+  /* ----- anticorps ----- */
+  const abState = [];
+  for(let i=0; i<BGF.length; i++){
+    const [ea, eb] = EDGES[i], b = k(TB[i]-1.6, TB[i]);
+    let H, us, th, s = 1, o = 1;
+    if(i === 0 && t < 18){
+      const sk = k(15,18); s = lerp(3.4, 1, sk);
+      H = [lerp(200, 150, sk), lerp(196, 250, sk)]; us = [0, 1]; th = .785;
+    } else {
+      const kk = ABK[i], [x, y, a] = kf(kk, t), fr = i === 0 ? k(18,19) : 1, ji = jit(t, i*2.3, 3.5*fr*(1 - b));
+      H = [x + ji[0], y + ji[1]]; us = dirDeg(a + 14*fr*(1 - b)*Math.sin(.7*t + i)); th = .72;
+      if(i > 0) o = k(kk[0][0], kk[0][0] + .7);
+      if(b > 0){ const B = boundGeo(agPos[ea], agPos[eb], PREF[i]); H = [lerp(H[0], B.H[0], b), lerp(H[1], B.H[1], b)]; us = nrm([lerp(us[0], B.us[0], b), lerp(us[1], B.us[1], b)]); th = lerp(th, B.th, b); }
+    }
+    abState.push({H, us, th, s, o});
+  }
+
+  /* construction de l'anticorps (étape 1) */
+  let cplx = '';
+  const rev = k(9.2,10.6);
+  for(let i=0; i<abState.length; i++){
+    const A = abState[i];
+    if(i === 0 && t < 9){
+      const off = [[-150*(1 - k(.8,3.2)), 70*(1 - k(.8,3.2))], [150*(1 - k(.8,3.2)), 70*(1 - k(.8,3.2))], [-140*(1 - k(3.6,6)), -50*(1 - k(3.6,6))], [140*(1 - k(3.6,6)), -50*(1 - k(3.6,6))]];
+      const co = [k(.6,1.4), k(.6,1.4), k(3.4,4.2), k(3.4,4.2)];
+      ch += abDraw(A.H, A.us, A.th, A.s, 1, 0, off, co);
+    } else if(i === 0 && t < 18) ch += abDraw(A.H, A.us, A.th, A.s, 1, rev);
+    else cplx += abDraw(A.H, A.us, A.th, A.s, A.o*(1 - dig));
+  }
+  const g0 = abGeo(abState[0].H, abState[0].us, abState[0].th, abState[0].s);
+  if(t < 18){ st.stem = [g0[0].stem, g0[1].stem]; st.light = [g0[0].mid, g0[1].mid]; st.tips = [g0[0].tip, g0[1].tip]; st.sites = [g0[0].site, g0[1].site];
+    st.const = [g0[0].A(.3,-CL), abState[0].H.map((v, n) => v + abState[0].us[n]*LS*abState[0].s*.7)]; }
+  /* deux déterminants identiques testent les deux sites (étape 2) */
+  const ep = k(11.6,13.4)*(1 - k(15,15.8));
+  if(ep > 0) for(const a of g0){
+    const tipEnd = a.A(1.25, 0), site = a.A(.9, 0), P = [lerp(tipEnd[0] + a.u[0]*40, site[0], ep), lerp(tipEnd[1] + a.u[1]*40, site[1], ep)];
+    const d = [-a.u[0], -a.u[1]], n = perp(d), sz = abState[0].s;
+    const b1 = add(add(P, d, -7*sz), n, 4.6*sz), b2 = add(add(P, d, -7*sz), n, -4.6*sz);
+    ch += `<path d="M${f(b1[0])} ${f(b1[1])}L${f(P[0])} ${f(P[1])}L${f(b2[0])} ${f(b2[1])}Z" fill="${AMB}" stroke="#FFFFFF" stroke-opacity=".6" opacity="${op(k(11.4,12))*(1 - k(15,15.8))}"/>`;
+  }
+  fx += halo(g0[0].site[0], g0[0].site[1], k(7,7.6)*(1 - k(8.6,9.2)), 12) + halo(g0[1].site[0], g0[1].site[1], k(7,7.6)*(1 - k(8.6,9.2)), 12);
+
+  /* antigènes dessinés */
+  for(let j=0; j<AGF.length; j++){
+    const o = k(AGK[j][0][0], AGK[j][0][0] + 1)*(1 - dig);
+    cplx += agDraw(agPos[j][0], agPos[j][1], agRot[j], EPS[j], o, t, j*1.3);
+  }
+  /* repères pour les légendes */
+  if(t > 22 && t < 31){
+    const j = 5, e = EPS[j].find(q => q.k === 'tri' && q.ab === undefined) || EPS[j][0], sq = EPS[1].find(q => q.k === 'sq');
+    st.ag = agPos[j]; st.ep = epPoint(agPos[j][0], agPos[j][1], agRot[j], e, R + 4); st.sq = epPoint(agPos[1][0], agPos[1][1], agRot[1], sq, R + 3);
+  }
+  if(t > 15 && t < 23){ st.abs = [abState[1].H, abState[2].H].filter((_, n) => t > ABS[n+1][0] + 1.5); }
+  const gb = abGeo(abState[0].H, abState[0].us, abState[0].th, 1);
+  st.bind = [gb[0].site, gb[1].site];
+
+  /* agrégat qui se forme : éclairs aux fixations */
+  for(let i=0; i<TB.length; i++){ const g = abGeo(abState[i].H, abState[i].us, abState[i].th, 1); if(t > TB[i] - .5 && t < TB[i] + 1.2) for(const a of g){ const p = T(a.site); fx += flash(p[0], p[1], TB[i] - .1, .9); } }
+
+  /* ----- macrophage ----- */
+  const mo = k(40.6,41.6);
+  if(t > 40.6){
+    const e1 = k(40.6,44), e2 = k(44.2,50), e4 = k(50.2,52.8);
+    const bx = lerp(-90, 80, e1), bl = [];
+    bl.push([lerp(bx, 226, e4), lerp(214, 210, e4), lerp(80, 168, e4), lerp(96, 160, e4)]);
+    if(e4 > 0) bl.push([lerp(bx, 100, e4), lerp(214, 292, e4), lerp(20, 64, e4), lerp(20, 58, e4)]);
+    /* prolongements (pseudopodes) : chaînes de boules le long d'un arc autour du complexe */
+    if(e2 > 0 && e4 < 1){
+      const Ra = 120, sh = 1 - e4, span = 172*e2;
+      for(const sg of [1, -1]) for(let a = 0; a <= span + .01; a += 13){
+        const th = (180 + sg*a)*Math.PI/180, tip = a > span - 13 ? .8 : 1;
+        bl.push([248 + Ra*Math.cos(th), 214 + Ra*Math.sin(th), 25*tip*sh + 1, 25*tip*sh + 1]);
+      }
+    }
+    cp = cellPath(bl);
+    const nx = lerp(bx - 22, 100, e4), ny = lerp(236, 300, e4);
+    const nd = wobblyEllipse(nx, ny, 30, 22, 2, 2);
+    nuc += `<g opacity="${op(mo)}"><path d="${nd}" fill="#24375E" stroke="#86A9DB" stroke-width="1.5"/></g>`;
+    /* récepteurs du phagocyte au contact des parties constantes */
+    const ro = k(44.6,45.6)*(1 - k(50.4,51.4));
+    if(ro > 0){ st.rec = [];
+      for(const i of [2, 5]){ const A = abState[i], p = T(add(A.H, A.us, LS*1.05)), q = T(add(A.H, A.us, LS*1.3)), d = nrm([q[0]-p[0], q[1]-p[1]]), n = perp(d);
+        const c1 = add(q, n, 5), c2 = add(q, n, -5);
+        fx += `<path d="M${f(c1[0])} ${f(c1[1])} Q${f(q[0] + d[0]*8)} ${f(q[1] + d[1]*8)} ${f(c2[0])} ${f(c2[1])}" fill="none" stroke="${AMB}" stroke-width="2.6" stroke-linecap="round" opacity="${op(ro)}"/>`;
+        fx += halo(p[0], p[1], ro*.8, 6); st.rec.push(p); }
+    }
+    /* lysosomes */
+    const L0 = [[96,150],[160,346],[330,318]];
+    L0.forEach((P, i) => {
+      const a = k(50.6 + i*.5, 53.6 + i*.4), o = k(50.4,51.2)*(1 - k(53.4 + i*.4, 54 + i*.4));
+      const tgt = [cx2 + (P[0] - cx2)*.45, cy2 + (P[1] - cy2)*.45];
+      const x = lerp(P[0], tgt[0], a), y = lerp(P[1], tgt[1], a);
+      if(o > 0) nuc += `<g opacity="${op(o)}"><circle cx="${f(x)}" cy="${f(y)}" r="11" fill="${ORANGE}" fill-opacity=".35" stroke="${ORANGE}" stroke-width="1.6"/>` + [0,1,2].map(m => `<circle cx="${f(x - 4 + m*4)}" cy="${f(y + (m === 1 ? -3 : 2))}" r="1.6" fill="${ORANGE}"/>`).join('') + '</g>';
+      if(i === 0) st.lyso = [x, y];
+    });
+    /* phagosome */
+    const ph = k(50.6,51.8)*(1 - k(57,58.5));
+    if(ph > 0){ const d = wobblyEllipse(cx2, cy2, 106, 106, 3, 2); nuc += `<path d="${d}" fill="${ORANGE}" fill-opacity="${op(.1*k(53,55)*ph)}" stroke="#A9C3EA" stroke-width="2" stroke-dasharray="1 0" opacity="${op(ph)}"/>`; st.phago = [cx2 + 75, cy2 - 75]; }
+    /* débris de la digestion */
+    if(dig > 0){ let s = '';
+      for(let i=0; i<26; i++){ const a = i*2.39, r = 14 + (i*37 % 70), col = [VIOLET, CYA, AMB, MAG][i % 4];
+        const x = cx2 + Math.cos(a)*r*(.7 + .5*dig) + 3*Math.sin(t*2 + i), y = cy2 + Math.sin(a)*r*(.7 + .5*dig) + 3*Math.cos(t*1.7 + i);
+        s += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(2.4 - .6*(i % 3))}" fill="${col}" opacity="${op(k(54,55.5)*(1 - k(60,64))*.85)}"/>`; }
+      fx += s; }
+  }
+
+  ch += zf > 0 ? `<g transform="translate(${f(cx2)} ${f(cy2)}) scale(${(Math.round(z*1000)/1000)}) translate(${-CC[0]} ${-CC[1]})">${cplx}</g>` : cplx;
+  st.cc = T(CC);
+
+  /* ----- bilan ----- */
+  const fo = k(59,60);
+  if(fo > 0){ lab += label(200, 388, "les anticorps neutralisent et signalent", '#F2F5FA', 11.5, fo); lab += label(200, 414, "c'est le phagocyte qui détruit", AMB, 11.5, k(60.4,61.4)); }
+
+  return {cp, cells, nuc, chr:ch, let:lt, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:9, title:"Un anticorps : quatre chaînes en Y",
+  text:"Un <strong>anticorps</strong> est une protéine, une immunoglobuline. Il est formé de <strong>quatre chaînes polypeptidiques</strong> : deux chaînes lourdes et deux chaînes légères, assemblées en forme de Y.",
+  state:"1 anticorps = 4 chaînes polypeptidiques"},
+ {t:9, e:15, title:"Parties variables, partie constante",
+  text:"Au bout des bras, les <strong>parties variables</strong> diffèrent d'un anticorps à l'autre. Elles forment <strong>deux sites de fixation identiques</strong>, complémentaires d'un même déterminant antigénique. Le reste, la <strong>partie constante</strong>, est identique pour une même classe d'anticorps.",
+  state:"2 sites identiques : 1 seul type d'antigène reconnu"},
+ {t:15, e:22, title:"Sécrétés par les plasmocytes",
+  text:"Les anticorps sont produits par les <strong>plasmocytes</strong>, issus des lymphocytes B sélectionnés par l'antigène. Ils sont sécrétés en très grand nombre et circulent dans le sang et la lymphe : c'est l'<strong>immunité humorale</strong>.",
+  state:"1 plasmocyte, de nombreux anticorps identiques"},
+ {t:22, e:30, title:"Des antigènes et leurs déterminants",
+  text:"Des <strong>antigènes</strong> arrivent : des molécules reconnues comme étrangères. Chacun porte plusieurs <strong>déterminants antigéniques</strong> (épitopes). Ces anticorps ne reconnaissent que les déterminants dorés ; les déterminants verts seraient reconnus par d'autres anticorps.",
+  state:"Antigènes libres, anticorps libres"},
+ {t:30, e:40, title:"Fixation : le complexe immun",
+  text:"Chaque site de fixation se lie à un déterminant de forme <strong>complémentaire</strong>. Avec ses deux sites, un anticorps <strong>relie deux antigènes</strong> ; de proche en proche se forme un agrégat, le <strong>complexe immun</strong>. Les antigènes sont <strong>neutralisés</strong> : ils ne peuvent plus agir.",
+  state:"Complexe immun : antigènes neutralisés"},
+ {t:40, e:50.4, title:"Un phagocyte reconnaît les anticorps",
+  text:"Un <strong>phagocyte</strong> (ici un macrophage) possède des récepteurs qui reconnaissent la <strong>partie constante</strong> des anticorps. Les anticorps fixés <strong>signalent</strong> ainsi le complexe immun, qui adhère au phagocyte. Celui-ci l'entoure de ses prolongements.",
+  state:"Le macrophage adhère au complexe immun"},
+ {t:50.4, e:58, title:"La phagocytose",
+  text:"Le complexe immun est englobé dans une vésicule, le <strong>phagosome</strong>. Des <strong>lysosomes</strong> fusionnent avec elle et y déversent leurs enzymes, qui <strong>digèrent</strong> le complexe.",
+  state:"Complexe immun englobé puis digéré"},
+ {t:58, e:66, title:"Bilan : neutraliser et signaler",
+  text:"Les anticorps ne détruisent pas l'antigène : ils le <strong>neutralisent</strong> en formant des complexes immuns, et ils le <strong>signalent</strong> aux phagocytes par leur partie constante. La destruction est assurée par la <strong>phagocytose</strong>.",
+  state:"Anticorps : neutraliser et signaler. Phagocyte : détruire"}
+];
+
+const CALL = [
+  {a:2.4, b:8.8, text:"2 chaînes lourdes", lab:[84,336], anc:st=>st.stem || []},
+  {a:4.8, b:8.8, text:"2 chaînes légères", lab:[316,336], anc:st=>st.light || []},
+  {a:9.8, b:12, text:"parties variables", lab:[200,40], col:MAG, anc:st=>st.tips || []},
+  {a:10.4, b:14.8, text:"partie constante", lab:[316,336], col:CYA, anc:st=>st.const || []},
+  {a:12.2, b:14.8, text:"2 sites de fixation identiques", lab:[200,40], anc:st=>st.sites || []},
+  {a:16.6, b:21.6, text:"plasmocyte", lab:[70,262], anc:st=>st.pl ? [st.pl] : []},
+  {a:18, b:21.8, text:"anticorps sécrétés", lab:[292,150], anc:st=>st.abs || []},
+  {a:23.4, b:29.6, text:"antigène", lab:[290,238], anc:st=>st.ag ? [st.ag] : []},
+  {a:24.4, b:29.6, text:"déterminant antigénique", lab:[290,400], anc:st=>st.ep ? [st.ep] : []},
+  {a:25.4, b:29.6, text:"autre déterminant", lab:[300,24], anc:st=>st.sq ? [st.sq] : []},
+  {a:33.4, b:36.8, text:"fixation par complémentarité", lab:[200,24], anc:st=>st.bind || []},
+  {a:37.6, b:40.2, text:"complexe immun", lab:[200,412], anc:st=>st.cc ? [st.cc] : []},
+  {a:45, b:50, text:"récepteurs ↔ partie constante", lab:[200,412], anc:st=>st.rec || []},
+  {a:51.4, b:55, text:"lysosome", lab:[64,100], col:ORANGE, anc:st=>st.lyso ? [st.lyso] : []},
+  {a:51.8, b:57.4, text:"phagosome", lab:[340,60], anc:st=>st.phago ? [st.phago] : []},
+  {a:55, b:58, text:"digestion du complexe", lab:[200,412], anc:st=>st.cc ? [st.cc] : []}
+];
+
+const CUES = [[.2,'step'],[2.6,'pair'],[5.4,'pair'],[7.2,'chiasma'],[10,'step'],[13.2,'pinch'],[16.8,'pop'],[17.8,'pop'],[18.8,'pop'],[19.8,'pop'],[20.8,'pop'],[23,'whoosh'],
+  [33.1,'fuse'],[34.4,'pinch'],[35.6,'pinch'],[36.8,'pinch'],[37.8,'pinch'],[38.8,'pinch'],[41,'whoosh'],[45,'pair'],[50.4,'fuse'],[52.5,'pop'],[54.5,'split'],[59,'final']];
+
+const QUIZ = [
+ {q:"Pourquoi un anticorps donné ne reconnaît-il qu'un seul type d'antigène ?", o:["Ses deux sites de fixation, formés par les parties variables, sont identiques et complémentaires d'un seul déterminant","Sa partie constante change selon l'antigène rencontré","L'antigène modifie l'anticorps au moment de la fixation"], a:0,
+  ex:"Les parties variables forment deux sites identiques, complémentaires d'un déterminant antigénique précis : c'est la spécificité de l'anticorps."},
+ {q:"Qu'est-ce qu'un complexe immun ?", o:["Un anticorps fixé sur un phagocyte","Un agrégat d'antigènes reliés entre eux par des anticorps","Un plasmocyte qui sécrète des anticorps"], a:1,
+  ex:"Chaque anticorps a deux sites de fixation : il relie deux antigènes, et de proche en proche se forme un agrégat qui neutralise les antigènes."},
+ {q:"À quoi sert la partie constante d'un anticorps ?", o:["À reconnaître le déterminant antigénique","À détruire l'antigène","À être reconnue par les récepteurs des phagocytes, ce qui facilite la phagocytose"], a:2,
+  ex:"La reconnaissance de l'antigène, c'est le rôle des parties variables. La partie constante sert de signal pour les phagocytes."},
+ {q:"« Les anticorps détruisent les microbes. » Cette phrase est :", o:["Juste","Fausse : les anticorps neutralisent l'antigène, la destruction est assurée par la phagocytose","Fausse : ce sont les plasmocytes qui détruisent les microbes"], a:1,
+  ex:"Les anticorps neutralisent et signalent. Le complexe immun est ensuite englobé et digéré par un phagocyte."}
+];
+
+ANIM.lancer({id:'anticorps', END:66, SCENES, CALL, CUES, QUIZ, draw, graine:57});
+})();
+</script>
+</body>
+</html>

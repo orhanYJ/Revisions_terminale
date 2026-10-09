@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070B14">
 <title>Flux d'énergie et cycle de la matière dans un écosystème</title>
-<link rel="stylesheet" href="moteur.css?v=1">
+<link rel="stylesheet" href="moteur.css?v=2">
 </head>
 <body>
 <main class="wrap">
@@ -97,7 +97,7 @@
     </div>
   </section>
 </main>
-<script src="moteur.js?v=1"></script>
+<script src="moteur.js?v=2"></script>
 <script>
 (() => {
 const {clamp, ease, lerp, f, op, flash, halo, mix, label, AMB, MAG, CYA} = ANIM.H;
@@ -116,7 +116,7 @@ const LV = [
 ];
 const TS = [22.5, 31, 39.2, 43.4];          /* départ des paquets de chaque niveau */
 const TA = [0, 25.3, 33.8, 42.0];           /* arrivée du paquet qui monte au niveau suivant */
-const slot = (L,i) => { const v = LV[L], p = 14; return [v.L + p + i*(v.R - v.L - 2*p)/9, v.cy + (i%2 ? 6 : -6)]; };
+const slot = (L,i) => { const v = LV[L], p = 14; return [v.L + p + i*(v.R - v.L - 2*p)/9, v.cy + (i%2 ? 9 : -9)*(L === 3 ? .7 : 1)]; };
 const DEP = k => [44 + k*14, 358 + (k%2)*5];   /* dépôts de matière organique morte sur le sol */
 
 /* ---------- trajectoires ---------- */

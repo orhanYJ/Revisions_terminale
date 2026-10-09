@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>De l'immunité innée à l'immunité adaptative</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#p13">← SVT Terminale</a> · Rappels de Première, fiches 13 et 14 : l'immunité</p>
+    <h1>De l'immunité innée à l'immunité adaptative</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation de la réponse immunitaire : plaie et entrée de bactéries, réaction inflammatoire, phagocytose, migration de la cellule dendritique vers un ganglion, sélection et amplification clonales, plasmocytes et anticorps, LT cytotoxiques, cellules mémoire">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#B7D94C"></span>bactérie (antigènes en doré)</li>
+        <li><span class="sw" style="background:#3FD9C8"></span>phagocytes (macrophage, granulocytes)</li>
+        <li><span class="sw" style="background:#FF5CA8"></span>cellule dendritique</li>
+        <li><span class="sw" style="background:#8EC5FF"></span>LT4</li>
+        <li><span class="sw" style="background:#B48CFF"></span>LB, plasmocytes et anticorps</li>
+        <li><span class="sw" style="background:#FF7A6B"></span>LT8 et LT cytotoxiques</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : quelques lymphocytes seulement (il en existe des millions de spécificités différentes), et une forme de récepteur par lymphocyte pour figurer la reconnaissance de l'antigène. Les étapes de la réponse adaptative prennent en réalité plusieurs jours.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, flash, halo, mix, label, AMB, MAG, CYA} = ANIM.H;
+const OR = '#F5C451', VERT = '#B7D94C', ROUGE = '#FF7A6B', ORANGE = '#FF9F43', BLEU = '#8EC5FF', VIOLET = '#B48CFF', BEIGE = '#C9A27E', GRIS = '#9FB0CC', BLANC = '#F2F5FA';
+const TAU = Math.PI*2;
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+const hsh = (n,s) => { const x = Math.sin(n*127.1 + s*311.7)*43758.5453; return x - Math.floor(x); };
+let T = 0;
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return keys[0].slice(1);
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return a.slice(1).map((v,n) => lerp(v, b[n+1], u)); }
+  }
+  return keys[keys.length-1].slice(1);
+}
+function bez(A,C,B,u){ const v = 1-u; return [v*v*A[0] + 2*v*u*C[0] + u*u*B[0], v*v*A[1] + 2*v*u*C[1] + u*u*B[1]]; }
+function stream(tt, a, b, per, dur, fn){
+  let s = ''; if(tt < a) return s;
+  const n1 = Math.floor((Math.min(tt, b) - a)/per), n0 = Math.max(0, Math.ceil((tt - dur - a)/per));
+  for(let n=n0; n<=n1; n++){ const birth = a + n*per, u = (tt - birth)/dur; if(u >= 0 && u <= 1) s += fn(n, u, birth); }
+  return s;
+}
+
+/* ---------- formes ---------- */
+function closed(p){
+  const n = p.length; let d = `M${f(p[0][0])} ${f(p[0][1])}`;
+  for(let i=0; i<n; i++){ const p0 = p[(i-1+n)%n], p1 = p[i], p2 = p[(i+1)%n], p3 = p[(i+2)%n];
+    d += ` C${f(p1[0]+(p2[0]-p0[0])/6)} ${f(p1[1]+(p2[1]-p0[1])/6)} ${f(p2[0]-(p3[0]-p1[0])/6)} ${f(p2[1]-(p3[1]-p1[1])/6)} ${f(p2[0])} ${f(p2[1])}`; }
+  return d + 'Z';
+}
+/* cellule souple : rayon R, bosses [angle, hauteur, largeur] (pseudopodes, dendrites) */
+function blob(cx, cy, R, ph, bumps){
+  const N = 44, pts = [];
+  for(let i=0; i<N; i++){
+    const a = i/N*TAU; let r = R*(1 + .045*Math.sin(3*a + T*.9 + ph) + .03*Math.sin(5*a - T*1.2 + ph));
+    if(bumps) for(const b of bumps){ const da = Math.atan2(Math.sin(a - b[0]), Math.cos(a - b[0])); r += b[1]*Math.exp(-(da/b[2])*(da/b[2])); }
+    pts.push([cx + Math.cos(a)*r, cy + Math.sin(a)*r]);
+  }
+  return closed(pts);
+}
+const cellP = (d, col, fo=.22, o=1, w=1.8) => o > 0 ? `<path d="${d}" fill="${col}" fill-opacity="${op(fo*o)}" stroke="${col}" stroke-width="${w}" stroke-opacity="${op(o)}"/>` : '';
+const circ = (x, y, r, col, o=1) => o > 0 ? `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" fill="${col}" opacity="${op(o)}"/>` : '';
+/* bactérie : bâtonnet portant deux motifs d'antigène */
+function bact(x, y, a, s=1, o=1){
+  if(o <= 0 || s <= .02) return '';
+  return `<g transform="translate(${f(x)} ${f(y)}) rotate(${f(a)}) scale(${f(s)})" opacity="${op(o)}"><rect x="-10" y="-4.5" width="20" height="9" rx="4.5" fill="${VERT}"/><rect x="-7" y="-2.6" width="9" height="2" rx="1" fill="#FFFFFF" fill-opacity=".4"/>` +
+    `<path d="M-6 -4.5 L-2 -4.5 L-4 -9Z M2 4.5 L6 4.5 L4 9Z" fill="${OR}"/></g>`;
+}
+/* antigène présenté : triangle doré, pointe vers l'extérieur (angle a, en radians) */
+function antigen(x, y, a, o=1, s=1){
+  if(o <= 0) return '';
+  const deg = a*180/Math.PI + 90;
+  return `<g transform="translate(${f(x)} ${f(y)}) rotate(${f(deg)}) scale(${f(s)})" opacity="${op(o)}"><path d="M-4.5 0 L4.5 0 L0 -8Z" fill="${OR}"/></g>`;
+}
+/* récepteurs d'un lymphocyte : tous de la même forme */
+const REC = {V:'M0 0 L0 -5 M-5 -12 L0 -5 L5 -12', U:'M0 0 L0 -5 M-5 -12 Q0 1 5 -12', sq:'M0 0 L0 -6 M-5 -12 L-5 -6 L5 -6 L5 -12', W:'M0 0 L0 -6 M-6 -11 L-3 -6 L0 -10 L3 -6 L6 -11', T:'M0 0 L0 -7 M-6 -7 L6 -7'};
+function receptor(x, y, a, shape, col, o=1){
+  return `<path transform="translate(${f(x)} ${f(y)}) rotate(${f(a*180/Math.PI + 90)})" d="${REC[shape]}" fill="none" stroke="${col}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="${op(o)}"/>`;
+}
+const TYPES = {LT4:BLEU, LB:VIOLET, LT8:ROUGE};
+function lymph(x, y, type, shape, o=1, recA=-Math.PI/2, extra={}){
+  if(o <= 0) return {s:'', t:''};
+  const col = extra.col || TYPES[type], R = extra.R || 12;
+  let s = cellP(blob(x, y, R, x*.1), col, .3, o) + circ(x + (extra.nx || 0), y + (extra.ny || 0), R*.62, col, .45*o);
+  if(extra.er) for(let i=0; i<3; i++) s += `<path d="M${f(x - R*.75)} ${f(y + R*.25 + i*3.4)} q${f(R*.75)} ${f(4)} ${f(R*1.5)} 0" fill="none" stroke="${col}" stroke-width="1.1" opacity="${op(.7*o*extra.er)}"/>`;
+  if(extra.gr) for(let i=0; i<5; i++){ const a = i*1.3 + 0.5; s += circ(x + Math.cos(a)*R*.72, y + Math.sin(a)*R*.72, 1.6, '#3A0F12', o*extra.gr); }
+  if(shape) for(const da of [0, -.85, .85]){ const a = recA + da; s += receptor(x + Math.cos(a)*R, y + Math.sin(a)*R, a, shape, col, o); }
+  if(extra.mem) s += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(R + 6)}" fill="none" stroke="${OR}" stroke-width="2" stroke-dasharray="3 3" opacity="${op(o*extra.mem)}"/>`;
+  const t = extra.noTxt ? '' : `<text x="${f(x)}" y="${f(y)}" dy=".36em" font-size="7.5" fill="#F2F5FA" opacity="${op(o)}">${extra.txt || type}</text>`;
+  return {s, t};
+}
+/* anticorps en Y : bras tournés vers l'angle a */
+function antibody(x, y, a, o=1, s=1){
+  if(o <= 0) return '';
+  return `<g transform="translate(${f(x)} ${f(y)}) rotate(${f(a*180/Math.PI - 90)}) scale(${f(s)})" opacity="${op(o)}"><path d="M0 -8 L0 0 M0 0 L-5 6 M0 0 L5 6" stroke="${VIOLET}" stroke-width="2.4" stroke-linecap="round" fill="none"/></g>`;
+}
+/* division d'un lymphocyte : 1 → 2 → 4 (positions et « cou » qui s'étrangle) */
+function clone(c, d1, d2, tt, dx=14){
+  const u1 = kAtL(tt, d1, d1 + .9), u2 = kAtL(tt, d2, d2 + .9), out = [], necks = [];
+  for(const sx of [-1,1]) for(const sy of [-1,1]) out.push([c[0] + sx*dx*u1, c[1] + sy*dx*u2]);
+  if(u1 > 0 && u1 < 1) necks.push([[c[0] - dx*u1, c[1]], [c[0] + dx*u1, c[1]], 1 - u1]);
+  if(u2 > 0 && u2 < 1) for(const sx of [-1,1]) necks.push([[c[0] + sx*dx*u1, c[1] - dx*u2], [c[0] + sx*dx*u1, c[1] + dx*u2], 1 - u2]);
+  const n = u2 > 0 ? 4 : u1 > 0 ? 2 : 1;
+  return {pts: n === 4 ? out : n === 2 ? [out[0], out[2]] : [c], necks};
+}
+const neckS = (necks, col) => necks.map(([A,B,w]) => `<line x1="${f(A[0])}" y1="${f(A[1])}" x2="${f(B[0])}" y2="${f(B[1])}" stroke="${col}" stroke-opacity=".35" stroke-width="${f(18*w + 4)}" stroke-linecap="round"/>`).join('');
+
+/* ---------- décor du tissu ---------- */
+const VY = 368;                        /* capillaire sanguin */
+const M0 = [95, 175], S0 = [280, 150], D0 = [210, 262], TI = [305, 262];
+const LYV = [[300,326],[420,300],[512,222]];   /* vaisseau lymphatique vers le ganglion */
+const GC = [660, 215];                 /* ganglion lymphatique */
+const BACT0 = [[130,160,20],[175,128,-30],[240,140,60],[205,200,-10],[265,205,35],[150,215,80],[298,236,-60],[225,112,10]];
+
+function skin(t, bul, gap){
+  const top = x => 38 - bul*10*Math.exp(-((x-200)/105)*((x-200)/105)), bot = x => 76 - bul*6*Math.exp(-((x-200)/105)*((x-200)/105));
+  let s = '';
+  const side = (x0, x1) => {
+    let d = `M${x0} ${f(top(x0))}`;
+    for(let x=x0; x<=x1; x+=10) d += ` L${f(x)} ${f(top(x))}`;
+    for(let x=x1; x>=x0; x-=10) d += ` L${f(x)} ${f(bot(x))}`;
+    return `<path d="${d}Z" fill="#B97A68" fill-opacity=".38" stroke="#E2A08C" stroke-opacity=".6" stroke-width="1.4"/>`;
+  };
+  const g = 14*gap;
+  if(g < .5) s += side(0, 400);
+  else { s += side(0, 200 - g) + side(200 + g, 400); }
+  for(let i=0; i<20; i++){ const x = 10 + i*20; if(Math.abs(x - 200) < g + 8) continue; s += `<ellipse cx="${x}" cy="${f((top(x) + bot(x))/2)}" rx="7" ry="4.5" fill="#E2A08C" fill-opacity=".22"/>`; }
+  return s;
+}
+function vessel(t, dil, memO){
+  const r = 16 + 10*dil;
+  let s = `<rect x="-60" y="${f(VY - r)}" width="480" height="${f(2*r)}" fill="#5A1424" fill-opacity="${op(.45 + .25*dil)}"/>`;
+  for(const sg of [-1,1]){ let d = ''; for(let x=-60; x<=420; x+=20) d += (x === -60 ? 'M' : ' L') + `${x} ${f(VY + sg*r + 1.2*Math.sin(x*.05 + t))}`; s += `<path d="${d}" fill="none" stroke="#FF6B7A" stroke-width="2.2" stroke-opacity=".8"/>`; }
+  const v = 26 + 22*dil, n = 9 + Math.round(4*dil);
+  for(let i=0; i<n; i++){ const x = ((i*440/n + t*v) % 470) - 30, y = VY + (hsh(i,3) - .5)*r*1.1; s += `<ellipse cx="${f(x)}" cy="${f(y)}" rx="7" ry="4.6" fill="#E0465A" fill-opacity=".9"/><ellipse cx="${f(x)}" cy="${f(y)}" rx="3" ry="1.8" fill="#9E2236"/>`; }
+  return s;
+}
+function lymphVessel(o){
+  const d = `M${LYV[0][0]} ${LYV[0][1]} Q${LYV[1][0]} ${LYV[1][1]} ${LYV[2][0]} ${LYV[2][1]}`;
+  return `<path d="${d}" fill="none" stroke="#9FD8C8" stroke-opacity="${op(.16*o)}" stroke-width="22" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#9FD8C8" stroke-opacity="${op(.45*o)}" stroke-width="1.4" stroke-dasharray="5 5"/>`;
+}
+function nerve(t, pain){
+  const d = 'M410 214 C380 210 360 204 342 200 M342 200 L322 186 M342 200 L324 214 M352 202 L338 228';
+  let s = `<path d="${d}" fill="none" stroke="#F5E663" stroke-width="1.8" stroke-opacity=".6" stroke-linecap="round"/>`;
+  if(pain > 0) for(let i=0; i<3; i++){ const u = ((t*1.4 + i/3) % 1), x = lerp(342, 410, u), y = lerp(200, 214, u); s += circ(x, y, 3, '#FFF6A0', pain*(1 - u)); }
+  return s;
+}
+function ganglion(t){
+  let s = `<ellipse cx="${GC[0]}" cy="${GC[1]}" rx="168" ry="176" fill="#1B2B4A" fill-opacity=".55" stroke="${GRIS}" stroke-width="2" stroke-opacity=".7"/>`;
+  s += `<path d="M640 390 Q636 412 628 440" fill="none" stroke="#9FD8C8" stroke-opacity=".16" stroke-width="18" stroke-linecap="round"/>`;
+  for(let i=0; i<7; i++){ const a = i/7*TAU + .3; s += `<ellipse cx="${f(GC[0] + Math.cos(a)*112)}" cy="${f(GC[1] + Math.sin(a)*118)}" rx="34" ry="26" fill="#22355A" fill-opacity=".45"/>`; }
+  return s;
+}
+
+/* ---------- lymphocytes du ganglion ---------- */
+const LY = [
+  {id:'t4', type:'LT4', x:720, y:205, rec:'V'},
+  {id:'b', type:'LB', x:545, y:315, rec:'V'},
+  {id:'t8', type:'LT8', x:705, y:318, rec:'V'},
+  {id:'n1', type:'LB', x:552, y:118, rec:'U'},
+  {id:'n2', type:'LT8', x:640, y:88, rec:'sq'},
+  {id:'n3', type:'LT4', x:738, y:118, rec:'W'},
+  {id:'n4', type:'LB', x:788, y:215, rec:'T'},
+  {id:'n5', type:'LT8', x:785, y:300, rec:'U'},
+  {id:'n6', type:'LT4', x:625, y:368, rec:'sq'},
+  {id:'n7', type:'LT8', x:528, y:250, rec:'W'},
+  {id:'n8', type:'LB', x:680, y:142, rec:'T'}
+];
+const DCG = [600, 165];               /* position de la cellule dendritique dans le ganglion */
+const T4B = [600, 208], T4C = [600, 248], BC = [545, 315], T8C = [705, 318];
+
+function draw(c){
+  const {t, k} = c; T = t;
+  const st = {}; let cells = '', nuc = '', sp = '', ch = '', lt = '', fx = '', lab = '', gx = '';   /* gx : particules du ganglion, hors de la zone du filtre lumineux */
+  const pan = k(29.6,33.2)*(1 - k(54.6,57.4));
+  const tf = pan > .001 ? `translate(${f(-440*pan)} 0)` : '';
+
+  /* inflammation */
+  const dil = k(9,12)*(1 - k(26,30));
+  const bul = k(10.6,14)*(1 - k(26,30));
+  const gap = k(1.2,2.2)*(1 - k(63,65.5));
+  const pain = k(12.6,13.4)*(1 - k(16,17.5));
+  cells += `<ellipse cx="200" cy="200" rx="230" ry="170" fill="#FF3B4E" fill-opacity="${op(.13*dil)}"/>`;
+  cells += lymphVessel(1);
+  cells += vessel(t, dil);
+  cells += skin(t, bul, gap);
+  cells += ganglion(t);
+  /* chaleur au-dessus de la peau */
+  const hot = k(11.6,12.6)*(1 - k(16,17.5));
+  if(hot > 0) for(let i=0; i<6; i++){ const x = 110 + i*36, ph = t*2 + i; let d = `M${x} 34`; for(let j=1; j<=6; j++) d += ` L${f(x + 3*Math.sin(ph + j))} ${34 - j*3.4}`; sp += `<path d="${d}" fill="none" stroke="${ROUGE}" stroke-width="1.4" stroke-opacity="${op(hot*(.4 + .3*Math.sin(t*3 + i)))}" stroke-linecap="round"/>`; }
+  sp += nerve(t, pain);
+
+  /* cellules du tissu (dont la cellule infectée) */
+  for(const [x, y] of [[52,268],[365,112]]) nuc += cellP(blob(x, y, 20, x), BEIGE, .16, .8) + circ(x, y, 6, BEIGE, .45);
+  const tiDie = k(59.8,61.8);
+  if(tiDie < 1){
+    nuc += cellP(blob(TI[0], TI[1], 20*(1 + .1*tiDie), 4), BEIGE, .16, 1 - tiDie) + circ(TI[0], TI[1], 6, BEIGE, .45*(1 - tiDie));
+    const ag = k(27.2,28.4)*(1 - tiDie);
+    for(const a of [-2.2, -.4, 1.3]) ch += antigen(TI[0] + Math.cos(a)*21, TI[1] + Math.sin(a)*21, a, ag);
+  }
+  if(tiDie > 0) for(let i=0; i<7; i++){ const a = i/7*TAU + .4, r = 14 + 26*tiDie; nuc += circ(TI[0] + Math.cos(a)*r, TI[1] + Math.sin(a)*r, 4.5*(1 - .4*tiDie), BEIGE, (1 - lin(t, 61, 62.6))*.8); }
+  st.ti = TI;
+
+  /* mastocyte (cellule sentinelle) */
+  const rel = k(8,9);
+  nuc += cellP(blob(S0[0], S0[1], 16, 2), '#E0A050', .25, 1) + circ(S0[0], S0[1] - 2, 6, '#E0A050', .5);
+  for(let i=0; i<9; i++){ const a = i*.7 + 1, r = 7 + (i%3)*3; nuc += circ(S0[0] + Math.cos(a)*r, S0[1] + Math.sin(a)*r, 1.6, ORANGE, 1 - .7*rel); }
+
+  /* bactéries */
+  const BP = [];
+  for(let i=0; i<8; i++){
+    const [bx, by, ba] = BACT0[i], t0 = 1.6 + i*.38;
+    let p = kf([[t0, 200 + (i - 3.5)*5, -14], [t0 + .9, 200, 56], [t0 + 2.3, bx, by]], t);
+    let a = ba + 12*Math.sin(t*.8 + i), s = 1, o = t < t0 ? 0 : 1;
+    BP.push({p, a, s, o});
+  }
+  /* B0 : phagocytose détaillée par le macrophage */
+  let mPos = kf([[18,...M0],[19.3,101,168],[59,101,168],[60.5,200,140]], t);
+  const dirM = Math.atan2(160 - 168, 130 - 101);
+  {
+    const b = BP[0];
+    if(t > 19.3){ const u = kAtL(t, 19.3, 21.1); b.p = [lerp(130, mPos[0] + 8*Math.cos(dirM), u), lerp(160, mPos[1] + 8*Math.sin(dirM), u)]; }
+    b.s = 1 - .75*k(22.4,23.6); b.o = 1 - k(23.2,23.8);
+  }
+  /* granulocytes recrutés : B5 et B1 */
+  const G = [{from:[150,VY], to:[150,238], b:5, eat:20.2}, {from:[236,VY], to:[188,150], b:1, eat:21}];
+  G.forEach((g, gi) => {
+    const p = kf([[16.4, ...g.from],[17.4, g.from[0], VY - 30],[19.6, ...g.to],[25, ...g.to],[27.5, g.to[0] - 10, g.to[1] + 30]], t);
+    const o = k(16.3,16.9)*(1 - k(26.5,28));
+    if(o > 0){
+      nuc += cellP(blob(p[0], p[1], 14, gi*3), CYA, .2, o);
+      for(const [dx, dy] of [[-4,-2],[1,3],[5,-3]]) nuc += circ(p[0] + dx, p[1] + dy, 3.2, CYA, .5*o);
+      st['g' + gi] = p;
+    }
+    const b = BP[g.b];
+    if(t > g.eat){ const u = kAtL(t, g.eat, g.eat + 1.2); b.p = [lerp(b.p[0], p[0], u), lerp(b.p[1], p[1], u)]; b.s = 1 - .6*k(g.eat + 1.2, g.eat + 2.4); b.o = 1 - k(g.eat + 2, g.eat + 2.6); }
+  });
+  /* B3 capturée par la cellule dendritique, B6 entre dans une cellule du tissu */
+  let dPos = D0;
+  {
+    const u0 = kAtL(t, 28.6, 30), u1 = lin(t, 30, 32.4), u2 = kAtL(t, 32.4, 34.5);
+    if(t > 28.6) dPos = [lerp(D0[0], LYV[0][0], u0), lerp(D0[1], LYV[0][1], u0)];
+    if(t > 30) dPos = bez(LYV[0], LYV[1], LYV[2], ease(u1));
+    if(t > 32.4) dPos = [lerp(LYV[2][0], DCG[0], u2), lerp(LYV[2][1], DCG[1], u2)];
+    const b = BP[3];
+    if(t > 25.4){ const u = kAtL(t, 25.4, 26.9); b.p = [lerp(205, dPos[0], u), lerp(200, dPos[1], u)]; b.s = 1 - .7*k(26.9,27.8); b.o = 1 - k(27.4,28); }
+    const b6 = BP[6];
+    if(t > 25.2){ const u = kAtL(t, 25.2, 26.8); b6.p = [lerp(298, TI[0], u), lerp(236, TI[1] + 2, u)]; b6.s = 1 - .3*u; }
+    b6.o *= 1 - tiDie;
+  }
+  /* survivantes : B2, B4, B7, neutralisées par les anticorps puis phagocytées */
+  const CL = {7:[226,124], 2:[252,140], 4:[246,161]};
+  for(const i of [2,4,7]){
+    const b = BP[i], tgt = CL[i];
+    if(t > 58.6){ const u = kAtL(t, 58.6, 59.8); b.p = [lerp(b.p[0], tgt[0], u), lerp(b.p[1], tgt[1], u)]; }
+    if(t > 60.5){ const u = kAtL(t, 60.5, 61.8); b.p = [lerp(b.p[0], mPos[0] + (b.p[0] - 240)*.4, u), lerp(b.p[1], mPos[1] + (b.p[1] - 142)*.4, u)]; }
+    b.s = 1 - .6*k(61.8,62.8); b.o = Math.min(b.o, 1 - k(62.4,63));
+  }
+  BP.forEach((b, i) => { ch += bact(b.p[0], b.p[1], b.a, b.s, b.o); st['b' + i] = b.p; });
+
+  /* macrophage résident (cellule sentinelle) */
+  {
+    let bumps = [];
+    const ing = k(19.3,20.4)*(1 - k(20.9,21.8));
+    if(ing > 0){ const sp2 = lerp(.8, .32, k(19.6,20.9)); bumps = [[dirM - sp2, 17*ing, .24], [dirM + sp2, 17*ing, .24]]; }
+    const ing2 = k(60.4,61.2)*(1 - k(61.6,62.4));
+    if(ing2 > 0){ const sp2 = lerp(.9, .4, k(60.6,61.6)); bumps = [[-sp2, 20*ing2, .26], [sp2, 20*ing2, .26]]; }
+    nuc += cellP(blob(mPos[0], mPos[1], 26, 1, bumps), CYA, .2, 1);
+    nuc += `<ellipse cx="${f(mPos[0] - 9)}" cy="${f(mPos[1] + 5)}" rx="9" ry="7" fill="${CYA}" fill-opacity=".45"/>`;
+    st.m = mPos;
+    /* phagosome, lysosomes, déchets */
+    const ph = k(20.9,21.4)*(1 - k(23.4,24));
+    const pc = [mPos[0] + 8*Math.cos(dirM), mPos[1] + 8*Math.sin(dirM)];
+    if(ph > 0) fx += `<circle cx="${f(pc[0])}" cy="${f(pc[1])}" r="13" fill="none" stroke="${BLANC}" stroke-width="1.2" stroke-dasharray="3 2.5" opacity="${op(.8*ph)}"/>`;
+    st.phago = pc;
+    for(let i=0; i<3; i++){
+      const a0 = 2 + i*1.2, P0 = [mPos[0] + Math.cos(a0)*16, mPos[1] + Math.sin(a0)*16], u = kAtL(t, 21.6 + i*.15, 22.5 + i*.15);
+      const o = k(21.2,21.6)*(1 - k(22.6 + i*.15, 22.9 + i*.15));
+      ch += circ(lerp(P0[0], pc[0], u), lerp(P0[1], pc[1], u), 3, ORANGE, o);
+    }
+    if(t > 23.4 && t < 25.4) for(let i=0; i<5; i++){ const u = kAtL(t, 23.6, 25), a = 2.4 + i*.35; ch += circ(pc[0] + Math.cos(a)*(4 + 42*u), pc[1] + Math.sin(a)*(4 + 42*u), 1.8, '#C8CCD6', 1 - lin(t, 24.6, 25.4)); }
+  }
+
+  /* les cellules sentinelles détectent les bactéries */
+  { const hs = k(7.4,8)*(1 - k(9.4,10)); fx += halo(mPos[0], mPos[1], hs, 30) + halo(S0[0], S0[1], hs, 20) + halo(D0[0], D0[1], hs, 24); }
+  /* médiateurs chimiques */
+  ch += stream(t, 7.8, 13.5, .09, 1.6, (n, u) => {
+    const src = n % 3 ? S0 : mPos, tg = n % 4 === 0 ? [340 + hsh(n,2)*20, 196 + hsh(n,3)*14] : [60 + hsh(n,4)*300, VY - 30 - hsh(n,5)*30];
+    const p = bez(src, [lerp(src[0], tg[0], .5) + (hsh(n,6) - .5)*80, lerp(src[1], tg[1], .5)], tg, u);
+    if(n === 40) st.med = p;
+    return circ(p[0], p[1], 2, ORANGE, 1 - lin(u, .7, 1));
+  });
+  /* plasma qui sort des vaisseaux : œdème */
+  ch += stream(t, 10.8, 15.6, .12, 1.8, (n, u) => {
+    const x = 40 + hsh(n,7)*320, y = lerp(VY - 26, VY - 70 - hsh(n,8)*60, ease(u));
+    return circ(x + 4*Math.sin(u*6 + n), y, 2.2, BLEU, (1 - lin(u, .6, 1))*.8);
+  });
+
+  /* cellule dendritique : capture, présentation, migration */
+  {
+    const dend = [];
+    for(let i=0; i<5; i++) dend.push([i/5*TAU + .5 + .1*Math.sin(t*.6 + i), 15*(1 - .55*k(28.4,29.4)), .26]);
+    const cap = k(25.2,25.9)*(1 - k(26.6,27.3));
+    if(cap > 0) dend.push([Math.atan2(200 - D0[1], 205 - D0[0]), 16*cap, .3]);
+    nuc += cellP(blob(dPos[0], dPos[1], 18, 3, dend), MAG, .22, 1);
+    nuc += circ(dPos[0] - 3, dPos[1] + 2, 6.5, MAG, .45);
+    st.d = dPos;
+    const ag = k(27.6,28.6);
+    st.dAg = [];
+    for(const a of [Math.PI/2, -.5, -2.6, .9, 2.3]){
+      const r = 18 + (a === Math.PI/2 ? 0 : 1);
+      const x = dPos[0] + Math.cos(a)*r, y = dPos[1] + Math.sin(a)*r;
+      if(dPos[0] < 420) ch += antigen(x, y, a, ag); else gx += antigen(x, y, a, ag);
+      st.dAg.push([x + Math.cos(a)*5, y + Math.sin(a)*5]);
+    }
+  }
+
+  /* ---------- ganglion : répertoire, sélection, amplification ---------- */
+  const lyO = k(30.5,32);
+  const test = [{id:'n1', a:35.4, to:[585,140]}, {id:'n2', a:36.6, to:[612,128]}];
+  for(const L of LY){
+    let p = [L.x, L.y], recA = -Math.PI/2;
+    const ts = test.find(q => q.id === L.id);
+    if(ts){ p = kf([[ts.a, L.x, L.y],[ts.a + .8, ...ts.to],[ts.a + 1.3, ...ts.to],[ts.a + 2.1, L.x, L.y]], t); recA = Math.atan2(DCG[1] - p[1], DCG[0] - p[0]); recA = lerp(-Math.PI/2, recA, k(ts.a, ts.a + .5)*(1 - k(ts.a + 1.4, ts.a + 2))); fx += flash(...ts.to, ts.a + 1, .8); if(t > ts.a + .8 && t < ts.a + 1.6) fx += `<g opacity="${op(k(ts.a + .8, ts.a + 1)*(1 - k(ts.a + 1.3, ts.a + 1.6)))}" stroke="${ROUGE}" stroke-width="2.4" stroke-linecap="round"><path d="M${f(ts.to[0] - 5)} ${f(ts.to[1] - 30)} l10 10 M${f(ts.to[0] + 5)} ${f(ts.to[1] - 30)} l-10 10"/></g>`; }
+    if(L.id === 't4'){
+      if(t > 37){ p = kf([[38.4, L.x, L.y],[40.4, ...T4B],[42.2, ...T4B],[43, ...T4C]], t); }
+      if(t > 43){
+        const cl = clone(T4C, 43, 44.3, t);
+        sp += neckS(cl.necks, BLEU);
+        cl.pts.forEach((q, i) => { const r = lymph(q[0], q[1], 'LT4', 'V', lyO); nuc += r.s; lt += r.t; if(i === 0) st.t4c = q; });
+        continue;
+      }
+    }
+    if(L.id === 'b' && t > 46.4){
+      const cl = clone(BC, 46.4, 47.7, t), pl = k(50,51.6);
+      sp += neckS(cl.necks, VIOLET);
+      cl.pts.forEach((q, i) => { const r = lymph(q[0], q[1], 'LB', pl > .5 ? '' : 'V', lyO, -Math.PI/2, {R:12 + 4*pl, er:pl, nx:-3*pl, ny:-3*pl, txt:pl > .5 ? 'P' : 'LB', col:mix(VIOLET, '#D7C2FF', pl)}); nuc += r.s; lt += r.t; if(i === 1) st.bc = q; });
+      st.bcl = cl.pts;
+      continue;
+    }
+    if(L.id === 't8' && t > 46.4){
+      const cl = clone(T8C, 46.4, 47.7, t), gr = k(50.4,52);
+      sp += neckS(cl.necks, ROUGE);
+      cl.pts.forEach((q, i) => { const r = lymph(q[0], q[1], 'LT8', 'V', lyO, -Math.PI/2, {gr, txt:gr > .5 ? 'LTc' : 'LT8'}); nuc += r.s; lt += r.t; if(i === 1) st.t8c = q; });
+      continue;
+    }
+    const r = lymph(p[0], p[1], L.type, L.rec, lyO, recA);
+    nuc += r.s; lt += r.t; st[L.id] = p;
+  }
+  /* sélection : halos sur les lymphocytes dont le récepteur reconnaît l'antigène */
+  fx += halo(T4B[0], T4B[1] - 6, k(40.4,41)*(1 - k(42.4,43)), 16);
+  fx += flash(T4B[0], T4B[1] - 18, 40.5, 1);
+  /* l'antigène libre se fixe sur le LB sélectionné */
+  for(let i=0; i<3; i++){
+    const a = 40.4 + i*.3, u = kAtL(t, a, a + 1.6), tg = [BC[0] + [-10, 0, 10][i]*1.05, BC[1] - 26 + [3, 0, 3][i]];
+    if(t > a && t < 50.5) gx += antigen(lerp(500, tg[0], u), lerp(260, tg[1], u), Math.PI/2, k(a, a + .3)*(1 - k(49.8,50.4)));
+  }
+  fx += halo(BC[0], BC[1], k(42,42.6)*(1 - k(45.6,46.3)), 16);
+  fx += halo(T8C[0], T8C[1], k(45.4,46)*(1 - k(46.6,47.2)), 16);
+  /* interleukines sécrétées par les LT4 */
+  gx += stream(t, 44.4, 49.4, .12, 1.5, (n, u) => {
+    const src = [T4C[0] + (hsh(n,9) - .5)*30, T4C[1] + (hsh(n,10) - .5)*30], tg = n % 2 ? [BC[0] + (hsh(n,11) - .5)*24, BC[1] - 6] : [T8C[0] + (hsh(n,12) - .5)*24, T8C[1] - 6];
+    const p = bez(src, [lerp(src[0], tg[0], .5), src[1] + 20], tg, u);
+    if(n === 14) st.il = p;
+    return circ(p[0], p[1], 4.5, BLANC, .18*(1 - lin(u, .8, 1))) + circ(p[0], p[1], 2.2, BLANC, 1 - lin(u, .8, 1));
+  });
+  /* anticorps sécrétés par les plasmocytes */
+  gx += stream(t, 51.2, 56, .15, 2.4, (n, u) => {
+    const src = (st.bcl || [BC])[n % 4] || BC, tg = [610 + (hsh(n,13) - .5)*40, 440], p = bez(src, [src[0] + 40, src[1] + 40], tg, u);
+    if(n === 6) st.ac = p;
+    return antibody(p[0], p[1], n*1.3 + u*3, 1 - lin(u, .85, 1), 1.25);
+  });
+
+  /* ---------- phase effectrice dans le tissu ---------- */
+  const AB = [[239,132],[266,136],[212,118],[251,151],[247,177],[228,106]];
+  AB.forEach((q, i) => {
+    const a0 = 56.4 + i*.22, u = kAtL(t, a0, a0 + 1.8), from = [205 + i*12, VY - 20];
+    if(t < a0 || t > 63) return;
+    const p = [lerp(from[0], q[0], u), lerp(from[1], q[1], u)];
+    let pp = p;
+    if(t > 58.6){ const v = kAtL(t, 58.6, 59.8); pp = [p[0] + (i === 3 || i === 4 ? -6*v : i === 2 || i === 5 ? 0 : 0), p[1]]; }
+    if(t > 60.5){ const v = kAtL(t, 60.5, 61.8); pp = [lerp(pp[0], mPos[0] + (pp[0] - 240)*.4, v), lerp(pp[1], mPos[1] + (pp[1] - 142)*.4, v)]; }
+    const ang = Math.atan2(142 - pp[1], 240 - pp[0]);
+    ch += antibody(pp[0], pp[1], u < 1 ? -Math.PI/2 + 2*Math.sin(t*2 + i)*(1 - u) : ang, k(a0, a0 + .3)*(1 - k(62.2,62.8)));
+    if(i === 1) st.ab = pp;
+  });
+  st.cl = [240, 142];
+  /* LT cytotoxique */
+  {
+    const p = kf([[56.4, 336, VY],[57, 336, VY - 26],[58.4, 324, 300],[62.5, 324, 300],[64, 360, VY]], t);
+    const o = k(56.3,56.9)*(1 - k(63.2,64));
+    if(o > 0){ const r = lymph(p[0], p[1], 'LT8', 'V', o, Math.atan2(TI[1] - p[1], TI[0] - p[0]), {gr:1, txt:'LTc'}); nuc += r.s; lt += r.t; st.ltc = p; }
+    if(t > 58.6 && t < 60) for(let i=0; i<4; i++){ const u = lin(t, 58.6 + i*.18, 59.4 + i*.18); ch += circ(lerp(p[0], TI[0] + 6, u) + (i - 1.5)*3, lerp(p[1], TI[1] + 12, u), 1.8, '#FFD0C8', u > 0 && u < 1 ? 1 : 0); }
+  }
+
+  /* ---------- mémoire ---------- */
+  const mem = k(63.4,64.4);
+  if(mem > 0){
+    [['LB',0],['LT4',1],['LT8',2]].forEach(([ty, i]) => {
+      const x = ((40 + i*130 + (t - 63)*14) % 420), r = lymph(x, VY + (i - 1)*4, ty, 'V', mem, -Math.PI/2, {mem:1, R:10});
+      nuc += r.s; lt += r.t; if(i === 1) st.mem = [x, VY];
+    });
+    /* courbes : réponse primaire et secondaire */
+    const gO = k(64,65);
+    if(gO > 0){
+      let g = `<g opacity="${op(gO)}"><rect x="46" y="88" width="308" height="200" rx="14" fill="#0A1222" fill-opacity=".97" stroke="${GRIS}" stroke-opacity=".4"/>`;
+      g += `<path d="M78 262 L338 262 M78 262 L78 104" stroke="${GRIS}" stroke-width="1.4" fill="none"/><path d="M338 262 l-6 -3.5 v7z M78 104 l-3.5 6 h7z" fill="${GRIS}"/>`;
+      g += `<text x="84" y="104" font-size="9.5" fill="${GRIS}" text-anchor="start" font-weight="600">quantité d'anticorps</text><text x="338" y="278" font-size="9.5" fill="${GRIS}" text-anchor="end" font-weight="600">temps</text>`;
+      for(const [x, txt] of [[118,'1er contact'],[214,'2e contact']]) g += `<path d="M${x} 236 L${x} 258" stroke="${OR}" stroke-width="1.6"/><path d="M${x} 260 l-3.5 -6 h7z" fill="${OR}"/><text x="${x}" y="230" font-size="9" fill="${OR}" font-weight="700">${txt}</text>`;
+      const P1 = [[118,261],[136,260],[150,252],[162,236],[174,226],[188,236],[200,252],[214,258]];
+      const P2 = [[214,258],[222,254],[230,200],[240,140],[252,122],[272,128],[300,146],[334,166]];
+      const curve = (P, u, col) => { const n = Math.max(2, Math.ceil(P.length*u)); const Q = P.slice(0, n); let d = `M${Q[0][0]} ${Q[0][1]}`; for(let i=1; i<Q.length; i++){ const a = Q[i-1], b = Q[i], m = [(a[0]+b[0])/2, (a[1]+b[1])/2]; d += ` Q${a[0]} ${a[1]} ${m[0]} ${m[1]}`; } const z = Q[Q.length-1]; d += ` L${z[0]} ${z[1]}`; return `<path d="${d}" stroke="${col}" stroke-width="2.6" fill="none" stroke-linecap="round"/>`; };
+      g += curve(P1, k(65,66.4), BLEU) + curve(P2, k(66.6,68.4), VIOLET);
+      g += `<text x="166" y="214" font-size="9.5" fill="${BLEU}" font-weight="700" opacity="${op(k(66,66.6))}">primaire</text><text x="300" y="126" font-size="9.5" fill="${VIOLET}" font-weight="700" opacity="${op(k(68,68.6))}">secondaire</text>`;
+      lab += g + '</g>';
+    }
+  }
+
+  /* étapes de la phagocytose */
+  const stepTxt = t < 19.3 ? '1. adhésion' : t < 21.4 ? '2. ingestion' : t < 23.5 ? '3. digestion' : '4. élimination des déchets';
+  lab += label(110, 104, stepTxt, '#F2F5FA', 11, k(18.2,18.8)*(1 - k(24.8,25.3)));
+  /* les quatre signes de l'inflammation */
+  const S4 = [[60, 318, 'rougeur', 11], [92, 15, 'chaleur', 12], [205, 15, 'gonflement', 13], [355, 240, 'douleur', 13.6]];
+  for(const [x, y, txt, a] of S4) lab += label(x, y, txt, '#FF9A8E', 11, k(a, a + .5)*(1 - k(15.6,16.2)));
+
+  return {tf, cells, nuc, sp, chr:ch, let:lt, fx:gx + fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:7, title:"Une plaie : des bactéries entrent",
+  text:"La peau est une barrière. Une <strong>plaie</strong> l'ouvre : des <strong>bactéries</strong> pénètrent dans le tissu. Elles portent des molécules étrangères, les <strong>antigènes</strong> (triangles dorés).",
+  state:"Des bactéries dans le tissu"},
+ {t:7, e:16, title:"La réaction inflammatoire",
+  text:"Les <strong>cellules sentinelles</strong> (macrophages, mastocytes, cellules dendritiques) détectent des motifs communs aux microbes et libèrent des <strong>médiateurs chimiques</strong> (histamine, prostaglandines). Les vaisseaux se dilatent et laissent passer du plasma : <strong>rougeur, chaleur, gonflement, douleur</strong>. Réponse immédiate et non spécifique.",
+  state:"Immunité innée : en quelques minutes"},
+ {t:16, e:25, title:"La phagocytose",
+  text:"Des phagocytes sont <strong>recrutés</strong> depuis le sang. Le macrophage <strong>adhère</strong> à la bactérie, l'<strong>ingère</strong> dans une vésicule, la <strong>digère</strong> grâce aux enzymes des lysosomes, puis <strong>élimine</strong> les déchets. Souvent, l'infection s'arrête là.",
+  state:"Phagocytose : adhésion, ingestion, digestion, élimination"},
+ {t:25, e:32, title:"La cellule dendritique part vers le ganglion",
+  text:"Une <strong>cellule dendritique</strong> capture une bactérie et expose des <strong>fragments d'antigène</strong> à sa surface. Puis elle <strong>migre</strong> par un vaisseau lymphatique vers un <strong>ganglion lymphatique</strong>. Pendant ce temps, une bactérie a infecté une cellule du tissu.",
+  state:"Le pont entre immunité innée et immunité adaptative"},
+ {t:32, e:40, title:"Dans le ganglion : un immense répertoire",
+  text:"Le ganglion contient des lymphocytes <strong>LT4</strong>, <strong>LB</strong> et <strong>LT8</strong>. Chacun possède, avant toute rencontre, un récepteur d'un <strong>seul type</strong>, et il en existe des millions de sortes différentes. La cellule dendritique <strong>présente l'antigène</strong> : la plupart des lymphocytes ne le reconnaissent pas.",
+  state:"Le répertoire précède la rencontre"},
+ {t:40, e:50, title:"Sélection et amplification clonales",
+  text:"Seuls les lymphocytes dont le récepteur <strong>reconnaît l'antigène</strong> sont <strong>sélectionnés</strong>. Le LT4 activé se multiplie et sécrète des <strong>interleukines</strong>, qui font proliférer les LB et les LT8 sélectionnés : c'est l'<strong>amplification clonale</strong>. Cela prend plusieurs jours.",
+  state:"Un clone de lymphocytes spécifiques de l'antigène"},
+ {t:50, e:56, title:"Phase effectrice : différenciation",
+  text:"Les LB du clone se différencient en <strong>plasmocytes</strong>, qui sécrètent des <strong>anticorps</strong> (en Y). Les LT8 deviennent des <strong>LT cytotoxiques</strong>. Anticorps et LT cytotoxiques gagnent le lieu de l'infection par la lymphe et le sang.",
+  state:"Plasmocytes (P) et LT cytotoxiques (LTc)"},
+ {t:56, e:63, title:"Phase effectrice : neutraliser et détruire",
+  text:"Les <strong>anticorps</strong> se fixent sur l'antigène et relient les bactéries en <strong>complexes immuns</strong> : ils les neutralisent, puis un macrophage les détruit par <strong>phagocytose</strong>. Le <strong>LT cytotoxique</strong> reconnaît la cellule infectée et la <strong>détruit</strong>.",
+  state:"Anticorps : immunité humorale. LT cytotoxiques : immunité cellulaire."},
+ {t:63, e:70, title:"La mémoire immunitaire",
+  text:"Une partie des lymphocytes sélectionnés devient des <strong>cellules mémoire</strong>, à longue durée de vie. Au contact suivant avec le même antigène, la réponse est <strong>plus rapide, plus intense et plus durable</strong> : c'est le principe de la <strong>vaccination</strong>.",
+  state:"Réponse secondaire : plus rapide, plus intense, plus durable"}
+];
+
+const CALL = [
+  {a:1.4, b:6.6, text:"plaie", lab:[300,22], anc:()=>[[200,52]]},
+  {a:3.6, b:6.8, text:"bactéries", lab:[90,110], anc:st=>[st.b0, st.b5].filter(Boolean)},
+  {a:3, b:6.8, text:"capillaire sanguin", lab:[110,412], anc:()=>[[60,VY]]},
+  {a:7.6, b:11.4, text:"cellules sentinelles", lab:[150,300], anc:st=>[st.m, S0, st.d].filter(Boolean)},
+  {a:9.2, b:13.4, text:"médiateurs chimiques", lab:[330,96], anc:st=>[S0]},
+  {a:16.6, b:19.6, text:"phagocytes recrutés", lab:[300,300], anc:st=>[st.g0, st.g1].filter(Boolean)},
+  {a:21.6, b:23.8, text:"lysosomes et phagosome", lab:[82,306], anc:st=>[st.phago].filter(Boolean)},
+  {a:25.4, b:28.6, text:"cellule dendritique", lab:[120,318], anc:st=>[st.d].filter(Boolean)},
+  {a:27.8, b:29.6, text:"fragments d'antigène", lab:[110,200], anc:st=>[st.dAg && st.dAg[2]].filter(Boolean)},
+  {a:26.8, b:29.6, text:"cellule infectée", lab:[330,320], anc:()=>[TI]},
+  {a:32.6, b:35.4, text:"vaisseau lymphatique", lab:[530,22], anc:()=>[[478,250]]},
+  {a:33, b:39.6, text:"ganglion lymphatique", lab:[730,22], anc:()=>[[700,47]]},
+  {a:34.4, b:39.6, text:"un seul type de récepteur par lymphocyte", lab:[640,412], anc:st=>[st.n4 && [st.n4[0], st.n4[1] - 20], st.n6 && [st.n6[0], st.n6[1] - 20]].filter(Boolean)},
+  {a:40.6, b:44.2, text:"le récepteur reconnaît l'antigène", lab:[640,412], anc:()=>[[600,190]]},
+  {a:44.6, b:49.4, text:"interleukines", lab:[760,412], anc:st=>[st.il].filter(Boolean)},
+  {a:47.6, b:49.8, text:"amplification clonale", lab:[540,412], anc:()=>[[531,329],[600,262]]},
+  {a:51.2, b:54.6, text:"plasmocytes", lab:[530,412], anc:st=>[st.bc].filter(Boolean)},
+  {a:51.8, b:54.6, text:"anticorps", lab:[700,412], anc:st=>[st.ac].filter(Boolean)},
+  {a:52.2, b:54.6, text:"LT cytotoxiques", lab:[760,250], anc:st=>[st.t8c].filter(Boolean)},
+  {a:57.4, b:60.4, text:"anticorps", lab:[330,96], anc:st=>[st.ab].filter(Boolean)},
+  {a:59.8, b:62.2, text:"complexe immun phagocyté", lab:[200,52], anc:st=>[st.m].filter(Boolean)},
+  {a:57.6, b:62.6, text:"LT cytotoxique", lab:[340,412], anc:st=>[st.ltc].filter(Boolean)},
+  {a:64.6, b:69.6, text:"cellules mémoire", lab:[200,320], anc:st=>[st.mem].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[1.3,'pinch'],[2,'whoosh'],[7.2,'step'],[8,'spark'],[11,'pop'],[12,'pop'],[13,'pop'],[13.6,'error'],[16.2,'step'],[19.3,'pinch'],[21.6,'fuse'],[25.2,'step'],[25.6,'pinch'],[27.8,'pop'],[29.8,'whoosh'],[32.2,'step'],[36.4,'error'],[37.6,'error'],[40.4,'chiasma'],[43.2,'split'],[44.4,'split'],[46.6,'split'],[47.8,'split'],[50.2,'step'],[51.2,'spark'],[55,'whoosh'],[56.2,'step'],[58.6,'pair'],[60,'spark'],[61,'fuse'],[63.2,'final']];
+
+const QUIZ = [
+ {q:"Quels sont les trois caractères de l'immunité innée ?", o:["Lente, spécifique, avec mémoire","Immédiate, non spécifique, sans mémoire","Immédiate, spécifique, sans mémoire"], a:1,
+  ex:"L'immunité innée reconnaît des motifs communs aux microbes et répond en quelques minutes, de la même façon à chaque contact. L'immunité adaptative est lente, spécifique et dotée d'une mémoire."},
+ {q:"Quelle cellule fait le pont entre immunité innée et immunité adaptative ?", o:["Le plasmocyte","Le mastocyte","La cellule dendritique"], a:2,
+  ex:"Après phagocytose, la cellule dendritique migre vers un ganglion lymphatique et y présente l'antigène aux lymphocytes : sans elle, pas de réponse spécifique."},
+ {q:"Que fait l'antigène lors de la sélection clonale ?", o:["Il fabrique un récepteur sur mesure dans un lymphocyte","Il sélectionne les rares lymphocytes dont le récepteur, déjà présent, le reconnaît","Il active tous les lymphocytes du ganglion"], a:1,
+  ex:"Le répertoire précède la rencontre : chaque lymphocyte porte un seul type de récepteur. L'antigène trie ; les lymphocytes sélectionnés se multiplient (amplification clonale) puis se différencient."},
+ {q:"Les anticorps détruisent-ils les bactéries ?", o:["Oui, ils les percent directement","Non : ils les neutralisent en complexes immuns, détruits ensuite par phagocytose","Non : ce sont les LT4 qui les détruisent"], a:1,
+  ex:"C'est le piège classique. Les anticorps (immunité humorale) neutralisent et signalent ; la phagocytose détruit. Les LT cytotoxiques, eux, détruisent les cellules infectées (immunité cellulaire)."}
+];
+
+ANIM.lancer({id:'immunite', END:70, SCENES, CALL, CUES, QUIZ, draw, graine:53});
+})();
+</script>
+</body>
+</html>
