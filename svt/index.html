@@ -6199,7 +6199,8 @@ function render(){
   mountAnims(view);
   glFermer();
   if(CH[r] && CH[r].html) tagGlossaire(view);
-  window.scrollTo(0,0);
+  /* pas de défilement pendant la frappe dans la recherche (le clavier du téléphone est ouvert) */
+  if(document.activeElement !== $("#q")) window.scrollTo(0,0);
 
   side.querySelectorAll("a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#"+r));
   const on = side.querySelector("a.on");
@@ -6230,17 +6231,26 @@ window.addEventListener("hashchange", render);
 $("#menubtn").onclick = () => { side.classList.toggle("open"); $("#backdrop").classList.toggle("on"); };
 $("#backdrop").onclick = () => { side.classList.remove("open"); $("#backdrop").classList.remove("on"); };
 document.querySelectorAll("#bottomnav button").forEach(b => b.onclick = () => {
-  if(b.dataset.go === "recherche"){ go("recherche"); $("#q").focus(); } else go(b.dataset.go);
+  if(b.dataset.go === "recherche"){
+    /* la page de recherche est affichée AVANT de donner le focus au champ, sans navigation
+       par ancre : sinon, sur Android, le clavier perd la position du curseur et écrit à l'envers */
+    if(location.hash !== "#recherche"){ history.pushState(null, "", "#recherche"); render(); apresNav(); }
+    $("#q").focus();
+  } else go(b.dataset.go);
 });
 /* Recherche pendant la frappe : on ne touche jamais à location.hash ici.
    Sur Android, une navigation par ancre pendant que le clavier compose un mot
    remet le curseur au début du champ (les lettres s'écrivent alors à l'envers).
    pushState change l'adresse sans navigation ; le curseur est en plus restauré. */
 let tmr;
+/* ce que fait d'habitude un changement d'ancre en plus du rendu (couche de mouvement) */
+function apresNav(){ window.dispatchEvent(new Event("svt-nav")); }
 function chercher(){
   const q = $("#q"), a = q.selectionStart, b = q.selectionEnd;
-  if(location.hash !== "#recherche") history.pushState(null, "", "#recherche");
+  const nav = location.hash !== "#recherche";
+  if(nav) history.pushState(null, "", "#recherche");
   render();
+  if(nav) apresNav();
   if(document.activeElement === q && a !== null && (q.selectionStart !== a || q.selectionEnd !== b)){
     try{ q.setSelectionRange(a, b); }catch(e){}
   }
@@ -6526,6 +6536,8 @@ function ouvrir(){
   }
 }
 addEventListener("hashchange", () => requestAnimationFrame(() => { preparerPage(); ouvrir(); }));
+/* même préparation après un changement d'adresse sans ancre (recherche, history.pushState) */
+addEventListener("svt-nav", () => requestAnimationFrame(preparerPage));
 
 /* =====================================================================
    6. PANNEAUX REPLIABLES — ouverture et fermeture en douceur
