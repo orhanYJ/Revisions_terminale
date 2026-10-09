@@ -759,6 +759,37 @@ html[data-theme="dark"] .info b{color:var(--leaf)}
 .pager .v{font-family:var(--serif);font-size:15px;font-weight:600;margin-top:4px;line-height:1.3}
 .pager .r{text-align:right}
 
+/* ---------------- fenêtre de recherche (plein écran, fond flouté) ---------------- */
+#q{text-align:left;cursor:text;color:var(--ink-3);font-family:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srch{position:fixed;inset:0;z-index:150;display:flex;justify-content:center;align-items:flex-start;
+  padding:max(9vh,calc(env(safe-area-inset-top) + 12px)) 16px 16px;
+  background:rgba(12,24,17,.38);backdrop-filter:blur(7px) saturate(1.1);-webkit-backdrop-filter:blur(7px) saturate(1.1)}
+.srch[hidden]{display:none}
+.srch-panel{width:100%;max-width:680px;max-height:min(80vh,calc(var(--vvh,100vh) - 9vh - 16px));display:flex;flex-direction:column;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 26px 60px rgba(10,22,15,.32);overflow:hidden}
+.srch-bar{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 16px;border-bottom:1px solid var(--line)}
+.srch-bar svg{flex:none;opacity:.5}
+#sq{flex:1;min-width:0;border:0;background:none;outline:none;font:inherit;font-size:17px;color:var(--ink);padding:6px 0}
+#sq::placeholder{color:var(--ink-3)}
+#sq::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+html[data-theme="dark"] mark{color:#17281E}
+.srch-x{flex:none;border:1px solid var(--line-2);background:var(--paper);color:var(--ink-2);border-radius:999px;padding:7px 13px;font:600 13px var(--sans);cursor:pointer}
+.srch-x:hover{border-color:var(--leaf-3);color:var(--ink)}
+.srch-res{overflow-y:auto;padding:12px;overscroll-behavior:contain}
+.srch-res .res{margin-bottom:10px;padding:13px 15px;border-radius:var(--r-s)}
+.srch-res .res:last-child{margin-bottom:0}
+.srch-res .res .t{font-size:16px}
+.srch-hint{padding:22px 14px;text-align:center;color:var(--ink-3);font-size:14.5px;line-height:1.6;margin:0}
+.srch-n{font-size:11px;color:var(--ink-3);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin:2px 4px 10px}
+@media(max-width:760px){
+  .srch{padding:calc(env(safe-area-inset-top) + 10px) 10px 10px}
+  .srch-panel{max-height:calc(var(--vvh,100vh) - 20px - env(safe-area-inset-top))}
+}
+html.mo .srch.ouvre{animation:srchFond .2s ease-out}
+html.mo .srch.ouvre .srch-panel{animation:srchIn .26s cubic-bezier(.2,.8,.25,1)}
+@keyframes srchFond{from{background:rgba(12,24,17,0);backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}}
+@keyframes srchIn{from{opacity:.4;transform:translateY(-10px) scale(.98)}}
+
 /* ---------------- résultats de recherche ---------------- */
 .res{
   background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;
@@ -1378,7 +1409,7 @@ html.mo .chaphead .specimen{animation:mo-specimen .8s .1s cubic-bezier(.3,1.5,.5
     </div>
     <div class="searchwrap">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8" stroke-linecap="round"/></svg>
-      <input id="q" type="search" placeholder="Chercher une notion…" autocomplete="off">
+      <button id="q" type="button" aria-haspopup="dialog" aria-controls="srch">Chercher une notion…</button>
     </div>
     <button class="iconbtn" id="themebtn" aria-label="Thème clair / sombre">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z" stroke-linejoin="round"/></svg>
@@ -1413,6 +1444,16 @@ html.mo .chaphead .specimen{animation:mo-specimen .8s .1s cubic-bezier(.3,1.5,.5
     Recherche
   </button>
 </nav>
+<div class="srch" id="srch" hidden>
+  <div class="srch-panel" role="dialog" aria-modal="true" aria-label="Recherche dans le site">
+    <div class="srch-bar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8" stroke-linecap="round"/></svg>
+      <input id="sq" type="search" placeholder="Chercher une notion, un mot du cours…" autocomplete="off" enterkeyhint="search" aria-label="Rechercher">
+      <button class="srch-x" id="srchx" type="button">Fermer</button>
+    </div>
+    <div class="srch-res" id="srchres" aria-live="polite"></div>
+  </div>
+</div>
 <script>
 /* =======================================================================
    SCHÉMAS INTERACTIFS  —  SVG inline, sans dépendance
@@ -5916,10 +5957,9 @@ function pageChapitre(c){
 
 /* ---------- recherche ---------- */
 function norm(s){ return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
-function pageRecherche(q){
-  q = (q||"").trim();
-  if(q.length < 2) return `<h1 class="page">Recherche</h1><p class="lede">Tape au moins deux lettres. La recherche balaie les titres, les notions et le texte de toutes les fiches.</p>`;
-  const nq = norm(q), words = nq.split(/\s+/).filter(Boolean);
+/* recherche : renvoie les mots cherchés et les fiches classées par pertinence */
+function trouver(q){
+  const nq = norm((q||"").trim()), words = nq.split(/\s+/).filter(Boolean);
   const hits = [];
   Object.values(CH).forEach(c => {
     let score = 0;
@@ -5933,21 +5973,28 @@ function pageRecherche(q){
     if(score>0) hits.push({c,score});
   });
   hits.sort((a,b)=>b.score-a.score);
-  if(!hits.length) return `<h1 class="page">Recherche</h1><p class="lede">Aucun résultat pour « ${q} ».</p>`;
-  let h = `<div class="pagehead">${bot("umbel","pagebot")}<h1 class="page">Recherche</h1><p class="lede">${hits.length} résultat${hits.length>1?"s":""} pour « ${q} ».</p></div>`;
-  hits.slice(0,30).forEach(({c}) => {
-    const i = c.norm.indexOf(norm(words[0]));
-    let ex = "";
-    if(i>-1){
-      const s = Math.max(0,i-70), e = Math.min(c.plain.length,i+140);
-      ex = (s>0?"… ":"")+c.plain.slice(s,e)+" …";
-      const re = new RegExp("("+words.map(w=>w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")","gi");
-      ex = ex.replace(re,"<mark>$1</mark>");
-    }
-    h += `<button class="res" onclick="go('${c.id}')">
+  return {words, hits};
+}
+function resHTML(c, words, attr){
+  const i = c.norm.indexOf(norm(words[0]));
+  let ex = "";
+  if(i>-1){
+    const s = Math.max(0,i-70), e = Math.min(c.plain.length,i+140);
+    ex = (s>0?"… ":"")+c.plain.slice(s,e)+" …";
+    const re = new RegExp("("+words.map(w=>w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")","gi");
+    ex = ex.replace(re,"<mark>$1</mark>");
+  }
+  return `<button class="res" ${attr}>
       <div class="p">${c.kind==="t"?"Terminale":"Rappel 1ère"} · ${c.theme.n} · ${c.kind==="t"?(c.chap?"chap. "+c.chap.num+" · "+c.num.toLowerCase():"chap. "+c.num):"fiche "+c.num}</div>
       <div class="t">${c.title}</div><div class="s">${ex||c.lede}</div></button>`;
-  });
+}
+function pageRecherche(q){
+  q = (q||"").trim();
+  if(q.length < 2) return `<h1 class="page">Recherche</h1><p class="lede">Tape au moins deux lettres. La recherche balaie les titres, les notions et le texte de toutes les fiches.</p>`;
+  const {words, hits} = trouver(q);
+  if(!hits.length) return `<h1 class="page">Recherche</h1><p class="lede">Aucun résultat pour « ${q} ».</p>`;
+  let h = `<div class="pagehead">${bot("umbel","pagebot")}<h1 class="page">Recherche</h1><p class="lede">${hits.length} résultat${hits.length>1?"s":""} pour « ${q} ».</p></div>`;
+  hits.slice(0,30).forEach(({c}) => { h += resHTML(c, words, `onclick="go('${c.id}')"`); });
   return h;
 }
 
@@ -6185,7 +6232,7 @@ function render(){
   if(r === "accueil") html = pageAccueil();
   else if(r === "terminale") html = pageListe("t");
   else if(r === "premiere") html = pageListe("p");
-  else if(r === "recherche") html = pageRecherche($("#q").value);
+  else if(r === "recherche") html = pageRecherche($("#sq").value);
   else if(TH[r]) html = pageListe(TH[r].kind, TH[r].theme);
   else if(r.startsWith("qcm-") && CH[r.slice(4)]) html = pageQcm(r.slice(4));
   else if(r.startsWith("voc-") && VOCAB[r.slice(4)]) html = pageVoc(r.slice(4));
@@ -6199,8 +6246,7 @@ function render(){
   mountAnims(view);
   glFermer();
   if(CH[r] && CH[r].html) tagGlossaire(view);
-  /* pas de défilement pendant la frappe dans la recherche (le clavier du téléphone est ouvert) */
-  if(document.activeElement !== $("#q")) window.scrollTo(0,0);
+  window.scrollTo(0,0);
 
   side.querySelectorAll("a").forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#"+r));
   const on = side.querySelector("a.on");
@@ -6231,35 +6277,75 @@ window.addEventListener("hashchange", render);
 $("#menubtn").onclick = () => { side.classList.toggle("open"); $("#backdrop").classList.toggle("on"); };
 $("#backdrop").onclick = () => { side.classList.remove("open"); $("#backdrop").classList.remove("on"); };
 document.querySelectorAll("#bottomnav button").forEach(b => b.onclick = () => {
-  if(b.dataset.go === "recherche"){
-    /* la page de recherche est affichée AVANT de donner le focus au champ, sans navigation
-       par ancre : sinon, sur Android, le clavier perd la position du curseur et écrit à l'envers */
-    if(location.hash !== "#recherche"){ history.pushState(null, "", "#recherche"); render(); apresNav(); }
-    $("#q").focus();
-  } else go(b.dataset.go);
+  if(b.dataset.go === "recherche") ouvrirRecherche(); else go(b.dataset.go);
 });
-/* Recherche pendant la frappe : on ne touche jamais à location.hash ici.
-   Sur Android, une navigation par ancre pendant que le clavier compose un mot
-   remet le curseur au début du champ (les lettres s'écrivent alors à l'envers).
-   pushState change l'adresse sans navigation ; le curseur est en plus restauré. */
-let tmr;
-/* ce que fait d'habitude un changement d'ancre en plus du rendu (couche de mouvement) */
+/* ---------- fenêtre de recherche ----------
+   La recherche s'ouvre en plein écran, fond flouté, comme sur le site DNL.
+   Les résultats s'affichent dans la fenêtre : la page derrière ne bouge pas pendant
+   la frappe (sur Android, un rendu ou une navigation pendant que le clavier compose
+   remet le curseur au début du champ et les lettres s'écrivent à l'envers).
+   Une entrée d'historique permet de fermer la fenêtre avec le bouton retour du téléphone. */
+const SRCH = $("#srch"), SQ = $("#sq"), SRES = $("#srchres");
+let tmr, srchHist = false;
+function majVvh(){ if(window.visualViewport) document.documentElement.style.setProperty("--vvh", visualViewport.height + "px"); }
+if(window.visualViewport) visualViewport.addEventListener("resize", majVvh);
 function apresNav(){ window.dispatchEvent(new Event("svt-nav")); }
-function chercher(){
-  const q = $("#q"), a = q.selectionStart, b = q.selectionEnd;
-  const nav = location.hash !== "#recherche";
-  if(nav) history.pushState(null, "", "#recherche");
-  render();
-  if(nav) apresNav();
-  if(document.activeElement === q && a !== null && (q.selectionStart !== a || q.selectionEnd !== b)){
-    try{ q.setSelectionRange(a, b); }catch(e){}
-  }
+function resultatsRecherche(){
+  const q = SQ.value.trim();
+  if(q.length < 2){ SRES.innerHTML = `<p class="srch-hint">Tape au moins deux lettres. La recherche balaie les titres, les notions et le texte de toutes les fiches.</p>`; return; }
+  const {words, hits} = trouver(q);
+  if(!hits.length){ SRES.innerHTML = `<p class="srch-hint">Aucun résultat pour « ${q.replace(/[<>&]/g, "")} ».</p>`; return; }
+  SRES.innerHTML = `<p class="srch-n">${hits.length} résultat${hits.length>1?"s":""}</p>` + hits.slice(0,30).map(({c}) => resHTML(c, words, `data-id="${c.id}"`)).join("");
+  SRES.scrollTop = 0;
 }
-$("#q").addEventListener("input", () => {
-  clearTimeout(tmr);
-  tmr = setTimeout(() => { if($("#q").value.trim().length >= 2) chercher(); }, 250);
+function ouvrirRecherche(){
+  if(!SRCH.hidden){ SQ.focus(); return; }
+  majVvh();
+  SRCH.hidden = false;
+  SRCH.classList.remove("ouvre"); void SRCH.offsetWidth; SRCH.classList.add("ouvre");
+  document.documentElement.style.overflow = "hidden";
+  SQ.focus();                       /* dans le geste de l'utilisateur : le clavier s'ouvre */
+  SQ.select();
+  resultatsRecherche();
+  if(!srchHist){ history.pushState({srch:1}, ""); srchHist = true; }
+}
+function cacherRecherche(){
+  SRCH.hidden = true;
+  document.documentElement.style.overflow = "";
+  SQ.blur();
+  $("#q").textContent = SQ.value.trim() || "Chercher une notion…";
+}
+function fermerRecherche(){
+  if(SRCH.hidden) return;
+  if(srchHist && history.state && history.state.srch){ history.back(); return; }   /* popstate fermera */
+  srchHist = false; cacherRecherche();
+}
+window.addEventListener("popstate", () => { srchHist = false; if(!SRCH.hidden) cacherRecherche(); });
+$("#q").addEventListener("click", ouvrirRecherche);
+$("#srchx").addEventListener("click", fermerRecherche);
+SRCH.addEventListener("click", e => { if(e.target === SRCH) fermerRecherche(); });
+SQ.addEventListener("input", () => { clearTimeout(tmr); tmr = setTimeout(resultatsRecherche, 120); });
+SQ.addEventListener("keydown", e => {
+  if(e.key === "Escape"){ e.preventDefault(); fermerRecherche(); }
+  else if(e.key === "Enter"){
+    clearTimeout(tmr); resultatsRecherche(); SQ.blur();   /* ferme le clavier pour voir les résultats */
+  }
 });
-$("#q").addEventListener("keydown", e => { if(e.key === "Enter"){ clearTimeout(tmr); chercher(); $("#q").blur(); } });
+SRES.addEventListener("click", e => {
+  const b = e.target.closest(".res[data-id]"); if(!b) return;
+  const id = b.dataset.id;
+  /* l'entrée d'historique de la fenêtre est remplacée par la fiche : retour = page d'avant la recherche */
+  if(srchHist && history.state && history.state.srch) history.replaceState(null, "", "#" + id);
+  else history.pushState(null, "", "#" + id);
+  srchHist = false;
+  cacherRecherche();
+  render(); apresNav();
+});
+document.addEventListener("keydown", e => {
+  if(SRCH.hidden && ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K") || (e.key === "/" && !/input|textarea/i.test(e.target.tagName || "")))){
+    e.preventDefault(); ouvrirRecherche();
+  }
+});
 
 let theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 function applyTheme(){
