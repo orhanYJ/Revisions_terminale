@@ -174,7 +174,7 @@ const FLEN = FLOW.map(p => { let a = 0; for(let i=1; i<p.length; i++) a += Math.
 /* foyers des séismes, le long du plan de Bénioff */
 const FOYERS = [16,40,64,88,112,138,166,196,226,258].map((s, i) => { const p = slabAt(s); const dep = 5 + (i % 3)*4; return {x:p.x + p.nx*dep, y:p.y + p.ny*dep, t:37.8 + i*.62}; });
 /* gouttes d'eau libérées par la plaque */
-const GOUTTES = Array.from({length:14}, (_,i) => { const s = 96 + (i*23) % 50, p = slabAt(s); return {x:p.x - 2, y:p.y - 2, t:46.6 + i*.5, ph:i*1.7}; });
+const GOUTTES = Array.from({length:14}, (_,i) => { const s = 122 + (i*23) % 52, p = slabAt(s); return {x:p.x - 2, y:p.y - 2, t:46.6 + i*.5, ph:i*1.7}; });
 const ZF = [VX + 2, 199];   /* zone de fusion partielle du manteau sus-jacent */
 
 function draw(c){
@@ -248,7 +248,7 @@ function draw(c){
     /* flèches d'écartement */
     const ar = mo*(1 - k(16,17.5)) + k(64.5,65.5);
     if(ar > 0) for(const s of [1,-1]){
-      const x1 = XR + s*12, x2 = XR + s*34, y = 98;
+      const x1 = XR + s*10, x2 = XR + s*28, y = 98;
       sp += `<g opacity="${op(ar)}"><line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${AMB}" stroke-width="2.4" stroke-linecap="round"/><path d="M${x2 + s*6} ${y}l${-s*8} -5v10z" fill="${AMB}"/></g>`;
     }
   }
@@ -271,15 +271,15 @@ function draw(c){
   /* jauge de densité */
   const jg = k(18,19)*(1 - k(36,37));
   if(jg > 0){
-    const ua = clamp(uh, 0, UT), Lp = 70 + 22*ua/UT, La = 84, dense = Lp > La;
+    const ua = clamp(uh, 0, UT), Lp = 58 + 22*ua/UT, La = 70, dense = Lp > La, BX = 118;
     lab += `<g opacity="${op(jg)}"><rect x="8" y="8" width="196" height="54" rx="10" fill="#0A1222" fill-opacity=".8" stroke="${GRIS}" stroke-opacity=".35"/>` +
       `<text x="16" y="20" font-size="9.5" font-weight="700" fill="${GRIS}" text-anchor="start">densité</text>` +
       `<text x="16" y="35" dy=".36em" font-size="9.5" font-weight="700" fill="#D9B8F0" text-anchor="start">asthénosphère</text>` +
-      `<rect x="102" y="31" width="${La}" height="8" rx="4" fill="#9A6BC4"/>` +
+      `<rect x="${BX}" y="31" width="${La}" height="8" rx="4" fill="#9A6BC4"/>` +
       `<text x="16" y="51" dy=".36em" font-size="9.5" font-weight="700" fill="${AMB}" text-anchor="start">lithosphère suivie</text>` +
-      `<rect x="102" y="47" width="${f(Lp)}" height="8" rx="4" fill="${mix(CHAUD, FROID, ua/UT)}" stroke="${AMB}" stroke-width="1"/>` +
-      `<line x1="${102 + La}" y1="27" x2="${102 + La}" y2="59" stroke="#FFFFFF" stroke-dasharray="2 2" stroke-opacity=".6"/></g>`;
-    if(dense) lab += txt(150, 20, 'plus dense !', ROUGE, 9.5, jg*k(23.6,24.2));
+      `<rect x="${BX}" y="47" width="${f(Lp)}" height="8" rx="4" fill="${mix(CHAUD, FROID, ua/UT)}" stroke="${AMB}" stroke-width="1"/>` +
+      `<line x1="${BX + La}" y1="27" x2="${BX + La}" y2="59" stroke="#FFFFFF" stroke-dasharray="2 2" stroke-opacity=".6"/></g>`;
+    if(dense) lab += txt(150, 19, 'plus dense !', ROUGE, 9.5, jg*k(22.9,23.5));
   }
 
   /* ---------- isotherme 1300 °C ---------- */
@@ -340,7 +340,7 @@ function draw(c){
     const o = clamp(tau*3,0,1)*(1 - clamp((tau - 3.4)/.8,0,1));
     ch += `<circle cx="${f(x)}" cy="${f(y)}" r="2.6" fill="${H2O}" opacity="${op(o)}"/><circle cx="${f(x-.8)}" cy="${f(y-.8)}" r=".9" fill="#FFFFFF" opacity="${op(o)}"/>`;
   }
-  { const p = slabAt(118); st.eau = [p.x - 2, p.y - 2]; const q = slabAt(150); st.nofond = [q.x + q.nx*30, q.y + q.ny*30]; }
+  { const p = slabAt(150); st.eau = [p.x - 2, p.y - 2]; const q = slabAt(200); st.nofond = [q.x + q.nx*30, q.y + q.ny*30]; }
   const ff = k(49.6,51.4);
   if(ff > 0){
     cells += `<ellipse cx="${ZF[0]}" cy="${ZF[1]}" rx="${f(14*ff)}" ry="${f(8*ff)}" fill="${FUSION}" opacity="${op(.35*ff)}"/>`;
@@ -369,8 +369,8 @@ function draw(c){
     const fade = 1 - k(63.6,64.6);
     for(let i=0; i<18; i++){
       const tb = 59 + i*.24, tau = t - tb; if(tau < 0) continue;
-      const h = 12*tau + 6*Math.sqrt(tau)*4, y = VY - 4 - Math.min(h, 52 + (i % 4)*2), x = VX + (i % 3 - 1)*5 + tau*3.5;
-      const r = Math.min(5 + tau*4.5, 15 + (i % 3)*2), o = clamp(tau*4,0,1)*clamp(1.4 - tau*.16, 0, 1)*fade;
+      const h = 12*tau + 24*Math.sqrt(tau), y = VY - 4 - Math.min(h, 44 + (i % 4)*3), x = VX + (i % 3 - 1)*7 + tau*(2 + (i % 4)*1.6);
+      const r = Math.min(6 + tau*6, 19 + (i % 3)*3), o = clamp(tau*4,0,1)*clamp(1.4 - tau*.16, 0, 1)*fade;
       if(o > 0) fx += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" fill="${CENDRE}" opacity="${op(.55*o)}"/>`;
     }
     for(let i=0; i<7; i++){
@@ -430,18 +430,18 @@ const CALL = [
   {a:31.6, b:36.8, text:"traction de la plaque plongeante (slab pull)", lab:[200,410], anc:st=>[st.pull].filter(Boolean)},
   {a:39.6, b:45.8, text:"foyers des séismes", lab:[120,300], col:ROUGE, anc:st=>[st.f1, st.f2, st.f3]},
   {a:44.8, b:45.9, text:"plan de Bénioff", lab:[150,380], col:ROUGE, anc:st=>[st.benioff]},
-  {a:47.6, b:52.6, text:"eau libérée par la plaque", lab:[120,250], col:H2O, anc:st=>[st.eau]},
-  {a:50.4, b:55.8, text:"fusion partielle par hydratation", lab:[110,200], col:FUSION, anc:st=>[st.zf]},
-  {a:52.6, b:55.8, text:"la plaque, elle, ne fond pas", lab:[150,330], anc:st=>[st.nofond]},
-  {a:57, b:63.6, text:"magma visqueux, riche en silice et en gaz", lab:[150,200], col:MAGMA, anc:st=>[st.reserv]},
+  {a:47.6, b:52.6, text:"eau libérée par la plaque", lab:[130,300], col:H2O, anc:st=>[st.eau]},
+  {a:50.4, b:55.8, text:"fusion partielle par hydratation", lab:[120,232], col:FUSION, anc:st=>[st.zf]},
+  {a:52.6, b:55.8, text:"la plaque, elle, ne fond pas", lab:[160,372], anc:st=>[st.nofond]},
+  {a:57, b:63.6, text:"magma visqueux, riche en silice et en gaz", lab:[160,86], col:MAGMA, anc:st=>[st.reserv]},
   {a:59.6, b:63.8, text:"éruption explosive", lab:[110,30], anc:st=>[st.panache].filter(Boolean)},
   {a:64.6, b:71.8, text:"naissance : accrétion", lab:[96,40], col:MAGMA, anc:st=>[st.accr]},
   {a:65.2, b:71.8, text:"disparition : subduction", lab:[150,410], anc:st=>[st.pull].filter(Boolean)},
-  {a:66, b:71.8, text:"fusion par décompression", lab:[110,280], col:FUSION, anc:st=>[st.fusD]},
-  {a:66.6, b:71.8, text:"fusion par hydratation", lab:[110,200], col:H2O, anc:st=>[st.zf]}
+  {a:66, b:71.8, text:"fusion par décompression", lab:[100,292], col:FUSION, anc:st=>[st.fusD]},
+  {a:66.6, b:71.8, text:"fusion par hydratation", lab:[130,232], col:H2O, anc:st=>[st.zf]}
 ];
 
-const CUES = [[.2,'step'],[7.2,'step'],[7.8,'whoosh'],[9.6,'fuse'],[17.2,'step'],[17.4,'pop'],[23.8,'error'],[28.2,'step'],[30.6,'whoosh'],[37.2,'step'],
+const CUES = [[.2,'step'],[7.2,'step'],[7.8,'whoosh'],[9.6,'fuse'],[17.2,'step'],[17.4,'pop'],[23,'error'],[28.2,'step'],[30.6,'whoosh'],[37.2,'step'],
   [44.2,'pinch'],[46.2,'step'],[50,'fuse'],[56.2,'step'],[58.4,'pop'],[59.1,'spark'],[59.3,'whoosh'],[64.2,'final']];
 for(const F of FOYERS) CUES.push([F.t,'mut']);
 for(const g of GOUTTES.slice(0,4)) CUES.push([g.t,'pop']);

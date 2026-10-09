@@ -121,7 +121,7 @@ const dirDeg = d => [Math.cos(d*Math.PI/180), Math.sin(d*Math.PI/180)];
 const jit = (tt, ph, A) => [A*(Math.sin(1.2*tt + ph) + .5*Math.sin(2.7*tt + 2*ph)), A*(Math.cos(1.0*tt + 1.3*ph) + .5*Math.sin(2.1*tt + ph))];
 
 /* ---------- l'anticorps : 4 chaînes (2 lourdes, 2 légères) ---------- */
-const LA = 30, LS = 26, G = 2.6, CL = 3.4, W = 3.6, R = 15;
+const LA = 30, LS = 26, G = 2.6, CL = 2.9, W = 3.6, R = 15;
 const LH = .88*LA + R + 7;            /* distance charnière - centre de l'antigène fixé */
 function abGeo(H, us, th, s){
   const up = [-us[0], -us[1]], uL = rot(up, -th), uR = rot(up, th), out = [];
@@ -132,9 +132,9 @@ function abGeo(H, us, th, s){
     const A = (a, lat) => add(add(H, u, LA*s*a), nO, lat*s);
     out.push({u, nO, P, A,
       hc:[P(1), P(.5), P(.1), A(.18,-CL*.6), A(.42,-CL), A(.69,-CL)],
-      hv:[A(.66,-CL), A(.84,-CL-.6), A(1,-CL-2.2)],
+      hv:[A(.66,-CL), A(.84,-CL-.5), A(1,-CL-2)],
       lc:[A(.3,CL), A(.5,CL), A(.69,CL)],
-      lv:[A(.66,CL), A(.84,CL+.6), A(1,CL+2.2)],
+      lv:[A(.66,CL), A(.84,CL+.5), A(1,CL+2)],
       site:A(.93,0), mid:A(.5,CL), stem:P(.6), tip:A(.84,0)});
   }
   return out;
@@ -219,7 +219,7 @@ function draw(c){
   /* ----- transformation du complexe (phagocytose) ----- */
   const zf = k(40.5,43.5), z = lerp(1, .6, zf), cx2 = lerp(CC[0], 248, zf), cy2 = lerp(CC[1], 214, zf);
   const T = p => [cx2 + z*(p[0] - CC[0]), cy2 + z*(p[1] - CC[1])];
-  const dig = k(54,57.5);           /* digestion */
+  const dig = k(55.2,58.4);           /* digestion */
 
   /* ----- plasmocyte ----- */
   const po = k(15.4,16.6)*(1 - k(28.5,30.5));
@@ -277,18 +277,20 @@ function draw(c){
     st.const = [g0[0].A(.3,-CL), abState[0].H.map((v, n) => v + abState[0].us[n]*LS*abState[0].s*.7)]; }
   /* deux déterminants identiques testent les deux sites (étape 2) */
   const ep = k(11.6,13.4)*(1 - k(15,15.8));
+  let tri = '';
   if(ep > 0) for(const a of g0){
     const tipEnd = a.A(1.25, 0), site = a.A(.9, 0), P = [lerp(tipEnd[0] + a.u[0]*40, site[0], ep), lerp(tipEnd[1] + a.u[1]*40, site[1], ep)];
     const d = [-a.u[0], -a.u[1]], n = perp(d), sz = abState[0].s;
-    const b1 = add(add(P, d, -7*sz), n, 4.6*sz), b2 = add(add(P, d, -7*sz), n, -4.6*sz);
-    ch += `<path d="M${f(b1[0])} ${f(b1[1])}L${f(P[0])} ${f(P[1])}L${f(b2[0])} ${f(b2[1])}Z" fill="${AMB}" stroke="#FFFFFF" stroke-opacity=".6" opacity="${op(k(11.4,12))*(1 - k(15,15.8))}"/>`;
+    const b1 = add(add(P, d, -6.2*sz), n, 4*sz), b2 = add(add(P, d, -6.2*sz), n, -4*sz);
+    tri += `<path d="M${f(b1[0])} ${f(b1[1])}L${f(P[0])} ${f(P[1])}L${f(b2[0])} ${f(b2[1])}Z" fill="${AMB}" stroke="#FFFFFF" stroke-opacity=".6" opacity="${op(k(11.4,12))*(1 - k(15,15.8))}"/>`;
   }
+  ch = tri + ch;
   fx += halo(g0[0].site[0], g0[0].site[1], k(7,7.6)*(1 - k(8.6,9.2)), 12) + halo(g0[1].site[0], g0[1].site[1], k(7,7.6)*(1 - k(8.6,9.2)), 12);
 
   /* antigènes dessinés */
   for(let j=0; j<AGF.length; j++){
     const o = k(AGK[j][0][0], AGK[j][0][0] + 1)*(1 - dig);
-    cplx += agDraw(agPos[j][0], agPos[j][1], agRot[j], EPS[j], o, t, j*1.3);
+    cplx = agDraw(agPos[j][0], agPos[j][1], agRot[j], EPS[j], o, t, j*1.3) + cplx;
   }
   /* repères pour les légendes */
   if(t > 22 && t < 31){
@@ -332,20 +334,20 @@ function draw(c){
     /* lysosomes */
     const L0 = [[96,150],[160,346],[330,318]];
     L0.forEach((P, i) => {
-      const a = k(50.6 + i*.5, 53.6 + i*.4), o = k(50.4,51.2)*(1 - k(53.4 + i*.4, 54 + i*.4));
+      const a = k(52.6 + i*.3, 55 + i*.3), o = k(52.2,53)*(1 - k(54.8 + i*.3, 55.4 + i*.3));
       const tgt = [cx2 + (P[0] - cx2)*.45, cy2 + (P[1] - cy2)*.45];
       const x = lerp(P[0], tgt[0], a), y = lerp(P[1], tgt[1], a);
       if(o > 0) nuc += `<g opacity="${op(o)}"><circle cx="${f(x)}" cy="${f(y)}" r="11" fill="${ORANGE}" fill-opacity=".35" stroke="${ORANGE}" stroke-width="1.6"/>` + [0,1,2].map(m => `<circle cx="${f(x - 4 + m*4)}" cy="${f(y + (m === 1 ? -3 : 2))}" r="1.6" fill="${ORANGE}"/>`).join('') + '</g>';
       if(i === 0) st.lyso = [x, y];
     });
     /* phagosome */
-    const ph = k(50.6,51.8)*(1 - k(57,58.5));
-    if(ph > 0){ const d = wobblyEllipse(cx2, cy2, 106, 106, 3, 2); nuc += `<path d="${d}" fill="${ORANGE}" fill-opacity="${op(.1*k(53,55)*ph)}" stroke="#A9C3EA" stroke-width="2" stroke-dasharray="1 0" opacity="${op(ph)}"/>`; st.phago = [cx2 + 75, cy2 - 75]; }
+    const ph = k(51.4,52.6)*(1 - k(58,59.4));
+    if(ph > 0){ const d = wobblyEllipse(cx2, cy2, 98, 98, 3, 2); nuc += `<path d="${d}" fill="${ORANGE}" fill-opacity="${op(.12*k(54.6,56)*ph)}" stroke="#A9C3EA" stroke-width="2" stroke-dasharray="1 0" opacity="${op(ph)}"/>`; st.phago = [cx2 + 69, cy2 - 69]; }
     /* débris de la digestion */
     if(dig > 0){ let s = '';
       for(let i=0; i<26; i++){ const a = i*2.39, r = 14 + (i*37 % 70), col = [VIOLET, CYA, AMB, MAG][i % 4];
         const x = cx2 + Math.cos(a)*r*(.7 + .5*dig) + 3*Math.sin(t*2 + i), y = cy2 + Math.sin(a)*r*(.7 + .5*dig) + 3*Math.cos(t*1.7 + i);
-        s += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(2.4 - .6*(i % 3))}" fill="${col}" opacity="${op(k(54,55.5)*(1 - k(60,64))*.85)}"/>`; }
+        s += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(2.4 - .6*(i % 3))}" fill="${col}" opacity="${op(k(55.2,56.6)*(1 - k(60,64))*.85)}"/>`; }
       fx += s; }
   }
 
@@ -396,17 +398,17 @@ const CALL = [
   {a:18, b:21.8, text:"anticorps sécrétés", lab:[292,150], anc:st=>st.abs || []},
   {a:23.4, b:29.6, text:"antigène", lab:[290,238], anc:st=>st.ag ? [st.ag] : []},
   {a:24.4, b:29.6, text:"déterminant antigénique", lab:[290,400], anc:st=>st.ep ? [st.ep] : []},
-  {a:25.4, b:29.6, text:"autre déterminant", lab:[300,24], anc:st=>st.sq ? [st.sq] : []},
+  {a:25.4, b:29.6, text:"autre déterminant", lab:[250,24], anc:st=>st.sq ? [st.sq] : []},
   {a:33.4, b:36.8, text:"fixation par complémentarité", lab:[200,24], anc:st=>st.bind || []},
   {a:37.6, b:40.2, text:"complexe immun", lab:[200,412], anc:st=>st.cc ? [st.cc] : []},
   {a:45, b:50, text:"récepteurs ↔ partie constante", lab:[200,412], anc:st=>st.rec || []},
-  {a:51.4, b:55, text:"lysosome", lab:[64,100], col:ORANGE, anc:st=>st.lyso ? [st.lyso] : []},
-  {a:51.8, b:57.4, text:"phagosome", lab:[340,60], anc:st=>st.phago ? [st.phago] : []},
-  {a:55, b:58, text:"digestion du complexe", lab:[200,412], anc:st=>st.cc ? [st.cc] : []}
+  {a:53, b:56, text:"lysosome", lab:[64,100], col:ORANGE, anc:st=>st.lyso ? [st.lyso] : []},
+  {a:52.6, b:57.6, text:"phagosome", lab:[340,60], anc:st=>st.phago ? [st.phago] : []},
+  {a:55.8, b:58.6, text:"digestion du complexe", lab:[200,412], anc:st=>st.cc ? [st.cc] : []}
 ];
 
 const CUES = [[.2,'step'],[2.6,'pair'],[5.4,'pair'],[7.2,'chiasma'],[10,'step'],[13.2,'pinch'],[16.8,'pop'],[17.8,'pop'],[18.8,'pop'],[19.8,'pop'],[20.8,'pop'],[23,'whoosh'],
-  [33.1,'fuse'],[34.4,'pinch'],[35.6,'pinch'],[36.8,'pinch'],[37.8,'pinch'],[38.8,'pinch'],[41,'whoosh'],[45,'pair'],[50.4,'fuse'],[52.5,'pop'],[54.5,'split'],[59,'final']];
+  [33.1,'fuse'],[34.4,'pinch'],[35.6,'pinch'],[36.8,'pinch'],[37.8,'pinch'],[38.8,'pinch'],[41,'whoosh'],[45,'pair'],[50.4,'fuse'],[53,'pop'],[55.4,'split'],[59,'final']];
 
 const QUIZ = [
  {q:"Pourquoi un anticorps donné ne reconnaît-il qu'un seul type d'antigène ?", o:["Ses deux sites de fixation, formés par les parties variables, sont identiques et complémentaires d'un seul déterminant","Sa partie constante change selon l'antigène rencontré","L'antigène modifie l'anticorps au moment de la fixation"], a:0,
