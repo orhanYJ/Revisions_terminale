@@ -2,7 +2,7 @@
    Chaque page déclare ANIM.lancer({ END, SCENES, CALL, CUES, QUIZ, draw, bascule }).
    draw(c) reçoit l'instant c.t et l'option c.opt, et renvoie les couches SVG :
    { tf, cp, cells, nuc, sp, chr, let, fx, lab, st }.
-   Intégration dans le cours : ?embed=1 (lecteur seul) et ?theme=dark|light. */
+   Intégration dans le cours : ?embed=1 (lecteur, puis quiz sous le lecteur à la demande), ?theme=dark|light, ?t0=secondes. */
 window.ANIM = (() => {
 'use strict';
 const $ = s => document.querySelector(s);
@@ -51,6 +51,8 @@ const SFX = {
   split:()=>{ tone(392,.5,{type:'triangle',g:.1,to:262}); tone(588,.5,{type:'triangle',g:.05,to:392,at:.05}); },
   pinch:()=>{ tone(523,.25,{g:.07}); tone(784,.3,{g:.06,at:.12}); },
   pop:()=>{ tone(880,.15,{type:'triangle',g:.08,to:1320}); },
+  dup:()=>{ tone(330,.5,{type:'triangle',g:.1,to:660}); tone(495,.5,{type:'triangle',g:.05,to:990,at:.06}); },
+  flip:()=>{ tone(440,.45,{type:'triangle',g:.1,to:660}); },
   whoosh:()=>{ tone(300,.7,{type:'sawtooth',g:.03,to:900,lp:1400}); },
   mut:()=>{ tone(1568,.12,{g:.05}); tone(2093,.16,{g:.04,at:.05}); },
   fuse:()=>{ tone(262,.9,{type:'triangle',g:.09,to:392}); tone(392,.9,{type:'triangle',g:.06,at:.1,to:523}); },
@@ -151,7 +153,7 @@ function mix(c1,c2,u){
 function label(x,y,txt,col='#F2F5FA',size=11,o=1){
   if(o <= 0) return '';
   const w = txt.length*size*.52 + 18;
-  return `<g opacity="${op(o)}"><rect x="${f(x-w/2)}" y="${f(y-size)}" width="${f(w)}" height="${f(size*2)}" rx="${f(size)}" fill="#0A1222" fill-opacity=".85"/><text x="${f(x)}" y="${f(y)}" dy=".36em" font-size="${size}" font-weight="700" fill="${col}">${txt}</text></g>`;
+  return `<g opacity="${op(o)}"><rect x="${f(x-w/2)}" y="${f(y-size)}" width="${f(w)}" height="${f(size*2)}" rx="${f(size)}" fill="#0A1222" fill-opacity=".85"/><text x="${f(x)}" y="${f(y)}" dy=".36em" font-size="${size}" font-weight="700" fill="${col}" text-anchor="middle">${txt}</text></g>`;
 }
 
 /* ---------- légendes pointées ---------- */
@@ -215,7 +217,7 @@ function updateUI(){
     postH();
   }
   if(E.optBtn) E.optBtn.hidden = !C.bascule || t < C.bascule.des;
-  E.toQuiz.hidden = EMBED || !C.QUIZ || i < C.SCENES.length - 1;
+  E.toQuiz.hidden = !C.QUIZ || i < C.SCENES.length - 1 || (EMBED && document.documentElement.classList.contains('quizon'));
 }
 function setPlayIcon(){
   E.playIc.innerHTML = playing ? '<rect x="3" y="2" width="5" height="18" rx="1.5" fill="currentColor"/><rect x="12" y="2" width="5" height="18" rx="1.5" fill="currentColor"/>' : '<path d="M3 2v18l15-9z" fill="currentColor"/>';
@@ -315,6 +317,15 @@ function lancer(cfg){
   });
   window.addEventListener('resize', postH);
   if(window.ResizeObserver) new ResizeObserver(postH).observe(document.body);
+  const t0 = parseFloat(PARAMS.get('t0'));
+  if(t0 > 0 && t0 < C.END) t = t0;
+  /* intégré au cours : le quiz s'ouvre sous le lecteur, dans la même page */
+  if(EMBED) E.toQuiz.addEventListener('click', ev => {
+    ev.preventDefault();
+    document.documentElement.classList.add('quizon'); E.toQuiz.hidden = true; postH();
+    const z = $('#quiz');
+    if(z && window.parent !== window) window.parent.postMessage({type:'anim-goto', id:C.id, y:z.getBoundingClientRect().top + window.scrollY}, '*');
+  });
   setPlayIcon(); setMute(); quiz(); render(); postH();
 }
 

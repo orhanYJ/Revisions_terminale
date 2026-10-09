@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>Les transferts horizontaux de gènes</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#t2">← SVT Terminale</a> · Chapitre 2, parties I et II : les transferts horizontaux de gènes</p>
+    <h1>Les transferts horizontaux de gènes</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation en quatre scènes : transformation bactérienne, conjugaison et sélection par un antibiotique, transgenèse par Agrobacterium, intégration de l'ADN d'un rétrovirus">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF5CA8"></span>ADN transféré</li>
+        <li><span class="sw" style="background:#5AA9FF"></span>chromosome de l'hôte</li>
+        <li><span class="sw" style="background:#F5C451"></span>plasmide</li>
+        <li><span class="sw" style="background:#FF6B5B"></span>gène de résistance, ADN-T</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : tailles non respectées. Un chromosome bactérien est une molécule d'ADN circulaire de plusieurs millions de nucléotides ; un plasmide en compte quelques milliers.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, smooth, wobblyEllipse, flash, halo, arc, label, AMB, MAG, CYA} = ANIM.H;
+const ROSE = '#FF5CA8', BLEU = '#5AA9FF', OR = '#F5C451', VERT = '#7BE36A', GRIS = '#7F8BA3', BLANC = '#F2F5FA', ROUGE = '#FF6B5B';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return keys[0].slice(1);
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return a.slice(1).map((v,n) => lerp(v, b[n+1], u)); }
+  }
+  return keys[keys.length-1].slice(1);
+}
+
+/* ---------- objets ---------- */
+function bact(x, y, w, h, o=1, opts={}){
+  const {dead=false, capsule=0, fill='#16304F', stroke='#86A9DB'} = opts;
+  let s = `<g opacity="${op(o)}">`;
+  if(capsule > 0) s += `<rect x="${f(x-w/2-7)}" y="${f(y-h/2-7)}" width="${f(w+14)}" height="${f(h+14)}" rx="${f(h/2+7)}" fill="${VERT}" fill-opacity="${op(.16*capsule)}" stroke="${VERT}" stroke-opacity="${op(.7*capsule)}" stroke-width="2"/>`;
+  s += `<rect x="${f(x-w/2)}" y="${f(y-h/2)}" width="${f(w)}" height="${f(h)}" rx="${f(h/2)}" fill="${fill}" stroke="${stroke}" stroke-width="2"${dead ? ' stroke-dasharray="6 5"' : ''}/>`;
+  return s + '</g>';
+}
+/* chromosome bactérien : boucle ondulée ; seg = portion intégrée (0→1) dessinée en rose */
+function loop(cx, cy, rx, ry, t, col=BLEU, o=1, seg=0, segCol=ROSE){
+  const pts = [];
+  for(let i=0; i<=48; i++){ const a = i/48*6.2832, w = 1 + .12*Math.sin(5*a + t*1.2); pts.push([cx + Math.cos(a)*rx*w, cy + Math.sin(a)*ry*w]); }
+  let s = `<path d="${smooth(pts)}" fill="none" stroke="${col}" stroke-width="2.6" opacity="${op(o)}"/>`;
+  if(seg > 0){ const sp = pts.slice(6, 14); s += `<path d="${smooth(sp)}" fill="none" stroke="${segCol}" stroke-width="4.2" stroke-linecap="round" opacity="${op(seg*o)}"/>`; }
+  return s;
+}
+function plasmid(x, y, r, o=1, gene=true){
+  let s = `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" fill="none" stroke="${OR}" stroke-width="2.8" opacity="${op(o)}"/>`;
+  if(gene) s += `<path d="M${f(x - r*.7)} ${f(y - r*.7)} A${f(r)} ${f(r)} 0 0 1 ${f(x + r*.7)} ${f(y - r*.7)}" fill="none" stroke="${ROUGE}" stroke-width="4" opacity="${op(o)}"/>`;
+  return s;
+}
+function frag(x, y, len, t, ph, col=ROSE, o=1, w=3){
+  const pts = []; for(let i=0; i<=8; i++){ const u = i/8; pts.push([x - len/2 + len*u, y + 4*Math.sin(u*9 + t*2 + ph)]); }
+  return `<path d="${smooth(pts)}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" opacity="${op(o)}"/>`;
+}
+function hexPath(cx, cy, r){ let d = ''; for(let i=0; i<6; i++){ const a = Math.PI/6 + i*Math.PI/3; d += (i ? 'L' : 'M') + f(cx + r*Math.cos(a)) + ' ' + f(cy + r*Math.sin(a)); } return d + 'Z'; }
+function virus(x, y, r, t, o=1){
+  let s = `<g opacity="${op(o)}"><circle cx="${f(x)}" cy="${f(y)}" r="${r}" fill="#2A1E44" stroke="#C9A2FF" stroke-width="2"/>`;
+  for(let a=0; a<10; a++){ const an = a*Math.PI/5 + t*.3, x1 = x + r*Math.cos(an), y1 = y + r*Math.sin(an), x2 = x + (r+7)*Math.cos(an), y2 = y + (r+7)*Math.sin(an);
+    s += `<path d="M${f(x1)} ${f(y1)} L${f(x2)} ${f(y2)}" stroke="#C9A2FF" stroke-width="2" stroke-linecap="round"/><circle cx="${f(x2)}" cy="${f(y2)}" r="2.2" fill="#C9A2FF"/>`; }
+  return s + '</g>';
+}
+
+/* ---------- les quatre scènes ---------- */
+const SC = [[0,15],[15,31],[31,46],[46,62]];
+const vis = (t, n) => kAt(t, SC[n][0], SC[n][0] + .8) * (n === 3 ? 1 : 1 - kAt(t, SC[n][1] - .8, SC[n][1]));
+
+const FR = [[-40,-35],[-62,18],[10,-55],[34,40],[-20,58],[70,-20]];
+function sceneA(t, st){
+  const o = vis(t, 0); if(o <= 0) return {chr:'', cells:'', fx:''};
+  let cells = '', chr = '', fx = '';
+  const burst = kAt(t, .8, 3.2);
+  cells += bact(105, 150, 96, 48, o*(1 - .55*burst), {dead: t > 1, fill:'#2A3346', stroke:GRIS});
+  if(t < 1.6) chr += loop(105, 150, 30, 12, t, GRIS, o*(1 - kAt(t,.6,1.6)));
+  /* les fragments d'ADN libérés */
+  FR.forEach(([dx, dy], n) => {
+    if(n === 0) return;
+    const x = 105 + dx*burst*1.6 + 6*Math.sin(t*.7 + n), y = 150 + dy*burst*1.6 + 5*Math.cos(t*.6 + n);
+    chr += frag(x, y, 30, t, n, ROSE, o*burst*(1 - .5*kAt(t,10,12)));
+  });
+  /* le fragment qui entre dans la bactérie R */
+  const [fx0, fy0] = [105 + FR[0][0]*1.6, 150 + FR[0][1]*1.6];
+  let P;
+  if(t < 5) P = [lerp(105, fx0, burst), lerp(150, fy0, burst)];
+  else if(t < 8.5) P = arc([fx0, fy0], [292, 262], 40, kAt(t,5,8.5));
+  else P = [lerp(292, 262, kAt(t,8.5,10)), lerp(262, 262 - 18, kAt(t,8.5,10))];
+  const inte = kAt(t, 10, 12);
+  if(inte < 1) chr += frag(P[0], P[1], 30, t, 0, ROSE, o*burst*(1 - inte), 3.4);
+  st.frag = P;
+  /* la bactérie R qui reçoit l'ADN */
+  const caps = kAt(t, 12, 13.6);
+  cells += bact(300, 270, 120, 58, o, {capsule: caps});
+  chr += loop(300, 270, 40, 15, t, BLEU, o, inte);
+  fx += flash(296, 252, 10.6, 1.2);
+  st.R = [300, 270]; st.S = [105, 150]; st.caps = [300 + 60, 270];
+  const lb = o*kAt(t,1,1.8);
+  fx += label(105, 104, 'pneumocoque S tué', '#C9D3E6', 10, lb) + label(300, 330, caps > .5 ? 'devenu S : virulent' : 'pneumocoque R vivant', caps > .5 ? VERT : '#C9D3E6', 10, lb);
+  return {cells, chr, fx};
+}
+function sceneB(t, st){
+  const o = vis(t, 1); if(o <= 0) return {chr:'', cells:'', fx:''};
+  let cells = '', chr = '', fx = '';
+  const br = kAt(t, 18, 21) * (1 - kAt(t, 26, 27.5));
+  if(br > 0) cells += `<rect x="168" y="${f(196 - 6*br)}" width="64" height="${f(12*br)}" rx="5" fill="#1F3B5E" stroke="#86A9DB" stroke-width="1.6" opacity="${op(o)}"/>`;
+  const die = kAt(t, 29.2, 30.6);
+  cells += bact(115, 196, 104, 54, o) + bact(285, 196, 104, 54, o) + bact(200, 320, 104, 54, o*(1 - .6*die), {dead: die > .3});
+  chr += loop(100, 196, 30, 12, t, BLEU, o) + loop(300, 196, 30, 12, t, BLEU, o) + loop(200, 320, 30, 12, t, BLEU, o*(1 - .6*die));
+  chr += plasmid(145, 186, 9, o);
+  const cp = kAt(t, 21.5, 22.2), mv = kAt(t, 22.2, 25.5);
+  if(cp > 0){ const x = lerp(145, 262, mv), y = lerp(186, 186, mv) + 6*Math.sin(mv*Math.PI); chr += plasmid(x, y, 9*cp, o); st.copie = [x, y]; }
+  /* antibiotique */
+  for(let n=0; n<14; n++){
+    const a0 = 27.6 + n*.12, p = lin(t, a0, a0 + 1.6); if(p <= 0 || p >= 1) continue;
+    const x = 40 + n*25, y = lerp(20, 390, p);
+    fx += `<path d="M${f(x)} ${f(y-5)} L${f(x+5)} ${f(y+4)} L${f(x-5)} ${f(y+4)}Z" fill="${BLANC}" opacity="${op(o*(1 - p*.4))}"/>`;
+  }
+  const sh = kAt(t, 29, 29.8)*(1 - kAt(t, 30.2, 31));
+  if(sh > 0) for(const x of [115, 285]) fx += halo(x, 196, sh, 40);
+  st.donneuse = [115, 196]; st.receveuse = [285, 196]; st.pont = [200, 196]; st.sensible = [200, 320]; st.plasmide = [145, 186];
+  const lb = o*kAt(t,15.6,16.4);
+  fx += label(115, 140, 'donneuse', '#C9D3E6', 10, lb) + label(285, 140, 'receveuse', '#C9D3E6', 10, lb) + label(200, 372, die > .5 ? 'sans plasmide : éliminée' : 'sans plasmide', die > .5 ? ROUGE : '#C9D3E6', 10, lb);
+  return {cells, chr, fx};
+}
+function sceneC(t, st){
+  const o = vis(t, 2); if(o <= 0) return {chr:'', cells:'', fx:''};
+  let cells = '', chr = '', fx = '';
+  const gal = kAt(t, 42, 45);
+  const R0 = lerp(118, 58, gal), C0 = [232, 230];
+  const neigh = [0,1,2,3,4,5].map(n => [Math.cos(n*Math.PI/3), Math.sin(n*Math.PI/3)]);
+  cells += `<path d="${hexPath(C0[0], C0[1], R0)}" fill="#14301E" stroke="${VERT}" stroke-width="5" stroke-linejoin="round" opacity="${op(o)}"/>`;
+  neigh.forEach(([dx, dy], n) => { const a = kAt(t, 42.4 + n*.3, 43.4 + n*.3); if(a <= 0) return;
+    cells += `<path d="${hexPath(C0[0] + dx*R0*1.73, C0[1] + dy*R0*1.73, R0*a)}" fill="#14301E" stroke="${VERT}" stroke-width="4" stroke-linejoin="round" opacity="${op(o*a)}"/>`; });
+  const nr = lerp(44, 22, gal);
+  cells += `<circle cx="${C0[0]}" cy="${C0[1]}" r="${f(nr)}" fill="#22406E" stroke="#8FB0DE" stroke-width="1.6" opacity="${op(o)}"/>`;
+  /* ADN de la plante dans le noyau */
+  const dl = []; for(let i=0; i<=10; i++){ const u = i/10; dl.push([C0[0] - nr*.75 + nr*1.5*u, C0[1] + 3*Math.sin(u*10 + t)]); }
+  chr += `<path d="${smooth(dl)}" fill="none" stroke="${VERT}" stroke-width="2.6" opacity="${op(o)}"/>`;
+  const ins = kAt(t, 40, 41.6);
+  if(ins > 0) chr += `<path d="M${f(C0[0] - nr*.2)} ${f(C0[1])} L${f(C0[0] + nr*.2)} ${f(C0[1])}" stroke="${ROUGE}" stroke-width="4.4" stroke-linecap="round" opacity="${op(o*ins)}"/>`;
+  /* Agrobacterium */
+  const [ax, ay] = kf([[31,40,80],[31.8,40,80],[34,96,182]], t);
+  const ao = o*(1 - kAt(t, 41.4, 42.4));
+  cells += bact(ax, ay, 66, 32, ao, {fill:'#2A2440', stroke:'#C9A2FF'});
+  chr += plasmid(ax + 14, ay, 8, ao, false);
+  chr += `<path d="M${f(ax + 8.4)} ${f(ay - 5.6)} A8 8 0 0 1 ${f(ax + 19.6)} ${f(ay - 5.6)}" fill="none" stroke="${ROUGE}" stroke-width="4" opacity="${op(ao)}"/>`;
+  /* l'ADN-T voyage jusqu'au noyau */
+  const tr = kAt(t, 35.5, 39.5);
+  if(t > 35 && ins < 1){ const P = arc([ax + 14, ay - 6], [C0[0], C0[1]], 40, tr); chr += frag(P[0], P[1], 18, t, 1, ROUGE, o*kAt(t,35,35.6)*(1 - ins), 3.6); st.adnt = P; }
+  /* facteurs de croissance */
+  for(let n=0; n<8; n++){ const a0 = 41.6 + n*.2, p = lin(t, a0, a0 + 1.4); if(p <= 0 || p >= 1) continue;
+    const an = n*.8; fx += `<circle cx="${f(C0[0] + Math.cos(an)*(nr + 40*p))}" cy="${f(C0[1] + Math.sin(an)*(nr + 40*p))}" r="2.6" fill="${OR}" opacity="${op(o*(1-p))}"/>`; }
+  fx += flash(C0[0], C0[1], 40.4, 1.2);
+  st.agro = [ax, ay]; st.noyau = [C0[0], C0[1] - nr]; st.plante = [C0[0] + R0*.7, C0[1] - R0*.5]; st.galle = [C0[0] + R0*1.6, C0[1] + R0*.9];
+  const lb = o*kAt(t,31.6,32.4);
+  fx += label(232, 92, gal > .5 ? 'la tumeur : une galle' : 'cellule végétale', gal > .5 ? OR : VERT, 10, lb);
+  return {cells, chr, fx};
+}
+function sceneD(t, st){
+  const o = vis(t, 3); if(o <= 0) return {chr:'', cells:'', fx:''};
+  let cells = '', chr = '', fx = '';
+  cells += `<path d="${wobblyEllipse(225,240,160,150,1)}" fill="#14243F" stroke="#86A9DB" stroke-width="2" opacity="${op(o)}"/>`;
+  cells += `<path d="${wobblyEllipse(265,270,62,58,2)}" fill="#22406E" stroke="#8FB0DE" stroke-width="1.6" opacity="${op(o)}"/>`;
+  const cl = []; for(let i=0; i<=10; i++){ const u = i/10; cl.push([215 + 100*u, 274 + 3*Math.sin(u*10 + t)]); }
+  chr += `<path d="${smooth(cl)}" fill="none" stroke="${BLEU}" stroke-width="3" opacity="${op(o)}"/>`;
+  /* le virus arrive et s'arrime */
+  const [vx, vy] = kf([[46,40,40],[46.8,40,40],[49,92,118]], t);
+  cells += virus(vx, vy, 16, t, o*(1 - .5*kAt(t, 50, 51)));
+  /* l'ARN viral entre, puis devient ADN double brin */
+  const ent = kAt(t, 49, 51), rt = kAt(t, 51.2, 54), go = kAt(t, 54.4, 56.4), ins = kAt(t, 56.6, 58.2);
+  const P = go > 0 ? [lerp(165, 265, go), lerp(180, 274, go)] : [lerp(vx + 8, 165, ent), lerp(vy + 8, 180, ent)];
+  if(t > 49 && ins < 1){
+    chr += frag(P[0], P[1], 34, t, 2, ROSE, o*(1 - ins), 3.2);
+    if(rt > 0){ const pts = []; for(let i=0; i<=8*rt; i++){ const u = i/8; pts.push([P[0] - 17 + 34*u, P[1] + 7 + 4*Math.sin(u*9 + t*2 + 2)]); }
+      if(pts.length > 1) chr += `<path d="${smooth(pts)}" fill="none" stroke="${OR}" stroke-width="3.2" stroke-linecap="round" opacity="${op(o*(1 - ins))}"/>`; }
+  }
+  if(ins > 0) chr += `<path d="M250 274 L282 274" stroke="${ROSE}" stroke-width="5" stroke-linecap="round" opacity="${op(o*ins)}"/><path d="M250 280 L282 280" stroke="${OR}" stroke-width="3" stroke-linecap="round" opacity="${op(o*ins)}"/>`;
+  fx += flash(266, 276, 57, 1.2);
+  st.virus = [vx, vy]; st.arn = P; st.noyauD = [265, 212]; st.integre = [266, 277];
+  const fin = kAt(t, 58.6, 59.4);
+  if(fin > 0) fx += label(200, 404, '8 à 10 % du génome humain est d\'origine virale', BLANC, 10.5, o*fin);
+  return {cells, chr, fx};
+}
+
+function draw(c){
+  const {t} = c;
+  const st = {}; let cells = '', chr = '', fx = '';
+  for(const S of [sceneA, sceneB, sceneC, sceneD]){ const r = S(t, st); cells += r.cells; chr += r.chr; fx += r.fx; }
+  /* titre de la scène en cours */
+  const titres = ['1. Transformation','2. Conjugaison','3. Transgenèse naturelle','4. Un rétrovirus'];
+  let lab = '';
+  titres.forEach((tt, n) => { const o = vis(t, n); if(o > 0) lab += `<text x="200" y="26" font-size="14" font-weight="700" fill="${BLANC}" opacity="${op(o)}">${tt}</text>`; });
+  return {cells, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:5, title:"La transformation : de l'ADN libre",
+  text:"Un pneumocoque S, virulent, a été tué : en se détruisant, il libère son ADN dans le milieu. À côté vit un pneumocoque R, non virulent. C'est la situation de l'expérience de <strong>Griffith (1928)</strong>.",
+  state:"De l'ADN libre dans le milieu"},
+ {t:5, e:15, title:"La transformation : l'ADN entre et s'intègre",
+  text:"Un fragment d'ADN libre <strong>entre dans la bactérie R</strong> et s'<strong>intègre à son ADN</strong>. Il porte le gène de la capsule : la bactérie fabrique une capsule et devient virulente. C'est le « facteur transformant » de Griffith : l'ADN.",
+  state:"Transfert horizontal par transformation"},
+ {t:15, e:27, title:"La conjugaison : un plasmide passe d'une bactérie à l'autre",
+  text:"Deux bactéries, de la même espèce ou d'espèces différentes, se relient par un <strong>pont cytoplasmique</strong>. Le <strong>plasmide</strong> de la donneuse, qui porte un gène de résistance (en rouge), est <strong>copié</strong> et la copie passe dans la receveuse. La donneuse garde le sien.",
+  state:"La receveuse a reçu le plasmide"},
+ {t:27, e:31, title:"L'antibiotique trie",
+  text:"Un antibiotique arrive. Les deux bactéries qui portent le plasmide de résistance survivent ; celle qui ne l'a pas est éliminée. L'antibiotique ne crée pas la résistance : il <strong>sélectionne</strong> les bactéries qui l'ont reçue.",
+  state:"Seules les bactéries porteuses du plasmide survivent"},
+ {t:31, e:46, title:"La transgenèse naturelle : Agrobacterium",
+  text:"La bactérie <strong>Agrobacterium</strong> se fixe sur une cellule végétale et y injecte un fragment de son plasmide pTi, l'<strong>ADN-T</strong>, qui s'insère dans le génome de la plante. Ses gènes font produire des facteurs de croissance : les cellules prolifèrent et forment une tumeur, la <strong>galle</strong>.",
+  state:"Un gène bactérien dans le génome d'une plante"},
+ {t:46, e:56, title:"Un rétrovirus : de l'ARN à l'ADN",
+  text:"Le rétrovirus s'arrime à la cellule et y libère son <strong>ARN</strong>. Une enzyme virale le copie en <strong>ADN double brin</strong> : c'est la <strong>transcription inverse</strong>.",
+  state:"ARN viral → ADN viral"},
+ {t:56, e:62, title:"Un rétrovirus : l'ADN viral s'intègre",
+  text:"L'ADN viral entre dans le noyau et s'<strong>intègre aux chromosomes</strong> de l'hôte. Si la cellule infectée est une cellule de la <strong>lignée germinale</strong>, ce gène viral est ensuite transmis à la descendance comme n'importe quel gène : c'est l'histoire de la syncytine.",
+  state:"Un gène viral dans un chromosome de l'hôte"}
+];
+
+const CALL = [
+  {a:2.4, b:6, text:"ADN libéré", lab:[60,250], anc:()=>[[105-62*1.6, 150+18*1.6],[105+34*1.6, 150+40*1.6]]},
+  {a:6, b:9.6, text:"le fragment entre", lab:[300,376], anc:st=>[st.frag].filter(Boolean)},
+  {a:10.4, b:14.6, text:"intégré au chromosome", lab:[300,376], anc:()=>[[296,254]]},
+  {a:16.4, b:21, text:"plasmide (gène de résistance)", lab:[130,100], anc:st=>[st.plasmide].filter(Boolean)},
+  {a:19.4, b:25.8, text:"pont cytoplasmique", lab:[200,262], anc:st=>[st.pont].filter(Boolean)},
+  {a:22.4, b:26.4, text:"la copie du plasmide passe", lab:[290,100], anc:st=>[st.copie].filter(Boolean)},
+  {a:32.4, b:36.8, text:"Agrobacterium", lab:[90,40], anc:st=>[st.agro].filter(Boolean)},
+  {a:36, b:40.2, text:"l'ADN-T voyage vers le noyau", lab:[132,400], anc:st=>[st.adnt].filter(Boolean)},
+  {a:40.4, b:43, text:"inséré dans l'ADN de la plante", lab:[232,400], anc:()=>[[232,230]]},
+  {a:47.2, b:51, text:"rétrovirus", lab:[150,62], anc:st=>[st.virus].filter(Boolean)},
+  {a:51.6, b:55, text:"transcription inverse : ARN → ADN", lab:[160,390], anc:st=>[st.arn].filter(Boolean)},
+  {a:57, b:61.6, text:"ADN viral intégré", lab:[300,382], anc:st=>[st.integre].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[1,'spark'],[5.2,'whoosh'],[10.4,'pop'],[12.2,'final'],[15.2,'step'],[18.2,'pair'],[21.6,'dup'],[22.4,'whoosh'],[27.8,'error'],[29.4,'split'],[31.2,'step'],[35.6,'whoosh'],[40.2,'pop'],[42.4,'split'],[46.2,'step'],[47.2,'whoosh'],[51.4,'swap'],[56.8,'pop'],[59,'final']];
+
+const QUIZ = [
+ {q:"Dans la transformation, d'où vient l'ADN qui entre dans la bactérie ?", o:["D'une autre bactérie, par un pont cytoplasmique","De l'ADN libre présent dans le milieu, libéré par des cellules détruites","D'un virus"], a:1,
+  ex:"C'est ce qu'a observé Griffith : l'ADN des pneumocoques S tués transforme les R vivants."},
+ {q:"Lors de la conjugaison, la bactérie donneuse perd-elle son plasmide ?", o:["Oui, elle le cède","Non, le plasmide est copié et la donneuse garde le sien","Elle le détruit après l'avoir transmis"], a:1,
+  ex:"Le plasmide est répliqué : c'est pourquoi un gène de résistance peut se répandre très vite dans une population de bactéries."},
+ {q:"Que fait un antibiotique dans une population où certaines bactéries ont reçu un plasmide de résistance ?", o:["Il crée de nouvelles résistances","Il élimine les sensibles et sélectionne les résistantes","Il détruit les plasmides"], a:1,
+  ex:"L'antibiotique trie : il ne fabrique pas la résistance, il favorise les bactéries qui l'ont déjà."},
+ {q:"Qu'est-ce que la transcription inverse ?", o:["La copie de l'ARN d'un rétrovirus en ADN","La copie de l'ADN en ARN messager","La traduction d'une protéine"], a:0,
+  ex:"Elle va de l'ARN vers l'ADN, à l'inverse de la transcription habituelle : c'est ce qui permet au virus d'intégrer ses gènes dans nos chromosomes."}
+];
+
+ANIM.lancer({id:'thg', END:62, SCENES, CALL, CUES, QUIZ, draw, graine:17});
+})();
+</script>
+</body>
+</html>

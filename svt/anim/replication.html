@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>La réplication de l'ADN</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#p2">← SVT Terminale</a> · Rappels de Première, fiche 2 : la réplication de l'ADN</p>
+    <h1>La réplication de l'ADN</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation de la réplication de l'ADN : l'hélicase ouvre la double hélice, l'ADN polymérase assemble les nucléotides complémentaires sur le brin continu et par fragments d'Okazaki sur le brin discontinu, puis deux molécules filles semi-conservatives et plusieurs yeux de réplication">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF5CA8"></span>brin parental</li>
+        <li><span class="sw" style="background:#3FD9C8"></span>brin parental complémentaire</li>
+        <li><span class="sw" style="background:#B7D94C"></span>brin néoformé</li>
+        <li><span class="sw" style="background:#F5C451"></span>hélicase</li>
+        <li><span class="sw" style="background:#E9EEF7"></span>ADN polymérase</li>
+        <li><span class="sw" style="background:#FF9F43"></span>ligase</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : la double hélice est représentée à plat, sans son enroulement. Les amorces dont l'ADN polymérase a besoin pour démarrer un brin (hors programme) ne sont pas représentées. Le nombre d'origines de réplication est symbolique : une cellule humaine en utilise des dizaines de milliers.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, sm, lerp, f, op, smooth, strand, flash, arc, AMB, MAG, CYA} = ANIM.H;
+const VERT = '#B7D94C', ORANGE = '#FF9F43', BLANC = '#F2F5FA', GRIS = '#9FB0CC';
+const BC = {A:'#FF7A6B', T:'#FFD166', C:'#5AA9FF', G:'#C38BFF'};
+const COMP = {A:'T', T:'A', C:'G', G:'C'};
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return keys[0].slice(1);
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return a.slice(1).map((v,n) => lerp(v, b[n+1], u)); }
+  }
+  return keys[keys.length-1].slice(1);
+}
+
+/* ---------- la molécule ---------- */
+const D0 = 205, HG = 8, SP = 12, NS = 46;
+const XS = i => -14 + SP*i;
+let seed = 7; const rnd = () => (seed = (seed*16807) % 2147483647, (seed-1)/2147483646);
+const SEQ = Array.from({length:NS}, () => 'ATCG'[Math.floor(rnd()*4)]);   /* bases du brin parental du haut */
+const HM = Array.from({length:NS}, () => [rnd(), rnd(), rnd(), rnd()]);
+const AMBI = Array.from({length:18}, () => [rnd(), rnd(), rnd(), rnd(), 'ATCG'[Math.floor(rnd()*4)]]);
+
+/* la fourche avance de gauche à droite */
+function xF(t){
+  if(t < 6.5) return -60;
+  if(t < 13.5) return lerp(-25, 125, ease((t-6.5)/7));
+  if(t < 24) return lerp(125, 150, (t-13.5)/10.5);
+  return 150 + 15*(t-24);
+}
+/* brin continu : extrémité 3' (position de l'ADN polymérase du haut) */
+const eT = t => t < 14 ? -999 : t < 24 ? lerp(-10, 122, (t-14)/10) : 122 + 15*(t-24);
+const Tt = x => x <= 122 ? 14 + (x+10)/13.2 : 24 + (x-122)/15;
+/* brin discontinu : fragments d'Okazaki, synthétisés de droite à gauche */
+const B = [-30, 110, 180, 250, 320, 390, 460];
+const FR = B.slice(1).map((R,i) => { const L = B[i], ts = i ? 24 + (R+28-150)/15 : 16.5, v = i ? 25 : (R-L)/7.5; return {L, R, ts, v, te: ts + (R-L)/v}; });
+/* la ligase soude chaque jonction un fragment plus tard : on a le temps de voir les fragments séparés */
+const SEAL = FR.slice(1).map((fr, i) => ({x: fr.L, t: i + 2 < FR.length ? FR[i+2].te + .9 : fr.te + 3.4}));
+const S7 = 58.5;
+const LIG0 = SEAL[0].t - 2.6, LIG = [[LIG0, 50]]; SEAL.forEach(s => LIG.push([s.t - .9, s.x], [s.t + .35, s.x]));
+const LASTSEAL = SEAL[SEAL.length-1].t;
+function polyB(t){
+  for(let i=0; i<FR.length; i++){
+    const fr = FR[i];
+    if(t < fr.ts){
+      if(i === 0) return {x: fr.R, o: kAtL(t, 15.6, 16.5), lift: 0};
+      const pr = FR[i-1], u = ease((t - pr.te)/(fr.ts - pr.te));
+      return {x: lerp(pr.L, fr.R, u), o: 1, lift: Math.sin(Math.PI*u)};
+    }
+    if(t <= fr.te) return {x: fr.R - fr.v*(t - fr.ts), o: 1, lift: 0};
+  }
+  const last = FR[FR.length-1]; return {x: last.L, o: 1 - kAtL(t, last.te, last.te + .8), lift: 0};
+}
+function fragOf(x){ for(const fr of FR) if(x > fr.L && x <= fr.R) return fr; return null; }
+
+/* vue (zoom) : partagée avec les légendes */
+const V = {cx:200, cy:215, z:1};
+const w2s = (x,y) => [200 + (x - V.cx)*V.z, 215 + (y - V.cy)*V.z];
+const s2w = (x,y) => [V.cx + (x - 200)/V.z, V.cy + (y - 215)/V.z];
+
+function pathOf(fn, a, b){
+  const n = Math.max(2, Math.ceil((b - a)/8)), p = [];
+  for(let i=0; i<=n; i++){ const x = lerp(a, b, i/n); p.push([x, fn(x)]); }
+  return smooth(p);
+}
+function chip(x, y, txt, col, o=1){
+  if(o <= 0) return '';
+  const w = txt.length*6 + 10;
+  return `<g opacity="${op(o)}"><rect x="${f(x-w/2)}" y="${f(y-7)}" width="${f(w)}" height="14" rx="7" fill="#0A1222" fill-opacity=".88"/><text x="${f(x)}" y="${f(y)}" dy=".35em" font-size="10" font-weight="700" fill="${col}">${txt}</text></g>`;
+}
+function helicase(x, y, t, o){
+  if(o <= 0) return '';
+  let s = `<g opacity="${op(o)}"><circle cx="${f(x)}" cy="${f(y)}" r="17" fill="url(#halo)" opacity=".7"/>`;
+  for(let i=0; i<6; i++){ const a = i*Math.PI/3 + t*1.6; s += `<circle cx="${f(x + 8.5*Math.cos(a))}" cy="${f(y + 8.5*Math.sin(a))}" r="4.6" fill="${AMB}" stroke="#7A5A10" stroke-width=".8"/>`; }
+  return s + `<circle cx="${f(x)}" cy="${f(y)}" r="3.4" fill="#0A1222"/></g>`;
+}
+function polymerase(x, y, dir, o){
+  if(o <= 0) return '';
+  return `<g opacity="${op(o)}"><ellipse cx="${f(x)}" cy="${f(y)}" rx="15" ry="13" fill="#E9EEF7" fill-opacity=".2" stroke="${BLANC}" stroke-width="1.7"/>` +
+    `<path d="M${f(x - 3*dir)} ${f(y - 4.5)} l${f(5*dir)} 4.5 l${f(-5*dir)} 4.5" fill="none" stroke="${BLANC}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+}
+function ligase(x, y, o){
+  if(o <= 0) return '';
+  return `<g opacity="${op(o)}"><rect x="${f(x-5.5)}" y="${f(y-5.5)}" width="11" height="11" rx="2.5" fill="${ORANGE}" stroke="#FFFFFF" stroke-opacity=".7" transform="rotate(45 ${f(x)} ${f(y)})"/></g>`;
+}
+function nucleotide(x, y, ang, base, o, zf, rw){
+  if(o <= 0) return '';
+  const ex = x + 6.5*Math.cos(ang), ey = y + 6.5*Math.sin(ang);
+  let s = `<g opacity="${op(o)}"><line x1="${f(x)}" y1="${f(y)}" x2="${f(ex)}" y2="${f(ey)}" stroke="${BC[base]}" stroke-width="${f(rw)}"/><circle cx="${f(x)}" cy="${f(y)}" r="2.8" fill="${VERT}"/>`;
+  if(zf > .05) s += `<text x="${f((x+ex)/2 + .8*Math.cos(ang))}" y="${f((y+ey)/2 + .8*Math.sin(ang))}" dy=".36em" font-size="5.2" font-weight="800" fill="#0A1222" text-anchor="middle" opacity="${op(zf)}">${base}</text>`;
+  return s + '</g>';
+}
+function angTo(a0, target, u){ const d = ((target - a0) % 6.2832 + 9.4248) % 6.2832 - 3.1416; return a0 + d*u; }
+
+/* ---------- vue d'ensemble : plusieurs yeux de réplication ---------- */
+const ORI = [[70,59.9],[158,60.4],[246,60.1],[330,60.6]];
+const VE = 8.2;
+function openAt(x, t){
+  let a = 0;
+  for(const [o, t0] of ORI){ if(t < t0) continue; const w = VE*(t - t0), d = Math.min(x - (o - w), (o + w) - x); if(d > 0) a = Math.max(a, sm(d/10)); }
+  return a;
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {}; let nuc = '', ch = '', lt = '', fx = '', lab = '', hud = '';
+
+  /* zoom pendant l'appariement */
+  const zf = k(13.6,15.2)*(1 - k(23.6,25.2)), z = 1 + .7*zf;
+  V.cx = lerp(200, 100, zf); V.cy = lerp(215, 205, zf); V.z = z;
+  const tf = zf > .001 ? `translate(200 215) scale(${z.toFixed(3)}) translate(${f(-V.cx)} ${f(-V.cy)})` : '';
+
+  const dO = 1 - k(S7 - .4, S7 + .8);
+  if(dO > 0){
+    const xf = xF(t), at = lerp(130, 104, k(50.5,53.5)), ab = lerp(280, 306, k(50.5,53.5));
+    const wave = x => 2.2*Math.sin(x*.045 - t*.8);
+    const s = x => x < xf ? sm((xf - x)/55) : 0;
+    const pT = x => lerp(D0 - HG, at - HG, s(x)) + wave(x), pB = x => lerp(D0 + HG, ab + HG, s(x)) + wave(x);
+    const nT = x => pT(x) + 2*HG, nB = x => pB(x) - 2*HG;
+    const wx0 = V.cx - 200/z - 14, wx1 = V.cx + 200/z + 14;
+    const et = eT(t), rw = lerp(3.6, 4.8, zf);
+
+    /* brins parentaux */
+    ch += strand(pathOf(pT, wx0, wx1), MAG, 5, dO) + strand(pathOf(pB, wx0, wx1), CYA, 5, dO);
+    /* brin continu */
+    if(et > wx0) ch += strand(pathOf(nT, Math.max(wx0, -12), Math.min(et, wx1)), VERT, 5, dO);
+    /* fragments d'Okazaki */
+    const cov = [];
+    FR.forEach((fr, i) => {
+      if(t < fr.ts) return;
+      let l = Math.max(fr.L, fr.R - fr.v*(t - fr.ts)), r = fr.R;
+      cov.push([l, r]);
+      if(i > 0 && t < SEAL[i-1].t && l <= fr.L + .01) l += 5;
+      if(i < FR.length-1 && t < SEAL[i].t) r -= 5;
+      if(r > l + 1 && r > wx0 && l < wx1) ch += strand(pathOf(nB, Math.max(l, wx0), Math.min(r, wx1)), VERT, 5, dO);
+    });
+    const covB = x => cov.some(([l, r]) => x >= l - .01 && x <= r + .01);
+
+    /* bases : barreaux colorés */
+    const hr = (x, y1, y2, col) => `<line x1="${f(x)}" y1="${f(y1)}" x2="${f(x)}" y2="${f(y2)}" stroke="${col}" stroke-width="${f(rw)}"/>`;
+    const lettre = (x, y, b) => zf > .05 ? `<text x="${f(x)}" y="${f(y)}" dy=".36em" font-size="5.2" font-weight="800" fill="#0A1222" opacity="${op(zf*dO)}">${b}</text>` : '';
+    let rg = '';
+    for(let i=0; i<NS; i++){
+      const x = XS(i); if(x < wx0 || x > wx1) continue;
+      const b = SEQ[i], cb = COMP[b], yt = pT(x), yb = pB(x);
+      if(x >= xf){
+        const ym = (yt + yb)/2;
+        rg += hr(x, yt + 2, ym - .6, BC[b]) + hr(x, yb - 2, ym + .6, BC[cb]);
+        lt += lettre(x, yt + 4.6, b) + lettre(x, yb - 4.6, cb);
+      } else {
+        rg += hr(x, yt + 2, yt + HG - .4, BC[b]) + hr(x, yb - 2, yb - HG + .4, BC[cb]);
+        lt += lettre(x, yt + 4.8, b) + lettre(x, yb - 4.8, cb);
+        if(et >= x){ rg += hr(x, nT(x) - 2, nT(x) - HG + .4, BC[cb]); lt += lettre(x, nT(x) - 4.8, cb); }
+        if(covB(x)){ rg += hr(x, nB(x) + 2, nB(x) + HG - .4, BC[b]); lt += lettre(x, nB(x) + 4.8, b); }
+      }
+      /* liaisons hydrogène rompues au passage de la fourche */
+      const dd = xf - x;
+      if(t > 6.5 && dd > 0 && dd < 10) fx += `<circle cx="${f(x)}" cy="${f(D0 + wave(x))}" r="${f(1.5 + dd*.45)}" fill="none" stroke="#FFFFFF" stroke-width="1.1" opacity="${op((1 - dd/10)*.85*dO)}"/>`;
+    }
+    nuc += `<g opacity="${op(dO)}">${rg}</g>`;
+
+    /* nucléotides libres qui viennent s'apparier */
+    let fr1 = null;
+    for(let i=0; i<NS; i++){
+      const x = XS(i); if(x < wx0 - 30 || x > wx1 + 30) continue;
+      if(x >= -10){
+        const T = Tt(x);
+        if(t > T - 2.2 && t < T){
+          const home = [x - 20 + 28*HM[i][0] + 3*Math.sin(t*1.3 + i), 192 + 24*HM[i][1] + 3*Math.cos(t*1.1 + i)];
+          const u = ease(lin(t, T - 1, T)), P = arc(home, [x, nT(x)], 6, u);
+          const a0 = HM[i][2]*6.28 + t*1.4;
+          lt += nucleotide(P[0], P[1], angTo(a0, -Math.PI/2, u), COMP[SEQ[i]], lin(t, T - 2.2, T - 1.8)*dO, zf, rw);
+          if(!fr1 && u === 0) fr1 = P;
+        }
+      }
+      const fr = fragOf(x);
+      if(fr){
+        const T = fr.ts + (fr.R - x)/fr.v;
+        if(t > T - 2.2 && t < T){
+          const home = [x - 14 + 28*HM[i][2] + 3*Math.sin(t*1.2 + i*2), 194 + 24*HM[i][3] + 3*Math.cos(t*1.3 + i)];
+          const u = ease(lin(t, T - 1, T)), P = arc(home, [x, nB(x)], -6, u);
+          const a0 = HM[i][0]*6.28 - t*1.3;
+          lt += nucleotide(P[0], P[1], angTo(a0, Math.PI/2, u), SEQ[i], lin(t, T - 2.2, T - 1.8)*dO, zf, rw);
+        }
+      }
+    }
+    if(fr1) st.free = fr1;
+    /* nucléotides libres en réserve, entre les deux brins ouverts */
+    const ao = k(8,9.5)*(1 - k(48.8,50.4))*dO;
+    if(ao > 0) for(const a of AMBI){
+      const x = 400*a[0] + 12*Math.sin(t*.4 + a[1]*6);
+      if(x > xf - 50 || x < wx0 || x > wx1) continue;
+      const y1 = nT(x) + 15, y2 = nB(x) - 15; if(y2 - y1 < 14) continue;
+      const y = lerp(y1, y2, a[2]) + 3*Math.sin(t*.9 + a[3]*6);
+      lt += nucleotide(x, y, a[3]*6.28 + t*(.8 + a[1]), a[4], ao*clamp((y2 - y1 - 14)/24, 0, 1), zf, rw);
+    }
+
+    /* enzymes */
+    if(t > 6.3){ const hx = xf + 6, hy = D0 + wave(xf); fx += helicase(hx, hy, t, k(6.3,7)*dO); st.hel = [hx, hy]; st.fork = [xf - 14, D0 + wave(xf - 14)]; }
+    if(t > 13.8){ const x = et + 3, y = pT(et) + HG; fx += polymerase(x, y, 1, k(13.8,14.6)*dO); st.polT = [x, y]; }
+    const pb = polyB(t);
+    if(t > 15.6 && pb.o > 0){ const x = pb.x - 3, y = pB(pb.x) - HG - 24*pb.lift; fx += polymerase(x, y, -1, pb.o*dO); st.polB = [x, y]; }
+    if(t > LIG0 && t < LASTSEAL + 1.4){ const [x] = kf(LIG, t), y = nB(x) - 9; fx += ligase(x, y, k(LIG0, LIG0 + .6)*(1 - k(LASTSEAL + .5, LASTSEAL + 1.3))*dO); st.lig = [x, y]; }
+    for(const s2 of SEAL) if(s2.x > wx0 && s2.x < wx1) fx += flash(s2.x, nB(s2.x), s2.t, 1.1);
+
+    /* points d'ancrage des légendes */
+    st.top = [120, pT(120)]; st.rungs = [[166, D0 + wave(166)], [238, D0 + wave(238)]];
+    if(et > 0){ const xs = [-2, 10, 22, 34, 46, 58, 70, 82, 94, 106, 118].filter(x => x <= et - 4); const x = xs.length ? xs[xs.length-1] : null; if(x !== null) st.pair = [x, nT(x) - HG]; }
+    const ca = Math.min(et - 40, 220); st.cont = [ca, nT(ca)];
+    st.frags = FR.filter(fr => t > fr.te && (fr.L + fr.R)/2 > 5 && (fr.L + fr.R)/2 < 395).map(fr => { const m = (Math.max(fr.L, 0) + fr.R)/2; return [m, nB(m)]; });
+    st.disc = [90, nB(90)];
+    st.pTr = [300, pT(300)]; st.pBr = [300, pB(300)]; st.neufs = [[110, nT(110)], [110, nB(110)]];
+
+    /* repères 5' / 3' aux bords de l'image */
+    for(const [sx, gauche] of [[15, true], [385, false]]){
+      const [wx] = s2w(sx, 0), sy = y => w2s(wx, y)[1];
+      hud += chip(sx, sy(pT(wx)), gauche ? "3'" : "5'", MAG, dO) + chip(sx, sy(pB(wx)), gauche ? "5'" : "3'", CYA, dO);
+      if(et >= wx && wx >= -12) hud += chip(sx, sy(nT(wx)), gauche ? "5'" : "3'", VERT, dO);
+      if(covB(wx)) hud += chip(sx, sy(nB(wx)), gauche ? "3'" : "5'", VERT, dO);
+    }
+    /* rappel des appariements */
+    const ko = k(.6,1.6)*(1 - k(49,50.2))*dO;
+    if(ko > 0){
+      hud += `<g opacity="${op(ko)}"><rect x="140" y="403" width="120" height="20" rx="10" fill="#0A1222" fill-opacity=".85"/>` +
+        `<text x="170" y="413" dy=".36em" font-size="11" font-weight="800"><tspan fill="${BC.A}">A</tspan><tspan fill="${GRIS}"> – </tspan><tspan fill="${BC.T}">T</tspan></text>` +
+        `<text x="230" y="413" dy=".36em" font-size="11" font-weight="800"><tspan fill="${BC.C}">C</tspan><tspan fill="${GRIS}"> – </tspan><tspan fill="${BC.G}">G</tspan></text></g>`;
+    }
+  }
+
+  /* ---------- vue d'ensemble : les yeux de réplication ---------- */
+  const sO = k(S7 + .2, S7 + 1.4);
+  if(sO > 0){
+    const A = 14 + 20*k(S7 + 10.2, S7 + 12.2), fo = k(S7 + 9.2, S7 + 10.2);
+    const aF = x => Math.max(openAt(x, t), fo);
+    const xs = []; for(let x=20; x<=380; x+=4) xs.push(x);
+    const wv = x => 1.5*Math.sin(x*.05 - t*.8);
+    const yT = x => 201 - aF(x)*A + wv(x), yB = x => 209 + aF(x)*A + wv(x);
+    let rg = '';
+    for(let x=22; x<=378; x+=6){
+      const a = aF(x), b = SEQ[Math.round(x/6) % NS], cb = COMP[b];
+      if(a < .35){ const y1 = yT(x), y2 = yB(x), ym = (y1 + y2)/2; rg += `<line x1="${x}" y1="${f(y1+1.5)}" x2="${x}" y2="${f(ym)}" stroke="${BC[b]}" stroke-width="2.6"/><line x1="${x}" y1="${f(y2-1.5)}" x2="${x}" y2="${f(ym)}" stroke="${BC[cb]}" stroke-width="2.6"/>`; }
+      else if(a > .6){
+        const y1 = yT(x), y2 = yB(x);
+        rg += `<line x1="${x}" y1="${f(y1+1.5)}" x2="${x}" y2="${f(y1+4)}" stroke="${BC[b]}" stroke-width="2.6"/><line x1="${x}" y1="${f(y1+4)}" x2="${x}" y2="${f(y1+6.5)}" stroke="${BC[cb]}" stroke-width="2.6"/>`;
+        rg += `<line x1="${x}" y1="${f(y2-1.5)}" x2="${x}" y2="${f(y2-4)}" stroke="${BC[cb]}" stroke-width="2.6"/><line x1="${x}" y1="${f(y2-4)}" x2="${x}" y2="${f(y2-6.5)}" stroke="${BC[b]}" stroke-width="2.6"/>`;
+      }
+    }
+    nuc += `<g opacity="${op(sO)}">${rg}</g>`;
+    ch += strand(smooth(xs.map(x => [x, yT(x)])), MAG, 3.4, sO) + strand(smooth(xs.map(x => [x, yB(x)])), CYA, 3.4, sO);
+    /* brins neufs, là où l'ADN est ouvert */
+    let run = [];
+    const flush = () => { if(run.length > 1){ ch += strand(smooth(run.map(x => [x, yT(x) + 8])), VERT, 3.4, sO) + strand(smooth(run.map(x => [x, yB(x) - 8])), VERT, 3.4, sO); } run = []; };
+    for(const x of xs){ if(aF(x) > .6) run.push(x); else flush(); }
+    flush();
+    /* origines, fourches et sens de progression */
+    st.ori = []; st.forks = [];
+    ORI.forEach(([o, t0], idx) => {
+      st.ori.push([o, 205]);
+      if(t < t0 + .1){ const g = k(t0 - 1.2, t0 - .4); if(g > 0) fx += `<circle cx="${o}" cy="205" r="${f(7 + 2*Math.sin(t*6))}" fill="none" stroke="${AMB}" stroke-width="1.6" opacity="${op(g*sO)}"/>`; return; }
+      const w = VE*(t - t0);
+      if(t < S7 + 9.2) for(const e of [o - w, o + w]){
+        if(e < 20 || e > 380) continue;
+        if(ORI.some(([o2, t2], j) => j !== idx && t > t2 && Math.abs(e - o2) < VE*(t - t2))) continue;
+        fx += `<circle cx="${f(e)}" cy="205" r="8" fill="url(#halo)" opacity="${op(sO)}"/><circle cx="${f(e)}" cy="205" r="3.6" fill="${AMB}" opacity="${op(sO)}"/>`;
+        if(idx === 3) st.forks.push([e, 205]);
+      }
+      const ao = k(t0 + .8, t0 + 1.6)*(1 - k(S7 + 6.6, S7 + 7.6));
+      if(ao > 0){
+        const L = Math.min(w, 28), y = 205 - A - 14;
+        for(const sg of [-1, 1]){ const x1 = o + sg*4, x2 = o + sg*(6 + L); lab += `<g opacity="${op(ao*sO)}" stroke="${BLANC}" stroke-width="1.6" stroke-linecap="round" fill="none"><path d="M${f(x1)} ${f(y)} L${f(x2)} ${f(y)}"/><path d="M${f(x2 - sg*4)} ${f(y - 3.5)} L${f(x2)} ${f(y)} L${f(x2 - sg*4)} ${f(y + 3.5)}"/></g>`; }
+      }
+    });
+    st.eye = [158, 205];
+    const fl = k(S7 + 11.4, S7 + 12.4);
+    if(fl > 0) lab += chip(200, 205 - A - 24, "molécule fille : brin parental + brin neuf", BLANC, fl) + chip(200, 205 + A + 24, "molécule fille : brin neuf + brin parental", BLANC, fl);
+  }
+
+  if(hud) lab += `<g transform="translate(${f(V.cx)} ${f(V.cy)}) scale(${(1/z).toFixed(4)}) translate(-200 -215)">${hud}</g>`;
+  return {tf, nuc, chr:ch, let:lt, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:6.5, title:"La molécule d'ADN",
+  text:"Une molécule d'ADN est une <strong>double hélice</strong> (représentée ici à plat) : deux brins de nucléotides unis par leurs bases. Les bases sont <strong>complémentaires</strong> : A face à T, C face à G. Les deux brins sont <strong>antiparallèles</strong> : l'un va de 5' vers 3', l'autre de 3' vers 5'.",
+  state:"1 molécule d'ADN, 2 brins parentaux"},
+ {t:6.5, e:14, title:"L'hélicase ouvre la double hélice",
+  text:"L'<strong>hélicase</strong> rompt les liaisons hydrogène entre les bases appariées : les deux brins se séparent. Le point d'ouverture, en forme de Y, est la <strong>fourche de réplication</strong>. Elle progresse le long de la molécule.",
+  state:"2 brins séparés, qui vont servir de matrices"},
+ {t:14, e:24.5, title:"Les nucléotides s'apparient par complémentarité",
+  text:"Chaque brin parental sert de <strong>brin matrice</strong>. Des nucléotides libres viennent s'y apparier par <strong>complémentarité</strong> : A face à T, C face à G. L'<strong>ADN polymérase</strong> les assemble les uns à la suite des autres, toujours dans le sens <strong>5' → 3'</strong>.",
+  state:"Brin matrice + nucléotides complémentaires"},
+ {t:24.5, e:34, title:"Le brin continu",
+  text:"En haut, le sens 5' → 3' du brin neuf est aussi le sens d'ouverture de la fourche. L'ADN polymérase suit donc la fourche <strong>sans s'arrêter</strong> : le brin neuf est synthétisé d'un seul tenant. C'est le <strong>brin continu</strong>.",
+  state:"Brin continu : synthèse sans interruption"},
+ {t:34, e:50, title:"Le brin discontinu",
+  text:"En bas, le brin matrice est orienté dans l'autre sens. Pour respecter le sens 5' → 3', l'ADN polymérase doit travailler <strong>à contresens</strong> de la fourche : elle fabrique de courts <strong>fragments d'Okazaki</strong>, puis repart près de la fourche. Une <strong>ligase</strong> soude ensuite les fragments bout à bout.",
+  state:"Brin discontinu : fragments d'Okazaki soudés par la ligase"},
+ {t:50, e:S7, title:"Deux molécules filles : la réplication est semi-conservative",
+  text:"Chaque molécule fille contient <strong>un brin parental</strong> (magenta ou cyan) et <strong>un brin néoformé</strong> (vert). La réplication est <strong>semi-conservative</strong>, comme l'ont montré Meselson et Stahl. Les deux molécules filles sont identiques à la molécule mère, car chaque brin parental a servi de matrice.",
+  state:"2 molécules filles identiques : 1 brin parental + 1 brin neuf chacune"},
+ {t:S7, e:S7 + 13, title:"De nombreuses origines de réplication",
+  text:"Le schéma ne montrait qu'une fourche. Sur un chromosome, la réplication démarre en de <strong>nombreuses origines de réplication</strong>. À chacune s'ouvre un <strong>œil de réplication</strong>, bordé de deux fourches qui progressent en sens opposés : la réplication est <strong>bidirectionnelle</strong>. Les yeux s'agrandissent puis fusionnent : c'est ainsi que tout l'ADN est copié en quelques heures de phase S.",
+  state:"4 origines, 8 fourches, puis 2 molécules filles"}
+];
+
+const CALL = [
+  {a:.8, b:6.2, text:"double hélice d'ADN, à plat", lab:[200,112], anc:st=>[st.top].filter(Boolean)},
+  {a:2, b:6.2, text:"bases complémentaires", lab:[200,312], anc:st=>st.rungs || []},
+  {a:7.6, b:13.8, text:"hélicase", lab:[250,118], anc:st=>[st.hel].filter(Boolean)},
+  {a:9.2, b:13.8, text:"fourche de réplication", lab:[262,306], anc:st=>[st.fork].filter(Boolean)},
+  {a:15.4, b:19.8, text:"ADN polymérase", get lab(){ return s2w(150, 26); }, anc:st=>[st.polT, st.polB].filter(Boolean)},
+  {a:16.8, b:20.4, text:"nucléotide libre", get lab(){ return s2w(318, 262); }, anc:st=>[st.free].filter(Boolean)},
+  {a:20.4, b:24.2, text:"A face à T, C face à G", get lab(){ return s2w(200, 22); }, anc:st=>[st.pair].filter(Boolean)},
+  {a:25.4, b:33.6, text:"brin continu", lab:[78,62], anc:st=>[st.cont].filter(Boolean)},
+  {a:26.8, b:33.6, text:"la polymérase suit la fourche", lab:[262,62], anc:st=>[st.polT].filter(Boolean)},
+  {a:34.6, b:41.4, text:"fragments d'Okazaki", lab:[150,370], anc:st=>(st.frags || []).slice(-3)},
+  {a:35, b:52.6, text:"ligase", lab:[338,370], anc:st=>[st.lig].filter(Boolean)},
+  {a:42.4, b:49.6, text:"brin discontinu", lab:[150,370], anc:st=>[st.disc].filter(Boolean)},
+  {a:51.2, b:58, text:"brin parental", lab:[300,44], anc:st=>[st.pTr].filter(Boolean)},
+  {a:51.2, b:58, text:"brin parental", lab:[300,386], anc:st=>[st.pBr].filter(Boolean)},
+  {a:52.2, b:58, text:"brins néoformés", lab:[112,205], anc:st=>st.neufs || []},
+  {a:S7 + 1.4, b:S7 + 3.9, text:"origines de réplication", lab:[200,118], anc:st=>st.ori || []},
+  {a:S7 + 4.4, b:S7 + 8.4, text:"œil de réplication", lab:[150,318], anc:st=>[st.eye].filter(Boolean)},
+  {a:S7 + 3.8, b:S7 + 6.8, text:"fourches", lab:[318,318], anc:st=>st.forks || []}
+];
+
+const CUES = [[.2,'step'],[6.8,'whoosh'],[14.2,'step'],[15.6,'pair'],[17.4,'pop'],[19.2,'pop'],[21,'pop'],[24.6,'step'],
+  ...SEAL.map(s => [s.t - .05, 'pinch']), [34.2,'step'], [50.6,'split'], [S7 + .4,'step'],
+  ...ORI.map(([, t0]) => [t0, 'pop']), [S7 + 9.4,'fuse'], [S7 + 11.6,'final']];
+
+const QUIZ = [
+ {q:"Pourquoi dit-on que la réplication de l'ADN est semi-conservative ?", o:["Parce que la moitié des molécules filles sont identiques à la molécule mère","Parce que chaque molécule fille contient un brin parental et un brin néoformé","Parce que seule la moitié de l'ADN est répliquée"], a:1,
+  ex:"Chaque brin parental sert de matrice et reste associé au brin neuf construit en face de lui. Meselson et Stahl l'ont démontré en 1958."},
+ {q:"Sur le brin matrice, l'ADN polymérase rencontre la base T. Quel nucléotide place-t-elle en face ?", o:["A","T","C","G"], a:0,
+  ex:"Complémentarité des bases : A face à T, C face à G. C'est ce qui rend la copie fidèle."},
+ {q:"Pourquoi l'un des deux brins neufs est-il synthétisé en fragments d'Okazaki ?", o:["Parce que l'ADN polymérase ne travaille que dans le sens 5' → 3', qui va à contresens de la fourche sur ce brin","Parce que l'hélicase coupe ce brin en morceaux","Parce que ce brin matrice contient moins de nucléotides"], a:0,
+  ex:"Les deux brins sont antiparallèles. Sur l'un, le sens 5' → 3' suit l'ouverture de la fourche (brin continu) ; sur l'autre, il va à contresens : la polymérase fabrique des fragments, ensuite soudés par une ligase."},
+ {q:"Pourquoi la phase S ne dure-t-elle que quelques heures, malgré la longueur de l'ADN ?", o:["Parce que l'ADN polymérase assemble des millions de nucléotides par seconde","Parce que la réplication démarre en de nombreuses origines et progresse dans les deux sens","Parce qu'un seul des deux brins est copié"], a:1,
+  ex:"Avec des dizaines de milliers d'origines fonctionnant en parallèle, chacune ouvrant un œil bordé de deux fourches, tout l'ADN est copié en quelques heures."}
+];
+
+ANIM.lancer({id:'replication', END:S7 + 13, SCENES, CALL, CUES, QUIZ, draw, graine:17});
+})();
+</script>
+</body>
+</html>

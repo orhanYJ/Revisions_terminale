@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>La structure du globe terrestre</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#p7">← SVT Terminale</a> · Rappels de Première, fiche 7 : la structure du globe</p>
+    <h1>La structure du globe terrestre</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation d'une coupe du globe : les ondes sismiques P et S se propagent depuis un séisme, les ondes S sont arrêtées par le noyau externe liquide (zone d'ombre), les discontinuités apparaissent, puis un zoom montre la croûte, le Moho, la lithosphère, l'asthénosphère et la LVZ">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#3FD9C8"></span>ondes P</li>
+        <li><span class="sw" style="background:#FF5CA8"></span>ondes S</li>
+        <li><span class="sw" style="background:#FF7A6B"></span>zone d'ombre des ondes S</li>
+        <li><span class="sw" style="background:#F5C451"></span>discontinuité</li>
+        <li><span class="sw" style="background:#C2612B"></span>noyau externe liquide</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : seules quelques ondes sont tracées, et leurs trajets sont stylisés. Les ondes P, déviées en entrant dans le noyau, n'arrivent pas non plus directement entre 103° et 143° de l'épicentre : aucun sismographe n'est placé dans cette zone. La fiche ne retient que la zone d'ombre des ondes S, qui prouve que le noyau externe est liquide.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, sm, lerp, f, op, flash, halo, mix, label, wobblyEllipse, AMB, MAG, CYA} = ANIM.H;
+const ROUGE = '#FF7A6B', GRIS = '#9FB0CC', BLANC = '#F2F5FA';
+/* le globe : centre, rayon (px), échelle (km par px) */
+const GX = 200, GY = 228, R = 168, KM = 6371/R, D2R = Math.PI/180;
+const RC = (6371-2900)/KM, RI = (6371-5100)/KM;
+/* couleurs des enveloppes */
+const INCONNU = '#27344F', MANTEAU = '#2F6650', NOYAU = '#C2612B', GRAINE = '#E9B949';
+const CCONT = '#C9A27A', COCE = '#9A9CB4', EAU = '#2C6FB0', LITHO = '#4F7FC0', LITHO2 = '#6A98D6', ASTHENO = '#8A5BC2';
+/* instants : émission des ondes P et S */
+const TP = 6.6, TS = 16.8;
+const VP = 66, VPC = 48, VS = 38;
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const pt = (r,th) => [GX + r*Math.sin(th*D2R), GY - r*Math.cos(th*D2R)];
+const seg = (A,B,n) => Array.from({length:n+1}, (_,i) => [lerp(A[0],B[0],i/n), lerp(A[1],B[1],i/n)]);
+const dPath = pts => 'M' + pts.map(p => f(p[0]) + ' ' + f(p[1])).join('L');
+
+/* ---------- les rais sismiques ---------- */
+function timed(P, v, vc){
+  const T = [0];
+  for(let i=1; i<P.length; i++){
+    const L = Math.hypot(P[i][0]-P[i-1][0], P[i][1]-P[i-1][1]);
+    const inCore = Math.hypot((P[i][0]+P[i-1][0])/2 - GX, (P[i][1]+P[i-1][1])/2 - GY) < RC - .5;
+    T.push(T[i-1] + L/(inCore ? vc : v));
+  }
+  return {P, T, dur:T[T.length-1]};
+}
+/* rai direct dans le manteau : courbé, il ressort à D degrés de l'épicentre ; celui de 103° frôle le noyau */
+function direct(D){
+  const rmin = R*Math.cos(D/2*D2R) - (R*Math.cos(51.5*D2R) - RC)*Math.pow(D/103,2), dd = R - rmin;
+  return Array.from({length:41}, (_,i) => { const u = i/40; return pt(R - dd*Math.sin(Math.PI*u), D*u); });
+}
+const E = pt(R,0);
+/* onde P qui traverse le noyau : déviée à l'entrée et à la sortie */
+function viaCore(p1, Da){ const A = pt(RC,p1), B = pt(RC,Da-p1), C = pt(R,Da); return seg(E,A,14).concat(seg(A,B,24).slice(1), seg(B,C,14).slice(1)); }
+const mirror = P => P.map(([x,y]) => [2*GX - x, y]);
+const DIRECT = [12,25,38,51,64,77,90,97,103];
+const CORE_P = [[38,143],[30,150.8],[20,160.5],[10,170.3]];
+const BLOCK_S = [46,36,24,12];
+const PSIDES = [], SSIDES = [];
+const pC = Object.assign(timed(viaCore(0,180), VP, VPC), {D:180});
+const sC = Object.assign(timed(seg(E, pt(RC,0), 14), VS, VS), {blocked:true, D:0});
+for(const s of [1,-1]){
+  const m = P => s > 0 ? P : mirror(P);
+  PSIDES.push(DIRECT.map(D => Object.assign(timed(m(direct(D)), VP, VPC), {D:s*D}))
+    .concat(CORE_P.map(([p1,Da]) => Object.assign(timed(m(viaCore(p1,Da)), VP, VPC), {D:s*Da})), [Object.assign({}, pC, {twin:s<0})]));
+  SSIDES.push(DIRECT.map(D => Object.assign(timed(m(direct(D)), VS, VS), {D:s*D}))
+    .concat(BLOCK_S.map(p1 => Object.assign(timed(m(seg(E, pt(RC,p1), 14)), VS, VS), {blocked:true, D:s*p1})), [Object.assign({}, sC, {twin:s<0})]));
+}
+function rayState(ray, tau){
+  if(tau <= 0) return null;
+  const {P, T} = ray;
+  if(tau >= ray.dur) return {pts:P, head:P[P.length-1], done:true};
+  let i = 1; while(T[i] < tau) i++;
+  const u = (tau - T[i-1])/(T[i] - T[i-1]), h = [lerp(P[i-1][0],P[i][0],u), lerp(P[i-1][1],P[i][1],u)];
+  return {pts:P.slice(0,i).concat([h]), head:h, done:false};
+}
+function waves(sides, tau, col, a){
+  let s = '', fx = '';
+  if(a <= 0 || tau <= 0) return {s, fx};
+  for(const side of sides){
+    let prev = null;
+    for(const ray of side){
+      const rs = rayState(ray, tau);
+      if(!rs){ prev = null; continue; }
+      if(!ray.twin) s += `<path d="${dPath(rs.pts)}" fill="none" stroke="${col}" stroke-width="${ray.blocked ? 1.9 : 1.5}" stroke-opacity="${op(a*(rs.done && !ray.blocked ? .5 : .9))}" stroke-linecap="round"/>`;
+      if(!rs.done){
+        if(prev) s += `<line x1="${f(prev[0])}" y1="${f(prev[1])}" x2="${f(rs.head[0])}" y2="${f(rs.head[1])}" stroke="${col}" stroke-width="5" stroke-opacity="${op(.45*a)}" stroke-linecap="round"/>`;
+        s += `<circle cx="${f(rs.head[0])}" cy="${f(rs.head[1])}" r="2.8" fill="#FFFFFF" opacity="${op(a)}"/>`;
+        prev = rs.head;
+      } else {
+        prev = null;
+        if(ray.blocked && !ray.twin){
+          /* l'onde S s'arrête : un trait d'arrêt */
+          const h = rs.head, nx = (h[0]-GX)/RC, ny = (h[1]-GY)/RC;
+          fx += `<line x1="${f(h[0]-ny*6)}" y1="${f(h[1]+nx*6)}" x2="${f(h[0]+ny*6)}" y2="${f(h[1]-nx*6)}" stroke="${MAG}" stroke-width="3" stroke-linecap="round" opacity="${op(a)}"/>`;
+        }
+        if(ray.blocked && !ray.twin && tau < ray.dur + 1.2){
+          const p = (tau - ray.dur)/1.2, h = rs.head;
+          fx += `<circle cx="${f(h[0])}" cy="${f(h[1])}" r="${f(3 + 9*p)}" fill="none" stroke="${MAG}" stroke-width="1.6" opacity="${op((1-p)*a)}"/>`;
+        }
+      }
+    }
+  }
+  return {s, fx};
+}
+/* sismographes : un rai P (et S s'il arrive) aboutit à chacun */
+const STATIONS = [];
+for(const si of [0,1]){
+  for(const i of [1,3,5,7]) STATIONS.push({th:PSIDES[si][i].D, p:TP + PSIDES[si][i].dur, s:TS + SSIDES[si][i].dur});
+  for(const i of [10,12]) STATIONS.push({th:PSIDES[si][i].D, p:TP + PSIDES[si][i].dur, s:null});
+}
+STATIONS.push({th:180, p:TP + pC.dur, s:null});
+
+/* ---------- caméra : plongée vers la surface ---------- */
+const SMAX = 45.5, P0 = [200,60];
+const cam = {s:1, ax:200, ay:60};
+const S = p => [cam.ax + (p[0]-P0[0])*cam.s, cam.ay + (p[1]-P0[1])*cam.s];
+function circ(r, attrs){ const c = S([GX,GY]); return `<circle cx="${f(c[0])}" cy="${f(c[1])}" r="${f(r*cam.s)}" ${attrs}/>`; }
+/* point de la coupe agrandie : profondeur d (km) et abscisse finale xf (px) */
+const Zp = (d, xf) => S(pt(R - d/KM, xf/(R*SMAX)/D2R));
+const XS = Array.from({length:47}, (_,i) => -230 + i*10);
+/* continent à gauche, océan à droite (la marge se déplace avec la plaque) */
+let OFF = 0;
+const cont = xf => 1 - sm((xf - OFF + 45)/90);
+const surfD = xf => { const c = cont(xf); return 4*(1-c) - .8*c; };
+const mohoD = xf => { const c = cont(xf); return c*30 + (1-c)*11; };
+function band(top, bot, fill, o, xs=XS){
+  if(o <= 0) return '';
+  const a = xs.map(x => Zp(top(x), x)), b = xs.slice().reverse().map(x => Zp(bot(x), x));
+  return `<path d="${dPath(a.concat(b))}Z" fill="${fill}" opacity="${op(o)}"/>`;
+}
+const lineAt = (fd, xs, col, w, o, dash='') => o > 0 ? `<path d="${dPath(xs.map(x => Zp(fd(x), x)))}" fill="none" stroke="${col}" stroke-width="${w}" stroke-opacity="${op(o)}" ${dash ? `stroke-dasharray="${dash}"` : ''} stroke-linecap="round"/>` : '';
+const txt = (x, y, s, col, size=11, o=1, anc='middle') => o > 0 ? `<text x="${f(x)}" y="${f(y)}" dy=".36em" font-size="${size}" font-weight="700" fill="${col}" text-anchor="${anc}" stroke="#0A1222" stroke-width="3" paint-order="stroke" opacity="${op(o)}">${s}</text>` : '';
+
+function draw(c){
+  const {t, opt, k} = c;
+  const st = {}; let cells = '', sp = '', ch = '', lt = '', fx = '', lab = '';
+
+  /* caméra */
+  const z = k(42.3,46.5);
+  cam.s = Math.exp(Math.log(SMAX)*z); cam.ax = 200; cam.ay = lerp(60,75,z);
+  OFF = 34*k(52.5,60);
+
+  /* ---------- enveloppes du globe ---------- */
+  const appear = k(0,1);
+  const colMan = mix(INCONNU, MANTEAU, k(36,37.5));
+  const colNoy = mix(INCONNU, NOYAU, k(29,31));
+  const colGr = mix(colNoy, GRAINE, k(36.5,38));
+  cells += `<g opacity="${op(appear)}">` + circ(R, `fill="${colMan}"`) + circ(RC, `fill="${colNoy}"`) + circ(RI, `fill="${colGr}"`);
+  /* noyau externe liquide : des remous */
+  const liq = k(29,31)*(1 - k(43.5,44.5));
+  if(liq > 0){
+    const cc = S([GX,GY]);
+    [[44,0],[58,2],[72,4],[84,1]].forEach(([r,ph]) => { cells += `<path d="${wobblyEllipse(cc[0],cc[1],r*cam.s,r*cam.s,ph,3.2)}" fill="none" stroke="#F4A261" stroke-width="1.3" stroke-opacity="${op(.5*liq)}"/>`; });
+  }
+  /* graine solide : cristaux */
+  const cri = k(37,38.5)*(1 - k(43.5,44.5));
+  if(cri > 0){
+    const cc = S([GX,GY]), r = RI*.62*cam.s;
+    let d = ''; for(let i=0; i<6; i++){ const a = i*Math.PI/3 + .3; d += (i ? 'L' : 'M') + f(cc[0] + r*Math.cos(a)) + ' ' + f(cc[1] + r*Math.sin(a)); }
+    cells += `<path d="${d}Z" fill="none" stroke="#FFF1C9" stroke-width="1.2" stroke-opacity="${op(.7*cri)}"/><path d="M${f(cc[0]-r*.9)} ${f(cc[1])}L${f(cc[0]+r*.9)} ${f(cc[1])}M${f(cc[0]-r*.45)} ${f(cc[1]-r*.78)}L${f(cc[0]+r*.45)} ${f(cc[1]+r*.78)}" stroke="#FFF1C9" stroke-width="1" stroke-opacity="${op(.5*cri)}"/>`;
+  }
+  cells += circ(R, `fill="none" stroke="#86A9DB" stroke-width="1.6" stroke-opacity=".8"`) + '</g>';
+
+  /* l'intérieur est inconnu */
+  const q = k(.4,1.5)*(1 - k(27,28.5));
+  if(q > 0) lab += `<text x="200" y="244" font-size="64" font-weight="700" fill="${GRIS}" opacity="${op(.28*q)}">?</text>`;
+
+  /* ---------- coupe agrandie (zoom) ---------- */
+  const det = k(44.6,46.2);
+  let m = k(51.5,53.5);
+  if(t >= 61) m = opt ? 1 : 1 - k(61,62.5);
+  if(det > 0){
+    cells += band(x => 100, x => 330, mix(MANTEAU, ASTHENO, m), det);
+    cells += band(x => mohoD(x), x => 100, mix(MANTEAU, LITHO, m), det);
+    const x0 = OFF + 40, xsL = XS.filter(x => x < x0).concat([x0]), xsR = [x0].concat(XS.filter(x => x > x0));
+    cells += band(surfD, mohoD, mix(CCONT, LITHO2, m), det, xsL);
+    cells += band(surfD, mohoD, mix(COCE, LITHO2, m), det, xsR);
+    cells += band(x => 0, x => Math.max(0, surfD(x)), EAU, det*.9);
+    /* LVZ */
+    const lvz = k(54.5,55.5);
+    if(lvz > 0){
+      cells += band(x => 100, x => 200, '#FFFFFF', .07*lvz*det);
+      cells += lineAt(x => 200, XS, '#E9EEF7', 1.2, .55*lvz, '5 5');
+    }
+    /* péridotite : petits cristaux d'olivine */
+    const per = det*(1 - m)*k(47.5,48.5);
+    if(per > 0) for(let i=0; i<26; i++){
+      const xf = -190 + (i*67) % 380, d = 40 + (i*37) % 240;
+      if(d < mohoD(xf) + 6) continue;
+      const p = Zp(d, xf); lt += `<circle cx="${f(p[0])}" cy="${f(p[1])}" r="1.8" fill="#9BE3A6" opacity="${op(.45*per)}"/>`;
+    }
+    /* Moho : il se trace de gauche à droite */
+    const mo = k(47.4,49.2);
+    if(mo > 0){
+      const xm = lerp(-230, 230, mo), xs = XS.filter(x => x <= xm).concat([xm]);
+      const glow = t >= 61 ? (opt ? 0 : k(61.5,62.5)) : 0;
+      const o = det*(m > .5 && t < 61 ? lerp(1,.55,(m-.5)*2) : (t >= 61 && opt ? .55 : 1));
+      if(glow > 0) sp += lineAt(mohoD, xs, AMB, 7, .25*glow);
+      sp += lineAt(mohoD, xs, AMB, 2.2, o, (m > .5 ? '6 4' : ''));
+      st.mohoL = Zp(mohoD(-110), -110); st.mohoR = Zp(mohoD(120), 120);
+    }
+    /* base de la lithosphère (~100 km) */
+    const lb = k(52,53.6);
+    if(lb > 0){
+      const xm = lerp(-230, 230, lb), xs = XS.filter(x => x <= xm).concat([xm]);
+      const glow = t >= 61 ? (opt ? k(61.5,62.5) : 0) : k(53,54)*(1 - k(56,57));
+      if(glow > 0) sp += lineAt(x => 100, xs, '#CFE0FF', 7, .3*glow);
+      sp += lineAt(x => 100, xs, '#E9EEF7', 2, det*(t >= 61 && !opt ? .6 : 1));
+    }
+    /* repères : rigides dans la lithosphère, cisaillés dans l'asthénosphère */
+    const mk = k(52,53)*(1 - k(60.5,61.5));
+    if(mk > 0) for(const x0b of [-180,-120,-60,0,60,120,180]){
+      const xl = x0b + OFF;
+      sp += `<path d="${dPath([Zp(surfD(xl), xl), Zp(100, xl)])}" stroke="#E6EEFA" stroke-width="1.4" stroke-opacity="${op(.55*mk)}"/>`;
+      const pts = []; for(let d=100; d<=250; d+=10){ const u = 1 - (d-100)/150; pts.push(Zp(d, x0b + OFF*u*u)); }
+      sp += `<path d="${dPath(pts)}" fill="none" stroke="#E4D2FA" stroke-width="1.4" stroke-opacity="${op(.5*mk)}"/>`;
+      if(x0b === 60) st.rigide = Zp(55, xl);
+      if(x0b === -60) st.ductile = pts[6];
+    }
+    /* une onde sismique qui ralentit dans la LVZ */
+    for(const t0 of [52.8,54.2,55.6,57]){
+      const tau = t - t0; if(tau <= 0 || tau > 5.2) continue;
+      const v1 = 70, v2 = 35;
+      const d = tau < 100/v1 ? tau*v1 : tau < 100/v1 + 100/v2 ? 100 + (tau - 100/v1)*v2 : 200 + (tau - 100/v1 - 100/v2)*v1;
+      const o = det*(1 - clamp((d-230)/40,0,1))*clamp(tau*3,0,1)*(1 - k(60.5,61.5));
+      fx += lineAt(x => d, XS, CYA, 2.2, .85*o);
+    }
+    /* règle des profondeurs */
+    const ru = k(45.5,46.5)*(1 - k(60.5,61.5));
+    if(ru > 0){
+      for(const d of [0,50,100,150,200,250]){
+        const p = Zp(d, -228);
+        lab += `<line x1="2" y1="${f(p[1])}" x2="${d % 100 ? 7 : 10}" y2="${f(p[1])}" stroke="${GRIS}" stroke-width="1.2" opacity="${op(ru)}"/>`;
+        if(d % 100 === 0) lab += txt(13, p[1], d ? `${d} km` : '0 km', GRIS, 9.5, ru, 'start');
+      }
+    }
+    /* noms des enveloppes */
+    const nm = k(45.6,46.6);
+    lab += txt(92, 60, 'continent', GRIS, 10, nm*(1 - k(60.5,61.5)));
+    lab += txt(318, 60, 'océan', '#8FC3F0', 10, nm*(1 - k(60.5,61.5)));
+    lab += label(200, 262, 'manteau : péridotite', BLANC, 11, k(48.6,49.4)*(1 - k(51.2,52)));
+    lab += label(282, 150, 'lithosphère (rigide)', BLANC, 11, k(53.6,54.4)*(1 - k(60.5,61.5)));
+    lab += label(282, 352, 'asthénosphère (ductile)', BLANC, 11, k(54,54.8)*(1 - k(60.5,61.5)));
+    lab += label(200, 262, 'LVZ : les ondes ralentissent', BLANC, 11, k(55.6,56.4)*(1 - k(60.5,61.5)));
+    st.ccont = Zp(15, -130); st.coce = Zp(7.5, 130);
+    st.cr = Zp(14, -100); st.man = Zp(65, -100);
+
+    /* bilan : les deux découpages côte à côte */
+    const bi = k(61.4,62.6);
+    if(bi > 0){
+      const yS = Zp(-.8,-170)[1], yM = Zp(30,-170)[1], yB = Zp(250,-170)[1], ySo = Zp(4,170)[1], yL = Zp(100,170)[1], yBo = Zp(250,170)[1];
+      const br = (x, y1, y2, col, dir) => `<path d="M${x + 6*dir} ${f(y1+1)}H${x}V${f(y2-1)}H${x + 6*dir}" fill="none" stroke="${col}" stroke-width="2" opacity="${op(bi)}"/>`;
+      const cc = opt ? .55 : 1, cm = opt ? 1 : .55;
+      lab += `<g opacity="${op(cc)}">` + br(30, yS, yM, AMB, 1) + br(30, yM, yB, AMB, 1) + txt(40, (yS+yM)/2, 'croûte', BLANC, 11, bi, 'start') + txt(40, (yM+yB)/2, 'manteau', BLANC, 11, bi, 'start') + '</g>';
+      lab += `<g opacity="${op(cm)}">` + br(370, ySo, yL, '#CFE0FF', -1) + br(370, yL, yBo, '#CFE0FF', -1) + txt(360, (ySo+yL)/2, 'lithosphère', BLANC, 11, bi, 'end') + txt(360, (yL+yBo)/2, 'asthénosphère', BLANC, 11, bi, 'end') + '</g>';
+      lab += label(100, 404, 'découpage chimique', AMB, 11, bi*cc) + label(300, 404, 'découpage mécanique', '#CFE0FF', 11, bi*cm);
+    }
+  }
+
+  /* ---------- discontinuités ---------- */
+  const gu = k(27.8,29.6), le = k(35.5,37);
+  const gzo = 1 - k(43,44.5);
+  if(gu > 0 && gzo > 0){
+    fx += circ(RC, `fill="none" stroke="${AMB}" stroke-width="2.4" pathLength="100" stroke-dasharray="100" stroke-dashoffset="${f(100*(1-gu))}" opacity="${op(gzo)}" transform="rotate(-90 ${f(S([GX,GY])[0])} ${f(S([GX,GY])[1])})"`);
+    if(gu < 1){ const a = gu*360, p = S(pt(RC, a)); fx += `<circle cx="${f(p[0])}" cy="${f(p[1])}" r="4" fill="${AMB}"/>`; }
+  }
+  if(le > 0 && gzo > 0){
+    fx += circ(RI, `fill="none" stroke="${AMB}" stroke-width="2.2" pathLength="100" stroke-dasharray="100" stroke-dashoffset="${f(100*(1-le))}" opacity="${op(gzo)}" transform="rotate(-90 ${f(S([GX,GY])[0])} ${f(S([GX,GY])[1])})"`);
+  }
+  st.gut = pt(RC, 152); st.leh = pt(RI, 160);
+
+  /* ---------- ondes ---------- */
+  const aP = k(TP-.2,TP+.2)*(1 - k(15.8,16.8)), aS = k(TS-.2,TS+.2)*(1 - k(33.5,35));
+  const wp = waves(PSIDES, t - TP, CYA, aP), ws = waves(SSIDES, t - TS, MAG, aS);
+  ch += wp.s + ws.s; fx += wp.fx + ws.fx;
+  /* le séisme : foyer et secousse */
+  fx += flash(E[0], E[1]+3, TP-.15) + flash(E[0], E[1]+3, TS-.15);
+  const fo = (k(TP-.4,TP) * (1 - k(TP+3,TP+4))) + (k(TS-.4,TS)*(1 - k(TS+3,TS+4)));
+  if(fo > 0) fx += `<path d="M200 55l2.6 5.4 5.9.9-4.3 4.1 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.1 5.9-.9z" fill="${AMB}" opacity="${op(fo)}" transform="translate(0 -2)"/>`;
+  st.E = [E[0], E[1]];
+  /* fronts suivis par les légendes */
+  { const r1 = rayState(PSIDES[0][4], t - TP); if(r1 && !r1.done) st.fp = r1.head; }
+  st.dev = pt(RC, 30);
+  st.stopR = pt(RC, 24); st.stopL = pt(RC, -24);
+
+  /* ---------- sismographes ---------- */
+  const so = k(1.2,2.4)*(1 - k(41,42.5));
+  if(so > 0) for(const s of STATIONS){
+    const a = pt(R+10, s.th), b1 = pt(R+1, s.th-2.6), b2 = pt(R+1, s.th+2.6);
+    let col = '#C9D3E6';
+    const hitP = t > s.p && t < s.p + 1.4 && t < 16.4, hitS = s.s && t > s.s && t < s.s + 1.4 && t < 34;
+    if(hitP) col = mix(CYA, '#C9D3E6', (t - s.p)/1.4);
+    if(hitS) col = mix(MAG, '#C9D3E6', (t - s.s)/1.4);
+    sp += `<path d="M${f(a[0])} ${f(a[1])}L${f(b1[0])} ${f(b1[1])}L${f(b2[0])} ${f(b2[1])}Z" fill="${col}" opacity="${op(so)}"/>`;
+    for(const [t0, cl, ok] of [[s.p, CYA, t < 16.4], [s.s, MAG, t < 34]]){
+      if(!t0 || !ok || t < t0 || t > t0 + .9) continue;
+      const p = (t - t0)/.9, cpt = pt(R+5, s.th);
+      fx += `<circle cx="${f(cpt[0])}" cy="${f(cpt[1])}" r="${f(4 + 12*p)}" fill="none" stroke="${cl}" stroke-width="1.6" opacity="${op(1-p)}"/>`;
+    }
+    /* pas d'onde S : une croix rouge */
+    if(!s.s){ const xo = k(24,24.6)*(1 - k(33.5,35)); if(xo > 0){ const p = pt(R-12, s.th); lab += txt(p[0], p[1], '✕', ROUGE, 11, xo); } }
+  }
+  if(so > 0){ st.st1 = pt(R+6, 25); st.st2 = pt(R+6, 51); }
+
+  /* ---------- zone d'ombre des ondes S ---------- */
+  const zo = k(24.2,25.6), zof = 1 - k(33.5,35);
+  if(zo > 0 && zof > 0){
+    for(const s of [1,-1]){
+      const pts = []; const end = lerp(103, 180, zo);
+      for(let a=103; a<=end+.01; a+=2) pts.push(pt(R+3, s*a));
+      pts.push(pt(R+3, s*end));
+      fx += `<path d="${dPath(pts)}" fill="none" stroke="${ROUGE}" stroke-width="5" stroke-linecap="round" opacity="${op(.9*zof)}"/>`;
+      const p = pt(R+3, s*103), pl = pt(R+18, s*101);
+      fx += `<line x1="${f(GX)}" y1="${f(GY)}" x2="${f(p[0])}" y2="${f(p[1])}" stroke="${ROUGE}" stroke-dasharray="3 4" stroke-width="1.2" opacity="${op(.7*zo*zof*(1 - k(27.6,28.4)))}"/>`;
+      lab += txt(pl[0], pl[1] - 10, '103°', ROUGE, 11, k(24.8,25.6)*zof);
+    }
+    fx += `<line x1="${GX}" y1="${GY}" x2="${E[0]}" y2="${E[1]}" stroke="${ROUGE}" stroke-dasharray="3 4" stroke-width="1.2" opacity="${op(.7*zo*zof*(1 - k(27.6,28.4)))}"/>`;
+  }
+  st.ombre = pt(R+3, 180); st.ombreL = pt(R+3, -140); st.ombreR = pt(R+3, 140);
+
+  /* ---------- noms des enveloppes du globe ---------- */
+  const gl = 1 - k(42,43);
+  lab += label(200, 165, 'noyau externe liquide', BLANC, 10.5, k(30.6,31.6)*gl);
+  lab += label(200, 104, 'manteau solide', BLANC, 10.5, k(31.8,32.8)*gl);
+  if(k(37.6,38.6)*gl > 0) lab += label(200, 228, 'graine solide', BLANC, 10.5, k(37.6,38.6)*gl);
+
+  return {cells, sp, chr:ch, let:lt, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:6, title:"On ne voit pas l'intérieur de la Terre",
+  text:"Le forage le plus profond n'atteint que <strong>12 km</strong>, alors que le centre de la Terre est à plus de 6000 km. Pour connaître l'intérieur du globe, on utilise des sondes naturelles : les <strong>ondes sismiques</strong>, enregistrées par des <strong>sismographes</strong> répartis à la surface.",
+  state:"Intérieur du globe : inconnu"},
+ {t:6, e:16, title:"Les ondes P traversent tout le globe",
+  text:"Un séisme émet des <strong>ondes P</strong> (ondes de compression), les plus rapides. Elles se propagent dans les <strong>solides et les liquides</strong> : elles traversent tout le globe. Regarde : certaines sont <strong>brusquement déviées</strong> en profondeur. Leur vitesse change d'un coup, elles entrent dans un autre milieu.",
+  state:"Ondes P reçues jusqu'à l'opposé du séisme"},
+ {t:16, e:27, title:"Les ondes S s'arrêtent en profondeur",
+  text:"Le même séisme émet aussi des <strong>ondes S</strong> (ondes de cisaillement), plus lentes. Or elles sont <strong>bloquées par les liquides</strong>. Celles qui plongent trop profond s'arrêtent toutes au même niveau. Résultat : entre <strong>103° et 180°</strong> de l'épicentre, aucune onde S n'arrive. C'est la <strong>zone d'ombre</strong> des ondes S.",
+  state:"Ondes S reçues jusqu'à 103° seulement"},
+ {t:27, e:35, title:"Le noyau externe est liquide",
+  text:"Les ondes S s'arrêtent à <strong>2900 km</strong> de profondeur : là, le milieu change brutalement. C'est une <strong>discontinuité</strong>, celle de <strong>Gutenberg</strong>, entre le manteau et le noyau. Puisque les ondes S n'y passent pas, le <strong>noyau externe est liquide</strong> (du fer liquide). Le manteau, que les ondes S traversent, est <strong>solide</strong>.",
+  state:"Manteau solide, noyau externe liquide"},
+ {t:35, e:42, title:"La graine, solide",
+  text:"À <strong>5100 km</strong>, la vitesse des ondes change encore brutalement : c'est la <strong>discontinuité de Lehmann</strong>. Elle sépare le noyau externe liquide de la <strong>graine</strong>, en fer solide. De la surface au centre : croûte, manteau, noyau externe, graine. La <strong>croûte</strong>, elle, est trop fine pour être visible à cette échelle.",
+  state:"Manteau, noyau externe liquide, graine solide"},
+ {t:42, e:51, title:"Zoom sur la surface : la croûte et le Moho",
+  text:"Zoomons sur les 250 premiers kilomètres. La <strong>croûte</strong> est très fine : environ <strong>30 km</strong> sous les continents (croûte continentale, granitique) et environ <strong>7 km</strong> sous les océans (croûte océanique, basaltique). Sa base est le <strong>Moho</strong>, une limite <strong>chimique</strong> : en dessous commence le manteau, fait de <strong>péridotite</strong>.",
+  state:"Découpage chimique : croûte / manteau"},
+ {t:51, e:61, title:"Lithosphère rigide, asthénosphère ductile",
+  text:"Regardons maintenant le <strong>comportement</strong> des roches. Jusqu'à environ <strong>100 km</strong>, la <strong>lithosphère</strong> est <strong>rigide</strong> : elle se déplace d'un bloc, c'est une plaque. En dessous, l'<strong>asthénosphère</strong> est <strong>ductile</strong> : elle se déforme lentement. Entre environ 100 et 200 km, les ondes <strong>ralentissent</strong> : c'est la <strong>LVZ</strong> (zone à moindre vitesse), où la roche est proche de sa température de fusion.",
+  state:"Découpage mécanique : lithosphère / asthénosphère"},
+ {t:61, e:70, title:"Deux découpages à ne pas confondre",
+  text:"Les deux découpages se superposent sans coïncider. Le <strong>Moho</strong> (7 à 30 km) est une limite <strong>chimique</strong> : croûte / manteau. La <strong>LVZ</strong> (dès 100 km environ) marque une limite <strong>mécanique</strong> : lithosphère / asthénosphère. La lithosphère contient donc <strong>la croûte et le sommet du manteau</strong>. Utilise le bouton pour changer de découpage.",
+  state:o => o ? "Couleurs : découpage mécanique (lithosphère / asthénosphère)" : "Couleurs : découpage chimique (croûte / manteau)"}
+];
+
+const CALL = [
+  {a:1, b:5.8, text:"le forage le plus profond : 12 km", lab:[134,24], anc:()=>[pt(R,-14)]},
+  {a:2.6, b:5.9, text:"sismographes", lab:[330,26], anc:st=>[st.st1, st.st2].filter(Boolean)},
+  {a:6.4, b:10, text:"séisme", lab:[110,26], anc:st=>[st.E]},
+  {a:8.4, b:11.6, text:"front des ondes P", lab:[318,104], col:CYA, anc:st=>[st.fp].filter(Boolean)},
+  {a:11.6, b:15.8, text:"déviées : changement de milieu", lab:[230,412], col:CYA, anc:st=>[st.dev]},
+  {a:19.6, b:23.8, text:"les ondes S s'arrêtent ici", lab:[200,300], col:MAG, anc:st=>[st.stopL, st.stopR]},
+  {a:25.4, b:26.9, text:"zone d'ombre des ondes S", lab:[200,416], col:ROUGE, anc:st=>[st.ombre]},
+  {a:29.2, b:34.6, text:"discontinuité de Gutenberg : 2900 km", lab:[200,416], anc:st=>[st.gut]},
+  {a:37, b:41.6, text:"discontinuité de Lehmann : 5100 km", lab:[200,416], anc:st=>[st.leh]},
+  {a:39.4, b:42, text:"la croûte : trop fine pour être vue ici", lab:[200,24], anc:()=>[[200,60]]},
+  {a:46.2, b:49, text:"croûte continentale ≈ 30 km", lab:[108,140], col:CCONT, anc:st=>[st.ccont].filter(Boolean)},
+  {a:46.5, b:49, text:"croûte océanique ≈ 7 km", lab:[296,140], col:COCE, anc:st=>[st.coce].filter(Boolean)},
+  {a:48.9, b:50.9, text:"Moho", lab:[200,196], anc:st=>[st.mohoL, st.mohoR].filter(Boolean)},
+  {a:53.4, b:60.4, text:"la lithosphère se déplace d'un bloc", lab:[200,26], anc:st=>[st.rigide].filter(Boolean)},
+  {a:55, b:60.4, text:"l'asthénosphère se déforme", lab:[110,404], col:ASTHENO, anc:st=>[st.ductile].filter(Boolean)},
+  {a:63.4, b:69.8, text:"lithosphère = croûte + sommet du manteau", lab:[200,30], anc:st=>[st.cr, st.man].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[2,'pop'],[TP-.15,'spark'],[TP+.3,'whoosh'],[16.2,'step'],[TS-.15,'spark'],[TS+2.1,'error'],[24.3,'error'],[27.4,'step'],[28,'pinch'],[29.6,'fuse'],[35.4,'step'],[35.8,'pinch'],[42.2,'whoosh'],[47.5,'pinch'],[51.4,'step'],[52.6,'swap'],[61.2,'final']];
+for(const s of STATIONS){ if(s.th >= 0) CUES.push([s.p,'pop']); }
+
+const QUIZ = [
+ {q:"Pourquoi aucune onde S n'arrive-t-elle entre 103° et 180° de l'épicentre ?", o:["Parce que les ondes S sont trop lentes pour aller si loin","Parce que le noyau externe est liquide et que les ondes S ne traversent pas les liquides","Parce que la graine solide les réfléchit"], a:1,
+  ex:"Les ondes S (cisaillement) sont bloquées par les liquides. Cette zone d'ombre a permis d'affirmer que le noyau externe est liquide."},
+ {q:"Qu'est-ce qu'une discontinuité sismique ?", o:["Un endroit où il n'y a pas de séismes","Une variation brutale de la vitesse des ondes, qui signale un changement de milieu","Une faille à la surface du globe"], a:1,
+  ex:"La vitesse des ondes dépend du milieu (densité, rigidité, état). Un changement brutal de vitesse signale un changement de milieu : Moho, Gutenberg, Lehmann."},
+ {q:"Le Moho sépare :", o:["la lithosphère de l'asthénosphère (limite mécanique)","le manteau du noyau (vers 2900 km)","la croûte du manteau (limite chimique)"], a:2,
+  ex:"Le Moho est à environ 7 km sous les océans et 30 km sous les continents. C'est une limite chimique : il sépare deux roches différentes."},
+ {q:"Que contient la lithosphère ?", o:["La croûte seulement","La croûte et le sommet du manteau, rigides","Le manteau seulement"], a:1,
+  ex:"La lithosphère est définie par son comportement rigide, jusqu'à environ 100 km : elle contient la croûte ET le sommet du manteau. Dire « la lithosphère, c'est la croûte » est une erreur classique."}
+];
+
+ANIM.lancer({id:'globe', END:70, SCENES, CALL, CUES, QUIZ, draw, graine:17,
+  bascule:{des:61, saut:61.05, off:"Colorer selon le découpage mécanique", on:"Colorer selon le découpage chimique"}});
+})();
+</script>
+</body>
+</html>

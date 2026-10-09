@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>De l'ADN à la protéine</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#p3">← SVT Terminale</a> · Rappels de Première, fiche 3 : l'expression du patrimoine génétique</p>
+    <h1>De l'ADN à la protéine</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation de l'expression d'un gène : transcription par l'ARN polymérase dans le noyau, maturation par épissage, sortie de l'ARN messager par un pore nucléaire, traduction par le ribosome et les ARN de transfert, repliement de la protéine">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF5CA8"></span>exons (une couleur par exon)</li>
+        <li><span class="sw" style="background:#6F7C99"></span>introns</li>
+        <li><span class="sw" style="background:#FF9F43"></span>ARN polymérase</li>
+        <li><span class="sw" style="background:#9B87FF"></span>ribosome</li>
+        <li><span class="sw" style="background:#DDE6F5"></span>ARN de transfert</li>
+        <li><span class="sw" style="background:#AFC0E0"></span>ADN</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : un gène très court (4 exons, 3 introns) et une protéine de 9 acides aminés seulement ; les vraies protéines en comptent souvent plusieurs centaines. Les codons, anticodons et acides aminés respectent le code génétique.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, sm, lerp, f, op, smooth, strand, wobblyEllipse, cellPath, flash, arc, mix, AMB, MAG, CYA} = ANIM.H;
+const VERT = '#B7D94C', ORANGE = '#FF9F43', BLANC = '#F2F5FA', GRIS = '#9FB0CC', LILAS = '#9B87FF', ARNT = '#DDE6F5', INTRON = '#6F7C99';
+const BC = {A:'#FF7A6B', T:'#FFD166', U:'#FFD166', C:'#5AA9FF', G:'#C38BFF'};
+const EXC = [MAG, AMB, CYA, VERT];
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return keys[0].slice(1);
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return a.slice(1).map((v,n) => lerp(v, b[n+1], u)); }
+  }
+  return keys[keys.length-1].slice(1);
+}
+
+/* ---------- le gène : 4 exons, 3 introns (longueurs en nucléotides) ---------- */
+const SEG = [['E',0,9],['I',0,6],['E',1,9],['I',1,5],['E',2,6],['I',2,4],['E',3,6]];
+const UNIT = []; SEG.forEach(([ty, ix, n], s) => { for(let j=0; j<n; j++) UNIT.push({ty, ix, s, col: ty === 'E' ? EXC[ix] : INTRON}); });
+const NU = UNIT.length, GX = 65, ux = i => GX + 6*i + 3;
+const NX = 200, NY = 118, NRX = 165, NRY = 92;
+/* codons de l'ARNm (code génétique réel) et acides aminés */
+const CODONS = ['AUG','GCU','UUC','GGA','AAG','UGC','CAU','UGG','GAA','UAA'];
+const CEX = [0,0,0,1,1,1,2,2,3,3];
+const AAS = [['Met','#F5C451'],['Ala','#FF7A6B'],['Phe','#5AA9FF'],['Gly','#B7D94C'],['Lys','#C38BFF'],['Cys','#F2F5FA'],['His','#3FD9C8'],['Trp','#FF9F43'],['Glu','#FF5CA8'],null];
+const ANTI = c => c.split('').map(b => ({A:'U', U:'A', G:'C', C:'G'})[b]).join('');
+const PLANS = [[0,1,2,3,4,5,6,7,8,9],[0,1,2,3,4,5,8,9]].map(ix => ix.map(i => ({cod:CODONS[i], ex:CEX[i], aa:AAS[i]})));
+const FOLD = [[-20,-18],[-4,-24],[12,-17],[19,-2],[5,6],[-11,2],[-22,14],[-8,24],[10,20]];
+const PC = [240, 252];
+
+/* ---------- vue (zoom), partagée avec les légendes ---------- */
+const V = {cx:200, cy:215, z:1};
+const w2s = (x,y) => [200 + (x - V.cx)*V.z, 215 + (y - V.cy)*V.z];
+const s2w = (x,y) => [V.cx + (x - 200)/V.z, V.cy + (y - 215)/V.z];
+const cl = (a, b, text, sx, sy, anc, more={}) => Object.assign({a, b, text, anc, get lab(){ return s2w(sx, sy); }}, more);
+
+/* ---------- transcription ---------- */
+const uT = t => t < 7.5 ? 0 : t < 12 ? lerp(0, 9, (t-7.5)/4.5) : t < 16.5 ? lerp(9, NU, (t-12)/4.5) : NU;
+function polPos(t){
+  if(t < 7.5) return kf([[5.6, 30, 30],[7.4, GX + 1, 98]], t);
+  if(t < 16.5) return [GX + 6*uT(t) + 1, 98];
+  return kf([[16.5, GX + 6*NU + 1, 98],[18.3, 372, 44]], t);
+}
+
+/* ---------- sortie du noyau : trajet à travers le pore ---------- */
+const TKP = [[330,112],[338,135],[320,158],[285,172],[245,184],[212,196],[200,210],[200,232],[190,262],[165,285],[125,298],[80,302],[35,303]];
+const TKL = [0]; for(let i=1; i<TKP.length; i++) TKL.push(TKL[i-1] + Math.hypot(TKP[i][0]-TKP[i-1][0], TKP[i][1]-TKP[i-1][1]));
+const HPORE = TKL[6] - 2;
+function track(a){
+  a = clamp(a, 0, TKL[TKL.length-1]);
+  let i = 1; while(i < TKL.length - 1 && TKL[i] < a) i++;
+  const u = (a - TKL[i-1])/(TKL[i] - TKL[i-1]);
+  return [lerp(TKP[i-1][0], TKP[i][0], u), lerp(TKP[i-1][1], TKP[i][1], u)];
+}
+
+/* ---------- boucle d'un intron : arc de longueur S sur une corde c ---------- */
+function loopPts(A, c, S, n, y){
+  if(c >= S*.999) return Array.from({length:n}, (_,j) => [A + c*(j + .5)/n, y]);
+  const r = c/S; let lo = 1e-4, hi = Math.PI;
+  for(let it=0; it<30; it++){ const m = (lo + hi)/2; if(Math.sin(m)/m > r) lo = m; else hi = m; }
+  const th = (lo + hi)/2, R = S/(2*th), Mx = A + c/2, Cy = y - R*Math.cos(th);
+  return Array.from({length:n}, (_,j) => { const ph = -th + 2*th*(j + .5)/n; return [Mx + R*Math.sin(ph), Cy + R*Math.cos(ph)]; });
+}
+
+/* ---------- traduction : calendrier ---------- */
+const YM = 330;
+function TR(o){
+  const P = PLANS[o], Nc = P.length, d = 12.8/(Nc - 2), X0 = 200 - 13.5*Nc;
+  const Tj = j => 43 + (j - 1)*d, bond = j => Tj(j) + .5*d, Tstop = 43 + (Nc - 2)*d;
+  return {P, Nc, d, X0, Tj, bond, Tstop, cc: c => X0 + 27*c + 13.5};
+}
+
+function rnaRuns(chain, w, o){
+  /* découpe une chaîne de points colorés en tronçons d'une seule couleur */
+  let s = '', run = [];
+  for(let i=0; i<chain.length; i++){
+    run.push(chain[i].p);
+    const nx = chain[i+1];
+    if(!nx || nx.col !== chain[i].col){
+      if(nx){ const m = [(chain[i].p[0] + nx.p[0])/2, (chain[i].p[1] + nx.p[1])/2]; run.push(m); }
+      if(run.length > 1) s += strand(smooth(run), chain[i].col, w, o);
+      run = nx ? [[(chain[i].p[0] + nx.p[0])/2, (chain[i].p[1] + nx.p[1])/2]] : [];
+    }
+  }
+  return s;
+}
+function chip(x, y, txt, col, o=1, size=10){
+  if(o <= 0) return '';
+  const w = txt.length*size*.6 + size;
+  return `<g opacity="${op(o)}"><rect x="${f(x-w/2)}" y="${f(y-size*.7)}" width="${f(w)}" height="${f(size*1.4)}" rx="${f(size*.7)}" fill="#0A1222" fill-opacity=".88"/><text x="${f(x)}" y="${f(y)}" dy=".35em" font-size="${size}" font-weight="700" fill="${col}">${txt}</text></g>`;
+}
+function tile(x, y, b, o=1, s=7.4){
+  return `<g opacity="${op(o)}"><rect x="${f(x - s/2)}" y="${f(y - s/2)}" width="${f(s)}" height="${f(s)}" rx="1.6" fill="${BC[b]}"/><text x="${f(x)}" y="${f(y)}" dy=".36em" font-size="${f(s*.78)}" font-weight="800" fill="#0A1222" text-anchor="middle">${b}</text></g>`;
+}
+function trna(x, y, anti, o){
+  /* x, y : milieu de l'anticodon */
+  if(o <= 0) return {s:'', top:[x, y - 40]};
+  const b = y - 6;
+  let s = `<g opacity="${op(o)}"><path d="M${f(x-9)} ${f(b)} C${f(x-10)} ${f(b-10)} ${f(x-4)} ${f(b-12)} ${f(x-4)} ${f(b-17)} C${f(x-16)} ${f(b-14)} ${f(x-17)} ${f(b-27)} ${f(x-5)} ${f(b-25)} L${f(x-3)} ${f(b-34)} L${f(x+3)} ${f(b-34)} L${f(x+5)} ${f(b-25)} C${f(x+17)} ${f(b-27)} ${f(x+16)} ${f(b-14)} ${f(x+4)} ${f(b-17)} C${f(x+4)} ${f(b-12)} ${f(x+10)} ${f(b-10)} ${f(x+9)} ${f(b)} Z" fill="${ARNT}" fill-opacity=".22" stroke="${ARNT}" stroke-width="1.4" stroke-linejoin="round"/>`;
+  for(let i=0; i<3; i++) s += tile(x + (i - 1)*9, y, anti[i], 1, 7.4);
+  return {s: s + '</g>', top:[x, b - 41]};
+}
+function bead(p, aa, o){
+  if(o <= 0 || !aa) return '';
+  return `<g opacity="${op(o)}"><circle cx="${f(p[0])}" cy="${f(p[1])}" r="8.2" fill="${aa[1]}" stroke="#FFFFFF" stroke-opacity=".7"/><text x="${f(p[0])}" y="${f(p[1])}" dy=".36em" font-size="5.8" font-weight="800" fill="#0A1222" text-anchor="middle">${aa[0]}</text></g>`;
+}
+function chainFrom(A, n, t){
+  const pts = [A]; let p = A;
+  for(let q=1; q<=n; q++){ const ang = lerp(-1.95, -2.95, Math.min(q/4, 1)) + .22*Math.sin(q*1.3 + t*.9); p = [p[0] + 17*Math.cos(ang), p[1] + 17*Math.sin(ang)]; pts.push(p); }
+  return pts;
+}
+
+function draw(c){
+  const {t, k, opt:o} = c;
+  const st = {}; let cells = '', nuc = '', sp = '', ch = '', lt = '', fx = '', lab = '', hud = '';
+  const R = TR(o), Lm = R.Nc*3;
+
+  /* ---------- ribosome : position, pour la caméra ---------- */
+  let rbx = R.X0 + 27;
+  for(let j=1; j<=R.Nc-2; j++) rbx += 27*k(R.Tj(j) + .55*R.d, R.Tj(j) + .95*R.d);
+
+  /* ---------- caméra ---------- */
+  const wN = k(5.6,7.4)*(1 - k(29.4,31.2)), wT = k(35.8,38.3)*(1 - k(59.4,61.4)), wF = k(59.4,61.4);
+  const z = 1 + .45*wN + .55*wT + .35*wF;
+  V.z = z; V.cx = 200 + (clamp(rbx, 140, 262) - 200)*wT + (PC[0] - 200)*.4*wF; V.cy = 215 + (112 - 215)*wN + (288 - 215)*wT + (262 - 215)*wF;
+  const tf = z > 1.001 ? `translate(200 215) scale(${z.toFixed(3)}) translate(${f(-V.cx)} ${f(-V.cy)})` : '';
+
+  /* ---------- cellule et noyau ---------- */
+  const cp = cellPath([[200, 215, 192, 207]]);
+  const nd = wobblyEllipse(NX, NY, NRX, NRY, .7, .6), nd2 = wobblyEllipse(NX, NY, NRX + 5, NRY + 5, .7, .6);
+  nuc += `<path d="${nd2}" fill="#1B2D52"/><path d="${nd}" fill="#1E3360"/><path d="${nd2}" fill="none" stroke="#86A9DB" stroke-width="1.6"/><path d="${nd}" fill="none" stroke="#86A9DB" stroke-width="1.6"/>`;
+  for(const deg of [90, 22, 55, 125, 158, 200, 236, 270, 304, 340]){
+    const a = deg*Math.PI/180, ex = Math.cos(a)*(NRX + 2.5), ey = Math.sin(a)*(NRY + 2.5), px = NX + ex, py = NY + ey;
+    const nx = Math.cos(a)/NRX, ny = Math.sin(a)/NRY, L = Math.hypot(nx, ny), ang = Math.atan2(ny/L, nx/L)*180/Math.PI;
+    nuc += `<g transform="translate(${f(px)} ${f(py)}) rotate(${f(ang)})"><rect x="-6" y="-5" width="12" height="10" fill="#1E3360"/><circle cx="0" cy="-5.4" r="2" fill="#86A9DB"/><circle cx="0" cy="5.4" r="2" fill="#86A9DB"/></g>`;
+  }
+  st.pore = [NX, NY + NRY + 2.5];
+
+  /* ---------- ADN : bulle de transcription ---------- */
+  const pp = polPos(t), act = k(7,7.6)*(1 - k(16.4,17.2));
+  const bub = x => act*Math.exp(-Math.pow((x - pp[0])/13, 2));
+  const wv = x => 1.2*Math.sin(x*.05 - t*.7);
+  const yA = x => 91 - 7*bub(x) + wv(x), yB = x => 101 + 7*bub(x) + wv(x);
+  const xsD = []; for(let x=48; x<=352; x+=6) xsD.push(x);
+  let rg = '';
+  for(let kk=-3; kk<=NU+3; kk++){
+    const x = ux(kk); if(x < 50 || x > 350) continue;
+    const u = UNIT[kk], col = u ? mix(u.col, '#1E3360', .08) : '#4A5878';
+    const y1 = yA(x), y2 = yB(x);
+    rg += `<line x1="${f(x)}" y1="${f(y1 + 1.5)}" x2="${f(x)}" y2="${f(y1 + 4.4)}" stroke="${col}" stroke-width="3"/><line x1="${f(x)}" y1="${f(y2 - 1.5)}" x2="${f(x)}" y2="${f(y2 - 4.4)}" stroke="${col}" stroke-width="3"/>`;
+  }
+  nuc += rg;
+  ch += strand(smooth(xsD.map(x => [x, yA(x)])), '#8094BC', 3.4) + strand(smooth(xsD.map(x => [x, yB(x)])), '#AFC0E0', 3.4);
+  st.gene = [200, 96]; st.brin = [Math.min(pp[0] + 46, 340), yB(Math.min(pp[0] + 46, 340))];
+  const dl = k(6.6,7.4)*(1 - k(17,18));
+  if(dl > 0) lab += chip(42, yA(48), "5'", '#AFC0E0', dl, 7) + chip(42, yB(48), "3'", '#AFC0E0', dl, 7) + chip(358, yA(352), "3'", '#AFC0E0', dl, 7) + chip(358, yB(352), "5'", '#AFC0E0', dl, 7);
+
+  /* ---------- l'ARN ---------- */
+  let chain = [];
+  if(t < 29.6){
+    const n = uT(t);
+    /* positions pendant la transcription */
+    const posT = i => {
+      const x = ux(i), d = pp[0] - x, pe = act > 0 ? sm((d - 4)/42) : 1, pe2 = Math.max(pe, 1 - act);
+      return [x - 3*pe2, lerp(yB(x) - 6, 146 + 2*Math.sin(x*.07 - t), pe2)];
+    };
+    /* positions pendant la maturation */
+    const m0 = k(17.5,19.3);
+    const groups = o ? [[0,'k'],[1,'c',19.8,22],[2,'k'],[3,'c',21,24.4],[4,'c',21,24.4],[5,'c',21,24.4],[6,'k']]
+                     : [[0,'k'],[1,'c',19.8,22],[2,'k'],[3,'c',21,23.2],[4,'k'],[5,'c',22.2,24.4],[6,'k']];
+    /* regroupe les segments excisés consécutifs (épissage alternatif : I2 + E3 + I3) */
+    const items = [];
+    for(const g of groups){ const last = items[items.length-1]; if(g[1] === 'c' && last && last.kind === 'c' && last.a === g[2]) last.segs.push(g[0]); else items.push(g[1] === 'k' ? {kind:'k', segs:[g[0]]} : {kind:'c', segs:[g[0]], a:g[2], b:g[3]}); }
+    const units = s => UNIT.map((u,i) => i).filter(i => s.includes(UNIT[i].s));
+    let W = 0; for(const it of items){ it.u = units(it.segs); it.n = it.u.length; it.P = it.kind === 'c' ? kAtL(t, it.a, it.b) : 0; it.q = it.kind === 'c' ? lin(t, it.b + .2, it.b + 1.9) : 0; W += it.kind === 'k' ? 6*it.n : (it.P >= 1 ? 0 : 6*it.n*(1 - it.P)); }
+    let x = 200 - W/2; const pos = new Array(NU), loops = [];
+    for(const it of items){
+      if(it.kind === 'k'){ it.u.forEach((i, j) => { const xx = x + 6*(j + .5); pos[i] = [xx, 150 + 1.5*Math.sin(xx*.06 - t)]; }); x += 6*it.n; }
+      else {
+        const cc = it.P >= 1 ? 0 : 6*it.n*(1 - it.P), pts = loopPts(x, Math.max(cc, .001), 6*it.n, it.n, 150);
+        if(it.q > 0){ const cxl = x, cyl = 150 + 6*it.n/(2*Math.PI); pts.forEach((p, j) => { pos[it.u[j]] = [cxl + (p[0] - cxl)*(1 - .4*it.q), cyl + (p[1] - cyl)*(1 - .4*it.q) + 34*it.q]; }); loops.push(it); }
+        else it.u.forEach((i, j) => { pos[i] = pts[j]; });
+        it.x0 = x; x += cc;
+      }
+    }
+    /* chaîne principale */
+    for(let i=0; i<NU; i++){
+      if(t < 17.5 && i + .5 > n) break;
+      const it = items.find(v => v.u.includes(i));
+      if(it.kind === 'c' && it.q > 0) continue;
+      const p0 = posT(i), p = t < 17.5 ? p0 : [lerp(p0[0], pos[i][0], m0), lerp(p0[1], pos[i][1], m0)];
+      chain.push({p, col: UNIT[i].col, i});
+    }
+    if(t < 17.5 && n > 0 && n < NU){ const x2 = GX + 6*n, last = chain[chain.length-1]; chain.push({p:[x2, lerp(yB(x2) - 6, last ? last.p[1] : yB(x2) - 6, .3)], col: UNIT[Math.min(NU-1, Math.floor(n))].col}); }
+    ch += rnaRuns(chain, 5, 1);
+    /* introns excisés : anneaux qui s'éloignent et disparaissent */
+    for(const it of loops){
+      const oo = 1 - it.q; if(oo <= 0) continue;
+      const pts = it.u.map(i => pos[i]);
+      const segCols = it.u.map(i => UNIT[i].col);
+      const ring = pts.map((p, j) => ({p, col: segCols[j]}));
+      ring.push({p: pts[0], col: segCols[0]});
+      ch += rnaRuns(ring, 4.4, oo);
+    }
+    for(const it of items) if(it.kind === 'c') fx += flash(it.x0, 150, it.b, 1.2);
+    /* ancres */
+    const mid = chain[Math.floor(chain.length*.45)]; if(mid) st.rna = mid.p;
+    const i1 = items.find(v => v.kind === 'c'); if(i1 && i1.P > .2 && i1.q < .5) st.intron = pos[i1.u[Math.floor(i1.n/2)]];
+    const e2 = chain.find(v => v.i === 19); if(e2) st.exon = e2.p;
+    const e3 = chain.filter(v => v.i !== undefined && UNIT[v.i].s === 4); st.e3 = e3.length ? e3[Math.floor(e3.length/2)].p : null;
+    if(o && t > 21){ const it = items.find(v => v.segs.includes(4)); if(it && it.q < .5) st.e3 = pos[it.u[7]]; }
+    if(t > 25){ st.mrna5 = chain[0] && chain[0].p; }
+  } else {
+    /* ARN messager : sortie par le pore puis étalement dans le cytoplasme */
+    const kept = PLANS[o].flatMap(cd => [0,1,2].map(q => ({ex: cd.ex, b: cd.cod[q]})));
+    const h0 = HPORE, h1 = HPORE + 6*Lm + 24;
+    const hh = lerp(h0, h1, ease(lin(t, 31.8, 35.6)));
+    const a1 = k(30, 31.8), a3 = k(35.6, 38.2);
+    kept.forEach((u, s) => {
+      const pm = [200 - 3*Lm + 6*(s + .5), 150 + 1.5*Math.sin((200 - 3*Lm + 6*s)*.06 - t)];
+      const pt = track(hh - 6*(s + .5));
+      const xf = R.X0 + 9*s + 4.5, pf = [xf, YM + 1.2*Math.sin(xf*.05 - t*.8)];
+      let p = t < 31.8 ? [lerp(pm[0], pt[0], a1), lerp(pm[1], pt[1], a1)] : pt;
+      if(t >= 35.6) p = [lerp(pt[0], pf[0], a3), lerp(pt[1], pf[1], a3)];
+      chain.push({p, col: EXC[u.ex], b: u.b, s});
+    });
+    ch += rnaRuns(chain, 5, 1);
+    st.rna = chain[Math.floor(chain.length*.5)].p;
+    st.exit = track(HPORE + 14);
+    /* nucléotides et codons, visibles une fois l'ARNm étalé */
+    const lo = k(37.4, 38.6)*(1 - k(63.5, 65));
+    if(lo > 0){
+      for(const v of chain){ const [x, y] = v.p; nuc += `<line x1="${f(x)}" y1="${f(y - 2)}" x2="${f(x)}" y2="${f(y - 5)}" stroke="${BC[v.b]}" stroke-width="2.4" opacity="${op(lo)}"/>`; lt += tile(x, y - 8.5, v.b, lo, 7.4); }
+      for(let cI=0; cI<R.Nc; cI++){ const x0 = R.X0 + 27*cI + 2, x1 = x0 + 23; sp += `<path d="M${f(x0)} ${YM + 7} Q${f((x0 + x1)/2)} ${YM + 12} ${f(x1)} ${YM + 7}" fill="none" stroke="${EXC[R.P[cI].ex]}" stroke-width="1.5" opacity="${op(lo*.85)}"/>`; }
+      lab += chip(R.X0 - 10, YM, "5'", BLANC, lo, 7) + chip(R.X0 + 27*R.Nc + 10, YM, "3'", BLANC, lo, 7);
+      st.codon0 = [R.cc(0), YM - 8.5];
+    }
+  }
+
+  /* ---------- ARN polymérase ---------- */
+  const po = k(5.6,6.2)*(1 - k(17.4,18.3));
+  if(po > 0){ fx += `<g opacity="${op(po)}"><ellipse cx="${f(pp[0])}" cy="${f(pp[1])}" rx="19" ry="15" fill="${ORANGE}" fill-opacity=".28" stroke="${ORANGE}" stroke-width="1.8"/><path d="M${f(pp[0] - 3)} ${f(pp[1] - 5)} l5 5 l-5 5" fill="none" stroke="${ORANGE}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></g>`; st.pol = [pp[0], pp[1] - 4]; }
+
+  /* ---------- traduction ---------- */
+  const ro = k(38.2,38.8)*(1 - k(R.Tstop + 1.6, R.Tstop + 2.8));
+  if(t > 38.2 && ro > 0){
+    const sep = k(R.Tstop + 1, R.Tstop + 2.6);
+    const [lx, ly] = kf([[38.8, R.X0 - 60, YM - 100],[40.6, rbx, YM - 31]], t), [sx, sy] = kf([[38.4, R.X0 - 70, YM + 60],[40.2, rbx, YM + 12]], t);
+    const LX = t < 40.6 ? lx : rbx, LY = (t < 40.6 ? ly : YM - 31) - 40*sep, SX = t < 40.2 ? sx : rbx, SY = (t < 40.2 ? sy : YM + 12) + 30*sep;
+    cells += `<g opacity="${op(ro)}"><path d="M${f(LX - 38)} ${f(LY + 26)} C${f(LX - 44)} ${f(LY - 6)} ${f(LX - 26)} ${f(LY - 30)} ${f(LX)} ${f(LY - 30)} C${f(LX + 26)} ${f(LY - 30)} ${f(LX + 44)} ${f(LY - 6)} ${f(LX + 38)} ${f(LY + 26)} Z" fill="${LILAS}" fill-opacity=".2" stroke="${LILAS}" stroke-width="1.8"/></g>`;
+    fx += `<g opacity="${op(ro)}"><ellipse cx="${f(SX)}" cy="${f(SY)}" rx="36" ry="10" fill="${LILAS}" fill-opacity=".3" stroke="${LILAS}" stroke-width="1.8"/></g>`;
+    st.ribo = [LX + 30, LY - 18];
+  }
+  /* ARNt et chaîne d'acides aminés */
+  if(t > 40.4){
+    const tops = [];
+    for(let cI=0; cI<=R.Nc-2; cI++){
+      const ta = cI === 0 ? 40.6 : R.Tj(cI), tb = cI === 0 ? 42.4 : R.Tj(cI) + .45*R.d;
+      if(t < ta) { tops.push(null); continue; }
+      const lv0 = cI < R.Nc-2 ? R.Tj(cI + 1) + .55*R.d : R.Tstop + .8, lv1 = cI < R.Nc-2 ? R.Tj(cI + 1) + 1.15*R.d : R.Tstop + 2.4;
+      const home = [R.cc(cI), YM - 19.5];
+      let p = arc([R.cc(cI) + 60, YM - 130], home, 20, kAtL(t, ta, tb));
+      const lv = kAtL(t, lv0, lv1);
+      if(lv > 0) p = [p[0] - 40*lv, p[1] - 70*lv];
+      const oo = lin(t, ta, ta + .4)*(1 - lv);
+      const tr = trna(p[0], p[1], ANTI(R.P[cI].cod), oo);
+      fx += tr.s; tops.push(oo > 0 ? tr.top : null);
+      if(lv === 0 && kAtL(t, ta, tb) > .97){ st.trna0 = [p[0] + 12, p[1] - 26]; st.anti0 = [p[0] + 9, p[1]]; }
+    }
+    /* configuration de la chaîne */
+    let newest = 0, u = 1;
+    for(let j=1; j<=R.Nc-2; j++){ if(t >= R.bond(j) - .15*R.d){ newest = j; u = kAtL(t, R.bond(j) - .15*R.d, R.bond(j) + .2*R.d); } }
+    const free = k(R.Tstop + .8, R.Tstop + 2.6), fold = k(59.6, 63.4);
+    const anchorOf = j => tops[j] || [R.cc(j), YM - 61];
+    let A = anchorOf(newest);
+    if(free > 0) A = [lerp(A[0], PC[0] + 14, free), lerp(A[1], PC[1] - 4, free)];
+    const cfgB = chainFrom(A, newest, t);
+    const cfgA = newest > 0 ? chainFrom(anchorOf(newest - 1), newest - 1, t) : null;
+    const P = [];
+    for(let q=0; q<=newest; q++){
+      const idx = newest - q;
+      let p = cfgB[q];
+      if(cfgA && u < 1){ const pa = idx === newest ? anchorOf(newest) : cfgA[q - 1]; p = [lerp(pa[0], p[0], u), lerp(pa[1], p[1], u)]; }
+      P[idx] = p;
+    }
+    const nb = newest + 1;
+    if(fold > 0){ const off = [-(FOLD.slice(0, nb).reduce((s, v) => s + v[0], 0))/nb, -(FOLD.slice(0, nb).reduce((s, v) => s + v[1], 0))/nb]; for(let i=0; i<nb; i++){ const tg = [PC[0] + FOLD[i][0] + off[0], PC[1] + FOLD[i][1] + off[1]]; P[i] = [lerp(P[i][0], tg[0], fold), lerp(P[i][1], tg[1], fold)]; } }
+    /* acide aminé en attente sur son ARNt (pas encore lié) */
+    for(let cI=newest + 1; cI<=R.Nc-2; cI++) if(tops[cI]) ch += bead(tops[cI], R.P[cI].aa, 1);
+    /* liaisons peptidiques puis acides aminés */
+    const bo = 1;
+    for(let i=0; i<nb - 1; i++){
+      const ok = i + 1 < newest || u > .5;
+      if(ok) sp += `<line x1="${f(P[i][0])}" y1="${f(P[i][1])}" x2="${f(P[i+1][0])}" y2="${f(P[i+1][1])}" stroke="#FFFFFF" stroke-width="2.4" stroke-opacity="${op(bo*.85)}"/>`;
+    }
+    const pro = k(62.6, 64.2);
+    if(pro > 0){ const cx = PC[0], cy = PC[1]; cells += `<path d="${wobblyEllipse(cx, cy, 38, 34, 2, 1.5)}" fill="#E9EEF7" fill-opacity="${op(.1*pro)}" stroke="#E9EEF7" stroke-opacity="${op(.55*pro)}" stroke-width="1.6"/>`; st.prot = [cx + 30, cy - 22]; }
+    for(let i=0; i<nb; i++) ch += bead(P[i], R.P[i].aa, 1);
+    for(let j=1; j<=R.Nc-2; j++){ if(j <= newest){ const m = [(P[j][0] + P[j-1][0])/2, (P[j][1] + P[j-1][1])/2]; fx += flash(m[0], m[1], R.bond(j), 1); } }
+    st.aa = P[newest]; if(newest >= 2) st.bond = [(P[newest - 1][0] + P[newest - 2][0])/2, (P[newest - 1][1] + P[newest - 2][1])/2];
+    st.chain = P.slice(0, Math.max(0, nb - 1)).filter((_, i) => i % 2 === 0).slice(-3);
+    st.stop = [R.cc(R.Nc - 1), YM - 8.5];
+    /* lecture : codon, anticodon, acide aminé */
+    let cur = -1; if(t >= 40.6 && t < 43) cur = 0; for(let j=1; j<=R.Nc-2; j++) if(t >= R.Tj(j) && t < R.Tj(j) + R.d) cur = j;
+    if(cur >= 0){ const cd = R.P[cur]; const oo = cur === 0 ? k(40.6, 41.2)*(1 - k(42.6, 43)) : k(R.Tj(cur), R.Tj(cur) + .3)*(1 - k(R.Tj(cur) + R.d - .25, R.Tj(cur) + R.d));
+      hud += chip(200, 410, `codon ${cd.cod}  ·  anticodon ${ANTI(cd.cod)}  ·  acide aminé ${cd.aa[0]}`, BLANC, oo, 11); }
+    const so = k(R.Tstop + .1, R.Tstop + .6)*(1 - k(R.Tstop + 2.8, R.Tstop + 3.3));
+    if(so > 0){ hud += chip(200, 410, 'codon UAA : codon stop, aucun ARNt ne lui correspond', '#FF7A6B', so, 11); fx += `<rect x="${f(R.cc(R.Nc-1) - 14)}" y="${YM - 15}" width="28" height="13" rx="3" fill="none" stroke="#FF7A6B" stroke-width="1.6" opacity="${op(so)}"/>`; }
+  }
+
+  /* ---------- encart : U remplace T ---------- */
+  const io = k(8.2, 8.8)*(1 - k(16.8, 17.5));
+  if(io > 0){
+    const DNA = 'TACCGAAAG', ARN = 'AUGGCUUUC', n = uT(t);
+    let s = `<g opacity="${op(io)}"><rect x="16" y="318" width="368" height="98" rx="14" fill="#0A1222" fill-opacity=".9" stroke="${GRIS}" stroke-opacity=".35"/>`;
+    s += `<text x="200" y="336" dy=".36em" font-size="11" font-weight="700" fill="${GRIS}">Complémentarité : dans l'ARN, <tspan fill="${BC.U}">U</tspan> remplace <tspan fill="${BC.T}">T</tspan></text>`;
+    s += `<text x="26" y="364" dy=".36em" font-size="10.5" font-weight="700" fill="#AFC0E0" text-anchor="start">ADN, brin transcrit</text><text x="26" y="396" dy=".36em" font-size="10.5" font-weight="700" fill="${EXC[0]}" text-anchor="start">ARN pré-messager</text>`;
+    s += `<text x="148" y="364" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">3'</text><text x="372" y="364" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">5'</text>`;
+    s += `<text x="148" y="396" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">5'</text><text x="372" y="396" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">3'</text>`;
+    for(let i=0; i<9; i++){
+      const x = 168 + 22*i;
+      s += tile(x, 364, DNA[i], 1, 17);
+      const a = lin(n, i + .4, i + 1);
+      if(a > 0){ s += `<g transform="translate(0 ${f(8*(1 - a))})">` + tile(x, 396, ARN[i], a, 17) + '</g>'; if(ARN[i] === 'U') s += `<rect x="${f(x - 10.5)}" y="385.5" width="21" height="21" rx="4" fill="none" stroke="#FFFFFF" stroke-width="1.4" opacity="${op(a)}"/>`; }
+      s += `<line x1="${f(x)}" y1="${374}" x2="${f(x)}" y2="${385}" stroke="${GRIS}" stroke-opacity="${op(.5*a)}" stroke-dasharray="2 2"/>`;
+    }
+    hud += s + '</g>';
+  }
+
+  if(hud) lab += `<g transform="translate(${f(V.cx)} ${f(V.cy)}) scale(${(1/z).toFixed(4)}) translate(-200 -215)">${hud}</g>`;
+  st.noyau = [300, 50]; st.cyto = [110, 330];
+  return {tf, cp, cells, nuc, sp, chr:ch, let:lt, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:6, title:"Un gène, dans le noyau",
+  text:"Chez les eucaryotes, l'ADN reste dans le <strong>noyau</strong>, entouré d'une enveloppe percée de <strong>pores nucléaires</strong>. Un <strong>gène</strong> est une portion d'ADN : ses <strong>exons</strong> (en couleurs) alternent avec des <strong>introns</strong> (en gris). Les protéines, elles, sont fabriquées dans le <strong>cytoplasme</strong>.",
+  state:"1 gène : 4 exons, 3 introns"},
+ {t:6, e:17.5, title:"La transcription",
+  text:"L'<strong>ARN polymérase</strong> ouvre localement l'ADN et avance le long du gène. Elle copie le <strong>brin transcrit</strong> par complémentarité, en plaçant <strong>U (uracile)</strong> là où l'ADN aurait T. Le produit est un <strong>ARN pré-messager</strong>, simple brin, qui contient encore les introns.",
+  state:"1 ARN pré-messager : exons + introns"},
+ {t:17.5, e:29.5, title:o => o ? "La maturation : un épissage alternatif" : "La maturation : l'épissage",
+  text:o => o ? "<strong>Épissage alternatif</strong> : cette fois, l'exon 3 est retiré avec les deux introns qui l'entourent. Le même ARN pré-messager donne un <strong>autre ARN messager</strong>, donc une autre protéine. C'est pourquoi le nombre de protéines dépasse largement le nombre de gènes."
+              : "Les <strong>introns</strong> forment des boucles et sont <strong>excisés</strong>. Les <strong>exons</strong> sont raboutés : on obtient l'<strong>ARN messager</strong> (ARNm), plus court. Selon les cellules, certains exons peuvent aussi être retirés : c'est l'<strong>épissage alternatif</strong> (bouton ci-dessous).",
+  state:o => o ? "ARN messager : exons 1, 2 et 4" : "ARN messager : exons 1, 2, 3 et 4"},
+ {t:29.5, e:38.5, title:"La sortie du noyau",
+  text:"L'ARN messager franchit un <strong>pore nucléaire</strong> et rejoint le <strong>cytoplasme</strong>. L'ADN, lui, ne quitte jamais le noyau : l'ARNm en est une copie de travail.",
+  state:"ARNm dans le cytoplasme, ADN dans le noyau"},
+ {t:38.5, e:43, title:"Le ribosome se fixe",
+  text:"Un <strong>ribosome</strong> se fixe sur l'ARNm, au niveau du codon initiateur <strong>AUG</strong>. Un <strong>ARN de transfert</strong> (ARNt) s'y place : son <strong>anticodon</strong> UAC est complémentaire du codon AUG. Il apporte l'acide aminé correspondant, la méthionine (Met).",
+  state:"Ribosome + premier ARNt sur le codon AUG"},
+ {t:43, e:55.8, title:"La traduction, codon par codon",
+  text:"Le ribosome lit l'ARNm <strong>codon par codon</strong> (un codon = 3 nucléotides). Pour chaque codon, l'ARNt dont l'anticodon est complémentaire apporte son <strong>acide aminé</strong>. Une <strong>liaison peptidique</strong> relie la chaîne au nouvel acide aminé, puis le ribosome avance d'un codon.",
+  state:o => o ? "La chaîne s'allonge : jusqu'à 7 acides aminés" : "La chaîne s'allonge : jusqu'à 9 acides aminés"},
+ {t:55.8, e:59.4, title:"Le codon stop",
+  text:"Le codon <strong>UAA</strong> est un <strong>codon stop</strong> : aucun ARNt ne lui correspond. Le ribosome se détache de l'ARNm et libère la chaîne d'acides aminés.",
+  state:"Chaîne d'acides aminés libérée"},
+ {t:59.4, e:70, title:o => o ? "Une autre protéine" : "La protéine se replie",
+  text:o => o ? "Sans l'exon 3, la chaîne est plus courte (7 acides aminés au lieu de 9) et se replie autrement : c'est une <strong>autre protéine</strong>. Un même gène peut ainsi donner plusieurs protéines, grâce à l'<strong>épissage alternatif</strong>."
+              : "La chaîne se replie et prend une <strong>forme tridimensionnelle</strong> précise : c'est la <strong>protéine</strong>. La séquence des nucléotides détermine la séquence des acides aminés, qui détermine la forme de la protéine, donc sa <strong>fonction</strong>.",
+  state:o => o ? "Même gène, autre ARNm, autre protéine" : "1 gène, 1 ARNm, 1 protéine de 9 acides aminés"}
+];
+
+const CALL = [
+  cl(.8, 5.6, "noyau", 300, 22, st => [st.noyau].filter(Boolean)),
+  cl(1.6, 5.6, "gène", 120, 150, st => [st.gene].filter(Boolean)),
+  cl(2.4, 5.6, "pore nucléaire", 300, 262, st => [st.pore].filter(Boolean)),
+  cl(3.2, 5.6, "cytoplasme", 110, 372, st => [st.cyto].filter(Boolean)),
+  cl(7.8, 12.4, "ARN polymérase", 110, 110, st => [st.pol].filter(Boolean)),
+  cl(9.4, 13.6, "brin transcrit", 300, 110, st => [st.brin].filter(Boolean)),
+  cl(13, 17.2, "ARN pré-messager", 130, 290, st => [st.rna].filter(Boolean)),
+  cl(20.2, 24.4, "intron excisé", 290, 330, st => [st.intron].filter(Boolean)),
+  cl(19.4, 24.4, "exon", 110, 110, st => [st.exon].filter(Boolean)),
+  cl(20.4, 24, "exon 3 retiré", 110, 296, st => [st.e3].filter(Boolean), {si:o => !!o, col:'#FF7A6B'}),
+  cl(25.4, 29.4, "ARN messager (ARNm)", 200, 110, st => [st.rna].filter(Boolean)),
+  cl(31.6, 35.4, "pore nucléaire", 310, 250, st => [st.exit].filter(Boolean)),
+  cl(32.4, 37.2, "l'ADN reste dans le noyau", 230, 32, st => [st.gene].filter(Boolean)),
+  cl(39.2, 42.6, "ribosome", 330, 120, st => [st.ribo].filter(Boolean)),
+  cl(40.2, 43.4, "codon initiateur AUG", 120, 360, st => [st.codon0].filter(Boolean)),
+  cl(41.6, 45.6, "ARN de transfert", 300, 60, st => [st.trna0].filter(Boolean)),
+  cl(42.4, 46, "anticodon", 300, 360, st => [st.anti0].filter(Boolean)),
+  cl(46.2, 50, "acide aminé", 290, 60, st => [st.aa].filter(Boolean)),
+  cl(48.4, 52.6, "liaison peptidique", 110, 60, st => [st.bond].filter(Boolean)),
+  cl(52.6, 55.8, "chaîne d'acides aminés", 120, 60, st => st.chain || []),
+  cl(56.2, 59.2, "codon stop", 300, 120, st => [st.stop].filter(Boolean), {col:'#FF7A6B'}),
+  cl(63.6, 69.8, "protéine", 330, 120, st => [st.prot].filter(Boolean))
+];
+
+const CUES = [[.2,'step'],[6.2,'whoosh'],[7.6,'pair'],[17.6,'step'],[22,'pinch'],[23.2,'pinch',o=>!o],[24.4,'pinch'],[29.6,'step'],[32,'whoosh'],[38.6,'step'],[40.4,'fuse'],[42.2,'pop'],
+  ...[1,2,3,4,5,6,7,8].map(j => [43 + (j - 1)*1.6 + .8, 'spark', o => !o]), ...[1,2,3,4,5,6].map(j => [43 + (j - 1)*12.8/6 + 12.8/12, 'spark', o => !!o]),
+  [55.9,'error'],[57,'split'],[59.6,'step'],[63.4,'final']];
+
+const QUIZ = [
+ {q:"Chez les eucaryotes, où se déroule la traduction ?", o:["Dans le noyau, sur l'ADN","Dans le cytoplasme, sur les ribosomes","Dans les pores nucléaires"], a:1,
+  ex:"L'ARNm sort du noyau par un pore nucléaire et les ribosomes le traduisent dans le cytoplasme. L'ADN, lui, reste dans le noyau."},
+ {q:"Le brin transcrit de l'ADN porte la séquence TAC. Quelle séquence porte l'ARN produit ?", o:["ATG","AUG","UAC"], a:1,
+  ex:"Complémentarité : T donne A, A donne U, C donne G. Dans l'ARN, l'uracile (U) remplace la thymine (T)."},
+ {q:"Que se passe-t-il lors de la maturation de l'ARN pré-messager ?", o:["Les exons sont excisés et les introns raboutés","Les introns sont excisés et les exons raboutés","L'ARN est traduit en protéine"], a:1,
+  ex:"Les introns sont retirés et les exons raboutés : on obtient l'ARN messager. Avec l'épissage alternatif, un même pré-ARNm peut donner plusieurs ARNm, donc plusieurs protéines."},
+ {q:"Sur l'ARNm, le codon est GCU. Quel est l'anticodon de l'ARNt qui s'y fixe ?", o:["CGA","GCU","CGT"], a:0,
+  ex:"L'anticodon est complémentaire du codon : C face à G, G face à C, A face à U. Le codon est sur l'ARNm, l'anticodon sur l'ARNt (et il n'y a pas de T dans un ARN)."}
+];
+
+ANIM.lancer({id:'expression', END:70, SCENES, CALL, CUES, QUIZ, draw, graine:29,
+  bascule:{des:17.5, saut:17.55, off:"Voir un épissage alternatif", on:"Revoir l'épissage complet"}});
+})();
+</script>
+</body>
+</html>

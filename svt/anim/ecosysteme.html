@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>Flux d'énergie et cycle de la matière dans un écosystème</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#p9">← SVT Terminale</a> · Rappels de Première, fiche 9 : écosystèmes</p>
+    <h1>Flux d'énergie et cycle de la matière dans un écosystème</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation d'un écosystème : l'énergie solaire captée par les producteurs traverse la pyramide des niveaux trophiques en se perdant en chaleur, tandis que la matière est recyclée par les décomposeurs">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#F5C451"></span>énergie (lumière, puis matière organique)</li>
+        <li><span class="sw" style="background:#FF7A6B"></span>chaleur (respiration)</li>
+        <li><span class="sw" style="background:#C9925E"></span>matière organique morte</li>
+        <li><span class="sw" style="background:#8EC5FF"></span>matière minérale (CO₂, eau, sels minéraux)</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : les « paquets d'énergie » sont symboliques et la largeur des étages n'est pas à l'échelle (avec environ 90 % de pertes par niveau, chaque étage serait environ dix fois plus étroit que le précédent).</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, flash, halo, mix, label, AMB, MAG, CYA} = ANIM.H;
+const OR = '#F5C451', LUM = '#FFE9A8', VERT = '#B7D94C', ROUGE = '#FF7A6B', BRUN = '#C9925E', MIN = '#8EC5FF', VIOLET = '#B48CFF';
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+let seed = 17; const rnd = () => (seed = (seed*16807) % 2147483647, (seed-1)/2147483646);
+const hsh = (n,s) => { const x = Math.sin(n*127.1 + s*311.7)*43758.5453; return x - Math.floor(x); };
+
+const SUN = [50, 50], SOIL = 350, BH = 30, CX = 200;
+const LV = [
+  {nom:'producteurs', cy:292, L:50, R:350, col:VERT, r:4.6},
+  {nom:'consommateurs I', cy:246, L:100, R:300, col:CYA, r:3.6},
+  {nom:'consommateurs II', cy:202, L:135, R:265, col:MAG, r:2.8},
+  {nom:'consommateurs III', cy:160, L:162, R:238, col:VIOLET, r:2.2}
+];
+const TS = [22.5, 31, 39.2, 43.4];          /* départ des paquets de chaque niveau */
+const TA = [0, 25.3, 33.8, 42.0];           /* arrivée du paquet qui monte au niveau suivant */
+const slot = (L,i) => { const v = LV[L], p = 14; return [v.L + p + i*(v.R - v.L - 2*p)/9, v.cy + (i%2 ? 9 : -9)*(L === 3 ? .7 : 1)]; };
+const DEP = k => [44 + k*14, 358 + (k%2)*5];   /* dépôts de matière organique morte sur le sol */
+
+/* ---------- trajectoires ---------- */
+const E_ = {lin:u => u, ease, in:u => u*u, out:u => 1 - (1-u)*(1-u)};
+const seg = (a,b,P,e='ease') => ({a, b, P, e});
+const line = (A,B) => u => [lerp(A[0],B[0],u), lerp(A[1],B[1],u)];
+function bez(A,C,B,u){ const v = 1-u; return [v*v*A[0] + 2*v*u*C[0] + u*u*B[0], v*v*A[1] + 2*v*u*C[1] + u*u*B[1]]; }
+const heatCurve = (A,B,ph) => u => { const p = bez(A, [A[0]+34, A[1]-14], B, u); return [p[0] + 5*Math.sin(u*13 + ph)*u, p[1]]; };
+function pos(pk, tt){
+  const S = pk.segs;
+  if(tt <= S[0].a) return S[0].P(0);
+  for(let i=0; i<S.length; i++){
+    const s = S[i];
+    if(tt <= s.b) return s.P(E_[s.e](clamp((tt - s.a)/(s.b - s.a), 0, 1)));
+    if(i === S.length-1 || tt < S[i+1].a) return s.P(1);
+  }
+  return S[S.length-1].P(1);
+}
+
+/* ---------- les paquets d'énergie ---------- */
+const PK = [];
+let depK = 0;
+const LIGHT = [];                      /* lumière de la scène 2 */
+for(let n=0; n<60; n++){
+  const t0 = 6.4 + n*.12, a = .95 + rnd()*.5, S0 = [SUN[0] + 15*Math.cos(a), SUN[1] + 15*Math.sin(a)];
+  const land = [58 + rnd()*40, 279];
+  LIGHT.push({n, t0, S0, land, cap:n % 6 === 3, back:[land[0] - 25 - rnd()*45, 279 - 60 - rnd()*70]});
+}
+function roles(pk, L, i, tS, j){
+  const v = LV[L], s0 = slot(L,i);
+  if(pk.role === 'up'){
+    const nx = LV[L+1];
+    pk.segs.push(seg(tS+.4, tS+1.2, line(s0, [CX, v.cy])), seg(tS+1.4, tS+2.8, line([CX, v.cy], [CX, nx.cy]), 'lin'));
+    pk.die = tS + 2.85;
+  } else if(pk.role === 'heat'){
+    const ts = tS + .9 + j*.28, A = [v.R - 6, v.cy + (j%3 - 1)*5], B = [352 + rnd()*34, 28 + rnd()*72];
+    pk.segs.push(seg(ts, ts+.9, line(s0, A)), seg(ts+.9, ts+3.5, heatCurve(A, B, rnd()*6), 'out'));
+    pk.col = tt => mix(OR, ROUGE, kAtL(tt, ts+.8, ts+1.4));
+    pk.o = tt => 1 - lin(tt, ts+2.8, ts+3.5);
+    pk.heat = ts + .9;
+    pk.die = ts + 3.5;
+  } else {
+    const ts = tS + 1.2 + j*.7, A = [v.L + 6, v.cy], B = [24, v.cy + 8], C = [24, SOIL - 8], D = DEP(depK), fall = (C[1] - B[1])/130;
+    pk.segs.push(seg(ts, ts+.8, line(s0, A)), seg(ts+.8, ts+1.4, line(A, B)), seg(ts+1.4, ts+1.4+fall, line(B, C), 'in'), seg(ts+1.4+fall, ts+2+fall, line(C, D)));
+    pk.col = tt => mix(OR, BRUN, kAtL(tt, ts+.4, ts+1));
+    pk.rr = tt => lerp(v.r, 4.4, kAtL(tt, ts+1.4+fall, ts+2+fall));
+    const dk = 47.4 + depK*.62;
+    pk.dep = {k:depK, t:dk, at:ts+2+fall};
+    pk.o = tt => 1 - lin(tt, dk, dk+1.3);
+    pk.die = dk + 1.3;
+    depK++;
+  }
+}
+/* producteurs : 10 paquets captés dans la lumière */
+let c = 0;
+for(const l of LIGHT) if(l.cap){
+  const i = c++, pk = {L:0, i, born:l.t0, segs:[seg(l.t0, l.t0+1.3, line(l.S0, l.land), 'lin'), seg(l.t0+1.4, l.t0+2.6, line(l.land, slot(0,i)))]};
+  pk.rad = tt => lerp(2.2, LV[0].r, kAtL(tt, l.t0+1.25, l.t0+1.7));
+  pk.lum = l.t0 + 1.3;
+  PK.push(pk);
+}
+/* consommateurs : 10 paquets plus petits naissent quand le paquet monté arrive */
+for(let L=1; L<4; L++) for(let i=0; i<10; i++) PK.push({L, i, born:TA[L], segs:[seg(TA[L], TA[L]+1, line([CX, LV[L].cy], slot(L,i)))]});
+/* rôles : 1 monte, 2 tombent (cadavres, excréments), le reste part en chaleur */
+for(let L=0; L<4; L++){
+  const g = PK.filter(p => p.L === L); let jh = 0, jd = 0;
+  for(const pk of g){
+    pk.role = (L < 3 && pk.i === 4) ? 'up' : (pk.i === 0 || pk.i === 1) ? 'dead' : 'heat';
+    roles(pk, L, pk.i, TS[L], pk.role === 'heat' ? jh++ : jd++);
+  }
+}
+
+/* ---------- dessins ---------- */
+function dot(x, y, r, col, o=1, glow=true){
+  if(o <= 0) return '';
+  return `<g opacity="${op(o)}">${glow ? `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r*2.1)}" fill="${col}" fill-opacity=".18"/>` : ''}<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" fill="${col}"/><circle cx="${f(x - r*.3)}" cy="${f(y - r*.3)}" r="${f(r*.38)}" fill="#FFFFFF" fill-opacity=".55"/></g>`;
+}
+function trail(A, B, col, w, o){
+  if(o <= 0) return '';
+  return `<line x1="${f(A[0])}" y1="${f(A[1])}" x2="${f(B[0])}" y2="${f(B[1])}" stroke="${col}" stroke-width="${w}" stroke-linecap="round" stroke-opacity="${op(o)}"/>`;
+}
+/* flux continu de particules : fn(n, u, naissance) */
+function stream(tt, a, b, per, dur, fn){
+  let s = ''; if(tt < a) return s;
+  const n1 = Math.floor((Math.min(tt, b) - a)/per), n0 = Math.max(0, Math.ceil((tt - dur - a)/per));
+  for(let n=n0; n<=n1; n++){ const birth = a + n*per, u = (tt - birth)/dur; if(u >= 0 && u <= 1) s += fn(n, u, birth); }
+  return s;
+}
+function sun(t, o){
+  if(o <= 0) return '';
+  let s = `<g opacity="${op(o)}"><circle cx="${SUN[0]}" cy="${SUN[1]}" r="46" fill="url(#halo)"/>`;
+  for(let i=0; i<14; i++){ const a = i*Math.PI/7 + t*.12, L = 24 + 5*Math.sin(t*2 + i*1.7);
+    s += `<line x1="${f(SUN[0] + Math.cos(a)*20)}" y1="${f(SUN[1] + Math.sin(a)*20)}" x2="${f(SUN[0] + Math.cos(a)*L)}" y2="${f(SUN[1] + Math.sin(a)*L)}" stroke="${OR}" stroke-width="2" stroke-linecap="round" stroke-opacity=".75"/>`; }
+  return s + `<circle cx="${SUN[0]}" cy="${SUN[1]}" r="16" fill="#FFD86B"/><circle cx="${SUN[0]-4}" cy="${SUN[1]-4}" r="7" fill="#FFF3C4" fill-opacity=".7"/></g>`;
+}
+function soil(t){
+  let d = `M0 ${SOIL}`;
+  for(let x=0; x<=400; x+=20) d += ` L${x} ${f(SOIL + 3*Math.sin(x*.07) + 2*Math.sin(x*.19 + 1))}`;
+  d += ' L400 430 L0 430Z';
+  let s = `<path d="${d}" fill="#2A1D14"/><path d="${d}" fill="none" stroke="#6B4A31" stroke-width="2"/>`;
+  for(let i=0; i<26; i++){ const x = hsh(i,1)*400, y = SOIL + 14 + hsh(i,2)*70; s += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(1 + hsh(i,3)*2.2)}" fill="#5A4030" fill-opacity=".7"/>`; }
+  return s;
+}
+/* champignons (hyphes) et bactéries du sol */
+const BACT = Array.from({length:10}, (_,i) => ({x:30 + i*36 + hsh(i,4)*14, y:376 + hsh(i,5)*42, a:hsh(i,6)*180}));
+const HYPH = [[[70,420],[90,396],[84,378]], [[90,396],[118,388]], [[180,424],[170,398],[186,380]], [[170,398],[148,392]], [[300,422],[316,398],[306,380]], [[316,398],[344,392]]];
+function decomposers(t, k){
+  const go = k(46.4,48.6)*(1 - k(55,56.5)), hi = k(46,47)*(1 - k(55.5,56.5));
+  let s = '';
+  for(const h of HYPH){
+    const d = 'M' + h.map(p => `${f(p[0] + 1.5*Math.sin(t*.8 + p[1]))} ${f(p[1])}`).join(' L');
+    s += `<path d="${d}" fill="none" stroke="#D8C7A0" stroke-width="${f(1.2 + hi)}" stroke-opacity="${op(.4 + .4*hi)}" stroke-linecap="round" stroke-linejoin="round"/>`;
+  }
+  BACT.forEach((b, i) => {
+    const tg = DEP(i % 8);
+    const x = lerp(b.x, tg[0] + (i%2 ? 6 : -6), go*(i < 8 ? 1 : 0)) + 2*Math.sin(t*1.3 + i), y = lerp(b.y, tg[1] + 9, go*(i < 8 ? 1 : 0)) + 1.5*Math.cos(t*1.1 + i);
+    const a = b.a + 20*Math.sin(t*.9 + i);
+    s += `<g transform="translate(${f(x)} ${f(y)}) rotate(${f(a)})"><rect x="-5.5" y="-2.2" width="11" height="4.4" rx="2.2" fill="#E0A050" fill-opacity="${op(.55 + .45*hi)}"/></g>`;
+  });
+  return s;
+}
+function levelBar(L, t, k){
+  const v = LV[L], ol = k(.4 + L*.3, 1.6 + L*.3);
+  let s = '';
+  const W = v.R - v.L;
+  if(ol > 0) s += `<rect x="${v.L}" y="${v.cy - BH/2}" width="${W}" height="${BH}" rx="9" fill="none" stroke="${v.col}" stroke-opacity="${op(.45*ol)}" stroke-dasharray="4 5"/>`;
+  const g = L === 0 ? k(6.6, 9.5) : kAtL(t, TA[L] - .2, TA[L] + 1);
+  if(g > 0){
+    const w = L === 0 ? W : W*g, x = CX - w/2;
+    const glow = L === 0 ? k(15,20)*(1 - k(56,57)*.3) : 0;
+    s += `<rect x="${f(x)}" y="${v.cy - BH/2}" width="${f(w)}" height="${BH}" rx="9" fill="${v.col}" fill-opacity="${op((.2 + .14*glow)*(L === 0 ? g : 1))}" stroke="${v.col}" stroke-width="1.6" stroke-opacity="${op(L === 0 ? g : 1)}"/>`;
+  }
+  return s;
+}
+function leaves(t, o){
+  if(o <= 0) return '';
+  let s = '';
+  for(let i=0; i<12; i++){ const x = 62 + i*25, y = 277, a = -50 + (i%2)*100 + 8*Math.sin(t*1.4 + i);
+    s += `<g transform="translate(${x} ${y}) rotate(${f(a)})" opacity="${op(o)}"><path d="M0 0 C3 -5 3 -11 0 -15 C-3 -11 -3 -5 0 0Z" fill="${VERT}"/><path d="M0 -1 L0 -13" stroke="#17281E" stroke-opacity=".5" stroke-width=".8"/></g>`; }
+  return s;
+}
+
+/* ---------- boucle de la matière ---------- */
+const LOOP = 'M64 300 C30 300 22 318 24 340 C26 372 60 392 120 392 C190 392 214 372 214 340 C214 326 212 316 208 308';
+function loop(t, o){
+  if(o <= 0) return '';
+  return `<g opacity="${op(o)}"><path d="${LOOP}" fill="none" stroke="${MIN}" stroke-width="2.4" stroke-dasharray="7 7" stroke-dashoffset="${f(-t*14)}" stroke-linecap="round"/><path d="M200 314 L208 302 L214 316Z" fill="${MIN}"/></g>`;
+}
+
+function draw(cc){
+  const {t, k} = cc;
+  const st = {}; let cells = '', nuc = '', sp = '', ch = '', lt = '', fx = '', lab = '';
+
+  /* décor : sol, Soleil, niveaux */
+  cells += soil(t);
+  for(let L=0; L<4; L++) cells += levelBar(L, t, k);
+  nuc += decomposers(t, k);
+  sp += sun(t, k(0,1.2));
+  sp += leaves(t, k(15,19));
+  sp += loop(t, k(48.5,50)*(1 - k(55.4,56.2)) + k(57.5,59));
+
+  /* noms des niveaux */
+  const nl = k(.8,2.4);
+  if(nl > 0){
+    LV.forEach((v, L) => {
+      const y = L === 3 ? v.cy - BH/2 - 11 : v.cy;
+      lt += `<text x="${CX}" y="${y}" dy=".36em" font-size="10.5" fill="#F2F5FA" fill-opacity="${op(nl*.92)}">${v.nom}</text>`;
+    });
+    lt += `<text x="380" y="420" font-size="10" fill="#C9A27E" text-anchor="end" opacity="${op(nl)}">sol</text>`;
+  }
+
+  /* lumière de la scène 2 */
+  for(const l of LIGHT){
+    if(t < l.t0 || t > l.t0 + 2.4) continue;
+    if(t <= l.t0 + 1.3){
+      const u = (t - l.t0)/1.3, p = line(l.S0, l.land)(u), q = line(l.S0, l.land)(Math.max(0, u - .12));
+      ch += trail(q, p, LUM, 1.6, .7) + dot(p[0], p[1], 2, LUM, 1, false);
+    } else if(!l.cap){
+      const u = clamp((t - l.t0 - 1.3)/1, 0, 1), p = line(l.land, l.back)(E_.out(u));
+      ch += dot(p[0], p[1], 1.8, LUM, (1 - u)*.8, false);
+    }
+    if(l.cap) fx += flash(l.land[0], l.land[1], l.t0 + 1.3, .7);
+  }
+  /* lumière continue ensuite */
+  const amb = .35 + .5*k(56,57.5);
+  ch += stream(t, 13.6, 66, .3, 2.3, (n, u) => {
+    const a = .95 + hsh(n,7)*.5, S0 = [SUN[0] + 15*Math.cos(a), SUN[1] + 15*Math.sin(a)], land = [58 + hsh(n,8)*40, 279];
+    if(u < .56){ const v = u/.56, p = line(S0, land)(v), q = line(S0, land)(Math.max(0, v - .12)); return trail(q, p, LUM, 1.4, .6*amb) + dot(p[0], p[1], 1.8, LUM, amb, false); }
+    const v = (u - .56)/.44;
+    if(n % 6 === 3){ return dot(land[0], land[1] + 8*v, 2 + 2*v, VERT, amb*(1 - v), true); }
+    const B = [land[0] - 25 - hsh(n,9)*45, 279 - 60 - hsh(n,10)*70], p = line(land, B)(E_.out(v));
+    return dot(p[0], p[1], 1.6, LUM, amb*(1 - v)*.8, false);
+  });
+
+  /* photosynthèse : CO₂ de l'air, eau et sels minéraux du sol */
+  ch += stream(t, 14.6, 21.2, .22, 1.9, (n, u) => {
+    const A = [404, 226 + hsh(n,11)*54], B = [300 + hsh(n,12)*40, 290 + hsh(n,13)*10], p = line(A, B)(E_.out(u));
+    return dot(p[0], p[1], 2.2, MIN, 1 - lin(u, .8, 1), true);
+  });
+  ch += stream(t, 14.6, 21.2, .2, 1.6, (n, u) => {
+    const x = 140 + hsh(n,14)*150, A = [x, 372 + hsh(n,15)*20], B = [x + (hsh(n,16) - .5)*16, 296], p = line(A, B)(E_.out(u));
+    return dot(p[0], p[1], 2, MIN, 1 - lin(u, .8, 1), true);
+  });
+  st.co2 = [366, 262]; st.eau = [214, 330];
+
+  /* paquets d'énergie */
+  for(const pk of PK){
+    if(t < pk.born || (pk.die && t > pk.die)) continue;
+    const p = pos(pk, t);
+    let r = pk.rad ? pk.rad(t) : LV[pk.L].r;
+    if(pk.rr) r = pk.rr(t);
+    let col = pk.col ? pk.col(t) : OR;
+    if(pk.lum && t < pk.lum){ const q = pos(pk, Math.max(pk.born, t - .16)); ch += trail(q, p, LUM, 1.6, .7); col = LUM; }
+    let o = pk.o ? pk.o(t) : 1;
+    if(pk.L > 0 && t < pk.born + .25) o *= lin(t, pk.born, pk.born + .25);
+    if(pk.heat && t > pk.heat){ const q = pos(pk, t - .14); ch += trail(q, p, col, r*1.1, .45*o); }
+    ch += dot(p[0], p[1], r, col, o, true);
+    if(pk.role === 'up' && t > TS[pk.L] + .3) st['up' + pk.L] = p;
+    if(pk.role === 'heat' && pk.heat && t > pk.heat + .3 && !st['heat' + pk.L]) st['heat' + pk.L] = p;
+    if(pk.role === 'dead' && t > TS[pk.L] + 1.4 && !st['dead' + pk.L]) st['dead' + pk.L] = p;
+    if(pk.dep && t > pk.dep.at) st.dep = st.dep || p;
+  }
+  /* arrivée d'un paquet au niveau suivant : il se répartit */
+  for(let L=1; L<4; L++) fx += flash(CX, LV[L].cy, TA[L], .9);
+
+  /* décomposition : chaque dépôt libère CO₂ et sels minéraux, et un peu de chaleur */
+  for(let kk=0; kk<8; kk++){
+    const dk = 47.4 + kk*.62, D = DEP(kk);
+    if(t < dk || t > dk + 3.4) continue;
+    for(let m=0; m<3; m++){
+      const a = dk + .3 + m*.35, u = lin(t, a, a + 2.1); if(u <= 0 || u >= 1) continue;
+      const B = [120 + hsh(kk*3 + m, 17)*170, 300], p = bez(D, [D[0] + 30, SOIL - 40], B, E_.out(u));
+      ch += dot(p[0], p[1], 2.2, MIN, 1 - lin(u, .85, 1), true);
+      if(kk === 3 && m === 1) st.min = p;
+    }
+    const uh = lin(t, dk + .2, dk + 1.8);
+    if(uh > 0 && uh < 1) ch += dot(D[0] + 4*Math.sin(uh*10), D[1] - 34*uh, 1.8, ROUGE, (1 - uh)*.8, false);
+  }
+  st.bact = [BACT[2].x, BACT[2].y];
+  if(t > 46) st.bact = [lerp(BACT[2].x, DEP(2)[0] - 6, k(46.4,48.6)), lerp(BACT[2].y, DEP(2)[1] + 9, k(46.4,48.6))];
+
+  /* bilan : flux continus */
+  const B0 = 56.4, B1 = 65.4;
+  ch += stream(t, B0, B1, .7, 1.2, (n, u) => { const p = line([CX, 292], [CX, 246])(u); return dot(p[0], p[1], 3, OR, Math.min(1, 4*(1-u))); });
+  ch += stream(t, B0 + .3, B1, 1.4, 1.1, (n, u) => { const p = line([CX, 246], [CX, 202])(u); return dot(p[0], p[1], 2.5, OR, Math.min(1, 4*(1-u))); });
+  ch += stream(t, B0 + .6, B1, 2.8, 1.0, (n, u) => { const p = line([CX, 202], [CX, 160])(u); return dot(p[0], p[1], 2.1, OR, Math.min(1, 4*(1-u))); });
+  [[0,.36],[1,.72],[2,1.44],[3,2.88]].forEach(([L, per]) => {
+    const v = LV[L];
+    ch += stream(t, B0 + L*.2, B1, per, 2.4, (n, u) => {
+      const A = [v.R - 6, v.cy + (n%3 - 1)*5], B = [352 + hsh(n + L*50,18)*34, 28 + hsh(n + L*50,19)*72], p = heatCurve(A, B, n)(E_.out(u)), q = heatCurve(A, B, n)(E_.out(Math.max(0, u - .06)));
+      return trail(q, p, ROUGE, 2, .4*(1 - u)) + dot(p[0], p[1], 2.4, ROUGE, 1 - lin(u, .7, 1));
+    });
+    ch += stream(t, B0 + .4 + L*.55, B1, 2.6, 2.4, (n, u) => {
+      const A = [v.L + 6, v.cy], B = [24, v.cy + 8], C2 = [24, SOIL + 4];
+      const p = u < .3 ? line(A, B)(u/.3) : line(B, C2)(E_.in((u - .3)/.7));
+      return dot(p[0], p[1], 2.8, BRUN, 1 - lin(u, .88, 1));
+    });
+  });
+  ch += stream(t, B0, B1, .4, 1.8, (n, u) => {
+    const D = [40 + hsh(n,20)*110, SOIL + 10], B = [120 + hsh(n,21)*170, 300], p = bez(D, [D[0] + 30, SOIL - 40], B, E_.out(u));
+    return dot(p[0], p[1], 2, MIN, 1 - lin(u, .85, 1));
+  });
+
+  /* équation de la photosynthèse */
+  lab += label(CX, 104, 'CO₂ + eau + sels minéraux → matière organique', '#F2F5FA', 11, k(15.4,16.4)*(1 - k(21.2,22)));
+
+  st.sun = SUN; st.soil = [300, 392];
+  return {cells, nuc, sp, chr:ch, let:lt, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:6, title:"Un écosystème",
+  text:"Un <strong>écosystème</strong>, c'est une <strong>biocénose</strong> (les êtres vivants), un <strong>biotope</strong> (le milieu : sol, climat, eau) et l'ensemble de leurs <strong>interactions</strong>. Ici, les êtres vivants sont rangés par <strong>niveau trophique</strong> : qui mange qui.",
+  state:"Écosystème = biocénose + biotope + interactions"},
+ {t:6, e:14, title:"L'énergie vient du Soleil",
+  text:"Le <strong>Soleil</strong> est la source d'énergie de presque tous les écosystèmes. Seule une toute petite partie de la lumière reçue est captée par les <strong>producteurs</strong> (végétaux chlorophylliens, phytoplancton) : <strong>moins de 1 %</strong> de l'énergie lumineuse est convertie en matière organique.",
+  state:"La lumière arrive : moins de 1 % est captée"},
+ {t:14, e:22, title:"La photosynthèse",
+  text:"Les producteurs sont <strong>autotrophes</strong> : par la <strong>photosynthèse</strong>, ils fabriquent leur matière organique à partir de <strong>CO₂</strong>, d'<strong>eau</strong> et de <strong>sels minéraux</strong>. L'énergie captée est stockée dans cette matière organique, à la base de tout le réseau trophique.",
+  state:"CO₂ + eau + sels minéraux → matière organique"},
+ {t:22, e:31, title:"Les consommateurs primaires",
+  text:"Les <strong>herbivores</strong> (consommateurs primaires) mangent les producteurs. Mais <strong>environ 90 %</strong> de l'énergie ne passe pas au niveau suivant. L'essentiel est dissipé en <strong>chaleur</strong> par la <strong>respiration</strong> ; le reste part dans la matière non consommée ou non assimilée (cadavres, excréments).",
+  state:"Environ 10 % de l'énergie passe au niveau suivant"},
+ {t:31, e:39, title:"Les consommateurs secondaires",
+  text:"Même bilan au maillon suivant : environ 90 % de l'énergie est encore perdue. Le flux d'énergie <strong>se réduit à chaque niveau</strong> : c'est ce qui donne sa forme de <strong>pyramide</strong>.",
+  state:"Le flux d'énergie se réduit à chaque maillon"},
+ {t:39, e:46, title:"Les consommateurs tertiaires",
+  text:"Au sommet, il reste très peu d'énergie. C'est pourquoi les chaînes trophiques comportent <strong>rarement plus de 4 ou 5 maillons</strong>, et pourquoi les <strong>prédateurs supérieurs sont peu nombreux</strong>. Leur énergie finit, elle aussi, en chaleur.",
+  state:"Sommet de la pyramide : très peu d'énergie"},
+ {t:46, e:56, title:"Les décomposeurs recyclent la matière",
+  text:"Les êtres morts et les déchets de tous les niveaux arrivent au sol. Les <strong>décomposeurs</strong> (bactéries, champignons, détritivores) dégradent cette <strong>matière organique morte</strong> et libèrent du <strong>CO₂</strong> et des <strong>sels minéraux</strong>, que les producteurs réutilisent. En respirant, ils dissipent eux aussi de la chaleur.",
+  state:"Matière organique morte → CO₂ + sels minéraux"},
+ {t:56, e:66, title:"Bilan : la matière tourne, l'énergie traverse",
+  text:"La <strong>matière</strong> est recyclée : elle tourne en <strong>cycle fermé</strong> grâce aux décomposeurs. L'<strong>énergie</strong>, elle, est dégradée en chaleur à chaque niveau : elle <strong>traverse</strong> l'écosystème en <strong>flux ouvert</strong>. D'où la nécessité d'un <strong>apport permanent d'énergie solaire</strong>.",
+  state:"Matière : cycle fermé. Énergie : flux ouvert."}
+];
+
+const CALL = [
+  {a:1.4, b:5.8, text:"biocénose : les êtres vivants", lab:[200,104], anc:()=>[[222,150],[262,236],[312,282]]},
+  {a:2.4, b:5.9, text:"biotope : le milieu (sol, climat, eau)", lab:[200,412], anc:()=>[[300,360]]},
+  {a:7.4, b:13.6, text:"énergie lumineuse", lab:[150,64], anc:()=>[[72,150]]},
+  {a:10, b:13.8, text:"moins de 1 % convertie en matière organique", lab:[200,104], anc:()=>[[80,284]]},
+  {a:16.2, b:21.6, text:"CO₂ de l'air", lab:[340,190], anc:st=>[st.co2]},
+  {a:17, b:21.8, text:"eau et sels minéraux du sol", lab:[260,412], anc:st=>[st.eau]},
+  {a:23.6, b:30.6, text:"chaleur : respiration", lab:[290,22], anc:st=>[st.heat0].filter(Boolean)},
+  {a:23.8, b:27.6, text:"≈ 10 % passent au niveau suivant", lab:[200,104], anc:st=>[st.up0].filter(Boolean)},
+  {a:24.8, b:30.4, text:"cadavres, excréments", lab:[100,328], col:BRUN, anc:st=>[st.dead0].filter(Boolean)},
+  {a:32.2, b:38.6, text:"le flux d'énergie se réduit", lab:[200,104], anc:()=>[[248,196],[286,240]]},
+  {a:42.4, b:45.8, text:"très peu d'énergie au sommet", lab:[200,104], anc:()=>[[226,154]]},
+  {a:47.2, b:51.4, text:"matière organique morte", lab:[290,328], col:BRUN, anc:()=>[DEP(1), DEP(4)]},
+  {a:48.2, b:55.6, text:"décomposeurs : bactéries, champignons", lab:[260,412], anc:st=>[st.bact, [304,384]]},
+  {a:51.8, b:55.6, text:"CO₂ et sels minéraux", lab:[310,330], col:MIN, anc:st=>[st.min].filter(Boolean)},
+  {a:57, b:65.6, text:"énergie : flux ouvert", lab:[290,22], anc:()=>[[372,60],[SUN[0]+18,SUN[1]+10]]},
+  {a:57.8, b:65.6, text:"matière : cycle fermé", lab:[130,412], col:MIN, anc:()=>[[64,392]]}
+];
+
+const CUES = [[.2,'step'],[6.3,'whoosh'],[6.8,'pop'],[14.4,'step'],[16,'fuse'],[22.6,'step'],[25.3,'split'],[31.1,'step'],[33.8,'split'],[39.3,'step'],[42,'split'],[46.2,'step'],[47.6,'pop'],[49.5,'pop'],[56.2,'final']];
+
+const QUIZ = [
+ {q:"À partir de quoi les producteurs fabriquent-ils leur matière organique ?", o:["De la matière organique libérée par les décomposeurs","De CO₂, d'eau et de sels minéraux, grâce à l'énergie lumineuse","De la chaleur dégagée par les consommateurs"], a:1,
+  ex:"C'est la photosynthèse : les producteurs sont autotrophes. Les décomposeurs leur fournissent de la matière minérale (CO₂, sels minéraux), pas de la matière organique."},
+ {q:"Environ quelle part de l'énergie d'un niveau trophique passe au niveau suivant ?", o:["Environ 90 %","Environ 50 %","Environ 10 %"], a:2,
+  ex:"Environ 90 % sont perdus à chaque niveau : surtout en chaleur (respiration), le reste dans la matière non consommée ou non assimilée. D'où la pyramide, et des chaînes de rarement plus de 4 ou 5 maillons."},
+ {q:"Quel est le rôle des décomposeurs ?", o:["Capter l'énergie lumineuse","Dégrader la matière organique morte et libérer du CO₂ et des sels minéraux réutilisables par les producteurs","Transformer la chaleur en matière organique"], a:1,
+  ex:"Bactéries, champignons et détritivores ferment le cycle de la matière : sans eux, les producteurs manqueraient de sels minéraux."},
+ {q:"« L'énergie circule en cycle dans l'écosystème. » Cette phrase est :", o:["Juste : les décomposeurs la recyclent","Fausse : la matière est recyclée, mais l'énergie est dégradée en chaleur et traverse l'écosystème","Juste : les producteurs réutilisent la chaleur"], a:1,
+  ex:"C'est le piège classique. La matière tourne en cycle fermé ; l'énergie traverse l'écosystème en flux ouvert, d'où la nécessité d'un apport permanent d'énergie solaire."}
+];
+
+ANIM.lancer({id:'ecosysteme', END:66, SCENES, CALL, CUES, QUIZ, draw, graine:41});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>De la cellule initiale à la tumeur</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#t1u1">← SVT Terminale</a> · Chapitre 1, unité 1 : stabilité génétique et évolution clonale</p>
+    <h1>De la cellule initiale à la tumeur</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation d'une cellule qui se multiplie en clone, puis d'une mutation qui fonde un sous-clone, jusqu'à la tumeur">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF5CA8"></span>1re mutation</li>
+        <li><span class="sw" style="background:#3FD9C8"></span>2e mutation</li>
+        <li><span class="sw" style="background:#F5C451"></span>3e mutation (p53, TERT)</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : quelques dizaines de cellules seulement, et des mutations figurées par des points de couleur dans le noyau. Une tumeur réelle compte des milliards de cellules.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, wobblyEllipse, flash, halo, label, AMB, MAG, CYA} = ANIM.H;
+const OR = '#F5C451', CX = 200, CY = 205, SP = 52, R = 22;
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+/* divisions : génération g → g+1 entre DIV[g] et DIV[g] + 2 */
+const DIV = [6, 9, 12, 25, 29, 39];
+/* mutations : [génération, indice, instant, couleur, nom] */
+const MUT = [[3,6,17,MAG,'1'],[5,24,37,CYA,'2'],[6,48,42.2,OR,'3']];
+
+/* position d'une cellule (génération g, indice i) : colonnes aux générations impaires, lignes aux paires */
+function pos(g, i){
+  let col = 0, row = 0, nc = 0, nr = 0;
+  for(let m = 1; m <= g; m++){
+    const b = (i >> (g - m)) & 1;
+    if(m % 2){ col = 2*col + b; nc++; } else { row = 2*row + b; nr++; }
+  }
+  return [(col - ((1 << nc) - 1)/2)*SP, (row - ((1 << nr) - 1)/2)*SP];
+}
+function genAt(t){ let g = 0; for(let n=0; n<DIV.length; n++) if(t >= DIV[n]) g = n + 1; return g; }
+function mutations(g, i, t){
+  const out = [];
+  for(const [mg, mi, mt, col] of MUT){
+    if(t < mt || g < mg) continue;
+    if((i >> (g - mg)) === mi) out.push([col, kAt(t, mt, mt + .6)]);
+  }
+  return out;
+}
+function cell(x, y, r, muts, ph, o=1){
+  const d = wobblyEllipse(x, y, r, r*.94, ph, .8), dn = wobblyEllipse(x, y + 1, r*.45, r*.42, ph + 2, .6);
+  let s = `<g opacity="${op(o)}"><path d="${d}" fill="#1A2E52"/><path d="${d}" fill="none" stroke="#86A9DB" stroke-width="1.6"/><path d="${dn}" fill="#22406E" stroke="#8FB0DE" stroke-opacity=".7"/>`;
+  muts.forEach(([col, a], n) => { const ang = n*2.1 - .6; s += `<circle cx="${f(x + Math.cos(ang)*r*.2)}" cy="${f(y + 1 + Math.sin(ang)*r*.2)}" r="${f(3.6*a)}" fill="${col}"/>`; });
+  return s + '</g>';
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {}; let cells = '', fx = '', lab = '';
+  const g = genAt(t), div = g > 0 ? kAt(t, DIV[g-1], DIV[g-1] + 2) : 1;
+  /* zoom arrière à mesure que la colonie grandit */
+  const width = gg => { const nc = Math.ceil(gg/2), nr = Math.floor(gg/2); return Math.max(SP*((1 << nc) - 1), SP*((1 << nr) - 1)) + 2*R; };
+  const w = lerp(width(Math.max(0, g-1)), width(g), div);
+  const s = Math.min(1.6, 330/Math.max(w, 1));
+
+  const n = 1 << g;
+  for(let i = 0; i < n; i++){
+    let [x, y] = pos(g, i);
+    if(g > 0 && div < 1){ const [px, py] = pos(g-1, i >> 1); x = lerp(px, x, div); y = lerp(py, y, div); }
+    const muts = mutations(g, i, t);
+    cells += cell(CX + x*s, CY + y*s, R*s, muts, i*.7);
+    st['c' + g + '_' + i] = [CX + x*s, CY + y*s];
+  }
+  /* la tumeur : la lignée porteuse des trois mutations continue de proliférer */
+  const pile = [[0,-1],[1,-.4],[1,.6],[0,1.1],[-1,.6],[-1,-.4],[.5,-1.6],[1.6,.1],[.6,1.7],[-.6,1.7],[-1.6,.1],[-.5,-1.6]];
+  if(t > 43 && st.c6_48){
+    const [bx, by] = st.c6_48;
+    pile.forEach(([dx, dy], m) => {
+      const a = kAt(t, 43 + m*.25, 43.8 + m*.25); if(a <= 0) return;
+      const px = bx + dx*R*s*1.25*a, py = by + dy*R*s*1.25*a;
+      cells += cell(px, py, R*s*.92, [[MAG,1],[CYA,1],[OR,1]], m);
+    });
+  }
+  /* flashs des mutations */
+  for(const [mg, mi, mt] of MUT){ const p = st['c' + mg + '_' + mi] || st['c' + g + '_' + (mi << (g - mg))]; if(p) fx += flash(p[0], p[1], mt, 1.4); }
+  /* contour du sous-clone */
+  const hs = k(32,33)*(1 - k(35.5,36.5));
+  if(hs > 0 && g >= 5){
+    const pts = []; for(let i = 0; i < 32; i++) if((i >> 2) === 6) pts.push(st['c5_' + i]);
+    const xs = pts.map(p => p[0]), ys2 = pts.map(p => p[1]);
+    const e = R*s + 6, x0 = Math.min(...xs) - e, x1 = Math.max(...xs) + e, y0 = Math.min(...ys2) - e, y1 = Math.max(...ys2) + e;
+    fx += `<rect x="${f(x0)}" y="${f(y0)}" width="${f(x1-x0)}" height="${f(y1-y0)}" rx="18" fill="none" stroke="${MAG}" stroke-width="3" stroke-dasharray="7 5" opacity="${op(hs)}"/>`;
+    st.sous = [x0, (y0 + y1)/2];
+  }
+  /* compteur de cellules */
+  const nb = t > 43 ? '64 + …' : String(n);
+  lab += `<g opacity="${op(k(.4,1.2))}" text-anchor="start"><rect x="8" y="396" width="128" height="24" rx="9" fill="#0A1222" fill-opacity=".85" stroke="#F5C451" stroke-opacity=".45"/><text x="17" y="412" font-size="11" font-weight="700" fill="#F2F5FA">${nb} cellule${n > 1 ? 's' : ''}</text></g>`;
+  return {cells, fx, lab, st};
+}
+
+/* les légendes doivent rester lisibles malgré le zoom : on les place en coordonnées d'écran converties */
+
+const SCENES = [
+ {t:0, e:5, title:"Une seule cellule au départ",
+  text:"<strong>Une seule cellule</strong> est à l'origine de tout. Chez l'humain, la cellule-œuf donne par mitoses successives les quelque 10<sup>12</sup> cellules du nouveau-né.",
+  state:"1 cellule"},
+ {t:5, e:16, title:"Le clone",
+  text:"Par <strong>mitoses successives</strong>, la cellule produit des cellules filles génétiquement identiques : c'est un <strong>clone</strong>. Le caryotype est conservé d'une génération cellulaire à l'autre.",
+  state:"8 cellules identiques"},
+ {t:16, e:24, title:"Une mutation",
+  text:"La réplication n'est jamais parfaite, et des agents mutagènes s'y ajoutent. Une erreur non corrigée s'installe dans <strong>une</strong> cellule du clone (point magenta) : c'est une <strong>mutation somatique</strong>.",
+  state:"8 cellules, dont une mutée"},
+ {t:24, e:36, title:"Un sous-clone",
+  text:"Cette cellule se divise à son tour : <strong>toutes ses descendantes portent la mutation</strong>. Elles forment un <strong>sous-clone</strong>, génétiquement distinct du reste du clone. C'est ce que montrent les levures ade2 : une colonie rouge dont un secteur devient blanc.",
+  state:"32 cellules, dont un sous-clone de 4"},
+ {t:36, e:46, title:"Accumulation de mutations",
+  text:"D'autres mutations s'ajoutent dans le sous-clone (cyan, puis or). Si elles touchent des gènes du contrôle du cycle (<strong>p53</strong>) ou de la capacité de division (<strong>TERT</strong>), la cellule échappe à la réparation et à l'apoptose : sa lignée continue de proliférer quand les autres s'arrêtent.",
+  state:"Une lignée porte trois mutations et prolifère"},
+ {t:46, e:56, title:"La tumeur, un patchwork de sous-clones",
+  text:"Les sous-clones s'empilent : la tumeur est un ensemble de lignées <strong>génétiquement différentes</strong>, toutes issues de la même cellule initiale. C'est l'<strong>hétérogénéité tumorale</strong>. Une mutation somatique, elle, n'est pas transmise à la descendance de l'individu.",
+  state:"Un clone, des sous-clones, une tumeur"}
+];
+
+const CALL = [
+  {a:1, b:4.6, text:"la cellule initiale", lab:[200,60], anc:st=>[st.c0_0].filter(Boolean)},
+  {a:13.8, b:15.8, text:"des cellules identiques : un clone", lab:[200,40], anc:st=>[st.c3_0, st.c3_7].filter(Boolean)},
+  {a:17.6, b:23.6, text:"mutation non réparée", lab:[200,40], col:MAG, anc:st=>[st.c3_6].filter(Boolean)},
+  {a:32.4, b:35.8, text:"un sous-clone", lab:[200,30], col:MAG, anc:st=>[st.sous].filter(Boolean)},
+  {a:37.4, b:41.6, text:"2ᵉ mutation", lab:[200,30], col:CYA, anc:st=>[st.c5_24 || st.c6_48].filter(Boolean)},
+  {a:42.6, b:47, text:"3ᵉ mutation : la lignée prolifère", lab:[200,30], col:OR, anc:st=>[st.c6_48].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[6.2,'split'],[9.2,'split'],[12.2,'split'],[17,'mut'],[25.2,'split'],[29.2,'split'],[37,'mut'],[39.2,'split'],[42.2,'error'],[43.4,'pop'],[46.2,'final']];
+
+const QUIZ = [
+ {q:"Qu'est-ce qu'un clone cellulaire ?", o:["Un ensemble de cellules génétiquement identiques issues d'une même cellule par mitoses","Un ensemble de cellules qui portent toutes des mutations différentes","Une cellule capable de se diviser indéfiniment"], a:0,
+  ex:"La mitose est une reproduction conforme : toutes les descendantes d'une cellule forment un clone."},
+ {q:"Pourquoi toutes les descendantes d'une cellule mutée portent-elles la mutation ?", o:["Parce que la mutation est recopiée à chaque réplication et transmise par mitose","Parce que la mutation se propage d'une cellule voisine à l'autre","Parce que chaque cellule refait la même erreur"], a:0,
+  ex:"Une fois installée dans l'ADN, la mutation est répliquée comme le reste de la séquence : elle fonde un sous-clone."},
+ {q:"Une tumeur est…", o:["un clone parfaitement homogène","un ensemble de sous-clones génétiquement différents issus d'une même cellule","un ensemble de cellules venues d'individus différents"], a:1,
+  ex:"Les mutations s'accumulent au fil des divisions : la tumeur est hétérogène, c'est l'hétérogénéité tumorale."},
+ {q:"Une mutation survenue dans une cellule de la peau est-elle transmise aux enfants ?", o:["Oui, toujours","Non : c'est une mutation somatique, elle n'est pas transmise à la descendance","Seulement si elle touche p53"], a:1,
+  ex:"Seules les mutations germinales, dans la lignée des cellules reproductrices, sont transmises à la descendance."}
+];
+
+ANIM.lancer({id:'clonal', END:56, SCENES, CALL, CUES, QUIZ, draw, graine:5});
+})();
+</script>
+</body>
+</html>
