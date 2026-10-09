@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070B14">
 <title>La réplication de l'ADN</title>
-<link rel="stylesheet" href="moteur.css?v=1">
+<link rel="stylesheet" href="moteur.css?v=2">
 </head>
 <body>
 <main class="wrap">
@@ -99,7 +99,7 @@
     </div>
   </section>
 </main>
-<script src="moteur.js?v=1"></script>
+<script src="moteur.js?v=2"></script>
 <script>
 (() => {
 const {clamp, ease, sm, lerp, f, op, smooth, strand, flash, arc, AMB, MAG, CYA} = ANIM.H;
@@ -234,8 +234,8 @@ function draw(c){
       if(t < fr.ts) return;
       let l = Math.max(fr.L, fr.R - fr.v*(t - fr.ts)), r = fr.R;
       cov.push([l, r]);
-      if(i > 0 && t < SEAL[i-1].t && l <= fr.L + .01) l += 3.6;
-      if(i < FR.length-1 && t < SEAL[i].t) r -= 3.6;
+      if(i > 0 && t < SEAL[i-1].t && l <= fr.L + .01) l += 5;
+      if(i < FR.length-1 && t < SEAL[i].t) r -= 5;
       if(r > l + 1 && r > wx0 && l < wx1) ch += strand(pathOf(nB, Math.max(l, wx0), Math.min(r, wx1)), VERT, 5, dO);
     });
     const covB = x => cov.some(([l, r]) => x >= l - .01 && x <= r + .01);

@@ -248,9 +248,9 @@ function draw(c){
   let rg = '';
   for(let kk=-3; kk<=NU+3; kk++){
     const x = ux(kk); if(x < 50 || x > 350) continue;
-    const u = UNIT[kk], col = u ? mix(u.col, '#1E3360', .25) : '#4A5878';
+    const u = UNIT[kk], col = u ? mix(u.col, '#1E3360', .08) : '#4A5878';
     const y1 = yA(x), y2 = yB(x);
-    rg += `<line x1="${f(x)}" y1="${f(y1 + 1.5)}" x2="${f(x)}" y2="${f(y1 + 4.4)}" stroke="${col}" stroke-width="2.6"/><line x1="${f(x)}" y1="${f(y2 - 1.5)}" x2="${f(x)}" y2="${f(y2 - 4.4)}" stroke="${col}" stroke-width="2.6"/>`;
+    rg += `<line x1="${f(x)}" y1="${f(y1 + 1.5)}" x2="${f(x)}" y2="${f(y1 + 4.4)}" stroke="${col}" stroke-width="3"/><line x1="${f(x)}" y1="${f(y2 - 1.5)}" x2="${f(x)}" y2="${f(y2 - 4.4)}" stroke="${col}" stroke-width="3"/>`;
   }
   nuc += rg;
   ch += strand(smooth(xsD.map(x => [x, yA(x)])), '#8094BC', 3.4) + strand(smooth(xsD.map(x => [x, yB(x)])), '#AFC0E0', 3.4);
@@ -418,10 +418,10 @@ function draw(c){
     let s = `<g opacity="${op(io)}"><rect x="16" y="318" width="368" height="98" rx="14" fill="#0A1222" fill-opacity=".9" stroke="${GRIS}" stroke-opacity=".35"/>`;
     s += `<text x="200" y="336" dy=".36em" font-size="11" font-weight="700" fill="${GRIS}">Complémentarité : dans l'ARN, <tspan fill="${BC.U}">U</tspan> remplace <tspan fill="${BC.T}">T</tspan></text>`;
     s += `<text x="26" y="364" dy=".36em" font-size="10.5" font-weight="700" fill="#AFC0E0" text-anchor="start">ADN, brin transcrit</text><text x="26" y="396" dy=".36em" font-size="10.5" font-weight="700" fill="${EXC[0]}" text-anchor="start">ARN pré-messager</text>`;
-    s += `<text x="150" y="364" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">3'</text><text x="364" y="364" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">5'</text>`;
-    s += `<text x="150" y="396" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">5'</text><text x="364" y="396" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">3'</text>`;
+    s += `<text x="148" y="364" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">3'</text><text x="372" y="364" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">5'</text>`;
+    s += `<text x="148" y="396" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">5'</text><text x="372" y="396" dy=".36em" font-size="10" font-weight="700" fill="${GRIS}">3'</text>`;
     for(let i=0; i<9; i++){
-      const x = 170 + 22.5*i;
+      const x = 168 + 22*i;
       s += tile(x, 364, DNA[i], 1, 17);
       const a = lin(n, i + .4, i + 1);
       if(a > 0){ s += `<g transform="translate(0 ${f(8*(1 - a))})">` + tile(x, 396, ARN[i], a, 17) + '</g>'; if(ARN[i] === 'U') s += `<rect x="${f(x - 10.5)}" y="385.5" width="21" height="21" rx="4" fill="none" stroke="#FFFFFF" stroke-width="1.4" opacity="${op(a)}"/>`; }
@@ -474,14 +474,14 @@ const CALL = [
   cl(13, 17.2, "ARN pré-messager", 130, 290, st => [st.rna].filter(Boolean)),
   cl(20.2, 24.4, "intron excisé", 290, 330, st => [st.intron].filter(Boolean)),
   cl(19.4, 24.4, "exon", 110, 110, st => [st.exon].filter(Boolean)),
-  cl(20.4, 24, "exon 3 retiré", 200, 330, st => [st.e3].filter(Boolean), {si:o => !!o, col:'#FF7A6B'}),
+  cl(20.4, 24, "exon 3 retiré", 110, 296, st => [st.e3].filter(Boolean), {si:o => !!o, col:'#FF7A6B'}),
   cl(25.4, 29.4, "ARN messager (ARNm)", 200, 110, st => [st.rna].filter(Boolean)),
   cl(31.6, 35.4, "pore nucléaire", 310, 250, st => [st.exit].filter(Boolean)),
   cl(32.4, 37.2, "l'ADN reste dans le noyau", 230, 32, st => [st.gene].filter(Boolean)),
   cl(39.2, 42.6, "ribosome", 330, 120, st => [st.ribo].filter(Boolean)),
-  cl(40.2, 43.4, "codon initiateur AUG", 110, 392, st => [st.codon0].filter(Boolean)),
+  cl(40.2, 43.4, "codon initiateur AUG", 120, 360, st => [st.codon0].filter(Boolean)),
   cl(41.6, 45.6, "ARN de transfert", 300, 60, st => [st.trna0].filter(Boolean)),
-  cl(42.4, 46, "anticodon", 110, 392, st => [st.anti0].filter(Boolean)),
+  cl(42.4, 46, "anticodon", 300, 360, st => [st.anti0].filter(Boolean)),
   cl(46.2, 50, "acide aminé", 290, 60, st => [st.aa].filter(Boolean)),
   cl(48.4, 52.6, "liaison peptidique", 110, 60, st => [st.bond].filter(Boolean)),
   cl(52.6, 55.8, "chaîne d'acides aminés", 120, 60, st => st.chain || []),
