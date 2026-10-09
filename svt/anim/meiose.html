@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>Méiose et brassage génétique</title>
+<link rel="stylesheet" href="moteur.css?v=1">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#t1u2">← SVT Terminale</a> · Chapitre 1, unité 2 : les conséquences génétiques de la reproduction sexuée</p>
+    <h1>Méiose et brassage génétique</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation de la méiose d'une cellule à 2n = 4 : réplication, appariement, crossing-over, deux divisions et gamètes obtenus">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF5CA8"></span>chromosome d'origine maternelle</li>
+        <li><span class="sw" style="background:#3FD9C8"></span>chromosome d'origine paternelle</li>
+        <li><span class="sw" style="background:#F5C451"></span>fuseau de division</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : les chromosomes sont dessinés condensés dès le départ pour qu'on puisse les suivre. Pendant l'interphase, ils sont en réalité décondensés dans le noyau.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=1"></script>
+<script>
+(() => {
+/* Portage sur le moteur commun de l'animation de référence « Méiose et brassage génétique » (artefact Claude.ai du 29/09). */
+const {clamp, ease, sm, lerp, f, op, smooth, ys, wobblyEllipse, cellPath, fiber, pole, AMB} = ANIM.H;
+const CY = 205, W = 13;
+const LEN = {L:150, S:80}, CEN = {L:62, S:36}, CUT = 95;
+const LOC = {A:26, B:130, D:16};
+const COL = {m:'#FF5CA8', p:'#3FD9C8'};
+const AL = {Lt:{m:'A',p:'a'}, Lb:{m:'B',p:'b'}, S:{m:'D',p:'d'}};
+const SWAP = 28.5;
+let t = 0, orient = 0;
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a), 0, 1));
+const k = (a,b) => kAt(t,a,b);
+const vel = (a,b) => (kAt(t+.04,a,b) - kAt(t-.04,a,b)) / .08 * (b-a) / 4;
+
+function strand(d, col){
+  return `<path d="${d}" stroke="${col}" stroke-width="${W}" stroke-linecap="round" fill="none"/><path d="${d}" stroke="#FFFFFF" stroke-opacity=".28" stroke-width="3.2" stroke-linecap="round" fill="none" transform="translate(-2.6 0)"/>`;
+}
+function states(){
+  const P0 = {Lm:[122,60,-16], Lp:[266,78,12], Sm:[148,250,20], Sp:[268,242,-10]};
+  const kp = k(14.5,19.5), vp = vel(14.5,19.5);
+  const hs = 14 + 3*k(31,34);
+  const P1 = {Lm:[200-hs,55], Lp:[200+hs,55], Sm:[200-hs,262], Sp:[200+hs,262]};
+  const q = 6.9*k(9,11.5);
+  let splay = 9*k(8,11.5); splay = lerp(splay, 1.5, kp); splay = lerp(splay, 7, k(47,54));
+  const s = {};
+  for(const id in P0){
+    const a = P0[id], b = P1[id], dir = Math.sign(b[0]-a[0]);
+    s[id] = {cx:lerp(a[0],b[0],kp), top:lerp(a[1],b[1],kp), rot:lerp(a[2],0,kp), q, splay, sep:0, lag:-dir*vp*16, lagS:0, op:1};
+  }
+  const dim = k(22.3,23.3) - k(34.5,36);
+  s.Sm.op = s.Sp.op = 1 - .7*dim;
+  if(orient){ const th = Math.PI*k(38,40.5); s.Sm.cx = 200 - hs*Math.cos(th); s.Sp.cx = 200 + hs*Math.cos(th); s.Sp.op *= 1 - .45*Math.sin(th); }
+  const ka = k(44.5,49.8), va = vel(44.5,49.8), left = ['Lm', orient ? 'Sp' : 'Sm'];
+  for(const id in s){ const L = left.includes(id); s[id].cx = lerp(s[id].cx, L ? 100 : 300, ka); s[id].lag += (L ? 1 : -1)*va*22; }
+  const k2 = k(61.5,66.2), v2 = vel(61.5,66.2);
+  for(const id in s){ s[id].sep = 43*k2; s[id].lagS = v2*16; }
+  s._left = left;
+  return s;
+}
+function lowerOwner(id,j){
+  const inner = (id==='Lm' && j===1) || (id==='Lp' && j===0);
+  return inner && t >= SWAP ? (id[1]==='m' ? 'p' : 'm') : id[1];
+}
+function pt(st,id,j,y){
+  const c = st[id], T = id[0], L = LEN[T], yc = c.top + CEN[T], side = j ? 1 : -1;
+  const u = (y - yc)/(L*.55), u2 = u*u;
+  let x = c.cx + side*(c.q + c.sep) + side*c.splay*u2*(u < 0 ? .8 : 1) + c.lag*u2 - side*c.lagS*u2;
+  x += 1.1*Math.sin(y*.05 + t*1.5 + (id === 'Lm' || id === 'Sm' ? 0 : 2) + j*2.3);
+  if(T === 'L'){
+    const dc = (id==='Lm' && j===1) ? 1 : (id==='Lp' && j===0) ? -1 : 0;
+    if(dc){
+      const gap = (st.Lp.cx - st.Lm.cx) - 2*c.q, ycx = c.top + CUT, S = sm((y - (ycx-22))/44);
+      const amt = t < SWAP ? k(23,26.2)*S : (1 - k(29.2,32.8))*Math.min(S, 1-S);
+      x += dc*gap*amt;
+    }
+  }
+  if(c.rot){ const a = c.rot*Math.PI/180, dx = x - c.cx, dy = y - yc; return [c.cx + dx*Math.cos(a) - dy*Math.sin(a), yc + dx*Math.sin(a) + dy*Math.cos(a)]; }
+  return [x, y];
+}
+function kinet(st,id,toLeft){ const c = st[id], y = c.top + CEN[id[0]]; const p = pt(st,id,toLeft?0:1,y); return [p[0] + (toLeft ? -5 : 5), p[1]]; }
+const cen = (st,id) => { const c = st[id], y = c.top + CEN[id[0]]; const a = pt(st,id,0,y), b = pt(st,id,1,y); return [(a[0]+b[0])/2, (a[1]+b[1])/2]; };
+const at = (st,id,j,fr) => pt(st,id,j, st[id].top + LEN[id[0]]*fr);
+const shortLeft = () => orient ? 'Sp' : 'Sm';
+function blobs(){
+  const a = k(51.3,57), ap = k(51.3,57.5), b = k(68.2,73.5), bp = k(68.2,73.6), el = k(44.5,50), R = 1.19;
+  if(a <= 0) return [[200,CY,190+6*el,190-8*el]];
+  const out = [];
+  for(const sg of [-1,1]){
+    const cx = lerp(200,200+sg*100,ap), ax = lerp(196/R,76,ap), ay = lerp(182/R,186,a);
+    if(b <= 0) out.push([cx,CY,ax,ay]);
+    else for(const u of [-1,1]) out.push([lerp(cx,cx+u*50,bp), CY, lerp(ax/R,37,bp), lerp(ay/R,184,b)]);
+  }
+  return out;
+}
+function gametes(){
+  const sl = orient ? 'p' : 'm', sr = orient ? 'm' : 'p';
+  return [{x:50,L:'m',j:0,S:sl},{x:150,L:'m',j:1,S:sl},{x:250,L:'p',j:0,S:sr},{x:350,L:'p',j:1,S:sr}]
+    .map(g => { const bo = lowerOwner('L'+g.L, g.j); return Object.assign(g, {bo, rec: bo !== g.L}); });
+}
+
+function draw(c){
+  t = c.t; orient = c.opt;
+  const zf = k(22.2,24.2) - k(34.3,36.4), z = 1 + .6*zf, fy = lerp(215,140,zf);
+  const tf = zf > .001 ? `translate(200 215) scale(${f(z*100)/100}) translate(-200 ${-f(fy)})` : '';
+  const cp = cellPath(blobs());
+
+  let n = '';
+  const no = 1 - k(14.3,18);
+  if(no > 0){ const gap = lerp(5,16,1-no); n += `<path d="${wobblyEllipse(200,200,158,158,0)}" fill="#1E3459" fill-opacity="${op(no*.55)}" stroke="#8FB0DE" stroke-opacity="${op(no*.8)}" stroke-width="1.5" stroke-dasharray="${f(12-gap*.5)} ${f(gap)}"/>`; }
+  const nn = k(71.8,74.6);
+  if(nn > 0) for(const x of [50,150,250,350]) n += `<path d="${wobblyEllipse(x,198,25,158,x)}" fill="#1E3459" fill-opacity="${op(nn*.45)}" stroke="#8FB0DE" stroke-opacity="${op(nn*.7)}" stroke-width="1.3" stroke-dasharray="7 5"/>`;
+
+  const st = states();
+  let s = '';
+  const g1 = k(36.5,39.5), so = g1*(1 - k(49.2,51.5));
+  if(so > 0){
+    for(const d of [-95,-55,55,95]) s += fiber([40,CY],[360,CY],d*1.3,g1,.13*so);
+    for(const id of ['Lm','Lp','Sm','Sp']){
+      const toL = st._left.includes(id), P0 = toL ? [40,CY] : [360,CY], P2 = kinet(st,id,toL);
+      const fo = (orient && id[0]==='S') ? k(40.2,41.2) : 1;
+      for(const [off,o] of [[-10,.3],[0,.6],[10,.3]]) s += fiber(P0,P2,off,g1,o*so*fo);
+    }
+    const eq = so*(1 - k(44.5,45.5));
+    if(eq > 0) s += `<line x1="200" y1="28" x2="200" y2="384" stroke="${AMB}" stroke-dasharray="3 6" stroke-opacity="${op(.5*eq)}"/>`;
+    s += pole(40,CY,so) + pole(360,CY,so);
+  }
+  const g2 = k(58.6,61.2), so2 = g2*(1 - k(66.5,68.5));
+  if(so2 > 0){
+    for(const cc of [100,300]){
+      const eq = so2*(1 - k(61.5,62.5));
+      if(eq > 0) s += `<line x1="${cc}" y1="36" x2="${cc}" y2="376" stroke="${AMB}" stroke-dasharray="3 6" stroke-opacity="${op(.5*eq)}"/>`;
+      for(const id of ['Lm','Lp','Sm','Sp']){
+        if(Math.abs(st[id].cx - cc) > 20) continue;
+        for(const [off,o] of [[-8,.3],[0,.6],[8,.3]]){ s += fiber([cc-74,CY], kinet(st,id,true), off, g2, o*so2); s += fiber([cc+74,CY], kinet(st,id,false), off, g2, o*so2); }
+      }
+      s += pole(cc-74,CY,so2) + pole(cc+74,CY,so2);
+    }
+  }
+
+  let ch = '', lt = '';
+  for(const id of ['Sp','Sm','Lp','Lm']){
+    const cc = st[id], T = id[0], o = id[1], top = cc.top, yc = top + CEN[T];
+    let g = '', l = '';
+    for(const j of [0,1]){
+      if(T === 'L'){
+        const bo = lowerOwner(id,j);
+        g += strand(smooth(ys(top, top+CUT, 11).map(y => pt(st,id,j,y))), COL[o]);
+        g += strand(smooth(ys(top+CUT, top+LEN.L, 6).map(y => pt(st,id,j,y))), COL[bo]);
+        const pa = pt(st,id,j,top+LOC.A), pb = pt(st,id,j,top+LOC.B);
+        l += `<text x="${f(pa[0])}" y="${f(pa[1])}" dy=".36em">${AL.Lt[o]}</text><text x="${f(pb[0])}" y="${f(pb[1])}" dy=".36em">${AL.Lb[bo]}</text>`;
+      } else {
+        g += strand(smooth(ys(top, top+LEN.S, 7).map(y => pt(st,id,j,y))), COL[o]);
+        const pd = pt(st,id,j,top+LOC.D);
+        l += `<text x="${f(pd[0])}" y="${f(pd[1])}" dy=".36em">${AL.S[o]}</text>`;
+      }
+    }
+    const joined = clamp(1 - cc.sep/5, 0, 1);
+    if(joined > 0){ const m = cen(st,id); g += `<circle cx="${f(m[0])}" cy="${f(m[1])}" r="4" fill="${AMB}" opacity="${op(joined)}"/>`; }
+    if(joined < 1) for(const j of [0,1]){ const p = pt(st,id,j,yc); g += `<circle cx="${f(p[0])}" cy="${f(p[1])}" r="3" fill="${AMB}" opacity="${op(1-joined)}"/>`; }
+    ch += `<g opacity="${op(cc.op)}">${g}</g>`;
+    lt += `<g opacity="${op(cc.op)}">${l}</g>`;
+  }
+
+  let fx = '';
+  const y0 = st.Lm.top + CUT;
+  const co = k(25.6,26.6)*(1 - k(SWAP,SWAP+.4));
+  if(co > 0){ const r = 10 + 2.5*Math.sin(t*7); fx += `<circle cx="200" cy="${f(y0)}" r="${f(r+10)}" fill="url(#halo)" opacity="${op(co)}"/><circle cx="200" cy="${f(y0)}" r="${f(r)}" fill="none" stroke="${AMB}" stroke-width="1.4" opacity="${op(co)}"/>`; }
+  if(t > SWAP - .3 && t < SWAP + 1.2){ const p = clamp((t-(SWAP-.3))/1.5, 0, 1); fx += `<circle cx="200" cy="${f(y0)}" r="${f(6+42*p)}" fill="url(#flash)" opacity="${op(1-p)}"/><circle cx="200" cy="${f(y0)}" r="${f(4+30*p)}" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity="${op((1-p)*.9)}"/>`; }
+
+  let lb = '';
+  if(t >= 75.3){
+    gametes().forEach((g,i) => {
+      const o = k(75.6+i*.45, 76.4+i*.45); if(o <= 0) return;
+      lb += `<g opacity="${op(o)}" transform="translate(0 ${f((1-o)*6)})"><text x="${g.x}" y="404" font-size="14" font-weight="700"><tspan fill="${COL[g.L]}">${AL.Lt[g.L]}</tspan> <tspan fill="${COL[g.bo]}">${AL.Lb[g.bo]}</tspan> <tspan fill="${COL[g.S]}">${AL.S[g.S]}</tspan></text>`;
+      lb += `<text x="${g.x}" y="421" font-size="10.5" fill="${g.rec ? AMB : '#9FB0CC'}">${g.rec ? 'recombiné' : 'parental'}</text></g>`;
+    });
+  }
+  return {tf, cp, nuc:n, sp:s, chr:ch, let:lt, fx, lab:lb, st};
+}
+
+const SCENES = [
+ {t:0, e:7, title:"La cellule de départ",
+  text:"Cette cellule est diploïde : <strong>2n = 4</strong>, soit deux paires de chromosomes homologues. Dans chaque paire, un chromosome vient de la mère (magenta), l'autre du père (cyan). Le grand chromosome porte les gènes A et B, le petit le gène D : la cellule est hétérozygote pour les trois.",
+  state:"1 cellule, 2n = 4, chromosomes à 1 chromatide"},
+ {t:7, e:14, title:"Réplication de l'ADN",
+  text:"Avant la méiose, chaque molécule d'ADN est copiée. Le chromosome prend sa forme en X : deux <strong>chromatides sœurs</strong> identiques, reliées par le centromère.",
+  state:"1 cellule, 2n = 4, chromosomes à 2 chromatides"},
+ {t:14, e:22, title:"Prophase I : l'appariement",
+  text:"L'enveloppe du noyau se disloque. Les chromosomes homologues se rapprochent et s'accolent sur toute leur longueur : chaque paire forme un <strong>bivalent</strong> de quatre chromatides.",
+  state:"1 cellule, 2n = 4, chromosomes à 2 chromatides"},
+ {t:22, e:36, title:"Prophase I : le crossing-over",
+  text:"Deux <strong>chromatides non sœurs</strong> se croisent : c'est le chiasma. À cet endroit, elles se cassent puis se recollent en échangeant leurs extrémités. Les allèles B et b changent de chromatide : A b et a B sont des combinaisons nouvelles. C'est le <strong>brassage intrachromosomique</strong>.",
+  state:"1 cellule, 2n = 4, deux chromatides sont maintenant recombinées"},
+ {t:36, e:44, title:"Métaphase I",
+  text:"Le fuseau se forme et les bivalents se placent de part et d'autre du plan équatorial. L'orientation de chaque paire se fait <strong>au hasard</strong>, indépendamment des autres. Teste l'autre orientation pour voir ce qui change à la fin.",
+  state:"1 cellule, 2n = 4, chromosomes à 2 chromatides"},
+ {t:44, e:51, title:"Anaphase I",
+  text:"Les fibres du fuseau tirent chaque chromosome par son centromère : les homologues se séparent, chacun avec ses deux chromatides. Cette répartition au hasard des paires, c'est le <strong>brassage interchromosomique</strong>.",
+  state:"Chaque pôle reçoit un chromosome de chaque paire"},
+ {t:51, e:58, title:"Télophase I",
+  text:"Un sillon étrangle la cellule, qui se divise en <strong>deux cellules haploïdes</strong>. Chaque chromosome garde ses deux chromatides, qui ne sont plus identiques là où le crossing-over a eu lieu.",
+  state:"2 cellules, n = 2, chromosomes à 2 chromatides"},
+ {t:58, e:68, title:"Méiose II",
+  text:"Sans nouvelle réplication, un fuseau se forme dans chaque cellule. Les <strong>chromatides sœurs se séparent</strong> et sont tirées vers des pôles opposés, comme lors d'une mitose.",
+  state:"2 cellules, n = 2, les chromatides se séparent"},
+ {t:68, e:75, title:"Télophase II",
+  text:"Chaque cellule se divise à son tour et un noyau se reforme : on obtient <strong>quatre cellules haploïdes</strong>, dont les chromosomes n'ont plus qu'une chromatide.",
+  state:"4 cellules, n = 2, chromosomes à 1 chromatide"},
+ {t:75, e:84, title:"Bilan : quatre gamètes différents",
+  text:"Une seule cellule, un seul crossing-over, et déjà <strong>quatre gamètes génétiquement différents</strong>. Chez l'humain (n = 23), le brassage interchromosomique seul donne 2²³, soit plus de 8 millions de combinaisons ; les crossing-over rendent la diversité pratiquement infinie.",
+  state:"4 gamètes haploïdes, n = 2 (recombiné : pour les gènes A et B)"}
+];
+
+const CALL = [
+  {a:1.2, b:6.6, text:"noyau", lab:[346,36], anc:()=>[[298,77]]},
+  {a:2.6, b:6.8, text:"chromosomes homologues", lab:[200,20], anc:st=>[at(st,'Lm',0,.08), at(st,'Lp',0,.08)]},
+  {a:9.6, b:13.8, text:"chromatides sœurs", lab:[322,32], anc:st=>[at(st,'Lp',0,.06), at(st,'Lp',1,.06)]},
+  {a:10.6, b:13.9, text:"centromère", lab:[52,196], anc:st=>[cen(st,'Lm')]},
+  {a:14.3, b:17, text:"l'enveloppe du noyau disparaît", lab:[128,414], anc:()=>[[92,312]]},
+  {a:19.2, b:21.9, text:"bivalent : 4 chromatides", lab:[300,34], anc:st=>[at(st,'Lp',1,.3)]},
+  {a:23, b:27.2, text:"chromatides non sœurs", lab:[200,22], anc:st=>[at(st,'Lm',1,.22), at(st,'Lp',0,.22)]},
+  {a:26.2, b:32.8, text:"chiasma", lab:[284,150], anc:st=>[[200, st.Lm.top + CUT]]},
+  {a:31.4, b:35.6, text:"chromatides recombinées", lab:[200,236], anc:st=>[at(st,'Lm',1,.74), at(st,'Lp',0,.74)]},
+  {a:38, b:43.2, text:"pôle du fuseau", lab:[72,118], anc:()=>[[40,CY]]},
+  {a:38.8, b:43.6, text:"fibres du fuseau", lab:[88,336], anc:st=>{ const p = kinet(st,shortLeft(),true); return [[(40+p[0])/2, (CY+p[1])/2 + 6]]; }},
+  {a:39.6, b:44, text:"plan équatorial", lab:[300,410], anc:()=>[[200,372]]},
+  {a:45.4, b:50.6, text:"les homologues se séparent", lab:[200,20], anc:st=>[cen(st,'Lm'), cen(st,'Lp')]},
+  {a:53.8, b:57.4, text:"sillon de division", lab:[200,20], anc:()=>[[200, lerp(30, 70, k(53.8,57))]]},
+  {a:62, b:67.4, text:"les chromatides sœurs se séparent", lab:[200,414], anc:st=>[at(st,shortLeft(),0,.95), at(st,shortLeft(),1,.95)]},
+  {a:72.2, b:74.9, text:"un noyau se reforme", lab:[200,20], anc:()=>[[150,52]]}
+];
+
+const CUES = [[.2,'step'],[8,'dup'],[14.6,'pair'],[23,'chiasma'],[SWAP-.1,'spark'],[29.1,'swap'],[36.5,'step'],[38,'flip',o=>o===1],[44.6,'split'],[51.4,'pinch'],[58.6,'step'],[61.6,'split'],[68.3,'pinch'],[75.5,'final']];
+
+const QUIZ = [
+ {q:"Le crossing-over a lieu entre…", o:["deux chromatides sœurs","deux chromatides non sœurs de chromosomes homologues","deux chromosomes non homologues"], a:1,
+  ex:"Les chromatides sœurs sont identiques : un échange entre elles ne changerait rien. L'échange se fait entre chromatides non sœurs d'une même paire, pendant la prophase I."},
+ {q:"À quel moment se joue le brassage interchromosomique ?", o:["En prophase I","En métaphase I et anaphase I","En anaphase II"], a:1,
+  ex:"En métaphase I, chaque paire s'oriente au hasard sur le plan équatorial ; en anaphase I, les homologues partent vers des pôles opposés. Les combinaisons de chromosomes sont donc tirées au sort."},
+ {q:"Sans crossing-over, combien de types de gamètes cette cellule (2n = 4) peut-elle produire ?", o:["2","4","8"], a:1,
+  ex:"Avec 2 paires, 2² = 4 combinaisons : A B D, A B d, a b D et a b d. Chez l'humain (n = 23), 2²³, soit plus de 8 millions."},
+ {q:"Après la méiose I, les cellules sont…", o:["diploïdes, avec des chromosomes à 2 chromatides","haploïdes, avec des chromosomes à 2 chromatides","haploïdes, avec des chromosomes à 1 chromatide"], a:1,
+  ex:"La méiose I sépare les homologues : on passe de 2n à n. Mais chaque chromosome garde ses deux chromatides jusqu'à l'anaphase II. C'est un piège classique."}
+];
+
+ANIM.lancer({id:'meiose', END:84, SCENES, CALL, CUES, QUIZ, draw, graine:11,
+  bascule:{des:36, saut:36.6, off:"Tester l'autre orientation", on:"Revenir à l'orientation de départ"}});
+})();
+</script>
+</body>
+</html>

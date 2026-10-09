@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>L'endosymbiose à l'origine du chloroplaste</title>
+<link rel="stylesheet" href="moteur.css?v=1">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#t2b">← SVT Terminale</a> · Chapitre 2, partie III : les endosymbioses</p>
+    <h1>L'endosymbiose à l'origine du chloroplaste</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation de l'endosymbiose : une cellule eucaryote phagocyte une cyanobactérie sans la digérer, la cyanobactérie se divise dans la cellule, transfère des gènes au noyau et devient un chloroplaste">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#7BD88F"></span>cyanobactérie puis chloroplaste</li>
+        <li><span class="sw" style="background:#F5C451"></span>ADN de l'organite</li>
+        <li><span class="sw" style="background:#FF9EC8"></span>protéines codées par le noyau</li>
+        <li><span class="sw" style="background:#86A9DB"></span>cellule hôte et noyau</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : tailles non respectées. Les nombres de gènes (environ 1 500 chez une cyanobactérie libre, environ 87 dans le génome du chloroplaste) sont des ordres de grandeur.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=1"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, smooth, wobblyEllipse, cellPath, flash, halo, arc, label} = ANIM.H;
+const VERT = '#7BE36A', VERTF = '#1F4A2A', ROSE = '#FF6DB2', OR = '#F5C451', BLANC = '#F2F5FA', BLEU = '#5AA9FF';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return keys[0].slice(1);
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return a.slice(1).map((v,n) => lerp(v, b[n+1], u)); }
+  }
+  return keys[keys.length-1].slice(1);
+}
+const NUC = [150, 262];
+/* cyanobactérie, puis chloroplaste : capsule verte, thylakoïdes, ADN circulaire */
+function cyano(x, y, w, h, ang, t, o, vesicle=0, genes=1){
+  if(o <= 0) return '';
+  let s = `<g transform="rotate(${f(ang)} ${f(x)} ${f(y)})" opacity="${op(o)}">`;
+  if(vesicle > 0) s += `<rect x="${f(x-w/2-7)}" y="${f(y-h/2-7)}" width="${f(w+14)}" height="${f(h+14)}" rx="${f(h/2+7)}" fill="none" stroke="#86A9DB" stroke-width="2" opacity="${op(vesicle)}"/>`;
+  s += `<rect x="${f(x-w/2)}" y="${f(y-h/2)}" width="${f(w)}" height="${f(h)}" rx="${f(h/2)}" fill="${VERTF}" stroke="${VERT}" stroke-width="2.2"/>`;
+  for(let i=-2; i<=2; i++) s += `<path d="M${f(x + i*w*.14 - 4)} ${f(y - h*.28)} L${f(x + i*w*.14 - 4)} ${f(y + h*.28)}" stroke="${VERT}" stroke-opacity=".55" stroke-width="2"/>`;
+  s += `<circle cx="${f(x + w*.28)}" cy="${f(y)}" r="${f(lerp(3.2, 6, genes))}" fill="none" stroke="${OR}" stroke-width="1.6"/>`;
+  return s + '</g>';
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {}; let cells = '', chr = '', fx = '', lab = '', nuc = '';
+  /* la cyanobactérie : approche, englobement, entrée */
+  const [bx, by] = kf([[0,368,76],[1,368,76],[7,306,118],[11,306,118],[15,250,160],[19,250,160]], t);
+  /* division de l'organite (étape 3) */
+  const dv = kAt(t, 19.5, 22.5);
+  const orgs = dv > 0 ? [[lerp(bx, 228, dv), lerp(by, 150, dv)], [lerp(bx, 292, dv), lerp(by, 192, dv)]] : [[bx, by]];
+  /* la cellule eucaryote : métaballes, avec un pseudopode qui enveloppe la bactérie */
+  const ps = kAt(t, 7.4, 10.8)*(1 - kAt(t, 12.4, 15));
+  const bl = [[186, 236, 162, 152]];
+  if(ps > 0) bl.push([lerp(286, bx, kAt(t,7.4,10.8)), lerp(150, by, kAt(t,7.4,10.8)), 46*ps, 34*ps]);
+  const cp = cellPath(bl);
+  /* noyau */
+  nuc += `<path d="${wobblyEllipse(NUC[0], NUC[1], 50, 44, 2)}" fill="#22406E" stroke="#8FB0DE" stroke-width="1.6"/>`;
+  const dl = []; for(let i=0; i<=10; i++){ const u = i/10; dl.push([NUC[0] - 36 + 72*u, NUC[1] + 3*Math.sin(u*10 + t)]); }
+  chr += `<path d="${smooth(dl)}" fill="none" stroke="${BLEU}" stroke-width="2.8"/>`;
+  /* gènes transférés au noyau : petits segments verts qui s'ajoutent */
+  const HOPS = 12, hopT = n => 25 + n*1;
+  let arrived = 0;
+  for(let n=0; n<HOPS; n++){
+    const a0 = hopT(n), p = kAt(t, a0, a0 + 1.6);
+    if(p <= 0) continue;
+    const src = orgs[n % orgs.length];
+    const dst = [NUC[0] - 30 + (n % 6)*12, NUC[1] - 14 + Math.floor(n/6)*26];
+    if(p < 1){ const P = arc([src[0] + 12, src[1]], dst, 40, p); chr += `<path d="M${f(P[0]-5)} ${f(P[1])} L${f(P[0]+5)} ${f(P[1])}" stroke="${VERT}" stroke-width="3.4" stroke-linecap="round"/>`; }
+    else { arrived++; chr += `<path d="M${f(dst[0]-4)} ${f(dst[1])} L${f(dst[0]+4)} ${f(dst[1])}" stroke="${VERT}" stroke-width="3.2" stroke-linecap="round"/>`; }
+  }
+  /* la bactérie / les chloroplastes */
+  const ves = kAt(t, 11.6, 13);
+  const genes = 1 - kAt(t, 25, 37.5);
+  orgs.forEach(([x, y], i) => { chr += cyano(x, y, lerp(62, 54, dv), lerp(28, 26, dv), lerp(-20, i ? 24 : -14, kAt(t,7,19)), t, 1, ves, genes); st['o' + i] = [x, y]; });
+  /* protéines codées par le noyau, importées dans les chloroplastes */
+  if(t > 38.6) for(let n=0; n<14; n++){
+    const a0 = 39 + n*.55, p = kAt(t, a0, a0 + 2.2); if(p <= 0 || p >= 1) continue;
+    const dst = orgs[n % orgs.length];
+    const P = arc([NUC[0] + 40, NUC[1] - 20], dst, 30, p);
+    fx += `<circle cx="${f(P[0])}" cy="${f(P[1])}" r="3" fill="${ROSE}"/>`;
+  }
+  /* lumière et photosynthèse */
+  if(t > 48.4){
+    orgs.forEach(([x, y], i) => {
+      for(let m=0; m<3; m++){ const a0 = 48.6 + i*.4 + m*1.8, p = lin(t, a0, a0 + 1.4); if(p <= 0 || p >= 1) continue;
+        const sx = x + 90 - 80*p, sy = y - 110 + 100*p; fx += `<path d="M${f(sx)} ${f(sy)} l-10 11" stroke="${OR}" stroke-width="2.4" stroke-linecap="round" opacity="${op(1-p*.3)}"/>`; }
+      for(let m=0; m<4; m++){ const a0 = 50 + i*.5 + m*1.3, p = lin(t, a0, a0 + 2.4); if(p <= 0 || p >= 1) continue;
+        const an = m*1.7 + i; fx += `<rect x="${f(x + Math.cos(an)*(20 + 40*p) - 3)}" y="${f(y + Math.sin(an)*(16 + 34*p) - 3)}" width="6" height="6" rx="1.5" fill="${BLANC}" opacity="${op(1 - p)}"/>`; }
+    });
+    fx += halo(orgs[0][0], orgs[0][1], kAt(t,48.6,49.4)*(1 - kAt(t,55,56))*.6, 30);
+  }
+  fx += flash(bx, by, 12.2, 1.2);
+  /* compteur de gènes */
+  const cg = kAt(t, 24, 25)*(1 - kAt(t, 47, 48));
+  if(cg > 0){
+    const N = Math.round(Math.exp(lerp(Math.log(1500), Math.log(87), kAt(t, 25, 37.5))));
+    lab += `<g opacity="${op(cg)}" text-anchor="start"><rect x="8" y="8" width="214" height="40" rx="9" fill="#0A1222" fill-opacity=".85" stroke="${VERT}" stroke-opacity=".5"/>`;
+    lab += `<text x="17" y="24" font-size="10.5" font-weight="700" fill="${VERT}">gènes dans l'organite : ${N}</text><text x="17" y="40" font-size="10.5" fill="#C9D3E6">transférés au noyau : environ ${Math.round((1500 - N)/1413*1400/50)*50}</text></g>`;
+  }
+  const g0 = k(1,1.8)*(1 - k(6,7));
+  if(g0 > 0) lab += label(330, 116, '1 500 à 10 000 gènes', VERT, 10, g0);
+  st.bact = [bx, by]; st.noyau = [NUC[0], NUC[1] - 44]; st.cell = [40, 236];
+  return {cp, cells, nuc, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:7, title:"Une cellule eucaryote et une cyanobactérie",
+  text:"Une <strong>cellule eucaryote</strong> ancestrale, sans chloroplaste, avec son noyau. À côté, une <strong>cyanobactérie</strong> libre, capable de photosynthèse, avec son ADN circulaire de 1 500 à 10 000 gènes.",
+  state:"2 êtres vivants indépendants"},
+ {t:7, e:17, title:"La phagocytose… incomplète",
+  text:"La cellule eucaryote <strong>phagocyte</strong> la cyanobactérie : sa membrane l'entoure et l'enferme dans une vésicule. Mais la bactérie n'est <strong>pas digérée</strong>. Elle est désormais entourée de <strong>deux membranes</strong> : la sienne, et celle de la vésicule. C'est l'argument essentiel de la théorie.",
+  state:"Une bactérie vivante dans la cellule, avec une double membrane"},
+ {t:17, e:24, title:"Une association durable",
+  text:"La bactérie vit et se divise dans la cellule, par <strong>étranglement</strong>, comme une bactérie. Chacun tire profit de l'association : c'est une <strong>endosymbiose</strong>, théorie proposée par <strong>Lynn Margulis</strong> dans les années 1960.",
+  state:"Une endosymbiose"},
+ {t:24, e:38, title:"Les gènes passent dans le noyau",
+  text:"Au fil des générations, de nombreux gènes de la bactérie sont <strong>transférés vers le noyau</strong> de la cellule hôte (environ 1 400 pour le chloroplaste) : c'est un <strong>transfert horizontal</strong>. L'organite n'en garde que <strong>87</strong>.",
+  state:"Le génome de l'organite régresse"},
+ {t:38, e:48, title:"Le noyau prend le relais",
+  text:"Le noyau code désormais la plupart des protéines de l'organite : elles sont fabriquées dans le cytoplasme puis <strong>importées</strong> dans le chloroplaste (environ 2 300), comme la petite sous-unité de la <strong>RubisCo</strong>.",
+  state:"Protéines du noyau importées dans l'organite"},
+ {t:48, e:56, title:"Des bénéfices réciproques",
+  text:"Grâce à ses chloroplastes, la cellule devient capable de <strong>photosynthèse</strong> : elle fabrique sa matière organique à partir de lumière. L'organite, lui, vit dans un milieu stable et dépense moins d'énergie pour son génome.",
+  state:"Une cellule eucaryote autotrophe"},
+ {t:56, e:62, title:"Bilan",
+  text:"Le chloroplaste descend d'une <strong>cyanobactérie</strong> ; la mitochondrie, par la même histoire, d'une <strong>α-protéobactérie</strong>. En héritant de gènes bactériens, le génome de la cellule hôte s'est <strong>complexifié</strong>.",
+  state:"Endosymbiose : origine des chloroplastes et des mitochondries"}
+];
+
+const CALL = [
+  {a:1.2, b:6.6, text:"cyanobactérie", lab:[300,30], anc:st=>[st.bact].filter(Boolean)},
+  {a:1.8, b:6.8, text:"noyau", lab:[150,380], anc:st=>[[150,306]]},
+  {a:8, b:11.4, text:"la membrane l'entoure", lab:[300,30], anc:st=>[[300,96]]},
+  {a:12.8, b:16.8, text:"2 membranes", lab:[330,240], anc:st=>[[st.bact[0] + 30, st.bact[1] + 14]]},
+  {a:20.4, b:23.6, text:"division par étranglement", lab:[300,30], anc:st=>[st.o0, st.o1].filter(Boolean)},
+  {a:26, b:30, text:"des gènes vont au noyau", lab:[150,380], anc:st=>[[150,262]]},
+  {a:40, b:44.6, text:"protéines importées", lab:[300,280], anc:st=>[st.o1 || st.o0].filter(Boolean)},
+  {a:49.4, b:54.6, text:"photosynthèse", lab:[330,60], anc:st=>[st.o0].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[7.6,'whoosh'],[12.2,'pop'],[17.2,'step'],[20,'pinch'],[25,'mut'],[29,'mut'],[33,'mut'],[38.4,'step'],[40,'pop'],[48.6,'spark'],[56.2,'final']];
+
+const QUIZ = [
+ {q:"Pourquoi le chloroplaste a-t-il deux membranes ?", o:["Parce que la bactérie a été enfermée dans une vésicule lors de la phagocytose","Parce qu'il se divise en deux","Parce qu'il a deux génomes"], a:0,
+  ex:"La membrane interne est celle de la bactérie, la membrane externe celle de la vésicule formée par la cellule hôte."},
+ {q:"Pourquoi le génome du chloroplaste ne compte-t-il que 87 gènes ?", o:["Parce que de nombreux gènes ont été transférés vers le noyau de la cellule hôte","Parce que le chloroplaste n'est pas d'origine bactérienne","Parce que ses gènes ont été digérés"], a:0,
+  ex:"Environ 1 400 gènes sont passés dans le noyau, qui code désormais les protéines de l'organite."},
+ {q:"De quelle bactérie descend le chloroplaste ?", o:["D'une α-protéobactérie","D'une cyanobactérie","D'Agrobacterium"], a:1,
+  ex:"Comme le chloroplaste, la cyanobactérie fait la photosynthèse avec la RubisCo. La mitochondrie, elle, descend d'une α-protéobactérie."}
+];
+
+ANIM.lancer({id:'endosymbiose', END:62, SCENES, CALL, CUES, QUIZ, draw, graine:19});
+})();
+</script>
+</body>
+</html>

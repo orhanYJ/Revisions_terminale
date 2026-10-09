@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>La mitose</title>
+<link rel="stylesheet" href="moteur.css?v=1">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#p1">← SVT Terminale</a> · Rappels de Première, fiche 1 · Terminale, chapitre 1, unité 1</p>
+    <h1>La mitose</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation de la mitose d'une cellule à 2n = 4 : réplication, condensation, métaphase, anaphase, télophase et cytodiérèse">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF5CA8"></span>chromosome d'origine maternelle</li>
+        <li><span class="sw" style="background:#3FD9C8"></span>chromosome d'origine paternelle</li>
+        <li><span class="sw" style="background:#F5C451"></span>fuseau, centromères</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Cellule modèle à 2n = 4. Suis le compteur : le nombre de chromosomes ne change jamais ; ce qui change, c'est le nombre de chromatides par chromosome et la quantité d'ADN.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=1"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, smooth, ys, wobblyEllipse, cellPath, fiber, pole, flash, label, AMB, MAG, CYA} = ANIM.H;
+const CY = 205;
+const LEN = {L:95, S:52}, CEN = {L:38, S:20};
+const COL = {m:MAG, p:CYA};
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return keys[0].slice(1);
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return a.slice(1).map((v,n) => lerp(v, b[n+1], u)); }
+  }
+  return keys[keys.length-1].slice(1);
+}
+const IDS = ['Lm','Lp','Sm','Sp'];
+const P0 = {Lm:[140,62,-20], Lp:[255,80,15], Sm:[150,248,25], Sp:[255,252,-15]};
+const P1 = {Lm:[200,32,0], Lp:[200,137,0], Sm:[200,245,0], Sp:[200,307,0]};
+const chromKeys = id => [[0,...P0[id]],[21,...P0[id]],[25,...P1[id]]];
+
+function draw(c){
+  const {t, k} = c;
+  const st = {}; let nuc = '', sp = '', ch = '', fx = '', lab = '';
+  const cond = k(13.5,18.5) - k(41,45);              /* condensation */
+  const q = 6*k(7,12);                                /* écart des chromatides sœurs */
+  const ana = k(29,33.5);                             /* anaphase */
+  const w = lerp(3.2, 11, cond), wig = lerp(7, 1.1, cond);
+
+  /* cellules */
+  const a = k(36,41), ap = k(36,41.5), el = k(29,34), R = 1.19;
+  const bl = a <= 0 ? [[200,CY,190+6*el,190-8*el]] : [-1,1].map(sg => [lerp(200,200+sg*100,ap), CY, lerp(196/R,76,ap), lerp(182/R,186,a)]);
+  const cp = cellPath(bl);
+
+  /* noyaux */
+  const no = 1 - k(16,19.5);
+  if(no > 0){ const gap = lerp(5,16,1-no); nuc += `<path d="${wobblyEllipse(200,200,160,170,0)}" fill="#1E3459" fill-opacity="${op(no*.55)}" stroke="#8FB0DE" stroke-opacity="${op(no*.8)}" stroke-width="1.5" stroke-dasharray="${f(12-gap*.5)} ${f(gap)}"/>`; }
+  const nn = k(40.5,44);
+  if(nn > 0) for(const x of [100,300]) nuc += `<path d="${wobblyEllipse(x,198,50,172,x)}" fill="#1E3459" fill-opacity="${op(nn*.5)}" stroke="#8FB0DE" stroke-opacity="${op(nn*.75)}" stroke-width="1.4" stroke-dasharray="7 5"/>`;
+
+  /* fuseau */
+  const g1 = k(17,20.5), so = g1*(1 - k(34.5,37));
+  if(so > 0){
+    for(const d of [-95,-55,55,95]) sp += fiber([40,CY],[360,CY],d*1.3,g1,.12*so);
+    const fa = k(22.5,25);
+    for(const id of IDS){
+      const [cx, top] = kf(chromKeys(id), t), y = top + CEN[id[0]];
+      for(const j of [0,1]){
+        const x = lerp(cx + (j ? q : -q), j ? 292 : 108, ana);
+        const P0 = j ? [360,CY] : [40,CY];
+        for(const [off,o] of [[-8,.3],[0,.6],[8,.3]]) sp += fiber(P0, [x + (j ? 4 : -4), y], off, g1, o*so*fa);
+      }
+    }
+    const eq = so*k(23,25)*(1 - k(29,30));
+    if(eq > 0) sp += `<line x1="200" y1="20" x2="200" y2="392" stroke="${AMB}" stroke-dasharray="3 6" stroke-opacity="${op(.55*eq)}"/>`;
+    sp += pole(40,CY,so) + pole(360,CY,so);
+  }
+
+  /* chromosomes */
+  for(const id of IDS){
+    const T = id[0], L = LEN[T];
+    const [cx, top, rot] = kf(chromKeys(id), t), [cx1] = kf(chromKeys(id), t+.04), [cx0] = kf(chromKeys(id), t-.04);
+    const lagC = clamp(-(cx1-cx0)/.08*.25, -20, 20);
+    const yc = top + CEN[T];
+    const xs = [], cents = [];
+    for(const j of [0,1]){
+      if(q < .4 && j === 1) continue;                  /* avant la réplication : une seule chromatide */
+      const side = j ? 1 : -1;
+      const bx = lerp(cx + side*q, j ? 292 : 108, ana);
+      const v = ((kAt(t+.04,29,33.5) - kAt(t-.04,29,33.5))/.08)*((j ? 292 : 108) - (cx + side*q));
+      const lagA = clamp(-v*.12, -16, 16);
+      const pts = ys(top, top + L, T === 'L' ? 12 : 8).map(y => {
+        const u = (y - yc)/(L*.55), u2 = u*u;
+        let x = bx + side*5*cond*(1-ana)*u2 + (lagC + lagA)*u2;
+        x += wig*Math.sin(y*.16 + t*1.3 + (id[1] === 'm' ? 0 : 2) + j*1.7) + 1.1*Math.sin(y*.05 + t*1.5);
+        if(rot){ const ra = rot*Math.PI/180, dx = x - cx, dy = y - yc; return [cx + dx*Math.cos(ra) - dy*Math.sin(ra), yc + dx*Math.sin(ra) + dy*Math.cos(ra)]; }
+        return [x, y];
+      });
+      ch += `<path d="${smooth(pts)}" stroke="${COL[id[1]]}" stroke-width="${f(w)}" stroke-linecap="round" fill="none" stroke-opacity="${op(lerp(.75,1,cond))}"/>`;
+      if(cond > .3) ch += `<path d="${smooth(pts)}" stroke="#FFFFFF" stroke-opacity="${op(.28*cond)}" stroke-width="${f(w*.25)}" stroke-linecap="round" fill="none" transform="translate(-2.6 0)"/>`;
+      xs.push(pts[Math.round(pts.length*.15)]);
+      cents.push([bx, yc]);
+    }
+    const joined = 1 - ana;
+    if(cond > .2){
+      if(joined > .02 && cents.length === 2) ch += `<circle cx="${f((cents[0][0]+cents[1][0])/2)}" cy="${f(yc)}" r="4" fill="${AMB}" opacity="${op(joined*cond)}"/>`;
+      if(ana > 0) for(const p of cents) ch += `<circle cx="${f(p[0])}" cy="${f(p[1])}" r="3" fill="${AMB}" opacity="${op(ana*cond)}"/>`;
+    }
+    st[id] = xs; st[id + 'c'] = [cx, yc];
+  }
+  fx += flash(200, 84, 29.2, 1.2);
+  st.neck = [200, lerp(24, 62, k(37,41))];
+
+  /* compteurs */
+  const dna = t < 7 ? 'Q' : t < 12 ? 'Q → 2Q' : t < 33.5 ? '2Q' : t < 41 ? '2Q → 2 × Q' : 'Q dans chaque cellule';
+  const nchr = t < 36 ? '4 chromosomes' : '4 chromosomes par cellule';
+  const cpt = k(.5,1.5)*(1 - k(51,52));
+  if(cpt > 0){
+    lab += `<g opacity="${op(cpt)}" text-anchor="start"><rect x="8" y="8" width="150" height="38" rx="9" fill="#0A1222" fill-opacity=".85" stroke="#F5C451" stroke-opacity=".45"/>`;
+    lab += `<text x="17" y="23" font-size="10.5" font-weight="700" fill="#F2F5FA">${nchr}</text><text x="17" y="38" font-size="10.5" fill="#F5C451">ADN : ${dna}</text></g>`;
+  }
+  const bl2 = k(45.5,46.5);
+  if(bl2 > 0) for(const x of [100,300]) lab += `<g opacity="${op(bl2)}"><text x="${x}" y="408" font-size="14" font-weight="700" fill="#F2F5FA">2n = 4</text><text x="${x}" y="424" font-size="10" fill="#9FB0CC">identique à la cellule mère</text></g>`;
+
+  return {cp, nuc, sp, chr:ch, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:7, title:"Interphase (G1)",
+  text:"La cellule grandit. Ses <strong>4 chromosomes</strong> (2n = 4 : une grande paire, une petite paire) sont là, mais <strong>décondensés</strong> dans le noyau : c'est la chromatine, invisible au microscope. Chaque chromosome n'a qu'une chromatide.",
+  state:"1 cellule, 4 chromosomes à 1 chromatide, quantité d'ADN Q"},
+ {t:7, e:13, title:"Interphase (phase S) : la réplication",
+  text:"L'ADN est répliqué : chaque chromosome passe de <strong>1 à 2 chromatides</strong>. La quantité d'ADN double (Q → 2Q), mais le <strong>nombre de chromosomes ne change pas</strong> : il reste 4. C'est le piège de tous les graphiques.",
+  state:"1 cellule, 4 chromosomes à 2 chromatides, ADN 2Q"},
+ {t:13, e:21, title:"Prophase",
+  text:"Les chromosomes se <strong>condensent</strong> et deviennent visibles : chacun est formé de deux chromatides sœurs reliées par un centromère (la forme en X). L'<strong>enveloppe nucléaire disparaît</strong> et le fuseau se met en place entre les deux pôles.",
+  state:"1 cellule, 4 chromosomes à 2 chromatides"},
+ {t:21, e:28, title:"Métaphase",
+  text:"Les 4 chromosomes s'alignent sur la <strong>plaque équatoriale</strong>, chaque centromère accroché aux fibres des deux pôles. Ils sont au maximum de leur condensation : c'est le moment où l'on réalise un <strong>caryotype</strong>.",
+  state:"1 cellule, 4 chromosomes alignés"},
+ {t:28, e:35, title:"Anaphase",
+  text:"Les centromères se clivent : les 4 chromosomes libèrent <strong>8 chromatides</strong>, qui migrent vers les pôles opposés. Chaque pôle reçoit 4 chromatides, soit un lot complet de <strong>4 chromosomes à 1 chromatide</strong>.",
+  state:"Chaque pôle reçoit 4 chromosomes à 1 chromatide"},
+ {t:35, e:45, title:"Télophase et cytodiérèse",
+  text:"Le cytoplasme se partage en deux (<strong>cytodiérèse</strong>), les enveloppes nucléaires se reforment et les chromosomes se décondensent.",
+  state:"2 cellules, 4 chromosomes à 1 chromatide chacune"},
+ {t:45, e:52, title:"Bilan : deux clones",
+  text:"Chaque cellule fille possède <strong>2n = 4 chromosomes</strong>, exactement comme la cellule mère, avec la même information génétique : ce sont des <strong>clones</strong>. La mitose conserve le caryotype ; elle ne crée aucune diversité.",
+  state:"2 cellules filles identiques à la cellule mère"}
+];
+
+const CALL = [
+  {a:1, b:6.6, text:"chromatine : ADN décondensé", lab:[200,412], anc:st=>[st.Sm && st.Sm[0]].filter(Boolean)},
+  {a:1.6, b:6.8, text:"noyau", lab:[346,30], anc:()=>[[318,92]]},
+  {a:8.4, b:12.8, text:"réplication : 1 → 2 chromatides", lab:[200,412], anc:st=>[st.Sp && st.Sp[0], st.Sp && st.Sp[1]].filter(Boolean)},
+  {a:14.2, b:17.6, text:"condensation", lab:[300,412], anc:st=>[st.Lp && st.Lp[0]].filter(Boolean)},
+  {a:17.2, b:20.6, text:"l'enveloppe nucléaire disparaît", lab:[128,414], anc:()=>[[92,320]]},
+  {a:19, b:21.4, text:"pôle du fuseau", lab:[72,118], anc:()=>[[40,CY]]},
+  {a:23.2, b:27.8, text:"plaque équatoriale", lab:[300,412], anc:()=>[[200,380]]},
+  {a:24, b:27.8, text:"2 chromatides sœurs", lab:[318,64], anc:st=>[st.Lm && st.Lm[0], st.Lm && st.Lm[1]].filter(Boolean)},
+  {a:29.4, b:34, text:"les chromatides sœurs se séparent", lab:[200,412], anc:st=>[st.Sp && st.Sp[0], st.Sp && st.Sp[1]].filter(Boolean)},
+  {a:37, b:41, text:"cytodiérèse", lab:[262,22], anc:st=>[st.neck]},
+  {a:41.5, b:44.8, text:"les noyaux se reforment", lab:[200,412], anc:()=>[[120,360],[280,360]]}
+];
+
+const CUES = [[.2,'step'],[7.4,'dup'],[13.6,'step'],[17.2,'pair'],[21.2,'step'],[29.1,'split'],[36.2,'pinch'],[45.3,'final']];
+
+const QUIZ = [
+ {q:"Pendant la phase S, que devient le nombre de chromosomes ?", o:["Il double, comme la quantité d'ADN","Il ne change pas : seule la quantité d'ADN double","Il est divisé par deux"], a:1,
+  ex:"Chaque chromosome gagne une seconde chromatide, mais on en compte toujours autant : 4 ici, 46 chez l'humain."},
+ {q:"À quelle étape réalise-t-on un caryotype ?", o:["En interphase","En métaphase","En télophase"], a:1,
+  ex:"En métaphase, les chromosomes sont au maximum de leur condensation et bien individualisés sur la plaque équatoriale."},
+ {q:"Que se passe-t-il en anaphase de mitose ?", o:["Les chromosomes homologues se séparent","Les chromatides sœurs se séparent et migrent vers les pôles opposés","L'ADN se réplique"], a:1,
+  ex:"Les centromères se clivent : chaque pôle reçoit une chromatide de chaque chromosome. La séparation des homologues, c'est l'anaphase I de méiose."},
+ {q:"Les deux cellules filles d'une mitose sont…", o:["génétiquement identiques entre elles et à la cellule mère","génétiquement différentes","haploïdes"], a:0,
+  ex:"La mitose est une reproduction conforme : elle conserve le caryotype et produit des clones."}
+];
+
+ANIM.lancer({id:'mitose', END:52, SCENES, CALL, CUES, QUIZ, draw, graine:7});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>Produire de l'insuline par transgenèse</title>
+<link rel="stylesheet" href="moteur.css?v=1">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#t2">← SVT Terminale</a> · Chapitre 2, partie I : la transgenèse maîtrisée par l'humain</p>
+    <h1>Produire de l'insuline par transgenèse</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation de la production d'insuline humaine par des bactéries : gène isolé, plasmide ouvert, plasmide recombinant, bactérie transformée, divisions, production">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF6B5B"></span>gène humain de l'insuline</li>
+        <li><span class="sw" style="background:#F5C451"></span>plasmide (vecteur)</li>
+        <li><span class="sw" style="background:#5AA9FF"></span>chromosome bactérien</li>
+        <li><span class="sw" style="background:#FF9EC8"></span>insuline produite</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : tailles non respectées. La découpe et le recollage de l'ADN se font avec des enzymes, dont le détail est hors programme.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=1"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, smooth, wobblyEllipse, flash, halo, arc, label} = ANIM.H;
+const ROUGE = '#FF6B5B', OR = '#F5C451', BLEU = '#5AA9FF', BLANC = '#F2F5FA', ROSEC = '#FF9EC8';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+
+function loop(cx, cy, rx, ry, t, o=1){
+  const pts = []; for(let i=0; i<=40; i++){ const a = i/40*6.2832, w = 1 + .12*Math.sin(5*a + t*1.2); pts.push([cx + Math.cos(a)*rx*w, cy + Math.sin(a)*ry*w]); }
+  return `<path d="${smooth(pts)}" fill="none" stroke="${BLEU}" stroke-width="2.4" opacity="${op(o)}"/>`;
+}
+/* plasmide : anneau, ouverture (gap 0→1) et insert (ins 0→1) */
+function plasmid(x, y, r, o, gap=0, ins=0){
+  if(o <= 0) return '';
+  const half = .45*gap;                       /* demi-ouverture en radians, côté droit */
+  const a0 = half, a1 = 2*Math.PI - half;
+  const P = a => [x + r*Math.cos(a), y + r*Math.sin(a)];
+  let s = '';
+  if(gap < .01) s += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(r)}" fill="none" stroke="${OR}" stroke-width="${f(r*.22)}" opacity="${op(o)}"/>`;
+  else { const [x0,y0] = P(a0), [x1,y1] = P(a1); s += `<path d="M${f(x0)} ${f(y0)} A${f(r)} ${f(r)} 0 1 1 ${f(x1)} ${f(y1)}" fill="none" stroke="${OR}" stroke-width="${f(r*.22)}" stroke-linecap="round" opacity="${op(o)}"/>`; }
+  if(ins > 0){ const [x0,y0] = P(-.45), [x1,y1] = P(.45); s += `<path d="M${f(x0)} ${f(y0)} A${f(r)} ${f(r)} 0 0 1 ${f(x1)} ${f(y1)}" fill="none" stroke="${ROUGE}" stroke-width="${f(r*.3)}" stroke-linecap="round" opacity="${op(o*ins)}"/>`; }
+  return s;
+}
+function bact(x, y, w, h, o, t, ph){
+  if(o <= 0) return {c:'', k:''};
+  const c = `<rect x="${f(x-w/2)}" y="${f(y-h/2)}" width="${f(w)}" height="${f(h)}" rx="${f(h/2)}" fill="#16304F" stroke="#86A9DB" stroke-width="2" opacity="${op(o)}"/>`;
+  const kk = loop(x - w*.12, y, w*.2, h*.22, t + ph, o) + plasmid(x + w*.24, y - h*.08, h*.18, o, 0, 1);
+  return {c, k:kk};
+}
+/* positions des bactéries à chaque génération */
+const GEN = [
+  [[200,262]],
+  [[130,262],[270,262]],
+  [[130,214],[130,310],[270,214],[270,310]],
+  [[65,214],[155,214],[65,310],[155,310],[245,214],[335,214],[245,310],[335,310]]
+];
+const SIZE = [[150,66],[120,56],[110,50],[82,40]];
+const DIV = [29, 32.5, 36];
+
+function draw(c){
+  const {t, k} = c;
+  const st = {}; let cells = '', chr = '', fx = '', lab = '';
+  /* 1. la cellule humaine et son gène */
+  const hc = kAt(t, 0, .8)*(1 - kAt(t, 20, 21.5));
+  if(hc > 0){
+    cells += `<path d="${wobblyEllipse(108,150,86,80,1)}" fill="#3A1E36" stroke="${ROSEC}" stroke-width="2" opacity="${op(hc)}"/><path d="${wobblyEllipse(108,152,46,40,2)}" fill="#22406E" stroke="#8FB0DE" stroke-width="1.6" opacity="${op(hc)}"/>`;
+    const dl = []; for(let i=0; i<=10; i++){ const u = i/10; dl.push([72 + 72*u, 152 + 3*Math.sin(u*10 + t)]); }
+    chr += `<path d="${smooth(dl)}" fill="none" stroke="${BLEU}" stroke-width="2.8" opacity="${op(hc)}"/>`;
+    st.cellule = [108, 80];
+  }
+  fx += flash(98, 152, 5, 1) + flash(118, 152, 5.4, 1);
+  /* le gène : excisé, puis porté jusqu'au plasmide */
+  const out = kAt(t, 5.8, 7.2), go = kAt(t, 14.5, 17.5), ins = kAt(t, 17.5, 19);
+  if(t < 19.2){
+    let P = [108, lerp(152, 118, out)];
+    if(go > 0) P = arc([108, 118], [292 + 52, 150], 70, go);
+    const ang = go > 0 ? lerp(0, 90, go) : 0;
+    chr += `<g transform="rotate(${f(ang)} ${f(P[0])} ${f(P[1])})" opacity="${op(kAt(t,0,.8)*(1 - ins))}"><path d="M${f(P[0]-11)} ${f(P[1])} L${f(P[0]+11)} ${f(P[1])}" stroke="${ROUGE}" stroke-width="7" stroke-linecap="round"/></g>`;
+    st.gene = P;
+  }
+  /* 2-3. le plasmide : ouvert, recombiné, puis transféré dans la bactérie */
+  const pv = kAt(t, 7, 7.8);
+  const gap = kAt(t, 9.5, 11.5)*(1 - kAt(t, 18, 19.4));
+  const [px, py] = (() => {
+    if(t < 22) return [292, 150];
+    const u = kAt(t, 22.5, 26); return arc([292, 150], [200 + 150*.24, 262 - 66*.08], -40, u);
+  })();
+  const pr = lerp(52, 66*.18, kAt(t, 22.5, 26));
+  if(t < 26.2) chr += plasmid(px, py, pr, pv, gap, ins);
+  fx += flash(292 + 52, 150, 9.8, 1);
+  st.plasmide = [px, py - pr];
+  /* 4-5. la bactérie, puis ses divisions */
+  const bv = kAt(t, 21, 22.2);
+  if(bv > 0){
+    let g = 0; for(let n=0; n<DIV.length; n++) if(t >= DIV[n]) g = n + 1;
+    const dv = g > 0 ? kAt(t, DIV[g-1], DIV[g-1] + 2) : 1;
+    GEN[g].forEach(([x, y], i) => {
+      let X = x, Y = y, [w, h] = SIZE[g];
+      if(g > 0 && dv < 1){ const [x0, y0] = GEN[g-1][i >> 1]; X = lerp(x0, x, dv); Y = lerp(y0, y, dv); w = lerp(SIZE[g-1][0], w, dv); h = lerp(SIZE[g-1][1], h, dv); }
+      const b = bact(X, Y, w, h, bv, t, i);
+      cells += b.c;
+      if(g > 0 || t >= 26.2) chr += b.k;
+      else chr += loop(X - w*.12, Y, w*.2, h*.22, t, bv);
+      st['b' + i] = [X, Y];
+    });
+    /* insuline */
+    if(t > 39.5){
+      GEN[3].forEach(([x, y], i) => {
+        for(let m=0; m<4; m++){
+          const a0 = 39.8 + i*.18 + m*1.6, p = lin(t, a0, a0 + 2.6); if(p <= 0 || p >= 1) continue;
+          const an = i*1.3 + m*2.1;
+          fx += `<circle cx="${f(x + Math.cos(an)*(18 + 34*p))}" cy="${f(y - 18 - 50*p)}" r="2.8" fill="${ROSEC}" opacity="${op(1 - p*.6)}"/>`;
+        }
+      });
+    }
+    st.bact = [200, 262];
+  }
+  const cnt = ['1 bactérie','2 bactéries','4 bactéries','8 bactéries, puis des milliards'];
+  if(bv > 0){ let g = 0; for(let n=0; n<DIV.length; n++) if(t >= DIV[n] + 1) g = n + 1; lab += label(200, 404, cnt[g], BLANC, 11, bv); }
+  return {cells, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:7, title:"1. Identifier le gène d'intérêt",
+  text:"Dans une cellule humaine, on repère le <strong>gène de l'insuline</strong> (en rouge), l'hormone qui fait baisser la glycémie et qui manque aux personnes diabétiques de type 1. On le découpe et on l'isole.",
+  state:"Le gène humain de l'insuline est isolé"},
+ {t:7, e:14, title:"2. Ouvrir un plasmide",
+  text:"On prend un <strong>plasmide</strong> bactérien, une petite molécule d'ADN circulaire, et on l'<strong>ouvre</strong> : on coupe la boucle en un point précis.",
+  state:"Plasmide ouvert"},
+ {t:14, e:21, title:"3. Insérer le gène : le plasmide recombinant",
+  text:"On insère le gène humain dans l'ouverture, puis la boucle se referme : ADN du plasmide + ADN humain forment un <strong>plasmide recombinant</strong>. Le plasmide joue le rôle de <strong>vecteur</strong> : il transporte le gène d'intérêt.",
+  state:"Plasmide recombinant"},
+ {t:21, e:28, title:"4. Transférer le plasmide dans une bactérie",
+  text:"On fait entrer le plasmide recombinant dans une bactérie, qui devient une <strong>bactérie transformée</strong>. Comme le <strong>code génétique est universel</strong>, elle lit le gène humain et fabrique la protéine humaine.",
+  state:"1 bactérie transformée"},
+ {t:28, e:39, title:"5. La bactérie se multiplie",
+  text:"La bactérie se divise par <strong>division binaire</strong> (pas par mitose : elle n'a pas de noyau). À chaque division, le plasmide est copié et transmis aux deux cellules filles : toutes les descendantes portent le gène humain.",
+  state:"1 → 2 → 4 → 8 bactéries, puis des milliards"},
+ {t:39, e:50, title:"6. Elles produisent de l'insuline humaine",
+  text:"Des milliards de bactéries transformées fabriquent de grandes quantités d'<strong>insuline humaine</strong>, que l'on purifie pour les patients. La transgenèse dirigée reproduit, en le contrôlant, ce que font naturellement les transferts horizontaux.",
+  state:"Production d'insuline humaine"}
+];
+
+const CALL = [
+  {a:1, b:5.6, text:"gène de l'insuline", lab:[108,272], anc:()=>[[108,152]]},
+  {a:7.6, b:12.6, text:"plasmide bactérien", lab:[292,250], anc:()=>[[292,202]]},
+  {a:10.4, b:13.8, text:"plasmide ouvert", lab:[330,60], anc:()=>[[344,150]]},
+  {a:15, b:18, text:"le gène est inséré", lab:[220,40], anc:st=>[st.gene].filter(Boolean)},
+  {a:19, b:21.6, text:"plasmide recombinant", lab:[292,250], anc:()=>[[292,202]]},
+  {a:24, b:27.6, text:"bactérie transformée", lab:[200,372], anc:st=>[st.bact].filter(Boolean)},
+  {a:41, b:46, text:"insuline humaine", lab:[200,150], anc:st=>[[155,180],[245,180]]}
+];
+
+const CUES = [[.2,'step'],[5,'pinch'],[6,'pop'],[7.2,'step'],[9.8,'pinch'],[14.6,'whoosh'],[18,'pop'],[19.2,'final'],[22.6,'whoosh'],[29.2,'split'],[32.7,'split'],[36.2,'split'],[40,'step'],[44,'final']];
+
+const QUIZ = [
+ {q:"Dans la transgenèse bactérienne, quel est le rôle du plasmide ?", o:["Il fabrique l'insuline","Il sert de vecteur : il transporte le gène humain dans la bactérie","Il détruit le chromosome bactérien"], a:1,
+  ex:"Plasmide + gène humain = plasmide recombinant, qui fait entrer le gène dans la bactérie."},
+ {q:"Pourquoi une bactérie peut-elle fabriquer une protéine humaine ?", o:["Parce que le code génétique est universel","Parce que les bactéries ont déjà le gène de l'insuline","Parce que l'insuline n'est pas une protéine"], a:0,
+  ex:"Les mêmes codons désignent les mêmes acides aminés chez tous les êtres vivants : la bactérie lit le gène humain."},
+ {q:"Comment les bactéries transformées se multiplient-elles ?", o:["Par mitose","Par division binaire, en transmettant le plasmide à leurs descendantes","Par méiose"], a:1,
+  ex:"Une bactérie n'a pas de noyau : elle se divise en deux après avoir répliqué son ADN, plasmide compris."}
+];
+
+ANIM.lancer({id:'insuline', END:50, SCENES, CALL, CUES, QUIZ, draw, graine:13});
+})();
+</script>
+</body>
+</html>

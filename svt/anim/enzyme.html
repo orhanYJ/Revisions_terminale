@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>Enzyme, substrat et site actif</title>
+<link rel="stylesheet" href="moteur.css?v=1">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#p4">← SVT Terminale</a> · Rappels de Première, fiche 4 : les enzymes</p>
+    <h1>Enzyme, substrat et site actif</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation d'une enzyme, la saccharase : seul le substrat de forme complémentaire se fixe dans le site actif, il est hydrolysé en glucose et fructose, l'enzyme est réutilisée, puis la chaleur ou le pH déforment le site actif">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#B7D94C"></span>enzyme (saccharase)</li>
+        <li><span class="sw" style="background:#3FD9C8"></span>glucose</li>
+        <li><span class="sw" style="background:#FF5CA8"></span>fructose</li>
+        <li><span class="sw" style="background:#F5C451"></span>site actif</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : les formes des molécules sont symboliques (hexagone pour le cycle du glucose, pentagone pour celui du fructose). Une vraie enzyme est bien plus grande que son substrat.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=1"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, smooth, flash, halo, mix, label, AMB, MAG, CYA} = ANIM.H;
+const VERT = '#B7D94C', ROUGE = '#FF7A6B', ORANGE = '#FF9F43', BLEU = '#5AA9FF', VIOLET = '#9B8CFF';
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return keys[0].slice(1);
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return a.slice(1).map((v,n) => lerp(v, b[n+1], u)); }
+  }
+  return keys[keys.length-1].slice(1);
+}
+const K = 1.2;
+const rot = (p, a) => { const c = Math.cos(a), s = Math.sin(a); return [p[0]*c - p[1]*s, p[0]*s + p[1]*c]; };
+const poly = pts => 'M' + pts.map(p => f(p[0]) + ' ' + f(p[1])).join('L') + 'Z';
+function shape(pts, x, y, deg, col, o=1, sc=K){
+  const a = deg*Math.PI/180, P = pts.map(p => { const r = rot([p[0]*sc, p[1]*sc], a); return [x + r[0], y + r[1]]; });
+  return `<path d="${poly(P)}" fill="${col}" fill-opacity="${op(.92*o)}" stroke="#FFFFFF" stroke-opacity="${op(.75*o)}" stroke-width="1.3" stroke-linejoin="round"/>`;
+}
+/* agitation : petit mouvement brownien (somme de sinus) */
+const jit = (tt, ph, A) => [A*(Math.sin(1.3*tt + ph) + .5*Math.sin(2.9*tt + 2*ph)), A*(Math.cos(1.1*tt + 1.3*ph) + .5*Math.sin(2.3*tt + ph))];
+
+/* --- formes (repère local) --- */
+const ngon = (cx, cy, R, n, a0) => Array.from({length:n}, (_,i) => { const a = (a0 + i*360/n)*Math.PI/180; return [cx + R*Math.cos(a), cy + R*Math.sin(a)]; });
+const HEX = ngon(-16, 0, 15, 6, -90);   /* glucose : cycle à 6 sommets */
+const PEN = ngon(16, 1, 14, 5, -90);    /* fructose : cycle à 5 sommets */
+const HEX0 = HEX.map(p => [p[0] + 16, p[1]]), PEN0 = PEN.map(p => [p[0] - 16, p[1] - 1]);
+const STAR = Array.from({length:10}, (_,i) => { const a = (-90 + i*36)*Math.PI/180, r = i % 2 ? 7 : 16; return [r*Math.cos(a), r*Math.sin(a)]; });
+const RECT = [[-21,-8],[21,-8],[21,8],[-21,8]];
+const TRI = [[0,-16],[15,11],[-15,11]];
+
+/* site actif (repère local centré sur le substrat fixé) */
+const P0 = [200, 200];
+const SNUG = [[-37,-17],[-34.5,-12],[-32.5,-5],[-32.5,9],[-16,18.8],[-0.8,10],[0.3,2.5],[2.8,9],[5,15.8],[25,15.8],[32.8,-3.5],[34.5,-12],[37,-17]];
+const OPEN = SNUG.map(([x,y], i) => (i === 0 || i === SNUG.length-1) ? [Math.sign(x)*50, 2] : (i === 1 || i === SNUG.length-2) ? [Math.sign(x)*43, 3] : [x*1.16, y*.84 + 4]);
+const DEF = [[-44,-3],[-34,-6],[-27,4],[-19,7],[-12,1],[-6,12],[2,5],[8,-4],[15,8],[22,2],[29,9],[36,-5],[46,-2]];
+function pocket(g, d){
+  const base = SNUG.map((p,i) => [lerp(OPEN[i][0], p[0], g), lerp(OPEN[i][1], p[1], g)]);
+  if(d <= 0) return base;
+  /* rééchantillonnage simple : même nombre de points que DEF */
+  const res = DEF.map((q,i) => { const u = i/(DEF.length-1)*(base.length-1), i0 = Math.floor(u), i1 = Math.min(base.length-1, i0+1), w = u - i0;
+    const b = [lerp(base[i0][0], base[i1][0], w), lerp(base[i0][1], base[i1][1], w)]; return [lerp(b[0], q[0], d), lerp(b[1], q[1], d)]; });
+  return res;
+}
+function enzymePath(t, g, d, sh){
+  const pk = pocket(g, d).map(p => [P0[0] + K*p[0] + sh, P0[1] + K*p[1]]);
+  const body = [];
+  for(let deg = -62; deg <= 242.1; deg += 8){
+    const th = deg*Math.PI/180, far = clamp((Math.abs(deg + 90) - 28)/30, 0, 1);
+    const m = far*(.045*Math.sin(3*th + .7) + .03*Math.sin(5*th + 2) + .008*Math.sin(4*th + t*.9) + d*(.05*Math.sin(7*th + 3.1*t) + .035*Math.sin(4*th - 2.3*t + 1)));
+    body.push([200 + sh + 128*Math.cos(th)*(1 + m), 290 + 100*Math.sin(th)*(1 + m)]);
+  }
+  return {d: smooth([...pk, ...body]) + 'Z', pk};
+}
+/* hélices internes (structure dans l'espace), qui se défont à la dénaturation */
+const COILS = [[132,300,-.3],[200,338,.1],[268,300,.4],[178,262,-.1],[246,252,.2]];
+function coils(t, d, sh, col){
+  let s = '';
+  COILS.forEach(([cx, cy, a], n) => {
+    const L = 46 + 30*d, pts = [];
+    for(let i=0; i<=28; i++){ const u = i/28, x = (u - .5)*L, y = 5.5*(1 - .85*d)*Math.sin(u*L/7.5*6.283) + d*7*Math.sin(u*5.3 + n + t*2.4); const r = rot([x,y], a + d*.5*Math.sin(n*2.1)); pts.push([cx + sh + r[0], cy + r[1]]); }
+    s += `<path d="${smooth(pts)}" fill="none" stroke="${col}" stroke-opacity=".32" stroke-width="2.2" stroke-linecap="round"/>`;
+  });
+  return s;
+}
+/* le saccharose : glucose (hexagone) + fructose (pentagone) reliés */
+function sucrose(x, y, deg, o=1){
+  const a = deg*Math.PI/180, T = p => { const r = rot([K*p[0], K*p[1]], a); return [x + r[0], y + r[1]]; };
+  const b1 = T([-3, 0]), b2 = T([2.7, -3.3]), bo = T([-.2, -1.6]);
+  return `<line x1="${f(b1[0])}" y1="${f(b1[1])}" x2="${f(b2[0])}" y2="${f(b2[1])}" stroke="#F2F5FA" stroke-width="2.6" stroke-linecap="round" opacity="${op(o)}"/><circle cx="${f(bo[0])}" cy="${f(bo[1])}" r="2.3" fill="#F2F5FA" opacity="${op(o)}"/>` +
+    shape(HEX, x, y, deg, CYA, o) + shape(PEN, x, y, deg, MAG, o);
+}
+function water(x, y, o=1){
+  if(o <= 0) return '';
+  return `<g opacity="${op(o)}"><circle cx="${f(x-5)}" cy="${f(y+4)}" r="3.2" fill="#F2F5FA"/><circle cx="${f(x+5)}" cy="${f(y+4)}" r="3.2" fill="#F2F5FA"/><circle cx="${f(x)}" cy="${f(y)}" r="5.4" fill="${ROUGE}" stroke="#FFFFFF" stroke-opacity=".7"/></g>`;
+}
+
+/* trajectoires */
+const S1 = [[0,330,70,-25],[6,300,86,10],[12,332,112,-10],[15.5,282,124,5],[17.5,214,150,0],[19,200,200,0]];
+const S2 = [[27,-40,118,20],[31,58,92,-10],[34.8,128,122,15],[37.4,192,150,0],[38.8,200,200,0]];
+const S3 = [[48,440,96,0],[52.5,300,112,-10],[55.2,206,168,0],[55.9,204,172,0],[58,304,110,35],[62,440,92,80]];
+const G1 = [[26.4,180.8,200,0],[28.2,158,152,-30],[31,96,140,-70],[35.5,-40,78,-120]];
+const F1 = [[26.4,219.2,201.2,0],[28.2,246,152,40],[31,318,142,90],[35.5,440,96,150]];
+const G2 = [[41.2,180.8,200,0],[42.9,140,152,-40],[46,-40,100,-110]];
+const F2 = [[41.2,219.2,201.2,0],[42.9,262,152,50],[46,440,120,130]];
+const H1 = [[20.5,56,150],[23.4,148,178],[25.2,198,186]];
+const H2 = [[35,350,168],[37.8,250,186],[40,199,186]];
+const W1 = [[0,70,64,0],[6,96,96,30],[8.6,166,152,60],[9.6,186,178,72],[11.6,96,74,140],[20,54,110,200],[34,60,200,300],[66,64,180,600]];
+const W2 = [[0,60,170,0],[8,92,140,-20],[11.6,178,142,-10],[12.6,212,181,0],[14.6,342,204,40],[24,362,236,80],[66,356,222,200]];
+const W3 = [[0,236,64,0],[30,252,66,120],[66,222,82,240]];
+
+function draw(c){
+  const {t, opt:o, k} = c;
+  const st = {}; let nuc = '', ch = '', fx = '', lab = '', lt = '';
+
+  /* états : g = site resserré (ajustement induit), d = dénaturation */
+  const g = k(18.6,20)*(1 - k(26.8,28.4)) + k(38.6,39.6)*(1 - k(41.6,42.8));
+  const d = k(46,51);
+  const shake = o ? 0 : d*(1 - k(52,54))*1.6*Math.sin(t*31);
+  const eo = k(0,1.2);
+  const bodyCol = mix('#1D3D2A', '#3A3340', d), lineCol = mix(VERT, '#B39A8C', d);
+  const E = enzymePath(t, g, d, shake);
+  nuc += `<g opacity="${op(eo)}"><path d="${E.d}" fill="${bodyCol}"/><path d="${E.d}" fill="none" stroke="${lineCol}" stroke-opacity=".14" stroke-width="10"/>` + coils(t, d, shake, lineCol) + `<path d="${E.d}" fill="none" stroke="${lineCol}" stroke-width="2.2" stroke-linejoin="round"/></g>`;
+  /* site actif mis en valeur */
+  const hl = k(1.6,2.4)*(1 - k(6.6,7.4)) + .8*k(48,49)*(1 - k(52.6,53.4));
+  if(hl > 0) fx += `<path d="${smooth(E.pk)}" fill="none" stroke="${d > .5 ? ROUGE : AMB}" stroke-width="3" stroke-linecap="round" opacity="${op(hl)}"/>`;
+  st.pk = E.pk;
+
+  /* agitation : plus forte quand on chauffe */
+  const ag = 1 + (o ? 0 : 1.6*d*(1 - k(60,64)));
+  const mol = (keys, ph, fa) => { const [x, y, r] = kf(keys, t), j = jit(t*ag, ph, 4*fa*ag); return [x + j[0], y + j[1], r + 8*fa*Math.sin(t*.9*ag + ph)]; };
+
+  /* molécules non complémentaires */
+  const wo = 1 - .45*k(15,17);
+  const w1 = mol(W1, 1, 1 - .9*(k(8.4,9.4) - k(9.6,10.6))), w2 = mol(W2, 2.5, 1 - .9*(k(11.4,12.4) - k(12.6,13.6))), w3 = mol(W3, 4, 1);
+  ch += shape(STAR, w1[0], w1[1], w1[2], ORANGE, wo) + shape(RECT, w2[0], w2[1], w2[2], BLEU, wo) + shape(TRI, w3[0], w3[1], w3[2], VIOLET, wo);
+  st.rej = t < 11 ? [[w1[0], w1[1]]] : [[w2[0], w2[1]]];
+  fx += flash(186, 194, 9.6, 1) + flash(212, 194, 12.6, 1);
+
+  /* substrat 1, puis ses produits */
+  if(t < 26.4){
+    const fr = 1 - k(16.8,19), [x, y, r] = mol(S1, 0, fr);
+    ch += sucrose(x, y, r); st.S1 = [x, y];
+  } else {
+    const fr = k(27,28.5), a = mol(G1, .7, fr), b = mol(F1, 3.3, fr);
+    ch += shape(HEX0, a[0], a[1], a[2], CYA) + shape(PEN0, b[0], b[1], b[2], MAG);
+    st.G1 = [a[0], a[1]]; st.F1 = [b[0], b[1]];
+  }
+  /* eau */
+  if(t > 20 && t < 26.3){ const [x, y] = kf(H1, t), j = jit(t, 5, 3*(1 - k(23.5,25))); ch += water(x + j[0], y + j[1], k(20.2,21)*(1 - k(25.8,26.3))); st.H1 = [x + j[0], y + j[1]]; }
+  fx += flash(200, 196, 26.1, 1.3);
+  /* liaisons faibles dans le complexe */
+  const lf = k(19.6,20.6)*(1 - k(26,26.6)) + k(39.4,40)*(1 - k(40.8,41.2));
+  if(lf > 0) for(const [x0,y0,x1,y1] of [[-29,9,-32.5,12],[-16,15,-16,19],[16,12.3,16,16.4],[26,8,30,10]])
+    fx += `<line x1="${f(P0[0]+K*x0)}" y1="${f(P0[1]+K*y0)}" x2="${f(P0[0]+K*x1)}" y2="${f(P0[1]+K*y1)}" stroke="${AMB}" stroke-width="1.6" stroke-dasharray="2 2" opacity="${op(lf)}"/>`;
+
+  /* substrat 2 */
+  if(t > 27 && t < 41.2){ const fr = 1 - k(37,38.8), [x, y, r] = mol(S2, 6, fr); ch += sucrose(x, y, r, k(27,28)); st.S2 = [x, y]; }
+  else if(t >= 41.2 && t < 46.5){ const fr = k(41.6,42.6), a = mol(G2, 1.7, fr), b = mol(F2, 2.2, fr); ch += shape(HEX0, a[0], a[1], a[2], CYA) + shape(PEN0, b[0], b[1], b[2], MAG); }
+  if(t > 34.6 && t < 40.9){ const [x, y] = kf(H2, t), j = jit(t, 1.2, 3*(1 - k(38,39.5))); ch += water(x + j[0], y + j[1], k(35,35.8)*(1 - k(40.4,40.9))); }
+  fx += flash(200, 196, 40.9, 1.3);
+
+  /* substrat 3 : ne se fixe plus */
+  if(t > 48){ const [x, y, r] = mol(S3, 2, 1 - .9*(k(54.6,55.2) - k(55.9,56.8))); ch += sucrose(x, y, r, k(48,49)); st.S3 = [x, y]; }
+  fx += flash(205, 186, 55.6, 1.1);
+
+  /* compteur de réactions */
+  const n = t < 26.1 ? 0 : t < 40.9 ? 1 : 2;
+  const co = k(26.6,27.4)*(1 - k(45,46));
+  if(co > 0) lab += label(306, 24, `saccharose hydrolysé : ${n}`, '#F2F5FA', 11, co);
+
+  /* jauge : énergie d'activation */
+  const jo = k(22.4,23.2)*(1 - k(29.4,30.2));
+  if(jo > 0){
+    const X0 = 22, X1 = 168, Yb = 104;
+    const curve = (peak, u) => { const pts = []; for(let i=0; i<=40*u; i++){ const s = i/40, x = lerp(X0+8, X1-6, s); const base = lerp(84, 94, sm2(s)); const bump = Math.exp(-Math.pow((s - .5)/.15, 2)); pts.push([x, base - (base - peak)*bump]); } return pts; };
+    const u1 = clamp((t - 22.8)/1.2, 0, 1), u2 = clamp((t - 23.6)/1.2, 0, 1);
+    let s = `<g opacity="${op(jo)}"><rect x="10" y="10" width="170" height="104" rx="10" fill="#0A1222" fill-opacity=".9" stroke="#2B3A58"/>`;
+    s += `<text x="95" y="25" font-size="10" font-weight="700" fill="#F2F5FA">énergie d'activation</text>`;
+    s += `<line x1="${X0}" y1="34" x2="${X0}" y2="${Yb}" stroke="#4A5A78"/><line x1="${X0}" y1="${Yb}" x2="${X1}" y2="${Yb}" stroke="#4A5A78"/>`;
+    const c1 = curve(40, u1), c2 = curve(66, u2);
+    if(c1.length > 1) s += `<path d="${smooth(c1)}" fill="none" stroke="#9FB0CC" stroke-width="1.6" stroke-dasharray="4 3"/>`;
+    if(c2.length > 1) s += `<path d="${smooth(c2)}" fill="none" stroke="${VERT}" stroke-width="2.2"/>`;
+    s += `<text x="28" y="44" font-size="9" fill="#9FB0CC" text-anchor="start" opacity="${op(u1)}">sans enzyme</text>`;
+    s += `<text x="124" y="62" font-size="9" font-weight="700" fill="${VERT}" text-anchor="start" opacity="${op(u2)}">avec enzyme</text>`;
+    /* la réaction franchit la barrière abaissée */
+    const p = clamp((t - 25)/1.6, 0, 1);
+    if(p > 0 && p < 1){ const cc = curve(66, 1), q = cc[Math.round(p*(cc.length-1))]; s += `<circle cx="${f(q[0])}" cy="${f(q[1])}" r="3.6" fill="#FFFFFF"/>`; }
+    lab += s + '</g>';
+  }
+
+  /* chaleur (thermomètre) ou pH (échelle) */
+  const io = k(44.8,45.8)*(1 - k(64,65.5));
+  if(io > 0){
+    let s = `<g opacity="${op(io)}"><rect x="10" y="10" width="${o ? 172 : 96}" height="${o ? 62 : 118}" rx="10" fill="#0A1222" fill-opacity=".9" stroke="#2B3A58"/>`;
+    if(!o){
+      const lv = lerp(0, 1, d);
+      s += `<rect x="30" y="26" width="10" height="72" rx="5" fill="#1B2740" stroke="#9FB0CC" stroke-opacity=".6"/><circle cx="35" cy="106" r="9" fill="${mix(BLEU, ROUGE, lv)}"/>`;
+      const hgt = 18 + 52*lv; s += `<rect x="32.5" y="${f(100 - hgt)}" width="5" height="${f(hgt)}" rx="2.5" fill="${mix(BLEU, ROUGE, lv)}"/>`;
+      s += `<text x="68" y="38" font-size="10.5" font-weight="700" fill="#F2F5FA">chaleur</text><text x="68" y="54" font-size="9.5" fill="${mix('#9FB0CC', ROUGE, lv)}">${lv > .6 ? "trop forte" : "optimale"}</text>`;
+    } else {
+      const xs = x => 24 + x/14*144, ph = lerp(7, 1.5, d);
+      s += `<defs><linearGradient id="phg" x1="0" x2="1"><stop offset="0" stop-color="#FF5C5C"/><stop offset=".5" stop-color="#7BE36A"/><stop offset="1" stop-color="#5A7BFF"/></linearGradient></defs>`;
+      s += `<text x="96" y="25" font-size="10" font-weight="700" fill="#F2F5FA">pH du milieu</text><rect x="24" y="36" width="144" height="9" rx="4.5" fill="url(#phg)"/>`;
+      s += `<text x="24" y="60" font-size="9" fill="#9FB0CC">0</text><text x="168" y="60" font-size="9" fill="#9FB0CC">14</text>`;
+      s += `<path d="M${f(xs(ph))} 33 l-5 -7 h10 z" fill="#FFFFFF"/><line x1="${f(xs(ph))}" y1="34" x2="${f(xs(ph))}" y2="48" stroke="#FFFFFF" stroke-width="2"/>`;
+      s += `<text x="96" y="62" font-size="9.5" fill="${mix('#9FB0CC', ROUGE, d)}">${d > .6 ? "loin de l'optimum" : "optimal"}</text>`;
+    }
+    lab += s + '</g>';
+  }
+  const fin = k(60.5,61.5);
+  if(fin > 0) lab += label(200, 412, "plus de complexe : l'activité chute", ROUGE, 11.5, fin);
+
+  return {nuc, chr:ch, let:lt, fx, lab, st};
+}
+const sm2 = s => s*s*(3 - 2*s);
+
+const SCENES = [
+ {t:0, e:7, title:"Une enzyme et son site actif",
+  text:"Une <strong>enzyme</strong> est une protéine. Sa forme dans l'espace ménage une petite poche, le <strong>site actif</strong>, formée de quelques acides aminés. Autour d'elle, des molécules de formes variées s'agitent au hasard.",
+  state:"1 enzyme (la saccharase), des molécules en mouvement"},
+ {t:7, e:15, title:"Seule la bonne forme peut se fixer",
+  text:"Les molécules heurtent l'enzyme au hasard. Celles dont la forme n'est pas <strong>complémentaire</strong> du site actif ne peuvent pas s'y loger : elles repartent. C'est la <strong>spécificité de substrat</strong>.",
+  state:"Aucune fixation"},
+ {t:15, e:22, title:"Le complexe enzyme-substrat",
+  text:"Le <strong>saccharose</strong>, de forme complémentaire, entre dans le site actif et s'y fixe par des liaisons faibles. Le site se resserre autour de lui : c'est l'<strong>ajustement induit</strong>. Enzyme et substrat forment un <strong>complexe enzyme-substrat</strong>.",
+  state:"Complexe enzyme-substrat formé"},
+ {t:22, e:28.5, title:"La catalyse : une hydrolyse",
+  text:"Dans le site actif, la liaison entre le glucose et le fructose est coupée grâce à une molécule d'eau : c'est une <strong>hydrolyse</strong>. L'enzyme <strong>abaisse l'énergie d'activation</strong> : la réaction, possible mais trop lente sans elle, devient rapide.",
+  state:"Saccharose + eau → glucose + fructose"},
+ {t:28.5, e:35, title:"Les produits sont libérés",
+  text:"Le <strong>glucose</strong> et le <strong>fructose</strong> n'ont pas la forme du site actif : ils s'en détachent et repartent. Le site actif se rouvre. L'enzyme sort de la réaction <strong>intacte</strong>.",
+  state:"1 saccharose hydrolysé, enzyme inchangée"},
+ {t:35, e:44.5, title:"La même enzyme recommence",
+  text:"Une autre molécule de saccharose se fixe et le cycle recommence. L'enzyme n'est pas consommée : <strong>elle est réutilisable</strong>. Et elle ne catalyse qu'un seul type de réaction, ici une hydrolyse : c'est la <strong>spécificité d'action</strong>.",
+  state:"2 saccharoses hydrolysés, enzyme toujours intacte"},
+ {t:44.5, e:53, title:o => o ? "Un pH éloigné de l'optimum" : "Une température trop élevée",
+  text:o => o ? "Chaque enzyme a un <strong>pH optimal</strong> (pepsine ≈ 2 dans l'estomac, amylase ≈ 7). Loin de cet optimum, la forme de la protéine change : le <strong>site actif se déforme</strong>."
+              : "Au-delà de la température optimale, la protéine se <strong>dénature</strong> : sa structure dans l'espace se défait et le <strong>site actif perd sa forme</strong>. C'est irréversible.",
+  state:"Site actif déformé"},
+ {t:53, e:66, title:"Le substrat ne se fixe plus",
+  text:o => "Le saccharose n'est plus complémentaire du site actif : il ne peut plus s'y fixer, aucun complexe enzyme-substrat ne se forme. <strong>L'activité de l'enzyme chute.</strong> " +
+              (o ? "Température et pH agissent donc de la même façon : en modifiant la forme du site actif." : "Attention au vocabulaire : l'enzyme n'est pas « tuée », elle est <strong>dénaturée</strong>."),
+  state:"Plus de fixation, plus de réaction"}
+];
+
+const CALL = [
+  {a:.8, b:6.6, text:"enzyme (une protéine)", lab:[92,410], anc:()=>[[122,318]]},
+  {a:1.6, b:6.8, text:"site actif", lab:[330,176], anc:()=>[[222,216]]},
+  {a:2.6, b:6.8, text:"substrat : le saccharose", lab:[292,24], anc:st=>[st.S1].filter(Boolean)},
+  {a:9, b:14.6, text:"forme non complémentaire : rejetée", lab:[200,24], col:ROUGE, anc:st=>st.rej || []},
+  {a:19.4, b:22, text:"ajustement induit", lab:[330,150], anc:st=>st.pk ? [st.pk[st.pk.length-2]] : []},
+  {a:20.2, b:22.4, text:"complexe enzyme-substrat", lab:[200,412], anc:()=>[[200,240]]},
+  {a:21.4, b:25.2, text:"molécule d'eau", lab:[58,244], anc:st=>[st.H1].filter(Boolean)},
+  {a:29, b:33.6, text:"glucose", lab:[60,190], anc:st=>[st.G1].filter(Boolean)},
+  {a:29.2, b:33.6, text:"fructose", lab:[340,190], anc:st=>[st.F1].filter(Boolean)},
+  {a:31, b:34.8, text:"enzyme intacte", lab:[200,412], anc:()=>[[200,300]]},
+  {a:41.8, b:44.4, text:"la même enzyme, réutilisée", lab:[200,412], anc:()=>[[150,320]]},
+  {si:o=>!o, a:47.4, b:53, text:"dénaturation", lab:[92,412], col:ROUGE, anc:()=>[[132,300]]},
+  {a:48.4, b:53, text:"site actif déformé", lab:[322,166], col:ROUGE, anc:()=>[[222,206]]},
+  {a:55.4, b:60.2, text:"le substrat ne s'y fixe plus", lab:[200,412], col:ROUGE, anc:st=>[st.S3].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[9.6,'error'],[12.6,'error'],[17.4,'whoosh'],[19,'pair'],[19.8,'pinch'],[25.2,'pop'],[26.1,'split'],[27.2,'whoosh'],[38.8,'pair'],[40.9,'split'],[41.8,'whoosh'],[46,'mut'],[48,'mut'],[50,'mut'],[55.6,'error'],[61,'final']];
+
+const QUIZ = [
+ {q:"Pourquoi la saccharase n'hydrolyse-t-elle que le saccharose ?", o:["Parce que seul le saccharose a une forme complémentaire de son site actif","Parce que le saccharose est la plus petite molécule du milieu","Parce que l'enzyme est fabriquée à partir de saccharose"], a:0,
+  ex:"C'est la spécificité de substrat : elle vient de la complémentarité de forme entre le site actif et le substrat."},
+ {q:"Que devient l'enzyme à la fin de la réaction ?", o:["Elle est consommée, comme le substrat","Elle est intacte et peut catalyser à nouveau la même réaction","Elle se transforme en glucose et en fructose"], a:1,
+  ex:"Une enzyme est un catalyseur : elle n'est ni consommée ni modifiée, elle est réutilisable."},
+ {q:"Comment une enzyme accélère-t-elle une réaction ?", o:["Elle fournit de l'énergie à la réaction","Elle rend possible une réaction impossible","Elle abaisse l'énergie d'activation d'une réaction possible mais trop lente"], a:2,
+  ex:"La réaction était déjà possible : l'enzyme abaisse la barrière énergétique à franchir, l'énergie d'activation."},
+ {q:"Pourquoi une forte chaleur fait-elle chuter l'activité d'une enzyme ?", o:["La chaleur tue l'enzyme","La protéine est dénaturée : son site actif perd sa forme et le substrat ne s'y fixe plus","Le substrat est détruit par la chaleur"], a:1,
+  ex:"On ne dit pas que l'enzyme est « tuée » : sa structure dans l'espace se défait (dénaturation), le site actif n'est plus complémentaire du substrat."}
+];
+
+ANIM.lancer({id:'enzyme', END:66, SCENES, CALL, CUES, QUIZ, draw, graine:41,
+  bascule:{des:44.5, saut:44.55, off:"Voir l'effet du pH", on:"Revoir l'effet de la chaleur"}});
+})();
+</script>
+</body>
+</html>
