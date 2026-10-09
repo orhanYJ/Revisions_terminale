@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>Le crossing-over inégal</title>
+<link rel="stylesheet" href="moteur.css?v=1">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#t1u2b">← SVT Terminale</a> · Chapitre 1, unité 2 : les accidents génétiques de la méiose</p>
+    <h1>Le crossing-over inégal</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation d'un crossing-over inégal entre homologues mal appariés, aboutissant à une duplication et à une délétion, puis à la formation d'une famille multigénique">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF5CA8"></span>chromosome d'origine maternelle</li>
+        <li><span class="sw" style="background:#3FD9C8"></span>chromosome d'origine paternelle</li>
+        <li><span class="sw" style="background:#F5C451"></span>le gène étudié</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : une seule paire de chromosomes, et un seul gène suivi. La divergence des copies prend en réalité des millions d'années.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=1"></script>
+<script>
+(() => {
+const {clamp, ease, sm, lerp, f, op, smooth, ys, strand, wobblyEllipse, cellPath, flash, halo, arc, mix, label, AMB, MAG, CYA} = ANIM.H;
+const CY = 205, Q = 6, SPLAY = 4, LEN = 230, CEN = 40, GENE = 120, CUT = 190, SWAP = 20.5;
+const OR = '#F5C451', A1 = '#FF9F43', A2 = '#7BE36A', GRIS = '#C9D3E6', ROUGE = '#FF7A6B';
+
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return [keys[0][1], keys[0][2]];
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return [lerp(a[1],b[1],u), lerp(a[2],b[2],u)]; }
+  }
+  const z = keys[keys.length-1]; return [z[1], z[2]];
+}
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const CHROM = {m:[[0,130,50],[6.5,130,50],[11,186,50],[25.5,186,50],[28,100,50]],
+               p:[[0,270,50],[6.5,270,50],[11,214,90],[25.5,214,90],[28,300,90]]};
+const FIN = {m0:50, m1:150, p0:250, p1:350};
+function base(o, j, tt){
+  const [cx, top] = kf(CHROM[o], Math.min(tt, 28.5));
+  const x0 = cx + (j ? Q : -Q);
+  if(tt <= 28.5) return [x0, top];
+  const keys = [[28.5, x0, top],[31, FIN[o+j], top]];
+  if(o === 'm' && j === 1) keys.push([33, FIN.m1, top],[36, 200, top]);
+  return kf(keys, tt);
+}
+const joined = tt => 1 - kAtL(tt, 28.6, 29.8);
+const topOf = o => o === 'm' ? 50 : 90;
+
+/* segments de chaque chromatide : [y0, y1, couleur, gènes] */
+function segments(o, j, tt){
+  const top = kf(CHROM[o], tt)[1], col = o === 'm' ? MAG : CYA;
+  const inner = (o === 'm' && j === 1) || (o === 'p' && j === 0);
+  if(!inner || tt < SWAP) return [[top, CUT, col, top + GENE < CUT ? [top + GENE] : []], [CUT, top + LEN, col, top + GENE >= CUT ? [top + GENE] : []]];
+  const ot = o === 'm' ? 'p' : 'm', otop = topOf(ot), ocol = ot === 'm' ? MAG : CYA;
+  return [[top, CUT, col, top + GENE < CUT ? [top + GENE] : []], [CUT, otop + LEN, ocol, otop + GENE >= CUT ? [otop + GENE] : []]];
+}
+function xAt(o, j, y, tt, st){
+  const [bx, top] = base(o, j, tt), yc = top + CEN, u = (y - yc)/(LEN*.55), u2 = u*u, side = j ? 1 : -1;
+  let x = bx + side*SPLAY*u2*joined(tt) + 1.1*Math.sin(y*.05 + tt*1.5 + (o === 'm' ? 0 : 2) + j*2.3);
+  const dc = (o === 'm' && j === 1) ? 1 : (o === 'p' && j === 0) ? -1 : 0;
+  if(dc && tt < 26){
+    const gap = Math.max(0, (kf(CHROM.p, tt)[0] - kf(CHROM.m, tt)[0]) - 2*Q), S = sm((y - (CUT-22))/44);
+    const amt = tt < SWAP ? kAtL(tt,15,18.2)*S : (1 - kAtL(tt,21.2,24.8))*Math.min(S, 1-S);
+    x += dc*gap*amt;
+  }
+  if(st && st.lagM && o === 'm' && j === 1) x += st.lagM*u2;
+  return x;
+}
+function geneColor(which, tt){
+  /* which : 1 = copie du haut (y 170), 2 = copie du bas (y 210) sur la chromatide dupliquée */
+  const hits1 = [43, 46, 49], hits2 = [44.5, 47.5, 50.5];
+  const n = (which === 1 ? hits1 : hits2).reduce((s,h) => s + kAtL(tt, h, h+.6), 0);
+  return mix(OR, which === 1 ? A1 : A2, n/3);
+}
+function band(x, y, col, o=1, w=20){
+  return `<g opacity="${op(o)}"><rect x="${f(x-w/2)}" y="${f(y-4.5)}" width="${w}" height="9" rx="3" fill="${col}"/><rect x="${f(x-w/2)}" y="${f(y-4.5)}" width="${w}" height="9" rx="3" fill="none" stroke="#FFFFFF" stroke-opacity=".7" stroke-width="1"/></g>`;
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {}; let ch = '', lt = '', fx = '', cells = '', lab = '', cp = '';
+
+  /* zoom sur la chromatide dupliquée */
+  const zf = k(34,37), z = 1 + .3*zf, fy = lerp(215, 190, zf);
+  const tf = zf > .001 ? `translate(200 215) scale(${f(z*100)/100}) translate(-200 ${-f(fy)})` : '';
+
+  /* cellules */
+  if(t < 33){
+    const a = k(25.5,28.5), ap = k(25.5,29), b = k(28.5,31.5), bp = k(28.5,31.6), el = k(25,27), R = 1.19, bl = [];
+    if(a <= 0) bl.push([200,CY,190+6*el,190-8*el]);
+    else for(const sg of [-1,1]){
+      const cx = lerp(200,200+sg*100,ap), ax = lerp(196/R,76,ap), ay = lerp(182/R,186,a);
+      if(b <= 0) bl.push([cx,CY,ax,ay]);
+      else for(const u of [-1,1]) bl.push([lerp(cx,cx+u*50,bp), CY, lerp(ax/R,37,bp), lerp(ay/R,184,b)]);
+    }
+    cp = cellPath(bl);
+  } else {
+    const fade = 1 - k(33,34.5);
+    if(fade > 0) for(const x of [50,150,250,350]){ const d = wobblyEllipse(x,CY,37,184,x); cells += `<g opacity="${op(fade)}"><path d="${d}" fill="url(#cyto)"/><path d="${d}" fill="none" stroke="#86A9DB" stroke-width="2"/></g>`; }
+  }
+
+  /* chromatides */
+  const fadeOthers = 1 - k(33,34.5);
+  const [b1] = base('m',1,t+.04), [b0] = base('m',1,t-.04);
+  st.lagM = clamp(-(b1-b0)/.08*.2, -20, 20);
+  for(const o of ['p','m']) for(const j of [0,1]){
+    const keep = o === 'm' && j === 1;
+    const alpha = keep ? 1 : fadeOthers;
+    if(alpha <= 0) continue;
+    for(const [y0, y1, col, genes] of segments(o, j, t)){
+      const n = Math.max(3, Math.round((y1-y0)/14));
+      const d = smooth(ys(y0, y1, n).map(y => [xAt(o, j, y, t, st), y]));
+      ch += strand(d, col, 11, alpha);
+      for(const gy of genes){
+        const gx = xAt(o, j, gy, t, st);
+        let gc = OR, gop = alpha;
+        if(keep && t > 40){ gc = geneColor(gy < CUT ? 1 : 2, t); }
+        if(keep && gy >= CUT && t > 55) gop = 0;   /* la copie 2 est partie (transposition) */
+        lt += band(gx, gy, gc, gop);
+        st[o + j + (gy < CUT ? 'h' : 'b')] = [gx, gy];
+      }
+    }
+    const [bx, top] = base(o, j, t);
+    st[o + j + 'end'] = [xAt(o, j, segments(o,j,t)[1][1] - 4, t, st), segments(o,j,t)[1][1] - 4];
+    st[o + j + 'c'] = [bx, top + CEN];
+  }
+  /* centromères */
+  const jn = joined(t);
+  for(const o of ['m','p']){
+    const [x0, top] = base(o,0,t), [x1] = base(o,1,t), y = top + CEN;
+    if(jn > 0) ch += `<circle cx="${f((x0+x1)/2)}" cy="${f(y)}" r="4" fill="${AMB}" opacity="${op(jn)}"/>`;
+    if(jn < 1) for(const [x, j] of [[x0,0],[x1,1]]){ const a = (o === 'm' && j === 1) ? 1 : fadeOthers; ch += `<circle cx="${f(x)}" cy="${f(y)}" r="3" fill="${AMB}" opacity="${op((1-jn)*a)}"/>`; }
+  }
+
+  /* lignes de repère des gènes pendant l'appariement */
+  const gl = k(11.2,12)*(1 - k(14.5,15.5));
+  if(gl > 0) for(const y of [170, 210]) fx += `<line x1="150" y1="${y}" x2="250" y2="${y}" stroke="${OR}" stroke-dasharray="4 4" stroke-opacity="${op(.8*gl)}"/>`;
+  /* chiasma */
+  fx += halo(200, CUT, k(17.4,18.4)*(1 - k(SWAP,SWAP+.4)));
+  fx += flash(200, CUT, SWAP);
+
+  /* étincelles de mutation */
+  for(const [h, which] of [[43,1],[44.5,2],[46,1],[47.5,2],[49,1],[50.5,2]]){
+    if(t < h - .6 || t > h + .8) continue;
+    const g = st['m1' + (which === 1 ? 'h' : 'b')]; if(!g) continue;
+    const p = clamp((t - (h - .6))/1.4, 0, 1);
+    const sx = g[0] + 60*(1-p)*(which === 1 ? -1 : 1), sy = g[1] - 50*(1-p);
+    if(p < .45) fx += `<circle cx="${f(sx)}" cy="${f(sy)}" r="2.6" fill="#FFFFFF"/><path d="M${f(sx)} ${f(sy)} L${f(sx + 12*(which === 1 ? -1 : 1))} ${f(sy - 10)}" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="1.4"/>`;
+    else fx += `<circle cx="${f(g[0])}" cy="${f(g[1])}" r="${f(6 + 18*(p-.45))}" fill="none" stroke="#FFFFFF" stroke-opacity="${op((1-p)*1.6)}" stroke-width="1.4"/>`;
+  }
+
+  /* transposition : un autre chromosome reçoit la copie 2 */
+  const oc = k(53,54.2);
+  if(oc > 0){
+    const d = smooth(ys(110, 290, 12).map(y => [300 + 1.1*Math.sin(y*.05 + t*1.5 + 5), y]));
+    ch += strand(d, GRIS, 11, oc);
+    ch += `<circle cx="300" cy="150" r="3" fill="${AMB}" opacity="${op(oc)}"/>`;
+    const g2 = st.m1b || [212, 210];
+    const u = k(55,58.5), P = arc([g2[0], 210], [300, 230], 70, u);
+    if(t > 55) lt += band(P[0], P[1], geneColor(2, t), 1);
+    if(t > 54.6 && t < 55.4) fx += flash(g2[0], 210, 55, .8);
+    st.tr = P;
+  }
+
+  /* étiquettes */
+  const gml = k(31.6,32.4)*(1 - k(33,34));
+  if(gml > 0){
+    [['normal','#9FB0CC'],['duplication',A2],['délétion',ROUGE],['normal','#9FB0CC']].forEach(([txt,col],i) => {
+      lab += `<g opacity="${op(gml)}"><text x="${50+i*100}" y="408" font-size="13" font-weight="700" fill="${col}">${txt}</text></g>`;
+    });
+  }
+  const gen = k(41.5,52);
+  if(t > 41 && t < 61){
+    const N = Math.round(Math.pow(10, 1 + 5*gen));
+    const s = N.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    lab += label(118, 44, 'génération ' + s, '#F2F5FA', 11, k(41,42)*(1 - k(60,61)));
+  }
+  const nm = k(51.2,52.2);
+  if(nm > 0 && st.m1h){
+    lt += `<text x="${f(st.m1h[0]-26)}" y="${f(st.m1h[1])}" dy=".36em" font-size="13" fill="${A1}" opacity="${op(nm)}" text-anchor="end" font-weight="700">A1</text>`;
+    const p2 = t > 55 ? st.tr : st.m1b;
+    if(p2) lt += `<text x="${f(p2[0]+26)}" y="${f(p2[1])}" dy=".36em" font-size="13" fill="${A2}" opacity="${op(nm)}" text-anchor="start" font-weight="700">A2</text>`;
+  }
+  const fin = k(61.5,62.5);
+  if(fin > 0) lab += label(200, 342, 'A1 et A2 : une famille multigénique', '#F2F5FA', 12, fin);
+
+  return {tf, cp, cells, chr:ch, let:lt, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:6, title:"Une paire de chromosomes homologues",
+  text:"Deux chromosomes homologues, déjà répliqués : l'un vient de la mère (magenta), l'autre du père (cyan). Ils portent <strong>le même gène</strong> (bande dorée), au <strong>même emplacement</strong> (locus).",
+  state:"1 paire d'homologues, 2 chromatides chacun"},
+ {t:6, e:14, title:"Prophase I : un appariement décalé",
+  text:"En prophase I, les homologues s'apparient. Mais ici, ils s'accolent <strong>de travers</strong> : le chromosome paternel est décalé vers le bas, et les deux gènes ne sont plus en face l'un de l'autre.",
+  state:"Bivalent mal aligné"},
+ {t:14, e:25, title:"Le crossing-over inégal",
+  text:"Deux chromatides non sœurs se croisent et échangent leurs segments, comme dans un crossing-over normal. Mais à cause du décalage, la cassure ne tombe pas au même niveau des gènes : <strong>les portions échangées n'ont pas la même longueur</strong>.",
+  state:"Une chromatide gagne un segment, l'autre en perd un"},
+ {t:25, e:33, title:"Quatre gamètes différents",
+  text:"Après les deux divisions de la méiose, chaque chromatide se retrouve dans un gamète : deux gamètes normaux, un gamète avec <strong>duplication</strong> (le gène en deux exemplaires, côte à côte) et un gamète avec <strong>délétion</strong> (le gène a disparu).",
+  state:"4 gamètes : normal, duplication, délétion, normal"},
+ {t:33, e:41, title:"La duplication",
+  text:"Suivons le gamète porteur de la duplication. Son chromosome possède <strong>deux copies identiques du même gène</strong>. L'une continue d'assurer la fonction d'origine : l'autre est libre de changer.",
+  state:"1 chromosome, 2 copies identiques du gène"},
+ {t:41, e:53, title:"Au fil des générations : les copies divergent",
+  text:"Génération après génération, chaque copie accumule ses propres <strong>mutations</strong>, indépendamment de l'autre. Leurs séquences restent proches, mais elles divergent : ce sont maintenant deux gènes différents, A1 et A2.",
+  state:"2 gènes homologues, à des locus voisins"},
+ {t:53, e:61, title:"Une transposition",
+  text:"Une copie peut aussi être <strong>transposée</strong> : déplacée sur un autre chromosome. C'est pourquoi les gènes d'une même famille sont tantôt voisins, tantôt sur des chromosomes différents (globines α sur le 16, β sur le 11).",
+  state:"A1 et A2 sur deux chromosomes différents"},
+ {t:61, e:68, title:"Bilan : une famille multigénique",
+  text:"Duplication, mutations indépendantes et parfois transposition : A1 et A2 sont deux gènes <strong>homologues</strong> (plus de 20 % de similitudes), issus d'un même gène ancestral. Ensemble, ils forment une <strong>famille multigénique</strong>, comme les opsines ou les globines.",
+  state:"Une famille multigénique de 2 gènes"}
+];
+
+const CALL = [
+  {a:1, b:5.8, text:"le même gène, au même locus", lab:[200,400], anc:st=>[st.m0h, st.p1b].filter(Boolean)},
+  {a:11.6, b:14.6, text:"le gène n'est plus en face", lab:[300,400], anc:()=>[[178,170],[222,210]]},
+  {a:16.6, b:20.2, text:"chiasma", lab:[300,150], anc:()=>[[200,CUT]]},
+  {a:21.6, b:25, text:"segments de longueurs différentes", lab:[200,404], anc:st=>[st.m1end, st.p0end].filter(Boolean)},
+  {a:36.6, b:40.8, text:"2 copies du gène", lab:[290,120], anc:st=>[st.m1h, st.m1b].filter(Boolean)},
+  {a:55.2, b:59.6, text:"transposition", lab:[300,322], anc:st=>[st.tr].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[6.6,'pair'],[11.4,'error'],[15.2,'chiasma'],[SWAP-.1,'spark'],[21.3,'swap'],[25.6,'split'],[28.6,'pinch'],[31.6,'step'],[34,'whoosh'],
+  [43,'mut'],[44.5,'mut'],[46,'mut'],[47.5,'mut'],[49,'mut'],[50.5,'mut'],[55,'whoosh'],[58.4,'pop'],[61.6,'final']];
+
+const QUIZ = [
+ {q:"Pendant un crossing-over inégal, pourquoi les segments échangés n'ont-ils pas la même longueur ?", o:["Parce que les homologues se sont appariés de façon décalée","Parce que les chromatides sœurs échangent leurs segments","Parce que le chromosome se casse en deux endroits"], a:0,
+  ex:"Les homologues sont mal alignés : la cassure, au même endroit sur les deux chromatides, ne tombe pas au même niveau des gènes."},
+ {q:"Combien de gamètes portent une anomalie après un crossing-over inégal ?", o:["Un seul : celui qui porte la duplication","Deux : l'un porte une duplication, l'autre une délétion","Les quatre"], a:1,
+  ex:"Ce que l'une des chromatides gagne, l'autre le perd. Les deux chromatides qui n'ont pas participé à l'échange restent normales."},
+ {q:"Comment deux copies identiques d'un gène deviennent-elles deux gènes différents ?", o:["Elles fusionnent","Chaque copie accumule ses propres mutations au fil des générations","Une copie est détruite par la cellule"], a:1,
+  ex:"Les mutations surviennent au hasard et indépendamment sur chaque copie : les séquences divergent tout en restant homologues (plus de 20 % de similitudes)."},
+ {q:"Pourquoi certains gènes d'une même famille multigénique sont-ils sur des chromosomes différents ?", o:["Parce qu'une copie a été transposée sur un autre chromosome","Parce qu'ils viennent de deux gènes ancestraux différents","Parce que le crossing-over inégal se fait entre chromosomes non homologues"], a:0,
+  ex:"Après la duplication, une copie peut être déplacée ailleurs dans le génome : c'est la transposition (globines α sur le chromosome 16, β sur le 11)."}
+];
+
+ANIM.lancer({id:'coinegal', END:68, SCENES, CALL, CUES, QUIZ, draw, graine:23});
+})();
+</script>
+</body>
+</html>
