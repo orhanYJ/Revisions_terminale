@@ -1,8 +1,12 @@
 /* Service worker — SVT Terminale
-   Stratégie : réseau d'abord pour la page (mises à jour immédiates),
-   repli cache hors ligne. Assets : cache d'abord. */
-const CACHE = "svt-v8";
-const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png"];
+   Stratégie : réseau d'abord pour les pages (mises à jour immédiates),
+   repli cache hors ligne. Assets : cache d'abord.
+   Les animations (anim/*.html) sont des pages à part : elles ont leur propre
+   entrée de cache, pour ne jamais écraser la page d'accueil. */
+const CACHE = "svt-v9";
+const ANIMS = ["nondisj", "coinegal", "globines"];
+const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png",
+  "anim/moteur.css?v=1", "anim/moteur.js?v=1"].concat(ANIMS.map((a) => "anim/" + a + ".html"));
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
@@ -20,17 +24,20 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
-  const isPage = req.mode === "navigate" || req.url.endsWith("/") || req.url.endsWith("index.html");
-  if (isPage) {
-    // réseau d'abord : la nouvelle version arrive dès qu'il y a du réseau
+  const url = new URL(req.url);
+  const isHtml = req.mode === "navigate" || url.pathname.endsWith(".html") || url.pathname.endsWith("/");
+  if (isHtml) {
+    // page d'accueil sous la clé "./", animations sous leur propre adresse (sans paramètres)
+    const isIndex = url.pathname.endsWith("/") || url.pathname.endsWith("/index.html");
+    const key = isIndex ? "./" : url.origin + url.pathname;
     e.respondWith(
       fetch(req)
         .then((res) => {
           const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put("./", copy));
+          caches.open(CACHE).then((c) => c.put(key, copy));
           return res;
         })
-        .catch(() => caches.match("./"))
+        .catch(() => caches.match(key, { ignoreSearch: true }))
     );
   } else {
     // assets : cache d'abord, complété au fil de l'eau

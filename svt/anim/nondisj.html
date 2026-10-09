@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>Quand les chromosomes migrent mal</title>
+<link rel="stylesheet" href="moteur.css?v=1">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#t1u2b">← SVT Terminale</a> · Chapitre 1, unité 2 : les accidents génétiques de la méiose</p>
+    <h1>Quand les chromosomes migrent mal</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation d'une méiose avec mauvaise disjonction de la paire 21, en anaphase I ou en anaphase II, puis fécondation donnant une trisomie">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF5CA8"></span>chromosome d'origine maternelle</li>
+        <li><span class="sw" style="background:#3FD9C8"></span>chromosome d'origine paternelle</li>
+        <li><span class="sw" style="background:#B7D94C"></span>gamète de l'autre parent</li>
+        <li><span class="sw" style="background:#F5C451"></span>fuseau de division</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié : deux paires de chromosomes seulement (2n = 4), le petit chromosome représentant le chromosome 21. Chez l'humain, 2n = 46 : la trisomie 21 donne 47 chromosomes.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=1"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, smooth, ys, strand, wobblyEllipse, cellPath, fiber, pole, flash, halo, label, AMB, MAG, CYA} = ANIM.H;
+const VERT = '#B7D94C', ROUGE = '#FF7A6B';
+const CY = 205, Q = 6, SPLAY = 5;
+const LEN = {L:120, S:58}, CEN = {L:46, S:20};
+const COL = {m:MAG, p:CYA, g:VERT};
+
+/* positions par images clés : [instant, x, haut] */
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return [keys[0][1], keys[0][2]];
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return [lerp(a[1],b[1],u), lerp(a[2],b[2],u)]; }
+  }
+  const z = keys[keys.length-1]; return [z[1], z[2]];
+}
+/* chromosomes (avant la séparation des chromatides) */
+function chromKeys(id, o){
+  const P0 = {Lm:[125,72], Lp:[270,92], Sm:[150,262], Sp:[262,250]}[id];
+  const P1 = {Lm:[185,70], Lp:[215,70], Sm:[185,268], Sp:[215,268]}[id];
+  const A = {Lm:[100,70], Lp:[300,70], Sm:[100,232], Sp:[100,300]}[id];
+  const B = {Lm:[100,70], Lp:[300,70], Sm:[100,268], Sp:[300,268]}[id];
+  const P2 = o ? B : A;
+  return [[0,...P0],[6.5,...P0],[10,...P1],[13.5,...P1],[18.5,...P2]];
+}
+/* chaque chromatide : son gamète d'arrivée, puis la fécondation */
+const ZYG = {L1:[186,70], Lg:[214,70], s1:[172,262], s2:[196,262], Sg:[220,262]};
+function chromatidKeys(id, j, o){
+  const [cx, top] = kf(chromKeys(id,o), 31);
+  const start = [31, cx + (j ? Q : -Q), top];
+  let fin;
+  if(!o) fin = {Lm:[[50,70],[150,70]], Lp:[[250,70],[350,70]], Sm:[[50,232],[150,232]], Sp:[[50,300],[150,300]]}[id][j];
+  else fin = {Lm:[[50,70],[150,70]], Lp:[[250,70],[350,70]], Sm:[[42,268],[58,268]], Sp:[[250,268],[350,268]]}[id][j];
+  const keys = [start, [35.5, ...fin]];
+  if(o && id === 'Sm') { keys[1] = [35.5, 50 + (j ? Q : -Q), 268]; keys.push([36.5, 50 + (j ? Q : -Q), 268], [38, ...fin]); }
+  /* fécondation : le gamète n + 1 de gauche se déplace puis fusionne */
+  const dansG1 = fin[0] < 100;
+  if(dansG1){
+    const role = id === 'Lm' ? 'L1' : (!o ? (id === 'Sm' ? 's1' : 's2') : (j ? 's2' : 's1'));
+    keys.push([46, fin[0], fin[1]], [50, fin[0] + 110, fin[1]], [51.5, fin[0] + 110, fin[1]], [55.5, ...ZYG[role]]);
+  }
+  return {keys, dansG1};
+}
+const IDS = [];
+for(const id of ['Lm','Lp','Sm','Sp']) for(const j of [0,1]) IDS.push({id, j, c:id[0], o:id[1]});
+
+function base(ch, tt, o){
+  if(tt < 31){ const [cx, top] = kf(chromKeys(ch.id,o), tt); return [cx + (ch.j ? Q : -Q), top]; }
+  return kf(chromatidKeys(ch.id, ch.j, o).keys, tt);
+}
+function joined(ch, t, o){
+  if(o && ch.id === 'Sm') return 1 - kAtL(t, 36.5, 37.6);
+  return 1 - kAtL(t, 31.2, 32.6);
+}
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+
+/* gamète de l'autre parent */
+function gKeys(c){ const top = c === 'L' ? 70 : 262; const z = c === 'L' ? ZYG.Lg : ZYG.Sg; return [[46,450,top],[47,450,top],[51,250,top],[51.5,250,top],[55.5,...z]]; }
+
+function chromatidPath(x0, top, c, side, jn, lag, t, ph){
+  const L = LEN[c], yc = top + CEN[c];
+  return smooth(ys(top, top + L, c === 'L' ? 10 : 6).map(y => {
+    const u = (y - yc)/(L*.55), u2 = u*u;
+    let x = x0 + side*SPLAY*u2*jn*(u < 0 ? .8 : 1) + lag*u2;
+    x += 1.1*Math.sin(y*.05 + t*1.5 + ph);
+    return [x, y];
+  }));
+}
+
+function draw(c){
+  const {t, opt:o, k} = c;
+  const st = {}; let ch = '', sp = '', fx = '', cells = '', lab = '';
+
+  /* --- cellules --- */
+  let cp = '';
+  if(t < 45){
+    const a = k(21.5,27), ap = k(21.5,27.5), b = k(38,43.5), bp = k(38,43.6), el = k(13.5,18.5), R = 1.19;
+    const bl = [];
+    if(a <= 0) bl.push([200,CY,190+6*el,190-8*el]);
+    else for(const sg of [-1,1]){
+      const cx = lerp(200,200+sg*100,ap), ax = lerp(196/R,76,ap), ay = lerp(182/R,186,a);
+      if(b <= 0) bl.push([cx,CY,ax,ay]);
+      else for(const u of [-1,1]) bl.push([lerp(cx,cx+u*50,bp), CY, lerp(ax/R,37,bp), lerp(ay/R,184,b)]);
+    }
+    cp = cellPath(bl);
+  } else {
+    const g1 = kf([[46,50,0],[50,160,0],[51.5,160,0],[55.5,200,0]], t)[0];
+    const g2 = kf([[46,450,0],[47,450,0],[51,250,0],[51.5,250,0],[55.5,200,0]], t)[0];
+    const w = lerp(37, 72, k(51.5,55.5)), h = lerp(184, 172, k(51.5,55.5));
+    cp = cellPath([[g1,CY,w,h],[g2,CY,w,h]]);
+    const fade = 1 - k(45,47);
+    if(fade > 0) for(const x of [150,250,350]){ const d = wobblyEllipse(x,CY,37,184,x); cells += `<g opacity="${op(fade)}"><path d="${d}" fill="url(#cyto)"/><path d="${d}" fill="none" stroke="#86A9DB" stroke-width="2"/></g>`; }
+    st.g1 = g1; st.g2 = g2;
+  }
+
+  /* --- fuseau de la méiose I --- */
+  const g1s = k(9,11.5), so = g1s*(1 - k(19,21));
+  const leftSet = o ? ['Lm','Sm'] : ['Lm','Sm','Sp'];
+  if(so > 0){
+    for(const d of [-95,-55,55,95]) sp += fiber([40,CY],[360,CY],d*1.3,g1s,.13*so);
+    for(const id of ['Lm','Lp','Sm','Sp']){
+      const [cx, top] = kf(chromKeys(id,o), t), y = top + CEN[id[0]], toL = leftSet.includes(id);
+      const P2 = [cx + (toL ? -Q-4 : Q+4), y];
+      for(const [off,w] of [[-10,.3],[0,.6],[10,.3]]) sp += fiber(toL ? [40,CY] : [360,CY], P2, off, g1s, w*so);
+    }
+    const eq = so*(1 - k(13.5,14.5));
+    if(eq > 0) sp += `<line x1="200" y1="28" x2="200" y2="384" stroke="${AMB}" stroke-dasharray="3 6" stroke-opacity="${op(.5*eq)}"/>`;
+    sp += pole(40,CY,so) + pole(360,CY,so);
+  }
+  /* --- fuseaux de la méiose II --- */
+  const g2s = k(28.5,31), so2 = g2s*(1 - k(35.5,37.5));
+  if(so2 > 0){
+    for(const cxc of [100,300]){
+      const eq = so2*(1 - k(31,32));
+      if(eq > 0) sp += `<line x1="${cxc}" y1="36" x2="${cxc}" y2="376" stroke="${AMB}" stroke-dasharray="3 6" stroke-opacity="${op(.5*eq)}"/>`;
+      for(const ch2 of IDS){
+        const [bx, top] = base(ch2, t, o);
+        if(Math.abs(bx - cxc) > 60) continue;
+        const y = top + CEN[ch2.c];
+        const toL = (o && ch2.id === 'Sm') ? true : ch2.j === 0;
+        for(const [off,w] of [[-8,.3],[0,.6],[8,.3]]) sp += fiber(toL ? [cxc-74,CY] : [cxc+74,CY], [bx + (toL ? -4 : 4), y], off, g2s, w*so2);
+      }
+      sp += pole(cxc-74,CY,so2) + pole(cxc+74,CY,so2);
+    }
+  }
+
+  /* --- chromatides --- */
+  const fadeOthers = 1 - k(45,47);
+  const groups = {};
+  for(const ch2 of IDS){
+    const [bx, top] = base(ch2, t, o);
+    const [bx1] = base(ch2, t+.04, o), [bx0] = base(ch2, t-.04, o);
+    const lag = clamp(-(bx1-bx0)/.08*.22, -22, 22);
+    const jn = joined(ch2, t, o), side = ch2.j ? 1 : -1;
+    const dansG1 = t >= 31 ? chromatidKeys(ch2.id, ch2.j, o).dansG1 : true;
+    const alpha = dansG1 ? 1 : fadeOthers;
+    if(alpha <= 0) continue;
+    const d = chromatidPath(bx, top, ch2.c, side, jn, lag, t, (ch2.o === 'm' ? 0 : 2) + ch2.j*2.3);
+    ch += strand(d, COL[ch2.o], 11, alpha);
+    const key = ch2.id; (groups[key] = groups[key] || []).push({bx, top, jn, alpha, c:ch2.c});
+    st[ch2.id + ch2.j] = [bx, top + CEN[ch2.c]];
+  }
+  /* centromères */
+  for(const key in groups){
+    const g = groups[key]; if(g.length < 2) continue;
+    const jn = g[0].jn, y = g[0].top + CEN[g[0].c], mx = (g[0].bx + g[1].bx)/2;
+    if(jn > 0) ch += `<circle cx="${f(mx)}" cy="${f(y)}" r="4" fill="${AMB}" opacity="${op(jn*g[0].alpha)}"/>`;
+    if(jn < 1) for(const e of g) ch += `<circle cx="${f(e.bx)}" cy="${f(e.top + CEN[e.c])}" r="3" fill="${AMB}" opacity="${op((1-jn)*e.alpha)}"/>`;
+    st[key] = [mx, y];
+  }
+  /* gamète de l'autre parent : chromosomes à une chromatide */
+  const ga = k(46.5,47.5);
+  if(ga > 0) for(const c2 of ['L','S']){
+    const [bx, top] = kf(gKeys(c2), t), [b1] = kf(gKeys(c2), t+.04), [b0] = kf(gKeys(c2), t-.04);
+    const lag = clamp(-(b1-b0)/.08*.22, -22, 22);
+    ch += strand(chromatidPath(bx, top, c2, 1, 0, lag, t, 4), VERT, 11, ga);
+    ch += `<circle cx="${f(bx)}" cy="${f(top + CEN[c2])}" r="3" fill="${AMB}" opacity="${op(ga)}"/>`;
+    st['g' + c2] = [bx, top + CEN[c2]];
+  }
+
+  /* --- effets --- */
+  if(!o){ const s = st.Sm || [150,275]; fx += halo(s[0], s[1], k(14.2,15)*(1-k(19.5,20.5))); fx += flash(s[0], s[1], 15.2); }
+  else { const s = st.Sm || [50,288]; fx += halo(s[0], s[1], k(32.4,33)*(1-k(37,38))); fx += flash(s[0], s[1], 33); }
+  if(t > 54 && t < 57) fx += flash(200, 205, 55.3, 1.8);
+
+  /* --- étiquettes des gamètes --- */
+  const gl = k(43.2,44.4)*(1 - k(45,46.5));
+  if(gl > 0){
+    const L = o ? [['n + 1',1],['n − 1',1],['n',0],['n',0]] : [['n + 1',1],['n + 1',1],['n − 1',1],['n − 1',1]];
+    [50,150,250,350].forEach((x,i) => {
+      const [txt, bad] = L[i];
+      lab += `<g opacity="${op(gl)}"><text x="${x}" y="404" font-size="15" font-weight="700" fill="${bad ? ROUGE : '#E9EEF7'}">${txt}</text><text x="${x}" y="421" font-size="10" fill="${bad ? ROUGE : '#9FB0CC'}">${bad ? 'anormal' : 'normal'}</text></g>`;
+    });
+  }
+  const zl = k(56,57.2);
+  if(zl > 0) lab += `<g opacity="${op(zl)}"><text x="200" y="404" font-size="15" font-weight="700" fill="${ROUGE}">2n + 1 : trisomie</text><text x="200" y="421" font-size="10.5" fill="#E9EEF7">47 chromosomes chez l'humain</text></g>`;
+
+  return {cp, cells, sp, chr:ch, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:6, title:"La cellule de départ",
+  text:"Une cellule diploïde qui entre en méiose : <strong>2n = 4</strong>, deux paires de chromosomes homologues, déjà répliqués (deux chromatides chacun). Le petit chromosome joue le rôle du <strong>chromosome 21</strong>. Dans chaque paire, un homologue vient de la mère (magenta), l'autre du père (cyan).",
+  state:"1 cellule, 2n = 4, chromosomes à 2 chromatides"},
+ {t:6, e:13, title:"Métaphase I",
+  text:"Les homologues sont appariés et se placent de part et d'autre du plan équatorial. Les fibres du fuseau s'accrochent aux centromères. Normalement, chaque homologue va partir vers un pôle différent.",
+  state:"1 cellule, les paires sont sur le plan équatorial"},
+ {t:13, e:21, title:o => o ? "Anaphase I : tout se passe bien" : "Anaphase I : la paire 21 ne se sépare pas",
+  text:o => o ? "Cette fois, les homologues de chaque paire se séparent normalement : chaque pôle reçoit <strong>un chromosome de chaque paire</strong>. L'erreur viendra plus tard, en méiose II."
+                : "La grande paire se sépare normalement. Mais les deux homologues de la paire 21 partent <strong>vers le même pôle</strong> : c'est une <strong>mauvaise disjonction</strong> (non-disjonction) en anaphase I.",
+  state:o => o ? "Chaque pôle reçoit un chromosome de chaque paire" : "Un pôle reçoit 3 chromosomes, l'autre 1 seul"},
+ {t:21, e:28, title:"Télophase I : deux cellules",
+  text:o => o ? "La cellule se divise en deux cellules haploïdes, chacune avec <strong>un chromosome de chaque paire</strong>, toujours à deux chromatides."
+              : "La cellule se divise en deux. À gauche, la cellule a reçu <strong>les deux chromosomes 21</strong> ; à droite, elle n'en a <strong>aucun</strong>.",
+  state:o => o ? "2 cellules, n = 2, chromosomes à 2 chromatides" : "2 cellules : 3 chromosomes à gauche, 1 à droite"},
+ {t:28, e:38, title:o => o ? "Méiose II : les chromatides 21 restent ensemble" : "Méiose II",
+  text:o => o ? "Dans la cellule de gauche, les deux chromatides du chromosome 21 <strong>ne se séparent pas</strong> et partent ensemble vers le même pôle : mauvaise disjonction en <strong>anaphase II</strong>. Partout ailleurs, les chromatides sœurs se séparent normalement."
+              : "Sans nouvelle réplication, un fuseau se forme dans chaque cellule et les <strong>chromatides sœurs se séparent</strong> normalement. Mais l'erreur de la méiose I est déjà faite.",
+  state:"Les chromatides sœurs se séparent"},
+ {t:38, e:45, title:"Télophase II : quatre gamètes",
+  text:o => o ? "Bilan d'une erreur en anaphase II : <strong>deux gamètes anormaux</strong> (un à n + 1, un à n − 1) et deux gamètes normaux."
+              : "Bilan d'une erreur en anaphase I : <strong>les quatre gamètes sont anormaux</strong>, deux à n + 1 (deux chromosomes 21), deux à n − 1 (aucun chromosome 21).",
+  state:o => o ? "4 gamètes : n + 1, n − 1, n, n" : "4 gamètes : n + 1, n + 1, n − 1, n − 1"},
+ {t:45, e:58, title:"La fécondation",
+  text:"Un gamète à <strong>n + 1</strong> rencontre un gamète normal de l'autre parent (en vert, n). Les deux cellules fusionnent : la cellule-œuf reçoit les chromosomes des deux gamètes.",
+  state:"Gamète n + 1 + gamète n"},
+ {t:58, e:66, title:"Bilan : une trisomie",
+  text:"La cellule-œuf possède <strong>trois chromosomes 21</strong> : 2n + 1, soit <strong>47 chromosomes</strong> chez l'humain. C'est une <strong>trisomie 21</strong>, qui sera recopiée par mitoses dans toutes les cellules de l'enfant. Un gamète à n − 1 aurait donné une monosomie (45 chromosomes), le plus souvent non viable.",
+  state:"Cellule-œuf : 2n + 1"}
+];
+
+const CALL = [
+  {a:1.2, b:5.8, text:"paire de chromosomes 21", lab:[200,392], anc:st=>[st.Sm, st.Sp].filter(Boolean)},
+  {a:2.4, b:5.9, text:"2 chromatides sœurs", lab:[300,30], anc:st=>[st.Lp0 && [st.Lp0[0], st.Lp0[1]-30], st.Lp1 && [st.Lp1[0], st.Lp1[1]-30]].filter(Boolean)},
+  {a:9.6, b:13.2, text:"plan équatorial", lab:[300,412], anc:()=>[[200,380]]},
+  {a:10.2, b:13.3, text:"pôle du fuseau", lab:[72,120], anc:()=>[[40,CY]]},
+  {si:o=>!o, a:14.6, b:20.6, text:"la paire 21 part du même côté !", lab:[200,410], col:ROUGE, anc:st=>[st.Sm, st.Sp].filter(Boolean)},
+  {si:o=>!!o, a:14.6, b:19.6, text:"chaque homologue part vers un pôle", lab:[200,22], anc:st=>[st.Lm, st.Lp].filter(Boolean)},
+  {a:23.5, b:27.6, text:"sillon de division", lab:[200,22], anc:()=>[[200,40]]},
+  {si:o=>!!o, a:32.8, b:37.6, text:"les chromatides 21 ne se séparent pas !", lab:[150,412], col:ROUGE, anc:st=>[st.Sm].filter(Boolean)},
+  {si:o=>!o, a:32, b:36.6, text:"les chromatides sœurs se séparent", lab:[200,22], anc:st=>[st.Lm0, st.Lm1].filter(Boolean)},
+  {a:47.2, b:51.4, text:"gamète n + 1", lab:[150,24], anc:st=>[[st.g1 || 50, 40]]},
+  {a:48, b:52, text:"gamète normal de l'autre parent", lab:[262,412], anc:st=>[[st.g2 || 400, 380]]},
+  {a:57.6, b:65.6, text:"trois chromosomes 21", lab:[318,330], anc:st=>[st.Sm0, st.Sm1, st.Sp0, st.gS].filter(Boolean).slice(0,3)}
+];
+
+const CUES = [[.2,'step'],[6.6,'pair'],[13.6,'split'],[15,'error',o=>!o],[21.6,'pinch'],[28.6,'step'],[31.2,'split'],[32.8,'error',o=>!!o],[38.2,'pinch'],[43.4,'step'],[47.2,'whoosh'],[52,'fuse'],[55.2,'spark'],[58.2,'final']];
+
+const QUIZ = [
+ {q:"Une paire d'homologues ne se sépare pas en anaphase I. Combien de gamètes anormaux obtient-on ?", o:["1","2","4"], a:2,
+  ex:"Une cellule fille reçoit les deux homologues, l'autre aucun : après la méiose II, les quatre gamètes sont anormaux (deux à n + 1, deux à n − 1)."},
+ {q:"Les deux chromatides d'un chromosome ne se séparent pas en anaphase II, dans une seule cellule. Combien de gamètes anormaux ?", o:["1","2","4"], a:1,
+  ex:"La méiose I s'est bien passée : l'autre cellule donne deux gamètes normaux. On obtient un gamète n + 1, un gamète n − 1 et deux gamètes normaux."},
+ {q:"Un gamète n + 1 est fécondé par un gamète normal. La cellule-œuf possède :", o:["45 chromosomes : une monosomie","46 chromosomes : l'erreur est compensée","47 chromosomes : une trisomie"], a:2,
+  ex:"n + 1 + n = 2n + 1 = 47 chez l'humain. Un seul chromosome est en trois exemplaires : c'est une trisomie, pas une triploïdie."},
+ {q:"Pourquoi l'enfant trisomique a-t-il trois chromosomes 21 dans toutes ses cellules ?", o:["Parce que chaque cellule refait la même erreur de méiose","Parce que la cellule-œuf trisomique se multiplie par mitoses, qui recopient son caryotype","Parce que le chromosome 21 se duplique dans chaque cellule"], a:1,
+  ex:"La mitose est une reproduction conforme : toutes les cellules issues de la cellule-œuf héritent de son caryotype, avec ses 47 chromosomes."}
+];
+
+ANIM.lancer({id:'nondisj', END:66, SCENES, CALL, CUES, QUIZ, draw,
+  bascule:{des:13, saut:13.05, off:"Voir l'erreur en anaphase II", on:"Revoir l'erreur en anaphase I"}});
+})();
+</script>
+</body>
+</html>

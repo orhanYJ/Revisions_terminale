@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070B14">
+<title>Une famille multigénique : les globines</title>
+<link rel="stylesheet" href="moteur.css?v=1">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#t1u2b">← SVT Terminale</a> · Chapitre 1, unité 2 : les accidents génétiques de la méiose</p>
+    <h1>Une famille multigénique : les globines</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation de la formation de la famille des globines par duplications, transpositions et mutations, avec l'arbre de parenté qui se construit">
+        <defs>
+          <radialGradient id="field" cx="50%" cy="47%" r="62%"><stop offset="0" stop-color="#15223A"/><stop offset=".7" stop-color="#0B1322"/><stop offset="1" stop-color="#060A12"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#F5C451" stop-opacity=".6"/><stop offset="1" stop-color="#F5C451" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFF3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#F5C451"></span>gène ancestral</li>
+        <li><span class="sw" style="background:#FF6DB2"></span>groupe bêta (chromosome 11)</li>
+        <li><span class="sw" style="background:#FF6B5B"></span>groupe alpha (chromosome 16)</li>
+        <li><span class="sw" style="background:#9FB0CC"></span>arbre de parenté</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">D'après le schéma à recopier de la correction du TP (E. Le Fol, 2011), simplifié : la myoglobine n'y figure pas. Les pseudogènes (ψ) ne sont pas représentés.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=1"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, flash, halo, arc, mix, label, AMB} = ANIM.H;
+const Y11 = 90, Y16 = 170;
+const C0 = '#F5C451', BETA = '#FF6DB2', ALPHA = '#FF6B5B', GAMMA = '#5AA9FF', EPS = '#7BE36A', DELTA = '#E0A050', ZETA = '#F5E663';
+const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+function kf(keys, tt){
+  if(tt <= keys[0][0]) return keys[0].slice(1);
+  for(let i=0; i<keys.length-1; i++){
+    const a = keys[i], b = keys[i+1];
+    if(tt <= b[0]){ const u = b[0] > a[0] ? ease(clamp((tt-a[0])/(b[0]-a[0]),0,1)) : 1; return a.slice(1).map((v,n) => lerp(v, b[n+1], u)); }
+  }
+  return keys[keys.length-1].slice(1);
+}
+/* couleur par étapes : [[instant début, instant fin, couleur], ...] */
+function colAt(steps, tt){ let c = steps[0][2]; for(let i=1; i<steps.length; i++) c = mix(c, steps[i][2], kAtL(tt, steps[i][0], steps[i][1])); return c; }
+
+/* les gènes : apparition, position, couleur, lettre finale */
+const GENES = [
+  {id:'g11', from:0, keys:[[0,200,Y11],[7,200,Y11],[10,180,Y11],[16,180,Y11],[19.5,200,Y11],[30.5,200,Y11],[33.5,160,Y11]], col:[[0,0,C0],[22.5,29,BETA],[33,35,GAMMA]], nom:'γ'},
+  {id:'g16', from:7, keys:[[7,200,Y11],[10,220,Y11],[16,220,Y11]], arcTo:[16,19.5,205,Y16,60], after:[[19.5,205,Y16],[40.5,205,Y16],[43.5,260,Y16]], col:[[0,0,C0],[22.5,29,ALPHA]], nom:'α'},
+  {id:'gdb', from:30.5, keys:[[30.5,200,Y11],[33.5,240,Y11]], col:[[0,0,BETA],[38.5,40,DELTA]], nom:'δ'},
+  {id:'ge', from:36, keys:[[36,160,Y11],[39.5,90,Y11]], col:[[0,0,GAMMA],[38.5,40,EPS]], nom:'ε'},
+  {id:'gb', from:36, keys:[[36,240,Y11],[39.5,310,Y11]], col:[[0,0,BETA]], nom:'β'},
+  {id:'gz', from:40.5, keys:[[40.5,205,Y16],[43.5,150,Y16]], col:[[0,0,ALPHA],[42.5,44,ZETA]], nom:'ζ'}
+];
+function genePos(g, tt){
+  if(g.arcTo){
+    const [a, b, x2, y2, h] = g.arcTo;
+    if(tt <= a) return kf(g.keys, tt);
+    if(tt <= b){ const [x1, y1] = kf(g.keys, a); return arc([x1,y1],[x2,y2],h,kAtL(tt,a,b)); }
+    return kf(g.after, tt);
+  }
+  return kf(g.keys, tt);
+}
+
+/* l'arbre de parenté : nœuds et branches qui poussent */
+const LEAF = {ge:250, g11:278, gdb:306, gb:334, gz:370, g16:398};
+const N = {r:[60,338], b:[150,292], eg:[240,264], db:[240,320], a:[240,384]};
+const XL = 330;
+const BR = [ /* [x départ, y, x arrivée, début, fin] */
+  [22,338,60, 8,9.5],
+  [60,292,150, 9.5,32], [60,384,240, 9.5,42],
+  [150,264,240, 32,37], [150,320,240, 32,37],
+  [240,250,XL, 37,50], [240,278,XL, 37,50], [240,306,XL, 37,50], [240,334,XL, 37,50],
+  [240,370,XL, 42,50], [240,398,XL, 42,50]
+];
+const NODES = [ /* [x, y haut, y bas, instant, étiquette] */
+  [60,292,384, 9.5,'D + T', 19], [150,264,320, 32,'D'], [240,250,278, 37,'D'], [240,306,334, 37,'D'], [240,370,398, 42,'D']
+];
+
+function chromBar(y, o, label2){
+  if(o <= 0) return '';
+  return `<g opacity="${op(o)}"><line x1="34" y1="${y}" x2="366" y2="${y}" stroke="#2B3A58" stroke-width="22" stroke-linecap="round"/><line x1="34" y1="${y-5}" x2="366" y2="${y-5}" stroke="#FFFFFF" stroke-opacity=".08" stroke-width="5" stroke-linecap="round"/>` +
+    (label2 ? `<text x="34" y="${y-20}" font-size="10.5" fill="#9FB0CC" text-anchor="start">${label2}</text>` : '') + '</g>';
+}
+function geneBand(x, y, col, o=1){
+  return `<g opacity="${op(o)}"><rect x="${f(x-12)}" y="${f(y-14)}" width="24" height="28" rx="4" fill="${col}"/><rect x="${f(x-12)}" y="${f(y-14)}" width="24" height="28" rx="4" fill="none" stroke="#FFFFFF" stroke-opacity=".75"/></g>`;
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {}; let sp = '', ch = '', lt = '', fx = '', lab = '';
+
+  /* chromosomes */
+  const n11 = k(48,49.5) ? 'chromosome 11 : groupe bêta' : '', n16 = k(48,49.5) ? 'chromosome 16 : groupe alpha' : '';
+  ch += chromBar(Y11, k(0,1.2), t > 48 ? n11 : '');
+  ch += chromBar(Y16, k(14,15.5), t > 48 ? n16 : '');
+
+  /* gènes */
+  for(const g of GENES){
+    if(t < g.from) continue;
+    const [x, y] = genePos(g, t), col = colAt(g.col, t);
+    const pop = g.from > 0 ? kAtL(t, g.from, g.from + .5) : 1;
+    ch += geneBand(x, y, col, pop);
+    st[g.id] = [x, y];
+    const nm = k(48.5,49.5);
+    if(nm > 0) lt += `<text x="${f(x)}" y="${f(y + 31)}" font-size="15" font-weight="700" fill="${col}" opacity="${op(nm)}" text-anchor="middle">${g.nom}</text>`;
+  }
+  /* duplications : éclair à l'endroit où le gène se dédouble */
+  fx += flash(200, Y11, 7.4) + flash(200, Y11, 30.9) + flash(160, Y11, 36.4) + flash(240, Y11, 36.4) + flash(205, Y16, 40.9);
+  fx += halo(200, Y11, k(5.6,6.4)*(1 - k(7,7.6)), 16);
+  /* mutations */
+  for(const [h, id] of [[23,'g11'],[24.5,'g16'],[26,'g11'],[27.5,'g16']]){
+    if(t < h - .6 || t > h + .8 || !st[id]) continue;
+    const g = st[id], p = clamp((t - (h - .6))/1.4, 0, 1);
+    if(p < .45){ const sx = g[0] + 50*(1-p), sy = g[1] - 46*(1-p); fx += `<circle cx="${f(sx)}" cy="${f(sy)}" r="2.6" fill="#FFFFFF"/>`; }
+    else fx += `<circle cx="${f(g[0])}" cy="${f(g[1])}" r="${f(8 + 20*(p-.45))}" fill="none" stroke="#FFFFFF" stroke-opacity="${op((1-p)*1.6)}" stroke-width="1.4"/>`;
+  }
+
+  /* arbre */
+  const ta = k(8,9);
+  if(ta > 0){
+    sp += `<text x="22" y="232" font-size="11" font-weight="700" fill="#9FB0CC" text-anchor="start" opacity="${op(ta)}">Arbre de parenté des globines</text>`;
+    for(const [x0, y, x1, a, b] of BR){
+      if(t < a) continue;
+      const u = clamp((t - a)/(b - a), 0, 1), xe = lerp(x0, x1, u);
+      sp += `<line x1="${x0}" y1="${y}" x2="${f(xe)}" y2="${y}" stroke="#9FB0CC" stroke-width="2" stroke-linecap="round"/>`;
+      if(u < 1) sp += `<circle cx="${f(xe)}" cy="${y}" r="3.2" fill="${AMB}"/>`;
+    }
+    for(const [x, y0, y1, a, txt, a2] of NODES){
+      const o = k(a, a + .6); if(o <= 0) continue;
+      const ym = (y0 + y1)/2, h = (y1 - y0)/2*o;
+      sp += `<line x1="${x}" y1="${f(ym - h)}" x2="${x}" y2="${f(ym + h)}" stroke="#9FB0CC" stroke-width="2" stroke-linecap="round"/><circle cx="${x}" cy="${f(ym)}" r="4" fill="${AMB}" opacity="${op(o)}"/>`;
+      const lt2 = a2 ? (t < a2 ? 'D' : txt) : txt;
+      sp += `<text x="${x - 7}" y="${f(ym - 7)}" font-size="10.5" font-weight="700" fill="${AMB}" text-anchor="end" opacity="${op(o)}">${lt2}</text>`;
+    }
+    const lf = k(49.5,50.5);
+    if(lf > 0) for(const g of GENES){ const y = LEAF[g.id]; sp += `<text x="${XL + 10}" y="${y}" dy=".36em" font-size="14" font-weight="700" fill="${colAt(g.col, t)}" text-anchor="start" opacity="${op(lf)}">${g.nom}</text>`; }
+  }
+  const hl = k(55,56)*(1 - k(61,62));
+  if(hl > 0) for(const [x, y0, y1] of NODES) fx += halo(x, (y0 + y1)/2, hl, 7);
+
+  return {sp, chr:ch, let:lt, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:6, title:"Au départ : un seul gène",
+  text:"Il y a très longtemps, un ancêtre possédait <strong>un seul gène de globine</strong>, le gène ancestral, porté par un chromosome.",
+  state:"1 gène, 1 chromosome"},
+ {t:6, e:14, title:"Une duplication",
+  text:"Un <strong>crossing-over inégal</strong> duplique le gène : le chromosome porte maintenant deux copies identiques, côte à côte. Dans l'arbre, cette duplication devient un premier nœud.",
+  state:"2 copies du gène ancestral"},
+ {t:14, e:22, title:"Une transposition",
+  text:"L'une des deux copies est <strong>transposée</strong> sur un autre chromosome. C'est pourquoi le premier nœud de l'arbre porte « duplication + transposition » (D + T).",
+  state:"1 copie sur chacun des deux chromosomes"},
+ {t:22, e:30, title:"Divergence par mutation",
+  text:"Chaque copie accumule ses propres <strong>mutations</strong>, indépendamment de l'autre : leurs séquences divergent. L'une deviendra l'ancêtre du groupe <strong>bêta</strong>, l'autre celui du groupe <strong>alpha</strong>. Dans l'arbre, les branches s'allongent.",
+  state:"2 gènes qui divergent"},
+ {t:30, e:40, title:"Nouvelles duplications sur le même chromosome",
+  text:"Sur le premier chromosome, le gène se duplique à nouveau, puis chaque copie encore une fois : quatre gènes côte à côte, qui divergent chacun de leur côté. Ce sont des duplications <strong>sans transposition</strong> (D) : les gènes restent voisins.",
+  state:"4 gènes sur le futur chromosome 11"},
+ {t:40, e:48, title:"Une duplication sur l'autre chromosome",
+  text:"Sur le second chromosome, le gène se duplique aussi : deux gènes voisins, qui divergent à leur tour.",
+  state:"2 gènes sur le futur chromosome 16"},
+ {t:48, e:55, title:"Le résultat : deux groupes de gènes",
+  text:"Le chromosome 11 porte le groupe <strong>bêta</strong> (ε, γ, δ, β), le chromosome 16 le groupe <strong>alpha</strong> (ζ, α). Ils s'expriment à des moments différents : ε et ζ chez l'embryon, γ chez le fœtus, β, δ et α chez l'adulte. Tous dérivent du même gène ancestral : c'est une <strong>famille multigénique</strong>.",
+  state:"6 gènes homologues sur 2 chromosomes"},
+ {t:55, e:62, title:"Lire l'arbre de parenté",
+  text:"<strong>Chaque nœud correspond à une duplication</strong> (D), accompagnée d'une transposition quand les copies changent de chromosome (D + T). Après chaque nœud, les branches s'allongent : ce sont les mutations accumulées par chaque copie. Les gènes les plus proches dans l'arbre sont issus des duplications les plus récentes.",
+  state:"Arbre : 5 duplications, dont 1 avec transposition"}
+];
+
+const CALL = [
+  {a:1, b:5.8, text:"le gène ancestral", lab:[200,34], anc:st=>[st.g11].filter(Boolean)},
+  {a:8.6, b:13.6, text:"duplication : 2 copies côte à côte", lab:[200,34], anc:st=>[st.g11, st.g16].filter(Boolean)},
+  {a:16.2, b:21.4, text:"transposition", lab:[310,132], anc:st=>[st.g16].filter(Boolean)},
+  {a:23, b:29.6, text:"mutations : les copies divergent", lab:[200,132], anc:st=>[st.g11, st.g16].filter(Boolean)},
+  {a:31.2, b:35.6, text:"nouvelle duplication", lab:[200,34], anc:st=>[st.g11, st.gdb].filter(Boolean)},
+  {a:55.4, b:61.6, text:"chaque nœud = une duplication", lab:[148,412], anc:()=>[[60,338],[150,292]]}
+];
+
+const CUES = [[.2,'step'],[7.3,'pop'],[16.2,'whoosh'],[19.4,'pop'],[23,'mut'],[24.5,'mut'],[26,'mut'],[27.5,'mut'],[30.8,'pop'],[36.3,'pop'],[40.8,'pop'],[48.4,'step'],[55.2,'final']];
+
+const QUIZ = [
+ {q:"Sur l'arbre de parenté des globines, que représente chaque nœud ?", o:["Une mutation ponctuelle","Une duplication de gène","Une espèce ancestrale"], a:1,
+  ex:"Chaque nœud est une duplication ; si les copies changent de chromosome, on note duplication + transposition (D + T). Les mutations s'accumulent le long des branches."},
+ {q:"Pourquoi les gènes ε, γ, δ et β sont-ils voisins sur le chromosome 11 ?", o:["Ils sont issus de duplications successives sans transposition","Ils viennent de quatre gènes ancestraux différents","Ce sont quatre allèles du même gène"], a:0,
+  ex:"Les duplications par crossing-over inégal placent les copies côte à côte. Ce ne sont pas des allèles : ce sont des gènes distincts, à des locus distincts."},
+ {q:"Quel nœud porte « duplication + transposition » ?", o:["Celui qui sépare β et δ","Celui qui sépare le groupe alpha du groupe bêta","Aucun"], a:1,
+  ex:"Après cette duplication, une copie est passée sur un autre chromosome : groupe alpha sur le chromosome 16, groupe bêta sur le chromosome 11."}
+];
+
+ANIM.lancer({id:'globines', END:62, SCENES, CALL, CUES, QUIZ, draw, graine:31});
+})();
+</script>
+</body>
+</html>
