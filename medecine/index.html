@@ -190,47 +190,47 @@ var MATIERES = {
 /* Calendrier commun à toutes les méthodes : même nombre de séances, mêmes durées,
    mêmes jours. Seule la manière de travailler change. J0 = un mercredi. */
 var SEANCES = [
-  { j: 0,  min: 75, type: "app", mat: "bc"  },
-  { j: 2,  min: 75, type: "app", mat: "bio" },
-  { j: 3,  min: 75, type: "app", mat: "ana" },
-  { j: 4,  min: 45, type: "cons" },
-  { j: 7,  min: 45, type: "cons" },
-  { j: 9,  min: 45, type: "cons" },
-  { j: 11, min: 45, type: "cons" }
+  { j: 0,  min: 60, type: "app", mat: "bc"  },
+  { j: 2,  min: 60, type: "app", mat: "bio" },
+  { j: 3,  min: 60, type: "app", mat: "ana" },
+  { j: 4,  min: 40, type: "cons" },
+  { j: 7,  min: 40, type: "cons" },
+  { j: 9,  min: 40, type: "cons" },
+  { j: 11, min: 40, type: "cons" }
 ];
 var J_CLOTURE = 14, J_RETARD = 28;
 
 var METHODES = [
- { id: "M1", nom: "Relire et ficher", sous: "La méthode habituelle", c: "var(--m1)",
-   idee: "Lire le cours, le surligner, en faire une fiche, puis relire la fiche. C'est la façon de travailler la plus répandue chez les lycéens et les étudiants.",
+ { id: "M1", nom: "Relire", sous: "La méthode habituelle", c: "var(--m1)",
+   idee: "Lire la fiche, la surligner, puis la relire. C'est la façon de travailler la plus répandue chez les lycéens et les étudiants.",
    pourquoi: "Elle passe en premier parce qu'elle sert de point de comparaison : une fois les autres méthodes apprises, on ne saurait plus relire « naïvement ». Si une méthode fait mieux qu'elle, c'est qu'elle apporte vraiment quelque chose.",
-   app: [["Lire le chapitre en entier, sans s'arrêter.", 20], ["Le relire en surlignant l'essentiel.", 15], ["Rédiger une fiche à la main : titres, définitions, tableaux, un schéma.", 40]],
-   cons: [["Relire attentivement les trois fiches.", 25], ["Relire dans le cours les passages surlignés et compléter les fiches.", 20]],
+   app: [["Lire la fiche en entier, sans s'arrêter.", 20], ["La relire en surlignant l'essentiel.", 20], ["La relire une troisième fois, en s'arrêtant sur chaque passage surligné.", 20]],
+   cons: [["Relire attentivement les trois fiches, en insistant sur les passages surlignés.", 40]],
    interdit: "cacher la fiche pour réciter, se faire interroger, faire des QCM sur ces chapitres. Ce serait une autre méthode : la mesure serait faussée." },
  { id: "M2", nom: "La feuille blanche", sous: "Rappel libre", c: "var(--m2)",
-   idee: "Après une lecture, fermer le cours et écrire de mémoire tout ce dont on se souvient, puis corriger en vert. Le vert montre exactement ce qu'il reste à apprendre.",
+   idee: "Après une lecture, fermer la fiche et écrire de mémoire tout ce dont on se souvient, puis corriger en vert. Le vert montre exactement ce qu'il reste à apprendre.",
    pourquoi: "Aller chercher une information dans sa mémoire la consolide bien plus que la relire : c'est l'effet de test, l'un des résultats les plus solides de la psychologie cognitive.",
-   app: [["Lire le chapitre une fois, en repérant son plan.", 25], ["Tout fermer. Feuille blanche : écrire de mémoire le plan, les définitions, les chiffres, les schémas.", 15], ["Rouvrir le cours et compléter en vert ce qui manquait ou était faux.", 15], ["Nouvelle feuille blanche, seulement sur ce qui était en vert.", 10], ["Contrôler cette deuxième feuille avec le cours.", 10]],
-   cons: [["Pour chacun des trois chapitres : feuille blanche de 7 minutes, sans rien relire avant.", 21], ["Correction en vert de chaque feuille, cours ouvert (8 minutes par chapitre).", 24]],
-   interdit: "relire le cours avant la feuille blanche. Garder toutes les feuilles, datées : on doit voir le vert diminuer." },
+   app: [["Lire la fiche une fois, en repérant son plan.", 20], ["Tout fermer. Feuille blanche : écrire de mémoire le plan, les définitions, les chiffres, les schémas.", 15], ["Rouvrir la fiche et compléter en vert ce qui manquait ou était faux.", 15], ["Nouvelle feuille blanche, seulement sur ce qui était en vert, puis contrôle.", 10]],
+   cons: [["Pour chacun des trois chapitres : feuille blanche de 7 minutes, sans rien relire avant.", 21], ["Correction en vert de chaque feuille, fiche ouverte (6 minutes par chapitre).", 19]],
+   interdit: "relire la fiche avant la feuille blanche. La feuille blanche n'est pas une fiche à refaire : elle sert seulement à se tester. Garder les feuilles datées pour voir le vert diminuer." },
  { id: "M3", nom: "Expliquer (Feynman)", sous: "Enseigner pour comprendre", c: "var(--m3)",
-   idee: "Expliquer chaque notion à voix haute, avec des mots simples, comme à un élève de troisième. Là où l'explication bloque, on n'a pas compris : on retourne au cours.",
+   idee: "Expliquer chaque notion à voix haute, avec des mots simples, comme à un élève de troisième. Là où l'explication bloque, on n'a pas compris : on retourne à la fiche.",
    pourquoi: "Reformuler oblige à relier les idées entre elles au lieu de réciter des mots. La méthode porte le nom du physicien Richard Feynman, réputé pour expliquer simplement des choses difficiles.",
-   app: [["Lire le chapitre.", 25], ["Pour 3 notions clés : les expliquer à voix haute sans support (mots simples, une analogie, un exemple), en s'enregistrant au téléphone.", 25], ["Réécouter : noter chaque endroit où tu bloques ou récites un mot sans pouvoir l'expliquer, puis retourner au cours sur ces trous.", 15], ["Écrire l'explication finale : 10 lignes et un schéma.", 10]],
-   cons: [["Pour chaque chapitre : l'expliquer en entier, de mémoire, en 5 minutes enregistrées.", 15], ["Réécouter cours en main, noter et corriger les erreurs.", 15], ["Répondre à voix haute aux questions « pourquoi ? » du chapitre.", 15]],
-   interdit: "lire ses notes pendant l'explication. Une explication lue n'est pas une explication." },
+   app: [["Lire la fiche.", 20], ["Pour 3 notions clés : les expliquer à voix haute sans support (mots simples, une analogie, un exemple), en s'enregistrant au téléphone.", 20], ["Réécouter : repérer chaque endroit où tu bloques ou récites un mot sans pouvoir l'expliquer, retourner à la fiche sur ces trous, puis réexpliquer.", 20]],
+   cons: [["Pour chaque chapitre : l'expliquer en entier, de mémoire, en 5 minutes enregistrées.", 15], ["Réécouter fiche en main et repérer les erreurs.", 15], ["Répondre à voix haute aux questions « pourquoi ? » du chapitre.", 10]],
+   interdit: "lire la fiche pendant l'explication. Une explication lue n'est pas une explication." },
  { id: "M4", nom: "Tester d'abord", sous: "Pré-test et séries mélangées", c: "var(--m4)",
-   idee: "Commencer par un test sur un chapitre qu'on n'a pas encore lu (se tromper est voulu), lire ensuite en cherchant les réponses, puis s'entraîner sur des séries où les trois matières sont mélangées.",
+   idee: "Commencer par un test sur un chapitre qu'on n'a pas encore lu (se tromper est voulu), lire ensuite la fiche en cherchant les réponses, puis s'entraîner sur des séries où les trois matières sont mélangées.",
    pourquoi: "Un pré-test prépare la mémoire à repérer ce qui compte. Mélanger les questions oblige à identifier à chaque fois de quoi il s'agit, ce qui est exactement la situation du concours.",
-   app: [["Pré-test du chapitre, avant toute lecture.", 10], ["Lire le cours en cherchant les réponses.", 35], ["Refaire le test, corriger, et pour chaque erreur écrire en une phrase pourquoi.", 20], ["Série d'entraînement du chapitre.", 10]],
-   cons: [["Série mélangée des trois chapitres (questions dans le désordre).", 25], ["Pour chaque erreur : relire le passage et écrire la règle.", 20]],
+   app: [["Pré-test du chapitre, avant toute lecture.", 10], ["Lire la fiche en cherchant les réponses.", 25], ["Refaire le test, corriger, et pour chaque erreur dire en une phrase pourquoi.", 15], ["Série d'entraînement du chapitre.", 10]],
+   cons: [["Série mélangée des trois chapitres (questions dans le désordre).", 25], ["Pour chaque erreur : retrouver le passage de la fiche et dire la règle à voix haute.", 15]],
    interdit: "regarder la correction avant d'avoir répondu à toute la série. Les questions d'entraînement ne sont jamais celles du QCM de mesure." },
  { id: "M5", nom: "La méthode des J", sous: "Cartes et répétition espacée", c: "var(--m5)",
-   idee: "Transformer le cours en cartes question / réponse, puis les réciter à intervalles de plus en plus longs (J0, J4, J7, J9, J11). Une carte ratée revient plus souvent, une carte sue s'espace.",
+   idee: "Réciter des cartes question / réponse tirées des fiches, à intervalles de plus en plus longs (J0, J4, J7, J9, J11). Une carte ratée revient plus souvent, une carte sue s'espace. Les cartes sont fournies : rien à fabriquer.",
    pourquoi: "On oublie vite après avoir appris, mais chaque rappel réussi ralentit l'oubli suivant. Espacer les rappels est la base des logiciels de cartes (Anki) très utilisés en médecine.",
-   app: [["Lire le chapitre.", 25], ["Fabriquer 20 à 30 cartes : recto une question précise, verso la réponse. Une idée par carte.", 35], ["Premier passage : réciter chaque carte avant de la retourner. Toutes vont dans la boîte 1.", 15]],
-   cons: [["Passer les cartes des trois chapitres : réussie, elle avance d'une boîte ; ratée, elle revient en boîte 1. J4 et J11 : toutes les boîtes. J7 et J9 : boîtes 1 et 2.", 35], ["Réécrire ou découper les cartes ratées deux fois de suite.", 10]],
-   interdit: "retourner la carte avant d'avoir dit la réponse à voix haute ou dans sa tête, en entier." }
+   app: [["Lire la fiche.", 20], ["Premier passage des cartes du chapitre : dire la réponse avant de retourner chaque carte.", 30], ["Reprendre tout de suite les cartes ratées.", 10]],
+   cons: [["Passer les cartes des trois chapitres : réussie, elle avance d'une boîte ; ratée, elle revient en boîte 1. J4 et J11 : toutes les boîtes. J7 et J9 : boîtes 1 et 2.", 35], ["Reprendre les cartes ratées deux fois de suite.", 5]],
+   interdit: "retourner la carte avant d'avoir dit la réponse en entier, à voix haute ou dans sa tête." }
 ];
 
 /* Plan d'expérience : chaque méthode voit les trois matières, avec des chapitres
@@ -824,7 +824,7 @@ function vueProtocole() {
   '<div class="carte"><h3>Mesurer la méthode, pas la matière</h3><p>Si une méthode n\'était testée qu\'en anatomie, on mesurerait surtout l\'aisance en anatomie. Chaque méthode est donc appliquée aux <strong>trois mêmes matières</strong> (biologie cellulaire, biochimie, anatomie), sur des chapitres différents. L\'effet de la matière se répartit entre toutes les méthodes.</p>' +
   '<div class="defile"><table><tr><th></th>' + Object.keys(MATIERES).map(function (k) { return "<th>" + MATIERES[k].court + "</th>"; }).join("") + "</tr>" +
   METHODES.map(function (m) { return '<tr><td><b style="color:' + m.c + '">' + m.id + "</b> " + h(m.nom) + "</td>" + Object.keys(MATIERES).map(function (k) { var c = PLAN[m.id][k]; return '<td><a href="#c/' + c + '">' + h(CHAPITRES[c].titre) + "</a></td>"; }).join("") + "</tr>"; }).join("") + "</table></div></div>" +
-  '<div class="carte"><h3>Les mêmes conditions pour toutes</h3><ul><li>Sept séances en deux semaines : J0, J2, J3 (apprentissage, 75 min), J4, J7, J9, J11 (consolidation, 45 min). Avec J0 un mercredi : mercredi, vendredi, samedi, dimanche, mercredi, vendredi, week-end.</li><li>QCM de clôture à J14, puis QCM de rappel tardif à J28 (questions différentes), pour mesurer ce qui reste.</li><li>Même barème, celui des concours de première année : 5 propositions, de 1 à 5 justes ; 0 erreur = 1 point, 1 erreur = 0,5, 2 erreurs = 0,2, 3 et plus = 0.</li></ul></div>' +
+  '<div class="carte"><h3>Les mêmes conditions pour toutes</h3><ul><li>Sept séances en deux semaines : J0, J2, J3 (apprentissage, 60 min), J4, J7, J9, J11 (consolidation, 40 min). Les cours sont fournis sous forme de fiches complètes : aucune méthode ne demande de fiche à refaire. Avec J0 un mercredi : mercredi, vendredi, samedi, dimanche, mercredi, vendredi, week-end.</li><li>QCM de clôture à J14, puis QCM de rappel tardif à J28 (questions différentes), pour mesurer ce qui reste.</li><li>Même barème, celui des concours de première année : 5 propositions, de 1 à 5 justes ; 0 erreur = 1 point, 1 erreur = 0,5, 2 erreurs = 0,2, 3 et plus = 0.</li></ul></div>' +
   '<div class="carte"><h3>Les règles du jeu</h3><ol><li><strong>Une méthode à la fois</strong>, terminée (QCM de clôture passé) avant de commencer la suivante.</li><li>Ne pas travailler ces chapitres <strong>en dehors des séances</strong>.</li><li>Respecter les durées : le chronomètre du site les mesure. Plus de temps rendrait la comparaison injuste.</li><li>Une séance oubliée se marque « non faite » : on ne la rattrape pas en douce.</li><li>Pour chaque réponse de QCM, dire si on est sûr, hésitant ou si on a répondu au hasard : savoir ce qu\'on sait fait partie de l\'efficacité.</li><li>Enregistrer le journal après chaque séance.</li></ol></div>' +
   '<div class="carte"><h3>Ce que le bilan mesure</h3><ul><li>le score au QCM de clôture (ce qui est appris) ;</li><li>le score au rappel tardif (ce qui reste) ;</li><li>les points obtenus par heure de travail ;</li><li>la fiabilité du « sûr » (quand Orhan est sûr, a-t-il raison ?) ;</li><li>le ressenti : agréable ? tenable toute une année ?</li></ul></div>' +
   '<div class="carte"><h3>Les limites, honnêtement</h3><p>Les méthodes passent l\'une après l\'autre : la dernière profite de l\'habitude prise et d\'un vocabulaire plus riche. L\'ordre a été choisi pour limiter ce biais : la méthode habituelle d\'abord (elle serait faussée si on la testait après les autres), la plus complète à la fin. Avec 27 questions par méthode, un écart de moins de 10 à 15 points peut venir du hasard : le bilan le signale.</p></div>' +
@@ -836,8 +836,8 @@ function vueMethode(id, focus) {
   var b = bloc(id), out = "";
   out += '<p class="sur"><a href="#methodes">Méthodes</a> · ' + m.id + '</p><h1 style="color:' + m.c + '">' + h(m.nom) + '</h1><p class="lead">' + h(m.idee) + '</p>';
   out += '<div class="carte"><h3>Pourquoi ça marcherait</h3><p>' + h(m.pourquoi) + '</p></div>';
-  out += '<div class="carte"><h3>Séance d\'apprentissage · 75 min</h3><ol class="etapes">' + m.app.map(function (e) { return "<li>" + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + '</ol>' +
-         '<h3>Séance de consolidation · 45 min</h3><ol class="etapes">' + m.cons.map(function (e) { return "<li>" + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + '</ol>' +
+  out += '<div class="carte"><h3>Séance d\'apprentissage · 60 min</h3><ol class="etapes">' + m.app.map(function (e) { return "<li>" + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + '</ol>' +
+         '<h3>Séance de consolidation · 40 min</h3><ol class="etapes">' + m.cons.map(function (e) { return "<li>" + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + '</ol>' +
          '<div class="interdit"><b>Interdit pendant cette méthode :</b> ' + h(m.interdit) + '</div></div>';
   out += "<h2>Les trois chapitres</h2>";
   Object.keys(MATIERES).forEach(function (k) {
@@ -895,7 +895,7 @@ function ressenti(m) {
 }
 
 function vueCours() {
-  var out = '<p class="sur">Les cours</p><h1>Quinze chapitres d\'initiation</h1><p class="lead">Un chapitre s\'ouvre quand sa méthode arrive. Niveau : début de première année, sans prérequis au-delà de la Terminale.</p>';
+  var out = '<p class="sur">Les cours</p><h1>Quinze fiches d\'initiation</h1><p class="lead">Chaque chapitre est une fiche complète : rien à recopier ni à refaire. Une fiche s\'ouvre quand sa méthode arrive. Niveau : début de première année, sans prérequis au-delà de la Terminale.</p>';
   METHODES.forEach(function (m) {
     out += "<h2 style=\"color:" + m.c + "\">" + m.id + " · " + h(m.nom) + "</h2>";
     Object.keys(MATIERES).forEach(function (k) {
