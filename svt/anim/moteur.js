@@ -223,7 +223,11 @@ function setPlayIcon(){
   E.playIc.innerHTML = playing ? '<rect x="3" y="2" width="5" height="18" rx="1.5" fill="currentColor"/><rect x="12" y="2" width="5" height="18" rx="1.5" fill="currentColor"/>' : '<path d="M3 2v18l15-9z" fill="currentColor"/>';
   E.play.setAttribute('aria-label', playing ? 'Pause' : 'Lecture');
 }
-function play(){ audio(); started = true; E.big.hidden = true; if(t >= C.END - .01) t = 0; playing = true; lastNow = performance.now(); setPlayIcon(); requestAnimationFrame(loop); }
+function play(){
+  audio(); started = true; E.big.hidden = true; if(t >= C.END - .01) t = 0;
+  if(playing) return;                 /* une seule boucle d'animation à la fois */
+  playing = true; lastNow = performance.now(); setPlayIcon(); requestAnimationFrame(loop);
+}
 function pause(){ playing = false; setPlayIcon(); }
 function loop(now){
   if(!playing) return;
@@ -233,7 +237,15 @@ function loop(now){
   if(nt >= C.END){ fire(t,C.END); t = C.END; pause(); E.bigLabel.textContent = "Revoir l'animation"; E.big.hidden = false; render(); return; }
   fire(t,nt); t = nt; render(); requestAnimationFrame(loop);
 }
-function jump(nt){ t = clamp(nt, 0, C.END); curIdx = -1; render(); play(); }
+/* aller à un instant : la lecture continue si elle était en cours, la pause est respectée
+   (sauf au tout premier appui, ou si 'lire' est demandé, par exemple pour la bascule) */
+function jump(nt, lire){
+  const go = lire || playing || !started;
+  t = clamp(nt, 0, C.END); curIdx = -1; started = true;
+  if(t < C.END - .01){ E.big.hidden = true; E.bigLabel.textContent = "Lancer l'animation"; }
+  render();
+  if(go) play();
+}
 function nextStep(){ const i = sceneIdx(); if(i < C.SCENES.length-1) jump(C.SCENES[i+1].t); }
 function prevStep(){ const i = sceneIdx(); jump(t - C.SCENES[i].t > 1.2 || i === 0 ? C.SCENES[i].t : C.SCENES[i-1].t); }
 function setMute(){
@@ -300,7 +312,7 @@ function lancer(cfg){
   $('#stepMode').addEventListener('change', e => { stepMode = e.target.checked; });
   if(C.bascule && E.optBtn){
     E.optBtn.textContent = C.bascule.off;
-    E.optBtn.addEventListener('click', () => { opt ^= 1; E.optBtn.textContent = opt ? C.bascule.on : C.bascule.off; jump(C.bascule.saut); });
+    E.optBtn.addEventListener('click', () => { opt ^= 1; E.optBtn.textContent = opt ? C.bascule.on : C.bascule.off; jump(C.bascule.saut, true); });
   }
   E.mute.addEventListener('click', () => { muted = !muted; audio(); setMute(); });
   document.addEventListener('keydown', e => {

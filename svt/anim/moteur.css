@@ -67,6 +67,10 @@ button{font:inherit;color:inherit}
 .time{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.85rem;white-space:nowrap}
 .ctl{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer}
 .ctl:hover{border-color:var(--accent)}
+.ctl,.bigplay,.scrub input{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.ctl:active{transform:scale(.94)}
+/* téléphone : les commandes juste sous l'image, pour voir l'animation en appuyant */
+@media (max-width:879px){.panel .controls{order:-1}.panel .legend{order:2}}
 .ctl.play{width:60px;height:60px;background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .ctl[aria-pressed="true"]{color:var(--muted)}
 .switch{position:relative;display:flex;align-items:center;gap:10px;margin-top:12px;font-size:.95rem;cursor:pointer;width:fit-content}
