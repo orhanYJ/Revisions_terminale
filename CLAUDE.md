@@ -59,9 +59,10 @@ Préférence de travail de Cengiz : **conseiller de changer de modèle ou de niv
 | `redpen/` | « The Red Pen » (anglais B1→C1) | ~231 Ko | JS natif |
 | `cdm/` | Dossier CDM « Sensibiliser ou réguler » | ~35 Ko | JS natif |
 | `fenuareo/` | **Projet distinct** (apprentissage du reo tahiti), pas un site de révision d'Orhan | ~1,2 Mo | — |
+| `assistant-relais/` | Code du relais Cloudflare de l'assistant IA (`worker.js`) et guide de mise en service (`GUIDE.md`) ; pas un site | — | Cloudflare Worker |
 | `test.html` | Reliquat d'un test de publication | — | à supprimer avec l'accord de Cengiz |
 
-Chaque dossier de site contient la même structure : `index.html`, `manifest.json`, `sw.js`, `icon-192.png`, `icon-512.png`. Certains ajoutent `motion.css` et `motion.js` (voir §5).
+Chaque dossier de site contient la même structure : `index.html`, `manifest.json`, `sw.js`, `icon-192.png`, `icon-512.png`. Certains ajoutent `motion.css` et `motion.js` (voir §5) ; SVT, PC et DNL ajoutent `assistant.js` (voir §5 bis).
 
 Les sites ACL ont été **scindés pour le poids** : `acl-ecrit` → hub + `acl-lughnasa` + `acl-bricklane` ; `acl-oral` → hub + `acl-oral-1984` + `acl-oral-butler`. Chacun a sa propre icône dans une identité commune (ACL écrit : bleu marine et or, « reliure » ; ACL oral : orange sur anthracite) et des liens croisés.
 
@@ -167,6 +168,15 @@ Sur les sites animés, le mouvement est maintenu **à part du contenu** dans `mo
 
 Orientation décidée par Cengiz (29/09/2026) : les **animations explicatives détaillées** de SVT et de physique-chimie (50 à 100 visées) iront dans un **site à part** dédié aux animations ; pour DNL, philo, ACL, etc., seules de petites animations motivantes sont intégrées au site. Style voulu : des schémas qui **se déroulent** (chromosomes qui se rapprochent, se superposent, se séparent), légendes qui apparaissent au fil de l'animation, rendu doux et organique. Cengiz juge que des schémas qui se contentent de se dessiner « ne servent à rien » : il veut voir le phénomène se produire. L'animation méiose / crossing-over du 29/09 a été jugée « parfaite » et sert de référence.
 
+## 5 bis. Assistant IA (SVT, PC, DNL)
+
+Décision de Cengiz (10/10/2026) : un assistant qui **répond aux questions posées, sans contexte de cours** (pas de tuteur, pas d'injection du contenu du site). Fournisseur retenu : **Cloudflare Workers AI** (offre gratuite, compte de particulier, aucune clause d'âge, pas d'entraînement sur les questions). Écartés : Gemini gratuit (interdit dans l'EEE et pour un public mineur), Mistral (API réservée aux professionnels), Groq (pas pour un usage consommateur), Cerebras (pas d'offre gratuite stable).
+
+- `assistant-relais/worker.js` : le relais, déployé à la main dans le tableau de bord Cloudflare (voir `assistant-relais/GUIDE.md`). Liaisons `AI` (Workers AI) et `COMPTEURS` (KV, limite par visiteur). Aucune clé : rien de secret dans le dépôt. Seule l'origine `https://orhanyj.github.io` est acceptée.
+- `svt/assistant.js`, `pc/assistant.js`, `dnl/assistant.js` : même fichier, seul le bloc `CONFIG` change (matière, nom, couleurs reprises des variables CSS du site, élément fixé à éviter). Chargé par un bloc repéré `<!-- assistant:debut -->` … `<!-- assistant:fin -->` : **à réinsérer** si un `index.html` régénéré le perd. Toute modification de l'un est reportée dans les deux autres, puis `?v=N` et le cache du `sw.js` sont incrémentés.
+- Tant que `var RELAIS = "";` est vide, le bouton n'apparaît pas.
+- Conversation en mémoire seulement (pas de `localStorage`). Messages prévus : quota du jour épuisé, limite par visiteur, service saturé, hors ligne.
+
 ---
 
 ## 6. PWA et service workers
@@ -229,6 +239,7 @@ Orientation décidée par Cengiz (29/09/2026) : les **animations explicatives d�
 - **Italien, Red Pen** : extension selon la progression d'Orhan.
 - **CDM** : faire valider la nouvelle problématique ; envoyer en octobre les cinq questions aux quatre partenaires (Orhan relance, la date a été promise par écrit) ; terrain en collège (25 min, un vendredi après-midi) et questionnaire de suivi deux semaines après.
 - **Site d'animations** SVT / physique-chimie, à créer.
+- **Assistant IA** : Cengiz crée le Worker (`assistant-relais/GUIDE.md`) et transmet son adresse ; la renseigner dans `RELAIS` des trois `assistant.js`, incrémenter `?v=N` et les caches, publier.
 
 ## 10. Contraintes particulières
 

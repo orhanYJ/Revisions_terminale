@@ -3,7 +3,7 @@
    repli cache hors ligne. Assets : cache d'abord.
    Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
-const CACHE = "svt-v11";
+const CACHE = "svt-v12";
 const ANIMS = ["mitose", "replication", "expression", "enzyme", "globe", "tectonique",
   "ecosysteme", "immunite", "anticorps", "clonal", "meiose", "nondisj", "coinegal", "globines",
   "thg", "insuline", "endosymbiose"];
