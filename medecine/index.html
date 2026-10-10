@@ -151,6 +151,63 @@ textarea{width:100%;min-height:70px}
 .frise a.fait i{background:var(--c)}
 .frise a.cours i{background:linear-gradient(90deg,var(--c) 50%,var(--trait) 50%)}
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--encre);color:var(--papier);padding:10px 16px;border-radius:10px;font-size:.9rem;z-index:50;max-width:calc(100% - 32px)}
+/* --- couche 2 : accueil, méthodes, outils --- */
+.ico{vertical-align:-0.18em;flex:none}
+.hero{padding:6px 0 4px}
+.hero h1{font-size:2.1rem;margin:.1em 0 .25em}
+.hero .lead{margin:0 0 10px;max-width:36em}
+.tete-m{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.tete-m h2{margin:.1em 0 0}
+.pastille-m{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:12px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--carte));flex:none}
+.pastille-m.grand{width:56px;height:56px;border-radius:16px}
+.carte.grand{padding:18px 20px}
+.carte-m h3{margin:.55em 0 .1em}
+.titre-m{display:flex;align-items:center;gap:8px}
+.imperatif{background:linear-gradient(135deg,color-mix(in srgb,var(--c,var(--or)) 16%,var(--carte)),var(--carte) 70%);border:1px solid color-mix(in srgb,var(--c,var(--or)) 35%,transparent);box-shadow:var(--ombre)}
+.imperatif .sur{color:var(--c,var(--or))}
+.imperatif .btn{background:var(--c,var(--accent));border-color:var(--c,var(--accent))}
+.progres{display:flex;gap:16px;align-items:center}
+.progres h3{margin:.15em 0;display:flex;align-items:center;gap:6px}
+.anneau{position:relative;width:64px;height:64px;flex:none}
+.anneau b{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-size:1rem}
+.semaine{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:8px 0 14px}
+.jour{background:var(--carte);border:1px solid var(--trait);border-radius:12px;padding:8px 2px 6px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.78rem}
+.jour.auj{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 25%,transparent)}
+.jl{color:var(--doux);font-weight:600;font-size:.7rem}
+.jn{font-family:var(--serif);font-weight:700;font-size:1.05rem}
+.jj{font-size:.66rem;color:var(--doux)}
+.pt{width:9px;height:9px;border-radius:99px;margin-top:2px}
+.pt.vide{background:transparent}
+.pt.fait{background:var(--ok)} .pt.jour{background:var(--or)} .pt.retard{background:var(--alerte)} .pt.avenir{background:var(--accent)} .pt.saute{background:var(--doux)} .pt.qcm{background:var(--m4)}
+ol.etapes li.passee{color:var(--doux);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--doux) 50%,transparent)}
+ol.etapes li.courante{font-weight:600;color:var(--c,var(--accent))}
+.seance.ouverte{border-color:var(--c);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 22%,transparent)}
+.guide{background:color-mix(in srgb,var(--c) 10%,var(--carte));border-radius:12px;padding:14px 16px;margin:8px 0}
+.g-txt{font-size:1.08rem;font-weight:600;margin:.2em 0 .5em}
+.g-temps{display:flex;align-items:baseline;gap:10px}
+.g-temps .chrono{font-size:2.4rem}
+.guide .rangee{flex-wrap:nowrap}.guide .rangee .espace{display:none}.guide .rangee .btn{flex:1;justify-content:center;padding:11px 8px}
+.chrono.depasse{color:var(--alerte)}
+.outils{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 4px}
+.outils .sur{width:100%}
+.flash{background:var(--carte);border:1px solid var(--trait);border-radius:18px;padding:22px 20px;min-height:200px;box-shadow:var(--ombre);margin:6px 0 14px}
+.flash.retournee{border-color:var(--m5)}
+.flash hr{border:0;border-top:1px dashed var(--trait);margin:14px 0}
+.f-q{font-family:var(--serif);font-size:1.3rem;font-weight:600;line-height:1.35;margin:.3em 0}
+.f-r{font-size:1.08rem;margin:.3em 0}
+.rangee.duo .btn{flex:1;justify-content:center;padding:13px 10px}
+.boites{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 12px}
+.bt{background:var(--carte);border:1px solid var(--trait);border-radius:12px;padding:10px;text-align:center}
+.bt b{display:block;font-family:var(--serif);font-size:1.5rem}
+.bt span{font-size:.78rem;color:var(--doux)}
+.sommaire ol{margin:0;padding-left:1.3em}
+.sommaire button{background:none;border:0;padding:4px 0;color:var(--accent);cursor:pointer;text-align:left;font-size:.95rem}
+.interdit.avec{background:color-mix(in srgb,var(--c) 11%,transparent)}
+.interdit.avec b{color:var(--c)}
+.expl{display:block}
+.fiche-l{border-left:4px solid var(--c)}
+details.pq summary{font-weight:500}
+audio{width:100%;margin-top:10px}
 @media (min-width:700px){h1{font-size:2rem}}
 @media print{nav.bas,header.top{display:none}}
 </style>
@@ -184,7 +241,7 @@ textarea{width:100%;min-height:70px}
 var MATIERES = {
   bc:  { nom: "Biologie cellulaire", court: "Bio. cell." },
   bio: { nom: "Biochimie", court: "Biochimie" },
-  ana: { nom: "Anatomie", court: "Anatomie" }
+  ana: { nom: "Anatomie et physiologie", court: "Anat.-physio." }
 };
 
 /* Calendrier commun à toutes les méthodes : même nombre de séances, mêmes durées,
@@ -594,8 +651,8 @@ var CHAPITRES = {
 <p class="src">Fiche originale rédigée pour ce site, niveau début de première année, vérifiée sur les ouvrages de référence (Alberts, <em>Biologie moléculaire de la cellule</em>). Elle ne remplace pas le cours de la faculté.</p>
 ` },
  bc3: { mat: "bc", titre: "Le système endomembranaire : RE, Golgi et trafic vésiculaire", html: null },
- bc4: { mat: "bc", titre: "Le cytosquelette", html: null },
- bc5: { mat: "bc", titre: "La mitochondrie et l'énergie cellulaire", html: null },
+ bc4: { mat: "bc", titre: "Le cytosquelette et les jonctions", html: null },
+ bc5: { mat: "bc", titre: "Les mitochondries, les peroxysomes et l'énergie cellulaire", html: null },
  bio2: { mat: "bio", titre: "Peptides et protéines : les niveaux de structure", html: `
 <p class="lead">Une protéine est une chaîne d'acides aminés repliée dans une forme précise, et c'est cette forme qui lui donne sa fonction. On décrit cette construction en quatre niveaux, de la séquence à l'assemblage de plusieurs chaînes.</p>
 
@@ -806,9 +863,9 @@ var CHAPITRES = {
 <div class="cle"><b>Bilan</b>206 os, classés par forme (long, court, plat, irrégulier, sésamoïde, pneumatisé). L'os long : diaphyse compacte et creuse, épiphyses spongieuses, cartilage de conjugaison chez l'enfant, périoste partout sauf sur le cartilage articulaire. Trois classes d'articulations (synarthroses, amphiarthroses, diarthroses) ; les diarthroses se classent par la forme de leurs surfaces, qui fixe le nombre d'axes de mouvement.</div>
 <p class="src">Fiche originale rédigée pour ce site, niveau début de première année, d'après la Terminologia Anatomica et les ouvrages d'anatomie et d'histologie générales. Elle ne remplace pas le cours de la faculté.</p>
 ` },
- ana3: { mat: "ana", titre: "Le cœur", html: null },
- ana4: { mat: "ana", titre: "L'appareil respiratoire", html: null },
- ana5: { mat: "ana", titre: "Les reins et les voies urinaires", html: null }
+ ana3: { mat: "ana", titre: "Le cœur : anatomie et physiologie", html: null },
+ ana4: { mat: "ana", titre: "L'appareil respiratoire : anatomie et physiologie", html: null },
+ ana5: { mat: "ana", titre: "Les reins et les voies urinaires : anatomie et physiologie", html: null }
 };
 
 /* ============================================================
@@ -1168,12 +1225,27 @@ function noteQ(sel, props) {
 }
 
 /* ============================================================
+   OUTILS DES MÉTHODES — données (questions « pourquoi ? », banques
+   d'entraînement, cartes). Chaque chapitre n'a que les outils de sa méthode.
+   ============================================================ */
+var OUTILS = {
+/*outils*/
+};
+var ENTRAIN = {
+/*entrain*/
+};
+var CARTES = {
+/*cartes*/
+};
+
+/* ============================================================
    ÉTAT — journal en mémoire, enregistré dans un fichier JSON
    (pas de stockage dans le navigateur)
    ============================================================ */
-var S = { v: 1, blocs: {} };
+var S = { v: 2, blocs: {} };
 var SALE = false;
-METHODES.forEach(function (m) { S.blocs[m.id] = { j0: null, seances: {}, qcm: {}, ressenti: {} }; });
+function blocVide() { return { j0: null, seances: {}, qcm: {}, ressenti: {}, entr: {}, cartes: {} }; }
+METHODES.forEach(function (m) { S.blocs[m.id] = blocVide(); });
 function bloc(id) { return S.blocs[id]; }
 function marquer() { SALE = true; document.getElementById("sale").hidden = false; }
 
@@ -1197,6 +1269,8 @@ function blocCourant() {
   for (var i = 0; i < METHODES.length; i++) if (!clotureFaite(METHODES[i].id)) return METHODES[i];
   return null;
 }
+function methodeDe(ch) { return METHODES.filter(function (x) { return Object.keys(PLAN[x.id]).some(function (k) { return PLAN[x.id][k] === ch; }); })[0]; }
+function chapitresDe(id) { return Object.keys(MATIERES).map(function (k) { return PLAN[id][k]; }); }
 function etatSeance(id, i) {
   var b = bloc(id), s = b.seances[i];
   if (s && s.statut === "faite") return "fait";
@@ -1214,20 +1288,34 @@ function minutesBloc(id) {
   Object.keys(b.seances).forEach(function (k) { if (b.seances[k].statut === "faite") t += +b.seances[k].min || 0; });
   return t;
 }
+function faitesBloc(id) { var n = 0; SEANCES.forEach(function (s, i) { if (etatSeance(id, i) === "fait") n++; }); return n; }
 function chapSeance(m, i) { var s = SEANCES[i]; return s.mat ? PLAN[m.id][s.mat] : null; }
 function titreSeance(m, i) {
   var s = SEANCES[i];
   if (s.type === "app") return "Apprendre : " + MATIERES[s.mat].nom;
   return "Consolider les trois chapitres";
 }
+function melanger(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
 
 /* ============================================================
    RENDU
    ============================================================ */
 var app = document.getElementById("app");
 function h(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
-function tag(m) { return '<span class="methode-tag" style="color:' + m.c + '">' + m.id.replace("M", "Méthode ") + " · " + h(m.nom) + "</span>"; }
+function tag(m) { return '<span class="methode-tag" style="color:' + m.c + '">' + icone(m.id, 15) + m.id.replace("M", "Méthode ") + " · " + h(m.nom) + "</span>"; }
 function toast(t) { var d = document.createElement("div"); d.className = "toast"; d.textContent = t; document.body.appendChild(d); setTimeout(function () { d.remove(); }, 2600); }
+var ICONES = {
+  M1: '<path d="M3 5.5A1.5 1.5 0 0 1 4.5 4H10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H3zM21 5.5A1.5 1.5 0 0 0 19.5 4H14a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h7z"/>',
+  M2: '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 17l5.5-5.5 1.8 1.8L10.8 18.8H9z"/>',
+  M3: '<path d="M4 5h16v11H10l-5 4v-4H4z"/><path d="M8 9h8M8 12h5"/>',
+  M4: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/>',
+  M5: '<rect x="8" y="3.5" width="12" height="15" rx="2"/><path d="M5 7v12a2 2 0 0 0 2 2h9"/>'
+};
+function icone(id, t) { return '<svg class="ico" width="' + (t || 22) + '" height="' + (t || 22) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONES[id] + "</svg>"; }
+function anneau(frac, c, taille) {
+  var r = 26, L = 2 * Math.PI * r, t = taille || 64;
+  return '<svg width="' + t + '" height="' + t + '" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="' + r + '" fill="none" stroke="var(--trait)" stroke-width="7"/><circle cx="32" cy="32" r="' + r + '" fill="none" stroke="' + c + '" stroke-width="7" stroke-linecap="round" stroke-dasharray="' + (L * frac).toFixed(1) + " " + L.toFixed(1) + '" transform="rotate(-90 32 32)"/></svg>';
+}
 
 function frise() {
   return '<div class="frise">' + METHODES.map(function (m) {
@@ -1236,18 +1324,33 @@ function frise() {
   }).join("") + "</div>";
 }
 
+/* semaine en cours : un jour = une case, un point par séance prévue */
+function semaine(m) {
+  var b = bloc(m.id), t = auj(), d = parse(t), lundi = plus(t, -((d.getDay() + 6) % 7)), out = '<div class="semaine">';
+  var prevu = {};
+  if (b.j0) {
+    SEANCES.forEach(function (s, i) { prevu[plus(b.j0, s.j)] = { e: etatSeance(m.id, i), lab: "J" + s.j }; });
+    prevu[plus(b.j0, J_CLOTURE)] = { e: b.qcm.cloture ? "fait" : "qcm", lab: "QCM" };
+  }
+  for (var k = 0; k < 7; k++) {
+    var jour = plus(lundi, k), p = prevu[jour], dd = parse(jour);
+    out += '<div class="jour' + (jour === t ? " auj" : "") + '"><span class="jl">' + "DLMMJVS"[dd.getDay()] + '</span><span class="jn">' + dd.getDate() + "</span>" +
+      (p ? '<span class="pt ' + p.e + '" title="' + p.lab + '"></span><span class="jj">' + p.lab + "</span>" : '<span class="pt vide"></span><span class="jj">&nbsp;</span>') + "</div>";
+  }
+  return out + "</div>";
+}
+
 function vueAccueil() {
   var m = blocCourant(), t = auj(), out = "";
-  out += '<p class="sur">' + h(joli(t)) + '</p><h1>Aujourd\'hui</h1>';
+  out += '<section class="hero"><p class="sur">' + h(joli(t)) + '</p><h1>Bonjour Orhan</h1><p class="lead">Cinq méthodes de travail, testées l\'une après l\'autre, pour trouver celle qui te rend le plus efficace avant la licence portail santé.</p></section>';
   out += frise();
-  /* QCM de retard en attente (bloc précédent, J28) */
   METHODES.forEach(function (x) {
     var b = bloc(x.id);
     if (b.qcm.cloture && !b.qcm.retard && QCM[x.id] && t >= plus(b.j0, J_RETARD))
-      out += '<div class="imperatif"><p class="sur">Impératif · 10 minutes</p><h2>QCM de rappel tardif · ' + h(x.nom) + '</h2><p>Quatre semaines après le début de la méthode : ce QCM mesure ce qu\'il reste sur le long terme. À faire avant toute autre séance.</p><a class="btn" href="#qcm/' + x.id + '/retard">Commencer</a></div>';
+      out += '<div class="imperatif" style="--c:' + x.c + '"><p class="sur">Impératif · 10 minutes</p><h2>QCM de rappel tardif · ' + h(x.nom) + '</h2><p>Quatre semaines après le début de la méthode : ce QCM mesure ce qu\'il reste sur le long terme. À faire avant toute autre séance.</p><a class="btn" href="#qcm/' + x.id + '/retard">Commencer</a></div>';
   });
   if (!m) {
-    out += '<div class="carte"><h2>Les cinq méthodes sont terminées</h2><p>Les rappels tardifs éventuels mis à part, l\'expérience est finie. Regarde le bilan dans <a href="#resultats">Résultats</a>, puis on passe à la médecine « pure et dure » avec la méthode gagnante.</p></div>';
+    out += '<div class="carte"><h2>Les cinq méthodes sont terminées</h2><p>Les rappels tardifs mis à part, l\'expérience est finie. Regarde le bilan dans <a href="#resultats">Résultats</a>, puis on passe à la médecine « pure et dure » avec la méthode gagnante.</p></div>';
     return out;
   }
   var b = bloc(m.id);
@@ -1255,36 +1358,34 @@ function vueAccueil() {
     var prec = idx(m.id) > 0 ? bloc(METHODES[idx(m.id) - 1].id) : null;
     var defaut = prec && prec.j0 ? plus(prec.j0, J_CLOTURE) : prochainMercredi(t);
     if (defaut < t) defaut = t;
-    var manque = Object.keys(MATIERES).some(function (k) { return !CHAPITRES[PLAN[m.id][k]].html; });
-    if (manque) {
-      out += '<div class="carte bande" style="--c:' + m.c + '"><p class="sur">Prochaine étape</p><h2 style="margin-top:.2em">' + h(m.id.replace("M", "Méthode ")) + " : " + h(m.nom) + '</h2><p>' + h(m.idee) + '</p><p>Les cours de cette méthode sont en préparation : ils seront en ligne avant le ' + h(joli(defaut)) + '. En attendant, ne commence rien d\'autre.</p></div>';
-      return out;
-    }
-    out += '<div class="carte bande" style="--c:' + m.c + '"><p class="sur">Prochaine étape</p><h2 style="margin-top:.2em">' + h(m.id.replace("M", "Méthode ")) + " : " + h(m.nom) + '</h2><p>' + h(m.idee) + '</p>' +
-      '<p>Choisis le jour de départ (J0). Un <strong>mercredi</strong> est conseillé : le calendrier tombe alors sur tes mercredis, vendredis et week-ends.</p>' +
+    var manque = chapitresDe(m.id).some(function (c) { return !CHAPITRES[c].html; });
+    out += '<div class="carte bande grand" style="--c:' + m.c + '"><div class="tete-m"><span class="pastille-m" style="--c:' + m.c + '">' + icone(m.id, 26) + '</span><div><p class="sur">Prochaine méthode</p><h2>' + h(m.id.replace("M", "Méthode ")) + " : " + h(m.nom) + '</h2></div></div><p>' + h(m.idee) + '</p>';
+    if (manque) return out + '<p>Les fiches de cette méthode sont en préparation : elles seront en ligne avant le ' + h(joli(defaut)) + '. En attendant, ne commence rien d\'autre.</p></div>';
+    out += '<p>Choisis le jour de départ (J0). Un <strong>mercredi</strong> est conseillé : le calendrier tombe alors sur tes mercredis, vendredis et week-ends.</p>' +
       '<div class="rangee"><input type="date" id="j0" value="' + defaut + '"><button class="btn" id="go">Lancer la méthode</button></div>' +
-      '<p class="note">Avant de commencer, lis la page de la méthode : <a href="#m/' + m.id + '">les consignes</a>.</p></div>';
+      '<p class="note">Avant de commencer, lis <a href="#m/' + m.id + '">les consignes de la méthode</a>.</p></div>';
     return out;
   }
-  /* séance impérative du jour */
   var prochaine = null;
   for (var i = 0; i < SEANCES.length; i++) { var e = etatSeance(m.id, i); if (e !== "fait" && e !== "saute") { prochaine = i; break; } }
   var jour = ecart(b.j0, t);
   if (prochaine !== null) {
     var s = SEANCES[prochaine], d = plus(b.j0, s.j), e2 = etatSeance(m.id, prochaine), ch = chapSeance(m, prochaine);
     var quand = e2 === "jour" ? "aujourd'hui" : e2 === "retard" ? "en retard (prévue " + joli(d) + ")" : joli(d);
-    out += '<div class="imperatif"><p class="sur">Impératif · J' + s.j + " · " + s.min + ' minutes</p><h2>' + h(titreSeance(m, prochaine)) + '</h2>' +
-      '<p><strong>Quand :</strong> ' + h(quand) + '. <span class="note">Repli toléré : le lendemain, pas plus tard.</span></p>' +
-      (ch ? '<p><strong>Chapitre :</strong> <a href="#c/' + ch + '">' + h(CHAPITRES[ch].titre) + '</a></p>' : "") +
-      '<div class="rangee"><a class="btn" href="#m/' + m.id + '/' + prochaine + '">Ouvrir la séance</a></div></div>';
+    out += '<div class="imperatif" style="--c:' + m.c + '"><p class="sur">Impératif · J' + s.j + " · " + s.min + ' minutes</p><h2>' + h(titreSeance(m, prochaine)) + '</h2>' +
+      '<p><strong>Quand :</strong> ' + h(quand) + ' <span class="note">· repli toléré : le lendemain, pas plus tard</span></p>' +
+      (ch ? '<p><strong>Fiche :</strong> <a href="#c/' + ch + '">' + h(CHAPITRES[ch].titre) + '</a></p>' : "") +
+      '<div class="rangee"><a class="btn" href="#m/' + m.id + '/' + prochaine + '">Ouvrir la séance guidée</a></div></div>';
     if (e2 === "retard") out += '<div class="interdit"><b>Séance manquée.</b> Fais-la dès que possible ou marque-la « non faite » : ne la rattrape pas en doublant une autre séance, cela fausserait la comparaison.</div>';
   } else {
     var dq = plus(b.j0, J_CLOTURE);
-    out += '<div class="imperatif"><p class="sur">Impératif · J14 · environ 30 minutes</p><h2>QCM de clôture · ' + h(m.nom) + '</h2>' +
+    out += '<div class="imperatif" style="--c:' + m.c + '"><p class="sur">Impératif · J14 · environ 30 minutes</p><h2>QCM de clôture · ' + h(m.nom) + '</h2>' +
       (t >= dq ? '<p>Le QCM se passe aujourd\'hui, avant de commencer la méthode suivante. Conditions de concours : sans document, d\'une traite.</p><a class="btn" href="#qcm/' + m.id + '/cloture">Commencer le QCM</a>'
                : '<p>Toutes les séances sont passées. Le QCM de clôture se fait le <strong>' + h(joli(dq)) + '</strong> (J14). D\'ici là, ne travaille plus ces chapitres : le délai fait partie de la mesure.</p>') + '</div>';
   }
-  out += '<div class="carte bande" style="--c:' + m.c + '"><p class="sur">Méthode en cours · J' + Math.max(0, jour) + '</p><h3 style="margin:.2em 0">' + h(m.nom) + '</h3><p class="note">' + h(m.sous) + " · " + minutesBloc(m.id) + ' min travaillées</p><a href="#m/' + m.id + '">Calendrier et consignes</a></div>';
+  var n = faitesBloc(m.id);
+  out += '<a class="lien-carte" href="#m/' + m.id + '"><div class="carte bande progres" style="--c:' + m.c + '"><div class="anneau">' + anneau(n / SEANCES.length, m.c) + '<b>' + n + "/" + SEANCES.length + '</b></div><div><p class="sur">Méthode en cours · J' + Math.max(0, jour) + '</p><h3>' + icone(m.id, 18) + " " + h(m.nom) + '</h3><p class="note">' + minutesBloc(m.id) + ' min travaillées · calendrier et consignes</p></div></div></a>';
+  out += '<p class="sur" style="margin-top:18px">Cette semaine</p>' + semaine(m);
   out += '<p class="note">Après chaque séance : <a href="#journal">enregistre le journal</a>. Le site ne garde rien en mémoire quand on le ferme.</p>';
   return out;
 }
@@ -1292,50 +1393,55 @@ function vueAccueil() {
 function vueMethodes() {
   var out = '<p class="sur">L\'expérience</p><h1>Cinq méthodes, une à la fois</h1>';
   out += '<p class="lead">Chaque méthode est appliquée pendant deux semaines aux trois matières qui pèsent le plus en première année. Le calendrier, le temps de travail et le type de QCM sont identiques pour toutes : seule la façon de travailler change.</p>';
-  out += '<p><a href="#protocole">Pourquoi ce protocole ?</a></p>';
+  out += '<p><a href="#protocole">Pourquoi ce protocole ?</a></p><div class="grille">';
   METHODES.forEach(function (m) {
     var b = bloc(m.id), et = clotureFaite(m.id) ? '<span class="etat fait">terminée</span>' : b.j0 ? '<span class="etat jour">en cours</span>' : '<span class="etat avenir">à venir</span>';
-    out += '<a class="lien-carte" href="#m/' + m.id + '"><div class="carte bande" style="--c:' + m.c + '"><div class="rangee" style="justify-content:space-between"><span class="j" style="--c:' + m.c + '">' + m.id + '</span>' + et + '</div><h3 style="margin:.3em 0 .1em">' + h(m.nom) + '</h3><p class="note" style="margin:0 0 .4em">' + h(m.sous) + '</p><p style="margin:0">' + h(m.idee) + '</p></div></a>';
+    out += '<a class="lien-carte" href="#m/' + m.id + '"><div class="carte bande carte-m" style="--c:' + m.c + '"><div class="rangee" style="justify-content:space-between"><span class="pastille-m" style="--c:' + m.c + '">' + icone(m.id, 22) + '</span>' + et + '</div><h3>' + h(m.nom) + '</h3><p class="note" style="margin:0 0 .4em">' + m.id + " · " + h(m.sous) + '</p><p style="margin:0">' + h(m.idee) + '</p></div></a>';
   });
-  return out;
+  return out + "</div>";
 }
 
 function vueProtocole() {
   return '<p class="sur">Le protocole</p><h1>Pourquoi on travaille ainsi</h1>' +
   '<div class="carte"><h3>Le but</h3><p>Trouver la méthode de travail qui rend Orhan le plus efficace avant d\'attaquer la licence portail santé (première année unique qui remplace PASS et LAS à la rentrée 2027). La sélection reste un classement : la méthode compte autant que le volume.</p></div>' +
-  '<div class="carte"><h3>Mesurer la méthode, pas la matière</h3><p>Si une méthode n\'était testée qu\'en anatomie, on mesurerait surtout l\'aisance en anatomie. Chaque méthode est donc appliquée aux <strong>trois mêmes matières</strong> (biologie cellulaire, biochimie, anatomie), sur des chapitres différents. L\'effet de la matière se répartit entre toutes les méthodes.</p>' +
+  '<div class="carte"><h3>Mesurer la méthode, pas la matière</h3><p>Si une méthode n\'était testée qu\'en anatomie, on mesurerait surtout l\'aisance en anatomie. Chaque méthode est donc appliquée aux <strong>trois mêmes matières</strong>, sur des chapitres différents. L\'effet de la matière se répartit entre toutes les méthodes.</p>' +
   '<div class="defile"><table><tr><th></th>' + Object.keys(MATIERES).map(function (k) { return "<th>" + MATIERES[k].court + "</th>"; }).join("") + "</tr>" +
   METHODES.map(function (m) { return '<tr><td><b style="color:' + m.c + '">' + m.id + "</b> " + h(m.nom) + "</td>" + Object.keys(MATIERES).map(function (k) { var c = PLAN[m.id][k]; return '<td><a href="#c/' + c + '">' + h(CHAPITRES[c].titre) + "</a></td>"; }).join("") + "</tr>"; }).join("") + "</table></div></div>" +
-  '<div class="carte"><h3>Les mêmes conditions pour toutes</h3><ul><li>Sept séances en deux semaines : J0, J2, J3 (apprentissage, 60 min), J4, J7, J9, J11 (consolidation, 40 min). Les cours sont fournis sous forme de fiches complètes : aucune méthode ne demande de fiche à refaire. Avec J0 un mercredi : mercredi, vendredi, samedi, dimanche, mercredi, vendredi, week-end.</li><li>QCM de clôture à J14, puis QCM de rappel tardif à J28 (questions différentes), pour mesurer ce qui reste.</li><li>Même barème, celui des concours de première année : 5 propositions, de 1 à 5 justes ; 0 erreur = 1 point, 1 erreur = 0,5, 2 erreurs = 0,2, 3 et plus = 0.</li></ul></div>' +
-  '<div class="carte"><h3>Les règles du jeu</h3><ol><li><strong>Une méthode à la fois</strong>, terminée (QCM de clôture passé) avant de commencer la suivante.</li><li>Ne pas travailler ces chapitres <strong>en dehors des séances</strong>.</li><li>Respecter les durées : le chronomètre du site les mesure. Plus de temps rendrait la comparaison injuste.</li><li>Une séance oubliée se marque « non faite » : on ne la rattrape pas en douce.</li><li>Pour chaque réponse de QCM, dire si on est sûr, hésitant ou si on a répondu au hasard : savoir ce qu\'on sait fait partie de l\'efficacité.</li><li>Enregistrer le journal après chaque séance.</li></ol></div>' +
+  '<div class="carte"><h3>Les mêmes conditions pour toutes</h3><ul><li>Sept séances en deux semaines : J0, J2, J3 (apprentissage, 60 min), J4, J7, J9, J11 (consolidation, 40 min). Avec J0 un mercredi : mercredi, vendredi, samedi, dimanche, mercredi, vendredi, week-end. Les cours sont fournis sous forme de fiches complètes : aucune méthode ne demande de fiche à refaire.</li><li>QCM de clôture à J14, puis QCM de rappel tardif à J28 (questions différentes), pour mesurer ce qui reste.</li><li>Même barème, celui des concours de première année : 5 propositions, de 1 à 5 justes ; 0 erreur = 1 point, 1 erreur = 0,5, 2 erreurs = 0,2, 3 et plus = 0.</li></ul></div>' +
+  '<div class="carte"><h3>Les règles du jeu</h3><ol><li><strong>Une méthode à la fois</strong>, terminée (QCM de clôture passé) avant de commencer la suivante.</li><li>Ne pas travailler ces chapitres <strong>en dehors des séances</strong>.</li><li>Respecter les durées : la séance guidée les chronomètre étape par étape. Plus de temps rendrait la comparaison injuste.</li><li>Une séance oubliée se marque « non faite » : on ne la rattrape pas en douce.</li><li>Pour chaque réponse de QCM, dire si on est sûr, hésitant ou si on a répondu au hasard : savoir ce qu\'on sait fait partie de l\'efficacité.</li><li>Enregistrer le journal après chaque séance.</li></ol></div>' +
   '<div class="carte"><h3>Ce que le bilan mesure</h3><ul><li>le score au QCM de clôture (ce qui est appris) ;</li><li>le score au rappel tardif (ce qui reste) ;</li><li>les points obtenus par heure de travail ;</li><li>la fiabilité du « sûr » (quand Orhan est sûr, a-t-il raison ?) ;</li><li>le ressenti : agréable ? tenable toute une année ?</li></ul></div>' +
   '<div class="carte"><h3>Les limites, honnêtement</h3><p>Les méthodes passent l\'une après l\'autre : la dernière profite de l\'habitude prise et d\'un vocabulaire plus riche. L\'ordre a été choisi pour limiter ce biais : la méthode habituelle d\'abord (elle serait faussée si on la testait après les autres), la plus complète à la fin. Avec 27 questions par méthode, un écart de moins de 10 à 15 points peut venir du hasard : le bilan le signale.</p></div>' +
-  '<p class="note">Les coefficients officiels de la future licence portail santé ne sont pas encore publiés (textes adoptés en juillet 2026, en attente de parution au Journal officiel). Les trois matières retenues sont celles qui pesaient le plus en PASS et figurent dans le bloc santé annoncé.</p>';
+  '<div class="carte"><h3>Le contenu</h3><p>Les fiches suivent le périmètre des programmes de PASS publiés par les facultés : biochimie (acides aminés et protéines, enzymologie, glucides, lipides), biologie cellulaire (membrane, cytosquelette et jonctions, système endomembranaire, organites), anatomie et physiologie (bases, ostéo-arthrologie, cœur, respiration, rein). Elles sont rédigées pour ce site, au niveau d\'un début de première année, et vérifiées sur les ouvrages de référence ; elles ne reproduisent aucun cours de faculté.</p></div>' +
+  '<p class="note">Les coefficients officiels de la future licence portail santé ne sont pas encore publiés (textes adoptés en juillet 2026, en attente de parution au Journal officiel). Les matières retenues sont celles qui pesaient le plus en PASS et figurent dans le bloc santé annoncé (anatomie, physiologie, biologie, chimie).</p>';
+}
+
+function etapesHTML(liste, cur) {
+  return '<ol class="etapes">' + liste.map(function (e, k) { return '<li class="' + (cur === undefined ? "" : k < cur ? "passee" : k === cur ? "courante" : "") + '">' + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + "</ol>";
 }
 
 function vueMethode(id, focus) {
   var m = methode(id); if (!m) return vueMethodes();
   var b = bloc(id), out = "";
-  out += '<p class="sur"><a href="#methodes">Méthodes</a> · ' + m.id + '</p><h1 style="color:' + m.c + '">' + h(m.nom) + '</h1><p class="lead">' + h(m.idee) + '</p>';
-  out += '<div class="carte"><h3>Pourquoi ça marcherait</h3><p>' + h(m.pourquoi) + '</p></div>';
-  out += '<div class="carte"><h3>Séance d\'apprentissage · 60 min</h3><ol class="etapes">' + m.app.map(function (e) { return "<li>" + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + '</ol>' +
-         '<h3>Séance de consolidation · 40 min</h3><ol class="etapes">' + m.cons.map(function (e) { return "<li>" + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + '</ol>' +
-         '<div class="interdit"><b>Interdit pendant cette méthode :</b> ' + h(m.interdit) + '</div></div>';
-  out += "<h2>Les trois chapitres</h2>";
-  Object.keys(MATIERES).forEach(function (k) {
-    var c = PLAN[id][k];
-    out += '<a class="lien-carte" href="#c/' + c + '"><div class="carte"><p class="sur">' + MATIERES[k].nom + "</p><b>" + h(CHAPITRES[c].titre) + "</b>" + (CHAPITRES[c].html ? "" : ' <span class="etat saute">en préparation</span>') + "</div></a>";
-  });
+  out += '<p class="sur"><a href="#methodes">Méthodes</a> · ' + m.id + '</p><div class="tete-m"><span class="pastille-m grand" style="--c:' + m.c + '">' + icone(m.id, 30) + '</span><h1 style="color:' + m.c + ';margin:0">' + h(m.nom) + '</h1></div><p class="lead">' + h(m.idee) + '</p>';
+  if (focus === undefined) {
+    out += '<div class="carte"><h3>Pourquoi ça marcherait</h3><p>' + h(m.pourquoi) + '</p></div>';
+    out += '<div class="carte"><h3>Séance d\'apprentissage · 60 min</h3>' + etapesHTML(m.app) + '<h3>Séance de consolidation · 40 min</h3>' + etapesHTML(m.cons) + '<div class="interdit"><b>Interdit pendant cette méthode :</b> ' + h(m.interdit) + '</div></div>';
+    out += "<h2>Les trois fiches</h2>";
+    Object.keys(MATIERES).forEach(function (k) {
+      var c = PLAN[id][k];
+      out += '<a class="lien-carte" href="#c/' + c + '"><div class="carte"><p class="sur">' + MATIERES[k].nom + "</p><b>" + h(CHAPITRES[c].titre) + "</b>" + (CHAPITRES[c].html ? "" : ' <span class="etat saute">en préparation</span>') + "</div></a>";
+    });
+  }
   out += "<h2>Le calendrier</h2>";
   if (!b.j0) {
     out += '<p class="note">Le calendrier s\'affiche quand la méthode est lancée depuis <a href="#">Aujourd\'hui</a>' + (idx(id) > 0 && !clotureFaite(METHODES[idx(id) - 1].id) ? ", après le QCM de clôture de la méthode précédente" : "") + ".</p>";
   } else {
     SEANCES.forEach(function (s, i) {
       var e = etatSeance(id, i), d = plus(b.j0, s.j), rec = b.seances[i], ch = chapSeance(m, i);
-      out += '<div class="carte seance" id="s' + i + '" style="--c:' + m.c + (focus === i ? ";border-color:" + m.c : "") + '"><div class="seance-tete"><span class="j">J' + s.j + '</span><b>' + h(titreSeance(m, i)) + '</b><span class="espace"></span><span class="etat ' + e + '">' + ETIQ[e] + '</span></div>' +
+      out += '<div class="carte seance' + (focus === i ? " ouverte" : "") + '" id="s' + i + '" style="--c:' + m.c + '"><div class="seance-tete"><span class="j">J' + s.j + '</span><b>' + h(titreSeance(m, i)) + '</b><span class="espace"></span><span class="etat ' + e + '">' + ETIQ[e] + '</span></div>' +
         '<div class="note">' + h(joli(d)) + " · " + s.min + " min" + (rec && rec.statut === "faite" ? " · fait le " + h(joli(rec.date, true)) + " en " + rec.min + " min" : "") + "</div>" +
         (ch ? '<div><a href="#c/' + ch + '">' + h(CHAPITRES[ch].titre) + "</a></div>" : "") +
-        (focus === i ? panneauSeance(m, i) : '<div><a href="#m/' + id + "/" + i + '">' + (rec ? "Modifier" : "Ouvrir la séance") + "</a></div>") + "</div>";
+        (focus === i ? panneauSeance(m, i) : '<div><a href="#m/' + id + "/" + i + '">' + (rec ? "Modifier" : "Ouvrir la séance guidée") + "</a></div>") + "</div>";
     });
     var dq = plus(b.j0, J_CLOTURE), dr = plus(b.j0, J_RETARD);
     out += '<div class="carte seance" style="--c:' + m.c + '"><div class="seance-tete"><span class="j">J14</span><b>QCM de clôture</b><span class="espace"></span>' + (b.qcm.cloture ? '<span class="etat fait">fait</span>' : "") + '</div><div class="note">' + h(joli(dq)) + '</div><div><a href="#qcm/' + id + '/cloture">' + (b.qcm.cloture ? "Voir la correction" : "Ouvrir") + "</a></div></div>";
@@ -1346,21 +1452,56 @@ function vueMethode(id, focus) {
   return out;
 }
 
-var CHR = null; /* chronomètre en cours : { id, i, debut, cumul } */
+/* ---------- séance guidée ---------- */
+var CHR = null; /* { id, i, debut, etape, debutEtape, vibre } */
+function outilsSeance(m, i) {
+  var s = SEANCES[i], liens = [], chs = s.type === "app" ? [chapSeance(m, i)] : chapitresDe(m.id);
+  function court(c) { return MATIERES[CHAPITRES[c].mat].court; }
+  if (m.id === "M3") chs.forEach(function (c) { if (OUTILS[c]) liens.push(['#pq/' + c, (s.type === "app" ? "Notions à expliquer et enregistreur" : "Questions « pourquoi ? » · " + court(c))]); });
+  if (m.id === "M4") {
+    if (s.type === "app") { var c = chs[0]; if (ENTRAIN[c]) { liens.push(["#ent/" + c + "/pre", "1. Pré-test (avant de lire)"]); liens.push(["#ent/" + c + "/pre", "3. Refaire le pré-test"]); liens.push(["#ent/" + c + "/serie", "4. Série d'entraînement"]); } }
+    else if (chs.every(function (c) { return ENTRAIN[c]; })) liens.push(["#ent/mix", "Série mélangée des trois chapitres"]);
+  }
+  if (m.id === "M5") {
+    if (s.type === "app") { if (CARTES[chs[0]]) liens.push(["#cartes/" + chs[0] + "/123", "Cartes du chapitre"]); }
+    else if (chs.every(function (c) { return CARTES[c]; })) liens.push(["#cartes/tout/" + (s.j === 4 || s.j === 11 ? "123" : "12"), s.j === 4 || s.j === 11 ? "Cartes : toutes les boîtes" : "Cartes : boîtes 1 et 2"]);
+  }
+  if (!liens.length) return m.id === "M1" || m.id === "M2" ? "" : '<p class="note">Les outils de cette méthode arrivent avec ses fiches.</p>';
+  return '<div class="outils"><p class="sur">Outils de la séance</p>' + liens.map(function (l) { return '<a class="btn sec petit" href="' + l[0] + '">' + h(l[1]) + "</a>"; }).join("") + "</div>";
+}
 function panneauSeance(m, i) {
   var s = SEANCES[i], liste = s.type === "app" ? m.app : m.cons, rec = bloc(m.id).seances[i];
   var enCours = CHR && CHR.id === m.id && CHR.i === i;
-  var out = '<ol class="etapes">' + liste.map(function (e) { return "<li>" + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + "</ol>";
-  if (s.type === "cons" && m.id === "M3") out += '<p class="note">Questions « pourquoi ? » : en fin de chaque chapitre.</p>';
+  var out = "";
+  if (enCours) {
+    var k = CHR.etape, der = k === liste.length - 1;
+    out += '<div class="guide" style="--c:' + m.c + '"><p class="sur">Étape ' + (k + 1) + " / " + liste.length + '</p><p class="g-txt">' + h(liste[k][0]) + '</p><div class="g-temps"><span class="chrono" id="rest">' + reste(liste) + '</span><span class="note">temps de l\'étape</span></div><div class="barre-prog"><i id="gbar" style="width:0%"></i></div>' +
+      '<div class="rangee">' + (k > 0 ? '<button class="btn sec petit" id="gprev">Étape précédente</button>' : "") + '<span class="espace"></span>' + (der ? '<button class="btn" id="stop">Terminer la séance</button>' : '<button class="btn" id="gnext">Étape suivante</button>') + '</div>' +
+      '<p class="note">Durée totale : <span id="chr">' + fmt(tempsChr()) + "</span> sur " + s.min + " min prévues</p></div>";
+    out += etapesHTML(liste, k);
+  } else {
+    out += etapesHTML(liste);
+    out += '<div class="rangee" style="margin-top:6px"><button class="btn" id="start">Démarrer la séance guidée</button></div>';
+  }
+  out += outilsSeance(m, i);
   out += '<div class="interdit"><b>Interdit :</b> ' + h(m.interdit) + "</div>";
-  out += '<div class="rangee" style="margin-top:6px"><span class="chrono" id="chr">' + fmt(enCours ? tempsChr() : 0) + '</span><span class="espace"></span>' +
-    (enCours ? '<button class="btn" id="stop">Terminer la séance</button>' : '<button class="btn" id="start">Démarrer le chrono</button>') + "</div>";
   out += '<details' + (rec ? " open" : "") + '><summary>Saisir à la main</summary><div class="rangee"><label>Minutes : <input type="number" id="mins" min="0" max="300" value="' + (rec && rec.min ? rec.min : s.min) + '"></label><button class="btn sec petit" id="faite">Séance faite</button><button class="btn danger petit" id="sautee">Non faite</button></div></details>';
   return out;
 }
 function tempsChr() { return CHR ? Math.floor((Date.now() - CHR.debut) / 1000) : 0; }
-function fmt(sec) { var m = Math.floor(sec / 60), s = sec % 60; return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0"); }
-setInterval(function () { var e = document.getElementById("chr"); if (e && CHR) e.textContent = fmt(tempsChr()); }, 1000);
+function fmt(sec) { var neg = sec < 0; sec = Math.abs(sec); var m = Math.floor(sec / 60), s = sec % 60; return (neg ? "+" : "") + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0"); }
+function listeChr() { if (!CHR) return null; var m = methode(CHR.id); return SEANCES[CHR.i].type === "app" ? m.app : m.cons; }
+function reste(liste) { var tot = liste[CHR.etape][1] * 60, ec = Math.floor((Date.now() - CHR.debutEtape) / 1000); return fmt(tot - ec); }
+setInterval(function () {
+  if (!CHR) return;
+  var e = document.getElementById("chr"); if (e) e.textContent = fmt(tempsChr());
+  var liste = listeChr(), r = document.getElementById("rest"), g = document.getElementById("gbar");
+  if (!liste) return;
+  var tot = liste[CHR.etape][1] * 60, ec = (Date.now() - CHR.debutEtape) / 1000;
+  if (r) { r.textContent = fmt(Math.floor(tot - ec)); r.classList.toggle("depasse", ec > tot); }
+  if (g) g.style.width = Math.min(100, 100 * ec / tot) + "%";
+  if (ec > tot && !CHR.vibre[CHR.etape]) { CHR.vibre[CHR.etape] = 1; try { navigator.vibrate && navigator.vibrate([180, 90, 180]); } catch (x) {} toast("Temps de l'étape écoulé."); }
+}, 1000);
 function enregistrerSeance(id, i, min, statut) {
   bloc(id).seances[i] = { statut: statut, min: statut === "faite" ? min : 0, date: auj() };
   marquer();
@@ -1376,34 +1517,115 @@ function ressenti(m) {
   return '<div class="carte"><h3>Ton ressenti sur cette méthode</h3>' + et("plaisir", "Agréable à pratiquer ?") + et("tenable", "Tenable chaque semaine pendant une année entière ?") + '<p>Une remarque :</p><textarea id="remarque">' + h(r.remarque || "") + "</textarea></div>";
 }
 
+/* ---------- fiches ---------- */
 function vueCours() {
-  var out = '<p class="sur">Les cours</p><h1>Quinze fiches d\'initiation</h1><p class="lead">Chaque chapitre est une fiche complète : rien à recopier ni à refaire. Une fiche s\'ouvre quand sa méthode arrive. Niveau : début de première année, sans prérequis au-delà de la Terminale.</p>';
+  var out = '<p class="sur">Les fiches</p><h1>Quinze fiches d\'initiation</h1><p class="lead">Chaque chapitre est une fiche complète : rien à recopier ni à refaire. Une fiche s\'ouvre quand sa méthode arrive. Niveau : début de première année, sans prérequis au-delà de la Terminale.</p>';
   METHODES.forEach(function (m) {
-    out += "<h2 style=\"color:" + m.c + "\">" + m.id + " · " + h(m.nom) + "</h2>";
+    out += '<h2 class="titre-m" style="color:' + m.c + '">' + icone(m.id, 22) + " " + m.id + " · " + h(m.nom) + "</h2>";
     Object.keys(MATIERES).forEach(function (k) {
-      var c = PLAN[m.id][k];
-      out += '<a class="lien-carte" href="#c/' + c + '"><div class="carte"><p class="sur">' + MATIERES[k].nom + "</p><b>" + h(CHAPITRES[c].titre) + "</b>" + (CHAPITRES[c].html ? "" : ' <span class="etat saute">en préparation</span>') + "</div></a>";
+      var c = PLAN[m.id][k], pret = !!CHAPITRES[c].html;
+      out += '<a class="lien-carte" href="#c/' + c + '"><div class="carte fiche-l" style="--c:' + m.c + '"><p class="sur">' + MATIERES[k].nom + "</p><b>" + h(CHAPITRES[c].titre) + "</b>" + (pret ? '<span class="note"> · ' + lecture(c) + " min de lecture</span>" : ' <span class="etat saute">en préparation</span>') + "</div></a>";
     });
   });
   return out;
 }
+function lecture(c) { var t = (CHAPITRES[c].html || "").replace(/<[^>]+>/g, " "); return Math.max(5, Math.round(t.split(/\s+/).length / 170)); }
 
 function vueChapitre(id) {
   var c = CHAPITRES[id]; if (!c) return vueCours();
-  var m = METHODES.filter(function (x) { return Object.keys(PLAN[x.id]).some(function (k) { return PLAN[x.id][k] === id; }); })[0];
-  var out = '<p class="sur"><a href="#cours">Cours</a> · ' + MATIERES[c.mat].nom + '</p><h1>' + h(c.titre) + '</h1><p>' + tag(m) + "</p>";
-  if (!c.html) return out + '<div class="placeholder"><p><strong>En préparation.</strong></p><p>Ce chapitre sera en ligne avant le début de la méthode ' + m.id.slice(1) + ".</p></div>";
-  out += '<div class="interdit" style="background:color-mix(in srgb,' + m.c + ' 12%,transparent)"><b style="color:' + m.c + '">Avec cette méthode :</b> ' + h(m.app.map(function (e) { return e[0]; }).join(" ")) + "</div>";
+  var m = methodeDe(id);
+  var out = '<p class="sur"><a href="#cours">Fiches</a> · ' + MATIERES[c.mat].nom + '</p><h1>' + h(c.titre) + '</h1><p class="rangee">' + tag(m) + (c.html ? '<span class="note">' + lecture(id) + " min de lecture</span>" : "") + "</p>";
+  if (!c.html) return out + '<div class="placeholder"><p><strong>En préparation.</strong></p><p>Cette fiche sera en ligne avant le début de la méthode ' + m.id.slice(1) + ".</p></div>";
+  out += '<div class="interdit avec" style="--c:' + m.c + '"><b>Avec cette méthode :</b> ' + h(m.app.map(function (e) { return e[0]; }).join(" ")) + "</div>";
+  out += '<details class="sommaire"><summary>Sommaire</summary><ol id="somm"></ol></details>';
   return out + '<article class="cours">' + c.html + "</article>";
 }
 
-/* ---------- QCM ---------- */
+/* ---------- méthode 3 : notions, questions « pourquoi ? », enregistreur ---------- */
+var REC = null;
+function vuePourquoi(ch) {
+  var o = OUTILS[ch], m = methodeDe(ch); if (!o) return '<div class="placeholder">Outil en préparation.</div>';
+  var out = '<p class="sur"><a href="#m/' + m.id + '">' + h(m.nom) + "</a> · " + MATIERES[CHAPITRES[ch].mat].nom + '</p><h1>Expliquer : ' + h(CHAPITRES[ch].titre) + "</h1>";
+  out += '<div class="carte"><h3>Les trois notions à expliquer à voix haute</h3><p class="note">Comme à un élève de troisième : mots simples, une analogie, un exemple. Sans regarder la fiche.</p><ol>' + o.notions.map(function (n) { return "<li>" + h(n) + "</li>"; }).join("") + "</ol></div>";
+  out += '<div class="carte"><h3>L\'enregistreur</h3><p class="note">L\'enregistrement reste sur ce téléphone le temps de la séance, puis disparaît.</p><div class="rangee"><button class="btn" id="rec">' + (REC && REC.actif ? "Arrêter" : "Enregistrer") + '</button><span id="recinfo" class="note"></span></div><div id="ecoute"></div></div>';
+  out += '<div class="carte"><h3>Questions « pourquoi ? »</h3><p class="note">Réponds à voix haute, puis touche la question pour comparer.</p>' + o.pourquoi.map(function (p, k) { return '<details class="pq"><summary>' + (k + 1) + ". " + h(p.q) + '</summary><p>' + h(p.r) + "</p></details>"; }).join("") + "</div>";
+  return out;
+}
+
+/* ---------- méthode 4 : pré-tests et séries d'entraînement ---------- */
+var TR = null; /* { cle, liste, i, sel, valide, pts, debut } */
+function listeEntrain(cle) {
+  if (cle === "mix") { var tout = []; chapitresDe("M4").forEach(function (c) { if (ENTRAIN[c]) ENTRAIN[c].serie.forEach(function (q) { tout.push(Object.assign({ ch: c }, q)); }); }); return melanger(tout).slice(0, 15); }
+  var a = cle.split("/"); return ENTRAIN[a[0]] ? ENTRAIN[a[0]][a[1]].map(function (q) { return Object.assign({ ch: a[0] }, q); }) : null;
+}
+function nomEntrain(cle) {
+  if (cle === "mix") return "Série mélangée";
+  var a = cle.split("/"); return (a[1] === "pre" ? "Pré-test" : "Série d'entraînement") + " · " + MATIERES[CHAPITRES[a[0]].mat].court;
+}
+function vueEntrain(cle) {
+  var m = methode("M4"), out = '<p class="sur"><a href="#m/M4">' + h(m.nom) + "</a> · entraînement, non compté</p><h1>" + h(nomEntrain(cle)) + "</h1>";
+  if (!TR || TR.cle !== cle) {
+    var l = listeEntrain(cle); if (!l) return out + '<div class="placeholder">Outil en préparation.</div>';
+    var hist = bloc("M4").entr[cle] || [];
+    return out + '<div class="carte"><p><strong>' + l.length + ' questions</strong>, correction immédiate après chaque question. Cet entraînement ne compte pas dans la mesure.</p>' +
+      (cle.indexOf("/pre") > 0 ? '<p>Avant la lecture, se tromper est normal : c\'est le principe. Après la lecture, refais-le et explique chaque erreur en une phrase.</p>' : "") +
+      (hist.length ? '<p class="note">Déjà fait : ' + hist.map(function (x) { return num(x.pts) + "/" + x.n + " le " + joli(x.date, true); }).join(" · ") + "</p>" : "") +
+      '<button class="btn" id="tgo">Commencer</button></div>';
+  }
+  if (TR.i >= TR.liste.length) {
+    return out + '<div class="carte"><div class="score">' + num(TR.pts) + " / " + TR.liste.length + '</div><p>Entraînement terminé.</p><div class="rangee"><button class="btn sec" id="tagain">Recommencer</button><a class="btn" href="#m/M4">Retour à la méthode</a></div></div>';
+  }
+  var q = TR.liste[TR.i];
+  out += '<div class="rangee note"><span>Question ' + (TR.i + 1) + " / " + TR.liste.length + '</span><span class="espace"></span><span>' + MATIERES[CHAPITRES[q.ch].mat].court + '</span></div><div class="barre-prog"><i style="width:' + (100 * TR.i / TR.liste.length) + '%"></i></div>';
+  out += '<p class="q-enonce">' + h(q.q) + "</p>";
+  q.p.forEach(function (p, k) {
+    var coche = TR.sel.indexOf(k) >= 0, cl = TR.valide ? (p.v ? (coche ? " vrai" : " oubli") : (coche ? " faux-coche" : "")) : (coche ? " sel" : "");
+    out += '<button class="prop' + cl + '" data-k="' + k + '"' + (TR.valide ? ' style="cursor:default"' : "") + '><span class="lettre">' + "ABCDE"[k] + "</span><span>" + h(p.t) + (TR.valide ? " <b>" + (p.v ? "Vrai" : "Faux") + "</b>" + (p.e ? '<span class="expl">' + h(p.e) + "</span>" : "") : "") + "</span></button>";
+  });
+  out += '<div class="rangee" style="margin-top:14px"><span class="espace"></span>' + (TR.valide ? '<span class="note">' + num(noteQ(TR.sel, q.p)) + ' pt</span><button class="btn" id="tnext">' + (TR.i === TR.liste.length - 1 ? "Voir le score" : "Suivante") + "</button>" : '<button class="btn" id="tval"' + (TR.sel.length ? "" : " disabled") + ">Valider</button>") + "</div>";
+  return out;
+}
+
+/* ---------- méthode 5 : cartes et boîtes de Leitner ---------- */
+var CR = null; /* { cle, ids, i, montre, ratees, su } */
+function boite(id) { return bloc("M5").cartes[id] || 1; }
+function idsCartes(cle) {
+  var a = cle.split("/"), chs = a[0] === "tout" ? chapitresDe("M5") : [a[0]], boites = a[1] || "123", ids = [];
+  chs.forEach(function (c) { (CARTES[c] || []).forEach(function (x, k) { var id = c + "-" + k; if (boites.indexOf(String(boite(id))) >= 0) ids.push(id); }); });
+  return melanger(ids).sort(function (x, y) { return boite(x) - boite(y); });
+}
+function carte(id) { var p = id.lastIndexOf("-"); return CARTES[id.slice(0, p)][+id.slice(p + 1)]; }
+function repartition(chs) {
+  var r = [0, 0, 0, 0]; chs.forEach(function (c) { (CARTES[c] || []).forEach(function (x, k) { r[boite(c + "-" + k)]++; }); }); return r;
+}
+function vueCartes(cle) {
+  var m = methode("M5"), a = cle.split("/"), chs = a[0] === "tout" ? chapitresDe("M5") : [a[0]];
+  var titre = a[0] === "tout" ? "Les cartes des trois chapitres" : "Cartes · " + MATIERES[CHAPITRES[a[0]].mat].court;
+  var out = '<p class="sur"><a href="#m/M5">' + h(m.nom) + "</a></p><h1>" + h(titre) + "</h1>";
+  if (!chs.every(function (c) { return CARTES[c]; })) return out + '<div class="placeholder">Cartes en préparation.</div>';
+  var r = repartition(chs);
+  var boites = '<div class="boites">' + [1, 2, 3].map(function (n) { return '<div class="bt"><b>' + r[n] + "</b><span>boîte " + n + "</span></div>"; }).join("") + "</div>";
+  if (!CR || CR.cle !== cle) {
+    var n = idsCartes(cle).length;
+    return out + boites + '<div class="carte"><p><strong>' + n + " cartes</strong> à passer" + (a[1] === "12" ? " (boîtes 1 et 2)" : "") + ".</p><p>Dis la réponse en entier, à voix haute ou dans ta tête, <strong>avant</strong> de retourner la carte. Réussie : elle avance d'une boîte. Ratée : elle revient en boîte 1.</p><button class=\"btn\" id=\"cgo\"" + (n ? "" : " disabled") + ">Commencer</button></div>";
+  }
+  if (CR.i >= CR.ids.length) {
+    return out + boites + '<div class="carte"><div class="score">' + CR.su + " / " + CR.ids.length + '</div><p>cartes sues du premier coup.</p><div class="rangee">' + (CR.ratees.length ? '<button class="btn" id="cratees">Reprendre les ' + CR.ratees.length + " ratées</button>" : "") + '<a class="btn sec" href="#m/M5">Retour à la méthode</a></div></div>';
+  }
+  var id = CR.ids[CR.i], x = carte(id);
+  out += '<div class="rangee note"><span>Carte ' + (CR.i + 1) + " / " + CR.ids.length + '</span><span class="espace"></span><span>boîte ' + boite(id) + '</span></div><div class="barre-prog"><i style="width:' + (100 * CR.i / CR.ids.length) + '%"></i></div>';
+  out += '<div class="flash' + (CR.montre ? " retournee" : "") + '"><p class="sur">Question</p><p class="f-q">' + h(x[0]) + "</p>" + (CR.montre ? '<hr><p class="sur">Réponse</p><p class="f-r">' + h(x[1]) + "</p>" : "") + "</div>";
+  out += CR.montre ? '<div class="rangee duo"><button class="btn danger" id="cnon">Pas su</button><button class="btn" id="coui">Je savais</button></div>' : '<div class="rangee duo"><button class="btn" id="cvoir">Voir la réponse</button></div>';
+  return out;
+}
+
+/* ---------- QCM de mesure ---------- */
 var RUN = null; /* { id, type, i, rep: [{sel:[], conf:""}], debut } */
 function vueQCM(id, type) {
   var m = methode(id), b = bloc(id), liste = QCM[id] && QCM[id][type];
   var nom = type === "cloture" ? "QCM de clôture" : "QCM de rappel tardif";
   var out = '<p class="sur"><a href="#m/' + id + '">' + h(m.nom) + "</a></p><h1>" + nom + "</h1>";
-  if (!liste) return out + '<div class="placeholder">Ce QCM sera en ligne avec les cours de la méthode.</div>';
+  if (!liste) return out + '<div class="placeholder">Ce QCM sera en ligne avec les fiches de la méthode.</div>';
   if (b.qcm[type]) return out + correction(id, type);
   if (!b.j0) return out + '<p>Lance d\'abord la méthode depuis <a href="#">Aujourd\'hui</a>.</p>';
   if (type === "retard" && !b.qcm.cloture) return out + "<p>Le rappel tardif vient après le QCM de clôture.</p>";
@@ -1429,7 +1651,7 @@ function correction(id, type) {
     out += '<div class="carte"><div class="rangee note"><span>Question ' + (i + 1) + "</span><span class=\"espace\"></span><span>" + ({ s: "sûr", h: "hésitant", x: "au hasard" }[r.conf] || "") + " · " + num(pts) + ' pt</span></div><p class="q-enonce">' + h(q.q) + "</p>";
     q.p.forEach(function (p, k) {
       var coche = r.sel.indexOf(k) >= 0, cl = p.v ? (coche ? "vrai" : "oubli") : (coche ? "faux-coche" : "");
-      out += '<div class="prop ' + cl + '" style="cursor:default"><span class="lettre">' + "ABCDE"[k] + '</span><span>' + h(p.t) + ' <b>' + (p.v ? "Vrai" : "Faux") + "</b>" + (p.e ? '<div class="expl">' + h(p.e) + "</div>" : "") + "</span></div>";
+      out += '<div class="prop ' + cl + '" style="cursor:default"><span class="lettre">' + "ABCDE"[k] + '</span><span>' + h(p.t) + ' <b>' + (p.v ? "Vrai" : "Faux") + "</b>" + (p.e ? '<span class="expl">' + h(p.e) + "</span>" : "") + "</span></div>";
     });
     out += "</div>";
   });
@@ -1489,7 +1711,7 @@ function vueResultats() {
 function vueJournal() {
   var n = 0; METHODES.forEach(function (m) { n += Object.keys(bloc(m.id).seances).length + Object.keys(bloc(m.id).qcm).length; });
   return '<p class="sur">Le journal</p><h1>Enregistrer et reprendre</h1>' +
-  '<p class="lead">Le site ne garde rien quand on le ferme. Les séances, les temps et les QCM vivent dans un petit fichier que tu télécharges après chaque séance et que tu réimportes la fois suivante.</p>' +
+  '<p class="lead">Le site ne garde rien quand on le ferme. Les séances, les temps, les QCM et les boîtes de cartes vivent dans un petit fichier que tu télécharges après chaque séance et que tu réimportes la fois suivante.</p>' +
   '<div class="carte"><h3>1. Reprendre</h3><p>Au début de chaque séance, importe le <strong>dernier</strong> fichier enregistré (le plus récent dans Téléchargements).</p><label class="btn sec"><input type="file" id="imp" accept="application/json,.json" hidden>Importer le journal</label></div>' +
   '<div class="carte"><h3>2. Enregistrer</h3><p>À la fin de chaque séance ou de chaque QCM.</p><button class="btn" id="exp">Télécharger le journal</button> <p class="note">' + n + " élément(s) enregistré(s) dans le journal en cours." + (SALE ? " <b style=\"color:var(--alerte)\">Des changements ne sont pas encore enregistrés.</b>" : "") + "</p></div>" +
   '<details><summary>Sauvegarde de secours : copier le texte</summary><p class="note">Si le téléchargement ne marche pas, copie ce texte dans une note ou un mail à toi-même. Pour le recharger, colle-le ici puis « Charger ».</p><textarea id="txt" rows="5">' + h(JSON.stringify(S)) + '</textarea><div class="rangee"><button class="btn sec petit" id="copier">Copier</button><button class="btn sec petit" id="coller">Charger ce texte</button></div></details>';
@@ -1497,7 +1719,7 @@ function vueJournal() {
 function charger(txt) {
   var d = JSON.parse(txt);
   if (!d || !d.blocs) throw new Error("format");
-  METHODES.forEach(function (m) { var b = d.blocs[m.id] || {}; S.blocs[m.id] = { j0: b.j0 || null, seances: b.seances || {}, qcm: b.qcm || {}, ressenti: b.ressenti || {} }; });
+  METHODES.forEach(function (m) { var b = d.blocs[m.id] || {}, v = blocVide(); Object.keys(v).forEach(function (k) { if (b[k] !== undefined) v[k] = b[k]; }); S.blocs[m.id] = v; });
   SALE = false; document.getElementById("sale").hidden = true;
 }
 function exporter() {
@@ -1521,11 +1743,14 @@ function route() {
   else if (v === "cours") html = vueCours();
   else if (v === "c") html = vueChapitre(r[1]);
   else if (v === "qcm") html = vueQCM(r[1], r[2]);
+  else if (v === "pq") html = vuePourquoi(r[1]);
+  else if (v === "ent") html = vueEntrain(r.slice(1).join("/"));
+  else if (v === "cartes") html = vueCartes(r.slice(1).join("/"));
   else if (v === "resultats") html = vueResultats();
   else if (v === "journal") html = vueJournal();
   else { v = "accueil"; html = vueAccueil(); }
   app.innerHTML = html;
-  var onglet = { accueil: "accueil", methodes: "methodes", protocole: "methodes", m: "methodes", qcm: "methodes", cours: "cours", c: "cours", resultats: "resultats", journal: "journal" }[v];
+  var onglet = { accueil: "accueil", methodes: "methodes", protocole: "methodes", m: "methodes", qcm: "methodes", pq: "methodes", ent: "methodes", cartes: "methodes", cours: "cours", c: "cours", resultats: "resultats", journal: "journal" }[v];
   document.querySelectorAll("nav.bas a").forEach(function (a) { a.classList.toggle("on", a.dataset.r === onglet); });
   lier(v, r);
 }
@@ -1537,21 +1762,75 @@ function lier(v, r) {
     var m = blocCourant(), d = $("j0").value; if (!d) return;
     bloc(m.id).j0 = d; marquer(); rendre();
   };
+  if (v === "c") {
+    var ol = $("somm");
+    if (ol) document.querySelectorAll("article.cours h2").forEach(function (t, k) {
+      var li = document.createElement("li"), bt = document.createElement("button");
+      bt.textContent = t.textContent.replace(/^\d+\.\s*/, ""); bt.onclick = function () { t.scrollIntoView({ behavior: "smooth", block: "start" }); };
+      li.appendChild(bt); ol.appendChild(li);
+    });
+  }
   if (v === "m") {
     var id = r[1], i = +r[2];
     if ($("j0maj")) $("j0maj").onclick = function () { if ($("j0b").value) { bloc(id).j0 = $("j0b").value; marquer(); rendre(); } };
     if (r[2] !== undefined) {
-      var el = $("s" + i); if (el) setTimeout(function () { el.scrollIntoView({ block: "start", behavior: "smooth" }); }, 30);
-      if ($("start")) $("start").onclick = function () { CHR = { id: id, i: i, debut: Date.now() }; rendre(); };
+      var el = $("s" + i); if (el && !CHR) setTimeout(function () { el.scrollIntoView({ block: "start", behavior: "smooth" }); }, 30);
+      if ($("start")) $("start").onclick = function () { var t = Date.now(); CHR = { id: id, i: i, debut: t, etape: 0, debutEtape: t, vibre: {} }; rendre(); };
+      if ($("gnext")) $("gnext").onclick = function () { CHR.etape++; CHR.debutEtape = Date.now(); rendre(); };
+      if ($("gprev")) $("gprev").onclick = function () { CHR.etape--; CHR.debutEtape = Date.now(); rendre(); };
       if ($("stop")) $("stop").onclick = function () {
         var min = Math.max(1, Math.round(tempsChr() / 60)); CHR = null;
         enregistrerSeance(id, i, min, "faite"); toast("Séance enregistrée : " + min + " min. Pense au journal."); location.hash = "#m/" + id;
       };
-      if ($("faite")) $("faite").onclick = function () { enregistrerSeance(id, i, Math.max(0, +$("mins").value || 0), "faite"); toast("Séance enregistrée."); location.hash = "#m/" + id; };
-      if ($("sautee")) $("sautee").onclick = function () { enregistrerSeance(id, i, 0, "sautee"); location.hash = "#m/" + id; };
+      if ($("faite")) $("faite").onclick = function () { enregistrerSeance(id, i, Math.max(0, +$("mins").value || 0), "faite"); CHR = null; toast("Séance enregistrée."); location.hash = "#m/" + id; };
+      if ($("sautee")) $("sautee").onclick = function () { enregistrerSeance(id, i, 0, "sautee"); CHR = null; location.hash = "#m/" + id; };
     }
     document.querySelectorAll(".etoiles button").forEach(function (b) { b.onclick = function () { bloc(id).ressenti[b.dataset.r] = +b.dataset.v; marquer(); rendre(); }; });
     if ($("remarque")) $("remarque").oninput = function () { bloc(id).ressenti.remarque = this.value; marquer(); };
+  }
+  if (v === "pq" && $("rec")) {
+    if (REC && REC.url) $("ecoute").innerHTML = '<audio controls src="' + REC.url + '"></audio>';
+    $("rec").onclick = function () {
+      if (REC && REC.actif) { REC.mr.stop(); return; }
+      if (!navigator.mediaDevices || !window.MediaRecorder) { $("recinfo").textContent = "Enregistrement impossible sur ce navigateur : utilise l'application Dictaphone du téléphone."; return; }
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(function (flux) {
+        var mr = new MediaRecorder(flux), morceaux = [];
+        if (REC && REC.url) URL.revokeObjectURL(REC.url);
+        REC = { actif: true, mr: mr, debut: Date.now() };
+        mr.ondataavailable = function (e) { morceaux.push(e.data); };
+        mr.onstop = function () { flux.getTracks().forEach(function (t) { t.stop(); }); REC.actif = false; REC.url = URL.createObjectURL(new Blob(morceaux, { type: mr.mimeType })); rendre(); };
+        mr.start(); rendre(); $("recinfo").textContent = "Enregistrement en cours…";
+      }).catch(function () { $("recinfo").textContent = "Micro refusé : autorise-le dans les réglages du navigateur."; });
+    };
+  }
+  if (v === "ent") {
+    var cle = r.slice(1).join("/");
+    var go = function () { TR = { cle: cle, liste: listeEntrain(cle), i: 0, sel: [], valide: false, pts: 0 }; route(); window.scrollTo(0, 0); };
+    if ($("tgo")) $("tgo").onclick = go;
+    if ($("tagain")) $("tagain").onclick = go;
+    if (TR && TR.cle === cle && TR.i < TR.liste.length) {
+      if (!TR.valide) document.querySelectorAll(".prop[data-k]").forEach(function (b) { b.onclick = function () { var k = +b.dataset.k, p = TR.sel.indexOf(k); if (p >= 0) TR.sel.splice(p, 1); else TR.sel.push(k); rendre(); }; });
+      if ($("tval")) $("tval").onclick = function () { TR.valide = true; TR.pts += noteQ(TR.sel, TR.liste[TR.i].p); rendre(); };
+      if ($("tnext")) $("tnext").onclick = function () {
+        TR.i++; TR.sel = []; TR.valide = false;
+        if (TR.i >= TR.liste.length) { var e = bloc("M4").entr; e[cle] = (e[cle] || []).concat({ date: auj(), pts: Math.round(TR.pts * 100) / 100, n: TR.liste.length }); marquer(); }
+        route(); window.scrollTo(0, 0);
+      };
+    }
+  }
+  if (v === "cartes") {
+    var ck = r.slice(1).join("/");
+    if ($("cgo")) $("cgo").onclick = function () { CR = { cle: ck, ids: idsCartes(ck), i: 0, montre: false, ratees: [], su: 0 }; route(); };
+    if ($("cratees")) $("cratees").onclick = function () { CR = { cle: ck, ids: melanger(CR.ratees), i: 0, montre: false, ratees: [], su: 0 }; route(); };
+    if ($("cvoir")) $("cvoir").onclick = function () { CR.montre = true; route(); };
+    var noter = function (ok) {
+      var id = CR.ids[CR.i], c = bloc("M5").cartes;
+      c[id] = ok ? Math.min(3, boite(id) + 1) : 1;
+      if (ok) CR.su++; else CR.ratees.push(id);
+      CR.i++; CR.montre = false; marquer(); route();
+    };
+    if ($("coui")) $("coui").onclick = function () { noter(true); };
+    if ($("cnon")) $("cnon").onclick = function () { noter(false); };
   }
   if (v === "qcm") {
     var qid = r[1], type = r[2], liste = QCM[qid] && QCM[qid][type];
@@ -1583,7 +1862,7 @@ function lier(v, r) {
 }
 
 window.addEventListener("hashchange", function () { route(); window.scrollTo(0, 0); });
-window.addEventListener("beforeunload", function (e) { if (SALE) { e.preventDefault(); e.returnValue = ""; } });
+window.addEventListener("beforeunload", function (e) { if (SALE || CHR) { e.preventDefault(); e.returnValue = ""; } });
 document.getElementById("theme").onclick = function () {
   var r = document.documentElement, sombre = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
   r.dataset.theme = sombre ? "light" : "dark";
