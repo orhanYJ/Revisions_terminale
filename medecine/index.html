@@ -304,14 +304,36 @@ var PLAN = {
    DONNÉES — les cours
    ============================================================ */
 var CHAPITRES = {
- bc1: { mat: "bc", titre: "La cellule eucaryote : organisation et outils d'observation", html: `
-<p class="lead">La cellule est l'unité de base du vivant. Ce chapitre fait le tour de ses compartiments et des techniques qui permettent de les voir et de les séparer : tout le reste de la biologie cellulaire s'appuie dessus.</p>
+ bc1: { mat: "bc", titre: "La cellule eucaryote : organisation et outils d'observation", html: `<p class="lead">La cellule est l'unité de base du vivant. Ce chapitre fait le tour de sa diversité, de sa taille, de ses compartiments et des techniques pour l'observer et l'analyser : tout le reste de la biologie cellulaire s'appuie dessus.</p>
 
 <h2>1. La théorie cellulaire</h2>
 <div class="def"><b>Définition</b>La <strong>théorie cellulaire</strong> pose trois principes : tout être vivant est fait d'une ou de plusieurs cellules ; la cellule est l'unité de structure et de fonctionnement du vivant ; toute cellule provient d'une cellule préexistante.</div>
-<p>Elle s'est construite au XIX<sup>e</sup> siècle : Schleiden pour les végétaux (1838), Schwann pour les animaux (1839), puis Virchow (1855) avec la formule <em>omnis cellula e cellula</em>, « toute cellule vient d'une cellule ». Le mot « cellule » remonte à Hooke (1665), qui observait les logettes vides d'une lame de liège.</p>
+<p>Elle s'est construite au XIX<sup>e</sup> siècle : Schleiden pour les végétaux (1838), Schwann pour les animaux (1839), puis Virchow (1855) avec la formule <em>omnis cellula e cellula</em>, « toute cellule vient d'une cellule ». Le mot « cellule » remonte à Hooke (1665), qui observait les logettes vides d'une lame de liège. Virchow en a tiré la <strong>pathologie cellulaire</strong> : une maladie est d'abord un dérèglement de cellules.</p>
 
-<h2>2. Deux plans d'organisation</h2>
+<h2>2. La diversité des cellules humaines</h2>
+<p>Un adulte compte de l'ordre de <strong>30 000 milliards de cellules</strong> (3 × 10<sup>13</sup>), et à peu près autant de bactéries (le microbiote). Les hématies représentent plus de 80 % de nos cellules en nombre. On distingue classiquement environ <strong>200 types cellulaires</strong>.</p>
+<div class="defile"><table>
+<tr><th>Cellule</th><th>Taille (ordre de grandeur)</th><th>Particularité</th></tr>
+<tr><td>Hématie</td><td>≈ 7,5 µm de diamètre</td><td>disque biconcave, sans noyau ni organites</td></tr>
+<tr><td>Plaquette</td><td>2 à 3 µm</td><td>fragment de cellule de la moelle osseuse, sans noyau</td></tr>
+<tr><td>Hépatocyte</td><td>≈ 20 à 30 µm</td><td>souvent deux noyaux</td></tr>
+<tr><td>Ovocyte</td><td>≈ 100 à 120 µm</td><td>l'une des plus grosses cellules humaines</td></tr>
+<tr><td>Neurone moteur</td><td>axone jusqu'à ≈ 1 m</td><td>de la moelle épinière lombaire aux muscles du pied</td></tr>
+<tr><td>Fibre musculaire squelettique</td><td>plusieurs centimètres de long</td><td>des centaines de noyaux : née de la fusion de cellules</td></tr>
+</table></div>
+<p>Presque toutes ces cellules portent le <strong>même génome</strong> : elles diffèrent par les gènes qu'elles expriment, c'est la <strong>différenciation</strong>. Exceptions : hématies et plaquettes n'ont pas de noyau, les gamètes sont haploïdes.</p>
+<div class="lienT"><b>Lien avec la Terminale</b>Le syncytiotrophoblaste du placenta, autre cellule à plusieurs noyaux, naît d'une fusion de cellules grâce à la syncytine, protéine d'origine rétrovirale vue en SVT (chapitre 2).</div>
+<div class="cle"><b>Idée et exemple</b>La structure d'une cellule reflète sa fonction. Le <strong>plasmocyte</strong>, qui sécrète des anticorps, est rempli de RE rugueux, donc très basophile en HES. L'<strong>hématie</strong> a perdu noyau et mitochondries pour se remplir d'hémoglobine : elle vit de la glycolyse et ne consomme pas l'O<sub>2</sub> qu'elle transporte.</div>
+<div class="piege"><b>Piège de concours</b>« Toutes les cellules humaines ont un noyau » : faux (hématie mature, plaquette). « Une cellule a un seul noyau » : faux aussi (fibre musculaire squelettique, ostéoclaste, hépatocyte souvent binucléé).</div>
+
+<h2>3. Taille et rapport surface/volume</h2>
+<p>Une cellule échange tout (nutriments, O<sub>2</sub>, déchets) à travers sa membrane, donc par sa <strong>surface</strong> ; ses besoins dépendent de sa masse, donc de son <strong>volume</strong>.</p>
+<div class="def"><b>Définition</b>Pour une sphère de rayon r : S = 4πr², V = 4/3 πr³, donc <strong>S/V = 3/r</strong>. Quand le rayon double, la surface est multipliée par 4, le volume par 8 : le rapport surface/volume est divisé par 2.</div>
+<p>Exemple : pour r = 5 µm, S/V = 0,6 µm<sup>−1</sup> ; pour r = 50 µm, 0,06 µm<sup>−1</sup>. S'y ajoute la lenteur de la <strong>diffusion</strong>, dont le temps croît comme le <strong>carré</strong> de la distance : quelques centièmes de seconde pour franchir 10 µm, plusieurs heures pour 1 cm.</p>
+<p>Les cellules contournent ces limites : en <strong>augmentant leur surface</strong> (les microvillosités des entérocytes de l'intestin grêle la multiplient par 20 environ), en <strong>s'allongeant plutôt qu'en grossissant</strong> (un axone d'un mètre ne dépasse pas une vingtaine de µm de diamètre), en <strong>compartimentant</strong> (les membranes internes multiplient les surfaces de réaction).</p>
+<div class="cle"><b>Idée et exemple : la sphérocytose héréditaire</b>Une protéine qui soutient la membrane de l'hématie (spectrine, ankyrine…) est anormale. L'hématie perd de la membrane sans perdre de volume : son rapport S/V baisse, elle devient une sphère rigide qui ne se déforme plus pour franchir les fentes étroites de la rate. La rate la détruit : anémie, ictère, grosse rate.</div>
+
+<h2>4. Deux plans d'organisation</h2>
 <p>Les cellules se rangent en deux grands types. La différence essentielle est la présence, chez les eucaryotes, de <strong>compartiments internes limités par des membranes</strong>, dont le noyau.</p>
 <div class="defile"><table>
 <tr><th></th><th>Procaryote (bactérie)</th><th>Eucaryote (animal, végétal, champignon)</th></tr>
@@ -319,12 +341,15 @@ var CHAPITRES = {
 <tr><td>ADN</td><td>dans le cytoplasme (nucléoïde), un chromosome en général circulaire, souvent des plasmides</td><td>dans un noyau limité par une enveloppe à deux membranes ; plusieurs chromosomes linéaires associés à des histones</td></tr>
 <tr><td>Organites membranaires</td><td>absents</td><td>nombreux (réticulum, Golgi, mitochondries…)</td></tr>
 <tr><td>Ribosomes</td><td>70S</td><td>80S dans le cytosol</td></tr>
+<tr><td>Paroi</td><td>peptidoglycane chez la plupart des bactéries</td><td>aucune chez les cellules animales</td></tr>
 <tr><td>Cytosquelette</td><td>protéines apparentées, rudimentaire</td><td>développé (actine, microtubules, filaments intermédiaires)</td></tr>
 </table></div>
-<div class="cle"><b>L'idée à retenir</b>La <strong>compartimentation</strong> permet de faire coexister dans la même cellule des réactions aux conditions incompatibles. Exemple : le lysosome maintient un pH d'environ 4,5 à 5 pour ses enzymes digestives, alors que le cytosol reste vers 7,2 ; si ces enzymes se répandaient dans le cytosol, elles y seraient peu actives, ce qui protège la cellule.</div>
+<div class="cle"><b>Idée et exemple</b>La <strong>compartimentation</strong> permet de faire coexister dans la même cellule des réactions aux conditions incompatibles. Exemple : le lysosome maintient un pH d'environ 4,5 à 5 pour ses enzymes digestives, alors que le cytosol reste vers 7,2 ; si ces enzymes se répandaient dans le cytosol, elles y seraient peu actives, ce qui protège la cellule.</div>
+<div class="cle"><b>Idée et exemple : les antibiotiques</b>Les antibiotiques visent ce qui distingue la bactérie de nos cellules. Les <strong>pénicillines</strong> bloquent la fabrication du peptidoglycane ; les <strong>aminosides</strong> (gentamicine) et les <strong>macrolides</strong> (érythromycine) bloquent le ribosome 70S en épargnant le 80S. Nos mitochondries ont toutefois des ribosomes de type bactérien : c'est l'une des explications de la toxicité de certains aminosides pour l'oreille interne.</div>
 <div class="lienT"><b>Lien avec la Terminale</b>Les mitochondries et les chloroplastes possèdent leur propre ADN circulaire et des ribosomes de type bactérien : ce sont des traces de l'endosymbiose vue en SVT (chapitre 2, partie III).</div>
 
-<h2>3. Visite des compartiments</h2>
+<h2>5. Visite des compartiments</h2>
+<figure><svg viewBox="0 0 340 290" width="340" role="img" aria-label="Schéma d'une cellule animale : noyau, nucléole, RE rugueux et lisse, Golgi, mitochondries, lysosome, peroxysome, ribosomes libres"><ellipse cx="170" cy="150" rx="86" ry="116" fill="var(--accent)" fill-opacity=".06" stroke="currentColor" stroke-width="2.2"/><path d="M157.6 191A46 46 0 0 1 104.8 161.7" fill="none" stroke="var(--m5)" stroke-width="4" stroke-linecap="round"/><circle cx="152.5" cy="195.8" r="1.6" fill="currentColor"/><circle cx="140.6" cy="195.5" r="1.6" fill="currentColor"/><circle cx="129.1" cy="192.3" r="1.6" fill="currentColor"/><circle cx="118.7" cy="186.5" r="1.6" fill="currentColor"/><circle cx="110" cy="178.5" r="1.6" fill="currentColor"/><circle cx="103.4" cy="168.6" r="1.6" fill="currentColor"/><path d="M159 197.8A53 53 0 0 1 98.2 164.1" fill="none" stroke="var(--m5)" stroke-width="4" stroke-linecap="round"/><circle cx="153.1" cy="202.8" r="1.6" fill="currentColor"/><circle cx="139.6" cy="202.4" r="1.6" fill="currentColor"/><circle cx="126.5" cy="198.8" r="1.6" fill="currentColor"/><circle cx="114.6" cy="192.2" r="1.6" fill="currentColor"/><circle cx="104.7" cy="183" r="1.6" fill="currentColor"/><circle cx="97.1" cy="171.7" r="1.6" fill="currentColor"/><path d="M160.5 204.7A60 60 0 0 1 91.6 166.5" fill="none" stroke="var(--m5)" stroke-width="4" stroke-linecap="round"/><circle cx="153.8" cy="209.7" r="1.6" fill="currentColor"/><circle cx="138.5" cy="209.3" r="1.6" fill="currentColor"/><circle cx="123.9" cy="205.3" r="1.6" fill="currentColor"/><circle cx="110.5" cy="197.9" r="1.6" fill="currentColor"/><circle cx="99.3" cy="187.6" r="1.6" fill="currentColor"/><circle cx="90.9" cy="174.9" r="1.6" fill="currentColor"/><path d="M155.9 183.2L157.6 191" stroke="var(--m5)" stroke-width="4" stroke-linecap="round"/><path d="M112.3 159L104.8 161.7" stroke="var(--m5)" stroke-width="4" stroke-linecap="round"/><circle cx="148" cy="146" r="38" fill="var(--m3)" fill-opacity=".10" stroke="currentColor" stroke-width="1.6"/><circle cx="148" cy="146" r="34" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M178.5 157.1L185.1 159.5" stroke="var(--carte)" stroke-width="3.2"/><path d="M153.6 178L154.9 184.9" stroke="var(--carte)" stroke-width="3.2"/><path d="M123.1 166.9L117.7 171.4" stroke="var(--carte)" stroke-width="3.2"/><path d="M117.5 134.9L110.9 132.5" stroke="var(--carte)" stroke-width="3.2"/><path d="M142.4 114L141.1 107.1" stroke="var(--carte)" stroke-width="3.2"/><path d="M172.9 125.1L178.3 120.6" stroke="var(--carte)" stroke-width="3.2"/><circle cx="140" cy="138" r="10" fill="var(--m3)" opacity=".55"/><g fill="currentColor" opacity=".35"><circle cx="160" cy="130" r="2"/><circle cx="166" cy="152" r="2.2"/><circle cx="150" cy="166" r="2"/><circle cx="131" cy="158" r="1.8"/><circle cx="158" cy="146" r="1.6"/></g><path d="M195 82Q210 89 225 82" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/><path d="M193 89Q210 96 227 89" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/><path d="M193 96Q210 103 227 96" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/><path d="M195 103Q210 110 225 103" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round"/><g fill="none" stroke="var(--accent)" stroke-width="1.4"><circle cx="196" cy="72" r="3.2"/><circle cx="212" cy="70" r="3.2"/><circle cx="228" cy="76" r="3.2"/></g><g transform="translate(222 170) rotate(18)"><ellipse cx="0" cy="0" rx="21" ry="9" fill="var(--or)" fill-opacity=".18" stroke="currentColor" stroke-width="1.5"/><path d="M-15 0L-12 -6L-9 6L-5 -6L-1 6L3 -6L7 6L11 -6L14 2" fill="none" stroke="var(--or)" stroke-width="1.3"/></g><g transform="translate(150 228) rotate(-12)"><ellipse cx="0" cy="0" rx="21" ry="9" fill="var(--or)" fill-opacity=".18" stroke="currentColor" stroke-width="1.5"/><path d="M-15 0L-12 -6L-9 6L-5 -6L-1 6L3 -6L7 6L11 -6L14 2" fill="none" stroke="var(--or)" stroke-width="1.3"/></g><circle cx="234" cy="130" r="7" fill="var(--m4)" fill-opacity=".3" stroke="currentColor" stroke-width="1.3"/><g fill="var(--m4)"><circle cx="232" cy="128" r="1.4"/><circle cx="237" cy="132" r="1.4"/></g><circle cx="196" cy="236" r="7.5" fill="none" stroke="currentColor" stroke-width="1.3"/><rect x="193" y="233" width="6" height="6" fill="var(--or)"/><g fill="none" stroke="var(--m5)" stroke-width="2.4" stroke-linecap="round"><path d="M196 200q5 -6 10 0t10 0t10 0"/><path d="M200 210q5 -6 10 0t10 0t10 0"/></g><g fill="currentColor"><circle cx="112" cy="88" r="1.6"/><circle cx="120" cy="82" r="1.6"/><circle cx="126" cy="92" r="1.6"/><circle cx="116" cy="97" r="1.6"/><circle cx="178" cy="196" r="1.6"/><circle cx="185" cy="186" r="1.6"/></g><g stroke="currentColor" stroke-width="1" opacity=".55" fill="none"><path d="M80 88L110 90"/><path d="M80 122L136 134"/><path d="M80 156L109 152"/><path d="M80 196L100 186"/><path d="M80 240L134 232"/><path d="M260 48L230 66"/><path d="M260 96L228 90"/><path d="M260 132L242 131"/><path d="M260 172L240 174"/><path d="M260 206L237 206"/><path d="M260 240L204 237"/><path d="M260 270L184 254"/></g><g font-family="system-ui,sans-serif" font-size="11" fill="currentColor"><text x="76" y="84" text-anchor="end">ribosomes</text><text x="76" y="96" text-anchor="end">libres</text><text x="76" y="126" text-anchor="end" fill="var(--m3)">nucléole</text><text x="76" y="154" text-anchor="end">enveloppe</text><text x="76" y="166" text-anchor="end">nucléaire</text><text x="76" y="194" text-anchor="end" fill="var(--m5)">RE rugueux</text><text x="76" y="244" text-anchor="end">mitochondrie</text><text x="264" y="46">membrane</text><text x="264" y="58">plasmique</text><text x="264" y="94" fill="var(--accent)">appareil</text><text x="264" y="106" fill="var(--accent)">de Golgi</text><text x="264" y="136">lysosome</text><text x="264" y="176">mitochondrie</text><text x="264" y="210" fill="var(--m5)">RE lisse</text><text x="264" y="244">peroxysome</text><text x="264" y="274" fill="var(--doux)">cytosol</text></g></svg><figcaption>Cellule animale schématique (proportions non respectées). Le RE rugueux, couvert de ribosomes, prolonge l'enveloppe nucléaire.</figcaption></figure>
 <div class="defile"><table>
 <tr><th>Compartiment</th><th>Structure</th><th>Rôle principal</th></tr>
 <tr><td><b>Membrane plasmique</b></td><td>bicouche lipidique d'environ 7,5 nm, avec des protéines</td><td>limite la cellule, contrôle les échanges, reconnaissance</td></tr>
@@ -341,7 +366,7 @@ var CHAPITRES = {
 <p>Pour fixer les ordres de grandeur, la répartition du volume dans un hépatocyte (cellule du foie) : cytosol ≈ 54 %, mitochondries ≈ 22 %, RER ≈ 9 %, REL et Golgi ≈ 6 %, noyau ≈ 6 %, peroxysomes, lysosomes et endosomes ≈ 1 % chacun. <span class="note">(chiffres tirés d'Alberts, <em>Biologie moléculaire de la cellule</em>)</span></p>
 <div class="piege"><b>Piège de concours</b>« Le RE lisse porte des ribosomes » : faux, c'est ce qui le distingue du RE rugueux. Autre classique : la membrane externe de l'enveloppe nucléaire est en continuité avec le RER, et peut elle aussi porter des ribosomes.</div>
 
-<h2>4. Voir la cellule : les microscopes</h2>
+<h2>6. Voir la cellule : les microscopes</h2>
 <div class="def"><b>Définition</b>Le <strong>pouvoir de résolution</strong> est la plus petite distance qui sépare deux points encore vus distincts. Plus il est petit, plus l'image est détaillée. À ne pas confondre avec le <strong>grossissement</strong> : agrandir une image floue n'apporte aucun détail.</div>
 <div class="defile"><table>
 <tr><th>Instrument</th><th>Résolution</th><th>Ce qu'on voit</th></tr>
@@ -349,7 +374,8 @@ var CHAPITRES = {
 <tr><td>Microscope optique (MO)</td><td>≈ 0,2 µm</td><td>cellules, noyaux, grosses structures</td></tr>
 <tr><td>Microscope électronique à transmission (MET)</td><td>de l'ordre du nm sur un échantillon biologique</td><td>ultrastructure : organites, membranes</td></tr>
 </table></div>
-<p>La résolution du microscope optique est limitée par la <strong>longueur d'onde de la lumière visible</strong> (400 à 700 nm) : on ne peut pas descendre sous environ la moitié de cette longueur d'onde. Les électrons ont une longueur d'onde bien plus courte, d'où le gain du microscope électronique.</p>
+<p>La résolution du microscope optique est limitée par la <strong>longueur d'onde de la lumière visible</strong> (400 à 700 nm) : elle vaut environ <strong>d = 0,61 λ / ON</strong>, où ON est l'ouverture numérique de l'objectif (au mieux ≈ 1,4 avec un objectif à <strong>immersion</strong> dans l'huile). Avec λ = 500 nm, d ≈ 0,2 µm : au-delà d'un grossissement d'environ × 1 000, l'image grossit sans gagner de détail. Les électrons ont une longueur d'onde bien plus courte, d'où le gain du microscope électronique.</p>
+<figure><svg viewBox="0 0 340 236" width="340" role="img" aria-label="Échelle logarithmique des tailles, de l'atome à l'ovocyte, avec le domaine de l'œil, du microscope optique et du microscope électronique"><path d="M30 130H312" stroke="currentColor" stroke-width="1.6"/><path d="M30 126V134" stroke="currentColor" stroke-width="1.4"/><path d="M70 126V134" stroke="currentColor" stroke-width="1.4"/><path d="M110 126V134" stroke="currentColor" stroke-width="1.4"/><path d="M150 126V134" stroke="currentColor" stroke-width="1.4"/><path d="M190 126V134" stroke="currentColor" stroke-width="1.4"/><path d="M230 126V134" stroke="currentColor" stroke-width="1.4"/><path d="M270 126V134" stroke="currentColor" stroke-width="1.4"/><path d="M310 126V134" stroke="currentColor" stroke-width="1.4"/><g stroke="currentColor" stroke-width="1" opacity=".45" fill="none"><path d="M30 112V126"/><path d="M98 92V126"/><path d="M125.9 72V126"/><path d="M150 52V126"/><path d="M190 32V126"/><path d="M202 32V126"/><path d="M225 52V126"/><path d="M245.9 72V126"/><path d="M273.2 92V126"/></g><g fill="var(--accent)"><circle cx="30" cy="130" r="2.6"/><circle cx="98" cy="130" r="2.6"/><circle cx="125.9" cy="130" r="2.6"/><circle cx="150" cy="130" r="2.6"/><circle cx="190" cy="130" r="2.6"/><circle cx="202" cy="130" r="2.6"/><circle cx="225" cy="130" r="2.6"/><circle cx="245.9" cy="130" r="2.6"/><circle cx="273.2" cy="130" r="2.6"/></g><g font-family="system-ui,sans-serif" font-size="11" fill="currentColor"><text x="33" y="108" text-anchor="start">atome</text><text x="95" y="88" text-anchor="end">protéine</text><text x="122.9" y="68" text-anchor="end">ribosome</text><text x="147" y="48" text-anchor="end">virus</text><text x="187" y="28" text-anchor="end">mitochondrie</text><text x="205" y="28" text-anchor="start">bactérie</text><text x="228" y="48" text-anchor="start">hématie</text><text x="248.9" y="68" text-anchor="start">hépatocyte</text><text x="276.2" y="88" text-anchor="start">ovocyte</text><text x="30" y="148" text-anchor="middle" fill="var(--doux)">0,1 nm</text><text x="70" y="148" text-anchor="middle" fill="var(--doux)">1 nm</text><text x="110" y="148" text-anchor="middle" fill="var(--doux)">10 nm</text><text x="150" y="148" text-anchor="middle" fill="var(--doux)">100 nm</text><text x="190" y="148" text-anchor="middle" fill="var(--doux)">1 µm</text><text x="230" y="148" text-anchor="middle" fill="var(--doux)">10 µm</text><text x="270" y="148" text-anchor="middle" fill="var(--doux)">100 µm</text><text x="310" y="148" text-anchor="middle" fill="var(--doux)">1 mm</text></g><rect x="270" y="170" width="64" height="6" rx="3" fill="var(--or)" opacity=".75"/><path d="M270 167V179" stroke="var(--or)" stroke-width="2"/><rect x="162" y="196" width="172" height="6" rx="3" fill="var(--accent)" opacity=".75"/><path d="M162 193V205" stroke="var(--accent)" stroke-width="2"/><rect x="70" y="222" width="264" height="6" rx="3" fill="var(--m3)" opacity=".75"/><path d="M70 219V231" stroke="var(--m3)" stroke-width="2"/><g font-family="system-ui,sans-serif" font-size="11"><text x="334" y="164" text-anchor="end" fill="var(--or)">œil nu (≈ 0,1 mm)</text><text x="334" y="190" text-anchor="end" fill="var(--accent)">microscope optique (≈ 0,2 µm)</text><text x="334" y="216" text-anchor="end" fill="var(--m3)">microscope électronique (≈ 1 nm)</text></g></svg><figcaption>Échelle logarithmique : chaque graduation multiplie la taille par 10. Chaque barre commence à la limite de résolution de l'instrument.</figcaption></figure>
 
 <h3>Le microscope optique et les colorations</h3>
 <p>Préparation classique d'un tissu : <strong>fixation</strong> (formol, pour figer les structures), <strong>inclusion</strong> en paraffine, <strong>coupe</strong> au microtome (environ 5 µm d'épaisseur), puis <strong>coloration</strong>, car les cellules sont presque transparentes.</p>
@@ -360,9 +386,10 @@ var CHAPITRES = {
 <li>le safran colore le collagène en jaune.</li>
 </ul>
 <div class="piege"><b>Piège de concours</b>« Basophile » signifie « qui aime le colorant basique », donc que la structure est <strong>acide</strong>. Une structure basophile n'est pas basique.</div>
+<div class="cle"><b>Idée et exemple : la biopsie</b>Sur une biopsie colorée en HES, le pathologiste reconnaît les cellules cancéreuses : noyau gros, irrégulier et très coloré, rapport noyau/cytoplasme élevé, mitoses nombreuses. C'est cet examen qui affirme un cancer. Pendant une opération, un <strong>examen extemporané</strong> sur coupe congelée, sans paraffine, répond en une vingtaine de minutes.</div>
 
 <h3>La fluorescence</h3>
-<p>Un <strong>fluorochrome</strong> absorbe une lumière et en réémet une autre, de <strong>longueur d'onde plus grande</strong> (le fluorochrome perd un peu d'énergie au passage). En <strong>immunofluorescence</strong>, un anticorps qui reconnaît une protéine précise est couplé à un fluorochrome : on voit où se trouve cette protéine. La <strong>GFP</strong> (protéine fluorescente verte d'une méduse, <em>Aequorea victoria</em>), fusionnée à une protéine par génie génétique, permet de suivre cette protéine dans une cellule <strong>vivante</strong>.</p>
+<p>Un <strong>fluorochrome</strong> absorbe une lumière et en réémet une autre, de <strong>longueur d'onde plus grande</strong> (le fluorochrome perd un peu d'énergie au passage). En <strong>immunofluorescence</strong>, un anticorps qui reconnaît une protéine précise est couplé à un fluorochrome : on voit où se trouve cette protéine. La <strong>GFP</strong> (protéine fluorescente verte d'une méduse, <em>Aequorea victoria</em>), fusionnée à une protéine par génie génétique, permet de suivre cette protéine dans une cellule <strong>vivante</strong>. Le <strong>microscope confocal</strong>, qui élimine la lumière hors du plan de mise au point, donne des coupes optiques nettes.</p>
 
 <h3>Les microscopes électroniques</h3>
 <ul>
@@ -370,7 +397,26 @@ var CHAPITRES = {
 <li><strong>MEB (balayage)</strong> : un faisceau d'électrons balaie la <strong>surface</strong> d'un échantillon recouvert d'une fine couche de métal. On obtient une image en relief de la surface, sans voir l'intérieur.</li>
 </ul>
 
-<h2>5. Séparer les organites : le fractionnement cellulaire</h2>
+<h2>7. Repérer une molécule dans la cellule</h2>
+<p>La <strong>cytochimie</strong> révèle une famille de molécules par une réaction colorée qui lui est propre :</p>
+<div class="defile"><table>
+<tr><th>Technique</th><th>Révèle</th><th>Exemple</th></tr>
+<tr><td>PAS (acide périodique-Schiff)</td><td>glycogène, glycoprotéines, mucus (rose-magenta)</td><td>glycogène des hépatocytes, membranes basales</td></tr>
+<tr><td>Perls</td><td>le fer (en bleu)</td><td>surcharge en fer du foie</td></tr>
+<tr><td>Soudan, rouge à l'huile</td><td>les lipides</td><td>sur coupe congelée seulement</td></tr>
+</table></div>
+<p>Les lipides exigent une coupe congelée, car les solvants de l'inclusion en paraffine les dissolvent : en HES, une cellule adipeuse paraît vide. La <strong>cytochimie enzymatique</strong> montre où une enzyme est active (phosphatase acide des lysosomes).</p>
+<p>L'<strong>immunocytochimie</strong> suit le principe de l'immunofluorescence, mais l'anticorps porte une enzyme (souvent une peroxydase) qui forme un précipité brun, visible au microscope optique ordinaire.</p>
+<div class="cle"><b>Idée et exemple : le récepteur HER2</b>Dans 15 à 20 % des cancers du sein, les cellules fabriquent en excès un récepteur de membrane, HER2. L'immunohistochimie sur la biopsie le montre (membranes brunes). Ces patientes reçoivent un anticorps anti-HER2, le trastuzumab, inutile dans les autres cancers du sein.</div>
+<p>En <strong>autoradiographie</strong>, les cellules incorporent un précurseur radioactif, souvent marqué au tritium (<sup>3</sup>H) : <sup>3</sup>H-thymidine dans l'ADN (seules les cellules en phase S sont marquées), <sup>3</sup>H-uridine dans l'ARN, acide aminé marqué dans les protéines. Une émulsion photographique posée sur la coupe se couvre de grains d'argent noirs au-dessus des structures marquées. Un marquage bref suivi dans le temps (impulsion puis chasse) a révélé le trajet des protéines sécrétées (fiche « Le système endomembranaire »).</p>
+
+<h2>8. Cultiver et compter les cellules</h2>
+<p>En <strong>culture</strong>, des cellules vivent et se divisent <em>in vitro</em> : 37 °C, milieu stérile riche en nutriments et facteurs de croissance, atmosphère à 5 % de CO<sub>2</sub> qui maintient le pH. Une <strong>culture primaire</strong>, issue d'un tissu, ne fait qu'un nombre limité de divisions (quelques dizaines). Une <strong>lignée cellulaire</strong>, souvent issue d'un cancer, se divise indéfiniment : la lignée HeLa provient du cancer du col de l'utérus d'Henrietta Lacks (1951).</p>
+<div class="cle"><b>Idée et exemple : le caryotype</b>On met en culture des lymphocytes du sang (ou des cellules du liquide amniotique en diagnostic prénatal), on stimule leur division puis on la bloque en métaphase par la <strong>colchicine</strong>, qui empêche la formation du fuseau. Les chromosomes condensés sont photographiés et classés par paires : on diagnostique ainsi une trisomie 21.</div>
+<p>En <strong>cytométrie en flux</strong>, des cellules en suspension défilent une à une, des milliers par seconde, devant un laser. L'appareil mesure pour chacune la lumière diffusée (taille, granularité) et la fluorescence d'anticorps fixés sur ses protéines de surface : il compte des populations précises dans un mélange.</p>
+<div class="cle"><b>Idée et exemple : le suivi de l'infection par le VIH</b>Le VIH détruit les lymphocytes T qui portent la protéine CD4. La cytométrie en flux les compte : normalement 500 à 1 500 par mm³ environ ; sous 200 par mm³, le risque d'infections opportunistes (stade sida) devient majeur.</div>
+
+<h2>9. Séparer les organites : le fractionnement cellulaire</h2>
 <p>Pour étudier un organite, on l'isole. Les cellules sont d'abord <strong>broyées</strong> (homogénéisation) dans un milieu <strong>isotonique</strong> (souvent du saccharose) et <strong>au froid</strong> (4 °C), pour que les organites ne gonflent pas et que les enzymes ne les dégradent pas.</p>
 <p>La <strong>centrifugation différentielle</strong> consiste à centrifuger le broyat à des accélérations croissantes. À chaque étape, les éléments les plus gros et les plus denses tombent au fond (le culot) ; on récupère le liquide (le surnageant) pour l'étape suivante.</p>
 <div class="defile"><table>
@@ -383,17 +429,18 @@ var CHAPITRES = {
 </table></div>
 <p>Pour séparer plus finement, on centrifuge sur un <strong>gradient de densité</strong> (de saccharose, par exemple) : chaque organite s'arrête au niveau où la densité du milieu égale la sienne.</p>
 <div class="piege"><b>Piège de concours</b>La vitesse de sédimentation s'exprime en <strong>Svedberg (S)</strong>. Elle dépend de la masse <em>et</em> de la forme : les S ne s'additionnent pas. Un ribosome eucaryote 80S est fait d'une sous-unité 60S et d'une sous-unité 40S (et 60 + 40 ≠ 80).</div>
+<p>Une fraction n'est jamais parfaitement pure : on y dose une <strong>enzyme marqueur</strong>, propre à un compartiment. Mitochondrie : succinate déshydrogénase ; lysosome : phosphatase acide ; peroxysome : catalase ; RE (microsomes) : glucose-6-phosphatase ; membrane plasmique : 5'-nucléotidase ; cytosol : lactate déshydrogénase (LDH). Le noyau se repère à son ADN.</p>
+<div class="cle"><b>Idée et exemple : la découverte du lysosome</b>En 1955, Christian de Duve fractionne du foie de rat. L'activité de la phosphatase acide, faible juste après la préparation, augmente si la fraction vieillit ou si l'on abîme ses membranes : l'enzyme est enfermée dans une particule limitée par une membrane, le <strong>lysosome</strong> (prix Nobel 1974). Même logique à l'hôpital : une hausse des transaminases dans le sang signale la mort d'hépatocytes (hépatite).</div>
 
-<div class="cle"><b>Bilan</b>La cellule eucaryote est compartimentée : chaque organite a sa composition et ses fonctions. Le microscope optique (résolution ≈ 0,2 µm) montre les cellules, le microscope électronique (≈ 1 nm) leur ultrastructure ; le fractionnement isole les organites pour les étudier.</div>
+<div class="cle"><b>Bilan</b>30 000 milliards de cellules, 200 types, un même génome ; le rapport S/V (3/r) limite leur taille. L'eucaryote est compartimenté, la bactérie non, ce qu'exploitent les antibiotiques. Microscope optique (≈ 0,2 µm), électronique (≈ 1 nm) ; cytochimie, immunocytochimie et autoradiographie localisent les molécules ; cultures et cytométrie étudient les cellules ; le fractionnement isole les organites, contrôlés par leurs enzymes marqueurs.</div>
 
 <details><summary>Hors programme : voir encore plus fin</summary>
 <div class="hp"><b>Hors programme</b>La microscopie de <strong>super-résolution</strong> contourne la limite optique grâce à la fluorescence (prix Nobel de chimie 2014 : Betzig, Hell, Moerner). La <strong>cryo-microscopie électronique</strong> observe des molécules congelées sans coloration et reconstruit leur structure en 3D (prix Nobel de chimie 2017).</div>
 </details>
-<p class="src">Contenu original rédigé pour ce site, niveau début de première année, vérifié sur les ouvrages de référence (Alberts, <em>Biologie moléculaire de la cellule</em>). Il ne remplace pas le cours de la faculté.</p>
+<p class="src">Fiche originale rédigée pour ce site, niveau début de première année, vérifiée sur les ouvrages de référence (Alberts, <em>Biologie moléculaire de la cellule</em>). Elle ne remplace pas le cours de la faculté.</p>
 ` },
 
- bio1: { mat: "bio", titre: "Les acides aminés", html: `
-<p class="lead">Les protéines sont des chaînes d'acides aminés. Avant d'étudier les protéines, il faut connaître ces briques : leur structure commune, ce qui les distingue, et leur comportement selon le pH, très souvent interrogé au concours.</p>
+ bio1: { mat: "bio", titre: "Les acides aminés", html: `<p class="lead">Les protéines sont des chaînes d'acides aminés. Avant d'étudier les protéines, il faut connaître ces briques : leur structure commune, ce qui les distingue, leur comportement selon le pH (très souvent interrogé au concours), et ce que l'organisme en fait.</p>
 
 <h2>1. Une structure commune</h2>
 <div class="def"><b>Définition</b>Un <strong>acide aminé</strong> (α-aminé) porte, sur un même carbone appelé <strong>carbone α</strong> : une fonction <strong>amine</strong> (–NH<sub>2</sub>), une fonction <strong>acide carboxylique</strong> (–COOH), un atome d'<strong>hydrogène</strong> et une <strong>chaîne latérale R</strong>, propre à chaque acide aminé.</div>
@@ -404,12 +451,13 @@ var CHAPITRES = {
 <text x="150" y="30">R</text><text x="150" y="135">H</text></g>
 <g stroke="currentColor" stroke-width="2"><line x1="88" y1="76" x2="136" y2="76"/><line x1="164" y1="76" x2="212" y2="76"/><line x1="150" y1="38" x2="150" y2="62"/><line x1="150" y1="88" x2="150" y2="116"/></g>
 </svg><figcaption>Formule générale : seule la chaîne R change d'un acide aminé à l'autre.</figcaption></figure>
-<p>Le code génétique utilise <strong>20 acides aminés standard</strong>. Chacun a un nom, un code à trois lettres et un code à une lettre (Gly / G pour la glycine, Trp / W pour le tryptophane…).</p>
+<p>Le code génétique utilise <strong>20 acides aminés standard</strong>. Chacun a un nom, un code à trois lettres et un code à une lettre (Gly / G pour la glycine, Trp / W pour le tryptophane…). Engagé dans une protéine, un acide aminé devient un <strong>résidu</strong>, d'environ <strong>110 Da</strong> en moyenne : une protéine de 55 kDa compte donc environ 500 résidus.</p>
 
 <h2>2. Chiralité : la série L</h2>
-<p>Le carbone α porte quatre groupements différents : il est <strong>asymétrique</strong> (chiral). Un acide aminé existe donc sous deux formes images l'une de l'autre dans un miroir, notées <strong>D</strong> et <strong>L</strong>. Les protéines humaines n'utilisent que la forme <strong>L</strong>.</p>
-<p>Seule exception : la <strong>glycine</strong>, dont la chaîne latérale est un simple atome d'hydrogène. Son carbone α porte deux H : il n'est pas asymétrique.</p>
-<div class="piege"><b>Piège de concours</b>D/L et R/S sont deux nomenclatures différentes. Presque tous les acides aminés L sont de configuration S, mais la L-cystéine est R (à cause de l'atome de soufre, prioritaire). « Tous les acides aminés des protéines sont S » est donc faux.</div>
+<p>Le carbone α porte quatre groupements différents : il est <strong>asymétrique</strong> (chiral). Un acide aminé existe donc sous deux formes images l'une de l'autre dans un miroir, notées <strong>D</strong> et <strong>L</strong>. Les protéines humaines n'utilisent que la forme <strong>L</strong>. En représentation de Fischer (COOH en haut, chaîne R en bas), la forme L porte l'amine à <strong>gauche</strong>, par analogie avec le L-glycéraldéhyde.</p>
+<p>Seule exception : la <strong>glycine</strong>, dont la chaîne latérale est un simple atome d'hydrogène. Son carbone α porte deux H : il n'est pas asymétrique. À l'inverse, l'<strong>isoleucine</strong> et la <strong>thréonine</strong> ont un second carbone asymétrique dans leur chaîne : elles ont quatre stéréo-isomères, dont un seul entre dans les protéines.</p>
+<div class="piege"><b>Piège de concours</b>D/L et R/S sont deux nomenclatures différentes. Presque tous les acides aminés L sont de configuration S, mais la L-cystéine est R (à cause de l'atome de soufre, prioritaire). « Tous les acides aminés des protéines sont S » est donc faux. De même, L ne veut pas dire lévogyre : la L-alanine est dextrogyre.</div>
+<div class="cle"><b>Idée et exemple : la vancomycine</b>Les acides aminés D existent dans la nature, mais pas dans nos protéines. La paroi des bactéries (le peptidoglycane) contient de la D-alanine. La <strong>vancomycine</strong>, antibiotique utilisé contre les staphylocoques résistants, se fixe sur l'extrémité D-Ala-D-Ala des précurseurs de la paroi et bloque leur assemblage.</div>
 
 <h2>3. Classer les acides aminés par leur chaîne latérale</h2>
 <p>La chaîne R donne à chaque acide aminé son caractère, et à la protéine sa forme : les chaînes apolaires se cachent à l'intérieur de la protéine, loin de l'eau ; les chaînes polaires et chargées restent en surface.</p>
@@ -421,12 +469,16 @@ var CHAPITRES = {
 <tr><td>Chargés + (basiques)</td><td>lysine (K), arginine (R), histidine (H)</td><td>chaîne portant une fonction amine (ou apparentée) qui capte un proton</td></tr>
 <tr><td>Chargés − (acides)</td><td>aspartate (D), glutamate (E)</td><td>chaîne portant une deuxième fonction acide carboxylique</td></tr>
 </table></div>
+<p>Les auteurs ne classent pas tous de la même façon ; retiens la logique : chaîne carbonée = hydrophobe ; –OH, –SH ou amide = polaire ; fonction ionisée à pH 7 = chargée. Les segments qui traversent une membrane sont riches en résidus apolaires (leucine, isoleucine, valine).</p>
 <div class="piege"><b>Piège de concours</b>Les codes à une lettre qui ne sont pas l'initiale : <strong>K</strong> lysine, <strong>R</strong> arginine, <strong>D</strong> aspartate, <strong>E</strong> glutamate, <strong>N</strong> asparagine, <strong>Q</strong> glutamine, <strong>F</strong> phénylalanine, <strong>Y</strong> tyrosine, <strong>W</strong> tryptophane.</div>
 <p>Deux cystéines peuvent s'unir par <strong>oxydation</strong> de leurs fonctions thiol : elles forment un <strong>pont disulfure</strong> (–S–S–), qui stabilise la forme de nombreuses protéines (on appelle « cystine » le dimère formé).</p>
+<div class="cle"><b>Idée et exemple : la drépanocytose</b>Une seule chaîne latérale peut tout changer. Dans la drépanocytose, le 6<sup>e</sup> acide aminé de la chaîne β de l'hémoglobine, un <strong>glutamate</strong> (chargé, en surface), est remplacé par une <strong>valine</strong> (apolaire). Quand l'hémoglobine a cédé son O<sub>2</sub>, cette valine hydrophobe colle à une autre molécule : l'hémoglobine forme de longues fibres qui déforment l'hématie en faucille. Les hématies rigides bouchent les petits vaisseaux (crises douloureuses) et sont détruites (anémie).</div>
 
 <h2>4. Les acides aminés essentiels</h2>
 <div class="def"><b>Définition</b>Un acide aminé est <strong>essentiel</strong> (ou indispensable) quand l'organisme ne sait pas le fabriquer, ou pas en quantité suffisante : il doit être apporté par l'alimentation.</div>
 <p>Chez l'humain, ils sont neuf : leucine, thréonine, lysine, tryptophane, phénylalanine, valine, méthionine, isoleucine, et l'histidine. Moyen mnémotechnique classique pour les huit premiers : « <strong>Le Très Lyrique Tristan Fait Vachement Méditer Iseult</strong> » (Leu, Thr, Lys, Trp, Phe, Val, Met, Ile), auquel on ajoute l'histidine.</p>
+<p>D'autres sont <strong>conditionnellement indispensables</strong> : la <strong>tyrosine</strong> est fabriquée à partir de la phénylalanine, la <strong>cystéine</strong> à partir du soufre de la méthionine ; si le précurseur manque ou si l'enzyme est déficiente, il faut les apporter.</p>
+<p>Les protéines animales (viande, œufs, lait) apportent tous les acides aminés indispensables. Les protéines végétales manquent souvent de l'un d'eux, l'acide aminé <strong>limitant</strong> : la <strong>lysine</strong> pour les céréales, la <strong>méthionine</strong> pour les légumineuses. Associer les deux (riz et lentilles, semoule et pois chiches) couvre les besoins.</p>
 
 <h2>5. Les propriétés acido-basiques</h2>
 <p>C'est la partie la plus interrogée. Les fonctions acide et amine captent ou libèrent un proton (H<sup>+</sup>) selon le pH :</p>
@@ -435,6 +487,23 @@ var CHAPITRES = {
 <li>la fonction α-NH<sub>3</sub><sup>+</sup> a un pK<sub>a</sub> d'environ <strong>9 à 10</strong> : en dessous, elle est surtout sous forme NH<sub>3</sub><sup>+</sup>.</li>
 </ul>
 <div class="cle"><b>L'idée à retenir</b>À pH physiologique (≈ 7,4), un acide aminé porte donc à la fois une charge + (NH<sub>3</sub><sup>+</sup>) et une charge − (COO<sup>−</sup>) : c'est un <strong>zwitterion</strong> (ion mixte), de charge nette nulle pour un acide aminé dont la chaîne n'est pas ionisable.</div>
+<h3>L'équation d'Henderson-Hasselbalch</h3>
+<div class="def"><b>Définition</b>Pour un couple acide/base : <strong>pH = pK<sub>a</sub> + log ([base] / [acide])</strong>. La « base » est la forme qui a perdu le proton (COO<sup>−</sup>, NH<sub>2</sub>), l'« acide » celle qui le porte (COOH, NH<sub>3</sub><sup>+</sup>).</div>
+<ul>
+<li>pH = pK<sub>a</sub> : les deux formes sont à égalité (50 / 50) ;</li>
+<li>pH = pK<sub>a</sub> + 1 : dix fois plus de base (≈ 91 %) ; pH = pK<sub>a</sub> + 2 : cent fois plus (≈ 99 %) ;</li>
+<li>pH = pK<sub>a</sub> − 1 : dix fois plus d'acide.</li>
+</ul>
+<p>Exemple : la chaîne de l'histidine (pK<sub>a</sub> ≈ 6) au pH du sang (7,4) : [base]/[acide] = 10<sup>1,4</sup> ≈ 25, donc environ 4 % seulement des chaînes sont protonées (chargées +).</p>
+<h3>La courbe de titrage de la glycine</h3>
+<p>On part de glycine en milieu très acide (forme cationique) et on ajoute peu à peu de la soude :</p>
+<figure><svg viewBox="0 0 340 258" width="340" role="img" aria-label="Courbe de titrage de la glycine par la soude : deux paliers à pKa 2,3 et 9,6, saut au pHi 6,0"><rect x="44" y="173.2" width="200" height="28" fill="var(--m5)" opacity=".13"/><rect x="44" y="71.6" width="200" height="28" fill="var(--m5)" opacity=".13"/><g stroke="var(--doux)" stroke-width="1" stroke-dasharray="3 3" fill="none"><path d="M44 187.2H248"/><path d="M44 136.4H248"/><path d="M44 85.6H248"/></g><path d="M44 20V220H248" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M40 220H44" stroke="currentColor"/><path d="M40 192H44" stroke="currentColor"/><path d="M40 164H44" stroke="currentColor"/><path d="M40 136H44" stroke="currentColor"/><path d="M40 108H44" stroke="currentColor"/><path d="M40 80H44" stroke="currentColor"/><path d="M40 52H44" stroke="currentColor"/><path d="M40 24H44" stroke="currentColor"/><path d="M44 220V224" stroke="currentColor"/><path d="M94 220V224" stroke="currentColor"/><path d="M144 220V224" stroke="currentColor"/><path d="M194 220V224" stroke="currentColor"/><path d="M244 220V224" stroke="currentColor"/><path d="M44 203.4L45 202.9L46 202.4L47 202L48 201.5L49 201L50 200.5L51 200.1L52 199.6L53 199.2L54 198.8L55 198.4L56 197.9L57 197.6L58 197.2L59 196.8L60 196.4L61 196.1L62 195.7L63 195.4L64 195.1L65 194.7L66 194.4L67 194.1L68 193.8L69 193.5L70 193.2L71 192.9L72 192.7L73 192.4L74 192.1L75 191.8L76 191.6L77 191.3L78 191L79 190.8L80 190.5L81 190.3L82 190L83 189.8L84 189.5L85 189.3L86 189L87 188.8L88 188.6L89 188.3L90 188.1L91 187.8L92 187.6L93 187.4L94 187.1L95 186.9L96 186.7L97 186.4L98 186.2L99 185.9L100 185.7L101 185.4L102 185.2L103 184.9L104 184.7L105 184.4L106 184.2L107 183.9L108 183.7L109 183.4L110 183.1L111 182.9L112 182.6L113 182.3L114 182L115 181.7L116 181.4L117 181.1L118 180.8L119 180.5L120 180.2L121 179.8L122 179.5L123 179.1L124 178.8L125 178.4L126 178L127 177.6L128 177.1L129 176.7L130 176.2L131 175.6L132 175.1L133 174.5L134 173.8L135 173.1L136 172.4L137 171.5L138 170.5L139 169.3L140 167.9L141 166.1L142 163.5L143 159.3L144 136.4L145 113.5L146 109.3L147 106.7L148 104.9L149 103.5L150 102.3L151 101.3L152 100.5L153 99.7L154 99L155 98.3L156 97.7L157 97.2L158 96.6L159 96.1L160 95.7L161 95.2L162 94.8L163 94.4L164 94L165 93.7L166 93.3L167 92.9L168 92.6L169 92.3L170 92L171 91.6L172 91.3L173 91L174 90.8L175 90.5L176 90.2L177 89.9L178 89.6L179 89.4L180 89.1L181 88.8L182 88.6L183 88.3L184 88.1L185 87.8L186 87.6L187 87.3L188 87.1L189 86.8L190 86.6L191 86.3L192 86.1L193 85.8L194 85.6L195 85.4L196 85.1L197 84.9L198 84.6L199 84.4L200 84.1L201 83.9L202 83.6L203 83.4L204 83.1L205 82.9L206 82.6L207 82.4L208 82.1L209 81.8L210 81.6L211 81.3L212 81L213 80.7L214 80.5L215 80.2L216 79.9L217 79.6L218 79.2L219 78.9L220 78.6L221 78.3L222 77.9L223 77.5L224 77.2L225 76.8L226 76.4L227 76L228 75.5L229 75.1L230 74.6L231 74.1L232 73.5L233 72.9L234 72.3L235 71.6L236 70.8L237 69.9L238 68.9L239 67.8L240 66.4L241 64.7L242 62.5L243 59.3L244 54.8" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linejoin="round"/><circle cx="94" cy="187.2" r="3.2" fill="var(--m4)"/><circle cx="144" cy="136.4" r="3.2" fill="var(--m4)"/><circle cx="194" cy="85.6" r="3.2" fill="var(--m4)"/><g font-family="system-ui,sans-serif" font-size="11" fill="currentColor"><text x="37" y="224" text-anchor="end">0</text><text x="37" y="196" text-anchor="end">2</text><text x="37" y="168" text-anchor="end">4</text><text x="37" y="140" text-anchor="end">6</text><text x="37" y="112" text-anchor="end">8</text><text x="37" y="84" text-anchor="end">10</text><text x="37" y="56" text-anchor="end">12</text><text x="37" y="28" text-anchor="end">14</text><text x="44" y="236" text-anchor="middle">0</text><text x="94" y="236" text-anchor="middle">0,5</text><text x="144" y="236" text-anchor="middle">1</text><text x="194" y="236" text-anchor="middle">1,5</text><text x="244" y="236" text-anchor="middle">2</text><text x="10" y="14">pH</text><text x="146" y="252" text-anchor="middle" fill="var(--doux)">équivalents de soude ajoutés</text><text x="254" y="89.6" fill="var(--m4)">pKa₂ = 9,6</text><text x="254" y="102.6" fill="var(--doux)">zone tampon</text><text x="254" y="140.4" fill="var(--m4)">pHi ≈ 6,0</text><text x="254" y="191.2" fill="var(--m4)">pKa₁ = 2,3</text><text x="254" y="204.2" fill="var(--doux)">zone tampon</text><text x="52" y="46">H₂N–CH₂–COO⁻</text><text x="153" y="152">⁺H₃N–CH₂–COO⁻</text><text x="153" y="165" fill="var(--doux)">(zwitterion)</text><text x="153" y="213">⁺H₃N–CH₂–COOH</text></g></svg><figcaption>Titrage de la glycine : chaque forme domine dans une bande de pH. Les paliers (zones vertes) sont les zones tampons ; le saut, au pHi.</figcaption></figure>
+<ul>
+<li>premier palier centré sur pK<sub>a1</sub> ≈ 2,3, atteint après 0,5 équivalent de base : la moitié des COOH ont cédé leur proton ;</li>
+<li>à 1 équivalent, saut brusque du pH : toute la glycine est sous forme de zwitterion ; ce point est le <strong>pHi</strong> ;</li>
+<li>second palier centré sur pK<sub>a2</sub> ≈ 9,6 (1,5 équivalent) : les NH<sub>3</sub><sup>+</sup> cèdent leur proton ; à 2 équivalents, toute la glycine est anionique.</li>
+</ul>
+<p>Les paliers, où le pH varie peu malgré l'ajout de base, sont les <strong>zones tampons</strong> (pK<sub>a</sub> ± 1). Un acide aminé à chaîne ionisable a trois pK<sub>a</sub>, donc trois paliers.</p>
 <h3>Le point isoélectrique (pHi)</h3>
 <div class="def"><b>Définition</b>Le <strong>pHi</strong> est le pH auquel la charge nette moyenne de l'acide aminé est nulle. À son pHi, il <strong>ne migre pas</strong> dans un champ électrique.</div>
 <ul>
@@ -444,27 +513,71 @@ var CHAPITRES = {
 </ul>
 <div class="cle"><b>La règle de migration</b>pH du milieu <strong>inférieur</strong> au pHi : la molécule est chargée <strong>+</strong> et migre vers la <strong>cathode</strong> (pôle −). pH <strong>supérieur</strong> au pHi : elle est chargée <strong>−</strong> et migre vers l'<strong>anode</strong> (pôle +). C'est le principe de l'électrophorèse.</div>
 <p>pK<sub>a</sub> approximatifs des chaînes latérales ionisables : aspartate ≈ 3,9 ; glutamate ≈ 4,1 ; <strong>histidine ≈ 6</strong> ; cystéine ≈ 8,3 ; tyrosine ≈ 10 ; lysine ≈ 10,5 ; arginine ≈ 12,5. L'histidine est la seule dont la chaîne a un pK<sub>a</sub> proche du pH physiologique : elle peut capter ou céder un proton dans la cellule, ce qui en fait un acteur fréquent des sites actifs d'enzymes.</p>
+<div class="piege"><b>Piège de concours</b>Le pouvoir tampon est <strong>minimal au pHi</strong>, là où le pH saute, et maximal à chaque pK<sub>a</sub>. Un acide aminé tamponne autour de ses pK<sub>a</sub>, pas autour de son pHi.</div>
+<h3>Le pouvoir tampon dans l'organisme</h3>
+<p>Le pH du sang est maintenu entre <strong>7,35 et 7,45</strong> (en dessous : acidose ; au-dessus : alcalose). Un tampon n'est efficace que si son pK<sub>a</sub> est proche du pH à défendre : les fonctions α (≈ 2 et ≈ 9,6) en sont loin, et seule la chaîne de l'histidine convient.</p>
+<div class="cle"><b>Idée et exemple : l'hémoglobine, tampon du sang</b>Une molécule d'hémoglobine compte 38 histidines. Dans l'hématie, elles captent une grande partie des protons libérés quand le CO<sub>2</sub> des tissus devient du bicarbonate, ce qui limite l'acidification du sang veineux. Le principal tampon du plasma reste toutefois le couple CO<sub>2</sub>/bicarbonate.</div>
 
 <details><summary>Méthode : déterminer la charge d'un acide aminé à un pH donné</summary>
 <p>Pour chaque fonction ionisable, comparer le pH à son pK<sub>a</sub> : si pH &lt; pK<sub>a</sub>, la forme protonée domine (COOH neutre, NH<sub>3</sub><sup>+</sup> chargé +) ; si pH &gt; pK<sub>a</sub>, la forme déprotonée domine (COO<sup>−</sup> chargé −, NH<sub>2</sub> neutre). On additionne ensuite les charges.</p>
 <p>Exemple, la lysine (pK<sub>a</sub> 2,2 ; 9,0 ; 10,5) à pH 7 : COO<sup>−</sup> (−1), α-NH<sub>3</sub><sup>+</sup> (+1), chaîne NH<sub>3</sub><sup>+</sup> (+1). Charge nette ≈ <strong>+1</strong> : elle migre vers la cathode.</p>
+<p>Exemple d'électrophorèse à pH 6 d'un mélange aspartate (pHi ≈ 3), glycine (pHi ≈ 6) et lysine (pHi ≈ 9,7) : l'aspartate, chargé −, migre vers l'anode ; la glycine reste au point de dépôt ; la lysine, chargée +, migre vers la cathode.</p>
 </details>
 
-<h2>6. Propriétés et dérivés utiles</h2>
+<h2>6. Propriétés physiques</h2>
 <ul>
-<li><strong>Absorption à 280 nm</strong> : les cycles aromatiques du tryptophane et de la tyrosine absorbent les ultraviolets vers 280 nm. On s'en sert pour doser les protéines dans une solution.</li>
-<li><strong>Précurseurs de molécules de signalisation</strong> : le tryptophane donne la sérotonine ; la tyrosine les catécholamines (dopamine, adrénaline) et les hormones thyroïdiennes ; l'histidine l'histamine ; le glutamate le GABA.</li>
+<li><strong>Solides cristallins et solubles dans l'eau</strong> : sous forme de zwitterions, les acides aminés forment des cristaux tenus par des liaisons ioniques, comme un sel. Ils fondent en se décomposant au-dessus de 200 °C et se dissolvent bien dans l'eau, mal dans les solvants apolaires.</li>
+<li><strong>Absorption à 280 nm</strong> : les cycles aromatiques du tryptophane et de la tyrosine absorbent les ultraviolets vers 280 nm. Selon la loi de Beer-Lambert (A = ε × l × c), l'absorbance est proportionnelle à la concentration : on s'en sert pour doser les protéines dans une solution.</li>
 </ul>
-<div class="cle"><b>Bilan</b>Vingt acides aminés standard, tous de série L, tous chiraux sauf la glycine. La chaîne latérale les classe en apolaires, aromatiques, polaires, basiques, acides. À pH 7,4, ce sont des zwitterions ; leur charge dépend de la position du pH par rapport à leur pHi.</div>
 
+<h2>7. Des acides aminés modifiés dans les protéines</h2>
+<p>Après la traduction, des enzymes modifient certains résidus : ce sont des <strong>modifications post-traductionnelles</strong>, qui élargissent beaucoup le répertoire chimique des protéines.</p>
+<div class="defile"><table>
+<tr><th>Modification</th><th>Résidu</th><th>Exemple</th></tr>
+<tr><td>Hydroxylation</td><td>proline → hydroxyproline ; lysine → hydroxylysine</td><td>collagène (enzyme qui exige la vitamine C)</td></tr>
+<tr><td>Phosphorylation</td><td>sérine, thréonine, tyrosine (sur leur –OH)</td><td>activation ou inhibition d'enzymes et de récepteurs</td></tr>
+<tr><td>γ-carboxylation</td><td>glutamate</td><td>facteurs de coagulation II, VII, IX, X (vitamine K)</td></tr>
+<tr><td>Glycosylation</td><td>asparagine, sérine, thréonine</td><td>protéines sécrétées et membranaires</td></tr>
+<tr><td>Méthylation, acétylation</td><td>lysine (les deux), arginine (méthylation)</td><td>histones : contrôle de l'expression des gènes</td></tr>
+</table></div>
+<div class="cle"><b>Idée et exemple : le scorbut</b>L'enzyme qui hydroxyle la proline du collagène a besoin de <strong>vitamine C</strong>. Sans hydroxyproline, le collagène est instable : gencives qui saignent, dents qui se déchaussent, hématomes, plaies qui cicatrisent mal. C'était la maladie des marins privés de fruits frais ; on la revoit chez des personnes très dénutries.</div>
+<div class="cle"><b>Idée et exemple : les kinases, cibles de médicaments</b>Un phosphate ajoute deux charges négatives : la protéine change de forme et d'activité. Les <strong>kinases</strong> posent ces phosphates, les <strong>phosphatases</strong> les retirent. Dans la leucémie myéloïde chronique, une kinase anormale, BCR-ABL, phosphoryle en permanence des tyrosines et fait proliférer les cellules ; l'<strong>imatinib</strong>, qui la bloque, a transformé le pronostic de cette leucémie.</div>
+<p>Les <strong>antivitamines K</strong> (warfarine) empêchent la γ-carboxylation : les facteurs de coagulation sont fabriqués mais ne fixent plus le calcium, et restent inactifs. C'est le principe de ces anticoagulants.</p>
+
+<h2>8. Les précurseurs de molécules actives</h2>
+<div class="defile"><table>
+<tr><th>Acide aminé</th><th>Molécule produite</th><th>Rôle</th></tr>
+<tr><td>Tryptophane</td><td>sérotonine, mélatonine</td><td>neurotransmetteur ; rythme veille-sommeil</td></tr>
+<tr><td>Tyrosine</td><td>dopamine, noradrénaline, adrénaline ; hormones thyroïdiennes ; mélanine</td><td>neurotransmetteurs, hormones, pigment</td></tr>
+<tr><td>Histidine</td><td>histamine</td><td>allergie, sécrétion acide de l'estomac</td></tr>
+<tr><td>Glutamate</td><td>GABA</td><td>principal neurotransmetteur inhibiteur du cerveau</td></tr>
+<tr><td>Arginine</td><td>monoxyde d'azote (NO)</td><td>dilatation des vaisseaux</td></tr>
+<tr><td>Glycine</td><td>hème</td><td>hémoglobine</td></tr>
+</table></div>
+<p>Beaucoup de ces conversions passent par une <strong>décarboxylation</strong> (perte du COOH sous forme de CO<sub>2</sub>), qui transforme l'acide aminé en amine : histidine → histamine, glutamate → GABA.</p>
+<div class="cle"><b>Idée et exemple : la L-DOPA dans la maladie de Parkinson</b>La maladie détruit les neurones qui libèrent la dopamine. Donner de la dopamine ne sert à rien : elle ne passe pas du sang au cerveau. On donne son précurseur, la <strong>L-DOPA</strong>, acide aminé dérivé de la tyrosine, qui traverse grâce à un transporteur des acides aminés puis est décarboxylée en dopamine dans le cerveau. On l'associe à un inhibiteur de la décarboxylase qui ne pénètre pas dans le cerveau (carbidopa, bensérazide), pour qu'elle ne soit pas convertie trop tôt.</div>
+
+<h2>9. Ouverture : le devenir des acides aminés</h2>
+<p>L'organisme ne stocke pas les acides aminés : ceux qui ne servent pas à fabriquer protéines ou dérivés sont dégradés, surtout dans le foie, en deux parties.</p>
+<ul>
+<li><strong>Le groupement amine</strong> est d'abord transféré sur l'α-cétoglutarate, qui devient du glutamate : c'est la <strong>transamination</strong>, catalysée par les <strong>aminotransférases</strong> (transaminases), dont la coenzyme dérive de la vitamine B6. Le glutamate libère ensuite son azote sous forme d'ammoniac (NH<sub>4</sub><sup>+</sup>), toxique pour le cerveau, que le foie transforme en <strong>urée</strong>, éliminée dans les urines.</li>
+<li><strong>Le squelette carboné</strong> rejoint le métabolisme énergétique : il donne du glucose (acides aminés <strong>glucoformateurs</strong>, comme l'alanine) ou des corps cétoniques (<strong>cétoformateurs</strong> ; la leucine et la lysine sont les seuls à l'être exclusivement).</li>
+</ul>
+<p>Les transaminases <strong>ALAT</strong> et <strong>ASAT</strong>, abondantes dans les hépatocytes, passent dans le sang quand ces cellules meurent : leur dosage est le marqueur classique d'une hépatite.</p>
+<div class="cle"><b>Idée et exemple : la phénylcétonurie</b>Dans cette maladie autosomique récessive (environ une naissance sur 10 000 à 20 000 selon les pays), l'enzyme qui transforme la phénylalanine en tyrosine est déficiente. La phénylalanine s'accumule et, sans traitement, abîme le cerveau en développement. En France, tous les nouveau-nés sont dépistés depuis 1972 par une goutte de sang prélevée au talon vers le 3<sup>e</sup> jour. Un régime pauvre en phénylalanine, commencé dans les premières semaines, permet un développement normal ; la tyrosine devient alors indispensable. D'où la mention « contient une source de phénylalanine » sur les produits à l'aspartame.</div>
+
+<div class="cle"><b>Bilan</b>Vingt acides aminés standard, tous de série L, tous chiraux sauf la glycine, classés par leur chaîne latérale ; neuf sont indispensables. À pH 7,4, ce sont des zwitterions ; leur charge dépend du pH (Henderson-Hasselbalch, titrage) et fixe leur migration par rapport au pHi. Leurs résidus peuvent être modifiés ; ils sont précurseurs de molécules actives ; dégradés, ils donnent de l'urée et des squelettes carbonés.</div>
+
+<details><summary>Hors programme : révéler et séparer les acides aminés</summary>
+<div class="hp"><b>Hors programme</b>La <strong>ninhydrine</strong> réagit à chaud avec la fonction amine α libre : coloration violette pour tous les acides aminés, jaune pour la proline (amine secondaire). Elle révèle les acides aminés après une chromatographie. À l'hôpital, la chromatographie des acides aminés du plasma permet de diagnostiquer et de suivre les maladies héréditaires de leur métabolisme.</div>
+</details>
 <details><summary>Hors programme : les 21<sup>e</sup> et 22<sup>e</sup> acides aminés</summary>
 <div class="hp"><b>Hors programme</b>La <strong>sélénocystéine</strong> (une cystéine dont le soufre est remplacé par du sélénium) est incorporée dans quelques protéines humaines grâce à un codon UGA détourné. La <strong>pyrrolysine</strong> n'existe que chez certains microorganismes.</div>
 </details>
-<p class="src">Contenu original rédigé pour ce site, niveau début de première année ; valeurs de pK<sub>a</sub> arrondies d'après Lehninger, <em>Principes de biochimie</em>. Il ne remplace pas le cours de la faculté.</p>
+<p class="src">Fiche originale rédigée pour ce site, niveau début de première année, vérifiée sur les ouvrages de référence (Lehninger, <em>Principes de biochimie</em> ; valeurs de pK<sub>a</sub> arrondies). Elle ne remplace pas le cours de la faculté.</p>
 ` },
 
- ana1: { mat: "ana", titre: "Le langage de l'anatomie : position, plans, axes et mouvements", html: `
-<p class="lead">L'anatomie a sa langue. Avant d'apprendre un seul os, il faut savoir décrire sans ambiguïté où se trouve une structure et comment bouge une articulation. Tout le reste de l'anatomie, et l'imagerie médicale, utilisent ce vocabulaire.</p>
+ ana1: { mat: "ana", titre: "Le langage de l'anatomie : position, plans, axes et mouvements", html: `<p class="lead">L'anatomie a sa langue. Avant d'apprendre un seul os, il faut savoir décrire sans ambiguïté où se trouve une structure et comment bouge une articulation, lire une coupe d'imagerie et se repérer sur le corps d'un patient. Tout le reste de l'anatomie, l'examen clinique et l'imagerie médicale utilisent ce vocabulaire.</p>
 
 <h2>1. La position anatomique de référence</h2>
 <div class="def"><b>Définition</b>Toute description se fait sur un sujet en <strong>position anatomique</strong> : debout, face à l'observateur, regard horizontal, membres supérieurs le long du corps, <strong>paumes tournées vers l'avant</strong>, membres inférieurs joints, pieds parallèles.</div>
@@ -476,9 +589,10 @@ var CHAPITRES = {
 <rect x="95" y="118" width="130" height="16" fill="var(--m2)" opacity=".28"/>
 <g font-family="system-ui,sans-serif" font-size="12" fill="currentColor">
 <text x="182" y="22">plan sagittal médian</text><text x="182" y="36" fill="var(--doux)">(droite / gauche)</text>
-<text x="232" y="129">plan transversal</text><text x="232" y="143" fill="var(--doux)">(haut / bas)</text>
+<text x="229" y="129">plan transversal</text><text x="229" y="143" fill="var(--doux)">(haut / bas)</text>
 <text x="8" y="200">plan frontal :</text><text x="8" y="214" fill="var(--doux)">celui de la feuille</text><text x="8" y="228" fill="var(--doux)">(avant / arrière)</text></g>
 </svg><figcaption>Sujet vu de face : le plan frontal est parallèle à la feuille.</figcaption></figure>
+<p>Le patient réel est souvent couché : en <strong>décubitus dorsal</strong> (sur le dos), <strong>ventral</strong> (sur le ventre) ou <strong>latéral</strong> droit ou gauche (sur le côté). Les termes de direction restent pourtant ceux de la position anatomique : chez un patient couché sur le dos, le sternum reste « antérieur », même s'il regarde le plafond. Exemple : la position latérale de sécurité (PLS) est un décubitus latéral qui protège les voies aériennes d'une victime inconsciente qui respire.</p>
 
 <h2>2. Les plans et les axes</h2>
 <div class="defile"><table>
@@ -487,10 +601,29 @@ var CHAPITRES = {
 <tr><td><b>Frontal</b> (ou coronal)</td><td>vertical, parallèle au front</td><td>une partie antérieure et une partie postérieure</td></tr>
 <tr><td><b>Transversal</b> (ou horizontal, axial)</td><td>perpendiculaire au grand axe du corps</td><td>une partie supérieure et une partie inférieure</td></tr>
 </table></div>
-<p>À chaque plan correspond un axe qui lui est perpendiculaire : l'axe <strong>vertical</strong> (ou longitudinal), l'axe <strong>sagittal</strong> (antéro-postérieur) et l'axe <strong>transversal</strong> (de droite à gauche). Un mouvement se fait <strong>dans un plan</strong>, <strong>autour de l'axe perpendiculaire</strong> à ce plan.</p>
-<div class="piege"><b>Piège de concours (imagerie)</b>Les coupes axiales de scanner et d'IRM sont regardées <strong>par les pieds</strong> du patient couché : le côté droit du patient apparaît à <strong>gauche de l'image</strong>. Une coupe « coronale » est une coupe frontale, pas une coupe transversale.</div>
+<p>À chaque plan correspond un axe qui lui est perpendiculaire : l'axe <strong>vertical</strong> (ou longitudinal), l'axe <strong>sagittal</strong> (antéro-postérieur) et l'axe <strong>transversal</strong> (de droite à gauche). Un mouvement se fait <strong>dans un plan</strong>, <strong>autour de l'axe perpendiculaire</strong> à ce plan. Exemple : lever le bras devant soi se fait dans le plan sagittal, autour d'un axe transversal qui traverse l'épaule ; l'écarter sur le côté se fait dans le plan frontal, autour d'un axe sagittal.</p>
 
-<h2>3. Les termes de direction</h2>
+<h2>3. Les plans en imagerie</h2>
+<p>L'imagerie découpe le corps selon les mêmes plans : coupes <strong>axiales</strong> (transversales), <strong>coronales</strong> (frontales) et <strong>sagittales</strong>. Chaque technique a ses conventions et ses mots pour dire ce qui est clair ou sombre.</p>
+<ul>
+<li><strong>Radiographie</strong> : les rayons X traversent le corps et l'image est une <strong>projection</strong> où toutes les épaisseurs se superposent ; on fait donc deux <strong>incidences</strong> perpendiculaires, <strong>face</strong> et <strong>profil</strong>. L'os, qui arrête les rayons, est blanc (<strong>radio-opaque</strong>) ; l'air est noir (<strong>radio-transparent</strong>). La radiographie du thorax de face se fait en incidence postéro-antérieure (rayons entrant par le dos, poitrine contre le détecteur), ce qui agrandit moins le cœur.</li>
+<li><strong>Scanner</strong> (tomodensitométrie) : des rayons X tournent autour du patient et l'ordinateur calcule des coupes axiales, puis reconstruit les coupes coronales et sagittales. Les densités sont mesurées en <strong>unités Hounsfield</strong> : eau 0, air −1 000, graisse ≈ −100, os de plusieurs centaines à plus de 1 000.</li>
+<li><strong>IRM</strong> : pas de rayons X, mais un champ magnétique intense et des ondes radio qui font résonner les noyaux d'hydrogène (eau, graisses). C'est le meilleur examen des tissus mous (cerveau, moelle épinière, ligaments, ménisques). Les liquides sont sombres en <strong>T1</strong> et clairs en <strong>T2</strong>. Certains implants métalliques la contre-indiquent.</li>
+<li><strong>Échographie</strong> : une sonde émet des ultrasons et capte leurs échos, en temps réel et sans rayonnement (examen de la grossesse). Les liquides (vessie pleine, vésicule biliaire, kyste) ne renvoient pas d'écho : ils sont <strong>anéchogènes</strong>, noirs. Un calcul renvoie presque tout : il est blanc et projette derrière lui un <strong>cône d'ombre</strong>.</li>
+</ul>
+<div class="defile"><table>
+<tr><th>Examen</th><th>Ce qui est clair</th><th>Ce qui est sombre</th></tr>
+<tr><td>Radiographie</td><td>radio-opaque</td><td>radio-transparent</td></tr>
+<tr><td>Scanner</td><td>hyperdense</td><td>hypodense</td></tr>
+<tr><td>IRM</td><td>hypersignal</td><td>hyposignal</td></tr>
+<tr><td>Échographie</td><td>hyperéchogène</td><td>hypoéchogène ; anéchogène (aucun écho)</td></tr>
+</table></div>
+<p>Convention : une coupe axiale de scanner ou d'IRM est regardée <strong>depuis les pieds</strong> du patient couché sur le dos, l'avant en haut. La droite du patient est donc à <strong>gauche de l'image</strong>, comme sur une radiographie de face, qui se lit comme si l'on faisait face au patient.</p>
+<figure><svg viewBox="0 0 340 224" width="340" role="img" aria-label="Coupe axiale schématique de l'abdomen supérieur vue depuis les pieds : le foie, à droite du patient, apparaît à gauche de l'image"><ellipse cx="170" cy="112" rx="92" ry="74" fill="var(--accent)" fill-opacity=".05" stroke="currentColor" stroke-width="1.8"/><path d="M150 50C126 50 106 62 96 84C88 104 92 128 108 140C122 148 136 140 146 124C152 110 156 82 150 50Z" fill="var(--m2)" fill-opacity=".25" stroke="currentColor" stroke-width="1.3"/><path d="M180 60C210 50 240 62 244 84C246 100 228 104 210 98C196 94 182 84 180 60Z" fill="var(--or)" fill-opacity=".18" stroke="currentColor" stroke-width="1.3"/><path d="M240 104C254 112 254 140 238 156C244 138 244 120 240 104Z" fill="var(--m4)" fill-opacity=".28" stroke="currentColor" stroke-width="1.3"/><ellipse cx="128" cy="156" rx="15" ry="11" transform="rotate(-25 128 156)" fill="var(--m3)" fill-opacity=".22" stroke="currentColor" stroke-width="1.3"/><ellipse cx="212" cy="156" rx="15" ry="11" transform="rotate(25 212 156)" fill="var(--m3)" fill-opacity=".22" stroke="currentColor" stroke-width="1.3"/><circle cx="170" cy="150" r="16" fill="var(--doux)" fill-opacity=".25" stroke="currentColor" stroke-width="1.4"/><path d="M158 162L163 174L170 184L177 174L182 162" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="182" cy="124" r="7" fill="var(--m4)" fill-opacity=".45" stroke="currentColor" stroke-width="1.2"/><ellipse cx="152" cy="124" rx="8" ry="6" fill="var(--accent)" fill-opacity=".4" stroke="currentColor" stroke-width="1.2"/><g stroke="currentColor" stroke-width="1" opacity=".55" fill="none"><path d="M74 74L104 80"/><path d="M74 120L144 124"/><path d="M74 170L118 162"/><path d="M266 70L238 76"/><path d="M266 98L189 121"/><path d="M266 132L250 132"/><path d="M266 172L222 162"/><path d="M170 192L170 186"/></g><g font-family="system-ui,sans-serif" font-size="11" fill="currentColor"><text x="70" y="78" text-anchor="end">foie</text><text x="70" y="118" text-anchor="end">veine cave</text><text x="70" y="130" text-anchor="end">inférieure</text><text x="70" y="174" text-anchor="end">rein droit</text><text x="270" y="74">estomac</text><text x="270" y="102">aorte</text><text x="270" y="136">rate</text><text x="270" y="176">rein gauche</text><text x="170" y="206" text-anchor="middle">vertèbre</text></g><g font-family="system-ui,sans-serif" font-size="11" fill="var(--doux)"><text x="4" y="16">droite du patient</text><text x="170" y="30" text-anchor="middle">avant</text><text x="336" y="16" text-anchor="end">gauche du patient</text></g></svg><figcaption>Coupe axiale schématique de l'abdomen supérieur, vue depuis les pieds, l'avant en haut : le foie, à droite du patient, est à gauche de l'image ; l'aorte est juste en avant et à gauche de la vertèbre.</figcaption></figure>
+<div class="piege"><b>Piège de concours (imagerie)</b>Sur une coupe axiale ou une radiographie de face, le côté droit du patient apparaît à <strong>gauche de l'image</strong>. Une coupe « coronale » est une coupe frontale, pas une coupe transversale. Et chaque mot a son examen : « hyperdense » ne se dit qu'au scanner, « hypersignal » qu'en IRM.</div>
+<div class="cle"><b>Idée et exemple : choisir le bon examen</b>Devant une suspicion d'appendicite chez un enfant ou une femme jeune, on commence par l'échographie, sans rayons X ; chez l'adulte, le scanner est plus performant. Devant une suspicion de lésion d'un ménisque, c'est l'IRM, car le ménisque est un tissu mou, invisible en radiographie. Devant une fracture, la radiographie de face et de profil suffit le plus souvent.</div>
+
+<h2>4. Les termes de direction</h2>
 <div class="defile"><table>
 <tr><th>Termes</th><th>Sens</th><th>Exemple</th></tr>
 <tr><td>Supérieur (crânial) / inférieur (caudal)</td><td>vers la tête / vers les pieds</td><td>le nez est supérieur à la bouche</td></tr>
@@ -503,8 +636,11 @@ var CHAPITRES = {
 </table></div>
 <p>Pour la main, on parle de face <strong>palmaire</strong> (la paume, antérieure en position anatomique) et de face <strong>dorsale</strong> ; pour le pied, de face <strong>plantaire</strong> et de face <strong>dorsale</strong> (le dessus du pied).</p>
 <div class="piege"><b>Piège de concours</b>Dans l'ancienne nomenclature française, « interne » et « externe » voulaient dire « médial » et « latéral ». Aujourd'hui, interne / externe sont réservés aux cavités et aux organes creux.</div>
+<h3>Les termes propres aux membres</h3>
+<p>À l'avant-bras et à la main, <strong>radial</strong> = latéral (côté du pouce et du radius) et <strong>ulnaire</strong> = médial (côté de l'auriculaire et de l'ulna). À la jambe et au pied, <strong>tibial</strong> = médial et <strong>fibulaire</strong> = latéral. Les doigts sont numérotés de <strong>I à V</strong> à partir du pouce, les orteils de I (le gros orteil, ou hallux) à V.</p>
+<p>Pour l'axe d'un membre, on parle de <strong>valgus</strong> quand le segment distal s'écarte de l'axe du corps et de <strong>varus</strong> quand il s'en rapproche. Le <em>genu valgum</em> donne des genoux qui se touchent et des chevilles écartées (« genoux en X ») ; le <em>genu varum</em>, des jambes arquées. L'<em>hallux valgus</em> est la déviation du gros orteil vers les autres orteils, avec une saillie en dedans (l'« oignon »).</p>
 
-<h2>4. Les mouvements</h2>
+<h2>5. Les mouvements</h2>
 <div class="defile"><table>
 <tr><th>Mouvement</th><th>Plan</th><th>Définition</th></tr>
 <tr><td><b>Flexion / extension</b></td><td>sagittal (autour d'un axe transversal)</td><td>la flexion plie l'articulation et rapproche en général les segments par l'avant ; l'extension la déplie</td></tr>
@@ -519,27 +655,80 @@ var CHAPITRES = {
 <li><strong>inversion / éversion</strong> du pied : la plante se tourne vers le dedans / vers le dehors ;</li>
 <li><strong>opposition</strong> du pouce : la pulpe du pouce vient au contact de celle des autres doigts.</li>
 </ul>
+<h3>Articulation par articulation</h3>
+<div class="defile"><table>
+<tr><th>Région</th><th>Mouvements</th><th>À retenir</th></tr>
+<tr><td>Épaule</td><td>flexion (antépulsion), extension (rétropulsion), abduction, adduction, rotations médiale et latérale, circumduction</td><td>l'articulation la plus mobile du corps ; l'abduction complète (≈ 180°) exige que la scapula tourne aussi</td></tr>
+<tr><td>Coude et avant-bras</td><td>flexion, extension ; pronation, supination</td><td>pronation et supination : le radius tourne autour de l'ulna</td></tr>
+<tr><td>Poignet</td><td>flexion, extension ; inclinaisons radiale (abduction) et ulnaire (adduction)</td><td></td></tr>
+<tr><td>Hanche</td><td>les mêmes que l'épaule</td><td>plus stable et moins mobile : extension de 10 à 20° seulement</td></tr>
+<tr><td>Genou</td><td>flexion, extension ; faible rotation, genou fléchi</td><td>la flexion amène le mollet contre la cuisse, par l'arrière</td></tr>
+<tr><td>Colonne vertébrale</td><td>flexion, extension, inclinaison latérale, rotation</td><td>le cou est la région la plus mobile ; la région lombaire tourne peu</td></tr>
+</table></div>
+<div class="piege"><b>Piège de concours</b>Au genou, la flexion rapproche les faces <strong>postérieures</strong> des segments : la règle « la flexion rapproche par l'avant » s'inverse, car le membre inférieur a tourné pendant le développement de l'embryon. Et pour valgus / varus, on regarde le segment <strong>distal</strong> : dans le <em>genu valgum</em>, c'est la jambe qui part en dehors.</div>
+<p>Vue de profil, la colonne présente quatre courbures : <strong>lordoses</strong> cervicale et lombaire (concaves en arrière), <strong>cyphoses</strong> thoracique et sacrée (concaves en avant). Une <strong>scoliose</strong> est une déviation latérale avec rotation des vertèbres.</p>
+<div class="cle"><b>Idée et exemple : la fracture du col du fémur</b>Chez une personne âgée qui a chuté, un membre inférieur <strong>raccourci</strong> et en <strong>rotation latérale</strong> (le pied tombe en dehors) évoque d'emblée une fracture du col du fémur. À l'inverse, la luxation postérieure de la hanche (genou projeté contre le tableau de bord) place le membre en flexion, adduction et rotation médiale. Nommer la position, c'est déjà orienter le diagnostic.</div>
 
-<h2>5. Les grandes régions et les cavités</h2>
-<p>Le corps se divise en tête, cou, tronc (thorax, abdomen, pelvis) et membres. Le tronc contient deux grandes cavités séparées par le <strong>diaphragme</strong> :</p>
+<h2>6. Les régions et les cavités du corps</h2>
+<p>Le corps se divise en tête, cou, tronc (thorax, abdomen, pelvis) et membres. Chaque région a souvent un adjectif latin, qu'on retrouve dans le nom des muscles, des vaisseaux et des nerfs.</p>
+<div class="defile"><table>
+<tr><th>Membre supérieur</th><th>Membre inférieur</th></tr>
+<tr><td>épaule ; aisselle (région axillaire)</td><td>hanche ; fesse (région glutéale) ; aine (région inguinale)</td></tr>
+<tr><td>bras (brachial)</td><td>cuisse (fémoral)</td></tr>
+<tr><td>coude : pli du coude en avant</td><td>genou : creux poplité en arrière</td></tr>
+<tr><td>avant-bras (antébrachial)</td><td>jambe ; mollet (sural)</td></tr>
+<tr><td>poignet (carpien) ; main : paume, dos, doigts</td><td>cheville ; pied : plante, dos, orteils</td></tr>
+</table></div>
+<div class="cle"><b>Idée et exemple : piquer au bon endroit</b>La prise de sang se fait le plus souvent au <strong>pli du coude</strong>, où les veines superficielles sont faciles à voir ; plus profondément et plutôt du côté médial passent l'artère brachiale et le nerf médian, à ne pas atteindre. Une injection intramusculaire dans la fesse se fait dans le <strong>quadrant supéro-latéral</strong>, loin du nerf ischiatique (anciennement nerf sciatique), qui descend dans la partie inféro-médiale de la fesse.</div>
+<p>Le tronc contient deux grandes cavités séparées par le <strong>diaphragme</strong> :</p>
 <ul>
 <li>la <strong>cavité thoracique</strong>, avec les deux cavités pleurales (les poumons) et, entre elles, le <strong>médiastin</strong>, qui contient le cœur, l'œsophage, la trachée et les gros vaisseaux ;</li>
 <li>la <strong>cavité abdomino-pelvienne</strong>, où l'abdomen se prolonge sans séparation par la cavité pelvienne (vessie, rectum, organes génitaux internes).</li>
 </ul>
-<h3>Les neuf régions de l'abdomen</h3>
-<p>Deux lignes verticales et deux lignes horizontales découpent la paroi abdominale en neuf régions, très utilisées pour décrire une douleur :</p>
+<p>Poumons, cœur et la plupart des organes digestifs sont entourés d'une <strong>séreuse</strong> à deux feuillets : un feuillet <strong>pariétal</strong> qui tapisse la paroi, un feuillet <strong>viscéral</strong> collé à l'organe, et entre eux une cavité virtuelle, avec un film de liquide qui permet le glissement. Ce sont la <strong>plèvre</strong>, le <strong>péricarde</strong> séreux et le <strong>péritoine</strong>. La cavité devient réelle en cas de maladie : de l'air entre les deux feuillets de la plèvre, c'est un pneumothorax. Les organes situés derrière le péritoine (reins, pancréas, aorte) sont dits <strong>rétropéritonéaux</strong>.</p>
+
+<h2>7. L'abdomen et l'examen clinique</h2>
+<p>Deux lignes verticales (les lignes médioclaviculaires prolongées vers le milieu du pli de l'aine) et deux lignes horizontales (sous le rebord des côtes et par les crêtes iliaques) découpent la paroi abdominale en neuf régions, très utilisées pour décrire une douleur.</p>
+<figure><svg viewBox="0 0 340 306" width="340" role="img" aria-label="Les neuf régions de l'abdomen, vues de face, avec le point de McBurney"><path d="M48 30C38 92 46 160 40 256L170 298L300 256C294 160 302 92 292 30" fill="var(--accent)" fill-opacity=".06" stroke="currentColor" stroke-width="1.8"/><path d="M42 110L125 80L170 46L215 80L298 110" fill="none" stroke="var(--doux)" stroke-width="1.6"/><g stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="5 4" fill="none"><path d="M125 34V282"/><path d="M215 34V282"/><path d="M42 110H298"/><path d="M41 196H299"/></g><circle cx="170" cy="165" r="4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M40 222L170 165" stroke="var(--m4)" stroke-width="1.2" stroke-dasharray="2 3" fill="none"/><path d="M79.8 199.5l7 7M86.8 199.5l-7 7" stroke="var(--m4)" stroke-width="2"/><circle cx="40" cy="222" r="2.4" fill="var(--m4)"/><g font-family="system-ui,sans-serif" font-size="11" fill="currentColor" text-anchor="middle"><text x="83" y="58">hypochondre</text><text x="83" y="71">droit</text><text x="170" y="99">épigastre</text><text x="257" y="58">hypochondre</text><text x="257" y="71">gauche</text><text x="83" y="150">flanc</text><text x="83" y="163">droit</text><text x="170" y="136">région</text><text x="170" y="149">ombilicale</text><text x="257" y="150">flanc</text><text x="257" y="163">gauche</text><text x="84" y="236">fosse iliaque</text><text x="84" y="249">droite</text><text x="170" y="238">hypogastre</text><text x="256" y="236">fosse iliaque</text><text x="256" y="249">gauche</text></g><g font-family="system-ui,sans-serif" font-size="11" fill="var(--doux)"><text x="4" y="16">droite du patient</text><text x="336" y="16" text-anchor="end">gauche du patient</text></g></svg><figcaption>Paroi abdominale vue de face (la droite du patient est à gauche). Trait gris : rebord des côtes. Croix rouge : point de McBurney, sur la ligne qui joint l'épine iliaque antéro-supérieure (point rouge) à l'ombilic.</figcaption></figure>
 <div class="defile"><table>
-<tr><td>hypochondre droit<br><span class="note">(foie, vésicule biliaire)</span></td><td>épigastre<br><span class="note">(estomac)</span></td><td>hypochondre gauche<br><span class="note">(rate)</span></td></tr>
-<tr><td>flanc droit</td><td>région ombilicale</td><td>flanc gauche</td></tr>
-<tr><td>fosse iliaque droite<br><span class="note">(appendice : douleur de l'appendicite)</span></td><td>hypogastre<br><span class="note">(vessie)</span></td><td>fosse iliaque gauche</td></tr>
+<tr><th>Région</th><th>Organes en regard</th><th>Douleur évocatrice (exemples)</th></tr>
+<tr><td>Hypochondre droit</td><td>foie, vésicule biliaire</td><td>colique hépatique (calcul biliaire)</td></tr>
+<tr><td>Épigastre</td><td>estomac ; pancréas en profondeur</td><td>ulcère, pancréatite ; parfois un infarctus du myocarde</td></tr>
+<tr><td>Hypochondre gauche</td><td>rate</td><td>rupture de rate après un traumatisme</td></tr>
+<tr><td>Flancs</td><td>côlon ; reins en arrière</td><td>colique néphrétique (calcul urinaire), irradiant vers l'aine</td></tr>
+<tr><td>Région ombilicale</td><td>intestin grêle</td><td>début d'appendicite, occlusion</td></tr>
+<tr><td>Fosse iliaque droite</td><td>cæcum, appendice ; ovaire droit</td><td>appendicite ; chez la femme, grossesse extra-utérine</td></tr>
+<tr><td>Hypogastre</td><td>vessie, utérus</td><td>rétention d'urine, cystite</td></tr>
+<tr><td>Fosse iliaque gauche</td><td>côlon sigmoïde ; ovaire gauche</td><td>sigmoïdite de la personne âgée</td></tr>
 </table></div>
-<p class="note">Rappel : la droite est celle du patient. Sur le tableau, vu de face, l'hypochondre droit est donc à gauche.</p>
+<p>En urgence, on utilise souvent quatre <strong>quadrants</strong>, délimités par la ligne médiane et une ligne horizontale passant par l'ombilic. Repère classique de l'appendicite : le <strong>point de McBurney</strong>, à l'union du tiers latéral et des deux tiers médiaux de la ligne qui joint l'épine iliaque antéro-supérieure à l'ombilic.</p>
+<div class="cle"><b>Idée et exemple : la douleur projetée</b>L'appendicite commence souvent par une douleur mal localisée autour de l'ombilic, qui se fixe en quelques heures dans la fosse iliaque droite : au début, seule la paroi de l'intestin est irritée, et le cerveau localise mal la douleur des viscères ; ensuite, l'inflammation atteint le péritoine pariétal, dont la douleur est précise. De même, la douleur d'un infarctus peut être épigastrique : devant une « douleur d'estomac » chez un patient à risque, on fait un électrocardiogramme.</div>
 
-<h2>6. La nomenclature</h2>
+<h2>8. Les repères de surface</h2>
+<p>L'examen clinique s'appuie sur des reliefs qu'on voit ou qu'on palpe. Ils servent à situer un organe profond, à compter côtes et vertèbres, à choisir l'endroit d'une ponction.</p>
+<ul>
+<li><strong>Angle sternal</strong> (angle de Louis) : saillie entre le manubrium et le corps du sternum, au niveau du 2<sup>e</sup> cartilage costal. On compte les côtes et les espaces intercostaux à partir de lui.</li>
+<li><strong>Lignes verticales du thorax</strong> : médiane, médioclaviculaire (par le milieu de la clavicule), axillaires antérieure, moyenne et postérieure. Exemple : le choc de pointe du cœur se palpe dans le 5<sup>e</sup> espace intercostal gauche, sur la ligne médioclaviculaire.</li>
+<li><strong>Vertèbre proéminente</strong> : l'épine de C7, habituellement la plus saillante à la base du cou.</li>
+<li><strong>Crêtes iliaques</strong> : la ligne qui joint leurs sommets (ligne de Tuffier) croise la colonne au niveau de L4 ou de l'espace L4-L5.</li>
+</ul>
+<div class="cle"><b>Idée et exemple : la ponction lombaire</b>Pour prélever du liquide cérébro-spinal (suspicion de méningite), on introduit une aiguille entre deux vertèbres lombaires, sous la fin de la moelle épinière (vers L1-L2 chez l'adulte). La ligne de Tuffier repère L4 : on pique en L4-L5 ou L3-L4, où l'aiguille ne rencontre que des racines nerveuses flottant dans le liquide. Un repère de surface permet d'éviter un organe qu'on ne voit pas.</div>
+
+<h2>9. La nomenclature</h2>
 <p>La référence internationale est la <strong>Terminologia Anatomica</strong> (1998). La nomenclature française s'y est alignée, et plusieurs noms ont changé : péroné → <strong>fibula</strong>, rotule → <strong>patella</strong>, omoplate → <strong>scapula</strong>, cubitus → <strong>ulna</strong>, astragale → <strong>talus</strong>. Les anciens noms restent courants à l'hôpital ; au concours, on attend les nouveaux.</p>
+<p>Beaucoup de noms se décodent avec quelques préfixes de position :</p>
+<div class="defile"><table>
+<tr><th>Préfixe</th><th>Sens</th><th>Exemple</th></tr>
+<tr><td>supra- / infra-, sub-</td><td>au-dessus / au-dessous</td><td>supra-épineux, infra-épineux ; artère subclavière (ancien nom : sous-clavière)</td></tr>
+<tr><td>épi- / hypo-</td><td>sur / sous</td><td>épigastre, hypogastre</td></tr>
+<tr><td>pré- / rétro-</td><td>en avant / en arrière</td><td>prévertébral, rétropéritonéal</td></tr>
+<tr><td>inter- / intra-</td><td>entre / dedans</td><td>intercostal, intramusculaire</td></tr>
+<tr><td>péri- / para-</td><td>autour / à côté</td><td>péricarde, paravertébral</td></tr>
+</table></div>
+<p>Quelques suffixes complètent : <strong>-ite</strong> (inflammation : appendicite), <strong>-ectomie</strong> (ablation : cholécystectomie, ablation de la vésicule biliaire), <strong>-algie</strong> (douleur : lombalgie), <strong>-scopie</strong> (examen avec une caméra : coloscopie).</p>
 
-<div class="cle"><b>Bilan</b>Une position de référence (paumes en avant), trois plans (sagittal, frontal, transversal) et leurs axes, des couples de termes de direction (supérieur / inférieur, antérieur / postérieur, médial / latéral, proximal / distal, superficiel / profond) et des couples de mouvements (flexion / extension, abduction / adduction, rotations, pronation / supination).</div>
-<p class="src">Contenu original rédigé pour ce site, niveau début de première année, d'après la Terminologia Anatomica et les ouvrages d'anatomie générale. Il ne remplace pas le cours de la faculté.</p>
+<div class="cle"><b>Bilan</b>Une position de référence (paumes en avant), trois plans (sagittal, frontal, transversal) et leurs axes, repris par l'imagerie (coupes axiales vues depuis les pieds : droite du patient à gauche de l'image). Des couples de termes (supérieur / inférieur, antérieur / postérieur, médial / latéral, proximal / distal, superficiel / profond ; radial / ulnaire, tibial / fibulaire ; valgus / varus) et de mouvements (flexion / extension, abduction / adduction, rotations, pronation / supination). Neuf régions abdominales et quelques repères de surface relient ce vocabulaire à l'examen du patient.</div>
+<p class="src">Fiche originale rédigée pour ce site, niveau début de première année, vérifiée sur la Terminologia Anatomica et les ouvrages d'anatomie générale (Kamina, Marieb). Elle ne remplace pas le cours de la faculté.</p>
 ` },
 
  bc2: { mat: "bc", titre: "La membrane plasmique : structure et échanges", html: `
@@ -2316,168 +2505,168 @@ var QCM = {
      P("Toute cellule provient d'une cellule préexistante.", 1, "C'est le principe de Virchow (1855)."),
      P("Les procaryotes possèdent un noyau limité par une membrane simple.", 0, "Les procaryotes n'ont pas de noyau : leur ADN est dans le cytoplasme (nucléoïde)."),
      P("Les ribosomes du cytosol des eucaryotes sont de type 80S.", 1),
-     P("Une cellule eucaryote mesure typiquement de 10 à 100 µm.", 1),
+     P("Les pénicillines agissent en bloquant le ribosome 70S des bactéries.", 0, "Elles bloquent la fabrication du peptidoglycane de la paroi ; ce sont les aminosides et les macrolides qui bloquent le ribosome 70S."),
      P("Les procaryotes possèdent de petites mitochondries.", 0, "Aucun organite membranaire chez les procaryotes.")] },
-   { ch: "bc1", q: "À propos de la résolution des microscopes :", p: [
+   { ch: "bc1", q: "À propos de la diversité et de la taille des cellules humaines :", p: [
+     P("Un adulte compte de l'ordre de 30 000 milliards de cellules.", 1),
+     P("Les hématies représentent plus de 80 % de nos cellules en nombre.", 1),
+     P("L'hématie mature possède un noyau, mais pas de mitochondries.", 0, "Elle n'a ni noyau ni mitochondries : elle vit de la glycolyse."),
+     P("Pour une sphère, le rapport surface/volume vaut 3/r : il est divisé par 2 quand le rayon double.", 1),
+     P("Dans la sphérocytose héréditaire, l'hématie gagne de la membrane et son rapport surface/volume augmente.", 0, "Elle perd de la membrane sans perdre de volume : son rapport S/V diminue, elle devient une sphère rigide détruite par la rate.")] },
+   { ch: "bc1", q: "À propos des microscopes :", p: [
      P("Le pouvoir de résolution du microscope optique est d'environ 0,2 µm.", 1),
      P("Augmenter le grossissement améliore toujours la résolution.", 0, "Grossir une image floue n'ajoute aucun détail."),
-     P("La résolution du microscope optique est limitée par la longueur d'onde de la lumière visible.", 1),
-     P("Le microscope électronique à transmission permet d'observer des cellules vivantes.", 0, "L'échantillon est fixé, inclus, coupé : il est mort."),
+     P("Un objectif à immersion dans l'huile augmente l'ouverture numérique, donc améliore la résolution.", 1, "d = 0,61 λ / ON : plus l'ON est grande, plus d est petit."),
+     P("Le microscope confocal donne des coupes optiques nettes en éliminant la lumière venue d'en dehors du plan de mise au point.", 1),
      P("Le microscope électronique à balayage donne une image en relief de la surface.", 1)] },
-   { ch: "bc1", q: "À propos de la coloration HES :", p: [
-     P("L'hématoxyline colore les noyaux en violet-bleu.", 1),
+   { ch: "bc1", q: "À propos des colorations et de la cytochimie :", p: [
+     P("L'éosine colore les noyaux en violet-bleu.", 0, "C'est l'hématoxyline ; l'éosine colore en rose la plupart des protéines du cytoplasme."),
      P("Une structure basophile est une structure basique.", 0, "Basophile = qui fixe le colorant basique, donc structure acide."),
-     P("L'éosine colore la plupart des protéines du cytoplasme en rose.", 1),
-     P("Le RER, riche en ARN, a tendance à être basophile.", 1),
+     P("La coloration de Perls met en évidence le glycogène.", 0, "Perls révèle le fer ; le glycogène est révélé par le PAS."),
+     P("En HES, une cellule adipeuse paraît vide car ses lipides ont été dissous lors de l'inclusion en paraffine.", 1),
      P("Une coupe pour le microscope optique mesure environ 50 nm d'épaisseur.", 0, "Environ 5 µm. 50 à 100 nm, c'est la coupe ultrafine du MET.")] },
-   { ch: "bc1", q: "À propos des organites :", p: [
+   { ch: "bc1", q: "À propos des organites et du fractionnement cellulaire :", p: [
      P("L'enveloppe nucléaire est formée de deux membranes.", 1),
-     P("Le nucléole est le lieu de synthèse des ARN ribosomiques.", 1),
      P("Le RE lisse porte des ribosomes sur sa face cytosolique.", 0, "C'est le RE rugueux qui porte des ribosomes."),
-     P("La face cis de l'appareil de Golgi est tournée vers le RE.", 1),
-     P("Les hydrolases lysosomales sont surtout actives à pH neutre.", 0, "Ce sont des hydrolases acides, actives vers pH 4,5 à 5.")] },
-   { ch: "bc1", q: "À propos du fractionnement cellulaire :", p: [
      P("En centrifugation différentielle, les noyaux sédimentent dès les faibles accélérations.", 1),
-     P("Les ribosomes sédimentent avant les mitochondries.", 0, "Les ribosomes, petits, demandent les plus fortes accélérations."),
-     P("Le dernier surnageant contient le cytosol.", 1),
      P("Une sous-unité 60S et une sous-unité 40S forment un ribosome 100S.", 0, "Elles forment un ribosome 80S : les Svedberg ne s'additionnent pas."),
-     P("Le broyage se fait en milieu isotonique et au froid.", 1)] },
-   { ch: "bc1", q: "À propos de la fluorescence et du MET :", p: [
-     P("En immunofluorescence, un anticorps couplé à un fluorochrome repère une protéine précise.", 1),
+     P("La catalase est l'enzyme marqueur des peroxysomes.", 1)] },
+   { ch: "bc1", q: "À propos des techniques de localisation et d'étude des cellules :", p: [
      P("Un fluorochrome émet une lumière de longueur d'onde plus courte que celle qui l'excite.", 0, "Plus longue : une partie de l'énergie est perdue."),
-     P("La GFP permet de suivre une protéine dans une cellule vivante.", 1),
-     P("En MET, les structures qui fixent les métaux lourds apparaissent claires.", 0, "Elles arrêtent les électrons : elles apparaissent sombres."),
-     P("En MET, la membrane plasmique a un aspect trilamellaire.", 1)] },
+     P("En autoradiographie, la ³H-uridine permet de repérer la synthèse d'ADN.", 0, "Elle s'incorpore dans l'ARN ; c'est la ³H-thymidine qui marque l'ADN (cellules en phase S)."),
+     P("En immunocytochimie, une peroxydase couplée à l'anticorps forme un précipité brun visible au microscope optique.", 1),
+     P("Pour établir un caryotype, on bloque en prophase la division de lymphocytes en culture grâce à la colchicine.", 0, "On les bloque en métaphase : la colchicine empêche la formation du fuseau."),
+     P("Chez l'adulte, un taux de lymphocytes T CD4 inférieur à 200 par mm³ est normal.", 0, "Il est normalement de 500 à 1 500 par mm³ ; sous 200, c'est le stade sida.")] },
 
-   { ch: "bio1", q: "À propos de la structure des acides aminés :", p: [
+   { ch: "bio1", q: "À propos de la structure et de la chiralité des acides aminés :", p: [
      P("Tous les acides aminés standard possèdent un carbone asymétrique.", 0, "Sauf la glycine (deux H sur le carbone α)."),
      P("Les acides aminés des protéines humaines sont de la série L.", 1),
-     P("La chaîne latérale de la glycine est un atome d'hydrogène.", 1),
-     P("La proline possède une amine secondaire engagée dans un cycle.", 1),
+     P("L'isoleucine et la thréonine possèdent deux carbones asymétriques.", 1),
+     P("La L-alanine est lévogyre, comme tous les acides aminés de la série L.", 0, "L désigne une configuration, pas le pouvoir rotatoire : la L-alanine est dextrogyre."),
      P("Tous les acides aminés L sont de configuration S.", 0, "La L-cystéine est R.")] },
    { ch: "bio1", q: "À propos de la classification des acides aminés :", p: [
      P("Le tryptophane est un acide aminé aromatique.", 1),
-     P("L'aspartate et le glutamate portent une chaîne chargée négativement à pH 7.", 1),
+     P("L'aspartate et le glutamate portent une chaîne chargée positivement à pH 7.", 0, "Négativement : leur chaîne porte une deuxième fonction acide carboxylique."),
      P("La lysine est un acide aminé acide.", 0, "Basique : sa chaîne porte une amine."),
-     P("La valine est un acide aminé polaire.", 0, "Apolaire aliphatique."),
-     P("La cystéine possède une fonction thiol.", 1)] },
-   { ch: "bio1", q: "À propos des acides aminés essentiels :", p: [
+     P("Le code à une lettre de la lysine est L.", 0, "K. L est la leucine."),
+     P("Dans la drépanocytose, un glutamate de la chaîne β de l'hémoglobine est remplacé par une valine, apolaire.", 1)] },
+   { ch: "bio1", q: "À propos des acides aminés indispensables :", p: [
      P("La leucine est un acide aminé essentiel.", 1),
-     P("L'alanine est un acide aminé essentiel.", 0),
-     P("Un acide aminé essentiel est un acide aminé que l'organisme ne synthétise pas en quantité suffisante.", 1),
-     P("Le tryptophane est un acide aminé essentiel.", 1),
-     P("Le glutamate est un acide aminé essentiel.", 0)] },
+     P("L'alanine est un acide aminé essentiel.", 0, "Elle ne fait pas partie des neuf indispensables (Leu, Thr, Lys, Trp, Phe, Val, Met, Ile, His)."),
+     P("Chez un patient atteint de phénylcétonurie, la tyrosine devient indispensable.", 1),
+     P("Les céréales sont pauvres en méthionine et les légumineuses en lysine.", 0, "C'est l'inverse : la lysine est limitante dans les céréales, la méthionine dans les légumineuses."),
+     P("Le glutamate est un acide aminé essentiel.", 0, "Il ne fait pas partie des neuf acides aminés indispensables.")] },
    { ch: "bio1", q: "La glycine a deux pKa : 2,3 et 9,6. À propos de la glycine :", p: [
      P("Son pHi vaut environ 6,0.", 1, "(2,3 + 9,6) / 2 ≈ 5,95."),
-     P("À pH 1, elle porte une charge nette positive.", 1),
+     P("Sur sa courbe de titrage par la soude, le pH vaut pKa₁ après l'ajout de 0,5 équivalent de base.", 1),
      P("À pH 7, elle est majoritairement sous forme de zwitterion.", 1),
      P("À pH 11, elle migre vers la cathode en électrophorèse.", 0, "À pH > pHi elle est chargée − : elle migre vers l'anode."),
      P("À son pHi, elle migre vers l'anode.", 0, "À son pHi, la charge nette est nulle : pas de migration.")] },
-   { ch: "bio1", q: "À propos des acides aminés à chaîne ionisable :", p: [
-     P("Le pHi d'un acide aminé acide est inférieur à 7.", 1),
-     P("Le pHi de la lysine est supérieur à 7.", 1),
+   { ch: "bio1", q: "À propos des chaînes ionisables et du pouvoir tampon :", p: [
      P("Le pHi de l'aspartate est la moyenne de ses deux pKa les plus élevés.", 0, "Les deux plus bas, pour un acide aminé acide."),
+     P("À pH = pKa + 1, la forme basique est environ dix fois plus abondante que la forme acide.", 1, "Henderson-Hasselbalch : log ([base]/[acide]) = 1."),
      P("La chaîne de l'histidine a un pKa voisin de 6.", 1),
+     P("Le pouvoir tampon d'un acide aminé est maximal à son pHi.", 0, "Il est minimal au pHi, où le pH saute, et maximal à chaque pKa."),
      P("À pH physiologique, la chaîne de l'arginine est neutre.", 0, "pKa ≈ 12,5 : elle est chargée +.")] },
-   { ch: "bio1", q: "À propos des propriétés et dérivés des acides aminés :", p: [
+   { ch: "bio1", q: "À propos des propriétés, des modifications et des dérivés des acides aminés :", p: [
      P("Les protéines absorbent à 280 nm surtout grâce au tryptophane et à la tyrosine.", 1),
-     P("Deux cystéines peuvent former un pont disulfure par oxydation.", 1),
-     P("Le code à une lettre de la lysine est L.", 0, "K. L est la leucine."),
+     P("L'hydroxylation de la proline du collagène nécessite de la vitamine C.", 1),
      P("La sérotonine dérive du tryptophane.", 1),
-     P("Le GABA dérive de la tyrosine.", 0, "Du glutamate.")] },
+     P("Dans la maladie de Parkinson, on donne de la L-DOPA parce que la dopamine ne passe pas du sang au cerveau.", 1),
+     P("La transamination transfère le groupement amine d'un acide aminé sur l'α-cétoglutarate, qui devient du glutamate.", 1)] },
 
    { ch: "ana1", q: "À propos de la position anatomique :", p: [
      P("Les paumes sont tournées vers l'avant.", 1),
      P("Les membres supérieurs sont écartés à 90°.", 0, "Ils sont le long du corps."),
-     P("Le regard est horizontal.", 1),
+     P("Chez un patient couché en décubitus dorsal, le sternum reste décrit comme antérieur.", 1),
      P("Le pouce est en position médiale.", 0, "Paumes en avant, le pouce est latéral."),
      P("Droite et gauche désignent les côtés du sujet.", 1)] },
-   { ch: "ana1", q: "À propos des plans anatomiques :", p: [
+   { ch: "ana1", q: "À propos des plans anatomiques et des coupes :", p: [
      P("Le plan sagittal médian sépare le corps en moitiés droite et gauche.", 1),
-     P("Le plan frontal sépare une partie antérieure et une partie postérieure.", 1),
+     P("Sur une coupe axiale de scanner, le foie apparaît à gauche de l'image.", 1, "Coupe vue depuis les pieds : la droite du patient est à gauche de l'image."),
      P("Le plan transversal est perpendiculaire au grand axe du corps.", 1),
      P("Une coupe coronale est une coupe transversale.", 0, "Coronale = frontale."),
      P("Les coupes axiales de scanner sont classiquement vues depuis la tête du patient.", 0, "Elles sont vues depuis les pieds.")] },
+   { ch: "ana1", q: "À propos des techniques d'imagerie :", p: [
+     P("En échographie, l'urine contenue dans la vessie est anéchogène.", 1),
+     P("Au scanner, la densité de l'eau vaut 0 unité Hounsfield et celle de l'air −1 000.", 1),
+     P("Le terme « hypersignal » s'emploie pour décrire une image de scanner.", 0, "Il est propre à l'IRM ; au scanner, on dit hyperdense."),
+     P("En IRM, les liquides apparaissent clairs en T2.", 1, "Ils sont sombres en T1."),
+     P("La radiographie du thorax de face se fait classiquement en incidence postéro-antérieure.", 1)] },
    { ch: "ana1", q: "À propos des termes de direction :", p: [
      P("Le coude est proximal par rapport au poignet.", 1),
      P("Le sternum est latéral par rapport aux poumons.", 0, "Il est médial."),
-     P("La peau est superficielle par rapport aux muscles.", 1),
-     P("Le nez est supérieur à la bouche.", 1),
-     P("En position anatomique, la face palmaire de la main est postérieure.", 0, "Paumes en avant : elle est antérieure.")] },
+     P("À l'avant-bras, « radial » est synonyme de latéral.", 1),
+     P("Dans un genu valgum, les genoux se touchent et les chevilles sont écartées.", 1),
+     P("Dans la nomenclature actuelle, « interne » est synonyme de « médial ».", 0, "Interne / externe sont réservés aux cavités et organes creux.")] },
    { ch: "ana1", q: "À propos des mouvements :", p: [
      P("La flexion et l'extension se font dans un plan sagittal.", 1),
      P("L'abduction rapproche le membre du plan médian.", 0, "Elle l'éloigne ; l'adduction le rapproche."),
-     P("En pronation, la paume regarde en arrière (bras le long du corps).", 1),
-     P("La rotation se fait autour d'un axe vertical.", 1),
+     P("Au genou, la flexion rapproche les faces postérieures de la jambe et de la cuisse.", 1),
+     P("Dans une fracture du col du fémur, le membre inférieur est typiquement allongé et en rotation médiale.", 0, "Il est raccourci et en rotation latérale."),
      P("La flexion plantaire rapproche le dos du pied de la jambe.", 0, "C'est la flexion dorsale.")] },
-   { ch: "ana1", q: "À propos des cavités et régions :", p: [
-     P("Le diaphragme sépare la cavité thoracique de la cavité abdominale.", 1),
+   { ch: "ana1", q: "À propos des régions, de l'abdomen et des repères de surface :", p: [
      P("Le médiastin est situé entre les deux cavités pleurales.", 1),
      P("L'épigastre est situé sous l'ombilic.", 0, "Au-dessus de la région ombilicale."),
-     P("La fosse iliaque droite est le siège classique de la douleur d'appendicite.", 1),
-     P("L'hypochondre droit contient surtout la rate.", 0, "Le foie ; la rate est dans l'hypochondre gauche.")] },
-   { ch: "ana1", q: "À propos de la nomenclature et de la latéralité :", p: [
-     P("« Péroné » se dit aujourd'hui « fibula ».", 1),
-     P("« Omoplate » se dit aujourd'hui « scapula ».", 1),
-     P("Une structure homolatérale est située du côté opposé.", 0, "Du même côté ; « controlatéral » = côté opposé."),
-     P("Sur une coupe axiale de scanner, le côté droit du patient est à gauche de l'image.", 1),
-     P("Dans la nomenclature actuelle, « interne » est synonyme de « médial ».", 0, "Interne / externe sont réservés aux cavités et organes creux.")] }
+     P("Le point de McBurney se situe sur la ligne qui joint l'épine iliaque antéro-supérieure à l'ombilic.", 1),
+     P("La ligne qui joint le sommet des crêtes iliaques croise la colonne au niveau de L1.", 0, "Au niveau de L4 ou de l'espace L4-L5 (ligne de Tuffier)."),
+     P("L'hypochondre droit contient surtout la rate.", 0, "Le foie ; la rate est dans l'hypochondre gauche.")] }
   ],
   retard: [
    { ch: "bc1", q: "À propos des compartiments cellulaires :", p: [
-     P("Le peroxysome contient de la catalase, qui détruit l'eau oxygénée.", 1),
+     P("Le nucléole est le lieu de synthèse des ARN ribosomiques.", 1),
      P("Les mitochondries possèdent leur propre ADN.", 1),
      P("Le noyau occupe environ la moitié du volume d'un hépatocyte.", 0, "Environ 6 % ; c'est le cytosol qui en occupe environ la moitié."),
-     P("Le RE lisse intervient dans la détoxification hépatique.", 1),
+     P("La face trans de l'appareil de Golgi est tournée vers le RE.", 0, "C'est la face cis ; la face trans est la face de sortie."),
      P("Le réticulum sarcoplasmique du muscle stocke du sodium.", 0, "Du calcium.")] },
-   { ch: "bc1", q: "À propos des techniques d'observation :", p: [
+   { ch: "bc1", q: "À propos des techniques d'observation et d'analyse :", p: [
      P("La résolution pratique du MET sur un échantillon biologique est de l'ordre du nanomètre.", 1),
-     P("Le pouvoir de résolution de l'œil est d'environ 0,2 µm.", 0, "Environ 0,1 à 0,2 mm."),
-     P("Le tétroxyde d'osmium est utilisé pour préparer les échantillons du MET.", 1),
-     P("Pour le microscope optique, l'inclusion se fait classiquement en paraffine.", 1),
-     P("Le MEB nécessite des coupes ultrafines.", 0, "Le MEB observe une surface, sans coupe.")] },
-   { ch: "bc1", q: "À propos de l'organisation cellulaire :", p: [
+     P("Le microscope électronique à transmission permet d'observer des cellules vivantes.", 0, "L'échantillon est fixé, inclus, coupé : il est mort."),
+     P("En MET, les structures qui fixent les sels de métaux lourds apparaissent sombres.", 1),
+     P("La GFP permet de suivre une protéine dans une cellule vivante.", 1),
+     P("Le trastuzumab est destiné aux cancers du sein dont les cellules fabriquent en excès le récepteur HER2.", 1)] },
+   { ch: "bc1", q: "À propos de l'organisation et de l'étude des cellules :", p: [
      P("Le chromosome bactérien est en général circulaire.", 1),
-     P("L'ADN des eucaryotes est associé à des histones.", 1),
+     P("Une lignée cellulaire comme HeLa se divise indéfiniment, contrairement à une culture primaire.", 1),
      P("Le pH lysosomal est d'environ 7,2.", 0, "Environ 4,5 à 5 ; 7,2 est le pH du cytosol."),
-     P("Le diamètre des microtubules est d'environ 25 nm.", 1),
-     P("Le diamètre des microfilaments d'actine est d'environ 25 nm.", 0, "Environ 7 nm.")] },
-   { ch: "bio1", q: "À propos des acides aminés :", p: [
+     P("La phosphatase acide est l'enzyme marqueur des lysosomes.", 1),
+     P("Les microvillosités des entérocytes diminuent leur surface d'échange.", 0, "Elles la multiplient par 20 environ.")] },
+   { ch: "bio1", q: "À propos de la structure et de la classification des acides aminés :", p: [
      P("La méthionine est un acide aminé essentiel.", 1),
      P("Le code à une lettre W désigne le tryptophane.", 1),
-     P("La glycine est chirale.", 0),
+     P("Un résidu d'acide aminé pèse en moyenne environ 110 Da.", 1),
      P("La cystéine est un acide aminé polaire non chargé à pH 7.", 1),
      P("La phénylalanine possède un noyau indole.", 0, "Un cycle benzénique ; l'indole est celui du tryptophane.")] },
-   { ch: "bio1", q: "L'alanine a deux pKa : 2,3 et 9,7. À propos de l'alanine :", p: [
+   { ch: "bio1", q: "L'alanine a deux pKa : 2,3 et 9,7. À propos de l'alanine et de l'électrophorèse :", p: [
      P("À pH 6,0, sa charge nette est nulle.", 1),
      P("À pH 1, elle est majoritairement sous forme cationique.", 1),
-     P("À pH 12, elle migre vers la cathode.", 0, "Chargée −, elle migre vers l'anode."),
-     P("Au pH sanguin (7,4), sa fonction α-COOH est surtout protonée.", 0, "pH > pKa (2,3) : elle est surtout sous forme COO−."),
-     P("La tyrosine, elle, porte une fonction phénol.", 1)] },
-   { ch: "bio1", q: "À propos des acides aminés :", p: [
-     P("Lysine, arginine et histidine sont des acides aminés basiques.", 1),
-     P("L'histamine dérive de l'histidine.", 1),
-     P("Un zwitterion porte simultanément une charge + et une charge −.", 1),
-     P("Le code à une lettre de l'asparagine est D.", 0, "N ; D est l'aspartate."),
-     P("La sérine porte une fonction thiol.", 0, "Une fonction alcool ; le thiol est celui de la cystéine.")] },
+     P("Au pH sanguin (7,4), sa fonction α-COOH est surtout protonée.", 0, "pH > pKa (2,3) : elle est surtout sous forme COO⁻."),
+     P("Lors d'une électrophorèse à pH 6, la lysine migre vers la cathode.", 1, "pH < pHi (≈ 9,7) : elle est chargée +."),
+     P("Lors d'une électrophorèse à pH 6, l'aspartate reste au point de dépôt.", 0, "Son pHi est voisin de 3 : à pH 6 il est chargé − et migre vers l'anode ; c'est la glycine qui reste au dépôt.")] },
+   { ch: "bio1", q: "À propos des dérivés et du devenir des acides aminés :", p: [
+     P("L'histamine dérive de l'histidine par décarboxylation.", 1),
+     P("Les antivitamines K empêchent la γ-carboxylation du glutamate des facteurs de coagulation.", 1),
+     P("La phénylcétonurie est due au déficit de l'enzyme qui transforme la tyrosine en phénylalanine.", 0, "C'est l'inverse : l'enzyme déficiente transforme la phénylalanine en tyrosine."),
+     P("Dans la leucémie myéloïde chronique, l'imatinib bloque une kinase anormale, BCR-ABL.", 1),
+     P("La leucine et la lysine sont des acides aminés exclusivement glucoformateurs.", 0, "Elles sont exclusivement cétoformatrices.")] },
    { ch: "ana1", q: "À propos des termes et des mouvements :", p: [
      P("Proximal et distal s'emploient surtout pour les membres.", 1),
      P("Chez l'humain, ventral est synonyme d'antérieur.", 1),
-     P("L'adduction éloigne le membre du plan médian.", 0, "Elle le rapproche."),
+     P("L'inclinaison ulnaire du poignet correspond à une abduction.", 0, "C'est une adduction ; l'inclinaison radiale est l'abduction."),
      P("La circumduction enchaîne flexion, abduction, extension et adduction.", 1),
      P("Le plan horizontal est un plan sagittal.", 0, "Horizontal = transversal.")] },
    { ch: "ana1", q: "À propos de la nomenclature :", p: [
      P("« Rotule » se dit aujourd'hui « patella ».", 1),
-     P("« Cubitus » se dit aujourd'hui « ulna ».", 1),
-     P("« Médial » désigne ce qui est plus proche du plan sagittal médian.", 1),
+     P("« Péroné » se dit aujourd'hui « fibula ».", 1),
+     P("Le préfixe « rétro- » signifie « en arrière », comme dans « rétropéritonéal ».", 1),
      P("« Controlatéral » signifie « du même côté ».", 0, "Du côté opposé."),
-     P("Une structure profonde est plus proche de la surface du corps.", 0, "Plus éloignée de la surface.")] },
-   { ch: "ana1", q: "À propos des régions du corps :", p: [
-     P("La cavité pelvienne est en continuité avec la cavité abdominale.", 1),
-     P("Le cœur est situé dans le médiastin.", 1),
+     P("Une structure profonde est plus éloignée de la surface du corps qu'une structure superficielle.", 1)] },
+   { ch: "ana1", q: "À propos des régions, des séreuses et de l'examen clinique :", p: [
+     P("Les reins et le pancréas sont des organes rétropéritonéaux.", 1),
+     P("Une injection intramusculaire dans la fesse se fait dans le quadrant supéro-latéral.", 1),
      P("Les flancs sont des régions de la paroi thoracique.", 0, "Ce sont des régions de l'abdomen."),
-     P("L'éversion tourne la plante du pied vers le dehors.", 1),
-     P("L'hypogastre est situé au-dessus de l'ombilic.", 0, "En dessous, au centre de l'étage inférieur.")] }
+     P("La ponction lombaire se fait classiquement en L1-L2, au niveau de la fin de la moelle épinière.", 0, "On pique en L4-L5 ou L3-L4, sous la fin de la moelle (vers L1-L2), où l'aiguille ne rencontre que des racines."),
+     P("L'angle sternal se situe au niveau du 5ᵉ cartilage costal.", 0, "Au niveau du 2ᵉ cartilage costal ; on compte les côtes à partir de lui.")] }
   ]
  },
  M2: {
