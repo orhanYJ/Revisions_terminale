@@ -58,6 +58,7 @@ Préférence de travail de Cengiz : **conseiller de changer de modèle ou de niv
 | `italien/` | « La Grammatica » (LVB) | ~175 Ko | JS natif |
 | `redpen/` | « The Red Pen » (anglais B1→C1) | ~231 Ko | JS natif |
 | `cdm/` | Dossier CDM « Sensibiliser ou réguler » | ~35 Ko | JS natif |
+| `medecine/` | « Protocole Santé » : initiation à la licence portail santé, test de 5 méthodes de travail | ~104 Ko | JS natif |
 | `fenuareo/` | **Projet distinct** (apprentissage du reo tahiti), pas un site de révision d'Orhan | ~1,2 Mo | — |
 | `test.html` | Reliquat d'un test de publication | — | à supprimer avec l'accord de Cengiz |
 
@@ -144,6 +145,10 @@ Le hub porte les onglets de cadrage, l'onglet de thèses transversales, le diagr
 - **Italien** : 3 onglets (Grammatica, Coniugazione, Lessico e funzioni), 33 chapitres A2→B2, cours en français, exemples en italien, encadrés « ⚠️ Da evitare » et « ✅ Punti chiave ».
 - **Red Pen** : grammaire anglaise C1 et méthodologie de l'essay, thème « Night Study » bleu nuit et laiton avec variante jour.
 - **CDM** : dossier de recherche (problématique, lectures, cas australien, partenaires, terrain, position). Oral coeff. 20 : 10 min de présentation + 10 min d'entretien. Problématique d'origine : « À l'ère du numérique, qu'est-ce qui change vraiment les comportements de santé des adolescents : la sensibilisation ou la régulation ? » ; elle a été resserrée sur le cas australien (interdiction des réseaux sociaux avant 16 ans), le Royaume-Uni servant de comparaison. **Reformulation à faire valider par le professeur avant de toucher au site et au PDF.**
+
+### Médecine (`medecine/`, depuis le 10/10/2026)
+
+« Protocole Santé ». But : la **licence portail santé** (première année unique qui remplace PASS et LAS à la rentrée 2027 ; textes adoptés au CNESER en juillet 2026, pas encore au Journal officiel, coefficients inconnus). Avant la médecine « pure et dure », le site teste **cinq méthodes de travail, une à la fois** (règle de Cengiz : une méthode terminée avant la suivante) : M1 relire et ficher (témoin, placé en premier exprès), M2 feuille blanche, M3 Feynman, M4 tester d'abord + séries mélangées, M5 méthode des J (cartes, boîtes de Leitner). Chaque méthode voit les **trois mêmes matières** (biologie cellulaire, biochimie, anatomie) sur des chapitres différents (`PLAN`), pour mesurer la méthode et non l'aisance dans une matière. Calendrier identique pour toutes (`SEANCES`) : J0 mercredi, J2, J3 (apprentissage, 75 min), J4, J7, J9, J11 (consolidation, 45 min), QCM de clôture à J14, rappel tardif à J28 (questions différentes). QCM de type concours (5 propositions, barème à discordances 1 / 0,5 / 0,2 / 0), avec indice de confiance. Résultats : score J14, score J28, points par heure, fiabilité du « sûr », ressenti. Persistance : journal JSON téléchargé puis réimporté (pas de `localStorage`). Contenu : rédigé par Claude, niveau début de première année, vérifié sur ouvrages de référence et signalé comme tel. État : bloc M1 complet (`bc1`, `bio1`, `ana1` + 27 QCM) ; les chapitres de M2 à M5 sont des placeholders et doivent être en ligne avant le J0 de leur méthode (le site bloque le lancement sinon). Pour M4, prévoir des banques d'entraînement distinctes des QCM de mesure ; pour M3, des questions « pourquoi ? » par chapitre.
 
 ---
 

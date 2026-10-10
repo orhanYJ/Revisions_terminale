@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Protocole Santé</title>
+<meta name="description" content="Initiation à la licence portail santé : cinq méthodes de travail testées sur trois matières, mesurées par des QCM de type concours.">
+<meta name="theme-color" content="#F4F3EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121A20" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --papier:#F4F3EE; --carte:#FFFFFF; --encre:#18232C; --doux:#5B6770; --trait:#DAD8CF;
+  --accent:#16707A; --accent-p:#E2F0EF; --alerte:#B8432F; --alerte-p:#F8E6E1; --ok:#2B7A4B; --ok-p:#E3F1E7;
+  --or:#A8741A; --or-p:#F6EEDC;
+  --m1:#6A737D; --m2:#B4740C; --m3:#6A4BA6; --m4:#C2414F; --m5:#23805E;
+  --rayon:14px; --ombre:0 1px 2px rgba(24,35,44,.06),0 4px 14px rgba(24,35,44,.05);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --papier:#121A20; --carte:#1A242B; --encre:#E6E9E7; --doux:#9AA6AD; --trait:#2C3941;
+    --accent:#4FB3B8; --accent-p:#183238; --alerte:#E5856F; --alerte-p:#3A2420; --ok:#6CC38E; --ok-p:#1C3326;
+    --or:#D9A64A; --or-p:#352B18;
+    --m1:#9AA3AC; --m2:#E0A23A; --m3:#A88BE0; --m4:#E87A86; --m5:#5CC39A;
+    --ombre:0 1px 2px rgba(0,0,0,.3); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --papier:#121A20; --carte:#1A242B; --encre:#E6E9E7; --doux:#9AA6AD; --trait:#2C3941;
+  --accent:#4FB3B8; --accent-p:#183238; --alerte:#E5856F; --alerte-p:#3A2420; --ok:#6CC38E; --ok-p:#1C3326;
+  --or:#D9A64A; --or-p:#352B18;
+  --m1:#9AA3AC; --m2:#E0A23A; --m3:#A88BE0; --m4:#E87A86; --m5:#5CC39A;
+  --ombre:0 1px 2px rgba(0,0,0,.3); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--papier);color:var(--encre);font:16px/1.6 var(--sans);padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+a{color:var(--accent)}
+button{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.25;letter-spacing:-.005em}
+h1{font-size:1.75rem;margin:.2em 0 .4em}
+h2{font-size:1.3rem;margin:1.8em 0 .6em}
+h3{font-size:1.08rem;margin:1.4em 0 .4em}
+.wrap{max-width:780px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--papier) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--trait)}
+header.top .wrap{display:flex;align-items:center;gap:10px;height:56px}
+.marque{display:flex;align-items:center;gap:10px;white-space:nowrap;text-decoration:none;color:var(--encre);font-family:var(--serif);font-weight:600;font-size:1.1rem}
+.marque svg{flex:none}
+.espace{flex:1}
+.pastille{font-size:.78rem;padding:3px 10px;border-radius:99px;background:var(--alerte-p);color:var(--alerte);border:0;cursor:pointer;white-space:nowrap}
+.pastille[hidden]{display:none}
+.theme{border:1px solid var(--trait);background:var(--carte);border-radius:99px;width:34px;height:34px;cursor:pointer;display:grid;place-items:center}
+nav.bas{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--carte);border-top:1px solid var(--trait);padding-bottom:env(safe-area-inset-bottom)}
+nav.bas .wrap{display:flex;justify-content:space-around;padding:0 4px}
+nav.bas a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0 9px;text-decoration:none;color:var(--doux);font-size:.72rem;font-weight:500}
+nav.bas a svg{width:22px;height:22px}
+nav.bas a.on{color:var(--accent)}
+main{padding:18px 0 30px}
+.sur{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--doux);font-weight:600;margin:0}
+.carte{background:var(--carte);border:1px solid var(--trait);border-radius:var(--rayon);padding:16px 18px;box-shadow:var(--ombre);margin:12px 0}
+.carte h3:first-child,.carte h2:first-child{margin-top:0}
+.lead{font-size:1.05rem;color:var(--doux)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:600;text-decoration:none;font-size:.95rem}
+.btn.sec{background:transparent;color:var(--accent)}
+.btn.petit{padding:6px 12px;font-size:.85rem}
+.btn.danger{background:transparent;border-color:var(--alerte);color:var(--alerte)}
+.btn:disabled{opacity:.45;cursor:default}
+.rangee{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.methode-tag{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;padding:2px 10px;border-radius:99px;border:1px solid currentColor}
+.bande{border-left:5px solid var(--c,var(--accent))}
+.imperatif{background:var(--or-p);border:1px solid color-mix(in srgb,var(--or) 40%,transparent);border-radius:var(--rayon);padding:16px 18px;margin:12px 0}
+.imperatif .sur{color:var(--or)}
+.imperatif h2{margin:.25em 0 .3em;font-size:1.35rem}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.lien-carte{display:block;text-decoration:none;color:inherit}
+.lien-carte:hover .carte{border-color:var(--accent)}
+.etat{font-size:.78rem;font-weight:600;padding:2px 9px;border-radius:99px;white-space:nowrap}
+.etat.fait{background:var(--ok-p);color:var(--ok)}
+.etat.retard{background:var(--alerte-p);color:var(--alerte)}
+.etat.jour{background:var(--or-p);color:var(--or)}
+.etat.avenir{background:var(--accent-p);color:var(--accent)}
+.etat.saute{background:var(--trait);color:var(--doux)}
+.seance{display:grid;gap:6px}
+.seance-tete{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.seance-tete b{font-family:var(--serif);font-size:1.05rem}
+.j{font-family:var(--serif);font-weight:700;color:var(--c,var(--accent));min-width:2.6em}
+ol.etapes{margin:.3em 0 .2em;padding-left:1.3em}
+ol.etapes li{margin:.25em 0}
+.min{color:var(--doux);font-size:.85rem;white-space:nowrap}
+.chrono{font-variant-numeric:tabular-nums;font-family:var(--serif);font-size:1.6rem;font-weight:700}
+.interdit{background:var(--alerte-p);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:.94rem}
+.interdit b{color:var(--alerte)}
+.note{font-size:.88rem;color:var(--doux)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:10px 0}
+th,td{border-bottom:1px solid var(--trait);padding:7px 8px;text-align:left;vertical-align:top}
+th{font-weight:600;background:color-mix(in srgb,var(--trait) 35%,transparent)}
+.defile{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* cours */
+.cours p{margin:.6em 0}
+.cours ul,.cours ol{padding-left:1.3em}
+.cours li{margin:.2em 0}
+.def,.cle,.piege,.hp,.lienT,.src{border-radius:10px;padding:10px 14px;margin:14px 0;font-size:.96rem}
+.def{background:var(--accent-p);border-left:4px solid var(--accent)}
+.cle{background:var(--ok-p);border-left:4px solid var(--ok)}
+.piege{background:var(--alerte-p);border-left:4px solid var(--alerte)}
+.hp{background:color-mix(in srgb,var(--trait) 45%,transparent);border-left:4px dashed var(--doux)}
+.lienT{background:var(--or-p);border-left:4px solid var(--or)}
+.src{font-size:.85rem;color:var(--doux);border:1px dashed var(--trait)}
+.def>b:first-child,.cle>b:first-child,.piege>b:first-child,.hp>b:first-child,.lienT>b:first-child{display:block;font-size:.76rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+.cle>b:first-child{color:var(--ok)} .piege>b:first-child{color:var(--alerte)} .def>b:first-child{color:var(--accent)} .lienT>b:first-child{color:var(--or)} .hp>b:first-child{color:var(--doux)}
+details{border:1px solid var(--trait);border-radius:10px;padding:0 14px;margin:12px 0;background:var(--carte)}
+details summary{cursor:pointer;padding:10px 0;font-weight:600}
+details[open]{padding-bottom:10px}
+figure{margin:16px 0;text-align:center}
+figure svg{max-width:100%;height:auto}
+figcaption{font-size:.85rem;color:var(--doux);margin-top:4px}
+.placeholder{border:2px dashed var(--trait);border-radius:var(--rayon);padding:22px;text-align:center;color:var(--doux)}
+/* qcm */
+.q-enonce{font-weight:600;margin:.4em 0 .8em}
+.prop{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:var(--carte);border:1.5px solid var(--trait);border-radius:10px;padding:11px 13px;margin:8px 0;cursor:pointer;line-height:1.45}
+.prop .lettre{flex:none;width:28px;height:28px;border-radius:7px;display:grid;place-items:center;font-weight:700;border:1.5px solid var(--trait);font-size:.9rem}
+.prop.sel{border-color:var(--accent);background:var(--accent-p)}
+.prop.sel .lettre{background:var(--accent);border-color:var(--accent);color:#fff}
+.prop.vrai{border-color:var(--ok)} .prop.vrai .lettre{background:var(--ok);border-color:var(--ok);color:#fff}
+.prop.faux-coche{border-color:var(--alerte);background:var(--alerte-p)}
+.prop.oubli{border-color:var(--ok);border-style:dashed}
+.expl{font-size:.88rem;color:var(--doux);margin-top:3px}
+.conf{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 4px}
+.conf button{flex:1;min-width:90px;border:1.5px solid var(--trait);background:var(--carte);border-radius:10px;padding:8px 6px;cursor:pointer;font-size:.88rem}
+.conf button.on{border-color:var(--or);background:var(--or-p);font-weight:600}
+.barre-prog{height:6px;border-radius:99px;background:var(--trait);overflow:hidden;margin:8px 0 14px}
+.barre-prog i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.score{font-family:var(--serif);font-size:2.2rem;font-weight:700}
+.barre{height:12px;border-radius:99px;background:var(--trait);overflow:hidden}
+.barre i{display:block;height:100%;border-radius:99px;background:var(--c,var(--accent))}
+.ligne-res{display:grid;grid-template-columns:110px 1fr 54px;gap:10px;align-items:center;margin:8px 0;font-size:.9rem}
+input[type=date],input[type=number],textarea,select{font:inherit;color:inherit;background:var(--carte);border:1px solid var(--trait);border-radius:8px;padding:7px 10px}
+input[type=number]{width:90px}
+textarea{width:100%;min-height:70px}
+.etoiles{display:flex;gap:4px}
+.etoiles button{border:1px solid var(--trait);background:var(--carte);border-radius:8px;width:38px;height:36px;cursor:pointer}
+.etoiles button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.frise{display:flex;gap:6px;margin:10px 0}
+.frise a{flex:1;text-decoration:none;color:inherit;text-align:center;font-size:.72rem}
+.frise a i{display:block;height:8px;border-radius:99px;background:var(--trait);margin-bottom:4px}
+.frise a.fait i{background:var(--c)}
+.frise a.cours i{background:linear-gradient(90deg,var(--c) 50%,var(--trait) 50%)}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--encre);color:var(--papier);padding:10px 16px;border-radius:10px;font-size:.9rem;z-index:50;max-width:calc(100% - 32px)}
+@media (min-width:700px){h1{font-size:2rem}}
+@media print{nav.bas,header.top{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="marque" href="#">
+    <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><path d="M4 17h6l2.5-6 4 12 3-9 1.8 3H28" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Protocole Santé
+  </a>
+  <span class="espace"></span>
+  <button class="pastille" id="sale" hidden onclick="location.hash='#journal'">Non enregistré</button>
+  <button class="theme" id="theme" aria-label="Changer de thème">◐</button>
+</div></header>
+
+<main><div class="wrap" id="app"></div></main>
+
+<nav class="bas"><div class="wrap">
+  <a href="#" data-r="accueil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Aujourd'hui</a>
+  <a href="#methodes" data-r="methodes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6M10 4v5L5 19a1.5 1.5 0 0 0 1.3 2h11.4a1.5 1.5 0 0 0 1.3-2L14 9V4"/><path d="M7.5 15h9"/></svg>Méthodes</a>
+  <a href="#cours" data-r="cours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M8 7h7"/></svg>Cours</a>
+  <a href="#resultats" data-r="resultats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Résultats</a>
+  <a href="#journal" data-r="journal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Journal</a>
+</div></nav>
+
+<script>
+"use strict";
+/* ============================================================
+   DONNÉES — le protocole
+   ============================================================ */
+var MATIERES = {
+  bc:  { nom: "Biologie cellulaire", court: "Bio. cell." },
+  bio: { nom: "Biochimie", court: "Biochimie" },
+  ana: { nom: "Anatomie", court: "Anatomie" }
+};
+
+/* Calendrier commun à toutes les méthodes : même nombre de séances, mêmes durées,
+   mêmes jours. Seule la manière de travailler change. J0 = un mercredi. */
+var SEANCES = [
+  { j: 0,  min: 75, type: "app", mat: "bc"  },
+  { j: 2,  min: 75, type: "app", mat: "bio" },
+  { j: 3,  min: 75, type: "app", mat: "ana" },
+  { j: 4,  min: 45, type: "cons" },
+  { j: 7,  min: 45, type: "cons" },
+  { j: 9,  min: 45, type: "cons" },
+  { j: 11, min: 45, type: "cons" }
+];
+var J_CLOTURE = 14, J_RETARD = 28;
+
+var METHODES = [
+ { id: "M1", nom: "Relire et ficher", sous: "La méthode habituelle", c: "var(--m1)",
+   idee: "Lire le cours, le surligner, en faire une fiche, puis relire la fiche. C'est la façon de travailler la plus répandue chez les lycéens et les étudiants.",
+   pourquoi: "Elle passe en premier parce qu'elle sert de point de comparaison : une fois les autres méthodes apprises, on ne saurait plus relire « naïvement ». Si une méthode fait mieux qu'elle, c'est qu'elle apporte vraiment quelque chose.",
+   app: [["Lire le chapitre en entier, sans s'arrêter.", 20], ["Le relire en surlignant l'essentiel.", 15], ["Rédiger une fiche à la main : titres, définitions, tableaux, un schéma.", 40]],
+   cons: [["Relire attentivement les trois fiches.", 25], ["Relire dans le cours les passages surlignés et compléter les fiches.", 20]],
+   interdit: "cacher la fiche pour réciter, se faire interroger, faire des QCM sur ces chapitres. Ce serait une autre méthode : la mesure serait faussée." },
+ { id: "M2", nom: "La feuille blanche", sous: "Rappel libre", c: "var(--m2)",
+   idee: "Après une lecture, fermer le cours et écrire de mémoire tout ce dont on se souvient, puis corriger en vert. Le vert montre exactement ce qu'il reste à apprendre.",
+   pourquoi: "Aller chercher une information dans sa mémoire la consolide bien plus que la relire : c'est l'effet de test, l'un des résultats les plus solides de la psychologie cognitive.",
+   app: [["Lire le chapitre une fois, en repérant son plan.", 25], ["Tout fermer. Feuille blanche : écrire de mémoire le plan, les définitions, les chiffres, les schémas.", 15], ["Rouvrir le cours et compléter en vert ce qui manquait ou était faux.", 15], ["Nouvelle feuille blanche, seulement sur ce qui était en vert.", 10], ["Contrôler cette deuxième feuille avec le cours.", 10]],
+   cons: [["Pour chacun des trois chapitres : feuille blanche de 7 minutes, sans rien relire avant.", 21], ["Correction en vert de chaque feuille, cours ouvert (8 minutes par chapitre).", 24]],
+   interdit: "relire le cours avant la feuille blanche. Garder toutes les feuilles, datées : on doit voir le vert diminuer." },
+ { id: "M3", nom: "Expliquer (Feynman)", sous: "Enseigner pour comprendre", c: "var(--m3)",
+   idee: "Expliquer chaque notion à voix haute, avec des mots simples, comme à un élève de troisième. Là où l'explication bloque, on n'a pas compris : on retourne au cours.",
+   pourquoi: "Reformuler oblige à relier les idées entre elles au lieu de réciter des mots. La méthode porte le nom du physicien Richard Feynman, réputé pour expliquer simplement des choses difficiles.",
+   app: [["Lire le chapitre.", 25], ["Pour 3 notions clés : les expliquer à voix haute sans support (mots simples, une analogie, un exemple), en s'enregistrant au téléphone.", 25], ["Réécouter : noter chaque endroit où tu bloques ou récites un mot sans pouvoir l'expliquer, puis retourner au cours sur ces trous.", 15], ["Écrire l'explication finale : 10 lignes et un schéma.", 10]],
+   cons: [["Pour chaque chapitre : l'expliquer en entier, de mémoire, en 5 minutes enregistrées.", 15], ["Réécouter cours en main, noter et corriger les erreurs.", 15], ["Répondre à voix haute aux questions « pourquoi ? » du chapitre.", 15]],
+   interdit: "lire ses notes pendant l'explication. Une explication lue n'est pas une explication." },
+ { id: "M4", nom: "Tester d'abord", sous: "Pré-test et séries mélangées", c: "var(--m4)",
+   idee: "Commencer par un test sur un chapitre qu'on n'a pas encore lu (se tromper est voulu), lire ensuite en cherchant les réponses, puis s'entraîner sur des séries où les trois matières sont mélangées.",
+   pourquoi: "Un pré-test prépare la mémoire à repérer ce qui compte. Mélanger les questions oblige à identifier à chaque fois de quoi il s'agit, ce qui est exactement la situation du concours.",
+   app: [["Pré-test du chapitre, avant toute lecture.", 10], ["Lire le cours en cherchant les réponses.", 35], ["Refaire le test, corriger, et pour chaque erreur écrire en une phrase pourquoi.", 20], ["Série d'entraînement du chapitre.", 10]],
+   cons: [["Série mélangée des trois chapitres (questions dans le désordre).", 25], ["Pour chaque erreur : relire le passage et écrire la règle.", 20]],
+   interdit: "regarder la correction avant d'avoir répondu à toute la série. Les questions d'entraînement ne sont jamais celles du QCM de mesure." },
+ { id: "M5", nom: "La méthode des J", sous: "Cartes et répétition espacée", c: "var(--m5)",
+   idee: "Transformer le cours en cartes question / réponse, puis les réciter à intervalles de plus en plus longs (J0, J4, J7, J9, J11). Une carte ratée revient plus souvent, une carte sue s'espace.",
+   pourquoi: "On oublie vite après avoir appris, mais chaque rappel réussi ralentit l'oubli suivant. Espacer les rappels est la base des logiciels de cartes (Anki) très utilisés en médecine.",
+   app: [["Lire le chapitre.", 25], ["Fabriquer 20 à 30 cartes : recto une question précise, verso la réponse. Une idée par carte.", 35], ["Premier passage : réciter chaque carte avant de la retourner. Toutes vont dans la boîte 1.", 15]],
+   cons: [["Passer les cartes des trois chapitres : réussie, elle avance d'une boîte ; ratée, elle revient en boîte 1. J4 et J11 : toutes les boîtes. J7 et J9 : boîtes 1 et 2.", 35], ["Réécrire ou découper les cartes ratées deux fois de suite.", 10]],
+   interdit: "retourner la carte avant d'avoir dit la réponse à voix haute ou dans sa tête, en entier." }
+];
+
+/* Plan d'expérience : chaque méthode voit les trois matières, avec des chapitres
+   différents. Ainsi la méthode n'est jamais confondue avec l'aisance dans une matière. */
+var PLAN = {
+  M1: { bc: "bc1", bio: "bio1", ana: "ana1" },
+  M2: { bc: "bc2", bio: "bio2", ana: "ana2" },
+  M3: { bc: "bc3", bio: "bio3", ana: "ana3" },
+  M4: { bc: "bc4", bio: "bio4", ana: "ana4" },
+  M5: { bc: "bc5", bio: "bio5", ana: "ana5" }
+};
+
+/* ============================================================
+   DONNÉES — les cours
+   ============================================================ */
+var CHAPITRES = {
+ bc1: { mat: "bc", titre: "La cellule eucaryote : organisation et outils d'observation", html: `
+<p class="lead">La cellule est l'unité de base du vivant. Ce chapitre fait le tour de ses compartiments et des techniques qui permettent de les voir et de les séparer : tout le reste de la biologie cellulaire s'appuie dessus.</p>
+
+<h2>1. La théorie cellulaire</h2>
+<div class="def"><b>Définition</b>La <strong>théorie cellulaire</strong> pose trois principes : tout être vivant est fait d'une ou de plusieurs cellules ; la cellule est l'unité de structure et de fonctionnement du vivant ; toute cellule provient d'une cellule préexistante.</div>
+<p>Elle s'est construite au XIX<sup>e</sup> siècle : Schleiden pour les végétaux (1838), Schwann pour les animaux (1839), puis Virchow (1855) avec la formule <em>omnis cellula e cellula</em>, « toute cellule vient d'une cellule ». Le mot « cellule » remonte à Hooke (1665), qui observait les logettes vides d'une lame de liège.</p>
+
+<h2>2. Deux plans d'organisation</h2>
+<p>Les cellules se rangent en deux grands types. La différence essentielle est la présence, chez les eucaryotes, de <strong>compartiments internes limités par des membranes</strong>, dont le noyau.</p>
+<div class="defile"><table>
+<tr><th></th><th>Procaryote (bactérie)</th><th>Eucaryote (animal, végétal, champignon)</th></tr>
+<tr><td>Taille typique</td><td>1 à 5 µm</td><td>10 à 100 µm</td></tr>
+<tr><td>ADN</td><td>dans le cytoplasme (nucléoïde), un chromosome en général circulaire, souvent des plasmides</td><td>dans un noyau limité par une enveloppe à deux membranes ; plusieurs chromosomes linéaires associés à des histones</td></tr>
+<tr><td>Organites membranaires</td><td>absents</td><td>nombreux (réticulum, Golgi, mitochondries…)</td></tr>
+<tr><td>Ribosomes</td><td>70S</td><td>80S dans le cytosol</td></tr>
+<tr><td>Cytosquelette</td><td>protéines apparentées, rudimentaire</td><td>développé (actine, microtubules, filaments intermédiaires)</td></tr>
+</table></div>
+<div class="cle"><b>L'idée à retenir</b>La <strong>compartimentation</strong> permet de faire coexister dans la même cellule des réactions aux conditions incompatibles. Exemple : le lysosome maintient un pH d'environ 4,5 à 5 pour ses enzymes digestives, alors que le cytosol reste vers 7,2 ; si ces enzymes se répandaient dans le cytosol, elles y seraient peu actives, ce qui protège la cellule.</div>
+<div class="lienT"><b>Lien avec la Terminale</b>Les mitochondries et les chloroplastes possèdent leur propre ADN circulaire et des ribosomes de type bactérien : ce sont des traces de l'endosymbiose vue en SVT (chapitre 2, partie III).</div>
+
+<h2>3. Visite des compartiments</h2>
+<div class="defile"><table>
+<tr><th>Compartiment</th><th>Structure</th><th>Rôle principal</th></tr>
+<tr><td><b>Membrane plasmique</b></td><td>bicouche lipidique d'environ 7,5 nm, avec des protéines</td><td>limite la cellule, contrôle les échanges, reconnaissance</td></tr>
+<tr><td><b>Cytosol</b></td><td>gel aqueux riche en protéines</td><td>nombreuses réactions du métabolisme (glycolyse), synthèse des protéines sur les ribosomes libres</td></tr>
+<tr><td><b>Noyau</b></td><td>enveloppe nucléaire à deux membranes, percée de pores ; chromatine ; nucléole</td><td>conserve l'ADN, lieu de la transcription ; le nucléole fabrique les ARN ribosomiques et assemble les sous-unités des ribosomes</td></tr>
+<tr><td><b>Réticulum endoplasmique rugueux (RER)</b></td><td>sacs aplatis couverts de ribosomes sur leur face cytosolique ; en continuité avec la membrane externe de l'enveloppe nucléaire</td><td>synthèse des protéines destinées à être sécrétées, insérées dans les membranes ou envoyées aux lysosomes</td></tr>
+<tr><td><b>Réticulum endoplasmique lisse (REL)</b></td><td>tubules sans ribosomes</td><td>synthèse des lipides, détoxification (très développé dans les hépatocytes), réserve de calcium (réticulum sarcoplasmique du muscle)</td></tr>
+<tr><td><b>Appareil de Golgi</b></td><td>empilement de saccules (dictyosome) avec une face <em>cis</em> tournée vers le RE et une face <em>trans</em> de sortie</td><td>maturation des protéines (glycosylation), tri et expédition</td></tr>
+<tr><td><b>Lysosomes</b></td><td>vésicules à pH acide (≈ 4,5 à 5)</td><td>digestion intracellulaire grâce à des hydrolases acides</td></tr>
+<tr><td><b>Peroxysomes</b></td><td>vésicules à une membrane</td><td>réactions d'oxydation ; la catalase détruit l'eau oxygénée (H<sub>2</sub>O<sub>2</sub>) produite</td></tr>
+<tr><td><b>Mitochondries</b></td><td>deux membranes ; l'interne forme des crêtes ; matrice ; ADN propre</td><td>respiration cellulaire et production d'ATP</td></tr>
+<tr><td><b>Cytosquelette</b></td><td>microfilaments d'actine (≈ 7 nm), filaments intermédiaires (≈ 10 nm), microtubules (≈ 25 nm)</td><td>forme, mouvements, transport intracellulaire</td></tr>
+</table></div>
+<p>Pour fixer les ordres de grandeur, la répartition du volume dans un hépatocyte (cellule du foie) : cytosol ≈ 54 %, mitochondries ≈ 22 %, RER ≈ 9 %, REL et Golgi ≈ 6 %, noyau ≈ 6 %, peroxysomes, lysosomes et endosomes ≈ 1 % chacun. <span class="note">(chiffres tirés d'Alberts, <em>Biologie moléculaire de la cellule</em>)</span></p>
+<div class="piege"><b>Piège de concours</b>« Le RE lisse porte des ribosomes » : faux, c'est ce qui le distingue du RE rugueux. Autre classique : la membrane externe de l'enveloppe nucléaire est en continuité avec le RER, et peut elle aussi porter des ribosomes.</div>
+
+<h2>4. Voir la cellule : les microscopes</h2>
+<div class="def"><b>Définition</b>Le <strong>pouvoir de résolution</strong> est la plus petite distance qui sépare deux points encore vus distincts. Plus il est petit, plus l'image est détaillée. À ne pas confondre avec le <strong>grossissement</strong> : agrandir une image floue n'apporte aucun détail.</div>
+<div class="defile"><table>
+<tr><th>Instrument</th><th>Résolution</th><th>Ce qu'on voit</th></tr>
+<tr><td>Œil nu</td><td>≈ 0,1 à 0,2 mm</td><td>un ovocyte humain, à peine</td></tr>
+<tr><td>Microscope optique (MO)</td><td>≈ 0,2 µm</td><td>cellules, noyaux, grosses structures</td></tr>
+<tr><td>Microscope électronique à transmission (MET)</td><td>de l'ordre du nm sur un échantillon biologique</td><td>ultrastructure : organites, membranes</td></tr>
+</table></div>
+<p>La résolution du microscope optique est limitée par la <strong>longueur d'onde de la lumière visible</strong> (400 à 700 nm) : on ne peut pas descendre sous environ la moitié de cette longueur d'onde. Les électrons ont une longueur d'onde bien plus courte, d'où le gain du microscope électronique.</p>
+
+<h3>Le microscope optique et les colorations</h3>
+<p>Préparation classique d'un tissu : <strong>fixation</strong> (formol, pour figer les structures), <strong>inclusion</strong> en paraffine, <strong>coupe</strong> au microtome (environ 5 µm d'épaisseur), puis <strong>coloration</strong>, car les cellules sont presque transparentes.</p>
+<p>La coloration la plus courante est l'<strong>HES</strong> (hématoxyline, éosine, safran) :</p>
+<ul>
+<li>l'<strong>hématoxyline</strong>, colorant basique, colore en violet-bleu les structures acides : le noyau (ADN), et le RER (riche en ARN). Ces structures sont dites <strong>basophiles</strong> ;</li>
+<li>l'<strong>éosine</strong>, colorant acide, colore en rose les structures basiques : la plupart des protéines du cytoplasme. Elles sont dites <strong>acidophiles</strong> (ou éosinophiles) ;</li>
+<li>le safran colore le collagène en jaune.</li>
+</ul>
+<div class="piege"><b>Piège de concours</b>« Basophile » signifie « qui aime le colorant basique », donc que la structure est <strong>acide</strong>. Une structure basophile n'est pas basique.</div>
+
+<h3>La fluorescence</h3>
+<p>Un <strong>fluorochrome</strong> absorbe une lumière et en réémet une autre, de <strong>longueur d'onde plus grande</strong> (le fluorochrome perd un peu d'énergie au passage). En <strong>immunofluorescence</strong>, un anticorps qui reconnaît une protéine précise est couplé à un fluorochrome : on voit où se trouve cette protéine. La <strong>GFP</strong> (protéine fluorescente verte d'une méduse, <em>Aequorea victoria</em>), fusionnée à une protéine par génie génétique, permet de suivre cette protéine dans une cellule <strong>vivante</strong>.</p>
+
+<h3>Les microscopes électroniques</h3>
+<ul>
+<li><strong>MET (transmission)</strong> : les électrons traversent une coupe ultrafine (50 à 100 nm), après fixation au glutaraldéhyde et au tétroxyde d'osmium et inclusion en résine. Le contraste vient de sels de métaux lourds (uranyle, plomb) : les zones qui les fixent arrêtent les électrons et apparaissent <strong>sombres</strong> (« denses aux électrons »). La membrane plasmique y apparaît en trois feuillets, sombre-clair-sombre (aspect <strong>trilamellaire</strong>). L'échantillon est mort.</li>
+<li><strong>MEB (balayage)</strong> : un faisceau d'électrons balaie la <strong>surface</strong> d'un échantillon recouvert d'une fine couche de métal. On obtient une image en relief de la surface, sans voir l'intérieur.</li>
+</ul>
+
+<h2>5. Séparer les organites : le fractionnement cellulaire</h2>
+<p>Pour étudier un organite, on l'isole. Les cellules sont d'abord <strong>broyées</strong> (homogénéisation) dans un milieu <strong>isotonique</strong> (souvent du saccharose) et <strong>au froid</strong> (4 °C), pour que les organites ne gonflent pas et que les enzymes ne les dégradent pas.</p>
+<p>La <strong>centrifugation différentielle</strong> consiste à centrifuger le broyat à des accélérations croissantes. À chaque étape, les éléments les plus gros et les plus denses tombent au fond (le culot) ; on récupère le liquide (le surnageant) pour l'étape suivante.</p>
+<div class="defile"><table>
+<tr><th>Accélération (ordre de grandeur)</th><th>Le culot contient</th></tr>
+<tr><td>≈ 1 000 g, 10 min</td><td>noyaux (et cellules non broyées)</td></tr>
+<tr><td>≈ 20 000 g</td><td>mitochondries, lysosomes, peroxysomes</td></tr>
+<tr><td>≈ 100 000 g</td><td>microsomes (fragments de RE et de membranes)</td></tr>
+<tr><td>≈ 200 000 g et plus</td><td>ribosomes</td></tr>
+<tr><td>dernier surnageant</td><td>le cytosol</td></tr>
+</table></div>
+<p>Pour séparer plus finement, on centrifuge sur un <strong>gradient de densité</strong> (de saccharose, par exemple) : chaque organite s'arrête au niveau où la densité du milieu égale la sienne.</p>
+<div class="piege"><b>Piège de concours</b>La vitesse de sédimentation s'exprime en <strong>Svedberg (S)</strong>. Elle dépend de la masse <em>et</em> de la forme : les S ne s'additionnent pas. Un ribosome eucaryote 80S est fait d'une sous-unité 60S et d'une sous-unité 40S (et 60 + 40 ≠ 80).</div>
+
+<div class="cle"><b>Bilan</b>La cellule eucaryote est compartimentée : chaque organite a sa composition et ses fonctions. Le microscope optique (résolution ≈ 0,2 µm) montre les cellules, le microscope électronique (≈ 1 nm) leur ultrastructure ; le fractionnement isole les organites pour les étudier.</div>
+
+<details><summary>Hors programme : voir encore plus fin</summary>
+<div class="hp"><b>Hors programme</b>La microscopie de <strong>super-résolution</strong> contourne la limite optique grâce à la fluorescence (prix Nobel de chimie 2014 : Betzig, Hell, Moerner). La <strong>cryo-microscopie électronique</strong> observe des molécules congelées sans coloration et reconstruit leur structure en 3D (prix Nobel de chimie 2017).</div>
+</details>
+<p class="src">Contenu original rédigé pour ce site, niveau début de première année, vérifié sur les ouvrages de référence (Alberts, <em>Biologie moléculaire de la cellule</em>). Il ne remplace pas le cours de la faculté.</p>
+` },
+
+ bio1: { mat: "bio", titre: "Les acides aminés", html: `
+<p class="lead">Les protéines sont des chaînes d'acides aminés. Avant d'étudier les protéines, il faut connaître ces briques : leur structure commune, ce qui les distingue, et leur comportement selon le pH, très souvent interrogé au concours.</p>
+
+<h2>1. Une structure commune</h2>
+<div class="def"><b>Définition</b>Un <strong>acide aminé</strong> (α-aminé) porte, sur un même carbone appelé <strong>carbone α</strong> : une fonction <strong>amine</strong> (–NH<sub>2</sub>), une fonction <strong>acide carboxylique</strong> (–COOH), un atome d'<strong>hydrogène</strong> et une <strong>chaîne latérale R</strong>, propre à chaque acide aminé.</div>
+<figure><svg viewBox="0 0 300 150" width="300" role="img" aria-label="Formule générale d'un acide aminé">
+<g font-family="system-ui,sans-serif" font-size="18" fill="currentColor" text-anchor="middle">
+<text x="150" y="82" font-weight="700">C</text><text x="168" y="70" font-size="12">α</text>
+<text x="62" y="82">H₂N</text><text x="245" y="82">COOH</text>
+<text x="150" y="30">R</text><text x="150" y="135">H</text></g>
+<g stroke="currentColor" stroke-width="2"><line x1="88" y1="76" x2="136" y2="76"/><line x1="164" y1="76" x2="212" y2="76"/><line x1="150" y1="38" x2="150" y2="62"/><line x1="150" y1="88" x2="150" y2="116"/></g>
+</svg><figcaption>Formule générale : seule la chaîne R change d'un acide aminé à l'autre.</figcaption></figure>
+<p>Le code génétique utilise <strong>20 acides aminés standard</strong>. Chacun a un nom, un code à trois lettres et un code à une lettre (Gly / G pour la glycine, Trp / W pour le tryptophane…).</p>
+
+<h2>2. Chiralité : la série L</h2>
+<p>Le carbone α porte quatre groupements différents : il est <strong>asymétrique</strong> (chiral). Un acide aminé existe donc sous deux formes images l'une de l'autre dans un miroir, notées <strong>D</strong> et <strong>L</strong>. Les protéines humaines n'utilisent que la forme <strong>L</strong>.</p>
+<p>Seule exception : la <strong>glycine</strong>, dont la chaîne latérale est un simple atome d'hydrogène. Son carbone α porte deux H : il n'est pas asymétrique.</p>
+<div class="piege"><b>Piège de concours</b>D/L et R/S sont deux nomenclatures différentes. Presque tous les acides aminés L sont de configuration S, mais la L-cystéine est R (à cause de l'atome de soufre, prioritaire). « Tous les acides aminés des protéines sont S » est donc faux.</div>
+
+<h2>3. Classer les acides aminés par leur chaîne latérale</h2>
+<p>La chaîne R donne à chaque acide aminé son caractère, et à la protéine sa forme : les chaînes apolaires se cachent à l'intérieur de la protéine, loin de l'eau ; les chaînes polaires et chargées restent en surface.</p>
+<div class="defile"><table>
+<tr><th>Famille</th><th>Acides aminés (code à 1 lettre)</th><th>Repère</th></tr>
+<tr><td>Apolaires aliphatiques</td><td>glycine (G), alanine (A), valine (V), leucine (L), isoleucine (I), méthionine (M), proline (P)</td><td>chaînes carbonées ; la méthionine porte un soufre ; la proline forme un cycle avec sa propre amine (amine secondaire)</td></tr>
+<tr><td>Aromatiques</td><td>phénylalanine (F), tyrosine (Y), tryptophane (W)</td><td>cycle benzénique ; la tyrosine porte un phénol (–OH) ; le tryptophane un noyau indole</td></tr>
+<tr><td>Polaires non chargés</td><td>sérine (S), thréonine (T), cystéine (C), asparagine (N), glutamine (Q)</td><td>Ser et Thr : fonction alcool ; Cys : fonction thiol (–SH) ; Asn et Gln : fonction amide</td></tr>
+<tr><td>Chargés + (basiques)</td><td>lysine (K), arginine (R), histidine (H)</td><td>chaîne portant une fonction amine (ou apparentée) qui capte un proton</td></tr>
+<tr><td>Chargés − (acides)</td><td>aspartate (D), glutamate (E)</td><td>chaîne portant une deuxième fonction acide carboxylique</td></tr>
+</table></div>
+<div class="piege"><b>Piège de concours</b>Les codes à une lettre qui ne sont pas l'initiale : <strong>K</strong> lysine, <strong>R</strong> arginine, <strong>D</strong> aspartate, <strong>E</strong> glutamate, <strong>N</strong> asparagine, <strong>Q</strong> glutamine, <strong>F</strong> phénylalanine, <strong>Y</strong> tyrosine, <strong>W</strong> tryptophane.</div>
+<p>Deux cystéines peuvent s'unir par <strong>oxydation</strong> de leurs fonctions thiol : elles forment un <strong>pont disulfure</strong> (–S–S–), qui stabilise la forme de nombreuses protéines (on appelle « cystine » le dimère formé).</p>
+
+<h2>4. Les acides aminés essentiels</h2>
+<div class="def"><b>Définition</b>Un acide aminé est <strong>essentiel</strong> (ou indispensable) quand l'organisme ne sait pas le fabriquer, ou pas en quantité suffisante : il doit être apporté par l'alimentation.</div>
+<p>Chez l'humain, ils sont neuf : leucine, thréonine, lysine, tryptophane, phénylalanine, valine, méthionine, isoleucine, et l'histidine. Moyen mnémotechnique classique pour les huit premiers : « <strong>Le Très Lyrique Tristan Fait Vachement Méditer Iseult</strong> » (Leu, Thr, Lys, Trp, Phe, Val, Met, Ile), auquel on ajoute l'histidine.</p>
+
+<h2>5. Les propriétés acido-basiques</h2>
+<p>C'est la partie la plus interrogée. Les fonctions acide et amine captent ou libèrent un proton (H<sup>+</sup>) selon le pH :</p>
+<ul>
+<li>la fonction α-COOH a un pK<sub>a</sub> d'environ <strong>2</strong> : au-dessus de pH 2, elle est surtout sous forme COO<sup>−</sup> ;</li>
+<li>la fonction α-NH<sub>3</sub><sup>+</sup> a un pK<sub>a</sub> d'environ <strong>9 à 10</strong> : en dessous, elle est surtout sous forme NH<sub>3</sub><sup>+</sup>.</li>
+</ul>
+<div class="cle"><b>L'idée à retenir</b>À pH physiologique (≈ 7,4), un acide aminé porte donc à la fois une charge + (NH<sub>3</sub><sup>+</sup>) et une charge − (COO<sup>−</sup>) : c'est un <strong>zwitterion</strong> (ion mixte), de charge nette nulle pour un acide aminé dont la chaîne n'est pas ionisable.</div>
+<h3>Le point isoélectrique (pHi)</h3>
+<div class="def"><b>Définition</b>Le <strong>pHi</strong> est le pH auquel la charge nette moyenne de l'acide aminé est nulle. À son pHi, il <strong>ne migre pas</strong> dans un champ électrique.</div>
+<ul>
+<li>Acide aminé à chaîne non ionisable : pHi = (pK<sub>a1</sub> + pK<sub>a2</sub>) / 2. Pour la glycine (pK<sub>a</sub> 2,3 et 9,6) : pHi ≈ <strong>6,0</strong>.</li>
+<li>Acide aminé acide (Asp, Glu) : moyenne des <strong>deux pK<sub>a</sub> les plus bas</strong>, d'où un pHi vers 3.</li>
+<li>Acide aminé basique (Lys, Arg) : moyenne des <strong>deux pK<sub>a</sub> les plus élevés</strong>, d'où un pHi vers 10.</li>
+</ul>
+<div class="cle"><b>La règle de migration</b>pH du milieu <strong>inférieur</strong> au pHi : la molécule est chargée <strong>+</strong> et migre vers la <strong>cathode</strong> (pôle −). pH <strong>supérieur</strong> au pHi : elle est chargée <strong>−</strong> et migre vers l'<strong>anode</strong> (pôle +). C'est le principe de l'électrophorèse.</div>
+<p>pK<sub>a</sub> approximatifs des chaînes latérales ionisables : aspartate ≈ 3,9 ; glutamate ≈ 4,1 ; <strong>histidine ≈ 6</strong> ; cystéine ≈ 8,3 ; tyrosine ≈ 10 ; lysine ≈ 10,5 ; arginine ≈ 12,5. L'histidine est la seule dont la chaîne a un pK<sub>a</sub> proche du pH physiologique : elle peut capter ou céder un proton dans la cellule, ce qui en fait un acteur fréquent des sites actifs d'enzymes.</p>
+
+<details><summary>Méthode : déterminer la charge d'un acide aminé à un pH donné</summary>
+<p>Pour chaque fonction ionisable, comparer le pH à son pK<sub>a</sub> : si pH &lt; pK<sub>a</sub>, la forme protonée domine (COOH neutre, NH<sub>3</sub><sup>+</sup> chargé +) ; si pH &gt; pK<sub>a</sub>, la forme déprotonée domine (COO<sup>−</sup> chargé −, NH<sub>2</sub> neutre). On additionne ensuite les charges.</p>
+<p>Exemple, la lysine (pK<sub>a</sub> 2,2 ; 9,0 ; 10,5) à pH 7 : COO<sup>−</sup> (−1), α-NH<sub>3</sub><sup>+</sup> (+1), chaîne NH<sub>3</sub><sup>+</sup> (+1). Charge nette ≈ <strong>+1</strong> : elle migre vers la cathode.</p>
+</details>
+
+<h2>6. Propriétés et dérivés utiles</h2>
+<ul>
+<li><strong>Absorption à 280 nm</strong> : les cycles aromatiques du tryptophane et de la tyrosine absorbent les ultraviolets vers 280 nm. On s'en sert pour doser les protéines dans une solution.</li>
+<li><strong>Précurseurs de molécules de signalisation</strong> : le tryptophane donne la sérotonine ; la tyrosine les catécholamines (dopamine, adrénaline) et les hormones thyroïdiennes ; l'histidine l'histamine ; le glutamate le GABA.</li>
+</ul>
+<div class="cle"><b>Bilan</b>Vingt acides aminés standard, tous de série L, tous chiraux sauf la glycine. La chaîne latérale les classe en apolaires, aromatiques, polaires, basiques, acides. À pH 7,4, ce sont des zwitterions ; leur charge dépend de la position du pH par rapport à leur pHi.</div>
+
+<details><summary>Hors programme : les 21<sup>e</sup> et 22<sup>e</sup> acides aminés</summary>
+<div class="hp"><b>Hors programme</b>La <strong>sélénocystéine</strong> (une cystéine dont le soufre est remplacé par du sélénium) est incorporée dans quelques protéines humaines grâce à un codon UGA détourné. La <strong>pyrrolysine</strong> n'existe que chez certains microorganismes.</div>
+</details>
+<p class="src">Contenu original rédigé pour ce site, niveau début de première année ; valeurs de pK<sub>a</sub> arrondies d'après Lehninger, <em>Principes de biochimie</em>. Il ne remplace pas le cours de la faculté.</p>
+` },
+
+ ana1: { mat: "ana", titre: "Le langage de l'anatomie : position, plans, axes et mouvements", html: `
+<p class="lead">L'anatomie a sa langue. Avant d'apprendre un seul os, il faut savoir décrire sans ambiguïté où se trouve une structure et comment bouge une articulation. Tout le reste de l'anatomie, et l'imagerie médicale, utilisent ce vocabulaire.</p>
+
+<h2>1. La position anatomique de référence</h2>
+<div class="def"><b>Définition</b>Toute description se fait sur un sujet en <strong>position anatomique</strong> : debout, face à l'observateur, regard horizontal, membres supérieurs le long du corps, <strong>paumes tournées vers l'avant</strong>, membres inférieurs joints, pieds parallèles.</div>
+<p>Conséquence : en position anatomique, le pouce est <strong>latéral</strong> et l'auriculaire (petit doigt) médial. La droite et la gauche sont toujours celles <strong>du sujet</strong>, jamais celles de l'observateur.</p>
+<figure><svg viewBox="0 0 320 260" width="320" role="img" aria-label="Les trois plans anatomiques">
+<g fill="none" stroke="currentColor" stroke-width="1.6">
+<circle cx="160" cy="40" r="16"/><path d="M160 56v84M160 70l-34 54M160 70l34 54M160 140l-22 90M160 140l22 90"/></g>
+<rect x="148" y="10" width="24" height="230" fill="var(--m3)" opacity=".18"/>
+<rect x="95" y="118" width="130" height="16" fill="var(--m2)" opacity=".28"/>
+<g font-family="system-ui,sans-serif" font-size="12" fill="currentColor">
+<text x="182" y="22">plan sagittal médian</text><text x="182" y="36" fill="var(--doux)">(droite / gauche)</text>
+<text x="232" y="129">plan transversal</text><text x="232" y="143" fill="var(--doux)">(haut / bas)</text>
+<text x="8" y="200">plan frontal :</text><text x="8" y="214" fill="var(--doux)">celui de la feuille</text><text x="8" y="228" fill="var(--doux)">(avant / arrière)</text></g>
+</svg><figcaption>Sujet vu de face : le plan frontal est parallèle à la feuille.</figcaption></figure>
+
+<h2>2. Les plans et les axes</h2>
+<div class="defile"><table>
+<tr><th>Plan</th><th>Orientation</th><th>Sépare</th></tr>
+<tr><td><b>Sagittal</b></td><td>vertical, d'avant en arrière ; le <strong>plan sagittal médian</strong> passe par le milieu du corps</td><td>droite et gauche (le médian en deux moitiés symétriques)</td></tr>
+<tr><td><b>Frontal</b> (ou coronal)</td><td>vertical, parallèle au front</td><td>une partie antérieure et une partie postérieure</td></tr>
+<tr><td><b>Transversal</b> (ou horizontal, axial)</td><td>perpendiculaire au grand axe du corps</td><td>une partie supérieure et une partie inférieure</td></tr>
+</table></div>
+<p>À chaque plan correspond un axe qui lui est perpendiculaire : l'axe <strong>vertical</strong> (ou longitudinal), l'axe <strong>sagittal</strong> (antéro-postérieur) et l'axe <strong>transversal</strong> (de droite à gauche). Un mouvement se fait <strong>dans un plan</strong>, <strong>autour de l'axe perpendiculaire</strong> à ce plan.</p>
+<div class="piege"><b>Piège de concours (imagerie)</b>Les coupes axiales de scanner et d'IRM sont regardées <strong>par les pieds</strong> du patient couché : le côté droit du patient apparaît à <strong>gauche de l'image</strong>. Une coupe « coronale » est une coupe frontale, pas une coupe transversale.</div>
+
+<h2>3. Les termes de direction</h2>
+<div class="defile"><table>
+<tr><th>Termes</th><th>Sens</th><th>Exemple</th></tr>
+<tr><td>Supérieur (crânial) / inférieur (caudal)</td><td>vers la tête / vers les pieds</td><td>le nez est supérieur à la bouche</td></tr>
+<tr><td>Antérieur (ventral) / postérieur (dorsal)</td><td>vers l'avant / vers l'arrière</td><td>le sternum est antérieur au cœur</td></tr>
+<tr><td>Médial / latéral</td><td>plus près / plus loin du plan sagittal médian</td><td>le sternum est médial par rapport aux poumons</td></tr>
+<tr><td>Proximal / distal</td><td>plus près / plus loin de la racine du membre</td><td>le coude est proximal par rapport au poignet</td></tr>
+<tr><td>Superficiel / profond</td><td>plus près / plus loin de la surface du corps</td><td>la peau est superficielle par rapport aux muscles</td></tr>
+<tr><td>Interne / externe</td><td>à l'intérieur / à l'extérieur d'une cavité ou d'un organe creux</td><td>la paroi interne de l'estomac</td></tr>
+<tr><td>Homolatéral (ipsilatéral) / controlatéral</td><td>du même côté / du côté opposé</td><td>une lésion cérébrale gauche paralyse le côté droit : la paralysie est controlatérale</td></tr>
+</table></div>
+<p>Pour la main, on parle de face <strong>palmaire</strong> (la paume, antérieure en position anatomique) et de face <strong>dorsale</strong> ; pour le pied, de face <strong>plantaire</strong> et de face <strong>dorsale</strong> (le dessus du pied).</p>
+<div class="piege"><b>Piège de concours</b>Dans l'ancienne nomenclature française, « interne » et « externe » voulaient dire « médial » et « latéral ». Aujourd'hui, interne / externe sont réservés aux cavités et aux organes creux.</div>
+
+<h2>4. Les mouvements</h2>
+<div class="defile"><table>
+<tr><th>Mouvement</th><th>Plan</th><th>Définition</th></tr>
+<tr><td><b>Flexion / extension</b></td><td>sagittal (autour d'un axe transversal)</td><td>la flexion plie l'articulation et rapproche en général les segments par l'avant ; l'extension la déplie</td></tr>
+<tr><td><b>Abduction / adduction</b></td><td>frontal (autour d'un axe sagittal)</td><td>l'abduction <strong>éloigne</strong> le membre du plan médian ; l'adduction l'en <strong>rapproche</strong></td></tr>
+<tr><td><b>Rotation médiale / latérale</b></td><td>transversal (autour d'un axe vertical)</td><td>le segment tourne sur son propre axe, vers l'intérieur ou l'extérieur</td></tr>
+<tr><td><b>Circumduction</b></td><td>plusieurs plans</td><td>enchaînement flexion, abduction, extension, adduction : le membre décrit un cône (épaule, hanche)</td></tr>
+</table></div>
+<p>Des mouvements propres à certaines articulations :</p>
+<ul>
+<li><strong>pronation / supination</strong> de l'avant-bras : en pronation, la paume regarde en arrière (ou vers le bas, coude fléchi) ; en supination, elle regarde en avant (position anatomique) ;</li>
+<li><strong>flexion dorsale / flexion plantaire</strong> de la cheville : la flexion dorsale rapproche le dos du pied de la jambe ; la flexion plantaire pointe le pied (se mettre sur la pointe des pieds) ;</li>
+<li><strong>inversion / éversion</strong> du pied : la plante se tourne vers le dedans / vers le dehors ;</li>
+<li><strong>opposition</strong> du pouce : la pulpe du pouce vient au contact de celle des autres doigts.</li>
+</ul>
+
+<h2>5. Les grandes régions et les cavités</h2>
+<p>Le corps se divise en tête, cou, tronc (thorax, abdomen, pelvis) et membres. Le tronc contient deux grandes cavités séparées par le <strong>diaphragme</strong> :</p>
+<ul>
+<li>la <strong>cavité thoracique</strong>, avec les deux cavités pleurales (les poumons) et, entre elles, le <strong>médiastin</strong>, qui contient le cœur, l'œsophage, la trachée et les gros vaisseaux ;</li>
+<li>la <strong>cavité abdomino-pelvienne</strong>, où l'abdomen se prolonge sans séparation par la cavité pelvienne (vessie, rectum, organes génitaux internes).</li>
+</ul>
+<h3>Les neuf régions de l'abdomen</h3>
+<p>Deux lignes verticales et deux lignes horizontales découpent la paroi abdominale en neuf régions, très utilisées pour décrire une douleur :</p>
+<div class="defile"><table>
+<tr><td>hypochondre droit<br><span class="note">(foie, vésicule biliaire)</span></td><td>épigastre<br><span class="note">(estomac)</span></td><td>hypochondre gauche<br><span class="note">(rate)</span></td></tr>
+<tr><td>flanc droit</td><td>région ombilicale</td><td>flanc gauche</td></tr>
+<tr><td>fosse iliaque droite<br><span class="note">(appendice : douleur de l'appendicite)</span></td><td>hypogastre<br><span class="note">(vessie)</span></td><td>fosse iliaque gauche</td></tr>
+</table></div>
+<p class="note">Rappel : la droite est celle du patient. Sur le tableau, vu de face, l'hypochondre droit est donc à gauche.</p>
+
+<h2>6. La nomenclature</h2>
+<p>La référence internationale est la <strong>Terminologia Anatomica</strong> (1998). La nomenclature française s'y est alignée, et plusieurs noms ont changé : péroné → <strong>fibula</strong>, rotule → <strong>patella</strong>, omoplate → <strong>scapula</strong>, cubitus → <strong>ulna</strong>, astragale → <strong>talus</strong>. Les anciens noms restent courants à l'hôpital ; au concours, on attend les nouveaux.</p>
+
+<div class="cle"><b>Bilan</b>Une position de référence (paumes en avant), trois plans (sagittal, frontal, transversal) et leurs axes, des couples de termes de direction (supérieur / inférieur, antérieur / postérieur, médial / latéral, proximal / distal, superficiel / profond) et des couples de mouvements (flexion / extension, abduction / adduction, rotations, pronation / supination).</div>
+<p class="src">Contenu original rédigé pour ce site, niveau début de première année, d'après la Terminologia Anatomica et les ouvrages d'anatomie générale. Il ne remplace pas le cours de la faculté.</p>
+` },
+
+ bc2: { mat: "bc", titre: "La membrane plasmique : structure et échanges", html: null },
+ bc3: { mat: "bc", titre: "Le système endomembranaire : RE, Golgi et trafic vésiculaire", html: null },
+ bc4: { mat: "bc", titre: "Le cytosquelette", html: null },
+ bc5: { mat: "bc", titre: "La mitochondrie et l'énergie cellulaire", html: null },
+ bio2: { mat: "bio", titre: "Peptides et protéines : les niveaux de structure", html: null },
+ bio3: { mat: "bio", titre: "Les glucides", html: null },
+ bio4: { mat: "bio", titre: "Les lipides", html: null },
+ bio5: { mat: "bio", titre: "Les enzymes", html: null },
+ ana2: { mat: "ana", titre: "Ostéologie et arthrologie : généralités", html: null },
+ ana3: { mat: "ana", titre: "Le cœur", html: null },
+ ana4: { mat: "ana", titre: "L'appareil respiratoire", html: null },
+ ana5: { mat: "ana", titre: "Les reins et les voies urinaires", html: null }
+};
+
+/* ============================================================
+   DONNÉES — les QCM de mesure (format concours : 5 propositions,
+   de 1 à 5 justes). Clôture à J14, retard à J28 (questions différentes).
+   ============================================================ */
+function P(t, v, e) { return { t: t, v: v, e: e || "" }; }
+var QCM = {
+ M1: {
+  cloture: [
+   { ch: "bc1", q: "À propos de la théorie cellulaire et des deux types cellulaires :", p: [
+     P("Toute cellule provient d'une cellule préexistante.", 1, "C'est le principe de Virchow (1855)."),
+     P("Les procaryotes possèdent un noyau limité par une membrane simple.", 0, "Les procaryotes n'ont pas de noyau : leur ADN est dans le cytoplasme (nucléoïde)."),
+     P("Les ribosomes du cytosol des eucaryotes sont de type 80S.", 1),
+     P("Une cellule eucaryote mesure typiquement de 10 à 100 µm.", 1),
+     P("Les procaryotes possèdent de petites mitochondries.", 0, "Aucun organite membranaire chez les procaryotes.")] },
+   { ch: "bc1", q: "À propos de la résolution des microscopes :", p: [
+     P("Le pouvoir de résolution du microscope optique est d'environ 0,2 µm.", 1),
+     P("Augmenter le grossissement améliore toujours la résolution.", 0, "Grossir une image floue n'ajoute aucun détail."),
+     P("La résolution du microscope optique est limitée par la longueur d'onde de la lumière visible.", 1),
+     P("Le microscope électronique à transmission permet d'observer des cellules vivantes.", 0, "L'échantillon est fixé, inclus, coupé : il est mort."),
+     P("Le microscope électronique à balayage donne une image en relief de la surface.", 1)] },
+   { ch: "bc1", q: "À propos de la coloration HES :", p: [
+     P("L'hématoxyline colore les noyaux en violet-bleu.", 1),
+     P("Une structure basophile est une structure basique.", 0, "Basophile = qui fixe le colorant basique, donc structure acide."),
+     P("L'éosine colore la plupart des protéines du cytoplasme en rose.", 1),
+     P("Le RER, riche en ARN, a tendance à être basophile.", 1),
+     P("Une coupe pour le microscope optique mesure environ 50 nm d'épaisseur.", 0, "Environ 5 µm. 50 à 100 nm, c'est la coupe ultrafine du MET.")] },
+   { ch: "bc1", q: "À propos des organites :", p: [
+     P("L'enveloppe nucléaire est formée de deux membranes.", 1),
+     P("Le nucléole est le lieu de synthèse des ARN ribosomiques.", 1),
+     P("Le RE lisse porte des ribosomes sur sa face cytosolique.", 0, "C'est le RE rugueux qui porte des ribosomes."),
+     P("La face cis de l'appareil de Golgi est tournée vers le RE.", 1),
+     P("Les hydrolases lysosomales sont surtout actives à pH neutre.", 0, "Ce sont des hydrolases acides, actives vers pH 4,5 à 5.")] },
+   { ch: "bc1", q: "À propos du fractionnement cellulaire :", p: [
+     P("En centrifugation différentielle, les noyaux sédimentent dès les faibles accélérations.", 1),
+     P("Les ribosomes sédimentent avant les mitochondries.", 0, "Les ribosomes, petits, demandent les plus fortes accélérations."),
+     P("Le dernier surnageant contient le cytosol.", 1),
+     P("Une sous-unité 60S et une sous-unité 40S forment un ribosome 100S.", 0, "Elles forment un ribosome 80S : les Svedberg ne s'additionnent pas."),
+     P("Le broyage se fait en milieu isotonique et au froid.", 1)] },
+   { ch: "bc1", q: "À propos de la fluorescence et du MET :", p: [
+     P("En immunofluorescence, un anticorps couplé à un fluorochrome repère une protéine précise.", 1),
+     P("Un fluorochrome émet une lumière de longueur d'onde plus courte que celle qui l'excite.", 0, "Plus longue : une partie de l'énergie est perdue."),
+     P("La GFP permet de suivre une protéine dans une cellule vivante.", 1),
+     P("En MET, les structures qui fixent les métaux lourds apparaissent claires.", 0, "Elles arrêtent les électrons : elles apparaissent sombres."),
+     P("En MET, la membrane plasmique a un aspect trilamellaire.", 1)] },
+
+   { ch: "bio1", q: "À propos de la structure des acides aminés :", p: [
+     P("Tous les acides aminés standard possèdent un carbone asymétrique.", 0, "Sauf la glycine (deux H sur le carbone α)."),
+     P("Les acides aminés des protéines humaines sont de la série L.", 1),
+     P("La chaîne latérale de la glycine est un atome d'hydrogène.", 1),
+     P("La proline possède une amine secondaire engagée dans un cycle.", 1),
+     P("Tous les acides aminés L sont de configuration S.", 0, "La L-cystéine est R.")] },
+   { ch: "bio1", q: "À propos de la classification des acides aminés :", p: [
+     P("Le tryptophane est un acide aminé aromatique.", 1),
+     P("L'aspartate et le glutamate portent une chaîne chargée négativement à pH 7.", 1),
+     P("La lysine est un acide aminé acide.", 0, "Basique : sa chaîne porte une amine."),
+     P("La valine est un acide aminé polaire.", 0, "Apolaire aliphatique."),
+     P("La cystéine possède une fonction thiol.", 1)] },
+   { ch: "bio1", q: "À propos des acides aminés essentiels :", p: [
+     P("La leucine est un acide aminé essentiel.", 1),
+     P("L'alanine est un acide aminé essentiel.", 0),
+     P("Un acide aminé essentiel est un acide aminé que l'organisme ne synthétise pas en quantité suffisante.", 1),
+     P("Le tryptophane est un acide aminé essentiel.", 1),
+     P("Le glutamate est un acide aminé essentiel.", 0)] },
+   { ch: "bio1", q: "La glycine a deux pKa : 2,3 et 9,6. À propos de la glycine :", p: [
+     P("Son pHi vaut environ 6,0.", 1, "(2,3 + 9,6) / 2 ≈ 5,95."),
+     P("À pH 1, elle porte une charge nette positive.", 1),
+     P("À pH 7, elle est majoritairement sous forme de zwitterion.", 1),
+     P("À pH 11, elle migre vers la cathode en électrophorèse.", 0, "À pH > pHi elle est chargée − : elle migre vers l'anode."),
+     P("À son pHi, elle migre vers l'anode.", 0, "À son pHi, la charge nette est nulle : pas de migration.")] },
+   { ch: "bio1", q: "À propos des acides aminés à chaîne ionisable :", p: [
+     P("Le pHi d'un acide aminé acide est inférieur à 7.", 1),
+     P("Le pHi de la lysine est supérieur à 7.", 1),
+     P("Le pHi de l'aspartate est la moyenne de ses deux pKa les plus élevés.", 0, "Les deux plus bas, pour un acide aminé acide."),
+     P("La chaîne de l'histidine a un pKa voisin de 6.", 1),
+     P("À pH physiologique, la chaîne de l'arginine est neutre.", 0, "pKa ≈ 12,5 : elle est chargée +.")] },
+   { ch: "bio1", q: "À propos des propriétés et dérivés des acides aminés :", p: [
+     P("Les protéines absorbent à 280 nm surtout grâce au tryptophane et à la tyrosine.", 1),
+     P("Deux cystéines peuvent former un pont disulfure par oxydation.", 1),
+     P("Le code à une lettre de la lysine est L.", 0, "K. L est la leucine."),
+     P("La sérotonine dérive du tryptophane.", 1),
+     P("Le GABA dérive de la tyrosine.", 0, "Du glutamate.")] },
+
+   { ch: "ana1", q: "À propos de la position anatomique :", p: [
+     P("Les paumes sont tournées vers l'avant.", 1),
+     P("Les membres supérieurs sont écartés à 90°.", 0, "Ils sont le long du corps."),
+     P("Le regard est horizontal.", 1),
+     P("Le pouce est en position médiale.", 0, "Paumes en avant, le pouce est latéral."),
+     P("Droite et gauche désignent les côtés du sujet.", 1)] },
+   { ch: "ana1", q: "À propos des plans anatomiques :", p: [
+     P("Le plan sagittal médian sépare le corps en moitiés droite et gauche.", 1),
+     P("Le plan frontal sépare une partie antérieure et une partie postérieure.", 1),
+     P("Le plan transversal est perpendiculaire au grand axe du corps.", 1),
+     P("Une coupe coronale est une coupe transversale.", 0, "Coronale = frontale."),
+     P("Les coupes axiales de scanner sont classiquement vues depuis la tête du patient.", 0, "Elles sont vues depuis les pieds.")] },
+   { ch: "ana1", q: "À propos des termes de direction :", p: [
+     P("Le coude est proximal par rapport au poignet.", 1),
+     P("Le sternum est latéral par rapport aux poumons.", 0, "Il est médial."),
+     P("La peau est superficielle par rapport aux muscles.", 1),
+     P("Le nez est supérieur à la bouche.", 1),
+     P("En position anatomique, la face palmaire de la main est postérieure.", 0, "Paumes en avant : elle est antérieure.")] },
+   { ch: "ana1", q: "À propos des mouvements :", p: [
+     P("La flexion et l'extension se font dans un plan sagittal.", 1),
+     P("L'abduction rapproche le membre du plan médian.", 0, "Elle l'éloigne ; l'adduction le rapproche."),
+     P("En pronation, la paume regarde en arrière (bras le long du corps).", 1),
+     P("La rotation se fait autour d'un axe vertical.", 1),
+     P("La flexion plantaire rapproche le dos du pied de la jambe.", 0, "C'est la flexion dorsale.")] },
+   { ch: "ana1", q: "À propos des cavités et régions :", p: [
+     P("Le diaphragme sépare la cavité thoracique de la cavité abdominale.", 1),
+     P("Le médiastin est situé entre les deux cavités pleurales.", 1),
+     P("L'épigastre est situé sous l'ombilic.", 0, "Au-dessus de la région ombilicale."),
+     P("La fosse iliaque droite est le siège classique de la douleur d'appendicite.", 1),
+     P("L'hypochondre droit contient surtout la rate.", 0, "Le foie ; la rate est dans l'hypochondre gauche.")] },
+   { ch: "ana1", q: "À propos de la nomenclature et de la latéralité :", p: [
+     P("« Péroné » se dit aujourd'hui « fibula ».", 1),
+     P("« Omoplate » se dit aujourd'hui « scapula ».", 1),
+     P("Une structure homolatérale est située du côté opposé.", 0, "Du même côté ; « controlatéral » = côté opposé."),
+     P("Sur une coupe axiale de scanner, le côté droit du patient est à gauche de l'image.", 1),
+     P("Dans la nomenclature actuelle, « interne » est synonyme de « médial ».", 0, "Interne / externe sont réservés aux cavités et organes creux.")] }
+  ],
+  retard: [
+   { ch: "bc1", q: "À propos des compartiments cellulaires :", p: [
+     P("Le peroxysome contient de la catalase, qui détruit l'eau oxygénée.", 1),
+     P("Les mitochondries possèdent leur propre ADN.", 1),
+     P("Le noyau occupe environ la moitié du volume d'un hépatocyte.", 0, "Environ 6 % ; c'est le cytosol qui en occupe environ la moitié."),
+     P("Le RE lisse intervient dans la détoxification hépatique.", 1),
+     P("Le réticulum sarcoplasmique du muscle stocke du sodium.", 0, "Du calcium.")] },
+   { ch: "bc1", q: "À propos des techniques d'observation :", p: [
+     P("La résolution pratique du MET sur un échantillon biologique est de l'ordre du nanomètre.", 1),
+     P("Le pouvoir de résolution de l'œil est d'environ 0,2 µm.", 0, "Environ 0,1 à 0,2 mm."),
+     P("Le tétroxyde d'osmium est utilisé pour préparer les échantillons du MET.", 1),
+     P("Pour le microscope optique, l'inclusion se fait classiquement en paraffine.", 1),
+     P("Le MEB nécessite des coupes ultrafines.", 0, "Le MEB observe une surface, sans coupe.")] },
+   { ch: "bc1", q: "À propos de l'organisation cellulaire :", p: [
+     P("Le chromosome bactérien est en général circulaire.", 1),
+     P("L'ADN des eucaryotes est associé à des histones.", 1),
+     P("Le pH lysosomal est d'environ 7,2.", 0, "Environ 4,5 à 5 ; 7,2 est le pH du cytosol."),
+     P("Le diamètre des microtubules est d'environ 25 nm.", 1),
+     P("Le diamètre des microfilaments d'actine est d'environ 25 nm.", 0, "Environ 7 nm.")] },
+   { ch: "bio1", q: "À propos des acides aminés :", p: [
+     P("La méthionine est un acide aminé essentiel.", 1),
+     P("Le code à une lettre W désigne le tryptophane.", 1),
+     P("La glycine est chirale.", 0),
+     P("La cystéine est un acide aminé polaire non chargé à pH 7.", 1),
+     P("La phénylalanine possède un noyau indole.", 0, "Un cycle benzénique ; l'indole est celui du tryptophane.")] },
+   { ch: "bio1", q: "L'alanine a deux pKa : 2,3 et 9,7. À propos de l'alanine :", p: [
+     P("À pH 6,0, sa charge nette est nulle.", 1),
+     P("À pH 1, elle est majoritairement sous forme cationique.", 1),
+     P("À pH 12, elle migre vers la cathode.", 0, "Chargée −, elle migre vers l'anode."),
+     P("Au pH sanguin (7,4), sa fonction α-COOH est surtout protonée.", 0, "pH > pKa (2,3) : elle est surtout sous forme COO−."),
+     P("La tyrosine, elle, porte une fonction phénol.", 1)] },
+   { ch: "bio1", q: "À propos des acides aminés :", p: [
+     P("Lysine, arginine et histidine sont des acides aminés basiques.", 1),
+     P("L'histamine dérive de l'histidine.", 1),
+     P("Un zwitterion porte simultanément une charge + et une charge −.", 1),
+     P("Le code à une lettre de l'asparagine est D.", 0, "N ; D est l'aspartate."),
+     P("La sérine porte une fonction thiol.", 0, "Une fonction alcool ; le thiol est celui de la cystéine.")] },
+   { ch: "ana1", q: "À propos des termes et des mouvements :", p: [
+     P("Proximal et distal s'emploient surtout pour les membres.", 1),
+     P("Chez l'humain, ventral est synonyme d'antérieur.", 1),
+     P("L'adduction éloigne le membre du plan médian.", 0, "Elle le rapproche."),
+     P("La circumduction enchaîne flexion, abduction, extension et adduction.", 1),
+     P("Le plan horizontal est un plan sagittal.", 0, "Horizontal = transversal.")] },
+   { ch: "ana1", q: "À propos de la nomenclature :", p: [
+     P("« Rotule » se dit aujourd'hui « patella ».", 1),
+     P("« Cubitus » se dit aujourd'hui « ulna ».", 1),
+     P("« Médial » désigne ce qui est plus proche du plan sagittal médian.", 1),
+     P("« Controlatéral » signifie « du même côté ».", 0, "Du côté opposé."),
+     P("Une structure profonde est plus proche de la surface du corps.", 0, "Plus éloignée de la surface.")] },
+   { ch: "ana1", q: "À propos des régions du corps :", p: [
+     P("La cavité pelvienne est en continuité avec la cavité abdominale.", 1),
+     P("Le cœur est situé dans le médiastin.", 1),
+     P("Les flancs sont des régions de la paroi thoracique.", 0, "Ce sont des régions de l'abdomen."),
+     P("L'éversion tourne la plante du pied vers le dehors.", 1),
+     P("L'hypogastre est situé au-dessus de l'ombilic.", 0, "En dessous, au centre de l'étage inférieur.")] }
+  ]
+ }
+};
+
+/* Barème à discordances, le plus répandu en première année :
+   0 erreur sur les 5 propositions = 1 ; 1 = 0,5 ; 2 = 0,2 ; 3 et plus = 0. */
+function noteQ(sel, props) {
+  var d = 0;
+  props.forEach(function (p, i) { if ((sel.indexOf(i) >= 0) !== !!p.v) d++; });
+  return d === 0 ? 1 : d === 1 ? 0.5 : d === 2 ? 0.2 : 0;
+}
+
+/* ============================================================
+   ÉTAT — journal en mémoire, enregistré dans un fichier JSON
+   (pas de stockage dans le navigateur)
+   ============================================================ */
+var S = { v: 1, blocs: {} };
+var SALE = false;
+METHODES.forEach(function (m) { S.blocs[m.id] = { j0: null, seances: {}, qcm: {}, ressenti: {} }; });
+function bloc(id) { return S.blocs[id]; }
+function marquer() { SALE = true; document.getElementById("sale").hidden = false; }
+
+/* ---------- dates ---------- */
+function auj() { var d = new Date(); return iso(d); }
+function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+function parse(s) { var a = s.split("-"); return new Date(+a[0], +a[1] - 1, +a[2]); }
+function plus(s, n) { var d = parse(s); d.setDate(d.getDate() + n); return iso(d); }
+function ecart(a, b) { return Math.round((Date.UTC.apply(null, ymd(b)) - Date.UTC.apply(null, ymd(a))) / 864e5); }
+function ymd(s) { var a = s.split("-"); return [+a[0], +a[1] - 1, +a[2]]; }
+var JOURS = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
+var MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+function joli(s, court) { var d = parse(s); return (court ? JOURS[d.getDay()].slice(0, 3) + "." : JOURS[d.getDay()]) + " " + d.getDate() + " " + MOIS[d.getMonth()]; }
+function prochainMercredi(depuis) { var d = parse(depuis); var k = (3 - d.getDay() + 7) % 7; d.setDate(d.getDate() + k); return iso(d); }
+
+/* ---------- logique du protocole ---------- */
+function methode(id) { return METHODES.filter(function (m) { return m.id === id; })[0]; }
+function idx(id) { return METHODES.map(function (m) { return m.id; }).indexOf(id); }
+function clotureFaite(id) { return !!bloc(id).qcm.cloture; }
+function blocCourant() {
+  for (var i = 0; i < METHODES.length; i++) if (!clotureFaite(METHODES[i].id)) return METHODES[i];
+  return null;
+}
+function etatSeance(id, i) {
+  var b = bloc(id), s = b.seances[i];
+  if (s && s.statut === "faite") return "fait";
+  if (s && s.statut === "sautee") return "saute";
+  if (!b.j0) return "avenir";
+  var d = plus(b.j0, SEANCES[i].j), t = auj();
+  if (t === d) return "jour";
+  if (t > plus(d, 1)) return "retard";
+  if (t > d) return "jour";
+  return "avenir";
+}
+var ETIQ = { fait: "faite", saute: "non faite", jour: "aujourd'hui", retard: "en retard", avenir: "à venir" };
+function minutesBloc(id) {
+  var b = bloc(id), t = 0;
+  Object.keys(b.seances).forEach(function (k) { if (b.seances[k].statut === "faite") t += +b.seances[k].min || 0; });
+  return t;
+}
+function chapSeance(m, i) { var s = SEANCES[i]; return s.mat ? PLAN[m.id][s.mat] : null; }
+function titreSeance(m, i) {
+  var s = SEANCES[i];
+  if (s.type === "app") return "Apprendre : " + MATIERES[s.mat].nom;
+  return "Consolider les trois chapitres";
+}
+
+/* ============================================================
+   RENDU
+   ============================================================ */
+var app = document.getElementById("app");
+function h(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function tag(m) { return '<span class="methode-tag" style="color:' + m.c + '">' + m.id.replace("M", "Méthode ") + " · " + h(m.nom) + "</span>"; }
+function toast(t) { var d = document.createElement("div"); d.className = "toast"; d.textContent = t; document.body.appendChild(d); setTimeout(function () { d.remove(); }, 2600); }
+
+function frise() {
+  return '<div class="frise">' + METHODES.map(function (m) {
+    var cl = clotureFaite(m.id) ? "fait" : bloc(m.id).j0 ? "cours" : "";
+    return '<a href="#m/' + m.id + '" class="' + cl + '" style="--c:' + m.c + '"><i></i>' + m.id + "</a>";
+  }).join("") + "</div>";
+}
+
+function vueAccueil() {
+  var m = blocCourant(), t = auj(), out = "";
+  out += '<p class="sur">' + h(joli(t)) + '</p><h1>Aujourd\'hui</h1>';
+  out += frise();
+  /* QCM de retard en attente (bloc précédent, J28) */
+  METHODES.forEach(function (x) {
+    var b = bloc(x.id);
+    if (b.qcm.cloture && !b.qcm.retard && QCM[x.id] && t >= plus(b.j0, J_RETARD))
+      out += '<div class="imperatif"><p class="sur">Impératif · 10 minutes</p><h2>QCM de rappel tardif · ' + h(x.nom) + '</h2><p>Quatre semaines après le début de la méthode : ce QCM mesure ce qu\'il reste sur le long terme. À faire avant toute autre séance.</p><a class="btn" href="#qcm/' + x.id + '/retard">Commencer</a></div>';
+  });
+  if (!m) {
+    out += '<div class="carte"><h2>Les cinq méthodes sont terminées</h2><p>Les rappels tardifs éventuels mis à part, l\'expérience est finie. Regarde le bilan dans <a href="#resultats">Résultats</a>, puis on passe à la médecine « pure et dure » avec la méthode gagnante.</p></div>';
+    return out;
+  }
+  var b = bloc(m.id);
+  if (!b.j0) {
+    var prec = idx(m.id) > 0 ? bloc(METHODES[idx(m.id) - 1].id) : null;
+    var defaut = prec && prec.j0 ? plus(prec.j0, J_CLOTURE) : prochainMercredi(t);
+    if (defaut < t) defaut = t;
+    var manque = Object.keys(MATIERES).some(function (k) { return !CHAPITRES[PLAN[m.id][k]].html; });
+    if (manque) {
+      out += '<div class="carte bande" style="--c:' + m.c + '"><p class="sur">Prochaine étape</p><h2 style="margin-top:.2em">' + h(m.id.replace("M", "Méthode ")) + " : " + h(m.nom) + '</h2><p>' + h(m.idee) + '</p><p>Les cours de cette méthode sont en préparation : ils seront en ligne avant le ' + h(joli(defaut)) + '. En attendant, ne commence rien d\'autre.</p></div>';
+      return out;
+    }
+    out += '<div class="carte bande" style="--c:' + m.c + '"><p class="sur">Prochaine étape</p><h2 style="margin-top:.2em">' + h(m.id.replace("M", "Méthode ")) + " : " + h(m.nom) + '</h2><p>' + h(m.idee) + '</p>' +
+      '<p>Choisis le jour de départ (J0). Un <strong>mercredi</strong> est conseillé : le calendrier tombe alors sur tes mercredis, vendredis et week-ends.</p>' +
+      '<div class="rangee"><input type="date" id="j0" value="' + defaut + '"><button class="btn" id="go">Lancer la méthode</button></div>' +
+      '<p class="note">Avant de commencer, lis la page de la méthode : <a href="#m/' + m.id + '">les consignes</a>.</p></div>';
+    return out;
+  }
+  /* séance impérative du jour */
+  var prochaine = null;
+  for (var i = 0; i < SEANCES.length; i++) { var e = etatSeance(m.id, i); if (e !== "fait" && e !== "saute") { prochaine = i; break; } }
+  var jour = ecart(b.j0, t);
+  if (prochaine !== null) {
+    var s = SEANCES[prochaine], d = plus(b.j0, s.j), e2 = etatSeance(m.id, prochaine), ch = chapSeance(m, prochaine);
+    var quand = e2 === "jour" ? "aujourd'hui" : e2 === "retard" ? "en retard (prévue " + joli(d) + ")" : joli(d);
+    out += '<div class="imperatif"><p class="sur">Impératif · J' + s.j + " · " + s.min + ' minutes</p><h2>' + h(titreSeance(m, prochaine)) + '</h2>' +
+      '<p><strong>Quand :</strong> ' + h(quand) + '. <span class="note">Repli toléré : le lendemain, pas plus tard.</span></p>' +
+      (ch ? '<p><strong>Chapitre :</strong> <a href="#c/' + ch + '">' + h(CHAPITRES[ch].titre) + '</a></p>' : "") +
+      '<div class="rangee"><a class="btn" href="#m/' + m.id + '/' + prochaine + '">Ouvrir la séance</a></div></div>';
+    if (e2 === "retard") out += '<div class="interdit"><b>Séance manquée.</b> Fais-la dès que possible ou marque-la « non faite » : ne la rattrape pas en doublant une autre séance, cela fausserait la comparaison.</div>';
+  } else {
+    var dq = plus(b.j0, J_CLOTURE);
+    out += '<div class="imperatif"><p class="sur">Impératif · J14 · environ 30 minutes</p><h2>QCM de clôture · ' + h(m.nom) + '</h2>' +
+      (t >= dq ? '<p>Le QCM se passe aujourd\'hui, avant de commencer la méthode suivante. Conditions de concours : sans document, d\'une traite.</p><a class="btn" href="#qcm/' + m.id + '/cloture">Commencer le QCM</a>'
+               : '<p>Toutes les séances sont passées. Le QCM de clôture se fait le <strong>' + h(joli(dq)) + '</strong> (J14). D\'ici là, ne travaille plus ces chapitres : le délai fait partie de la mesure.</p>') + '</div>';
+  }
+  out += '<div class="carte bande" style="--c:' + m.c + '"><p class="sur">Méthode en cours · J' + Math.max(0, jour) + '</p><h3 style="margin:.2em 0">' + h(m.nom) + '</h3><p class="note">' + h(m.sous) + " · " + minutesBloc(m.id) + ' min travaillées</p><a href="#m/' + m.id + '">Calendrier et consignes</a></div>';
+  out += '<p class="note">Après chaque séance : <a href="#journal">enregistre le journal</a>. Le site ne garde rien en mémoire quand on le ferme.</p>';
+  return out;
+}
+
+function vueMethodes() {
+  var out = '<p class="sur">L\'expérience</p><h1>Cinq méthodes, une à la fois</h1>';
+  out += '<p class="lead">Chaque méthode est appliquée pendant deux semaines aux trois matières qui pèsent le plus en première année. Le calendrier, le temps de travail et le type de QCM sont identiques pour toutes : seule la façon de travailler change.</p>';
+  out += '<p><a href="#protocole">Pourquoi ce protocole ?</a></p>';
+  METHODES.forEach(function (m) {
+    var b = bloc(m.id), et = clotureFaite(m.id) ? '<span class="etat fait">terminée</span>' : b.j0 ? '<span class="etat jour">en cours</span>' : '<span class="etat avenir">à venir</span>';
+    out += '<a class="lien-carte" href="#m/' + m.id + '"><div class="carte bande" style="--c:' + m.c + '"><div class="rangee" style="justify-content:space-between"><span class="j" style="--c:' + m.c + '">' + m.id + '</span>' + et + '</div><h3 style="margin:.3em 0 .1em">' + h(m.nom) + '</h3><p class="note" style="margin:0 0 .4em">' + h(m.sous) + '</p><p style="margin:0">' + h(m.idee) + '</p></div></a>';
+  });
+  return out;
+}
+
+function vueProtocole() {
+  return '<p class="sur">Le protocole</p><h1>Pourquoi on travaille ainsi</h1>' +
+  '<div class="carte"><h3>Le but</h3><p>Trouver la méthode de travail qui rend Orhan le plus efficace avant d\'attaquer la licence portail santé (première année unique qui remplace PASS et LAS à la rentrée 2027). La sélection reste un classement : la méthode compte autant que le volume.</p></div>' +
+  '<div class="carte"><h3>Mesurer la méthode, pas la matière</h3><p>Si une méthode n\'était testée qu\'en anatomie, on mesurerait surtout l\'aisance en anatomie. Chaque méthode est donc appliquée aux <strong>trois mêmes matières</strong> (biologie cellulaire, biochimie, anatomie), sur des chapitres différents. L\'effet de la matière se répartit entre toutes les méthodes.</p>' +
+  '<div class="defile"><table><tr><th></th>' + Object.keys(MATIERES).map(function (k) { return "<th>" + MATIERES[k].court + "</th>"; }).join("") + "</tr>" +
+  METHODES.map(function (m) { return '<tr><td><b style="color:' + m.c + '">' + m.id + "</b> " + h(m.nom) + "</td>" + Object.keys(MATIERES).map(function (k) { var c = PLAN[m.id][k]; return '<td><a href="#c/' + c + '">' + h(CHAPITRES[c].titre) + "</a></td>"; }).join("") + "</tr>"; }).join("") + "</table></div></div>" +
+  '<div class="carte"><h3>Les mêmes conditions pour toutes</h3><ul><li>Sept séances en deux semaines : J0, J2, J3 (apprentissage, 75 min), J4, J7, J9, J11 (consolidation, 45 min). Avec J0 un mercredi : mercredi, vendredi, samedi, dimanche, mercredi, vendredi, week-end.</li><li>QCM de clôture à J14, puis QCM de rappel tardif à J28 (questions différentes), pour mesurer ce qui reste.</li><li>Même barème, celui des concours de première année : 5 propositions, de 1 à 5 justes ; 0 erreur = 1 point, 1 erreur = 0,5, 2 erreurs = 0,2, 3 et plus = 0.</li></ul></div>' +
+  '<div class="carte"><h3>Les règles du jeu</h3><ol><li><strong>Une méthode à la fois</strong>, terminée (QCM de clôture passé) avant de commencer la suivante.</li><li>Ne pas travailler ces chapitres <strong>en dehors des séances</strong>.</li><li>Respecter les durées : le chronomètre du site les mesure. Plus de temps rendrait la comparaison injuste.</li><li>Une séance oubliée se marque « non faite » : on ne la rattrape pas en douce.</li><li>Pour chaque réponse de QCM, dire si on est sûr, hésitant ou si on a répondu au hasard : savoir ce qu\'on sait fait partie de l\'efficacité.</li><li>Enregistrer le journal après chaque séance.</li></ol></div>' +
+  '<div class="carte"><h3>Ce que le bilan mesure</h3><ul><li>le score au QCM de clôture (ce qui est appris) ;</li><li>le score au rappel tardif (ce qui reste) ;</li><li>les points obtenus par heure de travail ;</li><li>la fiabilité du « sûr » (quand Orhan est sûr, a-t-il raison ?) ;</li><li>le ressenti : agréable ? tenable toute une année ?</li></ul></div>' +
+  '<div class="carte"><h3>Les limites, honnêtement</h3><p>Les méthodes passent l\'une après l\'autre : la dernière profite de l\'habitude prise et d\'un vocabulaire plus riche. L\'ordre a été choisi pour limiter ce biais : la méthode habituelle d\'abord (elle serait faussée si on la testait après les autres), la plus complète à la fin. Avec 27 questions par méthode, un écart de moins de 10 à 15 points peut venir du hasard : le bilan le signale.</p></div>' +
+  '<p class="note">Les coefficients officiels de la future licence portail santé ne sont pas encore publiés (textes adoptés en juillet 2026, en attente de parution au Journal officiel). Les trois matières retenues sont celles qui pesaient le plus en PASS et figurent dans le bloc santé annoncé.</p>';
+}
+
+function vueMethode(id, focus) {
+  var m = methode(id); if (!m) return vueMethodes();
+  var b = bloc(id), out = "";
+  out += '<p class="sur"><a href="#methodes">Méthodes</a> · ' + m.id + '</p><h1 style="color:' + m.c + '">' + h(m.nom) + '</h1><p class="lead">' + h(m.idee) + '</p>';
+  out += '<div class="carte"><h3>Pourquoi ça marcherait</h3><p>' + h(m.pourquoi) + '</p></div>';
+  out += '<div class="carte"><h3>Séance d\'apprentissage · 75 min</h3><ol class="etapes">' + m.app.map(function (e) { return "<li>" + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + '</ol>' +
+         '<h3>Séance de consolidation · 45 min</h3><ol class="etapes">' + m.cons.map(function (e) { return "<li>" + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + '</ol>' +
+         '<div class="interdit"><b>Interdit pendant cette méthode :</b> ' + h(m.interdit) + '</div></div>';
+  out += "<h2>Les trois chapitres</h2>";
+  Object.keys(MATIERES).forEach(function (k) {
+    var c = PLAN[id][k];
+    out += '<a class="lien-carte" href="#c/' + c + '"><div class="carte"><p class="sur">' + MATIERES[k].nom + "</p><b>" + h(CHAPITRES[c].titre) + "</b>" + (CHAPITRES[c].html ? "" : ' <span class="etat saute">en préparation</span>') + "</div></a>";
+  });
+  out += "<h2>Le calendrier</h2>";
+  if (!b.j0) {
+    out += '<p class="note">Le calendrier s\'affiche quand la méthode est lancée depuis <a href="#">Aujourd\'hui</a>' + (idx(id) > 0 && !clotureFaite(METHODES[idx(id) - 1].id) ? ", après le QCM de clôture de la méthode précédente" : "") + ".</p>";
+  } else {
+    SEANCES.forEach(function (s, i) {
+      var e = etatSeance(id, i), d = plus(b.j0, s.j), rec = b.seances[i], ch = chapSeance(m, i);
+      out += '<div class="carte seance" id="s' + i + '" style="--c:' + m.c + (focus === i ? ";border-color:" + m.c : "") + '"><div class="seance-tete"><span class="j">J' + s.j + '</span><b>' + h(titreSeance(m, i)) + '</b><span class="espace"></span><span class="etat ' + e + '">' + ETIQ[e] + '</span></div>' +
+        '<div class="note">' + h(joli(d)) + " · " + s.min + " min" + (rec && rec.statut === "faite" ? " · fait le " + h(joli(rec.date, true)) + " en " + rec.min + " min" : "") + "</div>" +
+        (ch ? '<div><a href="#c/' + ch + '">' + h(CHAPITRES[ch].titre) + "</a></div>" : "") +
+        (focus === i ? panneauSeance(m, i) : '<div><a href="#m/' + id + "/" + i + '">' + (rec ? "Modifier" : "Ouvrir la séance") + "</a></div>") + "</div>";
+    });
+    var dq = plus(b.j0, J_CLOTURE), dr = plus(b.j0, J_RETARD);
+    out += '<div class="carte seance" style="--c:' + m.c + '"><div class="seance-tete"><span class="j">J14</span><b>QCM de clôture</b><span class="espace"></span>' + (b.qcm.cloture ? '<span class="etat fait">fait</span>' : "") + '</div><div class="note">' + h(joli(dq)) + '</div><div><a href="#qcm/' + id + '/cloture">' + (b.qcm.cloture ? "Voir la correction" : "Ouvrir") + "</a></div></div>";
+    out += '<div class="carte seance" style="--c:' + m.c + '"><div class="seance-tete"><span class="j">J28</span><b>QCM de rappel tardif</b><span class="espace"></span>' + (b.qcm.retard ? '<span class="etat fait">fait</span>' : "") + '</div><div class="note">' + h(joli(dr)) + ' · pendant la méthode suivante, 10 minutes</div><div><a href="#qcm/' + id + '/retard">' + (b.qcm.retard ? "Voir la correction" : "Ouvrir") + "</a></div></div>";
+    if (b.qcm.cloture) out += ressenti(m);
+    out += '<details><summary>Changer la date de départ</summary><p class="note">Seulement si la méthode n\'a pas vraiment commencé à la date prévue.</p><div class="rangee"><input type="date" id="j0b" value="' + b.j0 + '"><button class="btn sec petit" id="j0maj">Modifier</button></div></details>';
+  }
+  return out;
+}
+
+var CHR = null; /* chronomètre en cours : { id, i, debut, cumul } */
+function panneauSeance(m, i) {
+  var s = SEANCES[i], liste = s.type === "app" ? m.app : m.cons, rec = bloc(m.id).seances[i];
+  var enCours = CHR && CHR.id === m.id && CHR.i === i;
+  var out = '<ol class="etapes">' + liste.map(function (e) { return "<li>" + h(e[0]) + ' <span class="min">' + e[1] + " min</span></li>"; }).join("") + "</ol>";
+  if (s.type === "cons" && m.id === "M3") out += '<p class="note">Questions « pourquoi ? » : en fin de chaque chapitre.</p>';
+  out += '<div class="interdit"><b>Interdit :</b> ' + h(m.interdit) + "</div>";
+  out += '<div class="rangee" style="margin-top:6px"><span class="chrono" id="chr">' + fmt(enCours ? tempsChr() : 0) + '</span><span class="espace"></span>' +
+    (enCours ? '<button class="btn" id="stop">Terminer la séance</button>' : '<button class="btn" id="start">Démarrer le chrono</button>') + "</div>";
+  out += '<details' + (rec ? " open" : "") + '><summary>Saisir à la main</summary><div class="rangee"><label>Minutes : <input type="number" id="mins" min="0" max="300" value="' + (rec && rec.min ? rec.min : s.min) + '"></label><button class="btn sec petit" id="faite">Séance faite</button><button class="btn danger petit" id="sautee">Non faite</button></div></details>';
+  return out;
+}
+function tempsChr() { return CHR ? Math.floor((Date.now() - CHR.debut) / 1000) : 0; }
+function fmt(sec) { var m = Math.floor(sec / 60), s = sec % 60; return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0"); }
+setInterval(function () { var e = document.getElementById("chr"); if (e && CHR) e.textContent = fmt(tempsChr()); }, 1000);
+function enregistrerSeance(id, i, min, statut) {
+  bloc(id).seances[i] = { statut: statut, min: statut === "faite" ? min : 0, date: auj() };
+  marquer();
+}
+
+function ressenti(m) {
+  var r = bloc(m.id).ressenti;
+  function et(cle, lab) {
+    var v = r[cle] || 0, b = "";
+    for (var n = 1; n <= 5; n++) b += '<button data-r="' + cle + '" data-v="' + n + '" class="' + (n <= v ? "on" : "") + '">' + n + "</button>";
+    return "<p>" + lab + '</p><div class="etoiles">' + b + "</div>";
+  }
+  return '<div class="carte"><h3>Ton ressenti sur cette méthode</h3>' + et("plaisir", "Agréable à pratiquer ?") + et("tenable", "Tenable chaque semaine pendant une année entière ?") + '<p>Une remarque :</p><textarea id="remarque">' + h(r.remarque || "") + "</textarea></div>";
+}
+
+function vueCours() {
+  var out = '<p class="sur">Les cours</p><h1>Quinze chapitres d\'initiation</h1><p class="lead">Un chapitre s\'ouvre quand sa méthode arrive. Niveau : début de première année, sans prérequis au-delà de la Terminale.</p>';
+  METHODES.forEach(function (m) {
+    out += "<h2 style=\"color:" + m.c + "\">" + m.id + " · " + h(m.nom) + "</h2>";
+    Object.keys(MATIERES).forEach(function (k) {
+      var c = PLAN[m.id][k];
+      out += '<a class="lien-carte" href="#c/' + c + '"><div class="carte"><p class="sur">' + MATIERES[k].nom + "</p><b>" + h(CHAPITRES[c].titre) + "</b>" + (CHAPITRES[c].html ? "" : ' <span class="etat saute">en préparation</span>') + "</div></a>";
+    });
+  });
+  return out;
+}
+
+function vueChapitre(id) {
+  var c = CHAPITRES[id]; if (!c) return vueCours();
+  var m = METHODES.filter(function (x) { return Object.keys(PLAN[x.id]).some(function (k) { return PLAN[x.id][k] === id; }); })[0];
+  var out = '<p class="sur"><a href="#cours">Cours</a> · ' + MATIERES[c.mat].nom + '</p><h1>' + h(c.titre) + '</h1><p>' + tag(m) + "</p>";
+  if (!c.html) return out + '<div class="placeholder"><p><strong>En préparation.</strong></p><p>Ce chapitre sera en ligne avant le début de la méthode ' + m.id.slice(1) + ".</p></div>";
+  out += '<div class="interdit" style="background:color-mix(in srgb,' + m.c + ' 12%,transparent)"><b style="color:' + m.c + '">Avec cette méthode :</b> ' + h(m.app.map(function (e) { return e[0]; }).join(" ")) + "</div>";
+  return out + '<article class="cours">' + c.html + "</article>";
+}
+
+/* ---------- QCM ---------- */
+var RUN = null; /* { id, type, i, rep: [{sel:[], conf:""}], debut } */
+function vueQCM(id, type) {
+  var m = methode(id), b = bloc(id), liste = QCM[id] && QCM[id][type];
+  var nom = type === "cloture" ? "QCM de clôture" : "QCM de rappel tardif";
+  var out = '<p class="sur"><a href="#m/' + id + '">' + h(m.nom) + "</a></p><h1>" + nom + "</h1>";
+  if (!liste) return out + '<div class="placeholder">Ce QCM sera en ligne avec les cours de la méthode.</div>';
+  if (b.qcm[type]) return out + correction(id, type);
+  if (!b.j0) return out + '<p>Lance d\'abord la méthode depuis <a href="#">Aujourd\'hui</a>.</p>';
+  if (type === "retard" && !b.qcm.cloture) return out + "<p>Le rappel tardif vient après le QCM de clôture.</p>";
+  var jour = type === "cloture" ? J_CLOTURE : J_RETARD, dprev = plus(b.j0, jour);
+  if (!RUN || RUN.id !== id || RUN.type !== type) {
+    var avert = auj() < dprev ? '<div class="interdit"><b>Trop tôt.</b> Ce QCM est prévu le ' + h(joli(dprev)) + " (J" + jour + "). Le passer avant fausse la mesure du délai.</div>" : "";
+    return out + avert + '<div class="carte"><p><strong>' + liste.length + " questions</strong>, environ " + Math.round(liste.length * 1.5) + " minutes. Sans document, d'une traite.</p><ul><li>Chaque question a de 1 à 5 propositions justes.</li><li>Barème : 0 erreur = 1 point, 1 erreur = 0,5, 2 erreurs = 0,2, 3 et plus = 0.</li><li>Pour chaque question, indique si tu es <strong>sûr</strong>, <strong>hésitant</strong> ou si tu réponds <strong>au hasard</strong>.</li><li>Le QCM ne se repasse pas : c'est une mesure.</li></ul><button class=\"btn\" id=\"qgo\">Commencer</button></div>";
+  }
+  var i = RUN.i, q = liste[i], r = RUN.rep[i];
+  out += '<div class="rangee note"><span>Question ' + (i + 1) + " / " + liste.length + "</span><span class=\"espace\"></span><span>" + MATIERES[CHAPITRES[q.ch].mat].court + '</span></div><div class="barre-prog"><i style="width:' + (100 * i / liste.length) + '%"></i></div>';
+  out += '<p class="q-enonce">' + h(q.q) + "</p>";
+  q.p.forEach(function (p, k) { out += '<button class="prop' + (r.sel.indexOf(k) >= 0 ? " sel" : "") + '" data-k="' + k + '"><span class="lettre">' + "ABCDE"[k] + "</span><span>" + h(p.t) + "</span></button>"; });
+  out += '<div class="conf">' + [["s", "Sûr"], ["h", "Hésitant"], ["x", "Au hasard"]].map(function (c) { return '<button data-c="' + c[0] + '" class="' + (r.conf === c[0] ? "on" : "") + '">' + c[1] + "</button>"; }).join("") + "</div>";
+  out += '<div class="rangee" style="margin-top:14px">' + (i > 0 ? '<button class="btn sec" id="qprev">Précédente</button>' : "") + '<span class="espace"></span><button class="btn" id="qnext"' + (!r.sel.length || !r.conf ? " disabled" : "") + ">" + (i === liste.length - 1 ? "Rendre la copie" : "Suivante") + "</button></div>";
+  if (!r.sel.length || !r.conf) out += '<p class="note">Coche au moins une proposition et indique ta confiance.</p>';
+  return out;
+}
+function correction(id, type) {
+  var res = bloc(id).qcm[type], liste = QCM[id][type], out = "";
+  out += '<div class="carte"><p class="sur">Fait le ' + h(joli(res.date)) + " · " + fmt(res.duree) + '</p><div class="score">' + num(res.points) + " / " + liste.length + '</div><p>Soit <strong>' + Math.round(100 * res.points / liste.length) + " %</strong>.</p></div>";
+  liste.forEach(function (q, i) {
+    var r = res.rep[i], pts = noteQ(r.sel, q.p);
+    out += '<div class="carte"><div class="rangee note"><span>Question ' + (i + 1) + "</span><span class=\"espace\"></span><span>" + ({ s: "sûr", h: "hésitant", x: "au hasard" }[r.conf] || "") + " · " + num(pts) + ' pt</span></div><p class="q-enonce">' + h(q.q) + "</p>";
+    q.p.forEach(function (p, k) {
+      var coche = r.sel.indexOf(k) >= 0, cl = p.v ? (coche ? "vrai" : "oubli") : (coche ? "faux-coche" : "");
+      out += '<div class="prop ' + cl + '" style="cursor:default"><span class="lettre">' + "ABCDE"[k] + '</span><span>' + h(p.t) + ' <b>' + (p.v ? "Vrai" : "Faux") + "</b>" + (p.e ? '<div class="expl">' + h(p.e) + "</div>" : "") + "</span></div>";
+    });
+    out += "</div>";
+  });
+  return out;
+}
+function num(x) { return (Math.round(x * 100) / 100).toString().replace(".", ","); }
+
+/* ---------- résultats ---------- */
+function stats(id) {
+  var b = bloc(id), q = QCM[id], o = { min: minutesBloc(id) };
+  ["cloture", "retard"].forEach(function (t) {
+    if (!b.qcm[t] || !q) return;
+    var liste = q[t], res = b.qcm[t], parMat = {};
+    var sur = 0, surJ = 0;
+    liste.forEach(function (x, i) {
+      var pts = noteQ(res.rep[i].sel, x.p), mat = CHAPITRES[x.ch].mat;
+      parMat[mat] = parMat[mat] || [0, 0]; parMat[mat][0] += pts; parMat[mat][1]++;
+      if (res.rep[i].conf === "s") { sur++; if (pts === 1) surJ++; }
+    });
+    o[t] = { pct: 100 * res.points / liste.length, parMat: parMat, fiab: sur ? 100 * surJ / sur : null, sur: sur };
+  });
+  if (o.cloture && o.min) o.pph = (o.cloture.pct / 100 * QCM[id].cloture.length) / (o.min / 60);
+  return o;
+}
+function vueResultats() {
+  var out = '<p class="sur">Le bilan</p><h1>Quelle méthode marche pour Orhan ?</h1>';
+  var faites = METHODES.filter(function (m) { return clotureFaite(m.id); });
+  if (!faites.length) return out + '<div class="placeholder"><p>Les résultats apparaissent après le premier QCM de clôture.</p><p class="note">Pense à importer ton journal si tu viens d\'ouvrir le site.</p></div>';
+  function barres(titre, f, unite, max, dec) {
+    var r = '<div class="carte"><h3>' + titre + "</h3>";
+    METHODES.forEach(function (m) {
+      var v = f(m); if (v === null || v === undefined) return;
+      r += '<div class="ligne-res" style="--c:' + m.c + '"><span><b style="color:' + m.c + '">' + m.id + "</b> " + h(m.nom.split(" ")[0]) + '</span><div class="barre"><i style="width:' + Math.min(100, 100 * v / max) + '%"></i></div><b>' + (dec ? num(Math.round(v * 10) / 10) : Math.round(v)) + unite + "</b></div>";
+    });
+    return r + "</div>";
+  }
+  var st = {}; METHODES.forEach(function (m) { st[m.id] = stats(m.id); });
+  out += barres("Ce qui est appris · QCM de clôture (J14)", function (m) { return st[m.id].cloture ? st[m.id].cloture.pct : null; }, " %", 100);
+  out += barres("Ce qui reste · rappel tardif (J28)", function (m) { return st[m.id].retard ? st[m.id].retard.pct : null; }, " %", 100);
+  var maxp = 0; METHODES.forEach(function (m) { if (st[m.id].pph > maxp) maxp = st[m.id].pph; });
+  out += barres("Rendement · points par heure de travail", function (m) { return st[m.id].pph ? st[m.id].pph : null; }, "", maxp || 1, 1);
+  out += barres("Fiabilité du « sûr » · justes quand sûr", function (m) { return st[m.id].cloture && st[m.id].cloture.fiab !== null ? st[m.id].cloture.fiab : null; }, " %", 100);
+  out += '<div class="carte"><h3>Détail par matière (clôture)</h3><div class="defile"><table><tr><th>Méthode</th>' + Object.keys(MATIERES).map(function (k) { return "<th>" + MATIERES[k].court + "</th>"; }).join("") + "<th>Temps</th><th>Ressenti</th></tr>" +
+    faites.map(function (m) {
+      var s = st[m.id], r = bloc(m.id).ressenti;
+      return '<tr><td><b style="color:' + m.c + '">' + m.id + "</b></td>" + Object.keys(MATIERES).map(function (k) { var p = s.cloture && s.cloture.parMat[k]; return "<td>" + (p ? Math.round(100 * p[0] / p[1]) + " %" : "–") + "</td>"; }).join("") + "<td>" + Math.round(s.min / 6) / 10 + " h</td><td>" + (r.plaisir ? r.plaisir + "/5 · " + (r.tenable || "–") + "/5" : "–") + "</td></tr>";
+    }).join("") + "</table></div></div>";
+  if (faites.length >= 2) {
+    var tri = faites.slice().sort(function (a, b) { return st[b.id].cloture.pct - st[a.id].cloture.pct; });
+    var e = st[tri[0].id].cloture.pct - st[tri[1].id].cloture.pct;
+    out += '<div class="carte"><h3>Lecture</h3><p>En tête au QCM de clôture : <b style="color:' + tri[0].c + '">' + h(tri[0].nom) + "</b>, avec " + Math.round(e) + " points d'avance sur la suivante.</p><p class=\"note\">" + (e < 12 ? "Écart inférieur à environ 12 points : avec ce nombre de questions, il peut venir du hasard. Regarder aussi le rappel tardif et le ressenti." : "Écart net : il dépasse ce que le hasard explique d'habitude avec ce nombre de questions.") + " Rappel : la dernière méthode profite de l'expérience accumulée.</p></div>";
+  }
+  return out;
+}
+
+/* ---------- journal ---------- */
+function vueJournal() {
+  var n = 0; METHODES.forEach(function (m) { n += Object.keys(bloc(m.id).seances).length + Object.keys(bloc(m.id).qcm).length; });
+  return '<p class="sur">Le journal</p><h1>Enregistrer et reprendre</h1>' +
+  '<p class="lead">Le site ne garde rien quand on le ferme. Les séances, les temps et les QCM vivent dans un petit fichier que tu télécharges après chaque séance et que tu réimportes la fois suivante.</p>' +
+  '<div class="carte"><h3>1. Reprendre</h3><p>Au début de chaque séance, importe le <strong>dernier</strong> fichier enregistré (le plus récent dans Téléchargements).</p><label class="btn sec"><input type="file" id="imp" accept="application/json,.json" hidden>Importer le journal</label></div>' +
+  '<div class="carte"><h3>2. Enregistrer</h3><p>À la fin de chaque séance ou de chaque QCM.</p><button class="btn" id="exp">Télécharger le journal</button> <p class="note">' + n + " élément(s) enregistré(s) dans le journal en cours." + (SALE ? " <b style=\"color:var(--alerte)\">Des changements ne sont pas encore enregistrés.</b>" : "") + "</p></div>" +
+  '<details><summary>Sauvegarde de secours : copier le texte</summary><p class="note">Si le téléchargement ne marche pas, copie ce texte dans une note ou un mail à toi-même. Pour le recharger, colle-le ici puis « Charger ».</p><textarea id="txt" rows="5">' + h(JSON.stringify(S)) + '</textarea><div class="rangee"><button class="btn sec petit" id="copier">Copier</button><button class="btn sec petit" id="coller">Charger ce texte</button></div></details>';
+}
+function charger(txt) {
+  var d = JSON.parse(txt);
+  if (!d || !d.blocs) throw new Error("format");
+  METHODES.forEach(function (m) { var b = d.blocs[m.id] || {}; S.blocs[m.id] = { j0: b.j0 || null, seances: b.seances || {}, qcm: b.qcm || {}, ressenti: b.ressenti || {} }; });
+  SALE = false; document.getElementById("sale").hidden = true;
+}
+function exporter() {
+  var blob = new Blob([JSON.stringify(S, null, 1)], { type: "application/json" });
+  var a = document.createElement("a"), d = new Date();
+  a.href = URL.createObjectURL(blob);
+  a.download = "journal-sante-" + iso(d) + "-" + String(d.getHours()).padStart(2, "0") + "h" + String(d.getMinutes()).padStart(2, "0") + ".json";
+  document.body.appendChild(a); a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 800);
+  SALE = false; document.getElementById("sale").hidden = true;
+}
+
+/* ============================================================
+   ROUTEUR ET ÉVÉNEMENTS
+   ============================================================ */
+function route() {
+  var r = location.hash.replace(/^#\/?/, "").split("/"), v = r[0] || "accueil", html;
+  if (v === "methodes") html = vueMethodes();
+  else if (v === "protocole") html = vueProtocole();
+  else if (v === "m") html = vueMethode(r[1], r[2] !== undefined ? +r[2] : undefined);
+  else if (v === "cours") html = vueCours();
+  else if (v === "c") html = vueChapitre(r[1]);
+  else if (v === "qcm") html = vueQCM(r[1], r[2]);
+  else if (v === "resultats") html = vueResultats();
+  else if (v === "journal") html = vueJournal();
+  else { v = "accueil"; html = vueAccueil(); }
+  app.innerHTML = html;
+  var onglet = { accueil: "accueil", methodes: "methodes", protocole: "methodes", m: "methodes", qcm: "methodes", cours: "cours", c: "cours", resultats: "resultats", journal: "journal" }[v];
+  document.querySelectorAll("nav.bas a").forEach(function (a) { a.classList.toggle("on", a.dataset.r === onglet); });
+  lier(v, r);
+}
+function rendre() { var y = window.scrollY; route(); window.scrollTo(0, y); }
+
+function lier(v, r) {
+  var $ = function (id) { return document.getElementById(id); };
+  if (v === "accueil" && $("go")) $("go").onclick = function () {
+    var m = blocCourant(), d = $("j0").value; if (!d) return;
+    bloc(m.id).j0 = d; marquer(); rendre();
+  };
+  if (v === "m") {
+    var id = r[1], i = +r[2];
+    if ($("j0maj")) $("j0maj").onclick = function () { if ($("j0b").value) { bloc(id).j0 = $("j0b").value; marquer(); rendre(); } };
+    if (r[2] !== undefined) {
+      var el = $("s" + i); if (el) setTimeout(function () { el.scrollIntoView({ block: "start", behavior: "smooth" }); }, 30);
+      if ($("start")) $("start").onclick = function () { CHR = { id: id, i: i, debut: Date.now() }; rendre(); };
+      if ($("stop")) $("stop").onclick = function () {
+        var min = Math.max(1, Math.round(tempsChr() / 60)); CHR = null;
+        enregistrerSeance(id, i, min, "faite"); toast("Séance enregistrée : " + min + " min. Pense au journal."); location.hash = "#m/" + id;
+      };
+      if ($("faite")) $("faite").onclick = function () { enregistrerSeance(id, i, Math.max(0, +$("mins").value || 0), "faite"); toast("Séance enregistrée."); location.hash = "#m/" + id; };
+      if ($("sautee")) $("sautee").onclick = function () { enregistrerSeance(id, i, 0, "sautee"); location.hash = "#m/" + id; };
+    }
+    document.querySelectorAll(".etoiles button").forEach(function (b) { b.onclick = function () { bloc(id).ressenti[b.dataset.r] = +b.dataset.v; marquer(); rendre(); }; });
+    if ($("remarque")) $("remarque").oninput = function () { bloc(id).ressenti.remarque = this.value; marquer(); };
+  }
+  if (v === "qcm") {
+    var qid = r[1], type = r[2], liste = QCM[qid] && QCM[qid][type];
+    if ($("qgo")) $("qgo").onclick = function () { RUN = { id: qid, type: type, i: 0, debut: Date.now(), rep: liste.map(function () { return { sel: [], conf: "" }; }) }; rendre(); };
+    if (RUN && RUN.id === qid && RUN.type === type) {
+      var rep = RUN.rep[RUN.i];
+      document.querySelectorAll(".prop[data-k]").forEach(function (b) { b.onclick = function () { var k = +b.dataset.k, p = rep.sel.indexOf(k); if (p >= 0) rep.sel.splice(p, 1); else rep.sel.push(k); rendre(); }; });
+      document.querySelectorAll(".conf button").forEach(function (b) { b.onclick = function () { rep.conf = b.dataset.c; rendre(); }; });
+      if ($("qprev")) $("qprev").onclick = function () { RUN.i--; route(); window.scrollTo(0, 0); };
+      if ($("qnext")) $("qnext").onclick = function () {
+        if (RUN.i < liste.length - 1) { RUN.i++; route(); window.scrollTo(0, 0); return; }
+        var pts = 0; liste.forEach(function (q, k) { pts += noteQ(RUN.rep[k].sel, q.p); });
+        bloc(qid).qcm[type] = { date: auj(), duree: Math.round((Date.now() - RUN.debut) / 1000), points: Math.round(pts * 100) / 100, rep: RUN.rep.map(function (x) { return { sel: x.sel.slice().sort(), conf: x.conf }; }) };
+        RUN = null; marquer(); route(); window.scrollTo(0, 0); toast("Copie rendue. Enregistre le journal.");
+      };
+    }
+  }
+  if (v === "journal") {
+    $("exp").onclick = function () { exporter(); rendre(); toast("Journal téléchargé."); };
+    $("imp").onchange = function () {
+      var f = this.files[0]; if (!f) return;
+      var lec = new FileReader();
+      lec.onload = function () { try { charger(lec.result); toast("Journal chargé."); location.hash = "#"; } catch (e) { toast("Ce fichier n'est pas un journal valide."); } };
+      lec.readAsText(f);
+    };
+    $("copier").onclick = function () { var t = $("txt"); t.select(); try { navigator.clipboard.writeText(t.value); } catch (e) { document.execCommand("copy"); } toast("Copié."); };
+    $("coller").onclick = function () { try { charger($("txt").value); toast("Journal chargé."); location.hash = "#"; } catch (e) { toast("Texte illisible."); } };
+  }
+}
+
+window.addEventListener("hashchange", function () { route(); window.scrollTo(0, 0); });
+window.addEventListener("beforeunload", function (e) { if (SALE) { e.preventDefault(); e.returnValue = ""; } });
+document.getElementById("theme").onclick = function () {
+  var r = document.documentElement, sombre = r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  r.dataset.theme = sombre ? "light" : "dark";
+};
+route();
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(function () {});
+</script>
+</body>
+</html>
