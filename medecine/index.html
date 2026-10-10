@@ -485,15 +485,327 @@ var CHAPITRES = {
 <p class="src">Contenu original rédigé pour ce site, niveau début de première année, d'après la Terminologia Anatomica et les ouvrages d'anatomie générale. Il ne remplace pas le cours de la faculté.</p>
 ` },
 
- bc2: { mat: "bc", titre: "La membrane plasmique : structure et échanges", html: null },
+ bc2: { mat: "bc", titre: "La membrane plasmique : structure et échanges", html: `
+<p class="lead">La membrane plasmique sépare la cellule de son milieu tout en contrôlant ce qui entre et sort. Sa structure (une bicouche de lipides où flottent des protéines) explique directement ses propriétés de transport, au cœur de la physiologie : rein, nerf, intestin, muscle.</p>
+
+<h2>1. La composition</h2>
+<p>En masse, une membrane plasmique contient en moyenne <strong>autant de lipides que de protéines</strong>, plus quelques pour cent de glucides. Les proportions varient avec la fonction : la myéline, qui isole les axones, est très riche en lipides (≈ 80 %) ; la membrane interne de la mitochondrie, chargée d'enzymes de la respiration, est très riche en protéines (≈ 75 %).</p>
+
+<h3>Les lipides : des molécules amphiphiles</h3>
+<div class="def"><b>Définition</b>Une molécule <strong>amphiphile</strong> possède une partie <strong>hydrophile</strong> (la tête polaire, qui aime l'eau) et une partie <strong>hydrophobe</strong> (les queues d'acides gras, qui la fuient). Dans l'eau, ces molécules se rangent spontanément en <strong>bicouche</strong> : les têtes vers l'eau, les queues cachées au centre.</div>
+<ul>
+<li><strong>Phospholipides</strong>, les plus nombreux. Les glycérophospholipides (phosphatidylcholine, phosphatidyléthanolamine, phosphatidylsérine, phosphatidylinositol) sont construits sur le glycérol ; la <strong>sphingomyéline</strong> est construite sur la sphingosine : c'est un sphingolipide, pas un glycérophospholipide.</li>
+<li><strong>Cholestérol</strong>, abondant dans les membranes animales (jusqu'à une molécule par phospholipide). Il s'intercale entre les phospholipides, sa fonction –OH tournée vers les têtes polaires.</li>
+<li><strong>Glycolipides</strong>, porteurs de sucres, uniquement sur le feuillet externe.</li>
+</ul>
+<figure><svg viewBox="0 0 340 232" width="340" role="img" aria-label="Schéma de la bicouche lipidique avec cholestérol, protéine transmembranaire et glycocalyx"><path d="M19 69v26M25 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="22" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M19 131v-26M25 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="22" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M35 69v26M41 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="38" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M35 131v-26M41 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="38" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M51 69v26M57 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="54" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M51 131v-26M57 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="54" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M67 69v26M73 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="70" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M67 131v-26M73 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="70" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M83 69v26M89 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="86" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M83 131v-26M89 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="86" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M99 69v26M105 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="102" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M99 131v-26M105 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="102" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M115 69v26M121 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="118" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M115 131v-26M121 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="118" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M131 69v26M137 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="134" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M131 131v-26M137 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="134" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M211 69v26M217 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="214" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M211 131v-26M217 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="214" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M227 69v26M233 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="230" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M227 131v-26M233 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="230" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M243 69v26M249 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="246" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M243 131v-26M249 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="246" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M259 69v26M265 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="262" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M259 131v-26M265 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="262" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M275 69v26M281 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="278" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M275 131v-26M281 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="278" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M291 69v26M297 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="294" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M291 131v-26M297 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="294" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M307 69v26M313 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="310" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M307 131v-26M313 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="310" cy="138" r="6" fill="var(--accent)" opacity=".8"/><path d="M323 69v26M329 69v26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="326" cy="62" r="6" fill="var(--accent)" opacity=".8"/><path d="M323 131v-26M329 131v-26" stroke="currentColor" stroke-width="1.4" opacity=".55" fill="none"/><circle cx="326" cy="138" r="6" fill="var(--accent)" opacity=".8"/><rect x="65" y="72" width="7" height="20" rx="2" fill="var(--or)"/><rect x="241" y="72" width="7" height="20" rx="2" fill="var(--or)"/><rect x="305" y="72" width="7" height="20" rx="2" fill="var(--or)"/><rect x="113" y="108" width="7" height="20" rx="2" fill="var(--or)"/><rect x="156" y="40" width="44" height="120" rx="16" fill="var(--m3)" opacity=".75"/><path d="M178 40v-14l-8 -9M178 26l8 -9" stroke="var(--m2)" stroke-width="2" fill="none"/><circle cx="170" cy="16" r="3.2" fill="var(--m2)"/><circle cx="186" cy="16" r="3.2" fill="var(--m2)"/><circle cx="178" cy="26" r="3.2" fill="var(--m2)"/><path d="M94 56v-14l-8 -9M94 42l8 -9" stroke="var(--m2)" stroke-width="2" fill="none"/><circle cx="86" cy="32" r="3.2" fill="var(--m2)"/><circle cx="102" cy="32" r="3.2" fill="var(--m2)"/><circle cx="94" cy="42" r="3.2" fill="var(--m2)"/><path d="M270 56v-14l-8 -9M270 42l8 -9" stroke="var(--m2)" stroke-width="2" fill="none"/><circle cx="262" cy="32" r="3.2" fill="var(--m2)"/><circle cx="278" cy="32" r="3.2" fill="var(--m2)"/><circle cx="270" cy="42" r="3.2" fill="var(--m2)"/><g font-family="system-ui,sans-serif" font-size="11" fill="currentColor"><text x="4" y="12">milieu extracellulaire</text><text x="4" y="166">cytosol</text><text x="214" y="12" fill="var(--m2)">glycocalyx</text><text x="12" y="200" fill="var(--doux)">cœur hydrophobe</text><text x="150" y="214" fill="var(--m3)">protéine intrinsèque</text><text x="262" y="200" fill="var(--or)">cholestérol</text></g><g stroke="currentColor" stroke-width="1" opacity=".5" fill="none"><path d="M52 188V100"/><path d="M178 200V162"/><path d="M296 188l10 -96"/></g></svg><figcaption>Têtes polaires (ronds) vers l’eau, queues hydrophobes au centre ; sucres uniquement à l’extérieur.</figcaption></figure>
+
+<h3>Une membrane asymétrique</h3>
+<p>Les deux feuillets n'ont pas la même composition. Le feuillet <strong>externe</strong> est riche en phosphatidylcholine, sphingomyéline et glycolipides ; le feuillet <strong>interne</strong> (cytosolique) en phosphatidyléthanolamine, <strong>phosphatidylsérine</strong> et phosphatidylinositol. Cette asymétrie est entretenue par des enzymes, les <strong>flippases</strong>, qui consomment de l'ATP pour ramener certains lipides du côté cytosolique.</p>
+<div class="cle"><b>Idée et exemple</b>L'asymétrie porte une information. Quand une cellule entre en <strong>apoptose</strong> (mort cellulaire programmée), la phosphatidylsérine passe sur le feuillet externe : c'est un signal « mange-moi » reconnu par les macrophages, qui éliminent la cellule sans inflammation.</div>
+
+<h3>Les protéines membranaires</h3>
+<div class="defile"><table>
+<tr><th>Type</th><th>Liaison à la membrane</th><th>Exemple</th></tr>
+<tr><td><b>Intrinsèques</b> (transmembranaires)</td><td>traversent la bicouche, souvent par une ou plusieurs <strong>hélices α</strong> d'environ 20 acides aminés hydrophobes ; il faut un <strong>détergent</strong> pour les extraire</td><td>les récepteurs couplés aux protéines G traversent <strong>7 fois</strong> la membrane ; la pompe Na<sup>+</sup>/K<sup>+</sup></td></tr>
+<tr><td><b>Extrinsèques</b> (périphériques)</td><td>accrochées par des liaisons faibles aux têtes polaires ou à d'autres protéines ; détachées par un changement de pH ou de concentration en sels</td><td>la spectrine, sous la membrane de l'hématie</td></tr>
+<tr><td><b>Ancrées à un lipide</b></td><td>fixées de façon covalente à un lipide inséré dans un feuillet</td><td>les protéines à ancre <strong>GPI</strong>, sur la face externe</td></tr>
+</table></div>
+<p>Leurs rôles : transporter, recevoir des signaux (récepteurs), catalyser (enzymes), faire adhérer les cellules entre elles, ancrer le cytosquelette.</p>
+
+<h3>Le glycocalyx</h3>
+<p>Les chaînes de sucres portées par les glycolipides et les glycoprotéines forment, <strong>sur la face externe uniquement</strong>, un revêtement appelé <strong>glycocalyx</strong>. Il sert à la reconnaissance entre cellules. Exemple : les <strong>groupes sanguins ABO</strong> sont définis par de petites chaînes de sucres à la surface des hématies.</p>
+
+<h2>2. Une mosaïque fluide</h2>
+<div class="def"><b>Définition</b>Le <strong>modèle de la mosaïque fluide</strong> (Singer et Nicolson, 1972) décrit la membrane comme une bicouche lipidique fluide dans laquelle les protéines sont insérées et peuvent se déplacer latéralement.</div>
+<p>Les phospholipides bougent sans cesse : <strong>diffusion latérale</strong> dans leur feuillet (rapide), <strong>rotation</strong> sur eux-mêmes, agitation des queues. En revanche, le passage d'un feuillet à l'autre (<strong>bascule</strong> ou <em>flip-flop</em>) est <strong>très rare</strong> spontanément : la tête polaire devrait traverser le cœur hydrophobe. C'est pourquoi il faut des flippases.</p>
+<div class="cle"><b>Idée et exemple</b>Les protéines aussi se déplacent dans le plan de la membrane. <strong>Expérience de Frye et Edidin (1970)</strong> : on fusionne une cellule humaine et une cellule de souris, dont les protéines membranaires sont marquées par deux fluorochromes différents. À 37 °C, les deux couleurs sont mélangées sur toute la surface en environ 40 minutes ; à basse température, elles restent séparées.</div>
+<h3>Ce qui règle la fluidité</h3>
+<div class="defile"><table>
+<tr><th>Augmente la fluidité</th><th>Diminue la fluidité</th></tr>
+<tr><td>acides gras <strong>insaturés</strong> (leurs doubles liaisons cis créent des coudes qui empêchent les queues de s'empiler)</td><td>acides gras <strong>saturés</strong>, rectilignes, qui s'empilent serré</td></tr>
+<tr><td>chaînes <strong>courtes</strong></td><td>chaînes <strong>longues</strong></td></tr>
+<tr><td>température <strong>élevée</strong></td><td>température <strong>basse</strong></td></tr>
+</table></div>
+<p>Le <strong>cholestérol joue le rôle de tampon</strong> : à température élevée, il rigidifie la membrane ; à basse température, il empêche les queues de se figer en cristaux.</p>
+
+<h2>3. Ce qui traverse la bicouche seule</h2>
+<p>Le cœur hydrophobe de la bicouche filtre les molécules selon leur taille et leur polarité :</p>
+<ul>
+<li><strong>passent facilement</strong> : les petites molécules apolaires (O<sub>2</sub>, CO<sub>2</sub>, N<sub>2</sub>) et les molécules liposolubles (hormones stéroïdes) ;</li>
+<li><strong>passent lentement</strong> : les petites molécules polaires non chargées (eau, urée, éthanol) ;</li>
+<li><strong>ne passent pas</strong> : les <strong>ions</strong> (Na<sup>+</sup>, K<sup>+</sup>, Cl<sup>−</sup>, Ca<sup>2+</sup>), même minuscules, et les grosses molécules polaires (glucose, acides aminés).</li>
+</ul>
+<p>Tout ce qui ne passe pas a besoin d'une <strong>protéine de transport</strong>.</p>
+
+<h2>4. Le transport passif : dans le sens du gradient</h2>
+<p>Le soluté va de la zone où il est le plus concentré vers celle où il l'est moins, <strong>sans dépense d'énergie</strong>. Pour un ion, il faut tenir compte de la concentration <em>et</em> de la charge électrique de part et d'autre : on parle de <strong>gradient électrochimique</strong>.</p>
+<ul>
+<li><strong>Diffusion simple</strong> : à travers la bicouche, sans protéine. Le flux est proportionnel au gradient : il n'y a <strong>pas de saturation</strong>.</li>
+<li><strong>Diffusion facilitée</strong> : grâce à une protéine, de deux sortes.
+ <ul>
+ <li>Les <strong>canaux</strong> forment un pore aqueux sélectif. Ils sont très rapides (jusqu'à des millions d'ions par seconde) et souvent commandés : ouverts par un changement de voltage ou par la fixation d'une molécule. Les <strong>aquaporines</strong> sont des canaux à eau, très nombreux dans le rein.</li>
+ <li>Les <strong>transporteurs</strong> fixent le soluté puis changent de forme pour le libérer de l'autre côté. Ils sont spécifiques, plus lents et <strong>saturables</strong> : quand tous sont occupés, le flux plafonne (comme une enzyme). Exemple : les <strong>GLUT</strong>, transporteurs du glucose ; GLUT4, dans le muscle et le tissu adipeux, n'est placé dans la membrane qu'en présence d'insuline.</li>
+ </ul></li>
+</ul>
+<figure><svg viewBox="0 0 320 200" width="320" role="img" aria-label="Flux en fonction de la concentration : droite pour la diffusion simple, courbe qui plafonne pour un transporteur">
+<g stroke="currentColor" stroke-width="1.5" fill="none"><path d="M40 170V20M40 170h260"/></g>
+<path d="M40 170L230 30" stroke="var(--m2)" stroke-width="2.5" fill="none"/>
+<path d="M40 170C70 100 110 72 160 62S260 52 295 50" stroke="var(--accent)" stroke-width="2.5" fill="none"/>
+<path d="M40 46h258" stroke="var(--accent)" stroke-dasharray="5 4" fill="none"/>
+<g font-family="system-ui,sans-serif" font-size="12" fill="currentColor">
+<text x="10" y="18">flux</text><text x="300" y="190" text-anchor="end">concentration du soluté</text>
+<text x="175" y="110" fill="var(--m2)">diffusion simple</text>
+<text x="215" y="76" fill="var(--accent)">transporteur</text>
+<text x="44" y="40" fill="var(--accent)">flux maximal (saturation)</text></g>
+</svg><figcaption>Un transporteur sature, la diffusion simple non.</figcaption></figure>
+
+<h2>5. Le transport actif : contre le gradient</h2>
+<p>Faire passer un soluté du côté où il est déjà plus concentré demande de l'<strong>énergie</strong>.</p>
+<h3>Transport actif primaire : l'énergie de l'ATP</h3>
+<p>La <strong>pompe Na<sup>+</sup>/K<sup>+</sup>-ATPase</strong> est l'exemple central. Pour chaque ATP hydrolysé, elle fait <strong>sortir 3 Na<sup>+</sup></strong> et <strong>entrer 2 K<sup>+</sup></strong>. Elle sort donc une charge positive de plus qu'elle n'en fait entrer : elle est <strong>électrogène</strong>.</p>
+<div class="defile"><table>
+<tr><th>Ion</th><th>Dans la cellule</th><th>Hors de la cellule</th></tr>
+<tr><td>Na<sup>+</sup></td><td>≈ 10 à 15 mmol/L</td><td>≈ 145 mmol/L</td></tr>
+<tr><td>K<sup>+</sup></td><td>≈ 140 mmol/L</td><td>≈ 4 à 5 mmol/L</td></tr>
+</table></div>
+<p>Ces gradients sont vitaux : ils servent à l'influx nerveux et au transport de nombreuses molécules. La pompe consomme une grande part de l'ATP d'une cellule au repos (environ un tiers, davantage dans les neurones). Elle est bloquée par l'<strong>ouabaïne</strong> et par la <strong>digoxine</strong>, médicament de l'insuffisance cardiaque.</p>
+<p>Autres pompes à connaître : la Ca<sup>2+</sup>-ATPase, qui maintient le calcium très bas dans le cytosol ; la <strong>H<sup>+</sup>/K<sup>+</sup>-ATPase</strong> de l'estomac, qui acidifie le suc gastrique et que bloquent les inhibiteurs de la pompe à protons (oméprazole), prescrits contre les brûlures d'estomac.</p>
+
+<h3>Transport actif secondaire : l'énergie d'un gradient</h3>
+<p>Le transporteur n'utilise pas d'ATP directement : il profite de l'entrée d'ions Na<sup>+</sup>, qui descendent le gradient créé par la pompe, pour faire passer un autre soluté contre son propre gradient.</p>
+<ul>
+<li><strong>Symport</strong> : les deux solutés vont dans le <strong>même sens</strong>. Exemple : <strong>SGLT1</strong> fait entrer 2 Na<sup>+</sup> avec 1 glucose dans les cellules de l'intestin ; d'autres SGLT réabsorbent le glucose dans le rein.</li>
+<li><strong>Antiport</strong> : les deux solutés vont en <strong>sens opposés</strong>. Exemple : l'échangeur Na<sup>+</sup>/Ca<sup>2+</sup>, qui fait entrer 3 Na<sup>+</sup> et sortir 1 Ca<sup>2+</sup>, dans le muscle cardiaque.</li>
+</ul>
+<div class="piege"><b>Pièges de concours</b>La diffusion facilitée utilise une protéine mais reste <strong>passive</strong>. Le transport actif secondaire ne consomme pas d'ATP <em>directement</em> (il en dépend indirectement, via la pompe). La pompe Na<sup>+</sup>/K<sup>+</sup> est un transport actif <strong>primaire</strong>.</div>
+
+<h2>6. L'osmose</h2>
+<div class="def"><b>Définition</b>L'<strong>osmose</strong> est le passage de l'eau à travers une membrane, du compartiment le <strong>moins</strong> concentré en solutés vers le compartiment le <strong>plus</strong> concentré.</div>
+<p>L'osmolarité du plasma est d'environ <strong>290 mOsm/L</strong>. Une solution de même osmolarité est dite <strong>isotonique</strong> : c'est le cas du sérum physiologique, à <strong>9 g/L de NaCl</strong> (0,9 %).</p>
+<div class="cle"><b>Idée et exemple : l'hématie</b>Dans un milieu <strong>hypotonique</strong> (eau pure), l'eau entre, l'hématie gonfle puis éclate : c'est l'<strong>hémolyse</strong>. Dans un milieu <strong>hypertonique</strong>, l'eau sort et l'hématie se ratatine (aspect crénelé). D'où l'usage de solutions isotoniques pour les perfusions.</div>
+<p>Les grosses molécules et les particules franchissent la membrane dans des vésicules (endocytose, exocytose) : ce sera le chapitre « Système endomembranaire ».</p>
+
+<div class="cle"><b>Bilan</b>Une bicouche de lipides amphiphiles, asymétrique et fluide, portant des protéines et, à l'extérieur, un glycocalyx. Elle laisse passer seules les petites molécules apolaires. Le reste passe par des protéines : canaux et transporteurs dans le sens du gradient (passif), pompes à ATP ou cotransporteurs contre le gradient (actif primaire ou secondaire).</div>
+
+<details><summary>Hors programme : le potentiel de repos et le FRAP</summary>
+<div class="hp"><b>Hors programme</b>La membrane laisse fuir le K<sup>+</sup> vers l'extérieur par des canaux toujours ouverts, ce qui rend la face cytosolique négative : c'est le <strong>potentiel de repos</strong>, environ −70 mV dans un neurone. La technique <strong>FRAP</strong> mesure la fluidité : on éteint au laser la fluorescence d'une petite zone de membrane et on chronomètre le retour de molécules fluorescentes venues d'à côté.</div>
+</details>
+<p class="src">Fiche originale rédigée pour ce site, niveau début de première année, vérifiée sur les ouvrages de référence (Alberts, <em>Biologie moléculaire de la cellule</em>). Elle ne remplace pas le cours de la faculté.</p>
+` },
  bc3: { mat: "bc", titre: "Le système endomembranaire : RE, Golgi et trafic vésiculaire", html: null },
  bc4: { mat: "bc", titre: "Le cytosquelette", html: null },
  bc5: { mat: "bc", titre: "La mitochondrie et l'énergie cellulaire", html: null },
- bio2: { mat: "bio", titre: "Peptides et protéines : les niveaux de structure", html: null },
+ bio2: { mat: "bio", titre: "Peptides et protéines : les niveaux de structure", html: `
+<p class="lead">Une protéine est une chaîne d'acides aminés repliée dans une forme précise, et c'est cette forme qui lui donne sa fonction. On décrit cette construction en quatre niveaux, de la séquence à l'assemblage de plusieurs chaînes.</p>
+
+<h2>1. La liaison peptidique</h2>
+<div class="def"><b>Définition</b>La <strong>liaison peptidique</strong> unit la fonction α-carboxyle (–COOH) d'un acide aminé à la fonction α-amine (–NH<sub>2</sub>) du suivant. Sa formation libère une molécule d'<strong>eau</strong> (condensation). C'est une liaison <strong>amide</strong> : –CO–NH–.</div>
+<figure><svg viewBox="0 0 330 120" width="330" role="img" aria-label="La liaison peptidique est plane">
+<rect x="96" y="22" width="140" height="78" rx="10" fill="var(--accent)" opacity=".12"/>
+<g font-family="system-ui,sans-serif" font-size="17" fill="currentColor" text-anchor="middle">
+<text x="60" y="66">C<tspan font-size="11" dy="-7">α</tspan></text>
+<text x="128" y="66" font-weight="700">C</text><text x="128" y="22" font-size="15">O</text>
+<text x="204" y="66" font-weight="700">N</text><text x="204" y="112" font-size="15">H</text>
+<text x="272" y="66">C<tspan font-size="11" dy="-7">α</tspan></text></g>
+<g stroke="currentColor" stroke-width="2"><line x1="76" y1="60" x2="116" y2="60"/><line x1="140" y1="60" x2="190" y2="60"/><line x1="140" y1="65" x2="190" y2="65" stroke-dasharray="4 4"/><line x1="124" y1="44" x2="124" y2="28"/><line x1="132" y1="44" x2="132" y2="28"/><line x1="204" y1="72" x2="204" y2="96"/><line x1="218" y1="60" x2="258" y2="60"/></g>
+<text x="165" y="18" font-family="system-ui,sans-serif" font-size="11" fill="var(--accent)" text-anchor="middle">plan rigide</text>
+</svg><figcaption>Les six atomes encadrés sont dans le même plan ; la liaison C–N a un caractère partiel de double liaison (pointillé).</figcaption></figure>
+<p>Ses propriétés, très interrogées :</p>
+<ul>
+<li>par <strong>résonance</strong> (mésomérie) entre C=O et C–N, la liaison C–N a un <strong>caractère partiel de double liaison</strong> : elle est plus courte qu'une liaison simple et <strong>ne tourne pas</strong> ;</li>
+<li>les six atomes Cα–C(=O)–N(–H)–Cα sont <strong>coplanaires</strong> : la liaison est plane et rigide ;</li>
+<li>la configuration <strong>trans</strong> (les deux Cα de part et d'autre) est très largement majoritaire ; la configuration cis se rencontre surtout devant une proline ;</li>
+<li>la chaîne garde sa souplesse grâce aux rotations possibles <strong>de part et d'autre du Cα</strong> (angles φ et ψ).</li>
+</ul>
+<p>La liaison peptidique est stable. On la coupe par des <strong>enzymes</strong> (protéases) ou par une hydrolyse acide forte à chaud (HCl 6 mol/L, 110 °C, 24 h), qui a l'inconvénient de détruire le <strong>tryptophane</strong>.</p>
+
+<h2>2. Peptides et protéines</h2>
+<ul>
+<li>Un acide aminé engagé dans une chaîne s'appelle un <strong>résidu</strong>.</li>
+<li>Par convention, une séquence s'écrit de l'extrémité <strong>N-terminale</strong> (amine libre, à gauche) vers l'extrémité <strong>C-terminale</strong> (carboxyle libre, à droite). Ala-Gly et Gly-Ala sont donc deux dipeptides différents.</li>
+<li>On parle d'<strong>oligopeptide</strong> pour quelques résidus, de <strong>polypeptide</strong> au-delà, et de <strong>protéine</strong> à partir d'environ 50 résidus.</li>
+<li>Ordre de grandeur : un résidu pèse en moyenne <strong>110 Da</strong>. Une protéine de 300 acides aminés pèse donc environ 33 kDa.</li>
+</ul>
+<p>Exemples de peptides actifs : l'<strong>ocytocine</strong> et la <strong>vasopressine</strong> (hormone antidiurétique), 9 acides aminés chacune ; l'<strong>insuline</strong>, 51 acides aminés en deux chaînes A (21) et B (30) reliées par deux ponts disulfures.</p>
+
+<h2>3. La structure primaire</h2>
+<div class="def"><b>Définition</b>La <strong>structure primaire</strong> est la <strong>séquence</strong> des acides aminés, de N- à C-terminal. Elle est dictée par le gène.</div>
+<div class="cle"><b>Idée et exemple</b>La séquence contient toute l'information nécessaire au repliement. <strong>Expérience d'Anfinsen</strong> (années 1950-1960, prix Nobel 1972) : la ribonucléase, dépliée par l'urée et le β-mercaptoéthanol, perd son activité ; quand on retire lentement ces agents, elle se replie seule et retrouve son activité.</div>
+<div class="cle"><b>Idée et exemple</b>Changer un seul acide aminé peut suffire à rendre malade. Dans la <strong>drépanocytose</strong>, l'hémoglobine S porte une <strong>valine à la place d'un glutamate en position 6 de la chaîne β</strong>. Ce résidu apolaire en surface fait s'agréger les hémoglobines quand elles manquent d'oxygène, et les hématies se déforment en faucille.</div>
+<div class="lienT"><b>Lien avec la Terminale</b>Les familles multigéniques (globines, TP du chapitre 1 de SVT) se comparent justement par leurs structures primaires.</div>
+
+<h2>4. La structure secondaire</h2>
+<div class="def"><b>Définition</b>La <strong>structure secondaire</strong> est un repliement <strong>local</strong> et régulier de la chaîne, stabilisé par des <strong>liaisons hydrogène entre les C=O et les N–H de la chaîne principale</strong> (pas entre les chaînes latérales).</div>
+<h3>L'hélice α</h3>
+<ul>
+<li>hélice <strong>droite</strong>, <strong>3,6 résidus par tour</strong>, pas de 0,54 nm ;</li>
+<li>le C=O du résidu <em>n</em> est lié par liaison hydrogène au N–H du résidu <strong><em>n</em> + 4</strong>, parallèlement à l'axe ;</li>
+<li>les chaînes latérales pointent <strong>vers l'extérieur</strong> de l'hélice ;</li>
+<li>la <strong>proline</strong> casse les hélices (son azote n'a pas de H et son cycle bloque la rotation) ; la glycine, trop souple, les déstabilise aussi.</li>
+</ul>
+<p>Exemple : les hélices transmembranaires (chapitre membrane) ; la kératine α des cheveux, faite d'hélices α enroulées entre elles.</p>
+<h3>Le feuillet β</h3>
+<ul>
+<li>des segments étirés (<strong>brins β</strong>) côte à côte, reliés par des liaisons hydrogène <strong>entre brins voisins</strong> ;</li>
+<li>brins <strong>parallèles</strong> (même sens) ou <strong>antiparallèles</strong> (sens opposés, liaisons hydrogène mieux alignées, plus stables) ;</li>
+<li>aspect plissé ; les chaînes latérales pointent alternativement d'un côté et de l'autre du feuillet.</li>
+</ul>
+<p>Exemple : la fibroïne de la soie, faite presque entièrement de feuillets β.</p>
+<p>Entre ces éléments, des <strong>coudes</strong> (souvent riches en glycine et en proline) et des <strong>boucles</strong> changent la direction de la chaîne.</p>
+
+<h2>5. La structure tertiaire</h2>
+<div class="def"><b>Définition</b>La <strong>structure tertiaire</strong> est la forme en trois dimensions d'une chaîne entière, stabilisée par des interactions entre <strong>chaînes latérales</strong>, parfois très éloignées dans la séquence.</div>
+<ul>
+<li>l'<strong>effet hydrophobe</strong>, force principale : les chaînes apolaires se regroupent <strong>au cœur</strong> de la protéine, loin de l'eau ; les chaînes polaires et chargées restent en surface ;</li>
+<li>des <strong>liaisons hydrogène</strong>, des <strong>liaisons ioniques</strong> (ponts salins), des forces de van der Waals ;</li>
+<li>des <strong>ponts disulfures</strong> entre cystéines : les seules liaisons <strong>covalentes</strong> de la liste, fréquentes dans les protéines extracellulaires (le cytosol, réducteur, les défait).</li>
+</ul>
+<p>Une grande protéine se replie souvent en plusieurs <strong>domaines</strong>, unités compactes qui se forment indépendamment et portent chacune une fonction.</p>
+<div class="defile"><table>
+<tr><th>Protéines globulaires</th><th>Protéines fibreuses</th></tr>
+<tr><td>compactes, solubles</td><td>allongées, insolubles</td></tr>
+<tr><td>rôles dynamiques : enzymes, transport (myoglobine, hémoglobine), anticorps</td><td>rôles de structure : collagène, kératine, fibroïne</td></tr>
+</table></div>
+<div class="cle"><b>Idée et exemple : le collagène</b>Protéine la plus abondante du corps, il est fait de <strong>trois chaînes enroulées en triple hélice</strong>. Sa séquence répète le motif <strong>Gly-X-Y</strong> (une glycine tous les trois résidus, la seule assez petite pour tenir au centre de la triple hélice), X étant souvent une proline et Y une hydroxyproline. L'hydroxylation de la proline exige de la <strong>vitamine C</strong> : sans elle, le collagène est fragile, c'est le <strong>scorbut</strong> (gencives qui saignent, mauvaise cicatrisation).</div>
+<p>Le repliement est aidé dans la cellule par des <strong>protéines chaperons</strong>. Une protéine mal repliée peut s'agréger : les maladies à prions et la maladie d'Alzheimer impliquent des agrégats riches en feuillets β.</p>
+
+<h2>6. La structure quaternaire</h2>
+<div class="def"><b>Définition</b>La <strong>structure quaternaire</strong> est l'<strong>association de plusieurs chaînes polypeptidiques</strong> (sous-unités), le plus souvent par des liaisons non covalentes. Une protéine faite d'une seule chaîne n'en a pas.</div>
+<div class="cle"><b>Idée et exemple : myoglobine et hémoglobine</b>La <strong>myoglobine</strong> du muscle est un monomère (une chaîne, un hème) : pas de structure quaternaire, courbe de fixation de l'O<sub>2</sub> hyperbolique. L'<strong>hémoglobine</strong> est un <strong>tétramère α<sub>2</sub>β<sub>2</sub></strong> : la fixation d'un O<sub>2</sub> sur une sous-unité facilite la fixation sur les autres (coopérativité), d'où une courbe <strong>sigmoïde</strong>. Cette propriété permet à l'hémoglobine de charger l'O<sub>2</sub> dans les poumons et de le libérer dans les tissus.</div>
+<p>Autre exemple : les anticorps (IgG), faits de deux chaînes lourdes et deux chaînes légères reliées par des ponts disulfures.</p>
+
+<h2>7. La dénaturation</h2>
+<div class="def"><b>Définition</b>La <strong>dénaturation</strong> est la perte des structures secondaire, tertiaire et quaternaire, donc de la fonction, <strong>sans rupture des liaisons peptidiques</strong> : la structure primaire est conservée.</div>
+<p>Agents dénaturants : la <strong>chaleur</strong>, les pH extrêmes, l'<strong>urée</strong>, les détergents (SDS), les solvants organiques. Les <strong>réducteurs</strong> (β-mercaptoéthanol) coupent les <strong>ponts disulfures</strong>, pas les liaisons peptidiques. La dénaturation est souvent irréversible (le blanc d'œuf cuit ne redevient pas transparent), parfois réversible (Anfinsen).</p>
+<div class="piege"><b>Pièges de concours</b>Les liaisons hydrogène de la structure secondaire concernent la chaîne principale ; celles de la structure tertiaire, les chaînes latérales. « La dénaturation rompt les liaisons peptidiques » : faux. « Le β-mercaptoéthanol hydrolyse la protéine » : faux, il réduit les ponts disulfures.</div>
+
+<div class="cle"><b>Bilan</b>Primaire : la séquence, liée par des liaisons peptidiques planes et trans. Secondaire : hélices α et feuillets β, tenus par des liaisons hydrogène du squelette. Tertiaire : la forme 3D, tenue surtout par l'effet hydrophobe et, à l'extérieur des cellules, par des ponts disulfures. Quaternaire : l'association de sous-unités, qui permet la coopérativité de l'hémoglobine.</div>
+
+<details><summary>Hors programme : séparer les protéines par électrophorèse SDS-PAGE</summary>
+<div class="hp"><b>Hors programme</b>Le SDS, détergent chargé négativement, dénature les protéines et les recouvre de charges négatives proportionnellement à leur longueur. Dans un gel de polyacrylamide soumis à un courant, elles migrent alors vers l'anode selon leur seule taille : les plus petites vont le plus loin. On en déduit leur masse.</div>
+</details>
+<p class="src">Fiche originale rédigée pour ce site, niveau début de première année, vérifiée sur les ouvrages de référence (Lehninger, <em>Principes de biochimie</em>). Elle ne remplace pas le cours de la faculté.</p>
+` },
  bio3: { mat: "bio", titre: "Les glucides", html: null },
  bio4: { mat: "bio", titre: "Les lipides", html: null },
  bio5: { mat: "bio", titre: "Les enzymes", html: null },
- ana2: { mat: "ana", titre: "Ostéologie et arthrologie : généralités", html: null },
+ ana2: { mat: "ana", titre: "Ostéologie et arthrologie : généralités", html: `
+<p class="lead">Avant d'apprendre les os un par un, il faut savoir ce qu'est un os, comment il est construit et comment deux os s'articulent. Ce vocabulaire servira pour chaque membre, chaque articulation, chaque fracture.</p>
+
+<h2>1. Le squelette et ses rôles</h2>
+<p>Le squelette adulte compte environ <strong>206 os</strong>. Le nouveau-né en a davantage (près de 300 pièces), car plusieurs os fusionnent pendant la croissance. On distingue :</p>
+<ul>
+<li>le <strong>squelette axial</strong> (80 os) : crâne, colonne vertébrale, côtes, sternum ;</li>
+<li>le <strong>squelette appendiculaire</strong> (126 os) : les <strong>ceintures</strong> (scapulaire : scapula et clavicule ; pelvienne : os coxaux) et les membres.</li>
+</ul>
+<p>Ses rôles : <strong>soutien</strong> ; <strong>protection</strong> (le crâne pour l'encéphale, la cage thoracique pour le cœur et les poumons) ; <strong>mouvement</strong> (les os sont des leviers actionnés par les muscles) ; <strong>réserve minérale</strong> (environ 99 % du calcium et 85 % du phosphore de l'organisme) ; <strong>hématopoïèse</strong> (fabrication des cellules du sang dans la moelle rouge).</p>
+
+<h2>2. Classer les os par leur forme</h2>
+<div class="defile"><table>
+<tr><th>Type</th><th>Définition</th><th>Exemples</th></tr>
+<tr><td><b>Long</b></td><td>une dimension prédomine ; un corps et deux extrémités</td><td>fémur, humérus, tibia, et aussi les métacarpiens et les <strong>phalanges</strong></td></tr>
+<tr><td><b>Court</b></td><td>trois dimensions voisines</td><td>os du carpe (poignet), la plupart des os du tarse</td></tr>
+<tr><td><b>Plat</b></td><td>deux dimensions prédominent</td><td>os de la voûte du crâne (pariétal), sternum, scapula, côtes</td></tr>
+<tr><td><b>Irrégulier</b></td><td>forme complexe</td><td>vertèbres, certains os de la face</td></tr>
+<tr><td><b>Sésamoïde</b></td><td>développé dans un tendon</td><td>la <strong>patella</strong> (le plus gros)</td></tr>
+<tr><td><b>Pneumatisé</b></td><td>creusé de cavités remplies d'air (sinus)</td><td>frontal, maxillaire, ethmoïde, sphénoïde</td></tr>
+</table></div>
+<div class="piege"><b>Piège de concours</b>Le type dépend de la forme, pas de la taille : une phalange, minuscule, est un <strong>os long</strong>.</div>
+
+<h2>3. L'anatomie d'un os long</h2>
+<figure><svg viewBox="0 0 340 360" width="320" role="img" aria-label="Coupe longitudinale d'un os long">
+<defs><pattern id="spg" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="1.6" fill="currentColor" opacity=".45"/><circle cx="7" cy="7" r="1.2" fill="currentColor" opacity=".3"/></pattern></defs>
+<ellipse cx="170" cy="62" rx="56" ry="40" fill="var(--carte)" stroke="currentColor" stroke-width="2"/>
+<ellipse cx="170" cy="62" rx="50" ry="34" fill="url(#spg)"/>
+<ellipse cx="170" cy="300" rx="50" ry="36" fill="var(--carte)" stroke="currentColor" stroke-width="2"/>
+<ellipse cx="170" cy="300" rx="44" ry="30" fill="url(#spg)"/>
+<rect x="142" y="92" width="56" height="182" fill="var(--carte)"/>
+<path d="M142 92V274M198 92V274" stroke="currentColor" stroke-width="2"/>
+<rect x="152" y="104" width="36" height="158" rx="10" fill="var(--or)" opacity=".35"/>
+<path d="M120 36A56 40 0 0 1 220 36" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/>
+<path d="M128 96Q170 86 212 96" fill="none" stroke="var(--m4)" stroke-width="2.5" stroke-dasharray="5 3"/>
+<path d="M139 104V270M201 104V270" stroke="var(--m3)" stroke-width="1.5" stroke-dasharray="2 3"/>
+<g stroke="currentColor" stroke-width="1" opacity=".6" fill="none">
+<line x1="112" y1="20" x2="134" y2="30"/><line x1="110" y1="62" x2="132" y2="62"/><line x1="110" y1="102" x2="132" y2="96"/>
+<line x1="226" y1="150" x2="190" y2="150"/><line x1="226" y1="190" x2="198" y2="190"/><line x1="226" y1="230" x2="202" y2="230"/><line x1="230" y1="300" x2="200" y2="300"/>
+<path d="M118 110h-8v160h8"/></g>
+<g font-family="system-ui,sans-serif" font-size="12" fill="currentColor">
+<text x="6" y="22" fill="var(--accent)">cartilage articulaire</text>
+<text x="6" y="58">épiphyse</text><text x="6" y="72" fill="var(--doux)">(os spongieux)</text>
+<text x="6" y="100" fill="var(--m4)">cartilage de</text><text x="6" y="114" fill="var(--m4)">conjugaison</text>
+<text x="44" y="194">diaphyse</text>
+<text x="230" y="146">cavité médullaire</text><text x="230" y="160" fill="var(--doux)">(moelle jaune)</text>
+<text x="230" y="194">os compact</text>
+<text x="230" y="234" fill="var(--m3)">périoste</text>
+<text x="234" y="304">épiphyse</text></g>
+</svg><figcaption>Coupe d'un os long d'enfant. Chez l'adulte, le cartilage de conjugaison est remplacé par de l'os.</figcaption></figure>
+<ul>
+<li>La <strong>diaphyse</strong> est le corps de l'os : un tube d'<strong>os compact</strong> autour de la <strong>cavité médullaire</strong>, qui contient de la moelle jaune (graisse) chez l'adulte.</li>
+<li>Les <strong>épiphyses</strong> sont les extrémités, faites d'<strong>os spongieux</strong> (des travées dont les espaces contiennent de la moelle rouge) sous une fine coque compacte. Les surfaces articulaires sont couvertes de <strong>cartilage articulaire</strong>.</li>
+<li>Les <strong>métaphyses</strong> font la jonction. Chez l'enfant, elles portent le <strong>cartilage de conjugaison</strong> (ou de croissance), qui fait grandir l'os en longueur et disparaît en fin de puberté.</li>
+<li>Le <strong>périoste</strong> est la membrane fibreuse qui enveloppe l'os, <strong>sauf</strong> les surfaces articulaires. Il est vascularisé et innervé (c'est lui qui fait mal dans une fracture), fait croître l'os en épaisseur et répare les fractures. L'<strong>endoste</strong> tapisse la cavité médullaire.</li>
+<li>Une <strong>artère nourricière</strong> pénètre dans la diaphyse par le trou nourricier.</li>
+</ul>
+<div class="cle"><b>Idée et exemple</b>Chez l'enfant, une fracture qui passe par le cartilage de conjugaison peut perturber la croissance de l'os : c'est pourquoi les fractures de l'enfant sont classées selon leur rapport avec ce cartilage.</div>
+
+<h2>4. Le tissu osseux</h2>
+<p>L'os est un tissu vivant, sans cesse détruit et reconstruit (<strong>remodelage</strong>).</p>
+<ul>
+<li>Les <strong>ostéoblastes</strong> fabriquent la matrice osseuse.</li>
+<li>Les <strong>ostéocytes</strong> sont d'anciens ostéoblastes emmurés dans la matrice qu'ils ont produite, logés dans de petites cavités.</li>
+<li>Les <strong>ostéoclastes</strong> détruisent (résorbent) l'os : ce sont de grandes cellules à plusieurs noyaux, issues de la lignée des monocytes.</li>
+</ul>
+<p>La matrice associe environ <strong>deux tiers de minéral</strong>, des cristaux d'<strong>hydroxyapatite</strong> (phosphate de calcium) qui donnent la dureté, et <strong>un tiers de matière organique</strong>, surtout du <strong>collagène de type I</strong>, qui donne la souplesse.</p>
+<p>Dans l'os compact, la matrice s'organise en <strong>ostéons</strong> (systèmes de Havers) : des lamelles concentriques autour d'un <strong>canal de Havers</strong> qui contient vaisseaux et nerfs, parallèle à l'axe de l'os. Des <strong>canaux de Volkmann</strong>, transversaux, relient ces canaux entre eux. L'os spongieux, lui, n'a pas d'ostéons.</p>
+<p>Deux modes de formation : l'<strong>ossification endochondrale</strong> remplace une maquette de cartilage (la plupart des os, dont les os longs) ; l'<strong>ossification membranaire</strong> se fait directement dans un tissu conjonctif (os plats de la voûte du crâne).</p>
+
+<h2>5. Les reliefs osseux : le vocabulaire</h2>
+<div class="defile"><table>
+<tr><th>Terme</th><th>Sens</th></tr>
+<tr><td>Tête, condyle</td><td>extrémité ou surface <strong>articulaire</strong> arrondie</td></tr>
+<tr><td>Épicondyle</td><td>saillie située au-dessus d'un condyle (insertions musculaires)</td></tr>
+<tr><td>Tubercule, tubérosité</td><td>saillie, petite ou grosse et rugueuse, où s'insère un tendon ou un ligament</td></tr>
+<tr><td>Processus, épine, crête</td><td>saillie allongée, pointue, en arête</td></tr>
+<tr><td>Fosse, sillon, incisure</td><td>creux, gouttière, échancrure</td></tr>
+<tr><td>Foramen, canal, méat</td><td>orifice, conduit dans l'os</td></tr>
+<tr><td>Facette</td><td>petite surface articulaire plane</td></tr>
+</table></div>
+<p>Rappel : un <strong>tendon</strong> relie un muscle à un os ; un <strong>ligament</strong> relie deux os.</p>
+
+<h2>6. Les articulations</h2>
+<p>Une articulation unit deux os ou plus. On les classe selon leur mobilité et le tissu qui unit les os.</p>
+<div class="defile"><table>
+<tr><th>Classe</th><th>Mobilité</th><th>Tissu d'union</th><th>Exemples</th></tr>
+<tr><td><b>Synarthroses</b></td><td>nulle ou presque</td><td>fibreux</td><td>sutures du crâne, dent dans son alvéole</td></tr>
+<tr><td><b>Amphiarthroses</b></td><td>faible</td><td>cartilage (souvent fibrocartilage)</td><td><strong>symphyse pubienne</strong>, disques intervertébraux</td></tr>
+<tr><td><b>Diarthroses</b> (synoviales)</td><td>grande</td><td>capsule et cavité articulaire</td><td>épaule, coude, hanche, genou, doigts</td></tr>
+</table></div>
+
+<h3>Anatomie d'une diarthrose</h3>
+<ul>
+<li>des <strong>surfaces articulaires</strong> recouvertes de <strong>cartilage hyalin</strong>, lisse, <strong>sans vaisseaux ni nerfs</strong>, nourri par la synovie ;</li>
+<li>une <strong>capsule articulaire</strong>, manchon fibreux qui entoure l'articulation, doublée à l'intérieur par la <strong>membrane synoviale</strong>, qui sécrète la <strong>synovie</strong> (liquide visqueux lubrifiant) ;</li>
+<li>des <strong>ligaments</strong> qui renforcent l'ensemble ;</li>
+<li>parfois des <strong>fibrocartilages</strong> qui améliorent l'emboîtement : les <strong>ménisques</strong> du genou, le labrum (bourrelet) de la hanche et de l'épaule.</li>
+</ul>
+
+<h3>Les types de diarthroses selon la forme des surfaces</h3>
+<div class="defile"><table>
+<tr><th>Type</th><th>Surfaces</th><th>Axes de mouvement</th><th>Exemple</th></tr>
+<tr><td><b>Sphéroïde</b> (énarthrose)</td><td>une tête sphérique dans une cavité</td><td>3</td><td>épaule (gléno-humérale), hanche (coxo-fémorale)</td></tr>
+<tr><td><b>Ellipsoïde</b></td><td>surfaces ovales</td><td>2</td><td>poignet (radio-carpienne)</td></tr>
+<tr><td><b>En selle</b></td><td>deux selles de cheval emboîtées</td><td>2</td><td>trapézo-métacarpienne (base du pouce)</td></tr>
+<tr><td><b>Bicondylaire</b></td><td>deux condyles sur une surface plane</td><td>2</td><td>genou (fémoro-tibiale)</td></tr>
+<tr><td><b>Trochléenne</b> (charnière, ginglyme)</td><td>une poulie et une crête</td><td>1 (flexion-extension)</td><td>coude (huméro-ulnaire), interphalangiennes</td></tr>
+<tr><td><b>Trochoïde</b> (pivot)</td><td>un cylindre dans un anneau</td><td>1 (rotation)</td><td>radio-ulnaire proximale (pronation-supination), atlas sur la dent de l'axis</td></tr>
+<tr><td><b>Plane</b> (arthrodie)</td><td>surfaces planes</td><td>glissements</td><td>entre les os du carpe</td></tr>
+</table></div>
+<div class="cle"><b>Idée et exemple : mobilité contre stabilité</b>Plus une articulation est mobile, moins elle est stable. L'épaule et la hanche sont toutes deux sphéroïdes, mais la cavité de l'épaule est plate et peu profonde, alors que celle de la hanche (l'acétabulum) enveloppe profondément la tête du fémur. Résultat : l'épaule est l'articulation la plus mobile du corps et la plus souvent luxée ; la hanche, très stable, se luxe rarement, et presque seulement lors de traumatismes violents.</div>
+
+<div class="cle"><b>Bilan</b>206 os, classés par forme (long, court, plat, irrégulier, sésamoïde, pneumatisé). L'os long : diaphyse compacte et creuse, épiphyses spongieuses, cartilage de conjugaison chez l'enfant, périoste partout sauf sur le cartilage articulaire. Trois classes d'articulations (synarthroses, amphiarthroses, diarthroses) ; les diarthroses se classent par la forme de leurs surfaces, qui fixe le nombre d'axes de mouvement.</div>
+<p class="src">Fiche originale rédigée pour ce site, niveau début de première année, d'après la Terminologia Anatomica et les ouvrages d'anatomie et d'histologie générales. Elle ne remplace pas le cours de la faculté.</p>
+` },
  ana3: { mat: "ana", titre: "Le cœur", html: null },
  ana4: { mat: "ana", titre: "L'appareil respiratoire", html: null },
  ana5: { mat: "ana", titre: "Les reins et les voies urinaires", html: null }
@@ -673,6 +985,176 @@ var QCM = {
      P("Les flancs sont des régions de la paroi thoracique.", 0, "Ce sont des régions de l'abdomen."),
      P("L'éversion tourne la plante du pied vers le dehors.", 1),
      P("L'hypogastre est situé au-dessus de l'ombilic.", 0, "En dessous, au centre de l'étage inférieur.")] }
+  ]
+ },
+ M2: {
+  cloture: [
+   { ch: "bc2", q: "À propos de la composition de la membrane plasmique :", p: [
+     P("Les phospholipides sont des molécules amphiphiles.", 1),
+     P("Le cholestérol est présent dans la membrane plasmique des cellules animales.", 1),
+     P("Les glycolipides sont situés sur le feuillet cytosolique.", 0, "Sur le feuillet externe uniquement."),
+     P("La phosphatidylsérine est surtout localisée dans le feuillet cytosolique.", 1),
+     P("Les chaînes glucidiques du glycocalyx sont tournées vers le cytosol.", 0, "Vers le milieu extracellulaire.")] },
+   { ch: "bc2", q: "À propos de la fluidité membranaire :", p: [
+     P("La diffusion latérale des phospholipides dans leur feuillet est rapide.", 1),
+     P("Le passage spontané d'un phospholipide d'un feuillet à l'autre est fréquent.", 0, "Il est très rare : la tête polaire devrait traverser le cœur hydrophobe."),
+     P("Les acides gras insaturés augmentent la fluidité.", 1),
+     P("Une baisse de température augmente la fluidité.", 0, "Elle la diminue."),
+     P("L'expérience de Frye et Edidin montre que les protéines membranaires diffusent dans le plan de la membrane.", 1)] },
+   { ch: "bc2", q: "À propos des protéines membranaires :", p: [
+     P("Une protéine transmembranaire traverse souvent la bicouche par une hélice α riche en acides aminés hydrophobes.", 1),
+     P("Les protéines extrinsèques ne peuvent être extraites qu'avec un détergent.", 0, "C'est le cas des intrinsèques ; les extrinsèques se détachent par un changement de pH ou de force ionique."),
+     P("Les récepteurs couplés aux protéines G traversent 7 fois la membrane.", 1),
+     P("Les protéines à ancre GPI sont situées sur la face externe.", 1),
+     P("Le modèle de la mosaïque fluide a été proposé par Watson et Crick.", 0, "Par Singer et Nicolson (1972).")] },
+   { ch: "bc2", q: "À propos de la perméabilité et du transport passif :", p: [
+     P("Le dioxygène traverse la bicouche par diffusion simple.", 1),
+     P("Les ions Na⁺ traversent facilement une bicouche lipidique pure.", 0, "Les ions ne traversent pas la bicouche seule."),
+     P("La diffusion facilitée se fait dans le sens du gradient.", 1),
+     P("Les transporteurs de la diffusion facilitée sont saturables.", 1),
+     P("La diffusion facilitée consomme de l'ATP.", 0, "Elle est passive.")] },
+   { ch: "bc2", q: "À propos de la pompe Na⁺/K⁺-ATPase :", p: [
+     P("Elle fait sortir 3 Na⁺ et entrer 2 K⁺ pour un ATP hydrolysé.", 1),
+     P("Elle est électriquement neutre.", 0, "Elle sort une charge positive nette par cycle : elle est électrogène."),
+     P("La concentration de K⁺ est plus élevée dans le cytosol que dans le milieu extracellulaire.", 1),
+     P("L'ouabaïne l'inhibe.", 1),
+     P("Elle réalise un transport actif secondaire.", 0, "Primaire : elle utilise directement l'ATP.")] },
+   { ch: "bc2", q: "À propos du transport actif secondaire et de l'osmose :", p: [
+     P("Le symport Na⁺/glucose SGLT1 utilise le gradient de Na⁺ créé par la pompe Na⁺/K⁺.", 1),
+     P("Dans un antiport, les deux solutés traversent la membrane dans le même sens.", 0, "En sens opposés ; dans le même sens, c'est un symport."),
+     P("Une hématie placée dans un milieu hypotonique gonfle et peut éclater.", 1),
+     P("Le sérum physiologique contient 9 g/L de NaCl.", 1),
+     P("Par osmose, l'eau va vers le compartiment le moins concentré en solutés.", 0, "Vers le plus concentré.")] },
+
+   { ch: "bio2", q: "À propos de la liaison peptidique :", p: [
+     P("Elle unit la fonction α-carboxyle d'un acide aminé à la fonction α-amine du suivant.", 1),
+     P("Sa formation libère une molécule d'eau.", 1),
+     P("La rotation autour de la liaison C–N est libre.", 0, "Caractère partiel de double liaison : pas de rotation."),
+     P("Les atomes de la liaison peptidique sont coplanaires.", 1),
+     P("La configuration cis est la plus fréquente.", 0, "La configuration trans est très majoritaire.")] },
+   { ch: "bio2", q: "À propos des peptides :", p: [
+     P("Une séquence s'écrit par convention de l'extrémité N-terminale vers l'extrémité C-terminale.", 1),
+     P("Ala-Gly et Gly-Ala désignent le même dipeptide.", 0, "Ce sont deux dipeptides différents."),
+     P("Un résidu d'acide aminé pèse en moyenne environ 110 Da.", 1),
+     P("Une protéine de 300 acides aminés pèse environ 3,3 kDa.", 0, "Environ 33 kDa (300 × 110 Da)."),
+     P("L'ocytocine est un peptide de 9 acides aminés.", 1)] },
+   { ch: "bio2", q: "À propos de la structure primaire :", p: [
+     P("C'est la séquence des acides aminés.", 1),
+     P("Elle est déterminée par le gène.", 1),
+     P("Dans l'hémoglobine S, une valine remplace un glutamate en position 6 de la chaîne β.", 1),
+     P("L'expérience d'Anfinsen montre que la séquence contient l'information du repliement.", 1),
+     P("La dénaturation rompt les liaisons peptidiques.", 0, "La structure primaire est conservée.")] },
+   { ch: "bio2", q: "À propos de la structure secondaire :", p: [
+     P("Les liaisons hydrogène de l'hélice α relient des groupements C=O et N–H de la chaîne principale.", 1),
+     P("L'hélice α compte 3,6 résidus par tour.", 1),
+     P("Les chaînes latérales d'une hélice α pointent vers son axe.", 0, "Vers l'extérieur."),
+     P("La proline favorise la formation des hélices α.", 0, "Elle les casse."),
+     P("Les brins d'un feuillet β peuvent être parallèles ou antiparallèles.", 1)] },
+   { ch: "bio2", q: "À propos de la structure tertiaire :", p: [
+     P("L'effet hydrophobe est la force principale du repliement des protéines globulaires.", 1),
+     P("Les ponts disulfures sont des liaisons covalentes.", 1),
+     P("Dans une protéine globulaire soluble, les acides aminés apolaires sont surtout en surface.", 0, "Ils sont surtout au cœur, loin de l'eau."),
+     P("Le collagène est une protéine globulaire.", 0, "C'est une protéine fibreuse."),
+     P("La synthèse d'un collagène normal nécessite de la vitamine C.", 1)] },
+   { ch: "bio2", q: "À propos de la structure quaternaire et de la dénaturation :", p: [
+     P("L'hémoglobine est un tétramère α₂β₂.", 1),
+     P("La myoglobine possède une structure quaternaire.", 0, "C'est un monomère."),
+     P("La structure quaternaire est l'association de plusieurs chaînes polypeptidiques.", 1),
+     P("L'urée et la chaleur sont des agents dénaturants.", 1),
+     P("Le β-mercaptoéthanol rompt les liaisons peptidiques.", 0, "Il réduit les ponts disulfures.")] },
+
+   { ch: "ana2", q: "À propos du squelette :", p: [
+     P("Le squelette adulte compte environ 206 os.", 1),
+     P("Le squelette axial comprend les ceintures et les membres.", 0, "C'est le squelette appendiculaire."),
+     P("Les os contiennent environ 99 % du calcium de l'organisme.", 1),
+     P("La moelle rouge assure l'hématopoïèse.", 1),
+     P("Le nouveau-né a moins de pièces osseuses que l'adulte.", 0, "Il en a davantage : certaines fusionnent ensuite.")] },
+   { ch: "ana2", q: "À propos de la classification des os :", p: [
+     P("Les phalanges sont des os longs.", 1),
+     P("Les os du carpe sont des os courts.", 1),
+     P("La patella est un os sésamoïde.", 1),
+     P("Les vertèbres sont des os plats.", 0, "Ce sont des os irréguliers."),
+     P("L'os frontal est un os pneumatisé.", 1)] },
+   { ch: "ana2", q: "À propos de l'os long :", p: [
+     P("La diaphyse est le corps de l'os long.", 1),
+     P("Le cartilage de conjugaison permet la croissance en longueur.", 1),
+     P("Le périoste recouvre les surfaces articulaires.", 0, "Elles sont couvertes de cartilage articulaire, pas de périoste."),
+     P("L'os spongieux prédomine dans les épiphyses.", 1),
+     P("Chez l'adulte, la cavité médullaire de la diaphyse contient surtout de la moelle rouge.", 0, "Surtout de la moelle jaune (graisse).")] },
+   { ch: "ana2", q: "À propos du tissu osseux :", p: [
+     P("Les ostéoblastes fabriquent la matrice osseuse.", 1),
+     P("Les ostéoclastes sont des cellules multinucléées qui résorbent l'os.", 1),
+     P("Les ostéocytes sont d'anciens ostéoblastes emmurés dans la matrice.", 1),
+     P("L'ostéon est l'unité structurale de l'os spongieux.", 0, "De l'os compact."),
+     P("La fraction minérale de la matrice est surtout faite d'hydroxyapatite.", 1)] },
+   { ch: "ana2", q: "À propos des classes d'articulations :", p: [
+     P("Les sutures du crâne sont des synarthroses.", 1),
+     P("La symphyse pubienne est une diarthrose.", 0, "Une amphiarthrose."),
+     P("Les diarthroses sont des articulations synoviales.", 1),
+     P("Le cartilage articulaire est richement vascularisé.", 0, "Il n'a ni vaisseaux ni nerfs."),
+     P("La synovie est sécrétée par la membrane synoviale.", 1)] },
+   { ch: "ana2", q: "À propos des types de diarthroses :", p: [
+     P("La hanche est une articulation sphéroïde.", 1),
+     P("L'articulation huméro-ulnaire est une trochléenne.", 1),
+     P("L'articulation radio-ulnaire proximale est une trochoïde.", 1),
+     P("Le poignet (radio-carpienne) est une articulation en selle.", 0, "Ellipsoïde ; l'articulation en selle typique est la trapézo-métacarpienne."),
+     P("Une articulation trochléenne permet des mouvements selon trois axes.", 0, "Un seul axe : flexion-extension.")] }
+  ],
+  retard: [
+   { ch: "bc2", q: "À propos de la membrane plasmique :", p: [
+     P("L'asymétrie des feuillets est entretenue par des flippases consommant de l'ATP.", 1),
+     P("L'exposition de la phosphatidylsérine sur le feuillet externe est un signal d'apoptose.", 1),
+     P("Le cholestérol empêche les queues lipidiques de se figer à basse température.", 1),
+     P("La myéline est particulièrement riche en protéines.", 0, "En lipides (≈ 80 %)."),
+     P("La sphingomyéline est un glycérophospholipide.", 0, "C'est un sphingolipide.")] },
+   { ch: "bc2", q: "À propos du transport passif :", p: [
+     P("Les aquaporines sont des canaux à eau.", 1),
+     P("Un canal laisse passer beaucoup plus d'ions par seconde qu'un transporteur ne déplace de molécules.", 1),
+     P("GLUT4 est placé dans la membrane en présence d'insuline.", 1),
+     P("La diffusion simple est saturable.", 0, "Le flux est proportionnel au gradient, sans plafond."),
+     P("Le CO₂ a besoin d'un transporteur pour traverser la membrane.", 0, "Petite molécule apolaire : diffusion simple.")] },
+   { ch: "bc2", q: "À propos des transports actifs et de l'osmose :", p: [
+     P("L'échangeur Na⁺/Ca²⁺ est un antiport.", 1),
+     P("La H⁺/K⁺-ATPase gastrique est la cible des inhibiteurs de la pompe à protons.", 1),
+     P("Dans un milieu hypertonique, une hématie gonfle.", 0, "Elle perd de l'eau et se ratatine."),
+     P("L'osmolarité du plasma est d'environ 290 mOsm/L.", 1),
+     P("La concentration extracellulaire de Na⁺ est d'environ 15 mmol/L.", 0, "Environ 145 mmol/L ; 10 à 15 mmol/L, c'est dans la cellule.")] },
+   { ch: "bio2", q: "À propos de la structure secondaire :", p: [
+     P("Les feuillets β antiparallèles sont plus stables que les parallèles.", 1),
+     P("Le pas de l'hélice α est d'environ 0,54 nm.", 1),
+     P("Les coudes contiennent souvent de la glycine et de la proline.", 1),
+     P("Dans l'hélice α, le C=O du résidu n est lié au N–H du résidu n + 2.", 0, "Au résidu n + 4."),
+     P("La structure secondaire est stabilisée surtout par des ponts disulfures.", 0, "Par des liaisons hydrogène du squelette.")] },
+   { ch: "bio2", q: "À propos de la structure tertiaire :", p: [
+     P("Les protéines chaperons aident au repliement.", 1),
+     P("Les ponts disulfures sont plus fréquents dans les protéines extracellulaires que dans les protéines du cytosol.", 1),
+     P("Une protéine fibreuse est en général soluble dans l'eau.", 0, "Elle est en général insoluble."),
+     P("Le collagène contient une glycine tous les trois résidus.", 1),
+     P("La kératine α est formée de feuillets β.", 0, "D'hélices α enroulées.")] },
+   { ch: "bio2", q: "À propos des protéines :", p: [
+     P("Une IgG est formée de deux chaînes lourdes et de deux chaînes légères.", 1),
+     P("La courbe de fixation de l'O₂ par l'hémoglobine est sigmoïde.", 1),
+     P("La dénaturation conserve la structure primaire.", 1),
+     P("L'hydrolyse acide totale d'une protéine conserve le tryptophane.", 0, "Elle le détruit."),
+     P("Un oligopeptide compte plusieurs centaines d'acides aminés.", 0, "Quelques-uns seulement.")] },
+   { ch: "ana2", q: "À propos des reliefs et des liaisons :", p: [
+     P("Une tubérosité est une saillie rugueuse où s'insère un tendon ou un ligament.", 1),
+     P("Un foramen est une saillie osseuse.", 0, "C'est un orifice."),
+     P("Un condyle est une surface articulaire arrondie.", 1),
+     P("Un ligament relie un muscle à un os.", 0, "Il relie deux os ; le tendon relie un muscle à un os."),
+     P("La capsule articulaire est doublée à l'intérieur par la membrane synoviale.", 1)] },
+   { ch: "ana2", q: "À propos de l'os et des articulations :", p: [
+     P("L'épaule est plus mobile mais moins stable que la hanche.", 1),
+     P("Les ménisques du genou sont des fibrocartilages.", 1),
+     P("La croissance de l'os en épaisseur dépend du périoste.", 1),
+     P("Les os plats de la voûte du crâne se forment par ossification endochondrale.", 0, "Par ossification membranaire."),
+     P("Le périoste n'est pas innervé.", 0, "Il est innervé : c'est lui qui fait mal dans une fracture.")] },
+   { ch: "ana2", q: "À propos des articulations et du tissu osseux :", p: [
+     P("Les disques intervertébraux appartiennent à des amphiarthroses.", 1),
+     P("L'articulation radio-carpienne est ellipsoïde.", 1),
+     P("Le cartilage articulaire est nourri par la synovie.", 1),
+     P("Une articulation sphéroïde ne permet des mouvements que selon un axe.", 0, "Selon trois axes."),
+     P("Les canaux de Volkmann sont parallèles aux canaux de Havers.", 0, "Ils sont transversaux.")] }
   ]
  }
 };
