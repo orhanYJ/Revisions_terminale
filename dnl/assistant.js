@@ -10,7 +10,7 @@
   /* ---------- CONFIG (propre à chaque site) ---------- */
   var MATIERE = "dnl";
   var NOM = "DNL Histoire-Géo";
-  var RELAIS = "";
+  var RELAIS = "https://assistant-revisions.orhanyildizm.workers.dev/";
   var COULEURS = {
     fond: "#FBF8F0", fond2: "var(--paper, #F2ECDE)",
     encre: "var(--ink, #1F2433)", encre2: "var(--muted, #6B6350)", ligne: "var(--line, #CBBFA3)",
@@ -52,7 +52,7 @@
     ".asr-titre small{display:block;font-weight:400;font-size:12px;color:" + c.encre2 + ";margin-top:2px}" +
     ".asr-ic{flex:none;margin:0;border:1px solid " + c.ligne + ";background:transparent;color:" + c.encre + ";border-radius:8px;height:36px;padding:0 10px;font:inherit;font-size:13px;cursor:pointer}" +
     ".asr-ic:focus-visible,.asr-env:focus-visible{outline:2px solid " + c.accent + ";outline-offset:2px}" +
-    ".asr-fil{flex:1;min-height:0;overflow-y:auto;padding:14px 14px 6px;background:" + c.fond2 + ";-webkit-overflow-scrolling:touch}" +
+    ".asr-fil{position:relative;flex:1;min-height:0;overflow-y:auto;padding:14px 14px 6px;background:" + c.fond2 + ";-webkit-overflow-scrolling:touch}" +
     ".asr-note{font-size:13px;line-height:1.45;color:" + c.encre2 + ";margin:0 2px 12px}" +
     ".asr-m{margin:0 0 12px;padding:10px 13px;border-radius:12px;font-size:15px;line-height:1.5;max-width:92%;overflow-wrap:anywhere}" +
     ".asr-m.moi{margin-left:auto;background:" + c.accent + ";color:" + c.surAccent + ";white-space:pre-wrap;border-bottom-right-radius:4px}" +
@@ -274,6 +274,9 @@
         if (d && typeof d.reponse === "string") {
           attente.innerHTML = miseEnForme(d.reponse);
           historique.push({ role: "assistant", content: d.reponse });
+          // une longue réponse se lit depuis son début : on y ramène le fil
+          fil.scrollTop = Math.max(0, attente.offsetTop - 12);
+          return;
         } else {
           throw new Error((d && d.erreur) || "erreur");
         }
@@ -283,12 +286,12 @@
         var code = e && e.message;
         attente.className = "asr-m err";
         attente.textContent = MESSAGES[code] || (navigator.onLine === false ? MESSAGES.horsligne : MESSAGES.erreur);
+        fil.scrollTop = fil.scrollHeight;
       })
       .then(function () {
         clearTimeout(minuterie);
         enCours = false;
         envoyer.disabled = false;
-        fil.scrollTop = fil.scrollHeight;
       });
   }
 
