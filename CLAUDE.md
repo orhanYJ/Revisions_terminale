@@ -179,7 +179,9 @@ Décision de Cengiz (10/10/2026) : un assistant qui **répond aux questions pos�
 
 - `assistant-relais/worker.js` : le relais, déployé à la main dans le tableau de bord Cloudflare (voir `assistant-relais/GUIDE.md`). Liaisons `AI` (Workers AI) et `COMPTEURS` (KV, limite par visiteur). Aucune clé : rien de secret dans le dépôt. Seule l'origine `https://orhanyj.github.io` est acceptée.
 - `svt/assistant.js`, `pc/assistant.js`, `dnl/assistant.js` : même fichier, seul le bloc `CONFIG` change (matière, nom, couleurs reprises des variables CSS du site, élément fixé à éviter). Chargé par un bloc repéré `<!-- assistant:debut -->` … `<!-- assistant:fin -->` : **à réinsérer** si un `index.html` régénéré le perd. Toute modification de l'un est reportée dans les deux autres, puis `?v=N` et le cache du `sw.js` sont incrémentés.
-- Tant que `var RELAIS = "";` est vide, le bouton n'apparaît pas.
+- Relais en service depuis le 11/10/2026 : `https://assistant-revisions.orhanyildizm.workers.dev/` (compte Cloudflare de Cengiz, liaisons `AI` et `COMPTEURS` faites). Il est renseigné dans `RELAIS` des trois `assistant.js` ; si `RELAIS` est vide, le bouton n'apparaît pas.
+- **Cloudflare ne lit pas le dépôt** : toute modification de `worker.js` doit être recollée par Cengiz dans l'éditeur du Worker (Edit code → tout remplacer → Deploy). Le dire explicitement à chaque changement.
+- Consigne DNL écrite en anglais : en français, le modèle répondait en français aux questions posées en anglais. Modèle gratuit (Llama 3.3 70B) : erreurs factuelles possibles (il a cité Smoot-Hawley, 1930, parmi les causes du krach de 1929) ; le panneau le signale.
 - Conversation en mémoire seulement (pas de `localStorage`). Messages prévus : quota du jour épuisé, limite par visiteur, service saturé, hors ligne.
 
 ---
@@ -244,7 +246,6 @@ Décision de Cengiz (10/10/2026) : un assistant qui **répond aux questions pos�
 - **Italien, Red Pen** : extension selon la progression d'Orhan.
 - **CDM** : faire valider la nouvelle problématique ; envoyer en octobre les cinq questions aux quatre partenaires (Orhan relance, la date a été promise par écrit) ; terrain en collège (25 min, un vendredi après-midi) et questionnaire de suivi deux semaines après.
 - **Site d'animations** SVT / physique-chimie, à créer.
-- **Assistant IA** : Cengiz crée le Worker (`assistant-relais/GUIDE.md`) et transmet son adresse ; la renseigner dans `RELAIS` des trois `assistant.js`, incrémenter `?v=N` et les caches, publier.
 
 ## 10. Contraintes particulières
 
