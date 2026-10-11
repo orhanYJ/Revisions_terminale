@@ -1,7 +1,7 @@
 /* Service worker — DNL Histoire-Géo Terminale BFI
    Stratégie : réseau d'abord pour la page (mises à jour immédiates),
    repli cache hors ligne. Assets : cache d'abord. */
-const CACHE = "dnl-v28-entrainement";
+const CACHE = "dnl-v29-fiches-pdf";
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {
@@ -20,8 +20,21 @@ self.addEventListener("activate", (e) => {
 self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
-  const isPage = req.mode === "navigate" || req.url.endsWith("/") || req.url.endsWith("index.html");
-  if (isPage) {
+  const url = new URL(req.url);
+  const isPdf = url.pathname.endsWith(".pdf");
+  const isPage = !isPdf && (req.mode === "navigate" || url.pathname.endsWith("/") || url.pathname.endsWith("index.html"));
+  if (isPdf) {
+    // fiches imprimables : réseau d'abord (une fiche régénérée s'affiche tout de suite), copie pour le hors-ligne
+    e.respondWith(
+      fetch(req)
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(req, copy));
+          return res;
+        })
+        .catch(() => caches.match(req))
+    );
+  } else if (isPage) {
     e.respondWith(
       fetch(req)
         .then((res) => {

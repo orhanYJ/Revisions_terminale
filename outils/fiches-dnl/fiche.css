@@ -1,0 +1,74 @@
+/* Fiches imprimables DNL — identité « Atlas de révision » (bleu de Prusse, parchemin, doré), format A4 */
+@page { size: A4; }
+:root { --ink:#1F2433; --slate:#17233F; --wine:#8E2F2A; --gold:#B8924F; --gold2:#8E6F37; --paper:#F7F3EA; --paper2:#EFE8D8; --line:#CBBFA3; --muted:#6B6350; --geo:#2C5F5B; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font-family: Inter, Arial, sans-serif; font-size: 8.9pt; line-height: 1.42; color: var(--ink); }
+h1, h2, h3, h4 { margin: 0; }
+.tete { border: 1.5px solid var(--gold); outline: 1px solid var(--gold); outline-offset: 2px; background: var(--paper); padding: 10px 14px 9px; margin: 3px 3px 10px; }
+.kicker { font-size: 7.4pt; letter-spacing: .09em; text-transform: uppercase; font-weight: 700; color: var(--gold2); }
+.titre { display: flex; align-items: baseline; gap: 10px; margin-top: 2px; }
+.code { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 26pt; color: var(--wine); line-height: 1; }
+h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 22pt; line-height: 1.05; color: var(--slate); }
+.theme { font-size: 8pt; color: var(--muted); margin-top: 3px; font-weight: 600; }
+.obj { margin: 5px 0 0; font-size: 9pt; }
+.partiel { border-left: 3px solid var(--wine); background: #F6E6E2; padding: 6px 10px; margin: 0 0 10px; font-size: 8.6pt; font-weight: 600; color: var(--wine); }
+.bloc { margin: 0 0 12px; break-inside: avoid; }
+h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-size: 14pt; color: var(--slate); border-bottom: 1.2px solid var(--gold); padding-bottom: 2px; margin-bottom: 6px; }
+.frise { border: 1px solid var(--line); background: #FBF8F1; padding: 2px 4px; }
+.duo { display: grid; grid-template-columns: 1.35fr 1fr; gap: 14px; }
+.enjeu { margin: 0; text-align: justify; }
+.kik { background: var(--paper); border: 1px solid var(--line); padding: 8px 10px; }
+.kik h3 { font-size: 7.6pt; letter-spacing: .08em; text-transform: uppercase; color: var(--gold2); margin-bottom: 3px; }
+.kik ul { margin: 0 0 7px; padding-left: 14px; }
+.kik li { margin-bottom: 3px; }
+.kik p { margin: 0; font-weight: 600; }
+.carte .svg { border: 1px solid var(--line); line-height: 0; }
+.carte.large .leg { margin-top: 6px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 6px 16px; }
+.carte.carre .svg { width: 84%; margin: 0 auto; }
+.cles { list-style: none; margin: 0; padding: 0; }
+.cles li { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 3px; font-size: 8pt; line-height: 1.3; }
+.sw { flex: 0 0 auto; width: 15px; height: 10px; border: 1px solid #B9AB89; margin-top: 1px; display: inline-block; }
+.sw.hatch { background: repeating-linear-gradient(45deg, #8E2F2A 0 2px, #E8C9C4 2px 5px); }
+.sw.hatch-or { background: repeating-linear-gradient(-45deg, #B8924F 0 2px, #EBDDB5 2px 5px); }
+.sw.line { border: 0; height: 0; border-top: 2.5px dashed var(--slate); margin-top: 6px; }
+.sw.dots { border: 0; height: 0; border-top: 3.5px dotted var(--slate); margin-top: 5px; }
+.reperes { margin: 0; padding-left: 0; list-style: none; counter-reset: r; font-size: 8pt; line-height: 1.32; }
+.reperes li { counter-increment: r; position: relative; padding-left: 20px; margin-bottom: 3px; }
+.reperes li::before { content: counter(r); position: absolute; left: 0; top: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--slate); color: #fff; font-weight: 700; font-size: 7.2pt; text-align: center; line-height: 14px; }
+.carte.large .note { grid-column: 1 / -1; }
+.note { margin: 4px 0 0; font-size: 7.4pt; color: var(--muted); font-style: italic; }
+.chaine { display: flex; align-items: stretch; gap: 3px; }
+.maillon { flex: 1; border: 1px solid var(--slate); border-radius: 4px; background: var(--paper); padding: 6px 7px; font-size: 7.8pt; line-height: 1.3; }
+.maillon b { display: block; color: var(--wine); font-size: 8.4pt; margin-bottom: 2px; }
+.fl { align-self: center; color: var(--gold2); font-weight: 700; font-size: 12pt; }
+table.comp { width: 100%; border-collapse: collapse; font-size: 8pt; line-height: 1.3; }
+.comp th, .comp td { border: 1px solid var(--line); padding: 4px 6px; vertical-align: top; text-align: left; }
+.comp thead th { background: var(--slate); color: #fff; font-weight: 700; }
+.comp tbody th { background: var(--paper); color: var(--slate); width: 17%; }
+.forces { margin: 0; padding-left: 18px; columns: 2; column-gap: 20px; }
+.forces li { margin-bottom: 4px; break-inside: avoid; }
+.cours { break-before: page; columns: 2; column-gap: 18px; column-rule: 1px solid #E4DCC8; margin-bottom: 12px; }
+.h2c { column-span: all; }
+.sec h3 { font-size: 10pt; color: var(--slate); background: var(--paper2); border-left: 3px solid var(--wine); padding: 3px 7px; margin: 6px 0 6px; break-after: avoid; }
+.sec h3 span { color: var(--wine); font-weight: 700; margin-right: 3px; }
+.idee { break-inside: avoid; margin-bottom: 7px; }
+.tete-sec { break-inside: avoid; }
+.idee h4 { font-size: 8.9pt; color: var(--slate); line-height: 1.3; margin-bottom: 2px; }
+.idee p { margin: 0 0 3px; text-align: justify; hyphens: auto; }
+.ex { background: #F6F1E4; border-left: 2px solid var(--gold); padding: 3px 6px; font-size: 8.3pt; line-height: 1.36; }
+.exl { font-weight: 700; color: var(--gold2); font-size: 7.4pt; text-transform: uppercase; letter-spacing: .05em; }
+.exl em { color: var(--wine); font-style: normal; }
+.annexe { break-inside: auto; }
+dl { margin: 0; }
+.kf { columns: 2; column-gap: 18px; margin-bottom: 8px; }
+.kf dt { font-weight: 700; color: var(--slate); break-after: avoid; }
+.kf dd { margin: 0 0 4px; break-inside: avoid; }
+.kf.num dt { color: var(--wine); }
+.vg { break-inside: avoid; margin-bottom: 6px; }
+.vg h3 { font-size: 8pt; text-transform: uppercase; letter-spacing: .06em; color: var(--gold2); margin: 4px 0 3px; }
+.vg dl { columns: 2; column-gap: 18px; }
+.vg dt { font-weight: 700; color: var(--slate); break-after: avoid; }
+.vg dd { margin: 0 0 3px; break-inside: avoid; font-size: 8.3pt; }
+.vfr { font-weight: 400; color: var(--muted); }
+.fin { margin-top: 8px; padding-top: 4px; border-top: 1px solid var(--line); font-size: 7.2pt; color: var(--muted); text-align: right; }

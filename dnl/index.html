@@ -1012,6 +1012,17 @@ html.mo .mo-ph-cap.new{animation:mo-capin .45s var(--mo-ease)}
 .tr-miss-a{font-size:13px;color:var(--geo);margin-top:3px;line-height:1.4}
 .tr-note{font-size:12.5px;color:var(--muted);margin:8px 0}
 .tr-row{display:flex;justify-content:center;gap:8px;margin-top:6px}
+.pdf-btn{margin-left:6px;font-family:'Inter',sans-serif;font-size:12px;padding:5px 11px;border-radius:6px;border:1px solid var(--gold);background:var(--gold);color:#fff;text-decoration:none;white-space:nowrap}
+.pdf-btn:hover{background:var(--gold-2);border-color:var(--gold-2)}
+.tr-fiches{display:flex;flex-direction:column;gap:8px}
+.tr-fiche{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:6px;padding:9px 11px;background:#fff}
+.tr-fcode{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:20px;color:var(--hist);min-width:30px}
+.tr-ftitre{flex:1;font-size:13.5px;font-weight:600;color:var(--slate);line-height:1.3}
+.tr-fpart{display:inline-block;margin-left:7px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--hist);border:1px solid var(--hist);border-radius:3px;padding:0 5px;vertical-align:1px}
+.tr-flinks{display:flex;gap:6px;flex:0 0 auto}
+.tr-pdf{font-size:12px;font-weight:600;padding:5px 9px;border-radius:4px;border:1px solid var(--slate);color:var(--slate);text-decoration:none;white-space:nowrap}
+.tr-pdf.on{background:var(--slate);color:#fff}
+@media (max-width:600px){.tr-fiche{flex-wrap:wrap}.tr-flinks{width:100%;justify-content:flex-end}.hero-band{flex-wrap:wrap;row-gap:6px}}
 @media (max-width:600px){.tr-tab{font-size:13px}.tr-soon{display:block;width:max-content;margin:3px auto 0;font-size:9px}.tr-date{white-space:normal}}
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -5053,7 +5064,8 @@ function Chapter({
         React.createElement("span", { className: "hero-code " + accent }, data.label || data.code),
         React.createElement("span", { className: "hero-theme" }, pick("theme", data.theme)),
         setFiche && React.createElement("button", { className: "fiche-toggle" + (fiche ? " on" : ""), onClick: () => setFiche(f => !f), title: FR ? "Basculer en fiche condensée" : "Toggle condensed revision card" },
-          fiche ? (FR ? "◨ Vue complète" : "◨ Full view") : (FR ? "▤ Fiche condensée" : "▤ Condensed card"))),
+          fiche ? (FR ? "◨ Vue complète" : "◨ Full view") : (FR ? "▤ Fiche condensée" : "▤ Condensed card")),
+        FICHES_PDF.indexOf(data.code) >= 0 && React.createElement("a", { className: "pdf-btn", href: "fiches/" + data.code + "-" + lang + ".pdf", target: "_blank", rel: "noopener", title: FR ? "Fiche imprimable du chapitre (PDF)" : "Printable sheet for this chapter (PDF)" }, FR ? "⎙ Fiche PDF" : "⎙ PDF sheet")),
       React.createElement("div", { className: "hero-cartouche" },
         React.createElement("span", { className: "hero-icon " + accent }, React.createElement(Icon, { name: data.code, size: 34 })),
         React.createElement("h1", { className: "hero-title" }, pick("title", data.title))),
@@ -5977,24 +5989,45 @@ const TrainQuiz = ({ FR }) => {
 };
 
 /* page Entraînement */
-const TRAIN_TABS = [["quiz", "Quiz", "Quiz"], ["essay", "Essays", "Essais"], ["dbq", "DBQ", "DBQ"]];
+/* fiches imprimables : produites par outils/fiches-dnl/generer.js dans dnl/fiches/ */
+const FICHES_PDF = ["H1", "H2", "H3"];
+const TrainFiches = ({ FR, lang }) => React.createElement("div", null,
+  React.createElement("div", { className: "tr-fiches" }, FICHES_PDF.map(code => {
+    const d = CHAPTERS[code];
+    const titre = FR && d.fr && d.fr.title ? d.fr.title : d.title;
+    const vide = d.sections.some(s => s.num !== "✓" && !(s.ideas || []).length);
+    const lien = (lg, txt) => React.createElement("a", { key: lg, className: "tr-pdf" + (lg === lang ? " on" : ""), href: "fiches/" + code + "-" + lg + ".pdf", target: "_blank", rel: "noopener" }, txt);
+    return React.createElement("div", { key: code, className: "tr-fiche" },
+      React.createElement("span", { className: "tr-fcode" }, code),
+      React.createElement("span", { className: "tr-ftitre" }, titre, vide && React.createElement("span", { className: "tr-fpart" }, FR ? "partielle" : "partial")),
+      React.createElement("span", { className: "tr-flinks" }, lien("fr", "PDF FR"), lien("en", "PDF EN")));
+  })),
+  React.createElement("div", { className: "tr-help" },
+    React.createElement("p", null, FR
+      ? "Chaque fiche reprend le cours complet du chapitre (idées, explications et exemples), une frise de dix dates, une carte de synthèse avec sa légende, un schéma de synthèse, les acteurs, les chiffres clés et le vocabulaire. Format A4, à imprimer ou à lire sur écran."
+      : "Each sheet gives the chapter's full course (ideas, explanations and examples), a timeline of ten dates, a summary map with its key, a summary diagram, the key figures, the numbers and the vocabulary. A4 format, to print or read on screen."),
+    React.createElement("p", null, FR
+      ? "Les fiches suivent le point atteint en classe : une fiche « partielle » sera complétée quand le chapitre avancera."
+      : "The sheets follow the point reached in class: a “partial” sheet will be completed as the chapter goes on.")));
+const TRAIN_TABS = [["quiz", "Quiz", "Quiz"], ["pdf", "PDF sheets", "Fiches PDF"], ["essay", "Essays", "Essais"], ["dbq", "DBQ", "DBQ"]];
 const TrainingPage = ({ lang }) => {
   const FR = lang === "fr";
   const L = FR ? 1 : 0;
   const [tab, setTab] = useState("quiz");
-  const soon = k => k !== "quiz";
+  const soon = k => k === "essay" || k === "dbq";
   return React.createElement("div", { className: "chap-root train-root" },
     React.createElement("div", { className: "chap-hero" },
       React.createElement("div", { className: "hero-cartouche" },
         React.createElement("span", { className: "hero-icon" }, React.createElement(Icon, { name: "target", size: 30 })),
         React.createElement("div", null,
-          React.createElement("div", { className: "train-kicker" }, FR ? "Quiz · essais · études de documents" : "Quiz · essays · document questions"),
+          React.createElement("div", { className: "train-kicker" }, FR ? "Quiz · fiches PDF · essais · études de documents" : "Quiz · PDF sheets · essays · document questions"),
           React.createElement("h1", { className: "hero-title" }, FR ? "Entraînement" : "Practice")))),
     React.createElement("div", { className: "tr-tabs", role: "tablist" }, TRAIN_TABS.map(t => React.createElement("button", { key: t[0], role: "tab", "aria-selected": tab === t[0], className: "tr-tab" + (tab === t[0] ? " on" : ""), onClick: () => setTab(t[0]) },
       t[1 + L], soon(t[0]) && React.createElement("span", { className: "tr-soon" }, FR ? "bientôt" : "soon")))),
     React.createElement("div", { className: "schema tr-card" },
       React.createElement("div", { className: "schema-body" },
         tab === "quiz" ? React.createElement(TrainQuiz, { FR: FR }) :
+        tab === "pdf" ? React.createElement(TrainFiches, { FR: FR, lang: lang }) :
           React.createElement("div", { className: "tr-help" },
             React.createElement("p", null, tab === "essay"
               ? (FR ? "En préparation : sujets au format officiel (une partie « Explain », une partie « Assess / How far »), sujets officiels recopiés avec leur source et sujets créés sur ce modèle, chronomètre, grille d'auto-correction et plan modèle à découvrir après l'essai."
@@ -6083,7 +6116,7 @@ function App(
       React.createElement("button", { className: "train-btn" + (train ? " here" : ""), onClick: () => setTrain(true) },
         React.createElement(Icon, { name: "target", size: 17, className: "tool-ico" }),
         React.createElement("span", null, FR ? "Entraînement" : "Practice"),
-        React.createElement("span", { className: "train-sub" }, FR ? "quiz · essais · DBQ" : "quiz · essays · DBQ")),
+        React.createElement("span", { className: "train-sub" }, FR ? "quiz · fiches PDF" : "quiz · PDF sheets")),
       React.createElement("div", { className: "subject-tabs" },
         ["hist", "geo", "prem"].map(s => React.createElement("button", {
           key: s, className: "subj-tab " + s + (subject === s ? " active" : ""), onClick: () => setSubject(s)
