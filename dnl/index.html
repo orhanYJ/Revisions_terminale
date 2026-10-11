@@ -1012,6 +1012,12 @@ html.mo .mo-ph-cap.new{animation:mo-capin .45s var(--mo-ease)}
 .tr-miss-a{font-size:13px;color:var(--geo);margin-top:3px;line-height:1.4}
 .tr-note{font-size:12.5px;color:var(--muted);margin:8px 0}
 .tr-row{display:flex;justify-content:center;gap:8px;margin-top:6px}
+.qref{display:flex;align-items:flex-start;gap:7px;width:100%;margin-top:9px;padding:7px 10px;border:1px solid var(--gold);border-radius:5px;background:#fff;color:var(--slate);font-family:inherit;font-size:12.5px;font-weight:600;line-height:1.4;text-align:left;cursor:pointer}
+.qref:hover{background:var(--paper)}
+.qref-ico{flex:0 0 auto}
+@keyframes idea-flash{0%,35%{box-shadow:0 0 0 3px var(--gold);background:#FBF3DF}100%{box-shadow:0 0 0 0 rgba(184,146,79,0);background:transparent}}
+.idea.idea-flash{border-radius:8px;animation:idea-flash 3.2s ease-out}
+@media (prefers-reduced-motion:reduce){.idea.idea-flash{animation:none;box-shadow:0 0 0 3px var(--gold)}}
 .pdf-btn{margin-left:6px;font-family:'Inter',sans-serif;font-size:12px;padding:5px 11px;border-radius:6px;border:1px solid var(--gold);background:var(--gold);color:#fff;text-decoration:none;white-space:nowrap}
 .pdf-btn:hover{background:var(--gold-2);border-color:var(--gold-2)}
 .tr-fiches{display:flex;flex-direction:column;gap:8px}
@@ -1400,7 +1406,8 @@ window.addEventListener("resize", glPlacer);
 function Idea({
   idea,
   accent,
-  lang
+  lang,
+  anchor
 }) {
   const [open, setOpen] = useState(false);
   const FR = lang === "fr";
@@ -1408,7 +1415,8 @@ function Idea({
   const tx = FR && idea.fr ? idea.fr.text : idea.text;
   const ex = FR && idea.fr ? idea.fr.ex : idea.example;
   return React.createElement("div", {
-    className: "idea"
+    className: "idea",
+    id: anchor ? "idee-" + anchor : undefined
   }, React.createElement("div", {
     className: "idea-top"
   }, React.createElement("div", {
@@ -3145,6 +3153,7 @@ const H2Qcm = ({ FR, items }) => {
     answered && React.createElement("div", { className: "mo-expl", style: { borderLeft: "3px solid " + (pick === q[4] ? "#3E6259" : H2C.wine), background: H2C.parch, padding: "8px 12px", fontSize: 13, lineHeight: 1.5, marginTop: 4 } },
       React.createElement("b", null, pick === q[4] ? (FR ? "Juste. " : "Right. ") : (FR ? "Non — réponse " : "No — answer ") + (pick === q[4] ? "" : "ABCD"[perm.indexOf(q[4])] + ". ")),
       q[5 + L],
+      React.createElement(QcmRef, { q: q[1], FR: FR }),
       q[7] && React.createElement("button", { onClick: () => openPrem(q[7]), style: { marginLeft: 8, fontSize: 12, color: H2C.gold, textDecoration: "underline" } }, "→ " + (FR ? "fiche 1re " : "1re recap ") + q[7].slice(2))),
     answered && React.createElement("button", { onClick: () => { setPos(p => p + 1); setPick(null); }, style: { marginTop: 10, width: "100%", border: "1px solid " + H2C.navy, background: H2C.navy, color: "#fff", borderRadius: 4, padding: "9px", fontSize: 13 } }, FR ? "Question suivante →" : "Next question →"));
 };
@@ -4962,6 +4971,31 @@ function Chapter({
   const [stickTop, setStickTop] = useState(0);
   useEffect(() => { setTab("course"); setOpen({}); }, [data.code, data.title]);
   useEffect(() => {
+    const apply = t => {
+      if (!t || t.code !== data.code) return;
+      window.__ideaTarget = null;
+      if (setFiche) setFiche(false);
+      const haut = () => { const mb = document.querySelector(".mobile-bar"); return (mb && getComputedStyle(mb).display !== "none" ? mb.offsetHeight : 0) + 72; };
+      if (t.ov) {
+        setTab("overview");
+        setTimeout(() => { const el = tabsRef.current; if (!el) return; const y = el.getBoundingClientRect().top + window.scrollY - (haut() - 72) - 4; if (window.scrollY > y) window.scrollTo({ top: y, behavior: "smooth" }); }, 380);
+        return;
+      }
+      setTab("course");
+      setOpen(o => Object.assign({}, o, { [t.si]: true }));
+      setTimeout(() => {
+        const el = document.getElementById("idee-" + t.code + "-" + t.si + "-" + t.ii);
+        if (!el) return;
+        window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - haut(), behavior: "smooth" });
+        el.classList.remove("idea-flash"); void el.offsetWidth; el.classList.add("idea-flash");
+      }, 380);
+    };
+    apply(window.__ideaTarget);
+    const h = e => apply(e.detail);
+    window.addEventListener("goto-idea", h);
+    return () => window.removeEventListener("goto-idea", h);
+  }, [data.code]);
+  useEffect(() => {
     const mb = document.querySelector(".mobile-bar");
     const h = mb && getComputedStyle(mb).display !== "none" ? mb.offsetHeight : 0;
     setStickTop(h);
@@ -4994,7 +5028,7 @@ function Chapter({
     React.createElement("div", { className: "section-head" },
       React.createElement("span", { className: "section-num" }, sec.num),
       React.createElement("span", { className: "section-title" }, FR && sec.frTitle ? sec.frTitle : sec.title)),
-    sec.ideas.map((id, j) => React.createElement(Idea, { key: j, idea: id, accent: accent, lang: lang })),
+    sec.ideas.map((id, j) => React.createElement(Idea, { key: j, idea: id, accent: accent, lang: lang, anchor: data.code + "-" + i + "-" + j })),
     schemasOf(sec));
   const nSchemas = (sec) => (sec.schemas ? sec.schemas.length : sec.schema ? 1 : 0);
   const sectionFold = (sec, i) => {
@@ -5010,7 +5044,7 @@ function Chapter({
           React.createElement("span", { className: "fold-meta" }, meta)),
         React.createElement("span", { className: "fold-chev" }, isOpen ? "−" : "+")),
       isOpen && React.createElement("div", { className: "fold-body" },
-        sec.ideas.map((id, j) => React.createElement(Idea, { key: j, idea: id, accent: accent, lang: lang })),
+        sec.ideas.map((id, j) => React.createElement(Idea, { key: j, idea: id, accent: accent, lang: lang, anchor: data.code + "-" + i + "-" + j })),
         schemasOf(sec),
         React.createElement("button", { className: "fold-close", onClick: () => setOpen(o => Object.assign({}, o, { [i]: false })) }, FR ? "▲ Replier cette partie" : "▲ Collapse this part")));
   };
@@ -5270,6 +5304,42 @@ function GlossaryOverlay({ open, onClose, onJump, lang }) {
     )
   );
 }
+
+/* ===================== QCM — renvoi vers le paragraphe du cours =====================
+   Clé : empreinte de l'énoncé anglais de la question ; valeur : "chapitre|partie|idée" (indices dans
+   sections et ideas) ou "chapitre|ov" (question de synthèse : renvoi vers L'essentiel).
+   Table établie par rapprochement automatique puis relue à la main ; une question absente n'a pas de renvoi. */
+const QCM_REFS = {"1d30utj":"H1|0|3","1mm3sv9":"H1|0|5","1fjz9v9":"H1|0|1","4p9tmv":"H1|0|3","rqc0wy":"H1|0|4","1sowm81":"H1|0|5","1neoi4b":"H1|0|5","76nnql":"H1|0|3","1yf0o83":"H1|0|2","118spnv":"H1|1|0","1mldc9z":"H1|1|2","16pawqc":"H1|1|2","ua5tjy":"H1|1|1","vb3zhv":"H1|1|3","71lz1r":"H1|1|3","ihb58w":"H1|1|4","1pp47r2":"H1|3|2","nk3zfp":"H1|1|1","11o5g4q":"H1|2|0","p8nabx":"H1|2|0","13n5w93":"H1|2|1","1etlyfz":"H1|2|3","5p2azc":"H1|2|4","1mvj4wp":"H1|2|2","fz6agc":"H1|3|0","1ic5lr5":"H1|3|1","g7yyl6":"H1|3|1","b99a92":"H1|3|2","1j9l1gc":"H1|3|2","1iek9t1":"H1|3|3","1kgkkc0":"H1|4|0","1cc6v2":"H1|4|1","ejrzb5":"H1|4|1","zou4l4":"H1|4|2","r4t4ey":"H1|4|3","1e5inoj":"H1|4|4","1g8hl27":"H1|4|4","rkxpx5":"H1|4|6","acavvl":"H1|4|6","1l92fbk":"H1|4|5","1ar8vmn":"H1|5|1","mlhzgw":"H1|5|2","19tpqls":"H1|5|3","em1x2v":"H1|5|2","1ya945e":"H1|5|4","fkv3jn":"H1|5|5","1lkvb2m":"H1|5|6","1abp5wa":"H1|5|6","to4f34":"H1|5|6","1c48beh":"H1|1|2","v9m4co":"H1|5|0","1hx3oub":"H1|5|1","199kdph":"H1|4|0","1wwkdoi":"H1|5|7","1x9pqyg":"H1|4|3","k5lmo7":"H2|0|2","2kx0hl":"H2|0|1","mbp7sy":"H2|1|0","1y57zea":"H2|1|2","k94wpk":"H2|1|3","zb0apj":"H2|2|1","81o1d1":"H2|2|1","rpl54k":"H2|2|5","1v24kd7":"H2|2|3","1bhbi23":"H2|2|6","1yhxxgo":"H2|3|1","1ihc4bs":"H2|3|3","dgoq90":"H2|3|5","psw2f2":"H2|3|6","v8et3a":"H2|3|0","bki7gq":"H2|3|9","n1y6z5":"H2|3|8","2b38xr":"H2|3|10","12e6boa":"H2|3|12","xrwlna":"H2|3|14","14pyrb8":"H2|1|4","1f3mgse":"H2|1|5","orh49w":"H2|1|1","248k2u":"H2|3|2","gln2ql":"H2|8|1","2fwyu7":"H2|7|3","gzktch":"H2|1|0","dt46ft":"H2|5|0","qzufyk":"H2|4|2","ghdox2":"H2|5|4","48o252":"H2|5|3","1r6lyt3":"H2|6|5","1mok7gi":"H2|6|1","f9emu4":"H2|7|3","5pkr3t":"H2|8|2","7id10o":"H2|7|6","osm0l4":"H2|8|5","a8gqk2":"H2|8|6","noioy7":"H2|9|4","pl3zlz":"H2|9|2","15zzglb":"H2|9|5","rhrkux":"H3|0|0","1mmyafd":"H3|0|2","1uvjbci":"H3|0|2","t44psl":"H3|1|2","lw7d8w":"H3|1|3","7atakt":"H3|1|4","qgsj7m":"H3|1|5","5ossxr":"H3|1|5","1uure6d":"H3|1|7","ifduv3":"H3|1|6","86x3w8":"H3|1|10","kgvhz2":"H3|1|9","wouirj":"H1|ov","1eseg04":"H1|1|1","6gh31c":"H1|1|0","15qfif":"H1|3|3","tbcisb":"H1|5|6","1p1tabm":"H1|2|4","17z8a7e":"H1|4|3","l1qrf0":"H1|2|1","swnr8j":"H1|4|4","1u0217n":"H1|ov","1tbeqox":"H2|5|0","zdrqgz":"H2|0|5","2s4g6e":"H2|0|3","q83tar":"H2|2|1","88yhkc":"H2|0|4","xrkf1u":"H2|3|5","2idoj7":"H2|6|7","8fjldl":"H2|7|0","qwgb2f":"H2|1|0","c82jhq":"H2|3|6","1hksx0l":"H3|0|1","h8k0xr":"H3|1|1","1jm6qg2":"H3|1|10","1xo8o8m":"H3|1|10","1qucr9n":"H3|1|6","1s0526v":"H2|7|2","14fqaai":"H2|0|1","9v4bcb":"H2|1|0","19wtgrh":"H1|5|6","15tby47":"H1|5|5","1dpghsh":"H3|0|2","1b4gcuc":"H2|9|6","1u5wiq6":"H2|8|1","hsjttn":"H2|7|5","q6fo6m":"H2|7|4","2w57nm":"H2|8|0","bhojd9":"H2|8|4","157ep3m":"H2|1|6","1vfv2ji":"H2|2|6","1yqha11":"H2|6|5","xqum86":"H2|2|5","ulpmsw":"H2|3|13","28cmg6":"H2|8|2","14mazcn":"H2|7|2","sr4cuc":"H2|3|8","1n1cnwv":"H1|2|1","19mvdwf":"H1|4|4","ret7y8":"H1|4|6","1c78xqj":"H1|2|3","zxvn1g":"H2|8|6","1wunwov":"H2|8|6","1hpeuve":"H2|9|5","1650uf8":"H3|1|6","96pack":"H3|1|6","qlvhhn":"H3|1|6","60qkuq":"H3|1|8","4934t":"H3|1|3","1tv21d1":"H3|1|1","7vjt45":"P-H9|2|0","1kiiycu":"P-H9|3|1","8mzkq6":"P-H9|3|3","jpftbl":"P-H10|0|0","urgr4l":"P-H10|3|1","19cxo0u":"P-H11|1|2","1hqewsb":"P-H11|1|1","7n64hk":"P-H11|2|0","vfbn59":"P-H11|1|3","1j50h80":"P-H11|3|2","ca08ho":"H2|0|1","ez6nyq":"H2|0|2","hpnxe2":"H2|0|4","179bad7":"H2|0|5","q8z9v5":"H2|1|0","1jnech":"H2|1|1","1051nwz":"H2|1|3","1hu8p8w":"H2|1|2","h5swby":"H2|1|6","tb8bvy":"H2|2|0","1w38i97":"H2|2|2","1xh6tlb":"H2|2|4","1bra1sp":"H2|3|2","e7nhnp":"H2|3|6","51j6q6":"H2|3|12","1a6wxm5":"H2|5|2"};
+const qcmHash = s => { let x = 5381; for (let i = 0; i < s.length; i++) x = ((x * 33) ^ s.charCodeAt(i)) >>> 0; return x.toString(36); };
+const qcmRef = qEn => {
+  const r = qEn && QCM_REFS[qcmHash(qEn)];
+  if (!r) return null;
+  const p = r.split("|"), d = p[0].indexOf("P-") === 0 ? PREM_FULL[p[0]] : CHAPTERS[p[0]];
+  if (!d) return null;
+  if (p[1] === "ov") return { code: p[0], ov: true };
+  const si = +p[1], ii = +p[2], s = d.sections[si], it = s && s.ideas && s.ideas[ii];
+  return it ? { code: p[0], si: si, ii: ii, num: s.num, it: it } : null;
+};
+const goIdea = t => {
+  window.__ideaTarget = t;
+  if (t.code.indexOf("P-") === 0) openPrem(t.code); else window.dispatchEvent(new CustomEvent("go-chap", { detail: t.code }));
+  window.dispatchEvent(new CustomEvent("goto-idea", { detail: t }));
+};
+const QcmRef = ({ q, FR, outside }) => {
+  const r = qcmRef(q);
+  if (!r) return null;
+  const ch = r.code.indexOf("P-") === 0 ? "1re " + r.code.slice(2) : r.code;
+  let lab;
+  if (r.ov) lab = (FR ? "Revoir l'essentiel du chapitre " : "Review the chapter overview, ") + ch;
+  else {
+    const t0 = FR && r.it.fr ? r.it.fr.title : r.it.title;
+    const t = t0.length > 95 ? t0.slice(0, 92).replace(/\s+\S*$/, "") + "…" : t0;
+    lab = (outside ? (FR ? "Le cours en parle ici : " : "The course deals with it here: ") : (FR ? "Revoir le paragraphe : " : "Review the paragraph: "))
+      + ch + " · " + r.num + (FR ? " — « " + t + " »" : " — “" + t + "”");
+  }
+  return React.createElement("button", { className: "qref", onClick: () => goIdea(r) },
+    React.createElement("span", { className: "qref-ico", "aria-hidden": true }, "📖"), React.createElement("span", null, lab));
+};
 
 /* ===================== ENTRAÎNEMENT — banque de questions ajoutées =====================
    Format : TQ(chapitre, type, question EN, question FR, options [[EN, FR] ×4], index de la bonne,
@@ -5927,6 +5997,7 @@ const TrainRun = ({ FR, items, onBack }) => {
         missed.map((m, k) => React.createElement("div", { key: k, className: "tr-miss" },
           React.createElement("div", { className: "tr-miss-q" }, m.kind === "order" ? (FR ? "Chronologie : " : "Chronology: ") + m.ev.map(e => e.date[L] + " " + e.ev[L]).join(" → ") : m.q[L]),
           m.o && React.createElement("div", { className: "tr-miss-a" }, "→ " + m.o[m.a][L]),
+          m.q && qcmRef(m.q[0]) ? React.createElement(QcmRef, { q: m.q[0], FR: FR, outside: m.t === "o" }) :
           (TRAIN_CHAPS.indexOf(m.c) >= 0 || m.p) && React.createElement("button", { className: "tr-link", onClick: () => trainGoChap(m.p || m.c) },
             (FR ? "Revoir " : "Review ") + (m.p ? (FR ? "la fiche 1re " : "1re recap ") + m.p.slice(2) : (FR ? "le chapitre " : "chapter ") + m.c))))) :
         React.createElement("div", { className: "tr-note" }, FR ? "Sans faute." : "Perfect."),
@@ -5953,6 +6024,7 @@ const TrainRun = ({ FR, items, onBack }) => {
         answered && React.createElement("div", { className: "tr-expl mo-expl" + (pick === q.a ? " ok" : " ko") },
           React.createElement("b", null, pick === q.a ? (FR ? "Juste. " : "Right. ") : (FR ? "Non, réponse " : "No, answer ") + (pick === q.a ? "" : "ABCD"[perm.indexOf(q.a)] + ". ")),
           q.w[L],
+          React.createElement(QcmRef, { q: q.q[0], FR: FR, outside: q.t === "o" }),
           q.src && React.createElement("div", { className: "tr-src" }, (FR ? "Source : " : "Source: ") + q.src[L]),
           q.p && React.createElement("button", { className: "tr-link", onClick: () => openPrem(q.p) }, "→ " + (FR ? "fiche 1re " : "1re recap ") + q.p.slice(2)))),
     answered && React.createElement("button", { className: "tr-btn full", onClick: () => { setPos(p => p + 1); setPick(null); } },
