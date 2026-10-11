@@ -11,7 +11,7 @@
   var MATIERE = "pc";
   var NOM = "Physique-chimie";
   var RELAIS = "https://assistant-revisions.orhanyildizm.workers.dev/";
-  var MODELE = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";   /* parmi la liste MODELES du relais */
+  var MODELE = "@cf/openai/gpt-oss-120b";   /* parmi la liste MODELES du relais */
   var COULEURS = {
     fond: "var(--surface, #FFFFFF)", fond2: "var(--bg, #FBF8F4)",
     encre: "var(--ink, #24170C)", encre2: "var(--ink-2, #5C4A39)", ligne: "var(--line, #E8DCCF)",
@@ -67,9 +67,14 @@
     ".asr-m code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:" + c.fond2 + ";padding:0 .25em;border-radius:4px}" +
     ".asr-m pre{white-space:pre-wrap;background:" + c.fond2 + ";padding:8px;border-radius:6px;margin:0 0 .6em}" +
     ".asr-m pre code{background:none;padding:0}" +
+    ".asr-tab{overflow-x:auto;margin:0 0 .6em;-webkit-overflow-scrolling:touch}" +
+    ".asr-tab table{border-collapse:collapse;font-size:13.5px;line-height:1.35;min-width:100%;width:max-content}" +
+    ".asr-tab th,.asr-tab td{border:1px solid " + c.ligne + ";padding:5px 7px;text-align:left;vertical-align:top;min-width:7em;max-width:15em;overflow-wrap:normal;word-break:normal;hyphens:auto}" +
+    ".asr-tab th{background:" + c.fond2 + ";font-weight:700}" +
     ".asr-m .asr-h{font-weight:700;margin:.4em 0 .3em}" +
     ".asr-att{display:inline-flex;gap:4px;padding:4px 0}.asr-att i{width:7px;height:7px;border-radius:50%;background:" + c.encre2 + ";opacity:.5}" +
     "@media (prefers-reduced-motion:no-preference){.asr-att i{animation:asr-p 1s infinite ease-in-out}.asr-att i:nth-child(2){animation-delay:.15s}.asr-att i:nth-child(3){animation-delay:.3s}}" +
+    ".asr-pat{margin-left:8px;font-size:13px;color:" + c.encre2 + "}" +
     "@keyframes asr-p{0%,80%,100%{opacity:.25}40%{opacity:.9}}" +
     ".asr-pied{display:flex;gap:8px;align-items:flex-end;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid " + c.ligne + ";background:" + c.fond + "}" +
     ".asr-champ{flex:1;min-width:0;width:100%;margin:0;resize:none;min-height:44px;max-height:140px;padding:11px 12px;border:1px solid " + c.ligne + ";border-radius:10px;" +
@@ -90,8 +95,61 @@
       .replace(/(^|[\s(])\*([^*\s][^*\n]*?)\*(?=[\s).,;:!?]|$)/g, "$1<i>$2</i>")
       .replace(/(^|[\s(])_([^_\s][^_\n]*?)_(?=[\s).,;:!?]|$)/g, "$1<i>$2</i>");
   }
+  // Les modèles écrivent parfois leurs formules en LaTeX malgré la consigne : on les ramène
+  // à du texte lisible (σ, λ, 2^23, H₂O…). Seuls les passages délimités comme formules sont touchés,
+  // et un « $ » n'ouvre une formule que s'il contient \, ^, _ ou { (les montants en dollars restent).
+  var SYMBOLES = { sigma: "σ", lambda: "λ", kappa: "κ", Delta: "Δ", delta: "δ", mu: "µ", alpha: "α", beta: "β",
+    gamma: "γ", pi: "π", rho: "ρ", theta: "θ", omega: "ω", Omega: "Ω", epsilon: "ε", varepsilon: "ε", tau: "τ",
+    nu: "ν", eta: "η", chi: "χ", phi: "φ", times: "×", cdot: "·", approx: "≈", simeq: "≃", leq: "≤", le: "≤",
+    geq: "≥", ge: "≥", neq: "≠", to: "→", rightarrow: "→", longrightarrow: "→", leftarrow: "←", Rightarrow: "⇒",
+    rightleftharpoons: "⇌", leftrightarrow: "↔", sum: "Σ", infty: "∞", pm: "±", degree: "°", circ: "°",
+    propto: "∝", ell: "ℓ", quad: " ", qquad: "  " };
+  var INDICES = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉", "+": "₊", "-": "₋" };
+  function formule(f) {
+    var avant;
+    f = f.replace(/\\(?:text|mathrm|mathbf|mathit|operatorname)\s*\{([^{}]*)\}/g, "$1")
+      .replace(/\\left|\\right/g, "")
+      .replace(/\\[,;:!]|~/g, " ")
+      .replace(/\{,\}/g, ",");
+    do {
+      avant = f;
+      f = f.replace(/\\[dt]?frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g, "($1)/($2)")
+        .replace(/\\sqrt\s*\{([^{}]*)\}/g, "√($1)");
+    } while (f !== avant);
+    f = f.replace(/\\([A-Za-z]+)/g, function (t, nom) { return SYMBOLES.hasOwnProperty(nom) ? SYMBOLES[nom] : nom; })
+      .replace(/_\{([0-9+-]+)\}|_([0-9])/g, function (t, a, b) { return (a || b).split("").map(function (c) { return INDICES[c] || c; }).join(""); })
+      .replace(/_\{([^{}]*)\}/g, "_$1")
+      .replace(/\^\{([^{}]*)\}/g, function (t, e) { return /^-?[0-9a-z]$|^-?[0-9]+$/i.test(e) ? "^" + e : "^(" + e + ")"; })
+      .replace(/[{}]/g, "")
+      .replace(/\(([^()\s]+)\)\/\(([^()\s]+)\)/g, "$1/$2")
+      .replace(/[ \t]{2,}/g, " ");
+    return f.trim();
+  }
+  function sansLatex(t) {
+    return t
+      .replace(/\\\[([\s\S]*?)\\\]/g, function (x, f) { return "\n" + formule(f) + "\n"; })
+      .replace(/\$\$([\s\S]*?)\$\$/g, function (x, f) { return "\n" + formule(f) + "\n"; })
+      .replace(/\\\(([\s\S]*?)\\\)/g, function (x, f) { return formule(f); })
+      .replace(/\$([^$\n]*?[\\^_{][^$\n]*?)\$/g, function (x, f) { return formule(f); });
+  }
+
+  // Tableau markdown (lignes « | a | b | ») : la ligne de tirets est sautée, la première ligne sert d'en-tête.
+  function cellules(l) {
+    return l.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map(function (c) { return enLigne(c.trim()); });
+  }
+  function tableau(lignes) {
+    var html = '<div class="asr-tab"><table>', tete = true;
+    for (var i = 0; i < lignes.length; i++) {
+      if (/^\s*\|?\s*:?-{2,}/.test(lignes[i])) continue;
+      var c = cellules(lignes[i]), bal = tete ? "th" : "td";
+      html += "<tr><" + bal + ">" + c.join("</" + bal + "><" + bal + ">") + "</" + bal + "></tr>";
+      tete = false;
+    }
+    return html + "</table></div>";
+  }
+
   function miseEnForme(texte) {
-    var blocs = echapper(texte).split(/```/);
+    var blocs = echapper(sansLatex(texte)).split(/```/);
     var html = "";
     for (var b = 0; b < blocs.length; b++) {
       if (b % 2 === 1) { html += "<pre><code>" + blocs[b].replace(/^[a-z]*\n/, "") + "</code></pre>"; continue; }
@@ -101,6 +159,15 @@
       for (var i = 0; i < lignes.length; i++) {
         var l = lignes[i], m;
         if (!l.trim()) { finPara(); finListe(); continue; }
+        if (/^\s*([-*_])(\s*\1){2,}\s*$/.test(l)) { finPara(); finListe(); continue; }
+        if (/^\s*\|.*\|\s*$/.test(l)) {
+          finPara(); finListe();
+          var tab = [];
+          while (i < lignes.length && /^\s*\|.*\|\s*$/.test(lignes[i])) tab.push(lignes[i++]);
+          i--;
+          html += tableau(tab);
+          continue;
+        }
         if ((m = l.match(/^\s*#{1,6}\s+(.*)$/))) { finPara(); finListe(); html += '<div class="asr-h">' + enLigne(m[1]) + "</div>"; continue; }
         if ((m = l.match(/^\s*[-*•]\s+(.*)$/)) || (m = l.match(/^\s*\d+[.)]\s+(.*)$/))) {
           var type = /^\s*\d/.test(l) ? "ol" : "ul";
@@ -135,7 +202,7 @@
       }
     }
     var html = miseEnForme(lignes.join("\n"));
-    if (doute) {
+    if (doute && !/^(aucun|aucune|rien|néant|none|nothing|n\/a)\b/i.test(doute)) {
       html += '<div class="asr-verif"><b>' + (anglais ? "⚠ To check" : "⚠ À vérifier") + "</b>" + enLigne(echapper(doute)) + "</div>";
     }
     html += '<span class="asr-mention">' + (anglais
@@ -290,6 +357,10 @@
     ajouter("moi", null, q);
     historique.push({ role: "user", content: q });
     var attente = ajouter("ia", '<span class="asr-att" aria-label="L\'assistant rédige"><i></i><i></i><i></i></span>');
+    var patience = setTimeout(function () {
+      var a = attente.querySelector(".asr-att");
+      if (a) a.insertAdjacentHTML("afterend", '<span class="asr-pat">' + (MATIERE === "dnl" ? "Thinking… (up to 30 s)" : "L'assistant réfléchit… (jusqu'à 30 s)") + "</span>");
+    }, 4000);
 
     var ctrl = window.AbortController ? new AbortController() : null;
     var minuterie = setTimeout(function () { if (ctrl) ctrl.abort(); }, 90000);
@@ -321,6 +392,7 @@
       })
       .then(function () {
         clearTimeout(minuterie);
+        clearTimeout(patience);
         enCours = false;
         envoyer.disabled = false;
       });
