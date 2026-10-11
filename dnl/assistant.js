@@ -1,6 +1,6 @@
 /* Demander à ChatGPT — bouton rond en bas à gauche et petit panneau de saisie.
    Maintenu à part du contenu, comme la couche de mouvement : le même fichier est
-   copié dans svt/, pc/ et dnl/ ; seul le bloc CONFIG change d'un site à l'autre.
+   copié dans chaque site ; seul le bloc CONFIG change d'un site à l'autre.
    La question, précédée d'une consigne de niveau Terminale, s'ouvre dans ChatGPT en
    discussion temporaire (temporary-chat=true) : elle n'est pas gardée dans
    l'historique de ChatGPT. Le site ne conserve rien : ni stockage dans le navigateur, ni envoi ailleurs ;
@@ -11,12 +11,10 @@
   "use strict";
 
   /* ---------- CONFIG (propre à chaque site) ---------- */
-  var MATIERE = "dnl";
   var NOM = "DNL History-Geography";
-  var CONSIGNE = "I am a French Terminale student in the British section of the Baccalauréat français international: " +
-    "history and geography are taught and examined in English. Answer my question precisely and concisely, at final-year " +
-    "level: exact dates (day, month, year), figures, names, causes and consequences, in the right chronological order. " +
-    "If you are unsure of a point, say so clearly. Answer in the language of my question.";
+  var LANGUE = "en";   /* langue du panneau : "fr" ou "en" */
+  var COTE = "gauche";   /* bouton en bas à "gauche" ou à "droite" */
+  var CONSIGNE = "I am a French Terminale student in the British section of the Baccalauréat français international, history and geography are taught and examined in English. Answer my question precisely and concisely, at final-year level: exact dates (day, month, year), figures, names, causes and consequences, in the right chronological order. If you are unsure of a point, say so clearly. Answer in the language of my question.";
   var COULEURS = {
     fond: "#FBF8F0", fond2: "var(--paper, #F2ECDE)",
     encre: "var(--ink, #1F2433)", encre2: "var(--muted, #6B6350)", ligne: "var(--line, #CBBFA3)",
@@ -26,8 +24,9 @@
   /* ---------- fin CONFIG ---------- */
 
   var CHATGPT = "https://chatgpt.com/?temporary-chat=true&q=";
-  var DNL = MATIERE === "dnl";
-  var TEXTES = DNL ? {
+  var EN = LANGUE === "en";
+  var COTE_CSS = COTE === "droite" ? "right" : "left";
+  var TEXTES = EN ? {
     titre: "Ask ChatGPT · " + NOM,
     sous: "Temporary chat: nothing is kept",
     temporaire: "Opens as a temporary chat: not saved in ChatGPT's history.",
@@ -61,7 +60,7 @@
   var c = COULEURS;
   var css =
     ".asr-btn,.asr-pan,.asr-pan *{box-sizing:border-box}" +
-    ".asr-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:70;width:52px;height:52px;border-radius:50%;border:0;" +
+    ".asr-btn{position:fixed;" + COTE_CSS + ":14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:70;width:52px;height:52px;border-radius:50%;border:0;" +
     "background:" + c.accent + ";color:" + c.surAccent + ";display:flex;align-items:center;justify-content:center;cursor:pointer;" +
     "box-shadow:0 2px 6px rgba(0,0,0,.18),0 8px 22px rgba(0,0,0,.14);-webkit-tap-highlight-color:transparent}" +
     ".asr-btn:focus-visible{outline:3px solid " + c.encre + ";outline-offset:3px}" +
@@ -72,7 +71,7 @@
     ".asr-pan{position:fixed;z-index:80;display:none;flex-direction:column;gap:12px;margin:0;background:" + c.fond + ";color:" + c.encre + ";" +
     "border:1px solid " + c.ligne + ";box-shadow:0 12px 40px rgba(0,0,0,.22);padding:14px 14px calc(14px + env(safe-area-inset-bottom,0px));" +
     "left:0;right:0;bottom:0;border-radius:16px 16px 0 0;max-height:90vh;overflow-y:auto}" +
-    "@media (min-width:700px){.asr-pan{left:18px;right:auto;bottom:18px;width:420px;border-radius:14px;padding-bottom:14px}}" +
+    "@media (min-width:700px){.asr-pan{left:auto;right:auto;" + COTE_CSS + ":18px;bottom:18px;width:420px;border-radius:14px;padding-bottom:14px}}" +
     ".asr-pan.on{display:flex}" +
     ".asr-tete{display:flex;align-items:flex-start;gap:10px}" +
     ".asr-titre{flex:1;min-width:0;font-weight:700;font-size:16px;line-height:1.25}" +
@@ -100,7 +99,7 @@
       // voile et panneau : fondu du voile, montée avec léger rebond, éléments en cascade
       "html.mo .asr-voile.on{animation:asr-fondu .35s ease both}" +
       "html.mo .asr-pan.on{animation:asr-monte .55s cubic-bezier(.2,.9,.25,1.08) both}" +
-      "@media (min-width:700px){html.mo .asr-pan.on{transform-origin:24px 100%;animation-name:asr-gonfle}}" +
+      "@media (min-width:700px){html.mo .asr-pan.on{transform-origin:" + (COTE === "droite" ? "calc(100% - 24px)" : "24px") + " 100%;animation-name:asr-gonfle}}" +
       "html.mo .asr-pan.on>*{animation:asr-cascade .5s cubic-bezier(.2,.8,.2,1) both}" +
       "html.mo .asr-pan.on>:nth-child(2){animation-delay:.05s}html.mo .asr-pan.on>:nth-child(3){animation-delay:.1s}" +
       "html.mo .asr-pan.on>:nth-child(4){animation-delay:.15s}html.mo .asr-pan.on>:nth-child(5){animation-delay:.2s}" +
@@ -279,7 +278,7 @@
       return;
     }
     if (navigator.onLine === false) { info.textContent = TEXTES.horsligne; return; }
-    var invite = CONSIGNE + "\n\n" + (DNL ? "My question: " : "Ma question : ") + q;
+    var invite = CONSIGNE + "\n\n" + (EN ? "My question: " : "Ma question : ") + q;
     var adresse = CHATGPT + encodeURIComponent(invite);
     var onglet = window.open(adresse, "_blank");
     if (onglet) {
