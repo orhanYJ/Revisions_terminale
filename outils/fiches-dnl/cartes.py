@@ -4,7 +4,8 @@ Usage : python3 cartes.py DOSSIER_DONNEES
   DOSSIER_DONNEES reçoit les fonds de carte téléchargés (non versionnés) :
   - frontières de 1930 : aourednik/historical-basemaps (world_1930.geojson), licence GPL-3.0 ;
   - départements français : gregoiredavid/france-geojson (version simplifiée) ;
-  - ligne de démarcation : Département de l'Ain, data.gouv.fr « Ligne de démarcation », Licence Ouverte 2.0.
+  - ligne de démarcation : Département de l'Ain, data.gouv.fr « Ligne de démarcation », Licence Ouverte 2.0 ;
+  - pour les cartes d'Europe datées (europe.py) : CShapes 2.0 (ICR, ETH Zurich) et Natural Earth.
 Les SVG produits vont dans cartes/ à côté de ce script ; generer.js les insère dans les fiches.
 Dépendance : shapely (pip install shapely).
 Contrôle de la simplification : SANS_SIMPLIF=1 produit les cartes sans simplification, pour une
@@ -250,8 +251,16 @@ def carte_h3(D, lang):
 if __name__ == "__main__":
     D = charger(sys.argv[1] if len(sys.argv) > 1 else os.path.join(ICI, ".donnees"))
     os.makedirs(SORTIE, exist_ok=True)
-    for code, f in (("H1", carte_h1), ("H2", carte_h2), ("H3", carte_h3)):
-        for lang in ("en", "fr"):
-            s = f(D, lang)
-            open(os.path.join(SORTIE, "%s-%s.svg" % (code, lang)), "w", encoding="utf-8").write(s)
-            print(code, lang, len(s) // 1024, "Ko")
+    import europe
+    E = europe.charger_eu(sys.argv[1] if len(sys.argv) > 1 else os.path.join(ICI, ".donnees"))
+    ecrire = lambda nom, s: (open(os.path.join(SORTIE, nom), "w", encoding="utf-8").write(s), print(nom, len(s) // 1024, "Ko"))
+    for lang in ("en", "fr"):
+        # grandes cartes : H1 le monde, H2 et H3 l'Europe ; H3 garde aussi le zoom sur la France
+        ecrire("H1-%s.svg" % lang, carte_h1(D, lang))
+        ecrire("H2-%s.svg" % lang, europe.h2_grande(D, E, lang))
+        ecrire("H3-%s.svg" % lang, europe.h3_grande(D, E, lang))
+        ecrire("H3-france-%s.svg" % lang, carte_h3(D, lang))
+        # séries de petites cartes datées (sans texte propre à la langue, sauf quelques noms)
+        for code, serie in (("H1", europe.h1_serie(D, lang)), ("H2", europe.h2_serie(D, E, lang)), ("H3", europe.h3_serie(D, E, lang))):
+            for i, s in enumerate(serie, 1):
+                ecrire("%s-serie%d-%s.svg" % (code, i, lang), s)

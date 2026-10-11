@@ -27,8 +27,8 @@ function lire(nom) {
 
 const esc = t => String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const T = {
-  en: { kicker: "DNL History-Geography · Terminale BFI · M. Ros", frise: "Ten dates to know", enjeu: "The big picture", objective: "Objective", ki: "Key Issues", kt: "Key Terms", carte: "Summary map", schema: "Summary diagram", cours: "The course", ex: "Example", hors: "outside the course", acteurs: "Key figures", chiffres: "Numbers", vocab: "Vocabulary", partiel: "Partial sheet: only what has been taught in class so far. Still to come: ", genere: "Revision Atlas · printable sheet", pdate: "Generated on " },
-  fr: { kicker: "DNL Histoire-Géographie · Terminale BFI · M. Ros", frise: "Dix dates à connaître", enjeu: "L'enjeu", objective: "Objectif", ki: "Key Issues", kt: "Key Terms", carte: "Carte de synthèse", schema: "Schéma de synthèse", cours: "Le cours", ex: "Exemple", hors: "hors cours", acteurs: "Acteurs", chiffres: "Chiffres clés", vocab: "Vocabulaire", partiel: "Fiche partielle : seulement ce qui a été vu en classe. Reste à venir : ", genere: "Atlas de révision · fiche imprimable", pdate: "Générée le " }
+  en: { kicker: "DNL History-Geography · Terminale BFI · M. Ros", frise: "Ten dates to know", enjeu: "The big picture", objective: "Objective", ki: "Key Issues", kt: "Key Terms", carte: "Summary map", zoom: "Zoom", serie: "Stage by stage (same colours)", schema: "Summary diagram", cours: "The course", ex: "Example", hors: "outside the course", acteurs: "Key figures", chiffres: "Numbers", vocab: "Vocabulary", partiel: "Partial sheet: only what has been taught in class so far. Still to come: ", genere: "Revision Atlas · printable sheet", pdate: "Generated on " },
+  fr: { kicker: "DNL Histoire-Géographie · Terminale BFI · M. Ros", frise: "Dix dates à connaître", enjeu: "L'enjeu", objective: "Objectif", ki: "Key Issues", kt: "Key Terms", carte: "Carte de synthèse", zoom: "Zoom", serie: "Étape par étape (mêmes couleurs)", schema: "Schéma de synthèse", cours: "Le cours", ex: "Exemple", hors: "hors cours", acteurs: "Acteurs", chiffres: "Chiffres clés", vocab: "Vocabulaire", partiel: "Fiche partielle : seulement ce qui a été vu en classe. Reste à venir : ", genere: "Atlas de révision · fiche imprimable", pdate: "Générée le " }
 };
 
 /* dates de la frise en français : mois abrégés à la française, « 1er » */
@@ -55,8 +55,18 @@ function frise(items, lang) {
 
 function legendeCle(c, lang) {
   const L = lang === "fr" ? 2 : 1;
-  const sw = c[0] === "hatch" ? `<i class="sw hatch"></i>` : c[0] === "hatch-or" ? `<i class="sw hatch-or"></i>` : c[0] === "line" ? `<i class="sw line"></i>` : c[0] === "dots" ? `<i class="sw dots"></i>` : `<i class="sw" style="background:${c[0]}"></i>`;
+  const sw = /^(hatch|line|dots)/.test(c[0]) ? `<i class="sw ${c[0]}"></i>` : `<i class="sw" style="background:${c[0]}"></i>`;
   return `<li>${sw}<span>${esc(c[L])}</span></li>`;
+}
+
+function blocCarte(cc, svg, titre, lang, apres) {
+  const F = lang === "fr";
+  return `<section class="bloc carte large${cc.carre ? " carre" : ""}${cc.petit ? " petit" : ""}"><div class="tete-carte"><h2>${titre} — ${esc(cc.titre[F ? 1 : 0])}</h2><div class="svg">${svg}</div></div>
+  <div class="carte-corps">
+  <div class="leg"><ul class="cles">${cc.cles.map(k => legendeCle(k, lang)).join("")}</ul>
+  <ol class="reperes">${cc.reperes.map(r => `<li>${esc(r[F ? 1 : 0])}</li>`).join("")}</ol>
+  <p class="note">${esc(cc.note[F ? 1 : 0])}</p></div></div>${apres || ""}
+</section>`;
 }
 
 function schema(sc, lang) {
@@ -95,12 +105,9 @@ ${vides.length ? `<div class="partiel">${t.partiel}${vides.map(s => esc(s.num + 
   <div class="kik"><h3>${t.ki}</h3><ul>${d.keyIssues.map(k => `<li>${esc(k)}</li>`).join("")}</ul><h3>${t.kt}</h3><p>${d.keyTerms.map(esc).join(" · ")}</p></div>
 </section>
 <section class="bloc"><h2>${t.schema} — ${esc(c.schema.titre[F ? 1 : 0])}</h2>${schema(c.schema, lang)}</section>
-<section class="bloc carte large${c.carte.carre ? " carre" : ""}"><h2>${t.carte} — ${esc(c.carte.titre[F ? 1 : 0])}</h2>
-  <div class="carte-corps"><div class="svg">${carte}</div>
-  <div class="leg"><ul class="cles">${c.carte.cles.map(k => legendeCle(k, lang)).join("")}</ul>
-  <ol class="reperes">${c.carte.reperes.map(r => `<li>${esc(r[F ? 1 : 0])}</li>`).join("")}</ol>
-  <p class="note">${esc(c.carte.note[F ? 1 : 0])}</p></div></div>
-</section>
+${blocCarte(c.carte, carte, t.carte, lang, c.carte.serie ? `<h3 class="serie-t">${t.serie}</h3>
+  <div class="serie${c.carte.monde ? " monde" : ""}" style="--n:${c.carte.serie.length}">${c.carte.serie.map((e, i) => `<figure><div class="svg">${fs.readFileSync(path.join(ICI, "cartes", `${code}-serie${i + 1}-${lang}.svg`), "utf8")}</div><figcaption><b>${esc(e[0][F ? 1 : 0])}</b> ${esc(e[F ? 2 : 1])}</figcaption></figure>`).join("")}</div>` : "")}
+${c.zoom ? blocCarte(c.zoom, fs.readFileSync(path.join(ICI, "cartes", `${code}-france-${lang}.svg`), "utf8"), t.zoom, lang) : ""}
 <section class="cours"><h2 class="h2c">${t.cours}</h2>
 ${secs.map(s => `<div class="sec"><div class="tete-sec"><h3><span>${esc(s.num)}</span> ${esc(F && s.frTitle ? s.frTitle : s.title)}</h3>${idee(s.ideas[0])}</div>${s.ideas.slice(1).map(idee).join("")}</div>`).join("")}
 </section>

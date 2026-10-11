@@ -25,12 +25,28 @@ h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; font-s
 .kik p { margin: 0; font-weight: 600; }
 .carte .svg { border: 1px solid var(--line); line-height: 0; }
 .carte.large .leg { margin-top: 6px; display: grid; grid-template-columns: 1fr 1.6fr; gap: 6px 16px; }
-.carte.carre .svg { width: 84%; margin: 0 auto; }
+.carte.carre .svg { width: 78%; margin: 0 auto; }
+.carte.petit .svg { width: 62%; }
 .cles { list-style: none; margin: 0; padding: 0; }
 .cles li { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 3px; font-size: 8pt; line-height: 1.3; }
 .sw { flex: 0 0 auto; width: 15px; height: 10px; border: 1px solid #B9AB89; margin-top: 1px; display: inline-block; }
 .sw.hatch { background: repeating-linear-gradient(45deg, #8E2F2A 0 2px, #E8C9C4 2px 5px); }
 .sw.hatch-or { background: repeating-linear-gradient(-45deg, #B8924F 0 2px, #EBDDB5 2px 5px); }
+.sw.hatch-rh { background: repeating-linear-gradient(45deg, #8E2F2A 0 2px, #F2E3E0 2px 5px); }
+.sw.hatch-su { background: repeating-linear-gradient(45deg, #6F7E99 0 2px, #AEB8CB 2px 5px); }
+.sw.hatch-vi { background: repeating-linear-gradient(-45deg, #B8564C 0 2px, #F6E7E3 2px 5px); }
+.sw.hatch-es { background: repeating-linear-gradient(-45deg, #B8924F 0 2px, #EFE3C4 2px 5px); }
+.bloc.carte { break-inside: auto; }
+.carte .svg, .carte .leg, .serie, .tete-carte { break-inside: avoid; }
+.serie.monde { width: 86%; margin: 0 auto; }
+.serie-t { font-size: 8pt; letter-spacing: .07em; text-transform: uppercase; color: var(--gold2); margin: 9px 0 4px; break-after: avoid; }
+.carte.carre .serie { width: 84%; margin: 0 auto; }
+.serie { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 7px; }
+.serie.monde { grid-template-columns: 1fr 1fr; }
+.serie figure { margin: 0; break-inside: avoid; }
+.serie .svg { border: 1px solid var(--line); line-height: 0; }
+.serie figcaption { font-size: 7.4pt; line-height: 1.3; margin-top: 3px; }
+.serie figcaption b { color: var(--wine); }
 .sw.line { border: 0; height: 0; border-top: 2.5px dashed var(--slate); margin-top: 6px; }
 .sw.dots { border: 0; height: 0; border-top: 3.5px dotted var(--slate); margin-top: 5px; }
 .reperes { margin: 0; padding-left: 0; list-style: none; counter-reset: r; font-size: 8pt; line-height: 1.32; }
