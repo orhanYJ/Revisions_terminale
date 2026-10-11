@@ -1,11 +1,9 @@
-/* Demander à une IA — bouton rond en bas à gauche et petit panneau de saisie.
+/* Demander à ChatGPT — bouton rond en bas à gauche et petit panneau de saisie.
    Maintenu à part du contenu, comme la couche de mouvement : le même fichier est
    copié dans svt/, pc/ et dnl/ ; seul le bloc CONFIG change d'un site à l'autre.
-   La question, précédée d'une consigne de niveau Terminale, s'ouvre au choix dans :
-   - ChatGPT, en discussion temporaire (temporary-chat=true), hors historique ;
-   - Perplexity, qui cite ses sources ; sans compte, rien n'est rattaché à un
-     historique (avec un compte : mode Incognito).
-   Le site ne conserve rien : ni stockage dans le navigateur, ni envoi ailleurs ;
+   La question, précédée d'une consigne de niveau Terminale, s'ouvre dans ChatGPT en
+   discussion temporaire (temporary-chat=true) : elle n'est pas gardée dans
+   l'historique de ChatGPT. Le site ne conserve rien : ni stockage dans le navigateur, ni envoi ailleurs ;
    le champ est vidé dès que l'IA est ouverte.
    Mouvement : tout ce qui bouge est rangé sous html.mo (classe posée par la couche de
    mouvement du site) et coupé si l'appareil demande moins d'animations. */
@@ -24,48 +22,33 @@
     accent: "var(--leaf, #2F7D52)", surAccent: "var(--panel, #FFFDF8)"
   };
   var EVITER = "nav.bottom";   /* élément fixé en bas d'écran à ne pas recouvrir */
-  var DEFAUT = "chatgpt";   /* IA proposée en premier : "chatgpt" ou "perplexity" */
   /* ---------- fin CONFIG ---------- */
 
+  var CHATGPT = "https://chatgpt.com/?temporary-chat=true&q=";
   var DNL = MATIERE === "dnl";
-  var IAS = {
-    chatgpt: {
-      nom: "ChatGPT",
-      adresse: "https://chatgpt.com/?temporary-chat=true&q=",
-      note: DNL ? "Opens as a temporary chat: not saved in ChatGPT's history."
-                : "S'ouvre en discussion temporaire : rien n'est gardé dans l'historique de ChatGPT."
-    },
-    perplexity: {
-      nom: "Perplexity",
-      adresse: "https://www.perplexity.ai/search?q=",
-      note: DNL ? "Cites its sources, so you can check each fact. Use it without signing in (or in Incognito mode) so nothing is kept."
-                : "Cite ses sources : tu peux vérifier chaque fait. Utilise-le sans te connecter (ou en mode Incognito) pour que rien ne soit gardé."
-    }
-  };
   var TEXTES = DNL ? {
-    titre: "Ask an AI · " + NOM,
-    sous: "ChatGPT or Perplexity, nothing kept on this site",
-    choix: "AI",
+    titre: "Ask ChatGPT · " + NOM,
+    sous: "Temporary chat: nothing is kept",
+    temporaire: "Opens as a temporary chat: not saved in ChatGPT's history.",
     note: "The AI can be wrong: check dates and figures in your course. Do not write anything personal.",
     champ: "Your question (in English or in French)…",
-    bouton: "Open in ",
+    bouton: "Open in ChatGPT",
     fermer: "Close",
     vide: "Write your question first.",
-    horsligne: "The AI needs an internet connection."
+    horsligne: "ChatGPT needs an internet connection."
   } : {
-    titre: "Demander à une IA · " + NOM,
-    sous: "ChatGPT ou Perplexity, rien n'est gardé sur le site",
-    choix: "IA",
+    titre: "Demander à ChatGPT · " + NOM,
+    sous: "Discussion temporaire : rien n'est gardé",
+    temporaire: "S'ouvre en discussion temporaire : rien n'est gardé dans l'historique de ChatGPT.",
     note: "L'IA peut se tromper : vérifie avec ton cours. N'écris rien de personnel.",
     champ: "Ta question de cours…",
-    bouton: "Ouvrir dans ",
+    bouton: "Ouvrir dans ChatGPT",
     fermer: "Fermer",
     vide: "Écris d'abord ta question.",
-    horsligne: "L'IA a besoin d'internet."
+    horsligne: "ChatGPT a besoin d'internet."
   };
 
-  var bouton, panneau, voile, champ, info, envoyer, noteIa, pastille, choix, sortie = null,
-    choisie = IAS[DEFAUT] ? DEFAUT : "chatgpt", choixBoutons = {};
+  var bouton, panneau, voile, champ, info, envoyer, sortie = null;
 
   // Le mouvement n'est joué que si le site l'a autorisé (html.mo) et que l'appareil ne demande pas moins d'animations.
   function mouvement() {
@@ -95,11 +78,6 @@
     ".asr-titre small{display:block;font-weight:400;font-size:12px;color:" + c.encre2 + ";margin-top:2px}" +
     ".asr-ic{flex:none;margin:0;border:1px solid " + c.ligne + ";background:transparent;color:" + c.encre + ";border-radius:8px;height:36px;padding:0 10px;font:inherit;font-size:13px;cursor:pointer}" +
     ".asr-note{margin:0;font-size:13px;line-height:1.45;color:" + c.encre2 + "}" +
-    ".asr-choix{position:relative;display:flex;gap:6px;margin:0;padding:4px;border:1px solid " + c.ligne + ";border-radius:12px;background:" + c.fond2 + "}" +
-    ".asr-pastille{position:absolute;top:4px;bottom:4px;left:4px;width:0;border-radius:9px;background:" + c.accent + ";box-shadow:0 2px 8px rgba(0,0,0,.16)}" +
-    ".asr-choix button{position:relative;z-index:1;flex:1;margin:0;height:40px;border:0;border-radius:9px;background:transparent;color:" + c.encre + ";font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:color .25s}" +
-    ".asr-choix button[aria-checked=true]{color:" + c.surAccent + "}" +
-    ".asr-choix button:focus-visible{outline:2px solid " + c.encre + ";outline-offset:1px}" +
     ".asr-champ{display:block;width:100%;min-height:96px;max-height:40vh;resize:vertical;margin:0;padding:11px 12px;border:1px solid " + c.ligne + ";border-radius:10px;" +
     "background:" + c.fond2 + ";color:" + c.encre + ";font:inherit;font-size:16px;line-height:1.4}" +
     ".asr-champ:focus{outline:2px solid " + c.accent + ";outline-offset:0;border-color:transparent}" +
@@ -129,9 +107,6 @@
       "html.mo .asr-pan.sort{animation:asr-descend .28s cubic-bezier(.4,0,1,1) both}" +
       "@media (min-width:700px){html.mo .asr-pan.sort{animation-name:asr-degonfle}}" +
       "html.mo .asr-voile.sort{animation:asr-fondu .28s ease reverse both}" +
-      // sélecteur : la pastille glisse d'une IA à l'autre, la note se renouvelle en fondu
-      "html.mo .asr-pastille{transition:left .45s cubic-bezier(.34,1.45,.55,1),width .45s cubic-bezier(.34,1.45,.55,1)}" +
-      "html.mo .asr-note.asr-neuve{animation:asr-cascade .35s ease both}" +
       // champ : halo à la saisie, secousse s'il est vide
       "html.mo .asr-champ{transition:box-shadow .3s}" +
       "html.mo .asr-champ:focus{box-shadow:0 0 0 5px rgba(0,0,0,.06)}" +
@@ -201,36 +176,21 @@
     champ.placeholder = TEXTES.champ;
     champ.setAttribute("aria-label", TEXTES.champ);
 
-    choix = el("div", "asr-choix");
-    pastille = el("span", "asr-pastille");
-    pastille.setAttribute("aria-hidden", "true");
-    choix.appendChild(pastille);
-    choix.setAttribute("role", "radiogroup");
-    choix.setAttribute("aria-label", TEXTES.choix);
-    Object.keys(IAS).forEach(function (cle) {
-      var b = el("button", "", IAS[cle].nom);
-      b.type = "button";
-      b.setAttribute("role", "radio");
-      b.addEventListener("click", function () { choisir(cle); });
-      choixBoutons[cle] = b;
-      choix.appendChild(b);
-    });
-    noteIa = el("p", "asr-note");
-
     envoyer = el("button", "asr-env");
     envoyer.type = "submit";
+    envoyer.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+    envoyer.appendChild(document.createTextNode(TEXTES.bouton));
 
     info = el("p", "asr-info");
     info.setAttribute("aria-live", "polite");
 
     panneau.appendChild(tete);
-    panneau.appendChild(choix);
-    panneau.appendChild(noteIa);
+    panneau.appendChild(el("p", "asr-note", TEXTES.temporaire));
     panneau.appendChild(champ);
     panneau.appendChild(envoyer);
     panneau.appendChild(info);
     panneau.appendChild(el("p", "asr-note", TEXTES.note));
-    choisir(choisie);
     panneau.addEventListener("submit", function (e) { e.preventDefault(); demander(); });
     panneau.addEventListener("keydown", function (e) { if (e.key === "Escape") fermerPanneau(); });
     champ.addEventListener("input", function () { info.textContent = ""; envoyer.classList.toggle("pret", !!champ.value.trim()); });
@@ -244,32 +204,12 @@
     document.body.appendChild(voile);
     document.body.appendChild(panneau);
     placer();
-    window.addEventListener("resize", function () { placer(); caler(); placerPastille(); });
+    window.addEventListener("resize", function () { placer(); caler(); });
     if (window.visualViewport) {
       window.visualViewport.addEventListener("resize", caler);
       window.visualViewport.addEventListener("scroll", caler);
     }
     setInterval(placer, 1500);
-  }
-
-  function choisir(cle) {
-    var change = cle !== choisie;
-    choisie = cle;
-    Object.keys(choixBoutons).forEach(function (k) { choixBoutons[k].setAttribute("aria-checked", k === cle ? "true" : "false"); });
-    noteIa.textContent = IAS[cle].note;
-    if (change) { noteIa.classList.remove("asr-neuve"); void noteIa.offsetWidth; noteIa.classList.add("asr-neuve"); }
-    placerPastille();
-    envoyer.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
-    envoyer.appendChild(document.createTextNode(TEXTES.bouton + IAS[cle].nom));
-  }
-
-  // La pastille colorée se cale sous l'IA choisie (et y glisse quand le mouvement est permis).
-  function placerPastille() {
-    var b = choixBoutons[choisie];
-    if (!b || !b.offsetWidth) return;
-    pastille.style.left = b.offsetLeft + "px";
-    pastille.style.width = b.offsetWidth + "px";
   }
 
   // Remonte le bouton au-dessus d'une barre fixée en bas (barre de navigation SVT sur téléphone).
@@ -308,11 +248,6 @@
     voile.classList.add("on");
     bouton.style.visibility = "hidden";
     caler();
-    // la pastille se pose sans glisser à l'ouverture
-    pastille.style.transition = "none";
-    placerPastille();
-    void pastille.offsetWidth;
-    pastille.style.transition = "";
     setTimeout(function () { champ.focus(); }, 30);
   }
 
@@ -344,7 +279,7 @@
     }
     if (navigator.onLine === false) { info.textContent = TEXTES.horsligne; return; }
     var invite = CONSIGNE + "\n\n" + (DNL ? "My question: " : "Ma question : ") + q;
-    var adresse = IAS[choisie].adresse + encodeURIComponent(invite);
+    var adresse = CHATGPT + encodeURIComponent(invite);
     var onglet = window.open(adresse, "_blank");
     if (onglet) {
       try { onglet.opener = null; } catch (e) { /* rien */ }
