@@ -1,7 +1,7 @@
 /* Service worker — DNL Histoire-Géo Terminale BFI
    Stratégie : réseau d'abord pour la page (mises à jour immédiates),
    repli cache hors ligne. Assets : cache d'abord. */
-const CACHE = "dnl-v25-ia";
+const CACHE = "dnl-v26-chatgpt";
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {
