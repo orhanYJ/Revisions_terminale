@@ -1,4 +1,4 @@
-const CACHE = 'pc-v21';
+const CACHE = 'pc-v22';
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', function (e) {
