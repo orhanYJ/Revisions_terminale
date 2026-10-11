@@ -69,8 +69,17 @@ Envoyer cette adresse à Claude Code : elle est ajoutée dans les trois `assista
 | `MAX_QUESTION` | 1500 | caractères par question |
 | `MAX_HISTORIQUE` | 6 | messages précédents gardés pour les questions de suite |
 | `PAR_HEURE` | 30 | questions par visiteur et par heure (si `COMPTEURS` est relié) |
+| `PLAFOND_JOUR` | 40 000 | neurones par jour, tous visiteurs confondus (si `COMPTEURS` est relié) ; utile seulement avec l'offre payante |
 
 Après une modification de `worker.js` dans le dépôt, la recoller dans l'éditeur du Worker (étape 3) : Cloudflare ne lit pas le dépôt. Changer de modèle, en revanche, se fait dans les `assistant.js` des sites (parmi `MODELES`), sans rien recoller.
+
+## Relecture et profondeur de raisonnement
+
+Chaque site règle dans `assistant.js` : `MODELE` (rédige), `RELECTEUR` (relit chaque affirmation, refait les calculs, corrige ; vide = pas de relecture) et `EFFORT` (`low`, `medium`, `high` ; seulement pour GPT-OSS). Une relecture double à peu près la consommation par question.
+
+## Offre payante (facultatif)
+
+Les modèles les plus puissants de Workers AI (DeepSeek V4 Pro, Kimi K2.6, GLM 5.3) sont réservés à l'offre **Workers Paid** (5 $ par mois). Elle garde les 10 000 neurones gratuits par jour et facture 0,011 $ par tranche de 1 000 neurones au-delà. Pour l'activer : tableau de bord Cloudflare → **Workers & Pages** → **Plans** (ou Billing) → **Workers Paid**. Le relais s'arrête de lui-même au-delà de `PLAFOND_JOUR` (40 000 neurones, soit au plus environ 0,33 $ par jour) : il faut pour cela que `COMPTEURS` soit relié.
 
 ## Codes renvoyés au site
 

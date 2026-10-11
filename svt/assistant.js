@@ -11,7 +11,9 @@
   var MATIERE = "svt";
   var NOM = "SVT";
   var RELAIS = "https://assistant-revisions.orhanyildizm.workers.dev/";
-  var MODELE = "@cf/openai/gpt-oss-120b";   /* parmi la liste MODELES du relais */
+  var MODELE = "@cf/openai/gpt-oss-120b";   /* rédige la réponse (liste MODELES du relais) */
+  var RELECTEUR = "@cf/nvidia/nemotron-3-120b-a12b";   /* relit et corrige ; "" = pas de relecture */
+  var EFFORT = "high";   /* profondeur de raisonnement : "low", "medium", "high" ou "" */
   var COULEURS = {
     fond: "var(--panel, #FFFDF8)", fond2: "var(--paper, #F7F4EC)",
     encre: "var(--ink, #17281E)", encre2: "var(--ink-2, #5E7263)", ligne: "var(--line, #E2DFD1)",
@@ -359,16 +361,16 @@
     var attente = ajouter("ia", '<span class="asr-att" aria-label="L\'assistant rédige"><i></i><i></i><i></i></span>');
     var patience = setTimeout(function () {
       var a = attente.querySelector(".asr-att");
-      if (a) a.insertAdjacentHTML("afterend", '<span class="asr-pat">' + (MATIERE === "dnl" ? "Thinking… (up to 30 s)" : "L'assistant réfléchit… (jusqu'à 30 s)") + "</span>");
+      if (a) a.insertAdjacentHTML("afterend", '<span class="asr-pat">' + (MATIERE === "dnl" ? (RELECTEUR ? "Writing, then checking the answer… (up to 1 min)" : "Thinking… (up to 30 s)") : (RELECTEUR ? "L'assistant rédige puis vérifie sa réponse… (jusqu'à 1 min)" : "L'assistant réfléchit… (jusqu'à 30 s)")) + "</span>");
     }, 4000);
 
     var ctrl = window.AbortController ? new AbortController() : null;
-    var minuterie = setTimeout(function () { if (ctrl) ctrl.abort(); }, 90000);
+    var minuterie = setTimeout(function () { if (ctrl) ctrl.abort(); }, 150000);
 
     fetch(RELAIS, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ matiere: MATIERE, modele: MODELE, messages: historique.slice(-7) }),
+      body: JSON.stringify({ matiere: MATIERE, modele: MODELE, relecteur: RELECTEUR || null, effort: EFFORT || null, messages: historique.slice(-7) }),
       signal: ctrl ? ctrl.signal : undefined
     })
       .then(function (r) { return r.json().catch(function () { return { erreur: "erreur" }; }); })

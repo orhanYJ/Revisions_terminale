@@ -11,27 +11,47 @@
    - COMPTEURS  : espace KV (facultatif) ; s'il existe, limite chaque visiteur à
                   PAR_HEURE questions par heure.
 
-   Le site choisit le modèle (champ « modele ») parmi la liste MODELES : changer
-   de modèle se fait dans assistant.js, sans recoller ce code dans Cloudflare. */
+   Le site choisit tout dans assistant.js, sans recoller ce code dans Cloudflare :
+   - « modele » : le modèle qui rédige, parmi la liste MODELES ;
+   - « relecteur » (facultatif) : un second modèle qui vérifie la réponse (dates,
+     chiffres, noms, définitions, calculs refaits), la corrige et la complète ;
+   - « effort » (facultatif : low, medium, high) : profondeur de raisonnement, pour
+     les modèles qui la prennent en charge.
+
+   Les modèles marqués « payant » ne répondent qu'avec l'offre Workers Paid ; sur
+   l'offre gratuite ils renvoient une erreur et le site l'affiche. */
 
 const ORIGINES = ["https://orhanyj.github.io"];
 
-// Modèles autorisés (offre gratuite de Workers AI) et longueur maximale générée.
-// Les modèles qui raisonnent avant de répondre ont besoin de plus de jetons.
+// Modèles autorisés et longueur maximale générée (les modèles qui raisonnent avant
+// de répondre comptent leur raisonnement dans ces jetons).
 const MODELES = {
   "@cf/meta/llama-3.3-70b-instruct-fp8-fast": 900,
-  "@cf/openai/gpt-oss-120b": 3000,
-  "@cf/moonshotai/kimi-k2.5": 3000,
-  "@cf/nvidia/nemotron-3-120b-a12b": 3000,
-  "@cf/qwen/qwen3.8-27b": 3000,
-  "@cf/google/gemma-4-26b-a4b-it": 1200,
-  "@cf/mistralai/mistral-small-3.1-24b-instruct": 1200
+  "@cf/openai/gpt-oss-120b": 6000,
+  "@cf/nvidia/nemotron-3-120b-a12b": 6000,
+  "@cf/google/gemma-4-26b-a4b-it": 4000,
+  "@cf/qwen/qwen3.8-27b": 4000,
+  "@cf/mistralai/mistral-small-3.1-24b-instruct": 1500,
+  "@cf/moonshotai/kimi-k2.5": 6000,
+  // payants (offre Workers Paid)
+  "@cf/moonshotai/kimi-k2.6": 6000,
+  "@cf/zai-org/glm-5.3": 6000,
+  "@cf/deepseek-ai/deepseek-v4-pro-0813": 6000,
+  "@cf/deepseek-ai/deepseek-v4-flash-0731": 6000
 };
+// Modèles qui acceptent une profondeur de raisonnement (« effort »).
+const AVEC_EFFORT = ["@cf/openai/gpt-oss-120b"];
+const EFFORTS = ["low", "medium", "high"];
 const MODELE_DEFAUT = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 
 const MAX_QUESTION = 1500;   // caractères par message
 const MAX_HISTORIQUE = 6;    // messages précédents gardés pour les questions de suite
 const PAR_HEURE = 30;        // questions par visiteur et par heure (si COMPTEURS existe)
+// Budget de neurones par jour, tous visiteurs confondus (si COMPTEURS existe). Sur l'offre
+// gratuite, Cloudflare plafonne de toute façon à 10 000. Avec l'offre Workers Paid, chaque
+// tranche de 1 000 neurones au-delà de 10 000 coûte 0,011 $ : 40 000 par jour plafonnent
+// la dépense à environ 0,33 $ par jour, soit 10 $ par mois au pire.
+const PLAFOND_JOUR = 40000;
 
 const MATIERES = {
   svt: "la spécialité SVT (sciences de la vie et de la Terre)",
@@ -61,6 +81,37 @@ function consignes(matiere) {
     "une dernière ligne commençant par « À vérifier : » qui le précise ; si rien n'est incertain, n'ajoute pas cette ligne. " +
     "Réponds dans la langue de la question.";
   return texte;
+}
+
+// Consigne du relecteur : il reçoit la conversation et le brouillon, et rend la réponse finale.
+function consignesRelecture(matiere) {
+  if (matiere === "dnl") {
+    return "You are a demanding expert reviewer (a history and geography examiner). You receive a student's question " +
+      "and a draft answer written by another assistant. Check every single claim: dates (day, month, year), figures, " +
+      "names, places, the order of events, definitions, causes and consequences. Never present a later event as a cause " +
+      "of an earlier one. Fix every error or imprecision, add what is essential and missing to answer the question, " +
+      "remove what is false or off-topic. Return only the final corrected answer, written for the student, without " +
+      "mentioning the review or the draft. Be concise: a few paragraphs at most, with a list when it helps. " +
+      "If a point is still uncertain after checking, end with one last line starting with \"To check:\" that names it; " +
+      "otherwise do not add that line. Answer in the language of the student's question.";
+  }
+  return "Tu es un relecteur expert et exigeant (professeur agrégé de " +
+    (matiere === "svt" ? "SVT" : "physique-chimie") + "). Tu reçois la question d'un élève de Terminale et un brouillon " +
+    "de réponse rédigé par un autre assistant. Vérifie une à une chaque affirmation : définitions, mécanismes, vocabulaire " +
+    "exact (par exemple chromosomes homologues et chromatides sœurs ne sont pas interchangeables), noms, lieux, dates, " +
+    "valeurs numériques et unités. Refais chaque calcul. Corrige toute erreur ou imprécision, ajoute ce qui manque " +
+    "d'essentiel pour répondre à la question, supprime ce qui est faux ou hors sujet. Rends uniquement la réponse finale " +
+    "corrigée, rédigée pour l'élève, sans mentionner la relecture ni le brouillon. Sois concis : quelques paragraphes au " +
+    "plus, avec une liste quand elle aide. Écris les formules en texte simple (par exemple C = n / V, CO2, 10^-3), sans LaTeX. " +
+    "Si un point reste incertain après vérification, termine par une dernière ligne commençant par « À vérifier : » qui le " +
+    "précise ; sinon n'ajoute pas cette ligne. Réponds dans la langue de la question.";
+}
+
+function demandeRelecture(messages, brouillon) {
+  const avant = messages.slice(0, -1).map((m) => (m.role === "user" ? "Élève : " : "Assistant : ") + m.content).join("\n\n");
+  return (avant ? "Conversation précédente :\n" + avant + "\n\n" : "") +
+    "Question de l'élève :\n" + messages[messages.length - 1].content +
+    "\n\nBrouillon de réponse à relire :\n" + brouillon;
 }
 
 function entetes(origine) {
@@ -120,6 +171,38 @@ function texteDe(sortie) {
   return String(texte || "").replace(/<think>[\s\S]*?<\/think>/g, "").trim();
 }
 
+// Appelle un modèle ; si la profondeur de raisonnement est refusée, réessaie sans.
+async function appeler(env, modele, messages, effort) {
+  const base = { messages: messages, max_tokens: MODELES[modele] };
+  if (effort && AVEC_EFFORT.includes(modele)) {
+    try {
+      return await env.AI.run(modele, Object.assign({ reasoning: { effort: effort } }, base));
+    } catch (e) {
+      const msg = String((e && e.message) || e);
+      if (msg.includes("3036") || /daily free allocation/i.test(msg)) throw e;
+    }
+  }
+  return env.AI.run(modele, base);
+}
+
+function neurones(sortie) {
+  return (sortie && sortie.usage && typeof sortie.usage.neurons === "number") ? sortie.usage.neurons : 0;
+}
+
+// Budget quotidien commun (clé du jour UTC), seulement si COMPTEURS est relié.
+function cleJour() {
+  return "neurones:" + new Date().toISOString().slice(0, 10);
+}
+async function budgetEpuise(env) {
+  if (!env.COMPTEURS) return false;
+  return parseFloat((await env.COMPTEURS.get(cleJour())) || "0") >= PLAFOND_JOUR;
+}
+async function compter(env, n) {
+  if (!env.COMPTEURS || !n) return;
+  const deja = parseFloat((await env.COMPTEURS.get(cleJour())) || "0");
+  await env.COMPTEURS.put(cleJour(), String(Math.round(deja + n)), { expirationTtl: 2 * 86400 });
+}
+
 // Limite par visiteur, seulement si l'espace KV COMPTEURS est relié.
 async function depasseLimite(env, request) {
   if (!env.COMPTEURS) return false;
@@ -160,26 +243,44 @@ export default {
     if (!messages) return erreur("requete", 400, origine);
     const modele = corps.modele == null ? MODELE_DEFAUT : corps.modele;
     if (!Object.prototype.hasOwnProperty.call(MODELES, modele)) return erreur("requete", 400, origine);
+    const relecteur = corps.relecteur == null ? null : corps.relecteur;
+    if (relecteur !== null && !Object.prototype.hasOwnProperty.call(MODELES, relecteur)) return erreur("requete", 400, origine);
+    const effort = EFFORTS.includes(corps.effort) ? corps.effort : null;
 
     if (await depasseLimite(env, request)) return erreur("limite", 429, origine);
+    if (await budgetEpuise(env)) return erreur("quota", 429, origine);
 
     try {
-      const sortie = await env.AI.run(modele, {
-        messages: [{ role: "system", content: consignes(matiere) }].concat(messages),
-        max_tokens: MODELES[modele]
-      });
-      const texte = texteDe(sortie);
-      if (!texte) {
+      const sortie = await appeler(env, modele, [{ role: "system", content: consignes(matiere) }].concat(messages), effort);
+      const brouillon = texteDe(sortie);
+      if (!brouillon) {
         // forme de sortie inconnue : un aperçu aide à adapter texteDe
         return repondre({ erreur: "erreur", apercu: JSON.stringify(sortie).slice(0, 400) }, 502, origine);
       }
-      return repondre({ reponse: texte, modele: modele, usage: sortie.usage || null }, 200, origine);
+      let texte = brouillon, relu = false, neuronesRelecture = 0;
+      if (relecteur) {
+        // la relecture est un plus : si elle échoue, on rend le brouillon
+        try {
+          const revue = await appeler(env, relecteur, [
+            { role: "system", content: consignesRelecture(matiere) },
+            { role: "user", content: demandeRelecture(messages, brouillon) }
+          ], effort);
+          const corrige = texteDe(revue);
+          neuronesRelecture = neurones(revue);
+          if (corrige) { texte = corrige; relu = true; }
+        } catch (e) { /* brouillon rendu tel quel */ }
+      }
+      await compter(env, neurones(sortie) + neuronesRelecture);
+      return repondre({
+        reponse: texte, modele: modele, relecteur: relu ? relecteur : null, effort: effort,
+        usage: { neurons: neurones(sortie) + neuronesRelecture, redaction: sortie.usage || null }
+      }, 200, origine);
     } catch (e) {
       const msg = String((e && e.message) || e);
       // 3036 : quota gratuit du jour épuisé ; 3040 : capacité momentanément dépassée.
       if (msg.includes("3036") || /daily free allocation|neurons/i.test(msg)) return erreur("quota", 429, origine);
       if (msg.includes("3040") || /capacity/i.test(msg)) return erreur("occupe", 503, origine);
-      return erreur("erreur", 502, origine);
+      return repondre({ erreur: "erreur", detail: msg.slice(0, 200) }, 502, origine);
     }
   }
 };
