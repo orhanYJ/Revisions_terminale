@@ -1,10 +1,12 @@
-/* Demander à ChatGPT — bouton rond en bas à gauche et petit panneau de saisie.
+/* Demander à une IA — bouton rond en bas à gauche et petit panneau de saisie.
    Maintenu à part du contenu, comme la couche de mouvement : le même fichier est
    copié dans svt/, pc/ et dnl/ ; seul le bloc CONFIG change d'un site à l'autre.
-   La question, précédée d'une consigne de niveau Terminale, s'ouvre dans ChatGPT en
-   discussion temporaire (temporary-chat=true) : elle n'est pas gardée dans
-   l'historique de ChatGPT. Le site ne conserve rien : ni stockage dans le navigateur,
-   ni envoi ailleurs ; le champ est vidé dès que ChatGPT est ouvert. */
+   La question, précédée d'une consigne de niveau Terminale, s'ouvre au choix dans :
+   - ChatGPT, en discussion temporaire (temporary-chat=true), hors historique ;
+   - Perplexity, qui cite ses sources ; sans compte, rien n'est rattaché à un
+     historique (avec un compte : mode Incognito).
+   Le site ne conserve rien : ni stockage dans le navigateur, ni envoi ailleurs ;
+   le champ est vidé dès que l'IA est ouverte. */
 (function () {
   "use strict";
 
@@ -21,33 +23,47 @@
     accent: "var(--orange-deep, #A33E00)", surAccent: "var(--surface, #FFFFFF)"
   };
   var EVITER = "";   /* élément fixé en bas d'écran à ne pas recouvrir */
+  var DEFAUT = "chatgpt";   /* IA proposée en premier : "chatgpt" ou "perplexity" */
   /* ---------- fin CONFIG ---------- */
 
-  var CHATGPT = "https://chatgpt.com/?temporary-chat=true&q=";
   var DNL = MATIERE === "dnl";
+  var IAS = {
+    chatgpt: {
+      nom: "ChatGPT",
+      adresse: "https://chatgpt.com/?temporary-chat=true&q=",
+      note: DNL ? "Opens as a temporary chat: not saved in ChatGPT's history."
+                : "S'ouvre en discussion temporaire : rien n'est gardé dans l'historique de ChatGPT."
+    },
+    perplexity: {
+      nom: "Perplexity",
+      adresse: "https://www.perplexity.ai/search?q=",
+      note: DNL ? "Cites its sources, so you can check each fact. Use it without signing in (or in Incognito mode) so nothing is kept."
+                : "Cite ses sources : tu peux vérifier chaque fait. Utilise-le sans te connecter (ou en mode Incognito) pour que rien ne soit gardé."
+    }
+  };
   var TEXTES = DNL ? {
-    titre: "Ask ChatGPT · " + NOM,
-    sous: "Temporary chat: nothing is kept",
-    note: "Your question opens in ChatGPT as a temporary chat: it is not saved in the history. " +
-      "The AI can be wrong: check dates and figures in your course. Do not write anything personal.",
+    titre: "Ask an AI · " + NOM,
+    sous: "ChatGPT or Perplexity, nothing kept on this site",
+    choix: "AI",
+    note: "The AI can be wrong: check dates and figures in your course. Do not write anything personal.",
     champ: "Your question (in English or in French)…",
-    bouton: "Open in ChatGPT",
+    bouton: "Open in ",
     fermer: "Close",
     vide: "Write your question first.",
-    horsligne: "ChatGPT needs an internet connection."
+    horsligne: "The AI needs an internet connection."
   } : {
-    titre: "Demander à ChatGPT · " + NOM,
-    sous: "Discussion temporaire : rien n'est gardé",
-    note: "Ta question s'ouvre dans ChatGPT en discussion temporaire : elle n'est pas gardée dans l'historique. " +
-      "L'IA peut se tromper : vérifie avec ton cours. N'écris rien de personnel.",
+    titre: "Demander à une IA · " + NOM,
+    sous: "ChatGPT ou Perplexity, rien n'est gardé sur le site",
+    choix: "IA",
+    note: "L'IA peut se tromper : vérifie avec ton cours. N'écris rien de personnel.",
     champ: "Ta question de cours…",
-    bouton: "Ouvrir dans ChatGPT",
+    bouton: "Ouvrir dans ",
     fermer: "Fermer",
     vide: "Écris d'abord ta question.",
-    horsligne: "ChatGPT a besoin d'internet."
+    horsligne: "L'IA a besoin d'internet."
   };
 
-  var bouton, panneau, champ, info;
+  var bouton, panneau, champ, info, envoyer, noteIa, choisie = IAS[DEFAUT] ? DEFAUT : "chatgpt", choixBoutons = {};
 
   /* ---------- styles ---------- */
   var c = COULEURS;
@@ -68,6 +84,10 @@
     ".asr-titre small{display:block;font-weight:400;font-size:12px;color:" + c.encre2 + ";margin-top:2px}" +
     ".asr-ic{flex:none;margin:0;border:1px solid " + c.ligne + ";background:transparent;color:" + c.encre + ";border-radius:8px;height:36px;padding:0 10px;font:inherit;font-size:13px;cursor:pointer}" +
     ".asr-note{margin:0;font-size:13px;line-height:1.45;color:" + c.encre2 + "}" +
+    ".asr-choix{display:flex;gap:6px;margin:0;padding:4px;border:1px solid " + c.ligne + ";border-radius:12px;background:" + c.fond2 + "}" +
+    ".asr-choix button{flex:1;margin:0;height:40px;border:0;border-radius:9px;background:transparent;color:" + c.encre + ";font:inherit;font-size:14px;font-weight:600;cursor:pointer}" +
+    ".asr-choix button[aria-checked=true]{background:" + c.accent + ";color:" + c.surAccent + "}" +
+    ".asr-choix button:focus-visible{outline:2px solid " + c.encre + ";outline-offset:1px}" +
     ".asr-champ{display:block;width:100%;min-height:96px;max-height:40vh;resize:vertical;margin:0;padding:11px 12px;border:1px solid " + c.ligne + ";border-radius:10px;" +
     "background:" + c.fond2 + ";color:" + c.encre + ";font:inherit;font-size:16px;line-height:1.4}" +
     ".asr-champ:focus{outline:2px solid " + c.accent + ";outline-offset:0;border-color:transparent}" +
@@ -114,24 +134,37 @@
     tete.appendChild(fermer);
 
     champ = el("textarea", "asr-champ");
-    champ.maxLength = 1500;
+    champ.maxLength = 1400;
     champ.placeholder = TEXTES.champ;
     champ.setAttribute("aria-label", TEXTES.champ);
 
-    var envoyer = el("button", "asr-env");
+    var choix = el("div", "asr-choix");
+    choix.setAttribute("role", "radiogroup");
+    choix.setAttribute("aria-label", TEXTES.choix);
+    Object.keys(IAS).forEach(function (cle) {
+      var b = el("button", "", IAS[cle].nom);
+      b.type = "button";
+      b.setAttribute("role", "radio");
+      b.addEventListener("click", function () { choisir(cle); });
+      choixBoutons[cle] = b;
+      choix.appendChild(b);
+    });
+    noteIa = el("p", "asr-note");
+
+    envoyer = el("button", "asr-env");
     envoyer.type = "submit";
-    envoyer.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-      '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
-    envoyer.appendChild(document.createTextNode(TEXTES.bouton));
 
     info = el("p", "asr-info");
     info.setAttribute("aria-live", "polite");
 
     panneau.appendChild(tete);
-    panneau.appendChild(el("p", "asr-note", TEXTES.note));
+    panneau.appendChild(choix);
+    panneau.appendChild(noteIa);
     panneau.appendChild(champ);
     panneau.appendChild(envoyer);
     panneau.appendChild(info);
+    panneau.appendChild(el("p", "asr-note", TEXTES.note));
+    choisir(choisie);
     panneau.addEventListener("submit", function (e) { e.preventDefault(); demander(); });
     panneau.addEventListener("keydown", function (e) { if (e.key === "Escape") fermerPanneau(); });
     champ.addEventListener("keydown", function (e) {
@@ -148,6 +181,15 @@
       window.visualViewport.addEventListener("scroll", caler);
     }
     setInterval(placer, 1500);
+  }
+
+  function choisir(cle) {
+    choisie = cle;
+    Object.keys(choixBoutons).forEach(function (k) { choixBoutons[k].setAttribute("aria-checked", k === cle ? "true" : "false"); });
+    noteIa.textContent = IAS[cle].note;
+    envoyer.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+    envoyer.appendChild(document.createTextNode(TEXTES.bouton + IAS[cle].nom));
   }
 
   // Remonte le bouton au-dessus d'une barre fixée en bas (barre de navigation SVT sur téléphone).
@@ -194,7 +236,7 @@
     if (!q) { info.textContent = TEXTES.vide; champ.focus(); return; }
     if (navigator.onLine === false) { info.textContent = TEXTES.horsligne; return; }
     var invite = CONSIGNE + "\n\n" + (DNL ? "My question: " : "Ma question : ") + q;
-    var adresse = CHATGPT + encodeURIComponent(invite);
+    var adresse = IAS[choisie].adresse + encodeURIComponent(invite);
     var onglet = window.open(adresse, "_blank");
     if (onglet) {
       try { onglet.opener = null; } catch (e) { /* rien */ }

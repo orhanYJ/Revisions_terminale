@@ -172,14 +172,15 @@ Sur les sites animés, le mouvement est maintenu **à part du contenu** dans `mo
 
 Orientation décidée par Cengiz (29/09/2026) : les **animations explicatives détaillées** de SVT et de physique-chimie (50 à 100 visées) iront dans un **site à part** dédié aux animations ; pour DNL, philo, ACL, etc., seules de petites animations motivantes sont intégrées au site. Style voulu : des schémas qui **se déroulent** (chromosomes qui se rapprochent, se superposent, se séparent), légendes qui apparaissent au fil de l'animation, rendu doux et organique. Cengiz juge que des schémas qui se contentent de se dessiner « ne servent à rien » : il veut voir le phénomène se produire. L'animation méiose / crossing-over du 29/09 a été jugée « parfaite » et sert de référence.
 
-## 5 bis. Bouton « Demander à ChatGPT » (SVT, PC, DNL)
+## 5 bis. Bouton « Demander à une IA » (SVT, PC, DNL)
 
 Décision de Cengiz (11/10/2026) : pas d'IA hébergée par le projet (une IA gratuite hébergée a été essayée puis abandonnée, trop imprécise sur des questions pointues) ; à la place, un bouton qui ouvre **ChatGPT en discussion temporaire** avec la question d'Orhan. Conditions posées : gratuit, **aucun historique conservé**, pas de contenu de cours envoyé.
 
 - `svt/assistant.js`, `pc/assistant.js`, `dnl/assistant.js` : même fichier, seul le bloc `CONFIG` change (matière, nom, `CONSIGNE` de niveau Terminale, couleurs reprises des variables CSS du site, élément fixé à éviter). Chargé par un bloc repéré `<!-- assistant:debut -->` … `<!-- assistant:fin -->` : **à réinsérer** si un `index.html` régénéré le perd. Toute modification de l'un est reportée dans les deux autres, puis `?v=N` et le cache du `sw.js` sont incrémentés.
-- Bouton rond en bas à gauche (à droite : retour en haut sur PC, son sur DNL ; sur SVT il remonte au-dessus de la barre de navigation du téléphone). Le panneau ouvre `https://chatgpt.com/?temporary-chat=true&q=<consigne + question>` dans un nouvel onglet (ou dans la même fenêtre si l'onglet est bloqué).
+- Bouton rond en bas à gauche (à droite : retour en haut sur PC, son sur DNL ; sur SVT il remonte au-dessus de la barre de navigation du téléphone). Le panneau propose **ChatGPT** (`https://chatgpt.com/?temporary-chat=true&q=…`) ou **Perplexity** (`https://www.perplexity.ai/search?q=…`, cite ses sources) ; `DEFAUT` dans `CONFIG` règle l'IA présélectionnée (ChatGPT en SVT et PC, Perplexity en DNL). L'IA s'ouvre dans un nouvel onglet (ou dans la même fenêtre si l'onglet est bloqué). Demande de Cengiz (11/10/2026) : pouvoir choisir entre « vraies IA sûres ».
 - Rien n'est gardé côté site : pas de stockage, champ vidé après ouverture. Côté ChatGPT, `temporary-chat=true` ouvre une discussion temporaire, hors historique. Ce paramètre n'est pas documenté officiellement : s'il cesse de fonctionner, la discussion apparaîtrait dans l'historique de ChatGPT (à vérifier de temps en temps : la page doit afficher « Discussion temporaire »). Le navigateur garde l'adresse ouverte dans son propre historique.
-- Âge : ChatGPT accepte les 13-17 ans avec l'accord d'un parent (Cengiz). Claude.ai est exclu (18 ans). Perplexity, qui cite ses sources, a été envisagé mais n'offre pas de lien vers une navigation privée.
+- Perplexity n'a pas de lien vers sa navigation privée : sans compte, rien n'est rattaché à un historique ; avec un compte, activer le mode Incognito (le panneau le rappelle).
+- Âge : ChatGPT et Perplexity acceptent les 13-17 ans avec l'accord d'un parent (Cengiz). **Claude.ai n'est pas proposé** : ses conditions exigent 18 ans (Cengiz l'avait demandé ; à ajouter seulement si les conditions changent ou pour un usage adulte).
 
 ---
 
