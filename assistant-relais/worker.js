@@ -9,14 +9,28 @@
    Liaisons à créer dans le tableau de bord Cloudflare (voir GUIDE.md) :
    - AI         : Workers AI (obligatoire)
    - COMPTEURS  : espace KV (facultatif) ; s'il existe, limite chaque visiteur à
-                  PAR_HEURE questions par heure. */
+                  PAR_HEURE questions par heure.
+
+   Le site choisit le modèle (champ « modele ») parmi la liste MODELES : changer
+   de modèle se fait dans assistant.js, sans recoller ce code dans Cloudflare. */
 
 const ORIGINES = ["https://orhanyj.github.io"];
-const MODELE = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+
+// Modèles autorisés (offre gratuite de Workers AI) et longueur maximale générée.
+// Les modèles qui raisonnent avant de répondre ont besoin de plus de jetons.
+const MODELES = {
+  "@cf/meta/llama-3.3-70b-instruct-fp8-fast": 900,
+  "@cf/openai/gpt-oss-120b": 3000,
+  "@cf/moonshotai/kimi-k2.5": 3000,
+  "@cf/nvidia/nemotron-3-120b-a12b": 3000,
+  "@cf/qwen/qwen3.8-27b": 3000,
+  "@cf/google/gemma-4-26b-a4b-it": 1200,
+  "@cf/mistralai/mistral-small-3.1-24b-instruct": 1200
+};
+const MODELE_DEFAUT = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
 
 const MAX_QUESTION = 1500;   // caractères par message
 const MAX_HISTORIQUE = 6;    // messages précédents gardés pour les questions de suite
-const MAX_REPONSE = 900;     // jetons générés au plus
 const PAR_HEURE = 30;        // questions par visiteur et par heure (si COMPTEURS existe)
 
 const MATIERES = {
@@ -33,7 +47,8 @@ function consignes(matiere) {
       "Answer the question clearly and accurately, at final-year secondary school level. " +
       "Be concise: a few paragraphs at most, with a list when it helps. " +
       "Check chronology: never present a later event as a cause of an earlier one. " +
-      "If you are unsure of a fact, date or figure, say so. " +
+      "If any point of your answer is uncertain (a date, a figure, a name, a definition), end with one " +
+      "last line starting with \"To check:\" that names it; if nothing is uncertain, do not add that line. " +
       "Always answer in the language of the student's last message: a question in English gets an answer " +
       "in English; a question in French gets an answer in French, with the key English terms in brackets.";
   }
@@ -42,7 +57,8 @@ function consignes(matiere) {
     "Réponds à la question posée, clairement et précisément, au niveau du programme de Terminale. " +
     "Sois concis : quelques paragraphes au plus, avec une liste quand elle aide. " +
     "Écris les formules en texte simple (par exemple C = n / V, CO2, 10^-3), sans LaTeX. " +
-    "Si tu n'es pas sûr d'un fait, d'une date ou d'un chiffre, dis-le. " +
+    "Si un point de ta réponse est incertain (une date, un chiffre, un nom, une définition), termine par " +
+    "une dernière ligne commençant par « À vérifier : » qui le précise ; si rien n'est incertain, n'ajoute pas cette ligne. " +
     "Réponds dans la langue de la question.";
   return texte;
 }
@@ -83,6 +99,27 @@ function lireMessages(liste) {
   return propres;
 }
 
+// Récupère le texte final, quelle que soit la forme de sortie du modèle :
+// { response }, format « chat completions » ({ choices }) ou « Responses » ({ output }).
+function texteDe(sortie) {
+  if (!sortie) return "";
+  let texte = "";
+  if (typeof sortie === "string") texte = sortie;
+  else if (typeof sortie.response === "string") texte = sortie.response;
+  else if (typeof sortie.output_text === "string") texte = sortie.output_text;
+  else if (Array.isArray(sortie.choices) && sortie.choices[0]) {
+    const m = sortie.choices[0].message || {};
+    texte = typeof m.content === "string" ? m.content : (sortie.choices[0].text || "");
+  } else if (Array.isArray(sortie.output)) {
+    texte = sortie.output
+      .filter((o) => o && o.type === "message" && Array.isArray(o.content))
+      .map((o) => o.content.filter((c) => c && typeof c.text === "string" && c.type !== "reasoning_text").map((c) => c.text).join(""))
+      .join("\n");
+  }
+  // certains modèles laissent leur raisonnement entre balises <think>
+  return String(texte || "").replace(/<think>[\s\S]*?<\/think>/g, "").trim();
+}
+
 // Limite par visiteur, seulement si l'espace KV COMPTEURS est relié.
 async function depasseLimite(env, request) {
   if (!env.COMPTEURS) return false;
@@ -121,17 +158,22 @@ export default {
     if (!Object.prototype.hasOwnProperty.call(MATIERES, matiere)) return erreur("requete", 400, origine);
     const messages = lireMessages(corps.messages);
     if (!messages) return erreur("requete", 400, origine);
+    const modele = corps.modele == null ? MODELE_DEFAUT : corps.modele;
+    if (!Object.prototype.hasOwnProperty.call(MODELES, modele)) return erreur("requete", 400, origine);
 
     if (await depasseLimite(env, request)) return erreur("limite", 429, origine);
 
     try {
-      const sortie = await env.AI.run(MODELE, {
+      const sortie = await env.AI.run(modele, {
         messages: [{ role: "system", content: consignes(matiere) }].concat(messages),
-        max_tokens: MAX_REPONSE
+        max_tokens: MODELES[modele]
       });
-      const texte = sortie && typeof sortie.response === "string" ? sortie.response.trim() : "";
-      if (!texte) return erreur("erreur", 502, origine);
-      return repondre({ reponse: texte }, 200, origine);
+      const texte = texteDe(sortie);
+      if (!texte) {
+        // forme de sortie inconnue : un aperçu aide à adapter texteDe
+        return repondre({ erreur: "erreur", apercu: JSON.stringify(sortie).slice(0, 400) }, 502, origine);
+      }
+      return repondre({ reponse: texte, modele: modele, usage: sortie.usage || null }, 200, origine);
     } catch (e) {
       const msg = String((e && e.message) || e);
       // 3036 : quota gratuit du jour épuisé ; 3040 : capacité momentanément dépassée.

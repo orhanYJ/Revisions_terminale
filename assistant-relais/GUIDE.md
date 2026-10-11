@@ -4,7 +4,7 @@ Les sites SVT, PC et DNL ont un bouton « Poser une question » (en bas à gauch
 
 Le relais est un **Cloudflare Worker** (`worker.js`, dans ce dossier) qui appelle **Workers AI**, l'IA de Cloudflare. Il n'y a **aucune clé d'API** : le Worker est relié à l'IA dans le tableau de bord, rien de secret n'est stocké dans le dépôt.
 
-- Offre gratuite : 10 000 « neurones » par jour, soit environ 130 questions par jour avec le modèle utilisé (Llama 3.3 70B). Remise à zéro à 00:00 UTC (1 h ou 2 h du matin, heure de Paris).
+- Offre gratuite : 10 000 « neurones » par jour ; le nombre de questions dépend du modèle choisi (de l'ordre de 50 à 100 par jour). Remise à zéro à 00:00 UTC (1 h ou 2 h du matin, heure de Paris).
 - Au-delà, Workers AI refuse et le site affiche « L'assistant a atteint sa limite pour aujourd'hui ». Sur l'offre gratuite, **rien ne peut être facturé**.
 - Cloudflare n'utilise pas les questions pour entraîner ses modèles.
 
@@ -64,13 +64,13 @@ Envoyer cette adresse à Claude Code : elle est ajoutée dans les trois `assista
 | Constante | Valeur | Rôle |
 |---|---|---|
 | `ORIGINES` | `https://orhanyj.github.io` | seuls les sites du dépôt peuvent interroger le relais |
-| `MODELE` | `@cf/meta/llama-3.3-70b-instruct-fp8-fast` | modèle de Workers AI |
+| `MODELES` | liste de modèles de l'offre gratuite | modèles que les sites ont le droit de demander ; chaque site choisit le sien dans `assistant.js` (`var MODELE`) |
+| `MODELE_DEFAUT` | `@cf/meta/llama-3.3-70b-instruct-fp8-fast` | modèle utilisé si le site n'en demande pas |
 | `MAX_QUESTION` | 1500 | caractères par question |
 | `MAX_HISTORIQUE` | 6 | messages précédents gardés pour les questions de suite |
-| `MAX_REPONSE` | 900 | longueur maximale d'une réponse (jetons) |
 | `PAR_HEURE` | 30 | questions par visiteur et par heure (si `COMPTEURS` est relié) |
 
-Après une modification de `worker.js` dans le dépôt, la recoller dans l'éditeur du Worker (étape 3) : Cloudflare ne lit pas le dépôt.
+Après une modification de `worker.js` dans le dépôt, la recoller dans l'éditeur du Worker (étape 3) : Cloudflare ne lit pas le dépôt. Changer de modèle, en revanche, se fait dans les `assistant.js` des sites (parmi `MODELES`), sans rien recoller.
 
 ## Codes renvoyés au site
 

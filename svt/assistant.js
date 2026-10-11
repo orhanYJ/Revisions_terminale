@@ -11,6 +11,7 @@
   var MATIERE = "svt";
   var NOM = "SVT";
   var RELAIS = "https://assistant-revisions.orhanyildizm.workers.dev/";
+  var MODELE = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";   /* parmi la liste MODELES du relais */
   var COULEURS = {
     fond: "var(--panel, #FFFDF8)", fond2: "var(--paper, #F7F4EC)",
     encre: "var(--ink, #17281E)", encre2: "var(--ink-2, #5E7263)", ligne: "var(--line, #E2DFD1)",
@@ -57,6 +58,9 @@
     ".asr-m{margin:0 0 12px;padding:10px 13px;border-radius:12px;font-size:15px;line-height:1.5;max-width:92%;overflow-wrap:anywhere}" +
     ".asr-m.moi{margin-left:auto;background:" + c.accent + ";color:" + c.surAccent + ";white-space:pre-wrap;border-bottom-right-radius:4px}" +
     ".asr-m.ia{background:" + c.fond + ";border:1px solid " + c.ligne + ";border-bottom-left-radius:4px}" +
+    ".asr-verif{margin:.7em 0 0;padding:8px 10px;border-radius:8px;border:1px solid #D9A441;background:rgba(217,164,65,.14);font-size:14px;line-height:1.45}" +
+    ".asr-verif b{display:block;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}" +
+    ".asr-mention{display:block;margin-top:.7em;padding-top:.5em;border-top:1px solid " + c.ligne + ";font-size:12px;line-height:1.4;color:" + c.encre2 + "}" +
     ".asr-m.err{background:transparent;border:1px dashed " + c.ligne + ";color:" + c.encre2 + "}" +
     ".asr-m p{margin:0 0 .6em}.asr-m p:last-child,.asr-m ul:last-child,.asr-m ol:last-child{margin-bottom:0}" +
     ".asr-m ul,.asr-m ol{margin:0 0 .6em;padding-left:1.3em}.asr-m li{margin:.15em 0}" +
@@ -110,6 +114,33 @@
       }
       finPara(); finListe();
     }
+    return html;
+  }
+
+  // Met à part la dernière ligne « À vérifier : … » (« To check: … » en anglais) que le relais demande
+  // à l'IA quand un point de sa réponse est incertain, et ajoute la mention commune.
+  function estAnglais(t) {
+    var en = (t.match(/\b(the|and|of|was|were|is|in)\b/gi) || []).length;
+    var fr = (t.match(/\b(le|la|les|des|est|et|une|du)\b/gi) || []).length;
+    return en > fr;
+  }
+  var A_VERIFIER = /^\s*\**\s*(à vérifier|a verifier|to check|to verify)\s*\**\s*:\s*\**\s*/i;
+  function rendreReponse(texte) {
+    var lignes = texte.replace(/\s+$/, "").split("\n"), doute = "", anglais = estAnglais(texte);
+    for (var i = lignes.length - 1; i >= 0 && i >= lignes.length - 3; i--) {
+      if (A_VERIFIER.test(lignes[i])) {
+        doute = lignes.slice(i).join(" ").replace(A_VERIFIER, "").trim();
+        lignes = lignes.slice(0, i);
+        break;
+      }
+    }
+    var html = miseEnForme(lignes.join("\n"));
+    if (doute) {
+      html += '<div class="asr-verif"><b>' + (anglais ? "⚠ To check" : "⚠ À vérifier") + "</b>" + enLigne(echapper(doute)) + "</div>";
+    }
+    html += '<span class="asr-mention">' + (anglais
+      ? "AI answer: it can be wrong, even when it sounds sure. Check dates, figures and definitions in your course."
+      : "Réponse d'IA : elle peut se tromper, même quand elle a l'air sûre. Vérifie les dates, chiffres et définitions dans ton cours.") + "</span>";
     return html;
   }
 
@@ -261,18 +292,18 @@
     var attente = ajouter("ia", '<span class="asr-att" aria-label="L\'assistant rédige"><i></i><i></i><i></i></span>');
 
     var ctrl = window.AbortController ? new AbortController() : null;
-    var minuterie = setTimeout(function () { if (ctrl) ctrl.abort(); }, 45000);
+    var minuterie = setTimeout(function () { if (ctrl) ctrl.abort(); }, 90000);
 
     fetch(RELAIS, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ matiere: MATIERE, messages: historique.slice(-7) }),
+      body: JSON.stringify({ matiere: MATIERE, modele: MODELE, messages: historique.slice(-7) }),
       signal: ctrl ? ctrl.signal : undefined
     })
       .then(function (r) { return r.json().catch(function () { return { erreur: "erreur" }; }); })
       .then(function (d) {
         if (d && typeof d.reponse === "string") {
-          attente.innerHTML = miseEnForme(d.reponse);
+          attente.innerHTML = rendreReponse(d.reponse);
           historique.push({ role: "assistant", content: d.reponse });
           // une longue réponse se lit depuis son début : on y ramène le fil
           fil.scrollTop = Math.max(0, attente.offsetTop - 12);
