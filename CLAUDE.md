@@ -37,6 +37,8 @@ Règles complémentaires :
 - **QCM** : majoritairement sur les idées du cours et les rappels de Première associés (avec renvoi vers la fiche) ; quelques questions de TP en série séparée.
 - **Ne jamais stocker un jeton ou un identifiant** dans un fichier du dépôt, la mémoire ou un document.
 
+**Publication (consigne de Cengiz, 12/10/2026)** : ne pas attendre qu'il demande « mets à jour le site ». Une fois une livraison validée (`node --check`, test du rendu), ouvrir la PR vers `main` et la fusionner aussitôt, pour que le site en ligne soit toujours à jour.
+
 Préférence de travail de Cengiz : **conseiller de changer de modèle ou de niveau d'effort** quand une demande est trop triviale ou trop complexe pour le réglage actuel, et **proposer de scinder un site** quand son poids devient trop lourd.
 
 ---
