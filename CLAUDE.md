@@ -188,8 +188,8 @@ Décision de Cengiz (11/10/2026) : pas d'IA hébergée par le projet (une IA gra
 ## 6. PWA et service workers
 
 - Chaque site a un `manifest.json` (`display: standalone`, `start_url: "./"`, `scope: "./"`, icônes 192 et 512 en `any maskable`) et un `sw.js`.
-- Stratégie : **réseau d'abord pour la page** (une nouvelle version est visible dès le prochain lancement, sans vider le cache), **cache d'abord pour les assets**.
-- Chaque `sw.js` porte un nom de cache versionné en tête de fichier (`svt-v5`, `dnl-v31-h3-suite`, `philo-v3`, `redpen-v2`, `cdm-v2`, `fenuareo-v2`, etc.). **Incrémenter ce nom à chaque livraison qui ajoute ou modifie un fichier annexe.**
+- Stratégie : **réseau d'abord pour la page** (une nouvelle version est visible dès le prochain lancement, sans vider le cache), **cache d'abord pour les assets**. Sur DNL (12/10/2026), la page et les PDF sont redemandés avec `fetch(url, { cache: "no-cache" })` : sans cela, le service worker reprenait la copie que le navigateur garde 10 minutes (GitHub Pages envoie `max-age=600`), et une mise à jour du cours n'apparaissait pas tout de suite sur le téléphone.
+- Chaque `sw.js` porte un nom de cache versionné en tête de fichier (`svt-v5`, `dnl-v32-page-fraiche`, `philo-v3`, `redpen-v2`, `cdm-v2`, `fenuareo-v2`, etc.). **Incrémenter ce nom à chaque livraison qui ajoute ou modifie un fichier annexe.**
 - Le dépôt étant public, ne rien y mettre qu'on ne veuille pas voir en ligne.
 
 ---

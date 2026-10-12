@@ -1,7 +1,7 @@
 /* Service worker — DNL Histoire-Géo Terminale BFI
    Stratégie : réseau d'abord pour la page (mises à jour immédiates),
    repli cache hors ligne. Assets : cache d'abord. */
-const CACHE = "dnl-v31-h3-suite";
+const CACHE = "dnl-v32-page-fraiche";
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {
@@ -26,7 +26,7 @@ self.addEventListener("fetch", (e) => {
   if (isPdf) {
     // fiches imprimables : réseau d'abord (une fiche régénérée s'affiche tout de suite), copie pour le hors-ligne
     e.respondWith(
-      fetch(req)
+      fetch(req.url, { cache: "no-cache" })
         .then((res) => {
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put(req, copy));
@@ -35,8 +35,10 @@ self.addEventListener("fetch", (e) => {
         .catch(() => caches.match(req))
     );
   } else if (isPage) {
+    // « no-cache » : toujours revalider auprès du serveur, sans réutiliser la copie
+    // que le navigateur garde 10 minutes (GitHub Pages envoie max-age=600)
     e.respondWith(
-      fetch(req)
+      fetch(req.url, { cache: "no-cache", credentials: "same-origin" })
         .then((res) => {
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put("./", copy));
