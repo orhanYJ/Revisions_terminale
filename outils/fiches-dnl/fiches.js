@@ -131,50 +131,56 @@ module.exports = {
     frise: [
       ["1937", "Japan attacks southern China: war begins in Asia", "Le Japon attaque la Chine du Sud : la guerre commence en Asie"],
       ["1 Sept. 1939", "Germany invades Poland", "L'Allemagne envahit la Pologne"],
-      ["Sept. 1939–May 1940", "The phoney war", "La drôle de guerre"],
       ["10 May 1940", "German attack in the west; Churchill PM", "Attaque allemande à l'ouest ; Churchill Premier ministre"],
-      ["26 May–4 June 1940", "Dunkirk: 338,000 evacuated", "Dunkerque : 338 000 évacués"],
-      ["14 June 1940", "German troops enter Paris", "Les troupes allemandes entrent dans Paris"],
+      ["18 June 1940", "De Gaulle's appeal from London", "Appel du général de Gaulle depuis Londres"],
       ["22 June 1940", "Armistice at Rethondes", "Armistice de Rethondes"],
-      ["Oct. 1940", "Vichy decree defining who is a Jew", "Décret de Vichy définissant qui est juif"],
-      ["11 Dec. 1941", "Hitler defines the New Order", "Hitler définit l'Ordre nouveau"],
-      ["July 1942", "Mass arrests of Jews for deportation", "Arrestations massives de Juifs pour la déportation"],
-      ["11 Nov. 1942", "Germany invades the “free zone”", "L'Allemagne envahit la « zone libre »"]
+      ["7 Sept. 1940", "The Blitz on London", "Le Blitz sur Londres"],
+      ["22 June 1941", "Operation Barbarossa", "Opération Barbarossa"],
+      ["7–11 Dec. 1941", "Pearl Harbor; the war goes global", "Pearl Harbor ; la guerre devient mondiale"],
+      ["July 1942", "Mass arrests of Jews in France", "Arrestations massives de Juifs en France"],
+      ["11 Nov. 1942", "Germany invades the “free zone”", "L'Allemagne envahit la « zone libre »"],
+      ["2 Feb. 1943", "Paulus capitulates at Stalingrad", "Paulus capitule à Stalingrad"]
     ],
     carte: {
-      titre: ["Europe dominated by the Axis (1939 – May 1941)", "L'Europe dominée par l'Axe (1939 - mai 1941)"],
-      carre: true,
+      titre: ["Europe dominated by the Axis, and the war in the East (1939–1943)", "L'Europe dominée par l'Axe, et la guerre à l'Est (1939-1943)"],
       serie: [
         [["Oct. 1939", "Oct. 1939"], "Poland conquered and partitioned with the USSR; the phoney war in the west.", "La Pologne conquise et partagée avec l'URSS ; la drôle de guerre à l'ouest."],
         [["July 1940", "Juill. 1940"], "Denmark, Norway, the Benelux and France defeated; the USSR takes the Baltic states and Bessarabia; Britain alone.", "Le Danemark, la Norvège, le Benelux et la France vaincus ; l'URSS prend les pays baltes et la Bessarabie ; le Royaume-Uni seul."],
-        [["May 1941", "Mai 1941"], "The Balkans occupied; Hungary, Romania and Bulgaria in the Axis — on the eve of the attack on the USSR.", "Les Balkans occupés ; la Hongrie, la Roumanie et la Bulgarie dans l'Axe, à la veille de l'attaque contre l'URSS."]
+        [["May 1941", "Mai 1941"], "The Balkans occupied; Hungary, Romania and Bulgaria in the Axis — on the eve of Barbarossa.", "Les Balkans occupés ; la Hongrie, la Roumanie et la Bulgarie dans l'Axe, à la veille de Barbarossa."],
+        [["Nov. 1942", "Nov. 1942"], "The furthest German advance: from besieged Leningrad to Stalingrad and the Caucasus.", "L'avancée allemande maximale : de Leningrad assiégée à Stalingrad et au Caucase."]
       ],
       cles: [
         ["#5E1C19", "The Reich: Germany, Austria, Sudetenland, Bohemia-Moravia, Alsace-Moselle (1940)", "Le Reich : Allemagne, Autriche, Sudètes, Bohême-Moravie, Alsace-Moselle (1940)"],
-        ["#B8564C", "Occupied by Germany (dates on the map)", "Occupé par l'Allemagne (dates sur la carte)"],
+        ["#B8564C", "Occupied by Germany and its allies (dates on the map)", "Occupé par l'Allemagne et ses alliés (dates sur la carte)"],
         ["hatch-vi", "Vichy France, the “free zone” until 11 Nov. 1942", "La France de Vichy, « zone libre » jusqu'au 11 nov. 1942"],
         ["#8E6F37", "Italy and Albania", "Italie et Albanie"],
         ["#E2C88E", "Allies of the Axis", "Alliés de l'Axe"],
-        ["#6F7E99", "USSR", "URSS"],
-        ["hatch-su", "Soviet gains, 1939–40: eastern Poland, Baltic states, Bessarabia, Karelia", "Gains soviétiques, 1939-40 : est de la Pologne, pays baltes, Bessarabie, Carélie"],
-        ["#5F86AD", "United Kingdom: alone against Germany from June 1940", "Royaume-Uni : seul face à l'Allemagne à partir de juin 1940"],
-        ["#E3DED2", "Neutral states", "États neutres"]
+        ["#6F7E99", "USSR (unoccupied)", "URSS (non occupée)"],
+        ["hatch-su", "Soviet gains of 1939–40 still held in 1942", "Gains soviétiques de 1939-40 encore tenus en 1942"],
+        ["#5F86AD", "United Kingdom: alone against Germany from June 1940 to June 1941", "Royaume-Uni : seul face à l'Allemagne de juin 1940 à juin 1941"],
+        ["#E3DED2", "Neutral states", "États neutres"],
+        ["line-f41", "Front line, 5 Dec. 1941 (simplified)", "Ligne de front, 5 déc. 1941 (tracé simplifié)"],
+        ["line-f42", "Front line, Nov. 1942: the furthest advance (simplified)", "Ligne de front, nov. 1942 : l'avancée maximale (tracé simplifié)"]
       ],
       reperes: [
         ["Poland, Sept. 1939: invaded, then partitioned with the USSR.", "Pologne, sept. 1939 : envahie, puis partagée avec l'URSS."],
         ["Denmark, Apr. 1940: occupied (outside the course).", "Danemark, avr. 1940 : occupé (hors cours)."],
-        ["Norway, Apr.–June 1940: invaded (outside the course).", "Norvège, avr.-juin 1940 : envahie (hors cours)."],
+        ["Norway, Apr.–June 1940: invaded; Britain fails to prevent it, and Chamberlain falls.", "Norvège, avr.-juin 1940 : envahie ; le Royaume-Uni n'empêche pas l'occupation, et Chamberlain tombe."],
         ["Netherlands, Belgium, Luxembourg, from 10 May 1940: overrun in a few days.", "Pays-Bas, Belgique, Luxembourg, à partir du 10 mai 1940 : submergés en quelques jours."],
         ["France, May–June 1940: defeated in six weeks; armistice of 22 June.", "France, mai-juin 1940 : vaincue en six semaines ; armistice du 22 juin."],
-        ["United Kingdom: Churchill prime minister on 10 May 1940; the only nation still resisting in 1941.", "Royaume-Uni : Churchill Premier ministre le 10 mai 1940 ; seule nation qui résiste encore en 1941."],
-        ["Baltic states, June 1940: occupied, then annexed by the USSR (outside the course).", "Pays baltes, juin 1940 : occupés, puis annexés par l'URSS (hors cours)."],
+        ["United Kingdom: Churchill prime minister on 10 May 1940; the Blitz (1940–41) fails to win control of the air.", "Royaume-Uni : Churchill Premier ministre le 10 mai 1940 ; le Blitz (1940-41) n'obtient pas la maîtrise du ciel."],
+        ["Baltic states, June 1940: occupied by the USSR, then by Germany in 1941 (outside the course).", "Pays baltes, juin 1940 : occupés par l'URSS, puis par l'Allemagne en 1941 (hors cours)."],
         ["Bessarabia, June 1940: taken from Romania by the USSR (outside the course).", "Bessarabie, juin 1940 : prise à la Roumanie par l'URSS (hors cours)."],
         ["Yugoslavia, Apr. 1941: invaded and partitioned (outside the course).", "Yougoslavie, avr. 1941 : envahie et dépecée (hors cours)."],
         ["Greece, Apr.–May 1941: occupied (outside the course).", "Grèce, avr.-mai 1941 : occupée (hors cours)."],
-        ["Hungary, Romania, Bulgaria: join the Axis in 1940–41 (outside the course).", "Hongrie, Roumanie, Bulgarie : rejoignent l'Axe en 1940-41 (hors cours)."],
-        ["Vichy: Pétain's regime, which chose collaboration.", "Vichy : le régime de Pétain, qui choisit la collaboration."]
+        ["Hungary, Romania, Bulgaria: join the Axis in 1940–41; Finland fights the USSR from 1941 (outside the course).", "Hongrie, Roumanie, Bulgarie : rejoignent l'Axe en 1940-41 ; la Finlande combat l'URSS à partir de 1941 (hors cours)."],
+        ["Vichy: Pétain's regime, which chose collaboration.", "Vichy : le régime de Pétain, qui choisit la collaboration."],
+        ["Leningrad: besieged, never taken.", "Leningrad : assiégée, jamais prise."],
+        ["Moscow, Dec. 1941: the German advance stopped by the Red Army.", "Moscou, déc. 1941 : l'avance allemande arrêtée par l'Armée rouge."],
+        ["Stalingrad, Aug. 1942 – 2 Feb. 1943: the Germans stalled, encircled in November, Paulus capitulates: the turning point.", "Stalingrad, août 1942 - 2 févr. 1943 : les Allemands s'enlisent, sont encerclés en novembre, Paulus capitule : le tournant."],
+        ["Occupied Soviet territory: scorched earth, war of annihilation, Soviet prisoners starved to death.", "Territoire soviétique occupé : terre brûlée, guerre d'anéantissement, prisonniers soviétiques morts de faim."]
       ],
-      note: ["Situation in May 1941, before the German attack on the USSR (22 June 1941), which Part II will study. The course says: by 1941 continental Europe was overcome and only Britain still resisted; items marked “outside the course” complete the picture. Base: borders of 1930, with the CShapes changes of 1939–40.", "Situation en mai 1941, avant l'attaque allemande contre l'URSS (22 juin 1941), que la partie II étudiera. Le cours dit : en 1941, l'Europe continentale est vaincue et seul le Royaume-Uni résiste encore ; les éléments « hors cours » complètent le tableau. Fond : frontières de 1930, avec les changements de 1939-40 d'après CShapes."]
+      note: ["Dark arrows in the East: Operation Barbarossa (22 June 1941) and the summer offensive of 1942 towards Stalingrad and the Caucasus. Front lines and the Soviet border of 1941 simplified. Base: borders of 1930, with the changes of 1939–40 from the CShapes dataset.", "Flèches sombres à l'Est : l'opération Barbarossa (22 juin 1941) et l'offensive de l'été 1942 vers Stalingrad et le Caucase. Lignes de front et frontière soviétique de 1941 simplifiées. Fond : frontières de 1930, avec les changements de 1939-40 d'après CShapes."]
     },
     zoom: {
       titre: ["France defeated and cut up (1940–1942)", "La France vaincue et découpée (1940-1942)"],

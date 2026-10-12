@@ -129,7 +129,23 @@ def _rhenanie(R):
 
 
 EXT_H2 = (-10.5, 40, 35, 60.5)
-EXT_H3 = (-10.5, 40, 35, 65.5)
+EXT_H3 = (-10.5, 50, 35, 65.5)
+
+# lignes de front sur le front de l'Est (tracés simplifiés, du nord au sud) : 5 décembre 1941 et 18 novembre 1942
+F41 = [(29.6, 59.9), (30.8, 59.7), (31.1, 59.95), (33.5, 59.65), (32.3, 58.8), (31.3, 58.5), (31.9, 57.9), (33.1, 57.2), (35.9, 56.85), (37.1, 56.4),
+       (37.45, 56.05), (36.9, 55.6), (36.7, 55.38), (37.1, 54.9), (37.4, 54.3), (38.0, 54.1), (38.4, 53.4), (38.5, 52.6), (37.3, 51.7), (37.6, 50.6),
+       (37.7, 49.5), (38.2, 48.3), (38.9, 47.25)]
+F42 = [(29.6, 59.9), (30.8, 59.7), (31.1, 59.95), (32.2, 59.2), (31.5, 58.6), (32.0, 58.0), (33.4, 57.9), (32.6, 57.3), (34.0, 56.6), (35.0, 56.2),
+       (35.3, 55.6), (35.0, 55.0), (34.5, 54.4), (35.6, 53.6), (36.6, 53.0), (37.5, 52.3), (38.5, 51.9), (39.2, 51.66), (40.0, 50.6), (41.3, 50.0),
+       (42.5, 49.6), (43.4, 49.3), (44.0, 48.9), (44.5, 48.75), (44.3, 47.8), (44.6, 46.5), (45.0, 45.3), (44.6, 43.8), (43.7, 43.5), (42.0, 43.3),
+       (40.5, 43.9), (39.3, 44.2), (38.9, 44.35)]
+
+
+def occupation_est(R):
+    """Territoire soviétique (frontières de juin 1941) à l'ouest du front de novembre 1942."""
+    ouest = Polygon(F42 + [(38.9, 43.0), (20.0, 43.0), (20.0, 61.5), (29.6, 61.5)])
+    sov = unary_union([R["urss"], R["pologne_urss"], R["baltes"], R["bessarabie"], R["carelie"]])
+    return sov.intersection(ouest).buffer(0)
 
 
 def h2_etat(R, etape, suffixe):
@@ -208,7 +224,7 @@ def h2_grande(D, E, lang):
 
 
 def h3_etat(R, Z, etape, suffixe):
-    """Couleurs de l'Europe à une étape du H3 : 1939 (octobre), 1940 (juillet), 1941 (mai, avant l'invasion de l'URSS)."""
+    """Couleurs de l'Europe à une étape du H3 : 1939 (octobre), 1940 (juillet), 1941 (mai), 1942 (novembre, avancée maximale à l'Est)."""
     col = {}
     for k in ("portugal", "spain", "switzerland", "sweden", "irlande", "turquie", "iceland", "finlande"):
         col[k] = NEUTRE
@@ -238,6 +254,9 @@ def h3_etat(R, Z, etape, suffixe):
     if etape >= 1941:
         col["yugoslavia"] = col["greece"] = G38
         col["hungary"] = col["roumanie"] = col["bulgaria"] = ALLIE
+    if etape >= 1942:
+        col["finlande"] = ALLIE
+        col[occupation_est(R)] = G38
     return col
 
 
@@ -246,12 +265,14 @@ def h3_serie(D, E, lang):
     Z = {k: v.simplify(0.04) for k, v in zones_france(D).items()}
     out = []
     lab = {"en": ("Germany", "USSR", "UK"), "fr": ("Allemagne", "URSS", "R.-U.")}[lang]
-    for etape in (1939, 1940, 1941):
+    for etape in (1939, 1940, 1941, 1942):
         suf = f"h3s{etape}"
         c = Carte(*EXT_H3, 420)
         _base(c, R, h3_etat(R, Z, etape, suf))
+        if etape >= 1942:
+            c.trait(F42, "#2B0E0C", 2.2)
         c.texte(10.6, 51.6, lab[0], 15, 700, "#fff", halo=False)
-        c.texte(33, 57, lab[1], 15, 700, "#fff", halo=False)
+        c.texte(43.5, 57, lab[1], 15, 700, "#fff", halo=False)
         c.texte(-1.6, 53.0, lab[2], 13, 700, "#fff", halo=False)
         out.append(c.svg(_motifs(suf)))
     return out
@@ -262,21 +283,27 @@ def h3_grande(D, E, lang):
     Z = zones_france(D)
     suf = "h3g"
     c = Carte(*EXT_H3, 1000)
-    _base(c, R, h3_etat(R, Z, 1941, suf), sw=0.8)
+    _base(c, R, h3_etat(R, Z, 1942, suf), sw=0.8)
     F = lang == "fr"
+    c.trait(F41, "#F7F3EA", 5)
+    c.trait(F41, "#2B0E0C", 2.4, 'stroke-dasharray="8 5"')
+    c.trait(F42, "#F7F3EA", 5.5)
+    c.trait(F42, "#2B0E0C", 3)
+    for a, b, k in [((22.0, 54.6), (29.4, 59.0), -0.15), ((23.5, 52.6), (35.6, 55.4), -0.08), ((24.0, 50.6), (37.0, 48.6), 0.1), ((37.5, 49.5), (43.6, 48.9), -0.15), ((39.5, 47.0), (43.5, 44.4), 0.15)]:
+        c.fleche(a, b, "#F7F3EA", 5.4, k)
+        c.fleche(a, b, "#2B0E0C", 3, k)
     for a, b, k in [((13.5, 52.6), (20.5, 52.0), -0.15), ((10.0, 54.3), (10.5, 56.8), 0.2), ((10.4, 54.6), (9.5, 60.8), -0.25),
                     ((7.3, 51.6), (5.4, 52.2), 0.2), ((6.6, 50.6), (4.6, 50.7), -0.2), ((6.3, 49.8), (2.4, 48.5), 0.15), ((14.5, 46.6), (19.8, 44.4), -0.2), ((22.4, 42.2), (22.6, 39.3), -0.2)]:
         c.fleche(a, b, "#F7F3EA", 4.8, k)
         c.fleche(a, b, SLATE, 2.6, k)
-    for a, b in [((30.0, 54.0), (25.2, 52.4)), ((30.5, 57.5), (25.2, 57.3)), ((31.0, 48.5), (28.6, 47.2))]:
-        c.fleche(a, b, USSR, 2.6, 0.2)
-    labs = [("ALLEMAGNE" if F else "GERMANY", 10.4, 51.9, "#fff"), ("ITALIE" if F else "ITALY", 13.0, 42.7, "#fff"), ("URSS" if F else "USSR", 34, 58.5, "#fff"),
+    labs = [("ALLEMAGNE" if F else "GERMANY", 10.4, 51.9, "#fff"), ("ITALIE" if F else "ITALY", 13.0, 42.7, "#fff"), ("URSS" if F else "USSR", 44.5, 58.0, "#fff"),
             ("ROYAUME-\nUNI" if F else "UNITED\nKINGDOM", -2.4, 53.2, "#fff"), ("ESPAGNE" if F else "SPAIN", -4.2, 39.6, SLATE), ("SUÈDE" if F else "SWEDEN", 15.3, 62.5, SLATE),
             ("VICHY", 2.2, 45.1, SLATE), ("TURQUIE" if F else "TURKEY", 33.5, 39.4, SLATE), ("FINLANDE" if F else "FINLAND", 26.5, 63.2, SLATE)]
     for t, x, y, co in labs:
         c.texte(x, y, t, 12, 700, co, halo=co == SLATE)
     pts = [(20.5, 52.0, 0, -30), (10.0, 56.2, -30, -14), (9.5, 60.8, -32, 0), (5.6, 52.2, -30, -16), (2.4, 48.6, -34, 6), (-0.8, 52.0, -30, 22),
-           (25.3, 56.3, 28, -8), (28.6, 47.2, 30, 14), (19.8, 44.3, 26, 22), (22.5, 39.3, 28, 12), (25.0, 45.6, 20, -26), (2.4, 45.6, -30, 24)]
+           (25.3, 56.3, 28, -8), (28.6, 47.2, 30, 14), (19.8, 44.3, 26, 22), (22.5, 39.3, 28, 12), (25.0, 45.6, 20, -26), (2.4, 45.6, -30, 24),
+           (30.3, 59.93, 24, -20), (37.6, 55.75, 26, -14), (44.5, 48.7, 24, -18), (30.5, 52.0, 0, 0)]
     for n, (x, y, dx, dy) in enumerate(pts, 1):
         c.repere(x, y, n, dx, dy)
     return c.svg(_motifs(suf))
