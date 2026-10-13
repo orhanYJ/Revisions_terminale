@@ -3,7 +3,7 @@
    repli cache hors ligne. Assets : cache d'abord.
    Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
-const CACHE = "svt-v21";
+const CACHE = "svt-v22";
 const ANIMS = ["mitose", "replication", "expression", "enzyme", "globe", "tectonique",
   "ecosysteme", "immunite", "anticorps", "clonal", "meiose", "nondisj", "coinegal", "globines",
   "thg", "insuline", "endosymbiose"];
@@ -32,8 +32,10 @@ self.addEventListener("fetch", (e) => {
     // page d'accueil sous la clé "./", animations sous leur propre adresse (sans paramètres)
     const isIndex = url.pathname.endsWith("/") || url.pathname.endsWith("/index.html");
     const key = isIndex ? "./" : url.origin + url.pathname;
+    // « no-cache » : toujours revalider auprès du serveur, sans réutiliser la copie
+    // que le navigateur garde 10 minutes (GitHub Pages envoie max-age=600)
     e.respondWith(
-      fetch(req)
+      fetch(req.url, { cache: "no-cache", credentials: "same-origin" })
         .then((res) => {
           const copy = res.clone();
           caches.open(CACHE).then((c) => c.put(key, copy));

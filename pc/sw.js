@@ -1,4 +1,4 @@
-const CACHE = 'pc-v30';
+const CACHE = 'pc-v31';
 /* Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
 const ANIMS = ['photon', 'photoelec', 'cellule'];
@@ -28,8 +28,10 @@ self.addEventListener('fetch', function (e) {
   if (e.request.mode === 'navigate' || url.pathname.endsWith('.html')) {
     var accueil = url.pathname.endsWith('/') || url.pathname.endsWith('/index.html');
     var cle = accueil ? './index.html' : url.origin + url.pathname;
+    // « no-cache » : toujours revalider auprès du serveur, sans réutiliser la copie
+    // que le navigateur garde 10 minutes (GitHub Pages envoie max-age=600)
     e.respondWith(
-      fetch(e.request).then(function (r) {
+      fetch(e.request.url, { cache: 'no-cache', credentials: 'same-origin' }).then(function (r) {
         var copie = r.clone();
         caches.open(CACHE).then(function (c) { c.put(cle, copie); });
         return r;
