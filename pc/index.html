@@ -433,6 +433,19 @@ html.mo .fig.sc-attente svg[role="img"]{opacity:0}
 .sim-r em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
 .placeholder{border:1px dashed var(--line);border-radius:12px;padding:14px;font-size:.9rem;color:var(--muted)}
 @media print{.sim{display:none}}
+figure.animfig{margin:18px 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 12px 12px;box-shadow:var(--shadow)}
+figure.animfig .stitle{font-family:'Avenir Next','Segoe UI',sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);margin-bottom:10px}
+figure.animfig iframe{display:block;width:100%;height:780px;border:0;background:transparent;color-scheme:light}
+html[data-theme="sombre"] figure.animfig iframe{color-scheme:dark}
+figure.animfig .animfull{display:inline-block;margin-top:8px;font-size:.88rem;font-weight:700;color:var(--orange-deep);text-decoration:none}
+figure.animfig .animfull:hover{text-decoration:underline}
+@media(max-width:760px){
+  figure.animfig{margin:16px -14px;padding:0;background:none;border:0;border-radius:0;box-shadow:none}
+  figure.animfig .stitle{margin:0 14px 8px}
+  figure.animfig iframe{height:640px}
+  figure.animfig .animfull{display:none}
+}
+@media print{figure.animfig{display:none}}
 .sim select{font:inherit;font-size:.85rem;padding:4px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);max-width:62%}
 </style>
 <!-- mouvement:debut — couche maintenue à part (motion.css, motion.js) ; à conserver lors des mises à jour -->
@@ -4697,16 +4710,7 @@ for i in range(0, 41):
 <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1.8"/><ellipse cx="12" cy="12" rx="9.5" ry="3.8"/><ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.5" ry="3.8" transform="rotate(120 12 12)"/></svg>2 · Absorption et émission : lire un diagramme de niveaux<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
 <p>Un atome ne peut absorber ou émettre de l'énergie lumineuse qu'en changeant de niveau d'énergie. Le photon absorbé ou émis porte <strong>exactement</strong> l'écart entre les deux niveaux : c'est la conservation de l'énergie, appliquée à un seul atome et un seul photon.</p>
 <div class="formule"><div class="t">Transition entre deux niveaux</div><div class="eqc">|ΔE| = |E<sub>final</sub> − E<sub>initial</sub>| = h × ν = <span class="frac"><span>h × c</span><span>λ</span></span></div><div class="fr">Émission si l'atome descend (E<sub>final</sub> &lt; E<sub>initial</sub>) ; absorption s'il monte.</div></div>
-<div class="fig"><svg viewBox="0 0 440 270" role="img" aria-label="Diagramme de niveaux d'énergie de l'atome d'hydrogène : une absorption et une émission"><defs><marker id="c4m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--orange)"/></marker><marker id="c4mb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7a3cff"/></marker></defs>
-<line x1="40" y1="250" x2="40" y2="18" stroke="currentColor" stroke-width="1.4"/><path d="M36 24 L40 16 L44 24" fill="none" stroke="currentColor" stroke-width="1.4"/><text x="46" y="20" fill="currentColor" font-family="sans-serif" font-size="10">E (eV)</text>
-<g class="niv" stroke="currentColor" stroke-width="2"><line x1="70" y1="232" x2="300" y2="232"/><line x1="70" y1="122" x2="300" y2="122"/><line x1="70" y1="82" x2="300" y2="82"/><line x1="70" y1="62" x2="300" y2="62"/><line x1="70" y1="40" x2="300" y2="40" stroke-dasharray="5 4"/></g>
-<g fill="currentColor" font-family="sans-serif" font-size="10"><text x="306" y="236">n = 1 : −13,6</text><text x="306" y="126">n = 2 : −3,40</text><text x="306" y="86">n = 3 : −1,51</text><text x="306" y="66">n = 4 : −0,85</text><text x="306" y="44">ionisation : 0</text></g>
-<line class="abs" x1="120" y1="230" x2="120" y2="126" stroke="#7a3cff" stroke-width="2.4" marker-end="url(#c4mb)"/>
-<path class="phabs" d="M52 182 q6 -8 12 0 t12 0 t12 0 t12 0 t12 0" fill="none" stroke="#7a3cff" stroke-width="1.8"/>
-<text x="128" y="196" fill="#7a3cff" font-family="sans-serif" font-size="9.5" font-weight="bold">absorption</text><text x="128" y="208" fill="#7a3cff" font-family="sans-serif" font-size="9.5">10,2 eV · 122 nm (UV)</text>
-<line class="emi" x1="220" y1="84" x2="220" y2="118" stroke="var(--orange)" stroke-width="2.4" marker-end="url(#c4m)"/>
-<path class="phemi" d="M226 102 q6 -8 12 0 t12 0 t12 0 t12 0 t12 0" fill="none" stroke="#e3261b" stroke-width="1.8"/>
-<text x="232" y="150" fill="var(--orange)" font-family="sans-serif" font-size="9.5" font-weight="bold">émission</text><text x="232" y="162" fill="var(--orange)" font-family="sans-serif" font-size="9.5">1,89 eV · 656 nm (rouge)</text></svg><div class="cap">Absorption 1 → 2 : le photon doit apporter exactement 10,2 eV. Émission 3 → 2 : l'atome libère 1,89 eV, la raie rouge de l'hydrogène.</div></div>
+<div data-anim="photon"></div>
 <div class="methode"><div class="t">Méthode : de la transition à la longueur d'onde</div><ol><li>Lire les deux niveaux sur le diagramme et calculer l'écart <span class="ch">|ΔE|</span> en eV.</li><li>Convertir en joules : multiplier par 1,60 × 10<sup>−19</sup>.</li><li>Calculer <span class="ch">λ = hc / |ΔE|</span>, en mètres, puis convertir en nm.</li><li>Situer λ : UV, visible ou IR. Contrôle rapide : λ (nm) ≈ 1 240 / |ΔE| (eV).</li></ol></div>
 <div class="exemple"><div class="t">La raie rouge de l'hydrogène (transition 3 → 2)</div><div class="eqc">|ΔE| = −1,51 − (−3,40) = 1,89 eV = 1,89 × 1,60 × 10<sup>−19</sup> = 3,02 × 10<sup>−19</sup> J</div><div class="eqc">λ = <span class="frac"><span>6,63 × 10<sup>−34</sup> × 3,00 × 10<sup>8</sup></span><span>3,02 × 10<sup>−19</sup></span></span> = 6,58 × 10<sup>−7</sup> m ≈ 656 nm</div>C'est la raie Hα, qui donne leur couleur rouge aux nébuleuses photographiées par les astronomes.</div>
 <div class="piege"><div class="t">Un atome ne prend pas « ce qu'il peut »</div>Un photon de 11 eV arrivant sur un atome d'hydrogène au repos n'est <strong>pas</strong> absorbé : aucun écart ne vaut 11 eV (1 → 2 vaut 10,2 eV, 1 → 3 vaut 12,1 eV). L'absorption est du tout ou rien. Seul un photon d'énergie supérieure à l'énergie d'ionisation (13,6 eV) peut être absorbé quelle que soit sa valeur : il arrache alors l'électron, et le surplus devient de l'énergie cinétique. C'est exactement l'idée de l'effet photoélectrique.</div>
@@ -7378,19 +7382,6 @@ var SCENES = [
   reste(svg, 0);
   return t0 + 2300;
 }},
-/* ---------- Ch. 4 · le photon absorbé, le photon émis ---------- */
-{cle:"Diagramme de niveaux d'énergie de l'atome d'hydrogène", jouer:function(svg){
-  $n(svg, ".niv line").forEach(function(e, i){ tracer(e, i * 120, 520); });
-  voyage(svg, $1(svg, ".phabs"), 700, 900, {couleur:"#7a3cff", fond:true});
-  onde(svg, 120, 232, 6, 1600, "#7a3cff");
-  jaillir($1(svg, ".abs"), 1650, 650);
-  apparait($1(svg, ".phabs"), 1650, 400);
-  jaillir($1(svg, ".emi"), 2600, 550);
-  tracer($1(svg, ".phemi"), 3050, 700);
-  voyage(svg, "M232 102 L300 102", 3150, 800, {couleur:"#e3261b", fond:true});
-  reste(svg, 2400);
-  return 4100;
-}},
 /* ---------- Ch. 4 · effet photoélectrique : le nombre ne compense pas l'énergie ---------- */
 {cle:"Effet photoélectrique : lumière rouge intense", jouer:function(svg){
   $n(svg, ".ph-r path").forEach(function(e, i){ tracer(e, i * 160, 900); });
@@ -7509,6 +7500,36 @@ window.MO_SCENES = {jouer:jouer, SCENES:SCENES};
 })();
 </script>
 <script>
+/* Animations explicatives (anim/*.html, moteur repris de svt/anim) : montees en iframe dans le cours */
+(function(){
+var ANIMS={photon:"Absorber, émettre : les états d'énergie de l'atome"};
+function theme(){ return document.documentElement.getAttribute('data-theme')==='sombre' ? 'dark' : 'light'; }
+document.querySelectorAll('[data-anim]').forEach(function(slot){
+  var id=slot.getAttribute('data-anim'), titre=ANIMS[id]||'';
+  var fig=document.createElement('figure'); fig.className='animfig';
+  fig.innerHTML='<div class="stitle">Animation · '+titre+'</div>'
+    +'<iframe src="anim/'+id+'.html?embed=1&amp;theme='+theme()+'" title="Animation : '+titre+'" loading="lazy" data-anim-id="'+id+'"></iframe>'
+    +'<a class="animfull" href="anim/'+id+'.html">Ouvrir en plein écran →</a>';
+  slot.parentNode.replaceChild(fig, slot);
+});
+window.addEventListener('message', function(e){
+  var d=e.data||{};
+  if(d.type!=='anim-h' && d.type!=='anim-goto') return;
+  document.querySelectorAll('iframe[data-anim-id]').forEach(function(fr){
+    if(fr.contentWindow!==e.source) return;
+    if(d.type==='anim-h' && d.h) fr.style.height=Math.ceil(d.h)+'px';
+    if(d.type==='anim-goto') setTimeout(function(){ window.scrollTo({top:fr.getBoundingClientRect().top+scrollY+(d.y||0)-80, behavior:'smooth'}); }, 60);
+  });
+});
+new MutationObserver(function(){
+  document.querySelectorAll('iframe[data-anim-id]').forEach(function(fr){ try{ fr.contentWindow.postMessage({type:'anim-theme', theme:theme()}, '*'); }catch(err){} });
+}).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+/* une animation qui sort de l'ecran se met en pause */
+document.addEventListener('toggle', function(ev){
+  var d=ev.target; if(!d || !d.querySelectorAll || d.open) return;
+  d.querySelectorAll('iframe[data-anim-id]').forEach(function(fr){ try{ fr.contentWindow.postMessage({type:'anim-pause'}, '*'); }catch(err){} });
+}, true);
+})();
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js');});}
 </script>
 </body>
