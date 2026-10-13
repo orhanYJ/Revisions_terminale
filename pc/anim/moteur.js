@@ -195,7 +195,7 @@ function render(){
 }
 
 /* ---------- interface ---------- */
-const fmt = s => `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+const fmt = s => { s = Math.max(0, s); return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`; };
 const sceneIdx = () => { for(let i=C.SCENES.length-1; i>=0; i--) if(t >= C.SCENES[i].t) return i; return 0; };
 function postH(){
   if(!EMBED || window.parent === window) return;
@@ -231,8 +231,10 @@ function play(){
 function pause(){ playing = false; setPlayIcon(); }
 function loop(now){
   if(!playing) return;
-  const dt = Math.min(.1, (now - lastNow)/1000); lastNow = now;
-  const nt = t + dt;
+  /* l'horodatage fourni par le navigateur peut précéder l'instant du clic (téléphone) :
+     on mesure soi-même, et le temps ne recule jamais */
+  const n2 = performance.now(), dt = clamp((n2 - lastNow)/1000, 0, .1); lastNow = n2;
+  const nt = Math.max(0, t + dt);
   if(stepMode){ const e = C.SCENES[sceneIdx()].e - .02; if(t < e && nt >= e){ fire(t,e); t = e; pause(); render(); return; } }
   if(nt >= C.END){ fire(t,C.END); t = C.END; pause(); E.bigLabel.textContent = "Revoir l'animation"; E.big.hidden = false; render(); return; }
   fire(t,nt); t = nt; render(); requestAnimationFrame(loop);

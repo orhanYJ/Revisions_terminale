@@ -1,9 +1,9 @@
-const CACHE = 'pc-v29';
+const CACHE = 'pc-v30';
 /* Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
-const ANIMS = ['photon'];
+const ANIMS = ['photon', 'photoelec', 'cellule'];
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png',
-  './anim/moteur.css?v=1', './anim/moteur.js?v=1'].concat(ANIMS.map(function (a) { return './anim/' + a + '.html'; }));
+  './anim/moteur.css?v=2', './anim/moteur.js?v=2'].concat(ANIMS.map(function (a) { return './anim/' + a + '.html'; }));
 
 self.addEventListener('install', function (e) {
   e.waitUntil(

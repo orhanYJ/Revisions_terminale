@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A120B">
+<title>La cellule photovoltaïque : du photon au courant</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../">← Physique-Chimie</a> · Chapitre 4, fiches 6 et 8 : cellule photovoltaïque et rendement</p>
+    <h1>La cellule photovoltaïque : du photon au courant</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation : coupe d'une cellule photovoltaïque ; à la jonction des couches n et p se forme un champ électrique interne ; un photon libère un électron et un trou, que le champ sépare ; l'électron fait le tour du circuit et allume une ampoule ; plus de photons donnent plus de courant ; un photon infrarouge traverse sans effet, un photon bleu perd son excès en chaleur ; bilan du rendement">
+        <defs>
+          <radialGradient id="field" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#1E1A2E"/><stop offset=".7" stop-color="#110E1A"/><stop offset="1" stop-color="#08070D"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FF8B3E" stop-opacity=".65"/><stop offset="1" stop-color="#FF8B3E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFE3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <linearGradient id="arcenciel" x1="0" x2="1"><stop offset="0" stop-color="#7A3CFF"/><stop offset=".17" stop-color="#3B6CFF"/><stop offset=".33" stop-color="#22B0C8"/><stop offset=".5" stop-color="#3CC23C"/><stop offset=".67" stop-color="#F2D22B"/><stop offset=".83" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E3261B"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#7FE3FF"></span>électron</li>
+        <li><span class="sw" style="background:#B9B2CC"></span>trou (électron manquant)</li>
+        <li><span class="sw" style="background:#6C7CFF"></span>photon visible (absorbé)</li>
+        <li><span class="sw" style="background:#FFD24A"></span>champ interne, sens du courant i</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié, tailles non respectées. Le seuil de 1,12 eV du silicium et le partage de l'énergie perdue sont des ordres de grandeur, hors programme ; le rendement de 15 à 20 % et son calcul sont au programme.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, flash, label} = ANIM.H;
+const ORANGE = '#FF8B3E', BLEU = '#5AA9FF', BLANC = '#F2F5FA', GRIS = '#9C93AE', CYAN = '#7FE3FF', KO = '#FF6B5B', OR = '#FFD24A', JAUNE = '#FFE27A', IR = '#C2413A', BLEUV = '#6C7CFF';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+
+/* ---------- la cellule ---------- */
+const XC0 = 40, XC1 = 290, YN0 = 72, YJ0 = 140, YJ1 = 160, YP1 = 228, YA1 = 238;
+const DOIGTS = [70, 130, 190, 250];
+const AMP = [352, 140];                                   /* l'ampoule */
+const NE = Array.from({length:9}, (_, i) => [60 + i*26, 88 + (i % 3)*17]);
+const NT = Array.from({length:9}, (_, i) => [60 + i*26, 176 + (i % 3)*17]);
+const PAIRES = [1, 4, 7];                                 /* porteurs qui se recombinent à la jonction (étape 2) */
+const T_DIFF = [11, 14];
+
+/* le chemin d'un électron dans le circuit : grille → fil → ampoule → anode */
+function chemin(x){ return [[x, YN0], [x, 58], [AMP[0], 58], [AMP[0], 233], [x + 8, 233], [x + 8, YP1 - 2]]; }
+function le_long(pts, u){
+  const L = []; let tot = 0;
+  for(let i=0; i<pts.length-1; i++){ const d = Math.hypot(pts[i+1][0]-pts[i][0], pts[i+1][1]-pts[i][1]); L.push(d); tot += d; }
+  let s = clamp(u, 0, 1)*tot;
+  for(let i=0; i<L.length; i++){ if(s <= L[i]) { const r = L[i] ? s/L[i] : 0; return [lerp(pts[i][0], pts[i+1][0], r), lerp(pts[i][1], pts[i+1][1], r)]; } s -= L[i]; }
+  return pts[pts.length-1];
+}
+
+function paquet(x, y, ux, uy, wl, col, o, t, long=34, amp=5){
+  if(o <= 0) return '';
+  let d = '';
+  for(let s=-long/2, i=0; s<=long/2; s+=1.1, i++){
+    const env = Math.pow(Math.cos(Math.PI*s/long), 2), a = amp*env*Math.sin(2*Math.PI*s/wl - t*14);
+    d += (i ? 'L' : 'M') + f(x + ux*s - uy*a) + ' ' + f(y + uy*s + ux*a);
+  }
+  return `<g opacity="${op(o)}"><path d="${d}" fill="none" stroke="${col}" stroke-width="4.5" stroke-opacity=".22" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${col}" stroke-width="1.6" stroke-linecap="round"/></g>`;
+}
+/* un photon qui tombe verticalement : départ, impact, position x, point d'arrivée y */
+function chute(t, a, h, x, y, wl, col, apres=0){
+  if(t < a || t > h + apres) return '';
+  const yy = t <= h ? lerp(-16, y, lin(t, a, h)) : y + (t - h)*(y + 16)/(h - a);
+  const o = k1(t, a, a + .3)*(apres ? 1 - lin(t, h + apres*.6, h + apres) : 1);
+  return paquet(x, yy, 0, 1, wl, col, o, t);
+}
+const k1 = (tt, a, b) => kAt(tt, a, b);
+const electron = (x, y, o) => o > 0 ? `<circle cx="${f(x)}" cy="${f(y)}" r="5.5" fill="${CYAN}" opacity="${op(o*.25)}"/><circle cx="${f(x)}" cy="${f(y)}" r="3.2" fill="${CYAN}" opacity="${op(o)}"/>` : '';
+const trou = (x, y, o) => o > 0 ? `<circle cx="${f(x)}" cy="${f(y)}" r="3.8" fill="none" stroke="${BLANC}" stroke-width="1.6" opacity="${op(o)}"/>` : '';
+
+/* photons de l'étape 5 */
+let graine = 3; const rnd = () => (graine = (graine*16807) % 2147483647, (graine - 1)/2147483646);
+const PLUIE = []; for(let h = 43; h <= 51; h += .38) PLUIE.push({h, x:55 + rnd()*220});
+
+/* le rendement : segments de l'énergie reçue (ordres de grandeur) */
+const BILAN = [
+  {p:5,  col:'#6E6688', txt:"réfléchie, masquée par la grille"},
+  {p:20, col:IR,        txt:"photons trop faibles : traversent"},
+  {p:32, col:'#FF7A3D', txt:"excès au-delà du seuil : chaleur"},
+  {p:26, col:'#8C6A4F', txt:"recombinaisons, résistances"},
+  {p:17, col:OR,        txt:"énergie électrique ≈ 15 à 20 %"}
+];
+
+function draw(c){
+  const {t, k} = c;
+  const st = {};
+  let cells = '', nuc = '', sp = '', chr = '', fx = '', lab = '';
+
+  /* ---------- la cellule et le circuit ---------- */
+  const oc = k(0, 1);
+  cells += `<g opacity="${op(oc)}">`;
+  cells += `<rect x="${XC0}" y="${YN0}" width="${XC1-XC0}" height="${YJ0-YN0}" fill="${BLEU}" fill-opacity=".2"/>`;
+  cells += `<rect x="${XC0}" y="${YJ0}" width="${XC1-XC0}" height="${YJ1-YJ0}" fill="#FFFFFF" fill-opacity=".07"/>`;
+  cells += `<rect x="${XC0}" y="${YJ1}" width="${XC1-XC0}" height="${YP1-YJ1}" fill="${ORANGE}" fill-opacity=".18"/>`;
+  cells += `<rect x="${XC0}" y="${YP1}" width="${XC1-XC0}" height="${YA1-YP1}" fill="#A9A3B8"/>`;
+  for(const x of DOIGTS) cells += `<rect x="${x-5}" y="58" width="10" height="${YN0-58}" fill="#A9A3B8"/>`;
+  cells += `<path d="M${DOIGTS[0]-5} 58 L${AMP[0]} 58 L${AMP[0]} ${AMP[1]-15} M${AMP[0]} ${AMP[1]+15} L${AMP[0]} 233 L${XC1} 233" fill="none" stroke="#A9A3B8" stroke-width="2.2"/>`;
+  cells += `</g>`;
+  lab += `<g opacity="${op(oc)}" font-size="8.6" text-anchor="start">`;
+  lab += `<text x="${XC0+4}" y="${YN0+12}" fill="#BFD8FF">couche n · silicium + phosphore</text>`;
+  lab += `<text x="${XC0+4}" y="${YJ0+13}" fill="${GRIS}">jonction</text>`;
+  lab += `<text x="${XC0+4}" y="${YP1-6}" fill="#FFCFA8">couche p · silicium + bore</text>`;
+  lab += `<text x="${XC0}" y="52" fill="${GRIS}">grille = cathode (−)</text><text x="${XC0}" y="${YA1+13}" fill="${GRIS}">plaque = anode (+)</text>`;
+  lab += `</g>`;
+
+  /* ---------- l'ampoule ---------- */
+  let lum = 0;
+  lum = Math.max(lum, lin(t, 33, 33.6)*(1 - lin(t, 35, 37)));
+  lum = Math.max(lum, kAt(t, 42.6, 44)*(1 - kAt(t, 51.6, 52.4)));
+  lum = Math.max(lum, .5*lin(t, 59.6, 60)*(1 - lin(t, 60.8, 62)));
+  nuc += `<circle cx="${AMP[0]}" cy="${AMP[1]}" r="${f(18 + 26*lum)}" fill="${JAUNE}" opacity="${op(lum*.22)}"/>`;
+  nuc += `<circle cx="${AMP[0]}" cy="${AMP[1]}" r="15" fill="${JAUNE}" fill-opacity="${op(.08 + .8*lum)}" stroke="#D9D2EA" stroke-width="1.6" opacity="${op(oc)}"/>`;
+  nuc += `<path d="M${AMP[0]-6} ${AMP[1]+3} q3 -9 6 0 q3 9 6 0" fill="none" stroke="#D9D2EA" stroke-width="1.2" opacity="${op(oc)}"/>`;
+  lab += `<text x="${AMP[0]}" y="${AMP[1]+30}" font-size="8.6" fill="${GRIS}" opacity="${op(oc)}">ampoule</text>`;
+
+  /* ---------- porteurs libres : électrons (n) et trous (p) ---------- */
+  NE.forEach(([x, y], i) => {
+    let X = x + 3*Math.sin(t*1.7 + i*2.1), Y = y + 3*Math.cos(t*1.3 + i);
+    let o = k(.6, 1.6);
+    if(PAIRES.includes(i)){ const g = kAt(t, T_DIFF[0], T_DIFF[1]); X = lerp(X, x + 4, g); Y = lerp(Y, (YJ0 + YJ1)/2, g); o *= 1 - lin(t, T_DIFF[1], T_DIFF[1] + .3); }
+    chr += electron(X, Y, o);
+    if(i === 2) st.e = [X, Y];
+  });
+  NT.forEach(([x, y], i) => {
+    let X = x + 3*Math.sin(t*1.5 + i*1.3), Y = y + 3*Math.cos(t*1.1 + i*2);
+    let o = k(.6, 1.6);
+    if(PAIRES.includes(i)){ const g = kAt(t, T_DIFF[0], T_DIFF[1]); X = lerp(X, x + 4, g); Y = lerp(Y, (YJ0 + YJ1)/2, g); o *= 1 - lin(t, T_DIFF[1], T_DIFF[1] + .3); }
+    chr += trou(X, Y, o);
+    if(i === 5) st.h = [X, Y];
+  });
+  for(const i of PAIRES) fx += flash(NE[i][0] + 4, (YJ0 + YJ1)/2, T_DIFF[1], 1);
+  /* charges fixes et champ interne */
+  const oq = k(T_DIFF[1], T_DIFF[1] + 1.2);
+  if(oq > 0){
+    for(const i of PAIRES){
+      const x = NE[i][0] + 4;
+      sp += `<g opacity="${op(oq)}" font-family="system-ui, sans-serif" font-weight="700" font-size="11" text-anchor="middle"><circle cx="${x}" cy="${YJ0-7}" r="6" fill="none" stroke="#FFB0A8" stroke-width="1.2"/><text x="${x}" y="${YJ0-3}" fill="#FFB0A8">+</text><circle cx="${x}" cy="${YJ1+7}" r="6" fill="none" stroke="#A8C8FF" stroke-width="1.2"/><text x="${x}" y="${YJ1+11}" fill="#A8C8FF">−</text></g>`;
+    }
+    st.q = [NE[4][0] + 4, YJ0 - 7];
+  }
+  const oF = k(16, 17.4);
+  if(oF > 0){
+    for(const x of [125, 205, 270]) sp += `<g opacity="${op(oF)}"><line x1="${x}" y1="${YJ0-2}" x2="${x}" y2="${YJ1-4}" stroke="${OR}" stroke-width="2.2"/><path d="M${x-4} ${YJ1-8} L${x} ${YJ1} L${x+4} ${YJ1-8} Z" fill="${OR}"/></g>`;
+    lab += label(212, YJ0 - 22, "champ électrique interne", OR, 8.6, oF*(1 - k(28, 29)));
+  }
+
+  /* ---------- étape 3-4 : un photon, une paire, un tour de circuit ---------- */
+  const XP = 140, YP = 150;
+  sp += chute(t, 20, 21.6, XP, YP, 7, BLEUV);
+  fx += flash(XP, YP, 21.7, 1.1);
+  if(t >= 21.6 && t < 39.5){
+    const sep = kAt(t, 22.4, 24.8);
+    let E = [lerp(XP - 2, 130, sep), lerp(YP, YN0 + 3, sep)];
+    if(t > 30.5) E = le_long(chemin(130), lin(t, 30.5, 38.5));
+    const H = [lerp(XP + 4, 138, kAt(t, 22.4, 25.4)), lerp(YP + 2, YP1 - 4, kAt(t, 22.4, 25.4))];
+    const o = k(21.6, 22) * (1 - lin(t, 38.6, 39.2));
+    chr += electron(E[0], E[1], o) + trou(H[0], H[1], o);
+    st.pe = E; st.ph = H;
+    if(t > 22.4 && t < 25.5){ const g = lin(t, 22.4, 25.5); sp += `<line x1="${f(E[0])}" y1="${f(E[1]+8)}" x2="${f(E[0])}" y2="${f(E[1]+20)}" stroke="${CYAN}" stroke-width="1" opacity="${op(.6*(1-g))}"/>`; }
+  }
+  fx += flash(138, YP1 - 4, 38.6, 1.1);
+  /* sens des électrons et du courant conventionnel */
+  const os = k(31.5, 32.5)*(1 - k(51.6, 52.4));
+  if(os > 0){
+    sp += `<g opacity="${op(os)}"><line x1="215" y1="49" x2="250" y2="49" stroke="${CYAN}" stroke-width="1.6"/><path d="M246 45 L253 49 L246 53 Z" fill="${CYAN}"/></g>`;
+    lab += `<text x="196" y="52" font-size="8.6" fill="${CYAN}" opacity="${op(os)}">e⁻</text>`;
+    sp += `<g opacity="${op(os)}"><line x1="300" y1="248" x2="335" y2="248" stroke="${OR}" stroke-width="1.6"/><path d="M331 244 L338 248 L331 252 Z" fill="${OR}"/></g>`;
+    lab += `<text x="292" y="251" font-size="9" font-weight="700" fill="${OR}" opacity="${op(os)}">i</text>`;
+  }
+
+  /* ---------- étape 5 : beaucoup de photons, un courant ---------- */
+  for(const p of PLUIE){
+    sp += chute(t, p.h - 1.4, p.h, p.x, YP, 7, BLEUV);
+    if(t >= p.h && t < p.h + .9){
+      const g = lin(t, p.h, p.h + .9), o = 1 - g;
+      chr += electron(p.x - 2, lerp(YP, YN0 + 4, g), o) + trou(p.x + 4, lerp(YP + 2, YP1 - 6, g), o);
+    }
+  }
+  const oflux = k(43, 44)*(1 - k(51.6, 52.4));
+  if(oflux > 0) for(let n=0; n<12; n++){ const P = le_long(chemin(70 + (n % 4)*60), ((t - 43)*.11 + n/12) % 1); chr += electron(P[0], P[1], oflux); }
+
+  /* ---------- étape 6 : trop faible, trop énergétique ---------- */
+  sp += chute(t, 53, 54.8, 225, YP, 22, IR, 2.4);
+  if(t > 54.6 && t < 57.4) lab += label(225, 268, "infrarouge 0,83 eV : traverse sans effet", '#FFB0A8', 8.6, k(54.6, 55)*(1 - k(56.8, 57.4)));
+  sp += chute(t, 57.2, 58.6, 100, YP, 5, BLEUV);
+  fx += flash(100, YP, 58.7, 1);
+  if(t > 58.6 && t < 62.6){
+    const g = kAt(t, 58.8, 60.6), o = 1 - lin(t, 61.8, 62.6);
+    chr += electron(lerp(98, 100, g), lerp(YP, YN0 + 4, g), o) + trou(lerp(104, 106, g), lerp(YP + 2, YP1 - 6, g), o);
+    const hc = lin(t, 58.6, 59.2)*(1 - lin(t, 60.6, 62));
+    fx += `<circle cx="100" cy="${YP}" r="${f(10 + 18*lin(t, 58.6, 60.6))}" fill="${KO}" opacity="${op(hc*.35)}"/>`;
+    lab += label(100, 268, "bleu 3,1 eV : un électron, et de la chaleur", '#FFD0A8', 8.6, k(58.8, 59.2)*(1 - k(62, 62.6)));
+  }
+
+  /* ---------- indicateur de courant ---------- */
+  const tc = t < 30 ? null : t < 42 ? "courant : un électron à la fois" : t < 52 ? "courant : fort, proportionnel à l'éclairement" : t < 63 ? "courant : selon les photons utiles" : null;
+  if(tc) lab += label(200, 296, tc, BLANC, 8.6, k(30, 30.6)*(1 - k(62.4, 63)));
+
+  /* ---------- étape 7 : où part l'énergie ---------- */
+  const oB = k(63, 64);
+  if(oB > 0){
+    const X0 = 30, W = 340, Y = 318;
+    lab += `<text x="200" y="${Y - 10}" font-size="9" fill="${BLANC}" opacity="${op(oB)}">énergie lumineuse reçue par la cellule : 100 %</text>`;
+    let x = X0;
+    BILAN.forEach((b, i) => {
+      const w = W*b.p/100, o = k(63.6 + i*1.4, 64.4 + i*1.4), yl = Y + 36 + i*13;
+      cells += `<rect x="${f(x)}" y="${Y}" width="${f(w*o)}" height="18" fill="${b.col}" opacity="${op(oB)}"/>`;
+      lab += `<g opacity="${op(o)}"><rect x="40" y="${yl - 8}" width="12" height="9" rx="2" fill="${b.col}"/><text x="58" y="${yl}" font-size="8.8" text-anchor="start" fill="${i === 4 ? OR : BLANC}">${b.txt}</text></g>`;
+      x += w;
+    });
+    lab += label(200, 418, "η = Pél / Preçue", OR, 9.5, k(71, 71.8));
+  }
+  return {cells, nuc, sp, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:9, title:"1. Deux couches de silicium dopé",
+  text:"La cellule est une plaquette de <strong>silicium</strong>. La couche du haut (<strong>n</strong>) est dopée au phosphore : elle a des <strong>électrons en trop</strong> (points bleus). La couche du bas (<strong>p</strong>) est dopée au bore : il lui manque des électrons, elle a des <strong>trous</strong> (cercles). En haut, une <strong>grille</strong> (cathode) ; en bas, une plaque (anode).",
+  state:"Cellule dans le noir : aucun courant"},
+ {t:9, e:19, title:"2. À la jonction, un champ électrique se forme",
+  text:"Près de la jonction, des électrons de la couche n passent dans la couche p et comblent des trous. La couche n garde des charges <strong>+</strong>, la couche p des charges <strong>−</strong>, fixes. Ces charges créent un <strong>champ électrique interne</strong>, permanent, orienté de n vers p.",
+  state:"Champ interne installé, toujours aucun courant"},
+ {t:19, e:30, title:"3. Un photon libère un électron",
+  text:"Un photon assez énergétique est absorbé près de la jonction : il <strong>libère un électron</strong>, qui laisse un <strong>trou</strong>. Le champ interne les <strong>sépare</strong> aussitôt : l'électron part vers la couche n et la grille, le trou vers la couche p. Sans ce champ, ils se recombineraient sur place et rien ne se passerait.",
+  state:"Une paire électron-trou, séparée par le champ"},
+ {t:30, e:42, title:"4. L'électron fait le tour du circuit",
+  text:"L'électron sort par la <strong>grille (−)</strong>, traverse l'ampoule — à qui il cède de l'énergie électrique — et revient par l'<strong>anode (+)</strong>, où il comble le trou. La cellule n'a besoin d'aucun générateur : elle <strong>est</strong> le générateur. Le courant conventionnel <strong>i</strong> circule en sens inverse des électrons.",
+  state:"Un électron a fait le tour : l'ampoule s'est allumée un instant"},
+ {t:42, e:52, title:"5. Plus de lumière, plus de courant",
+  text:"Chaque photon absorbé fait circuler un électron. Avec beaucoup de photons, les électrons circulent en continu : c'est un <strong>courant</strong>. Son intensité est proportionnelle au <strong>nombre de photons absorbés</strong>, donc à l'éclairement : l'ampoule brille.",
+  state:"Courant continu, proportionnel à l'éclairement"},
+ {t:52, e:63, title:"6. Trop faible, ou trop énergétique",
+  text:"Un photon infrarouge de 1 500 nm (0,83 eV) n'a pas l'énergie minimale du silicium, 1,12 eV : il <strong>traverse sans effet</strong>. Un photon bleu de 3,1 eV libère bien un électron, mais l'énergie au-delà du seuil est <strong>perdue en chaleur</strong> : la cellule chauffe.",
+  state:"Deux pertes qui viennent du modèle du photon"},
+ {t:63, e:74, title:"7. Où part l'énergie : le rendement",
+  text:"De l'énergie lumineuse reçue, une partie est réfléchie, une partie traverse sans effet, une partie part en chaleur, une partie est perdue par recombinaison. Le reste devient de l'énergie électrique : <strong>η = P<sub>él,max</sub> / P<sub>reçue</sub></strong>, de l'ordre de <strong>15 à 20 %</strong> pour un panneau du commerce (12 % pour la cellule du TP 6).",
+  state:"Rendement : la part de l'énergie lumineuse devenue électrique"}
+];
+
+const CALL = [
+  {a:2, b:8.6, text:"électron en trop (couche n)", lab:[165,30], anc:st=>[st.e].filter(Boolean)},
+  {a:3, b:8.6, text:"trou (couche p)", lab:[165,272], anc:st=>[st.h].filter(Boolean)},
+  {a:15, b:18.4, text:"charges fixes", lab:[320,112], anc:st=>[st.q].filter(Boolean)},
+  {a:22, b:26, text:"électron libéré", lab:[230,96], anc:st=>[st.pe].filter(Boolean)},
+  {a:23, b:27, text:"trou", lab:[230,205], anc:st=>[st.ph].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[9.2,'step'],[14,'fuse'],[19.2,'step'],[20.2,'whoosh'],[21.7,'pop'],[30.2,'step'],[33.2,'spark'],[38.6,'pop'],[42.2,'step'],[43,'whoosh'],[52.2,'step'],[53.2,'whoosh'],[57.4,'whoosh'],[58.7,'pop'],[63.2,'step'],[71,'final']];
+
+const QUIZ = [
+ {q:"Dans une cellule photovoltaïque, quel est le rôle du champ électrique interne ?",
+  o:["Arracher les électrons aux atomes de silicium","Séparer l'électron libéré de son trou et pousser l'électron vers la grille","Fournir l'énergie qui allume l'ampoule"], a:1,
+  ex:"Ce sont les photons qui libèrent les électrons. Le champ de la jonction les met en mouvement dans un sens unique avant qu'ils ne se recombinent."},
+ {q:"Pourquoi la cathode, sur la face éclairée, est-elle une grille et non une plaque ?",
+  o:["Pour laisser passer la lumière tout en collectant les électrons","Pour que la cellule soit plus légère","Pour refroidir la cellule"], a:0,
+  ex:"Une plaque pleine arrêterait la lumière. La grille masque peu de surface et recueille les électrons sur toute la cellule."},
+ {q:"On double l'éclairement d'une cellule (même lumière). L'intensité du courant…",
+  o:["reste la même","double à peu près","est divisée par deux"], a:1,
+  ex:"Deux fois plus de photons absorbés, deux fois plus d'électrons mis en mouvement : le courant est proportionnel à l'éclairement."},
+ {q:"Un photon infrarouge de 0,8 eV arrive sur une cellule au silicium (seuil 1,12 eV). Il…",
+  o:["libère un électron plus lent","libère un électron si la lumière est intense","ne libère aucun électron"], a:2,
+  ex:"Sous le seuil, un photon ne peut libérer aucun électron, quel que soit le nombre de photons. C'est l'une des grandes pertes du rendement."}
+];
+
+ANIM.lancer({id:'cellule', END:74, SCENES, CALL, CUES, QUIZ, draw, graine:9});
+})();
+</script>
+</body>
+</html>
