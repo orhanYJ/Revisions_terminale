@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A120B">
+<title>L'effet photoélectrique : un photon, un électron</title>
+<link rel="stylesheet" href="moteur.css?v=2">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../">← Physique-Chimie</a> · Chapitre 4, fiches 3 à 5 : l'effet photoélectrique</p>
+    <h1>L'effet photoélectrique : un photon, un électron</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation : une plaque de zinc éclairée par une lumière rouge très intense n'émet aucun électron ; éclairée en ultraviolet, même faiblement, elle émet aussitôt des électrons ; plus d'intensité donne plus d'électrons, une fréquence plus grande des électrons plus rapides ; le graphique de l'énergie cinétique en fonction de la fréquence se construit point par point">
+        <defs>
+          <radialGradient id="field" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#1E1A2E"/><stop offset=".7" stop-color="#110E1A"/><stop offset="1" stop-color="#08070D"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FF8B3E" stop-opacity=".65"/><stop offset="1" stop-color="#FF8B3E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFE3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <linearGradient id="arcenciel" x1="0" x2="1"><stop offset="0" stop-color="#7A3CFF"/><stop offset=".17" stop-color="#3B6CFF"/><stop offset=".33" stop-color="#22B0C8"/><stop offset=".5" stop-color="#3CC23C"/><stop offset=".67" stop-color="#F2D22B"/><stop offset=".83" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E3261B"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF4A3D"></span>photon rouge (1,9 eV)</li>
+        <li><span class="sw" style="background:#B48CFF"></span>photon ultraviolet (couleur fictive)</li>
+        <li><span class="sw" style="background:#7FE3FF"></span>électron</li>
+        <li><span class="sw" style="background:#FFD24A"></span>énergie cinétique de l'électron</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Le bilan de droite vaut pour un seul électron et un seul photon. Φ = 4,3 eV est la valeur usuelle du zinc ; les énergies cinétiques indiquées sont des valeurs maximales (électrons les moins liés). Les photons ultraviolets sont invisibles : leur couleur violette est fictive.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=2"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, flash, halo, label} = ANIM.H;
+const ORANGE = '#FF8B3E', VIO = '#B48CFF', ROUGE = '#FF4A3D', BLANC = '#F2F5FA', GRIS = '#9C93AE', CYAN = '#7FE3FF', KO = '#FF6B5B', OR = '#FFD24A', VERT = '#7CE08A';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+const virg = (x,n=1) => x.toFixed(n).replace('.', ',');
+
+/* ---------- la plaque de zinc et ses électrons ---------- */
+const PHI = 4.3;
+const EL = Array.from({length:11}, (_, i) => [30 + i*18.5, 214 + (i % 2)*12]);
+const LAMPE = [34, 34];
+const TYPES = {
+  R:{E:1.9, lam:650, col:ROUGE},
+  U:{E:5.4, lam:230, col:VIO},
+  V:{E:6.2, lam:200, col:VIO}
+};
+/* le programme des photons : instant d'arrivée, électron visé, type */
+let graine = 7; const rnd = () => (graine = (graine*16807) % 2147483647, (graine - 1)/2147483646);
+const TIRS = [];
+function rafale(t0, t1, pas, typ){ for(let t = t0; t <= t1; t += pas) TIRS.push({h:t, i:Math.floor(rnd()*EL.length), typ}); }
+rafale(11, 19.6, .22, 'R'); rafale(20.2, 28.8, .45, 'R');
+[32.5, 35.5, 38.5].forEach(h => TIRS.push({h, i:[3, 7, 5][TIRS.length % 3], typ:'U'}));
+rafale(42.5, 50.4, .3, 'U'); rafale(52.5, 60.4, .3, 'V');
+const VOL = 1.3;
+const vitesse = E => 40 + 45*(E - PHI);                  /* px/s, croît avec l'énergie cinétique */
+const DIR = (() => { const x = .35, y = -1, n = Math.hypot(x, y); return [x/n, y/n]; })();
+
+/* ---------- les phases de la lampe ---------- */
+const PHASES = [
+  {a:8.5, b:30, typ:'R', txt:"lampe rouge · 650 nm · très intense", force:1},
+  {a:30.5, b:41, typ:'U', txt:"lampe UV · 230 nm · faible", force:.35},
+  {a:41, b:51, typ:'U', txt:"lampe UV · 230 nm · intense", force:1},
+  {a:51, b:62.5, typ:'V', txt:"lampe UV · 200 nm · intense", force:1}
+];
+const phase = t => PHASES.find(p => t >= p.a && t < p.b);
+
+/* ---------- le bilan d'énergie (à droite) ---------- */
+const YB = 200, PX = 25, Y0 = YB - PHI*PX;               /* 25 px par eV */
+const XW0 = 252, XW1 = 380, XBAR = 312, XONDE = 350;
+
+/* ---------- le graphique Ec = f(ν) ---------- */
+const gx = nu => 50 + nu*19, gy = Ec => 405 - Ec*45;
+const H = 4.1357;                                         /* h en eV par 10^15 Hz → 0,41357 par 10^14 */
+const POINTS = [{t:19.8, nu:1.9/0.41357, Ec:0, col:ROUGE, txt:"rouge : rien"}, {t:33.5, nu:5.4/0.41357, Ec:1.1, col:VIO, txt:"230 nm"}, {t:54, nu:6.2/0.41357, Ec:1.9, col:VIO, txt:"200 nm"}];
+const NU0 = PHI/0.41357;
+
+function paquet(x, y, ux, uy, wl, col, o, t, long=34, amp=5){
+  if(o <= 0) return '';
+  let d = '';
+  for(let s=-long/2, i=0; s<=long/2; s+=1.1, i++){
+    const env = Math.pow(Math.cos(Math.PI*s/long), 2), a = amp*env*Math.sin(2*Math.PI*s/wl - t*14);
+    d += (i ? 'L' : 'M') + f(x + ux*s - uy*a) + ' ' + f(y + uy*s + ux*a);
+  }
+  return `<g opacity="${op(o)}"><path d="${d}" fill="none" stroke="${col}" stroke-width="4.5" stroke-opacity=".22" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${col}" stroke-width="1.6" stroke-linecap="round"/></g>`;
+}
+const wlPx = lam => 3.4 + lam/34;
+function croix(x, y, o){ return `<g opacity="${op(o)}" stroke="${KO}" stroke-width="2.4" stroke-linecap="round"><path d="M${x-5} ${f(y-5)} L${x+5} ${f(y+5)}M${x+5} ${f(y-5)} L${x-5} ${f(y+5)}"/></g>`; }
+
+function draw(c){
+  const {t, k} = c;
+  const st = {};
+  let cells = '', nuc = '', sp = '', chr = '', fx = '', lab = '';
+  const ph = phase(t);
+
+  /* ---------- la lampe ---------- */
+  const oL = ph ? k(ph.a, ph.a + .6)*(1 - k(ph.b - .4, ph.b)) : 0;
+  const colL = ph ? TYPES[ph.typ].col : GRIS;
+  nuc += `<circle cx="${LAMPE[0]}" cy="${LAMPE[1]}" r="12" fill="#2A2438" stroke="#6E6688" stroke-width="1.4"/>`;
+  if(oL > 0){
+    nuc += `<circle cx="${LAMPE[0]}" cy="${LAMPE[1]}" r="${f(16 + 14*ph.force)}" fill="${colL}" opacity="${op(oL*.18)}"/><circle cx="${LAMPE[0]}" cy="${LAMPE[1]}" r="8" fill="${colL}" opacity="${op(oL)}"/>`;
+    lab += label(120, 14, ph.txt, ph.typ === 'R' ? '#FFC2BC' : '#E2D4FF', 9, oL);
+  }
+
+  /* ---------- la plaque ---------- */
+  const oP = k(0, 1);
+  cells += `<rect x="18" y="204" width="204" height="36" rx="3" fill="#3B3F4C" stroke="#7D8396" stroke-width="1.2" opacity="${op(oP)}"/>`;
+  lab += `<text x="120" y="252" font-size="8.6" fill="${GRIS}" opacity="${op(oP)}">plaque de zinc · Φ = 4,3 eV</text>`;
+  EL.forEach(([x, y], i) => {
+    let dx = 0, o = 1;
+    for(const tir of TIRS){
+      if(tir.i !== i || t < tir.h) continue;
+      const s = t - tir.h;
+      if(tir.typ === 'R' && s < .8) dx += 3.2*Math.sin(40*s)*Math.exp(-s*4);
+      if(tir.typ !== 'R' && s < 1.6) o = Math.min(o, s < .05 ? 0 : clamp((s - .6)/1, 0, 1));
+    }
+    chr += `<circle cx="${f(x + dx)}" cy="${y}" r="3.2" fill="${CYAN}" opacity="${op(oP*o)}"/>`;
+  });
+
+  /* ---------- les photons et les électrons éjectés ---------- */
+  let dernier = null;
+  for(const tir of TIRS){
+    const T = TYPES[tir.typ], [ex, ey] = EL[tir.i];
+    if(t >= tir.h - VOL && t < tir.h){
+      const u = lin(t, tir.h - VOL, tir.h), dx = ex - LAMPE[0], dy = ey - LAMPE[1], L = Math.hypot(dx, dy);
+      chr += paquet(lerp(LAMPE[0], ex, u), lerp(LAMPE[1], ey, u), dx/L, dy/L, wlPx(T.lam), T.col, Math.min(1, u*5), t);
+    }
+    if(tir.typ !== 'R' && t >= tir.h && t < tir.h + 3.2){
+      const s = t - tir.h, v = vitesse(T.E), x = ex + DIR[0]*v*s, y = ey + DIR[1]*v*s;
+      if(y > -10){
+        const o = 1 - lin(s, 2.6, 3.2);
+        chr += `<line x1="${f(x - DIR[0]*v*.22)}" y1="${f(y - DIR[1]*v*.22)}" x2="${f(x)}" y2="${f(y)}" stroke="${OR}" stroke-width="1.6" stroke-linecap="round" opacity="${op(o*.8)}"/><circle cx="${f(x)}" cy="${f(y)}" r="3.4" fill="${CYAN}" opacity="${op(o)}"/>`;
+        dernier = [x, y];
+      }
+      if(s < .5) fx += `<circle cx="${ex}" cy="${ey}" r="${f(4 + 16*s)}" fill="none" stroke="${T.col}" stroke-width="1.4" opacity="${op(1 - s*2)}"/>`;
+    }
+  }
+  st.ej = dernier;
+
+  /* ---------- bilan d'énergie pour UN électron ---------- */
+  const oW = k(1, 2.4);
+  cells += `<g opacity="${op(oW)}" font-family="system-ui, sans-serif">`;
+  cells += `<text x="${(XW0 + XW1)/2}" y="40" font-size="9" fill="${BLANC}" text-anchor="middle">bilan pour UN électron</text>`;
+  cells += `<line x1="${XW0}" y1="${YB}" x2="${XW1}" y2="${YB}" stroke="${CYAN}" stroke-width="2"/><text x="${XW1}" y="${YB + 13}" font-size="8.4" fill="${CYAN}" text-anchor="end">électron dans le métal</text>`;
+  cells += `<line x1="${XW0}" y1="${f(Y0)}" x2="${XW1}" y2="${f(Y0)}" stroke="${GRIS}" stroke-width="1.3" stroke-dasharray="4 3"/><text x="${XW1}" y="${f(Y0 - 4)}" font-size="8.4" fill="${GRIS}" text-anchor="end">hors du métal</text>`;
+  cells += `<line x1="262" y1="${YB - 3}" x2="262" y2="${f(Y0 + 3)}" stroke="${BLANC}" stroke-width="1.3"/><path d="M258 ${YB - 8} L262 ${YB - 1} L266 ${YB - 8}M258 ${f(Y0 + 8)} L262 ${f(Y0 + 1)} L266 ${f(Y0 + 8)}" fill="none" stroke="${BLANC}" stroke-width="1.3"/>`;
+  cells += `<text x="256" y="${f((YB + Y0)/2 + 3)}" font-size="8.6" fill="${BLANC}" text-anchor="end">Φ = 4,3 eV</text>`;
+  cells += `</g>`;
+  if(ph){
+    const T = TYPES[ph.typ], g = k(ph.a + .6, ph.a + 1.8), ob = oW*(1 - k(ph.b - .4, ph.b));
+    const Eh = T.E*g, ytop = YB - Eh*PX;
+    sp += `<line x1="${XBAR}" y1="${YB}" x2="${XBAR}" y2="${f(Math.max(ytop, Y0))}" stroke="${T.col}" stroke-width="7" stroke-linecap="round" opacity="${op(ob*.9)}"/>`;
+    if(Eh > PHI) sp += `<line x1="${XBAR}" y1="${f(Y0)}" x2="${XBAR}" y2="${f(ytop)}" stroke="${OR}" stroke-width="7" stroke-linecap="round" opacity="${op(ob)}"/>`;
+    lab += label(XBAR, f(YB - Math.min(Eh, PHI)*PX/2), `photon : ${virg(T.E)} eV`, ph.typ === 'R' ? '#FFC2BC' : '#E2D4FF', 8.4, ob*g);
+    const ov = ob*k(ph.a + 1.8, ph.a + 2.3);
+    if(ph.typ === 'R'){ sp += croix(XBAR, ytop - 8, ov); lab += label(XBAR, ytop - 24, "1,9 < 4,3 : il ne sort pas", KO, 8.4, ov); }
+    else lab += label(XBAR - 44, ytop + 9, `Ec = ${virg(T.E - PHI)} eV`, OR, 8.6, ov);
+  }
+  /* ce que prévoyait le modèle ondulatoire : une énergie qui s'accumule */
+  const oO = k(20.4, 21)*(1 - k(29.4, 30));
+  if(oO > 0){
+    const hO = Math.min(PHI*1.18, 4.9*lin(t, 20.6, 24.4))*PX;
+    sp += `<rect x="${XONDE - 5}" y="${f(YB - hO)}" width="10" height="${f(hO)}" rx="4" fill="none" stroke="${BLANC}" stroke-width="1.3" stroke-dasharray="3 3" opacity="${op(oO)}"/>`;
+    lab += label(XONDE - 4, 62, "si l'énergie s'accumulait…", BLANC, 8.4, oO*k(20.6, 21.2));
+    const ox = oO*k(24.8, 25.4);
+    sp += croix(XONDE, YB - hO - 8, ox);
+    lab += label(XONDE - 14, YB - hO - 24, "jamais observé", KO, 8.6, ox);
+  }
+
+  /* ---------- compteurs ---------- */
+  if(ph){
+    const oc = k(ph.a + 1.8, ph.a + 2.4)*(1 - k(ph.b - .4, ph.b));
+    const n = {R:"électrons émis : aucun", U:ph.force < .5 ? "électrons émis : un par photon UV" : "électrons émis : beaucoup plus", V:"électrons émis : autant (même intensité)"}[ph.typ];
+    const e = {R:"énergie cinétique : —", U:"Ec = 1,1 eV pour chacun", V:"Ec = 1,9 eV pour chacun : plus rapides"}[ph.typ];
+    lab += label(120, 270, n, BLANC, 8.6, oc) + label(120, 290, e, ph.typ === 'R' ? GRIS : OR, 8.6, oc);
+  }
+
+  /* ---------- graphique Ec = f(ν) ---------- */
+  const oG = k(19, 20.2);
+  if(oG > 0){
+    cells += `<g opacity="${op(oG)}" font-family="system-ui, sans-serif" font-size="8" fill="${GRIS}">`;
+    cells += `<line x1="${gx(0)}" y1="${gy(0)}" x2="${gx(16.4)}" y2="${gy(0)}" stroke="${GRIS}"/><line x1="${gx(0)}" y1="${gy(0)}" x2="${gx(0)}" y2="${gy(2.3)}" stroke="${GRIS}"/>`;
+    for(const nu of [4, 8, 12, 16]) cells += `<line x1="${gx(nu)}" y1="${gy(0)}" x2="${gx(nu)}" y2="${gy(0)+4}" stroke="${GRIS}"/><text x="${gx(nu)}" y="${gy(0)+13}" text-anchor="middle">${nu}</text>`;
+    for(const E of [1, 2]) cells += `<text x="${gx(0)-5}" y="${gy(E)+3}" text-anchor="end">${E}</text><line x1="${gx(0)-3}" y1="${gy(E)}" x2="${gx(0)}" y2="${gy(E)}" stroke="${GRIS}"/>`;
+    cells += `<text x="${gx(16.4)}" y="${gy(0)+24}" text-anchor="end">fréquence ν (× 10¹⁴ Hz)</text><text x="${gx(0)+5}" y="${gy(2.3)+3}">Ec (eV)</text>`;
+    cells += `</g>`;
+    for(const p of POINTS){
+      const o = k(p.t, p.t + .5); if(o <= 0) continue;
+      chr += `<circle cx="${f(gx(p.nu))}" cy="${f(gy(p.Ec))}" r="4" fill="${p.col}" opacity="${op(o)}"/>`;
+      lab += `<text x="${f(gx(p.nu))}" y="${f(gy(p.Ec) - 9)}" font-size="8.2" fill="${p.col === ROUGE ? '#FFC2BC' : '#E2D4FF'}" opacity="${op(o)}">${p.txt}</text>`;
+      fx += flash(gx(p.nu), gy(p.Ec), p.t + .2, .9);
+    }
+    fx += halo(gx(POINTS[1].nu), gy(1.1), k(45.5, 46)*(1 - k(48.5, 49.5)), 5);
+    /* la droite du bilan */
+    const g = k(63, 65.5);
+    if(g > 0){
+      const n1 = lerp(NU0, 16.2, g);
+      sp += `<line x1="${f(gx(NU0))}" y1="${gy(0)}" x2="${f(gx(n1))}" y2="${f(gy(0.41357*(n1 - NU0)))}" stroke="${ORANGE}" stroke-width="2"/>`;
+      const o2 = k(65.5, 66.3);
+      sp += `<circle cx="${f(gx(NU0))}" cy="${gy(0)}" r="4.5" fill="none" stroke="${ORANGE}" stroke-width="2" opacity="${op(o2)}"/>`;
+      lab += label(gx(NU0) - 6, gy(0) - 16, "ν₀ = Φ/h", ORANGE, 8.6, o2);
+      lab += label(gx(15.4) - 52, gy(2.05), "pente h", ORANGE, 8.6, k(66.5, 67.3));
+      lab += label(316, 238, "hν = Φ + Ec", OR, 10, k(67.5, 68.5));
+    }
+  }
+  return {cells, nuc, sp, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:9, title:"1. Des électrons prisonniers du métal",
+  text:"Une plaque de zinc contient des électrons qui se déplacent dans le métal, mais n'en sortent pas seuls. Pour quitter le métal, un électron doit recevoir au moins le <strong>travail d'extraction</strong> Φ = 4,3 eV : c'est la « marche » à franchir, à droite.",
+  state:"Aucune lumière : aucun électron ne sort"},
+ {t:9, e:20, title:"2. Lumière rouge très intense : rien ne sort",
+  text:"Une foule de photons rouges frappe la plaque. Chacun porte 1,9 eV : l'électron qui en absorbe un s'agite, puis retombe. <strong>1,9 eV &lt; 4,3 eV</strong> : aucun électron ne sort. Une lampe plus intense envoie <strong>plus de photons</strong>, pas des photons plus énergétiques.",
+  state:"Rouge intense : zéro électron émis"},
+ {t:20, e:30, title:"3. Ce que prévoyait l'onde, et ce qu'on observe",
+  text:"Si la lumière était une onde continue, l'électron accumulerait peu à peu l'énergie et finirait par sortir (barre en pointillés). Ce n'est <strong>jamais observé</strong>, même après des heures : un électron n'additionne pas l'énergie de plusieurs photons. C'est ce paradoxe qu'<strong>Einstein</strong> résout en 1905.",
+  state:"Le modèle ondulatoire est mis en défaut"},
+ {t:30, e:41, title:"4. UV faible : un seul photon suffit",
+  text:"Un photon UV de 230 nm porte 5,4 eV. Dès le <strong>premier</strong> photon, un électron sort : l'émission est <strong>instantanée</strong>, même avec une lampe faible. Le photon paie les 4,3 eV d'extraction ; le reste, <strong>1,1 eV</strong>, devient l'<strong>énergie cinétique</strong> de l'électron.",
+  state:"hν = Φ + Ec : 5,4 = 4,3 + 1,1 eV"},
+ {t:41, e:51, title:"5. UV plus intense : plus d'électrons, pas plus rapides",
+  text:"On augmente l'intensité : plus de photons par seconde, donc <strong>plus d'électrons</strong> arrachés, et un courant plus fort. Mais chaque photon porte toujours 5,4 eV : chaque électron sort avec la <strong>même énergie cinétique</strong>, 1,1 eV. Sur le graphique, le point ne bouge pas.",
+  state:"L'intensité fixe le nombre d'électrons"},
+ {t:51, e:62.5, title:"6. UV de plus haute fréquence : plus rapides",
+  text:"À 200 nm, chaque photon porte 6,2 eV. Après les 4,3 eV d'extraction, il reste <strong>1,9 eV</strong> : les électrons sortent <strong>plus vite</strong> (traits plus longs). C'est la <strong>fréquence</strong>, et elle seule, qui fixe l'énergie cinétique.",
+  state:"La fréquence fixe l'énergie cinétique"},
+ {t:62.5, e:74, title:"7. Le bilan : Ec = hν − Φ",
+  text:"Les mesures s'alignent sur une droite de <strong>pente h</strong>, qui coupe l'axe en <strong>ν<sub>0</sub> = Φ/h</strong> ≈ 1,04 × 10<sup>15</sup> Hz. Sous ν<sub>0</sub>, aucun électron ; au-dessus, E<sub>c</sub> = h(ν − ν<sub>0</sub>). Un photon, un électron, tout ou rien : c'est le modèle particulaire de la lumière.",
+  state:"hν = Φ + Ec"}
+];
+
+const CALL = [
+  {a:2, b:8.6, text:"électrons du métal", lab:[120,176], anc:()=>[EL[2], EL[5]]},
+  {a:3, b:8.6, text:"travail d'extraction", lab:[318,232], anc:()=>[[262, (YB + Y0)/2]]},
+  {a:33, b:37.4, text:"électron éjecté", lab:[178,104], anc:st=>[st.ej].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[9.2,'step'],[11,'whoosh'],[20.2,'step'],[25,'error'],[30.2,'step'],[32.5,'pop'],[35.5,'pop'],[38.5,'pop'],[41.2,'step'],[42.6,'whoosh'],[51.2,'step'],[52.6,'whoosh'],[54,'spark'],[62.7,'step'],[66,'final']];
+
+const QUIZ = [
+ {q:"Une lampe rouge très puissante (photons de 1,9 eV) éclaire une plaque de zinc (Φ = 4,3 eV). Que se passe-t-il ?",
+  o:["Des électrons sortent, mais lentement","Aucun électron ne sort, même après des heures","Des électrons sortent si l'on attend assez longtemps"], a:1,
+  ex:"Chaque photon n'apporte que 1,9 eV, et un électron ne peut pas additionner l'énergie de plusieurs photons. La puissance de la lampe n'y change rien."},
+ {q:"Au-delà du seuil, on double l'intensité de la lumière UV. Alors…",
+  o:["deux fois plus d'électrons sortent, avec la même énergie cinétique","les électrons sortent deux fois plus vite","le travail d'extraction diminue"], a:0,
+  ex:"Deux fois plus de photons, donc deux fois plus d'électrons arrachés. L'énergie de chaque photon, hν, ne change pas : l'énergie cinétique non plus."},
+ {q:"Des photons de 6,2 eV arrachent des électrons au zinc (Φ = 4,3 eV). Leur énergie cinétique maximale vaut…",
+  o:["10,5 eV","6,2 eV","1,9 eV"], a:2,
+  ex:"Ec = hν − Φ = 6,2 − 4,3 = 1,9 eV. Le photon paie d'abord l'extraction ; seul le reste devient de l'énergie cinétique."},
+ {q:"Pourquoi le modèle ondulatoire ne peut-il pas expliquer l'effet photoélectrique ?",
+  o:["Parce qu'il prévoit une énergie qui s'accumule et des électrons plus rapides avec une lumière plus intense","Parce que la lumière ne se propage pas dans le vide","Parce qu'il ne connaît pas les électrons"], a:0,
+  ex:"Les expériences montrent l'inverse : un seuil en fréquence, une émission instantanée, et une énergie cinétique qui dépend de la fréquence, pas de l'intensité."}
+];
+
+ANIM.lancer({id:'photoelec', END:74, SCENES, CALL, CUES, QUIZ, draw, graine:5});
+})();
+</script>
+</body>
+</html>
