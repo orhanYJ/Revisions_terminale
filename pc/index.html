@@ -434,9 +434,6 @@ html.mo .fig.sc-attente svg[role="img"]{opacity:0}
 .placeholder{border:1px dashed var(--line);border-radius:12px;padding:14px;font-size:.9rem;color:var(--muted)}
 @media print{.sim{display:none}}
 .sim select{font:inherit;font-size:.85rem;padding:4px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);max-width:62%}
-.fvierge h3 small{font-weight:400;color:var(--muted);font-size:.78em;margin-left:6px}
-.fvide{min-height:96px;border:1px dashed var(--line);border-radius:8px;margin:6px 0 14px}
-@media print{.fvierge .fvide{min-height:104mm;border-color:#bbb;break-inside:avoid}}
 </style>
 <!-- mouvement:debut — couche maintenue à part (motion.css, motion.js) ; à conserver lors des mises à jour -->
 <link rel="stylesheet" href="motion.css?v=1">
@@ -4634,7 +4631,7 @@ for i in range(0, 41):
     <a href="#c4-tp">TP 6</a>
     <a href="#c4-exos">Exercices</a>
     <a href="#c4-qcm">QCM express</a>
-    <a href="#c4-fiche">Fiche de synthèse</a>
+    <a href="#c4-fiche">Fiche mémo</a>
   </nav>
 <section class="part" id="c4-rappels">
 <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>Rappels lycée<small>Ce que le chapitre suppose acquis</small></h2>
@@ -4935,7 +4932,7 @@ function maj(){
 <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>Exercices<small>Plan de travail, compléments, exercices maison, type bac et bilans</small></h2>
 <div class="prose">
 <p>Chaque exercice est présenté avec son énoncé, puis sa correction cachée derrière un bouton : lis, cherche, et n'ouvre la correction qu'après. Les énoncés du manuel sont reformulés — mêmes données, mêmes questions. Quand l'exercice s'appuie sur un graphique, je le décris en mots et je donne les valeurs lues, pour qu'il soit faisable sans le livre.</p>
-<div class="piege"><div class="t">Quel manuel ?</div>Le plan de travail renvoie au « chapitre 20, p. 405 », aux exercices « p. 539 » et « p. 420 ». Dans le manuel Lelivrescolaire en ligne (Physique-Chimie Terminale spécialité), le chapitre 20 s'intitule « Effet photoélectrique et enjeux énergétiques » et va de la p. 530 à la p. 547 : le QCM est bien p. 538 et les numéros d'exercices correspondent tous, mais pas les p. 405, 412 et 420. Les énoncés ci-dessous sont ceux de l'édition en ligne. Si un numéro ne correspond pas à ton livre papier, dis-le-moi.</div>
+<div class="def"><div class="t">Le manuel</div>Manuel Lelivrescolaire en ligne, Physique-Chimie Terminale spécialité, chapitre 20 « Effet photoélectrique et enjeux énergétiques » : cours p. 535-536, bilan p. 537, QCM p. 538, exercices p. 539 à 544.</div>
 <div class="methode"><div class="t">Le plan de travail du chapitre</div><p><span class="lvl d1">Obligatoires</span> 15 · 18 · 19 · 21 · 23 · 24 · 25</p><p><span class="lvl d2">Revoir les bases</span> 5 · 7 · 8 · 9 · 10 · et le QCM p. 538</p><p><span class="lvl d3">Aller plus loin</span> 26 · 27</p><p><span class="lvl">Pratique expérimentale</span> TP 6 — Rendement d'une cellule photovoltaïque</p></div>
 <h3 style="margin-top:24px">Les neuf savoir-faire, et où on les travaille</h3>
 <div class="tb-wrap"><table class="tb"><tr><th>Savoir-faire</th><th>Exercices</th></tr>
@@ -5322,40 +5319,53 @@ function maj(){
 </div>
 </section>
 <section class="part fiche-imp" id="c4-fiche">
-<h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></svg>Fiche de synthèse — Chapitre 4<small>Le plan de travail te la demande : c'est à toi de l'écrire</small></h2>
-<div class="prose no-print">
-<p>Le plan de travail demande de <strong>réaliser une fiche de synthèse ou une carte mentale</strong> du chapitre. Ce site ne te la donne pas toute faite : la fiche que tu écris toi-même est celle qui fait retenir, et elle peut être relevée. Tu trouveras ici trois outils : un cadre vierge à imprimer, une liste de ce qu'elle doit contenir, et une grille pour relire ton brouillon.</p>
-<div class="methode"><div class="t">1 · Ce que ta fiche doit contenir — coche au fur et à mesure</div><ul>
-<li>☐ La <strong>dualité</strong> onde-particule, avec un phénomène de chaque côté.</li>
-<li>☐ Les trois caractéristiques du <strong>photon</strong> : énergie (formule et unités), vitesse, masse.</li>
-<li>☐ La conversion <strong>eV ↔ J</strong>, et les limites du visible en eV.</li>
-<li>☐ La relation <strong>λ = c/ν</strong> et la méthode « transition → longueur d'onde » sur un <strong>diagramme de niveaux</strong>, avec un exemple chiffré.</li>
-<li>☐ La définition de l'<strong>effet photoélectrique</strong> et ses <strong>quatre faits</strong> expérimentaux.</li>
-<li>☐ Pourquoi le modèle ondulatoire échoue, et l'<strong>histoire</strong> : Hertz, Einstein (année, Nobel), Millikan.</li>
-<li>☐ Le <strong>travail d'extraction</strong>, la condition hν ≥ Φ, la fréquence et la longueur d'onde <strong>seuils</strong>.</li>
-<li>☐ Le <strong>bilan d'énergie</strong> rédigé jusqu'à E<sub>c</sub> = hν − Φ, et l'allure de E<sub>c</sub> = f(ν).</li>
-<li>☐ Le fonctionnement d'une <strong>cellule photoélectrique</strong> et d'une <strong>cellule photovoltaïque</strong> (dopage, champ interne, grille).</li>
-<li>☐ Au moins <strong>quatre applications</strong> de l'interaction photon-matière, avec le sens de la conversion.</li>
-<li>☐ Le <strong>rendement</strong> : formule, P<sub>reçue</sub> = E × S, P<sub>max</sub> sur la courbe P = f(U), ordre de grandeur, et une raison des pertes.</li></ul></div>
-<div class="methode"><div class="t">2 · Relire ton brouillon — les erreurs à traquer</div><ul>
-<li>☐ Chaque formule a ses <strong>unités</strong> (nm → m, mA → A, cm² → m²).</li>
-<li>☐ Nulle part il n'est écrit qu'une lumière plus intense donne des électrons plus rapides.</li>
-<li>☐ Les inégalités du seuil sont dans le bon sens : ν ≥ ν<sub>0</sub> mais λ ≤ λ<sub>0</sub>.</li>
-<li>☐ Le bilan d'énergie n'additionne pas des J et des eV.</li>
-<li>☐ L'éclairement (W·m<sup>−2</sup>) n'est pas confondu avec une puissance (W).</li>
-<li>☐ Chaque idée a son <strong>exemple chiffré</strong> (un photon de laser, la raie Hα, le zinc en UV, la cellule du TP 6…).</li></ul></div>
-<p>Quand ton brouillon est prêt, tu peux le comparer aux fiches du cours, onglet par onglet : tout ce qui manque à ta fiche y est.</p>
-<button class="btn-print" onclick="window.print()">Imprimer le cadre vierge</button>
-</div>
-<div class="fmemo fvierge">
-<h3>1 · Le photon <small>énergie · vitesse · masse · eV</small></h3><div class="fvide"></div>
-<h3>2 · Niveaux d'énergie <small>émission · absorption · λ</small></h3><div class="fvide"></div>
-<h3>3 · L'effet photoélectrique <small>4 faits · histoire</small></h3><div class="fvide"></div>
-<h3>4 · Travail d'extraction et seuil</h3><div class="fvide"></div>
-<h3>5 · Bilan d'énergie <small>E<sub>c</sub> = f(ν)</small></h3><div class="fvide"></div>
-<h3>6 · Cellule photoélectrique · cellule PV</h3><div class="fvide"></div>
-<h3>7 · Applications <small>sens de la conversion</small></h3><div class="fvide"></div>
-<h3>8 · Rendement <small>P = f(U) · η · ordres de grandeur</small></h3><div class="fvide"></div>
+<h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></svg>Fiche mémo — Chapitre 4<small>A4 recto-verso imprimable — uniquement l'exigible</small></h2>
+<button class="btn-print no-print" onclick="window.print()">Imprimer la fiche</button>
+<div class="fmemo">
+<h3>1 · Le photon</h3>
+<ul><li>Lumière : <strong>onde</strong> (interférences, diffraction) <strong>et particule</strong> (effet photoélectrique) → dualité onde-particule.</li>
+<li>Photon : <strong>masse nulle</strong>, charge nulle, vitesse <strong>c = 3,00 × 10<sup>8</sup> m·s<sup>−1</sup></strong> dans le vide.</li></ul>
+<div class="fbloc"><strong>λ = c / ν</strong> · <strong>E = h ν = h c / λ</strong><br>h = 6,63 × 10<sup>−34</sup> J·s · <strong>1 eV = 1,60 × 10<sup>−19</sup> J</strong></div>
+<ul><li>λ en <strong>m</strong> (1 nm = 10<sup>−9</sup> m). J → eV : diviser par 1,60 × 10<sup>−19</sup>.</li>
+<li>Visible : 400 nm (3,1 eV) → 800 nm (1,6 eV). Contrôle : E (eV) ≈ 1 240 / λ (nm).</li>
+<li>Faisceau plus intense = <strong>plus de photons</strong>, pas des photons plus énergétiques : P = N × hν.</li></ul>
+<h3>2 · Niveaux d'énergie</h3>
+<ul><li>Énergie de l'atome <strong>quantifiée</strong> ; fondamental = niveau le plus bas.</li>
+<li><strong>Émission</strong> : descente E<sub>haut</sub> → E<sub>bas</sub>, un photon emporte l'écart. <strong>Absorption</strong> : montée, seulement si le photon apporte <strong>exactement</strong> l'écart.</li></ul>
+<div class="fbloc"><strong>|ΔE| = |E<sub>f</sub> − E<sub>i</sub>| = h ν = h c / λ</strong></div>
+<ul><li>Méthode : |ΔE| en eV → × 1,60 × 10<sup>−19</sup> → λ = hc / |ΔE| → situer UV / visible / IR.</li>
+<li>Exemple : H, 3 → 2 : 1,89 eV → <strong>656 nm</strong> (rouge).</li>
+<li>Fluorescence : absorbe un UV, réémet un photon de plus grande λ.</li></ul>
+<h3>3 · L'effet photoélectrique</h3>
+<ul><li>Émission d'<strong>électrons</strong> par un métal éclairé.</li>
+<li>Quatre faits : <strong>seuil</strong> en fréquence ν<sub>0</sub> (rien en dessous, même intense) ; émission <strong>instantanée</strong> ; E<sub>c</sub> croît avec <strong>ν</strong>, pas avec l'intensité ; <strong>nombre</strong> d'électrons ∝ intensité.</li>
+<li>Inexplicable par le modèle ondulatoire (une onde intense devrait toujours arracher, et donner plus d'énergie).</li>
+<li>Histoire : Hertz 1887 (observation) · <strong>Einstein 1905</strong> (quanta de lumière, Nobel 1921) · Millikan 1916 (confirmation).</li></ul>
+<h3>4 · Travail d'extraction et seuil</h3>
+<ul><li><strong>Φ</strong> : énergie <strong>minimale</strong> pour arracher un électron au métal.</li>
+<li>Un photon ↔ un électron, <strong>tout ou rien</strong>.</li></ul>
+<div class="fbloc">Effet si <strong>h ν ≥ Φ</strong><br><strong>ν<sub>0</sub> = Φ / h</strong> · <strong>λ<sub>0</sub> = h c / Φ</strong> → effet si ν ≥ ν<sub>0</sub>, soit <strong>λ ≤ λ<sub>0</sub></strong></div>
+<ul><li>Ordres de grandeur : césium ≈ 1,9 eV · potassium 2,3 eV (visible) · zinc 4,3 eV · cuivre 4,7 eV (UV seulement).</li></ul>
+<h3>5 · Bilan d'énergie</h3>
+<div class="fbloc"><strong>h ν = Φ + E<sub>c</sub></strong> → <strong>E<sub>c</sub> = h ν − Φ = h (ν − ν<sub>0</sub>)</strong><br>E<sub>c</sub> = ½ m<sub>e</sub> v² · m<sub>e</sub> = 9,11 × 10<sup>−31</sup> kg</div>
+<ul><li>Rédaction : le photon absorbé apporte hν ; Φ sert à sortir ; le reste devient E<sub>c</sub> (conservation de l'énergie).</li>
+<li>E<sub>c</sub> = f(ν) : droite de <strong>pente h</strong>, nulle en ν<sub>0</sub>, prolongée → −Φ. Même pente pour tous les métaux.</li>
+<li>Ne jamais soustraire des J et des eV ; v se calcule avec E<sub>c</sub> en <strong>J</strong>.</li></ul>
+<h3>6 · Les cellules</h3>
+<ul><li><strong>Cellule photoélectrique</strong> : cathode métallique éclairée → électrons attirés par l'anode (générateur) → courant <strong>∝ nombre de photons</strong> : capteur de lumière.</li>
+<li><strong>Cellule photovoltaïque</strong> : silicium dopé <strong>n</strong> (phosphore, électrons en excès) / <strong>p</strong> (bore, trous) → <strong>champ électrique interne</strong> à la jonction.</li>
+<li>Un photon libère un électron ; le champ le pousse vers la <strong>cathode (−) en grille</strong> → circuit extérieur → anode (+). Pas de générateur : la cellule <strong>est</strong> un générateur.</li>
+<li>Grille : laisse passer la lumière tout en collectant les électrons.</li></ul>
+<h3>7 · Applications photon-matière</h3>
+<ul><li>photon → électron : <strong>capteurs</strong> (photodiode, CCD/CMOS), <strong>cellules photovoltaïques</strong>.</li>
+<li>électron → photon : <strong>DEL</strong> (couleur fixée par l'écart d'énergie), <strong>laser</strong> (une transition, couleur pure).</li>
+<li>Absorption : <strong>spectroscopie UV-visible</strong> (électrons, quelques eV) et <strong>IR</strong> (vibrations des liaisons, dixièmes d'eV).</li></ul>
+<h3>8 · Rendement d'une cellule photovoltaïque</h3>
+<div class="fbloc"><strong>η = P<sub>él,max</sub> / P<sub>reçue</sub></strong><br><strong>P<sub>reçue</sub> = E × S</strong> (E en W·m<sup>−2</sup>, S en m²) · <strong>P<sub>él</sub> = U × I</strong> (I en A)</div>
+<ul><li>Méthode : couples (U ; I) en faisant varier R → P = U × I → courbe <strong>P = f(U)</strong> → lire P<sub>max</sub> au sommet.</li>
+<li>TP 6 : E = 400 W·m<sup>−2</sup>, S = 1,0 × 10<sup>−2</sup> m² → 4,0 W reçus ; P<sub>max</sub> ≈ 0,46 W → <strong>η ≈ 12 %</strong>.</li>
+<li>Commerce : <strong>15 à 20 %</strong> (barrage ≈ 80 %, nucléaire ≈ 30 %). Pertes : réflexion, photons trop faibles, excès d'énergie perdu en chaleur.</li>
+<li>η presque indépendant de l'éclairement. Ressource gratuite et renouvelable mais <strong>intermittente</strong> ; courant continu → onduleur.</li></ul>
 </div>
 </section>
 </div>
