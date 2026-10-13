@@ -3,12 +3,12 @@
    repli cache hors ligne. Assets : cache d'abord.
    Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
-const CACHE = "svt-v22";
+const CACHE = "svt-v23";
 const ANIMS = ["mitose", "replication", "expression", "enzyme", "globe", "tectonique",
   "ecosysteme", "immunite", "anticorps", "clonal", "meiose", "nondisj", "coinegal", "globines",
   "thg", "insuline", "endosymbiose"];
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png",
-  "anim/moteur.css?v=4", "anim/moteur.js?v=4"].concat(ANIMS.map((a) => "anim/" + a + ".html"));
+  "anim/moteur.css?v=5", "anim/moteur.js?v=5"].concat(ANIMS.map((a) => "anim/" + a + ".html"));
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));

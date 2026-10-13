@@ -113,6 +113,11 @@ html.embed.quizon .quiz{display:block;margin-top:22px}
 html.embed .player{grid-template-columns:1fr;align-items:start}
 @media (min-width:760px){html.embed .player{grid-template-columns:minmax(0,1fr) minmax(280px,.9fr);gap:18px}}
 html.embed .stage svg{max-height:none}
+/* plein écran dans le cours : l'image tient dans la hauteur de l'écran */
+html.embed.plein .wrap{max-width:1240px;margin:0 auto}
+html.embed.plein .stage svg{max-height:calc(100vh - 70px)}
+@media (min-width:760px){html.embed.plein .player{grid-template-columns:minmax(0,1.4fr) minmax(300px,.8fr)}}
+@media (max-width:759px){html.embed.plein .stage svg{max-height:62vh}}
 /* téléphone : image bord à bord, commandes juste dessous, puis le texte de l'étape et la légende */
 @media (max-width:759px){
   html.embed .wrap{padding:0 0 6px}

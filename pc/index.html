@@ -434,16 +434,27 @@ html.mo .fig.sc-attente svg[role="img"]{opacity:0}
 .placeholder{border:1px dashed var(--line);border-radius:12px;padding:14px;font-size:.9rem;color:var(--muted)}
 @media print{.sim{display:none}}
 figure.animfig{margin:18px 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 12px 12px;box-shadow:var(--shadow)}
-figure.animfig .stitle{font-family:'Avenir Next','Segoe UI',sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);margin-bottom:10px}
+figure.animfig .stitle{display:flex;align-items:center;gap:10px;font-family:'Avenir Next','Segoe UI',sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);margin-bottom:10px}
 figure.animfig iframe{display:block;width:100%;height:780px;border:0;background:transparent;color-scheme:light}
 html[data-theme="sombre"] figure.animfig iframe{color-scheme:dark}
-figure.animfig .animfull{display:inline-block;margin-top:8px;font-size:.88rem;font-weight:700;color:var(--orange-deep);text-decoration:none}
-figure.animfig .animfull:hover{text-decoration:underline}
+figure.animfig .animfull{display:inline-flex;align-items:center;gap:7px;margin-top:8px;padding:7px 14px;border:1px solid var(--line);border-radius:99px;background:var(--surface);font:inherit;font-size:.86rem;font-weight:700;color:var(--orange-deep);cursor:pointer}
+figure.animfig .animfull:hover{border-color:var(--orange)}
+figure.animfig .animclose{display:none;margin-left:auto;flex:none;align-items:center;gap:6px;padding:8px 14px;border:0;border-radius:99px;background:var(--orange);color:#fff;font:inherit;font-size:.8rem;font-weight:800;letter-spacing:0;text-transform:none;cursor:pointer}
+html[data-theme="sombre"] figure.animfig .animclose{color:#1A120B}
+figure.animfig.plein{position:fixed;top:0;left:0;width:100%;height:100%;z-index:200;margin:0;padding:calc(10px + env(safe-area-inset-top,0px)) 16px 0;border:0;border-radius:0;box-shadow:none;background:var(--bg);display:flex;flex-direction:column;overflow:hidden}
+figure.animfig.plein .stitle{flex:none;margin:0 0 8px}
+figure.animfig.plein .animclose{display:inline-flex}
+figure.animfig.plein .animfull{display:none}
+figure.animfig.plein iframe{flex:1 1 auto;min-height:0;height:auto !important}
+.anim-voile{position:fixed;inset:0;z-index:199;background:rgba(14,8,3,.5);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
 @media(max-width:760px){
   figure.animfig{margin:16px -14px;padding:0;background:none;border:0;border-radius:0;box-shadow:none}
   figure.animfig .stitle{margin:0 14px 8px}
   figure.animfig iframe{height:640px}
-  figure.animfig .animfull{display:none}
+  figure.animfig .animfull{margin:8px 14px 0}
+  figure.animfig.plein{padding:calc(8px + env(safe-area-inset-top,0px)) 0 0}
+  figure.animfig.plein .stitle{margin:0 12px 6px}
 }
 @media print{figure.animfig{display:none}}
 .sim select{font:inherit;font-size:.85rem;padding:4px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);max-width:62%}
@@ -7465,9 +7476,9 @@ function theme(){ return document.documentElement.getAttribute('data-theme')==='
 document.querySelectorAll('[data-anim]').forEach(function(slot){
   var id=slot.getAttribute('data-anim'), titre=ANIMS[id]||'';
   var fig=document.createElement('figure'); fig.className='animfig';
-  fig.innerHTML='<div class="stitle">Animation · '+titre+'</div>'
+  fig.innerHTML='<div class="stitle"><span>Animation · '+titre+'</span><button class="animclose" type="button">✕ Revenir au cours</button></div>'
     +'<iframe src="anim/'+id+'.html?embed=1&amp;theme='+theme()+'" title="Animation : '+titre+'" loading="lazy" data-anim-id="'+id+'"></iframe>'
-    +'<a class="animfull" href="anim/'+id+'.html">Ouvrir en plein écran →</a>';
+    +'<button class="animfull" type="button" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 5V1h4M9 1h4v4M13 9v4H9M5 13H1V9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Plein écran</button>';
   slot.parentNode.replaceChild(fig, slot);
 });
 window.addEventListener('message', function(e){
@@ -7479,6 +7490,23 @@ window.addEventListener('message', function(e){
     if(d.type==='anim-goto') setTimeout(function(){ window.scrollTo({top:fr.getBoundingClientRect().top+scrollY+(d.y||0)-80, behavior:'smooth'}); }, 60);
   });
 });
+/* arrivée depuis une page d'animation (lien « Retour au cours ») : #anim-<id> ouvre le chapitre, la fiche et l'animation */
+if(/^#anim-/.test(location.hash)){
+  var cible=document.querySelector('iframe[data-anim-id="'+location.hash.slice(6)+'"]');
+  try{ history.replaceState(null, '', location.pathname + location.search); }catch(err){}
+  if(cible){
+    var pg=cible.closest('.page'), pt=cible.closest('.part');
+    if(pg && typeof go==='function') go(pg.id.replace('page-', ''));
+    setTimeout(function(){
+      if(pt && typeof onglet==='function') onglet(pt.id, false);
+      for(var d=cible.parentElement; d; d=d.parentElement){ if(d.tagName==='DETAILS') d.open=true; }
+      setTimeout(function(){
+        var fg=cible.closest('figure'), y=fg.getBoundingClientRect().top+scrollY-(typeof hauteurBarres==='function' ? hauteurBarres()+12 : 80);
+        window.scrollTo(0, y);
+      }, 140);
+    }, 450);
+  }
+}
 new MutationObserver(function(){
   document.querySelectorAll('iframe[data-anim-id]').forEach(function(fr){ try{ fr.contentWindow.postMessage({type:'anim-theme', theme:theme()}, '*'); }catch(err){} });
 }).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
@@ -7487,6 +7515,75 @@ document.addEventListener('toggle', function(ev){
   var d=ev.target; if(!d || !d.querySelectorAll || d.open) return;
   d.querySelectorAll('iframe[data-anim-id]').forEach(function(fr){ try{ fr.contentWindow.postMessage({type:'anim-pause'}, '*'); }catch(err){} });
 }, true);
+})();
+/* Plein écran des animations : la figure s'agrandit sur place, sans quitter le cours.
+   L'iframe n'est jamais déplacée dans la page (elle serait rechargée) : l'animation garde sa position.
+   Fermeture : bouton « Revenir au cours », touche Échap, ou bouton retour du téléphone. */
+(function(){
+var ouverte = null;
+function calme(){ return !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches); }
+function cadre(r, rayon){ return {top:r.top + 'px', left:r.left + 'px', width:r.width + 'px', height:r.height + 'px', borderRadius:rayon}; }
+function ecran(){ return {top:'0px', left:'0px', width:innerWidth + 'px', height:innerHeight + 'px', borderRadius:'0px'}; }
+function signal(fig, on){ var fr = fig.querySelector('iframe'); try{ fr.contentWindow.postMessage({type:'anim-plein', on:on}, '*'); }catch(e){} }
+function ouvrir(fig){
+  if(ouverte || !fig) return;
+  var r0 = fig.getBoundingClientRect(), cs = getComputedStyle(fig), rayon = cs.borderTopLeftRadius || '0px';
+  var place = document.createElement('div');
+  place.className = 'animfig-place';
+  place.style.height = fig.offsetHeight + 'px';
+  place.style.margin = cs.margin;
+  fig.parentNode.insertBefore(place, fig);
+  var voile = document.createElement('div');
+  voile.className = 'anim-voile';
+  document.body.appendChild(voile);
+  fig._place = place; fig._voile = voile; fig._rayon = rayon; ouverte = fig;
+  document.documentElement.classList.add('anim-plein-on');
+  fig.classList.add('plein');
+  signal(fig, true);
+  var b = fig.querySelector('.animfull'); if(b) b.setAttribute('aria-expanded', 'true');
+  if(!calme() && fig.animate){
+    fig.animate([cadre(r0, rayon), ecran()], {duration:480, easing:'cubic-bezier(.2,.85,.25,1)'});
+    voile.animate([{opacity:0}, {opacity:1}], {duration:320, easing:'ease-out'});
+    var t = fig.querySelector('.stitle');
+    if(t) t.animate([{opacity:0, transform:'translateY(-8px)'}, {opacity:1, transform:'none'}], {duration:360, delay:220, easing:'ease-out', fill:'backwards'});
+  }
+  try{ history.pushState({animPlein:1}, ''); }catch(e){}
+  var x = fig.querySelector('.animclose');
+  if(x) setTimeout(function(){ try{ x.focus({preventScroll:true}); }catch(e){} }, 80);
+}
+function fermer(){
+  var fig = ouverte; if(!fig) return;
+  ouverte = null;
+  var place = fig._place, voile = fig._voile;
+  signal(fig, false);
+  function fin(){
+    fig.classList.remove('plein');
+    if(place && place.parentNode) place.parentNode.removeChild(place);
+    if(voile && voile.parentNode) voile.parentNode.removeChild(voile);
+    document.documentElement.classList.remove('anim-plein-on');
+    var b = fig.querySelector('.animfull');
+    if(b){ b.setAttribute('aria-expanded', 'false'); try{ b.focus({preventScroll:true}); }catch(e){} }
+  }
+  if(calme() || !fig.animate || !place){ fin(); return; }
+  var r1 = place.getBoundingClientRect();
+  var a = fig.animate([ecran(), cadre(r1, fig._rayon)], {duration:400, easing:'cubic-bezier(.4,0,.2,1)', fill:'forwards'});
+  voile.animate([{opacity:1}, {opacity:0}], {duration:360, easing:'ease-in', fill:'forwards'});
+  a.onfinish = function(){ fin(); a.cancel(); };
+}
+function demanderFermeture(){
+  if(history.state && history.state.animPlein) history.back();   /* popstate refermera */
+  else fermer();
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('figure.animfig .animfull') : null;
+  if(b){ e.preventDefault(); ouvrir(b.closest('figure.animfig')); return; }
+  var x = e.target.closest ? e.target.closest('figure.animfig .animclose') : null;
+  if(x){ e.preventDefault(); demanderFermeture(); }
+});
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && ouverte) demanderFermeture(); });
+window.addEventListener('popstate', function(){ if(ouverte) fermer(); });
+/* Échap pressée dans l'animation elle-même */
+window.addEventListener('message', function(e){ var d = e.data || {}; if(d.type === 'anim-echap' && ouverte) demanderFermeture(); });
 })();
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js');});}
 </script>

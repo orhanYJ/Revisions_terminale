@@ -323,11 +323,13 @@ function lancer(cfg){
     if(e.code === 'Space'){ e.preventDefault(); playing ? pause() : play(); }
     else if(e.key === 'ArrowRight') nextStep();
     else if(e.key === 'ArrowLeft') prevStep();
+    else if(e.key === 'Escape' && EMBED && window.parent !== window) window.parent.postMessage({type:'anim-echap', id:C.id}, '*');
   });
   window.addEventListener('message', e => {
     const d = e.data || {};
     if(d.type === 'anim-theme') document.documentElement.setAttribute('data-theme', d.theme);
     if(d.type === 'anim-pause') pause();
+    if(d.type === 'anim-plein'){ document.documentElement.classList.toggle('plein', !!d.on); postH(); }
   });
   window.addEventListener('resize', postH);
   if(window.ResizeObserver) new ResizeObserver(postH).observe(document.body);
