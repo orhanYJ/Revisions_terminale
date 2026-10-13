@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A120B">
+<title>Absorber, émettre : les états d'énergie de l'atome</title>
+<link rel="stylesheet" href="moteur.css?v=1">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../">← Physique-Chimie</a> · Chapitre 4, fiche 2 : absorption et émission</p>
+    <h1>Absorber, émettre : les états d'énergie de l'atome</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation : un atome d'hydrogène reçoit des photons de différentes énergies ; seul un photon dont l'énergie correspond exactement à un écart entre deux niveaux est absorbé ; l'atome excité se désexcite en émettant des photons qui forment les raies du spectre ; au-delà de l'énergie d'ionisation, l'électron est arraché">
+        <defs>
+          <radialGradient id="field" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#1E1A2E"/><stop offset=".7" stop-color="#110E1A"/><stop offset="1" stop-color="#08070D"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FF8B3E" stop-opacity=".65"/><stop offset="1" stop-color="#FF8B3E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFE3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <linearGradient id="arcenciel" x1="0" x2="1"><stop offset="0" stop-color="#7A3CFF"/><stop offset=".17" stop-color="#3B6CFF"/><stop offset=".33" stop-color="#22B0C8"/><stop offset=".5" stop-color="#3CC23C"/><stop offset=".67" stop-color="#F2D22B"/><stop offset=".83" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E3261B"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#B48CFF"></span>photon ultraviolet (couleur fictive)</li>
+        <li><span class="sw" style="background:#FF4A3D"></span>photon rouge visible</li>
+        <li><span class="sw" style="background:#FF8B3E"></span>énergie du photon, empilée sur le niveau de départ</li>
+        <li><span class="sw" style="background:#7FE3FF"></span>électron</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Le diagramme de droite respecte l'échelle des énergies : c'est lui qui est au programme. L'image de gauche (un électron sur des couches) n'est qu'une aide visuelle : en réalité, l'électron ne tourne pas sur une orbite (hors programme). Les photons ultraviolets sont invisibles : leur couleur violette est fictive.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=1"></script>
+<script>
+(() => {
+const {clamp, ease, sm, lerp, f, op, flash, halo, label} = ANIM.H;
+const ORANGE = '#FF8B3E', VIO = '#B48CFF', ROUGE = '#FF4A3D', BLANC = '#F2F5FA', GRIS = '#9C93AE', CYAN = '#7FE3FF', VERT = '#7CE08A', KO = '#FF6B5B', OR = '#FFD24A';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+const virg = (x,n=1) => x.toFixed(n).replace('.', ',');
+
+/* ---------- géométrie ---------- */
+const A = [105, 128];                                    /* l'atome */
+const NIV = [[1,-13.6],[2,-3.40],[3,-1.51],[4,-0.85]];   /* niveaux de l'hydrogène (eV) */
+const yE = E => 40 - E/13.6*170;                         /* échelle respectée : 12,5 px par eV */
+const XD0 = 244, XD1 = 330, XM = 262, XB = 280, XAB = 298, XEM = 314;
+const RAY = [[-13.6,20],[-3.40,42],[-1.51,62],[-0.85,76],[0,92]];
+function rOf(E){
+  for(let i=0; i<RAY.length-1; i++){ const [e0,r0] = RAY[i], [e1,r1] = RAY[i+1]; if(E <= e1) return lerp(r0, r1, (E-e0)/(e1-e0)); }
+  return 92;
+}
+const xL = lam => 24 + (lam - 80)/620*352;               /* axe des spectres : 80 nm → 700 nm */
+const YSE = 280, YSA = 336;                              /* bandes d'émission et d'absorption */
+
+/* ---------- le scénario ---------- */
+/* photons qui arrivent : départ, impact, énergie, longueur d'onde, sort */
+const ARR = [
+  {a:9,    h:12,   E:11.0,  lam:113, col:VIO, sort:'passe'},
+  {a:19.3, h:22.3, E:10.2,  lam:122, col:VIO, sort:'abs', E1:-3.40},
+  {a:37.3, h:40.3, E:12.09, lam:103, col:VIO, sort:'abs', E1:-1.51},
+  {a:61.3, h:64.3, E:15.0,  lam:83,  col:VIO, sort:'ion'}
+];
+/* changements de niveau : début, fin, énergie avant, énergie après */
+const SAUTS = [[22.3,23.2,-13.6,-3.40],[30,30.9,-3.40,-13.6],[40.3,41.2,-13.6,-1.51],[44,44.9,-1.51,-3.40],[47.5,48.4,-3.40,-13.6]];
+/* photons émis : instant, énergie, longueur d'onde, couleur */
+const EMIS = [{t:30, E:10.2, lam:122, col:VIO},{t:44, E:1.89, lam:656, col:ROUGE},{t:47.5, E:10.2, lam:122, col:VIO}];
+const VOL = 2.4;                                          /* durée du vol vers le spectre */
+const T_ION = 64.3;
+
+function energie(t){
+  let E = -13.6;
+  for(const [a,b,e0,e1] of SAUTS){ if(t >= b) E = e1; else if(t >= a) E = lerp(e0, e1, sm((t-a)/(b-a))); }
+  return E;
+}
+function angle(t){ return 1.2*t; }
+function electron(t){
+  const E = energie(Math.min(t, T_ION)), r = rOf(E);
+  if(t < T_ION){ const a = angle(t); return [A[0] + r*Math.cos(a), A[1] + r*Math.sin(a)]; }
+  const a0 = angle(T_ION), P0 = [A[0] + r*Math.cos(a0), A[1] + r*Math.sin(a0)], s = t - T_ION;
+  return [P0[0] - 26*s - 4*s*s, P0[1] - 30*s - 3*s*s];
+}
+
+/* un paquet d'onde : le photon, centré en (x,y), qui avance selon (ux,uy) */
+function paquet(x, y, ux, uy, wl, col, o, t, long=46, amp=6.5){
+  if(o <= 0) return '';
+  let d = '';
+  for(let s=-long/2, i=0; s<=long/2; s+=1.1, i++){
+    const env = Math.pow(Math.cos(Math.PI*s/long), 2), a = amp*env*Math.sin(2*Math.PI*s/wl - t*14);
+    d += (i ? 'L' : 'M') + f(x + ux*s - uy*a) + ' ' + f(y + uy*s + ux*a);
+  }
+  return `<g opacity="${op(o)}"><path d="${d}" fill="none" stroke="${col}" stroke-width="5" stroke-opacity=".25" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${col}" stroke-width="1.8" stroke-linecap="round"/></g>`;
+}
+const wlPx = lam => 3.6 + lam/32;                        /* longueur d'onde dessinée : courte en UV, longue en rouge */
+
+function fleche(x, y0, y1, col, o, w=2.2){
+  if(o <= 0 || Math.abs(y1 - y0) < 2) return '';
+  const s = y1 > y0 ? 1 : -1;
+  return `<g opacity="${op(o)}"><line x1="${x}" y1="${f(y0)}" x2="${x}" y2="${f(y1 - s*6)}" stroke="${col}" stroke-width="${w}"/><path d="M${x-4.5} ${f(y1 - s*7)} L${x} ${f(y1)} L${x+4.5} ${f(y1 - s*7)} Z" fill="${col}"/></g>`;
+}
+function croix(x, y, o){ return `<g opacity="${op(o)}" stroke="${KO}" stroke-width="2.4" stroke-linecap="round"><path d="M${x-5} ${f(y-5)} L${x+5} ${f(y+5)}M${x+5} ${f(y-5)} L${x-5} ${f(y+5)}"/></g>`; }
+function coche(x, y, o){ return `<path d="M${x-5} ${f(y)} L${x-1.5} ${f(y+4)} L${x+6} ${f(y-5)}" fill="none" stroke="${VERT}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" opacity="${op(o)}"/>`; }
+
+function draw(c){
+  const {t, k} = c;
+  const st = {};
+  let cells = '', nuc = '', sp = '', chr = '', fx = '', lab = '';
+
+  /* ---------- diagramme d'énergie ---------- */
+  const od = k(.2, 1.6);
+  cells += `<g opacity="${op(od)}">`;
+  cells += `<line x1="234" y1="226" x2="234" y2="16" stroke="${GRIS}" stroke-width="1.2"/><path d="M230 22 L234 12 L238 22" fill="none" stroke="${GRIS}" stroke-width="1.2"/>`;
+  cells += `<text x="240" y="13" font-family="system-ui, sans-serif" font-size="9" fill="${GRIS}">E (eV)</text>`;
+  cells += `<line x1="${XD0}" y1="${yE(0)}" x2="${XD1}" y2="${yE(0)}" stroke="${GRIS}" stroke-width="1.3" stroke-dasharray="4 3"/>`;
+  const Eact = energie(t);
+  NIV.forEach(([n, E], i) => {
+    const oi = k(.4 + i*.35, 1.2 + i*.35), act = t < T_ION + .5 ? clamp(1 - Math.abs(Eact - E)/0.25, 0, 1) : 0;
+    cells += `<line x1="${XD0}" y1="${f(yE(E))}" x2="${XD1}" y2="${f(yE(E))}" stroke="${act > .5 ? ORANGE : BLANC}" stroke-width="${n === 4 ? 1.1 : 2}" opacity="${op(oi*(n === 4 ? .55 : 1))}"/>`;
+  });
+  cells += `<g font-family="system-ui, sans-serif" font-size="8.6" fill="${BLANC}">`;
+  cells += `<text x="${XD1+4}" y="${f(yE(-13.6)+3)}">n = 1 : −13,6</text><text x="${XD1+4}" y="${f(yE(-3.40)+3)}">n = 2 : −3,40</text><text x="${XD1+4}" y="${f(yE(-1.51)+8)}">n = 3 : −1,51</text><text x="${XD1+4}" y="${f(yE(0)-3)}" fill="${GRIS}">0 : ionisation</text>`;
+  cells += `</g></g>`;
+
+  /* ---------- l'atome (image simplifiée) ---------- */
+  const oa = k(0, 1);
+  const rAct = rOf(Eact);
+  RAY.forEach(([E, r], i) => {
+    const fin = i === RAY.length - 1, act = t < T_ION ? clamp(1 - Math.abs(rAct - r)/8, 0, 1) : 0;
+    nuc += `<circle cx="${A[0]}" cy="${A[1]}" r="${r}" fill="none" stroke="${act > .5 ? ORANGE : '#8C84A6'}" stroke-width="${act > .5 ? 1.6 : 1}" stroke-dasharray="${fin ? '1.5 4' : '3 4'}" opacity="${op(oa*(fin ? .45 : .7))}"/>`;
+  });
+  nuc += `<circle cx="${A[0]}" cy="${A[1]}" r="14" fill="url(#halo)" opacity="${op(oa*.8)}"/><circle cx="${A[0]}" cy="${A[1]}" r="5.5" fill="${ORANGE}" opacity="${op(oa)}"/>`;
+  lab += `<text x="${A[0]}" y="236" font-size="8.6" fill="${GRIS}" opacity="${op(oa)}">atome d'hydrogène · image simplifiée</text>`;
+  if(t > T_ION + .6) lab += label(A[0] + 20, A[1] + 26, "il reste un ion H⁺", BLANC, 9, k(T_ION + .6, T_ION + 1.4));
+
+  /* électron */
+  const P = electron(t), oe = oa*(1 - k(T_ION + 2.6, T_ION + 3.4));
+  chr += `<circle cx="${f(P[0])}" cy="${f(P[1])}" r="6.5" fill="${CYAN}" opacity="${op(oe*.28)}"/><circle cx="${f(P[0])}" cy="${f(P[1])}" r="3.3" fill="${CYAN}" opacity="${op(oe)}"/>`;
+  st.e = P;
+
+  /* repère de l'état actuel sur le diagramme */
+  const om = od*(1 - k(T_ION + .2, T_ION + 1));
+  const ym = yE(Math.min(Eact, 0));
+  sp += `<circle cx="${XM}" cy="${f(ym)}" r="12" fill="url(#halo)" opacity="${op(om)}"/><circle cx="${XM}" cy="${f(ym)}" r="4.6" fill="${ORANGE}" opacity="${op(om)}"/>`;
+  st.m = [XM, ym];
+
+  /* ---------- photons qui arrivent ---------- */
+  for(const p of ARR){
+    const fin = p.sort === 'passe' ? p.h + 1.6 : p.h;
+    if(t >= p.a && t <= fin){
+      const v = (A[0] + 30)/(p.h - p.a), x = -30 + v*(t - p.a);
+      const o = k(p.a, p.a + .4)*(p.sort === 'passe' ? 1 - k(p.h + 1, p.h + 1.6) : 1);
+      chr += paquet(x, A[1], 1, 0, wlPx(p.lam), p.col, o, t);
+      lab += label(Math.max(34, Math.min(x, 200)), A[1] - 22, `${virg(p.E)} eV · ${p.lam} nm`, '#E2D4FF', 9, o);
+    }
+    if(p.sort !== 'passe') fx += flash(A[0], A[1], p.h + .1, 1.2);
+
+    /* la barre d'énergie : l'énergie du photon empilée sur le niveau de départ */
+    const tFin = p.sort === 'ion' ? 73 : p.h + 4.2;
+    const ob = od*k(p.h - 2.6, p.h - 2.1)*(1 - k(tFin - .6, tFin));
+    if(ob > 0){
+      const g = k(p.h - 2.2, p.h - .7), E0 = -13.6, Eh = E0 + p.E*g;
+      const y0 = yE(E0), y1 = yE(Eh);
+      sp += `<line x1="${XB}" y1="${f(y0)}" x2="${XB}" y2="${f(Math.max(y1, yE(0)))}" stroke="${ORANGE}" stroke-width="6" stroke-linecap="round" opacity="${op(ob*.9)}"/>`;
+      if(Eh > 0) sp += `<line x1="${XB}" y1="${f(yE(0))}" x2="${XB}" y2="${f(y1)}" stroke="${OR}" stroke-width="6" stroke-linecap="round" opacity="${op(ob)}"/>`;
+      lab += label(XB, f((y0 + Math.max(y1, 30))/2 + 14), `+${virg(p.E)} eV`, '#FFD6B0', 8.6, ob*g);
+      const ov = ob*k(p.h - .7, p.h - .2);
+      if(ov > 0){
+        if(p.sort === 'passe'){
+          sp += `<line x1="${XD0}" y1="${f(y1)}" x2="${XD1}" y2="${f(y1)}" stroke="${KO}" stroke-width="1.2" stroke-dasharray="3 3" opacity="${op(ov)}"/>` + croix(XB, y1, ov);
+          lab += label(XB - 2, y1 - 14, "−2,6 eV : aucun niveau", KO, 8.6, ov);
+          st.vide = [XB, y1];
+        } else if(p.sort === 'abs'){
+          sp += `<circle cx="${XB}" cy="${f(y1)}" r="8" fill="none" stroke="${VERT}" stroke-width="1.6" opacity="${op(ov)}"/>` + coche(XB + 14, y1, ov);
+        } else {
+          lab += label(XB + 30, y1 + 3, `Ec = ${virg(p.E - 13.6)} eV`, OR, 8.6, ov);
+        }
+      }
+    }
+  }
+
+  /* ---------- flèches de transition ---------- */
+  for(const [a, b, e0, e1] of SAUTS){
+    if(t < a) continue;
+    const g = lin(t, a, b + .2), o = 1 - k(b + 2.6, b + 3.6);
+    const monte = e1 > e0, x = monte ? XAB : XEM;
+    const col = monte ? VIO : (e0 === -1.51 ? ROUGE : VIO);
+    sp += fleche(x, yE(e0), lerp(yE(e0), yE(e1), g), col, o*od);
+  }
+  /* ionisation : la flèche monte au-dessus de 0 */
+  if(t > T_ION){ const g = lin(t, T_ION, T_ION + 1), o = 1 - k(71.5, 73); sp += fleche(XAB, yE(-13.6), lerp(yE(-13.6), yE(1.4), g), VIO, o); }
+
+  /* ---------- photons émis : du noyau jusqu'au spectre ---------- */
+  for(const e of EMIS){
+    if(t < e.t || t > e.t + VOL) continue;
+    const u = lin(t, e.t, e.t + VOL), S = [xL(e.lam), YSE + 8];
+    const dx = S[0] - A[0], dy = S[1] - A[1], L = Math.hypot(dx, dy), ux = dx/L, uy = dy/L;
+    const x = lerp(A[0], S[0], ease(u)), y = lerp(A[1], S[1], ease(u));
+    const o = k(e.t, e.t + .3)*(1 - k(e.t + VOL - .35, e.t + VOL));
+    chr += paquet(x, y, ux, uy, wlPx(e.lam), e.col, o, t, 40, 6);
+    lab += label(x + (ux > 0 ? 42 : 40), y - 6, `${virg(e.E, 2).replace(',20', ',2')} eV · ${e.lam} nm`, e.col === ROUGE ? '#FFC2BC' : '#E2D4FF', 8.6, o);
+  }
+
+  /* ---------- les spectres ---------- */
+  const oS = k(.8, 2);
+  if(oS > 0){
+    cells += `<g opacity="${op(oS)}">`;
+    cells += `<text x="24" y="${YSE - 6}" font-family="system-ui, sans-serif" font-size="9" fill="${BLANC}">spectre d'émission</text>`;
+    cells += `<rect x="24" y="${YSE}" width="352" height="22" rx="3" fill="#000" stroke="#4A4458"/>`;
+    cells += `</g>`;
+    const lignes = [[122, 32.4, VIO], [656, 46.4, ROUGE], [103, 52, VIO]];
+    for(const [lam, t0, col] of lignes){
+      const o = k(t0, t0 + .5)*oS; if(o <= 0) continue;
+      const x = xL(lam);
+      chr += `<rect x="${f(x-1.4)}" y="${YSE+1}" width="2.8" height="20" fill="${col}" opacity="${op(o)}"/>`;
+      lab += `<text x="${f(lam === 103 ? x - 3 : lam === 122 ? x + 3 : x)}" y="${YSE + 33}" font-size="8" fill="${col}" text-anchor="${lam === 103 ? 'end' : lam === 122 ? 'start' : 'middle'}" opacity="${op(o)}">${lam}</text>`;
+    }
+    fx += flash(xL(122), YSE + 11, 32.4, .9) + flash(xL(656), YSE + 11, 46.4, .9) + flash(xL(122), YSE + 11, 49.9, .9);
+  }
+  const oA = k(51, 52.2);
+  if(oA > 0){
+    cells += `<g opacity="${op(oA)}">`;
+    cells += `<text x="24" y="${YSA - 6}" font-family="system-ui, sans-serif" font-size="9" fill="${BLANC}">spectre d'absorption : gaz froid éclairé en lumière blanche</text>`;
+    cells += `<rect x="24" y="${YSA}" width="${f(xL(400) - 24)}" height="22" fill="#5B5470"/><rect x="${f(xL(400))}" y="${YSA}" width="${f(376 - xL(400))}" height="22" fill="url(#arcenciel)"/>`;
+    cells += `</g>`;
+    for(const lam of [103, 122]){
+      const o = k(52.6, 53.4); if(o <= 0) continue;
+      cells += `<rect x="${f(xL(lam)-1.5)}" y="${YSA}" width="3" height="22" fill="#000" opacity="${op(o)}"/>`;
+      sp += `<line x1="${f(xL(lam))}" y1="${YSE + 22}" x2="${f(xL(lam))}" y2="${YSA}" stroke="${BLANC}" stroke-width="1" stroke-dasharray="2 3" opacity="${op(o*.7*(1 - k(59, 60.5)))}"/>`;
+    }
+  }
+  if(oS > 0){
+    const ya = 378;
+    cells += `<g opacity="${op(oS)}" font-family="system-ui, sans-serif" font-size="8" fill="${GRIS}" text-anchor="middle">`;
+    cells += `<line x1="24" y1="${ya}" x2="376" y2="${ya}" stroke="${GRIS}"/>`;
+    for(const lam of [100, 200, 300, 400, 500, 600, 700]) cells += `<line x1="${f(xL(lam))}" y1="${ya}" x2="${f(xL(lam))}" y2="${ya+4}" stroke="${GRIS}"/><text x="${f(xL(lam))}" y="${ya+13}">${lam}</text>`;
+    cells += `<text x="376" y="${ya+25}" text-anchor="end">λ (nm)</text><text x="${f((24 + xL(400))/2)}" y="${ya+25}">ultraviolet (invisible)</text><text x="${f((xL(400) + 376)/2)}" y="${ya+25}">visible</text>`;
+    cells += `</g>`;
+  }
+
+  /* électron arraché */
+  if(t > T_ION + .3 && t < T_ION + 3.4) lab += label(Math.max(60, P[0] + 18), Math.max(16, P[1]), "électron libre", CYAN, 8.6, k(T_ION + .3, T_ION + .9));
+  fx += halo(XB, yE(1.4), k(T_ION + .8, T_ION + 1.3)*(1 - k(70, 71.5)), 6);
+
+  return {cells, nuc, sp, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:9, title:"1. Des énergies permises, rien entre les deux",
+  text:"L'énergie d'un atome est <strong>quantifiée</strong> : pour l'hydrogène, elle ne peut valoir que −13,6 eV, −3,40 eV, −1,51 eV… comme les barreaux d'une échelle, sans valeur intermédiaire. Au repos, l'atome est dans son <strong>état fondamental</strong>, le niveau le plus bas (point orange).",
+  state:"Atome au fondamental : E₁ = −13,6 eV"},
+ {t:9, e:18.5, title:"2. Un photon de 11,0 eV : rien ne se passe",
+  text:"Pour savoir si un photon peut être absorbé, on <strong>empile son énergie</strong> sur le niveau de départ (barre orange) : −13,6 + 11,0 = −2,6 eV. <strong>Aucun niveau</strong> ne vaut −2,6 eV. Le photon ne peut pas céder une partie seulement de son énergie : il <strong>traverse</strong> l'atome. L'absorption est du tout ou rien.",
+  state:"Photon non absorbé : l'atome reste au fondamental"},
+ {t:18.5, e:29, title:"3. Un photon de 10,2 eV : absorbé",
+  text:"Cette fois, −13,6 + 10,2 = −3,40 eV : c'est <strong>exactement</strong> le niveau n = 2. Le photon <strong>disparaît</strong> et l'atome passe dans un <strong>état excité</strong>. C'est une <strong>absorption</strong> : |ΔE| = E<sub>2</sub> − E<sub>1</sub> = hν = hc/λ, avec λ = 122 nm.",
+  state:"Atome excité : E₂ = −3,40 eV"},
+ {t:29, e:37, title:"4. L'atome se désexcite : émission",
+  text:"Un état excité ne dure que quelques milliardièmes de seconde. L'atome redescend au fondamental et <strong>émet</strong> un photon qui emporte <strong>exactement l'écart</strong> : 10,2 eV, donc 122 nm (ultraviolet). Ce photon, recueilli sur un spectre, donne une <strong>raie</strong> à une seule longueur d'onde.",
+  state:"Retour au fondamental : une raie à 122 nm"},
+ {t:37, e:50.5, title:"5. Monter en n = 3, redescendre par étapes",
+  text:"Un photon de 12,1 eV fait monter l'atome en n = 3. Il peut redescendre marche par marche : <strong>3 → 2</strong> libère 1,89 eV, soit <strong>656 nm, une raie rouge visible</strong> ; puis <strong>2 → 1</strong> libère 10,2 eV (122 nm). <strong>Chaque saut donne une raie</strong> : le spectre est la signature des écarts entre niveaux.",
+  state:"Raies d'émission : 122 nm et 656 nm"},
+ {t:50.5, e:60.5, title:"6. Émission et absorption : les mêmes écarts",
+  text:"L'atome peut aussi redescendre directement de 3 à 1 (12,1 eV, 103 nm). Un gaz d'hydrogène <strong>froid</strong>, éclairé en lumière blanche, absorbe exactement les photons de 10,2 et 12,1 eV : des <strong>raies sombres</strong> apparaissent <strong>aux mêmes longueurs d'onde</strong> que les raies d'émission 2 → 1 et 3 → 1. La raie rouge n'y est pas : il faudrait des atomes déjà en n = 2.",
+  state:"Même écart d'énergie = même longueur d'onde, dans les deux sens"},
+ {t:60.5, e:74, title:"7. Au-delà de 0 eV : l'électron est arraché",
+  text:"Un photon de 15,0 eV porte plus que les 13,6 eV qui séparent le fondamental de 0 eV. Au-dessus de 0, il n'y a plus d'échelle : <strong>toute énergie convient</strong>. L'électron est arraché (<strong>ionisation</strong>) et le surplus devient son <strong>énergie cinétique</strong> : E<sub>c</sub> = 15,0 − 13,6 = 1,4 eV. C'est le raisonnement de l'effet photoélectrique : hν = Φ + E<sub>c</sub>.",
+  state:"Électron libre : Ec = hν − 13,6 eV"}
+];
+
+const CALL = [
+  {a:1.6, b:8.2, text:"niveau fondamental", lab:[312,248], anc:st=>[st.m].filter(Boolean)},
+  {a:2.6, b:8.2, text:"électron", lab:[105,30], anc:st=>[st.e].filter(Boolean)},
+  {a:23.6, b:28.4, text:"état excité n = 2", lab:[312,140], anc:st=>[st.m].filter(Boolean)},
+  {a:41.6, b:43.8, text:"état excité n = 3", lab:[312,140], anc:st=>[st.m].filter(Boolean)},
+  {a:46.6, b:50.2, text:"raie rouge Hα", lab:[300,262], anc:()=>[[xL(656), YSE + 4]]},
+  {a:53.6, b:59.6, text:"mêmes longueurs d'onde", lab:[262,311], anc:()=>[[xL(103), YSA + 4],[xL(122), YSA + 4]]}
+];
+
+const CUES = [[.2,'step'],[9.2,'whoosh'],[12,'error'],[18.7,'step'],[19.5,'whoosh'],[22.3,'pop'],[29.2,'step'],[30,'spark'],[37.2,'step'],[37.5,'whoosh'],[40.3,'pop'],[44,'spark'],[47.5,'spark'],[50.7,'step'],[52.6,'pinch'],[60.7,'step'],[61.5,'whoosh'],[64.3,'split'],[68,'final']];
+
+const QUIZ = [
+ {q:"Un atome d'hydrogène au fondamental (−13,6 eV ; niveaux −3,40 et −1,51 eV) reçoit un photon de 11,0 eV. Que se passe-t-il ?",
+  o:["Il l'absorbe et monte à −2,6 eV","Il absorbe 10,2 eV et laisse repartir 0,8 eV","Il ne l'absorbe pas : aucun niveau ne vaut −13,6 + 11,0 = −2,6 eV"], a:2,
+  ex:"L'absorption est du tout ou rien : le photon doit apporter exactement un écart entre deux niveaux. Il ne peut pas céder une partie de son énergie."},
+ {q:"L'atome excité en n = 2 revient au fondamental. Le photon émis a une énergie de…",
+  o:["10,2 eV, exactement l'écart entre les deux niveaux","3,40 eV, l'énergie du niveau 2","13,6 eV, l'énergie du fondamental"], a:0,
+  ex:"Conservation de l'énergie : l'atome perd E₂ − E₁ = −3,40 − (−13,6) = 10,2 eV, que le photon emporte. Les énergies des niveaux, elles, sont négatives."},
+ {q:"La raie rouge à 656 nm de l'hydrogène correspond à la transition…",
+  o:["1 → 2, une absorption","3 → 2, une émission de 1,89 eV","2 → 1, une émission de 10,2 eV"], a:1,
+  ex:"|ΔE| = −1,51 − (−3,40) = 1,89 eV, et λ = hc/ΔE ≈ 656 nm. La transition 2 → 1 donne 122 nm, dans l'ultraviolet."},
+ {q:"Un photon de 15,0 eV arrive sur l'atome au fondamental. Que devient-il ?",
+  o:["Il est absorbé : l'électron est arraché et repart avec 1,4 eV d'énergie cinétique","Il traverse : 15,0 eV ne correspond à aucun écart","Il fait monter l'atome au niveau 0 eV et s'arrête là"], a:0,
+  ex:"Au-dessus de 0 eV, l'électron est libre et toute énergie convient : 15,0 − 13,6 = 1,4 eV d'énergie cinétique. C'est la même logique que hν = Φ + Ec dans l'effet photoélectrique."}
+];
+
+ANIM.lancer({id:'photon', END:74, SCENES, CALL, CUES, QUIZ, draw, graine:7});
+})();
+</script>
+</body>
+</html>
