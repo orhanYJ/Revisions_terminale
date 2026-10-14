@@ -1802,7 +1802,7 @@ const GLOSSAIRE = {"cycle-cellulaire": {"mot": "Cycle cellulaire", "mots": ["cyc
 , "cyanobacterie": {"mot": "Cyanobactérie", "mots": ["cyanobactérie", "cyanobactéries"], "definition": "Bactérie capable de photosynthèse, possédant la RubisCo.", "place": "C'est l'ancêtre des chloroplastes : même fonction, même enzyme, ARN 16S le plus proche.", "voir": ["chloroplaste", "endosymbiose"]}
 , "rubisco": {"mot": "RubisCo", "mots": ["RubisCo", "Rubisco"], "definition": "Enzyme clé de la photosynthèse, qui fixe le CO2 dans la matière organique au début du cycle de Calvin.", "place": "Partagée par les cyanobactéries et les chloroplastes. Sa petite sous-unité est codée par le noyau et importée dans le chloroplaste : un exemple de transfert de gènes vers le noyau.", "voir": ["chloroplaste", "cyanobacterie"]}
 , "arn-16s": {"mot": "ARN ribosomique 16S", "mots": ["ARN 16S"], "definition": "ARN de la petite sous-unité des ribosomes des procaryotes, des mitochondries et des chloroplastes (environ 1 500 nucléotides).", "place": "La cellule eucaryote possède, elle, un ARN 18S. Comparer les ARN 16S permet de reconstituer la parenté entre organites et bactéries.", "voir": ["ribosome", "endosymbiose"]}
-, "transduction": {"mot": "Transduction", "mots": ["transduction"], "definition": "Transfert horizontal d'ADN bactérien par l'intermédiaire d'un virus de bactérie, le bactériophage.", "place": "Il suffit de savoir que ce mécanisme existe, à côté de la transformation et de la conjugaison.", "voir": ["transfert-horizontal", "transformation", "conjugaison"]}};
+, "transduction": {"mot": "Transduction", "mots": ["transduction"], "definition": "Transfert horizontal d'ADN bactérien par l'intermédiaire d'un virus de bactérie, le bactériophage.", "place": "Il suffit de savoir que ce mécanisme existe, à côté de la transformation et de la conjugaison.", "voir": ["transfert-horizontal", "transformation", "conjugaison"]}, "population": {"mot": "Population", "mots": ["population", "populations"], "definition": "Groupe d'individus de la même espèce, vivant dans une même zone, pouvant se reproduire entre eux et engendrer une descendance fertile.", "place": "C'est l'échelle du chapitre 3 : l'évolution se mesure sur les fréquences des allèles d'une population, pas sur un individu.", "voir": ["frequence-allelique", "hardy-weinberg"]}, "frequence-allelique": {"mot": "Fréquence allélique", "mots": ["fréquence allélique", "fréquences alléliques"], "definition": "Proportion d'un allèle parmi tous les exemplaires du gène présents dans une population. Pour deux allèles : p + q = 1.", "place": "Pour un gène à deux allèles : f(A) = (2 × A//A + A//m) / 2N, car chaque individu diploïde porte deux exemplaires du gène.", "piege": "Ne pas confondre avec la fréquence d'un génotype : f(A//A) n'est pas f(A).", "voir": ["population", "hardy-weinberg"]}, "hardy-weinberg": {"mot": "Loi de Hardy-Weinberg", "mots": ["Hardy-Weinberg", "équilibre de Hardy-Weinberg"], "definition": "Modèle de 1908 : dans une population idéale, les fréquences alléliques restent constantes et les génotypes suivent p² + 2pq + q² = 1.", "place": "Il ne décrit aucune population réelle : il sert de référence, et un écart révèle une force évolutive.", "voir": ["panmixie", "frequence-allelique", "derive-genetique"]}, "panmixie": {"mot": "Panmixie", "mots": ["panmixie"], "definition": "Croisements au hasard entre les individus d'une population : gamètes équiprobables (pangamie), accouplements sans préférence, ségrégation aléatoire des allèles.", "place": "Condition du modèle de Hardy-Weinberg. Des préférences sexuelles ou la consanguinité la rompent.", "voir": ["hardy-weinberg"]}, "derive-genetique": {"mot": "Dérive génétique", "mots": ["dérive génétique"], "definition": "Variation aléatoire et imprévisible des fréquences alléliques, due au hasard de la reproduction.", "place": "Sa force est inversement proportionnelle à la taille de la population : dans une petite population, des allèles sont fixés ou perdus en quelques générations.", "piege": "Elle ne dépend pas de l'avantage des allèles : c'est ce qui la distingue de la sélection naturelle.", "voir": ["effet-fondateur", "selection-naturelle", "hardy-weinberg"]}, "effet-fondateur": {"mot": "Effet fondateur", "mots": ["effet fondateur"], "definition": "Une petite population qui se sépare d'une plus grande n'emporte qu'un échantillon non représentatif, tiré au hasard, de ses allèles.", "place": "La dérive génétique s'ajoute ensuite, d'autant plus forte que la population fondatrice est petite.", "voir": ["derive-genetique", "population"]}, "valeur-selective": {"mot": "Valeur sélective", "mots": ["valeur sélective", "valeurs sélectives"], "definition": "Probabilité qu'un génotype se transmette à la descendance ; elle vaut 1 pour le génotype au succès reproducteur maximal.", "place": "Si tous les génotypes ont la même valeur sélective, la population n'est pas soumise à la sélection naturelle.", "voir": ["selection-naturelle", "avantage-selectif"]}};
 </script>
 <script>
 /* =======================================================================
@@ -3732,12 +3732,131 @@ const TERMINALE = [
 
 <div class="box next"><h4>Ce que ça prépare</h4>
 <p>Avec les transferts verticaux (chapitre 1) et horizontaux (chapitre 2), on sait d'où viennent les variations du génome. Reste à comprendre comment elles évoluent au sein des populations : c'est l'objet du chapitre suivant.</p></div>`},
-      { id:"t3", num:"1A3", title:"L'inéluctable évolution des génomes au sein des populations",
-        lede:"Dérive génétique, sélection naturelle et modèle de Hardy-Weinberg.",
-        objectifs:["Distinguer dérive génétique et sélection naturelle",
-          "Utiliser le modèle de Hardy-Weinberg et interpréter un écart au modèle",
-          "Exploiter des données de fréquences alléliques"],
-        rappels:[["p5","Mutations et variabilité"],["p12","Pression de sélection"],["p6","Sélection récente chez l'humain"]] },
+      { id:"t3", num:"Partie I", chap:{num:"3", title:"L'évolution du génome au sein des populations"},
+        title:"Le modèle de Hardy-Weinberg",
+        lede:"Pourquoi la diversité génétique ne disparaît-elle pas, et que prédit un modèle de population sans évolution ?",
+        notions:["hérédité par mélange","population","patrimoine génétique","fréquence allélique","p + q = 1","p² + 2pq + q² = 1","panmixie","écart à l'équilibre","forces évolutives"],
+        objectifs:["Définir une population et son patrimoine génétique",
+          "Calculer des fréquences alléliques et génotypiques",
+          "Établir et utiliser la loi de Hardy-Weinberg (p² + 2pq + q² = 1)",
+          "Énoncer les conditions du modèle de Hardy-Weinberg",
+          "Identifier les causes d'un écart à l'équilibre : les forces évolutives"],
+        rappels:[["p5","Mutations et variabilité"],["p12","Pression de sélection"],["p6","Sélection récente chez l'humain"]],
+        html:`<h2>A. Le problème : pourquoi la diversité génétique ne disparaît-elle pas ?</h2>
+<p>Vers 1800, on ne connaît pas encore les mécanismes de la méiose, et l'évolution génétique des populations est une grande énigme. La théorie de l'<span class="kw">hérédité par mélange</span> est alors largement admise : la descendance de deux parents présenterait un phénotype intermédiaire, un mélange des deux parents. Exemple de la diapositive : une souris noire croisée avec une souris blanche donnerait une souris grise.</p>
+<p>Si cette théorie était juste, tout variant génétique serait dilué un peu plus à chaque génération, jusqu'à disparaître : au bout de quelques générations, tous les individus se ressembleraient. Or on observe l'inverse : les variants persistent, et une population humaine présente toujours une grande diversité de phénotypes (la diapositive montre une série de portraits aux teintes de peau très variées). C'est l'énigme de la <b>persistance des variants génétiques</b>.</p>
+<div class="box def"><h4>La question à laquelle le chapitre répond</h4>
+<p>Comment les fréquences des allèles évoluent-elles dans une population au fil des générations, et pourquoi s'écartent-elles de l'équilibre prévu par le modèle de Hardy-Weinberg ?</p></div>
+<div class="box piege"><h4>⚠ L'hérédité ne mélange pas les allèles</h4>
+<p>L'hérédité par mélange est fausse. Les allèles se transmettent <b>intacts</b>, d'une génération à l'autre, par la méiose et la fécondation (chapitre 1). Un hétérozygote peut avoir un phénotype intermédiaire, mais ses deux allèles restent distincts et peuvent se retrouver séparés dans ses gamètes. C'est ce que Mendel avait montré dès les années 1860 ; la vidéo de la diapositive 3 le rappelle.</p></div>
+<p>Deux scientifiques résolvent l'énigme en 1908 : le mathématicien britannique <b>Godfrey Harold Hardy</b> et le médecin allemand <b>Wilhelm Weinberg</b>, chacun de son côté.</p>
+
+<h2>B. Une population et ses fréquences alléliques</h2>
+<div class="box def"><h4>Définitions (diapositives 4 et 5)</h4>
+<p>Une <span class="kw">population</span> est un groupe d'individus appartenant à la même espèce, vivant dans une même zone, pouvant se reproduire entre eux et engendrer une descendance fertile.</p>
+<p>On peut aussi décrire une population par sa composition génétique : c'est son <span class="kw">patrimoine génétique</span>, l'ensemble des allèles présents dans la population.</p>
+<p>Dans une population, chaque allèle se caractérise par sa <span class="kw">fréquence allélique</span> : sa proportion parmi tous les exemplaires du gène présents dans la population.</p></div>
+<h3>Calculer une fréquence allélique</h3>
+<p>Chez une espèce diploïde, chaque individu porte <b>deux</b> exemplaires de chaque gène. Une population de N individus porte donc 2N exemplaires du gène. Pour un gène à deux allèles A et m :</p>
+<ul>
+  <li>un homozygote (A//A) apporte deux allèles A ;</li>
+  <li>un hétérozygote (A//m) apporte un allèle A et un allèle m ;</li>
+  <li>un homozygote (m//m) apporte deux allèles m.</li>
+</ul>
+<p>D'où : <b>f(A) = (2 × nombre de A//A + nombre de A//m) / 2N</b>, et f(m) = 1 − f(A).</p>
+<div class="box plus"><h4>Exemple d'application (exemple créé pour s'entraîner, pas une donnée du cours)</h4>
+<p>Une population de 1 000 individus compte 360 A//A, 480 A//m et 160 m//m. Elle porte 2 000 exemplaires du gène, dont 2 × 360 + 480 = 1 200 allèles A. Donc f(A) = 1 200 / 2 000 = <b>0,6</b> et f(m) = 0,4.</p>
+<p>Les fréquences <b>génotypiques</b> sont, elles, les proportions de chaque génotype : 0,36 pour A//A, 0,48 pour A//m et 0,16 pour m//m.</p></div>
+
+<h2>C. La loi de Hardy-Weinberg</h2>
+<h3>1. Le tableau de croisement</h3>
+<p>On note <b>p</b> et <b>q</b> les fréquences des deux allèles d'un gène : f(A) = p et f(m) = q. Comme il n'y a que deux allèles, <b>p + q = 1</b>.</p>
+<p>Dans une population où les gamètes se rencontrent au hasard, un gamète porte l'allèle A avec la probabilité p et l'allèle m avec la probabilité q, qu'il soit mâle ou femelle. On en déduit les fréquences des génotypes chez les descendants (correction de la diapositive 9) :</p>
+<div class="tablewrap"><table>
+<tr><th>Gamète femelle / gamète mâle</th><th>A (fréquence p)</th><th>m (fréquence q)</th></tr>
+<tr><th>A (fréquence p)</th><td>(A//A) : p × p = p<sup>2</sup></td><td>(A//m) : p × q = pq</td></tr>
+<tr><th>m (fréquence q)</th><td>(A//m) : p × q = pq</td><td>(m//m) : q × q = q<sup>2</sup></td></tr>
+</table></div>
+<div class="box retenir"><h4>La loi de Hardy-Weinberg</h4>
+<p>Fréquences des génotypes : <b>f(A//A) = p<sup>2</sup></b> ; <b>f(A//m) = 2pq</b> ; <b>f(m//m) = q<sup>2</sup></b>.</p>
+<p>Et leur somme vaut 1 : <b>p<sup>2</sup> + 2pq + q<sup>2</sup> = 1</b>, ce qui revient à écrire (p + q)<sup>2</sup> = 1.</p></div>
+<div class="box piege"><h4>⚠ Deux pièges d'écriture</h4>
+<p>La diapositive 9 écrit « P2 + 2PQ + Q2 » sans le « = 1 » : il faut toujours l'écrire. Et l'hétérozygote compte <b>deux fois</b> (2pq), parce qu'on peut l'obtenir de deux façons : A venant du père et m de la mère, ou l'inverse.</p></div>
+<h3>2. Ce que prédit la loi : un équilibre</h3>
+<p>La loi de Hardy-Weinberg prédit un <span class="kw">équilibre</span> théorique : les fréquences alléliques restent <b>constantes</b> de génération en génération. Les fréquences génotypiques se déduisent directement des fréquences alléliques (p<sup>2</sup>, 2pq, q<sup>2</sup>) : elles restent donc constantes, elles aussi.</p>
+<p>Pourquoi ? Dans la génération suivante, la fréquence de l'allèle A est celle des homozygotes A//A, plus la moitié de celle des hétérozygotes : p<sup>2</sup> + pq = p(p + q) = p. On retrouve exactement p : la fréquence n'a pas bougé.</p>
+<div class="box retenir"><h4>À retenir mot pour mot (diapositive 10)</h4>
+<p>Il n'y a donc <b>pas d'évolution</b> dans ce cadre de modélisation théorique.</p>
+<p>C'est la solution de l'énigme : la reproduction sexuée, à elle seule, ne fait disparaître aucun allèle. Les variants persistent.</p></div>
+<h3>3. Vérifier si une population est à l'équilibre</h3>
+<p>Méthode : (1) calculer p et q à partir des effectifs observés ; (2) calculer les effectifs attendus à l'équilibre, p<sup>2</sup> × N, 2pq × N et q<sup>2</sup> × N ; (3) comparer les effectifs observés aux effectifs attendus.</p>
+<div class="box plus"><h4>Deux populations, la même fréquence allélique (exemple créé pour s'entraîner)</h4>
+<p><b>Population 1</b> : 360 A//A, 480 A//m, 160 m//m. On trouve p = 0,6 et q = 0,4. Effectifs attendus : 0,36 × 1 000 = 360 ; 0,48 × 1 000 = 480 ; 0,16 × 1 000 = 160. Observé et attendu coïncident : la population est <b>à l'équilibre</b>.</p>
+<p><b>Population 2</b> : 500 A//A, 200 A//m, 300 m//m. On trouve aussi p = (1 000 + 200) / 2 000 = 0,6. Mais on attendait 360, 480 et 160 : il y a beaucoup trop d'homozygotes et pas assez d'hétérozygotes. La population <b>s'écarte</b> de l'équilibre : une des conditions du modèle n'est pas respectée (par exemple, des accouplements qui ne se font pas au hasard, entre individus apparentés).</p>
+<p>Leçon : une fréquence allélique ne suffit pas. C'est la comparaison des fréquences génotypiques observées et attendues qui révèle l'écart.</p></div>
+
+<h2>D. Les conditions du modèle</h2>
+<p>En 1908, Hardy et Weinberg proposent un modèle théorique qui prévoit « la stabilité des fréquences relatives des allèles dans les populations eucaryotes à reproduction sexuée ». Mais cette stabilité n'est valable que sous certaines conditions (diapositives 11 et 12) :</p>
+<ul>
+  <li>une population de taille <b>infinie</b> (en pratique, très grande), pour que la reproduction se fasse vraiment au hasard ;</li>
+  <li>une espèce <b>diploïde</b>, à <b>reproduction sexuée</b> ;</li>
+  <li>la <span class="kw">panmixie</span> : les croisements se font au hasard entre les individus. Elle recouvre trois idées : l'équiprobabilité des gamètes (on parle de <b>pangamie</b>), des accouplements aléatoires (sans préférence entre partenaires de la même population), et une ségrégation aléatoire des allèles dans les gamètes lors de la méiose ;</li>
+  <li>une population <b>isolée</b> : aucune migration, donc aucun flux de gènes venu d'autres populations ou parti vers elles ;</li>
+  <li>l'absence de <b>sélection naturelle</b> ;</li>
+  <li>l'absence de <b>mutations</b> ;</li>
+  <li>pas de croisements entre générations (les générations ne se chevauchent pas).</li>
+</ul>
+<div class="box retenir"><h4>À retenir</h4>
+<p>Il est pour ainsi dire presque impossible qu'une population réelle soit à l'équilibre. Le modèle de Hardy-Weinberg sert donc de <b>référence</b> : quand une population s'en écarte, c'est qu'une force agit sur elle, et l'écart permet de la rechercher.</p></div>
+
+<h2>E. Pourquoi les populations réelles s'écartent de l'équilibre</h2>
+<p>La diapositive 13 demande de chercher, à partir des conditions du modèle, les raisons qui peuvent expliquer un écart dans la réalité. Chaque condition non respectée donne une cause (correction de la diapositive 14) :</p>
+<div class="tablewrap"><table>
+<tr><th>Condition du modèle non respectée</th><th>Ce qui se passe dans la réalité (diapositive 14)</th></tr>
+<tr><td>Absence de mutations</td><td>Des <b>mutations</b> apparaissent et créent de nouveaux allèles.</td></tr>
+<tr><td>Population isolée</td><td><b>Migrations</b>, c'est-à-dire des flux de gènes : arrivée de nouvelles variations génétiques, ou départ et isolement d'une partie de la population. Des <b>barrières naturelles</b> peuvent aussi séparer une partie de la population du reste.</td></tr>
+<tr><td>Absence de sélection</td><td>Un changement de <b>climat</b> ou d'<b>environnement</b> modifie les conditions de survie des individus, donc la <b>sélection naturelle</b>. L'apparition d'une nouvelle espèce en compétition pour les mêmes ressources joue le même rôle.</td></tr>
+<tr><td>Accouplements au hasard (panmixie)</td><td>Des <b>préférences sexuelles</b> (phénotypes sexuels) : la reproduction ne se fait pas au hasard.</td></tr>
+<tr><td>Population de taille infinie</td><td>La population de départ peut être toute petite (effectif très réduit) : le hasard de la reproduction pèse alors beaucoup.</td></tr>
+</table></div>
+<p>Ces causes d'écart sont les <span class="kw">forces évolutives</span>. Elles font l'objet de la partie II.</p>
+
+<h2>F. Des forces évolutives qui écartent les fréquences de l'équilibre (début de la partie II)</h2>
+<p>La partie II s'ouvre sur l'activité 1, une modélisation sur logiciel (diapositive 16). <b>Le cours s'est arrêté là</b> : les études de cas (drosophiles de Buri, Amish, groupes sanguins, moustiques résistants aux insecticides) et le bilan sur la notion d'espèce seront ajoutés au fil des séances.</p>
+<details class="tp">
+<summary>Activité 1 : modéliser l'impact des forces évolutives sur les fréquences alléliques</summary>
+<div class="tpin">
+<p><b>Statut.</b> Activité faite en distanciel, à ne pas rendre. Aucune correction de Mme Philip n'a été reçue : les résultats attendus ci-dessous sont une proposition, construite à partir des définitions de la fiche d'activité.</p>
+<p><b>Problématique.</b> Comment les forces évolutives sont-elles à l'origine d'un écart des fréquences alléliques par rapport à l'équilibre théorique de Hardy-Weinberg ? Savoir-faire visé : comprendre et identifier les facteurs qui éloignent de l'équilibre, notamment l'appariement non aléatoire, la sélection et la population finie (dérive).</p>
+<p><b>Le principe.</b> Un logiciel simule une population et la fait se reproduire génération après génération. On peut changer la taille de la population de départ, introduire des mutations, ne pas garantir la présence des deux sexes (accouplement non aléatoire), ou donner une plus forte probabilité de transmission à un caractère avantageux. Le travail se fait sur 10 générations, car les écarts à l'équilibre s'observent dans le temps.</p>
+<div class="tablewrap"><table>
+<tr><th>Scénario</th><th>Conditions</th><th>Ce qu'on doit observer</th><th>Interprétation</th></tr>
+<tr><td><b>1. Équilibre de Hardy-Weinberg</b> (témoin)</td><td>1 000 individus, 2 allèles à 50 %, pas de mutation, rencontres au hasard, 10 générations</td><td>Les fréquences restent proches de 0,5, avec de très faibles fluctuations ; aucun allèle ne disparaît.</td><td>Dans une grande population, les conditions du modèle sont presque réunies : les fréquences restent à peu près constantes.</td></tr>
+<tr><td><b>2. Dérive génétique</b></td><td>9 individus, 2 allèles à 50 %, 11 générations ; le scénario est joué deux fois</td><td>Les fréquences varient fortement d'une génération à l'autre ; souvent, un allèle est <b>fixé</b> (fréquence 1) et l'autre disparaît. Les deux lancements donnent des résultats différents.</td><td>Dans une petite population, le hasard de la reproduction fait que certains allèles ne sont transmis à aucun descendant. L'évolution est <b>aléatoire</b>, impossible à prévoir, et d'autant plus forte que la population est petite.</td></tr>
+<tr><td><b>3. Effet fondateur</b></td><td>9 individus, fréquences de départ inégales (20 % pour le premier allèle), 11 générations</td><td>L'allèle rare (20 %) est le plus souvent perdu en quelques générations ; par hasard, il peut aussi augmenter.</td><td>Une petite population fondatrice n'emporte qu'un échantillon non représentatif des allèles de la population de départ ; la dérive s'ajoute ensuite et agit d'autant plus fort que la population est petite.</td></tr>
+<tr><td><b>4. Sélection naturelle</b> (autre logiciel, académie de Nice)</td><td>Valeurs sélectives : A//A = 1 ; A//B = 0,8 ; B//B = 0,8</td><td>La fréquence de A augmente régulièrement, celle de B diminue ; A tend vers la fixation. Contrairement à la dérive, le résultat se répète d'un lancement à l'autre.</td><td>Le génotype A//A laisse plus de descendants : la sélection fait évoluer les fréquences dans une <b>direction</b> donnée, celle de l'allèle favorable dans ce milieu.</td></tr>
+</table></div>
+<p><b>Les définitions de la fiche d'activité.</b></p>
+<ul>
+  <li><span class="kw">Dérive génétique</span> : évolution de la fréquence des allèles (ou des génotypes) d'un gène dans une population, causée par des phénomènes aléatoires et impossibles à prévoir, indépendamment des mutations, de la sélection naturelle et des migrations. Sa force est inversement proportionnelle à la taille de la population. Elle peut appauvrir la diversité génétique et faire disparaître une population, voire une espèce ; inversement, elle peut contribuer à l'apparition d'une nouvelle espèce.</li>
+  <li><span class="kw">Effet fondateur</span> : quand une petite partie d'une population se sépare de la population initiale (lors d'une migration pour coloniser un nouveau milieu, par exemple), cette population fondatrice ne représente qu'un échantillon non représentatif, tiré au hasard, des allèles de la population mère. Ses fréquences alléliques peuvent donc être très différentes de celles de la population de départ.</li>
+  <li><span class="kw">Valeur sélective</span> : probabilité qu'un génotype se transmette à la descendance. Elle vaut 1 pour le génotype au succès reproducteur maximal. Si tous les génotypes ont la même valeur sélective, la population n'est pas soumise à la sélection naturelle. Exemple de la fiche : la phalène du bouleau noire, moins visible sur les troncs noircis, est moins chassée par ses prédateurs et laisse plus de descendants.</li>
+</ul>
+<div class="box piege"><h4>⚠ Deux maladresses dans la fiche d'activité</h4>
+<p>Le scénario 3 annonce « 2 allèles à proportions égales au départ », puis « les fréquences de départ sont inégales : 20 % pour le premier allèle ». C'est la seconde phrase qui compte : l'effet fondateur se modélise avec des fréquences de départ différentes de 50 %. Et le tableau du scénario 1 est intitulé « fréquences alléliques et phénotypiques », alors qu'il ne contient que des fréquences alléliques (p et q).</p></div>
+</div></details>
+
+<div class="box retenir"><h4>À retenir</h4>
+<ul>
+  <li>Hérédité par mélange : fausse. Les allèles se transmettent intacts, d'où la persistance des variants.</li>
+  <li>Population : individus de la même espèce, dans une même zone, interféconds. Patrimoine génétique : l'ensemble de ses allèles ; chaque allèle a une fréquence.</li>
+  <li>f(A) = (2 × A//A + A//m) / 2N ; p + q = 1.</li>
+  <li>Loi de Hardy-Weinberg : p<sup>2</sup> + 2pq + q<sup>2</sup> = 1 ; les fréquences alléliques et génotypiques restent constantes : pas d'évolution dans ce cadre.</li>
+  <li>Conditions : population très grande, diploïde à reproduction sexuée, panmixie, pas de migration, pas de sélection, pas de mutation.</li>
+  <li>Écarts : mutations, migrations (flux de gènes), sélection naturelle, reproduction non aléatoire, petite population (dérive). Ce sont les forces évolutives.</li>
+</ul></div>
+<div class="box next"><h4>Ce que ça prépare</h4>
+<p>La suite de la partie II étudiera chaque force évolutive sur un cas réel, puis le chapitre se terminera sur la notion d'espèce, plus délicate à définir qu'il n'y paraît.</p></div>`},
       { id:"t4", num:"1A4", title:"D'autres mécanismes de diversification des êtres vivants",
         lede:"Spéciation, hybridation, diversification sans modification des génomes.",
         objectifs:["Discuter les différentes définitions de l'espèce",
@@ -4889,6 +5008,131 @@ t2b: [
      "Personnelle, originale, argumentée"],
   b:0,
   e:"« Distanciée » : elle interroge la démarche et la qualité des données. C'est le critère le plus souvent oublié."}
+],
+
+t3: [
+
+ /* ---- rappels ---- */
+ {t:"rappel", f:"p5", q:"D'où viennent les différents allèles d'un gène ?",
+  o:["De mutations de l'ADN, survenues au hasard",
+     "D'un mélange des allèles des deux parents",
+     "De la sélection naturelle, qui les fabrique",
+     "De la méiose, qui les crée"],
+  b:0,
+  e:"La mutation crée les allèles ; la méiose et la fécondation les redistribuent ; la sélection et la dérive font varier leurs fréquences."},
+
+ {t:"rappel", f:"p12", q:"Qu'est-ce qu'une pression de sélection ?",
+  o:["Une contrainte du milieu qui favorise les individus porteurs de certains allèles",
+     "Une mutation provoquée par le milieu",
+     "Le choix d'un partenaire sexuel",
+     "Une migration forcée"],
+  b:0,
+  e:"Exemple de Première : l'antibiotique élimine les bactéries sensibles et laisse se multiplier les résistantes."},
+
+ /* ---- cours ---- */
+ {t:"cours", q:"Pourquoi l'hérédité par mélange ne peut-elle pas expliquer la diversité des populations ?",
+  o:["Parce qu'elle diluerait les variants jusqu'à les faire disparaître en quelques générations",
+     "Parce qu'elle créerait trop de mutations",
+     "Parce qu'elle ne s'applique qu'aux bactéries",
+     "Parce qu'elle suppose une population infinie"],
+  b:0,
+  e:"Avec le mélange, tous les individus finiraient par se ressembler. Or les variants persistent : les allèles se transmettent intacts."},
+
+ {t:"cours", q:"Qu'est-ce qu'une population, selon le cours ?",
+  o:["Un groupe d'individus de la même espèce, vivant dans une même zone, pouvant se reproduire et donner une descendance fertile",
+     "L'ensemble des individus d'une même espèce sur toute la planète",
+     "Un groupe d'individus d'espèces différentes vivant au même endroit",
+     "L'ensemble des allèles d'un individu"],
+  b:0,
+  e:"L'ensemble des allèles présents dans la population, lui, est son patrimoine génétique."},
+
+ {t:"cours", q:"Une population de 100 individus compte 49 A//A, 42 A//m et 9 m//m. Quelle est la fréquence de l'allèle A ?",
+  o:["0,7", "0,49", "0,91", "0,5"],
+  b:0,
+  e:"f(A) = (2 × 49 + 42) / 200 = 140 / 200 = 0,7. Piège : 0,49 est la fréquence du génotype A//A, pas celle de l'allèle."},
+
+ {t:"cours", q:"À l'équilibre de Hardy-Weinberg, quelle est la fréquence des hétérozygotes A//m ?",
+  o:["2pq", "pq", "p²", "p + q"],
+  b:0,
+  e:"L'hétérozygote s'obtient de deux façons (A du père et m de la mère, ou l'inverse) : 2pq. Et p² + 2pq + q² = 1."},
+
+ {t:"cours", q:"Si p = 0,8, quelle fréquence de génotypes m//m attend-on à l'équilibre ?",
+  o:["0,04", "0,2", "0,32", "0,64"],
+  b:0,
+  e:"q = 1 − 0,8 = 0,2, donc q² = 0,04. 0,64 serait p² (A//A) et 0,32 serait 2pq (A//m)."},
+
+ {t:"cours", q:"Que prédit la loi de Hardy-Weinberg ?",
+  o:["Les fréquences alléliques et génotypiques restent constantes de génération en génération : pas d'évolution",
+     "L'allèle dominant finit toujours par remplacer l'allèle récessif",
+     "Les allèles rares disparaissent toujours",
+     "Les fréquences alléliques changent à chaque génération"],
+  b:0,
+  e:"Un allèle récessif ne disparaît pas pour autant : dans ce modèle, sa fréquence reste la même. La dominance agit sur le phénotype, pas sur la fréquence."},
+
+ {t:"cours", q:"Laquelle de ces conditions ne fait PAS partie du modèle de Hardy-Weinberg ?",
+  o:["Une population de petite taille",
+     "Des accouplements au hasard (panmixie)",
+     "L'absence de sélection naturelle",
+     "L'absence de migrations"],
+  b:0,
+  e:"Le modèle suppose au contraire une population de taille infinie, en pratique très grande. Une petite population s'écarte de l'équilibre par dérive."},
+
+ {t:"cours", q:"Que recouvre la panmixie ?",
+  o:["Équiprobabilité des gamètes, accouplements aléatoires, ségrégation aléatoire des allèles à la méiose",
+     "L'absence de mutations et de migrations",
+     "La reproduction entre individus apparentés",
+     "La sélection du meilleur partenaire"],
+  b:0,
+  e:"L'équiprobabilité des gamètes s'appelle la pangamie."},
+
+ {t:"cours", q:"Une population compte 500 A//A, 200 A//m et 300 m//m. Que peut-on dire ?",
+  o:["Elle s'écarte de l'équilibre : il manque des hétérozygotes par rapport aux 480 attendus",
+     "Elle est à l'équilibre, puisque p = 0,6",
+     "Elle est à l'équilibre, puisque p + q = 1",
+     "On ne peut rien dire sans connaître les phénotypes"],
+  b:0,
+  e:"p = (1 000 + 200) / 2 000 = 0,6 ; attendus : 360, 480, 160. Il faut comparer les fréquences génotypiques observées et attendues."},
+
+ {t:"cours", q:"Pourquoi une population réelle n'est-elle presque jamais à l'équilibre de Hardy-Weinberg ?",
+  o:["Parce que ses conditions (population infinie, panmixie, ni mutation, ni migration, ni sélection) ne sont jamais toutes réunies",
+     "Parce que la loi est fausse",
+     "Parce que les populations réelles sont haploïdes",
+     "Parce que les gamètes ne portent qu'un allèle"],
+  b:0,
+  e:"Le modèle sert de référence : un écart révèle qu'une force évolutive agit."},
+
+ {t:"cours", q:"Des préférences sexuelles entre partenaires écartent une population de l'équilibre parce que…",
+  o:["la reproduction ne se fait plus au hasard",
+     "elles provoquent des mutations",
+     "elles augmentent la taille de la population",
+     "elles empêchent la méiose"],
+  b:0,
+  e:"C'est la condition de panmixie (accouplements aléatoires) qui n'est plus respectée."},
+
+ /* ---- TP ---- */
+ {t:"tp", q:"Dans l'activité 1, à quoi sert le scénario 1 (1 000 individus, deux allèles à 50 %) ?",
+  o:["C'est le témoin : il montre des fréquences presque constantes, proches de l'équilibre",
+     "Il montre la dérive génétique",
+     "Il montre l'effet fondateur",
+     "Il montre la sélection naturelle"],
+  b:0,
+  e:"On compare les autres scénarios à ce témoin, où les conditions du modèle sont presque réunies."},
+
+ {t:"tp", q:"Dans le scénario de la dérive (9 individus), on relance deux fois le logiciel. Que constate-t-on ?",
+  o:["Des résultats différents : l'évolution est aléatoire, un allèle est souvent fixé et l'autre perdu",
+     "Exactement la même courbe à chaque fois",
+     "Des fréquences parfaitement constantes",
+     "Toujours la disparition du même allèle"],
+  b:0,
+  e:"La dérive est due au hasard de la reproduction : elle est imprévisible, et d'autant plus forte que la population est petite."},
+
+ {t:"tp", q:"Dans le scénario de sélection, A//A a une valeur sélective de 1, A//B et B//B de 0,8. Que devient l'allèle A ?",
+  o:["Sa fréquence augmente régulièrement : il tend vers la fixation",
+     "Il disparaît",
+     "Sa fréquence reste à 0,5",
+     "Sa fréquence varie au hasard"],
+  b:0,
+  e:"A//A laisse plus de descendants. Contrairement à la dérive, la sélection oriente l'évolution dans une direction donnée."}
 ]
 
 };
@@ -5183,6 +5427,43 @@ const VOCAB = {
     d:"Passage, au cours de l'évolution, de gènes de la bactérie endosymbiotique vers le noyau de la cellule hôte. Le noyau code ensuite les protéines de l'organite, qui y sont importées (exemple : petite sous-unité de la RubisCo)."},
    {m:"Transduction", u:"t2",
     d:"Transfert horizontal d'ADN bactérien par l'intermédiaire d'un virus de bactérie (bactériophage). Il faut seulement savoir que ce mécanisme existe."}
+  ]
+ },
+ "3": {
+  titre: "Chapitre 3 — L'évolution du génome au sein des populations",
+  nomListe: "Les définitions des diapositives et de la fiche d'activité de Mme Philip",
+  unites: ["t3"],
+  mots: [
+   {m:"Hérédité par mélange", prof:true, u:"t3",
+    d:"Théorie ancienne, admise vers 1800, selon laquelle la descendance de deux parents présente un phénotype intermédiaire, mélange des deux (souris noire × souris blanche → souris grise). Elle est fausse : les allèles se transmettent intacts."},
+   {m:"Population", prof:true, u:"t3",
+    d:"Groupe d'individus appartenant à la même espèce, vivant dans une même zone, pouvant se reproduire entre eux et engendrer une descendance fertile."},
+   {m:"Patrimoine génétique (d'une population)", prof:true, u:"t3",
+    d:"Ensemble des allèles présents dans une population."},
+   {m:"Fréquence allélique", prof:true, u:"t3",
+    d:"Proportion d'un allèle parmi tous les exemplaires du gène présents dans la population. Pour deux allèles de fréquences p et q : p + q = 1."},
+   {m:"Fréquence génotypique", prof:false, u:"t3",
+    d:"Proportion d'un génotype dans la population. À l'équilibre de Hardy-Weinberg : p² pour A//A, 2pq pour A//m, q² pour m//m."},
+   {m:"Loi de Hardy-Weinberg", prof:true, u:"t3",
+    d:"Modèle théorique proposé en 1908 par Hardy et Weinberg, qui prévoit la stabilité des fréquences alléliques dans les populations eucaryotes à reproduction sexuée : p² + 2pq + q² = 1. Dans ce cadre, il n'y a pas d'évolution."},
+   {m:"Panmixie", prof:true, u:"t3",
+    d:"Croisements aléatoires entre les individus d'une population. Elle recouvre l'équiprobabilité des gamètes (pangamie), des accouplements sans préférence entre partenaires et une ségrégation aléatoire des allèles lors de la méiose."},
+   {m:"Pangamie", prof:true, u:"t3",
+    d:"Équiprobabilité de rencontre des gamètes : tous les gamètes ont la même chance de participer à la fécondation."},
+   {m:"Écart à l'équilibre", prof:true, u:"t3",
+    d:"Différence entre les fréquences observées dans une population réelle et celles que prévoit le modèle de Hardy-Weinberg. Il révèle qu'au moins une condition du modèle n'est pas respectée."},
+   {m:"Forces évolutives", prof:true, u:"t3",
+    d:"Phénomènes qui écartent les fréquences alléliques de l'équilibre de Hardy-Weinberg : mutations, migrations, sélection naturelle, dérive génétique, reproduction non aléatoire."},
+   {m:"Flux génétique (migration)", prof:true, u:"t3",
+    d:"Arrivée de nouvelles variations génétiques dans une population, ou départ et isolement d'une partie de cette population."},
+   {m:"Dérive génétique", prof:true, u:"t3",
+    d:"Évolution aléatoire et imprévisible des fréquences alléliques d'une population, due au hasard de la reproduction, indépendamment des mutations, de la sélection et des migrations. Sa force est inversement proportionnelle à la taille de la population."},
+   {m:"Effet fondateur", prof:true, u:"t3",
+    d:"Quand une petite partie d'une population s'en sépare (migration, colonisation), elle n'emporte qu'un échantillon non représentatif, tiré au hasard, des allèles de la population mère : ses fréquences alléliques peuvent être très différentes."},
+   {m:"Valeur sélective", prof:true, u:"t3",
+    d:"Probabilité qu'un génotype se transmette à la descendance ; elle vaut 1 pour le génotype au succès reproducteur maximal."},
+   {m:"Fixation d'un allèle", prof:true, u:"t3",
+    d:"Situation où un allèle atteint la fréquence 1 : il est le seul allèle du gène dans la population, les autres ont disparu."}
   ]
  }
 };
@@ -5553,6 +5834,58 @@ t2b: [
    "Protéines fabriquées dans le cytoplasme puis importées (exemple : RubisCo)",
    "Conclusion : la différence ne contredit pas la théorie, elle la renforce",
    "Lien avec le transfert horizontal"
+  ]}
+],
+
+t3: [
+ {id:"hwcalc", titre:"Tester l'équilibre de Hardy-Weinberg", duree:"20 min",
+  consigne:"Dans une population de 400 individus, on dénombre 196 individus de génotype (A//A), 168 de génotype (A//m) et 36 de génotype (m//m). <b>Calculer les fréquences des allèles A et m, puis déterminer si cette population est à l'équilibre de Hardy-Weinberg.</b> Présente tes calculs et conclus. (Données créées pour l'entraînement.)",
+  source:"Proposition de correction, construite à partir du cours",
+  corrige:`<p class="pintit">Les fréquences alléliques</p>
+<p>La population compte 400 individus diploïdes, donc 800 exemplaires du gène. Les allèles A sont portés deux fois par chaque homozygote (A//A) et une fois par chaque hétérozygote : 2 × 196 + 168 = 560. Donc f(A) = p = 560 / 800 = <b>0,7</b>, et f(m) = q = 1 − 0,7 = <b>0,3</b>.</p>
+<p class="pintit">Les effectifs attendus à l'équilibre</p>
+<p>D'après la loi de Hardy-Weinberg, on attend : (A//A) p² = 0,49, soit 0,49 × 400 = 196 individus ; (A//m) 2pq = 0,42, soit 168 individus ; (m//m) q² = 0,09, soit 36 individus. On vérifie que p² + 2pq + q² = 0,49 + 0,42 + 0,09 = 1.</p>
+<p class="pintit">Conclusion</p>
+<p>Les effectifs observés (196, 168, 36) sont égaux aux effectifs attendus : la population est à l'équilibre de Hardy-Weinberg. Ses fréquences alléliques devraient rester constantes tant que les conditions du modèle sont respectées (grande population, panmixie, ni mutation, ni migration, ni sélection).</p>`,
+  points:[
+   "Nombre total d'allèles : 2N = 800",
+   "Calcul de p : (2 × 196 + 168) / 800 = 0,7",
+   "q = 1 − p = 0,3",
+   "Fréquences attendues : p², 2pq, q² (0,49 ; 0,42 ; 0,09)",
+   "Effectifs attendus (196 ; 168 ; 36)",
+   "Vérification p² + 2pq + q² = 1",
+   "Comparaison observé / attendu",
+   "Conclusion : population à l'équilibre",
+   "Rappel des conditions de validité"
+  ]},
+
+ {id:"ecarts", titre:"Expliquer pourquoi l'équilibre est rarement observé", duree:"25 min",
+  consigne:"<b>Montrer que le modèle de Hardy-Weinberg prévoit l'absence d'évolution, puis expliquer pourquoi les populations réelles s'écartent presque toujours de cet équilibre.</b> Réponds par une introduction, un développement structuré et une conclusion.",
+  source:"Proposition de correction, construite à partir du cours (diapositives 7 à 14)",
+  corrige:`<p class="pintit">Introduction</p>
+<p>Au début du XIXᵉ siècle, on pensait que l'hérédité mélangeait les caractères des parents, ce qui aurait dû faire disparaître les variants génétiques en quelques générations. En 1908, Hardy et Weinberg proposent un modèle mathématique qui explique la persistance de ces variants. Que prévoit ce modèle, et pourquoi les populations réelles s'en écartent-elles ?</p>
+<p class="pintit">Un modèle sans évolution</p>
+<p>Considérons un gène à deux allèles A et m, de fréquences p et q, avec p + q = 1. Si les gamètes se rencontrent au hasard, la descendance compte p² individus (A//A), 2pq individus (A//m) et q² individus (m//m), avec p² + 2pq + q² = 1. À la génération suivante, la fréquence de A vaut p² + pq = p(p + q) = p : elle n'a pas changé. Les fréquences alléliques, et donc génotypiques, restent constantes de génération en génération : dans ce cadre théorique, il n'y a pas d'évolution, et aucun allèle ne disparaît.</p>
+<p><i>Mais cette stabilité repose sur des conditions précises.</i></p>
+<p class="pintit">Des conditions jamais réunies</p>
+<p>Le modèle suppose une population de taille infinie, diploïde et à reproduction sexuée, la panmixie (gamètes équiprobables, accouplements au hasard), l'absence de migration, de sélection naturelle et de mutation. Dans la réalité, des mutations créent de nouveaux allèles ; des migrations apportent ou emportent des allèles, et des barrières naturelles isolent une partie de la population ; un changement de climat ou l'arrivée d'une espèce concurrente modifie la survie des individus, donc la sélection naturelle ; des préférences sexuelles font que la reproduction ne se fait pas au hasard ; enfin, une population peut être de petite taille, et le hasard de la reproduction y pèse beaucoup.</p>
+<p class="pintit">Conclusion</p>
+<p>Il est presque impossible qu'une population réelle soit à l'équilibre de Hardy-Weinberg. Le modèle n'en est pas moins utile : il sert de référence, et un écart à l'équilibre révèle l'action d'une ou plusieurs forces évolutives, que la suite du chapitre étudie.</p>`,
+  points:[
+   "Énigme de départ : l'hérédité par mélange ferait disparaître les variants",
+   "Problématique posée",
+   "p + q = 1 et tableau de croisement",
+   "p² + 2pq + q² = 1",
+   "Démonstration ou affirmation de la constance des fréquences",
+   "Conclusion partielle : pas d'évolution dans ce cadre",
+   "Phrase de transition",
+   "Conditions du modèle (au moins quatre)",
+   "Mutations",
+   "Migrations, flux de gènes, barrières",
+   "Sélection naturelle (changement d'environnement)",
+   "Reproduction non aléatoire",
+   "Petite population",
+   "Conclusion : le modèle sert de référence ; forces évolutives"
   ]}
 ]
 
