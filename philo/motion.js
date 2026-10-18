@@ -411,7 +411,8 @@ function placerPastille(sansAnim){
   var on = $(".navitem.on", side);
   if(!pastille){ pastille = document.createElement("i"); pastille.className = "mo-pastille"; pastille.setAttribute("aria-hidden", "true"); }
   if(pastille.parentNode !== side) side.appendChild(pastille);
-  if(!on){ pastille.style.opacity = "0"; side.classList.remove("mo-a-pastille"); return; }
+  /* sans mouvement (html.mo absent), l'entrée active garde son propre fond : la pastille la masquerait */
+  if(!on || calme()){ pastille.style.opacity = "0"; side.classList.remove("mo-a-pastille"); return; }
   var rs = side.getBoundingClientRect(), ro = on.getBoundingClientRect();
   var x = ro.left - rs.left + side.scrollLeft, y = ro.top - rs.top + side.scrollTop;
   if(sansAnim || calme()) pastille.style.transition = "none";
