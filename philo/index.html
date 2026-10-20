@@ -1299,6 +1299,32 @@ html[data-theme="obsidienne"] .notion-bgicon{filter:invert(1) brightness(1.4);op
   @media(max-width:420px){.gx-col,.gx-feu{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){.mx-sg{transition:none}}
 
+
+  /* ---------- le texte reste visible pendant la lecture du corrigé ---------- */
+  /* .main a overflow-x:clip, qui neutralise position:sticky — on le lève pour cette vue */
+  .main:has(.gx-stick){overflow-x:visible}
+  .gx-stick{position:sticky;top:0;z-index:6;margin:18px 0 22px;border:1px solid var(--rule);
+    border-radius:3px;background:var(--paper);box-shadow:0 6px 18px -12px rgba(var(--ink-rgb),.55)}
+  .inner > .gx-stick{position:sticky;top:0;z-index:6}
+  .gx-stick-bar{display:flex;align-items:center;gap:12px;padding:9px 14px;background:var(--ivory-2);
+    border-bottom:1px solid var(--rule);border-radius:2px 2px 0 0}
+  .gx-stick.open .gx-stick-bar{position:sticky;top:0}
+  .gx-stick-a{flex:1;min-width:0;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--saffron-deep);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .gx-stick-b{flex:none;font-size:10px;letter-spacing:.08em;padding:5px 11px;border:1px solid var(--rule);
+    border-radius:3px;background:var(--paper);color:var(--ink-soft);cursor:pointer;font-family:inherit}
+  .gx-stick-b:hover{border-color:var(--saffron);color:var(--ink)}
+  .gx-stick-b:focus-visible{outline:2px solid var(--saffron);outline-offset:2px}
+  .gx-stick-body{max-height:34vh;overflow-y:auto;overscroll-behavior:contain;padding:14px 18px}
+  .gx-stick-body p{font-size:15px;line-height:1.6;display:flex;gap:11px;margin:9px 0}
+  .gx-stick-body p:first-child{margin-top:0}
+  @media(min-width:1100px){.gx-stick-body{max-height:40vh}}
+  @media(max-width:760px){
+    /* la barre supérieure mobile est elle-même collante (71px) : on se cale dessous */
+    .inner > .gx-stick{top:var(--gx-top,71px)}
+    .gx-stick-body{max-height:30vh;padding:12px 14px}
+    .gx-stick-body p{font-size:14.5px}
+  }
 </style>
 <!-- mouvement:debut — couche maintenue à part (motion.css, motion.js) ; à conserver lors des mises à jour -->
 <link rel="stylesheet" href="motion.css?v=1">
@@ -2415,17 +2441,18 @@ function GxConcl(props){var G=GUIDE_EXPL,setTab=props.setTab;
 function GxCorriges(props){var G=GUIDE_EXPL,go=props.go;
  var s1=useState(0),ci=s1[0],setCi=s1[1];
  var s2=useState(true),notes=s2[0],setNotes=s2[1];
- var s3=useState(false),txt=s3[0],setTxt=s3[1];
+ var s3=useState(true),txt=s3[0],setTxt=s3[1];
  var cr=G.corriges[ci];var tx=TEXTES.find(function(x){return x.id===cr.tid;});
  return RE(React.Fragment,null,
   RE("p",{className:"mx-chapo"},G.corrChapo),
-  RE("div",{className:"gx-niv"},["Facile","Moyen","Difficile"].map(function(nv){return RE("div",{key:nv,className:"gx-niv-g"},RE("div",{className:"mx-lab mono"},nv),RE("div",{className:"mx-choix"},G.corriges.map(function(c,k){return c.niveau===nv?RE("button",{key:c.id,className:"pill"+(k===ci?" on":""),onClick:function(){setCi(k);setTxt(false);}},c.nom," — ",c.titre,c.cours?" · texte du cours":""):null;})));})),
+  RE("div",{className:"gx-niv"},["Facile","Moyen","Difficile"].map(function(nv){return RE("div",{key:nv,className:"gx-niv-g"},RE("div",{className:"mx-lab mono"},nv),RE("div",{className:"mx-choix"},G.corriges.map(function(c,k){return c.niveau===nv?RE("button",{key:c.id,className:"pill"+(k===ci?" on":""),onClick:function(){setCi(k);setTxt(true);}},c.nom," — ",c.titre,c.cours?" · texte du cours":""):null;})));})),
   cr.lecon?RE("div",{className:"callout tip gx-lecon"},RE("div",{className:"mx-lab mono"},"Ce que ce texte t'apprend"),RE("div",{className:"serif gx-lecon-t"},cr.lecon.t),RE("div",null,cr.lecon.d)):null,
   RE("div",{className:"callout"},G.corrNote),
-  tx?RE("div",null,
-   RE("button",{className:"mx-hlbtn"+(txt?" on":""),onClick:function(){setTxt(!txt);}},txt?"Masquer le texte":"Afficher le texte"),
-   txt?RE("div",{className:"mx-tx"},
-    RE("div",{className:"mx-tx-a mono"},tx.auteur," · ",tx.oeuvre),
+  tx?RE("div",{className:"gx-stick"+(txt?" open":"")},
+   RE("div",{className:"gx-stick-bar"},
+    RE("div",{className:"gx-stick-a mono"},tx.auteur," · ",tx.oeuvre),
+    RE("button",{className:"gx-stick-b mono","aria-expanded":txt?"true":"false",onClick:function(){setTxt(!txt);}},txt?"Replier le texte":"Déplier le texte")),
+   txt?RE("div",{className:"gx-stick-body"},
     tx.corps.map(function(p,k){return RE("p",{key:k,className:"serif"},RE("span",{className:"mx-tx-n mono"},"§ "+(k+1)),RE("span",{dangerouslySetInnerHTML:{__html:p}}));}),
     RE("div",{className:"mx-tx-s"},tx.source)):null):null,
   gxH2("1","Le brouillon : les cases"),
