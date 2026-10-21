@@ -1299,6 +1299,38 @@ html[data-theme="obsidienne"] .notion-bgicon{filter:invert(1) brightness(1.4);op
   @media(max-width:420px){.gx-col,.gx-feu{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){.mx-sg{transition:none}}
 
+  /* ---------- le texte en grand écran ---------- */
+  .gx-stick-g{color:var(--crimson);border-color:rgba(var(--crimson-rgb),.45)}
+  .gx-pl{position:fixed;inset:0;z-index:1000;background:rgba(var(--ink-rgb),.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .gx-pl-pan{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--ivory);color:var(--ink)}
+  .gx-pl-bar{flex:none;display:flex;align-items:center;gap:12px;padding:10px 18px;padding-top:max(10px,env(safe-area-inset-top));background:var(--ivory-2);border-bottom:1px solid var(--rule)}
+  .gx-pl-a{flex:1;min-width:0;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--saffron-deep);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .gx-pl-ctl{flex:none;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+  .gx-pl-b{font-family:inherit;font-size:11px;letter-spacing:.06em;padding:7px 11px;border:1px solid var(--rule);border-radius:3px;background:var(--paper);color:var(--ink-soft);cursor:pointer}
+  .gx-pl-b:hover:not(:disabled){border-color:var(--saffron);color:var(--ink)}
+  .gx-pl-b:disabled{opacity:.4;cursor:default}
+  .gx-pl-b.on{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+  .gx-pl-x{border-color:var(--ink);color:var(--ink)}
+  .gx-pl-b:focus-visible{outline:2px solid var(--saffron);outline-offset:2px}
+  .gx-pl-sc{flex:1;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .gx-pl-in{max-width:760px;margin:0 auto;padding:40px 28px max(90px,env(safe-area-inset-bottom))}
+  .gx-pl-e{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--saffron-deep)}
+  .gx-pl-t{font-size:2em;font-weight:600;line-height:1.15;margin:6px 0 28px}
+  .gx-pl-p{display:flex;gap:16px;line-height:1.8;margin:0 0 1.05em}
+  .gx-pl-n{flex:none;font-size:11px;color:var(--saffron-deep);padding-top:.55em;min-width:26px}
+  .gx-pl-mv{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);border-top:1px solid rgba(var(--teal-rgb),.4);padding-top:10px;margin:26px 0 12px}
+  .gx-pl-mv:first-of-type{margin-top:0}
+  .gx-pl-s{font-size:13px;font-style:italic;color:var(--ink-soft);margin-top:26px;padding-top:12px;border-top:1px solid var(--rule-soft)}
+  @media(max-width:760px){
+    .gx-pl-bar{flex-wrap:wrap;padding:8px 12px;padding-top:max(8px,env(safe-area-inset-top))}
+    .gx-pl-a{flex-basis:100%}
+    .gx-pl-ctl{flex:1;justify-content:flex-start}
+    .gx-pl-x{margin-left:auto}
+    .gx-pl-in{padding:26px 18px 80px}
+    .gx-pl-p{gap:11px}
+    .gx-pl-n{min-width:22px}
+  }
+
 
   /* ---------- le texte reste visible pendant la lecture du corrigé ---------- */
   /* .main a overflow-x:clip, qui neutralise position:sticky — on le lève pour cette vue */
@@ -2438,10 +2470,62 @@ function GxConcl(props){var G=GUIDE_EXPL,setTab=props.setTab;
    RE("div",{className:"mx-err-v"},RE("span",{className:"mx-ok","aria-hidden":"true"},"✓"),RE("span",null,x.v)));}),
   RE(GxSuite,{setTab:setTab,k:"corriges",l:"Les corrigés expliqués"}));}
 
+/* le texte étudié en grand écran : s'agrandit depuis le bouton, se referme vers lui */
+function gxCalme(){return !window.matchMedia||window.matchMedia("(prefers-reduced-motion: reduce)").matches;}
+function GxPlein(props){var tx=props.tx,from=props.from,onClose=props.onClose;
+ var ref=React.useRef(null),fin=React.useRef(false),btn=React.useRef(null);
+ var s1=useState(18),fs=s1[0],setFs=s1[1];
+ var s2=useState(false),mv=s2[0],setMv=s2[1];
+ var forme=function(){var r=from&&from.isConnected?from.getBoundingClientRect():null,W=innerWidth,H=innerHeight;
+  if(!r||!r.width)return "inset(45% 45% 45% 45% round 14px)";
+  return "inset("+Math.max(0,r.top)+"px "+Math.max(0,W-r.right)+"px "+Math.max(0,H-r.bottom)+"px "+Math.max(0,r.left)+"px round 6px)";};
+ var fermer=function(){if(fin.current)return;fin.current=true;var el=ref.current;
+  if(!el||gxCalme()||!el.animate){onClose();return;}
+  var pan=el.querySelector(".gx-pl-pan");
+  el.animate([{opacity:1},{opacity:0}],{duration:420,easing:"ease-in",fill:"forwards"});
+  var a=pan.animate([{clipPath:"inset(0px 0px 0px 0px round 0px)"},{clipPath:forme()}],{duration:420,easing:"cubic-bezier(.6,0,.8,.2)",fill:"forwards"});
+  a.onfinish=onClose;};
+ var demander=function(){if(history.state&&history.state.gxTexte)history.back();else fermer();};
+ useEffect(function(){
+  var el=ref.current;
+  try{history.pushState({gxTexte:1},"");}catch(e){}
+  var pop=function(){fermer();};
+  var cle=function(ev){if(ev.key==="Escape"){ev.preventDefault();demander();}};
+  addEventListener("popstate",pop);addEventListener("keydown",cle);
+  var ov=document.body.style.overflow;document.body.style.overflow="hidden";
+  if(btn.current)btn.current.focus({preventScroll:true});
+  if(el&&el.animate&&!gxCalme()){
+   el.animate([{opacity:0},{opacity:1}],{duration:380,easing:"ease-out"});
+   el.querySelector(".gx-pl-pan").animate([{clipPath:forme()},{clipPath:"inset(0px 0px 0px 0px round 0px)"}],{duration:560,easing:"cubic-bezier(.2,.85,.25,1)"});
+   [].slice.call(el.querySelectorAll(".gx-pl-in > *")).forEach(function(c,i){
+    c.animate([{opacity:0,transform:"translateY(14px)"},{opacity:1,transform:"none"}],{duration:520,delay:260+Math.min(i,10)*55,easing:"cubic-bezier(.2,.8,.2,1)",fill:"backwards"});});}
+  return function(){removeEventListener("popstate",pop);removeEventListener("keydown",cle);document.body.style.overflow=ov;
+   if(from&&from.isConnected)try{from.focus({preventScroll:true});}catch(e){}};},[]);
+ var debuts={};(tx.mouvements||[]).forEach(function(m,k){var n=(m.l.match(/(\d+)/)||[])[1];if(n)debuts[+n]={k:k,m:m};});
+ return ReactDOM.createPortal(RE("div",{ref:ref,className:"gx-pl",role:"dialog","aria-modal":"true","aria-label":"Le texte en grand écran : "+tx.titre},
+  RE("div",{className:"gx-pl-pan"},
+   RE("div",{className:"gx-pl-bar"},
+    RE("div",{className:"gx-pl-a mono"},tx.auteur," · ",tx.oeuvre),
+    RE("div",{className:"gx-pl-ctl"},
+     RE("button",{className:"gx-pl-b mono","aria-label":"Texte plus petit",disabled:fs<=15,onClick:function(){setFs(Math.max(15,fs-1.5));}},"A−"),
+     RE("button",{className:"gx-pl-b mono","aria-label":"Texte plus grand",disabled:fs>=27,onClick:function(){setFs(Math.min(27,fs+1.5));}},"A+"),
+     RE("button",{className:"gx-pl-b mono"+(mv?" on":""),"aria-pressed":mv?"true":"false",onClick:function(){setMv(!mv);}},"Mouvements"),
+     RE("button",{ref:btn,className:"gx-pl-b gx-pl-x mono",onClick:demander},"✕ Revenir au corrigé"))),
+   RE("div",{className:"gx-pl-sc"},
+    RE("div",{className:"gx-pl-in",style:{fontSize:fs+"px"}},
+     RE("div",{className:"gx-pl-e mono"},tx.oeuvre," · ",tx.date),
+     RE("h2",{className:"gx-pl-t serif"},tx.titre),
+     tx.corps.map(function(p,k){var d=mv?debuts[k+1]:null;
+      return RE(React.Fragment,{key:k},
+       d?RE("div",{className:"gx-pl-mv mono"},"Mouvement "+(d.k+1)+" · "+d.m.l+" — "+d.m.t):null,
+       RE("p",{className:"gx-pl-p serif"},RE("span",{className:"gx-pl-n mono"},"§ "+(k+1)),RE("span",{dangerouslySetInnerHTML:{__html:p}})));}),
+     RE("div",{className:"gx-pl-s"},tx.source))))),document.body);}
+
 function GxCorriges(props){var G=GUIDE_EXPL,go=props.go;
  var s1=useState(0),ci=s1[0],setCi=s1[1];
  var s2=useState(true),notes=s2[0],setNotes=s2[1];
  var s3=useState(true),txt=s3[0],setTxt=s3[1];
+ var s4=useState(null),plein=s4[0],setPlein=s4[1];
  var cr=G.corriges[ci];var tx=TEXTES.find(function(x){return x.id===cr.tid;});
  return RE(React.Fragment,null,
   RE("p",{className:"mx-chapo"},G.corrChapo),
@@ -2451,10 +2535,12 @@ function GxCorriges(props){var G=GUIDE_EXPL,go=props.go;
   tx?RE("div",{className:"gx-stick"+(txt?" open":"")},
    RE("div",{className:"gx-stick-bar"},
     RE("div",{className:"gx-stick-a mono"},tx.auteur," · ",tx.oeuvre),
+    RE("button",{className:"gx-stick-b gx-stick-g mono",onClick:function(ev){setPlein(ev.currentTarget);}},"⤢ Grand écran"),
     RE("button",{className:"gx-stick-b mono","aria-expanded":txt?"true":"false",onClick:function(){setTxt(!txt);}},txt?"Replier le texte":"Déplier le texte")),
    txt?RE("div",{className:"gx-stick-body"},
     tx.corps.map(function(p,k){return RE("p",{key:k,className:"serif"},RE("span",{className:"mx-tx-n mono"},"§ "+(k+1)),RE("span",{dangerouslySetInnerHTML:{__html:p}}));}),
     RE("div",{className:"mx-tx-s"},tx.source)):null):null,
+  plein&&tx?RE(GxPlein,{tx:tx,from:plein,onClose:function(){setPlein(null);}}):null,
   gxH2("1","Le brouillon : les cases"),
   RE("div",{className:"gx-cases"},cr.cases.map(function(c,k){return RE("div",{key:k,className:"gx-case"},RE("div",{className:"mx-lab mono"},c.k),RE("div",{className:"serif"},c.v));})),
   gxH2("2","Le brouillon : le tableau"),
