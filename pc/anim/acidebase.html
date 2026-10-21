@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A120B">
+<title>Acides, bases et pH : le voyage de l'ion H⁺</title>
+<link rel="stylesheet" href="moteur.css?v=3">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#anim-acidebase">← Retour au cours</a> · Chapitre 1 : transformations acides-bases</p>
+    <h1>Acides, bases et pH : le voyage de l'ion H⁺</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation : la liaison polarisée de HCl ; l'ion H⁺ passe du chlorure d'hydrogène à l'eau ; l'ammoniac capte un H⁺ de l'eau ; l'eau amphotère ; réaction entre l'acide éthanoïque et l'ion hydroxyde ; dilution et pH ; acide fort et acide faible à la même concentration">
+        <defs>
+          <radialGradient id="field" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#1E1A2E"/><stop offset=".7" stop-color="#110E1A"/><stop offset="1" stop-color="#08070D"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FF8B3E" stop-opacity=".65"/><stop offset="1" stop-color="#FF8B3E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFE3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <linearGradient id="arcenciel" x1="0" x2="1"><stop offset="0" stop-color="#7A3CFF"/><stop offset=".17" stop-color="#3B6CFF"/><stop offset=".33" stop-color="#22B0C8"/><stop offset=".5" stop-color="#3CC23C"/><stop offset=".67" stop-color="#F2D22B"/><stop offset=".83" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E3261B"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF5A4E"></span>oxygène</li>
+        <li><span class="sw" style="background:#E8ECF4"></span>hydrogène</li>
+        <li><span class="sw" style="background:#5FD07A"></span>chlore</li>
+        <li><span class="sw" style="background:#6E8BFF"></span>azote</li>
+        <li><span class="sw" style="background:#FF8B3E"></span>ion oxonium H₃O⁺ (étapes 6 et 7)</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Modèles moléculaires simplifiés : tailles, angles et distances non respectés. Les nombres d'ions des étapes 6 et 7 sont des images à l'échelle : ce qui compte, ce sont les proportions (10 fois moins d'ions, 16 % de molécules dissociées).</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=3"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, flash, label} = ANIM.H;
+const ORANGE = '#FF8B3E', BLANC = '#F2F5FA', GRIS = '#9C93AE', OR = '#FFD24A', VERT = '#7CE08A', KO = '#FF6B5B';
+const C_O = '#FF5A4E', C_H = '#E8ECF4', C_Cl = '#5FD07A', C_N = '#6E8BFF', C_C = '#8D96A8';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+
+/* ---------- briques ---------- */
+function atome(x, y, r, col, txt, o){
+  if(o <= 0) return '';
+  return `<g opacity="${op(o)}"><circle cx="${f(x)}" cy="${f(y)}" r="${r}" fill="${col}"/><circle cx="${f(x - r*.32)}" cy="${f(y - r*.34)}" r="${f(r*.38)}" fill="#FFFFFF" opacity=".35"/>` +
+    (txt ? `<text x="${f(x)}" y="${f(y + r*.36)}" font-size="${f(Math.max(8, r*.85))}" font-weight="800" fill="#1A1424" text-anchor="middle">${txt}</text>` : '') + `</g>`;
+}
+function liaison(a, b, o, w=3.4){ return o > 0 ? `<line x1="${f(a[0])}" y1="${f(a[1])}" x2="${f(b[0])}" y2="${f(b[1])}" stroke="#C9CEDA" stroke-width="${w}" stroke-linecap="round" opacity="${op(o)}"/>` : ''; }
+function charge(x, y, s, o){
+  if(o <= 0) return '';
+  const col = s === '+' ? '#FFB0A8' : '#A8C8FF';
+  return `<g opacity="${op(o)}"><circle cx="${f(x)}" cy="${f(y)}" r="7" fill="#120E1C" stroke="${col}" stroke-width="1.4"/><text x="${f(x)}" y="${f(y + 3.6)}" font-size="11" font-weight="800" fill="${col}" text-anchor="middle">${s === '+' ? '+' : '−'}</text></g>`;
+}
+/* le trajet d'un ion H⁺ : un arc au-dessus des molécules */
+function arcH(A, B, u, h=46){ return [lerp(A[0], B[0], u), lerp(A[1], B[1], u) - h*4*u*(1 - u)]; }
+const H_R = 8;
+
+/* une scène est visible entre a et b, avec fondu */
+const vis = (t, a, b) => kAt(t, a, a + .8)*(1 - kAt(t, b - .8, b));
+
+/* ---------- étape 6 : des ions oxonium dans un volume ---------- */
+let graine = 11; const rnd = () => (graine = (graine*16807) % 2147483647, (graine - 1)/2147483646);
+const BOITE = [40, 60, 200, 180];                          /* x, y, largeur, hauteur */
+const POINTS = Array.from({length:100}, () => [BOITE[0] + 8 + rnd()*(BOITE[2] - 16), BOITE[1] + 8 + rnd()*(BOITE[3] - 16)]);
+const ORDRE = POINTS.map((_, i) => i).sort((a, b) => ((a*37) % 101) - ((b*37) % 101));
+/* étape 7 : deux béchers de 25 molécules */
+const BECHERS = [[30, 60], [212, 60]], BW = 158, BH = 168;
+const MOLS = Array.from({length:25}, (_, i) => [14 + (i % 5)*32 + (Math.floor(i/5) % 2)*10, 24 + Math.floor(i/5)*30]);
+
+function draw(c){
+  const {t, k} = c;
+  const st = {};
+  let cells = '', nuc = '', sp = '', chr = '', fx = '', lab = '';
+
+  const M = {chr:'', nuc:'', sp:'', fx:'', lab:''};
+  /* ---------- 1-2. HCl, puis HCl dans l'eau ---------- */
+  const v12 = vis(t, 0, 20.5);
+  if(v12 > 0){
+    const Cl = [150, 140], H0 = [124, 140];
+    const W = [lerp(370, 270, kAt(t, 10.2, 12.2)), 140];
+    const WH1 = [W[0] + 15, W[1] - 19], WH2 = [W[0] + 15, W[1] + 19], cible = [W[0] - 24, W[1]];
+    const u = kAt(t, 12.6, 15);
+    const H = u > 0 ? arcH(H0, cible, u) : H0;
+    /* nuage électronique attiré par le chlore */
+    const pol = k(2, 4)*(1 - k(14.6, 15.4));
+    M.nuc += `<ellipse cx="${f(lerp(137, 143, pol))}" cy="140" rx="${f(lerp(30, 34, pol))}" ry="22" fill="${C_Cl}" opacity="${op(v12*.14*(1 - k(14.6, 15.4)))}"/>`;
+    M.chr += liaison(H0, Cl, v12*(1 - lin(t, 12.6, 13.2)));
+    M.chr += atome(Cl[0], Cl[1], 17, C_Cl, 'Cl', v12);
+    const ow = v12*k(10.2, 11);
+    M.chr += liaison(W, WH1, ow) + liaison(W, WH2, ow) + liaison(W, cible, v12*lin(t, 14.6, 15.2));
+    M.chr += atome(W[0], W[1], 14, C_O, 'O', ow) + atome(WH1[0], WH1[1], H_R, C_H, 'H', ow) + atome(WH2[0], WH2[1], H_R, C_H, 'H', ow);
+    M.chr += atome(H[0], H[1], H_R, C_H, 'H', v12);
+    /* charges partielles, puis charges des ions */
+    const od = v12*k(3, 4)*(1 - k(12.2, 12.8));
+    M.lab += `<g opacity="${op(od)}" font-size="11" font-weight="700"><text x="122" y="118" fill="#FFB0A8">δ+</text><text x="150" y="112" fill="#A8C8FF">δ−</text></g>`;
+    M.sp += charge(Cl[0] + 16, Cl[1] - 18, '−', v12*k(15, 15.6)) + charge(W[0] + 33, W[1], '+', v12*k(15, 15.6));
+    M.fx += flash(cible[0], cible[1], 15, 1);
+    st.H = H; st.Cl = Cl; st.W = W;
+    if(t < 12) lab += label(200, 300, "H — Cl : le chlore attire les électrons de la liaison", BLANC, 9, v12*k(4.5, 5.2));
+    else lab += label(200, 300, "HCl + H₂O → Cl⁻ + H₃O⁺", OR, 11, v12*k(15.6, 16.4));
+    lab += label(150, 340, "l'acide HCl cède H⁺ : c'est un donneur", '#FFC9A8', 9, v12*k(16.4, 17.2));
+    lab += label(270, 368, "l'eau capte H⁺ : ici elle joue le rôle de base", '#C9DAFF', 9, v12*k(17.2, 18));
+  }
+
+  /* ---------- 3. l'ammoniac capte un H⁺ de l'eau ---------- */
+  const v3 = vis(t, 20.5, 30.5);
+  if(v3 > 0){
+    const N = [130, 140], NH = [[112, 124], [112, 156], [134, 164]];
+    const W = [270, 140], WH = [W[0] + 15, W[1] - 19], H0 = [W[0] - 24, W[1]], cible = [N[0] + 24, N[1] - 6];
+    const u = kAt(t, 22.5, 25);
+    const H = u > 0 ? arcH(H0, cible, u) : H0;
+    NH.forEach(p => { M.chr += liaison(N, p, v3); });
+    M.chr += liaison(N, cible, v3*lin(t, 24.6, 25.2)) + liaison(W, H0, v3*(1 - lin(t, 22.5, 23.1))) + liaison(W, WH, v3);
+    M.chr += atome(N[0], N[1], 14, C_N, 'N', v3);
+    NH.forEach(p => { M.chr += atome(p[0], p[1], H_R, C_H, 'H', v3); });
+    M.chr += atome(W[0], W[1], 14, C_O, 'O', v3) + atome(WH[0], WH[1], H_R, C_H, 'H', v3) + atome(H[0], H[1], H_R, C_H, 'H', v3);
+    /* le doublet non liant de l'azote, qui « attrape » le proton */
+    const odb = v3*(1 - k(24.4, 25));
+    M.sp += `<g opacity="${op(odb)}"><circle cx="${N[0] + 17}" cy="${N[1] - 8}" r="2.4" fill="${OR}"/><circle cx="${N[0] + 19}" cy="${N[1] - 2}" r="2.4" fill="${OR}"/></g>`;
+    M.sp += charge(N[0] - 4, N[1] - 28, '+', v3*k(25, 25.6)) + charge(W[0] + 4, W[1] - 30, '−', v3*k(25, 25.6));
+    M.fx += flash(cible[0], cible[1], 25, 1);
+    st.dbl = [N[0] + 18, N[1] - 5];
+    lab += label(200, 300, "NH₃ + H₂O ⇌ NH₄⁺ + HO⁻", OR, 11, v3*k(25.6, 26.4));
+    lab += label(140, 340, "la base NH₃ capte H⁺ : c'est un accepteur", '#C9DAFF', 9, v3*k(26.4, 27.2));
+    lab += label(270, 368, "l'eau cède H⁺ : ici elle joue le rôle d'acide", '#FFC9A8', 9, v3*k(27.2, 28));
+  }
+
+  /* ---------- 4. l'eau, amphotère ---------- */
+  const v4 = vis(t, 30.5, 38.5);
+  if(v4 > 0){
+    const A = [120, 150], B = [280, 150];
+    /* à gauche, l'eau capte un H⁺ venu de la gauche ; à droite, elle en cède un vers la droite */
+    const ua = kAt(t, 31.6, 33.6), ub = kAt(t, 32.6, 34.6);
+    const Hin = [lerp(20, A[0] - 24, ua), A[1]], Hout = [lerp(B[0] + 24, 390, ub), B[1]];
+    for(const [W, dir] of [[A, 1], [B, -1]]){
+      const h1 = [W[0] + 15*dir, W[1] - 19], h2 = [W[0] + 15*dir, W[1] + 19];
+      M.chr += liaison(W, h1, v4) + liaison(W, h2, v4) + atome(W[0], W[1], 14, C_O, 'O', v4) + atome(h1[0], h1[1], H_R, C_H, 'H', v4) + atome(h2[0], h2[1], H_R, C_H, 'H', v4);
+    }
+    M.chr += liaison(A, [A[0] - 24, A[1]], v4*lin(t, 33.4, 33.8)) + liaison(B, [B[0] + 24, B[1]], v4*(1 - lin(t, 32.6, 33)));
+    M.chr += atome(Hin[0], Hin[1], H_R, C_H, 'H', v4*k(31.4, 31.8)) + atome(Hout[0], Hout[1], H_R, C_H, 'H', v4*(1 - lin(t, 34.2, 34.6)));
+    M.sp += charge(A[0] + 6, A[1] - 34, '+', v4*k(33.6, 34.2)) + charge(B[0] - 6, B[1] - 34, '−', v4*k(34.4, 35));
+    lab += label(A[0], 232, "H₂O + H⁺ → H₃O⁺", '#C9DAFF', 9.5, v4*k(34, 34.8)) + label(B[0], 232, "H₂O → HO⁻ + H⁺", '#FFC9A8', 9.5, v4*k(34.6, 35.4));
+    lab += label(A[0], 256, "base du couple H₃O⁺ / H₂O", '#C9DAFF', 8.6, v4*k(35, 35.8)) + label(B[0], 256, "acide du couple H₂O / HO⁻", '#FFC9A8', 8.6, v4*k(35.4, 36.2));
+    lab += label(200, 320, "une espèce à la fois acide et base est amphotère", OR, 9.5, v4*k(36, 36.8));
+  }
+
+  /* ---------- 5. une réaction acide-base : CH₃COOH + HO⁻ ---------- */
+  const v5 = vis(t, 38.5, 49.5);
+  if(v5 > 0){
+    const C1 = [86, 150], C2 = [120, 150], Od = [134, 124], Os = [140, 172], H0 = [164, 180];
+    const O = [284, 160], OH = [306, 160], cible = [260, 160];
+    const u = kAt(t, 41, 43.6);
+    const H = u > 0 ? arcH(H0, cible, u, 40) : H0;
+    M.chr += liaison(C1, C2, v5) + liaison(C2, Od, v5, 5) + liaison(C2, Os, v5) + liaison(Os, H0, v5*(1 - lin(t, 41, 41.6)));
+    M.chr += atome(C1[0], C1[1], 16, C_C, 'CH₃', v5) + atome(C2[0], C2[1], 13, C_C, 'C', v5) + atome(Od[0], Od[1], 13, C_O, 'O', v5) + atome(Os[0], Os[1], 13, C_O, 'O', v5);
+    M.chr += liaison(O, OH, v5) + liaison(O, cible, v5*lin(t, 43.2, 43.8)) + atome(O[0], O[1], 14, C_O, 'O', v5) + atome(OH[0], OH[1], H_R, C_H, 'H', v5);
+    M.chr += atome(H[0], H[1], H_R, C_H, 'H', v5);
+    M.sp += charge(O[0] + 4, O[1] - 30, '−', v5*(1 - k(43.4, 44))) + charge(Os[0] + 18, Os[1] + 10, '−', v5*k(43.6, 44.2));
+    M.fx += flash(cible[0], cible[1], 43.6, 1);
+    lab += label(120, 70, "couple CH₃COOH / CH₃COO⁻", '#FFC9A8', 8.8, v5*k(39, 39.8)) + label(290, 104, "couple H₂O / HO⁻", '#C9DAFF', 8.8, v5*k(39.4, 40.2));
+    lab += label(200, 300, "CH₃COOH + HO⁻ → CH₃COO⁻ + H₂O", OR, 10.5, v5*k(44, 44.8));
+    lab += label(200, 340, "acide 1 + base 2 → base 1 + acide 2", BLANC, 9.5, v5*k(44.8, 45.6));
+    lab += label(200, 368, "un seul H⁺ passe de l'acide d'un couple à la base de l'autre", '#C9C2DA', 8.6, v5*k(45.6, 46.4));
+    st.don = H0;
+  }
+
+  /* les molécules des étapes 1 à 5, agrandies autour du centre de la scène */
+  const TF = 'translate(200 150) scale(1.45) translate(-200 -140)', tp = p => [200 + (p[0] - 200)*1.45, 150 + (p[1] - 140)*1.45];
+  for(const kk of ['chr', 'nuc', 'sp', 'fx']) if(M[kk]) ({chr:()=>chr += `<g transform="${TF}">${M.chr}</g>`, nuc:()=>nuc += `<g transform="${TF}">${M.nuc}</g>`, sp:()=>sp += `<g transform="${TF}">${M.sp}</g>`, fx:()=>fx += `<g transform="${TF}">${M.fx}</g>`})[kk]();
+  if(M.lab) lab += `<g transform="${TF}">${M.lab}</g>`;
+  for(const kk of ['H', 'Cl', 'W', 'dbl', 'don']) if(st[kk]) st[kk] = tp(st[kk]);
+
+  /* ---------- 6. le pH compte les ions oxonium ---------- */
+  const v6 = vis(t, 49.5, 60.5);
+  if(v6 > 0){
+    cells += `<rect x="${BOITE[0]}" y="${BOITE[1]}" width="${BOITE[2]}" height="${BOITE[3]}" rx="8" fill="#5AA9FF" fill-opacity=".08" stroke="#7D8AA8" stroke-width="1.2" opacity="${op(v6)}"/>`;
+    lab += `<text x="${BOITE[0] + BOITE[2]/2}" y="${BOITE[1] - 8}" font-size="8.8" fill="${GRIS}" opacity="${op(v6)}">même volume prélevé, vu à l'échelle des ions</text>`;
+    const reste = t < 52.6 ? 100 : t < 56.4 ? Math.round(lerp(100, 10, kAt(t, 52.6, 54.6))) : Math.round(lerp(10, 1, kAt(t, 56.4, 58)));
+    ORDRE.forEach((idx, rang) => {
+      const p = POINTS[idx], o = rang < reste ? 1 : 0;
+      if(o) chr += `<circle cx="${f(p[0])}" cy="${f(p[1])}" r="3.2" fill="${ORANGE}" opacity="${op(v6*k(49.6 + rang*.012, 50.2 + rang*.012))}"/>`;
+    });
+    const pH = t < 52.6 ? 2 : t < 56.4 ? lerp(2, 3, kAt(t, 52.6, 54.6)) : lerp(3, 4, kAt(t, 56.4, 58));
+    /* l'échelle de pH */
+    const yP = v => 60 + v/7*180, X = 300;
+    cells += `<g opacity="${op(v6)}"><rect x="${X - 6}" y="60" width="12" height="180" rx="6" fill="#2A2438" stroke="#6E6688"/>`;
+    for(let v = 0; v <= 7; v++) cells += `<line x1="${X + 8}" y1="${f(yP(v))}" x2="${X + 14}" y2="${f(yP(v))}" stroke="${GRIS}"/><text x="${X + 18}" y="${f(yP(v) + 3)}" font-size="8.4" fill="${GRIS}">${v}</text>`;
+    cells += `<text x="${X}" y="52" font-size="9" fill="${BLANC}" text-anchor="middle">pH</text></g>`;
+    sp += `<circle cx="${X}" cy="${f(yP(pH))}" r="8" fill="${ORANGE}" opacity="${op(v6)}"/><text x="${X - 14}" y="${f(yP(pH) + 3.5)}" font-size="10" font-weight="800" fill="${ORANGE}" text-anchor="end" opacity="${op(v6)}">${pH.toFixed(1).replace('.', ',')}</text>`;
+    const conc = t < 53.6 ? "1,0 × 10⁻² mol·L⁻¹" : t < 57.2 ? "1,0 × 10⁻³ mol·L⁻¹" : "1,0 × 10⁻⁴ mol·L⁻¹";
+    lab += label(140, 266, "[H₃O⁺] = " + conc, BLANC, 9.5, v6*k(50.2, 50.8));
+    lab += label(200, 300, "pH = − log ( [H₃O⁺] / c° )", OR, 11, v6*k(50.8, 51.6));
+    lab += label(200, 340, "diluer 10 fois : 10 fois moins d'ions, pH + 1", '#FFC9A8', 9.5, v6*k(54.6, 55.4));
+    st.ech = [X, yP(pH)];
+  }
+
+  /* ---------- 7. acide fort, acide faible ---------- */
+  const v7 = vis(t, 60.5, 99);
+  if(v7 > 0){
+    BECHERS.forEach(([bx, by], j) => {
+      cells += `<path d="M${bx} ${by} L${bx} ${by + BH} Q${bx} ${by + BH + 8} ${bx + 8} ${by + BH + 8} L${bx + BW - 8} ${by + BH + 8} Q${bx + BW} ${by + BH + 8} ${bx + BW} ${by + BH} L${bx + BW} ${by}" fill="#5AA9FF" fill-opacity=".07" stroke="#9AA3BC" stroke-width="1.4" opacity="${op(v7)}"/>`;
+      const nb = j === 0 ? 25 : 4;
+      MOLS.forEach(([mx, my], i) => {
+        const x = bx + mx, y = by + my;
+        const dis = i < nb ? kAt(t, 62 + i*.06, 63.2 + i*.06) : 0;
+        /* équilibre : quelques molécules d'acide faible se dissocient puis se reforment */
+        const va = (j === 1 && i >= 4 && i < 8) ? Math.max(0, Math.sin((t - 64 - i)*1.3))*k(64, 65) : 0;
+        const d = Math.max(dis, va);
+        if(d < .5){
+          chr += `<g opacity="${op(v7*(1 - d*2))}"><circle cx="${f(x)}" cy="${f(y)}" r="5.4" fill="${j === 0 ? C_Cl : C_C}"/><circle cx="${f(x + 7)}" cy="${f(y)}" r="3.4" fill="${C_H}"/></g>`;
+        }
+        if(d > 0){
+          chr += `<circle cx="${f(x - 4*d)}" cy="${f(y + 3*d)}" r="5" fill="${j === 0 ? C_Cl : C_C}" opacity="${op(v7*d)}"/><circle cx="${f(x + 10*d)}" cy="${f(y - 6*d)}" r="4" fill="${ORANGE}" opacity="${op(v7*d)}"/>`;
+        }
+      });
+      lab += `<text x="${bx + BW/2}" y="${by - 8}" font-size="9" fill="${BLANC}" opacity="${op(v7)}">${j === 0 ? "acide chlorhydrique" : "acide éthanoïque"} · 1,0 × 10⁻² mol·L⁻¹</text>`;
+    });
+    lab += label(BECHERS[0][0] + BW/2, 262, "25 sur 25 ont réagi : pH = 2,0", '#FFC9A8', 9, v7*k(63.6, 64.4));
+    lab += label(BECHERS[1][0] + BW/2, 262, "4 sur 25 (16 %) : pH = 2,8", '#C9DAFF', 9, v7*k(64.4, 65.2));
+    lab += label(BECHERS[0][0] + BW/2, 300, "réaction totale : →", OR, 10, v7*k(65.4, 66.2));
+    lab += label(BECHERS[1][0] + BW/2, 300, "réaction limitée : ⇌", OR, 10, v7*k(66, 66.8));
+    lab += label(200, 340, "pH mesuré > pH si tout avait réagi : réaction limitée", BLANC, 9, v7*k(67, 67.8));
+  }
+  return {cells, nuc, sp, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:10, title:"1. Une liaison polarisée",
+  text:"Dans la molécule de chlorure d'hydrogène, le chlore est bien plus <strong>électronégatif</strong> que l'hydrogène : il attire vers lui les électrons de la liaison. L'hydrogène porte une charge partielle δ+, le chlore δ−. La liaison est fragile : l'hydrogène est prêt à partir <strong>sans ses électrons</strong>, sous forme d'ion H⁺.",
+  state:"H—Cl : liaison polarisée"},
+ {t:10, e:20.5, title:"2. HCl dans l'eau : l'acide cède H⁺",
+  text:"Une molécule d'eau approche. Son oxygène, riche en électrons, attire l'ion H⁺, qui quitte le chlore pour se fixer sur l'eau : il se forme un <strong>ion oxonium H₃O⁺</strong> et un <strong>ion chlorure Cl⁻</strong>. Au sens de Brønsted, HCl est un <strong>acide</strong> : il <strong>cède</strong> un ion H⁺.",
+  state:"HCl + H₂O → Cl⁻ + H₃O⁺"},
+ {t:20.5, e:30.5, title:"3. L'ammoniac capte H⁺ : une base",
+  text:"L'azote de l'ammoniac porte un <strong>doublet non liant</strong> (points jaunes). Ce doublet capte un ion H⁺ arraché à une molécule d'eau : il se forme l'ion ammonium NH₄⁺ et l'ion hydroxyde HO⁻. Une <strong>base</strong> est une espèce capable de <strong>capter</strong> un ion H⁺.",
+  state:"NH₃ + H₂O ⇌ NH₄⁺ + HO⁻"},
+ {t:30.5, e:38.5, title:"4. L'eau, à la fois acide et base",
+  text:"Avec HCl, l'eau captait H⁺ : elle était une base. Avec l'ammoniac, elle cédait H⁺ : elle était un acide. Elle appartient donc à <strong>deux couples</strong>, H₃O⁺ / H₂O et H₂O / HO⁻. Une telle espèce est dite <strong>amphotère</strong>.",
+  state:"L'eau est amphotère"},
+ {t:38.5, e:49.5, title:"5. Une réaction acide-base : deux couples",
+  text:"L'acide éthanoïque CH₃COOH cède l'H⁺ de son groupe carboxyle ; l'ion hydroxyde HO⁻ le capte. Le H⁺ passe de l'<strong>acide d'un couple</strong> à la <strong>base de l'autre</strong> : acide 1 + base 2 → base 1 + acide 2. On écrit les deux demi-équations, puis on les additionne sans faire apparaître H⁺.",
+  state:"CH₃COOH + HO⁻ → CH₃COO⁻ + H₂O"},
+ {t:49.5, e:60.5, title:"6. Le pH compte les ions oxonium",
+  text:"Le pH mesure la concentration en ions oxonium : <strong>pH = −log([H₃O⁺]/c°)</strong>. Diluer 10 fois une solution d'acide fort laisse 10 fois moins d'ions dans le même volume : le pH <strong>augmente de 1</strong>. Le logarithme transforme chaque division par 10 en une simple addition de 1.",
+  state:"[H₃O⁺] ÷ 10 ⟺ pH + 1"},
+ {t:60.5, e:75, title:"7. Acide fort, acide faible",
+  text:"À la même concentration, l'acide chlorhydrique a réagi <strong>totalement</strong> avec l'eau (pH = 2,0), alors que l'acide éthanoïque n'a réagi qu'à 16 % environ (pH = 2,8) : sa réaction avec l'eau est <strong>limitée</strong>, certaines molécules se dissocient pendant que d'autres se reforment. On le sait en comparant le pH mesuré au pH qu'on aurait si tout avait réagi.",
+  state:"pH mesuré > pH théorique ⟹ réaction limitée (⇌)"}
+];
+
+const CALL = [
+  {a:4.6, b:9.4, text:"le chlore attire les électrons", lab:[200,52], anc:st=>[st.Cl].filter(Boolean)},
+  {a:12.6, b:15, text:"l'ion H⁺ change de partenaire", lab:[200,40], anc:st=>[st.H].filter(Boolean)},
+  {a:21.2, b:24.4, text:"doublet non liant de l'azote", lab:[150,52], anc:st=>[st.dbl].filter(Boolean)},
+  {a:39.6, b:42.6, text:"H du groupe carboxyle", lab:[110,262], anc:st=>[st.don].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[10.2,'step'],[10.4,'whoosh'],[15,'pop'],[20.7,'step'],[25,'pop'],[30.7,'step'],[33.6,'pop'],[34.6,'pop'],[38.7,'step'],[43.6,'pop'],[49.7,'step'],[53,'whoosh'],[56.8,'whoosh'],[60.7,'step'],[62.2,'spark'],[67,'final']];
+
+const QUIZ = [
+ {q:"Au sens de Brønsted, un acide est une espèce…",
+  o:["capable de céder un ion H⁺","capable de capter un ion H⁺","qui contient forcément un atome d'oxygène"], a:0,
+  ex:"L'acide cède un ion hydrogène H⁺ ; la base le capte. HCl cède son H⁺ à l'eau."},
+ {q:"Dans la réaction HCl + H₂O → Cl⁻ + H₃O⁺, l'eau joue le rôle…",
+  o:["d'acide, car elle cède H⁺","de base, car elle capte H⁺","de simple solvant, sans réagir"], a:1,
+  ex:"L'eau capte l'ion H⁺ cédé par HCl et devient H₃O⁺ : elle est la base du couple H₃O⁺ / H₂O. Face à l'ammoniac, elle serait au contraire un acide."},
+ {q:"On dilue 10 fois une solution d'acide fort de pH 2,0. Le nouveau pH vaut…",
+  o:["0,2","3,0","20"], a:1,
+  ex:"La concentration en ions oxonium est divisée par 10 : le pH augmente de 1, puisque pH = −log[H₃O⁺]."},
+ {q:"Une solution d'acide éthanoïque à 1,0 × 10⁻² mol·L⁻¹ a un pH de 2,8. On en déduit que…",
+  o:["la réaction avec l'eau est totale","la réaction avec l'eau est limitée","le pH-mètre est déréglé"], a:1,
+  ex:"Si tout l'acide avait réagi, on aurait [H₃O⁺] = 1,0 × 10⁻² mol·L⁻¹ et pH = 2,0. Un pH plus élevé signifie moins d'ions oxonium : la réaction est limitée."}
+];
+
+ANIM.lancer({id:'acidebase', END:75, SCENES, CALL, CUES, QUIZ, draw, graine:3});
+})();
+</script>
+</body>
+</html>
