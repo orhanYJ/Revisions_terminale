@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A120B">
+<title>Le titrage goutte à goutte : jusqu'à l'équivalence</title>
+<link rel="stylesheet" href="moteur.css?v=3">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#anim-titrage">← Retour au cours</a> · Chapitre 3 : titrage, équivalence, suivis pH-métrique et conductimétrique</p>
+    <h1>Le titrage goutte à goutte : jusqu'à l'équivalence</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation : la soude est versée goutte à goutte dans l'acide chlorhydrique ; les ions oxonium disparaissent, remplacés par les ions sodium ; à l'équivalence il ne reste ni acide ni base ; ensuite les ions hydroxyde s'accumulent ; les courbes de pH et de conductivité se tracent en direct ; lecture du volume équivalent par la méthode des tangentes et par l'intersection des deux droites ; calcul de la concentration">
+        <defs>
+          <radialGradient id="field" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#1E1A2E"/><stop offset=".7" stop-color="#110E1A"/><stop offset="1" stop-color="#08070D"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FF8B3E" stop-opacity=".65"/><stop offset="1" stop-color="#FF8B3E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFE3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <linearGradient id="arcenciel" x1="0" x2="1"><stop offset="0" stop-color="#7A3CFF"/><stop offset=".17" stop-color="#3B6CFF"/><stop offset=".33" stop-color="#22B0C8"/><stop offset=".5" stop-color="#3CC23C"/><stop offset=".67" stop-color="#F2D22B"/><stop offset=".83" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E3261B"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF8B3E"></span>ion oxonium H₃O⁺</li>
+        <li><span class="sw" style="background:#4F8FD9"></span>ion hydroxyde HO⁻</li>
+        <li><span class="sw" style="background:#B9A6FF"></span>ion sodium Na⁺ (spectateur)</li>
+        <li><span class="sw" style="background:#5FD07A"></span>ion chlorure Cl⁻ (spectateur)</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Mêmes valeurs que le simulateur et l'exemple du cours (chapitre 3, fiches 3 et 7) : acide chlorhydrique à 1,0 × 10⁻² mol·L⁻¹, 20,0 mL, soude à 2,0 × 10⁻² mol·L⁻¹. Chaque icône représente 10 µmol d'ions. Le pH et σ sont calculés à chaque goutte ; la dilution est prise en compte.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=3"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, flash, label} = ANIM.H;
+const ORANGE = '#FF8B3E', BLANC = '#F2F5FA', GRIS = '#9C93AE', OR = '#FFD24A', VERT = '#7CE08A', KO = '#FF6B5B';
+const C_H = '#FF8B3E', C_OH = '#4F8FD9', C_NA = '#B9A6FF', C_CL = '#5FD07A';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+const virg = (x,n=1) => x.toFixed(n).replace('.', ',');
+
+/* ---------- le titrage : HCl (cA = 1,0 × 10⁻² mol·L⁻¹, VA = 20,0 mL) par la soude (cB = 2,0 × 10⁻² mol·L⁻¹) ---------- */
+const cA = 1e-2, VA = 20e-3, cB = 2e-2, nA0 = cA*VA, VE = nA0/cB*1e3;   /* VE en mL */
+const LAM = {H:35.0, OH:19.8, Na:5.01, Cl:7.63};                      /* mS·m²·mol⁻¹ */
+function etat(VB){
+  const nB = cB*VB*1e-3, V = VA + VB*1e-3;
+  const nH = Math.max(0, nA0 - nB), nOH = Math.max(0, nB - nA0);
+  const pH = nH > 1e-9 ? -Math.log10(nH/V) : nOH > 1e-9 ? 14 + Math.log10(nOH/V) : 7;   /* V en L */
+  const conc = n => n/V*1e3;                                           /* mol·m⁻³ */
+  const sig = (LAM.H*conc(nH) + LAM.OH*conc(nOH) + LAM.Na*conc(nB) + LAM.Cl*conc(nA0))*1e-3*10;  /* mS·cm⁻¹ */
+  return {nH, nOH, nNa:nB, nCl:nA0, pH, sig};
+}
+/* les gouttes : instant d'arrivée et volume */
+const GOUTTES = [];
+for(let i=0; i<8; i++) GOUTTES.push([10.4 + i*1.6, 1]);
+for(let i=0; i<4; i++) GOUTTES.push([24.6 + i*1.5, .5]);
+for(let i=0; i<10; i++) GOUTTES.push([34.6 + i*1.0, 1]);
+function volume(t){ let v = 0; for(const [h, dv] of GOUTTES) if(t >= h) v += dv; return v; }
+const CHUTE = .5;
+
+/* ---------- géométrie ---------- */
+const BX = 34, BY = 150, BW = 150, BH = 104;                 /* bécher */
+const XT = 109, YT = 112;                                    /* pointe de la burette */
+const SLOTS = (() => { const s = []; for(let j=0; j<8; j++) for(let i=0; i<11; i++) s.push([BX + 12 + i*12.6 + (j % 2)*5, BY + 14 + j*11.4]); return s; })();
+/* répartition des emplacements par espèce (1 icône = 10 µmol) */
+let graine = 2; const rnd = () => (graine = (graine*16807) % 2147483647, (graine - 1)/2147483646);
+const ORDRE = SLOTS.map((_, i) => i).sort(() => rnd() - .5);
+const P_CL = ORDRE.slice(0, 20), P_NA = ORDRE.slice(20, 60), P_HO = ORDRE.slice(60, 80);
+/* graphes à droite */
+const GX = 232, GW = 150, GP = [26, 168], GS = [228, 370];    /* [haut, bas] des deux graphes */
+const gx = v => GX + v/20*GW, gp = pH => GP[1] - pH/14*(GP[1] - GP[0]), gs = s => GS[1] - s/4.6*(GS[1] - GS[0]);
+
+function graphe(y0, y1, ymax, ticks, titre, o){
+  let s = `<g opacity="${op(o)}" font-family="system-ui, sans-serif" font-size="8" fill="${GRIS}"><line x1="${GX}" y1="${y1}" x2="${GX + GW}" y2="${y1}" stroke="${GRIS}"/><line x1="${GX}" y1="${y1}" x2="${GX}" y2="${y0}" stroke="${GRIS}"/>`;
+  for(const v of [5, 10, 15, 20]) s += `<line x1="${f(gx(v))}" y1="${y1}" x2="${f(gx(v))}" y2="${y1 + 3}" stroke="${GRIS}"/><text x="${f(gx(v))}" y="${y1 + 12}" text-anchor="middle">${v}</text>`;
+  for(const v of ticks) s += `<text x="${GX - 4}" y="${f(y1 - v/ymax*(y1 - y0) + 3)}" text-anchor="end">${String(v).replace('.', ',')}</text>`;
+  s += `<text x="${GX + 3}" y="${y0 - 3}" fill="${BLANC}">${titre}</text><text x="${GX + GW}" y="${y1 + 22}" text-anchor="end">V<tspan font-size="6" dy="2">B</tspan><tspan dy="-2"> (mL)</tspan></text></g>`;
+  return s;
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {};
+  let cells = '', nuc = '', sp = '', chr = '', fx = '', lab = '';
+  const o = k(0, 1);
+  const VB = volume(t), E = etat(VB);
+
+  /* ---------- burette et bécher ---------- */
+  const niv = 18 + VB/20*80;
+  nuc += `<rect x="${XT - 7}" y="14" width="14" height="92" rx="2" fill="none" stroke="#C9D4EE" stroke-width="1.4" opacity="${op(o)}"/>`;
+  nuc += `<rect x="${XT - 6}" y="${f(niv)}" width="12" height="${f(104 - niv)}" fill="${C_OH}" opacity="${op(o*.45)}"/>`;
+  nuc += `<path d="M${XT - 3} 106 L${XT} ${YT} L${XT + 3} 106" fill="none" stroke="#C9D4EE" stroke-width="1.4" opacity="${op(o)}"/>`;
+  for(let v=0; v<=20; v+=5) nuc += `<line x1="${XT + 7}" y1="${f(18 + v/20*80)}" x2="${XT + 11}" y2="${f(18 + v/20*80)}" stroke="#C9D4EE" opacity="${op(o*.7)}"/>`;
+  lab += `<text x="${XT - 12}" y="24" font-size="8.4" fill="${GRIS}" text-anchor="end" opacity="${op(o)}">soude</text><text x="${XT - 12}" y="35" font-size="8.4" fill="${GRIS}" text-anchor="end" opacity="${op(o)}">2,0 × 10⁻² mol·L⁻¹</text>`;
+  cells += `<path d="M${BX} ${BY} L${BX} ${BY + BH} Q${BX} ${BY + BH + 8} ${BX + 8} ${BY + BH + 8} L${BX + BW - 8} ${BY + BH + 8} Q${BX + BW} ${BY + BH + 8} ${BX + BW} ${BY + BH} L${BX + BW} ${BY}" fill="#5AA9FF" fill-opacity=".07" stroke="#9AA3BC" stroke-width="1.4" opacity="${op(o)}"/>`;
+  lab += `<text x="${BX + BW/2}" y="${BY + BH + 22}" font-size="8.4" fill="${GRIS}" opacity="${op(o)}">acide chlorhydrique · 20,0 mL · c<tspan font-size="6" dy="2">A</tspan><tspan dy="-2"> = ?</tspan></text>`;
+  lab += label(XT + 58, 74, `V = ${virg(VB, 1)} mL`, BLANC, 9, o*k(1, 1.6));
+
+  /* gouttes qui tombent */
+  for(const [h, dv] of GOUTTES){
+    if(t > h - CHUTE && t < h){ const u = lin(t, h - CHUTE, h); chr += `<ellipse cx="${XT}" cy="${f(lerp(YT + 4, BY + 10, u*u))}" rx="2.6" ry="3.6" fill="${C_OH}"/>`; }
+    if(t >= h && t < h + .6) fx += `<circle cx="${XT}" cy="${BY + 12}" r="${f(3 + 18*(t - h))}" fill="none" stroke="${C_OH}" opacity="${op(1 - (t - h)/.6)}"/>`;
+  }
+
+  /* ---------- les ions (1 icône = 10 µmol) ---------- */
+  const n = x => Math.round(x*1e5);                           /* en dizaines de µmol */
+  const nH = n(E.nH), nOH = n(E.nOH), nNa = n(E.nNa);
+  const ic = (p, col, s, o2) => { const [x, y] = SLOTS[p]; return `<circle cx="${f(x)}" cy="${f(y)}" r="4.6" fill="${col}" opacity="${op(o2)}"/><text x="${f(x)}" y="${f(y + 3.2)}" font-size="8" font-weight="800" fill="#1A1424" text-anchor="middle" opacity="${op(o2)}">${s}</text>`; };
+  P_CL.forEach(p => { chr += ic(p, C_CL, '−', o*.9); });
+  P_NA.slice(0, nNa).forEach(p => { chr += ic(p, C_NA, '+', o*.9); });
+  P_HO.slice(0, nH).forEach(p => { chr += ic(p, C_H, '+', o); });
+  P_HO.slice(0, nOH).forEach(p => { chr += ic(p, C_OH, '−', o); });
+  /* à chaque goutte avant l'équivalence : deux H₃O⁺ disparaissent avec les HO⁻ versés */
+  for(const [h, dv] of GOUTTES){
+    if(t < h || t > h + 1) continue;
+    const avant = n(etat(volume(h - .01)).nH), apres = n(etat(volume(h + .01)).nH);
+    for(let i=apres; i<avant; i++){ const [x, y] = SLOTS[P_HO[i]]; const u = lin(t, h, h + 1); fx += `<circle cx="${f(x)}" cy="${f(y)}" r="${f(4 + 10*u)}" fill="none" stroke="${C_H}" opacity="${op(1 - u)}"/>`; if(i === apres) lab += `<text x="${f(x)}" y="${f(y - 8 - 8*u)}" font-size="8" font-weight="700" fill="#BFD8FF" opacity="${op(1 - u)}">2 H₂O</text>`; }
+  }
+  st.b = [BX + BW/2, BY + BH/2];
+
+  /* ---------- quantités ---------- */
+  const QY = 306;
+  const lignes = [['H₃O⁺', C_H, E.nH], ['HO⁻', C_OH, E.nOH], ['Na⁺', C_NA, E.nNa], ['Cl⁻', C_CL, E.nCl]];
+  lignes.forEach(([nom, col, nn], i) => {
+    const y = QY + i*20, w = nn/4e-4*120;
+    cells += `<rect x="62" y="${y - 6}" width="120" height="8" rx="4" fill="#2A2438" opacity="${op(o*k(2, 3))}"/><rect x="62" y="${y - 6}" width="${f(w)}" height="8" rx="4" fill="${col}" opacity="${op(o*k(2, 3))}"/>`;
+    lab += `<text x="56" y="${y + 2}" font-size="8.6" fill="${col}" text-anchor="end" opacity="${op(o*k(2, 3))}">${nom}</text><text x="188" y="${y + 2}" font-size="8.4" fill="${BLANC}" text-anchor="start" opacity="${op(o*k(2, 3))}">${Math.round(nn*1e6)}</text>`;
+  });
+  lab += `<text x="120" y="${QY - 14}" font-size="8.4" fill="${GRIS}" opacity="${op(o*k(2, 3))}">quantités dans le bécher (µmol)</text>`;
+
+  /* ---------- courbes ---------- */
+  const og = k(3, 4);
+  cells += graphe(GP[0], GP[1], 14, [2, 7, 12], 'pH', og) + graphe(GS[0], GS[1], 4.6, [1, 2, 3, 4], 'σ (mS·cm⁻¹)', og);
+  const pts = [];
+  for(let v=0; v<=VB + 1e-9; v += .25) pts.push(v);
+  if(pts.length > 1){
+    let dp = '', ds = '';
+    pts.forEach((v, i) => { const e = etat(v); dp += (i ? 'L' : 'M') + f(gx(v)) + ' ' + f(gp(e.pH)); ds += (i ? 'L' : 'M') + f(gx(v)) + ' ' + f(gs(e.sig)); });
+    sp += `<path d="${dp}" fill="none" stroke="${ORANGE}" stroke-width="2" opacity="${op(og)}"/><path d="${ds}" fill="none" stroke="${OR}" stroke-width="2" opacity="${op(og)}"/>`;
+  }
+  sp += `<circle cx="${f(gx(VB))}" cy="${f(gp(E.pH))}" r="3.6" fill="${ORANGE}" opacity="${op(og)}"/><circle cx="${f(gx(VB))}" cy="${f(gs(E.sig))}" r="3.6" fill="${OR}" opacity="${op(og)}"/>`;
+  lab += label(GX + GW - 26, GP[0] + 10, `pH = ${virg(E.pH)}`, ORANGE, 8.6, og) + label(GX + GW - 30, GS[0] + 10, `σ = ${virg(E.sig, 2)}`, OR, 8.6, og);
+
+  /* étape 5 : méthode des tangentes */
+  const o5 = k(46.4, 47.2)*(1 - k(55.4, 56));
+  if(o5 > 0){
+    /* tangentes parallèles de part et d'autre du saut (pente commune lue sur la courbe) */
+    const pente = .08, ya = gp(etat(6).pH), yb = gp(etat(14).pH);
+    const seg = (x0, y0, len) => `<line x1="${f(gx(x0 - len))}" y1="${f(y0 + pente*len/20*GW)}" x2="${f(gx(x0 + len))}" y2="${f(y0 - pente*len/20*GW)}"`;
+    const g1 = k(47.2, 48.4), g2 = k(48.6, 49.8), g3 = k(50.2, 51.4);
+    sp += seg(6, ya, 4*g1) + ` stroke="${BLANC}" stroke-width="1.2" opacity="${op(o5)}"/>` + seg(14, yb, 4*g2) + ` stroke="${BLANC}" stroke-width="1.2" opacity="${op(o5)}"/>`;
+    const ym = (ya + yb)/2 - pente*(10 - 10)*GW/20, yE = gp(7);
+    sp += `<line x1="${f(gx(10 - 4*g3))}" y1="${f(yE + pente*4*g3/20*GW)}" x2="${f(gx(10 + 4*g3))}" y2="${f(yE - pente*4*g3/20*GW)}" stroke="${VERT}" stroke-width="1.4" stroke-dasharray="3 2" opacity="${op(o5)}"/>`;
+    const ov = k(51.6, 52.4)*o5;
+    sp += `<circle cx="${f(gx(10))}" cy="${f(yE)}" r="5" fill="none" stroke="${VERT}" stroke-width="2" opacity="${op(ov)}"/><line x1="${f(gx(10))}" y1="${f(yE)}" x2="${f(gx(10))}" y2="${GP[1]}" stroke="${VERT}" stroke-dasharray="3 3" opacity="${op(ov)}"/>`;
+    lab += label(gx(10) - 2, GP[1] - 16, "VE = 10,0 mL", VERT, 8.6, ov);
+    st.tg = [gx(10), yE];
+  }
+  /* étape 6 : deux droites sur la conductivité */
+  const o6 = k(56.4, 57.2)*(1 - k(64.4, 65));
+  if(o6 > 0){
+    const s0 = etat(0).sig, sE = etat(10).sig, s20 = etat(20).sig;
+    const g1 = k(57.2, 58.6), g2 = k(58.8, 60.2);
+    sp += `<line x1="${f(gx(0))}" y1="${f(gs(s0))}" x2="${f(gx(lerp(0, 11.5, g1)))}" y2="${f(gs(lerp(s0, s0 + (sE - s0)*1.15, g1)))}" stroke="${BLANC}" stroke-width="1.2" opacity="${op(o6)}"/>`;
+    sp += `<line x1="${f(gx(20))}" y1="${f(gs(s20))}" x2="${f(gx(lerp(20, 8.5, g2)))}" y2="${f(gs(lerp(s20, sE - (s20 - sE)*.15, g2)))}" stroke="${BLANC}" stroke-width="1.2" opacity="${op(o6)}"/>`;
+    const ov = k(60.4, 61.2)*o6;
+    sp += `<circle cx="${f(gx(10))}" cy="${f(gs(sE))}" r="5" fill="none" stroke="${VERT}" stroke-width="2" opacity="${op(ov)}"/><line x1="${f(gx(10))}" y1="${f(gs(sE))}" x2="${f(gx(10))}" y2="${GS[1]}" stroke="${VERT}" stroke-dasharray="3 3" opacity="${op(ov)}"/>`;
+    lab += label(gx(10) + 4, GS[1] - 14, "VE = 10,0 mL", VERT, 8.6, ov);
+    st.sg = [gx(10), gs(sE)];
+  }
+  /* étape 7 : conclure */
+  lab += label(200, 386, "cA × VA = cB × VE", OR, 11, k(66, 66.8));
+  lab += label(200, 412, "cA = 2,0 × 10⁻² × 10,0 / 20,0 = 1,0 × 10⁻² mol·L⁻¹", VERT, 9, k(67.4, 68.2));
+  return {cells, nuc, sp, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:9.5, title:"1. Le montage",
+  text:"Dans le bécher, 20,0 mL d'acide chlorhydrique de concentration <strong>inconnue</strong> : des ions oxonium H₃O⁺ et chlorure Cl⁻. Dans la burette, la <strong>solution titrante</strong> de soude (Na⁺ ; HO⁻) de concentration connue. Chaque icône représente 10 µmol. À droite, on va tracer le pH et la conductivité σ en fonction du volume versé V<sub>B</sub>.",
+  state:"V = 0 mL : pH = 2,0 ; σ = 4,26 mS·cm⁻¹"},
+ {t:9.5, e:24, title:"2. Avant l'équivalence : chaque goutte est consommée",
+  text:"Chaque goutte apporte des ions HO⁻, qui réagissent aussitôt avec les ions H₃O⁺ : <strong>H₃O⁺ + HO⁻ → 2 H₂O</strong>. Le titrant versé est le <strong>réactif limitant</strong>. Les ions H₃O⁺ sont remplacés par des ions Na⁺, spectateurs mais <strong>bien moins conducteurs</strong> : σ diminue. Le pH monte lentement.",
+  state:"Avant l'équivalence : H₃O⁺ en excès"},
+ {t:24, e:34, title:"3. L'équivalence : plus d'acide, pas encore de base",
+  text:"Goutte à goutte, on arrive à V<sub>E</sub> = 10,0 mL : tous les ions H₃O⁺ ont été consommés, aucun ion HO⁻ n'est encore en excès. Les réactifs ont été introduits dans les <strong>proportions stœchiométriques</strong> : n(H₃O⁺)<sub>initial</sub> = n(HO⁻)<sub>versé</sub>. Le pH fait un <strong>saut</strong> ; σ passe par son <strong>minimum</strong>.",
+  state:"À l'équivalence : cA × VA = cB × VE"},
+ {t:34, e:46, title:"4. Après l'équivalence : la base s'accumule",
+  text:"Il n'y a plus d'H₃O⁺ pour réagir : les ions HO⁻ versés <strong>s'accumulent</strong>, avec les Na⁺. Le titré est désormais limitant. Le pH se stabilise vers 12 ; σ remonte, car HO⁻ et Na⁺ s'ajoutent sans rien remplacer.",
+  state:"Après l'équivalence : HO⁻ en excès"},
+ {t:46, e:56, title:"5. Repérer V_E sur la courbe de pH",
+  text:"<strong>Méthode des tangentes</strong> : on trace deux tangentes parallèles de part et d'autre du saut, puis la parallèle équidistante ; elle coupe la courbe au point d'équivalence, dont l'abscisse est V<sub>E</sub>. Autre méthode : le maximum de la dérivée dpH/dV.",
+  state:"V_E = 10,0 mL".replace('_', '')},
+ {t:56, e:65, title:"6. Repérer V_E sur la courbe de conductivité",
+  text:"La courbe de σ est formée de <strong>deux portions de droites</strong>. On les prolonge : leur <strong>intersection</strong> a pour abscisse V<sub>E</sub>. Pas besoin de nombreux points près de l'équivalence : c'est l'avantage de la conductimétrie.",
+  state:"V_E = 10,0 mL".replace('_', '')},
+ {t:65, e:76, title:"7. Conclure : la concentration cherchée",
+  text:"À l'équivalence, n(H₃O⁺)<sub>initial</sub> = n(HO⁻)<sub>versé</sub>, soit <strong>cA × VA = cB × VE</strong>. D'où cA = cB × VE / VA = 2,0 × 10⁻² × 10,0 / 20,0 = <strong>1,0 × 10⁻² mol·L⁻¹</strong>. Le titrage a consommé l'échantillon : c'est une méthode <strong>destructive</strong>, mais très précise.",
+  state:"cA = 1,0 × 10⁻² mol·L⁻¹"}
+];
+SCENES[4].title = "5. Repérer VE sur la courbe de pH";
+SCENES[5].title = "6. Repérer VE sur la courbe de conductivité";
+
+const CALL = [
+  {a:2, b:8.6, text:"H₃O⁺ et Cl⁻ de l'acide", lab:[96,136], anc:st=>[st.b].filter(Boolean)},
+  {a:52.4, b:55.4, text:"point d'équivalence", lab:[300,206], anc:st=>[st.tg].filter(Boolean)},
+  {a:61.2, b:64.2, text:"intersection des deux droites", lab:[300,206], anc:st=>[st.sg].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[9.7,'step'],[24.2,'step'],[30.2,'spark'],[34.2,'step'],[46.2,'step'],[52,'pop'],[56.2,'step'],[61,'pop'],[65.2,'step'],[68,'final']];
+GOUTTES.forEach(([h]) => CUES.push([h, 'pop']));
+CUES.sort((a, b) => a[0] - b[0]);
+
+const QUIZ = [
+ {q:"Avant l'équivalence, quel réactif est limitant ?",
+  o:["Le réactif titré, dans le bécher","Le réactif titrant versé","Aucun des deux"], a:1,
+  ex:"Chaque goutte versée réagit entièrement, car il reste du titré en excès dans le bécher. Après l'équivalence, c'est l'inverse."},
+ {q:"Pourquoi σ diminue-t-elle avant l'équivalence dans ce titrage ?",
+  o:["Parce que des ions disparaissent sans être remplacés","Parce que chaque H₃O⁺ consommé est remplacé par un Na⁺, bien moins conducteur","Parce que la solution se refroidit"], a:1,
+  ex:"λ(H₃O⁺) = 35,0 contre λ(Na⁺) = 5,0 mS·m²·mol⁻¹ : remplacer l'un par l'autre fait baisser σ."},
+ {q:"Sur la courbe de conductivité, V_E se lit…".replace('_', ''),
+  o:["au maximum de σ","à l'intersection des deux portions de droites","quand σ s'annule"], a:1,
+  ex:"On prolonge les deux droites ; leur intersection a pour abscisse le volume équivalent."},
+ {q:"VA = 20,0 mL, cB = 2,0 × 10⁻² mol·L⁻¹, VE = 10,0 mL, réaction mole à mole. cA vaut…",
+  o:["4,0 × 10⁻² mol·L⁻¹","1,0 × 10⁻² mol·L⁻¹","1,0 × 10⁻³ mol·L⁻¹"], a:1,
+  ex:"cA = cB × VE / VA = 2,0 × 10⁻² × 10,0 / 20,0 = 1,0 × 10⁻² mol·L⁻¹ (mêmes unités de volume des deux côtés)."}
+];
+
+ANIM.lancer({id:'titrage', END:76, SCENES, CALL, CUES, QUIZ, draw, graine:8});
+})();
+</script>
+</body>
+</html>

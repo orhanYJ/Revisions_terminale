@@ -1,7 +1,7 @@
-const CACHE = 'pc-v32';
+const CACHE = 'pc-v33';
 /* Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
-const ANIMS = ['photon', 'photoelec', 'cellule'];
+const ANIMS = ['photon', 'photoelec', 'cellule', 'acidebase', 'beerlambert', 'conductivite', 'titrage'];
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png',
   './anim/moteur.css?v=3', './anim/moteur.js?v=3'].concat(ANIMS.map(function (a) { return './anim/' + a + '.html'; }));
 

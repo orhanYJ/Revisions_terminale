@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A120B">
+<title>La conductivité : des ions qui portent le courant</title>
+<link rel="stylesheet" href="moteur.css?v=3">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#anim-conductivite">← Retour au cours</a> · Chapitre 2, fiches 4 et 5 : conductance, conductivité, loi de Kohlrausch</p>
+    <h1>La conductivité : des ions qui portent le courant</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation : une cellule conductimétrique dans l'eau distillée puis dans une solution de chlorure de sodium ; les cations migrent vers la plaque négative et les anions vers la plaque positive ; doubler la concentration ou rapprocher les plaques double le courant ; les ions oxonium conduisent bien mieux par relais de protons ; contributions additives de la loi de Kohlrausch ; courbe d'étalonnage et écart aux fortes concentrations">
+        <defs>
+          <radialGradient id="field" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#1E1A2E"/><stop offset=".7" stop-color="#110E1A"/><stop offset="1" stop-color="#08070D"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FF8B3E" stop-opacity=".65"/><stop offset="1" stop-color="#FF8B3E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFE3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <linearGradient id="arcenciel" x1="0" x2="1"><stop offset="0" stop-color="#7A3CFF"/><stop offset=".17" stop-color="#3B6CFF"/><stop offset=".33" stop-color="#22B0C8"/><stop offset=".5" stop-color="#3CC23C"/><stop offset=".67" stop-color="#F2D22B"/><stop offset=".83" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E3261B"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#B9A6FF"></span>cation Na⁺</li>
+        <li><span class="sw" style="background:#5FD07A"></span>anion Cl⁻</li>
+        <li><span class="sw" style="background:#FF8B3E"></span>ion oxonium H₃O⁺</li>
+        <li><span class="sw" style="background:#FFD24A"></span>courant, conductivité</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Schéma simplifié. En réalité, le conductimètre applique une tension alternative pour éviter l'électrolyse ; ici, la tension est figurée continue pour voir le sens de migration. Les vitesses des ions sont proportionnelles à leurs conductivités molaires ioniques (valeurs tabulées à 25 °C) ; les courants supposent U = 1,0 V et une cellule de constante S/L = 1 cm.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=3"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, flash, label} = ANIM.H;
+const ORANGE = '#FF8B3E', BLANC = '#F2F5FA', GRIS = '#9C93AE', OR = '#FFD24A', VERT = '#7CE08A', KO = '#FF6B5B';
+const C_NA = '#B9A6FF', C_CL = '#5FD07A', C_H3O = '#FF8B3E';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+const virg = (x,n=1) => x.toFixed(n).replace('.', ',');
+
+/* ---------- la cellule ---------- */
+const Y0 = 66, Y1 = 196;                                   /* hauteur des plaques */
+let graine = 9; const rnd = () => (graine = (graine*16807) % 2147483647, (graine - 1)/2147483646);
+const IONS = Array.from({length:60}, () => ({u: rnd(), y: Y0 + 8 + rnd()*(Y1 - Y0 - 16), ph: rnd()*6.28}));
+const EAU = Array.from({length:42}, () => [rnd(), Y0 + 6 + rnd()*(Y1 - Y0 - 12)]);
+
+function plaques(t){
+  const g = kAt(t, 31, 33.5)*(1 - kAt(t, 39, 40.5));     /* étape 4 : plaques rapprochées */
+  return [lerp(90, 145, g), lerp(310, 255, g)];
+}
+/* le contenu de la solution à l'instant t */
+function solution(t){
+  if(t < 9.5) return {sel:0, n:0, acide:false};
+  if(t < 20.5) return {sel:'NaCl', n:12*kAt(t, 9.6, 11), acide:false};
+  if(t < 40.5) return {sel:'NaCl', n:12 + 12*kAt(t, 21, 23)*(1 - kAt(t, 30.6, 31.4)), acide:false};
+  if(t < 63) return {sel: t < 46 ? 'NaCl' : 'HCl', n:12, acide: t >= 46};
+  return {sel:'NaCl', n:12, acide:false};
+}
+/* courant (µA) pour U = 1,0 V et une cellule de constante S/L = 1 cm, NaCl à 1,0 mmol·L⁻¹ : G = 126 µS */
+function courant(t){
+  const s = solution(t), [xa, xb] = plaques(t), L = (xb - xa)/220;
+  if(!s.sel) return .05;
+  const lam = s.acide ? 35.0 + 7.63 : 5.01 + 7.63;
+  return lam*10*(s.n/12)/L;
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {};
+  let cells = '', nuc = '', sp = '', chr = '', fx = '', lab = '';
+  const o = k(0, 1);
+  const [xa, xb] = plaques(t), s = solution(t), I = courant(t);
+
+  /* bécher et solution */
+  cells += `<rect x="40" y="52" width="320" height="156" rx="10" fill="#5AA9FF" fill-opacity=".07" stroke="#9AA3BC" stroke-width="1.3" opacity="${op(o)}"/>`;
+  /* molécules d'eau, discrètes */
+  EAU.forEach(([u, y]) => { chr += `<circle cx="${f(48 + u*304)}" cy="${f(y)}" r="2" fill="#7D93B8" opacity="${op(o*.35)}"/>`; });
+  /* plaques et circuit */
+  nuc += `<rect x="${f(xa - 5)}" y="${Y0}" width="10" height="${Y1 - Y0}" rx="2" fill="#A9A3B8" opacity="${op(o)}"/><rect x="${f(xb - 5)}" y="${Y0}" width="10" height="${Y1 - Y0}" rx="2" fill="#A9A3B8" opacity="${op(o)}"/>`;
+  nuc += `<path d="M${f(xa)} ${Y0} L${f(xa)} 26 L176 26 M224 26 L${f(xb)} 26 L${f(xb)} ${Y0}" fill="none" stroke="#A9A3B8" stroke-width="2" opacity="${op(o)}"/>`;
+  nuc += `<circle cx="200" cy="26" r="15" fill="#2A2438" stroke="#9C93AE" stroke-width="1.4" opacity="${op(o)}"/><text x="200" y="30" font-size="10" font-weight="800" fill="${BLANC}" text-anchor="middle" opacity="${op(o)}">A</text>`;
+  lab += `<g opacity="${op(o)}" font-size="13" font-weight="800"><text x="${f(xa - 16)}" y="${Y0 + 14}" fill="#A8C8FF">−</text><text x="${f(xb + 16)}" y="${Y0 + 14}" fill="#FFB0A8">+</text></g>`;
+  lab += `<text x="${f((xa + xb)/2)}" y="${Y1 + 26}" font-size="8.6" fill="${GRIS}" opacity="${op(o)}">L = ${virg((xb - xa)/220, 1)} cm · tension U = 1,0 V</text>`;
+  sp += `<line x1="${f(xa + 8)}" y1="${Y1 + 12}" x2="${f(xb - 8)}" y2="${Y1 + 12}" stroke="${GRIS}" opacity="${op(o*.7)}"/><path d="M${f(xa + 8)} ${Y1 + 8} L${f(xa + 8)} ${Y1 + 16} M${f(xb - 8)} ${Y1 + 8} L${f(xb - 8)} ${Y1 + 16}" stroke="${GRIS}" opacity="${op(o*.7)}"/>`;
+
+  /* ---------- les ions ---------- */
+  const W = xb - xa - 16;
+  if(s.sel){
+    const nb = Math.round(s.n);
+    for(let i=0; i<nb; i++){
+      for(const genre of ['cat', 'an']){
+        const ion = IONS[(i*2 + (genre === 'an' ? 1 : 0)) % IONS.length];
+        const acide = genre === 'cat' && s.acide;
+        /* vitesses proportionnelles aux conductivités molaires ioniques */
+        const v = genre === 'cat' ? (acide ? 70 : 10) : 15, sens = genre === 'cat' ? -1 : 1;
+        let u = (ion.u + sens*v*t/Math.max(W, 60)) % 1; if(u < 0) u += 1;
+        let x = xa + 8 + u*W, y = ion.y + 3*Math.sin(t*2 + ion.ph);
+        /* l'ion oxonium avance par sauts : le proton passe de molécule en molécule */
+        if(acide){ const q = Math.floor(u*14)/14 + .02*Math.sin(t*9 + ion.ph); x = xa + 8 + q*W; }
+        const o2 = o*(i < s.n ? 1 : s.n - i + 1)*k(9.6, 10.4);
+        const col = genre === 'cat' ? (acide ? C_H3O : C_NA) : C_CL;
+        chr += `<circle cx="${f(x)}" cy="${f(y)}" r="${genre === 'cat' ? 5 : 6}" fill="${col}" opacity="${op(o2)}"/><text x="${f(x)}" y="${f(y + 3.4)}" font-size="9" font-weight="800" fill="#1A1424" text-anchor="middle" opacity="${op(o2)}">${genre === 'cat' ? '+' : '−'}</text>`;
+        if(i === 2 && genre === 'cat') st.cat = [x, y];
+        if(i === 3 && genre === 'an') st.an = [x, y];
+      }
+    }
+  }
+  /* ampèremètre */
+  lab += label(296, 26, I < 1 ? 'I ≈ 0 µA' : `I = ${Math.round(I)} µA`, OR, 9.5, o*k(1.5, 2.2));
+  lab += label(98, 26, s.sel ? (s.acide ? "acide chlorhydrique" : "chlorure de sodium") + " · " + (s.n > 18 ? "2,0" : "1,0") + " mmol·L⁻¹" : "eau distillée", BLANC, 8.4, o*k(1.5, 2.2));
+
+  /* ---------- le bas de l'écran ---------- */
+  const GX = 64, GY = 404, GW = 290, GH = 110;
+  lab += label(200, 250, "presque aucun ion : presque aucun courant", BLANC, 9, k(3, 3.8)*(1 - k(8.8, 9.4)));
+  lab += label(200, 286, "G = I / U  (siemens)", OR, 11, k(14, 14.8)*(1 - k(19.6, 20.4)));
+  lab += label(200, 250, "deux fois plus d'ions : deux fois plus de courant", BLANC, 9, k(23, 23.8)*(1 - k(29.6, 30.4)));
+  lab += label(200, 286, "σ est proportionnelle à la concentration", OR, 10, k(24.4, 25.2)*(1 - k(29.6, 30.4)));
+  lab += label(200, 250, "plaques deux fois plus proches : G double", BLANC, 9, k(33.6, 34.4)*(1 - k(39.6, 40.4)));
+  lab += label(200, 286, "G = σ × S / L", OR, 12, k(34.6, 35.4)*(1 - k(39.6, 40.4)));
+  lab += label(200, 316, "σ décrit la solution ; G dépend aussi de la cellule", '#C9C2DA', 8.8, k(35.6, 36.4)*(1 - k(39.6, 40.4)));
+  lab += label(200, 276, "même concentration, H₃O⁺ à la place de Na⁺", BLANC, 9, k(46, 46.8)*(1 - k(51.6, 52.4)));
+  lab += label(200, 304, "λ(H₃O⁺) = 35,0 contre λ(Na⁺) = 5,0 mS·m²·mol⁻¹", OR, 9.5, k(47.4, 48.2)*(1 - k(51.6, 52.4)));
+
+  /* étape 6 : les contributions s'additionnent */
+  const o6 = k(52.4, 53.4)*(1 - k(62.4, 63));
+  if(o6 > 0){
+    const bar = (x, parts, titre) => {
+      let y = GY, s2 = '';
+      parts.forEach(([v, col, nom], i) => { const h = v*2.1*kAt(t, 53.4 + i*.8, 54.2 + i*.8); s2 += `<rect x="${x}" y="${f(y - h)}" width="56" height="${f(h)}" fill="${col}" opacity="${op(o6)}"/>`; if(h > 6) s2 += `<text x="${x + 62}" y="${f(y - h/2 + 3)}" font-size="8.4" fill="${col}" opacity="${op(o6)}">${nom} : ${virg(v, 1)}</text>`; y -= h; });
+      s2 += `<text x="${x + 28}" y="${GY + 14}" font-size="8.6" fill="${BLANC}" text-anchor="middle" opacity="${op(o6)}">${titre}</text>`;
+      return s2;
+    };
+    sp += bar(70, [[5.01, C_NA, 'Na⁺'], [7.63, C_CL, 'Cl⁻']], 'NaCl') + bar(230, [[35.0, C_H3O, 'H₃O⁺'], [7.63, C_CL, 'Cl⁻']], 'HCl');
+    lab += label(200, 250, "σ = Σ λᵢ × [Xᵢ]", OR, 12, o6*k(55.4, 56.2));
+    lab += label(200, 278, "chaque ion apporte sa contribution, elles s'additionnent", BLANC, 8.8, o6*k(56.2, 57));
+    lab += `<text x="200" y="${GY - 102}" font-size="8.4" fill="${GRIS}" text-anchor="middle" opacity="${op(o6*k(57, 57.6))}">à 1,0 mol·m⁻³ : contributions en mS·m⁻¹</text>`;
+  }
+  /* étape 7 : étalonnage, puis limite */
+  const o7 = k(63.4, 64.4);
+  if(o7 > 0){
+    const xm = 22, ym = 2.8, ex = v => GX + v/xm*GW, ey = v => GY - v/ym*GH;
+    cells += `<g opacity="${op(o7)}" font-size="8" fill="${GRIS}"><line x1="${GX}" y1="${GY}" x2="${GX + GW}" y2="${GY}" stroke="${GRIS}"/><line x1="${GX}" y1="${GY}" x2="${GX}" y2="${GY - GH}" stroke="${GRIS}"/>`;
+    for(const v of [5, 10, 15, 20]) cells += `<text x="${f(ex(v))}" y="${GY + 13}" text-anchor="middle">${v}</text>`;
+    for(const v of [1, 2]) cells += `<text x="${GX - 5}" y="${f(ey(v) + 3)}" text-anchor="end">${v}</text>`;
+    cells += `<text x="${GX + GW}" y="${GY + 25}" text-anchor="end">c (mmol·L⁻¹)</text><text x="${GX + 4}" y="${GY - GH - 4}">σ (mS·cm⁻¹)</text></g>`;
+    /* NaCl : σ = 0,126 mS·cm⁻¹ par mmol·L⁻¹ ; écart à la loi aux fortes concentrations */
+    const reel = cc => .126*cc*(cc > 6 ? 1 - .016*(cc - 6) : 1);
+    [1, 2, 4, 6, 10, 15, 20].forEach((cc, i) => { const col = cc > 6 ? KO : OR; chr += `<circle cx="${f(ex(cc))}" cy="${f(ey(reel(cc)))}" r="4" fill="${col}" opacity="${op(o7*k(64.4 + i*.7, 64.9 + i*.7))}"/>`; });
+    sp += `<line x1="${GX}" y1="${GY}" x2="${f(ex(20))}" y2="${f(ey(.126*20))}" stroke="${OR}" stroke-width="1.4" stroke-dasharray="4 3" opacity="${op(o7*k(66.6, 67.2))}"/>`;
+    lab += label(200, 236, "solutions diluées : σ proportionnelle à c", OR, 9.5, o7*k(65, 65.8));
+    lab += label(200, 262, "trop concentré : les ions se gênent, la droite se courbe", KO, 8.8, o7*k(68.8, 69.6));
+  }
+  return {cells, nuc, sp, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:9.5, title:"1. L'eau distillée conduit à peine",
+  text:"Deux plaques métalliques plongent dans l'eau distillée, reliées à un générateur (U = 1,0 V) et à un ampèremètre. Il n'y a presque <strong>aucun ion</strong> dans l'eau pure : presque aucun courant ne passe. Dans une solution, ce sont les <strong>ions</strong> qui transportent le courant, pas les électrons.",
+  state:"Eau distillée : I ≈ 0"},
+ {t:9.5, e:20.5, title:"2. On dissout du sel : les ions se mettent en mouvement",
+  text:"Le chlorure de sodium libère des ions Na⁺ et Cl⁻. Sous l'effet de la tension, les <strong>cations</strong> migrent vers la plaque −, les <strong>anions</strong> vers la plaque + : c'est le courant. La <strong>conductance</strong> G = I/U, en siemens (S), mesure la facilité avec laquelle la solution le laisse passer.",
+  state:"NaCl à 1,0 mmol·L⁻¹ : I = 126 µA, G = 126 µS"},
+ {t:20.5, e:30.5, title:"3. Deux fois plus d'ions, deux fois plus de courant",
+  text:"On double la concentration : deux fois plus d'ions transportent la charge, le courant double. En solution diluée, la conductivité σ est <strong>proportionnelle à la concentration</strong> : c'est ce qui permet le dosage par étalonnage.",
+  state:"c × 2 ⟹ I × 2"},
+ {t:30.5, e:40.5, title:"4. La géométrie de la cellule compte",
+  text:"Même solution, mais plaques deux fois plus proches : le courant double encore. La conductance dépend de la solution <strong>et</strong> de la cellule : <strong>G = σ × S / L</strong>. La <strong>conductivité σ</strong> (S·m⁻¹), elle, ne dépend que de la solution : c'est elle que l'on compare d'une mesure à l'autre.",
+  state:"L ÷ 2 ⟹ G × 2, σ inchangée"},
+ {t:40.5, e:52.4, title:"5. Tous les ions ne conduisent pas pareil",
+  text:"Même concentration, mais de l'acide chlorhydrique : les ions oxonium H₃O⁺ remplacent Na⁺ et le courant est plus de trois fois plus fort. L'ion H₃O⁺ ne traverse pas vraiment la solution : son <strong>proton saute de molécule d'eau en molécule d'eau</strong>, par relais, beaucoup plus vite. Sa conductivité molaire ionique est très grande.",
+  state:"λ(H₃O⁺) ≈ 7 × λ(Na⁺)"},
+ {t:52.4, e:63, title:"6. La loi de Kohlrausch",
+  text:"Chaque ion apporte sa contribution, proportionnelle à sa concentration et à sa <strong>conductivité molaire ionique λ</strong> ; les contributions s'additionnent : <strong>σ = Σ λᵢ × [Xᵢ]</strong>, avec [X] en mol·m⁻³ et λ en S·m²·mol⁻¹. NaCl : 5,0 + 7,6 = 12,6 mS·m⁻¹ ; HCl : 35,0 + 7,6 = 42,6 mS·m⁻¹.",
+  state:"σ = Σ λᵢ [Xᵢ]"},
+ {t:63, e:74, title:"7. L'étalonnage, et sa limite",
+  text:"Pour des solutions diluées, σ est proportionnelle à c : on trace une droite d'étalonnage et on y lit la concentration d'un échantillon. Mais aux fortes concentrations, chaque ion est freiné par le nuage d'ions de signe opposé qui l'entoure : σ croît moins vite que c et la courbe s'infléchit. Il faut alors <strong>diluer</strong>.",
+  state:"Loi valable en solution diluée"}
+];
+
+const CALL = [
+  {a:12, b:16, text:"cation Na⁺ → plaque −", lab:[120,236], anc:st=>[st.cat].filter(Boolean)},
+  {a:13, b:17, text:"anion Cl⁻ → plaque +", lab:[290,236], anc:st=>[st.an].filter(Boolean)},
+  {a:47, b:51, text:"H₃O⁺ : le proton saute d'une molécule à l'autre", lab:[200,242], anc:st=>[st.cat].filter(Boolean)}
+];
+
+const CUES = [[.2,'step'],[9.7,'step'],[10.2,'pop'],[20.7,'step'],[21.4,'pop'],[30.7,'step'],[31.4,'whoosh'],[40.7,'step'],[46,'spark'],[52.6,'step'],[54,'pop'],[63.2,'step'],[68.8,'error'],[70,'final']];
+
+const QUIZ = [
+ {q:"Dans une solution, qui transporte le courant ?",
+  o:["Des électrons libres, comme dans un métal","Les ions : cations vers la plaque −, anions vers la plaque +","Les molécules d'eau"], a:1,
+  ex:"Dans un électrolyte, le courant est un déplacement d'ions dans les deux sens. Sans ions, comme dans l'eau distillée, il ne passe presque rien."},
+ {q:"On rapproche les plaques de moitié, même solution. Que deviennent G et σ ?",
+  o:["G double, σ ne change pas","G et σ doublent","G ne change pas, σ double"], a:0,
+  ex:"G = σ × S / L : diviser L par deux double G. La conductivité σ est une propriété de la solution seule."},
+ {q:"À même concentration, pourquoi l'acide chlorhydrique conduit-il bien mieux que le chlorure de sodium ?",
+  o:["Parce que les ions Cl⁻ y sont plus nombreux","Parce que l'ion H₃O⁺ a une conductivité molaire ionique bien plus grande que Na⁺","Parce que l'acide chauffe la solution"], a:1,
+  ex:"λ(H₃O⁺) = 35,0 contre λ(Na⁺) = 5,0 mS·m²·mol⁻¹ : le proton progresse par relais entre molécules d'eau."},
+ {q:"Selon la loi de Kohlrausch, pour une solution de NaCl à 2,0 mol·m⁻³ (λ(Na⁺) = 5,0 et λ(Cl⁻) = 7,6 mS·m²·mol⁻¹), σ vaut…",
+  o:["12,6 mS·m⁻¹","25,2 mS·m⁻¹","6,3 mS·m⁻¹"], a:1,
+  ex:"σ = λ(Na⁺)[Na⁺] + λ(Cl⁻)[Cl⁻] = (5,0 + 7,6) × 2,0 = 25,2 mS·m⁻¹. Attention : les concentrations en mol·m⁻³."}
+];
+
+ANIM.lancer({id:'conductivite', END:74, SCENES, CALL, CUES, QUIZ, draw, graine:6});
+})();
+</script>
+</body>
+</html>

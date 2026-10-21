@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A120B">
+<title>La loi de Beer-Lambert : compter les photons absorbés</title>
+<link rel="stylesheet" href="moteur.css?v=3">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#anim-beerlambert">← Retour au cours</a> · Chapitre 2, fiches 2, 3 et 6 : absorbance, spectre, étalonnage</p>
+    <h1>La loi de Beer-Lambert : compter les photons absorbés</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation : des photons traversent une cuve de solution colorée ; chaque centimètre en absorbe la même fraction ; l'absorbance est proportionnelle à la longueur de la cuve et à la concentration ; le spectre d'absorption donne la longueur d'onde du maximum ; une courbe d'étalonnage permet de doser un échantillon ; une solution trop concentrée sature l'appareil">
+        <defs>
+          <radialGradient id="field" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#1E1A2E"/><stop offset=".7" stop-color="#110E1A"/><stop offset="1" stop-color="#08070D"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FF8B3E" stop-opacity=".65"/><stop offset="1" stop-color="#FF8B3E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFE3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <linearGradient id="arcenciel" x1="0" x2="1"><stop offset="0" stop-color="#7A3CFF"/><stop offset=".17" stop-color="#3B6CFF"/><stop offset=".33" stop-color="#22B0C8"/><stop offset=".5" stop-color="#3CC23C"/><stop offset=".67" stop-color="#F2D22B"/><stop offset=".83" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E3261B"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#FF8A1F"></span>photon à la longueur d'onde choisie</li>
+        <li><span class="sw" style="background:#8FB4FF"></span>molécule de colorant</li>
+        <li><span class="sw" style="background:#FFD24A"></span>absorbance mesurée</li>
+        <li><span class="sw" style="background:#FF6B5B"></span>zone non linéaire</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Valeurs illustratives : le spectre du colorant et les concentrations sont choisis pour la démonstration (bleu brillant, maximum vers 630 nm). Chaque photon dessiné représente une très grande quantité de photons réels.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=3"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, flash, label} = ANIM.H;
+const ORANGE = '#FF8B3E', BLANC = '#F2F5FA', GRIS = '#9C93AE', OR = '#FFD24A', VERT = '#7CE08A', KO = '#FF6B5B', BLEU = '#3E7BFF';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+const virg = (x,n=2) => x.toFixed(n).replace('.', ',');
+
+/* couleur d'une radiation (nm) */
+function couleur(l){
+  const s = [[380,[122,60,255]],[440,[59,108,255]],[490,[34,176,200]],[530,[60,194,60]],[575,[242,210,43]],[610,[255,138,31]],[660,[240,60,30]],[750,[170,20,15]]];
+  if(l <= s[0][0]) return 'rgb(122,60,255)';
+  for(let i=0; i<s.length-1; i++) if(l <= s[i+1][0]){ const u = (l - s[i][0])/(s[i+1][0] - s[i][0]), a = s[i][1], b = s[i+1][1]; return `rgb(${a.map((v,j)=>Math.round(v + (b[j]-v)*u)).join(',')})`; }
+  return 'rgb(170,20,15)';
+}
+/* spectre d'absorption du colorant (bleu brillant, maximum vers 630 nm) : A pour la concentration de référence */
+const Aref = l => { const g = Math.exp(-Math.pow((l - 630)/48, 2)); return .02 + .28*g; };
+
+/* ---------- l'appareil ---------- */
+const YF = 112, XL = 26, XM = 76, XC = 150, U = 60, XD = 362;   /* U : 1 cm de cuve */
+let graine = 5; const rnd = () => (graine = (graine*16807) % 2147483647, (graine - 1)/2147483646);
+const PH = Array.from({length:900}, (_, n) => ({t0: n*.1, dy: (rnd() - .5)*22, u: [rnd(), rnd(), rnd(), rnd()]}));
+const MOL = Array.from({length:160}, () => [rnd(), rnd()]);
+
+/* paramètres de chaque étape : longueur (cm), concentration relative, λ */
+function etat(t){
+  let L = 1, c = 0, lam = 630;
+  if(t >= 10) c = 1;
+  if(t >= 21 && t < 32) L = lerp(1, 3, kAt(t, 22, 24.5));
+  if(t >= 32 && t < 43) c = lerp(1, 2, kAt(t, 33.5, 35.5));
+  if(t >= 43 && t < 53) lam = t < 44.5 ? 630 : lerp(400, 750, lin(t, 44.5, 50.5));
+  if(t >= 53 && t < 63) c = [.67, 1.33, 2, 2.67, 1.73][Math.min(4, Math.floor(lin(t, 54, 61.6)*5))];
+  if(t >= 63) c = lerp(1, 13.3, kAt(t, 64, 67));
+  return {L, c, lam};
+}
+const transmis = (A) => Math.pow(10, -A);
+
+function axes(x0, y0, w, h, xmax, ymax, xt, yt, xl, yl, o){
+  let s = `<g opacity="${op(o)}" font-family="system-ui, sans-serif" font-size="8" fill="${GRIS}">`;
+  s += `<line x1="${x0}" y1="${y0}" x2="${x0 + w}" y2="${y0}" stroke="${GRIS}"/><line x1="${x0}" y1="${y0}" x2="${x0}" y2="${y0 - h}" stroke="${GRIS}"/>`;
+  for(const v of xt) s += `<line x1="${f(x0 + v/xmax*w)}" y1="${y0}" x2="${f(x0 + v/xmax*w)}" y2="${y0 + 4}" stroke="${GRIS}"/><text x="${f(x0 + v/xmax*w)}" y="${y0 + 13}" text-anchor="middle">${String(v).replace('.', ',')}</text>`;
+  for(const v of yt) s += `<line x1="${x0 - 4}" y1="${f(y0 - v/ymax*h)}" x2="${x0}" y2="${f(y0 - v/ymax*h)}" stroke="${GRIS}"/><text x="${x0 - 6}" y="${f(y0 - v/ymax*h + 3)}" text-anchor="end">${String(v).replace('.', ',')}</text>`;
+  s += `<text x="${x0 + w}" y="${y0 + 25}" text-anchor="end">${xl}</text><text x="${x0 + 4}" y="${y0 - h - 4}">${yl}</text></g>`;
+  return s;
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {};
+  let cells = '', nuc = '', sp = '', chr = '', fx = '', lab = '';
+  const E = etat(t);
+  const W = E.L*U, A1 = Aref(E.lam)*E.c;                    /* absorbance pour 1 cm */
+  const Atot = A1*E.L, T = transmis(Atot);
+
+  /* ---------- appareil ---------- */
+  const o = k(0, 1);
+  nuc += `<circle cx="${XL}" cy="${YF}" r="13" fill="#FFF3C4" opacity="${op(o)}"/><circle cx="${XL}" cy="${YF}" r="22" fill="#FFF3C4" opacity="${op(o*.15)}"/>`;
+  nuc += `<path d="M${XM - 14} ${YF + 16} L${XM} ${YF - 18} L${XM + 14} ${YF + 16} Z" fill="#3A3550" stroke="#9C93AE" stroke-width="1.2" opacity="${op(o)}"/>`;
+  lab += `<text x="${XL}" y="${YF + 34}" font-size="8.4" fill="${GRIS}" opacity="${op(o)}">lampe</text><text x="${XM}" y="${YF + 34}" font-size="8.4" fill="${GRIS}" opacity="${op(o)}">choix de λ</text>`;
+  /* lumière blanche avant le prisme */
+  nuc += `<line x1="${XL + 14}" y1="${YF}" x2="${XM - 8}" y2="${YF}" stroke="#FFF3C4" stroke-width="3" opacity="${op(o*.6)}"/>`;
+  /* cuve */
+  const solO = E.c > 0 ? clamp(.12 + .12*E.c, 0, .85) : 0;
+  cells += `<rect x="${XC}" y="${YF - 44}" width="${f(W)}" height="88" fill="${BLEU}" opacity="${op(o*solO)}"/>`;
+  cells += `<rect x="${XC}" y="${YF - 44}" width="${f(W)}" height="88" fill="none" stroke="#C9D4EE" stroke-width="1.6" opacity="${op(o)}"/>`;
+  lab += `<text x="${f(XC + W/2)}" y="${YF + 58}" font-size="8.4" fill="${GRIS}" opacity="${op(o)}">cuve · ℓ = ${virg(E.L, 0)} cm</text>`;
+  /* molécules de colorant */
+  const nmol = Math.round(Math.min(160, 22*E.c*E.L));
+  for(let i=0; i<nmol; i++){ const [a, b] = MOL[i]; chr += `<circle cx="${f(XC + 4 + a*(W - 8))}" cy="${f(YF - 40 + b*80)}" r="2.6" fill="#8FB4FF" opacity="${op(o*.9)}"/>`; }
+  /* tranches de 1 cm */
+  if(E.L > 1.02) for(let s=1; s<E.L - .02; s++) cells += `<line x1="${XC + s*U}" y1="${YF - 44}" x2="${XC + s*U}" y2="${YF + 44}" stroke="#C9D4EE" stroke-dasharray="3 3" opacity="${op(o*.7)}"/>`;
+  /* détecteur */
+  nuc += `<rect x="${XD}" y="${YF - 20}" width="22" height="40" rx="4" fill="#2A2438" stroke="#9C93AE" stroke-width="1.2" opacity="${op(o)}"/>`;
+  lab += `<text x="${XD + 11}" y="${YF + 34}" font-size="8.4" fill="${GRIS}" opacity="${op(o)}">détecteur</text>`;
+
+  /* ---------- photons ---------- */
+  const col = couleur(E.lam), wl = 3.4 + E.lam/40;
+  for(const p of PH){
+    const x = XM + 10 + 130*(t - p.t0);
+    if(x < XM + 10 || x > XD + 4) continue;
+    /* absorption : dans chaque tranche de 1 cm, le photon survit avec la probabilité 10^(−A1) */
+    let xa = Infinity;
+    for(let s=0; s<Math.ceil(E.L - .01); s++){ const larg = Math.min(1, E.L - s); if(p.u[s] > Math.pow(10, -A1*larg)){ xa = XC + (s + p.u[(s + 1) % 4]*larg)*U; break; } }
+    const y = YF + p.dy*.8;
+    if(x > xa){ if(x < xa + 10) fx += `<circle cx="${f(xa)}" cy="${f(y)}" r="${f(3 + (x - xa)*.6)}" fill="none" stroke="#8FB4FF" opacity="${op(1 - (x - xa)/10)}"/>`; continue; }
+    let d = ''; for(let s=-6, i=0; s<=6; s+=1.5, i++) d += (i ? 'L' : 'M') + f(x + s) + ' ' + f(y + 2.6*Math.cos(Math.PI*s/12)*Math.sin(2*Math.PI*s/wl*2.4 - t*20));
+    chr += `<path d="${d}" fill="none" stroke="${col}" stroke-width="1.6" opacity="${op(o)}"/>`;
+  }
+  /* lecture du détecteur */
+  const lec = t < 10 ? 1 : T;
+  lab += label(XD - 2, YF - 38, t < 10 ? "I₀ = 100 %" : `I / I₀ = ${Math.round(lec*100)} %`, BLANC, 8.8, o*k(2, 2.6));
+  if(t >= 10) lab += label(XD - 22, YF + 66, Atot > 2.1 ? 'A mesurée ≈ 2,1 (saturée)' : `A = log(I₀/I) = ${virg(Atot)}`, Atot > 2.1 ? KO : OR, 8.8, k(13, 13.8));
+
+  /* ---------- étape 3 : intensité après chaque tranche ---------- */
+  const o3 = k(25, 26)*(1 - k(31.4, 32));
+  if(o3 > 0){
+    for(let s=0; s<=3; s++){
+      const frac = Math.pow(.5, s), x = XC + s*U, h = 40*frac;
+      sp += `<rect x="${f(x - 5)}" y="${f(YF - 54 - h)}" width="10" height="${f(h)}" fill="${ORANGE}" opacity="${op(o3)}"/>`;
+      lab += `<text x="${f(x)}" y="${f(YF - 58 - h)}" font-size="8.4" fill="${ORANGE}" opacity="${op(o3)}">${['100 %','50 %','25 %','12,5 %'][s]}</text>`;
+    }
+  }
+
+  /* ---------- graphiques du bas ---------- */
+  const GX = 60, GY = 400, GW = 300, GH = 120;
+  /* étape 1-2 : la formule */
+  lab += label(200, 252, "faire le « blanc » : solvant seul, A = 0", BLANC, 9, k(4, 4.8)*(1 - k(9.4, 10)));
+  lab += label(200, 300, "A = log ( I₀ / I )", OR, 12, k(14, 14.8)*(1 - k(20.4, 21)));
+  lab += label(200, 336, "la moitié des photons passe : A = log 2 = 0,30", BLANC, 9, k(15.4, 16.2)*(1 - k(20.4, 21)));
+  /* étape 3 : A en fonction de ℓ */
+  const g3 = k(26, 27)*(1 - k(31.4, 32));
+  if(g3 > 0){
+    cells += axes(GX, GY, GW, GH, 3.4, 1.1, [1, 2, 3], [.3, .6, .9], "ℓ (cm)", "A", g3);
+    [[1, .3, 26.6], [2, .6, 27.4], [3, .9, 28.2]].forEach(([x, y, a]) => { chr += `<circle cx="${f(GX + x/3.4*GW)}" cy="${f(GY - y/1.1*GH)}" r="4" fill="${OR}" opacity="${op(g3*k(a, a + .4))}"/>`; });
+    sp += `<line x1="${GX}" y1="${GY}" x2="${f(GX + 3.2/3.4*GW)}" y2="${f(GY - .96/1.1*GH)}" stroke="${OR}" stroke-width="1.6" stroke-dasharray="4 3" opacity="${op(g3*k(28.6, 29.4))}"/>`;
+    lab += label(GX + 110, GY - 100, "chaque cm ajoute 0,30 : A ∝ ℓ", OR, 9, g3*k(29, 29.8));
+  }
+  /* étape 4 : A en fonction de c */
+  const g4 = k(36, 37)*(1 - k(42.4, 43));
+  if(g4 > 0){
+    cells += axes(GX, GY, GW, GH, 2.4, .8, [1, 2], [.3, .6], "c (relative)", "A", g4);
+    [[0, 0, 36.4], [1, .3, 37], [2, .6, 37.6]].forEach(([x, y, a]) => { chr += `<circle cx="${f(GX + x/2.4*GW)}" cy="${f(GY - y/.8*GH)}" r="4" fill="${OR}" opacity="${op(g4*k(a, a + .4))}"/>`; });
+    sp += `<line x1="${GX}" y1="${GY}" x2="${f(GX + 2.2/2.4*GW)}" y2="${f(GY - .66/.8*GH)}" stroke="${OR}" stroke-width="1.6" stroke-dasharray="4 3" opacity="${op(g4*k(38.2, 39))}"/>`;
+    lab += label(GX + 120, GY - 104, "deux fois plus de molécules : A double", OR, 9, g4*k(38.6, 39.4));
+    lab += label(200, 252, "A = ε × ℓ × c", OR, 12, g4*k(39.8, 40.6));
+  }
+  /* étape 5 : le spectre */
+  const g5 = k(44, 45)*(1 - k(52.4, 53));
+  if(g5 > 0){
+    const sx = l => GX + (l - 400)/350*GW, sy = A => GY - A/.36*GH;
+    cells += axes(GX, GY, GW, GH, 350, .36, [], [.1, .2, .3], "λ (nm)", "A", g5);
+    for(const l of [400, 500, 600, 700]) cells += `<text x="${f(sx(l))}" y="${GY + 13}" font-size="8" fill="${GRIS}" text-anchor="middle" opacity="${op(g5)}">${l}</text>`;
+    let d = '', lmax = Math.min(E.lam, 750);
+    for(let l=400, i=0; l<=lmax; l+=4, i++) d += (i ? 'L' : 'M') + f(sx(l)) + ' ' + f(sy(Aref(l)));
+    if(lmax > 402) sp += `<path d="${d}" fill="none" stroke="${OR}" stroke-width="2" opacity="${op(g5)}"/>`;
+    if(t > 44.5) sp += `<circle cx="${f(sx(lmax))}" cy="${f(sy(Aref(lmax)))}" r="4.5" fill="${couleur(lmax)}" stroke="#FFF" stroke-width="1" opacity="${op(g5)}"/>`;
+    const ob = g5*k(50.6, 51.2);
+    sp += `<line x1="${f(sx(630))}" y1="${GY}" x2="${f(sx(630))}" y2="${f(sy(Aref(630)))}" stroke="${OR}" stroke-dasharray="3 3" opacity="${op(ob)}"/>`;
+    lab += label(sx(630), sy(.36) - 6, "λmax ≈ 630 nm : on mesure là", OR, 8.8, ob);
+    lab += label(sx(470), sy(.24), "le bleu passe : la solution paraît bleue", '#C9DAFF', 8.6, g5*k(51.2, 51.8));
+  }
+  /* étapes 6-7 : étalonnage, puis saturation */
+  const g6 = k(54, 55);
+  if(g6 > 0){
+    const sat = t >= 63, xmax = sat ? 42 : 10, ymax = sat ? 3.2 : .8;
+    const ex = v => GX + v/xmax*GW, ey = v => GY - Math.min(v, ymax)/ymax*GH;
+    cells += axes(GX, GY, GW, GH, xmax, ymax, sat ? [10, 20, 30, 40] : [2, 4, 6, 8], sat ? [1, 2, 3] : [.2, .4, .6], "c (µmol·L⁻¹)", "A", g6);
+    const ET = [[2, .15], [4, .30], [6, .45], [8, .60]];
+    ET.forEach(([x, y], i) => { chr += `<circle cx="${f(ex(x))}" cy="${f(ey(y))}" r="4" fill="${OR}" opacity="${op(g6*k(54.4 + i*1.6, 54.9 + i*1.6))}"/>`; });
+    sp += `<line x1="${GX}" y1="${GY}" x2="${f(ex(sat ? 40 : 9.4))}" y2="${f(ey(.075*(sat ? 40 : 9.4)))}" stroke="${OR}" stroke-width="1.6" stroke-dasharray="4 3" opacity="${op(g6*k(61, 61.6))}"/>`;
+    if(!sat){
+      const oi = k(61.4, 62);
+      sp += `<line x1="${GX}" y1="${f(ey(.39))}" x2="${f(ex(5.2))}" y2="${f(ey(.39))}" stroke="${VERT}" stroke-dasharray="3 3" opacity="${op(oi)}"/><line x1="${f(ex(5.2))}" y1="${f(ey(.39))}" x2="${f(ex(5.2))}" y2="${GY}" stroke="${VERT}" stroke-dasharray="3 3" opacity="${op(oi)}"/>`;
+      lab += label(ex(5.2) + 52, ey(.39) - 14, "échantillon : A = 0,39 → c = 5,2 µmol·L⁻¹", VERT, 8.6, oi);
+      lab += label(200, 252, "étalons de concentrations connues", BLANC, 9, g6*k(54.4, 55)*(1 - k(62.4, 63)));
+    } else {
+      /* saturation : au-delà de A ≈ 2, l'appareil ne distingue plus */
+      [[13.3, 1.0], [20, 1.45], [28, 1.8], [36, 2.0], [42, 2.08]].forEach(([x, y], i) => { chr += `<circle cx="${f(ex(x))}" cy="${f(ey(y))}" r="4" fill="${KO}" opacity="${op(k(64.6 + i*.7, 65 + i*.7))}"/>`; });
+      lab += label(ex(30), ey(2.9), "l'appareil sature : A mesurée plafonne", KO, 8.8, k(67.6, 68.4));
+      lab += label(200, 206, "trop concentré : presque plus de lumière", KO, 9, k(64.4, 65)*(1 - k(73, 74)));
+      lab += label(200, 236, "→ diluer pour revenir dans la zone linéaire", OR, 9.5, k(68.6, 69.4));
+    }
+  }
+  return {cells, nuc, sp, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:10, title:"1. Le spectrophotomètre mesure sans détruire",
+  text:"Une lampe, un dispositif qui ne garde qu'<strong>une longueur d'onde</strong> λ, une cuve, un détecteur. On commence par le <strong>« blanc »</strong> : la cuve ne contient que le solvant, et toute la lumière arrive au détecteur. C'est l'intensité de référence <strong>I₀</strong>.",
+  state:"Blanc : I = I₀, A = 0"},
+ {t:10, e:21, title:"2. Les molécules absorbent des photons",
+  text:"On remplit la cuve d'une solution colorée (ici du bleu brillant, à λ = 630 nm). Certains photons rencontrent une molécule de colorant et sont <strong>absorbés</strong> : le détecteur en reçoit moins. On définit l'<strong>absorbance</strong> A = log(I₀/I). Si la moitié des photons passe, A = log 2 = 0,30.",
+  state:"I / I₀ = 50 % ⟹ A = 0,30"},
+ {t:21, e:32, title:"3. Tranche après tranche, la même fraction",
+  text:"On allonge la cuve : 2 cm, puis 3 cm. Chaque centimètre contient autant de molécules, donc absorbe <strong>la même fraction</strong> de ce qu'il reçoit : 100 % → 50 % → 25 % → 12,5 %. L'intensité est <strong>divisée</strong> à chaque tranche ; le logarithme transforme ces divisions en additions : A gagne 0,30 par centimètre. <strong>A est proportionnelle à ℓ</strong>.",
+  state:"A = 0,30 × ℓ (en cm)"},
+ {t:32, e:43, title:"4. Doubler la concentration double l'absorbance",
+  text:"Retour à 1 cm, mais avec <strong>deux fois plus</strong> de molécules : seul un quart des photons passe, A = 0,60. Ce qui compte, c'est le <strong>nombre de molécules</strong> sur le trajet de la lumière, donc le produit ℓ × c. D'où la loi de Beer-Lambert : <strong>A = ε × ℓ × c</strong>.",
+  state:"A ∝ c, à ℓ et λ fixés"},
+ {t:43, e:53, title:"5. Quelle longueur d'onde choisir ?",
+  text:"On fait varier λ et on trace le <strong>spectre d'absorption</strong>. Le colorant absorbe surtout l'orange-rouge (maximum vers 630 nm) et laisse passer le bleu : c'est pour cela que la solution paraît <strong>bleue</strong> (couleur complémentaire). On mesure à <strong>λmax</strong>, là où A est la plus grande : la mesure est la plus sensible.",
+  state:"Mesures à λmax ≈ 630 nm"},
+ {t:53, e:63, title:"6. Le dosage par étalonnage",
+  text:"On mesure A pour des <strong>solutions étalons</strong> de concentrations connues : les points s'alignent sur une droite passant par l'origine. On mesure ensuite l'échantillon : A = 0,39. La <strong>lecture inverse</strong> sur la droite donne sa concentration : 5,2 µmol·L⁻¹.",
+  state:"Courbe d'étalonnage A = k × c"},
+ {t:63, e:74, title:"7. La limite : trop de molécules",
+  text:"Si la solution est trop concentrée, presque aucun photon ne traverse : le détecteur ne distingue plus 1 % de 0,1 %. L'absorbance mesurée <strong>plafonne</strong> et la droite se courbe : la loi n'est plus utilisable. Il faut <strong>diluer</strong> l'échantillon pour revenir dans la zone linéaire (en pratique, A inférieure à 1 à 2 environ).",
+  state:"Hors de la zone linéaire : diluer"}
+];
+
+const CALL = [
+  {a:2, b:8, text:"une seule longueur d'onde", lab:[110,40], anc:()=>[[XM, YF - 6]]},
+  {a:16.5, b:20.4, text:"photon absorbé par une molécule", lab:[190,30], anc:()=>[[XC + 30, YF - 10]]}
+];
+
+const CUES = [[.2,'step'],[10.2,'step'],[14,'pop'],[21.2,'step'],[23,'whoosh'],[32.2,'step'],[34,'whoosh'],[43.2,'step'],[45,'whoosh'],[50.8,'pinch'],[53.2,'step'],[61.6,'pop'],[63.2,'step'],[67.8,'error'],[70,'final']];
+
+const QUIZ = [
+ {q:"La moitié de la lumière traverse une cuve. L'absorbance vaut…",
+  o:["0,50","0,30","2,0"], a:1,
+  ex:"A = log(I₀/I) = log 2 ≈ 0,30. L'absorbance n'est pas la fraction absorbée : c'est le logarithme du rapport des intensités."},
+ {q:"On remplace une cuve de 1 cm par une cuve de 2 cm, même solution. L'absorbance…",
+  o:["double","reste la même","est divisée par deux"], a:0,
+  ex:"La lumière rencontre deux fois plus de molécules : chaque centimètre ajoute la même absorbance. A = ε × ℓ × c."},
+ {q:"Une solution paraît bleue. Elle absorbe surtout…",
+  o:["le bleu","l'orange-rouge, la couleur complémentaire","toutes les couleurs autant"], a:1,
+  ex:"Elle laisse passer le bleu, qu'on voit, et absorbe sa couleur complémentaire. On mesure donc l'absorbance vers 600-650 nm."},
+ {q:"L'absorbance d'un échantillon dépasse celle du plus concentré des étalons et la courbe se courbe. Que faire ?",
+  o:["Prolonger la droite à la règle","Diluer l'échantillon d'un facteur connu, puis le mesurer","Changer de longueur d'onde au hasard"], a:1,
+  ex:"La loi n'est vérifiée que dans la zone linéaire. On dilue d'un facteur connu, on mesure, puis on multiplie la concentration trouvée par ce facteur."}
+];
+
+ANIM.lancer({id:'beerlambert', END:74, SCENES, CALL, CUES, QUIZ, draw, graine:4});
+})();
+</script>
+</body>
+</html>
