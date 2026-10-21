@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A120B">
+<title>La lunette astronomique : du faisceau parallèle au grossissement</title>
+<link rel="stylesheet" href="moteur.css?v=3">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#anim-lunette">← Retour au cours</a> · Chapitre 5 : modèle de la lunette afocale, image intermédiaire, faisceau émergent, grossissement</p>
+    <h1>La lunette astronomique : du faisceau parallèle au grossissement</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation : des rayons parallèles venant d'un astre traversent l'objectif et convergent dans son plan focal image, où se forme l'image intermédiaire ; l'oculaire, dont le foyer objet est confondu avec le foyer image de l'objectif, fait ressortir un faisceau parallèle plus incliné ; l'image est renversée ; les angles α et α′ et les deux triangles rectangles donnent le grossissement G = f′1/f′2 ; on change d'oculaire puis d'objectif ; enfin, une lunette mal réglée fait ressortir des rayons convergents ou divergents">
+        <defs>
+          <radialGradient id="field" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#1E1A2E"/><stop offset=".7" stop-color="#110E1A"/><stop offset="1" stop-color="#08070D"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FF8B3E" stop-opacity=".65"/><stop offset="1" stop-color="#FF8B3E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFE3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <linearGradient id="arcenciel" x1="0" x2="1"><stop offset="0" stop-color="#7A3CFF"/><stop offset=".17" stop-color="#3B6CFF"/><stop offset=".33" stop-color="#22B0C8"/><stop offset=".5" stop-color="#3CC23C"/><stop offset=".67" stop-color="#F2D22B"/><stop offset=".83" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E3261B"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#8FB4FF"></span>rayons venant du point A∞ (sur l'axe)</li>
+        <li><span class="sw" style="background:#FF8B3E"></span>rayons venant du point B∞ (hors de l'axe)</li>
+        <li><span class="sw" style="background:#FFD24A"></span>rayon de construction, non dévié</li>
+        <li><span class="sw" style="background:#7CE08A"></span>image intermédiaire A₁B₁</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Lunette dessinée : objectif de focale 40 cm, oculaire de focale 10 cm (G = 4), à l'échelle 1 cm ↔ 5 px. Les angles sont volontairement exagérés pour être visibles : dans une vraie lunette, ils ne valent que quelques milliradians, et l'approximation tan α ≈ α est alors excellente.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=3"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, label} = ANIM.H;
+const ORANGE = '#FF8B3E', BLANC = '#F2F5FA', GRIS = '#9C93AE', OR = '#FFD24A', VERT = '#7CE08A', KO = '#FF6B5B', BLEU = '#8FB4FF', LUNE = '#D9D4C7';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const lin = (tt,a,b) => clamp((tt-a)/(b-a),0,1);
+const virg = (x,n=1) => x.toFixed(n).replace('.', ',');
+
+/* ---------- géométrie : 5 px pour 1 cm ; l'axe optique est horizontal ---------- */
+const Y0 = 132, XF = 262, PX = 5, H1 = 50, H2 = 38, XO = 372;
+const S = .10;                           /* pente des rayons incidents (angle exagéré pour être visible) */
+const HAUTS = [-40, -20, 0, 20, 40];     /* hauteurs d'arrivée sur l'objectif, par rapport à l'axe */
+
+/* réglage de la lunette à l'instant t : focales (cm) et décalage de l'oculaire (px) */
+function reglage(t){
+  let f1 = 40, f2 = 10, d = 0;
+  if(t >= 58 && t < 70){
+    f2 = lerp(10, 5, kAt(t, 60, 62.5));
+    f1 = lerp(40, 48, kAt(t, 64.5, 67));
+  }
+  if(t >= 70){
+    d = 22*kAt(t, 71.5, 73.5) - 44*kAt(t, 75.5, 77.5) + 22*kAt(t, 79.5, 81);
+  }
+  return {f1, f2, d};
+}
+
+/* trace un rayon (hauteur u1 sur L1, pente s) à travers les lentilles minces : pente de sortie = pente − u/f */
+function trace(u1, s, L, xFin){
+  const pts = [[0, Y0 + u1 - s*L[0].x]];
+  let x = L[0].x, u = u1, m = s;
+  for(let i=0; i<L.length; i++){
+    if(i > 0){ u = u + m*(L[i].x - x); x = L[i].x; }
+    pts.push([x, Y0 + u]);
+    m = m - u/L[i].f;
+  }
+  const xe = xFin; pts.push([xe, Y0 + u + m*(xe - x)]);
+  return {pts, m, u};
+}
+/* trace partiel : p de 0 à 1 le long de la ligne brisée */
+function partiel(pts, p){
+  if(p >= 1) return pts;
+  let tot = 0; const seg = [];
+  for(let i=1; i<pts.length; i++){ const l = Math.hypot(pts[i][0]-pts[i-1][0], pts[i][1]-pts[i-1][1]); seg.push(l); tot += l; }
+  let reste = tot*clamp(p, 0, 1); const out = [pts[0]];
+  for(let i=1; i<pts.length; i++){
+    if(reste >= seg[i-1]){ out.push(pts[i]); reste -= seg[i-1]; continue; }
+    const u = seg[i-1] ? reste/seg[i-1] : 0; out.push([lerp(pts[i-1][0], pts[i][0], u), lerp(pts[i-1][1], pts[i][1], u)]); break;
+  }
+  return out;
+}
+const chemin = pts => pts.map((q, i) => (i ? 'L' : 'M') + f(q[0]) + ' ' + f(q[1])).join(' ');
+const ligne = (pts, col, o, w=1.5, tir='') => o > 0 && pts.length > 1 ? `<path d="${chemin(pts)}" fill="none" stroke="${col}" stroke-width="${w}" ${tir ? `stroke-dasharray="${tir}"` : ''} stroke-linecap="round" opacity="${op(o)}"/>` : '';
+const fleche = (x, y, dx, dy, col, o) => { const n = Math.hypot(dx, dy) || 1, ux = dx/n, uy = dy/n; return o > 0 ? `<path d="M${f(x - 7*ux - 4*uy)} ${f(y - 7*uy + 4*ux)} L${f(x)} ${f(y)} L${f(x - 7*ux + 4*uy)} ${f(y - 7*uy - 4*ux)}" fill="none" stroke="${col}" stroke-width="1.5" opacity="${op(o)}"/>` : ''; };
+
+function lentille(x, h, nom, sous, o){
+  if(o <= 0) return '';
+  let s = `<g opacity="${op(o)}"><line x1="${f(x)}" y1="${Y0 - h}" x2="${f(x)}" y2="${Y0 + h}" stroke="${BLANC}" stroke-width="2"/>`;
+  s += `<path d="M${f(x - 5)} ${Y0 - h + 7} L${f(x)} ${Y0 - h} L${f(x + 5)} ${Y0 - h + 7} M${f(x - 5)} ${Y0 + h - 7} L${f(x)} ${Y0 + h} L${f(x + 5)} ${Y0 + h - 7}" fill="none" stroke="${BLANC}" stroke-width="2"/>`;
+  s += `<rect x="${f(x - 3)}" y="${Y0 - h}" width="6" height="${2*h}" fill="#BFD7FF" opacity=".12"/></g>`;
+  const xt = Math.max(x, 34);
+  s += `<text x="${f(xt)}" y="${Y0 - h - 16}" font-size="10" font-weight="700" fill="${BLANC}" opacity="${op(o)}">${nom}</text>`;
+  s += `<text x="${f(xt)}" y="${Y0 - h - 5}" font-size="8.4" fill="${GRIS}" opacity="${op(o)}">${sous}</text>`;
+  return s;
+}
+function oeil(x, o){
+  if(o <= 0) return '';
+  return `<g opacity="${op(o)}" fill="none" stroke="${GRIS}" stroke-width="1.4"><path d="M${x} ${Y0} Q${x + 12} ${Y0 - 13} ${x + 24} ${Y0 - 6} M${x} ${Y0} Q${x + 12} ${Y0 + 13} ${x + 24} ${Y0 + 6}"/><circle cx="${x + 8}" cy="${Y0}" r="4" fill="${GRIS}" fill-opacity=".5"/></g>`;
+}
+function lune(cx, cy, r, inv, o){
+  if(o <= 0) return '';
+  const sg = inv ? -1 : 1;
+  let s = `<g opacity="${op(o)}"><circle cx="${f(cx)}" cy="${f(cy)}" r="${f(r)}" fill="${LUNE}"/>`;
+  s += `<circle cx="${f(cx - .3*r*sg)}" cy="${f(cy - .55*r*sg)}" r="${f(.2*r)}" fill="${KO}"/>`;
+  s += `<circle cx="${f(cx + .3*r*sg)}" cy="${f(cy + .2*r*sg)}" r="${f(.14*r)}" fill="#A9A396"/><circle cx="${f(cx - .25*r*sg)}" cy="${f(cy + .4*r*sg)}" r="${f(.1*r)}" fill="#A9A396"/></g>`;
+  return s;
+}
+function arc(cx, cy, r, a0, a1, col, o){
+  if(o <= 0) return '';
+  const x0 = cx + r*Math.cos(a0), y0 = cy + r*Math.sin(a0), x1 = cx + r*Math.cos(a1), y1 = cy + r*Math.sin(a1);
+  return `<path d="M${f(x0)} ${f(y0)} A${r} ${r} 0 0 ${a1 > a0 ? 1 : 0} ${f(x1)} ${f(y1)}" fill="none" stroke="${col}" stroke-width="1.6" opacity="${op(o)}"/>`;
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {};
+  let cells = '', nuc = '', sp = '', chr = '', fx = '', lab = '';
+  const R = reglage(t);
+  const F1 = R.f1*PX, F2 = R.f2*PX;
+  const X1 = XF - F1, X2 = XF + F2 + R.d;
+  const uB = S*F1;                                  /* hauteur de B1 sous l'axe */
+  const ocu = t >= 22, oO = k(22.4, 24);           /* l'oculaire arrive à l'étape 3 */
+  const L = ocu ? [{x:X1, f:F1}, {x:X2, f:F2}] : [{x:X1, f:F1}];
+  st.X1 = X1; st.X2 = X2; st.uB = uB;
+
+  /* axe optique */
+  nuc += `<line x1="4" y1="${Y0}" x2="396" y2="${Y0}" stroke="${GRIS}" stroke-width="1" stroke-dasharray="6 4" opacity="${op(k(0, 1))}"/>`;
+  lab += `<text x="392" y="${Y0 - 5}" font-size="8" fill="${GRIS}" text-anchor="end" opacity="${op(k(0, 1)*(1 - k(22, 23)))}">axe optique</text>`;
+
+  /* lentilles */
+  nuc += lentille(X1, H1, 'L₁ objectif', `f′₁ = ${virg(R.f1, 0)} cm`, k(.4, 1.4));
+  nuc += lentille(X2, H2, 'L₂ oculaire', `f′₂ = ${virg(R.f2, R.f2 % 1 ? 1 : 0)} cm`, oO);
+  lab += `<text x="${f(X1 - 7)}" y="${Y0 + 12}" font-size="8.4" fill="${GRIS}" text-anchor="end" opacity="${op(k(.4, 1.4))}">O₁</text>`;
+  lab += `<text x="${f(X2 + 7)}" y="${Y0 + 12}" font-size="8.4" fill="${GRIS}" text-anchor="start" opacity="${op(oO)}">O₂</text>`;
+
+  /* foyers */
+  const oF = k(6, 7);
+  nuc += `<line x1="${XF}" y1="${Y0 - 4}" x2="${XF}" y2="${Y0 + 4}" stroke="${BLANC}" stroke-width="1.6" opacity="${op(oF)}"/>`;
+  const XF2 = X2 - F2;
+  if(ocu && Math.abs(XF2 - XF) > 2) nuc += `<line x1="${f(XF2)}" y1="${Y0 - 4}" x2="${f(XF2)}" y2="${Y0 + 4}" stroke="${OR}" stroke-width="1.6" opacity="${op(oO)}"/>`;
+  const nomF = (ocu && Math.abs(XF2 - XF) <= 2) ? 'F′₁ = F₂' : 'F′₁';
+  lab += `<text x="${XF}" y="${Y0 - 7}" font-size="9" font-weight="700" fill="${BLANC}" opacity="${op(oF*(t < 11 || t > 22 ? 1 : 1 - k(11, 12)))}">${nomF}</text>`;
+  if(ocu && Math.abs(XF2 - XF) > 2) lab += `<text x="${f(XF2)}" y="${Y0 + 16}" font-size="9" font-weight="700" fill="${OR}">F₂</text>`;
+
+  /* ---------- étape 1 : faisceau parallèle à l'axe (point A∞) ---------- */
+  const o1 = k(1, 2)*(1 - k(10.4, 11.2));
+  if(o1 > 0){
+    HAUTS.forEach((u, i) => {
+      const r = trace(u, 0, [{x:X1, f:F1}], XF + 46);
+      chr += ligne(partiel(r.pts, lin(t, 1.5 + i*.25, 6 + i*.25)), BLEU, o1);
+    });
+    lab += label(110, 28, 'A∞ : sur l\'axe, très loin', BLEU, 8.6, o1*k(1.5, 2.2));
+    lab += label(XF + 20, Y0 + 50, 'les rayons convergent en F′₁', BLANC, 8.8, o1*k(6.4, 7.2));
+  }
+
+  /* ---------- faisceau incliné (point B∞) ---------- */
+  const oB = k(11.4, 12.4);
+  const xFin = ocu ? 398 : XF + 70;
+  if(oB > 0){
+    HAUTS.forEach((u, i) => {
+      const r = trace(u, S, L, xFin);
+      /* au départ (étape 2) on dessine progressivement ; à l'arrivée de l'oculaire, le prolongement aussi */
+      let p = lin(t, 12 + i*.25, 17 + i*.25);
+      let pts = r.pts;
+      if(ocu && t < 30){ const r0 = trace(u, S, [{x:X1, f:F1}], XF + 70); pts = t < 24 ? r0.pts : partiel(r.pts, lerp((X2 - 4)/xFin, 1, lin(t, 24 + i*.2, 28 + i*.2))); p = 1; }
+      const haut = (i === 0 && t >= 36 && t < 46);
+      const col = haut ? BLANC : ORANGE;
+      chr += ligne(partiel(pts, p), col, oB*(haut ? 1 : (t >= 36 && t < 46 ? .55 : 1)), haut ? 2.2 : 1.5);
+      if(ocu && t > 28 && i % 2 === 0){ const last = r.pts[r.pts.length - 1]; const avant = r.pts[r.pts.length - 2]; fx += fleche(lerp(avant[0], last[0], .55), lerp(avant[1], last[1], .55), last[0] - avant[0], last[1] - avant[1], col, oB*k(28, 29)); }
+      if(i === 2) st.rCentre = r;
+    });
+    /* flèches de direction des rayons incidents */
+    fx += fleche(30, Y0 - 4 - 3, 1, S, ORANGE, oB*k(13, 14));
+    lab += label(110, 28, 'B∞ : un point de l\'astre', ORANGE, 8.6, oB*k(12, 12.8)*(1 - k(34, 35)));
+  }
+
+  /* étape 2 : rayon passant par O1, image intermédiaire A1B1 */
+  const o2 = k(15, 16);
+  if(o2 > 0){
+    const yB = Y0 + uB;
+    sp += `<line x1="${f(X1 - 60)}" y1="${f(Y0 - 60*S)}" x2="${f(XF)}" y2="${f(yB)}" stroke="${OR}" stroke-width="1.2" stroke-dasharray="4 3" opacity="${op(o2*(1 - k(21, 22))*(t < 45 || t > 58 ? 1 : 0))}"/>`;
+    const oI = k(17.5, 18.5);
+    sp += `<line x1="${XF}" y1="${Y0}" x2="${XF}" y2="${f(yB)}" stroke="${VERT}" stroke-width="2.6" opacity="${op(oI)}"/>`;
+    sp += `<path d="M${XF - 4} ${f(yB - 6)} L${XF} ${f(yB)} L${XF + 4} ${f(yB - 6)}" fill="none" stroke="${VERT}" stroke-width="2.2" opacity="${op(oI)}"/>`;
+    lab += `<text x="${XF + 4}" y="${f(yB + 14)}" font-size="9" font-weight="700" fill="${VERT}" opacity="${op(oI)}">B₁</text>`;
+    lab += label(150, 214, 'image intermédiaire A₁B₁ : dans le plan focal image', VERT, 8.8, oI*(1 - k(21.4, 22.2)));
+    lab += label(150, 238, 'elle est réelle et renversée', BLANC, 8.8, k(19, 19.8)*(1 - k(21.4, 22.2)));
+  }
+
+  /* étape 3 : l'oculaire, faisceau émergent parallèle */
+  if(ocu){
+    const oR = k(25, 26)*(1 - k(45.4, 46))*(t < 70 ? 1 : 0);
+    /* rayon de construction B1 → O2, non dévié */
+    const yB = Y0 + uB, pente = (Y0 - yB)/F2;
+    sp += `<line x1="${XF}" y1="${f(yB)}" x2="${f(X2 + 70)}" y2="${f(Y0 + pente*70)}" stroke="${OR}" stroke-width="1.2" stroke-dasharray="4 3" opacity="${op(oR)}"/>`;
+    lab += label(200, 214, 'F′₁ = F₂ : O₁O₂ = f′₁ + f′₂', OR, 9.4, k(23.6, 24.4)*(1 - k(33.4, 34)));
+    lab += label(200, 240, 'B₁ est au foyer objet de L₂ : les rayons ressortent parallèles', BLANC, 8.6, k(28.4, 29.2)*(1 - k(33.4, 34)));
+    lab += label(200, 264, 'image finale à l\'infini : l\'œil voit net sans effort', VERT, 8.6, k(30, 30.8)*(1 - k(33.4, 34)));
+  }
+  nuc += oeil(XO, k(29, 30));
+
+  /* étape 4 : l'image est renversée */
+  const o4 = k(35, 36)*(1 - k(45.4, 46));
+  if(o4 > 0){
+    lab += label(200, 214, 'le rayon le plus haut ressort le plus bas', BLANC, 8.8, o4*k(37, 37.8));
+    cells += lune(90, 330, 13, false, o4*k(38, 39));
+    cells += lune(282, 330, 52, true, o4*k(40, 41.4));
+    lab += `<text x="90" y="${330 + 36}" font-size="9" fill="${GRIS}" opacity="${op(o4*k(38, 39))}">à l'œil nu</text>`;
+    lab += `<text x="282" y="${330 + 72}" font-size="9" fill="${GRIS}" opacity="${op(o4*k(40, 41.4))}">dans la lunette</text>`;
+    fx += `<path d="M118 330 L214 330" stroke="${OR}" stroke-width="1.6" opacity="${op(o4*k(40, 41))}"/>` + fleche(214, 330, 1, 0, OR, o4*k(40, 41));
+    lab += label(166, 312, 'plus grande et renversée', OR, 8.6, o4*k(41, 41.8));
+    lab += label(166, 268, 'le cratère du haut passe en bas', KO, 8.6, o4*k(42.4, 43.2));
+  }
+
+  /* étape 5 : les angles et le grossissement */
+  const o5 = k(46, 47)*(1 - k(57.4, 58));
+  if(o5 > 0){
+    const yB = Y0 + uB;
+    const a = Math.atan(S), a2 = Math.atan(uB/F2);
+    /* triangles */
+    sp += `<path d="M${X1} ${Y0} L${XF} ${Y0} L${XF} ${f(yB)} Z" fill="${ORANGE}" fill-opacity=".22" stroke="${ORANGE}" stroke-width="1" opacity="${op(o5*k(48.5, 49.3))}"/>`;
+    sp += `<path d="M${f(X2)} ${Y0} L${XF} ${Y0} L${XF} ${f(yB)} Z" fill="${OR}" fill-opacity=".3" stroke="${OR}" stroke-width="1" opacity="${op(o5*k(50.5, 51.3))}"/>`;
+    sp += `<line x1="${f(X1)}" y1="${Y0}" x2="${XF}" y2="${f(yB)}" stroke="${ORANGE}" stroke-width="1.6" opacity="${op(o5)}"/>`;
+    sp += `<line x1="${XF}" y1="${f(yB)}" x2="${f(X2 + 40)}" y2="${f(Y0 - 40*uB/F2)}" stroke="${OR}" stroke-width="1.6" opacity="${op(o5*k(47, 48))}"/>`;
+    fx += arc(X1, Y0, 44, 0, a, ORANGE, o5*k(46.6, 47.4));
+    fx += arc(X2, Y0, 22, 0, -a2, OR, o5*k(47.4, 48.2));
+    lab += `<text x="${f(X1 + 50)}" y="${Y0 + 12}" font-size="11" font-weight="700" fill="${ORANGE}" opacity="${op(o5*k(46.6, 47.4))}">α</text>`;
+    lab += `<text x="${f(X2 + 28)}" y="${Y0 - 6}" font-size="11" font-weight="700" fill="${OR}" opacity="${op(o5*k(47.4, 48.2))}">α′</text>`;
+    lab += label(200, 214, 'α : angle sous lequel on voit l\'astre à l\'œil nu', ORANGE, 8.6, o5*k(46.6, 47.4));
+    lab += label(200, 238, 'α′ : angle sous lequel on le voit dans la lunette', OR, 8.6, o5*k(47.4, 48.2));
+    lab += label(200, 282, 'triangle O₁F′₁B₁ : tan α = A₁B₁ / f′₁', ORANGE, 9.4, o5*k(49, 49.8));
+    lab += label(200, 310, 'triangle O₂F₂B₁ : tan α′ = A₁B₁ / f′₂', OR, 9.4, o5*k(51, 51.8));
+    lab += label(200, 338, 'petits angles, en radians : tan α ≈ α', BLANC, 8.8, o5*k(52.6, 53.4));
+    lab += label(200, 374, 'G = α′ / α = f′₁ / f′₂', VERT, 12, o5*k(54, 54.8));
+    lab += label(200, 404, 'ici : 40 / 10 = 4', VERT, 9.4, o5*k(55, 55.8));
+  }
+
+  /* étape 6 : changer d'oculaire, changer d'objectif */
+  const o6 = k(58.6, 59.4)*(1 - k(69.4, 70));
+  if(o6 > 0){
+    const G = R.f1/R.f2;
+    lab += label(200, 300, `G = f′₁ / f′₂ = ${virg(R.f1, 0)} / ${virg(R.f2, R.f2 % 1 ? 1 : 0)} = ${virg(G, Math.abs(G - Math.round(G)) < .05 ? 0 : 1)}`, VERT, 12, o6);
+    const larg = 260, x0 = 70;
+    cells += `<rect x="${x0}" y="330" width="${larg}" height="12" rx="6" fill="${GRIS}" opacity="${op(o6*.25)}"/>`;
+    cells += `<rect x="${x0}" y="330" width="${f(larg*clamp(G/10, 0, 1))}" height="12" rx="6" fill="${VERT}" opacity="${op(o6*.85)}"/>`;
+    lab += `<text x="${x0}" y="358" font-size="8" fill="${GRIS}" text-anchor="start" opacity="${op(o6)}">G = 0</text><text x="${x0 + larg}" y="358" font-size="8" fill="${GRIS}" text-anchor="end" opacity="${op(o6)}">G = 10</text>`;
+    lab += label(200, 214, 'oculaire de focale deux fois plus courte : G double', OR, 8.6, k(60, 60.8)*(1 - k(64, 64.6)));
+    lab += label(200, 214, 'objectif de focale plus longue : A₁B₁ grandit, G aussi', ORANGE, 8.6, k(64.8, 65.6)*(1 - k(69, 69.6)));
+    lab += label(200, 386, 'G augmente si f′₁ augmente ou si f′₂ diminue', BLANC, 8.8, k(67.4, 68.2)*o6);
+  }
+
+  /* étape 7 : lunette mal réglée */
+  const o7 = k(70.4, 71.2);
+  if(o7 > 0){
+    const ec = R.d;
+    let txt = '', col = BLANC;
+    if(ec > 6){ txt = 'F′₁ avant F₂ : les rayons convergent après l\'oculaire'; col = KO; }
+    else if(ec < -6){ txt = 'F′₁ après F₂ : les rayons divergent (image virtuelle)'; col = KO; }
+    else if(t > 79){ txt = 'F′₁ = F₂ : faisceau parallèle, lunette afocale'; col = VERT; }
+    if(txt) lab += label(200, 214, txt, col, 8.6, o7);
+    lab += label(200, 300, 'on règle la lunette en déplaçant l\'oculaire', BLANC, 9, o7*k(71, 71.8));
+    lab += label(200, 330, 'réglage afocal : O₁O₂ = f′₁ + f′₂', OR, 9.4, o7*k(80.4, 81.2));
+  }
+  return {cells, nuc, sp, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:11, title:"1. Un objet à l'infini envoie des rayons parallèles",
+  text:"Une étoile, la Lune, une planète sont si loin que les rayons issus d'un même point arrivent <strong>parallèles</strong> entre eux. Ceux du point A∞, sur l'axe, arrivent parallèles à l'axe : la lentille convergente L₁ (l'<strong>objectif</strong>) les fait converger en son <strong>foyer image F′₁</strong>.",
+  state:"Rayons parallèles à l'axe → F′₁"},
+ {t:11, e:22, title:"2. Un point hors de l'axe : l'image intermédiaire",
+  text:"Les rayons du point B∞ arrivent parallèles entre eux, mais <strong>inclinés</strong> d'un angle α. Ils convergent en un point B₁ du <strong>plan focal image</strong>. Pour le trouver : le rayon qui passe par le centre O₁ n'est pas dévié. A₁B₁ est l'<strong>image intermédiaire</strong> : réelle, renversée, dans le plan focal image de l'objectif.",
+  state:"A₁B₁ dans le plan focal image de L₁"},
+ {t:22, e:35, title:"3. L'oculaire, placé pour que F′₁ = F₂",
+  text:"On ajoute L₂, l'<strong>oculaire</strong>, de courte focale, placé pour que son <strong>foyer objet F₂</strong> coïncide avec F′₁. B₁ est alors dans le plan focal objet de L₂ : les rayons issus de B₁ ressortent <strong>parallèles</strong>, dans la direction de la droite (B₁O₂). Objet à l'infini, image à l'infini : la lunette est <strong>afocale</strong>, et l'œil au repos voit net sans accommoder.",
+  state:"Lunette afocale : O₁O₂ = f′₁ + f′₂"},
+ {t:35, e:46, title:"4. L'image est renversée",
+  text:"Les rayons arrivent en <strong>descendant</strong> et ressortent en <strong>montant</strong> : le rayon le plus haut sur l'objectif ressort le plus bas de l'oculaire. Ce qui est en haut de l'astre est vu en bas : l'image est <strong>renversée</strong>, et plus grande. Pour le ciel, ce n'est pas gênant.",
+  state:"Image finale : renversée, plus grande"},
+ {t:46, e:58, title:"5. Le grossissement G = α′ / α",
+  text:"À l'œil nu, l'astre est vu sous l'angle α ; dans la lunette, sous l'angle α′. Le <strong>grossissement</strong> est G = α′/α. Les deux triangles rectangles qui partagent le côté A₁B₁ donnent tan α = A₁B₁/f′₁ et tan α′ = A₁B₁/f′₂. Pour de petits angles exprimés en <strong>radians</strong>, tan α ≈ α, d'où <strong>G = f′₁ / f′₂</strong>. (Sur le dessin, les angles sont exagérés.)",
+  state:"G = α′/α = f′₁/f′₂"},
+ {t:58, e:70, title:"6. Changer d'oculaire, changer d'objectif",
+  text:"Avec un oculaire de focale deux fois plus courte, les rayons ressortent deux fois plus inclinés : G passe de 4 à 8. Avec un objectif de plus longue focale, l'image intermédiaire grandit : G augmente encore. Pour grossir, il faut un <strong>objectif de grande focale</strong> et un <strong>oculaire de petite focale</strong>.",
+  state:"G ↑ si f′₁ ↑ ou si f′₂ ↓"},
+ {t:70, e:84, title:"7. Une lunette mal réglée",
+  text:"Si l'oculaire est trop loin (F′₁ avant F₂), les rayons ressortent <strong>convergents</strong> : l'image finale est réelle, après la lunette. S'il est trop près (F′₁ après F₂), ils ressortent <strong>divergents</strong> : l'image est virtuelle, à distance finie, et l'œil doit accommoder. Seul le réglage <strong>F′₁ = F₂</strong> donne un faisceau parallèle.",
+  state:"Réglage : déplacer l'oculaire jusqu'à F′₁ = F₂"}
+];
+
+const CALL = [
+  {a:2.4, b:8.4, text:"objectif : grande focale", lab:[120,224], anc:(st)=>[[st.X1, Y0 + 30]]},
+  {a:24.6, b:31, text:"oculaire : petite focale", lab:[300,292], anc:(st)=>[[st.X2, Y0 + 28]], col:OR},
+  {a:37.4, b:44.4, text:"rayon le plus haut", lab:[70,40], anc:(st)=>[[st.X1, Y0 - 40]]}
+];
+
+const CUES = [[.2,'step'],[6.4,'pop'],[11.2,'step'],[18,'pop'],[22.2,'step'],[24,'whoosh'],[29,'pinch'],[35.2,'step'],[40.4,'flip'],[46.2,'step'],[54,'good'],[58.2,'step'],[60.4,'whoosh'],[65,'whoosh'],[70.2,'step'],[72,'error'],[76,'error'],[80.4,'final']];
+
+const QUIZ = [
+ {q:"Où se forme l'image intermédiaire A₁B₁ d'un astre ?",
+  o:["Au centre de l'objectif","Dans le plan focal image de l'objectif","À l'infini"], a:1,
+  ex:"L'astre est à l'infini : les rayons issus d'un de ses points arrivent parallèles et convergent dans le plan focal image de L₁."},
+ {q:"Une lunette est afocale quand…",
+  o:["F₁ et F′₂ sont confondus","le foyer image de l'objectif est confondu avec le foyer objet de l'oculaire","les deux lentilles ont la même focale"], a:1,
+  ex:"F′₁ = F₂ : l'image intermédiaire est alors dans le plan focal objet de l'oculaire, et le faisceau ressort parallèle."},
+ {q:"Objectif de focale 900 mm, oculaire de focale 25 mm : le grossissement vaut…",
+  o:["36","0,028","925"], a:0,
+  ex:"G = f′₁ / f′₂ = 900 / 25 = 36. Les deux focales doivent être dans la même unité ; G n'a pas d'unité."},
+ {q:"Pour grossir davantage avec le même objectif, on choisit un oculaire…",
+  o:["de plus grande focale","de plus petite focale","de plus grand diamètre"], a:1,
+  ex:"G = f′₁ / f′₂ : diviser f′₂ par deux double le grossissement. C'est pourquoi les oculaires sont vendus par focale (25 mm, 10 mm…)."}
+];
+
+ANIM.lancer({id:'lunette', END:84, SCENES, CALL, CUES, QUIZ, draw, graine:3});
+})();
+</script>
+</body>
+</html>
