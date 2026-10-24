@@ -165,6 +165,76 @@ EUROPE_1939 = {
 }
 
 
+def appliquer(S, HL, TRI, DATES):
+    """Mises en valeur propres à une scène (HL), place imposée dans la chronologie (TRI), date corrigée (DATES),
+    repérées par le titre français de la scène."""
+    titres = {s["titre"]["fr"] for s in S}
+    for d in (HL, TRI, DATES):
+        assert set(d) <= titres, set(d) - titres
+    for s in S:
+        t = s["titre"]["fr"]
+        if t in DATES:
+            s["date"] = DATES[t]
+        s["st"] = HL.get(t, {})
+        if t in TRI:
+            s["tri"] = TRI[t]
+    return S
+
+
+def etat(k):
+    """L'Europe et le monde du H3 à la date k = (année, mois, jour)."""
+    c = {"w:Empire of Japan": [JAP, None], "urss": [USSR, None], "ru": [UK, None], "italie": [IT, None]}
+    if k >= (1931, 9, 18):
+        c["w:Manchuria"] = ["#E9D9C4", JAP]
+    c.update(EUROPE_1939)
+    if k < (1933, 1, 30):
+        c["germany"] = ["#9DB4CC", None]
+    if k < (1938, 3, 12):
+        c["austria"] = [NEUTRE, None]
+    if k < (1938, 9, 29):
+        c["sudetes"] = [DEMO, None]
+    if k < (1939, 3, 15):
+        c["boheme"] = [DEMO, None]
+        c["slovaquie"] = [DEMO, None]
+    if k < (1939, 4, 7):
+        c["albanie"] = [NEUTRE, None]
+    if k >= (1939, 9, 17):
+        c.update({"pologne_all": [G38, None], "danzig": [G33, None], "pologne_urss": SU})
+    if k >= (1939, 12, 0):
+        c["carelie"] = SU
+    if k >= (1940, 4, 0):
+        c.update({"denmark": [G38, None], "norway": [G38, None]})
+    if k >= (1940, 5, 13):
+        c.update({"belgium": [G38, None], "netherlands": [G38, None], "luxembourg": [G38, None]})
+    if k >= (1940, 6, 22):
+        c.update({"france": [VICHY, None], "fr_occ": [G38, None], "fr_nord": [G38, G33], "fr_annex": [G33, None], "fr_libre": [VICHY, G38]})
+    if k >= (1940, 7, 0):
+        c.update({"baltes": SU, "bessarabie": SU})
+    if (1940, 12, 0) <= k < (1941, 12, 7):
+        c["w:United States"] = ["#A9BED3", None]
+    if k >= (1941, 12, 7):
+        c["w:United States"] = [USA, None]
+    if k >= (1941, 4, 0):
+        c.update({"yugoslavia": [G38, None], "greece": [G38, None], "hungary": [ALLIE, None], "roumanie": [ALLIE, None], "bulgaria": [ALLIE, None]})
+    if k >= (1941, 6, 22):
+        c["finlande"] = [ALLIE, None]
+    if k >= (1942, 11, 8):
+        c.update({"france": [G38, None], "fr_libre": [G38, None], "fr_ital": [IT, None]})
+    return c
+
+
+HL = {}
+TRI = {
+    "La drôle de guerre": [1939, 9, 3],
+    "Le Royaume-Uni seul : deux stratégies allemandes": [1940, 6, 25],
+    "L'avance allemande ; la terre brûlée": [1941, 6, 23],
+    "Le rapport de forces a basculé : l'encerclement": [1942, 11, 19],
+    "Le Nouvel Ordre européen": [1942, 12, 31],
+    "Pourquoi envahir l'URSS ? Trois raisons": [1941, 5, 0],
+}
+DATES = {}
+
+
 def scenes():
     S = []
 
@@ -178,8 +248,6 @@ def scenes():
         L("Une guerre-monde", "A world war"),
         L("Pour des historiens comme Robert Frank, la guerre commence avant 1939 : sa chronologie s'étire de 1931 à 1947. C'est une guerre idéologique : il ne s'agit pas seulement de vaincre l'ennemi, mais de détruire sa civilisation. Environ 60 millions de morts.",
           "For historians such as Robert Frank, the war began before 1939: its chronology stretches from 1931 to 1947. It was an ideological war: the aim was not only to defeat the enemy but to destroy its civilisation. About 60 million dead."),
-        st={"germany": [G33, None], "saar": [G33, None], "austria": [G33, None], "italie": [IT, None], "w:Empire of Japan": [JAP, None],
-            "w:Manchuria": ["#E9D9C4", JAP], "urss": [USSR, None], "ru": [UK, None], "france": [DEMO, None]},
         labels=["l_all", "l_ita", "l_jap", "l_urss_m"], cles=["reich", "ital", "japon", "mandch", "urss"])
     add("Intro", 12, [124, 40, 2.6], L("Septembre 1931", "September 1931"),
         L("Le Japon s'empare de la Mandchourie", "Japan seizes Manchuria"),
@@ -199,8 +267,7 @@ def scenes():
     add("I.1", 13, [20, 51, 2.5], L("Août 1939", "August 1939"),
         L("Le pacte germano-soviétique", "The Nazi-Soviet pact"),
         L("L'Allemagne a déjà absorbé l'Autriche, les Sudètes puis la Bohême-Moravie (chapitre 2). Par le pacte d'août 1939, Hitler s'assure la neutralité de l'URSS ; en secret, les deux puissances prévoient de se partager la Pologne. L'Allemagne se sent prête à conquérir son Lebensraum.",
-          "Germany had already absorbed Austria, the Sudetenland and then Bohemia-Moravia (chapter 2). By the pact of August 1939 Hitler secured the neutrality of the USSR; in secret, the two powers planned to carve up Poland. Germany felt ready to conquer its Lebensraum."),
-        st=dict(EUROPE_1939), labels=["l_all", "l_urss", "l_pol", "l_fra", "l_ru", "l_ita", "moscou"],
+          "Germany had already absorbed Austria, the Sudetenland and then Bohemia-Moravia (chapter 2). By the pact of August 1939 Hitler secured the neutrality of the USSR; in secret, the two powers planned to carve up Poland. Germany felt ready to conquer its Lebensraum."), labels=["l_all", "l_urss", "l_pol", "l_fra", "l_ru", "l_ita", "moscou"],
         cles=["reich", "allie", "ital", "urss", "allies39", "uk", "neutre"])
     add("I.1", 13, [19.5, 52, 4.6], L("1er septembre 1939", "1 September 1939"),
         L("L'Allemagne envahit la Pologne", "Germany invades Poland"),
@@ -213,7 +280,6 @@ def scenes():
         L("L'URSS envahit l'est de la Pologne : le partage", "The USSR invades eastern Poland: the partition"),
         L("Le 17 septembre, l'Armée rouge entre dans l'est de la Pologne. En un mois, la Pologne est vaincue et partagée entre l'Allemagne nazie et l'Union soviétique, de part et d'autre d'une ligne de démarcation qui passe entre Varsovie et Białystok.",
           "On 17 September the Red Army entered eastern Poland. Within a month Poland was defeated and partitioned between Nazi Germany and the Soviet Union, on either side of a demarcation line running between Warsaw and Białystok."),
-        st={"pologne_all": [G38, None], "danzig": [G33, None], "pologne_urss": SU},
         labels=["l_pol", "varsovie", "moscou"], cles=["reich", "occ", "su", "urss"],
         arrows=[F((28.6, 53.6), (24.4, 52.9), USSR, 0.12, id="su1"), F((28.4, 50.6), (24.4, 50.0), USSR, -0.12, id="su2")])
     add("I.1", 14, [6.0, 49.4, 7.5], L("Sept. 1939 - mai 1940", "Sept. 1939 – May 1940"),
@@ -225,14 +291,12 @@ def scenes():
     add("I.1", 12, [27, 61.5, 4.2], L("Hiver 1939-1940", "Winter 1939–1940"),
         L("L'URSS prend sa part à l'est", "The USSR takes its share in the east"),
         L("Pendant la drôle de guerre, l'URSS attaque la Finlande [hors] et lui prend la Carélie en mars 1940 : la carte du cours la range dans les « terres saisies par la Russie, 1939-40 ».",
-          "During the phoney war the USSR attacked Finland [hors] and took Karelia from it in March 1940: the course map counts it among the “land seized by Russia, 1939–40”."),
-        st={"carelie": SU}, labels=["l_fin", "l_carelie", "helsinki", "leningrad"], cles=["su", "urss", "neutre"],
+          "During the phoney war the USSR attacked Finland [hors] and took Karelia from it in March 1940: the course map counts it among the “land seized by Russia, 1939–40”."), labels=["l_fin", "l_carelie", "helsinki", "leningrad"], cles=["su", "urss", "neutre"],
         arrows=[F((32.0, 62.4), (29.6, 61.3), USSR, 0.15, id="fin1"), F((31.5, 60.5), (29.0, 60.7), USSR, -0.15, id="fin2")])
     add("I.1", 14, [13, 61, 3.0], L("Avril 1940", "April 1940"),
         L("Le Danemark et la Norvège envahis", "Denmark and Norway invaded"),
         L("L'Allemagne occupe le Danemark et envahit la Norvège : la carte du cours montre la route du fer suédois, exporté vers l'Allemagne par Narvik. Le Royaume-Uni n'empêche pas l'occupation de la Norvège : Chamberlain perd le soutien des Communes.",
-          "Germany occupied Denmark and invaded Norway: the course map shows the route of Swedish iron ore, shipped to Germany through Narvik. Britain failed to prevent the occupation of Norway: Chamberlain lost the support of the House of Commons."),
-        st={"denmark": [G38, None], "norway": [G38, None]}, labels=["l_nor", "l_dan", "l_sue", "l_fer", "oslo"], pins=["narvik"], cles=["reich", "occ", "neutre"],
+          "Germany occupied Denmark and invaded Norway: the course map shows the route of Swedish iron ore, shipped to Germany through Narvik. Britain failed to prevent the occupation of Norway: Chamberlain lost the support of the House of Commons."), labels=["l_nor", "l_dan", "l_sue", "l_fer", "oslo"], pins=["narvik"], cles=["reich", "occ", "neutre"],
         arrows=[F((9.9, 54.4), (10.3, 56.6), ROUGE, 0.15, id="dk"), F((10.6, 54.7), (10.6, 59.6), ROUGE, -0.25, id="no1"),
                 F((8.5, 57.6), (16.9, 68.2), ROUGE, 0.25, id="no2"),
                 {"id": "fer", "ligne": [(20.2, 67.85), (18.9, 68.2), (17.43, 68.44), (14.5, 68.2), (12.0, 66.0), (8.0, 63.0), (5.2, 60.0), (5.0, 57.5), (8.0, 54.8)],
@@ -248,7 +312,6 @@ def scenes():
         L("La percée des Ardennes", "The breakthrough in the Ardennes"),
         L("L'attaque principale passe là où personne ne l'attend : par la forêt des Ardennes. Les chars allemands percent les lignes françaises à Sedan, puis foncent jusqu'à la Manche ; la 7e Panzer de Rommel traverse la campagne française vers la Somme. Les meilleures troupes alliées sont prises au piège en Belgique.",
           "The main attack came where nobody expected it: through the Ardennes forest. German tanks broke through the French lines at Sedan, then raced to the Channel; Rommel's 7th Panzer Division crossed the French countryside towards the Somme. The best Allied troops were trapped in Belgium."),
-        st={"belgium": [G38, None], "netherlands": [G38, None], "luxembourg": [G38, None]},
         labels=["l_ardennes", "l_somme", "abbeville", "l_manche"], pins=["sedan"], cles=["reich", "occ", "allies39"],
         arrows=[F((6.9, 50.15), (4.95, 49.75), ROUGE, 0.12, w=3.6, id="ard1"), F((4.9, 49.8), (1.9, 50.12), ROUGE, -0.18, w=3.6, id="ard2", dur=2.4)])
     add("I.1", 14, [1.9, 51.0, 13], L("26 mai - 4 juin 1940", "26 May – 4 June 1940"),
@@ -276,7 +339,6 @@ def scenes():
         L("L'armistice de Rethondes : la France découpée", "The armistice of Rethondes: France cut up"),
         L("L'armistice est signé à Rethondes. L'Allemagne occupe les trois cinquièmes du pays : les régions les plus riches et les côtes. La ligne de démarcation la sépare de la « zone libre », gouvernée depuis Vichy. Le Nord est rattaché au commandement allemand de Bruxelles, l'Alsace-Moselle annexée : retour aux frontières de 1871.",
           "The armistice was signed at Rethondes. Germany occupied three-fifths of the country: the richest regions and the coasts. The demarcation line separated it from the “free zone”, governed from Vichy. The Nord was attached to the German command in Brussels, and Alsace-Moselle was annexed: back to the borders of 1871."),
-        st={"france": [VICHY, None], "fr_occ": [G38, None], "fr_nord": [G38, G33], "fr_annex": [G33, None], "fr_libre": [VICHY, G38]},
         labels=["l_occ", "l_libre", "l_annex", "paris", "vichy"], pins=["rethondes"], cles=["reich", "occ", "nord", "vichy"])
     add("I.1", 15, [2.8, 46.4, 10.5], L("Juillet 1940 - 1941", "July 1940 – 1941"),
         L("Vichy : un État autoritaire qui choisit la collaboration", "Vichy: an authoritarian state that chooses collaboration"),
@@ -286,8 +348,7 @@ def scenes():
     add("I.1", 13, [25, 55, 3.6], L("Été 1940", "Summer 1940"),
         L("L'URSS annexe les pays baltes et la Bessarabie", "The USSR annexes the Baltic states and Bessarabia"),
         L("Pendant que l'Allemagne écrase l'ouest, l'URSS prend sa part de l'Europe de l'Est : elle annexe l'Estonie, la Lettonie et la Lituanie, et prend la Bucovine du Nord et la Bessarabie à la Roumanie. En 1941, l'Axe domine l'Europe continentale.",
-          "While Germany crushed the west, the USSR took its share of Eastern Europe: it annexed Estonia, Latvia and Lithuania, and took Northern Bukovina and Bessarabia from Romania. By 1941 the Axis dominated continental Europe."),
-        st={"baltes": SU, "bessarabie": SU}, labels=["l_baltes", "l_bess", "l_rou", "l_urss", "moscou"], cles=["su", "urss", "occ", "reich"],
+          "While Germany crushed the west, the USSR took its share of Eastern Europe: it annexed Estonia, Latvia and Lithuania, and took Northern Bukovina and Bessarabia from Romania. By 1941 the Axis dominated continental Europe."), labels=["l_baltes", "l_bess", "l_rou", "l_urss", "moscou"], cles=["su", "urss", "occ", "reich"],
         arrows=[F((31.0, 57.6), (25.6, 57.0), USSR, 0.12, id="balt"), F((31.5, 48.2), (28.4, 47.4), USSR, -0.12, id="bess")])
 
     # ---------------- I.2 : le Royaume-Uni seul, soutenu par les États-Unis
@@ -308,7 +369,6 @@ def scenes():
         L("La Luftwaffe n'obtient pas la maîtrise du ciel : en décembre 1940, l'invasion est reportée sine die, Hitler se tournant vers l'URSS. Les États-Unis, neutres, deviennent « l'arsenal de la démocratie » : le cash and carry, puis la loi prêt-bail de mars 1941 [hors], arment le Royaume-Uni.",
           "The Luftwaffe never won control of the air: in December 1940 the invasion was postponed indefinitely, as Hitler turned to the USSR. The neutral United States became the “Arsenal of Democracy”: cash and carry, then the Lend-Lease Act of March 1941 [hors], armed Britain."),
         labels=["l_usa", "l_atl", "washington", "londres"], cles=["usa", "uk", "occ"],
-        st={"w:United States": ["#A9BED3", None]},
         arrows=[F((-73.5, 40.5), (-5.5, 51.0), BLEU, -0.12, w=2.8, dash=True, id="conv1", dur=2.8), F((-66.0, 44.5), (-6.0, 54.6), BLEU, -0.1, w=2.8, dash=True, id="conv2", dur=2.8)])
 
     # ---------------- II.1 : les projets allemands pour l'Est
@@ -316,7 +376,6 @@ def scenes():
         L("Les Balkans conquis, les alliés de l'Allemagne", "The Balkans conquered, Germany's allies"),
         L("La Yougoslavie et la Grèce sont envahies [hors]. La Hongrie, la Roumanie et la Slovaquie, alliées de l'Allemagne sur la carte du cours, et la Bulgarie [hors] couvrent le flanc sud : à la veille de l'invasion de l'URSS, l'Allemagne domine le continent.",
           "Yugoslavia and Greece were invaded [hors]. Hungary, Romania and Slovakia, Germany's allies on the course map, and Bulgaria [hors] covered the southern flank: on the eve of the invasion of the USSR, Germany dominated the continent."),
-        st={"yugoslavia": [G38, None], "greece": [G38, None], "hungary": [ALLIE, None], "roumanie": [ALLIE, None], "bulgaria": [ALLIE, None]},
         labels=["l_hon", "l_rou", "l_bul", "l_you", "l_gre", "l_slo"], cles=["reich", "occ", "allie", "ital", "urss"],
         arrows=[F((15.0, 46.6), (19.8, 44.4), ROUGE, -0.2, id="you"), F((22.6, 42.3), (22.8, 39.2), ROUGE, -0.2, id="gre")])
     add("II.1", 16, [31, 51, 2.6], L("1941", "1941"),
@@ -329,8 +388,7 @@ def scenes():
     add("II.2", 15, [29, 53, 3.0], L("22 juin 1941", "22 June 1941"),
         L("L'opération Barbarossa", "Operation Barbarossa"),
         L("Hitler rompt le pacte et lance l'invasion de l'URSS, que la Wehrmacht voit comme une croisade contre le communisme. Trois poussées sur un front de la Baltique à la mer Noire : au nord vers Leningrad, au centre par Minsk et Smolensk vers Moscou, au sud par l'Ukraine vers Kiev et Rostov. La Finlande, la Roumanie et la Hongrie combattent aux côtés de l'Allemagne.",
-          "Hitler broke the pact and launched the invasion of the USSR, which the Wehrmacht saw as a crusade against communism. Three thrusts on a front from the Baltic to the Black Sea: north towards Leningrad, centre through Minsk and Smolensk towards Moscow, south through Ukraine towards Kiev and Rostov. Finland, Romania and Hungary fought alongside Germany."),
-        st={"finlande": [ALLIE, None]}, front="F0",
+          "Hitler broke the pact and launched the invasion of the USSR, which the Wehrmacht saw as a crusade against communism. Three thrusts on a front from the Baltic to the Black Sea: north towards Leningrad, centre through Minsk and Smolensk towards Moscow, south through Ukraine towards Kiev and Rostov. Finland, Romania and Hungary fought alongside Germany."), front="F0",
         labels=["leningrad", "moscou", "kiev", "minsk", "smolensk", "rostov"], cles=["occ", "allie", "urss", "front"],
         arrows=[F((21.8, 55.2), (29.4, 59.2), ROUGE, -0.12, w=3.6, id="bN", dur=2.4), F((23.8, 52.6), (36.4, 55.5), ROUGE, -0.06, w=3.6, id="bC", dur=2.6),
                 F((24.2, 50.7), (39.0, 47.6), ROUGE, 0.08, w=3.6, id="bS", dur=2.8)])
@@ -360,7 +418,7 @@ def scenes():
         L("Pearl Harbor", "Pearl Harbor"),
         L("Le même mois, le Japon, membre de l'Axe, bombarde la base américaine de Pearl Harbor, à Hawaï. Les États-Unis déclarent aussitôt la guerre au Japon.",
           "The same month, Japan, one of the Axis powers, bombed the American base of Pearl Harbor in Hawaii. The United States immediately declared war on Japan."),
-        front="F41", st={"w:United States": [USA, None]}, labels=["l_jap", "l_usa", "l_pac", "tokyo"], pins=["pearl"], cles=["japon", "usa"],
+        front="F41", labels=["l_jap", "l_usa", "l_pac", "tokyo"], pins=["pearl"], cles=["japon", "usa"],
         arrows=[F((146.5, 43.0), (201.6, 21.8), JAP, -0.18, w=3.4, id="pearl", dur=3.0)], lent=1.15)
     add("I.2", 15, [-30, 42, 1.12], L("11 décembre 1941", "11 December 1941"),
         L("La guerre devient mondiale", "The war goes global"),
@@ -399,7 +457,7 @@ def scenes():
         L("Le débarquement en Afrique du Nord ; la zone libre envahie", "The landing in North Africa; the free zone invaded"),
         L("Les Alliés débarquent en Afrique du Nord française : c'est l'opération Torch. En réponse, le 11 novembre 1942, l'Allemagne envahit la « zone libre », et l'Italie occupe une large partie du Sud-Est. Toute la France est désormais occupée.",
           "The Allies landed in French North Africa: Operation Torch. In response, on 11 November 1942, Germany invaded the “free zone”, and Italy occupied a large part of the south-east. All of France was now occupied."),
-        front="F42", st={"france": [G38, None], "fr_libre": [G38, None], "fr_ital": [IT, None]},
+        front="F42",
         labels=["l_afn", "l_fra", "l_esp", "vichy"], pins=["casablanca", "oran", "alger"], cles=["occ", "ital", "usa", "uk"],
         arrows=[F((-14.0, 36.5), (-7.9, 33.8), USA, 0.15, w=3, id="tor1"), F((-5.0, 36.6), (-0.9, 35.85), UK, 0.2, w=3, id="tor2"),
                 F((-0.5, 37.8), (2.9, 36.95), UK, -0.15, w=3, id="tor3"),
@@ -422,4 +480,4 @@ def scenes():
         L("L'Europe nazie au plus loin : une entité raciale, le Lebensraum à l'Est, la croisade anticommuniste, le Grossraum économique, des hommes, des biens et de l'argent pour la guerre totale. Trois cinquièmes des morts de la guerre tombent sur le front de l'Est. La suite du chapitre (partie III, la politique raciale et le génocide) n'a pas encore été vue en classe.",
           "Nazi Europe at its furthest: a racial entity, Lebensraum in the East, the anti-communist crusade, the economic Grossraum, people, goods and money for total war. Three-fifths of the war's dead fell on the Eastern Front. The rest of the chapter (Part III, racial policy and genocide) has not yet been studied in class."),
         front="F42", labels=["l_all", "l_urss", "l_ru", "l_ita", "l_fra", "l_esp", "l_sue", "l_fin"], cles=["reich", "occ", "allie", "ital", "urss", "uk", "neutre", "front"])
-    return S
+    return appliquer(S, HL, TRI, DATES)

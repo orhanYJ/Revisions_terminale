@@ -2,7 +2,7 @@
 Même format que scenes_h3.py ; ce qui vient d'ailleurs que le cours porte la balise [hors].
 """
 import scenes_h3 as base
-from scenes_h3 import L, F, G33, G38, IT, USSR, DEMO, NEUTRE, UK, JAP, USA, ROUGE, BLEU, NOIR
+from scenes_h3 import appliquer, ALLIE, L, F, G33, G38, IT, USSR, DEMO, NEUTRE, UK, JAP, USA, ROUGE, BLEU, NOIR
 
 TITRE = {"fr": "Le krach de 1929 et la crise mondiale : la carte animée", "en": "The Wall Street Crash and the world depression: the animated map"}
 PARTIES = {
@@ -92,6 +92,60 @@ MONDE_1929 = {"w:United States": [USA, None], "ru": [UK, None], "france": [DEMO,
               "austria": [CRISE2, None], "italie": [IT, None], "urss": [USSR, None], "w:Empire of Japan": [JAP, None]}
 
 
+WEIMAR = "#9DB4CC"
+
+
+def etat(k):
+    """Le monde du H1 à la date k = (année, mois, jour)."""
+    c = {"w:United States": [USA, None], "ru": [UK, None], "france": [DEMO, None], "germany": [WEIMAR, None], "saar": [NEUTRE, None],
+         "austria": [NEUTRE, None], "italie": [IT, None], "urss": [USSR, None], "w:Empire of Japan": [JAP, None],
+         "w:Libya (IT)": [IT, None], "w:Eritrea": [IT, None], "w:Italian Somaliland": [IT, None]}
+    if (1929, 10, 24) <= k < (1933, 3, 4):
+        c["w:United States"] = [CRISE, None]
+    if (1930, 0, 0) <= k < (1933, 1, 0):
+        c["germany"] = [CRISE, None]
+    if (1931, 5, 0) <= k < (1938, 3, 0):
+        c["austria"] = [CRISE, None]
+    if k >= (1931, 9, 18):
+        c["w:Manchuria"] = ["#E9D9C4", JAP]
+    if k >= (1933, 1, 0):
+        c["germany"] = [G33, None]
+    if k >= (1935, 3, 1):
+        c["saar"] = [G33, None]
+    if k >= (1935, 10, 0):
+        c["w:Ethiopia"] = [IT, "#5A4630"]
+    if k >= (1938, 3, 0):
+        c.update({"austria": [G33, None], "sudetes": [G33, None]})
+    if k >= (1939, 3, 0):
+        c.update({"boheme": [G33, None], "slovaquie": [ALLIE, None], "pologne_all": [G38, None], "danzig": [G33, None]})
+    return c
+
+
+DUST = {"dustbowl": ["#C9A66B", "#8C6A35"]}
+HL = {
+    "L'ordre libéral de 1919": {"w:United States": [DEMO, None], "ru": [DEMO, None], "france": [DEMO, None]},
+    "L'effet domino en Europe": {"ru": [CRISE, None]},
+    "L'étalon-or, courroie de transmission": {"ru": ["#3E6259", None], "w:Empire of Japan": ["#3E6259", None], "w:United States": ["#7FA89F", None], "france": ["#C9DCD7", None]},
+    "La périphérie frappée par la chute des prix": {"w:Brazil": [OR, None], "w:Chile": [OR, None], "w:Argentina": ["#E4CF9E", None]},
+    "Une crise durable dans tout le monde dominé": {"w:British Raj": [CRISE, None], "w:Australia": [CRISE, None], "w:New Zealand": [CRISE, None], "w:Canada": [CRISE, None]},
+    "Le Dust Bowl : une crise devenue écologique": DUST,
+    "Migrant Mother : la photographie comme argument": DUST,
+    "Les empires deviennent des blocs fermés": dict([(k, [UK, None]) for k in EMPIRE_GB] + [(k, [DEMO, "#5F86AD"]) for k in EMPIRE_FR] + [("germany", [G33, None])]),
+    "Le militarisme gagne trois régimes": {"germany": [ROUGE, None], "italie": [ROUGE, None], "w:Empire of Japan": [ROUGE, None]},
+    "La Rhénanie remilitarisée": {"rhenanie": [None, "#F7F3EA"]},
+}
+TRI = {
+    "Des millions de vies brisées, sans filet de sécurité": [1929, 11, 0],
+    "La périphérie frappée par la chute des prix": [1929, 11, 1],
+    "L'étalon-or, courroie de transmission": [1931, 9, 21],
+    "Le New Deal : Relief, Recovery, Reform": [1933, 3, 4],
+    "Roosevelt renverse la politique": [1933, 4, 19],
+    "La France : le Front populaire": [1934, 2, 6],
+    "Les lois de neutralité ; l'USS Panay": [1935, 8, 31],
+}
+DATES = {"L'Allemagne, le pays le plus exposé": L("1930-1932", "1930–1932")}
+
+
 def scenes():
     S = []
 
@@ -104,13 +158,11 @@ def scenes():
         L("L'ordre libéral de 1919", "The liberal order of 1919"),
         L("Les Quatorze Points du président Wilson (1918) portent trois principes : démocratie, droit des peuples à disposer d'eux-mêmes, libre-échange. La conférence de Paris, le traité de Versailles et la SDN, installée à Genève, leur donnent des institutions. Mais le Sénat américain refuse de ratifier le traité : les États-Unis n'entreront jamais à la SDN.",
           "President Wilson's Fourteen Points (1918) carried three principles: democracy, self-determination, free trade. The Paris Peace Conference, the Treaty of Versailles and the League of Nations, seated in Geneva, gave them institutions. But the US Senate refused to ratify the treaty: the United States never joined the League."),
-        st={"w:United States": [DEMO, None], "ru": [DEMO, None], "france": [DEMO, None]},
         labels=["l_usa", "washington"], pins=["geneve"], cles=["demo19"])
     add("I.1", 14, [-92, 39, 2.3], L("Années 1920", "The 1920s"),
         L("Les Années folles : une prospérité qui semble éternelle", "The Roaring Twenties: a boom that felt permanent"),
         L("Trois présidents républicains (Harding, Coolidge, Hoover) : impôts bas, trusts, droits de douane. La production de masse (la Ford T à 260 $ en 1925) et le crédit permettent la consommation de masse : voitures, radios, réfrigérateurs entrent dans les foyers.",
-          "Three Republican presidents (Harding, Coolidge, Hoover): low taxes, trusts, tariffs. Mass production (the Ford Model T at $260 by 1925) and credit made mass consumption possible: cars, radios and refrigerators entered ordinary homes."),
-        st=dict(MONDE_1929), labels=["l_usa", "detroit"], cles=["usa"])
+          "Three Republican presidents (Harding, Coolidge, Hoover): low taxes, trusts, tariffs. Mass production (the Ford Model T at $260 by 1925) and credit made mass consumption possible: cars, radios and refrigerators entered ordinary homes."), labels=["l_usa", "detroit"], cles=["usa"])
     add("I.2", 15, [-28, 47, 1.5], L("1924", "1924"),
         L("Le plan Dawes : l'Europe suspendue au crédit américain", "The Dawes Plan: Europe hangs on American credit"),
         L("Un circuit en trois flèches : 800 millions de marks prêtés à l'Allemagne par les États-Unis ; des réparations allemandes jusqu'à 2,5 milliards de marks par an vers la France et le Royaume-Uni ; leurs dettes de guerre remboursées aux États-Unis. Tout repose sur le crédit américain.",
@@ -132,7 +184,7 @@ def scenes():
         L("Le krach de Wall Street", "The Wall Street Crash"),
         L("Jeudi noir (24 octobre) : la panique commence. Lundi 28 et mardi 29 : la Bourse perd environ 13 % puis 12 % en une séance ; 16 millions d'actions changent de mains le 29. Tout le monde vend, personne n'achète. Le Dow Jones tombe de 381 (septembre 1929) à 41 (juillet 1932).",
           "Black Thursday (24 October): the panic began. Monday 28 and Tuesday 29: the market lost about 13% then 12% in a single session; 16 million shares changed hands on the 29th. Everyone sold, nobody bought. The Dow Jones fell from 381 (September 1929) to 41 (July 1932)."),
-        pins=["newyork"], cles=["usa", "crise"], st={"w:United States": [CRISE, None]})
+        pins=["newyork"], cles=["usa", "crise"])
     add("I.2", 14, [-90, 39, 2.4], L("1930-1932", "1930–1932"),
         L("Les faillites bancaires : la Grande Dépression", "Bank failures: the Great Depression"),
         L("La confiance disparaît ; les épargnants retirent leur argent, les banques font faillite (environ 5 000 en 1932, sans garantie des dépôts avant 1933). Entreprises et ménages réduisent leurs dépenses, la production chute, les licenciements s'enchaînent : un krach dure quelques jours, une dépression des années.",
@@ -148,35 +200,29 @@ def scenes():
         L("L'effet domino en Europe", "The domino effect in Europe"),
         L("La Creditanstalt, première banque d'Autriche, fait faillite en mai 1931 ; les banques allemandes suivent en juillet ; le Royaume-Uni quitte l'étalon-or en septembre. L'Allemagne et l'Autriche, frappées les premières, ne peuvent plus payer les réparations ; les banques britanniques, qui y avaient investi, sont touchées.",
           "The Creditanstalt, Austria's largest bank, failed in May 1931; German banks followed in July; Britain left the gold standard in September. Germany and Austria, hit first, could no longer pay reparations; British banks, which had invested there, were hit in turn."),
-        st={"austria": [CRISE, None], "germany": [CRISE, None], "ru": [CRISE, None]},
         pins=["vienne"], labels=["berlin", "londres", "l_fra"], cles=["crise"],
         arrows=[F((16.0, 48.4), (13.2, 52.2), ROUGE, -0.2, w=2.6, id="dom1"), F((12.8, 52.6), (0.3, 51.6), ROUGE, -0.15, w=2.6, id="dom2")])
     add("I.2", 15, [-38, 40, 1.0], L("1931-1936", "1931–1936"),
         L("L'étalon-or, courroie de transmission", "The gold standard, the transmission belt"),
         L("Pour défendre le dollar, la Réserve fédérale relève ses taux : l'or quitte les autres pays, qui doivent relever les leurs, le pire remède en pleine crise. Sortir de l'or est la porte de sortie : Royaume-Uni et Japon en 1931, États-Unis en 1933, France seulement en 1936. Plus on sort tôt, plus tôt on se redresse.",
           "To defend the dollar, the Federal Reserve raised interest rates: gold left other countries, which had to raise theirs — the worst medicine in a slump. Leaving gold was the exit: Britain and Japan in 1931, the United States in 1933, France only in 1936. The earlier a country left, the earlier it recovered."),
-        st={"ru": ["#3E6259", None], "w:Empire of Japan": ["#3E6259", None], "w:United States": ["#7FA89F", None], "france": ["#C9DCD7", None],
-            "germany": [CRISE, None], "austria": [CRISE, None]},
         labels=["l_usa"], cles=["or31", "or33", "or36"])
     add("I.2", 15, [-62, -14, 1.9], L("1929-1932", "1929–1932"),
         L("La périphérie frappée par la chute des prix", "The periphery hit by falling prices"),
         L("La fin des prêts américains et la chute des importations de matières premières frappent les pays moins développés. Le Brésil brûle quelque 78 millions de sacs de café entre 1931 et 1944 pour soutenir les prix ; les recettes d'exportation du Chili (nitrates) s'effondrent de plus de 80 %. Un pays qui vend un seul produit n'a pas d'amortisseur.",
           "The end of American loans and the fall in raw-material imports struck the less developed countries. Brazil burned some 78 million bags of coffee between 1931 and 1944 to hold up the price; Chile's nitrate export earnings collapsed by more than 80%. A country that sells one commodity has no cushion."),
-        st={"w:Brazil": [OR, None], "w:Chile": [OR, None], "w:Argentina": ["#E4CF9E", None]},
         labels=["l_bresil", "l_chili"], cles=["matieres"])
     add("I.2", 14, [100, 5, 1.0], L("Années 1930", "The 1930s"),
         L("Une crise durable dans tout le monde dominé", "A lasting crisis across the dependent world"),
         L("Selon le cours, la crise touche durablement l'Amérique latine, le Canada, l'Inde, la Nouvelle-Zélande et l'Australie. La France, moins endettée envers les États-Unis, n'est touchée qu'en 1932, quand les réparations allemandes cessent d'arriver.",
           "According to the course, the crisis lastingly affected Latin America, Canada, India, New Zealand and Australia. France, less indebted to the United States, was hit only in 1932, as German reparations stopped arriving."),
-        st={"w:British Raj": [CRISE, None], "w:Australia": [CRISE, None], "w:New Zealand": [CRISE, None], "w:Canada": [CRISE, None]},
         labels=["l_ind", "l_aus", "l_nz"], cles=["crise", "matieres"])
 
     # ---------------- I.3 le traumatisme
     add("I.3", 15, [-92, 39, 2.4], L("1929-1933", "1929–1933"),
         L("Des millions de vies brisées, sans filet de sécurité", "Millions of lives broken, with no safety net"),
         L("Production industrielle et agricole : − 40 %. Salaires moyens : − 60 %. 14 millions de chômeurs, 25 % des actifs (3 % en 1929), sans assurance chômage, sans sécurité sociale, sans retraite publique. 5 000 banques en faillite, des exportations en ruine.",
-          "Industrial and farm output: −40%. Average wages: −60%. 14 million unemployed, 25% of all workers (3% in 1929), with no unemployment insurance, no social security, no public pension. 5,000 banks bankrupt, exports in ruins."),
-        st={"w:United States": [CRISE, None]}, labels=["l_usa"], cles=["crise"])
+          "Industrial and farm output: −40%. Average wages: −60%. 14 million unemployed, 25% of all workers (3% in 1929), with no unemployment insurance, no social security, no public pension. 5,000 banks bankrupt, exports in ruins."), labels=["l_usa"], cles=["crise"])
     add("I.3", 14, [-82, 40.5, 4.6], L("1930-1932", "1930–1932"),
         L("Les Hoovervilles", "The Hoovervilles"),
         L("Les familles expulsées construisent des bidonvilles en planches et en tôle, souvent au cœur des grandes villes, baptisés du nom du président Hoover jugé responsable. Le plus grand est à Saint-Louis ; un autre occupe une partie de Central Park ; à Chicago, Al Capone ouvre une soupe populaire en 1931.",
@@ -185,19 +231,17 @@ def scenes():
     add("I.3", 16, [-104, 37, 4.2], L("14 avril 1935", "14 April 1935"),
         L("Le Dust Bowl : une crise devenue écologique", "The Dust Bowl: an economic crisis turned ecological"),
         L("Sécheresse et labours mécanisés sans méthodes de culture sèche : la terre nue s'envole en tempêtes de poussière (Stratford, Texas, 1935 ; « Black Sunday », 14 avril 1935). Ruinées par les prix et par la poussière, des familles partent vers la Californie.",
-          "Drought, and mechanised ploughing without dryland farming methods: the bare soil rose into dust storms (Stratford, Texas, 1935; “Black Sunday”, 14 April 1935). Ruined by prices and by dust, families left for California."),
-        st={"dustbowl": ["#C9A66B", "#8C6A35"]}, pins=["stratford"], labels=["l_plaines"], cles=["dust"],
+          "Drought, and mechanised ploughing without dryland farming methods: the bare soil rose into dust storms (Stratford, Texas, 1935; “Black Sunday”, 14 April 1935). Ruined by prices and by dust, families left for California."), pins=["stratford"], labels=["l_plaines"], cles=["dust"],
         arrows=[F((-100.0, 35.6), (-119.5, 35.3), "#7D7465", -0.12, w=2.6, dash=True, id="okies", dur=2.6)])
     add("I.3", 15, [-118, 36, 6.5], L("Mars 1936", "March 1936"),
         L("Migrant Mother : la photographie comme argument", "Migrant Mother: photography as an argument"),
         L("Pour une agence fédérale, Dorothea Lange photographie Florence Owens Thompson, 32 ans, et ses enfants dans un camp de cueilleurs de pois à Nipomo, en Californie. L'image, composée (cinq prises), est publiée aussitôt et fait venir l'aide fédérale au camp.",
           "For a federal agency, Dorothea Lange photographed Florence Owens Thompson, 32, and her children in a pea-pickers' camp at Nipomo, California. The composed image (five exposures) was published at once and brought federal relief to the camp."),
-        pins=["nipomo"], cles=["dust"], st={"dustbowl": None})
+        pins=["nipomo"], cles=["dust"])
     add("I.3", 14, [70, 50, 1.3], L("Années 1930", "The 1930s"),
         L("Un traumatisme mondial, mais inégal", "A global trauma, but uneven"),
         L("Krach, dépression américaine, puis chute de la production, chômage de masse et déflation dans le monde. Mais les pays peu intégrés aux marchés sont épargnés : l'URSS, hors du commerce capitaliste et en plein premier plan quinquennal, est à peine touchée, et les visiteurs occidentaux en reviennent impressionnés.",
-          "Crash, American depression, then falling output, mass unemployment and deflation worldwide. But countries little integrated into world markets were spared: the USSR, outside capitalist trade and in its first Five-Year Plan, was barely touched, and Western visitors came home impressed by planning."),
-        st={"urss": [USSR, None]}, labels=["l_urss_m"], cles=["urss", "crise"])
+          "Crash, American depression, then falling output, mass unemployment and deflation worldwide. But countries little integrated into world markets were spared: the USSR, outside capitalist trade and in its first Five-Year Plan, was barely touched, and Western visitors came home impressed by planning."), labels=["l_urss_m"], cles=["urss", "crise"])
 
     # ---------------- II.1 nationalisme économique
     add("II.1", 15, [-85, 45, 2.1], L("17 juin 1930", "17 June 1930"),
@@ -210,31 +254,26 @@ def scenes():
         L("Les empires deviennent des blocs fermés", "The empires become closed trading blocs"),
         L("Le Royaume-Uni vote l'Import Duties Act (10 %) et, à Ottawa en 1932, la « préférence impériale » ; la France instaure des quotas (1931) ; l'Allemagne vise l'autarcie. Le commerce se replie vers des colonies qui ne peuvent refuser : le commerce mondial perd environ deux tiers de sa valeur entre 1929 et 1934.",
           "Britain passed the Import Duties Act (10%) and, at Ottawa in 1932, “imperial preference”; France set up quotas (1931); Germany aimed at autarky. Trade turned inwards towards colonies that could not refuse: world trade fell by about two thirds in value between 1929 and 1934."),
-        st=dict([(k, [UK, None]) for k in EMPIRE_GB] + [(k, [DEMO, "#5F86AD"]) for k in EMPIRE_FR] + [("germany", [G33, None]), ("austria", [NEUTRE, None])]),
         labels=["l_can", "l_ind", "l_aus", "l_afn"], cles=["empgb", "empfr", "autarcie"])
     add("II.1", 15, [-55, 30, 1.25], L("1933-1934", "1933–1934"),
         L("Roosevelt renverse la politique", "Roosevelt reverses the policy"),
         L("Roosevelt sort de l'étalon-or en 1933, puis la loi de 1934 sur les accords tarifaires réciproques (RTAA) lui permet de baisser les droits pays par pays : environ vingt accords en 1939. Il reconnaît l'URSS (novembre 1933) et sa politique de « bon voisinage » retire les troupes de Cuba et du Nicaragua. Hitler et Mussolini, eux, refusent tout accord commercial.",
           "Roosevelt took the US off gold in 1933; the Reciprocal Tariff Agreement Act of 1934 let him cut duties country by country: about twenty agreements by 1939. He recognised the USSR (November 1933), and his “Good Neighbor” policy withdrew troops from Cuba and Nicaragua. Hitler and Mussolini rejected any trade agreement."),
-        st=dict([(k, None) for k in EMPIRE_GB + EMPIRE_FR] + [("w:United States", [USA, None]), ("ru", [UK, None]), ("france", [DEMO, None]), ("germany", [G33, None])]),
         labels=["l_usa", "l_cuba", "l_nica", "washington"], cles=["usa"])
 
     # ---------------- II.2 réponses politiques
     add("II.2", 15, [11, 51, 4.6], L("1928-1932", "1928–1932"),
         L("L'Allemagne, le pays le plus exposé", "Germany, the most exposed country"),
         L("L'industrie allemande dépend du crédit américain : la production chute de 40 %, le chômage des assurés passe de 8,6 % (1928) à 43,8 % (1932). Le vote nazi suit la courbe : 2,6 %, 18,3 %, 37,3 % en juillet 1932, puis 33,1 % en novembre. Les nazis n'ont jamais la majorité.",
-          "German industry depended on American credit: output fell by 40%, unemployment among insured workers rose from 8.6% (1928) to 43.8% (1932). The Nazi vote followed the curve: 2.6%, 18.3%, 37.3% in July 1932, then 33.1% in November. The Nazis never won a majority."),
-        st={"germany": [CRISE, None]}, labels=["l_all", "berlin"], cles=["crise"])
+          "German industry depended on American credit: output fell by 40%, unemployment among insured workers rose from 8.6% (1928) to 43.8% (1932). The Nazi vote followed the curve: 2.6%, 18.3%, 37.3% in July 1932, then 33.1% in November. The Nazis never won a majority."), labels=["l_all", "berlin"], cles=["crise"])
     add("II.2", 15, [12, 51.5, 5.2], L("Janvier 1933", "January 1933"),
         L("Hitler appelé au pouvoir ; l'économie nazie", "Hitler let in; the Nazi economy"),
         L("Par peur du communisme, les conservateurs nomment Hitler chancelier en janvier 1933. Syndicats interdits, salaires gelés, autoroutes et surtout réarmement malgré Versailles, pillage et spoliation des Juifs : le chômage passe de six millions (1933) à moins d'un million (1937). Une reprise qui n'a de sens que si la guerre suit.",
-          "Out of fear of communism, the conservatives appointed Hitler chancellor in January 1933. Unions banned, wages frozen, motorways and above all rearmament despite Versailles, plunder and the dispossession of Jews: unemployment fell from six million (1933) to under one million (1937). A recovery that only made sense if war followed."),
-        st={"germany": [G33, None]}, pins=["berlin"], cles=["reich"])
+          "Out of fear of communism, the conservatives appointed Hitler chancellor in January 1933. Unions banned, wages frozen, motorways and above all rearmament despite Versailles, plunder and the dispossession of Jews: unemployment fell from six million (1933) to under one million (1937). A recovery that only made sense if war followed."), pins=["berlin"], cles=["reich"])
     add("II.2", 15, [-92, 38, 2.4], L("1933-1935", "1933–1935"),
         L("Le New Deal : Relief, Recovery, Reform", "The New Deal: Relief, Recovery, Reform"),
         L("Roosevelt, élu en 1932, lance le New Deal : les « cent jours » créent le Civilian Conservation Corps, la Tennessee Valley Authority et la garantie des dépôts ; en 1935, le Social Security Act (retraites, assurance chômage). Le Golden Gate est construit dès 1933. Comme l'Allemagne, l'État dépense, mais pour des ponts et des droits, pas pour une armée.",
-          "Roosevelt, elected in 1932, launched the New Deal: the “hundred days” created the Civilian Conservation Corps, the Tennessee Valley Authority and deposit insurance; in 1935 came the Social Security Act (pensions, unemployment insurance). The Golden Gate Bridge went up from 1933. Like Germany, the state spent — but on bridges and rights, not an army."),
-        st={"w:United States": [USA, None]}, pins=["tva"], labels=["goldengate", "washington"], cles=["usa"])
+          "Roosevelt, elected in 1932, launched the New Deal: the “hundred days” created the Civilian Conservation Corps, the Tennessee Valley Authority and deposit insurance; in 1935 came the Social Security Act (pensions, unemployment insurance). The Golden Gate Bridge went up from 1933. Like Germany, the state spent — but on bridges and rights, not an army."), pins=["tva"], labels=["goldengate", "washington"], cles=["usa"])
     add("II.2", 15, [2.4, 47.5, 6.5], L("1934-1936", "1934–1936"),
         L("La France : le Front populaire", "France: the Front populaire"),
         L("Le 6 février 1934, les ligues d'extrême droite manifestent à Paris : le cours parle d'un coup d'État manqué. Contre le fascisme, socialistes, communistes et radicaux forment le Front populaire, vainqueur en 1936 avec Léon Blum : 40 heures, deux semaines de congés payés, SNCF, hausse des salaires (accords de Matignon). Mais pas d'argent pour l'armée, et l'apaisement à l'extérieur.",
@@ -243,15 +282,13 @@ def scenes():
     add("II.2", 15, [60, 40, 1.0], L("Années 1930", "The 1930s"),
         L("Le militarisme gagne trois régimes", "Militarism spreads to three regimes"),
         L("Hitler, Mussolini et le gouvernement japonais choisissent le militarisme : une armée puissante, le contrôle du gouvernement par les militaires, une politique étrangère agressive. Au Japon, en septembre 1931, l'armée du Guandong agit d'abord en Mandchourie ; le gouvernement de Tokyo explique ensuite. Facteurs économiques ou idéologie ?",
-          "Hitler, Mussolini and the Japanese government implemented militarism: a strong army, control of the government by the military, an aggressive foreign policy. In Japan, in September 1931, the Kwantung Army acted first in Manchuria; the government in Tokyo explained afterwards. Economic factors or ideology?"),
-        st={"germany": [ROUGE, None], "italie": [ROUGE, None], "w:Empire of Japan": [ROUGE, None]}, labels=["l_all", "l_ita", "l_jap"], cles=["milit"])
+          "Hitler, Mussolini and the Japanese government implemented militarism: a strong army, control of the government by the military, an aggressive foreign policy. In Japan, in September 1931, the Kwantung Army acted first in Manchuria; the government in Tokyo explained afterwards. Economic factors or ideology?"), labels=["l_all", "l_ita", "l_jap"], cles=["milit"])
 
     # ---------------- II.3 des démocraties réticentes
     add("II.3", 15, [124, 40, 2.6], L("18 septembre 1931", "18 September 1931"),
         L("La Mandchourie : la SDN impuissante", "Manchuria: the League powerless"),
         L("À Moukden, des soldats japonais organisent un faux attentat contre leur propre voie ferrée pour envahir la Mandchourie, qui devient le Mandchoukouo. La commission Lytton condamne ; le Japon quitte la SDN (mars 1933). Le pacte Briand-Kellogg (1928) avait mis la guerre hors la loi, sans moyen de l'imposer.",
-          "At Mukden, Japanese soldiers staged a false-flag attack on their own railway to invade Manchuria, which became Manchukuo. The Lytton Commission condemned it; Japan left the League (March 1933). The Kellogg–Briand Pact (1928) had outlawed war, with no means to enforce it."),
-        st={"w:Empire of Japan": [JAP, None], "w:Manchuria": ["#E9D9C4", JAP], "germany": [G33, None], "italie": [IT, None]}, pins=["moukden"], labels=["l_mand", "l_jap", "l_chine"], cles=["japon", "mandch"],
+          "At Mukden, Japanese soldiers staged a false-flag attack on their own railway to invade Manchuria, which became Manchukuo. The Lytton Commission condemned it; Japan left the League (March 1933). The Kellogg–Briand Pact (1928) had outlawed war, with no means to enforce it."), pins=["moukden"], labels=["l_mand", "l_jap", "l_chine"], cles=["japon", "mandch"],
         arrows=[F((129.5, 36.5), (123.6, 41.6), JAP, 0.2, id="jap31")])
     add("II.3", 15, [119, 33, 3.4], L("7 janvier 1932", "7 January 1932"),
         L("La doctrine Stimson, puis Shanghai bombardée", "The Stimson doctrine, then Shanghai bombed"),
@@ -268,26 +305,22 @@ def scenes():
         L("L'Italie envahit l'Éthiopie", "Italy invades Ethiopia"),
         L("Mussolini attaque l'Éthiopie. Le Royaume-Uni refuse l'embargo sur le pétrole qui l'aurait arrêté : c'est l'apaisement. Ses raisons : pacifisme, un empire à surveiller, la crise d'abord, l'isolationnisme américain, la peur du communisme plus que du fascisme.",
           "Mussolini attacked Ethiopia. Britain refused the oil embargo that would have stopped him: appeasement. Its reasons: pacifism, an empire to police, its own economic problems first, American isolationism, and a greater fear of communism than of fascism."),
-        st={"w:Ethiopia": [IT, "#5A4630"], "w:Libya (IT)": [IT, None], "w:Eritrea": [IT, None], "w:Italian Somaliland": [IT, None]},
         labels=["l_ethio", "l_libye", "rome"], pins=["addis"], cles=["ital"],
         arrows=[F((39.0, 15.5), (38.9, 9.6), IT, 0.15, w=3, id="eth1"), F((45.0, 4.0), (40.0, 8.0), IT, -0.15, w=3, id="eth2")])
     add("II.3", 15, [7.5, 50.3, 6.2], L("7 mars 1936", "7 March 1936"),
         L("La Rhénanie remilitarisée", "The Rhineland remilitarised"),
         L("Hitler envoie ses troupes en Rhénanie, démilitarisée par Versailles, avec l'ordre de se retirer à la première résistance française. Il n'y en a aucune : la France et le Royaume-Uni décident de ne pas intervenir.",
-          "Hitler sent troops into the Rhineland, demilitarised by Versailles, with orders to withdraw at the first sign of French resistance. There was none: France and Britain decided not to intervene."),
-        st={"germany": [G33, None], "saar": [G33, None], "rhenanie": [None, "#F7F3EA"]}, labels=["l_rhen", "l_fra", "paris"], cles=["reich", "rhen"],
+          "Hitler sent troops into the Rhineland, demilitarised by Versailles, with orders to withdraw at the first sign of French resistance. There was none: France and Britain decided not to intervene."), labels=["l_rhen", "l_fra", "paris"], cles=["reich", "rhen"],
         arrows=[F((10.0, 51.5), (7.4, 50.9), ROUGE, 0.2, w=3, id="rh1"), F((9.8, 49.7), (7.6, 49.6), ROUGE, -0.2, w=3, id="rh2")])
     add("II.3", 16, [14.5, 49.0, 5.0], L("Mars - septembre 1938", "March – September 1938"),
         L("L'Anschluss et Munich", "The Anschluss and Munich"),
         L("L'Allemagne annexe l'Autriche en mars 1938. Puis Hitler exige une partie de la Tchécoslovaquie : à Munich, en septembre, Chamberlain et Daladier acceptent la « cession à l'Allemagne du territoire allemand des Sudètes ». L'axe Rome-Berlin-Tokyo lie les trois puissances militaristes.",
-          "Germany annexed Austria in March 1938. Then Hitler demanded part of Czechoslovakia: at Munich in September, Chamberlain and Daladier accepted the “cession to Germany of the Sudeten German territory”. The Rome–Berlin–Tokyo pact tied the three militarist powers together."),
-        st={"austria": [G33, None], "sudetes": [G33, None], "rhenanie": [None, None]}, labels=["l_aut", "l_sudetes"], pins=["munich", "vienne38"], cles=["reich"],
+          "Germany annexed Austria in March 1938. Then Hitler demanded part of Czechoslovakia: at Munich in September, Chamberlain and Daladier accepted the “cession to Germany of the Sudeten German territory”. The Rome–Berlin–Tokyo pact tied the three militarist powers together."), labels=["l_aut", "l_sudetes"], pins=["munich", "vienne38"], cles=["reich"],
         arrows=[F((12.6, 48.3), (16.0, 48.2), ROUGE, -0.15, w=3, id="ans"), F((12.0, 50.0), (13.8, 50.6), ROUGE, 0.2, w=2.6, id="sud1"), F((15.6, 51.0), (16.2, 50.2), ROUGE, -0.2, w=2.6, id="sud2")])
     add("II.3", 15, [17, 51, 4.0], L("Mars - septembre 1939", "March – September 1939"),
         L("Prague, puis la Pologne : la guerre", "Prague, then Poland: war"),
         L("En mars 1939, l'Allemagne occupe toute la Tchécoslovaquie : Munich n'a rien acheté. Le 1er septembre 1939, elle envahit la Pologne ; la France et le Royaume-Uni déclarent la guerre. À chaque concession, la tension européenne s'était aggravée.",
           "In March 1939 Germany occupied the whole of Czechoslovakia: Munich had bought nothing. On 1 September 1939 it invaded Poland; France and Britain declared war. Every concession had made European turmoil worse."),
-        st={"boheme": [G33, None], "slovaquie": [base.ALLIE, None], "pologne_all": [G38, None], "danzig": [G33, None]},
         labels=["varsovie"], pins=["prague"], cles=["reich", "occ"],
         arrows=[F((14.4, 52.4), (20.4, 52.2), ROUGE, -0.12, id="pl1"), F((20.6, 54.1), (21.1, 52.5), ROUGE, 0.1, id="pl2"), F((19.6, 49.3), (21.7, 50.8), ROUGE, 0.12, id="pl4")])
     add("II.3", 16, [-40, 40, 1.25], L("Novembre 1939", "November 1939"),
@@ -296,4 +329,4 @@ def scenes():
           "Once war had begun, Roosevelt obtained the Neutrality Act of 1939: the democracies could buy weapons if they paid cash and carried them on their own ships. American factories, idle since 1929, restarted: Sherman tanks rolled out of the Detroit Tank Arsenal. The Depression ended not with the New Deal but with rearmament."),
         labels=["l_usa", "l_ru", "l_atl", "detroit"], cles=["usa", "uk", "reich"],
         arrows=[F((-73.5, 40.5), (-5.5, 51.0), BLEU, -0.12, w=2.8, dash=True, id="cc1", dur=2.8), F((-66.0, 44.5), (-1.5, 47.5), BLEU, -0.08, w=2.8, dash=True, id="cc2", dur=2.8)])
-    return S
+    return appliquer(S, HL, TRI, DATES)
