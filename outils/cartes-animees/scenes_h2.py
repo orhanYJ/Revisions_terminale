@@ -3,7 +3,7 @@ Même format que scenes_h3.py ; ce qui vient d'ailleurs que le cours porte la ba
 """
 import scenes_h3 as base
 import scenes_h1 as h1
-from scenes_h3 import L, F, G33, G38, IT, USSR, DEMO, NEUTRE, UK, JAP, ROUGE, BLEU, NOIR, ALLIE, SU
+from scenes_h3 import appliquer, L, F, G33, G38, IT, USSR, DEMO, NEUTRE, UK, JAP, ROUGE, BLEU, NOIR, ALLIE, SU
 
 TITRE = {"fr": "Les régimes totalitaires, 1917-1939 : la carte animée", "en": "Totalitarian regimes, 1917–1939: the animated map"}
 PARTIES = {
@@ -41,6 +41,7 @@ CLES.update({
 
 LABELS = dict(h1.LABELS)
 LABELS.update({
+    "newyork_r": {"p": [-74.0, 40.71], "fr": "New York (Wall Street)", "en": "New York (Wall Street)", "t": "evt"},
     "petrograd": {"p": [30.32, 59.93], "fr": "Petrograd", "en": "Petrograd", "t": "evt", "dx": -7},
     "leningrad24": {"p": [30.32, 59.93], "fr": "Leningrad (1924)", "en": "Leningrad (1924)", "t": "evt"},
     "stalingrad25": {"p": [44.50, 48.71], "fr": "Stalingrad (1925)", "en": "Stalingrad (1925)", "t": "evt"},
@@ -99,6 +100,71 @@ def europe(etape):
     return col
 
 
+def etat(k):
+    """L'Europe politique du H2 à la date k = (année, mois, jour)."""
+    c = {p: [DEMO, None] for p in DEMO_K}
+    c.update({p: [AUTO, None] for p in AUTO_K})
+    c.update({"w:United States": ["#4F7CA6", None], "w:Empire of Japan": [JAP, None],
+              "w:Libya (IT)": [IT, None], "w:Eritrea": [IT, None], "w:Italian Somaliland": [IT, None]})
+    c["urss"] = [USSR, None] if k >= (1917, 10, 0) else [AUTO, None]
+    if k < (1918, 11, 0):
+        c["germany"] = c["austria"] = [AUTO, None]
+    elif k < (1933, 1, 30):
+        c["germany"] = ["#9DB4CC", None]
+        c["austria"] = [DEMO, None]
+        c["saar"] = [NEUTRE, "#6B6350"]
+    else:
+        c["germany"] = [G33, None]
+        c["austria"] = [AUTO, None]
+        c["saar"] = [NEUTRE, "#6B6350"]
+    c["italie"] = [IT, None] if k >= (1922, 10, 22) else [DEMO, None]
+    if k >= (1931, 9, 18):
+        c["w:Manchuria"] = ["#E9D9C4", JAP]
+    if k >= (1935, 3, 1):
+        c["saar"] = [G33, None]
+    if k >= (1935, 10, 0):
+        c["w:Ethiopia"] = [IT, "#5A4630"]
+    if (1936, 7, 17) <= k < (1939, 4, 1):
+        c["spain"] = [AUTO, "#B8924F"]
+    if k >= (1938, 3, 12):
+        c["austria"] = [G33, None]
+    if k >= (1938, 9, 29):
+        c["sudetes"] = [G33, None]
+    if k >= (1939, 3, 15):
+        c.update({"boheme": [G33, None], "slovaquie": [ALLIE, None]})
+    if k >= (1939, 4, 7):
+        c["albanie"] = [IT, None]
+    if k >= (1939, 9, 1):
+        c.update({"pologne_all": [G38, None], "danzig": [G33, None]})
+    return c
+
+
+HL = {
+    "Trois régimes, une même trajectoire": {"germany": [G33, None], "italie": [IT, None], "urss": [USSR, None], "austria": [AUTO, None]},
+    "Le « Diktat » de Versailles et le coup de poignard dans le dos": {"fr_annex": [DEMO, "#5E1C19"], "danzig": [NEUTRE, "#6B6350"], "rhenanie": [None, "#17233F"]},
+    "L'Holodomor : la famine organisée en Ukraine": {"ukraine32": ["#3B2F2F", "#8E2F2A"]},
+    "La Rhénanie : le pari réussi": {"rhenanie": [None, "#F7F3EA"]},
+}
+TRI = {
+    "Trois régimes, une même trajectoire": [0, 0, 0],
+    "Des polices politiques au-dessus des lois ; les camps": [1933, 3, 0],
+    "Nazisme : la lutte des races": [1933, 9, 0],
+    "Stresa, la Wehrmacht et l'accord naval": [1935, 4, 11],
+    "Stakhanov, héros du travail soviétique": [1935, 8, 31],
+    "L'Axe Rome-Berlin ; la guerre d'Espagne": [1936, 7, 17],
+    "Les procès de Moscou et la Grande Purge": [1936, 8, 19],
+    "L'apaisement : pourquoi les démocraties cèdent": [1937, 5, 28],
+}
+DATES = {
+    "Trois régimes, une même trajectoire": L("Définition", "Definition"),
+    "Le Lebensraum : conquérir l'Est": L("1925", "1925"),
+    "L'Éthiopie : un empire au nom de Rome": L("Octobre 1935", "October 1935"),
+    "La jeunesse d'abord : trois « hommes nouveaux »": L("1926-1936", "1926–1936"),
+    "Des polices politiques au-dessus des lois ; les camps": L("1933", "1933"),
+    "La crise fait des nazis le premier parti": L("1930-1932", "1930–1932"),
+}
+
+
 def scenes():
     S = []
 
@@ -111,20 +177,17 @@ def scenes():
     add("Intro", 14, [-25, 45, 1.2], L("1929", "1929"),
         L("Deux crises s'ouvrent en même temps", "Two crises open at once"),
         L("Deux photographies de la même année ouvrent le chapitre : la foule devant la Bourse de New York après le krach, et Hitler au congrès du parti nazi à Nuremberg. Crise du capitalisme et menace totalitaire : laquelle mène à la guerre, ou les deux ?",
-          "Two photographs from the same year open the chapter: the crowd outside the New York Stock Exchange after the crash, and Hitler at the Nazi Party Congress in Nuremberg. The crisis of capitalism and the totalitarian threat: which led to war — or both?"),
-        st={"w:United States": ["#4F7CA6", None], "germany": ["#9DB4CC", None]}, pins=["newyork", "nuremberg"], cles=["usa", "weimar"])
+          "Two photographs from the same year open the chapter: the crowd outside the New York Stock Exchange after the crash, and Hitler at the Nazi Party Congress in Nuremberg. The crisis of capitalism and the totalitarian threat: which led to war — or both?"), pins=["newyork_r", "nuremberg"], cles=["usa", "weimar"])
     add("Intro", 15, [25, 50, 2.4], L("1922-1953", "1922–1953"),
         L("Trois régimes, une même trajectoire", "Three regimes, one trajectory"),
         L("Le totalitarisme veut le contrôle total de la société, par la contrainte (terreur et propagande), pour transformer l'homme selon une idéologie. Trois régimes : l'URSS de Staline (1924-1953), l'Italie fasciste (1922-1943), l'Allemagne nazie (1933-1945). La classe, la nation, la race : nés du renversement d'un cadre démocratique, ils mènent à la guerre et finissent tous par échouer.",
-          "Totalitarianism seeks total control of society, through coercion (terror and propaganda), to transform man according to an ideology. Three regimes: Stalin's USSR (1924–1953), Fascist Italy (1922–1943), Nazi Germany (1933–1945). Class, nation, race: born from the overthrow of a democratic framework, they paved the way to war and all ended in failure."),
-        st=europe(1933), labels=["l_urss", "l_ita_n", "l_all"], cles=["stal", "fasc", "nazi", "demo", "auto"])
+          "Totalitarianism seeks total control of society, through coercion (terror and propaganda), to transform man according to an ideology. Three regimes: Stalin's USSR (1924–1953), Fascist Italy (1922–1943), Nazi Germany (1933–1945). Class, nation, race: born from the overthrow of a democratic framework, they paved the way to war and all ended in failure."), labels=["l_urss", "l_ita_n", "l_all"], cles=["stal", "fasc", "nazi", "demo", "auto"])
 
     # ---------------- I.1 l'héritage de la guerre
     add("I.1", 15, [4.8, 49.4, 7.2], L("1914-1918", "1914–1918"),
         L("La brutalisation : les régimes nés dans les tranchées", "Brutalisation: regimes born in the trenches"),
         L("Pour l'historien George Mosse, quatre ans de tuerie de masse ont habitué les soldats à la violence, qu'ils rapportent dans la vie politique d'après-guerre : la Grande Guerre est la « matrice du totalitarisme ». Uniformes, grades, défilés et mépris de la vie humaine viennent du front. Hitler y est soldat en 1915.",
-          "For the historian George Mosse, four years of mass killing accustomed soldiers to violence, which they brought back into post-war politics: the Great War is the “matrix of totalitarianism”. Uniforms, ranks, parades and contempt for human life come from the front. Hitler was a soldier there in 1915."),
-        st=europe(1920), labels=["verdun", "l_fra", "l_all"], cles=["front18"],
+          "For the historian George Mosse, four years of mass killing accustomed soldiers to violence, which they brought back into post-war politics: the Great War is the “matrix of totalitarianism”. Uniforms, ranks, parades and contempt for human life come from the front. Hitler was a soldier there in 1915."), labels=["verdun", "l_fra", "l_all"], cles=["front18"],
         arrows=[{"id": "front18", "ligne": FRONT_OUEST, "col": NOIR, "w": 3.4, "nohead": True, "dur": 2.6}])
     add("I.1", 15, [38, 57, 2.6], L("Février - octobre 1917", "February – October 1917"),
         L("Russie : révolution, coup d'État bolchevik, guerre civile", "Russia: revolution, Bolshevik coup, civil war"),
@@ -145,20 +208,17 @@ def scenes():
         L("Le « Diktat » de Versailles et le coup de poignard dans le dos", "The Versailles “Diktat” and the stab in the back"),
         L("Le traité est imposé, pas négocié : clause de culpabilité, perte de l'Alsace-Lorraine et des territoires de l'Est, réparations énormes, Rhénanie démilitarisée, Sarre confiée à la SDN. Les militaires répandent le mythe du « coup de poignard dans le dos » : l'armée n'aurait pas été battue mais trahie, par les démocrates, les socialistes ou les Juifs.",
           "The treaty was imposed, not negotiated: the War Guilt Clause, the loss of Alsace-Lorraine and the eastern territories, huge reparations, a demilitarised Rhineland, the Saar placed under the League. The military spread the “stab in the back” myth: the army had not been beaten but betrayed — by democrats, socialists or Jews."),
-        st={"fr_annex": [DEMO, "#5E1C19"], "danzig": [NEUTRE, "#6B6350"], "rhenanie": [None, "#17233F"]},
         labels=["l_alsace", "l_danzig", "l_sarre", "l_rhen"], cles=["weimar", "perdu", "sdn", "rhen"])
     add("I.1", 14, [11.6, 48.6, 7.5], L("Novembre 1923", "November 1923"),
         L("Le putsch manqué de Munich ; Mein Kampf", "The failed Munich putsch; Mein Kampf"),
         L("En 1923, Hitler tente de prendre le pouvoir par la force à Munich et échoue : il en tire la leçon qu'il faut conquérir le pouvoir par les institutions. En prison, il écrit Mein Kampf (1924-1925), où il expose déjà ses idées racistes. La guerre a créé les rancœurs ; la crise des années 1930 en fera des voix.",
-          "In 1923 Hitler tried to seize power by force in Munich and failed: he drew the lesson that power had to be won through the institutions. In prison he wrote Mein Kampf (1924–1925), already setting out his racist views. The war created the grievances; the crisis of the 1930s would turn them into votes."),
-        st={"fr_annex": [None, None], "rhenanie": [None, None]}, pins=["munich"], cles=["weimar"])
+          "In 1923 Hitler tried to seize power by force in Munich and failed: he drew the lesson that power had to be won through the institutions. In prison he wrote Mein Kampf (1924–1925), already setting out his racist views. The war created the grievances; the crisis of the 1930s would turn them into votes."), pins=["munich"], cles=["weimar"])
 
     # ---------------- I.2 la prise du pouvoir
     add("I.2", 15, [12.6, 42.4, 7.0], L("22-30 octobre 1922", "22–30 October 1922"),
         L("La marche sur Rome", "The March on Rome"),
         L("Les Chemises noires marchent sur Rome : environ 20 000 selon la classe, bien moins qu'espéré, non violents pendant la marche, mais chacun sait qu'ils peuvent l'être. La menace suffit : le roi Victor-Emmanuel III refuse l'état de siège et nomme Mussolini président du Conseil le 30 octobre. Une intimidation, pas un coup d'État.",
-          "The Blackshirts marched on Rome: about 20,000 according to the class, far fewer than hoped — not violent during the march, but everyone knew they could be. The threat was enough: King Victor Emmanuel III refused martial law and appointed Mussolini prime minister on 30 October. Intimidation, not a coup."),
-        st=europe(1923), pins=["rome_p"], cles=["fasc"],
+          "The Blackshirts marched on Rome: about 20,000 according to the class, far fewer than hoped — not violent during the march, but everyone knew they could be. The threat was enough: King Victor Emmanuel III refused martial law and appointed Mussolini prime minister on 30 October. Intimidation, not a coup."), pins=["rome_p"], cles=["fasc"],
         arrows=[F((12.4, 43.3), (12.45, 42.05), ROUGE, 0.12, w=3, id="mr1"), F((11.6, 42.4), (12.35, 41.95), ROUGE, -0.2, w=3, id="mr2"),
                 F((13.4, 42.4), (12.6, 41.95), ROUGE, 0.2, w=3, id="mr3")])
     add("I.2", 15, [10.5, 51.5, 5.2], L("1928-1932", "1928–1932"),
@@ -169,8 +229,7 @@ def scenes():
     add("I.2", 15, [13.2, 52.45, 9.0], L("30 janvier 1933", "30 January 1933"),
         L("Hindenburg nomme Hitler chancelier", "Hindenburg appoints Hitler chancellor"),
         L("Comme Mussolini, Hitler arrive au pouvoir légalement : le président Hindenburg, vieux général de l'Empire, le nomme chancelier ; les conservateurs croient pouvoir le contrôler. Le 21 mars à Potsdam, Hitler s'incline devant Hindenburg : le nazisme se présente en héritier de la vieille Prusse.",
-          "Like Mussolini, Hitler came to power legally: President Hindenburg, an old general of the Empire, appointed him chancellor; the conservatives thought they could control him. On 21 March at Potsdam, Hitler bowed to Hindenburg: Nazism presented itself as heir to old Prussia."),
-        st={"germany": [G33, None], "austria": [AUTO, None]}, pins=["berlin_p"], labels=["potsdam"], cles=["nazi"])
+          "Like Mussolini, Hitler came to power legally: President Hindenburg, an old general of the Empire, appointed him chancellor; the conservatives thought they could control him. On 21 March at Potsdam, Hitler bowed to Hindenburg: Nazism presented itself as heir to old Prussia."), pins=["berlin_p"], labels=["potsdam"], cles=["nazi"])
     add("I.2", 14, [13.4, 52.52, 11], L("27 février 1933", "27 February 1933"),
         L("L'incendie du Reichstag", "The Reichstag fire"),
         L("Un mois plus tard, le Reichstag brûle. Les nazis accusent aussitôt les communistes ; le lendemain, un décret suspend les libertés de la presse, de réunion et d'opinion [hors], et des milliers de communistes sont arrêtés. Qui a mis le feu reste débattu ; l'essentiel est l'usage qu'en fait le régime.",
@@ -202,13 +261,11 @@ def scenes():
     add("I.3", 16, [32, 48.8, 4.6], L("1932-1933", "1932–1933"),
         L("L'Holodomor : la famine organisée en Ukraine", "The Holodomor: man-made famine in Ukraine"),
         L("Le grain est réquisitionné quelle que soit la récolte ; les paysans le cachent, des brigades appuyées par l'OGPU viennent le « prendre ». Les villages « rebelles » sont privés de tout ravitaillement. En octobre 1932, seuls 22 % de l'objectif sont atteints. La famine tue environ quatre millions de personnes en Ukraine [hors].",
-          "Grain was requisitioned whatever the harvest; peasants hid it, and brigades backed by the OGPU came to “take the grain”. “Rebellious” villages were cut off from all supplies. By October 1932 only 22% of the target had been reached. The famine killed about four million people in Ukraine [hors]."),
-        st={"ukraine32": ["#3B2F2F", "#8E2F2A"]}, labels=["l_ukr32", "kiev"], cles=["holodomor"])
+          "Grain was requisitioned whatever the harvest; peasants hid it, and brigades backed by the OGPU came to “take the grain”. “Rebellious” villages were cut off from all supplies. By October 1932 only 22% of the target had been reached. The famine killed about four million people in Ukraine [hors]."), labels=["l_ukr32", "kiev"], cles=["holodomor"])
     add("I.3", 15, [11, 50.5, 5.0], L("1933-1939", "1933–1939"),
         L("Nazisme : la lutte des races", "Nazism: the struggle of races"),
         L("Pour les nazis, l'histoire est une guerre entre races hiérarchisées ; les Juifs sont décrits comme des « bactéries » à éliminer. Enseignement racial obligatoire dans les écoles (septembre 1933) ; lois de Nuremberg (15 septembre 1935) ; programme T4 (1939) : environ 70 000 Allemands handicapés assassinés.",
-          "For the Nazis, history is a war between ranked races; Jews were described as “bacteria” to be eliminated. Compulsory racial instruction in schools (September 1933); the Nuremberg laws (15 September 1935); the T4 programme (1939): about 70,000 disabled Germans murdered."),
-        st={"ukraine32": [None, None]}, pins=["nuremberg"], labels=["berlin", "l_all"], cles=["nazi"])
+          "For the Nazis, history is a war between ranked races; Jews were described as “bacteria” to be eliminated. Compulsory racial instruction in schools (September 1933); the Nuremberg laws (15 September 1935); the T4 programme (1939): about 70,000 disabled Germans murdered."), pins=["nuremberg"], labels=["berlin", "l_all"], cles=["nazi"])
 
     # ---------------- II.1 le culte du chef
     add("II.1", 15, [37, 55, 2.9], L("1924-1925", "1924–1925"),
@@ -262,7 +319,6 @@ def scenes():
         L("L'Éthiopie : un empire au nom de Rome", "Abyssinia: an empire in the name of Rome"),
         L("Mussolini invoque l'Empire romain : il achève la colonisation brutale de la Libye (commencée en 1911-1912), puis attaque l'Éthiopie en octobre 1935 ; ses troupes entrent à Addis-Abeba en mai 1936. La SDN débat des sanctions pendant sept mois, et en exclut le pétrole.",
           "Mussolini invoked the Roman Empire: he completed the brutal colonisation of Libya (begun in 1911–1912), then attacked Ethiopia in October 1935; his troops entered Addis Ababa in May 1936. The League debated sanctions for seven months — and left out oil."),
-        st={"w:Libya (IT)": [IT, None], "w:Eritrea": [IT, None], "w:Italian Somaliland": [IT, None], "w:Ethiopia": [IT, "#5A4630"]},
         labels=["l_libye", "l_ethio", "rome"], pins=["addis"], cles=["fasc"],
         arrows=[F((39.0, 15.5), (38.9, 9.6), IT, 0.15, w=3, id="eth1"), F((45.0, 4.0), (40.0, 8.0), IT, -0.15, w=3, id="eth2")])
     add("III.1", 15, [28, 52, 2.4], L("1901-1925", "1901–1925"),
@@ -274,8 +330,7 @@ def scenes():
     add("III.1", 15, [122, 38, 2.4], L("1931-1937", "1931–1937"),
         L("L'impérialisme japonais : autarcie et « race supérieure »", "Japanese imperialism: autarky and a “superior race”"),
         L("La crise de 1929 frappe le commerce japonais : le Japon veut l'autarcie, et occupe la Mandchourie dès 1931 pour son grain et ses minerais. Il se dit race supérieure destinée à guider l'Asie (panasiatisme), rancunier d'un Occident qui avait rejeté sa clause d'égalité raciale en 1919. Il quitte la SDN en 1933.",
-          "The 1929 crisis hit Japanese trade: Japan wanted autarky, and occupied Manchuria from 1931 for its grain and minerals. It claimed to be a superior race destined to lead Asia (Pan-Asianism), resentful of a West that had rejected its racial equality clause in 1919. It left the League in 1933."),
-        st={"w:Empire of Japan": [JAP, None], "w:Manchuria": ["#E9D9C4", JAP]}, pins=["moukden"], labels=["l_jap", "l_mand", "l_chine"], cles=["japon", "mandch"])
+          "The 1929 crisis hit Japanese trade: Japan wanted autarky, and occupied Manchuria from 1931 for its grain and minerals. It claimed to be a superior race destined to lead Asia (Pan-Asianism), resentful of a West that had rejected its racial equality clause in 1919. It left the League in 1933."), pins=["moukden"], labels=["l_jap", "l_mand", "l_chine"], cles=["japon", "mandch"])
     add("III.1", 16, [118, 33, 4.0], L("Décembre 1937", "December 1937"),
         L("Nankin : les traits de la guerre à venir", "Nanjing: the features of the coming war"),
         L("Profitant de la guerre civile entre le Kuomintang de Tchang Kaï-chek et les communistes de Mao, le Japon attaque le reste de la Chine en 1937. Le massacre de Nankin (décembre 1937 - janvier 1938) : de 200 000 à 300 000 civils et prisonniers tués. Idéologie raciste, militarisme, civils pris pour cibles : la guerre mondiale s'annonce.",
@@ -287,8 +342,7 @@ def scenes():
     add("III.2", 16, [8, 47, 4.2], L("1935", "1935"),
         L("Stresa, la Wehrmacht et l'accord naval", "Stresa, the Wehrmacht and the naval agreement"),
         L("En avril 1935, Britanniques et Français tentent à Stresa un front avec l'Italie contre l'Allemagne, et ménagent donc Mussolini sur l'Éthiopie. Mais l'Allemagne réarme : la Wehrmacht est créée en 1935, et dès juin le Royaume-Uni signe seul un accord naval l'autorisant à 35 % de sa flotte. L'Amérique, elle, vote ses lois de neutralité.",
-          "In April 1935 Britain and France tried to build a front with Italy at Stresa against Germany, and so spared Mussolini over Ethiopia. But Germany was rearming: the Wehrmacht was created in 1935, and in June Britain alone signed a naval agreement allowing it 35% of the Royal Navy. America, for its part, passed its Neutrality Acts."),
-        st=europe(1933), pins=["stresa"], labels=["londres", "paris", "berlin"], cles=["demo", "fasc", "nazi"])
+          "In April 1935 Britain and France tried to build a front with Italy at Stresa against Germany, and so spared Mussolini over Ethiopia. But Germany was rearming: the Wehrmacht was created in 1935, and in June Britain alone signed a naval agreement allowing it 35% of the Royal Navy. America, for its part, passed its Neutrality Acts."), pins=["stresa"], labels=["londres", "paris", "berlin"], cles=["demo", "fasc", "nazi"])
     add("III.2", 15, [2, 50, 3.4], L("1937-1938", "1937–1938"),
         L("L'apaisement : pourquoi les démocraties cèdent", "Appeasement: why the democracies gave way"),
         L("Chamberlain (dès 1937) et Daladier acceptent les exigences de l'Axe pour éviter la guerre. Leurs raisons : le souvenir de 1914-1918 et le pacifisme (le vote de l'Oxford Union, 1933), un empire à surveiller (l'Inde) et un Commonwealth incertain (le Canada), la crise d'abord, l'isolationnisme américain, la peur du communisme plus forte que celle du fascisme.",
@@ -299,33 +353,28 @@ def scenes():
     add("III.3", 16, [3, 45, 3.6], L("1936", "1936"),
         L("L'Axe Rome-Berlin ; la guerre d'Espagne", "The Rome–Berlin Axis; the Spanish Civil War"),
         L("Malgré leur méfiance, Hitler et Mussolini s'allient : l'Axe Rome-Berlin est proclamé le 25 octobre 1936 (pacte d'Acier en 1939, Japon en 1940). En Espagne, l'Allemagne et l'Italie soutiennent Franco, et l'aviation allemande s'y entraîne (Guernica, avril 1937 [hors]) ; la France et le Royaume-Uni n'interviennent pas.",
-          "Despite their mistrust, Hitler and Mussolini allied: the Rome–Berlin Axis was declared on 25 October 1936 (Pact of Steel in 1939, Japan in 1940). In Spain, Germany and Italy supported Franco, and the German air force trained there (Guernica, April 1937 [hors]); France and Britain did not intervene."),
-        st={"spain": [AUTO, "#B8924F"]}, labels=["l_axe", "l_esp2"], pins=["guernica"], cles=["espagne", "fasc", "nazi"],
+          "Despite their mistrust, Hitler and Mussolini allied: the Rome–Berlin Axis was declared on 25 October 1936 (Pact of Steel in 1939, Japan in 1940). In Spain, Germany and Italy supported Franco, and the German air force trained there (Guernica, April 1937 [hors]); France and Britain did not intervene."), labels=["l_axe", "l_esp2"], pins=["guernica"], cles=["espagne", "fasc", "nazi"],
         arrows=[{"id": "axe", "ligne": [(12.5, 41.9), (12.2, 44.5), (11.8, 47.5), (12.6, 50.0), (13.4, 52.5)], "col": NOIR, "w": 3, "nohead": True, "dash": True, "dur": 2.2},
                 F((12.0, 42.0), (-1.0, 40.0), IT, 0.15, w=2.6, dash=True, id="esp1"), F((11.0, 50.0), (-2.5, 42.6), G33, 0.15, w=2.6, dash=True, id="esp2")])
     add("III.3", 15, [7.5, 50.3, 6.2], L("7 mars 1936", "7 March 1936"),
         L("La Rhénanie : le pari réussi", "The Rhineland: the gamble pays off"),
         L("Les troupes allemandes entrent dans la Rhénanie démilitarisée, avec l'ordre de reculer si la France réagit. Elle ne réagit pas, ni le Royaume-Uni : le pari de Hitler réussit, et lui apprend que les démocraties céderont.",
-          "German troops entered the demilitarised Rhineland, with orders to retreat if France reacted. Neither France nor Britain did: Hitler's gamble paid off, and taught him that the democracies would yield."),
-        st={"spain": [AUTO, None], "saar": [G33, None], "rhenanie": [None, "#F7F3EA"]}, labels=["l_rhen", "paris"], cles=["nazi", "rhen"],
+          "German troops entered the demilitarised Rhineland, with orders to retreat if France reacted. Neither France nor Britain did: Hitler's gamble paid off, and taught him that the democracies would yield."), labels=["l_rhen", "paris"], cles=["nazi", "rhen"],
         arrows=[F((10.0, 51.5), (7.4, 50.9), ROUGE, 0.2, w=3, id="rh1"), F((9.8, 49.7), (7.6, 49.6), ROUGE, -0.2, w=3, id="rh2")])
     add("III.3", 15, [15, 48, 6.0], L("12 mars 1938", "12 March 1938"),
         L("L'Anschluss", "The Anschluss"),
         L("Hitler menace le chancelier autrichien Schuschnigg et masse ses troupes à la frontière ; le nazi Seyss-Inquart devient chancelier et appelle l'armée allemande, qui entre à Vienne le 12 mars 1938. Le plébiscite, d'où opposants et Juifs (8 % de la population) sont exclus, donne 99 % de oui.",
-          "Hitler bullied the Austrian chancellor Schuschnigg and massed troops on the border; the Nazi Seyss-Inquart became chancellor and invited the German army in — it entered Vienna on 12 March 1938. The plebiscite, from which opponents and Jews (8% of the population) were excluded, gave 99% yes."),
-        st={"rhenanie": [None, None], "austria": [G33, None]}, pins=["vienne38"], labels=["l_aut"], cles=["nazi"],
+          "Hitler bullied the Austrian chancellor Schuschnigg and massed troops on the border; the Nazi Seyss-Inquart became chancellor and invited the German army in — it entered Vienna on 12 March 1938. The plebiscite, from which opponents and Jews (8% of the population) were excluded, gave 99% yes."), pins=["vienne38"], labels=["l_aut"], cles=["nazi"],
         arrows=[F((12.6, 48.3), (16.0, 48.2), ROUGE, -0.15, w=3.2, id="ans")])
     add("III.3", 16, [13.5, 50.0, 5.8], L("29-30 septembre 1938", "29–30 September 1938"),
         L("Munich : les Sudètes livrés sans les Tchèques", "Munich: the Sudetenland handed over without the Czechs"),
         L("Hitler exige les Sudètes (environ 3 millions de germanophones) et menace d'envahir la Tchécoslovaquie, dernière démocratie d'Europe centrale. À Munich, Hitler, Chamberlain, Daladier et Mussolini, qui se pose en modéré, les lui accordent ; les Tchèques ne sont pas invités. Hitler promet de ne pas menacer le reste du pays.",
-          "Hitler demanded the Sudetenland (about 3 million German speakers) and threatened to invade Czechoslovakia, the last democracy in central Europe. At Munich, Hitler, Chamberlain, Daladier and Mussolini — posing as a moderate — granted it; the Czechs were not invited. Hitler promised not to threaten the rest of the country."),
-        st={"sudetes": [G33, None]}, pins=["munich"], labels=["l_sudetes", "prague"], cles=["nazi", "demo"],
+          "Hitler demanded the Sudetenland (about 3 million German speakers) and threatened to invade Czechoslovakia, the last democracy in central Europe. At Munich, Hitler, Chamberlain, Daladier and Mussolini — posing as a moderate — granted it; the Czechs were not invited. Hitler promised not to threaten the rest of the country."), pins=["munich"], labels=["l_sudetes", "prague"], cles=["nazi", "demo"],
         arrows=[F((12.0, 50.0), (13.8, 50.6), ROUGE, 0.2, w=2.6, id="sud1"), F((15.6, 51.0), (16.2, 50.2), ROUGE, -0.2, w=2.6, id="sud2")])
     add("III.3", 15, [18, 50, 4.2], L("15-31 mars 1939", "15–31 March 1939"),
         L("Prague : le mensonge qui met fin à l'apaisement", "Prague: the lie that ended appeasement"),
         L("Le 15 mars 1939, l'Allemagne occupe Prague : ce n'est plus réunir des Allemands, c'est occuper un peuple étranger. La France et le Royaume-Uni changent de cap et garantissent la Pologne (31 mars), la Roumanie et la Grèce.",
-          "On 15 March 1939 Germany occupied Prague: no longer uniting Germans, but occupying a foreign people. France and Britain changed course and guaranteed Poland (31 March), Romania and Greece."),
-        st={"boheme": [G33, None], "slovaquie": [ALLIE, None], "albanie": [IT, None]}, pins=["prague"], labels=["varsovie"], cles=["nazi", "allie", "demo", "auto"])
+          "On 15 March 1939 Germany occupied Prague: no longer uniting Germans, but occupying a foreign people. France and Britain changed course and guaranteed Poland (31 March), Romania and Greece."), pins=["prague"], labels=["varsovie"], cles=["nazi", "allie", "demo", "auto"])
     add("III.3", 15, [27, 54, 2.6], L("23 août 1939", "23 August 1939"),
         L("Le pacte germano-soviétique", "The Nazi-Soviet pact"),
         L("Deux ennemis idéologiques signent un pacte de non-agression dont les clauses secrètes partagent la Pologne. Hitler évite une guerre sur deux fronts ; Staline, dont l'armée sort des purges, gagne du temps et des territoires. « Je ne suis pas prêt pour la guerre ! », lui fait dire la caricature du cours.",
@@ -334,8 +383,7 @@ def scenes():
     add("III.3", 16, [19.5, 52, 4.4], L("1er - 3 septembre 1939", "1–3 September 1939"),
         L("L'attaque de la Pologne : la guerre", "The attack on Poland: war"),
         L("L'Allemagne attaque la Pologne, alliée de la France, le 1er septembre 1939 ; la France et le Royaume-Uni déclarent la guerre le 3. Chaque agression impunie avait préparé la suivante : l'idéologie totalitaire a fourni la volonté d'expansion, la réticence des démocraties l'occasion.",
-          "Germany attacked Poland, France's ally, on 1 September 1939; France and Britain declared war on the 3rd. Each unpunished aggression had prepared the next: totalitarian ideology supplied the will to expand, the democracies' reluctance the opportunity."),
-        st={"pologne_all": [G38, None], "danzig": [G33, None]}, pins=["varsovie"], labels=["berlin"], cles=["nazi", "occ"],
+          "Germany attacked Poland, France's ally, on 1 September 1939; France and Britain declared war on the 3rd. Each unpunished aggression had prepared the next: totalitarian ideology supplied the will to expand, the democracies' reluctance the opportunity."), pins=["varsovie"], labels=["berlin"], cles=["nazi", "occ"],
         arrows=[F((14.4, 52.4), (20.4, 52.2), ROUGE, -0.12, id="pl1"), F((20.6, 54.1), (21.1, 52.5), ROUGE, 0.1, id="pl2"),
                 F((15.0, 51.0), (19.6, 51.4), ROUGE, -0.1, id="pl3"), F((19.6, 49.3), (21.7, 50.8), ROUGE, 0.12, id="pl4")])
-    return S
+    return appliquer(S, HL, TRI, DATES)

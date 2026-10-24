@@ -11,10 +11,11 @@ import importlib, json, os, sys
 ICI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ICI)
 import geo  # noqa: E402
+import tri  # noqa: E402
 
 RACINE = os.path.abspath(os.path.join(ICI, "..", ".."))
 SORTIE = os.path.join(RACINE, "dnl", "cartes")
-V = 3
+V = 4
 
 PAGE = """<!doctype html>
 <html lang="fr">
@@ -56,7 +57,22 @@ def generer(code, dossier):
     P = geo.pieces_monde(D, E)
     ordre = sc.ordre(P)
     pieces = geo.encoder(P, ordre)
-    scenes = sc.scenes()
+    scenes = tri.trier(sc.scenes())
+    if hasattr(sc, "etat"):
+        # carte calculée par date : état politique à la date de la scène (etat), plus les mises en valeur
+        # propres à la scène (st) ; on n'écrit que ce qui change d'une scène à l'autre (None = couleur par défaut)
+        prec = {}
+        for s in scenes:
+            k = tri.cle(s)
+            plein = dict(sc.etat(k))
+            plein.update(s.get("st", {}))
+            plein = {p: v for p, v in plein.items() if v}
+            diff = {p: v for p, v in plein.items() if prec.get(p) != v}
+            diff.update({p: None for p in prec if p not in plein})
+            s["st"] = diff
+            prec = plein
+    for s in scenes:
+        s.pop("tri", None)
     utilises = set()
     for s in scenes:
         utilises.update(s.get("st", {}).keys())
