@@ -402,7 +402,7 @@
         if (!c) return "";
         var f = c.c[0], h = c.c[1], st;
         if (f === "line") st = "background:none;border:0;border-top:3px solid " + h + ";height:0;margin-top:5px";
-        else if (h) st = "background:repeating-linear-gradient(45deg," + h + " 0 2px," + f + " 2px 5px)";
+        else if (h) st = "background:repeating-linear-gradient(45deg," + h + " 0 2px," + (f || "#F7F3EA") + " 2px 5px)";
         else st = "background:" + f;
         return '<span class="k"><i style="' + st + '"></i>' + c[LANG] + "</span>";
       }).join("");

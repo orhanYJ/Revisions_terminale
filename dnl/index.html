@@ -5105,7 +5105,7 @@ function ChapterPending({ data, accent, lang }) {
   );
 }
 /* ---- Cartes animées : page autonome dnl/cartes/<code>.html dans une iframe (moteur dnl/cartes/moteur.js) ---- */
-const CARTES_ANIM = ["H3"];
+const CARTES_ANIM = ["H1", "H2", "H3"];
 function CarteAnim({ code, lang }) {
   const FR = lang === "fr";
   const ref = React.useRef(null);
