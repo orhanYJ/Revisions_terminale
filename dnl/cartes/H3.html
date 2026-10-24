@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Seconde Guerre mondiale, 1931-1943 : la carte animée</title>
+<link rel="stylesheet" href="moteur.css?v=1">
+</head>
+<body>
+<div class="page">
+  <div class="kick">DNL History-Geography · M. Ros · H3</div>
+  <h1>La Seconde Guerre mondiale, 1931-1943 : la carte animée</h1>
+  <div id="carte"></div>
+  <p class="src">Fonds de carte : frontières de 1930 (aourednik/historical-basemaps), CShapes 2.0 (ETH Zurich), Natural Earth, départements (gregoiredavid/france-geojson), ligne de démarcation (Département de l'Ain, data.gouv.fr). Lignes de front et flèches simplifiées. Rendu : d3-geo (licence ISC).</p>
+</div>
+<script>
+  if (new URLSearchParams(location.search).get("embed") === "1") {
+    document.body.classList.add("embed-page");
+    var pg = document.querySelector(".page"); pg.style.padding = "0"; pg.style.maxWidth = "none";
+    pg.querySelector("h1").remove(); pg.querySelector(".kick").remove(); pg.querySelector(".src").remove();
+  }
+</script>
+<script src="d3-geo.min.js?v=1"></script>
+<script src="H3.data.js?v=1"></script>
+<script src="moteur.js?v=1"></script>
+</body>
+</html>

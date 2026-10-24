@@ -514,6 +514,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .fold-body{padding:2px 12px 14px}
 }
 
+.carte-anim{padding-bottom:72px}.carte-anim .carte-intro{font-size:14px;line-height:1.55;color:#4a4536;margin:4px 0 12px}.carte-anim .carte-full{display:inline-block;margin-top:10px;font-size:13.5px;font-weight:600;color:#17233F}button.pdf-btn{cursor:pointer;font:inherit}
 </style>
 <style id="atlas-skin">
 /* ================= ATLAS SKIN — surcharge visuelle ================= */
@@ -5103,6 +5104,28 @@ function ChapterPending({ data, accent, lang }) {
     ) : null
   );
 }
+/* ---- Cartes animées : page autonome dnl/cartes/<code>.html dans une iframe (moteur dnl/cartes/moteur.js) ---- */
+const CARTES_ANIM = ["H3"];
+function CarteAnim({ code, lang }) {
+  const FR = lang === "fr";
+  const ref = React.useRef(null);
+  const lang0 = React.useRef(lang);
+  const [h, setH] = React.useState(700);
+  React.useEffect(() => {
+    const f = e => { const d = e.data || {}; if (d.type === "carte-h" && d.code === code && ref.current && e.source === ref.current.contentWindow) setH(d.h); };
+    window.addEventListener("message", f);
+    return () => window.removeEventListener("message", f);
+  }, [code]);
+  React.useEffect(() => { const w = ref.current && ref.current.contentWindow; if (w) w.postMessage({ type: "carte-lang", lang: lang }, "*"); }, [lang]);
+  return React.createElement("div", { className: "carte-anim" },
+    React.createElement("p", { className: "carte-intro" }, FR
+      ? "Tout le chapitre sur une carte qui s'anime : chaque date, chaque mouvement, avec des zooms sur les lieux du cours. Lecture, pause, retour, ou glisser sur la barre ; « Pause à chaque date » pour réciter avant de passer à la suite."
+      : "The whole chapter on a moving map: every date, every movement, zooming in on the places in the course. Play, pause, go back or drag the bar; “Pause at each date” lets you recite before moving on."),
+    React.createElement("iframe", { ref: ref, src: "cartes/" + code + ".html?embed=1&lang=" + lang0.current, title: FR ? "Carte animée du chapitre" : "Animated map of the chapter",
+      style: { width: "100%", height: h, border: 0, display: "block", background: "transparent" }, allow: "fullscreen", allowFullScreen: true }),
+    React.createElement("a", { className: "carte-full", href: "cartes/" + code + ".html?lang=" + lang, target: "_blank", rel: "noopener" }, FR ? "Ouvrir la carte en grand ↗" : "Open the map full size ↗"));
+}
+
 function Chapter({
   data,
   accent,
@@ -5156,6 +5179,7 @@ function Chapter({
   const hasVocab = data.vocab && data.vocab.some(g => g.items && g.items.length);
   const hasExam = data.exam && data.exam.length;
   const TABS = [["course", FR ? "Cours" : "Course", "📖"]]
+    .concat(CARTES_ANIM.indexOf(data.code) >= 0 ? [["carte", FR ? "Carte animée" : "Animated map", "🗺️"]] : [])
     .concat(quizSec ? [["quiz", FR ? "Quiz" : "Quiz", "✅"]] : [])
     .concat([["overview", FR ? "L'essentiel" : "Overview", "🧭"]])
     .concat(hasVocab ? [["vocab", FR ? "Vocabulaire" : "Vocabulary", "🔤"]] : [])
@@ -5224,6 +5248,7 @@ function Chapter({
   else if (tab === "vocab") body = [vocab()];
   else if (tab === "exam") body = [exam()];
   else if (tab === "quiz") body = [React.createElement("div", { className: "quiz-tab", key: "q" }, schemasOf(quizSec))];
+  else if (tab === "carte") body = [React.createElement(CarteAnim, { key: "ca", code: data.code, lang: lang })];
   else if (tab === "all") body = [].concat(overview(), [ficheNote], data.sections.map(sectionFull), hasVocab ? [vocab()] : [], [exam(),
     React.createElement(ChapterLink, { link: data.link, lang: lang, kind: "outro", key: "lo" })]);
   else {
@@ -5247,6 +5272,7 @@ function Chapter({
         React.createElement("span", { className: "hero-theme" }, pick("theme", data.theme)),
         setFiche && React.createElement("button", { className: "fiche-toggle" + (fiche ? " on" : ""), onClick: () => setFiche(f => !f), title: FR ? "Basculer en fiche condensée" : "Toggle condensed revision card" },
           fiche ? (FR ? "◨ Vue complète" : "◨ Full view") : (FR ? "▤ Fiche condensée" : "▤ Condensed card")),
+        CARTES_ANIM.indexOf(data.code) >= 0 && React.createElement("button", { className: "pdf-btn", onClick: () => go("carte"), title: FR ? "Carte animée du chapitre" : "Animated map of the chapter" }, FR ? "🗺️ Carte animée" : "🗺️ Animated map"),
         FICHES_PDF.indexOf(data.code) >= 0 && React.createElement("a", { className: "pdf-btn", href: "fiches/" + data.code + "-" + lang + ".pdf", target: "_blank", rel: "noopener", title: FR ? "Fiche imprimable du chapitre (PDF)" : "Printable sheet for this chapter (PDF)" }, FR ? "⎙ Fiche PDF" : "⎙ PDF sheet")),
       React.createElement("div", { className: "hero-cartouche" },
         React.createElement("span", { className: "hero-icon " + accent }, React.createElement(Icon, { name: data.code, size: 34 })),
