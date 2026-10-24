@@ -104,9 +104,6 @@ def pieces_monde(D, E, extra_fr=None):
     # fond de terre continu (Natural Earth) : bouche les lacunes du fond de 1930 (Transjordanie, etc.)
     terre = unary_union([shape(ft["geometry"]).buffer(0) for ft in E["ne_50m_admin_0_countries.geojson"]["features"]
                          if ft["properties"].get("ADMIN") != "Antarctica"])
-    lacunes = terre.difference(unary_union(list(W.values())).buffer(0.05))
-    lacunes = unary_union([p for p in polys(lacunes) if p.area > 0.3]).buffer(0.08)
-    P["terre"] = (lacunes, lacunes)
     for n, g in W.items():
         if n in REMPLACES or n == "None":
             continue
@@ -148,6 +145,11 @@ def pieces_monde(D, E, extra_fr=None):
     P["ukraine32"] = (ukr, ukr)
     if extra_fr:
         P.update(extra_fr)
+    # fond de terre : tout ce que les pièces ne couvrent pas (Groenland, Arabie du Nord, îles arctiques…),
+    # calculé après coup pour qu'aucune découpe ne laisse de trou
+    couvert = unary_union([f for k, (g, f) in P.items() if k != "sov41"]).buffer(0.15)
+    lacunes = unary_union([p for p in polys(terre.difference(couvert)) if p.area > 0.1]).buffer(0.2).simplify(0.05)
+    P["terre"] = (lacunes, lacunes)
     return P
 
 
