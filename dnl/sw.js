@@ -1,7 +1,7 @@
 /* Service worker — DNL Histoire-Géo Terminale BFI
    Stratégie : réseau d'abord pour la page (mises à jour immédiates),
    repli cache hors ligne. Assets : cache d'abord. */
-const CACHE = "dnl-v33-h3-ii2";
+const CACHE = "dnl-v34-cartes-animees";
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {
@@ -22,8 +22,22 @@ self.addEventListener("fetch", (e) => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   const isPdf = url.pathname.endsWith(".pdf");
-  const isPage = !isPdf && (req.mode === "navigate" || url.pathname.endsWith("/") || url.pathname.endsWith("index.html"));
-  if (isPdf) {
+  const isCarte = url.pathname.indexOf("/cartes/") >= 0 && url.pathname.endsWith(".html");
+  const isPage = !isPdf && !isCarte && (req.mode === "navigate" || url.pathname.endsWith("/") || url.pathname.endsWith("index.html"));
+  if (isCarte) {
+    // carte animée ouverte dans une iframe : c'est une navigation, mais elle a sa propre clé de cache
+    // (ne jamais la ranger sous "./", elle remplacerait la page d'accueil)
+    const cle = url.origin + url.pathname;
+    e.respondWith(
+      fetch(cle, { cache: "no-cache" })
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(cle, copy));
+          return res;
+        })
+        .catch(() => caches.match(cle))
+    );
+  } else if (isPdf) {
     // fiches imprimables : réseau d'abord (une fiche régénérée s'affiche tout de suite), copie pour le hors-ligne
     e.respondWith(
       fetch(req.url, { cache: "no-cache" })
