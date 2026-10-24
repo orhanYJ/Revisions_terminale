@@ -22,7 +22,7 @@ ROUGE, BLEU, VERT, NOIR = "#8E2F2A", "#2F4F7F", "#3E6259", "#2B0E0C"
 OCC = G38
 
 SU = [USSR2, USSR]          # pris par l'URSS (hachures)
-OVERLAY = ["fr_occ", "fr_nord", "fr_annex", "fr_libre", "fr_ital", "sov41"]
+OVERLAY = ["fr_occ", "fr_nord", "fr_annex", "fr_libre", "fr_ital", "sov41", "rhenanie", "dustbowl", "ukraine32"]
 
 CLES = {
     "reich": {"c": [G33, None], "fr": "Reich", "en": "The Reich"},
@@ -141,8 +141,8 @@ def ordre(P):
     """Ordre de dessin : le monde, puis les pièces européennes, puis les zones françaises."""
     monde = ["terre"] + sorted(k for k in P if k.startswith("w:"))
     fr = ["fr_occ", "fr_nord", "fr_annex", "fr_libre", "fr_ital"]
-    europe = [k for k in P if not k.startswith("w:") and k not in fr and k not in ("sov41", "vilnius", "terre")]
-    return monde + europe + fr + ["sov41"]
+    europe = [k for k in P if not k.startswith("w:") and k not in fr and k not in ("sov41", "vilnius", "terre", "rhenanie", "dustbowl", "ukraine32")]
+    return monde + europe + ["rhenanie", "dustbowl", "ukraine32"] + fr + ["sov41"]
 
 
 def L(fr, en):

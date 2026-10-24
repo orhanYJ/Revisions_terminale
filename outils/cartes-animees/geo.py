@@ -135,6 +135,17 @@ def pieces_monde(D, E, extra_fr=None):
     # territoire soviétique de juin 1941 (zone de découpe de l'occupation à l'Est)
     sov = unary_union([Rf["urss"], Rf["pologne_urss"], Rf["baltes"], Rf["bessarabie"], Rf["carelie"]])
     P["sov41"] = (sov, sov)
+    # zones propres aux chapitres H1 et H2
+    from europe import _rhenanie
+    rh = _rhenanie(Rf)
+    P["rhenanie"] = (rh, rh)
+    etats = {ft["properties"]["name"]: shape(ft["geometry"]).buffer(0) for ft in E["ne_10m_admin_1_states_provinces.geojson"]["features"]
+             if ft["properties"].get("admin") == "United States of America"}
+    dust = unary_union([etats[n] for n in ("Oklahoma", "Kansas", "Colorado", "New Mexico", "Texas")]).intersection(box(-104.0, 34.3, -98.0, 39.6))
+    P["dustbowl"] = (dust, dust)
+    ne0 = {ft["properties"]["ADMIN"]: shape(ft["geometry"]).buffer(0) for ft in E["ne_50m_admin_0_countries.geojson"]["features"]}
+    ukr = ne0["Ukraine"].intersection(Rf["urss"].buffer(0.02)).difference(box(32.3, 44.2, 36.8, 46.0))
+    P["ukraine32"] = (ukr, ukr)
     if extra_fr:
         P.update(extra_fr)
     return P
