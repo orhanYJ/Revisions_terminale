@@ -18,8 +18,10 @@ MOIS_EN = {"Jan.": "January", "Feb.": "February", "Apr.": "April", "Aug.": "Augu
 
 
 def a_lire(s, lang):
-    """Texte prononcé pour une scène : date, titre, légende, sans les balises et avec les abréviations développées."""
-    date, titre, texte = s["date"][lang], s["titre"][lang], s["texte"][lang].replace("[hors]", "")
+    """Texte prononcé pour une scène : date, titre et l'événement en une phrase (evenements.py), sans les
+    explications de la légende ; abréviations développées."""
+    date, titre = s["date"][lang], s["titre"][lang]
+    texte = (s["evt"][lang] if s.get("evt") else s["texte"][lang]).replace("[hors]", "")
     t = f"{date}. {titre}. {texte}"
     t = re.sub(r"\s+", " ", t).replace(" .", ".").replace(" ,", ",")
     if lang == "fr":
