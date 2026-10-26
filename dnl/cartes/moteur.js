@@ -498,7 +498,7 @@
   function synthese(i) {
     if (!window.speechSynthesis) { voix.parle = false; return; }
     speechSynthesis.cancel();
-    var s = SC[i], txt = s.date[LANG] + ". " + s.titre[LANG] + ". " + (s.texte[LANG] || "").replace(/\[hors\]/g, "");
+    var s = SC[i], txt = s.date[LANG] + ". " + s.titre[LANG] + ". " + ((s.evt && s.evt[LANG]) || s.texte[LANG] || "").replace(/\[hors\]/g, "");
     var ut = new SpeechSynthesisUtterance(txt);
     ut.lang = LANG === "fr" ? "fr-FR" : "en-GB";
     var vs = speechSynthesis.getVoices().filter(function (v) { return v.lang && v.lang.toLowerCase().indexOf(LANG) === 0; });

@@ -11,13 +11,14 @@ import importlib, json, os, sys
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ICI)
+import evenements  # noqa: E402
 import geo  # noqa: E402
 import tri  # noqa: E402
 import voix  # noqa: E402
 
 RACINE = os.path.abspath(os.path.join(ICI, "..", ".."))
 SORTIE = os.path.join(RACINE, "dnl", "cartes")
-V = 5
+V = 6
 
 PAGE = """<!doctype html>
 <html lang="fr">
@@ -60,6 +61,7 @@ def generer(code, dossier, produire_voix=False):
     ordre = sc.ordre(P)
     pieces = geo.encoder(P, ordre)
     scenes = tri.trier(sc.scenes())
+    evenements.attacher(code, scenes)  # phrase courte lue par la voix (sans les explications)
     if hasattr(sc, "etat"):
         # carte calculée par date : état politique à la date de la scène (etat), plus les mises en valeur
         # propres à la scène (st) ; on n'écrit que ce qui change d'une scène à l'autre (None = couleur par défaut)
