@@ -453,21 +453,50 @@
     playing = true; last = performance.now();
     $(".go").classList.add("cache");
     $(".b-lire").textContent = "⏸"; $(".b-lire").setAttribute("aria-label", UI[LANG].pause);
-    if (voix.on) parler(sceneAt(T));
+    if (voix.on) parler(sceneAt(T), true);
     requestAnimationFrame(boucle);
   }
   function pause() {
     playing = false;
+    if (lecteur && !lecteur.paused) lecteur.pause();
+    if (window.speechSynthesis && speechSynthesis.speaking) { speechSynthesis.cancel(); voix.parle = false; }
     $(".b-lire").textContent = "▶"; $(".b-lire").setAttribute("aria-label", UI[LANG].lire);
   }
   function aller(t) {
     T = Math.max(0, Math.min(TOT, t));
-    if (window.speechSynthesis) { speechSynthesis.cancel(); voix.parle = false; }
+    taire();
     $(".go").classList.add("cache");
     rendre(T);
   }
-  function parler(i) {
-    if (!window.speechSynthesis) return;
+  // voix enregistrée (Henri en français, Ryan en anglais) ; à défaut, la voix du téléphone.
+  // Un seul élément audio, réutilisé : débloqué par le premier geste, il peut ensuite enchaîner les scènes.
+  var lecteur = window.Audio ? new Audio() : null, lecteurScene = -1, lecteurLang = null;
+  if (lecteur) lecteur.preload = "auto";
+  function taire() {
+    if (lecteur) { lecteur.pause(); lecteurScene = -1; }
+    if (window.speechSynthesis) speechSynthesis.cancel();
+    voix.parle = false;
+  }
+  function parler(i, reprendre) {
+    var s = SC[i], src = s.voix && s.voix[LANG];
+    if (reprendre && lecteur && lecteurScene === i && lecteurLang === LANG && lecteur.src && !lecteur.ended) {
+      voix.parle = true;
+      lecteur.play().catch(function () { voix.parle = false; });
+      return;
+    }
+    taire();
+    if (src && lecteur) {
+      lecteurScene = i; lecteurLang = LANG; voix.parle = true;
+      lecteur.onended = function () { if (lecteurScene === i) voix.parle = false; };
+      lecteur.onerror = function () { if (lecteurScene === i) { lecteurScene = -1; synthese(i); } };
+      lecteur.src = src;
+      lecteur.play().catch(function () { if (lecteurScene === i) { lecteurScene = -1; synthese(i); } });
+      return;
+    }
+    synthese(i);
+  }
+  function synthese(i) {
+    if (!window.speechSynthesis) { voix.parle = false; return; }
     speechSynthesis.cancel();
     var s = SC[i], txt = s.date[LANG] + ". " + s.titre[LANG] + ". " + (s.texte[LANG] || "").replace(/\[hors\]/g, "");
     var ut = new SpeechSynthesisUtterance(txt);
@@ -490,9 +519,9 @@
   range.addEventListener("input", function () { aller(+range.value); });
   $(".o-arret").addEventListener("change", function (e) { arret.on = e.target.checked; });
   $(".o-voix").addEventListener("change", function (e) {
-    if (!window.speechSynthesis) { e.target.checked = false; alert(UI[LANG].sansVoix); return; }
+    if (!window.speechSynthesis && !lecteur) { e.target.checked = false; alert(UI[LANG].sansVoix); return; }
     voix.on = e.target.checked;
-    if (!voix.on) { speechSynthesis.cancel(); voix.parle = false; } else if (playing) parler(sceneAt(T));
+    if (!voix.on) taire(); else if (playing) parler(sceneAt(T));
   });
   $(".b-plein").addEventListener("click", function () {
     if (document.fullscreenElement) { document.exitFullscreen(); return; }
@@ -528,7 +557,7 @@
     var d = e.data || {};
     if (d.type === "carte-lang" && (d.lang === "fr" || d.lang === "en") && d.lang !== LANG) {
       LANG = d.lang;
-      if (window.speechSynthesis) speechSynthesis.cancel();
+      taire();
       textes();
     }
   });
@@ -536,5 +565,6 @@
   textes();
   taille();
   if (Q.get("t")) aller(+Q.get("t"));
-  window.CARTE_API = { aller: aller, rendre: rendre, total: TOT, starts: START, lire: lire, pause: pause };
+  window.CARTE_API = { aller: aller, rendre: rendre, total: TOT, starts: START, lire: lire, pause: pause, t: function () { return T; },
+    voix: function () { return { src: lecteur && lecteur.src, enPause: lecteur && lecteur.paused, parle: voix.parle }; } };
 })();
