@@ -1,6 +1,7 @@
 """Génère les cartes animées DNL : dnl/cartes/<CODE>.data.js et dnl/cartes/<CODE>.html.
 
-Usage : python3 outils/cartes-animees/generer.py DOSSIER_DONNEES [H3 ...]
+Usage : python3 outils/cartes-animees/generer.py DOSSIER_DONNEES [H1 H2 H3] [--voix]
+  --voix : enregistre les voix manquantes (voir voix.py) ; sans cette option, les fichiers existants sont réutilisés.
   DOSSIER_DONNEES : les fonds de carte (voir outils/fiches-dnl/cartes.py), téléchargés s'ils manquent.
 Chaque chapitre a son fichier de scènes (scenes_h3.py, ...) : caméra, couleurs, flèches, étiquettes,
 légendes bilingues. Le moteur commun est dnl/cartes/moteur.js (+ moteur.css, d3-geo.min.js).
@@ -12,10 +13,11 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ICI)
 import geo  # noqa: E402
 import tri  # noqa: E402
+import voix  # noqa: E402
 
 RACINE = os.path.abspath(os.path.join(ICI, "..", ".."))
 SORTIE = os.path.join(RACINE, "dnl", "cartes")
-V = 4
+V = 5
 
 PAGE = """<!doctype html>
 <html lang="fr">
@@ -51,7 +53,7 @@ SOURCES = ("Fonds de carte : frontières de 1930 (aourednik/historical-basemaps)
            "Lignes de front et flèches simplifiées. Rendu : d3-geo (licence ISC).")
 
 
-def generer(code, dossier):
+def generer(code, dossier, produire_voix=False):
     sc = importlib.import_module("scenes_" + code.lower())
     D, E = geo.charger_tout(dossier)
     P = geo.pieces_monde(D, E)
@@ -85,6 +87,7 @@ def generer(code, dossier):
             for i in s.get(k, []):
                 assert i in sc.LABELS, (s["date"]["fr"], i)
         assert s["date"]["fr"] and s["date"]["en"] and s["titre"]["fr"] and s["titre"]["en"] and s["texte"]["fr"] and s["texte"]["en"], s["date"]
+    nv, nok = voix.preparer(code, scenes, SORTIE, produire_voix)
     data = {
         "code": code, "titre": sc.TITRE, "parties": sc.PARTIES, "overlay": sc.OVERLAY, "occ": sc.OCC,
         "pieces": pieces, "labels": sc.LABELS, "cles": sc.CLES,
@@ -96,11 +99,13 @@ def generer(code, dossier):
     open(os.path.join(SORTIE, code + ".html"), "w", encoding="utf-8").write(
         PAGE.format(titre_fr=sc.TITRE["fr"], code=code, v=V, sources=SOURCES))
     tot = sum(s["d"] for s in scenes)
-    print(f"{code} : {len(scenes)} scènes, {int(tot // 60)} min {int(tot % 60)} s, {len(js) // 1024} Ko")
+    print(f"{code} : {len(scenes)} scènes, {int(tot // 60)} min {int(tot % 60)} s, {len(js) // 1024} Ko, voix {nok}/{2 * len(scenes)} ({nv} enregistrées)")
 
 
 if __name__ == "__main__":
     dossier = sys.argv[1]
     os.makedirs(SORTIE, exist_ok=True)
-    for code in (sys.argv[2:] or ["H3"]):
-        generer(code, dossier)
+    args = sys.argv[2:]
+    produire = "--voix" in args
+    for code in ([a for a in args if not a.startswith("--")] or ["H3"]):
+        generer(code, dossier, produire)
