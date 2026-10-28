@@ -56,7 +56,7 @@ Préférence de travail de Cengiz : **conseiller de changer de modèle ou de niv
 | `acl-bricklane/` | *Brick Lane* (Ali) | ~339 Ko | JS natif |
 | `acl-oral/` | Hub ACL oral : cadrage + six poèmes | ~327 Ko | JS natif |
 | `acl-oral-1984/` | *1984* (Orwell) | ~105 Ko | JS natif |
-| `acl-oral-butler/` | *Parable of the Sower* (Butler) | ~829 Ko | JS natif |
+| `acl-oral-butler/` | *Parable of the Sower* (Butler) | ~2,5 Mo | JS natif |
 | `italien/` | « La Grammatica » (LVB) | ~175 Ko | JS natif |
 | `redpen/` | « The Red Pen » (anglais B1→C1) | ~231 Ko | JS natif |
 | `cdm/` | Dossier CDM « Sensibiliser ou réguler » | ~35 Ko | JS natif |
@@ -142,7 +142,7 @@ Barème BFI (/20, paliers « Key Points ») : KP20 remarquable, KP17 très bon, 
 Le hub porte les onglets de cadrage, l'onglet de thèses transversales, le diagramme SVG « Ponts entre œuvres » et les six poèmes : trois analysés (*Darkness* de Byron, *Eve to Her Daughters* de Wright, *Morning in the Burned House* d'Atwood), trois différés (*The Hollow Men*, *The Second Coming*, *The Unknown Citizen*).
 
 - **1984** : huit parties, un onglet chacune ; peu de citations (6).
-- **Butler** : chapitres 1 à 13 complets, scène par scène, bilingues, citations vérifiées contre le texte (ch. 1-6 : 110 scènes, 25 citations ; ch. 7-9 : 54 scènes, 12 citations ; ch. 10-13 ajoutés ensuite), modes détaillé / express. **Ne rien écrire au-delà du chapitre 13** tant que Cengiz n'a pas confirmé que la classe y est.
+- **Butler** : roman **complet** (chapitres 1 à 25), scène par scène, bilingues, citations vérifiées contre le texte : 712 scènes, 113 citations (ch. 1-13 : 256 scènes, 53 citations ; ch. 14-25 ajoutés le 28/10/2026 : 456 scènes, 60 citations, contenu fourni par Cengiz depuis une version antérieure sans mouvement, reporté dans la version en ligne), modes détaillé / express. Le site pèse ~2,5 Mo : à surveiller (piste : scinder en deux moitiés si le chargement devient lent).
 
 ### Italien, Red Pen, CDM
 
@@ -241,7 +241,7 @@ Décision de Cengiz (11/10/2026) : pas d'IA hébergée par le projet (une IA gra
 ## 9. Reste à faire
 
 - **ACL écrit** : paragraphes PEEL modèles ; chapitres 11 à 21 de *Brick Lane* puis outillage d'attaque ; notes de cours du professeur pour Lughnasa.
-- **ACL oral** : trois poèmes restants ; Butler à partir du chapitre 14 **seulement quand la classe y sera**.
+- **ACL oral** : trois poèmes restants.
 - **DNL** : chapitres restants au fil des cours de M. Ros ; section « Oral » simulant le tirage croisé ; intégrer la liste officielle des 10 Key Issues + 10 Key Terms (distribuée vers fin avril) ; QCM et flashcards par chapitre ; rappels de Première (thème 4 d'histoire, la Première Guerre mondiale, jamais traité en classe par Orhan, à rédiger au niveau des chapitres de Terminale).
 - **SVT** : chapitre 2 terminé ; intégrer la correction du TP ECE chloroplastes quand elle arrivera ; ensuite les chapitres suivants unité par unité depuis les notes et diaporamas de Mme Philip ; refonte animée par schémas motion design.
 - **PC** : reprendre le chapitre 1 sur le modèle du chapitre 2 ; chapitres suivants selon la progression ; animations explicatives dans `pc/anim/` pour chaque nouveau chapitre ; chapitre 4 : intégrer les réponses d'Orhan au TP 6 quand il l'aura fait ; chapitre 5 : intégrer ses réponses au TP 7 et les focales réelles de la lunette du laboratoire (Q12-13, corrigées sur un exemple).
