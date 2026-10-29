@@ -1,4 +1,4 @@
-const CACHE = 'pc-v34';
+const CACHE = 'pc-v35';
 /* Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
 const ANIMS = ['photon', 'photoelec', 'cellule', 'acidebase', 'beerlambert', 'conductivite', 'titrage', 'lunette'];

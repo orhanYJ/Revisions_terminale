@@ -434,6 +434,37 @@ html.mo .fig.sc-attente svg[role="img"]{opacity:0}
 .sim-r em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
 .placeholder{border:1px dashed var(--line);border-radius:12px;padding:14px;font-size:.9rem;color:var(--muted)}
 @media print{.sim{display:none}}
+.isch{border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;margin:18px 0;background:var(--surface);box-shadow:var(--shadow)}
+.isch-tag{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--orange);background:var(--halo);border-radius:99px;padding:2px 8px;margin-bottom:6px}
+.isch-t{font-weight:800;font-size:.95rem;line-height:1.3}
+.isch-s{font-size:.82rem;color:var(--muted);margin:2px 0 10px;line-height:1.4}
+.isch-svg{display:block;width:100%;height:auto;color:var(--ink);font-family:system-ui,-apple-system,sans-serif;margin:4px 0 8px;-webkit-user-select:none;user-select:none}
+.isch-svg{fill:currentColor}
+.isch-poignee{cursor:grab;touch-action:none}
+.isch-c{display:grid;gap:8px;margin:6px 0}
+.isch-r{display:grid;gap:2px;font-size:.84rem}
+.isch-r>span{display:flex;justify-content:space-between;gap:8px}
+.isch-r b{font-variant-numeric:tabular-nums;color:var(--orange-deep)}
+.isch-b{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.isch-btn{font:inherit;font-size:.8rem;font-weight:700;padding:5px 11px;border-radius:99px;border:1px solid var(--line);background:var(--bg);color:var(--ink-2);cursor:pointer}
+.isch-btn.on{background:var(--orange);border-color:var(--orange);color:#fff}
+[data-theme="sombre"] .isch-btn.on{color:#1A120B}
+.isch-o{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.isch-o>span{font-size:.82rem;background:var(--code);border-radius:8px;padding:4px 9px}
+.isch-o b{font-variant-numeric:tabular-nums}
+.isch-n{font-size:.86rem;line-height:1.5;border-left:3px solid var(--orange);background:var(--halo);padding:8px 11px;border-radius:0 10px 10px 0;margin:8px 0 4px}
+.isch-p{font-size:.74rem;color:var(--muted);margin:4px 0}
+.isch-defis{font-size:.84rem;margin:10px 0 0 18px}
+.isch-defis li{margin:5px 0}
+.isch-defis details{display:inline}
+.isch-defis summary{display:inline;cursor:pointer;color:var(--orange-deep);font-weight:700;font-size:.8rem;margin-left:4px}
+.isch-defis details[open]{display:block;margin-top:3px}
+.isch .isch-defis summary{display:inline;padding:0;gap:0;font-family:inherit;font-weight:700;font-size:.8rem;letter-spacing:0;color:var(--orange-deep);list-style:none;cursor:pointer}
+.isch .isch-defis summary::-webkit-details-marker{display:none}
+.isch .isch-defis summary::before{content:"▸ "}
+.isch .isch-defis details[open]>summary::before{content:"▾ "}
+.isch input[type=range]{width:100%;accent-color:var(--orange)}
+@media print{.isch{display:none}}
 figure.animfig{margin:18px 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 12px 12px;box-shadow:var(--shadow)}
 figure.animfig .stitle{display:flex;align-items:center;gap:10px;font-family:'Avenir Next','Segoe UI',sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);margin-bottom:10px}
 figure.animfig iframe{display:block;width:100%;height:780px;border:0;background:transparent;color-scheme:light}
@@ -1004,6 +1035,129 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
       </div>
       <p>Sur la dissolution du chlorure d'hydrogène, les deux couples sont <span class="ch">HCl/Cl<sup>−</sup></span> et <span class="ch">H<sub>3</sub>O<sup>+</sup>/H<sub>2</sub>O</span>. L'acide chlorhydrique cède, l'eau capte. Sur la dissolution de l'aspirine, ce sont <span class="ch">C<sub>9</sub>H<sub>8</sub>O<sub>4</sub>/C<sub>9</sub>H<sub>7</sub>O<sub>4</sub><sup>−</sup></span> et <span class="ch">H<sub>3</sub>O<sup>+</sup>/H<sub>2</sub>O</span> : l'eau y joue encore le rôle de base.</p>
       <div class="piege"><div class="t">Repérer les couples dans une équation donnée</div>Cherche les <strong>paires d'espèces qui ne diffèrent que d'un H<sup>+</sup></strong>, une de chaque côté de la flèche. Il y en a toujours exactement deux. Si tu n'en trouves qu'une, tu as oublié l'eau — elle est presque toujours l'un des deux partenaires.</div>
+<div class="isch" id="isch-reaction">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Qui cède le proton, qui le capte ?</div>
+  <div class="isch-s">Choisis un acide et une base, puis fais passer l'ion H<sup>+</sup> de l'un à l'autre avec le curseur.</div>
+  <svg class="isch-svg" id="isch-reaction-svg" viewBox="0 0 340 196" role="img" aria-label="Transfert d'un ion hydrogène de l'acide d'un couple vers la base d'un autre couple">
+    <text x="70" y="16" font-size="11" text-anchor="middle" fill="var(--muted)">couple 1</text>
+    <text x="270" y="16" font-size="11" text-anchor="middle" fill="var(--muted)">couple 2</text>
+    <path id="isch-reaction-arc" d="M88 70 Q170 8 252 70" fill="none" stroke="var(--line)" stroke-width="2" stroke-dasharray="4 4"/>
+    <rect id="isch-reaction-b1" x="14" y="76" width="112" height="46" rx="12" fill="var(--halo)" stroke="var(--orange)" stroke-width="1.6"/>
+    <rect id="isch-reaction-b2" x="214" y="76" width="112" height="46" rx="12" fill="var(--surface)" stroke="#4f8fd9" stroke-width="1.6"/>
+    <text id="isch-reaction-f1" x="70" y="105" font-size="15" font-weight="700" text-anchor="middle">CH₃COOH</text>
+    <text id="isch-reaction-f2" x="270" y="105" font-size="15" font-weight="700" text-anchor="middle">HO⁻</text>
+    <text id="isch-reaction-r1" x="70" y="140" font-size="11.5" text-anchor="middle" fill="var(--orange-deep)">acide : cède H⁺</text>
+    <text id="isch-reaction-r2" x="270" y="140" font-size="11.5" text-anchor="middle" fill="#4f8fd9">base : capte H⁺</text>
+    <g id="isch-reaction-h">
+      <circle r="12" fill="var(--orange)"/>
+      <text y="4.5" font-size="12" font-weight="800" text-anchor="middle" fill="#fff">H⁺</text>
+    </g>
+    <text id="isch-reaction-bas" x="170" y="178" font-size="11.5" text-anchor="middle" fill="var(--muted)">avant le transfert</text>
+  </svg>
+  <div class="isch-b" id="isch-reaction-acides"><span class="isch-p" style="width:100%;margin:0">Acide (couple 1)</span></div>
+  <div class="isch-b" id="isch-reaction-bases"><span class="isch-p" style="width:100%;margin:0">Base (couple 2)</span></div>
+  <div class="isch-c"><label class="isch-r"><span><span>Transfert de l'ion H<sup>+</sup></span> <b id="isch-reaction-tv">0 %</b></span><input type="range" id="isch-reaction-t" min="0" max="100" step="1" value="0" aria-label="Avancement du transfert de l'ion hydrogène"></label></div>
+  <div id="isch-reaction-eq"></div>
+  <p class="isch-n" id="isch-reaction-msg"></p>
+  <p class="isch-p">Le schéma écrit l'équation. Savoir si la réaction est totale (→) ou limitée (⇌) ne se devine pas : cela se décide par une mesure de pH (fiche 12).</p>
+  <ol class="isch-defis">
+    <li>Écris l'équation de la dissolution du chlorure d'hydrogène dans l'eau. <details><summary>Réponse</summary>Acide HCl, base H<sub>2</sub>O : HCl + H<sub>2</sub>O → Cl<sup>−</sup> + H<sub>3</sub>O<sup>+</sup>. Couples HCl/Cl<sup>−</sup> et H<sub>3</sub>O<sup>+</sup>/H<sub>2</sub>O.</details></li>
+    <li>Trouve une réaction où l'eau est un acide, et une autre où elle est une base. <details><summary>Réponse</summary>Avec l'ammoniac, l'eau cède H<sup>+</sup> : H<sub>2</sub>O + NH<sub>3</sub> → HO<sup>−</sup> + NH<sub>4</sub><sup>+</sup> (acide). Avec l'acide éthanoïque, elle le capte : CH<sub>3</sub>COOH + H<sub>2</sub>O → CH<sub>3</sub>COO<sup>−</sup> + H<sub>3</sub>O<sup>+</sup> (base). L'eau est amphotère.</details></li>
+    <li>Choisis l'acide éthanoïque et l'ion éthanoate. Que se passe-t-il ? <details><summary>Réponse</summary>Rien : ils forment un seul couple. Le proton reviendrait d'où il part. Une réaction acide-base met toujours en jeu deux couples différents.</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var racine = document.getElementById('isch-reaction'); if(!racine) return;
+  /* espèces : texte SVG (Unicode), HTML, couple (acide, base) */
+  var E = {
+    HCl:   {s:'HCl', h:'HCl'},
+    Cl:    {s:'Cl⁻', h:'Cl<sup>−</sup>'},
+    H3O:   {s:'H₃O⁺', h:'H<sub>3</sub>O<sup>+</sup>'},
+    H2O:   {s:'H₂O', h:'H<sub>2</sub>O'},
+    HO:    {s:'HO⁻', h:'HO<sup>−</sup>'},
+    AcH:   {s:'CH₃COOH', h:'CH<sub>3</sub>COOH'},
+    Ac:    {s:'CH₃COO⁻', h:'CH<sub>3</sub>COO<sup>−</sup>'},
+    CO2:   {s:'(CO₂, H₂O)', h:'(CO<sub>2</sub>, H<sub>2</sub>O)'},
+    HCO3:  {s:'HCO₃⁻', h:'HCO<sub>3</sub><sup>−</sup>'},
+    CO3:   {s:'CO₃²⁻', h:'CO<sub>3</sub><sup>2−</sup>'},
+    NH4:   {s:'NH₄⁺', h:'NH<sub>4</sub><sup>+</sup>'},
+    NH3:   {s:'NH₃', h:'NH<sub>3</sub>'}
+  };
+  /* couples acide/base */
+  var C = [['HCl','Cl'],['H3O','H2O'],['H2O','HO'],['AcH','Ac'],['CO2','HCO3'],['HCO3','CO3'],['NH4','NH3']];
+  var ACIDES = ['HCl','AcH','H3O','H2O','CO2','HCO3','NH4'];
+  var BASES = ['H2O','HO','NH3','Ac','HCO3','CO3'];
+  var AMPHO = {H2O:1, HCO3:1};
+  var acide = 'AcH', base = 'HO';
+  function coupleAcide(a){ for(var i=0;i<C.length;i++) if(C[i][0]===a) return C[i]; }
+  function coupleBase(b){ for(var i=0;i<C.length;i++) if(C[i][1]===b) return C[i]; }
+  function boutons(id, liste, quel){
+    var box = document.getElementById(id);
+    liste.forEach(function(k){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'isch-btn'; b.innerHTML = E[k].h; b.setAttribute('data-k', k);
+      b.addEventListener('click', function(){ if(quel === 'a') acide = k; else base = k; maj(); });
+      box.appendChild(b);
+    });
+  }
+  boutons('isch-reaction-acides', ACIDES, 'a');
+  boutons('isch-reaction-bases', BASES, 'b');
+  var curseur = document.getElementById('isch-reaction-t');
+  var $ = function(s){ return document.getElementById('isch-reaction-' + s); };
+  function txt(el, s){ el.textContent = s; }
+  function maj(){
+    [].forEach.call(document.querySelectorAll('#isch-reaction-acides .isch-btn'), function(b){ b.classList.toggle('on', b.getAttribute('data-k') === acide); });
+    [].forEach.call(document.querySelectorAll('#isch-reaction-bases .isch-btn'), function(b){ b.classList.toggle('on', b.getAttribute('data-k') === base); });
+    var c1 = coupleAcide(acide), c2 = coupleBase(base);
+    var meme = (c1[0] === c2[0]);
+    var p = meme ? 0 : parseInt(curseur.value, 10)/100;
+    curseur.disabled = meme;
+    txt($('tv'), meme ? '—' : Math.round(p*100) + ' %');
+    /* position de H+ sur l'arc (courbe de Bézier quadratique) */
+    var u = p, x = (1-u)*(1-u)*88 + 2*(1-u)*u*170 + u*u*252, y = (1-u)*(1-u)*70 + 2*(1-u)*u*8 + u*u*70;
+    if(p === 0){ x = 88; y = 70; }
+    $('h').setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')');
+    $('h').setAttribute('opacity', meme ? '.35' : '1');
+    var fini = p >= 1, debut = p <= 0;
+    txt($('f1'), fini ? E[c1[1]].s : E[acide].s);
+    txt($('f2'), fini ? E[c2[0]].s : E[base].s);
+    txt($('r1'), fini ? 'base conjuguée' : (debut ? 'acide : cède H⁺' : 'cède H⁺…'));
+    txt($('r2'), fini ? 'acide conjugué' : (debut ? 'base : capte H⁺' : 'capte H⁺…'));
+    $('b1').setAttribute('fill', fini ? 'var(--surface)' : 'var(--halo)');
+    txt($('bas'), meme ? 'un seul couple : aucun transfert possible' : (fini ? 'après le transfert : chacun est devenu son conjugué' : (debut ? 'avant le transfert' : 'le proton passe de l\'acide à la base')));
+    /* les équations */
+    var eq = $('eq');
+    if(meme){
+      eq.innerHTML = '<div class="eqc">' + E[c1[0]].h + ' ⇌ ' + E[c1[1]].h + ' + H<sup>+</sup></div>';
+    } else {
+      var gauche = (acide === base) ? '2 ' + E[acide].h : E[acide].h + ' + ' + E[base].h;
+      eq.innerHTML = '<div class="eqc" style="font-size:.95rem;margin:6px 0">① ' + E[c1[0]].h + ' ⇌ ' + E[c1[1]].h + ' + H<sup>+</sup></div>'
+        + '<div class="eqc" style="font-size:.95rem;margin:6px 0">② ' + E[c2[1]].h + ' + H<sup>+</sup> ⇌ ' + E[c2[0]].h + '</div>'
+        + '<div class="eqc" style="margin:6px 0"><strong>' + gauche + ' → ' + E[c1[1]].h + ' + ' + E[c2[0]].h + '</strong></div>';
+    }
+    /* le message */
+    var m;
+    if(meme){
+      m = E[acide].h + ' et ' + E[base].h + ' forment <strong>un seul couple</strong> : le proton reviendrait d\'où il part. Une réaction acide-base met toujours en jeu <strong>deux couples</strong>, un qui cède H<sup>+</sup>, un qui le capte.';
+    } else {
+      m = E[acide].h + ' est l\'<strong>acide</strong> : il cède un ion H<sup>+</sup> et devient sa base conjuguée ' + E[c1[1]].h + '. '
+        + E[base].h + ' est la <strong>base</strong> : il capte cet ion et devient son acide conjugué ' + E[c2[0]].h + '. '
+        + 'En additionnant ① et ②, les H<sup>+</sup> se simplifient.';
+      var amph = [];
+      if(AMPHO[acide]) amph.push(E[acide].h + ' joue ici le rôle d\'acide');
+      if(AMPHO[base]) amph.push(E[base].h + ' joue ici le rôle de base');
+      if(amph.length) m += ' ' + amph.join(', et ') + ' : c\'est une espèce <strong>amphotère</strong>, qui appartient à deux couples.';
+      if(base === 'NH3') m += ' L\'ammoniac capte H<sup>+</sup> grâce au doublet non liant de son azote.';
+    }
+    $('msg').innerHTML = m;
+  }
+  curseur.addEventListener('input', maj);
+  maj();
+})();
+</script>
+
       </div></details>
 
       <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>8 · Les couples à connaître par cœur<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
@@ -1163,6 +1317,135 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
       <p>Or le pH mesuré vaut 2,8, donc <strong>supérieur</strong> au pH théorique : il s'est formé moins d'ions oxonium que si tout avait réagi. La réaction est <strong>limitée</strong>. On peut même chiffrer : <span class="ch">[H<sub>3</sub>O<sup>+</sup>]<sub>réel</sub> = 10<sup>−2,8</sup> = 1,6 × 10<sup>−3</sup> mol·L<sup>−1</sup></span>, soit environ <strong>16 %</strong> de l'acide qui a réagi.</p>
       </div>
       <div class="piege"><div class="t">L'eau ne figure pas dans le tableau</div>Elle est le solvant : elle est en énorme excès, sa quantité varie de façon négligeable. On met un trait ou « excès » dans sa colonne, et elle n'est jamais le réactif limitant.</div>
+<div class="isch" id="isch-ph">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Acide fort, acide faible : ce que le pH révèle</div>
+  <div class="isch-s">Choisis l'acide, puis fais varier sa concentration apportée : regarde les molécules qui ont réagi avec l'eau et la position du pH.</div>
+  <div class="isch-b" id="isch-ph-acides">
+    <button type="button" class="isch-btn" data-a="fort">Acide chlorhydrique</button>
+    <button type="button" class="isch-btn on" data-a="faible">Acide éthanoïque</button>
+  </div>
+  <svg class="isch-svg" viewBox="0 0 340 236" role="img" aria-label="Bécher de cent molécules d'acide, dont une partie a réagi avec l'eau, et échelle logarithmique de la concentration en ions oxonium et du pH">
+    <text x="85" y="15" font-size="11" text-anchor="middle" fill="var(--muted)">100 molécules d'acide apportées</text>
+    <path d="M14 26 L14 196 Q14 206 24 206 L146 206 Q156 206 156 196 L156 26" fill="none" stroke="currentColor" stroke-width="2"/>
+    <rect x="16" y="40" width="138" height="164" rx="6" fill="#4f8fd9" opacity=".08"/>
+    <g id="isch-ph-mol"></g>
+    <circle cx="20" cy="224" r="4.6" fill="var(--muted)"/>
+    <text x="28" y="228" font-size="11">acide intact</text>
+    <circle cx="104" cy="224" r="4.6" fill="#4f8fd9"/>
+    <circle cx="111" cy="219" r="2.8" fill="var(--orange)"/>
+    <text x="118" y="228" font-size="11">a réagi : A⁻ + H₃O⁺</text>
+    <text x="222" y="15" font-size="11" text-anchor="end" fill="var(--muted)">[H₃O⁺]</text>
+    <text x="238" y="15" font-size="11" fill="var(--muted)">pH</text>
+    <line x1="230" y1="30" x2="230" y2="200" stroke="currentColor" stroke-width="1.6"/>
+    <g id="isch-ph-axe"></g>
+    <g id="isch-ph-mk"></g>
+  </svg>
+  <div class="isch-c"><label class="isch-r"><span>Concentration apportée c <b id="isch-ph-cv">1,0 × 10<sup>−2</sup> mol·L<sup>−1</sup></b></span><input type="range" id="isch-ph-c" min="1" max="4" step="0.05" value="2" aria-label="Concentration apportée, de 10 puissance moins 1 à 10 puissance moins 4 mole par litre"></label></div>
+  <div class="isch-o">
+    <span>pH = <b id="isch-ph-ph">2,80</b></span>
+    <span>pH si tout avait réagi = <b id="isch-ph-pht">2,00</b></span>
+    <span>molécules qui ont réagi : <b id="isch-ph-pc">16 %</b></span>
+    <span>dilué 10 fois : pH <b id="isch-ph-dl">+0,58</b></span>
+  </div>
+  <p class="isch-n" id="isch-ph-msg"></p>
+  <p class="isch-p" id="isch-ph-note">Acide éthanoïque : calcul fait avec une constante d'acidité K<sub>a</sub> (hors programme, vue au chapitre suivant), choisie pour retrouver l'exemple de la fiche (pH 2,8 à 1,0 × 10<sup>−2</sup> mol·L<sup>−1</sup>). Les tables de données donnent pour cet acide un pH plutôt voisin de 3,4 à cette concentration.</p>
+  <ol class="isch-defis">
+    <li>Trouve la concentration d'acide chlorhydrique qui donne pH = 3,0. <details><summary>Réponse</summary>c = 1,0 × 10<sup>−3</sup> mol·L<sup>−1</sup> : la réaction est totale, donc [H<sub>3</sub>O<sup>+</sup>] = c et pH = −log(1,0 × 10<sup>−3</sup>) = 3,0.</details></li>
+    <li>À c = 1,0 × 10<sup>−2</sup> mol·L<sup>−1</sup>, compare les deux acides. <details><summary>Réponse</summary>Acide chlorhydrique : pH 2,0, toutes les molécules ont réagi. Acide éthanoïque : pH 2,8, supérieur au pH si tout avait réagi (2,0) : seules 16 % des molécules ont réagi, la réaction est limitée (⇌).</details></li>
+    <li>Dilue l'acide éthanoïque dix fois, de 10<sup>−2</sup> à 10<sup>−3</sup> mol·L<sup>−1</sup>. Le pH monte-t-il d'une unité ? <details><summary>Réponse</summary>Non : il passe de 2,8 à 3,4 environ (+0,6). La proportion de molécules qui réagissent passe de 16 % à 42 % : diluer favorise la réaction avec l'eau, ce qui compense en partie la dilution.</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var racine = document.getElementById('isch-ph'); if(!racine) return;
+  var $ = function(s){ return document.getElementById('isch-ph-' + s); };
+  var NS = 'http://www.w3.org/2000/svg';
+  var KA = 2.985e-4;          /* calé sur pH = 2,8 pour c = 1,0 × 10^-2 mol/L (exemple de la fiche 12) */
+  var acide = 'faible';
+  var Y0 = 30, PAS = 34;      /* axe : pH 0 en y = 30, une unité = 34 */
+  /* ordre fixe dans lequel les molécules réagissent */
+  var ordre = [], g = 7;
+  for(var i = 0; i < 100; i++) ordre.push(i);
+  for(i = 99; i > 0; i--){ g = (g*16807) % 2147483647; var j = g % (i + 1), t = ordre[i]; ordre[i] = ordre[j]; ordre[j] = t; }
+  var rang = []; ordre.forEach(function(k, r){ rang[k] = r; });
+  /* les cent molécules */
+  var mol = $('mol'), cel = [];
+  for(i = 0; i < 100; i++){
+    var x = 25 + (i % 10)*13.4, y = 50 + Math.floor(i/10)*15.6;
+    var gr = document.createElementNS(NS, 'g');
+    var a = document.createElementNS(NS, 'circle'); a.setAttribute('cx', x); a.setAttribute('cy', y); a.setAttribute('r', 4.6);
+    var h = document.createElementNS(NS, 'circle'); h.setAttribute('cx', x + 6.4); h.setAttribute('cy', y - 5); h.setAttribute('r', 2.8); h.setAttribute('fill', 'var(--orange)');
+    gr.appendChild(a); gr.appendChild(h); mol.appendChild(gr); cel.push([a, h]);
+  }
+  /* graduations de l'axe */
+  var axe = $('axe'), s = '';
+  for(var p = 0; p <= 5; p++){
+    var yy = Y0 + p*PAS;
+    s += '<line x1="225" y1="' + yy + '" x2="235" y2="' + yy + '" stroke="currentColor" stroke-width="1.4"/>';
+    s += '<text x="222" y="' + (yy + 4) + '" font-size="11" text-anchor="end">' + (p === 0 ? '1' : '10<tspan dy="-5" font-size="9">−' + p + '</tspan>') + '</text>';
+    s += '<text x="238" y="' + (yy + 4) + '" font-size="11">' + p + '</text>';
+  }
+  axe.innerHTML = s;
+  var v = function(x, n){ return x.toFixed(n).replace('.', ','); };
+  function puiss(c){
+    var e = Math.floor(Math.log10(c) + 1e-9), m = c/Math.pow(10, e);
+    if(m >= 9.95){ m = 1; e += 1; }
+    return v(m, 1) + ' × 10<sup>' + (e < 0 ? '−' + (-e) : e) + '</sup>';
+  }
+  function etat(c){
+    var x = acide === 'fort' ? c : (-KA + Math.sqrt(KA*KA + 4*KA*c))/2;
+    return {h: x, ph: -Math.log10(x), tau: x/c};
+  }
+  function maj(){
+    [].forEach.call(document.querySelectorAll('#isch-ph-acides .isch-btn'), function(b){ b.classList.toggle('on', b.getAttribute('data-a') === acide); });
+    var c = Math.pow(10, -parseFloat($('c').value));
+    var E = etat(c), D = etat(c/10), pht = -Math.log10(c);
+    var n = Math.round(E.tau*100);
+    cel.forEach(function(m, k){
+      var r = rang[k] < n;
+      m[0].setAttribute('fill', r ? '#4f8fd9' : 'var(--muted)');
+      m[0].setAttribute('opacity', r ? '1' : '.6');
+      m[1].setAttribute('opacity', r ? '1' : '0');
+    });
+    /* repères sur l'axe */
+    var y1 = Y0 + E.ph*PAS, y2 = Y0 + pht*PAS, l1 = y1, l2 = y2;
+    var fort = acide === 'fort';
+    if(!fort && l1 - l2 < 15){ var mil = (l1 + l2)/2; l1 = mil + 7.5; l2 = mil - 7.5; }
+    var mk = '';
+    if(!fort){
+      mk += '<circle cx="230" cy="' + y2.toFixed(1) + '" r="3.5" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.6"/>';
+      mk += '<path d="M252 ' + y2.toFixed(1) + ' H262" stroke="var(--muted)" stroke-width="1.6" stroke-dasharray="3 2"/>';
+      mk += '<text x="266" y="' + (l2 + 4).toFixed(1) + '" font-size="11" fill="var(--muted)">si totale ' + v(pht, 2) + '</text>';
+    }
+    mk += '<path d="M252 ' + y1.toFixed(1) + ' H262" stroke="var(--orange)" stroke-width="2.6"/>';
+    mk += '<circle cx="230" cy="' + y1.toFixed(1) + '" r="4.5" fill="var(--orange)"/>';
+    mk += '<text x="266" y="' + (l1 + 4).toFixed(1) + '" font-size="12" font-weight="700" fill="var(--orange-deep)">pH ' + v(E.ph, 2) + '</text>';
+    $('mk').innerHTML = mk;
+    $('cv').innerHTML = puiss(c) + ' mol·L<sup>−1</sup>';
+    $('ph').textContent = v(E.ph, 2);
+    $('pht').textContent = v(pht, 2);
+    $('pc').textContent = n + ' %';
+    $('dl').textContent = '+' + v(D.ph - E.ph, 2);
+    $('note').style.display = fort ? 'none' : '';
+    var m;
+    if(fort){
+      m = 'Le chlorure d\'hydrogène réagit <strong>totalement</strong> avec l\'eau : toutes les molécules ont cédé leur H<sup>+</sup>, donc [H<sub>3</sub>O<sup>+</sup>] = c et pH = −log c = ' + v(E.ph, 2) + '. Diluer dix fois divise [H<sub>3</sub>O<sup>+</sup>] par dix : le pH monte d\'<strong>exactement une unité</strong>.';
+      if(c > 1.05e-2) m += ' Attention : au-delà de 10<sup>−2</sup> mol·L<sup>−1</sup>, le TP 1 a montré que le pH mesuré s\'écarte de ce calcul (les ions interagissent entre eux).';
+    } else {
+      m = 'Seules <strong>' + n + ' molécules sur 100</strong> ont cédé leur H<sup>+</sup> : la réaction avec l\'eau est <strong>limitée</strong>. Il y a moins d\'ions oxonium que si tout avait réagi, donc le pH (' + v(E.ph, 2) + ') est <strong>supérieur</strong> au pH si la réaction était totale (' + v(pht, 2) + ').'
+        + ' Diluer dix fois ne fait monter le pH que de ' + v(D.ph - E.ph, 2) + ' : en diluant, la proportion qui réagit augmente (' + n + ' % → ' + Math.round(D.tau*100) + ' %), ce qui compense en partie.';
+    }
+    $('msg').innerHTML = m;
+  }
+  [].forEach.call(document.querySelectorAll('#isch-ph-acides .isch-btn'), function(b){
+    b.addEventListener('click', function(){ acide = b.getAttribute('data-a'); maj(); });
+  });
+  $('c').addEventListener('input', maj);
+  maj();
+})();
+</script>
+
       <div class="def"><div class="t">Ce que ça annonce</div>Cette distinction entre réaction totale et limitée est le point de départ du chapitre suivant, qui la quantifiera par le taux d'avancement final et la constante d'acidité. Pour l'instant, il suffit de savoir <strong>trancher</strong> à partir d'un pH mesuré.</div>
       </div></details>
 
@@ -2511,6 +2794,139 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
       <div class="def"><div class="t">Deuxième information : quelle espèce est présente</div>La position de <span class="ch">λ<sub>max</sub></span> et l'allure générale du spectre sont une <strong>signature</strong> de l'espèce colorée. On compare le spectre de l'échantillon à des spectres de référence : s'ils présentent le même maximum et la même allure, c'est la même espèce.</div>
       <p>Le lien avec la couleur est direct : la longueur d'onde absorbée détermine la couleur perçue, qui en est la <strong>complémentaire</strong>. Un maximum vers 630 nm — de l'orange-rouge — donne une solution bleue ; un maximum vers 470 nm — du bleu — donne une solution jaune.</p>
       <div class="piege"><div class="t">Deux espèces, deux spectres</div>Si deux espèces absorbent toutes les deux à la longueur d'onde choisie, les absorbances <strong>s'additionnent</strong> et le dosage est faussé. C'est exactement ce que le TP 2 cherche à écarter : on vérifie que le sulfate de cuivre n'absorbe pas là où on mesure le colorant.</div>
+<div class="isch" id="isch-beer">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Le E131 dans le spectrophotomètre</div>
+  <div class="isch-s">Fais varier la concentration, la longueur de la cuve et la longueur d'onde : regarde la lumière qui ressort, le spectre et la droite d'étalonnage.</div>
+  <svg class="isch-svg" viewBox="0 0 340 384" role="img" aria-label="Spectrophotomètre : un faisceau traverse une cuve de solution de bleu patenté E131 ; en dessous, le spectre d'absorption A en fonction de la longueur d'onde et la droite d'étalonnage A en fonction de la concentration, avec le point de la mesure en cours">
+    <g id="isch-beer-app"></g>
+    <g id="isch-beer-spec"></g>
+    <g id="isch-beer-etal"></g>
+  </svg>
+  <div class="isch-c">
+    <label class="isch-r"><span>Concentration C <b id="isch-beer-cv">1,00 mg·L⁻¹</b></span><input type="range" id="isch-beer-c" min="0" max="4" step="0.05" value="1" aria-label="Concentration en E131, en milligrammes par litre"></label>
+    <label class="isch-r"><span>Longueur de la cuve ℓ <b id="isch-beer-lv">1,0 cm</b></span><input type="range" id="isch-beer-l" min="1" max="5" step="0.5" value="1" aria-label="Longueur de la cuve en centimètres"></label>
+    <label class="isch-r"><span>Longueur d'onde λ <b id="isch-beer-wv">630 nm</b></span><input type="range" id="isch-beer-w" min="400" max="800" step="5" value="630" aria-label="Longueur d'onde de travail en nanomètres"></label>
+  </div>
+  <div class="isch-o">
+    <span>A = <b id="isch-beer-a">0,13</b></span>
+    <span>I / I₀ = <b id="isch-beer-t">74 %</b></span>
+    <span>k = ε × ℓ = <b id="isch-beer-k">0,13</b> L·mg⁻¹</span>
+  </div>
+  <p class="isch-n" id="isch-beer-msg"></p>
+  <p class="isch-p">Spectre du E131 schématisé (maximum vers 630 nm). Valeur de référence reprise du TP 2 : A = 0,13 × C à 630 nm, en cuve de 1,0 cm, C en mg·L⁻¹.</p>
+  <ol class="isch-defis">
+    <li>Trouve deux réglages différents de C et de ℓ qui donnent la même absorbance. Qu'ont-ils en commun ? <details><summary>Réponse</summary>Le même produit ℓ × C, par exemple C = 2,00 mg·L⁻¹ en cuve de 1 cm et C = 0,40 mg·L⁻¹ en cuve de 5 cm : A = 0,26 dans les deux cas. Seul compte le nombre de molécules sur le trajet du faisceau.</details></li>
+    <li>La solution suspecte du TP 2 est à C = 0,19 mg·L⁻¹. Quelle absorbance en cuve de 1 cm ? de 5 cm ? <details><summary>Réponse</summary>A ≈ 0,025 en 1 cm, A ≈ 0,12 en 5 cm : la cuve longue sort la mesure du bruit, c'est l'amélioration proposée à la fin du TP 2.</details></li>
+    <li>Place-toi à 500 nm, puis à 630 nm. Pourquoi le dosage se fait-il à 630 nm ? <details><summary>Réponse</summary>À 500 nm, le E131 n'absorbe presque pas : la droite d'étalonnage est presque horizontale, une petite erreur sur A donne une grosse erreur sur C. À 630 nm, la pente est maximale (sensibilité) et la courbe est plate (un petit écart sur λ ne change presque rien).</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var rc = document.getElementById('isch-beer-c'); if(!rc) return;
+  var rl = document.getElementById('isch-beer-l'), rw = document.getElementById('isch-beer-w');
+  var gApp = document.getElementById('isch-beer-app'), gSpec = document.getElementById('isch-beer-spec'), gEt = document.getElementById('isch-beer-etal');
+  var LMAX = 630;
+  /* absorbance pour 1 cm et 1 mg/L (schématique) : bande principale à 630 nm, petite bande vers 410 nm */
+  function k1(l){ return 0.004 + 0.126*Math.exp(-Math.pow((l - 630)/42, 2)) + 0.012*Math.exp(-Math.pow((l - 412)/30, 2)); }
+  function couleur(l){
+    var s = [[380,[122,60,255]],[440,[59,108,255]],[490,[34,176,200]],[530,[60,194,60]],[575,[242,210,43]],[610,[255,138,31]],[660,[240,60,30]],[750,[170,20,15]],[800,[120,10,10]]];
+    if(l <= s[0][0]) return 'rgb(122,60,255)';
+    for(var i=0; i<s.length-1; i++) if(l <= s[i+1][0]){ var u = (l - s[i][0])/(s[i+1][0] - s[i][0]), a = s[i][1], b = s[i+1][1]; return 'rgb(' + a.map(function(v,j){ return Math.round(v + (b[j]-v)*u); }).join(',') + ')'; }
+    return 'rgb(120,10,10)';
+  }
+  function v(x, n){ return x.toFixed(n).replace('.', ','); }
+  function f(x){ return Math.round(x*10)/10; }
+  function txt(x, y, t, o){ o = o || {}; return '<text x="' + f(x) + '" y="' + f(y) + '" font-size="' + (o.s || 11) + '" text-anchor="' + (o.a || 'middle') + '"' + (o.c ? ' fill="' + o.c + '"' : '') + (o.b ? ' font-weight="700"' : '') + '>' + t + '</text>'; }
+
+  function dessiner(){
+    var C = parseFloat(rc.value), L = parseFloat(rl.value), W = parseFloat(rw.value);
+    var k = k1(W)*L, A = k*C, T = Math.pow(10, -A);
+    var col = couleur(W);
+
+    /* ---------- l'appareil ---------- */
+    var s = '', Y = 52, X0 = 70, U = 30, XD = 300;
+    s += txt(170, 14, 'lampe → λ choisie → cuve → détecteur', {s:10.5, c:'var(--muted)'});
+    s += '<circle cx="20" cy="' + Y + '" r="10" fill="#FFE9A8" stroke="var(--line)"/>';
+    s += '<path d="M44 ' + (Y + 13) + ' L52 ' + (Y - 13) + ' L60 ' + (Y + 13) + ' Z" fill="none" stroke="currentColor" stroke-width="1.2"/>';
+    s += '<line x1="30" y1="' + Y + '" x2="48" y2="' + Y + '" stroke="#FFD86B" stroke-width="5" opacity=".8"/>';
+    var xc = X0 + 4, wc = L*U;
+    s += '<line x1="58" y1="' + Y + '" x2="' + xc + '" y2="' + Y + '" stroke="' + col + '" stroke-width="7"/>';
+    /* faisceau dans la cuve : il s'affaiblit progressivement */
+    var n = 12;
+    for(var i=0; i<n; i++){ var o = Math.pow(10, -A*(i + .5)/n); s += '<rect x="' + f(xc + wc*i/n) + '" y="' + (Y - 3.5) + '" width="' + f(wc/n + .3) + '" height="7" fill="' + col + '" opacity="' + o.toFixed(2) + '"/>'; }
+    /* la solution : bleue, d'autant plus foncée que ℓ × C est grand (vue de côté) */
+    var teinte = Math.min(.85, 1 - Math.pow(10, -0.13*C*1.6));
+    s += '<rect x="' + xc + '" y="' + (Y - 24) + '" width="' + f(wc) + '" height="48" rx="2" fill="#1f6fe0" opacity="' + teinte.toFixed(2) + '"/>';
+    s += '<rect x="' + xc + '" y="' + (Y - 24) + '" width="' + f(wc) + '" height="48" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/>';
+    s += txt(xc + wc/2, Y + 38, 'ℓ = ' + v(L, 1) + ' cm', {s:10.5});
+    var xs = xc + wc;
+    s += '<line x1="' + f(xs) + '" y1="' + Y + '" x2="' + (XD - 2) + '" y2="' + Y + '" stroke="' + col + '" stroke-width="7" opacity="' + Math.max(T, .03).toFixed(2) + '"/>';
+    s += '<rect x="' + XD + '" y="' + (Y - 16) + '" width="20" height="32" rx="4" fill="var(--code)" stroke="currentColor" stroke-width="1.2"/>';
+    s += txt(XD + 10, Y + 30, 'I / I₀', {s:10.5});
+    s += txt(XD + 10, Y + 43, Math.round(T*100) + ' %', {s:11, b:1, c:'var(--orange-deep)'});
+    s += txt(20, Y + 30, 'I₀', {s:10.5});
+    gApp.innerHTML = s;
+
+    /* ---------- le spectre A = f(λ) ---------- */
+    var gx = 42, gy = 220, gw = 280, gh = 95;
+    var Amax630 = k1(LMAX)*L*C, ymax = Math.max(.3, Amax630*1.15);
+    var pas = ymax > 2 ? 1 : (ymax > 1 ? .5 : (ymax > .5 ? .2 : .1));
+    var sx = function(l){ return gx + (l - 400)/400*gw; }, sy = function(a){ return gy - Math.min(a, ymax)/ymax*gh; };
+    s = txt(gx - 4, gy - gh - 8, 'A', {s:11, a:'start', b:1});
+    s += txt(gx + 14, gy - gh - 8, 'spectre, à C et ℓ fixés', {s:10, a:'start', c:'var(--muted)'});
+    for(var l=400; l<=800; l+=10) s += '<rect x="' + f(sx(l)) + '" y="' + (gy + 2) + '" width="' + f(gw/40 + .4) + '" height="5" fill="' + couleur(l + 5) + '"/>';
+    s += '<line x1="' + gx + '" y1="' + gy + '" x2="' + (gx + gw) + '" y2="' + gy + '" stroke="currentColor"/><line x1="' + gx + '" y1="' + gy + '" x2="' + gx + '" y2="' + (gy - gh) + '" stroke="currentColor"/>';
+    [400, 500, 600, 700, 800].forEach(function(l){ s += txt(sx(l), gy + 19, l, {s:10}); });
+    s += txt(gx + gw, gy + 31, 'λ (nm)', {s:10, a:'end', c:'var(--muted)'});
+    for(var a=pas; a<=ymax + 1e-9; a+=pas) s += '<line x1="' + (gx - 3) + '" y1="' + f(sy(a)) + '" x2="' + gx + '" y2="' + f(sy(a)) + '" stroke="currentColor"/>' + txt(gx - 6, sy(a) + 4, v(a, pas < .2 ? 1 : (pas < 1 ? 1 : 0)), {s:10, a:'end'});
+    var d = '';
+    for(l=400; l<=800; l+=4) d += (l === 400 ? 'M' : 'L') + f(sx(l)) + ' ' + f(sy(k1(l)*L*C));
+    if(C > 0) s += '<path d="' + d + '" fill="none" stroke="var(--orange)" stroke-width="2"/>';
+    s += '<line x1="' + f(sx(W)) + '" y1="' + gy + '" x2="' + f(sx(W)) + '" y2="' + (gy - gh) + '" stroke="' + col + '" stroke-width="1.4" stroke-dasharray="4 3"/>';
+    s += '<circle cx="' + f(sx(W)) + '" cy="' + f(sy(A)) + '" r="5" fill="' + col + '" stroke="var(--surface)" stroke-width="1.5"/>';
+    if(C > 0) s += txt(sx(LMAX) - 10, sy(Amax630) + 4, 'λmax', {s:10, a:'end', c:'var(--muted)'});
+    gSpec.innerHTML = s;
+
+    /* ---------- étalonnage A = k × C ---------- */
+    gx = 42; gy = 362; gw = 280; gh = 92;
+    var amax = 2.8, cmax = 4;
+    var ex = function(c){ return gx + c/cmax*gw; }, ey = function(a){ return gy - Math.min(a, amax)/amax*gh; };
+    s = txt(gx - 4, gy - gh - 8, 'A', {s:11, a:'start', b:1});
+    s += txt(gx + 14, gy - gh - 8, 'droite d\'étalonnage, à λ et ℓ fixés', {s:10, a:'start', c:'var(--muted)'});
+    s += '<rect x="' + gx + '" y="' + f(ey(amax)) + '" width="' + gw + '" height="' + f(ey(2) - ey(amax)) + '" fill="var(--ko)" opacity=".12"/>';
+    s += txt(gx + 6, ey(2) - 6, 'A > 2 : l\'appareil sature', {s:10, a:'start', c:'var(--ko)'});
+    s += '<line x1="' + gx + '" y1="' + gy + '" x2="' + (gx + gw) + '" y2="' + gy + '" stroke="currentColor"/><line x1="' + gx + '" y1="' + gy + '" x2="' + gx + '" y2="' + (gy - gh) + '" stroke="currentColor"/>';
+    [0, 1, 2, 3].forEach(function(c){ s += txt(ex(c), gy + 15, c, {s:10}); });
+    [1, 2].forEach(function(a){ s += '<line x1="' + (gx - 3) + '" y1="' + f(ey(a)) + '" x2="' + gx + '" y2="' + f(ey(a)) + '" stroke="currentColor"/>' + txt(gx - 6, ey(a) + 4, a, {s:10, a:'end'}); });
+    s += txt(gx + gw, gy + 15, 'C (mg·L⁻¹)', {s:10, a:'end', c:'var(--muted)'});
+    var cfin = Math.min(cmax, amax/Math.max(k, 1e-6));
+    s += '<line x1="' + gx + '" y1="' + gy + '" x2="' + f(ex(cfin)) + '" y2="' + f(ey(k*cfin)) + '" stroke="var(--orange)" stroke-width="2"/>';
+    s += '<line x1="' + f(ex(C)) + '" y1="' + gy + '" x2="' + f(ex(C)) + '" y2="' + f(ey(A)) + '" stroke="currentColor" stroke-dasharray="3 3" opacity=".6"/>';
+    s += '<line x1="' + gx + '" y1="' + f(ey(A)) + '" x2="' + f(ex(C)) + '" y2="' + f(ey(A)) + '" stroke="currentColor" stroke-dasharray="3 3" opacity=".6"/>';
+    s += '<circle cx="' + f(ex(C)) + '" cy="' + f(ey(A)) + '" r="5" fill="' + (A > 2 ? 'var(--ko)' : 'var(--orange)') + '" stroke="var(--surface)" stroke-width="1.5"/>';
+    gEt.innerHTML = s;
+
+    /* ---------- lectures et message ---------- */
+    document.getElementById('isch-beer-cv').textContent = v(C, 2) + ' mg·L⁻¹';
+    document.getElementById('isch-beer-lv').textContent = v(L, 1) + ' cm';
+    document.getElementById('isch-beer-wv').textContent = W + ' nm';
+    document.getElementById('isch-beer-a').textContent = v(A, A < .1 ? 3 : 2);
+    document.getElementById('isch-beer-t').textContent = (T < .01 ? v(T*100, 1) : Math.round(T*100)) + ' %';
+    document.getElementById('isch-beer-k').textContent = v(k, k < .1 ? 3 : 2);
+    var m;
+    if(C === 0) m = 'C = 0 : aucune molécule de colorant, la lumière passe entièrement, A = 0. C\'est le « blanc » : la droite d\'étalonnage passe par l\'origine.';
+    else if(A > 2) m = 'A = ' + v(A, 1) + ' : il ressort moins d\'un centième de la lumière. L\'appareil sature, la mesure n\'a plus de sens : il faut <strong>diluer</strong> (ou prendre une cuve plus courte).';
+    else if(Math.abs(W - LMAX) <= 10) m = 'Tu es au maximum d\'absorption du E131 (λmax ≈ 630 nm, de l\'orange-rouge) : la pente k est la plus grande, c\'est là que le dosage est le plus sensible. La solution absorbe l\'orange-rouge, on la voit <strong>bleue</strong>, la couleur complémentaire. Double C ou ℓ : A double.';
+    else if(k1(W) < .03) m = 'À ' + W + ' nm, le E131 n\'absorbe presque pas : presque toute la lumière passe, et la droite d\'étalonnage est presque à plat. Une petite erreur sur A donnerait une énorme erreur sur C : on ne dose pas ici.';
+    else m = 'Sur le flanc du spectre, A dépend beaucoup du réglage de λ : un écart de quelques nanomètres change nettement l\'absorbance. Reviens vers 630 nm, là où la courbe est plate et la pente d\'étalonnage maximale.';
+    document.getElementById('isch-beer-msg').innerHTML = m;
+  }
+  rc.addEventListener('input', dessiner); rl.addEventListener('input', dessiner); rw.addEventListener('input', dessiner);
+  dessiner();
+})();
+</script>
+
       </div></details>
 
       <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="13" rx="2"/><path d="M9 6v13M15 6v13"/></svg>4 · Conductance et conductivité<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
@@ -2697,6 +3113,169 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
       </ol>
       </div>
       <div class="piege"><div class="t">L'infrarouge identifie des groupes, pas des molécules</div>Deux molécules de la même famille ont des spectres très ressemblants dans la zone des groupes caractéristiques. Ce qui les distingue est la zone sous 1500 cm<sup>−1</sup>, dite « empreinte digitale », trop complexe à interpréter à la main. Conclusion attendue : « ce spectre présente un groupe hydroxyle », pas « c'est du propan-1-ol » — sauf si l'énoncé fournit une liste fermée de candidats, ce qui est le cas de l'exercice 19.</div>
+<div class="isch" id="isch-ir">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Lire un spectre infrarouge</div>
+  <div class="isch-s">Choisis une molécule, puis touche une bande du spectre (ou une liaison sous le spectre) : la liaison qui vibre s'allume dans la formule.</div>
+  <div class="isch-b" id="isch-ir-mols" role="group" aria-label="Molécule">
+    <button type="button" class="isch-btn on" data-m="0">éthanol</button>
+    <button type="button" class="isch-btn" data-m="1">acide éthanoïque</button>
+    <button type="button" class="isch-btn" data-m="2">propanone</button>
+    <button type="button" class="isch-btn" data-m="3">éthylamine</button>
+  </div>
+  <svg class="isch-svg" id="isch-ir-svg" viewBox="0 0 340 274" role="img" aria-label="Formule de la molécule choisie et son spectre infrarouge schématisé : transmittance en fonction du nombre d'onde, de 4000 à 500 cm⁻¹ ; la bande choisie et la liaison correspondante sont mises en couleur">
+    <g id="isch-ir-form"></g>
+    <g id="isch-ir-spec"></g>
+  </svg>
+  <div class="isch-b" id="isch-ir-liais" role="group" aria-label="Liaison"></div>
+  <div class="isch-o">
+    <span>Liaison : <b id="isch-ir-l">O—H</b></span>
+    <span>σ : <b id="isch-ir-s">3200 – 3600 cm⁻¹</b></span>
+    <span>Allure : <b id="isch-ir-a">forte et large</b></span>
+  </div>
+  <p class="isch-n" id="isch-ir-msg"></p>
+  <p class="isch-p">Spectres schématisés à partir de la table des bandes du cours : positions et allures sont réalistes, mais les intensités sont simplifiées et la zone d'empreinte digitale (sous 1500 cm⁻¹) n'est qu'esquissée.</p>
+  <ol class="isch-defis">
+    <li>Avec un seul critère, comment distinguer l'éthanol de la propanone ? <details><summary>Réponse</summary>L'éthanol a une bande large O—H vers 3300-3400 cm⁻¹ et pas de C=O ; la propanone a une bande fine et intense vers 1715 cm⁻¹ et pas de O—H.</details></li>
+    <li>Compare la bande O—H de l'éthanol et celle de l'acide éthanoïque. Pourquoi sont-elles différentes ? <details><summary>Réponse</summary>Celle de l'acide est beaucoup plus large et descend jusque vers 2500 cm⁻¹, au point d'avaler les bandes C—H : les acides s'associent deux par deux par une double liaison hydrogène très solide, qui assouplit fortement le O—H.</details></li>
+    <li>Pourquoi les bandes O—H, N—H et C—H sont-elles toutes au-dessus de 2800 cm⁻¹ ? <details><summary>Réponse</summary>L'hydrogène est l'atome le plus léger : une liaison avec un H vibre plus vite, donc à plus grand nombre d'onde (modèle du ressort reliant deux masses).</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var svg = document.getElementById('isch-ir-svg'); if(!svg) return;
+  var gF = document.getElementById('isch-ir-form'), gS = document.getElementById('isch-ir-spec');
+  var bMols = document.getElementById('isch-ir-mols'), bLiais = document.getElementById('isch-ir-liais');
+  var SUB = {'2':'₂','3':'₃'};
+  /* table du cours */
+  var INFO = {
+    OHal: {nom:'O—H', s:'3200 – 3600 cm⁻¹', a:'forte et large', fam:'alcool',
+           ex:'Bande <strong>large</strong> : chaque O—H est plus ou moins engagé dans des liaisons hydrogène, donc vibre à une fréquence un peu différente. Les fréquences s\'étalent, la bande aussi. Elle signe un <strong>alcool</strong>.'},
+    OHac: {nom:'O—H', s:'2500 – 3200 cm⁻¹', a:'très large, étalée', fam:'acide carboxylique',
+           ex:'Bande <strong>très large</strong>, qui descend jusque vers 2500 cm⁻¹ et recouvre les C—H : les acides s\'associent deux par deux par une double liaison hydrogène très solide. Elle signe un <strong>acide carboxylique</strong>.'},
+    NH:   {nom:'N—H', s:'3300 – 3500 cm⁻¹', a:'moyenne, deux bandes pour NH₂', fam:'amine, amide',
+           ex:'Deux bandes moyennes, parce que le groupe NH₂ porte deux N—H qui vibrent ensemble, en phase (élongation symétrique) ou en opposition (antisymétrique). Une seule bande pour un N—H isolé.'},
+    CH:   {nom:'C—H', s:'2800 – 3000 cm⁻¹', a:'présente dans presque tout', fam:'peu discriminante',
+           ex:'Les C—H sont présentes dans presque toutes les molécules organiques : ces bandes, juste sous 3000 cm⁻¹, ne permettent pas d\'identifier une famille. Elles sont hautes dans le spectre parce que l\'hydrogène est très léger.'},
+    CO:   {nom:'C=O', s:'1700 – 1750 cm⁻¹', a:'forte et fine', fam:'aldéhyde, cétone, acide, ester, amide',
+           ex:'Bande <strong>fine et intense</strong> : le C=O ne forme pas de liaison hydrogène par lui-même, tous vibrent à la même fréquence. Liaison double, donc raide : elle absorbe bien plus haut qu\'une simple liaison C—O.'},
+    EMP:  {nom:'empreinte', s:'sous 1500 cm⁻¹', a:'nombreuses bandes', fam:'propre à chaque molécule',
+           ex:'Sous 1500 cm⁻¹, la zone d\'<strong>empreinte digitale</strong> : beaucoup de bandes (simples liaisons C—O, C—C, C—N, déformations), trop complexes à interpréter à la main. On ne s\'en sert pas au lycée.'}
+  };
+  /* molécules : formule (morceaux de texte, avec la clé de la liaison à allumer) et bandes (centre, demi-largeur, profondeur, clé) */
+  var MOLS = [
+    {nom:'éthanol', fam:'alcool',
+     f:[['H3C',['CH']],['—',[]],['CH2',['CH']],['—',[]],['O',['OHal']],['—',['OHal']],['H',['OHal']]],
+     b:[[3350,130,.72,'OHal'],[2975,18,.55,'CH'],[2900,16,.38,'CH'],[1450,14,.3,'EMP'],[1380,12,.25,'EMP'],[1090,14,.45,'EMP'],[1050,16,.7,'EMP'],[880,12,.4,'EMP']]},
+    {nom:'acide éthanoïque', fam:'acide carboxylique',
+     f:[['H3C',['CH']],['—',[]],['C',['CO']],['—',[]],['O',['OHac']],['—',['OHac']],['H',['OHac']]], dbl:true,
+     b:[[3000,330,.62,'OHac'],[1715,20,.9,'CO'],[1410,16,.4,'EMP'],[1290,20,.65,'EMP'],[940,16,.35,'EMP']]},
+    {nom:'propanone', fam:'cétone',
+     f:[['H3C',['CH']],['—',[]],['C',['CO']],['—',[]],['CH3',['CH']]], dbl:true,
+     b:[[3005,14,.25,'CH'],[2925,12,.2,'CH'],[1715,18,.92,'CO'],[1420,14,.35,'EMP'],[1360,14,.55,'EMP'],[1220,16,.6,'EMP'],[1090,12,.25,'EMP']]},
+    {nom:'éthylamine', fam:'amine',
+     f:[['H3C',['CH']],['—',[]],['CH2',['CH']],['—',[]],['NH2',['NH']]],
+     b:[[3370,30,.35,'NH'],[3290,30,.32,'NH'],[2965,16,.55,'CH'],[2870,16,.4,'CH'],[1460,12,.3,'EMP'],[1380,12,.2,'EMP'],[1140,14,.35,'EMP'],[800,30,.45,'EMP']]}
+  ];
+  var mi = 0, sel = 'OHal';
+  var gx = 34, gy = 236, gw = 290, gh = 140, top = gy - gh;
+  function sx(n){ return gx + (4000 - n)/3500*gw; }
+  function f(x){ return Math.round(x*10)/10; }
+  function sub(t){ return t.replace(/[23]/g, function(c){ return SUB[c]; }); }
+  function T(n, m){ var t = 1; m.b.forEach(function(b){ t *= 1 - b[2]*Math.exp(-Math.pow((n - b[0])/b[1], 2)); }); return .96*t; }
+  function liaisonsDe(m){ var l = []; m.b.forEach(function(b){ if(l.indexOf(b[3]) < 0) l.push(b[3]); }); var ordre = ['OHal','OHac','NH','CH','CO','EMP']; return ordre.filter(function(k){ return l.indexOf(k) >= 0; }); }
+
+  function formule(m){
+    var s = '', x = 0, y = 44, morceaux = [], w;
+    m.f.forEach(function(p){ w = p[0] === '—' ? 18 : p[0].length*11 + 4; morceaux.push([p, x, w]); x += w; });
+    var x0 = (340 - x)/2;
+    morceaux.forEach(function(q){
+      var p = q[0], on = p[1].indexOf(sel) >= 0, cx = x0 + q[1] + q[2]/2;
+      var col = on ? 'var(--orange)' : 'currentColor';
+      if(p[0] === '—') s += '<line x1="' + f(x0 + q[1] + 2) + '" y1="' + (y - 5) + '" x2="' + f(x0 + q[1] + q[2] - 2) + '" y2="' + (y - 5) + '" stroke="' + col + '" stroke-width="' + (on ? 3 : 1.6) + '"/>';
+      else s += '<text x="' + f(cx) + '" y="' + y + '" font-size="17" font-weight="' + (on ? 800 : 600) + '" text-anchor="middle" fill="' + col + '">' + sub(p[0]) + '</text>';
+      if(m.dbl && p[0] === 'C'){
+        var on2 = sel === 'CO', c2 = on2 ? 'var(--orange)' : 'currentColor';
+        s += '<line x1="' + f(cx - 2.5) + '" y1="' + (y - 17) + '" x2="' + f(cx - 2.5) + '" y2="' + (y - 33) + '" stroke="' + c2 + '" stroke-width="' + (on2 ? 2.6 : 1.5) + '"/><line x1="' + f(cx + 2.5) + '" y1="' + (y - 17) + '" x2="' + f(cx + 2.5) + '" y2="' + (y - 33) + '" stroke="' + c2 + '" stroke-width="' + (on2 ? 2.6 : 1.5) + '"/>';
+        s += '<text x="' + f(cx) + '" y="' + (y - 37) + '" font-size="17" font-weight="' + (on2 ? 800 : 600) + '" text-anchor="middle" fill="' + c2 + '">O</text>';
+      }
+    });
+    s += '<text x="330" y="' + (y + 22) + '" font-size="11" text-anchor="end" fill="var(--muted)">' + m.nom + ' · famille : ' + m.fam + '</text>';
+    return s;
+  }
+
+  function dessiner(){
+    var m = MOLS[mi], s = '';
+    /* zones */
+    s += '<rect x="' + f(sx(1500)) + '" y="' + top + '" width="' + f(sx(500) - sx(1500)) + '" height="' + gh + '" fill="var(--muted)" opacity=".1"/>';
+    s += '<text x="' + f((sx(1500) + sx(500))/2) + '" y="' + (top + 13) + '" font-size="10" text-anchor="middle" fill="var(--muted)">empreinte digitale</text>';
+    s += '<text x="' + f((sx(4000) + sx(1500))/2) + '" y="' + (top + 13) + '" font-size="10" text-anchor="middle" fill="var(--muted)">groupes caractéristiques</text>';
+    /* bande choisie */
+    var bs = m.b.filter(function(b){ return b[3] === sel; });
+    if(bs.length){
+      var lo = 1e9, hi = 0; bs.forEach(function(b){ lo = Math.min(lo, b[0] - 1.6*b[1]); hi = Math.max(hi, b[0] + 1.6*b[1]); });
+      if(sel === 'EMP'){ lo = 500; hi = 1500; }
+      s += '<rect x="' + f(sx(hi)) + '" y="' + (top + 18) + '" width="' + f(sx(lo) - sx(hi)) + '" height="' + (gh - 18) + '" fill="var(--orange)" opacity=".16" rx="3"/>';
+    }
+    /* axes */
+    s += '<line x1="' + gx + '" y1="' + gy + '" x2="' + (gx + gw) + '" y2="' + gy + '" stroke="currentColor"/><line x1="' + gx + '" y1="' + gy + '" x2="' + gx + '" y2="' + (top - 4) + '" stroke="currentColor"/>';
+    [4000, 3000, 2000, 1500, 1000, 500].forEach(function(n){ s += '<line x1="' + f(sx(n)) + '" y1="' + gy + '" x2="' + f(sx(n)) + '" y2="' + (gy + 4) + '" stroke="currentColor"/><text x="' + f(sx(n)) + '" y="' + (gy + 16) + '" font-size="10" text-anchor="middle">' + n + '</text>'; });
+    s += '<text x="' + (gx + gw) + '" y="' + (gy + 30) + '" font-size="10.5" text-anchor="end" fill="var(--muted)">nombre d\'onde σ (cm⁻¹), lu de droite à gauche</text>';
+    s += '<text x="' + (gx - 4) + '" y="' + (top - 8) + '" font-size="10" text-anchor="start" fill="var(--muted)">T (%)</text>';
+    s += '<text x="' + (gx - 4) + '" y="' + (top + 24) + '" font-size="10" text-anchor="end">100</text><text x="' + (gx - 4) + '" y="' + (gy + 3) + '" font-size="10" text-anchor="end">0</text>';
+    /* courbe */
+    var d = '', ty = function(t){ return gy - t*(gh - 20); };
+    for(var n=4000; n>=500; n-=8) d += (n === 4000 ? 'M' : 'L') + f(sx(n)) + ' ' + f(ty(T(n, m)));
+    s += '<path d="' + d + '" fill="none" stroke="currentColor" stroke-width="1.6"/>';
+    /* étiquettes des bandes principales */
+    var vues = {};
+    m.b.forEach(function(b){
+      if(b[3] === 'EMP' || vues[b[3]]) return; vues[b[3]] = 1;
+      var lab = INFO[b[3]].nom, x = sx(b[0]), yb = ty(T(b[0], m)) + 14;
+      s += '<text x="' + f(x) + '" y="' + f(Math.min(yb, gy - 4)) + '" font-size="11" font-weight="700" text-anchor="middle" fill="' + (b[3] === sel ? 'var(--orange-deep)' : 'currentColor') + '">' + lab + '</text>';
+    });
+    /* zone sensible au toucher */
+    s += '<rect id="isch-ir-hit" x="' + gx + '" y="' + top + '" width="' + gw + '" height="' + gh + '" fill="transparent" style="cursor:pointer"/>';
+    gS.innerHTML = s;
+    gF.innerHTML = formule(m);
+
+    /* boutons de liaison */
+    var ls = liaisonsDe(m);
+    bLiais.innerHTML = ls.map(function(k){ return '<button type="button" class="isch-btn' + (k === sel ? ' on' : '') + '" data-l="' + k + '">' + (k === 'EMP' ? 'empreinte digitale' : INFO[k].nom) + '</button>'; }).join('');
+    var I = INFO[sel];
+    document.getElementById('isch-ir-l').textContent = sel === 'EMP' ? 'zone d\'empreinte' : I.nom;
+    document.getElementById('isch-ir-s').textContent = I.s;
+    document.getElementById('isch-ir-a').textContent = I.a;
+    /* lecture du spectre en trois questions */
+    var aOH = ls.indexOf('OHal') >= 0 || ls.indexOf('OHac') >= 0, aCO = ls.indexOf('CO') >= 0;
+    var concl = aOH && aCO ? 'O—H très large et C=O → <strong>acide carboxylique</strong>.' : (aCO ? 'C=O seul → <strong>aldéhyde ou cétone</strong> (ici une cétone).' : (aOH ? 'O—H seul → <strong>alcool</strong>.' : 'Ni O—H ni C=O ; deux bandes moyennes vers 3300-3400 : un groupe NH₂, donc une <strong>amine</strong>.'));
+    document.getElementById('isch-ir-msg').innerHTML = I.ex + '<br><span style="color:var(--muted)">Lecture du spectre :</span> ' + concl;
+  }
+
+  bMols.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    mi = +b.getAttribute('data-m');
+    [].forEach.call(bMols.querySelectorAll('button'), function(x){ x.classList.toggle('on', x === b); });
+    var ls = liaisonsDe(MOLS[mi]); sel = ls[0];
+    dessiner();
+  });
+  bLiais.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    sel = b.getAttribute('data-l'); dessiner();
+  });
+  svg.addEventListener('click', function(e){
+    if(!e.target || e.target.id !== 'isch-ir-hit') return;
+    var r = svg.getBoundingClientRect(), x = (e.clientX - r.left)/r.width*340;
+    var n = 4000 - (x - gx)/gw*3500, m = MOLS[mi];
+    if(n < 1500){ sel = 'EMP'; dessiner(); return; }
+    var best = null, dmin = 1e9;
+    m.b.forEach(function(b){ if(b[3] === 'EMP') return; var d = Math.max(0, Math.abs(n - b[0]) - b[1]); if(d < dmin){ dmin = d; best = b[3]; } });
+    if(best && dmin < 250){ sel = best; dessiner(); }
+  });
+  dessiner();
+})();
+</script>
+
       </div></details>
 
       <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 14c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/><circle cx="12" cy="7" r="2.5"/></svg>8 · Quelle onde pour quelle entité<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
@@ -4162,6 +4741,238 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
 </div>
 <div class="def"><div class="t">Le pH à l'équivalence n'est pas toujours 7</div><p>Pour <strong>acide fort par base forte</strong>, le bécher ne contient à l'équivalence que de l'eau, des ions Na<sup>+</sup> et Cl<sup>−</sup> : le pH vaut 7.</p><p>Pour l'<strong>acide éthanoïque</strong> du TP 4, il contient aussi des ions CH<sub>3</sub>COO<sup>−</sup> — la base conjuguée formée par la réaction. Ils rendent la solution légèrement basique : le pH à l'équivalence est supérieur à 7, vers 8 à 9 sur ta courbe. C'est le chapitre 1 qui explique le chapitre 3.</p></div>
 <div class="piege"><div class="t">Avant de lire V<sub>E</sub>, regarder le sens du saut</div>Si on titre une base par un acide, la courbe <strong>descend</strong> — c'est le cas de l'ammoniaque à l'exercice 13. Les méthodes de lecture restent les mêmes, mais la dérivée présente alors un creux au lieu d'un pic.</div>
+<div class="isch" id="isch-indic">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Courbe de pH, indicateur coloré et méthode des tangentes</div>
+  <div class="isch-s">Verse la soude au curseur (ou fais glisser le point), choisis l'acide et l'indicateur.</div>
+  <svg class="isch-svg" id="isch-indic-svg" viewBox="0 0 340 250" role="img" aria-label="Courbe pH en fonction du volume de soude versé, avec la zone de virage de l'indicateur choisi, le saut de pH et le bécher coloré">
+    <defs>
+      <linearGradient id="isch-indic-grad" x1="0" y1="1" x2="0" y2="0">
+        <stop id="isch-indic-g0" offset="0"/><stop id="isch-indic-g1" offset=".5"/><stop id="isch-indic-g2" offset="1"/>
+      </linearGradient>
+    </defs>
+    <g id="isch-indic-axes"></g>
+    <rect id="isch-indic-zone" x="34" width="216" fill="url(#isch-indic-grad)" opacity=".35"/>
+    <text id="isch-indic-zonet" x="38" font-size="10" font-weight="700" fill="currentColor"></text>
+    <g id="isch-indic-saut"></g>
+    <path id="isch-indic-tout" fill="none" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="3 3" opacity=".7"/>
+    <path id="isch-indic-trace" fill="none" stroke="var(--orange)" stroke-width="2.6" stroke-linejoin="round"/>
+    <g id="isch-indic-tang"></g>
+    <circle id="isch-indic-pt" r="6" fill="var(--orange)" stroke="var(--surface)" stroke-width="2"/>
+    <circle id="isch-indic-poignee" class="isch-poignee" r="16" fill="transparent"/>
+    <g id="isch-indic-becher"></g>
+  </svg>
+  <div class="isch-b" id="isch-indic-acides" role="group" aria-label="Acide titré">
+    <button type="button" class="isch-btn on" data-a="fort">Acide chlorhydrique</button>
+    <button type="button" class="isch-btn" data-a="faible">Acide éthanoïque</button>
+  </div>
+  <div class="isch-b" id="isch-indic-indics" role="group" aria-label="Indicateur coloré">
+    <button type="button" class="isch-btn" data-i="0">Hélianthine</button>
+    <button type="button" class="isch-btn on" data-i="1">Bleu de bromothymol</button>
+    <button type="button" class="isch-btn" data-i="2">Phénolphtaléine</button>
+  </div>
+  <div class="isch-b">
+    <button type="button" class="isch-btn" id="isch-indic-tbtn" aria-pressed="false">Méthode des tangentes</button>
+  </div>
+  <div class="isch-c">
+    <label class="isch-r"><span>Volume de soude versé <b id="isch-indic-vv">V<sub>B</sub> = 6,00 mL</b></span><input type="range" id="isch-indic-v" min="0" max="20" step="0.05" value="6" aria-label="Volume de soude versé en millilitres"></label>
+  </div>
+  <div class="isch-o">
+    <span>pH = <b id="isch-indic-ph">2,0</b></span>
+    <span>Couleur : <b id="isch-indic-coul">jaune</b></span>
+    <span>pH<sub>E</sub> = <b id="isch-indic-phe">7,0</b></span>
+    <span id="isch-indic-vel" hidden>V<sub>E</sub> lu = <b id="isch-indic-ve">10,0</b> mL</span>
+  </div>
+  <p class="isch-n" id="isch-indic-msg"></p>
+  <p class="isch-p">Courbes calculées pour 20,0 mL d'acide à 1,0 × 10<sup>−2</sup> mol·L<sup>−1</sup> titrés par la soude à 2,0 × 10<sup>−2</sup> mol·L<sup>−1</sup> (V<sub>E</sub> = 10,0 mL, l'exemple de la fiche 3). Le « saut » est l'intervalle de pH parcouru entre V<sub>E</sub> − 0,2 mL et V<sub>E</sub> + 0,2 mL, soit environ quatre gouttes. Pour l'acide éthanoïque, le calcul utilise pK<sub>A</sub> = 4,76 (hors programme).</p>
+  <ol class="isch-defis">
+    <li>Avec l'acide chlorhydrique et l'hélianthine, à partir de quel volume la couleur commence-t-elle à changer ? <details><summary>Réponse</summary>Vers 8,9 mL, plus d'un millilitre avant l'équivalence, et elle change peu à peu jusqu'à 9,9 mL : impossible de savoir quand s'arrêter. Sa zone de virage (3,1 – 4,4) déborde sous le saut.</details></li>
+    <li>Passe à l'acide éthanoïque : quel indicateur convient ? <details><summary>Réponse</summary>La phénolphtaléine : sa zone (8,2 – 10,0) contient pH<sub>E</sub> ≈ 8,3 et tient dans le saut. Le bleu de bromothymol vire déjà vers 9,5 mL : le pH de l'acide faible monte avant le saut, qui est plus court.</details></li>
+    <li>Active les tangentes pour les deux acides. Pourquoi le point E n'est-il pas à la même hauteur ? <details><summary>Réponse</summary>Avec l'acide chlorhydrique, le bécher ne contient à l'équivalence que de l'eau, Na<sup>+</sup> et Cl<sup>−</sup> : pH<sub>E</sub> = 7. Avec l'acide éthanoïque, il contient aussi sa base conjuguée CH<sub>3</sub>COO<sup>−</sup>, qui rend la solution basique : pH<sub>E</sub> ≈ 8,3. V<sub>E</sub> est le même : 10,0 mL.</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var svg = document.getElementById("isch-indic-svg"); if(!svg) return;
+  var $ = function(s){ return document.getElementById("isch-indic-" + s); };
+  var NS = "http://www.w3.org/2000/svg";
+  var cA = 1.0e-2, VA = 20.0, cB = 2.0e-2, VE = cA*VA/cB, Ke = 1e-14, Ka = Math.pow(10, -4.76);
+  var X0 = 34, X1 = 250, Y0 = 206, Y1 = 14, VMAX = 20;
+  function px(v){ return X0 + v/VMAX*(X1 - X0); }
+  function py(p){ return Y0 - p/14*(Y0 - Y1); }
+  function fr(x, n){ return x.toFixed(n).replace(".", ","); }
+
+  var INDIC = [
+    {nom:"hélianthine", lo:3.1, hi:4.4, c:[[210,59,42,1],[232,132,40,1],[233,185,35,1]], n:["rouge","orange","jaune"]},
+    {nom:"bleu de bromothymol", lo:6.0, hi:7.6, c:[[217,194,42,1],[63,158,77,1],[43,98,201,1]], n:["jaune","vert","bleu"]},
+    {nom:"phénolphtaléine", lo:8.2, hi:10.0, c:[[170,200,230,.22],[226,120,180,.55],[214,51,143,.9]], n:["incolore","rose pâle","rose"]}
+  ];
+  var acide = "fort", ind = 1, tang = false;
+
+  /* pH par l'électroneutralité : h + [Na+] = Ke/h + [A-], résolue par dichotomie sur log h */
+  function pH(V, a){
+    var Vt = VA + V, C = cA*VA/Vt, Na = cB*V/Vt, lo = -14, hi = 0;
+    for(var k = 0; k < 60; k++){
+      var m = (lo + hi)/2, h = Math.pow(10, m);
+      var Am = a === "fort" ? C : C*Ka/(Ka + h);
+      if(h + Na - Ke/h - Am > 0) hi = m; else lo = m;
+    }
+    return -(lo + hi)/2;
+  }
+  var COURBE = {};
+  ["fort","faible"].forEach(function(a){
+    var t = []; for(var i = 0; i <= 400; i++) t.push(pH(i*0.05, a)); COURBE[a] = t;
+  });
+  function pHv(V){ return pH(V, acide); }
+  /* volume où la courbe atteint un pH donné (courbe croissante) */
+  function vDe(p){
+    if(pHv(0) >= p) return 0;
+    if(pHv(VMAX) <= p) return null;
+    var a = 0, b = VMAX;
+    for(var k = 0; k < 50; k++){ var m = (a + b)/2; if(pHv(m) < p) a = m; else b = m; }
+    return (a + b)/2;
+  }
+  function el(tag, at, txt){ var e = document.createElementNS(NS, tag); for(var k in at) e.setAttribute(k, at[k]); if(txt != null) e.textContent = txt; return e; }
+
+  /* axes (fixes) */
+  var ax = $("axes");
+  ax.appendChild(el("line", {x1:X0, y1:Y0, x2:X1 + 4, y2:Y0, stroke:"currentColor", "stroke-width":1.3}));
+  ax.appendChild(el("line", {x1:X0, y1:Y0, x2:X0, y2:Y1 - 4, stroke:"currentColor", "stroke-width":1.3}));
+  for(var p = 0; p <= 14; p += 2){
+    ax.appendChild(el("line", {x1:X0 - 3, y1:py(p), x2:X0, y2:py(p), stroke:"currentColor"}));
+    ax.appendChild(el("text", {x:X0 - 6, y:py(p) + 3.5, "font-size":10, "text-anchor":"end"}, String(p)));
+  }
+  for(var v = 0; v <= 20; v += 5){
+    ax.appendChild(el("line", {x1:px(v), y1:Y0, x2:px(v), y2:Y0 + 3, stroke:"currentColor"}));
+    ax.appendChild(el("text", {x:px(v), y:Y0 + 14, "font-size":10, "text-anchor":"middle"}, String(v)));
+  }
+  ax.appendChild(el("text", {x:X0 + 4, y:Y1 - 2, "font-size":11, "font-weight":700}, "pH"));
+  var tv = el("text", {x:X1, y:Y0 + 30, "font-size":11, "text-anchor":"end"}, "V");
+  tv.appendChild(el("tspan", {"font-size":8, dy:2}, "B"));
+  tv.appendChild(el("tspan", {dy:-2}, " (mL)")); ax.appendChild(tv);
+
+  function rgba(c){ return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + c[3] + ")"; }
+  function mix(a, b, u){ var r = []; for(var k = 0; k < 4; k++) r.push(k < 3 ? Math.round(a[k] + (b[k] - a[k])*u) : a[k] + (b[k] - a[k])*u); return r; }
+  function couleur(p){
+    var I = INDIC[ind], f = Math.max(0, Math.min(1, (p - I.lo)/(I.hi - I.lo)));
+    var c = f < .5 ? mix(I.c[0], I.c[1], f*2) : mix(I.c[1], I.c[2], (f - .5)*2);
+    var n = f < .15 ? I.n[0] : (f > .85 ? I.n[2] : I.n[1] + " (en train de virer)");
+    return {c:c, n:n, f:f};
+  }
+
+  function chemin(t, jusqu){
+    var d = "", n = jusqu == null ? t.length - 1 : Math.round(jusqu/0.05);
+    for(var i = 0; i <= n; i++) d += (i ? "L" : "M") + px(i*0.05).toFixed(1) + " " + py(t[i]).toFixed(1);
+    return d;
+  }
+
+  function tangentes(){
+    var g = $("tang"); while(g.firstChild) g.removeChild(g.firstChild);
+    $("vel").hidden = !tang;
+    if(!tang) return;
+    function pente(V){ return (pHv(V + 0.02) - pHv(V - 0.02))/0.04; }
+    var V1 = VE - 2.5, m = pente(V1), a = VE + 0.3, b = VMAX - 0.05;
+    for(var k = 0; k < 50; k++){ var c = (a + b)/2; if(pente(c) > m) a = c; else b = c; }
+    var V2 = (a + b)/2, b1 = pHv(V1) - m*V1, b2 = pHv(V2) - m*V2, bm = (b1 + b2)/2;
+    var lo = V1, hi = V2;
+    for(k = 0; k < 50; k++){ c = (lo + hi)/2; if(pHv(c) < m*c + bm) lo = c; else hi = c; }
+    var Vl = (lo + hi)/2, pE = pHv(Vl);
+    function seg(Va, Vb, bb, col, das, w){
+      g.appendChild(el("line", {x1:px(Va), y1:py(m*Va + bb), x2:px(Vb), y2:py(m*Vb + bb), stroke:col, "stroke-width":w, "stroke-dasharray":das || "none"}));
+    }
+    seg(Math.max(0, V1 - 4), Math.min(VMAX, V1 + 4), b1, "currentColor", "", 1.3);
+    seg(Math.max(0, V2 - 4), Math.min(VMAX, V2 + 4), b2, "currentColor", "", 1.3);
+    seg(Math.max(0, Vl - 4), Math.min(VMAX, Vl + 4), bm, "var(--ok)", "5 3", 1.6);
+    g.appendChild(el("line", {x1:px(Vl), y1:py(pE), x2:px(Vl), y2:Y0, stroke:"var(--ok)", "stroke-dasharray":"2 3", "stroke-width":1.2}));
+    g.appendChild(el("circle", {cx:px(Vl), cy:py(pE), r:4, fill:"var(--ok)"}));
+    g.appendChild(el("text", {x:px(Vl) - 8, y:py(pE) - 4, "font-size":11, "font-weight":700, "text-anchor":"end", fill:"var(--ok)"}, "E"));
+    $("ve").textContent = fr(Vl, 1);
+  }
+
+  function becher(V, col){
+    var g = $("becher"); while(g.firstChild) g.removeChild(g.firstChild);
+    /* burette */
+    var bx = 292, niv = 20 + V/VMAX*70;
+    g.appendChild(el("rect", {x:bx, y:14, width:12, height:84, rx:2, fill:"none", stroke:"currentColor", "stroke-width":1.2}));
+    g.appendChild(el("rect", {x:bx + 1.5, y:14 + niv - 6, width:9, height:Math.max(0, 84 - niv + 4), fill:"#4f8fd9", opacity:.55}));
+    g.appendChild(el("path", {d:"M" + (bx + 3) + " 98 L" + (bx + 6) + " 108 L" + (bx + 9) + " 98", fill:"none", stroke:"currentColor", "stroke-width":1.2}));
+    g.appendChild(el("text", {x:bx + 18, y:28, "font-size":10, fill:"currentColor"}, "soude"));
+    /* bécher */
+    var x0 = 266, x1 = 330, yb = 206, h = 34 + V/VMAX*16;
+    g.appendChild(el("rect", {x:x0 + 2, y:yb - h, width:x1 - x0 - 4, height:h - 2, fill:rgba(col), stroke:"none"}));
+    g.appendChild(el("path", {d:"M" + x0 + " 132 L" + x0 + " " + (yb - 4) + " Q" + x0 + " " + yb + " " + (x0 + 4) + " " + yb + " L" + (x1 - 4) + " " + yb + " Q" + x1 + " " + yb + " " + x1 + " " + (yb - 4) + " L" + x1 + " 132", fill:"none", stroke:"currentColor", "stroke-width":1.4}));
+    g.appendChild(el("text", {x:(x0 + x1)/2, y:226, "font-size":10, "text-anchor":"middle", fill:"currentColor"}, "bécher"));
+  }
+
+  function maj(){
+    var V = parseFloat($("v").value), p = pHv(V), I = INDIC[ind], C = couleur(p);
+    /* zone de virage */
+    $("zone").setAttribute("y", py(I.hi)); $("zone").setAttribute("height", py(I.lo) - py(I.hi));
+    for(var k = 0; k < 3; k++) $("g" + k).setAttribute("stop-color", "rgb(" + I.c[k].slice(0, 3).join(",") + ")");
+    $("zonet").setAttribute("y", py(I.hi) - 3);
+    $("zonet").textContent = "zone de virage " + fr(I.lo, 1) + " – " + fr(I.hi, 1);
+    /* saut de pH : entre VE - 0,2 et VE + 0,2 mL */
+    var sLo = pHv(VE - 0.2), sHi = pHv(VE + 0.2), s = $("saut");
+    while(s.firstChild) s.removeChild(s.firstChild);
+    var xs = X1 + 6;
+    s.appendChild(el("path", {d:"M" + (xs - 3) + " " + py(sHi) + " L" + xs + " " + py(sHi) + " L" + xs + " " + py(sLo) + " L" + (xs - 3) + " " + py(sLo), fill:"none", stroke:"var(--orange-deep)", "stroke-width":1.6}));
+    s.appendChild(el("text", {x:xs + 3, y:(py(sHi) + py(sLo))/2 + 3, "font-size":10, fill:"var(--orange-deep)", "font-weight":700}, "saut"));
+    /* courbes */
+    $("tout").setAttribute("d", chemin(COURBE[acide]));
+    $("trace").setAttribute("d", chemin(COURBE[acide], V));
+    $("pt").setAttribute("cx", px(V)); $("pt").setAttribute("cy", py(p));
+    $("poignee").setAttribute("cx", px(V)); $("poignee").setAttribute("cy", py(p));
+    becher(V, C.c);
+    tangentes();
+    /* lectures */
+    $("vv").innerHTML = "V<sub>B</sub> = " + fr(V, 2) + " mL";
+    $("ph").textContent = fr(p, 1);
+    $("coul").textContent = C.n;
+    var pE = pHv(VE); $("phe").textContent = fr(pE, 1);
+    /* message : état du titrage, puis verdict sur l'indicateur */
+    var m1;
+    if(V < 0.01) m1 = "Avant tout ajout, le bécher ne contient que l'acide : pH = " + fr(p, 1) + ". ";
+    else if(V < VE - 0.3) m1 = (acide === "fort" ? "Il reste beaucoup d'acide : chaque ajout n'en retire qu'une petite part, [H₃O⁺] change peu et le pH monte lentement. " : "Il reste de l'acide éthanoïque, avec sa base conjuguée déjà formée : le pH monte lentement. ");
+    else if(V <= VE + 0.3) m1 = "Tu es dans le saut : une seule goutte change [H₃O⁺] de plusieurs ordres de grandeur, donc le pH de plusieurs unités. ";
+    else m1 = "L'équivalence est dépassée : les ions HO⁻ versés s'accumulent sans réagir et le pH se stabilise. ";
+    var vd = vDe(I.lo), vf = vDe(I.hi), m2, nomI = I.nom.charAt(0).toUpperCase() + I.nom.slice(1);
+    var dedans = I.lo >= sLo - 1e-9 && I.hi <= sHi + 1e-9, contientE = pE >= I.lo && pE <= I.hi;
+    var plage = (vd != null && vf != null && vd > 0 && vf - vd < 0.05) ? "d'un coup, à " + fr(vf, 2) + " mL" :
+      (vd === 0 ? "dès le départ" : "à partir de " + fr(vd, 2) + " mL") + (vf == null ? " et jusqu'au-delà de 20 mL" : " jusqu'à " + fr(vf, 2) + " mL");
+    if(dedans) m2 = nomI + " : il convient. Sa zone de virage tient dans le saut" + (contientE ? " et contient pH<sub>E</sub> = " + fr(pE, 1) : "") + " : la couleur change " + plage + ", au plus près de V<sub>E</sub> = 10,0 mL.";
+    else if(vf != null && vf < VE - 0.2) m2 = nomI + " : il ne convient pas. Sa zone de virage est sous le saut : la couleur change " + plage + ", trop tôt. On arrêterait le titrage avant l'équivalence.";
+    else if(vd != null && vd > VE + 0.2) m2 = nomI + " : il ne convient pas. Sa zone de virage est au-dessus du saut : la couleur change trop tard.";
+    else m2 = nomI + " : il ne convient pas. Sa zone de virage déborde du saut : la couleur change " + plage + ", progressivement, sur une trop grande plage de volume. On ne sait pas quand s'arrêter.";
+    $("msg").innerHTML = m1 + m2;
+  }
+
+  function choix(box, attr, fn){
+    var bs = box.querySelectorAll("button");
+    for(var k = 0; k < bs.length; k++) bs[k].addEventListener("click", function(){
+      for(var j = 0; j < bs.length; j++) bs[j].classList.toggle("on", bs[j] === this);
+      fn(this.getAttribute(attr)); maj();
+    });
+  }
+  choix($("acides"), "data-a", function(a){ acide = a; });
+  choix($("indics"), "data-i", function(i){ ind = +i; });
+  $("tbtn").addEventListener("click", function(){ tang = !tang; this.classList.toggle("on", tang); this.setAttribute("aria-pressed", tang ? "true" : "false"); maj(); });
+  $("v").addEventListener("input", maj);
+
+  /* glisser le point le long de la courbe */
+  var drag = false, pg = $("poignee");
+  function versV(ev){
+    var r = svg.getBoundingClientRect(), x = (ev.clientX - r.left)/r.width*340;
+    var V = Math.max(0, Math.min(VMAX, (x - X0)/(X1 - X0)*VMAX));
+    $("v").value = (Math.round(V/0.05)*0.05).toFixed(2); maj();
+  }
+  pg.addEventListener("pointerdown", function(ev){ drag = true; pg.setPointerCapture(ev.pointerId); ev.preventDefault(); });
+  pg.addEventListener("pointermove", function(ev){ if(drag) versV(ev); });
+  pg.addEventListener("pointerup", function(){ drag = false; });
+  pg.addEventListener("pointercancel", function(){ drag = false; });
+  maj();
+})();
+</script>
+
 
 </div></details>
 <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l7 10 9-8"/></svg>7 · Le suivi conductimétrique<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
@@ -4175,6 +4986,187 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
 <p><strong>Après l'équivalence</strong>, il n'y a plus d'ions argent : les ions Na<sup>+</sup> et Cl<sup>−</sup> versés s'ajoutent sans réagir. <strong>La conductivité augmente.</strong></p></div>
 <div class="def"><div class="t">Pourquoi la pente est si raide pour l'acide chlorhydrique</div>Avant l'équivalence, chaque ion H<sub>3</sub>O<sup>+</sup> (λ = 35,0 mS·m²·mol<sup>−1</sup>) est remplacé par un ion Na<sup>+</sup> (λ = 5,01). La perte nette vaut 30 par mole remplacée : σ chute fortement. Après, chaque ajout apporte Na<sup>+</sup> + HO<sup>−</sup>, soit 5,01 + 19,8 = 24,8 : σ remonte, un peu moins vite qu'elle n'était descendue. C'est exactement le V dissymétrique du schéma. Les ions H<sub>3</sub>O<sup>+</sup> et HO<sup>−</sup> se déplacent par relais de proton entre molécules d'eau — d'où leurs λ hors normes, vues au chapitre 2.</div>
 <div class="piege"><div class="t">Pourquoi ajouter 150 ou 200 mL d'eau au départ ?</div>Chaque ajout de titrant augmente aussi le volume, donc dilue tous les ions : les « droites » se courberaient. En noyant le bécher dans un grand volume d'eau, les quelques millilitres versés deviennent négligeables, et les segments restent droits. On n'a pas besoin de connaître ce volume d'eau précisément : il ne change pas la quantité de titré, seulement sa concentration.</div>
+<div class="isch" id="isch-conducto">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Suivi conductimétrique : ce que chaque ion apporte à σ</div>
+  <div class="isch-s">Choisis le titrage, verse le titrant au curseur (ou fais glisser le point) et regarde la barre des ions.</div>
+  <svg class="isch-svg" id="isch-conducto-svg" viewBox="0 0 340 262" role="img" aria-label="Conductivité en fonction du volume versé, avec les deux droites, et barre empilée des contributions de chaque ion">
+    <g id="isch-conducto-axes"></g>
+    <g id="isch-conducto-droites"></g>
+    <path id="isch-conducto-tout" fill="none" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="3 3" opacity=".7"/>
+    <path id="isch-conducto-trace" fill="none" stroke="var(--orange)" stroke-width="2.6" stroke-linejoin="round"/>
+    <circle id="isch-conducto-pt" r="6" fill="var(--orange)" stroke="var(--surface)" stroke-width="2"/>
+    <circle id="isch-conducto-poignee" class="isch-poignee" r="16" fill="transparent"/>
+    <text x="20" y="184" font-size="10.5" fill="currentColor">Contributions λ × [ion] au volume choisi (mS·m⁻¹)</text>
+    <g id="isch-conducto-barre"></g>
+    <g id="isch-conducto-leg"></g>
+  </svg>
+  <div class="isch-b" id="isch-conducto-modes" role="group" aria-label="Titrage">
+    <button type="button" class="isch-btn on" data-m="0">HCl par la soude</button>
+    <button type="button" class="isch-btn" data-m="1">Soude par HCl</button>
+    <button type="button" class="isch-btn" data-m="2">Ag⁺ par Cl⁻</button>
+    <button type="button" class="isch-btn" data-m="3">Cl⁻ par Ag⁺</button>
+  </div>
+  <div class="isch-b">
+    <button type="button" class="isch-btn" id="isch-conducto-dbtn" aria-pressed="false">Tracer les deux droites</button>
+  </div>
+  <div class="isch-c">
+    <label class="isch-r"><span>Volume de titrant versé <b id="isch-conducto-vv">V = 5,0 mL</b></span><input type="range" id="isch-conducto-v" min="0" max="20" step="0.1" value="5" aria-label="Volume de titrant versé en millilitres"></label>
+  </div>
+  <div class="isch-o">
+    <span>σ = <b id="isch-conducto-s">0</b> mS·m⁻¹</span>
+    <span id="isch-conducto-reac"></span>
+    <span id="isch-conducto-vel" hidden>V<sub>E</sub> lu = <b>10,0</b> mL</span>
+  </div>
+  <p class="isch-n" id="isch-conducto-msg"></p>
+  <p class="isch-p">20,0 mL de solution titrée à 1,0 × 10<sup>−2</sup> mol·L<sup>−1</sup>, noyés dans 200 mL d'eau, titrés par une solution à 2,0 × 10<sup>−2</sup> mol·L<sup>−1</sup> : V<sub>E</sub> = 10,0 mL. La dilution est prise en compte ; avec 200 mL d'eau, elle courbe à peine les droites. λ en mS·m²·mol<sup>−1</sup> : H<sub>3</sub>O<sup>+</sup> 35,0 · HO<sup>−</sup> 19,8 · Cl<sup>−</sup> 7,63 · NO<sub>3</sub><sup>−</sup> 7,14 · Ag<sup>+</sup> 6,19 · Na<sup>+</sup> 5,01 (valeurs de la fiche 7 et des exercices du chapitre).</p>
+  <ol class="isch-defis">
+    <li>Dans lequel des quatre titrages la droite d'avant l'équivalence est-elle presque horizontale ? Pourquoi ? <details><summary>Réponse</summary>« Cl<sup>−</sup> par Ag<sup>+</sup> » : chaque ion Cl<sup>−</sup> (7,63) qui précipite est remplacé par un ion NO<sub>3</sub><sup>−</sup> (7,14). La perte n'est que de 0,49 par mole : σ diminue à peine.</details></li>
+    <li>Compare « HCl par la soude » et « soude par HCl » : pourquoi les deux V ne sont-ils pas le même dessin retourné ? <details><summary>Réponse</summary>Dans le premier, H<sub>3</sub>O<sup>+</sup> (35,0) est remplacé par Na<sup>+</sup> (5,01) : −30 par mole, puis Na<sup>+</sup> + HO<sup>−</sup> s'ajoutent : +24,8. Dans le second, HO<sup>−</sup> (19,8) est remplacé par Cl<sup>−</sup> (7,63) : −12,2 seulement, puis H<sub>3</sub>O<sup>+</sup> + Cl<sup>−</sup> s'ajoutent : +42,6. Ce ne sont pas les mêmes ions qui disparaissent et qui s'accumulent.</details></li>
+    <li>Pour « Ag<sup>+</sup> par Cl<sup>−</sup> », le pH ne varie pas. Qu'est-ce qui permet quand même de repérer l'équivalence ? <details><summary>Réponse</summary>La rupture de pente de σ à 10,0 mL : avant, Ag<sup>+</sup> est remplacé par Na<sup>+</sup> (σ baisse un peu) ; après, Na<sup>+</sup> et Cl<sup>−</sup> s'accumulent (σ monte). C'est pour cela que la fiche 8 réserve la conductimétrie aux précipitations.</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var svg = document.getElementById("isch-conducto-svg"); if(!svg) return;
+  var $ = function(s){ return document.getElementById("isch-conducto-" + s); };
+  var NS = "http://www.w3.org/2000/svg";
+  var c0 = 1.0e-2, V0 = 20.0, Veau = 200, ct = 2.0e-2, VE = c0*V0/ct, VMAX = 20;
+  var ION = {
+    H:{n:"H₃O⁺", l:35.0, c:"var(--orange)"}, OH:{n:"HO⁻", l:19.8, c:"#4f8fd9"},
+    Na:{n:"Na⁺", l:5.01, c:"#9b8f84"}, Cl:{n:"Cl⁻", l:7.63, c:"#3fa65a"},
+    Ag:{n:"Ag⁺", l:6.19, c:"#6f7fb8"}, NO3:{n:"NO₃⁻", l:7.14, c:"#b07ad8"}
+  };
+  /* R : ion titré qui réagit ; St : son spectateur ; T : ion titrant qui réagit ; Sb : spectateur du titrant */
+  var MODES = [
+    {R:"H", St:"Cl", T:"OH", Sb:"Na", reac:"H₃O⁺ + HO⁻ → 2 H₂O", tt:"la soude"},
+    {R:"OH", St:"Na", T:"H", Sb:"Cl", reac:"HO⁻ + H₃O⁺ → 2 H₂O", tt:"l'acide chlorhydrique"},
+    {R:"Ag", St:"NO3", T:"Cl", Sb:"Na", reac:"Ag⁺ + Cl⁻ → AgCl(s)", tt:"la solution de chlorure de sodium"},
+    {R:"Cl", St:"Na", T:"Ag", Sb:"NO3", reac:"Cl⁻ + Ag⁺ → AgCl(s)", tt:"la solution de nitrate d'argent"}
+  ];
+  var mode = 0, droites = false;
+  var X0 = 42, X1 = 322, Y0 = 150, Y1 = 16, SMAX = 50;
+  function fr(x, n){ return x.toFixed(n).replace(".", ","); }
+  function fl(l){ return l < 10 ? fr(l, 2) : fr(l, 1); }
+  function el(tag, at, txt){ var e = document.createElementNS(NS, tag); for(var k in at) e.setAttribute(k, at[k]); if(txt != null) e.textContent = txt; return e; }
+  function vide(g){ while(g.firstChild) g.removeChild(g.firstChild); }
+  function px(v){ return X0 + v/VMAX*(X1 - X0); }
+  function py(s){ return Y0 - s/SMAX*(Y0 - Y1); }
+
+  /* contributions de chaque ion (mS·m⁻¹) pour un volume versé V (mL) */
+  function contrib(V){
+    var M = MODES[mode], n0 = c0*V0*1e-3, nB = ct*V*1e-3, Vt = (V0 + Veau + V)*1e-6, q = {};
+    q[M.R] = Math.max(0, n0 - nB); q[M.T] = Math.max(0, nB - n0); q[M.St] = n0; q[M.Sb] = nB;
+    var out = [], s = 0;
+    [M.R, M.St, M.T, M.Sb].forEach(function(k){ var v = ION[k].l*q[k]/Vt; out.push({k:k, v:v}); s += v; });
+    return {ions:out, s:s};
+  }
+  function sigma(V){ return contrib(V).s; }
+
+  function axes(){
+    var g = $("axes"); vide(g);
+    g.appendChild(el("line", {x1:X0, y1:Y0, x2:X1 + 4, y2:Y0, stroke:"currentColor", "stroke-width":1.3}));
+    g.appendChild(el("line", {x1:X0, y1:Y0, x2:X0, y2:Y1 - 4, stroke:"currentColor", "stroke-width":1.3}));
+    var pas = SMAX > 60 ? 20 : 10;
+    for(var s = 0; s <= SMAX + 1e-9; s += pas){
+      g.appendChild(el("line", {x1:X0 - 3, y1:py(s), x2:X0, y2:py(s), stroke:"currentColor"}));
+      g.appendChild(el("text", {x:X0 - 6, y:py(s) + 3.5, "font-size":10, "text-anchor":"end"}, String(s)));
+    }
+    for(var v = 0; v <= 20; v += 5){
+      g.appendChild(el("line", {x1:px(v), y1:Y0, x2:px(v), y2:Y0 + 3, stroke:"currentColor"}));
+      g.appendChild(el("text", {x:px(v), y:Y0 + 14, "font-size":10, "text-anchor":"middle"}, String(v)));
+    }
+    g.appendChild(el("text", {x:X0 + 5, y:Y1 - 2, "font-size":11, "font-weight":700}, "σ (mS·m⁻¹)"));
+    g.appendChild(el("text", {x:X1 + 4, y:Y0 - 6, "font-size":11, "text-anchor":"end"}, "V (mL)"));
+  }
+  function chemin(jusqu){
+    var d = "", n = Math.round(jusqu/0.1);
+    for(var i = 0; i <= n; i++){ var V = i*0.1; d += (i ? "L" : "M") + px(V).toFixed(1) + " " + py(sigma(V)).toFixed(1); }
+    return d;
+  }
+  function traceDroites(){
+    var g = $("droites"); vide(g); $("vel").hidden = !droites;
+    if(!droites) return;
+    var s0 = sigma(0), sE = sigma(VE), s20 = sigma(VMAX);
+    var a1 = (sE - s0)/VE, a2 = (s20 - sE)/(VMAX - VE);
+    var va = Math.min(VMAX, VE + 4), vb = Math.max(0, VE - 4);
+    if(a1 < 0 && s0 + a1*va < 0) va = -s0/a1;
+    if(a2 > 0 && sE + a2*(vb - VE) < 0) vb = VE - sE/a2;
+    g.appendChild(el("line", {x1:px(0), y1:py(s0), x2:px(va), y2:py(s0 + a1*va), stroke:"var(--ok)", "stroke-width":1.5, "stroke-dasharray":"5 3"}));
+    g.appendChild(el("line", {x1:px(vb), y1:py(sE + a2*(vb - VE)), x2:px(VMAX), y2:py(s20), stroke:"var(--ok)", "stroke-width":1.5, "stroke-dasharray":"5 3"}));
+    g.appendChild(el("line", {x1:px(VE), y1:py(sE), x2:px(VE), y2:Y0, stroke:"var(--ok)", "stroke-width":1.2, "stroke-dasharray":"2 3"}));
+    g.appendChild(el("circle", {cx:px(VE), cy:py(sE), r:4, fill:"var(--ok)"}));
+    g.appendChild(el("text", {x:px(VE) + 6, y:Y0 - 5, "font-size":10.5, "font-weight":700, fill:"var(--ok)"}, "VE"));
+  }
+  function barre(C){
+    var g = $("barre"), lg = $("leg"); vide(g); vide(lg);
+    var x = 20, W = 300, y = 192, h = 16;
+    g.appendChild(el("rect", {x:x, y:y, width:W, height:h, rx:4, fill:"var(--line)"}));
+    C.ions.forEach(function(it){
+      var w = it.v/SMAX*W; if(w <= 0.2) return;
+      g.appendChild(el("rect", {x:x.toFixed(1), y:y, width:w.toFixed(1), height:h, fill:ION[it.k].c}));
+      x += w;
+    });
+    C.ions.forEach(function(it, i){
+      var lx = 20 + (i % 2)*160, ly = 232 + Math.floor(i/2)*20;
+      lg.appendChild(el("rect", {x:lx, y:ly - 9, width:10, height:10, rx:2, fill:ION[it.k].c}));
+      lg.appendChild(el("text", {x:lx + 15, y:ly, "font-size":11}, ION[it.k].n + " : " + fr(it.v, 1)));
+    });
+  }
+  function maj(){
+    var V = parseFloat($("v").value), M = MODES[mode], C = contrib(V);
+    $("tout").setAttribute("d", chemin(VMAX));
+    $("trace").setAttribute("d", chemin(V));
+    var y = py(C.s);
+    $("pt").setAttribute("cx", px(V)); $("pt").setAttribute("cy", y);
+    $("poignee").setAttribute("cx", px(V)); $("poignee").setAttribute("cy", y);
+    traceDroites(); barre(C);
+    $("vv").textContent = "V = " + fr(V, 1) + " mL";
+    $("s").textContent = fr(C.s, 1);
+    $("reac").textContent = "Réaction support : " + M.reac;
+    var R = ION[M.R], T = ION[M.T], Sb = ION[M.Sb], St = ION[M.St];
+    var perte = R.l - Sb.l, gain = T.l + Sb.l, msg;
+    if(Math.abs(V - VE) < 0.05) msg = "Équivalence : il ne reste plus d'ions " + R.n + " et pas encore d'excès de " + T.n + ". C'est là que les deux droites se coupent : la pente change brusquement.";
+    else if(V < VE){
+      msg = "Avant l'équivalence, chaque ion " + R.n + " (λ = " + fl(R.l) + ") qui réagit est remplacé dans la solution par un ion " + Sb.n + " versé (λ = " + fl(Sb.l) + "). ";
+      if(perte > 3) msg += "La solution perd " + fr(perte, 1) + " par mole remplacée : σ diminue nettement.";
+      else if(perte > 0) msg += "La perte n'est que de " + fr(perte, 2) + " par mole : σ diminue à peine, la droite est presque horizontale.";
+      else msg += "Le remplaçant conduit mieux : σ augmente.";
+      msg += " Les ions " + St.n + " de départ sont spectateurs : leur quantité ne change pas.";
+    } else {
+      msg = "Après l'équivalence, il n'y a plus d'ions " + R.n + " : les ions " + T.n + " et " + Sb.n + " versés s'accumulent sans réagir, soit " + fl(T.l) + " + " + fl(Sb.l) + " = " + fr(gain, 1) + " par mole versée : σ augmente";
+      if(perte > 3) msg += (gain < perte ? ", un peu moins vite qu'elle n'avait baissé (" : ", plus vite qu'elle n'avait baissé (") + fr(gain, 1) + " contre " + fr(perte, 1) + " par mole).";
+      else msg += " nettement : la rupture de pente est franche.";
+    }
+    $("msg").textContent = msg;
+  }
+  function changeMode(m){
+    mode = m;
+    var mx = 0; for(var V = 0; V <= VMAX + 1e-9; V += 0.5) mx = Math.max(mx, sigma(V));
+    SMAX = Math.ceil(mx*1.1/10)*10;
+    axes();
+  }
+  var bs = $("modes").querySelectorAll("button");
+  for(var k = 0; k < bs.length; k++) bs[k].addEventListener("click", function(){
+    for(var j = 0; j < bs.length; j++) bs[j].classList.toggle("on", bs[j] === this);
+    changeMode(+this.getAttribute("data-m")); maj();
+  });
+  $("dbtn").addEventListener("click", function(){ droites = !droites; this.classList.toggle("on", droites); this.setAttribute("aria-pressed", droites ? "true" : "false"); maj(); });
+  $("v").addEventListener("input", maj);
+  var drag = false, pg = $("poignee");
+  function versV(ev){
+    var r = svg.getBoundingClientRect(), x = (ev.clientX - r.left)/r.width*340;
+    var V = Math.max(0, Math.min(VMAX, (x - X0)/(X1 - X0)*VMAX));
+    $("v").value = (Math.round(V*10)/10).toFixed(1); maj();
+  }
+  pg.addEventListener("pointerdown", function(ev){ drag = true; pg.setPointerCapture(ev.pointerId); ev.preventDefault(); });
+  pg.addEventListener("pointermove", function(ev){ if(drag) versV(ev); });
+  pg.addEventListener("pointerup", function(){ drag = false; });
+  pg.addEventListener("pointercancel", function(){ drag = false; });
+  changeMode(0); maj();
+})();
+</script>
+
 
 </div></details>
 <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="1.6"/><circle cx="14" cy="12" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>8 · Choisir la méthode de suivi<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
@@ -4730,6 +5722,156 @@ for i in range(0, 41):
 <div class="methode"><div class="t">Méthode : de la transition à la longueur d'onde</div><ol><li>Lire les deux niveaux sur le diagramme et calculer l'écart <span class="ch">|ΔE|</span> en eV.</li><li>Convertir en joules : multiplier par 1,60 × 10<sup>−19</sup>.</li><li>Calculer <span class="ch">λ = hc / |ΔE|</span>, en mètres, puis convertir en nm.</li><li>Situer λ : UV, visible ou IR. Contrôle rapide : λ (nm) ≈ 1 240 / |ΔE| (eV).</li></ol></div>
 <div class="exemple"><div class="t">La raie rouge de l'hydrogène (transition 3 → 2)</div><div class="eqc">|ΔE| = −1,51 − (−3,40) = 1,89 eV = 1,89 × 1,60 × 10<sup>−19</sup> = 3,02 × 10<sup>−19</sup> J</div><div class="eqc">λ = <span class="frac"><span>6,63 × 10<sup>−34</sup> × 3,00 × 10<sup>8</sup></span><span>3,02 × 10<sup>−19</sup></span></span> = 6,58 × 10<sup>−7</sup> m ≈ 656 nm</div>C'est la raie Hα, qui donne leur couleur rouge aux nébuleuses photographiées par les astronomes.</div>
 <div class="piege"><div class="t">Un atome ne prend pas « ce qu'il peut »</div>Un photon de 11 eV arrivant sur un atome d'hydrogène au repos n'est <strong>pas</strong> absorbé : aucun écart ne vaut 11 eV (1 → 2 vaut 10,2 eV, 1 → 3 vaut 12,1 eV). L'absorption est du tout ou rien. Seul un photon d'énergie supérieure à l'énergie d'ionisation (13,6 eV) peut être absorbé quelle que soit sa valeur : il arrache alors l'électron, et le surplus devient de l'énergie cinétique. C'est exactement l'idée de l'effet photoélectrique.</div>
+<div class="isch" id="isch-niveaux">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Les niveaux de l'hydrogène : à toi de faire sauter l'électron</div>
+  <div class="isch-s">Touche un niveau de départ, puis un niveau d'arrivée (ou utilise les boutons). Le photon émis ou absorbé s'affiche, et sa raie s'ajoute au spectre.</div>
+  <svg class="isch-svg" id="isch-niveaux-svg" viewBox="0 0 340 300" role="img" aria-label="Diagramme des niveaux d'énergie de l'atome d'hydrogène, de −13,6 eV à 0 eV, avec la transition choisie, le photon correspondant et le spectre des raies trouvées"></svg>
+  <div class="isch-c">
+    <div class="isch-r"><span>Niveau de départ</span></div>
+    <div class="isch-b" id="isch-niveaux-dep"></div>
+    <div class="isch-r"><span>Niveau d'arrivée</span></div>
+    <div class="isch-b" id="isch-niveaux-arr"></div>
+  </div>
+  <div class="isch-b" id="isch-niveaux-mode">
+    <button type="button" class="isch-btn on" data-m="em">Spectre d'émission</button>
+    <button type="button" class="isch-btn" data-m="ab">Spectre d'absorption</button>
+    <button type="button" class="isch-btn" data-m="raz">Effacer les raies</button>
+  </div>
+  <div class="isch-o">
+    <span>|ΔE| = <b id="isch-niveaux-de">1,89 eV</b></span>
+    <span>= <b id="isch-niveaux-dj">3,02 × 10<sup>−19</sup> J</b></span>
+    <span>λ = <b id="isch-niveaux-l">658 nm</b></span>
+    <span><b id="isch-niveaux-dom">visible (rouge)</b></span>
+  </div>
+  <p class="isch-n" id="isch-niveaux-msg"></p>
+  <p class="isch-p">Niveaux du cours (arrondis) ; h = 6,63 × 10<sup>−34</sup> J·s, c = 3,00 × 10<sup>8</sup> m·s<sup>−1</sup>. Avec ces arrondis, la raie 3 → 2 sort à 658 nm, au lieu des 656 nm mesurés. La bande colorée ne montre que le visible (380 à 780 nm) ; les raies UV et IR sont comptées à côté.</p>
+  <ol class="isch-defis">
+    <li>Trouve les trois raies visibles qui arrivent toutes sur le niveau 2. <details><summary>Réponse</summary>3 → 2 (658 nm, rouge), 4 → 2 (488 nm, bleu-vert), 5 → 2 (435 nm, violet). Toutes les transitions qui finissent en n = 1 donnent de l'UV.</details></li>
+    <li>Quelle transition correspond à un photon de 10,2 eV ? Est-il visible ? <details><summary>Réponse</summary>1 → 2 (absorption) ou 2 → 1 (émission) : 10,2 eV, λ ≈ 122 nm, ultraviolet, invisible.</details></li>
+    <li>Un photon de 11,0 eV arrive sur un atome dans l'état fondamental. Cherche une transition qui l'absorbe. <details><summary>Réponse</summary>Il n'y en a pas : depuis n = 1, les écarts valent 10,2 ; 12,1 ; 12,8 ; 13,1 eV, puis 13,6 eV pour l'ionisation. Le photon de 11,0 eV traverse le gaz sans être absorbé.</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var svg = document.getElementById('isch-niveaux-svg'); if(!svg) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var E = [-13.6, -3.40, -1.51, -0.85, -0.54, 0];           /* n = 1..5, puis ionisation */
+  var NOM = ['1', '2', '3', '4', '5', '∞'];
+  var h = 6.63e-34, c = 3.00e8, eV = 1.60e-19;
+  var dep = 2, arr = 1, prochain = 0, mode = 'em', trouvees = {};
+  /* échelle : axe interrompu sous n = 2 */
+  function y(e){ return e >= -3.5 ? 26 + (-e)*44 : 246; }
+  var XL = 78, XR = 232;
+  function virg(x, n){ return x.toFixed(n).replace('.', ','); }
+  function sci(x){ var p = Math.floor(Math.log10(x)), m = x/Math.pow(10, p); if(m >= 9.995){ m /= 10; p++; } return virg(m, 2) + ' × 10<sup>' + (p < 0 ? '−' + (-p) : p) + '</sup>'; }
+  function couleur(l){
+    var s = [[380,[122,60,255]],[440,[59,108,255]],[490,[34,176,200]],[530,[60,194,60]],[575,[242,210,43]],[610,[255,138,31]],[660,[240,60,30]],[780,[170,20,15]]];
+    if(l <= s[0][0]) return 'rgb(122,60,255)';
+    for(var i=0; i<s.length-1; i++) if(l <= s[i+1][0]){ var u = (l - s[i][0])/(s[i+1][0] - s[i][0]), a = s[i][1], b = s[i+1][1]; return 'rgb(' + a.map(function(v, j){ return Math.round(v + (b[j]-v)*u); }).join(',') + ')'; }
+    return 'rgb(170,20,15)';
+  }
+  function nomCouleur(l){ return l < 450 ? 'violet' : l < 495 ? 'bleu' : l < 520 ? 'bleu-vert' : l < 565 ? 'vert' : l < 590 ? 'jaune' : l < 625 ? 'orange' : 'rouge'; }
+  function domaine(l){ return l < 380 ? 'ultraviolet' : l <= 780 ? 'visible (' + nomCouleur(l) + ')' : 'infrarouge'; }
+
+  /* boutons */
+  function boutons(id, quoi){
+    var box = document.getElementById(id), s = '';
+    for(var i=0; i<6; i++) s += '<button type="button" class="isch-btn" data-i="' + i + '">' + (i < 5 ? 'n = ' + NOM[i] : 'ionisation') + '</button>';
+    box.innerHTML = s;
+    box.addEventListener('click', function(ev){ var b = ev.target.closest('button'); if(!b) return; var i = +b.getAttribute('data-i'); if(quoi === 'dep') dep = i; else arr = i; prochain = quoi === 'dep' ? 1 : 0; maj(); });
+  }
+  boutons('isch-niveaux-dep', 'dep'); boutons('isch-niveaux-arr', 'arr');
+  document.getElementById('isch-niveaux-mode').addEventListener('click', function(ev){
+    var b = ev.target.closest('button'); if(!b) return; var m = b.getAttribute('data-m');
+    if(m === 'raz'){ trouvees = {}; } else mode = m;
+    maj();
+  });
+
+  function maj(){
+    var s = '', i, msg = '';
+    /* axe */
+    s += '<line x1="40" y1="20" x2="40" y2="262" stroke="var(--muted)" stroke-width="1.2"/>';
+    s += '<path d="M36 26 L40 18 L44 26" fill="none" stroke="var(--muted)" stroke-width="1.2"/>';
+    s += '<text x="46" y="16" font-size="11" fill="var(--muted)">E (eV)</text>';
+    s += '<path d="M33 214 L47 208 M33 220 L47 214" stroke="var(--muted)" stroke-width="1.2"/>';
+    s += '<text x="290" y="226" font-size="10" fill="var(--muted)" text-anchor="middle">axe</text><text x="290" y="238" font-size="10" fill="var(--muted)" text-anchor="middle">interrompu</text>';
+    /* niveaux */
+    for(i=0; i<6; i++){
+      var yy = y(E[i]), sel = (i === dep || i === arr);
+      s += '<line x1="' + XL + '" y1="' + yy + '" x2="' + XR + '" y2="' + yy + '" stroke="' + (sel ? 'var(--orange)' : 'currentColor') + '" stroke-width="' + (sel ? 3 : 1.8) + '"' + (i === 5 ? ' stroke-dasharray="5 4"' : '') + '/>';
+      s += '<text x="' + (XL - 5) + '" y="' + (yy + 4) + '" font-size="11" text-anchor="end">' + (i === 5 ? '0' : virg(E[i], i ? 2 : 1).replace('-', '−')) + '</text>';
+      s += '<text x="' + (XR + 6) + '" y="' + (yy + 4) + '" font-size="11"' + (sel ? ' fill="var(--orange-deep)" font-weight="700"' : '') + '>' + (i < 5 ? 'n = ' + NOM[i] : 'ionisé') + '</text>';
+      s += '<rect class="isch-niveaux-hit" data-i="' + i + '" x="' + XL + '" y="' + (yy - 7) + '" width="' + (XR - XL + 40) + '" height="14" fill="transparent" style="cursor:pointer"/>';
+    }
+    s += '<text x="155" y="262" font-size="10.5" text-anchor="middle" fill="var(--muted)">état fondamental</text>';
+    /* transition */
+    var ok = dep !== arr, ion = false, recomb = false;
+    var dE = Math.abs(E[arr] - E[dep]), lam = 0;
+    if(dep === 5){ recomb = true; ok = false; }
+    if(ok){
+      var monte = arr > dep; ion = arr === 5;
+      lam = h*c/(dE*eV)*1e9;
+      var col = (lam >= 380 && lam <= 780) ? couleur(lam) : 'var(--muted)';
+      var x = 150, y1 = y(E[dep]), y2 = y(E[arr]);
+      s += '<line x1="' + x + '" y1="' + y1 + '" x2="' + x + '" y2="' + (y2 + (monte ? 7 : -7)) + '" stroke="var(--orange)" stroke-width="2.6"/>';
+      s += '<path d="M' + (x - 5) + ' ' + (y2 + (monte ? 9 : -9)) + ' L' + x + ' ' + y2 + ' L' + (x + 5) + ' ' + (y2 + (monte ? 9 : -9)) + '" fill="var(--orange)"/>';
+      /* photon ondulé : sort (émission) ou arrive (absorption) */
+      var ym = (y1 + y2)/2, d = '', k;
+      for(k=0; k<=30; k++){ var xx = 158 + k*3.2; d += (k ? 'L' : 'M') + xx.toFixed(1) + ' ' + (ym + 5*Math.sin(k*0.9)).toFixed(1); }
+      s += '<path d="' + d + '" fill="none" stroke="' + col + '" stroke-width="2.2"/>';
+      if(monte) s += '<path d="M164 ' + (ym - 5) + ' L157 ' + ym + ' L164 ' + (ym + 5) + '" fill="none" stroke="' + col + '" stroke-width="2"/>';
+      else s += '<path d="M249 ' + (ym - 5) + ' L256 ' + ym + ' L249 ' + (ym + 5) + '" fill="none" stroke="' + col + '" stroke-width="2"/>';
+      s += '<text x="206" y="' + (ym - 10) + '" font-size="11" font-weight="700" text-anchor="middle" fill="var(--orange-deep)">' + (ion ? '≥ ' : '') + virg(dE, 2) + ' eV</text>';
+      if(!ion){ var cle = Math.min(dep, arr) + '-' + Math.max(dep, arr); trouvees[cle] = lam; }
+    }
+    /* spectre : visible 380-780 nm */
+    var X0 = 40, X1 = 300, Y0 = 272, H = 18;
+    function xl(l){ return X0 + (l - 380)/(400)*(X1 - X0); }
+    if(mode === 'ab'){
+      for(i=0; i<26; i++){ var l = 380 + i*16; s += '<rect x="' + xl(l).toFixed(1) + '" y="' + Y0 + '" width="' + (16/400*(X1 - X0) + .6).toFixed(1) + '" height="' + H + '" fill="' + couleur(l + 8) + '"/>'; }
+    } else s += '<rect x="' + X0 + '" y="' + Y0 + '" width="' + (X1 - X0) + '" height="' + H + '" fill="#0b0b10"/>';
+    var nUV = 0, nIR = 0, cle2;
+    for(cle2 in trouvees){
+      var L = trouvees[cle2];
+      if(L < 380){ nUV++; continue; } if(L > 780){ nIR++; continue; }
+      s += '<rect x="' + (xl(L) - 1.2).toFixed(1) + '" y="' + Y0 + '" width="2.6" height="' + H + '" fill="' + (mode === 'ab' ? '#0b0b10' : couleur(L)) + '"/>';
+    }
+    s += '<text x="' + X0 + '" y="' + (Y0 - 3) + '" font-size="10" fill="var(--muted)">380 nm</text><text x="' + X1 + '" y="' + (Y0 - 3) + '" font-size="10" fill="var(--muted)" text-anchor="end">780 nm</text>';
+    s += '<text x="' + (X1 + 4) + '" y="' + (Y0 + 8) + '" font-size="10" fill="var(--muted)">UV : ' + nUV + '</text><text x="' + (X1 + 4) + '" y="' + (Y0 + 19) + '" font-size="10" fill="var(--muted)">IR : ' + nIR + '</text>';
+    svg.innerHTML = s;
+
+    /* lectures */
+    var o = function(id, t){ document.getElementById('isch-niveaux-' + id).innerHTML = t; };
+    if(ok){
+      o('de', virg(dE, 2) + ' eV' + (ion ? ' au moins' : '')); o('dj', sci(dE*eV) + ' J');
+      o('l', Math.round(lam) + ' nm' + (ion ? ' au plus' : '')); o('dom', domaine(lam));
+    } else { o('de', '—'); o('dj', '—'); o('l', '—'); o('dom', '—'); }
+    if(recomb) msg = "Le niveau « ionisé » correspond à un électron libre, arraché à l'atome. Ici, on part d'un atome : choisis un niveau de départ de n = 1 à n = 5.";
+    else if(!ok) msg = "Départ et arrivée sont le même niveau : rien ne change, aucun photon n'est échangé. Choisis un autre niveau d'arrivée.";
+    else if(ion) msg = "Ionisation : l'électron est arraché. Il faut un photon d'au moins " + virg(dE, 2) + " eV (λ ≤ " + Math.round(lam) + " nm). Au-delà, l'absorption n'est plus du tout ou rien : le surplus devient l'énergie cinétique de l'électron, comme dans l'effet photoélectrique.";
+    else if(arr < dep) msg = "Émission : l'atome descend de n = " + NOM[dep] + " à n = " + NOM[arr] + " et émet un photon qui emporte exactement l'écart, " + virg(dE, 2) + " eV. " + (lam < 380 ? "C'est de l'ultraviolet : toutes les chutes vers n = 1 sont dans l'UV." : lam > 780 ? "C'est de l'infrarouge, invisible : l'écart est trop petit." : arr === 1 ? "C'est une des raies visibles de l'hydrogène : elles arrivent toutes sur n = 2." : "C'est une raie visible.");
+    else msg = "Absorption : l'atome monte de n = " + NOM[dep] + " à n = " + NOM[arr] + " seulement si le photon apporte exactement " + virg(dE, 2) + " eV. Un photon un peu plus ou un peu moins énergétique traverse le gaz sans être absorbé. La raie d'absorption tombe à la même longueur d'onde que la raie d'émission de la transition inverse.";
+    o('msg', msg);
+    /* boutons */
+    [['dep', dep], ['arr', arr]].forEach(function(p){
+      var bs = document.getElementById('isch-niveaux-' + p[0]).children;
+      for(var j=0; j<bs.length; j++){ bs[j].classList.toggle('on', j === p[1]); bs[j].disabled = (p[0] === 'dep' && j === 5); }
+    });
+    var ms = document.getElementById('isch-niveaux-mode').children;
+    for(var j=0; j<2; j++) ms[j].classList.toggle('on', ms[j].getAttribute('data-m') === mode);
+  }
+  /* toucher un niveau : alternativement départ, puis arrivée */
+  svg.addEventListener('click', function(ev){
+    var t = ev.target.closest('.isch-niveaux-hit'); if(!t) return;
+    var i = +t.getAttribute('data-i');
+    if(prochain === 0){ if(i === 5) return; dep = i; prochain = 1; } else { arr = i; prochain = 0; }
+    maj();
+  });
+  maj();
+})();
+</script>
+
 <p><strong>Fluorescence.</strong> Certaines molécules absorbent un photon UV, perdent une petite partie de l'énergie sans rayonner (par chocs, sous forme thermique), puis émettent un photon <strong>moins énergétique</strong>, donc de plus grande longueur d'onde, souvent dans le visible. C'est le principe des surligneurs fluo, des agents azurants des lessives (exercice 15) et des tubes fluorescents.</p>
 </div></details>
 
@@ -4846,6 +5988,102 @@ function maj(){
 <div class="formule"><div class="t">Rendement d'une cellule photovoltaïque</div><div class="eqc">η = <span class="frac"><span>P<sub>él,max</sub></span><span>P<sub>reçue</sub></span></span> &nbsp;&nbsp; avec &nbsp;&nbsp; P<sub>reçue</sub> = E × S &nbsp;&nbsp; et &nbsp;&nbsp; P<sub>él</sub> = U × I</div><div class="fr">E : éclairement énergétique (ou irradiance), en W·m<sup>−2</sup>, mesuré au solarimètre · S : surface éclairée, en m² · U en V · I en A</div></div>
 <p><strong>Pourquoi « max » ?</strong> La puissance électrique fournie dépend de ce qu'on branche sur la cellule. Court-circuitée (U = 0), elle débite son courant maximal mais aucune puissance. À vide (I = 0), elle a sa tension maximale mais ne fournit toujours rien. Entre les deux, le produit U × I passe par un <strong>maximum</strong> : le rendement se calcule en ce point.</p>
 <div class="fig"><svg viewBox="0 0 440 270" role="img" aria-label="Caractéristique d'une cellule photovoltaïque et puissance électrique fournie"><line x1="56" y1="226" x2="408" y2="226" stroke="currentColor" stroke-width="1.6"/><line x1="56" y1="226" x2="56" y2="18" stroke="currentColor" stroke-width="1.6"/><line x1="400" y1="226" x2="400" y2="18" stroke="var(--orange)" stroke-width="1.2"/><g fill="currentColor" font-family="sans-serif" font-size="10" text-anchor="middle"><text x="56.0" y="240">0</text><text x="113.3" y="240">1</text><text x="170.7" y="240">2</text><text x="228.0" y="240">3</text><text x="285.3" y="240">4</text><text x="342.7" y="240">5</text><text x="400.0" y="240">6</text></g><g fill="#4f8fd9" font-family="sans-serif" font-size="10" text-anchor="end"><text x="51" y="172.4">40</text><text x="51" y="115.2">80</text><text x="51" y="58.1">120</text></g><g fill="var(--orange)" font-family="sans-serif" font-size="10"><text x="405" y="193.8">100</text><text x="405" y="158.1">200</text><text x="405" y="122.4">300</text><text x="405" y="86.6">400</text><text x="405" y="50.9">500</text></g><text x="228" y="258" fill="currentColor" font-family="sans-serif" font-size="10.5" text-anchor="middle">tension U (V)</text><text x="52" y="12" fill="#4f8fd9" font-family="sans-serif" font-size="10.5" font-weight="bold">I (mA)</text><text x="404" y="12" fill="var(--orange)" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="end">P (mW)</text><polyline class="ci" points="56.0,54.6 84.7,54.9 113.3,55.3 142.0,55.9 170.7,56.6 199.3,57.6 228.0,59.1 256.7,61.7 285.3,66.7 302.5,73.1 314.0,81.0 325.5,94.6 336.9,114.6 348.4,139.6 359.9,167.4 371.3,193.9 382.8,214.6 391.4,226.0" fill="none" stroke="#4f8fd9" stroke-width="2" stroke-linejoin="round"/><polyline class="cp" points="56.0,226.0 84.7,204.6 113.3,183.3 142.0,162.2 170.7,141.3 199.3,120.7 228.0,100.9 256.7,82.2 285.3,66.7 302.5,61.7 314.0,62.9 325.5,71.6 336.9,89.5 348.4,115.8 359.9,148.4 371.3,181.8 382.8,209.7 391.4,226.0" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linejoin="round"/><line class="pmx" x1="302.5" y1="61.7" x2="400" y2="61.7" stroke="var(--orange)" stroke-width="1.2" stroke-dasharray="3 3"/><line class="pmu" x1="302.5" y1="61.7" x2="302.5" y2="226" stroke="var(--orange)" stroke-width="1.2" stroke-dasharray="3 3"/><circle class="pm" cx="302.5" cy="61.7" r="5" fill="none" stroke="var(--orange)" stroke-width="2"/><text class="pml" x="294.5" y="51.7" fill="var(--orange)" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="end">P<tspan font-size="8" dy="2">max</tspan><tspan dy="-2"> ≈ 460 mW</tspan></text><text class="pmul" x="306.5" y="220" fill="var(--orange)" font-family="sans-serif" font-size="9.5">4,3 V</text><text x="90.4" y="47.6" fill="#4f8fd9" font-family="sans-serif" font-size="9.5">I = f(U)</text><text x="182.1" y="114.9" fill="var(--orange)" font-family="sans-serif" font-size="9.5">P = U × I</text></svg><div class="cap">Allure typique : la cellule débite un courant presque constant tant que la tension reste faible, puis le courant chute. Entre les deux, le produit U × I passe par un maximum : c'est le point de fonctionnement à viser.</div></div>
+<div class="isch" id="isch-pv">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Où la cellule du TP 6 donne-t-elle le plus de puissance ?</div>
+  <div class="isch-s">Déplace le point de fonctionnement sur la caractéristique (curseur, ou fais glisser le point). L'aire du rectangle orange, c'est P = U × I.</div>
+  <svg class="isch-svg" id="isch-pv-svg" viewBox="0 0 340 300" role="img" aria-label="Caractéristique courant-tension de la cellule photovoltaïque du TP 6, avec le rectangle U fois I sous le point de fonctionnement, et la courbe de puissance en fonction de la tension"></svg>
+  <div class="isch-c">
+    <label class="isch-r"><span>Tension aux bornes de la cellule <b id="isch-pv-uv">2,00 V</b></span><input type="range" id="isch-pv-u" min="0" max="5.85" step="0.05" value="2" aria-label="Tension aux bornes de la cellule, en volts"></label>
+  </div>
+  <div class="isch-o">
+    <span>U = <b id="isch-pv-ou">2,00 V</b></span>
+    <span>I = <b id="isch-pv-oi">118,6 mA</b></span>
+    <span>P = <b id="isch-pv-op">237 mW</b></span>
+    <span>R = U / I = <b id="isch-pv-or">17 Ω</b></span>
+    <span>η = <b id="isch-pv-oe">5,9 %</b></span>
+  </div>
+  <p class="isch-n" id="isch-pv-msg"></p>
+  <p class="isch-p">Mesures du tableur du TP 6 (cellule de 10 cm × 10 cm sous E = 400 W·m<sup>−2</sup>, donc P<sub>reçue</sub> = E × S = 4,0 W) ; entre deux mesures, la courbe est tracée en ligne droite.</p>
+  <ol class="isch-defis">
+    <li>Trouve le point de puissance maximale. Que vaut le rendement ? <details><summary>Réponse</summary>Vers U = 4,3 V et I = 107 mA : P<sub>max</sub> ≈ 460 mW = 0,46 W, donc η = 0,46 / 4,0 ≈ 12 %.</details></li>
+    <li>Quelle résistance faut-il brancher sur la cellule pour qu'elle travaille à ce point ? <details><summary>Réponse</summary>R = U / I = 4,3 / 0,107 ≈ 40 Ω. Avec une résistance bien plus petite, on se rapproche du court-circuit ; bien plus grande, du circuit ouvert.</details></li>
+    <li>À 0,5 V et à 5,7 V, la puissance est faible. Pour une raison différente dans chaque cas : laquelle ? <details><summary>Réponse</summary>À 0,5 V, le courant est presque maximal mais la tension est trop petite ; à 5,7 V, la tension est presque maximale mais le courant s'effondre (8 mA). Le produit U × I est faible dans les deux cas.</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var svg = document.getElementById('isch-pv-svg'); if(!svg) return;
+  var r = document.getElementById('isch-pv-u');
+  /* mesures du TP 6 : U (V), I (mA) */
+  var M = [[0,120],[0.5,119.8],[1.0,119.5],[1.5,119.1],[2.0,118.6],[2.5,117.9],[3.0,116.8],[3.5,115],[4.0,111.5],[4.3,107],[4.5,101.5],[4.7,92],[4.9,78],[5.1,60.5],[5.3,41],[5.5,22.5],[5.7,8],[5.85,0]];
+  var PREC = 4.0, UM = 4.3, PM = 4.3*107;
+  function I(u){ for(var i=0; i<M.length-1; i++) if(u <= M[i+1][0]){ var a = M[i], b = M[i+1], t = (u - a[0])/(b[0] - a[0]); return a[1] + (b[1] - a[1])*t; } return 0; }
+  function virg(x, n){ return x.toFixed(n).replace('.', ','); }
+  /* repères : graphique I(U) en haut, P(U) en bas */
+  var GX = 46, GW = 270, U0 = 6.0;
+  var A = {y0: 128, h: 104, max: 130}, B = {y0: 268, h: 96, max: 500};
+  function gx(u){ return GX + u/U0*GW; }
+  function gy(G, v){ return G.y0 - v/G.max*G.h; }
+  function axes(G, pas, lab, unite){
+    var s = '<line x1="' + GX + '" y1="' + G.y0 + '" x2="' + (GX + GW + 6) + '" y2="' + G.y0 + '" stroke="var(--muted)"/>';
+    s += '<line x1="' + GX + '" y1="' + G.y0 + '" x2="' + GX + '" y2="' + (G.y0 - G.h - 8) + '" stroke="var(--muted)"/>';
+    for(var v = pas; v <= G.max; v += pas){ var yy = gy(G, v); s += '<line x1="' + (GX - 3) + '" y1="' + yy.toFixed(1) + '" x2="' + (GX + GW) + '" y2="' + yy.toFixed(1) + '" stroke="var(--line)" stroke-width=".8"/><text x="' + (GX - 5) + '" y="' + (yy + 3.5).toFixed(1) + '" font-size="10" text-anchor="end" fill="var(--muted)">' + v + '</text>'; }
+    for(var u = 1; u <= 6; u++) s += '<line x1="' + gx(u).toFixed(1) + '" y1="' + G.y0 + '" x2="' + gx(u).toFixed(1) + '" y2="' + (G.y0 + 3) + '" stroke="var(--muted)"/><text x="' + gx(u).toFixed(1) + '" y="' + (G.y0 + 13) + '" font-size="10" text-anchor="middle" fill="var(--muted)">' + u + '</text>';
+    s += '<text x="' + (GX + 4) + '" y="' + (G.y0 - G.h - 10) + '" font-size="11" font-weight="700">' + lab + ' <tspan font-weight="400" fill="var(--muted)">(' + unite + ')</tspan></text>';
+    return s;
+  }
+  function courbe(f, G){ var d = '', k; for(k=0; k<=117; k++){ var u = Math.min(5.85, k*0.05); d += (k ? 'L' : 'M') + gx(u).toFixed(1) + ' ' + gy(G, f(u)).toFixed(1); } return d; }
+  function maj(){
+    var u = parseFloat(r.value), i = I(u), p = u*i;   /* p en mW */
+    var s = '';
+    s += axes(A, 30, 'I', 'mA');
+    /* rectangle U × I */
+    s += '<rect x="' + GX + '" y="' + gy(A, i).toFixed(1) + '" width="' + (gx(u) - GX).toFixed(1) + '" height="' + (A.y0 - gy(A, i)).toFixed(1) + '" fill="var(--orange)" fill-opacity=".28" stroke="var(--orange)" stroke-width="1"/>';
+    s += '<path d="' + courbe(I, A) + '" fill="none" stroke="currentColor" stroke-width="2"/>';
+    M.forEach(function(m){ s += '<circle cx="' + gx(m[0]).toFixed(1) + '" cy="' + gy(A, m[1]).toFixed(1) + '" r="1.8" fill="var(--muted)"/>'; });
+    if(u > 0.6 && i > 15) s += '<text x="' + ((GX + gx(u))/2).toFixed(1) + '" y="' + ((A.y0 + gy(A, i))/2 + 4).toFixed(1) + '" font-size="11" font-weight="700" text-anchor="middle" fill="var(--orange-deep)">P = U × I</text>';
+    s += '<text x="' + (GX + GW) + '" y="' + (A.y0 + 25) + '" font-size="10.5" text-anchor="end" fill="var(--muted)">U (V)</text>';
+    s += '<circle class="isch-poignee" id="isch-pv-pt" cx="' + gx(u).toFixed(1) + '" cy="' + gy(A, i).toFixed(1) + '" r="8" fill="var(--orange)" stroke="var(--surface)" stroke-width="2"/>';
+    /* P(U) */
+    s += axes(B, 100, 'P = U × I', 'mW');
+    s += '<line x1="' + gx(UM).toFixed(1) + '" y1="' + gy(B, PM).toFixed(1) + '" x2="' + gx(UM).toFixed(1) + '" y2="' + B.y0 + '" stroke="var(--ok)" stroke-dasharray="3 3"/>';
+    s += '<path d="' + courbe(function(x){ return x*I(x); }, B) + '" fill="none" stroke="var(--orange)" stroke-width="2"/>';
+    s += '<text x="' + (gx(UM) - 6).toFixed(1) + '" y="' + (gy(B, PM) - 6).toFixed(1) + '" font-size="10.5" text-anchor="end" fill="var(--ok)" font-weight="700">P<tspan font-size="8" dy="2">max</tspan></text>';
+    s += '<line x1="' + gx(u).toFixed(1) + '" y1="' + gy(A, i).toFixed(1) + '" x2="' + gx(u).toFixed(1) + '" y2="' + gy(B, p).toFixed(1) + '" stroke="var(--orange)" stroke-dasharray="2 3" opacity=".7"/>';
+    s += '<circle cx="' + gx(u).toFixed(1) + '" cy="' + gy(B, p).toFixed(1) + '" r="5.5" fill="var(--orange)"/>';
+    s += '<text x="' + (GX + GW) + '" y="' + (B.y0 + 25) + '" font-size="10.5" text-anchor="end" fill="var(--muted)">U (V)</text>';
+    svg.setAttribute('viewBox', '0 0 340 296');
+    svg.innerHTML = s;
+    var R = i > 0 ? u/(i*1e-3) : Infinity;
+    var o = function(id, t){ document.getElementById('isch-pv-' + id).innerHTML = t; };
+    o('uv', virg(u, 2) + ' V'); o('ou', virg(u, 2) + ' V'); o('oi', virg(i, 1) + ' mA'); o('op', Math.round(p) + ' mW');
+    o('or', R === Infinity ? '∞' : (R < 10 ? virg(R, 1) : Math.round(R)) + ' Ω'); o('oe', virg(p*1e-3/PREC*100, 1) + ' %');
+    var msg;
+    if(u < 0.05) msg = "Court-circuit (R = 0) : la cellule débite son courant maximal, 120 mA, mais sous une tension nulle. P = U × I = 0 : le rectangle est aplati, la cellule ne fournit aucune puissance.";
+    else if(i < 0.5) msg = "Circuit ouvert (aucun courant) : la tension est maximale, 5,85 V, mais I = 0. Le rectangle n'a plus de hauteur : P = 0.";
+    else if(p > 0.985*PM) msg = "Point de puissance maximale : le rectangle U × I est le plus grand possible, P<sub>max</sub> ≈ 460 mW. C'est en ce point qu'on calcule le rendement : η = 0,46 / 4,0 ≈ 12 %.";
+    else if(u < UM) msg = "Le courant est presque constant : en augmentant U, on agrandit le rectangle en largeur sans presque rien perdre en hauteur. P augmente encore : continue vers la droite.";
+    else msg = "Après le maximum, le courant chute vite : le rectangle perd plus en hauteur qu'il ne gagne en largeur, P diminue. Reviens vers la gauche.";
+    o('msg', msg);
+  }
+  r.addEventListener('input', maj);
+  /* glisser le point */
+  var tient = false;
+  function versU(ev){
+    var pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
+    var q = pt.matrixTransform(svg.getScreenCTM().inverse());
+    var u = Math.max(0, Math.min(5.85, (q.x - GX)/GW*U0));
+    r.value = (Math.round(u/0.05)*0.05).toFixed(2); maj();
+  }
+  svg.addEventListener('pointerdown', function(ev){ if(ev.target.id !== 'isch-pv-pt') return; tient = true; svg.setPointerCapture(ev.pointerId); ev.preventDefault(); });
+  svg.addEventListener('pointermove', function(ev){ if(tient) versU(ev); });
+  svg.addEventListener('pointerup', function(){ tient = false; });
+  svg.addEventListener('pointercancel', function(){ tient = false; });
+  maj();
+})();
+</script>
+
 <div class="methode"><div class="t">Méthode : déterminer un rendement (TP 6, exercices 23 et 26)</div><ol><li>Mesurer l'éclairement E au solarimètre, placé comme la cellule.</li><li>Faire varier la résistance de charge et relever des couples (U ; I).</li><li>Calculer P = U × I pour chaque couple — <strong>I en ampères</strong> — et tracer P = f(U).</li><li>Lire P<sub>max</sub> au sommet de la courbe.</li><li>Calculer P<sub>reçue</sub> = E × S, avec S en m², puis η = P<sub>max</sub> / P<sub>reçue</sub>, de préférence en pourcentage.</li></ol></div>
 <div class="exemple"><div class="t">Le panneau de l'exercice corrigé du manuel</div>Panneau de 1,520 m × 1,475 m, soit S = 2,24 m², sous E = 1 000 W·m<sup>−2</sup> : P<sub>reçue</sub> = 2,2 × 10<sup>3</sup> W. On lit P<sub>max</sub> = 270 W, d'où η = 270 / 2,2 × 10<sup>3</sup> ≈ 12 %.</div>
 <p><strong>Ordres de grandeur.</strong> Les panneaux du commerce ont un rendement de <strong>15 à 22 %</strong> (le document du TP 6 donne 15 % en moyenne ; le manuel, 20 %). C'est faible devant un barrage hydroélectrique (environ 80 %), et du même ordre qu'une centrale nucléaire ou un moteur thermique (environ 30 %). Mais la comparaison doit être nuancée : la ressource solaire est <strong>gratuite et renouvelable</strong>, il n'y a ni combustible ni déchet en fonctionnement. En contrepartie, elle est <strong>intermittente</strong> (nuit, nuages), ce qui impose un stockage ou un autre moyen de production, et la cellule fournit un courant <strong>continu</strong>, qu'un onduleur doit convertir pour le réseau.</p>
@@ -5420,6 +6658,145 @@ function maj(){
 <div class="fig"><svg viewBox="0 0 440 200" role="img" aria-label="Construction de l'image A′B′ d'un objet AB par une lentille convergente avec les trois rayons particuliers"><line x1="6" y1="105" x2="434" y2="105" stroke="currentColor" stroke-width="1" stroke-dasharray="6 4" opacity=".55"/><g stroke="currentColor" stroke-width="1.8" fill="none"><line x1="220" y1="35" x2="220" y2="175"/><path d="M215 42 L220 35 L225 42 M215 168 L220 175 L225 168"/></g><text x="220.0" y="29.0" font-family="sans-serif" font-size="10.5" fill="currentColor" text-anchor="middle" font-weight="bold">L</text><line x1="150.0" y1="101" x2="150.0" y2="109" stroke="currentColor" stroke-width="1.6"/><text x="150.0" y="120.0" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle">F</text><line x1="290.0" y1="101" x2="290.0" y2="109" stroke="currentColor" stroke-width="1.6"/><text x="290.0" y="120.0" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle">F′</text><text x="229.0" y="120.0" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle">O</text><path d="M85.0 67.0 L220.0 67.0 L385.4 156.8" fill="none" stroke="var(--orange)" stroke-width="1.4" opacity="1" stroke-linejoin="round"/><path d="M145.5 71.0 L152.5 67.0 L145.5 63.0" fill="none" stroke="var(--orange)" stroke-width="1.4"/><path d="M294.6 112.1 L302.7 111.9 L298.4 105.0" fill="none" stroke="var(--orange)" stroke-width="1.4"/><path d="M85.0 67.0 L385.4 151.6" fill="none" stroke="#2f9e6a" stroke-width="1.4" opacity="1" stroke-linejoin="round"/><path d="M227.4 111.2 L235.2 109.3 L229.5 103.5" fill="none" stroke="#2f9e6a" stroke-width="1.4"/><path d="M85.0 67.0 L220.0 145.9 L385.4 145.9" fill="none" stroke="#3b6cff" stroke-width="1.4" opacity="1" stroke-linejoin="round"/><path d="M144.4 106.4 L152.5 106.5 L148.5 99.5" fill="none" stroke="#3b6cff" stroke-width="1.4"/><path d="M295.7 149.9 L302.7 145.9 L295.7 141.9" fill="none" stroke="#3b6cff" stroke-width="1.4"/><line x1="85.0" y1="105" x2="85.0" y2="67.0" stroke="currentColor" stroke-width="2.2"/><path d="M81.0 73.0 L85.0 67.0 L89.0 73.0" fill="none" stroke="currentColor" stroke-width="2.2"/><text x="85.0" y="119.0" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle">A</text><text x="94.0" y="63.0" font-family="sans-serif" font-size="10" fill="currentColor" text-anchor="middle">B</text><line x1="365.4" y1="105" x2="365.4" y2="145.9" stroke="var(--orange)" stroke-width="2.2"/><path d="M361.4 139.9 L365.4 145.9 L369.4 139.9" fill="none" stroke="var(--orange)" stroke-width="2.2"/><text x="365.4" y="98.0" font-family="sans-serif" font-size="10" fill="var(--orange)" text-anchor="middle">A′</text><text x="374.4" y="158.9" font-family="sans-serif" font-size="10" fill="var(--orange)" text-anchor="middle">B′</text><text x="12.0" y="20.0" font-family="sans-serif" font-size="9.5" fill="var(--orange)" text-anchor="start">① parallèle à l'axe → ressort par F′</text><text x="12.0" y="34.0" font-family="sans-serif" font-size="9.5" fill="#2f9e6a" text-anchor="start">② par le centre O → non dévié</text><text x="12.0" y="48.0" font-family="sans-serif" font-size="9.5" fill="#3b6cff" text-anchor="start">③ par F → ressort parallèle à l'axe</text></svg><div class="cap">Les trois rayons particuliers. Deux suffisent : B′ est à leur intersection, et A′ sur l'axe, à la verticale de B′. Ici, l'objet est au-delà de F : l'image est réelle et renversée.</div></div>
 
 <p>Si l'objet AB est perpendiculaire à l'axe avec A sur l'axe, son image A′B′ l'est aussi : A′ est sur l'axe, à la verticale de B′. Quand l'image se forme <strong>après</strong> la lentille, à l'intersection de vrais rayons, elle est <strong>réelle</strong> : on peut la recueillir sur un écran. C'est ce qu'on fera au TP 7 avec l'image intermédiaire.</p>
+<div class="isch" id="isch-lentille">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Déplace l'objet : l'image se construit</div>
+  <div class="isch-s">Fais glisser l'objet AB le long de l'axe (ou utilise les curseurs) et regarde ce que deviennent les trois rayons particuliers et l'image.</div>
+  <svg class="isch-svg" viewBox="0 0 340 200" role="img" aria-label="Lentille convergente, objet AB réglable, trois rayons particuliers et image A′B′ construite en direct">
+    <g id="isch-lentille-fond"></g>
+    <g id="isch-lentille-rayons"></g>
+    <g id="isch-lentille-objets"></g>
+    <g id="isch-lentille-h" class="isch-poignee" transform="translate(116 0)"><rect x="-17" y="122" width="34" height="20" rx="10" fill="var(--orange)" fill-opacity=".16" stroke="var(--orange)" stroke-width="1.4"/><path d="M-4 128 l-6 4 6 4 M4 128 l6 4 -6 4" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linejoin="round"/></g>
+  </svg>
+  <div class="isch-c">
+    <label class="isch-r"><span><span>Position de l'objet <span class="al">OA</span></span> <b id="isch-lentille-av">−12,0 cm</b></span><input type="range" id="isch-lentille-a" min="-28" max="-1" step="0.5" value="-12" aria-label="Position de l'objet, en centimètres"></label>
+    <label class="isch-r"><span><span>Distance focale f′</span> <b id="isch-lentille-fv">5,0 cm</b></span><input type="range" id="isch-lentille-f" min="3" max="8" step="0.5" value="5" aria-label="Distance focale de la lentille, en centimètres"></label>
+  </div>
+  <div class="isch-o">
+    <span><i class="al" style="font-style:normal">OA′</i> = <b id="isch-lentille-ip">+8,6 cm</b></span>
+    <span>γ = <b id="isch-lentille-g">−0,71</b></span>
+    <span>image <b id="isch-lentille-nat">réelle, renversée</b></span>
+  </div>
+  <p class="isch-n" id="isch-lentille-msg"></p>
+  <p class="isch-p">Objet de 4,0 cm. Positions calculées avec la relation de conjugaison 1/<span class="al">OA′</span> − 1/<span class="al">OA</span> = 1/f′ ; échelle du dessin : 1 cm ↔ 7 unités.</p>
+  <ol class="isch-defis">
+    <li>Trouve la position de l'objet qui donne une image de même taille que lui. <details><summary>Réponse</summary>À deux fois la distance focale : <span class="al">OA</span> = −2f′ (−10 cm pour f′ = 5,0 cm). L'image est alors à +2f′, renversée, et γ = −1.</details></li>
+    <li>Où placer l'objet pour que les rayons ressortent parallèles entre eux ? <details><summary>Réponse</summary>Dans le plan focal objet : <span class="al">OA</span> = −f′. L'image est rejetée à l'infini. C'est le rôle de l'oculaire de la lunette, et de la lentille L<sub>0</sub> au TP 7.</details></li>
+    <li>Objet à −28 cm : augmente f′. Que fait l'image ? <details><summary>Réponse</summary>Elle s'éloigne de la lentille et grandit. Pour un objet très lointain, l'image est presque dans le plan focal et sa taille vaut f′ × α : plus la focale est longue, plus l'image est grande. C'est pourquoi l'objectif d'une lunette a une grande focale.</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var svg = document.querySelector('#isch-lentille svg'); if(!svg) return;
+  var ra = document.getElementById('isch-lentille-a'), rf = document.getElementById('isch-lentille-f');
+  var poi = document.getElementById('isch-lentille-h'), gF = document.getElementById('isch-lentille-fond'), gR = document.getElementById('isch-lentille-rayons'), gO = document.getElementById('isch-lentille-objets');
+  var X0 = 200, Y0 = 100, S = 7, H = 4, XG = 2, XD = 338, DEMI = 10;
+  function X(x){ return (X0 + x*S).toFixed(1); }
+  function Y(y){ return (Y0 - y*S).toFixed(1); }
+  function v(x, n){ return x.toFixed(n).replace('.', ','); }
+  function sg(x, n){ return (x > 0 ? '+' : (x < 0 ? '−' : '')) + v(Math.abs(x), n); }
+  function seg(x1, y1, x2, y2, col, tir, w){ return '<line x1="' + X(x1) + '" y1="' + Y(y1) + '" x2="' + X(x2) + '" y2="' + Y(y2) + '" stroke="' + col + '" stroke-width="' + (w || 1.6) + '"' + (tir ? ' stroke-dasharray="4 3"' : '') + ' stroke-linecap="round"/>'; }
+  function fleche(x, y, dx, dy, col){
+    var n = Math.sqrt(dx*dx + dy*dy) || 1, ux = dx/n, uy = -dy/n, px = X0 + x*S, py = Y0 - y*S;
+    return '<path d="M' + (px - 7*ux - 4*uy).toFixed(1) + ' ' + (py - 7*uy + 4*ux).toFixed(1) + ' L' + px.toFixed(1) + ' ' + py.toFixed(1) + ' L' + (px - 7*ux + 4*uy).toFixed(1) + ' ' + (py - 7*uy - 4*ux).toFixed(1) + '" fill="none" stroke="' + col + '" stroke-width="1.6"/>';
+  }
+  function txt(x, y, t, col, ancre, taille){ return '<text x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" font-size="' + (taille || 12) + '" text-anchor="' + (ancre || 'middle') + '"' + (col ? ' fill="' + col + '"' : '') + '>' + t + '</text>'; }
+  function vecteur(x, h, col, tir, nomA, nomB){
+    var s = seg(x, 0, x, h, col, tir, 2.4), d = h > 0 ? 1 : -1;
+    s += '<path d="M' + (X0 + x*S - 4).toFixed(1) + ' ' + (Y0 - h*S + 6*d).toFixed(1) + ' L' + X(x) + ' ' + Y(h) + ' L' + (X0 + x*S + 4).toFixed(1) + ' ' + (Y0 - h*S + 6*d).toFixed(1) + '" fill="none" stroke="' + col + '" stroke-width="2.2"/>';
+    s += txt(X0 + x*S, Y0 + (h > 0 ? 15 : -7), nomA, col);
+    s += txt(X0 + x*S + 10, Y0 - h*S + (h > 0 ? -4 : 13), nomB, col);
+    return s;
+  }
+  /* point d'une droite (x1,y1)-(x2,y2) prolongée jusqu'à l'abscisse x */
+  function surDroite(x1, y1, x2, y2, x){ return y1 + (y2 - y1)*(x - x1)/(x2 - x1); }
+  var xmin = (XG - X0)/S, xmax = (XD - X0)/S;
+  var OR = 'var(--orange)', VERT = 'var(--ok)', BLEU = '#4f8fd9', ENCRE = 'currentColor';
+
+  function maj(){
+    var a = parseFloat(ra.value), f = parseFloat(rf.value);
+    document.getElementById('isch-lentille-av').textContent = '−' + v(-a, 1) + ' cm';
+    document.getElementById('isch-lentille-fv').textContent = v(f, 1) + ' cm';
+    /* fond : axe, lentille, foyers */
+    var s = '<line x1="' + XG + '" y1="' + Y0 + '" x2="' + XD + '" y2="' + Y0 + '" stroke="currentColor" stroke-width="1" stroke-dasharray="6 4" opacity=".5"/>';
+    s += '<g stroke="currentColor" stroke-width="2" fill="none"><line x1="' + X0 + '" y1="' + Y(DEMI) + '" x2="' + X0 + '" y2="' + Y(-DEMI) + '"/>';
+    s += '<path d="M' + (X0 - 5) + ' ' + (+Y(DEMI) + 7) + ' L' + X0 + ' ' + Y(DEMI) + ' L' + (X0 + 5) + ' ' + (+Y(DEMI) + 7) + ' M' + (X0 - 5) + ' ' + (+Y(-DEMI) - 7) + ' L' + X0 + ' ' + Y(-DEMI) + ' L' + (X0 + 5) + ' ' + (+Y(-DEMI) - 7) + '"/></g>';
+    s += txt(X0 + 9, Y0 + 15, 'O', null, 'start');
+    [[-f, 'F'], [f, 'F′']].forEach(function(p){ s += '<line x1="' + X(p[0]) + '" y1="' + (Y0 - 4) + '" x2="' + X(p[0]) + '" y2="' + (Y0 + 4) + '" stroke="currentColor" stroke-width="1.6"/>' + txt(X0 + p[0]*S, Y0 + 16, p[1]); });
+    gF.innerHTML = s;
+
+    /* image */
+    var inf = Math.abs(a + f) < 1e-6, ip = inf ? Infinity : f*a/(a + f), g = inf ? Infinity : ip/a, hi = g*H;
+    var r = '';
+    /* rayon 1 : parallèle à l'axe, puis par F′ */
+    r += seg(a, H, 0, H, OR) + fleche(a/2, H, 1, 0, OR);
+    var y1 = surDroite(0, H, f, 0, xmax);
+    r += seg(0, H, xmax, y1, OR) + fleche(f*0.5, H/2, f, -H, OR);
+    /* rayon 2 : par O, non dévié */
+    r += seg(a, H, xmax, surDroite(a, H, 0, 0, xmax), VERT) + fleche(a/2, H/2, -a, -H, VERT);
+    /* rayon 3 : par F, puis parallèle à l'axe (dessiné s'il touche la lentille) */
+    var y3 = inf ? Infinity : H*f/(f + a), r3 = isFinite(y3) && Math.abs(y3) <= DEMI;
+    if(r3){
+      r += seg(a, H, 0, y3, BLEU) + seg(0, y3, xmax, y3, BLEU) + fleche(xmax - 2, y3, 1, 0, BLEU);
+      if(a > -f) r += seg(-f, 0, a, H, BLEU, true, 1.2);
+    }
+    /* image virtuelle : prolongements en pointillés vers l'arrière */
+    var virt = !inf && ip < 0;
+    if(virt){
+      var xr = Math.max(ip, xmin);
+      r += seg(0, H, xr, surDroite(0, H, f, 0, xr), OR, true, 1.2);
+      r += seg(a, H, xr, surDroite(a, H, 0, 0, xr), VERT, true, 1.2);
+      if(r3) r += seg(0, y3, xr, y3, BLEU, true, 1.2);
+    }
+    gR.innerHTML = r;
+
+    var o = vecteur(a, H, ENCRE, false, 'A', 'B');
+    var dedans = !inf && ip > xmin && ip < xmax && Math.abs(hi) < 12.5;
+    if(dedans) o += vecteur(ip, hi, OR, virt, 'A′', 'B′');
+    else if(inf) o += txt(334, 16, 'image à l\'infini', OR, 'end', 12);
+    else o += txt(334, 16, 'image hors du cadre', OR, 'end', 12);
+    /* poignée de l'objet */
+    poi.setAttribute('transform', 'translate(' + Math.max(19, X0 + a*S).toFixed(1) + ' 0)');
+    gO.innerHTML = o;
+
+    /* lectures */
+    document.getElementById('isch-lentille-ip').textContent = inf ? '∞' : sg(ip, 1) + ' cm';
+    document.getElementById('isch-lentille-g').textContent = inf ? '—' : sg(g, 2);
+    var nat = inf ? 'à l\'infini' : (virt ? 'virtuelle, droite' : 'réelle, renversée') + (inf ? '' : (Math.abs(Math.abs(g) - 1) < 0.01 ? ', même taille' : (Math.abs(g) > 1 ? ', agrandie' : ', plus petite')));
+    document.getElementById('isch-lentille-nat').textContent = nat;
+
+    var m;
+    if(inf) m = 'L\'objet est dans le <strong>plan focal objet</strong> : les trois rayons issus de B ressortent <strong>parallèles</strong> entre eux, ils ne se recoupent jamais. L\'image est <strong>à l\'infini</strong>. C\'est exactement ce que fait l\'oculaire de la lunette avec l\'image intermédiaire.';
+    else if(virt) m = 'L\'objet est <strong>entre F et O</strong> : après la lentille, les rayons <strong>divergent</strong>. Ils semblent venir d\'un point situé avant la lentille (pointillés) : l\'image est <strong>virtuelle</strong>, droite et agrandie. On ne peut pas la recueillir sur un écran ; c\'est l\'effet <strong>loupe</strong>.';
+    else if(Math.abs(g + 1) < 0.01) m = 'Objet à <strong>deux fois la focale</strong> : l\'image réelle est à la même distance de l\'autre côté, renversée et de <strong>même taille</strong> (γ = −1).';
+    else if(a < -2*f) m = 'Objet loin devant la lentille : l\'image est <strong>réelle</strong>, renversée, plus petite, juste après F′. Éloigne encore l\'objet : l\'image se rapproche de F′. À l\'infini, elle serait <strong>dans le plan focal image</strong> : c\'est le rôle de l\'objectif de la lunette.';
+    else m = 'Objet entre deux fois la focale et F : l\'image est <strong>réelle</strong>, renversée et <strong>agrandie</strong>, loin derrière la lentille (c\'est le principe du projecteur). Plus l\'objet approche de F, plus l\'image part loin.';
+    if(!r3 && !inf) m += ' (Le rayon passant par F ne rencontre pas la lentille dessinée : deux rayons suffisent.)';
+    document.getElementById('isch-lentille-msg').innerHTML = m;
+  }
+
+  /* glisser l'objet */
+  var prise = false;
+  function versCm(ev){
+    var pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
+    var p = pt.matrixTransform(svg.getScreenCTM().inverse());
+    return (p.x - X0)/S;
+  }
+  poi.addEventListener('pointerdown', function(ev){
+    prise = true; if(poi.setPointerCapture) poi.setPointerCapture(ev.pointerId); ev.preventDefault();
+  });
+  poi.addEventListener('pointermove', function(ev){
+    if(!prise) return;
+    var x = Math.round(versCm(ev)*2)/2;
+    x = Math.max(-28, Math.min(-1, x));
+    if(x !== parseFloat(ra.value)){ ra.value = x; maj(); }
+  });
+  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function(t){ poi.addEventListener(t, function(){ prise = false; }); });
+  ra.addEventListener('input', maj); rf.addEventListener('input', maj);
+  maj();
+})();
+</script>
+
 <div class="piege"><div class="t">Pas de malentendu</div>Les trois rayons particuliers ne sont pas les seuls à traverser la lentille. Tous les rayons issus de B qui traversent la lentille passent par B′ ; les rayons particuliers sont simplement ceux qu'on sait tracer sans calcul.</div>
 </div></details>
 <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16h20"/><path d="M5 16v-3M9 16v-5M13 16v-3M17 16v-5M21 16v-3"/><path d="M4 7h7M8 4l3 3-3 3"/></svg><span class="lvl d2">1ère</span>Mesures algébriques, relation de conjugaison, grandissement<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
@@ -5492,6 +6869,156 @@ function maj(){
 <div data-anim="lunette"></div>
 <p><strong>L'image est renversée.</strong> Sur le schéma, les rayons incidents <strong>descendent</strong> (ils viennent d'un point situé au-dessus de l'axe) et les rayons émergents <strong>montent</strong> : l'œil les reçoit comme s'ils venaient d'un point situé <strong>en dessous</strong>. Le rayon qui frappe le haut de l'objectif ressort par le bas de l'oculaire. Un cratère au nord de la Lune est donc vu en bas. Pour l'astronomie, ce n'est pas gênant ; pour observer un paysage, on ajoute un système redresseur (prismes des jumelles, lentille supplémentaire).</p>
 <div class="piege"><div class="t">Les erreurs qui coûtent des points</div><ul><li>Faire ressortir les rayons <strong>convergents</strong> ou divergents : pour une lunette afocale, ils ressortent <strong>parallèles entre eux</strong>.</li><li>Faire ressortir les rayons parallèles à l'<strong>axe</strong> : seul le faisceau venant de A<sub>∞</sub>, sur l'axe, ressort parallèle à l'axe.</li><li>Oublier les flèches de sens de propagation sur les rayons.</li><li>Ne pas faire passer les rayons <strong>réfractés par L<sub>1</sub></strong> par B<sub>1</sub>.</li></ul></div>
+<div class="isch" id="isch-lunette">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Règle ta lunette</div>
+  <div class="isch-s">Change les focales, l'inclinaison des rayons de l'astre et la position de l'oculaire : les rayons se recalculent.</div>
+  <svg class="isch-svg" viewBox="0 0 340 180" role="img" aria-label="Lunette astronomique réglable : objectif, oculaire, rayons venant d'un point de l'astre, image intermédiaire et faisceau émergent">
+    <g id="isch-lunette-g"></g>
+  </svg>
+  <div class="isch-b">
+    <button type="button" class="isch-btn" id="isch-lunette-co" aria-pressed="false">Cercle oculaire (hors programme)</button>
+  </div>
+  <div class="isch-c">
+    <label class="isch-r"><span><span>Focale de l'objectif f′<sub>1</sub></span> <b id="isch-lunette-f1v">40 cm</b></span><input type="range" id="isch-lunette-f1" min="20" max="60" step="5" value="40" aria-label="Focale de l'objectif, en centimètres"></label>
+    <label class="isch-r"><span><span>Focale de l'oculaire f′<sub>2</sub></span> <b id="isch-lunette-f2v">10 cm</b></span><input type="range" id="isch-lunette-f2" min="2" max="10" step="1" value="10" aria-label="Focale de l'oculaire, en centimètres"></label>
+    <label class="isch-r"><span><span>Inclinaison α des rayons de l'astre</span> <b id="isch-lunette-av">5°</b></span><input type="range" id="isch-lunette-a" min="2" max="10" step="1" value="5" aria-label="Angle des rayons incidents, en degrés"></label>
+    <label class="isch-r"><span><span>Position de l'oculaire (écart au réglage afocal)</span> <b id="isch-lunette-dv">0 cm</b></span><input type="range" id="isch-lunette-d" min="-3" max="3" step="0.5" value="0" aria-label="Décalage de l'oculaire, en centimètres"></label>
+  </div>
+  <div class="isch-o">
+    <span>G = f′<sub>1</sub>/f′<sub>2</sub> = <b id="isch-lunette-G">4</b></span>
+    <span><i class="al" style="font-style:normal">O<sub>1</sub>O<sub>2</sub></i> = <b id="isch-lunette-L">50 cm</b></span>
+    <span>A<sub>1</sub>B<sub>1</sub> = <b id="isch-lunette-ab">3,5 cm</b></span>
+    <span>α′ = <b id="isch-lunette-ap">19°</b></span>
+  </div>
+  <p class="isch-n" id="isch-lunette-msg"></p>
+  <p class="isch-p">Tracé calculé avec le modèle des lentilles minces ; échelle 1 cm ↔ 4 unités. Les angles sont exagérés pour être visibles : α′ est calculé exactement (tan α′ = G × tan α), d'où un α′ un peu inférieur à G × α.</p>
+  <ol class="isch-defis">
+    <li>Avec un objectif de 40 cm, choisis l'oculaire qui donne G = 10. Quelle longueur fait la lunette ? <details><summary>Réponse</summary>f′<sub>2</sub> = f′<sub>1</sub>/G = 4 cm, et <span class="al">O<sub>1</sub>O<sub>2</sub></span> = 40 + 4 = 44 cm.</details></li>
+    <li>Éloigne l'oculaire de 2 cm. Comment ressortent les rayons, et pourquoi ? <details><summary>Réponse</summary>Convergents : F′<sub>1</sub> est maintenant avant F<sub>2</sub>, l'image intermédiaire est au-delà du foyer objet de l'oculaire, qui en donne une image réelle après la lunette. Un œil au repos voit flou.</details></li>
+    <li>Double la focale de l'objectif (de 30 à 60 cm) sans toucher à l'oculaire. Que deviennent A<sub>1</sub>B<sub>1</sub> et G ? <details><summary>Réponse</summary>Les deux doublent : A<sub>1</sub>B<sub>1</sub> = f′<sub>1</sub> × tan α et G = f′<sub>1</sub>/f′<sub>2</sub>. Mais la lunette devient presque deux fois plus longue.</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var g = document.getElementById('isch-lunette-g'); if(!g) return;
+  var r1 = document.getElementById('isch-lunette-f1'), r2 = document.getElementById('isch-lunette-f2'), ra = document.getElementById('isch-lunette-a'), rd = document.getElementById('isch-lunette-d');
+  var bco = document.getElementById('isch-lunette-co'), cercle = false;
+  var Y0 = 84, PX = 4, X1 = 22, XFIN = 338, HAUTS = [-10, -3.5, 3.5, 10], DEMI1 = 12;
+  var OR = 'var(--orange)', VERT = 'var(--ok)', ROUGE = 'var(--ko)';
+  function v(x, n){ return x.toFixed(n).replace('.', ','); }
+  function f1(n){ return n.toFixed(1); }
+  function txt(x, y, t, col, ancre, taille, gras){ return '<text x="' + f1(x) + '" y="' + f1(y) + '" font-size="' + (taille || 11) + '" text-anchor="' + (ancre || 'middle') + '"' + (col ? ' fill="' + col + '"' : '') + (gras ? ' font-weight="700"' : '') + '>' + t + '</text>'; }
+  function ligne(pts, col, w, tir, o){
+    var d = pts.map(function(p, i){ return (i ? 'L' : 'M') + f1(p[0]) + ' ' + f1(p[1]); }).join(' ');
+    return '<path d="' + d + '" fill="none" stroke="' + col + '" stroke-width="' + (w || 1.5) + '"' + (tir ? ' stroke-dasharray="4 3"' : '') + (o ? ' opacity="' + o + '"' : '') + ' stroke-linejoin="round" stroke-linecap="round"/>';
+  }
+  function fleche(a, b, col){
+    var x = (a[0] + b[0])/2, y = (a[1] + b[1])/2, dx = b[0] - a[0], dy = b[1] - a[1], n = Math.sqrt(dx*dx + dy*dy) || 1, ux = dx/n, uy = dy/n;
+    return '<path d="M' + f1(x - 7*ux - 4*uy) + ' ' + f1(y - 7*uy + 4*ux) + ' L' + f1(x) + ' ' + f1(y) + ' L' + f1(x - 7*ux + 4*uy) + ' ' + f1(y - 7*uy - 4*ux) + '" fill="none" stroke="' + col + '" stroke-width="1.5"/>';
+  }
+  function lentille(x, h, nom, sous){
+    var s = '<g stroke="currentColor" stroke-width="2" fill="none"><line x1="' + f1(x) + '" y1="' + f1(Y0 - h) + '" x2="' + f1(x) + '" y2="' + f1(Y0 + h) + '"/>';
+    s += '<path d="M' + f1(x - 5) + ' ' + f1(Y0 - h + 7) + ' L' + f1(x) + ' ' + f1(Y0 - h) + ' L' + f1(x + 5) + ' ' + f1(Y0 - h + 7) + ' M' + f1(x - 5) + ' ' + f1(Y0 + h - 7) + ' L' + f1(x) + ' ' + f1(Y0 + h) + ' L' + f1(x + 5) + ' ' + f1(Y0 + h - 7) + '"/></g>';
+    return s + txt(x, Y0 + h + 13, nom, null, 'middle', 11, true) + txt(x, Y0 + h + 25, sous, 'var(--muted)', 'middle', 10);
+  }
+  /* rayon de hauteur u1 (cm, vers le bas positif) et de pente s à travers les lentilles minces : pente de sortie = pente − u/f */
+  function trace(u1, s, L){
+    var pts = [[0, Y0 + (u1 - s*L[0].x/PX)*PX]], x = L[0].x, u = u1, m = s;
+    for(var i = 0; i < L.length; i++){
+      if(i){ u += m*(L[i].x - x)/PX; x = L[i].x; }
+      pts.push([x, Y0 + u*PX]); m -= u/L[i].f;
+    }
+    var xe = XFIN, ye = Y0 + (u + m*(xe - x)/PX)*PX;
+    if(ye < 2 || ye > 178){ var yb = ye < 2 ? 2 : 178; xe = x + ((yb - Y0)/PX - u)/m*PX; ye = yb; }
+    pts.push([xe, ye]);
+    return {pts: pts, m: m};
+  }
+
+  function maj(){
+    var F1 = +r1.value, F2 = +r2.value, al = +ra.value, d = +rd.value, s = Math.tan(al*Math.PI/180);
+    var XF = X1 + F1*PX, X2 = XF + (F2 + d)*PX, uB = s*F1, G = F1/F2;
+    document.getElementById('isch-lunette-f1v').textContent = F1 + ' cm';
+    document.getElementById('isch-lunette-f2v').textContent = F2 + ' cm';
+    document.getElementById('isch-lunette-av').textContent = al + '°';
+    document.getElementById('isch-lunette-dv').textContent = (d > 0 ? '+' : (d < 0 ? '−' : '')) + v(Math.abs(d), d % 1 ? 1 : 0) + ' cm';
+    var L = [{x: X1, f: F1}, {x: X2, f: F2}];
+    var out = '<line x1="2" y1="' + Y0 + '" x2="338" y2="' + Y0 + '" stroke="currentColor" stroke-width="1" stroke-dasharray="6 4" opacity=".5"/>';
+    /* rayons */
+    var umax = 0, ray = '', mSortie = [];
+    HAUTS.forEach(function(u){
+      var r = trace(u, s, L), p = r.pts;
+      umax = Math.max(umax, Math.abs(p[2][1] - Y0)/PX);
+      mSortie.push(r.m);
+      ray += ligne(p, OR, 1.5) + fleche(p[0], p[1], OR) + fleche(p[2], p[3], OR);
+    });
+    /* rayons de construction : par O1, puis B1 → O2 (non déviés) */
+    var yB = Y0 + uB*PX;
+    ray += ligne([[0, Y0 - s*X1], [XF, yB]], VERT, 1.2, true);
+    var pe = -(uB*PX)/(X2 - XF), xe = Math.min(XFIN, X2 + 70);
+    ray += ligne([[XF, yB], [xe, yB + pe*(xe - XF)]], VERT, 1.2, true);
+    /* lentilles et foyers */
+    var DEMI2 = Math.max(6, umax + 1.5);
+    out += lentille(X1, DEMI1*PX, 'L₁', 'objectif') + lentille(X2, DEMI2*PX, 'L₂', 'oculaire');
+    out += ray;
+    var XF2 = X2 - F2*PX, conf = Math.abs(d) < 1e-6;
+    out += '<line x1="' + f1(XF) + '" y1="' + (Y0 - 4) + '" x2="' + f1(XF) + '" y2="' + (Y0 + 4) + '" stroke="currentColor" stroke-width="1.6"/>';
+    if(conf) out += txt(XF, Y0 - 7, 'F′₁ = F₂', null, 'middle', 11, true);
+    else {
+      out += '<line x1="' + f1(XF2) + '" y1="' + (Y0 - 4) + '" x2="' + f1(XF2) + '" y2="' + (Y0 + 4) + '" stroke="' + OR + '" stroke-width="1.8"/>';
+      var gauche = XF2 < XF;
+      out += txt(XF + (gauche ? 3 : -3), Y0 - 7, 'F′₁', null, gauche ? 'start' : 'end', 11, true);
+      out += txt(XF2 + (gauche ? -3 : 3), Y0 - 7, 'F₂', OR, gauche ? 'end' : 'start', 11, true);
+    }
+    /* image intermédiaire */
+    out += '<line x1="' + f1(XF) + '" y1="' + Y0 + '" x2="' + f1(XF) + '" y2="' + f1(yB) + '" stroke="' + VERT + '" stroke-width="2.6"/>';
+    out += '<path d="M' + f1(XF - 4) + ' ' + f1(yB - 6) + ' L' + f1(XF) + ' ' + f1(yB) + ' L' + f1(XF + 4) + ' ' + f1(yB - 6) + '" fill="none" stroke="' + VERT + '" stroke-width="2.2"/>';
+    out += txt(XF - 4, yB + 13, 'B₁', VERT, 'end', 11, true);
+    /* angles */
+    var a1 = Math.atan(s), R1 = 30;
+    out += '<path d="M' + f1(X1 + R1) + ' ' + Y0 + ' A' + R1 + ' ' + R1 + ' 0 0 1 ' + f1(X1 + R1*Math.cos(a1)) + ' ' + f1(Y0 + R1*Math.sin(a1)) + '" fill="none" stroke="' + OR + '" stroke-width="1.5"/>' + txt(X1 + R1 + 8, Y0 + 13, 'α', OR, 'start', 12, true);
+    var tap = uB/F2, a2 = Math.atan(tap);
+    if(conf){
+      var R2 = 18;
+      out += '<path d="M' + f1(X2 + R2) + ' ' + Y0 + ' A' + R2 + ' ' + R2 + ' 0 0 0 ' + f1(X2 + R2*Math.cos(a2)) + ' ' + f1(Y0 - R2*Math.sin(a2)) + '" fill="none" stroke="' + VERT + '" stroke-width="1.5"/>' + txt(X2 + R2 + 5, Y0 - 5, 'α′', VERT, 'start', 12, true);
+    }
+    /* cercle oculaire : image du bord de l'objectif par l'oculaire */
+    if(cercle){
+      var o2o1 = -(F1 + F2 + d), oc = 1/(1/F2 + 1/o2o1), gam = oc/o2o1, xc = X2 + oc*PX, hc = Math.abs(gam)*DEMI1*PX;
+      if(xc < XFIN - 4){
+        out += '<ellipse cx="' + f1(xc) + '" cy="' + Y0 + '" rx="2.5" ry="' + f1(Math.max(hc, 1.5)) + '" fill="none" stroke="' + VERT + '" stroke-width="2.4"/>';
+        var xl = Math.min(xc + 5, 296);
+        out += txt(xl, Y0 + 16, 'cercle', VERT, 'start', 10, true) + txt(xl, Y0 + 27, 'oculaire', VERT, 'start', 10, true);
+      }
+    }
+    out += txt(4, 28, 'B∞ (point de l\'astre)', OR, 'start', 11);
+    g.innerHTML = out;
+
+    /* lectures */
+    document.getElementById('isch-lunette-G').textContent = v(G, G % 1 ? 1 : 0);
+    document.getElementById('isch-lunette-L').textContent = v(F1 + F2 + d, (F1 + F2 + d) % 1 ? 1 : 0) + ' cm';
+    document.getElementById('isch-lunette-ab').textContent = v(uB, 1) + ' cm';
+    document.getElementById('isch-lunette-ap').textContent = conf ? Math.round(a2*180/Math.PI) + '°' : '—';
+
+    var m;
+    if(conf){
+      m = 'F′<sub>1</sub> = F<sub>2</sub> : l\'image intermédiaire A<sub>1</sub>B<sub>1</sub> est dans le plan focal objet de l\'oculaire, donc les rayons ressortent <strong>parallèles</strong> entre eux (image à l\'infini) : l\'œil voit net <strong>sans accommoder</strong>. Ils arrivaient en descendant et repartent en montant : l\'image est <strong>renversée</strong>, vue sous un angle α′ plus grand que α.';
+      if(G < 1.01) m += ' Ici f′<sub>2</sub> ≥ f′<sub>1</sub> : la lunette ne grossit pas. L\'objectif doit avoir la plus grande focale.';
+      else if(F2 <= 3) m += ' Oculaire très court : G = ' + v(G, G % 1 ? 1 : 0) + ', les rayons ressortent très inclinés.';
+    } else if(d > 0){
+      m = 'L\'oculaire est <strong>trop loin</strong> : F′<sub>1</sub> est avant F<sub>2</sub>. A<sub>1</sub>B<sub>1</sub> est au-delà du foyer objet de l\'oculaire, qui en donne une image réelle : les rayons ressortent <strong>convergents</strong>. Un œil au repos voit flou. Rapproche l\'oculaire de ' + v(d, d % 1 ? 1 : 0) + ' cm.';
+    } else {
+      m = 'L\'oculaire est <strong>trop près</strong> : F′<sub>1</sub> est après F<sub>2</sub>. A<sub>1</sub>B<sub>1</sub> est entre F<sub>2</sub> et l\'oculaire, qui agit comme une loupe : les rayons ressortent <strong>divergents</strong>, l\'image est virtuelle, à distance finie, et l\'œil doit accommoder. Éloigne l\'oculaire de ' + v(-d, d % 1 ? 1 : 0) + ' cm.';
+    }
+    if(cercle) m += ' Le cercle oculaire, image du bord de l\'objectif, est le petit disque par où passe toute la lumière : on y place la pupille.';
+    document.getElementById('isch-lunette-msg').innerHTML = m;
+  }
+  bco.addEventListener('click', function(){ cercle = !cercle; bco.classList.toggle('on', cercle); bco.setAttribute('aria-pressed', cercle ? 'true' : 'false'); maj(); });
+  [r1, r2, ra, rd].forEach(function(r){ r.addEventListener('input', maj); });
+  maj();
+})();
+</script>
+
 </div></details>
 
 <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="M14.5 14.5 21 21"/><path d="M7.5 10h5M10 7.5v5"/></svg>4 · Le grossissement d'une lunette afocale<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
