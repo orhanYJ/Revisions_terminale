@@ -1,6 +1,6 @@
 // Service worker — L'Index raisonné (PWA)
 // Stratégie : réseau d'abord pour la page (HTML), cache d'abord pour les assets.
-const CACHE = "philo-v11";
+const CACHE = "philo-v12";
 const CORE = [
   "./",
   "./index.html",
