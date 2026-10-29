@@ -1,6 +1,6 @@
 """Voix enregistrées des cartes animées : un MP3 par scène et par langue, dans dnl/cartes/voix/<CODE>/.
 
-Voix neuronales Microsoft (fr-FR-HenriNeural, en-GB-RyanNeural), produites par le paquet edge-tts
+Voix neuronales Microsoft (fr-FR-RemyMultilingualNeural, en-GB-RyanNeural), produites par le paquet edge-tts
 (service de lecture à voix haute du navigateur Edge : gratuit, non officiel ; s'il cesse de fonctionner,
 les fichiers déjà produits restent et le moteur se rabat sur la voix du téléphone pour les autres).
 Le nom de fichier contient une empreinte du texte lu : seule une légende modifiée est réenregistrée.
@@ -8,7 +8,7 @@ Usage : generer.py ... --voix (dans ce conteneur : SSL_CERT_FILE=/root/.ccr/ca-b
 """
 import asyncio, hashlib, os, re
 
-VOIX = {"fr": "fr-FR-HenriNeural", "en": "en-GB-RyanNeural"}
+VOIX = {"fr": "fr-FR-RemyMultilingualNeural", "en": "en-GB-RyanNeural"}
 DEBIT = "+0%"
 
 MOIS_FR = {"janv.": "janvier", "févr.": "février", "avr.": "avril", "juill.": "juillet", "sept.": "septembre",
