@@ -1,6 +1,6 @@
 // Service worker — L'Index raisonné (PWA)
 // Stratégie : réseau d'abord pour la page (HTML), cache d'abord pour les assets.
-const CACHE = "philo-v13";
+const CACHE = "philo-v14";
 const CORE = [
   "./",
   "./index.html",
@@ -41,6 +41,19 @@ self.addEventListener("fetch", function (event) {
 
   var url = new URL(req.url);
   if (url.origin !== self.location.origin) return; // laisser passer les polices Google, etc.
+  // séries vidéo : le son est lu par plages (Range), le navigateur s'en charge seul
+  if (/\.mp3$/.test(url.pathname)) return;
+  // pages des épisodes (iframe) : réseau d'abord, rangées sous leur propre adresse
+  if (/\/serie\/[^/]+\.html$/.test(url.pathname)) {
+    event.respondWith(
+      fetch(req.url, { cache: "no-cache" }).then(function (res) {
+        var copy = res.clone();
+        caches.open(CACHE).then(function (c) { c.put(url.pathname, copy); });
+        return res;
+      }).catch(function () { return caches.match(url.pathname); })
+    );
+    return;
+  }
 
   var isDoc = req.mode === "navigate" ||
               (req.headers.get("accept") || "").indexOf("text/html") !== -1;
