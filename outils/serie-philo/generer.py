@@ -222,7 +222,7 @@ def generer(nom_module):
                 cues[("-" if cache else "") + ident] = max(t, inst)
             if b["v"] == "C":
                 cues[b["vis"]] = t - 0.25
-                cit_mots[b["vis"]] = {"t0": round(t, 3), "t1": round(t + dur, 3),
+                cit_mots[b["vis"]] = {"c0": round(t, 3), "c1": round(t + dur, 3),
                                       "m": [[round(t + a[1] - tete, 3), a[3]] for a in al]}
                 bruitages.append((t - 0.3, "cloche"))
             voix.append((t, x))

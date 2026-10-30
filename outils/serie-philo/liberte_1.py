@@ -52,7 +52,7 @@ SCENES = [
         ("Alors, qu'est-ce qui les sépare ?", {"pitch": "+2Hz"}),
         ("Pas la force. Pas l'intelligence. Une seule chose : {agora.3}le premier s'appartient à lui-même. "
          "Le second appartient à un autre.", {"rate": "-5%"}),
-        "{-agora}C'est le sens le plus ancien du mot. En grec, l'homme libre se dit {grec}éleuthéros. "
+        "C'est le sens le plus ancien du mot. En grec, l'homme libre se dit {-agora}{grec}éleuthéros. "
         "En latin, {lat}liber.",
         "Et ces deux mots viendraient d'une même racine, très ancienne, {-grec}{-lat}{racine}qui désignait… {racine.1}le peuple. "
         "Être libre, à l'origine, c'est faire partie des siens, {racine.2}par opposition à l'étranger capturé, réduit en esclavage. "
@@ -93,8 +93,8 @@ SCENES = [
 
     # ------------------------------------------------------------------ II. faire ce que je veux
     dict(id="faire", chap="Faire ce que je veux ?", fond="nuit", beats=[
-        "Revenons à aujourd'hui. Si je te demande : être libre, c'est quoi ? "
-        "Tu vas sans doute répondre : {fcqjv}c'est faire ce que je veux. Personne ne m'empêche, personne ne m'oblige.",
+        "{q_quoi}Revenons à aujourd'hui. Si je te demande : être libre, c'est quoi ? "
+        "Tu vas sans doute répondre : {-q_quoi}{fcqjv}c'est faire ce que je veux. Personne ne m'empêche, personne ne m'oblige.",
         "{-fcqjv}{hobbes}C'est la définition du sens commun. Et elle a un défenseur de poids : Thomas Hobbes, "
         "philosophe anglais du dix-septième siècle.",
         ("C", "La liberté signifie, au sens propre, l'absence d'opposition ; par opposition, j'entends les obstacles "
@@ -119,8 +119,8 @@ SCENES = [
         "{-platon}{-gorg}",
         ("C", "Pour bien vivre, il faut laisser ses passions devenir aussi grandes que possible, au lieu de les réprimer.",
          "c_call"),
-        "{-c_call}Satisfaire tous ses désirs, sans entraves : voilà, pour lui, la liberté, et le bonheur. "
-        "{tonneaux}Socrate lui répond par une image. Imagine deux hommes, chacun avec ses tonneaux.",
+        "Satisfaire tous ses désirs, sans entraves : voilà, pour lui, la liberté, et le bonheur. "
+        "{-c_call}{tonneaux}Socrate lui répond par une image. Imagine deux hommes, chacun avec ses tonneaux.",
         "{tonneaux.1}Les tonneaux du premier sont sains : une fois remplis, il est tranquille. "
         "{tonneaux.2}Ceux du second sont percés. Il a beau verser, verser encore… ils se vident sans cesse. "
         "{tonneaux.3}Il passe sa vie à les remplir, sans jamais pouvoir s'arrêter.",
@@ -138,6 +138,7 @@ SCENES = [
         "{cols1.d}Et est-ce que je veux librement… ce que je veux ?",
         ("P", 0.8),
     ], vis={
+        "q_quoi": dict(type="question", t="Être libre, c'est quoi ?"),
         "fcqjv": dict(type="mot", t="« Faire ce que je veux »", g="la définition du sens commun", y=260, taille=78),
         "hobbes": dict(type="portrait", img="hobbes", nom="Thomas Hobbes", dates="1588 – 1679",
                        x=110, y=120, w=330, h=420),
@@ -165,9 +166,9 @@ SCENES = [
 
     # ------------------------------------------------------------------ III. trois libertés
     dict(id="trois", chap="Les trois libertés", fond="aube", beats=[
-        "Cette distinction, c'est la clé de toute la notion. Quand on parle de liberté, "
+        "{trois_mot}Cette distinction, c'est la clé de toute la notion. Quand on parle de liberté, "
         "on peut en réalité parler {cartes}de trois choses différentes.",
-        "{cartes.1}D'abord, la liberté d'agir : pouvoir faire ce que j'ai décidé, sans obstacle. "
+        "{-trois_mot}{cartes.1}D'abord, la liberté d'agir : pouvoir faire ce que j'ai décidé, sans obstacle. "
         "Le prisonnier ne l'a plus ; l'oiseau en cage non plus. C'est la question de Hobbes : puis-je faire ?",
         "{cartes.2}Ensuite, la liberté de vouloir, qu'on appelle le libre arbitre : le pouvoir de choisir par moi-même, "
         "sans être déterminé par une cause que je ne maîtrise pas. Ici, la question n'est plus : puis-je faire ? "
@@ -175,10 +176,10 @@ SCENES = [
         ("C'est la question métaphysique. La plus vertigineuse.", {"rate": "-6%", "pitch": "-2Hz"}),
         "{cartes.3}Enfin, la liberté politique : les libertés que la société me reconnaît et me garantit. "
         "Liberté d'expression, de conscience, de circuler, de se réunir. "
-        "{-cartes}En 1789, la Déclaration des droits de l'homme et du citoyen la définit ainsi.",
+        "En 1789, la Déclaration des droits de l'homme et du citoyen la définit ainsi.{-cartes}",
         ("C", "La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui.", "c_ddhc"),
-        "{-c_ddhc}Ces trois libertés ne vont pas forcément ensemble. Et l'histoire en offre un exemple saisissant.",
-        "{epic}Au premier siècle de notre ère, à Rome, vit un esclave venu d'Asie Mineure : Épictète. "
+        "Ces trois libertés ne vont pas forcément ensemble. Et l'histoire en offre un exemple saisissant.",
+        "{-c_ddhc}{epic}Au premier siècle de notre ère, à Rome, vit un esclave venu d'Asie Mineure : Épictète. "
         "Il n'a aucune liberté politique : il appartient à un maître.",
         "On raconte qu'un jour, ce maître lui tordit la jambe. Épictète lui dit, très calmement : "
         "{jambe}{jambe.1}« Tu vas la casser. »",
@@ -194,6 +195,7 @@ SCENES = [
         "demande-toi toujours : {cartes2.hl}de quelle liberté parle-t-on ? {reflexe}D'agir, de vouloir… ou politique ?",
         ("P", 0.8),
     ], vis={
+        "trois_mot": dict(type="mot", t="Liberté", g="un seul mot… et trois sens", y=250, taille=110),
         "cartes": dict(type="cartes", items=[
             dict(ic="porte", t="Liberté d'agir", q="Puis-je faire ce que j'ai décidé ?"),
             dict(ic="chemins", t="Libre arbitre", q="Aurais-je pu vouloir autre chose ?"),
@@ -249,7 +251,7 @@ SCENES = [
         "{-trio}{fd}Troisième couple : en droit, en fait. {fd.g}En droit, c'est-à-dire selon la loi, ou selon ce qui "
         "devrait être. {fd.d}En fait : ce qui se passe réellement. En droit, tu es libre de partir au bout du monde. "
         "En fait, sans argent, ce droit ne vaut pas grand-chose.",
-        "{-fd}L'écrivain Anatole France s'en moquait, dans une formule cruelle.",
+        "L'écrivain Anatole France s'en moquait, dans une formule cruelle.{-fd}",
         ("C", "La majestueuse égalité des lois, qui interdit au riche comme au pauvre de coucher sous les ponts, "
               "de mendier dans les rues et de voler du pain.", "c_france"),
         "{-c_france}{formel}Une liberté qui n'existe que sur le papier est-elle encore une liberté ? "
@@ -282,8 +284,8 @@ SCENES = [
 
     # ------------------------------------------------------------------ V. le problème
     dict(id="probleme", chap="Le grand problème", fond="aube", beats=[
-        "Nous voilà prêts à voir le vrai problème. D'un côté, il y a une expérience que chacun fait, à chaque instant : "
-        "{sens}je me sens libre. Je lève la main… ou pas. Je choisis.",
+        "{q_pb}Nous voilà prêts à voir le vrai problème. D'un côté, il y a une expérience que chacun fait, à chaque instant : "
+        "{-q_pb}{sens}je me sens libre. Je lève la main… ou pas. Je choisis.",
         "{-sens}{desc}Descartes dira que c'est la chose la plus évidente du monde.",
         ("C", "La liberté de notre volonté se connaît sans preuve, par la seule expérience que nous en avons.",
          "c_desc"),
@@ -303,6 +305,7 @@ SCENES = [
         "{plan.5}Et dans l'épisode six, nous mettrons tout cela au service de ta copie.",
         ("P", 0.8),
     ], vis={
+        "q_pb": dict(type="question", t="Sommes-nous vraiment libres ?"),
         "sens": dict(type="mot", t="« Je me sens libre »", g="l'expérience de chaque instant", y=260, taille=84),
         "desc": dict(type="portrait", img="descartes", nom="René Descartes", dates="1596 – 1650",
                      x=110, y=120, w=330, h=420),

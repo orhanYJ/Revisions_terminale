@@ -106,7 +106,10 @@ def dire(texte, voix, chemin, tempo=1.0):
     filtre = ["-af", f"atempo={tempo}"] if abs(tempo - 1) > 1e-3 else []
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmp] + filtre + ["-ac", "1", "-b:a", "96k", chemin + ".part.mp3"], check=True)
     os.remove(tmp)
-    mots = [(o / tempo, d / tempo, w) for o, d, w in mots]
+    # la reconnaissance place souvent le premier mot à 0 s : on le ramène au vrai début de la parole
+    idx = np.where(np.abs(a) > 0.004)[0]
+    debut = idx[0] / sr if len(idx) else 0.0
+    mots = [(max(o, debut) / tempo, d / tempo, w) for o, d, w in mots]
     with open(chemin + ".json", "w", encoding="utf-8") as f:
         json.dump(_caler(texte, mots, len(a) / sr / tempo), f, ensure_ascii=False)
     os.replace(chemin + ".part.mp3", chemin)
