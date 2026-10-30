@@ -269,14 +269,14 @@ body.pseudo{overflow:hidden}
 
 /* mot qui frappe */
 .v-frappe{left:0;top:0;width:1280px;height:720px;align-items:center;justify-content:center;z-index:4}
-.fr-fond{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(5,8,15,.92),rgba(5,8,15,.75))}
+.fr-fond{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(5,8,15,.97),rgba(5,8,15,.86))}
 .fr-mot{position:relative;font-family:'Spectral',serif;font-weight:600;font-size:150px;text-transform:uppercase;
   background:linear-gradient(180deg,#fff3d6,#e8b25a 70%,#c8811f);-webkit-background-clip:text;background-clip:text;color:transparent;
   text-shadow:0 0 40px rgba(232,178,90,.25)}
 
 /* « À retenir » de fin de chapitre */
 .v-flash{left:0;top:0;width:1280px;height:720px;align-items:center;justify-content:center;z-index:4}
-.fl-fond{position:absolute;inset:0;background:rgba(5,8,15,.8)}
+.fl-fond{position:absolute;inset:0;background:rgba(5,8,15,.94)}
 .fl-carte{position:relative;max-width:900px;padding:34px 46px;border:1.5px solid rgba(232,178,90,.7);border-radius:20px;background:rgba(20,26,42,.92);text-align:center}
 .fl-te{font-family:'JetBrains Mono',monospace;font-size:18px;letter-spacing:.28em;text-transform:uppercase;color:var(--safran-c);margin-bottom:16px}
 .fl-tx{font-family:'Spectral',serif;font-size:42px;line-height:1.3}
@@ -287,7 +287,9 @@ body.pseudo{overflow:hidden}
 .cm-centre{position:absolute;left:640px;top:330px;padding:18px 30px;border-radius:40px;background:#2a2112;border:2px solid var(--safran-c);
   font-family:'Spectral',serif;font-weight:600;font-size:36px;letter-spacing:.06em;color:var(--safran-c);white-space:nowrap}
 .cm-noeud{position:absolute;padding:9px 20px;border-radius:24px;background:#1c2438;border:1.5px solid rgba(232,178,90,.75);font-weight:600;font-size:24px;white-space:nowrap}
-.cm-items{position:absolute;width:400px;text-align:center;display:flex;flex-direction:column;gap:6px}
+.cm-items{position:absolute;width:340px;display:flex;flex-direction:column;gap:6px}
+.cm-items.g{text-align:right}
+.cm-items.d{text-align:left}
 .cm-it{font-size:20px;line-height:1.3;color:var(--ivoire2)}
 
 /* légendes plus lisibles sur téléphone */

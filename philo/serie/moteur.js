@@ -659,9 +659,9 @@
   // repère dans le temps : petite frise de -600 à 2000, point lumineux à l'année de l'auteur
   function minifrise(parent, annee) {
     var f = h("div", "mf", parent);
-    var X = function (an) { return an < 500 ? (an + 600) / 1100 * 34 : an < 1500 ? 34 + (an - 500) / 1000 * 14 : 48 + (an - 1500) / 500 * 52; };
+    var X = function (an) { return an < 500 ? (an + 600) / 1100 * 30 : an < 1500 ? 30 + (an - 500) / 1000 * 22 : 52 + (an - 1500) / 500 * 48; };
     h("div", "mf-axe", f);
-    [["Antiquité", -600], ["Moyen Âge", 500], ["Modernes", 1500], ["Contemp.", 1850]].forEach(function (z) {
+    [["Antiquité", -600], ["Moyen Âge", 500], ["Modernes", 1500], ["Contemp.", 1800]].forEach(function (z) {
       var l = h("div", "mf-z", f, z[0]); l.style.left = X(z[1]) + "%";
     });
     var pt = h("div", "mf-pt", f); pt.style.left = X(annee) + "%";
@@ -802,9 +802,16 @@
   // tableau : œuvre plein cadre, travelling lent (Ken Burns) d'un cadrage à l'autre ; en fond, assombri sous les autres visuels
   TYPES.tableau = function (o, v) {
     var e = o.el; e.classList.add("v-tableau"); if (v.fond) e.classList.add("fond-t"); if (v.sombre) e.classList.add("sombre"); o.entree = "aucune";
-    var img = h("img", "", e); img.alt = v.legende || ""; img.decoding = "async";
-    var pret = false;
-    function charge() { img.style.width = img.naturalWidth + "px"; img.style.height = img.naturalHeight + "px"; pret = true; }
+    var img = h("img", "", e); img.alt = v.legende || ""; img.decoding = "sync";
+    var pret = false, enCours = false;
+    // l'image n'apparaît qu'une fois décodée : pas de cadre vide ni de flash au premier affichage
+    function charge() {
+      if (enCours) return; enCours = true;
+      img.style.width = img.naturalWidth + "px"; img.style.height = img.naturalHeight + "px";
+      var fin = function () { pret = true; };
+      if (img.decode) img.decode().then(fin, fin); else fin();
+    }
+    o.attente = new Promise(function (r) { var k = setInterval(function () { if (pret) { clearInterval(k); r(); } }, 30); });
     img.addEventListener("load", charge);
     img.src = "img/" + v.img + ".jpg";
     h("div", "ombre", e);
@@ -850,7 +857,7 @@
     var fond = h("div", "fr-fond", e), m = h("div", "fr-mot", e, esc(v.t));
     return function (t, st) {
       var tl = st.tl, a = P(tl, 0, .35), out = P(tl, 1.05, .45);
-      op(fond, E(a) * (1 - E(out)) * .82);
+      op(fond, E(a) * (1 - E(out)));
       op(m, E(P(tl, 0, .2)) * (1 - E(out)));
       var sc = 1.35 - 0.35 * EB(a) + 0.04 * tl;
       var sh = tl < .45 ? Math.sin(tl * 70) * 5 * (1 - tl / .45) : 0;
@@ -867,7 +874,7 @@
     var tx = h("div", "fl-tx", c), sp = mots(tx, v.t);
     return function (t, st) {
       var tl = st.tl, a = E(P(tl, 0, .6)), out = EIO(P(t, v.t1 - .3, .6));
-      op(fond, a * (1 - out) * .7);
+      op(fond, a * (1 - out));
       op(c, a * (1 - out)); tr(c, "translateY(" + (24 * (1 - a)) + "px) scale(" + (0.96 + 0.04 * a) + ")");
       sp.forEach(function (m, i) { var p = E(P(tl, .35 + i * .05, .4)); m.style.opacity = p; });
     };
@@ -876,13 +883,14 @@
   TYPES.carte = function (o, v) {
     var e = o.el; e.classList.add("v-carte"); o.entree = "aucune";
     var svg = sv("svg", { viewBox: "0 0 " + W + " " + H }, e);
-    var POS = [[330, 150], [950, 150], [330, 440], [950, 440]];
+    var POS = [[360, 130], [920, 130], [360, 460], [920, 460]];
     var centre = h("div", "cm-centre", e, esc(v.centre));
     var br = (v.branches || []).map(function (b, i) {
-      var p = POS[i], d = "M640 330 C" + (640 + (p[0] - 640) * .4) + " 330 " + (p[0] + (640 - p[0]) * .25) + " " + p[1] + " " + p[0] + " " + p[1];
+      var p = POS[i], ex = p[0] + (p[0] < 640 ? 80 : -80), d = "M640 330 C" + (640 + (ex - 640) * .5) + " 330 " + ex + " " + (330 + (p[1] - 330) * .5) + " " + ex + " " + (p[1] + (p[1] < 330 ? 18 : -18));
       var ln = sv("path", { d: d, fill: "none", stroke: C.sa, "stroke-width": 3, "stroke-linecap": "round", opacity: .8 }, svg);
       var nd = h("div", "cm-noeud", e, esc(b.t)); nd.style.left = p[0] + "px"; nd.style.top = p[1] + "px";
-      var col = h("div", "cm-items", e); col.style.left = (p[0] - 200) + "px"; col.style.top = (p[1] + 34) + "px";
+      var gauche = p[0] < 640, col = h("div", "cm-items" + (gauche ? " g" : " d"), e);
+      col.style.left = (gauche ? p[0] - 300 : p[0] - 40) + "px"; col.style.top = (p[1] + 36) + "px";
       var its = b.items.map(function (x) { return h("div", "cm-it", col, esc(x)); });
       return { ln: ln, nd: nd, its: its };
     });
@@ -991,7 +999,8 @@
         if (k !== dernierSous) { stS.textContent = k >= 0 ? EP.sous[k][2] : ""; st.style.display = k >= 0 ? "block" : "none"; dernierSous = k; }
       } else st.style.display = "none";
     }
-    return { el: sc, rendu: rendu, sous: function (b) { sousOn = b; dernierSous = -2; } };
+    return { el: sc, rendu: rendu, sous: function (b) { sousOn = b; dernierSous = -2; },
+      attentes: function () { return objs.filter(function (o) { return o.attente; }).map(function (o) { return o.attente; }); } };
   }
 
   /* ---------- lecteur ---------- */
@@ -1020,7 +1029,7 @@
       window.RENDU = function (t) { S0.rendu(t); };
       window.DUREE = EP.dur;
       var imgs = Array.from(document.images);
-      window.PRET = Promise.all([document.fonts.ready].concat(imgs.map(function (im) { return im.complete ? 1 : new Promise(function (r) { im.addEventListener("load", r); im.addEventListener("error", r); }); })));
+      window.PRET = Promise.all([document.fonts.ready].concat(S0.attentes(), imgs.map(function (im) { return im.complete ? 1 : new Promise(function (r) { im.addEventListener("load", r); im.addEventListener("error", r); }); })));
       S0.rendu(0);
       return;
     }
