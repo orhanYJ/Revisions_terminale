@@ -17,7 +17,7 @@ SUIVANT = "Épisode 2 · Le libre arbitre : Descartes et Sartre"
 
 SCENES = [
     # ------------------------------------------------------------------ ouverture
-    dict(id="ouverture", chap="Ouverture", fond="nuit", carton=False, beats=[
+    dict(id="ouverture", chap="Ouverture", fond="nuit", humeur="lumiere", carton=False, beats=[
         "{ico}Une question, pour commencer. Ce matin, {ico.1}qui a choisi tes habits ?",
         ("Toi, évidemment.", {"rate": "-4%"}),
         "Et la musique dans tes écouteurs ? {ico.2}Toi aussi.",
@@ -46,11 +46,11 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ I. le mot
-    dict(id="mot", chap="Le mot", fond="aube", beats=[
+    dict(id="mot", chap="Le mot", fond="aube", humeur="mystere", retenir="Être libre, au sens premier : s'appartenir, n'être l'instrument de personne.", beats=[
         "{tab_ath}Remontons d'abord le temps. Athènes, cinq siècles avant notre ère. "
         "Sur l'agora, la grande place de la cité, {-tab_ath}{agora}deux hommes se croisent.",
         "{agora.1}L'un est citoyen : il vote, il prend la parole à l'assemblée, il décide des lois. "
-        "L'autre porte la même tunique, mange le même pain… {agora.2}mais il appartient à quelqu'un. C'est un esclave.",
+        "L'autre porte la même tunique, mange le même pain… {agora.2}mais il appartient à quelqu'un. C'est un {!esclave}esclave.",
         ("Alors, qu'est-ce qui les sépare ?", {"pitch": "+2Hz"}),
         ("Pas la force. Pas l'intelligence. Une seule chose : {agora.3}le premier s'appartient à lui-même. "
          "Le second appartient à un autre.", {"rate": "-5%"}),
@@ -58,13 +58,13 @@ SCENES = [
         "En latin, {lat}liber.",
         "Et ces deux mots viendraient d'une même racine, très ancienne, {-grec}{-lat}{racine}qui désignait… {racine.1}le peuple. "
         "Être libre, à l'origine, c'est faire partie des siens, {racine.2}par opposition à l'étranger capturé, réduit en esclavage. "
-        "On retrouve d'ailleurs cette racine dans un mot allemand, {racine.3}« Loïte », qui veut dire : les gens.",
-        "{-racine}{liberi}Mieux encore : en latin, libéri, au pluriel, veut dire… les enfants. "
+        "On retrouve d'ailleurs cette racine dans un mot allemand, {racine.3}« Leute », qui veut dire : les gens.",
+        "{-racine}{liberi}Mieux encore : en latin, liberi, au pluriel, veut dire… les enfants. "
         "Les enfants libres de la maison, par opposition aux esclaves qui y servent.",
         "{-liberi}{arist}Au quatrième siècle avant notre ère, Aristote en tire une définition "
         "qui va traverser toute l'histoire de la philosophie.",
         ("C", "Nous appelons homme libre celui qui est à lui-même sa fin et n'existe pas pour un autre.", "c_arist"),
-        "{-arist}{-c_arist}{def1}Retiens bien cette idée. Être libre, c'est ne pas être un instrument. "
+        "{-arist}{-c_arist}{def1}Retiens bien cette idée. Être libre, c'est ne pas être un {!instrument}instrument. "
         "L'esclave est un moyen au service des fins d'un autre ; {def1.1}l'homme libre poursuit ses propres fins.",
         "{-def1}{note}Attention, pourtant. Aristote lui-même jugeait l'esclavage naturel : il appelait l'esclave "
         "« une propriété animée ». La définition est belle, mais son époque la réservait à quelques-uns.",
@@ -80,14 +80,14 @@ SCENES = [
         "lat": dict(type="mot", t="LIBER", g="latin : l'homme libre, qui n'est pas esclave", y=380, taille=104),
         "racine": dict(type="illu", nom="racine", x=140, y=100, w=1000, h=500, plus=True),
         "liberi": dict(type="mot", t="liberi", g="en latin : « les enfants » (nés libres)", y=250, taille=110),
-        "arist": dict(type="portrait", img="aristote", nom="Aristote", dates="384 – 322 av. J.-C.",
+        "arist": dict(type="portrait", annee=-384, legende="Métaphysique · Politique", img="aristote", nom="Aristote", dates="384 – 322 av. J.-C.",
                       x=110, y=120, w=330, h=420),
-        "c_arist": dict(type="cit", a="Aristote", o="Métaphysique, livre A, 2", x=500, y=170, w=680),
-        "def1": dict(type="def", terme="Être libre · le sens premier",
+        "c_arist": dict(type="cit", a="Aristote", o="Métaphysique, livre A, 2", x=640, y=170, w=570),
+        "def1": dict(type="def", cles=["instrument", "fins"], terme="Être libre · le sens premier",
                      t="Ne pas appartenir à un autre : être à soi-même sa propre fin, et non l'instrument d'un autre.",
                      etape="Esclave → moyen pour les fins d'un autre   ·   Homme libre → poursuit ses propres fins",
                      x=170, y=190, w=940),
-        "note": dict(type="note", titre="Attention",
+        "note": dict(type="note", cles=["naturel", "propriété", "extension"], titre="Attention",
                      t="Aristote juge l'esclavage naturel : l'esclave serait « une propriété animée » (Politique, I, 4).",
                      etape="L'histoire de la liberté est aussi celle de son extension à tous.",
                      x=170, y=130, w=940),
@@ -96,23 +96,24 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ II. faire ce que je veux
-    dict(id="faire", chap="Faire ce que je veux ?", fond="nuit", beats=[
+    dict(id="faire", chap="Faire ce que je veux ?", fond="nuit", humeur="tension", retenir="Faire ce que je veux ≠ vouloir librement : l'esclave de ses désirs n'est pas libre.", beats=[
         "{q_quoi}Revenons à aujourd'hui. Si je te demande : être libre, c'est quoi ? "
         "Tu vas sans doute répondre : {-q_quoi}{fcqjv}c'est faire ce que je veux. Personne ne m'empêche, personne ne m'oblige.",
         "{-fcqjv}{hobbes}{tab_lev}C'est la définition du sens commun. Et elle a un défenseur de poids : Thomas Hobbes, "
         "philosophe anglais du dix-septième siècle.",
-        ("C", "La liberté signifie, au sens propre, l'absence d'opposition ; par opposition, j'entends les obstacles "
+        ("C", "La liberté signifie proprement l'absence d'opposition ; par opposition, j'entends les obstacles "
               "extérieurs au mouvement.", "c_hobbes"),
         "{-hobbes}{-c_hobbes}{-tab_lev}{vase}Hobbes prend un exemple tout simple : l'eau. Retenue dans un vase, "
         "elle ne peut pas se répandre : elle n'est pas libre. {vase.1}Ôtez l'obstacle… et elle s'écoule.",
-        ("Être libre, c'est cela : ne rencontrer aucun obstacle.", {"rate": "-5%"}),
+        ("Être libre, c'est cela : ne rencontrer aucun {!obstacle}obstacle.", {"rate": "-5%"}),
         "{-vase}{def_neg}Cette définition a un grand mérite : elle est claire, et elle se mesure. "
         "Plus il y a d'obstacles, moins je suis libre. On parle parfois de liberté négative : "
         "{def_neg.1}la liberté comme absence. Absence de murs, de chaînes, d'interdits.",
         ("Mais regarde de plus près. Elle pose deux problèmes.", {"pitch": "-2Hz"}),
-        "{-def_neg}{pbs}{pbs.1}Premier problème : des obstacles, il y en a toujours. Je ne peux pas voler comme un oiseau, "
-        "je ne peux pas être à deux endroits à la fois, je ne peux pas vivre sans manger. "
-        "Si être libre, c'est n'être empêché par rien… alors personne n'est jamais libre. "
+        "{-def_neg}{pbs}{pbs.1}Premier problème : des obstacles extérieurs, il y en a toujours. Des murs, des lois, d'autres hommes. "
+        "Hobbes, lui, précise une chose : ne pas savoir voler comme un oiseau, ce n'est pas manquer de liberté, "
+        "c'est manquer de pouvoir. Reste que si être libre, c'est n'être empêché par rien du dehors… "
+        "personne ne l'est jamais tout à fait. "
         "{rep_abs}Ainsi définie, la liberté est toujours relative, jamais absolue.",
         "{pbs.2}Second problème, plus profond : cette définition ne regarde que ce qui se passe dehors, "
         "entre moi et le monde. Elle ne demande jamais ce qui se passe dedans.",
@@ -146,28 +147,28 @@ SCENES = [
         "fcqjv": dict(type="mot", t="« Faire ce que je veux »", g="la définition du sens commun", y=260, taille=78),
         "tab_lev": dict(type="tableau", img="t-leviathan", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.5, .5, .32],
                         legende="Abraham Bosse, frontispice du Léviathan, 1651"),
-        "hobbes": dict(type="portrait", img="hobbes", nom="Thomas Hobbes", dates="1588 – 1679",
+        "hobbes": dict(type="portrait", annee=1588, legende="Léviathan (1651)", img="hobbes", nom="Thomas Hobbes", dates="1588 – 1679",
                        x=110, y=120, w=330, h=420),
         "c_hobbes": dict(type="cit", a="Hobbes", o="Léviathan, chap. XXI (1651)", x=500, y=150, w=680),
         "vase": dict(type="illu", nom="vase", x=240, y=110, w=800, h=480),
-        "def_neg": dict(type="def", terme="La liberté « négative »",
+        "def_neg": dict(type="def", cles=["obstacles", "mesure"], terme="La liberté « négative »",
                         t="Être libre, c'est ne rencontrer aucun obstacle extérieur.",
                         etape="Elle se mesure : plus d'obstacles → moins de liberté.", x=170, y=210, w=940),
-        "pbs": dict(type="liste", titre="Deux problèmes", items=[
-            "Des obstacles, il y en a toujours : personne n'est jamais libre ?",
+        "pbs": dict(type="liste", cles=["obstacles", "dedans"], titre="Deux problèmes", items=[
+            "Des obstacles extérieurs, il y en a toujours : murs, lois, autres hommes",
             "Elle regarde dehors, jamais dedans : d'où vient ce que je veux ?"], x=170, y=150, w=940),
         "rep_abs": dict(type="tag", style="repere", t="Repère · absolu / relatif", x=170, y=560, w=420),
         "tab_soc": dict(type="tableau", img="t-socrate", fond=True, de=[1.0, .5, .5], a=[1.45, .62, .42],
                         legende="Jacques-Louis David, La Mort de Socrate, 1787"),
-        "platon": dict(type="portrait", img="platon", nom="Platon", dates="v. 428 – 348 av. J.-C.",
+        "platon": dict(type="portrait", annee=-428, legende="Gorgias · La République", img="platon", nom="Platon", dates="v. 428 – 348 av. J.-C.",
                        x=110, y=120, w=330, h=420),
-        "gorg": dict(type="mot", t="Le Gorgias", g="Socrate contre Calliclès", x=500, y=230, w=680, taille=80),
+        "gorg": dict(type="mot", t="Le Gorgias", g="Socrate contre Calliclès", x=640, y=230, w=570, taille=80),
         "c_call": dict(type="cit", a="Calliclès, dans Platon", o="Gorgias, 491e – 492a", para=True, x=170, y=170, w=940),
         "tonneaux": dict(type="illu", nom="tonneaux", x=140, y=100, w=1000, h=500),
         "tab_dan": dict(type="tableau", img="t-danaides", de=[1.0, .5, .25], a=[1.25, .5, .6],
                         legende="John William Waterhouse, Les Danaïdes, 1906 · condamnées à remplir sans fin des jarres percées"),
         "tel": dict(type="illu", nom="tel", x=240, y=90, w=800, h=540),
-        "rousseau": dict(type="portrait", img="rousseau", nom="Jean-Jacques Rousseau", dates="1712 – 1778",
+        "rousseau": dict(type="portrait", annee=1712, legende="Du contrat social (1762)", img="rousseau", nom="Jean-Jacques Rousseau", dates="1712 – 1778",
                          x=110, y=120, w=330, h=420),
         "c_rous": dict(type="cit", a="Rousseau", o="Du contrat social, I, 8 (1762)", x=500, y=150, w=680),
         "cols1": dict(type="cols", g="Liberté d'agir", gq="Est-ce que je peux faire ce que je veux ?",
@@ -175,7 +176,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ III. trois libertés
-    dict(id="trois", chap="Les trois libertés", fond="aube", beats=[
+    dict(id="trois", chap="Les trois libertés", fond="aube", humeur="lumiere", retenir="Trois libertés : d'agir, de vouloir, politique. Toujours se demander de laquelle on parle.", beats=[
         "{trois_mot}Cette distinction, c'est la clé de toute la notion. Quand on parle de liberté, "
         "on peut en réalité parler {cartes}de trois choses différentes.",
         "{-trois_mot}{cartes.1}D'abord, la liberté d'agir : pouvoir faire ce que j'ai décidé, sans obstacle. "
@@ -198,7 +199,8 @@ SCENES = [
         ("P", 0.6),
         "{-jambe}Esclave selon la loi… et pourtant maître de lui-même. Épictète deviendra l'un des plus grands "
         "philosophes stoïciens. {grille}Pour lui, on peut enchaîner mon corps : {grille.1}pas ma volonté. "
-        "Nous le retrouverons dans l'épisode quatre.",
+        "Ce n'est ni la liberté d'agir, ni exactement le libre arbitre : c'est une liberté intérieure, morale, "
+        "celle du sage. Nous la retrouverons dans l'épisode quatre.",
         "{-epic}{-grille}{inverse}Inversement, on peut vivre dans le pays le plus libre du monde, avoir tous les droits… "
         "{inverse.1}et rester esclave de ses habitudes, de ses peurs, de ses désirs. Le tonneau percé, encore.",
         "{-inverse}{cartes2}Retiens donc ce réflexe, pour toutes tes copies. Devant un sujet sur la liberté, "
@@ -214,13 +216,13 @@ SCENES = [
                         legende="Jean-Jacques-François Le Barbier, Déclaration des droits de l'homme et du citoyen, 1789"),
         "c_ddhc": dict(type="cit", a="Déclaration des droits de l'homme et du citoyen", o="article 4, 26 août 1789",
                        x=170, y=190, w=940),
-        "epic": dict(type="portrait", img="epictete", nom="Épictète", dates="v. 50 – v. 130",
+        "epic": dict(type="portrait", annee=50, legende="Entretiens · Manuel", img="epictete", nom="Épictète", dates="v. 50 – v. 130",
                      x=110, y=120, w=330, h=420),
         "jambe": dict(type="dialogue", lignes=["« Tu vas la casser. »", "« Je te l'avais bien dit. »"],
-                      src="anecdote rapportée par Celse (IIᵉ siècle)", x=500, y=180, w=680),
+                      src="anecdote de Celse (IIᵉ s.), citée par Origène, Contre Celse, VII, 53 · peut-être légendaire", x=640, y=180, w=570),
         "grille": dict(type="liste", titre="Épictète", items=[
             "Liberté politique : aucune (il est esclave)", "Liberté intérieure : entière"], marques=["✗", "✓"],
-                       x=500, y=180, w=680),
+                       x=640, y=180, w=570),
         "inverse": dict(type="liste", titre="Et à l'inverse…", items=[
             "Tous les droits, dans un pays libre", "… mais esclave de ses habitudes, de ses peurs, de ses désirs"],
                         marques=["✓", "✗"], x=170, y=190, w=940),
@@ -233,7 +235,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ IV. les repères
-    dict(id="reperes", chap="Les mots pour le dire", fond="nuit", beats=[
+    dict(id="reperes", chap="Les mots pour le dire", fond="nuit", humeur="calme", retenir="Contrainte ≠ obligation · nécessaire ≠ contingent · en droit ≠ en fait.", beats=[
         "{intro}Pour penser la liberté avec précision, le programme te donne des outils : les repères. "
         "Ce sont des couples de mots qu'on confond souvent… et que le correcteur adore voir distingués. "
         "Trois sont indispensables ici.",
@@ -252,18 +254,19 @@ SCENES = [
         "{-c_force}{-brigand}{ffd}Le brigand me contraint ; il ne m'oblige pas. La force ne fait pas le droit. "
         "{ffd.1}Retiens le paradoxe : l'obligation, loin de détruire la liberté, la suppose. "
         "Kant en fera le cœur de sa morale. Ce sera l'épisode quatre.",
-        "{-ffd}{trio}Deuxième couple, ou plutôt trio : {trio.1}nécessaire, contingent, possible. "
+        "{-ffd}{trio}Deuxième couple : {trio.1}nécessaire et contingent. "
         "Est nécessaire ce qui ne peut pas être autrement. {pierre}Une pierre lâchée tombe : {pierre.1}elle ne peut pas "
         "faire autrement.",
         "{trio.2}Est contingent ce qui est, mais aurait pu ne pas être. Tu regardes cette vidéo… "
         "mais tu aurais pu ne pas la regarder.",
         ("Enfin… c'est ce qu'on croit.", {"rate": "-8%", "pitch": "-2Hz"}),
         "{-pierre}{trio.3}Et c'est là que tout se joue. Si tout ce qui arrive est nécessaire, s'il y a une cause à chacun "
-        "de mes gestes, alors ma liberté est une illusion. Être libre suppose qu'il existe, quelque part, du contingent.",
+        "de mes gestes, alors le libre arbitre semble une {!illusion}illusion. Croire au libre arbitre, c'est supposer qu'il existe, "
+        "quelque part, du contingent.",
         "{-trio}{fd}Troisième couple : en droit, en fait. {fd.g}En droit, c'est-à-dire selon la loi, ou selon ce qui "
         "devrait être. {fd.d}En fait : ce qui se passe réellement. En droit, tu es libre de partir au bout du monde. "
         "En fait, sans argent, ce droit ne vaut pas grand-chose.",
-        "L'écrivain Anatole France s'en moquait, dans une formule cruelle.{-fd}",
+        "L'écrivain Anatole France fait dire à l'un de ses personnages cette formule cruelle.{-fd}",
         ("C", "La majestueuse égalité des lois, qui interdit au riche comme au pauvre de coucher sous les ponts, "
               "de mendier dans les rues et de voler du pain.", "c_france"),
         "{-c_france}{formel}Une liberté qui n'existe que sur le papier est-elle encore une liberté ? "
@@ -276,26 +279,26 @@ SCENES = [
         "murfeu": dict(type="illu", nom="murfeu", x=140, y=110, w=1000, h=480),
         "oc": dict(type="cols", g="Contrainte", gq="s'impose à moi, par la force", d="Obligation",
                    dq="s'adresse à ma liberté : je peux désobéir", vs="≠", repere="Repère · obligation / contrainte"),
-        "brigand": dict(type="portrait", img="rousseau", nom="Jean-Jacques Rousseau", dates="Du contrat social, I, 3",
+        "brigand": dict(type="portrait", img="rousseau", nom="Jean-Jacques Rousseau", dates="1712 – 1778", legende="Du contrat social, I, 3",
                         x=110, y=120, w=330, h=420),
         "c_force": dict(type="cit", a="Rousseau", o="Du contrat social, I, 3 (1762)", x=500, y=170, w=680),
-        "ffd": dict(type="def", terme="La force ne fait pas le droit",
+        "ffd": dict(type="def", cles=["contraint", "oblige", "suppose"], terme="La force ne fait pas le droit",
                     t="Le brigand me contraint ; il ne m'oblige pas.",
                     etape="Paradoxe : l'obligation ne détruit pas la liberté, elle la suppose.", x=170, y=210, w=940),
         "trio": dict(type="liste", titre="Repère · nécessaire / contingent", items=[
             "Nécessaire : ne peut pas être autrement",
             "Contingent : est, mais aurait pu ne pas être",
-            "Si tout est nécessaire, la liberté est une illusion"], marques=["1", "2", "→"], x=560, y=150, w=640),
+            "Si tout est nécessaire, le libre arbitre semble une illusion"], marques=["1", "2", "→"], x=560, y=150, w=640),
         "pierre": dict(type="illu", nom="chute", x=80, y=110, w=440, h=480),
         "fd": dict(type="cols", g="En droit", gq="selon la loi, ou ce qui devrait être", d="En fait",
                    dq="ce qui se passe réellement", vs="≠", repere="Repère · en droit / en fait"),
-        "c_france": dict(type="cit", a="Anatole France", o="Le Lys rouge (1894)", x=170, y=170, w=940),
+        "c_france": dict(type="cit", a="Anatole France", o="Le Lys rouge, chap. VII (1894)", x=170, y=170, w=940),
         "formel": dict(type="cols", g="Libertés formelles", gq="écrites dans la loi", d="Libertés réelles",
                        dq="que l'on a vraiment les moyens d'exercer", vs="≠", plus=True),
     }),
 
     # ------------------------------------------------------------------ V. le problème
-    dict(id="probleme", chap="Le grand problème", fond="aube", beats=[
+    dict(id="probleme", chap="Le grand problème", fond="aube", humeur="tension", retenir="Se sentir libre suffit-il à l'être ? Ou n'est-ce que l'ignorance des causes ?", beats=[
         "{q_pb}Nous voilà prêts à voir le vrai problème. D'un côté, il y a une expérience que chacun fait, à chaque instant : "
         "{-q_pb}{sens}je me sens libre. Je lève la main… ou pas. Je choisis.",
         "{-sens}{desc}Descartes dira que c'est la chose la plus évidente du monde.",
@@ -306,9 +309,9 @@ SCENES = [
         "{causes.5}mes désirs cachés…",
         "{-causes}{spino}Au dix-septième siècle, Spinoza prend une image saisissante. {lance}Imagine une pierre qu'on lance en l'air. "
         "{lance.1}Si cette pierre pouvait penser, {lance.2}elle croirait voler parce qu'elle l'a décidé.",
-        ("Nous serions comme elle : conscients de ce que nous faisons… mais ignorants des causes qui nous font agir.",
+        ("Nous serions comme elle : conscients de nos désirs… mais ignorants des causes qui nous déterminent.",
          {"rate": "-5%"}),
-        "{-spino}{-lance}{q2}Le sentiment d'être libre… ou l'ignorance de ce qui nous détermine ? "
+        "{-spino}{-lance}{q2}Le sentiment d'être libre… ou l'{!ignorance}ignorance de ce qui nous détermine ? "
         "Voilà la grande question. Et la série va la prendre sous tous ses angles.",
         "{-q2}{plan}{plan.1}Dans l'épisode deux, Descartes et Sartre défendront la liberté absolue de la volonté. "
         "{plan.2}Dans l'épisode trois, Spinoza, Freud et les sciences humaines viendront la contester. "
@@ -319,14 +322,14 @@ SCENES = [
     ], vis={
         "q_pb": dict(type="question", t="Sommes-nous vraiment libres ?"),
         "sens": dict(type="mot", t="« Je me sens libre »", g="l'expérience de chaque instant", y=260, taille=84),
-        "desc": dict(type="portrait", img="descartes", nom="René Descartes", dates="1596 – 1650",
+        "desc": dict(type="portrait", annee=1596, legende="Méditations · Principes", img="descartes", nom="René Descartes", dates="1596 – 1650",
                      x=110, y=120, w=330, h=420),
-        "c_desc": dict(type="cit", a="Descartes", o="Principes de la philosophie, I, 39 (1644)", x=500, y=170, w=680),
+        "c_desc": dict(type="cit", a="Descartes", o="Principes de la philosophie, I, 39 (1644 ; trad. 1647)", x=500, y=170, w=680),
         "causes": dict(type="nuage", items=["mes gènes", "mon éducation", "mon milieu", "mon cerveau", "mes désirs cachés"],
                        centre="CAUSES"),
-        "spino": dict(type="portrait", img="spinoza", nom="Baruch Spinoza", dates="1632 – 1677",
-                      x=110, y=120, w=330, h=420, legende="Lettre à Schuller, 1674"),
-        "lance": dict(type="illu", nom="lance", x=470, y=110, w=730, h=480),
+        "spino": dict(type="portrait", annee=1632, img="spinoza", nom="Baruch Spinoza", dates="1632 – 1677",
+                      x=110, y=120, w=330, h=420, legende="Lettre 58 à Schuller, octobre 1674"),
+        "lance": dict(type="illu", nom="lance", x=600, y=150, w=660, h=434),
         "q2": dict(type="question", t="Sentiment d'être libre… ou ignorance des causes ?"),
         "plan": dict(type="liste", titre="La suite de la série", items=[
             "Ép. 2 · Le libre arbitre : Descartes, Sartre",
@@ -337,7 +340,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ VI. à retenir
-    dict(id="retenir", chap="À retenir", fond="nuit", beats=[
+    dict(id="retenir", chap="À retenir", fond="nuit", humeur="lumiere", beats=[
         "{rec}Ce qu'il faut retenir de cet épisode. {rec.1}Un : le sens premier. L'homme libre s'appartient : "
         "il n'est pas l'instrument d'un autre.",
         "{rec.2}Deux : faire ce que je veux, ce n'est pas vouloir librement. Hobbes d'un côté ; Platon et Rousseau de l'autre.",
@@ -349,12 +352,11 @@ SCENES = [
         "{-frise}{fin}{tab_fin}",
         ("P", 4.5),
     ], vis={
-        "rec": dict(type="liste", titre="À retenir", items=[
-            "Être libre, c'est s'appartenir : ne pas être l'instrument d'un autre (Aristote)",
-            "Faire ce que je veux ≠ vouloir librement (Hobbes / Platon, Rousseau)",
-            "Trois libertés : d'agir, de vouloir (libre arbitre), politique",
-            "Repères : obligation / contrainte · nécessaire / contingent · en droit / en fait"],
-                    marques=["1", "2", "3", "4"], x=150, y=120, w=980),
+        "rec": dict(type="carte", centre="LA LIBERTÉ", branches=[
+            dict(t="Le sens premier", items=["s'appartenir", "ne pas être l'instrument d'un autre", "Aristote"]),
+            dict(t="Faire ≠ vouloir", items=["Hobbes : l'absence d'obstacles", "Platon, Rousseau : l'esclave de ses désirs"]),
+            dict(t="Trois libertés", items=["d'agir", "de vouloir (libre arbitre)", "politique"]),
+            dict(t="Trois repères", items=["contrainte / obligation", "nécessaire / contingent", "en droit / en fait"])]),
         "frise": dict(type="frise", items=[
             dict(nom="Platon", d=-428, img="platon"), dict(nom="Aristote", d=-384, img="aristote"),
             dict(nom="Épictète", d=50, img="epictete"), dict(nom="Descartes", d=1596, img="descartes"),
@@ -400,5 +402,5 @@ CREDITS = [
     "Spinoza : portrait anonyme, vers 1665",
     "Kant : portrait anonyme, XVIIIᵉ siècle",
     "Tableaux : Delacroix, La Liberté guidant le peuple (1830) ; Raphaël, L'École d'Athènes (1509-1511) ; Abraham Bosse, frontispice du Léviathan (1651) ; J.-L. David, La Mort de Socrate (1787) ; J. W. Waterhouse, Les Danaïdes (1906) ; J.-J.-F. Le Barbier, Déclaration des droits de l'homme et du citoyen (1789) : domaine public",
-    "Images : Wikimedia Commons. Voix de synthèse Microsoft (edge-tts). Musique originale générée pour la série.",
+    "Images : Wikimedia Commons. Voix de synthèse créées pour la série (Qwen3-TTS, clonage local). Musique originale générée pour la série.",
 ]

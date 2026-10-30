@@ -66,6 +66,30 @@
       if (flou) sp[i].style.filter = p < 1 ? "blur(" + ((1 - p) * 6).toFixed(1) + "px)" : "none";
     }
   }
+  // mots clés d'un visuel : chaque span dont le mot commence comme une clé s'allume quand la voix la prononce
+  function nrm(x) { return String(x).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z]/g, ""); }
+  function cles(v, spans) {
+    if (!v.kt) return [];
+    var out = [];
+    spans.forEach(function (sp) {
+      var w = nrm(sp.textContent);
+      Object.keys(v.kt).forEach(function (k) {
+        var nk = nrm(k);
+        if (w && nk && w.indexOf(nk.slice(0, Math.max(4, nk.length - 2))) === 0) out.push({ sp: sp, t: v.kt[k] });
+      });
+    });
+    return out;
+  }
+  function allume(lst, t) {
+    lst.forEach(function (c) {
+      var p = P(t, c.t, .35), f = P(t, c.t + .35, 1.4);
+      if (p <= 0) { c.sp.style.color = ""; c.sp.style.textShadow = ""; c.sp.style.backgroundSize = "0% 3px"; return; }
+      c.sp.style.color = C.sa;
+      c.sp.style.textShadow = "0 0 " + (18 * (1 - f)).toFixed(1) + "px rgba(232,178,90," + (0.7 * (1 - f)).toFixed(2) + ")";
+      c.sp.style.backgroundSize = (100 * E(p)).toFixed(0) + "% 3px";
+    });
+  }
+
   // étape k d'un visuel : instant (repère {id.k}) ou, à défaut, une valeur de repli
   function et(v, k, repli) { return v.et && v.et[k] != null ? v.et[k] : v.t0 + repli; }
 
@@ -584,9 +608,11 @@
     e.style.left = (v.x || 170) + "px"; e.style.top = (v.y || 200) + "px"; e.style.width = (v.w || 940) + "px";
     var c = h("div", "carte" + (note ? " note" : ""), e);
     var bg = h("div", "barre-g", c), te = h("div", "te", c, esc(note ? (v.titre || "Attention") : v.terme));
-    var tx = h("div", "tx serif", c), sp = mots(tx, v.t), etp = v.etape ? h("div", "et", c, esc(v.etape)) : null;
+    var tx = h("div", "tx serif", c), sp = mots(tx, v.t, "mot-l cle"), etp = v.etape ? h("div", "et", c, esc(v.etape)) : null;
     if (v.plus) h("div", "badge", c, "Pour aller plus loin");
+    var kl = cles(v, sp);
     return function (t, st) {
+      allume(kl, t);
       tr(bg, "scaleY(" + E(P(st.tl, .1, .7)) + ")");
       op(te, E(P(st.tl, .2, .6)));
       sp.forEach(function (m, i) { var p = E(P(st.tl, .4 + i * .06, .5)); m.style.opacity = p; m.style.transform = "translateY(" + (1 - p) * 10 + "px)"; });
@@ -630,19 +656,42 @@
     };
   };
 
+  // repère dans le temps : petite frise de -600 à 2000, point lumineux à l'année de l'auteur
+  function minifrise(parent, annee) {
+    var f = h("div", "mf", parent);
+    var X = function (an) { return an < 500 ? (an + 600) / 1100 * 34 : an < 1500 ? 34 + (an - 500) / 1000 * 14 : 48 + (an - 1500) / 500 * 52; };
+    h("div", "mf-axe", f);
+    [["Antiquité", -600], ["Moyen Âge", 500], ["Modernes", 1500], ["Contemp.", 1850]].forEach(function (z) {
+      var l = h("div", "mf-z", f, z[0]); l.style.left = X(z[1]) + "%";
+    });
+    var pt = h("div", "mf-pt", f); pt.style.left = X(annee) + "%";
+    var an = h("div", "mf-an", f, annee < 0 ? (-annee) + " av. J.-C." : String(annee)); an.style.left = X(annee) + "%";
+    return { f: f, pt: pt, an: an };
+  }
+
   TYPES.portrait = function (o, v) {
-    var e = o.el; e.classList.add("v-portrait"); o.entree = "aucune";
-    e.style.left = (v.x || 110) + "px"; e.style.top = (v.y || 120) + "px"; e.style.width = (v.w || 330) + "px"; e.style.height = (v.h || 420) + "px";
+    var e = o.el; e.classList.add("v-portrait", "grand"); o.entree = "aucune"; o.prof = -0.6;
     var pf = h("div", "pf", e), img;
     if (v.img) { img = h("img", "", pf); img.src = "img/" + v.img + ".jpg"; img.alt = v.nom; img.decoding = "sync"; }
     else img = h("div", "mono", pf, esc((v.nom || "?").split(" ").map(function (x) { return x[0]; }).join("")));
-    var np = h("div", "np", e);
-    h("div", "n", np, esc(v.nom)); h("div", "d", np, esc(v.dates || "")); if (v.legende) h("div", "lg", np, esc(v.legende));
+    var bd = h("div", "bandeau", e);
+    var trait = h("div", "bd-trait", bd);
+    var nm = h("div", "bd-nom", bd, esc(v.nom));
+    var inf = h("div", "bd-info", bd, esc([v.dates, v.legende].filter(Boolean).join(" · ")));
+    var mf = v.annee != null ? minifrise(bd, v.annee) : null;
     return function (t, st) {
-      var a = E(P(st.tl, 0, .9)), vie = P(t, v.t0, Math.max(6, v.t1 - v.t0));
-      op(pf, a); tr(pf, "translateY(" + (30 * (1 - a)) + "px) scale(" + (0.96 + 0.04 * a) + ")");
-      tr(img, "scale(" + (1.04 + 0.1 * vie) + ") translate(" + (-1.5 * vie) + "%," + (-2 * vie) + "%)");
-      var b = E(P(st.tl, .4, .7)); op(np, b); tr(np, "translateY(" + 12 * (1 - b) + "px)");
+      var a = E(P(st.tl, 0, 1.1)), vie = P(t, v.t0, Math.max(6, v.t1 - v.t0));
+      op(pf, a); tr(pf, "translateX(" + (-40 * (1 - a)) + "px)");
+      tr(img, "scale(" + (1.06 + 0.1 * vie) + ") translate(" + (1.5 * vie) + "%," + (-2.5 * vie) + "%)");
+      tr(trait, "scaleX(" + E(P(st.tl, .5, .8)) + ")");
+      var b = E(P(st.tl, .6, .7)); op(nm, b); tr(nm, "translateX(" + (-24 * (1 - b)) + "px)");
+      var c = E(P(st.tl, .9, .7)); op(inf, c);
+      if (mf) {
+        op(mf.f, E(P(st.tl, 1.3, .7)) * (1 - E(P(st.tl, 5.5, .8)) * .55));
+        var q = P(st.tl, 1.7, .6); tr(mf.pt, "translate(-50%,-50%) scale(" + (0.3 + 0.7 * EB(q)) + ")");
+        mf.pt.style.boxShadow = "0 0 " + (6 + 8 * Math.max(0, Math.sin(t * 3))) + "px rgba(232,178,90,.9)";
+        op(mf.an, E(P(st.tl, 2, .5)));
+      }
     };
   };
 
@@ -694,10 +743,12 @@
     var lis = v.items.map(function (txt, i) {
       var li = h("div", "li", e), mq = (v.marques || [])[i] || String(i + 1);
       var b = h("div", "mq" + (mq === "✓" ? " ok" : mq === "✗" ? " ko" : ""), li, esc(mq));
-      var tx = h("div", "tx", li, esc(txt));
-      return { li: li, b: b, tx: tx };
+      var tx = h("div", "tx", li), sp = mots(tx, txt, "mot-l cle");
+      return { li: li, b: b, tx: tx, sp: sp };
     });
+    var kl = cles(v, [].concat.apply([], lis.map(function (l) { return l.sp; })));
     return function (t, st) {
+      allume(kl, t);
       var tk = lis.map(function (_, i) { return et(v, String(i + 1), .3 + i * .5); });
       var dernier = -1; tk.forEach(function (x, i) { if (t >= x) dernier = i; });
       lis.forEach(function (l, i) {
@@ -774,6 +825,80 @@
     };
   };
 
+  TYPES.generique = function (o, v) {
+    var e = o.el; e.classList.add("v-generique"); o.entree = "aucune"; o.disp = "flex";
+    var halo = h("div", "g-halo", e), haut = h("div", "g-haut", e, "L'Index raisonné · Philosophie");
+    var l1 = h("div", "g-ligne", e), tt = h("div", "g-titre", e), sp = lettres(tt, v.serie);
+    var l2 = h("div", "g-ligne", e), bas = h("div", "g-bas", e, "Série vidéo · épisode " + v.num);
+    var balai = h("div", "g-balai", e);
+    return function (t, st) {
+      var tl = st.tl;
+      op(halo, E(P(tl, 0, 1.5)) * (1 - E(P(tl, 4.6, 1)))); tr(halo, "scale(" + (0.7 + 0.4 * E(P(tl, 0, 5))) + ")");
+      op(haut, E(P(tl, .3, .9))); haut.style.letterSpacing = (0.7 - 0.35 * E(P(tl, .3, 2))) + "em";
+      tr(l1, "scaleX(" + EIO(P(tl, .6, 1.4)) + ")"); tr(l2, "scaleX(" + EIO(P(tl, .8, 1.4)) + ")");
+      animLettres(sp, tl, 1.0, .07, .9, true);
+      tr(tt, "scale(" + (1.08 - 0.08 * E(P(tl, 1, 4))) + ")");
+      op(bas, E(P(tl, 2.2, .8)));
+      tr(balai, "translateX(" + (-400 + 2100 * EIO(P(tl, 2.4, 1.6))) + "px) skewX(-20deg)");
+      op(balai, P(tl, 2.4, .2) * (1 - P(tl, 3.8, .2)));
+      op(e, 1 - EIO(P(t, v.t1 - .6, .8)));
+    };
+  };
+
+  TYPES.frappe = function (o, v) {
+    var e = o.el; e.classList.add("v-frappe"); o.entree = "aucune"; o.disp = "flex";
+    var fond = h("div", "fr-fond", e), m = h("div", "fr-mot", e, esc(v.t));
+    return function (t, st) {
+      var tl = st.tl, a = P(tl, 0, .35), out = P(tl, 1.05, .45);
+      op(fond, E(a) * (1 - E(out)) * .82);
+      op(m, E(P(tl, 0, .2)) * (1 - E(out)));
+      var sc = 1.35 - 0.35 * EB(a) + 0.04 * tl;
+      var sh = tl < .45 ? Math.sin(tl * 70) * 5 * (1 - tl / .45) : 0;
+      tr(m, "translateX(" + sh.toFixed(1) + "px) scale(" + sc.toFixed(3) + ")");
+      m.style.letterSpacing = (0.12 - 0.08 * E(a)) + "em";
+      m.style.filter = out > 0 ? "blur(" + (8 * out).toFixed(1) + "px)" : "none";
+    };
+  };
+
+  TYPES.flash = function (o, v) {
+    var e = o.el; e.classList.add("v-flash"); o.entree = "aucune"; o.disp = "flex";
+    var fond = h("div", "fl-fond", e), c = h("div", "fl-carte", e);
+    h("div", "fl-te", c, "À retenir");
+    var tx = h("div", "fl-tx", c), sp = mots(tx, v.t);
+    return function (t, st) {
+      var tl = st.tl, a = E(P(tl, 0, .6)), out = EIO(P(t, v.t1 - .3, .6));
+      op(fond, a * (1 - out) * .7);
+      op(c, a * (1 - out)); tr(c, "translateY(" + (24 * (1 - a)) + "px) scale(" + (0.96 + 0.04 * a) + ")");
+      sp.forEach(function (m, i) { var p = E(P(tl, .35 + i * .05, .4)); m.style.opacity = p; });
+    };
+  };
+
+  TYPES.carte = function (o, v) {
+    var e = o.el; e.classList.add("v-carte"); o.entree = "aucune";
+    var svg = sv("svg", { viewBox: "0 0 " + W + " " + H }, e);
+    var POS = [[330, 150], [950, 150], [330, 440], [950, 440]];
+    var centre = h("div", "cm-centre", e, esc(v.centre));
+    var br = (v.branches || []).map(function (b, i) {
+      var p = POS[i], d = "M640 330 C" + (640 + (p[0] - 640) * .4) + " 330 " + (p[0] + (640 - p[0]) * .25) + " " + p[1] + " " + p[0] + " " + p[1];
+      var ln = sv("path", { d: d, fill: "none", stroke: C.sa, "stroke-width": 3, "stroke-linecap": "round", opacity: .8 }, svg);
+      var nd = h("div", "cm-noeud", e, esc(b.t)); nd.style.left = p[0] + "px"; nd.style.top = p[1] + "px";
+      var col = h("div", "cm-items", e); col.style.left = (p[0] - 200) + "px"; col.style.top = (p[1] + 34) + "px";
+      var its = b.items.map(function (x) { return h("div", "cm-it", col, esc(x)); });
+      return { ln: ln, nd: nd, its: its };
+    });
+    return function (t, st) {
+      var a = E(P(st.tl, 0, .7));
+      op(centre, a); tr(centre, "translate(-50%,-50%) scale(" + (0.6 + 0.4 * EB(P(st.tl, 0, .7))) + ")");
+      centre.style.boxShadow = "0 0 " + (20 + 12 * Math.sin(t * 2)) + "px rgba(232,178,90,.35)";
+      br.forEach(function (b, i) {
+        var tk = et(v, String(i + 1), .6 + i * 1.2);
+        trace(b.ln, P(t, tk, .8));
+        var q = P(t, tk + .5, .5); op(b.nd, E(q)); tr(b.nd, "translate(-50%,-50%) scale(" + (0.5 + 0.5 * EB(q)) + ")");
+        b.its.forEach(function (it, j) { var r = E(P(t, tk + .8 + j * .25, .5)); op(it, r); tr(it, "translateY(" + (8 * (1 - r)) + "px)"); });
+      });
+    };
+  };
+
   TYPES.illu = function (o, v) {
     var e = o.el; e.classList.add("v-illu"); o.entree = "aucune";
     e.style.left = v.x + "px"; e.style.top = v.y + "px"; e.style.width = v.w + "px"; e.style.height = v.h + "px";
@@ -842,11 +967,16 @@
         var v = o.v;
         if (t < v.t0 || t > v.t1 + (v.type === "tableau" ? 1 : .7)) { if (o.vis) { o.el.style.display = "none"; o.vis = false; } return; }
         if (!o.vis) { o.el.style.display = o.disp; o.vis = true; }
-        if (v.type === "titre" || v.type === "chapitre") plein = true;
+        if (v.type === "titre" || v.type === "chapitre" || v.type === "generique") plein = true;
         var a = E(P(t, v.t0, .7)), out = EIO(P(t, v.t1, .6));
         if (v.type !== "tableau") o.el.style.opacity = (o.entree === "aucune" ? 1 : a) * (1 - out);
-        if (o.entree === "monte") o.el.style.transform = "translateY(" + (26 * (1 - a) - 14 * out).toFixed(2) + "px)";
-        else o.el.style.transform = out > 0 ? "scale(" + (1 - .03 * out) + ")" : "";
+        // profondeur : le texte et les images dérivent doucement, à des vitesses différentes
+        var pr = o.prof != null ? o.prof : (v.type === "tableau" ? 0 : 1);
+        var dx = (Math.sin(t * .071 + 1) * 7 * pr).toFixed(2), dy = (Math.cos(t * .053) * 5 * pr).toFixed(2);
+        var flou = (o.entree === "monte" ? (1 - a) * 7 : 0) + out * 6;
+        if (v.type !== "tableau") o.el.style.filter = flou > .05 ? "blur(" + flou.toFixed(1) + "px)" : "none";
+        if (o.entree === "monte") o.el.style.transform = "translate(" + dx + "px," + (26 * (1 - a) - 14 * out + +dy).toFixed(2) + "px) scale(" + (0.97 + 0.03 * a + 0.02 * out).toFixed(4) + ")";
+        else if (v.type !== "tableau") o.el.style.transform = "translate(" + dx + "px," + dy + "px)" + (out > 0 ? " scale(" + (1 + .025 * out) + ")" : "");
         o.upd(t, { tl: t - v.t0, a: a, o: out });
       });
       // en-tête : notion, épisode, chapitre
