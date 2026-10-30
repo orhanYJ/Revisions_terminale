@@ -18,6 +18,20 @@ ACCORDS = [(45, [57, 60, 64, 69]),   # la mineur
            (43, [55, 59, 62, 67])]   # sol majeur
 MOTIF = [0, 2, 1, 3, 2, 1, 3, 2]     # ordre de l'arpège (croches)
 
+# humeurs : une couleur musicale par chapitre (même instrumentation, donc même identité sonore)
+HUMEURS = {
+    "lumiere": dict(bpm=84, accords=ACCORDS, arpege=1.0, nappe=0.20),
+    "mystere": dict(bpm=70, accords=[(38, [50, 53, 57, 62]), (46, [50, 53, 58, 62]),      # ré m, si bémol
+                                     (43, [50, 55, 58, 62]), (45, [49, 52, 57, 61])],     # sol m, la
+                    arpege=0.55, nappe=0.26),
+    "tension": dict(bpm=92, accords=[(40, [52, 55, 59, 64]), (36, [52, 55, 60, 64]),      # mi m, do
+                                     (45, [52, 57, 60, 64]), (47, [51, 54, 59, 63])],     # la m, si
+                    arpege=1.0, nappe=0.18),
+    "calme": dict(bpm=76, accords=[(41, [53, 57, 60, 65]), (48, [52, 55, 60, 64]),        # fa, do
+                                   (38, [53, 57, 62, 65]), (46, [53, 58, 62, 65])],       # ré m, si bémol
+                  arpege=0.7, nappe=0.22),
+}
+
 
 def hz(m):
     return 440.0 * 2 ** ((m - 69) / 12.0)
@@ -64,8 +78,11 @@ def _reverb(x, duree=2.2, mix=0.32):
     return (1 - mix) * x + mix * y * 0.9
 
 
-def boucle(duree):
-    """Musique brute (sans dosage) de la durée demandée."""
+def boucle(duree, humeur="lumiere"):
+    """Musique brute (sans dosage) de la durée demandée, dans l'humeur choisie."""
+    H = HUMEURS[humeur]
+    BEAT = 60.0 / H["bpm"]
+    ACCORDS = H["accords"]
     n = int(duree * SR) + SR
     out = np.zeros(n)
     rng = np.random.default_rng(3)
@@ -75,13 +92,15 @@ def boucle(duree):
         basse, notes = ACCORDS[k % 4]
         d = 2 * mesure
         i = int(t * SR)
-        _ajoute(out, _nappe([hz(m) for m in notes[:3]], d + 1.2, 0.20), i)
+        _ajoute(out, _nappe([hz(m) for m in notes[:3]], d + 1.2, H["nappe"]), i)
         for b in (0, 2, 4, 6):  # basse sur les temps forts
             nb = _note_piano(hz(basse), 1.6, 0.20)
             _ajoute(out, nb * np.exp(-np.arange(len(nb)) / SR * 0.8), int((t + b * BEAT) * SR))
         for c in range(16):     # arpège en croches, une octave au-dessus
             m = notes[MOTIF[c % 8]] + 12
-            amp = 0.075 if c % 2 == 0 else 0.055
+            amp = (0.075 if c % 2 == 0 else 0.055) * H["arpege"]
+            if H["arpege"] < 0.8 and c % 2 == 1:
+                continue        # humeurs calmes : arpège en noires
             _ajoute(out, _note_piano(hz(m), 0.9, amp), int((t + c * BEAT / 2) * SR))
         for c in range(16):     # frémissement : souffle très court à contretemps
             if c % 2 == 1:

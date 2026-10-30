@@ -35,7 +35,7 @@ AVANT_CIT = 0.45                      # silence avant une citation
 CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
-V_MOTEUR = 3                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
+V_MOTEUR = 4                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
 PAGE = """<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -54,7 +54,19 @@ PAGE = """<!DOCTYPE html>
 </body>
 </html>
 """
-MARQUE = re.compile(r"\{(-?)([\w.]+)\}")
+MARQUE = re.compile(r"\{([-!]?)([^{}]+)\}")
+GENERIQUE = 5.6                       # générique commun à la série, avant la première phrase
+FLASH = 3.8                           # « À retenir » de fin de chapitre (silence de voix, la musique monte)
+HUMEUR_DEFAUT = "lumiere"
+# prononciation : graphie donnée à la voix pour les mots non français (le texte affiché et les sous-titres gardent
+# l'orthographe normale) ; à compléter quand un nom est mal dit (vérifier par la transcription de l'épisode)
+PRONONCIATION = {"Leute": "Loïte", "liberi": "libéri"}
+
+
+def prononce(lu):
+    for mot, dit in PRONONCIATION.items():
+        lu = re.sub(r"(?<![\w-])" + re.escape(mot) + r"(?![\w-])", dit, lu)
+    return lu
 
 
 def _nettoie(texte):
@@ -62,7 +74,7 @@ def _nettoie(texte):
     out, reperes, pos = [], [], 0
     for m in MARQUE.finditer(texte):
         out.append(texte[pos:m.start()])
-        reperes.append((len("".join(out)), m.group(1) == "-", m.group(2)))
+        reperes.append((len("".join(out)), m.group(1), m.group(2)))
         pos = m.end()
     out.append(texte[pos:])
     lu = re.sub(r"\s+", " ", "".join(out))
@@ -151,6 +163,7 @@ def generer(nom_module):
             if "pause" in b:
                 continue
             lu, _ = _nettoie(b["t"])
+            lu = prononce(lu)
             b["lu"] = lu
             if not lu.strip():
                 continue
@@ -182,7 +195,9 @@ def generer(nom_module):
         asyncio.run(tout())
 
     # 2. frise temporelle
-    t = DEBUT
+    t = GENERIQUE + 0.6
+    plein = []                # intervalles où une image occupe tout l'écran (la musique remonte un peu)
+    humeurs = []              # (début, humeur) par scène
     voix = []                 # (instant, signal)
     paroles = []              # intervalles parlés (pour la musique)
     bruitages = []            # (instant, nom)
@@ -190,8 +205,15 @@ def generer(nom_module):
     cues = {}                 # id -> instant ; "id.k" -> instant ; "-id" -> instant
     cit_mots = {}
     n_chap = 0
+    n_frappe = 0
+    vis.append({"id": "_generique", "type": "generique", "scene": ep.SCENES[0]["id"], "serie": ep.NOTION,
+                "num": ep.NUM, "t0": 0.0, "t1": GENERIQUE})
+    bruitages.append((0.15, "souffle"))
+    bruitages.append((1.6, "cloche"))
     for sc in ep.SCENES:
         t0 = t
+        humeurs.append((t0 if humeurs else 0.0, sc.get("humeur", HUMEUR_DEFAUT)))
+        mots_sc = []          # (instant, mot) dits par le narrateur dans la scène
         carton = sc.get("carton", True)
         if carton:
             vis.append({"id": "_chap_" + sc["id"], "type": "chapitre", "scene": sc["id"],
@@ -205,8 +227,8 @@ def generer(nom_module):
                 continue
             lu, reperes = _nettoie(b["t"])
             if not lu.strip():
-                for _, cache, ident in reperes:
-                    cues[("-" if cache else "") + ident] = t
+                for _, kind, ident in reperes:
+                    cues[("-" if kind == "-" else "") + ident] = t
                 continue
             if b["v"] == "C":
                 t += AVANT_CIT
@@ -216,10 +238,17 @@ def generer(nom_module):
                 mots = json.load(f)
             al = _aligne(lu, mots)
             dur = len(x) / SR
-            for pos, cache, ident in reperes:
+            for pos, kind, ident in reperes:
                 w = next((a for a in al if a[0] >= pos), None)
-                inst = t + (w[1] - tete if w else dur)
-                cues[("-" if cache else "") + ident] = max(t, inst)
+                inst = max(t, t + (w[1] - tete if w else dur))
+                if kind == "!":       # mot clé qui frappe : grand, une seconde et demie
+                    n_frappe += 1
+                    vis.append({"id": f"_frappe{n_frappe}", "type": "frappe", "scene": sc["id"], "t": ident,
+                                "t0": round(inst, 3), "t1": round(inst + 1.5, 3)})
+                    continue
+                cues[("-" if kind == "-" else "") + ident] = inst
+            if b["v"] == "H":
+                mots_sc += [(t + a[1] - tete, a[3]) for a in al]
             if b["v"] == "C":
                 cues[b["vis"]] = t - 0.25
                 cit_mots[b["vis"]] = {"c0": round(t, 3), "c1": round(t + dur, 3),
@@ -244,6 +273,11 @@ def generer(nom_module):
                     sous.append([round(debut, 3), round(min(fin, t + off - tete + d + 0.6), 3), (s + reste).strip()])
                     morceau, debut = [], None
             t += dur + ECART[b["v"]]
+        if sc.get("retenir"):
+            vis.append({"id": "_flash_" + sc["id"], "type": "flash", "scene": sc["id"], "t": sc["retenir"],
+                        "t0": round(t, 3), "t1": round(t + FLASH - 0.3, 3)})
+            bruitages.append((t, "cloche"))
+            t += FLASH
         scenes.append({"id": sc["id"], "chap": sc["chap"], "fond": sc.get("fond", "nuit"),
                        "t0": round(t0, 3), "t1": round(t, 3)})
         # visuels de la scène
@@ -261,8 +295,19 @@ def generer(nom_module):
             if ident in cit_mots:
                 v.update(cit_mots[ident])
                 v["t"] = next(b["t"] for b in sc["_b"] if b.get("vis") == ident)
+            if v.get("cles"):         # mots du visuel qui s'allument quand la voix les prononce
+                def _n(x):
+                    return re.sub(r"[^a-zàâçéèêëîïôûùüœ]", "", x.lower())
+                kt = {}
+                for c in v["cles"]:
+                    w = next((ti for ti, mo in mots_sc if ti >= v["t0"] - 0.3 and _n(mo).startswith(_n(c)[:max(4, len(_n(c)) - 2)])), None)
+                    kt[c] = round(w if w is not None else v["t0"] + 1.0, 3)
+                v["kt"] = kt
+            if v["type"] == "tableau" and not v.get("fond"):
+                plein.append((v["t0"], v["t1"]))
             vis.append(v)
     duree = t + 0.5
+    vis.sort(key=lambda v: (v["t0"], v["type"] != "tableau"))
     bruitages.append((next(v["t0"] for v in vis if v["type"] == "titre"), "cloche"))
 
     # 3. pistes audio
@@ -273,13 +318,28 @@ def generer(nom_module):
         pv[i:i + len(x)] += x
     crete = np.abs(pv).max()
     pv *= 0.89 / crete
-    mus = musique.boucle(duree + 1)[:n]
-    mus = mus / (np.abs(mus).max() + 1e-9) * 0.42
+    # musique : une humeur par chapitre, fondu enchaîné de 2,5 s entre deux humeurs
+    pistes = {}
+    for _, hu in humeurs:
+        if hu not in pistes:
+            x = musique.boucle(duree + 1, hu)[:n]
+            pistes[hu] = np.pad(x, (0, max(0, n - len(x))))[:n] / (np.abs(x).max() + 1e-9) * 0.42
+    tt = np.arange(n) / SR
+    mus = np.zeros(n)
+    poids_total = np.zeros(n)
+    for k, (deb, hu) in enumerate(humeurs):
+        fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
+        w = np.clip((tt - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt + 1.25) / 2.5, 0, 1)
+        mus += pistes[hu] * w
+        poids_total += w
+    mus /= np.maximum(poids_total, 1e-6)
     g = musique.enveloppe(n / SR, paroles, haut=1.0, bas=0.12)
     g = np.pad(g, (0, max(0, n - len(g))), constant_values=g[-1])[:n]
+    for a, b in plein:       # images plein écran : la musique remonte un peu sous la voix
+        i, j = int(a * SR), int(b * SR)
+        g[i:j] = np.maximum(g[i:j], 0.2)
     # fondu d'entrée et de sortie de la musique
-    tt = np.arange(n) / SR
-    g *= np.clip(tt / 1.2, 0, 1) * np.clip((duree + 0.5 - tt) / 3.0, 0, 1)
+    g *= np.clip(tt / 0.4, 0, 1) * np.clip((duree + 0.5 - tt) / 3.0, 0, 1)
     fx = np.zeros(n)
     for inst, nom in bruitages:
         s = musique.souffle() if nom == "souffle" else musique.cloche()
@@ -307,8 +367,9 @@ def generer(nom_module):
             w.setsampwidth(2)
             w.setframerate(SR)
             w.writeframes((np.clip(sig, -1, 1) * 32767).astype(np.int16).tobytes())
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav, "-codec:a", "libmp3lame", "-b:a", debit,
-                        os.path.join(SORTIE, "voix", nomf)], check=True)
+        # volume harmonisé à la norme des vidéos en ligne (-16 LUFS, crêtes à -1,5 dB)
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", wav, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", str(SR),
+                        "-codec:a", "libmp3lame", "-b:a", debit, os.path.join(SORTIE, "voix", nomf)], check=True)
         noms[cle] = "voix/" + nomf
 
     data = {"code": ep.CODE, "notion": ep.NOTION, "num": ep.NUM, "titre": ep.TITRE, "suivant": ep.SUIVANT,
