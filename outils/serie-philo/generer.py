@@ -3,12 +3,15 @@
 Usage (depuis la racine du dépôt) :
     SSL_CERT_FILE=/root/.ccr/ca-bundle.crt python3 outils/serie-philo/generer.py liberte_1
 
-Lit outils/serie-philo/<module>.py (texte lu + visuels), enregistre chaque passage avec les voix neuronales
-Microsoft (paquet edge-tts, voir outils/cartes-animees/voix.py), récupère l'instant de chaque mot, et écrit :
+Lit outils/serie-philo/<module>.py (texte lu + visuels), enregistre chaque passage, récupère l'instant de chaque mot,
+et écrit :
   philo/serie/<code>.data.js            données du lecteur (scènes, visuels calés, sous-titres, quiz)
   philo/serie/voix/<code>-v-<h>.mp3     voix seule
   philo/serie/voix/<code>-m-<h>.mp3     voix + musique + bruitages
 Les passages déjà enregistrés sont gardés dans outils/serie-philo/.cache (non versionné).
+
+Voix : MOTEUR = "qwen" (défaut depuis le 30/10/2026) clone localement les voix de voix_ref/ (voir voix_qwen.py,
+environ 2 h de calcul par épisode) ; MOTEUR = "edge" reprend les voix Microsoft de l'épisode 1 initial (edge-tts).
 """
 import asyncio, hashlib, importlib, json, os, re, subprocess, sys, wave
 
@@ -23,7 +26,9 @@ SORTIE = os.path.join(RACINE, "philo", "serie")
 CACHE = os.path.join(ICI, ".cache")
 SR = musique.SR
 
-VOIX = {"H": "fr-FR-RemyMultilingualNeural", "C": "fr-FR-VivienneMultilingualNeural"}
+MOTEUR = "qwen"
+VOIX = ({"H": "narrateur", "C": "citations"} if MOTEUR == "qwen"
+        else {"H": "fr-FR-RemyMultilingualNeural", "C": "fr-FR-VivienneMultilingualNeural"})
 PROSODIE = {"H": {"rate": "+0%", "pitch": "+0Hz"}, "C": {"rate": "-6%", "pitch": "+0Hz"}}
 ECART = {"H": 0.38, "C": 0.95}       # silence après un passage
 AVANT_CIT = 0.45                      # silence avant une citation
@@ -150,12 +155,20 @@ def generer(nom_module):
             if not lu.strip():
                 continue
             pros = dict(PROSODIE[b["v"]], **b["pros"])
-            cle = hashlib.sha1(json.dumps([VOIX[b["v"]], pros, lu], ensure_ascii=False).encode()).hexdigest()[:14]
+            cle = hashlib.sha1(json.dumps([MOTEUR, VOIX[b["v"]], pros, lu], ensure_ascii=False).encode()).hexdigest()[:14]
             chemin = os.path.join(CACHE, cle + ".mp3")
             b["fichier"] = chemin
             passages.append(b)
             if not os.path.exists(chemin):
                 a_faire.append((lu, VOIX[b["v"]], pros["rate"], pros["pitch"], chemin))
+    if a_faire and MOTEUR == "qwen":
+        import voix_qwen
+        print(f"enregistrement de {len(a_faire)} passages (clonage local)…", flush=True)
+        for i, (lu, voix, rate, pitch, chemin) in enumerate(a_faire, 1):
+            tempo = 1 + float(rate.rstrip("%")) / 100      # le débit seul est repris ; la hauteur suit la voix
+            sc = voix_qwen.dire(lu, voix, chemin, tempo=tempo)
+            print(f"  {i}/{len(a_faire)} {voix} score {sc:.2f}" + ("  À VÉRIFIER" if sc < 0.85 else "") + f"  {lu[:60]}", flush=True)
+        a_faire = []
     if a_faire:
         print(f"enregistrement de {len(a_faire)} passages…")
 
@@ -209,7 +222,7 @@ def generer(nom_module):
                 cues[("-" if cache else "") + ident] = max(t, inst)
             if b["v"] == "C":
                 cues[b["vis"]] = t - 0.25
-                cit_mots[b["vis"]] = {"t0": round(t, 3), "t1": round(t + dur, 3),
+                cit_mots[b["vis"]] = {"c0": round(t, 3), "c1": round(t + dur, 3),
                                       "m": [[round(t + a[1] - tete, 3), a[3]] for a in al]}
                 bruitages.append((t - 0.3, "cloche"))
             voix.append((t, x))
