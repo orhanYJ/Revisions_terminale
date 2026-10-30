@@ -748,6 +748,26 @@
     };
   };
 
+  // tableau : œuvre plein cadre, travelling lent (Ken Burns) d'un cadrage à l'autre ; en fond, assombri sous les autres visuels
+  TYPES.tableau = function (o, v) {
+    var e = o.el; e.classList.add("v-tableau"); if (v.fond) e.classList.add("fond-t"); if (v.sombre) e.classList.add("sombre"); o.entree = "aucune";
+    var img = h("img", "", e); img.src = "img/" + v.img + ".jpg"; img.alt = v.legende || ""; img.decoding = "sync";
+    h("div", "ombre", e);
+    var lg = v.legende ? h("div", "lg", e, esc(v.legende)) : null;
+    var de = v.de || [1.15, .5, .4], a_ = v.a || [1, .5, .5];
+    return function (t, st) {
+      var iw = img.naturalWidth || 1600, ih = img.naturalHeight || 900;
+      var u = EIO(P(t, v.t0, Math.max(4, v.t1 - v.t0 + .6)));
+      var z = de[0] + (a_[0] - de[0]) * u, fx = de[1] + (a_[1] - de[1]) * u, fy = de[2] + (a_[2] - de[2]) * u;
+      var sc = Math.max(W / iw, H / ih) * z, w = iw * sc, hh = ih * sc;
+      var x = cl(W / 2 - fx * w, W - w, 0), y = cl(H / 2 - fy * hh, H - hh, 0);
+      img.style.width = w.toFixed(1) + "px"; img.style.height = hh.toFixed(1) + "px";
+      img.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)";
+      op(e, E(P(t, v.t0, 1.2)) * (1 - EIO(P(t, v.t1, .9))));
+      if (lg) op(lg, E(P(st.tl, 1.2, .8)) * .9);
+    };
+  };
+
   TYPES.illu = function (o, v) {
     var e = o.el; e.classList.add("v-illu"); o.entree = "aucune";
     e.style.left = v.x + "px"; e.style.top = v.y + "px"; e.style.width = v.w + "px"; e.style.height = v.h + "px";
@@ -814,11 +834,11 @@
       var plein = false;
       objs.forEach(function (o) {
         var v = o.v;
-        if (t < v.t0 || t > v.t1 + .7) { if (o.vis) { o.el.style.display = "none"; o.vis = false; } return; }
+        if (t < v.t0 || t > v.t1 + (v.type === "tableau" ? 1 : .7)) { if (o.vis) { o.el.style.display = "none"; o.vis = false; } return; }
         if (!o.vis) { o.el.style.display = o.disp; o.vis = true; }
         if (v.type === "titre" || v.type === "chapitre") plein = true;
         var a = E(P(t, v.t0, .7)), out = EIO(P(t, v.t1, .6));
-        o.el.style.opacity = (o.entree === "aucune" ? 1 : a) * (1 - out);
+        if (v.type !== "tableau") o.el.style.opacity = (o.entree === "aucune" ? 1 : a) * (1 - out);
         if (o.entree === "monte") o.el.style.transform = "translateY(" + (26 * (1 - a) - 14 * out).toFixed(2) + "px)";
         else o.el.style.transform = out > 0 ? "scale(" + (1 - .03 * out) + ")" : "";
         o.upd(t, { tl: t - v.t0, a: a, o: out });

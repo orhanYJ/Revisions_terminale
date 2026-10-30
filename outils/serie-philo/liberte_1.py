@@ -24,18 +24,20 @@ SCENES = [
         "Et le moment où tu as ouvert ton téléphone… {ico.3}sans même y penser ?",
         ("Là, déjà… c'est moins sûr.", {"rate": "-8%", "pitch": "-2Hz"}),
         ("P", 0.6),
-        "{-ico}{q1}Nous passons nos journées à nous dire libres. Libres de sortir, libres de penser, libres de dire non. "
+        "{-ico}{q1}{tab_lib}Nous passons nos journées à nous dire libres. Libres de sortir, libres de penser, libres de dire non. "
         "Et pourtant, dès qu'on essaie de dire ce que c'est, être libre… le mot nous file entre les doigts.",
         "{-q1}{noms}Cette série va prendre ce mot, que tout le monde emploie, et le regarder de très près. "
         "Avec ceux qui y ont consacré leur vie : {noms.1}Platon, {noms.2}Descartes, {noms.3}Spinoza, "
         "{noms.4}Rousseau, {noms.5}Kant, {noms.6}Sartre… et quelques autres.",
-        "{-noms}{serie}Six épisodes, et un récapitulatif. Celui-ci est le premier. "
+        "{-noms}{-tab_lib}{serie}Six épisodes, et un récapitulatif. Celui-ci est le premier. "
         "Car avant de savoir si nous sommes libres… {-serie}il faut savoir de quoi l'on parle.",
         ("P", 0.3),
         "{titre}",
         ("P", 3.2),
     ], vis={
         "ico": dict(type="illu", nom="icones", x=190, y=170, w=900, h=360),
+        "tab_lib": dict(type="tableau", img="t-liberte-peuple", fond=True, de=[1.35, .52, .2], a=[1.0, .5, .45],
+                        legende="Eugène Delacroix, La Liberté guidant le peuple, 1830"),
         "q1": dict(type="question", t="Être libre… mais de quoi parle-t-on ?"),
         "noms": dict(type="nuage", items=["Platon", "Descartes", "Spinoza", "Rousseau", "Kant", "Sartre"]),
         "serie": dict(type="mot", t="6 épisodes + 1 récap", g="une notion, regardée sous tous ses angles", y=270),
@@ -45,8 +47,8 @@ SCENES = [
 
     # ------------------------------------------------------------------ I. le mot
     dict(id="mot", chap="Le mot", fond="aube", beats=[
-        "Remontons d'abord le temps. {agora}Athènes, cinq siècles avant notre ère. "
-        "Sur l'agora, la grande place de la cité, deux hommes se croisent.",
+        "{tab_ath}Remontons d'abord le temps. Athènes, cinq siècles avant notre ère. "
+        "Sur l'agora, la grande place de la cité, {-tab_ath}{agora}deux hommes se croisent.",
         "{agora.1}L'un est citoyen : il vote, il prend la parole à l'assemblée, il décide des lois. "
         "L'autre porte la même tunique, mange le même pain… {agora.2}mais il appartient à quelqu'un. C'est un esclave.",
         ("Alors, qu'est-ce qui les sépare ?", {"pitch": "+2Hz"}),
@@ -71,6 +73,8 @@ SCENES = [
         "et jamais simplement comme un moyen.",
         ("Tu vois le fil ?", {"pitch": "+3Hz"}),
     ], vis={
+        "tab_ath": dict(type="tableau", img="t-athenes", de=[1.0, .5, .55], a=[1.75, .5, .47],
+                        legende="Raphaël, L'École d'Athènes, 1509-1511 · au centre, Platon et Aristote"),
         "agora": dict(type="illu", nom="agora", x=140, y=110, w=1000, h=470),
         "grec": dict(type="mot", t="ἐλεύθερος", g="éleuthéros · grec : l'homme libre", y=150, taille=92),
         "lat": dict(type="mot", t="LIBER", g="latin : l'homme libre, qui n'est pas esclave", y=380, taille=104),
@@ -95,11 +99,11 @@ SCENES = [
     dict(id="faire", chap="Faire ce que je veux ?", fond="nuit", beats=[
         "{q_quoi}Revenons à aujourd'hui. Si je te demande : être libre, c'est quoi ? "
         "Tu vas sans doute répondre : {-q_quoi}{fcqjv}c'est faire ce que je veux. Personne ne m'empêche, personne ne m'oblige.",
-        "{-fcqjv}{hobbes}C'est la définition du sens commun. Et elle a un défenseur de poids : Thomas Hobbes, "
+        "{-fcqjv}{hobbes}{tab_lev}C'est la définition du sens commun. Et elle a un défenseur de poids : Thomas Hobbes, "
         "philosophe anglais du dix-septième siècle.",
         ("C", "La liberté signifie, au sens propre, l'absence d'opposition ; par opposition, j'entends les obstacles "
               "extérieurs au mouvement.", "c_hobbes"),
-        "{-hobbes}{-c_hobbes}{vase}Hobbes prend un exemple tout simple : l'eau. Retenue dans un vase, "
+        "{-hobbes}{-c_hobbes}{-tab_lev}{vase}Hobbes prend un exemple tout simple : l'eau. Retenue dans un vase, "
         "elle ne peut pas se répandre : elle n'est pas libre. {vase.1}Ôtez l'obstacle… et elle s'écoule.",
         ("Être libre, c'est cela : ne rencontrer aucun obstacle.", {"rate": "-5%"}),
         "{-vase}{def_neg}Cette définition a un grand mérite : elle est claire, et elle se mesure. "
@@ -113,10 +117,10 @@ SCENES = [
         "{pbs.2}Second problème, plus profond : cette définition ne regarde que ce qui se passe dehors, "
         "entre moi et le monde. Elle ne demande jamais ce qui se passe dedans.",
         ("D'où vient… ce que je veux ?", {"rate": "-10%", "pitch": "-1Hz"}),
-        "{-pbs}{-rep_abs}{platon}Platon a mis ce problème en scène dans un dialogue célèbre, {gorg}le Gorgias. "
+        "{-pbs}{-rep_abs}{platon}{tab_soc}Platon a mis ce problème en scène dans un dialogue célèbre, {gorg}le Gorgias. "
         "Socrate y affronte un jeune homme brillant et arrogant : Calliclès. "
         "Pour Calliclès, l'homme vraiment libre, c'est celui qui a le courage de ses désirs.",
-        "{-platon}{-gorg}",
+        "{-platon}{-gorg}{-tab_soc}",
         ("C", "Pour bien vivre, il faut laisser ses passions devenir aussi grandes que possible, au lieu de les réprimer.",
          "c_call"),
         "Satisfaire tous ses désirs, sans entraves : voilà, pour lui, la liberté, et le bonheur. "
@@ -124,9 +128,9 @@ SCENES = [
         "{tonneaux.1}Les tonneaux du premier sont sains : une fois remplis, il est tranquille. "
         "{tonneaux.2}Ceux du second sont percés. Il a beau verser, verser encore… ils se vident sans cesse. "
         "{tonneaux.3}Il passe sa vie à les remplir, sans jamais pouvoir s'arrêter.",
-        ("Celui qui suit tous ses désirs n'est pas libre : il est l'esclave d'un tonneau qui fuit. "
+        ("{-tonneaux}{tab_dan}Celui qui suit tous ses désirs n'est pas libre : il est l'esclave d'un tonneau qui fuit. "
          "Car un désir satisfait en appelle aussitôt un autre.", {"rate": "-4%"}),
-        "{-tonneaux}{tel}Ce tonneau, tu le connais. C'est la vidéo suivante qui se lance toute seule, "
+        "{-tab_dan}{tel}Ce tonneau, tu le connais. C'est la vidéo suivante qui se lance toute seule, "
         "{tel.1}le fil qu'on fait défiler sans fin, {tel.2}la notification à laquelle on répond sans y penser.",
         ("Je fais ce que je veux… mais est-ce bien moi qui veux ?", {"rate": "-6%", "pitch": "+1Hz"}),
         "{-tel}{rousseau}Vingt siècles après Platon, Jean-Jacques Rousseau résume tout cela en une phrase. "
@@ -140,6 +144,8 @@ SCENES = [
     ], vis={
         "q_quoi": dict(type="question", t="Être libre, c'est quoi ?"),
         "fcqjv": dict(type="mot", t="« Faire ce que je veux »", g="la définition du sens commun", y=260, taille=78),
+        "tab_lev": dict(type="tableau", img="t-leviathan", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.5, .5, .32],
+                        legende="Abraham Bosse, frontispice du Léviathan, 1651"),
         "hobbes": dict(type="portrait", img="hobbes", nom="Thomas Hobbes", dates="1588 – 1679",
                        x=110, y=120, w=330, h=420),
         "c_hobbes": dict(type="cit", a="Hobbes", o="Léviathan, chap. XXI (1651)", x=500, y=150, w=680),
@@ -151,11 +157,15 @@ SCENES = [
             "Des obstacles, il y en a toujours : personne n'est jamais libre ?",
             "Elle regarde dehors, jamais dedans : d'où vient ce que je veux ?"], x=170, y=150, w=940),
         "rep_abs": dict(type="tag", style="repere", t="Repère · absolu / relatif", x=170, y=560, w=420),
+        "tab_soc": dict(type="tableau", img="t-socrate", fond=True, de=[1.0, .5, .5], a=[1.45, .62, .42],
+                        legende="Jacques-Louis David, La Mort de Socrate, 1787"),
         "platon": dict(type="portrait", img="platon", nom="Platon", dates="v. 428 – 348 av. J.-C.",
                        x=110, y=120, w=330, h=420),
         "gorg": dict(type="mot", t="Le Gorgias", g="Socrate contre Calliclès", x=500, y=230, w=680, taille=80),
         "c_call": dict(type="cit", a="Calliclès, dans Platon", o="Gorgias, 491e – 492a", para=True, x=170, y=170, w=940),
         "tonneaux": dict(type="illu", nom="tonneaux", x=140, y=100, w=1000, h=500),
+        "tab_dan": dict(type="tableau", img="t-danaides", de=[1.0, .5, .25], a=[1.25, .5, .6],
+                        legende="John William Waterhouse, Les Danaïdes, 1906 · condamnées à remplir sans fin des jarres percées"),
         "tel": dict(type="illu", nom="tel", x=240, y=90, w=800, h=540),
         "rousseau": dict(type="portrait", img="rousseau", nom="Jean-Jacques Rousseau", dates="1712 – 1778",
                          x=110, y=120, w=330, h=420),
@@ -176,10 +186,10 @@ SCENES = [
         ("C'est la question métaphysique. La plus vertigineuse.", {"rate": "-6%", "pitch": "-2Hz"}),
         "{cartes.3}Enfin, la liberté politique : les libertés que la société me reconnaît et me garantit. "
         "Liberté d'expression, de conscience, de circuler, de se réunir. "
-        "En 1789, la Déclaration des droits de l'homme et du citoyen la définit ainsi.{-cartes}",
+        "{tab_ddhc}En 1789, la Déclaration des droits de l'homme et du citoyen la définit ainsi.{-cartes}",
         ("C", "La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui.", "c_ddhc"),
         "Ces trois libertés ne vont pas forcément ensemble. Et l'histoire en offre un exemple saisissant.",
-        "{-c_ddhc}{epic}Au premier siècle de notre ère, à Rome, vit un esclave venu d'Asie Mineure : Épictète. "
+        "{-c_ddhc}{-tab_ddhc}{epic}Au premier siècle de notre ère, à Rome, vit un esclave venu d'Asie Mineure : Épictète. "
         "Il n'a aucune liberté politique : il appartient à un maître.",
         "On raconte qu'un jour, ce maître lui tordit la jambe. Épictète lui dit, très calmement : "
         "{jambe}{jambe.1}« Tu vas la casser. »",
@@ -200,6 +210,8 @@ SCENES = [
             dict(ic="porte", t="Liberté d'agir", q="Puis-je faire ce que j'ai décidé ?"),
             dict(ic="chemins", t="Libre arbitre", q="Aurais-je pu vouloir autre chose ?"),
             dict(ic="colonnes", t="Liberté politique", q="Que me garantit la société ?")]),
+        "tab_ddhc": dict(type="tableau", img="t-ddhc", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.3, .5, .45],
+                        legende="Jean-Jacques-François Le Barbier, Déclaration des droits de l'homme et du citoyen, 1789"),
         "c_ddhc": dict(type="cit", a="Déclaration des droits de l'homme et du citoyen", o="article 4, 26 août 1789",
                        x=170, y=190, w=940),
         "epic": dict(type="portrait", img="epictete", nom="Épictète", dates="v. 50 – v. 130",
@@ -334,7 +346,7 @@ SCENES = [
         "{-rec}{frise}Maintenant, à toi : quelques questions t'attendent sous la vidéo.",
         ("Et la prochaine fois… nous entrerons dans la tête de Descartes.", {"rate": "-4%", "pitch": "+1Hz"}),
         ("P", 1.0),
-        "{-frise}{fin}",
+        "{-frise}{fin}{tab_fin}",
         ("P", 4.5),
     ], vis={
         "rec": dict(type="liste", titre="À retenir", items=[
@@ -349,6 +361,7 @@ SCENES = [
             dict(nom="Hobbes", d=1588, img="hobbes"), dict(nom="Spinoza", d=1632, img="spinoza"),
             dict(nom="Rousseau", d=1712, img="rousseau"), dict(nom="Kant", d=1724, img="kant"),
             dict(nom="Marx", d=1818), dict(nom="Freud", d=1856), dict(nom="Sartre", d=1905)]),
+        "tab_fin": dict(type="tableau", img="t-liberte-peuple", fond=True, de=[1.0, .5, .5], a=[1.2, .5, .35]),
         "fin": dict(type="titre", sur="À suivre", t="Le libre arbitre", sous="Épisode 2 · Descartes et Sartre"),
     }),
 ]
@@ -386,5 +399,6 @@ CREDITS = [
     "Descartes : d'après Frans Hals, XVIIᵉ siècle",
     "Spinoza : portrait anonyme, vers 1665",
     "Kant : portrait anonyme, XVIIIᵉ siècle",
+    "Tableaux : Delacroix, La Liberté guidant le peuple (1830) ; Raphaël, L'École d'Athènes (1509-1511) ; Abraham Bosse, frontispice du Léviathan (1651) ; J.-L. David, La Mort de Socrate (1787) ; J. W. Waterhouse, Les Danaïdes (1906) ; J.-J.-F. Le Barbier, Déclaration des droits de l'homme et du citoyen (1789) : domaine public",
     "Images : Wikimedia Commons. Voix de synthèse Microsoft (edge-tts). Musique originale générée pour la série.",
 ]
