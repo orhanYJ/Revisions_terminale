@@ -751,19 +751,25 @@
   // tableau : œuvre plein cadre, travelling lent (Ken Burns) d'un cadrage à l'autre ; en fond, assombri sous les autres visuels
   TYPES.tableau = function (o, v) {
     var e = o.el; e.classList.add("v-tableau"); if (v.fond) e.classList.add("fond-t"); if (v.sombre) e.classList.add("sombre"); o.entree = "aucune";
-    var img = h("img", "", e); img.src = "img/" + v.img + ".jpg"; img.alt = v.legende || ""; img.decoding = "sync";
+    var img = h("img", "", e); img.alt = v.legende || ""; img.decoding = "async";
+    var pret = false;
+    function charge() { img.style.width = img.naturalWidth + "px"; img.style.height = img.naturalHeight + "px"; pret = true; }
+    img.addEventListener("load", charge);
+    img.src = "img/" + v.img + ".jpg";
     h("div", "ombre", e);
     var lg = v.legende ? h("div", "lg", e, esc(v.legende)) : null;
     var de = v.de || [1.15, .5, .4], a_ = v.a || [1, .5, .5];
     return function (t, st) {
+      if (!pret && img.complete && img.naturalWidth) charge();
+      // l'image garde sa taille réelle ; seul le transform (translation + échelle) change : pas de redimensionnement
+      // ni de nouveau décodage à chaque image, donc pas de clignotement
       var iw = img.naturalWidth || 1600, ih = img.naturalHeight || 900;
       var u = EIO(P(t, v.t0, Math.max(4, v.t1 - v.t0 + .6)));
       var z = de[0] + (a_[0] - de[0]) * u, fx = de[1] + (a_[1] - de[1]) * u, fy = de[2] + (a_[2] - de[2]) * u;
       var sc = Math.max(W / iw, H / ih) * z, w = iw * sc, hh = ih * sc;
       var x = cl(W / 2 - fx * w, W - w, 0), y = cl(H / 2 - fy * hh, H - hh, 0);
-      img.style.width = w.toFixed(1) + "px"; img.style.height = hh.toFixed(1) + "px";
-      img.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)";
-      op(e, E(P(t, v.t0, 1.2)) * (1 - EIO(P(t, v.t1, .9))));
+      img.style.transform = "translate3d(" + x.toFixed(2) + "px," + y.toFixed(2) + "px,0) scale(" + sc.toFixed(5) + ")";
+      op(e, pret ? E(P(t, v.t0, 1.2)) * (1 - EIO(P(t, v.t1, .9))) : 0);
       if (lg) op(lg, E(P(st.tl, 1.2, .8)) * .9);
     };
   };
@@ -884,7 +890,7 @@
       window.RENDU = function (t) { S0.rendu(t); };
       window.DUREE = EP.dur;
       var imgs = Array.from(document.images);
-      window.PRET = Promise.all([document.fonts.ready].concat(imgs.map(function (im) { return im.complete ? 1 : new Promise(function (r) { im.onload = im.onerror = r; }); })));
+      window.PRET = Promise.all([document.fonts.ready].concat(imgs.map(function (im) { return im.complete ? 1 : new Promise(function (r) { im.addEventListener("load", r); im.addEventListener("error", r); }); })));
       S0.rendu(0);
       return;
     }
