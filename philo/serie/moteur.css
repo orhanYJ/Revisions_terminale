@@ -229,8 +229,8 @@ body.pseudo{overflow:hidden}
 
 /* tableaux (œuvres du domaine public) */
 .v{z-index:2}
-.v-tableau{left:0;top:0;width:1280px;height:720px;overflow:hidden;z-index:1;background:#0b0f19}
-.v-tableau img{position:absolute;left:0;top:0;max-width:none;transform-origin:0 0}
+.v-tableau{left:0;top:0;width:1280px;height:720px;overflow:hidden;z-index:1}
+.v-tableau img{position:absolute;left:0;top:0;max-width:none;transform-origin:0 0;will-change:transform;backface-visibility:hidden}
 .v-tableau .ombre{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,20,.35) 0%,rgba(8,11,20,0) 25%,rgba(8,11,20,0) 62%,rgba(8,11,20,.75) 100%)}
 .v-tableau.fond-t .ombre{background:rgba(8,11,20,.62)}
 .v-tableau .lg{position:absolute;right:40px;bottom:30px;max-width:760px;text-align:right;font-family:'Spectral',serif;font-style:italic;font-size:21px;color:rgba(243,239,228,.88);text-shadow:0 1px 8px rgba(0,0,0,.7)}
