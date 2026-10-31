@@ -48,35 +48,43 @@ SCENES = [
     # ------------------------------------------------------------------ I. le mot
     dict(id="mot", chap="Le mot", fond="aube", humeur="mystere", retenir="Être libre, au sens premier : s'appartenir, n'être l'instrument de personne.", beats=[
         "{tab_acr}Remontons d'abord le temps. Athènes, cinq siècles avant notre ère. "
-        "Sur l'agora, la grande place de la cité, {-tab_acr}{agora}deux hommes se croisent.",
+        "Sur l'agora, la grande place de la cité, {-tab_acr}{tab_per}{agora}deux hommes se croisent.",
         "{agora.1}L'un est citoyen : il vote, il prend la parole à l'assemblée, il décide des lois. "
-        "L'autre porte la même tunique, mange le même pain… {agora.2}mais il appartient à quelqu'un. C'est un {!esclave}esclave.",
+        "L'autre porte la même tunique, mange le même pain… {-tab_per}{tab_esc}{agora.2}mais il appartient à quelqu'un. C'est un {!esclave}esclave.",
         ("Alors, qu'est-ce qui les sépare ?", {"pitch": "+2Hz"}),
         ("Pas la force. Pas l'intelligence. Une seule chose : {agora.3}le premier s'appartient à lui-même. "
          "Le second appartient à un autre.", {"rate": "-5%"}),
-        "C'est le sens le plus ancien du mot. En grec, l'homme libre se dit {-agora}{grec}éleuthéros. "
-        "En latin, {lat}liber.",
+        "C'est le sens le plus ancien du mot. En grec, l'homme libre se dit {-agora}{-tab_esc}{grec}éleuthéros. "
+        "En latin, {tab_for}{lat}liber.",
         "Et ces deux mots viendraient d'une même racine, très ancienne, {-grec}{-lat}{racine}qui désignait… {racine.1}le peuple. "
         "Être libre, à l'origine, c'est faire partie des siens, {racine.2}par opposition à l'étranger capturé, réduit en esclavage. "
         "On retrouve d'ailleurs cette racine dans un mot allemand, {racine.3}« Leute », qui veut dire : les gens.",
         "{-racine}{liberi}Mieux encore : en latin, liberi, au pluriel, veut dire… les enfants. "
         "Les enfants libres de la maison, par opposition aux esclaves qui y servent.",
-        "{-liberi}{arist}{tab_ath}Au quatrième siècle avant notre ère, Aristote en tire une définition "
+        "{-liberi}{-tab_for}{arist}{tab_ath}Au quatrième siècle avant notre ère, Aristote en tire une définition "
         "qui va traverser toute l'histoire de la philosophie.",
         ("C", "Nous appelons homme libre celui qui est à lui-même sa fin et n'existe pas pour un autre.", "c_arist"),
-        "{-arist}{-c_arist}{-tab_ath}{def1}Retiens bien cette idée. Être libre, c'est ne pas être un {!instrument}instrument. "
+        "{-arist}{-c_arist}{-tab_ath}{tab_aff}{def1}Retiens bien cette idée. Être libre, c'est ne pas être un {!instrument}instrument. "
         "L'esclave est un moyen au service des fins d'un autre ; {def1.1}l'homme libre poursuit ses propres fins.",
         "{-def1}{note}Attention, pourtant. Aristote lui-même jugeait l'esclavage naturel : il appelait l'esclave "
         "« une propriété animée ». La définition est belle, mais son époque la réservait à quelques-uns.",
         "{note.1}Toute l'histoire de la liberté sera aussi l'histoire de son extension. "
-        "{kant}Deux mille ans plus tard, Kant exigera que toute personne soit traitée comme une fin, "
+        "{-tab_aff}{kant}Deux mille ans plus tard, Kant exigera que toute personne soit traitée comme une fin, "
         "et jamais simplement comme un moyen.",
         ("Tu vois le fil ?", {"pitch": "+3Hz"}),
     ], vis={
         "tab_ath": dict(type="tableau", img="t-athenes", fond=True, de=[1.0, .5, .55], a=[1.75, .5, .47],
                         legende="Raphaël, L'École d'Athènes, 1509-1511 · au centre, Platon et Aristote"),
+        "tab_for": dict(type="tableau", img="t-forum", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .4, .45],
+                        legende="Claude Lorrain, Caprice avec les ruines du Forum romain, v. 1634"),
+        "tab_aff": dict(type="tableau", img="t-affranchi", fond=True, de=[1.45, .12, .38], a=[1.6, .1, .34],
+                        legende="Relief d'affranchissement, musée de Mariemont (Ad Meskens, CC BY-SA 4.0)"),
         "tab_acr": dict(type="tableau", img="t-acropole", de=[1.0, .5, .5], a=[1.35, .55, .4],
                         legende="Leo von Klenze, l'Acropole et l'Aréopage d'Athènes, reconstitution, 1846"),
+        "tab_per": dict(type="tableau", img="t-pericles", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .62, .4],
+                        legende="Philipp von Foltz, Périclès parlant aux Athéniens, 1852 (photographie, Rijksmuseum)"),
+        "tab_esc": dict(type="tableau", img="t-esclaves", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .4],
+                        legende="Esclaves enchaînés par le cou, relief romain, Ashmolean Museum (photo Jun, CC BY-SA 2.0)"),
         "agora": dict(type="illu", nom="agora", x=140, y=110, w=1000, h=470),
         "grec": dict(type="mot", t="ἐλεύθερος", g="éleuthéros · grec : l'homme libre", y=150, taille=92),
         "lat": dict(type="mot", t="LIBER", g="latin : l'homme libre, qui n'est pas esclave", y=380, taille=104),
@@ -99,16 +107,16 @@ SCENES = [
 
     # ------------------------------------------------------------------ II. faire ce que je veux
     dict(id="faire", chap="Faire ce que je veux ?", fond="nuit", humeur="tension", retenir="Faire ce que je veux ≠ vouloir librement : l'esclave de ses désirs n'est pas libre.", beats=[
-        "{q_quoi}Revenons à aujourd'hui. Si je te demande : être libre, c'est quoi ? "
+        "{tab_tok}{q_quoi}Revenons à aujourd'hui. Si je te demande : être libre, c'est quoi ? "
         "Tu vas sans doute répondre : {-q_quoi}{fcqjv}c'est faire ce que je veux. Personne ne m'empêche, personne ne m'oblige.",
-        "{-fcqjv}{hobbes}{tab_lev}C'est la définition du sens commun. Et elle a un défenseur de poids : Thomas Hobbes, "
+        "{-fcqjv}{-tab_tok}{hobbes}{tab_lev}C'est la définition du sens commun. Et elle a un défenseur de poids : Thomas Hobbes, "
         "philosophe anglais du dix-septième siècle.",
         ("C", "La liberté signifie proprement l'absence d'opposition ; par opposition, j'entends les obstacles "
               "extérieurs au mouvement.", "c_hobbes"),
         "{-hobbes}{-c_hobbes}{-tab_lev}{vase}Hobbes prend un exemple tout simple : l'eau. Retenue dans un vase, "
         "elle ne peut pas se répandre : elle n'est pas libre. {vase.1}Ôtez l'obstacle… et elle s'écoule.",
         ("Être libre, c'est cela : ne rencontrer aucun {!obstacle}obstacle.", {"rate": "-5%"}),
-        "{-vase}{def_neg}Cette définition a un grand mérite : elle est claire, et elle se mesure. "
+        "{-vase}{tab_car}{def_neg}Cette définition a un grand mérite : elle est claire, et elle se mesure. "
         "Plus il y a d'obstacles, moins je suis libre. On parle parfois de liberté négative : "
         "{def_neg.1}la liberté comme absence. Absence de murs, de chaînes, d'interdits.",
         ("Mais regarde de plus près. Elle pose deux problèmes.", {"pitch": "-2Hz"}),
@@ -117,7 +125,7 @@ SCENES = [
         "c'est manquer de pouvoir. Reste que si être libre, c'est n'être empêché par rien du dehors… "
         "personne ne l'est jamais tout à fait. "
         "{rep_abs}Ainsi définie, la liberté est toujours relative, jamais absolue.",
-        "{pbs.2}Second problème, plus profond : cette définition ne regarde que ce qui se passe dehors, "
+        "{-tab_car}{pbs.2}Second problème, plus profond : cette définition ne regarde que ce qui se passe dehors, "
         "entre moi et le monde. Elle ne demande jamais ce qui se passe dedans.",
         ("D'où vient… ce que je veux ?", {"rate": "-10%", "pitch": "-1Hz"}),
         "{-pbs}{-rep_abs}{platon}{tab_soc}Platon a mis ce problème en scène dans un dialogue célèbre, {gorg}le Gorgias. "
@@ -149,6 +157,10 @@ SCENES = [
         "fcqjv": dict(type="mot", t="« Faire ce que je veux »", g="la définition du sens commun", y=260, taille=78),
         "tab_lev": dict(type="tableau", img="t-leviathan", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.5, .5, .32],
                         legende="Abraham Bosse, frontispice du Léviathan, 1651"),
+        "tab_tok": dict(type="tableau", img="t-tokyo", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .6],
+                        legende="Tokyo, carrefour de Shibuya (photo Benh Lieu Song, CC BY-SA 2.0)"),
+        "tab_car": dict(type="tableau", img="t-carceri", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.35, .5, .6],
+                        legende="Piranèse, Prisons imaginaires, planche XVI, 1761"),
         "hobbes": dict(type="portrait", annee=1588, legende="Léviathan (1651)", img="hobbes", nom="Thomas Hobbes", dates="1588 – 1679",
                        x=110, y=120, w=330, h=420),
         "c_hobbes": dict(type="cit", a="Hobbes", o="Léviathan, chap. XXI (1651)", x=500, y=150, w=680),
@@ -165,7 +177,7 @@ SCENES = [
         "platon": dict(type="portrait", annee=-428, legende="Gorgias · La République", img="platon", nom="Platon", dates="v. 428 – 348 av. J.-C.",
                        x=110, y=120, w=330, h=420),
         "gorg": dict(type="mot", t="Le Gorgias", g="Socrate contre Calliclès", x=640, y=230, w=570, taille=80),
-        "tab_cla": dict(type="tableau", img="t-clarke", fond=True, de=[1.0, 0.5, 0.3], a=[1.3, 0.5, 0.45],
+        "tab_cla": dict(type="tableau", img="t-clarke", fond=True, sombre=True, de=[1.0, 0.5, 0.3], a=[1.3, 0.5, 0.45],
                         legende="Le plus ancien manuscrit de Platon, copié en 895 (Oxford, Bodleian Library)"),
         "c_call": dict(type="cit", a="Calliclès, dans Platon", o="Gorgias, 491e – 492a", para=True, x=170, y=170, w=940),
         "tonneaux": dict(type="illu", nom="tonneaux", x=140, y=100, w=1000, h=500),
@@ -183,17 +195,17 @@ SCENES = [
 
     # ------------------------------------------------------------------ III. trois libertés
     dict(id="trois", chap="Les trois libertés", fond="aube", humeur="lumiere", retenir="Trois libertés : d'agir, de vouloir, politique. Toujours se demander de laquelle on parle.", beats=[
-        "{trois_mot}Cette distinction, c'est la clé de toute la notion. Quand on parle de liberté, "
+        "{tab_pen}{trois_mot}Cette distinction, c'est la clé de toute la notion. Quand on parle de liberté, "
         "on peut en réalité parler {cartes}de trois choses différentes.",
         "{-trois_mot}{cartes.1}D'abord, la liberté d'agir : pouvoir faire ce que j'ai décidé, sans obstacle. "
-        "{tab_pri}Le prisonnier ne l'a plus ; {-tab_pri}{tab_cha}l'oiseau en cage non plus. C'est la question de Hobbes : puis-je faire ?",
+        "{-tab_pen}{tab_pri}Le prisonnier ne l'a plus ; {-tab_pri}{tab_cha}l'oiseau en cage non plus. C'est la question de Hobbes : puis-je faire ?",
         "{-tab_cha}{cartes.2}Ensuite, la liberté de vouloir, qu'on appelle le libre arbitre : le pouvoir de choisir par moi-même, "
         "sans être déterminé par une cause que je ne maîtrise pas. Ici, la question n'est plus : puis-je faire ? "
         "Mais : aurais-je pu vouloir autre chose ?",
         ("C'est la question métaphysique. La plus vertigineuse.", {"rate": "-6%", "pitch": "-2Hz"}),
-        "{cartes.3}Enfin, la liberté politique : les libertés que la société me reconnaît et me garantit. "
+        "{cartes.3}{tab_bas}Enfin, la liberté politique : les libertés que la société me reconnaît et me garantit. "
         "Liberté d'expression, de conscience, de circuler, de se réunir. "
-        "{tab_ddhc}En 1789, la Déclaration des droits de l'homme et du citoyen la définit ainsi.{-cartes}",
+        "{-tab_bas}{tab_ddhc}En 1789, la Déclaration des droits de l'homme et du citoyen la définit ainsi.{-cartes}",
         ("C", "La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui.", "c_ddhc"),
         "Ces trois libertés ne vont pas forcément ensemble. Et l'histoire en offre un exemple saisissant.",
         "{-c_ddhc}{-tab_ddhc}{epic}{tab_hie}Au premier siècle de notre ère, à Rome, vit un esclave venu d'Asie Mineure : Épictète. "
@@ -207,15 +219,17 @@ SCENES = [
         "philosophes stoïciens. {grille}Pour lui, on peut enchaîner mon corps : {grille.1}pas ma volonté. "
         "Ce n'est ni la liberté d'agir, ni exactement le libre arbitre : c'est une liberté intérieure, morale, "
         "celle du sage. Nous la retrouverons dans l'épisode quatre.",
-        "{-epic}{-grille}{-tab_hie}{inverse}Inversement, on peut vivre dans le pays le plus libre du monde, avoir tous les droits… "
+        "{-epic}{-grille}{-tab_hie}{tab_ecr}{inverse}Inversement, on peut vivre dans le pays le plus libre du monde, avoir tous les droits… "
         "{inverse.1}et rester esclave de ses habitudes, de ses peurs, de ses désirs. Le tonneau percé, encore.",
-        "{-inverse}{cartes2}Retiens donc ce réflexe, pour toutes tes copies. Devant un sujet sur la liberté, "
+        "{-inverse}{-tab_ecr}{tab_exa}{cartes2}Retiens donc ce réflexe, pour toutes tes copies. Devant un sujet sur la liberté, "
         "demande-toi toujours : {cartes2.hl}de quelle liberté parle-t-on ? {reflexe}D'agir, de vouloir… ou politique ?",
         ("P", 0.8),
     ], vis={
         "trois_mot": dict(type="mot", t="Liberté", g="un seul mot… et trois sens", y=250, taille=110),
         "tab_pri": dict(type="tableau", img="t-prisonniers", fond=True, de=[1.0, 0.5, 0.5], a=[1.3, 0.5, 0.62],
                         legende="Vincent van Gogh, La Ronde des prisonniers, 1890"),
+        "tab_pen": dict(type="tableau", img="t-penseur", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.35, .5, .25],
+                        legende="Auguste Rodin, Le Penseur, détail de La Porte de l'Enfer, musée Rodin (photo Jebulon, CC0)"),
         "tab_cha": dict(type="tableau", img="t-chardonneret", fond=True, de=[1.0, 0.5, 0.5], a=[1.4, 0.5, 0.45],
                         legende="Carel Fabritius, Le Chardonneret, 1654 · un oiseau enchaîné à son perchoir"),
         "cartes": dict(type="cartes", items=[
@@ -224,10 +238,16 @@ SCENES = [
             dict(ic="colonnes", t="Liberté politique", q="Que me garantit la société ?")]),
         "tab_ddhc": dict(type="tableau", img="t-ddhc", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.3, .5, .45],
                         legende="Jean-Jacques-François Le Barbier, Déclaration des droits de l'homme et du citoyen, 1789"),
+        "tab_bas": dict(type="tableau", img="t-bastille", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .35, .45],
+                        legende="Jean-Pierre Houël, La Prise de la Bastille, 1789"),
         "c_ddhc": dict(type="cit", a="Déclaration des droits de l'homme et du citoyen", o="article 4, 26 août 1789",
                        x=170, y=190, w=940),
-        "tab_hie": dict(type="tableau", img="t-hierapolis", fond=True, de=[1.0, .25, .5], a=[1.0, .75, .5],
+        "tab_hie": dict(type="tableau", img="t-hierapolis", fond=True, sombre=True, de=[1.0, .25, .5], a=[1.0, .75, .5],
                         legende="Hiérapolis, en Phrygie, ville natale d'Épictète (photo Bernard Gagnon, CC BY-SA 3.0)"),
+        "tab_ecr": dict(type="tableau", img="t-ecrans", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .6, .4],
+                        legende="Photo Rawpixel, CC BY 2.0"),
+        "tab_exa": dict(type="tableau", img="t-examen", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .6],
+                        legende="Salle d'examen (domaine public)"),
         "epic": dict(type="portrait", annee=50, legende="Entretiens · Manuel", img="epictete", nom="Épictète", dates="v. 50 – v. 130",
                      x=110, y=120, w=330, h=420),
         "jambe": dict(type="dialogue", lignes=["« Tu vas la casser. »", "« Je te l'avais bien dit. »"],
@@ -266,7 +286,7 @@ SCENES = [
         "{-c_force}{-brigand}{ffd}Le brigand me contraint ; il ne m'oblige pas. La force ne fait pas le droit. "
         "{ffd.1}Retiens le paradoxe : l'obligation, loin de détruire la liberté, la suppose. "
         "Kant en fera le cœur de sa morale. Ce sera l'épisode quatre.",
-        "{-ffd}{trio}Deuxième couple : {trio.1}nécessaire et contingent. "
+        "{-ffd}{tab_new}{trio}Deuxième couple : {trio.1}nécessaire et contingent. "
         "Est nécessaire ce qui ne peut pas être autrement. {pierre}Une pierre lâchée tombe : {pierre.1}elle ne peut pas "
         "faire autrement.",
         "{trio.2}Est contingent ce qui est, mais aurait pu ne pas être. Tu regardes cette vidéo… "
@@ -275,7 +295,7 @@ SCENES = [
         "{-pierre}{trio.3}Et c'est là que tout se joue. Si tout ce qui arrive est nécessaire, s'il y a une cause à chacun "
         "de mes gestes, alors le libre arbitre semble une {!illusion}illusion. Croire au libre arbitre, c'est supposer qu'il existe, "
         "quelque part, du contingent.",
-        "{-trio}{fd}Troisième couple : en droit, en fait. {fd.g}En droit, c'est-à-dire selon la loi, ou selon ce qui "
+        "{-trio}{-tab_new}{fd}Troisième couple : en droit, en fait. {fd.g}En droit, c'est-à-dire selon la loi, ou selon ce qui "
         "devrait être. {fd.d}En fait : ce qui se passe réellement. En droit, tu es libre de partir au bout du monde. "
         "En fait, sans argent, ce droit ne vaut pas grand-chose.",
         "{tab_dor}L'écrivain Anatole France fait dire à l'un de ses personnages cette formule cruelle.{-fd}",
@@ -308,6 +328,8 @@ SCENES = [
                    dq="ce qui se passe réellement", vs="≠", repere="Repère · en droit / en fait"),
         "tab_dor": dict(type="tableau", img="t-dore", fond=True, sombre=True, de=[1.0, 0.5, 0.5], a=[1.3, 0.5, 0.45],
                         legende="Gustave Doré, Londres vu du chemin de fer, 1872"),
+        "tab_new": dict(type="tableau", img="t-newton", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .55, .55],
+                        legende="William Blake, Newton, 1795-1805"),
         "c_france": dict(type="cit", a="Anatole France", o="Le Lys rouge, chap. VII (1894)", x=170, y=170, w=940),
         "tab_marx": dict(type="tableau", img="marx", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.15, .5, .35],
                          legende="Karl Marx, photographie de John Mayall"),
@@ -331,9 +353,9 @@ SCENES = [
          {"rate": "-5%"}),
         "{-spino}{-lance}{-tab_eth}{q2}Le sentiment d'être libre… ou l'{!ignorance}ignorance de ce qui nous détermine ? "
         "Voilà la grande question. Et la série va la prendre sous tous ses angles.",
-        "{-q2}{plan}{plan.1}Dans l'épisode deux, Descartes et Sartre défendront la liberté absolue de la volonté. "
+        "{-q2}{plan}{tab_chr}{plan.1}Dans l'épisode deux, Descartes et Sartre défendront la liberté absolue de la volonté. "
         "{plan.2}Dans l'épisode trois, Spinoza, Freud et les sciences humaines viendront la contester. "
-        "{plan.3}Dans l'épisode quatre, nous verrons qu'on peut, peut-être, devenir libre : avec les stoïciens, Spinoza encore, "
+        "{-tab_chr}{plan.3}Dans l'épisode quatre, nous verrons qu'on peut, peut-être, devenir libre : avec les stoïciens, Spinoza encore, "
         "et Kant. {plan.4}Dans l'épisode cinq, la liberté descendra dans la rue : l'État, la loi, la société. "
         "{plan.5}Et dans l'épisode six, nous mettrons tout cela au service de ta copie.",
         ("P", 0.8),
@@ -347,6 +369,8 @@ SCENES = [
                        centre="CAUSES"),
         "tab_eth": dict(type="tableau", img="t-ethica", fond=True, de=[1.0, 0.5, 0.3], a=[1.3, 0.5, 0.45], sombre=True,
                         legende="Spinoza, Ethica, dans les Opera posthuma, 1677"),
+        "tab_chr": dict(type="tableau", img="t-christine", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.4, .62, .62],
+                        legende="Nils Forsberg, Descartes à la cour de la reine Christine (d'après P.-L. Dumesnil), XIXᵉ siècle"),
         "spino": dict(type="portrait", annee=1632, img="spinoza", nom="Baruch Spinoza", dates="1632 – 1677",
                       x=110, y=120, w=330, h=420, legende="Lettre 58 à Schuller, octobre 1674"),
         "lance": dict(type="illu", nom="lance", x=600, y=150, w=660, h=434),
@@ -421,7 +445,7 @@ CREDITS = [
     "Descartes : d'après Frans Hals, XVIIᵉ siècle",
     "Spinoza : portrait anonyme, vers 1665",
     "Kant : portrait anonyme, XVIIIᵉ siècle",
-    "Photographies et documents : Klenze, l'Acropole (1846) ; manuscrit Clarke de Platon (895, Bodleian) ; Du contrat social (1762) ; Van Gogh, La Ronde des prisonniers (1890) ; Fabritius, Le Chardonneret (1654) ; mur de Berlin, 1977 (G. Garrigues, CC BY-SA 3.0) ; Doré, Londres (1872) ; Spinoza, Ethica (1677) ; Marx par J. Mayall ; Hiérapolis (B. Gagnon, CC BY-SA 3.0) : domaine public sauf mention",
-    "Tableaux : Delacroix, La Liberté guidant le peuple (1830) ; Raphaël, L'École d'Athènes (1509-1511) ; Abraham Bosse, frontispice du Léviathan (1651) ; J.-L. David, La Mort de Socrate (1787) ; J. W. Waterhouse, Les Danaïdes (1906) ; J.-J.-F. Le Barbier, Déclaration des droits de l'homme et du citoyen (1789) : domaine public",
+    "Photographies et documents : Klenze, l'Acropole (1846) ; manuscrit Clarke de Platon (895, Bodleian) ; Du contrat social (1762) ; Van Gogh, La Ronde des prisonniers (1890) ; Fabritius, Le Chardonneret (1654) ; mur de Berlin, 1977 (G. Garrigues, CC BY-SA 3.0) ; Doré, Londres (1872) ; Spinoza, Ethica (1677) ; Marx par J. Mayall ; Hiérapolis (B. Gagnon, CC BY-SA 3.0) ; relief d'affranchissement de Mariemont (Ad Meskens, CC BY-SA 4.0) ; esclaves enchaînés, Ashmolean (Jun, CC BY-SA 2.0) ; Shibuya (Benh Lieu Song, CC BY-SA 2.0) ; Rodin, Le Penseur (Jebulon, CC0) ; Foltz, Périclès (Rijksmuseum) ; salle d'examen ; foule et téléphones (Rawpixel, CC BY 2.0) : domaine public sauf mention",
+    "Tableaux : Delacroix, La Liberté guidant le peuple (1830) ; Raphaël, L'École d'Athènes (1509-1511) ; Abraham Bosse, frontispice du Léviathan (1651) ; J.-L. David, La Mort de Socrate (1787) ; J. W. Waterhouse, Les Danaïdes (1906) ; J.-J.-F. Le Barbier, Déclaration des droits de l'homme et du citoyen (1789) ; Claude Lorrain, Caprice avec les ruines du Forum (v. 1634) ; Piranèse, Prisons imaginaires (1761) ; J.-P. Houël, La Prise de la Bastille (1789) ; W. Blake, Newton (1795-1805) ; N. Forsberg, Descartes et la reine Christine (XIXᵉ s.) : domaine public",
     "Images : Wikimedia Commons. Voix de synthèse créées pour la série (Qwen3-TTS, clonage local). Musique originale générée pour la série.",
 ]
