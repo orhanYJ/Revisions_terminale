@@ -26,10 +26,10 @@ SCENES = [
         "Hercule, entre le Vice qui lui promet le plaisir… et la Vertu qui lui montre la route escarpée.",
         "{q1}Mais au fond, quand nous hésitons ainsi, une question plus vertigineuse se cache derrière. "
         "Ce choix… est-ce vraiment moi qui le fais ?",
-        "{-q1}{-tab_her}Nous en avons parlé la dernière fois : c'est la question du libre arbitre. "
+        "{-q1}Nous en avons parlé la dernière fois : c'est la question du libre arbitre. "
         "Aujourd'hui, deux philosophes vont répondre oui. Un oui total, sans réserve.",
         ("P", 0.3),
-        "{titre}",
+        "{-tab_her}{titre}",
         ("P", 3.2),
     ], vis={
         "tab_par": dict(type="tableau", img="t2-paris40", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .45, .45],
@@ -102,6 +102,7 @@ SCENES = [
         "Elle est si grande, dit Descartes, que c'est par elle que je ressemble à Dieu. "
         "{!infinie}Infinie, au sens strict : on ne peut pas être un peu libre. On l'est, ou on ne l'est pas.",
         "{-inf}{err}Mais alors, une question surgit. Si ma volonté est si parfaite… pourquoi est-ce que je me trompe ?",
+        "{-err}",
         ("C", "D'où est-ce donc que naissent mes erreurs ? c'est à savoir de cela seul que la volonté étant beaucoup "
               "plus ample et plus étendue que l'entendement, je ne la contiens pas dans les mêmes limites.", "c_err"),
         "{-err}{-c_err}{schema}La réponse est lumineuse. {schema.1}Je comprends peu de choses. "
@@ -152,13 +153,14 @@ SCENES = [
          {"rate": "-5%", "pitch": "-1Hz"}),
         "{-buri}{-tab_bur}{ecl}Pour Descartes, l'indifférence ne montre pas la force de ma volonté, mais {!ignorance}l'ignorance "
         "de mon esprit. Si je voyais clairement le vrai et le bien, je n'hésiterais jamais.",
+        "{-ecl}",
         ("C", "Si je connaissais toujours clairement ce qui est vrai et ce qui est bon, je ne serais jamais en peine de délibérer "
               "quel jugement et quel choix je devrais faire ; et ainsi je serais entièrement libre, sans jamais être indifférent.",
          "c_ecl"),
-        "{-c_ecl}{deux}Retiens donc deux libertés. {deux.g}La liberté d'indifférence : choisir sans raison. "
+        "{-c_ecl}{-ecl}{deux}Retiens donc deux libertés. {deux.g}La liberté d'indifférence : choisir sans raison. "
         "{deux.d}Et la liberté éclairée : choisir en connaissance de cause. Plus je comprends, plus je suis libre.",
         ("Paradoxe magnifique : la liberté grandit… quand l'hésitation disparaît.", {"rate": "-5%"}),
-        "{-deux}{mes}Pourtant, Descartes garde une carte dans sa manche. {mes.1}Dans une lettre de 1645, au père Mesland, il précise : "
+        "{-deux}{-ecl}{mes}Pourtant, Descartes garde une carte dans sa manche. {mes.1}Dans une lettre de 1645, au père Mesland, il précise : "
         "même devant une évidence, je garde le pouvoir de m'en détourner, ne serait-ce que pour prouver ma liberté.",
         "{mes.2}La volonté n'est donc jamais enchaînée, pas même par le vrai. C'est en cela qu'elle est absolue.",
         ("P", 0.6),
@@ -193,8 +195,10 @@ SCENES = [
         ("Et pour l'homme ? Sartre retourne la formule.", {"pitch": "+2Hz"}),
         "{-coupe}{tab_voy}{formule}Pour l'homme, {!existence}l'existence précède l'essence. "
         "Il n'y a pas de modèle de l'homme qui l'attendrait d'avance : ni Dieu pour le concevoir, ni nature humaine fixée.",
+        "{-formule}",
         ("C", "Cela signifie que l'homme existe d'abord, se rencontre, surgit dans le monde, et qu'il se définit après.", "c_exi"),
         "{-c_exi}Tu n'es pas courageux ou lâche par nature. Tu le deviens, par tes actes.",
+        "{-formule}",
         ("C", "L'homme n'est rien d'autre que ce qu'il se fait.", "c_fait"),
         "{-formule}{-c_fait}{-tab_voy}{sartre2}Mais cette liberté a un prix. Je ne peux pas ne pas choisir. "
         "Même ne pas choisir, c'est encore choisir.",
