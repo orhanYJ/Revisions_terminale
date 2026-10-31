@@ -66,6 +66,8 @@ def verifier(nom):
             mots += n
             secondes += n / MOTS_PAR_S + 0.4
         for ident, spec in vis.items():
+            if ident in tous:
+                err.append(f"[{sc['id']}] identifiant de visuel déjà utilisé dans une autre scène : {ident} (les repères sont globaux)")
             tous.add(ident)
             if ident not in appel:
                 err.append(f"[{sc['id']}] visuel jamais appelé : {ident}")
