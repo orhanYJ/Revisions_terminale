@@ -229,7 +229,10 @@ def generer(nom_module):
             lu, reperes = _nettoie(b["t"])
             if not lu.strip():
                 for _, kind, ident in reperes:
-                    cues[("-" if kind == "-" else "") + ident] = t
+                    if kind == "-":
+                        cues.setdefault("-" + ident, t)     # la première fermeture compte
+                    else:
+                        cues[ident] = t
                 continue
             if b["v"] == "C":
                 t += AVANT_CIT
@@ -247,7 +250,10 @@ def generer(nom_module):
                     vis.append({"id": f"_frappe{n_frappe}", "type": "frappe", "scene": sc["id"], "t": ident,
                                 "t0": round(inst, 3), "t1": round(inst + 1.5, 3)})
                     continue
-                cues[("-" if kind == "-" else "") + ident] = inst
+                if kind == "-":
+                    cues.setdefault("-" + ident, inst)      # la première fermeture compte
+                else:
+                    cues[ident] = inst
             if b["v"] == "H":
                 mots_sc += [(t + a[1] - tete, a[3]) for a in al]
             if b["v"] == "C":
