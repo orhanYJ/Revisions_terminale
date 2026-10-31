@@ -373,7 +373,7 @@ SCENES = [
                         legende="Nils Forsberg, Descartes à la cour de la reine Christine (d'après P.-L. Dumesnil), XIXᵉ siècle"),
         "spino": dict(type="portrait", annee=1632, img="spinoza", nom="Baruch Spinoza", dates="1632 – 1677",
                       x=110, y=120, w=330, h=420, legende="Lettre 58 à Schuller, octobre 1674"),
-        "lance": dict(type="illu", nom="lance", x=600, y=150, w=660, h=434),
+        "lance": dict(type="illu", nom="lance", x=545, y=140, w=730, h=480),
         "q2": dict(type="question", t="Sentiment d'être libre… ou ignorance des causes ?"),
         "plan": dict(type="liste", titre="La suite de la série", items=[
             "Ép. 2 · Le libre arbitre : Descartes, Sartre",
@@ -407,7 +407,7 @@ SCENES = [
             dict(nom="Hobbes", d=1588, img="hobbes"), dict(nom="Spinoza", d=1632, img="spinoza"),
             dict(nom="Rousseau", d=1712, img="rousseau"), dict(nom="Kant", d=1724, img="kant"),
             dict(nom="Marx", d=1818), dict(nom="Freud", d=1856), dict(nom="Sartre", d=1905)]),
-        "tab_fin": dict(type="tableau", img="t-liberte-peuple", fond=True, de=[1.0, .5, .5], a=[1.2, .5, .35]),
+        "tab_fin": dict(type="tableau", img="t-liberte-peuple", fond=True, de=[1.0, .5, .5], a=[1.2, .5, .35], legende="Eugène Delacroix, La Liberté guidant le peuple, 1830"),
         "fin": dict(type="titre", sur="À suivre", t="Le libre arbitre", sous="Épisode 2 · Descartes et Sartre"),
     }),
 ]
