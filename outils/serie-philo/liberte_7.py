@@ -12,7 +12,8 @@ TITRE = "Récap"
 SUIVANT = ""
 
 PRONONCIATION = {"Nietzsche": "Nitche", "Libet": "Libette", "Sapere": "Sapéré", "aude": "aoudé", "Stockdale": "Stokdèle",
-                 "Tocqueville": "Tokvil", "Durkheim": "Durkème"}
+                 "Tocqueville": "Tokvil", "Durkheim": "Durkème",
+                 "Isaiah Berlin": "Isaïa Berline"}
 
 SCENES = [
     # ------------------------------------------------------------------ ouverture
@@ -187,15 +188,18 @@ SCENES = [
     # ------------------------------------------------------------------ V. le jour J
     dict(id="copie", chap="Le jour J", fond="aube", humeur="lumiere",
          retenir="Définir, distinguer, problématiser, illustrer : une idée, un auteur, un exemple précis.", beats=[
-        "{tab_exa}{meth}Et le jour de l'épreuve ? Quatre gestes. {meth.1}Définir les mots du sujet, sans en rester au dictionnaire. "
-        "{meth.2}Te demander de quelle liberté parle le sujet. {meth.3}Trouver le problème : la tension entre deux réponses "
-        "qui semblent toutes les deux vraies. {meth.4}Et pour chaque idée, un auteur et un exemple précis.",
+        "{tab_exa}{meth}Et le jour de l'épreuve ? Quatre gestes. {meth.1}Définir chaque mot du sujet, et repérer ce qu'il présuppose. "
+        "{meth.2}Te demander de quelle liberté il parle. {meth.3}Faire apparaître une tension : deux réponses "
+        "qui semblent toutes les deux vraies. {meth.4}Construire : la réponse spontanée, l'objection, "
+        "puis une distinction qui dépasse les deux. Et pour une explication de texte : six éléments d'introduction, "
+        "puis, pour chaque phrase, quoi ? comment ? pourquoi ?",
         "{-meth}{suj}Les grands sujets reviennent : {suj.1}Être libre, est-ce faire ce que l'on veut ? "
         "{suj.2}La liberté est-elle une illusion ? {suj.3}L'État est-il l'ennemi de la liberté ? "
         "{suj.4}Peut-on être libre sans les autres ? Pour chacun, tu as maintenant deux camps et des auteurs.",
         "{-suj}{ex}Les exemples qui marchent, tu les as : {ex.1}la jambe d'Épictète. {ex.2}Les tonneaux percés de Platon. "
         "{ex.3}Le garçon de café de Sartre. {ex.4}La pierre de Spinoza. {ex.5}Le gibet de Kant. "
-        "{ex.6}Et James Stockdale, qui tient sept ans en prison grâce à Épictète.",
+        "{ex.6}Robinson sur son île, qui survit grâce aux savoirs des autres. "
+        "{ex.7}Et James Stockdale, qui tient sept ans en prison grâce à Épictète. Un exemple travaillé vaut mieux que dix citations.",
         "{-ex}{-tab_exa}{piege}Un dernier piège à éviter : {piege.1}réciter des auteurs sans répondre à la question. "
         "{piege.2}Un auteur n'est pas un argument d'autorité : c'est un outil pour penser le sujet.",
         ("P", 0.4),
@@ -203,14 +207,14 @@ SCENES = [
         "tab_exa": dict(type="tableau", img="t-examen", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .6],
                         legende="Salle d'examen (domaine public)"),
         "meth": dict(type="liste", titre="Le jour de l'épreuve", items=[
-            "Définir les mots du sujet", "De quelle liberté parle-t-on ?", "Trouver le problème",
-            "Une idée = un auteur + un exemple précis"], marques=["1", "2", "3", "4"], x=170, y=140, w=940),
+            "Définir chaque mot, repérer le présupposé", "De quelle liberté parle-t-on ?", "Faire apparaître une tension",
+            "Réponse spontanée → objection → distinction qui dépasse"], marques=["1", "2", "3", "4"], x=170, y=140, w=940),
         "suj": dict(type="liste", titre="Des sujets qui reviennent", items=[
             "Être libre, est-ce faire ce que l'on veut ?", "La liberté est-elle une illusion ?",
             "L'État est-il l'ennemi de la liberté ?", "Peut-on être libre sans les autres ?"], marques=["?", "?", "?", "?"],
                     x=170, y=140, w=940),
         "ex": dict(type="nuage", items=["la jambe d'Épictète", "les tonneaux percés", "le garçon de café",
-                                        "la pierre de Spinoza", "le gibet de Kant", "Stockdale"], centre="EXEMPLES"),
+                                        "la pierre de Spinoza", "le gibet de Kant", "Robinson", "Stockdale"], centre="EXEMPLES"),
         "piege": dict(type="note", titre="Le piège", cles=["réciter", "outil"],
                       t="Réciter des auteurs sans répondre à la question.",
                       etape="Un auteur n'est pas un argument d'autorité : c'est un outil pour penser le sujet.",
@@ -241,9 +245,11 @@ SCENES = [
             dict(nom="Platon", d=-428, img="platon"), dict(nom="Aristote", d=-384, img="aristote"),
             dict(nom="Épictète", d=50, img="epictete"), dict(nom="Descartes", d=1596, img="descartes"),
             dict(nom="Hobbes", d=1588, img="hobbes"), dict(nom="Spinoza", d=1632, img="spinoza"),
+            dict(nom="Locke", d=1632, img="locke"), dict(nom="Montesquieu", d=1689, img="montesquieu"),
             dict(nom="Rousseau", d=1712, img="rousseau"), dict(nom="Kant", d=1724, img="kant"),
             dict(nom="Hegel", d=1770, img="hegel"), dict(nom="Marx", d=1818, img="marx"),
-            dict(nom="Nietzsche", d=1844, img="nietzsche"), dict(nom="Freud", d=1856, img="freud"),
+            dict(nom="Mill", d=1806, img="mill"), dict(nom="Nietzsche", d=1844, img="nietzsche"),
+            dict(nom="Freud", d=1856, img="freud"),
             dict(nom="Sartre", d=1905, img="sartre")]),
         "trois": dict(type="liste", titre="Trois phrases à garder", items=[
             "« L'obéissance à la loi qu'on s'est prescrite est liberté » · Rousseau",
