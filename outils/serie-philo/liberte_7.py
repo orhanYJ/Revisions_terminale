@@ -245,7 +245,7 @@ SCENES = [
             dict(nom="Platon", d=-428, img="platon"), dict(nom="Aristote", d=-384, img="aristote"),
             dict(nom="Épictète", d=50, img="epictete"), dict(nom="Descartes", d=1596, img="descartes"),
             dict(nom="Hobbes", d=1588, img="hobbes"), dict(nom="Spinoza", d=1632, img="spinoza"),
-            dict(nom="Locke", d=1632, img="locke"), dict(nom="Montesquieu", d=1689, img="montesquieu"),
+            dict(nom="Montesquieu", d=1689, img="montesquieu"),
             dict(nom="Rousseau", d=1712, img="rousseau"), dict(nom="Kant", d=1724, img="kant"),
             dict(nom="Hegel", d=1770, img="hegel"), dict(nom="Marx", d=1818, img="marx"),
             dict(nom="Mill", d=1806, img="mill"), dict(nom="Nietzsche", d=1844, img="nietzsche"),

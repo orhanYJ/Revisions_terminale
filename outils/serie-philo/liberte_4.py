@@ -291,7 +291,7 @@ SCENES = [
                       legende="Leçons sur la philosophie de l'histoire", x=110, y=120, w=330, h=420),
         "tab_nap": dict(type="tableau", img="t4-napoleon", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .4],
                         legende="Charles Meynier, Entrée de Napoléon à Berlin, 27 octobre 1806, 1810"),
-        "c_heg": dict(type="cit", a="Hegel", o="Leçons sur la philosophie de l'histoire, introduction (1822-1830)",
+        "c_heg": dict(type="cit", a="Hegel", o="Leçons sur la philosophie de l'histoire, introduction (1822-1830 ; trad. courante)",
                       x=640, y=200, w=570),
         "hist": dict(type="liste", titre="Hegel · la liberté dans l'histoire", items=[
             "L'Orient ancien : un seul est libre, le despote", "Grecs et Romains : quelques-uns, les citoyens",
