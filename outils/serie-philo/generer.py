@@ -35,7 +35,7 @@ AVANT_CIT = 0.45                      # silence avant une citation
 CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
-V_MOTEUR = 4                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
+V_MOTEUR = 5                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
 PAGE = """<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -152,6 +152,7 @@ def _beats(scene):
 
 def generer(nom_module):
     ep = importlib.import_module(nom_module)
+    PRONONCIATION.update(getattr(ep, "PRONONCIATION", {}))   # graphies propres à l'épisode
     os.makedirs(CACHE, exist_ok=True)
     os.makedirs(os.path.join(SORTIE, "voix"), exist_ok=True)
 

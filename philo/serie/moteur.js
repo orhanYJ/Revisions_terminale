@@ -75,10 +75,22 @@
       var w = nrm(sp.textContent);
       Object.keys(v.kt).forEach(function (k) {
         var nk = nrm(k);
-        if (w && nk && w.indexOf(nk.slice(0, Math.max(4, nk.length - 2))) === 0) out.push({ sp: sp, t: v.kt[k] });
+        if (w && nk && w.indexOf(nk.slice(0, Math.max(4, nk.length - 2))) === 0) out.push({ sp: motSeul(sp), t: v.kt[k] });
       });
     });
     return out;
+  }
+  // n'allume que le mot, pas la ponctuation collée (« naturel : » → « naturel » souligné, « : » normal)
+  function motSeul(sp) {
+    if (sp._mot) return sp._mot;
+    var m = sp.textContent.match(/^([«"'(\s\u00a0\u202f]*)(.*?)([\s\u00a0\u202f]*[.,;:!?»")…]*)$/);
+    if (!m || (!m[1] && !m[3])) { sp._mot = sp; return sp; }
+    sp.textContent = "";
+    if (m[1]) sp.appendChild(document.createTextNode(m[1]));
+    var in_ = h("span", "cle", sp, esc(m[2]));
+    if (m[3]) sp.appendChild(document.createTextNode(m[3]));
+    sp._mot = in_;
+    return in_;
   }
   function allume(lst, t) {
     lst.forEach(function (c) {
@@ -133,6 +145,27 @@
     opt = opt || {};
     return sv("text", { x: x, y: y, "text-anchor": opt.ancre || "middle", fill: opt.c || C.iv, "font-size": opt.fs || 26,
       "font-weight": opt.fw || 600, "letter-spacing": opt.ls || 0, class: opt.cls || "" }, g, txt);
+  }
+
+  function pointe(g, chemin, couleur, taille) {
+    taille = taille || 18;
+    var tri = sv("path", { d: "", fill: couleur }, g), fait = false;
+    return function () {
+      if (fait) return tri;
+      var L = chemin.getTotalLength();
+      if (!L) return tri;
+      var a = chemin.getPointAtLength(L), b = chemin.getPointAtLength(Math.max(0, L - 4));
+      var ux = a.x - b.x, uy = a.y - b.y, n = Math.hypot(ux, uy) || 1;
+      ux /= n; uy /= n;
+      var px = -uy, py = ux, k = taille, l = taille * 0.55;
+      var tip = [a.x + ux * k * 0.35, a.y + uy * k * 0.35];
+      tri.setAttribute("d", "M" + tip[0].toFixed(1) + " " + tip[1].toFixed(1) +
+        " L" + (tip[0] - ux * k + px * l).toFixed(1) + " " + (tip[1] - uy * k + py * l).toFixed(1) +
+        " L" + (tip[0] - ux * k * 0.72).toFixed(1) + " " + (tip[1] - uy * k * 0.72).toFixed(1) +
+        " L" + (tip[0] - ux * k - px * l).toFixed(1) + " " + (tip[1] - uy * k - py * l).toFixed(1) + " Z");
+      fait = true;
+      return tri;
+    };
   }
 
   var ILLU = {};
@@ -190,12 +223,13 @@
         transform: "rotate(" + (i % 2 ? 60 : 20) + " " + (690 + i * 22) + " " + (330 + i * 9) + ")" }, chaine));
     }
     var pieu = sv("path", { d: "M893 418 V395", stroke: C.ca, "stroke-width": 8, "stroke-linecap": "round" }, chaine);
-    var boucle = sv("path", { d: "M300 120 A70 34 0 1 1 420 120", fill: "none", stroke: C.sa, "stroke-width": 5, "stroke-linecap": "round" }, s);
-    var pointe = sv("path", { d: "M420 120 l-4 -20 M420 120 l-20 -2", stroke: C.sa, "stroke-width": 5, "stroke-linecap": "round" }, s);
-    var tA = etiquette(s, 360, 70, "s'appartient", { c: C.sa, fs: 30, cls: "ser" });
-    var fl = sv("path", { d: "M690 140 C760 90 840 90 930 120", fill: "none", stroke: C.ca, "stroke-width": 5, "stroke-linecap": "round" }, s);
-    var flp = sv("path", { d: "M930 120 l-18 -14 M930 120 l-20 8", stroke: C.ca, "stroke-width": 5, "stroke-linecap": "round" }, s);
-    var tB = etiquette(s, 820, 74, "appartient à un autre", { c: C.ca, fs: 28, cls: "ser" });
+    // la boucle fait le tour de la tête du citoyen et revient vers lui : il s'appartient
+    var boucle = sv("path", { d: "M318 262 A48 48 0 1 1 398 258", fill: "none", stroke: C.sa, "stroke-width": 5, "stroke-linecap": "round" }, s);
+    var pA = pointe(s, boucle, C.sa, 20);
+    var tA = etiquette(s, 360, 158, "s'appartient", { c: C.sa, fs: 32, cls: "ser" });
+    var fl = sv("path", { d: "M682 196 C740 120 830 110 922 136", fill: "none", stroke: C.ca, "stroke-width": 5, "stroke-linecap": "round" }, s);
+    var pB = pointe(s, fl, C.ca, 20);
+    var tB = etiquette(s, 800, 92, "appartient à un autre", { c: C.ca, fs: 28, cls: "ser" });
     return function (t, st) {
       traits.forEach(function (e, i) { trace(e, P(t, v.t0 + i * .12, 1.4)); });
       var a = E(P(t, v.t0 + .5, .8));
@@ -210,16 +244,21 @@
       op(pieu, E(P(p2, .85, .15)));
       B.corps.setAttribute("fill", p2 > 0 ? "#9a9688" : C.iv); B.tete.setAttribute("fill", p2 > 0 ? "#9a9688" : C.iv);
       var p3 = P(t, e3, 1.2);
-      op(fond, .55 - .35 * E(P(t, e3, .8))); op(lA, p1 * (1 - .8 * E(P(t, e3, .8)))); op(sA, E(P(t, e1 + .4, .7)) * (1 - E(P(t, e3, .8)))); op(lB, E(P(t, e2, .6)) * (1 - .8 * E(P(t, e3, .8))));
-      trace(boucle, p3); op(pointe, E(P(p3, .85, .15))); op(tA, E(P(t, e3 + .6, .6)));
-      trace(fl, P(t, e3 + 1.2, 1.0)); op(flp, E(P(t, e3 + 2.0, .2))); op(tB, E(P(t, e3 + 1.6, .6)));
+      op(fond, .55 - .35 * E(P(t, e3, .8))); op(lA, p1 * (1 - E(P(t, e3, .5)))); op(sA, E(P(t, e1 + .4, .7)) * (1 - E(P(t, e3, .5)))); op(lB, E(P(t, e2, .6)) * (1 - E(P(t, e3, .5))));
+      trace(boucle, p3); op(boucle, p3 > 0 ? 1 : 0); op(pA(), E(P(p3, .9, .1))); op(tA, E(P(t, e3 + .6, .6)));
+      var p4 = P(t, e3 + 1.2, 1.0);
+      trace(fl, p4); op(fl, p4 > 0 ? 1 : 0); op(pB(), E(P(p4, .9, .1))); op(tB, E(P(t, e3 + 1.6, .6)));
     };
   };
 
   ILLU.racine = function (s, v) {
     var racine = sv("g", {}, s);
     sv("rect", { x: 390, y: 290, width: 220, height: 62, rx: 31, fill: "rgba(232,178,90,.12)", stroke: C.sa, "stroke-width": 2 }, racine);
-    etiquette(racine, 500, 331, "*h₁leudʰ-", { c: C.sa, fs: 30, cls: "ser" });
+    var rx = etiquette(racine, 500, 331, null, { c: C.sa, fs: 32, cls: "ser" });
+    [["*h", 0, 32], ["1", 7, 19], ["leud", -7, 32], ["h", -13, 19], ["-", 13, 32]].forEach(function (m) {
+      sv("tspan", { dy: m[1], "font-size": m[2] }, rx, m[0]);
+    });
+    etiquette(racine, 630, 328, "racine indo-européenne", { c: C.iv2, fs: 19, fw: 400, ancre: "start" });
     var sens = etiquette(s, 500, 400, "« le peuple »", { c: C.iv, fs: 38, cls: "ser" });
     var exp = etiquette(s, 500, 458, "libre = être des nôtres  ≠  l'étranger capturé", { c: C.iv2, fs: 26, fw: 400 });
     var br = [
@@ -387,7 +426,7 @@
     }
     var auto = sv("g", {}, ecran);
     sv("rect", { x: 282, y: 52, width: 236, height: 436, fill: "rgba(5,8,15,.82)" }, auto);
-    etiquette(auto, 400, 230, "Vidéo suivante dans", { fs: 20, fw: 400, c: C.iv2 });
+    etiquette(auto, 400, 196, "Vidéo suivante dans", { fs: 20, fw: 400, c: C.iv2 });
     var cpt = etiquette(auto, 400, 300, "3", { fs: 72, c: C.sa, cls: "ser" });
     var anneau = sv("circle", { cx: 400, cy: 278, r: 52, fill: "none", stroke: C.sa, "stroke-width": 5, transform: "rotate(-90 400 278)" }, auto);
     var notif = sv("g", {}, ecran);
