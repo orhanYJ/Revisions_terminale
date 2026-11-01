@@ -50,7 +50,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ I. Spinoza
-    dict(id="spinoza", chap="La pierre de Spinoza", fond="aube", humeur="mystere",
+    dict(id="spinoza", chap="La pierre de Spinoza", fond="aube", humeur="mystere", notions=["la nature", "la conscience"],
          retenir="Pour Spinoza, se croire libre, c'est être conscient de ses désirs et ignorant de leurs causes.", beats=[
         "{spino}{tab_exc}Commençons par le plus radical. Baruch Spinoza, Amsterdam, dix-septième siècle. "
         "À vingt-trois ans, il est chassé de sa communauté pour ses idées. Il vivra modestement, en polissant des verres de lunettes.",
@@ -70,7 +70,7 @@ SCENES = [
         ("Plus nous ignorons les causes… plus nous nous croyons libres.", {"rate": "-6%", "pitch": "-2Hz"}),
         "{rep_cs}Retiens ici un repère : croire et savoir. Se sentir libre, c'est une croyance, vécue de l'intérieur. "
         "Savoir si on l'est vraiment, c'est une autre affaire. Et le sentiment, à lui seul, ne suffit pas à le prouver.",
-        "{-def_ill}{-rep_cs}{-tab_eth}{tab_orr}{laplace}Un siècle plus tard, les savants poussent l'idée jusqu'au bout. "
+        "{-def_ill}{-rep_cs}{-tab_eth}{tab_orr}{laplace}Un siècle plus tard, {#la science}les savants poussent l'idée jusqu'au bout. "
         "Le baron d'Holbach écrit que l'homme n'est libre à aucun instant de sa vie. "
         "Et le mathématicien Laplace imagine une intelligence qui connaîtrait toutes les forces de la nature, "
         "et la position de chaque atome.",
@@ -110,7 +110,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ II. Freud
-    dict(id="freud", chap="L'inconscient", fond="nuit", humeur="tension",
+    dict(id="freud", chap="L'inconscient", fond="nuit", humeur="tension", notions=["l'inconscient", "la conscience"],
          retenir="Freud : le moi n'est pas maître dans sa propre maison. Une part de nous agit à notre insu.", beats=[
         "{freud}{tab_goy}Revenons à notre jeune médecin viennois. Sigmund Freud a vu, à la Salpêtrière et à Nancy, "
         "qu'une idée pouvait agir en nous sans que nous le sachions. Il va en tirer une théorie : {!inconscient}l'inconscient.",
@@ -178,7 +178,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ III. sciences humaines
-    dict(id="societe", chap="La société en nous", fond="aube", humeur="tension",
+    dict(id="societe", chap="La société en nous", fond="aube", humeur="tension", notions=["le travail"],
          retenir="Marx, Durkheim, Bourdieu : nos idées et nos goûts portent la marque de notre place dans la société.", beats=[
         "{q_soc}Mais l'inconscient n'est pas la seule force cachée. Il y a aussi… les autres. La société entière.",
         "{-q_soc}{tab_usi}{marx}Au dix-neuvième siècle, Karl Marx observe les ouvriers des usines. Ce qu'ils pensent, "
@@ -191,7 +191,7 @@ SCENES = [
         "{-ideo}{-marx}{-c_marx}{-tab_usi}{tab_rue}{durk}Quelques décennies plus tard, Émile Durkheim fonde la sociologie avec une règle : "
         "étudier les faits sociaux comme des choses.",
         "{-durk}{def_fs}Un fait social, c'est une façon d'agir, de penser ou de sentir qui existe hors de l'individu "
-        "{def_fs.1}et qui s'impose à lui. La langue que tu parles, la mode que tu suis, la politesse : tu ne les as pas inventées.",
+        "{def_fs.1}et qui s'impose à lui. {#le langage}La langue que tu parles, la mode que tu suis, la politesse : tu ne les as pas inventées.",
         "Durkheim montre même que le suicide, l'acte en apparence le plus personnel qui soit, varie selon les époques, "
         "les pays, les religions, avec une régularité troublante.",
         "{-def_fs}{-tab_rue}{tab_eco}{bour}Plus près de nous, Pierre Bourdieu parle d'{!habitus}habitus : "
@@ -235,7 +235,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ IV. le cerveau (pour aller plus loin)
-    dict(id="cerveau", chap="Le cerveau a-t-il décidé avant moi ?", fond="nuit", humeur="mystere",
+    dict(id="cerveau", chap="Le cerveau a-t-il décidé avant moi ?", fond="nuit", humeur="mystere", notions=["la science", "la conscience"],
          retenir="Libet : une activité cérébrale précède la conscience de vouloir. Mais l'expérience prouve moins qu'on ne le dit.", beats=[
         "{tab_ves}{libet}Dernier soupçon, venu des neurosciences. En 1983, le neurologue américain Benjamin Libet "
         "demande à des volontaires de plier le poignet quand ils le veulent, et de noter l'instant exact où ils en ont eu l'intention.",
@@ -267,10 +267,10 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ V. le soupçon et la réponse
-    dict(id="reponse", chap="Alors, tout est joué ?", fond="aube", humeur="calme",
+    dict(id="reponse", chap="Alors, tout est joué ?", fond="aube", humeur="calme", notions=["la nature", "l'inconscient"],
          retenir="Déterminisme ≠ fatalisme : connaître ses déterminismes, c'est le premier pas vers la libération.", beats=[
         "{nietz}{tab_min}Avant de conclure, un dernier soupçon, plus féroce. Pour Friedrich Nietzsche, si l'on tient tant au libre arbitre, "
-        "ce n'est pas parce qu'il est vrai. C'est parce qu'il est utile… pour juger.",
+        "ce n'est pas parce qu'il est vrai. C'est parce qu'il est utile… pour {#la justice}juger.",
         ("C", "Les hommes ont été considérés comme « libres », pour pouvoir être jugés et punis.", "c_nietz"),
         "{-nietz}{-c_nietz}{-tab_min}{q_resp}Alors faut-il tout abandonner ? Plus de responsabilité, plus de mérite, plus de faute ? "
         "Pas si vite. Trois réponses.",

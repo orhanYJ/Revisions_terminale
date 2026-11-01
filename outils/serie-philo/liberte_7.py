@@ -34,7 +34,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ I. les fondations
-    dict(id="bases", chap="Les fondations", fond="aube", humeur="lumiere",
+    dict(id="bases", chap="Les fondations", fond="aube", humeur="lumiere", notions=["le devoir", "l'État", "la justice"],
          retenir="Le premier réflexe : de quelle liberté parle le sujet ? D'agir, de vouloir, ou politique ?", beats=[
         "{arist}{tab_ath}D'abord, le sens premier. Pour Aristote, l'homme libre est celui qui est à lui-même sa propre fin : "
         "il n'est l'instrument de personne. Le contraire de l'homme libre, c'est l'esclave.",
@@ -78,7 +78,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ II. le grand débat
-    dict(id="debat", chap="Le grand débat", fond="nuit", humeur="tension",
+    dict(id="debat", chap="Le grand débat", fond="nuit", humeur="tension", notions=["la conscience", "la science"],
          retenir="Déterminisme ≠ fatalisme : connaître ce qui nous détermine, c'est le premier pas vers la liberté.", beats=[
         "{tab_chr}{deb}Le cœur du sujet, c'est un débat. {deb.g}D'un côté, ceux qui affirment notre liberté. "
         "Descartes : ma volonté est infinie, et l'indifférence n'est que le plus bas degré de la liberté. "
@@ -89,7 +89,7 @@ SCENES = [
         "{-deb}",
         ("C", "Telle est cette liberté humaine que tous se vantent de posséder et qui consiste en cela seul que les hommes "
               "sont conscients de leurs désirs et ignorants des causes qui les déterminent.", "c_spi"),
-        "{-c_spi}{-deb}{freud}Freud ajoute l'inconscient : lapsus, rêves, actes manqués.",
+        "{-c_spi}{-deb}{freud}Freud ajoute {#l'inconscient}l'inconscient : lapsus, rêves, actes manqués.",
         ("C", "Le moi n'est pas maître dans sa propre maison.", "c_fre"),
         "{-freud}{-c_fre}{soup}{soup.1}Marx, Durkheim, Bourdieu : la société pense en nous, jusque dans nos goûts. "
         "{soup.2}Libet, en neurosciences : le cerveau semble se préparer avant que nous ayons conscience de vouloir… "
@@ -117,7 +117,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ III. se libérer
-    dict(id="liberer", chap="Se libérer", fond="aube", humeur="calme",
+    dict(id="liberer", chap="Se libérer", fond="aube", humeur="calme", notions=["le bonheur", "la raison"],
          retenir="On ne naît pas libre, on le devient : par le jugement, la connaissance, la loi qu'on se donne.", beats=[
         "{tab_mar}{lib}Troisième idée : la liberté se conquiert. {lib.1}Les stoïciens : distinguer ce qui dépend de nous "
         "de ce qui n'en dépend pas. Épictète, esclave, reste maître de son jugement. "
@@ -126,7 +126,7 @@ SCENES = [
         "{lib.3}Rousseau et Kant : être libre, c'est obéir à la loi qu'on se donne. C'est l'autonomie.",
         "{-lib}",
         ("C", "L'impulsion du seul appétit est esclavage, et l'obéissance à la loi qu'on s'est prescrite est liberté.", "c_rou"),
-        "{-c_rou}{-lib}{-tab_mar}{tab_gib}{kant}Et la formule de Kant : tu dois, donc tu peux. L'homme menacé du gibet "
+        "{-c_rou}{-lib}{-tab_mar}{tab_gib}{kant}Et la formule de Kant : {#le devoir}tu dois, donc tu peux. L'homme menacé du gibet "
         "découvre, dans le devoir, qu'il pourrait refuser le faux témoignage. Le devoir lui révèle sa liberté.",
         ("C", "Sapere aude ! Aie le courage de te servir de ton propre entendement.", "c_sap"),
         "{-c_sap}{-kant}{-tab_gib}{tab_nuit}{heg}Et pour aller plus loin, Hegel : la liberté ne se gagne pas seulement en soi-même. "
@@ -151,7 +151,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ IV. libres ensemble
-    dict(id="ensemble", chap="Libres ensemble", fond="nuit", humeur="tension",
+    dict(id="ensemble", chap="Libres ensemble", fond="nuit", humeur="tension", notions=["l'État", "la justice"],
          retenir="La loi n'est pas l'ennemie de la liberté : elle la protège, à condition d'être juste et limitée.", beats=[
         "{tab_bas}{pol}Quatrième idée : la liberté politique. {pol.1}Hobbes : sans État, c'est la guerre de tous contre tous ; "
         "on cède sa liberté naturelle pour la sécurité. {pol.2}Locke : là où il n'y a pas de loi, il n'y a pas de liberté. "

@@ -97,7 +97,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ II. sujet 1
-    dict(id="sujet1", chap="Sujet 1 · Faire ce que l'on veut", fond="nuit", humeur="lumiere",
+    dict(id="sujet1", chap="Sujet 1 · Faire ce que l'on veut", fond="nuit", humeur="lumiere", notions=["le bonheur"],
          retenir="Plan dialectique : la réponse spontanée, l'objection, puis une distinction qui dépasse les deux.", beats=[
         "{tab_ten}{plan1}Maintenant, le plan. Un plan, c'est une carte : il montre au correcteur où tu l'emmènes. Pour un sujet en « est-ce que », le plan dialectique marche presque toujours. "
         "Trois parties qui se répondent.",
@@ -109,7 +109,7 @@ SCENES = [
         "Exemple : la vidéo suivante qui se lance toute seule.",
         "{-tab_dan}{tab_uly}{plan1.3}Troisième partie : le dépassement. Pas un compromis mou, « un peu des deux ». "
         "On introduit une distinction : {-plan1}{dist}{dist.g}la liberté comme indépendance, faire ce que je veux, "
-        "{dist.d}et la liberté comme autonomie, obéir à la loi que je me suis donnée. Rousseau, puis Kant.",
+        "{dist.d}et la liberté comme autonomie, {#le devoir}obéir à la loi que je me suis donnée. Rousseau, puis Kant.",
         "{-dist}{uly}Et voici l'exemple qui fait mouche : Ulysse et les sirènes. Il sait que leur chant va le rendre fou. "
         "{uly.1}Alors il se fait attacher au mât, {uly.2}et ordonne à ses marins de ne pas le détacher, quoi qu'il dise.",
         ("Ligoté… et pourtant plus libre que s'il avait suivi son envie. Parce que c'est lui qui a choisi sa règle.",
@@ -141,12 +141,12 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ III. sujet 2
-    dict(id="sujet2", chap="Sujet 2 · Une illusion ?", fond="aube", humeur="mystere",
+    dict(id="sujet2", chap="Sujet 2 · Une illusion ?", fond="aube", humeur="mystere", notions=["l'inconscient", "la conscience"],
          retenir="Travailler le mot du sujet : une illusion n'est pas une simple erreur, elle naît d'un désir.", beats=[
         "{tab_cav}{suj2}Deuxième sujet : la liberté est-elle une illusion ? Ici, tout se joue sur un mot : {!illusion}illusion.",
         "{-suj2}{ill}Une illusion, ce n'est pas une simple erreur. {ill.g}L'erreur se corrige quand on la voit. "
         "{ill.d}L'illusion, elle, persiste même quand on la connaît, parce qu'elle répond à un désir. "
-        "Freud le dit dans L'Avenir d'une illusion : ce qui caractérise l'illusion, c'est qu'elle dérive de nos souhaits.",
+        "{#la religion}Freud le dit dans L'Avenir d'une illusion : ce qui caractérise l'illusion, c'est qu'elle dérive de nos souhaits.",
         "{-ill}{plan2}D'où un plan. {plan2.1}Un : la liberté semble une évidence vécue. Descartes : elle se connaît sans preuve. "
         "Sartre : je suis condamné à être libre.",
         "{plan2.2}Deux : mais ce sentiment peut tromper. La pierre de Spinoza, l'inconscient de Freud, l'habitus de Bourdieu.",
@@ -176,7 +176,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ IV. sujet 3
-    dict(id="sujet3", chap="Sujet 3 · Libre sans les autres ?", fond="nuit", humeur="lumiere",
+    dict(id="sujet3", chap="Sujet 3 · Libre sans les autres ?", fond="nuit", humeur="lumiere", notions=["l'État", "la justice"],
          retenir="Un exemple travaillé (Robinson) vaut mieux que dix citations. Et vérifie toujours tes citations.", beats=[
         "{tab_rob}{suj3}Troisième sujet : peut-on être libre sans les autres ? Il te faut un exemple qui fasse penser. "
         "Le voici : {!Robinson}Robinson Crusoé, seul sur son île.",
@@ -223,7 +223,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ V. explication de texte
-    dict(id="explication", chap="L'explication de texte", fond="aube", humeur="calme",
+    dict(id="explication", chap="L'explication de texte", fond="aube", humeur="calme", notions=["l'État", "le devoir"],
          retenir="Explication : six éléments d'introduction, puis chaque phrase : quoi ? comment ? pourquoi ?", beats=[
         "{rousseau}{tab_con}Et si tu choisis l'explication ? Prenons un texte court et célèbre : Rousseau, Du contrat social, "
         "livre un, chapitre huit. Bonne nouvelle : pas besoin de connaître toute l'œuvre. L'essentiel est dans le texte, "

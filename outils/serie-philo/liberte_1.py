@@ -46,7 +46,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ I. le mot
-    dict(id="mot", chap="Le mot", fond="aube", humeur="mystere", retenir="Être libre, au sens premier : s'appartenir, n'être l'instrument de personne.", beats=[
+    dict(id="mot", chap="Le mot", fond="aube", humeur="mystere", notions=["l'État", "le devoir"], retenir="Être libre, au sens premier : s'appartenir, n'être l'instrument de personne.", beats=[
         "{tab_acr}Remontons d'abord le temps. Athènes, cinq siècles avant notre ère. "
         "Sur l'agora, la grande place de la cité, {-tab_acr}{tab_per}{agora}deux hommes se croisent.",
         "{agora.1}L'un est citoyen : il vote, il prend la parole à l'assemblée, il décide des lois. "
@@ -69,7 +69,7 @@ SCENES = [
         "{-def1}{note}Attention, pourtant. Aristote lui-même jugeait l'esclavage naturel : il appelait l'esclave "
         "« une propriété animée ». La définition est belle, mais son époque la réservait à quelques-uns.",
         "{note.1}Toute l'histoire de la liberté sera aussi l'histoire de son extension. "
-        "{-tab_aff}{kant}Deux mille ans plus tard, Kant exigera que toute personne soit traitée comme une fin, "
+        "{-tab_aff}{kant}Deux mille ans plus tard, {#le devoir}Kant exigera que toute personne soit traitée comme une fin, "
         "et jamais simplement comme un moyen.",
         ("Tu vois le fil ?", {"pitch": "+3Hz"}),
     ], vis={
@@ -106,7 +106,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ II. faire ce que je veux
-    dict(id="faire", chap="Faire ce que je veux ?", fond="nuit", humeur="tension", retenir="Faire ce que je veux ≠ vouloir librement : l'esclave de ses désirs n'est pas libre.", beats=[
+    dict(id="faire", chap="Faire ce que je veux ?", fond="nuit", humeur="tension", notions=["le bonheur"], retenir="Faire ce que je veux ≠ vouloir librement : l'esclave de ses désirs n'est pas libre.", beats=[
         "{tab_tok}{q_quoi}Revenons à aujourd'hui. Si je te demande : être libre, c'est quoi ? "
         "Tu vas sans doute répondre : {-q_quoi}{fcqjv}c'est faire ce que je veux. Personne ne m'empêche, personne ne m'oblige.",
         "{-fcqjv}{-tab_tok}{hobbes}{tab_lev}C'est la définition du sens commun. Et elle a un défenseur de poids : Thomas Hobbes, "
@@ -194,7 +194,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ III. trois libertés
-    dict(id="trois", chap="Les trois libertés", fond="aube", humeur="lumiere", retenir="Trois libertés : d'agir, de vouloir, politique. Toujours se demander de laquelle on parle.", beats=[
+    dict(id="trois", chap="Les trois libertés", fond="aube", humeur="lumiere", notions=["l'État", "la justice"], retenir="Trois libertés : d'agir, de vouloir, politique. Toujours se demander de laquelle on parle.", beats=[
         "{tab_pen}{trois_mot}Cette distinction, c'est la clé de toute la notion. Quand on parle de liberté, "
         "on peut en réalité parler {cartes}de trois choses différentes.",
         "{-trois_mot}{cartes.1}D'abord, la liberté d'agir : pouvoir faire ce que j'ai décidé, sans obstacle. "
@@ -203,7 +203,7 @@ SCENES = [
         "sans être déterminé par une cause que je ne maîtrise pas. Ici, la question n'est plus : puis-je faire ? "
         "Mais : aurais-je pu vouloir autre chose ?",
         ("C'est la question métaphysique. La plus vertigineuse.", {"rate": "-6%", "pitch": "-2Hz"}),
-        "{cartes.3}{tab_bas}Enfin, la liberté politique : les libertés que la société me reconnaît et me garantit. "
+        "{cartes.3}{tab_bas}Enfin, {#l'État}la liberté politique : les libertés que la société me reconnaît et me garantit. "
         "Liberté d'expression, de conscience, de circuler, de se réunir. "
         "{-tab_bas}{tab_ddhc}En 1789, la Déclaration des droits de l'homme et du citoyen la définit ainsi.{-cartes}",
         ("C", "La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui.", "c_ddhc"),
@@ -267,7 +267,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ IV. les repères
-    dict(id="reperes", chap="Les mots pour le dire", fond="nuit", humeur="calme", retenir="Contrainte ≠ obligation · nécessaire ≠ contingent · en droit ≠ en fait.", beats=[
+    dict(id="reperes", chap="Les mots pour le dire", fond="nuit", humeur="calme", notions=["le devoir", "la nature", "la justice"], retenir="Contrainte ≠ obligation · nécessaire ≠ contingent · en droit ≠ en fait.", beats=[
         "{intro}Pour penser la liberté avec précision, le programme te donne des outils : les repères. "
         "Ce sont des couples de mots qu'on confond souvent… et que le correcteur adore voir distingués. "
         "Trois sont indispensables ici.",
@@ -283,7 +283,7 @@ SCENES = [
         "Tu lui donnes ta bourse. Mais es-tu obligé de la lui donner ?",
         ("C", "Céder à la force est un acte de nécessité, non de volonté ; c'est tout au plus un acte de prudence.",
          "c_force"),
-        "{-c_force}{-brigand}{ffd}Le brigand me contraint ; il ne m'oblige pas. La force ne fait pas le droit. "
+        "{-c_force}{-brigand}{ffd}Le brigand me contraint ; il ne m'oblige pas. {#la justice}La force ne fait pas le droit. "
         "{ffd.1}Retiens le paradoxe : l'obligation, loin de détruire la liberté, la suppose. "
         "Kant en fera le cœur de sa morale. Ce sera l'épisode quatre.",
         "{-ffd}{tab_new}{trio}Deuxième couple : {trio.1}nécessaire et contingent. "
@@ -338,7 +338,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ V. le problème
-    dict(id="probleme", chap="Le grand problème", fond="aube", humeur="tension", retenir="Se sentir libre suffit-il à l'être ? Ou n'est-ce que l'ignorance des causes ?", beats=[
+    dict(id="probleme", chap="Le grand problème", fond="aube", humeur="tension", notions=["la conscience", "la nature"], retenir="Se sentir libre suffit-il à l'être ? Ou n'est-ce que l'ignorance des causes ?", beats=[
         "{q_pb}Nous voilà prêts à voir le vrai problème. D'un côté, il y a une expérience que chacun fait, à chaque instant : "
         "{-q_pb}{sens}je me sens libre. Je lève la main… ou pas. Je choisis.",
         "{-sens}{desc}Descartes dira que c'est la chose la plus évidente du monde.",
