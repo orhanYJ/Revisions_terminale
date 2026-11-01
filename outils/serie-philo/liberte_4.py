@@ -27,10 +27,10 @@ SCENES = [
         "Et pourtant, une chose, une seule, lui restait : son jugement. Ce qu'il acceptait. Ce qu'il refusait.",
         "{-tab_cel}{q_ouv}Peut-on être libre… en prison ?",
         ("P", 0.6),
-        "{-q_ouv}{voie}Dans les épisodes deux et trois, deux camps se sont affrontés. Pour Descartes et Sartre, "
-        "nous sommes libres, absolument. Pour Spinoza et Freud, cette liberté est une illusion. "
-        "{voie.1}Aujourd'hui, une troisième voie. Et si la liberté n'était ni un don… ni une illusion ? "
-        "{voie.2}Et si c'était une {!conquête}conquête ?",
+        "{-q_ouv}{voie}Dans les épisodes deux et trois, deux camps se sont affrontés. {voie.1}Pour Descartes et Sartre, "
+        "nous sommes libres, absolument. {voie.2}Pour Spinoza et Freud, cette liberté est une illusion. "
+        "{voie.3}Aujourd'hui, une troisième voie. Et si la liberté n'était ni un don… ni une illusion ? "
+        "Et si c'était une {!conquête}conquête ?",
         ("On ne naît pas libre. On le devient.", {"rate": "-6%"}),
         ("P", 0.3),
         "{-voie}{titre}",
@@ -136,8 +136,8 @@ SCENES = [
         ("C", "Une affection qui est une passion cesse d'être une passion sitôt que nous en formons une idée claire et distincte.",
          "c_v3"),
         "{-c_v3}{ex}Prends un exemple. Tu es furieux contre un ami qui t'a laissé tomber. "
-        "Tant que tu ne vois que lui, la colère te possède. {ex.1}Mais si tu comprends ce qui l'a poussé : "
-        "sa peur, sa fatigue, son histoire… {ex.2}la colère retombe. Tu n'as pas fait un effort de volonté. Tu as compris.",
+        "{ex.1}Tant que tu ne vois que lui, la colère te possède. {ex.2}Mais si tu comprends ce qui l'a poussé : "
+        "sa peur, sa fatigue, son histoire… {ex.3}la colère retombe. Tu n'as pas fait un effort de volonté. Tu as compris.",
         "{-ex}{-tab_ast}{nec}Voilà le renversement. {nec.g}La liberté, ce n'est pas échapper à la nécessité. "
         "{nec.d}C'est la comprendre. Spinoza appelle libre ce qui agit par la seule nécessité de sa nature, "
         "et non poussé du dehors.",
@@ -205,6 +205,7 @@ SCENES = [
         "où il va le satisfaire, pour l'y pendre aussitôt après. Résisterait-il ? Évidemment, oui : la peur suffit.",
         "{gib.2}Maintenant, son prince lui ordonne, sous peine de mort, de porter un faux témoignage contre un honnête homme. "
         "Résisterait-il ? Il n'ose peut-être pas le promettre. Mais il doit reconnaître que c'est possible.",
+        "{-gib}",
         ("C", "Il juge donc qu'il peut faire quelque chose, parce qu'il a la conscience de le devoir, et il reconnaît ainsi "
               "en lui-même la liberté qui, sans la loi morale, lui serait toujours demeurée inconnue.", "c_kant"),
         "{-gib}{-c_kant}{-tab_gib}{tdtp}On résume souvent cette idée en une formule : {tdtp.1}tu dois, donc tu peux. "
@@ -257,6 +258,7 @@ SCENES = [
         "un directeur de conscience qui décide de ma morale, un médecin qui choisit mon régime.",
         "{lum.2}Et si l'on reste mineur, ce n'est pas faute d'intelligence. C'est faute de courage. "
         "Il est si confortable d'être mineur.",
+        "{-lum}",
         ("C", "Sapere aude ! Aie le courage de te servir de ton propre entendement.", "c_sap"),
         "Voilà, dit Kant, la devise des Lumières.",
         "{-lum}{-c_sap}{tab_ecr}{mineur}Aujourd'hui, le livre qui pense à ta place porte d'autres noms. "
@@ -322,7 +324,7 @@ SCENES = [
         "tab_hoa2": dict(type="tableau", img="t4-hoalo", fond=True, sombre=True, de=[1.2, .5, .45], a=[1.0, .5, .5],
                          legende="Hanoï, prison de Hoa Lo (photo David McKelvey, CC BY 2.0)"),
         "fin_q": dict(type="question", t="Une liberté seulement intérieure suffit-elle ?"),
-        "tab_fin": dict(type="tableau", img="t-ddhc", fond=True, de=[1.0, .5, .5], a=[1.2, .5, .35],
+        "tab_fin": dict(type="tableau", img="t-ddhc", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .35],
                         legende="Jean-Jacques-François Le Barbier, Déclaration des droits de l'homme et du citoyen, 1789"),
         "fin": dict(type="titre", sur="À suivre", t="Libres ensemble", sous="Épisode 5 · L'État, la loi, la société"),
     }),

@@ -63,9 +63,9 @@ SCENES = [
         "devrait être le plus libre des hommes. {prob_ex.2}Pourtant, nous disons de lui qu'il est esclave : de sa colère, "
         "de son téléphone, de ses envies. {prob_ex.3}D'où la vraie question : peut-on faire ce qu'on veut… sans être libre ?",
         ("La problématique, c'est ton fil d'Ariane. Elle te guide jusqu'à la sortie du labyrinthe.", {"rate": "-4%"}),
-        "{-prob_ex}{redac}Côté temps, compte environ une heure et demie de brouillon, deux heures de rédaction, "
-        "et un quart d'heure pour relire. {redac.1}L'introduction suit quatre temps : une accroche concrète, l'analyse des termes, "
-        "la problématique, l'annonce du plan. {redac.2}La conclusion en trois : le bilan, une réponse nette à la question, "
+        "{-prob_ex}{redac}{redac.1}Côté temps, compte environ une heure et demie de brouillon, deux heures de rédaction, "
+        "et un quart d'heure pour relire. {redac.2}L'introduction suit quatre temps : une accroche concrète, l'analyse des termes, "
+        "la problématique, l'annonce du plan. {redac.3}La conclusion en trois : le bilan, une réponse nette à la question, "
         "et, si tu veux, une ouverture.",
         ("P", 0.5),
     ], vis={
@@ -186,7 +186,7 @@ SCENES = [
         "chacun est menacé par chacun. Et regarde Robinson : il survit avec les outils, la langue, les savoirs… des autres, "
         "sauvés du naufrage. Locke a cette formule.{-plan3}",
         ("C", "Là où il n'y a pas de loi, il n'y a pas de liberté.", "c_locke"),
-        "{-c_locke}{-tab_lev}{tab_rob2}{p3}Troisième partie : la liberté se construit avec les autres. La liberté civile de Rousseau, "
+        "{-c_locke}{-tab_lev}{tab_rob2}{p3}{plan3.3}Troisième partie : la liberté se construit avec les autres. La liberté civile de Rousseau, "
         "les droits garantis par la loi, l'éducation. {p3.1}Kant le dit : l'homme ne peut devenir homme que par l'éducation.",
         "Et ta conclusion répondrait nettement : seul, on peut être indépendant. Mais on n'est libre, au sens plein, "
         "qu'avec les autres et par eux.",
