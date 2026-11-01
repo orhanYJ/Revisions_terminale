@@ -1175,9 +1175,15 @@
       if (T >= EP.dur - .05) aller(0);
       lecture = true; affiche.classList.add("off");
       if (sonOK) { audio.playbackRate = vitesse; var p = audio.play(); if (p && p.catch) p.catch(function () { sonOK = false; }); }
-      dernier = performance.now(); majUI();
+      dernier = performance.now(); majUI(); reveil();
     }
-    function pause() { lecture = false; audio.pause(); majUI(); }
+    function pause() { lecture = false; audio.pause(); majUI(); reveil(); }
+    // plein écran : les commandes apparaissent quand on bouge la souris (ou touche l'écran), puis s'effacent après 2,5 s
+    var tRepos = null, surBarre = false;
+    function reveil() {
+      L.classList.remove("repos"); clearTimeout(tRepos);
+      if (estPlein() && lecture) tRepos = setTimeout(function () { if (!surBarre && !glisse && lecture) L.classList.add("repos"); }, 2500);
+    }
     function bascule() { lecture ? pause() : jouer(); }
     function boucle(now) {
       var dt = Math.min(.1, Math.max(0, (now - dernier) / 1000)); dernier = now;
@@ -1206,7 +1212,13 @@
     prog.addEventListener("pointerup", function () { glisse = false; prog.classList.remove("glisse"); affiche.classList.add("off"); if (reprise) jouer(); });
 
     bPlay.onclick = bascule; gp.onclick = function (ev) { ev.stopPropagation(); jouer(); };
-    cadre.addEventListener("click", function () { bascule(); });
+    cadre.addEventListener("click", function () {
+      if (estPlein() && L.classList.contains("repos") && matchMedia("(hover: none)").matches) { reveil(); return; }   // téléphone : un toucher montre d'abord les commandes
+      bascule();
+    });
+    ["mousemove", "pointerdown", "touchstart", "wheel"].forEach(function (n) { boite.addEventListener(n, reveil, { passive: true }); });
+    barre.addEventListener("mouseenter", function () { surBarre = true; reveil(); });
+    barre.addEventListener("mouseleave", function () { surBarre = false; reveil(); });
     cadre.addEventListener("dblclick", function () { pleinEcran(); });
     bM.onclick = function () { aller(T - 10); }; bP.onclick = function () { aller(T + 10); };
     var VIT = [1, 1.25, 1.5, 0.85];
@@ -1223,25 +1235,25 @@
     function estPlein() { return L.classList.contains("plein"); }
     function pleinEcran() {
       if (estPlein()) { sortirPlein(); return; }
-      L.classList.add("plein"); ajuste();
+      L.classList.add("plein"); ajuste(); reveil();
       if (boite.requestFullscreen) {
         boite.requestFullscreen().then(function () { try { screen.orientation.lock("landscape").catch(function () {}); } catch (e) {} }).catch(function () { pseudo(); });
       } else if (boite.webkitRequestFullscreen) { boite.webkitRequestFullscreen(); } else pseudo();
     }
     function pseudo() { document.body.classList.add("pseudo"); history.pushState({ seriePlein: 1 }, ""); }
     function sortirPlein() {
-      L.classList.remove("plein"); document.body.classList.remove("pseudo");
+      L.classList.remove("plein", "repos"); clearTimeout(tRepos); document.body.classList.remove("pseudo");
       if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {});
       else if (history.state && history.state.seriePlein) history.back();
       setTimeout(ajuste, 50);
     }
     bFS.onclick = pleinEcran;
-    document.addEventListener("fullscreenchange", function () { if (!document.fullscreenElement && estPlein() && !document.body.classList.contains("pseudo")) { L.classList.remove("plein"); } setTimeout(ajuste, 60); });
+    document.addEventListener("fullscreenchange", function () { if (!document.fullscreenElement && estPlein() && !document.body.classList.contains("pseudo")) { L.classList.remove("plein", "repos"); } setTimeout(ajuste, 60); });
     addEventListener("popstate", function () { if (estPlein() && document.body.classList.contains("pseudo")) { L.classList.remove("plein"); document.body.classList.remove("pseudo"); setTimeout(ajuste, 50); } });
 
     document.addEventListener("keydown", function (ev) {
       if (/input|textarea/i.test(ev.target.tagName)) return;
-      var k = ev.key;
+      var k = ev.key; reveil();
       if (k === " " || k === "k") { ev.preventDefault(); bascule(); }
       else if (k === "ArrowLeft") { aller(T - 5); } else if (k === "ArrowRight") { aller(T + 5); }
       else if (k === "f") pleinEcran(); else if (k === "m") bMus.onclick(); else if (k === "c") bCC.onclick();
