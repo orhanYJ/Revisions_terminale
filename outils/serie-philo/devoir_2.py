@@ -160,9 +160,9 @@ SCENES = [
         "tab_abr": dict(type="tableau", img="dv2-abraham", fond=True, sombre=True, de=[1.0, .5, .4], a=[1.3, .5, .35],
                         legende="Le Caravage, Le Sacrifice d'Isaac, v. 1603 (Offices, Florence)"),
         "susp": dict(type="note", titre="Pour aller plus loin", cles=["morale", "foi", "suspension"],
-                     t="Abraham : meurtrier au nom de la morale, père des croyants au nom de la foi. Kierkegaard parle d'une « suspension téléologique de l'éthique ».",
+                     t="Abraham : meurtrier au nom de la morale, père des croyants au nom de la foi. Kierkegaard : une « suspension téléologique de l'éthique ».",
                      etape="La foi au-dessus du devoir : une possibilité terrible, qui ne se revendique pas à la légère.",
-                     x=640, y=150, w=570),
+                     x=640, y=70, w=570),
     }),
 
     # ------------------------------------------------------------------ III. la conscience
@@ -236,13 +236,13 @@ SCENES = [
         "{-auto}{hume}{tab_hum}Pour aller plus loin, un philosophe écossais, David Hume, a montré pourquoi cette voix est "
         "indispensable. Il remarque un glissement dans tous les livres de morale : on décrit d'abord ce qui est, "
         "puis, sans prévenir, on passe à ce qui doit être.",
-        "{loi}{loi.g}Les hommes ont toujours fait ainsi… {loi.d}donc ils doivent faire ainsi. Or, dit Hume, "
+        "{-hume}{loi}{loi.g}Les hommes ont toujours fait ainsi… {loi.d}donc ils doivent faire ainsi. Or, dit Hume, "
         "aucun fait ne contient à lui seul un devoir.",
         "Prends un exemple. Les hommes se sont toujours fait la guerre : c'est un fait, l'histoire le montre. "
         "Faut-il en conclure qu'ils doivent se faire la guerre ? Évidemment pas. Ou encore : la nature élimine les plus faibles. "
         "En conclure qu'il faut abandonner les faibles, c'est commettre exactement le glissement que Hume dénonce.",
         ("Ce qui est ne dit jamais, à lui seul, ce qui doit être.", {"rate": "-5%", "pitch": "-1Hz"}),
-        "{-hume}{-loi}{-tab_hum}{bil}C'est pourquoi les coutumes, les faits de {#la nature}nature ou les habitudes ne suffisent pas "
+        "{-loi}{-tab_hum}{bil}C'est pourquoi les coutumes, les faits de {#la nature}nature ou les habitudes ne suffisent pas "
         "à fonder le devoir. Il faut une source qui ne soit pas un simple fait : ce sera, pour Kant, la raison pratique.",
         "{-bil}",
         ("P", 0.6),
@@ -259,8 +259,8 @@ SCENES = [
                      etape="Obéir au devoir, c'est être autonome (série « La liberté », épisode 4).", x=170, y=190, w=940),
         "hume": dict(type="portrait", annee=1711, img="hume", nom="David Hume", dates="1711 – 1776",
                      legende="Traité de la nature humaine, III (1740)", x=110, y=120, w=330, h=420),
-        "tab_hum": dict(type="tableau", img="t2-meditations", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .4],
-                        legende="Descartes, Meditationes de prima philosophia, page de titre, Paris, 1641"),
+        "tab_hum": dict(type="tableau", img="dv2-treatise", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .4],
+                        legende="David Hume, A Treatise of Human Nature, page de titre, Londres, 1739"),
         "loi": dict(type="cols", g="Ce qui est", gq="« les hommes ont toujours fait ainsi »", d="Ce qui doit être",
                     dq="« donc ils doivent faire ainsi » : passage illégitime", vs="↛",
                     repere="Pour aller plus loin · la « loi de Hume »"),
@@ -339,7 +339,7 @@ CREDITS = [
     "Tableaux et gravures : Matthias Stom, Vieille femme tenant une bourse (v. 1640) ; L'Anneau de Gygès (Ferrare, XVIᵉ s.) ; "
     "A. Bettannier, La Tache noire (1887) ; Theodor de Bry, rituel tupinamba (1593, CC0) ; Rembrandt, Moïse brisant les tables de la Loi (1659) "
     "et Paysage avec le bon Samaritain (1638) ; J.-L. David, La Mort de Socrate (1787) ; le Caravage, Le Sacrifice d'Isaac (v. 1603) ; "
-    "F. Cormon, Caïn (1880) ; V. van Gogh, La Nuit étoilée (1889) ; Émile (1762) et Meditationes (1641), pages de titre ; Königsberg, photochrome (v. 1900) : domaine public",
+    "F. Cormon, Caïn (1880) ; V. van Gogh, La Nuit étoilée (1889) ; Émile (1762) et Traité de la nature humaine de Hume (1739), pages de titre ; Königsberg, photochrome (v. 1900) : domaine public",
     "Photographie : la Bidassoa (Ignacio Gavira, CC BY 2.5)",
     "Images : Wikimedia Commons. Voix de synthèse créées pour la série (Qwen3-TTS, clonage local). Musique originale générée pour la série.",
 ]
