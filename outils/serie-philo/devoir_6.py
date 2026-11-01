@@ -34,7 +34,7 @@ SCENES = [
         "tab_off": dict(type="tableau", img="dv6-officier", fond=True, sombre=True, de=[1.1, .5, .5], a=[1.35, .5, .55],
                         legende="Gerard ter Borch, Officier écrivant une lettre, XVIIᵉ s. (Musée national de Varsovie)"),
         "q1": dict(type="question", t="Cent vingt copies… et toutes se ressemblent."),
-        "q2": dict(type="question", t="« Le marchand lui rend exactement sa monnaie. Est-il honnête ? »"),
+        "q2": dict(type="question", t="Le marchand lui rend exactement sa monnaie. Est-il honnête ?"),
         "tab_eco": dict(type="tableau", img="dv6-ecole", fond=True, sombre=True, de=[1.0, .5, .45], a=[1.25, .5, .4],
                         legende="Jan Steen, L'École de village, vers 1665 (National Gallery of Ireland, Dublin)"),
         "reg": dict(type="liste", titre="Ce que note le correcteur", items=[
@@ -71,9 +71,9 @@ SCENES = [
         ("Personne ne l'y forçait. C'est précisément pour cela qu'il était libre.", {"rate": "-5%"}),
         "{-reg_ex}{intro}Et voilà ton introduction toute trouvée. {intro.1}L'accroche : Régulus qui retourne à Carthage. "
         "{intro.2}L'analyse des mots. {intro.3}La problématique : une chaîne, ou la preuve de ma liberté ? {intro.4}L'annonce du plan.",
-        "{-intro}{-tab_reg}{cp1}Note la méthode : la troisième partie ne dit jamais « tout dépend ». "
+        "{-intro}{-tab_reg}{td}{cp1}Note la méthode : la troisième partie ne dit jamais « tout dépend ». "
         "Elle déplace la question, grâce à une distinction.",
-        "{-cp1}",
+        "{-cp1}{-td}",
     ], vis={
         "tab_sav": dict(type="tableau", img="dv6-savant", fond=True, sombre=True, de=[1.0, .5, .4], a=[1.25, .5, .35],
                         legende="Rembrandt, Lettré à sa table de travail, 1641 (Château royal de Varsovie)"),
@@ -96,6 +96,7 @@ SCENES = [
             "Accroche : Régulus retourne à Carthage", "Analyse : les mots du sujet",
             "Problématique : une chaîne, ou la preuve de ma liberté ?", "Annonce du plan"],
                       marques=["1", "2", "3", "4"], x=170, y=150, w=940),
+        "td": dict(type="mot", t="« Tout dépend »", g="la réponse à ne jamais donner en troisième partie", y=220, taille=80),
         "cp1": dict(type="tag", style="copie", t="Copie · la partie III déplace la question, elle ne dit pas « tout dépend »",
                     x=170, y=540, w=900),
         "c_rou": dict(type="cit", a="Rousseau", o="Du contrat social, I, 8 (1762)", x=170, y=190, w=940),
