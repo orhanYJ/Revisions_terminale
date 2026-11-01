@@ -43,7 +43,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ I. l'état de nature
-    dict(id="nature", chap="L'état de nature", fond="aube", humeur="tension",
+    dict(id="nature", chap="L'état de nature", fond="aube", humeur="tension", notions=["l'État", "la nature"],
          retenir="Hobbes : sans État, la liberté de tous fait la guerre de chacun contre chacun.", beats=[
         "{tab_sau}{nat}Pour comprendre à quoi sert l'État, les philosophes ont fait une expérience de pensée : "
         "imaginer les hommes avant toute société, sans loi ni gouvernement. C'est ce qu'ils appellent {!état de nature}l'état de nature.",
@@ -82,14 +82,14 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ II. la loi qui libère
-    dict(id="loi", chap="La loi qui libère", fond="nuit", humeur="lumiere",
+    dict(id="loi", chap="La loi qui libère", fond="nuit", humeur="lumiere", notions=["l'État", "la justice"],
          retenir="Locke, Montesquieu : la loi protège la liberté ; et pour la garantir, le pouvoir arrête le pouvoir.", beats=[
         "{locke}{tab_tra}En 1690, un autre Anglais, John Locke, renverse la perspective. Pour lui, la loi n'est pas la cage de la liberté. "
         "Elle en est la protection.",
         ("C", "Là où il n'y a pas de loi, il n'y a pas de liberté.", "c_loc"),
         "{-c_loc}{-locke}{lic}Pourquoi ? Parce que sans loi, je suis à la merci du plus fort, de ses caprices, de sa violence. "
         "{lic.g}La liberté n'est pas la licence, faire n'importe quoi. {lic.d}C'est ne dépendre de la volonté arbitraire de personne.",
-        "{-lic}Et le pouvoir n'est légitime que s'il protège les droits naturels de chacun : la vie, la liberté, les biens. "
+        "{-lic}Et le pouvoir n'est {#la justice}légitime que s'il protège les droits naturels de chacun : la vie, la liberté, les biens. "
         "S'il les viole, s'il devient tyrannique, le peuple a le droit de lui résister. C'est la réponse de Locke à Hobbes.",
         "{-locke}{-tab_tra}"
         "{mont}{tab_esp}Un demi-siècle plus tard, en France, Montesquieu donne la définition qu'il te faut connaître par cœur.",
@@ -144,7 +144,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ III. Rousseau
-    dict(id="rousseau", chap="Rousseau : obéir à soi-même", fond="aube", humeur="lumiere",
+    dict(id="rousseau", chap="Rousseau : obéir à soi-même", fond="aube", humeur="lumiere", notions=["l'État", "le devoir"],
          retenir="Rousseau : en obéissant à la loi que je me suis donnée, je n'obéis qu'à moi-même.", beats=[
         "{rousseau}{tab_con}Jean-Jacques Rousseau va plus loin encore. Son Contrat social s'ouvre sur une phrase-choc.",
         ("C", "L'homme est né libre, et partout il est dans les fers.", "c_fer"),
@@ -196,7 +196,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ IV. anciens et modernes
-    dict(id="modernes", chap="La liberté des Anciens et des Modernes", fond="nuit", humeur="calme",
+    dict(id="modernes", chap="La liberté des Anciens et des Modernes", fond="nuit", humeur="calme", notions=["l'État"],
          retenir="Constant : liberté des Anciens (participer au pouvoir) ≠ liberté des Modernes (indépendance privée).", beats=[
         "{constant}{tab_per}En 1819, à Paris, Benjamin Constant prononce un discours resté célèbre. "
         "Il y montre que le mot liberté n'a pas le même sens pour les Anciens et pour nous.",
@@ -205,7 +205,7 @@ SCENES = [
         "Socrate lui-même, citoyen d'Athènes, fut condamné à mort par un tribunal populaire, en 399 avant notre ère, pour ses idées.",
         "{-tab_per}{tab_sta}{am.d}Pour un moderne, être libre, c'est d'abord être tranquille chez soi : penser, travailler, croire, "
         "aller et venir sans rendre de comptes. Nous déléguons le pouvoir à des représentants. "
-        "Quand tu choisis ta religion, ton métier, tes amis, sans que l'État s'en mêle, tu vis la liberté des Modernes.",
+        "Quand tu choisis {#la religion}ta religion, ton métier, tes amis, sans que l'État s'en mêle, tu vis la liberté des Modernes.",
         "{-am}",
         ("C", "Le but des modernes est la sécurité dans les jouissances privées ; et ils nomment liberté les garanties "
               "accordées par les institutions à ces jouissances.", "c_con"),
@@ -231,7 +231,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ V. les limites du pouvoir
-    dict(id="limites", chap="Jusqu'où la société peut-elle aller ?", fond="aube", humeur="tension",
+    dict(id="limites", chap="Jusqu'où la société peut-elle aller ?", fond="aube", humeur="tension", notions=["l'État", "la justice"],
          retenir="Mill : seul le tort fait à autrui justifie de limiter ma liberté. Tocqueville : gare à la tyrannie de la majorité.", beats=[
         "{mill}Reste une question très concrète : jusqu'où la société peut-elle limiter ma liberté ? "
         "En 1859, le philosophe anglais John Stuart Mill y répond dans un livre intitulé, tout simplement, De la liberté.",
@@ -244,7 +244,7 @@ SCENES = [
         ("C", "Sur lui-même, sur son corps et son esprit, l'individu est souverain.", "c_mil"),
         "{-c_mil}{-nuis}{-mill}{tab_ddhc2}Tu reconnais l'esprit de l'article quatre de la Déclaration, vu dans l'épisode un : "
         "pouvoir faire tout ce qui ne nuit pas à autrui. Mill y ajoute une exigence forte : la liberté de penser et de s'exprimer, "
-        "même pour les opinions qui nous choquent. Car on ne sait jamais d'avance laquelle est vraie. "
+        "même pour les opinions qui nous choquent. Car on ne sait jamais d'avance laquelle est {#la vérité}vraie. "
         "Et même une opinion fausse a son utilité : en la combattant, nous comprenons mieux pourquoi la vérité est vraie.",
         "{-tab_ddhc2}{toc}{tab_sta2}Mais un danger nouveau guette les démocraties. Alexis de Tocqueville l'a vu en voyageant en Amérique. "
         "Quand c'est la majorité qui gouverne, qui protège la minorité ?",

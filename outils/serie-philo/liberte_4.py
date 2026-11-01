@@ -52,7 +52,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ I. les stoïciens
-    dict(id="stoiciens", chap="Ce qui dépend de nous", fond="nuit", humeur="calme",
+    dict(id="stoiciens", chap="Ce qui dépend de nous", fond="nuit", humeur="calme", notions=["le bonheur"],
          retenir="Distinguer ce qui dépend de nous (nos jugements) de ce qui n'en dépend pas : la liberté du sage est intérieure.",
          beats=[
         "{epic}{tab_epi}Revenons à l'homme que lisait Stockdale. Épictète, l'esclave boiteux de l'épisode un. "
@@ -61,7 +61,7 @@ SCENES = [
         "{-epic}{-c_epi1}{-tab_epi}{dep}Ce qui ne dépend pas de nous : {dep.g}notre corps, la richesse, la réputation, "
         "ce que pensent les autres, la maladie, la mort. {dep.d}Ce qui dépend de nous : nos jugements, nos désirs, nos refus. "
         "Bref, notre manière de prendre les choses.",
-        "Toute la sagesse consiste à ne pas confondre les deux colonnes. Celui qui met son bonheur à gauche "
+        "Toute la sagesse consiste à ne pas confondre les deux colonnes. Celui qui met son {#le bonheur}bonheur à gauche "
         "sera toujours esclave : de la fortune, des autres, du hasard. Celui qui le met à droite… personne ne peut le lui prendre.",
         "{-dep}{tab_exa}{bac}Prends ton bac. {bac.1}Le sujet, le correcteur, ta forme du jour : cela ne dépend pas entièrement de toi. "
         "{bac.2}Ta préparation, ta manière de lire le sujet, ton calme devant la copie : cela, oui. "
@@ -121,7 +121,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ II. Spinoza
-    dict(id="spinoza", chap="Comprendre, c'est se libérer", fond="aube", humeur="mystere",
+    dict(id="spinoza", chap="Comprendre, c'est se libérer", fond="aube", humeur="mystere", notions=["le bonheur", "la raison", "la nature"],
          retenir="Spinoza : on est esclave de ses passions tant qu'on ignore leurs causes ; comprendre la nécessité, c'est se libérer.",
          beats=[
         "{spin}Dans l'épisode trois, Spinoza nous a dit : le libre arbitre est une illusion. "
@@ -183,7 +183,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ III. Rousseau et Kant
-    dict(id="autonomie", chap="Obéir à sa propre loi", fond="nuit", humeur="tension",
+    dict(id="autonomie", chap="Obéir à sa propre loi", fond="nuit", humeur="tension", notions=["le devoir", "la raison"],
          retenir="Autonomie : se donner à soi-même sa loi. « Tu dois, donc tu peux » : le devoir me révèle que je suis libre.",
          beats=[
         "{rous}{tab_con}Au dix-huitième siècle, Rousseau ouvre une autre voie. Tu connais déjà sa phrase de l'épisode un. "
@@ -209,7 +209,7 @@ SCENES = [
         ("C", "Il juge donc qu'il peut faire quelque chose, parce qu'il a la conscience de le devoir, et il reconnaît ainsi "
               "en lui-même la liberté qui, sans la loi morale, lui serait toujours demeurée inconnue.", "c_kant"),
         "{-gib}{-c_kant}{-tab_gib}{tdtp}On résume souvent cette idée en une formule : {tdtp.1}tu dois, donc tu peux. "
-        "Ce n'est pas parce que je suis libre que j'ai des devoirs. C'est parce que j'entends le devoir… "
+        "Ce n'est pas parce que je suis libre que j'ai des devoirs. C'est parce que j'entends {#le devoir}le devoir… "
         "que je découvre que je suis libre. Kant ne dit pas que nous résistons toujours. Il dit que nous le pouvons.",
         ("La peur du gibet fait de nous des animaux prudents. Le devoir fait de nous des hommes libres.", {"rate": "-5%"}),
         "{lien_site}Ce texte de Kant, tu peux l'étudier pas à pas dans le guide de l'explication de texte du site.",
@@ -245,7 +245,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ IV. les Lumières
-    dict(id="lumieres", chap="Ose penser", fond="aube", humeur="lumiere",
+    dict(id="lumieres", chap="Ose penser", fond="aube", humeur="lumiere", notions=["la raison", "la nature"],
          retenir="Les Lumières : sortir de la minorité, oser se servir de son propre entendement. La liberté se conquiert.",
          beats=[
         "{tab_nuit}{ciel}Kant voulait qu'on retienne de lui deux choses. Il l'écrit à la fin de sa Critique de la raison pratique : "
@@ -265,7 +265,7 @@ SCENES = [
         "{mineur.1}Le fil qui choisit ce que tu vas voir. {mineur.2}La réponse toute faite, qu'on recopie sans la refaire. "
         "{mineur.3}Penser par soi-même, ce n'est pas penser tout seul : c'est oser juger, au lieu de laisser juger pour soi.",
         "{-mineur}{-tab_ecr}{hegel}{tab_nap}Pour aller plus loin, un dernier penseur : Hegel. Pour lui, la liberté ne se conquiert pas "
-        "seulement dans la tête de chacun. Elle se réalise dans l'histoire, dans des lois, des institutions. "
+        "seulement dans la tête de chacun. Elle se réalise dans l'histoire, dans des lois, des {#l'État}institutions. "
         "En octobre 1806, il voit passer Napoléon à cheval dans Iéna, et il écrit à un ami qu'il a vu l'âme du monde.",
         ("C", "L'histoire universelle est le progrès dans la conscience de la liberté.", "c_heg"),
         "{-hegel}{-c_heg}{hist}Selon lui, {hist.1}dans les anciens empires d'Orient, un seul était libre : le despote. "

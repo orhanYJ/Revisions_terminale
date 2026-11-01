@@ -46,7 +46,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ I. le libre arbitre
-    dict(id="defi", chap="Qu'est-ce que le libre arbitre ?", fond="aube", humeur="lumiere",
+    dict(id="defi", chap="Qu'est-ce que le libre arbitre ?", fond="aube", humeur="lumiere", notions=["la justice"],
          retenir="Libre arbitre : le pouvoir de se déterminer soi-même ; j'aurais pu vouloir autrement.", beats=[
         "{tab_che}{mot}Commençons par le mot. Arbitre vient du latin arbitrium : le jugement, la décision. "
         "Le libre arbitre, c'est le pouvoir de décider par soi-même.",
@@ -63,7 +63,7 @@ SCENES = [
         "Si mon choix était nécessaire, s'il ne pouvait pas être autrement, il n'y aurait pas de libre arbitre. "
         "Le libre arbitre suppose du contingent.",
         "{-rep}{enjeu}Et l'enjeu est immense. {enjeu.1}Si je ne suis pas l'auteur de mes choix, de quoi suis-je responsable ? "
-        "{enjeu.2}Peut-on féliciter, ou punir, quelqu'un qui ne pouvait pas faire autrement ?",
+        "{enjeu.2}Peut-on féliciter, ou {#la justice}punir, quelqu'un qui ne pouvait pas faire autrement ?",
         ("Sans libre arbitre, la morale et le droit vacillent.", {"rate": "-6%", "pitch": "-2Hz"}),
         ("P", 0.6),
     ], vis={
@@ -87,7 +87,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ II. Descartes : une volonté infinie
-    dict(id="descartes", chap="Descartes : une volonté infinie", fond="nuit", humeur="lumiere",
+    dict(id="descartes", chap="Descartes : une volonté infinie", fond="nuit", humeur="lumiere", notions=["la raison"],
          retenir="Descartes : volonté infinie, entendement fini. L'erreur vient de ce que je juge sans savoir.", beats=[
         "{desc}{tab_rem}Premier défenseur : René Descartes. Nous sommes en 1641. Dans les Méditations métaphysiques, "
         "il décide de tout mettre en doute, pour trouver enfin quelque chose de certain.",
@@ -107,7 +107,7 @@ SCENES = [
               "plus ample et plus étendue que l'entendement, je ne la contiens pas dans les mêmes limites.", "c_err"),
         "{-err}{-c_err}{schema}La réponse est lumineuse. {schema.1}Je comprends peu de choses. "
         "{schema.2}Mais je juge de tout. {schema.3}L'erreur naît dans cet écart : quand je décide sur ce que je n'ai pas compris.",
-        "{-schema}{-tab_med}{tab_pen}Regarde ce que cela implique. Mes erreurs ne viennent ni de Dieu, ni du monde, ni d'un mauvais sort. "
+        "{-schema}{-tab_med}{tab_pen}Regarde ce que cela implique. {#la vérité}Mes erreurs ne viennent ni de Dieu, ni du monde, ni d'un mauvais sort. "
         "Elles viennent de moi : de l'usage que je fais de ma liberté.",
         ("Je ne suis jamais forcé de juger trop vite. Je suis donc {!responsable}responsable de mes erreurs.", {"rate": "-5%"}),
         "{remede}Et le remède est simple : {remede.1}suspendre son jugement, tant qu'on ne voit pas clairement. "
@@ -140,7 +140,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ III. indifférence et liberté éclairée
-    dict(id="indifference", chap="Le plus bas degré de la liberté", fond="aube", humeur="calme",
+    dict(id="indifference", chap="Le plus bas degré de la liberté", fond="aube", humeur="calme", notions=["la raison", "la vérité"],
          retenir="L'indifférence est le plus bas degré de la liberté ; la vraie liberté est éclairée.", beats=[
         "{q2}Tu pourrais penser que la liberté la plus pure, c'est de choisir sans aucune raison. "
         "Pile ou face. Ni ceci ni cela ne m'attire : je tranche, comme ça.",
@@ -184,12 +184,12 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ IV. Sartre : l'existence précède l'essence
-    dict(id="sartre", chap="Sartre : condamné à être libre", fond="nuit", humeur="tension",
+    dict(id="sartre", chap="Sartre : condamné à être libre", fond="nuit", humeur="tension", notions=["la conscience"],
          retenir="Sartre : l'existence précède l'essence. L'homme n'est rien d'autre que ce qu'il se fait.", beats=[
         "{tab_flo}{sartre}Trois siècles plus tard, un autre Français pousse cette idée jusqu'au bout. "
         "Jean-Paul Sartre écrit au café de Flore, à Paris. En 1945, il donne une conférence qui fait salle comble : "
         "L'existentialisme est un humanisme.",
-        "{-sartre}{-tab_flo}{coupe}Pour comprendre sa thèse, prends un objet fabriqué. Un coupe-papier. "
+        "{-sartre}{-tab_flo}{coupe}Pour comprendre sa thèse, prends un {#la technique}objet fabriqué. Un coupe-papier. "
         "{coupe.1}Avant de le fabriquer, l'artisan en a l'idée : à quoi il sert, comment il est fait. Son essence.",
         "{coupe.2}Puis il le fabrique : le coupe-papier existe. {coupe.3}Pour lui, l'essence précède l'existence.",
         ("Et pour l'homme ? Sartre retourne la formule.", {"pitch": "+2Hz"}),
@@ -205,7 +205,7 @@ SCENES = [
         ("C", "L'homme est condamné à être libre. Condamné, parce qu'il ne s'est pas créé lui-même, et par ailleurs "
               "cependant libre, parce qu'une fois jeté dans le monde, il est responsable de tout ce qu'il fait.", "c_cond"),
         "{-sartre2}{-c_cond}{comp}Compare avec Descartes. {comp.g}Pour Descartes, la liberté est une propriété de ma volonté, "
-        "reçue de Dieu. {comp.d}Pour Sartre, sans Dieu, la liberté n'est pas quelque chose que j'ai : c'est ce que je suis.",
+        "reçue de Dieu. {comp.d}Pour Sartre, {#la religion}sans Dieu, la liberté n'est pas quelque chose que j'ai : c'est ce que je suis.",
         "{-comp}{nob}Sartre a d'ailleurs pris sa philosophie au mot. En 1964, on lui décerne le prix Nobel de littérature. "
         "Il le refuse : un écrivain, explique-t-il, ne doit pas se laisser transformer en institution. "
         "Refuser, c'est encore choisir. Et il en assume les conséquences.",
@@ -233,7 +233,7 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ V. angoisse et mauvaise foi
-    dict(id="angoisse", chap="L'angoisse et la mauvaise foi", fond="aube", humeur="tension",
+    dict(id="angoisse", chap="L'angoisse et la mauvaise foi", fond="aube", humeur="tension", notions=["la conscience"],
          retenir="Angoisse : le vertige de ma liberté. Mauvaise foi : me mentir pour la fuir.", beats=[
         "{tab_cri}{ang}Une liberté pareille donne le vertige. Sartre lui donne un nom : {!angoisse}l'angoisse. "
         "Pas la peur d'un danger extérieur, mais le vertige devant ma propre liberté.",
