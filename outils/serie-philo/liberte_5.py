@@ -25,12 +25,12 @@ SCENES = [
         "{rob.3}Il ne peut ni se faire soigner, ni apprendre, ni parler à personne. Libre de tout… et capable de presque rien.",
         "{-rob}{-tab_rob}{tab_hem}{q1}Voilà le paradoxe de cet épisode. Les autres, la loi, l'État semblent limiter ma liberté. "
         "Et si, au contraire, ils en étaient la condition ?",
-        "{-q1}{-tab_hem}Après la liberté de l'esprit, place à la liberté politique : celle que nous vivons ensemble.",
+        "{-q1}Après la liberté de l'esprit, place à la liberté politique : celle que nous vivons ensemble.",
         ("P", 0.3),
-        "{titre}",
+        "{-tab_hem}{titre}",
         ("P", 3.2),
     ], vis={
-        "tab_rob": dict(type="tableau", img="t5-robinson", de=[1.0, .5, .3], a=[1.3, .5, .25],
+        "tab_rob": dict(type="tableau", img="t5-robinson", fond=True, de=[1.0, .5, .3], a=[1.3, .5, .25],
                         legende="N. C. Wyeth, Robinson Crusoé, illustration pour le roman de Daniel Defoe, 1920"),
         "q0": dict(type="question", t="Aucune loi, aucun maître…"),
         "rob": dict(type="cols", g="Libre de…", gq="aucun ordre, aucune loi, aucun maître", d="Libre pour… ?",
@@ -87,7 +87,7 @@ SCENES = [
         "{locke}{tab_tra}En 1690, un autre Anglais, John Locke, renverse la perspective. Pour lui, la loi n'est pas la cage de la liberté. "
         "Elle en est la protection.",
         ("C", "Là où il n'y a pas de loi, il n'y a pas de liberté.", "c_loc"),
-        "{-c_loc}{lic}Pourquoi ? Parce que sans loi, je suis à la merci du plus fort, de ses caprices, de sa violence. "
+        "{-c_loc}{-locke}{lic}Pourquoi ? Parce que sans loi, je suis à la merci du plus fort, de ses caprices, de sa violence. "
         "{lic.g}La liberté n'est pas la licence, faire n'importe quoi. {lic.d}C'est ne dépendre de la volonté arbitraire de personne.",
         "{-lic}Et le pouvoir n'est légitime que s'il protège les droits naturels de chacun : la vie, la liberté, les biens. "
         "S'il les viole, s'il devient tyrannique, le peuple a le droit de lui résister. C'est la réponse de Locke à Hobbes.",
@@ -100,6 +100,7 @@ SCENES = [
         "la règle qui me limite est aussi celle qui me permet de circuler.",
         "{-pourquoi}{-tab_esp}{tab_hem2}{abus}Mais Montesquieu sait aussi que tout homme qui a du pouvoir est porté à en abuser. "
         "D'où sa grande idée.",
+        "{-abus}",
         ("C", "Pour qu'on ne puisse abuser du pouvoir, il faut que, par la disposition des choses, le pouvoir arrête le pouvoir.",
          "c_pou"),
         "{-c_pou}{-abus}{sep}C'est la séparation des pouvoirs. {sep.1}Ceux qui font les lois, {sep.2}ceux qui les exécutent, "
@@ -158,11 +159,13 @@ SCENES = [
         "on obtient la somme des égoïsmes. La volonté générale, c'est ce que je veux en tant que citoyen, pour le bien commun.",
         "{vg.2}Alors, en obéissant à la loi, je n'obéis qu'à moi-même, puisque j'en suis l'auteur. "
         "Tu reconnais la formule de l'épisode un.",
+        "{-vg}",
         ("C", "L'obéissance à la loi qu'on s'est prescrite est liberté.", "c_obe"),
         "{-c_obe}{-vg}{aut}C'est une liberté d'un autre genre : non plus l'absence d'obstacles, mais l'{!autonomie}autonomie. "
         "{aut.1}Du grec autos, soi-même, et nomos, la loi : se donner à soi-même sa propre loi.",
         "{-aut}{-tab_gla}{forc}Mais Rousseau écrit aussi une phrase qui a fait frémir ses lecteurs : celui qui refuse d'obéir "
         "à la volonté générale y sera contraint par tout le corps.",
+        "{-forc}",
         ("C", "Ce qui ne signifie autre chose sinon qu'on le forcera d'être libre.", "c_for"),
         "{-c_for}{-forc}{dang}Forcé d'être libre ? Pour Rousseau, c'est logique : la loi exprime ce que je veux vraiment. "
         "{dang.1}Mais qui décide de ce que je veux vraiment ? {dang.2}Tous les régimes autoritaires ont prétendu savoir mieux que leurs sujets ce qui les libère.",
@@ -203,6 +206,7 @@ SCENES = [
         "{-tab_per}{tab_sta}{am.d}Pour un moderne, être libre, c'est d'abord être tranquille chez soi : penser, travailler, croire, "
         "aller et venir sans rendre de comptes. Nous déléguons le pouvoir à des représentants. "
         "Quand tu choisis ta religion, ton métier, tes amis, sans que l'État s'en mêle, tu vis la liberté des Modernes.",
+        "{-am}",
         ("C", "Le but des modernes est la sécurité dans les jouissances privées ; et ils nomment liberté les garanties "
               "accordées par les institutions à ces jouissances.", "c_con"),
         "{-c_con}{-am}{risq}Mais Constant voit le piège. {risq.1}À force de ne s'occuper que de nos affaires privées, "
@@ -236,6 +240,7 @@ SCENES = [
         "Concrètement : la société peut t'informer des dangers du tabac, te conseiller, te mettre en garde. "
         "Mais tant que tu ne nuis qu'à toi-même, elle n'a pas à décider à ta place. "
         "En revanche, elle peut t'interdire d'enfumer les autres.",
+        "{-nuis}",
         ("C", "Sur lui-même, sur son corps et son esprit, l'individu est souverain.", "c_mil"),
         "{-c_mil}{-nuis}{-mill}{tab_ddhc2}Tu reconnais l'esprit de l'article quatre de la Déclaration, vu dans l'épisode un : "
         "pouvoir faire tout ce qui ne nuit pas à autrui. Mill y ajoute une exigence forte : la liberté de penser et de s'exprimer, "
@@ -281,11 +286,11 @@ SCENES = [
         "{rec.2}Locke et Montesquieu : la loi ne détruit pas la liberté, elle la protège. Et le pouvoir doit arrêter le pouvoir.",
         "{rec.3}Rousseau : obéir à la loi qu'on s'est donnée, c'est être autonome. Mais gare au « forcé d'être libre ».",
         "{rec.4}Constant, Mill, Tocqueville : protéger l'individu, y compris contre la majorité.",
-        "{-rec}Et remarque le lien avec les épisodes précédents : la liberté politique ne remplace pas la liberté intérieure. "
+        "Et remarque le lien avec les épisodes précédents : la liberté politique ne remplace pas la liberté intérieure. "
         "Des droits garantis ne servent à rien à qui reste esclave de ses désirs ; et la sagesse seule ne protège pas du tyran.",
         "Retiens surtout ceci pour ta copie : la loi peut être une contrainte, ou la condition même de la liberté. "
         "Tout dépend de qui la fait, et de ce qu'elle protège.",
-        "{quiz}À toi de jouer : les questions t'attendent sous la vidéo.",
+        "{-rec}{quiz}À toi de jouer : les questions t'attendent sous la vidéo.",
         ("Et la prochaine fois… nous passerons à la pratique : la liberté à l'épreuve du bac.", {"rate": "-4%", "pitch": "+1Hz"}),
         ("P", 1.0),
         "{-quiz}{fin}{tab_fin}",

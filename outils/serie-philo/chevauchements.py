@@ -6,10 +6,12 @@ import json, os, sys
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
-PRINCIPAUX = {"def", "note", "cols", "cartes", "liste", "cit", "mot", "question", "dialogue", "carte", "nuage", "titre", "illu", "frise"}
+PRINCIPAUX = {"portrait", "def", "note", "cols", "cartes", "liste", "cit", "mot", "question", "dialogue", "carte", "nuage", "titre", "illu", "frise"}
 
 
 def boite(v):
+    if v["type"] == "portrait":
+        return (0, 600)         # grand portrait fondu à gauche
     if "x" in v and "w" in v:
         return (v["x"], v["x"] + v["w"])
     return (100, 1180)          # centré : occupe la largeur
@@ -26,7 +28,7 @@ def chevauchements(code, marge=0.8):
             if fin - deb < marge:
                 continue
             ba, bb = boite(a), boite(b)
-            if min(ba[1], bb[1]) - max(ba[0], bb[0]) < 40:
+            if min(ba[1], bb[1]) - max(ba[0], bb[0]) < (150 if "portrait" in (a["type"], b["type"]) else 40):
                 continue        # côte à côte
             res.append((round(deb, 1), round(fin - deb, 1), a["id"], a["type"], b["id"], b["type"]))
     return res
