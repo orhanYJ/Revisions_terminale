@@ -35,7 +35,7 @@ AVANT_CIT = 0.45                      # silence avant une citation
 CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
-V_MOTEUR = 9                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
+V_MOTEUR = 10                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
 PAGE = """<!DOCTYPE html>
 <html lang="fr">
 <head>

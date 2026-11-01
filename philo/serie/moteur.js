@@ -1118,7 +1118,7 @@
       var b = h("button", "chap", chaps);
       h("span", "n", b, i ? ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"][i - 1] : "◆");
       var tx = h("span", "", b); h("div", "t", tx, esc(s.chap)); h("div", "d", tx, fmt(s.t0));
-      b.onclick = function () { aller(s.t0 + (i ? .05 : 0)); if (!lecture) jouer(); };
+      b.onclick = function () { aller(s.t0 + (i ? .05 : 0)); if (!lecture) jouer(); bouge(b, [{ transform: "scale(.95)" }, { transform: "scale(1.03)", offset: .5 }, { transform: "none" }], { duration: 420, easing: RESSORT }); };
       return b;
     });
 
@@ -1178,13 +1178,27 @@
       dernier = performance.now(); majUI(); reveil();
     }
     function pause() { lecture = false; audio.pause(); majUI(); reveil(); }
+    // mouvement du site (sauf si l'appareil demande moins d'animations)
+    var MQ = window.matchMedia ? matchMedia("(prefers-reduced-motion: reduce)") : null;
+    function bouge(el, kf, o) { if (!el || !el.animate || (MQ && MQ.matches)) return null; try { return el.animate(kf, o); } catch (e) { return null; } }
+    var DOUX = "cubic-bezier(.2,.8,.2,1)", RESSORT = "cubic-bezier(.2,.9,.3,1.15)";
+    // lecture / pause : l'icône pulse au centre de l'image, comme sur YouTube
+    var pulse = h("div", "pulse", cadre);
+    function pulser(lit) {
+      pulse.innerHTML = lit ? ICO.play : ICO.pause;
+      bouge(pulse, [{ opacity: .9, transform: "translate(-50%,-50%) scale(.6)" }, { opacity: 0, transform: "translate(-50%,-50%) scale(1.5)" }], { duration: 650, easing: "ease-out" });
+    }
+    bChap.forEach(function (b, i) {
+      bouge(b, [{ opacity: 0, transform: "translateY(18px) rotateX(-30deg)" }, { opacity: 1, transform: "none" }], { duration: 600, delay: 250 + i * 70, easing: RESSORT, fill: "backwards" });
+    });
+    bouge(boite, [{ opacity: 0, transform: "translateY(18px) scale(.98)" }, { opacity: 1, transform: "none" }], { duration: 700, easing: DOUX, fill: "backwards" });
     // plein écran : les commandes apparaissent quand on bouge la souris (ou touche l'écran), puis s'effacent après 2,5 s
     var tRepos = null, surBarre = false;
     function reveil() {
       L.classList.remove("repos"); clearTimeout(tRepos);
       if (estPlein() && lecture) tRepos = setTimeout(function () { if (!surBarre && !glisse && lecture) L.classList.add("repos"); }, 2500);
     }
-    function bascule() { lecture ? pause() : jouer(); }
+    function bascule() { var l = lecture; l ? pause() : jouer(); if (!affiche.classList.contains("off") && !l) return; pulser(!l); }
     function boucle(now) {
       var dt = Math.min(.1, Math.max(0, (now - dernier) / 1000)); dernier = now;
       if (lecture) {
@@ -1236,13 +1250,16 @@
     function pleinEcran() {
       if (estPlein()) { sortirPlein(); return; }
       L.classList.add("plein"); ajuste(); reveil();
+      bouge(cadre, [{ transform: "scale(.9)", opacity: .4, filter: "blur(4px)" }, { transform: "none", opacity: 1, filter: "blur(0)" }], { duration: 520, easing: DOUX });
+      bouge(barre, [{ transform: "translateY(30px)", opacity: 0 }, { transform: "none", opacity: 1 }], { duration: 480, delay: 160, easing: DOUX, fill: "backwards" });
       if (boite.requestFullscreen) {
         boite.requestFullscreen().then(function () { try { screen.orientation.lock("landscape").catch(function () {}); } catch (e) {} }).catch(function () { pseudo(); });
       } else if (boite.webkitRequestFullscreen) { boite.webkitRequestFullscreen(); } else pseudo();
     }
     function pseudo() { document.body.classList.add("pseudo"); history.pushState({ seriePlein: 1 }, ""); }
     function sortirPlein() {
-      L.classList.remove("plein", "repos"); clearTimeout(tRepos); document.body.classList.remove("pseudo");
+      L.classList.remove("plein", "repos"); clearTimeout(tRepos);
+      bouge(boite, [{ transform: "scale(1.05)", opacity: .5 }, { transform: "none", opacity: 1 }], { duration: 480, easing: DOUX }); document.body.classList.remove("pseudo");
       if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () {});
       else if (history.state && history.state.seriePlein) history.back();
       setTimeout(ajuste, 50);

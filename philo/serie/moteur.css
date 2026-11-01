@@ -26,6 +26,10 @@ body.embed .lecteur{padding:0}
 .charge{position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:3px solid rgba(243,239,228,.2);
   border-top-color:var(--safran-c);animation:tourne 1s linear infinite;display:none}
 .cadre.attente .charge{display:block}
+.pulse{position:absolute;left:50%;top:50%;width:84px;height:84px;border-radius:50%;background:rgba(6,10,19,.6);display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:translate(-50%,-50%);pointer-events:none;z-index:5}
+.pulse svg{width:36px;height:36px;fill:#f3efe4}
+.chapitres{perspective:900px}
 @keyframes tourne{to{transform:rotate(360deg)}}
 
 .barre{display:flex;align-items:center;gap:6px;padding:8px 10px 10px;background:linear-gradient(#0a1020,#070b16);flex-wrap:wrap}
