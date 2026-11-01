@@ -22,10 +22,10 @@ SCENES = [
         ("C'est exactement ce qu'il ne faut pas faire.", {"rate": "-6%", "pitch": "-2Hz"}),
         "{-q_rec}{reg}Le correcteur ne note pas ce que tu sais. {reg.1}Il note ce que tu en fais : "
         "{reg.2}comment tu poses un problème, {reg.3}comment tu le traites, avec des arguments, des auteurs, des exemples.",
-        "{-reg}{-tab_sab}Dans cet épisode, on passe à l'atelier. Trois sujets décortiqués, une explication de texte, "
+        "{-reg}Dans cet épisode, on passe à l'atelier. Trois sujets décortiqués, une explication de texte, "
         "et les pièges à éviter.",
         ("P", 0.3),
-        "{titre}",
+        "{-tab_sab}{titre}",
         ("P", 3.2),
     ], vis={
         "tab_exa": dict(type="tableau", img="t-examen", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .6],
@@ -114,7 +114,7 @@ SCENES = [
         "{uly.1}Alors il se fait attacher au mât, {uly.2}et ordonne à ses marins de ne pas le détacher, quoi qu'il dise.",
         ("Ligoté… et pourtant plus libre que s'il avait suivi son envie. Parce que c'est lui qui a choisi sa règle.",
          {"rate": "-5%"}),
-        "{-uly}{-tab_uly}{rep_auto}Note la méthode : la troisième partie ne dit jamais « tout dépend ». "
+        "{rep_auto}Note la méthode : la troisième partie ne dit jamais « tout dépend ». "
         "Elle déplace la question, grâce à une distinction nouvelle.",
         ("P", 0.5),
     ], vis={
@@ -137,7 +137,7 @@ SCENES = [
             "Il se fait attacher au mât", "« Ne me détachez pas, quoi que je dise »"], marques=["1", "2"],
                     x=170, y=200, w=940),
         "rep_auto": dict(type="tag", style="copie", t="Copie · la partie III déplace la question, elle ne dit pas « tout dépend »",
-                         x=170, y=330, w=900),
+                         x=170, y=540, w=900),
     }),
 
     # ------------------------------------------------------------------ III. sujet 2
