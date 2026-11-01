@@ -10,7 +10,8 @@ NOTION = "Le devoir"
 NUM = 6
 TITRE = "Le devoir à l'épreuve du bac"
 SUIVANT = "Épisode 7 · Récap"
-PRONONCIATION = {"Régulus": "Régulusse", "Criton": "Kriton"}
+PRONONCIATION = {"Régulus": "Régulusse", "Criton": "Kriton", "Eichmann": "Aïkmane", "Arendt": "Arènnte",
+                 "Montgomery": "Montgomeri", "Birmingham": "Birmingueme", "Nietzsche": "Nitche"}
 
 SCENES = [
     # ------------------------------------------------------------------ ouverture
