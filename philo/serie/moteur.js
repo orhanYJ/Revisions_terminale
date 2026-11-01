@@ -907,6 +907,27 @@
     };
   };
 
+  // notions du programme abordées : encadré au début d'une partie, ou étiquette quand le texte touche une autre notion
+  TYPES.notion = function (o, v) {
+    var e = o.el; e.classList.add("v-notion"); o.entree = "aucune"; o.disp = "flex";
+    if (v.titre) e.classList.add("liste");
+    var tete = h("div", "nt-t", e, esc(v.titre || "Notion"));
+    var pills = v.items.map(function (x, i) {
+      var p = h("span", "nt-p" + (v.titre && i === 0 ? " prin" : ""), e, esc(x.charAt(0).toUpperCase() + x.slice(1)));
+      return p;
+    });
+    return function (t, st) {
+      var tl = st.tl, d = v.t1 - v.t0, a = E(P(tl, 0, .5)), out = EIO(P(tl, d - .6, .6));
+      op(e, a * (1 - out));
+      tr(e, "translateX(" + (40 * (1 - a) + 30 * out).toFixed(1) + "px)");
+      op(tete, E(P(tl, .1, .4)));
+      pills.forEach(function (p, i) {
+        var q = P(tl, .25 + i * .18, .45);
+        op(p, E(q)); tr(p, "translateY(" + (8 * (1 - E(q))).toFixed(1) + "px) scale(" + (0.85 + 0.15 * EB(q)).toFixed(3) + ")");
+      });
+    };
+  };
+
   TYPES.frappe = function (o, v) {
     var e = o.el; e.classList.add("v-frappe"); o.entree = "aucune"; o.disp = "flex";
     var fond = h("div", "fr-fond", e), m = h("div", "fr-mot", e, esc(v.t));
