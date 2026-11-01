@@ -107,9 +107,9 @@ SCENES = [
         "uniquement par devoir, celui-là seulement agit moralement.",
         "{-ex}{-tab_cha}{obj}Attention au contresens, fréquent en copie. Kant ne dit pas qu'il faut agir à contrecœur, "
         "ni que le plaisir rend une action mauvaise. Il dit que le plaisir ne peut pas être ce qui fonde sa valeur morale.",
-        "{-obj}{tab_gru2}{def_d}D'où sa définition du devoir.",
+        "{-obj}{tab_gru2}D'où sa définition du devoir.",
         ("C", "Le devoir est la nécessité d'accomplir une action par respect pour la loi.", "c_def"),
-        "{-c_def}{def_d.1}Le respect : c'est le seul sentiment que Kant admet en morale. Ce n'est pas une envie. "
+        "{-c_def}{def_d}{def_d.1}Le respect : c'est le seul sentiment que Kant admet en morale. Ce n'est pas une envie. "
         "C'est ce que j'éprouve devant une loi qui s'impose à moi, et qui humilie un peu mon amour de moi-même.",
         "Et cela suppose une {#la conscience}conscience lucide : au fond, je ne suis jamais tout à fait sûr de mes motifs. "
         "Kant l'avoue : il n'est peut-être jamais arrivé qu'une action soit faite par pur devoir. "
@@ -206,10 +206,10 @@ SCENES = [
         "Rien de mal à cela… tant que je le respecte aussi comme une personne : je le paie, je ne le trompe pas, je ne l'humilie pas.",
         "Ce qui est interdit, c'est de traiter quelqu'un simplement comme un outil : l'esclavage, la manipulation, "
         "le chantage. L'autre n'est plus qu'une chose.",
-        "{-tab_rab}{tab_whi}{pd}Pourquoi les personnes méritent-elles ce respect ? Parce qu'elles n'ont pas de prix.",
+        "{-tab_rab}{tab_whi}Pourquoi les personnes méritent-elles ce respect ? Parce qu'elles n'ont pas de prix.",
         ("C", "Ce qui a un prix peut être aussi bien remplacé par quelque chose d'autre, à titre d'équivalent ; au contraire, "
               "ce qui est supérieur à tout prix, ce qui par suite n'admet pas d'équivalent, c'est ce qui a une dignité.", "c_dig"),
-        "{-c_dig}{pd.g}Un téléphone a un prix : on peut le remplacer. {pd.d}Une personne a une {!dignité}dignité : "
+        "{-c_dig}{pd}{pd.g}Un téléphone a un prix : on peut le remplacer. {pd.d}Une personne a une {!dignité}dignité : "
         "on ne la remplace pas, on ne l'achète pas. Voilà l'origine de notre idée des droits de l'homme, "
         "et d'une certaine idée de la justice.",
         "{-pd}{-tab_whi}{tab_kt}{q_dig}Et d'où vient cette dignité ? De ce que l'homme est capable de se donner sa propre loi. "
@@ -265,8 +265,9 @@ SCENES = [
         "{-rep}{-tab_por}{tab_dio}{rig}Beaucoup de lecteurs ont jugé cette réponse inhumaine. On parle de rigorisme : "
         "une morale si pure qu'elle refuse de se salir les mains, quitte à laisser faire le mal.",
         "Charles Péguy en a fait une formule cruelle.",
+        "{-rig}",
         ("C", "Le kantisme a les mains pures, mais il n'a pas de mains.", "c_peg"),
-        "{-c_peg}{-rig}{def_k}Pourtant, Kant tient bon sur un point fort. Si chacun s'accorde le droit de mentir dès qu'il juge "
+        "{-c_peg}{def_k}Pourtant, Kant tient bon sur un point fort. Si chacun s'accorde le droit de mentir dès qu'il juge "
         "la cause bonne, qui décidera de ce qui est une bonne cause ? Le pouvoir, la propagande, et parfois {#l'État}l'État lui-même, "
         "mentent toujours au nom du bien.",
         "{-def_k}{q_fin}La question reste ouverte, et c'est un excellent sujet de dissertation : "
@@ -289,7 +290,7 @@ SCENES = [
         "rig": dict(type="def", cles=["rigorisme"], terme="Le rigorisme",
                     t="Appliquer la règle sans exception, quelles qu'en soient les conséquences.",
                     etape="L'objection classique adressée à Kant.", x=170, y=170, w=940),
-        "c_peg": dict(type="cit", a="Charles Péguy", o="Victor-Marie, comte Hugo (1910)", x=170, y=430, w=940),
+        "c_peg": dict(type="cit", a="Charles Péguy", o="Victor-Marie, comte Hugo (1910)", x=170, y=200, w=940),
         "def_k": dict(type="note", titre="Pour défendre Kant", cles=["bonne cause"],
                       t="Si chacun peut mentir pour une « bonne cause », qui décide de ce qu'est une bonne cause ?"),
         "q_fin": dict(type="question", t="Le devoir doit-il tenir compte des conséquences ?"),
@@ -303,11 +304,11 @@ SCENES = [
         "{rec.3}Trois : l'impératif catégorique. Agir d'après une maxime que je peux vouloir comme loi universelle, "
         "et traiter l'humanité toujours en même temps comme une fin, jamais simplement comme un moyen.",
         "{rec.4}Quatre : le mensonge. Kant refuse tout droit de mentir ; Constant et Péguy lui reprochent son rigorisme.",
-        "{-rec}{-tab_tom}{tab_fin}Une morale exigeante, peut-être trop. Ses adversaires vont l'attaquer de front : "
+        "{-rec}{-tab_tom}{tab_fin}{q_suite}Une morale exigeante, peut-être trop. Ses adversaires vont l'attaquer de front : "
         "et si le devoir n'était qu'une dette, une peur, ou un mauvais calcul ?",
+        "{-q_suite}{fin}",
         ("La prochaine fois : contre le devoir. Nietzsche, Freud, et l'utilitarisme.", {"rate": "-4%", "pitch": "+1Hz"}),
         ("P", 1.0),
-        "{fin}",
         ("P", 4.5),
     ], vis={
         "tab_tom": dict(type="tableau", img="dv3-tombe", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .45],
@@ -319,6 +320,7 @@ SCENES = [
             dict(t="Le mensonge", items=["Constant (1797)", "aucun droit de mentir", "rigorisme (Péguy)"])]),
         "tab_fin": dict(type="tableau", img="dv3-voielactee", fond=True, sombre=True, de=[1.0, .5, .4], a=[1.25, .5, .55],
                         legende="Étienne Léopold Trouvelot, Une partie de la Voie lactée, 1881-1882 (domaine public)"),
+        "q_suite": dict(type="question", t="Et si le devoir n'était qu'une dette, une peur, ou un mauvais calcul ?"),
         "fin": dict(type="titre", sur="À suivre", t="Contre le devoir", sous="Épisode 4 · Nietzsche, Freud, l'utilitarisme"),
     }),
 ]
