@@ -818,10 +818,19 @@
       var d = h("div", "an", e, a[1]); d.style.left = X(a[0]) + "px"; return d;
     });
     var RANGS = [{ top: 210, tige: [84, 78] }, { top: 420, tige: [-48, 48] }, { top: 66, tige: [84, 222] }, { top: 560, tige: [-188, 188] }];
-    var fin = RANGS.map(function () { return -1e9; });
-    var its = v.items.slice().sort(function (a, b) { return a.d - b.d; }).map(function (it, i) {
-      var p = h("div", "p", e), x = X(it.d), r = 0;
-      while (r < RANGS.length - 1 && x - fin[r] < 128) r++;
+    var tri = v.items.slice().sort(function (a, b) { return a.d - b.d; });
+    // dates trop serrées (plus de deux rangées nécessaires) : espacement régulier, ordre chronologique conservé
+    var fin = RANGS.map(function () { return -1e9; }), serre = false;
+    tri.forEach(function (it) { var x = X(it.d), r = 0; while (r < RANGS.length - 1 && x - fin[r] < 128) r++; fin[r] = x; if (r > 1) serre = true; });
+    if (serre) {
+      rupt.style.display = "none"; ans.forEach(function (a) { a.style.display = "none"; });
+      var pas = tri.length > 1 ? 1040 / (tri.length - 1) : 0;
+      X = function (an) { var k = tri.findIndex(function (it) { return it.d === an; }); return 120 + k * pas; };
+    }
+    fin = RANGS.map(function () { return -1e9; });
+    var its = tri.map(function (it, i) {
+      var p = h("div", "p", e), x = serre ? 120 + i * pas : X(it.d), r = serre ? i % 2 : 0;
+      if (!serre) { while (r < RANGS.length - 1 && x - fin[r] < 128) r++; }
       fin[r] = x;
       var R = RANGS[r];
       p.style.left = x + "px"; p.style.top = R.top + "px";
