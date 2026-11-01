@@ -903,6 +903,7 @@
   TYPES.frappe = function (o, v) {
     var e = o.el; e.classList.add("v-frappe"); o.entree = "aucune"; o.disp = "flex";
     var fond = h("div", "fr-fond", e), m = h("div", "fr-mot", e, esc(v.t));
+    m.style.fontSize = Math.min(150, Math.floor(1120 / (String(v.t).length * 0.8))) + "px";   // un mot long tient dans l'écran
     return function (t, st) {
       var tl = st.tl, a = P(tl, 0, .35), out = P(tl, 1.05, .45);
       op(fond, E(a) * (1 - E(out)));
