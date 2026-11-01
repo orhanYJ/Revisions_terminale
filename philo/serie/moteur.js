@@ -627,8 +627,15 @@
       var ang = (-90 + i * 360 / n + (alea(i) - .5) * 18) * Math.PI / 180;
       var rx = v.centre ? 400 : 360, ry = v.centre ? 220 : 190;
       var d = h("div", "it", e, esc(txt));
-      d.style.left = (640 + Math.cos(ang) * rx) + "px"; d.style.top = (370 + Math.sin(ang) * ry) + "px";
-      d.style.fontSize = (v.centre ? 46 : 58) + Math.round(alea(i + 7) * 14) + "px";
+      if (n > 6) {          // beaucoup de mots : deux colonnes, sans chevauchement
+        var rangs = Math.ceil(n / 2), c = i % 2, r = Math.floor(i / 2);
+        d.style.left = (c ? 920 : 360) + (alea(i) - .5) * 40 + "px";
+        d.style.top = (370 + (r - (rangs - 1) / 2) * (v.centre ? 128 : 112) + (v.centre && r >= rangs / 2 ? 30 : 0) - (v.centre && r < rangs / 2 ? 30 : 0)) + "px";
+        d.style.fontSize = 44 + Math.round(alea(i + 7) * 8) + "px";
+      } else {
+        d.style.left = (640 + Math.cos(ang) * rx) + "px"; d.style.top = (370 + Math.sin(ang) * ry) + "px";
+        d.style.fontSize = (v.centre ? 46 : 58) + Math.round(alea(i + 7) * 14) + "px";
+      }
       its.push(d);
     });
     return function (t, st) {
