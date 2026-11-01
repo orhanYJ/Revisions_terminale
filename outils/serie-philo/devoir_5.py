@@ -239,9 +239,9 @@ SCENES = [
         "{wcol.d}L'éthique de responsabilité : répondre des conséquences prévisibles de ses actes.",
         "Pour Weber, l'homme accompli n'est pas celui qui choisit l'une contre l'autre, mais celui qui les tient ensemble, "
         "et qui peut dire, au moment décisif : je ne puis faire autrement.",
-        "{-wcol}Kant, lui, soutenait qu'un vrai conflit de devoirs est impensable : l'un des deux, bien examiné, "
+        "{-wcol}{kcf}Kant, lui, soutenait qu'un vrai conflit de devoirs est impensable : l'un des deux, bien examiné, "
         "se révèle n'être qu'apparent. Mais pour le découvrir, encore faut-il examiner.",
-        "{jug}Retiens la leçon. Un conflit de devoirs ne se résout pas en appliquant une règle : "
+        "{-kcf}{jug}Retiens la leçon. Un conflit de devoirs ne se résout pas en appliquant une règle : "
         "il exige de juger. Et juger, c'est l'exercice même de notre {#la liberté}liberté.",
         "{-jug}",
         ("P", 0.5),
@@ -256,6 +256,9 @@ SCENES = [
         "c_sar": dict(type="cit", a="Sartre", o="L'existentialisme est un humanisme (1946)", x=170, y=230, w=940),
         "tab_jav": dict(type="tableau", img="dv5-javert", fond=True, sombre=True, de=[1.0, .5, .4], a=[1.3, .5, .35],
                         legende="Gustave Brion, Javert, pour Les Misérables de Victor Hugo, 1862"),
+        "kcf": dict(type="note", titre="Et Kant ?", cles=["impensable", "apparent"],
+                    t="Un vrai conflit de devoirs est impensable : bien examiné, l'un des deux se révèle n'être qu'apparent.",
+                    etape="Encore faut-il examiner : la règle ne dispense pas de juger.", x=170, y=150, w=940),
         "web": dict(type="portrait", annee=1864, img="weber", nom="Max Weber", dates="1864 – 1920",
                     legende="Le Savant et le Politique (1919)", x=110, y=120, w=330, h=420),
         "wcol": dict(type="cols", g="Conviction", gq="faire ce qui est juste, quoi qu'il arrive",
