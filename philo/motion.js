@@ -198,7 +198,7 @@ document.body.appendChild(boutonSon);
 /* ---------- C. changer de page dans une transition de vue ---------- */
 var px = null, py = null, passe = false;
 addEventListener("pointerdown", function(e){ px = e.clientX; py = e.clientY; }, {capture:true, passive:true});
-var NAVIGUE = ".navitem, .index-cell, .authlink, .backlink, .dom-notion-link, .acard, .txcard, .rc-auteur, .tp-item";
+var NAVIGUE = ".navitem, .index-cell, .authlink, .backlink, .dom-notion-link, .acard, .txcard, .rc-auteur, .tp-item, .serie-ban";
 document.addEventListener("click", function(ev){
   if(passe || calme() || !document.startViewTransition || !window.ReactDOM || !ReactDOM.flushSync) return;
   var t = ev.target.closest ? ev.target.closest(NAVIGUE + ", .btnrow .pill, .chap-tabs .chap-tab") : null;
@@ -486,6 +486,7 @@ function balayerBlocs(inner){
     differer(h, anims);
   });
   $$(".debate", inner).forEach(function(d){ if(!vus.has(d)){ vus.add(d); debat(d); } });
+  series(inner);
   $$(".mln", inner).forEach(function(m){ if(!vus.has(m)){ vus.add(m); maillon(m); } });
   $$(BLOCS, inner).forEach(function(el){
     if(vus.has(el)) return; vus.add(el);
@@ -508,6 +509,37 @@ function balayerBlocs(inner){
     anim(b, [{opacity:0, clipPath:"inset(0 0 100% 0)", transform:"translateY(-8px)"}, {opacity:1, clipPath:"inset(0 0 0 0)", transform:"none"}], {duration:500, easing:DOUX});
   });
 }
+
+/* ---------- E bis. les séries vidéo : la bannière s'avance, l'écran s'allume, les épisodes se distribuent ---------- */
+function series(inner){
+  $$(".serie-ban", inner).forEach(function(b){
+    if(vus.has(b)) return; vus.add(b);
+    var pl = $(".pl", b), anims = [];
+    anims.push(anim(b, [{opacity:0, transform:"translateX(-34px)"}, {opacity:1, transform:"translateX(3px)", offset:.75}, {opacity:1, transform:"none"}], {duration:700, delay:250, easing:DOUX, fill:"backwards"}));
+    anims.push(anim(pl, [{transform:"scale(0) rotate(-120deg)"}, {transform:"scale(1.18) rotate(8deg)", offset:.7}, {transform:"none"}], {duration:650, delay:520, easing:RESSORT, fill:"backwards"}));
+    differer(b, anims);
+  });
+  $$(".serie-frame", inner).forEach(function(f){
+    if(vus.has(f)) return; vus.add(f);
+    var a = anim(f, [{opacity:0, transform:"translateY(26px) scale(.96)", clipPath:"inset(40% 0 40% 0 round 16px)"},
+                     {opacity:1, transform:"none", clipPath:"inset(0 0 0 0 round 16px)"}], {duration:850, delay:200, easing:"cubic-bezier(.3,.8,.2,1)", fill:"backwards"});
+    differer(f, [a]);
+  });
+  $$(".serie-ep", inner).forEach(function(c, i){
+    if(vus.has(c)) return; vus.add(c);
+    var a = anim(c, [{opacity:0, transform:"translateY(26px) rotateX(-35deg)"}, {opacity:1, transform:"none"}], {duration:650, delay:400 + i * 70, easing:RESSORT, fill:"backwards"});
+    differer(c, [a]);
+    if(!c._moTilt){ c._moTilt = true; inclinaison(c); }
+  });
+}
+/* changer d'épisode : l'écran se rallume, la carte choisie fait une onde */
+document.addEventListener("click", function(ev){
+  var c = ev.target.closest ? ev.target.closest(".serie-ep") : null;
+  if(!c || calme()) return;
+  var f = $(".serie-frame");
+  if(f && !c.classList.contains("on")) anim(f, [{opacity:.25, transform:"scale(.97)", filter:"blur(6px)"}, {opacity:1, transform:"none", filter:"blur(0)"}], {duration:650, easing:DOUX});
+  anim(c, [{transform:"scale(.96)"}, {transform:"scale(1.03)", offset:.5}, {transform:"none"}], {duration:420, easing:RESSORT});
+}, true);
 
 /* ---------- F. les flashcards ---------- */
 var retournees = new WeakSet(), nbRetournees = 0, toutesFete = false;
