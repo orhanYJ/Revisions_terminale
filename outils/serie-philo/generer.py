@@ -296,6 +296,7 @@ def generer(nom_module):
                     sous.append([round(debut, 3), round(min(fin, t + off - tete + d + 0.6), 3), (s + reste).strip()])
                     morceau, debut = [], None
             t += dur + ECART[b["v"]]
+        t_parole = t                  # fin de la voix : « À retenir » s'affiche seul
         if sc.get("retenir"):
             vis.append({"id": "_flash_" + sc["id"], "type": "flash", "scene": sc["id"], "t": sc["retenir"],
                         "t0": round(t, 3), "t1": round(t + FLASH - 0.3, 3)})
@@ -310,7 +311,7 @@ def generer(nom_module):
             v = dict(spec)
             v["id"], v["scene"] = ident, sc["id"]
             v["t0"] = round(cues[ident], 3)
-            v["t1"] = round(cues.get("-" + ident, t), 3)
+            v["t1"] = round(cues.get("-" + ident, t if v["type"] == "tableau" else t_parole), 3)
             etapes = {k.split(".", 1)[1]: round(x, 3) for k, x in cues.items()
                       if k.startswith(ident + ".") and not k.startswith("-")}
             if etapes:
