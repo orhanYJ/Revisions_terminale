@@ -26,9 +26,9 @@ SCENES = [
         ("C'est toute la question de cette série.", {"rate": "-4%"}),
         "{-q2}{serie}Six épisodes, et un récapitulatif, pour regarder ce mot de très près. "
         "Avec Rousseau, Kant, Durkheim, Nietzsche, Freud… et une jeune fille de la tragédie grecque, Antigone.",
-        "{-serie}Et d'abord, une question simple en apparence : qu'est-ce que le devoir ?",
+        "Et d'abord, une question simple en apparence : qu'est-ce que le devoir ?",
         ("P", 0.3),
-        "{titre}",
+        "{-serie}{titre}",
         ("P", 3.2),
     ], vis={
         "tab_wal": dict(type="tableau", img="dv1-portefeuille", fond=True, sombre=True, de=[1.0, .5, .55], a=[1.25, .5, .6],
