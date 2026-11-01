@@ -2369,13 +2369,13 @@ function MethoExpl(props){var go=props.go;var M=METHO_EXPL;
 
 /* ---------- SÉRIES VIDÉO (pages serie/<code>.html, générées par outils/serie-philo) ---------- */
 const SERIES=[{notion:"liberte",nom:"La liberté",episodes:[
- {code:"liberte-1",num:1,titre:"Qu'est-ce qu'être libre ?",dur:"12 min",r:"Le mot (Aristote), « faire ce que je veux » (Hobbes, Platon, Rousseau), les trois libertés, les repères."},
+ {code:"liberte-1",num:1,titre:"Qu'est-ce qu'être libre ?",dur:"14 min",r:"Le mot (Aristote), « faire ce que je veux » (Hobbes, Platon, Rousseau), les trois libertés, les repères."},
  {code:"liberte-2",num:2,titre:"Le libre arbitre",dur:"11 min",r:"Descartes, Sartre."},
  {code:"liberte-3",num:3,titre:"Et si c'était une illusion ?",dur:"11 min",r:"Spinoza, Freud, les sciences humaines."},
  {code:"liberte-4",num:4,titre:"Se libérer",dur:"12 min",r:"Les stoïciens, Spinoza, Kant."},
  {code:"liberte-5",num:5,titre:"Libres ensemble",dur:"11 min",r:"L'État, la loi, la société."},
  {code:"liberte-6",num:6,titre:"La liberté à l'épreuve du bac",dur:"12 min",r:"Sujets décortiqués, plans, pièges."},
- {num:7,titre:"Récap",r:"L'essentiel, pour la veille de l'épreuve."}]}];
+ {code:"liberte-7",num:7,titre:"Récap",dur:"8 min",r:"L'essentiel, pour la veille de l'épreuve."}]}];
 const SERIE_PLAY=React.createElement("svg",{viewBox:"0 0 24 24"},React.createElement("path",{d:"M7 4.5v15l12.5-7.5z"}));
 function SerieBanniere({go}){const ep=SERIES[0].episodes.filter(e=>e.code);const d=ep[ep.length-1];
  return React.createElement("div",{className:"serie-ban",onClick:()=>go("serie")},

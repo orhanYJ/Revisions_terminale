@@ -83,8 +83,10 @@ SCENES = [
         "{tab_chr}{deb}Le cœur du sujet, c'est un débat. {deb.g}D'un côté, ceux qui affirment notre liberté. "
         "Descartes : ma volonté est infinie, et l'indifférence n'est que le plus bas degré de la liberté. "
         "Sartre : l'existence précède l'essence ; je suis ce que je fais.",
+        "{-deb}",
         ("C", "L'homme est condamné à être libre.", "c_sar"),
         "{-c_sar}{deb.d}De l'autre, les soupçons. Spinoza : la pierre lancée, si elle pouvait penser, se croirait libre.",
+        "{-deb}",
         ("C", "Telle est cette liberté humaine que tous se vantent de posséder et qui consiste en cela seul que les hommes "
               "sont conscients de leurs désirs et ignorants des causes qui les déterminent.", "c_spi"),
         "{-c_spi}{-deb}{freud}Freud ajoute l'inconscient : lapsus, rêves, actes manqués.",
@@ -122,6 +124,7 @@ SCENES = [
         "{lib.2}Spinoza : comprendre la nécessité, c'est se libérer de la servitude des passions ; "
         "une passion cesse d'en être une dès que nous en formons une idée claire. "
         "{lib.3}Rousseau et Kant : être libre, c'est obéir à la loi qu'on se donne. C'est l'autonomie.",
+        "{-lib}",
         ("C", "L'impulsion du seul appétit est esclavage, et l'obéissance à la loi qu'on s'est prescrite est liberté.", "c_rou"),
         "{-c_rou}{-lib}{-tab_mar}{tab_gib}{kant}Et la formule de Kant : tu dois, donc tu peux. L'homme menacé du gibet "
         "découvre, dans le devoir, qu'il pourrait refuser le faux témoignage. Le devoir lui révèle sa liberté.",
@@ -156,6 +159,7 @@ SCENES = [
         "{-pol}{-tab_bas}{tab_ddhc}La Déclaration de 1789 l'avait dit à sa manière.",
         ("C", "La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui.", "c_ddhc"),
         "{-c_ddhc}{-tab_ddhc}{tab_bas2}{pol2}Et Montesquieu le précise.",
+        "{-pol2}",
         ("C", "La liberté est le droit de faire tout ce que les lois permettent.", "c_mon"),
         "{-c_mon}{-pol2}{polb}{polb.1}Mais la loi peut aussi menacer la liberté. Benjamin Constant distingue la liberté des Anciens, "
         "participer au pouvoir, et celle des Modernes, l'indépendance de la vie privée. "
