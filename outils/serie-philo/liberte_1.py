@@ -216,11 +216,11 @@ SCENES = [
         "Et Épictète ajoute : {jambe.2}« Je te l'avais bien dit. »",
         ("P", 0.6),
         "{-jambe}Esclave selon la loi… et pourtant maître de lui-même. Épictète deviendra l'un des plus grands "
-        "philosophes stoïciens. {grille}Pour lui, on peut enchaîner mon corps : {grille.1}pas ma volonté. "
+        "philosophes stoïciens. {grille}{grille.1}Pour lui, on peut enchaîner mon corps : {grille.2}pas ma volonté. "
         "Ce n'est ni la liberté d'agir, ni exactement le libre arbitre : c'est une liberté intérieure, morale, "
         "celle du sage. Nous la retrouverons dans l'épisode quatre.",
-        "{-epic}{-grille}{-tab_hie}{tab_ecr}{inverse}Inversement, on peut vivre dans le pays le plus libre du monde, avoir tous les droits… "
-        "{inverse.1}et rester esclave de ses habitudes, de ses peurs, de ses désirs. Le tonneau percé, encore.",
+        "{-epic}{-grille}{-tab_hie}{tab_ecr}{inverse}{inverse.1}Inversement, on peut vivre dans le pays le plus libre du monde, avoir tous les droits… "
+        "{inverse.2}et rester esclave de ses habitudes, de ses peurs, de ses désirs. Le tonneau percé, encore.",
         "{-inverse}{-tab_ecr}{tab_exa}{cartes2}Retiens donc ce réflexe, pour toutes tes copies. Devant un sujet sur la liberté, "
         "demande-toi toujours : {cartes2.hl}de quelle liberté parle-t-on ? {reflexe}D'agir, de vouloir… ou politique ?",
         ("P", 0.8),

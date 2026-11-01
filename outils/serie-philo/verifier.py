@@ -32,6 +32,7 @@ def verifier(nom):
     for sc in ep.SCENES:
         vis = sc.get("vis", {})
         appel, fin, etapes = set(), set(), set()
+        etapes_k = {}
         for b in sc["beats"]:
             if isinstance(b, str):
                 txt = b
@@ -59,6 +60,7 @@ def verifier(nom):
                     fin.add(base)
                 elif "." in ident:
                     etapes.add(base)
+                    etapes_k.setdefault(base, set()).add(ident.split(".", 1)[1])
                 else:
                     appel.add(base)
             lu = MARQUE.sub("", txt)
@@ -75,6 +77,13 @@ def verifier(nom):
                 if e not in appel:
                     err.append(f"[{sc['id']}] étapes d'un visuel jamais appelé : {e}")
             t = spec.get("type")
+            nb = len(spec.get("items", [])) if t in ("liste", "cartes") else 0
+            if nb and any(x.isdigit() for x in etapes_k.get(ident, ())):
+                manque = [k for k in range(1, nb + 1) if str(k) not in etapes_k[ident]]
+                hors = sorted(x for x in etapes_k[ident] if x.isdigit() and not 1 <= int(x) <= nb)
+                if manque or hors:
+                    err.append(f"[{sc['id']}] liste {ident} : chaque ligne k s'affiche au repère {{{ident}.k}} (k de 1 à {nb}) ; "
+                               f"manquent {manque}, en trop {hors}")
             if t not in TYPES:
                 err.append(f"[{sc['id']}] type inconnu {t} ({ident})")
             if t == "illu" and spec.get("nom") not in ill:
