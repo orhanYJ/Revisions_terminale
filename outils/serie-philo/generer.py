@@ -35,7 +35,7 @@ AVANT_CIT = 0.45                      # silence avant une citation
 CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
-V_MOTEUR = 10                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
+V_MOTEUR = 11                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
 PAGE = """<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -54,8 +54,10 @@ PAGE = """<!DOCTYPE html>
 </body>
 </html>
 """
-MARQUE = re.compile(r"\{([-!]?)([^{}]+)\}")
+MARQUE = re.compile(r"\{([-!#]?)([^{}]+)\}")
 GENERIQUE = 5.6                       # générique commun à la série, avant la première phrase
+DUREE_NOTION = 4.5                    # étiquette « Notion · … » quand le texte touche une autre notion ({#le bonheur})
+DUREE_NOTIONS = 6.5                   # encadré « Notions abordées » au début d'une partie (champ notions de la scène)
 FLASH = 3.8                           # « À retenir » de fin de chapitre (silence de voix, la musique monte)
 HUMEUR_DEFAUT = "lumiere"
 # prononciation : graphie donnée à la voix pour les mots non français (le texte affiché et les sous-titres gardent
@@ -207,6 +209,7 @@ def generer(nom_module):
     cit_mots = {}
     n_chap = 0
     n_frappe = 0
+    n_notion = 0
     vis.append({"id": "_generique", "type": "generique", "scene": ep.SCENES[0]["id"], "serie": ep.NOTION,
                 "num": ep.NUM, "t0": 0.0, "t1": GENERIQUE})
     bruitages.append((0.15, "souffle"))
@@ -222,6 +225,10 @@ def generer(nom_module):
             bruitages.append((t, "souffle"))
             n_chap += 1
             t += CARTON
+        if sc.get("notions"):  # au début de la partie : les notions du programme abordées (la notion de la série en tête)
+            vis.append({"id": "_notions_" + sc["id"], "type": "notion", "scene": sc["id"], "titre": "Notions abordées",
+                        "items": [ep.NOTION] + [x for x in sc["notions"] if x.lower() != ep.NOTION.lower()],
+                        "t0": round(t + 0.4, 3), "t1": round(t + 0.4 + DUREE_NOTIONS, 3)})
         for b in sc["_b"]:
             if "pause" in b:
                 t += b["pause"]
@@ -229,7 +236,11 @@ def generer(nom_module):
             lu, reperes = _nettoie(b["t"])
             if not lu.strip():
                 for _, kind, ident in reperes:
-                    if kind == "-":
+                    if kind == "#":
+                        n_notion += 1
+                        vis.append({"id": f"_notion{n_notion}", "type": "notion", "scene": sc["id"], "items": [ident],
+                                    "t0": round(t, 3), "t1": round(t + DUREE_NOTION, 3)})
+                    elif kind == "-":
                         cues.setdefault("-" + ident, t)     # la première fermeture compte
                     else:
                         cues[ident] = t
@@ -245,6 +256,11 @@ def generer(nom_module):
             for pos, kind, ident in reperes:
                 w = next((a for a in al if a[0] >= pos), None)
                 inst = max(t, t + (w[1] - tete if w else dur))
+                if kind == "#":       # autre notion du programme touchée ici : une étiquette glisse en haut à droite
+                    n_notion += 1
+                    vis.append({"id": f"_notion{n_notion}", "type": "notion", "scene": sc["id"], "items": [ident],
+                                "t0": round(inst, 3), "t1": round(inst + DUREE_NOTION, 3)})
+                    continue
                 if kind == "!":       # mot clé qui frappe : grand, une seconde et demie
                     n_frappe += 1
                     vis.append({"id": f"_frappe{n_frappe}", "type": "frappe", "scene": sc["id"], "t": ident,

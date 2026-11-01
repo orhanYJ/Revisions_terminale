@@ -10,9 +10,11 @@ import importlib, os, re, sys
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 sys.path.insert(0, ICI)
-MARQUE = re.compile(r"\{([-!]?)([^{}]+)\}")
+MARQUE = re.compile(r"\{([-!#]?)([^{}]+)\}")
 TYPES = {"titre", "chapitre", "mot", "question", "nuage", "def", "note", "tag", "cit", "portrait", "cols", "cartes", "liste",
-         "dialogue", "frise", "tableau", "illu", "carte", "frappe", "flash", "generique"}
+         "dialogue", "frise", "tableau", "illu", "carte", "frappe", "flash", "generique", "notion"}
+NOTIONS = {"l'art", "le bonheur", "la conscience", "le devoir", "l'état", "l'inconscient", "la justice", "le langage", "la liberté",
+           "la nature", "la raison", "la religion", "la science", "la technique", "le temps", "le travail", "la vérité"}
 MOTS_PAR_S = 2.9       # débit du narrateur (calé sur l'épisode 1 : 13,6 min réelles)
 
 
@@ -52,6 +54,10 @@ def verifier(nom):
             for m in MARQUE.finditer(txt):
                 k, ident = m.group(1), m.group(2)
                 if k == "!":
+                    continue
+                if k == "#":
+                    if ident.lower() not in NOTIONS:
+                        err.append(f"[{sc['id']}] notion inconnue du programme : {{#{ident}}} (écrire par ex. « le bonheur »)")
                     continue
                 base = ident.split(".")[0]
                 if base not in vis:
@@ -97,6 +103,9 @@ def verifier(nom):
                         err.append(f"[{sc['id']}] image de frise absente : {it['img']}")
             if t == "tableau" and not spec.get("legende"):
                 err.append(f"[{sc['id']}] tableau sans légende (auteur, licence) : {ident}")
+        for x in sc.get("notions", []):
+            if x.lower() not in NOTIONS:
+                err.append(f"[{sc['id']}] notion inconnue du programme dans notions : {x}")
         if sc.get("carton", True):
             secondes += 2.9
         if sc.get("retenir"):
