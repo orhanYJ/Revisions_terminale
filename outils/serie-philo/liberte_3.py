@@ -123,7 +123,7 @@ SCENES = [
         "{-c_freud}{tab_ice}{ice}On représente souvent l'esprit, selon Freud, comme un iceberg. "
         "{ice.g}La partie visible, c'est la conscience. {ice.d}Sous l'eau, bien plus vaste, il y a l'inconscient : "
         "des désirs refoulés, des souvenirs oubliés, des peurs d'enfance.",
-        "{refoul}Pourquoi ces désirs restent-ils cachés ? Parce qu'ils sont inacceptables pour la conscience : honteux, interdits, "
+        "{-ice}{refoul}Pourquoi ces désirs restent-ils cachés ? Parce qu'ils sont inacceptables pour la conscience : honteux, interdits, "
         "douloureux. {refoul.1}Alors l'esprit les repousse hors de la conscience. Freud appelle cela {!refoulement}le refoulement. "
         "Mais ce qui est refoulé ne disparaît pas : il cherche à revenir, déguisé.",
         "{-refoul}{-ice}{-tab_ice}{signes}Comment le savoir, si c'est caché ? Par ses traces. {signes.1}Le lapsus, quand un mot en remplace un autre. "
@@ -185,7 +185,7 @@ SCENES = [
         "ce qu'ils croient juste, ce qu'ils trouvent naturel… dépend de leur condition matérielle.",
         ("C", "Ce n'est pas la conscience des hommes qui détermine leur être ; c'est inversement leur être social "
               "qui détermine leur conscience.", "c_marx"),
-        "{ideo}C'est ce que Marx appelle l'{!idéologie}idéologie : les idées dominantes d'une époque sont, le plus souvent, "
+        "{-c_marx}{ideo}C'est ce que Marx appelle l'{!idéologie}idéologie : les idées dominantes d'une époque sont, le plus souvent, "
         "celles de la classe qui domine. {ideo.1}Le travailleur qui trouve normal son sort pense avec des idées "
         "qui ne sont pas vraiment les siennes.",
         "{-ideo}{-marx}{-c_marx}{-tab_usi}{tab_rue}{durk}Quelques décennies plus tard, Émile Durkheim fonde la sociologie avec une règle : "
@@ -247,7 +247,7 @@ SCENES = [
         "{lim.2}Libet lui-même remarquait qu'on garde le temps de dire non, d'opposer un veto au geste qui se prépare. "
         "{lim.3}Et des chercheurs ont montré depuis que ce signal pourrait n'être qu'un bruit de fond du cerveau, "
         "pas une décision déjà prise.",
-        "{-lim}{-tab_ves}{rep_sc}Retiens la leçon de méthode : une expérience scientifique décrit des mécanismes. "
+        "{rep_sc}Retiens la leçon de méthode : une expérience scientifique décrit des mécanismes. "
         "Elle ne tranche pas, à elle seule, une question philosophique.",
         ("P", 0.5),
     ], vis={
