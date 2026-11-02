@@ -31,6 +31,13 @@ def chevauchements(code, marge=0.8):
             if min(ba[1], bb[1]) - max(ba[0], bb[0]) < (150 if "portrait" in (a["type"], b["type"]) else 40):
                 continue        # côte à côte
             res.append((round(deb, 1), round(fin - deb, 1), a["id"], a["type"], b["id"], b["type"]))
+    # encadrés « Notions abordées » et étiquettes « Notion · … » : même place, en haut à droite
+    no = [v for v in d["vis"] if v["type"] == "notion"]
+    for i, a in enumerate(no):
+        for b in no[i + 1:]:
+            deb, fin = max(a["t0"], b["t0"]), min(a["t1"], b["t1"])
+            if fin - deb > 0.3:
+                res.append((round(deb, 1), round(fin - deb, 1), a["id"], "notion", b["id"], "notion"))
     return res
 
 

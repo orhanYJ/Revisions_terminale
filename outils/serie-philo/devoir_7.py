@@ -96,7 +96,7 @@ SCENES = [
     dict(id="kant", chap="Le devoir selon Kant", fond="aube", humeur="lumiere", notions=["la raison", "la vérité"],
          retenir="Kant : agir par devoir, pas seulement conformément au devoir. L'impératif catégorique : universaliser sa maxime, respecter l'humanité.",
          beats=[
-        "{kant}{tab_epi}C'est la voix de la {#la raison}raison, celle de Kant. Pour lui, rien n'est bon sans restriction, "
+        "{kant}{tab_epi}C'est la voix de la raison, celle de Kant. Pour lui, rien n'est bon sans restriction, "
         "sauf une bonne volonté. On juge l'intention, pas le résultat.",
         "{-kant}{dist}Souviens-toi du marchand qui rend la monnaie exacte à un enfant. {dist.g}Il agit conformément au devoir… "
         "{dist.d}mais par intérêt, non par devoir. Son action est correcte ; elle n'a pas de valeur morale. "
