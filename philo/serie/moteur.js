@@ -574,7 +574,7 @@
       animLettres(sp, tl, .3, .035, .7, true);
       tr(regle, "scaleX(" + E(P(tl, .8, 1)) + ")");
       op(ss, E(P(tl, 1.2, .8))); tr(ss, "translateY(" + (14 * (1 - E(P(tl, 1.2, .8)))) + "px)");
-      tr(tt, "scale(" + (1 + 0.02 * tl) + ")");
+      tr(tt, "scale(" + (1 + 0.02 * Math.min(tl, 3)) + ")");   // légère avancée, bornée : un long titre ne sort pas du cadre
     };
   };
 

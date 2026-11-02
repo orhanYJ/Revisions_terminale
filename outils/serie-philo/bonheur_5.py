@@ -130,9 +130,9 @@ SCENES = [
                         legende="Vassili Perov, Troïka, 1866 (galerie Tretiakov, Moscou)"),
         "dost": dict(type="portrait", annee=1821, img="dostoievski", nom="Fiodor Dostoïevski", dates="1821 – 1881",
                      legende="Les Frères Karamazov (1880)", x=110, y=120, w=330, h=420),
-        "ivan": dict(type="dialogue", lignes=["« Imagine que tu bâtis l'édifice du bonheur humain… sur les larmes d'un seul enfant. »",
-                                              "« Accepterais-tu d'en être l'architecte ? »"],
-                     src="d'après Dostoïevski, Les Frères Karamazov, livre V, chap. 4 (1880)", x=640, y=170, w=570),
+        "ivan": dict(type="dialogue", lignes=["« Le bonheur de tous… sur les larmes d'un seul enfant. »",
+                                              "« En serais-tu l'architecte ? »"],
+                     src="d'après Dostoïevski, Les Frères Karamazov, livre V, chap. 4 (1880)", x=640, y=110, w=570),
         "lim": dict(type="liste", titre="L'objection", items=[
             "Le bonheur collectif n'est pas une simple addition",
             "Il ne justifie pas de sacrifier un innocent"], marques=["1", "2"], x=170, y=190, w=940),
@@ -149,9 +149,9 @@ SCENES = [
         "{-c_jef}{-jeff}{pur}Pèse bien les mots. {pur.1}Le texte ne promet pas le bonheur. Il garantit le droit de le chercher : "
         "en anglais, the pursuit of happiness. {pur.2}Le gouvernement est là pour protéger ces droits ; le bonheur, "
         "chacun le poursuit à sa manière.",
-        "{-pur}{-tab_dec}{tab_conv}{sj}Quelques années plus tard, en France, la Révolution va plus loin. En 1793, la nouvelle "
-        "Déclaration des droits commence ainsi : le but de la société est le bonheur commun. Celle de 1789 parlait déjà, "
-        "dans son préambule, du bonheur de tous. Et le 3 mars 1794, devant la Convention, "
+        "{-pur}{-tab_dec}{tab_conv}{sj}{decl}Quelques années plus tard, en France, la Révolution va plus loin. {decl.1}En 1793, la nouvelle "
+        "Déclaration des droits commence ainsi : le but de la société est le bonheur commun. {decl.2}Celle de 1789 parlait déjà, "
+        "dans son préambule, du bonheur de tous. {-decl}Et le 3 mars 1794, devant la Convention, "
         "un député de vingt-six ans, Saint-Just, lance une formule célèbre.",
         ("C", "Le bonheur est une idée neuve en Europe.", "c_sj"),
         "{-c_sj}{-sj}{-tab_conv}{tab_d93}{neuve}Neuve, pourquoi ? {neuve.1}Parce que jusque-là, le bonheur était une affaire privée, "
@@ -175,6 +175,9 @@ SCENES = [
                          legende="Charles-Louis Müller, Lanjuinais à la tribune de la Convention, 2 juin 1793, XIXᵉ s."),
         "sj": dict(type="portrait", annee=1767, img="saint-just", nom="Louis Antoine de Saint-Just", dates="1767 – 1794",
                    legende="Rapport à la Convention, 3 mars 1794", x=110, y=120, w=330, h=420),
+        "decl": dict(type="liste", titre="Le bonheur dans les Déclarations", items=[
+            "1793 : « le but de la société est le bonheur commun »",
+            "1789 : le préambule parle déjà du « bonheur de tous »"], marques=["1", "2"], x=640, y=150, w=570),
         "c_sj": dict(type="cit", a="Saint-Just", o="rapport à la Convention, 13 ventôse an II (3 mars 1794)", x=640, y=220, w=570),
         "tab_d93": dict(type="tableau", img="bh5-decl1793", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.3, .5, .25],
                         legende="Déclaration des droits de l'homme et du citoyen de 1793, estampe (domaine public)"),
