@@ -45,7 +45,8 @@ SCENES = [
         "les chrétiens, béatitude. La chance, la vie réussie, la plénitude : trois visages.",
         "{-mot}{dist}Puis les distinctions. {dist.1}Le plaisir dure un instant. {dist.2}La joie, un moment. "
         "{dist.3}Le bonheur se mesure à l'échelle d'une vie : il demande du {#le temps}temps. "
-        "{dist.4}Et le repère objectif, subjectif : se sentir heureux, est-ce avoir une vie heureuse ?",
+        "{dist.4}Et le repère objectif, subjectif : se sentir heureux, est-ce avoir une vie heureuse ? "
+        "Branché sur la machine à expérience de Nozick, presque personne ne voudrait vivre : nous voulons que ce soit vrai.",
         "{-dist}{-tab_for}{arist}{tab_ath}Pour Aristote, le bonheur est la fin dernière : ce qu'on veut pour lui-même, "
         "jamais pour autre chose. Pascal : tous les hommes recherchent d'être heureux. "
         "Mais Kant prévient : c'est un idéal, non de la raison, mais de l'imagination.",
@@ -79,12 +80,49 @@ SCENES = [
                     dq="Socrate insatisfait plutôt qu'un imbécile satisfait", vs="≠"),
     }),
 
-    # ------------------------------------------------------------------ II. la sagesse (épisode 3) : à écrire après lecture de bonheur_3
+    # ------------------------------------------------------------------ II. la sagesse des Anciens
+    dict(id="sagesse", chap="La sagesse des Anciens", fond="nuit", humeur="calme", notions=["la raison", "la nature", "la liberté"],
+         retenir="Aristote : le bonheur est une activité conforme à la vertu, dans une vie complète. Stoïciens : la vertu suffit. Spinoza : la joie.",
+         beats=[
+        "{tab_cre}{sol}Puis vint la sagesse des Anciens. Souviens-toi de Crésus sur son bûcher, appelant Solon : "
+        "ne dis personne heureux avant sa mort.",
+        "{-sol}{-tab_cre}{arist2}{tab_hir}Pour Aristote, le bonheur n'est pas un trésor qu'on possède, mais une activité : "
+        "l'activité de l'âme conforme à la vertu, dans une vie complète. Une hirondelle ne fait pas le printemps.",
+        "{-arist2}{sag}{sag.1}La vertu s'acquiert par l'habitude : c'est en pratiquant la justice qu'on devient juste. "
+        "Elle vise un juste milieu, un sommet entre deux pentes, et vivre selon la {#la raison}raison. "
+        "{sag.2}Le bonheur demande des amis, et culmine dans la vie de l'esprit. "
+        "{sag.3}Les stoïciens vont plus loin : la vertu suffit. Épictète conseille de ne pas demander que les choses arrivent "
+        "comme on le veut, mais de les vouloir comme elles arrivent. Marc Aurèle se retire dans sa citadelle intérieure. "
+        "{sag.4}Et Spinoza fait de la joie le passage à une plus grande perfection.{-sag}",
+        ("C", "La béatitude n'est pas le prix de la vertu, c'est la vertu elle-même.", "c_spi"),
+        "{-c_spi}{-tab_hir}{tab_rir}{deb}Reste le grand débat antique. {deb.g}Pour les stoïciens, la vertu suffit. "
+        "{deb.d}Pour Aristote, il faut aussi un peu de chance : nul ne dirait heureux le vieux Priam.",
+        "{-deb}{-tab_rir}",
+    ], vis={
+        "tab_cre": dict(type="tableau", img="bh3-cresus", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .5, .4],
+                        legende="Gaspar van den Hoecke, Crésus montrant ses trésors à Solon, XVIIᵉ s. (Musée national, Varsovie)"),
+        "sol": dict(type="question", t="Ne dis personne heureux avant sa mort."),
+        "arist2": dict(type="portrait", annee=-384, img="aristote", nom="Aristote", dates="384 – 322 av. J.-C.",
+                       legende="Éthique à Nicomaque, I, 7", x=110, y=120, w=330, h=420),
+        "tab_hir": dict(type="tableau", img="bh3-hirondelle", fond=True, sombre=True, de=[1.0, .5, .7], a=[1.4, .5, .78],
+                        legende="Hirondelles, planche de la Naturgeschichte der Vögel Deutschlands de J. A. Naumann, XIXᵉ s. (domaine public)"),
+        "sag": dict(type="liste", titre="Épisode 3 · La sagesse des Anciens", items=[
+            "Aristote : la vertu, une habitude, un juste milieu", "Des amis, et la vie de l'esprit",
+            "Les stoïciens : la vertu suffit, la citadelle intérieure", "Spinoza : la joie"],
+                    marques=["1", "2", "3", "4"], x=170, y=130, w=940),
+        "c_spi": dict(type="cit", a="Spinoza", o="Éthique, V, proposition 42 (1677), trad. Saisset", x=170, y=220, w=940),
+        "tab_rir": dict(type="tableau", img="bh3-rire", fond=True, sombre=True, de=[1.0, .5, .45], a=[1.25, .5, .4],
+                        legende="Frans Hals, Garçon riant, v. 1625 (Mauritshuis, La Haye)"),
+        "deb": dict(type="cols", g="Les stoïciens", gq="la vertu suffit : plus libre", d="Aristote",
+                    dq="il faut aussi un peu de chance : plus humain", vs="≠"),
+    }),
+
     # ------------------------------------------------------------------ III. une illusion ?
     dict(id="illusion", chap="Une illusion ?", fond="nuit", humeur="tension", notions=["la conscience", "l'inconscient"],
          retenir="Pascal, Schopenhauer, Rousseau, Freud : le bonheur-état est une illusion. Reste le bonheur-activité, qui se construit.",
          beats=[
-        "{tab_cham}{ill}Puis vint le soupçon. {ill.1}Pascal : nous fuyons dans le divertissement ; nous aimons la chasse, non la prise. "
+        "{tab_cham}{ill}Puis vint le soupçon. Souviens-toi de Pyrrhus : Rome, la Sicile, Carthage… et ensuite, le repos. "
+        "Qu'est-ce qui l'empêchait de se reposer tout de suite ? {ill.1}Pascal : nous fuyons dans le divertissement ; nous aimons la chasse, non la prise. "
         "{ill.2}Schopenhauer : la vie oscille comme un pendule, de la souffrance à l'ennui. "
         "{ill.3}Rousseau : on n'est heureux qu'avant d'être heureux. "
         "{ill.4}Freud : le bonheur n'est qu'un épisode ; il n'est pas prévu par le plan de la Création.{-ill}",
@@ -122,7 +160,8 @@ SCENES = [
         "{pol.2}Mais Ivan Karamazov demande : peut-on bâtir le bonheur sur les larmes d'un seul enfant ? "
         "{pol.3}En 1776, l'Amérique proclame le droit de rechercher le bonheur ; en 1794, Saint-Just lance sa formule.{-pol}",
         ("C", "Le bonheur est une idée neuve en Europe.", "c_sj"),
-        "{-c_sj}{pat}Mais Kant refuse le gouvernement paternel ; Tocqueville redoute le despotisme doux, et Huxley en fait un roman. "
+        "{-c_sj}{pat}Mais Kant refuse le gouvernement paternel. Tocqueville redoute un pouvoir immense et tutélaire, qui veut être "
+        "l'unique agent de notre bonheur et nous fixe dans l'enfance ; Huxley en fait un roman. "
         "{pat.g}Faire le bonheur des citoyens : non. {pat.d}En garantir les conditions, la sécurité, la justice, la {#la liberté}liberté : oui.",
         "{-pat}{-tab_dec}",
     ], vis={
@@ -146,10 +185,13 @@ SCENES = [
         "{meth.2}Problématiser : une tension, pas une reformulation. "
         "{meth.3}Trois parties, dont la dernière déplace la question grâce à une distinction. "
         "{meth.4}Et pour l'explication d'Épicure : six éléments d'introduction, puis quoi, comment, pourquoi.",
+        "Trois distinctions dépassent les problèmes : ce qui m'arrive et ce que j'en fais ; supprimer ou régler ses désirs ; "
+        "faire le bonheur des citoyens, ou en garantir les conditions. Et Épicure, au plus juste : ni jouisseur, ni ascète.",
         "{-meth}{suj}Des sujets qui reviennent. {suj.1}Le bonheur est-il affaire de chance ? "
         "{suj.2}Faut-il renoncer à ses désirs pour être heureux ? {suj.3}L'État doit-il faire le bonheur des citoyens ? "
         "{suj.4}Le bonheur n'est-il qu'un idéal ?",
-        "{-suj}{ex}Et des exemples précis : EXEMPLES.",
+        "{-suj}{ex}Et des exemples précis : le ticket de loterie, les tonneaux percés, Crésus et Solon, l'hirondelle, "
+        "Pyrrhus et Cinéas, le roi sans divertissement, le soma, Priam.",
         "{-ex}{-tab_era}{piege}Le piège : « chacun son bonheur ». Ce n'est pas une conclusion, c'est le refus de penser.",
         "{-piege}",
     ], vis={
@@ -163,8 +205,8 @@ SCENES = [
             "Le bonheur est-il affaire de chance ?", "Faut-il renoncer à ses désirs pour être heureux ?",
             "L'État doit-il faire le bonheur des citoyens ?", "Le bonheur n'est-il qu'un idéal ?"],
                     marques=["?", "?", "?", "?"], x=170, y=150, w=940),
-        "ex": dict(type="nuage", items=["le ticket de loterie", "les tonneaux percés", "Pyrrhus et Cinéas", "le roi sans divertissement",
-                                        "le soma", "Priam"]),
+        "ex": dict(type="nuage", items=["le ticket de loterie", "les tonneaux percés", "Crésus et Solon", "l'hirondelle",
+                                        "Pyrrhus et Cinéas", "le roi sans divertissement", "le soma", "Priam"]),
         "piege": dict(type="note", titre="Le piège", cles=["refus"],
                       t="« Chacun son bonheur » : ce n'est pas une conclusion, c'est le refus de penser."),
     }),
@@ -187,12 +229,14 @@ SCENES = [
     ], vis={
         "rec": dict(type="carte", centre="LE BONHEUR", branches=[
             dict(t="Le mot et le plaisir", items=["bon heur, eudaimonia", "plaisir ≠ bonheur", "Épicure : trier ses désirs"]),
-            dict(t="La sagesse", items=["SAGESSE"]),
+            dict(t="La sagesse", items=["Aristote : une activité, la vertu", "stoïciens : la vertu suffit", "Spinoza : la joie"]),
             dict(t="Une illusion ?", items=["Pascal, Schopenhauer", "Rousseau, Freud", "bonheur-état / activité"]),
             dict(t="Morale et cité", items=["Kant : digne d'être heureux", "Bentham, Saint-Just", "garantir les conditions"])]),
         "frise": dict(type="frise", items=[
             dict(nom="Aristippe", d=-435, img="aristippe"), dict(nom="Aristote", d=-384, img="aristote"),
-            dict(nom="Épicure", d=-341, img="epicure"), dict(nom="Pascal", d=1623, img="pascal"),
+            dict(nom="Épicure", d=-341, img="epicure"), dict(nom="Sénèque", d=-4, img="seneque"),
+            dict(nom="Épictète", d=50, img="epictete"), dict(nom="Marc Aurèle", d=121, img="marc-aurele"),
+            dict(nom="Spinoza", d=1632, img="spinoza"), dict(nom="Pascal", d=1623, img="pascal"),
             dict(nom="Rousseau", d=1712, img="rousseau"), dict(nom="Kant", d=1724, img="kant"),
             dict(nom="Bentham", d=1748, img="bentham"), dict(nom="Schopenhauer", d=1788, img="schopenhauer"),
             dict(nom="Tocqueville", d=1805, img="tocqueville"), dict(nom="Mill", d=1806, img="mill"),
@@ -214,7 +258,10 @@ QUIZ = [
     dict(q="Pour Épicure, le vrai plaisir, c'est…",
          r=["la jouissance de tous les plaisirs", "l'absence de douleur du corps et de trouble de l'âme", "la gloire", "la contemplation des dieux"], ok=1,
          voir="hed", ex="Aponie et ataraxie : un plaisir en repos, obtenu en triant ses désirs (épisode 2)."),
-    QUIZ3,
+    dict(q="« Une hirondelle ne fait pas le printemps. » Que veut dire Aristote ?",
+         r=["Que le bonheur dépend du climat", "Qu'un seul beau jour ne suffit pas : le bonheur se juge sur une vie complète",
+            "Que les oiseaux sont heureux", "Que le bonheur est une illusion"], ok=1,
+         voir="arist2", ex="Éthique à Nicomaque, I, 7 : le bonheur est une activité conforme à la vertu, dans une vie complète (épisode 3)."),
     dict(q="« Nous aimons la chasse, non la prise. » Qui l'explique, et avec quelle notion ?",
          r=["Rousseau : le désir", "Pascal : le divertissement", "Freud : le principe de plaisir", "Kant : le devoir"], ok=1,
          voir="ill", ex="Pensées, fr. 139 : le divertissement nous détourne de penser à notre condition (épisode 4)."),
@@ -236,11 +283,12 @@ CREDITS = [
     "Portraits et images : voir les épisodes 1 à 6",
     "Tableaux : Godfried Schalcken, Homme à la chandelle (vers 1695-1700) ; Raphaël, L'École d'Athènes (1509-1511) ; "
     "Lubin Baugin, Le Dessert de gaufrettes (photo Sailko, CC BY 3.0) ; John William Waterhouse, Les Danaïdes (1906) ; "
-    "CREDIT3"
+    "Gaspar van den Hoecke, Crésus montrant ses trésors à Solon (XVIIᵉ s.) ; J. A. Naumann, Hirondelles (planche, XIXᵉ s.) ; "
+    "Frans Hals, Garçon riant (v. 1625) ; "
     "Vilhelm Hammershøi, Intérieur, Strandgade 30 (1900) ; John Trumbull, La Déclaration d'indépendance (1819) ; "
     "Hans Holbein le Jeune, Érasme écrivant (1523) ; Claude Monet, Impression, soleil levant (1872) : domaine public",
     "Photographies : hamster dans sa roue (Rlicul, CC BY-SA 3.0)",
-    "Citations : Épicure, Lettre à Ménécée, 128, trad. Hamelin (1910) ; Pascal, Pensées, fr. 172 (éd. Brunschvicg) ; "
+    "Citations : Épicure, Lettre à Ménécée, 128, trad. Hamelin (1910) ; Spinoza, Éthique, V, 42, trad. Saisset (1861) ; Pascal, Pensées, fr. 172 (éd. Brunschvicg) ; "
     "Saint-Just, rapport à la Convention du 3 mars 1794",
     "Images : Wikimedia Commons. Voix de synthèse créées pour la série (Qwen3-TTS, clonage local). Musique originale générée pour la série.",
 ]
