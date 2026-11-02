@@ -108,7 +108,7 @@ SCENES = [
         "{outils.2}Pour doser une espèce ionique : la conductimétrie, qui mesure la conductivité, notée sigma. "
         "{outils.3}Pour identifier une espèce colorée : son spectre ultraviolet-visible, et la position de son maximum. "
         "{outils.4}Pour identifier un groupe d'atomes dans une molécule : la spectroscopie infrarouge.",
-        "{-outils}{id_dos}Et une distinction que l'énoncé attend toujours. {id_dos.g}Identifier, c'est répondre à la question : quelle espèce ? "
+        "{-outils}{id_dos}{id_dos.g}Et une distinction que l'énoncé attend toujours. Identifier, c'est répondre à la question : quelle espèce ? "
         "On compare la forme d'un spectre à une référence. "
         "{id_dos.d}Doser, c'est répondre à la question : combien ? On mesure une intensité, et on la convertit en concentration par un étalonnage.",
         "Les deux travaux pratiques du chapitre font les deux, l'un après l'autre : identifier d'abord, doser ensuite, et discuter enfin la validité du résultat.",
@@ -272,7 +272,7 @@ SCENES = [
         "{gr_sp.1}Voici le spectre du E cent trente et un de référence : un maximum vers six cent trente nanomètres. "
         "{gr_sp.2}Voici celui du sulfate de cuivre, l'autre suspect : il n'absorbe presque pas vers six cent trente, et culmine au-delà de huit cents. "
         "{gr_sp.3}Et voici la solution du flacon suspect : même maximum, même allure que le E cent trente et un. Seulement plus bas.",
-        "{-gr_sp}{id_h}Conclusion, et retiens bien la distinction. {id_h.g}Ce qui prouve l'identité de l'espèce, c'est la position du maximum et la forme du spectre. "
+        "{-gr_sp}{id_h}{id_h.g}Conclusion, et retiens bien la distinction. Ce qui prouve l'identité de l'espèce, c'est la position du maximum et la forme du spectre. "
         "Le flacon contient du E cent trente et un. "
         "{id_h.d}Ce qui renseigne sur la concentration, c'est la hauteur. Plus bas que la référence : moins concentré.",
         "Confondre les deux est l'erreur classique. Et attention à la formulation : l'absorbance est proportionnelle à la concentration, jamais à la longueur d'onde.",
@@ -388,7 +388,7 @@ SCENES = [
         "{c_pts.3}{an_c.3}On double la concentration : deux fois plus d'ions, deux fois plus de courant.",
         "{c_pts.4}{an_c.4}Même solution, mais plaques deux fois plus proches : le courant double encore ! La solution n'a pas changé. "
         "C'est la sonde qui a changé.",
-        "{-an_c}{-c_pts}{dist}Voici donc la distinction centrale du chapitre. {dist.g}La conductance G, c'est ce que l'appareil mesure. "
+        "{-an_c}{-c_pts}{dist}{dist.g}Voici donc la distinction centrale du chapitre. La conductance G, c'est ce que l'appareil mesure. "
         "Mais elle dépend de la géométrie de la sonde : la même solution, mesurée avec deux cellules différentes, donne deux conductances différentes. "
         "{dist.d}La conductivité sigma, elle, caractérise la solution seule. Elle ne dépend plus de la sonde : c'est elle qu'on tabule et qu'on compare.",
         "{-dist}{voies}Comment passe-t-on de l'une à l'autre ? Imagine les ions comme des voitures qui vont d'une plaque à l'autre. "
@@ -498,10 +498,10 @@ SCENES = [
             "H₃O⁺ passe son proton à la molécule d'eau voisine : la charge avance par relais",
             "λ(H₃O⁺) et λ(HO⁻) : 2 à 5 fois plus grands que les autres"], x=150, y=170, w=980),
         "f_nacl": dict(type="formule", titre="Écrire la loi pour un soluté", x=150, y=100, w=980, lignes=[
-            dict(f="NaCl : [Na^+] = [Cl^-] = c", taille=38),
-            dict(f="σ = c × (λ_{Na^+} + λ_{Cl^-})", cadre=True, taille=42),
-            dict(f="MgCl_2 : [Mg^{2+}] = c  et  [Cl^-] = 2c", taille=38),
-            dict(f="σ = c × (λ_{Mg^{2+}} + 2 λ_{Cl^-})", cadre=True, taille=42)]),
+            dict(f="NaCl : [Na^{+}] = [Cl^{-}] = c", taille=38),
+            dict(f="σ = c × (λ_{Na^{+}} + λ_{Cl^{-}})", cadre=True, taille=42),
+            dict(f="MgCl_2 : [Mg^{2+}] = c  et  [Cl^{-}] = 2c", taille=38),
+            dict(f="σ = c × (λ_{Mg^{2+}} + 2 λ_{Cl^{-}})", cadre=True, taille=42)]),
         "ex_soude": dict(type="formule", titre="Exemple · soude à 0,200 mol·L^-1", x=150, y=100, w=980, lignes=[
             dict(f="c = 0,200 mol·L^-1 = 0,200 × 10^3 = 2,00 × 10^2 mol·m^-3"),
             dict(f="σ = 2,00 × 10^2 × (5,01 + 19,8) × 10^-3", n="λ(Na⁺) = 5,01 × 10⁻³ · λ(HO⁻) = 19,8 × 10⁻³ S·m²·mol⁻¹"),
@@ -523,8 +523,8 @@ SCENES = [
     dict(id="unites", chap="Les unités sans piège", fond="aube", humeur="calme",
          retenir="1 mol·L⁻¹ = 10³ mol·m⁻³ · 1 mmol·L⁻¹ = 1 mol·m⁻³ · 1 cm² = 10⁻⁴ m² · 1 mS·cm⁻¹ = 0,1 S·m⁻¹. Écrire les unités avant les nombres.",
          beats=[
-        "{sys}Le point qui fait perdre le plus de points dans ce chapitre, ce sont les unités. Parce qu'il mélange deux systèmes incompatibles. "
-        "{sys.g}Côté Beer-Lambert, les unités de la paillasse : la cuve en centimètres, la concentration en mole par litre. C'est ce qu'impose le tableau des epsilon. "
+        "{sys}{sys.g}Le point qui fait perdre le plus de points dans ce chapitre, ce sont les unités. Parce qu'il mélange deux systèmes incompatibles. "
+        "Côté Beer-Lambert, les unités de la paillasse : la cuve en centimètres, la concentration en mole par litre. C'est ce qu'impose le tableau des epsilon. "
         "{sys.d}Côté Kohlrausch, le système international : les distances en mètres, la concentration en mole par mètre cube. C'est ce qu'impose le tableau des lambda.",
         "Le réflexe : regarde d'abord l'unité des données tabulées. Elle te dit dans quel système travailler.",
         "{-sys}{conv}Quatre conversions, et pourquoi elles valent ça. "
@@ -572,9 +572,9 @@ SCENES = [
         "{-ir_but}{vib}Que fait le rayonnement infrarouge ? {vib.1}Il fait vibrer les liaisons. Une liaison peut s'allonger et se raccourcir : c'est une vibration d'élongation. "
         "{vib.2}Ou changer d'angle avec sa voisine : c'est une déformation. Chaque type de liaison absorbe à des fréquences qui lui sont propres.",
         "{-vib}{ressort}Pourquoi une fréquence précise ? Parce qu'une liaison se comporte comme un ressort qui relie deux masses. "
-        "Un ressort a une fréquence propre. Quand l'infrarouge arrive exactement à cette fréquence, il y a résonance : la liaison absorbe, et vibre plus fort. "
-        "{ressort.1}Et cette fréquence dépend de deux choses. La raideur : une double liaison C O, plus raide, absorbe vers mille sept cents ; une simple liaison C O, plus souple, bien plus bas. "
-        "{ressort.2}La masse : l'hydrogène est l'atome le plus léger. Toutes les liaisons avec un hydrogène, O H, N H, C H, se retrouvent en haut du spectre, au-dessus de deux mille huit cents.",
+        "{ressort.1}Un ressort a une fréquence propre. Quand l'infrarouge arrive exactement à cette fréquence, il y a résonance : la liaison absorbe, et vibre plus fort. "
+        "{ressort.2}Et cette fréquence dépend de deux choses. La raideur : une double liaison C O, plus raide, absorbe vers mille sept cents ; une simple liaison C O, plus souple, bien plus bas. "
+        "{ressort.3}La masse : l'hydrogène est l'atome le plus léger. Toutes les liaisons avec un hydrogène, O H, N H, C H, se retrouvent en haut du spectre, au-dessus de deux mille huit cents.",
         "{-ressort}{f_sw}{f_sw.1}En infrarouge, l'axe horizontal ne porte pas la longueur d'onde, mais le nombre d'onde, encore noté sigma : sigma égale un sur lambda, en centimètres moins un. "
         "{f_sw.2}L'axe se lit de droite à gauche, de quatre mille à cinq cents. "
         "{f_sw.3}Pourquoi ce choix ? Parce que le nombre d'onde est proportionnel à l'énergie du rayonnement. À gauche, les liaisons raides et légères ; à droite, les vibrations molles.",
@@ -586,10 +586,10 @@ SCENES = [
         "{table.3}N H, d'une amine ou d'un amide : entre trois mille trois cents et trois mille cinq cents, moyenne. Une bande pour N H, deux pour N H deux. "
         "{table.4}C H : entre deux mille huit cents et trois mille, présente presque partout, donc peu utile. "
         "{table.5}Et C double liaison O : entre mille sept cents et mille sept cent cinquante, forte et fine.",
-        "{-table}{gr_ir}Regardons trois spectres schématisés. {gr_ir.1}L'éthanol, un alcool : une bande large et profonde vers trois mille trois cent cinquante. Pas de bande vers mille sept cents.",
-        "{gr_ir.2}L'acide éthanoïque : une bande O H énorme, qui s'étale jusqu'à deux mille cinq cents, au point d'avaler les bandes C H. Et une bande fine et intense vers mille sept cent quinze.",
-        "{gr_ir.3}La propanone, une cétone : pas de O H du tout. Seulement la bande fine du C double liaison O, vers mille sept cent quinze.",
-        "{-gr_ir}{large}Pourquoi la bande O H est-elle large, et celle du C O fine ? {large.1}Les groupes O H forment des liaisons hydrogène entre eux. "
+        "{-table}{gr_ir1}Regardons trois spectres schématisés. {gr_ir1.1}L'éthanol, un alcool : une bande large et profonde vers trois mille trois cent cinquante. Pas de bande vers mille sept cents.",
+        "{-gr_ir1}{gr_ir2}{gr_ir2.1}L'acide éthanoïque : une bande O H énorme, qui s'étale jusqu'à deux mille cinq cents, au point d'avaler les bandes C H. Et une bande fine et intense vers mille sept cent quinze.",
+        "{-gr_ir2}{gr_ir3}{gr_ir3.1}La propanone, une cétone : pas de O H du tout. Seulement la bande fine du C double liaison O, vers mille sept cent quinze.",
+        "{-gr_ir3}{large}Pourquoi la bande O H est-elle large, et celle du C O fine ? {large.1}Les groupes O H forment des liaisons hydrogène entre eux. "
         "Chacun se retrouve dans un environnement un peu différent, plus ou moins assoupli, et vibre à une fréquence un peu différente. Au lieu d'une fréquence unique, une distribution : la bande s'étale. "
         "{large.2}Le C O, lui, ne forme pas de liaison hydrogène par lui-même : tous vibrent à la même fréquence, d'où une bande étroite. "
         "{large.3}Et les acides s'associent deux par deux par une double liaison hydrogène très solide : leur bande O H est encore plus large.",
@@ -600,10 +600,10 @@ SCENES = [
         "{-lire}{groupes}Et une précision qui compte dans la rédaction. {groupes.1}L'infrarouge identifie des groupes, pas des molécules. "
         "Deux molécules de la même famille ont des spectres très semblables ; ce qui les distingue est la zone sous mille cinq cents, l'empreinte digitale, trop complexe à lire à la main. "
         "On conclut donc : ce spectre présente un groupe hydroxyle. Pas : c'est du propan-un-ol. Sauf si l'énoncé donne une liste fermée de candidats.",
-        "{-groupes}{entite}Pour finir le cours, une question : pourquoi le visible renseigne-t-il sur les électrons, et l'infrarouge sur les liaisons ? "
+        "{-groupes}{houle}Pour finir le cours, une question : pourquoi le visible renseigne-t-il sur les électrons, et l'infrarouge sur les liaisons ? "
         "Parce qu'une onde ne perturbe efficacement qu'une entité de taille comparable à sa longueur d'onde. "
         "Comme la houle : des vaguelettes passent sous un chalutier sans le déranger, une houle immense le soulève en bloc, et ce sont les vagues de sa taille qui le secouent.",
-        "{entite.1}Les rayons gamma agissent sur les noyaux. {entite.2}L'ultraviolet et le visible, sur les électrons des molécules : ce sont les transitions électroniques, et la couleur. "
+        "{-houle}{entite}{entite.1}Les rayons gamma agissent sur les noyaux. {entite.2}L'ultraviolet et le visible, sur les électrons des molécules : ce sont les transitions électroniques, et la couleur. "
         "{entite.3}L'infrarouge, sur les liaisons, qu'il fait vibrer.",
         "{-entite}",
     ], vis={
@@ -611,6 +611,7 @@ SCENES = [
         "vib": dict(type="liste", titre="L'infrarouge fait vibrer les liaisons", items=[
             "Élongation : la liaison s'allonge et se raccourcit", "Déformation : l'angle entre deux liaisons change"], x=150, y=200, w=980),
         "ressort": dict(type="liste", titre="Une liaison, un ressort entre deux masses", items=[
+            "Résonance : la liaison absorbe à sa fréquence propre",
             "Liaison plus raide → fréquence plus élevée : C=O vers 1 700 cm⁻¹, C—O bien plus bas",
             "Atomes plus légers → vibration plus rapide : O—H, N—H, C—H au-dessus de 2 800 cm⁻¹"], x=150, y=190, w=980),
         "f_sw": dict(type="formule", titre="Le nombre d'onde", x=150, y=110, w=980, lignes=[
@@ -622,12 +623,15 @@ SCENES = [
             "O—H alcool : 3 200 – 3 600 cm⁻¹, forte et large", "O—H acide carboxylique : 2 500 – 3 200, très large",
             "N—H : 3 300 – 3 500 ; une bande pour N—H, deux pour NH₂", "C—H : 2 800 – 3 000, presque partout",
             "C=O : 1 700 – 1 750, forte et fine"], x=150, y=120, w=980),
-        "gr_ir": dict(type="graphe", titre="Spectres IR schématisés (transmittance)", x=250, y=100, w=780, h=540,
-                      ax=dict(x=[4000, 500], y=[0, 100], gx=[4000, 3000, 2000, 1500, 1000, 500], gy=[25, 50, 75, 100],
-                              lx="σ (cm^-1)", ly="T (%)"),
-                      el=[dict(type="courbe", pts=IR_ETHANOL, c="#5aa9ff", lbl="éthanol · O—H large", lp=[3350, 22], fin="2", dur=2.4),
-                          dict(type="courbe", pts=IR_ACIDE, c="sa", lbl="acide éthanoïque · O—H très large + C=O", lp=[2600, 26], fin="3", dur=2.4),
-                          dict(type="courbe", pts=IR_PROPANONE, c="#7ce08a", lbl="propanone · C=O seul", lp=[1900, 8], dur=2.4)]),
+        "gr_ir1": dict(type="graphe", titre="Spectre IR schématisé · l'éthanol, un alcool", x=250, y=100, w=780, h=540,
+                      ax=dict(x=[4000, 500], y=[0, 100], gx=[4000, 3000, 2000, 1500, 1000, 500], gy=[25, 50, 75, 100], lx="σ (cm^-1)", ly="T (%)"),
+                      el=[dict(type="courbe", pts=IR_ETHANOL, c="#5aa9ff", lbl="O—H large vers 3 350", lp=[3300, 20], dur=2.4)]),
+        "gr_ir2": dict(type="graphe", titre="Spectre IR schématisé · l'acide éthanoïque", x=250, y=100, w=780, h=540,
+                      ax=dict(x=[4000, 500], y=[0, 100], gx=[4000, 3000, 2000, 1500, 1000, 500], gy=[25, 50, 75, 100], lx="σ (cm^-1)", ly="T (%)"),
+                      el=[dict(type="courbe", pts=IR_ACIDE, c="sa", lbl="O—H très large · C=O fine vers 1 715", lp=[2900, 24], dur=2.4)]),
+        "gr_ir3": dict(type="graphe", titre="Spectre IR schématisé · la propanone, une cétone", x=250, y=100, w=780, h=540,
+                      ax=dict(x=[4000, 500], y=[0, 100], gx=[4000, 3000, 2000, 1500, 1000, 500], gy=[25, 50, 75, 100], lx="σ (cm^-1)", ly="T (%)"),
+                      el=[dict(type="courbe", pts=IR_PROPANONE, c="#7ce08a", lbl="C=O fine vers 1 715, pas de O—H", lp=[2300, 8], dur=2.4)]),
         "large": dict(type="liste", titre="Large ou fine ?", items=[
             "O—H : liaisons hydrogène, environnements variés → bande large",
             "C=O : pas de liaison hydrogène par lui-même → bande fine",
@@ -639,6 +643,8 @@ SCENES = [
         "groupes": dict(type="note", titre="Des groupes, pas des molécules", cles=["groupes", "hydroxyle"],
                         t="Conclure « ce spectre présente un groupe hydroxyle », pas « c'est du propan-1-ol », sauf liste fermée de candidats.",
                         x=170, y=200, w=940),
+        "houle": dict(type="note", titre="La houle et le bateau", cles=["taille", "longueur"],
+                      t="Une onde ne perturbe efficacement qu'une entité de taille comparable à sa longueur d'onde.", x=170, y=200, w=940),
         "entite": dict(type="liste", titre="Quelle onde pour quelle entité", items=[
             "Rayons γ : le noyau (≈ 10⁻¹⁵ m)", "UV-visible : les électrons des molécules → la couleur",
             "Infrarouge : les liaisons → élongations, déformations"], x=150, y=180, w=980),
@@ -668,7 +674,7 @@ SCENES = [
         "{s15.2}l'absorbance double, zéro virgule quatre-vingt-dix. Toujours sous deux virgule cinq : la mesure reste valable.",
         "{-s15}{-ex1c}",
     ], vis={
-        "ex1": dict(type="exo", niveau="simple", titre="Le colorant d'une boisson", src="Exercice inventé pour la vidéo",
+        "ex1": dict(type="exo", niveau="simple", y=60, titre="Le colorant d'une boisson", src="Exercice inventé pour la vidéo",
                     enonce=["Un colorant alimentaire a son maximum d'absorption à λ_{max} = 540 nm. Une boisson diluée, placée dans une cuve de 1,0 cm, "
                             "a une absorbance A = 0,45 à cette longueur d'onde."],
                     donnees=["ε(540 nm) = 3,0 × 10^4 L·mol^-1·cm^-1", "M = 500 g·mol^-1", "ℓ = 1,0 cm"],
@@ -725,22 +731,21 @@ SCENES = [
         "{-s26}{-ex2c}",
     ], vis={
         "ex2": dict(type="exo", niveau="difficile", y=60, titre="Le chlorure de calcium", src="Exercice inventé pour la vidéo",
-                    enonce=["Une solution de chlorure de calcium CaCl₂ a une concentration c = 2,0 mmol·L⁻¹. La cellule du conductimètre "
-                            "comporte deux plaques de surface S = 1,0 cm², distantes de L = 1,0 cm."],
-                    donnees=["λ(Ca^{2+}) = 11,9 × 10^-3 S·m^2·mol^-1", "λ(Cl^-) = 7,63 × 10^-3 S·m^2·mol^-1"],
-                    questions=["Concentrations des ions, en mol·m⁻³.", "Conductivité σ de la solution.", "Constante de cellule K et conductance G.",
-                               "Valeur affichée en mS·cm⁻¹.", "Erreur si l'on oublie le coefficient 2, ou la conversion ?",
-                               "Concentration d'une solution de CaCl₂ de conductivité σ' = 0,136 S·m⁻¹."]),
+                    enonce=["Solution de chlorure de calcium CaCl₂ à c = 2,0 mmol·L⁻¹. Cellule : deux plaques de S = 1,0 cm², distantes de L = 1,0 cm."],
+                    donnees=["λ(Ca^{2+}) = 11,9 × 10^-3 S·m^2·mol^-1", "λ(Cl^{-}) = 7,63 × 10^-3 S·m^2·mol^-1"],
+                    questions=["[Ca²⁺] et [Cl⁻] en mol·m⁻³.", "Conductivité σ.", "Constante de cellule K et conductance G.",
+                               "Valeur affichée en mS·cm⁻¹.", "Erreur si l'on oublie le 2, ou la conversion ?",
+                               "c d'une solution de CaCl₂ telle que σ' = 0,136 S·m⁻¹."]),
         "pa2": dict(type="pause", t="Concentrations des ions, σ, K et G, affichage, erreurs classiques, concentration inconnue."),
         "ex2c": dict(type="exo", mode="coin", niveau="difficile", titre="Le chlorure de calcium",
                      donnees=["c = 2,0 mmol·L^-1", "S = 1,0 cm²", "L = 1,0 cm", "λ(Ca²⁺) = 11,9 · λ(Cl⁻) = 7,63 (× 10⁻³)"],
                      questions=["[Ca²⁺], [Cl⁻] ?", "σ ?", "K et G ?", "Affichage ?", "Erreurs ?", "c pour σ' = 0,136 ?"]),
         "s21": dict(type="formule", titre="1 · Les concentrations des ions", x=540, y=140, w=700, lignes=[
-            dict(f="CaCl_2 → Ca^{2+} + 2 Cl^-", taille=38),
+            dict(f="CaCl_2 → Ca^{2+} + 2 Cl^{-}", taille=38),
             dict(f="c = 2,0 mmol·L^-1 = 2,0 mol·m^-3", taille=38),
-            dict(f="[Ca^{2+}] = 2,0 · [Cl^-] = 4,0 mol·m^-3", cadre=True, taille=34)]),
+            dict(f="[Ca^{2+}] = 2,0 · [Cl^{-}] = 4,0 mol·m^-3", cadre=True, taille=34)]),
         "s22": dict(type="formule", titre="2 · La conductivité", x=540, y=140, w=700, lignes=[
-            dict(f="σ = λ_{Ca^{2+}}[Ca^{2+}] + λ_{Cl^-}[Cl^-]", taille=34),
+            dict(f="σ = λ_{Ca^{2+}}[Ca^{2+}] + λ_{Cl^{-}}[Cl^{-}]", taille=34),
             dict(f="σ = 11,9 × 10^-3 × 2,0 + 7,63 × 10^-3 × 4,0", taille=32),
             dict(f="σ = 5,4 × 10^-2 S·m^-1", cadre=True, taille=38)]),
         "s23": dict(type="formule", titre="3 · Constante de cellule et conductance", x=540, y=130, w=700, lignes=[
@@ -754,7 +759,7 @@ SCENES = [
             dict(f="oubli du 2 : 2,0 × (11,9 + 7,63) × 10^-3 = 3,9 × 10^-2 S·m^-1", ko=True, taille=28, n="près de 30 % trop bas"),
             dict(f="c en mol·L^-1 : résultat 1 000 fois trop petit", ko=True, taille=30)]),
         "s26": dict(type="formule", titre="6 · La concentration inconnue", x=540, y=130, w=700, lignes=[
-            dict(f="σ' = c × (λ_{Ca^{2+}} + 2 λ_{Cl^-})", taille=34),
+            dict(f="σ' = c × (λ_{Ca^{2+}} + 2 λ_{Cl^{-}})", taille=34),
             dict(f="c = " + fr("0,136", "(11,9 + 2 × 7,63) × 10^-3") + " = " + fr("0,136", "27,2 × 10^-3"), taille=30),
             dict(f="c = 5,0 mol·m^-3 = 5,0 mmol·L^-1", cadre=True, taille=36)]),
     }),
@@ -829,7 +834,7 @@ SCENES = [
             dict(f="sirop : c_0 = 10 × 4,5 = 45 µmol·L^-1", taille=34),
             dict(f="c_m = 4,5 × 10^-5 × 583 ≈ 26 mg·L^-1", cadre=True, taille=36)]),
         "s35": dict(type="formule", titre="5 · La comparaison", x=540, y=170, w=700, lignes=[
-            dict(f=fr("|26 − 25|", "1") + " = 1", taille=42),
+            dict(f=fr("26 − 25", "u") + " = " + fr("1", "1") + " = 1", taille=42, n="écart à la valeur annoncée, rapporté à l'incertitude-type"),
             dict(f="1 ≤ 2 : compatible avec l'étiquette", ok=True, cadre=True, taille=36)]),
         "s36": dict(type="liste", titre="6 · Menthol ou menthone", items=[
             "Bande large vers 3 350 cm⁻¹ : un O—H d'alcool", "Rien vers 1 700 : pas de C=O, donc pas la menthone (cétone)",
