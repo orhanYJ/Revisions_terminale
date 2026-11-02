@@ -207,7 +207,7 @@ SCENES = [
          retenir="Lunette afocale : F′₁ = F₂, donc O₁O₂ = f′₁ + f′₂. D'un objet à l'infini, elle donne une image à l'infini : l'œil voit net sans fatigue.",
          beats=[
         "{an2}{pts2}{pts2.1}{an2.1}Deuxième lentille : l'oculaire, du côté de l'œil, avec une petite focale. "
-        "On le place de sorte que son foyer objet F deux soit confondu avec le foyer image de l'objectif, F prime un.",
+        "On le place de sorte que son foyer objet, qu'on note F deux, soit confondu avec le foyer image de l'objectif, qu'on note F prime un.",
         "{pts2.2}Pourquoi ? L'image intermédiaire est dans le plan focal image de l'objectif. Si F prime un égale F deux, elle est aussi "
         "dans le plan focal objet de l'oculaire. Et on l'a vu : un objet dans le plan focal objet donne une image à l'infini.",
         "{pts2.3}Les rayons ressortent donc parallèles entre eux : l'œil au repos voit net, sans accommoder, et peut observer longtemps sans fatigue.",
@@ -249,7 +249,7 @@ SCENES = [
          beats=[
         "{meth}C'est le savoir-faire graphique du chapitre, très souvent demandé : tracer le faisceau qui sort de la lunette. "
         "La méthode tient en quatre étapes, toujours les mêmes.",
-        "{meth.1}Un : placer les deux lentilles, à la distance f prime un plus f prime deux, et marquer F prime un égal F deux entre les deux, ainsi que F un et F prime deux.",
+        "{meth.1}Un : placer les deux lentilles, à la distance f prime un plus f prime deux. Entre les deux, marquer le point où F prime un et F deux sont confondus. Puis marquer les deux autres foyers : F un, avant l'objectif, et F prime deux, après l'oculaire.",
         "{meth.2}Deux : trouver B un. On trace le rayon incident qui passe par O un : il n'est pas dévié, et il coupe le plan focal en B un. "
         "Les autres rayons incidents, parallèles à lui, passent tous par B un après l'objectif.",
         "{meth.3}Trois : trouver la direction de sortie. On trace, en pointillés, la droite qui va de B un à O deux : ce rayon-là n'est pas dévié par l'oculaire.",
