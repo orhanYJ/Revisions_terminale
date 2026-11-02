@@ -19,7 +19,7 @@ SCENES = [
     # ------------------------------------------------------------------ ouverture
     dict(id="ouverture", chap="Ouverture", fond="nuit", humeur="tension", carton=False, beats=[
         "{tab_let}{q1}Juin. Huit heures. Tu retournes la feuille. Premier sujet : le bonheur est-il affaire de chance ? "
-        "Deuxième : faut-il renoncer à ses désirs pour être heureux ? Et un texte d'Épicure.",
+        "Deuxième : faut-il renoncer à ses désirs pour être heureux ? Et un texte d'Épicure. Tu as quatre heures.",
         "{-q1}{q2}Soulagement : le bonheur, tout le monde en a une idée. C'est justement le danger.",
         "{-q2}{pie0}Car sur ce sujet, trois pièges guettent. {pie0.1}Le relativisme : « chacun son bonheur », "
         "et la réflexion s'arrête là. {pie0.2}Le catalogue : Épicure dit ceci, Kant dit cela, sans jamais répondre. "
@@ -31,7 +31,7 @@ SCENES = [
         ("P", 3.2),
     ], vis={
         "tab_let": dict(type="tableau", img="bh6-lettre", fond=True, sombre=True, de=[1.0, .5, .45], a=[1.25, .55, .5],
-                        legende="Johannes Vermeer, La Lettre, vers 1670-1671 (National Gallery of Ireland, Dublin)"),
+                        legende="Johannes Vermeer, Femme écrivant une lettre et sa servante, vers 1670 (National Gallery of Ireland, Dublin)"),
         "q1": dict(type="question", t="Le bonheur est-il affaire de chance ?"),
         "q2": dict(type="question", t="Un sujet facile ? C'est justement le danger."),
         "pie0": dict(type="liste", titre="Trois pièges du sujet sur le bonheur", items=[
@@ -64,6 +64,8 @@ SCENES = [
         "Deux personnes peuvent recevoir la même fortune, et en faire deux vies opposées.{-plan1}",
         "{-tab_pri}{tab_bene}{dist1}La distinction qui dépasse : {dist1.g}ce qui m'arrive, {dist1.d}et ce que j'en fais. "
         "C'est là que se loge notre {#la liberté}liberté. Le bonheur n'est pas un lot qu'on gagne : c'est une manière de recevoir ce qui arrive.",
+        "Attention à un autre piège : opposer simplement la chance et le mérite. On peut mériter d'être heureux sans l'être, "
+        "on l'a vu avec Kant dans l'épisode cinq. Le sujet ne demande pas si le bonheur est juste, mais d'où il vient.",
         "{-dist1}{intro}Et voilà ton introduction. {intro.1}L'accroche : le gagnant du loto, et la surprise des psychologues, "
         "épisode quatre. {intro.2}L'analyse des mots, et l'étymologie. {intro.3}La problématique : se reçoit-il, ou se construit-il ? "
         "{intro.4}L'annonce du plan.",
@@ -115,7 +117,10 @@ SCENES = [
         "{-tab_pie}{desc}{tab_calme}",
         ("C", "Ma troisième maxime était de tâcher toujours plutôt à me vaincre que la fortune, et à changer mes désirs "
               "que l'ordre du monde…", "c_desc"),
-        "{-desc}{-c_desc}{dist2}La distinction qui dépasse : {dist2.g}supprimer ses désirs, {dist2.d}ou les régler. "
+        "{-c_desc}Il en tire une consolation précise : on ne désirera pas plus d'être en bonne santé quand on est malade, "
+        "ou d'être libre quand on est en prison, qu'on ne désire aujourd'hui avoir des ailes pour voler comme les oiseaux. "
+        "Ce qui est hors de notre pouvoir cesse de nous tourmenter.",
+        "{-desc}{dist2}La distinction qui dépasse : {dist2.g}supprimer ses désirs, {dist2.d}ou les régler. "
         "Le sage n'est pas celui qui ne désire plus rien. C'est celui qui désire ce qui est à sa portée.",
         "{-dist2}{-tab_calme}",
     ], vis={
@@ -136,7 +141,7 @@ SCENES = [
         "desc": dict(type="portrait", annee=1596, img="descartes", nom="René Descartes", dates="1596 – 1650",
                      legende="Discours de la méthode (1637)", x=110, y=120, w=330, h=420),
         "tab_calme": dict(type="tableau", img="bh6-calme", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .45, .45],
-                          legende="Willem van de Velde le Jeune, Navires par mer calme, vers 1665 (Rijksmuseum, Amsterdam)"),
+                          legende="Willem van de Velde le Jeune, Navires de guerre hollandais par mer calme, XVIIᵉ siècle"),
         "c_desc": dict(type="cit", a="Descartes", o="Discours de la méthode, IIIᵉ partie (1637)", x=640, y=180, w=570),
         "dist2": dict(type="cols", g="Supprimer ses désirs", gq="cesser de vivre : les pierres seraient heureuses",
                       d="Régler ses désirs", dq="désirer ce qui est à sa portée", vs="≠", repere="La distinction qui dépasse"),
@@ -191,13 +196,15 @@ SCENES = [
         "{-c_t2}Et il écarte un contresens.",
         ("C", "Lors donc que nous disons que le plaisir est la fin de la vie, nous ne parlons pas des plaisirs de l'homme déréglé, "
               "ni de ceux qui consistent dans les jouissances…", "c_t3"),
+        "{-c_t3}",
         ("C", "Le plaisir dont nous parlons est celui qui consiste, pour le corps, à ne pas souffrir et, pour l'âme, "
               "à être sans trouble.", "c_t4"),
-        "{-c_t4}{-tab_jar}{tab_era}{six}Au brouillon, on cherche les six éléments de l'introduction. "
+        "{-c_t4}Remarque déjà le mouvement : une affirmation, une restriction, une mise au point.",
+        "{-tab_jar}{tab_era}{six}Au brouillon, on cherche les six éléments de l'introduction. "
         "{six.1}Le thème : le plaisir et la vie heureuse. {six.2}La question : le plaisir est-il le but de la vie heureuse ? "
         "{six.3}La thèse adverse, ce qu'on penserait spontanément : être heureux, ce serait jouir le plus possible, "
         "ou au contraire fuir les plaisirs pour être sage.",
-        "{six.4}La thèse d'Épicure : le plaisir est bien le principe et la fin de la vie heureuse, car il est notre bien {#la nature}naturel ; "
+        "{six.4}La thèse d'Épicure : le plaisir est bien le principe et la fin de la vie heureuse, car il est notre bien naturel ; "
         "mais c'est l'absence de douleur et de trouble, qu'on obtient en calculant, non en jouissant de tout. "
         "{six.5}L'enjeu : fonder une sagesse sur le plaisir, sans tomber dans la débauche. "
         "{six.6}Le plan : le plaisir comme principe ; le calcul des plaisirs ; le contresens écarté.",
@@ -205,14 +212,14 @@ SCENES = [
     ], vis={
         "epic": dict(type="portrait", annee=-341, img="epicure", nom="Épicure", dates="341 – 270 av. J.-C.",
                      legende="Lettre à Ménécée (vers 300 av. J.-C.)", x=110, y=120, w=330, h=420),
-        "tab_jar": dict(type="tableau", img="bh6-calme", fond=True, sombre=True, de=[1.25, .6, .4], a=[1.0, .5, .5],
-                        legende="Willem van de Velde le Jeune, Navires par mer calme, vers 1665 (Rijksmuseum, Amsterdam)"),
+        "tab_jar": dict(type="tableau", img="dv4-oliviers", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .55],
+                        legende="Oliveraie à Paxos, au lever du soleil (photo Jess Stubenbord, CC0)"),
         "c_t1": dict(type="cit", a="Épicure", o="Lettre à Ménécée, 128-129, trad. Octave Hamelin (1910)", x=170, y=200, w=940),
         "c_t2": dict(type="cit", a="Épicure", o="Lettre à Ménécée, 129, trad. Hamelin", x=170, y=150, w=940),
         "c_t3": dict(type="cit", a="Épicure", o="Lettre à Ménécée, 131, trad. Hamelin", x=170, y=160, w=940),
         "c_t4": dict(type="cit", a="Épicure", o="Lettre à Ménécée, 131, trad. Hamelin", x=170, y=200, w=940),
         "tab_era": dict(type="tableau", img="bh6-erasme", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .4, .6],
-                        legende="Hans Holbein le Jeune, Érasme écrivant, 1523 (musée du Louvre)"),
+                        legende="Hans Holbein le Jeune, Érasme écrivant, 1523"),
         "six": dict(type="liste", titre="Les six éléments de l'introduction", items=[
             "Thème : le plaisir et la vie heureuse",
             "Question : le plaisir est-il le but de la vie heureuse ?",
@@ -349,14 +356,14 @@ QUIZ = [
 
 CREDITS = [
     "Portraits : Épicure (buste antique, domaine public) ; Descartes (d'après Frans Hals, XVIIᵉ s.)",
-    "Tableaux : Johannes Vermeer, La Lettre (vers 1670-1671) ; Edward Burne-Jones, La Roue de la Fortune (1875-1883) ; "
+    "Tableaux : Johannes Vermeer, Femme écrivant une lettre et sa servante (vers 1670) ; Edward Burne-Jones, La Roue de la Fortune (1875-1883) ; "
     "Alexandre Ivanov, Priam demande à Achille le corps d'Hector (1824) ; Jean Siméon Chardin, Le Bénédicité (1740) ; "
     "Gioacchino Assereto, Tantale (vers 1640) ; Carl Gustav Carus, Tumulus de l'âge de pierre (vers 1820) ; "
-    "Willem van de Velde le Jeune, Navires par mer calme (vers 1665) ; Ambrogio Lorenzetti, Les Effets du bon gouvernement (1338-1339) ; "
+    "Willem van de Velde le Jeune, Navires de guerre par mer calme (XVIIᵉ s.) ; Ambrogio Lorenzetti, Les Effets du bon gouvernement (1338-1339) ; "
     "John Trumbull, La Déclaration d'indépendance (1819) ; Hans Holbein le Jeune, Érasme écrivant (1523) ; "
     "Jacob Jordaens, Le Roi boit (vers 1638-1640) ; Pierre-Auguste Renoir, Le Déjeuner des canotiers (1880-1881) ; "
     "Claude Lorrain, Port de mer au soleil couchant (1639) : domaine public",
-    "Photographie : Bouddha du Gandhara, musée Georges-Labit, Toulouse (Didier Descouens, domaine public)",
+    "Photographies : oliveraie à Paxos (Jess Stubenbord, CC0) ; Bouddha du Gandhara, musée Georges-Labit, Toulouse (Didier Descouens, domaine public)",
     "Texte expliqué : Épicure, Lettre à Ménécée, 128-131, trad. Octave Hamelin, Revue de métaphysique et de morale, 18 (1910), Wikisource. "
     "Descartes, Discours de la méthode, IIIᵉ partie (1637).",
     "Images : Wikimedia Commons. Voix de synthèse créées pour la série (Qwen3-TTS, clonage local). Musique originale générée pour la série.",
