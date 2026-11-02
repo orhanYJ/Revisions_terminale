@@ -151,7 +151,7 @@ SCENES = [
         "def_en": dict(type="def", terme="L'électronégativité", cles=["attirer", "électrons"],
                        t="Capacité d'un atome à attirer vers lui les électrons d'une liaison.",
                        etape="Ordre à retenir : F > O > N > Cl. Une liaison entre l'un d'eux et H est polarisée.", x=170, y=190, w=940),
-        "an_pol": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[1.2, 10], [10, 20.3]]),
+        "an_pol": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[1.2, 9.2], [11, 19.5]]),
         "pol_pts": dict(type="liste", petit=True, titre="Ce que montre l'animation", x=680, y=150, w=560, items=[
             "H—Cl : le chlore attire le doublet · H^{δ+}, Cl^{δ−}",
             "L'eau capte H^{+} : HCl + H_2O → Cl^{−} + " + H3O]),
@@ -205,7 +205,7 @@ SCENES = [
         "proton": dict(type="note", titre="H⁺, un proton", cles=["noyau", "proton"],
                        t="L'atome H, c'est un proton et un électron. Sans son électron, il ne reste que le noyau : un proton. Transfert d'ion hydrogène = transfert de proton.",
                        x=170, y=200, w=940),
-        "an_br": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[20.5, 30.3], [30.5, 38.3]]),
+        "an_br": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[21.6, 29.5], [31.6, 37.5]]),
         "br_pts": dict(type="liste", petit=True, titre="Ce que montre l'animation", x=680, y=150, w=560, items=[
             "Le doublet de l'azote capte H^{+} : NH_3 + H_2O ⇌ NH_4^{+} + " + HO,
             "L'eau : base face à HCl, acide face à NH_3 · elle est amphotère"]),
@@ -280,7 +280,7 @@ SCENES = [
         "Cela se décide par une mesure de pH. On le verra à la fin du cours.",
         "{-note_tot}",
     ], vis={
-        "an_re": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[38.7, 49.3]]),
+        "an_re": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[39.8, 48.5]]),
         "re_pts": dict(type="liste", petit=True, titre="Ce que montre l'animation", x=680, y=170, w=560, items=[
             "CH_3COOH cède H^{+}, " + HO + " le capte : acide 1 + base 2 → base 1 + acide 2"]),
         "f_re": dict(type="formule", titre="Écrire l'équation en trois gestes", x=150, y=110, w=980, lignes=[
@@ -449,12 +449,12 @@ SCENES = [
         "{ex_no3.3}Un monoacide, une réaction totale : la concentration en ions oxonium égale c. Le pH vaut moins log de zéro virgule trente-deux : zéro virgule cinquante. "
         "Un pH très bas, mais normal pour un acide fort aussi concentré. "
         "{ex_no3.4}Et si on doublait la quantité d'acide, le pH baisserait de zéro virgule trente : zéro virgule vingt.",
-        "{-ex_no3}{poh}Une échelle miroir, vue en exercice : le p O H, moins log de la concentration en ions hydroxyde. "
-        "{poh.1}Le produit des concentrations en ions oxonium et hydroxyde vaut dix puissance moins quatorze à vingt-cinq degrés : c'est le produit ionique de l'eau. "
-        "{poh.2}Passé au logarithme, il devient : pH plus p O H égale quatorze. C'est commode quand l'espèce apportée est une base.",
+        "{-ex_no3}{poh}Une échelle miroir, vue en exercice : {poh.1}le p O H, moins log de la concentration en ions hydroxyde. "
+        "{poh.2}Le produit des concentrations en ions oxonium et hydroxyde vaut dix puissance moins quatorze à vingt-cinq degrés : c'est le produit ionique de l'eau. "
+        "{poh.3}Passé au logarithme, il devient : pH plus p O H égale quatorze. C'est commode quand l'espèce apportée est une base.",
         "{-poh}",
     ], vis={
-        "an_dil": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[49.7, 60.3]]),
+        "an_dil": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[50.8, 59.5]]),
         "dil_pts": dict(type="liste", petit=True, titre="Ce que montre l'animation", x=680, y=170, w=560, items=[
             "[" + H3O + "] ÷ 10 à chaque dilution : pH 2, puis 3, puis 4"]),
         "f_dil2": dict(type="formule", titre="pH et dilution", x=150, y=150, w=980, lignes=[
@@ -566,14 +566,14 @@ SCENES = [
             "Tableau d'avancement : x_{max}, si la réaction était totale", "[" + H3O + "]_{max} = x_{max} / V, puis pH_{théo}",
             "Comparer au pH mesuré, et conclure"], marques=["1", "2", "3", "4", "5"], x=150, y=130, w=980),
         # n = 1,0e-2 × 0,100 = 1,0e-3 mol ; [H3O+]max = 1,0e-2 ; pH théo = 2,00 ; 10^-2,8 = 1,58e-3 → 16 %
-        "ex_ac": dict(type="formule", titre="Exemple · acide éthanoïque, c = 1,0 × 10^-2 mol·L^-1, V = 100 mL, pH = 2,8", x=110, y=96, w=1060, lignes=[
+        "ex_ac": dict(type="formule", titre="Exemple · acide éthanoïque, 100 mL, pH = 2,8", x=110, y=96, w=1060, lignes=[
             dict(f="CH_3COOH + H_2O ⇌ CH_3COO^{−} + " + H3O, taille=34),
             dict(f="n_i = c × V = 1,0 × 10^-2 × 0,100 = 1,0 × 10^-3 mol", taille=34),
             dict(f="l'eau est en excès : x_{max} = 1,0 × 10^-3 mol", taille=34),
             dict(f="[" + H3O + "]_{max} = " + fr("x_{max}", "V") + " = 1,0 × 10^-2 mol·L^-1 · pH_{théo} = 2,00", taille=34),
             dict(f="2,8 > 2,00 : réaction limitée (⇌)", cadre=True, taille=34),
             dict(f="10^{−2,8} = 1,6 × 10^-3 mol·L^-1 : environ 16 % a réagi", taille=32)]),
-        "an_tot": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[60.7, 74.5]]),
+        "an_tot": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[61.8, 74]]),
         "tot_pts": dict(type="liste", petit=True, titre="Ce que montre l'animation", x=680, y=170, w=560, items=[
             "Même concentration : HCl, 25 sur 25 ont réagi, pH 2,0 · acide éthanoïque, 4 sur 25, pH 2,8"]),
         "concl2": dict(type="liste", titre="Conclure", items=[
@@ -671,14 +671,14 @@ SCENES = [
         "{s25.3}Le pH de B augmente donc de moins de un virgule trente. C'est ce qu'on a vu avec l'acide éthanoïque : dilué dix fois, son pH ne monte que de zéro virgule six environ.",
         "{-s25}{-ex2c}",
     ], vis={
-        "ex2": dict(type="exo", niveau="difficile", y=70, titre="Deux flacons sans étiquette", src="Exercice inventé pour la vidéo",
+        "ex2": dict(type="exo", niveau="difficile", y=50, titre="Deux flacons sans étiquette", src="Exercice inventé pour la vidéo",
                     enonce=["Les flacons A et B contiennent des solutions de même concentration apportée c = 5,0 × 10^-3 mol·L^-1 : "
                             "l'une d'acide chlorhydrique, l'autre d'acide propanoïque CH_3CH_2COOH. On mesure pH_A = 2,30 et pH_B = 3,60."],
-                    questions=["Calculer le pH qu'aurait chaque solution si la réaction avec l'eau était totale.",
+                    questions=["pH de chaque solution si la réaction avec l'eau était totale ?",
                                "Identifier chaque flacon ; écrire les deux équations avec la bonne flèche.",
                                "Quelle proportion des molécules d'acide propanoïque a réagi ?",
-                               "Préparer, en diluant A, 100,0 mL d'une solution de même pH que B : facteur de dilution, verrerie.",
-                               "Diluée de la même façon, la solution B verrait-elle son pH augmenter autant ? Justifier."]),
+                               "Préparer, en diluant A, 100,0 mL de même pH que B : facteur, verrerie.",
+                               "Diluée de même, B verrait-elle son pH augmenter autant ?"]),
         "pa2": dict(type="pause", t="pH si totale, identité des flacons, proportion, dilution de A, et le cas de B."),
         "ex2c": dict(type="exo", mode="coin", niveau="difficile", titre="Deux flacons",
                      donnees=["c = 5,0 × 10^-3 mol·L^-1", "pH_A = 2,30", "pH_B = 3,60"],
@@ -741,7 +741,7 @@ SCENES = [
         "{s35.3}Et le regard critique, toujours valorisé. On a négligé l'acidité naturelle : deux virgule cinq fois dix puissance moins six, "
         "à peine quatre pour cent de la valeur totale. C'est justifié. "
         "{s35.4}Mais avec une incertitude de zéro virgule un sur le pH, la concentration est comprise entre cinq fois dix puissance moins cinq et huit fois dix puissance moins cinq : "
-        "environ vingt-cinq pour cent d'incertitude. Le résultat n'est qu'un ordre de grandeur : quelques milligrammes par litre.",
+        "environ vingt-cinq pour cent d'incertitude. {s35.5}Le résultat n'est qu'un ordre de grandeur : quelques milligrammes par litre.",
         "{-s35}{-ex3c}",
     ], vis={
         "ex3": dict(type="exo", niveau="bac", titre="Les pluies acides", src="Exercice inventé pour la vidéo, au format du bac",
@@ -776,7 +776,7 @@ SCENES = [
             dict(f="couples HCO_3^{−}/CO_3^{2−} et " + H3O + "/H_2O", taille=30),
             dict(f="CO_3^{2−} + " + H3O + " → HCO_3^{−} + H_2O", cadre=True, taille=34),
             dict(f="les ions carbonate de la pierre sont consommés", txt=True)]),
-        "s35": dict(type="formule", titre="5 · Masse d'acide nitrique et regard critique", x=540, y=100, w=700, lignes=[
+        "s35": dict(type="formule", titre="5 · Masse et regard critique", x=540, y=100, w=700, lignes=[
             dict(f="totale, monoacide : c ≈ [" + H3O + "] = 6,3 × 10^-5 mol·L^-1", taille=28),
             dict(f="m = c × M × V = 6,3 × 10^-5 × 63,0 ≈ 4,0 × 10^-3 g", cadre=True, taille=28, n="environ 4 mg par litre"),
             dict(f="part naturelle négligée : " + fr("2,5 × 10^-6", "6,3 × 10^-5") + " ≈ 4 %", taille=28),
@@ -805,7 +805,7 @@ SCENES = [
     ], vis={
         "carte": dict(type="carte", centre="LE TRANSFERT DE H⁺", branches=[
             dict(t="Les définitions", items=["acide : cède H^{+}", "base : capte H^{+}", "amphotère : deux demi-équations"]),
-            dict(t="Les couples", items=["AH/A^{−}, l'acide en premier", "eau · acide carbonique", "R—COOH/R—COO^{−} · R—NH_3^{+}/R—NH_2"]),
+            dict(t="Les couples", items=["AH/A^{−}, l'acide en premier", "eau · acide carbonique", "acides carboxyliques · amines"]),
             dict(t="La réaction", items=["acide 1 + base 2 → base 1 + acide 2", "toujours deux couples", "additionner, H^{+} simplifiés"]),
             dict(t="Le pH", items=["pH = −log([" + H3O + "]/c°)", "÷ F sur c ⇒ pH + log F", "pH_{mes} > pH_{théo} : limitée"])]),
         "bac": dict(type="liste", titre="Pour le bac · à cocher", items=[
