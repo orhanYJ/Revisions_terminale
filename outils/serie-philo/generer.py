@@ -2,6 +2,10 @@
 
 Usage (depuis la racine du dépôt) :
     SSL_CERT_FILE=/root/.ccr/ca-bundle.crt python3 outils/serie-philo/generer.py liberte_1
+    SSL_CERT_FILE=/root/.ccr/ca-bundle.crt python3 outils/serie-philo/generer.py pc_ch4     (vidéo de cours PC)
+
+Le même générateur sert aux vidéos de cours de physique-chimie : leurs scripts sont dans outils/serie-pc/ et portent
+SITE = "pc" ; tout est alors écrit dans pc/serie/ (moteur pc/serie/moteur.js, avec ses types propres aux sciences).
 
 Lit outils/serie-philo/<module>.py (texte lu + visuels), enregistre chaque passage, récupère l'instant de chaque mot,
 et écrit :
@@ -18,6 +22,7 @@ import asyncio, hashlib, importlib, json, os, re, subprocess, sys, wave
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(1, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-pc"))
 import musique  # noqa: E402
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -26,7 +31,7 @@ SORTIE = os.path.join(RACINE, "philo", "serie")
 CACHE = os.path.join(ICI, ".cache")
 SR = musique.SR
 
-MOTEUR = "qwen"
+MOTEUR = os.environ.get("SERIE_MOTEUR", "qwen")   # SERIE_MOTEUR=edge : brouillon rapide (voix en ligne) pour vérifier les images
 VOIX = ({"H": "narrateur", "C": "citations"} if MOTEUR == "qwen"
         else {"H": "fr-FR-RemyMultilingualNeural", "C": "fr-FR-VivienneMultilingualNeural"})
 PROSODIE = {"H": {"rate": "+0%", "pitch": "+0Hz"}, "C": {"rate": "-6%", "pitch": "+0Hz"}}
@@ -34,14 +39,16 @@ ECART = {"H": 0.38, "C": 0.95}       # silence après un passage
 AVANT_CIT = 0.45                      # silence avant une citation
 CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
-ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
+ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
+V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 1}   # pc/serie/moteur.* (et le cache de pc/sw.js)
+TEINTE = {"philo": "#0b111e", "pc": "#120c07"}
 PAGE = """<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b111e">
+<meta name="theme-color" content="{teinte}">
 <title>{titre}</title>
 <link rel="stylesheet" href="fonts.css?v={vm}">
 <link rel="stylesheet" href="moteur.css?v={vm}">
@@ -154,6 +161,8 @@ def _beats(scene):
 
 def generer(nom_module):
     ep = importlib.import_module(nom_module)
+    site = getattr(ep, "SITE", "philo")
+    SORTIE = os.path.join(RACINE, site, "serie")
     PRONONCIATION.update(getattr(ep, "PRONONCIATION", {}))   # graphies propres à l'épisode
     os.makedirs(CACHE, exist_ok=True)
     os.makedirs(os.path.join(SORTIE, "voix"), exist_ok=True)
@@ -405,7 +414,8 @@ def generer(nom_module):
     with open(os.path.join(SORTIE, ep.CODE + ".data.js"), "w", encoding="utf-8") as f:
         f.write(js)
     v = hashlib.sha1(js.encode("utf-8")).hexdigest()[:8]
-    page = PAGE.format(titre=f"{ep.NOTION} · Épisode {ep.NUM} — {ep.TITRE}", code=ep.CODE, v=v, vm=V_MOTEUR)
+    titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site == "pc" else f"{ep.NOTION} · Épisode {ep.NUM} — {ep.TITRE}")
+    page = PAGE.format(titre=titre, code=ep.CODE, v=v, vm=V_MOTEUR_SITE[site], teinte=TEINTE[site])
     with open(os.path.join(SORTIE, ep.CODE + ".html"), "w", encoding="utf-8") as f:
         f.write(page)
     print(f"{ep.CODE} : {duree / 60:.1f} min, {len(vis)} visuels, {len(sous)} sous-titres, audio {noms}")

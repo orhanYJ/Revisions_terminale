@@ -2,7 +2,8 @@
    Chaque page déclare ANIM.lancer({ END, SCENES, CALL, CUES, QUIZ, draw, bascule }).
    draw(c) reçoit l'instant c.t et l'option c.opt, et renvoie les couches SVG :
    { tf, cp, cells, nuc, sp, chr, let, fx, lab, st }.
-   Intégration dans le cours : ?embed=1 (lecteur, puis quiz sous le lecteur à la demande), ?theme=dark|light, ?t0=secondes. */
+   Intégration dans le cours : ?embed=1 (lecteur, puis quiz sous le lecteur à la demande), ?theme=dark|light, ?t0=secondes.
+   ?pilote=1 : image seule, sans son ni commandes ; la vidéo du chapitre (pc/serie/) fixe l'instant par ANIM.regler(t, opt). */
 window.ANIM = (() => {
 'use strict';
 const $ = s => document.querySelector(s);
@@ -17,9 +18,11 @@ const PARAMS = new URLSearchParams(location.search);
 const EMBED = PARAMS.has('embed');
 if(PARAMS.get('theme')) document.documentElement.setAttribute('data-theme', PARAMS.get('theme'));
 if(EMBED) document.documentElement.classList.add('embed');
+const PILOTE = PARAMS.has('pilote');
+if(PILOTE) document.documentElement.classList.add('pilote');
 
 const AMB = '#F5C451', MAG = '#FF5CA8', CYA = '#3FD9C8';
-let C = null, t = 0, playing = false, lastNow = 0, opt = 0, stepMode = false, muted = false, curIdx = -1, started = false;
+let C = null, t = 0, playing = false, lastNow = 0, opt = 0, stepMode = false, muted = PILOTE, curIdx = -1, started = false;
 const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a), 0, 1));
 const k = (a,b) => kAt(t,a,b);
 const vel = (a,b) => (kAt(t+.04,a,b) - kAt(t-.04,a,b)) / .08 * (b-a) / 4;
@@ -345,5 +348,8 @@ function lancer(cfg){
   setPlayIcon(); setMute(); quiz(); render(); postH();
 }
 
-return {lancer, H:{clamp, ease, sm, lerp, f, op, smooth, ys, strand, wobblyEllipse, cellPath, fiber, pole, flash, halo, arc, mix, label, AMB, MAG, CYA}};
+/* piloté par la vidéo : l'image est une fonction de l'instant donné */
+function regler(tt, o){ if(!C) return; if(o != null) opt = o; t = clamp(tt, 0, C.END); render(); }
+
+return {lancer, regler, H:{clamp, ease, sm, lerp, f, op, smooth, ys, strand, wobblyEllipse, cellPath, fiber, pole, flash, halo, arc, mix, label, AMB, MAG, CYA}};
 })();

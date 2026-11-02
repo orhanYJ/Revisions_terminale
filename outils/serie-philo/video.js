@@ -13,7 +13,9 @@ const os = require('os');
 const code = process.argv[2], sortie = path.resolve(process.argv[3] || code + '.mp4');
 const sous = process.argv.includes('--sous');
 const FPS = 25, W = 1920, H = 1080, PARTS = 3;
-const URL = `http://localhost:8765/philo/serie/${code}.html?export=1${sous ? '&sous=1' : ''}`;
+// épisode philo (philo/serie) ou vidéo de cours PC (pc/serie, où les animations du site sont pilotées image par image)
+const SITE = fs.existsSync(path.join(__dirname, '../../philo/serie', code + '.data.js')) ? 'philo' : 'pc';
+const URL = `http://localhost:8765/${SITE}/serie/${code}.html?export=1${sous ? '&sous=1' : ''}`;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'serie-'));
 
 async function morceau(i, debut, fin) {
@@ -37,14 +39,14 @@ async function morceau(i, debut, fin) {
 }
 
 (async () => {
-  const data = fs.readFileSync(path.join(__dirname, '../../philo/serie', code + '.data.js'), 'utf8');
+  const data = fs.readFileSync(path.join(__dirname, '../../' + SITE + '/serie', code + '.data.js'), 'utf8');
   const ep = JSON.parse(data.slice(data.indexOf('=') + 1).trim().replace(/;$/, ''));
   const n = Math.ceil(ep.dur * FPS), pas = Math.ceil(n / PARTS);
   console.log(`${code} : ${n} images…`);
   const parts = await Promise.all([...Array(PARTS)].map((_, i) => morceau(i, i * pas, Math.min(n, (i + 1) * pas))));
   const liste = path.join(tmp, 'liste.txt');
   fs.writeFileSync(liste, parts.map(f => `file '${f}'`).join('\n'));
-  const audio = path.join(__dirname, '../../philo/serie', ep.audio.mix);
+  const audio = path.join(__dirname, '../../' + SITE + '/serie', ep.audio.mix);
   execFileSync('ffmpeg', ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', liste, '-i', audio,
     '-c:v', 'copy', '-c:a', 'aac', '-b:a', '128k', '-shortest', '-movflags', '+faststart', sortie]);
   fs.rmSync(tmp, { recursive: true, force: true });

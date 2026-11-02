@@ -6,20 +6,44 @@ import json, os, sys
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
-PRINCIPAUX = {"portrait", "def", "note", "cols", "cartes", "liste", "cit", "mot", "question", "dialogue", "carte", "nuage", "titre", "illu", "frise"}
+PRINCIPAUX = {"portrait", "def", "note", "cols", "cartes", "liste", "cit", "mot", "question", "dialogue", "carte", "nuage", "titre", "illu", "frise",
+              "anim", "formule", "graphe", "exo", "pause"}
+
+
+def donnees(code):
+    """Données d'un épisode philo (philo/serie) ou d'une vidéo de cours PC (pc/serie)."""
+    for site in ("philo", "pc"):
+        f = os.path.join(RACINE, site, "serie", code + ".data.js")
+        if os.path.exists(f):
+            js = open(f, encoding="utf-8").read()
+            return json.loads(js[js.index("{"):js.rindex("}") + 1])
+    raise SystemExit(f"données introuvables : {code}.data.js")
 
 
 def boite(v):
     if v["type"] == "portrait":
         return (0, 600)         # grand portrait fondu à gauche
+    if v["type"] == "anim":
+        x = v.get("x", 50)
+        return (x, x + round(v.get("h", 600) * 400 / 430))
+    if v["type"] == "exo" and v.get("mode") == "coin":
+        return (34, 504)
+    if v["type"] == "pause":
+        x = v.get("x", 200)
+        return (x, x + v.get("w", 880))
+    if v["type"] == "graphe":
+        x = v.get("x", 640)
+        return (x, x + v.get("w", 600))
+    if v["type"] == "formule":
+        x = v.get("x", 150)
+        return (x, x + v.get("w", 980))
     if "x" in v and "w" in v:
         return (v["x"], v["x"] + v["w"])
     return (100, 1180)          # centré : occupe la largeur
 
 
 def chevauchements(code, marge=0.8):
-    js = open(os.path.join(RACINE, "philo", "serie", code + ".data.js"), encoding="utf-8").read()
-    d = json.loads(js[js.index("{"):js.rindex("}") + 1])
+    d = donnees(code)
     vis = [v for v in d["vis"] if v["type"] in PRINCIPAUX]
     res = []
     for i, a in enumerate(vis):
@@ -43,8 +67,7 @@ def chevauchements(code, marge=0.8):
 
 def trous(code, seuil=3.0):
     """Intervalles de plus de `seuil` secondes où l'écran n'a ni texte, ni image, ni illustration."""
-    js = open(os.path.join(RACINE, "philo", "serie", code + ".data.js"), encoding="utf-8").read()
-    d = json.loads(js[js.index("{"):js.rindex("}") + 1])
+    d = donnees(code)
     iv = sorted((v["t0"], v["t1"], v["id"]) for v in d["vis"] if v["type"] not in ("tag",))
     res, cur = [], 0.0
     for a, b, _ in iv:
