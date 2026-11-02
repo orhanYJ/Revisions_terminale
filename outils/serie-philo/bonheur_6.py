@@ -161,9 +161,9 @@ SCENES = [
         "La sécurité, la justice, l'éducation, la santé, les libertés : de quoi chercher, chacun, sa propre vie heureuse.{-plan3}",
         "{-tab_lor}{tab_dec}{dist3}La distinction qui dépasse, vue dans l'épisode cinq : {dist3.g}faire le bonheur des citoyens, "
         "{dist3.d}ou rendre possible leur recherche du bonheur. C'est toute la différence entre un tuteur et un garant.",
-        "{-dist3}{cp3}Note la méthode : dans les trois sujets, la troisième partie ne dit jamais « tout dépend ». "
+        "{-dist3}{td}{cp3}Note la méthode : dans les trois sujets, la troisième partie ne dit jamais « tout dépend ». "
         "Elle déplace la question, grâce à une distinction.",
-        "{-cp3}{-tab_dec}",
+        "{-cp3}{-td}{-tab_dec}",
     ], vis={
         "tab_lor": dict(type="tableau", img="bh6-lorenzetti", fond=True, sombre=True, de=[1.0, .3, .5], a=[1.25, .6, .55],
                         legende="Ambrogio Lorenzetti, Les Effets du bon gouvernement dans la ville, 1338-1339 (Palazzo Pubblico, Sienne)"),
@@ -177,6 +177,7 @@ SCENES = [
                         legende="John Trumbull, La Déclaration d'indépendance, 1819 (Capitole des États-Unis, Washington)"),
         "dist3": dict(type="cols", g="Faire le bonheur", gq="à la place des citoyens : un tuteur", d="Rendre possible sa recherche",
                       dq="garantir les conditions : un garant", vs="≠", repere="La distinction qui dépasse"),
+        "td": dict(type="mot", t="« Tout dépend »", g="la réponse à ne jamais donner en troisième partie", y=220, taille=80),
         "cp3": dict(type="tag", style="copie", t="Copie · la partie III déplace la question, elle ne dit pas « tout dépend »",
                     x=170, y=560, w=900),
     }),
