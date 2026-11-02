@@ -91,7 +91,7 @@ SCENES = [
         "{-piege_nm}{ex_lam}Faisons un premier calcul. Un laser rouge a une longueur d'onde de six cent trente-trois nanomètres. "
         "{ex_lam.1}Sa fréquence vaut c sur lambda : {ex_lam.2}trois fois dix puissance huit, divisé par six cent trente-trois fois dix puissance moins neuf. "
         "{ex_lam.3}On trouve environ quatre virgule soixante-quatorze fois dix puissance quatorze hertz. "
-        "Quatre cent soixante-quatorze mille milliards d'oscillations par seconde !",
+        "Près de cinq cent mille milliards d'oscillations par seconde !",
         "{-ex_lam}",
     ], vis={
         "tab_pri": dict(type="tableau", img="c4-spectre", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .45],
@@ -217,7 +217,7 @@ SCENES = [
         "{-methode}{ex_ha}Appliquons-la à la raie rouge de l'hydrogène, la transition de trois vers deux. "
         "{ex_ha.1}Delta E égale moins un virgule cinquante et un, moins, moins trois virgule quarante : un virgule quatre-vingt-neuf électronvolt. "
         "{ex_ha.2}En joules : trois virgule zéro deux fois dix puissance moins dix-neuf. "
-        "{ex_ha.3}Lambda égale h c sur delta E : environ six cent cinquante-huit nanomètres. "
+        "{ex_ha.3}Lambda égale h c sur delta E : on trouve environ six cent cinquante-huit nanomètres. "
         "{ex_ha.4}La raie mesurée est à six cent cinquante-six nanomètres : le petit écart vient des arrondis des niveaux. C'est du rouge, visible.",
         "{-ex_ha}{tab_ori}Cette raie porte un nom : H alpha. C'est elle qui donne leur couleur rouge aux nébuleuses, comme celle d'Orion. "
         "Chaque élément a ses propres niveaux, donc ses propres raies : c'est sa signature.",
