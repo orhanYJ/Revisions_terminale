@@ -13,7 +13,7 @@ NOTION = "Le bonheur"
 NUM = 4
 TITRE = "Le bonheur est-il une illusion ?"
 SUIVANT = "Épisode 5 · Bonheur, morale et politique"
-PRONONCIATION = {"Pyrrhus": "Pirusse", "Cinéas": "Sinéasse", "Schopenhauer": "Chopenhaoueur",
+PRONONCIATION = {"Pyrrhus": "Pirusse", "Cinéas": "Sinéasse", "Schopenhauer": "Chopenaouère",
                  "Brickman": "Brikmane", "Illinois": "Ilinoï"}
 
 SCENES = [
@@ -67,8 +67,8 @@ SCENES = [
               "nous en garantit.", "c_lie"),
         "{-c_lie}{prise}Voilà le secret. {prise.g}Nous croyons chercher la prise : le résultat, le repos. "
         "{prise.d}En réalité, ce que nous aimons, c'est la chasse : le mouvement qui nous empêche de penser.",
-        "{-prise}{-tab_chasse}{tab_roi}Même le roi n'y échappe pas. Il a tout. Mais laissez-le seul, sans compagnie, "
-        "penser à lui tout à loisir : il sera plus malheureux que le dernier de ses sujets qui joue et qui danse.",
+        "{-prise}{-tab_chasse}{tab_roi}{q_roi}Même le roi n'y échappe pas. Il a tout. Mais laissez-le seul, sans compagnie, "
+        "penser à lui tout à loisir : il sera plus malheureux que le dernier de ses sujets qui joue et qui danse.{-q_roi}",
         ("C", "… un roi sans divertissement est un homme plein de misères.", "c_roi"),
         "{-c_roi}{-tab_roi}{tel}Et nous ? {tel.1}Le fil qu'on fait défiler sans fin, {tel.2}la notification qui tombe à point nommé. "
         "Pascal n'avait pas de téléphone ; il en avait déjà compris l'usage.",
@@ -84,7 +84,7 @@ SCENES = [
         "pascal": dict(type="portrait", annee=1623, img="pascal", nom="Blaise Pascal", dates="1623 – 1662",
                        legende="Pensées (1670)", x=110, y=120, w=330, h=420),
         "tab_cham": dict(type="tableau", img="bh4-chambre", fond=True, sombre=True, de=[1.0, .5, .45], a=[1.25, .5, .5],
-                         legende="Vilhelm Hammershøi, Intérieur, Strandgade 30, 1900 (Städel Museum, Francfort)"),
+                         legende="Vilhelm Hammershøi, Intérieur, Strandgade 30, 1900"),
         "c_ch": dict(type="cit", a="Pascal", o="Pensées, fr. 139 (éd. Brunschvicg ; 1670)", x=640, y=170, w=570),
         "q_ch": dict(type="question", t="Une heure seul dans une chambre, sans rien. Pourquoi est-ce si difficile ?"),
         "seul": dict(type="liste", titre="Seul dans la chambre", items=[
@@ -99,6 +99,7 @@ SCENES = [
                       d="La chasse", dq="ce que nous aimons : le mouvement qui empêche de penser", vs="≠"),
         "tab_roi": dict(type="tableau", img="bh4-roi", fond=True, sombre=True, de=[1.0, .5, .25], a=[1.3, .5, .2],
                         legende="Hyacinthe Rigaud, Louis XIV en costume de sacre, 1701 (musée du Louvre)"),
+        "q_roi": dict(type="question", t="Un roi qui a tout, seul, sans divertissement ?"),
         "c_roi": dict(type="cit", a="Pascal", o="Pensées, fr. 142 (éd. Brunschvicg)", x=170, y=230, w=940),
         "tel": dict(type="illu", nom="tel", x=240, y=90, w=800, h=540),
         "tab_van": dict(type="tableau", img="bh4-vanite", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .6, .5],
@@ -405,7 +406,7 @@ QUIZ = [
 CREDITS = [
     "Portraits : Pascal (copie d'après François II Quesnel) ; Arthur Schopenhauer (photographie de Johann Schäfer, 1859) ; "
     "Rousseau (Maurice Quentin de La Tour, 1753) ; Freud (photographie, domaine public)",
-    "Tableaux et gravures : Vilhelm Hammershøi, Intérieur, Strandgade 30 (1900) ; Paolo Uccello, La Chasse nocturne (vers 1470) ; "
+    "Tableaux et gravures : Henri Rousseau, Surpris ! (1891) ; Vilhelm Hammershøi, Intérieur, Strandgade 30 (1900) ; Paolo Uccello, La Chasse nocturne (vers 1470) ; "
     "Hyacinthe Rigaud, Louis XIV en costume de sacre (1701) ; Philippe de Champaigne, Vanité (vers 1671) ; "
     "Katsushika Hokusai, La Grande Vague de Kanagawa (vers 1831) ; Edvard Munch, Le Cri (1893) et L'Enfant malade (1885-1886) ; "
     "Walter Sickert, Ennui (vers 1914) ; Caspar David Friedrich, Le Voyageur contemplant une mer de nuages (vers 1818) ; "
