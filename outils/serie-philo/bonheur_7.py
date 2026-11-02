@@ -11,7 +11,7 @@ NUM = 7
 TITRE = "Récap"
 SUIVANT = ""
 PRONONCIATION = {"Aristippe": "Aristipe", "Calliclès": "Kaliklèsse", "Schopenhauer": "Chopenaouère", "Huxley": "Euksslé",
-                 "Tocqueville": "Tokvil", "Karamazov": "Karamazof", "Bentham": "Bentame", "Cinéas": "Sinéasse",
+                 "Tocqueville": "Tokvil", "Nozick": "Nozik", "Karamazov": "Karamazof", "Bentham": "Bentame", "Cinéas": "Sinéasse",
                  "Pyrrhus": "Pirusse", "Ménécée": "Ménéssé"}
 
 SCENES = [
@@ -46,7 +46,7 @@ SCENES = [
         "{-mot}{dist}Puis les distinctions. {dist.1}Le plaisir dure un instant. {dist.2}La joie, un moment. "
         "{dist.3}Le bonheur se mesure à l'échelle d'une vie : il demande du {#le temps}temps. "
         "{dist.4}Et le repère objectif, subjectif : se sentir heureux, est-ce avoir une vie heureuse ? "
-        "Branché sur la machine à expérience de Nozick, presque personne ne voudrait vivre : nous voulons que ce soit vrai.",
+        "Et Nozick le montre : presque personne n'accepterait de vivre branché sur une machine à bonheur. Nous voulons que ce soit vrai.",
         "{-dist}{-tab_for}{arist}{tab_ath}Pour Aristote, le bonheur est la fin dernière : ce qu'on veut pour lui-même, "
         "jamais pour autre chose. Pascal : tous les hommes recherchent d'être heureux. "
         "Mais Kant prévient : c'est un idéal, non de la raison, mais de l'imagination.",
@@ -89,7 +89,7 @@ SCENES = [
         "{-sol}{-tab_cre}{arist2}{tab_hir}Pour Aristote, le bonheur n'est pas un trésor qu'on possède, mais une activité : "
         "l'activité de l'âme conforme à la vertu, dans une vie complète. Une hirondelle ne fait pas le printemps.",
         "{-arist2}{sag}{sag.1}La vertu s'acquiert par l'habitude : c'est en pratiquant la justice qu'on devient juste. "
-        "Elle vise un juste milieu, un sommet entre deux pentes, et vivre selon la {#la raison}raison. "
+        "Elle vise un juste milieu, un sommet entre deux pentes. Bien vivre, c'est vivre selon la {#la raison}raison. "
         "{sag.2}Le bonheur demande des amis, et culmine dans la vie de l'esprit. "
         "{sag.3}Les stoïciens vont plus loin : la vertu suffit. Épictète conseille de ne pas demander que les choses arrivent "
         "comme on le veut, mais de les vouloir comme elles arrivent. Marc Aurèle se retire dans sa citadelle intérieure. "
@@ -125,7 +125,8 @@ SCENES = [
         "Qu'est-ce qui l'empêchait de se reposer tout de suite ? {ill.1}Pascal : nous fuyons dans le divertissement ; nous aimons la chasse, non la prise. "
         "{ill.2}Schopenhauer : la vie oscille comme un pendule, de la souffrance à l'ennui. "
         "{ill.3}Rousseau : on n'est heureux qu'avant d'être heureux. "
-        "{ill.4}Freud : le bonheur n'est qu'un épisode ; il n'est pas prévu par le plan de la Création.{-ill}",
+        "{ill.4}Freud : le bonheur n'est qu'un épisode ; il n'est pas prévu par le plan de la Création, "
+        "et la souffrance nous menace par le corps, par le monde, par les autres.{-ill}",
         ("C", "Ainsi nous ne vivons jamais, mais nous espérons de vivre ; et, nous disposant toujours à être heureux, "
               "il est inévitable que nous ne le soyons jamais.", "c_pas"),
         "{-c_pas}{-tab_cham}{tab_roue}{adap}Et les psychologues ? Les gagnants du loto ne se disent pas beaucoup plus heureux "
@@ -160,8 +161,9 @@ SCENES = [
         "{pol.2}Mais Ivan Karamazov demande : peut-on bâtir le bonheur sur les larmes d'un seul enfant ? "
         "{pol.3}En 1776, l'Amérique proclame le droit de rechercher le bonheur ; en 1794, Saint-Just lance sa formule.{-pol}",
         ("C", "Le bonheur est une idée neuve en Europe.", "c_sj"),
-        "{-c_sj}{pat}Mais Kant refuse le gouvernement paternel. Tocqueville redoute un pouvoir immense et tutélaire, qui veut être "
-        "l'unique agent de notre bonheur et nous fixe dans l'enfance ; Huxley en fait un roman. "
+        "{-c_sj}Quelques mois plus tard, en pleine Terreur, il est guillotiné. {pat}Kant, lui, refuse le gouvernement paternel. Tocqueville redoute un pouvoir immense et tutélaire, qui veut être "
+        "l'unique agent de notre bonheur et nous fixe dans l'enfance ; Huxley en fait un roman, où le Sauvage réclame "
+        "le droit d'être malheureux. "
         "{pat.g}Faire le bonheur des citoyens : non. {pat.d}En garantir les conditions, la sécurité, la justice, la {#la liberté}liberté : oui.",
         "{-pat}{-tab_dec}",
     ], vis={
@@ -185,6 +187,7 @@ SCENES = [
         "{meth.2}Problématiser : une tension, pas une reformulation. "
         "{meth.3}Trois parties, dont la dernière déplace la question grâce à une distinction. "
         "{meth.4}Et pour l'explication d'Épicure : six éléments d'introduction, puis quoi, comment, pourquoi.",
+        "Ton introduction : une scène précise, l'analyse des mots, la problématique, le plan. "
         "Trois distinctions dépassent les problèmes : ce qui m'arrive et ce que j'en fais ; supprimer ou régler ses désirs ; "
         "faire le bonheur des citoyens, ou en garantir les conditions. Et Épicure, au plus juste : ni jouisseur, ni ascète.",
         "{-meth}{suj}Des sujets qui reviennent. {suj.1}Le bonheur est-il affaire de chance ? "

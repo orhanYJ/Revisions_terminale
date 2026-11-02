@@ -301,7 +301,7 @@ SCENES = [
         "{-prud}{-tab_roue}{tab_mat}{dist}Alors, le bonheur est-il une illusion ? Regarde ce que nos quatre penseurs critiquent. "
         "{dist.g}Un bonheur conçu comme un état : complet, définitif, la satisfaction de tous nos désirs, pour toujours. "
         "Celui-là, oui, est sans doute une illusion. "
-        "Kant dira même que c'est un idéal, non de la raison, mais de l'imagination : ce sera l'épisode suivant.",
+        "Kant le disait, on l'a vu dans le premier épisode : c'est un idéal, non de la raison, mais de l'imagination.",
         "{dist.d}Mais le bonheur peut se penser autrement : comme une activité, une manière de vivre. "
         "C'est la leçon d'Aristote et des stoïciens, vue dans l'épisode trois.",
         "{-dist}{-tab_mat}{tab_mat2}{alain}Au vingtième siècle, le philosophe Alain en fait toute une sagesse, "
