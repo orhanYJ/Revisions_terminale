@@ -288,10 +288,10 @@ SCENES = [
         "{-qual}{soc}D'où sa formule, déjà rencontrée : mieux vaut être Socrate insatisfait qu'un imbécile satisfait.",
         "{-soc}{dep}Mais regarde ce que Mill vient de faire. {dep.1}Pour classer les plaisirs, il lui faut un critère "
         "qui n'est plus le plaisir : la dignité, la valeur de l'esprit. {dep.2}L'hédonisme commence à se dépasser lui-même.",
-        "{-dep}{rec_mill}Et Mill a vécu, à vingt ans, une expérience troublante. Élevé par son père comme une machine à penser, "
-        "il tombe dans une profonde dépression : rien ne lui fait plus plaisir. Il en sort peu à peu, en lisant des poèmes, "
+        "{-dep}{rec_mill}{crise}Et Mill a vécu, à vingt ans, une expérience troublante. {crise.1}Élevé par son père comme une machine à penser, "
+        "{crise.2}il tombe dans une profonde dépression : rien ne lui fait plus plaisir. {crise.3}Il en sort peu à peu, en lisant des poèmes, "
         "ceux de Wordsworth, le poète des lacs.",
-        "{-rec_mill}{par}Il en tire une leçon, dans son Autobiographie. {par.1}Demande-toi si tu es heureux, et tu cesses de l'être. "
+        "{-rec_mill}{-crise}{par}Il en tire une leçon, dans son Autobiographie. {par.1}Demande-toi si tu es heureux, et tu cesses de l'être. "
         "{par.2}Le bonheur ne se vise pas directement : il vient de surcroît, quand on s'occupe d'autre chose. "
         "Des autres, d'une œuvre, d'une cause.",
         ("Comme un chat qu'on poursuit : il s'enfuit. Mais il vient s'asseoir près de toi quand tu lis.", {"rate": "-5%"}),
@@ -310,6 +310,10 @@ SCENES = [
         "dep": dict(type="note", titre="Pour aller plus loin", cles=["critère", "dépasser"],
                     t="Pour classer les plaisirs, Mill a besoin d'un critère qui n'est plus le plaisir.",
                     etape="L'hédonisme commence à se dépasser lui-même.", x=170, y=190, w=940),
+        "crise": dict(type="liste", titre="La crise de Mill", items=[
+            "Élevé par son père comme une machine à penser",
+            "À vingt ans, plus rien ne lui fait plaisir",
+            "Il en sort par la poésie : Wordsworth"], marques=["1", "2", "3"], x=170, y=150, w=940),
         "rec_mill": dict(type="tag", style="plus", t="1826 · la « crise » de Mill, à vingt ans", x=170, y=560, w=620),
         "par": dict(type="def", terme="Le paradoxe de l'hédonisme", cles=["heureux", "surcroît"],
                     t="Demande-toi si tu es heureux, et tu cesses de l'être (Mill, Autobiographie, chap. V, trad. courante).",
