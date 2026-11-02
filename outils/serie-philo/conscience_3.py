@@ -55,11 +55,12 @@ SCENES = [
          retenir="Leibniz : à tout moment, une infinité de petites perceptions, sans aperception. Le bruit de la mer est fait du bruit de chaque vague, que je n'entends pas séparément.",
          beats=[
         "{leib}{tab_vag}Le premier, c'est Leibniz : mathématicien, inventeur du calcul infinitésimal, diplomate, philosophe. "
-        "Vers 1704, il lit l'Essai de Locke, celui de l'épisode précédent, et lui répond page après page, "
+        "{n_leib}{n_leib.1}Vers 1704, il lit l'Essai de Locke, celui de l'épisode précédent, et lui répond page après page, "
         "dans les Nouveaux Essais sur l'entendement humain.",
         "Leibniz écrit ce livre en français, la langue savante de l'Europe d'alors. "
-        "Locke, comme Descartes, pensait qu'il n'y a pas de pensée sans conscience. Leibniz répond : si, il y en a. "
+        "{n_leib.2}Locke, comme Descartes, pensait qu'il n'y a pas de pensée sans conscience. {n_leib.3}Leibniz répond : si, il y en a. "
         "Et il en donne une preuve restée célèbre. Écoute la mer.",
+        "{-n_leib}",
         ("C", "Pour entendre ce bruit comme l'on fait, il faut bien qu'on entende les parties qui composent ce tout, "
               "c'est-à-dire les bruits de chaque vague…", "c_mer"),
         "{-c_mer}{-leib}{mer}Chaque vague, seule, je ne l'entendrais pas. {mer.1}Et pourtant, il faut bien qu'elle m'affecte un peu. "
@@ -81,6 +82,10 @@ SCENES = [
         "{cont.2}Mais chez lui, rien de menaçant : entre l'obscur et le clair, il y a une continuité, comme entre la nuit et l'aube.",
         "{-cont}{-tab_vag2}",
     ], vis={
+        "n_leib": dict(type="liste", titre="Nouveaux Essais (vers 1704)", items=[
+            "Une réponse à Locke, page après page",
+            "Locke et Descartes : pas de pensée sans conscience",
+            "Leibniz : si, il y en a"], marques=["1", "2", "3"], x=640, y=150, w=570),
         "leib": dict(type="portrait", annee=1646, img="leibniz", nom="Gottfried Wilhelm Leibniz", dates="1646 – 1716",
                      legende="Nouveaux Essais sur l'entendement humain (1704, publiés en 1765)", x=110, y=120, w=330, h=420),
         "tab_vag": dict(type="tableau", img="cs3-vague", fond=True, sombre=True, de=[1.0, .5, .55], a=[1.3, .45, .6],
@@ -224,7 +229,8 @@ SCENES = [
          beats=[
         "{nietz}{tab_sil}Le troisième soupçon est le plus radical. Friedrich Nietzsche, philologue devenu philosophe, "
         "écrit Le Gai Savoir dans les années 1880, entre l'Italie et les montagnes suisses de Sils-Maria. "
-        "Pour lui, nous surestimons de beaucoup notre conscience.",
+        "{n_nie}Pour lui, nous surestimons de beaucoup notre conscience.",
+        "{-n_nie}",
         ("C", "Le conscient est l'évolution dernière et tardive du système organique, et par conséquent aussi ce qu'il y a "
               "dans ce système de moins achevé et de moins fort.", "c_tard"),
         "{-c_tard}{-nietz}{-tab_sil}{tab_gs}{tard}Nous croyons que la conscience est le centre, le noyau de l'homme. "
@@ -245,6 +251,8 @@ SCENES = [
         "chacun est, pour soi-même, le plus lointain.",
         "{-inconnus}{-tab_ens}",
     ], vis={
+        "n_nie": dict(type="note", titre="Le Gai Savoir (1882)", cles=["surestimons"],
+                     t="Nous surestimons de beaucoup notre conscience.", x=640, y=150, w=570),
         "nietz": dict(type="portrait", annee=1844, img="nietzsche", nom="Friedrich Nietzsche", dates="1844 – 1900",
                       legende="Le Gai Savoir (1882 ; livre V, 1887)", x=110, y=120, w=330, h=420),
         "tab_sil": dict(type="tableau", img="dv4-sils", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .45],
@@ -277,9 +285,9 @@ SCENES = [
          beats=[
         "{alain}{tab_h4}{plus3}Pour aller plus loin, écoutons un contradicteur. Alain, de son vrai nom Émile Chartier, "
         "professeur de philosophie au lycée Henri-Quatre, à Paris, pendant plus de vingt ans.",
-        "Alain ne nie pas que l'homme soit obscur à lui-même : nos humeurs, nos gestes, notre corps nous échappent sans cesse. "
+        "{n_al}Alain ne nie pas que l'homme soit obscur à lui-même : nos humeurs, nos gestes, notre corps nous échappent sans cesse. "
         "Mais il se méfie de l'inconscient de Freud.",
-        "{-alain}{-plus3}{al}Ce qui le gêne, c'est l'idée d'un autre moi, caché, qui penserait et voudrait à ma place. "
+        "{-alain}{-n_al}{-plus3}{al}Ce qui le gêne, c'est l'idée d'un autre moi, caché, qui penserait et voudrait à ma place. "
         "{al.1}Un double, un petit diable intérieur. {al.2}Car alors, tout devient commode : ce n'est pas moi, c'est mon inconscient.",
         "{-tab_h4}{tab_cl}{al.3}Pour Alain, penser, c'est justement dire non, juger, se reprendre. La conscience est toujours, "
         "au fond, morale : un effort, une {#la liberté}liberté qui choisit de se tenir éveillée.",
@@ -295,6 +303,9 @@ SCENES = [
         "se connaître n'est pas un fait, c'est un travail.",
         "{-copie}{-tab_voy}",
     ], vis={
+        "n_al": dict(type="note", titre="Alain, un contradicteur", cles=["obscur", "méfie"],
+                    t="L'homme est obscur à lui-même : humeurs, gestes, corps nous échappent.",
+                    etape="Mais Alain se méfie de l'inconscient de Freud.", x=640, y=150, w=570),
         "alain": dict(type="portrait", annee=1868, img="alain", nom="Alain (Émile Chartier)", dates="1868 – 1951",
                       legende="Éléments de philosophie (1916) · Propos", x=110, y=120, w=330, h=420),
         "tab_h4": dict(type="tableau", img="cs3-henri4", fond=True, sombre=True, de=[1.0, .5, .4], a=[1.25, .5, .45],
