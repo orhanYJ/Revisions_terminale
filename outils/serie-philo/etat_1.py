@@ -375,7 +375,7 @@ QUIZ = [
 
 CREDITS = [
     "Portraits : Max Weber (photographie, 1918) ; Jean-Jacques Rousseau (Maurice Quentin de La Tour, 1753) ; "
-    "Hannah Arendt (photographie, voir les crédits de la série « Le devoir »)",
+    "Hannah Arendt (photographie anonyme, 1933)",
     "Tableaux et fresques : Gustave Caillebotte, Rue de Paris, temps de pluie (1877) ; Albert Anker, L'École du village en 1848 (1896) ; "
     "Pieter Brueghel le Jeune, Le Paiement de l'impôt (1620-1640) ; Ambrogio Lorenzetti, Allégorie et Effets du bon gouvernement "
     "(1338-1339) ; Hyacinthe Rigaud, Louis XIV (1701) ; Alfred-Henri Bramtot, Le Suffrage universel (1891) ; "
