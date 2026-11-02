@@ -17,7 +17,8 @@ NOTION = "Méthodes chimiques d'analyse"
 NUM = 3
 TITRE = "Méthodes chimiques d'analyse"
 SUIVANT = "Chapitre 4 · La lumière, un flux de photons"
-PRONONCIATION = {"Kohlrausch": "Kolraouch", "Latis": "Latisse", "matplotlib": "mat plot lib"}
+PRONONCIATION = {"Kohlrausch": "Kolraouch", "Latis": "Latisse", "matplotlib": "mat plot lib",
+                 "pH-métrique": "pé hache métrique", "pH-mètre": "pé hache mètre", "pH": "pé hache"}
 
 
 def fr(a, b):
