@@ -11,8 +11,10 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 
 
 def fermer(module):
-    code = module.replace("_", "-")
     P = os.path.join(ICI, module + ".py")
+    if not os.path.exists(P):            # vidéos de cours PC : outils/serie-pc/
+        P = os.path.join(os.path.dirname(ICI), "serie-pc", module + ".py")
+    code = re.search(r'^CODE = "([^"]+)"', open(P, encoding="utf-8").read(), re.M).group(1)
     s = open(P, encoding="utf-8").read()
     n = 0
     for _, _, a, ta, b, tb in chevauchements(code):

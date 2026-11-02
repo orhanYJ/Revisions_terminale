@@ -1,9 +1,9 @@
-const CACHE = 'pc-v35';
+const CACHE = 'pc-v36';
 /* Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
 const ANIMS = ['photon', 'photoelec', 'cellule', 'acidebase', 'beerlambert', 'conductivite', 'titrage', 'lunette'];
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png',
-  './anim/moteur.css?v=3', './anim/moteur.js?v=3'].concat(ANIMS.map(function (a) { return './anim/' + a + '.html'; }));
+  './anim/moteur.css?v=4', './anim/moteur.js?v=4'].concat(ANIMS.map(function (a) { return './anim/' + a + '.html'; }));
 
 self.addEventListener('install', function (e) {
   e.waitUntil(
@@ -22,9 +22,11 @@ self.addEventListener('activate', function (e) {
 self.addEventListener('fetch', function (e) {
   if (e.request.method !== 'GET') return;
   var url = new URL(e.request.url);
+  // Vidéos de cours (serie/) : le son est lu par plages, le service worker le laisse passer
+  if (url.pathname.endsWith('.mp3')) return;
 
   // Pages : reseau d'abord, cache en secours (hors ligne).
-  // La page d'accueil sous la cle './index.html', une animation sous sa propre adresse (sans parametres).
+  // La page d'accueil sous la cle './index.html', une animation ou une vidéo (serie/*.html) sous sa propre adresse (sans parametres).
   if (e.request.mode === 'navigate' || url.pathname.endsWith('.html')) {
     var accueil = url.pathname.endsWith('/') || url.pathname.endsWith('/index.html');
     var cle = accueil ? './index.html' : url.origin + url.pathname;

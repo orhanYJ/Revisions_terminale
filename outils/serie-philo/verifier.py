@@ -10,23 +10,27 @@ import importlib, os, re, sys
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 sys.path.insert(0, ICI)
+sys.path.insert(1, os.path.join(os.path.dirname(ICI), "serie-pc"))
 MARQUE = re.compile(r"\{([-!#]?)([^{}]+)\}")
 TYPES = {"titre", "chapitre", "mot", "question", "nuage", "def", "note", "tag", "cit", "portrait", "cols", "cartes", "liste",
-         "dialogue", "frise", "tableau", "illu", "carte", "frappe", "flash", "generique", "notion"}
+         "dialogue", "frise", "tableau", "illu", "carte", "frappe", "flash", "generique", "notion",
+         "anim", "formule", "graphe", "exo", "pause"}
 NOTIONS = {"l'art", "le bonheur", "la conscience", "le devoir", "l'état", "l'inconscient", "la justice", "le langage", "la liberté",
            "la nature", "la raison", "la religion", "la science", "la technique", "le temps", "le travail", "la vérité"}
 MOTS_PAR_S = 2.9       # débit du narrateur (calé sur l'épisode 1 : 13,6 min réelles)
 
 
-def illus_connues():
-    js = open(os.path.join(RACINE, "philo", "serie", "moteur.js"), encoding="utf-8").read()
+def illus_connues(site="philo"):
+    js = open(os.path.join(RACINE, site, "serie", "moteur.js"), encoding="utf-8").read()
     return set(re.findall(r"ILLU\.(\w+) = function", js))
 
 
 def verifier(nom):
     ep = importlib.import_module(nom)
+    site = getattr(ep, "SITE", "philo")
+    IMG = os.path.join(RACINE, site, "serie", "img")
     err, mots, secondes = [], 0, 0.0
-    ill = illus_connues()
+    ill = illus_connues(site)
     for attr in ("CODE", "NOTION", "NUM", "TITRE", "SUIVANT", "SCENES", "QUIZ"):
         if not hasattr(ep, attr):
             err.append(f"attribut manquant : {attr}")
@@ -95,12 +99,29 @@ def verifier(nom):
             if t == "illu" and spec.get("nom") not in ill:
                 err.append(f"[{sc['id']}] illustration inconnue du moteur : {spec.get('nom')} ({ident})")
             for cle in ("img",):
-                if spec.get(cle) and not os.path.exists(os.path.join(RACINE, "philo", "serie", "img", spec[cle] + ".jpg")):
+                if spec.get(cle) and not os.path.exists(os.path.join(IMG, spec[cle] + ".jpg")):
                     err.append(f"[{sc['id']}] image absente : img/{spec[cle]}.jpg ({ident})")
             if t == "frise":
                 for it in spec.get("items", []):
-                    if it.get("img") and not os.path.exists(os.path.join(RACINE, "philo", "serie", "img", it["img"] + ".jpg")):
+                    if it.get("img") and not os.path.exists(os.path.join(IMG, it["img"] + ".jpg")):
                         err.append(f"[{sc['id']}] image de frise absente : {it['img']}")
+            if t == "anim":
+                if not os.path.exists(os.path.join(RACINE, site, "anim", str(spec.get("nom")) + ".html")):
+                    err.append(f"[{sc['id']}] animation absente : {site}/anim/{spec.get('nom')}.html ({ident})")
+                nseg = len(spec.get("seg", [[0, 1]]))
+                hors = sorted(x for x in etapes_k.get(ident, ()) if x.isdigit() and not 1 <= int(x) <= nseg)
+                if hors:
+                    err.append(f"[{sc['id']}] animation {ident} : repères {hors} au-delà des {nseg} segments")
+            if t == "graphe":
+                nel = len(spec.get("el", []))
+                hors = sorted(x for x in etapes_k.get(ident, ()) if x.isdigit() and not 1 <= int(x) <= nel)
+                if hors:
+                    err.append(f"[{sc['id']}] graphe {ident} : repères {hors} au-delà des {nel} éléments")
+            if t == "formule":
+                nl = len(spec.get("lignes", []))
+                hors = sorted(x for x in etapes_k.get(ident, ()) if x.isdigit() and not 1 <= int(x) <= nl)
+                if hors:
+                    err.append(f"[{sc['id']}] formule {ident} : repères {hors} au-delà des {nl} lignes")
             if t == "tableau" and not spec.get("legende"):
                 err.append(f"[{sc['id']}] tableau sans légende (auteur, licence) : {ident}")
         for x in sc.get("notions", []):

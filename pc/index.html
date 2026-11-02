@@ -465,6 +465,8 @@ html.mo .fig.sc-attente svg[role="img"]{opacity:0}
 .isch .isch-defis details[open]>summary::before{content:"▾ "}
 .isch input[type=range]{width:100%;accent-color:var(--orange)}
 @media print{.isch{display:none}}
+.video-c{margin:16px 0 8px;border-radius:16px;overflow:hidden;background:#120c07;box-shadow:var(--shadow)}
+.video-c iframe{display:block;width:100%;height:760px;border:0;background:#120c07;color-scheme:dark}
 figure.animfig{margin:18px 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 12px 12px;box-shadow:var(--shadow)}
 figure.animfig .stitle{display:flex;align-items:center;gap:10px;font-family:'Avenir Next','Segoe UI',sans-serif;font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);margin-bottom:10px}
 figure.animfig iframe{display:block;width:100%;height:780px;border:0;background:transparent;color-scheme:light}
@@ -5646,6 +5648,7 @@ for i in range(0, 41):
     <div class="grand-eq">E = h · ν &nbsp;&nbsp;·&nbsp;&nbsp; h · ν = Φ + E<sub>c</sub></div>
   </div>
   <nav class="pills">
+    <a href="#c4-video">▶ Vidéo du cours</a>
     <a href="#c4-rappels">Rappels lycée</a>
     <a href="#c4-cours">Cours complet</a>
     <a href="#c4-formules">Toutes les formules</a>
@@ -5654,6 +5657,14 @@ for i in range(0, 41):
     <a href="#c4-qcm">QCM express</a>
     <a href="#c4-fiche">Fiche mémo</a>
   </nav>
+<section class="part" id="c4-video">
+<h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M10 9v6l5-3z"/></svg>Le cours en vidéo<small>Tout le chapitre, de zéro au bac, puis trois exercices corrigés</small></h2>
+<div class="prose">
+<p>Une vidéo d'une demi-heure qui reprend <strong>tout le chapitre depuis le début</strong> : l'onde et le photon, les niveaux d'énergie, l'effet photoélectrique, les cellules et leur rendement. Elle se termine par <strong>trois exercices corrigés</strong> : un simple, un plus difficile et un type bac.</p>
+<p>Avant chaque correction, la vidéo <strong>s'arrête d'elle-même</strong> pour te laisser chercher sur une feuille (bouton <span aria-hidden="true">⏸</span> en bas à droite pour désactiver ces arrêts). Les chapitres, sous l'image, permettent de revoir un passage, et un quiz t'attend sous la vidéo.</p>
+</div>
+<div class="video-c"><iframe src="serie/ch4.html?embed=1" title="Chapitre 4 — La lumière, un flux de photons : le cours en vidéo" allow="fullscreen; autoplay" allowfullscreen loading="lazy" data-serie="ch4"></iframe></div>
+</section>
 <section class="part" id="c4-rappels">
 <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>Rappels lycée<small>Ce que le chapitre suppose acquis</small></h2>
 <div class="prose">
@@ -8634,6 +8645,10 @@ function onglet(id,defiler){
   parts.forEach(function(p){ if(p.id===id){trouve=true;} });
   if(!trouve){id=parts[0].id;}
   parts.forEach(function(p){ p.classList.toggle('vu', p.id===id); });
+  /* une vidéo de cours qui n'est plus à l'écran se met en pause */
+  document.querySelectorAll('iframe[data-serie]').forEach(function(fr){
+    if(!fr.closest('.part.vu') || !fr.closest('.page.on')){ try{ fr.contentWindow.postMessage({type:'serie-pause'}, '*'); }catch(err){} }
+  });
   var nav=page.querySelector('.pills'), actif=null;
   if(nav){
     nav.querySelectorAll('a').forEach(function(a){
@@ -9719,6 +9734,10 @@ document.querySelectorAll('[data-anim]').forEach(function(slot){
 });
 window.addEventListener('message', function(e){
   var d=e.data||{};
+  if(d.type==='serie-h' && d.h){   /* vidéo de cours (serie/*.html) : hauteur du lecteur et du quiz */
+    document.querySelectorAll('iframe[data-serie]').forEach(function(fr){ if(fr.contentWindow===e.source) fr.style.height=Math.ceil(d.h)+'px'; });
+    return;
+  }
   if(d.type!=='anim-h' && d.type!=='anim-goto') return;
   document.querySelectorAll('iframe[data-anim-id]').forEach(function(fr){
     if(fr.contentWindow!==e.source) return;
