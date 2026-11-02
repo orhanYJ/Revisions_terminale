@@ -286,7 +286,7 @@ SCENES = [
         "{-al}{rep}Alors, qui a raison ? Il faut peut-être les entendre ensemble. {rep.g}Freud montre que la conscience "
         "n'est pas transparente : elle ne voit pas tout. {rep.d}Alain rappelle qu'elle reste le seul lieu où l'on peut se reprendre.",
         "{-rep}{sartre_l}Sartre, on l'a vu dans la série sur la liberté, ira plus loin encore : invoquer l'inconscient, "
-        "pour lui, c'est de la mauvaise foi. Nous le retrouverons dans l'épisode suivant.",
+        "pour lui, c'est de la mauvaise foi : une façon de se cacher sa propre liberté.",
         "{-sartre_l}{-tab_cl}{tab_voy}{tache}Freud lui-même fixait ce but à la psychanalyse : {tache.1}là où était le ça, "
         "le moi doit advenir. Rendre conscient ce qui ne l'était pas.",
         ("La conscience n'est pas un donné, transparent dès le départ. C'est une tâche.", {"rate": "-5%"}),
