@@ -18,7 +18,7 @@ import voix  # noqa: E402
 
 RACINE = os.path.abspath(os.path.join(ICI, "..", ".."))
 SORTIE = os.path.join(RACINE, "dnl", "cartes")
-V = 7
+V = 8
 
 PAGE = """<!doctype html>
 <html lang="fr">
