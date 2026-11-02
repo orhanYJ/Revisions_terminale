@@ -607,7 +607,7 @@ SCENES = [
         "{s24.2}Zéro virgule vingt et un fois dix puissance moins trois, sur un virgule soixante fois dix puissance moins dix-neuf : un virgule trois fois dix puissance quinze. "
         "{s24.3}Dix fois moins que de photons. Environ un photon sur dix arrache un électron qui atteint l'anode.",
         "{-s24}{ex2c.q5}{s25}{s25.1}Question cinq : calculons la longueur d'onde seuil. Lambda zéro égale h c sur phi. "
-        "{s25.2}Phi en joules : un virgule quatre-vingt-dix fois un virgule soixante fois dix puissance moins dix-neuf. On trouve environ six cent cinquante-quatre nanomètres. "
+        "{s25.2}Phi en joules : un virgule quatre-vingt-dix, multiplié par un virgule soixante fois dix puissance moins dix-neuf. On trouve environ six cent cinquante-quatre nanomètres. "
         "{s25.3}Sept cent quatre-vingts nanomètres, c'est au-dessus du seuil : chaque photon infrarouge est trop peu énergétique. "
         "Aucun courant. Et ça ne dépend pas de la puissance du laser : même cent fois plus puissant, rien.",
         "{-s25}{-ex2c}",
@@ -662,7 +662,7 @@ SCENES = [
         "{s31.3}L'électron parcourt le circuit extérieur : c'est le courant. Plus il y a de photons absorbés, plus le courant est intense.",
         "{-s31}{ex3c.q2}{s32}{s32.1}Question deux. Attention aux centimètres carrés : quatre-vingts centimètres carrés, c'est huit fois dix puissance moins trois mètre carré. "
         "{s32.2}P reçue égale E fois S : huit cents fois huit fois dix puissance moins trois, six virgule quatre watts.",
-        "{-s32}{ex3c.q3}{gr_jp}Question trois. On calcule U fois I pour chaque point, et on trace la puissance. {gr_jp.1}"
+        "{-s32}{ex3c.q3}{gr_jp}Question trois. Pour chaque point, on multiplie la tension par l'intensité, et on trace la puissance. {gr_jp.1}"
         "{gr_jp.2}Le maximum est atteint vers quatre virgule deux volts, avec deux cent vingt-six milliampères : environ zéro virgule quatre-vingt-quinze watt.",
         "{-gr_jp}{s33}{s33.1}Le rendement vaut zéro virgule quatre-vingt-quinze sur six virgule quatre : {s33.2}environ zéro virgule quinze. Quinze pour cent. "
         "C'est cohérent avec les panneaux du commerce.",
