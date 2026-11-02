@@ -1,4 +1,4 @@
-"""Scènes de la carte animée H3 « World War Two » (cours de M. Ros, introduction à II.2, jusqu'au 2 février 1943).
+"""Scènes de la carte animée H3 « World War Two » (cours de M. Ros, tout le chapitre : introduction à III.3, jusqu'en octobre 1943).
 Content gate : seulement ce qui a été vu en classe ; ce qui vient d'ailleurs porte la balise [hors].
 Caméra : [longitude, latitude, zoom] (zoom 1 = globe entier dans la hauteur de la carte).
 st : couleurs cumulatives par pièce, [remplissage, couleur des hachures] (None = rien).
@@ -11,7 +11,10 @@ PARTIES = {
     "I.2": {"fr": "La résistance britannique soutenue par les États-Unis", "en": "The British resistance supported by the US"},
     "II.1": {"fr": "Les projets allemands pour l'Europe de l'Est", "en": "German plans for Eastern Europe"},
     "II.2": {"fr": "Barbarossa : une guerre d'anéantissement", "en": "Barbarossa: a war of annihilation"},
-    "Bilan": {"fr": "Le Nouvel Ordre européen en 1942", "en": "The New European Order in 1942"},
+    "III.1": {"fr": "Les Juifs pris au piège et persécutés", "en": "The Jews stranded and persecuted"},
+    "III.2": {"fr": "Le rôle des Einsatzgruppen", "en": "Role of the Einsatzgruppen"},
+    "III.3": {"fr": "Les centres de mise à mort", "en": "Killing centres"},
+    "Bilan": {"fr": "Le Nouvel Ordre européen et le génocide", "en": "The New European Order and the genocide"},
 }
 
 # palette (celle des fiches PDF)
@@ -120,6 +123,43 @@ LABELS = {
     "casablanca": {"p": [-7.60, 33.57], "fr": "Casablanca", "en": "Casablanca", "t": "evt"},
     "oran": {"p": [-0.63, 35.70], "fr": "Oran", "en": "Oran", "t": "evt", "dx": -7},
     "alger": {"p": [3.06, 36.75], "fr": "Alger", "en": "Algiers", "t": "evt"},
+    # partie III
+    "lodz": {"p": [19.46, 51.76], "fr": "Lodz", "en": "Lodz", "t": "ville", "dx": -7},
+    "cracovie": {"p": [19.94, 50.06], "fr": "Cracovie", "en": "Krakow", "t": "ville", "dx": -7},
+    "lublin": {"p": [22.57, 51.25], "fr": "Lublin", "en": "Lublin", "t": "ville"},
+    "czesto": {"p": [19.12, 50.81], "fr": "Czestochowa", "en": "Czestochowa", "t": "ville", "dx": -7},
+    "kielce": {"p": [20.63, 50.87], "fr": "Kielce", "en": "Kielce", "t": "ville"},
+    "siedlce": {"p": [22.26, 52.17], "fr": "Siedlce", "en": "Siedlce", "t": "ville", "dy": 10},
+    "riga": {"p": [24.11, 56.95], "fr": "Riga", "en": "Riga", "t": "ville"},
+    "vilna": {"p": [25.28, 54.69], "fr": "Vilna", "en": "Vilna", "t": "ville"},
+    "kovno": {"p": [23.90, 54.90], "fr": "Kovno", "en": "Kovno", "t": "ville", "dx": -7},
+    "lvov": {"p": [24.03, 49.84], "fr": "Lvov", "en": "Lvov", "t": "ville"},
+    "odessa": {"p": [30.73, 46.48], "fr": "Odessa", "en": "Odessa", "t": "ville"},
+    "liepaja": {"p": [21.01, 56.51], "fr": "Liepaja", "en": "Liepaja", "t": "evt", "dx": -7},
+    "babiyar": {"p": [30.45, 50.47], "fr": "Babi Yar", "en": "Babi Yar", "t": "evt", "dx": -7},
+    "chelmno": {"p": [18.73, 52.15], "fr": "Chelmno", "en": "Chelmno", "t": "evt", "dx": -7},
+    "treblinka": {"p": [22.05, 52.63], "fr": "Treblinka", "en": "Treblinka", "t": "evt"},
+    "sobibor": {"p": [23.59, 51.45], "fr": "Sobibor", "en": "Sobibor", "t": "evt"},
+    "majdanek": {"p": [22.60, 51.22], "fr": "Majdanek", "en": "Majdanek", "t": "evt", "dx": -7},
+    "belzec": {"p": [23.46, 50.37], "fr": "Belzec", "en": "Belzec", "t": "evt"},
+    "auschwitz": {"p": [19.18, 50.03], "fr": "Auschwitz", "en": "Auschwitz", "t": "evt", "dx": -7},
+    "ega": {"p": [28.6, 58.6], "fr": "Einsatzgruppe A", "en": "Einsatzgruppe A", "t": "evt", "dx": 8},
+    "egb": {"p": [32.2, 54.6], "fr": "Einsatzgruppe B", "en": "Einsatzgruppe B", "t": "evt", "dx": 8},
+    "egc": {"p": [32.6, 50.0], "fr": "Einsatzgruppe C", "en": "Einsatzgruppe C", "t": "evt", "dx": 8},
+    "egd": {"p": [34.6, 45.0], "fr": "Einsatzgruppe D", "en": "Einsatzgruppe D", "t": "evt", "dx": 8},
+    "j_pol": {"p": [21.2, 52.7], "fr": "Pologne : 3 000 000", "en": "Poland: 3,000,000"},
+    "j_urss": {"p": [33.0, 55.5], "fr": "URSS : 2 525 000", "en": "USSR: 2,525,000"},
+    "j_all": {"p": [9.0, 50.4], "fr": "Allemagne : 565 000", "en": "Germany: 565,000"},
+    "j_rou": {"p": [25.5, 45.6], "fr": "Roumanie : 980 000", "en": "Romania: 980,000"},
+    "j_fra": {"p": [2.4, 46.9], "fr": "France : 225 000", "en": "France: 225,000"},
+    "j_hon": {"p": [18.6, 47.3], "fr": "Hongrie : 445 000", "en": "Hungary: 445,000"},
+    "k_pol": {"p": [19.6, 52.4], "fr": "Pologne : 90 %", "en": "Poland: 90%"},
+    "k_lit": {"p": [25.6, 56.5], "fr": "Lituanie : 97 %", "en": "Lithuania: 97%"},
+    "k_urss": {"p": [33.0, 53.4], "fr": "URSS : 23 %", "en": "USSR: 23%"},
+    "k_hon": {"p": [19.3, 47.1], "fr": "Hongrie : 76 %", "en": "Hungary: 76%"},
+    "k_pb": {"p": [3.2, 53.7], "fr": "Pays-Bas : 71 %", "en": "Netherlands: 71%"},
+    "k_fra": {"p": [2.4, 46.9], "fr": "France : 28 %", "en": "France: 28%"},
+    "k_ita": {"p": [12.8, 42.6], "fr": "Italie : 16 %", "en": "Italy: 16%", "c": "w"},
 }
 
 F0 = [(21.1, 55.75), (21.6, 55.2), (22.6, 55.0), (22.9, 54.4), (23.5, 53.95), (23.9, 53.2), (23.6, 52.6), (23.65, 52.1), (24.1, 51.6), (24.05, 50.9),
@@ -225,6 +265,11 @@ def etat(k):
 
 HL = {}
 TRI = {
+    "Les Juifs de Pologne enfermés dans des ghettos": [1939, 10, 1],
+    "Le ghetto de Varsovie : 440 000 Juifs sur 4 km²": [1941, 3, 0],
+    "Les Einsatzgruppen : la « Shoah par balles »": [1941, 6, 24],
+    "Six centres de mise à mort en Pologne occupée": [1941, 12, 8],
+    "Le génocide : 6 millions de Juifs assassinés": [1943, 12, 0],
     "La drôle de guerre": [1939, 9, 3],
     "Le Royaume-Uni seul : deux stratégies allemandes": [1940, 6, 25],
     "L'avance allemande ; la terre brûlée": [1941, 6, 23],
@@ -477,7 +522,56 @@ def scenes():
     # ---------------- bilan
     add("Bilan", 18, [17, 50, 2.2], L("Fin 1942", "Late 1942"),
         L("Le Nouvel Ordre européen", "The New European Order"),
-        L("L'Europe nazie au plus loin : une entité raciale, le Lebensraum à l'Est, la croisade anticommuniste, le Grossraum économique, des hommes, des biens et de l'argent pour la guerre totale. Trois cinquièmes des morts de la guerre tombent sur le front de l'Est. La suite du chapitre (partie III, la politique raciale et le génocide) n'a pas encore été vue en classe.",
-          "Nazi Europe at its furthest: a racial entity, Lebensraum in the East, the anti-communist crusade, the economic Grossraum, people, goods and money for total war. Three-fifths of the war's dead fell on the Eastern Front. The rest of the chapter (Part III, racial policy and genocide) has not yet been studied in class."),
+        L("L'Europe nazie au plus loin : une entité raciale, le Lebensraum à l'Est, la croisade anticommuniste, le Grossraum économique, des hommes, des biens et de l'argent pour la guerre totale. Trois cinquièmes des morts de la guerre tombent sur le front de l'Est.",
+          "Nazi Europe at its furthest: a racial entity, Lebensraum in the East, the anti-communist crusade, the economic Grossraum, people, goods and money for total war. Three-fifths of the war's dead fell on the Eastern Front."),
         front="F42", labels=["l_all", "l_urss", "l_ru", "l_ita", "l_fra", "l_esp", "l_sue", "l_fin"], cles=["reich", "occ", "allie", "ital", "urss", "uk", "neutre", "front"])
+    # ---------------- III : la politique raciale nazie, vers le génocide
+    add("III.1", 15, [21, 50.5, 3.3], L("Vers 1933", "Around 1933"),
+        L("9,5 millions de Juifs en Europe, surtout à l'Est", "9.5 million Jews in Europe, mostly in the East"),
+        L("La carte du cours compte environ 9,5 millions de Juifs en Europe vers 1933, dont 6,76 millions en Europe de l'Est. Les plus grandes communautés sont en Pologne (3 millions) et en URSS (2,5 millions) ; l'Allemagne n'en compte que 565 000. Conquérir l'Est, c'est faire passer la plupart des Juifs d'Europe sous la domination nazie.",
+          "The course map counts about 9.5 million Jews in Europe around 1933, 6.76 million of them in Eastern Europe. The largest communities were in Poland (3 million) and the USSR (2.5 million); Germany had only 565,000. Conquering the East meant bringing most of Europe's Jews under Nazi rule."),
+        labels=["j_pol", "j_urss", "j_all", "j_rou", "j_fra", "j_hon"], cles=["reich", "urss", "neutre"])
+    add("III.1", 15, [20.6, 51.3, 8.5], L("1939-1941", "1939–1941"),
+        L("Les Juifs de Pologne enfermés dans des ghettos", "The Jews of Poland locked into ghettos"),
+        L("En Pologne occupée, les Allemands enferment les Juifs dans des ghettos, des quartiers fermés des villes, surtout dans le Gouvernement général : Varsovie, Lodz, Cracovie, Lublin, Kielce, Czestochowa. Isolés, dépouillés, affamés, ils sont rassemblés en des lieux d'où ils pourront être déportés.",
+          "In occupied Poland, the Germans locked the Jews into ghettos, closed districts of the cities, mostly in the General Government: Warsaw, Lodz, Krakow, Lublin, Kielce, Czestochowa. Isolated, dispossessed and starved, they were gathered in places from which they could be deported."),
+        pins=["varsovie", "lodz", "cracovie", "lublin"], cles=["reich", "occ", "su"])
+    add("III.1", 15, [21.0, 52.23, 12], L("1941-1942", "1941–1942"),
+        L("Le ghetto de Varsovie : 440 000 Juifs sur 4 km²", "The Warsaw ghetto: 440,000 Jews in 4 km²"),
+        L("440 000 Juifs enfermés sur 4 km² derrière un mur de 3 mètres de haut et de 18 km de long ; après la réduction de 1941, 146 000 habitants au km². La faim et les maladies tuent en masse : en 1942, une naissance pour 45 décès. Les cadavres sont ramassés chaque nuit dans les rues.",
+          "440,000 Jews locked up in 4 km² behind a wall 3 metres high and 18 km long; after the reduction of 1941, 146,000 inhabitants per km². Hunger and disease killed on a massive scale: in 1942, one birth for every 45 deaths. Corpses were picked up in the streets every night."),
+        pins=["varsovie"], cles=["occ"])
+    add("III.2", 16, [28, 53, 3.0], L("Dès juin 1941", "From June 1941"),
+        L("Les Einsatzgruppen : la « Shoah par balles »", "The Einsatzgruppen: the “Shoah by bullets”"),
+        L("Derrière l'armée qui envahit l'URSS, quatre unités mobiles de tuerie de la SS et de la police, les Einsatzgruppen A, B, C et D, fusillent les Juifs au bord de fosses, mais aussi des responsables communistes et des Roms. Aidés par des auxiliaires locaux, ils tuent plus d'un million de Juifs soviétiques [hors]. Babi Yar, près de Kiev : 33 771 Juifs fusillés en deux jours, fin septembre 1941 [hors].",
+          "Behind the army invading the USSR, four mobile killing squads of the SS and police, Einsatzgruppen A, B, C and D, shot Jews at the edge of pits, as well as communist officials and Roma. Helped by local auxiliaries, they killed more than a million Soviet Jews [hors]. Babi Yar, near Kiev: 33,771 Jews shot in two days, late September 1941 [hors]."),
+        front="F41", labels=["ega", "egb", "egc", "egd", "liepaja"], pins=["babiyar"], cles=["occ", "allie", "urss", "front"],
+        arrows=[F((22.4, 55.2), (28.4, 58.4), NOIR, -0.15, w=3.0, dash=True, id="egA", dur=2.4), F((24.0, 53.3), (32.0, 54.5), NOIR, -0.1, w=3.0, dash=True, id="egB", dur=2.6),
+                F((24.6, 50.6), (32.4, 50.0), NOIR, 0.08, w=3.0, dash=True, id="egC", dur=2.6), F((28.4, 47.2), (34.4, 45.1), NOIR, 0.12, w=3.0, dash=True, id="egD", dur=2.6)])
+    add("III.3", 16, [21.2, 51.3, 7.5], L("Dès décembre 1941", "From December 1941"),
+        L("Six centres de mise à mort en Pologne occupée", "Six killing centres in occupied Poland"),
+        L("À partir de décembre 1941, six centres de mise à mort fonctionnent en Pologne occupée : Chelmno, Treblinka, Sobibor, Belzec, Majdanek, Auschwitz. Les Juifs y sont gazés dès leur arrivée, sauf quelques esclaves forcés de faire disparaître les corps. À Auschwitz et Majdanek, le Zyklon B et la sélection pour le travail forcé.",
+          "From December 1941, six killing centres operated in occupied Poland: Chelmno, Treblinka, Sobibor, Belzec, Majdanek, Auschwitz. Jews were gassed on arrival, except a few slaves forced to dispose of the bodies. At Auschwitz and Majdanek, Zyklon B and selection for slave labour."),
+        front="F41", pins=["chelmno", "treblinka", "sobibor", "majdanek", "belzec", "auschwitz"], cles=["reich", "occ", "su"])
+    add("III.3", 16, [21.6, 52.4, 36], L("Juillet 1942", "July 1942"),
+        L("Treblinka", "Treblinka"),
+        L("Construit en juillet 1942 au nord-est de Varsovie, Treblinka reçoit des trains entiers venus des ghettos, surtout de Varsovie : 6 000 à 7 000 personnes par convoi, trompées par un panneau qui promet un bain puis du travail à l'est. Dès octobre 1942, ses chambres à gaz tuent 3 000 personnes par heure. Bilan : 876 000 morts.",
+          "Built in July 1942 north-east of Warsaw, Treblinka received whole trains from the ghettos, above all Warsaw: 6,000 to 7,000 people per train, deceived by a notice promising a bath and then work in the east. From October 1942 its gas chambers killed 3,000 people an hour. Toll: 876,000 dead."),
+        front="F42", pins=["treblinka"], labels=["varsovie", "siedlce"], cles=["occ"],
+        arrows=[F((21.05, 52.25), (21.95, 52.6), NOIR, -0.2, w=3.0, id="trW", dur=2.0), F((22.25, 52.18), (22.05, 52.55), NOIR, 0.25, w=2.6, id="trS", dur=1.8)])
+    add("III.1", 15, [21.0, 52.23, 12], L("19 avril - 16 mai 1943", "19 April – 16 May 1943"),
+        L("Le soulèvement du ghetto de Varsovie", "The Warsaw ghetto uprising"),
+        L("Quand les troupes allemandes entrent dans le ghetto pour déporter les derniers habitants, les Juifs se soulèvent. Les Allemands détruisent le ghetto maison par maison. Le 16 mai, le commandant SS Stroop annonce à Himmler : « Il n'y a plus de quartier juif à Varsovie ! »",
+          "When German troops entered the ghetto to deport its last inhabitants, the Jews rose up. The Germans destroyed the ghetto house by house. On 16 May, the SS commander Stroop told Himmler: “The Jewish Quarter of Warsaw is No More!”"),
+        pins=["varsovie"], cles=["occ"])
+    add("III.3", 15, [22.05, 52.63, 12], L("2 août 1943", "2 August 1943"),
+        L("La révolte de Treblinka", "The Treblinka revolt"),
+        L("700 Juifs esclaves se soulèvent et mettent le feu au camp ; parmi ceux qui s'enfuient, environ 70 survivent jusqu'à la fin de la guerre. Un cheminot photographie la fumée. Le centre est fermé en octobre 1943.",
+          "700 slave Jews rose up and set the camp on fire; of those who broke through, about 70 survived until the end of the war. A railway worker photographed the smoke. The centre was closed in October 1943."),
+        pins=["treblinka"], cles=["occ"])
+    add("Bilan", 18, [17, 50, 3.0], L("Bilan", "Toll"),
+        L("Le génocide : 6 millions de Juifs assassinés", "The genocide: 6 million Jews murdered"),
+        L("6 millions de Juifs sont assassinés, les deux tiers des Juifs d'Europe : gazés, fusillés, ou tués par le travail et les conditions de vie. La part des victimes varie selon les pays (carte du cours) : 90 % en Pologne, 97 % en Lituanie, 71 % aux Pays-Bas, 28 % en France, 16 % en Italie. Le Nouvel Ordre européen se voulait une « entité raciale ».",
+          "6 million Jews were murdered, two thirds of the Jews of Europe: gassed, shot, or killed by work and living conditions. The share of victims varied by country (course map): 90% in Poland, 97% in Lithuania, 71% in the Netherlands, 28% in France, 16% in Italy. The New European Order was meant to be a “racial entity”."),
+        labels=["k_pol", "k_lit", "k_urss", "k_hon", "k_pb", "k_fra", "k_ita"], cles=["reich", "occ", "allie", "ital", "urss"])
     return appliquer(S, HL, TRI, DATES)

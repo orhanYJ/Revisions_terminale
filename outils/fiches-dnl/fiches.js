@@ -131,15 +131,14 @@ module.exports = {
     frise: [
       ["1937", "Japan attacks southern China: war begins in Asia", "Le Japon attaque la Chine du Sud : la guerre commence en Asie"],
       ["1 Sept. 1939", "Germany invades Poland", "L'Allemagne envahit la Pologne"],
-      ["10 May 1940", "German attack in the west; Churchill PM", "Attaque allemande à l'ouest ; Churchill Premier ministre"],
       ["18 June 1940", "De Gaulle's appeal from London", "Appel du général de Gaulle depuis Londres"],
       ["22 June 1940", "Armistice at Rethondes", "Armistice de Rethondes"],
-      ["7 Sept. 1940", "The Blitz on London", "Le Blitz sur Londres"],
       ["22 June 1941", "Operation Barbarossa", "Opération Barbarossa"],
-      ["7–11 Dec. 1941", "Pearl Harbor; the war goes global", "Pearl Harbor ; la guerre devient mondiale"],
-      ["July 1942", "Mass arrests of Jews in France", "Arrestations massives de Juifs en France"],
+      ["Dec. 1941", "Pearl Harbor; first killing centre (Chelmno)", "Pearl Harbor ; premier centre de mise à mort (Chelmno)"],
+      ["July 1942", "Treblinka built; mass arrests of Jews in France", "Construction de Treblinka ; rafles de Juifs en France"],
       ["11 Nov. 1942", "Germany invades the “free zone”", "L'Allemagne envahit la « zone libre »"],
-      ["2 Feb. 1943", "Paulus capitulates at Stalingrad", "Paulus capitule à Stalingrad"]
+      ["2 Feb. 1943", "Paulus capitulates at Stalingrad", "Paulus capitule à Stalingrad"],
+      ["19 Apr. 1943", "Warsaw ghetto uprising", "Soulèvement du ghetto de Varsovie"]
     ],
     carte: {
       titre: ["Europe dominated by the Axis, and the war in the East (1939–1943)", "L'Europe dominée par l'Axe, et la guerre à l'Est (1939-1943)"],
