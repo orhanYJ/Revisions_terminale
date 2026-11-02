@@ -172,8 +172,8 @@ SCENES = [
                         legende="Plaque en hommage à Aristides de Sousa Mendes, Bayonne (photo Michel Bakni, CC BY-SA 4.0)"),
         "mendes": dict(type="portrait", annee=1885, img="sousa-mendes", nom="Aristides de Sousa Mendes", dates="1885 – 1954",
                        legende="Consul du Portugal à Bordeaux (1940)", x=110, y=120, w=330, h=420),
-        "tab_dam": dict(type="tableau", img="et6-dam", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .45, .45],
-                        legende="Gerrit Berckheyde, La place du Dam à Amsterdam, 1672 (Rijksmuseum)"),
+        "tab_dam": dict(type="tableau", img="et3-amsterdam", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .45, .45],
+                        legende="Gerrit Berckheyde, La Place du Dam et l'hôtel de ville d'Amsterdam, 1672"),
         "plan3b": dict(type="liste", titre="… et la troisième partie", items=[
             "III. Obéir en actes à l'État légitime, garder son jugement (Spinoza)"], marques=["III"], x=170, y=170, w=940),
         "os": dict(type="cols", g="L'obéissance", gq="suivre la loi, les yeux ouverts", d="La servitude",
@@ -211,7 +211,7 @@ SCENES = [
     ], vis={
         "spino": dict(type="portrait", annee=1632, img="spinoza", nom="Baruch Spinoza", dates="1632 – 1677",
                       legende="Traité théologico-politique (1670)", x=110, y=120, w=330, h=420),
-        "tab_ttp": dict(type="tableau", img="et6-ttp", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.25, .5, .35],
+        "tab_ttp": dict(type="tableau", img="et3-ttp", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.25, .5, .35],
                         legende="Tractatus theologico-politicus, 1670 : sans nom d'auteur, adresse fictive « Hambourg »"),
         "c_t1": dict(type="cit", a="Spinoza", o="Traité théologico-politique, chap. XX (1670), trad. Saisset", x=640, y=90, w=570),
         "c_t2": dict(type="cit", a="Spinoza", o="Traité théologico-politique, chap. XX (suite)", x=170, y=110, w=940),
@@ -306,8 +306,8 @@ SCENES = [
         ("P", 1.0),
         ("P", 4.5),
     ], vis={
-        "tab_dam2": dict(type="tableau", img="et6-dam", fond=True, sombre=True, de=[1.3, .4, .5], a=[1.0, .5, .5],
-                         legende="Gerrit Berckheyde, La place du Dam à Amsterdam, 1672 (Rijksmuseum)"),
+        "tab_dam2": dict(type="tableau", img="et3-amsterdam", fond=True, sombre=True, de=[1.3, .4, .5], a=[1.0, .5, .5],
+                         legende="Gerrit Berckheyde, La Place du Dam et l'hôtel de ville d'Amsterdam, 1672"),
         "rec": dict(type="carte", centre="L'ÉTAT AU BAC", branches=[
             dict(t="Lire le sujet", items=["ennemi · peut-on · toujours", "en fait / en droit"]),
             dict(t="Dépasser", items=["liberté naturelle / civile", "l'État / un maître", "obéissance / servitude"]),
