@@ -161,10 +161,10 @@ SCENES = [
         "{pol.2}Mais Ivan Karamazov demande : peut-on bâtir le bonheur sur les larmes d'un seul enfant ? "
         "{pol.3}En 1776, l'Amérique proclame le droit de rechercher le bonheur ; en 1794, Saint-Just lance sa formule.{-pol}",
         ("C", "Le bonheur est une idée neuve en Europe.", "c_sj"),
-        "{-c_sj}Quelques mois plus tard, en pleine Terreur, il est guillotiné. {pat}Kant, lui, refuse le gouvernement paternel. Tocqueville redoute un pouvoir immense et tutélaire, qui veut être "
-        "l'unique agent de notre bonheur et nous fixe dans l'enfance ; Huxley en fait un roman, où le Sauvage réclame "
+        "{-c_sj}{gard}{gard.1}Quelques mois plus tard, en pleine Terreur, il est guillotiné. {gard.2}Kant, lui, refuse le gouvernement paternel. {gard.3}Tocqueville redoute un pouvoir immense et tutélaire, qui veut être "
+        "l'unique agent de notre bonheur et nous fixe dans l'enfance ; {gard.4}Huxley en fait un roman, où le Sauvage réclame "
         "le droit d'être malheureux. "
-        "{pat.g}Faire le bonheur des citoyens : non. {pat.d}En garantir les conditions, la sécurité, la justice, la {#la liberté}liberté : oui.",
+        "{-gard}{pat}{pat.g}Faire le bonheur des citoyens : non. {pat.d}En garantir les conditions, la sécurité, la justice, la {#la liberté}liberté : oui.",
         "{-pat}{-tab_dec}",
     ], vis={
         "kant": dict(type="portrait", annee=1724, img="kant", nom="Emmanuel Kant", dates="1724 – 1804",
@@ -175,6 +175,11 @@ SCENES = [
             "Bentham : le plus grand bonheur du plus grand nombre",
             "Ivan Karamazov : les larmes d'un seul enfant",
             "1776 : le droit de rechercher le bonheur"], marques=["1", "2", "3"], x=170, y=150, w=940),
+        "gard": dict(type="liste", titre="Méfiance envers l'État qui rend heureux", items=[
+            "Saint-Just guillotiné, en pleine Terreur",
+            "Kant : contre le gouvernement paternel",
+            "Tocqueville : un pouvoir tutélaire qui nous garde dans l'enfance",
+            "Huxley : le droit d'être malheureux"], marques=["1", "2", "3", "4"], x=170, y=150, w=940),
         "c_sj": dict(type="cit", a="Saint-Just", o="rapport à la Convention, 3 mars 1794", x=170, y=240, w=940),
         "pat": dict(type="cols", g="Faire le bonheur des citoyens", gq="le gouvernement paternel, le despotisme doux",
                     d="En garantir les conditions", dq="sécurité, justice, libertés", vs="≠", repere="Kant, Tocqueville, Huxley"),
