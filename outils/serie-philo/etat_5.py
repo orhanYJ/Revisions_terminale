@@ -51,10 +51,10 @@ SCENES = [
          notions=["la justice", "la vérité", "la raison"],
          retenir="Platon : la cité juste, c'est chacun à sa place ; gouverner est un savoir, réservé aux philosophes. Objection : qui gardera les gardiens ?",
          beats=[
-        "{platon}{tab_aca}Pour comprendre ce rêve, il faut revenir à Athènes. En 399, un tribunal populaire a condamné à mort "
-        "Socrate, le maître de Platon : on l'a vu dans la série sur la liberté. Platon en garde une méfiance profonde envers "
-        "le pouvoir de la foule. Il fonde une école, l'Académie, et écrit la République.",
-        "{-platon}{-tab_aca}{tab_ath}{cite}Qu'est-ce qu'une cité juste ? Elle a trois parties. {cite.1}Ceux qui produisent : "
+        "{platon}{tab_aca}Pour comprendre ce rêve, il faut revenir à Athènes. {n_pl}{n_pl.1}En 399, un tribunal populaire a condamné à mort "
+        "Socrate, le maître de Platon : on l'a vu dans la série sur la liberté. {n_pl.2}Platon en garde une méfiance profonde envers "
+        "le pouvoir de la foule. {n_pl.3}Il fonde une école, l'Académie, et écrit la République.",
+        "{-platon}{-n_pl}{-tab_aca}{tab_ath}{cite}Qu'est-ce qu'une cité juste ? Elle a trois parties. {cite.1}Ceux qui produisent : "
         "paysans, artisans, marchands. {cite.2}Ceux qui la gardent : les guerriers. {cite.3}Et ceux qui gouvernent. "
         "La {#la justice}justice, c'est que chacun fasse ce pour quoi il est fait, sans empiéter sur la tâche des autres. "
         "Comme dans une âme bien réglée, où la raison commande au courage et aux désirs.",
@@ -74,6 +74,10 @@ SCENES = [
         "la vérité, et faire le bonheur des hommes malgré eux.",
         "{-obj}{-tab_aca2}",
     ], vis={
+        "n_pl": dict(type="liste", titre="Platon et la cité", items=[
+            "399 : Socrate condamné à mort par un tribunal populaire",
+            "Une méfiance profonde envers le pouvoir de la foule",
+            "L'Académie, puis la République"], marques=["1", "2", "3"], x=640, y=150, w=570),
         "platon": dict(type="portrait", annee=-428, img="platon", nom="Platon", dates="v. 428 – 348 av. J.-C.",
                        legende="La République (vers 375 av. J.-C.)", x=110, y=120, w=330, h=420),
         "tab_aca": dict(type="tableau", img="et5-academie", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.35, .5, .45],
@@ -104,12 +108,12 @@ SCENES = [
          notions=["la vérité", "le devoir"],
          retenir="Machiavel : la politique a sa propre logique. Le prince doit être lion et renard, pour conserver l'État. Weber : conviction et responsabilité.",
          beats=[
-        "{mac}{tab_flo}Florence, 1513. Niccolò Machiavel a servi pendant quatorze ans la République florentine : diplomate, "
-        "il a rencontré rois, papes et chefs de guerre. Puis les Médicis reviennent au pouvoir. Accusé de complot, il est "
+        "{mac}{tab_flo}Florence, 1513. {n_mac}{n_mac.1}Niccolò Machiavel a servi pendant quatorze ans la République florentine : diplomate, "
+        "il a rencontré rois, papes et chefs de guerre. {n_mac.2}Puis les Médicis reviennent au pouvoir. Accusé de complot, il est "
         "emprisonné, torturé, puis exilé dans sa petite ferme, près de Florence. On l'a croisé dans l'épisode un, avec le mot stato.",
-        "Le soir, raconte-t-il dans une lettre, il quitte ses habits couverts de boue, revêt des habits de cour, et entre "
+        "{n_mac.3}Le soir, raconte-t-il dans une lettre, il quitte ses habits couverts de boue, revêt des habits de cour, et entre "
         "dans son cabinet pour converser avec les Anciens. C'est là qu'il écrit Le Prince.",
-        "{-mac}{-tab_flo}{tab_bor}{rea}Ce petit livre fait l'effet d'une bombe. {rea.1}Bien des auteurs, dit-il, ont imaginé "
+        "{-mac}{-n_mac}{-tab_flo}{tab_bor}{rea}Ce petit livre fait l'effet d'une bombe. {rea.1}Bien des auteurs, dit-il, ont imaginé "
         "des républiques qui n'ont jamais existé : suivez son regard, vers Platon. {rea.2}Lui veut s'en tenir à la vérité "
         "effective des choses : ce que font les hommes, non ce qu'ils devraient faire.{-rea}",
         ("C", "Celui qui veut en tout et partout se montrer homme de bien ne peut manquer de périr au milieu de tant de méchants.",
@@ -134,6 +138,10 @@ SCENES = [
         "Mais sans la première, il n'est plus qu'un technicien du pouvoir.",
         "{-cr}{-tab_vot}",
     ], vis={
+        "n_mac": dict(type="liste", titre="Machiavel, Florence, 1513", items=[
+            "Quatorze ans au service de la République florentine",
+            "Retour des Médicis : prison, torture, exil",
+            "Le soir, avec les Anciens : Le Prince"], marques=["1", "2", "3"], x=640, y=150, w=570),
         "mac": dict(type="portrait", annee=1469, img="machiavel", nom="Nicolas Machiavel", dates="1469 – 1527",
                     legende="Le Prince (1513, publié en 1532)", x=110, y=120, w=330, h=420),
         "tab_flo": dict(type="tableau", img="et5-florence", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .6, .45],
@@ -170,9 +178,9 @@ SCENES = [
          retenir="Hegel : famille, société civile, État. L'État réconcilie l'intérêt particulier et l'intérêt général : la liberté devenue institution.",
          beats=[
         "{hegel}{tab_heg}Pour aller plus loin, un tout autre regard. Berlin, 1820 : Hegel publie ses Principes de la philosophie "
-        "du droit. Ni rêve de philosophe, ni ruse de prince. Pour lui, l'État moderne est ce que l'histoire a produit "
+        "du droit. {n_heg}Ni rêve de philosophe, ni ruse de prince. Pour lui, l'État moderne est ce que l'histoire a produit "
         "de plus rationnel.",
-        "{-hegel}{mom}Il distingue trois moments. {mom.1}La famille, unie par l'amour. {mom.2}La société civile, celle de "
+        "{-hegel}{-n_heg}{mom}Il distingue trois moments. {mom.1}La famille, unie par l'amour. {mom.2}La société civile, celle de "
         "l'épisode un : le marché, le travail, où chacun poursuit son intérêt, et où naissent la richesse… et la misère. "
         "{mom.3}Et l'État, qui réconcilie l'intérêt particulier et l'intérêt général.",
         "{-mom}{hdef}L'État, écrit-il, est la réalité effective de l'idée éthique. En lui, l'individu ne perd pas sa liberté : "
@@ -183,6 +191,8 @@ SCENES = [
         "C'était l'épisode quatre.",
         "{-crit}{-tab_heg}",
     ], vis={
+        "n_heg": dict(type="note", titre="Principes de la philosophie du droit (1820)", cles=["rationnel"],
+                     t="L'État moderne : ce que l'histoire a produit de plus rationnel.", x=640, y=150, w=570),
         "hegel": dict(type="portrait", annee=1770, img="hegel", nom="G. W. F. Hegel", dates="1770 – 1831",
                       legende="Principes de la philosophie du droit (1820)", x=110, y=120, w=330, h=420),
         "tab_heg": dict(type="tableau", img="cs4-hegel-cours", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .4],
