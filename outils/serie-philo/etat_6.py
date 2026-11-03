@@ -147,11 +147,11 @@ SCENES = [
         "ce qui vient ensuite. Socrate lui-même, condamné injustement, refusa de s'évader de sa prison : "
         "on l'a vu dans la série sur le devoir.",
         "{plan3.2}Deuxième partie : mais l'État peut trahir sa raison d'être. Locke reconnaît au peuple un droit de résistance.{-plan3}",
-        "{-tab_bor}{tab_pla}{mendes}Un exemple. {n_men}Bordeaux, juin 1940. La France s'effondre, des milliers de réfugiés fuient "
+        "{mendes}Un exemple. {n_men}Bordeaux, juin 1940. La France s'effondre, des milliers de réfugiés fuient "
         "les nazis. Le consul du Portugal, Aristides de Sousa Mendes, {n_men.1}a reçu de son gouvernement l'ordre de refuser les visas. "
         "{n_men.2}Pendant quelques jours, il en signe des milliers. {n_men.3}Rappelé, sanctionné, il mourra dans la misère. "
         "{n_men.4}Il est aujourd'hui honoré comme Juste parmi les nations.",
-        "{-n_men}{-mendes}{-tab_pla}{tab_dam}{plan3b}{plan3b.1}Troisième partie : obéir, en actes, à l'État légitime… sans jamais lui "
+        "{-n_men}{-mendes}{-tab_bor}{tab_dam}{plan3b}{plan3b.1}Troisième partie : obéir, en actes, à l'État légitime… sans jamais lui "
         "abandonner son jugement. Penser, parler, critiquer, c'est ce que l'État doit laisser libre. C'est la thèse de Spinoza, "
         "dans le texte qui va suivre.",
         "{-plan3b}{os}La distinction qui dépasse : {os.g}l'obéissance, qui suit la loi en gardant les yeux ouverts, "
@@ -168,8 +168,6 @@ SCENES = [
             "I. Oui : sans obéissance, la guerre (Hobbes) ; Socrate refuse de s'évader",
             "II. Mais l'État peut trahir sa fin : le droit de résistance (Locke)"], marques=["I", "II"],
                       x=170, y=150, w=940),
-        "tab_pla": dict(type="tableau", img="et6-plaque", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .4],
-                        legende="Plaque en hommage à Aristides de Sousa Mendes, Bayonne (photo Michel Bakni, CC BY-SA 4.0)"),
         "n_men": dict(type="liste", titre="Bordeaux, juin 1940", items=[
             "Ordre de Lisbonne : refuser les visas", "Il en signe des milliers",
             "Rappelé, sanctionné, mort dans la misère", "Juste parmi les nations"],
@@ -286,8 +284,8 @@ SCENES = [
         "av": dict(type="liste", titre="Discuter en avocat de l'auteur", items=[
             "Objection : Hobbes fonde l'État sur la crainte ; chacun renonce à agir à sa guise",
             "Réponse : l'État commande les actes, pas les esprits"], marques=["?", "→"], x=170, y=170, w=940),
-        "tab_eth": dict(type="tableau", img="t-ethica", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.3, .5, .45],
-                        legende="Spinoza, Ethica, dans les Opera posthuma, 1677"),
+        "tab_eth": dict(type="tableau", img="et1-syndics", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .4],
+                        legende="Rembrandt, Les Syndics de la guilde des drapiers, 1662 (Rijksmuseum, Amsterdam)"),
         "conc": dict(type="liste", titre="La conclusion en quatre temps", items=[
             "Bilan : la peur qui domine ≠ la sécurité qui libère", "Réponse : l'État existe pour la liberté",
             "Intérêt : un critère, la liberté de penser et de dire", "Ouverture : Rawls, les libertés d'abord"],
@@ -363,10 +361,10 @@ CREDITS = [
     "Portraits : Baruch Spinoza (portrait anonyme, vers 1665) ; Aristides de Sousa Mendes (photographie, 1940, domaine public)",
     "Tableaux et gravures : Eugène Delacroix, La Liberté guidant le peuple (1830) ; "
     "John Seymour Lucas, Les Émeutes de Gordon (1879) ; Albert Eckhout, Homme tupi (1643) ; Gerrit Berckheyde, La place du Dam (1672) ; "
-    "Johannes Vermeer, Femme écrivant une lettre et sa servante (vers 1670) ; Rembrandt, Lettré dans son cabinet (1634) ; "
+    "Johannes Vermeer, Femme écrivant une lettre et sa servante (vers 1670) ; Rembrandt, Lettré dans son cabinet (1634) et Les Syndics de la guilde des drapiers (1662) ; "
     "Abraham Bosse, frontispice du Léviathan (1651) ; Pieter Bruegel l'Ancien, La Parabole des aveugles (1568) ; Caspar David Friedrich, Matin dans le Riesengebirge (1810-1811) : domaine public",
-    "Documents et photographies : Tractatus theologico-politicus (1670) ; Spinoza, Ethica (1677) ; réfugiés à Bordeaux, juin 1940 "
-    "(domaine public) ; plaque Sousa Mendes, Bayonne (Michel Bakni, CC BY-SA 4.0) ; Bucarest, décembre 1989 (Musée national d'histoire "
+    "Documents et photographies : Tractatus theologico-politicus (1670) ; réfugiés à Bordeaux, juin 1940 "
+    "(domaine public) ; Bucarest, décembre 1989 (Musée national d'histoire "
     "de la Roumanie, attribution) ; palais du Parlement, Bucarest (Sludge G, CC BY-SA 2.0) ; salle d'examen (domaine public)",
     "Texte expliqué : Spinoza, Traité théologico-politique, chap. XX (1670), trad. Émile Saisset (Wikisource).",
     "Images : Wikimedia Commons. Voix de synthèse créées pour la série (Qwen3-TTS, clonage local). Musique originale générée pour la série.",
