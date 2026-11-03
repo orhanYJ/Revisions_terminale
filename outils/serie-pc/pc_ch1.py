@@ -362,10 +362,10 @@ SCENES = [
         "{poly}La définition dit : « un ou plusieurs » ions hydrogène. {poly.1}Un polyacide peut céder plusieurs protons : on dit diacide pour deux, triacide pour trois. "
         "L'acide sulfurique est un diacide. L'acide citrique du citron, avec ses trois groupes carboxyle, est un triacide. "
         "{poly.2}Une polybase peut en capter plusieurs : la putrescine, avec ses deux groupes amino, est une dibase.",
-        "{-poly}{f_poly}Trois conséquences. {f_poly.1}Un polyacide à n protons donne n couples successifs, et n plus un espèces. "
-        "{f_poly.2}Les espèces intermédiaires, au nombre de n moins un, sont amphotères. "
+        "{-poly}{f_poly}Trois conséquences. {f_poly.1}Un polyacide capable de céder n protons forme n couples successifs, donc n plus une espèces en tout. "
+        "{f_poly.2}Les espèces intermédiaires, il y en a n moins une, sont toutes amphotères. "
         "Pour l'acide phosphorique, H trois P O quatre, un triacide : trois couples, et deux espèces amphotères. "
-        "{f_poly.3}Et pour le pH : un diacide qui réagit totalement libère deux ions oxonium par molécule. Crochet H trois O plus égale deux c, pas c. "
+        "{f_poly.3}Et pour le pH : un diacide qui réagit totalement libère deux ions oxonium par molécule. La concentration en ions oxonium vaut alors deux fois c, et non pas c. "
         "Oublier ce facteur décale le pH de log deux, zéro virgule trente.",
         "{f_poly.4}Enfin, les départs successifs ne sont pas équivalents : le premier proton part le plus facilement. "
         "Arracher un ion positif à une espèce déjà négative coûte plus cher.",
@@ -724,20 +724,20 @@ SCENES = [
         "{s31.2}C O deux, H deux O, plus H deux O, double flèche, H C O trois moins, plus H trois O plus. "
         "{s31.3}Couples : C O deux, H deux O, sur H C O trois moins, et H trois O plus sur H deux O. "
         "{s31.4}La réaction produit des ions oxonium : leur concentration dépasse celle de l'eau pure, et le pH descend sous sept. Voilà pourquoi même une pluie propre est acide.",
-        "{-s31}{ex3c.q2}{s32}{s32.1}Question deux : la relation réciproque. Pluie naturelle : dix puissance moins cinq virgule six, deux virgule cinq fois dix puissance moins six mole par litre. "
-        "{s32.2}Pluie polluée : dix puissance moins quatre virgule deux, six virgule trois fois dix puissance moins cinq. "
+        "{-s31}{ex3c.q2}{s32}{s32.1}Question deux : la relation réciproque. Pour la pluie naturelle : dix puissance moins cinq virgule six, deux virgule cinq fois dix puissance moins six mole par litre. "
+        "{s32.2}Pour la pluie polluée : dix puissance moins quatre virgule deux, six virgule trois fois dix puissance moins cinq. "
         "{s32.3}Le rapport se lit directement sur l'écart de pH : dix puissance un virgule quatre, environ vingt-cinq. "
         "Pour seulement un virgule quatre unité de pH, vingt-cinq fois plus d'ions oxonium.",
         "{-s32}{ex3c.q3}{s33}{s33.1}Question trois : il faut deux demi-équations. Comme acide, l'ion hydrogénocarbonate cède un proton : "
         "H C O trois moins, double flèche, C O trois deux moins, plus H plus. "
         "{s33.2}Comme base, il en capte un : H C O trois moins, plus H plus, double flèche, C O deux, H deux O. "
         "{s33.3}Il possède les deux caractères : il est amphotère. C'est l'espèce commune aux deux couples de l'acide carbonique.",
-        "{-s33}{ex3c.q4}{s34}{s34.1}Question quatre : l'ion carbonate est la base du couple H C O trois moins sur C O trois deux moins ; l'ion oxonium, l'acide du couple de l'eau. "
-        "{s34.2}C O trois deux moins, plus H trois O plus, donne H C O trois moins, plus H deux O. "
+        "{-s33}{ex3c.q4}{s34}{s34.1}Question quatre : l'ion carbonate est la base du couple ion hydrogénocarbonate, ion carbonate ; l'ion oxonium est l'acide du couple de l'eau. "
+        "{s34.2}L'ion carbonate, plus H trois O plus, donne l'ion hydrogénocarbonate, plus H deux O. "
         "{s34.3}Les ions carbonate, qui constituent la pierre, sont consommés : plus la pluie est acide, plus le calcaire est attaqué.",
         "{-s34}{ex3c.q5}{s35}{s35.1}Question cinq, la résolution de problème. On attribue les ions oxonium de la pluie polluée à l'acide nitrique, un monoacide qui réagit totalement : "
         "sa concentration vaut environ six virgule trois fois dix puissance moins cinq mole par litre. "
-        "{s35.2}Masse par litre : c fois M, soit six virgule trois fois dix puissance moins cinq, fois soixante-trois. Environ quatre milligrammes.",
+        "{s35.2}Masse par litre : la concentration fois la masse molaire, soit six virgule trois fois dix puissance moins cinq, fois soixante-trois. Environ quatre milligrammes.",
         "{s35.3}Et le regard critique, toujours valorisé. On a négligé l'acidité naturelle : deux virgule cinq fois dix puissance moins six, "
         "à peine quatre pour cent de la valeur totale. C'est justifié. "
         "{s35.4}Mais avec une incertitude de zéro virgule un sur le pH, la concentration est comprise entre cinq fois dix puissance moins cinq et huit fois dix puissance moins cinq : "
