@@ -604,7 +604,7 @@ SCENES = [
         "Cinq questions. La concentration promise par l'étiquette. Pourquoi diluer. La relation à l'équivalence. "
         "La concentration mesurée, et la conclusion. Et enfin : quel résultat obtiendrait un élève qui oublie les coefficients, et quel indicateur coloré conviendrait ?",
         "{-ex2}{pa2}Celui-là demande du temps. Mets sur pause, et fais-le en entier avant de regarder la correction.",
-        "{pa2.stop}{-pa2}{ex2c}{ex2c.q1}Correction. {s21}{s21.1}Question un : on suit un litre de solution. c égale t fois d fois rhô eau sur M. "
+        "{pa2.stop}{-pa2}{ex2c}{ex2c.q1}Correction. {s21}{s21.1}Question un : on suit un litre de solution. c égale t fois d fois rhô eau, divisé par la masse molaire. "
         "{s21.2}Zéro virgule trente-sept, fois un virgule vingt-huit, fois mille, divisé par quatre-vingt-dix-huit virgule un. "
         "{s21.3}Quatre virgule quatre-vingt-trois moles par litre.",
         "{-s21}{ex2c.q2}{s22}{s22.1}Question deux : sans dilution, il faudrait verser deux fois quatre virgule quatre-vingt-trois fois dix, sur zéro virgule cent : "
