@@ -249,7 +249,7 @@ SCENES = [
          beats=[
         "{meth}C'est le savoir-faire graphique du chapitre, très souvent demandé : tracer le faisceau qui sort de la lunette. "
         "La méthode tient en quatre étapes, toujours les mêmes.",
-        "{meth.1}Un : placer les deux lentilles, à la distance f prime un plus f prime deux. Entre les deux, marquer le point où F prime un et F deux sont confondus. Puis marquer les deux autres foyers : F un, avant l'objectif, et F prime deux, après l'oculaire.",
+        "{meth.1}Un : placer les deux lentilles, à la distance f prime un plus f prime deux. Entre les deux, marquer le foyer image de l'objectif, confondu avec le foyer objet de l'oculaire. Puis marquer les deux autres foyers : le foyer objet de l'objectif, avant lui, et le foyer image de l'oculaire, après lui.",
         "{meth.2}Deux : trouver B un. On trace le rayon incident qui passe par O un : il n'est pas dévié, et il coupe le plan focal en B un. "
         "Les autres rayons incidents, parallèles à lui, passent tous par B un après l'objectif.",
         "{meth.3}Trois : trouver la direction de sortie. On trace, en pointillés, la droite qui va de B un à O deux : ce rayon-là n'est pas dévié par l'oculaire.",
