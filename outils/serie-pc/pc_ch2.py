@@ -720,7 +720,7 @@ SCENES = [
         "{s23.2}K égale cent mètres moins un. {s23.3}Et G égale sigma sur K : cinq virgule quatre fois dix puissance moins quatre siemens, "
         "soit zéro virgule cinquante-quatre millisiemens.",
         "{-s23}{ex2c.q4}{s24}{s24.1}Question quatre. Un millisiemens par centimètre vaut zéro virgule un siemens par mètre. "
-        "{s24.2}Donc zéro virgule zéro cinq quatre trois siemens par mètre, divisé par zéro virgule un : l'appareil affiche zéro virgule cinquante-quatre millisiemens par centimètre.",
+        "{s24.2}Donc cinq virgule quarante-trois fois dix puissance moins deux siemens par mètre, divisé par zéro virgule un : l'appareil affiche zéro virgule cinquante-quatre millisiemens par centimètre.",
         "{-s24}{ex2c.q5}{s25}{s25.1}Question cinq. Si on oublie le deux devant lambda chlorure, on calcule deux fois la somme des lambda : "
         "trois virgule neuf fois dix puissance moins deux siemens par mètre. Près de trente pour cent trop bas. "
         "{s25.2}Et si on garde la concentration en moles par litre ? Mille fois trop petit. Les deux erreurs classiques du chapitre.",
