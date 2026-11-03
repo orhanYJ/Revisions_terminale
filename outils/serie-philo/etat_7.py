@@ -129,8 +129,8 @@ SCENES = [
             "Séparer les pouvoirs : le pouvoir arrête le pouvoir (Watergate, 1974)",
             "L'État de droit : l'État lui-même soumis au droit",
             "Spinoza : on ne commande pas aux esprits"], marques=["1", "2", "3"], x=170, y=150, w=940),
-        "tab_ttp": dict(type="tableau", img="et3-ttp", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.25, .5, .35],
-                        legende="Tractatus theologico-politicus, « Hambourg » (en réalité Amsterdam), 1670, page de titre"),
+        "tab_ttp": dict(type="tableau", img="et3-amsterdam", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .45, .45],
+                        legende="Gerrit Berckheyde, La Place du Dam et l'hôtel de ville d'Amsterdam, 1672"),
         "c_spi": dict(type="cit", a="Spinoza", o="Traité théologico-politique, chap. XX (1670), trad. Saisset", x=170, y=220, w=940),
         "tab_sen": dict(type="tableau", img="et3-senate", fond=True, sombre=True, de=[1.0, .5, .4], a=[1.3, .5, .3],
                         legende="Senate House, Londres : le ministère de l'Information pendant la guerre, modèle du ministère de la Vérité (photo David Dixon, CC BY-SA 2.0)"),
@@ -243,6 +243,7 @@ SCENES = [
         "{rec.2}Fonder : la nature, ou le contrat. {rec.3}Limiter et contester : le pouvoir qui arrête le pouvoir, "
         "la servitude volontaire, les critiques radicales. {rec.4}Juger : un État juste est-il possible ?",
         "{-rec}{frise}Et voici ceux qui t'ont accompagné, de Platon à Rawls : vingt-quatre siècles de pensée.",
+        ("P", 7.0),
         "{-frise}{trois}Si tu ne dois garder que trois phrases : {trois.1}La Boétie, soyez résolus de ne servir plus, "
         "et vous voilà libres. {trois.2}Montesquieu, il faut que le pouvoir arrête le pouvoir. "
         "{trois.3}Et Spinoza : la fin de l'État, c'est la liberté.",
@@ -315,7 +316,7 @@ CREDITS = [
     "Abraham Bosse, frontispice du Léviathan (1651) ; tapisserie de Bayeux (vers 1070) ; Raphaël, L'École d'Athènes (1509-1511) ; "
     "Luke Fildes, Le Docteur (1891) ; Caspar David Friedrich, Le Voyageur contemplant une mer de nuages (vers 1818) ; "
     "Ambrogio Lorenzetti, Allégorie du bon gouvernement (1338-1339) : domaine public",
-    "Documents et photographies : Richard Nixon, 9 août 1974 (photographie officielle, domaine public) ; Tractatus theologico-politicus (1670) ; "
+    "Documents et photographies : Richard Nixon, 9 août 1974 (photographie officielle, domaine public) ; Gerrit Berckheyde, La Place du Dam à Amsterdam (1672, domaine public) ; "
     "Senate House, Londres (David Dixon, CC BY-SA 2.0) ; Bucarest, décembre 1989 (Musée national d'histoire de la Roumanie, attribution) ; "
     "Pyramid of Capitalist System (1911) ; Justitia, Berne (JoachimKohler-HB, CC BY-SA 4.0) ; salle d'examen (domaine public)",
     "Citations : Weber, Le Savant et le Politique (1919), trad. J. Freund ; Montesquieu, De l'esprit des lois, XI, 4 (1748) ; "
