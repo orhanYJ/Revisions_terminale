@@ -107,11 +107,11 @@ SCENES = [
     dict(id="hobbes", chap="Hobbes : la peur et le Léviathan", fond="nuit", humeur="tension", notions=["la nature", "la liberté", "la religion"],
          retenir="Hobbes : égaux par nature, les hommes se craignent. Sans pouvoir commun, la guerre de chacun contre chacun. Le pacte crée le Léviathan, « dieu mortel ».",
          beats=[
-        "{tab_arm}{hob}Deux mille ans plus tard, en Angleterre, un philosophe ose dire le contraire. Thomas Hobbes naît en 1588, "
+        "{tab_arm}{hob}Deux mille ans plus tard, en Angleterre, un philosophe ose dire le contraire. {n_hob}Thomas Hobbes naît en 1588, "
         "l'année où l'Armada espagnole menace son pays. Sa mère, raconte-t-il, accoucha de jumeaux : lui… et la peur.",
-        "{-hob}{-tab_arm}{tab_lev}{rappel}On l'a vu dans la série sur la liberté : pour Hobbes, sans État, c'est la guerre, "
+        "{-hob}{-n_hob}{-tab_arm}{tab_lev}{rappel}{mot_g}On l'a vu dans la série sur la liberté : pour Hobbes, sans État, c'est la guerre, "
         "et l'on échange sa liberté contre la sécurité. Allons plus loin : pourquoi la guerre ?",
-        "{-rappel}{pq}{pq.1}D'abord, parce que les hommes sont à peu près {!égaux}égaux. Le plus faible peut tuer le plus fort : "
+        "{-rappel}{-mot_g}{pq}{pq.1}D'abord, parce que les hommes sont à peu près {!égaux}égaux. Le plus faible peut tuer le plus fort : "
         "par la ruse, ou en s'alliant à d'autres. Personne n'est assez fort pour être tranquille. "
         "{pq.2}Ensuite, trois passions les opposent : la rivalité, pour les biens ; la méfiance, pour sa sécurité ; "
         "{pq.3}et la gloire, pour sa réputation.",
@@ -135,10 +135,14 @@ SCENES = [
     ], vis={
         "tab_arm": dict(type="tableau", img="et2-armada", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .55, .45],
                         legende="Philippe-Jacques de Loutherbourg, La Défaite de l'Armada espagnole, 8 août 1588, 1796 (National Maritime Museum, Londres)"),
+        "n_hob": dict(type="note", titre="Thomas Hobbes (1588-1679)", cles=["Armada", "peur"],
+                     t="Né en 1588, l'année où l'Armada espagnole menace l'Angleterre.",
+                     etape="« Ma mère accoucha de jumeaux : moi et la peur. »", x=640, y=150, w=570),
         "hob": dict(type="portrait", annee=1588, img="hobbes", nom="Thomas Hobbes", dates="1588 – 1679",
                     legende="Léviathan (1651)", x=110, y=120, w=330, h=420),
         "tab_lev": dict(type="tableau", img="et2-leviathan", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.2, .5, .5],
                         legende="Abraham Bosse, frontispice du Léviathan de Hobbes, Londres, 1651 (British Library)"),
+        "mot_g": dict(type="mot", t="Sans État, la guerre", g="on échange sa liberté contre la sécurité", y=220, taille=80),
         "rappel": dict(type="tag", style="lien", t="Série « La liberté », épisode 5 : la liberté contre la sécurité", x=170, y=560, w=760),
         "pq": dict(type="liste", titre="Pourquoi la guerre ?", items=[
             "Égaux par nature : le plus faible peut tuer le plus fort",
@@ -153,7 +157,7 @@ SCENES = [
                          legende="Abraham Bosse, frontispice du Léviathan de Hobbes, 1651, détail"),
         "pacte": dict(type="def", cles=["renonce", "à condition"], terme="Le pacte",
                       t="Chacun renonce à se gouverner lui-même, à condition que tous en fassent autant.",
-                      etape="La multitude devient une seule personne : l'État, le Léviathan.", x=170, y=360, w=940),
+                      etape="La multitude devient une seule personne : l'État, le Léviathan.", x=170, y=170, w=940),
         "dieu": dict(type="mot", t="Le dieu mortel", g="Hobbes, Léviathan, chap. XVII", y=430, taille=88),
         "fr": dict(type="liste", titre="Le frontispice", items=[
             "Un géant couronné domine la campagne", "Son corps : des centaines de petits hommes",
@@ -166,8 +170,9 @@ SCENES = [
          retenir="Locke : à l'état de nature, il manque des lois établies, un juge impartial, une force pour exécuter. L'État a pour fin de conserver les « propriétés » : la vie, la liberté, les biens.",
          beats=[
         "{tab_lab}{locke}Quarante ans plus tard, John Locke ne voit pas l'état de nature aussi noir. "
-        "Les hommes y ont déjà une loi : la loi naturelle, que la raison enseigne. Ne nuire à personne dans sa vie, sa liberté, ses biens.",
+        "{n_lk}{n_lk.1}Les hommes y ont déjà une loi : la loi naturelle, que la raison enseigne. {n_lk.2}Ne nuire à personne dans sa vie, sa liberté, ses biens.",
         "Ils ont même déjà une propriété. D'où vient-elle ? Du {#le travail}travail.",
+        "{-n_lk}",
         ("C", "Le travail de son corps et l'ouvrage de ses mains, nous le pouvons dire, sont son bien propre.", "c_trav"),
         "{-locke}{-c_trav}{manq}Alors, pourquoi l'État ? Parce que, dans l'état de nature, trois choses manquent. "
         "{manq.1}Des lois établies, connues de tous. {manq.2}Un juge impartial : chacun y est juge dans sa propre cause, "
@@ -190,6 +195,9 @@ SCENES = [
     ], vis={
         "tab_lab": dict(type="tableau", img="et2-labourage", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .4, .5],
                         legende="Rosa Bonheur, Labourage nivernais, 1849 (musée d'Orsay, Paris)"),
+        "n_lk": dict(type="liste", titre="L'état de nature selon Locke", items=[
+            "Une loi naturelle, que la raison enseigne",
+            "Ne nuire à personne : vie, liberté, biens"], marques=["1", "2"], x=640, y=150, w=570),
         "locke": dict(type="portrait", annee=1632, img="locke", nom="John Locke", dates="1632 – 1704",
                       legende="Second Traité du gouvernement civil (1690)", x=110, y=120, w=330, h=420),
         "c_trav": dict(type="cit", a="Locke", o="Traité du gouvernement civil, chap. V, § 27 (1690), trad. Mazel", x=640, y=180, w=570),
