@@ -96,18 +96,20 @@ SCENES = [
          beats=[
         "{rousseau}{tab_vic}Deux mille ans plus tard, Rousseau donne à cette voix ses lettres de noblesse. On a entendu, "
         "dans la série sur le devoir, sa célèbre apostrophe : Conscience ! conscience ! instinct divin. "
-        "Allons plus loin. Pourquoi un instinct, et pas un raisonnement ?",
-        "Parce que, pour Rousseau, nous sentons avant de penser. Le vicaire savoyard le dit : exister, pour nous, c'est sentir. "
-        "Pense à ce qui se passe quand tu vois quelqu'un se faire humilier devant toi : avant tout raisonnement, "
+        "{n_rou}{n_rou.1}Allons plus loin. Pourquoi un instinct, et pas un raisonnement ?",
+        "{n_rou.2}Parce que, pour Rousseau, nous sentons avant de penser. Le vicaire savoyard le dit : exister, pour nous, c'est sentir. "
+        "{n_rou.3}Pense à ce qui se passe quand tu vois quelqu'un se faire humilier devant toi : avant tout raisonnement, "
         "quelque chose se serre. C'est au fond de cette sensibilité que Rousseau trouve la conscience.",
+        "{-n_rou}",
         ("C", "Il est donc au fond des âmes un principe inné de justice et de vertu, sur lequel, malgré nos propres maximes, "
               "nous jugeons nos actions et celles d'autrui comme bonnes ou mauvaises ; et c'est à ce principe que je donne "
               "le nom de conscience.", "c_prin"),
         "{-rousseau}{-c_prin}{rc}D'où une opposition frappante. {rc.g}La {#la raison}raison, dit Rousseau, nous trompe trop souvent : "
         "elle sait trouver de bonnes raisons à tout, même au pire. {rc.d}La conscience, elle, ne trompe jamais : "
         "elle est à l'âme ce que l'instinct est au corps.",
-        "{-rc}{-tab_vic}{tab_pyr}Mais une objection redoutable se lève. Si la conscience était innée, elle dirait partout "
+        "{-rc}{-tab_vic}{tab_pyr}{n_obj}Mais une objection redoutable se lève. Si la conscience était innée, elle dirait partout "
         "la même chose. Or les morales varient d'un peuple à l'autre, d'un siècle à l'autre. Pascal l'avait noté, avec ironie.",
+        "{-n_obj}",
         ("C", "Plaisante justice qu'une rivière borne ! Vérité au deçà des Pyrénées, erreur au delà.", "c_pyr"),
         "{-c_pyr}{obj}{obj.1}Ce qu'on appelle la voix de la conscience ne serait-il que la voix de l'éducation, de la coutume ? "
         "{obj.2}Freud ira plus loin, on l'a vu dans l'épisode trois : la voix des parents, intériorisée. Le surmoi.",
@@ -115,6 +117,10 @@ SCENES = [
         "on méprise la trahison. Les règles changent ; le sentiment du juste et de l'injuste, lui, demeure.",
         "{-obj}{-tab_pyr}",
     ], vis={
+        "n_rou": dict(type="liste", titre="Un instinct, pas un raisonnement", items=[
+            "Pourquoi un instinct ?",
+            "Nous sentons avant de penser : exister, c'est sentir",
+            "Devant une humiliation, quelque chose se serre"], marques=["?", "1", "2"], x=640, y=150, w=570),
         "rousseau": dict(type="portrait", annee=1712, img="rousseau", nom="Jean-Jacques Rousseau", dates="1712 – 1778",
                          legende="Émile, IV, « Profession de foi du vicaire savoyard » (1762)", x=110, y=120, w=330, h=420),
         "tab_vic": dict(type="tableau", img="cs5-vicaire", fond=True, sombre=True, de=[1.0, .5, .4], a=[1.25, .5, .35],
@@ -125,6 +131,9 @@ SCENES = [
                    d="La conscience", dq="ne trompe jamais : elle est à l'âme ce que l'instinct est au corps", vs="≠"),
         "tab_pyr": dict(type="tableau", img="cs5-pyrenees", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .6, .45],
                         legende="Stanislaus von Kalckreuth, Paysage de haute montagne dans les Pyrénées, XIXᵉ siècle"),
+        "n_obj": dict(type="note", titre="L'objection", cles=["innée", "varient"],
+                     t="Si la conscience était innée, elle dirait partout la même chose.",
+                     etape="Or les morales varient d'un peuple à l'autre, d'un siècle à l'autre.", x=170, y=150, w=940),
         "c_pyr": dict(type="cit", a="Pascal", o="Pensées, fr. 294 (éd. Brunschvicg)", x=170, y=220, w=940),
         "obj": dict(type="liste", titre="Une conscience innée ?", items=[
             "L'éducation, la coutume : la conscience varie-t-elle ?",
@@ -192,10 +201,10 @@ SCENES = [
         "{arendt}{tab_eic}Saute au vingtième siècle. Dans la série sur le devoir, on a suivi Hannah Arendt au procès "
         "d'Adolf Eichmann, en 1961, et sa formule : la banalité du mal. Le pire peut être commis par des gens ordinaires, "
         "qui ne pensent pas à ce qu'ils font.",
-        "Mais qu'est-ce qui manquait à Eichmann ? Pas l'intelligence : c'était un organisateur efficace. "
-        "Pas la connaissance des lois. Il lui manquait, dit Arendt, la capacité de penser. Et penser, pour elle, "
+        "{n_are}{n_are.1}Mais qu'est-ce qui manquait à Eichmann ? Pas l'intelligence : c'était un organisateur efficace. "
+        "{n_are.2}Pas la connaissance des lois. {n_are.3}Il lui manquait, dit Arendt, la capacité de penser. Et penser, pour elle, "
         "c'est d'abord un dialogue.",
-        "{-arendt}{-tab_eic}{tab_phi}Elle reprend une définition de Platon, dans le Théétète.",
+        "{-arendt}{-n_are}{-tab_eic}{tab_phi}Elle reprend une définition de Platon, dans le Théétète.",
         ("C", "L'âme, quand elle pense, ne fait pas autre chose que s'entretenir avec elle-même, interrogeant et répondant, "
               "affirmant et niant.", "c_the"),
         "{-c_the}{deux}Quand je pense, je suis {!deux en un}deux en un. {deux.1}Je me parle, je me pose des questions, je me réponds. "
@@ -214,6 +223,10 @@ SCENES = [
         ("Le pire n'est pas commis par des monstres. Il est commis par des gens qui ne se parlent plus.", {"rate": "-5%"}),
         "{-cons_a}{-tab_ath}",
     ], vis={
+        "n_are": dict(type="liste", titre="Ce qui manquait à Eichmann", items=[
+            "Pas l'intelligence : un organisateur efficace",
+            "Pas la connaissance des lois",
+            "La capacité de penser"], marques=["×", "×", "✓"], x=640, y=150, w=570),
         "arendt": dict(type="portrait", annee=1906, img="arendt", nom="Hannah Arendt", dates="1906 – 1975",
                        legende="Eichmann à Jérusalem (1963) · La Vie de l'esprit (1978)", x=110, y=120, w=330, h=420),
         "tab_eic": dict(type="tableau", img="dv5-eichmann", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.25, .45, .3],
@@ -239,9 +252,10 @@ SCENES = [
          retenir="Pascal : l'homme est un roseau pensant. Toute notre dignité consiste en la pensée. « Travaillons donc à bien penser : voilà le principe de la morale. »",
          beats=[
         "{pascal}{tab_ros}Reste une question. Pourquoi cette voix intérieure aurait-elle tant de prix ? Au dix-septième siècle, "
-        "Blaise Pascal, mathématicien et physicien de génie, inventeur d'une machine à calculer, malade toute sa vie, "
+        "{n_pas}Blaise Pascal, mathématicien et physicien de génie, inventeur d'une machine à calculer, malade toute sa vie, "
         "mort à trente-neuf ans, laisse des notes qui deviendront les Pensées. "
         "Il y répond par l'une des plus belles pages de la langue française.",
+        "{-n_pas}",
         ("C", "L'homme n'est qu'un roseau, le plus faible de la nature ; mais c'est un roseau pensant.", "c_ros"),
         "{-pascal}{-c_ros}{-tab_ros}{tab_nui}{fai}Regarde la scène. {fai.1}D'un côté, l'univers immense, la {#la nature}nature entière : "
         "une vapeur, une goutte d'eau suffit à nous tuer. {fai.2}De l'autre, l'homme, minuscule. Et pourtant, dit Pascal, "
@@ -258,6 +272,9 @@ SCENES = [
         "{-mor}{six}Ce texte du roseau pensant, nous l'expliquerons pas à pas dans l'épisode six : c'est un grand classique du bac.",
         "{-six}{-tab_nui}",
     ], vis={
+        "n_pas": dict(type="note", titre="Blaise Pascal (1623-1662)", cles=["machine", "Pensées"],
+                     t="Mathématicien et physicien de génie, inventeur d'une machine à calculer.",
+                     etape="Malade toute sa vie, mort à trente-neuf ans : ses notes deviendront les Pensées.", x=640, y=150, w=570),
         "pascal": dict(type="portrait", annee=1623, img="pascal", nom="Blaise Pascal", dates="1623 – 1662",
                        legende="Pensées (1670)", x=110, y=120, w=330, h=420),
         "tab_ros": dict(type="tableau", img="cs5-roseaux", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .6],

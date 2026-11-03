@@ -177,8 +177,9 @@ SCENES = [
         "{bebe.2}Vers dix-huit mois, deux ans, il porte la main à son nez. Il se reconnaît.",
         "{-bebe}{-tab_mo}{kant}{tab_tot}Près de deux siècles plus tôt, Kant avait remarqué une autre étape, plus décisive encore : "
         "le moment où l'enfant commence à dire « je ».",
-        "Avant, il parle de lui à la troisième personne : Charles veut manger, Charles veut marcher. "
+        "{n_je}Avant, il parle de lui à la troisième personne : Charles veut manger, Charles veut marcher. "
         "Puis, un jour, il dit : je veux. Et, note Kant, il ne revient jamais en arrière.",
+        "{-n_je}",
         ("C", "Avant de dire Je, l'enfant avait simplement le sentiment de lui-même ; désormais, il en a la pensée.", "c_kant"),
         "{-c_kant}{-kant}{sentir}Toute la différence est là. {sentir.g}Se sentir : un animal, un bébé, se sentent vivre. "
         "{sentir.d}Se penser : se saisir comme un « je », un sujet unique, le même d'hier à demain. "
@@ -203,6 +204,9 @@ SCENES = [
                      legende="Anthropologie du point de vue pragmatique (1798)", x=110, y=120, w=330, h=420),
         "tab_tot": dict(type="tableau", img="dv4-toton", fond=True, sombre=True, de=[1.0, .5, .4], a=[1.25, .55, .4],
                         legende="Jean Siméon Chardin, L'Enfant au toton, 1738 (musée du Louvre)"),
+        "n_je": dict(type="note", titre="Dire « je »", cles=["troisième", "je veux"],
+                     t="D'abord « Charles veut manger » : l'enfant parle de lui à la troisième personne.",
+                     etape="Puis « je veux » : et il ne revient jamais en arrière.", x=640, y=150, w=570),
         "c_kant": dict(type="cit", a="Kant", o="Anthropologie du point de vue pragmatique, § 1 (1798), trad. A. Renaut",
                        x=640, y=170, w=570),
         "sentir": dict(type="cols", g="Se sentir", gq="l'animal, le bébé : se sentir vivre", d="Se penser",
@@ -220,8 +224,9 @@ SCENES = [
         "{plus_tag}C'est une question pour aller plus loin. Mais elle éclaire toute la notion.",
         "{-q_ani}{-plus_tag}{desc}Au dix-septième siècle, Descartes répond non. Pour lui, l'animal est une machine : "
         "un mécanisme admirable, mais sans pensée. Sa preuve ? La parole.",
-        "Une pie, un perroquet peuvent prononcer des mots. Mais aucun animal ne répond à propos, en montrant qu'il pense "
+        "{n_par}Une pie, un perroquet peuvent prononcer des mots. Mais aucun animal ne répond à propos, en montrant qu'il pense "
         "ce qu'il dit. Ce que fait pourtant l'homme le plus simple, et même le sourd-muet, qui invente des signes.",
+        "{-n_par}",
         ("C", "Et ceci ne témoigne pas seulement que les bêtes ont moins de raison que les hommes, "
               "mais qu'elles n'en ont point du tout.", "c_desc"),
         "{-c_desc}{-desc}{-tab_chi}{tab_can}{horl}Et si l'animal fait certaines choses mieux que nous, ajoute Descartes, "
@@ -230,10 +235,10 @@ SCENES = [
         "{-horl}{am}{am.1}C'est la thèse de l'animal-machine. Un siècle plus tard, l'ingénieur Vaucanson exhibe un canard mécanique "
         "qui bat des ailes, avale du grain… et fait semblant de le digérer. {am.2}Toute l'Europe vient voir la machine qui imite la vie.",
         "{-am}{-tab_can}{darwin}{tab_bea}Deux siècles après Descartes, Charles Darwin renverse la perspective. "
-        "Si l'homme descend d'autres espèces, son esprit aussi a une histoire. En 1871, dans La Descendance de l'homme, "
+        "{n_dar}Si l'homme descend d'autres espèces, son esprit aussi a une histoire. En 1871, dans La Descendance de l'homme, "
         "il soutient que la différence entre l'esprit de l'homme et celui des animaux supérieurs, si grande soit-elle, "
         "est une différence de degré, et non de nature.",
-        "{-darwin}{deg}{deg.g}Descartes : une différence de nature. {deg.d}Darwin : une différence de degré. "
+        "{-darwin}{-n_dar}{deg}{deg.g}Descartes : une différence de nature. {deg.d}Darwin : une différence de degré. "
         "Retiens ce couple : il revient souvent en copie.",
         "{-deg}{-tab_bea}{tab_pou}{decl}Et la {#la science}science d'aujourd'hui ? Le 7 juillet 2012, à Cambridge, "
         "des neuroscientifiques signent une déclaration solennelle. {decl.1}Les mammifères, les oiseaux, "
@@ -251,6 +256,9 @@ SCENES = [
                         legende="Jos Schippers, Portrait d'un chimpanzé, fin du XIXᵉ siècle (domaine public)"),
         "q_ani": dict(type="question", t="Les animaux ont-ils une conscience ?"),
         "plus_tag": dict(type="tag", style="plus", t="Pour aller plus loin", x=170, y=560, w=420),
+        "n_par": dict(type="note", titre="La preuve par la parole", cles=["perroquet", "propos"],
+                      t="Une pie, un perroquet prononcent des mots, mais ne répondent jamais à propos.",
+                      etape="L'homme le plus simple, et même le sourd-muet qui invente des signes, le fait.", x=640, y=150, w=570),
         "desc": dict(type="portrait", annee=1596, img="descartes", nom="René Descartes", dates="1596 – 1650",
                      legende="Discours de la méthode (1637)", x=110, y=120, w=330, h=420),
         "c_desc": dict(type="cit", a="Descartes", o="Discours de la méthode, Ve partie (1637)", x=640, y=150, w=570),
@@ -262,6 +270,9 @@ SCENES = [
         "am": dict(type="liste", titre="L'animal-machine", items=[
             "L'animal : un mécanisme sans pensée (Descartes)", "Le canard de Vaucanson (1739) : la machine qui imite la vie"],
                    marques=["1", "2"], x=170, y=190, w=940),
+        "n_dar": dict(type="note", titre="La Descendance de l'homme (1871)", cles=["histoire", "degré"],
+                      t="Si l'homme descend d'autres espèces, son esprit aussi a une histoire.",
+                      etape="Entre l'homme et l'animal : une différence de degré, non de nature.", x=640, y=150, w=570),
         "darwin": dict(type="portrait", annee=1809, img="darwin", nom="Charles Darwin", dates="1809 – 1882",
                        legende="La Descendance de l'homme (1871)", x=110, y=120, w=330, h=420),
         "tab_bea": dict(type="tableau", img="cs1-beagle", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .7, .45],
