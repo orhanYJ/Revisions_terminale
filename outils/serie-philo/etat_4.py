@@ -55,11 +55,11 @@ SCENES = [
     dict(id="boetie", chap="La servitude volontaire", fond="aube", humeur="mystere", notions=["la liberté", "la nature"],
          retenir="La Boétie : le tyran n'a que la force qu'on lui donne. On sert par coutume, par divertissement, par intérêt.",
          beats=[
-        "{boetie}{tab_sar}Ce mystère, un jeune homme l'a formulé quatre siècles plus tôt. Étienne de La Boétie naît en 1530 "
+        "{boetie}{tab_sar}Ce mystère, un jeune homme l'a formulé quatre siècles plus tôt. {n_boe}Étienne de La Boétie naît en 1530 "
         "à Sarlat, dans le Périgord. Avant ses dix-huit ans, dit Montaigne, il écrit un court texte : le Discours de la "
         "servitude volontaire. Montaigne deviendra son meilleur ami, et dira de leur amitié : parce que c'était lui, "
         "parce que c'était moi.",
-        "{-tab_sar}{tab_man}Sa question tient en une phrase.",
+        "{-n_boe}{-tab_sar}{tab_man}Sa question tient en une phrase.",
         ("C", "Je ne voudrais sinon entendre comment il se peut faire que tant d'hommes, tant de bourgs, tant de villes, "
               "tant de nations endurent quelquefois un tyran seul…", "c_tyr"),
         "{-boetie}{-c_tyr}{un}Un tyran, remarque La Boétie, n'a que deux yeux, deux mains, un seul corps. Ce n'est pas sa force "
@@ -85,6 +85,9 @@ SCENES = [
         "critique de notre obéissance. Et un appel à notre responsabilité.",
         "{-lec}{-tab_bal2}",
     ], vis={
+        "n_boe": dict(type="note", titre="Étienne de La Boétie (1530-1563)", cles=["dix-huit", "lui"],
+                     t="Avant ses dix-huit ans : le Discours de la servitude volontaire.",
+                     etape="Montaigne, son ami : « parce que c'était lui, parce que c'était moi ».", x=640, y=150, w=570),
         "boetie": dict(type="portrait", annee=1530, img="boetie", nom="Étienne de La Boétie", dates="1530 – 1563",
                        legende="Discours de la servitude volontaire (vers 1548)", x=110, y=120, w=330, h=420),
         "tab_sar": dict(type="tableau", img="et4-sarlat", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.25, .5, .25],
@@ -123,11 +126,12 @@ SCENES = [
          retenir="Marx et Engels : l'État n'est pas neutre, c'est l'instrument de la classe dominante. Sans classes, il devrait dépérir.",
          beats=[
         "{marx}{tab_men}Trois siècles plus tard, la critique change de cible. Pour Karl Marx et son ami Friedrich Engels, "
-        "le problème n'est pas un tyran. C'est l'État lui-même, même quand il est élu. On a croisé Marx dans la série sur la "
+        "le problème n'est pas un tyran. {n_mx}C'est l'État lui-même, même quand il est élu. On a croisé Marx dans la série sur la "
         "liberté, avec les libertés formelles. Allons plus loin.",
-        "{-tab_men}{tab_mfs}En 1848, ils publient le Manifeste du parti communiste. L'histoire de toute société, disent-ils, "
+        "{-n_mx}{-tab_men}{tab_mfs}{lc}En 1848, ils publient le Manifeste du parti communiste. L'histoire de toute société, disent-ils, "
         "est l'histoire de luttes de classes : maîtres et esclaves, seigneurs et serfs, et aujourd'hui bourgeois et prolétaires. "
         "Et l'État, dans tout cela ?",
+        "{-lc}",
         ("C", "Le gouvernement moderne n'est qu'un comité qui gère les affaires communes de la classe bourgeoise tout entière.",
          "c_man"),
         "{-marx}{-c_man}{-tab_mfs}{tab_pyr}{inst}Voilà la thèse. {inst.1}L'État se présente comme neutre, au-dessus des intérêts, "
@@ -140,10 +144,10 @@ SCENES = [
         "S'il se met en grève avec d'autres, la loi le punit : en France, il faut attendre 1864 pour que la grève ne soit plus "
         "un délit. {ex_m.1}Le {#le travail}travail est libre, en droit. Mais celui qui n'a que ses bras doit accepter les "
         "conditions de celui qui possède l'usine.",
-        "{-ex_m}{-tab_men2}{engels}{tab_com}Engels ajoute une hypothèse sur l'origine. L'État serait né le jour où la société "
-        "s'est divisée en classes, pour empêcher que leur lutte ne la détruise. Il se pose en arbitre… mais il reste l'État "
+        "{-ex_m}{-tab_men2}{engels}{tab_com}Engels ajoute une hypothèse sur l'origine. {n_en}{n_en.1}L'État serait né le jour où la société "
+        "s'est divisée en classes, pour empêcher que leur lutte ne la détruise. {n_en.2}Il se pose en arbitre… {n_en.3}mais il reste l'État "
         "de la classe la plus puissante.",
-        "{-engels}{dep}D'où une conséquence étonnante. Si l'État n'existe que parce qu'il y a des classes, une société sans classes "
+        "{-engels}{-n_en}{dep}D'où une conséquence étonnante. Si l'État n'existe que parce qu'il y a des classes, une société sans classes "
         "n'en aura plus besoin. {dep.1}Après la révolution, une période de transition, la dictature du prolétariat. "
         "Marx croit en voir l'esquisse en 1871, dans la Commune de Paris. {dep.2}Puis l'État doit dépérir. "
         "{dep.3}On ne l'abolira pas, écrit Engels : il s'éteindra de lui-même, et sa machine ira au musée des antiquités, "
@@ -156,6 +160,11 @@ SCENES = [
         "{-iro}{-tab_pal}{q_pq}Pourquoi ? Un anarchiste l'avait prédit, dès 1873.",
         "{-q_pq}",
     ], vis={
+        "n_mx": dict(type="note", titre="Marx et Engels", cles=["l'État lui-même", "élu"],
+                    t="Le problème n'est pas un tyran : c'est l'État lui-même, même quand il est élu.", x=640, y=150, w=570),
+        "lc": dict(type="note", titre="Manifeste du parti communiste (1848)", cles=["luttes de classes"],
+                  t="L'histoire de toute société est l'histoire de luttes de classes.",
+                  etape="Maîtres et esclaves, seigneurs et serfs, bourgeois et prolétaires.", x=640, y=150, w=570),
         "marx": dict(type="portrait", annee=1818, img="marx", nom="Karl Marx", dates="1818 – 1883",
                      legende="Manifeste du parti communiste (1848, avec Engels)", x=110, y=120, w=330, h=420),
         "tab_men": dict(type="tableau", img="et4-menzel", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .55, .5],
@@ -179,6 +188,10 @@ SCENES = [
                      t="L'ouvrier est libre de signer son contrat… mais il n'a que ses bras pour vivre.",
                      etape="Repère · en droit / en fait : les libertés formelles (série « La liberté », épisode 1).",
                      x=170, y=200, w=940),
+        "n_en": dict(type="liste", titre="L'origine de l'État (Engels)", items=[
+            "Né quand la société se divise en classes",
+            "Il se pose en arbitre…",
+            "… mais reste l'État de la classe la plus puissante"], marques=["1", "2", "3"], x=640, y=150, w=570),
         "engels": dict(type="portrait", annee=1820, img="engels", nom="Friedrich Engels", dates="1820 – 1895",
                        legende="L'Origine de la famille, de la propriété privée et de l'État (1884)", x=110, y=120, w=330, h=420),
         "tab_com": dict(type="tableau", img="et4-commune", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .45],
@@ -201,8 +214,9 @@ SCENES = [
         "{tab_cou}{an}D'abord, un mot à laver de son sens courant : anarchie. En grec, an-arkhè, c'est l'absence de commandement, "
         "de chef. {an.1}Pas le désordre.",
         "{-an}{proudhon}Le premier à s'en réclamer fièrement est un Français, fils d'un tonnelier de Besançon : "
-        "Pierre-Joseph Proudhon. En 1840, il lance une formule qui fait scandale, la propriété, c'est le vol, "
+        "Pierre-Joseph Proudhon. {n_pr}En 1840, il lance une formule qui fait scandale, la propriété, c'est le vol, "
         "et déclare, dans le même livre : je suis anarchiste. Onze ans plus tard, il écrit une page restée célèbre.",
+        "{-n_pr}",
         ("C", "Être gouverné, c'est être gardé à vue, inspecté, espionné, dirigé, légiféré, réglementé, parqué, endoctriné, "
               "prêché, contrôlé, estimé, apprécié, censuré, commandé, par des êtres qui n'ont ni le titre, ni la science, "
               "ni la vertu…", "c_pro"),
@@ -210,10 +224,10 @@ SCENES = [
         "{ana.2}Des associations de travailleurs, des banques d'entraide, qui prêtent sans intérêt : c'est le mutuellisme. "
         "{ana.3}Et le fédéralisme : des communes qui s'unissent de bas en haut, au lieu d'un pouvoir qui descend d'en haut.",
         ("L'ordre ne viendrait plus du commandement. Il viendrait de l'accord.", {"rate": "-5%"}),
-        "{-ana}{-tab_cou}{bak}{tab_bale}Pour aller plus loin : Michel Bakounine. Un aristocrate russe devenu révolutionnaire, "
+        "{-ana}{-tab_cou}{bak}{tab_bale}Pour aller plus loin : Michel Bakounine. {n_bk}Un aristocrate russe devenu révolutionnaire, "
         "de toutes les barricades d'Europe, emprisonné, déporté en Sibérie, évadé. Pour lui, la {#la liberté}liberté des autres, "
         "loin de limiter la mienne, l'agrandit : on n'est libre qu'entre égaux.",
-        "{-bak}{mb}Dans l'Association internationale des travailleurs, il affronte Marx. {mb.g}Marx veut conquérir l'État, "
+        "{-bak}{-n_bk}{mb}Dans l'Association internationale des travailleurs, il affronte Marx. {mb.g}Marx veut conquérir l'État, "
         "pour qu'il dépérisse ensuite. {mb.d}Bakounine répond : jamais. Un État gouverné au nom des ouvriers sera gouverné "
         "par une minorité, d'anciens ouvriers devenus chefs, qui ne représenteront bientôt plus qu'eux-mêmes.",
         "{-mb}{pred}Dans Étatisme et anarchie, en 1873, il annonce une nouvelle classe dirigeante, de savants et de bureaucrates, "
@@ -227,6 +241,9 @@ SCENES = [
         "tab_cou": dict(type="tableau", img="et4-courbet", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .3, .35],
                         legende="Gustave Courbet, Pierre-Joseph Proudhon et ses enfants en 1853, 1865 (Petit Palais, Paris)"),
         "an": dict(type="mot", t="an-arkhè", g="grec : l'absence de commandement, de chef · pas le désordre", y=250, taille=104),
+        "n_pr": dict(type="note", titre="Pierre-Joseph Proudhon (1809-1865)", cles=["vol", "anarchiste"],
+                    t="1840 : « la propriété, c'est le vol ».",
+                    etape="Et dans le même livre : « je suis anarchiste ».", x=640, y=150, w=570),
         "proudhon": dict(type="portrait", annee=1809, img="proudhon", nom="Pierre-Joseph Proudhon", dates="1809 – 1865",
                          legende="Idée générale de la Révolution au XIXᵉ siècle (1851)", x=110, y=120, w=330, h=420),
         "c_pro": dict(type="cit", a="Proudhon", o="Idée générale de la Révolution au XIXᵉ siècle, Épilogue (1851)",
@@ -234,6 +251,9 @@ SCENES = [
         "ana": dict(type="liste", titre="L'anarchie selon Proudhon", items=[
             "Des contrats libres, entre égaux", "Le mutuellisme : associations et banques d'entraide",
             "Le fédéralisme : des communes unies de bas en haut"], marques=["1", "2", "3"], x=170, y=160, w=940),
+        "n_bk": dict(type="note", titre="Michel Bakounine (1814-1876)", cles=["Sibérie", "égaux"],
+                    t="Aristocrate russe, révolutionnaire, déporté en Sibérie, évadé.",
+                    etape="On n'est libre qu'entre égaux.", x=640, y=150, w=570),
         "bak": dict(type="portrait", annee=1814, img="bakounine", nom="Michel Bakounine", dates="1814 – 1876",
                     legende="Étatisme et anarchie (1873)", x=110, y=120, w=330, h=420),
         "tab_bale": dict(type="tableau", img="et4-bale", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .6, .55],
@@ -256,9 +276,10 @@ SCENES = [
          notions=["la religion", "le langage"],
          retenir="Nietzsche : l'État, « le plus froid des monstres froids », ment en se disant le peuple. Clastres : des sociétés contre l'État.",
          beats=[
-        "{nietz}{tab_zar}Dernière attaque, d'un tout autre ordre. Nietzsche, qu'on a vu dans la série sur le devoir dénoncer "
+        "{nietz}{tab_zar}Dernière attaque, d'un tout autre ordre. {n_nz}Nietzsche, qu'on a vu dans la série sur le devoir dénoncer "
         "la morale du troupeau, s'en prend aussi à l'État. Dans Ainsi parlait Zarathoustra, en 1883, un chapitre s'intitule : "
         "de la nouvelle idole.",
+        "{-n_nz}",
         ("C", "L'État, c'est le plus froid de tous les monstres froids : il ment froidement et voici le mensonge qui rampe "
               "de sa bouche : « Moi, l'État, je suis le Peuple. »", "c_nie"),
         "{-nietz}{-c_nie}{-tab_zar}{tab_dor}{men}Quel est ce mensonge ? {men.1}Les peuples, dit Nietzsche, sont nés d'une foi, "
@@ -282,6 +303,8 @@ SCENES = [
         ("L'État n'est donc pas une fatalité. C'est une invention… et des sociétés l'ont refusée.", {"rate": "-5%"}),
         "{-chef}{-tab_tup}",
     ], vis={
+        "n_nz": dict(type="note", titre="Ainsi parlait Zarathoustra (1883)", cles=["idole"],
+                    t="Un chapitre : « De la nouvelle idole ».", x=640, y=150, w=570),
         "nietz": dict(type="portrait", annee=1844, img="nietzsche", nom="Friedrich Nietzsche", dates="1844 – 1900",
                       legende="Ainsi parlait Zarathoustra (1883-1885)", x=110, y=120, w=330, h=420),
         "tab_zar": dict(type="tableau", img="et4-zarathoustra", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.3, .5, .3],
