@@ -147,11 +147,11 @@ SCENES = [
         "ce qui vient ensuite. Socrate lui-même, condamné injustement, refusa de s'évader de sa prison : "
         "on l'a vu dans la série sur le devoir.",
         "{plan3.2}Deuxième partie : mais l'État peut trahir sa raison d'être. Locke reconnaît au peuple un droit de résistance.{-plan3}",
-        "{-tab_bor}{tab_pla}{mendes}Un exemple. Bordeaux, juin 1940. La France s'effondre, des milliers de réfugiés fuient "
-        "les nazis. Le consul du Portugal, Aristides de Sousa Mendes, a reçu de son gouvernement l'ordre de refuser les visas. "
-        "Pendant quelques jours, il en signe des milliers. Rappelé, sanctionné, il mourra dans la misère. "
-        "Il est aujourd'hui honoré comme Juste parmi les nations.",
-        "{-mendes}{-tab_pla}{tab_dam}{plan3b}{plan3b.1}Troisième partie : obéir, en actes, à l'État légitime… sans jamais lui "
+        "{-tab_bor}{tab_pla}{mendes}Un exemple. {n_men}Bordeaux, juin 1940. La France s'effondre, des milliers de réfugiés fuient "
+        "les nazis. Le consul du Portugal, Aristides de Sousa Mendes, {n_men.1}a reçu de son gouvernement l'ordre de refuser les visas. "
+        "{n_men.2}Pendant quelques jours, il en signe des milliers. {n_men.3}Rappelé, sanctionné, il mourra dans la misère. "
+        "{n_men.4}Il est aujourd'hui honoré comme Juste parmi les nations.",
+        "{-n_men}{-mendes}{-tab_pla}{tab_dam}{plan3b}{plan3b.1}Troisième partie : obéir, en actes, à l'État légitime… sans jamais lui "
         "abandonner son jugement. Penser, parler, critiquer, c'est ce que l'État doit laisser libre. C'est la thèse de Spinoza, "
         "dans le texte qui va suivre.",
         "{-plan3b}{os}La distinction qui dépasse : {os.g}l'obéissance, qui suit la loi en gardant les yeux ouverts, "
@@ -170,6 +170,10 @@ SCENES = [
                       x=170, y=150, w=940),
         "tab_pla": dict(type="tableau", img="et6-plaque", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .4],
                         legende="Plaque en hommage à Aristides de Sousa Mendes, Bayonne (photo Michel Bakni, CC BY-SA 4.0)"),
+        "n_men": dict(type="liste", titre="Bordeaux, juin 1940", items=[
+            "Ordre de Lisbonne : refuser les visas", "Il en signe des milliers",
+            "Rappelé, sanctionné, mort dans la misère", "Juste parmi les nations"],
+                    x=640, y=150, w=570),
         "mendes": dict(type="portrait", annee=1885, img="sousa-mendes", nom="Aristides de Sousa Mendes", dates="1885 – 1954",
                        legende="Consul du Portugal à Bordeaux (1940)", x=110, y=120, w=330, h=420),
         "tab_dam": dict(type="tableau", img="et3-amsterdam", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .45, .45],
@@ -183,10 +187,10 @@ SCENES = [
     # ------------------------------------------------------------------ IV. explication : le texte
     dict(id="texte", chap="L'explication · Le texte", fond="nuit", humeur="calme", notions=["la raison", "la liberté"],
          retenir="Introduction : thème, question, thèse adverse, thèse, enjeu, plan. Toujours avec les mots du texte.", beats=[
-        "{spino}{tab_ttp}Le texte, maintenant. Spinoza, Traité théologico-politique, 1670, chapitre vingt. "
-        "Le livre paraît sans nom d'auteur, avec une fausse adresse d'éditeur : il sera interdit quatre ans plus tard. "
-        "Le titre du chapitre dit tout : dans un État libre, chacun a le droit de penser ce qu'il veut et de dire ce qu'il pense. "
-        "Écoute le passage en entier.",
+        "{spino}{tab_ttp}Le texte, maintenant. {n_ttp}Spinoza, Traité théologico-politique, 1670, chapitre vingt. "
+        "{n_ttp.1}Le livre paraît sans nom d'auteur, avec une fausse adresse d'éditeur : {n_ttp.2}il sera interdit quatre ans plus tard. "
+        "{n_ttp.3}Le titre du chapitre dit tout : dans un État libre, chacun a le droit de penser ce qu'il veut et de dire ce qu'il pense. "
+        "Écoute le passage en entier.{-n_ttp}",
         ("C", "De la description que nous avons donnée ci-dessus des fondements de l'État, il suit avec une parfaite évidence "
               "que la fin dernière de l'État n'est pas de dominer les hommes, de les retenir par la crainte, de les soumettre "
               "à la volonté d'autrui, mais tout au contraire de permettre à chacun, autant que possible, de vivre en sécurité, "
@@ -209,6 +213,10 @@ SCENES = [
         "puis ce qu'il doit permettre, enfin la conclusion, la liberté.",
         "{-six}{-tab_ver}",
     ], vis={
+        "n_ttp": dict(type="liste", titre="Traité théologico-politique", items=[
+            "1670 : sans nom d'auteur, fausse adresse", "Interdit en 1674",
+            "Chap. XX : penser ce qu'on veut, dire ce qu'on pense"],
+                    x=640, y=150, w=570),
         "spino": dict(type="portrait", annee=1632, img="spinoza", nom="Baruch Spinoza", dates="1632 – 1677",
                       legende="Traité théologico-politique (1670)", x=110, y=120, w=330, h=420),
         "tab_ttp": dict(type="tableau", img="et3-ttp", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.25, .5, .35],
