@@ -51,10 +51,11 @@ SCENES = [
          retenir="Husserl : toute conscience est conscience de quelque chose. C'est l'intentionnalité : la conscience vise un objet.",
          beats=[
         "{husserl}{tab_cez}Au début du vingtième siècle, en Allemagne, un mathématicien devenu philosophe veut refonder "
-        "la philosophie comme une science rigoureuse. Il s'appelle Edmund Husserl. Son mot d'ordre : revenir aux choses "
+        "la philosophie comme une science rigoureuse. Il s'appelle Edmund Husserl. {n_hus}Son mot d'ordre : revenir aux choses "
         "mêmes. Décrire ce qui apparaît, exactement comme cela apparaît.",
         "Et la première chose qu'il décrit, c'est la conscience. Dans les Méditations cartésiennes, en 1929, "
         "il formule ce que ton petit exercice vient de montrer.",
+        "{-n_hus}",
         ("C", "Le mot intentionnalité ne signifie rien d'autre que cette particularité foncière et générale qu'a la conscience "
               "d'être conscience de quelque chose.", "c_hus"),
         "{-husserl}{-c_hus}{int}Retiens ce mot : l'intentionnalité. Du latin intendere : tendre vers, viser. "
@@ -74,6 +75,9 @@ SCENES = [
         "Et la {#la vérité}vérité commence par une description fidèle de ce qui nous apparaît.",
         "{-ouv}{-tab_desc}",
     ], vis={
+        "n_hus": dict(type="note", titre="La phénoménologie", cles=["choses", "décrire"],
+                     t="Revenir aux choses mêmes : décrire ce qui apparaît, exactement comme cela apparaît.",
+                     etape="Et d'abord la conscience elle-même.", x=640, y=150, w=570),
         "husserl": dict(type="portrait", annee=1859, img="husserl", nom="Edmund Husserl", dates="1859 – 1938",
                         legende="Méditations cartésiennes (1929)", x=110, y=120, w=330, h=420),
         "tab_cez": dict(type="tableau", img="cs4-cezanne", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .55, .4],
@@ -106,15 +110,17 @@ SCENES = [
         "{sartre}{tab_del}En 1933, un jeune professeur de philosophie du Havre part étudier un an à Berlin, pour lire Husserl "
         "dans le texte. C'est Jean-Paul Sartre. Il en revient ébloui, et écrit un article court, publié en 1939, "
         "qui sonne comme un manifeste.",
-        "Il s'en prend à une vieille image : la conscience comme un estomac, qui avalerait les choses pour les digérer "
+        "{n_sar}Il s'en prend à une vieille image : la conscience comme un estomac, qui avalerait les choses pour les digérer "
         "en idées. Contre cette philosophie digestive, comme il l'appelle, il lance une formule.",
+        "{-n_sar}",
         ("C", "La conscience n'a pas de « dedans ».", "c_sar1"),
         "{-sartre}{-c_sar1}{ecl}Être conscient, c'est {!s'éclater vers}s'éclater vers le monde : {ecl.1}s'arracher à soi, "
         "filer là-bas, vers ce qui n'est pas soi. {ecl.2}Si tu pouvais entrer dans une conscience, dit-il en substance, "
         "tu serais pris dans un tourbillon, et rejeté dehors, près de l'arbre, en pleine poussière.",
-        "{-ecl}{-tab_del}{tab_rue}Même nos sentiments sont dehors. Si je trouve une personne aimable, ce n'est pas "
+        "{-ecl}{-tab_del}{tab_rue}{n_sent}Même nos sentiments sont dehors. Si je trouve une personne aimable, ce n'est pas "
         "une petite émotion rangée en moi, comme un objet dans un tiroir : c'est une manière dont cette personne m'apparaît, "
         "dans le monde. Et Sartre conclut.",
+        "{-n_sent}",
         ("C", "Ce n'est pas dans je ne sais quelle retraite que nous nous découvrirons : c'est sur la route, dans la ville, "
               "au milieu de la foule, chose parmi les choses, homme parmi les hommes.", "c_sar2"),
         "{-c_sar2}{-tab_rue}{tab_cha}{neant}Pour aller plus loin. Si la conscience n'est rien d'autre que ce mouvement vers le monde, "
@@ -126,6 +132,8 @@ SCENES = [
         "{mf.2}Se dire « je suis timide, c'est comme ça », c'est vouloir être une chose, pour ne plus avoir à choisir.",
         "{-mf}{-tab_cha}",
     ], vis={
+        "n_sar": dict(type="note", titre="Contre la philosophie digestive", cles=["estomac", "digestive"],
+                     t="La conscience n'est pas un estomac qui avalerait les choses pour les digérer en idées.", x=640, y=150, w=570),
         "sartre": dict(type="portrait", annee=1905, img="sartre", nom="Jean-Paul Sartre", dates="1905 – 1980",
                        legende="« Une idée fondamentale de la phénoménologie de Husserl » (1939)", x=110, y=120, w=330, h=420),
         "tab_del": dict(type="tableau", img="cs4-delaunay", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .5, .45],
@@ -137,6 +145,9 @@ SCENES = [
                     etape="Entrer dans une conscience ? On serait rejeté dehors, près de l'arbre.", x=170, y=200, w=940),
         "tab_rue": dict(type="tableau", img="cs4-rue", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .55, .55],
                         legende="Gustave Caillebotte, Rue de Paris, temps de pluie, 1877 (Art Institute of Chicago)"),
+        "n_sent": dict(type="note", titre="Les sentiments sont dehors", cles=["aimable", "tiroir"],
+                      t="Trouver quelqu'un aimable : non pas une émotion rangée en moi comme dans un tiroir…",
+                      etape="… mais une manière dont cette personne m'apparaît, dans le monde.", x=170, y=150, w=940),
         "c_sar2": dict(type="cit", a="Sartre", o="« Une idée fondamentale de la phénoménologie de Husserl » (1939), Situations I",
                        x=170, y=180, w=940),
         "tab_cha": dict(type="tableau", img="cs4-chardin", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .55, .5],
@@ -208,11 +219,11 @@ SCENES = [
          retenir="Hegel : l'homme a une double existence. Il se connaît par la pensée, et par l'action qui transforme le monde. Il veut être reconnu.",
          beats=[
         "{hegel}{tab_ron}Remontons un siècle plus tôt. Dans ses cours d'esthétique, donnés à Berlin dans les années 1820, "
-        "Hegel s'arrête sur un geste d'enfant. Un petit garçon jette des pierres dans l'eau… puis il regarde, fasciné, "
+        "Hegel s'arrête sur un geste d'enfant. {n_heg}{n_heg.1}Un petit garçon jette des pierres dans l'eau… {n_heg.2}puis il regarde, fasciné, "
         "les cercles qui s'élargissent à la surface.",
-        "Pourquoi est-ce si fascinant ? Parce que ces cercles, c'est lui qui les a faits. Dans l'eau, il contemple "
+        "{n_heg.3}Pourquoi est-ce si fascinant ? Parce que ces cercles, c'est lui qui les a faits. Dans l'eau, il contemple "
         "quelque chose qui vient de lui : il voit son propre pouvoir, au dehors.",
-        "{-tab_ron}{tab_cours}Hegel en tire une thèse sur ce qui distingue l'homme des choses.",
+        "{-n_heg}{-tab_ron}{tab_cours}Hegel en tire une thèse sur ce qui distingue l'homme des choses.",
         ("C", "Les choses de la nature n'existent qu'immédiatement et d'une seule façon, tandis que l'homme, "
               "parce qu'il est esprit, a une double existence.", "c_heg"),
         "{-hegel}{-c_heg}{dbl}{dbl.g}D'abord, l'homme se connaît par la pensée : il se contemple, se représente à lui-même. "
@@ -230,6 +241,10 @@ SCENES = [
         ("Celui qui fabrique apprend qui il est. Celui qui consomme reste dépendant.", {"rate": "-5%"}),
         "{-ms}{-tab_cas}",
     ], vis={
+        "n_heg": dict(type="liste", titre="Les ricochets (Esthétique)", items=[
+            "L'enfant jette des pierres dans l'eau",
+            "Il regarde les cercles s'élargir",
+            "Il y voit son œuvre : son propre pouvoir, au dehors"], marques=["1", "2", "3"], x=640, y=150, w=570),
         "hegel": dict(type="portrait", annee=1770, img="hegel", nom="G. W. F. Hegel", dates="1770 – 1831",
                       legende="Cours d'esthétique (1818-1829)", x=110, y=120, w=330, h=420),
         "tab_ron": dict(type="tableau", img="cs4-ronds", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.35, .5, .5],
@@ -259,8 +274,9 @@ SCENES = [
          retenir="Bergson : conscience signifie mémoire et anticipation, donc choix. Quand un geste devient automatique, la conscience s'en retire.",
          beats=[
         "{bergson}{tab_sou}Dernière voix : Henri Bergson. En 1911, il donne une conférence en Angleterre, à Birmingham, "
-        "sur la conscience et la vie. Il refuse d'abord de la définir : c'est la chose la plus concrète qui soit. "
+        "sur la conscience et la vie. {n_berg}Il refuse d'abord de la définir : c'est la chose la plus concrète qui soit. "
         "Mais il en donne le trait le plus apparent.",
+        "{-n_berg}",
         ("C", "Conscience signifie d'abord mémoire.", "c_berg1"),
         "{-c_berg1}{oubli}Imagine une conscience qui oublierait tout, à chaque instant. Elle mourrait et renaîtrait sans cesse : "
         "ce ne serait plus une conscience du tout. Et Bergson ajoute aussitôt une seconde idée.{-oubli}",
@@ -280,6 +296,8 @@ SCENES = [
         ("Plus je choisis, plus je suis conscient. La conscience a partie liée avec la liberté.", {"rate": "-5%"}),
         "{-deg}{-tab_dan}",
     ], vis={
+        "n_berg": dict(type="note", titre="« La conscience et la vie » (1911)", cles=["concrète"],
+                      t="Inutile de la définir : c'est la chose la plus concrète qui soit.", x=640, y=150, w=570),
         "bergson": dict(type="portrait", annee=1859, img="bergson", nom="Henri Bergson", dates="1859 – 1941",
                         legende="L'Énergie spirituelle (1919)", x=110, y=120, w=330, h=420),
         "tab_sou": dict(type="tableau", img="cs4-souvenir", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .4, .45],

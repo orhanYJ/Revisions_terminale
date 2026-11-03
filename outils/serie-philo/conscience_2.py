@@ -56,11 +56,11 @@ SCENES = [
     dict(id="doute", chap="Douter de tout", fond="aube", humeur="tension", notions=["la vérité", "la science"],
          retenir="Le doute méthodique : volontaire, radical, provisoire. Les sens trompent, le rêve imite la veille, le malin génie pourrait me tromper jusque dans les mathématiques.",
          beats=[
-        "{desc}{tab_dam}Descartes a quarante ans passés. Il vit retiré en Hollande, loin de Paris, pour penser en paix. "
+        "{desc}{tab_dam}{n_desc}{n_desc.1}Descartes a quarante ans passés. Il vit retiré en Hollande, loin de Paris, pour penser en paix. "
         "On l'a vu dans la série sur la liberté : depuis une nuit de 1619, il rêve de rebâtir tout le savoir sur des bases solides.",
-        "Car ce qu'on lui a appris au collège, il s'en méfie. Tant d'opinions, tant de disputes, si peu de certitudes ! "
-        "Une maison bâtie sur du sable, il faut la reprendre depuis les fondations.",
-        "{-desc}{-tab_dam}{tab_dis}{meth}D'où sa méthode, exposée en 1637 dans le Discours de la méthode, puis approfondie en 1641 "
+        "{n_desc.2}Car ce qu'on lui a appris au collège, il s'en méfie. Tant d'opinions, tant de disputes, si peu de certitudes ! "
+        "{n_desc.3}Une maison bâtie sur du sable, il faut la reprendre depuis les fondations.",
+        "{-desc}{-n_desc}{-tab_dam}{tab_dis}{meth}D'où sa méthode, exposée en 1637 dans le Discours de la méthode, puis approfondie en 1641 "
         "dans les Méditations. {meth.1}Rejeter comme absolument faux tout ce qui laisse place au moindre doute. "
         "{meth.2}Pour voir s'il reste, à la fin, quelque chose d'entièrement certain.",
         "{-meth}{-tab_dis}{tab_cra}{raisons}Premier motif de doute : {raisons.1}les sens. Ils nous trompent parfois. "
@@ -81,6 +81,10 @@ SCENES = [
         "comme on vide un panier de pommes pour en ôter les pourries. {rep_cs}Il ne s'agit plus de croire, mais de savoir.",
         "{-dm}{-rep_cs}{-tab_sat}",
     ], vis={
+        "n_desc": dict(type="liste", titre="Descartes, vers 1637", items=[
+            "Retiré en Hollande, pour penser en paix",
+            "Méfiant envers ce qu'il a appris au collège",
+            "Rebâtir le savoir depuis les fondations"], marques=["1", "2", "3"], x=640, y=150, w=570),
         "desc": dict(type="portrait", annee=1596, img="descartes", nom="René Descartes", dates="1596 – 1650",
                      legende="Discours de la méthode (1637) · Méditations (1641)", x=110, y=120, w=330, h=420),
         "tab_dam": dict(type="tableau", img="cs2-dam", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .55, .6],
@@ -271,10 +275,11 @@ SCENES = [
     dict(id="hume", chap="Hume : un faisceau de perceptions", fond="aube", humeur="mystere", notions=["la science", "le temps"],
          retenir="Hume : quand je rentre en moi-même, je ne trouve jamais un moi, seulement des perceptions. Le moi est un faisceau de perceptions ; son identité, une fiction de l'imagination.",
          beats=[
-        "{hume}{tab_edi}Et si, à force de chercher ce moi qui dure, on ne trouvait… rien ? En 1739, à moins de trente ans, "
+        "{hume}{tab_edi}{n_hume}Et si, à force de chercher ce moi qui dure, on ne trouvait… rien ? En 1739, à moins de trente ans, "
         "l'Écossais David Hume publie son Traité de la nature humaine. Il veut faire de l'esprit humain une {#la science}science "
         "d'observation, comme Newton l'a fait pour la nature.",
         "Alors il observe. Il rentre en lui-même, et il cherche ce fameux moi.",
+        "{-n_hume}",
         ("C", "Pour moi, quand je pénètre le plus intimement dans ce que j'appelle moi-même, je tombe toujours sur une perception "
               "particulière ou sur une autre, de chaud ou de froid, de lumière ou d'ombre, d'amour ou de haine, "
               "de douleur ou de plaisir.", "c_hume"),
@@ -296,6 +301,9 @@ SCENES = [
                      legende="Traité de la nature humaine (1739)", x=110, y=120, w=330, h=420),
         "tab_edi": dict(type="tableau", img="cs2-edimbourg", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .4, .45],
                         legende="Alexander Nasmyth, Édimbourg vu de Calton Hill, début du XIXᵉ siècle (City Art Centre, Édimbourg)"),
+        "n_hume": dict(type="note", titre="Traité de la nature humaine (1739)", cles=["science", "observation"],
+                       t="Faire de l'esprit une science d'observation, comme Newton pour la nature.",
+                       etape="Alors Hume rentre en lui-même, et cherche ce fameux moi.", x=640, y=150, w=570),
         "c_hume": dict(type="cit", a="Hume", o="Traité de la nature humaine, I, IV, 6 (1739), trad. courante", x=640, y=120, w=570),
         "tab_dra": dict(type="tableau", img="cs2-drame", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .4, .4],
                         legende="Honoré Daumier, Le Drame, vers 1860 (Neue Pinakothek, Munich)"),
