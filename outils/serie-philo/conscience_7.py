@@ -236,6 +236,7 @@ SCENES = [
         "{rec.2}La certitude du moi : Descartes, Locke, Hume. {rec.3}Les limites : l'inconscient, et l'ouverture au monde "
         "et aux autres. {rec.4}La conscience morale, du daimôn au roseau pensant.",
         "{-rec}{frise}Et voici ceux qui t'ont accompagné, de Socrate à Hannah Arendt : vingt-cinq siècles de pensée.",
+        ("P", 7.0),
         "{-frise}{trois}Si tu ne dois garder que trois phrases : {trois.1}Descartes, je pense, donc je suis. "
         "{trois.2}Husserl, toute conscience est conscience de quelque chose. "
         "{trois.3}Et Pascal, toute notre dignité consiste en la pensée.",
