@@ -241,6 +241,7 @@ SCENES = [
         "{rec.2}Les sources : la société, Dieu, la conscience, la raison. {rec.3}Kant, et ses adversaires. "
         "{rec.4}Les conflits de devoirs, et le jugement.",
         "{-rec}{frise}Et voici ceux qui t'ont accompagné, de Sophocle à Hannah Arendt : vingt-cinq siècles de pensée.",
+        ("P", 7.0),
         "{-frise}{trois}Si tu ne dois garder que trois phrases : {trois.1}Rousseau, force ne fait pas droit. "
         "{trois.2}Kant, traite l'humanité toujours comme une fin, jamais simplement comme un moyen. "
         "{trois.3}Et Martin Luther King : on a la responsabilité morale de désobéir aux lois injustes.",

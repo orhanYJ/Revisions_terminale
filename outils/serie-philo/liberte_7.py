@@ -231,6 +231,7 @@ SCENES = [
         "{rec.2}Le débat : libres, ou déterminés ? {rec.3}La libération : par le jugement, la connaissance, l'autonomie. "
         "{rec.4}Et la liberté politique : l'État, la loi, les autres.",
         "{-rec}{frise}Et voici ceux qui t'ont accompagné, d'Athènes à Paris : vingt-cinq siècles de pensée.",
+        ("P", 7.0),
         "{-frise}{trois}Si tu ne dois garder que trois phrases : {trois.1}Rousseau, l'obéissance à la loi qu'on s'est prescrite est liberté. "
         "{trois.2}Sartre, l'homme est condamné à être libre. {trois.3}Et Kant : aie le courage de te servir de ton propre entendement.",
         ("Un dernier mot. La liberté n'est pas seulement un sujet de dissertation. C'est une question que tu te poses "
