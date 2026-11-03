@@ -222,9 +222,9 @@ SCENES = [
         "{-mot_t}",
         ("C", "Tout dans l'État, rien hors de l'État, rien contre l'État.", "c_mus"),
         "{-c_mus}{arendt}Hannah Arendt, juive allemande qui a fui le nazisme, publie en 1951 Les Origines du totalitarisme. "
-        "Elle y montre que le totalitarisme n'est pas une tyrannie de plus. C'est un régime d'un genre nouveau, "
+        "{n_tot}Elle y montre que le totalitarisme n'est pas une tyrannie de plus. C'est un régime d'un genre nouveau, "
         "dont l'Allemagne nazie et l'Union soviétique de Staline sont les deux exemples.",
-        "{-arendt}{tyr}Quelle différence ? {tyr.g}Le tyran veut qu'on lui obéisse. Une fois l'impôt payé et la bouche fermée, "
+        "{-arendt}{-n_tot}{tyr}Quelle différence ? {tyr.g}Le tyran veut qu'on lui obéisse. Une fois l'impôt payé et la bouche fermée, "
         "on peut vivre tranquille chez soi. {tyr.d}Le régime totalitaire, lui, veut l'homme tout entier : ses actes, ses amis, "
         "sa famille, ses loisirs, et jusqu'à ses pensées.",
         "{-tyr}{-tab_ral}{tab_ter}{trois_t}Il repose sur trois piliers. {trois_t.1}Une idéologie, qui prétend tout expliquer "
@@ -242,6 +242,9 @@ SCENES = [
         "mot_t": dict(type="mot", t="Totalitaire", g="un mot né en Italie, au début des années 1920", y=260, taille=100),
         "c_mus": dict(type="cit", a="Benito Mussolini", o="discours de la Scala de Milan, 28 octobre 1925 (trad. courante)",
                       x=170, y=230, w=940),
+        "n_tot": dict(type="note", titre="Les Origines du totalitarisme (1951)", cles=["tyrannie", "nouveau"],
+                     t="Pas une tyrannie de plus : un régime d'un genre nouveau.",
+                     etape="Deux exemples : l'Allemagne nazie, l'Union soviétique de Staline.", x=640, y=150, w=570),
         "arendt": dict(type="portrait", annee=1906, img="arendt", nom="Hannah Arendt", dates="1906 – 1975",
                        legende="Les Origines du totalitarisme (1951)", x=110, y=120, w=330, h=420),
         "tyr": dict(type="cols", g="La tyrannie", gq="elle veut qu'on obéisse : la vie privée reste à soi",
