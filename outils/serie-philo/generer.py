@@ -31,7 +31,7 @@ SORTIE = os.path.join(RACINE, "philo", "serie")
 CACHE = os.path.join(ICI, ".cache")
 SR = musique.SR
 
-MOTEUR = os.environ.get("SERIE_MOTEUR", "qwen")   # SERIE_MOTEUR=edge : brouillon rapide (voix en ligne) pour vérifier les images
+MOTEUR = os.environ.get("SERIE_MOTEUR", "qwen")   # SERIE_MOTEUR=edge : brouillon rapide (voix en ligne) ; =muet : brouillon sans voix ni réseau
 VOIX = ({"H": "narrateur", "C": "citations"} if MOTEUR == "qwen"
         else {"H": "fr-FR-RemyMultilingualNeural", "C": "fr-FR-VivienneMultilingualNeural"})
 PROSODIE = {"H": {"rate": "+0%", "pitch": "+0Hz"}, "C": {"rate": "-6%", "pitch": "+0Hz"}}
@@ -41,7 +41,7 @@ CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
-V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 1}   # pc/serie/moteur.* (et le cache de pc/sw.js)
+V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2}   # pc/serie/moteur.* (et le cache de pc/sw.js)
 TEINTE = {"philo": "#0b111e", "pc": "#120c07"}
 PAGE = """<!DOCTYPE html>
 <html lang="fr">
@@ -193,6 +193,17 @@ def generer(nom_module):
             tempo = 1 + float(rate.rstrip("%")) / 100      # le débit seul est repris ; la hauteur suit la voix
             sc = voix_qwen.dire(lu, voix, chemin, tempo=tempo)
             print(f"  {i}/{len(a_faire)} {voix} score {sc:.2f}" + ("  À VÉRIFIER" if sc < 0.85 else "") + f"  {lu[:60]}", flush=True)
+        a_faire = []
+    if a_faire and MOTEUR == "muet":
+        # brouillon sans voix ni réseau : silence d'une durée calée sur le débit moyen du narrateur, mots répartis régulièrement
+        for lu, voix, rate, pitch, chemin in a_faire:
+            mots = re.findall(r"[\w'’-]+", lu)
+            dur = max(0.6, len(mots) / 2.9)
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", f"anullsrc=r={SR}:cl=mono", "-t", f"{dur:.2f}",
+                            "-af", "volume=0", "-b:a", "48k", chemin], check=True)
+            pas = dur / max(1, len(mots))
+            with open(chemin + ".json", "w", encoding="utf-8") as f:
+                json.dump([[round(i * pas, 3), round(pas * .9, 3), m] for i, m in enumerate(mots)], f, ensure_ascii=False)
         a_faire = []
     if a_faire:
         print(f"enregistrement de {len(a_faire)} passages…")

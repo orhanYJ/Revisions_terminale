@@ -224,6 +224,7 @@ SCENES = [
         "{rec}Voici toute la notion, sur une seule carte. {rec.1}Le mot et le plaisir. {rec.2}La sagesse des Anciens. "
         "{rec.3}Le soupçon de l'illusion. {rec.4}La morale et la cité.",
         "{-rec}{frise}Et voici ceux qui t'ont accompagné, d'Aristippe à Freud : vingt-quatre siècles à chercher la vie heureuse.",
+        ("P", 7.0),
         "{-frise}{trois}Si tu ne dois garder que trois phrases : {trois.1}Aristote, le bonheur est la fin de tous nos actes. "
         "{trois.2}Pascal, nous ne vivons jamais, mais nous espérons de vivre. "
         "{trois.3}Et Kant : la morale nous apprend à nous rendre dignes du bonheur.",
