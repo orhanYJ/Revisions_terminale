@@ -808,6 +808,74 @@
     return f;
   };
 
+  // lentille convergente : axe, foyers, objet AB ; {id.1} rayon parallèle → F′, {id.2} rayon par O, {id.3} rayon par F,
+  // {id.4} image A′B′ (position par la relation de conjugaison). v.oa : position de l'objet en multiples de f′ (négative)
+  ILLU.lentille = function (s, v) {
+    var W_ = v.w, H_ = v.h, g = sv("g", {}, s), y0 = H_ * .55, x0 = W_ * .5, f = v.f || 120, hA = v.ha || 70;
+    var oa = (v.oa || -2.5) * f, oai = 1 / (1 / f + 1 / oa), gam = oai / oa, xa = x0 + oa, xi = x0 + oai, hi = hA * gam;
+    var Y = function (hh) { return y0 - hh; };
+    var axe = sv("line", { x1: 20, x2: W_ - 20, y1: y0, y2: y0, stroke: "rgba(242,231,218,.5)", "stroke-width": 1.6, "stroke-dasharray": "8 6" }, g);
+    var len = sv("g", {}, g);
+    sv("line", { x1: x0, x2: x0, y1: y0 - 160, y2: y0 + 160, stroke: C.el, "stroke-width": 3.4 }, len);
+    sv("path", { d: "M" + (x0 - 12) + " " + (y0 - 146) + " L" + x0 + " " + (y0 - 162) + " L" + (x0 + 12) + " " + (y0 - 146) +
+      "M" + (x0 - 12) + " " + (y0 + 146) + " L" + x0 + " " + (y0 + 162) + " L" + (x0 + 12) + " " + (y0 + 146), fill: "none", stroke: C.el, "stroke-width": 3.4 }, len);
+    var lab = sv("g", {}, g);
+    [[x0, "O"], [x0 - f, "F"], [x0 + f, "F′"]].forEach(function (p) {
+      sv("circle", { cx: p[0], cy: y0, r: 4.5, fill: C.iv }, lab);
+      etiquette(lab, p[0], y0 + 30, p[1], { fs: 24, c: C.iv, cls: "ser" });
+    });
+    var obj = sv("g", {}, g);
+    sv("line", { x1: xa, x2: xa, y1: y0, y2: Y(hA) + 10, stroke: C.sa, "stroke-width": 4 }, obj);
+    sv("path", { d: "M" + (xa - 9) + " " + (Y(hA) + 14) + " L" + xa + " " + Y(hA) + " L" + (xa + 9) + " " + (Y(hA) + 14) + " Z", fill: C.sa }, obj);
+    etiquette(obj, xa - 18, y0 + 30, "A", { fs: 24, c: C.sa, cls: "ser" }); etiquette(obj, xa - 18, Y(hA) - 6, "B", { fs: 24, c: C.sa, cls: "ser" });
+    var xe = Math.min(W_ - 20, xi + 90);
+    function droite(x1, y1, x2, y2, xs) { var a = (y2 - y1) / (x2 - x1); return y1 + a * (xs - x1); }
+    var r1 = sv("path", { d: "M" + xa + " " + Y(hA) + " L" + x0 + " " + Y(hA) + " L" + xe + " " + droite(x0, Y(hA), x0 + f, y0, xe).toFixed(1), fill: "none", stroke: C.or, "stroke-width": 2.6 }, g);
+    var r2 = sv("path", { d: "M" + xa + " " + Y(hA) + " L" + xe + " " + droite(xa, Y(hA), x0, y0, xe).toFixed(1), fill: "none", stroke: C.vert, "stroke-width": 2.6 }, g);
+    var yF = droite(xa, Y(hA), x0 - f, y0, x0);
+    var r3 = sv("path", { d: "M" + xa + " " + Y(hA) + " L" + x0 + " " + yF.toFixed(1) + " L" + xe + " " + yF.toFixed(1), fill: "none", stroke: C.uv, "stroke-width": 2.6 }, g);
+    var im = sv("g", {}, g);
+    sv("line", { x1: xi, x2: xi, y1: y0, y2: Y(hi) - 10 * Math.sign(hi), stroke: C.vert, "stroke-width": 4 }, im);
+    sv("path", { d: "M" + (xi - 9) + " " + (Y(hi) - 14 * Math.sign(hi)) + " L" + xi + " " + Y(hi) + " L" + (xi + 9) + " " + (Y(hi) - 14 * Math.sign(hi)) + " Z", fill: C.vert }, im);
+    etiquette(im, xi + 22, y0 - 12, "A′", { fs: 24, c: C.vert, cls: "ser" }); etiquette(im, xi + 22, Y(hi) + 24, "B′", { fs: 24, c: C.vert, cls: "ser" });
+    var lg = etiquette(g, W_ / 2, H_ - 14, v.legende || "image réelle, renversée", { fs: 23, c: C.iv2 });
+    return function (t, st) {
+      var tl = st.tl;
+      op(axe, E(P(tl, 0, .5))); op(len, E(P(tl, .2, .6))); op(lab, E(P(tl, .5, .6))); op(obj, E(P(tl, .8, .6)));
+      [r1, r2, r3].forEach(function (r, i) { var k = et(v, String(i + 1), 1.4 + i * 1.6); trace(r, EIO(P(t, k, 1.4))); });
+      var k4 = et(v, "4", 6.4); op(im, E(P(t, k4, .6))); op(lg, E(P(t, k4 + .4, .6)));
+    };
+  };
+
+  // l'angle sous lequel on voit un objet : œil, objet de taille h à la distance D, angle α ; {id.2} α ≈ h / D
+  ILLU.angle = function (s, v) {
+    var W_ = v.w, H_ = v.h, g = sv("g", {}, s), y0 = H_ * .5, xo = 90, xd = W_ - 130, hh = v.hh || 120;
+    var oeil = sv("g", {}, g);
+    sv("path", { d: "M" + (xo - 40) + " " + y0 + " Q" + (xo - 10) + " " + (y0 - 32) + " " + (xo + 20) + " " + y0 + " Q" + (xo - 10) + " " + (y0 + 32) + " " + (xo - 40) + " " + y0 + " Z", fill: "none", stroke: C.iv, "stroke-width": 3 }, oeil);
+    sv("circle", { cx: xo - 6, cy: y0, r: 11, fill: C.el }, oeil);
+    var astre = sv("circle", { cx: xd, cy: y0, r: hh, fill: "#d9d2c0", opacity: .9 }, g);
+    var cra = [[-30, -40, 16], [28, 10, 22], [-10, 50, 12]].map(function (c) { return sv("circle", { cx: xd + c[0], cy: y0 + c[1], r: c[2], fill: "#b8b0a0" }, g); });
+    var l1 = sv("path", { d: "M" + xo + " " + y0 + " L" + xd + " " + (y0 - hh), stroke: C.sa, "stroke-width": 2.4, fill: "none" }, g);
+    var l2 = sv("path", { d: "M" + xo + " " + y0 + " L" + xd + " " + (y0 + hh), stroke: C.sa, "stroke-width": 2.4, fill: "none" }, g);
+    var ax = sv("line", { x1: xo, x2: xd, y1: y0, y2: y0, stroke: "rgba(242,231,218,.4)", "stroke-dasharray": "7 6", "stroke-width": 1.5 }, g);
+    var a = Math.atan(hh / (xd - xo)), R = 130;
+    var arc = sv("path", { d: "M" + (xo + R * Math.cos(a)) + " " + (y0 - R * Math.sin(a)) + " A" + R + " " + R + " 0 0 1 " + (xo + R * Math.cos(a)) + " " + (y0 + R * Math.sin(a)), fill: "none", stroke: C.or, "stroke-width": 3 }, g);
+    var ta = etiquette(g, xo + R + 30, y0 + 9, "α", { fs: 36, c: C.or, cls: "ser" });
+    var cote = sv("g", {}, g);
+    sv("line", { x1: xd + hh + 30, x2: xd + hh + 30, y1: y0 - hh, y2: y0 + hh, stroke: C.iv2, "stroke-width": 2 }, cote);
+    etiquette(cote, xd + hh + 52, y0 + 9, "h", { fs: 30, c: C.iv, cls: "ser" });
+    sv("line", { x1: xo, x2: xd, y1: y0 + hh + 40, y2: y0 + hh + 40, stroke: C.iv2, "stroke-width": 2 }, cote);
+    etiquette(cote, (xo + xd) / 2, y0 + hh + 72, "D", { fs: 30, c: C.iv, cls: "ser" });
+    var fo = etiquette(g, W_ / 2, 46, v.formule || "α ≈ h / D  (en radians, pour un petit angle)", { fs: 30, c: C.iv });
+    return function (t, st) {
+      var tl = st.tl;
+      op(oeil, E(P(tl, 0, .6))); op(astre, E(P(tl, .3, .8))); cra.forEach(function (c) { op(c, E(P(tl, .5, .8))); });
+      op(ax, E(P(tl, .8, .6))); trace(l1, P(tl, 1, 1)); trace(l2, P(tl, 1.1, 1));
+      trace(arc, P(tl, 1.9, .8)); op(ta, E(P(tl, 2.3, .5)));
+      var k = et(v, "2", 3.2); op(cote, E(P(t, k, .6))); op(fo, E(P(t, k + .5, .6)));
+    };
+  };
+
   /* ---------- types propres aux sciences ---------- */
 
   // animation du site (pc/anim/<nom>.html) pilotée par le temps de la vidéo : segments [début, fin] de l'animation,
