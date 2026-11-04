@@ -12,10 +12,11 @@ RACINE = os.path.dirname(os.path.dirname(ICI))
 sys.path.insert(0, ICI)
 sys.path.insert(1, os.path.join(os.path.dirname(ICI), "serie-pc"))
 sys.path.insert(2, os.path.join(os.path.dirname(ICI), "serie-acl"))
+sys.path.insert(3, os.path.join(os.path.dirname(ICI), "serie-dnl"))
 MARQUE = re.compile(r"\{([-!#]?)([^{}]+)\}")
 TYPES = {"titre", "chapitre", "mot", "question", "nuage", "def", "note", "tag", "cit", "portrait", "cols", "cartes", "liste",
          "dialogue", "frise", "tableau", "illu", "carte", "frappe", "flash", "generique", "notion",
-         "anim", "formule", "graphe", "exo", "pause"}
+         "anim", "formule", "graphe", "exo", "pause", "globe"}
 NOTIONS = {"l'art", "le bonheur", "la conscience", "le devoir", "l'état", "l'inconscient", "la justice", "le langage", "la liberté",
            "la nature", "la raison", "la religion", "la science", "la technique", "le temps", "le travail", "la vérité"}
 MOTS_PAR_S = 2.9       # débit du narrateur (calé sur l'épisode 1 : 13,6 min réelles)
@@ -106,6 +107,9 @@ def verifier(nom):
                 for it in spec.get("items", []):
                     if it.get("img") and not os.path.exists(os.path.join(IMG, it["img"] + ".jpg")):
                         err.append(f"[{sc['id']}] image de frise absente : {it['img']}")
+            if t == "globe":
+                if not os.path.exists(os.path.join(RACINE, site, "cartes", str(spec.get("code")) + ".html")):
+                    err.append(f"[{sc['id']}] carte animée absente : {site}/cartes/{spec.get('code')}.html ({ident})")
             if t == "anim":
                 if not os.path.exists(os.path.join(RACINE, site, "anim", str(spec.get("nom")) + ".html")):
                     err.append(f"[{sc['id']}] animation absente : {site}/anim/{spec.get('nom')}.html ({ident})")

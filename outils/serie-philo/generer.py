@@ -17,6 +17,9 @@ Les passages déjà enregistrés sont gardés dans outils/serie-philo/.cache (no
 Voix : MOTEUR = "qwen" (défaut depuis le 30/10/2026) clone localement les voix de voix_ref/ (voir voix_qwen.py,
 environ 2 h de calcul par épisode) ; MOTEUR = "edge" reprend les voix Microsoft de l'épisode 1 initial (edge-tts).
 
+Séries d'histoire DNL (04/11/2026, scripts dans outils/serie-dnl/, SITE = "dnl", LANGUE = "en") : sortie dans dnl/serie/,
+type globe (carte animée du chapitre, dnl/cartes/<code>.html, pilotée par le temps de la vidéo).
+
 Vidéos en anglais (04/11/2026, résumé-analyse de Dancing at Lughnasa, scripts dans outils/serie-acl/) : le module porte
 LANGUE = "en" et SITE = "acl-lughnasa" ; voix anglaises de voix_ref/ (narrateur_en, cit_en_m, cit_en_f). Une citation
 peut être lue par la voix féminine : ("C", texte, id, {"voix": "F"}).
@@ -28,6 +31,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(1, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-pc"))
 sys.path.insert(2, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-acl"))
+sys.path.insert(3, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-dnl"))
 import musique  # noqa: E402
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -51,8 +55,8 @@ CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
-V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2, "acl-lughnasa": 1}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
-TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729"}
+V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2, "acl-lughnasa": 1, "dnl": 1}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
+TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729"}
 PAGE = """<!DOCTYPE html>
 <html lang="{langue}">
 <head>
@@ -439,6 +443,7 @@ def generer(nom_module):
         f.write(js)
     v = hashlib.sha1(js.encode("utf-8")).hexdigest()[:8]
     titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site == "pc"
+             else f"{ep.NOTION} · Episode {ep.NUM} — {ep.TITRE}" if site == "dnl"
              else f"{ep.NOTION} · Part {ep.NUM} — {ep.TITRE}" if langue == "en" else f"{ep.NOTION} · Épisode {ep.NUM} — {ep.TITRE}")
     page = PAGE.format(titre=titre, code=ep.CODE, v=v, vm=V_MOTEUR_SITE[site], teinte=TEINTE[site], langue=langue)
     with open(os.path.join(SORTIE, ep.CODE + ".html"), "w", encoding="utf-8") as f:
