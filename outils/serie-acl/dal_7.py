@@ -39,9 +39,9 @@ SCENES = [
     # ------------------------------------------------------------------ I. les fissures
     dict(id="fissures", chap="Hair cracks", fond="aube", humeur="tension",
          retenir="Kate admits that “control is slipping away”: the guardian of order is the first to crack.", beats=[
-        "{tab_gle}{p1}Page thirty-six. {p1.1}Kate attacks Gerry: he has no sense of ordinary duty. "
-        "{p1.2}Agnes explodes. She calls Kate a damned righteous bitch, and runs out, close to tears. "
-        "{p1.3}Left alone with Maggie, Kate admits it: Agnes is right.",
+        "{tab_gle}{p1}Remember how part six ended. {p1.1}Kate had attacked Gerry: he has no sense of ordinary duty. "
+        "{p1.2}Agnes exploded, called Kate a damned righteous bitch, and ran out, close to tears. "
+        "{p1.3}Now, left alone with Maggie, Kate admits it: Agnes is right.",
         "Then she says this.",
         "{-p1}",
         ("C", "suddenly you realize that hair cracks are appearing everywhere; that control is slipping away; that the whole "

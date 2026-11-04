@@ -3,7 +3,7 @@
 De l'arrivée de Gerry (Maggie à la fenêtre, p. 25) jusqu'à la sortie d'Agnes en larmes (début de la p. 37) ;
 la confidence de Kate à Maggie (« hair cracks », p. 37) ouvre la partie 7.
 Vidéo en anglais, même chaîne que les séries philo : outils/serie-philo/generer.py dal_6.
-Citations courtes, à fin d'analyse ; le contexte hors texte (guerre d'Espagne, chanson nommée dans l'édition Faber)
+Citations courtes, à fin d'analyse ; le contexte hors texte (guerre d'Espagne)
 et les révélations ultérieures de Michael (p. 64) sont dits comme tels.
 """
 
@@ -37,9 +37,8 @@ SCENES = [
     # ------------------------------------------------------------------ I. le chaos dans la cuisine
     dict(id="chaos", chap="Chaos in the kitchen", fond="aube", humeur="tension",
          retenir="Gerry's arrival throws the house into chaos. Kate moves from orders to tenderness… and back to the rules.", beats=[
-        "{tab_cot}{fight}We start in the middle of a row. {fight.1}Kate attacks Agnes about her glove money. "
-        "{fight.2}Agnes: we are two unpaid servants. {fight.3}And Rose: at school, they call you the Gander!",
-        "{-fight}{lane}Then Maggie runs to the window. Look who's coming up the lane! It's Gerry Evans.",
+        "{tab_cot}{lane}Part five ended in the middle of a row, when Maggie ran to the window. Look who's coming up the lane! "
+        "It's Gerry Evans.",
         "{-lane}{-tab_cot}{chaos}Pure chaos. {chaos.1}Everybody dashes about: mirror, shoes, hair. "
         "{chaos.2}The lines overlap. {chaos.3}Agnes knits with excessive concentration. "
         "{chaos.4}And Chris stands absolutely still, too shocked to move.",
@@ -56,10 +55,6 @@ SCENES = [
     ], vis={
         "tab_cot": dict(type="tableau", img="dal-glenties", fond=True, sombre=True, de=[1.2, .4, .5], a=[1.05, .5, .5],
                         legende="Glenties, County Donegal (photo Thpohl, public domain)"),
-        "fight": dict(type="liste", titre="A row in the kitchen · p. 24 – 25", items=[
-            "Kate attacks Agnes about her glove money",
-            "Agnes: “two unpaid servants”",
-            "Rose: Kate's nickname at school is “the Gander”"], marques=["K", "A", "R"], x=150, y=180, w=980),
         "lane": dict(type="mot", t="“Look who's coming up the lane!”", g="Maggie, at the window · p. 25", y=250, taille=76),
         "chaos": dict(type="liste", titre="Stage direction · p. 25", cles=["overlap", "still"], items=[
             "Everybody dashes about: mirror, shoes, hair",
@@ -163,8 +158,8 @@ SCENES = [
          retenir="The dance says what words cannot. The sisters' reactions reveal Kate's buried tenderness and Agnes's hidden pain.", beats=[
         "{tab_rad}{radio}{radio.1}Suddenly the radio plays. Agnes didn't touch it. "
         "{radio.2}Turn that thing off, says Kate. Agnes does not.",
-        "{-radio}{chanson}Your edition says: an appropriate song of the period. "
-        "The published Faber text names it: Dancing in the Dark, an American hit of the early thirties.",
+        "{-radio}{chanson}Your text simply says: an appropriate song of the period. "
+        "What matters is not the title, but the timing: for once, the radio works, just for them.",
         "{-chanson}{-tab_rad}{agnes_g}And twice, Gerry asks after one sister: Agnes. "
         "She was the one, he says, that seemed to object least to me.",
         "{-agnes_g}{watch}He takes Chris in his arms. {watch.1}They're watching us. {watch.2}Hope so. And Kate. "
@@ -194,7 +189,7 @@ SCENES = [
         "radio": dict(type="liste", titre="The radio · p. 34", items=[
             "It starts playing: Agnes “didn't touch it”",
             "Kate: “Turn that thing off”… Agnes does not"], marques=["1", "2"], x=150, y=200, w=980),
-        "chanson": dict(type="mot", t="“Dancing in the Dark”", g="named in the Faber text · your PDF: “an appropriate song of the period”",
+        "chanson": dict(type="mot", t="“an appropriate song of the period”", g="your text names no title: what matters is the timing (p. 34)",
                         y=250, taille=84),
         "agnes_g": dict(type="note", cles=["Agnes"], terme="Gerry · p. 34",
                         t="“Of all your sisters Agnes was the one that seemed to object least to me.”",
