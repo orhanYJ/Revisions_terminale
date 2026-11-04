@@ -593,7 +593,7 @@
   };
 
   TYPES.liste = function (o, v) {
-    var e = o.el; e.classList.add("v-liste"); if (v.petit) e.classList.add("petit");
+    var e = o.el; e.classList.add("v-liste"); if (v.petit) e.classList.add("petit"); if (v.bande) e.classList.add("bande");
     e.style.left = (v.x || 170) + "px"; e.style.top = (v.y || 150) + "px"; e.style.width = (v.w || 940) + "px";
     if (v.titre) h("div", "ti", e, esc(v.titre));
     var lis = v.items.map(function (txt, i) {
