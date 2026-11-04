@@ -37,16 +37,24 @@ _modele, _prompts, _whisper = None, {}, None
 def _charger():
     global _modele, _whisper
     if _modele is None:
-        # modèles déjà dans le cache local : pas de requête à Hugging Face (une erreur 429 y a fait échouer un épisode)
-        cache = os.path.expanduser("~/.cache/huggingface/hub/models--Qwen--Qwen3-TTS-12Hz-1.7B-Base")
-        if os.path.isdir(cache):
-            os.environ.setdefault("HF_HUB_OFFLINE", "1")
         import torch
         from qwen_tts import Qwen3TTSModel
         from faster_whisper import WhisperModel
         torch.set_num_threads(os.cpu_count() or 4)
-        _modele = Qwen3TTSModel.from_pretrained("Qwen/Qwen3-TTS-12Hz-1.7B-Base", device_map="cpu", dtype=torch.float32)
-        _whisper = WhisperModel("small", device="cpu", compute_type="int8")
+        # Hugging Face répond parfois 429 (trop de requêtes) au chargement : on patiente et on réessaie
+        # (le mode hors ligne ne marche pas : qwen_tts interroge l'API même quand le modèle est en cache)
+        import time
+        for essai in range(8):
+            try:
+                _modele = Qwen3TTSModel.from_pretrained("Qwen/Qwen3-TTS-12Hz-1.7B-Base", device_map="cpu", dtype=torch.float32)
+                break
+            except Exception as err:
+                if essai == 7 or "429" not in str(err):
+                    raise
+                print(f"Hugging Face 429, nouvel essai dans {60 * (essai + 1)} s", flush=True)
+                time.sleep(60 * (essai + 1))
+        local = os.path.isdir(os.path.expanduser("~/.cache/huggingface/hub/models--Systran--faster-whisper-small"))
+        _whisper = WhisperModel("small", device="cpu", compute_type="int8", local_files_only=local)
     return _modele
 
 
