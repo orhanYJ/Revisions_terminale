@@ -194,18 +194,20 @@ SCENES = [
     dict(id="hommes", chap="Two men refuse defeat", fond="nuit", humeur="tension",
          retenir="Churchill: a Conservative against appeasement, prime minister on 10 May 1940. De Gaulle: a new general in Reynaud's government, refuses Pétain's armistice, flees to London on 17 June.",
          beats=[
-        "{wc}Fourth idea: in June 1940, two men refuse defeat. Churchill first. "
+        "{pwc}{wc}Fourth idea: in June 1940, two men refuse defeat. Churchill first. "
         "{wc.1}He is already a major figure of the Conservative party, and he had opposed appeasement, the policy of giving way to Hitler. "
         "{wc.2}In April 1940, during the phoney war, Britain fails to prevent the German occupation of Norway. "
         "{wc.3}Then German forces invade Belgium: Chamberlain loses the support of the House of Commons, and resigns. "
         "{wc.4}On the tenth of May 1940, the very day the German offensive in the west begins, Churchill becomes prime minister.",
-        "{-wc}{dg}Now de Gaulle. {dg.1}He has just been promoted general, and appointed to Paul Reynaud's government. "
+        "{-wc}{-pwc}{dg}Now de Gaulle. {dg.1}He has just been promoted general, and appointed to Paul Reynaud's government. "
         "{dg.2}But Reynaud resigns, and Marshal Pétain, a hero of the First World War, becomes head of the government, pledging to sign an armistice. "
         "{dg.3}De Gaulle refuses. On the seventeenth of June, he flees France to escape arrest, "
         "{dg.4}and in London he meets Churchill. The next day, he speaks on the BBC.",
         "{-dg}{cmp1}Two men, two very different positions in June 1940. {cmp1.1}One governs a country that is still fighting. "
         "The other is a rebel, almost alone, whose own government has given up. Keep this contrast in mind: it is the key to Worksheet 2.",
     ], vis={
+        "pwc": dict(type="tableau", img="h3-churchill", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.15, .5, .28],
+                    legende="Winston Churchill, Ottawa, December 1941, by Yousuf Karsh (Library and Archives Canada, Wikimedia Commons, CC BY 2.0)"),
         "wc": dict(type="liste", titre="Winston Churchill", cles=["appeasement", "Norway", "Commons", "10"], items=[
             "A major Conservative, who had opposed appeasement", "April 1940: Britain fails to prevent the occupation of Norway",
             "Belgium invaded: Chamberlain loses the Commons and resigns", "10 May 1940: prime minister, the day the attack in the west begins"],
@@ -301,7 +303,7 @@ SCENES = [
         "Remember chapter one: the Neutrality Acts, from 1935 to 1937. An arms embargo, then an embargo on all trade with nations at war.",
         "{g7.2}Then, in November 1939, once war has begun, Roosevelt obtains a new Neutrality Act: cash and carry. "
         "The democracies can buy American weapons, if they pay in cash and carry them away on their own ships. "
-        "The formula favours whoever controls the sea: Britain.",
+        "The formula favours whoever controls the sea: Britain and France, and after June 1940, Britain alone.",
         "{-g7}{ars}Roosevelt then presents his country as the {!Arsenal of Democracy}Arsenal of Democracy. "
         "Britain could hold out because American factories worked for it long before American soldiers fought.",
         "{ars.1}One example from outside the course, but very useful: the Lend-Lease Act of March 1941. "
@@ -449,5 +451,6 @@ CREDITS = [
     "(the worksheet answers are suggested by the site, not M. Ros's answer key); reminders of chapter 1; animated maps of chapters 1 and 3 (site). "
     "Outside the course: the Lend-Lease Act, Operation Sea Lion, the Battle of Britain. The DBQ question and model answer were written for this video.",
     "Photograph: children of East London made homeless by a night raid, 1940 (Wikimedia Commons, CC BY-SA 2.0).",
+    "Photograph: Winston Churchill, Ottawa, December 1941, by Yousuf Karsh (Library and Archives Canada, Wikimedia Commons, CC BY 2.0).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]
