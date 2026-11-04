@@ -224,12 +224,13 @@ SCENES = [
         "{forces.3}Three: the crusade against communism. "
         "{forces.4}Four: the Grossraum, a single European economic unit, serving Germany. "
         "{forces.5}And five: supplying Germany with the people, the materials and the money that total war requires.",
-        "{-forces}Now, one example for each, taken from the rest of the chapter. In an essay, a force without an example is worth nothing.",
+        "{-forces}{unex}Now, one example for each, taken from the rest of the chapter. In an essay, a force without an example is worth nothing.",
     ], vis={
         "g5": dict(type="globe", code="H3", sc=[41]),
         "def2": dict(type="def", cles=["rule", "presented", "saving"], terme="Key term · New European Order",
                      t="Nazi rule over Europe, presented by its supporters as saving European civilisation from collapse.",
                      etape="“Presented”: propaganda. In reality, Europe is organised for Germany.", x=170, y=200, w=940),
+        "unex": dict(type="mot", t="One force · one example", g="in an essay, a force without an example is worth nothing", y=260, taille=80),
         "forces": dict(type="liste", titre="The five driving forces", cles=["racial", "Lebensraum", "communism", "Grossraum", "total"], items=[
             "Europe as a racial entity: purification through genocide", "Lebensraum: living space in the East",
             "A crusade against communism", "The Grossraum: one economic unit serving Germany",
