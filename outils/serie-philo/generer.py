@@ -422,7 +422,7 @@ def generer(nom_module):
     noms = {}
     for cle, sig, debit in (("voix", pv, "48k"), ("mix", pm, "64k")):
         nomf = f"{ep.CODE}-{cle[0]}-{h}.mp3"
-        wav = os.path.join(CACHE, "tmp.wav")
+        wav = os.path.join(CACHE, f"tmp-{ep.CODE}.wav")   # un fichier par épisode : deux générations simultanées ne se gênent pas
         with wave.open(wav, "wb") as w:
             w.setnchannels(1)
             w.setsampwidth(2)
