@@ -49,7 +49,8 @@ SCENES = [
         "{-pos}{det}{det.1}Jack stands stiffly to attention at Agnes's elbow, like the army chaplain he once was. "
         "{det.2}The two kites stand between them, facing boldly out front. Remember Maggie's bet: they will never leave the ground. "
         "{det.3}And Kate, downstage right, cries quietly during the whole speech.",
-        "{-det}Then the light.",
+        "Then the light.",
+        "{-det}",
         ("C", "the stage is lit in a very soft, golden light so that the tableau we see is almost, but not quite, in a haze.",
          "c_haze"),
         "{-c_haze}{haze}Golden is the colour of nostalgia. "
@@ -83,7 +84,8 @@ SCENES = [
         "{-fates}{ironie}Feel the irony. {ironie.1}The factory took away the gloves of Agnes and Rose, and drove them to London. "
         "{ironie.2}Now Chris works there for life. "
         "{ironie.3}Kate, the proud schoolteacher, ends up teaching the children of the man she loved in silence.",
-        "{-ironie}And Michael himself?",
+        "And Michael himself?",
+        "{-ironie}",
         ("C", "when my time came to go away, in the selfish way of young men I was happy to escape.", "c_escape"),
         "{-c_escape}{fuite}Escape. He leaves, like Agnes and Rose, like Gerry, like Jack long ago. "
         "{fuite.1}Emigration runs through the whole family. "
@@ -115,7 +117,8 @@ SCENES = [
         "{son.1}And it is not from the radio speaker. Marconi is silent: this music comes from memory.",
         "{-son}{sway}Everybody begins to sway, very slightly, from side to side… even the grinning kites. "
         "{sway.1}The movement is so small, says Friel, that we cannot be sure if it is happening, or if we imagine it.",
-        "{-sway}Then Michael says a sentence we already know.",
+        "Then Michael says a sentence we already know.",
+        "{-sway}",
         ("C", "And so, when I cast my mind back to that summer of 1936, different kinds of memories offer themselves to me.",
          "c_cast"),
         "{-c_cast}{cercle}It is the very first sentence of the play, almost word for word. "
@@ -154,7 +157,8 @@ SCENES = [
         "{flot}In that memory, everybody seems to be floating on the music, {flot.1}moving languorously, in complete isolation. "
         "{flot.2}Together, and yet each one alone. "
         "{flot.3}Dancing with eyes half closed, because to open them would break the spell.",
-        "{-flot}Then the sentences start with the same words, again and again.",
+        "Then the sentences start with the same words, again and again.",
+        "{-flot}",
         ("C", "Dancing as if language had surrendered to movement – as if this ritual, this wordless ceremony, was now the way to speak",
          "c_surr"),
         "{-c_surr}{rite}{rite.1}Language surrenders, like an army laying down its arms. "
