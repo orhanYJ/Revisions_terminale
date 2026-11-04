@@ -16,6 +16,10 @@ Les passages déjà enregistrés sont gardés dans outils/serie-philo/.cache (no
 
 Voix : MOTEUR = "qwen" (défaut depuis le 30/10/2026) clone localement les voix de voix_ref/ (voir voix_qwen.py,
 environ 2 h de calcul par épisode) ; MOTEUR = "edge" reprend les voix Microsoft de l'épisode 1 initial (edge-tts).
+
+Vidéos en anglais (04/11/2026, résumé-analyse de Dancing at Lughnasa, scripts dans outils/serie-acl/) : le module porte
+LANGUE = "en" et SITE = "acl-lughnasa" ; voix anglaises de voix_ref/ (narrateur_en, cit_en_m, cit_en_f). Une citation
+peut être lue par la voix féminine : ("C", texte, id, {"voix": "F"}).
 """
 import asyncio, hashlib, importlib, json, os, re, subprocess, sys, wave
 
@@ -23,6 +27,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(1, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-pc"))
+sys.path.insert(2, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-acl"))
 import musique  # noqa: E402
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -32,19 +37,24 @@ CACHE = os.path.join(ICI, ".cache")
 SR = musique.SR
 
 MOTEUR = os.environ.get("SERIE_MOTEUR", "qwen")   # SERIE_MOTEUR=edge : brouillon rapide (voix en ligne) ; =muet : brouillon sans voix ni réseau
-VOIX = ({"H": "narrateur", "C": "citations"} if MOTEUR == "qwen"
-        else {"H": "fr-FR-RemyMultilingualNeural", "C": "fr-FR-VivienneMultilingualNeural"})
-PROSODIE = {"H": {"rate": "+0%", "pitch": "+0Hz"}, "C": {"rate": "-6%", "pitch": "+0Hz"}}
-ECART = {"H": 0.38, "C": 0.95}       # silence après un passage
+VOIX_LANGUE = {
+    "fr": ({"H": "narrateur", "C": "citations", "F": "citations"} if MOTEUR == "qwen"
+           else {"H": "fr-FR-RemyMultilingualNeural", "C": "fr-FR-VivienneMultilingualNeural", "F": "fr-FR-VivienneMultilingualNeural"}),
+    "en": ({"H": "narrateur_en", "C": "cit_en_m", "F": "cit_en_f"} if MOTEUR == "qwen"
+           else {"H": "en-GB-RyanNeural", "C": "en-IE-ConnorNeural", "F": "en-IE-EmilyNeural"}),
+}
+VOIX = dict(VOIX_LANGUE["fr"])
+PROSODIE = {"H": {"rate": "+0%", "pitch": "+0Hz"}, "C": {"rate": "-6%", "pitch": "+0Hz"}, "F": {"rate": "-6%", "pitch": "+0Hz"}}
+ECART = {"H": 0.38, "C": 0.95, "F": 0.95}       # silence après un passage
 AVANT_CIT = 0.45                      # silence avant une citation
 CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
-V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2}   # pc/serie/moteur.* (et le cache de pc/sw.js)
-TEINTE = {"philo": "#0b111e", "pc": "#120c07"}
+V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2, "acl-lughnasa": 1}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
+TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729"}
 PAGE = """<!DOCTYPE html>
-<html lang="fr">
+<html lang="{langue}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -154,7 +164,8 @@ def _beats(scene):
         elif b[0] == "P":
             yield {"pause": b[1]}
         elif b[0] == "C":
-            yield {"v": "C", "t": b[1], "vis": b[2], "pros": b[3] if len(b) > 3 else {}}
+            pros = dict(b[3]) if len(b) > 3 else {}
+            yield {"v": pros.pop("voix", "C"), "cit": True, "t": b[1], "vis": b[2], "pros": pros}
         else:
             yield {"v": "H", "t": b[0], "pros": b[1]}
 
@@ -164,6 +175,8 @@ def generer(nom_module):
     site = getattr(ep, "SITE", "philo")
     SORTIE = os.path.join(RACINE, site, "serie")
     PRONONCIATION.update(getattr(ep, "PRONONCIATION", {}))   # graphies propres à l'épisode
+    langue = getattr(ep, "LANGUE", "fr")
+    VOIX.clear(); VOIX.update(VOIX_LANGUE[langue])
     os.makedirs(CACHE, exist_ok=True)
     os.makedirs(os.path.join(SORTIE, "voix"), exist_ok=True)
 
@@ -191,14 +204,14 @@ def generer(nom_module):
         print(f"enregistrement de {len(a_faire)} passages (clonage local)…", flush=True)
         for i, (lu, voix, rate, pitch, chemin) in enumerate(a_faire, 1):
             tempo = 1 + float(rate.rstrip("%")) / 100      # le débit seul est repris ; la hauteur suit la voix
-            sc = voix_qwen.dire(lu, voix, chemin, tempo=tempo)
+            sc = voix_qwen.dire(lu, voix, chemin, tempo=tempo, langue=langue)
             print(f"  {i}/{len(a_faire)} {voix} score {sc:.2f}" + ("  À VÉRIFIER" if sc < 0.85 else "") + f"  {lu[:60]}", flush=True)
         a_faire = []
     if a_faire and MOTEUR == "muet":
         # brouillon sans voix ni réseau : silence d'une durée calée sur le débit moyen du narrateur, mots répartis régulièrement
         for lu, voix, rate, pitch, chemin in a_faire:
             mots = re.findall(r"[\w'’-]+", lu)
-            dur = max(0.6, len(mots) / 2.9)
+            dur = max(0.6, len(mots) / (2.6 if langue == "en" else 2.9))
             subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", f"anullsrc=r={SR}:cl=mono", "-t", f"{dur:.2f}",
                             "-af", "volume=0", "-b:a", "48k", chemin], check=True)
             pas = dur / max(1, len(mots))
@@ -265,7 +278,7 @@ def generer(nom_module):
                     else:
                         cues[ident] = t
                 continue
-            if b["v"] == "C":
+            if b.get("cit"):
                 t += AVANT_CIT
             x = _pcm(b["fichier"])
             x, tete = _rogne(x)
@@ -292,7 +305,7 @@ def generer(nom_module):
                     cues[ident] = inst
             if b["v"] == "H":
                 mots_sc += [(t + a[1] - tete, a[3]) for a in al]
-            if b["v"] == "C":
+            if b.get("cit"):
                 cues[b["vis"]] = t - 0.25
                 cit_mots[b["vis"]] = {"c0": round(t, 3), "c1": round(t + dur, 3),
                                       "m": [[round(t + a[1] - tete, 3), a[3]] for a in al]}
@@ -425,8 +438,9 @@ def generer(nom_module):
     with open(os.path.join(SORTIE, ep.CODE + ".data.js"), "w", encoding="utf-8") as f:
         f.write(js)
     v = hashlib.sha1(js.encode("utf-8")).hexdigest()[:8]
-    titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site == "pc" else f"{ep.NOTION} · Épisode {ep.NUM} — {ep.TITRE}")
-    page = PAGE.format(titre=titre, code=ep.CODE, v=v, vm=V_MOTEUR_SITE[site], teinte=TEINTE[site])
+    titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site == "pc"
+             else f"{ep.NOTION} · Part {ep.NUM} — {ep.TITRE}" if langue == "en" else f"{ep.NOTION} · Épisode {ep.NUM} — {ep.TITRE}")
+    page = PAGE.format(titre=titre, code=ep.CODE, v=v, vm=V_MOTEUR_SITE[site], teinte=TEINTE[site], langue=langue)
     with open(os.path.join(SORTIE, ep.CODE + ".html"), "w", encoding="utf-8") as f:
         f.write(page)
     print(f"{ep.CODE} : {duree / 60:.1f} min, {len(vis)} visuels, {len(sous)} sous-titres, audio {noms}")

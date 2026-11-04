@@ -21,7 +21,16 @@ REF = {
     "citations": (os.path.join(ICI, "voix_ref", "citations.wav"),
                   "Imagine une pierre qu'on lance en l'air. Si elle pouvait penser, elle croirait voler parce qu'elle "
                   "l'a décidé ! Et nous… sommes-nous vraiment différents de cette pierre ?"),
+    # voix anglaises (04/11/2026), créées par description (Qwen3-TTS VoiceDesign) pour Dancing at Lughnasa
+    "narrateur_en": (os.path.join(ICI, "voix_ref", "narrateur_en.wav"),
+                     "Picture a kitchen in Donegal, in the summer of nineteen thirty-six. Five sisters, a wireless that "
+                     "crackles, and a memory that refuses to stay still. Let's look closely at how it all begins."),
+    "cit_en_m": (os.path.join(ICI, "voix_ref", "cit_en_m.wav"),
+                 "When I cast my mind back to that summer, different kinds of memories offer themselves to me."),
+    "cit_en_f": (os.path.join(ICI, "voix_ref", "cit_en_f.wav"),
+                 "Do you want the whole countryside to be laughing at us? Women of our years, mature women, dancing?"),
 }
+LANGUES = {"fr": "French", "en": "English"}
 _modele, _prompts, _whisper = None, {}, None
 
 
@@ -81,7 +90,7 @@ def _score(lu, texte_reconnu):
     return difflib.SequenceMatcher(None, _norm(lu), _norm(texte_reconnu), autojunk=False).ratio()
 
 
-def dire(texte, voix, chemin, tempo=1.0):
+def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
     """Enregistre un passage ; renvoie le score de reconnaissance obtenu."""
     import torch
     import soundfile as sf
@@ -90,10 +99,10 @@ def dire(texte, voix, chemin, tempo=1.0):
     meilleur = None
     for essai in range(3):
         torch.manual_seed(1234 + 17 * essai + len(texte))
-        w, sr = m.generate_voice_clone(text=texte, language="French", voice_clone_prompt=p)
+        w, sr = m.generate_voice_clone(text=texte, language=LANGUES[langue], voice_clone_prompt=p)
         a = w[0].astype(np.float32)
         y = np.interp(np.arange(0, len(a), sr / 16000), np.arange(len(a)), a).astype(np.float32)
-        segs, _ = _whisper.transcribe(y, language="fr", word_timestamps=True)
+        segs, _ = _whisper.transcribe(y, language=langue, word_timestamps=True)
         mots = [(x.start, x.end - x.start, x.word.strip()) for s in segs for x in (s.words or [])]
         sc = _score(texte, " ".join(x[2] for x in mots))
         if meilleur is None or sc > meilleur[0]:

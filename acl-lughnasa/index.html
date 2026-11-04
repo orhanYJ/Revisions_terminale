@@ -371,6 +371,20 @@ textarea.cit.filled{border-color:var(--rule);background:#fff;}
 footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;text-align:center;
   font-family:var(--display);font-style:italic;font-size:.92rem;color:var(--ink-2);}
 @media(min-width:900px){footer{padding-left:40px;}}
+/* vidéo résumé-analyse (serie/dal-N.html) */
+.vid-h{font-family:var(--display);font-weight:500;font-size:1.3rem;margin:22px 0 6px;}
+.vid-liste{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;margin:8px 0 16px;}
+.vid-liste button{display:flex;gap:10px;align-items:baseline;text-align:left;padding:7px 9px;border:1px solid var(--rule);border-radius:9px;
+  background:var(--page);font:inherit;color:var(--ink);cursor:pointer;}
+.vid-liste button .n{font-family:var(--display);font-size:1.15rem;color:var(--gilt);min-width:1.6em;}
+.vid-liste button .t{font-size:.86rem;line-height:1.2;}
+.vid-liste button .d{display:block;font-size:.78rem;color:var(--ink-2);}
+.vid-liste button.on{border-color:var(--gilt);box-shadow:0 0 0 1px var(--gilt) inset;}
+.vid-liste button:disabled{opacity:.5;cursor:default;}
+.vid-liste .acte{grid-column:1/-1;font-family:var(--display);font-size:1.05rem;color:var(--ink-2);margin-top:6px;}
+.vid-c{margin:14px -16px 0;}
+.vid-c iframe{display:block;width:100%;height:640px;border:0;background:transparent;}
+@media(min-width:700px){.vid-c{margin:0;}}
 </style>
 <noscript><style>html.js .area,html.js .pane,html.js .leaf{display:block!important;}
 .topbar,.trail,.edge{display:none!important;}</style></noscript>
@@ -412,6 +426,7 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
 <div class="topbar">
   <div class="topbar-in">
     <div class="areas" role="tablist">
+      <button data-route="video" data-fr="▶ Vidéo" data-en="▶ Video">▶ Vidéo</button>
       <button data-route="texte" data-fr="Le texte" data-en="The text">Le texte</button>
       <button data-route="enjeux" data-fr="Les enjeux" data-en="Key issues">Les enjeux</button>
       <button data-route="citations" data-fr="Citations" data-en="Quotations">Citations</button>
@@ -688,6 +703,16 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
       <li>never write "the dance shows freedom" — write "the direction calls the dance 'grotesque', and the word forbids a reading of pure release"</li>
     </ul>
   </div>
+</div>
+</section>
+<section class="area" data-route="video" data-fr="Vidéo" data-en="Video">
+<div class="pane" id="video-resume" data-route="video/resume" data-fr="Résumé-analyse en vidéo" data-en="Video summary &amp; analysis">
+<h2 data-lang="fr">Résumé-analyse en vidéo</h2><h2 data-lang="en">Video summary &amp; analysis</h2>
+<p data-lang="fr">La pièce, scène par scène, en anglais : ce qui se passe, les citations clés lues et expliquées, puis l'analyse en fin de partie, à réutiliser dans l'essay. Une vidéo par partie, avec chapitres, sous-titres et un quiz à la fin. Les pages renvoient au PDF de la classe.</p>
+<p data-lang="en">The play, scene by scene: what happens, the key quotations read and explained, then the analysis at the end of each part, ready for your essay. One video per part, with chapters, subtitles and a quiz at the end. Page numbers refer to the class PDF.</p>
+<div class="vid-c"><iframe id="vid-fr" title="Dancing at Lughnasa — résumé-analyse en vidéo" allow="fullscreen; autoplay" allowfullscreen loading="lazy" data-serie="dal"></iframe></div>
+<h3 class="vid-h" data-lang="fr">Toutes les parties</h3><h3 class="vid-h" data-lang="en">All parts</h3>
+<div class="vid-liste" id="vid-liste"></div>
 </div>
 </section>
 <section class="area" data-route="enjeux" data-fr="Les enjeux" data-en="Key issues">
@@ -1949,6 +1974,72 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 18px 60px;t
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
     window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
   }
+})();
+</script>
+<script>
+/* Vidéo résumé-analyse : une page serie/dal-N.html par partie (outils/serie-acl/dal_N.py). Ajouter une partie : dispo:true. */
+(function () {
+  var PARTIES = [
+    { acte: 1 },
+    { n: 1, code: 'dal-1', fr: 'Le souvenir commence', en: 'The memory begins', p: 'p. 1–2', dispo: true },
+    { n: 2, fr: 'Un après-midi d’août', en: 'An August afternoon' },
+    { n: 3, fr: 'Le bal de la moisson', en: 'The harvest dance' },
+    { n: 4, fr: 'Le retour de Jack', en: 'Jack comes in' },
+    { n: 5, fr: 'La danse', en: 'The dance' },
+    { n: 6, fr: 'Gerry Evans', en: 'Gerry Evans' },
+    { n: 7, fr: 'Les fissures', en: 'Cracks' },
+    { acte: 2 },
+    { n: 8, fr: 'Trois semaines plus tard', en: 'Three weeks later' },
+    { n: 9, fr: 'Gerry et Agnes', en: 'Gerry and Agnes' },
+    { n: 10, fr: 'La disparition de Rose', en: 'Rose goes missing' },
+    { n: 11, fr: 'Ce qui arrivera ensuite', en: 'What happened next' },
+    { n: 12, fr: 'Le dernier après-midi', en: 'The last afternoon' },
+    { n: 13, fr: 'Le tableau final', en: 'The final tableau' }
+  ];
+  var liste = document.getElementById('vid-liste'), fr = document.getElementById('vid-fr');
+  if (!liste || !fr) return;
+  function langue() { return document.documentElement.getAttribute('data-currentlang') === 'en' ? 'en' : 'fr'; }
+  var btns = [];
+  function rendre() {
+    var L = langue();
+    liste.innerHTML = '';
+    btns = [];
+    PARTIES.forEach(function (x) {
+      if (x.acte) {
+        var a = document.createElement('div'); a.className = 'acte';
+        a.textContent = (L === 'fr' ? 'Acte ' : 'Act ') + (x.acte === 1 ? (L === 'fr' ? 'I' : 'One') : (L === 'fr' ? 'II' : 'Two'));
+        liste.appendChild(a); return;
+      }
+      var b = document.createElement('button'); b.type = 'button';
+      b.innerHTML = '<span class="n">' + x.n + '</span><span class="t">' + x[L] + '<span class="d">' +
+        (x.dispo ? x.p : (L === 'fr' ? 'à venir' : 'coming soon')) + '</span></span>';
+      b.disabled = !x.dispo;
+      if (x.dispo) b.onclick = function () { charger(x.code); };
+      b._code = x.code;
+      liste.appendChild(b); btns.push(b);
+    });
+    marquer();
+  }
+  var courant = null;
+  function marquer() { btns.forEach(function (b) { b.classList.toggle('on', b._code === courant); }); }
+  function charger(code) {
+    if (courant === code) return;
+    courant = code; marquer();
+    fr.src = 'serie/' + code + '.html?embed=1';
+  }
+  rendre();
+  new MutationObserver(rendre).observe(document.documentElement, { attributes: true, attributeFilter: ['data-currentlang'] });
+  function actif() { var p = document.getElementById('video-resume'); return p && p.classList.contains('on'); }
+  function verif() {
+    if (actif()) { if (!courant) charger('dal-1'); }
+    else if (courant) { try { fr.contentWindow.postMessage({ type: 'serie-pause' }, '*'); } catch (e) {} }
+  }
+  window.addEventListener('hashchange', function () { setTimeout(verif, 0); });
+  setTimeout(verif, 0);
+  window.addEventListener('message', function (e) {
+    var d = e.data || {};
+    if (d.type === 'serie-h' && d.h && e.source === fr.contentWindow) fr.style.height = Math.ceil(d.h) + 'px';
+  });
 })();
 </script>
 </body></html>
