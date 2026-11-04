@@ -773,7 +773,7 @@
   TYPES.carte = function (o, v) {
     var e = o.el; e.classList.add("v-carte"); o.entree = "aucune";
     var svg = sv("svg", { viewBox: "0 0 " + W + " " + H }, e);
-    var POS = [[360, 130], [920, 130], [360, 460], [920, 460]];
+    var POS = [[360, 130], [920, 130], [360, 460], [920, 460], [640, 575]];
     var centre = h("div", "cm-centre", e, esc(v.centre));
     var br = (v.branches || []).map(function (b, i) {
       var p = POS[i], ex = p[0] + (p[0] < 640 ? 80 : -80), d = "M640 330 C" + (640 + (ex - 640) * .5) + " 330 " + ex + " " + (330 + (p[1] - 330) * .5) + " " + ex + " " + (p[1] + (p[1] < 330 ? 18 : -18));
@@ -787,7 +787,7 @@
     return function (t, st) {
       var a = E(P(st.tl, 0, .7));
       op(centre, a); tr(centre, "translate(-50%,-50%) scale(" + (0.6 + 0.4 * EB(P(st.tl, 0, .7))) + ")");
-      centre.style.boxShadow = "0 0 " + (20 + 12 * Math.sin(t * 2)) + "px rgba(255,139,62,.35)";
+      centre.style.boxShadow = "0 0 " + (20 + 12 * Math.sin(t * 2)) + "px rgba(230,203,139,.35)";
       br.forEach(function (b, i) {
         var tk = et(v, String(i + 1), .6 + i * 1.2);
         trace(b.ln, P(t, tk, .8));
@@ -1234,7 +1234,7 @@
     var chaps = h("div", "chapitres", L);
     var bChap = EP.scenes.map(function (s, i) {
       var b = h("button", "chap", chaps);
-      h("span", "n", b, i ? ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI"][i - 1] : "◆");
+      h("span", "n", b, i ? ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"][i - 1] : "◆");
       var tx = h("span", "", b); h("div", "t", tx, esc(s.chap)); h("div", "d", tx, fmt(s.t0));
       b.onclick = function () { aller(s.t0 + (i ? .05 : 0)); if (!lecture) jouer(); bouge(b, [{ transform: "scale(.95)" }, { transform: "scale(1.03)", offset: .5 }, { transform: "none" }], { duration: 420, easing: RESSORT }); };
       return b;
