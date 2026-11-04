@@ -58,4 +58,11 @@ body.embed-page { background: transparent; }
 .opt input { accent-color: var(--wine); width: 16px; height: 16px; margin: 0; }
 .etroit .btns { row-gap: 4px; }
 .etroit .sp { flex-basis: 100%; height: 0; }
+/* mode pilote (vidéo du chapitre) : la carte seule, avec la date et les clés de couleur */
+html.pilote, html.pilote body { background: transparent; overflow: hidden; }
+.carte.pilote { border: 0; border-radius: 0; background: transparent; }
+.carte.pilote .ctl, .carte.pilote .go, .carte.pilote .chip, .carte.pilote .leg-t, .carte.pilote .leg-x { display: none; }
+.carte.pilote .leg { left: 8px; bottom: 8px; max-width: 46%; padding: 5px 8px 6px; }
+.carte.pilote .leg-d { font-size: 17px; }
+.carte.pilote .leg-k { margin-top: 3px; font-size: 10px; gap: 1px 8px; }
 @media (prefers-reduced-motion: reduce) { .go, .leg { transition: none; } }

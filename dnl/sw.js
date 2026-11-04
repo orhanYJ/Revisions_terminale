@@ -1,7 +1,7 @@
 /* Service worker — DNL Histoire-Géo Terminale BFI
    Stratégie : réseau d'abord pour la page (mises à jour immédiates),
    repli cache hors ligne. Assets : cache d'abord. */
-const CACHE = "dnl-v41-h3-partie3";
+const CACHE = "dnl-v42-videos";
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {
@@ -21,11 +21,13 @@ self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
+  // voix des vidéos de chapitre : lues par plages, le navigateur les gère seul
+  if (url.pathname.indexOf("/serie/") >= 0 && url.pathname.endsWith(".mp3")) return;
   const isPdf = url.pathname.endsWith(".pdf");
-  const isCarte = url.pathname.indexOf("/cartes/") >= 0 && url.pathname.endsWith(".html");
+  const isCarte = (url.pathname.indexOf("/cartes/") >= 0 || url.pathname.indexOf("/serie/") >= 0) && url.pathname.endsWith(".html");
   const isPage = !isPdf && !isCarte && (req.mode === "navigate" || url.pathname.endsWith("/") || url.pathname.endsWith("index.html"));
   if (isCarte) {
-    // carte animée ouverte dans une iframe : c'est une navigation, mais elle a sa propre clé de cache
+    // carte animée ou vidéo de chapitre ouverte dans une iframe : c'est une navigation, mais elle a sa propre clé de cache
     // (ne jamais la ranger sous "./", elle remplacerait la page d'accueil)
     const cle = url.origin + url.pathname;
     e.respondWith(

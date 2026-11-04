@@ -6,6 +6,9 @@
   var C = window.CARTE, d3 = window.d3;
   var Q = new URLSearchParams(location.search);
   var EMBED = Q.get("embed") === "1";
+  // ?pilote=1 : image seule (sans commandes ni texte de légende), pour la vidéo du chapitre (dnl/serie/), qui fixe l'instant par CARTE_API.rendre(t)
+  var PILOTE = Q.get("pilote") === "1";
+  if (PILOTE) document.documentElement.classList.add("pilote");
   var LANG = Q.get("lang") === "en" ? "en" : "fr";
   var UI = {
     fr: { lancer: "Lancer la carte animée", lire: "Lecture", pause: "Pause", prec: "Date précédente", suiv: "Date suivante",
@@ -109,7 +112,7 @@
 
   /* ---------- page ---------- */
   var root = document.getElementById("carte");
-  root.className = "carte" + (EMBED ? " embed" : "");
+  root.className = "carte" + (EMBED ? " embed" : "") + (PILOTE ? " pilote" : "");
   root.innerHTML =
     '<div class="vue"><canvas></canvas>' +
       '<div class="chip"><span class="chip-p"></span><span class="chip-d"></span></div>' +
@@ -167,12 +170,12 @@
     return (pats[k] = ctx.createPattern(c, "repeat"));
   }
   function taille() {
-    var w = vue.clientWidth;
-    var narrow = w < 640;
+    var w = PILOTE ? (+Q.get("w") || window.innerWidth) : vue.clientWidth;
+    var narrow = !PILOTE && w < 640;
     var full = document.fullscreenElement === root;
-    var h = full ? Math.max(240, window.innerHeight - $(".ctl").offsetHeight - (narrow ? leg.offsetHeight : 0)) : (narrow ? Math.round(Math.min(w * 1.05, window.innerHeight * 0.62)) : Math.round(w * 9 / 16));
+    var h = PILOTE ? (+Q.get("h") || window.innerHeight) : full ? Math.max(240, window.innerHeight - $(".ctl").offsetHeight - (narrow ? leg.offsetHeight : 0)) : (narrow ? Math.round(Math.min(w * 1.05, window.innerHeight * 0.62)) : Math.round(w * 9 / 16));
     root.classList.toggle("etroit", narrow);
-    DPR = Math.min(DPRMAX, window.devicePixelRatio || 1);
+    DPR = PILOTE ? (+Q.get("dpr") || 3) : Math.min(DPRMAX, window.devicePixelRatio || 1);
     W = w; H = h;
     cv.style.width = w + "px"; cv.style.height = h + "px";
     cv.width = Math.round(w * DPR); cv.height = Math.round(h * DPR);
@@ -271,9 +274,10 @@
     return avant ? 1 - clamp01(u / 0.7) : 0;
   }
   function rendre(t) {
+    if (PILOTE) T = t;   // la vidéo fixe l'instant : un redimensionnement redessine ce même instant
     if (!W) return;
     var cam = camAt(t), i = cam.i, u = cam.u;
-    var OFF = W >= 640 ? Math.min(W * 0.13, 170) : 0;
+    var OFF = PILOTE ? 0 : (W >= 640 ? Math.min(W * 0.13, 170) : 0);
     proj.rotate([-cam.c[0], -cam.c[1]]).scale(R0 * cam.k).translate([W / 2 + OFF, H / 2]);
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     ctx.fillStyle = PAPER; ctx.fillRect(0, 0, W, H);
@@ -443,7 +447,7 @@
     rendre(T);
     // appareil lent : on baisse la définition plutôt que la fluidité
     lent = lent * 0.92 + (performance.now() - a0) * 0.08;
-    if (lent > 30 && DPRMAX > 1.25) { DPRMAX = 1.25; lent = 0; taille(); }
+    if (!PILOTE && lent > 30 && DPRMAX > 1.25) { DPRMAX = 1.25; lent = 0; taille(); }
     if (T >= TOT) { pause(); return; }
     requestAnimationFrame(boucle);
   }
@@ -565,6 +569,6 @@
   textes();
   taille();
   if (Q.get("t")) aller(+Q.get("t"));
-  window.CARTE_API = { aller: aller, rendre: rendre, total: TOT, starts: START, lire: lire, pause: pause, t: function () { return T; },
+  window.CARTE_API = { aller: aller, rendre: rendre, total: TOT, starts: START, transitions: TC, lire: lire, pause: pause, t: function () { return T; },
     voix: function () { return { src: lecteur && lecteur.src, enPause: lecteur && lecteur.paused, parle: voix.parle }; } };
 })();
