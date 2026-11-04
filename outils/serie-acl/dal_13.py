@@ -47,15 +47,14 @@ SCENES = [
         "with some changes, says Friel. {pos.g}On page one, Rose sat on the garden seat with Gerry, and Agnes stood upstage. "
         "{pos.d}Now it is Agnes on the seat with Gerry, and Rose upstage. The two sisters who will leave have swapped places.",
         "{-pos}{det}{det.1}Jack stands stiffly to attention at Agnes's elbow, like the army chaplain he once was. "
-        "{det.2}The two kites stand between them, facing boldly out front. Remember Maggie's bet: they will never leave the ground. "
+        "{det.2}The two kites stand between them, facing boldly out front. "
         "{det.3}And Kate, downstage right, cries quietly during the whole speech.",
         "Then the light.",
         "{-det}",
         ("C", "the stage is lit in a very soft, golden light so that the tableau we see is almost, but not quite, in a haze.",
          "c_haze"),
         "{-c_haze}{haze}Golden is the colour of nostalgia. "
-        "{haze.1}A haze is a blur, a mist. Almost, but not quite: we see the family clearly… and not clearly. "
-        "That is exactly what a memory looks like.",
+        "{haze.1}A haze is a mist: we see the family almost, but not quite, clearly. Just like a memory.",
     ], vis={
         "plateau": dict(type="illu", nom="plateau", x=140, y=90, w=1000, h=490),
         "pos": dict(type="cols", g="Page 1", gq="Rose and Gerry on the seat · Agnes upstage", d="Page 74",
@@ -73,7 +72,7 @@ SCENES = [
     # ------------------------------------------------------------------ II. ce qu'ils sont devenus
     dict(id="devenir", chap="The heart of the house", fond="aube", humeur="calme",
          retenir="Jack dies, Agnes and Rose are gone, Chris works in the factory, Michael escapes: the family scatters.", beats=[
-        "{tab_gle}{mi}Michael begins with facts. Flat, short sentences. "
+        "{tab_gle}{mi}First, the facts, in flat, short sentences. "
         "{mi.1}As I said, Father Jack was dead within twelve months. "
         "{mi.2}With Jack, Agnes and Rose all gone, the heart seemed to go out of the house.",
         "{-mi}{-tab_gle}{fates}Then, one by one, the sisters who stayed. "
@@ -81,9 +80,9 @@ SCENES = [
         "{fates.2}Chris spent the rest of her life in the knitting factory, and hated every day of it. "
         "{fates.3}And Kate, after a few years doing nothing, became the tutor of Austin Morgan's young family. "
         "Yes: the man Rose teased her about, back in part three.",
-        "{-fates}{ironie}Feel the irony. {ironie.1}The factory took away the gloves of Agnes and Rose, and drove them to London. "
+        "{-fates}{ironie}Feel the irony. {ironie.1}The factory ruined Agnes and Rose. "
         "{ironie.2}Now Chris works there for life. "
-        "{ironie.3}Kate, the proud schoolteacher, ends up teaching the children of the man she loved in silence.",
+        "{ironie.3}And Kate teaches the children of the man she loved in silence.",
         "And Michael himself?",
         "{-ironie}",
         ("C", "when my time came to go away, in the selfish way of young men I was happy to escape.", "c_escape"),
@@ -165,7 +164,7 @@ SCENES = [
         "{rite.2}The dance becomes a ritual, a wordless ceremony. "
         "{rite.3}A way to whisper private and sacred things, to be in touch with some otherness.",
         "{-rite}{anaph}Dancing as if, dancing as if: this repetition is called anaphora. "
-        "The sentences rise like music, towards the very last words of the play.",
+        "The sentences rise like music, to the last words.",
         "{-anaph}",
         ("C", "Dancing as if language no longer existed because words were no longer necessary …", "c_words"),
         "{-c_words}{fin}The sentence does not end: three dots. "
@@ -195,7 +194,7 @@ SCENES = [
         "But the circle is not perfect: Agnes and Rose have swapped places, Kate cries. "
         "Something has been lost on the way.",
         "{-a1}{a2}{a2.1}Two: memory over fact. Atmosphere is more real than incident. "
-        "The facts, deaths and departures, are told in a few dry lines. The feeling gets the golden light, the music, the poetry. "
+        "Deaths and departures get a few dry lines; the feeling gets the light, the music, the poetry. "
         "A memory play shows how the past lives in us.",
         "{-a2}{a3}{a3.1}Three: dance and language. All through the play, words fail: Jack loses his English, Gerry lies, "
         "Kate cannot say what she feels. Remember Maggie's answer to Jack: Or dance. "
@@ -230,8 +229,8 @@ SCENES = [
     dict(id="piece", chap="The whole play for your essay", fond="aube", humeur="lumiere",
          retenir="Four themes, eight quotations: memory, order cracking, pagan and Christian, dance beyond words.", beats=[
         "{tout}Thirteen parts, one summer. The whole play, in four themes. "
-        "{tout.1}Memory: a narrator who knows the ending, a prolepsis in each act, and a circle from page one to page seventy-four. "
-        "{tout.2}Order cracking: Kate's authority, the factory, the family breaking up, emigration.",
+        "{tout.1}Memory: a narrator who knows the ending, and a circle from page one to page seventy-four. "
+        "{tout.2}Order cracking: Kate's authority, the factory, emigration.",
         "{tout.3}Pagan and Christian: the Lughnasa fires, Jack's ceremony. "
         "{tout.4}And dance beyond words, from the sisters' wild dance to the last speech.",
         "{-tout}{kh1}Now, eight lines to know by heart. Four for Act One. "
