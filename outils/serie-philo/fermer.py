@@ -14,6 +14,8 @@ def fermer(module):
     P = os.path.join(ICI, module + ".py")
     if not os.path.exists(P):            # vidéos de cours PC : outils/serie-pc/
         P = os.path.join(os.path.dirname(ICI), "serie-pc", module + ".py")
+    if not os.path.exists(P):            # vidéos ACL (Dancing at Lughnasa) : outils/serie-acl/
+        P = os.path.join(os.path.dirname(ICI), "serie-acl", module + ".py")
     code = re.search(r'^CODE = "([^"]+)"', open(P, encoding="utf-8").read(), re.M).group(1)
     s = open(P, encoding="utf-8").read()
     n = 0

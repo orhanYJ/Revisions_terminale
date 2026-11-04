@@ -11,6 +11,7 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 sys.path.insert(0, ICI)
 sys.path.insert(1, os.path.join(os.path.dirname(ICI), "serie-pc"))
+sys.path.insert(2, os.path.join(os.path.dirname(ICI), "serie-acl"))
 MARQUE = re.compile(r"\{([-!#]?)([^{}]+)\}")
 TYPES = {"titre", "chapitre", "mot", "question", "nuage", "def", "note", "tag", "cit", "portrait", "cols", "cartes", "liste",
          "dialogue", "frise", "tableau", "illu", "carte", "frappe", "flash", "generique", "notion",
