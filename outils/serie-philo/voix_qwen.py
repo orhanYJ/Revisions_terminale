@@ -37,6 +37,10 @@ _modele, _prompts, _whisper = None, {}, None
 def _charger():
     global _modele, _whisper
     if _modele is None:
+        # modèles déjà dans le cache local : pas de requête à Hugging Face (une erreur 429 y a fait échouer un épisode)
+        cache = os.path.expanduser("~/.cache/huggingface/hub/models--Qwen--Qwen3-TTS-12Hz-1.7B-Base")
+        if os.path.isdir(cache):
+            os.environ.setdefault("HF_HUB_OFFLINE", "1")
         import torch
         from qwen_tts import Qwen3TTSModel
         from faster_whisper import WhisperModel
