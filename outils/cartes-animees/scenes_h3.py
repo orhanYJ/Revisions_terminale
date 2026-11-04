@@ -155,7 +155,7 @@ LABELS = {
     "j_hon": {"p": [18.6, 47.3], "fr": "Hongrie : 445 000", "en": "Hungary: 445,000"},
     "k_pol": {"p": [19.6, 52.4], "fr": "Pologne : 90 %", "en": "Poland: 90%"},
     "k_lit": {"p": [25.6, 56.5], "fr": "Lituanie : 97 %", "en": "Lithuania: 97%"},
-    "k_urss": {"p": [33.0, 53.4], "fr": "URSS : 23 %", "en": "USSR: 23%"},
+    "k_urss": {"p": [33.0, 53.4], "fr": "URSS : 33 %", "en": "USSR: 33%"},
     "k_hon": {"p": [19.3, 47.1], "fr": "Hongrie : 76 %", "en": "Hungary: 76%"},
     "k_pb": {"p": [3.2, 53.7], "fr": "Pays-Bas : 71 %", "en": "Netherlands: 71%"},
     "k_fra": {"p": [2.4, 46.9], "fr": "France : 28 %", "en": "France: 28%"},
