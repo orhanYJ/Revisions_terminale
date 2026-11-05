@@ -1,5 +1,13 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 10 : « Rose goes missing » (PDF de travail, p. 58-62).
 
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+le résumé est joué sur le plateau (visuel jeu), en suivant les didascalies pas à pas ; les répliques courtes s'affichent en
+bulles et sont lues par la voix des sœurs. Le retour de Rose suit la grande didascalie de la p. 60 (Chris et Kate à la
+fenêtre, Maggie et Agnes à la porte, Rose qui traverse lentement le jardin, s'arrête près des bidons) ; ce que le moteur ne
+sait pas montrer (le coquelicot, les baies mangées, la chaussure ôtée) passe en notes citées, sans geste inventé. Ce que Rose
+raconte (le bateau, les feux) n'est pas joué. Rose porte ses « good » clothes (cardigan bleu) ; le moteur lui dessine
+toujours ses bottes. Puis quatre répliques à connaître et l'analyse.
+
 Début : p. 58, « (MAGGIE enters.) MAGGIE. She's not in her bed. » Kate interroge Agnes, Maggie devine Danny Bradley et
 Lough Anna, Kate refuse la police (p. 59), Rose revient (grande didascalie p. 60), le menu de Maggie (p. 61), le récit de
 Rose à Kate (p. 62). Fin : p. 62, « (She exits, her shoes in one hand, the poppy in the other. » — juste avant
@@ -19,6 +27,8 @@ SUIVANT = "Part 11 · What happened next"
 PRONONCIATION = {"Lughnasa": "Loo-na-sa", "Lugh": "Loo", "Ryanga": "Ree-anga", "Lough": "Lock", "Mundy": "Mundy",
                  "Ballybeg": "Bally-beg"}
 
+BLEU = "#4f6fb8"   # « her blue cardigan and her good skirt » (p. 59)
+
 SCENES = [
     # ------------------------------------------------------------------ ouverture
     dict(id="ouverture", chap="Opening", fond="nuit", humeur="mystere", carton=False, beats=[
@@ -37,162 +47,220 @@ SCENES = [
                       sous="Act Two · pages 58 – 62"),
     }),
 
-    # ------------------------------------------------------------------ I. où est Rose ?
-    dict(id="absente", chap="Not in her bed", fond="aube", humeur="tension",
-         retenir="Rose left Agnes at the quarry, in her good clothes, with milk and money: Maggie guesses Danny Bradley.", beats=[
-        "{tab_gle}{rappel}Just before, {rappel.1}Kate and Chris learned that the glove money is gone: "
-        "a new factory in Donegal Town. {rappel.2}They will tell Agnes and Rose later. "
-        "{rappel.3}Then Agnes comes back from the bilberries… alone.",
-        "{-rappel}{recit}Rose is not in her bed. Kate takes charge: start at the beginning. "
-        "{recit.1}They left together just after one o'clock and walked to the old quarry. "
-        "{recit.2}Rose said she wasn't feeling well, and sat in the sun. "
-        "{recit.3}Agnes fell into a bush, Rose laughed, then said she would go home and sleep.",
-        "{-recit}{indices}Agnes begins to cry. And the clues come out. "
-        "{indices.1}Rose was wearing her good shoes, her blue cardigan, her good skirt. I'm some toff, she said. "
-        "{indices.2}A bottle of milk in one of her cans. {indices.3}Half a crown: all the money she has.",
-        "{-indices}{-tab_gle}{danny}Then Maggie, softly, puts it together: Danny Bradley… Lough Anna… up in the back hills.",
-        "Remember part two? Rose told them her plan: a boat on Lough Anna, a bottle of milk, chocolate biscuits. "
+    # ------------------------------------------------------------------ I. où est Rose ? (pp. 58-59)
+    dict(id="absente", chap="Not in her bed", fond="nuit", humeur="tension", beats=[
+        "{jeu1}Page fifty-eight. Rose told Agnes she was going home to lie down. {jeu1.1}Maggie comes back from the bedroom.",
+        ("C", "She's not in her bed.", "jeu1.2", {"voix": "F"}),
+        ("C", "Start at the beginning, Agnes. What exactly happened?", "jeu1.3", {"voix": "F"}),
+        "{jeu1.4}They left together just after one o'clock and walked to the quarry. Rose wasn't feeling well, "
+        "so she sat in the sun. Agnes fell into a bush, Rose laughed, and said she'd go home and sleep.",
+        ("C", "That means she's missing for over three hours.", "jeu1.5", {"voix": "F"}),
+        "{jeu1.6}Agnes begins to cry.",
+        ("C", "Where is she? What's happened to our Rosie?", "jeu1.7", {"voix": "F"}),
+        ("C", "Stop sniveling, Agnes! Did she go towards home?", "jeu1.8", {"voix": "F"}),
+        "She may have gone into the town, says Maggie.",
+        ("C", "She wouldn't have gone into town in her Wellingtons.", "jeu1.9", {"voix": "F"}),
+        ("C", "She was wearing her good shoes.", "jeu1.10", {"voix": "F"}),
+        "{jeu1.11}Page fifty-nine. And her blue cardigan, and her good skirt. I'm some toff, Rose said. "
+        "A bottle of milk in one of her cans.",
+        ("C", "She had half-a-crown. That's all she has.", "jeu1.12", {"voix": "F"}),
+        "Then Maggie, softly, puts it together.",
+        ("C", "Danny Bradley … Lough Anna … up in the back hills.", "jeu1.13", {"voix": "F"}),
+        ("C", "Oh God, no.", "jeu1.14", {"voix": "F"}),
+        "{jeu1.15}Remember part two: Rose told them her plan, a boat on Lough Anna, a bottle of milk, chocolate biscuits. "
         "Chris warned her then: Danny Bradley is a married man. Now they understand.",
     ], vis={
-        "tab_gle": dict(type="tableau", img="dal-glenties", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .45, .5],
-                        legende="Glenties, County Donegal (photo Thpohl, public domain)"),
-        "rappel": dict(type="liste", titre="Just before · pages 56 – 57", items=[
-            "The gloves: a new factory in Donegal Town",
-            "Kate: “Tell them later.”",
-            "Agnes comes back with the bilberries, alone"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "recit": dict(type="liste", titre="Agnes's account · page 58", items=[
-            "Just after one o'clock: the walk to the quarry",
-            "Rose “wasn't feeling well”: she sits in the sun",
-            "Agnes falls into a bush; Rose laughs, goes “home”"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "indices": dict(type="liste", titre="The clues · page 59", items=[
-            "Her good shoes, blue cardigan, good skirt: “I'm some toff”",
-            "A bottle of milk in one of her cans",
-            "“She had half-a-crown. That's all she has.”"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "danny": dict(type="mot", t="Danny Bradley…", g="“Lough Anna … up in the back hills” · Maggie, softly (p. 59)",
-                      y=250, taille=92),
+        "jeu1": dict(type="jeu", persos=["Kate", "Maggie", "Chris", "Agnes"], etats=[
+            dict(pos={"Kate": [295, 430], "Chris": [385, 430], "Agnes": [475, 430], "Maggie": "off"}, cam="cuisine", objets={"kites": "banc"},
+                 note="“She left me and went home to lie down.” (p. 57)"),
+            dict(chemin={"Maggie": ["arriere", [205, 430]]}, chemin_duree=2.5, note="(MAGGIE enters.) p. 58"),
+            dict(pos={"Maggie": [205, 430]}, dit=["Maggie", "She's not in her bed."]),
+            dict(dit=["Kate", "Start at the beginning, Agnes. What exactly happened?"]),
+            dict(note="“I told her not to bother about the bilberries -- just to sit in the sun.”"),
+            dict(dit=["Chris", "That means she's missing for over three hours."]),
+            dict(act={"Agnes": "pleure"}, note="(AGNES begins to cry.)"),
+            dict(dit=["Agnes", "Where is she? What's happened to our Rosie?"]),
+            dict(dit=["Kate", "Stop sniveling, Agnes! Did she go towards home?"]),
+            dict(dit=["Chris", "She wouldn't have gone into town in her Wellingtons."]),
+            dict(act={"Agnes": "debout"}, dit=["Agnes", "She was wearing her good shoes."]),
+            dict(note="“her blue cardigan and her good skirt” — “I'm some toff, Aggie” (p. 59)"),
+            dict(dit=["Agnes", "She had half-a-crown. That's all she has."]),
+            dict(dit=["Maggie", "Danny Bradley … Lough Anna … up in the back hills."], note="(Softly.)"),
+            dict(dit=["Chris", "Oh God, no."]),
+            dict(note="Part two: Rose's plan, a boat on Lough Anna (told, not shown)"),
+        ]),
     }),
 
-    # ------------------------------------------------------------------ II. l'affaire Bradley
-    dict(id="bradley", chap="This Bradley business", fond="nuit", humeur="tension",
-         retenir="Kate interrogates Agnes and fears a scandal; Maggie takes command. The head of the house loses control.", beats=[
-        "{chris}Chris explains: Rose has some silly notion about that scamp, Bradley. She believes he's in love with her. "
+    # ------------------------------------------------------------------ II. l'affaire Bradley (pp. 59-60)
+    dict(id="bradley", chap="This Bradley business", fond="nuit", humeur="tension", beats=[
+        "{jeu2}Chris explains: Rose has some silly notion about that scamp, Bradley. She believes he's in love with her. "
         "And Kate turns, not on Bradley, but on Agnes.",
-        "{-chris}",
         ("C", "I've often seen you and Rose whispering together. What plot has been hatched between Rose and Mr. Bradley?",
-         "c_plot", {"voix": "F"}),
-        "{-c_plot}{interro}Plot, hatched: Kate speaks like a judge facing a conspiracy. "
-        "{interro.1}You're lying to me, Agnes! You're withholding! {interro.2}Agnes swears she knows nothing. "
-        "{interro.3}Kate: I want to know everything you know! Now!",
-        "{-interro}{maggie}And then, something new. Maggie, the joker, stops her: That'll do, Kate! Stop that at once! "
-        "{maggie.1}Calmly, she organises the search. {maggie.2}Chris takes the upper fields, Agnes the lower side, "
-        "Kate the old well. {maggie.3}And Maggie will go to the police. Kate refuses.",
-        "{-maggie}",
+         "jeu2.1", {"voix": "F"}),
+        "{jeu2.2}Plot, hatched: Kate speaks like a judge facing a conspiracy. No plot, please, Kate, says Agnes.",
+        ("C", "You're lying to me, Agnes! You're withholding! I want the truth!", "jeu2.3", {"voix": "F"}),
+        ("C", "I want to know everything you know! Now! I want to –", "jeu2.4", {"voix": "F"}),
+        "And then, something new. Maggie, the joker, stops her.",
+        ("C", "That'll do, Kate! Stop that at once!", "jeu2.5", {"voix": "F"}),
+        "{jeu2.6}Calmly, she organises the search. Chris takes the upper fields, Agnes the lower side, Kate the old well.",
+        ("C", "I'm going into the town to tell the police.", "jeu2.7", {"voix": "F"}),
         ("C", "You're going to no police, Maggie. If she's mixed up with that Bradley creature, I'm not going to have it "
-              "broadcast all over –", "c_police", {"voix": "F"}),
-        "{-c_police}{honte}Rose may be hurt, but Kate's first fear is the parish. Broadcast: the language of the wireless. "
-        "In this small Catholic world, shame travels fast. "
-        "{honte.1}Maggie does not even argue: I'm going to the police, and you'll do what I told you to do. "
-        "In part seven, Kate felt that control was slipping away. Here, it slips out of her hands.",
+              "broadcast all over –", "jeu2.8", {"voix": "F"}),
+        ("C", "I'm going to the police and you'll do what I told you to do.", "jeu2.9", {"voix": "F"}),
+        "{jeu2.10}In part seven, Kate felt that control was slipping away. Here, it slips out of her hands.",
     ], vis={
-        "chris": dict(type="note", cles=["scamp", "love"], terme="Chris · p. 59",
-                      t="“She has some silly notion about that scamp, Bradley.”",
-                      etape="“She believes he's in love with her.”", x=170, y=200, w=940),
-        "c_plot": dict(type="cit", a="Kate, to Agnes", o="p. 59", x=170, y=200, w=940),
-        "interro": dict(type="dialogue", lignes=["Kate: “You're lying to me, Agnes! You're withholding!”",
-                                                  "Agnes: “Honest to God, all I know is what Chris has just –”",
-                                                  "Kate: “I want to know everything you know! Now!”"],
-                        src="p. 59", x=170, y=170, w=980),
-        "maggie": dict(type="liste", titre="Maggie takes command · page 59", items=[
-            "“That'll do, Kate! Stop that at once!” — then, calmly",
-            "Chris: upper fields · Agnes: lower side · Kate: the old well",
-            "Maggie: “I'm going into the town to tell the police.”"], marques=["1", "2", "3"], x=150, y=180, w=980),
+        "jeu2": dict(type="jeu", persos=["Kate", "Maggie", "Chris", "Agnes"], etats=[
+            dict(pos={"Kate": [295, 430], "Chris": [385, 430], "Agnes": [475, 430], "Maggie": [205, 430]}, cam="cuisine", objets={"kites": "banc"},
+                 note="“She has some silly notion about that scamp, Bradley.”"),
+            dict(dit=["Kate", "… What plot has been hatched between Rose and Mr. Bradley?"], note="(To AGNES.)"),
+            dict(note="AGNES: “No plot … please, Kate --”"),
+            dict(dit=["Kate", "You're lying to me, Agnes! You're withholding! I want the truth!"]),
+            dict(dit=["Kate", "I want to know everything you know! Now! I want to –"]),
+            dict(dit=["Maggie", "That'll do, Kate! Stop that at once!"]),
+            dict(note="(Calmly.) Chris: the upper side of the lane · Agnes: the lower side · Kate: the old well"),
+            dict(dit=["Maggie", "I'm going into the town to tell the police."]),
+            dict(dit=["Kate", "You're going to no police, Maggie. If she's mixed up with that Bradley creature …"]),
+            dict(dit=["Maggie", "I'm going to the police and you'll do what I told you to do."], note="(p. 60)"),
+            dict(note="Kate gives orders; now Maggie gives them."),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ III. le retour (pp. 60-61)
+    dict(id="retour", chap="The return", fond="nuit", humeur="mystere", beats=[
+        "{jeu3}Page sixty. Suddenly, through the window, Chris sees someone.",
+        ("C", "There she is! Look – look! There she is!", "jeu3.1", {"voix": "F"}),
+        "{jeu3.2}She is about to rush out, but Maggie catches her arm and restrains her. "
+        "{jeu3.3}The four sisters watch Rose cross the garden: Chris and Kate from the window, Maggie and Agnes from the door.",
+        "{jeu3.4}Rose is unaware of their anxious scrutiny. In her good clothes, she might be any youngish country woman, "
+        "returning from a long walk on a summer day. She walks slowly, lethargically.",
+        "{jeu3.5}From her right hand hangs a red poppy, plucked casually along the road. Her face reveals nothing.",
+        "{jeu3.6}She sees Agnes's cans of fruit, stops beside them, and looks at them. "
+        "{jeu3.7}She takes a fistful of berries, thrusts it into her mouth, looks at her stained fingers, wipes them on her skirt. "
+        "{jeu3.8}All of it calmly, naturally.",
+        "{jeu3.9}Agnes rushes to meet her. She wants to hug her; instead, she catches her arm.",
+        ("C", "Rosie, love, we were beginning to get worried about you.", "jeu3.10", {"voix": "F"}),
+        ("C", "They're nice, Aggie. They're sweet. And you got two canfuls. Good for you.", "jeu3.11", {"voix": "F"}),
+        "{jeu3.12}Agnes leads her into the house. Your stomach? Oh, I'm fine now, says Rose.",
+        ("C", "But you didn't come home, Rosie.", "jeu3.13", {"voix": "F"}),
+        ("C", "Well … here I am.", "jeu3.14", {"voix": "F"}),
+        ("C", "You went into Ballybeg, didn't you?", "jeu3.15", {"voix": "F"}),
+        "{jeu3.16}Page sixty-one. A pause. Rose looks from one to the other. So Maggie, briskly, fills the silence.",
+        ("C", "She's home safe and sound and that's all that matters.", "jeu3.17", {"voix": "F"}),
+        "{jeu3.18}Then she performs tonight's menu like a grand chef: three eggs between the seven of us.",
+        ("C", "There are eight of us, Maggie.", "jeu3.19", {"voix": "F"}),
+        "{jeu3.20}Of course: the soldier up the sycamore. Eggs Ballybeg! Comedy, once again, to cover the fear. "
+        "{jeu3.21}Rose has taken off her shoe and is examining it carefully. Her cans? Hidden at the quarry, she says, "
+        "behind a stone wall.",
+    ], vis={
+        "jeu3": dict(type="jeu", persos=["Kate", "Maggie", "Chris", "Agnes", "Rose"], etats=[
+            dict(pos={"Kate": [295, 430], "Chris": [385, 430], "Agnes": [475, 430], "Maggie": [205, 430], "Rose": "off"},
+                 costume={"Rose": BLEU}, bottes={"Rose": False}, cam="tout", objets={"kites": "banc"}),
+            dict(chemin={"Rose": ["allee", [900, 430], [700, 425]]}, chemin_duree=20,
+                 dit=["Chris", "There she is! Look – look! There she is!"]),
+            dict(pos={"Chris": [520, 375], "Maggie": [435, 375]}, note="(MAGGIE catches her arm and restrains her.)"),
+            dict(pos={"Chris": [265, 238], "Kate": [325, 238], "Maggie": [545, 295], "Agnes": [600, 330]},
+                 note="CHRIS and KATE watch from the window, MAGGIE and AGNES from the door."),
+            dict(note="“ROSE is unaware of their anxious scrutiny.” She walks “slowly, lethargically”."),
+            dict(note="“From her right hand hangs a red poppy that she plucked casually along the road.”"),
+            dict(pos={"Rose": [700, 425]}, duree=2.5, note="She sees Agnes's cans of fruit. She stops beside them."),
+            dict(note="a fistful of berries … her stained fingers … she wipes them on her skirt"),
+            dict(note="“not dreamily, abstractedly, but calmly, naturally”"),
+            dict(pos={"Agnes": [650, 420]}, note="AGNES rushes to meet her. Instead of hugging her, she catches her arm."),
+            dict(dit=["Agnes", "Rosie, love, we were beginning to get worried about you."]),
+            dict(dit=["Rose", "They're nice, Aggie. They're sweet. And you got two canfuls. Good for you."]),
+            dict(pos={"Agnes": [440, 430], "Rose": [520, 430]}, duree=3, cam="cuisine",
+                 note="(AGNES leads her into the house.)"),
+            dict(dit=["Chris", "But you didn't come home, Rosie."]),
+            dict(dit=["Rose", "Well … here I am."]),
+            dict(dit=["Chris", "You went into Ballybeg, didn't you?"], note="(p. 61)"),
+            dict(note="(Pause. ROSE looks from one to the other.)"),
+            dict(dit=["Maggie", "She's home safe and sound and that's all that matters."], note="(Briskly.)"),
+            dict(note="“there's only three eggs between the seven of us”"),
+            dict(dit=["Chris", "There are eight of us, Maggie."]),
+            dict(note="“Of course – the soldier up the sycamore!” … “Eggs Ballybeg”"),
+            dict(note="(ROSE has taken off her shoe and is examining it carefully.)"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ IV. Lough Anna (p. 62)
+    dict(id="lough", chap="Lough Anna", fond="nuit", humeur="tension", beats=[
+        "{jeu4}Page sixty-two. {jeu4.1}Rose moves towards the bedroom door. Just as she is about to exit, Kate speaks.",
+        ("C", "I want to know where you have been, Rose.", "jeu4.2", {"voix": "F"}),
+        "{jeu4.3}Rose stops. A pause.",
+        ("C", "Where have you been for the past three hours?", "jeu4.4", {"voix": "F"}),
+        ("C", "Lough Anna.", "jeu4.5", {"voix": "F"}),
+        "Almost inaudible. Kate fires short questions, like a prosecutor. You walked to Lough Anna? Yes.",
+        ("C", "Did you meet somebody there?", "jeu4.6", {"voix": "F"}),
+        "Yes.",
+        ("C", "Had you arranged to meet somebody there?", "jeu4.7", {"voix": "F"}),
+        ("C", "I had arranged to meet Danny Bradley there, Kate.", "jeu4.8", {"voix": "F"}),
+        "Then she tells her story, turning to each sister in turn. We hear it; we never see it. "
+        "{jeu4.9}His father's blue boat, a picnic on the lake. {jeu4.10}Then up through the back hills, "
+        "where he showed her what was left of the Lughnasa fires. {jeu4.11}Young Sweeney, the boy who got burned, is on the mend.",
+        ("C", "It's a very peaceful place up there. There was nobody there but Danny and me.", "jeu4.12", {"voix": "F"}),
+        ("C", "He calls me his Rosebud, Aggie.", "jeu4.13", {"voix": "F"}),
+        "He walked her down as far as the workhouse gate, and she came home by herself. And to Kate:",
+        ("C", "And that's all I'm going to tell you.", "jeu4.14", {"voix": "F"}),
+        "{jeu4.15}She exits, her shoes in one hand, the poppy in the other. "
+        "Rose, the sister everyone protects, has just set the limits of what Kate can know.",
+    ], vis={
+        "jeu4": dict(type="jeu", persos=["Kate", "Maggie", "Chris", "Agnes", "Rose"], etats=[
+            dict(pos={"Kate": [325, 238], "Chris": [265, 238], "Maggie": [545, 295], "Agnes": [440, 430], "Rose": [520, 430]},
+                 costume={"Rose": BLEU}, bottes={"Rose": False}, cam="cuisine", objets={"kites": "banc"}),
+            dict(pos={"Rose": [160, 470]}, duree=3, note="(ROSE moves towards the bedroom door.)"),
+            dict(dit=["Kate", "I want to know where you have been, Rose."]),
+            dict(note="(ROSE stops. Pause.)"),
+            dict(dit=["Kate", "Where have you been for the past three hours?"]),
+            dict(dit=["Rose", "Lough Anna."], note="(inaudible.)"),
+            dict(dit=["Kate", "Did you meet somebody there?"]),
+            dict(dit=["Kate", "Had you arranged to meet somebody there?"]),
+            dict(dit=["Rose", "I had arranged to meet Danny Bradley there, Kate."]),
+            dict(note="“He brought me out in his father's blue boat.” A picnic on the lake (told, not shown)"),
+            dict(note="“He showed me what was left of the Lughnasa fires” (told, not shown)"),
+            dict(note="Young Sweeney, “the boy who got burned”: “he's on the mend, Danny says”"),
+            dict(dit=["Rose", "It's a very peaceful place up there. There was nobody there but Danny and me."], note="(To all.)"),
+            dict(dit=["Rose", "He calls me his Rosebud, Aggie."], note="(To AGNES.)"),
+            dict(dit=["Rose", "And that's all I'm going to tell you."], note="(To KATE.)"),
+            dict(pos={"Rose": "off"}, note="(She exits, her shoes in one hand, the poppy in the other.)"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ V. quatre répliques à connaître
+    dict(id="repliques", chap="Four lines to know", fond="aube", humeur="calme",
+         retenir="“broadcast all over”; Rose seen without her disability; “Her face reveals nothing”; “that's all I'm going to tell you”.",
+         beats=[
+        "{quatre}Four lines from these pages are worth knowing by heart. First, Kate.",
+        "{-quatre}",
+        ("C", "If she's mixed up with that Bradley creature, I'm not going to have it broadcast all over –", "c_police",
+         {"voix": "F"}),
+        "{-c_police}{honte}Rose may be hurt, but Kate's first fear is the parish. Broadcast: the language of the wireless. "
+        "In this small Catholic world, shame travels fast.",
+        "{-honte}Then Rose's return.",
+        ("C", "Indeed, had we not seen the Rose of Act One, we might not now be immediately aware of her disability.", "c_disab"),
+        "{-c_disab}{femme}For a moment, Friel lets us see Rose as Danny may see her: a woman, not a problem to be managed.",
+        "{-femme}",
+        ("C", "Her face reveals nothing – but nothing is being deliberately concealed.", "c_face"),
+        "{-c_face}{paradoxe}A beautiful paradox. Rose is not hiding anything… and yet we learn nothing.",
+        "{-paradoxe}And Rose's last word to Kate.",
+        ("C", "And that's all I'm going to tell you.", "c_all", {"voix": "F"}),
+        "{-c_all}{sortie}Rose tells the facts on her own terms, then sets a limit. What happened at Lough Anna stays unsaid.",
+    ], vis={
+        "quatre": dict(type="mot", t="Four lines to know", g="pages 59 – 62", y=260, taille=84),
         "c_police": dict(type="cit", a="Kate", o="p. 59", x=170, y=200, w=940),
         "honte": dict(type="cols", g="Kate", gq="“I'm not going to have it broadcast”: the parish, the shame", d="Maggie",
                       dq="“you'll do what I told you to do”: find Rose", vs="≠", repere="reputation / Rose herself"),
-    }),
-
-    # ------------------------------------------------------------------ III. le retour
-    dict(id="retour", chap="The return", fond="aube", humeur="mystere",
-         retenir="Rose returns calm, in her good clothes, a red poppy in her hand: “Her face reveals nothing”.", beats=[
-        "{tab_don2}{vue}Suddenly Chris cries: There she is! Look! {vue.1}Maggie holds her back. "
-        "{vue.2}The four sisters watch Rose cross the garden, two from the window, two from the door. "
-        "{vue.3}Rose has no idea she is being watched. And the stage direction says something remarkable.",
-        "{-vue}",
-        ("C", "Indeed, had we not seen the Rose of Act One, we might not now be immediately aware of her disability.", "c_disab"),
-        "{-c_disab}{femme}In her good clothes, she might be any youngish country woman, returning from a long walk on a summer day. "
-        "{femme.1}For a moment, Friel lets us see Rose as Danny may see her: a woman, not a problem to be managed. "
-        "{femme.2}From her right hand hangs a red poppy, picked along the road.",
-        "{-femme}",
-        ("C", "Her face reveals nothing – but nothing is being deliberately concealed.", "c_face"),
-        "{-c_face}{baies}A beautiful paradox. Rose is not hiding anything… and yet we learn nothing. "
-        "{baies.1}She thrusts a fistful of Agnes's bilberries into her mouth, {baies.2}looks at her stained fingers, "
-        "wipes them on her skirt. {baies.3}All of it calmly, naturally.",
-        "{-baies}{-tab_don2}{questions}Agnes rushes out, wants to hug her, but only catches her arm. "
-        "{questions.1}Rose: They're nice, Aggie. They're sweet. {questions.2}Your stomach? Oh, I'm fine now. "
-        "{questions.3}You went into Ballybeg, didn't you? Pause. Rose looks from one to the other.",
-        "{-questions}{menu}So Maggie fills the silence: she's home safe and sound. "
-        "{menu.1}Then she performs tonight's menu like a grand chef: three eggs for seven, {menu.2}no, eight, says Chris: "
-        "Gerry is up the sycamore. {menu.3}Eggs Ballybeg! Comedy, once again, to cover the fear.",
-    ], vis={
-        "tab_don2": dict(type="tableau", img="dal-donegal", fond=True, sombre=True, de=[1.15, .4, .5], a=[1.3, .6, .5],
-                         legende="Donegal (photo dconvertini, CC BY-SA 4.0)"),
-        "vue": dict(type="liste", titre="“There she is!” · page 60", items=[
-            "Maggie catches Chris's arm and restrains her",
-            "The four sisters watch: two at the window, two at the door",
-            "Rose “is unaware of their anxious scrutiny”"], marques=["1", "2", "3"], x=150, y=180, w=980),
         "c_disab": dict(type="cit", a="Stage direction", o="p. 60", x=170, y=200, w=940),
-        "femme": dict(type="liste", titre="Rose, seen differently", items=[
-            "“any youngish country woman, carefully dressed, not unattractive”",
-            "From her right hand: a red poppy, “plucked casually along the road”"], marques=["1", "2"],
-                      x=150, y=200, w=980),
+        "femme": dict(type="note", cles=["woman", "Danny"], terme="Stage direction · p. 60",
+                      t="“any youngish country woman, carefully dressed, not unattractive”",
+                      etape="Rose seen as a woman, not a problem to be managed.", x=170, y=200, w=940),
         "c_face": dict(type="cit", a="Stage direction", o="p. 60", x=170, y=200, w=940),
-        "baies": dict(type="liste", titre="The bilberries · page 60", items=[
-            "a fistful of berries thrust into her mouth",
-            "she looks at her stained fingers, wipes them on her skirt",
-            "“not dreamily, abstractedly, but calmly, naturally”"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "questions": dict(type="dialogue", lignes=["Rose: “They're nice, Aggie. They're sweet.”",
-                                                    "Rose: “Oh, yes. Oh, I'm fine now, thanks.”",
-                                                    "Chris: “You went into Ballybeg, didn't you?” (Pause.)"],
-                          src="pp. 60 – 61", x=170, y=170, w=980),
-        "menu": dict(type="liste", titre="Maggie's menu · page 61", items=[
-            "“three eggs between the seven of us”",
-            "Chris: “There are eight of us, Maggie.” (Gerry)",
-            "“Eggs Ballybeg”: Maggie's comedy covers the fear"], marques=["1", "2", "3"], x=150, y=180, w=980),
-    }),
-
-    # ------------------------------------------------------------------ IV. Lough Anna
-    dict(id="lough", chap="Lough Anna", fond="nuit", humeur="tension",
-         retenir="Rose tells the facts on her own terms (boat, picnic, fires, Rosebud) then stops: “that's all I'm going to tell you.”",
-         beats=[
-        "{kate}Rose heads for the bedroom door. Just as she is about to go out, Kate speaks. "
-        "I want to know where you have been, Rose. {kate.1}Rose stops. Almost inaudible: Lough Anna. "
-        "{kate.2}Kate fires short questions, like a prosecutor. Did you meet somebody? Yes. Had you arranged it? "
-        "{kate.3}And Rose, very simply: I had arranged to meet Danny Bradley there, Kate.",
-        "{-kate}{recit2}Then she tells her story, turning to each sister in turn. "
-        "{recit2.1}He brought her out in his father's blue boat; a picnic on the lake, milk and chocolate biscuits. "
-        "{recit2.2}Then up through the back hills, where he showed her what was left of the Lughnasa fires. "
-        "{recit2.3}Young Sweeney, the boy who got burned, is on the mend. "
-        "{recit2.4}A very peaceful place: nobody there but Danny and me. He calls me his Rosebud.",
-        "Then he walked her down to the workhouse gate, and she came home alone. And she ends with this.",
-        "{-recit2}",
-        ("C", "And that's all I'm going to tell you.", "c_all", {"voix": "F"}),
-        "{-c_all}{sortie}To all of them: that's all any of you are going to hear. "
-        "{sortie.1}She exits, her shoes in one hand, the poppy in the other. "
-        "Rose, the sister everyone protects, has just set the limits of what Kate can know.",
-    ], vis={
-        "kate": dict(type="dialogue", lignes=["Rose: (inaudible) “Lough Anna.”",
-                                               "Kate: “Had you arranged to meet somebody there?”",
-                                               "Rose: “I had arranged to meet Danny Bradley there, Kate.”"],
-                     src="p. 62", x=170, y=170, w=980),
-        "recit2": dict(type="liste", titre="Rose's account · page 62", items=[
-            "“his father's blue boat”: a picnic on the lake",
-            "the back hills: “what was left of the Lughnasa fires”",
-            "young Sweeney “on the mend”: his legs will be scarred",
-            "“nobody there but Danny and me” · “his Rosebud”"], marques=["1", "2", "3", "4"], x=150, y=150, w=980),
+        "paradoxe": dict(type="note", cles=["paradox", "nothing"], terme="Stage direction · p. 60",
+                         t="Nothing concealed, nothing revealed: Rose hides nothing, and we learn nothing.",
+                         etape="“calmly, naturally”: her secret is simply her own.", x=170, y=200, w=940),
         "c_all": dict(type="cit", a="Rose, to Kate", o="p. 62", x=170, y=200, w=940),
-        "sortie": dict(type="note", cles=["shoes", "poppy"], terme="Stage direction · p. 62",
-                       t="“She exits, her shoes in one hand, the poppy in the other.”",
-                       etape="Rose decides what the others will know.", x=170, y=200, w=940),
+        "sortie": dict(type="note", cles=["limit", "unsaid"], terme="Rose · p. 62",
+                       t="The facts on her own terms: the boat, the picnic, the fires, “his Rosebud”.",
+                       etape="Then a limit: what happened stays unsaid.", x=170, y=200, w=940),
     }),
 
     # ------------------------------------------------------------------ V. l'analyse
@@ -237,10 +305,10 @@ SCENES = [
 QUIZ = [
     dict(q="What clue makes Maggie think of Danny Bradley?",
          r=["Rose took her good clothes, a bottle of milk and her half-crown", "Rose left a letter on her bed",
-            "Danny Bradley came to the house that morning", "Agnes saw them together at the quarry"], ok=0, voir="indices",
+            "Danny Bradley came to the house that morning", "Agnes saw them together at the quarry"], ok=0, voir="jeu1.11",
          ex="Good shoes, blue cardigan, good skirt, milk, half-a-crown: exactly the plan Rose described in Act One (p. 5)."),
     dict(q="Whom does Kate accuse of hiding the truth?",
-         r=["Agnes", "Chris", "Maggie", "Father Jack"], ok=0, voir="c_plot",
+         r=["Agnes", "Chris", "Maggie", "Father Jack"], ok=0, voir="jeu2.1",
          ex="“What plot has been hatched between Rose and Mr. Bradley?” … “You're lying to me, Agnes! You're withholding!”"),
     dict(q="Why does Kate refuse to go to the police?",
          r=["She does not want the affair “broadcast all over”", "She thinks Rose is at the pictures",
@@ -251,7 +319,7 @@ QUIZ = [
             "She is hiding something on purpose", "She is drunk"], ok=0, voir="c_disab",
          ex="She looks like “any youngish country woman”; “Her face reveals nothing – but nothing is being deliberately concealed.”"),
     dict(q="What does Rose carry in her right hand?",
-         r=["A red poppy", "Danny's silver charm", "A bottle of milk", "A kite"], ok=0, voir="femme",
+         r=["A red poppy", "Danny's silver charm", "A bottle of milk", "A kite"], ok=0, voir="jeu3.5",
          ex="“From her right hand hangs a red poppy that she plucked casually along the road.” She exits with it."),
     dict(q="How does Rose end her account to Kate?",
          r=["“And that's all I'm going to tell you.”", "She begs Kate for forgiveness", "She runs out crying",
@@ -261,6 +329,6 @@ QUIZ = [
 
 CREDITS = [
     "Brian Friel, Dancing at Lughnasa (1990): short quotations for analysis, page numbers from the class PDF",
-    "Photographs: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0); Glenties (Thpohl, public domain)",
+    "Photograph: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0)",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music",
 ]

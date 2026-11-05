@@ -730,7 +730,7 @@
        masque : [noms] (visage de farine)         surplis : [noms] (vêtement blanc sur la tête)
        ronde : [noms] (ils tournent en cercle)     chemin : {nom: [lieux…]} (trajet lent, ex. Kate dans le jardin)
        note : texte de didascalie affiché en haut (citation courte)
-       chapeau : {nom: "paille" | "jack" | "tricorne" | "aucun"}   costume : {nom: couleur CSS, ou "blanc"}
+       chapeau : {nom: "paille" | "jack" | "tricorne" | "aucun"}   costume : {nom: couleur CSS, ou "blanc"}   bottes : {nom: true | false} (Rose sans ses bottes)
        tient : {nom: "coq" | "oiseau" | "cigarette" | "sac" | "lettre" | "cerfvolant" | "paille" | "tricorne" | "bouquet" | null}
        objets : {"kites" | "kites_faces" | "garcon" | "coq" | "valise" | "feu" : lieu, [x, y] ou null}
          (kites : deux cerfs-volants sans visage ; kites_faces : avec le visage grimaçant ; garcon : l'enfant invisible, en pointillé)
@@ -884,6 +884,7 @@
         op(ombre, act === "assis" || act === "tricote" ? .2 : 1);
       },
       masque: function (a) { op(masque, a); }, surplis: function (a) { op(surplis, a * .95); },
+      bottes: function (b) { b = b == null ? !!PP.bottes : b; [jg, jd].forEach(function (j) { j.setAttribute("stroke", b ? "#2c2c2c" : "#d9d2c0"); j.setAttribute("stroke-width", b ? 9 : 6); }); },
       chapeau: function (c) { c = c || chapeauDef; Object.keys(chapeaux).forEach(function (x) { op(chapeaux[x], x === c ? 1 : 0); }); },
       costume: function (c) { c = COUL[c] || c || PP.c; robe.setAttribute("fill", c); bg.setAttribute("stroke", c); bd.setAttribute("stroke", c); },
       tient: function (o) {
@@ -929,13 +930,13 @@
 
     // états cumulés
     var noms = v.persos, ETATS = [], cur = { pos: {}, act: {}, masque: {}, surplis: {}, ronde: null, chemin: {}, radio: false, dit: null, note: null,
-      chapeau: {}, costume: {}, tient: {}, objets: {}, lumiere: null, eclaire: ["Michael"] };
+      chapeau: {}, costume: {}, bottes: {}, tient: {}, objets: {}, lumiere: null, eclaire: ["Michael"] };
     (v.etats || []).forEach(function (st, k) {
       var n = { pos: Object.assign({}, cur.pos), act: Object.assign({}, cur.act), masque: Object.assign({}, cur.masque),
         surplis: Object.assign({}, cur.surplis), ronde: st.ronde !== undefined ? st.ronde : cur.ronde, chemin: {},
         radio: st.radio !== undefined ? st.radio : cur.radio, cam: st.cam || cur.cam || "cuisine", dit: st.dit || null, note: st.note !== undefined ? st.note : null };
       Object.assign(n.pos, st.pos || {}); Object.assign(n.act, st.act || {});
-      n.chapeau = Object.assign({}, cur.chapeau, st.chapeau || {}); n.costume = Object.assign({}, cur.costume, st.costume || {});
+      n.chapeau = Object.assign({}, cur.chapeau, st.chapeau || {}); n.costume = Object.assign({}, cur.costume, st.costume || {}); n.bottes = Object.assign({}, cur.bottes, st.bottes || {});
       n.tient = Object.assign({}, cur.tient, st.tient || {}); n.objets = Object.assign({}, cur.objets, st.objets || {});
       n.lumiere = st.lumiere !== undefined ? st.lumiere : cur.lumiere; n.eclaire = st.eclaire || cur.eclaire;
       (st.masque || []).forEach(function (x) { n.masque[x] = 1; }); (st.surplis || []).forEach(function (x) { n.surplis[x] = 1; });
@@ -1022,7 +1023,7 @@
         if (!q) { var q0 = k ? posAt(k - 1, nm, t0k) : null; if (q0) { x = q0[0]; y = q0[1]; } }
         var qm = q ? posAt(kAt(t - .08), nm, t - .08) : null;
         var marche = qm && Math.hypot(qm[0] - x, qm[1] - y) > 1.2 && !(S.ronde && S.ronde.indexOf(nm) >= 0);
-        F.chapeau(S.chapeau[nm]); F.costume(S.costume[nm]); F.tient(S.tient[nm] || null);
+        F.chapeau(S.chapeau[nm]); F.costume(S.costume[nm]); F.bottes(S.bottes[nm]); F.tient(S.tient[nm] || null);
         F.pose(x, y, act, t, idx * 1.7, { marche: marche });
         var lu = S.eclaire.indexOf(nm) >= 0 ? 1 : 1 - dim * .75;
         op(F.g, vis * a * lu);
