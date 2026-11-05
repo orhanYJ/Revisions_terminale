@@ -394,7 +394,8 @@ SCENES = [
             "Benigni, Life is Beautiful (1997): Italian Jews, racial laws", "Gansel, The Wave (2008): sliding into authoritarian discipline",
             "Costelle, Apocalypse: Hitler (2011): the rise to power", "Fellini, Amarcord (1973): provincial Fascist Italy"],
                      x=150, y=140, w=980),
-        "astuce": dict(type="tag", t="One work + one sentence on what it shows = reading beyond the course", style="copie", x=170, y=560, w=940),
+        "astuce": dict(type="note", terme="Exam tip", cles=["sentence", "beyond"],
+                       t="Quote one work, with one sentence on what it shows: it proves reading beyond the course.", x=170, y=200, w=940),
     }),
 
     # ================================================================ XI. à toi : définir (pause)

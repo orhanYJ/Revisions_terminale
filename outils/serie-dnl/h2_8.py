@@ -142,7 +142,7 @@ SCENES = [
         "On the thirtieth of January 1933, President Hindenburg, an old general of the Empire, appointed him chancellor legally. "
         "The conservatives around him thought they could control Hitler once he was in government, and the legal façade reassured them. "
         "This choice explains the timing: without it, a party in decline since November 1932 might never have reached power.",
-        "{-mod2}Point, evidence, explanation, link. And notice the words: above all. Even in an Explain answer, you can rank your reasons.",
+        "Point, evidence, explanation, link. And notice the words: above all. Even in an Explain answer, you can rank your reasons.{-mod2}",
     ], vis={
         "gr": dict(type="graphe", titre="The NSDAP vote, 1928–1932 (M. Ros's chart)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1928, 1933.2], y=[0, 45], gx=[1928, 1929, 1930, 1931, 1932, 1933], gy=[10, 20, 30, 40], lx="year", ly="% of the vote"),
@@ -181,7 +181,7 @@ SCENES = [
         "and the Reichstag fire shows the same fear still being used in 1933. "
         "{pl.3}Three: but the war does not explain everything. Each regime rests on its own ideology; elites chose to hand over power; "
         "and in Germany, the Depression turned a marginal party into a mass movement.",
-        "{-pl}Notice the order: the factor first, then its limits. The third part is where you win the marks.",
+        "Notice the order: the factor first, then its limits. The third part is where you win the marks.{-pl}",
     ], vis={
         "ex2": dict(type="exo", niveau="essay", titre="How far was the First World War responsible for the rise of totalitarian regimes?",
                     src="Essay subject of the chapter (course)", enonce=["Part b) of an essay · about 45 minutes"]),

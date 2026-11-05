@@ -214,7 +214,8 @@ SCENES = [
         "of the Nazi worldview, and it drove their foreign policy. And the dream was old. As early as 1919, Heinrich Himmler, "
         "the future head of the SS, wrote in his diary that he would some day{-g5}",
         ("C", "live my life in the east and fight my battles as a German far from beautiful Germany", "c_him"),
-        "{-c_him}In 1919, Himmler is a young man of nineteen. Twenty years later, he will be one of the men who carry out that plan.",
+        "{-c_him}{him}In 1919, Himmler is a young man of nineteen. {him.d}Twenty years later, as head of the SS, "
+        "he will be one of the men who carry out that plan in the East.",
     ], vis={
         "mot2": dict(type="mot", t="Lebensraum", g="“living space” · key term of the chapter", y=250, taille=110),
         "def4": dict(type="def", cles=["territory", "resources", "survive"], terme="Lebensraum · Friedrich Ratzel, 1901",
@@ -225,6 +226,8 @@ SCENES = [
                      etape="After 1929: a world closing its markets (chapter 1)", x=170, y=200, w=940),
         "g5": dict(type="globe", code="H2", sc=[10]),
         "c_him": dict(type="cit", a="Heinrich Himmler, future head of the SS", o="diary, 1919", x=200, y=190, w=880),
+        "him": dict(type="cols", g="1919 · a dream", gq="a young man's diary: “live my life in the east”", d="1939 – 1945 · a plan",
+                    dq="the head of the SS carries it out in the East (chapter 3)", vs="→"),
     }),
 
     # ================================================================ VII. Mein Kampf (idée 5)

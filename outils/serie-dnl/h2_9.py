@@ -59,7 +59,7 @@ SCENES = [
 
     # ================================================================ I. des tranchées au pouvoir
     dict(id="film1", chap="From the trenches to power", fond="nuit", humeur="tension",
-         retenir="WW1 brutalisation · 1917 Bolsheviks · 1919 Versailles and the Biennio Rosso · Oct. 1922 March on Rome · 1928 Five-Year Plan · 1932–33 Holodomor · 30 Jan. 1933 Hitler chancellor.",
+         retenir="Born in the trenches · 1917 Bolsheviks · Oct. 1922 March on Rome · 1928 the Plan · 30 Jan. 1933 Hitler chancellor.",
          beats=[
         "{g1}{g1.1}It all begins in the trenches. Four years of mass killing made violence ordinary: George Mosse calls it "
         "{!brutalisation}brutalisation, and sees the Great War as the matrix of totalitarianism. "
@@ -85,7 +85,7 @@ SCENES = [
 
     # ================================================================ II. la route de la guerre
     dict(id="film2", chap="The road to war", fond="nuit", humeur="tension",
-         retenir="1931 Manchuria · Oct. 1935 Abyssinia · Mar. 1936 Rhineland · 1936 Axis and Spain · 1937 Nanjing · Mar. 1938 Anschluss · Sept. 1938 Munich · Mar. 1939 Prague · Aug. 1939 the pact · 1 Sept. 1939 Poland.",
+         retenir="1935 Abyssinia · 1936 Rhineland · 1938 Anschluss and Munich · March 1939 Prague · 1 Sept. 1939 Poland.",
          beats=[
         "{g4}{g4.1}In Asia, Japan wants autarky and claims to be a superior race: it seizes Manchuria in 1931. "
         "{g4.2}October 1935: Mussolini invades Abyssinia, in the name of Rome. The League debates sanctions for seven months… and spares oil. "
@@ -102,7 +102,7 @@ SCENES = [
 
     # ================================================================ III. douze dates
     dict(id="dates", chap="Twelve dates", fond="nuit", humeur="calme",
-         retenir="Oct. 1917 · 1919 · Oct. 1922 · 1925 · 1928 · 1932–33 · 30 Jan. 1933 · Oct. 1935 · Mar. 1936 · 1937–38 · Sept. 1938 · 23 Aug. – 1 Sept. 1939.",
+         retenir="1917 · 1919 · 1922 · 1925 · 1928 · 1932–33 · 1933 · 1935 · 1936 · 1937–38 · 1938 · 1939.",
          beats=[
         "{fr}Twelve dates to know by heart. {fr.1}October 1917, the Bolshevik coup. {fr.2}1919, the Treaty of Versailles. "
         "{fr.3}October 1922, the March on Rome. {fr.4}1925, the fascistissime laws, and Mein Kampf. {fr.5}1928, the first Five-Year Plan. "
@@ -112,17 +112,17 @@ SCENES = [
         ("P", 3.0),
     ], vis={
         "fr": dict(type="frise", items=[
-            dict(nom="Bolsheviks", d=1917.8, q="Oct. 1917"), dict(nom="Versailles", d=1919.5, q="1919"),
-            dict(nom="Rome", d=1922.8, q="Oct. 1922"), dict(nom="Dictatorships", d=1925, q="1925"),
-            dict(nom="Plan", d=1928, q="1928"), dict(nom="Holodomor", d=1932.5, q="1932–33"),
-            dict(nom="Hitler", d=1933.08, q="30 Jan. 1933"), dict(nom="Abyssinia", d=1935.8, q="Oct. 1935"),
-            dict(nom="Rhineland", d=1936.2, q="Mar. 1936"), dict(nom="Purge", d=1937, q="1937–38"),
-            dict(nom="Munich", d=1938.7, q="Sept. 1938"), dict(nom="War", d=1939.65, q="Aug.–Sept. 1939")]),
+            dict(nom="Bolsheviks", d=1917, q="October"), dict(nom="Versailles", d=1919, q="the “Diktat”"),
+            dict(nom="Rome", d=1922, q="March on Rome"), dict(nom="Dictatorships", d=1925, q="Italy · Mein Kampf"),
+            dict(nom="Plan", d=1928, q="Five-Year Plan"), dict(nom="Holodomor", d=1932, q="1932–33, Ukraine"),
+            dict(nom="Hitler", d=1933, q="30 January"), dict(nom="Abyssinia", d=1935, q="October"),
+            dict(nom="Rhineland", d=1936, q="7 March"), dict(nom="Purge", d=1937, q="1937–38"),
+            dict(nom="Munich", d=1938, q="29–30 Sept."), dict(nom="War", d=1939, q="Aug. – Sept.")]),
     }),
 
     # ================================================================ IV. trois régimes : idéologie, chef, parti
     dict(id="comparer1", chap="Three regimes, one machine", fond="nuit", humeur="lumiere",
-         retenir="Supreme goal: the nation (Fascism), the race (Nazism), the class (Stalinism). Leader: il Duce, der Führer, the little father of the peoples. One single party, one symbol.",
+         retenir="Nation, race, class: three supreme goals. One leader, one party, one symbol in each.",
          beats=[
         "{gc}{l1}Now the three regimes, side by side, as in Monsieur Ros's synthesis grid. "
         "F for Fascism, N for Nazism, S for Stalinism. {gc.1}First, the ideology: a set of beliefs that sets a supreme goal. "
@@ -150,7 +150,7 @@ SCENES = [
 
     # ================================================================ V. homme nouveau, terreur, expansion
     dict(id="comparer2", chap="New Man, terror, expansion", fond="nuit", humeur="tension",
-         retenir="Same method, same ambition — a New Man — but unequal scale: Soviet terror the deadliest, Nazi violence biological, Italy the least lethal, with counter-powers.",
+         retenir="Same method, same New Man — but not the same scale: the USSR deadliest, Italy least.",
          beats=[
         "{gn}{l4}{gn.1}Fourth, the New Man. A dictatorship wants silence; a totalitarian regime wants you to change, and it starts with children. "
         "{l4.1}In Italy, the Balilla, and a New Man strong and cultured, in the service of the Party. "
@@ -185,7 +185,7 @@ SCENES = [
 
     # ================================================================ VI. personnages et chiffres
     dict(id="gens", chap="People and figures", fond="nuit", humeur="calme",
-         retenir="≈ 20,000 Blackshirts · 37.4% (July 1932) · 5.6 million unemployed · 7% → 90% collectivised · 680,000 executions · 400,000 sterilised.",
+         retenir="37.4%: never a majority · 7% → 90% collectivised · 680,000 executions in the Great Purge.",
          beats=[
         "{pe}Twelve people. {pe.1}Mussolini, {pe.2}Hitler {pe.3}and Stalin. {pe.4}Victor Emmanuel the Third, who appointed Mussolini, "
         "{pe.5}and Hindenburg, who appointed Hitler. {pe.6}Matteotti, the socialist deputy murdered in 1924. "
@@ -208,7 +208,7 @@ SCENES = [
 
     # ================================================================ VII. trois cartes mentales
     dict(id="cartes", chap="Three mind maps", fond="nuit", humeur="calme",
-         retenir="Totalitarianism: total control of society, through coercion, to transform man according to an ideology.",
+         retenir="Total control · coercion · transformation: a New Man, not just obedience.",
          beats=[
         "{def}First, the key term of the chapter. {def.1}Totalitarianism: a regime that seeks total control of society, through coercion, "
         "to transform man according to an ideology. Three parts: total control, coercion, transformation. "
@@ -252,7 +252,7 @@ SCENES = [
 
     # ================================================================ VIII. la question du chapitre
     dict(id="question", chap="The chapter's question", fond="guerre", humeur="mystere",
-         retenir="Totalitarian ideology supplied the will to war; the democracies' reluctance supplied the opportunity. Key terms: totalitarianism, Lebensraum, appeasement.",
+         retenir="Ideology supplied the will to war; the democracies' reluctance, the opportunity.",
          beats=[
         "{hi}So, did totalitarian ideology cause the war? At the start of the chapter, Monsieur Ros gave three historians' answers. "
         "{hi.1}For A. J. P. Taylor, the war came from the failure of the democracies to stop Hitler: a very controversial thesis. "
@@ -261,7 +261,7 @@ SCENES = [
         "{-hi}{tr}Each of them holds part of the truth, and the chapter shows where. {tr.1}Winter: the regimes were born in the trenches, "
         "out of brutalisation and Versailles. {tr.2}Hehn: the crisis made the Nazis a mass party, and pushed Japan towards autarky. "
         "{tr.3}Taylor: appeasement let every aggression succeed.",
-        "{-tr}{rep}But the chapter adds its own candidate, and here is the answer. {rep.g}Totalitarian ideology supplied "
+        "{-tr}{rep}{rep.g}But the chapter adds its own candidate, and here is the answer. Totalitarian ideology supplied "
         "{!the will to war}the will to war: war as a value for Fascism, Lebensraum for Nazism, a superior race for Japan. "
         "{rep.d}The democracies' reluctance supplied the opportunity: each unpunished aggression prepared the next. "
         "A strong answer keeps both halves.",

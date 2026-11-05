@@ -125,8 +125,7 @@ SCENES = [
     dict(id="europe", chap="III.2 · A divided Europe, a silent League", fond="nuit", humeur="tension",
          retenir="1930s Europe: democracies (France, Britain) · dictatorships (Germany, Italy; Japan in Asia) · the USSR, vast and isolated. The League could not act without the great powers. Low, “On the Throne of Justice”, 24 July 1935.",
          beats=[
-        "{eu}Now the course, idea by idea. Part three point two: democracies unable to stop totalitarian regimes. "
-        "Idea one: in the nineteen-thirties, Europe is {!divided}divided into three. "
+        "{eu}Now the course. Part three point two, idea one: in the nineteen-thirties, Europe is {!divided}divided into three. "
         "{eu.1}The democracies: France and Britain. {eu.2}The dictatorships: Germany and Italy, with Japan in Asia. "
         "{eu.3}And the Soviet Union, a vast and isolated totalitarian regime.",
         "{-eu}{sdn}Between them stands the League of Nations, the institution created in 1919 to stop aggression. "
@@ -319,8 +318,8 @@ SCENES = [
          beats=[
         "{g5}{g5.1}Part three point three: the road to the Second World War. Idea one: the Axis. On his road to war, Hitler needed allies, "
         "and he found one in Mussolini, despite a certain mutual disdain. "
-        "Nazism had been inspired by Fascism, and Hitler had long admired Mussolini's regime. "
-        "But Mussolini saw Hitler as an ambitious and pretentious rival. In 1932, he even mocked Nazi racism:",
+        "Hitler had long admired Fascism, but Mussolini saw him as an ambitious and pretentious rival. "
+        "In 1932, he even mocked Nazi racism:",
         "{-g5}",
         ("C", "Racism is blondes' stuff!", "c_mus"),
         "{-c_mus}{ax}{ax.g}Why ally, then? Because Italy was economically too weak to face the democracies alone: Mussolini needed German support. "
@@ -427,11 +426,10 @@ SCENES = [
         "Its secret terms plan the division of Poland between them. Ideological enemies make a deal of {!pure interest}pure interest.",
         "{-g10}{gain}{gain.g}For Hitler, it removes the threat of a war on two fronts. "
         "{gain.d}For Stalin, whose army has just been gutted by the purges, it buys time and territory.",
-        "{-gain}Monsieur Ros's cartoon gives Stalin this line:",
+        "{-gain}The course's cartoon gives Stalin this line:",
         ("C", "I am not ready for war! I just killed 700,000 of my finest officers and communist leaders!", "c_car"),
-        "{-c_car}{chif}A cartoon's figure, not a statistic: the course gives about six hundred and eighty thousand executions "
-        "for the whole Great Purge of 1936 to 1938, and the victims were far from all officers. But the point stands: "
-        "the Red Army was not ready.",
+        "{-c_car}{chif}A cartoon's figure: the course gives about six hundred and eighty thousand executions "
+        "for the whole Great Purge, far from all of them officers. But the point stands: the Red Army was not ready.",
         "{-chif}{g11}{g11.1}And now nothing stands in the way. On the first of September 1939, Germany attacks Poland, France's ally. "
         "On the third of September, France and Britain declare war. {!War}The war has begun.",
     ], vis={
@@ -541,8 +539,7 @@ SCENES = [
         "{-pa2}{pb}A model plan, from the course's essay on the key issue. Introduction: define totalitarianism, and the peace it threatened, "
         "the order of 1919 guarded by the League of Nations. Then three parts.",
         "{pb.1}One: totalitarian ideologies made war a value and expansion a goal. Fascism made war the supreme test: Abyssinia, 1935. "
-        "Nazism made Lebensraum a plan, in Mein Kampf. Japanese militarism sought autarky: Manchuria, then Nanjing. "
-        "And today's document adds the decision: a conflict with Poland had to come.",
+        "Nazism made Lebensraum a plan, in Mein Kampf. Japan sought autarky: Manchuria, then Nanjing.",
         "{pb.2}Two: but the democracies let aggression succeed. The League debated sanctions over Abyssinia and spared oil. "
         "Appeasement: the naval agreement, the Rhineland, Munich. And American isolationism, with the Neutrality Acts of 1935 to 1937.",
         "{pb.3}Three: the two combined into a chain that only war could break. The Rhineland taught Hitler that the democracies would yield; "
@@ -571,7 +568,7 @@ SCENES = [
         "{rep4.d}But not alone. Between 1935 and 1939, each aggression succeeded because the democracies let it succeed. "
         "A strong answer keeps {!both halves}both halves.",
         "{-rep4}{lien}And this is where the next chapter begins. Chapter three, World War Two. "
-        "{lien.1}The war that starts in Poland in September 1939 is the war of these regimes: "
+        "{lien.1}The war that starts in Poland is the war of these regimes: "
         "{lien.2}the fall of France in 1940, {lien.3}Barbarossa in 1941, the war of annihilation for the living space in the East, "
         "{lien.4}and the genocide of the Jews of Europe. The ideologies of this chapter, put into practice by war.",
     ], vis={
