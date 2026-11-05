@@ -147,7 +147,7 @@ SCENES = [
         "{fac.2}Overproduction and the unequal distribution of wealth explain why the fall did not stop. "
         "{fac.3}Panic and policy are amplifiers, not the origin.",
     ], vis={
-        "ph": dict(type="tableau", img="h1-nyse-crowd", fond=True, sombre=True, de=[1.0, .5, .45], a=[1.2, .5, .6],
+        "ph": dict(type="tableau", img="h1-wallstreet", fond=True, sombre=True, de=[1.0, .5, .45], a=[1.2, .5, .6],
                    legende="Crowd outside the New York Stock Exchange after the Crash, October 1929 (Wikimedia Commons, public domain)"),
         "i1": dict(type="liste", titre="I.1 · What is the 1929 Great Crash?", items=[
             "A stock market: shares, dividends · RCA (outside the course)", "Roaring Twenties: Harding, Coolidge, Hoover",
