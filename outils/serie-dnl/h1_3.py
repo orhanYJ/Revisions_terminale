@@ -185,9 +185,9 @@ SCENES = [
     dict(id="blocs", chap="II.1 · Retaliation and closed blocs", fond="nuit", humeur="tension",
          retenir="Retaliation: Canada (30% of US exports to it), French quotas (1931), British Import Duties Act (10%, 1932), Ottawa “imperial preference” (1932), German autarky. World trade −66% in value, 1929–1934. Free trade is gone.",
          beats=[
-        "{q5}Idea three. Did it work? The slides answer their own question with a cartoon, and a caption:",
+        "{q5}Idea three. Did it work? The slides answer their own question with a cartoon, and a caption:{-q5}",
         ("C", "I'm not sure we nailed it, pal.", "c_pal"),
-        "{-c_pal}{-q5}{chaine}Because protectionism spreads by {!retaliation}retaliation. {chaine.1}Canada, America's closest trading partner, "
+        "{-c_pal}{chaine}Because protectionism spreads by {!retaliation}retaliation. {chaine.1}Canada, America's closest trading partner, "
         "retaliates within days, with new duties on products worth about thirty per cent of American exports to Canada. "
         "And it turns towards the British Empire instead. {chaine.2}France sets up an import quota system in 1931. "
         "{chaine.3}Britain passes the Import Duties Act in 1932: a general tariff of ten per cent on most imports. "
@@ -403,8 +403,8 @@ SCENES = [
         "{rrr}Idea five. The United States chose the opposite road. Hoover's protectionist policy had proved ineffective. "
         "Roosevelt, a Democrat elected in 1932, promoted a {!New Deal}New Deal and a welfare state: expansionary economics, in three words. "
         "{rrr.1}Relief, for the destitute. {rrr.2}Recovery, for the economy. {rrr.3}Reform, of the system that had failed.",
-        "{-rrr}It came in two stages. The First New Deal, from 1933 to 1935, opens with the emergency laws of the first hundred days. "
-        "Their aim, in Roosevelt's words, quoted by the course:",
+        "{-rrr}{hd}It came in two stages. The First New Deal, from 1933 to 1935, opens with the emergency laws of the first hundred days. "
+        "Their aim, in Roosevelt's words, quoted by the course:{-hd}",
         ("C", "helping the millions who never had a chance: men at starvation wages, women in sweatshops, children at looms", "c_fdr"),
         "{-c_fdr}{fr1}{fr1.1}Roosevelt, elected in 1932. {fr1.2}The hundred days created the Civilian Conservation Corps and the Tennessee Valley Authority, and insured bank deposits. "
         "{fr1.3}Then the Second New Deal, in 1935, turned relief into rights: the Social Security Act, with pensions and unemployment insurance, "
@@ -419,6 +419,7 @@ SCENES = [
         "fr1": dict(type="frise", items=[
             dict(nom="Elected", d=1932, q="Roosevelt, a Democrat"), dict(nom="Hundred days", d=1933, q="CCC · TVA · deposits insured"),
             dict(nom="Second New Deal", d=1935, q="Social Security Act · WPA"), dict(nom="Golden Gate", d=1937, q="built from 1933 (local project)")]),
+        "hd": dict(type="mot", t="The hundred days", g="First New Deal · 1933 – 1935 · emergency laws", y=260, taille=90),
         "c_fdr": dict(type="cit", a="Franklin D. Roosevelt", o="quoted in M. Ros's course", x=200, y=200, w=880),
         "cmp2": dict(type="cols", g="USA · the New Deal", gq="public money for bridges, dams and social insurance",
                      d="Germany · Nazism", dq="public money for motorways and, above all, an army", vs="≠"),

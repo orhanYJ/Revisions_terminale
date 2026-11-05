@@ -66,7 +66,7 @@ SCENES = [
          retenir="The chapter: how a stock-market collapse in one country became a world depression, which pushed the democracies into retreat while three regimes chose militarism.",
          beats=[
         "{g0}{g0.1}This chapter opens Theme One, and it comes right after the peace settlement of nineteen nineteen. "
-        "So let's start there. {-g0}{lib}{lib.1}In nineteen eighteen, President Wilson's Fourteen Points carried three principles: "
+        "So let's start there. {lib}{lib.1}In nineteen eighteen, President Wilson's Fourteen Points carried three principles: "
         "democracy, self-determination, and free trade.",
         "{lib.2}The Paris Peace Conference, the Treaty of Versailles and the League of Nations, seated in Geneva, gave them institutions. "
         "{lib.3}But the American Senate refused to ratify the treaty. The United States never joined the League that its own president had imagined.",
@@ -107,7 +107,7 @@ SCENES = [
         "America enjoys a boom built on mass production and mass consumption. It feels permanent.",
         "{g1.2}Step two. But look away from the cities, to the Great Plains. From nineteen twenty, the real economy is already slowing down. "
         "Farm prices have been falling since the end of the war. Coal, textiles and construction are in trouble too.",
-        "{-g1}{fr2}Why? {fr2.1}Most Americans are poor: they cannot buy everything the factories produce. "
+        "{fr2}Why? {fr2.1}Most Americans are poor: they cannot buy everything the factories produce. "
         "{fr2.2}And the Europeans are still recovering from the war: they cannot buy it either. That is overproduction.",
         "{-fr2}{g1.3}Step three, nineteen twenty-four: the Dawes Plan. The United States lends eight hundred million marks to Germany. "
         "Germany pays its reparations to France and Britain. And France and Britain repay their war debts to the United States. "
@@ -264,7 +264,7 @@ SCENES = [
          retenir="Before the Crash, farming, coal, textiles and construction were in trouble: overproduction, because most Americans were poor and Europe was still recovering. Farm prices had fallen since 1920.",
          beats=[
         "{g2}Fifth idea, and it is the one students forget. {!Meanwhile}Meanwhile, the real economy had already started its downturn.",
-        "{-g2}{sec}The slides make the point in one diagram. Before the Crash, several sectors are already in trouble. "
+        "{sec}The slides make the point in one diagram. Before the Crash, several sectors are already in trouble. "
         "{sec.1}Farming. {sec.2}Coal. {sec.3}Textiles, and the other traditional trades. {sec.4}And the construction industry.",
         "{-sec}{-g2}{para0}Why? Because consumer goods are massively available… more than the market can absorb. "
         "That is overproduction, and overproduction leads to recession. {-para0}{surp}{surp.g}Two facts explain it. "

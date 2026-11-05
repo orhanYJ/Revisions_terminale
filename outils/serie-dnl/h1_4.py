@@ -38,11 +38,11 @@ SCENES = [
         "Twenty years after the peace of 1919, Europe is at war again.",
         "{-q1}{q2}But the great democracies had won the last war. They had written the peace, and built an order to keep it. "
         "So why did they let it collapse, step by step, without a fight?",
-        "{-q2}{-g0}{plan}Here is the plan of this episode. {plan.1}First, the story on the map, from the peace of 1919 to the cash and carry of 1939. "
-        "{plan.2}Then the liberal order of 1919, and why the League of Nations failed. "
-        "{plan.3}Then America: words without action, then neutrality by law, then the Arsenal of Democracy. "
-        "{plan.4}Then Britain and France: appeasement, its six reasons, and its consequences. "
-        "{plan.5}And finally, an exam workshop: the key issue of the chapter, as an essay.",
+        "{-q2}{-g0}{plan}The plan. {plan.1}First, the story on the map. "
+        "{plan.2}Then the liberal order of 1919, and the League of Nations. "
+        "{plan.3}Then America: words, neutrality, then the Arsenal of Democracy. "
+        "{plan.4}Then appeasement, its reasons and its consequences. "
+        "{plan.5}And finally, the key issue of the chapter, as an essay.",
         "{-plan}{titre}",
         ("P", 3.2),
     ], vis={
@@ -160,13 +160,11 @@ SCENES = [
         "And many of the world's nations were not represented at all.",
         "{-str}{ctx}Then the contextual causes. {ctx.1}The League was powerless before Italian militarism, "
         "{ctx.2}before German militarism, {ctx.3}and before Japanese militarism.",
-        "{-ctx}{-pal}{lien}The link between the two lists is the key to an essay. {!Inevitable}Do not just list them. "
-        "Use the five structural weaknesses to explain why the three failures of the 1930s were inevitable. "
-        "A League with no army, where every member had a veto, could not stop a great power that decided to attack.",
+        "{-ctx}{-pal}{lien}In an essay, do not just list them. Use the five structural weaknesses to explain why the three failures "
+        "of the 1930s were inevitable. A League with no army, where every member had a veto, could not stop a great power.",
         "{-lien}{low1}The British cartoonist David Low drew it in 1933, in a cartoon called The Doormat. We cannot show it here, "
         "so picture it. {low1.1}A Japanese soldier walks over the League of Nations, lying on the ground like a doormat. "
-        "{low1.2}The League's officials bow. {low1.3}And the British Foreign Secretary, John Simon, powders the League's nose with a face-saving kit. "
-        "The League is humiliated, and it pretends nothing has happened.",
+        "{low1.2}The League's officials bow. {low1.3}And the British Foreign Secretary, John Simon, powders the League's nose with a face-saving kit.",
     ], vis={
         "pal": dict(type="tableau", img="h1-palais-nations", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .45],
                     legende="The Palais des Nations, Geneva, built for the League of Nations (1929–1938), photo 2014 (Vassil, Wikimedia Commons, CC0)"),
