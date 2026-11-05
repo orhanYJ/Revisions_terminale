@@ -86,12 +86,11 @@ SCENES = [
     dict(id="carte1", chap="On the map: 1935 – 1936", fond="nuit", humeur="tension",
          retenir="Apr. 1935 Stresa · 1935 the Wehrmacht · June 1935 the naval agreement · 7 Mar. 1936 the Rhineland · 25 Oct. 1936 the Rome–Berlin Axis · 1936 the Spanish Civil War.",
          beats=[
-        "{g1}{g1.1}1935. In April, at Stresa, on Lake Maggiore, Britain and France try to build a front with Italy against Germany. "
-        "But Germany is rearming openly: that same year it creates the Wehrmacht, its unified armed forces. "
-        "And in June, Britain alone signs a naval agreement allowing the German navy thirty-five per cent of the Royal Navy. "
+        "{g1}{g1.1}1935. At Stresa, Britain and France try to build a front with Italy against Germany. "
+        "But Germany is rearming openly, and in June, Britain alone signs a naval agreement with it. "
         "Across the Atlantic, America passes its Neutrality Acts.",
-        "{g1.2}The seventh of March 1936. German troops march into the Rhineland, the demilitarised zone on the French border. "
-        "They have orders to retreat if France reacts. France does not react, and neither does Britain. Hitler's gamble pays off.",
+        "{g1.2}The seventh of March 1936. German troops march into the demilitarised Rhineland. "
+        "France does not react, and neither does Britain.",
         "{g1.3}In the summer of 1936, civil war breaks out in Spain. Germany and Italy support General Franco; France and Britain stay out. "
         "And on the twenty-fifth of October 1936, Hitler and Mussolini proclaim the Rome-Berlin Axis.",
     ], vis={
@@ -102,12 +101,9 @@ SCENES = [
     dict(id="carte2", chap="On the map: 1937 – 1939", fond="nuit", humeur="tension",
          retenir="12 Mar. 1938 Anschluss · 29–30 Sept. 1938 Munich · 15 Mar. 1939 Prague · 31 Mar. 1939 guarantee to Poland · 23 Aug. 1939 the Nazi-Soviet pact · 1–3 Sept. 1939 war.",
          beats=[
-        "{g2}{g2.1}From 1937, the British prime minister, Neville Chamberlain, and the French premier, Édouard Daladier, "
-        "follow one policy: accept the dictators' demands in order to avoid war. Its name: appeasement.",
+        "{g2}{g2.1}From 1937, London and Paris follow one policy: accept the dictators' demands in order to avoid war. Appeasement.",
         "{g2.2}The twelfth of March 1938. The German army enters Vienna. Austria is annexed: the Anschluss.",
-        "{g2.3}September 1938. Hitler demands the Sudetenland, the German-speaking region of Czechoslovakia. "
-        "At Munich, on the twenty-ninth and thirtieth of September, Britain and France hand it over to him. "
-        "The Czechs are not even invited.",
+        "{g2.3}September 1938. At Munich, Britain and France hand Hitler the Sudetenland. The Czechs are not even invited.",
         "{g2.4}The fifteenth of March 1939. Germany occupies Prague and the rest of the Czech lands. Appeasement is dead: "
         "on the thirty-first of March, France and Britain guarantee Poland.",
         "{g2.5}The twenty-third of August 1939. Two sworn enemies, Nazi Germany and the Soviet Union, sign a pact. "
@@ -134,7 +130,7 @@ SCENES = [
         "{eu.1}The democracies: France and Britain. {eu.2}The dictatorships: Germany and Italy, with Japan in Asia. "
         "{eu.3}And the Soviet Union, a vast and isolated totalitarian regime.",
         "{-eu}{sdn}Between them stands the League of Nations, the institution created in 1919 to stop aggression. "
-        "But it has no army of its own. {sdn.1}Whenever the great powers will not back it, it {!cannot act}cannot act.",
+        "{sdn.1}Whenever the great powers will not back it, it {!cannot act}cannot act.",
         "{-sdn}{low1}The British cartoonist David Low made that failure his subject. In the Evening Standard of the twenty-fourth of July 1935, "
         "while Mussolini prepares to invade Abyssinia, he draws three monkeys seated on the throne of International Law. "
         "{low1.1}One covers its eyes, one its ears, one its mouth. {low1.2}See no Abyssinia, hear no Abyssinia, speak no Abyssinia.",
@@ -143,7 +139,7 @@ SCENES = [
             "The democracies: France, Britain", "The dictatorships: Germany, Italy (and Japan in Asia)",
             "The USSR: a vast and isolated totalitarian regime"], x=170, y=150, w=940),
         "sdn": dict(type="def", cles=["aggression", "great powers"], terme="The League of Nations (1919)",
-                    t="The institution meant to stop aggression… with no army of its own.",
+                    t="The institution created in 1919 to stop aggression.",
                     etape="Unable to act whenever the great powers would not back it", x=170, y=200, w=940),
         "low1": dict(type="liste", titre="David Low, “On the Throne of Justice”, Evening Standard, 24 July 1935", items=[
             "Three monkeys labelled “Abyssinia” on the throne of International Law",
@@ -161,16 +157,13 @@ SCENES = [
         "{-us}{rep}Watch out, a point the course itself corrects. Monsieur Ros's slide speaks of a Republican Congress. "
         "In fact, the Democrats held the majority from 1935 to 1939, and isolationism ran across both parties. "
         "{rep.1}So in an essay, write: {!an isolationist Congress}an isolationist Congress.",
-        "{-rep}{lim}And you will meet the limit of what Roosevelt could do in a DBQ later in this episode: "
-        "in April 1939, he can only ask the dictators for promises. No sanction, no threat. Just words.",
-    ], vis={
+            ], vis={
         "us": dict(type="liste", titre="The Neutrality Acts", cles=["arms", "loans"], items=[
             "No arms sales, no loans to countries at war", "1935: the first Neutrality Act", "1936: a second",
             "1937: a third"], x=170, y=140, w=940),
         "rep": dict(type="note", terme="Watch out · a formulation", cles=["Democrats", "both parties"],
                     t="The slide says “a Republican Congress”; the Democrats held the majority from 1935 to 1939.",
                     etape="Isolationism ran across both parties: write “an isolationist Congress”", x=170, y=200, w=940),
-        "lim": dict(type="mot", t="Words, not means", g="Roosevelt's telegram of 14 April 1939 · DBQ 2", y=260, taille=90),
     }),
 
     # ================================================================ III.2, idées 3 et 4 : Stresa et le réarmement
@@ -184,7 +177,7 @@ SCENES = [
         "{-sf}{-g3}{wm}Idea four: Germany breaks the Treaty of Versailles openly. From 1935, it rearms on a massive scale. "
         "It creates a unified armed force, the {!Wehrmacht}Wehrmacht, made of three branches: "
         "{wm.1}the army, the Heer; {wm.2}the navy, the Kriegsmarine; {wm.3}and the air force, the Luftwaffe. "
-        "Hitler is preparing the conquest of his Lebensraum, and each breach that goes unpunished makes the next one easier.",
+        "Each breach that goes unpunished makes the next one easier.",
         "{-wm}{pct}The most striking example: in June 1935, two months after Stresa, Britain signs a naval agreement with Germany, on its own, "
         "without consulting its Stresa partners. It allows the Kriegsmarine to reach {!thirty-five per cent}thirty-five per cent "
         "of the Royal Navy's tonnage. Britain itself legalises a breach of Versailles.",
@@ -294,8 +287,8 @@ SCENES = [
         "{-c_fdr2}{-doc2}{ex2}The question: {!How useful}how useful is this document to a historian studying the democracies' response to Hitler's ambitions?",
         "{-ex2}{m2}The site's model answer, in short. {m2.1}First line: largely useful, although it lights only one corner of that response. "
         "{m2.2}Strengths: the author, the head of the most powerful neutral democracy; the date, just after Munich has visibly failed; "
-        "the method, assurances without any means of constraint; the list of thirty-one states, an admission of how far aggression was expected to reach; "
-        "and a public message, aimed at world opinion as much as at Hitler.",
+        "the method, assurances without constraint; thirty-one states, an admission of how far aggression was expected to reach; "
+        "and a public message, aimed at world opinion.",
         "{m2.3}Limits: one democracy, and a neutral one, says nothing of Britain and France; there is no outcome, since Hitler's contemptuous reply "
         "of the twenty-eighth of April is absent; it is silent on the Neutrality Acts that explain its caution; "
         "and written for publication, it shows what Washington wished to be seen saying.",
@@ -458,17 +451,16 @@ SCENES = [
          retenir="The chain: 1931 Manchuria · 1933 Germany and Japan leave the League · 1935 Ethiopia · 1936 Rhineland, Spain · 1937 China, Italy leaves the League · 1938 Anschluss, Munich · March 1939 Prague · 1 Sept. 1939 Poland. Ideology = the will; the democracies' reluctance = the opportunity.",
          beats=[
         "{st}Idea seven: the consequence of appeasement. Let's climb David Low's steps, as the course's schema does. "
-        "{st.1}{st.2}1931: Manchuria. Japan invades, the League condemns, Japan walks out in 1933. No sanction. "
+        "{st.1}{st.2}1931: Manchuria. No sanction. "
         "{st.3}{st.4}1935: Ethiopia. Britain refuses the oil embargo. "
         "{st.5}{st.6}1936: the Rhineland. France and Britain do not move.",
         "{st.7}{st.8}March 1938: the Anschluss. {st.9}{st.10}September 1938: Munich. "
         "{st.11}{st.12}March 1939: Prague. Munich bought nothing. "
         "{st.13}{st.14}And the first of September 1939: Poland. War. "
         "Every concession was followed by a {!larger demand}larger demand: that is the central argument against appeasement.",
-        "{-st}{ch}The course's chain is even fuller. {ch.1}1933: Germany and Japan leave the League. {ch.2}1935: Italy invades Ethiopia. "
+        "{-st}{ch}The course's chain adds three links. {ch.1}1933: Germany and Japan leave the League. {ch.2}1935: Ethiopia. "
         "{ch.3}1936: the Rhineland and Spain. {ch.4}1937: Japan invades southern China, and Italy leaves the League. "
-        "{ch.5}1938: the Anschluss and Munich. {ch.6}March 1939: Prague. {ch.7}The first of September 1939: Poland. "
-        "Each time, the absence of reaction encouraged the next step.",
+        "{ch.5}{ch.6}{ch.7}Then Austria, Munich, Prague, Poland. Each time, the absence of reaction encouraged the next step.",
         "{-ch}{vo}And here is the sentence that answers the chapter's key issue. "
         "{vo.g}Totalitarian ideology supplied {!the will}the will to expand. "
         "{vo.d}The democracies' reluctance supplied {!the opportunity}the opportunity.",
@@ -508,14 +500,14 @@ SCENES = [
         "as an underlying cause of the Second World War, though it captures the last step rather than the road that led there. "
         "{rep3.2}It is a speech delivered by Hitler to his commanders-in-chief on the twenty-second of August 1939, in which he tells them "
         "he has decided to attack Poland.",
-        "{rep3.3}The strengths. Its audience: a closed briefing, so Hitler had no reason to soften his intentions. "
-        "Its date: nine days before the invasion, at the exact point where expansion became war. Its content shows planning, not improvisation: "
-        "a conflict with Poland had to come sooner or later. It measures the effect of appeasement: no outstanding personality in England and France. "
-        "And it reveals something its author did not intend: he barely mentions Lebensraum or race at all.",
-        "{rep3.4}The limits. Its transmission: listeners' notes, several versions, produced by the Allies at Nuremberg, so not a verbatim text. "
-        "Its purpose: to strengthen the generals' confidence, so he overstates German advantages. "
-        "It shows an immediate decision, not an underlying cause: for that, you need Mein Kampf and its eastern policy. "
-        "It is silent on the economy, on race, on the failure of the League. And it shows an intention, never what actually happened.",
+        "{rep3.3}The strengths. A closed audience: Hitler had no reason to soften his intentions. "
+        "The date: the exact point where expansion became war. Planning, not improvisation: a conflict had to come sooner or later. "
+        "The effect of appeasement: no outstanding personality in England and France. "
+        "And something he did not intend to reveal: he barely mentions Lebensraum or race at all.",
+        "{rep3.4}The limits. Listeners' notes in several versions, produced at Nuremberg: not a verbatim text. "
+        "Its purpose, to reassure the generals, so he overstates German advantages. "
+        "An immediate decision, not an underlying cause: for that, you need Mein Kampf. "
+        "Silent on the economy, on race, on the League. And an intention, never what actually happened.",
     ], vis={
         "doc3": dict(type="liste", titre="DBQ 3 · Document A", items=[
             "Hitler to his commanders-in-chief, Obersalzberg, 22 August 1939: nine days before Poland",
