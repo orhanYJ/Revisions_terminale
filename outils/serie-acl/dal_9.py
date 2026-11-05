@@ -1,5 +1,12 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 9 : le retour de Gerry (PDF de travail, p. 52-58).
 
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+le résumé est joué sur le plateau (visuel jeu), en suivant les didascalies pas à pas ; les répliques courtes s'affichent en
+bulles et sont lues par la voix des sœurs (F) ou la voix d'homme (Gerry). Dans le sycomore, Gerry n'est qu'une voix :
+« (Now she sees him. The audience does not see him.) » (p. 56) ; il est placé hors cadre au-dessus de l'arbre, ses bulles
+tombent du haut de l'image, la caméra montre la cime vide. L'appel par la fenêtre (p. 55) n'est qu'une note. Puis quatre
+répliques à connaître et l'analyse.
+
 Début : p. 52, didascalie « (CHRIS and GERRY enter L. …) » (juste après « not a syllable! » de Kate).
 Fin : p. 58, « AGNES. That's what she said. », juste avant « (MAGGIE enters.) ».
 Contenu : le récit de l'engagement de Gerry dans la Brigade internationale, la moto, l'Espagne ; Jack « a new man » et
@@ -19,6 +26,8 @@ SUIVANT = "Part 10 · Rose goes missing"
 PRONONCIATION = {"Lughnasa": "Loo-na-sa", "Lugh": "Loo", "Ryanga": "Ree-anga", "Armagh": "Ar-mah",
                  "McLaughlin": "Mac-Lochlin", "Mundy": "Mundy"}
 
+ARBRE = [1010, -70]   # Gerry dans le sycomore : au-dessus du cadre, jamais vu (« The audience does not see him. », p. 56)
+
 SCENES = [
     # ------------------------------------------------------------------ ouverture
     dict(id="ouverture", chap="Opening", fond="nuit", humeur="mystere", carton=False, beats=[
@@ -37,153 +46,223 @@ SCENES = [
                       sous="Spain, the factory, the sycamore · pages 52 – 58"),
     }),
 
-    # ------------------------------------------------------------------ I. une destination
-    dict(id="espagne", chap="A named destination", fond="aube", humeur="lumiere",
-         retenir="Gerry has joined the International Brigade: a comic story, but a real choice. A man needs “a named destination”.", beats=[
-        "{tab_gle}{entree}Kate has just begged Maggie: not a syllable about Jack must leave these walls. "
-        "{entree.1}At that moment Chris and Gerry come in, laughing. He keeps trying to embrace her; she keeps avoiding him. "
-        "{entree.2}They have danced down the lane and back, without music, just as Michael told us at the end of Act One.",
-        "{-entree}{-tab_gle}{recrue}Chris asks about signing up, and Gerry tells it like a comic sketch. "
-        "{recrue.1}It happened in a church: a Catholic church, as a matter of interest. "
-        "{recrue.2}The recruiting officer was Spanish, he thought. From Armagh, as it turned out. "
-        "{recrue.3}Do you speak Spanish? No. Can you make explosives? No. Can you ride a motor-bike? Yes. You're in.",
-        "{-recrue}{moto}So he will be a dispatch rider. He mimes the motor-bike. He sails on Saturday. "
-        "Everybody says it will be over by Christmas. They always say that, answers Chris. "
-        "Keep that motor-bike in mind.",
-        "{-moto}{pourquoi}Then the real question: why are you going? Who wants salesmen that can't sell, says Gerry. And then:",
-        "{-pourquoi}",
-        ("C", "Maybe that's the important thing for a man: a named destination – democracy, Ballybeg, heaven.", "c_dest"),
-        "{-c_dest}{drift}Democracy, Ballybeg, heaven: a cause, a village, a religion, all on the same level. "
-        "It hardly matters where he goes, as long as the place has a name. "
-        "{drift.1}Women, he adds, make better drifters. A strange thing to say in a house where five women can go nowhere at all.",
+    # ------------------------------------------------------------------ I. une destination (pp. 52-54)
+    dict(id="espagne", chap="A named destination", fond="nuit", humeur="lumiere", beats=[
+        "{jeu1}Page fifty-two. Kate has just demanded silence about Jack. Then Chris and Gerry enter from the lane. "
+        "{jeu1.1}He enters backwards, pulling Chris, who holds the end of his walking stick. "
+        "All through the scene, he keeps trying to embrace her; she keeps avoiding him.",
+        ("C", "No false modesty. You know you're a great dancer, Chrissie.", "jeu1.2"),
+        ("C", "Let's dance round the garden again.", "jeu1.3"),
+        ("C", "We've done that; and down the lane and up again – without music.", "jeu1.4", {"voix": "F"}),
+        "{jeu1.5}Without music: just as Michael told us at the end of Act One. Then Chris asks about signing up. "
+        "Was it really in a church?",
+        ("C", "A Catholic church as a matter of interest.", "jeu1.6"),
+        "{jeu1.7}Page fifty-three. "
+        "Naturally I thought he was Spanish, says Gerry. From Armagh, as it turned out. {jeu1.8}She laughs, and avoids his embrace. "
+        "Then the questions: do you speak Spanish? No. Can you make explosives? No.",
+        ("C", "Can you ride a motor-bike? Yes. You're in. Sign here.", "jeu1.9"),
+        ("C", "So you'll be a dispatch rider?", "jeu1.10", {"voix": "F"}),
+        "{jeu1.11}Gerry imitates riding a motor-bike. He leaves on Saturday: first tide. Keep that motor-bike in mind.",
+        ("C", "Maybe a couple of months. Everybody says it will be over by Christmas.", "jeu1.12"),
+        ("C", "They always say it will be over by Christmas. I still don't know why you're going.", "jeu1.13", {"voix": "F"}),
+        "{jeu1.14}Page fifty-four. Not so sure I know either, says Gerry. And then:",
+        ("C", "Maybe that's the important thing for a man: a named destination – democracy, Ballybeg, heaven.", "jeu1.15"),
+        ("C", "Women's illusions aren't so easily satisfied – they make better drifters.", "jeu1.16"),
+        "{jeu1.17}Come inside and look at this wireless, says Chris. I know nothing about radios, he protests. "
+        "{jeu1.18}She runs into the kitchen. {jeu1.19}He follows.",
+        ("P", 2.0),
     ], vis={
-        "tab_gle": dict(type="tableau", img="dal-glenties", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .45, .5],
-                        legende="Glenties, County Donegal (photo Thpohl, public domain)"),
-        "entree": dict(type="liste", titre="Chris and Gerry come in · pages 52 – 53", items=[
-            "He keeps trying to embrace her; she keeps avoiding him",
-            "“down the lane and up again – without music”"], marques=["1", "2"], x=150, y=200, w=980),
-        "recrue": dict(type="liste", titre="Signing up · page 53", items=[
-            "“A Catholic church as a matter of interest.”",
-            "“Naturally I thought he was Spanish. From Armagh, as it turned out.”",
-            "“Can you ride a motor-bike” “Yes.” “You're in. Sign here.”"], marques=["1", "2", "3"], x=150, y=170, w=980),
-        "moto": dict(type="mot", t="a dispatch rider", g="“First tide.” · “it will be over by Christmas” (pp. 53 – 54)",
-                     y=250, taille=88),
-        "pourquoi": dict(type="note", cles=["sell"], terme="Chris · p. 54",
-                         t="“I still don't know why you're going.”",
-                         etape="Gerry: “Who wants salesmen that can't sell?”", x=170, y=200, w=940),
-        "c_dest": dict(type="cit", a="Gerry", o="p. 54", x=170, y=190, w=940),
-        "drift": dict(type="cols", g="Men", gq="need “a named destination”", d="Women",
-                      dq="“they make better drifters”", vs="≠", repere="Gerry's view of the sexes"),
+        "jeu1": dict(type="jeu", persos=["Kate", "Maggie", "Chris", "Gerry"], etats=[
+            dict(pos={"Kate": [295, 430], "Maggie": [205, 430], "Chris": "off", "Gerry": "off"},
+                 act={"Kate": "debout", "Maggie": "debout"}, cam="tout", objets={"kites": "banc"},
+                 note="(CHRIS and GERRY enter L.) p. 52"),
+            dict(chemin={"Gerry": ["allee", [715, 460]], "Chris": ["allee", [810, 460]]}, chemin_duree=5,
+                 note="He enters backwards, pulling CHRIS, who holds the end of his walking stick."),
+            dict(pos={"Gerry": [715, 460], "Chris": [810, 460]},
+                 dit=["Gerry", "No false modesty. You know you're a great dancer, Chrissie."]),
+            dict(dit=["Gerry", "Let's dance round the garden again."]),
+            dict(dit=["Chris", "We've done that; and down the lane and up again – without music."]),
+            dict(note="“Tell me about signing up. Was it really in a church?”"),
+            dict(dit=["Gerry", "A Catholic church as a matter of interest."], note="(p. 53)"),
+            dict(dit=["Gerry", "Naturally I thought he was Spanish. From Armagh, as it turned out."]),
+            dict(pos={"Chris": [905, 450]}, note="(She laughs – and avoids his embrace.)"),
+            dict(dit=["Gerry", "‘Can you ride a motor-bike’ ‘Yes.’ ‘You're in. Sign here.’"]),
+            dict(dit=["Chris", "So you'll be a dispatch rider?"]),
+            dict(note="(GERRY imitates riding a motor-bike.) “First tide.”"),
+            dict(dit=["Gerry", "Maybe a couple of months. Everybody says it will be over by Christmas."], note="(p. 54)"),
+            dict(dit=["Chris", "They always say it will be over by Christmas. I still don't know why you're going."]),
+            dict(note="“Not so sure I know either.”"),
+            dict(dit=["Gerry", "… the important thing for a man: a named destination – democracy, Ballybeg, heaven."]),
+            dict(dit=["Gerry", "Women's illusions aren't so easily satisfied – they make better drifters."], note="(Laughs.)"),
+            dict(note="“Come inside and take a look at this wireless.” — “I know nothing about radios.”"),
+            dict(chemin={"Chris": [[905, 450], "seuil", "porte", [385, 430]]}, chemin_duree=3.5,
+                 note="(She runs into the kitchen. He follows.)"),
+            dict(chemin={"Gerry": [[715, 460], "seuil", "porte", [475, 430]]}, chemin_duree=3.5, cam="cuisine",
+                 note="(She runs into the kitchen. He follows.)"),
+        ]),
     }),
 
-    # ------------------------------------------------------------------ II. le communisme sans Dieu
-    dict(id="kate", chap="Godless Communism", fond="nuit", humeur="tension",
-         retenir="Two blows from the outside world: Spain divides the kitchen, and the new factory ends Agnes and Rose's work.", beats=[
-        "{tab_rad}{antenne}Chris pulls Gerry inside to fix the wireless. I know nothing about radios, he protests. "
-        "But he plays the expert: let me check the aerial, then the ignition and sparking plugs. "
-        "Those are parts of a car engine! He winks at Chris and goes out.",
-        "{-antenne}{-tab_rad}{morale}At once, Kate speaks. It would be on her conscience to stay silent.",
-        "{-morale}",
+    # ------------------------------------------------------------------ II. le communisme sans Dieu (pp. 54-56)
+    dict(id="kate", chap="Godless Communism", fond="nuit", humeur="tension", beats=[
+        "{jeu2}In the kitchen: Jack has been seen striding through the meadow. He looks like a new man.",
+        ("C", "Were you talking to him?", "jeu2.1", {"voix": "F"}),
+        ("C", "He wants to do a swap with me: I'm to give him this hat and he's to give me some sort of a three-cornered hat "
+              "with feathers", "jeu2.2"),
+        "{jeu2.3}Page fifty-five. Chrissie says you're great with radios, says Maggie. And Gerry plays the expert.",
+        ("C", "Let me check the aerial first. Very often that's where the trouble lies.", "jeu2.4"),
+        ("C", "Then I'll have a look at the ignition and sparking plugs. Leave it to Gerry.", "jeu2.5"),
+        "{jeu2.6}Car words, for a radio: he is bluffing. He winks at Chris as he goes out the front door. "
+        "{jeu2.7}And at once, Kate speaks. It would be on her conscience, she says, to stay silent.",
+        ("C", "It's a sorry day for Ireland when we send young men off to Spain to fight for godless Communism.", "jeu2.8",
+         {"voix": "F"}),
+        ("C", "For democracy, Kate.", "jeu2.9", {"voix": "F"}),
+        ("C", "I'm not going to argue. I just want to clear my conscience.", "jeu2.10", {"voix": "F"}),
+        ("C", "That's the important thing, of course. And now you've cleared it.", "jeu2.11", {"voix": "F"}),
+        "{jeu2.12}Pure irony: the youngest sister no longer simply obeys. Gerry runs on and calls through the window: "
+        "turn the radio on! It's on, says Maggie. And he runs off again.",
+        "{jeu2.13}Then Chris tells her news. They met Vera McLaughlin, the knitting agent.",
+        ("C", "She's not buying any more hand-made gloves.", "jeu2.14", {"voix": "F"}),
+        "Too dear, she says.",
+        ("C", "Too dear! She pays them a pittance!", "jeu2.15", {"voix": "F"}),
+        ("C", "There's a new factory started up in Donegal Town. They make machine gloves more quickly there and far more cheaply.",
+         "jeu2.16", {"voix": "F"}),
+        "{jeu2.17}Page fifty-six. Buses will bring the workers to the factory. Vera tried to get a job there herself: "
+        "she was told she was too old. She's forty-one.",
+        ("C", "Oh God … poor Aggie … poor Rose … what'll they do?", "jeu2.18", {"voix": "F"}),
+    ], vis={
+        "jeu2": dict(type="jeu", persos=["Kate", "Maggie", "Chris", "Gerry"], etats=[
+            dict(pos={"Kate": [295, 430], "Maggie": [205, 430], "Chris": [385, 430], "Gerry": [475, 430]},
+                 act={"Kate": "debout", "Maggie": "debout"}, cam="cuisine", objets={"kites": "banc"},
+                 note="“You should see Jack striding through the meadow. He looks like a new man.”"),
+            dict(dit=["Kate", "Were you talking to him?"], note="(to GERRY)"),
+            dict(dit=["Gerry", "He wants to do a swap with me: I'm to give him this hat …"],
+                 note="… for “a three-cornered hat with feathers” (p. 54)"),
+            dict(note="MAGGIE: “Chrissie says you're great with radios, Gerry” (p. 55)"),
+            dict(dit=["Gerry", "Let me check the aerial first. Very often that's where the trouble lies."]),
+            dict(dit=["Gerry", "Then I'll have a look at the ignition and sparking plugs. Leave it to Gerry."]),
+            dict(chemin={"Gerry": ["porte", "seuil", [700, 250]]}, chemin_duree=4,
+                 note="(He winks at Chris as he goes out the front door and off R.)"),
+            dict(pos={"Gerry": "off"}, note="“it would be on my conscience if I didn't tell you”"),
+            dict(dit=["Kate", "… a sorry day for Ireland when we send young men off to Spain to fight for godless Communism."]),
+            dict(dit=["Chris", "For democracy, Kate."]),
+            dict(dit=["Kate", "I'm not going to argue. I just want to clear my conscience."]),
+            dict(dit=["Chris", "That's the important thing, of course. And now you've cleared it."]),
+            dict(note="(GERRY runs on and calls through the window.) “Turn the radio on, Chrissie, would you?”"),
+            dict(note="“we met Vera McLaughlin, the knitting agent”"),
+            dict(dit=["Chris", "She's not buying any more hand-made gloves."]),
+            dict(dit=["Kate", "Too dear! She pays them a pittance!"], note="(p. 56)"),
+            dict(dit=["Chris", "There's a new factory started up in Donegal Town. They make machine gloves …"]),
+            dict(note="Vera was told “she was too old. She's forty-one.”"),
+            dict(dit=["Maggie", "Oh God … poor Aggie … poor Rose … what'll they do?"]),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ III. le sycomore (pp. 56-58)
+    dict(id="sycomore", chap="On top of the sycamore", fond="nuit", humeur="mystere", beats=[
+        "{jeu3}Agnes enters the garden, and Kate sees her.",
+        ("C", "Shhh. They're back. Let them have their tea in peace. Tell them later.", "jeu3.1", {"voix": "F"}),
+        "{jeu3.2}They busy themselves with their tasks. Agnes leaves two small pails of bilberries outside the door. "
+        "Just as she is about to come in, a voice off calls her.",
+        ("C", "Who is that beautiful woman!", "jeu3.3"),
+        ("C", "Gerry?", "jeu3.4", {"voix": "F"}),
+        ("C", "Up here, Aggie!", "jeu3.5"),
+        ("C", "On top of the sycamore.", "jeu3.6"),
+        "{jeu3.7}Now she sees him. The audience does not: on stage, Gerry is only a voice, up in the tree.",
+        ("C", "What are you doing up there?", "jeu3.8", {"voix": "F"}),
+        ("C", "You can see into the future from here, Aggie!", "jeu3.9"),
+        ("C", "The tree isn't safe, Gerry. Please come down.", "jeu3.10", {"voix": "F"}),
+        ("C", "Come up and see what's going to happen to you!", "jeu3.11"),
+        ("C", "That branch is dead, Gerry. I'm telling you.", "jeu3.12", {"voix": "F"}),
+        "{jeu3.13}The branch begins to sway. Page fifty-seven. Gerry sings. Outside the text: an old music-hall song.",
+        ("C", "He flies through the air with the greatest of ease –", "jeu3.14"),
+        "{jeu3.15}Agnes covers her eyes in terror.",
+        ("C", "You're going to fall! I'm not looking! I'm not watching!", "jeu3.16", {"voix": "F"}),
+        "{jeu3.17}She dashes into the house: that clown of a man is up on top of the sycamore! He's fixing the aerial, says Maggie.",
+        ("C", "He's going to break his neck – I'm telling you!", "jeu3.18", {"voix": "F"}),
+        ("C", "As long as he fixes the wireless first.", "jeu3.19", {"voix": "F"}),
+        "{jeu3.20}The bilberries? Just that bit too ripe, says Agnes: we should have picked them a week ago. "
+        "Then she asks about Rose. She wasn't feeling well; she went home to lie down. A pause.",
+        ("C", "She's here, isn't she?", "jeu3.21", {"voix": "F"}),
+        "{jeu3.22}Maggie rushes off to the bedroom. {jeu3.23}No one has seen Rose. She left Agnes hours ago, at the old quarry.",
+        ("C", "To come home?", "jeu3.24", {"voix": "F"}),
+        ("C", "That's what she said.", "jeu3.25", {"voix": "F"}),
+        "Part nine stops here.",
+    ], vis={
+        "jeu3": dict(type="jeu", persos=["Kate", "Maggie", "Chris", "Agnes", "Gerry"], etats=[
+            dict(pos={"Kate": [295, 430], "Maggie": [205, 430], "Chris": [385, 430], "Agnes": "off", "Gerry": "off"},
+                 act={"Kate": "debout", "Maggie": "debout"}, cam="tout", objets={"kites": "banc"},
+                 chemin={"Agnes": ["allee", "jardin", [640, 420]]}, chemin_duree=6,
+                 note="(AGNES enters the garden. KATE sees her.) p. 56"),
+            dict(pos={"Agnes": [640, 420]}, dit=["Kate", "Shhh. They're back. Let them have their tea in peace. Tell them later."]),
+            dict(act={"Kate": "range", "Maggie": "range", "Chris": "repasse"},
+                 note="(They busy themselves with their tasks.) Two small pails of bilberries left at the door"),
+            dict(pos={"Gerry": ARBRE}, cam="jardin", dit=["Gerry", "Who is that beautiful woman!"]),
+            dict(dit=["Agnes", "Gerry?"]),
+            dict(dit=["Gerry", "Up here, Aggie!"]),
+            dict(dit=["Gerry", "On top of the sycamore."]),
+            dict(cam="arbre", note="(Now she sees him. The audience does not see him.)"),
+            dict(cam="jardin", dit=["Agnes", "What are you doing up there?"]),
+            dict(dit=["Gerry", "You can see into the future from here, Aggie!"]),
+            dict(dit=["Agnes", "The tree isn't safe, Gerry. Please come down."]),
+            dict(dit=["Gerry", "Come up and see what's going to happen to you!"]),
+            dict(dit=["Agnes", "That branch is dead, Gerry. I'm telling you."]),
+            dict(cam="arbre", note="(The branch begins to sway.)"),
+            dict(cam="jardin", dit=["Gerry", "‘He flies through the air with the greatest of ease –’ Wheeeeeee!"]),
+            dict(act={"Agnes": "pleure"}, note="(She covers her eyes in terror.) p. 57"),
+            dict(dit=["Agnes", "You're going to fall! I'm not looking! I'm not watching!"]),
+            dict(pos={"Agnes": [475, 430]}, act={"Agnes": "debout", "Kate": "debout", "Maggie": "debout", "Chris": "debout"},
+                 cam="cuisine", note="(She dashes into the house.) “That clown of a man is up on top of the sycamore.”"),
+            dict(dit=["Agnes", "He's going to break his neck – I'm telling you!"]),
+            dict(dit=["Maggie", "As long as he fixes the wireless first."]),
+            dict(note="“Just that bit too ripe. We should have picked them a week ago.”"),
+            dict(dit=["Agnes", "She's here, isn't she?"]),
+            dict(pos={"Maggie": "arriere"}, duree=1.6, note="(MAGGIE rushes off to the bedroom.)"),
+            dict(pos={"Maggie": "off"}, note="“Hours ago … almost immediately after we got to the old quarry.”"),
+            dict(dit=["Kate", "To come home?"], note="(p. 58)"),
+            dict(dit=["Agnes", "That's what she said."]),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ IV. quatre répliques à connaître
+    dict(id="repliques", chap="Four lines to know", fond="aube", humeur="calme",
+         retenir="“a named destination”; “godless Communism”; the factory; “see into the future”.", beats=[
+        "{quatre}Four lines from these pages are worth knowing by heart. First, Gerry.",
+        "{-quatre}",
+        ("C", "Maybe that's the important thing for a man: a named destination – democracy, Ballybeg, heaven.", "c_dest"),
+        "{-c_dest}{drift}Democracy, Ballybeg, heaven: a cause, a village, a religion, all on the same level. "
+        ""
+        "{drift.1}Women, he adds, make better drifters. A strange thing to say in a house where five women can go nowhere at all.",
+        "{-drift}Then Kate.",
         ("C", "It's a sorry day for Ireland when we send young men off to Spain to fight for godless Communism.", "c_sorry",
          {"voix": "F"}),
         "{-c_sorry}{espagne}Outside the text: in 1936, most of Catholic Ireland, and its Church, sided against the Spanish Republic. "
         "Kate speaks with the voice of her Church.",
-        "{-espagne}{reponse}But Chris answers back. {reponse.1}For democracy, Kate. "
-        "{reponse.2}I just want to clear my conscience. {reponse.3}That's the important thing, of course. And now you've cleared it. "
-        "Pure irony: the youngest sister no longer simply obeys.",
-        "{-reponse}{tab_gle2}{vera}Then Chris brings news. Vera McLaughlin, the knitting agent, "
-        "is not buying any more of the gloves Agnes and Rose knit at home. Too dear, she says.",
-        "{-vera}",
+        "{-espagne}Then Chris, with the news.",
         ("C", "There's a new factory started up in Donegal Town. They make machine gloves more quickly there and far more cheaply.",
          "c_factory", {"voix": "F"}),
-        "{-c_factory}{usine}The economic collapse, in two sentences. {usine.1}Buses will take the workers to the factory. "
-        "{usine.2}Vera herself was told she was too old. She's forty-one. "
-        "{usine.3}Poor Aggie, says Maggie. Poor Rose. What'll they do?",
-        "{-usine}{silence}Agnes appears in the garden. Shhh, says Kate. Let them have their tea in peace. Tell them later. "
-        "Now there are two secrets in the house: Jack's lost faith, and the end of the knitting.",
+        "{-c_factory}{usine}The economic collapse, in two sentences. Agnes and Rose lose their only income. "
+        "And Kate's answer is silence: tell them later.",
+        "{-usine}And Gerry, up in the tree.",
+        ("C", "You can see into the future from here, Aggie!", "c_future"),
+        "{-c_future}{ironie}A joke… and perfect dramatic irony. {ironie.1}Come up and see what's going to happen to you! "
+        "{ironie.2}But we already know: in early September, Agnes and Rose will leave for ever.",
     ], vis={
-        "tab_rad": dict(type="tableau", img="dal-radio", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .45],
-                        legende="A 1930s valve wireless set (Museo della scienza e della tecnologia, Milan, CC BY-SA 4.0)"),
-        "antenne": dict(type="note", cles=["aerial", "ignition"], terme="Gerry the expert · pp. 54 – 55",
-                        t="“Let me check the aerial first. … Then I'll have a look at the ignition and sparking plugs.”",
-                        etape="Car words for a radio: he is bluffing.", x=170, y=200, w=940),
-        "morale": dict(type="mot", t="“on my conscience”", g="Kate to Christina (p. 55)", y=260, taille=84),
+        "quatre": dict(type="mot", t="Four lines to know", g="pages 54 – 56", y=260, taille=84),
+        "c_dest": dict(type="cit", a="Gerry", o="p. 54", x=170, y=190, w=940),
+        "drift": dict(type="cols", g="Men", gq="need “a named destination”", d="Women",
+                      dq="“they make better drifters”", vs="≠", repere="Gerry's view of the sexes"),
         "c_sorry": dict(type="cit", a="Kate", o="p. 55", x=170, y=190, w=940),
         "espagne": dict(type="note", cles=["Catholic", "Republic"], terme="Outside the text",
                         t="In 1936, most of Catholic Ireland and its Church sided against the Spanish Republic.",
                         etape="Kate speaks with the voice of her Church.", x=170, y=200, w=940),
-        "reponse": dict(type="liste", titre="Chris answers back · p. 55", items=[
-            "Chris: “For democracy, Kate.”",
-            "Kate: “I just want to clear my conscience.”",
-            "Chris: “That's the important thing, of course. And now you've cleared it.”"], marques=["C", "K", "C"],
-                        x=150, y=180, w=980),
-        "tab_gle2": dict(type="tableau", img="dal-glenties", fond=True, sombre=True, de=[1.2, .4, .5], a=[1.05, .5, .5],
-                         legende="Glenties, County Donegal (photo Thpohl, public domain)"),
-        "vera": dict(type="note", cles=["gloves"], terme="Vera McLaughlin, the knitting agent · pp. 55 – 56",
-                     t="“She's not buying any more hand-made gloves.”",
-                     etape="Kate: “Too dear! She pays them a pittance!”", x=170, y=200, w=940),
         "c_factory": dict(type="cit", a="Chris", o="p. 56", x=170, y=180, w=940),
-        "usine": dict(type="liste", titre="The factory · page 56", items=[
-            "Buses bring the workers “to the factory and back every day”",
-            "Vera: “too old. She's forty-one.”",
-            "Maggie: “poor Aggie … poor Rose … what'll they do?”"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "silence": dict(type="note", cles=["later"], terme="Kate · p. 56",
-                        t="“Shhh. They're back. Let them have their tea in peace. Tell them later.”",
-                        etape="A second secret: Jack's faith, and now the knitting.", x=170, y=200, w=940),
-    }),
-
-    # ------------------------------------------------------------------ III. le sycomore
-    dict(id="sycomore", chap="On top of the sycamore", fond="aube", humeur="mystere",
-         retenir="Gerry in the tree, “into the future”: comedy full of dramatic irony. Then Agnes asks: where is Rose?", beats=[
-        "{tab_don2}{appel}{appel.1}Agnes comes back with two pails of bilberries. A voice calls: Who is that beautiful woman! "
-        "{appel.2}It's Gerry, on top of the sycamore. Agnes sees him; we, the audience, do not. "
-        "What are you doing up there?",
-        "{-appel}",
-        ("C", "You can see into the future from here, Aggie!", "c_future"),
-        "{-c_future}{-tab_don2}{ironie}A joke… and perfect dramatic irony. "
-        "{ironie.1}He adds: come up and see what's going to happen to you! "
-        "{ironie.2}But we already know: in early September, Agnes and Rose will leave for ever. "
-        "And we have just heard why: the factory.",
-        "{-ironie}{cirque}The branch is dead, warns Agnes. It sways. {cirque.1}Gerry sings: He flies through the air with the greatest of ease. "
-        "{cirque.2}Outside the text: an old music-hall song from the eighteen-sixties. "
-        "{cirque.3}Agnes covers her eyes. You're going to fall! I'm not looking! I'm not watching!",
-        "{-cirque}{clown}She runs inside: he's going to break his neck! As long as he fixes the wireless first, says Maggie. "
-        "Even fear becomes a joke in this house. And notice how much Agnes cares about Gerry.",
-        "{-clown}{mures}{mures.1}The bilberries? Just that bit too ripe. We should have picked them a week ago. "
-        "Like these women's lives: always a little too late. "
-        "{mures.2}Then Agnes asks: is Rosie still in bed? She wasn't feeling well. She went home to lie down. A pause.",
-        "{-mures}",
-        ("C", "She's here, isn't she?", "c_here", {"voix": "F"}),
-        "{-c_here}{fuite}No one has seen her. {fuite.1}Maggie rushes to the bedroom. "
-        "{fuite.2}Rose left Agnes hours ago, at the old quarry. She felt out of sorts. "
-        "{fuite.3}She went off alone? To come home? That's what she said. "
-        "Part nine stops here.",
-    ], vis={
-        "tab_don2": dict(type="tableau", img="dal-donegal", fond=True, sombre=True, de=[1.15, .4, .5], a=[1.3, .6, .5],
-                         legende="Donegal (photo dconvertini, CC BY-SA 4.0)"),
-        "appel": dict(type="liste", titre="A voice off · page 56", items=[
-            "Gerry: “Who is that beautiful woman!”",
-            "“On top of the sycamore.” The audience does not see him."], marques=["1", "2"], x=150, y=200, w=980),
+        "usine": dict(type="note", cles=["income", "silence"], terme="Chris · p. 56",
+                      t="Machine gloves, “more quickly” and “far more cheaply”: Agnes and Rose lose their only income.",
+                      etape="Kate: “Tell them later.”", x=170, y=200, w=940),
         "c_future": dict(type="cit", a="Gerry", o="p. 56", x=170, y=200, w=940),
         "ironie": dict(type="liste", titre="Dramatic irony", cles=["irony"], items=[
             "Gerry: “Come up and see what's going to happen to you!”",
             "Act One: “both Rose and Agnes would have left for ever”"], marques=["1", "2"], x=150, y=200, w=980),
-        "cirque": dict(type="liste", titre="The circus · pages 56 – 57", items=[
-            "“He flies through the air with the greatest of ease –”",
-            "Outside the text: a music-hall song of the 1860s",
-            "Agnes: “You're going to fall! I'm not looking! I'm not watching!”"], marques=["♪", "+", "A"],
-                       x=150, y=180, w=980),
-        "clown": dict(type="dialogue", lignes=["Agnes: “He's going to break his neck – I'm telling you!”",
-                                               "Maggie: “As long as he fixes the wireless first.”"],
-                      src="The kitchen · p. 57", x=170, y=200, w=980),
-        "mures": dict(type="liste", titre="Back from the quarry · page 57", items=[
-            "“Just that bit too ripe. We should have picked them a week ago.”",
-            "“She left me and went home to lie down.”"], marques=["1", "2"], x=150, y=200, w=980),
-        "c_here": dict(type="cit", a="Agnes", o="p. 57", x=170, y=220, w=940),
-        "fuite": dict(type="liste", titre="Where is Rose? · pages 57 – 58", items=[
-            "Maggie rushes off to the bedroom",
-            "“almost immediately after we got to the old quarry”",
-            "“To come home?” “That's what she said.”"], marques=["1", "2", "3"], x=150, y=180, w=980),
     }),
 
     # ------------------------------------------------------------------ IV. l'analyse
@@ -225,10 +304,10 @@ SCENES = [
 QUIZ = [
     dict(q="Where, according to Gerry, did he sign up for the International Brigade?",
          r=["In a Catholic church", "In a pub in Ballybeg", "On a ship to Spain", "In the district commissioner's office"], ok=0,
-         voir="recrue",
+         voir="jeu1.6",
          ex="“A Catholic church as a matter of interest”: a comic irony, since Kate calls the cause “godless Communism”."),
     dict(q="Why is Gerry accepted, in his story?",
-         r=["He can ride a motor-bike", "He speaks Spanish", "He can make explosives", "He is a Communist"], ok=0, voir="recrue",
+         r=["He can ride a motor-bike", "He speaks Spanish", "He can make explosives", "He is a Communist"], ok=0, voir="jeu1.9",
          ex="He answers “No” to everything else; “Can you ride a motor-bike” “Yes.” “You're in.” He will be a dispatch rider."),
     dict(q="What does Gerry say is “the important thing for a man”?",
          r=["A named destination", "A steady job", "A family", "A good conscience"], ok=0, voir="c_dest",
@@ -243,13 +322,12 @@ QUIZ = [
          ex="Michael's prolepsis at the end of Act One told us that both Rose and Agnes would leave in early September."),
     dict(q="How does part nine end?",
          r=["Agnes comes back alone and asks if Rose is in the house", "Gerry falls from the sycamore",
-            "Kate tells Agnes about the factory", "Jack says Mass in the kitchen"], ok=0, voir="c_here",
+            "Kate tells Agnes about the factory", "Jack says Mass in the kitchen"], ok=0, voir="jeu3.21",
          ex="Rose left Agnes at the old quarry hours ago: “She's here, isn't she?” No one has seen her."),
 ]
 
 CREDITS = [
     "Brian Friel, Dancing at Lughnasa (1990): short quotations for analysis, page numbers from the class PDF",
-    "Photographs: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0); Glenties (Thpohl, public domain); "
-    "valve table radio, Museo della scienza e della tecnologia, Milan (CC BY-SA 4.0)",
+    "Photograph: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0)",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music",
 ]

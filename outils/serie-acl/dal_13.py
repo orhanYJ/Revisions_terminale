@@ -1,11 +1,24 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 13 : le tableau final (PDF de travail, p. 74-75).
 
-Début : p. 74, didascalie « (MAGGIE moves into the kitchen. MICHAEL enters. The characters are now in positions similar to
-their positions at the beginning of the play … ) ». Fin : « (Slowly bring up the music. Slowly bring down the lights.) »,
-THE END (p. 75). Dernière partie de la série : analyse de la fin, puis « The whole play for your essay » (carte de la pièce
-entière et huit citations à savoir par cœur, toutes vérifiées sur les images des pages 2, 14, 23, 37, 42, 43, 63 et 75).
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+le tableau final est joué sur le plateau (visuel jeu) en suivant la didascalie de la p. 74 point par point : Maggie rentre dans
+la cuisine, Michael entre ; positions « similar to their positions at the beginning of the play — with some changes » :
+Agnes et Gerry sur le banc du jardin, Jack au garde-à-vous au coude d'Agnes, un cerf-volant (visage tourné vers la salle) entre
+Gerry et Agnes, l'autre entre Agnes et Jack, Rose au fond à gauche du plateau (UL : au fond à droite vu de la salle), Maggie à
+la fenêtre de la cuisine, Kate à l'avant-scène droite (DR : à gauche vu de la salle), Chris à la porte ; Kate pleure doucement ;
+lumière dorée très douce dès que Michael parle. Puis la musique « It is Time to Say Goodnight » (pas de la radio : radio éteinte),
+tout le monde oscille très légèrement, et à la fin « Slowly bring up the music. Slowly bring down the lights. ».
+Le dernier monologue est dit par Michael (bulles), rien de ce qu'il raconte n'est joué. Puis cinq citations à connaître,
+l'analyse de la fin et « The whole play for your essay » (carte de la pièce entière et huit citations à savoir par cœur,
+toutes vérifiées sur les images des pages 2, 14, 23, 37, 42, 43, 63 et 75).
+
+Début : p. 74, didascalie « (MAGGIE moves into the kitchen. MICHAEL enters. … ) ». Fin : « (Slowly bring up the music.
+Slowly bring down the lights.) », THE END (p. 75). Dernière partie de la série.
 Même chaîne que la partie 1 : outils/serie-philo/generer.py dal_13. Citations courtes, à fin d'analyse ; le reste est résumé.
 Coquilles du PDF évitées dans les citations (« GERR », « Agnes an Rose », « that is owes nothing », « I that memory »).
+Limites du moteur : les cerfs-volants ne peuvent pas osciller (la didascalie « even the grinning kites » est dite en bandeau) ;
+la porte du plateau tient lieu de « front door ». Costumes et chapeaux gardés de la partie 12 (Jack en uniforme blanc et
+chapeau de paille, Gerry en tricorne), le coq resté sur la nappe : le texte ne dit pas qu'ils changent.
 """
 
 SITE = "acl-lughnasa"
@@ -17,6 +30,17 @@ TITRE = "The final tableau"
 SUIVANT = ""
 PRONONCIATION = {"Lughnasa": "Loo-na-sa", "Lugh": "Loo", "Ryanga": "Ree-anga", "Mundy": "Mundy",
                  "Ballybeg": "Bally-beg"}
+
+PERSOS = ["Kate", "Maggie", "Agnes", "Rose", "Chris", "Jack", "Gerry", "Michael"]
+# fin de la partie 12 : chacun où il était à la devinette de Maggie
+FIN_12 = {"Maggie": [720, 545], "Kate": [660, 410], "Agnes": [745, 372], "Rose": "banc_g", "Chris": [1075, 505],
+          "Jack": [860, 490], "Gerry": [965, 395]}
+# le tableau final (p. 74) ; Michael à l'extrême avant-scène gauche (vu de la salle : à droite), devant Jack
+MICHAEL = [1065, 545]
+TABLEAU = {"Gerry": [835, 352], "Agnes": [915, 352], "Jack": [995, 372], "Rose": [1035, 232], "Maggie": "fenetre",
+           "Kate": [150, 520], "Chris": "porte", "Michael": MICHAEL}
+TOUS = ["Kate", "Maggie", "Agnes", "Rose", "Chris", "Jack", "Gerry", "Michael"]
+COSTUMES = dict(costume={"Jack": "blanc"}, chapeau={"Jack": "paille", "Gerry": "tricorne"})
 
 SCENES = [
     # ------------------------------------------------------------------ ouverture
@@ -39,91 +63,131 @@ SCENES = [
                       sous="The end of Act Two · pages 74 – 75"),
     }),
 
-    # ------------------------------------------------------------------ I. retour au point de départ
-    dict(id="tableau", chap="Back where we began", fond="nuit", humeur="mystere",
-         retenir="The play ends almost as it began: the same tableau, with changes. Agnes and Rose have swapped places.", beats=[
-        "{plateau}Remember the very first image? {plateau.1}Michael in a pool of light… {plateau.2}the others, frozen.",
-        "{-plateau}{pos}Now, on page seventy-four, the characters stand in positions similar to the opening… "
-        "with some changes, says Friel. {pos.g}On page one, Rose sat on the garden seat with Gerry, and Agnes stood upstage. "
-        "{pos.d}Now it is Agnes on the seat with Gerry, and Rose upstage. The two sisters who will leave have swapped places.",
-        "{-pos}{det}{det.1}Jack stands stiffly to attention at Agnes's elbow, like the army chaplain he once was. "
-        "{det.2}The two kites stand between them, facing boldly out front. "
-        "{det.3}And Kate, downstage right, cries quietly during the whole speech.",
-        "Then the light.",
-        "{-det}",
+    # ------------------------------------------------------------------ I. le tableau (joué)
+    dict(id="tableau", chap="Back where we began", fond="nuit", humeur="mystere", beats=[
+        "{jeu1}Page seventy-four. The family is in the garden, around the cloth, Jack in his white uniform and the straw hat, "
+        "Gerry in the tricorn. Maggie gives up on her riddle.",
+        "{jeu1.1}She moves into the kitchen. And Michael enters.",
+        "{jeu1.2}Now, says Friel, the characters are in positions similar to their positions at the beginning of the play… "
+        "with some changes.",
+        "{jeu1.3}Agnes and Gerry are on the garden seat. Jack stands stiffly to attention at Agnes's elbow. "
+        "{jeu1.4}One kite, facing boldly out front, stands between Gerry and Agnes; the other, between Agnes and Jack. "
+        "The grinning faces look straight at us.",
+        "{jeu1.5}Rose is upstage left. Maggie is at the kitchen window. Kate is downstage right. Chris is at the front door.",
+        "{jeu1.6}On page one, it was Rose who sat on the seat with Gerry, and Agnes who stood upstage left. "
+        "The two sisters who will leave have swapped places.",
+        "{jeu1.7}And as Michael begins to speak, the stage is lit in a very soft, golden light. "
+        "During the whole speech, Kate cries quietly.",
+        ("P", 1.5),
+    ], vis={
+        "jeu1": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos=FIN_12, act={"Rose": "assis"}, cam="tout", objets={"kites_faces": [915, 362], "coq": [800, 455]},
+                 note="MAGGIE. “… God I've forgotten!” (p. 74)", **COSTUMES),
+            dict(pos={"Maggie": "fenetre", "Michael": MICHAEL}, duree=3.0,
+                 note="(MAGGIE moves into the kitchen. MICHAEL enters.)"),
+            dict(pos=TABLEAU, act={"Rose": "debout", "Gerry": "assis", "Agnes": "assis"}, duree=4.0,
+                 note="“positions similar to their positions at the beginning of the play — with some changes”"),
+            dict(note="AGNES and GERRY are on the garden seat. JACK stands stiffly to attention at AGNES's elbow."),
+            dict(cam="jardin", note="“One kite, facing boldly out front, stands between GERRY and AGNES; the other between AGNES and JACK.”"),
+            dict(cam="tout", note="ROSE is UL. MAGGIE is at the kitchen window. KATE is DR. CHRIS is at the front door."),
+            dict(note="Page 1: ROSE and GERRY on the seat, AGNES upstage left · Page 74: the other way round"),
+            dict(lumiere="or", act={"Kate": "pleure"},
+                 note="“the stage is lit in a very soft, golden light” · “During MICHAEL's speech KATE cries quietly.”"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ II. ce qu'ils sont devenus (raconté)
+    dict(id="devenir", chap="The heart of the house", fond="nuit", humeur="calme", beats=[
+        "{jeu2}Michael speaks. First, the facts, in flat, short sentences. Nothing is acted: the tableau stays still.",
+        ("C", "As I said, Father Jack was dead within twelve months.", "jeu2.1"),
+        "{jeu2.2}With Jack, Agnes and Rose all gone, the heart seemed to go out of the house. "
+        "{jeu2.3}Maggie took on Rose and Agnes's tasks, and pretended to believe that nothing had changed.",
+        ("C", "My mother spent the rest of her life in the knitting factory – and hated every day of it.", "jeu2.4"),
+        "{jeu2.5}And Kate, after a few years doing nothing, became the tutor of Austin Morgan's young family. "
+        "Yes: the man Rose teased her about, back in part three.",
+        "{jeu2.6}Feel the irony. The factory ruined Agnes and Rose; Chris works there for life. "
+        "And Kate teaches the children of the man she seemed to love in silence. And Michael himself?",
+        ("C", "when my time came to go away, in the selfish way of young men I was happy to escape.", "jeu2.7"),
+        "{jeu2.8}Escape. He leaves, like Agnes and Rose, like Gerry, like Jack long ago. "
+        "Emigration runs through the whole family. And selfish carries his guilt.",
+        ("P", 1.0),
+    ], vis={
+        "jeu2": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos=TABLEAU, act={"Rose": "debout", "Gerry": "assis", "Agnes": "assis", "Kate": "pleure"}, lumiere="or",
+                 cam="tout", objets={"kites_faces": [915, 362], "coq": [800, 455]},
+                 note="Michael tells what became of them (told, not shown)", **COSTUMES),
+            dict(dit=["Michael", "As I said, Father Jack was dead within twelve months."]),
+            dict(note="With Jack, Agnes and Rose gone, “the heart seemed to go out of the house” (p. 74)"),
+            dict(note="Maggie “pretended to believe that nothing had changed”"),
+            dict(dit=["Michael", "My mother spent the rest of her life in the knitting factory – and hated every day of it."]),
+            dict(note="Kate: “the job of tutoring the young family of Austin Morgan of the Arcade”"),
+            dict(note="“But much of the spirit and fun had gone out of their lives”"),
+            dict(dit=["Michael", "when my time came to go away, in the selfish way of young men I was happy to escape."]),
+            dict(note="Michael leaves too: like Agnes and Rose, like Gerry, like Jack long ago."),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ III. la musique du souvenir, la danse sans les mots
+    dict(id="musique", chap="A dream music", fond="nuit", humeur="calme", beats=[
+        "{jeu3}Now, very softly, just audible, music fades in. The class text names it: It is Time to Say Goodnight. "
+        "And it is not from the radio speaker. Marconi is silent: this music comes from memory.",
+        "{jeu3.1}As Michael continues, everybody sways very slightly from side to side… even the grinning kites. "
+        "The movement is so minimal, says Friel, that we cannot be quite certain if it is happening, or if we imagine it.",
+        ("C", "And so, when I cast my mind back to that summer of 1936, different kinds of memories offer themselves to me.",
+         "jeu3.2"),
+        "{jeu3.3}The first sentence of the play, almost word for word. But one memory visits him most often, "
+        "and it owes nothing to fact.",
+        ("C", "In that memory atmosphere is more real than incident and everything is simultaneously actual and illusory.",
+         "jeu3.4"),
+        "{jeu3.5}The air is nostalgic with the music of the thirties: a mirage of sound, a dream music, both heard and imagined. "
+        "{jeu3.6}And everybody seems to be floating on it, moving rhythmically, languorously, in complete isolation.",
+        ("C", "When I remember it, I think of it as dancing.", "jeu3.7"),
+        ("C", "Dancing with eyes half closed because to open them would break the spell.", "jeu3.8"),
+        ("C", "Dancing as if language had surrendered to movement", "jeu3.9"),
+        "{jeu3.10}As if this ritual, this wordless ceremony, was now the way to speak, to whisper private and sacred things.",
+        ("C", "Dancing as if language no longer existed because words were no longer necessary …", "jeu3.11"),
+        ("P", 1.5),
+        "{jeu3.12}Slowly bring up the music. Slowly bring down the lights.",
+        ("P", 3.0),
+        "{jeu3.13}The end.",
+        ("P", 2.5),
+    ], vis={
+        "jeu3": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos=TABLEAU, act={"Rose": "debout", "Gerry": "assis", "Agnes": "assis", "Kate": "pleure"}, lumiere="or",
+                 radio=False, cam="tout", objets={"kites_faces": [915, 362], "coq": [800, 455]},
+                 note="(Now fade in very softly, just audible, the music – “It is Time to Say Goodnight” [not from the radio speaker].)",
+                 **COSTUMES),
+            dict(act={n: "balance" for n in TOUS},
+                 note="“everybody sways very slightly from side to side – even the grinning kites”"),
+            dict(dit=["Michael", "And so, when I cast my mind back to that summer of 1936, …"], note="(p. 74, and p. 1)"),
+            dict(note="one memory “that visits me most often” · it “owes nothing to fact”"),
+            dict(dit=["Michael", "In that memory atmosphere is more real than incident …"]),
+            dict(note="“a mirage of sound – a dream music that is both heard and imagined”"),
+            dict(note="“floating on those sweet sounds, moving rhythmically, languorously, in complete isolation” (p. 75)"),
+            dict(dit=["Michael", "When I remember it, I think of it as dancing."]),
+            dict(dit=["Michael", "Dancing with eyes half closed because to open them would break the spell."]),
+            dict(dit=["Michael", "Dancing as if language had surrendered to movement"]),
+            dict(note="“this ritual, this wordless ceremony” · “to whisper private and sacred things”"),
+            dict(dit=["Michael", "Dancing as if language no longer existed because words were no longer necessary …"]),
+            dict(lumiere="sombre", eclaire=[], note="(Slowly bring up the music. Slowly bring down the lights.)"),
+            dict(note="THE END"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ IV. cinq citations à connaître
+    dict(id="repliques", chap="Key lines to know", fond="aube", humeur="calme",
+         retenir="The golden haze, the first sentence again, atmosphere over incident, language surrendered, words no longer necessary.", beats=[
+        "{cinq}The ending is short, but every line counts. Five of them are worth knowing by heart.",
+        "{-cinq}First, the light.",
         ("C", "the stage is lit in a very soft, golden light so that the tableau we see is almost, but not quite, in a haze.",
          "c_haze"),
         "{-c_haze}{haze}Golden is the colour of nostalgia. "
         "{haze.1}A haze is a mist: we see the family almost, but not quite, clearly. Just like a memory.",
-    ], vis={
-        "plateau": dict(type="illu", nom="plateau", x=140, y=90, w=1000, h=490),
-        "pos": dict(type="cols", g="Page 1", gq="Rose and Gerry on the seat · Agnes upstage", d="Page 74",
-                    dq="Agnes and Gerry on the seat · Rose upstage", vs="→", repere="the same picture, changed"),
-        "det": dict(type="liste", titre="The final picture · page 74", items=[
-            "Jack: “stiffly to attention at AGNES's elbow”",
-            "The kites, “facing boldly out front”",
-            "Kate, downstage right: she “cries quietly”"], marques=["J", "K", "K"], x=150, y=180, w=980),
-        "c_haze": dict(type="cit", a="Stage direction", o="p. 74", x=170, y=200, w=940),
-        "haze": dict(type="note", cles=["golden", "haze"], terme="Light as memory",
-                     t="Golden: nostalgia. A haze: “almost, but not quite” clear.",
-                     etape="The stage itself looks like a memory.", x=170, y=200, w=940),
-    }),
-
-    # ------------------------------------------------------------------ II. ce qu'ils sont devenus
-    dict(id="devenir", chap="The heart of the house", fond="aube", humeur="calme",
-         retenir="Jack dies, Agnes and Rose are gone, Chris works in the factory, Michael escapes: the family scatters.", beats=[
-        "{tab_gle}{mi}First, the facts, in flat, short sentences. "
-        "{mi.1}As I said, Father Jack was dead within twelve months. "
-        "{mi.2}With Jack, Agnes and Rose all gone, the heart seemed to go out of the house.",
-        "{-mi}{-tab_gle}{fates}Then, one by one, the sisters who stayed. "
-        "{fates.1}Maggie took on Rose and Agnes's tasks, and pretended to believe that nothing had changed. "
-        "{fates.2}Chris spent the rest of her life in the knitting factory, and hated every day of it. "
-        "{fates.3}And Kate, after a few years doing nothing, became the tutor of Austin Morgan's young family. "
-        "Yes: the man Rose teased her about, back in part three.",
-        "{-fates}{ironie}Feel the irony. {ironie.1}The factory ruined Agnes and Rose. "
-        "{ironie.2}Now Chris works there for life. "
-        "{ironie.3}And Kate teaches the children of the man she seemed to love in silence.",
-        "And Michael himself?",
-        "{-ironie}",
-        ("C", "when my time came to go away, in the selfish way of young men I was happy to escape.", "c_escape"),
-        "{-c_escape}{fuite}Escape. He leaves, like Agnes and Rose, like Gerry, like Jack long ago. "
-        "{fuite.1}Emigration runs through the whole family. "
-        "And selfish carries his guilt.",
-    ], vis={
-        "tab_gle": dict(type="tableau", img="dal-glenties", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .45, .5],
-                        legende="Glenties, County Donegal (photo Thpohl, public domain)"),
-        "mi": dict(type="liste", titre="As I said … · page 74", items=[
-            "“Father Jack was dead within twelve months”",
-            "“the heart seemed to go out of the house”"], marques=["1", "2"], x=150, y=210, w=980),
-        "fates": dict(type="liste", titre="The sisters who stayed", items=[
-            "Maggie: “pretended to believe that nothing had changed”",
-            "Chris: the knitting factory, “and hated every day of it”",
-            "Kate: tutor to the family of Austin Morgan"], marques=["M", "C", "K"], x=150, y=180, w=980),
-        "ironie": dict(type="liste", titre="Irony", cles=["irony"], items=[
-            "The factory ruined Agnes and Rose",
-            "Chris works in it for the rest of her life",
-            "Kate teaches the children of the man she seemed to love"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "c_escape": dict(type="cit", a="Michael", o="p. 74", x=170, y=200, w=940),
-        "fuite": dict(type="note", cles=["Emigration", "selfish"], terme="Leaving Ballybeg",
-                      t="Michael “happy to escape”, like Agnes, Rose, Gerry, Jack.",
-                      etape="Emigration, and the narrator's guilt.", x=170, y=200, w=940),
-    }),
-
-    # ------------------------------------------------------------------ III. la musique du souvenir
-    dict(id="musique", chap="A dream music", fond="nuit", humeur="mystere",
-         retenir="The music comes from memory, not the radio; the play repeats its first sentence; atmosphere beats incident.", beats=[
-        "{son}Now, very softly, music fades in. The class text names it: It is Time to Say Goodnight. "
-        "{son.1}And it is not from the radio speaker. Marconi is silent: this music comes from memory.",
-        "{-son}{sway}Everybody begins to sway, very slightly, from side to side… even the grinning kites. "
-        "{sway.1}The movement is so small, says Friel, that we cannot be sure if it is happening, or if we imagine it.",
-        "Then Michael says a sentence we already know.",
-        "{-sway}",
+        "{-haze}Then, the first sentence, again.",
         ("C", "And so, when I cast my mind back to that summer of 1936, different kinds of memories offer themselves to me.",
          "c_cast"),
-        "{-c_cast}{cercle}It is the very first sentence of the play, almost word for word. "
-        "{cercle.1}Page one, and now page seventy-four. The play comes full circle.",
-        "{-cercle}{une}But one memory, he says, visits him most often. And it owes nothing to fact.",
-        "{-une}",
+        "{-c_cast}{cercle}Page one, and now page seventy-four. The play comes full circle.",
+        "{-cercle}Then, memory against fact.",
         ("C", "In that memory atmosphere is more real than incident and everything is simultaneously actual and illusory.",
          "c_atmo"),
         "{-c_atmo}{atmo}Atmosphere: the feeling of a moment. Incident: what actually happens. "
@@ -131,15 +195,25 @@ SCENES = [
         "{-atmo}{para}Look at the pairs. {para.1}Actual and illusory. {para.2}A music heard and imagined. "
         "{para.3}Itself and its own echo. {para.4}An afternoon bewitched, maybe haunted. "
         "Each pair holds two things at once, like Kate's dance in part five: simultaneously controlled and frantic.",
+        "{-para}Then, the dance.",
+        ("C", "Dancing as if language had surrendered to movement – as if this ritual, this wordless ceremony, was now the way to speak",
+         "c_surr"),
+        "{-c_surr}{rite}{rite.1}Language surrenders, like an army laying down its arms. "
+        "{rite.2}The dance becomes a ritual, a wordless ceremony. "
+        "{rite.3}A way to whisper private and sacred things, to be in touch with some otherness. "
+        "Dancing as if, dancing as if: this repetition is called anaphora. The sentences rise like music, to the last words.",
+        "{-rite}",
+        ("C", "Dancing as if language no longer existed because words were no longer necessary …", "c_words"),
+        "{-c_words}{fin}The sentence does not end: three dots. The music takes over from words.",
     ], vis={
-        "son": dict(type="note", cles=["memory", "radio"], terme="Stage direction · p. 74",
-                    t="“It is Time to Say Goodnight”, “not from the radio speaker”.",
-                    etape="Marconi is silent: the music comes from memory.", x=170, y=200, w=940),
-        "sway": dict(type="mot", t="everybody sways", g="“even the grinning kites” · happening, or imagined?", y=250, taille=88),
+        "cinq": dict(type="mot", t="Five lines to know", g="the ending · pages 74 – 75", y=250, taille=80),
+        "c_haze": dict(type="cit", a="Stage direction", o="p. 74", x=170, y=200, w=940),
+        "haze": dict(type="note", cles=["golden", "haze"], terme="Light as memory",
+                     t="Golden: nostalgia. A haze: “almost, but not quite” clear.",
+                     etape="The stage itself looks like a memory.", x=170, y=200, w=940),
         "c_cast": dict(type="cit", a="Michael", o="p. 74 (and p. 1)", x=170, y=190, w=940),
         "cercle": dict(type="cols", g="Page 1", gq="“When I cast my mind back to that summer of 1936 …”", d="Page 74",
                        dq="“And so, when I cast my mind back …”", vs="=", repere="full circle"),
-        "une": dict(type="mot", t="one memory", g="“that visits me most often” · it “owes nothing to fact”", y=250, taille=88),
         "c_atmo": dict(type="cit", a="Michael", o="p. 74", x=170, y=200, w=940),
         "atmo": dict(type="cols", g="Atmosphere", gq="the feeling of a moment", d="Incident",
                      dq="what actually happens", vs=">", repere="memory over fact"),
@@ -148,38 +222,11 @@ SCENES = [
             "“both heard and imagined”",
             "“both itself and its own echo”",
             "“bewitched, maybe haunted”"], marques=["1", "2", "3", "4"], x=170, y=160, w=940),
-    }),
-
-    # ------------------------------------------------------------------ IV. danser sans les mots
-    dict(id="danse", chap="Words no longer necessary", fond="aube", humeur="lumiere",
-         retenir="The last words: dance as a “wordless ceremony” where “words were no longer necessary”.", beats=[
-        "{flot}In that memory, everybody seems to be floating on the music, {flot.1}moving languorously, in complete isolation. "
-        "{flot.2}Together, and yet each one alone. "
-        "{flot.3}Dancing with eyes half closed, because to open them would break the spell.",
-        "Then the sentences start with the same words, again and again.",
-        "{-flot}",
-        ("C", "Dancing as if language had surrendered to movement – as if this ritual, this wordless ceremony, was now the way to speak",
-         "c_surr"),
-        "{-c_surr}{rite}{rite.1}Language surrenders, like an army laying down its arms. "
-        "{rite.2}The dance becomes a ritual, a wordless ceremony. "
-        "{rite.3}A way to whisper private and sacred things, to be in touch with some otherness.",
-        "{-rite}{anaph}Dancing as if, dancing as if: this repetition is called anaphora. "
-        "The sentences rise like music, to the last words.",
-        "{-anaph}",
-        ("C", "Dancing as if language no longer existed because words were no longer necessary …", "c_words"),
-        "{-c_words}{fin}The sentence does not end: three dots. "
-        "{fin.1}Slowly bring up the music. Slowly bring down the lights. The end.",
-    ], vis={
-        "flot": dict(type="liste", titre="Floating · page 75", items=[
-            "“moving rhythmically, languorously”",
-            "“in complete isolation”",
-            "“with eyes half closed”: not to “break the spell”"], marques=["1", "2", "3"], x=150, y=180, w=980),
         "c_surr": dict(type="cit", a="Michael", o="p. 75", x=170, y=180, w=940),
-        "rite": dict(type="liste", titre="A wordless ceremony", cles=["ritual", "sacred"], items=[
+        "rite": dict(type="liste", titre="A wordless ceremony · anaphora: “Dancing as if …”", cles=["ritual", "sacred"], items=[
             "language “surrendered to movement”",
             "“this ritual, this wordless ceremony”",
             "“private and sacred things” · “some otherness”"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "anaph": dict(type="mot", t="Dancing as if …", g="anaphora: four sentences, one beginning", y=250, taille=88),
         "c_words": dict(type="cit", a="Michael · the last words of the play", o="p. 75", x=170, y=200, w=940),
         "fin": dict(type="note", cles=["music", "lights"], terme="The last stage direction · p. 75",
                     t="“Slowly bring up the music. Slowly bring down the lights.”",
@@ -270,11 +317,11 @@ SCENES = [
 QUIZ = [
     dict(q="How do the final positions differ from the opening tableau?",
          r=["Agnes and Rose have swapped places", "Michael has disappeared", "Kate and Maggie have left the stage",
-            "Everyone is now sitting in the kitchen"], ok=0, voir="pos",
+            "Everyone is now sitting in the kitchen"], ok=0, voir="jeu1.6",
          ex="On page 1 Rose sits on the garden seat with Gerry and Agnes is upstage; on page 74 it is the reverse: the two sisters who leave have swapped."),
     dict(q="Where does the final music come from?",
          r=["Not from the radio: it comes from memory", "From Marconi, finally repaired", "From Gerry's gramophone",
-            "From the harvest dance in the village"], ok=0, voir="son",
+            "From the harvest dance in the village"], ok=0, voir="jeu3",
          ex="The stage direction says “not from the radio speaker”: the music now belongs to Michael's memory."),
     dict(q="Which sentence does Michael repeat from the very start of the play?",
          r=["“When I cast my mind back to that summer of 1936 …”", "“As it turned out – to die”",
@@ -286,7 +333,7 @@ QUIZ = [
          ex="Incident is what happens; atmosphere is the feeling. The facts take three flat sentences, the feeling gets Michael's best prose."),
     dict(q="What does Michael do when his “time came to go away”?",
          r=["He was “happy to escape”, “in the selfish way of young men”", "He stayed to look after Kate",
-            "He joined Gerry in Spain", "He became a priest like Jack"], ok=0, voir="c_escape",
+            "He joined Gerry in Spain", "He became a priest like Jack"], ok=0, voir="jeu2.7",
          ex="Michael emigrates too, like Agnes and Rose; the word “selfish” shows the narrator's guilt."),
     dict(q="What are the very last words Michael speaks?",
          r=["“words were no longer necessary …”", "“It is time to say goodnight”", "“I was happy to escape”",
@@ -296,6 +343,6 @@ QUIZ = [
 
 CREDITS = [
     "Brian Friel, Dancing at Lughnasa (1990): short quotations for analysis, page numbers from the class PDF",
-    "Photographs: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0); Glenties (Thpohl, public domain)",
+    "Photographs: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0)",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music",
 ]
