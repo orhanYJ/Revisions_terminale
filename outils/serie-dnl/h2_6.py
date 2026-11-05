@@ -122,9 +122,9 @@ SCENES = [
         "{trois.4}So, aggression abroad was the logical extension of the regimes built at home. "
         "Think of episodes four and five: a New Man trained for combat, a nation in arms, an enemy everywhere. "
         "Once a regime is built for struggle at home, it looks for struggle abroad.",
-        "{-trois}{g3}And this is why Monsieur Ros opens the part with Vienna. {g3.1}On the twelfth of March 1938, "
+        "{-trois}{photo1}And this is why Monsieur Ros opens the part with Vienna. On the twelfth of March 1938, "
         "Hitler fulfils abroad the programme he had announced in Mein Kampf, back in 1925: to bring all Germans into one Reich, "
-        "and to expand.",
+        "and to expand.{-photo1}",
     ], vis={
         "q4": dict(type="question", t="Why was war so fundamental to these regimes?"),
         "def1": dict(type="def", cles=["accident", "core values"], terme="War: a core value",
@@ -133,16 +133,17 @@ SCENES = [
         "trois": dict(type="liste", titre="Three ideologies, three reasons for war", cles=["supreme test", "living space", "mission"], items=[
             "Fascism: war, the supreme test of a people", "Nazism: living space, a condition of the race's survival",
             "Japanese militarism: expansion as a mission", "Aggression abroad = the regime at home, extended"], x=170, y=140, w=940),
-        "g3": dict(type="globe", code="H2", sc=[33]),
+        "photo1": dict(type="tableau", img="h2-anschluss", de=[1.0, .5, .5], a=[1.12, .5, .4],
+                       legende="Hitler addresses the crowd on the Heldenplatz, Vienna, 15 March 1938 · Bundesarchiv, Bild 183-1987-0922-500, CC BY-SA 3.0 DE"),
     }),
 
     # ================================================================ IV. l'Éthiopie (idée 2)
     dict(id="abyssinie", chap="Case study 1 · Abyssinia", fond="nuit", humeur="tension",
          retenir="Mussolini used Rome's past to justify an empire: Libya (from 1911–12), then Ethiopia, one of only two independent African states. Scipione l'africano (1937). Invasion Oct. 1935; Addis Ababa, May 1936.",
          beats=[
-        "{def2}Case study number one: Abyssinia. Fascist ideology made war a core value, and this led Italy into an aggressive foreign policy. "
+        "{photo2}{def2}Case study number one: Abyssinia. Fascist ideology made war a core value, and this led Italy into an aggressive foreign policy. "
         "{def2.1}And to justify it, Mussolini drew on a glorious past: the Roman Empire.",
-        "{-def2}{g4}{g4.1}{eth}{eth.1}First, Libya. Italy had begun to colonise it with the Italo-Turkish war of 1911 to 1912, "
+        "{-def2}{-photo2}{g4}{g4.1}{eth}{eth.1}First, Libya. Italy had begun to colonise it with the Italo-Turkish war of 1911 to 1912, "
         "and Mussolini completed that colonisation, brutally. "
         "{eth.2}Then he attacked Abyssinia, that is Ethiopia: one of only two independent states left in Africa. "
         "{eth.3}The invasion begins in October 1935. {eth.4}And in May 1936, Italian troops enter Addis Ababa. "
@@ -153,6 +154,8 @@ SCENES = [
         "{-film}{motif}Keep the pattern in mind, because it comes back all through the nineteen thirties. "
         "{motif.g}First, an ideological justification. {motif.d}Then, an invasion.",
     ], vis={
+        "photo2": dict(type="tableau", img="h2-mussolini", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.12, .5, .25],
+                       legende="Benito Mussolini, Duce of Fascist Italy, c. 1937-1940 · Keystone, public domain"),
         "def2": dict(type="def", cles=["core value", "Roman Empire"], terme="Fascism and the past of Rome",
                      t="War as a core value → an aggressive foreign policy.",
                      etape="Mussolini uses the Roman Empire to justify his ambitions", x=170, y=200, w=940),
@@ -541,5 +544,6 @@ QUIZ = [
 CREDITS = [
     "Content: M. Ros's course (DNL History, H2 · Part III.1 “Hegemonic ambitions of totalitarian regimes”, the course map “Authoritarian expansion in the 1930s”, DBQ 1 on “The Doctrine of Fascism” and its model answer, the synthesis grid, the key issue) as written on the site; the grid's “International issues” rows are suggested by this video; animated map of chapter 2 (site).",
     "Outside the course: the League's sanctions against Italy were voted in October 1935 and applied from 18 November 1935; the oil embargo was debated until the spring of 1936 and never adopted.",
+    "Photographs (via Wikimedia Commons): Hitler on the Heldenplatz, Vienna, 15 March 1938 (Bundesarchiv, Bild 183-1987-0922-500, CC BY-SA 3.0 DE); Benito Mussolini, c. 1937-1940 (Keystone, public domain).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

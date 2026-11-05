@@ -111,7 +111,7 @@ SCENES = [
     dict(id="guide", chap="II.1 · The leader, the Guide", fond="nuit", humeur="lumiere",
          retenir="The leader = an ideal man, the Guide, the incarnation of the nation: “il Duce”, “der Führer”, “the little father of the peoples”. Leningrad (1924), Stalingrad (1925). Lanzinger, The Standard Bearer (1934–36).",
          beats=[
-        "{def1}Now the course, idea by idea. Part two point one: the cult of personality and the cult of the party. "
+        "{photo1}{def1}Now the course, idea by idea. Part two point one: the cult of personality and the cult of the party. "
         "Idea one. Totalitarian propaganda does not simply praise a politician: it manufactures {!a superior being}a superior being, "
         "the Guide. His qualities are those the people should acquire. "
         "{def1.1}He is soldier, worker, father and visionary at once. He is not the head of a government that could be replaced: "
@@ -119,9 +119,11 @@ SCENES = [
         "{-def1}{noms}So the leader receives a title. {noms.1}Mussolini is il Duce, the leader. {noms.2}Hitler is der Führer, the guide. "
         "{noms.3}And Stalin is the little father of the peoples. {noms.4}Hubert Lanzinger even painted Hitler as a medieval knight "
         "in armour, carrying the flag: The Standard Bearer, painted between 1934 and 1936.",
-        "{-noms}{g3}{g3.1}And the name goes onto the map. Petrograd had become Leningrad in 1924, after Lenin's death. "
+        "{-noms}{-photo1}{g3}{g3.1}And the name goes onto the map. Petrograd had become Leningrad in 1924, after Lenin's death. "
         "In 1925, a city on the Volga was renamed Stalingrad. A city is no longer a place: it is a monument to a living man.",
     ], vis={
+        "photo1": dict(type="tableau", img="h2-stalin", fond=True, sombre=True, de=[1.0, .5, .35], a=[1.15, .5, .3],
+                       legende="Joseph Stalin on a tribune, Moscow, 1937 · Unknown photographer, public domain"),
         "def1": dict(type="def", cles=["superior", "Guide", "nation"], terme="Key term · cult of personality",
                      t="The systematic glorification of the leader: a superior being, the Guide, presented as the incarnation of the nation.",
                      etape="Soldier, worker, father and visionary at once: not a head of government who could be replaced", x=170, y=190, w=940),
@@ -142,15 +144,17 @@ SCENES = [
         "{rit.2}In Italy, the motto says it all: il Duce ha sempre ragione, Mussolini is always right. "
         "{rit.3}Another fascist motto noted in class: Credere, obbedire, combattere. Believe, obey, fight. "
         "{rit.4}And the Nuremberg rally of 1934 is filmed by Leni Riefenstahl, in Triumph of the Will.",
-        "{-rit}{-g4}{disc}The class notes add one detail: Hitler's speeches lasted three to four hours, and held the crowd spellbound. "
+        "{-rit}{-g4}{photo2}{disc}The class notes add one detail: Hitler's speeches lasted three to four hours, and held the crowd spellbound. "
         "{disc.1}The ritual is repeated until it becomes ordinary: a greeting, a gesture, a sentence learned by heart.",
-        "{-disc}{mot1}Obedience is produced {!by emotion}by emotion, rather than by argument.",
+        "{-disc}{mot1}Obedience is produced {!by emotion}by emotion, rather than by argument.{-photo2}",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[24]),
         "rit": dict(type="liste", titre="Rituals of obedience", petit=True, bande=True, x=60, y=120, w=600,
                     marques=["DE", "IT", "IT", "DE"], items=[
             "“Heil Hitler” and the Nazi salute: the official greeting", "“Il Duce ha sempre ragione”: Mussolini is always right",
             "“Credere, obbedire, combattere”: believe, obey, fight", "Nuremberg rally, 1934: Riefenstahl, Triumph of the Will"]),
+        "photo2": dict(type="tableau", img="h2-nuremberg-1936", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="The 'cathedral of light' over the Zeppelin Field, Nuremberg rally, September 1936 · Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE"),
         "disc": dict(type="note", terme="From the class notes", cles=["three", "spellbound"],
                      t="Hitler's speeches lasted three to four hours and held the crowd spellbound.",
                      etape="Repeated until it becomes ordinary: a greeting, a gesture, a sentence learned by heart", x=170, y=200, w=940),
@@ -189,8 +193,8 @@ SCENES = [
     dict(id="censure", chap="II.1 · Censorship rewrites the past", fond="nuit", humeur="mystere",
          retenir="The press controlled, criticism punished, the archive corrected. Yezhov, head of the NKVD, beside Stalin at the Moscow–Volga canal; executed in 1940, erased from the photograph.",
          beats=[
-        "{def3}Idea four. The cult only holds if nothing contradicts it. The press is controlled, and criticism is punished. "
-        "{def3.1}And in the Soviet case, even the archive is corrected. The regime does not only forbid opposing opinions: "
+        "{photo3}{def3}Idea four. The cult only holds if nothing contradicts it. The press is controlled, and criticism is punished. "
+        "{-photo3}{def3.1}And in the Soviet case, even the archive is corrected. The regime does not only forbid opposing opinions: "
         "it tries to make them {!unthinkable}unthinkable, by erasing the evidence that they ever existed.",
         "{-def3}{photo}The example is famous. A photograph shows Stalin at the Moscow–Volga canal, with Nikolai Yezhov, "
         "head of the NKVD, the political police, standing beside him. {photo.d}Yezhov is executed in 1940. "
@@ -198,6 +202,8 @@ SCENES = [
         "{-photo}{err}Watch out: the class notes say that Beria and Molotov were executed. "
         "{err.1}In fact, Molotov never was, and Beria only in 1953. The head of the NKVD executed in 1940 was Yezhov, as Worksheet four says.",
     ], vis={
+        "photo3": dict(type="tableau", img="h2-book-burning", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="Nazi students burn books on the Opernplatz, Berlin, 10-11 May 1933 (outside the course) · Bundesarchiv, Bild 102-14597 / Georg Pahl, CC BY-SA 3.0 DE"),
         "def3": dict(type="def", cles=["press", "archive", "unthinkable"], terme="Key term · censorship",
                      t="The suppression of anything that contradicts the regime: the press controlled, criticism punished, the archive corrected.",
                      etape="Not only forbidden: opposing opinions made unthinkable", x=170, y=190, w=940),
@@ -400,9 +406,9 @@ SCENES = [
         "{-abs}{g8}{g8.1}The example: the Soviet New Man had his hero. In 1935, in the Donbas, the miner Alexei Stakhanov was presented "
         "as having cut fourteen times his quota of coal in one shift.",
         "{-g8}{gs}Look at the scale. {gs.1}{gs.2}The quota of one shift. {gs.3}{gs.4}And the record announced by the regime: fourteen times more.",
-        "{-gs}{stak}His name became a word: {!Stakhanovism}Stakhanovism, the cult of the record-breaking worker, "
+        "{-gs}{photo4}{stak}His name became a word: {!Stakhanovism}Stakhanovism, the cult of the record-breaking worker, "
         "{stak.1}and competitions were imposed in every factory. "
-        "From outside the course: the record was prepared in advance, with other miners assisting him.",
+        "From outside the course: the record was prepared in advance, with other miners assisting him.{-photo4}",
     ], vis={
         "abs": dict(type="liste", titre="Nothing outside the regime", cles=["unions", "Leisure", "directed", "absorbed"], items=[
             "Independent trade unions dissolved", "Leisure organisations created by the state",
@@ -415,6 +421,8 @@ SCENES = [
                        dict(type="droite", pts=[[1.0, 0.68], [1.0, 0.75]], c="el", ep=34, dur=0.6, lbl="× 1", lp=[1.0, 2.0]),
                        dict(type="texte", x=2.0, y=-1.1, t="Stakhanov's shift", c="iv"),
                        dict(type="droite", pts=[[2.0, 0.68], [2.0, 13.3]], c="ca", ep=34, dur=1.4, lbl="× 14", lp=[2.0, 15.0])]),
+        "photo4": dict(type="tableau", img="h2-stakhanov", fond=True, sombre=True, de=[1.0, .5, .45], a=[1.15, .5, .4],
+                       legende="Alexei Stakhanov (centre) explains his method to a fellow miner, USSR, 1930s · Eleazar Langman, public domain"),
         "stak": dict(type="def", cles=["record", "factory"], terme="Key term · Stakhanovism",
                      t="The Soviet cult of the record-breaking worker, named after the miner Stakhanov (1935).",
                      etape="Competitions imposed in every factory · the record prepared in advance (outside the course)", x=170, y=200, w=940),
@@ -606,5 +614,6 @@ QUIZ = [
 
 CREDITS = [
     "Content: M. Ros's course (DNL History, H2 · Parts II.1 and II.2, Worksheet 3, schemas “Three leaders, three cults” and “Manufacturing a New Man”) as written on the site; corrections of the class notes from the site's checks; outside the course and said so: the date of the 1938 decree on Russian, the preparation of Stakhanov's record, the Hitler Youth made truly compulsory in 1939; the essay and DBQ questions and model answers written for this video; animated map of chapter 2 (site).",
+    "Photographs (via Wikimedia Commons): Joseph Stalin, Moscow, 1937 (unknown photographer, public domain); the Nuremberg rally of September 1936 (Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE); the book burning on the Opernplatz, Berlin, May 1933 (Georg Pahl, Bundesarchiv, Bild 102-14597, CC BY-SA 3.0 DE; the event is outside the course); Alexei Stakhanov explaining his method (Eleazar Langman, public domain).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

@@ -114,15 +114,17 @@ SCENES = [
     dict(id="brutal", chap="I.1 · Brutalisation", fond="guerre", humeur="tension",
          retenir="Brutalisation (George Mosse): the war made violence ordinary; WW1 is the “matrix of totalitarianism”. Example: Hitler, a soldier in 1915.",
          beats=[
-        "{def1}Now the course, idea by idea. Part one, point one: the legacy of the First World War. "
+        "{photo1}{def1}Now the course, idea by idea. Part one, point one: the legacy of the First World War. "
         "Idea one. The historian George Mosse coined a word for it: {!brutalisation}brutalisation. "
         "{def1.1}Four years of mass killing accustomed soldiers to violence. After 1918, they brought it back into civilian life, "
         "and into politics. The traumas of the war raised the level of violence in post-war societies.",
         "{-def1}{mat}For Mosse, the war is the matrix of totalitarianism. {mat.1}The uniforms, {mat.2}the ranks, "
         "{mat.3}the parades, {mat.4}the contempt for human life: all come from the front.",
-        "{-mat}{ex1}The example on Monsieur Ros's slide: a photograph of Adolf Hitler as a soldier, in 1915, sitting among his comrades. "
+        "{-mat}{-photo1}{ex1}The example on Monsieur Ros's slide: a photograph of Adolf Hitler as a soldier, in 1915, sitting among his comrades. "
         "{ex1.1}Mosse develops the idea in his book Fallen Soldiers.",
     ], vis={
+        "photo1": dict(type="tableau", img="h2-ypres", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="A New Zealand soldier among the ruins of Ypres cathedral, Belgium, 1917 · Archives New Zealand, CC BY-SA 2.0"),
         "def1": dict(type="def", cles=["violence", "politics"], terme="Brutalisation · George Mosse",
                      t="Four years of mass killing made violence ordinary; the soldiers brought it back into civilian life and politics.",
                      etape="The traumas of the war raised the level of violence after 1918", x=170, y=200, w=940),
@@ -143,15 +145,17 @@ SCENES = [
         "supported by the {!soviets}soviets: the workers' councils in the factories and the countryside.",
         "{rus.3}The Bolsheviks sign peace with Germany. {rus.4}Then they win a civil war against the Whites, with the Red Army, until 1922. "
         "{rus.5}And in 1922, the Soviet Union is created.",
-        "{-rus}{-g3}{rs}Why does this matter for Italy and Germany? Because Bolshevism is Marxism: the end of private property. "
+        "{-rus}{-g3}{photo2}{rs}Why does this matter for Italy and Germany? Because Bolshevism is Marxism: the end of private property. "
         "{rs.1}It frightens the whole of Europe: the {!Red Scare}Red Scare.",
         "{-rs}{mots1}Careful with the words. {mots1.g}The Red Scare is the fear of communism in the West. "
-        "{mots1.d}Inside Russia, Bolshevik violence against their enemies, from 1918, is the Red Terror.",
+        "{mots1.d}Inside Russia, Bolshevik violence against their enemies, from 1918, is the Red Terror.{-photo2}",
     ], vis={
         "g3": dict(type="globe", code="H2", sc=[2]),
         "rus": dict(type="liste", titre="Russia, 1917 – 1922", x=60, y=110, w=620, petit=True, bande=True, items=[
             "Feb. 1917: the Tsar abdicates", "Oct. 1917: the Bolshevik coup (Lenin, Trotsky), with the soviets",
             "Peace with Germany", "Civil war against the Whites, won by the Red Army (to 1922)", "1922: the USSR is created"]),
+        "photo2": dict(type="tableau", img="h2-lenin-putilov", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .35, .45],
+                       legende="Lenin speaks to the workers of the Putilov factory, Petrograd, May 1917 · Painting by Isaak Brodsky, 1929, public domain"),
         "rs": dict(type="def", cles=["property", "Europe"], terme="The Red Scare",
                    t="Bolshevism means the end of private property: the fear of communism spreads all over Europe.",
                    etape="Example: Lenin speaks to workers, soldiers and sailors in Petrograd, April 1917 (M. Ros's slide)",
@@ -170,17 +174,19 @@ SCENES = [
         "{vm.2}And the frustration came on top of social turmoil, inflation and mass unemployment.",
         "{-vm}{fiu}The example: Fiume. {fiu.1}In September 1919, the poet Gabriele D'Annunzio seized the city with nationalist volunteers, "
         "{fiu.2}and held it until December 1920. {fiu.3}His rituals were later borrowed by Mussolini.",
-        "{-fiu}{-g4}{br}Idea four: the {!Biennio Rosso}Biennio Rosso, the two red years, 1919 and 1920. "
+        "{-fiu}{-g4}{photo3}{br}Idea four: the {!Biennio Rosso}Biennio Rosso, the two red years, 1919 and 1920. "
         "{br.g}Peasants seize land, workers go on strike or take over the factories. The property owners believe that an Italian 1917 is coming. "
         "{br.d}Mussolini's Blackshirts, the fascist militia, answer with violent repression. And the landowners pay them to take back the land.",
         "{-br}{tur}The example on Monsieur Ros's slide: {tur.1}the general strike of 1920 in Turin, when the workers occupied and ran the factories themselves. "
-        "{tur.2}So the fear was real, and fascism grew as the armed wing of the frightened propertied classes.",
+        "{tur.2}So the fear was real, and fascism grew as the armed wing of the frightened propertied classes.{-photo3}",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[4]),
         "vm": dict(type="liste", titre="Italy: a “mutilated victory”", x=60, y=110, w=620, petit=True, bande=True, items=[
             "Irredentism: demanding the “unredeemed” lands", "Turmoil, inflation, mass unemployment"]),
         "fiu": dict(type="liste", titre="Example: Fiume", x=60, y=110, w=620, petit=True, bande=True, items=[
             "Sept. 1919: D'Annunzio seizes the city", "Held until December 1920", "Rituals later borrowed by Mussolini"]),
+        "photo3": dict(type="tableau", img="h2-biennio-rosso", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="Workers' Red Guards occupy the factories, Italy, September 1920 · Unknown photographer, public domain"),
         "br": dict(type="cols", g="The red years · 1919 – 1920", gq="land seized, strikes, factories occupied: “an Italian 1917”?",
                    d="The Blackshirts", dq="violent repression, paid by the landowners", vs="→", repere="Biennio Rosso"),
         "tur": dict(type="note", terme="Example · Turin, 1920", cles=["strike", "factories", "real"],
@@ -198,13 +204,15 @@ SCENES = [
         "a communist revolt led by Rosa Luxemburg and Karl Liebknecht, attempts a revolution on the Russian model. "
         "{spa.2}It fails. {spa.3}On the fifteenth of January 1919, Luxemburg and Liebknecht are murdered by Freikorps soldiers, "
         "armed volunteers, many of them former soldiers.",
-        "{-spa}{-g5}{wr}The example on the slide: a barricade in Berlin during the uprising. "
-        "{wr.1}So from its very first weeks, the republic is associated with two things: defeat, and bloodshed on both sides.",
+        "{-spa}{-g5}{photo4}{wr}The example on the slide: a barricade in Berlin during the uprising. "
+        "{wr.1}So from its very first weeks, the republic is associated with two things: defeat, and bloodshed on both sides.{-photo4}",
     ], vis={
         "g5": dict(type="globe", code="H2", sc=[3]),
         "spa": dict(type="liste", titre="The Spartacist uprising", x=60, y=110, w=620, petit=True, bande=True, items=[
             "Jan. 1919: Luxemburg and Liebknecht, a revolution on the Russian model", "It fails",
             "15 Jan. 1919: both murdered by the Freikorps"]),
+        "photo4": dict(type="tableau", img="h2-spartacist", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="A barricade of newsprint rolls during the Spartacist uprising, Berlin, January 1919 · Illustrirte Zeitung, public domain"),
         "wr": dict(type="def", cles=["defeat", "bloodshed"], terme="The Weimar Republic · 1918",
                    t="A republic born from defeat, in civil violence.",
                    etape="Associated from its first weeks with defeat and bloodshed on both sides", x=170, y=200, w=940),
@@ -354,9 +362,9 @@ SCENES = [
         "{mr.3}Most of them were suspected of murder: not violent during the march, but everyone knew they could be.",
         "{mr.4}And the threat was enough. King Victor Emmanuel the Third refused to declare martial law, and on the thirtieth of October 1922, "
         "he appointed Mussolini prime minister.",
-        "{-mr}{-g8}{int}So remember the formula: {!intimidation, not a coup}intimidation, not a coup. "
+        "{-mr}{-g8}{photo5}{int}So remember the formula: {!intimidation, not a coup}intimidation, not a coup. "
         "{int.1}The threat of violence forced a legal appointment. On the slide, Mussolini stands among his squad leaders, De Bono, Balbo and De Vecchi.",
-        "{-int}{att1}Careful with two details. {att1.1}The slide dates the march from the twenty-second to the twenty-ninth of October; "
+        "{-int}{-photo5}{att1}Careful with two details. {att1.1}The slide dates the march from the twenty-second to the twenty-ninth of October; "
         "historians usually say the twenty-seventh to the thirty-first. "
         "{att1.2}And many estimates go up to thirty thousand marchers. The safest: October 1922, some twenty thousand Blackshirts.",
     ], vis={
@@ -364,6 +372,8 @@ SCENES = [
         "mr": dict(type="liste", titre="The March on Rome · October 1922", x=60, y=110, w=620, petit=True, bande=True, items=[
             "The aim: push the king to appoint him", "≈ 20,000 Blackshirts, fewer than hoped (course figure)",
             "Not violent during the march… but feared", "30 Oct.: the king refuses martial law, appoints Mussolini"]),
+        "photo5": dict(type="tableau", img="h2-march-rome", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.12, .5, .35],
+                       legende="Mussolini with the four quadrumvirs of the March on Rome, 1922, commemorative painting · Photo Silvio Galimberti, CC BY-SA 4.0"),
         "int": dict(type="def", cles=["threat", "legal"], terme="Intimidation, not a coup",
                     t="The threat of violence forced a legal appointment.",
                     etape="M. Ros's slide: Mussolini with De Bono, Balbo and De Vecchi", x=170, y=200, w=940),
@@ -411,14 +421,16 @@ SCENES = [
     dict(id="rue", chap="I.2 · Conquering the street: the SA and the SS", fond="guerre", humeur="tension",
          retenir="SA (storm troopers): a mass force, unemployed and uneducated men, some with criminal records; street fights with communists. SS: an elite, selected, better educated. Violence as a tool of conquest. By 1933, several hundred thousand SA (outside the course).",
          beats=[
-        "{sa}Idea four. The Nazi movement had two armed wings. {sa.g}The {!SA}SA, the storm troopers, were a mass force, "
+        "{photo6}{sa}Idea four. The Nazi movement had two armed wings. {sa.g}The {!SA}SA, the storm troopers, were a mass force, "
         "largely recruited among unemployed and uneducated men, some with criminal records. "
         "They fought communists in the streets, and protected Nazi meetings. "
         "{sa.d}The SS was an elite: selected, better educated, often from wealthier backgrounds.",
         "{-sa}{ord}An order of magnitude, from outside the course: by 1933, the SA counted several hundred thousand men. "
         "{ord.1}That is several times the army of one hundred thousand men that the Treaty of Versailles allowed Germany.",
-        "{-ord}{vio}Violence was not a side effect of Nazism: it was {!a tool of conquest}a tool of conquest.",
+        "{-ord}{-photo6}{vio}Violence was not a side effect of Nazism: it was {!a tool of conquest}a tool of conquest.",
     ], vis={
+        "photo6": dict(type="tableau", img="h2-unemployed-sa", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="Unemployed SA men on a bench in Berlin, 1932 · Bundesarchiv, Bild 146-1985-054-02, CC BY-SA 3.0 DE"),
         "sa": dict(type="cols", g="The SA · storm troopers", gq="a mass force: unemployed, uneducated men; street fights, meetings protected",
                    d="The SS", dq="an elite: selected, better educated, often wealthier", vs="+"),
         "ord": dict(type="note", terme="Outside the course · an order of magnitude", cles=["hundred", "Versailles"],
@@ -473,14 +485,16 @@ SCENES = [
         "{-g10}{hb}Who was Hindenburg? {hb.1}An old general of the Empire, who had supported the monarchy. "
         "{hb.2}And the conservatives around him thought they could control Hitler once he was in government. "
         "{hb.3}The legal façade let the Nazis dismantle the republic {!from inside}from inside.",
-        "{-hb}{pot}The photograph that opens Monsieur Ros's section shows it. {pot.1}Hitler bows to greet Hindenburg at Potsdam, "
+        "{-hb}{photo7}{pot}The photograph that opens Monsieur Ros's section shows it. {pot.1}Hitler bows to greet Hindenburg at Potsdam, "
         "on the twenty-first of March 1933, a date from outside the course. "
-        "{pot.2}An image designed to present Nazism as the heir of the old Prussian order.",
+        "{pot.2}An image designed to present Nazism as the heir of the old Prussian order.{-photo7}",
     ], vis={
         "g10": dict(type="globe", code="H2", sc=[20]),
         "hb": dict(type="liste", titre="Why the elites let him in", cles=["monarchy", "control", "façade"], items=[
             "Hindenburg: an old general of the Empire, a monarchist", "The conservatives: “we can control him”",
             "A legal façade: the republic dismantled from inside"], x=170, y=150, w=940),
+        "photo7": dict(type="tableau", img="h2-potsdam", fond=True, sombre=True, de=[1.0, .5, .45], a=[1.15, .5, .4],
+                       legende="Hitler bows to Hindenburg, Potsdam, 21 March 1933 · Bundesarchiv, Bild 183-S38324, CC BY-SA 3.0 DE"),
         "pot": dict(type="note", terme="Example · Potsdam, 21 March 1933", cles=["bows", "heir"],
                     t="Hitler bows to greet President Hindenburg: Nazism as the heir of the old Prussian order.",
                     etape="The photograph opens M. Ros's section · exact date outside the course", x=170, y=200, w=940),
@@ -619,5 +633,7 @@ CREDITS = [
     "Content: M. Ros's course (DNL History, H2 · Parts I.1 “The legacy of WW1” and I.2 “The seizure of power”), with the schemas “Three wounds of the war”, “Two movements, the same building blocks”, “The end of Weimar” (unemployment values read off M. Ros's chart, rounded) and “Two roads to power”, as written on the site; animated map of chapter 2 (site).",
     "Points to handle with care (site's checks): Red Scare and Red Terror; the March on Rome usually dated 27–31 October 1922, with estimates up to 25,000–30,000 marchers; Hitler explains the swastika in Mein Kampf.",
     "Added from outside the course: the 25-point programme of 1920; the size of the SA by 1933; the date of the Potsdam ceremony (21 March 1933) and of the emergency decree (28 February 1933).",
+    "Photographs (via Wikimedia Commons): Ypres cathedral in ruins, 1917 (Henry Armytage Sanders, Archives New Zealand, CC BY-SA 2.0); a Spartacist barricade, Berlin, January 1919 (Illustrirte Zeitung, public domain); Red Guards occupying the factories, Italy, 1920 (unknown photographer, public domain); unemployed SA men, Berlin, 1932 (Bundesarchiv, Bild 146-1985-054-02, CC BY-SA 3.0 DE); Hitler and Hindenburg at Potsdam, 21 March 1933 (Bundesarchiv, Bild 183-S38324, CC BY-SA 3.0 DE).",
+    "Paintings: Lenin at the Putilov factory, May 1917, by Isaak Brodsky, 1929 (public domain); Mussolini and the quadrumvirs of the March on Rome, commemorative painting by an unknown artist (photograph Silvio Galimberti, CC BY-SA 4.0).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

@@ -137,14 +137,16 @@ SCENES = [
     dict(id="fas1", chap="Fascism · a “new revolution”", fond="nuit", humeur="lumiere",
          retenir="Fascism: a “new revolution”, neither liberal nor socialist, to transform civilisation and recreate the glory of Rome. The Fascist calendar: 1922 = year I.",
          beats=[
-        "{def2}Fascism first. Idea one: Fascism presented itself as a {!new revolution}new revolution, neither liberal nor socialist. "
+        "{photo1}{def2}Fascism first. Idea one: Fascism presented itself as a {!new revolution}new revolution, neither liberal nor socialist. "
         "{def2.1}Its aim: to transform Italian civilisation, and to recreate the greatness of ancient Rome. "
         "Mussolini wanted a disciplined, warlike people, united behind the State.",
         "{-def2}{an11}And the ambition was total: history itself was to start again with Fascism. "
         "The proof is on Monsieur Ros's slide: the poster of the Exhibition of the Fascist Revolution, the Mostra della Rivoluzione Fascista, "
         "Rome, 1932. It is dated year eleven. {an11.1}Because the Fascist calendar starts in 1922, the year Mussolini seized power. "
-        "Year one. A new era.",
+        "Year one. A new era.{-photo1}",
     ], vis={
+        "photo1": dict(type="tableau", img="h2-mostra", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="The Exhibition of the Fascist Revolution, Rome: the room devoted to 1914 · Unknown photographer, public domain"),
         "def2": dict(type="def", cles=["revolution", "Rome"], terme="Fascism · a “new revolution”",
                      t="Neither liberal nor socialist: transform Italian civilisation and recreate the glory of ancient Rome.",
                      etape="A disciplined, warlike people, united behind the State", x=170, y=200, w=940),
@@ -178,11 +180,11 @@ SCENES = [
     dict(id="doctrine", chap="Fascism · the Doctrine of 1932", fond="aube", humeur="calme",
          retenir="Doctrine of Fascism (Mussolini and Gentile, 1932): “everything is in the State” · nations, not classes · against parliamentarism, liberalism, Marxism and human rights · nationalist, militaristic.",
          beats=[
-        "{doc}Ideas three, four and five come from one text, studied on Monsieur Ros's slide: the {!Doctrine of Fascism}Doctrine of Fascism, "
+        "{photo2}{doc}Ideas three, four and five come from one text, studied on Monsieur Ros's slide: the {!Doctrine of Fascism}Doctrine of Fascism, "
         "written in 1932 by Mussolini and the philosopher Giovanni Gentile. {doc.1}Idea three: the word totalitarian. "
         "Today it is an accusation. But the fascists used it with pride, for a State that swallows everything.{-doc}",
         ("C", "everything is in the State … in this sense Fascism is totalitarian", "c_doc1"),
-        "{-c_doc1}{tot}For them, totalitarian meant complete, united, strong: the opposite of a divided liberal society. "
+        "{-c_doc1}{-photo2}{tot}For them, totalitarian meant complete, united, strong: the opposite of a divided liberal society. "
         "{tot.1}The word took on its accusing meaning only after the war, when historians and philosophers such as Hannah Arendt "
         "applied it to Nazism and Stalinism.",
         "{-tot}{cl}{cl.g}Idea four: Fascism divides humanity into nations, not classes. Marxism says: society is divided into classes in struggle. {cl.d}Fascism says the opposite: what divides humanity is nations, and inside the nation, all classes must be united "
@@ -196,6 +198,8 @@ SCENES = [
         "which alone gives the individual his value. In the words of the Doctrine:{-ind}",
         ("C", "Liberalism denied the State in the interests of the particular individual", "c_doc3"),
             ], vis={
+        "photo2": dict(type="tableau", img="h2-mussolini", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.12, .5, .25],
+                       legende="Benito Mussolini, Duce of Fascist Italy, c. 1937-1940 · Keystone, public domain"),
         "doc": dict(type="def", cles=["Mussolini", "Gentile"], terme="The Doctrine of Fascism · 1932",
                     t="Written by Mussolini and the philosopher Giovanni Gentile.",
                     etape="Idea 3: “totalitarian”, a word the fascists used with pride", x=170, y=200, w=940),
@@ -251,7 +255,7 @@ SCENES = [
          beats=[
         "{g5}{g5.1}Now Stalinism. Idea eight. Soviet ideology is Marxist: history is a {!struggle between classes}struggle between classes, "
         "and it ends with a society without classes, without private property, and without profit.",
-        "{-g5}{plan5}{plan5.g}Stalin's Five-Year Plan, launched in 1928, turned this into a programme with two goals. "
+        "{-g5}{photo3}{plan5}{plan5.g}Stalin's Five-Year Plan, launched in 1928, turned this into a programme with two goals. "
         "First, the Soviet Union had to become an industrial and powerful country, independent of world capitalism. "
         "{plan5.d}Second, it had to oust the last capitalist elements. Above all in the countryside, where most people still farmed their own land.",
         "{-plan5}{src1}The example comes from Worksheet two, source one: Stalin's speech to the Central Committee, the seventh of January 1933. "
@@ -259,9 +263,11 @@ SCENES = [
         ("C", "backward, and in part medieval, technology", "c_st1"),
         "{-c_st1}into a country",
         ("C", "fully self-reliant and independent of the caprices of world capitalism", "c_st2"),
-        "{-c_st2}{date33}Notice the date: January 1933. The very months when the famine was killing peasants in Ukraine.",
+        "{-c_st2}{-photo3}{date33}Notice the date: January 1933. The very months when the famine was killing peasants in Ukraine.",
     ], vis={
         "g5": dict(type="globe", code="H2", sc=[12]),
+        "photo3": dict(type="tableau", img="h2-fyp-poster", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.1, .5, .45],
+                       legende="'The arithmetic of a counter-plan: 2 + 2 plus the enthusiasm of the workers = 5', Five-Year Plan poster, 1931 · Yakov Guminer, public domain"),
         "plan5": dict(type="cols", g="Goal 1 · industry", gq="an industrial, powerful USSR, independent of world capitalism",
                       d="Goal 2 · the countryside", dq="oust the last capitalist elements: the peasants' own farms",
                       vs="+", repere="The first Five-Year Plan, 1928"),
@@ -597,5 +603,6 @@ CREDITS = [
     "Added from outside the course, and said so: the Holodomor death toll (≈ 4 million), internal exile on Lipari, the deportation of the kulaks to Siberia and Kazakhstan, the “Great Turn” of late 1929, the figure of 1.8 million kulaks deported.",
     "Course correction: Matteotti was kidnapped and killed on 10 June 1924 (the slide says 1925, the year of Mussolini's claim of responsibility and of the fascistissime laws).",
     "Quotations: The Doctrine of Fascism (Mussolini and Gentile, 1932) and Stalin's speech of 7 January 1933, as quoted in the course; Feigin's letter of 9 April 1932 (Worksheet 2, source 5).",
+    "Photographs and posters (via Wikimedia Commons): the Exhibition of the Fascist Revolution, Rome, room “1914” (unknown photographer, public domain); Benito Mussolini, c. 1937-1940 (Keystone, public domain); Five-Year Plan poster “2 + 2 = 5”, 1931 (Yakov Guminer, public domain).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

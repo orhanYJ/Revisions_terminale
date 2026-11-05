@@ -166,9 +166,9 @@ SCENES = [
     dict(id="howfar", chap="Essay b) · How far: the plan", fond="nuit", humeur="tension",
          retenir="How far was WW1 responsible for the rise of totalitarian regimes? I. The war created the violence and the grievances · II. It opened the way to revolution, and to the fear of it · III. But it does not explain everything (ideologies, elites, the Depression).",
          beats=[
-        "{ex2}Now the big question, a part b) taken from the chapter's own exam subjects. "
+        "{photo1}{ex2}Now the big question, a part b) taken from the chapter's own exam subjects. "
         "{!How far}How far was the First World War responsible for the rise of totalitarian regimes?",
-        "{-ex2}{meth}How far means: weigh one factor. Not yes, not no, but to what extent. {meth.1}So you need the case for the factor, "
+        "{-ex2}{-photo1}{meth}How far means: weigh one factor. Not yes, not no, but to what extent. {meth.1}So you need the case for the factor, "
         "{meth.2}the case against, or the other factors, {meth.3}and a judgement that runs through the whole essay, announced in the introduction "
         "and proved in the conclusion. {meth.4}The trap: writing a story of the years 1918 to 1933 without ever answering.",
         "{-meth}{g2}Remember what the map showed. {g2.1}The trenches: four years of mass killing. {g2.2}Italy: a mutilated victory, "
@@ -183,6 +183,8 @@ SCENES = [
         "and in Germany, the Depression turned a marginal party into a mass movement.",
         "Notice the order: the factor first, then its limits. The third part is where you win the marks.{-pl}",
     ], vis={
+        "photo1": dict(type="tableau", img="h2-ypres", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="A New Zealand soldier among the ruins of Ypres cathedral, Belgium, 1917 · Archives New Zealand, CC BY-SA 2.0"),
         "ex2": dict(type="exo", niveau="essay", titre="How far was the First World War responsible for the rise of totalitarian regimes?",
                     src="Essay subject of the chapter (course)", enonce=["Part b) of an essay · about 45 minutes"]),
         "meth": dict(type="liste", titre="How far: weigh one factor", cles=["for", "against", "judgement"], items=[
@@ -403,16 +405,18 @@ SCENES = [
         "in order to transform man according to an ideology. {kt.2}Appeasement: accepting the aggressors' demands in order to avoid war, "
         "the policy of Chamberlain from 1937 and of Daladier, until Prague in March 1939. "
         "For each term: a definition, a date, an example, and a link to another chapter.",
-        "{-kt}{ar}One last tool for the oral, on the revision cards: Hannah Arendt's epigraph. Totalitarian propaganda treats facts as something "
+        "{-kt}{photo2}{ar}One last tool for the oral, on the revision cards: Hannah Arendt's epigraph. Totalitarian propaganda treats facts as something "
         "power can manufacture. Use it with an example: the Reichstag fire, blamed on the communists in 1933. "
         "And add her second lesson: large masses supported these regimes. Not a black-and-white picture.",
-        "{-ar}",
+        "{-ar}{-photo2}",
     ], vis={
         "or": dict(type="liste", titre="The oral · 35 minutes", items=[
             "20 min of preparation", "5 min: presentation of a Key Issue", "5 min: questions", "5 min: discussion of a Key Term"],
             x=170, y=130, w=940),
         "kt": dict(type="cols", g="Totalitarianism", gq="total control of society, through coercion, to transform man according to an ideology",
                    d="Appeasement", dq="accepting the aggressors' demands to avoid war · Chamberlain, Daladier · Munich 1938", vs="+"),
+        "photo2": dict(type="tableau", img="h2-arendt", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.12, .5, .25],
+                       legende="Hannah Arendt, author of The Origins of Totalitarianism (1951), in 1958 · Barbara Niggl Radloff, Münchner Stadtmuseum, CC BY-SA 4.0"),
         "ar": dict(type="note", terme="Arendt's epigraph · how to use it", cles=["manufacture", "Reichstag", "masses"],
                    t="Propaganda treats facts as something power can manufacture: the Reichstag fire blamed on the communists (1933).",
                    etape="Her second lesson: large masses supported these regimes", x=150, y=190, w=980),
@@ -473,5 +477,6 @@ QUIZ = [
 CREDITS = [
     "Content: the essay subjects of chapter H2 (course exam data), its Key Issue and Key Terms, the revision cards (essay and DBQ), two documents of the course DBQs (Roosevelt's telegram of 14 April 1939; Hitler's speech at the Obersalzberg, 22 August 1939), M. Ros's chart of the NSDAP vote, the points to check of the chapter.",
     "The Explain question, the DBQ a) question and the model answers were written for this video.",
+    "Photographs (via Wikimedia Commons): Ypres cathedral in ruins, 1917 (Henry Armytage Sanders, Archives New Zealand, CC BY-SA 2.0); Hannah Arendt in 1958 (Barbara Niggl Radloff, Münchner Stadtmuseum, CC BY-SA 4.0).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

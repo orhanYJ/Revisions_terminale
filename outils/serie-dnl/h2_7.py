@@ -194,17 +194,19 @@ SCENES = [
     dict(id="appease", chap="III.2 · Appeasement, case study 3", fond="nuit", humeur="tension",
          retenir="Key term · appeasement: Chamberlain (from 1937) and Daladier accepted the Axis demands to avoid war. What it gave away: 1935 naval agreement · 1935 no oil embargo on Italy · 1936 no reaction in the Rhineland · 1938 Munich.",
          beats=[
-        "{def1}Idea five, case study number three, and a key term of the chapter: {!appeasement}appeasement. "
+        "{photo1}{def1}Idea five, case study number three, and a key term of the chapter: {!appeasement}appeasement. "
         "It refers to the efforts of the British prime minister Neville Chamberlain, from 1937, and of his French counterpart Édouard Daladier, "
         "to avoid war by accepting the demands of the Axis powers. "
         "{def1.1}In doing so, the democracies abandoned the goals they had set themselves in 1919. Germany, Italy and Japan were not halted, "
         "although their militarism openly contradicted the peace settlement.",
-        "{-def1}{ced}Here is the first column of the course's schema: what appeasement gave away. "
+        "{-def1}{-photo1}{ced}Here is the first column of the course's schema: what appeasement gave away. "
         "{ced.1}1935: the Anglo-German Naval Agreement. "
         "{ced.2}1935 again: Britain refuses an oil embargo, the one sanction that would have stopped Mussolini in Ethiopia. "
         "{ced.3}March 1936: no reaction when Hitler sends troops into the demilitarised Rhineland. "
         "{ced.4}And 1938: Munich, the Sudetenland handed over without the Czechs.",
     ], vis={
+        "photo1": dict(type="tableau", img="h2-munich", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="Chamberlain, Daladier, Hitler, Mussolini and Ciano before signing the Munich Agreement, 29 September 1938 · Bundesarchiv, Bild 183-R69173, CC BY-SA 3.0 DE"),
         "def1": dict(type="def", cles=["avoid war", "demands"], terme="Key term · appeasement",
                      t="Avoiding war by accepting the demands of the Axis powers: Chamberlain (from 1937), Daladier.",
                      etape="The goals of 1919 abandoned: Germany, Italy and Japan not halted", x=170, y=200, w=940),
@@ -259,7 +261,7 @@ SCENES = [
         "{-mu}{-g4}{low2}David Low did not believe the promise. On the tenth of October 1938, ten days after Munich, he draws Hitler as Krampus, "
         "the demon who terrorises children at Christmas, {-low2}under the caption:",
         ("C", "Europe can look forward to a Christmas of Peace", "c_low"),
-        "{-c_low}{iro}The irony is bitter: the peace bought at Munich would last {!less than six months}less than six months.",
+        "{-c_low}{photo2}{iro}The irony is bitter: the peace bought at Munich would last {!less than six months}less than six months.{-photo2}",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[34]),
         "mu": dict(type="liste", titre="Munich, 29–30 September 1938", petit=True, bande=True, x=700, y=110, w=540, items=[
@@ -269,6 +271,8 @@ SCENES = [
                      t="Hitler drawn as Krampus, the demon who terrorises children at Christmas.",
                      etape="Ten days after Munich: the cartoonist does not believe the promise", x=170, y=120, w=940),
         "c_low": dict(type="cit", a="David Low", o="cartoon caption, 10 October 1938", x=200, y=330, w=880),
+        "photo2": dict(type="tableau", img="h2-heston", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="Chamberlain waves the Anglo-German declaration at Heston airport, 30 September 1938 · Imperial War Museums, D 2239, public domain"),
         "iro": dict(type="mot", t="< 6 months", g="Munich, 30 Sept. 1938 → Prague, 15 March 1939", y=250, taille=110),
     }),
 
@@ -329,7 +333,7 @@ SCENES = [
         "{es.3}France and Britain did not intervene to help the Spanish Republic. "
         "{es.4}An example the course adds, not from the lesson: in April 1937, German bombers destroyed "
         "the Basque town of Guernica, which Picasso painted that same year.",
-        "{-es}{-g6}{rep2}A rehearsal of the coming war, and one more proof that the democracies would not act.",
+        "{-es}{-g6}{photo3}{rep2}A rehearsal of the coming war, and one more proof that the democracies would not act.{-photo3}",
     ], vis={
         "g5": dict(type="globe", code="H2", sc=[29]),
         "c_mus": dict(type="cit", a="Benito Mussolini", o="1932, quoted in the course", x=200, y=230, w=880),
@@ -340,6 +344,8 @@ SCENES = [
         "es": dict(type="liste", titre="Spain, 1936", petit=True, bande=True, x=780, y=110, w=470, items=[
             "Germany and Italy back Franco's nationalists", "The German air force tested in Spain",
             "France and Britain do not help the Republic", "Guernica, 26 April 1937 (not in the lesson)"]),
+        "photo3": dict(type="tableau", img="h2-guernica", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="The ruins of Guernica after the bombing of 26 April 1937 (not in the lesson) · Bundesarchiv, Bild 183-H25224, CC BY-SA 3.0 DE"),
         "rep2": dict(type="mot", t="A rehearsal", g="of the coming war · the democracies would not act", y=260, taille=100),
     }),
 
@@ -377,10 +383,10 @@ SCENES = [
         "{an.3}Third: the German army enters Vienna on the twelfth of March 1938. "
         "Hitler has broken Versailles once again, and Britain and France do nothing.",
         "{an.4}Fourth: a referendum endorses the annexation. But political enemies and Jews are not allowed to vote.",
-        "{-an}{-g8}{oui}The result:",
+        "{-an}{-g8}{photo4}{oui}The result:",
         ("P", 0.6),
         "{-oui}{pct2}{!99 per cent}Ninety-nine per cent yes. A controlled vote, to dress up an annexation made by pressure.",
-        "{-pct2}{huit}One figure to handle with care. The course says that Jewish Austrians, eight per cent of the population, could not vote. "
+        "{-pct2}{-photo4}{huit}One figure to handle with care. The course says that Jewish Austrians, eight per cent of the population, could not vote. "
         "{huit.1}Eight per cent is best read as the share of people excluded from the vote, opponents and Jews together. "
         "Jews alone were about three Austrians in a hundred, most of them in Vienna: a figure from outside the course.",
     ], vis={
@@ -388,6 +394,8 @@ SCENES = [
         "an": dict(type="liste", titre="The Anschluss in four steps", petit=True, bande=True, x=780, y=110, w=470, items=[
             "Pressure: Schuschnigg bullied, troops on the border", "Seyss-Inquart chancellor: he invites the German army",
             "12 March 1938: the German army enters Vienna", "A plebiscite without opponents and Jews"]),
+        "photo4": dict(type="tableau", img="h2-anschluss", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="Hitler addresses the crowd on the Heldenplatz, Vienna, 15 March 1938 · Bundesarchiv, Bild 183-1987-0922-500, CC BY-SA 3.0 DE"),
         "oui": dict(type="question", t="The plebiscite: the result?"),
         "pct2": dict(type="mot", t="99% yes", g="a controlled vote · opponents and Jews excluded", y=240, taille=140),
         "huit": dict(type="note", terme="Watch out · a figure", cles=["excluded", "three"],
@@ -423,16 +431,18 @@ SCENES = [
          beats=[
         "{g10}{g10.1}Idea six. On the twenty-third of August 1939, Germany signs a non-aggression pact with the Soviet Union. "
         "Its secret terms plan the division of Poland between them. Ideological enemies make a deal of {!pure interest}pure interest.",
-        "{-g10}{gain}{gain.g}For Hitler, it removes the threat of a war on two fronts. "
+        "{-g10}{photo5}{gain}{gain.g}For Hitler, it removes the threat of a war on two fronts. "
         "{gain.d}For Stalin, whose army has just been gutted by the purges, it buys time and territory.",
         "{-gain}The course's cartoon gives Stalin this line:",
         ("C", "I am not ready for war! I just killed 700,000 of my finest officers and communist leaders!", "c_car"),
-        "{-c_car}{chif}A cartoon's figure: the course gives about six hundred and eighty thousand executions "
+        "{-c_car}{-photo5}{chif}A cartoon's figure: the course gives about six hundred and eighty thousand executions "
         "for the whole Great Purge, far from all of them officers. But the point stands: the Red Army was not ready.",
         "{-chif}{g11}{g11.1}And now nothing stands in the way. On the first of September 1939, Germany attacks Poland, France's ally. "
         "On the third of September, France and Britain declare war. {!War}The war has begun.",
     ], vis={
         "g10": dict(type="globe", code="H2", sc=[36]),
+        "photo5": dict(type="tableau", img="h2-pact", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.12, .5, .3],
+                       legende="Stalin and Ribbentrop after signing the German-Soviet Non-Aggression Pact, Moscow, 23 August 1939 · Bundesarchiv, Bild 183-H27337 / Helmut Laux, CC BY-SA 3.0 DE"),
         "gain": dict(type="cols", g="Hitler", gq="no war on two fronts: the attack on Poland can begin",
                      d="Stalin", dq="an army gutted by the purges: time and territory", vs="+",
                      repere="23 August 1939 · a deal of pure interest"),
@@ -635,5 +645,6 @@ QUIZ = [
 
 CREDITS = [
     "Content: M. Ros's course (DNL History, H2 · Parts III.2 and III.3, schemas “Appeasement: what it gave away, and why” and “Stepping stones to war”, DBQ 2 and DBQ 3 with the site's model answers) as written on the site; DBQ 3 b) written for this video on the chapter's key issue; Guernica given as a complementary example, not in the lesson; the share of Jews in Austria's population added from outside the course; animated map of chapter 2 (site).",
+    "Photographs (via Wikimedia Commons): the Munich Agreement, 29 September 1938 (Bundesarchiv, Bild 183-R69173, CC BY-SA 3.0 DE); Chamberlain at Heston airport, 30 September 1938 (Imperial War Museums, D 2239, public domain); the ruins of Guernica, 1937 (Bundesarchiv, Bild 183-H25224, CC BY-SA 3.0 DE); Hitler on the Heldenplatz, Vienna, 15 March 1938 (Bundesarchiv, Bild 183-1987-0922-500, CC BY-SA 3.0 DE); Stalin and Ribbentrop, Moscow, 23 August 1939 (Helmut Laux, Bundesarchiv, Bild 183-H27337, CC BY-SA 3.0 DE).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

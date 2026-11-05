@@ -115,9 +115,9 @@ SCENES = [
         "{def1}Now the course, idea by idea. Idea one: in a totalitarian regime, terror is not a failure of order. "
         "It is {!a method of government}a method of government. "
         "{def1.1}Violence is not the exceptional answer to a crisis: it is permanent, organised and planned.",
-        "Hannah Arendt, whom you met in episode one, wrote that these regimes had found{-def1}",
+        "{photo1}Hannah Arendt, whom you met in episode one, wrote that these regimes had found{-def1}",
         ("C", "a means of dominating and terrorizing human beings from within", "c_ar"),
-        "{-c_ar}{fear}So the point is not only to punish. {fear.1}It is to install fear so deeply {fear.2}that each person censors himself. "
+        "{-c_ar}{-photo1}{fear}So the point is not only to punish. {fear.1}It is to install fear so deeply {fear.2}that each person censors himself. "
         "{fear.3}And so, {fear.4}obedience no longer needs to be commanded.",
         "{-fear}{tin}The example: a comic book. In 1930, Hergé's Tintin in the Land of the Soviets already showed Western readers "
         "a police state, with staged elections and a hidden famine. A caricature, of course. "
@@ -126,6 +126,8 @@ SCENES = [
         "def1": dict(type="def", cles=["permanent", "organised", "planned"], terme="Idea 1 · terror as a method",
                      t="Violence is not the exceptional answer to a crisis: it is permanent, organised and planned.",
                      etape="Not a failure of order: a way of governing", x=170, y=200, w=940),
+        "photo1": dict(type="tableau", img="h2-arendt", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.12, .5, .25],
+                       legende="Hannah Arendt, author of The Origins of Totalitarianism (1951), in 1958 · Barbara Niggl Radloff, Münchner Stadtmuseum, CC BY-SA 4.0"),
         "c_ar": dict(type="cit", a="Hannah Arendt", o="The Origins of Totalitarianism, 1951", x=200, y=200, w=880),
         "fear": dict(type="liste", titre="How terror works", cles=["punish", "fear", "censors", "obedience"], items=[
             "Not only to punish", "To install fear deep inside", "Each person censors himself",
@@ -173,11 +175,11 @@ SCENES = [
         ("C", "actuated by boundless hatred and by lust of power", "c_ka"),
         "{-c_ka}{photo}Now look at one photograph of 1925. {photo.1}Stalin stands with Zinoviev, Kamenev and Alexei Rykov. "
         "{photo.2}Stalin had all three men in that picture shot: {photo.3}Zinoviev and Kamenev in 1936, Rykov in 1938.",
-        "{-photo}{purge}Then the Great Purge of 1937 and 1938. {!680,000}The worksheet counts six hundred and eighty thousand executions. "
+        "{-photo}{photo2}{purge}Then the Great Purge of 1937 and 1938. {!680,000}The worksheet counts six hundred and eighty thousand executions. "
         "It decimated the party and weakened the army.",
         "{-purge}{para}And here is the paradox to explain in an essay: the purge reinforced Stalin, "
         "precisely because it destroyed everyone who could have replaced him. "
-        "{para.1}One detail of dates: the show trials run from 1936 to 1938; the Great Purge, in 1937 and 1938.",
+        "{para.1}One detail of dates: the show trials run from 1936 to 1938; the Great Purge, in 1937 and 1938.{-photo2}",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[30]),
         "c_zi": dict(type="cit", a="Grigory Zinoviev", o="Moscow trial, 1936", x=200, y=210, w=880),
@@ -185,6 +187,8 @@ SCENES = [
         "photo": dict(type="liste", titre="One photograph, 1925", items=[
             "Stalin, Zinoviev, Kamenev, Rykov", "All three companions shot on Stalin's orders",
             "Zinoviev and Kamenev in 1936 · Rykov in 1938"], x=170, y=150, w=940),
+        "photo2": dict(type="tableau", img="h2-moscow-trial", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.1, .5, .45],
+                       legende="The defendants of the second Moscow trial in court, January 1937 · Unknown photographer, public domain"),
         "purge": dict(type="mot", t="680,000", g="executions in the Great Purge, 1937–38 · the party decimated, the army weakened", y=240, taille=140),
         "para": dict(type="note", terme="The paradox", cles=["reinforced", "replaced"],
                      t="The purge reinforced Stalin: it destroyed everyone who could have replaced him.",
@@ -199,9 +203,9 @@ SCENES = [
         "Repression is not only judicial: it is territorial. Whole populations are confined.",
         "{g5.2}The Soviet Gulag spread its camps across the whole country, and it chose their places where labour was needed: "
         "mines, timber, canals. So terror also produced. "
-        "The example: the White Sea to Baltic Canal, two hundred and twenty-seven kilometres dug between 1931 and 1933, "
+        "{-g5}{photo3}The example: the White Sea to Baltic Canal, two hundred and twenty-seven kilometres dug between 1931 and 1933, "
         "largely with hand tools: the first great Soviet project built by Gulag prisoners.",
-        "{-g5}{gul}And the worksheet's graph gives the scale. {gul.1}{gul.2}{gul.3}In the early 1950s, the camp population passes "
+        "{-photo3}{gul}And the worksheet's graph gives the scale. {gul.1}{gul.2}{gul.3}In the early 1950s, the camp population passes "
         "{!one and a half million}one and a half million prisoners.",
         "{-gul}{tri}In Germany, Dachau opened in 1933, for everyone deemed incompatible with society. "
         "And the camps classified their prisoners by coloured triangles. "
@@ -210,6 +214,8 @@ SCENES = [
         "{-tri}{ros}And keep Monsieur Ros's sentence. The Nazis did not invent the camp. {ros.1}What they added was the gas chamber.",
     ], vis={
         "g5": dict(type="globe", code="H2", sc=[17]),
+        "photo3": dict(type="tableau", img="h2-belomorkanal", de=[1.0, .3, .5], a=[1.05, .7, .5],
+                       legende="Gulag prisoners digging the White Sea-Baltic Canal, summer 1932 · Unknown photographer, public domain"),
         "gul": dict(type="graphe", titre="Gulag camp population (worksheet graph)", x=300, y=110, w=680, h=520,
                     ax=dict(x=[1929.5, 1953.5], y=[0, 2.0], gx=[1930, 1935, 1940, 1945, 1950], gy=[0.5, 1.0, 1.5],
                             lx="year", ly="million prisoners"),
@@ -562,5 +568,6 @@ QUIZ = [
 
 CREDITS = [
     "Content: M. Ros's course (DNL History, H2 · Part II.3, Worksheet 4, the totalitarianism table, Arendt in the introduction) as written on the site; Worksheet 4 answers suggested by the site; outside the course: Fascist camps in Libya (Cyrenaica, 1930–33) and Beria's dates at the head of the NKVD (1938–45); animated map of chapter 2 (site).",
+    "Photographs (via Wikimedia Commons): Hannah Arendt in 1958 (Barbara Niggl Radloff, Münchner Stadtmuseum, CC BY-SA 4.0); the defendants of the second Moscow trial, January 1937 (unknown photographer, public domain); Gulag prisoners digging the White Sea-Baltic Canal, 1932 (unknown photographer, public domain).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

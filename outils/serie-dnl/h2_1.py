@@ -194,9 +194,9 @@ SCENES = [
         "Fear, and persuasion.",
         "{trois.3}Three, and this is the most important: its aim is not obedience, but {!transformation}transformation. "
         "The regime wants to create a New Man, shaped by its ideology.",
-        "{-trois}{dict}{dict.g}That third part is what separates a totalitarian regime from an ordinary dictatorship. "
+        "{-trois}{photo3}{dict}{dict.g}That third part is what separates a totalitarian regime from an ordinary dictatorship. "
         "An ordinary dictatorship is content if people keep quiet. {dict.d}A totalitarian regime wants people to believe, "
-        "to cheer, to change. Silence is not enough: it wants your soul.",
+        "to cheer, to change. Silence is not enough: it wants your soul.{-photo3}",
     ], vis={
         "def1": dict(type="def", cles=["total", "coercion", "transform", "ideology"], terme="Key term · Totalitarianism",
                      t="A regime that seeks total control of society, through coercion, in order to transform man according to an ideology.",
@@ -205,6 +205,8 @@ SCENES = [
             "Total control: work, leisure, family, school, religion, thought",
             "Coercion: terror and propaganda together",
             "Transformation: not obedience, but a “New Man” shaped by the ideology"], x=170, y=140, w=940),
+        "photo3": dict(type="tableau", img="h2-nuremberg-1936", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="The 'cathedral of light' over the Zeppelin Field, Nuremberg rally, September 1936 · Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE"),
         "dict": dict(type="cols", g="An ordinary dictatorship", gq="content if people keep quiet",
                      d="A totalitarian regime", dq="wants people to believe, cheer and change: a “New Man”", vs="≠"),
     }),
@@ -259,10 +261,10 @@ SCENES = [
         "they come back in every episode.",
         "{-buts}{-g4}{moyens}Now, why does it matter so much? Because when a goal is presented as {!supreme}supreme, it justifies any means… "
         "{moyens.1}including the suffering of millions of people.",
-        "{-moyens}{g5}The course gives a chilling example. On the seventh of January nineteen thirty-three, in a speech studied in Worksheet two, "
+        "{-moyens}{photo1}{g5}The course gives a chilling example. On the seventh of January nineteen thirty-three, in a speech studied in Worksheet two, "
         "Stalin presents his Five-Year Plan as the road to…{-g5}",
         ("C", "the abolition of classes in the U.S.S.R.", "c_staline"),
-        "{-c_staline}{g5b}{g5b.1}And in those very months, in Ukraine, the famine of nineteen thirty-two to thirty-three, the Holodomor, "
+        "{-c_staline}{-photo1}{g5b}{g5b.1}And in those very months, in Ukraine, the famine of nineteen thirty-two to thirty-three, the Holodomor, "
         "is killing the peasants whose grain the regime is requisitioning. The supreme goal on one side; millions of victims on the other. "
         "That is episode three.",
         "{-g5b}{dedans}So ideology explains two things. {dedans.1}What these regimes did inside their borders: Parts one and two. "
@@ -279,6 +281,8 @@ SCENES = [
         "moyens": dict(type="note", terme="Why ideology matters", cles=["supreme", "any"],
                        t="A goal presented as supreme justifies any means, including the suffering of millions.",
                        x=170, y=200, w=940),
+        "photo1": dict(type="tableau", img="h2-fyp-poster", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.1, .5, .45],
+                       legende="'The arithmetic of a counter-plan: 2 + 2 plus the enthusiasm of the workers = 5', Five-Year Plan poster, 1931 · Yakov Guminer, public domain"),
         "g5": dict(type="note", terme="Worksheet 2 · source 1", cles=["Five-Year"],
                    t="Stalin's speech of 7 January 1933 on the results of the first Five-Year Plan.", x=170, y=480, w=940),
         "c_staline": dict(type="cit", a="Joseph Stalin", o="speech of 7 January 1933 (Worksheet 2)", x=200, y=190, w=880),
@@ -291,14 +295,14 @@ SCENES = [
     dict(id="arendt", chap="Arendt: the confidence of the masses", fond="guerre", humeur="mystere",
          retenir="Arendt, The Origins of Totalitarianism (1951): Hitler's rise “was legal in terms of majority rule”; both dictators needed “the confidence of the masses”. Explain support as well as terror.",
          beats=[
-        "{ar}Here is a warning against a black-and-white picture. It comes from Hannah Arendt, nineteen-oh-six to nineteen seventy-five, "
+        "{photo2}{ar}Here is a warning against a black-and-white picture. It comes from Hannah Arendt, nineteen-oh-six to nineteen seventy-five, "
         "a German American political theorist. In The Origins of Totalitarianism, in nineteen fifty-one, she writes that…{-ar}",
         ("C", "Hitler's rise to power was legal in terms of majority rule", "c_ar1"),
         "{-c_ar1}{ar2}…and that neither Hitler nor Stalin could have kept power through so many crises without…{-ar2}",
         ("C", "the confidence of the masses", "c_ar2"),
         "{-c_ar2}{sens}What does she mean? {sens.1}That large masses trusted these regimes. {sens.2}That not everyone felt oppressed. "
         "{sens.3}And so, to understand totalitarianism, you must explain support, as well as terror.",
-        "{-sens}{g6}{g6.1}Germany is the best example. Remember the curve: thirty-seven point four per cent in July nineteen thirty-two. "
+        "{-sens}{-photo2}{g6}{g6.1}Germany is the best example. Remember the curve: thirty-seven point four per cent in July nineteen thirty-two. "
         "Millions of Germans voted for Hitler, freely. {g6.2}And on the thirtieth of January nineteen thirty-three, he was appointed chancellor "
         "by President Hindenburg, through the institutions.",
         "{-g6}{nuance}But be precise in an essay. {nuance.1}Legal, yes: Hitler was appointed, not imposed by a coup. "
@@ -309,6 +313,8 @@ SCENES = [
         "{-deuxfaces}{faits}And Arendt adds one last idea, in the epigraph on the cover sheet of the chapter. {faits.1}Totalitarian propaganda "
         "treats facts as something that power can manufacture. It shows contempt for facts: what the leader says becomes true.",
     ], vis={
+        "photo2": dict(type="tableau", img="h2-arendt", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.12, .5, .25],
+                       legende="Hannah Arendt, author of The Origins of Totalitarianism (1951), in 1958 · Barbara Niggl Radloff, Münchner Stadtmuseum, CC BY-SA 4.0"),
         "ar": dict(type="note", terme="Hannah Arendt (1906–1975)", cles=["Origins"],
                    t="German American political theorist, author of The Origins of Totalitarianism (1951).", x=170, y=200, w=940),
         "c_ar1": dict(type="cit", a="Hannah Arendt", o="The Origins of Totalitarianism, 1951", x=200, y=190, w=880),
@@ -492,5 +498,6 @@ CREDITS = [
     "Content: M. Ros's course (DNL History, H2 · Introduction “Defining totalitarianism: a debate and a definition”, the seven key traits wheel, Europe of regimes c. 1938, the reading list; Nazi vote figures from Part I.2) as written on the site; animated map of chapter 2 (site).",
     "Course correction: the key traits wheel comes from the publisher McDougal Littell (World History, 2009), spelled “MacDougal Littell” in the course.",
     "Outside the course: the collapse of the USSR in 1991; the one-line descriptions of the reading list.",
+    "Photographs and posters (via Wikimedia Commons): Five-Year Plan poster “2 + 2 = 5”, 1931 (Yakov Guminer, public domain); Hannah Arendt in 1958 (Barbara Niggl Radloff, Münchner Stadtmuseum, CC BY-SA 4.0); the Nuremberg rally of September 1936 (Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

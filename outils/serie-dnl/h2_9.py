@@ -210,10 +210,10 @@ SCENES = [
     dict(id="cartes", chap="Three mind maps", fond="nuit", humeur="calme",
          retenir="Total control · coercion · transformation: a New Man, not just obedience.",
          beats=[
-        "{def}First, the key term of the chapter. {def.1}Totalitarianism: a regime that seeks total control of society, through coercion, "
+        "{photo1}{def}First, the key term of the chapter. {def.1}Totalitarianism: a regime that seeks total control of society, through coercion, "
         "to transform man according to an ideology. Three parts: total control, coercion, transformation. "
         "The last one is what separates it from an ordinary dictatorship.",
-        "{-def}{c1}Part one: where the regimes came from, and how they took power. {c1.1}The legacy of the Great War: "
+        "{-def}{-photo1}{c1}Part one: where the regimes came from, and how they took power. {c1.1}The legacy of the Great War: "
         "brutalisation, and the Russian revolution. {c1.2}In Italy, the mutilated victory, the red years, and the March on Rome. "
         "{c1.3}In Germany, Versailles, the crisis, and a legal appointment. {c1.4}Then three ideologies: nation, race, class. "
         "{c1.5}And Stalinism: collectivisation, the kulaks, the Holodomor.",
@@ -228,6 +228,8 @@ SCENES = [
         "{c3.5}And war: Prague, the pact, Poland.",
         ("P", 2.5),
     ], vis={
+        "photo1": dict(type="tableau", img="h2-nuremberg-1936", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="The 'cathedral of light' over the Zeppelin Field, Nuremberg rally, September 1936 · Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE"),
         "def": dict(type="def", terme="Key term · Totalitarianism", cles=["total", "coercion", "transform"],
                     t="A regime that seeks total control of society, through coercion, to transform man according to an ideology."),
         "c1": dict(type="carte", centre="PART I · ROOTS AND POWER", branches=[
@@ -261,11 +263,11 @@ SCENES = [
         "{-hi}{tr}Each of them holds part of the truth, and the chapter shows where. {tr.1}Winter: the regimes were born in the trenches, "
         "out of brutalisation and Versailles. {tr.2}Hehn: the crisis made the Nazis a mass party, and pushed Japan towards autarky. "
         "{tr.3}Taylor: appeasement let every aggression succeed.",
-        "{-tr}{rep}{rep.g}But the chapter adds its own candidate, and here is the answer. Totalitarian ideology supplied "
+        "{-tr}{photo2}{rep}{rep.g}But the chapter adds its own candidate, and here is the answer. Totalitarian ideology supplied "
         "{!the will to war}the will to war: war as a value for Fascism, Lebensraum for Nazism, a superior race for Japan. "
         "{rep.d}The democracies' reluctance supplied the opportunity: each unpunished aggression prepared the next. "
         "A strong answer keeps both halves.",
-        "{-rep}{pa}Now it is your turn, with the key issue of the chapter.",
+        "{-rep}{-photo2}{pa}Now it is your turn, with the key issue of the chapter.",
         ("P", 2.5),
         "{-pa}{mod}Here is one way to say it. {mod.1}Totalitarian ideologies made war a value and expansion a goal: Abyssinia in 1935, "
         "Lebensraum in Mein Kampf. {mod.2}But the democracies let aggression succeed: the League, American isolationism, "
@@ -282,6 +284,8 @@ SCENES = [
             "Winter: regimes born in the trenches — brutalisation, Versailles",
             "Hehn: the crisis made the Nazis a mass party; Japan's autarky",
             "Taylor: appeasement let every aggression succeed"], x=150, y=130, w=980),
+        "photo2": dict(type="tableau", img="h2-munich", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
+                       legende="Chamberlain, Daladier, Hitler, Mussolini and Ciano before signing the Munich Agreement, 29 September 1938 · Bundesarchiv, Bild 183-R69173, CC BY-SA 3.0 DE"),
         "rep": dict(type="cols", g="The will to war", gq="totalitarian ideology: war as a value, Lebensraum, a “superior race”",
                     d="The opportunity", dq="the democracies' reluctance: each unpunished aggression prepared the next", vs="+"),
         "pa": dict(type="pause", t="Key issue: assess the role of totalitarianism in the collapse of global peace in the late 1930s. "
@@ -345,5 +349,6 @@ QUIZ = [
 CREDITS = [
     "Content: the synthesis of M. Ros's course (DNL History, H2) as written on the site, with M. Ros's synthesis grid; "
     "the animated map of the chapter (site).",
+    "Photographs (via Wikimedia Commons): the Nuremberg rally of September 1936 (Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE); the Munich Agreement, 29 September 1938 (Bundesarchiv, Bild 183-R69173, CC BY-SA 3.0 DE).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]
