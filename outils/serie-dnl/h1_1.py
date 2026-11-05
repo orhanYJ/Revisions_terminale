@@ -133,7 +133,7 @@ SCENES = [
         "{q3}First idea of the course. What exactly is a stock market?",
         "{-q3}{def3}A stock market is a place where companies raise money, and where investors buy a claim on their profits. "
         "The {!Stock Exchange}Stock Exchange is the building, the facility. The people who work there are traders.",
-        "{-def3}Here is how it works. {mec}{mec.1}Large companies need money to grow: they need investors. "
+        "Here is how it works. {-def3}{mec}{mec.1}Large companies need money to grow: they need investors. "
         "{mec.2}So they sell {!shares}shares, small pieces of the company. Whoever buys one becomes a shareholder.",
         "{mec.3}And a shareholder is rewarded in two ways. {mec.4}First way: the {!dividend}dividend, a share of the company's profits, "
         "paid out every year. {mec.5}Second way: selling the share to someone else, for more than it cost.",
@@ -230,10 +230,10 @@ SCENES = [
         "{bul.2}Then prices rise faster than profits. Between nineteen twenty-four and nineteen twenty-nine, the market {!triples}triples in five years.",
         "{bul.3}By nineteen twenty-nine, about ten per cent of American households own shares, and demand for shares is at an all-time high. "
         "In September nineteen twenty-nine, the index reaches three hundred and eighty-one. The bubble is at its largest.",
-        "{-bul}Why does nobody stop? Because prices have only ever risen. So buying on credit seems perfectly rational. "
-        "{cred}{cred.1}Borrow. {cred.2}Buy. {cred.3}Resell higher. {cred.4}Repay, and keep the difference. It works… as long as prices rise.",
-        "{-cred}Here is the example of the course. Brokers lend their clients up to ninety per cent of a share's price. "
-        "This is called {!buying on margin}buying on margin. Let's do the sum. {marg}{marg.1}A share costs one hundred dollars. "
+        "Why does nobody stop? Because prices have only ever risen. So buying on credit seems perfectly rational. "
+        "{-bul}{cred}{cred.1}Borrow. {cred.2}Buy. {cred.3}Resell higher. {cred.4}Repay, and keep the difference. It works… as long as prices rise.",
+        "Here is the example of the course. Brokers lend their clients up to ninety per cent of a share's price. "
+        "This is called {!buying on margin}buying on margin. Let's do the sum. {-cred}{marg}{marg.1}A share costs one hundred dollars. "
         "{marg.2}You pay ten dollars; the broker lends you ninety.",
         "{marg.3}Now the market falls by just ten per cent. Your share is worth ninety dollars. "
         "{marg.4}You still owe the broker ninety. Your ten dollars are gone. With a fall of only ten per cent, you are {!wiped out}wiped out.",
@@ -270,8 +270,8 @@ SCENES = [
         "That is overproduction, and overproduction leads to recession. {-para0}{surp}{surp.g}Two facts explain it. "
         "First, the majority of Americans are poor: they cannot buy what the factories produce. "
         "{surp.d}Second, the Europeans are still recovering from the First World War: they cannot buy it either.",
-        "{-surp}The main example is the farmer. During the war, American farmers borrowed money to mechanise, "
-        "to feed Europe. Then peace came. {ferme}{ferme.1}Prices fell. {ferme.2}The debts did not. "
+        "The main example is the farmer. During the war, American farmers borrowed money to mechanise, "
+        "to feed Europe. Then peace came. {-surp}{ferme}{ferme.1}Prices fell. {ferme.2}The debts did not. "
         "{ferme.3}Farm prices have been falling since nineteen twenty. The rural crisis is {!nine years older}nine years older than the Crash.",
         "{-ferme}{para}So here is the paradox to remember. {para.g}The stock market rises all through nineteen twenty-nine… "
         "{para.d}on an economy that is already shrinking. Share prices and the real economy have separated. Sooner or later, they must meet again.",
@@ -298,7 +298,7 @@ SCENES = [
         "{trois.2}Monday the twenty-eighth: the market loses roughly thirteen per cent, in a single session. "
         "{trois.3}Tuesday the twenty-ninth: roughly twelve per cent more. In one day, about sixteen million shares change hands, "
         "a record that stands for forty years.",
-        "{-trois}The logic is circular. {cerc}{cerc.1}Everyone tries to sell at once. {cerc.2}So there are no buyers. "
+        "The logic is circular. {-trois}{cerc}{cerc.1}Everyone tries to sell at once. {cerc.2}So there are no buyers. "
         "{cerc.3}So prices fall further. {cerc.4}So more people sell, at any price… and the circle starts again.",
         "{-cerc}{cle6}And here is the key sentence for an essay. Shareholders were not selling because they had changed their minds "
         "about American industry. {!because everyone else was}They were selling because everyone else was. That is what a panic is.",
@@ -337,7 +337,7 @@ SCENES = [
          beats=[
         "{ki}Now, your turn. Here is the essay question that the site gives for this part. "
         "{!Assess}Assess the role of each factor in triggering the Crash of nineteen twenty-nine. Which was the most important?",
-        "{-ki}You have all the factors. {fac}{fac.1}Republican policy. {fac.2}Mass production and the trusts. {fac.3}Speculation on credit. "
+        "You have all the factors. {-ki}{fac}{fac.1}Republican policy. {fac.2}Mass production and the trusts. {fac.3}Speculation on credit. "
         "{fac.4}The real economy already in decline. {fac.5}And the panic. The word assess means: do not list them. {!Rank them}Rank them.",
         "{-fac}{pa1}",
         ("P", 3.0),
