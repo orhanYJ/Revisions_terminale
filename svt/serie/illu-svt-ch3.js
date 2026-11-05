@@ -117,9 +117,9 @@
     var a = L * p, b = L * (1 - p);
     function bande(x, y, w, h, c) { return o.sv("rect", { x: x, y: y, width: w, height: h, fill: c, "fill-opacity": .9, stroke: "#06120b", "stroke-width": 2 }, g); }
     var ga = o.sv("g", {}, g);
-    o.etiquette(ga, x0 + L / 2, y0 - 52, "gamètes mâles", { fs: 22, c: o.C.iv2 });
+    o.etiquette(ga, x0 + L / 2, y0 - 66, "gamètes mâles", { fs: 22, c: o.C.iv2 });
     o.sv("rect", { x: x0, y: y0 - 34, width: a, height: 20, fill: COUL.A }, ga); o.sv("rect", { x: x0 + a, y: y0 - 34, width: b, height: 20, fill: COUL.m }, ga);
-    o.etiquette(ga, x0 + a / 2, y0 - 41, "A : p", { fs: 20, c: o.C.iv }); o.etiquette(ga, x0 + a + b / 2, y0 - 41, "m : q", { fs: 20, c: o.C.iv });
+    o.etiquette(ga, x0 + a / 2, y0 - 40, "A : p", { fs: 20, c: "#06120b" }); o.etiquette(ga, x0 + a + b / 2, y0 - 40, "m : q", { fs: 20, c: o.C.iv });
     o.sv("rect", { x: x0 - 34, y: y0, width: 20, height: a, fill: COUL.A }, ga); o.sv("rect", { x: x0 - 34, y: y0 + a, width: 20, height: b, fill: COUL.m }, ga);
     o.etiquette(ga, x0 - 46, y0 + a / 2 + 7, "A : p", { fs: 20, c: o.C.iv, ancre: "end" }); o.etiquette(ga, x0 - 46, y0 + a + b / 2 + 7, "m : q", { fs: 20, c: o.C.iv, ancre: "end" });
     var gf = o.etiquette(ga, x0 - 120, y0 + L + 34, "gamètes femelles", { fs: 22, c: o.C.iv2 });
@@ -188,7 +188,7 @@
     var G1 = [0, 1, 0, 2, 1, 0, 2, 1, 0], REP = [[0, 2], [2, 1], [4, 1], [6, 1], [7, 3]];
     var G2 = []; REP.forEach(function (r) { for (var k = 0; k < r[1]; k++) G2.push([G1[r[0]], r[0]]); });
     var G3c = [0, 0, 2, 0, 1, 0, 0, 2, 0, 0], G3p = [0, 0, 1, 2, 3, 3, 4, 6, 7, 7];
-    var ys = [90, 270, 450], xs = function (n, i) { return W / 2 + (i - (n - 1) / 2) * 78; };
+    var ys = [90, 270, 450], xs = function (n, i) { return W / 2 + 60 + (i - (n - 1) / 2) * 74; };
     var et1 = o.etiquette(g, 26, ys[0] + 8, "Génération 1", { fs: 22, ancre: "start", c: o.C.iv2 });
     var et2 = o.etiquette(g, 26, ys[1] + 8, "Génération 2", { fs: 22, ancre: "start", c: o.C.iv2 });
     var et3 = o.etiquette(g, 26, ys[2] + 8, "Génération 3", { fs: 22, ancre: "start", c: o.C.iv2 });
@@ -243,6 +243,7 @@
     var gl = o.etiquette(g, x1, top - 10, "", { fs: 30, c: o.C.iv, ancre: "end", cls: "ser" });
     var lf = o.etiquette(g, x1 - 6, top + 40, "", { fs: 22, c: o.C.or, ancre: "end" });
     var lp = o.etiquette(g, x0 + 10, top + 40, "", { fs: 22, c: o.C.or, ancre: "start" });
+    var l0 = o.etiquette(g, x0 + 16.5 * bw + 24, top + 30, "les 107 populations à 0,5", { fs: 22, c: o.C.sa, ancre: "start" });
     return function (t, st) {
       var t1 = o.et(v, "1", .5), t2 = o.et(v, "2", t1 - v.t0 + 12), t3 = o.et(v, "3", t2 - v.t0 + 2);
       var u = o.cl((t - t1) / Math.max(1, t2 - t1), 0, 1) * NG, ga = Math.floor(u), f = u - ga, gb = Math.min(NG, ga + 1);
@@ -255,6 +256,7 @@
       gl.textContent = "génération " + gen; gl.setAttribute("opacity", o.E(o.P(t, t1, .4)));
       lf.textContent = "fixé (1) : " + hist[NG][K - 1] + " populations"; lp.textContent = "perdu (0) : " + hist[NG][0] + " populations";
       apparait(o, lf, t, t3, .5); apparait(o, lp, t, t3 + .3, .5);
+      l0.setAttribute("opacity", (o.E(o.P(t, v.t0 + .3, .5)) * (1 - o.E(o.P(t, t1 + .4, .5)))).toFixed(3));
     };
   };
 
@@ -264,7 +266,7 @@
     var o = O(), W = v.w, H = v.h, g = o.sv("g", {}, s), N = 90, cols = ["A", "B", "X"];
     var mere = [], i;
     for (i = 0; i < N; i++) mere.push(i < 40 ? 0 : i < 76 ? 1 : 2);
-    var place = [], pid = [3, 11, 19, 26, 44, 52, 61, 70];       // les fondateurs : 5 A, 3 B, aucun X
+    var place = [], pid = [3, 11, 19, 26, 44, 52, 61, 70];       // les fondateurs : 4 A, 4 B, aucun X
     for (i = 0; i < N; i++) {
       var a = o.alea(i * 3.1) * Math.PI * 2, r = 150 * Math.sqrt(o.alea(i * 7.7 + 1));
       place.push([250 + Math.cos(a) * r * 1.15, H / 2 - 10 + Math.sin(a) * r * .95]);
@@ -281,13 +283,13 @@
     var cb = colo.map(function (c) { return bille(o, g, c[0], c[1], 12, COUL[cols[c[2]]]); });
     var tab = o.sv("g", {}, g);
     function barres(x, titre, fr) {
-      o.etiquette(tab, x + 75, H - 92, titre, { fs: 19, c: o.C.iv2 });
+      o.etiquette(tab, x + 72, H - 4, titre, { fs: 20, c: o.C.iv2 });
       fr.forEach(function (f, k) {
-        o.sv("rect", { x: x + k * 52, y: H - 22 - f * 150 * .55, width: 40, height: f * 150 * .55, fill: COUL[cols[k]] }, tab);
-        o.etiquette(tab, x + k * 52 + 20, H - 28 - f * 150 * .55 - 4, Math.round(f * 100) + " %", { fs: 16, c: o.C.iv });
+        o.sv("rect", { x: x + k * 52, y: H - 30 - f * 90, width: 40, height: f * 90, fill: COUL[cols[k]] }, tab);
+        o.etiquette(tab, x + k * 52 + 20, H - 36 - f * 90, Math.round(f * 100) + " %", { fs: 17, c: o.C.iv });
       });
     }
-    barres(150, "départ", [40 / 90, 36 / 90, 14 / 90]); barres(W - 330, "fondateurs", [5 / 8, 3 / 8, 0]);
+    barres(150, "départ", [40 / 90, 36 / 90, 14 / 90]); barres(W - 330, "fondateurs", [4 / 8, 4 / 8, 0]);
     return function (t, st) {
       var t1 = o.et(v, "1", .3), t2 = o.et(v, "2", 3), t3 = o.et(v, "3", 6), t4 = o.et(v, "4", 9);
       apparait(o, lm, t, t1, .5);
@@ -444,10 +446,10 @@
     var t1x = o.etiquette(g, W / 2, H - 10, v.legende1 || "arbre : les branches ne se croisent jamais", { fs: 23, c: o.C.sa });
     var t2x = o.etiquette(g, W / 2, H - 10, v.legende2 || "réseau du vivant : des transferts horizontaux relient les branches", { fs: 23, c: o.C.or });
     return function (t, st) {
-      var t1 = o.et(v, "1", .3), t2 = o.et(v, "2", 4), t3 = o.et(v, "3", 7);
+      var t1 = o.et(v, "1", .3), t2 = o.et(v, "2", 4), t3 = v.et && v.et["3"] != null ? v.et["3"] : t2 + 1.5;
       arb.forEach(function (a, k) { o.trace(a, o.P(t, t1 + k * .25, .9)); });
       ls.forEach(function (l, k) { apparait(o, l, t, t1 + 1.2 + k * .1, .4); }); apparait(o, anc, t, t1 + 1.6, .4);
-      t1x.setAttribute("opacity", (o.E(o.P(t, t1 + 1.5, .5)) * (1 - o.E(o.P(t, t3, .4)))).toFixed(3));
+      t1x.setAttribute("opacity", (o.E(o.P(t, t1 + 1.5, .5)) * (1 - o.E(o.P(t, t2, .4)))).toFixed(3));
       tr.forEach(function (x, k) { x.forEach(function (e) { apparait(o, e, t, t2 + k * .5, .5); }); });
       apparait(o, t2x, t, t3, .5);
     };
@@ -467,7 +469,7 @@
     var rac = [ligne("M" + xR + " " + cS + " V" + cND, o.C.iv2), ligne("M" + xR + " " + cS + " H" + xS, o.C.te), ligne("M" + xR + " " + cND + " H" + xND, o.C.iv2), ligne("M" + (xR - 30) + " " + cR + " H" + xR, o.C.iv2)];
     var ls = F.map(function (f, k) { return o.etiquette(g, xF + 14, Yk(k) + 7, f[0], { fs: 22, ancre: "start", c: [o.C.te, o.C.sa, o.C.or][f[1]] }); });
     var gS = o.etiquette(g, xS - 16, cS - 14, "Homo sapiens actuels", { fs: 21, c: o.C.te, ancre: "end" });
-    var gN = o.etiquette(g, xN + 10, cN - 30, "Néandertaliens", { fs: 21, c: o.C.sa, ancre: "start" });
+    var gN = o.etiquette(g, xND - 14, cN + 7, "Néandertaliens", { fs: 21, c: o.C.sa, ancre: "end" });
     var gD = o.etiquette(g, xND - 12, Yk(7) + 32, "Dénisoviens : une phalange et une molaire", { fs: 20, c: o.C.or, ancre: "start" });
     return function (t, st) {
       var t1 = o.et(v, "1", .3), t2 = o.et(v, "2", 3), t3 = o.et(v, "3", 6);

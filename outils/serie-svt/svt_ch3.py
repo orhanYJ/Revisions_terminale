@@ -143,8 +143,8 @@ SCENES = [
         "vivant dans une même zone, pouvant se reproduire entre eux et engendrer une descendance fertile.",
         "{defs.2}Son patrimoine génétique, c'est l'ensemble des allèles présents dans la population. "
         "{defs.3}Et chaque allèle a une fréquence allélique : sa proportion parmi tous les exemplaires du gène présents dans la population.",
-        "{-defs}{pop}Comptons ensemble. Voici une petite population de vingt-cinq individus, pour un gène à deux allèles, A et m. "
-        "{pop.1}Chaque individu est diploïde : il porte deux exemplaires du gène, un par moitié de disque.",
+        "{-defs}{pop}{pop.1}Comptons ensemble. Voici une petite population de vingt-cinq individus, pour un gène à deux allèles, A et m. "
+        "Chaque individu est diploïde : il porte deux exemplaires du gène, un par moitié de disque.",
         "{pop.2}Les neuf homozygotes A A apportent chacun deux allèles A : dix-huit. "
         "{pop.3}Les douze hétérozygotes A m en apportent un chacun : douze. Les homozygotes m m n'en apportent aucun.",
         "{pop.4}Vingt-cinq individus diploïdes, cela fait cinquante exemplaires du gène. Trente allèles A sur cinquante : "
@@ -301,7 +301,7 @@ SCENES = [
         "Et l'écart permet de la rechercher. Comme un thermomètre : on ne s'intéresse pas au trente-sept degrés, mais à la fièvre.",
         "{-ref}",
     ], vis={
-        "cond": dict(type="liste", titre="Les conditions du modèle (diapositives 11 et 12)", petit=True, items=[
+        "cond": dict(type="liste", titre="Les conditions du modèle (diapositives 11 et 12)", items=[
             "Population de taille infinie (en pratique, très grande)", "Espèce diploïde, à reproduction sexuée",
             "Panmixie : croisements au hasard", "Population isolée : pas de migration, pas de flux de gènes",
             "Pas de sélection naturelle", "Pas de mutation", "Pas de croisements entre générations"],
@@ -332,7 +332,7 @@ SCENES = [
         "Mais avant, entraîne-toi : deux exercices sur Hardy-Weinberg.",
         "{-fe}",
     ], vis={
-        "cau": dict(type="liste", titre="Condition non respectée → ce qui se passe (diapositive 14)", petit=True, items=[
+        "cau": dict(type="liste", titre="Condition non respectée → ce qui se passe (diapositive 14)", items=[
             "Absence de mutations → des mutations créent de nouveaux allèles",
             "Population isolée → migrations, flux de gènes ; barrières naturelles",
             "Absence de sélection → changement de climat, d'environnement, nouvelle espèce concurrente",
@@ -431,9 +431,9 @@ SCENES = [
         "{-q2}{act}Pour y répondre, l'activité un utilise un logiciel. {act.1}Il simule une population, et la fait se reproduire génération après génération. "
         "{act.2}On change un seul paramètre à la fois : la taille de la population, des mutations, des accouplements non aléatoires, "
         "ou un caractère plus avantageux. {act.3}Et on suit les fréquences sur une dizaine de générations, parce que les écarts s'observent dans le temps.",
-        "{-act}{gr_s1}Les courbes que tu vas voir sont des simulations qui reproduisent les scénarios de l'activité. "
+        "{-act}{gr_s1}{gr_s1.1}Les courbes que tu vas voir sont des simulations qui reproduisent les scénarios de l'activité. "
         "La classe n'a pas reçu de courbe corrigée : ce sont des résultats attendus, proposés. "
-        "{gr_s1.1}Scénario un, le témoin : mille individus, deux allèles à cinquante pour cent, pas de mutation, rencontres au hasard. "
+        "Scénario un, le témoin : mille individus, deux allèles à cinquante pour cent, pas de mutation, rencontres au hasard. "
         "La fréquence reste très proche de zéro virgule cinq, avec de toutes petites fluctuations. Aucun allèle ne disparaît.",
         "Dans une grande population, les conditions du modèle sont presque réunies : les fréquences restent à peu près constantes. Gardons ce témoin en tête.",
         "{-gr_s1}",
@@ -459,7 +459,7 @@ SCENES = [
         "Deux résultats opposés, avec le même point de départ. Rien n'a favorisé un allèle plutôt que l'autre : c'est le hasard.",
         "{-gr_s2}{d_der}C'est la {!dérive génétique}. {d_der.1}Un phénomène d'évolution aléatoire, dû au hasard de la reproduction et de la descendance. "
         "Et elle est beaucoup plus forte sur une petite population.",
-        "{-d_der}{d9}Le schéma de la diapositive vingt le montre. {d9.1}Une population de neuf individus. "
+        "{-d_der}{d9}{d9.1}Le schéma de la diapositive vingt le montre. Une population de neuf individus. "
         "{d9.2}À la première génération, seuls cinq individus se reproduisent, et ils n'ont pas le même nombre de descendants : deux, un, un, un et trois. "
         "Quatre individus ne laissent aucun descendant : leurs allèles sont perdus pour la génération suivante.",
         "{d9.3}La deuxième génération ne compte plus que huit individus, et les couleurs ne sont plus dans les mêmes proportions. "
@@ -481,7 +481,7 @@ SCENES = [
                       t="Un phénomène d'évolution aléatoire, dû au hasard de la reproduction et de la descendance. Elle est beaucoup plus forte sur une petite population.",
                       x=170, y=200, w=940),
         "d9": dict(type="illu", nom="derive9", x=110, y=96, w=1060, h=560),
-        "expl": dict(type="liste", titre="L'explication (diapositive 46)", petit=True, items=[
+        "expl": dict(type="liste", titre="L'explication (diapositive 46)", items=[
             "Dans une petite population, les allèles n'ont pas tous la même probabilité de se transmettre",
             "Transmettre à coup sûr tous ses allèles : il faudrait une infinité de descendants",
             "Il est statistiquement inévitable que certains allèles ne soient transmis à aucun enfant",
@@ -548,7 +548,7 @@ SCENES = [
         "{-cause}",
     ], vis={
         "gr_s3": gr_freq("Scénario 3 · effet fondateur : 9 individus, 20 % au départ (simulation)",
-                         [(S3a, "or", "lancement 1 : perdu", [5.5, .1]), (S3b, "sa", "lancement 2 : par hasard, il monte", [3.4, .9])], gens=11),
+                         [(S3a, "or", "lancement 1 : perdu", [5.5, .1]), (S3b, "sa", "lancement 2 : par hasard, il monte", [6.3, 1.0])], gens=11),
         "d_fond": dict(type="def", terme="Effet fondateur · diapositive 47", cles=["échantillon", "non", "représentatif"],
                        t="Une petite sous-population se sépare de la population initiale. Elle n'emporte qu'un échantillon non représentatif, tiré au hasard, des allèles de la population mère.",
                        etape="Ses fréquences peuvent être fort différentes ; l'écart est d'autant plus grand qu'elle est petite, et la dérive s'y ajoute.",
@@ -587,7 +587,7 @@ SCENES = [
             "Fréquence de l'allèle : q = 0,07 ; maladie exceptionnelle ailleurs",
             "Même mutation dans toutes les familles : un même couple d'immigrants"], marques=["1", "2", "3"], x=130, y=150, w=1020),
         "ham": dict(type="illu", nom="amish", x=150, y=100, w=980, h=540),
-        "exa": dict(type="liste", titre="Ce qu'on observe, et pourquoi", petit=True, items=[
+        "exa": dict(type="liste", titre="Ce qu'on observe, et pourquoi", items=[
             "Les deux communautés s'écartent de l'Europe, et diffèrent entre elles",
             "Effet fondateur : peu d'immigrants, un échantillon non représentatif",
             "Reproduction non aléatoire + petite taille (dérive)"], marques=["1", "2", "3"], x=150, y=170, w=980),
@@ -600,8 +600,8 @@ SCENES = [
         "{obs_o}Deuxième cas, diapositive trente et un : une carte de la proportion de personnes de groupe sanguin O dans les populations autochtones du monde. "
         "{obs_o.1}Elle est élevée presque partout : souvent cinquante à soixante-dix pour cent. "
         "{obs_o.2}Mais chez les populations amérindiennes, elle atteint quatre-vingt-dix à cent pour cent. En Amérique, presque tout le monde est de groupe O.",
-        "{-obs_o}{ber}La diapositive laisse la case de l'explication à remplir. Voici une explication possible, proposée sur le site. "
-        "{ber.1}En Asie, les trois allèles A, B et O sont présents. "
+        "{-obs_o}{ber}{ber.1}La diapositive laisse la case de l'explication à remplir. Voici une explication possible, proposée sur le site. "
+        "En Asie, les trois allèles A, B et O sont présents. "
         "{ber.2}L'Amérique a été peuplée par un petit nombre d'individus venus d'Asie, par la Béringie. "
         "Ce groupe fondateur portait, par hasard, une proportion très élevée de l'allèle O.",
         "{ber.3}Puis la dérive génétique a pu faire disparaître les allèles A et B dans plusieurs populations. "
@@ -667,9 +667,9 @@ SCENES = [
         "{fin_c.2}C'est le même raisonnement que pour les bactéries résistantes aux antibiotiques, vues en Première : l'antibiotique ne crée pas la résistance, il élimine les sensibles.",
         "{-fin_c}",
     ], vis={
-        "tab_cu": dict(type="tableau", img="ch3-culex", fond=True, sombre=True, de=[1.0, .5, .45], a=[1.2, .5, .42],
+        "tab_cu": dict(type="tableau", img="ch3-culex", fond=True, de=[1.0, .4, .56], a=[1.35, .42, .58],
                        legende="Culex pipiens, photo gbohne, CC BY-SA 2.0"),
-        "ctx": dict(type="liste", titre="Culex pipiens en Languedoc-Roussillon", petit=True, items=[
+        "ctx": dict(type="liste", titre="Culex pipiens en Languedoc-Roussillon", items=[
             "Depuis 1968 : insecticides organophosphorés sur les eaux où vivent les larves",
             "Gène Ace : AceR résiste mais ralentit le développement ; AceS ne protège pas",
             "Années 1990 : bien moins d'insecticide, et un autre produit, le téméphos"], marques=["1", "2", "3"], x=130, y=150, w=1020),
@@ -688,8 +688,8 @@ SCENES = [
     dict(id="comparer", chap="Dérive ou sélection ?", fond="foret", humeur="calme",
          retenir="Dérive : hasard, imprévisible, petites populations. Sélection : orientée par le milieu, reproductible, quelle que soit la taille.",
          beats=[
-        "{dvs}Un tableau à savoir refaire, parce qu'on te demandera souvent de reconnaître la force en jeu. "
-        "{dvs.g}À gauche, la dérive génétique, et l'effet fondateur qui lui est lié. Sa cause : le hasard de la reproduction. "
+        "{dvs}{dvs.g}Un tableau à savoir refaire, parce qu'on te demandera souvent de reconnaître la force en jeu. "
+        "À gauche, la dérive génétique, et l'effet fondateur qui lui est lié. Sa cause : le hasard de la reproduction. "
         "Sa direction : aléatoire, imprévisible. Deux populations identiques évoluent différemment. Elle est forte dans les petites populations. "
         "Exemples : les drosophiles de Buri, les Amish, le groupe O des Amérindiens.",
         "{dvs.1}À droite, la sélection naturelle. Sa cause : un avantage de survie ou de reproduction dans un milieu donné. "
@@ -739,7 +739,7 @@ SCENES = [
                       legende="naturaliste suédois · portrait par Alexander Roslin, 1775 (domaine public)"),
         "p_dar": dict(type="portrait", img="ch3-darwin", nom="Charles Darwin", dates="1809-1882", annee=1859,
                       legende="L'Origine des espèces, 1859 · photographie vers 1874 (domaine public)"),
-        "crit": dict(type="liste", titre="Trois critères, trois limites", petit=True, items=[
+        "crit": dict(type="liste", titre="Trois critères, trois limites", items=[
             "Phénotypique (ressemblance) · limite : le dimorphisme sexuel",
             "Biologique (interfécondité, descendance fertile) · limites : fossiles, reproduction asexuée, hybrides (fuligules)",
             "Moléculaire (séquences d'ADN) · Formica lugubris et F. paralugubris, séparées en 1996"],
@@ -811,7 +811,7 @@ SCENES = [
     dict(id="devenir", chap="Une espèce en devenir", fond="aube", humeur="lumiere",
          retenir="Une population suffisamment isolée génétiquement est une espèce en devenir. Les espèces sont des ensembles hétérogènes de populations, évoluant distinctement dans le temps.",
          beats=[
-        "{isp}Le bilan de la diapositive quarante-cinq relie tout le chapitre. {isp.1}L'environnement est, par définition, instable. "
+        "{isp}{isp.1}Le bilan de la diapositive quarante-cinq relie tout le chapitre. L'environnement est, par définition, instable. "
         "{isp.2}Imagine une population coupée en deux par une barrière.",
         "{isp.3}De chaque côté, la sélection et la dérive agissent, chacune à sa façon. Elles mènent à une différenciation génétique des populations au cours du temps.",
         "{isp.4}Conséquence possible : les populations ne peuvent plus échanger de gènes. Il n'y a plus de reproduction entre elles, "
@@ -837,12 +837,12 @@ SCENES = [
     dict(id="exo3", chap="Exercice 3 · type bac", fond="aube", humeur="tension", beats=[
         "{ex3}Dernier exercice, au format du bac. Une maladie génétique est due à un allèle récessif m : seuls les homozygotes m m sont malades. "
         "Dans une grande population, on supposera l'équilibre de Hardy-Weinberg. Une naissance sur deux mille cinq cents est atteinte.",
-        "{ex3b}Cinq questions. Un : calculer q, puis p. Deux : calculer la proportion de porteurs sains, les hétérozygotes. "
+        "{-ex3}{ex3b}Cinq questions. Un : calculer q, puis p. Deux : calculer la proportion de porteurs sains, les hétérozygotes. "
         "Trois : pourquoi a-t-on besoin du modèle pour l'estimer ? "
         "Quatre : dans une petite communauté isolée, fondée par quelques couples, la fréquence de m atteint zéro virgule zéro sept. "
         "Calculer la proportion de malades attendue, et expliquer l'écart avec la grande population. "
         "Cinq : on y observe en réalité encore plus de malades que prévu. Proposer une explication.",
-        "{-ex3}{-ex3b}{pa3}Vingt minutes, comme au bac. Mets sur pause, et rédige.",
+        "{-ex3b}{pa3}Vingt minutes, comme au bac. Mets sur pause, et rédige.",
         "{pa3.stop}{-pa3}{ex3c}{ex3c.q1}Correction. {s31}{s31.1}Les malades sont les m m : leur fréquence est q au carré. "
         "{s31.2}q au carré égale un sur deux mille cinq cents, quatre fois dix puissance moins quatre. "
         "{s31.3}Donc q égale la racine carrée : zéro virgule zéro deux. Et p égale zéro virgule quatre-vingt-dix-huit.",
