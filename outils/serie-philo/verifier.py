@@ -16,7 +16,7 @@ sys.path.insert(3, os.path.join(os.path.dirname(ICI), "serie-dnl"))
 MARQUE = re.compile(r"\{([-!#]?)([^{}]+)\}")
 TYPES = {"titre", "chapitre", "mot", "question", "nuage", "def", "note", "tag", "cit", "portrait", "cols", "cartes", "liste",
          "dialogue", "frise", "tableau", "illu", "carte", "frappe", "flash", "generique", "notion",
-         "anim", "formule", "graphe", "exo", "pause", "globe"}
+         "anim", "formule", "graphe", "exo", "pause", "jeu", "globe"}
 NOTIONS = {"l'art", "le bonheur", "la conscience", "le devoir", "l'état", "l'inconscient", "la justice", "le langage", "la liberté",
            "la nature", "la raison", "la religion", "la science", "la technique", "le temps", "le travail", "la vérité"}
 MOTS_PAR_S = 2.9       # débit du narrateur (calé sur l'épisode 1 : 13,6 min réelles)
@@ -50,7 +50,9 @@ def verifier(nom):
             elif b[0] == "C":
                 txt = b[1]
                 appel.add(b[2])
-                if b[2] not in vis:
+                if "." in b[2] and vis.get(b[2].split(".")[0], {}).get("type") == "jeu":
+                    pass   # réplique jouée sur le plateau : bulle de l'état k du visuel jeu (repère id.k)
+                elif b[2] not in vis:
                     err.append(f"[{sc['id']}] citation sans visuel : {b[2]}")
                 elif vis[b[2]].get("type") != "cit":
                     err.append(f"[{sc['id']}] le visuel {b[2]} d'une citation n'est pas de type cit")
@@ -137,7 +139,7 @@ def verifier(nom):
         if sc.get("retenir"):
             secondes += 3.8
     for q in ep.QUIZ:
-        if q.get("voir") and q["voir"] not in tous:
+        if q.get("voir") and q["voir"] not in tous and q["voir"].split(".")[0] not in tous:
             err.append(f"quiz : « voir » renvoie à un visuel inconnu : {q['voir']}")
         if not (0 <= q.get("ok", -1) < len(q.get("r", []))):
             err.append(f"quiz : réponse « ok » hors des choix : {q.get('q', '')[:40]}")
