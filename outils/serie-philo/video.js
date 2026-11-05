@@ -14,7 +14,7 @@ const code = process.argv[2], sortie = path.resolve(process.argv[3] || code + '.
 const sous = process.argv.includes('--sous');
 const FPS = 25, W = 1920, H = 1080, PARTS = 3;
 // épisode philo (philo/serie) ou vidéo de cours PC (pc/serie, où les animations du site sont pilotées image par image)
-const SITE = ['philo', 'pc', 'acl-lughnasa', 'dnl'].find(s => fs.existsSync(path.join(__dirname, '../../' + s + '/serie', code + '.data.js'))) || 'philo';
+const SITE = ['philo', 'pc', 'acl-lughnasa', 'dnl', 'svt'].find(s => fs.existsSync(path.join(__dirname, '../../' + s + '/serie', code + '.data.js'))) || 'philo';
 const URL = `http://localhost:8765/${SITE}/serie/${code}.html?export=1${sous ? '&sous=1' : ''}`;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'serie-'));
 
