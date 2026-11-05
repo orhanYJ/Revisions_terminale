@@ -486,10 +486,10 @@ SCENES = [
             "Pureté des gamètes (ségrégation, disjonction) : un seul allèle de chaque gène par gamète",
             "Dominance : l'allèle dominant masque le récessif, d'où l'uniformité de la F1",
             "Ségrégation indépendante : les allèles de gènes différents se répartissent indépendamment"]),
-        "frise_m": dict(type="frise", items=[
-            dict(nom="Mendel publie", d=1866, q="personne ne comprend"),
-            dict(nom="Redécouverte", d=1900, q="de Vries, Correns, Tschermak"),
-            dict(nom="Sutton et Boveri", d=1902, q="théorie chromosomique")]),
+        "frise_m": dict(type="liste", titre="D'où vient ce que tu apprends · hors programme", x=150, y=170, w=980, items=[
+            "1866 · Mendel publie : personne ne comprend ; il meurt en 1884",
+            "1900 · De Vries, Correns et Tschermak refont les expériences et exhument son article",
+            "1902 · Sutton et Boveri : théorie chromosomique de l'hérédité"]),
     }),
 
     # ================================================================ c1b · 3 · groupes sanguins
@@ -530,7 +530,8 @@ SCENES = [
         "{an_me1.3}{pts_me1.3}En métaphase un, les paires d'homologues se placent de part et d'autre du plan équatorial. Chaque paire dans une position aléatoire. "
         "C'est là que le brassage est préparé.",
         "{an_me1.4}{pts_me1.4}En anaphase un, les homologues de chaque paire se séparent et migrent vers des pôles opposés. La séparation des homologues entraîne celle des allèles. "
-        "C'est là que le brassage s'effectue. Ici, les deux chromosomes magenta partent ensemble.",
+        "C'est là que le brassage s'effectue. Ici, le grand et le petit chromosome magenta partent du même côté. "
+        "Tu remarques au passage que des morceaux de chromatides ont changé de couleur : c'est le crossing-over, l'autre brassage, qu'on verra juste après.",
         "{-pts_me1}{-an_me1}{an_me2}{pts_me2}Mais rien n'obligeait les paires à s'orienter ainsi. {an_me2.1}{pts_me2.1}Rejouons la métaphase un, avec l'autre orientation de la petite paire. "
         "{an_me2.2}{pts_me2.2}Cette fois, en anaphase un, chaque pôle reçoit un grand chromosome d'une couleur et un petit de l'autre. "
         "{an_me2.3}{pts_me2.3}Puis vient la méiose deux. Dans chacune des deux cellules, les chromatides sœurs se séparent, comme lors d'une mitose. "
@@ -694,8 +695,9 @@ SCENES = [
         "{-acc}{an_nd}{pts_nd}Premier accident : une mauvaise répartition des chromosomes. {an_nd.1}{pts_nd.1}Une cellule à deux n égale quatre entre en méiose. Le petit chromosome joue le rôle du chromosome vingt et un. "
         "{an_nd.2}{pts_nd.2}En métaphase un, les paires sont en place, comme d'habitude.",
         "{an_nd.3}{pts_nd.3}Mais en anaphase un, les deux homologues de la paire vingt et un partent vers le même pôle. C'est une mauvaise disjonction, en anaphase un. "
-        "{an_nd.4}Après la méiose deux, les quatre gamètes sont anormaux : deux en ont un en trop, n plus un, et deux un en moins, n moins un.",
-        "{an_nd.5}{pts_nd.4}Si un gamète n plus un est fécondé par un gamète normal, la cellule-œuf a trois chromosomes vingt et un : quarante-sept chromosomes. C'est une trisomie vingt et un.",
+        "{an_nd.4}La cellule se divise : l'une des deux cellules filles a reçu les deux chromosomes vingt et un, l'autre aucun. "
+        "{an_nd.5}Puis la méiose deux sépare les chromatides. Les quatre gamètes sont anormaux : deux en ont un en trop, n plus un, et deux un en moins, n moins un.",
+        "{an_nd.6}{pts_nd.4}Si un gamète n plus un est fécondé par un gamète normal, la cellule-œuf a trois chromosomes vingt et un : quarante-sept chromosomes. C'est une trisomie vingt et un.",
         "{-pts_nd}{-an_nd}{an_nd2}{pts_nd2}L'erreur peut aussi survenir plus tard. {an_nd2.1}{pts_nd2.1}Cette fois, l'anaphase un se passe bien : chaque pôle reçoit un chromosome de chaque paire. "
         "{an_nd2.2}{pts_nd2.2}C'est en méiose deux que les deux chromatides d'un chromosome vingt et un restent ensemble, et partent vers le même pôle, dans une seule des deux cellules. "
         "{an_nd2.3}{pts_nd2.3}Résultat : deux gamètes anormaux, un n plus un et un n moins un, et deux gamètes normaux.",
@@ -714,7 +716,7 @@ SCENES = [
         "acc": dict(type="liste", titre="Les accidents génétiques : rares, aléatoires", x=150, y=180, w=980, items=[
             "Le plus souvent néfastes : fausses couches, syndromes, maladies",
             "Parfois source de gènes nouveaux : un moteur de l'évolution"]),
-        "an_nd": dict(type="anim", nom="nondisj", x=40, y=72, h=624, seg=[[0, 5.9], [6, 12.9], [13, 20.9], [21, 44.9], [45, 65.5]]),
+        "an_nd": dict(type="anim", nom="nondisj", x=40, y=72, h=624, seg=[[0, 5.9], [6, 12.9], [13, 20.9], [21, 27.9], [28, 44.9], [45, 65.5]], vit=1.2),
         "pts_nd": dict(type="liste", petit=True, titre="Erreur en anaphase I", x=680, y=110, w=560, items=[
             "2n = 4 : le petit chromosome joue le 21", "Métaphase I : les paires en place",
             "Anaphase I : la paire 21 migre vers le même pôle", "Fécondation : 47 chromosomes, trisomie 21"]),
@@ -744,13 +746,14 @@ SCENES = [
         "C'est le cas de la trisomie quatorze, et de toutes les monosomies qui portent sur les autosomes. "
         "{viab.2}Quelques-unes sont viables, mais avec des symptômes : la trisomie vingt et un, ou les anomalies des chromosomes sexuels, comme le caryotype X X Y, le syndrome de Klinefelter. "
         "{viab.3}Les fréquences de ton tableau ne viennent pas du cours : le document de l'exposé était resté vide. Par exemple, une naissance sur sept cents à mille pour la trisomie vingt et un, sans dépistage.",
-        "{-viab}{tab_k21}Voici un caryotype de trisomie vingt et un : compte les chromosomes de la paire vingt et un. Il y en a trois. Quarante-sept chromosomes. "
-        "{t21}{t21.1}Le plus souvent, l'erreur s'est produite pendant la méiose d'un des parents, en anaphase un ou deux, et le gamète n plus un a été fécondé. "
+        "{-viab}{tab_k21}Voici les chromosomes d'une cellule de personne trisomique, photographiés au microscope pendant une division, avant d'être rangés. "
+        "{-tab_k21}{k21}Rangés par paires, de la plus grande à la plus petite, ils forment le caryotype. {k21.1}Compte ceux de la paire vingt et un : il y en a trois. Quarante-sept chromosomes.",
+        "{-k21}{t21}{t21.1}Le plus souvent, l'erreur s'est produite pendant la méiose d'un des parents, en anaphase un ou deux, et le gamète n plus un a été fécondé. "
         "{t21.2}Le phénotype : un visage caractéristique, des doigts courts, une nuque plate et épaisse, une hyperlaxité des articulations, "
         "une déficience intellectuelle d'intensité variable, et souvent une malformation cardiaque.",
         "{t21.3}Le diagnostic peut se faire avant la naissance : l'amniocentèse prélève du liquide amniotique, qui contient des cellules du fœtus. "
         "On en établit le caryotype, et on compte les chromosomes vingt et un.",
-        "{-t21}{-tab_k21}{age}Hors programme : pourquoi le risque augmente-t-il avec l'âge de la mère ? Le plus souvent, le chromosome en trop vient de l'ovocyte, et l'erreur date de la méiose un. "
+        "{-t21}{age}Hors programme : pourquoi le risque augmente-t-il avec l'âge de la mère ? Le plus souvent, le chromosome en trop vient de l'ovocyte, et l'erreur date de la méiose un. "
         "Chez la femme, la méiose un commence avant la naissance, puis s'arrête en prophase un. Elle ne reprend qu'à l'ovulation, parfois quarante ans plus tard. "
         "Pendant ce temps, les protéines qui tiennent les homologues ensemble s'usent.",
         "{-age}{turner}Un exemple de monosomie viable : le syndrome de Turner. {turner.1}Il ne touche que les filles. Leur caryotype n'a qu'un seul chromosome X, sans second chromosome sexuel. "
@@ -770,8 +773,9 @@ SCENES = [
             "Non viables : trisomie 14, monosomies d'autosomes → fausse couche",
             "Viables avec symptômes : trisomie 21, XXY (Klinefelter), X0 (Turner)",
             "Fréquences (sources médicales, hors cours) : trisomie 21 ≈ 1 naissance sur 700 à 1 000"]),
-        "tab_k21": dict(type="tableau", img="ch1-caryotype21", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .62, .62],
-                        legende="Caryotype 47, XY, +21, Doc. Josef Reischig, CC BY-SA 3.0 (Wikimedia Commons)"),
+        "tab_k21": dict(type="tableau", img="ch1-caryotype21", de=[1.0, .5, .5], a=[1.15, .62, .62],
+                        legende="Chromosomes d'une cellule 47, XY, +21 en métaphase, Doc. Josef Reischig, CC BY-SA 3.0 (Wikimedia Commons)"),
+        "k21": dict(type="illu", nom="caryo21", x=140, y=90, w=1000, h=600),
         "t21": dict(type="liste", titre="La trisomie 21", x=150, y=150, w=980, items=[
             "Génotype : un chromosome 21 en plus, 47 chromosomes",
             "Phénotype : visage caractéristique, doigts courts, hyperlaxité, déficience intellectuelle variable, souvent malformation cardiaque",
@@ -974,11 +978,12 @@ SCENES = [
     dict(id="amylase", chap="Duplications et avantage sélectif", fond="aube", humeur="calme",
          retenir="AMY1 : plusieurs copies identiques ; plus de copies, plus d'amylase. Régime riche en amidon → pression de sélection → plus de copies en moyenne. Jamais l'inverse, jamais « pour ».",
          beats=[
-        "{il_amy}Les duplications peuvent-elles être avantageuses ? L'exemple du cours : l'amylase salivaire, une enzyme qui commence la digestion de l'amidon dès la bouche. "
-        "Sa quantité dans la salive varie beaucoup d'un individu à l'autre : on l'a vu en analysant la salive de cinquante personnes. "
-        "Les banques de données détectent trois gènes de l'amylase salivaire, AMY un, aux séquences codantes identiques : trois copies d'un même gène, issues de duplications.",
-        "{il_amy.1}Et chez les individus étudiés, le nombre de copies n'est pas le même. {il_amy.2}Un individu en a peu, {il_amy.3}un autre beaucoup. "
+        "{amy_doc}Les duplications peuvent-elles être avantageuses ? {amy_doc.1}L'exemple du cours : l'amylase salivaire, une enzyme qui commence la digestion de l'amidon dès la bouche. "
+        "{amy_doc.2}Sa quantité dans la salive varie beaucoup d'un individu à l'autre : on l'a vu en analysant la salive de cinquante personnes. "
+        "{amy_doc.3}Les banques de données détectent trois gènes de l'amylase salivaire, AMY un, aux séquences codantes identiques : trois copies d'un même gène, issues de duplications.",
+        "{-amy_doc}{il_amy}{il_amy.1}Et chez les individus étudiés, le nombre de copies n'est pas le même. {il_amy.2}Un individu en a peu, {il_amy.3}un autre beaucoup. "
         "{il_amy.4}Plus un individu possède de copies, plus il produit d'amylase.",
+        ("P", 1.5),
         "{-il_amy}{sel}Ce lien a une portée évolutive. Les populations à l'alimentation traditionnellement riche en amidon, céréales ou tubercules, ont en moyenne plus de copies que les autres. "
         "Cette comparaison de populations, publiée en deux mille sept, vient de sources extérieures au cours. Le raisonnement est celui de la sélection naturelle. "
         "{sel.1}Les duplications d'AMY un sont survenues au hasard, par accident génétique : le nombre de copies varie entre individus. "
@@ -989,6 +994,10 @@ SCENES = [
         "Et jamais de formulation finaliste : les gènes ne se sont pas dupliqués pour digérer l'amidon.",
         "{-causal}",
     ], vis={
+        "amy_doc": dict(type="liste", titre="L'amylase salivaire", x=130, y=160, w=1020, items=[
+            "Une enzyme qui commence la digestion de l'amidon dès la bouche",
+            "Sa quantité varie beaucoup d'un individu à l'autre (salive de 50 personnes)",
+            "Trois gènes AMY1 aux séquences codantes identiques : des copies issues de duplications"]),
         "il_amy": dict(type="illu", nom="amylase", x=140, y=100, w=1000, h=560),
         "sel": dict(type="liste", titre="Le raisonnement de la sélection naturelle", x=130, y=150, w=1020, items=[
             "Duplications au hasard : le nombre de copies d'AMY1 varie entre individus",
@@ -1005,7 +1014,8 @@ SCENES = [
          beats=[
         "{tab_chimp}Dernier rôle des accidents : la naissance des espèces. Comparons les caryotypes de l'humain, deux n égale quarante-six, et du chimpanzé, deux n égale quarante-huit.",
         "{-tab_chimp}{il_fus}Leurs chromosomes sont très semblables, bande par bande. {il_fus.1}Mais ils diffèrent par plusieurs remaniements. "
-        "{il_fus.2}Une fusion : deux chromosomes distincts chez le chimpanzé correspondent à un seul chez l'humain, le chromosome deux. {il_fus.3}C'est ce qui explique le passage de quarante-huit à quarante-six.",
+        "Une fusion : ces deux chromosomes distincts du chimpanzé, {il_fus.2}soudés bout à bout, correspondent à un seul chromosome chez l'humain, le chromosome deux. "
+        "{il_fus.3}C'est ce qui explique le passage de quarante-huit à quarante-six.",
         "{il_fus.4}Des inversions : un segment s'est retourné, et l'ordre des gènes y est inversé. Et enfin, des additions de portions d'ADN sur certains chromosomes.",
         "{-il_fus}{mots_sp}Trois mots clés. {mots_sp.1}Un remaniement chromosomique : une modification de la structure des chromosomes, fusion, inversion, translocation, addition ou perte d'un segment. "
         "{mots_sp.2}Une barrière entre populations : un obstacle qui empêche les échanges génétiques entre deux groupes d'une même espèce. Géographique, une montagne, un bras de mer, ou génétique. "
@@ -1071,11 +1081,11 @@ SCENES = [
         "seq": dict(type="liste", titre="Une technique devenue rapide et bon marché", x=130, y=140, w=1020, items=[
             "Séquencer : lire l'enchaînement exact des nucléotides", "Premier génome humain : avril 2003, Human Genome Project",
             "> 70 M€ (2001) → ≈ 5 000 € (2013) → < 1 000 $ en quelques heures (2019)"]),
-        "pour": dict(type="liste", titre="Pour", x=110, y=100, w=1060, petit=True, marques=["+", "+", "+", "+", "+"], items=[
+        "pour": dict(type="liste", titre="Pour", x=130, y=110, w=1020, marques=["+", "+", "+", "+", "+"], items=[
             "Trouver les gènes des maladies (bases de données mondiales)", "Prédire : mucoviscidose, CFTR, ΔF508 (66 %), risque 1/4",
             "Dépister et prévenir : test BRCA1, Angelina Jolie (2013)", "DPI et DPN : éviter une maladie grave",
             "Justice : le FNAEG établit ou exclut un rapprochement"]),
-        "contre": dict(type="liste", titre="Contre", x=110, y=90, w=1060, petit=True, marques=["−", "−", "−", "−", "−", "−"], items=[
+        "contre": dict(type="liste", titre="Contre", x=130, y=90, w=1020, marques=["−", "−", "−", "−", "−", "−"], items=[
             "Le génotype ignore l'environnement et le microbiote", "Erreurs : 23andMe (2010), 11 erreurs judiciaires aux États-Unis",
             "Données mal protégées, marchandisation", "Dérive eugénique : l'« enfant parfait », le choix du sexe",
             "Fichage : 1,5 million de personnes en France", "Brevets sur les gènes : Myriad Genetics, tranché en 2013"]),
@@ -1092,9 +1102,9 @@ SCENES = [
         "On croise deux lignées pures, l'une à fruits rouges et ronds, l'autre à fruits jaunes et allongés. Toute la F1 a des fruits rouges et ronds.",
         "Puis on réalise un test-cross de la F1. Sur mille plantes : quatre cent douze à fruits rouges et ronds, trois cent quatre-vingt-dix-huit jaunes et allongés, "
         "quatre-vingt-douze rouges et allongés, quatre-vingt-dix-huit jaunes et ronds.",
-        "{exb.1}Quatre questions. Un : quels allèles sont dominants ? Écris le génotype de la F1. Deux : pourquoi faire un test-cross, et avec quel partenaire ? "
-        "{exb.2}Trois : les deux gènes sont-ils indépendants ou liés ? Justifie avec des pourcentages. "
-        "{exb.3}Quatre : explique, par un schéma de la méiose, l'origine des fruits rouges et allongés.",
+        "Quatre questions. {exb.1}Un : quels allèles sont dominants ? Écris le génotype de la F1. {exb.2}Deux : pourquoi faire un test-cross, et avec quel partenaire ? "
+        "{exb.3}Trois : les deux gènes sont-ils indépendants ou liés ? Justifie avec des pourcentages. "
+        "{exb.4}Quatre : explique, par un schéma de la méiose, l'origine des fruits rouges et allongés.",
         "{-exb}{pa_exb}Prends quinze minutes. Mets sur pause, et rédige.",
         "{pa_exb.stop}{-pa_exb}{exbc}{exbc.q1}Correction. {s1}{s1.1}Question un : la F1 issue de deux lignées pures est uniforme, à fruits rouges et ronds. "
         "Rouge et rond sont donc dominants. {s1.2}La F1 est double hétérozygote. Si les gènes sont liés, on l'écrit R L sur r l, les deux allèles de chaque parent du même côté de la double barre.",
@@ -1108,14 +1118,14 @@ SCENES = [
         "Comme le crossing-over ne se produit pas dans toutes les cellules, ces recombinés restent minoritaires.",
         "{-s4}{-exbc}",
     ], vis={
-        "exb": dict(type="exo", niveau="bac", y=70, titre="Couleur et forme du fruit", src="Exercice inventé pour la vidéo, sur le modèle des TP 2 et 3",
+        "exb": dict(type="exo", niveau="Exercice type bac", y=70, titre="Couleur et forme du fruit", src="Exercice inventé pour la vidéo, sur le modèle des TP 2 et 3",
                     enonce=["Lignée pure [rouge ; rond] × lignée pure [jaune ; allongé] → F1 100 % [rouge ; rond].",
                             "Test-cross de la F1, 1 000 plantes : 412 [rouge ; rond], 398 [jaune ; allongé], 92 [rouge ; allongé], 98 [jaune ; rond]."],
                     questions=["Allèles dominants, génotype de la F1.", "Pourquoi un test-cross ? Avec quel partenaire ?",
                                "Gènes indépendants ou liés ? Justifier par des pourcentages.",
                                "Expliquer par un schéma l'origine des plantes [rouge ; allongé]."]),
         "pa_exb": dict(type="pause", t="Dominance, test-cross, gènes liés ou non, schéma du crossing-over."),
-        "exbc": dict(type="exo", mode="coin", niveau="bac", titre="Couleur et forme du fruit",
+        "exbc": dict(type="exo", mode="coin", niveau="Exercice type bac", titre="Couleur et forme du fruit",
                      donnees=["F1 [rouge ; rond]", "412 · 398 · 92 · 98 sur 1 000"],
                      questions=["Dominance, génotype F1 ?", "Pourquoi un test-cross ?", "Indépendants ou liés ?", "Origine des [rouge ; allongé] ?"]),
         "s1": dict(type="formule", titre="1 · Dominance et génotype", x=540, y=170, w=700, lignes=[
@@ -1148,7 +1158,9 @@ SCENES = [
         "{-bac}{schemas}Et les schémas étoilés de Mme Philip, à savoir refaire sans modèle. {schemas.1}Le cycle méiose, fécondation. {schemas.2}Le brassage interchromosomique. "
         "{schemas.3}Le crossing-over. {schemas.4}La mauvaise disjonction, en anaphase un et en anaphase deux. {schemas.5}Le crossing-over inégal. "
         "{schemas.6}Et la famille multigénique, avec les opsines.",
-        "{-schemas}{carte_f}Reprends maintenant la carte. Le chapitre un, ce sont des transferts verticaux. {carte_f.1}Des mitoses qui conservent le génome et ses accidents, "
+        "{-schemas}",
+        ("P", 0.8),
+        "{carte_f}Reprends maintenant la carte. Le chapitre un, ce sont des transferts verticaux. {carte_f.1}Des mitoses qui conservent le génome et ses accidents, "
         "une méiose et une fécondation qui le brassent, des accidents qui l'enrichissent, et une technique qui permet de le lire.",
         "Le chapitre deux ouvre une autre voie, plus surprenante : des gènes échangés entre organismes non apparentés. Les transferts horizontaux. "
         "En attendant, les questions du quiz t'attendent, juste sous la vidéo.",
@@ -1200,7 +1212,7 @@ QUIZ = [
 CREDITS = [
     "Photos (Wikimedia Commons) : Pando, Mx. Granger, CC0 ; chatte écaille de tortue, Kiiro, CC BY-SA 4.0 ; "
     "Gregor Mendel, photo publiée par Hugo Iltis, CC BY 4.0 ; fleur de pois, Dyorkey, CC BY-SA 3.0 ; "
-    "tubes de drosophiles, Masur, CC BY-SA 4.0 ; caryotype 47, XY, +21, Josef Reischig, CC BY-SA 3.0 ; chimpanzé, Tony Hisgett, CC BY 2.0 ; séquenceur Illumina MiSeq, Konrad Förstner, CC BY 2.0.",
+    "tubes de drosophiles, Masur, CC BY-SA 4.0 ; chromosomes d'une cellule 47, XY, +21, Josef Reischig, CC BY-SA 3.0 ; chimpanzé, Tony Hisgett, CC BY 2.0 ; séquenceur Illumina MiSeq, Konrad Förstner, CC BY 2.0.",
     "Animations et schémas : faits pour le site. Exercice type bac inventé pour la vidéo. "
     "Fréquences des trisomies, trisomie 21 par translocation, comparaison des populations pour AMY1 : sources extérieures au cours, signalées.",
 ]

@@ -100,7 +100,7 @@
   SERIE_ILLU.echiquier = function (s, v) {
     init();
     var W = v.w, H = v.h, g = sv("g", {}, s), nc = v.col.length, nl = v.lig.length;
-    var cw = Math.min(250, (W - 200) / nc), ch = Math.min(116, (H - 190) / nl), x0 = (W - cw * nc) / 2 + 60, y0 = 120;
+    var cw = Math.min(270, (W - 200) / nc), ch = Math.min(138, (H - 190) / nl), x0 = (W - cw * nc) / 2 + 60, y0 = Math.max(120, (H - nl * ch) / 2);
     var ti = lab(g, W / 2, 40, v.titre || "", { fs: 30, c: C.iv, fw: 700, cls: "ser" });
     var coin = sv("g", {}, g);
     boite(coin, x0 - 130, y0 - 74, 126, 70, { f: "rgba(183,217,76,.08)", s: "rgba(183,217,76,.35)", r: 10 });
@@ -170,7 +170,7 @@
         var p = EIO(P(t, k1 + i * .35, 1.1)), hh = (y0 - Y(b.pc)) * p;
         b.r.setAttribute("y", (y0 - hh).toFixed(1)); b.r.setAttribute("height", hh.toFixed(1));
         b.val.setAttribute("y", (y0 - hh - 12).toFixed(1));
-        b.val.textContent = p > .05 ? b.eff + " · " + (b.pc * p).toFixed(v.dec != null ? v.dec : (b.pc % 1 ? 1 : 0)).replace(".", ",") + " %" : "";
+        b.val.textContent = p > .05 ? b.eff + " · " + b.pc.toFixed(v.dec != null ? v.dec : (b.pc % 1 ? 1 : 0)).replace(".", ",") + " %" : "";
         var col = t >= k3 ? (b.c[2] === "p" ? CYA : b.c[2] === "r" ? OR : "rgba(183,217,76,.55)") : "rgba(183,217,76,.55)";
         b.r.setAttribute("fill", col); b.r.setAttribute("fill-opacity", t >= k3 ? .8 : 1);
         op(b.ty, E(P(t, k3 + .3, .6)));
@@ -191,7 +191,7 @@
     boite(par, px - 60, py, 460, 250, { r: 18 });
     var c14 = chromo(par, px + 20, py + 40, L14, MAG, 22); lab(par, px + 20, py + 222, "14", { fs: 22, c: C.iv });
     var c21 = chromo(par, px + 90, py + 120, L21, CYA, 22); lab(par, px + 90, py + 222, "21", { fs: 22, c: C.iv });
-    var f14 = chromo(par, px + 230, py + 40, L14, MAG, 22);
+    var f14 = chromo(par, px + 230, py + 20, L14, MAG, 22);
     var mob = chromo(par, 0, 0, L21, CYA, 22);
     var tf = lab(par, px + 262, py + 120, "« 14-21 »", { fs: 22, c: OR, fw: 700, ancre: "start" });
     var bilan = lab(par, px + 170, py + 282, "45 chromosomes, tous les gènes en double : porteur sain", { fs: 21, c: C.iv2 });
@@ -223,7 +223,7 @@
     return function (t, st) {
       op(ti, E(P(st.tl, 0, .6))); op(par, E(P(st.tl, .2, .6)));
       var k1 = et(v, "1", 1), u = EIO(P(t, k1, 1.6));
-      var x = (px + 90) + (px + 230 - px - 90) * u, y = (py + 120) + (py + 40 + L14 - 4 - py - 120) * u;
+      var x = (px + 90) + (px + 230 - px - 90) * u, y = (py + 120) + (py + 20 + L14 - 4 - py - 120) * u;
       mob.setAttribute("transform", "translate(" + x.toFixed(1) + " " + y.toFixed(1) + ")");
       op(mob, E(P(t, k1, .4))); op(tf, E(P(t, k1 + 1.4, .6))); op(bilan, E(P(t, k1 + 1.8, .6)));
       op(f14, E(P(t, k1, .4)));
@@ -374,13 +374,54 @@
     lab(sans, W / 2, 476, "Sans p53 fonctionnelle : ni arrêt, ni apoptose", { fs: 26, c: ROUGE, fw: 800 });
     lab(sans, W / 2, 516, "la cellule endommagée se divise et accumule les mutations suivantes", { fs: 22, c: C.iv });
     var barre = sv("path", { d: "M" + (W * .1) + " 290 L" + (W * .9) + " 400", stroke: ROUGE, "stroke-width": 7, "stroke-linecap": "round" }, g);
+    var norm = sv("g", {}, g);
+    boite(norm, W / 2 - 330, 170, 660, 150, { s: CYA });
+    lab(norm, W / 2, 222, "En temps normal", { fs: 22, c: C.iv2 });
+    lab(norm, W / 2, 262, "p53 maintenue très basse :", { fs: 27, c: CYA, fw: 700 });
+    lab(norm, W / 2, 298, "mdm2 l'envoie en permanence à la destruction", { fs: 23, c: C.iv });
     var k = [1, 2, 3, 4, 5].map(function (i) { return et(v, String(i), .4 + (i - 1) * 1.6); });
-    return function (t) {
+    return function (t, st) {
+      op(norm, E(P(st.tl, .2, .7)) * (1 - E(P(t, k[0] - .2, .5))));
       op(n1, E(P(t, k[0], .6))); f1.maj(EIO(P(t, k[1], .6))); op(n2, E(P(t, k[1] + .3, .6)));
       f2.maj(EIO(P(t, k[2], .7))); op(n3, E(P(t, k[2] + .3, .6)));
       f3.maj(EIO(P(t, k[3], .7))); op(n4, E(P(t, k[3] + .3, .6)));
       trace(barre, EIO(P(t, k[4], .6))); op(sans, E(P(t, k[4] + .4, .6)));
       [n3, n4].forEach(function (n) { if (t >= k[4]) op(n, .35); });
+    };
+  };
+
+  /* ------------------------------------------------------------------ caryotype schématique 47, XY, +21
+     les 23 paires rangées par taille décroissante ; {id.1} la paire 21 s'allume (trois chromosomes) */
+  SERIE_ILLU.caryo21 = function (s, v) {
+    init();
+    var W = v.w, H = v.h, g = sv("g", {}, s);
+    var ti = lab(g, W / 2, 34, "Caryotype schématique : 47, XY, +21", { fs: 28, c: C.iv, fw: 700, cls: "ser" });
+    var LONG = [248, 242, 198, 190, 181, 171, 159, 145, 138, 134, 135, 133, 114, 107, 102, 90, 83, 80, 59, 64, 47, 51];
+    var RANGS = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18], [19, 20, 21, 22, "XY"]];
+    var k = 0.42, hl = null, items = [];
+    RANGS.forEach(function (r, ri) {
+      var yb = 60 + (ri + 1) * 118, pas = (W - 80) / r.length;
+      r.forEach(function (n, i) {
+        var x = 40 + pas * (i + .5), gg = sv("g", {}, g), nb = n === 21 ? 3 : 2;
+        var Ls = n === "XY" ? [LONG[6] * k, 58 * k] : [LONG[n - 1] * k, LONG[n - 1] * k];
+        if (nb === 3) Ls.push(Ls[0]);
+        Ls.forEach(function (L, j) {
+          var xx = x + (j - (nb - 1) / 2) * 16;
+          sv("rect", { x: xx - 6, y: yb - L, width: 12, height: L, rx: 6, fill: n === 21 ? "#ffd24a" : "#c9c3a8" }, gg);
+          sv("rect", { x: xx - 6, y: yb - L * .62, width: 12, height: 3, fill: "rgba(8,17,9,.6)" }, gg);
+        });
+        lab(gg, x, yb + 24, String(n), { fs: 17, c: n === 21 ? "#ffd24a" : C.iv2, fw: n === 21 ? 800 : 500 });
+        if (n === 21) { hl = sv("rect", { x: x - 36, y: yb - 50, width: 72, height: 84, rx: 10, fill: "none", stroke: "#ffd24a", "stroke-width": 3 }, g); }
+        items.push({ g: gg, i: items.length });
+      });
+    });
+    var bas = lab(g, W / 2, H - 6, "trois chromosomes 21 : 47 chromosomes", { fs: 24, c: "#ffd24a", fw: 700 });
+    var k1 = et(v, "1", 3);
+    return function (t, st) {
+      op(ti, E(P(st.tl, 0, .6)));
+      items.forEach(function (it) { op(it.g, E(P(st.tl, .3 + it.i * .06, .4))); });
+      op(hl, E(P(t, k1, .5)) * (0.7 + 0.3 * Math.sin((t - k1) * 4)));
+      op(bas, E(P(t, k1 + .3, .6)));
     };
   };
 })();
