@@ -34,16 +34,15 @@ NOTION = "Totalitarian Regimes"
 NUM = 5
 TITRE = "Mass terror"
 SUIVANT = "Episode 6 · Hegemonic ambitions"
-PRONONCIATION = {"Gulag": "Goo-lag", "Holodomor": "Kho-lo-do-mor", "kulaks": "koo-laks", "kulak": "koo-lak",
+PRONONCIATION = {"Il Duce ha sempre ragione": "Eel Doo-chay ah sem-preh ra-jo-neh", "Biennio Rosso": "Bee-en-nyo Ross-o",
+                 "Gulag": "Goo-lag", "Holodomor": "Kho-lo-do-mor", "kulaks": "koo-laks", "kulak": "koo-lak",
                  "Yezhov": "Yeh-zhoff", "Kirov": "Kee-roff", "Zinoviev": "Zee-noh-vyeff", "Kamenev": "Kah-meh-nyeff",
                  "Rykov": "Ree-koff", "Beria": "Bair-ee-ya", "OVRA": "Oh-vrah", "OGPU": "O G P U", "NKVD": "N K V D",
                  "Matteotti": "Mat-teh-ot-tee", "Himmler": "Him-ler", "Dachau": "Dakh-ow", "Reichstag": "Rikes-tahg",
                  "Reichsmarks": "Rikes-marks", "Hergé": "Air-zhay", "confino": "con-fee-no", "Lipari": "Lee-pa-ree",
                  "Arendt": "Ah-rent", "Duce": "Doo-chay", "Führer": "Fyoo-rer", "Balilla": "Ba-lee-la",
-                 "Komsomol": "Kom-so-mol", "squadristi": "skwa-dree-stee", "Biennio Rosso": "Bee-en-nyo Ross-o",
-                 "Hindenburg": "Hin-den-burg", "Lebensraum": "Lay-bens-rowm", "Cyrenaica": "Sigh-reh-nay-ika",
-                 "Mussolini": "Moos-so-lee-nee", "Trotsky": "Trot-ski", "Stalinism": "Stah-lin-ism",
-                 "Il Duce ha sempre ragione": "Eel Doo-chay ah sem-preh ra-jo-neh"}
+                 "Komsomol": "Kom-so-mol", "squadristi": "skwa-dree-stee", "Hindenburg": "Hin-den-burg",
+                 "Lebensraum": "Lay-bens-rowm", "Cyrenaica": "Sigh-reh-nay-ika"}
 
 SCENES = [
     # ================================================================ ouverture

@@ -86,8 +86,7 @@ SCENES = [
         "{g1.2}Meanwhile, in Rome, Mussolini has been in power since 1922. In 1924, the socialist deputy Matteotti is kidnapped and murdered. "
         "In January 1925, Mussolini claims responsibility, and the fascistissime laws turn Italy into a totalitarian State.",
         "{g1.3}Now the Soviet Union, where Stalin rules from 1924. In 1928, he launches the first Five-Year Plan: "
-        "industry, and the forced collectivisation of the countryside. Seven per cent of peasant households are collectivised in 1928. "
-        "Ninety per cent in 1936.",
+        "industry, and the forced collectivisation of the countryside.",
         "{g1.4}Back to Italy. In 1929, Mussolini signs an agreement with the Pope: the Lateran Accords. "
         "And Fascism is not racist… until 1938, when Mussolini allies with Hitler.",
     ], vis={
@@ -189,9 +188,8 @@ SCENES = [
         "{-tot}{cl}Idea four: Fascism divides humanity into nations, not classes. {cl.g}Marxism says: society is divided into classes in struggle. {cl.d}Fascism says the opposite: what divides humanity is nations, and inside the nation, all classes must be united "
         "under the State. So the Doctrine attacks Socialism, which{-cl}",
         ("C", "confines the movement of history within the class struggle", "c_doc2"),
-        "{-c_doc2}{own}Class struggle is banned, not encouraged. {own.1}That is why Fascism attracted owners frightened by socialism: "
-        "it promised national unity instead of revolution.",
-        "{-own}{contre}Idea five. For Monsieur Ros, Fascism is the first totalitarianism, and it is defined by what it rejects. "
+        "{-c_doc2}Class struggle is banned: which is why owners frightened by socialism liked Fascism. "
+        "{contre}Idea five. For Monsieur Ros, Fascism is the first totalitarianism, and it is defined by what it rejects. "
         "{contre.1}It rejects parliamentarism, the rule of elected assemblies. {contre.2}It does not believe in human rights. "
         "{contre.3}It is against liberalism and against Marxism alike. {contre.4}And it is nationalist and militaristic.",
         "{-contre}{ind}Where liberalism starts from the individual and his rights, Fascism starts from the State, "
@@ -207,9 +205,6 @@ SCENES = [
         "cl": dict(type="cols", g="Marxism", gq="society divided into classes, locked in struggle", d="Fascism",
                    dq="humanity divided into nations; all classes united under the State", vs="≠", repere="Idea 4: nations, not classes"),
         "c_doc2": dict(type="cit", a="Mussolini and Gentile", o="The Doctrine of Fascism, 1932, on Socialism", x=200, y=220, w=880),
-        "own": dict(type="note", terme="Why owners liked it", cles=["owners", "unity"],
-                    t="Class struggle banned: national unity instead of revolution.",
-                    etape="Owners frightened by socialism rallied to Fascism", x=170, y=200, w=940),
         "contre": dict(type="liste", titre="Idea 5 · the first totalitarianism is against…", cles=["parliamentarism", "rights", "liberalism", "nationalist"], items=[
             "Parliamentarism: the rule of elected assemblies", "Human rights: it does not believe they exist",
             "Liberalism and Marxism alike", "… and it is nationalist and militaristic"], x=170, y=140, w=940),
@@ -286,9 +281,8 @@ SCENES = [
         "{gc.1}{gc.2}{gc.3}{gc.4}{gc.5}In 1928: seven per cent. {gc.6}In 1929: fifteen per cent. "
         "{gc.7}In 1930: fifty-seven per cent. {gc.8}And in 1936: ninety per cent.",
         "{gc.9}Look at the leap between 1929 and 1930: from fifteen to fifty-seven per cent in a year. "
-        "That is the leap of coercion, not of consent. It is also the moment when peasants slaughtered their livestock rather than hand it over.",
-        "{-gc}{att2}{att2.1}A detail to check: the Worksheet dates forced collectivisation from 1928; many historians place the mass campaign "
-        "in late 1929, the Great Turn: outside the course. The course date is kept.",
+        "That is the leap of coercion, not of consent: the moment when peasants slaughtered their livestock rather than hand it over. The Worksheet dates it all from 1928; many historians, outside the course, from late 1929.",
+
     ], vis={
         "def3": dict(type="def", cles=["merging", "kolkhozes", "sovkhozes"], terme="Collectivisation",
                      t="Small, scattered farms merged into large collective ones; independent households suppressed.",
@@ -296,9 +290,6 @@ SCENES = [
         "poster": dict(type="mot", t="“Come with us to the kolkhoz, comrades!”", g="Soviet poster, 1930 (M. Ros's slide)", y=260, taille=64),
         "gc": dict(type="graphe", titre="Peasant households collectivised (Worksheet 2, source 2)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[0.4, 4.6], y=[0, 105], gx=[], gy=[25, 50, 75, 100], lx="", ly="%"), el=barres_collect()),
-        "att2": dict(type="note", terme="To confirm with M. Ros", cles=["1928", "1929"],
-                     t="Worksheet 2: forced collectivisation from 1928. Many historians: the mass campaign from late 1929.",
-                     etape="The “Great Turn” (outside the course) · the course date is kept", x=170, y=200, w=940),
     }),
 
     # ================================================================ stalinisme, idée 10
@@ -313,7 +304,7 @@ SCENES = [
         "{-kul}{-g6}{ex10}Two examples. {ex10.g}Monsieur Ros's slide: in 1929, farmers of the kolkhozes protest against the kulaks, "
         "under a banner calling for their liquidation as a class. {ex10.d}And in Ukraine, in 1932, according to the historian Nicolas Werth, "
         "peasants who hid grain were accused of kulak sabotage, whatever the size of their land.",
-        "{-ex10}{lec10}So a kulak is not a size of farm. {lec10.1}It is an enemy defined by the ideology: the class enemy.",
+
     ], vis={
         "g6": dict(type="globe", code="H2", sc=[15]),
         "kul": dict(type="liste", titre="The kulak label", petit=True, bande=True, x=60, y=120, w=620, items=[
@@ -321,9 +312,6 @@ SCENES = [
             "Persecuted as a class: land, animals confiscated; deported", "Resistance branded “kulak sabotage”"]),
         "ex10": dict(type="cols", g="1929 · M. Ros's slide", gq="kolkhoz farmers under a banner: liquidate the kulaks as a class",
                      d="1932 · Ukraine (Werth)", dq="peasants who hid grain accused of “kulak sabotage”", vs="+"),
-        "lec10": dict(type="note", terme="For the essay", cles=["enemy", "class"],
-                      t="A kulak is not a size of farm: an enemy defined by the ideology.",
-                      etape="Stalinism's enemy within: the class enemy", x=170, y=200, w=940),
     }),
 
     # ================================================================ stalinisme, idée 11
@@ -340,7 +328,7 @@ SCENES = [
         "of the monthly grain target was reached in Ukraine. {pct.d}By the twenty-fifth of October, only twenty-two per cent.",
         "{-pct}{bil}The result is a man-made famine: the {!Holodomor}Holodomor, in 1932 and 1933. "
         "It killed about four million people in Ukraine. That death toll is added from outside the class notes.",
-        "{-bil}{lec11}Remember the logic: the famine was not a natural disaster. It came from a policy: requisitions, and villages cut off as a punishment.",
+
     ], vis={
         "g7": dict(type="globe", code="H2", sc=[19]),
         "hol": dict(type="liste", titre="Ukraine, 1932: step by step", petit=True, bande=True, x=60, y=120, w=620, items=[
@@ -349,9 +337,6 @@ SCENES = [
         "pct": dict(type="cols", g="September 1932", gq="32% of the monthly grain target reached", d="25 October 1932",
                     dq="only 22%", vs="→", repere="Nicolas Werth (Worksheet 2, source 4)"),
         "bil": dict(type="mot", t="≈ 4 million dead", g="the Holodomor, Ukraine, 1932–33 · toll added from outside the class notes", y=250, taille=96),
-        "lec11": dict(type="note", terme="Key term · Holodomor", cles=["man-made", "policy"],
-                      t="The man-made famine of 1932–33 in Ukraine.",
-                      etape="Not a natural disaster: requisitions, and villages cut off as a punishment", x=170, y=200, w=940),
     }),
 
     # ================================================================ stalinisme, idée 12 et Worksheet 2
@@ -398,7 +383,7 @@ SCENES = [
         "{-race}{-g8}{hum}The example, on Monsieur Ros's slide: {hum.g}a scene of public humiliation in 1935. A non-Jewish woman and a Jewish man, "
         "surrounded by SA men, forced to wear placards denouncing their relationship. "
         "{hum.d}And a chart of the Nazi health ministry, from Bamberg, which ranked the racial groups of the earth.",
-        "{-hum}{lien}Notice the second condition: territory. {lien.1}This is the root of Lebensraum, the living space, which you will see in episode six.",
+
     ], vis={
         "g8": dict(type="globe", code="H2", sc=[23]),
         "race": dict(type="liste", titre="Idea 13 · the Nazi view of history", petit=True, bande=True, x=60, y=120, w=620, items=[
@@ -406,9 +391,6 @@ SCENES = [
             "Survival 1: race purity · relations between “races” banned", "Survival 2: territory, to expand the population"]),
         "hum": dict(type="cols", g="1935 · public humiliation", gq="a couple forced by SA men to wear placards denouncing their relationship",
                     d="Bamberg · a health-ministry chart", dq="the “racial groups of the earth” ranked", vs="+", repere="M. Ros's slide"),
-        "lien": dict(type="note", terme="Purity and territory", cles=["territory", "Lebensraum"],
-                     t="The second condition of survival, territory, is the root of Lebensraum.",
-                     etape="Mein Kampf, 1924–1925 · episode 6", x=170, y=200, w=940),
     }),
 
     # ================================================================ nazisme, idée 14
@@ -446,8 +428,7 @@ SCENES = [
         "{-unfit}{t4}The example: the {!T4 programme}T4 programme, launched in 1939: the murder of disabled people in Germany itself, "
         "in specially built gas chambers. {t4.1}About seventy thousand between 1939 and 1941, according to Monsieur Ros's revised slides. "
         "{t4.2}An earlier version said two hundred thousand: that figure is the toll up to 1945. For the course, keep seventy thousand, for 1939 to 1941.",
-        "{-t4}{lec15}So Nazi racism attacked Germans too, when they did not fit the ideal of the pure race. "
-        "{lec15.1}The enemy was not only outside the nation. It could be inside every family.",
+
     ], vis={
         "unfit": dict(type="liste", titre="Idea 15 · also targeted", items=[
             "Disabled people", "People with genetic diseases", "Anyone in a relationship with these so-called “viruses”"],
@@ -455,18 +436,15 @@ SCENES = [
         "t4": dict(type="def", cles=["1939", "gas"], terme="The T4 programme · 1939",
                    t="The murder of disabled Germans, in specially built gas chambers: about 70,000 in 1939–1941.",
                    etape="Earlier slides: 200,000 = the toll up to 1945 · keep 70,000 for 1939–41", x=170, y=200, w=940),
-        "lec15": dict(type="note", terme="For the essay", cles=["Germans", "pure"],
-                      t="Nazi racism struck Germans too, when they did not fit the ideal of the pure race.",
-                      etape="The enemy could be inside every family", x=170, y=200, w=940),
     }),
 
     # ================================================================ comparaison : h2ideo
     dict(id="compare", chap="Three ideologies compared", fond="aube", humeur="lumiere",
          retenir="Common: rejection of liberal democracy, a supreme goal that justifies any means, total control through coercion, a “New Man”. Different: the goal (nation / race / class), hence the enemy and its fate.",
          beats=[
-        "{com}Now let's compare. First, what the three have in common. {com.1}They reject liberal democracy. "
+        "{com}Now let's compare. In common: {com.1}they reject liberal democracy. "
         "{com.2}They set a supreme goal that justifies any means. {com.3}They seek total control of society through coercion. "
-        "{com.4}And they want to create a New Man: that will be episode four.",
+        "{com.4}And they want a New Man: episode four.",
         "{-com}{but}But the supreme goals are opposite. {but.1}Fascism: a united, disciplined, great nation. "
         "{but.2}Nazism: a pure race, which expands its territory and its population. "
         "{but.3}Stalinism: a socialist, industrial and self-sufficient Soviet Union, with no capitalist elements left.",
@@ -559,10 +537,8 @@ SCENES = [
 
     # ================================================================ récap
     dict(id="recap", chap="Recap", fond="nuit", humeur="calme", beats=[
-        "{carte}Let's sum up. {carte.1}Fascism: a new revolution for the nation and the absolute State; Matteotti and the fascistissime laws; "
-        "a word used with pride, totalitarian; a less complete control, with the Church and the king; racist only from 1938. "
-        "{carte.2}Stalinism: class struggle; the Five-Year Plan and forced collectivisation, seven to ninety per cent; the kulaks; "
-        "the Holodomor; an economic failure. "
+        "{carte}Let's sum up. {carte.1}Fascism: the nation and the absolute State; Matteotti; the Church and the king; racist only from 1938. "
+        "{carte.2}Stalinism: class struggle; collectivisation, seven to ninety per cent; the kulaks; the Holodomor. "
         "{carte.3}Nazism: race struggle, purity and territory; the Jews described as bacteria; T4. "
         "{carte.4}And the comparison: the same method, three goals; and the goal decides the enemy.",
         ("P", 4.0),
@@ -603,7 +579,7 @@ QUIZ = [
          ex="On paper, more than 8 acres; in practice, any resisting peasant, “too selfish to share”."),
     dict(q="What was the Holodomor?",
          r=["The man-made famine of 1932–33 in Ukraine", "The first Five-Year Plan", "A Soviet collective farm",
-            "A purge of the Red Army"], ok=0, voir="lec11",
+            "A purge of the Red Army"], ok=0, voir="bil",
          ex="Requisitions and “rebellious” villages cut off from all supplies: by 25 Oct. 1932, only 22% of the grain target was reached."),
     dict(q="What did the T4 programme, launched in 1939, do?",
          r=["It murdered disabled Germans, about 70,000 in 1939–41", "It made racial instruction compulsory",

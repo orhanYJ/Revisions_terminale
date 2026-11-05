@@ -146,7 +146,7 @@ SCENES = [
     ], vis={
         "gr": dict(type="graphe", titre="The NSDAP vote, 1928–1932 (M. Ros's chart)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1928, 1933.2], y=[0, 45], gx=[1928, 1929, 1930, 1931, 1932, 1933], gy=[10, 20, 30, 40], lx="year", ly="% of the vote"),
-                   el=[dict(type="point", x=1928.4, y=2.6, c="sa", lbl="May 1928: 2.6%", lp=[1928.3, 9]),
+                   el=[dict(type="point", x=1928.4, y=2.6, c="sa", lbl="May 1928: 2.6%", lp=[1929.1, 8]),
                        dict(type="courbe", pts=VOTE[:2], c="ca", lbl="Sept. 1930: 18.3%", lp=[1929.4, 24], dur=1.4),
                        dict(type="courbe", pts=VOTE[1:3], c="ca", lbl="July 1932: 37.4%", lp=[1930.6, 41], dur=1.4),
                        dict(type="courbe", pts=VOTE[2:], c="el", lbl="Nov. 1932: 33.1%", lp=[1932.0, 27], dur=0.8)]),
@@ -219,7 +219,7 @@ SCENES = [
             "Your line of argument, in one sentence", "The plan"], x=170, y=120, w=940),
         "pa3": dict(type="pause", t="Write your introduction in five sentences.",
                     sous="Hook, definition, problem, line, plan. Pause the video, then play on for a model."),
-        "mod3": dict(type="liste", titre="A model introduction", petit=True, items=[
+        "mod3": dict(type="liste", titre="A model introduction", items=[
             "Hook · 1922 Mussolini, 1933 Hitler: born in the shadow of the Great War",
             "Definition · total control of society, through coercion, to transform man according to an ideology",
             "Problem · born after 1918 is not the same as caused by the war",
@@ -234,14 +234,14 @@ SCENES = [
         "{pa4}",
         ("P", 2.0),
         "{-pa4}{mod4}Here is a model of the third paragraph, the one that weighs.",
-        "However, the First World War does not explain everything, because each regime was shaped by its own ideology and by deliberate choices. "
-        "{mod4.1}The three regimes rest on opposite ideas: the nation and the absolute State for Fascism, the race for Nazism, the class for Stalinism. "
+        "{mod4.1}However, the First World War does not explain everything, because each regime was shaped by its own ideology and by deliberate choices. "
+        "{mod4.2}The three regimes rest on opposite ideas: the nation and the absolute State for Fascism, the race for Nazism, the class for Stalinism. "
         "A common war cannot explain such different goals. "
-        "{mod4.2}Moreover, power was handed over by the elites: King Victor Emmanuel the Third appointed Mussolini on the thirtieth of October 1922, "
+        "{mod4.3}Moreover, power was handed over by the elites: King Victor Emmanuel the Third appointed Mussolini on the thirtieth of October 1922, "
         "and Hindenburg appointed Hitler on the thirtieth of January 1933. "
-        "{mod4.3}Finally, in Germany, the Depression turned a marginal party into a mass movement: with five point six million unemployed in 1932, "
+        "{mod4.4}Finally, in Germany, the Depression turned a marginal party into a mass movement: with five point six million unemployed in 1932, "
         "the Nazi vote reached thirty-seven point four percent. "
-        "{mod4.4}The war created the grievances; it took the crisis and the choices of the elites to turn them into power.",
+        "{mod4.5}The war created the grievances; it took the crisis and the choices of the elites to turn them into power.",
         "{-mod4}{ccl}And the conclusion. It answers the question in one clear sentence, then opens.",
         "{ccl.1}The First World War was the common soil of the three regimes, not their sufficient cause: without the choices of the elites "
         "and the force of each ideology, the soil would have stayed fallow. "
@@ -252,7 +252,7 @@ SCENES = [
         "pa4": dict(type="pause", t="Write paragraph III: “But the war does not explain everything”.",
                     sous="Three arguments, one example each. Pause the video, then play on for a model."),
         "mod4": dict(type="liste", titre="Model paragraph · part III", cles=["However", "ideology", "elites", "crisis"], items=[
-            "Three ideologies: nation and State · race · class", "Elites hand over power: Victor Emmanuel III (30 Oct. 1922), Hindenburg (30 Jan. 1933)",
+            "However: ideology and choices, not the war alone", "Three ideologies: nation and State · race · class", "Elites hand over power: Victor Emmanuel III (30 Oct. 1922), Hindenburg (30 Jan. 1933)",
             "The Depression: 5.6 million unemployed → 37.4% (July 1932)", "Link: the war created the grievances; crisis and elites turned them into power"],
             x=150, y=130, w=980),
         "ccl": dict(type="def", terme="Model conclusion", cles=["soil", "sufficient", "fallow"],
@@ -435,7 +435,7 @@ SCENES = [
         "{-pi}{fin}Next, the last episode: the recap of the whole chapter, in one go.",
         ("P", 2.0),
     ], vis={
-        "pi": dict(type="liste", titre="Six traps", petit=True, items=[
+        "pi": dict(type="liste", titre="Six traps", items=[
             "Matteotti: killed 10 June 1924 · claimed 3 Jan. 1925", "Executed in 1940: Yezhov, not Molotov",
             "T4: ≈ 70,000 killed in 1939–41", "Neutrality Acts: “an isolationist Congress”",
             "Corfu (1923) is not the mutilated victory: Fiume is", "Hitler: 37.4% at most · appointed, never elected by a majority"],

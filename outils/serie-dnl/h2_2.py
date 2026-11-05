@@ -83,8 +83,7 @@ SCENES = [
         "In January 1919, a communist uprising in Berlin is crushed in blood.",
         "{g1.4}In Italy, the war was won… but the nationalists feel cheated. And in 1919 and 1920, peasants seize land and workers "
         "occupy the factories: the red years.",
-        "{g1.5}1919: the Treaty of Versailles. Germany loses territory, and must accept a treaty it did not negotiate. "
-        "The Germans call it a Diktat.",
+        "{g1.5}1919: the Treaty of Versailles. Germany must accept a treaty it did not negotiate: a Diktat.",
         "{g1.6}October 1922: Mussolini's Blackshirts march on Rome, and the king appoints him prime minister. "
         "{g1.7}November 1923: in Munich, Hitler tries to seize power by force. He fails, and goes to prison.",
     ], vis={
@@ -95,13 +94,10 @@ SCENES = [
     dict(id="carte2", chap="On the map: 1929 – 1933", fond="nuit", humeur="tension",
          retenir="1929 the crisis · July 1932: NSDAP 37.4%, the first party · 30 Jan. 1933: Hitler appointed chancellor · 27 Feb. 1933: the Reichstag fire.",
          beats=[
-        "{g2}{g2.1}Then comes 1929. The Wall Street crash opens the crisis of capitalism, the subject of chapter one. "
-        "And in the same year, the Nazis hold their party congress in Nuremberg. Two crises open at once.",
-        "{g2.2}In Germany, the crisis throws millions out of work, and the Nazi vote soars. In July 1932, "
-        "the Nazi party becomes the largest party in the Reichstag.",
+        "{g2}{g2.1}Then comes 1929. The crash opens the crisis of capitalism, and the Nazis hold their congress in Nuremberg: two crises at once.",
+        "{g2.2}In Germany, millions lose their jobs, and in July 1932 the Nazis become the largest party.",
         "{g2.3}On the thirtieth of January 1933, Hindenburg appoints Hitler chancellor. "
-        "{g2.4}And four weeks later, on the twenty-seventh of February, the Reichstag, the German parliament, is on fire. "
-        "The Nazis blame the communists, and freedoms are suspended.",
+        "{g2.4}Four weeks later, the Reichstag is on fire, and freedoms are suspended.",
         "{-g2}{fr1}So, the dates to know. {fr1.1}October 1917: the Bolsheviks seize power. {fr1.2}1919: the Treaty of Versailles. "
         "{fr1.3}October 1922: the March on Rome. {fr1.4}November 1923: the failed Munich putsch. "
         "{fr1.5}July 1932: the Nazis, first party. {fr1.6}And the thirtieth of January 1933: Hitler chancellor.",
@@ -122,11 +118,10 @@ SCENES = [
         "Idea one. The historian George Mosse coined a word for it: {!brutalisation}brutalisation. "
         "{def1.1}Four years of mass killing accustomed soldiers to violence. After 1918, they brought it back into civilian life, "
         "and into politics. The traumas of the war raised the level of violence in post-war societies.",
-        "{-def1}{mat}For Mosse, the First World War is the matrix of totalitarianism. {mat.1}The uniforms, {mat.2}the ranks, "
-        "{mat.3}the parades, {mat.4}and the contempt for human life of the new regimes: all of this comes from the front.",
+        "{-def1}{mat}For Mosse, the war is the matrix of totalitarianism. {mat.1}The uniforms, {mat.2}the ranks, "
+        "{mat.3}the parades, {mat.4}the contempt for human life: all come from the front.",
         "{-mat}{ex1}The example on Monsieur Ros's slide: a photograph of Adolf Hitler as a soldier, in 1915, sitting among his comrades. "
-        "{ex1.1}The man who will found the Third Reich learnt politics in the trenches. Mosse develops the idea in his book "
-        "Fallen Soldiers: Reshaping the Memory of the World Wars.",
+        "{ex1.1}Mosse develops the idea in his book Fallen Soldiers.",
     ], vis={
         "def1": dict(type="def", cles=["violence", "politics"], terme="Brutalisation · George Mosse",
                      t="Four years of mass killing made violence ordinary; the soldiers brought it back into civilian life and politics.",
@@ -149,8 +144,7 @@ SCENES = [
         "{rus.3}The Bolsheviks sign peace with Germany. {rus.4}Then they win a civil war against the Whites, with the Red Army, until 1922. "
         "{rus.5}And in 1922, the Soviet Union is created.",
         "{-rus}{-g3}{rs}Why does this matter for Italy and Germany? Because Bolshevism is Marxism: the end of private property. "
-        "{rs.1}And it frightens the whole of Europe. Landowners, factory owners, shopkeepers fear that a revolution will come to them too: "
-        "this is the {!Red Scare}Red Scare.",
+        "{rs.1}It frightens the whole of Europe: the {!Red Scare}Red Scare.",
         "{-rs}{mots1}Careful with the words. {mots1.g}The Red Scare is the fear of communism in the West. "
         "{mots1.d}Inside Russia, Bolshevik violence against their enemies, from 1918, is the Red Terror.",
     ], vis={
@@ -175,13 +169,12 @@ SCENES = [
         "{vm.1}This fed an {!irredentist}irredentist movement, which demanded the unredeemed territories. "
         "{vm.2}And the frustration came on top of social turmoil, inflation and mass unemployment.",
         "{-vm}{fiu}The example: Fiume. {fiu.1}In September 1919, the poet Gabriele D'Annunzio seized the city with nationalist volunteers, "
-        "{fiu.2}and held it until December 1920. {fiu.3}His rituals, the balcony speeches, the uniforms, would later be borrowed by Mussolini.",
+        "{fiu.2}and held it until December 1920. {fiu.3}His rituals were later borrowed by Mussolini.",
         "{-fiu}{-g4}{br}Idea four: the {!Biennio Rosso}Biennio Rosso, the two red years, 1919 and 1920. "
         "{br.g}Peasants seize land, workers go on strike or take over the factories. The property owners believe that an Italian 1917 is coming. "
         "{br.d}Mussolini's Blackshirts, the fascist militia, answer with violent repression. And the landowners pay them to take back the land.",
-        "{-br}{tur}The example on Monsieur Ros's slide: {tur.1}the general strike of 1920 in Turin, when the workers occupied and ran the factories themselves, "
-        "as part of an attempt to build a socialist society. {tur.2}So the fear of a communist revolution was real. "
-        "And fascism grew as the armed wing of the frightened propertied classes.",
+        "{-br}{tur}The example on Monsieur Ros's slide: {tur.1}the general strike of 1920 in Turin, when the workers occupied and ran the factories themselves. "
+        "{tur.2}So the fear was real, and fascism grew as the armed wing of the frightened propertied classes.",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[4]),
         "vm": dict(type="liste", titre="Italy: a “mutilated victory”", x=60, y=110, w=620, petit=True, bande=True, items=[
@@ -275,12 +268,11 @@ SCENES = [
         "{bl}Monsieur Ros's lesson can be summed up in one schema: from the trenches to the regimes, three wounds of the war. "
         "First, the wound. {bl.1}In Russia, the war ruins the Tsarist empire. "
         "{bl.2}In Italy, a mutilated victory. {bl.3}In Germany, defeat, the end of the Empire, and the Diktat.",
-        "{-bl}{rp}Second, the response. {rp.1}In Russia, the Bolshevik Revolution of October 1917. "
-        "{rp.2}In Italy, D'Annunzio in Fiume, and Blackshirts paid by the landowners. "
-        "{rp.3}In Germany, the Spartacist revolt crushed, and the myth of the stab in the back.",
-        "{-rp}{lg}Third, the legacy. {lg.1}In Russia, a single party, property abolished, and the fear of communism all over Europe. "
-        "{lg.2}In Italy, an armed nationalism against the fear of revolution. "
-        "{lg.3}In Germany, a republic tied to defeat, and enemies ready-made.",
+        "{-bl}{rp}Second, the response: {rp.1}the Bolshevik Revolution; {rp.2}Fiume and the paid Blackshirts; "
+        "{rp.3}the Spartacists crushed, and the stab-in-the-back myth.",
+        "{-rp}{lg}Third, the legacy: {lg.1}a single party and the fear of communism; "
+        "{lg.2}an armed nationalism; "
+        "{lg.3}a republic tied to defeat, and enemies ready-made.",
         "{-lg}{rem}So remember: the war supplies the soil everywhere. Violence, grievances, fear of revolution. "
         "{rem.1}But it does not yet decide which regime will grow in it.",
     ], vis={
@@ -339,7 +331,7 @@ SCENES = [
         "{fa.3}A symbol. {fa.4}And paramilitary squads, led by fascist squad leaders.",
         "{-fa}{fs}The symbol gives the movement its name. {fs.1}The word fascist comes from the {!fasces}fasces: "
         "a bundle of rods around an axe, carried before the magistrates of ancient Rome. An imperial Roman artefact.",
-        "{-fs}{sup}And who supported fascism? {sup.1}The class notes are clear: landowners and shopkeepers, terrified by communism after the Biennio Rosso. "
+        "{-fs}{sup}Its supporters: {sup.1}landowners and shopkeepers, terrified by communism. "
         "{sup.2}Law and Order spoke directly to them.",
     ], vis={
         "fa": dict(type="liste", titre="Fascism: the building blocks", cles=["leader", "Order", "symbol", "squads"], items=[
@@ -364,8 +356,7 @@ SCENES = [
         "{mr.4}And the threat was enough. King Victor Emmanuel the Third refused to declare martial law, and on the thirtieth of October 1922, "
         "he appointed Mussolini prime minister.",
         "{-mr}{-g8}{int}So remember the formula: {!intimidation, not a coup}intimidation, not a coup. "
-        "{int.1}The threat of violence forced a legal appointment. Monsieur Ros's slide shows Mussolini surrounded by his squad leaders: "
-        "Emilio De Bono, Italo Balbo and Cesare Maria De Vecchi.",
+        "{int.1}The threat of violence forced a legal appointment. On the slide, Mussolini stands among his squad leaders, De Bono, Balbo and De Vecchi.",
         "{-int}{att1}Careful with two details. {att1.1}The slide dates the march from the twenty-second to the twenty-ninth of October; "
         "historians usually say the twenty-seventh to the thirty-first. "
         "{att1.2}And many estimates go up to thirty thousand marchers. The safest: October 1922, some twenty thousand Blackshirts.",
@@ -392,9 +383,8 @@ SCENES = [
         "{pg.5}and to exclude Jews from German society.",
         "{-pg}{hk}From outside the course: these demands were already in the party's twenty-five point programme of 1920; "
         "{hk.1}Mein Kampf develops them.",
-        "{-hk}{sw}The symbol: the black {!swastika}swastika. {sw.1}It was an ancient and widespread sign, long seen as lucky, "
-        "which is why, as the class noted, nothing seemed sinister in choosing it. The Nazis made it an Aryan symbol. "
-        "{sw.2}A nuance: Hitler does give a symbolic explanation of it in Mein Kampf. "
+        "{-hk}{sw}The symbol: the black {!swastika}swastika. {sw.1}An ancient sign, long seen as lucky, which the Nazis made Aryan. "
+        "{sw.2}The class noted it was chosen for no reason; but Hitler does explain its symbolism in Mein Kampf. "
         "{sw.3}And the paramilitary organisations: the SA and the SS.",
         "{-sw}{tb}So, Monsieur Ros's table: two movements, the same building blocks. {tb.g}Fascism on one side, "
         "{tb.d}Nazism on the other.",
@@ -444,9 +434,8 @@ SCENES = [
          beats=[
         "{g9}{g9.1}Idea five: the crisis turned the Nazis from a fringe party into the first party of Germany. "
         "The photograph on Monsieur Ros's slide: unemployed men queuing for food aid in Hanover, in 1932.",
-        "{-g9}{gu}Look first at unemployment in Germany, read off Monsieur Ros's chart. {gu.1}In the 1920s, it goes up and down, "
-        "between a few hundred thousand and two million. {gu.2}Then the crisis: three million in 1930, four and a half in 1931, "
-        "and about five point six million unemployed in 1932.",
+        "{-g9}{gu}Look first at unemployment in Germany, read off Monsieur Ros's chart. {gu.1}In the 1920s, under two million. "
+        "{gu.2}Then the crisis: about five point six million unemployed in 1932.",
         "{-gu}{gv}Now the Nazi vote. {gv.1}Here is the line of a majority: fifty per cent. "
         "{gv.2}In May 1928, before the crisis, the NSDAP is a fringe party: two point six per cent. {gv.3}{gv.4}In September 1930: eighteen point three. "
         "{gv.5}In July 1932: thirty-seven point four per cent. The Nazis are now the largest party in the Reichstag.",
@@ -483,7 +472,7 @@ SCENES = [
         "by the President of the Republic, Paul von Hindenburg.",
         "{-g10}{hb}Who was Hindenburg? {hb.1}An old general of the Empire, who had supported the monarchy. "
         "{hb.2}And the conservatives around him thought they could control Hitler once he was in government. "
-        "{hb.3}The legal façade reassured the elites, while the Nazis prepared to dismantle the republic {!from inside}from inside.",
+        "{hb.3}The legal façade let the Nazis dismantle the republic {!from inside}from inside.",
         "{-hb}{pot}The photograph that opens Monsieur Ros's section shows it. {pot.1}Hitler bows to greet Hindenburg at Potsdam, "
         "on the twenty-first of March 1933, a date from outside the course. "
         "{pot.2}An image designed to present Nazism as the heir of the old Prussian order.",
@@ -506,9 +495,8 @@ SCENES = [
         "{rf.2}Hitler and Hindenburg use it to rise against communism. The next day, the twenty-eighth, a date from outside the course, "
         "Hindenburg signs a decree suspending freedom of the press, of assembly and of opinion. "
         "{rf.3}Within days, thousands of communists are arrested.",
-        "{-rf}{-g11}{qui}Who really started the fire? It is still debated today, and it may have been the Nazis themselves. "
-        "{qui.1}But in an essay, that is not the point. {!What matters}What matters is how the regime used it: "
-        "an emergency, to suspend freedoms and crush its first enemies.",
+        "{-rf}{-g11}{qui}Who started the fire is still debated, possibly the Nazis themselves. "
+        "{qui.1}{!What matters}What matters is how the regime used it: to suspend freedoms and crush its first enemies.",
     ], vis={
         "g11": dict(type="globe", code="H2", sc=[21]),
         "rf": dict(type="liste", titre="27 February 1933 → the emergency", x=60, y=110, w=620, petit=True, bande=True, items=[
@@ -525,11 +513,10 @@ SCENES = [
          retenir="Italy: squads paid (1919–20) → March on Rome (Oct. 1922) → appointed by the king (30 Oct. 1922) → Matteotti, fascistissime laws (1924–26). Germany: failed coup (Nov. 1923) → crisis, 18.3% → 37.4% → appointed by Hindenburg (30 Jan. 1933) → Reichstag fire, emergency decree. Common: paramilitary violence + legal appointment + conservative elites. Different: the pace.",
          beats=[
         "{it}Now compare the two roads to power. "
-        "{it.1}Italy. 1919 and 1920: the fear of occupations, and squads paid by the landowners. "
-        "{it.2}October 1922: the March on Rome. {it.3}The thirtieth of October: the king appoints him. "
-        "{it.4}Then, from 1924 to 1926, the murder of Matteotti and the fascistissime laws: the dictatorship. That is episode three.",
-        "{al}{al.1}Germany. November 1923: the failed coup in Munich. {al.2}1930 to 1932: the crisis, from eighteen point three to thirty-seven point four per cent. "
-        "{al.3}The thirtieth of January 1933: Hindenburg appoints him. {al.4}The twenty-seventh and twenty-eighth of February: the Reichstag fire, and the emergency decree.",
+        "{it.1}Italy: paid squads, {it.2}the March on Rome, {it.3}the king's appointment, "
+        "{it.4}then Matteotti and the fascistissime laws, for episode three.",
+        "{al}{al.1}Germany: the failed coup, {al.2}the crisis vote, "
+        "{al.3}Hindenburg's appointment, {al.4}the Reichstag fire and the emergency decree.",
         "{-it}{-al}{cd}So, what is common, and what is different? {cd.g}Common: paramilitary violence, a legal appointment by the head of State, "
         "and the support of conservative elites. {cd.d}Different: the pace. Two to three years for Mussolini to build his dictatorship; "
         "a few weeks for Hitler.",
@@ -557,8 +544,7 @@ SCENES = [
         "he chose the institutions: his party won thirty-seven point four per cent in July 1932 and became the first party in the Reichstag, "
         "and on the thirtieth of January 1933 President Hindenburg appointed him chancellor, as the constitution allowed.",
         "{mod2.2}However, this legal path was prepared by violence, since the SA fought the communists in the streets; "
-        "it never rested on a majority, as the Nazi vote fell to thirty-three point one per cent in November 1932; "
-        "and it depended on conservative elites who thought they could control him. "
+        "it never rested on a majority, as the vote fell to thirty-three point one per cent in November 1932. "
         "{mod2.3}And once in office, Hitler used the Reichstag fire to suspend freedoms and arrest thousands of communists. "
         "{mod2.4}So his appointment was legal in form, but it was not democratic, and the legal façade served to destroy the republic from inside.",
     ], vis={

@@ -121,8 +121,8 @@ SCENES = [
         "{photos}Now the course. Monsieur Ros opens the chapter with those two photographs from nineteen twenty-nine. "
         "{photos.1}A solemn crowd outside the New York Stock Exchange, after the crash. And Adolf Hitler greeting his supporters "
         "at the fourth Nazi Party Congress, in Nuremberg.",
-        "{-photos}{deux}Why put them side by side? Because nineteen twenty-nine opens two crises at once. "
-        "{deux.g}On one side, the crisis of capitalism: the crash, the Depression, democracy in retreat. That was chapter one. "
+        "{-photos}{deux}{deux.g}Why put them side by side? Because nineteen twenty-nine opens two crises at once. "
+        "On one side, the crisis of capitalism: the crash, the Depression, democracy in retreat. That was chapter one. "
         "{deux.d}On the other, the threat of totalitarianism: that is this chapter. And both roads end in the same place: the Second World War.",
         "{-deux}{etou}On the slide, between the two, there are just three words: {!and or}and, or? "
         "Did one crisis cause the war, or did the two work together? Keep that question in mind: it is the thread of the whole chapter.",
@@ -194,8 +194,8 @@ SCENES = [
         "Fear, and persuasion.",
         "{trois.3}Three, and this is the most important: its aim is not obedience, but {!transformation}transformation. "
         "The regime wants to create a New Man, shaped by its ideology.",
-        "{-trois}{dict}That third part is what separates a totalitarian regime from an ordinary dictatorship. "
-        "{dict.g}An ordinary dictatorship is content if people keep quiet. {dict.d}A totalitarian regime wants people to believe, "
+        "{-trois}{dict}{dict.g}That third part is what separates a totalitarian regime from an ordinary dictatorship. "
+        "An ordinary dictatorship is content if people keep quiet. {dict.d}A totalitarian regime wants people to believe, "
         "to cheer, to change. Silence is not enough: it wants your soul.",
     ], vis={
         "def1": dict(type="def", cles=["total", "coercion", "transform", "ideology"], terme="Key term · Totalitarianism",
@@ -213,9 +213,9 @@ SCENES = [
     dict(id="roue", chap="The seven key traits", fond="nuit", humeur="calme",
          retenir="Seven traits: ideology · dynamic leader · dictatorship and one-party rule · state control of individuals · state control of society · methods of enforcement · modern technology.",
          beats=[
-        "{roue}On his slide, Monsieur Ros shows a wheel: the key traits of totalitarianism, taken from an American textbook, "
+        "{src}On his slide, Monsieur Ros shows a wheel: the key traits of totalitarianism, taken from an American textbook, "
         "World History, published by McDougal Littell in two thousand and nine. Seven traits. "
-        "{roue.1}One: an ideology, which sets the goals of the state, glorifies them and justifies every action of the government. "
+        "{-src}{roue}{roue.1}One: an ideology, which sets the goals of the state, glorifies them and justifies every action of the government. "
         "{roue.2}Two: a dynamic leader, who unites the people, symbolises the government and encourages popular support.",
         "{roue.3}Three: dictatorship and one-party rule. Absolute authority; the party dominates the government. "
         "{roue.4}Four: state control of individuals. The regime demands loyalty, denies basic liberties, and expects personal sacrifice for the state.",
@@ -237,6 +237,9 @@ SCENES = [
             "State control of society: economy, school, religion, arts, youth",
             "Methods of enforcement: police terror, indoctrination, censorship, persecution",
             "Modern technology: mass communication, advanced weapons"], x=150, y=90, w=980),
+        "src": dict(type="note", terme="M. Ros's slide · Key Traits of Totalitarianism", cles=["wheel", "Seven"],
+                    t="A wheel of seven traits, from World History (McDougal Littell, 2009), an American textbook.",
+                    etape="The course spells it “MacDougal Littell”: the publisher is McDougal Littell.", x=170, y=200, w=940),
         "memo": dict(type="liste", titre="A memory aid", cles=["sets", "embody", "impose", "spreads"], items=[
             "The ideology sets the goal", "The leader and the party embody it",
             "Control and enforcement impose it", "Modern technology spreads it"], x=170, y=150, w=940),
@@ -301,7 +304,7 @@ SCENES = [
         "{-g6}{nuance}But be precise in an essay. {nuance.1}Legal, yes: Hitler was appointed, not imposed by a coup. "
         "{nuance.2}But the Nazis never won a majority in a free election: their best score was thirty-seven point four per cent. "
         "Write: a legal appointment, with mass support, but without a majority.",
-        "{-nuance}{deuxfaces}So keep both faces of these regimes together. {deuxfaces.g}Terror, for the enemies. "
+        "{-nuance}{deuxfaces}{deuxfaces.g}So keep both faces of these regimes together. Terror, for the enemies. "
         "{deuxfaces.d}And consent, enthusiasm, confidence, for millions of others.",
         "{-deuxfaces}{faits}And Arendt adds one last idea, in the epigraph on the cover sheet of the chapter. {faits.1}Totalitarian propaganda "
         "treats facts as something that power can manufacture. It shows contempt for facts: what the leader says becomes true.",
@@ -330,8 +333,8 @@ SCENES = [
     dict(id="trajectoire", chap="Three regimes, one trajectory", fond="nuit", humeur="tension",
          retenir="Stalin's USSR (1924–1953), Fascist Italy (1922–1943), Nazi Germany (1933–1945): born from the overthrow of a democratic framework, they paved the way to war, all ended in failure.",
          beats=[
-        "{fr2}So the chapter studies three regimes side by side. Monsieur Ros dates them on his slide, each with its flag. "
-        "{fr2.1}Fascist Italy, under the fascist eagle, from nineteen twenty-two to nineteen forty-three. "
+        "{fr2}{fr2.1}So the chapter studies three regimes side by side. Monsieur Ros dates them on his slide, each with its flag. "
+        "Fascist Italy, under the fascist eagle, from nineteen twenty-two to nineteen forty-three. "
         "{fr2.2}Stalin's USSR, under the hammer and sickle, from nineteen twenty-four. "
         "{fr2.3}Nazi Germany, under the swastika, from nineteen thirty-three. "
         "{fr2.4}Fascist Italy falls in nineteen forty-three, {fr2.5}Nazi Germany in nineteen forty-five, "
@@ -370,8 +373,8 @@ SCENES = [
     dict(id="lectures", chap="Read and watch", fond="aube", humeur="calme",
          retenir="Quote a work from M. Ros's list, with one sentence on what it shows: e.g. Arendt (1951), Shalamov's Kolyma Tales, Life is Beautiful, The Wave.",
          beats=[
-        "{lire}Monsieur Ros also gives a reading list. Here is what each work shows; the one-line descriptions are written by the site, outside the course. "
-        "{lire.1}Eric Hobsbawm, The Age of Extremes, nineteen ninety-four: the short twentieth century, from nineteen fourteen to nineteen ninety-one, an age of catastrophes. "
+        "{lire}{lire.1}Monsieur Ros also gives a reading list. Here is what each work shows; the one-line descriptions are written by the site, outside the course. "
+        "First, Eric Hobsbawm, The Age of Extremes, nineteen ninety-four: the short twentieth century, from nineteen fourteen to nineteen ninety-one, an age of catastrophes. "
         "{lire.2}George Mosse, Fallen Soldiers: brutalisation, and the memory of the world wars. "
         "{lire.3}Hannah Arendt, The Origins of Totalitarianism: the theory, and the chapter's epigraph. "
         "{lire.4}A. J. P. Taylor, The Origins of the Second World War: the very controversial thesis.",

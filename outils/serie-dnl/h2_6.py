@@ -90,7 +90,7 @@ SCENES = [
         "{g2.2}1937. Japan attacks the rest of China. In December, its army takes Nanjing, then the capital of China, "
         "and massacres civilians and prisoners for weeks.",
         "{g2.3}And the twelfth of March 1938, our opening image: the German army enters Vienna. Austria disappears: "
-        "this is the {!Anschluss}Anschluss.",
+        "this is the Anschluss.",
         "{-g2}{fr1}So here are the dates of this episode. {fr1.1}1931: Manchuria. {fr1.2}October 1935: Abyssinia invaded. "
         "{fr1.3}March 1936: the Rhineland. {fr1.4}October 1936: the Axis. {fr1.5}December 1937: Nanjing. "
         "{fr1.6}March 1938: the Anschluss. Pause the video if you need to copy them.",
@@ -115,7 +115,7 @@ SCENES = [
          beats=[
         "{q4}Now the course, idea by idea. The question of this part: why was the recourse to war so fundamental to these regimes?",
         "{-q4}{def1}The answer of the course is clear. War was not an accident of totalitarian policy. "
-        "It was {!one of its core values}one of its core values. {def1.1}The answer lies in the ideologies themselves.",
+        "It was one of its core values. {def1.1}The answer lies in the ideologies themselves.",
         "{-def1}{trois}{trois.1}Fascism glorified war as the supreme test of a people. "
         "{trois.2}Nazism made the conquest of living space a condition for the survival of the race. "
         "{trois.3}And Japanese militarism presented expansion as a mission.",
@@ -141,7 +141,7 @@ SCENES = [
          retenir="Mussolini used Rome's past to justify an empire: Libya (from 1911–12), then Ethiopia, one of only two independent African states. Scipione l'africano (1937). Invasion Oct. 1935; Addis Ababa, May 1936.",
          beats=[
         "{def2}Case study number one: Abyssinia. Fascist ideology made war a core value, and this led Italy into an aggressive foreign policy. "
-        "{def2.1}And to justify it, Mussolini drew on a glorious past: {!the Roman Empire}the Roman Empire.",
+        "{def2.1}And to justify it, Mussolini drew on a glorious past: the Roman Empire.",
         "{-def2}{g4}{g4.1}{eth}{eth.1}First, Libya. Italy had begun to colonise it with the Italo-Turkish war of 1911 to 1912, "
         "and Mussolini completed that colonisation, brutally. "
         "{eth.2}Then he attacked Abyssinia, that is Ethiopia: one of only two independent states left in Africa. "
@@ -157,7 +157,7 @@ SCENES = [
                      t="War as a core value → an aggressive foreign policy.",
                      etape="Mussolini uses the Roman Empire to justify his ambitions", x=170, y=200, w=940),
         "g4": dict(type="globe", code="H2", sc=[27]),
-        "eth": dict(type="liste", titre="Italy in Africa", x=60, y=120, w=620, petit=True, bande=True, items=[
+        "eth": dict(type="liste", titre="Italy in Africa", x=700, y=100, w=540, petit=True, bande=True, items=[
             "Libya: colonised from the war of 1911 – 1912", "Ethiopia: one of only two independent African states",
             "October 1935: the invasion", "May 1936: Addis Ababa taken; an “empire”"]),
         "film": dict(type="note", terme="Scipione l'africano · 1937", cles=["Hannibal", "Africa"],
@@ -178,12 +178,12 @@ SCENES = [
         "{-cols1}{fr2}Look at the calendar. {fr2.1}October 1935: Italy invades. "
         "{fr2.2}From October 1935 to May 1936, the League ponders the question of sanctions. "
         "{fr2.3}May 1936: Addis Ababa falls. Seven months: exactly the time it took Italy to conquer the country.",
-        "{-fr2}{petrole}And the sanctions finally voted left out one product: {!oil}oil. "
+        "{-fr2}{petrole}And the sanctions finally voted left out one product: oil. "
         "{petrole.1}The one product that could have stopped the Italian army, whose trucks and planes ran on it.",
         "{-petrole}{prec}A precision, from outside the course. The League did vote limited sanctions quickly, in October 1935, "
         "and they applied from the eighteenth of November. {prec.1}What it kept debating until the spring of 1936 was the oil embargo, "
         "which it never adopted. So in your essay, write: sanctions without oil, and an oil embargo endlessly debated.",
-        "{-prec}{mot1}The lesson for the dictators was simple: {!aggression pays}aggression pays.",
+        "{-prec}{mot1}The lesson for the dictators was simple: aggression pays.",
         ("P", 1.5),
     ], vis={
         "cols1": dict(type="cols", g="Italy", gq="a power of lower rank; a weak, poorly administered empire", d="The League of Nations",
@@ -204,11 +204,11 @@ SCENES = [
     dict(id="lebensraum", chap="Lebensraum · the key term", fond="guerre", humeur="mystere",
          retenir="Lebensraum (key term): Ratzel (1901), a nation needs its own territory and resources to survive (autarky). The backbone of the Nazi worldview. Himmler, 1919: “live my life in the east”.",
          beats=[
-        "{mot2}Now Germany, and one of the two key terms of the chapter. {!Lebensraum}Lebensraum: living space.",
+        "{mot2}Now Germany, and one of the two key terms of the chapter. Lebensraum: living space.",
         "{-mot2}{def4}{def4.1}It is the theory that a nation needs its own territory and resources to survive. "
         "It came from a German geographer, Friedrich Ratzel, in 1901. {def4.2}For Ratzel, nations had to be self-sufficient "
         "in resources and territory, to protect themselves from external threats.",
-        "{-def4}{auta}That self-sufficiency has a name: {!autarky}autarky. An economy that aims to depend on no one else. "
+        "{-def4}{auta}That self-sufficiency has a name: autarky. An economy that aims to depend on no one else. "
         "Remember chapter one: after 1929, the whole world closes its markets. Autarky becomes a dream of every militarist regime.",
         "{-auta}{g5}{g5.1}The Nazis turned a geographical theory into a programme of conquest. Lebensraum became the backbone "
         "of the Nazi worldview, and it drove their foreign policy. And the dream was old. As early as 1919, Heinrich Himmler, "
@@ -241,7 +241,7 @@ SCENES = [
         "{plan2.2}Settling Germans there, as a master race. {plan2.3}Deporting most Russians to Siberia. "
         "{plan2.4}And using the rest as slave labour.",
         "{-plan2}{drang}The idea itself was not new. {drang.1}The push eastwards had been a motto of German nationalism "
-        "in the nineteenth century: {!Drang nach Osten}Drang nach Osten, the drive to the East. "
+        "in the nineteenth century: Drang nach Osten, the drive to the East. "
         "{drang.2}What was new was that Hitler made it the centre of state policy.",
         "{-drang}{lien}Keep this in mind for chapter three. {lien.g}Here, in 1925, it is a programme written in a book. "
         "{lien.d}In June 1941, with Operation Barbarossa, it becomes a war of annihilation in the East.",
@@ -273,7 +273,7 @@ SCENES = [
     ], vis={
         "q5": dict(type="question", t="Japan: why conquer?"),
         "g6": dict(type="globe", code="H2", sc=[18]),
-        "eco": dict(type="liste", titre="The economic dimension", x=60, y=120, w=620, petit=True, bande=True, items=[
+        "eco": dict(type="liste", titre="The economic dimension", x=40, y=100, w=520, petit=True, bande=True, items=[
             "1929: the Depression hits Japanese trade → autarky", "A growing population",
             "An industry short of raw materials and space", "Conquest sold as the cure for the crisis"]),
     }),
@@ -283,7 +283,7 @@ SCENES = [
          retenir="Japan, racial side: a “superior race” destined to lead Asia; Pan-Asianism, a “New Order in East Asia”. Resentment: the racial equality clause rejected in April 1919. Hirohito in uniform; the rising-sun flag.",
          beats=[
         "{def7}The second dimension is racial. Japanese imperialism was fuelled by a strong sense of racial superiority. "
-        "{def7.1}Its name: {!Pan-Asianism}Pan-Asianism. As a superior Asian race, Japan claimed it had to liberate Asian territories "
+        "{def7.1}Its name: Pan-Asianism. As a superior Asian race, Japan claimed it had to liberate Asian territories "
         "from Western imperialism, and to build a New Order in East Asia, under Japanese leadership.",
         "{-def7}{res}Behind this lay resentment. Despite its growing industrial and military power in the Pacific, "
         "Japan felt despised by the Western powers. {res.g}The proof: at the Paris Peace Conference, in April 1919, "
@@ -309,7 +309,7 @@ SCENES = [
     dict(id="nankin1", chap="Case study 2 · Nanjing: unchecked aggression", fond="guerre", humeur="tension",
          retenir="Mukden incident (1931), staged → Manchuria; the Lytton Commission; Japan leaves the League (1933); no US military response; China's civil war (Kuomintang vs Mao) → 1937: the rest of China attacked.",
          beats=[
-        "{def8}Case study number two: Nanjing. Its lesson in one sentence: {!aggression grew because nobody stopped it}aggression grew because nobody stopped it.",
+        "{def8}Case study number two: Nanjing. Its lesson in one sentence: aggression grew because nobody stopped it.",
         "{-def8}{fr3}Follow the steps. {fr3.1}1931: the Mukden incident, an explosion on a Japanese-run railway, staged by the Japanese army itself. "
         "It serves as a pretext to invade Manchuria. {fr3.2}The League sends a commission of inquiry, the Lytton Commission. "
         "{fr3.3}Japan's answer: it simply leaves the League, in 1933. "
@@ -378,14 +378,14 @@ SCENES = [
 
     # ================================================================ XIII. le DBQ 1
     dict(id="dbq1", chap="Your turn · DBQ 1: The Doctrine of Fascism", fond="aube", humeur="calme",
-         retenir="DBQ a): judgement in the first line · the document in one sentence · strengths (status, war as a value, expansion, anti-democracy, propaganda as evidence) · limits (doctrine ≠ policy, one date, one regime, no economic cause, written for display).",
+         retenir="DBQ a): judgement in the first line · the document in one sentence · a paragraph of strengths · a paragraph of limits.",
          beats=[
         "{ex1}Now the first DBQ of the chapter. The document: The Doctrine of Fascism, by Benito Mussolini, with the philosopher "
         "Giovanni Gentile, published in 1932 in the Enciclopedia Italiana. "
         "{ex1.d}Four phrases from it. War alone keys up all human energies to their maximum tension. "
         "Pacifism, a cloak for cowardly supine renunciation. The tendency of nations to expand, a manifestation of their vitality. "
         "And: for Fascism, the State is absolute.",
-        "{ex1.1}The question: {!How useful}how useful is this document to a historian studying the role of totalitarian ideology "
+        "{ex1.1}The question: how useful is this document to a historian studying the role of totalitarian ideology "
         "as an underlying cause of World War Two?",
         "{-ex1}{str}The structure, as always. {str.1}First line: your judgement. Largely, significantly, partly or slightly useful. "
         "{str.2}The document in one sentence. {str.3}A paragraph of strengths, with several arguments. "
@@ -416,7 +416,7 @@ SCENES = [
 
     # ================================================================ XIV. le DBQ 1 : atouts et limites
     dict(id="dbq1b", chap="DBQ 1: strengths and limits", fond="aube", humeur="calme",
-         retenir="Strengths: the regime's own voice · war as a value in itself · expansion as a duty (→ Ethiopia 1935) · the State absolute, against 1919 · reliable evidence of what the regime professed. Limits: intention, not action (Italy at war only in June 1940) · 1932 only · one regime (no Lebensraum, no Japan) · no 1929 crisis · what was displayed, not believed.",
+         retenir="Strengths: the regime's own voice; war and expansion as values. Limits: intention, not action (Italy at war in June 1940); one date, one regime; no economic cause.",
          beats=[
         "{at}The strengths. {at.1}First, its status. Written by the head of the regime himself, as an encyclopaedia entry, "
         "it is not one fascist opinion among others: it is the official self-definition of a state ideology. "
@@ -457,7 +457,7 @@ SCENES = [
          retenir="Key issue, argument 1: totalitarian ideologies made war a value and expansion a goal — Abyssinia 1935 (Rome), Lebensraum (Ratzel 1901, Mein Kampf 1925), Japan (Manchuria 1931, Nanjing 1937). Nuance: the democracies let it happen (episode 7).",
          beats=[
         "{ex2}One more exercise. This is the key issue of the chapter, the one you may draw at the oral: "
-        "{!Assess}assess the role of totalitarianism in the collapse of global peace in the late nineteen thirties.",
+        "assess the role of totalitarianism in the collapse of global peace in the late nineteen thirties.",
         "{ex2.1}You will answer the whole question in episode eight. Today, write only the first argument: "
         "a paragraph showing how totalitarian ideologies made war a value and expansion a goal. Three regimes, three examples.",
         "{-ex2}{pa2}",
