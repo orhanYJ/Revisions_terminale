@@ -2,13 +2,14 @@
    Stratégie : réseau d'abord pour les pages (mises à jour immédiates),
    repli cache hors ligne. Assets : cache d'abord.
    Les animations (anim/*.html) sont des pages à part : elles ont leur propre
-   entrée de cache, pour ne jamais écraser la page d'accueil. */
-const CACHE = "svt-v23";
+   entrée de cache, pour ne jamais écraser la page d'accueil. Même chose pour les
+   vidéos des chapitres (serie/*.html) ; leurs MP3 passent par le réseau. */
+const CACHE = "svt-v24";
 const ANIMS = ["mitose", "replication", "expression", "enzyme", "globe", "tectonique",
   "ecosysteme", "immunite", "anticorps", "clonal", "meiose", "nondisj", "coinegal", "globines",
   "thg", "insuline", "endosymbiose"];
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png",
-  "anim/moteur.css?v=5", "anim/moteur.js?v=5"].concat(ANIMS.map((a) => "anim/" + a + ".html"));
+  "anim/moteur.css?v=6", "anim/moteur.js?v=6", "carte-mentale.js?v=1"].concat(ANIMS.map((a) => "anim/" + a + ".html"));
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
@@ -27,6 +28,8 @@ self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
+  // vidéos des chapitres (serie/voix/*.mp3) : lues par plages, laissées au réseau
+  if (url.pathname.endsWith(".mp3")) return;
   const isHtml = req.mode === "navigate" || url.pathname.endsWith(".html") || url.pathname.endsWith("/");
   if (isHtml) {
     // page d'accueil sous la clé "./", animations sous leur propre adresse (sans paramètres)

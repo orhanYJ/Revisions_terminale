@@ -1139,7 +1139,45 @@ html.mo .chaphead .specimen{animation:mo-specimen .8s .1s cubic-bezier(.3,1.5,.5
   .mo-pastille{transition:none}
 }
 
+/* carte mentale du thème 1.A (carte-mentale.js) et page vidéo des chapitres */
+.cm{--cm-paper:var(--paper);--cm-panel:var(--panel);--cm-ink:var(--ink);--cm-ink-2:var(--ink-2);
+  --cm-leaf:var(--leaf);--cm-leaf-soft:var(--leaf-soft);--cm-water:var(--water);--cm-water-soft:var(--water-soft);
+  --cm-clay:var(--clay);--cm-clay-soft:var(--clay-soft);--cm-plum:var(--plum);--cm-plum-soft:var(--plum-soft);
+  --cm-etoile:#C2407A;--cm-coeur:var(--ink);--cm-coeur-txt:var(--paper);--cm-serif:var(--serif);--cm-sans:var(--sans);
+  display:flex;flex-direction:column;gap:10px;margin:14px 0 26px}
+html[data-theme="dark"] .cm{--cm-etoile:#F08DB8}
+.cm-chips{display:flex;flex-wrap:wrap;gap:6px}
+.cm-chips button,.cm-btn{font:600 .8rem/1 var(--sans);padding:.55rem .8rem;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.cm-chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.cm-btn{background:var(--leaf);color:#fff;border-color:var(--leaf)}
+.cm-btn.cm-vid{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.cm-scene{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:var(--panel);-webkit-overflow-scrolling:touch}
+.cm-scene svg{display:block;width:100%;min-width:640px;height:auto;aspect-ratio:16/9;cursor:zoom-in}
+.cm-pied{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between}
+.cm-fil{font-size:.86rem;color:var(--ink-2)}
+.cm-fil b{color:var(--ink)}
+.cm-act{display:flex;gap:6px;flex-wrap:wrap}
+.cm-leg{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:.78rem;color:var(--ink-3)}
+.cm-leg span{display:inline-flex;align-items:center;gap:6px}
+.cm-leg b{color:var(--cm-etoile)}
+.cm-pt{width:9px;height:9px;border-radius:50%;background:var(--leaf);display:inline-block}
+.cm-pt.vide{background:transparent;border:1.5px solid var(--leaf)}
+.cmini{margin:6px 0 18px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.cmini>summary{cursor:pointer;padding:12px 16px;font-weight:600;font-size:.92rem;color:var(--ink-2);list-style:none}
+.cmini>summary::-webkit-details-marker{display:none}
+.cmini>summary::before{content:"▸ ";color:var(--leaf)}
+.cmini[open]>summary::before{content:"▾ "}
+.cmini .cm{margin:0 12px 12px}
+.cmini .cm-scene svg{min-width:0}
+.vidbanner{display:flex;align-items:center;gap:12px;margin:6px 0 18px;padding:12px 16px;border-radius:16px;background:var(--ink);color:var(--paper);cursor:pointer;border:0;width:100%;text-align:left;font:inherit}
+.vidbanner b{font-family:var(--serif);font-size:1.05rem}
+.vidbanner span{font-size:.85rem;opacity:.8}
+.video-c{margin:16px 0 8px;border-radius:16px;overflow:hidden;background:#0c120e;box-shadow:var(--shadow-m)}
+.video-c iframe{display:block;width:100%;height:62vw;max-height:80vh;border:0}
 </style>
+<!-- carte-mentale:debut — carte du thème 1.A, partagée avec les vidéos (svt/serie/) -->
+<script src="carte-mentale.js?v=1"></script>
+<!-- carte-mentale:fin -->
 <!-- mouvement:debut — couche maintenue à part (motion.css, motion.js) ; à conserver lors des mises à jour -->
 <link rel="stylesheet" href="motion.css?v=1">
 <script src="motion.js?v=1" defer></script>
@@ -1603,6 +1641,7 @@ t1u1:`<circle cx="15" cy="16" r="6"/><circle cx="29" cy="16" r="6"/><circle cx="
 
 t1u2:`<path d="M12 9v9a6 6 0 006 6h12a6 6 0 016 6v9"/><path d="M36 9v9a6 6 0 01-6 6H18a6 6 0 00-6 6v9"/><circle cx="12" cy="7" r="2.6"/><circle cx="36" cy="7" r="2.6"/><circle cx="12" cy="41" r="2.6"/><circle cx="36" cy="41" r="2.6"/><circle cx="24" cy="24" r="2.2" fill="currentColor" stroke="none" opacity=".6"/>`,
 
+t1u3:`<path d="M14 8q20 8 0 16t0 16"/><path d="M34 8q-20 8 0 16t0 16"/><path d="M17 14h14M17 34h14"/><path d="M24 20v8" stroke-dasharray="2.6 2.4"/>`,
 t1u2b:`<path d="M11 12q4 12 0 24"/><path d="M17 12q-4 12 0 24"/><path d="M21 12q4 12 0 24"/><path d="M27 12q-4 12 0 24"/><path d="M31 12q4 12 0 24" stroke-dasharray="2.6 2.4"/><path d="M37 12q-4 12 0 24" stroke-dasharray="2.6 2.4"/><circle cx="34" cy="24" r="2" fill="currentColor" stroke="none"/>`,
 
 t2b:`<circle cx="24" cy="24" r="16"/><ellipse cx="22" cy="27" rx="8" ry="4.6"/><path d="M16 27q3-3 6 0t6 0"/><circle cx="29" cy="16" r="2.4" fill="currentColor" stroke="none" opacity=".6"/>`,
@@ -3357,6 +3396,98 @@ const TERMINALE = [
 
 <div class="box next"><h4>Ce que ça prépare</h4>
 <p>Tout ce chapitre décrit des <b>transferts verticaux</b> : des gènes transmis des parents aux enfants, brassés ou accidentés en chemin. Le chapitre 2 ouvre une autre voie, plus surprenante : des gènes échangés entre organismes non apparentés, les <b>transferts horizontaux</b>.</p></div>`},
+      { id:"t1u3", num:"Unité 3", chap:{num:"1", title:"L'origine du génotype des individus"},
+        title:"Séquençage de l'ADN : progrès et limites éthiques",
+        lede:"Lire le génotype d'un individu est devenu rapide et bon marché. Quels progrès en attendre, et quelles limites poser ?",
+        notions:["séquençage","bio-informatique","analyse génétique prédictive","DPN / DPI","bases de données génétiques","FNAEG","brevetabilité du vivant","dérive eugénique"],
+        objectifs:["Expliquer pourquoi le séquençage de l'ADN est devenu rapide et peu coûteux",
+          "Donner des arguments en faveur de l'analyse génétique (médecine, prédiction, justice)",
+          "Donner des arguments sur ses risques (erreurs, données, eugénisme, fichage, brevets)",
+          "Connaître les grandes lignes du cadre légal français"],
+        rappels:[["p10","Patrimoine génétique et santé"],["p5","Mutations et variabilité"]],
+        html:`<div class="box piege"><h4>Une unité courte</h4>
+<p>Cette unité vient d'un débat en classe (activité 5, « Nouvelles techniques de séquençage de l'ADN : progrès et risques éthiques »), une moitié de la classe pour, l'autre contre. Elle compte peu au bac et n'y tombera pas seule : il suffit de savoir donner, avec un exemple, deux ou trois arguments de chaque côté.</p></div>
+
+<h2>A. Le problème</h2>
+<p>Les unités 1 et 2 ont montré comment se construit le génotype d'un individu : des mitoses qui le conservent, une méiose et une fécondation qui le brassent, des accidents qui le modifient. Aujourd'hui, ce génotype se <b>lit</b>. Le séquençage de l'ADN et la <b>bio-informatique</b> donnent directement accès au génotype d'une personne, à celui de ses descendants et de ses ascendants.</p>
+<div class="box def"><h4>La question du débat</h4>
+<p>Quels sont les progrès et les enjeux éthiques liés au développement des techniques de séquençage de l'ADN ?</p></div>
+
+<h2>B. Une technique devenue rapide et bon marché</h2>
+<p>Séquencer, c'est connaître l'enchaînement exact des nucléotides d'un ADN. On peut alors isoler les séquences des différents gènes et repérer leurs variations d'un individu à l'autre.</p>
+<ul>
+  <li><b>Le premier génome humain</b> a été achevé en avril 2003 par le <i>Human Genome Project</i>, lancé treize ans plus tôt par les États-Unis avec des équipes du monde entier : environ 2,7 milliards de dollars et des années de travail.</li>
+  <li><b>La chute des coûts</b> : plus de 70 millions d'euros pour un génome humain en 2001, environ 5 000 euros en 2013, moins de 1 000 dollars et quelques heures en 2019.</li>
+  <li><b>Pourquoi c'est possible</b> : le génome est écrit avec quatre bases seulement, un code qui se prête à l'analyse automatisée et au traitement par ordinateur.</li>
+</ul>
+<p>Depuis, les génomes de milliers d'espèces ont été séquencés, de la bactérie <i>Haemophilus influenzae</i> (premier organisme entièrement séquencé, en 1995) aux grands singes.</p>
+
+<h2>C. Les progrès : les arguments pour</h2>
+<h3>1. Trouver les gènes des maladies</h3>
+<p>Mises en commun dans des bases de données mondiales, les séquences d'ADN de milliers de patients permettent d'associer des gènes mutés, même très rares, à des phénotypes malades. Exemple : l'<b>étude de trio père-mère-enfant</b> (une maladie génétique rare découverte à l'université de Lausanne). Depuis 2005, les gènes de prédisposition découverts pour des maladies complexes (diabète, maladies cardiovasculaires et inflammatoires, cancers) se sont multipliés.</p>
+
+<h3>2. Prédire pour un enfant à venir : la mucoviscidose</h3>
+<p>La <b>mucoviscidose</b> est la maladie génétique la plus fréquente en Europe ; elle touche surtout les voies respiratoires (mucus épais). Elle est due à des mutations du gène de la protéine <b>CFTR</b>. Deux millions de Français sont porteurs sains d'un allèle muté.</p>
+<ul>
+  <li>Des milliers de séquençages ont permis de lister les mutations en cause : la plus fréquente, <b>ΔF508</b>, représente 66 % des allèles mutés.</li>
+  <li>Dans l'arbre de la fiche, deux parents sains ont un garçon malade : l'allèle est récessif et chaque parent est hétérozygote. En séquençant le gène CFTR de chacun, on sait quel allèle chacun porte, et l'on peut annoncer au couple un risque de 1 sur 4 pour chaque nouvel enfant.</li>
+</ul>
+<p>L'analyse génétique est donc une avancée médicale <b>et</b> une analyse <b>prédictive</b>.</p>
+
+<h3>3. Dépister et prévenir</h3>
+<p>En mai 2013, l'actrice Angelina Jolie annonce dans le <i>New York Times</i> une ablation préventive des deux seins à la suite d'un test génétique (une mutation du gène <b>BRCA1</b> — précision qui n'est pas dans la fiche —, qui augmente fortement le risque de cancer du sein). Un simple prélèvement de sang ou de salive suffit à connaître certains risques transmis par les parents.</p>
+
+<h3>4. Le diagnostic avant la naissance</h3>
+<ul>
+  <li>Le <b>diagnostic préimplantatoire (DPI)</b> : lors d'une fécondation <i>in vitro</i>, on choisit un embryon qui ne développera pas la maladie recherchée (« médecine d'évitement »).</li>
+  <li>Le <b>diagnostic prénatal (DPN)</b> : sur le fœtus, le plus souvent par amniocentèse ; bientôt par une simple prise de sang de la mère.</li>
+</ul>
+
+<h3>5. La justice</h3>
+<p>Le <b>Fichier national automatisé des empreintes génétiques (FNAEG)</b>, créé en 1998, compare des traces relevées sur une scène d'infraction aux profils de suspects. On n'y garde pas tout l'ADN, mais une vingtaine de segments (16 à 18 depuis 2006) qui diffèrent d'une personne à l'autre : de quoi établir ou exclure un rapprochement.</p>
+
+<h2>D. Les risques : les arguments contre</h2>
+<h3>1. Le génotype ne dit pas tout</h3>
+<p>Le séquençage ne tient pas compte des facteurs de l'environnement, ni du microbiote, qui influe beaucoup sur notre état physiologique. Le phénotype ne se lit pas entièrement dans l'ADN (c'est aussi l'idée du chapitre 4).</p>
+<h3>2. L'ADN n'est pas la « reine des preuves »</h3>
+<ul>
+  <li>En juin 2010, des clients de l'entreprise 23andMe découvrent qu'ils n'ont pas le même ADN que leurs parents : une plaque de 96 échantillons avait été retournée.</li>
+  <li>En décembre 2009, deCODE genetics annonce à tort à certains clients un risque élevé de maladie d'Alzheimer (ancien format de données).</li>
+  <li>Aux États-Unis, on compte au moins 11 erreurs judiciaires imputables à l'ADN.</li>
+</ul>
+<h3>3. Des données difficiles à protéger</h3>
+<p>Stocker et analyser des millions de génomes demande des supercalculateurs : on dépend des entreprises qui en ont les moyens, avec un risque de <b>marchandisation</b> des données individuelles. En France, la CNIL contrôle la confidentialité des données génétiques, mais la protection n'est pas la même dans tous les pays. Aux États-Unis, la police utilise par exemple les données ADN des sites de généalogie (<i>Le Monde</i>, 2018).</p>
+<h3>4. Le risque de dérive eugénique</h3>
+<p>Quelles limites fixer à la recherche d'un enfant en bonne santé ? Certains pays autorisent déjà le choix du sexe de l'enfant. La recherche de « l'enfant parfait » pourrait conduire à éliminer de nombreux embryons (après un DPI) ou à multiplier les interruptions de grossesse (après un DPN).</p>
+<div class="box def"><h4>Eugénisme</h4>
+<p>Sélection artificielle d'êtres humains pour tendre vers un idéal subjectif.</p></div>
+<h3>5. Le fichage</h3>
+<p>Plus d'1,5 million de personnes sont fichées génétiquement en France, coupables ou non. Les segments du FNAEG étaient choisis « non codants », censés identifier sans rien révéler d'autre. Or on découvre qu'ils peuvent renseigner sur l'origine géographique, et l'un d'eux est lié à une maladie génétique rare (Catherine Bourgain, chercheuse à l'Inserm).</p>
+<h3>6. Peut-on breveter un gène ?</h3>
+<p>Dans les années 2000, les brevets sur l'ADN ont explosé ; en 2005, environ 20 % des gènes humains faisaient l'objet d'un brevet. L'entreprise Myriad Genetics détenait ceux des gènes BRCA1 et BRCA2 et l'exclusivité des tests associés. En juin 2013, la Cour suprême des États-Unis a tranché : l'ADN en tant que tel ne peut pas être breveté, seulement les procédés et produits développés autour (<b>non-brevetabilité du vivant</b>).</p>
+
+<h2>E. Le cadre : la loi française</h2>
+<ul>
+  <li>Un particulier n'a pas le droit de demander son propre séquençage génétique.</li>
+  <li>L'examen n'est permis qu'à des fins médicales, de recherche scientifique, de recherche de paternité, ou dans une enquête criminelle.</li>
+  <li>Il est fait par des praticiens agréés par l'<b>Agence de la biomédecine</b>, qui annoncent eux-mêmes les résultats, avec un accompagnement psychologique.</li>
+</ul>
+<p>À l'échelle d'un pays, le changement est rapide : l'Islande avait séquencé en 2005 près de 1 % de sa population et étudié le profil génétique d'un tiers ; le Royaume-Uni a séquencé en 2018 100 000 génomes, dont 85 000 de patients atteints d'une maladie rare, et vise le million.</p>
+
+<div class="box retenir"><h4>À retenir</h4>
+<table>
+<tr><th>Pour</th><th>Contre</th></tr>
+<tr><td>Trouver les gènes des maladies (bases de données mondiales)</td><td>Le génotype ignore l'environnement et le microbiote</td></tr>
+<tr><td>Prédire le risque pour un enfant à venir (mucoviscidose, ΔF508)</td><td>Erreurs de laboratoire et erreurs judiciaires (23andMe, 11 cas aux États-Unis)</td></tr>
+<tr><td>Dépister et prévenir (BRCA1, Angelina Jolie)</td><td>Données mal protégées, marchandisation</td></tr>
+<tr><td>DPI et DPN : éviter une maladie grave</td><td>Risque de dérive eugénique (enfant parfait, choix du sexe)</td></tr>
+<tr><td>Justice : le FNAEG établit ou exclut un rapprochement</td><td>Fichage de 1,5 million de personnes, segments plus parlants que prévu</td></tr>
+<tr><td>Coût divisé par plus de 10 000 en dix ans</td><td>Brevets sur les gènes (Myriad Genetics), tranchés en 2013</td></tr>
+</table>
+<p>En France, la loi encadre l'examen : finalités limitées, praticiens agréés, CNIL.</p></div>
+
+<div class="box next"><h4>Ce que ça prépare</h4>
+<p>Le chapitre 1 s'arrête ici : il a décrit des <b>transferts verticaux</b>, des parents aux enfants. Le chapitre 2 passe aux <b>transferts horizontaux</b>.</p></div>`},
       { id:"t2", num:"Parties I et II", chap:{num:"2", title:"La complexification des génomes"},
         title:"Les transferts horizontaux de gènes",
         lede:"Comment un génome peut-il s'enrichir de gènes venus d'un autre organisme, sans aucun lien de parenté ?",
@@ -4846,6 +4977,64 @@ t1u2b: [
      "β et δ sont deux allèles du même gène"],
   b:0,
   e:"Après une duplication, les copies accumulent des mutations avec le temps : plus elles se ressemblent, moins elles ont eu de temps pour diverger."}
+],
+
+t1u3: [
+ {t:"cours", q:"Pourquoi le génome se prête-t-il si bien au séquençage automatisé ?",
+  o:["Il est écrit avec quatre bases seulement, un code facile à traiter par ordinateur",
+     "Il ne contient que des séquences codantes",
+     "Il est identique chez tous les êtres humains",
+     "Il ne compte qu'une vingtaine de gènes"],
+  b:0,
+  e:"Quatre lettres, un enchaînement : c'est exactement ce que la bio-informatique sait stocker, comparer et analyser."},
+
+ {t:"cours", q:"Comment a évolué le coût du séquençage d'un génome humain ?",
+  o:["Plus de 70 millions d'euros en 2001, moins de 1 000 dollars en 2019",
+     "Il est resté stable depuis 2003",
+     "Il a doublé depuis le premier génome",
+     "Il n'a baissé que pour les génomes de bactéries"],
+  b:0,
+  e:"Le premier génome humain (2003) avait coûté environ 2,7 milliards de dollars ; le coût a été divisé par plus de 10 000 en une dizaine d'années."},
+
+ {t:"cours", q:"Deux parents sains ont un enfant atteint de mucoviscidose. Quel argument « pour » ce cas illustre-t-il ?",
+  o:["L'analyse génétique est prédictive : on peut annoncer au couple le risque pour un enfant à venir",
+     "Le séquençage permet de guérir la mucoviscidose",
+     "La mucoviscidose est due à l'environnement",
+     "Le séquençage prouve que la maladie n'est pas héréditaire"],
+  b:0,
+  e:"Les deux parents sont hétérozygotes pour le gène CFTR : chaque nouvel enfant a un risque de 1 sur 4. La mutation la plus fréquente, ΔF508, représente 66 % des allèles mutés."},
+
+ {t:"cours", q:"Qu'est-ce que le diagnostic préimplantatoire (DPI) ?",
+  o:["Le choix, lors d'une fécondation in vitro, d'un embryon qui ne développera pas la maladie recherchée",
+     "Une analyse du sang du père avant la conception",
+     "Une amniocentèse pratiquée en fin de grossesse",
+     "Le séquençage de l'enfant à la naissance"],
+  b:0,
+  e:"C'est une « médecine d'évitement ». Le DPN, lui, porte sur le fœtus (amniocentèse, bientôt prise de sang de la mère). Les deux posent la question de la dérive eugénique."},
+
+ {t:"cours", q:"Lequel de ces faits est un argument CONTRE la confiance absolue dans l'ADN ?",
+  o:["En 2010, une plaque de 96 échantillons retournée a donné à des clients de 23andMe un ADN qui n'était pas le leur",
+     "Le FNAEG compare des traces à des profils de suspects",
+     "Le coût du séquençage a chuté",
+     "Des gènes de prédisposition au diabète ont été découverts"],
+  b:0,
+  e:"L'ADN n'est pas la « reine des preuves » : erreurs de manipulation, d'analyse, de logiciel. On compte au moins 11 erreurs judiciaires imputables à l'ADN aux États-Unis."},
+
+ {t:"cours", q:"Que dit la loi française sur l'analyse génétique ?",
+  o:["Un particulier ne peut pas demander son séquençage ; l'examen est réservé à des fins médicales, de recherche, de paternité ou d'enquête, par des praticiens agréés",
+     "Tout le monde peut faire séquencer son ADN en ligne",
+     "Elle est interdite dans tous les cas",
+     "Elle n'est permise qu'aux entreprises privées"],
+  b:0,
+  e:"Les praticiens sont agréés par l'Agence de la biomédecine, annoncent eux-mêmes les résultats avec un accompagnement psychologique ; la CNIL veille à la confidentialité des données."},
+
+ {t:"cours", q:"Qu'a décidé la Cour suprême des États-Unis en juin 2013 ?",
+  o:["L'ADN en tant que tel ne peut pas être breveté, seulement les procédés et produits développés autour",
+     "Tous les gènes humains appartiennent à l'État",
+     "Les tests génétiques sont interdits",
+     "Myriad Genetics garde l'exclusivité des tests BRCA"],
+  b:0,
+  e:"Myriad Genetics détenait les brevets des gènes BRCA1 et BRCA2 et l'exclusivité des tests associés : la décision réaffirme la non-brevetabilité du vivant."}
 ],
 
 t2: [
@@ -6782,6 +6971,7 @@ function pageListe(kind, seul){
     if(!seul) h += `<h2 class="sec" style="color:${th.color}">${leafDot(th.color)}${th.n} — ${th.title}</h2>`;
     th.parts.forEach(pa => {
       h += `<div class="parthead">${pa.title}</div>`;
+      if(pa.id === "t-t1a") h += `<div class="cm" data-cm="t1a"></div>`;
       // regrouper les chapitres-unités sous leur chapitre, les autres ensemble
       const groupes = [];
       pa.chapters.forEach(c => {
@@ -6856,6 +7046,12 @@ function pageChapitre(c){
     ${medal(c.id)}</div>`;
 
   if(c.kind==="t"){
+    const br = window.CARTE_MENTALE && CARTE_MENTALE.PAGES[c.id];
+    if(br){
+      const cc = br.slice(0, 2);
+      if(videoDe(cc)) h += `<button class="vidbanner" onclick="go('video-${cc}')"><span style="font-size:1.5rem">▶</span><div><b>Le chapitre ${cc.slice(1)} en vidéo</b><br><span>Tout le chapitre expliqué, avec ses schémas et ses exemples.</span></div></button>`;
+      h += `<details class="cmini"><summary>Où tu en es : la carte mentale du thème 1.A</summary><div class="cm" data-cm="${br}" data-page="${c.id}"></div></details>`;
+    }
     h += rappelBlock(c);
     h += `<div class="box def"><h4>Ce que tu dois savoir faire</h4><ul>${c.objectifs.map(o=>"<li>"+o+"</li>").join("")}</ul></div>`;
     if(c.html){
@@ -6959,6 +7155,30 @@ const ANIMS = {
   insuline:"Produire de l'insuline par transgenèse",
   endosymbiose:"L'endosymbiose à l'origine du chloroplaste"
 };
+/* ---------- vidéos des chapitres (svt/serie/chN.html) et carte mentale ----------
+   dispo:true quand la vidéo est publiée ; la page #video-cN l'affiche, la carte mentale et les pages du chapitre y renvoient. */
+const SERIES_SVT = {
+  c1: {code:"svt-ch1", dispo:false, titre:"L'origine du génotype des individus"},
+  c2: {code:"svt-ch2", dispo:false, titre:"La complexification des génomes"},
+  c3: {code:"svt-ch3", dispo:false, titre:"L'évolution du génome au sein des populations"},
+  c4: {code:"svt-ch4", dispo:false, titre:"Mécanismes de diversité non génétique du vivant"},
+};
+function videoDe(cc){ return SERIES_SVT[cc] && SERIES_SVT[cc].dispo ? "video-" + cc : null; }
+function mountCartes(root){
+  if(!window.CARTE_MENTALE) return;
+  root.querySelectorAll("[data-cm]").forEach(div => {
+    const page = div.dataset.page || null;
+    CARTE_MENTALE.monter(div, {focus: div.dataset.cm, page: page, go: go, video: videoDe});
+  });
+}
+function pageVideo(cc){
+  const s = SERIES_SVT[cc], n = cc.slice(1);
+  return `<div class="pagehead" style="--c:var(--leaf)">
+    <div class="crumb"><a href="#t-t1">Thème 1</a> › <span>Chapitre ${n}</span></div>
+    <h1 class="page">Chapitre ${n} · le cours en vidéo</h1><p class="lede">${s.titre}</p></div>
+    <div class="video-c"><iframe src="serie/${s.code}.html?embed=1" title="Chapitre ${n} — ${s.titre} : le cours en vidéo" allow="fullscreen; autoplay" allowfullscreen data-serie="${s.code}"></iframe></div>
+    <div class="cm" data-cm="c${n}"></div>`;
+}
 function mountAnims(root){
   root.querySelectorAll("[data-anim]").forEach(slot => {
     const id = slot.dataset.anim, titre = ANIMS[id] || "", t0 = slot.dataset.t0 ? `&amp;t0=${slot.dataset.t0}` : "";
@@ -7247,6 +7467,7 @@ function render(){
   else if(r.startsWith("qcm-") && CH[r.slice(4)]) html = pageQcm(r.slice(4));
   else if(r.startsWith("voc-") && VOCAB[r.slice(4)]) html = pageVoc(r.slice(4));
   else if(r.startsWith("red-") && REDAC[r.slice(4)]) html = pageRedac(r.slice(4));
+  else if(r.startsWith("video-") && SERIES_SVT[r.slice(6)] && SERIES_SVT[r.slice(6)].dispo) html = pageVideo(r.slice(6));
   else if(CH[r]) html = pageChapitre(CH[r]);
   else html = pageAccueil();
   view.innerHTML = html;
@@ -7254,6 +7475,7 @@ function render(){
   if(r.startsWith("voc-") && VOCAB[r.slice(4)]) vocAccueil(r.slice(4));
   mountSchemas(view);
   mountAnims(view);
+  mountCartes(view);
   glFermer();
   if(CH[r] && CH[r].html) tagGlossaire(view);
   window.scrollTo(0,0);

@@ -17,6 +17,10 @@ Les passages déjà enregistrés sont gardés dans outils/serie-philo/.cache (no
 Voix : MOTEUR = "qwen" (défaut depuis le 30/10/2026) clone localement les voix de voix_ref/ (voir voix_qwen.py,
 environ 2 h de calcul par épisode) ; MOTEUR = "edge" reprend les voix Microsoft de l'épisode 1 initial (edge-tts).
 
+Vidéos de cours SVT (05/11/2026, une vidéo par chapitre, scripts dans outils/serie-svt/, SITE = "svt") : sortie dans
+svt/serie/ ; moteur svt/serie/moteur.js (copie du moteur PC aux couleurs de la SVT, type mental = carte mentale du
+thème 1.A, svt/carte-mentale.js) ; illustrations propres à un chapitre dans svt/serie/illu-<code>.js, chargé s'il existe.
+
 Séries d'histoire DNL (04/11/2026, scripts dans outils/serie-dnl/, SITE = "dnl", LANGUE = "en") : sortie dans dnl/serie/,
 type globe (carte animée du chapitre, dnl/cartes/<code>.html, pilotée par le temps de la vidéo).
 
@@ -32,6 +36,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(1, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-pc"))
 sys.path.insert(2, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-acl"))
 sys.path.insert(3, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-dnl"))
+sys.path.insert(4, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-svt"))
 import musique  # noqa: E402
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -55,8 +60,8 @@ CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
-V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2, "acl-lughnasa": 2, "dnl": 2}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
-TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729"}
+V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2, "acl-lughnasa": 2, "dnl": 2, "svt": 1}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
+TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729", "svt": "#0b120e"}
 PAGE = """<!DOCTYPE html>
 <html lang="{langue}">
 <head>
@@ -70,7 +75,7 @@ PAGE = """<!DOCTYPE html>
 <body>
 <div id="serie"></div>
 <script src="{code}.data.js?v={v}"></script>
-<script src="moteur.js?v={vm}"></script>
+{extra}<script src="moteur.js?v={vm}"></script>
 <script>SERIE.lancer(window.EPISODE);</script>
 </body>
 </html>
@@ -453,10 +458,18 @@ def generer(nom_module):
     with open(os.path.join(SORTIE, ep.CODE + ".data.js"), "w", encoding="utf-8") as f:
         f.write(js)
     v = hashlib.sha1(js.encode("utf-8")).hexdigest()[:8]
-    titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site == "pc"
+    titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site in ("pc", "svt")
              else f"{ep.NOTION} · Episode {ep.NUM} — {ep.TITRE}" if site == "dnl"
              else f"{ep.NOTION} · Part {ep.NUM} — {ep.TITRE}" if langue == "en" else f"{ep.NOTION} · Épisode {ep.NUM} — {ep.TITRE}")
-    page = PAGE.format(titre=titre, code=ep.CODE, v=v, vm=V_MOTEUR_SITE[site], teinte=TEINTE[site], langue=langue)
+    extra = ""
+    if site == "svt":   # carte mentale du thème (type mental) et illustrations propres au chapitre (illu-<code>.js)
+        with open(os.path.join(RACINE, "svt", "carte-mentale.js"), "rb") as f:
+            extra += f'<script src="../carte-mentale.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'
+        illu = os.path.join(SORTIE, "illu-" + ep.CODE + ".js")
+        if os.path.exists(illu):
+            with open(illu, "rb") as f:
+                extra += f'<script src="illu-{ep.CODE}.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'
+    page = PAGE.format(titre=titre, code=ep.CODE, v=v, vm=V_MOTEUR_SITE[site], teinte=TEINTE[site], langue=langue, extra=extra)
     with open(os.path.join(SORTIE, ep.CODE + ".html"), "w", encoding="utf-8") as f:
         f.write(page)
     print(f"{ep.CODE} : {duree / 60:.1f} min, {len(vis)} visuels, {len(sous)} sous-titres, audio {noms}")

@@ -135,3 +135,10 @@ html.embed.plein .stage svg{max-height:calc(100vh - 70px)}
   html.embed .sw{width:16px;height:8px}
   html.embed .quiz{padding:0 17px;margin-top:16px}
 }
+/* piloté par la vidéo du chapitre (svt/serie/) (?pilote=1) : l'image seule, à toute la taille du cadre */
+html.pilote,html.pilote body{background:transparent;overflow:hidden;margin:0}
+html.pilote .head,html.pilote .panel,html.pilote .note,html.pilote .quiz,html.pilote .bigplay{display:none!important}
+html.pilote .wrap{max-width:none;padding:0}
+html.pilote .player{display:block}
+html.pilote .stage{border-radius:0;box-shadow:none;background:transparent}
+html.pilote .stage svg{width:100vw;height:100vh;max-height:none}
