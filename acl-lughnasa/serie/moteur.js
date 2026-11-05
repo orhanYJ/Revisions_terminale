@@ -722,6 +722,220 @@
     };
   };
 
+  /* ---------- la pièce jouée : plateau vu de la salle, personnages qui bougent ----------
+     v.etats : liste d'états ; l'état 0 vaut dès l'apparition, l'état k au repère {id.k}. Chaque état ne donne que ce qui change :
+       pos  : {nom: lieu ou [x, y] ou "off"}      act : {nom: "fige" | "tricote" | "repasse" | "range" | "danse" | "danse_douce"
+                                                         | "danse_lourde" | "seule" | "halete" | "assis" | "debout"}
+       dit  : [nom, texte] (bulle)                 radio : true / false / "parasites"
+       masque : [noms] (visage de farine)         surplis : [noms] (vêtement blanc sur la tête)
+       ronde : [noms] (ils tournent en cercle)     chemin : {nom: [lieux…]} (trajet lent, ex. Kate dans le jardin)
+       note : texte de didascalie affiché en bas (citation courte)
+     Le rendu ne dépend que du temps : retour en arrière et export image par image donnent la même image. */
+  var LIEUX = {
+    fenetre: [292, 236], radio: [462, 244], buffet: [182, 300], table: [330, 368], porte: [566, 300],
+    tricot_a: [404, 452], tricot_r: [238, 452], centre: [330, 420], jardin: [770, 430], banc: [840, 340],
+    allee: [1110, 300], seuil: [600, 380], avant: [470, 520]
+  };
+  var PERSOS = {
+    Kate: { c: "#8fa9d9", h: "#3b3125", femme: true }, Maggie: { c: "#e3a95c", h: "#5a3a22", femme: true, tablier: true },
+    Agnes: { c: "#79c2a6", h: "#4a3420", femme: true }, Rose: { c: "#e996a6", h: "#6b4a2a", femme: true, bottes: true },
+    Chris: { c: "#c3a2e6", h: "#7a5a36", femme: true }, Jack: { c: "#a9a59a", h: "#d8d4c8", chapeau: "jack" },
+    Gerry: { c: "#d6c07a", h: "#4a3420", chapeau: "paille" }, Michael: { c: "#e6cb8b", h: "#4a3420" }
+  };
+  function coupe(txt, n) {   // texte en lignes de n caractères au plus
+    var out = [], l = "";
+    String(txt).split(" ").forEach(function (m) { if (l && (l + " " + m).length > n) { out.push(l); l = m; } else l = l ? l + " " + m : m; });
+    if (l) out.push(l);
+    return out;
+  }
+  function lieu(p) { return typeof p === "string" ? (LIEUX[p] || [580, 400]) : p; }
+  function echelle(y) { return 1.05 * (0.74 + (y - 200) / 360 * 0.5); }
+  var CAMS = { cuisine: [20, 60, 860, 445], tout: [100, 100, 980, 507], porte: [250, 90, 760, 393] };
+
+  function figure(g, nom) {
+    var PP = PERSOS[nom] || { c: C.iv, h: "#444" };
+    var gr = sv("g", {}, g);
+    var ombre = sv("ellipse", { cx: 0, cy: 2, rx: 22, ry: 6, fill: "rgba(0,0,0,.35)" }, gr);
+    var corps = sv("g", {}, gr);
+    var jg = sv("path", { d: "", stroke: PP.bottes ? "#2c2c2c" : "#d9d2c0", "stroke-width": PP.bottes ? 9 : 6, "stroke-linecap": "round", fill: "none" }, corps);
+    var jd = sv("path", { d: "", stroke: PP.bottes ? "#2c2c2c" : "#d9d2c0", "stroke-width": PP.bottes ? 9 : 6, "stroke-linecap": "round", fill: "none" }, corps);
+    var robe = sv("path", { d: PP.femme ? "M-14 -78 Q0 -84 14 -78 L24 -26 Q0 -20 -24 -26 Z" : "M-15 -80 Q0 -86 15 -80 L17 -36 L-17 -36 Z", fill: PP.c }, corps);
+    if (PP.tablier) sv("path", { d: "M-9 -60 L9 -60 L13 -28 L-13 -28 Z", fill: "rgba(255,255,255,.75)" }, corps);
+    var bg = sv("path", { d: "", stroke: PP.c, "stroke-width": 7, "stroke-linecap": "round", fill: "none" }, corps);
+    var bd = sv("path", { d: "", stroke: PP.c, "stroke-width": 7, "stroke-linecap": "round", fill: "none" }, corps);
+    var cheveux = sv("circle", { cx: 0, cy: -95, r: 14, fill: PP.h }, corps);
+    var tete = sv("circle", { cx: 0, cy: -92, r: 11.5, fill: "#f0d6bf" }, corps);
+    var masque = sv("circle", { cx: 0, cy: -92, r: 11.8, fill: "#fbfaf6", opacity: 0 }, corps);
+    if (PP.chapeau === "paille") sv("path", { d: "M-20 -104 H20 M-11 -104 Q0 -122 11 -104", stroke: "#e8d79a", "stroke-width": 5, fill: "none", "stroke-linecap": "round" }, corps);
+    if (PP.chapeau === "jack") sv("path", { d: "M-22 -104 H22 M-12 -104 Q0 -124 12 -104", stroke: "#2b2b2b", "stroke-width": 6, fill: "none", "stroke-linecap": "round" }, corps);
+    var surplis = sv("path", { d: "M-20 -112 Q0 -126 20 -112 L28 -30 Q0 -22 -28 -30 Z", fill: "#fbfaf6", opacity: 0 }, corps);
+    var nomT = sv("text", { x: 0, y: 26, "text-anchor": "middle", fill: PP.c, "font-size": 17, "font-weight": 700 }, gr, nom);
+    function bras(e, sx, ang, l) {
+      var x2 = sx + Math.sin(ang) * l, y2 = -72 + Math.cos(ang) * l;
+      e.setAttribute("d", "M" + sx + " -72 L" + x2.toFixed(1) + " " + y2.toFixed(1));
+    }
+    function jambe(e, sx, ang) {
+      e.setAttribute("d", "M" + sx + " -26 L" + (sx + Math.sin(ang) * 26).toFixed(1) + " " + (-26 + Math.cos(ang) * 26).toFixed(1));
+    }
+    return {
+      g: gr, nom: nomT, couleur: PP.c,
+      pose: function (x, y, act, t, ph, extra) {
+        var k = echelle(y), dy = 0, rot = 0, aG = 0.25, aD = -0.25, jG = 0.12, jD = -0.12;
+        if (act === "assis" || act === "tricote") { dy = 18; jG = 1.2; jD = 1.1; aG = 2.2 + (act === "tricote" ? Math.sin(t * 9 + ph) * .15 : 0); aD = -2.2 - (act === "tricote" ? Math.sin(t * 9 + ph + 1) * .15 : 0); }
+        else if (act === "repasse") { aG = 1.4 + Math.sin(t * 2.2 + ph) * .35; aD = -0.6; }
+        else if (act === "range") { aG = 2.6 + Math.sin(t * 1.4 + ph) * .3; aD = -0.4; }
+        else if (act === "danse" || act === "danse_lourde" || act === "seule" || act === "danse_douce") {
+          var vit = act === "danse_douce" ? 5 : act === "seule" ? 7.5 : 9, s = Math.sin(t * vit + ph);
+          dy = -Math.abs(s) * (act === "danse_lourde" ? 9 : act === "danse_douce" ? 4 : 7);
+          rot = s * (act === "danse_douce" ? 5 : act === "seule" ? 4 : 9);
+          aG = 2.6 + s * .5; aD = -2.6 + s * .5; jG = .45 * s; jD = -.45 * s;
+          if (act === "danse_lourde") { jG = .7 * s; jD = -.7 * s; aG = 1.8 + s * .7; aD = -1.8 + s * .7; }
+          if (act === "seule") { aG = 1.0 + s * .3; aD = -1.0 + s * .3; }
+        } else if (act === "halete") { dy = Math.sin(t * 6 + ph) * 1.5; aG = .35; aD = -.35; }
+        if (extra && extra.main) { aD = -1.4; }
+        bras(bg, -12, aG, 30); bras(bd, 12, aD, 30); jambe(jg, -7, jG); jambe(jd, 7, jD);
+        corps.setAttribute("transform", "translate(0," + dy.toFixed(1) + ") rotate(" + rot.toFixed(1) + " 0 -40)");
+        gr.setAttribute("transform", "translate(" + x.toFixed(1) + "," + y.toFixed(1) + ") scale(" + k.toFixed(3) + ")");
+        op(ombre, act === "assis" || act === "tricote" ? .2 : 1);
+      },
+      masque: function (a) { op(masque, a); }, surplis: function (a) { op(surplis, a * .95); }
+    };
+  }
+
+  TYPES.jeu = function (o, v) {
+    var e = o.el; e.classList.add("v-illu", "v-jeu"); o.entree = "aucune";
+    e.style.left = (v.x || 0) + "px"; e.style.top = (v.y || 40) + "px"; e.style.width = (v.w || 1160) + "px"; e.style.height = (v.h || 600) + "px";
+    var s = sv("svg", { viewBox: "0 0 1160 600" }, e);
+    // décor : sol, mur et fenêtre de la cuisine, fourneau, table, étagère et Marconi, porte ; jardin, sycamore, banc, chemin
+    var monde = sv("g", {}, s), dec = sv("g", {}, monde);
+    sv("path", { d: "M120 200 L1040 200 L1150 560 L10 560 Z", fill: "rgba(243,239,228,.05)", stroke: "rgba(243,239,228,.25)", "stroke-width": 2 }, dec);
+    sv("path", { d: "M566 200 L1040 200 L1150 560 L566 560 Z", fill: "rgba(120,160,95,.10)" }, dec);
+    sv("rect", { x: 120, y: 40, width: 446, height: 160, fill: "rgba(243,239,228,.06)", stroke: "rgba(243,239,228,.22)", "stroke-width": 2 }, dec);
+    sv("rect", { x: 245, y: 70, width: 96, height: 78, fill: "rgba(160,190,230,.18)", stroke: "rgba(243,239,228,.4)", "stroke-width": 3 }, dec);
+    sv("path", { d: "M293 70 V148 M245 109 H341", stroke: "rgba(243,239,228,.35)", "stroke-width": 2 }, dec);
+    sv("rect", { x: 140, y: 150, width: 70, height: 60, rx: 4, fill: "#2a2a2e", stroke: "rgba(243,239,228,.3)" }, dec);
+    sv("path", { d: "M165 150 V60", stroke: "rgba(243,239,228,.25)", "stroke-width": 8 }, dec);
+    sv("path", { d: "M400 160 H520", stroke: "rgba(243,239,228,.4)", "stroke-width": 4 }, dec);
+    var radio = sv("rect", { x: 440, y: 126, width: 48, height: 34, rx: 7, fill: "#6b4b2e", stroke: C.sa, "stroke-width": 2 }, dec);
+    sv("text", { x: 464, y: 120, "text-anchor": "middle", fill: C.sa, "font-size": 13, "letter-spacing": 2 }, dec, "MARCONI");
+    sv("path", { d: "M250 350 H420 L430 380 H240 Z", fill: "rgba(160,120,80,.55)", stroke: "rgba(243,239,228,.3)" }, dec);
+    sv("path", { d: "M566 205 V340", stroke: "rgba(243,239,228,.3)", "stroke-width": 3, "stroke-dasharray": "6 6" }, dec);
+    sv("path", { d: "M960 200 C 940 120 990 60 1010 30 M1010 30 C 1060 60 1080 120 1060 200", stroke: "rgba(120,160,95,.5)", "stroke-width": 26, fill: "none", "stroke-linecap": "round" }, dec);
+    sv("path", { d: "M790 330 H890 M800 330 V346 M880 330 V346", stroke: "rgba(243,239,228,.45)", "stroke-width": 4 }, dec);
+    [["THE KITCHEN", 343, 30], ["THE GARDEN", 850, 186]].forEach(function (l) {
+      sv("text", { x: l[1], y: l[2], "text-anchor": "middle", fill: "rgba(243,239,228,.4)", "font-size": 15, "letter-spacing": 4 }, dec, l[0]);
+    });
+    var notes = [0, 1, 2, 3].map(function () { return sv("text", { x: 0, y: 0, fill: C.sa, "font-size": 24, opacity: 0 }, monde, "♪"); });
+    var statique = sv("path", { d: "M492 120 l6 -8 l5 10 l6 -12 l5 9", stroke: C.iv2, "stroke-width": 2, fill: "none", opacity: 0 }, monde);
+    var calque = sv("g", {}, monde);
+    var bulleG = sv("g", { opacity: 0 }, s), bulleR = sv("rect", { rx: 12, fill: "#fbfaf6" }, bulleG),
+      bulleQ = sv("path", { d: "", fill: "#fbfaf6" }, bulleG), bulleT = sv("text", { "text-anchor": "middle", "font-size": 22, fill: "#1e2330", "font-weight": 600 }, bulleG);
+    var noteG = sv("g", { opacity: 0 }, s), noteR = sv("rect", { x: 80, y: 6, width: 1000, height: 36, rx: 10, fill: "rgba(8,12,22,.72)" }, noteG),
+      noteT = sv("text", { x: 580, y: 31, "text-anchor": "middle", "font-size": 20, fill: C.iv, "font-style": "italic", class: "ser" }, noteG);
+
+    // états cumulés
+    var noms = v.persos, ETATS = [], cur = { pos: {}, act: {}, masque: {}, surplis: {}, ronde: null, chemin: {}, radio: false, dit: null, note: null };
+    (v.etats || []).forEach(function (st, k) {
+      var n = { pos: Object.assign({}, cur.pos), act: Object.assign({}, cur.act), masque: Object.assign({}, cur.masque),
+        surplis: Object.assign({}, cur.surplis), ronde: st.ronde !== undefined ? st.ronde : cur.ronde, chemin: {},
+        radio: st.radio !== undefined ? st.radio : cur.radio, cam: st.cam || cur.cam || "cuisine", dit: st.dit || null, note: st.note !== undefined ? st.note : null };
+      Object.assign(n.pos, st.pos || {}); Object.assign(n.act, st.act || {});
+      (st.masque || []).forEach(function (x) { n.masque[x] = 1; }); (st.surplis || []).forEach(function (x) { n.surplis[x] = 1; });
+      (st.sans_surplis || []).forEach(function (x) { n.surplis[x] = 0; });
+      // un trajet continue d'un état à l'autre jusqu'à ce qu'un état redonne une position au personnage
+      n.chemin = Object.assign({}, cur.chemin || {}); n.cheminDe = Object.assign({}, cur.cheminDe || {});
+      Object.keys(st.chemin || {}).forEach(function (x) { n.chemin[x] = st.chemin[x]; n.cheminDe[x] = k; n.cheminDuree = n.cheminDuree || {}; });
+      Object.keys(st.pos || {}).forEach(function (x) { delete n.chemin[x]; });
+      n.cheminDurees = Object.assign({}, cur.cheminDurees || {});
+      Object.keys(st.chemin || {}).forEach(function (x) { n.cheminDurees[x] = st.chemin_duree || 9; });
+      n.duree = st.duree || 1.4; n.chemin_duree = st.chemin_duree || 9;
+      ETATS.push(n); cur = n;
+    });
+    var figs = {}; noms.forEach(function (nm) { figs[nm] = figure(calque, nm); });
+    function tEtat(k) { return k === 0 ? v.t0 : et(v, String(k), 2 + 3 * k); }
+    function posA(st, nm) { var p = st.pos[nm]; return p === "off" || p == null ? null : lieu(p); }
+    function posAt(k, nm, t) {
+      var S = ETATS[k], tk = tEtat(k);
+      var depart = function () { return k ? posAt(k - 1, nm, tk) : null; };
+      if (S.ronde && S.ronde.indexOf(nm) >= 0) {
+        var r = S.ronde.indexOf(nm), ang = (t - tk) * 1.1 + r * Math.PI * 2 / S.ronde.length;
+        var c0 = LIEUX.centre, cx = c0[0] + Math.cos(ang) * 95, cy = c0[1] + Math.sin(ang) * 38;
+        var d = depart() || [cx, cy], w = k ? EIO(P(t, tk, 1.2)) : 1;
+        return [d[0] + (cx - d[0]) * w, d[1] + (cy - d[1]) * w];
+      }
+      if (S.chemin[nm]) {
+        var pts = S.chemin[nm].map(lieu);
+        return surChemin(pts, EIO(P(t, tEtat(S.cheminDe[nm]), S.cheminDurees[nm])));
+      }
+      var p1 = posA(S, nm);
+      if (!p1) return null;
+      var p0 = depart() || p1, u = k ? EIO(P(t, tk, S.duree)) : 1;
+      return [p0[0] + (p1[0] - p0[0]) * u, p0[1] + (p1[1] - p0[1]) * u];
+    }
+    function surChemin(pts, u) {
+      if (pts.length < 2) return pts[0];
+      var L = [], tot = 0; for (var i = 1; i < pts.length; i++) { var d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); L.push(d); tot += d; }
+      var x = u * tot;
+      for (var j = 0; j < L.length; j++) { if (x <= L[j]) { var f = L[j] ? x / L[j] : 0; return [pts[j][0] + (pts[j + 1][0] - pts[j][0]) * f, pts[j][1] + (pts[j + 1][1] - pts[j][1]) * f]; } x -= L[j]; }
+      return pts[pts.length - 1];
+    }
+    return function (t, st) {
+      var a = E(P(t, v.t0, .8)); op(dec, a);
+      var k = 0; for (var i = 1; i < ETATS.length; i++) if (t >= tEtat(i)) k = i;
+      var S = ETATS[k], prev = ETATS[Math.max(0, k - 1)], t0k = tEtat(k);
+      var u = k ? EIO(P(t, t0k, S.duree)) : 1;
+      var c1 = CAMS[S.cam] || CAMS.tout, c0 = CAMS[prev.cam] || c1, uc = k ? EIO(P(t, t0k, 2.2)) : 1;
+      var cam = [0, 1, 2, 3].map(function (i) { return c0[i] + (c1[i] - c0[i]) * uc; }), sc = 1160 / cam[2];
+      monde.setAttribute("transform", "scale(" + sc.toFixed(4) + ") translate(" + (-cam[0]).toFixed(2) + "," + (-cam[1]).toFixed(2) + ")");
+      var ecran = function (x, y) { return [(x - cam[0]) * sc, (y - cam[1]) * sc]; };
+      // radio : notes de musique ou parasites
+      var on = S.radio === true;
+      notes.forEach(function (n, i) {
+        var c = ((t * .7 + i / 4) % 1);
+        n.setAttribute("x", (470 + i * 9 + Math.sin(c * 6 + i) * 14).toFixed(1)); n.setAttribute("y", (118 - c * 70).toFixed(1));
+        op(n, on ? Math.sin(c * Math.PI) * a : 0);
+      });
+      op(statique, S.radio === "parasites" ? (0.5 + 0.5 * Math.sin(t * 25)) * a : 0);
+      radio.setAttribute("stroke-width", on ? 3 + Math.sin(t * 8) : 2);
+      var ordre = [];
+      noms.forEach(function (nm, idx) {
+        var F = figs[nm], act = S.act[nm] || "debout";
+        var q = posAt(k, nm, t), x = q ? q[0] : 0, y = q ? q[1] : 0, vis = 1;
+        var la = function (X) { return posA(X, nm) || (X.ronde && X.ronde.indexOf(nm) >= 0) || X.chemin[nm] ? 1 : 0; };
+        var vis1 = la(S), vis0 = k ? la(prev) : vis1;
+        vis = vis0 + (vis1 - vis0) * u;
+        if (!q) { var q0 = k ? posAt(k - 1, nm, t0k) : null; if (q0) { x = q0[0]; y = q0[1]; } }
+        F.pose(x, y, act, t, idx * 1.7);
+        op(F.g, vis * a);
+        F.masque(S.masque[nm] ? (prev.masque[nm] ? 1 : u) : 0);
+        F.surplis(S.surplis[nm] ? (prev.surplis[nm] ? 1 : u) : 0);
+        ordre.push([y, F.g]);
+        F._x = x; F._y = y;
+      });
+      ordre.sort(function (p, q) { return p[0] - q[0]; }).forEach(function (p) { calque.appendChild(p[1]); });
+      // bulle de la réplique
+      if (S.dit && figs[S.dit[0]]) {
+        var F2 = figs[S.dit[0]], txt = S.dit[1];
+        var lignes = coupe(txt, 40), lmax = Math.max.apply(null, lignes.map(function (l) { return l.length; }));
+        var tete = ecran(F2._x, F2._y - 128 * echelle(F2._y)), fx = tete[0];
+        var wv = 26 + lmax * 11.4, hb = 14 + lignes.length * 28, bx = cl(fx, wv / 2 + 10, 1150 - wv / 2), by = Math.max(hb + 6, tete[1] - 14);
+        if (bulleT._txt !== txt) {
+          bulleT._txt = txt; while (bulleT.firstChild) bulleT.removeChild(bulleT.firstChild);
+          lignes.forEach(function (l, i) { sv("tspan", { x: 0, dy: i ? 28 : 0 }, bulleT, l); });
+        }
+        bulleR.setAttribute("x", bx - wv / 2); bulleR.setAttribute("y", by - hb + 12); bulleR.setAttribute("width", wv); bulleR.setAttribute("height", hb);
+        bulleT.setAttribute("transform", "translate(" + bx.toFixed(1) + "," + (by - hb + 38).toFixed(1) + ")");
+        bulleQ.setAttribute("d", "M" + (fx - 9) + " " + (by + 11) + " L" + fx + " " + (by + 26) + " L" + (fx + 9) + " " + (by + 11) + " Z");
+        bulleR.setAttribute("stroke", F2.couleur); bulleR.setAttribute("stroke-width", 3);
+        op(bulleG, E(P(t, t0k + .1, .35)) * a);
+      } else op(bulleG, 0);
+      if (S.note) {
+        if (noteT.textContent !== S.note) { noteT.textContent = S.note; var lw = Math.min(1140, 40 + S.note.length * 9.6); noteR.setAttribute("x", 580 - lw / 2); noteR.setAttribute("width", lw); }
+        op(noteG, E(P(t, t0k, .6)) * a);
+      } else op(noteG, 0);
+    };
+  };
+
   TYPES.illu = function (o, v) {
     var e = o.el; e.classList.add("v-illu"); o.entree = "aucune";
     e.style.left = v.x + "px"; e.style.top = v.y + "px"; e.style.width = v.w + "px"; e.style.height = v.h + "px";

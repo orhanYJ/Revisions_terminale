@@ -78,8 +78,59 @@ def _reverb(x, duree=2.2, mix=0.32):
     return (1 - mix) * x + mix * y * 0.9
 
 
+# reel irlandais original (composé ici, aucune œuvre tierce) pour la danse de Dancing at Lughnasa : violon, basse,
+# accords sur les contretemps et tambour sur chaque temps ; « very fast, very heavy beat, a raucous sound » (p. 22)
+REEL_A = [[74, 78, 81, 78, 74, 78, 81, 83], [86, 83, 81, 78, 79, 78, 76, 74], [79, 83, 86, 83, 79, 83, 86, 83],
+          [81, 85, 88, 85, 81, 79, 78, 76], [74, 78, 81, 78, 74, 78, 81, 83], [86, 85, 83, 81, 79, 78, 76, 78],
+          [79, 81, 83, 79, 81, 76, 73, 76], [74, 73, 74, 76, 78, 76, 74, 69]]
+REEL_B = [[86, 81, 78, 81, 86, 81, 78, 81], [83, 79, 74, 79, 83, 79, 74, 79], [86, 81, 78, 81, 86, 88, 86, 85],
+          [83, 81, 79, 78, 76, 73, 69, 73], [86, 81, 78, 81, 86, 81, 78, 81], [83, 79, 74, 79, 83, 85, 86, 88],
+          [86, 83, 81, 79, 78, 76, 73, 76], [74, 73, 74, 76, 74, 69, 74, 0]]
+REEL_ACC = {"D": (38, [62, 66, 69]), "G": (43, [62, 67, 71]), "A": (45, [61, 64, 69])}
+REEL_GRILLE = ["D", "D", "G", "A", "D", "D", "G", "D"] * 2 + ["D", "G", "D", "A", "D", "G", "A", "D"] * 2
+
+
+def _violon(f, dur, amp):
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    vib = 1 + 0.004 * np.sin(2 * np.pi * 5.5 * t)
+    ph = 2 * np.pi * f * np.cumsum(vib) / SR
+    s = sum(np.sin(k * ph) / k for k in range(1, 7))
+    env = np.minimum(1, t / 0.012) * np.exp(-t * 2.5) * np.minimum(1, (dur - t) / 0.02).clip(0, 1)
+    return amp * env * s
+
+
+def reel(duree):
+    croche = 60.0 / 113 / 2
+    n = int(duree * SR) + SR
+    out = np.zeros(n)
+    melodie = REEL_A + REEL_A + REEL_B + REEL_B
+    t, k = 0.0, 0
+    while t < duree:
+        mesure = melodie[k % len(melodie)]
+        acc = REEL_ACC[REEL_GRILLE[k % len(REEL_GRILLE)]]
+        for c, m in enumerate(mesure):
+            if m:
+                _ajoute(out, _violon(hz(m), croche * 1.05, 0.11 if c % 2 == 0 else 0.085), int((t + c * croche) * SR))
+        for b in range(4):
+            i = int((t + b * 2 * croche) * SR)
+            L = int(0.18 * SR); tt = np.arange(L) / SR
+            _ajoute(out, (0.32 if b % 2 == 0 else 0.22) * np.sin(2 * np.pi * (75 - 30 * tt) * tt) * np.exp(-tt * 22), i)
+            if b % 2 == 0:
+                _ajoute(out, _note_piano(hz(acc[0]), 0.5, 0.22), i)
+            else:
+                for m in acc[1]:
+                    _ajoute(out, _note_piano(hz(m), 0.25, 0.06), i)
+        t += 8 * croche
+        k += 1
+    out = np.tanh(2.2 * out) / np.tanh(2.2)          # le son « raucous » d'un vieux poste
+    return out[:int(duree * SR)]
+
+
 def boucle(duree, humeur="lumiere"):
     """Musique brute (sans dosage) de la durée demandée, dans l'humeur choisie."""
+    if humeur == "reel":
+        return reel(duree)
     H = HUMEURS[humeur]
     BEAT = 60.0 / H["bpm"]
     ACCORDS = H["accords"]

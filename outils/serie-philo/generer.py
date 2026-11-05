@@ -313,7 +313,8 @@ def generer(nom_module):
                 cues[b["vis"]] = t - 0.25
                 cit_mots[b["vis"]] = {"c0": round(t, 3), "c1": round(t + dur, 3),
                                       "m": [[round(t + a[1] - tete, 3), a[3]] for a in al]}
-                bruitages.append((t - 0.3, "cloche"))
+                if "." not in b["vis"]:      # pas de cloche pour une réplique jouée sur le plateau (visuel jeu)
+                    bruitages.append((t - 0.3, "cloche"))
             voix.append((t, x))
             paroles.append((t, t + dur))
             # sous-titres : morceaux de phrase de 90 caractères au plus
@@ -399,6 +400,16 @@ def generer(nom_module):
     for a, b in plein:       # images plein écran : la musique remonte un peu sous la voix
         i, j = int(a * SR), int(b * SR)
         g[i:j] = np.maximum(g[i:j], 0.2)
+    # danse sur la radio (humeur « reel ») : la musique reste présente sous la voix ; coupure nette au repère « coupe » de la scène
+    for k, (deb, hu) in enumerate(humeurs):
+        fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR
+        if hu == "reel":
+            i, j = int(deb * SR), int(fin * SR)
+            g[i:j] = np.maximum(g[i:j], 0.38)
+    for sc, s_ in zip(ep.SCENES, scenes):
+        if sc.get("coupe") and sc["coupe"] in cues:
+            i, j = int(cues[sc["coupe"]] * SR), int(s_["t1"] * SR)
+            mus[i:j] = 0
     # fondu d'entrée et de sortie de la musique
     g *= np.clip(tt / 0.4, 0, 1) * np.clip((duree + 0.5 - tt) / 3.0, 0, 1)
     fx = np.zeros(n)
