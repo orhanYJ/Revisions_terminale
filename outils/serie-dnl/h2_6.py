@@ -157,9 +157,9 @@ SCENES = [
                      t="War as a core value → an aggressive foreign policy.",
                      etape="Mussolini uses the Roman Empire to justify his ambitions", x=170, y=200, w=940),
         "g4": dict(type="globe", code="H2", sc=[27]),
-        "eth": dict(type="liste", titre="Italy in Africa", x=700, y=100, w=540, petit=True, bande=True, items=[
-            "Libya: colonised from the war of 1911 – 1912", "Ethiopia: one of only two independent African states",
-            "October 1935: the invasion", "May 1936: Addis Ababa taken; an “empire”"]),
+        "eth": dict(type="liste", titre="Italy in Africa", x=740, y=80, w=500, petit=True, bande=True, items=[
+            "Libya: colonised from 1911 – 12", "Ethiopia: one of two free African states",
+            "October 1935: the invasion", "May 1936: Addis Ababa; an “empire”"]),
         "film": dict(type="note", terme="Scipione l'africano · 1937", cles=["Hannibal", "Africa"],
                      t="A historical film funded by Mussolini: Rome's victory over Hannibal.",
                      etape="Propaganda for fascist ambitions in Africa", x=170, y=200, w=940),
