@@ -176,7 +176,7 @@ SCENES = [
         ("C", "Do you want the whole countryside to be laughing at us? – women of our years? – mature women, dancing?",
          "c_laugh", {"voix": "F"}),
         "{-c_laugh}{ital}Her first fear is not sin, but other people's eyes. "
-        "And dancing is in italics: she can hardly say the word.",
+        "And dancing is in italics: she stresses the word, as if it were shameful.",
         "{-ital}",
         ("C", "And this is Father Jack's home – we must never forget that – ever.", "c_home", {"voix": "F"}),
         "{-c_home}{raisons}Three reasons. {raisons.1}The parish is watching. "
@@ -189,7 +189,7 @@ SCENES = [
     ], vis={
         "non": dict(type="mot", t="No, no, no!", g="Kate · p. 14", y=260, taille=110),
         "c_laugh": dict(type="cit", a="Kate", o="p. 15", x=170, y=200, w=940),
-        "ital": dict(type="mot", t="mature women, dancing?", g="the word she can hardly say: in italics in the text", y=260, taille=84),
+        "ital": dict(type="mot", t="mature women, dancing?", g="in italics in the text: Kate stresses the word, as if it were shameful", y=260, taille=84),
         "c_home": dict(type="cit", a="Kate", o="p. 15", x=170, y=200, w=940),
         "raisons": dict(type="liste", titre="Kate's reasons", items=[
             "“the whole countryside … laughing at us”: the parish is watching",

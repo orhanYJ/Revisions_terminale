@@ -45,8 +45,8 @@ SCENES = [
         "{tab_gle}{debut}The sisters go back to their tasks. {debut.1}Gerry is up the sycamore tree, fixing the aerial. "
         "We never made love on top of a sycamore tree, he calls down. Chris looks round: did her sisters hear?",
         "{debut.2}Maggie has a brilliant idea: Agnes, with her clever hands, should be a dressmaker. "
-        "No more ruining her eyes on grey wool. {debut.3}But remember part eleven: Vera McLaughlin will soon stop buying "
-        "the gloves. We know the plan will never happen.",
+        "No more ruining her eyes on grey wool. {debut.3}But remember part nine: the glove money is already gone, and Agnes "
+        "does not know it yet. We know the plan will never happen.",
         "{-debut}{-tab_gle}{jack}Then Jack comes in through the garden. {jack.1}In Ryanga, he says, he could find one husband "
         "for all four of you. {jack.2}One principal wife, the others in his enclosure. "
         "{jack.3}A small commune, where everybody helps everybody. I'm completely in favour of it.",
@@ -212,8 +212,8 @@ SCENES = [
         "{a1.1}One: tragic irony. A dressmaking plan, bilberries next Sunday, I love September. "
         "Because Michael has just told us the ending, every hopeful line hurts. The scene is an elegy disguised as a picnic.",
         "{-a1}{a2}{a2.1}Two: ritual replaces sacrament. Kate defends the holy sacrament of matrimony; "
-        "Jack answers with a Ryanga ceremony, formal and irrevocable. He gives away the uniform of the British army and the "
-        "Church that sent him. Pagan ritual, here, is what gives meaning to a goodbye.",
+        "Jack answers with a Ryanga ceremony, formal and irrevocable. He gives away his ceremonial hat, the last piece of the "
+        "uniform he wore as an army chaplain. Pagan ritual, here, is what gives meaning to a goodbye.",
         "{-a2}{a3}{a3.1}Three: symbols of the end. The dead white rooster on the feast cloth, the broken radio, "
         "the kites' cruel, grinning faces. None of them is explained. They are images a child stored, "
         "and an adult still cannot put into words.",
@@ -228,7 +228,7 @@ SCENES = [
                    etape="An elegy disguised as a picnic.", x=170, y=200, w=940),
         "a2": dict(type="note", cles=["ritual", "sacrament"], terme="2 · Ritual replaces sacrament",
                    t="“the holy sacrament of matrimony” against “formally and irrevocably complete”.",
-                   etape="Jack gives away the uniform of the army and the Church.", x=170, y=200, w=940),
+                   etape="Jack gives away the tricorn of his old chaplain's uniform.", x=170, y=200, w=940),
         "a3": dict(type="note", cles=["rooster", "kites"], terme="3 · Symbols of the end",
                    t="The dead white rooster, the broken radio, the “cruel, grinning” kites.",
                    etape="Images a child stored, never explained.", x=170, y=200, w=940),
