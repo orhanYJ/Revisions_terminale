@@ -169,7 +169,7 @@ SCENES = [
         "The voters they had promised prosperity to had received the opposite.",
     ], vis={
         "mot1": dict(type="mot", t="20,000 goods", g="Smoot–Hawley Tariff Act · signed 17 June 1930", y=250, taille=100),
-        "fiche": dict(type="liste", titre="Fact file · the Smoot–Hawley Tariff (June 1930)", petit=True,
+        "fiche": dict(type="liste", titre="Fact file · the Smoot–Hawley Tariff (June 1930)",
                       cles=["20,000", "nationalism", "Republicans", "1,028", "home market", "consequences"], items=[
             "What? Duties on 20,000+ goods, the 2nd-highest level in US history",
             "Ideology: economic nationalism, shut out foreign competition",
@@ -200,7 +200,7 @@ SCENES = [
         "Britain and its dominions cut tariffs for each other, and kept them high for everyone else. "
         "{ott.1}Free trade, the pillar of the 1919 liberal order, was gone.",
         "{-ott}{jug}So, did the tariff cause the Depression? Many historians hold that the Act worsened it. "
-        "The more careful judgement, the one to write, is this: {!a downturn into a trade war}it turned a downturn into a trade war.",
+        "The more careful judgement, the one to write, is this: it turned a downturn into a trade war.",
     ], vis={
         "q5": dict(type="question", t="Did it work?"),
         "c_pal": dict(type="cit", a="Caption of a cartoon", o="M. Ros's slides, on Smoot–Hawley", x=200, y=230, w=880),
@@ -299,7 +299,7 @@ SCENES = [
             "Reparations and repayments: no way to borrow or spend"], x=170, y=140, w=940),
         "gch": dict(type="graphe", titre="German unemployment among insured workers, % (Worksheet 3, Source 2)", x=300, y=110, w=680, h=520,
                     ax=dict(x=[1927.4, 1933.6], y=[0, 52], gx=[1928, 1929, 1930, 1931, 1932, 1933], gy=[10, 20, 30, 40, 50], lx="", ly="%"),
-                    el=barres_ans(CHOMAGE) + [dict(type="texte", x=1930.5, y=49.5, t="insured workers only: about 30% across the whole workforce", c="iv")]),
+                    el=barres_ans(CHOMAGE) + [dict(type="texte", x=1928.7, y=38, t="insured workers only", c="iv")]),
         "arb": dict(type="tableau", img="h1-arbeitsamt-1932", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .6, .55],
                     legende="Unemployed outside the employment office Berlin-Nordost, 4 May 1932 (Bundesarchiv, Bild 146-1976-033-23, Seiler, CC BY-SA 3.0 de)"),
         "soc": dict(type="liste", titre="Who is hit?", cles=["proletariat", "middle class", "soup kitchens", "party"], items=[
@@ -322,7 +322,7 @@ SCENES = [
         "{-c_masch}{gv}Now watch two curves on the same chart. {gv.1}Unemployment. {gv.2}And the Nazi vote: two point six per cent in 1928, "
         "eighteen point three in 1930, thirty-seven point three in July 1932. The vote follows the curve almost exactly. "
         "{gv.3}Then, in November 1932, it falls: thirty-three point one per cent.",
-        "{-gv}{maj}So remember this: the Nazis {!never won a majority}never won a majority. Never more than fifty per cent of the vote.",
+        "{-gv}{maj}So remember this: the Nazis never won a majority. Never more than fifty per cent of the vote.",
         "{-maj}{porte}What brought them to power? {porte.1}The fear of communism, among the middle class and the centre parties. "
         "They preferred to work with the Nazis rather than risk a revolution from the left. "
         "{porte.2}And in January 1933, Hitler was appointed chancellor by conservatives who thought they could use him.",
@@ -410,15 +410,15 @@ SCENES = [
         "{fr1.3}Then the Second New Deal, in 1935, turned relief into rights: the Social Security Act, with pensions and unemployment insurance, "
         "and the Works Progress Administration.",
         "{fr1.4}The course also mentions the Golden Gate Bridge, in San Francisco, which went up from 1933 under the same impulse. "
-        "One precision, outside the course: it was a local project, paid for by bonds of a regional district, not a federal New Deal programme.",
-        "{-fr1}{cmp2}And now the point of the comparison. {cmp2.g}Both states spent public money against unemployment. "
+        "One precision, outside the course: it opened in 1937, and it was a local project, paid for by bonds of a regional district, not a federal New Deal programme.",
+        "{-fr1}{cmp2}{cmp2.g}And now the point of the comparison. Both states spent public money against unemployment. "
         "{cmp2.d}But one built bridges and social insurance… while the other built an army.",
     ], vis={
         "rrr": dict(type="liste", titre="The New Deal: three words", cles=["Relief", "Recovery", "Reform"], items=[
             "Relief · for the destitute", "Recovery · for the economy", "Reform · of the system that failed"], x=170, y=160, w=940),
         "fr1": dict(type="frise", items=[
             dict(nom="Elected", d=1932, q="Roosevelt, a Democrat"), dict(nom="Hundred days", d=1933, q="CCC · TVA · deposits insured"),
-            dict(nom="Second New Deal", d=1935, q="Social Security Act · WPA"), dict(nom="Golden Gate", d=1937, q="built from 1933 (local project)")]),
+            dict(nom="Second New Deal", d=1935, q="Social Security Act · WPA"), dict(nom="Golden Gate", d=1937, q="built 1933–37 (local project)")]),
         "hd": dict(type="mot", t="The hundred days", g="First New Deal · 1933 – 1935 · emergency laws", y=260, taille=90),
         "c_fdr": dict(type="cit", a="Franklin D. Roosevelt", o="quoted in M. Ros's course", x=200, y=200, w=880),
         "cmp2": dict(type="cols", g="USA · the New Deal", gq="public money for bridges, dams and social insurance",
@@ -476,7 +476,7 @@ SCENES = [
             "The 40-hour week", "Two weeks' paid holiday", "Railways nationalised: the SNCF",
             "Keynesian: spending and deficits to revive demand"], x=170, y=130, w=940),
         "intl": dict(type="cols", g="Abroad", gq="appeasement · non-intervention in Spain", d="The army",
-                     dq="course: “no money for the army” · in fact a rearmament plan, Sept. 1936, limited by deficits", vs="·"),
+                     dq="course: “no money for the army” · in fact a rearmament plan, Sept. 1936, limited by deficits", vs="+"),
         "mat": dict(type="liste", titre="Example · the Matignon Agreements", cles=["seven to fifteen", "franc", "dismantled"], items=[
             "June 1936: wages +7 to 15% in a week", "Autumn 1936: off gold, the franc's fall eats the gains",
             "1938: the 40-hour week dismantled"], x=170, y=150, w=940),
