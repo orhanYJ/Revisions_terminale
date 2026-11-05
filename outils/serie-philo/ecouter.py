@@ -14,6 +14,7 @@ import numpy as np
 ICI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ICI)
 sys.path.insert(1, os.path.join(os.path.dirname(ICI), "serie-pc"))
+sys.path.insert(2, os.path.join(os.path.dirname(ICI), "serie-svt"))
 os.environ.setdefault("SERIE_MOTEUR", "qwen")
 import generer as G  # noqa: E402
 

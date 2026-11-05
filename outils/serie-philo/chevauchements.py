@@ -7,12 +7,12 @@ import json, os, sys
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 PRINCIPAUX = {"portrait", "def", "note", "cols", "cartes", "liste", "cit", "mot", "question", "dialogue", "carte", "nuage", "titre", "illu", "frise",
-              "anim", "formule", "graphe", "exo", "pause", "globe"}
+              "anim", "formule", "graphe", "exo", "pause", "globe", "mental"}
 
 
 def donnees(code):
     """Données d'un épisode philo (philo/serie) ou d'une vidéo de cours PC (pc/serie)."""
-    for site in ("philo", "pc", "acl-lughnasa", "dnl"):
+    for site in ("philo", "pc", "acl-lughnasa", "dnl", "svt"):
         f = os.path.join(RACINE, site, "serie", code + ".data.js")
         if os.path.exists(f):
             js = open(f, encoding="utf-8").read()
@@ -23,6 +23,8 @@ def donnees(code):
 def boite(v):
     if v["type"] == "portrait":
         return (0, 600)         # grand portrait fondu à gauche
+    if v["type"] == "mental":
+        return (0, 1280)        # carte mentale plein cadre
     if v["type"] == "globe":
         x = v.get("x", 0)
         return (x, x + v.get("w", 1280))
