@@ -82,7 +82,7 @@ SCENES = [
         "Yes: the man Rose teased her about, back in part three.",
         "{-fates}{ironie}Feel the irony. {ironie.1}The factory ruined Agnes and Rose. "
         "{ironie.2}Now Chris works there for life. "
-        "{ironie.3}And Kate teaches the children of the man she loved in silence.",
+        "{ironie.3}And Kate teaches the children of the man she seemed to love in silence.",
         "And Michael himself?",
         "{-ironie}",
         ("C", "when my time came to go away, in the selfish way of young men I was happy to escape.", "c_escape"),
@@ -102,7 +102,7 @@ SCENES = [
         "ironie": dict(type="liste", titre="Irony", cles=["irony"], items=[
             "The factory ruined Agnes and Rose",
             "Chris works in it for the rest of her life",
-            "Kate teaches the children of the man she loved"], marques=["1", "2", "3"], x=150, y=180, w=980),
+            "Kate teaches the children of the man she seemed to love"], marques=["1", "2", "3"], x=150, y=180, w=980),
         "c_escape": dict(type="cit", a="Michael", o="p. 74", x=170, y=200, w=940),
         "fuite": dict(type="note", cles=["Emigration", "selfish"], terme="Leaving Ballybeg",
                       t="Michael “happy to escape”, like Agnes, Rose, Gerry, Jack.",

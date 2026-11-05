@@ -127,7 +127,7 @@ SCENES = [
         "{jack.2}But he never said Mass again. "
         "{jack.3}No civic reception, no bands and flags and speeches. The neighbours simply stopped asking about him.",
         "{-jack}{kate}Kate finally found a phrase to make peace with it: his own distinctive spiritual search. "
-        "{kate.1}A polite formula to cover a priest who dances round a fire.",
+        "{kate.1}A polite formula to cover a priest who never said Mass again.",
         "{-kate}{-tab_kil}{mort}Jack died suddenly of a heart attack, within a year of his homecoming, "
         "on the very eve of the following Lughnasa. And for months, Kate was inconsolable.",
         "{-mort}{gerry}And Gerry? He sailed for Spain that Saturday. {gerry.1}The last Michael saw of him: "
@@ -156,7 +156,7 @@ SCENES = [
             "No “bands and flags and speeches”"], marques=["1", "2", "3"], x=150, y=180, w=980),
         "kate": dict(type="note", cles=["distinctive", "polite"], terme="Kate's phrase · p. 63",
                      t="“his own distinctive spiritual search”",
-                     etape="A polite formula for a priest who dances round a fire.", x=170, y=200, w=940),
+                     etape="A polite formula for a priest who never said Mass again.", x=170, y=200, w=940),
         "mort": dict(type="mot", t="On the very eve of Lughnasa", g="Jack dies within a year · Kate is inconsolable",
                      y=260, taille=80),
         "gerry": dict(type="liste", titre="Gerry leaves · page 64", items=[
