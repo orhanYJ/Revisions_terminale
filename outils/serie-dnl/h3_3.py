@@ -174,9 +174,9 @@ SCENES = [
         "{ch1.3}So Hitler postponed the invasion, first until the spring of 1941. "
         "{ch1.4}Then, in December 1940, the first operational order for the invasion of the Soviet Union was issued, "
         "and the invasion of Britain was postponed indefinitely. Germany had turned its forces to the East.",
-        "{-ch1}{-g6}So Britain was the first country to stop the Nazi war machine. Not by defeating it. {!By holding out}By holding out. "
+        "{-ch1}{-g6}{hold}So Britain was the first country to stop the Nazi war machine. Not by defeating it. {!By holding out}By holding out. "
         "That is a strong sentence for an essay: Britain did not win in 1940, but it did not lose, and that was enough to change the war.",
-        "{hors}Two names you will find in books, although they are not in the course. {hors.1}The invasion plan was code-named Operation Sea Lion, "
+        "{-hold}{hors}Two names you will find in books, although they are not in the course. {hors.1}The invasion plan was code-named Operation Sea Lion, "
         "and the air battle of the summer of 1940 is known as the Battle of Britain. "
         "You may use them, but the words of the course are enough: air superiority, the Luftwaffe, the RAF.",
     ], vis={
@@ -185,6 +185,7 @@ SCENES = [
                     cles=["air", "superiority", "failed", "indefinitely"], items=[
                         "A landing needs air superiority over south-east England", "1940: the Luftwaffe fails to win it",
                         "Invasion postponed to spring 1941", "Dec. 1940: first order to invade the USSR; invasion postponed indefinitely"]),
+        "hold": dict(type="mot", t="Not defeating it: holding out", g="Britain did not win in 1940, but it did not lose — enough to change the war", y=250, taille=76),
         "hors": dict(type="note", terme="Outside the course", cles=["Sea", "Lion", "Battle", "Britain"],
                      t="The invasion plan: Operation Sea Lion. The air battle of summer 1940: the Battle of Britain.",
                      etape="Useful names, but the course's words are enough: air superiority, Luftwaffe, RAF.", x=170, y=200, w=940),

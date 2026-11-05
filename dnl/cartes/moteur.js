@@ -153,9 +153,9 @@
     if (p === undefined) { var st = chaine(geom); p = cache[id] = st ? new Path2D(st) : null; }
     return p;
   }
-  function remplir(p) { if (p === true) ctx.fill(); else ctx.fill(p); }
-  function contour(p) { if (p === true) ctx.stroke(); else ctx.stroke(p); }
-  function decouper(p) { if (p === true) ctx.clip(); else ctx.clip(p); }
+  function remplir(p) { if (p === true) ctx.fill(); else if (p) ctx.fill(p); }
+  function contour(p) { if (p === true) ctx.stroke(); else if (p) ctx.stroke(p); }
+  function decouper(p) { if (p === true) ctx.clip(); else if (p) ctx.clip(p); else { ctx.beginPath(); ctx.rect(0, 0, 0, 0); ctx.clip(); } }   // pièce hors champ : rien à découper
   var W = 0, H = 0, DPR = 1, R0 = 1, DPRMAX = 2, lent = 0;
   var grat = d3.geoGraticule().step([15, 15])();
   var pats = {};
