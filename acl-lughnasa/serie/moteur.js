@@ -924,8 +924,8 @@
     var voileOr = sv("rect", { x: -200, y: -200, width: 1600, height: 1000, fill: "rgba(232,188,104,.16)", opacity: 0 }, monde);
     var bulleG = sv("g", { opacity: 0 }, s), bulleR = sv("rect", { rx: 12, fill: "#fbfaf6" }, bulleG),
       bulleQ = sv("path", { d: "", fill: "#fbfaf6" }, bulleG), bulleT = sv("text", { "text-anchor": "middle", "font-size": 22, fill: "#1e2330", "font-weight": 600 }, bulleG);
-    var noteG = sv("g", { opacity: 0 }, s), noteR = sv("rect", { x: 80, y: 6, width: 1000, height: 36, rx: 10, fill: "rgba(8,12,22,.72)" }, noteG),
-      noteT = sv("text", { x: 580, y: 31, "text-anchor": "middle", "font-size": 20, fill: C.iv, "font-style": "italic", class: "ser" }, noteG);
+    var noteG = sv("g", { opacity: 0 }, s), noteR = sv("rect", { x: 80, y: 18, width: 1000, height: 36, rx: 10, fill: "rgba(8,12,22,.72)" }, noteG),
+      noteT = sv("text", { x: 580, y: 43, "text-anchor": "middle", "font-size": 20, fill: C.iv, "font-style": "italic", class: "ser" }, noteG);
 
     // états cumulés
     var noms = v.persos, ETATS = [], cur = { pos: {}, act: {}, masque: {}, surplis: {}, ronde: null, chemin: {}, radio: false, dit: null, note: null,

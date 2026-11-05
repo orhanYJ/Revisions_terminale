@@ -1,11 +1,24 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 12 : « The last afternoon » (PDF de travail, p. 64-74).
 
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+le résumé est joué sur le plateau (visuel jeu), en suivant les didascalies pas à pas ; les répliques courtes s'affichent en
+bulles et sont lues (voix des sœurs, voix d'homme pour Jack et Gerry). Gerry, perché dans le sycomore, est « Off » : on ne le
+voit pas, ses répliques sont en bandeau. Quatre tableaux : le sycomore et le « système » de Jack (p. 64-66) ; « Anything Goes »
+à la radio, Gerry danse avec Agnes, Chris coupe la radio (p. 66-69) ; Vera McLaughlin, la nappe au jardin, le coq mort
+(p. 69-71) ; l'uniforme blanc de Jack, l'échange des chapeaux, les cerfs-volants enfin montrés, la devinette oubliée (p. 71-74).
+Puis cinq répliques à connaître, l'analyse et le quiz.
+
 Début : p. 64, juste après la didascalie « MICHAEL exits » (Chris appelle Gerry, perché dans le sycomore).
 Fin : p. 74, juste avant « (MAGGIE moves into the kitchen. MICHAEL enters. …) » (la devinette oubliée de Maggie).
 Même chaîne que la partie 1 : outils/serie-philo/generer.py dal_12. Citations courtes, à fin d'analyse ; le reste est résumé.
 Les paroles de la chanson (« Anything Goes », nommée p. 66) ne sont pas citées. Ce qui ne vient pas du texte
 (Cole Porter, 1934) est dit comme tel. La perte de l'emploi de Kate n'est pas annoncée dans ces pages : elle n'est
 rappelée que par la prolepse de Michael (p. 43).
+Choix de mise en scène : Agnes assise dès le début (Gerry « pulls her to her feet », p. 67) ; les chapeaux posés au sol pendant
+le rituel ne sont pas dessinés (le moteur ne sait pas poser un chapeau) : les deux hommes s'inclinent, puis les chapeaux
+reparaissent échangés ; la nappe et la canne ne sont pas dessinées. Les cerfs-volants, posés contre le banc depuis la p. 45,
+ne montrent leurs visages qu'à la didascalie « For the first time we all see the images » (p. 73).
+Coquille du PDF évitée (« Yes. Yes Whatever you say » : coupé à « Whatever you say, Aggie. »).
 """
 
 SITE = "acl-lughnasa"
@@ -17,6 +30,9 @@ TITRE = "The last afternoon"
 SUIVANT = "Part 13 · The final tableau"
 PRONONCIATION = {"Lughnasa": "Loo-na-sa", "Lugh": "Loo", "Ryanga": "Ree-anga", "Okawa": "Oh-kah-wa",
                  "McLaughlin": "Mac-Lock-lin", "Pius": "Pie-us", "Mundy": "Mundy"}
+
+PERSOS = ["Kate", "Maggie", "Agnes", "Rose", "Chris", "Jack", "Gerry"]
+KITES = [915, 362]     # contre le banc du jardin, à droite (p. 45)
 
 SCENES = [
     # ------------------------------------------------------------------ ouverture
@@ -39,173 +55,253 @@ SCENES = [
                       sous="Act Two · pages 64 – 74"),
     }),
 
-    # ------------------------------------------------------------------ I. le sycomore
-    dict(id="sycomore", chap="On the sycamore", fond="aube", humeur="lumiere",
-         retenir="Maggie's plans and Jack's “system”: comedy on the surface, the end already visible underneath.", beats=[
-        "{tab_gle}{debut}The sisters go back to their tasks. {debut.1}Gerry is up the sycamore tree, fixing the aerial. "
-        "We never made love on top of a sycamore tree, he calls down. Chris looks round: did her sisters hear?",
-        "{debut.2}Maggie has a brilliant idea: Agnes, with her clever hands, should be a dressmaker. "
-        "No more ruining her eyes on grey wool. {debut.3}But remember part nine: the glove money is already gone, and Agnes "
-        "does not know it yet. We know the plan will never happen.",
-        "{-debut}{-tab_gle}{jack}Then Jack comes in through the garden. {jack.1}In Ryanga, he says, he could find one husband "
-        "for all four of you. {jack.2}One principal wife, the others in his enclosure. "
-        "{jack.3}A small commune, where everybody helps everybody. I'm completely in favour of it.",
+    # ------------------------------------------------------------------ I. le sycomore et le « système » de Jack
+    dict(id="sycomore", chap="On the sycamore", fond="nuit", humeur="lumiere", beats=[
+        "{jeu1}Page sixty-four. Chris is out in the garden, calling up to Gerry, at the top of the sycamore. We only hear his voice.",
+        ("C", "Are you still up there?", "jeu1.1", {"voix": "F"}),
+        ("C", "We never made love on top of a sycamore tree.", "jeu1.2"),
+        ("C", "If you fall and break your neck it'll be too good for you.", "jeu1.3", {"voix": "F"}),
+        "{jeu1.4}She goes inside. Maggie has a brilliant idea: Agnes, with her clever hands, should be a dressmaker.",
+        ("C", "It's the job for you, Aggie; I'm telling you.", "jeu1.5", {"voix": "F"}),
+        "{jeu1.6}Maggie is out of cigarettes. Chris finds her a single one on the mantelpiece.",
+        "{jeu1.7}Then Jack enters through the garden.",
+        ("C", "Maybe I should go to Ryanga with you, Jack.", "jeu1.8", {"voix": "F"}),
+        ("C", "I couldn't promise four men but I should be able to get one husband for all of you.", "jeu1.9"),
+        ("C", "I'm completely in favour of it.", "jeu1.10"),
         "Kate has heard enough.",
-        "{-jack}",
-        ("C", "It may be efficient and you may be in favour of it, Jack, but I don't think it's what Pope Pius XI "
-              "considers to be the holy sacrament of matrimony.", "c_pius", {"voix": "F"}),
-        "{-c_pius}{pius}The Pope against Ryanga. {pius.g}Kate stands for Rome and the sacrament. "
-        "{pius.d}Jack, she adds, pays too much attention to the Great Goddess… Iggie. "
-        "And here is the dramatic irony: Michael told us that Kate will lose her job more because of Jack "
-        "than because of falling numbers. His pagan talk is already costing her.",
+        ("C", "I don't think it's what Pope Pius XI considers to be the holy sacrament of matrimony.", "jeu1.11", {"voix": "F"}),
     ], vis={
-        "tab_gle": dict(type="tableau", img="dal-glenties", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .45, .5],
-                        legende="Glenties, County Donegal (photo Thpohl, public domain)"),
-        "debut": dict(type="liste", titre="The afternoon begins · pages 64 – 65", items=[
-            "Gerry up the sycamore: “We never made love on top of a sycamore tree.”",
-            "Maggie: Agnes should be a dressmaker, not stare at “grey wool”",
-            "Dramatic irony: the glove work is about to end"], marques=["1", "2", "3"], x=150, y=170, w=980),
-        "jack": dict(type="liste", titre="Jack's “system” · pages 65 – 66", items=[
-            "“one husband for all of you”",
-            "a “principal wife”, the others “in his enclosure”",
-            "“a small commune where everybody helps everybody”"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "c_pius": dict(type="cit", a="Kate", o="p. 66", x=170, y=190, w=940),
-        "pius": dict(type="cols", g="Kate", gq="Pope Pius XI, “the holy sacrament of matrimony”", d="Jack",
-                     dq="“the Great Goddess … Iggie”", vs="≠", repere="Rome / Ryanga"),
+        "jeu1": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Chris": [1010, 262], "Maggie": "buffet", "Kate": [290, 515], "Agnes": "tricot_a"},
+                 act={"Chris": "debout", "Maggie": "range", "Kate": "debout", "Agnes": "assis"}, cam="tout",
+                 objets={"kites": KITES}, note="GERRY is up the sycamore, (Off.): we only hear him. (p. 64)"),
+            dict(dit=["Chris", "Are you still up there?"]),
+            dict(note="GERRY (Off.): “We never made love on top of a sycamore tree.” (p. 65)"),
+            dict(dit=["Chris", "If you fall and break your neck it'll be too good for you."], note="(She looks quickly around: did her sisters hear that?)"),
+            dict(pos={"Chris": "table"}, note="Maggie: “what is it that Ballybeg badly needs…?” A dressmaker!"),
+            dict(dit=["Maggie", "It's the job for you, Aggie; I'm telling you."]),
+            dict(pos={"Chris": [225, 320]}, tient={"Maggie": "cigarette"},
+                 note="(CHRIS goes to the mantelpiece and produces a single cigarette.)"),
+            dict(pos={"Chris": "table"}, chemin={"Jack": ["allee", [880, 420], "seuil"]}, chemin_duree=6,
+                 note="(JACK enters through the garden.)"),
+            dict(dit=["Maggie", "Maybe I should go to Ryanga with you, Jack."]),
+            dict(pos={"Jack": "seuil"}, dit=["Jack", "I couldn't promise four men but I should be able to get one husband for all of you."]),
+            dict(dit=["Jack", "I'm completely in favour of it."]),
+            dict(dit=["Kate", "I don't think it's what Pope Pius XI considers to be the holy sacrament of matrimony."]),
+        ]),
     }),
 
     # ------------------------------------------------------------------ II. Anything Goes
-    dict(id="danse", chap="Anything Goes", fond="aube", humeur="lumiere",
-         retenir="Gerry dances with Agnes, Chris watches, then switches the radio off: a dance cut short.", beats=[
-        "{tab_rad}{song}Gerry has fixed the radio. Very softly, it plays a song the text names: Anything Goes. "
-        "Outside the text: a Cole Porter song from 1934, American, modern, a little daring.",
-        "{-song}{ag}Gerry asks Agnes to dance. {ag.1}Have a bit of sense, she says. But he pulls her to her feet. "
-        "{ag.2}With style and with easy elegance, they dance round the kitchen and out into the garden. "
-        "{ag.3}You should be a professional dancer, he tells her. Too late for that, she answers.",
-        "{-ag}{-tab_rad}{fenetre}{fenetre.1}Then he kisses her on the forehead. Chris sees it from the kitchen window… "
-        "but she cannot hear. {fenetre.2}When Gerry turns to her, now Chrissie, she snaps: Not now. Are you thick?",
-        "{-fenetre}{maggie}Maggie kicks off her Wellingtons. Shirley Temple needs a lot of space! "
-        "She and Gerry sing and dance… {maggie.1}and Chris suddenly turns the radio off. Sick of that damned thing. "
-        "We're only wasting the battery.",
+    dict(id="danse", chap="Anything Goes", fond="nuit", humeur="lumiere", beats=[
+        "{jeu2}Gerry has fixed the radio. Very softly, it plays a song the text names: Anything Goes. "
+        "Outside the text: Cole Porter, 1934.",
+        "{jeu2.1}Gerry runs on. And Jack remembers their deal.",
+        ("C", "The plumed hat – the ceremonial hat – remember? We agreed to swap.", "jeu2.2"),
+        "{jeu2.3}He goes to his bedroom. {jeu2.4}Gerry listens, sings a line of the song, and turns to Agnes.",
+        ("C", "Dance with me, Agnes.", "jeu2.5"),
+        ("C", "Have a bit of sense, Gerry Evans.", "jeu2.6", {"voix": "F"}),
+        "{jeu2.7}But he pulls her to her feet and takes her in his arms. {jeu2.8}With style and with easy elegance, "
+        "they dance once around the kitchen, and then out to the garden.",
+        ("P", 3.0),
+        ("C", "You should be a professional dancer.", "jeu2.9"),
+        ("C", "Too late for that.", "jeu2.10", {"voix": "F"}),
+        "{jeu2.11}He bends down and kisses her on the forehead. All this is seen, but not heard, by Chris at the kitchen window.",
+        "{jeu2.12}Gerry bursts into song again, turns Agnes four or five times, and dances her back to the kitchen. "
+        "Now, Chrissie, you and I, he says.",
+        ("C", "Not now, I said. Are you thick?", "jeu2.13", {"voix": "F"}),
+        "{jeu2.14}So Maggie kicks her Wellingtons off: I'll dance with you, Gerry! She and Gerry sing and dance.",
+        ("P", 2.0),
+        "{jeu2.15}And Chris suddenly turns the radio off.",
+        ("C", "Sick of that damned thing.", "jeu2.16", {"voix": "F"}),
         "Kate, of course, is delighted.",
-        "{-maggie}",
         ("C", "Peace, thanks be to God! D'you know what that thing has done? Killed all Christian conversation in this country.",
-         "c_radio", {"voix": "F"}),
-        "{-c_radio}{silence}For Kate, the radio is the enemy of the Church. For Chris, it is Gerry's music, "
-        "and it hurts. Two reasons, one silence. Joy has become a source of jealousy.",
+         "jeu2.17", {"voix": "F"}),
+        "{jeu2.18}Gerry goes to Chris at the radio.",
     ], vis={
-        "tab_rad": dict(type="tableau", img="dal-radio", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .45],
-                        legende="A 1930s valve wireless set (Museo della scienza e della tecnologia, Milan, CC BY-SA 4.0)"),
-        "song": dict(type="note", cles=["Anything", "1934"], terme="Stage direction · p. 66",
-                     t="Music of “Anything Goes” very softly on the radio.",
-                     etape="Outside the text: Cole Porter, 1934.", x=170, y=200, w=940),
-        "ag": dict(type="liste", titre="Gerry and Agnes · pages 67 – 68", items=[
-            "Agnes: “Have a bit of sense, Gerry Evans.”",
-            "“With style and with easy elegance they dance”",
-            "“You should be a professional dancer.” “Too late for that.”"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "fenetre": dict(type="liste", titre="Seen, not heard · page 68", items=[
-            "A kiss on the forehead, seen by Chris at the window",
-            "Chris: “Not now, I said. Are you thick?”"], marques=["1", "2"], x=150, y=210, w=980),
-        "maggie": dict(type="note", cles=["damned", "battery"], terme="Maggie dances · p. 69",
-                       t="Chris turns the radio off: “Sick of that damned thing.”",
-                       etape="“We're only wasting the battery.”", x=170, y=200, w=940),
-        "c_radio": dict(type="cit", a="Kate", o="p. 69", x=170, y=190, w=940),
-        "silence": dict(type="cols", g="Kate", gq="the radio kills “Christian conversation”", d="Chris",
-                        dq="jealous: Gerry danced with Agnes", vs="+", repere="one silence, two reasons"),
+        "jeu2": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Chris": "table", "Maggie": "buffet", "Kate": [290, 515], "Agnes": "tricot_a", "Jack": "seuil"},
+                 act={"Chris": "debout", "Maggie": "debout", "Kate": "debout", "Agnes": "assis"}, tient={"Maggie": "cigarette"},
+                 radio=True, cam="tout", objets={"kites": KITES},
+                 note="(Music of “Anything Goes” very softly on the radio.) (p. 66)"),
+            dict(chemin={"Gerry": [[880, 330], "porte", [500, 340]]}, chemin_duree=3, note="(GERRY runs on.) “Well? Any good?”"),
+            dict(dit=["Jack", "The plumed hat – the ceremonial hat – remember? We agreed to swap."], pos={"Gerry": [500, 340]}),
+            dict(pos={"Jack": "arriere"}, duree=4, note="(He goes to his bedroom.) (p. 67)"),
+            dict(pos={"Jack": "off", "Gerry": [470, 430]}, note="(Listens. Sings a line of the song.)"),
+            dict(dit=["Gerry", "Dance with me, Agnes."]),
+            dict(dit=["Agnes", "Have a bit of sense, Gerry Evans."]),
+            dict(act={"Agnes": "debout"}, pos={"Agnes": [404, 440]},
+                 note="(GERRY pulls her to her feet and takes her in his arms.)"),
+            dict(act={"Agnes": "danse_douce", "Gerry": "danse_douce"},
+                 chemin={"Gerry": [[470, 430], [300, 460], [250, 400], [400, 380], "porte", "jardin", [1030, 520]],
+                         "Agnes": [[404, 440], [275, 480], [225, 420], [375, 400], [540, 320], [745, 450], [1070, 530]]},
+                 chemin_duree=14, note="“With style and with easy elegance they dance once around the kitchen and then out to the garden”"),
+            dict(pos={"Gerry": [1030, 520], "Agnes": [1070, 530]}, act={"Agnes": "debout", "Gerry": "debout"},
+                 dit=["Gerry", "You should be a professional dancer."], note="(They are now in the far corner of the garden.) (p. 68)"),
+            dict(dit=["Agnes", "Too late for that."]),
+            dict(pos={"Chris": "fenetre"}, note="“He bends down and kisses her on the forehead.” Seen, not heard, by Chris at the window."),
+            dict(act={"Agnes": "danse_douce", "Gerry": "danse_douce"},
+                 chemin={"Gerry": [[1030, 520], [800, 470], "porte", [420, 410]], "Agnes": [[1070, 530], [830, 490], [560, 330], [370, 450]]},
+                 chemin_duree=7, note="“turns AGNES four or five times very rapidly and dances her back to the kitchen”"),
+            dict(pos={"Gerry": [420, 410], "Agnes": [370, 450]}, act={"Agnes": "halete", "Gerry": "debout"},
+                 dit=["Chris", "Not now, I said. Are you thick?"]),
+            dict(pos={"Maggie": [500, 460], "Gerry": [455, 440]}, act={"Maggie": "danse", "Gerry": "danse"}, tient={"Maggie": None},
+                 note="(She kicks her Wellingtons off.) “Shirley Temple needs a lot of space.” (p. 69)"),
+            dict(pos={"Chris": "radio"}, note="(CHRIS suddenly turns the radio off.)"),
+            dict(radio=False, act={"Maggie": "debout", "Gerry": "debout"}, dit=["Chris", "Sick of that damned thing."]),
+            dict(dit=["Kate", "Peace, thanks be to God! … Killed all Christian conversation in this country."]),
+            dict(pos={"Gerry": [420, 290]}, note="(He goes to CHRIS at the radio.) “Not a bad little set, that.”"),
+        ]),
     }),
 
-    # ------------------------------------------------------------------ III. le coq
-    dict(id="coq", chap="The fox", fond="nuit", humeur="tension",
-         retenir="Rose brings in her dead white rooster, calm: a sacrifice-like image on the last day of Lughnasa.", beats=[
-        "{tab_gle2}{vera}Chris, icily, tells Agnes: Vera McLaughlin is calling tomorrow, to talk to you and Rose. "
-        "{vera.1}Kate quickly changes the subject: Vera's daughter is engaged, at fifteen! Indecent! "
-        "{vera.2}What about? asks Agnes. Something about wool, says Chris. Didn't sound important. We know it is.",
-        "Maggie decides they will eat outside.",
-        "{-vera}",
-        ("C", "Lughnasa's almost over, girls. There aren't going to be many warm evenings left.", "c_over", {"voix": "F"}),
-        "{-c_over}{-tab_gle2}{fin}On the surface, a remark about the weather. Underneath, an elegy: "
-        "the summer, the festival and the family are all ending together. "
-        "{fin.1}Maggie spreads a cloth on the grass, in the middle of the garden.",
-        "{-fin}{rose}And Rose comes in from the back of the house.",
-        "{-rose}",
+    # ------------------------------------------------------------------ III. le coq mort
+    dict(id="coq", chap="The fox", fond="nuit", humeur="tension", beats=[
+        "{jeu3}Then Chris turns to Agnes. Icily.",
+        ("C", "Vera McLaughlin's calling here tomorrow. She wants to talk to you and Rose.", "jeu3.1", {"voix": "F"}),
+        ("C", "Something about wool. Didn't sound important.", "jeu3.2", {"voix": "F"}),
+        "We know it is. And Maggie decides they will eat outside.",
+        ("C", "Lughnasa's almost over, girls. There aren't going to be many warm evenings left.", "jeu3.3", {"voix": "F"}),
+        "{jeu3.4}The weather, the festival, the family: all ending together. Maggie spreads a cloth in the middle of the garden. Inside, at the radio, Gerry kisses Chris lightly on the back of the neck.",
+        "{jeu3.5}Then Rose enters the garden from the back of the house. In her right hand, she holds her rooster by the feet. Dead.",
+        "{jeu3.6}Agnes sees her first and goes to her. Chris and Gerry join the others in the garden.",
+        ("C", "My rooster's dead.", "jeu3.7", {"voix": "F"}),
+        ("C", "The fox must have got him.", "jeu3.8", {"voix": "F"}),
+        "{jeu3.9}She places it carefully on the tablecloth, in the middle of the garden.",
+        ("C", "We'll get another white rooster for you, Rosie.", "jeu3.10", {"voix": "F"}),
+        ("C", "I don't want another.", "jeu3.11", {"voix": "F"}),
+        "{jeu3.12}Maggie gives her a quick hug. Rose sits on the garden seat. Then Maggie sees Jack, coming through the kitchen.",
+        ("C", "Jesus, Mary, and Joseph!", "jeu3.13", {"voix": "F"}),
+    ], vis={
+        "jeu3": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Chris": "radio", "Gerry": [420, 290], "Maggie": [500, 460], "Kate": [290, 515], "Agnes": [370, 450]},
+                 act={"Chris": "debout", "Gerry": "debout", "Maggie": "debout", "Kate": "debout", "Agnes": "debout"},
+                 cam="tout", objets={"kites": KITES}, note="CHRIS. (To AGNES, icily.) (p. 69)"),
+            dict(dit=["Chris", "Vera McLaughlin's calling here tomorrow. She wants to talk to you and Rose."]),
+            dict(dit=["Chris", "Something about wool. Didn't sound important."]),
+            dict(dit=["Maggie", "Lughnasa's almost over, girls. There aren't going to be many warm evenings left."]),
+            dict(pos={"Maggie": [720, 545], "Kate": [660, 410], "Agnes": [700, 400]},
+                 note="(MAGGIE exits with the cloth which she spreads in the middle of the garden.)"),
+            dict(chemin={"Rose": [[620, 215], [700, 300], [800, 395]]}, chemin_duree=6, tient={"Rose": "coq"},
+                 note="“In her right hand she holds the dead rooster by the feet.” (p. 71)"),
+            dict(pos={"Rose": [800, 395], "Agnes": [750, 400], "Chris": [1075, 505], "Gerry": [960, 500]},
+                 note="“Its feathers are ruffled and it is stained with blood. ROSE is calm, almost matter-of-fact.”"),
+            dict(dit=["Rose", "My rooster's dead."]),
+            dict(dit=["Rose", "The fox must have got him."]),
+            dict(tient={"Rose": None}, objets={"coq": [800, 455]},
+                 note="(She places it carefully on the tablecloth in the middle of the garden.)"),
+            dict(dit=["Agnes", "We'll get another white rooster for you, Rosie."]),
+            dict(dit=["Rose", "I don't want another."]),
+            dict(pos={"Rose": "banc_g"}, act={"Rose": "assis"}, note="MAGGIE. (Quick hug.) … (ROSE sits on the garden seat.)"),
+            dict(dit=["Maggie", "Jesus, Mary, and Joseph!"], note="(She sees JACK coming through the kitchen.)"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ IV. l'échange des chapeaux, les cerfs-volants
+    dict(id="echange", chap="The exchange", fond="nuit", humeur="mystere", beats=[
+        "{jeu4}Page seventy-two. Jack wears a very soiled, very crumpled white uniform, far too large: his hands are lost in the sleeves. "
+        "On his head, a tricorn ceremonial hat, the plumage broken and tatty.",
+        ("C", "Gerry, my friend, where are you?", "jeu4.1"),
+        "{jeu4.2}It was his uniform as chaplain to the British army, in the Great War.",
+        "{jeu4.3}Now the formal exchange, as in Ryanga. Each man holds his possession: Jack his tricorn, Gerry his straw hat. "
+        "{jeu4.4}Each places it on the ground, at his feet.",
+        "{jeu4.5}Three steps away from it: a symbolic distancing from what you once possessed. "
+        "{jeu4.6}Turn round once, a complete circle: the formal rejection of what you once had.",
+        "{jeu4.7}Then each man crosses over to the position the other has left.",
+        ("C", "Excellent. The exchange is now formally and irrevocably complete.", "jeu4.8"),
+        "{jeu4.9}Gerry gets the tricorn, Jack the straw hat. "
+        "{jeu4.10}And Gerry does a Charlie Chaplin walk across the garden.",
+        ("C", "Would you look at them! Strutting about like a pair of peacocks!", "jeu4.11", {"voix": "F"}),
+        ("C", "I love September.", "jeu4.12", {"voix": "F"}),
+        "{jeu4.13}Agnes moves beside Rose. Next Sunday, she promises, they will get some bilberries.",
+        ("C", "Whatever you say, Aggie.", "jeu4.14", {"voix": "F"}),
+        "{jeu4.15}Then Gerry examines the kites.",
+        ("C", "Not bad for a kid of seven. Very neatly made.", "jeu4.16"),
+        ("C", "I hate them.", "jeu4.17", {"voix": "F"}),
+        ("C", "I think they're just wonderful. Look, Jack.", "jeu4.18"),
+        "{jeu4.19}And for the first time, we all see the images. On each kite, a crude, cruel, grinning face.",
+        ("P", 2.0),
+        "And Maggie has one last riddle: why is a gramophone like a parrot?",
+        ("C", "Because it … because it always … because a parrot … God I've forgotten!", "jeu4.20", {"voix": "F"}),
+    ], vis={
+        "jeu4": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Jack": "porte", "Rose": "banc_g", "Maggie": [720, 545], "Kate": [660, 410], "Agnes": [750, 400],
+                      "Chris": [1075, 505], "Gerry": [960, 500]},
+                 act={"Rose": "assis", "Jack": "debout"}, costume={"Jack": "blanc"}, chapeau={"Jack": "tricorne"},
+                 cam="tout", objets={"kites": KITES, "coq": [800, 455]},
+                 note="“a very soiled, very crumpled white uniform” · a tricorn, “the plumage broken and tatty” (p. 72)"),
+            dict(dit=["Jack", "Gerry, my friend, where are you?"]),
+            dict(pos={"Jack": [600, 500]}, note="“It was my uniform when I was chaplain to the British army during the Great War.”"),
+            dict(pos={"Jack": [610, 495], "Gerry": [860, 490]},
+                 chapeau={"Jack": "aucun", "Gerry": "aucun"}, tient={"Jack": "tricorne", "Gerry": "paille"},
+                 note="(He and GERRY enact this ritual.)"),
+            dict(act={"Jack": "voute", "Gerry": "voute"}, tient={"Jack": None, "Gerry": None},
+                 note="“I place my possession on the ground” · “Put it on the grass – anywhere – just at your feet.”"),
+            dict(pos={"Jack": [555, 515], "Gerry": [915, 505]}, act={"Jack": "debout", "Gerry": "debout"}, duree=2.5,
+                 note="“take three steps” away: “a symbolic distancing of yourself from what you once possessed”"),
+            dict(note="“turn round once … a complete circle … the formal rejection of what you once had”"),
+            dict(pos={"Jack": [860, 490], "Gerry": [610, 495]}, duree=3.0,
+                 note="“Now I cross over to where you stand … And you come over to the position I have left.”"),
+            dict(chapeau={"Jack": "paille", "Gerry": "tricorne"},
+                 dit=["Jack", "Excellent. The exchange is now formally and irrevocably complete."]),
+            dict(note="“This is my straw hat. And that is your tricorn hat. Put it on.” · Agnes: “You're lovely.”"),
+            dict(chemin={"Gerry": [[610, 495], [700, 470], [900, 470], [960, 500]]}, chemin_duree=6,
+                 note="(GERRY does a Charlie Chaplin walk across the garden, his feet spread, his cane twirling.)"),
+            dict(pos={"Gerry": [960, 500]}, dit=["Maggie", "Would you look at them! Strutting about like a pair of peacocks!"],
+                 note="(p. 73)"),
+            dict(dit=["Kate", "I love September."]),
+            dict(pos={"Agnes": [745, 372]}, note="(AGNES moves beside ROSE.) “Next Sunday, then.” · “We'll get some bilberries.”"),
+            dict(dit=["Rose", "Whatever you say, Aggie."]),
+            dict(pos={"Gerry": [965, 395]}, note="(GERRY examines the kites.)"),
+            dict(dit=["Gerry", "Not bad for a kid of seven. Very neatly made."]),
+            dict(dit=["Maggie", "I hate them."]),
+            dict(dit=["Gerry", "I think they're just wonderful. Look, Jack."]),
+            dict(objets={"kites": None, "kites_faces": KITES}, cam="jardin",
+                 note="“For the first time we all see the images. On each kite is painted a crude, cruel, grinning face”"),
+            dict(dit=["Maggie", "Because it … because it always … because a parrot … God I've forgotten!"], cam="tout"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ V. cinq répliques à connaître
+    dict(id="repliques", chap="Key lines to know", fond="aube", humeur="calme",
+         retenir="Pius XI against Ryanga, the dead rooster, the exchange of hats, the grinning kites.", beats=[
+        "{cinq}Four lines carry the meaning of this long, light afternoon.",
+        "{-cinq}First, Kate against Jack.",
+        ("C", "It may be efficient and you may be in favour of it, Jack, but I don't think it's what Pope Pius XI "
+              "considers to be the holy sacrament of matrimony.", "c_pius", {"voix": "F"}),
+        "{-c_pius}{pius}The Pope against Ryanga, the sacrament against the Great Goddess. And the dramatic irony: Michael told us "
+        "that Kate will lose her job more because of Jack than because of falling numbers.",
+        "{-pius}Then, the rooster.",
         ("C", "Its feathers are ruffled and it is stained with blood. ROSE is calm, almost matter-of-fact.", "c_coq"),
-        "{-c_coq}{coq}She holds her pet rooster by the feet. {coq.1}The fox must have got him, she says. "
-        "{coq.2}She lays it carefully on the tablecloth. {coq.3}Agnes offers her another white rooster. "
-        "I don't want another.",
-        "{-coq}{echo}Think back to part seven: in Ryanga, says Jack, you kill a rooster to please the spirits. "
-        "Here a white bird lies bleeding in the middle of the feast, just after Rose came back from the back hills, "
-        "with Danny Bradley. You can read it as a sacrifice, or as innocence lost. Friel does not explain it.",
-    ], vis={
-        "tab_gle2": dict(type="tableau", img="dal-glenties", fond=True, sombre=True, de=[1.2, .55, .45], a=[1.0, .5, .5],
-                         legende="Glenties, County Donegal (photo Thpohl, public domain)"),
-        "vera": dict(type="liste", titre="Vera McLaughlin · pages 69 – 70", items=[
-            "Kate: her daughter engaged at fifteen, “indecent”",
-            "Chris: “Something about wool. Didn't sound important.”"], marques=["1", "2"], x=150, y=200, w=980),
-        "c_over": dict(type="cit", a="Maggie", o="p. 70", x=170, y=200, w=940),
-        "fin": dict(type="note", cles=["elegy"], terme="Subtext · p. 70",
-                    t="The weather, the festival, the family: all ending together.",
-                    etape="A cloth spread “in the middle of the garden”.", x=170, y=200, w=940),
-        "rose": dict(type="mot", t="Rose enters", g="from the back of the house", y=270, taille=80),
-        "c_coq": dict(type="cit", a="Stage direction", o="p. 71", x=170, y=200, w=940),
-        "coq": dict(type="liste", titre="The dead rooster · page 71", items=[
-            "“The fox must have got him.”",
-            "Laid “carefully on the tablecloth”",
-            "“We'll get another white rooster” … “I don't want another.”"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "echo": dict(type="cols", g="Ryanga", gq="a rooster killed “to please the spirits”", d="Ballybeg",
-                     dq="a white rooster, bleeding, on the feast cloth", vs="↔", repere="sacrifice? innocence lost?"),
-    }),
-
-    # ------------------------------------------------------------------ IV. l'échange
-    dict(id="echange", chap="The exchange", fond="aube", humeur="mystere",
-         retenir="Jack and Gerry swap hats in a Ryanga ritual; then the kites show their “cruel, grinning” faces.", beats=[
-        "{tab_kil}{uni}Jesus, Mary and Joseph! cries Maggie. Jack appears in his old white uniform, "
-        "the one he wore as chaplain to the British army in the Great War. {uni.1}It is soiled, crumpled, far too large: "
-        "his hands are lost in the sleeves. {uni.2}On his head, the tricorn hat, its plumage broken.",
-        "{-uni}{rite}Now the formal exchange. {rite.1}Each man puts his hat on the grass. "
-        "{rite.2}Three steps back: a symbolic distancing from what you once possessed. "
-        "{rite.3}Turn round once, a complete circle: the formal rejection. {rite.4}Then each crosses to the other's place.",
-        "{-rite}",
+        "{-c_coq}{echo}Think back to part seven: in Ryanga, says Jack, you kill a rooster to please the spirits. "
+        "Here a white bird lies bleeding in the middle of the feast, on the evening of Rose's afternoon with Danny Bradley. "
+        "A sacrifice, or innocence lost? Friel does not explain it.",
+        "{-echo}Then, Jack.",
         ("C", "Excellent. The exchange is now formally and irrevocably complete.", "c_exchange"),
-        "{-c_exchange}{-tab_kil}{chapeaux}Gerry gets the tricorn, Jack the straw hat. "
-        "{chapeaux.1}Gerry does a Charlie Chaplin walk; strutting like a pair of peacocks, says Maggie. "
-        "{chapeaux.2}And remember part eleven: the last time Michael saw his father, he was dancing down the lane "
-        "with Jack's tricorn over his left eye.",
-        "{-chapeaux}{sept}The radio is broken again. Possessed, says Chris. Kate: I wish you wouldn't use words like that. "
-        "{sept.1}I love September, says Kate. {sept.2}Agnes promises Rose bilberries next Sunday. "
-        "We know there will be no next Sunday together.",
-        "{-sept}{kites}Then Gerry picks up the boy's kites. Not bad for a kid of seven. Maggie: I hate them.",
-        "{-kites}",
+        "{-c_exchange}{chapeaux}A Ryanga ritual for a goodbye: Jack gives away the tricorn of his old chaplain's uniform. "
+        "And in part eleven, Gerry danced down the lane with that tricorn over his left eye.",
+        "{-chapeaux}And last, the kites.",
         ("C", "For the first time we all see the images. On each kite is painted a crude, cruel, grinning face, "
               "primitively drawn, garishly painted.", "c_kites"),
         "{-c_kites}{masque}The kites were built all through the play. Now they turn their faces to us, like pagan masks. "
-        "{masque.1}And the last word goes to Maggie's riddle: why is a gramophone like a parrot? "
-        "Because it… God, I've forgotten! The joke never arrives.",
+        "And the last word goes to Maggie's riddle. The joke never arrives.",
     ], vis={
-        "tab_kil": dict(type="tableau", img="dal-kilwa", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .5],
-                        legende="East African campaign, Kilwa, 1917 (Imperial War Museums, public domain)"),
-        "uni": dict(type="liste", titre="Jack's uniform · page 72", items=[
-            "“so large that it looks as if it were made for a much larger man”",
-            "“a tricorn, ceremonial hat”, “the plumage broken and tatty”"], marques=["1", "2"], x=150, y=200, w=980),
-        "rite": dict(type="liste", titre="The ritual · page 72", items=[
-            "Each possession placed on the ground",
-            "Three steps away: “a symbolic distancing”",
-            "Turn round once, “a complete circle”: “the formal rejection”",
-            "Each crosses to the other's place"], marques=["1", "2", "3", "4"], x=150, y=160, w=980),
+        "cinq": dict(type="mot", t="Four lines to know", g="the last afternoon · pages 66 – 73", y=250, taille=80),
+        "c_pius": dict(type="cit", a="Kate", o="p. 66", x=170, y=190, w=940),
+        "pius": dict(type="cols", g="Kate", gq="Pope Pius XI, “the holy sacrament of matrimony”", d="Jack",
+                     dq="“the Great Goddess … Iggie”", vs="≠", repere="Rome / Ryanga"),
+        "c_coq": dict(type="cit", a="Stage direction", o="p. 71", x=170, y=200, w=940),
+        "echo": dict(type="cols", g="Ryanga", gq="a rooster killed “to please the spirits”", d="Ballybeg",
+                     dq="a white rooster, bleeding, on the feast cloth", vs="↔", repere="sacrifice? innocence lost?"),
         "c_exchange": dict(type="cit", a="Jack", o="p. 72", x=170, y=210, w=940),
-        "chapeaux": dict(type="liste", titre="Two hats · pages 72 – 73", items=[
-            "Gerry: a Charlie Chaplin walk; “a pair of peacocks!”",
-            "p. 64: Gerry leaves for Spain wearing Jack's tricorn"], marques=["1", "2"], x=150, y=200, w=980),
-        "sept": dict(type="liste", titre="Last plans · page 73", items=[
-            "Kate: “I love September.”",
-            "Agnes to Rose: “Next Sunday, then.” Bilberries."], marques=["1", "2"], x=150, y=200, w=980),
-        "kites": dict(type="mot", t="The kites", g="“Not bad for a kid of seven.” · “I hate them.”", y=270, taille=84),
+        "chapeaux": dict(type="note", cles=["ritual", "tricorn"], terme="Two hats · pages 64 and 72",
+                         t="A Ryanga ritual for a goodbye: Jack gives away his chaplain's tricorn.",
+                         etape="p. 64: Gerry leaves for Spain wearing Jack's tricorn.", x=170, y=200, w=940),
         "c_kites": dict(type="cit", a="Stage direction", o="p. 73", x=170, y=190, w=940),
         "masque": dict(type="note", cles=["masks", "forgotten"], terme="The end of the afternoon · pp. 73 – 74",
                        t="Grinning faces, like pagan masks, turned to the audience.",
                        etape="Maggie's riddle: “God I've forgotten!”", x=170, y=200, w=940),
     }),
 
-    # ------------------------------------------------------------------ V. l'analyse
+    # ------------------------------------------------------------------ VI. l'analyse
     dict(id="analyse", chap="Analysis", fond="nuit", humeur="calme",
          retenir="Tragic irony, ritual, symbols of the end, a dance cut short: the last afternoon, seen from the end.", beats=[
         "{a1}Now the analysis. Four ideas. "
@@ -249,11 +345,11 @@ QUIZ = [
             "Maggie's dressmaking plan", "The rules of the knitting factory"], ok=0, voir="c_pius",
          ex="“I don't think it's what Pope Pius XI considers to be the holy sacrament of matrimony”: Rome against Ryanga."),
     dict(q="Which song plays on the radio when Gerry dances with Agnes?",
-         r=["“Anything Goes”", "“Abyssinia”", "“The Isle of Capri”", "No song is named"], ok=0, voir="song",
+         r=["“Anything Goes”", "“Abyssinia”", "“The Isle of Capri”", "No song is named"], ok=0, voir="jeu2",
          ex="The stage direction on p. 66: Music of “Anything Goes” very softly on the radio."),
     dict(q="Why does Chris turn the radio off?",
          r=["She has seen Gerry kiss Agnes, and says she is sick of “that damned thing”", "Kate orders her to",
-            "The music is too loud for Jack", "Michael has broken it"], ok=0, voir="fenetre",
+            "The music is too loud for Jack", "Michael has broken it"], ok=0, voir="jeu2.11",
          ex="She saw the kiss from the window without hearing it; officially, she is only “wasting the battery”."),
     dict(q="How does Rose behave when she brings in her dead rooster?",
          r=["She is calm, almost matter-of-fact", "She screams and runs away", "She blames Gerry", "She hides it from Kate"],
@@ -261,7 +357,7 @@ QUIZ = [
          ex="“ROSE is calm, almost matter-of-fact.” She lays the bird on the tablecloth and refuses another white rooster."),
     dict(q="In Jack's exchange ritual, what does turning round once in a complete circle mean?",
          r=["The formal rejection of what you once had", "A blessing from the spirits", "A promise to come back",
-            "The start of a dance"], ok=0, voir="rite",
+            "The start of a dance"], ok=0, voir="jeu4.6",
          ex="Three steps away: “a symbolic distancing”; a complete circle: “the formal rejection”; then each takes the other's place."),
     dict(q="What do we see on the kites “for the first time”?",
          r=["A crude, cruel, grinning face on each one", "The names of the five sisters", "A cross and a sun",
@@ -271,8 +367,6 @@ QUIZ = [
 
 CREDITS = [
     "Brian Friel, Dancing at Lughnasa (1990): short quotations for analysis, page numbers from the class PDF",
-    "Photographs: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0); Glenties (Thpohl, public domain); "
-    "valve table radio, Museo della scienza e della tecnologia, Milan (CC BY-SA 4.0); "
-    "troops at Kilwa, 1917 (Lt L. A. W. Powell, Imperial War Museums, public domain)",
+    "Photographs: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0)",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music",
 ]
