@@ -107,7 +107,7 @@ SCENES = [
         "fr1": dict(type="frise", items=[
             dict(nom="Bolsheviks", d=1917, q="October"), dict(nom="Versailles", d=1919, q="the “Diktat”"),
             dict(nom="March on Rome", d=1922, q="October"), dict(nom="Munich putsch", d=1923, q="November"),
-            dict(nom="NSDAP 37.4%", d=1932, q="July"), dict(nom="Hitler chancellor", d=1933, q="30 January")]),
+            dict(nom="NSDAP 37.4%", d=1932, q="July"), dict(nom="Chancellor", d=1933, q="30 January")]),
     }),
 
     # ================================================================ I.1, idée 1 : la brutalisation
@@ -265,8 +265,7 @@ SCENES = [
     dict(id="legacy", chap="Three wounds of the war", fond="aube", humeur="calme",
          retenir="Russia: war ruins the empire → Bolshevik Revolution → single party, property abolished, fear of communism. Italy: mutilated victory → Fiume, paid Blackshirts → armed nationalism. Germany: defeat, Diktat → Spartacists crushed, stab-in-the-back → a republic tied to defeat.",
          beats=[
-        "{bl}Monsieur Ros's lesson can be summed up in one schema: from the trenches to the regimes, three wounds of the war. "
-        "First, the wound. {bl.1}In Russia, the war ruins the Tsarist empire. "
+        "{bl}Monsieur Ros's schema: three wounds of the war. {bl.1}First, the wound. In Russia, the war ruins the Tsarist empire. "
         "{bl.2}In Italy, a mutilated victory. {bl.3}In Germany, defeat, the end of the Empire, and the Diktat.",
         "{-bl}{rp}Second, the response: {rp.1}the Bolshevik Revolution; {rp.2}Fiume and the paid Blackshirts; "
         "{rp.3}the Spartacists crushed, and the stab-in-the-back myth.",
@@ -436,6 +435,7 @@ SCENES = [
         "The photograph on Monsieur Ros's slide: unemployed men queuing for food aid in Hanover, in 1932.",
         "{-g9}{gu}Look first at unemployment in Germany, read off Monsieur Ros's chart. {gu.1}In the 1920s, under two million. "
         "{gu.2}Then the crisis: about five point six million unemployed in 1932.",
+        ("P", 2.5),
         "{-gu}{gv}Now the Nazi vote. {gv.1}Here is the line of a majority: fifty per cent. "
         "{gv.2}In May 1928, before the crisis, the NSDAP is a fringe party: two point six per cent. {gv.3}{gv.4}In September 1930: eighteen point three. "
         "{gv.5}In July 1932: thirty-seven point four per cent. The Nazis are now the largest party in the Reichstag.",
@@ -512,11 +512,12 @@ SCENES = [
     dict(id="seizure", chap="Two roads to power", fond="aube", humeur="calme",
          retenir="Italy: squads paid (1919–20) → March on Rome (Oct. 1922) → appointed by the king (30 Oct. 1922) → Matteotti, fascistissime laws (1924–26). Germany: failed coup (Nov. 1923) → crisis, 18.3% → 37.4% → appointed by Hindenburg (30 Jan. 1933) → Reichstag fire, emergency decree. Common: paramilitary violence + legal appointment + conservative elites. Different: the pace.",
          beats=[
-        "{it}Now compare the two roads to power. "
+        "{it}Now compare the two roads to power, with Monsieur Ros's schema: the street threatens, the top appoints. "
         "{it.1}Italy: paid squads, {it.2}the March on Rome, {it.3}the king's appointment, "
         "{it.4}then Matteotti and the fascistissime laws, for episode three.",
         "{al}{al.1}Germany: the failed coup, {al.2}the crisis vote, "
-        "{al.3}Hindenburg's appointment, {al.4}the Reichstag fire and the emergency decree.",
+        "{al.3}Hindenburg's appointment, {al.4}the Reichstag fire and the emergency decree. Read the two lines side by side.",
+        ("P", 3.0),
         "{-it}{-al}{cd}So, what is common, and what is different? {cd.g}Common: paramilitary violence, a legal appointment by the head of State, "
         "and the support of conservative elites. {cd.d}Different: the pace. Two to three years for Mussolini to build his dictatorship; "
         "a few weeks for Hitler.",

@@ -115,7 +115,7 @@ SCENES = [
         "{def1}Now the course, idea by idea. Idea one: in a totalitarian regime, terror is not a failure of order. "
         "It is {!a method of government}a method of government. "
         "{def1.1}Violence is not the exceptional answer to a crisis: it is permanent, organised and planned.",
-        "{-def1}Hannah Arendt, whom you met in episode one, wrote that these regimes had found",
+        "Hannah Arendt, whom you met in episode one, wrote that these regimes had found{-def1}",
         ("C", "a means of dominating and terrorizing human beings from within", "c_ar"),
         "{-c_ar}{fear}So the point is not only to punish. {fear.1}It is to install fear so deeply {fear.2}that each person censors himself. "
         "{fear.3}And so, {fear.4}obedience no longer needs to be commanded.",
@@ -167,7 +167,7 @@ SCENES = [
         "{g4}{g4.1}Idea three: justice is turned into theatre. Soviet terror culminated in the Moscow trials: "
         "{!show trials}show trials, staged for the public. Old Bolsheviks, companions of Lenin, confessed to crimes they had not committed, "
         "after their families had been threatened.",
-        "{-g4}At his trial in 1936, Zinoviev declared himself",
+        "At his trial in 1936, Zinoviev declared himself{-g4}",
         ("C", "the principal organiser of Kirov's assassination", "c_zi"),
         "{-c_zi}And Kamenev said he had been",
         ("C", "actuated by boundless hatred and by lust of power", "c_ka"),

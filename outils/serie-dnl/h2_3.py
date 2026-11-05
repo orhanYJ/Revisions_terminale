@@ -121,7 +121,7 @@ SCENES = [
          beats=[
         "{def1}Before the course, one word to master: {!ideology}ideology. Remember the definition from episode one: "
         "a set of beliefs that sets a supreme goal to be achieved. {def1.1}And a supreme goal justifies any means.",
-        "{-def1}{trois}Now, the three supreme goals. {trois.1}For Fascism: the nation, embodied in an absolute State. "
+        "{-def1}{trois}{trois.1}Now, the three supreme goals. For Fascism: the nation, embodied in an absolute State. "
         "{trois.2}For Nazism: the race. {trois.3}For Stalinism: the class. "
         "Keep these three words in mind for the whole episode: nation, race, class.",
     ], vis={
@@ -185,7 +185,7 @@ SCENES = [
         "{-c_doc1}{tot}For them, totalitarian meant complete, united, strong: the opposite of a divided liberal society. "
         "{tot.1}The word took on its accusing meaning only after the war, when historians and philosophers such as Hannah Arendt "
         "applied it to Nazism and Stalinism.",
-        "{-tot}{cl}Idea four: Fascism divides humanity into nations, not classes. {cl.g}Marxism says: society is divided into classes in struggle. {cl.d}Fascism says the opposite: what divides humanity is nations, and inside the nation, all classes must be united "
+        "{-tot}{cl}{cl.g}Idea four: Fascism divides humanity into nations, not classes. Marxism says: society is divided into classes in struggle. {cl.d}Fascism says the opposite: what divides humanity is nations, and inside the nation, all classes must be united "
         "under the State. So the Doctrine attacks Socialism, which{-cl}",
         ("C", "confines the movement of history within the class struggle", "c_doc2"),
         "{-c_doc2}{ban}Class struggle is banned: which is why owners frightened by socialism liked Fascism. "
@@ -251,8 +251,8 @@ SCENES = [
          beats=[
         "{g5}{g5.1}Now Stalinism. Idea eight. Soviet ideology is Marxist: history is a {!struggle between classes}struggle between classes, "
         "and it ends with a society without classes, without private property, and without profit.",
-        "{-g5}{plan5}Stalin's Five-Year Plan, launched in 1928, turned this into a programme with two goals. "
-        "{plan5.g}First, the Soviet Union had to become an industrial and powerful country, independent of world capitalism. "
+        "{-g5}{plan5}{plan5.g}Stalin's Five-Year Plan, launched in 1928, turned this into a programme with two goals. "
+        "First, the Soviet Union had to become an industrial and powerful country, independent of world capitalism. "
         "{plan5.d}Second, it had to oust the last capitalist elements. Above all in the countryside, where most people still farmed their own land.",
         "{-plan5}{src1}The example comes from Worksheet two, source one: Stalin's speech to the Central Committee, the seventh of January 1933. "
         "The Plan had to transform a country with{-src1}",
@@ -351,8 +351,8 @@ SCENES = [
         "{def4}Idea twelve. Beyond the famine, collectivisation was an {!economic failure}economic failure. "
         "{def4.1}Peasants who lost their land and animals had no reason to work hard for the kolkhoz, and many slaughtered their livestock "
         "rather than hand it over. Production fell, resources became scarcer, and the countryside turned hostile.",
-        "{-def4}{lait}The example: source five, a letter written from Novosibirsk on the ninth of April 1932, by an official named Feigin, "
-        "to the Soviet leader Ordzhonikidze. {lait.g}Normally, a cow gives five to seven litres of milk a day. "
+        "{-def4}{lait}{lait.g}The example: source five, a letter written from Novosibirsk on the ninth of April 1932, by an official named Feigin, "
+        "to the Soviet leader Ordzhonikidze. Normally, a cow gives five to seven litres of milk a day. "
         "{lait.d}The kolkhoz cows give one to three. The peasants are slaughtering their last animals. And Feigin writes:{-lait}",
         ("C", "people are starving", "c_fei"),
         "{-c_fei}{choix}So the regime made a choice: {!ideology and control}ideology and control, rather than the food supply of its own people.",
@@ -450,13 +450,13 @@ SCENES = [
         "{com}Now let's compare. In common: {com.1}they reject liberal democracy. "
         "{com.2}They set a supreme goal that justifies any means. {com.3}They seek total control of society through coercion. "
         "{com.4}And they want a New Man: episode four.",
-        "{-com}{but}But the supreme goals are opposite. {but.1}Fascism: a united, disciplined, great nation. "
+        "{-com}{but}{but.1}But the supreme goals are opposite. Fascism: a united, disciplined, great nation. "
         "{but.2}Nazism: a pure race, which expands its territory and its population. "
         "{but.3}Stalinism: a socialist, industrial and self-sufficient Soviet Union, with no capitalist elements left.",
-        "{-but}{enn}And so the enemy within is not the same. {enn.1}In Italy: the left and its critics, like the socialist Matteotti. "
+        "{-but}{enn}{enn.1}And so the enemy within is not the same. In Italy: the left and its critics, like the socialist Matteotti. "
         "{enn.2}In Germany: Jews, disabled people, people with hereditary illnesses, the so-called virus. "
         "{enn.3}In the Soviet Union: the kulaks and all the capitalist elements.",
-        "{-enn}{sort}Nor its fate. {sort.1}Silenced rather than killed, in Italy. {sort.2}To be eliminated, to purge the race, in Germany. "
+        "{-enn}{sort}{sort.1}Nor its fate. Silenced rather than killed, in Italy. {sort.2}To be eliminated, to purge the race, in Germany. "
         "{sort.3}Persecuted as a class, in the Soviet Union, with the Holodomor of 1932 and 1933.",
         "{-sort}{rule}So here is the rule for an essay. {rule.g}What is common is the method of power. "
         "{rule.d}What differs is the goal it serves, and therefore the target of terror.",
@@ -484,12 +484,12 @@ SCENES = [
     dict(id="grille", chap="M. Ros's synthesis grid", fond="aube", humeur="calme",
          retenir="The grid, “Ideology” block: similarities (rejects liberal democracy; a supreme goal; total control for a New Man) · specificities: absolute State / race struggle / class struggle.",
          beats=[
-        "{gr}Monsieur Ros sums up the chapter in a synthesis grid, Fascism, Nazism, Stalinism: on the site, you can hide the cells and recite them. "
+        "{gr}{gr.1}Monsieur Ros sums up the chapter in a synthesis grid, Fascism, Nazism, Stalinism: on the site, you can hide the cells and recite them. "
         "Here is its ideology block. "
-        "{gr.1}Similarities, the same for the three: they reject liberal democracy, they have a supreme goal, and they want total control to create a New Man.",
+        "Similarities, the same for the three: they reject liberal democracy, they have a supreme goal, and they want total control to create a New Man.",
         "{gr.2}Then the specificities of Fascism, {gr.3}of Nazism, {gr.4}and of Stalinism: everything you have just seen. "
         "Pause the video, and recite each column aloud.",
-        "{-gr}{chk}And three points to confirm with Monsieur Ros. {chk.1}Matteotti: 1924, not 1925. {chk.2}Collectivisation: 1928, or late 1929. "
+        "{-gr}{chk}{chk.1}And three points to confirm with Monsieur Ros. Matteotti: 1924, not 1925. {chk.2}Collectivisation: 1928, or late 1929. "
         "{chk.3}And the examples from outside the course: accurate, but in an essay, prefer Monsieur Ros's own.",
         ("P", 3.0),
     ], vis={

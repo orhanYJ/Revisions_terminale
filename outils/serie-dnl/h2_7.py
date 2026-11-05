@@ -126,12 +126,12 @@ SCENES = [
          retenir="1930s Europe: democracies (France, Britain) · dictatorships (Germany, Italy; Japan in Asia) · the USSR, vast and isolated. The League could not act without the great powers. Low, “On the Throne of Justice”, 24 July 1935.",
          beats=[
         "{eu}Now the course. Part three point two, idea one: in the nineteen-thirties, Europe is {!divided}divided into three. "
-        "{eu.1}The democracies: France and Britain. {eu.2}The dictatorships: Germany and Italy, with Japan in Asia. "
-        "{eu.3}And the Soviet Union, a vast and isolated totalitarian regime.",
+        "{eu.1}The democracies, France and Britain. {eu.2}The dictatorships, Germany and Italy, with Japan in Asia. "
+        "{eu.3}And the Soviet Union, vast and isolated.",
         "{-eu}{sdn}Between them stands the League of Nations, the institution created in 1919 to stop aggression. "
         "{sdn.1}Whenever the great powers will not back it, it {!cannot act}cannot act.",
-        "{-sdn}{low1}The British cartoonist David Low made that failure his subject. In the Evening Standard of the twenty-fourth of July 1935, "
-        "while Mussolini prepares to invade Abyssinia, he draws three monkeys seated on the throne of International Law. "
+        "{-sdn}{low1}The British cartoonist David Low made that failure his subject. In July 1935, "
+        "as Mussolini prepares to invade Abyssinia, he draws three monkeys seated on the throne of International Law. "
         "{low1.1}One covers its eyes, one its ears, one its mouth. {low1.2}See no Abyssinia, hear no Abyssinia, speak no Abyssinia.",
     ], vis={
         "eu": dict(type="liste", titre="Europe in the 1930s: three camps", cles=["democracies", "dictatorships", "isolated"], items=[
@@ -177,8 +177,7 @@ SCENES = [
         "It creates a unified armed force, the {!Wehrmacht}Wehrmacht, made of three branches: "
         "{wm.1}the army, the Heer; {wm.2}the navy, the Kriegsmarine; {wm.3}and the air force, the Luftwaffe. "
         "Each breach that goes unpunished makes the next one easier.",
-        "{-wm}{pct}The most striking example: in June 1935, two months after Stresa, Britain signs a naval agreement with Germany, on its own, "
-        "without consulting its Stresa partners. It allows the Kriegsmarine to reach {!thirty-five per cent}thirty-five per cent "
+        "{-wm}{pct}The example: in June 1935, two months after Stresa, Britain alone signs a naval agreement with Germany. It allows the Kriegsmarine to reach {!thirty-five per cent}thirty-five per cent "
         "of the Royal Navy's tonnage. Britain itself legalises a breach of Versailles.",
     ], vis={
         "g3": dict(type="globe", code="H2", sc=[25]),
@@ -228,7 +227,7 @@ SCENES = [
         "{wh.5}Five: both countries ranked their own economic problems, the Depression, higher. "
         "{wh.6}Six: they felt unprotected, because of American isolationism. "
         "{wh.7}And seven: many feared communism more than fascism.",
-        "{-wh}The pacifism of the time, in one sentence. In February 1933, the students of the Oxford Union voted the motion:",
+        "{-wh}February 1933: the Oxford Union votes:",
         ("C", "This House will in no circumstances fight for its King and Country.", "c_ox"),
         "{-c_ox}{deux}So, in an essay, say both. {deux.g}Discredited today: each concession was followed by a larger demand. "
         "{deux.d}Popular then: it rested on solid reasons, and on public opinion.",
@@ -258,8 +257,7 @@ SCENES = [
         "{-mu}{-g4}{low2}David Low did not believe the promise. On the tenth of October 1938, ten days after Munich, he draws Hitler as Krampus, "
         "the demon who terrorises children at Christmas, under the caption:",
         ("C", "Europe can look forward to a Christmas of Peace", "c_low"),
-        "{-c_low}{-low2}The irony is bitter: the peace bought at Munich would last less than six months.",
-        ("P", 1.5),
+        "{-c_low}{-low2}{iro}The irony is bitter: the peace bought at Munich would last {!less than six months}less than six months.",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[34]),
         "mu": dict(type="liste", titre="Munich, 29–30 September 1938", petit=True, bande=True, x=60, y=130, w=600, items=[
@@ -269,30 +267,29 @@ SCENES = [
                      t="Hitler drawn as Krampus, the demon who terrorises children at Christmas.",
                      etape="Ten days after Munich: the cartoonist does not believe the promise", x=170, y=120, w=940),
         "c_low": dict(type="cit", a="David Low", o="cartoon caption, 10 October 1938", x=200, y=330, w=880),
+        "iro": dict(type="mot", t="< 6 months", g="Munich, 30 Sept. 1938 → Prague, 15 March 1939", y=250, taille=110),
     }),
 
     # ================================================================ DBQ 2 (présenté plus brièvement)
     dict(id="dbq2", chap="DBQ 2 · Roosevelt's telegram", fond="aube", humeur="calme",
          retenir="DBQ 2: largely useful for the American response in spring 1939 (author, date, method: “assurance” without sanction, a tally of failures, public diplomacy) · limits: one neutral democracy, no outcome, silent on the Neutrality Acts, written for publication.",
          beats=[
-        "{doc2}Now the second DBQ of the chapter, on part three point two. {doc2.1}The document: a telegram from President Roosevelt to Hitler, "
-        "sent from the White House on the fourteenth of April 1939. An identical telegram was sent to Mussolini. "
-        "{doc2.2}One month after Prague, one week after Italy invaded Albania, Roosevelt asks the two dictators for an assurance "
-        "that they will not attack thirty-one named states, from Finland to Iran. In return he offers assurances of his own. "
-        "{doc2.3}But no sanction, no alliance, no threat of force. He writes:",
+        "{doc2}Now the second DBQ of the chapter. {doc2.1}A telegram from President Roosevelt to Hitler, "
+        "the fourteenth of April 1939; the same was sent to Mussolini. "
+        "{doc2.2}One month after Prague, Roosevelt asks the dictators for an assurance "
+        "that they will not attack thirty-one named states, from Finland to Iran. "
+        "{doc2.3}But no sanction, no alliance, no threat of force. {-doc2}He writes:",
         ("C", "Three nations in Europe and one in Africa have seen their independent existence terminated.", "c_fdr1"),
         "{-c_fdr1}Austria, Czechoslovakia, Albania and Ethiopia. And he warns the dictators:",
         ("C", "History will hold them accountable.", "c_fdr2"),
-        "{-c_fdr2}{-doc2}{ex2}The question: {!How useful}how useful is this document to a historian studying the democracies' response to Hitler's ambitions?",
-        "{-ex2}{m2}The site's model answer, in short. {m2.1}First line: largely useful, although it lights only one corner of that response. "
-        "{m2.2}Strengths: the author, the head of the most powerful neutral democracy; the date, just after Munich has visibly failed; "
-        "the method, assurances without constraint; thirty-one states, an admission of how far aggression was expected to reach; "
-        "and a public message, aimed at world opinion.",
-        "{m2.3}Limits: one democracy, and a neutral one, says nothing of Britain and France; there is no outcome, since Hitler's contemptuous reply "
-        "of the twenty-eighth of April is absent; it is silent on the Neutrality Acts that explain its caution; "
-        "and written for publication, it shows what Washington wished to be seen saying.",
-        "{-m2}{pie}{!Watch out}And watch out for the trap in the question: it says the democracies, plural. A document from one of them "
-        "can only be partly representative: say so, and use your own knowledge of Britain and France to fill the gap.",
+        "{-c_fdr2}{ex2}The question: {!How useful}how useful is this document to a historian studying the democracies' response to Hitler's ambitions?",
+        "{-ex2}{m2}The site's model, in short. {m2.1}Largely useful, although it lights only one corner of that response. "
+        "{m2.2}Strengths: the head of the most powerful neutral democracy; a date just after Prague; "
+        "assurances without constraint; thirty-one states, an admission of how far aggression was expected to reach; a public message.",
+        "{m2.3}Limits: nothing on Britain and France; no outcome, since Hitler's reply of the twenty-eighth of April is absent; "
+        "silent on the Neutrality Acts; and written for publication.",
+        "{-m2}{pie}{!Watch out}And the trap: the question says the democracies, plural. One document from one of them "
+        "can only be partly representative: say so, and bring in Britain and France from your own knowledge.",
     ], vis={
         "doc2": dict(type="liste", titre="DBQ 2 · Document A", items=[
             "Roosevelt to Hitler, telegram, the White House, 14 April 1939 (the same to Mussolini)",
@@ -316,7 +313,7 @@ SCENES = [
     dict(id="axe", chap="III.3 · The Axis and the Spanish Civil War", fond="guerre", humeur="tension",
          retenir="25 Oct. 1936: the Rome–Berlin Axis, an alliance of interest between two dictators who distrusted each other (Pact of Steel 1939, Japan 1940). Spain 1936: Germany and Italy back Franco, the Luftwaffe tests itself; France and Britain stay out.",
          beats=[
-        "{g5}{g5.1}Part three point three: the road to the Second World War. Idea one: the Axis. On his road to war, Hitler needed allies, "
+        "{g5}{g5.1}Part three point three: the road to the Second World War. Idea one: the Axis. Hitler needed allies, "
         "and he found one in Mussolini, despite a certain mutual disdain. "
         "Hitler had long admired Fascism, but Mussolini saw him as an ambitious and pretentious rival. "
         "In 1932, he even mocked Nazi racism:",
@@ -328,9 +325,9 @@ SCENES = [
         "{-ax}{g6}{g6.1}{es}Idea two: Spain. {es.1}When civil war broke out in Spain in 1936, Germany and Italy supported General Franco's nationalists, "
         "{es.2}and Germany used the conflict to test its air force. "
         "{es.3}France and Britain did not intervene to help the Spanish Republic. "
-        "{es.4}An example the course adds, not from the lesson: on the twenty-sixth of April 1937, the German Condor Legion bombed "
-        "the Basque town of Guernica, a raid Picasso turned into a painting that same year.",
-        "{-es}{-g6}{rep2}So Spain was a rehearsal of the coming war, and one more proof that the democracies would not act.",
+        "{es.4}An example the course adds, not from the lesson: in April 1937, German bombers destroyed "
+        "the Basque town of Guernica, which Picasso painted that same year.",
+        "{-es}{-g6}{rep2}A rehearsal of the coming war, and one more proof that the democracies would not act.",
     ], vis={
         "g5": dict(type="globe", code="H2", sc=[29]),
         "c_mus": dict(type="cit", a="Benito Mussolini", o="1932, quoted in the course", x=200, y=230, w=880),
@@ -459,7 +456,7 @@ SCENES = [
         "{-st}{ch}The course's chain adds three links. {ch.1}1933: Germany and Japan leave the League. {ch.2}1935: Ethiopia. "
         "{ch.3}1936: the Rhineland and Spain. {ch.4}1937: Japan invades southern China, and Italy leaves the League. "
         "{ch.5}{ch.6}{ch.7}Then Austria, Munich, Prague, Poland. Each time, the absence of reaction encouraged the next step.",
-        "{-ch}{vo}And here is the sentence that answers the chapter's key issue. "
+        "{-ch}{vo}The sentence that answers the chapter's key issue: "
         "{vo.g}Totalitarian ideology supplied {!the will}the will to expand. "
         "{vo.d}The democracies' reluctance supplied {!the opportunity}the opportunity.",
         ("P", 2.0),
@@ -482,20 +479,20 @@ SCENES = [
         "{doc3}Now it is your turn, with the third DBQ of the chapter. {doc3.1}The document: a speech by Adolf Hitler to his commanders-in-chief "
         "at the Obersalzberg, his mountain residence, on the twenty-second of August 1939. Nine days before the invasion of Poland. "
         "{doc3.2}It is a closed military briefing, known through notes taken by listeners and produced at the Nuremberg trials, "
-        "as document 798-PS. Hitler explains why the moment has come to attack Poland. He says:",
+        "as document 798-PS. {-doc3}Hitler says:",
         ("C", "A conflict with Poland had to come sooner or later.", "c_h1"),
         "{-c_h1}And about his opponents:",
         ("C", "There is no outstanding personality in England and France.", "c_h2"),
         "{-c_h2}And finally:",
         ("C", "We have nothing to lose; we have everything to gain.", "c_h3"),
-        "{-c_h3}{-doc3}{ex3}The question: {!How useful}how useful is this document to a historian studying the role of territorial expansionism "
+        "{-c_h3}{ex3}The question: {!How useful}how useful is this document to a historian studying the role of territorial expansionism "
         "as an underlying cause of World War Two?",
         "{-ex3}{str}Remember the structure. {str.1}The judgement in the first line: largely, significantly, partly or slightly useful. "
         "{str.2}The document in one sentence. {str.3}A paragraph of strengths, several arguments. {str.4}A paragraph of limits, several arguments.",
         "{-str}{pa1}",
         ("P", 2.0),
         "{-pa1}{rep3}A model, from the site's answer. {rep3.1}Document A is largely useful to a historian studying territorial expansionism "
-        "as an underlying cause of the Second World War, though it captures the last step rather than the road that led there. "
+        "as an underlying cause of the war, though it captures the last step rather than the road. "
         "{rep3.2}It is a speech delivered by Hitler to his commanders-in-chief on the twenty-second of August 1939, in which he tells them "
         "he has decided to attack Poland.",
         "{rep3.3}The strengths. A closed audience: Hitler had no reason to soften his intentions. "
@@ -583,10 +580,10 @@ SCENES = [
 
     # ================================================================ récap
     dict(id="recap", chap="Recap", fond="nuit", humeur="calme", beats=[
-        "{carte}Let's sum up. {carte.1}A divided Europe and a silent League; an isolationist America with its Neutrality Acts. "
-        "{carte.2}Stresa, German rearmament, and appeasement: Chamberlain and Daladier, seven reasons, and Munich. "
-        "{carte.3}The road to war: the Axis and Spain, the Rhineland, the Anschluss, Prague, the pact. "
-        "{carte.4}And the answer: ideology the will, the democracies the opportunity. War on the third of September 1939.",
+        "{carte}Let's sum up. {carte.1}A silent League and an isolationist America. "
+        "{carte.2}Appeasement: Chamberlain and Daladier, seven reasons, and Munich. "
+        "{carte.3}The steps: the Axis, the Rhineland, the Anschluss, Prague, the pact. "
+        "{carte.4}And the answer: ideology the will, the democracies the opportunity.",
         ("P", 4.0),
         "{-carte}{fin}Next episode: the whole chapter at the exam. Essays, DBQs, model answers… and the traps.",
         ("P", 2.0),
