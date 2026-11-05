@@ -4,7 +4,12 @@
    Couleurs des chromosomes comme dans les animations du site : maternel magenta, paternel cyan. */
 (function () {
   "use strict";
-  var O = window.SERIE_OUTILS, sv = O.sv, E = O.E, EB = O.EB, EIO = O.EIO, P = O.P, op = O.op, et = O.et, lab = O.etiquette, C = O.C;
+  // la page charge ce fichier avant le moteur : les outils (window.SERIE_OUTILS) sont lus au premier dessin
+  var O, sv, E, EB, EIO, P, op, et, lab, C;
+  function init() {
+    if (O) return;
+    O = window.SERIE_OUTILS; sv = O.sv; E = O.E; EB = O.EB; EIO = O.EIO; P = O.P; op = O.op; et = O.et; lab = O.etiquette; C = O.C;
+  }
   var MAG = "#f27ab8", CYA = "#6fd3e8", OR = "#ffd24a", ROUGE = "#ff6b5b", VERT = "#7ce08a", GRIS = "#8d9a86";
   window.SERIE_ILLU = window.SERIE_ILLU || {};
   var SERIE_ILLU = window.SERIE_ILLU;
@@ -42,7 +47,8 @@
      {id.1} l'individu 2n ; {id.2} la méiose et les gamètes n ; {id.3} la fécondation et le zygote 2n ;
      {id.4} les mitoses qui ramènent à l'individu ; {id.5} phases haploïde / diploïde */
   SERIE_ILLU.cycle = function (s, v) {
-    var W = v.w, H = v.h, g = sv("g", {}, s), cx = W / 2, cy = H / 2 + 10, R = Math.min(W, H) * .36;
+    init();
+    var W = v.w, H = v.h, g = sv("g", {}, s), cx = W / 2 - 40, cy = H / 2 - 22, R = Math.min(W, H) * .31;
     function cellule(x, y, r, paires, titre, sous) {
       var c = sv("g", {}, g);
       sv("circle", { cx: x, cy: y, r: r, fill: "rgba(127,190,203,.10)", stroke: "rgba(231,242,218,.55)", "stroke-width": 2.5 }, c);
@@ -56,23 +62,24 @@
     }
     var P2n = [[MAG, 62], [CYA, 62], [MAG, 34], [CYA, 34]];
     var ind = cellule(cx, cy - R, 62, P2n, "Cellule de l'individu · 2n", "2n = 46 chez l'humain");
-    var gam1 = cellule(cx + R * 1.02, cy + 10, 44, [[CYA, 52], [MAG, 30]], "Gamète · n", "n = 23");
+    var gam1 = cellule(cx + R * 1.05, cy + 10, 42, [[CYA, 52], [MAG, 30]], "", "");
     var gam2 = cellule(cx + R * 1.02 - 10, cy + 10, 0.1, [], "", "");
-    var gamB = cellule(cx + R * .55, cy + R * .78 + 6, 40, [[MAG, 52], [CYA, 30]], "", "");
-    var zyg = cellule(cx, cy + R + 4, 60, [[CYA, 58], [MAG, 58], [MAG, 32], [CYA, 32]], "Zygote (cellule-œuf) · 2n", "");
+    var gamB = cellule(cx + R * 1.05 + 104, cy + 10, 42, [[MAG, 52], [CYA, 30]], "", "");
+    lab(gamB, cx + R * 1.05 + 52, cy + 84, "Gamètes · n", { fs: 25, c: C.iv, fw: 700 }); lab(gamB, cx + R * 1.05 + 52, cy + 110, "n = 23", { fs: 20, c: C.iv2 });
+    var zyg = cellule(cx, cy + R, 56, [[CYA, 58], [MAG, 58], [MAG, 32], [CYA, 32]], "Zygote (cellule-œuf) · 2n", "");
     gam2.setAttribute("opacity", 0);
-    var f1 = fleche(g, "M" + (cx + 80) + " " + (cy - R + 30) + " Q" + (cx + R * .95) + " " + (cy - R * .9) + " " + (cx + R * 1.02) + " " + (cy - 50), C.sa, 4);
+    var f1 = fleche(g, "M" + (cx + 80) + " " + (cy - R + 30) + " Q" + (cx + R * .95) + " " + (cy - R * .9) + " " + (cx + R * 1.05) + " " + (cy - 40), C.sa, 4);
     var t1 = lab(g, cx + R * .98, cy - R * .78, "MÉIOSE", { fs: 28, c: C.sa, fw: 800, ancre: "start" });
     var t1b = lab(g, cx + R * .98, cy - R * .78 + 30, "2n → n (dans les gonades)", { fs: 21, c: C.iv2, ancre: "start" });
-    var f2 = fleche(g, "M" + (cx + R * .62) + " " + (cy + R * .62) + " Q" + (cx + R * .3) + " " + (cy + R * .98) + " " + (cx + 78) + " " + (cy + R - 4), OR, 4);
-    var t2 = lab(g, cx + R * .44, cy + R * 1.18, "FÉCONDATION", { fs: 28, c: OR, fw: 800 });
-    var t2b = lab(g, cx + R * .44, cy + R * 1.18 + 28, "n + n → 2n", { fs: 21, c: C.iv2 });
+    var f2 = fleche(g, "M" + (cx + R * 1.05 + 40) + " " + (cy + 124) + " Q" + (cx + R * .9) + " " + (cy + R * .95) + " " + (cx + 72) + " " + (cy + R - 4), OR, 4);
+    var t2 = lab(g, cx + R * 1.05 + 150, cy + R * .78, "FÉCONDATION", { fs: 28, c: OR, fw: 800 });
+    var t2b = lab(g, cx + R * 1.05 + 150, cy + R * .78 + 28, "n + n → 2n", { fs: 21, c: C.iv2 });
     var f3 = fleche(g, "M" + (cx - 78) + " " + (cy + R - 10) + " Q" + (cx - R * 1.2) + " " + cy + " " + (cx - 80) + " " + (cy - R + 30), VERT, 4);
     var t3 = lab(g, cx - R * 1.08, cy, "MITOSES", { fs: 28, c: VERT, fw: 800, ancre: "end" });
     var t3b = lab(g, cx - R * 1.08, cy + 30, "2n → 2n : un clone", { fs: 21, c: C.iv2, ancre: "end" });
     var ph = sv("g", {}, g);
-    sv("path", { d: "M" + (cx + R * 1.35) + " " + (cy - 40) + " v120", stroke: CYA, "stroke-width": 8, "stroke-linecap": "round" }, ph);
-    lab(ph, cx + R * 1.35 + 18, cy + 120, "phase haploïde", { fs: 20, c: CYA, ancre: "start" });
+    sv("path", { d: "M" + (cx + R * 1.05 + 170) + " " + (cy - 30) + " v80", stroke: CYA, "stroke-width": 8, "stroke-linecap": "round" }, ph);
+    lab(ph, cx + R * 1.05 + 186, cy + 16, "phase haploïde", { fs: 20, c: CYA, ancre: "start" });
     lab(ph, cx - R * .6, cy - R - 20, "phase diploïde", { fs: 20, c: MAG, ancre: "end" });
     var k1 = et(v, "1", .3), k2 = et(v, "2", 2.5), k3 = et(v, "3", 5), k4 = et(v, "4", 7.5), k5 = et(v, "5", 9.5);
     return function (t) {
@@ -80,7 +87,7 @@
       f1.maj(EIO(P(t, k2, 1.2))); op(t1, E(P(t, k2 + .4, .6))); op(t1b, E(P(t, k2 + .6, .6)));
       apparait(gam1, t, k2 + 1); apparait(gamB, t, k2 + 1.4);
       f2.maj(EIO(P(t, k3, 1.2))); op(t2, E(P(t, k3 + .4, .6))); op(t2b, E(P(t, k3 + .6, .6)));
-      var z = apparait(zyg, t, k3 + 1); zyg.setAttribute("transform", "translate(" + cx + " " + (cy + R) + ") scale(" + (0.7 + 0.3 * z) + ") translate(" + (-cx) + " " + (-cy - R) + ")");
+      var z = apparait(zyg, t, k3 + 1); 
       f3.maj(EIO(P(t, k4, 1.4))); op(t3, E(P(t, k4 + .5, .6))); op(t3b, E(P(t, k4 + .7, .6)));
       op(ph, E(P(t, k5, .8)));
     };
@@ -91,6 +98,7 @@
      v.cases = [[génotype, phénotype, couleur], …] ligne par ligne ; v.bas = conclusion ;
      {id.1} en-têtes de colonnes ; {id.2} en-têtes de lignes ; {id.3} les cases une à une ; {id.4} la conclusion */
   SERIE_ILLU.echiquier = function (s, v) {
+    init();
     var W = v.w, H = v.h, g = sv("g", {}, s), nc = v.col.length, nl = v.lig.length;
     var cw = Math.min(250, (W - 200) / nc), ch = Math.min(116, (H - 190) / nl), x0 = (W - cw * nc) / 2 + 60, y0 = 120;
     var ti = lab(g, W / 2, 40, v.titre || "", { fs: 30, c: C.iv, fw: 700, cls: "ser" });
@@ -132,6 +140,7 @@
      v.classes = [[phénotype, effectif, "p" | "r" | ""], …] ; v.total ; v.titre ;
      {id.1} les barres montent ; {id.2} la ligne des 25 % attendus ; {id.3} parentaux / recombinés colorés et sommés */
   SERIE_ILLU.barres = function (s, v) {
+    init();
     var W = v.w, H = v.h, g = sv("g", {}, s), n = v.classes.length, x0 = 90, y0 = H - 120, hmax = H - 230, bw = (W - 140) / n;
     var max = v.max || 50, Y = function (pc) { return y0 - pc / max * hmax; };
     var ti = lab(g, W / 2, 36, v.titre || "", { fs: 28, c: C.iv, fw: 700, cls: "ser" });
@@ -161,7 +170,7 @@
         var p = EIO(P(t, k1 + i * .35, 1.1)), hh = (y0 - Y(b.pc)) * p;
         b.r.setAttribute("y", (y0 - hh).toFixed(1)); b.r.setAttribute("height", hh.toFixed(1));
         b.val.setAttribute("y", (y0 - hh - 12).toFixed(1));
-        b.val.textContent = p > .05 ? b.eff + " · " + (b.pc * p).toFixed(b.pc % 1 ? 1 : 0).replace(".", ",") + " %" : "";
+        b.val.textContent = p > .05 ? b.eff + " · " + (b.pc * p).toFixed(v.dec != null ? v.dec : (b.pc % 1 ? 1 : 0)).replace(".", ",") + " %" : "";
         var col = t >= k3 ? (b.c[2] === "p" ? CYA : b.c[2] === "r" ? OR : "rgba(183,217,76,.55)") : "rgba(183,217,76,.55)";
         b.r.setAttribute("fill", col); b.r.setAttribute("fill-opacity", t >= k3 ? .8 : 1);
         op(b.ty, E(P(t, k3 + .3, .6)));
@@ -175,6 +184,7 @@
      {id.1} le 21 se fixe sur le 14 (porteur sain, 45 chromosomes) ; {id.2} gamètes normal et porteur ;
      {id.3} gamète 14-21 + 21 → trisomie 21 ; {id.4} les trois gamètes non viables */
   SERIE_ILLU.transloc = function (s, v) {
+    init();
     var W = v.w, g = sv("g", {}, s), L14 = 150, L21 = 70;
     var ti = lab(g, W / 2, 36, "Un parent porteur d'une translocation 14-21", { fs: 28, c: C.iv, fw: 700, cls: "ser" });
     var par = sv("g", {}, g), px = W / 2 - 170, py = 70;
@@ -183,8 +193,8 @@
     var c21 = chromo(par, px + 90, py + 120, L21, CYA, 22); lab(par, px + 90, py + 222, "21", { fs: 22, c: C.iv });
     var f14 = chromo(par, px + 230, py + 40, L14, MAG, 22);
     var mob = chromo(par, 0, 0, L21, CYA, 22);
-    var tf = lab(par, px + 230, py + 222, "« 14-21 »", { fs: 22, c: OR, fw: 700 });
-    var bilan = lab(par, px + 170, py + 280, "45 chromosomes, tous les gènes en double : porteur sain", { fs: 21, c: C.iv2 });
+    var tf = lab(par, px + 262, py + 120, "« 14-21 »", { fs: 22, c: OR, fw: 700, ancre: "start" });
+    var bilan = lab(par, px + 170, py + 282, "45 chromosomes, tous les gènes en double : porteur sain", { fs: 21, c: C.iv2 });
     var GAM = [
       { a: [[MAG, L14], [CYA, L21]], t: "14 + 21", r: "caryotype normal", c: VERT, k: "2" },
       { a: [["F", 0]], t: "14-21 seul", r: "porteur sain", c: CYA, k: "2" },
@@ -193,10 +203,10 @@
       { a: [["F", 0], [MAG, L14]], t: "14-21 + 14", r: "trisomie 14 : non viable", c: GRIS, k: "4" },
       { a: [[CYA, L21]], t: "21 seul", r: "monosomie 14 : non viable", c: GRIS, k: "4" }
     ];
-    var gw = (W - 60) / 6, gy = 380;
+    var gw = (W - 60) / 6, gy = 392;
     var gams = GAM.map(function (G, i) {
       var gg = sv("g", {}, g), x = 30 + i * gw + gw / 2;
-      var bx = boite(gg, x - gw / 2 + 6, gy, gw - 12, 230, { r: 16, s: G.c });
+      var bx = boite(gg, x - gw / 2 + 6, gy, gw - 12, 234, { r: 16, s: G.c });
       var n = G.a.length;
       G.a.forEach(function (c, j) {
         var xx = x + (j - (n - 1) / 2) * 34, s_ = .62;
@@ -209,7 +219,7 @@
       if (rr[1]) lab(gg, x, gy + 220, rr[1], { fs: 17, c: G.c, fw: 700 });
       return { g: gg, k: G.k, b: bx };
     });
-    var gti = lab(g, W / 2, gy - 18, "Ses gamètes possibles, fécondés par un gamète normal", { fs: 22, c: C.sa, fw: 700 });
+    var gti = lab(g, W / 2, gy - 14, "Ses gamètes possibles, fécondés par un gamète normal", { fs: 22, c: C.sa, fw: 700 });
     return function (t, st) {
       op(ti, E(P(st.tl, 0, .6))); op(par, E(P(st.tl, .2, .6)));
       var k1 = et(v, "1", 1), u = EIO(P(t, k1, 1.6));
@@ -227,7 +237,8 @@
      {id.1} gène ancestral dupliqué ; {id.2} une copie transposée sur le chromosome 7 (S) ; {id.3} mutations, divergence ;
      {id.4} nouvelle duplication sur le X : M et L côte à côte ; {id.5} trois pigments, trois couleurs absorbées */
   SERIE_ILLU.opsines = function (s, v) {
-    var W = v.w, H = v.h, g = sv("g", {}, s), yA = 150, yB = 330;
+    init();
+    var W = v.w, H = v.h, g = sv("g", {}, s), yA = 110, yB = 260;
     var ti = lab(g, W / 2, 36, "Histoire de la famille des opsines (schéma)", { fs: 28, c: C.iv, fw: 700, cls: "ser" });
     function chr(y, nom, col) {
       var gg = sv("g", {}, g);
@@ -244,12 +255,12 @@
     var gS = gene(410, yB, "S", "#6c8dff"), gM = gene(330, yA, "M", "#7ce08a"), gL = gene(410, yA, "L", "#ff6b5b");
     var mut = sv("g", {}, g);
     [[300, yA], [345, yA], [380, yB], [430, yB]].forEach(function (p) { lab(mut, p[0], p[1] - 6, "★", { fs: 20, c: OR }); });
-    var l1 = lab(g, 760, yA + 20, "", { fs: 22, c: C.iv2, ancre: "start" }), l2 = lab(g, 760, yB + 30, "", { fs: 22, c: C.iv2, ancre: "start" });
+    var l1 = lab(g, 420, yA + 82, "", { fs: 21, c: C.iv2 }), l2 = lab(g, 420, yB + 82, "", { fs: 21, c: C.iv2 });
     // trois courbes d'absorption schématiques
     var sp = sv("g", {}, g), xs = 160, xw = 620, ys = H - 40, hs = 150;
     sv("line", { x1: xs, x2: xs + xw, y1: ys, y2: ys, stroke: C.iv, "stroke-width": 2 }, sp);
     lab(sp, xs + xw + 10, ys + 6, "longueur d'onde", { fs: 19, c: C.iv2, ancre: "start" });
-    var cour = [[.18, "#6c8dff", "S : bleu"], [.56, "#7ce08a", "M : vert"], [.68, "#ff6b5b", "L : rouge"]].map(function (c) {
+    var cour = [[.18, "#6c8dff", "S : bleu"], [.5, "#7ce08a", "M : vert"], [.74, "#ff6b5b", "L : rouge"]].map(function (c) {
       var d = "", i; for (i = 0; i <= 60; i++) { var x = i / 60, y = Math.exp(-Math.pow((x - c[0]) / .11, 2)); d += (i ? " L" : "M") + (xs + x * xw).toFixed(1) + " " + (ys - y * hs).toFixed(1); }
       var p = sv("path", { d: d, fill: "none", stroke: c[1], "stroke-width": 4 }, sp);
       var tl = lab(sp, xs + c[0] * xw, ys - hs - 12, c[2], { fs: 20, c: c[1], fw: 800 });
@@ -278,6 +289,7 @@
      {id.1} deux chromosomes du chimpanzé ; {id.2} ils se soudent bout à bout : le chromosome 2 humain ; {id.3} 48 → 46 ;
      {id.4} une inversion : un segment retourné */
   SERIE_ILLU.fusion = function (s, v) {
+    init();
     var W = v.w, H = v.h, g = sv("g", {}, s), L1 = 150, L2 = 170, cx = 330, y = 90;
     var ti = lab(g, W / 2, 36, "Comparer les caryotypes, bande par bande", { fs: 28, c: C.iv, fw: 700, cls: "ser" });
     var B1 = [[.1, .18, "#2c3a30"], [.4, .5, "#2c3a30"], [.7, .78, "#2c3a30"]], B2 = [[.15, .24, "#2c3a30"], [.5, .58, "#2c3a30"], [.8, .9, "#2c3a30"]];
@@ -287,7 +299,7 @@
     var hum = lab(g, cx, y + L1 + L2 + 60, "humain : chromosome 2 · 2n = 46", { fs: 24, c: C.sa, fw: 700 });
     var fl = lab(g, cx + 70, y + L1 + 6, "← soudure", { fs: 21, c: OR, fw: 700, ancre: "start" });
     // inversion
-    var inv = sv("g", {}, g), ix = 820, iy = 120, seg = ["A", "B", "C", "D", "E"], cols = ["#6c8dff", "#7ce08a", "#ffd24a", "#ff6b5b", "#b48cff"];
+    var inv = sv("g", {}, g), ix = 600, iy = 120, seg = ["A", "B", "C", "D", "E"], cols = ["#6c8dff", "#7ce08a", "#ffd24a", "#ff6b5b", "#b48cff"];
     lab(inv, ix + 150, iy - 20, "Une inversion", { fs: 26, c: C.iv, fw: 700 });
     var blocs = seg.map(function (n, i) {
       var gg = sv("g", {}, inv); sv("rect", { x: -28, y: -24, width: 56, height: 48, rx: 6, fill: cols[i] }, gg);
@@ -317,6 +329,7 @@
   /* ------------------------------------------------------------------ amylase salivaire : plus de copies d'AMY1, plus d'amylase (schéma)
      {id.1} {id.2} {id.3} trois individus ; {id.4} la conclusion */
   SERIE_ILLU.amylase = function (s, v) {
+    init();
     var W = v.w, g = sv("g", {}, s);
     var ti = lab(g, W / 2, 36, "Nombre de copies du gène AMY1 et quantité d'amylase (schéma)", { fs: 26, c: C.iv, fw: 700, cls: "ser" });
     var IND = [2, 5, 9].map(function (n, i) {
@@ -344,6 +357,7 @@
      {id.1} lésion de l'ADN ; {id.2} p53 échappe à mdm2 et s'accumule ; {id.3} arrêt de la division → réparation ;
      {id.4} apoptose si irréparable ; {id.5} sans p53 : la cellule se divise et accumule les mutations */
   SERIE_ILLU.p53 = function (s, v) {
+    init();
     var W = v.w, g = sv("g", {}, s);
     function noeud(x, y, w, t1, t2, col) {
       var gg = sv("g", {}, g); boite(gg, x - w / 2, y, w, t2 ? 82 : 58, { s: col || "rgba(231,242,218,.45)" });

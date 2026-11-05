@@ -66,7 +66,7 @@ SCENES = [
         "z1a": dict(type="mental", vers=["c1", "c1a"]),
         "q_cell": dict(type="question", t="Une seule cellule au départ, des dizaines de milliers de milliards à l'arrivée."),
         "tension": dict(type="cols", g="La stabilité", gq="le même caryotype dans toutes les cellules, à chaque division",
-                        d="La diversité", dq="des phénotypes différents dans un même organe", vs="et pourtant"),
+                        d="La diversité", dq="des phénotypes différents dans un même organe", vs="mais"),
         "tab_chat": dict(type="tableau", img="ch1-chat", de=[1.0, .5, .5], a=[1.25, .45, .4],
                          legende="Chatte à la robe écaille de tortue, photo Kiiro, CC BY-SA 4.0 (Wikimedia Commons)"),
         "q_unite": dict(type="question", t="Quelles conséquences ont les modifications génétiques survenant dans un clone cellulaire ?"),
@@ -134,7 +134,7 @@ SCENES = [
             "Un seul individu : un système racinaire, des troncs génétiquement identiques",
             "Apparus par drageonnage : des mitoses à partir des racines",
             "Les racines partagent eau et nutriments : la collaboration"]),
-        "tab_cmp": dict(type="liste", titre="Séance 1 · cinq clones, cinq fonctions", x=110, y=96, w=1060, petit=True, items=[
+        "tab_cmp": dict(type="liste", titre="Séance 1 · cinq clones, cinq fonctions", x=110, y=110, w=1060, items=[
             "Peuplier (Pando) · tissus : oui · partage des nutriments, extension de l'individu",
             "Lymphocytes · cellules séparées · LB mémoire, plasmocytes : défense immunitaire",
             "Intestin grêle · tissu · renouvellement des cellules mortes",
@@ -217,9 +217,9 @@ SCENES = [
         "{secu.2}L'ADN polymérase relit ce qu'elle vient de poser, et remplace le nucléotide mal apparié. "
         "Ces deux filtres ramènent le taux d'erreur à environ une pour un milliard de nucléotides. "
         "{secu.3}Restent les systèmes de réparation, dernière ligne de défense, qui corrigent les lésions avant la division suivante.",
-        "{f_mut}{f_mut.1}D'où la règle à écrire : une mutation ne s'installe que si la réparation échoue avant la réplication suivante. "
+        "{-secu}{f_mut}{f_mut.1}D'où la règle à écrire : une mutation ne s'installe que si la réparation échoue avant la réplication suivante. "
         "Après, elle est copiée comme le reste.",
-        "{-secu}{-f_mut}{doc4}Le document quatre de l'activité deux donne l'ordre de grandeur. {doc4.1}Un nouveau-né compte environ un virgule vingt-cinq fois dix puissance douze cellules. "
+        "{-f_mut}{doc4}Le document quatre de l'activité deux donne l'ordre de grandeur. {doc4.1}Un nouveau-né compte environ un virgule vingt-cinq fois dix puissance douze cellules. "
         "{doc4.2}Chacune porte six virgule quatre milliards de nucléotides. {doc4.3}Et le taux de mutation vaut deux virgule soixante-six fois dix puissance moins neuf par nucléotide. "
         "{doc4.4}Multiplie : à chaque copie du génome, environ dix-sept nucléotides sont changés. "
         "La mutation n'est pas un accident rare. C'est le bruit de fond inévitable de la réplication.",
@@ -533,7 +533,9 @@ SCENES = [
         "C'est là que le brassage s'effectue. Ici, les deux chromosomes magenta partent ensemble.",
         "{-pts_me1}{-an_me1}{an_me2}{pts_me2}Mais rien n'obligeait les paires à s'orienter ainsi. {an_me2.1}{pts_me2.1}Rejouons la métaphase un, avec l'autre orientation de la petite paire. "
         "{an_me2.2}{pts_me2.2}Cette fois, en anaphase un, chaque pôle reçoit un grand chromosome d'une couleur et un petit de l'autre. "
-        "{an_me2.3}{pts_me2.3}Après la méiose deux, qui sépare les chromatides, ce sont d'autres gamètes : d'autres combinaisons d'allèles.",
+        "{an_me2.3}{pts_me2.3}Puis vient la méiose deux. Dans chacune des deux cellules, les chromatides sœurs se séparent, comme lors d'une mitose. "
+        "On obtient quatre cellules haploïdes, avec un seul chromosome de chaque paire. Compare-les avec celles de la première orientation : "
+        "les associations d'allèles ne sont plus les mêmes. Ce sont d'autres gamètes, avec d'autres combinaisons d'allèles.",
         "{-pts_me2}{-an_me2}{deux_v}Les deux verbes sont attendus mot pour mot. {deux_v.1}Le brassage interchromosomique est préparé en métaphase un : les paires d'homologues s'y placent de part et d'autre du plan équatorial, dans une position aléatoire. "
         "{deux_v.2}Il s'effectue en anaphase un, quand les homologues se séparent. "
         "{deux_v.3}Et le mot décisif est : indépendant. L'orientation d'une paire ne dit rien de l'orientation des autres. Avec deux paires, on obtient quatre gamètes équiprobables, au contenu allélique différent.",
@@ -557,7 +559,7 @@ SCENES = [
         "pts_me1": dict(type="liste", petit=True, titre="La méiose, première orientation", x=680, y=110, w=560, items=[
             "2n = 4 : deux paires, maternel en magenta, paternel en cyan", "Réplication : deux chromatides par chromosome",
             "Métaphase I : paires sur le plan équatorial, orientation aléatoire", "Anaphase I : les homologues se séparent"]),
-        "an_me2": dict(type="anim", nom="meiose", x=40, y=72, h=624, opt=1, seg=[[36.6, 43.9], [44, 57.9], [58, 83.5]]),
+        "an_me2": dict(type="anim", nom="meiose", x=40, y=72, h=624, opt=1, vit=1.3, seg=[[36.6, 43.9], [44, 57.9], [58, 83.5]]),
         "pts_me2": dict(type="liste", petit=True, titre="L'autre orientation", x=680, y=110, w=560, items=[
             "Métaphase I : la petite paire s'oriente dans l'autre sens", "Anaphase I : d'autres associations de chromosomes",
             "Méiose II : d'autres gamètes"]),
@@ -666,7 +668,7 @@ SCENES = [
         "tp2": dict(type="liste", titre="TP 2 · deux gènes indépendants", x=150, y=170, w=980, items=[
             "Corps : clair eb+ (dominant) ou sombre eb (ebony)", "Ailes : longues vg+ (dominant) ou courtes vg (vestigial)",
             "Test-cross : F1 (eb+//eb ; vg+//vg) × P2 (eb//eb ; vg//vg)"]),
-        "bar2": dict(type="illu", nom="barres", x=190, y=84, w=900, h=600, titre="TP 2 · test-cross, 54 drosophiles", total=54, max=40,
+        "bar2": dict(type="illu", nom="barres", x=190, y=84, w=900, h=600, titre="TP 2 · test-cross, 54 drosophiles", total=54, max=40, dec=0,
                      classes=[["ailes longues ; corps sombre", 17, ""], ["ailes longues ; corps clair", 14, ""],
                               ["ailes courtes ; corps clair", 12, ""], ["ailes courtes ; corps sombre", 11, ""]]),
         "tp3": dict(type="formule", titre="TP 3 · deux gènes liés", x=150, y=170, w=980, lignes=[
@@ -716,7 +718,7 @@ SCENES = [
         "pts_nd": dict(type="liste", petit=True, titre="Erreur en anaphase I", x=680, y=110, w=560, items=[
             "2n = 4 : le petit chromosome joue le 21", "Métaphase I : les paires en place",
             "Anaphase I : la paire 21 migre vers le même pôle", "Fécondation : 47 chromosomes, trisomie 21"]),
-        "an_nd2": dict(type="anim", nom="nondisj", x=40, y=72, h=624, opt=1, seg=[[13, 27.9], [28, 37.9], [38, 44.9]]),
+        "an_nd2": dict(type="anim", nom="nondisj", x=40, y=72, h=624, opt=1, vit=1.3, seg=[[13, 27.9], [28, 37.9], [38, 44.9]]),
         "pts_nd2": dict(type="liste", petit=True, titre="Erreur en anaphase II", x=680, y=110, w=560, items=[
             "Anaphase I normale", "Méiose II : les deux chromatides d'un 21 restent ensemble",
             "Deux gamètes anormaux, deux normaux"]),
@@ -922,6 +924,7 @@ SCENES = [
         "{-res}{an_gl}{pts_gl}Reste à raconter cette histoire. {an_gl.1}{pts_gl.1}Au départ, un seul gène de globine. Il est dupliqué, {an_gl.2}{pts_gl.2}puis une copie est transposée sur un autre chromosome. "
         "Le premier nœud de l'arbre porte donc duplication plus transposition.",
         "{an_gl.3}{pts_gl.3}Chaque copie accumule ses mutations, puis de nouvelles duplications ont lieu sur le même chromosome, sans transposition : les gènes restent voisins. "
+        "C'est le futur chromosome onze, le groupe bêta. Sur l'autre chromosome, le gène se duplique lui aussi, sur place : ce sera le groupe alpha, sur le chromosome seize. "
         "{an_gl.4}{pts_gl.4}On aboutit aux deux groupes, et à l'arbre de parenté.",
         "{-pts_gl}{-an_gl}{arbre}L'arbre de la correction, construit à partir des séquences nucléotidiques. {arbre.1}Le premier nœud sépare la myoglobine de toutes les globines : duplication plus transposition. "
         "{arbre.2}Le nœud qui sépare alpha, sur le seize, du groupe bêta, sur le onze : duplication plus transposition, lui aussi. "
@@ -950,7 +953,7 @@ SCENES = [
             dict(f="ε / autres globines du groupe bêta : 78 à 84 %", taille=34),
             dict(f="myoglobine / globines : 41 à 46 %", taille=34),
             dict(f="toutes > 20 % (protéines : ≥ 22 %) : origine commune", cadre=True, taille=34, n="valeurs à revérifier sur Geniegen2")]),
-        "an_gl": dict(type="anim", nom="globines", x=40, y=72, h=624, seg=[[0, 13.9], [14, 21.9], [22, 47.9], [48, 61.5]]),
+        "an_gl": dict(type="anim", nom="globines", x=40, y=72, h=624, vit=1.4, seg=[[0, 13.9], [14, 21.9], [22, 47.9], [48, 61.5]]),
         "pts_gl": dict(type="liste", petit=True, titre="L'histoire des globines", x=680, y=110, w=560, items=[
             "Un gène ancestral, dupliqué", "Une copie transposée : duplication + transposition",
             "Mutations, puis duplications sur place", "Deux groupes de gènes, un arbre"]),
