@@ -131,8 +131,8 @@ SCENES = [
         "{-eu}{sdn}Between them stands the League of Nations, the institution created in 1919 to stop aggression. "
         "{sdn.1}Whenever the great powers will not back it, it {!cannot act}cannot act.",
         "{-sdn}{low1}The British cartoonist David Low made that failure his subject. In July 1935, "
-        "as Mussolini prepares to invade Abyssinia, he draws three monkeys seated on the throne of International Law. "
-        "{low1.1}One covers its eyes, one its ears, one its mouth. {low1.2}See no Abyssinia, hear no Abyssinia, speak no Abyssinia.",
+        "as Mussolini prepares to invade Abyssinia, he draws {low1.1}three monkeys seated on the throne of International Law. "
+        "One covers its eyes, one its ears, one its mouth. {low1.2}See no Abyssinia, hear no Abyssinia, speak no Abyssinia.",
     ], vis={
         "eu": dict(type="liste", titre="Europe in the 1930s: three camps", cles=["democracies", "dictatorships", "isolated"], items=[
             "The democracies: France, Britain", "The dictatorships: Germany, Italy (and Japan in Asia)",
@@ -150,13 +150,14 @@ SCENES = [
     dict(id="usa", chap="III.2 · American isolationism", fond="nuit", humeur="calme",
          retenir="Roosevelt tried to break with isolationism, but Congress passed Neutrality Acts (1935, 1936, 1937): no arms sales, no loans to countries at war. Write “an isolationist Congress”, not “a Republican Congress”.",
          beats=[
-        "{us}Idea two: the strongest democracy stays out of Europe's crises. In the United States, President Roosevelt tries "
-        "to break with isolationism. But Congress limits him. {us.1}It passes the {!Neutrality Acts}Neutrality Acts, "
+        "{usq}Idea two: the strongest democracy stays out of Europe's crises. In the United States, President Roosevelt tries "
+        "to break with isolationism. But Congress limits him. {-usq}{us}{us.1}It passes the {!Neutrality Acts}Neutrality Acts, "
         "forbidding arms sales and loans to countries at war. {us.2}One in 1935, {us.3}one in 1936, {us.4}one in 1937.",
         "{-us}{rep}Watch out, a point the course itself corrects. Monsieur Ros's slide speaks of a Republican Congress. "
         "In fact, the Democrats held the majority from 1935 to 1939, and isolationism ran across both parties. "
         "{rep.1}So in an essay, write: {!an isolationist Congress}an isolationist Congress.",
             ], vis={
+        "usq": dict(type="question", t="The strongest democracy stays out."),
         "us": dict(type="liste", titre="The Neutrality Acts", cles=["arms", "loans"], items=[
             "No arms sales, no loans to countries at war", "1935: the first Neutrality Act", "1936: a second",
             "1937: a third"], x=170, y=140, w=940),
@@ -181,7 +182,7 @@ SCENES = [
         "of the Royal Navy's tonnage. Britain itself legalises a breach of Versailles.",
     ], vis={
         "g3": dict(type="globe", code="H2", sc=[25]),
-        "sf": dict(type="liste", titre="The Stresa Front, April 1935", petit=True, bande=True, x=60, y=130, w=600, items=[
+        "sf": dict(type="liste", titre="The Stresa Front, April 1935", petit=True, bande=True, x=700, y=110, w=540, items=[
             "Britain, France and Italy against German ambitions", "So Mussolini is spared over Abyssinia",
             "The front collapses: Italy turns towards Germany"]),
         "wm": dict(type="liste", titre="1935 · the Wehrmacht, a unified armed force", items=[
@@ -207,19 +208,19 @@ SCENES = [
         "def1": dict(type="def", cles=["avoid war", "demands"], terme="Key term · appeasement",
                      t="Avoiding war by accepting the demands of the Axis powers: Chamberlain (from 1937), Daladier.",
                      etape="The goals of 1919 abandoned: Germany, Italy and Japan not halted", x=170, y=200, w=940),
-        "ced": dict(type="liste", titre="Appeasement · what was given away", marques=["1935", "1935", "1936", "1938"], items=[
-            "Anglo-German Naval Agreement: the Kriegsmarine at 35% of the Royal Navy",
-            "Refusal of the oil embargo that would have stopped Mussolini in Ethiopia",
-            "No reaction to the remilitarisation of the Rhineland",
-            "Munich: the Sudetenland handed over without the Czechs"], x=130, y=130, w=1020),
+        "ced": dict(type="liste", titre="Appeasement · what was given away", items=[
+            "1935 · Anglo-German Naval Agreement: the Kriegsmarine at 35% of the Royal Navy",
+            "1935 · Refusal of the oil embargo that would have stopped Mussolini in Ethiopia",
+            "1936 · No reaction to the remilitarisation of the Rhineland",
+            "1938 · Munich: the Sudetenland handed over without the Czechs"], x=130, y=130, w=1020),
     }),
 
     # ================================================================ III.2, idée 6 : pourquoi l'appeasement
     dict(id="pourquoi", chap="III.2 · Why appeasement seemed reasonable", fond="aube", humeur="calme",
          retenir="Seven reasons: pacifism (1914–18; the Oxford Union, Feb. 1933) · the Commonwealth (Canada) · an empire to police (India) · Germany mistreated in 1919 · the Depression first · American isolationism · fear of communism. Discredited today, popular then.",
          beats=[
-        "{wh}Idea six. Today, appeasement is widely seen as a policy of weakness. But at the time, it was popular, and it seemed pragmatic. "
-        "The second column of the schema gives seven reasons. "
+        "{qw}Idea six. Today, appeasement is widely seen as a policy of weakness. But at the time, it was popular, and it seemed pragmatic. "
+        "{-qw}{wh}The second column of the schema gives seven reasons. "
         "{wh.1}One: the memory of the slaughter of 1914 to 1918. Both countries were deeply pacifist. "
         "{wh.2}Two: Britain feared that the Commonwealth would not follow a second time. The course's example: Canada. "
         "{wh.3}Three: Britain was busy policing its empire, India for example, and could not afford a major rearmament.",
@@ -232,6 +233,7 @@ SCENES = [
         "{-c_ox}{deux}So, in an essay, say both. {deux.g}Discredited today: each concession was followed by a larger demand. "
         "{deux.d}Popular then: it rested on solid reasons, and on public opinion.",
     ], vis={
+        "qw": dict(type="question", t="Weakness… or pragmatism?"),
         "wh": dict(type="liste", titre="Why appeasement? The seven reasons of the course", petit=True, items=[
             "The memory of 1914–1918: pacifism", "Fear that the Commonwealth (Canada) would not follow a second time",
             "An empire to police (India): no massive rearmament", "Sympathy for a Germany felt mistreated in 1919",
@@ -255,12 +257,12 @@ SCENES = [
         "{mu.3}The Czechs are {!not invited}not invited. "
         "{mu.4}Britain and Germany promise not to go to war, and Hitler promises he will never threaten the rest of Czechoslovakia.",
         "{-mu}{-g4}{low2}David Low did not believe the promise. On the tenth of October 1938, ten days after Munich, he draws Hitler as Krampus, "
-        "the demon who terrorises children at Christmas, under the caption:",
+        "the demon who terrorises children at Christmas, {-low2}under the caption:",
         ("C", "Europe can look forward to a Christmas of Peace", "c_low"),
-        "{-c_low}{-low2}{iro}The irony is bitter: the peace bought at Munich would last {!less than six months}less than six months.",
+        "{-c_low}{iro}The irony is bitter: the peace bought at Munich would last {!less than six months}less than six months.",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[34]),
-        "mu": dict(type="liste", titre="Munich, 29–30 September 1938", petit=True, bande=True, x=60, y=130, w=600, items=[
+        "mu": dict(type="liste", titre="Munich, 29–30 September 1938", petit=True, bande=True, x=700, y=110, w=540, items=[
             "Czechoslovakia: the last democracy in central Europe", "Hitler, Chamberlain, Daladier, Mussolini “the moderate”",
             "The Czechs are not invited", "Hitler promises not to threaten the rest of the country"]),
         "low2": dict(type="note", terme="David Low, cartoon of 10 October 1938", cles=["Krampus"],
@@ -335,7 +337,7 @@ SCENES = [
                    d="Mutual need", dq="Italy too weak alone: the Axis (Oct. 1936), the Pact of Steel (1939), Japan (1940)", vs="→",
                    repere="An alliance of interest"),
         "g6": dict(type="globe", code="H2", sc=[29]),
-        "es": dict(type="liste", titre="Spain, 1936", petit=True, bande=True, x=60, y=130, w=600, items=[
+        "es": dict(type="liste", titre="Spain, 1936", petit=True, bande=True, x=700, y=110, w=540, items=[
             "Germany and Italy back Franco's nationalists", "The German air force tested in Spain",
             "France and Britain do not help the Republic", "Guernica, 26 April 1937 (not in the lesson)"]),
         "rep2": dict(type="mot", t="A rehearsal", g="of the coming war · the democracies would not act", y=260, taille=100),
@@ -355,7 +357,7 @@ SCENES = [
         "{low3.1}Each back is a step. Keep that image in mind: we will climb the steps at the end of this part.",
     ], vis={
         "g7": dict(type="globe", code="H2", sc=[28]),
-        "rh": dict(type="liste", titre="7 March 1936 · a calculated risk", petit=True, bande=True, x=60, y=130, w=600, items=[
+        "rh": dict(type="liste", titre="7 March 1936 · a calculated risk", petit=True, bande=True, x=700, y=110, w=540, items=[
             "German troops too weak to resist the French army", "Strict orders to retreat if France reacted",
             "France and Britain did not move"]),
         "pari": dict(type="question", t="The gamble paid off."),
@@ -383,13 +385,13 @@ SCENES = [
         "Jews alone were about three Austrians in a hundred, most of them in Vienna: a figure from outside the course.",
     ], vis={
         "g8": dict(type="globe", code="H2", sc=[33]),
-        "an": dict(type="liste", titre="The Anschluss in four steps", petit=True, bande=True, x=60, y=130, w=600, items=[
+        "an": dict(type="liste", titre="The Anschluss in four steps", petit=True, bande=True, x=700, y=110, w=540, items=[
             "Pressure: Schuschnigg bullied, troops on the border", "Seyss-Inquart chancellor: he invites the German army",
             "12 March 1938: the German army enters Vienna", "A plebiscite without opponents and Jews"]),
         "oui": dict(type="question", t="The plebiscite: the result?"),
         "pct2": dict(type="mot", t="99% yes", g="a controlled vote · opponents and Jews excluded", y=240, taille=140),
         "huit": dict(type="note", terme="Watch out · a figure", cles=["excluded", "three"],
-                     t="8%: the share of people excluded from the vote, opponents and Jews together (the course: Jews alone).",
+                     t="8%: the share of people excluded from the vote, opponents and Jews together, not of Jews alone.",
                      etape="Jews: about 3% of Austrians, most of them in Vienna (outside the course)", x=170, y=200, w=940),
     }),
 
@@ -463,10 +465,10 @@ SCENES = [
     ], vis={
         "st": dict(type="graphe", titre="Stepping stones to war, 1931–1939 (after David Low, 1936)", x=140, y=100, w=1000, h=540,
                    ax=dict(x=[0.4, 7.6], y=[0, 9.2], gx=[], gy=[], lx="", ly=""), el=marches(MARCHES)),
-        "ch": dict(type="liste", titre="The chain in the course", petit=True, marques=["1933", "1935", "1936", "1937", "1938", "1939", "1939"], items=[
-            "Germany and Japan leave the League", "Italy invades Ethiopia", "The Rhineland; Spain",
-            "Japan invades southern China; Italy leaves the League", "The Anschluss; Munich", "March: Prague",
-            "1 September: Poland"], x=150, y=100, w=980),
+        "ch": dict(type="liste", titre="The chain in the course", petit=True, items=[
+            "1933 · Germany and Japan leave the League", "1935 · Italy invades Ethiopia", "1936 · The Rhineland; Spain",
+            "1937 · Japan invades southern China; Italy leaves the League", "1938 · The Anschluss; Munich", "March 1939 · Prague",
+            "1 September 1939 · Poland"], x=150, y=100, w=980),
         "vo": dict(type="cols", g="Totalitarian ideology", gq="the will to expand: war as a value, Lebensraum, empire",
                    d="The democracies' reluctance", dq="the opportunity: the League, appeasement, isolationism", vs="+",
                    repere="The answer to the key issue"),
@@ -533,15 +535,15 @@ SCENES = [
         "{!To what extent}to what extent was totalitarian ideology the main cause of the Second World War?",
         "{-ex4}{pa2}",
         ("P", 2.0),
-        "{-pa2}{pb}A model plan, from the course's essay on the key issue. Introduction: define totalitarianism, and the peace it threatened, "
+        "{-pa2}{pb}A model plan, from the course's essay on the key issue. {pb.1}Introduction: define totalitarianism, and the peace it threatened, "
         "the order of 1919 guarded by the League of Nations. Then three parts.",
-        "{pb.1}One: totalitarian ideologies made war a value and expansion a goal. Fascism made war the supreme test: Abyssinia, 1935. "
+        "{pb.2}One: totalitarian ideologies made war a value and expansion a goal. Fascism made war the supreme test: Abyssinia, 1935. "
         "Nazism made Lebensraum a plan, in Mein Kampf. Japan sought autarky: Manchuria, then Nanjing.",
-        "{pb.2}Two: but the democracies let aggression succeed. The League debated sanctions over Abyssinia and spared oil. "
+        "{pb.3}Two: but the democracies let aggression succeed. The League debated sanctions over Abyssinia and spared oil. "
         "Appeasement: the naval agreement, the Rhineland, Munich. And American isolationism, with the Neutrality Acts of 1935 to 1937.",
-        "{pb.3}Three: the two combined into a chain that only war could break. The Rhineland taught Hitler that the democracies would yield; "
+        "{pb.4}Three: the two combined into a chain that only war could break. The Rhineland taught Hitler that the democracies would yield; "
         "Prague ended appeasement; the Nazi-Soviet pact opened the way to Poland.",
-        "{pb.4}And the judgement: totalitarian ideology was the main cause, because it supplied the will to war. "
+        "{pb.5}And the judgement: totalitarian ideology was the main cause, because it supplied the will to war. "
         "But it was not the only one: the democracies' reluctance supplied the opportunity.",
     ], vis={
         "ex4": dict(type="exo", niveau="dbq", titre="To what extent was totalitarian ideology the main cause of the Second World War?",
@@ -549,6 +551,7 @@ SCENES = [
         "pa2": dict(type="pause", t="Write a plan: three parts, one example each, and a judgement.",
                     sous="Pause the video, write your plan, then play on for a model."),
         "pb": dict(type="liste", titre="A model plan", petit=True, items=[
+            "Introduction: define totalitarianism · the peace of 1919, guarded by the League",
             "Ideology made war a value: Abyssinia 1935 · Lebensraum (Mein Kampf) · Japan's autarky · the Obersalzberg speech",
             "But the democracies let aggression succeed: the League and oil · appeasement · the Neutrality Acts",
             "The two formed a chain only war could break: Rhineland → Prague → the pact → Poland",

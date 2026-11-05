@@ -70,17 +70,15 @@ SCENES = [
     dict(id="carte1", chap="On the map: 1922 – 1928", fond="nuit", humeur="tension",
          retenir="Oct. 1922 March on Rome · 1925 the dictatorship made legal · 1924–25 Leningrad, Stalingrad · 1926 Balilla · 1928 the first Five-Year Plan.",
          beats=[
-        "{g1}{g1.1}October 1922. In Italy, the fascists march on Rome, and Mussolini becomes Prime Minister. "
-        "His party has a symbol borrowed from ancient Rome: the fasces, a bundle of rods around an axe.",
-        "{g1.2}In 1924, the socialist deputy Matteotti, who denounced fascist fraud and violence, is murdered. "
-        "In 1925, the so-called fascistissime laws make the dictatorship legal. From now on there is one party, and one man: il Duce.",
+        "{g1}{g1.1}October 1922. In Italy, the fascists march on Rome, and Mussolini becomes Prime Minister.",
+        "{g1.2}In 1924, the socialist deputy Matteotti is murdered; in 1925, the fascistissime laws make the dictatorship legal. "
+        "From now on there is one party, and one man: il Duce.",
         "{g1.3}At the same time, in the Soviet Union, Lenin dies, and his name is given to a city. "
         "Petrograd becomes Leningrad in 1924. And in 1925, another city is renamed after the new master: Stalingrad. "
         "The leader's name is written on the map itself.",
         "{g1.4}The next target is youth. In 1926, Italy founds the Opera Nazionale Balilla. The Soviet Union already has its Komsomol, "
-        "created in 1918. Germany will follow with the Hitler Youth. Three organisations, three New Men.",
-        "{g1.5}And in 1928, Stalin launches the first Five-Year Plan and forced collectivisation. The economy itself "
-        "is now directed by the party, towards the goals of the ideology.",
+        "created in 1918. Germany will follow.",
+        "{g1.5}And in 1928, Stalin launches the first Five-Year Plan: the economy itself is now directed by the party.",
     ], vis={
         "g1": dict(type="globe", code="H2", sc=[6, 8, 9, 11, 12]),
     }),
@@ -94,8 +92,7 @@ SCENES = [
         "{g2.2}In September 1933, racial instruction becomes compulsory in German schools. "
         "In September 1935, the Nuremberg laws define who is a citizen, and who is not, by ancestry.",
         "{g2.3}Nuremberg is also the city of the rallies. In 1934, Leni Riefenstahl films the party rally: Triumph of the Will. "
-        "Goebbels runs the propaganda; a cheap people's radio brings the Führer's voice into every home. "
-        "And at the Paris World Fair of 1937, the Soviet and the German pavilions face each other.",
+        "And a cheap people's radio brings the Führer's voice into every home.",
         "{g2.4}Meanwhile, in the Donbas, in 1935, a miner called Alexei Stakhanov is presented as a hero: "
         "he is said to have cut fourteen times his quota in one shift. The Soviet New Man is a worker.",
         "{-g2}{fr1}So, six dates to know. {fr1.1}1924 and 1925, Leningrad and Stalingrad. {fr1.2}1926, the Balilla. "
@@ -147,7 +144,7 @@ SCENES = [
         "{rit.4}And the Nuremberg rally of 1934 is filmed by Leni Riefenstahl, in Triumph of the Will.",
         "{-rit}{-g4}{disc}The class notes add one detail: Hitler's speeches lasted three to four hours, and held the crowd spellbound. "
         "{disc.1}The ritual is repeated until it becomes ordinary: a greeting, a gesture, a sentence learned by heart.",
-        "{-disc}{mot1}That is the key idea: obedience is produced {!by emotion}by emotion, rather than by argument.",
+        "{-disc}{mot1}Obedience is produced {!by emotion}by emotion, rather than by argument.",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[24]),
         "rit": dict(type="liste", titre="Rituals of obedience", petit=True, bande=True, x=60, y=120, w=600,
@@ -166,8 +163,9 @@ SCENES = [
          beats=[
         "{def2}Idea three. Propaganda works because it is {!everywhere}everywhere. Cinema, radio, painting and sculpture serve the regime. "
         "{def2.1}Art is judged not by its quality, but by its usefulness: it must show the ideal society as if it already existed.",
-        "{-def2}And new technologies are made affordable on purpose, so that the leader's voice enters each household. "
+        "New technologies are made affordable on purpose, so that the leader's voice enters each household. "
         "A German advertisement of 1938, for the cheap people's radio, the Volksempfänger, promised:",
+        "{-def2}",
         ("C", "Germany listens to the Führer thanks to the people's radio", "c_radio"),
         "{-c_radio}{paris}The arts too become a battlefield. At the Paris World Fair of 1937, {paris.g}the Soviet pavilion, "
         "crowned by Vera Mukhina's statue, the Worker and Kolkhoz Woman, {paris.d}stood directly facing the German pavilion. "
@@ -194,12 +192,11 @@ SCENES = [
         "{def3}Idea four. The cult only holds if nothing contradicts it. The press is controlled, and criticism is punished. "
         "{def3.1}And in the Soviet case, even the archive is corrected. The regime does not only forbid opposing opinions: "
         "it tries to make them {!unthinkable}unthinkable, by erasing the evidence that they ever existed.",
-        "{-def3}{photo}The example is famous. {photo.g}A photograph shows Stalin at the Moscow–Volga canal, with Nikolai Yezhov, "
+        "{-def3}{photo}The example is famous. A photograph shows Stalin at the Moscow–Volga canal, with Nikolai Yezhov, "
         "head of the NKVD, the political police, standing beside him. {photo.d}Yezhov is executed in 1940. "
         "And in the same image, retouched, he has simply disappeared. Only the water of the canal remains.",
-        "{-photo}{err}Watch out for one mistake in the class notes. They say that two people were executed: Beria and Molotov. "
-        "{err.1}In fact, Molotov was never executed, and Beria was executed only in 1953, after Stalin's death. "
-        "The head of the NKVD executed at the end of the Great Purge was Yezhov, in 1940, as Worksheet four says.",
+        "{-photo}{err}Watch out: the class notes say that Beria and Molotov were executed. "
+        "{err.1}In fact, Molotov never was, and Beria only in 1953. The head of the NKVD executed in 1940 was Yezhov, as Worksheet four says.",
     ], vis={
         "def3": dict(type="def", cles=["press", "archive", "unthinkable"], terme="Key term · censorship",
                      t="The suppression of anything that contradicts the regime: the press controlled, criticism punished, the archive corrected.",
@@ -218,8 +215,7 @@ SCENES = [
          beats=[
         "{eq}Idea five: the purpose. The cult of personality is not vanity: it is {!a technique of government}a technique of government. "
         "{eq.1}The regime identifies the nation with the party, {eq.2}and the party with one man.",
-        "{eq.3}So any opposition looks like treason against the country itself. And the leader's legitimacy no longer depends "
-        "on an election: the whole system is protected by the emotion attached to his person.",
+        "{eq.3}So any opposition looks like treason against the country itself, and the leader no longer needs an election.",
         "{-eq}{sym}Each regime condensed this identification into one symbol, adopted at the party's foundation or soon after. "
         "{sym.1}The Roman fasces, for the Fascist Party, in 1921. {sym.2}The swastika, for the NSDAP, in 1920. "
         "{sym.3}And the hammer and sickle, on the Soviet state emblem, in 1923.",
@@ -261,14 +257,14 @@ SCENES = [
     dict(id="h2cult", chap="Schema · Three leaders, three cults", fond="aube", humeur="calme",
          retenir="Same machinery, three contents: Duce / Führer / little father · “Il Duce ha sempre ragione” / “Heil Hitler” / “Thank you Comrade Stalin, for our happy childhood” · fasces / swastika / hammer and sickle · aviator portrait / Riefenstahl / retouched photographs.",
          beats=[
-        "{c1}Now the schema of the course: three leaders, three cults. Compare them column by column, row by row. "
-        "{c1.1}Row one, the name of the leader: il Duce, {c1.2}der Führer, {c1.3}the little father of the peoples.",
-        "{-c1}{c2}{c2.1}Row two, the greeting or motto. In Italy: il Duce ha sempre ragione. {c2.2}In Germany: Heil Hitler, with the salute, "
-        "as the official greeting. {c2.3}In the Soviet Union, a slogan: Thank you Comrade Stalin, for our happy childhood.",
-        "{-c2}{c3}{c3.1}Row three, the party symbol: the Roman fasces, {c3.2}the swastika, {c3.3}the hammer and sickle.",
-        "{-c3}{c4}{c4.1}Row four, the staging. Mussolini painted as an aviator, by Ambrosi, in 1930, and the party parades. "
-        "{c4.2}Hitler: the Nuremberg rallies filmed by Riefenstahl in 1934, and the people's radio. "
-        "{c4.3}Stalin: socialist realism, the retouched photographs, and Stalingrad, in 1925.",
+        "{c1}Now the schema of the course: three leaders, three cults, compared row by row. "
+        "{c1.1}The name: il Duce, {c1.2}der Führer, {c1.3}the little father of the peoples.",
+        "{-c1}{c2}{c2.1}The motto: il Duce ha sempre ragione. {c2.2}Heil Hitler. "
+        "{c2.3}And in the Soviet Union: Thank you Comrade Stalin, for our happy childhood.",
+        "{-c2}{c3}{c3.1}The symbol: the fasces, {c3.2}the swastika, {c3.3}the hammer and sickle.",
+        "{-c3}{c4}{c4.1}The staging: Mussolini painted as an aviator, by Ambrosi, in 1930. "
+        "{c4.2}The Nuremberg rallies and the people's radio. "
+        "{c4.3}Socialist realism, retouched photographs, and Stalingrad.",
         "{-c4}{bil}The conclusion of the schema. {!The contents differ, the procedure is identical}The contents differ, "
         "the procedure is identical: identify the nation with the party, and the party with one man.",
         ("P", 2.5),
@@ -293,9 +289,9 @@ SCENES = [
     dict(id="nouveau", chap="II.2 · Not obedient subjects: a New Man", fond="nuit", humeur="lumiere",
          retenir="A dictatorship demands that you keep quiet; a totalitarian regime demands that you change. Three models: the German Volk, a purified race (sterilisation law, 1933) · the Soviet worker (Stakhanov, 1935) · the fascist, strong and cultured, serving the Party.",
          beats=[
-        "{cmp}Part two point two: total control over society, and the creation of a New Man. Idea one, the most important of the part, "
-        "because this is what separates a totalitarian regime from an ordinary dictatorship. "
-        "{cmp.g}A dictatorship demands that you {!keep quiet}keep quiet. {cmp.d}A totalitarian regime demands that you {!change}change.",
+        "{cmp}Part two point two: total control over society, and the creation of a New Man. Idea one: "
+        "what separates a totalitarian regime from an ordinary dictatorship. "
+        "A dictatorship demands that you {!keep quiet}keep quiet. {cmp.d}A totalitarian regime demands that you {!change}change.",
         "{-cmp}{def4}The ideology defines a model of humanity, and the whole machinery of the state, school, leisure, work, family, law, "
         "is turned towards producing it. {def4.1}Private life has no protected space left.",
         "{-def4}{mod}And each regime had its own model. {mod.1}In Germany, the New Man was a purified race, the Volk. "
@@ -318,7 +314,7 @@ SCENES = [
          retenir="Balilla (1926) · Hitler Youth, law of 1936, ≈ 8 million members by 1939 · Komsomol (1918). Mussolini: “I take men in the cradle…”. Hitler, 1938: ten years old → Young Folk (4 years) → Hitler Youth (4 years) → Labour Service → Wehrmacht.",
          beats=[
         "{g6}{g6.1}Idea two: youth comes first, because children can be shaped {!before they can judge}before they can judge. "
-        "All three regimes built compulsory or quasi-compulsory youth organisations. They took over the time outside school: "
+        "All three regimes built youth organisations that took over the time outside school: "
         "uniforms, camps, sport, songs, and political instruction.",
         "{org}{org.1}Italy founded the Opera Nazionale Balilla in 1926. {org.2}Germany made the Hitler Youth compulsory by the law of 1936, "
         "and it counted about eight million members by 1939. {org.3}The Soviet Union had the Komsomol, created in 1918. "
@@ -374,13 +370,13 @@ SCENES = [
         "{def5}Idea four. In Nazi Germany, the ideology became {!legislation}legislation. The Nuremberg laws of the fifteenth of September 1935 "
         "forbade marriage and sexual relations between Jews and what they called persons of German blood. "
         "{def5.1}They banned Jewish households from employing young German women, and forbade Jews to fly the Reich flag.",
-        "{-def5}So the state defined citizenship by descent. And the administration produced the tables needed to apply it. "
-        "{tab}An official table of 1935 classified people by fractions of ancestry. {tab.1}German-blooded. "
+        "{-def5}{tab}So the state defined citizenship by descent, and the administration produced the tables to apply it. "
+        "An official table of 1935 classified people by fractions of ancestry. {tab.1}German-blooded. "
         "{tab.2}Mischling of the second degree: one quarter Jewish, one Jewish grandparent. "
         "{tab.3}Mischling of the first degree: half Jewish, two Jewish grandparents. "
         "{tab.4}And Jew: three quarters or more. That last category was refused Reich citizenship altogether.",
-        "{-tab}{lien}Keep the link with idea three. At school, the child learns the categories. In the law, the state applies them. "
-        "{lien.1}A human being is no longer defined by what he does, but by his ancestry.",
+        "{-tab}{lien}At school, the child learns the categories; in the law, the state applies them. "
+        "{lien.1}A human being is defined by his ancestry.",
     ], vis={
         "def5": dict(type="def", cles=["marriage", "descent"], terme="Key term · the Nuremberg laws (15 September 1935)",
                      t="No marriage or sexual relations between Jews and “persons of German blood”: citizenship defined by descent.",
@@ -400,14 +396,13 @@ SCENES = [
         "{abs}Idea five. Work, leisure and the economy are absorbed too, so that {!nothing stands outside the regime}nothing stands outside the regime. "
         "{abs.1}Independent trade unions are dissolved. {abs.2}Leisure organisations are created by the state. "
         "{abs.3}The economy is directed towards the regime's goals: collectivisation and Five-Year Plans in the Soviet Union, rearmament and autarky in Germany. "
-        "{abs.4}What remains of civil society, from sports clubs to charities, is absorbed or suppressed. No organisation stands between "
-        "the individual and the party.",
+        "{abs.4}Even sports clubs and charities are absorbed or suppressed.",
         "{-abs}{g8}{g8.1}The example: the Soviet New Man had his hero. In 1935, in the Donbas, the miner Alexei Stakhanov was presented "
         "as having cut fourteen times his quota of coal in one shift.",
         "{-g8}{gs}Look at the scale. {gs.1}{gs.2}The quota of one shift. {gs.3}{gs.4}And the record announced by the regime: fourteen times more.",
         "{-gs}{stak}His name became a word: {!Stakhanovism}Stakhanovism, the cult of the record-breaking worker, "
-        "{stak.1}and competitions were imposed in every factory. Note the course's careful words: presented as. "
-        "From outside the course: the record was prepared in advance, with other miners assisting him. It was propaganda, too.",
+        "{stak.1}and competitions were imposed in every factory. "
+        "From outside the course: the record was prepared in advance, with other miners assisting him.",
     ], vis={
         "abs": dict(type="liste", titre="Nothing outside the regime", cles=["unions", "Leisure", "directed", "absorbed"], items=[
             "Independent trade unions dissolved", "Leisure organisations created by the state",
@@ -437,8 +432,8 @@ SCENES = [
         "{buts.3}The Fascist New Man was ready to fight, calm and cold-blooded, nourished on Latin and Plutarch, as the heir of Rome. "
         "The goal: {!nation}the nation.",
         "{-buts}{src}The sources of the Worksheet. {src.1}A Hitler Youth poster of 1935: Youth serves the Führer! "
-        "All ten-year-olds into the Hitler Youth. {src.2}The programme of the Smolensk Komsomol, in 1919, which wants to turn young "
-        "workers and peasants into revolutionaries, into fighters for the interest of the working classes. "
+        "All ten-year-olds into the Hitler Youth. {src.2}The programme of the Smolensk Komsomol, in 1919: turn young "
+        "workers and peasants into revolutionaries. "
         "{src.3}And a photograph of 1936 of the Opera Nazionale Balilla: boys in black uniforms, carrying rifles.",
     ], vis={
         "nuage": dict(type="nuage", centre="The same method", items=["children taken early", "uniforms", "camps", "ideology"]),
@@ -456,17 +451,15 @@ SCENES = [
     dict(id="h2newman", chap="Schema · Manufacturing a “New Man”", fond="aube", humeur="calme",
          retenir="Model: servant of the Party / the Volk, eugenics / the worker, Stakhanovism · Youth: Balilla / Hitler Youth 10–18 / Komsomol · School: race taught from 1938 / racial instruction 1933, Der Giftpilz / socialist realism · Economy: corporatism, autarky after 1935 / rearmament, Four-Year Plan 1936 / Five-Year Plans, kolkhozes.",
          beats=[
-        "{n1}The second schema of the course: manufacturing a New Man, the model and the means. Again, column by column. "
-        "{n1.1}Row one, the model. Italy: strong and cultured, in the service of the Party. {n1.2}Germany: a purified race, the Volk, hence eugenics. "
-        "{n1.3}The Soviet Union: a worker, hence Stakhanovism.",
-        "{-n1}{n2}{n2.1}Row two, organised youth. The Balilla, then the fascist youth up to eighteen. "
-        "{n2.2}The Hitler Youth, compulsory from ten to eighteen. {n2.3}The Komsomol, with political instruction down to the villages.",
-        "{-n2}{n3}{n3.1}Row three, school and culture. In Italy, the opposition press suppressed, and from 1938, the teaching of race. "
-        "{n3.2}In Germany, racial instruction compulsory from September 1933, and Der Giftpilz. "
-        "{n3.3}In the Soviet Union, socialist realism imposed on the arts.",
-        "{-n3}{n4}{n4.1}Row four, the economy. Italy: corporatism, and autarky after 1935. "
-        "{n4.2}Germany: rearmament, autarky, and the Four-Year Plan of 1936. "
-        "{n4.3}The Soviet Union: Five-Year Plans from 1928, collectivisation, and the kolkhozes.",
+        "{n1}The second schema: manufacturing a New Man, the model and the means. Again, row by row. "
+        "{n1.1}The model: a servant of the Party, {n1.2}a purified race and eugenics, {n1.3}a worker and Stakhanovism.",
+        "{-n1}{n2}{n2.1}Youth: the Balilla, then the fascist youth up to eighteen. "
+        "{n2.2}The Hitler Youth, from ten to eighteen. {n2.3}The Komsomol, down to the villages.",
+        "{-n2}{n3}{n3.1}School and culture: in Italy, the opposition press suppressed, and from 1938, the teaching of race. "
+        "{n3.2}Racial instruction in Germany from 1933. {n3.3}Socialist realism imposed on Soviet arts.",
+        "{-n3}{n4}{n4.1}The economy: corporatism, and autarky after 1935. "
+        "{n4.2}Rearmament, and the Four-Year Plan of 1936. "
+        "{n4.3}Five-Year Plans, collectivisation, kolkhozes.",
         "{-n4}{bil2}And the conclusion of the schema: {!a dictatorship demands silence, totalitarianism demands transformation}"
         "a dictatorship demands silence, totalitarianism demands transformation.",
         ("P", 2.5),
@@ -495,17 +488,17 @@ SCENES = [
          beats=[
         "{ex1}Your turn. Here is an Explain question, written for this video. "
         "{!Explain}Explain how the totalitarian regimes tried to create a New Man.",
-        "{-ex1}{met}Remember the method of an Explain paragraph. {met.1}A topic sentence that answers the question. "
-        "{met.2}Several means, each with a precise example from the three regimes. {met.3}A final sentence that links back to the question.",
+        "{-ex1}{met}The method. {met.1}A topic sentence that answers the question. "
+        "{met.2}Several means, each with a precise example. {met.3}A sentence that links back.",
         "{-met}{pa1}",
         ("P", 2.0),
         "{-pa1}{mod1}Here is a model paragraph. "
         "{mod1.1}The totalitarian regimes did not want obedient subjects: they tried to manufacture a New Man, shaped by their ideology. "
-        "{mod1.2}First, they captured youth before it could judge: the Opera Nazionale Balilla in 1926, the Komsomol, "
-        "and the Hitler Youth, with about eight million members by 1939; in 1938, Hitler described a chain from the age of ten to the Wehrmacht. "
-        "{mod1.3}Second, they rewrote education and the law: racial instruction became compulsory in German schools in September 1933, "
-        "and the Nuremberg laws of 1935 sorted human beings by ancestry. "
-        "{mod1.4}Third, they absorbed work and leisure: in the Soviet Union, the miner Stakhanov became, in 1935, the model of the worker. "
+        "{mod1.2}First, they captured youth before it could judge: the Balilla in 1926, the Komsomol, "
+        "and the Hitler Youth, about eight million members by 1939. "
+        "{mod1.3}Second, they rewrote education and the law: racial instruction in German schools from September 1933, "
+        "the Nuremberg laws of 1935. "
+        "{mod1.4}Third, they absorbed work: in 1935, the miner Stakhanov became the model of the Soviet worker. "
         "{mod1.5}The ideals differed, race, class or nation, but the aim was the same: total transformation, not only obedience.",
     ], vis={
         "ex1": dict(type="exo", niveau="essay", titre="Explain how the totalitarian regimes tried to create a “New Man”.",
@@ -529,18 +522,18 @@ SCENES = [
          beats=[
         "{ex2}Now a DBQ, part a), on a source of Worksheet three. {!How useful}How useful is Hitler's speech of 1938, describing the path "
         "of German youth, for understanding how the Nazi regime controlled young people?",
-        "{-ex2}{str}The structure. {str.1}First line: the judgement: largely, significantly, partly or slightly useful. "
-        "{str.2}The document in one sentence. {str.3}A paragraph of strengths, several arguments. {str.4}A paragraph of limits, several arguments.",
+        "{-ex2}{str}The structure. {str.1}First line: the judgement. "
+        "{str.2}The document in one sentence. {str.3}Strengths. {str.4}Limits.",
         "{-str}{pa2}",
         ("P", 2.0),
         "{-pa2}{rep}A model. {rep.1}This speech is significantly useful for understanding how the Nazi regime controlled young people. "
         "{rep.2}It is a speech given by Hitler himself in 1938, describing the path of a German child from the age of ten to the army.",
         "{rep.3}Its strengths. It comes from the dictator himself, so it shows the intention of the regime at the highest level. "
-        "It describes the whole chain: the Young Folk, the Hitler Youth, the Labour Service, the Wehrmacht. "
-        "And its words, the Wehrmacht will take care of what is left, show that the aim was to erase any other loyalty, of class or status.",
+        "It describes the whole chain, from the Young Folk to the Wehrmacht. "
+        "And its last words show that the aim was to erase any other loyalty, of class or status.",
         "{rep.4}Its limits. It is a speech, so it shows what the regime wanted, not what young people actually lived. "
-        "It gives no figures: the course's eight million members by 1939 are needed. It covers only Germany, not the Balilla or the Komsomol. "
-        "And it gives no voice to the families or to the young people themselves. Useful for the aims, much less for the reality.",
+        "No figures: the course's eight million members by 1939 are needed. Only Germany. "
+        "And no voice of the families or of the young. Useful for the aims, much less for the reality.",
     ], vis={
         "ex2": dict(type="exo", niveau="dbq", titre="How useful is Hitler's 1938 speech for understanding how the Nazi regime controlled young people?",
                     src="Question written for this video, on Worksheet 3 (source 2, as summarised in the course)", enonce=["Part a) of a DBQ"],
