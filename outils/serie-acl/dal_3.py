@@ -1,10 +1,17 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 3 : la fête des moissons (PDF de travail, p. 9-15).
 
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés sur le plateau) :
+la scène est jouée pas à pas d'après les didascalies (visuel jeu) : Kate entre par la gauche du plateau (à droite vu de la
+salle), chargée de sacs, va au garçon (invisible : Michael adulte dit ses répliques), regarde les visages des cerfs-volants
+que le public ne voit pas (cerfs-volants montrés sans visage), rentre dans la cuisine ; Michael sort ; Austin Morgan,
+la colère de Kate ; elle s'effondre sur un siège ; Ballybeg « off its head », la quinine, Okawa ; Agnes cesse de tricoter,
+« Wouldn't it be a good one if we all went? », l'élan, « I want to dance », la danse de Rose, la panique et le refus de
+Kate, (Silence.). Arrêt juste avant le retour de Maggie (« The fox is back », p. 15). Les répliques courtes s'affichent
+en bulles et sont lues par les voix des personnages ; puis cinq répliques expliquées et l'analyse.
+
 Vidéo en anglais, même chaîne que les séries philo : outils/serie-philo/generer.py dal_3.
-Kate rentre de la ville (cadeaux, médicaments), Rose la taquine sur Austin Morgan, Ballybeg « off its head » à cause
-du bal des moissons, la quinine et la confusion de Jack (Okawa), Agnes propose d'y aller toutes, l'élan des sœurs,
-puis le refus de Kate. Arrêt juste avant le retour de Maggie (« The fox is back », p. 15).
 Citations courtes, à fin d'analyse ; ce qui ne vient pas du texte est dit comme tel.
+Coquilles du PDF non reproduites dans les citations (p. 14 : « love you more » lu « I love you more »).
 """
 
 SITE = "acl-lughnasa"
@@ -16,6 +23,13 @@ TITRE = "The harvest dance"
 SUIVANT = "Part 4 · Jack comes in"
 PRONONCIATION = {"Lughnasa": "Loo-na-sa", "Lugh": "Loo", "Okawa": "Oh-kah-wa", "Carrickfad": "Carrick-fad",
                  "Mundy": "Mundy"}
+
+PERSOS = ["Kate", "Agnes", "Rose", "Chris", "Michael"]
+MICHAEL = [1000, 552]          # là où la partie 2 l'a laissé (« stands L », p. 6)
+GARCON = [780, 460]            # l'enfant imaginaire, aux cerfs-volants (même place que dans les parties 2 et 4)
+AU_GARCON = [850, 440]         # Kate « goes to him » (p. 9)
+SIEGE = [480, 410]             # « KATE flops into a seat » (p. 11) ; place reprise au début de la partie 4
+OBJ = {"kites": "kites", "garcon": GARCON}
 
 SCENES = [
     # ------------------------------------------------------------------ ouverture
@@ -35,171 +49,225 @@ SCENES = [
                       sous="Kate comes home · pages 9 – 15"),
     }),
 
-    # ------------------------------------------------------------------ I. Kate rentre
-    dict(id="retour", chap="Kate comes home", fond="aube", humeur="lumiere",
-         retenir="Kate the provider: gifts, books, medicine. Tender with the boy, and clearly in charge.", beats=[
-        "{tab_don}{arrive}Page nine. {arrive.1}Kate comes back from the town, laden with shopping bags. "
-        "{arrive.2}She sees the boy at his kites, and her face lights up with pleasure. "
-        "Remember: the boy is invisible, and the adult Michael speaks his lines. "
-        "{arrive.3}Then come the presents: a spinning-top and a whip, and a new library book.",
-        "{-arrive}{note_k}Now one stage direction. Kate studies the faces painted on the kites, "
-        "faces the audience cannot see. And she plays at being frightened.",
-        "{-note_k}",
+    # ------------------------------------------------------------------ I. Kate rentre (p. 9-10)
+    dict(id="retour", chap="Kate comes home", fond="nuit", humeur="lumiere", beats=[
+        "{jeu1}Page nine. Michael has finished speaking. {jeu1.1}Kate enters, laden with shopping bags. "
+        "When she sees the boy working at his kites, her face lights up with pleasure. She watches him for a few seconds. "
+        "{jeu1.2}Then she goes to him.",
+        ("C", "Well, that's what I call a busy man. Come here and give your Aunt Kate a big kiss.", "jeu1.3", {"voix": "F"}),
+        "{jeu1.4}She kisses the crown of his head. Remember: the boy is invisible, and the adult Michael speaks his lines.",
+        ("C", "It's two kites.", "jeu1.5"),
+        "{jeu1.6}Kate studies the faces painted on the kites: faces which the audience cannot see. "
+        "And she plays at being frightened.",
+        ("C", "What are they? Devils? Ghosts?", "jeu1.7", {"voix": "F"}),
+        "{jeu1.8}Then the presents: a small wooden spinning-top and a whip, and a new library book, with coloured pictures. "
+        "{jeu1.9}She goes into the kitchen, and Michael exits.",
+        ("C", "Oh, Kate, you have him spoiled. Where did you get it?", "jeu1.10", {"voix": "F"}),
+        ("C", "Morgan's Arcade.", "jeu1.11", {"voix": "F"}),
+    ], vis={
+        "jeu1": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Agnes": "tricot_a", "Rose": "tricot_r", "Chris": "table", "Michael": MICHAEL},
+                 act={"Agnes": "tricote", "Rose": "tricote", "Chris": "repasse", "Michael": "debout"},
+                 objets=OBJ, cam="tout", note="“…out of wedlock.” (Michael, p. 9)"),
+            dict(pos={"Kate": [1010, 330]}, act={"Kate": "debout"}, tient={"Kate": "sac"}, duree=2.5,
+                 note="“KATE enters left, laden with shopping bags.” Her face “lights up with pleasure”."),
+            dict(pos={"Kate": AU_GARCON}, duree=2.5, note="“She watches him for a few seconds. Then she goes to him.”"),
+            dict(dit=["Kate", "Well, that's what I call a busy man. Come here and give your Aunt Kate a big kiss."]),
+            dict(note="“She catches his head between her hands and kisses the crown of his head.”"),
+            dict(dit=["Michael", "It's two kites."], note="The boy's line, spoken by adult Michael"),
+            dict(note="“She studies the kite faces which the audience cannot see.” (p. 10)"),
+            dict(dit=["Kate", "What are they? Devils? Ghosts?"], note="(Pretended Horror.)"),
+            dict(note="A spinning-top and a whip · “A New library book! With coloured pictures!”"),
+            dict(chemin={"Kate": [AU_GARCON, [720, 330], "porte", SIEGE]}, chemin_duree=5, pos={"Michael": "off"},
+                 note="“She goes into the kitchen.” · “MICHAEL exits left.”"),
+            dict(dit=["Chris", "Oh, Kate, you have him spoiled. Where did you get it?"]),
+            dict(pos={"Kate": SIEGE}, dit=["Kate", "Morgan's Arcade."]),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ II. Austin Morgan (p. 10-11)
+    dict(id="austin", chap="Austin Morgan", fond="nuit", humeur="tension", beats=[
+        "{jeu2}Then Rose starts teasing.",
+        ("C", "I know why you went into Morgans!", "jeu2.1", {"voix": "F"}),
+        ("C", "You wanted to see Austin Morgan!", "jeu2.2", {"voix": "F"}),
+        "{jeu2.3}Kate answers with the fields and the hay.",
+        ("C", "Because you have a notion of that aul Austin Morgan!", "jeu2.4", {"voix": "F"}),
+        ("C", "Going to be a good harvest by the look of it.", "jeu2.5", {"voix": "F"}),
+        ("C", "I know you have! She's blushing! Look! Isn't she blushing?", "jeu2.6", {"voix": "F"}),
+        "{jeu2.7}Then Rose adds that Austin is going with a wee young thing from Carrickfad. Why are you blushing then? "
+        "Why, why, why, Kate?",
+        ("C", "For God's sake, Rose, shut up, would you!", "jeu2.8", {"voix": "F"}),
+        "{jeu2.9}Agnes cuts Rose off: pass me those steel needles. A pause. Chris, gently: are you tired? "
+        "{jeu2.10}And Kate flops into a seat.",
+    ], vis={
+        "jeu2": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Kate": SIEGE, "Agnes": "tricot_a", "Rose": "tricot_r", "Chris": "table"},
+                 act={"Kate": "debout", "Agnes": "tricote", "Rose": "tricote", "Chris": "repasse"},
+                 tient={"Kate": "sac"}, objets=OBJ, cam="cuisine", note="(p. 10)"),
+            dict(dit=["Rose", "I know why you went into Morgans!"]),
+            dict(dit=["Rose", "You wanted to see Austin Morgan!"], note="(p. 11)"),
+            dict(note="“Every field along the road – they're all out at the hay and the corn.”"),
+            dict(dit=["Rose", "Because you have a notion of that aul Austin Morgan!"]),
+            dict(dit=["Kate", "Going to be a good harvest by the look of it."]),
+            dict(dit=["Rose", "I know you have! She's blushing! Look! Isn't she blushing?"]),
+            dict(note="“he's going with a wee young thing from Carrickfad” · “Why—why—why, Kate?”"),
+            dict(dit=["Kate", "For God's sake, Rose, shut up, would you!"], note="(Sudden anger.)"),
+            dict(note="“Rosie, pass me those steel needles – would you, please?” (Pause.) “Are you tired?”"),
+            dict(act={"Kate": "assis"}, tient={"Kate": None}, note="“KATE flops into a seat.”"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ III. Ballybeg perd la tête (p. 11-13)
+    dict(id="fievre", chap="Off its head", fond="nuit", humeur="mystere", beats=[
+        "{jeu3}Kate gives the news from town. Everywhere you go, it's the one topic: are you going to the harvest dance? "
+        "Who are you going with? What are you wearing?",
+        "{jeu3.1}She unpacks: a novel for Agnes, cod-liver oil for Chris. And a girl of fifteen told her the dance "
+        "would be just supreme this year.",
+        ("C", "I'm telling you – off its head – like a fever in the place.", "jeu3.2", {"voix": "F"}),
+        "{jeu3.3}And her very next words: That's the quinine. For Jack's malaria. Where is he? Wandering about out the back, says Chris.",
+        "{jeu3.4}Meanwhile, Agnes has stopped knitting. She is looking abstractedly into the middle distance.",
+        "{jeu3.5}Kate repeats the doctor: Swahili has been Jack's language for twenty-five years; it's not that his mind is confused. "
+        "{jeu3.6}Chris disagrees: he keeps calling her some strange name.",
+        ("C", "Okawa.", "jeu3.7", {"voix": "F"}),
+        "{jeu3.8}His house boy, says Kate. And she takes off her shoe: she is getting corns.",
+    ], vis={
+        "jeu3": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Kate": SIEGE, "Agnes": "tricot_a", "Rose": "tricot_r", "Chris": "table"},
+                 act={"Kate": "assis", "Agnes": "tricote", "Rose": "tricote", "Chris": "repasse"}, objets=OBJ, cam="cuisine",
+                 note="“Ballybeg's off its head.” (p. 11)"),
+            dict(note="“It's going to be just supreme this year.” (Sophia, “all of fifteen”, p. 12)"),
+            dict(dit=["Kate", "I'm telling you – off its head – like a fever in the place."]),
+            dict(note="“That's the quinine. The doctor says it won't cure the malaria…”"),
+            dict(act={"Agnes": "assis"}, note="“AGNES had stopped knitting and is looking abstractedly into the middle distance.”"),
+            dict(note="“it's not that his mind is confused” (the doctor, through Kate)"),
+            dict(note="Chris: “he keeps calling me some strange name like –” (p. 13)"),
+            dict(dit=["Kate", "Okawa."]),
+            dict(note="“Okawa was his house boy.” (Taking off her shoe.)"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ IV. « Wouldn't it be a good one… » (p. 13-14)
+    dict(id="allons", chap="Let's all go!", fond="nuit", humeur="lumiere", beats=[
+        "{jeu4}Then Agnes speaks, still looking into the distance.",
+        ("C", "Wouldn't it be a good one if we all went?", "jeu4.1", {"voix": "F"}),
+        "{jeu4.2}To the harvest dance. Just like they used to. All dressed up.",
+        ("C", "I'd go, too, Aggie! I'd go with you!", "jeu4.3", {"voix": "F"}),
+        "{jeu4.4}Kate objects: the place will be crawling with cheeky young brats she taught years ago. I'm game, says Agnes.",
+        ("C", "Oh God, you know how I loved dancing, Aggie.", "jeu4.5", {"voix": "F"}),
+        ("C", "You have a seven-year-old child – have you forgotten that?", "jeu4.6", {"voix": "F"}),
+        "{jeu4.7}Agnes offers Chris her blue dress, and Kate her brown shoes with the crossover straps.",
+        ("C", "Maybe we're mad – are we mad?", "jeu4.8", {"voix": "F"}),
+        "{jeu4.9}It costs four and six to get in. Agnes has five pounds saved: I'll take us all.",
+        ("C", "I want to dance, Kate. It's the Festival of Lughnasa. I'm only thirty-five. I want to dance.", "jeu4.10",
+         {"voix": "F"}),
+        ("C", "I know, I know, Agnes, I know.", "jeu4.11", {"voix": "F"}),
+        "{jeu4.12}It's settled, says Agnes: the Mundy girls, all five of us together.",
+        ("C", "I love you, Aggie! I love you more than chocolate biscuits!", "jeu4.13", {"voix": "F"}),
+    ], vis={
+        "jeu4": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Kate": SIEGE, "Agnes": "tricot_a", "Rose": "tricot_r", "Chris": "table"},
+                 act={"Kate": "assis", "Agnes": "assis", "Rose": "tricote", "Chris": "repasse"}, objets=OBJ, cam="cuisine",
+                 note="(p. 13)"),
+            dict(dit=["Agnes", "Wouldn't it be a good one if we all went?"]),
+            dict(note="“To the harvest dance.” · “Just like we used to. All dressed up. I think I'd go.”"),
+            dict(dit=["Rose", "I'd go, too, Aggie! I'd go with you!"]),
+            dict(note="“Crawling with cheeky young brats that I taught years ago.” · “I'm game.”"),
+            dict(dit=["Chris", "Oh God, you know how I loved dancing, Aggie."]),
+            dict(dit=["Kate", "You have a seven-year-old child – have you forgotten that?"], note="(To CHRIS.)"),
+            dict(note="“that blue dress of mine” · “my brown shoes with the crossover straps” (p. 14)"),
+            dict(dit=["Kate", "Maybe we're mad – are we mad?"]),
+            dict(note="“It costs four and six to get in.” · “I've five pounds saved.”"),
+            dict(dit=["Agnes", "I want to dance, Kate. It's the Festival of Lughnasa. I'm only thirty-five. I want to dance."]),
+            dict(dit=["Kate", "I know, I know, Agnes, I know."], note="(Wretched.)"),
+            dict(note="“It's settled. We're going – the Mundy girls – all five of us together.”"),
+            dict(dit=["Rose", "I love you, Aggie! I love you more than chocolate biscuits!"]),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ V. le refus (p. 14-15)
+    dict(id="refus", chap="Kate says no", fond="nuit", humeur="tension", beats=[
+        "{jeu5}Rose {jeu5.1}kisses Agnes impetuously, {jeu5.2}flings her arms above her head, begins singing Abyssinia, "
+        "{jeu5.3}and does the first steps of a bizarre and abandoned dance. {jeu5.4}At this, Kate panics.",
+        ("C", "No, no, no! We're going nowhere!", "jeu5.5", {"voix": "F"}),
+        "{jeu5.6}Look at yourselves, she says. Dancing at our time of day? That's for young people with nothing in their heads but pleasure.",
+        ("C", "Do you want the whole countryside to be laughing at us?", "jeu5.7", {"voix": "F"}),
+        ("C", "women of our years? – mature women, dancing?", "jeu5.8", {"voix": "F"}),
+        ("C", "And this is Father Jack's home – we must never forget that – ever.", "jeu5.9", {"voix": "F"}),
+        ("C", "The matter's over. I don't want it mentioned again.", "jeu5.10", {"voix": "F"}),
+        "{jeu5.11}And the stage direction gives one word: silence.",
+        ("P", 3.0),
+    ], vis={
+        "jeu5": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Kate": SIEGE, "Agnes": "tricot_a", "Rose": "tricot_r", "Chris": "table"},
+                 act={"Kate": "assis", "Agnes": "assis", "Rose": "tricote", "Chris": "repasse"}, objets=OBJ, cam="cuisine"),
+            dict(pos={"Rose": [535, 500]}, act={"Rose": "debout"}, note="“ROSE kisses AGNES impetuously” (p. 14)"),
+            dict(act={"Rose": "leve"}, note="She “flings her arms above her head, begins singing ‘Abyssinia’”"),
+            dict(act={"Rose": "danse_lourde"}, note="“the first steps of a bizarre and abandoned dance”"),
+            dict(note="“At this KATE panics.”"),
+            dict(dit=["Kate", "No, no, no! We're going nowhere!"]),
+            dict(act={"Rose": "debout"}, note="“Look at yourselves, will you! Just look at yourselves!” (p. 15)"),
+            dict(dit=["Kate", "Do you want the whole countryside to be laughing at us?"]),
+            dict(dit=["Kate", "women of our years? – mature women, dancing?"], note="“dancing” is in italics in the text"),
+            dict(dit=["Kate", "And this is Father Jack's home – we must never forget that – ever."]),
+            dict(dit=["Kate", "The matter's over. I don't want it mentioned again."]),
+            dict(note="(Silence.)"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ VI. cinq répliques à connaître
+    dict(id="repliques3", chap="Five lines to know", fond="aube", humeur="calme",
+         retenir="Hidden faces, a blush and an outburst, a fever, “I want to dance”, “laughing at us”: desire and its guardian.", beats=[
+        "{cinq3}One afternoon, one word, dance… and five lines to remember.",
+        "First, the kites.{-cinq3}",
         ("C", "What are they? Devils? Ghosts?", "c_ghosts", {"voix": "F"}),
-        "{-c_ghosts}{fore}A joke. But keep those hidden faces in mind: as we learn later, the play only shows them near the very end. "
+        "{-c_ghosts}{fore}A joke. But keep those hidden faces in mind: the play only shows them near the very end. "
         "Something wild and pagan is already painted on the boy's toys.",
-        "{-fore}{deux_k}So this is a softer Kate. Chris even says: you have him spoiled. "
-        "{deux_k.d}But notice who pays. Kate has the only real salary in the house. "
-        "The gifts are love… and a sign of who holds the purse.",
-    ], vis={
-        "tab_don": dict(type="tableau", img="dal-donegal", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .55, .45],
-                        legende="Donegal, Five Finger Strand (photo dconvertini, CC BY-SA 4.0)"),
-        "arrive": dict(type="liste", titre="Kate comes home · pp. 9 – 10", items=[
-            "She enters “laden with shopping bags”",
-            "Her face “lights up with pleasure” at the kites",
-            "Gifts: a spinning-top, a whip, a library book"], marques=["p. 9", "p. 9", "p. 10"], x=150, y=180, w=980),
-        "note_k": dict(type="note", cles=["cannot", "see"], terme="Stage direction · p. 10",
-                       t="“She studies the kite faces which the audience cannot see.”",
-                       etape="Kate sees the faces. We do not.", x=170, y=200, w=940),
-        "c_ghosts": dict(type="cit", a="Kate, with “pretended horror”", o="p. 10", x=170, y=200, w=940),
-        "fore": dict(type="def", cles=["hidden", "pagan"], terme="Foreshadowing",
-                     t="A hint of what is to come: the hidden faces, devils and ghosts, a pagan world on a child's toy.",
-                     etape="The faces are only revealed near the end of the play.", x=170, y=200, w=940),
-        "deux_k": dict(type="cols", g="Tender", gq="kisses, kites, a library book at bedtime", d="In charge",
-                       dq="she pays, she buys, she decides", vs="+", repere="Kate's two faces"),
-    }),
-
-    # ------------------------------------------------------------------ II. Austin Morgan
-    dict(id="austin", chap="Austin Morgan", fond="nuit", humeur="tension",
-         retenir="Kate's secret: an evasion, a blush, a burst of anger. Her sisters close the subject to protect her.", beats=[
-        "{dia_am}Then Rose starts teasing. Kate bought the top at Morgan's Arcade, {dia_am.1}and Rose knows why. "
-        "{dia_am.2}Kate answers with the harvest. "
-        "{dia_am.3}Rose insists: she's blushing!",
-        "{-dia_am}{sub}This is subtext. Kate never says a word about Austin Morgan. But her blush speaks for her. "
-        "Then Rose adds that he is going with a wee young thing from Carrickfad. And Kate explodes.",
-        "{-sub}",
+        "Second, Kate's outburst.{-fore}",
         ("C", "For God's sake, Rose, shut up, would you!", "c_shut", {"voix": "F"}),
-        "{-c_shut}{eclat}Sudden anger, says the stage direction: the control cracks. "
-        "{eclat.1}Agnes cuts Rose off: pass me those steel needles. "
-        "{eclat.2}A pause. Then Chris, gently: are you tired? "
-        "{eclat.3}In this house, painful things are covered with silence and small tasks.",
-    ], vis={
-        "dia_am": dict(type="dialogue", lignes=["Rose: “You wanted to see Austin Morgan!”",
-                                                 "Kate: “Going to be a good harvest by the look of it.”",
-                                                 "Rose: “She's blushing! Look! Isn't she blushing?”"],
-                       src="p. 11", x=170, y=130, w=980),
-        "sub": dict(type="def", cles=["harvest", "blush"], terme="Subtext",
-                    t="What a character means but does not say: Kate talks about the harvest, her blush talks about Austin Morgan.",
-                    etape="A woman of authority, with a hidden longing.", x=170, y=200, w=940),
-        "c_shut": dict(type="cit", a="Kate (sudden anger)", o="p. 11", x=170, y=200, w=940),
-        "eclat": dict(type="liste", titre="After the outburst · p. 11", items=[
-            "Agnes: “Rosie, pass me those steel needles”",
-            "(Pause.) Chris: “Are you tired?”",
-            "The subject is closed: silence and small tasks"], marques=["1", "2", "3"], x=150, y=180, w=980),
-    }),
-
-    # ------------------------------------------------------------------ III. Ballybeg perd la tête
-    dict(id="fievre", chap="Off its head", fond="aube", humeur="mystere",
-         retenir="Ballybeg has caught a “fever”: the dance. In the same speech, Kate hands out quinine for Jack's malaria.", beats=[
-        "{tab_gle2}{ville}Kate flops into a seat and gives the news from town. "
-        "{ville.1}Ballybeg is off its head: are you going to the harvest dance? Who with? What are you wearing? "
-        "{ville.2}A girl of fifteen told her it would be just supreme. You'd think, says Kate, it was heaven she was talking about.",
-        "{-ville}",
+        "{-c_shut}{sub}This is subtext. Kate never says a word about Austin Morgan: she talks about the harvest. "
+        "But her blush speaks for her, and then the control cracks. In this house, painful things are covered "
+        "with silence and small tasks: the steel needles.",
+        "Third, the village.{-sub}",
         ("C", "I'm telling you – off its head – like a fever in the place.", "c_fever", {"voix": "F"}),
-        "{-c_fever}{-tab_gle2}{tab_kil}{jux}And her very next words? That's the quinine: for Jack's malaria. "
-        "{jux.g}A fever of dancing in the village. {jux.d}A real fever in Father Jack. "
-        "This juxtaposition links desire and illness, the festival and the sick priest.",
-        "{-jux}{jack}Kate repeats the doctor: {jack.1}after twenty-five years of Swahili, it's not that Jack's mind is confused. "
-        "{jack.2}Chris disagrees: he keeps calling her by a strange name. Okawa, says Kate: his house boy. "
-        "{jack.3}Kate holds on to the reassuring version. Jack has lost his English: a sign of how far he has drifted from home.",
-    ], vis={
-        "tab_gle2": dict(type="tableau", img="dal-glenties", fond=True, sombre=True, de=[1.2, .4, .5], a=[1.05, .55, .5],
-                         legende="Glenties, County Donegal (photo Thpohl, public domain)"),
-        "ville": dict(type="liste", titre="News from town · pp. 11 – 12", items=[
-            "Ballybeg is “off its head”: one topic, the harvest dance",
-            "Sophia, fifteen: “just supreme this year”"], marques=["1", "2"], x=150, y=200, w=980),
-        "c_fever": dict(type="cit", a="Kate", o="p. 12", x=170, y=200, w=940),
-        "tab_kil": dict(type="tableau", img="dal-kilwa", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .5],
-                        legende="East African campaign, Kilwa, 1917 (Imperial War Museums, public domain)"),
-        "jux": dict(type="cols", g="The village", gq="“like a fever”: the harvest dance", d="Father Jack",
-                    dq="malaria: “That's the quinine”", vs="↔", repere="juxtaposition"),
-        "jack": dict(type="liste", titre="Father Jack · pp. 12 – 13", items=[
-            "The doctor: Swahili for 25 years, “not that his mind is confused”",
-            "Chris: he calls her “Okawa”, his house boy",
-            "Kate reassures, Chris sees: Jack has lost his English"], marques=["1", "2", "3"], x=150, y=180, w=980),
-    }),
-
-    # ------------------------------------------------------------------ IV. « Wouldn't it be a good one… »
-    dict(id="allons", chap="Let's all go!", fond="nuit", humeur="lumiere",
-         retenir="Agnes's “I want to dance” sweeps the sisters along. Rose's wild dance makes Kate panic.", beats=[
-        "{mot_ag}Agnes has stopped knitting. She stares into the middle distance. Then she speaks.",
-        "{-mot_ag}{elan}The idea catches like fire. {elan.1}Rose would go. {elan.2}Chris loved dancing. "
-        "{elan.3}Agnes lends her blue dress and her brown shoes. "
-        "{elan.4}Even Kate gives way: are we mad? "
-        "{elan.5}A ticket costs four and six. Agnes has five pounds saved, a lot for a woman who knits gloves. "
-        "Then the heart of this part.",
-        "{-elan}",
+        "{-c_fever}{jux}And her very next words? That's the quinine. {jux.g}A fever of dancing in the village. "
+        "{jux.d}A real fever in Father Jack. This juxtaposition links desire and illness, the festival and the sick priest.",
+        "Fourth, Agnes.{-jux}",
         ("C", "I want to dance, Kate. It's the Festival of Lughnasa. I'm only thirty-five. I want to dance.", "c_dance",
          {"voix": "F"}),
         "{-c_dance}{rep}{rep.1}I want to dance, at the start and the end, like a refrain. "
         "{rep.2}In between, two reasons. Lughnasa: the pagan festival, the title of the play. "
         "{rep.3}And her age: time is running out. Pure desire, without excuses.",
-        "{-rep}{rose}Kate, wretched, almost agrees. It's settled: all five of us together. "
-        "Then Rose sings Abyssinia and starts a bizarre and abandoned dance. And Kate panics.",
-        "{-rose}{aby}Outside the text: in 1936, Mussolini's Italy had just invaded Abyssinia, today's Ethiopia. "
-        "Even Rose's song brings the outside world into the kitchen.",
+        "And fifth, Kate's answer.{-rep}",
+        ("C", "Do you want the whole countryside to be laughing at us? – women of our years? – mature women, dancing?",
+         "c_laugh", {"voix": "F"}),
+        "{-c_laugh}{raisons}Her first fear is not sin, but other people's eyes, and dancing is in italics, as if the word were shameful. "
+        "{raisons.1}The parish is watching. {raisons.2}A priest's home must be beyond reproach. "
+        "{raisons.3}And Chris has a child born out of wedlock: this family cannot afford one more scandal. "
+        "But remember the opening: Michael saw these women dancing in this kitchen. The forbidden dance will come back.",
     ], vis={
-        "mot_ag": dict(type="mot", t="Wouldn't it be a good one if we all went?", g="Agnes · p. 13", y=230, taille=64),
-        "elan": dict(type="liste", titre="The idea spreads · pp. 13 – 14", items=[
-            "Rose: “I'd go, too, Aggie!”",
-            "Chris: “you know how I loved dancing”",
-            "Agnes: her blue dress, her brown shoes",
-            "Kate: “Maybe we're mad – are we mad?”",
-            "“four and six” to get in · “I've five pounds saved”"], marques=["R", "C", "A", "K", "£"], x=150, y=120, w=980),
+        "cinq3": dict(type="mot", t="One word: dance", g="five lines to know · pages 9 – 15", y=250, taille=88),
+        "c_ghosts": dict(type="cit", a="Kate, with “pretended horror”", o="p. 10", x=170, y=200, w=940),
+        "fore": dict(type="def", cles=["hidden", "pagan"], terme="Foreshadowing",
+                     t="“She studies the kite faces which the audience cannot see”: devils and ghosts on a child's toy.",
+                     etape="The faces are only revealed near the end of the play.", x=170, y=200, w=940),
+        "c_shut": dict(type="cit", a="Kate (sudden anger)", o="p. 11", x=170, y=200, w=940),
+        "sub": dict(type="def", cles=["harvest", "blush"], terme="Subtext",
+                    t="What a character means but does not say: Kate talks about the harvest, her blush talks about Austin Morgan.",
+                    etape="A woman of authority, with a hidden longing.", x=170, y=200, w=940),
+        "c_fever": dict(type="cit", a="Kate", o="p. 12", x=170, y=200, w=940),
+        "jux": dict(type="cols", g="The village", gq="“like a fever”: the harvest dance", d="Father Jack",
+                    dq="malaria: “That's the quinine”", vs="↔", repere="juxtaposition"),
         "c_dance": dict(type="cit", a="Agnes", o="p. 14", x=170, y=200, w=940),
         "rep": dict(type="liste", titre="Agnes's speech", cles=["refrain"], items=[
             "“I want to dance” … “I want to dance”: a refrain",
             "“the Festival of Lughnasa”: the pagan title",
             "“only thirty-five”: time is running out"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "rose": dict(type="note", cles=["abandoned", "panics"], terme="Stage direction · p. 14",
-                     t="Rose does “the first steps of a bizarre and abandoned dance. At this KATE panics.”",
-                     etape="Too free, too wild: Kate takes back control.", x=170, y=200, w=940),
-        "aby": dict(type="mot", t="“Abyssinia”", g="outside the text: Ethiopia, invaded by Mussolini's Italy in 1935 – 36",
-                    y=260, taille=96),
-    }),
-
-    # ------------------------------------------------------------------ V. le refus
-    dict(id="refus", chap="Kate says no", fond="aube", humeur="tension",
-         retenir="Kate's refusal: what people will say, and Father Jack's home. Respectability wins, and silence falls.", beats=[
-        "{non}No, no, no! We're going nowhere! And Kate's reasons pour out.",
-        "{-non}",
-        ("C", "Do you want the whole countryside to be laughing at us? – women of our years? – mature women, dancing?",
-         "c_laugh", {"voix": "F"}),
-        "{-c_laugh}{ital}Her first fear is not sin, but other people's eyes. "
-        "And dancing is in italics: she stresses the word, as if it were shameful.",
-        "{-ital}",
-        ("C", "And this is Father Jack's home – we must never forget that – ever.", "c_home", {"voix": "F"}),
-        "{-c_home}{raisons}Three reasons. {raisons.1}The parish is watching. "
-        "{raisons.2}A priest's home must be beyond reproach. "
-        "{raisons.3}And Kate even reminded Chris: you have a seven-year-old child. "
-        "On page nine, Michael said his birth out of wedlock brought shame on the household. This family cannot afford one more scandal.",
-        "{-raisons}{fin}I don't want it mentioned again, says Kate. And the stage direction gives one word.",
-        "{-fin}{tab_rad}{q2}But remember the opening: Michael saw these women dancing in this kitchen, screaming like schoolgirls. "
-        "The forbidden dance will come back. That is dramatic irony.",
-    ], vis={
-        "non": dict(type="mot", t="No, no, no!", g="Kate · p. 14", y=260, taille=110),
         "c_laugh": dict(type="cit", a="Kate", o="p. 15", x=170, y=200, w=940),
-        "ital": dict(type="mot", t="mature women, dancing?", g="in italics in the text: Kate stresses the word, as if it were shameful", y=260, taille=84),
-        "c_home": dict(type="cit", a="Kate", o="p. 15", x=170, y=200, w=940),
         "raisons": dict(type="liste", titre="Kate's reasons", items=[
             "“the whole countryside … laughing at us”: the parish is watching",
             "“Father Jack's home”: a priest's house, beyond reproach",
             "“You have a seven-year-old child”: the shame of an unmarried mother"],
                         marques=["1", "2", "3"], x=150, y=180, w=980),
-        "fin": dict(type="mot", t="(Silence.)", g="stage direction · p. 15", y=260, taille=110),
-        "tab_rad": dict(type="tableau", img="dal-radio", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .45],
-                        legende="A 1930s valve wireless set (Museo della scienza e della tecnologia, Milan, CC BY-SA 4.0)"),
-        "q2": dict(type="question", t="The dance she forbids will come back to them."),
     }),
 
     # ------------------------------------------------------------------ VI. l'analyse
@@ -240,34 +308,32 @@ SCENES = [
 QUIZ = [
     dict(q="What does Kate bring back for the boy?",
          r=["A spinning-top, a whip and a new library book", "A kite and some paint", "A wireless set",
-            "A ticket for the harvest dance"], ok=0, voir="arrive",
+            "A ticket for the harvest dance"], ok=0, voir="jeu1.8",
          ex="She produces “a small, wooden spinning top and whip”, then a new library book “with coloured pictures” (p. 10)."),
     dict(q="When Rose says Kate wanted to see Austin Morgan, Kate first…",
          r=["talks about the harvest in the fields", "admits it at once", "laughs and agrees", "leaves the kitchen"], ok=0,
-         voir="dia_am",
+         voir="jeu2.5",
          ex="Subtext: she answers with “a good harvest”, but she blushes, and ends with “For God's sake, Rose, shut up, would you!”"),
     dict(q="What does Kate mention right after “like a fever in the place”?",
          r=["The quinine for Father Jack's malaria", "Chris's blue dress", "The price of a ticket", "The fox in the henhouse"],
-         ok=0, voir="jux",
+         ok=0, voir="c_fever",
          ex="A juxtaposition: the village's “fever” for the dance next to Jack's real fever, malaria (p. 12)."),
     dict(q="Which two reasons does Agnes give for wanting to dance?",
          r=["It's the Festival of Lughnasa, and she is only thirty-five", "Gerry will be there, and it is free",
-            "Father Jack asked them to go", "Kate needs a rest, and Rose has a new dress"], ok=0, voir="rep",
+            "Father Jack asked them to go", "Kate needs a rest, and Rose has a new dress"], ok=0, voir="c_dance",
          ex="“I want to dance, Kate. It's the Festival of Lughnasa. I'm only thirty-five. I want to dance.” (p. 14)"),
     dict(q="What makes Kate panic and say “No, no, no!”?",
          r=["Rose's “bizarre and abandoned dance”", "News that Jack has disappeared", "Chris crying",
-            "The radio breaking down"], ok=0, voir="rose",
+            "The radio breaking down"], ok=0, voir="jeu5.3",
          ex="Rose sings “Abyssinia” and starts a wild dance: “At this KATE panics.” (p. 14)"),
     dict(q="Which reasons does Kate give for refusing?",
          r=["The countryside would laugh, and it is Father Jack's home", "They have no dresses and no shoes",
-            "The dance is too far away", "Maggie does not want to go"], ok=0, voir="raisons",
+            "The dance is too far away", "Maggie does not want to go"], ok=0, voir="c_laugh",
          ex="Respectability and religion: “the whole countryside … laughing at us” and “this is Father Jack's home” (p. 15)."),
 ]
 
 CREDITS = [
     "Brian Friel, Dancing at Lughnasa (1990): short quotations for analysis, page numbers from the class PDF",
-    "Photographs: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0); Glenties (Thpohl, public domain); "
-    "valve table radio, Museo della scienza e della tecnologia, Milan (CC BY-SA 4.0); "
-    "troops at Kilwa, 1917 (Lt L. A. W. Powell, Imperial War Museums, public domain)",
+    "Photograph: Glenties, County Donegal (Thpohl, public domain)",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music",
 ]
