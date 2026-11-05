@@ -1,10 +1,17 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 6 : Gerry Evans (PDF de travail, p. 25-37).
 
-De l'arrivée de Gerry (Maggie à la fenêtre, p. 25) jusqu'à la sortie d'Agnes en larmes (début de la p. 37) ;
-la confidence de Kate à Maggie (« hair cracks », p. 37) ouvre la partie 7.
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+le résumé est joué sur le plateau (visuel jeu : cuisine et jardin vus ensemble, la scène partagée de Friel), en suivant les
+didascalies pas à pas ; les répliques courtes s'affichent en bulles et sont lues par les voix des personnages.
+L'enfant, « derrière ce buisson » (p. 31), n'est jamais vu : emplacement en pointillé ; Michael adulte n'est pas en scène.
+Puis quatre répliques expliquées et l'analyse (inchangée).
+
+De l'arrivée de Gerry (Maggie à la fenêtre, p. 25 : positions reprises de la fin de la partie 5) jusqu'à la sortie
+d'Agnes en larmes (début de la p. 37) ; la question de Kate « And what was that all about? » ouvre la partie 7.
 Vidéo en anglais, même chaîne que les séries philo : outils/serie-philo/generer.py dal_6.
 Citations courtes, à fin d'analyse ; le contexte hors texte (guerre d'Espagne)
-et les révélations ultérieures de Michael (p. 64) sont dits comme tels.
+et les révélations ultérieures de Michael (p. 64) sont dits comme tels. La chanson de la radio n'est pas nommée
+(le texte dit seulement « An appropriate song of the period »).
 """
 
 SITE = "acl-lughnasa"
@@ -16,6 +23,9 @@ TITRE = "Gerry Evans"
 SUIVANT = "Part 7 · Cracks"
 PRONONCIATION = {"Lughnasa": "Loo-na-sa", "Lugh": "Loo", "Ballybeg": "Bally-beg", "Oughterard": "Ooh-ter-ard",
                  "Mundy": "Mundy", "Chrissie": "Chrissie", "Sligo": "Sly-go"}
+
+GARCON = [1012, 262]      # « he's watching us from behind that bush » (p. 31) : l'enfant, jamais vu
+GERRY_G, CHRIS_G = [880, 392], [790, 392]    # Gerry et Chris dans le jardin
 
 SCENES = [
     # ------------------------------------------------------------------ ouverture
@@ -35,186 +45,257 @@ SCENES = [
     }),
 
     # ------------------------------------------------------------------ I. le chaos dans la cuisine
-    dict(id="chaos", chap="Chaos in the kitchen", fond="aube", humeur="tension",
-         retenir="Gerry's arrival throws the house into chaos. Kate moves from orders to tenderness… and back to the rules.", beats=[
-        "{tab_cot}{lane}Part five ended in the middle of a row, when Maggie ran to the window. Look who's coming up the lane! "
-        "It's Gerry Evans.",
-        "{-lane}{-tab_cot}{chaos}Pure chaos. {chaos.1}Everybody dashes about: mirror, shoes, hair. "
-        "{chaos.2}The lines overlap. {chaos.3}Agnes knits with excessive concentration. "
-        "{chaos.4}And Chris stands absolutely still, too shocked to move.",
-        "{-chaos}{ordres}Kate takes command: meet him outside, and send him packing. "
-        "But Chris is about to cry. So Kate takes her in her arms.",
-        "{-ordres}",
-        ("C", "Of course ask him in. And give the creature his tea. And stay the night if he wants to. But in the outside loft. "
-              "And alone.", "c_tea", {"voix": "F"}),
-        "{-c_tea}{deux}Listen to the turn. First, tenderness. Then, firm again: the outside loft, and alone. "
-        "Kate loves her sister, but respectability comes first. And creature: she will not even say his name.",
-        "{-deux}{entree}{entree.1}Gerry enters: a jaunty step, a cane, a straw hat. "
-        "{entree.2}Friel adds: he knows he is being watched. "
-        "{entree.3}He is very ill at ease, but the smile never leaves his face.",
+    dict(id="chaos", chap="Chaos in the kitchen", fond="nuit", humeur="tension", beats=[
+        "{jeu1}Page twenty-five. Part five ended in the middle of a row, when Maggie ran straight to the window.",
+        ("C", "It's Gerry Evans, Chrissie.", "jeu1.1", {"voix": "F"}),
+        ("C", "Oh, Jesus Christ Almighty.", "jeu1.2", {"voix": "F"}),
+        "{jeu1.3}The news throws the sisters into chaos. Agnes picks up her knitting and works with excessive concentration. "
+        "Rose and Maggie change their footwear. Everybody dashes about, bumping into one another, peeping out the window. "
+        "The lines overlap. Only Chris stands absolutely still, too shocked to move.",
+        ("C", "There's no welcome for that creature here.", "jeu1.4", {"voix": "F"}),
+        "{jeu1.5}Shoes, shoelaces, Woodbine… Kate gives her orders.",
+        ("C", "Behave quite normally. Be very calm and very dignified.", "jeu1.6", {"voix": "F"}),
+        "{jeu1.7}Rose, at the window: there's nobody coming at all. Silence. {jeu1.8}Then Agnes puts down her knitting, "
+        "rushes to the window, pushes Rose aside and looks out.",
+        ("C", "Yes, he is. Maggie's right. There he is.", "jeu1.9", {"voix": "F"}),
+        "{jeu1.10}A walking stick? A straw hat? It's Mr Evans all right. Rose cannot bear it: I just hate him! "
+        "And she rushes off.",
+        ("C", "Look at my hands, Kate – I'm shaking.", "jeu1.11", {"voix": "F"}),
+        "{jeu1.12}Kate catches her shoulders: meet him outside, and send him packing. "
+        "Chris does not move. She is about to cry. And Kate takes her in her arms.",
+        ("C", "Of course ask him in. And give the creature his tea.", "jeu1.13", {"voix": "F"}),
+        ("C", "But in the outside loft. And alone.", "jeu1.14", {"voix": "F"}),
+        "{jeu1.15}Chris rushes to the mirror, and adjusts her hair and her clothes. "
+        "{jeu1.16}Kate reads the paper, or pretends to. Agnes sits beside the radio and knits, with total concentration. "
+        "Maggie stands at the side of the window.",
     ], vis={
-        "tab_cot": dict(type="tableau", img="dal-glenties", fond=True, sombre=True, de=[1.2, .4, .5], a=[1.05, .5, .5],
-                        legende="Glenties, County Donegal (photo Thpohl, public domain)"),
-        "lane": dict(type="mot", t="“Look who's coming up the lane!”", g="Maggie, at the window · p. 25", y=250, taille=76),
-        "chaos": dict(type="liste", titre="Stage direction · p. 25", cles=["overlap", "still"], items=[
-            "Everybody dashes about: mirror, shoes, hair",
-            "They talk over each other: the lines overlap",
-            "Agnes knits with “excessive concentration”",
-            "Chris stands absolutely still, too shocked to move"], marques=["1", "2", "3", "4"], x=150, y=140, w=980),
-        "ordres": dict(type="note", cles=["packing"], terme="Kate's orders · p. 27",
-                       t="“And then you'll send him packing”",
-                       etape="Chris does not move. She is about to cry.", x=170, y=200, w=940),
-        "c_tea": dict(type="cit", a="Kate", o="p. 27", x=170, y=170, w=940),
-        "deux": dict(type="cols", g="Tenderness", gq="“Of course ask him in”", d="The rules",
-                     dq="“in the outside loft. And alone.”", vs="→", repere="love / respectability"),
-        "entree": dict(type="liste", titre="Gerry's entrance · p. 27", cles=["watched"], items=[
-            "A jaunty step, a cane, a straw hat",
-            "“He knows he is being watched”",
-            "Very ill at ease… but the smile never leaves his face"], marques=["1", "2", "3"], x=150, y=180, w=980),
+        "jeu1": dict(type="jeu", persos=["Kate", "Maggie", "Agnes", "Rose", "Chris"], etats=[
+            dict(pos={"Kate": [260, 400], "Maggie": "fenetre", "Agnes": [420, 410], "Chris": [250, 470], "Rose": [330, 430]},
+                 act={"Kate": "debout", "Maggie": "debout", "Agnes": "debout", "Chris": "debout", "Rose": "debout"},
+                 surplis=["Chris"], objets={"kites": "kites"}, note="(MAGGIE runs on and goes straight to the window) (p. 25)"),
+            dict(dit=["Maggie", "It's Gerry Evans, Chrissie."]),
+            dict(dit=["Chris", "Oh, Jesus Christ Almighty."]),
+            dict(pos={"Agnes": "tricot_a", "Chris": [250, 470]}, act={"Agnes": "tricote", "Chris": "fige"},
+                 chemin={"Kate": [[260, 400], [400, 330], "fenetre", [200, 330], [300, 360]],
+                         "Maggie": ["fenetre", [460, 330], [170, 320], [380, 300], [190, 330]],
+                         "Rose": [[330, 430], [200, 340], "fenetre", [420, 320], [292, 250]]}, chemin_duree=12,
+                 note="“Only CHRIS stands absolutely still, too shocked to move.” (p. 25)"),
+            dict(dit=["Kate", "There's no welcome for that creature here."]),
+            dict(note="“Who hid my Sunday shoes?” … “Has anybody got spare shoelaces?” (p. 26)"),
+            dict(dit=["Kate", "Behave quite normally. Be very calm and very dignified."]),
+            dict(note="“There's nobody coming at all.” (Rose, at window)"),
+            dict(pos={"Agnes": "fenetre", "Rose": [360, 262]}, act={"Agnes": "debout"},
+                 note="AGNES puts down her knitting, rushes to the window, pushes ROSE aside"),
+            dict(dit=["Agnes", "Yes, he is. Maggie's right. There he is."]),
+            dict(pos={"Rose": "arriere"}, duree=2.2, note="“I just hate him – hate him!” (As ROSE rushes off.) (p. 27)"),
+            dict(pos={"Rose": "off"}, dit=["Chris", "Look at my hands, Kate – I'm shaking."]),
+            dict(pos={"Kate": [308, 466]}, note="(KATE catches her shoulders.) … KATE now takes her in her arms."),
+            dict(dit=["Kate", "Of course ask him in. And give the creature his tea."]),
+            dict(dit=["Kate", "But in the outside loft. And alone."], note="(Firm again.)"),
+            dict(pos={"Chris": [150, 350]}, act={"Chris": "range"}, sans_surplis=["Chris"],
+                 note="CHRIS now rushes to the mirror and adjusts her hair and her clothes."),
+            dict(pos={"Kate": [300, 380], "Agnes": [500, 270], "Maggie": "fenetre"},
+                 act={"Kate": "debout", "Agnes": "tricote", "Maggie": "debout", "Chris": "debout"},
+                 note="KATE reads the paper – or pretends to. AGNES sits beside the radio and knits. (p. 27)"),
+        ]),
     }),
 
-    # ------------------------------------------------------------------ II. le baratin de Gerry
-    dict(id="patter", chap="Gerry's patter", fond="nuit", humeur="lumiere",
-         retenir="Gerry's talk is a performance: lies, boasts and omens that Chris, and the audience, can see through.", beats=[
-        "{dia}His first question gives him away. {dia.1}How have you been for the past six months? "
-        "{dia.2}Thirteen months, says Chris. {dia.3}July the seventh. She has counted. He has not.",
-        "{-dia}{recits}Then comes his patter, a flood of charming talk. "
-        "{recits.1}His visit was pure luck: a lift from a man in a bar in Sligo. "
-        "{recits.2}He gave dancing lessons in Dublin: thousands of pupils, millions! Then, in the same breath:",
-        "{-recits}",
-        ("C", "Fifty-three. I'm a liar. Fifty-one.", "c_liar"),
-        "He says it himself, with a smile. Gerry exaggerates, corrects himself, and charms us because he knows we know.",
-        "{-c_liar}{ventes}{ventes.1}His new career: gramophone salesman. A customer took four, he says. "
-        "Four gramophones? No: four brochures. They both laugh. "
-        "{ventes.2}And a bicycle for his son? They only had it in blue. So, no bicycle. Not this time.",
-        "{-ventes}{bush}Then: don't turn round. Michael is watching them from behind a bush. "
-        "Our narrator, as a child, hidden, observing his father.",
-        "{-bush}{omens}Then the omens. A cow with a single horn: a unicorn, laughs Chris. A good omen, says Gerry. "
-        "Then a single magpie: one for sorrow. Gerry lives by chance, not by plans. "
-        "And that magpie quietly foreshadows how this visit will end.",
+    # ------------------------------------------------------------------ II. Gerry dans le jardin
+    dict(id="jardin", chap="Gerry in the garden", fond="nuit", humeur="lumiere", beats=[
+        "{jeu2}And Gerry Evans enters, his step jaunty, swinging his cane, his straw hat well back on his head. "
+        "He knows he is being watched. He is very ill at ease, but the smile never leaves his face. "
+        "{jeu2.1}Chris goes out to the garden, where they meet. Gerry has a Welsh accent.",
+        ("C", "How are you, Chrissie? Great to see you.", "jeu2.2"),
+        ("C", "And how have you been for the past six months?", "jeu2.3"),
+        ("C", "Thirteen months.", "jeu2.4", {"voix": "F"}),
+        ("C", "July last year; July the seventh.", "jeu2.5", {"voix": "F"}),
+        "{jeu2.6}Where does the time go? And today's visit, he says, was pure luck: a lift from a man he met in a bar in Sligo.",
+        "{jeu2.7}Pause. In the kitchen, the sisters watch, and comment.",
+        ("C", "Looks terrified, the poor fella.", "jeu2.8", {"voix": "F"}),
+        ("C", "Terrified, my foot.", "jeu2.9", {"voix": "F"}),
+        ("C", "Not just now.", "jeu2.10", {"voix": "F"}),
+        ("C", "I'll give him three minutes.", "jeu2.11", {"voix": "F"}),
+        "{jeu2.12}In the garden, Gerry asks after everyone. And one name twice.",
+        ("C", "Tell her I was asking for her – Agnes.", "jeu2.13"),
+        "{jeu2.14}He has given dancing lessons in Dublin, all last winter. He does a quick step and a pirouette.",
+        ("C", "I had thousands of pupils – millions!", "jeu2.15"),
+        ("C", "Fifty-three. I'm a liar. Fifty-one.", "jeu2.16"),
+        "{jeu2.17}Now he sells gramophones: agent for the whole country. A man near Oughterard took four. Four gramophones? "
+        "Four brochures. They both laugh.",
+        ("C", "Don't turn round; but he's watching us from behind that bush.", "jeu2.18"),
+        "{jeu2.19}Michael. We never see him. Gerry meant to bring him a bicycle, but they only had it in blue. "
+        "{jeu2.20}Chris laughs. At the window, Maggie: you'd think he was the biggest toff in the world.",
+        ("C", "Tinker, more likely! Loafer! Wastrel!", "jeu2.21", {"voix": "F"}),
     ], vis={
-        "dia": dict(type="dialogue", lignes=["“And how have you been for the past six months?”", "“Thirteen months.”",
-                                             "“July last year; July the seventh.”"],
-                    src="Gerry and Chris · p. 28 (extracts)", x=170, y=110, w=980),
-        "recits": dict(type="liste", titre="Gerry's stories · p. 28 – 30", items=[
-            "A lucky lift from a bar in Sligo",
-            "Dancing lessons in Dublin: “thousands of pupils – millions!”"], marques=["1", "2"], x=150, y=200, w=980),
-        "c_liar": dict(type="cit", a="Gerry", o="p. 30", x=170, y=200, w=940),
-        "ventes": dict(type="liste", titre="More stories · p. 30 – 31", items=[
-            "“Minerva Gramophones – The Wise Buy”… four brochures",
-            "A bicycle for Michael… but only in blue"], marques=["3", "4"], x=150, y=200, w=980),
-        "bush": dict(type="note", cles=["watching"], terme="Gerry to Chris · p. 31",
-                     t="“he's watching us from behind that bush”",
-                     etape="The narrator, as a child, spying on his own father.", x=170, y=200, w=940),
-        "omens": dict(type="cols", g="The one-horned cow", gq="“a good omen”… and it winked", d="The single magpie",
-                      dq="“one for sorrow”", vs="≠", repere="good luck / bad luck · p. 32 – 33"),
+        "jeu2": dict(type="jeu", persos=["Kate", "Maggie", "Agnes", "Chris", "Gerry"], etats=[
+            dict(pos={"Kate": [300, 380], "Agnes": [500, 270], "Maggie": "fenetre", "Chris": [150, 350], "Gerry": "allee"},
+                 act={"Kate": "debout", "Agnes": "tricote", "Maggie": "debout", "Chris": "debout", "Gerry": "debout"},
+                 objets={"kites": "kites"}, cam="tout",
+                 note="“He knows he is being watched.” (p. 27)"),
+            dict(pos={"Gerry": GERRY_G, "Chris": CHRIS_G}, duree=4.0, note="CHRIS goes out to the garden where they meet."),
+            dict(dit=["Gerry", "How are you, Chrissie? Great to see you."]),
+            dict(dit=["Gerry", "And how have you been for the past six months?"], note="(p. 28)"),
+            dict(dit=["Chris", "Thirteen months."]),
+            dict(dit=["Chris", "July last year; July the seventh."]),
+            dict(note="“Bit of good luck that, wasn't it?” (Gerry)"),
+            dict(note="(Pause.)"),
+            dict(dit=["Maggie", "Looks terrified, the poor fella."]),
+            dict(dit=["Kate", "Terrified, my foot."]),
+            dict(dit=["Agnes", "Not just now."]),
+            dict(dit=["Kate", "I'll give him three minutes."]),
+            dict(note="“And Rose and Kate?” … “And Agnes?” (p. 29)"),
+            dict(dit=["Gerry", "Tell her I was asking for her – Agnes."]),
+            dict(act={"Gerry": "danse"}, note="(He does a quick step and a pirouette.) (p. 30)"),
+            dict(act={"Gerry": "debout"}, dit=["Gerry", "I had thousands of pupils – millions!"]),
+            dict(dit=["Gerry", "Fifty-three. I'm a liar. Fifty-one."]),
+            dict(note="“Minerva Gramophones – The Wise Buy.” … (They both laugh.)"),
+            dict(dit=["Gerry", "Don't turn round; but he's watching us from behind that bush."], objets={"garcon": GARCON},
+                 note="(p. 31)"),
+            dict(note="“He's making kites if you don't mind.” (Chris)"),
+            dict(note="“you'd think he was the biggest toff in the world” (Maggie)"),
+            dict(dit=["Kate", "Tinker, more likely! Loafer! Wastrel!"]),
+        ]),
     }),
 
-    # ------------------------------------------------------------------ III. les spectatrices de la cuisine
-    dict(id="watchers", chap="The watchers in the kitchen", fond="aube", humeur="tension",
-         retenir="A split stage: we watch Gerry and Chris, and we watch the sisters watching them.", beats=[
-        "{split}Look at the staging. In the garden, Gerry and Chris. In the kitchen, the sisters at the window, "
-        "watching and commenting. A split stage: two scenes, cut together like a film.",
-        "{-split}{voix}{voix.1}Maggie is kind: the poor fella. "
-        "{voix.2}Agnes will not look: not just now. {voix.3}Kate counts: I'll give him three minutes.",
-        "{-voix}{toff}Chris looks at him, says Maggie, as if he were the biggest toff in the world. Kate explodes.",
-        "{-toff}",
-        ("C", "Tinker, more likely! Loafer! Wastrel!", "c_tinker", {"voix": "F"}),
-        "{-c_tinker}{insultes}{insultes.1}A tinker: a wanderer with no home. {insultes.2}A loafer: an idler. "
-        "{insultes.3}A wastrel: a good-for-nothing. Social contempt: Kate judges by respectability.",
-        "{-insultes}{spain}Then Gerry's news. {spain.1}He is going to Spain, with the International Brigade. "
-        "{spain.2}Context, from outside the play: the Spanish Civil War broke out in July nineteen thirty-six. "
-        "{spain.3}Volunteers from many countries went to fight for the Republic, against Franco. "
-        "{-spain}Why does Gerry go?",
-        ("C", "Give Evans a Big Cause and he won't let you down. It's only everyday stuff he's not so successful at.", "c_cause"),
-        "{-c_cause}{cause}His most honest line. A big cause, yes. Everyday duty, a son behind a bush: no. "
-        "With Gerry, the outside world walks into Ballybeg.",
+    # ------------------------------------------------------------------ III. présages et Espagne
+    dict(id="presages", chap="Omens, and Spain", fond="nuit", humeur="lumiere", beats=[
+        "{jeu3}Page thirty-two. Gerry met a cow with a single horn on the road, a good omen. And it winked at him.",
+        ("C", "That was no cow you met – that was a unicorn.", "jeu3.1", {"voix": "F"}),
+        "{jeu3.2}Then: a single magpie! A bad omen, one for sorrow. He raises his stick as a gun. Bang! Missed. They both laugh.",
+        "{jeu3.3}In the kitchen, Kate: laughing? Beyond my comprehension. Like so many things, Kate, says Agnes.",
+        "{jeu3.4}Then Gerry's news. He is thinking of going away for a while. Home to Wales, asks Chris?",
+        ("C", "Wales isn't my home any more. My home is here -- well, Ireland.", "jeu3.5"),
+        "{jeu3.6}He is going to Spain, to do a spot of fighting, with the International Brigade. Why?",
+        ("C", "Give Evans a Big Cause and he won't let you down.", "jeu3.7"),
+        ("C", "It's only everyday stuff he's not so successful at.", "jeu3.8"),
+        "{jeu3.9}He's still watching us, says Gerry. Does he know my name? Of course he does. A very handsome child. With your eyes.",
     ], vis={
-        "split": dict(type="cols", g="The garden", gq="Gerry performs, Chris laughs", d="The kitchen",
-                      dq="the sisters watch and comment", vs="↔", repere="a split stage"),
-        "voix": dict(type="liste", titre="The voices at the window · p. 28", items=[
-            "Maggie: “Looks terrified, the poor fella.”",
-            "Agnes: “Not just now.”",
-            "Kate: “I'll give him three minutes.”"], marques=["M", "A", "K"], x=150, y=180, w=980),
-        "toff": dict(type="mot", t="“the biggest toff in the world”", g="Maggie, about the way Chris looks at him · p. 31",
-                     y=250, taille=76),
-        "c_tinker": dict(type="cit", a="Kate", o="p. 31", x=170, y=200, w=940),
-        "insultes": dict(type="liste", titre="Kate's verdict", cles=["contempt"], items=[
-            "Tinker: a wanderer, no home, no standing",
-            "Loafer: an idler",
-            "Wastrel: a good-for-nothing"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "spain": dict(type="liste", titre="Spain · p. 33", items=[
-            "Gerry will join “the International Brigade”",
-            "Context: the Spanish Civil War began in July 1936",
-            "Context: foreign volunteers fought for the Republic, against Franco"],
-                      marques=["1", "✻", "✻"], x=150, y=180, w=980),
-        "c_cause": dict(type="cit", a="Gerry", o="p. 33", x=170, y=200, w=940),
-        "cause": dict(type="cols", g="A Big Cause", gq="Spain, fighting, adventure", d="Everyday stuff",
-                      dq="a son, a home, ordinary duty", vs="≠", repere="the outside world arrives"),
+        "jeu3": dict(type="jeu", persos=["Kate", "Maggie", "Agnes", "Chris", "Gerry"], etats=[
+            dict(pos={"Kate": [300, 380], "Agnes": [500, 270], "Maggie": "fenetre", "Chris": CHRIS_G, "Gerry": GERRY_G},
+                 act={"Kate": "debout", "Agnes": "tricote", "Maggie": "debout", "Chris": "debout", "Gerry": "debout"},
+                 objets={"kites": "kites", "garcon": GARCON}, cam="tout",
+                 note="“A cow with a single horn coming straight out of the middle of its forehead.” (p. 32)"),
+            dict(dit=["Chris", "That was no cow you met – that was a unicorn."]),
+            dict(note="“one for sorrow.” (His stick as a gun.) “Bang! Missed.” (p. 33)"),
+            dict(note="“Laughing? Absolutely beyond my comprehension.” (Kate)"),
+            dict(note="“Thinking of going away for a while, Chrissie.”"),
+            dict(dit=["Gerry", "Wales isn't my home any more. My home is here -- well, Ireland."]),
+            dict(note="“to do a spot of fighting. With the International Brigade.”"),
+            dict(dit=["Gerry", "Give Evans a Big Cause and he won't let you down."]),
+            dict(dit=["Gerry", "It's only everyday stuff he's not so successful at."]),
+            dict(note="“He's still watching us. He thinks we don't see him.”"),
+        ]),
     }),
 
     # ------------------------------------------------------------------ IV. la danse dans le jardin
-    dict(id="danse", chap="A dance in the garden", fond="nuit", humeur="lumiere",
-         retenir="The dance says what words cannot. The sisters' reactions reveal Kate's buried tenderness and Agnes's hidden pain.", beats=[
-        "{tab_rad}{radio}{radio.1}Suddenly the radio plays. Agnes didn't touch it. "
-        "{radio.2}Turn that thing off, says Kate. Agnes does not.",
-        "{-radio}{chanson}Your text simply says: an appropriate song of the period. "
-        "What matters is not the title, but the timing: for once, the radio works, just for them.",
-        "{-chanson}{-tab_rad}{agnes_g}And twice, Gerry asks after one sister: Agnes. "
-        "She was the one, he says, that seemed to object least to me.",
-        "{-agnes_g}{watch}He takes Chris in his arms. {watch.1}They're watching us. {watch.2}Hope so. And Kate. "
-        "{watch.3}And Father Jack. {watch.4}Better still! Even his romance is a show.",
-        "{-watch}{cuisine}{cuisine.1}In the kitchen: they're dancing. The animal! cries Kate. "
-        "{cuisine.2}Agnes, asked to look, snaps: I'm busy! "
-        "{cuisine.3}And Kate, at the window, slowly changes.",
-        "{-cuisine}",
+    dict(id="danse", chap="A dance in the garden", fond="nuit", humeur="lumiere", beats=[
+        "{jeu4}Page thirty-four. An appropriate song of the period plays softly from the radio. The text gives no title.",
+        ("C", "Good for you, Aggie. What did you do to it?", "jeu4.1", {"voix": "F"}),
+        ("C", "I didn't touch it.", "jeu4.2", {"voix": "F"}),
+        "{jeu4.3}Turn that thing off, Aggie, says Kate. Agnes does not. "
+        "{jeu4.4}In the garden, Gerry asks after Agnes again: she was the one that seemed to object least to me. "
+        "They listen to the music.",
+        "{jeu4.5}Suddenly he takes Chris in his arms, and dances.",
+        ("C", "They're watching us.", "jeu4.6", {"voix": "F"}),
+        ("C", "Hope so. And Kate.", "jeu4.7"),
+        "{jeu4.8}He swings her round and round, and dances her lightly, elegantly across the garden, singing the song to her.",
+        ("C", "They're dancing.", "jeu4.9", {"voix": "F"}),
+        ("C", "He has not! The animal!", "jeu4.10", {"voix": "F"}),
+        "{jeu4.11}Kate flings the paper aside, and joins Maggie at the window. Maggie calls Agnes over.",
+        ("C", "I'm busy! For God's sake can't you see I'm busy!", "jeu4.12", {"voix": "F"}),
+        "{jeu4.13}Maggie turns and looks at her in amazement. And Kate, at the window, slowly changes.",
+        ("C", "Her whole face alters when she's happy, doesn't it?", "jeu4.14", {"voix": "F"}),
+        ("C", "They dance so well together. They're such a beautiful couple.", "jeu4.15", {"voix": "F"}),
+        "{jeu4.16}She's as beautiful as Bernie O'Donnell any day, isn't she? "
+        "And Maggie moves slowly away from the window, and sits motionless.",
+        "{jeu4.17}In the garden, Gerry: marry me, Chrissie. I don't think so, Gerry.",
+        ("C", "But you'd walk out on me again.", "jeu4.18", {"voix": "F"}),
+        ("C", "Don't talk any more; no more words. Just dance me down the lane and then you'll leave.", "jeu4.19", {"voix": "F"}),
+        "{jeu4.20}They dance off. The music continues for a few seconds, {jeu4.21}and stops suddenly, in mid-phrase. "
+        "Maggie goes to the set, slaps it, turns it off. Kate moves away from the window.",
+        ("C", "Whatever's wrong with it, that's all it seems to last -- a few minutes at a time.", "jeu4.22", {"voix": "F"}),
+        "{jeu4.23}Kate goes on: Christina's heart gets crushed again; the creature has no sense of ordinary duty. "
+        "{jeu4.24}Agnes rises, and goes to the back door. Kate does not stop.",
+        ("C", "You are such a damned righteous bitch! And his name is Gerry! – Gerry! Gerry!", "jeu4.25", {"voix": "F"}),
+        "{jeu4.26}Now to the point of tears, Agnes runs off. Kate and Maggie are left alone. Part seven starts here.",
+    ], vis={
+        "jeu4": dict(type="jeu", persos=["Kate", "Maggie", "Agnes", "Chris", "Gerry"], etats=[
+            dict(pos={"Kate": [300, 380], "Agnes": [500, 270], "Maggie": "fenetre", "Chris": CHRIS_G, "Gerry": GERRY_G},
+                 act={"Kate": "debout", "Agnes": "tricote", "Maggie": "debout", "Chris": "debout", "Gerry": "debout"},
+                 objets={"kites": "kites", "garcon": GARCON}, cam="tout", radio=True,
+                 note="(An appropriate song of the period plays softly from the radio.) (p. 34)"),
+            dict(dit=["Maggie", "Good for you, Aggie. What did you do to it?"]),
+            dict(dit=["Agnes", "I didn't touch it."]),
+            dict(note="“Turn that thing off, Aggie, would you?” (AGNES does not.)"),
+            dict(note="“Of all your sisters Agnes was the one that seemed to object least to me.”"),
+            dict(pos={"Chris": [808, 392], "Gerry": [862, 392]}, act={"Chris": "danse_douce", "Gerry": "danse_douce"},
+                 note="(Suddenly he takes her in his arms and dances.)"),
+            dict(dit=["Chris", "They're watching us."], note="(p. 35)"),
+            dict(dit=["Gerry", "Hope so. And Kate."], note="“And Father Jack.” “Better still! Terrific!”"),
+            dict(chemin={"Chris": [[808, 392], [690, 440], [750, 500], [930, 470], [950, 380], [808, 392]],
+                         "Gerry": [[862, 392], [744, 440], [804, 500], [984, 470], [1004, 380], [862, 392]]},
+                 chemin_duree=14, note="He dances her lightly, elegantly across the garden. He sings the song to her."),
+            dict(dit=["Maggie", "They're dancing."]),
+            dict(dit=["Kate", "He has not! The animal!"], note="“He has her in his arms.” (Maggie)"),
+            dict(pos={"Kate": [345, 250]}, duree=1.8, note="She flings the paper aside and joins MAGGIE at the window."),
+            dict(dit=["Agnes", "I'm busy! For God's sake can't you see I'm busy!"]),
+            dict(note="(MAGGIE turns and looks at her in amazement.)"),
+            dict(dit=["Kate", "Her whole face alters when she's happy, doesn't it?"]),
+            dict(dit=["Kate", "They dance so well together. They're such a beautiful couple."]),
+            dict(pos={"Maggie": [400, 330]}, act={"Maggie": "assis"}, duree=3.0,
+                 note="(MAGGIE moves slowly away from the window and sits motionless.)"),
+            dict(note="“Marry me, Chrissie.” … “I don't think so, Gerry.” (p. 36)"),
+            dict(dit=["Chris", "But you'd walk out on me again."]),
+            dict(dit=["Chris", "Don't talk any more; no more words. Just dance me down the lane and then you'll leave."]),
+            dict(pos={"Chris": [1110, 330], "Gerry": [1110, 300]}, duree=5.0, note="(They dance off.)"),
+            dict(pos={"Chris": "off", "Gerry": "off", "Maggie": "radio", "Kate": [300, 380]},
+                 act={"Chris": "debout", "Gerry": "debout", "Maggie": "debout", "Kate": "debout"}, radio=False, duree=2.0,
+                 note="The music stops suddenly in mid-phrase. MAGGIE slaps the set, turns it off."),
+            dict(dit=["Maggie", "Whatever's wrong with it, that's all it seems to last -- a few minutes at a time."]),
+            dict(note="“the creature has no sense of ordinary duty” (Kate)"),
+            dict(pos={"Agnes": "porte"}, act={"Agnes": "debout"}, duree=2.0, note="(AGNES rises and goes to the back door.)"),
+            dict(dit=["Agnes", "You are such a damned righteous bitch! And his name is Gerry! – Gerry! Gerry!"]),
+            dict(pos={"Agnes": "off"}, note="(Now to the point of tears, she runs off.) (p. 37)"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ V. répliques à connaître
+    dict(id="repliques", chap="Four lines to know", fond="aube", humeur="calme",
+         retenir="Kate's “outside loft”, Gerry's “Big Cause”, Kate's “beautiful couple”, Chris's “no more words”.", beats=[
+        "{quatre}Four lines from this part are worth knowing by heart.",
+        "First, Kate, holding Chris in her arms.{-quatre}",
+        ("C", "Of course ask him in. And give the creature his tea. And stay the night if he wants to. But in the outside loft. "
+              "And alone.", "c_tea", {"voix": "F"}),
+        "{-c_tea}{deux}First, tenderness. Then, firm again: the outside loft, and alone. Love, but respectability first. "
+        "And creature: she will not even say his name.",
+        "Then Gerry.{-deux}",
+        ("C", "Give Evans a Big Cause and he won't let you down. It's only everyday stuff he's not so successful at.", "c_cause"),
+        "{-c_cause}{cause}His most honest line. A big cause, yes. Everyday duty, a son behind a bush: no. "
+        "Context, from outside the play: the Spanish Civil War began in July nineteen thirty-six. The outside world walks into Ballybeg.",
+        "Then Kate again, at the window.{-cause}",
         ("C", "Her whole face alters when she's happy, doesn't it? They dance so well together. They're such a beautiful couple.",
          "c_face", {"voix": "F"}),
-        "From the animal to a beautiful couple. Under the judgement, love. "
-        "{-c_face}{bernie}Then: as beautiful as Bernie O'Donnell, Maggie's old friend from the dance competition. "
-        "Maggie leaves the window and sits motionless.",
-        "{-bernie}{prop}{prop.1}Gerry proposes. Marry me, Chrissie. {prop.2}I don't think so. "
-        "{prop.3}You'd walk out on me again: that's your nature. And then:",
-        "{-prop}",
+        "{-c_face}{face}From the animal to a beautiful couple, in a few pauses. Under the judgement, love.",
+        "And Chris.{-face}",
         ("C", "Don't talk any more; no more words. Just dance me down the lane and then you'll leave.", "c_lane", {"voix": "F"}),
-        "Chris knows who he is, and chooses the dance anyway. "
-        "{-c_lane}{minutes}They dance off. The music stops in mid-phrase. "
-        "That's all it seems to last, says Maggie: a few minutes at a time.",
-        "{-minutes}{agnes}Kate goes back to her verdict: Christina's heart gets crushed again. "
-        "And Agnes, almost silent until now, explodes: a damned righteous bitch, she calls her. His name is Gerry! "
-        "Close to tears, she runs off, leaving Kate and Maggie alone. Part six ends there, at the top of page thirty-seven.",
+        "{-c_lane}{lane}Chris knows who he is, and chooses the dance anyway: no more words. "
+        "And Maggie's verdict on the radio fits them too: a few minutes at a time.",
     ], vis={
-        "tab_rad": dict(type="tableau", img="dal-radio", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .45],
-                        legende="A 1930s valve wireless set (Museo della scienza e della tecnologia, Milan, CC BY-SA 4.0)"),
-        "radio": dict(type="liste", titre="The radio · p. 34", items=[
-            "It starts playing: Agnes “didn't touch it”",
-            "Kate: “Turn that thing off”… Agnes does not"], marques=["1", "2"], x=150, y=200, w=980),
-        "chanson": dict(type="mot", t="“an appropriate song of the period”", g="your text names no title: what matters is the timing (p. 34)",
-                        y=250, taille=84),
-        "agnes_g": dict(type="note", cles=["Agnes"], terme="Gerry · p. 34",
-                        t="“Of all your sisters Agnes was the one that seemed to object least to me.”",
-                        etape="Already on p. 29: “Tell her I was asking for her – Agnes.”", x=170, y=200, w=940),
-        "watch": dict(type="dialogue", lignes=["“They're watching us.”", "“Hope so. And Kate.”", "“And Father Jack.”",
-                                               "“Better still! Terrific!”"],
-                      src="Chris and Gerry · p. 35 (extracts)", x=170, y=90, w=980),
-        "cuisine": dict(type="liste", titre="At the kitchen window · p. 35", items=[
-            "Maggie: “They're dancing.”  Kate: “The animal!”",
-            "Agnes: “I'm busy!”",
-            "Kate, at the window, slowly softens"], marques=["M", "A", "K"], x=150, y=180, w=980),
+        "quatre": dict(type="mot", t="Four lines to know", g="Kate · Gerry · Kate · Chris · pages 27 – 36", y=250, taille=80),
+        "c_tea": dict(type="cit", a="Kate", o="p. 27", x=170, y=170, w=940),
+        "deux": dict(type="cols", g="Tenderness", gq="“Of course ask him in”", d="The rules",
+                     dq="“in the outside loft. And alone.”", vs="→", repere="love / respectability"),
+        "c_cause": dict(type="cit", a="Gerry", o="p. 33", x=170, y=200, w=940),
+        "cause": dict(type="cols", g="A Big Cause", gq="Spain, the International Brigade", d="Everyday stuff",
+                      dq="a son, a home, ordinary duty", vs="≠", repere="context (outside the play): Spain, July 1936"),
         "c_face": dict(type="cit", a="Kate", o="p. 35", x=170, y=170, w=940),
-        "bernie": dict(type="note", cles=["motionless"], terme="Kate · p. 35",
-                       t="“She's as beautiful as Bernie O'Donnell any day, isn't she?”",
-                       etape="Maggie sits motionless: her own lost youth comes back.", x=170, y=200, w=940),
-        "prop": dict(type="dialogue", lignes=["“Marry me, Chrissie.”", "“I don't think so, Gerry.”",
-                                              "“But you'd walk out on me again.”"],
-                     src="Gerry and Chris · p. 35 – 36 (extracts)", x=170, y=110, w=980),
+        "face": dict(type="note", cles=["animal", "love"], terme="Kate · p. 35",
+                     t="From “The animal!” to “such a beautiful couple”.",
+                     etape="Under the judgement, love.", x=170, y=200, w=940),
         "c_lane": dict(type="cit", a="Chris", o="p. 36", x=170, y=170, w=940),
-        "minutes": dict(type="note", cles=["minutes"], terme="Maggie, about the radio · p. 36",
-                        t="“that's all it seems to last – a few minutes at a time”",
-                        etape="Like the radio, like Gerry's visits: happiness never lasts.", x=170, y=200, w=940),
-        "agnes": dict(type="note", cles=["Gerry"], terme="Agnes · p. 36",
-                      t="“And his name is Gerry! – Gerry! Gerry!”",
-                      etape="The quiet sister breaks her silence, then runs off in tears.", x=170, y=200, w=940),
+        "lane": dict(type="note", cles=["words", "minutes"], terme="Chris · p. 36",
+                     t="She refuses to marry him, and chooses the dance: “no more words”.",
+                     etape="Like the radio: “a few minutes at a time”.", x=170, y=200, w=940),
     }),
 
     # ------------------------------------------------------------------ V. l'analyse
@@ -256,18 +337,18 @@ SCENES = [
 
 QUIZ = [
     dict(q="How long has it been since Gerry's last visit?",
-         r=["Thirteen months, though he says six", "Six months, as he says", "Two weeks", "Seven years"], ok=0, voir="dia",
+         r=["Thirteen months, though he says six", "Six months, as he says", "Two weeks", "Seven years"], ok=0, voir="jeu2.4",
          ex="Gerry asks about “the past six months”; Chris corrects him: “Thirteen months… July the seventh.” She counts, he does not."),
     dict(q="What does Kate finally allow Gerry to do?",
          r=["Have his tea and stay the night, but in the outside loft, alone", "Marry Chris at once",
             "Take Michael to Wales", "Nothing: she throws him out herself"], ok=0, voir="c_tea",
          ex="Tenderness first (“Of course ask him in”), then the rules: “But in the outside loft. And alone.”"),
     dict(q="Who is watching Gerry and Chris from behind a bush?",
-         r=["Michael, their son", "Father Jack", "Rose", "Kate"], ok=0, voir="bush",
+         r=["Michael, their son", "Father Jack", "Rose", "Kate"], ok=0, voir="jeu2.18",
          ex="“Don't turn round; but he's watching us from behind that bush.” The future narrator observes his father."),
     dict(q="Why is Gerry going to Spain?",
          r=["To fight with the International Brigade", "To sell gramophones", "To find work as a dance teacher",
-            "To visit his family"], ok=0, voir="spain",
+            "To visit his family"], ok=0, voir="c_cause",
          ex="“to do a spot of fighting. With the International Brigade.” Context: the Spanish Civil War began in July 1936."),
     dict(q="How does Chris answer Gerry's proposal?",
          r=["“Just dance me down the lane and then you'll leave.”", "She says yes, for after his return",

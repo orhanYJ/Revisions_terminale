@@ -13,10 +13,11 @@ sys.path.insert(0, ICI)
 sys.path.insert(1, os.path.join(os.path.dirname(ICI), "serie-pc"))
 sys.path.insert(2, os.path.join(os.path.dirname(ICI), "serie-acl"))
 sys.path.insert(3, os.path.join(os.path.dirname(ICI), "serie-dnl"))
+sys.path.insert(4, os.path.join(os.path.dirname(ICI), "serie-svt"))
 MARQUE = re.compile(r"\{([-!#]?)([^{}]+)\}")
 TYPES = {"titre", "chapitre", "mot", "question", "nuage", "def", "note", "tag", "cit", "portrait", "cols", "cartes", "liste",
          "dialogue", "frise", "tableau", "illu", "carte", "frappe", "flash", "generique", "notion",
-         "anim", "formule", "graphe", "exo", "pause", "jeu", "globe"}
+         "anim", "formule", "graphe", "exo", "pause", "jeu", "globe", "mental"}
 NOTIONS = {"l'art", "le bonheur", "la conscience", "le devoir", "l'état", "l'inconscient", "la justice", "le langage", "la liberté",
            "la nature", "la raison", "la religion", "la science", "la technique", "le temps", "le travail", "la vérité"}
 MOTS_PAR_S = 2.9       # débit du narrateur (calé sur l'épisode 1 : 13,6 min réelles)
@@ -24,7 +25,12 @@ MOTS_PAR_S = 2.9       # débit du narrateur (calé sur l'épisode 1 : 13,6 min 
 
 def illus_connues(site="philo"):
     js = open(os.path.join(RACINE, site, "serie", "moteur.js"), encoding="utf-8").read()
-    return set(re.findall(r"ILLU\.(\w+) = function", js))
+    noms = set(re.findall(r"ILLU\.(\w+) = function", js))
+    d = os.path.join(RACINE, site, "serie")     # SVT : illustrations propres à un chapitre (illu-<code>.js)
+    for f in os.listdir(d):
+        if f.startswith("illu-") and f.endswith(".js"):
+            noms |= set(re.findall(r"SERIE_ILLU\.(\w+) = function", open(os.path.join(d, f), encoding="utf-8").read()))
+    return noms
 
 
 def verifier(nom):
