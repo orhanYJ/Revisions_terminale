@@ -81,7 +81,8 @@ SCENES = [
          beats=[
         "{g2}{g2.1}From 1935 to 1937, the American Congress passes the Neutrality Acts: America will stay out of other people's wars. "
         "In December 1937, Japanese planes sink the American gunboat USS Panay in China. Japan apologises and pays. And it goes further.",
-        "{g2.2}October 1935. Mussolini's Italy invades Ethiopia. Britain refuses the oil embargo that would have stopped him.",
+        "{g2.2}October 1935. Mussolini's Italy invades Ethiopia, in East Africa. Britain refuses the oil embargo that would have stopped him. "
+        "Italy's tanks and planes keep running.",
         "{g2.3}The seventh of March 1936. Hitler sends troops into the Rhineland, a region demilitarised by the Treaty of Versailles. "
         "France and Britain do not move.",
         "{-g2}{g3}{g3.1}March 1938: Germany annexes Austria, the Anschluss. September 1938: at Munich, the British and French prime ministers, "
@@ -190,24 +191,25 @@ SCENES = [
     dict(id="mandch", chap="II.3 · Manchuria: the League against a great power", fond="nuit", humeur="tension",
          retenir="Korea already Japanese · 18 Sept. 1931 Mukden false flag → Manchukuo, a puppet state · Lytton Commission (report Oct. 1932, adopted Feb. 1933) · Japan quits the League (March 1933) · Hoover: no US military action · Kellogg–Briand (1928): war illegal, no enforcement.",
          beats=[
-        "{g4}{mk}Third idea: the League proved unable to stop the aggression of a great power. The test case is Manchuria. "
-        "{mk.1}Korea, next door, is already a Japanese possession. "
-        "{mk.2}On the eighteenth of September 1931, Japanese soldiers organise a {!false-flag attack}false-flag attack on their own railway, at Mukden. "
-        "{mk.3}It is the pretext to invade Manchuria, where they set up Manchukuo, a puppet state. "
-        "{mk.4}The League sends an inquiry, the Lytton Commission. Its report comes only in October 1932, and it condemns Japan. "
-        "{mk.5}When the League adopts the report, in February 1933, Japan simply leaves the League, in March 1933.",
-        "{-mk}{-g4}{hv}And the United States? President Hoover wants no part in any American military action in the Far East.",
+        "{g4}Third idea: the League proved unable to stop the aggression of a great power. The test case is Manchuria. "
+        "Korea, next door, is already a Japanese possession. "
+        "On the eighteenth of September 1931, Japanese soldiers organise a {!false-flag attack}false-flag attack on their own railway, at Mukden. "
+        "It is the pretext to invade Manchuria, where they set up Manchukuo, a puppet state.",
+        "{-g4}{mk}And the League? {mk.1}It sends an inquiry, the Lytton Commission. "
+        "{mk.2}Its report comes only in October 1932, more than a year later, and it condemns Japan. "
+        "{mk.3}The League adopts the report in February 1933. {mk.4}And Japan simply leaves the League, in March 1933. "
+        "{mk.5}No sanction follows.",
+        "{-mk}{hv}And the United States? President Hoover wants no part in any American military action in the Far East.",
         "{-hv}{kb}One more piece of the order collapses here. {!Kellogg–Briand}The Kellogg–Briand Pact of 1928 had declared war illegal, "
         "and bound its signatories to negotiate. {kb.1}But it contained no mechanism to enforce that promise. "
         "Manchuria proved it, three years later.",
         "{-kb}{prom}Remember the formula: {!a promise without a mechanism}a promise without a mechanism.",
     ], vis={
         "g4": dict(type="globe", code="H1", sc=[18]),
-        "mk": dict(type="liste", titre="Manchuria, 1931–1933", bande=True, petit=True, x=60, y=110, w=620,
-                   cles=["Mukden", "puppet", "Lytton", "leaves"], items=[
-                       "Korea: already Japanese", "18 Sept. 1931: false flag at Mukden",
-                       "Invasion; Manchukuo, a puppet state", "Lytton Commission: report Oct. 1932, condemns Japan",
-                       "Report adopted Feb. 1933 → Japan quits the League (March 1933)"]),
+        "mk": dict(type="liste", titre="The League's answer, 1931–1933", cles=["Lytton", "condemns", "leaves", "sanction"], items=[
+            "An inquiry: the Lytton Commission", "Report only in October 1932: it condemns Japan",
+            "February 1933: the League adopts the report", "March 1933: Japan leaves the League", "No sanction"],
+                   x=170, y=120, w=940),
         "hv": dict(type="note", terme="Washington, 1931", cles=["Hoover", "no"],
                    t="President Hoover wants no part in any American military action in the Far East.",
                    etape="The League condemns; nobody acts", x=170, y=220, w=940),
@@ -235,10 +237,10 @@ SCENES = [
         "{jp.3}No American response follows.",
     ], vis={
         "g5": dict(type="globe", code="H1", sc=[20]),
-        "st": dict(type="liste", titre="The Stimson note · 7 January 1932", bande=True, petit=True, x=60, y=110, w=620,
-                   cles=["recognise", "force", "open"], items=[
-                       "To Japan and China", "No recognition of anything brought about by force",
-                       "China's sovereignty and territorial integrity", "The open door: equal commercial access to China"]),
+        "st": dict(type="liste", titre="The Stimson note · 7 Jan. 1932", bande=True, petit=True, x=620, y=380, w=620,
+                   cles=["recognition", "force", "open"], items=[
+                       "To Japan and China", "No recognition of conquest by force",
+                       "China's sovereignty, territorial integrity", "The open door in China"]),
         "od": dict(type="def", terme="The open door policy", cles=["equal", "access"],
                    t="Equal access to commercial opportunities in China for all the main powers.",
                    etape="A principle, and an American trade interest", x=170, y=200, w=940),
@@ -293,11 +295,10 @@ SCENES = [
         "rw": dict(type="mot", t="The president speaks the country's mood", g="Franklin D. Roosevelt, 1936", y=150, taille=56),
         "c_war": dict(type="cit", a="Franklin D. Roosevelt", o="the “I hate war” speech, 1936", x=200, y=300, w=880),
         "g6": dict(type="globe", code="H1", sc=[26]),
-        "pn": dict(type="liste", titre="The USS Panay · December 1937", bande=True, petit=True, x=60, y=130, w=620,
+        "pn": dict(type="liste", titre="The USS Panay · December 1937", bande=True, petit=True, x=620, y=440, w=620,
                    cles=["Panay", "apologises", "licence"], items=[
-                       "Japan bombs the gunboat USS Panay and three US tankers in China",
-                       "Japan apologises, pays, promises no further attacks",
-                       "And reads the American tone as a licence for further aggression"]),
+                       "USS Panay + three US tankers bombed", "Japan apologises, pays, promises",
+                       "… and reads it as a licence"]),
     }),
 
     # ================================================================ VIII. idée 6 : cash and carry
@@ -318,12 +319,12 @@ SCENES = [
         "{cure.2}The same cure as Germany's, applied late, and on the other side.",
     ], vis={
         "g7": dict(type="globe", code="H1", sc=[32]),
-        "cc": dict(type="liste", titre="The Neutrality Act of 1939", bande=True, petit=True, x=60, y=110, w=620,
+        "cc": dict(type="liste", titre="The Neutrality Act of 1939", bande=True, petit=True, x=620, y=440, w=620,
                    cles=["special", "cash", "carry"], items=[
-                       "After war began: Congress in special session", "Weapons sold to the European democracies",
+                       "After war began: special session", "Weapons for the democracies",
                        "Pay cash · carry on your own ships"]),
-        "fv": dict(type="liste", titre="Who does it favour?", bande=True, petit=True, x=60, y=130, w=620,
-                   items=["Whoever controls the sea: Britain and France", "… but only if they have the cash",
+        "fv": dict(type="liste", titre="Who does it favour?", bande=True, petit=True, x=620, y=440, w=620,
+                   items=["Who controls the sea: Britain, France", "… but only if they have the cash",
                           "… and ten years after the crisis"]),
         "ars": dict(type="def", terme="The Arsenal of Democracy", cles=["idle", "1929", "restart"],
                     t="America as arms supplier to the democracies from 1939, without fighting itself.",
@@ -363,11 +364,10 @@ SCENES = [
                     t="Mussolini attacks Ethiopia. Britain refuses the oil embargo that would have stopped him.",
                     etape="Appeasement + American isolationism: the League is blocked", x=170, y=200, w=940),
         "g8": dict(type="globe", code="H1", sc=[29]),
-        "rh": dict(type="liste", titre="Test 2 · the Rhineland, 7 March 1936", bande=True, petit=True, x=60, y=130, w=620,
-                   cles=["intervene", "withdraw", "forty-eight"], items=[
-                       "Demilitarised by Versailles: France and Britain do not intervene",
-                       "German orders: withdraw at the first sign of French resistance",
-                       "Hitler: the forty-eight hours after the march, the most nerve-racking of his life"]),
+        "rh": dict(type="liste", titre="Test 2 · the Rhineland, 7 March 1936", bande=True, petit=True, x=620, y=440, w=620,
+                   cles=["intervene", "withdraw", "48"], items=[
+                       "France and Britain do not intervene", "Orders: withdraw if France resists",
+                       "Hitler: the most nerve-racking 48 hours"]),
         "six": dict(type="liste", titre="Six rational reasons for appeasement", cles=["pacifism", "empire", "unfairly", "economic", "isolationism", "communism"], items=[
             "Pacifism: avoid another world war at all costs", "Britain polices its empire; it cannot afford major rearmament",
             "Sympathy for a Germany treated unfairly in 1918", "Weakened countries: their own economic problems first",
@@ -409,7 +409,7 @@ SCENES = [
             "1936 · Rhineland: no intervention", "March 1938 · Anschluss: Austria annexed",
             "Sept. 1938 · Munich: the Sudetenland ceded", "March 1939 · Prague: all of Czechoslovakia",
             "1 Sept. 1939 · Poland: invasion; war on 3 Sept."], x=120, y=95, w=1040),
-        "mun": dict(type="tableau", img="h1-chamberlain-munich", fond=True, sombre=True, de=[1.0, .5, .4], a=[1.25, .52, .4],
+        "mun": dict(type="tableau", img="h1-chamberlain-munich", fond=True, de=[1.0, .5, .4], a=[1.25, .52, .4],
                     legende="Neville Chamberlain back from Munich, Heston aerodrome, 30 September 1938 (Ministry of Information, Wikimedia Commons, public domain)"),
         "c_mun": dict(type="cit", a="The Munich Agreement", o="29–30 September 1938", x=200, y=200, w=880),
         "ch": dict(type="liste", titre="Heston aerodrome · 30 September 1938", bande=True, petit=True, x=60, y=430, w=620,
@@ -427,11 +427,9 @@ SCENES = [
     dict(id="verif", chap="Watch out: points to check", fond="aube", humeur="calme",
          retenir="Check with M. Ros: Nye Committee (beyond the slides) · Hoover favoured the League (with reservations) · the Neutrality Acts in detail · the Axis pact signed only in 1940.",
          beats=[
-        "{chk}Before the exam, four points to check with Monsieur Ros, as the site's checklist suggests. "
-        "{chk.1}The Nye Committee is an example added by the site, from outside the slides. It is accurate, but prefer the course's own examples if he does. "
-        "{chk.2}Hoover was not an opponent of the League: the opposition was led by Lodge. "
-        "{chk.3}The Neutrality Acts: learn the course's three steps, but do not write that the 1937 Act banned all trade. "
-        "{chk.4}And the Rome–Berlin–Tokyo pact: if you date it, write 1940.",
+        "{chk}Four points to check with Monsieur Ros. {chk.1}The Nye Committee was added by the site, beyond the slides. "
+        "{chk.2}Hoover favoured the League. {chk.3}The 1937 Act did not ban all trade. "
+        "{chk.4}And the Rome–Berlin–Tokyo pact dates from 1940.",
     ], vis={
         "chk": dict(type="liste", titre="To confirm with M. Ros", cles=["Nye", "Hoover", "1937", "1940"], items=[
             "The Nye Committee: added by the site, beyond the slides", "Hoover favoured the League; Lodge led the opposition",
@@ -467,22 +465,22 @@ SCENES = [
         "{-par}{ccl}And the conclusion. {ccl.1}Agree in part: the democracies are responsible for an order they weakened and would not defend; "
         "the aggressors are responsible for the war. {ccl.2}And use the course's own word. {!reluctant}Reluctant. They could have acted, and chose not to.",
     ], vis={
-        "ki": dict(type="question", t="“Blame for the origins of WWII lies in part with the great democratic powers themselves.” How far do you agree?"),
+        "ki": dict(type="question", t="Blame for the origins of WWII lies in part with the great democratic powers themselves. How far do you agree?"),
         "mots": dict(type="liste", titre="Read the question", cles=["part", "democratic", "How"], items=[
             "“In part”: a measured answer", "“The great democratic powers”: Britain, France, the United States",
             "“How far”: for, against, a judgement"], x=150, y=150, w=980),
         "pa1": dict(type="pause", t="How far were the great democracies to blame for the origins of WWII? Write your plan: three or four parts.",
                     sous="Pause the video, write your plan, then play on to compare."),
-        "pl": dict(type="liste", titre="A model plan (essay card of the site)", petit=True, items=[
+        "pl": dict(type="liste", titre="A model plan (essay card of the site)", items=[
             "They built an order they would not underwrite", "They weakened it economically after 1929",
             "They refused to defend it when tested", "But the initiative lay with the militarist regimes"], x=150, y=140, w=980),
         "pa2": dict(type="pause", t="Write the “however” paragraph: why the democracies were not the main culprits.",
                     sous="Pause the video, write five sentences, then play on for a model."),
-        "par": dict(type="liste", titre="A model paragraph (written for the video)", petit=True, items=[
+        "par": dict(type="liste", titre="A model paragraph (written for the video)", items=[
             "However: reluctant, not responsible for the decision for war",
             "Militarism, a deliberate choice in Berlin, Rome, Tokyo",
             "Distress gave the Nazis an audience; it compelled no plunder",
-            "Appeasement had rational reasons", "So: democracies made aggression easier; aggressors chose war"], x=130, y=120, w=1020),
+            "Appeasement had rational reasons", "So: democracies made aggression easier; aggressors chose war"], x=110, y=95, w=1060),
         "ccl": dict(type="def", terme="Conclusion", cles=["part", "reluctant"],
                     t="Agree in part: responsible for an order they weakened and would not defend; the aggressors, for the war.",
                     etape="The course's word: “reluctant”. They could have acted, and chose not to.", x=170, y=200, w=940),

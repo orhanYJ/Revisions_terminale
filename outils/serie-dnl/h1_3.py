@@ -160,9 +160,8 @@ SCENES = [
         "in the 1928 campaign, then grew through vote-trading in Congress: support my tariff, and I'll support yours. "
         "In the end, every industry was protected.",
         "{fiche.4}Who opposed it? A petition of one thousand and twenty-eight economists begged Hoover to veto it. "
-        "Henry Ford called it an economic stupidity. And the banker Thomas Lamont said:",
-        ("C", "I almost went down on my knees", "c_lamont"),
-        "{-c_lamont}{fiche.5}Its aims: protect farms and industry, support jobs, raise customs revenue: a bet on the home market. "
+        "Henry Ford called it an economic stupidity. And the banker Thomas Lamont said he almost went down on his knees to stop it. "
+        "{fiche.5}Its aims: protect farms and industry, support jobs, raise customs revenue: a bet on the home market. "
         "{fiche.6}And its consequences: we come to them in a moment.",
         "{-fiche}{ex2}Hoover signed anyway, under pressure from his party and from business. "
         "{ex2.1}The example to quote: twenty-three countries had lodged formal protests before the bill was even law. "
@@ -178,7 +177,6 @@ SCENES = [
             "Opposed by 1,028 economists, Henry Ford (“an economic stupidity”), Thomas Lamont",
             "Aims: protect farms and industry, jobs, customs revenue",
             "Consequences: see the next idea…"], x=130, y=100, w=1020),
-        "c_lamont": dict(type="cit", a="Thomas Lamont, banker", o="on his efforts to stop the tariff, 1930 (course)", x=200, y=230, w=880),
         "ex2": dict(type="liste", titre="A law that failed before it began", cles=["protests", "lost"], items=[
             "23 countries protest before the vote", "1932: Smoot and Hawley both lose their seats"], x=170, y=170, w=940),
     }),
@@ -187,9 +185,9 @@ SCENES = [
     dict(id="blocs", chap="II.1 · Retaliation and closed blocs", fond="nuit", humeur="tension",
          retenir="Retaliation: Canada (30% of US exports to it), French quotas (1931), British Import Duties Act (10%, 1932), Ottawa “imperial preference” (1932), German autarky. World trade −66% in value, 1929–1934. Free trade is gone.",
          beats=[
-        "Idea three. Did it work? The slides answer their own question with a cartoon, and a caption:",
+        "{q5}Idea three. Did it work? The slides answer their own question with a cartoon, and a caption:",
         ("C", "I'm not sure we nailed it, pal.", "c_pal"),
-        "{-c_pal}{chaine}Because protectionism spreads by {!retaliation}retaliation. {chaine.1}Canada, America's closest trading partner, "
+        "{-c_pal}{-q5}{chaine}Because protectionism spreads by {!retaliation}retaliation. {chaine.1}Canada, America's closest trading partner, "
         "retaliates within days, with new duties on products worth about thirty per cent of American exports to Canada. "
         "And it turns towards the British Empire instead. {chaine.2}France sets up an import quota system in 1931. "
         "{chaine.3}Britain passes the Import Duties Act in 1932: a general tariff of ten per cent on most imports. "
@@ -204,6 +202,7 @@ SCENES = [
         "{-ott}{jug}So, did the tariff cause the Depression? Many historians hold that the Act worsened it. "
         "The more careful judgement, the one to write, is this: {!a downturn into a trade war}it turned a downturn into a trade war.",
     ], vis={
+        "q5": dict(type="question", t="Did it work?"),
         "c_pal": dict(type="cit", a="Caption of a cartoon", o="M. Ros's slides, on Smoot–Hawley", x=200, y=230, w=880),
         "chaine": dict(type="liste", titre="Protectionism spreads by retaliation", cles=["Canada", "quotas", "ten per cent", "autarky"], items=[
             "Canada retaliates within days: 30% of US exports to it", "France: import quotas (1931)",
@@ -404,10 +403,10 @@ SCENES = [
         "{rrr}Idea five. The United States chose the opposite road. Hoover's protectionist policy had proved ineffective. "
         "Roosevelt, a Democrat elected in 1932, promoted a {!New Deal}New Deal and a welfare state: expansionary economics, in three words. "
         "{rrr.1}Relief, for the destitute. {rrr.2}Recovery, for the economy. {rrr.3}Reform, of the system that had failed.",
-        "{-rrr}{fr1}It came in two stages. {fr1.1}The First New Deal, from 1933 to 1935, opens with the emergency laws of the first hundred days. "
+        "{-rrr}It came in two stages. The First New Deal, from 1933 to 1935, opens with the emergency laws of the first hundred days. "
         "Their aim, in Roosevelt's words, quoted by the course:",
         ("C", "helping the millions who never had a chance: men at starvation wages, women in sweatshops, children at looms", "c_fdr"),
-        "{-c_fdr}{fr1.2}The hundred days created the Civilian Conservation Corps and the Tennessee Valley Authority, and insured bank deposits. "
+        "{-c_fdr}{fr1}{fr1.1}Roosevelt, elected in 1932. {fr1.2}The hundred days created the Civilian Conservation Corps and the Tennessee Valley Authority, and insured bank deposits. "
         "{fr1.3}Then the Second New Deal, in 1935, turned relief into rights: the Social Security Act, with pensions and unemployment insurance, "
         "and the Works Progress Administration.",
         "{fr1.4}The course also mentions the Golden Gate Bridge, in San Francisco, which went up from 1933 under the same impulse. "

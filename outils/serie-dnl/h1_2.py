@@ -168,7 +168,7 @@ SCENES = [
         "g4": dict(type="globe", code="H1", sc=[3]),
         "tri": dict(type="liste", titre="The Dawes circuit, 1924 – 1929", cles=["800 million", "2.5 billion", "war debts"], items=[
             "USA → Germany: a loan of 800 million marks (1924)", "Germany → France and Britain: reparations, up to 2.5 billion marks a year",
-            "France and Britain → USA: war-debt repayments"], x=50, y=130, w=620, petit=True, bande=True),
+            "France and Britain → USA: war-debt repayments"], x=540, y=400, w=720, petit=True, bande=True),
         "daw": dict(type="note", terme="Charles G. Dawes", cles=["Nobel", "Vice-President"],
                     t="Author of the 1924 plan; shared the Nobel Peace Prize in 1925 and became Vice-President (1925–1929).",
                     etape="The plan worked — as long as American credit kept flowing.", x=170, y=210, w=940),
@@ -480,7 +480,7 @@ SCENES = [
         "g9": dict(type="globe", code="H1", sc=[12]),
         "ch": dict(type="liste", titre="The chain of the slides", items=[
             "US Great Crash", "US Great Depression", "Worldwide: output falls, mass unemployment, acute deflation"],
-            x=60, y=150, w=600, petit=True, bande=True),
+            x=640, y=440, w=600, petit=True, bande=True),
         "kt": dict(type="def", terme="Key term · World-wide Economic Depression", cles=["integrated", "spared", "identically"],
                    t="A depression that spread across the world economy — but countries not integrated into world markets and trade were largely spared.",
                    etape="World-wide does not mean that every country suffered identically.", x=170, y=200, w=940),
