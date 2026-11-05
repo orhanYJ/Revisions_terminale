@@ -188,8 +188,8 @@ SCENES = [
         "{-tot}{cl}Idea four: Fascism divides humanity into nations, not classes. {cl.g}Marxism says: society is divided into classes in struggle. {cl.d}Fascism says the opposite: what divides humanity is nations, and inside the nation, all classes must be united "
         "under the State. So the Doctrine attacks Socialism, which{-cl}",
         ("C", "confines the movement of history within the class struggle", "c_doc2"),
-        "{-c_doc2}Class struggle is banned: which is why owners frightened by socialism liked Fascism. "
-        "{contre}Idea five. For Monsieur Ros, Fascism is the first totalitarianism, and it is defined by what it rejects. "
+        "{-c_doc2}{ban}Class struggle is banned: which is why owners frightened by socialism liked Fascism. "
+        "{-ban}{contre}Idea five. For Monsieur Ros, Fascism is the first totalitarianism, and it is defined by what it rejects. "
         "{contre.1}It rejects parliamentarism, the rule of elected assemblies. {contre.2}It does not believe in human rights. "
         "{contre.3}It is against liberalism and against Marxism alike. {contre.4}And it is nationalist and militaristic.",
         "{-contre}{ind}Where liberalism starts from the individual and his rights, Fascism starts from the State, "
@@ -204,6 +204,7 @@ SCENES = [
                     d="After the war", dq="an accusation: Arendt, on Nazism and Stalinism", vs="→"),
         "cl": dict(type="cols", g="Marxism", gq="society divided into classes, locked in struggle", d="Fascism",
                    dq="humanity divided into nations; all classes united under the State", vs="≠", repere="Idea 4: nations, not classes"),
+        "ban": dict(type="mot", t="Class struggle banned", g="national unity instead of revolution: owners rallied to Fascism", y=260, taille=84),
         "c_doc2": dict(type="cit", a="Mussolini and Gentile", o="The Doctrine of Fascism, 1932, on Socialism", x=200, y=220, w=880),
         "contre": dict(type="liste", titre="Idea 5 · the first totalitarianism is against…", cles=["parliamentarism", "rights", "liberalism", "nationalist"], items=[
             "Parliamentarism: the rule of elected assemblies", "Human rights: it does not believe they exist",
@@ -253,17 +254,21 @@ SCENES = [
         "{-g5}{plan5}Stalin's Five-Year Plan, launched in 1928, turned this into a programme with two goals. "
         "{plan5.g}First, the Soviet Union had to become an industrial and powerful country, independent of world capitalism. "
         "{plan5.d}Second, it had to oust the last capitalist elements. Above all in the countryside, where most people still farmed their own land.",
-        "{-plan5}The example comes from Worksheet two, source one: Stalin's speech to the Central Committee, the seventh of January 1933. "
-        "The Plan had to transform a country with",
+        "{-plan5}{src1}The example comes from Worksheet two, source one: Stalin's speech to the Central Committee, the seventh of January 1933. "
+        "The Plan had to transform a country with{-src1}",
         ("C", "backward, and in part medieval, technology", "c_st1"),
         "{-c_st1}into a country",
         ("C", "fully self-reliant and independent of the caprices of world capitalism", "c_st2"),
-        "{-c_st2}Notice the date: January 1933. The very months when the famine was killing peasants in Ukraine.",
+        "{-c_st2}{date33}Notice the date: January 1933. The very months when the famine was killing peasants in Ukraine.",
     ], vis={
         "g5": dict(type="globe", code="H2", sc=[12]),
         "plan5": dict(type="cols", g="Goal 1 · industry", gq="an industrial, powerful USSR, independent of world capitalism",
                       d="Goal 2 · the countryside", dq="oust the last capitalist elements: the peasants' own farms",
                       vs="+", repere="The first Five-Year Plan, 1928"),
+        "src1": dict(type="note", terme="Worksheet 2 · source 1", cles=["Stalin", "Plan"],
+                     t="Stalin's speech to the Central Committee, 7 January 1933, on what the Five-Year Plan had to achieve.",
+                     etape="Two goals: industry, and no capitalist elements left", x=170, y=200, w=940),
+        "date33": dict(type="mot", t="January 1933", g="the very months of the famine in Ukraine", y=260, taille=96),
         "c_st1": dict(type="cit", a="Joseph Stalin", o="speech to the Central Committee, 7 January 1933 (Worksheet 2, source 1)", x=200, y=210, w=880),
         "c_st2": dict(type="cit", a="Joseph Stalin", o="speech to the Central Committee, 7 January 1933 (Worksheet 2, source 1)", x=200, y=210, w=880),
     }),
