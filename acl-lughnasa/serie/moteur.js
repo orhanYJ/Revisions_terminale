@@ -729,18 +729,26 @@
        dit  : [nom, texte] (bulle)                 radio : true / false / "parasites"
        masque : [noms] (visage de farine)         surplis : [noms] (vêtement blanc sur la tête)
        ronde : [noms] (ils tournent en cercle)     chemin : {nom: [lieux…]} (trajet lent, ex. Kate dans le jardin)
-       note : texte de didascalie affiché en bas (citation courte)
+       note : texte de didascalie affiché en haut (citation courte)
+       chapeau : {nom: "paille" | "jack" | "tricorne" | "aucun"}   costume : {nom: couleur CSS, ou "blanc"}   bottes : {nom: true | false} (Rose sans ses bottes)
+       tient : {nom: "coq" | "oiseau" | "cigarette" | "sac" | "lettre" | "cerfvolant" | "paille" | "tricorne" | "bouquet" | null}
+       objets : {"kites" | "kites_faces" | "garcon" | "coq" | "valise" | "feu" : lieu, [x, y] ou null}
+         (kites : deux cerfs-volants sans visage ; kites_faces : avec le visage grimaçant ; garcon : l'enfant invisible, en pointillé)
+       lumiere : null | "spot" (seuls les personnages de eclaire, Michael par défaut, restent dans la lumière) | "or" | "sombre"
+       eclaire : [noms]   cam : "cuisine" | "tout" | "porte" | "jardin" | "arbre" | "michael" | "large"
+     Un personnage qui se déplace marche tout seul (jambes et bras), sauf s'il danse.
      Le rendu ne dépend que du temps : retour en arrière et export image par image donnent la même image. */
   var LIEUX = {
     fenetre: [292, 236], radio: [462, 244], buffet: [182, 300], table: [330, 368], porte: [566, 300],
     tricot_a: [404, 452], tricot_r: [238, 452], centre: [330, 420], jardin: [770, 430], banc: [840, 340],
-    allee: [1110, 300], seuil: [600, 380], avant: [470, 520]
+    allee: [1110, 300], seuil: [600, 380], avant: [470, 520],
+    arbre: [1010, 150], kites: [700, 470], michael: [990, 525], arriere: [130, 330], banc_g: [815, 352], banc_d: [865, 352]
   };
   var PERSOS = {
     Kate: { c: "#8fa9d9", h: "#3b3125", femme: true }, Maggie: { c: "#e3a95c", h: "#5a3a22", femme: true, tablier: true },
     Agnes: { c: "#79c2a6", h: "#4a3420", femme: true }, Rose: { c: "#e996a6", h: "#6b4a2a", femme: true, bottes: true },
     Chris: { c: "#c3a2e6", h: "#7a5a36", femme: true }, Jack: { c: "#a9a59a", h: "#d8d4c8", chapeau: "jack" },
-    Gerry: { c: "#d6c07a", h: "#4a3420", chapeau: "paille" }, Michael: { c: "#e6cb8b", h: "#4a3420" }
+    Gerry: { c: "#d6c07a", h: "#4a3420", chapeau: "paille" }, Michael: { c: "#8296bd", h: "#4a3420" }
   };
   function coupe(txt, n) {   // texte en lignes de n caractères au plus
     var out = [], l = "";
@@ -750,7 +758,65 @@
   }
   function lieu(p) { return typeof p === "string" ? (LIEUX[p] || [580, 400]) : p; }
   function echelle(y) { return 1.05 * (0.74 + (y - 200) / 360 * 0.5); }
-  var CAMS = { cuisine: [20, 60, 860, 445], tout: [100, 100, 980, 507], porte: [250, 90, 760, 393] };
+  var CAMS = { cuisine: [20, 60, 860, 445], tout: [100, 100, 980, 507], porte: [250, 90, 760, 393],
+    jardin: [560, 150, 600, 310], arbre: [760, 0, 420, 217], michael: [640, 300, 520, 269], large: [0, 0, 1160, 600] };
+  var COUL = { blanc: "#ece8dc" };
+
+  // objets : dessinés autour de (0, 0) ; tenus = plus petits, au bout du bras
+  function objet(g, o, tenu) {
+    var k = tenu ? .8 : 1, G = sv("g", { transform: "scale(" + k + ")" }, g);
+    if (o === "coq") {   // le coq mort, tenu par les pattes, plumes ébouriffées, taché de sang
+      sv("path", { d: "M0 0 V10 M-3 0 V10", stroke: "#d8a24a", "stroke-width": 2.5 }, G);
+      sv("ellipse", { cx: 0, cy: 24, rx: 11, ry: 15, fill: "#f4f1ea" }, G);
+      sv("path", { d: "M-8 34 l-6 8 M0 38 l0 9 M7 34 l6 8", stroke: "#f4f1ea", "stroke-width": 3 }, G);
+      sv("circle", { cx: 2, cy: 18, r: 4, fill: "#8e2a22" }, G);
+      sv("path", { d: "M-2 38 q2 4 4 0", fill: "#c0392b" }, G);
+    } else if (o === "oiseau") {
+      sv("path", { d: "M-10 0 Q0 -9 10 0 Q0 7 -10 0 Z", fill: "#cbb89a" }, G);
+      sv("circle", { cx: 9, cy: -2, r: 3, fill: "#cbb89a" }, G);
+    } else if (o === "cigarette") {
+      sv("path", { d: "M0 0 h10", stroke: "#f4f1ea", "stroke-width": 3 }, G);
+      sv("circle", { cx: 11, cy: 0, r: 1.8, fill: "#e07a3a" }, G);
+    } else if (o === "sac") {
+      sv("path", { d: "M-10 0 h20 l-3 22 h-14 Z", fill: "#a0784c" }, G);
+      sv("path", { d: "M-6 0 q6 -10 12 0", stroke: "#6b4b2e", "stroke-width": 2, fill: "none" }, G);
+    } else if (o === "lettre") {
+      sv("rect", { x: -9, y: -6, width: 18, height: 13, fill: "#f4f1ea", stroke: "#999" }, G);
+      sv("path", { d: "M-9 -6 L0 2 L9 -6", stroke: "#999", fill: "none" }, G);
+    } else if (o === "bouquet") {
+      sv("path", { d: "M0 0 V18", stroke: "#5f8a4a", "stroke-width": 3 }, G);
+      [[-6, -4, "#e9c46a"], [5, -5, "#e996a6"], [0, -10, "#f4f1ea"]].forEach(function (f) { sv("circle", { cx: f[0], cy: f[1], r: 5, fill: f[2] }, G); });
+    } else if (o === "paille") {
+      sv("path", { d: "M-16 0 H16 M-9 0 Q0 -14 9 0", stroke: "#e8d79a", "stroke-width": 4, fill: "none", "stroke-linecap": "round" }, G);
+    } else if (o === "tricorne") {
+      sv("path", { d: "M-16 0 L0 -14 L16 0 Q0 -5 -16 0 Z", fill: "#e9e4d4", stroke: "#b9b19a" }, G);
+    } else if (o === "cerfvolant" || o === "kites" || o === "kites_faces") {
+      var deux = o !== "cerfvolant" ? [[-34, 0], [34, 4]] : [[0, 0]];
+      deux.forEach(function (p, i) {
+        var c = sv("g", { transform: "translate(" + p[0] + "," + (p[1] - (tenu ? 20 : 60)) + ") scale(" + (tenu ? .55 : 1) + ")" }, G);
+        sv("path", { d: "M0 -40 L28 0 L0 46 L-28 0 Z", fill: i ? "#e3d6b0" : "#d9c79a", stroke: "#8a7448", "stroke-width": 2 }, c);
+        sv("path", { d: "M0 -40 V46 M-28 0 H28", stroke: "#8a7448", "stroke-width": 1.5 }, c);
+        if (!tenu) sv("path", { d: "M0 46 q 8 14 -4 26 q -10 12 4 26", stroke: "#8a7448", "stroke-width": 1.5, fill: "none" }, c);
+        if (o === "kites_faces") {   // « a crude, cruel, grinning face » : yeux et grand sourire grimaçant
+          sv("circle", { cx: -9, cy: -10, r: 4, fill: "#1e2330" }, c); sv("circle", { cx: 9, cy: -10, r: 4, fill: "#1e2330" }, c);
+          sv("path", { d: "M-15 6 Q0 24 15 6 Q0 14 -15 6 Z", fill: "#8e2a22", stroke: "#1e2330", "stroke-width": 2 }, c);
+          sv("path", { d: "M-9 9 v5 M-3 11 v6 M3 11 v6 M9 9 v5", stroke: "#f4f1ea", "stroke-width": 1.5 }, c);
+        }
+      });
+      if (!tenu) sv("ellipse", { cx: 0, cy: 2, rx: 70, ry: 8, fill: "rgba(0,0,0,.25)" }, G);
+    } else if (o === "garcon") {   // l'enfant n'est pas joué : un emplacement vide, en pointillé
+      sv("circle", { cx: 0, cy: -62, r: 9, fill: "none", stroke: "rgba(243,239,228,.45)", "stroke-width": 2, "stroke-dasharray": "3 4" }, G);
+      sv("path", { d: "M-11 -50 Q0 -54 11 -50 L14 -14 L-14 -14 Z", fill: "none", stroke: "rgba(243,239,228,.45)", "stroke-width": 2, "stroke-dasharray": "3 4" }, G);
+      sv("text", { x: 0, y: 14, "text-anchor": "middle", fill: "rgba(243,239,228,.6)", "font-size": 14, "font-style": "italic" }, G, "the boy (unseen)");
+    } else if (o === "valise") {
+      sv("rect", { x: -18, y: -24, width: 36, height: 24, rx: 3, fill: "#6b4b2e", stroke: "#3a2a1a", "stroke-width": 2 }, G);
+      sv("path", { d: "M-6 -24 v-5 h12 v5", stroke: "#3a2a1a", "stroke-width": 2, fill: "none" }, G);
+    } else if (o === "feu") {
+      sv("path", { d: "M-14 0 Q-10 -26 0 -40 Q4 -22 14 -30 Q16 -10 14 0 Z", fill: "#e07a3a", opacity: .85 }, G);
+      sv("path", { d: "M-6 0 Q-4 -14 2 -22 Q6 -10 7 0 Z", fill: "#f4c95d" }, G);
+    }
+    return G;
+  }
 
   function figure(g, nom) {
     var PP = PERSOS[nom] || { c: C.iv, h: "#444" };
@@ -766,8 +832,16 @@
     var cheveux = sv("circle", { cx: 0, cy: -95, r: 14, fill: PP.h }, corps);
     var tete = sv("circle", { cx: 0, cy: -92, r: 11.5, fill: "#f0d6bf" }, corps);
     var masque = sv("circle", { cx: 0, cy: -92, r: 11.8, fill: "#fbfaf6", opacity: 0 }, corps);
-    if (PP.chapeau === "paille") sv("path", { d: "M-20 -104 H20 M-11 -104 Q0 -122 11 -104", stroke: "#e8d79a", "stroke-width": 5, fill: "none", "stroke-linecap": "round" }, corps);
-    if (PP.chapeau === "jack") sv("path", { d: "M-22 -104 H22 M-12 -104 Q0 -124 12 -104", stroke: "#2b2b2b", "stroke-width": 6, fill: "none", "stroke-linecap": "round" }, corps);
+    var chapeaux = {
+      paille: sv("path", { d: "M-20 -104 H20 M-11 -104 Q0 -122 11 -104", stroke: "#e8d79a", "stroke-width": 5, fill: "none", "stroke-linecap": "round" }, corps),
+      jack: sv("path", { d: "M-22 -104 H22 M-12 -104 Q0 -124 12 -104", stroke: "#2b2b2b", "stroke-width": 6, fill: "none", "stroke-linecap": "round" }, corps),
+      tricorne: sv("g", {}, corps)
+    };
+    sv("path", { d: "M-22 -101 L0 -120 L22 -101 Q0 -108 -22 -101 Z", fill: "#e9e4d4", stroke: "#b9b19a", "stroke-width": 1.5 }, chapeaux.tricorne);
+    sv("path", { d: "M2 -118 C 14 -134 26 -132 30 -124 C 22 -126 12 -122 4 -114 Z", fill: "#d8d0bc" }, chapeaux.tricorne);
+    var chapeauDef = PP.chapeau || "aucun";
+    Object.keys(chapeaux).forEach(function (c) { op(chapeaux[c], c === chapeauDef ? 1 : 0); });
+    var tenu = sv("g", {}, corps), tenuNom = null;
     var surplis = sv("path", { d: "M-20 -112 Q0 -126 20 -112 L28 -30 Q0 -22 -28 -30 Z", fill: "#fbfaf6", opacity: 0 }, corps);
     var nomT = sv("text", { x: 0, y: 26, "text-anchor": "middle", fill: PP.c, "font-size": 17, "font-weight": 700 }, gr, nom);
     function bras(e, sx, ang, l) {
@@ -792,13 +866,32 @@
           if (act === "danse_lourde") { jG = .7 * s; jD = -.7 * s; aG = 1.8 + s * .7; aD = -1.8 + s * .7; }
           if (act === "seule") { aG = 1.0 + s * .3; aD = -1.0 + s * .3; }
         } else if (act === "halete") { dy = Math.sin(t * 6 + ph) * 1.5; aG = .35; aD = -.35; }
-        if (extra && extra.main) { aD = -1.4; }
+        else if (act === "pleure") { aG = 2.75; aD = -2.75; dy = 3 + Math.abs(Math.sin(t * 7 + ph)) * 2; rot = 6; }
+        else if (act === "leve") { aG = 2.9 + Math.sin(t * 2 + ph) * .1; aD = -2.9 - Math.sin(t * 2 + ph) * .1; }
+        else if (act === "agenouille") { dy = 20; jG = 1.5; jD = 1.5; aG = 2.4; aD = -2.4; rot = 4; }
+        else if (act === "voute") { rot = 9; aG = .5; aD = .1; dy = 4; }
+        else if (act === "balance") { rot = Math.sin(t * 1.1 + ph) * 4; aG = .3; aD = -.3; }
+        else if (act === "salue") { var sa = Math.sin(t * 1.6 + ph); rot = 14 + sa * 6; aG = .2; aD = -.2; }
+        if (extra && extra.marche && !/danse|seule|assis|tricote|agenouille/.test(act)) {
+          var w = Math.sin(t * 9 + ph); jG = .45 * w; jD = -.45 * w;
+          if (act === "debout" || act === "fige" || act === "halete") { aG = .25 - .35 * w; aD = -.25 - .35 * w; }
+        }
+        if (tenuNom) { aG = -1.0; }
         bras(bg, -12, aG, 30); bras(bd, 12, aD, 30); jambe(jg, -7, jG); jambe(jd, 7, jD);
+        tenu.setAttribute("transform", "translate(" + (-12 + Math.sin(aG) * 30).toFixed(1) + "," + (-72 + Math.cos(aG) * 30).toFixed(1) + ")");
         corps.setAttribute("transform", "translate(0," + dy.toFixed(1) + ") rotate(" + rot.toFixed(1) + " 0 -40)");
         gr.setAttribute("transform", "translate(" + x.toFixed(1) + "," + y.toFixed(1) + ") scale(" + k.toFixed(3) + ")");
         op(ombre, act === "assis" || act === "tricote" ? .2 : 1);
       },
-      masque: function (a) { op(masque, a); }, surplis: function (a) { op(surplis, a * .95); }
+      masque: function (a) { op(masque, a); }, surplis: function (a) { op(surplis, a * .95); },
+      bottes: function (b) { b = b == null ? !!PP.bottes : b; [jg, jd].forEach(function (j) { j.setAttribute("stroke", b ? "#2c2c2c" : "#d9d2c0"); j.setAttribute("stroke-width", b ? 9 : 6); }); },
+      chapeau: function (c) { c = c || chapeauDef; Object.keys(chapeaux).forEach(function (x) { op(chapeaux[x], x === c ? 1 : 0); }); },
+      costume: function (c) { c = COUL[c] || c || PP.c; robe.setAttribute("fill", c); bg.setAttribute("stroke", c); bd.setAttribute("stroke", c); },
+      tient: function (o) {
+        if (o === tenuNom) return; tenuNom = o;
+        while (tenu.firstChild) tenu.removeChild(tenu.firstChild);
+        if (o) objet(tenu, o, true);
+      }
     };
   }
 
@@ -827,19 +920,25 @@
     });
     var notes = [0, 1, 2, 3].map(function () { return sv("text", { x: 0, y: 0, fill: C.sa, "font-size": 24, opacity: 0 }, monde, "♪"); });
     var statique = sv("path", { d: "M492 120 l6 -8 l5 10 l6 -12 l5 9", stroke: C.iv2, "stroke-width": 2, fill: "none", opacity: 0 }, monde);
+    var spots = sv("g", {}, monde), objG = sv("g", {}, monde), objEls = {};
     var calque = sv("g", {}, monde);
+    var voileOr = sv("rect", { x: -200, y: -200, width: 1600, height: 1000, fill: "rgba(232,188,104,.16)", opacity: 0 }, monde);
     var bulleG = sv("g", { opacity: 0 }, s), bulleR = sv("rect", { rx: 12, fill: "#fbfaf6" }, bulleG),
       bulleQ = sv("path", { d: "", fill: "#fbfaf6" }, bulleG), bulleT = sv("text", { "text-anchor": "middle", "font-size": 22, fill: "#1e2330", "font-weight": 600 }, bulleG);
-    var noteG = sv("g", { opacity: 0 }, s), noteR = sv("rect", { x: 80, y: 6, width: 1000, height: 36, rx: 10, fill: "rgba(8,12,22,.72)" }, noteG),
-      noteT = sv("text", { x: 580, y: 31, "text-anchor": "middle", "font-size": 20, fill: C.iv, "font-style": "italic", class: "ser" }, noteG);
+    var noteG = sv("g", { opacity: 0 }, s), noteR = sv("rect", { x: 80, y: 18, width: 1000, height: 36, rx: 10, fill: "rgba(8,12,22,.72)" }, noteG),
+      noteT = sv("text", { x: 580, y: 43, "text-anchor": "middle", "font-size": 20, fill: C.iv, "font-style": "italic", class: "ser" }, noteG);
 
     // états cumulés
-    var noms = v.persos, ETATS = [], cur = { pos: {}, act: {}, masque: {}, surplis: {}, ronde: null, chemin: {}, radio: false, dit: null, note: null };
+    var noms = v.persos, ETATS = [], cur = { pos: {}, act: {}, masque: {}, surplis: {}, ronde: null, chemin: {}, radio: false, dit: null, note: null,
+      chapeau: {}, costume: {}, bottes: {}, tient: {}, objets: {}, lumiere: null, eclaire: ["Michael"] };
     (v.etats || []).forEach(function (st, k) {
       var n = { pos: Object.assign({}, cur.pos), act: Object.assign({}, cur.act), masque: Object.assign({}, cur.masque),
         surplis: Object.assign({}, cur.surplis), ronde: st.ronde !== undefined ? st.ronde : cur.ronde, chemin: {},
         radio: st.radio !== undefined ? st.radio : cur.radio, cam: st.cam || cur.cam || "cuisine", dit: st.dit || null, note: st.note !== undefined ? st.note : null };
       Object.assign(n.pos, st.pos || {}); Object.assign(n.act, st.act || {});
+      n.chapeau = Object.assign({}, cur.chapeau, st.chapeau || {}); n.costume = Object.assign({}, cur.costume, st.costume || {}); n.bottes = Object.assign({}, cur.bottes, st.bottes || {});
+      n.tient = Object.assign({}, cur.tient, st.tient || {}); n.objets = Object.assign({}, cur.objets, st.objets || {});
+      n.lumiere = st.lumiere !== undefined ? st.lumiere : cur.lumiere; n.eclaire = st.eclaire || cur.eclaire;
       (st.masque || []).forEach(function (x) { n.masque[x] = 1; }); (st.surplis || []).forEach(function (x) { n.surplis[x] = 1; });
       (st.sans_surplis || []).forEach(function (x) { n.surplis[x] = 0; });
       // un trajet continue d'un état à l'autre jusqu'à ce qu'un état redonne une position au personnage
@@ -853,6 +952,8 @@
     });
     var figs = {}; noms.forEach(function (nm) { figs[nm] = figure(calque, nm); });
     function tEtat(k) { return k === 0 ? v.t0 : et(v, String(k), 2 + 3 * k); }
+    function kAt(t) { var k = 0; for (var i = 1; i < ETATS.length; i++) if (t >= tEtat(i)) k = i; return k; }
+    var halo = {}; noms.forEach(function (nm) { halo[nm] = sv("ellipse", { rx: 70, ry: 22, fill: "rgba(250,236,200,.22)", opacity: 0 }, spots); });
     function posA(st, nm) { var p = st.pos[nm]; return p === "off" || p == null ? null : lieu(p); }
     function posAt(k, nm, t) {
       var S = ETATS[k], tk = tEtat(k);
@@ -880,8 +981,8 @@
       return pts[pts.length - 1];
     }
     return function (t, st) {
-      var a = E(P(t, v.t0, .8)); op(dec, a);
-      var k = 0; for (var i = 1; i < ETATS.length; i++) if (t >= tEtat(i)) k = i;
+      var a = E(P(t, v.t0, .8));
+      var k = kAt(t);
       var S = ETATS[k], prev = ETATS[Math.max(0, k - 1)], t0k = tEtat(k);
       var u = k ? EIO(P(t, t0k, S.duree)) : 1;
       var c1 = CAMS[S.cam] || CAMS.tout, c0 = CAMS[prev.cam] || c1, uc = k ? EIO(P(t, t0k, 2.2)) : 1;
@@ -897,6 +998,21 @@
       });
       op(statique, S.radio === "parasites" ? (0.5 + 0.5 * Math.sin(t * 25)) * a : 0);
       radio.setAttribute("stroke-width", on ? 3 + Math.sin(t * 8) : 2);
+      // objets posés : apparition en fondu, position fixe
+      var tousObj = {}; ETATS.forEach(function (X) { Object.keys(X.objets).forEach(function (o) { tousObj[o] = 1; }); });
+      Object.keys(tousObj).forEach(function (o) {
+        var p1 = S.objets[o] ? lieu(S.objets[o]) : null, p0 = prev.objets[o] ? lieu(prev.objets[o]) : null, p = p1 || p0;
+        if (!objEls[o]) { objEls[o] = sv("g", {}, objG); objet(objEls[o], o, false); }
+        var w = (p1 ? 1 : 0), w0 = k ? (p0 ? 1 : 0) : w, al = w0 + (w - w0) * u;
+        if (p) objEls[o].setAttribute("transform", "translate(" + p[0] + "," + p[1] + ") scale(" + echelle(p[1]).toFixed(3) + ")");
+        op(objEls[o], al * a);
+      });
+      // lumière : projecteur sur Michael (ou sur eclaire), reste du plateau dans l'ombre ; voile doré
+      var nv = function (X) { return X.lumiere === "spot" ? .72 : X.lumiere === "sombre" ? .55 : 0; };
+      var dim = nv(prev) + (nv(S) - nv(prev)) * (k ? u : 1);
+      var orA = (prev.lumiere === "or" ? 1 : 0) + ((S.lumiere === "or" ? 1 : 0) - (prev.lumiere === "or" ? 1 : 0)) * (k ? u : 1);
+      op(voileOr, orA * a);
+      op(dec, a * (1 - dim)); op(objG, 1 - dim * .6);
       var ordre = [];
       noms.forEach(function (nm, idx) {
         var F = figs[nm], act = S.act[nm] || "debout";
@@ -905,10 +1021,16 @@
         var vis1 = la(S), vis0 = k ? la(prev) : vis1;
         vis = vis0 + (vis1 - vis0) * u;
         if (!q) { var q0 = k ? posAt(k - 1, nm, t0k) : null; if (q0) { x = q0[0]; y = q0[1]; } }
-        F.pose(x, y, act, t, idx * 1.7);
-        op(F.g, vis * a);
+        var qm = q ? posAt(kAt(t - .08), nm, t - .08) : null;
+        var marche = qm && Math.hypot(qm[0] - x, qm[1] - y) > 1.2 && !(S.ronde && S.ronde.indexOf(nm) >= 0);
+        F.chapeau(S.chapeau[nm]); F.costume(S.costume[nm]); F.bottes(S.bottes[nm]); F.tient(S.tient[nm] || null);
+        F.pose(x, y, act, t, idx * 1.7, { marche: marche });
+        var lu = S.eclaire.indexOf(nm) >= 0 ? 1 : 1 - dim * .75;
+        op(F.g, vis * a * lu);
         F.masque(S.masque[nm] ? (prev.masque[nm] ? 1 : u) : 0);
         F.surplis(S.surplis[nm] ? (prev.surplis[nm] ? 1 : u) : 0);
+        halo[nm].setAttribute("cx", x.toFixed(1)); halo[nm].setAttribute("cy", (y + 2).toFixed(1));
+        op(halo[nm], dim > 0 && S.eclaire.indexOf(nm) >= 0 ? vis * a * dim / .72 : 0);
         ordre.push([y, F.g]);
         F._x = x; F._y = y;
       });

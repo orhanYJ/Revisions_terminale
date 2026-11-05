@@ -1,7 +1,16 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 2 : un après-midi d'août (PDF de travail, p. 2-9).
 
-Même format que la partie 1 (voir dal_1.py) : ce qui se passe, citations clés lues et expliquées, analyse en fin de partie.
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés sur le plateau) :
+l'après-midi est joué pas à pas d'après les didascalies (visuel jeu) : les tâches en silence, le miroir, les chansons
+(« Abyssinia », « De Valera »), les trois secondes des « British Grenadiers » sur Marconi, le secret de Rose
+(Danny Bradley, le charme et la médaille), le tango de Maggie, puis la convention de l'enfant invisible (p. 6 : le garçon
+n'est jamais joué, Michael adulte dit ses répliques ; ici une silhouette en pointillé près des cerfs-volants) et le
+monologue de Michael sur Jack (p. 9). Les répliques courtes s'affichent en bulles et sont lues par les voix des
+personnages. Puis cinq répliques expliquées et l'analyse.
+
+Vidéo en anglais, même chaîne que les séries philo : outils/serie-philo/generer.py dal_2.
 Citations courtes, vérifiées sur les images des pages ; le contexte extérieur au texte est dit comme tel.
+Coquilles du PDF non reproduites (p. 3 : « wouldn't it?.. » ; p. 4 : « HE's »).
 """
 
 SITE = "acl-lughnasa"
@@ -11,7 +20,18 @@ NOTION = "Dancing at Lughnasa"
 NUM = 2
 TITRE = "An August afternoon"
 SUIVANT = "Part 3 · The harvest dance"
-PRONONCIATION = {"Lughnasa": "Loo-na-sa", "Lugh": "Loo", "Abyssinia": "Abby-sinnia", "Valera": "Va-lair-a"}
+PRONONCIATION = {"Lughnasa": "Loo-na-sa", "Lugh": "Loo", "Abyssinia": "Abby-sinnia", "Valera": "Va-lair-a",
+                 "Tchook": "Chook", "tchook": "chook"}
+
+PERSOS = ["Maggie", "Agnes", "Rose", "Chris", "Michael"]
+MICHAEL = [1000, 552]          # « downstage left » (p. 1), « stands L » (p. 6) : au bord du plateau, à droite vu de la salle
+FOURNEAU = [240, 262]          # « the large box beside the range » (p. 2)
+MIROIR = [378, 234]            # « the tiny mirror on the wall » (p. 2)
+PATEE = [482, 352]             # Maggie prépare la pâtée des poules (p. 2) : lieu non précisé par le texte
+GARCON = [780, 460]            # l'enfant imaginaire, aux cerfs-volants (p. 4 et 6) ; même place que dans les parties 3 et 4
+# où chacune travaille quand Maggie sort (p. 6)
+TACHES = dict(pos={"Chris": "table", "Agnes": "tricot_a", "Rose": FOURNEAU, "Maggie": PATEE},
+              act={"Chris": "repasse", "Agnes": "tricote", "Rose": "debout", "Maggie": "range"})
 
 SCENES = [
     # ------------------------------------------------------------------ ouverture
@@ -31,150 +51,236 @@ SCENES = [
                       sous="The kitchen, the songs, the boy, the leper priest · pages 2 – 9"),
     }),
 
-    # ------------------------------------------------------------------ I. le travail et le miroir
-    dict(id="miroir", chap="Work and the mirror", fond="aube", humeur="lumiere",
-         retenir="Small talk, big subtext: desire and Kate's authority are present even when Kate is not.", beats=[
-        "{taches}Look first at the stage directions. Michael, Kate, Gerry and Jack go off. The others busy themselves. "
-        "{taches.1}Maggie makes a mash for the hens. {taches.2}Agnes knits gloves. {taches.3}Rose carries turf for the fire. "
-        "{taches.4}Chris irons at the kitchen table. And they all work in silence.",
-        "Then Chris stops, goes to the tiny mirror on the wall, and looks at her face.",
-        "{-taches}",
-        ("C", "When are we going to get a decent mirror to see ourselves in?", "c_mirror", {"voix": "F"}),
-        "{-c_mirror}{mirror}It is a cracked mirror, and Maggie won't throw it away: she broke it, and the only way to avoid "
-        "seven years' bad luck is to keep using it. Superstition, already. "
-        "And notice the image: these women cannot see themselves properly. Their lives are reflected back to them broken.",
-        "Then Chris says she might start wearing lipstick. Maggie teases her.",
-        "{-mirror}",
-        ("C", "Steady on, girl. Today it's lipstick; tomorrow it's the gin bottle.", "c_lip", {"voix": "F"}),
-        "And Agnes adds a line in someone else's voice.",
-        "{-c_lip}",
+    # ------------------------------------------------------------------ I. le travail et le miroir (p. 2-3)
+    dict(id="miroir", chap="Work and the mirror", fond="nuit", humeur="lumiere", beats=[
+        "{jeu1}Page two. The four sisters who stayed on stage busy themselves with their tasks. "
+        "{jeu1.1}Maggie makes a mash for the hens, Agnes knits gloves, Chris irons, "
+        "{jeu1.2}and Rose empties a basket of turf into the box beside the range. They all work in silence.",
+        "{jeu1.3}Then Chris goes to the tiny mirror on the wall.",
+        ("C", "When are we going to get a decent mirror to see ourselves in?", "jeu1.4", {"voix": "F"}),
+        "{jeu1.5}It is cracked. But Maggie broke it, and:",
+        ("C", "the only way to avoid seven years bad luck is to keep on using it.", "jeu1.6", {"voix": "F"}),
+        "A cracked mirror: they cannot see themselves properly. {jeu1.7}Then Chris thinks she might start wearing lipstick.",
+        ("C", "Steady on, girl. Today it's lipstick; tomorrow it's the gin bottle.", "jeu1.8", {"voix": "F"}),
+        ("C", "As long as Kate's not around. 'Do you want to make a pagan of yourself?'", "jeu1.9", {"voix": "F"}),
+        "{jeu1.10}Chris goes back to her ironing, and holds up a surplice: a priest's white vestment.",
+        ("C", "Make a nice dress that, wouldn't it? … God forgive me…", "jeu1.11", {"voix": "F"}),
+    ], vis={
+        "jeu1": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Maggie": "fenetre", "Chris": "porte", "Rose": "banc_g", "Agnes": [925, 238]},
+                 act={"Maggie": "fige", "Chris": "fige", "Rose": "assis", "Agnes": "fige"}, cam="tout",
+                 note="“The kitchen and garden are now lit as for a warm summer afternoon.” (p. 2)"),
+            dict(pos={"Maggie": PATEE, "Chris": "table"}, act={"Maggie": "range", "Chris": "repasse", "Rose": "debout"},
+                 chemin={"Agnes": [[925, 238], "porte", "tricot_a"], "Rose": ["banc_g", "porte", FOURNEAU]},
+                 chemin_duree=6, tient={"Rose": "sac"}, note="Maggie: a mash for hens. Agnes knits gloves. Chris irons."),
+            dict(pos={"Agnes": "tricot_a", "Rose": FOURNEAU}, act={"Agnes": "tricote", "Rose": "range"}, cam="cuisine",
+                 note="Rose empties a basket of turf into the box beside the range. “They all work in silence.”"),
+            dict(pos={"Chris": MIROIR}, act={"Chris": "debout", "Rose": "debout"}, tient={"Rose": None},
+                 note="Chris “goes to the tiny mirror on the wall and scrutinizes her face”"),
+            dict(dit=["Chris", "When are we going to get a decent mirror to see ourselves in?"]),
+            dict(note="“I'm going to throw this aul cracked thing out.” · Maggie: “I'm the one that broke it…”"),
+            dict(dit=["Maggie", "…the only way to avoid seven years bad luck is to keep on using it."]),
+            dict(note="“I think I just might start wearing lipstick.”"),
+            dict(dit=["Maggie", "Steady on, girl. Today it's lipstick; tomorrow it's the gin bottle."]),
+            dict(dit=["Agnes", "As long as Kate's not around. 'Do you want to make a pagan of yourself?'"]),
+            dict(pos={"Chris": "table"}, act={"Chris": "repasse"}, note="She goes back to her ironing. “She holds up a surplice.”"),
+            dict(dit=["Chris", "Make a nice dress that, wouldn't it? … God forgive me…"]),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ II. chansons et Marconi (p. 3-4)
+    dict(id="chansons", chap="Songs and the wireless", fond="nuit", humeur="lumiere", beats=[
+        "{jeu2}Page three. Nobody speaks. Then, suddenly, Rose bursts into raucous song.",
+        ("C", "Will you come to Abyssinia, will you come? Bring your own cup and saucer and a bun…", "jeu2.1", {"voix": "F"}),
+        "{jeu2.2}She dances a gauche, graceless shuffle.",
+        ("C", "Mussolini will be there with his airplanes in the air,", "jeu2.3", {"voix": "F"}),
+        "{jeu2.4}Maggie, trying to light a very short cigarette butt, hitches her own skirt even higher than Rose's, "
+        "and does a similar shuffle.",
+        ("C", "A right pair of pagans, the two of you.", "jeu2.5", {"voix": "F"}),
+        "{jeu2.6}Rose switches Marconi on: a sudden, loud, three-second blast of The British Grenadiers… "
+        "{jeu2.7}and the music suddenly dies. The battery is dead.",
+        "{jeu2.8}Is Abyssinia in Africa, Rose asks. Is that where Father Jack was?",
+        ("C", "Jack was in Uganda, Rosie. That's a different part of Africa. You know that.", "jeu2.9", {"voix": "F"}),
+        "{jeu2.10}Then Maggie catches her hand, and sings softly into her ear, to the same melody:",
+        ("C", "Will you vote for De Valera, will you vote?", "jeu2.11", {"voix": "F"}),
+        "{jeu2.12}And the two of them dance the last line together.",
+    ], vis={
+        "jeu2": dict(type="jeu", persos=PERSOS, etats=[
+            dict(**TACHES, cam="cuisine", note="“Work continues. Nobody speaks.” (p. 3)"),
+            dict(dit=["Rose", "Will you come to Abyssinia, will you come? Bring your own cup and saucer and a bun…"]),
+            dict(act={"Rose": "danse_lourde"}, note="“a gauche, graceless shuffle that defies the rhythm of the song”"),
+            dict(dit=["Rose", "Mussolini will be there with his airplanes in the air,"]),
+            dict(act={"Maggie": "danse_lourde"}, tient={"Maggie": "cigarette"},
+                 note="Maggie hitches her skirt “even higher than Rose's” and does a similar shuffle."),
+            dict(dit=["Agnes", "A right pair of pagans, the two of you."]),
+            dict(pos={"Rose": "radio"}, act={"Maggie": "debout", "Rose": "debout"}, tient={"Maggie": None}, radio=True,
+                 note="“a sudden, loud three-second blast of ‘The British Grenadiers’”"),
+            dict(radio=False, note="“and the music suddenly dies” · “Told you.”"),
+            dict(note="“Is Abyssinia in Africa, Aggie?” … “But that's not where Father Jack was, is it?” (pp. 3 – 4)"),
+            dict(dit=["Agnes", "Jack was in Uganda, Rosie. That's a different part of Africa. You know that."]),
+            dict(pos={"Maggie": [418, 250]}, note="“MAGGIE catches her hand and sings softly into her ear”"),
+            dict(dit=["Maggie", "Will you vote for De Valera, will you vote?"]),
+            dict(act={"Maggie": "danse_lourde", "Rose": "danse_lourde"}, note="They dance as they sing the final line of the song."),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ III. le secret de Rose (p. 4-6)
+    dict(id="secret", chap="Rose's secret", fond="nuit", humeur="tension", beats=[
+        "{jeu3}Back to work. Agnes looks out of the window, {jeu3.1}on to the garden.",
+        ("C", "What's that son of yours at out there?", "jeu3.2", {"voix": "F"}),
+        "{jeu3.3}The boy is making something that looks like a kite. Agnes taps on the window and blows a kiss "
+        "to the imaginary child. {jeu3.4}Then she goes back to her seat.",
+        "{jeu3.5}Page five. Rose may go to the pictures next Saturday, and meet somebody there.",
+        ("C", "And he wants to bring me up to the back hills next Sunday – up to Lough Anna.", "jeu3.6", {"voix": "F"}),
+        ("C", "Danny Bradley is a scut, Rose.", "jeu3.7", {"voix": "F"}),
+        ("C", "He's a married man with three young children.", "jeu3.8", {"voix": "F"}),
+        "{jeu3.9}His wife has left him and gone to England, says Rose: you're all jealous of me! "
+        "{jeu3.10}And she opens the front of her apron. A charm and a medal are pinned to her jumper. "
+        "The charm is from Danny.",
+        ("C", "I wear it all the time – beside my miraculous medal.", "jeu3.11", {"voix": "F"}),
+        "A love token next to a holy medal.",
+        ("C", "I love him, Aggie.", "jeu3.12", {"voix": "F"}),
+        ("C", "Bastard.", "jeu3.13", {"voix": "F"}),
+        "{jeu3.14}Rose is on the point of tears. Silence.",
+        ("P", 1.2),
+        "{jeu3.15}Then Maggie takes her hen-bucket as a dancing partner, and does a very fast, very exaggerated tango "
+        "across the kitchen floor, singing The Isle of Capri.",
+        ("C", "Summer time was nearly over; Blue Italian skies above.", "jeu3.16", {"voix": "F"}),
+        "{jeu3.17}And she exits by the back door, calling her hens.",
+        ("C", "Tchook-tchook-tchook-tchook…", "jeu3.18", {"voix": "F"}),
+    ], vis={
+        "jeu3": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Agnes": "buffet", "Rose": FOURNEAU, "Maggie": PATEE, "Chris": "table"},
+                 act={"Agnes": "range", "Rose": "debout", "Maggie": "range", "Chris": "repasse"}, cam="tout",
+                 objets={"kites": "kites", "garcon": GARCON}, note="“AGNES goes to the cupboard for wool.” (p. 4)"),
+            dict(pos={"Agnes": "fenetre"}, act={"Agnes": "debout"}),
+            dict(dit=["Agnes", "What's that son of yours at out there?"]),
+            dict(note="“She taps on the window, calls ‘Michael!’ and blows a kiss to the imaginary child.”"),
+            dict(pos={"Agnes": "tricot_a"}, act={"Agnes": "tricote"}, cam="cuisine",
+                 note="“Pity there aren't some boys about to play with.” · “Couldn't we all do with that?”"),
+            dict(note="“There's going to be pictures in the hall next Saturday, Aggie.” (p. 5)"),
+            dict(dit=["Rose", "And he wants to bring me up to the back hills next Sunday – up to Lough Anna."]),
+            dict(dit=["Chris", "Danny Bradley is a scut, Rose."]),
+            dict(dit=["Chris", "He's a married man with three young children."]),
+            dict(note="“And you're jealous, too! … you're jealous of me!”"),
+            dict(note="“She opens the front of her apron. A charm and a medal are pinned to her jumper.”"),
+            dict(dit=["Rose", "I wear it all the time – beside my miraculous medal."], note="(p. 6)"),
+            dict(dit=["Rose", "I love him, Aggie."]),
+            dict(dit=["Chris", "Bastard."], note="(Softly.)"),
+            dict(act={"Rose": "fige"}, note="“She is on the point of tears. Silence.”"),
+            dict(act={"Maggie": "danse"}, chemin={"Maggie": [PATEE, [530, 505], [190, 505]]}, chemin_duree=6,
+                 note="Maggie's tango with her hen-bucket: “very fast and very exaggerated”"),
+            dict(dit=["Maggie", "Summer time was nearly over; Blue Italian skies above."]),
+            dict(pos={"Maggie": "arriere"}, act={"Maggie": "debout"}, duree=2.5, note="She exits by the back door, calling her hens."),
+            dict(pos={"Maggie": "off"}, dit=["Maggie", "Tchook-tchook-tchook-tchook…"]),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ IV. l'enfant invisible (p. 6-8)
+    dict(id="enfant", chap="The boy who isn't there", fond="nuit", humeur="mystere", beats=[
+        "{jeu4}Michael, the adult narrator, enters, and stands at the side of the stage. "
+        "{jeu4.1}Rose throws turf into the range, where Chris had an iron; {jeu4.2}then she helps Agnes with the wool.",
+        "{jeu4.3}Now Friel sets up a convention. The boy Michael is imaginary: he is working at the kite materials "
+        "lying on the ground. {jeu4.4}When the sisters talk to him, the adult Michael answers, in his ordinary narrator's voice.",
+        "{jeu4.5}Maggie enters the garden from the back of the house.",
+        ("C", "What are these supposed to be?", "jeu4.6", {"voix": "F"}),
+        ("C", "Kites.", "jeu4.7"),
+        ("C", "I'll give you a penny if those things ever leave the ground. Right?", "jeu4.8", {"voix": "F"}),
+        ("C", "You're on.", "jeu4.9"),
+        "{jeu4.10}She squats down beside him and tries her riddles on him. He gives up, again and again.",
+        ("C", "Look out – there's a rat!", "jeu4.11"),
+        "{jeu4.12}She screams, and leaps to her feet in terror.",
+        ("C", "Caught you again, Aunt Maggie.", "jeu4.13"),
+        "{jeu4.14}Maggie moves off towards the back of the house, stops, and throws him a sweet.",
+        ("C", "There. I hope it chokes you.", "jeu4.15", {"voix": "F"}),
+        "{jeu4.16}And she exits.",
+    ], vis={
+        "jeu4": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Agnes": "tricot_a", "Rose": FOURNEAU, "Chris": "table", "Michael": MICHAEL},
+                 act={"Agnes": "tricote", "Rose": "fige", "Chris": "repasse", "Michael": "debout"}, cam="tout",
+                 objets={"kites": "kites", "garcon": GARCON}, note="“MICHAEL enters and stands L.” (p. 6)"),
+            dict(act={"Rose": "range"}, note="“ROSE takes the lid off the range and throws turf into the fire.”"),
+            dict(pos={"Rose": "tricot_r"}, act={"Rose": "tricote"}, note="“For God's sake, I have an iron in there!” · “Rosie, love, would you give me a hand with this.”"),
+            dict(note="“the [imaginary BOY MICHAEL is working at the kite materials lying on the ground”"),
+            dict(note="“MICHAEL responds to MAGGIE in his ordinary narrator's voice.”"),
+            dict(pos={"Maggie": [740, 290]}, act={"Maggie": "debout"}, note="“MAGGIE enters the garden from the back of the house.”"),
+            dict(pos={"Maggie": [615, 440]}, dit=["Maggie", "What are these supposed to be?"]),
+            dict(dit=["Michael", "Kites."], note="The boy's lines, spoken by adult Michael"),
+            dict(dit=["Maggie", "I'll give you a penny if those things ever leave the ground. Right?"], note="(p. 7)"),
+            dict(dit=["Michael", "You're on."], note="(p. 8)"),
+            dict(pos={"Maggie": [738, 520]}, act={"Maggie": "agenouille"}, note="“She now squats down beside him.” · “Give up.”"),
+            dict(dit=["Michael", "Look out – there's a rat!"]),
+            dict(act={"Maggie": "debout"}, note="“She screams and leaps to her feet in terror.”"),
+            dict(dit=["Michael", "Caught you again, Aunt Maggie."]),
+            dict(pos={"Maggie": [740, 290]}, duree=2, note="“Again she stops and throws him a sweet.”"),
+            dict(dit=["Maggie", "There. I hope it chokes you."]),
+            dict(pos={"Maggie": "off"}, note="(Exits.)"),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ V. le prêtre des lépreux (p. 9)
+    dict(id="pretre", chap="Our own leper priest", fond="nuit", humeur="calme", beats=[
+        "{jeu5}Page nine. Michael speaks to us again; in the kitchen, the women go on working. "
+        "Why was he so shocked by Jack's appearance?",
+        ("C", "I expected – well, I suppose, the hero from a schoolboy's book.", "jeu5.1"),
+        "{jeu5.2}He had once seen a photograph of Jack in his officer's uniform, a chaplain to the British forces in 1917. "
+        "{jeu5.3}But Kate snatched it from him: she had been involved in the War of Independence, so Jack's British army career "
+        "was never referred to in that house.",
+        "{jeu5.4}To the sisters, Jack was a hero and a saint. They prayed for him and saved for him. "
+        "{jeu5.5}The local paper called him our own leper priest, and the family enjoyed a little status in the parish.",
+        ("C", "And it must have helped my aunts to bear the shame Mother brought on the household", "jeu5.6"),
+        ("C", "by having me – as it was called then – out of wedlock.", "jeu5.7"),
+        ("P", 1.0),
+    ], vis={
+        "jeu5": dict(type="jeu", persos=PERSOS, etats=[
+            dict(pos={"Agnes": "tricot_a", "Rose": "tricot_r", "Chris": "table", "Michael": MICHAEL},
+                 act={"Agnes": "tricote", "Rose": "tricote", "Chris": "repasse", "Michael": "debout"}, cam="tout",
+                 objets={"kites": "kites", "garcon": GARCON}, lumiere="spot", note="Michael speaks to the audience. (p. 9)"),
+            dict(dit=["Michael", "I expected – well, I suppose, the hero from a schoolboy's book."]),
+            dict(note="A photograph of Jack “radiant and splendid in his officer's uniform”, 1917"),
+            dict(note="Kate snatched it: she had been involved in the War of Independence."),
+            dict(note="“a hero and a saint to my mother and to my aunts” · “sixpence here, a shilling there”"),
+            dict(note="“‘our own leper priest,’ as they called him”: “that little bit of status”"),
+            dict(dit=["Michael", "And it must have helped my aunts to bear the shame Mother brought on the household"]),
+            dict(dit=["Michael", "by having me – as it was called then – out of wedlock."]),
+        ]),
+    }),
+
+    # ------------------------------------------------------------------ VI. cinq répliques à connaître
+    dict(id="repliques2", chap="Three lines to know", fond="aube", humeur="calme",
+         retenir="Kate's voice in Agnes's mouth, the invisible boy, “the shame”: rules, memory, reputation.", beats=[
+        "{cinq2}An afternoon of small talk… and three lines that carry the whole play.",
+        "First, Kate, who is not even there.{-cinq2}",
         ("C", "As long as Kate's not around. 'Do you want to make a pagan of yourself?'", "c_pagan", {"voix": "F"}),
-        "{-c_pagan}{kate}Kate is not even on stage, and she is already in the room. Agnes imitates her, word for word. "
-        "Lipstick is enough to be called pagan in this house. That tells you how tight the rules are, "
-        "and how much desire the sisters have to hide.",
-        "{-kate}{surplice}And watch the last gesture: Chris holds up a surplice, a priest's white vestment she is ironing, "
-        "and jokes that it would make a nice dress… then adds: God forgive me. "
-        "Even a joke about clothes runs straight into religion.",
-    ], vis={
-        "taches": dict(type="liste", titre="They all work in silence · p. 2", items=[
-            "Maggie: a mash for the hens",
-            "Agnes: knits gloves",
-            "Rose: carries turf for the fire",
-            "Chris: irons at the kitchen table"], marques=["M", "A", "R", "C"], x=150, y=180, w=980),
-        "c_mirror": dict(type="cit", a="Chris", o="p. 2", x=170, y=200, w=940),
-        "mirror": dict(type="note", cles=["cracked", "broken"], terme="Symbol · the cracked mirror",
-                       t="Kept out of superstition, it can only show the sisters a broken reflection of themselves.",
-                       etape="How do these women see their own lives?", x=170, y=200, w=940),
-        "c_lip": dict(type="cit", a="Maggie", o="p. 2", x=170, y=200, w=940),
-        "c_pagan": dict(type="cit", a="Agnes, imitating Kate", o="p. 2", x=170, y=200, w=940),
-        "kate": dict(type="def", cles=["absent", "pagan"], terme="Kate's voice",
-                     t="Absent from the stage, but present in Agnes's mouth: even lipstick is “pagan”.",
-                     etape="Desire has to hide under the rules of a Catholic house.", x=170, y=200, w=940),
-        "surplice": dict(type="mot", t="God forgive me…", g="a priest's surplice imagined as a dress (p. 3)", y=250, taille=84),
-    }),
-
-    # ------------------------------------------------------------------ II. chansons et secrets
-    dict(id="chansons", chap="Songs and secrets", fond="nuit", humeur="tension",
-         retenir="Comic songs carry the outside world; Rose's love for a married man shows the women's longing, and its risk.", beats=[
-        "{tab_rad}{songs}Suddenly, Rose bursts into song. {songs.1}Will you come to Abyssinia, will you come? "
-        "Mussolini will be there with his airplanes in the air.",
-        "A detail from outside the text: Italy had invaded Abyssinia, today's Ethiopia, the year before, in 1935. "
-        "So a real war arrives in this kitchen… as a comic song. "
-        "{songs.2}Maggie answers with another one, about voting for De Valera, the Irish leader of the time.",
-        "{-songs}{-tab_rad}{radio}Rose wants the radio on, but Chris says the battery is dead. "
-        "Three seconds of music, then nothing. The wireless works only when it wants: remember that.",
-        "{-radio}{lough}Then a secret comes out. Rose says she may meet someone at the pictures, "
-        "and that he wants to take her up to the back hills, to Lough Anna, where his father has a boat. "
-        "{-lough}{danny}Chris guesses: Danny Bradley. {danny.1}A scut, she says, {danny.2}a married man with three young children. "
-        "{danny.3}Rose insists his wife has left him and gone to England.",
-        "{-danny}{charm}Rose shows them what he gave her: a little silver charm, pinned to her jumper, "
-        "right beside her miraculous medal. A love token next to a holy medal. Pagan and Christian, side by side, on one woman's heart.",
-        "{-charm}",
-        ("C", "I love him, Aggie.", "c_love", {"voix": "F"}),
-        "{-charm}{-c_love}{bastard}And Chris answers, softly, with one word: bastard. "
-        "Rose is on the point of tears. Silence.",
-        "{-bastard}{tango}Who breaks it? Maggie. She grabs her hen bucket as a dancing partner and does a wild, exaggerated tango "
-        "across the floor, singing The Isle of Capri, then calls her hens: tchook, tchook, tchook. "
-        "This is Maggie's role in the family: when the pain gets too close, she turns it into a joke, or a dance.",
-    ], vis={
-        "tab_rad": dict(type="tableau", img="dal-radio", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .45],
-                        legende="A 1930s valve wireless set (Museo della scienza e della tecnologia, Milan, CC BY-SA 4.0)"),
-        "songs": dict(type="liste", titre="Two comic songs · pp. 3 – 4", items=[
-            "Rose: “Will you come to Abyssinia…”: Mussolini's war",
-            "Maggie: “Will you vote for De Valera…”: Irish politics"], marques=["♪", "♪"], x=150, y=200, w=980),
-        "radio": dict(type="mot", t="three seconds of music…", g="then silence: the wireless works only when it wants (p. 3)", y=250, taille=80),
-        "lough": dict(type="mot", t="Lough Anna", g="“up to the back hills”: his father has a boat there (p. 5)", y=250, taille=96),
-        "danny": dict(type="liste", titre="Danny Bradley · p. 5", items=[
-            "“a scut”, says Chris",
-            "“a married man with three young children”",
-            "Rose: his wife has left for England"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "charm": dict(type="cols", g="The silver charm", gq="a love token from Danny", d="The miraculous medal",
-                      dq="a Catholic holy medal", vs="+", repere="pagan / Christian, side by side"),
-        "c_love": dict(type="cit", a="Rose", o="p. 6", x=170, y=470, w=940),
-        "bastard": dict(type="mot", t="“Bastard.”", g="Chris, softly · Rose on the point of tears (p. 6)", y=250, taille=96),
-        "tango": dict(type="note", cles=["joke", "dance"], terme="Maggie · p. 6",
-                      t="A tango with the hen bucket, then the hens: she turns pain into comedy.",
-                      etape="Dance as a way out of what cannot be said.", x=170, y=200, w=940),
-    }),
-
-    # ------------------------------------------------------------------ III. l'enfant invisible
-    dict(id="enfant", chap="The boy who isn't there", fond="aube", humeur="mystere",
-         retenir="The boy Michael is invisible: the adult narrator speaks his lines. Memory performs the past.", beats=[
-        "{conv}Now comes one of the strangest choices in the play. Friel writes it in a stage direction. "
-        "{conv.1}Michael the boy is imaginary. {conv.2}Nobody on stage sees a child. {conv.3}When the sisters talk to the boy, "
-        "the adult Michael, standing to the side, answers them, in his ordinary narrator's voice.",
-        "{-conv}{tab_kit}So Maggie bends over kites that are not there, and a grown man answers for the child he used to be. "
-        "She plays riddles with him: what goes round the house and sits in the corner? A broom. "
-        "He fools her with a fake rat, and she screams.",
-        "{-tab_kit}{effet}Why do this? Because the boy only exists in memory. {effet.1}We never see the child, only the adult remembering him. "
-        "{effet.2}And it means the narrator is inside every scene: he is not just telling the story, he is replaying it.",
-        "{-effet}{kites}Notice the kites, too. The boy is making two of them, and Maggie bets him a penny they will never leave the ground. "
-        "Keep them in mind: they will come back at the very end of the play.",
-    ], vis={
-        "conv": dict(type="liste", titre="Stage direction · p. 6", items=[
-            "The boy Michael is imaginary",
-            "No one on stage sees a child",
-            "Adult Michael speaks the boy's lines"], marques=["1", "2", "3"], x=150, y=180, w=980),
-        "tab_kit": dict(type="tableau", img="dal-donegal", fond=True, sombre=True, de=[1.2, .3, .4], a=[1.35, .4, .45],
-                        legende="Donegal (photo dconvertini, CC BY-SA 4.0)"),
-        "effet": dict(type="cols", g="We never see the child", gq="only the adult who remembers him", d="The narrator in every scene",
-                      dq="he replays the past, he doesn't just tell it", vs="→", repere="memory play"),
-        "kites": dict(type="mot", t="two kites", g="a motif to follow until the final scene (p. 7)", y=250, taille=96),
-    }),
-
-    # ------------------------------------------------------------------ IV. le prêtre des lépreux
-    dict(id="pretre", chap="Our own leper priest", fond="nuit", humeur="calme",
-         retenir="Jack's fame gives the family status; it also covers the “shame” of Chris's child.", beats=[
-        "{tab_kil}Then Michael speaks to us again. He explains why Jack's appearance shocked him: he expected "
-        "the hero from a schoolboy's book.",
-        "{photo}Once, he saw a photograph of Jack, radiant and splendid in his officer's uniform, a chaplain to the British forces "
-        "in East Africa in 1917. {photo.1}But Kate snatched it away. {photo.2}She had been involved in the War of Independence against Britain, "
-        "so Jack's time in the British army was never mentioned in that house.",
-        "{-photo}{-tab_kil}{saint}To the sisters, Jack was a hero and a saint. They prayed for him every night, "
-        "and saved sixpence here, a shilling there, to send him money. The local paper called him our own leper priest, "
-        "and the whole of Donegal was proud of him. That gave the family a little status in the parish.",
-        "And then, the most important sentence of this part.",
-        "{-saint}",
+        "{-c_pagan}{kate}Agnes imitates her, word for word. Lipstick is enough to be called pagan in this house. "
+        "That tells you how tight the rules are, and how much desire the sisters have to hide.",
+        "Second, a stage direction.{-kate}",
+        ("C", "No dialogue with the BOY MICHAEL must ever be addressed directly to adult MICHAEL, the narrator.", "c_conv"),
+        "{-c_conv}{effet}Why do this? Because the boy only exists in memory. {effet.1}We never see the child, only the adult remembering him. "
+        "{effet.2}And the narrator is inside every scene: he is not just telling the story, he is replaying it. "
+        "Notice the kites, too: Maggie bets they will never leave the ground. Keep them in mind until the very end.",
+        "And third, Michael himself.{-effet}",
         ("C", "it must have helped my aunts to bear the shame Mother brought on the household by having me – as it was called then – "
               "out of wedlock.", "c_shame"),
         "{-c_shame}{shame}The shame: that is the word the parish used for Chris's child, Michael himself. "
         "Notice the distance in as it was called then: the adult narrator quotes the judgement of 1936 without sharing it. "
         "And see the balance: Jack's holiness protects the family's reputation. "
-        "So what happens if the saint comes home… changed? That is the question the rest of the play will answer.",
+        "So what happens if the saint comes home… changed?",
     ], vis={
-        "tab_kil": dict(type="tableau", img="dal-kilwa", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .5],
-                        legende="East African campaign, Kilwa, 1917 (Imperial War Museums, public domain)"),
-        "photo": dict(type="liste", titre="The photograph · p. 9", items=[
-            "Kate snatched it from the boy",
-            "Kate had fought for Irish independence: Jack's British army past is never mentioned"],
-            marques=["1", "2"], x=150, y=200, w=980),
-        "saint": dict(type="mot", t="“our own leper priest”", g="Jack's fame gives the family status in the parish (p. 9)", y=250, taille=80),
+        "cinq2": dict(type="mot", t="Small talk, big subtext", g="three lines to know · pages 2 – 9", y=250, taille=80),
+        "c_pagan": dict(type="cit", a="Agnes, imitating Kate", o="p. 2", x=170, y=200, w=940),
+        "kate": dict(type="def", cles=["absent", "pagan"], terme="Kate's voice",
+                     t="Absent from the stage, but present in Agnes's mouth: even lipstick is “pagan”.",
+                     etape="Desire has to hide under the rules of a Catholic house.", x=170, y=200, w=940),
+        "c_conv": dict(type="cit", a="Stage direction", o="p. 6", x=170, y=200, w=940),
+        "effet": dict(type="cols", g="We never see the child", gq="only the adult who remembers him", d="The narrator in every scene",
+                      dq="he replays the past, he doesn't just tell it", vs="→", repere="memory play"),
         "c_shame": dict(type="cit", a="Michael", o="p. 9", x=170, y=200, w=940),
         "shame": dict(type="cols", g="Jack's fame", gq="“a hero and a saint”, status in the parish", d="Chris's child",
                       dq="“the shame”, born “out of wedlock”", vs="⚖", repere="reputation"),
     }),
 
-    # ------------------------------------------------------------------ V. analyse
+    # ------------------------------------------------------------------ VII. analyse
     dict(id="analyse", chap="Analysis", fond="nuit", humeur="calme",
          retenir="Subtext, the outside world in songs, the invisible boy, reputation: the house is held together by fragile balances.", beats=[
         "{a1}Time for the analysis. Four ideas to take from this afternoon. "
@@ -182,8 +288,9 @@ SCENES = [
         "a lipstick, a surplice. This is Friel's Chekhovian method: the drama is under the surface, in what the characters do not say.",
         "{-a1}{a2}{a2.1}Two: desire under surveillance. Lipstick is pagan, Rose's love is for a married man, Chris has a child "
         "outside marriage. Each sister wants something, and Kate's rules, even when Kate is absent, keep watch.",
-        "{-a2}{a3}{a3.1}Three: the outside world gets in, but only in fragments. A war in Abyssinia, an Irish election, "
-        "all turned into comic songs; a radio that dies after three seconds. The world is changing, "
+        "{-a2}{a3}{a3.1}Three: the outside world gets in, but only in fragments. A detail from outside the text: Italy had invaded "
+        "Abyssinia, today's Ethiopia, in 1935; De Valera led the Irish government. Here a war and an election "
+        "become comic songs, and the radio dies after three seconds. The world is changing, "
         "and the kitchen hears it only as noise and jokes.",
         "{-a3}{a4}{a4.1}Four: memory as theatre. The boy is invisible and the adult speaks his lines. "
         "And Michael's narration shows how the family's reputation rests on a balance: Jack's fame against Chris's shame. "
@@ -214,21 +321,21 @@ SCENES = [
 QUIZ = [
     dict(q="Why does Maggie refuse to throw away the cracked mirror?",
          r=["She broke it, and using it avoids seven years' bad luck", "It belonged to their mother", "Kate forbids new mirrors",
-            "They cannot afford a new one"], ok=0, voir="mirror",
+            "They cannot afford a new one"], ok=0, voir="jeu1.6",
          ex="Superstition: she broke it, so she must keep using it. Symbolically, the sisters only see a broken reflection of themselves."),
     dict(q="When Agnes says “Do you want to make a pagan of yourself?”, she is…",
          r=["imitating what Kate would say about lipstick", "quoting Father Jack", "insulting Rose", "reading from a novel"], ok=0,
          voir="c_pagan", ex="Kate is offstage, but her voice and her rules are present: even lipstick counts as pagan."),
     dict(q="What does Rose wear beside her miraculous medal?",
          r=["A silver charm given by Danny Bradley", "Jack's cross from Africa", "Her mother's ring", "A kite string"], ok=0,
-         voir="charm", ex="A love token next to a holy medal: pagan and Christian side by side."),
+         voir="jeu3.11", ex="A love token next to a holy medal: pagan and Christian side by side."),
     dict(q="How is the boy Michael shown on stage?",
          r=["He is imaginary: the adult narrator speaks his lines", "A child actor plays him", "He is a puppet",
-            "He never speaks at all"], ok=0, voir="conv",
+            "He never speaks at all"], ok=0, voir="c_conv",
          ex="Stage direction p. 6: no child appears; adult Michael answers the sisters in his narrator's voice."),
     dict(q="Why was Jack's photograph in uniform never mentioned in the house?",
          r=["Kate had fought in the War of Independence against Britain", "Jack had deserted",
-            "The photo was of another priest", "Maggie had broken the frame"], ok=0, voir="photo",
+            "The photo was of another priest", "Maggie had broken the frame"], ok=0, voir="jeu5.3",
          ex="He had been a chaplain to the British forces; Kate had been involved in the War of Independence."),
     dict(q="According to Michael, what did Jack's fame help the aunts to bear?",
          r=["The shame of Chris's child born out of wedlock", "Their poverty", "Kate losing her job", "Rose's illness"], ok=0,
@@ -237,7 +344,6 @@ QUIZ = [
 
 CREDITS = [
     "Brian Friel, Dancing at Lughnasa (1990): short quotations for analysis, page numbers from the class PDF",
-    "Photographs: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0); valve table radio, Museo della scienza e della "
-    "tecnologia, Milan (CC BY-SA 4.0); troops at Kilwa, 1917 (Lt L. A. W. Powell, Imperial War Museums, public domain)",
+    "Photograph: Five Finger Strand, Donegal (dconvertini, CC BY-SA 4.0)",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music",
 ]
