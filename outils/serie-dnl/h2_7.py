@@ -337,7 +337,7 @@ SCENES = [
                    d="Mutual need", dq="Italy too weak alone: the Axis (Oct. 1936), the Pact of Steel (1939), Japan (1940)", vs="→",
                    repere="An alliance of interest"),
         "g6": dict(type="globe", code="H2", sc=[29]),
-        "es": dict(type="liste", titre="Spain, 1936", petit=True, bande=True, x=700, y=110, w=540, items=[
+        "es": dict(type="liste", titre="Spain, 1936", petit=True, bande=True, x=780, y=110, w=470, items=[
             "Germany and Italy back Franco's nationalists", "The German air force tested in Spain",
             "France and Britain do not help the Republic", "Guernica, 26 April 1937 (not in the lesson)"]),
         "rep2": dict(type="mot", t="A rehearsal", g="of the coming war · the democracies would not act", y=260, taille=100),
@@ -385,7 +385,7 @@ SCENES = [
         "Jews alone were about three Austrians in a hundred, most of them in Vienna: a figure from outside the course.",
     ], vis={
         "g8": dict(type="globe", code="H2", sc=[33]),
-        "an": dict(type="liste", titre="The Anschluss in four steps", petit=True, bande=True, x=700, y=110, w=540, items=[
+        "an": dict(type="liste", titre="The Anschluss in four steps", petit=True, bande=True, x=780, y=110, w=470, items=[
             "Pressure: Schuschnigg bullied, troops on the border", "Seyss-Inquart chancellor: he invites the German army",
             "12 March 1938: the German army enters Vienna", "A plebiscite without opponents and Jews"]),
         "oui": dict(type="question", t="The plebiscite: the result?"),
