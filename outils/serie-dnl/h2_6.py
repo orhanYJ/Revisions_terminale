@@ -227,7 +227,7 @@ SCENES = [
         "of the Nazi worldview, and it drove their foreign policy. The dream was an old one. "
         "As early as nineteen nineteen, Heinrich Himmler, the future head of the SS, wrote in his diary that he would some day{-g5}",
         ("C", "live my life in the east and fight my battles as a German far from beautiful Germany", "c_him"),
-        "{-c_him}{him}In nineteen nineteen, Himmler is a young man of nineteen. {him.d}Twenty years later, at the head of the SS, "
+        "{-c_him}{him}Himmler wrote this in nineteen nineteen. He was still a teenager. {him.d}Twenty years later, at the head of the SS, "
         "he will be one of the men who carry out that plan in the East.",
     ], vis={
         "mot2": dict(type="mot", t="Lebensraum", g="“living space” · key term of the chapter", y=250, taille=110),
