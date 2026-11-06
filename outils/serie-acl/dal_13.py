@@ -191,7 +191,7 @@ SCENES = [
         ("C", "In that memory atmosphere is more real than incident and everything is simultaneously actual and illusory.",
          "c_atmo"),
         "{-c_atmo}{atmo}Atmosphere: the feeling of a moment. Incident: what actually happens. "
-        "For Michael, the feeling is more real than the facts. Facts get three flat sentences; the feeling gets his finest prose.",
+        "For Michael, the feeling is more real than the facts. Facts get a few flat sentences; the feeling gets his finest prose.",
         "{-atmo}{para}Look at the pairs. {para.1}Actual and illusory. {para.2}A music heard and imagined. "
         "{para.3}Itself and its own echo. {para.4}An afternoon bewitched, maybe haunted. "
         "Each pair holds two things at once, like Kate's dance in part five: simultaneously controlled and frantic.",
@@ -201,6 +201,7 @@ SCENES = [
         "{-c_surr}{rite}{rite.1}Language surrenders, like an army laying down its arms. "
         "{rite.2}The dance becomes a ritual, a wordless ceremony. "
         "{rite.3}A way to whisper private and sacred things, to be in touch with some otherness. "
+        "{rite.4}As if the very heart of life and all its hopes might be found in those assuaging notes. "
         "Dancing as if, dancing as if: this repetition is called anaphora. The sentences rise like music, to the last words.",
         "{-rite}",
         ("C", "Dancing as if language no longer existed because words were no longer necessary …", "c_words"),
@@ -226,7 +227,8 @@ SCENES = [
         "rite": dict(type="liste", titre="A wordless ceremony · anaphora: “Dancing as if …”", cles=["ritual", "sacred"], items=[
             "language “surrendered to movement”",
             "“this ritual, this wordless ceremony”",
-            "“private and sacred things” · “some otherness”"], marques=["1", "2", "3"], x=150, y=180, w=980),
+            "“private and sacred things” · “some otherness”",
+            "“the very heart of life and all its hopes”"], marques=["1", "2", "3", "4"], x=150, y=180, w=980),
         "c_words": dict(type="cit", a="Michael · the last words of the play", o="p. 75", x=170, y=200, w=940),
         "fin": dict(type="note", cles=["music", "lights"], terme="The last stage direction · p. 75",
                     t="“Slowly bring up the music. Slowly bring down the lights.”",
@@ -330,7 +332,7 @@ QUIZ = [
     dict(q="“Atmosphere is more real than incident” means that…",
          r=["the feeling of the memory matters more than the facts", "the weather was very hot in 1936",
             "Michael invents events that never happened", "the plot of the play is very dramatic"], ok=0, voir="c_atmo",
-         ex="Incident is what happens; atmosphere is the feeling. The facts take three flat sentences, the feeling gets Michael's best prose."),
+         ex="Incident is what happens; atmosphere is the feeling. The facts take a few flat sentences, the feeling gets Michael's best prose."),
     dict(q="What does Michael do when his “time came to go away”?",
          r=["He was “happy to escape”, “in the selfish way of young men”", "He stayed to look after Kate",
             "He joined Gerry in Spain", "He became a priest like Jack"], ok=0, voir="jeu2.7",

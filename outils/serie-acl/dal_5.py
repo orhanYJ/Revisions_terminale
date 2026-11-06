@@ -187,7 +187,7 @@ SCENES = [
         ("C", "there is a sense of order being consciously subverted, of the women consciously and crudely caricaturing themselves",
          "c_order"),
         "{-c_order}{order}To subvert is to overturn from the inside. Consciously, twice: the sisters know what they are doing. "
-        "They mock their own respectable lives, close to near-hysteria.",
+        "They mock their own respectable lives, to the point of near-hysteria.",
     ], vis={
         "trois": dict(type="mot", t="The stage directions are the text", g="three to know by heart · pp. 22 – 23", y=250, taille=72),
         "c_mask": dict(type="cit", a="Stage direction", o="p. 22", x=170, y=200, w=940),
@@ -212,7 +212,7 @@ SCENES = [
         "And Kate, who controls every word, dances in silence. At the very end, Michael will remember dancing "
         "as if language had surrendered to movement. This is where we first see it.",
         "{-a1}{a2}{a2.1}Two: pagan against Christian. At Lughnasa, the dance is a wild, almost Dionysian release. "
-        "The surplice turns the Church into a costume. And Kate, the guardian of Catholic order, dances most fiercely of all.",
+        "The surplice turns the Church into a costume. And even Kate, the guardian of Catholic order, dances: alone, and in silence.",
         "{-a2}{a3}{a3.1}Three: order subverted, then restored. The revolt is self-mocking: parody, caricature. "
         "It is brief. Then come embarrassment and Kate's rebukes. A catharsis, a release of feelings, but no escape.",
         "{-a3}{a4}{a4.1}Four: juxtaposition. Right after the joy comes the quarrel: money, work, power. "
