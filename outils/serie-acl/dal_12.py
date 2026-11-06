@@ -113,10 +113,9 @@ SCENES = [
         ("P", 2.0),
         "{jeu2.15}And Chris suddenly turns the radio off.",
         ("C", "Sick of that damned thing.", "jeu2.16", {"voix": "F"}),
-        "Kate, of course, is delighted.",
+        "{jeu2.17}Gerry goes to Chris at the radio: not a bad little set, that. And Kate, of course, is delighted.",
         ("C", "Peace, thanks be to God! D'you know what that thing has done? Killed all Christian conversation in this country.",
-         "jeu2.17", {"voix": "F"}),
-        "{jeu2.18}Gerry goes to Chris at the radio.",
+         "jeu2.18", {"voix": "F"}),
     ], vis={
         "jeu2": dict(type="jeu", persos=PERSOS, etats=[
             dict(pos={"Chris": "table", "Maggie": "buffet", "Kate": [290, 515], "Agnes": "tricot_a", "Jack": "seuil"},
@@ -148,8 +147,8 @@ SCENES = [
                  note="(She kicks her Wellingtons off.) “Shirley Temple needs a lot of space.” (p. 69)"),
             dict(pos={"Chris": "radio"}, note="(CHRIS suddenly turns the radio off.)"),
             dict(radio=False, act={"Maggie": "debout", "Gerry": "debout"}, dit=["Chris", "Sick of that damned thing."]),
-            dict(dit=["Kate", "Peace, thanks be to God! … Killed all Christian conversation in this country."]),
             dict(pos={"Gerry": [420, 290]}, note="(He goes to CHRIS at the radio.) “Not a bad little set, that.”"),
+            dict(dit=["Kate", "Peace, thanks be to God! … Killed all Christian conversation in this country."]),
         ]),
     }),
 
@@ -276,7 +275,7 @@ SCENES = [
         "A sacrifice, or innocence lost? Friel does not explain it.",
         "{-echo}Then, Jack.",
         ("C", "Excellent. The exchange is now formally and irrevocably complete.", "c_exchange"),
-        "{-c_exchange}{chapeaux}A Ryanga ritual for a goodbye: Jack gives away the tricorn of his old chaplain's uniform. "
+        "{-c_exchange}{chapeaux}A Ryanga swap ritual, on the eve of Gerry's departure for Spain: Jack gives away the British governor's ceremonial hat, the district commissioner's present. "
         "And in part eleven, Gerry danced down the lane with that tricorn over his left eye.",
         "{-chapeaux}And last, the kites.",
         ("C", "For the first time we all see the images. On each kite is painted a crude, cruel, grinning face, "
@@ -287,13 +286,13 @@ SCENES = [
         "cinq": dict(type="mot", t="Four lines to know", g="the last afternoon · pages 66 – 73", y=250, taille=80),
         "c_pius": dict(type="cit", a="Kate", o="p. 66", x=170, y=190, w=940),
         "pius": dict(type="cols", g="Kate", gq="Pope Pius XI, “the holy sacrament of matrimony”", d="Jack",
-                     dq="“the Great Goddess … Iggie”", vs="≠", repere="Rome / Ryanga"),
+                     dq="“That's our system… I'm completely in favour of it.”", vs="≠", repere="Rome / Ryanga"),
         "c_coq": dict(type="cit", a="Stage direction", o="p. 71", x=170, y=200, w=940),
         "echo": dict(type="cols", g="Ryanga", gq="a rooster killed “to please the spirits”", d="Ballybeg",
                      dq="a white rooster, bleeding, on the feast cloth", vs="↔", repere="sacrifice? innocence lost?"),
         "c_exchange": dict(type="cit", a="Jack", o="p. 72", x=170, y=210, w=940),
         "chapeaux": dict(type="note", cles=["ritual", "tricorn"], terme="Two hats · pages 64 and 72",
-                         t="A Ryanga ritual for a goodbye: Jack gives away his chaplain's tricorn.",
+                         t="A Ryanga ritual: Jack gives away the last British governor's ceremonial hat (p. 42).",
                          etape="p. 64: Gerry leaves for Spain wearing Jack's tricorn.", x=170, y=200, w=940),
         "c_kites": dict(type="cit", a="Stage direction", o="p. 73", x=170, y=190, w=940),
         "masque": dict(type="note", cles=["masks", "forgotten"], terme="The end of the afternoon · pp. 73 – 74",
@@ -308,8 +307,8 @@ SCENES = [
         "{a1.1}One: tragic irony. A dressmaking plan, bilberries next Sunday, I love September. "
         "Because Michael has just told us the ending, every hopeful line hurts. The scene is an elegy disguised as a picnic.",
         "{-a1}{a2}{a2.1}Two: ritual replaces sacrament. Kate defends the holy sacrament of matrimony; "
-        "Jack answers with a Ryanga ceremony, formal and irrevocable. He gives away his ceremonial hat, the last piece of the "
-        "uniform he wore as an army chaplain. Pagan ritual, here, is what gives meaning to a goodbye.",
+        "Jack answers with a Ryanga ceremony, formal and irrevocable. He gives away the colonial governor's ceremonial hat, "
+        "the district commissioner's present. Pagan ritual, here, is what gives meaning to a farewell.",
         "{-a2}{a3}{a3.1}Three: symbols of the end. The dead white rooster on the feast cloth, the broken radio, "
         "the kites' cruel, grinning faces. None of them is explained. They are images a child stored, "
         "and an adult still cannot put into words.",
@@ -324,7 +323,7 @@ SCENES = [
                    etape="An elegy disguised as a picnic.", x=170, y=200, w=940),
         "a2": dict(type="note", cles=["ritual", "sacrament"], terme="2 · Ritual replaces sacrament",
                    t="“the holy sacrament of matrimony” against “formally and irrevocably complete”.",
-                   etape="Jack gives away the tricorn of his old chaplain's uniform.", x=170, y=200, w=940),
+                   etape="Jack gives away the governor's tricorn: an empire's symbol, bartered away.", x=170, y=200, w=940),
         "a3": dict(type="note", cles=["rooster", "kites"], terme="3 · Symbols of the end",
                    t="The dead white rooster, the broken radio, the “cruel, grinning” kites.",
                    etape="Images a child stored, never explained.", x=170, y=200, w=940),
@@ -347,10 +346,10 @@ QUIZ = [
     dict(q="Which song plays on the radio when Gerry dances with Agnes?",
          r=["“Anything Goes”", "“Abyssinia”", "“The Isle of Capri”", "No song is named"], ok=0, voir="jeu2",
          ex="The stage direction on p. 66: Music of “Anything Goes” very softly on the radio."),
-    dict(q="Why does Chris turn the radio off?",
-         r=["She has seen Gerry kiss Agnes, and says she is sick of “that damned thing”", "Kate orders her to",
-            "The music is too loud for Jack", "Michael has broken it"], ok=0, voir="jeu2.11",
-         ex="She saw the kiss from the window without hearing it; officially, she is only “wasting the battery”."),
+    dict(q="What has Chris just seen before she turns the radio off?",
+         r=["Gerry kissing Agnes in the garden", "Kate taking the battery out",
+            "Jack dancing with Rose", "Michael breaking a kite"], ok=0, voir="jeu2.11",
+         ex="She saw the kiss from the window. The text gives no reason for switching off; her only stated reason is “wasting the battery”."),
     dict(q="How does Rose behave when she brings in her dead rooster?",
          r=["She is calm, almost matter-of-fact", "She screams and runs away", "She blames Gerry", "She hides it from Kate"],
          ok=0, voir="c_coq",

@@ -70,7 +70,7 @@ SCENES = [
         ("C", "Maybe not by myself. But put me on the bar, cub – magnificent!", "jeu1.14", {"voix": "F"}),
         ("C", "You never sat on the bar of a bike in your life, Aunt Maggie!", "jeu1.15"),
         ("C", "Oh yes, I did, Michael. Oh yes, indeed I did.", "jeu1.16", {"voix": "F"}),
-        "{jeu1.17}A tiny line, repeated: behind the joke, a memory of her own youth, perhaps the boy she loved at Ardstraw. "
+        "{jeu1.17}A tiny line, repeated: behind the joke, a memory: on the way to the Ardstraw dance, the two boys took Bernie and her on the bar of their bikes. "
         "She does not explain. It is subtext. She gathers up the papers, {jeu1.18}and tries a new riddle on him: two apples on a tree. He gives up.",
     ], vis={
         "jeu1": dict(type="jeu", persos=["Maggie", "Michael"], etats=[
@@ -323,7 +323,7 @@ QUIZ = [
          r=["Much stronger, “very sprightly and alert”", "Weaker and confused", "Dressed in his white uniform",
             "Silent and motionless"], ok=0, voir="c_alert",
          ex="He has lost his top coat and hat and wears a garish sweater, “probably a sister's”."),
-    dict(q="Why does Jack want to offer sacrifice to Obi?",
+    dict(q="Why, according to Jack, do the Ryangans offer sacrifice to Obi?",
          r=["So that the crops will flourish", "To cure the lepers", "To bring the rain for the kites", "To please the bishop"],
          ok=0, voir="c_obi", ex="Obi is “our Great Goddess of the Earth”: note the possessive “our”, the priest speaks from inside the tribe."),
     dict(q="What, according to Jack, is remarkable about Ryangan culture?",

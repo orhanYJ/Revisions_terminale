@@ -64,7 +64,7 @@ SCENES = [
         "{jeu1.11}Page fifty-nine. And her blue cardigan, and her good skirt. I'm some toff, Rose said. "
         "A bottle of milk in one of her cans.",
         ("C", "She had half-a-crown. That's all she has.", "jeu1.12", {"voix": "F"}),
-        "Then Maggie, softly, puts it together.",
+        "Then Maggie puts it together.",
         ("C", "Danny Bradley … Lough Anna … up in the back hills.", "jeu1.13", {"voix": "F"}),
         ("C", "Oh God, no.", "jeu1.14", {"voix": "F"}),
         "{jeu1.15}Remember part two: Rose told them her plan, a boat on Lough Anna, a bottle of milk, chocolate biscuits. "
@@ -85,7 +85,7 @@ SCENES = [
             dict(act={"Agnes": "debout"}, dit=["Agnes", "She was wearing her good shoes."]),
             dict(note="“her blue cardigan and her good skirt” — “I'm some toff, Aggie” (p. 59)"),
             dict(dit=["Agnes", "She had half-a-crown. That's all she has."]),
-            dict(dit=["Maggie", "Danny Bradley … Lough Anna … up in the back hills."], note="(Softly.)"),
+            dict(dit=["Maggie", "Danny Bradley … Lough Anna … up in the back hills."]),
             dict(dit=["Chris", "Oh God, no."]),
             dict(note="Part two: Rose's plan, a boat on Lough Anna (told, not shown)"),
         ]),
@@ -142,7 +142,7 @@ SCENES = [
         ("C", "They're nice, Aggie. They're sweet. And you got two canfuls. Good for you.", "jeu3.11", {"voix": "F"}),
         "{jeu3.12}Agnes leads her into the house. Your stomach? Oh, I'm fine now, says Rose.",
         ("C", "But you didn't come home, Rosie.", "jeu3.13", {"voix": "F"}),
-        ("C", "Well … here I am.", "jeu3.14", {"voix": "F"}),
+        ("C", "That's right.", "jeu3.14", {"voix": "F"}),
         ("C", "You went into Ballybeg, didn't you?", "jeu3.15", {"voix": "F"}),
         "{jeu3.16}Page sixty-one. A pause. Rose looks from one to the other. So Maggie, briskly, fills the silence.",
         ("C", "She's home safe and sound and that's all that matters.", "jeu3.17", {"voix": "F"}),
@@ -171,7 +171,7 @@ SCENES = [
             dict(pos={"Agnes": [440, 430], "Rose": [520, 430]}, duree=3, cam="cuisine",
                  note="(AGNES leads her into the house.)"),
             dict(dit=["Chris", "But you didn't come home, Rosie."]),
-            dict(dit=["Rose", "Well … here I am."]),
+            dict(dit=["Rose", "That's right."]),
             dict(dit=["Chris", "You went into Ballybeg, didn't you?"], note="(p. 61)"),
             dict(note="(Pause. ROSE looks from one to the other.)"),
             dict(dit=["Maggie", "She's home safe and sound and that's all that matters."], note="(Briskly.)"),
@@ -227,7 +227,7 @@ SCENES = [
 
     # ------------------------------------------------------------------ V. quatre répliques à connaître
     dict(id="repliques", chap="Four lines to know", fond="aube", humeur="calme",
-         retenir="“broadcast all over”; Rose seen without her disability; “Her face reveals nothing”; “that's all I'm going to tell you”.",
+         retenir="“broadcast all over”; Rose seen as “any youngish country woman”; “Her face reveals nothing”; “that's all I'm going to tell you”.",
          beats=[
         "{quatre}Four lines from these pages are worth knowing by heart. First, Kate.",
         "{-quatre}",
@@ -276,7 +276,7 @@ SCENES = [
         "and she comes back with stained fingers and a red poppy. "
         "Outside the text: the red poppy is often read as a sign of passion, or of sleep and forgetting. "
         "The play does not explain it: it is an image, not a message.",
-        "{-a3}{a4}{a4.1}Four: dramatic irony. We know what the sisters do not: the glove money is gone, "
+        "{-a3}{a4}{a4.1}Four: dramatic irony. We know what Agnes and Rose do not: the glove money is gone, "
         "and, Michael told us, in early September Rose and Agnes will leave for ever. "
         "So Rose's one afternoon of freedom is shadowed by our tragic knowledge.",
         "{-a4}{carte}Here is this scene for your essay. {carte.1}Kate's authority. {carte.2}Silence and subtext. "
@@ -306,7 +306,7 @@ QUIZ = [
     dict(q="What clue makes Maggie think of Danny Bradley?",
          r=["Rose took her good clothes, a bottle of milk and her half-crown", "Rose left a letter on her bed",
             "Danny Bradley came to the house that morning", "Agnes saw them together at the quarry"], ok=0, voir="jeu1.11",
-         ex="Good shoes, blue cardigan, good skirt, milk, half-a-crown: exactly the plan Rose described in Act One (p. 5)."),
+         ex="Good shoes, blue cardigan, good skirt, milk, half-a-crown: the milk and the money match the plan Rose described in Act One (p. 5)."),
     dict(q="Whom does Kate accuse of hiding the truth?",
          r=["Agnes", "Chris", "Maggie", "Father Jack"], ok=0, voir="jeu2.1",
          ex="“What plot has been hatched between Rose and Mr. Bradley?” … “You're lying to me, Agnes! You're withholding!”"),

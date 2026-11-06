@@ -63,7 +63,7 @@ SCENES = [
         "{jeu1.9}Then Kate admits the truth about the Sweeney boy: a goat, a sacrifice for the Lughnasa Festival, "
         "and Sweeney, drunk, toppled into the bonfire.",
         "{jeu1.10}Maggie goes to her, and sits beside her. {jeu1.11}And Kate's fears pour out: Christina's depressions, "
-        "Jack's superiors who had no choice but to send him home, and the parish priest: there may be no job for her after the summer.",
+        "Jack's superiors, who probably had no choice but to send him home, and the parish priest: there may be no job for her after the summer.",
         "{jeu1.12}She tries to laugh. {jeu1.13}Now she cries. Maggie puts her arm around her. And Michael enters.",
         ("C", "If I died – if I lost my job – if this house were broken up – what would become of our Rosie?", "jeu1.14",
          {"voix": "F"}),
@@ -87,7 +87,7 @@ SCENES = [
             dict(pos={"Kate": KATE_S, "Maggie": MAGGIE_S}, act={"Kate": "assis", "Maggie": "assis"}, duree=2.2,
                  note="(MAGGIE goes to her and sits beside her.) (p. 38)"),
             dict(note="Christina's depressions · Father Jack's superiors · “the numbers in the school are falling”"),
-            dict(note="“we can spend the day dancing to Marconi.” (She tries to laugh.)"),
+            dict(note="(She tries to laugh.) “we can spend the day dancing to Marconi.”"),
             dict(pos={"Michael": "michael"}, act={"Kate": "pleure"}, cam="tout", note="(Now she cries. MAGGIE puts her arm around her. MICHAEL enters L.)"),
             dict(dit=["Kate", "If I died – if I lost my job – if this house were broken up – what would become of our Rosie?"]),
             dict(note="“I must put my trust in God, Maggie” (p. 38)"),
@@ -116,7 +116,7 @@ SCENES = [
         "{jeu2.14}Maggie, quickly: roses for Jack's windowsill, with a wee card, ROSES, so he won't be demented looking for the word. "
         "{jeu2.15}Then: who makes the tea?",
         ("C", "I make the tea every evening, don't I?", "jeu2.16", {"voix": "F"}),
-        "{jeu2.17}Almost aggressively. Aggie's the chef, says Maggie. She sings raucously, {jeu2.18}and goes to the radio.",
+        "{jeu2.17}Agnes says it almost aggressively. Aggie's the chef, says Maggie. She sings raucously, {jeu2.18}and goes to the radio.",
     ], vis={
         "jeu2": dict(type="jeu", persos=["Kate", "Maggie", "Agnes", "Chris", "Michael"], etats=[
             dict(pos={"Kate": KATE_S, "Maggie": MAGGIE_S, "Michael": "michael", "Chris": [1110, 300]},
@@ -211,7 +211,7 @@ SCENES = [
         "Only Chris has her eyes closed, her face raised: remembering.",
         "{jeu4.9}Michael goes on. Kate was wrong about my father: he did come back, in a couple of weeks. "
         "{jeu4.10}And once more, he and Chris danced together, this time without music. "
-        "No singing, no melody, no words. {jeu4.11}Then he went off to fight with the International Brigade.",
+        "No singing, no melody, no words. Michael even calls it a ceremony: Jack's word. {jeu4.11}Then he went off to fight with the International Brigade.",
         "{jeu4.12}Kate now goes to Jack, and gently takes the sticks from him. She places them on the ground.",
         ("C", "We'll leave these back where we found them, Jack. They aren't ours. They belong to the child.", "jeu4.13",
          {"voix": "F"}),
@@ -279,7 +279,7 @@ SCENES = [
         "breche": dict(type="illu", nom="breche", x=140, y=110, w=1000, h=440),
         "c_ceremony": dict(type="cit", a="Jack", o="p. 42", x=170, y=190, w=940),
         "langue": dict(type="note", cles=["ceremony", "converted"], terme="Jack · p. 42",
-                       t="He loses simple words, but finds “ceremony” at once.",
+                       t="He loses the word, then finds it by chance: the governor's “ceremonial hat”.",
                        etape="The missionary converted by Ryanga.", x=170, y=200, w=940),
         "c_forever": dict(type="cit", a="Michael", o="p. 43", x=170, y=190, w=940),
         "forever": dict(type="note", cles=["prolepsis", "tragic"], terme="Michael · p. 43",
@@ -336,7 +336,7 @@ QUIZ = [
          r=["What would become of Rose", "Gerry's new job", "The broken wireless", "Jack's malaria"], ok=0, voir="jeu1.14",
          ex="“If I died – if I lost my job – if this house were broken up – what would become of our Rosie?”"),
     dict(q="Why does Kate react so strongly to Jack's question about their mother?",
-         r=["He suggests she might have believed in “the ancestral spirits”, not in heaven", "He says she never loved them",
+         r=["He talks as if Mother should have believed in “the ancestral spirits”", "He says she never loved them",
             "He forgets her name", "He says she was not Catholic"], ok=0, voir="jeu3.3",
          ex="Kate answers that Mother “knew she was going straight to heaven”: Ryanga's spirits against Donegal's Catholic heaven."),
     dict(q="Which word does Jack finally remember?",
