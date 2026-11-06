@@ -12,7 +12,9 @@ Contenu : CHAPTERS.H1 du site (dnl/index.html), sections II.1 (4 idées) et II.2
 les six entrées de la fiche Smoot-Hawley) et h1germany (H1Germany : chômage allemand 1928-1933, Worksheet 3, et ses
 trois questions), sujet d'essay « Assess how effective the 1930 Tariff Act was… » et key issue « economic nationalism »
 (champ exam de H1). Ce qui n'est pas dans le cours est dit « outside the course ».
-Précisions apportées au cours (dites dans la vidéo) : le pont du Golden Gate est un projet local, financé par
+Précisions apportées au cours (dites dans la vidéo) : le Canada riposte dès mai 1930 (budget Dunning, pendant
+l'examen du projet), pas « within days » après la signature ; le nom officiel de la loi de 1934 est Reciprocal Trade
+Agreements Act (le cours dit « Reciprocal Tariff Agreement Act ») ; le pont du Golden Gate est un projet local, financé par
 emprunt du district, pas un chantier fédéral du New Deal ; les derniers marines quittent le Nicaragua en janvier 1933,
 avant l'entrée en fonctions de Roosevelt (sous Roosevelt : renonciation au droit d'intervention à Cuba, 1934, et départ
 de Haïti, 1934) ; le Front populaire vote aussi un plan de réarmement en septembre 1936 (le cours dit « no money for
@@ -415,8 +417,8 @@ SCENES = [
         "expansionary economics. In three words: {rrr.1}Relief, for the destitute. {rrr.2}Recovery, for the economy. "
         "{rrr.3}Reform, of the system that had failed.",
         "{-rrr}{hd}It came in two stages. The First New Deal runs from nineteen thirty-three to thirty-five. "
-        "It opens with the emergency laws of the first hundred days. Their aim, in Roosevelt's words, as the course quotes them:{-hd}",
-        ("C", "helping the millions who never had a chance: men at starvation wages, women in sweatshops, children at looms", "c_fdr"),
+        "It opens with the emergency laws of the first hundred days. {-hd}{c_fdr}Their aim, as the course sums it up: "
+        "to help the millions who never had a chance. Men on starvation wages. Women in sweatshops. Children at looms.",
         "{-c_fdr}{fr1}{fr1.1}Roosevelt, elected in nineteen thirty-two. {fr1.2}The hundred days created the Civilian Conservation Corps "
         "and the Tennessee Valley Authority. They also insured bank deposits. "
         "{fr1.3}Then came the Second New Deal, in nineteen thirty-five. It turned relief into rights: the Social Security Act, "
@@ -433,7 +435,9 @@ SCENES = [
             dict(nom="Elected", d=1932, q="Roosevelt, a Democrat"), dict(nom="Hundred days", d=1933, q="CCC · TVA · deposits insured"),
             dict(nom="Second New Deal", d=1935, q="Social Security Act · WPA"), dict(nom="Golden Gate", d=1937, q="built 1933–37 (local project)")]),
         "hd": dict(type="mot", t="The hundred days", g="First New Deal · 1933 – 1935 · emergency laws", y=260, taille=90),
-        "c_fdr": dict(type="cit", a="Franklin D. Roosevelt", o="quoted in M. Ros's course", x=200, y=200, w=880),
+        "c_fdr": dict(type="note", terme="The aim of the New Deal (course)", cles=["millions", "chance"],
+                      t="Help the millions who never had a chance: men on starvation wages, women in sweatshops, children at looms.",
+                      etape="Roosevelt's programme, as the course sums it up", x=170, y=200, w=940),
         "cmp2": dict(type="cols", g="USA · the New Deal", gq="public money for bridges, dams and social insurance",
                      d="Germany · Nazism", dq="public money for motorways and, above all, an army", vs="≠"),
     }),
@@ -486,7 +490,7 @@ SCENES = [
     ], vis={
         "g4": dict(type="globe", code="H1", sc=[24]),
         "blum": dict(type="tableau", img="h1-blum-1936", fond=True, sombre=True, de=[1.0, .7, .4], a=[1.15, .72, .35],
-                     legende="Léon Blum at the microphone, 1936 (Agence Meurisse, public domain)"),
+                     legende="Léon Blum at his desk, with a microphone, 1936 (Agence Meurisse, public domain)"),
         "fp": dict(type="liste", titre="The Front populaire (Léon Blum, 1936)", cles=["forty-hour", "paid holiday", "SNCF", "Keynesian"], items=[
             "The 40-hour week", "Two weeks' paid holiday", "Railways nationalised: the SNCF",
             "Keynesian: spending and deficits to revive demand"], x=170, y=130, w=940),
@@ -591,6 +595,6 @@ CREDITS = [
     "Content: M. Ros's course (DNL History, H1 · Parts II.1 and II.2: the Smoot–Hawley fact file, Worksheet 3) as written on the site; animated map of chapter 1 (site).",
     "Photograph: Herbert Hoover and Franklin D. Roosevelt on the way to the inauguration, 4 March 1933 (Architect of the Capitol, public domain, Wikimedia Commons).",
     "Photograph: unemployed outside the employment office Berlin-Nordost, 4 May 1932 (Bundesarchiv, Bild 146-1976-033-23, photographer Seiler, CC BY-SA 3.0 de, Wikimedia Commons).",
-    "Photograph: Léon Blum at the microphone, 1936 (Agence de presse Meurisse, public domain, Wikimedia Commons).",
+    "Photograph: Léon Blum at his desk, with a microphone, 1936 (Agence de presse Meurisse, public domain, Wikimedia Commons).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]
