@@ -44,7 +44,7 @@ SCENES = [
         "and shoot the Jews: the Shoah by bullets. {g2.3}In December 1941, the Germans are stopped before Moscow, "
         "{g2.4}Japan attacks Pearl Harbor, and the war becomes global.",
         "{g2.5}From December 1941, six killing centres in occupied Poland: the genocide becomes industrial. "
-        "{g2.6}In 1942, Germany strikes towards Stalingrad and the Caucasus… {g2.7}and on the second of February 1943, Paulus capitulates: "
+        "{g2.6}In 1942, Germany strikes towards Stalingrad and the Caucasus… {g2.7}and on the thirty-first of January 1943, Paulus surrenders. The battle ends two days later: "
         "the turning point of the war. {g2.8}At the end, six million Jews murdered: two thirds of the Jews of Europe.",
     ], vis={
         "g1": dict(type="globe", code="H3", sc=[1, 3, 5, 11, 12, 13, 16, 17, 21]),
@@ -53,21 +53,21 @@ SCENES = [
 
     # ================================================================ II. dix dates
     dict(id="dates", chap="Ten dates", fond="nuit", humeur="calme",
-         retenir="1937 · 1 Sept. 1939 · 18 June 1940 · 22 June 1940 · 22 June 1941 · Dec. 1941 · July 1942 · 11 Nov. 1942 · 2 Feb. 1943 · 19 Apr. 1943.",
+         retenir="1937 · 1 Sept. 1939 · 18 June 1940 · 22 June 1940 · 22 June 1941 · Dec. 1941 · July 1942 · 11 Nov. 1942 · 31 Jan. 1943 · 19 Apr. 1943.",
          beats=[
         "{fr}Ten dates to know by heart. {fr.1}1937, Japan attacks southern China. {fr.2}The first of September 1939, Germany invades Poland. "
         "{fr.3}The eighteenth of June 1940, de Gaulle's appeal from London. {fr.4}The twenty-second of June 1940, the armistice of Rethondes. "
         "{fr.5}The twenty-second of June 1941, Operation Barbarossa. {fr.6}December 1941, Pearl Harbor, and the first killing centre, Chelmno. "
         "{fr.7}July 1942, Treblinka is built, and Jews are rounded up in France. {fr.8}The eleventh of November 1942, Germany invades the free zone. "
-        "{fr.9}The second of February 1943, Paulus capitulates at Stalingrad. {fr.10}And the nineteenth of April 1943, the Warsaw ghetto uprising.",
+        "{fr.9}The thirty-first of January 1943, Paulus surrenders at Stalingrad. {fr.10}And the nineteenth of April 1943, the Warsaw ghetto uprising.",
         ("P", 3.0),
     ], vis={
         "fr": dict(type="frise", items=[
             dict(nom="China", d=1937, q="Japan attacks"), dict(nom="Poland", d=1939, q="1 Sept."),
-            dict(nom="De Gaulle", d=1940, q="18 June"), dict(nom="Armistice", d=1940.5, q="22 June 1940"),
-            dict(nom="Barbarossa", d=1941, q="22 June"), dict(nom="Pearl Harbor", d=1941.9, q="Dec. 1941 · Chelmno"),
-            dict(nom="Treblinka", d=1942.5, q="July 1942"), dict(nom="Free zone", d=1942.9, q="11 Nov. 1942"),
-            dict(nom="Stalingrad", d=1943.1, q="2 Feb. 1943"), dict(nom="Warsaw ghetto", d=1943.3, q="19 Apr. 1943")]),
+            dict(nom="De Gaulle", d=1940, q="18 June"), dict(nom="Armistice", d=1940, q="22 June"),
+            dict(nom="Barbarossa", d=1941, q="22 June"), dict(nom="Pearl Harbor", d=1941, q="7 Dec."),
+            dict(nom="Treblinka", d=1942, q="July"), dict(nom="Free zone", d=1942, q="11 Nov."),
+            dict(nom="Stalingrad", d=1943, q="31 Jan."), dict(nom="Warsaw ghetto", d=1943, q="19 Apr.")]),
     }),
 
     # ================================================================ III. les idées
@@ -103,7 +103,7 @@ SCENES = [
         "{ch.3}Twenty million Reichsmarks a day paid by France. {ch.4}Five million dead in the two hundred days of Barbarossa, a thousand an hour. "
         "{ch.5}Three fifths of all the dead on the Eastern Front. {ch.6}Six million Jews murdered.",
         "{-ch}{pe}Eight people. {pe.1}Pétain, head of Vichy, who chose collaboration. {pe.2}De Gaulle, who refused the armistice. "
-        "{pe.3}Churchill, who kept Britain fighting alone. {pe.4}Stalin, and his speech of the seventh of November 1941. "
+        "{pe.3}Churchill, who kept Britain fighting alone. {pe.4}Stalin, and his speech of the sixth of November 1941. "
         "{pe.5}Paulus, who capitulated at Stalingrad. {pe.6}Himmler and {pe.7}Stroop, who crushed the Warsaw ghetto. "
         "{pe.8}And Robert Frank, for the chronology of the world war.",
         "{-pe}{kt}And the two key terms. {kt.1}The New European Order. {kt.2}And Lebensraum, living space in the East.",
@@ -145,8 +145,8 @@ QUIZ = [
     dict(q="Which is NOT one of the three reasons for invading the USSR?", r=["Restoring the Tsar", "The Grossraum and its resources",
          "The crusade against “Jewish Bolshevism”", "The Übermensch against the Untermensch"], ok=0, voir="i1",
          ex="Economic, ideological, racial."),
-    dict(q="When did Paulus capitulate at Stalingrad?", r=["2 February 1943", "22 June 1941", "7 December 1941", "19 April 1943"], ok=0,
-         voir="fr", ex="The turning point of the war."),
+    dict(q="When did Paulus surrender at Stalingrad?", r=["31 January 1943", "22 June 1941", "7 December 1941", "19 April 1943"], ok=0,
+         voir="fr", ex="The last German troops gave up on 2 February: the turning point of the war."),
     dict(q="How many people were killed at Treblinka?", r=["876,000", "6 million", "338,000", "60,000"], ok=0, voir="i1",
          ex="874,000 Jews and 2,000 Roma (Worksheet 4)."),
     dict(q="What share of all the dead of WWII died on the Eastern Front?", r=["Three fifths", "One tenth", "A quarter", "Half"], ok=0,
