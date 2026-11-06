@@ -430,7 +430,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H1 · big picture, objective, link and Part I.1) as written on the site; the site's animated map of chapter 1 and its bubble diagram (h1speculation).",
+    "Content: the DNL History course (chapter H1: big picture, objective, link and Part I.1) as written on the site; the site's animated map of chapter 1 and its bubble diagram (h1speculation).",
     "Outside the course (flagged in the video): RCA (as on the site), car registrations 1920–1929 (as on the site), The Great Gatsby, intermediate values of the Dow Jones curve, the 1930 rebound.",
     "Photograph: crowd outside the New York Stock Exchange, October 1929 (Wikimedia Commons, public domain).",
     "Photograph: Ford assembly line, Highland Park, 1913 (Wikimedia Commons, public domain).",

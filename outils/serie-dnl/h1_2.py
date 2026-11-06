@@ -90,7 +90,7 @@ SCENES = [
          retenir="The Great Depression really began when numerous banks started failing. A crash lasts days; a depression is what happens when the banks carry it into the real economy. No deposit insurance before 1933: about 5,000 banks failed by 1932.",
          beats=[
         "{m1}Part two of the chapter: from the US Great Crash to a world-wide financial crisis. "
-        "Monsieur Ros's slides insist on one sentence. Learn it by heart: the Great Depression really began "
+        "The course slides insist on one sentence. Learn it by heart: the Great Depression really began "
         "when numerous banks started failing. This is the hinge of the whole chapter.",
         "{-m1}{spi}Why? Because of a spiral. {spi.1}First, confidence is lost. {spi.2}People stop trusting the banks, "
         "so they withdraw their savings. {spi.3}And the more people withdraw, the more banks fail… so even more people withdraw.",
@@ -549,7 +549,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H1 · Parts I.2 and I.3, with the schemas “The Dawes circuit”, “How the crash became a global depression” and the worksheet on weighing the causes) as written on the site; animated map of chapter 1 (site).",
+    "Content: the DNL History course (chapter H1: Parts I.2 and I.3, with the schemas “The Dawes circuit”, “How the crash became a global depression” and the worksheet on weighing the causes) as written on the site; animated map of chapter 1 (site).",
     "Photographs: unemployed men queued outside Al Capone's soup kitchen, Chicago, February 1931 (US National Archives, public domain); "
     "Hooverville on the Seattle tideflats, 1933 (Seattle Municipal Archives, CC BY 2.0); Dorothea Lange, Migrant Mother, 1936 (Library of Congress, public domain); "
     "George E. Marsh Jr., dust storm approaching Stratford, Texas, 1935 (NOAA, public domain); via Wikimedia Commons.",

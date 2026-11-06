@@ -446,7 +446,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: the format of the DNL exams (written and oral) as presented on the site; the essay questions, Key Issues, Key Terms and essay cards of M. Ros's course (DNL History, H1); Worksheet 3 (Sources 2 and 5); the course's descriptions of Migrant Mother and of David Low's “The Doormat”.",
+    "Content: the format of the DNL exams (written and oral) as presented on the site; the essay questions, Key Issues, Key Terms and essay cards of the DNL History course (chapter H1); Worksheet 3 (Sources 2 and 5); the course's descriptions of Migrant Mother and of David Low's “The Doormat”.",
     "The Explain question and the model answers were written for this video.",
     "Photograph: Dorothea Lange, Migrant Mother, Nipomo, California, March 1936 (Library of Congress; Wikimedia Commons, public domain).",
     "Animated map of the chapter: the site (dnl/cartes/H1).",

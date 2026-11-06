@@ -118,7 +118,7 @@ SCENES = [
         "{-wi}{inst}Then the peace gives these principles institutions. {inst.1}The Paris Peace Conference. {inst.2}The Treaty of Versailles. "
         "{inst.3}And the League of Nations, seated in Geneva, to keep the peace by collective security. "
         "This, says the course, is {!the liberal world order}the liberal world order.",
-        "{-inst}{-pw}{gap}But its weakness is there from birth. Look at this cartoon, shown on Monsieur Ros's slides. It comes from the British magazine Punch, in December nineteen nineteen. "
+        "{-inst}{-pw}{gap}But its weakness is there from birth. Look at this cartoon, shown on the course slides. It comes from the British magazine Punch, in December nineteen nineteen. "
         "The sign says it: this bridge was designed by the President of the United States. Belgium, France, England, Italy are in place. "
         "But there is a gap in the middle. And Uncle Sam lounges on the bank, his feet up, leaning on the missing stone. {!Keystone USA}Keystone: U S A.",
         "{-gap}{sen}Why? In the Senate, the Republicans held the majority. And the Senate refused to ratify the Treaty of Versailles, "
@@ -315,7 +315,7 @@ SCENES = [
         "{fv.2}But only if they have the cash. {fv.3}And it comes ten years after the crisis that had produced the isolation.",
         "{-fv}{-g7}{ars}The result: America becomes what Roosevelt would call, in December nineteen forty, the {!Arsenal of Democracy}Arsenal of Democracy. "
         "Its factories, hit hard since nineteen twenty-nine, restart to arm other people's wars.",
-        "{-ars}{sh}An example from Monsieur Ros's slides: Sherman tanks rolling off the line of the Detroit Tank Arsenal. "
+        "{-ars}{sh}An example from the course slides: Sherman tanks rolling off the line of the Detroit Tank Arsenal. "
         "{sh.1}That plant did not exist in nineteen thirty-nine.",
         "{-sh}{cure}So here is a strong idea for an essay. {cure.1}The Depression ended not with the New Deal, but with rearmament. "
         "{cure.2}The same cure as Germany's, applied late, and on the other side.",
@@ -331,7 +331,7 @@ SCENES = [
         "ars": dict(type="def", terme="The Arsenal of Democracy", cles=["idle", "1929", "restart"],
                     t="America as arms supplier to the democracies from 1939, without fighting itself.",
                     etape="Factories idle since 1929 restart to arm other people's wars", x=170, y=200, w=940),
-        "sh": dict(type="note", terme="On M. Ros's slides", cles=["Sherman", "Detroit"],
+        "sh": dict(type="note", terme="On the course slides", cles=["Sherman", "Detroit"],
                    t="M4 Sherman tanks rolling off the line of the Detroit Tank Arsenal.",
                    etape="A plant that did not exist in 1939", x=170, y=200, w=940),
         "cure": dict(type="cols", g="Germany", gq="rearmament absorbs the unemployed, from 1933", d="United States",
@@ -430,13 +430,13 @@ SCENES = [
 
     # ================================================================ XI. à vérifier
     dict(id="verif", chap="Watch out: points to check", fond="aube", humeur="calme",
-         retenir="Beyond the slides, to check with M. Ros: the Nye Committee · Lodge, leader of the opposition to the League · the Neutrality Acts in detail · the Tripartite Pact, only in 1940.",
+         retenir="Points beyond the course slides: the Nye Committee · Lodge, leader of the opposition to the League · the Neutrality Acts in detail · the Tripartite Pact, only in 1940.",
          beats=[
-        "{chk}Four points go beyond Monsieur Ros's slides: check them with him. {chk.1}The Nye Committee. "
+        "{chk}Four points go beyond the course slides: check them in a textbook. {chk.1}The Nye Committee. "
         "{chk.2}Senator Lodge, who led the opposition to the League. {chk.3}The detail of each Neutrality Act. "
         "{chk.4}And the date of the Tripartite Pact: September nineteen forty.",
     ], vis={
-        "chk": dict(type="liste", titre="Beyond the slides · check with M. Ros", cles=["Nye", "Lodge", "Neutrality", "Tripartite"], items=[
+        "chk": dict(type="liste", titre="Points beyond the course slides", cles=["Nye", "Lodge", "Neutrality", "Tripartite"], items=[
             "The Nye Committee (1934–1936)", "Senator Lodge led the opposition to the League",
             "The Neutrality Acts, one by one: 1935, 1936, 1937", "The Tripartite Pact: September 1940"], x=150, y=140, w=980),
     }),
@@ -547,7 +547,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H1 · Part II.3, “Great democracies reluctant to defend the Liberal order established in 1919”) "
+    "Content: the DNL History course (chapter H1: Part II.3, “Great democracies reluctant to defend the Liberal order established in 1919”) "
     "as written on the site, with its diagrams (why the League failed, stepping stones to war, points to check) and the essay card of the key issue; "
     "animated map of chapter 1 (site). Outside the course: “peace for our time”. David Low's cartoons are described, not reproduced. "
     "The model paragraph was written for this video.",
