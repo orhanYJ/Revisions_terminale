@@ -142,7 +142,7 @@ SCENES = [
         "Idea one: the Nazi-Soviet pact {!opened the road to the East}opened the road to the East. "
         "Hitler secured the neutrality of the Soviet Union, and the two powers secretly planned to share Poland. "
         "{def3.1}So Germany felt ready to conquer its {!Lebensraum}Lebensraum, the living space in the East announced in Mein Kampf.",
-        "{-def3}{sl}Monsieur Ros's slide shows it in three images. {sl.1}Stalin and Ribbentrop shaking hands after the signing. "
+        "{-def3}{sl}The course slide shows it in three images. {sl.1}Stalin and Ribbentrop shaking hands after the signing. "
         "{sl.2}The German invasion routes of the first of September 1939. "
         "{sl.3}And Eastern Europe after the pact: the German-Soviet line runs between Warsaw and Białystok, "
         "and between Lublin and Lvov. {sl.4}On that map, the Soviet annexations of 1940: Estonia, Latvia and Lithuania, "
@@ -153,7 +153,7 @@ SCENES = [
         "def3": dict(type="def", cles=["neutrality", "secret", "Poland"], terme="The Nazi-Soviet pact · August 1939",
                      t="Hitler secures the neutrality of the USSR; in secret, the two powers plan to carve up Poland.",
                      etape="Next step: the Lebensraum, the living space in the East announced in Mein Kampf", x=170, y=200, w=940),
-        "sl": dict(type="liste", titre="M. Ros's slide", items=[
+        "sl": dict(type="liste", titre="The course slide", items=[
             "Stalin and Ribbentrop shake hands after the signing", "The German invasion routes, 1 September 1939",
             "The German-Soviet line: Warsaw–Białystok, Lublin–Lvov", "1940: the Baltic states, N. Bukovina, Bessarabia annexed by the USSR"],
             x=150, y=130, w=980),
@@ -238,7 +238,7 @@ SCENES = [
         "{thr}Idea two: three thrusts across an immense front, from the Baltic to the Black Sea. "
         "{thr.1}In the north, through the Baltic states, towards Leningrad. {thr.2}In the centre, through Minsk and Smolensk, towards Moscow. "
         "{thr.3}In the south, through Ukraine and Kiev, towards Rostov. "
-        "{thr.4}And Germany does not fight alone: Monsieur Ros's map labels Finland, Romania, Hungary, Slovakia, Italy and Croatia as its allies.",
+        "{thr.4}And Germany does not fight alone: the course map labels Finland, Romania, Hungary, Slovakia, Italy and Croatia as its allies.",
         "{-thr}{-g5}{att}Watch out. A second course map, Operation Barbarossa, shows Stalingrad as one of the three objectives. "
         "But in 1941, the southern thrust aims at Ukraine, Kiev and Rostov. "
         "{att.1}Stalingrad and the Caucasus are the targets of the second offensive, in the summer of 1942. In an essay, write it that way.",
@@ -371,7 +371,7 @@ SCENES = [
          retenir="Stalingrad, Nov. 1942 (Germans / Soviets): men 1,011,500 / 1,143,500 · guns 10,290 / 13,541 · tanks 675 / 894 · planes 1,216 / 1,115. In 1944 the USSR alone fields more divisions than the whole Axis: 400 against 349.",
          beats=[
         "{gf}Idea seven: by November 1942, the balance of forces has turned in favour of the Soviets. "
-        "Here is Monsieur Ros's table of the forces facing each other at Stalingrad. {gf.1}The Germans in red, {gf.2}the Soviets in blue. "
+        "Here is the course table of the forces facing each other at Stalingrad. {gf.1}The Germans in red, {gf.2}the Soviets in blue. "
         "{gf.3}{gf.4}{gf.5}Men: about one million and eleven thousand Germans, against one million one hundred and forty-three thousand Soviets.",
         "{gf.6}{gf.7}{gf.8}Artillery guns: about ten thousand, against thirteen and a half thousand. "
         "{gf.9}{gf.10}{gf.11}Tanks: six hundred and seventy-five, against eight hundred and ninety-four. "
@@ -566,6 +566,6 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H3 · Parts II.1 and II.2, Worksheet 3, table of the forces at Stalingrad, divisions table of the introduction) as written on the site; answers to Worksheet 3 questions 1, 2, 3 and 5 suggested by the site; the example of Tukhachevsky added from outside the course; animated map of chapter 3 (site).",
+    "Content: the DNL History course (DNL History, H3 · Parts II.1 and II.2, Worksheet 3, table of the forces at Stalingrad, divisions table of the introduction) as written on the site; answers to Worksheet 3 questions 1, 2, 3 and 5 suggested by the site; the example of Tukhachevsky added from outside the course; animated map of chapter 3 (site).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

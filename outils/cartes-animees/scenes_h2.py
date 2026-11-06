@@ -294,8 +294,8 @@ def scenes():
     # ---------------- II.3 la terreur
     add("II.3", 15, [16, 50, 3.0], L("1927-1936", "1927–1936"),
         L("Des polices politiques au-dessus des lois ; les camps", "Political police above the law; the camps"),
-        L("OVRA en Italie (1927), Gestapo (1933) et SS dirigées toutes deux par Himmler (1936), NKVD (1934) en URSS. Dachau ouvre en 1933 ; les détenus y sont classés par triangles de couleur. Comme le dit M. Ros, les nazis n'ont pas inventé le camp : ils y ont ajouté la chambre à gaz.",
-          "The OVRA in Italy (1927), the Gestapo (1933) and the SS, both headed by Himmler (1936), the NKVD (1934) in the USSR. Dachau opened in 1933; prisoners were sorted by coloured triangles. As M. Ros put it, the Nazis did not invent the camp: what they added was the gas chamber."),
+        L("OVRA en Italie (1927), Gestapo (1933) et SS dirigées toutes deux par Himmler (1936), NKVD (1934) en URSS. Dachau ouvre en 1933 ; les détenus y sont classés par triangles de couleur. Comme le dit le cours, les nazis n'ont pas inventé le camp : ils y ont ajouté la chambre à gaz.",
+          "The OVRA in Italy (1927), the Gestapo (1933) and the SS, both headed by Himmler (1936), the NKVD (1934) in the USSR. Dachau opened in 1933; prisoners were sorted by coloured triangles. As the course puts it, the Nazis did not invent the camp: what they added was the gas chamber."),
         pins=["dachau"], labels=["rome", "berlin", "moscou"], cles=["fasc", "nazi", "stal"])
     add("II.3", 14, [34.8, 63.6, 6.5], L("1931-1933", "1931–1933"),
         L("Le Goulag : le canal de la mer Blanche", "The Gulag: the White Sea Canal"),
