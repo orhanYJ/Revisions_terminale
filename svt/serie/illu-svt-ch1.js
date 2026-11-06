@@ -74,13 +74,13 @@
     var f2 = fleche(g, "M" + (cx + R * 1.05 + 40) + " " + (cy + 124) + " Q" + (cx + R * .9) + " " + (cy + R * .95) + " " + (cx + 72) + " " + (cy + R - 4), OR, 4);
     var t2 = lab(g, cx + R * 1.05 + 150, cy + R * .78, "FÉCONDATION", { fs: 28, c: OR, fw: 800 });
     var t2b = lab(g, cx + R * 1.05 + 150, cy + R * .78 + 28, "n + n → 2n", { fs: 21, c: C.iv2 });
-    var f3 = fleche(g, "M" + (cx - 78) + " " + (cy + R - 10) + " Q" + (cx - R * 1.2) + " " + cy + " " + (cx - 80) + " " + (cy - R + 30), VERT, 4);
-    var t3 = lab(g, cx - R * 1.08, cy, "MITOSES", { fs: 28, c: VERT, fw: 800, ancre: "end" });
-    var t3b = lab(g, cx - R * 1.08, cy + 30, "2n → 2n : un clone", { fs: 21, c: C.iv2, ancre: "end" });
+    var f3 = fleche(g, "M" + (cx - 78) + " " + (cy + R - 10) + " Q" + (cx - R * 1.75) + " " + (cy - R) + " " + (cx - 70) + " " + (cy - R), VERT, 4);
+    var t3 = lab(g, cx - R * 1.08, cy - 10, "MITOSES", { fs: 28, c: VERT, fw: 800, ancre: "end" });
+    var t3b = lab(g, cx - R * 1.08, cy + 20, "2n → 2n : un clone", { fs: 21, c: C.iv2, ancre: "end" });
     var ph = sv("g", {}, g);
     sv("path", { d: "M" + (cx + R * 1.05 + 170) + " " + (cy - 30) + " v80", stroke: CYA, "stroke-width": 8, "stroke-linecap": "round" }, ph);
     lab(ph, cx + R * 1.05 + 186, cy + 16, "phase haploïde", { fs: 20, c: CYA, ancre: "start" });
-    lab(ph, cx - R * .6, cy - R - 20, "phase diploïde", { fs: 20, c: MAG, ancre: "end" });
+    lab(ph, cx - R * 1.08, cy + 56, "phase diploïde", { fs: 20, c: MAG, ancre: "end", fw: 700 });
     var k1 = et(v, "1", .3), k2 = et(v, "2", 2.5), k3 = et(v, "3", 5), k4 = et(v, "4", 7.5), k5 = et(v, "5", 9.5);
     return function (t) {
       apparait(ind, t, k1);
@@ -169,7 +169,7 @@
       bars.forEach(function (b, i) {
         var p = EIO(P(t, k1 + i * .35, 1.1)), hh = (y0 - Y(b.pc)) * p;
         b.r.setAttribute("y", (y0 - hh).toFixed(1)); b.r.setAttribute("height", hh.toFixed(1));
-        b.val.setAttribute("y", (y0 - hh - 12).toFixed(1));
+        var dedans = t >= k2 && Math.abs(y0 - hh - 18 - Y(25)) < 18 && hh > 60, vy = dedans ? y0 - hh + 30 : y0 - hh - 12; b.val.setAttribute("y", vy.toFixed(1));
         b.val.textContent = p > .05 ? b.eff + " · " + b.pc.toFixed(v.dec != null ? v.dec : (b.pc % 1 ? 1 : 0)).replace(".", ",") + " %" : "";
         var col = t >= k3 ? (b.c[2] === "p" ? CYA : b.c[2] === "r" ? OR : "rgba(183,217,76,.55)") : "rgba(183,217,76,.55)";
         b.r.setAttribute("fill", col); b.r.setAttribute("fill-opacity", t >= k3 ? .8 : 1);
@@ -194,7 +194,7 @@
     var f14 = chromo(par, px + 230, py + 20, L14, MAG, 22);
     var mob = chromo(par, 0, 0, L21, CYA, 22);
     var tf = lab(par, px + 262, py + 120, "« 14-21 »", { fs: 22, c: OR, fw: 700, ancre: "start" });
-    var bilan = lab(par, px + 170, py + 282, "45 chromosomes, tous les gènes en double : porteur sain", { fs: 21, c: C.iv2 });
+    var bilan = lab(par, px + 170, py + 270, "45 chromosomes, tous les gènes en double : porteur sain", { fs: 21, c: C.iv2 });
     var GAM = [
       { a: [[MAG, L14], [CYA, L21]], t: "14 + 21", r: "caryotype normal", c: VERT, k: "2" },
       { a: [["F", 0]], t: "14-21 seul", r: "porteur sain", c: CYA, k: "2" },
@@ -203,23 +203,23 @@
       { a: [["F", 0], [MAG, L14]], t: "14-21 + 14", r: "trisomie 14 : non viable", c: GRIS, k: "4" },
       { a: [[CYA, L21]], t: "21 seul", r: "monosomie 14 : non viable", c: GRIS, k: "4" }
     ];
-    var gw = (W - 60) / 6, gy = 392;
+    var gw = (W - 60) / 6, gy = 376;
     var gams = GAM.map(function (G, i) {
       var gg = sv("g", {}, g), x = 30 + i * gw + gw / 2;
-      var bx = boite(gg, x - gw / 2 + 6, gy, gw - 12, 234, { r: 16, s: G.c });
+      var bx = boite(gg, x - gw / 2 + 4, gy, gw - 8, 222, { r: 16, s: G.c });
       var n = G.a.length;
       G.a.forEach(function (c, j) {
         var xx = x + (j - (n - 1) / 2) * 34, s_ = .62;
         if (c[0] === "F") { chromo(gg, xx, gy + 20, L14 * s_, MAG, 15); chromo(gg, xx, gy + 20 + L14 * s_ - 4, L21 * s_, CYA, 15); }
         else chromo(gg, xx, gy + 20, c[1] * s_, c[0], 15);
       });
-      lab(gg, x, gy + 172, G.t, { fs: 18, c: C.iv });
+      lab(gg, x, gy + 168, G.t, { fs: 18, c: C.iv });
       var rr = G.r.split(" : ");
-      lab(gg, x, gy + 198, rr[0], { fs: 18, c: G.c, fw: 800 });
-      if (rr[1]) lab(gg, x, gy + 220, rr[1], { fs: 17, c: G.c, fw: 700 });
+      lab(gg, x, gy + 192, rr[0], { fs: rr[0].length > 14 ? 15 : 17, c: G.c, fw: 800 });
+      if (rr[1]) lab(gg, x, gy + 212, rr[1], { fs: 16, c: G.c, fw: 700 });
       return { g: gg, k: G.k, b: bx };
     });
-    var gti = lab(g, W / 2, gy - 14, "Ses gamètes possibles, fécondés par un gamète normal", { fs: 22, c: C.sa, fw: 700 });
+    var gti = lab(g, W / 2, gy - 12, "Ses gamètes possibles, fécondés par un gamète normal", { fs: 22, c: C.sa, fw: 700 });
     return function (t, st) {
       op(ti, E(P(st.tl, 0, .6))); op(par, E(P(st.tl, .2, .6)));
       var k1 = et(v, "1", 1), u = EIO(P(t, k1, 1.6));
