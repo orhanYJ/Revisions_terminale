@@ -1,9 +1,13 @@
-/* DNL History — séries vidéo des chapitres (en anglais) : moteur du lecteur.
+/* DNL History — séries vidéo des chapitres (en anglais, et édition française « histoire-géographie ») : moteur du lecteur.
    Copie du moteur des vidéos de cours de physique-chimie (pc/serie/moteur.js, lui-même copie du moteur des séries philo),
    textes du lecteur en anglais, couleurs « Atlas de révision » sur fond sombre (bleu de Prusse, parchemin, doré).
    Ajout propre à l'histoire : type globe, la carte animée du chapitre (dnl/cartes/<code>.html?pilote=1) pilotée par le temps
    de la vidéo ; graphe, exo et pause sont repris du moteur PC. */
 (function () {
+  // textes du lecteur : anglais par défaut, français quand la page est en français (édition histoire-géographie)
+  var FR = document.documentElement.lang === "fr";
+  var TRAD = {"Watch out": "Attention", "Going further": "Pour aller plus loin", "DNL History · Terminale BFI": "Histoire-géographie · Terminale", "The chapter in video · episode ": "Le chapitre en vidéo · épisode ", "Key point": "À retenir", "Animated map": "Carte animée", "Outside the course": "Hors du cours", "Essay question": "Sujet de composition", "DBQ · document-based question": "Analyse de document(s)", "Quick check": "Vérification rapide", "Exercise": "Exercice", "<b>Document</b> ": "<b>Document</b> ", "Your turn": "À toi", "Pause the video, write your answer on a sheet, then play on for the correction.": "Mets la vidéo en pause, écris ta réponse sur une feuille, puis relance pour la correction.", " · Episode ": " · Épisode ", "Play": "Lecture", "Stop automatically before each correction": "S'arrêter avant chaque correction", "Play / pause (space)": "Lecture / pause (espace)", "Back 10 s": "Reculer de 10 s", "Forward 10 s": "Avancer de 10 s", "Speed": "Vitesse", "Background music": "Musique de fond", "Subtitles": "Sous-titres", "Full screen": "Plein écran", "On a phone, tap ⛶: the video goes full screen, in landscape.": "Sur téléphone, touche ⛶ : la vidéo passe en plein écran, en paysage.", "Did you get it?": "As-tu compris ?", " questions on this episode. Answer, then read the explanation.": " questions sur cet épisode. Réponds, puis lis l'explication.", "✓ Correct. ": "✓ Exact. ", "✗ Not quite. ": "✗ Pas tout à fait. ", "▸ Watch this passage again": "▸ Revoir ce passage", "Score: ": "Score : ", " — perfect!": " — parfait !", "Credits": "Crédits", "Ep. ": "Ép. ", "DNL History · Revision Atlas": "Histoire-géographie · Atlas de révision", "<b>Your turn.</b> The video is waiting for your answer: think it through, then tap the picture for the correction.": "<b>À toi.</b> La vidéo attend ta réponse : réfléchis, puis touche l'image pour la correction."};
+  function T_(s) { return FR && TRAD[s] != null ? TRAD[s] : s; }
   "use strict";
   var W = 1280, H = 720;
   var Q = new URLSearchParams(location.search);
@@ -463,9 +467,9 @@
     var e = o.el;
     e.style.left = (v.x || 170) + "px"; e.style.top = (v.y || 200) + "px"; e.style.width = (v.w || 940) + "px";
     var c = h("div", "carte" + (note ? " note" : ""), e);
-    var bg = h("div", "barre-g", c), te = h("div", "te", c, esc(note ? (v.titre || v.terme || "Watch out") : v.terme));
+    var bg = h("div", "barre-g", c), te = h("div", "te", c, esc(note ? (v.titre || v.terme || T_("Watch out")) : v.terme));
     var tx = h("div", "tx serif", c), sp = mots(tx, v.t, "mot-l cle"), etp = v.etape ? h("div", "et", c, esc(v.etape)) : null;
-    if (v.plus) h("div", "badge", c, "Going further");
+    if (v.plus) h("div", "badge", c, T_("Going further"));
     var kl = cles(v, sp);
     return function (t, st) {
       allume(kl, t);
@@ -556,7 +560,7 @@
     var g = h("div", "col g", e), d = h("div", "col d", e);
     h("div", "t", g, esc(v.g)); h("div", "q", g, esc(v.gq || "")); h("div", "t", d, esc(v.d)); h("div", "q", d, esc(v.dq || ""));
     var vs = h("div", "vs", e, esc(v.vs || "≠")), rp = v.repere ? h("div", "rp", e, "<span>✻ " + esc(v.repere) + "</span>") : null;
-    if (v.plus) h("div", "badge", e, "Going further");
+    if (v.plus) h("div", "badge", e, T_("Going further"));
     return function (t, st) {
       var tg = et(v, "g", .1), td = et(v, "d", v.et && v.et["1"] ? v.et["1"] - v.t0 : .9);
       var pg = E(P(t, tg, .7)), pd = E(P(t, td, .7));
@@ -701,10 +705,10 @@
 
   TYPES.generique = function (o, v) {
     var e = o.el; e.classList.add("v-generique"); o.entree = "aucune"; o.disp = "flex";
-    var halo = h("div", "g-halo", e), haut = h("div", "g-haut", e, "DNL History · Terminale BFI");
+    var halo = h("div", "g-halo", e), haut = h("div", "g-haut", e, T_("DNL History · Terminale BFI"));
     var l1 = h("div", "g-ligne", e), tt = h("div", "g-titre", e), sp = lettres(tt, v.serie);
     tt.style.fontSize = Math.min(120, Math.floor(2300 / Math.max(12, String(v.serie).length))) + "px"; tt.style.textAlign = "center";
-    var l2 = h("div", "g-ligne", e), bas = h("div", "g-bas", e, "The chapter in video · episode " + v.num);
+    var l2 = h("div", "g-ligne", e), bas = h("div", "g-bas", e, T_("The chapter in video · episode ") + v.num);
     var balai = h("div", "g-balai", e);
     return function (t, st) {
       var tl = st.tl;
@@ -760,7 +764,7 @@
   TYPES.flash = function (o, v) {
     var e = o.el; e.classList.add("v-flash"); o.entree = "aucune"; o.disp = "flex";
     var fond = h("div", "fl-fond", e), c = h("div", "fl-carte", e);
-    h("div", "fl-te", c, "Key point");
+    h("div", "fl-te", c, T_("Key point"));
     var tx = h("div", "fl-tx", c), sp = mots(tx, v.t);
     return function (t, st) {
       var tl = st.tl, a = E(P(tl, 0, .6)), out = EIO(P(t, v.t1 - .3, .6));
@@ -801,7 +805,7 @@
     var e = o.el; e.classList.add("v-illu"); o.entree = "aucune";
     e.style.left = v.x + "px"; e.style.top = v.y + "px"; e.style.width = v.w + "px"; e.style.height = v.h + "px";
     var s = sv("svg", { viewBox: "0 0 " + v.w + " " + v.h }, e);
-    if (v.plus) h("div", "badge", e, "Going further").style.top = "-10px";
+    if (v.plus) h("div", "badge", e, T_("Going further")).style.top = "-10px";
     var f = ILLU[v.nom] ? ILLU[v.nom](s, v) : function () {};
     return f;
   };
@@ -885,7 +889,7 @@
     var W = v.w || 1280, H = v.h || 720, k = v.k || 2.2;
     e.style.left = (v.x || 0) + "px"; e.style.top = (v.y || 0) + "px"; e.style.width = W + "px"; e.style.height = H + "px";
     var cad = h("div", "gl-cadre" + (v.cadre ? " encadre" : ""), e), fr = h("iframe", "", cad);
-    fr.setAttribute("title", "Animated map"); fr.setAttribute("scrolling", "no"); fr.setAttribute("aria-hidden", "true"); fr.tabIndex = -1;
+    fr.setAttribute("title", T_("Animated map")); fr.setAttribute("scrolling", "no"); fr.setAttribute("aria-hidden", "true"); fr.tabIndex = -1;
     fr.style.width = (W / k) + "px"; fr.style.height = (H / k) + "px"; fr.style.transform = "scale(" + k + ")";
     var api = null, seg = null;
     o.attente = new Promise(function (r) {
@@ -897,7 +901,7 @@
         }, 30);
       });
     });
-    fr.src = "../cartes/" + v.code + ".html?embed=1&pilote=1&lang=" + (v.lang || "en") + "&dpr=" + (v.dpr || 3) + "&w=" + Math.round(W / k) + "&h=" + Math.round(H / k);
+    fr.src = "../cartes/" + v.code + ".html?embed=1&pilote=1&lang=" + (v.lang || (FR ? "fr" : "en")) + "&dpr=" + (v.dpr || 3) + "&w=" + Math.round(W / k) + "&h=" + Math.round(H / k);
     var vit = v.vit || 1, dernier = null;
     function segments() {
       if (seg) return seg;
@@ -937,7 +941,7 @@
       var n = l.n ? h("div", "fo-n", d, esc(l.n)) : null;
       return { d: d, n: n, l: l };
     });
-    if (v.plus) h("div", "badge", c, "Outside the course");
+    if (v.plus) h("div", "badge", c, T_("Outside the course"));
     return function (t, st) {
       if (te) op(te, E(P(st.tl, .05, .5)));
       ls.forEach(function (x, i) {
@@ -1042,16 +1046,16 @@
   };
 
   // exercice : énoncé en grand (mode « plein »), ou rappel compact à gauche pendant la correction (mode « coin »)
-  var NIVEAUX = { essay: ["Essay question", "#e6cb8b"], dbq: ["DBQ · document-based question", "#8fc7e8"], quiz: ["Quick check", "#7ce08a"] };
+  var NIVEAUX = { essay: [T_("Essay question"), "#e6cb8b"], dbq: [T_("DBQ · document-based question"), "#8fc7e8"], quiz: [T_("Quick check"), "#7ce08a"] };
   TYPES.exo = function (o, v) {
     var e = o.el, coin = v.mode === "coin"; e.classList.add("v-exo", coin ? "coin" : "plein");
     if (!coin) { e.style.left = (v.x || 110) + "px"; e.style.top = (v.y || 96) + "px"; e.style.width = (v.w || 1060) + "px"; }
-    var c = h("div", "ex-carte", e), nv = NIVEAUX[v.niveau] || [v.niveau || "Exercise", C.sa];
+    var c = h("div", "ex-carte", e), nv = NIVEAUX[v.niveau] || [v.niveau || T_("Exercise"), C.sa];
     var tag = h("div", "ex-nv", c, esc(nv[0])); tag.style.color = nv[1]; tag.style.borderColor = nv[1];
     h("div", "ex-ti", c, esc(v.titre));
     if (v.src) h("div", "ex-src", c, esc(v.src));
     var paras = (coin ? [] : v.enonce || []).map(function (p) { return h("p", "ex-p", c, esc(p)); });
-    var don = v.donnees && v.donnees.length ? h("div", "ex-don", c, "<b>Document</b> " + v.donnees.map(esc).join(" &nbsp;·&nbsp; ")) : null;
+    var don = v.donnees && v.donnees.length ? h("div", "ex-don", c, T_("<b>Document</b> ") + v.donnees.map(esc).join(" &nbsp;·&nbsp; ")) : null;
     var qs = (v.questions || []).map(function (q, i) {
       var d = h("div", "ex-q", c); h("span", "ex-qn", d, String(i + 1)); h("span", "ex-qt", d, esc(q)); return d;
     });
@@ -1076,8 +1080,8 @@
     e.style.left = (v.x != null ? v.x : 200) + "px"; e.style.top = (v.y != null ? v.y : 130) + "px"; e.style.width = (v.w || 880) + "px";
     var c = h("div", "pa-carte", e), ic = h("div", "pa-ic", c, '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>');
     var an = h("div", "pa-anneau", ic);
-    var te = h("div", "pa-te", c, "Your turn"), tx = h("div", "pa-tx", c, esc(v.t));
-    var so = h("div", "pa-so", c, esc(v.sous || "Pause the video, write your answer on a sheet, then play on for the correction."));
+    var te = h("div", "pa-te", c, T_("Your turn")), tx = h("div", "pa-tx", c, esc(v.t));
+    var so = h("div", "pa-so", c, esc(v.sous || T_("Pause the video, write your answer on a sheet, then play on for the correction.")));
     return function (t, st) {
       var tl = st.tl, a = E(P(tl, 0, .6));
       op(c, a); tr(c, "translateY(" + (24 * (1 - a)) + "px) scale(" + (0.95 + 0.05 * EB(P(tl, 0, .7))) + ")");
@@ -1188,7 +1192,7 @@
   };
 
   function lancer(EP) {
-    document.title = EP.notion + " · Episode " + EP.num + " — " + EP.titre;
+    document.title = EP.notion + T_(" · Episode ") + EP.num + " — " + EP.titre;
     if (EMBED) document.body.classList.add("embed");
     var racine = document.getElementById("serie");
 
@@ -1215,7 +1219,7 @@
     }
     var boite = h("div", "boite", L), cadre = h("div", "cadre", boite);
     var S = Scene(EP, cadre);
-    var affiche = h("div", "affiche", cadre), gp = h("button", "gros-play", affiche, ICO.play); gp.setAttribute("aria-label", "Play");
+    var affiche = h("div", "affiche", cadre), gp = h("button", "gros-play", affiche, ICO.play); gp.setAttribute("aria-label", T_("Play"));
     h("div", "charge", cadre);
     var barre = h("div", "barre", boite);
     var prog = h("div", "prog", barre), rail = h("div", "rail", prog), plein = h("div", "plein", prog);
@@ -1226,11 +1230,11 @@
     h("span", "espace", barre);
     var bVit = h("button", "btn", barre, '<span class="mono">1×</span>'), bMus = h("button", "btn on", barre, ICO.musique),
       bCC = h("button", "btn", barre, ICO.cc), bPA = h("button", "btn on", barre, ICO.apause), bFS = h("button", "btn", barre, ICO.plein);
-    bPA.title = "Stop automatically before each correction";
-    bPlay.title = "Play / pause (space)"; bM.title = "Back 10 s"; bP.title = "Forward 10 s"; bVit.title = "Speed";
-    bMus.title = "Background music"; bCC.title = "Subtitles"; bFS.title = "Full screen";
+    bPA.title = T_("Stop automatically before each correction");
+    bPlay.title = T_("Play / pause (space)"); bM.title = T_("Back 10 s"); bP.title = T_("Forward 10 s"); bVit.title = T_("Speed");
+    bMus.title = T_("Background music"); bCC.title = T_("Subtitles"); bFS.title = T_("Full screen");
 
-    h("div", "astuce", L, "On a phone, tap ⛶: the video goes full screen, in landscape.");
+    h("div", "astuce", L, T_("On a phone, tap ⛶: the video goes full screen, in landscape."));
     var chaps = h("div", "chapitres", L);
     var bChap = EP.scenes.map(function (s, i) {
       var b = h("button", "chap", chaps);
@@ -1242,8 +1246,8 @@
 
     // quiz
     var quiz = h("div", "quiz", L);
-    h("h2", "", quiz, "Did you get it?");
-    h("div", "sous", quiz, EP.quiz.length + " questions on this episode. Answer, then read the explanation.");
+    h("h2", "", quiz, T_("Did you get it?"));
+    h("div", "sous", quiz, EP.quiz.length + T_(" questions on this episode. Answer, then read the explanation."));
     var bonnes = 0, faites = 0, score = h("div", "score", null);
     EP.quiz.forEach(function (q) {
       var d = h("div", "qq", quiz); h("div", "q", d, esc(q.q));
@@ -1253,16 +1257,16 @@
           bs.forEach(function (x, j) { x.disabled = true; if (j === q.ok) x.classList.add("ok"); });
           if (i !== q.ok) b.classList.add("ko"); else bonnes++;
           faites++;
-          var ex = h("div", "ex", d, (i === q.ok ? "✓ Correct. " : "✗ Not quite. ") + esc(q.ex));
-          if (q.voir != null) { var vo = h("button", "voir", d, "▸ Watch this passage again"); vo.onclick = function () { aller(Math.max(0, q.voir - 1.5)); jouer(); (cadre.scrollIntoView || function () {}).call(cadre, { behavior: "smooth", block: "center" }); }; }
-          if (faites === EP.quiz.length) { score.textContent = "Score: " + bonnes + " / " + faites + (bonnes === faites ? " — perfect!" : ""); quiz.appendChild(score); }
+          var ex = h("div", "ex", d, (i === q.ok ? T_("✓ Correct. ") : T_("✗ Not quite. ")) + esc(q.ex));
+          if (q.voir != null) { var vo = h("button", "voir", d, T_("▸ Watch this passage again")); vo.onclick = function () { aller(Math.max(0, q.voir - 1.5)); jouer(); (cadre.scrollIntoView || function () {}).call(cadre, { behavior: "smooth", block: "center" }); }; }
+          if (faites === EP.quiz.length) { score.textContent = T_("Score: ") + bonnes + " / " + faites + (bonnes === faites ? T_(" — perfect!") : ""); quiz.appendChild(score); }
           hauteur();
         };
         return b;
       });
     });
     if (EP.credits && EP.credits.length) {
-      var cr = h("details", "credits", L); h("summary", "", cr, "Credits");
+      var cr = h("details", "credits", L); h("summary", "", cr, T_("Credits"));
       EP.credits.forEach(function (c) { h("div", "", cr, esc(c)); });
       cr.addEventListener("toggle", hauteur);
     }
@@ -1273,7 +1277,7 @@
     // arrêts « À toi » : la vidéo s'arrête d'elle-même avant chaque correction (option, active par défaut)
     var arrets = EP.vis.filter(function (v) { return v.type === "pause"; }).map(function (v) { return v.et && v.et.stop != null ? v.et.stop : v.t0 + 2.5; });
     var autoPause = true, arretSur = null;
-    var bandeau = h("div", "arret", cadre, '<span class="ic">' + ICO.pause + '</span><span><b>Your turn.</b> The video is waiting for your answer: think it through, then tap the picture for the correction.</span>');
+    var bandeau = h("div", "arret", cadre, '<span class="ic">' + ICO.pause + '</span><span>' + T_("<b>Your turn.</b> The video is waiting for your answer: think it through, then tap the picture for the correction.") + '</span>');
     var T = 0, lecture = false, vitesse = 1, sonOK = true, dernier = 0, fini = false, enAttente = null;
     audio.addEventListener("loadedmetadata", function () { if (enAttente != null) { try { audio.currentTime = enAttente; } catch (e) {} enAttente = null; } });
     audio.addEventListener("error", function () { sonOK = false; });
@@ -1408,7 +1412,7 @@
 
     if ("mediaSession" in navigator) {
       try {
-        navigator.mediaSession.metadata = new MediaMetadata({ title: "Ep. " + EP.num + " · " + EP.titre, artist: "DNL History · Revision Atlas", album: EP.notion });
+        navigator.mediaSession.metadata = new MediaMetadata({ title: T_("Ep. ") + EP.num + " · " + EP.titre, artist: T_("DNL History · Revision Atlas"), album: EP.notion });
         navigator.mediaSession.setActionHandler("play", jouer); navigator.mediaSession.setActionHandler("pause", pause);
         navigator.mediaSession.setActionHandler("seekbackward", function () { aller(T - 10); });
         navigator.mediaSession.setActionHandler("seekforward", function () { aller(T + 10); });

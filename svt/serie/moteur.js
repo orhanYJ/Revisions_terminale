@@ -891,6 +891,8 @@
       .catch(function () { if (window.CARTE_MENTALE) api = CARTE_MENTALE.creer(svg, { fige: true, ratio: 16 / 9 }); });
     var vers = v.vers || ["t1a"], vol = v.vol || 1.6, cadres = null;
     return function (t, st) {
+      // entrée en fondu, un peu après le début : le carton de chapitre qui précède a le temps de s'effacer
+      e.style.opacity = (E(P(st.tl, .45, .7)) * (1 - st.o)).toFixed(3);
       if (!api) return;
       if (!cadres) cadres = vers.map(function (id) { return api.cadre(id, 16 / 9); });
       var k = 0, tk = v.t0;
@@ -1103,7 +1105,7 @@
       var tl = st.tl, a = E(P(tl, 0, .6));
       op(c, a); tr(c, "translateY(" + (24 * (1 - a)) + "px) scale(" + (0.95 + 0.05 * EB(P(tl, 0, .7))) + ")");
       tr(ic, "scale(" + (0.6 + 0.4 * EB(P(tl, .2, .6))) + ")");
-      var r = (tl % 1.6) / 1.6; op(an, (1 - r) * .7); tr(an, "scale(" + (1 + r * .8) + ")");
+      var r = (tl % 1.6) / 1.6; op(an, (1 - r) * .7); tr(an, "scale(" + (1 + r * .4) + ")");   // l'anneau ne touche plus le libellé « À toi »
       op(te, E(P(tl, .3, .5))); op(tx, E(P(tl, .5, .6))); op(so, E(P(tl, 1, .6)) * .9);
     };
   };

@@ -167,7 +167,7 @@ SCENES = [
         "{tab_ab}Une conséquence majeure de la conjugaison : la diffusion des résistances aux antibiotiques. "
         "Sur cette photo, des boîtes de culture avec des pastilles d'antibiotiques. Autour d'une pastille efficace, un halo clair : les bactéries ne poussent pas. "
         "Sur la dernière boîte, plus aucun halo : ces bactéries résistent.",
-        "{-tab_ab}{meca}Une bactérie résiste grâce à des gènes qui codent l'un de ces mécanismes. {meca.1}Une enzyme qui dégrade l'antibiotique, "
+        "{-tab_ab}{meca}{meca.1}Une bactérie résiste grâce à des gènes qui codent l'un de ces mécanismes. Une enzyme qui dégrade l'antibiotique, "
         "ou qui l'altère et le rend inactif. {meca.2}Des pompes membranaires qui l'expulsent avant qu'il n'agisse. "
         "{meca.3}Ou une mutation du chromosome qui modifie la cible de l'antibiotique.",
         "{-meca}{mp}L'acquisition d'une résistance se fait donc de deux façons, très inégales. {mp.1}Par mutation du chromosome : c'est un transfert vertical, "
@@ -311,7 +311,7 @@ SCENES = [
         "{-virus}",
     ], vis={
         "chif": dict(type="mot", t="8 à 10 %", g="du génome humain est d'origine virale", taille=150, y=210),
-        "tab_vih": dict(type="tableau", img="ch2-vih", de=[1.0, .5, .5], a=[1.35, .55, .5],
+        "tab_vih": dict(type="tableau", img="ch2-vih", de=[1.0, .48, .24], a=[1.12, .52, .74],
                         legende="Particules de VIH-1 bourgeonnant d'une cellule, microscopie électronique colorisée · NIAID, CC BY 2.0"),
         "an5": dict(type="anim", nom="thg", x=40, y=72, h=624, seg=[[46, 56], [56, 62]]),
         "pt5": dict(type="liste", petit=True, titre="Le cycle d'un rétrovirus", x=680, y=110, w=560, items=[
@@ -391,7 +391,7 @@ SCENES = [
     dict(id="ece", chap="Le TP syncytine, façon bac", fond="foret", humeur="calme",
          retenir="Une conclusion d'ECE est complète, organisée et distanciée : une phrase sur les limites de la démarche, ou une expérience qui la compléterait.",
          beats=[
-        "{etapes}Ce TP est un vrai TP type bac. {etapes.1}Reprenons sa correction, étape par étape. La stratégie : comparer avec Geniegen2 les séquences en acides aminés "
+        "{etapes}{etapes.1}Ce TP est un vrai TP type bac. Reprenons sa correction, étape par étape. La stratégie : comparer avec Geniegen2 les séquences en acides aminés "
         "des syncytines humaines et de primates avec celles des protéines virales MSRV. On s'attend à démontrer un transfert viral si la similitude dépasse quatre-vingts pour cent.",
         "{etapes.2}Communiquer : un tableau titré, « Tableau de comparaison des protéines syncytines humaines et MSRV », avec deux lignes seulement : "
         "syncytine un, quatre-vingt-sept pour cent ; syncytine deux, vingt pour cent. Seulement l'essentiel.",
@@ -502,7 +502,7 @@ SCENES = [
                        ["Exemples", "Plantes vertes, algues vertes", "Animaux, champignons"],
                        ["Processus", "Photosynthèse : CO₂ + eau + lumière → glucides (+ O₂)", "Respiration : matière organique + O₂ → énergie + CO₂ (+ eau)"],
                        ["Organite", "Chloroplaste", "Mitochondrie"]]),
-        "tab_el": dict(type="tableau", img="ch2-elodee", fond=True, de=[1.05, .5, .5], a=[1.5, .5, .45],
+        "tab_el": dict(type="tableau", img="ch2-elodee", fond=True, de=[1.3, .55, .5], a=[1.55, .55, .45],
                        legende="Cellules de feuille d'élodée et leurs chloroplastes, au microscope · Kelvinsong, CC BY-SA 3.0"),
         "piege_mi": dict(type="note", titre="Les plantes ont aussi des mitochondries", cles=["respirent", "mitochondries"],
                          t="Une plante est autotrophe, mais toutes ses cellules respirent : chloroplastes ET mitochondries.", x=150, y=220, w=980),
@@ -578,7 +578,7 @@ SCENES = [
     dict(id="points", chap="Les autres points communs", fond="cellule", humeur="calme",
          retenir="ADN circulaire, ribosomes à ARN 16S, taille du micromètre, division par étranglement, RubisCo : chloroplaste ← cyanobactérie, mitochondrie ← α-protéobactérie.",
          beats=[
-        "{pc}Les autres points communs entre organites et bactéries. {pc.1}Les membranes : une membrane interne qui contient de la cardiolipine et des chaînes de transport d'électrons, "
+        "{pc}{pc.1}Les autres points communs entre organites et bactéries. Les membranes : une membrane interne qui contient de la cardiolipine et des chaînes de transport d'électrons, "
         "avec des protéines de transport, les porines. Même composition dans la membrane bactérienne.",
         "{pc.2}Le matériel génétique : un chromosome circulaire. De trente à cent gènes dans l'organite, plusieurs milliers chez la bactérie.",
         "{pc.3}Les ribosomes : les organites ont leurs propres ribosomes, dont la petite sous-unité contient un ARN 16S, comme chez les bactéries. "
@@ -632,7 +632,7 @@ SCENES = [
         "{pt7.3}Trois : la relocalisation des protéines. Fabriquées dans le cytoplasme, elles sont importées dans l'organite. Environ deux mille trois cents protéines "
         "sont importées du noyau vers le chloroplaste.",
         "{pt7.4}L'exemple : la RubisCo. Sa petite sous-unité est codée par le noyau et importée dans le chloroplaste. Sa grande sous-unité est codée par le génome du chloroplaste.",
-        "{-pt7}{-an7}{cle}Et voici l'idée qui relie tout le chapitre. {cle.1}Ce transfert de gènes du symbiote vers le noyau est un transfert horizontal, "
+        "{-pt7}{-an7}{cle}{cle.1}Et voici l'idée qui relie tout le chapitre. Ce transfert de gènes du symbiote vers le noyau est un transfert horizontal, "
         "rendu possible par l'endosymbiose. {cle.2}Le génome de la cellule hôte s'enrichit de gènes bactériens : il se complexifie. "
         "C'est pourquoi les endosymbioses font partie du chapitre sur la complexification des génomes.",
         "{-cle}",
@@ -667,17 +667,17 @@ SCENES = [
         "pour maintenir et exprimer un génome immense.",
         "{pt8.3}{an8.2}Le chloroplaste descend d'une cyanobactérie ; la mitochondrie, par la même histoire, d'une alpha-protéobactérie. "
         "Et en héritant de gènes bactériens, le génome de la cellule hôte s'est complexifié.",
-        "{-pt8}{-an8}{bilan}Voici le bilan à écrire, celui de la diapositive de ta prof. {bilan.1}Les procaryotes sont fortement intégrés au sein de la cellule hôte : "
+        "{-pt8}{-an8}{bilan}{bilan.1}Voici le bilan à écrire, celui de la diapositive de ta prof. Les procaryotes sont fortement intégrés au sein de la cellule hôte : "
         "chacun retire de cette association des bénéfices mutuels. C'est l'endosymbiose, à l'origine de l'apparition des métabolismes chez les eucaryotes. "
         "{bilan.2}Autotrophes, qui synthétisent leur matière organique à partir de matière minérale grâce à la photosynthèse ; {bilan.3}et hétérotrophes, "
         "qui produisent de l'énergie à partir de matière organique préexistante grâce à la respiration.",
         "{-bilan}{mit2}Un dernier piège. Le bilan de la diapositive dit que les organites se divisent par mitoses. Non : comme les bactéries dont ils descendent, "
         "ils se divisent par étranglement médian, indépendamment de la cellule. C'est même l'un des arguments de leur origine bactérienne.",
-        "{-mit2}{tp}Le TP ECE sur l'origine des chloroplastes. Sa stratégie est imposée : {tp.1}comparer, avec Geniegen2, les ARN ribosomiques seize S de bactéries, "
+        "{-mit2}{tp}{tp.1}Le TP ECE sur l'origine des chloroplastes. Sa stratégie est imposée : comparer, avec Geniegen2, les ARN ribosomiques seize S de bactéries, "
         "de chloroplastes et de plantes vertes ; {tp.2}et la séquence de la RubisCo chez des bactéries et des plantes. "
         "{tp.3}On s'attend à ce que l'ARN du chloroplaste ressemble davantage à celui des bactéries, et surtout d'une cyanobactérie, qu'à l'ARN dix-huit S du noyau de la plante ; "
         "et que sa RubisCo soit très proche de celle des cyanobactéries.",
-        "{-tp}{err}La feuille de TP contient trois erreurs, signalées sur le site. {err.1}Elle présente Nostoc et Chlorobium comme des plantes vertes : "
+        "{-tp}{err}{err.1}La feuille de TP contient trois erreurs, signalées sur le site. Elle présente Nostoc et Chlorobium comme des plantes vertes : "
         "ce sont des bactéries photosynthétiques. Nostoc est une cyanobactérie, Chlorobium une bactérie sulfureuse verte. "
         "{err.2}Elle dit qu'un ribosome est une protéine : c'est un assemblage d'ARN ribosomiques et de protéines. "
         "{err.3}Et son titre parle des mitochondries, alors que tout le TP porte sur les chloroplastes.",
@@ -712,11 +712,11 @@ SCENES = [
         "Montrer que les transferts horizontaux de gènes contribuent à la complexification des génomes. Tu rédigeras une introduction, "
         "un développement structuré, illustré d'exemples précis, et une conclusion. Un schéma est valorisé.",
         "{-ex}{pa_ex}Prends vingt minutes. Fais d'abord ton plan au brouillon, avec un exemple précis par idée.",
-        "{pa_ex.stop}{-pa_ex}{exc}{exc.q1}{intro}La correction. L'introduction. {intro.1}Partir du transfert vertical, des parents aux descendants, "
+        "{pa_ex.stop}{-pa_ex}La correction. {exc}{exc.q1}{intro}L'introduction. {intro.1}Partir du transfert vertical, des parents aux descendants, "
         "et dire que ses brassages ne suffisent pas à expliquer toute la diversité génétique. {intro.2}Définir le transfert horizontal, et dire ce qui le rend possible : "
         "l'universalité de l'ADN et du code génétique. {intro.3}Poser la question : comment ces transferts enrichissent-ils les génomes ?",
-        "{-intro}{exc.q2}{plan_ex}Le développement, en trois parties, des gènes isolés à la cellule entière. "
-        "{plan_ex.1}Un : chez les bactéries. La transformation, avec Griffith ; la conjugaison et les plasmides, avec les résistances aux antibiotiques ; "
+        "{-intro}{exc.q2}{plan_ex}{plan_ex.1}Le développement, en trois parties, des gènes isolés à la cellule entière. "
+        "Un : chez les bactéries. La transformation, avec Griffith ; la conjugaison et les plasmides, avec les résistances aux antibiotiques ; "
         "la transgenèse naturelle d'Agrobacterium, et la transgenèse dirigée de l'insuline.",
         "{plan_ex.2}Deux : par les virus. Le cycle du rétrovirus, puis la syncytine : quatre-vingt-sept pour cent de similitude, la même fonction, "
         "et l'intégration dans une cellule germinale de l'ancêtre des primates. Un gène viral devenu un gène de mammifère, indispensable au placenta.",
@@ -752,14 +752,14 @@ SCENES = [
     dict(id="bac", chap="Pour le bac", fond="aube", humeur="calme",
          retenir="Les mots exacts : non apparenté, plasmide, pont cytoplasmique, vecteur, transcription inverse, cellule germinale, homologie de séquence, double membrane, étranglement.",
          beats=[
-        "{sujets}Ce qu'il faut savoir rédiger, sans regarder le cours. {sujets.1}L'introduction du chapitre : le transfert vertical, ses limites, l'universalité de l'ADN, "
+        "{sujets}{sujets.1}Ce qu'il faut savoir rédiger, sans regarder le cours. L'introduction du chapitre : le transfert vertical, ses limites, l'universalité de l'ADN, "
         "la définition du transfert horizontal, et la problématique. {sujets.2}L'interprétation de l'expérience de Griffith, lot par lot.",
         "{sujets.3}La diffusion des résistances aux antibiotiques : mutation rare contre plasmide fréquent, conjugaison, sélection, sans jamais de formulation finaliste. "
         "{sujets.4}La production d'insuline par transgenèse, schéma à l'appui. {sujets.5}La conclusion du TP syncytine, avec ses trois arguments et sa phrase distanciée. "
         "{sujets.6}Et l'argumentation de l'origine endosymbiotique des chloroplastes : les caractères bactériens, la cyanobactérie, le génome réduit.",
-        "{-sujets}{schemas}Les schémas à savoir refaire, les étoiles de la carte. {schemas.1}La conjugaison bactérienne. {schemas.2}La transgenèse de l'insuline. "
+        "{-sujets}{schemas}{schemas.1}Les schémas à savoir refaire, les étoiles de la carte. La conjugaison bactérienne. {schemas.2}La transgenèse de l'insuline. "
         "{schemas.3}Le cycle du rétrovirus. {schemas.4}Et l'endosymbiose, avec la double membrane légendée.",
-        "{-schemas}{reflexes}Et les réflexes qui rapportent des points. {reflexes.1}L'antibiotique sélectionne, il ne crée pas. "
+        "{-schemas}{reflexes}{reflexes.1}Et les réflexes qui rapportent des points. L'antibiotique sélectionne, il ne crée pas. "
         "{reflexes.2}Les bactéries se divisent, elles ne font pas de mitose ; les organites non plus. {reflexes.3}Plus de quatre-vingts pour cent entre organismes éloignés : transfert horizontal. "
         "{reflexes.4}Homologie de séquence, pas analogie. {reflexes.5}Chloroplaste, cyanobactérie ; mitochondrie, alpha-protéobactérie.",
         "{-reflexes}",

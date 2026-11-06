@@ -64,8 +64,8 @@ SCENES = [
          beats=[
         "{rap}Un rappel de Première, d'abord. {rap.1}Le phénotype, ce sont les caractères d'un individu : sa forme, sa couleur, son métabolisme, son comportement. "
         "{rap.2}Il dépend de son génotype, c'est-à-dire de ses allèles. Mais pas seulement : il dépend aussi de l'environnement.",
-        "{-rap}{gen}Depuis le début de l'année, on a surtout expliqué la diversité des phénotypes par des mécanismes génétiques. "
-        "{gen.1}Au chapitre un, les brassages de la reproduction sexuée, pendant la formation des gamètes et la fécondation. "
+        "Depuis le début de l'année, on a surtout expliqué la diversité des phénotypes par des mécanismes génétiques. "
+        "{-rap}{gen}{gen.1}Au chapitre un, les brassages de la reproduction sexuée, pendant la formation des gamètes et la fécondation. "
         "{gen.2}Au chapitre deux, les transferts de gènes entre êtres vivants. "
         "{gen.3}Au chapitre trois, la dérive et la sélection, qui font varier les fréquences des allèles dans les populations.",
         "{-gen}{trois}Mais en dehors de ces processus génétiques, d'autres mécanismes diversifient aussi le phénotype des individus. "
@@ -211,8 +211,8 @@ SCENES = [
         "contribuent à diversifier les métabolismes de certains êtres vivants, {effets.2}leurs comportements, {effets.3}et donc leur survie.",
         "{-effets}{conc_sym}Dans toutes ces situations, les caractéristiques de l'hôte sont modifiées sans que son génome ait changé. "
         "{conc_sym.1}La symbiose contribue donc bien à diversifier le phénotype des individus.",
-        "{-conc_sym}{hp1}Un approfondissement, maintenant, que ta prof présente pour ta culture générale, mais à ne pas retenir : il est hors programme. "
-        "{hp1.1}Les chercheurs distinguent plusieurs hérédités non génétiques. L'hérédité d'associations symbiotiques, quand les symbiotes sont transmis à la descendance. "
+        "Un approfondissement, maintenant, que ta prof présente pour ta culture générale, mais à ne pas retenir : il est hors programme. "
+        "{-conc_sym}{hp1}{hp1.1}Les chercheurs distinguent plusieurs hérédités non génétiques. L'hérédité d'associations symbiotiques, quand les symbiotes sont transmis à la descendance. "
         "{hp1.2}L'hérédité épigénétique, quand une variation de l'expression des gènes, liée à l'environnement, est transmise. "
         "{hp1.3}L'hérédité écologique, quand les descendants héritent de l'habitat de leurs parents. "
         "{hp1.4}L'hérédité par effets parentaux, quand l'action des parents influe sur le phénotype des descendants. "
@@ -308,7 +308,7 @@ SCENES = [
         "{tab_mes}Un exemple à lire, pour voir jusqu'où va le phénotype étendu : les mésanges bleues, adeptes de l'aromathérapie.",
         "{-tab_mes}{mes}{mes.1}Chez les mésanges bleues, la femelle ajoute dans le nid des fragments frais de plantes aromatiques, glissés entre les matériaux. "
         "{mes.2}Et elle le fait chaque jour, depuis la fin de la construction du nid jusqu'à l'envol des jeunes.",
-        "{-mes}{plantes}Cinq espèces se retrouvent dans plus d'un quart des nids suivis. {plantes.1}L'achillée de Ligurie. {plantes.2}La lavande papillon. "
+        "Cinq espèces se retrouvent dans plus d'un quart des nids suivis. {-mes}{plantes}{plantes.1}L'achillée de Ligurie. {plantes.2}La lavande papillon. "
         "{plantes.3}L'immortelle d'Italie. {plantes.4}La menthe à feuilles rondes. {plantes.5}Et la pulicaire odorante.",
         "{-plantes}{tab_lav}{terp}Pourquoi ces plantes ? {terp.1}Elles sont riches en terpènes, des molécules qui agissent comme insecticides, bactéricides et fongicides. "
         "{terp.2}La lavande, par exemple, dégage du bêta-pinène, un puissant répulsif des insectes. "
@@ -338,8 +338,8 @@ SCENES = [
          beats=[
         "{cm3}Troisième et dernière branche : {cm3.1}les comportements. La diversification des individus peut reposer sur des caractères comportementaux, "
         "et pas seulement sur leur forme. On retrouve d'ailleurs le phénotype étendu. Cette branche a deux parties.",
-        "{-cm3}{tab_ter}{res}Première partie : des comportements qui dépendent des ressources du milieu. "
-        "Le comportement des individus dépend des ressources dont ils disposent dans leur environnement. Le cours cite quatre cas. "
+        "{-cm3}{tab_ter}Première partie : des comportements qui dépendent des ressources du milieu. "
+        "Le comportement des individus dépend des ressources dont ils disposent dans leur environnement. {res}Le cours cite quatre cas. "
         "{res.1}La construction des nids d'oiseaux. {res.2}Les termitières. {res.3}Les fourreaux des phryganes, faits avec les graviers et les débris disponibles. "
         "{res.4}Et le comportement reproducteur de certains oiseaux, comme le jardinier satiné.",
         "Le même animal, dans un milieu différent, construira donc autrement. Son génome est le même, son phénotype diffère.",
@@ -440,14 +440,14 @@ SCENES = [
         "{-cul}{def_cul}{def_cul.1}La culture concerne l'ensemble des animaux qui ont une organisation sociale. C'est l'ensemble des savoirs et des pratiques "
         "qui se partagent et se transmettent socialement au sein d'un groupe. Et cette transmission n'est pas un héritage génétique.",
         "{-def_cul}{tab_ois}Deuxième exemple du cours : le chant des oiseaux.",
-        "{-tab_ois}{chant}Le cours le résume en une phrase : un oisillon isolé de tous ses congénères ne peut pas apprendre, et présente un chant très éloigné de celui de son espèce. "
-        "Ce schéma te le montre, avec des sonogrammes simplifiés : le temps de gauche à droite, la hauteur du son de bas en haut. "
+        "Le cours le résume en une phrase : un oisillon isolé de tous ses congénères ne peut pas apprendre, et présente un chant très éloigné de celui de son espèce. "
+        "{-tab_ois}{chant}Ce schéma te le montre, avec des sonogrammes simplifiés : le temps de gauche à droite, la hauteur du son de bas en haut. "
         "{chant.1}En haut, le chant d'un adulte de l'espèce. {chant.2}Au milieu, un jeune élevé avec ses congénères : après entraînement, il reproduit ce chant. "
         "{chant.3}En bas, un jeune élevé seul : son chant ne ressemble plus à celui de son espèce.",
         "{-chant}{bil_ch}Le bilan, à noter. {bil_ch.1}Ce comportement montre une démarche d'apprentissage. "
         "L'oisillon finit par maîtriser le chant de son espèce, par entraînement et par apprentissage. "
         "{bil_ch.2}Il s'agit d'une transmission non génétique d'un comportement, c'est-à-dire qu'il n'est pas inné.",
-        "{-bil_ch}{inne}Profites-en pour fixer deux mots. {inne.g}Un comportement inné se met en place sans apprentissage. "
+        "Profites-en pour fixer deux mots. {-bil_ch}{inne}{inne.g}Un comportement inné se met en place sans apprentissage. "
         "{inne.d}Un comportement acquis s'apprend, par observation et entraînement. Et le test, c'est l'isolement : un individu isolé n'acquiert pas un comportement qui s'apprend.",
         "{-inne}",
     ], vis={
@@ -473,7 +473,7 @@ SCENES = [
     dict(id="baleines", chap="Le chant des baleines à bosse", fond="nuit", humeur="mystere",
          retenir="Chez les baleines à bosse, un nouveau chant apparaît en Australie et gagne, en un ou deux ans, les populations plus à l'est : il se transmet par apprentissage, pas par les gènes.",
          beats=[
-        "{tab_bal}Troisième exemple : le chant des baleines à bosse du Pacifique. Chez cette espèce, seuls les mâles chantent, "
+        "Troisième exemple : {tab_bal}le chant des baleines à bosse du Pacifique. Chez cette espèce, seuls les mâles chantent, "
         "notamment pour séduire les femelles, lors des migrations de la saison des amours.",
         "{-tab_bal}{str}Un chant est très organisé. {str.1}Des unités sonores s'organisent en phrases, répétées. {str.2}Les phrases forment un thème. "
         "{str.3}Un chant compte de quatre à sept thèmes différents, repris dans un ordre précis, {str.4}pendant huit à trente minutes.",
@@ -508,8 +508,8 @@ SCENES = [
         "{bil.4}Et selon leurs conséquences, ces comportements ont pu se maintenir ou non dans les populations : "
         "ils ont ainsi contribué à l'évolution technique et culturelle des espèces.",
         "{-bil}{frappe_m}La conclusion du chapitre : la transmission culturelle et comportementale est donc, elle aussi, un moteur évolutif.",
-        "{-frappe_m}{tab_mac}{mac}Et ces macaques du bilan ? Le diaporama les cite sans document. Alors voici l'exemple classique, "
-        "qui vient des manuels et de la littérature scientifique, pas de ton diaporama : {mac.1}les macaques japonais de l'île de Koshima. "
+        "{-frappe_m}{tab_mac}Et ces macaques du bilan ? Le diaporama les cite sans document. Alors voici l'exemple classique, "
+        "qui vient des manuels et de la littérature scientifique, pas de ton diaporama : {mac}{mac.1}les macaques japonais de l'île de Koshima. "
         "{mac.2}Dans les années mille neuf cent cinquante, une jeune femelle s'est mise à laver dans l'eau les patates douces que lui donnaient les chercheurs. "
         "{mac.3}Le comportement s'est ensuite répandu dans le groupe, d'abord chez les jeunes, puis de génération en génération.",
         "C'est exactement le même mécanisme que pour les chimpanzés et les oiseaux : un comportement nouveau, appris, transmis, sans aucun gène nouveau.",
@@ -593,7 +593,7 @@ SCENES = [
         "{pieges.2}Préciser le sens du mot symbiose, ou parler de mutualisme et de parasitisme. "
         "{pieges.3}Ne pas confondre inné et acquis : l'expérience d'isolement fait la différence. "
         "{pieges.4}Et toujours un exemple précis derrière chaque idée.",
-        "{-pieges}{bac}Voici ce que tu dois savoir faire, à cocher. {bac.1}Définir l'hérédité non génétique. {bac.2}Définir le mutualisme et le parasitisme, avec un exemple chacun. "
+        "{-pieges}Voici ce que tu dois savoir faire, {bac}à cocher. {bac.1}Définir l'hérédité non génétique. {bac.2}Définir le mutualisme et le parasitisme, avec un exemple chacun. "
         "{bac.3}Définir la symbiose, en précisant le sens. {bac.4}Définir le phénotype étendu, avec des exemples. "
         "{bac.5}Décrire et exploiter un graphique d'apprentissage, comme celui du chimpanzé. "
         "{bac.6}Expliquer pourquoi un comportement n'est pas inné. {bac.7}Et rédiger une synthèse sur la diversité non génétique.",

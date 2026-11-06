@@ -165,23 +165,23 @@
       // le parasité : au fond, puis monte vers la lumière, puis tourne en surface
       var u = EIO(P(t, t1, 3.2)), xp = W * .45 + u * W * .2, yp = fond - 50 - u * (fond - surf - 80), ang = 0;
       if (t > t2) { var w = (t - t2) * 4.2; xp += 30 * Math.cos(w); yp += 18 * Math.sin(w); ang = (w * 57.3) % 360; }
-      var pris = P(t, t3 + .8, .6);
-      if (pris > 0) { yp -= 140 * EIO(pris); }
+      var pris = P(t, t3 + .8, 1.3);
+      if (pris > 0) { yp -= 420 * EIO(pris); }
       para.setAttribute("transform", "translate(" + xp.toFixed(1) + "," + yp.toFixed(1) + ") rotate(" + ang.toFixed(1) + ")");
       kyste.setAttribute("cx", -6); kyste.setAttribute("cy", -6);
       op(para, E(P(tl, .7, .6)) * (pris >= 1 ? 0 : 1)); op(kyste, .6 + .4 * Math.sin(t * 5));
       apparait(lP, t, t1 + .3); op(lT, E(P(t, t2, .6))); if (t > t3) op(lP, 1 - E(P(t, t3, .5)));
       // l'oiseau plonge sur le gammare
-      var q = EIO(P(t, t3, 1)), ox = W + 80 - (W + 80 - (xp + 40)) * q, oy = -40 + (surf - 20 + 40) * q - 140 * EIO(pris);
+      var q = EIO(P(t, t3, 1)), ox = W + 80 - (W + 80 - (xp + 40)) * q, oy = -40 + (surf - 20 + 40) * q - 420 * EIO(pris);
       oiseau.setAttribute("transform", "translate(" + ox.toFixed(1) + "," + oy.toFixed(1) + ") scale(-1,1)");
-      op(oiseau, t >= t3 ? 1 : 0); apparait(lO, t, t3 + .6);
+      op(oiseau, t >= t3 ? 1 - E(P(t, t3 + 1.6, .5)) : 0); apparait(lO, t, t3 + .6);
     };
   };
 
   /* 4 · Le cycle du parasite : 1er hôte intermédiaire {id.1}, gammare {id.2}, oiseau hôte définitif {id.3}, retour {id.4} */
   SERIE_ILLU.c4_cycle = function (s, v) {
     var W = v.w, H = v.h, g = sv("g", {}, s);
-    var N = [[W * .2, H * .62], [W * .5, H * .2], [W * .8, H * .62]];
+    var N = [[W * .2, H * .62], [W * .5, H * .24], [W * .8, H * .62]];
     var nom = [["1er hôte intermédiaire", "multiplication asexuée"], ["Gammare : 2e hôte intermédiaire", "larves enkystées, comportement modifié"], ["Oiseau : hôte définitif", "adulte, reproduction sexuée (intestin)"]];
     var col = [C.te, "#ff9f5b", C.iv];
     var nds = N.map(function (p, k) {
@@ -191,16 +191,16 @@
       if (k === 0) { sv("path", { d: "M-30 14 C-30 -16 10 -30 26 -8 C36 6 22 22 4 16 C-10 12 -8 -4 6 -4", fill: "none", stroke: col[k], "stroke-width": 4 }, ic); sv("path", { d: "M-36 18 H34", stroke: col[k], "stroke-width": 4, "stroke-linecap": "round" }, ic); }
       if (k === 1) { var gm = gammare(ic, "#ff9f5b"); gm.setAttribute("transform", "scale(1.1)"); }
       if (k === 2) { sv("path", { d: "M-34 0 C-16 -20 8 -18 20 -6 L36 -4 L20 4 C8 16 -16 14 -34 0 Z", fill: col[k] }, ic); sv("path", { d: "M-6 -12 C0 -40 18 -46 24 -44 C12 -34 8 -22 6 -12 Z", fill: C.iv2 }, ic); }
-      txt(b, p[0], p[1] + (k === 1 ? -92 : 100), nom[k][0], { fs: 23, c: col[k] });
-      txt(b, p[0], p[1] + (k === 1 ? -66 : 128), nom[k][1], { fs: 19, c: C.iv2, fw: 400 });
+      txt(b, p[0], p[1] + (k === 1 ? -100 : 100), nom[k][0], { fs: 23, c: col[k] });
+      txt(b, p[0], p[1] + (k === 1 ? -74 : 128), nom[k][1], { fs: 19, c: C.iv2, fw: 400 });
       return b;
     });
     var f1 = fleche(g, "M" + (N[0][0] + 30) + " " + (N[0][1] - 66) + " Q" + (W * .28) + " " + (H * .24) + " " + (N[1][0] - 74) + " " + (N[1][1] + 6), C.iv2, 3);
     var f2 = fleche(g, "M" + (N[1][0] + 74) + " " + (N[1][1] + 6) + " Q" + (W * .72) + " " + (H * .24) + " " + (N[2][0] - 30) + " " + (N[2][1] - 66), C.iv2, 3);
     var f3 = fleche(g, "M" + (N[2][0] - 70) + " " + (N[2][1] + 20) + " Q" + (W * .5) + " " + (H * .86) + " " + (N[0][0] + 70) + " " + (N[0][1] + 20), "rgba(180,203,156,.6)", 2.6);
-    var e1 = txt(g, W * .27, H * .3, "larves", { fs: 20, c: C.iv2, fw: 400 }), e2 = txt(g, W * .74, H * .3, "mangé en surface", { fs: 20, c: C.iv2, fw: 400 });
+    var e1 = txt(g, W * .17, H * .24, "larves", { fs: 20, c: C.iv2, fw: 400 }), e2 = txt(g, W * .84, H * .24, "mangé en surface", { fs: 20, c: C.iv2, fw: 400 });
     var ti = txt(g, 20, H - 6, "Le cycle du parasite : trois hôtes", { fs: 22, c: C.sa, ancre: "start" });
-    var e3 = txt(g, W * .5, H * .79, "œufs rejetés dans l'eau (précision hors cours)", { fs: 19, c: "rgba(180,203,156,.85)", fw: 400 });
+    var e3 = txt(g, W * .5, H * .9, "œufs rejetés dans l'eau (précision hors cours)", { fs: 19, c: "rgba(180,203,156,.85)", fw: 400 });
     return function (t, st) {
       var tk = [1, 2, 3].map(function (k) { return et(v, String(k), 1 + (k - 1) * 2.5); }), t4 = et(v, "4", 9);
       apparait(ti, st.tl, .2);
@@ -232,7 +232,7 @@
     return function (t, st) {
       var q1 = apparait(mu, t, et(v, "1", .3)); decale(mu, q1, 18);
       var q2 = apparait(pa, t, et(v, "2", 2)); decale(pa, q2, 18);
-      apparait(large, t, et(v, "3", 4));
+      apparait(large, st.tl, .3);
       apparait(res, t, et(v, "4", 6));
     };
   };
@@ -272,7 +272,7 @@
         op(gr.e, t >= t2 + i * .1 ? 1 : 0);
       });
       apparait(l2, t, t2 + .2); apparait(l2b, t, t2 + .5);
-      var sort = EIO(P(t, t3, 2)); larve.setAttribute("transform", "translate(" + (-180 * sort).toFixed(1) + "," + ond.toFixed(1) + ")");
+      var sort = EIO(P(t, t3, 2)); larve.setAttribute("transform", "translate(" + (-330 * sort).toFixed(1) + "," + ond.toFixed(1) + ")");
       apparait(l3, t, t3 + .3);
     };
   };
@@ -322,12 +322,13 @@
       op(encl, E(P(st.tl, 0, .6))); apparait(lE, st.tl, .5);
       var pn = apparait(noix, t, t1); noix.setAttribute("transform", "translate(0," + (-40 * (1 - pn)).toFixed(1) + ")"); apparait(lN, t, t1 + .3);
       // le percuteur se lève et retombe (période 1,4 s) jusqu'à l'ouverture de la noix
-      var dt = t - t2, per = 1.4, ph = dt > 0 ? (dt % per) / per : 0, haut = dt > 0 && t < t3 + .3 ? (ph < .7 ? EIO(ph / .7) : 1 - Math.pow((ph - .7) / .3, 2)) : 0;
+      var dt = t - t2, per = 1.4, ph = dt > 0 ? (dt % per) / per : 0, cyc = function (tt) { var d = tt - t2, f = d > 0 ? (d % per) / per : 0; return d > 0 ? (f < .7 ? EIO(f / .7) : 1 - Math.pow((f - .7) / .3, 2)) : 0; },
+        haut = t < t3 ? cyc(t) : cyc(t3) + (1 - cyc(t3)) * EIO(P(t, t3, .6));
       var px = cx + 10, py = ny - 54 - 150 * haut;
       perc.setAttribute("transform", "translate(" + px.toFixed(1) + "," + py.toFixed(1) + ") rotate(" + (-12 * haut).toFixed(1) + ")");
       bras.setAttribute("d", "M" + (px + 30) + " " + (py - 10) + " Q" + (px + 160) + " " + (py - 120) + " " + (W - 40) + " " + (py - 180));
       op(perc, E(P(t, t2 - .6, .5))); op(bras, E(P(t, t2 - .6, .5)) * .9); apparait(lP, t, t2);
-      op(choc, dt > 0 && ph > .9 && t < t3 + .3 ? 1 : 0);
+      op(choc, dt > 0 && ph > .9 && t < t3 ? 1 : 0);
       var ouv = EIO(P(t, t3, .6));
       n1.setAttribute("transform", "translate(" + (-34 * ouv).toFixed(1) + "," + (18 * ouv).toFixed(1) + ") rotate(" + (-40 * ouv) + " " + cx + " " + ny + ")");
       n2.setAttribute("transform", "translate(" + (34 * ouv).toFixed(1) + "," + (18 * ouv).toFixed(1) + ") rotate(" + (40 * ouv) + " " + cx + " " + ny + ")");

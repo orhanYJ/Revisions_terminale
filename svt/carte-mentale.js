@@ -120,15 +120,16 @@
       });
       var hs = slots.reduce(function (a, s) { return a + s.n.h; }, 0), u = slots.reduce(function (a, s) { return a + s.saut; }, 0);
       var g = Math.max(9, (H - 60 - hs) / u), y = 30;
-      slots.forEach(function (s) { y += s.saut * g; s.n.y = y; s.n.cy = y + s.n.h / 2; y += s.n.h; });
+      slots.forEach(function (s) { y += s.saut * g; s.n.y = y; s.n.cy = y + s.n.h / 2; s.n.ay = y + 9; y += s.n.h; });   // ay : la pastille, où arrive la tige
       return y + 30;
     }
     var hG = empiler(-1), hD = empiler(1), HT = Math.max(H, hG, hD);
     [[-1, hG], [1, hD]].forEach(function (c) {
       var d = (HT - c[1]) / 2; if (d <= 0) return;
-      ordre.forEach(function (id) { var n = noeuds[id]; if (n.niveau === 3 && n.cote === c[0]) { n.y += d; n.cy += d; } });
+      ordre.forEach(function (id) { var n = noeuds[id]; if (n.niveau === 3 && n.cote === c[0]) { n.y += d; n.cy += d; n.ay += d; } });
     });
-    function moy(n) { var a = n.kids[0], b = n.kids[n.kids.length - 1]; return (a.cy + b.cy) / 2; }
+    function ancre(k) { return k.niveau === 3 ? k.ay : k.cy; }
+    function moy(n) { var a = n.kids[0], b = n.kids[n.kids.length - 1]; return (ancre(a) + ancre(b)) / 2; }
     ordre.forEach(function (id) { var n = noeuds[id]; if (n.niveau === 2) n.cy = moy(n); });
     ordre.forEach(function (id) { var n = noeuds[id]; if (n.niveau === 1) n.cy = moy(n); });
     var CY = HT / 2; CARTE.cy = CY; CARTE.w = 216; CARTE.h = 150; CARTE.cx = CX;
@@ -157,10 +158,13 @@
 
     ordre.forEach(function (id) {
       var n = noeuds[id]; if (!n.parent) return;
-      var p = noeuds[n.parent], s = n.cote, x0, y0 = p.cy, x1, y1 = n.cy, w0, w1;
-      if (n.niveau === 1) { x0 = CX + s * 90; y0 = CY + (n.cy - CY) * 0.3; w0 = 12; w1 = 6.5; }
+      var p = noeuds[n.parent], s = n.cote, x0, y0 = p.cy, x1, y1 = ancre(n), w0, w1;
+      if (n.niveau === 1) {   // depuis le bord de la bulle centrale, à une hauteur qui reste dans la bulle
+        var lim = CARTE.h / 2 - 30;
+        x0 = CX + s * (CARTE.w / 2 - 3); y0 = CY + Math.max(-lim, Math.min(lim, (n.cy - CY) * 0.5)); w0 = 12; w1 = 6.5;
+      }
       else { x0 = s > 0 ? p.box[0] + p.box[2] : p.box[0]; w0 = n.niveau === 2 ? 5 : 3.2; w1 = n.niveau === 2 ? 3.2 : 1.4; }
-      x1 = s > 0 ? n.box[0] + (n.niveau === 3 ? 4 : 0) : n.box[0] + n.box[2] - (n.niveau === 3 ? 4 : 0);
+      x1 = s > 0 ? n.box[0] + (n.niveau === 3 ? 5 : 0) : n.box[0] + n.box[2] - (n.niveau === 3 ? 5 : 0);   // feuilles : jusqu'au centre de la pastille
       reg(id, el("path", { d: tige(x0, y0, x1, y1, w0, w1), fill: col(n.c), opacity: n.niveau === 3 ? .5 : .8 }, Lbr)).dataset.niv = n.niveau;
     });
     (function () {
@@ -193,7 +197,7 @@
       var b = n.box, d = n.cote > 0, ajout = n.s === "cours";
       el("rect", { x: b[0] - 4, y: b[1] - 4, width: b[2] + 8, height: b[3] + 8, fill: "transparent" }, g);
       var px = d ? b[0] + 5 : b[0] + b[2] - 5;
-      el("circle", { cx: px, cy: n.y + 11, r: 4.6, fill: ajout ? "var(--cm-panel)" : col(n.c), stroke: col(n.c), "stroke-width": 1.6 }, g);
+      el("circle", { cx: px, cy: n.ay, r: 4.6, fill: ajout ? "var(--cm-panel)" : col(n.c), stroke: col(n.c), "stroke-width": 1.6 }, g);
       var tx = d ? b[0] + 18 : b[0] + b[2] - 18, anc = d ? "start" : "end", y = n.y + 14;
       n.lt.forEach(function (t, i) { var e = txt(g, tx, y, t, "cm-ft", { "text-anchor": anc }); if (n.et && i === n.lt.length - 1) etoile(e); y += 18; });
       y += 2;
@@ -214,6 +218,7 @@
       ratio = ratio || opt.ratio || 16 / 9;
       var ids = id === "t1a" ? ordre.slice(1) : sousArbre(id), n = noeuds[id];
       if (n.niveau === 3) ids.push(n.parent);
+      if (n.niveau === 2) ids.push(n.parent);   // zoom sur une branche : la bulle du chapitre reste entière dans le cadre
       var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
       ids.forEach(function (i) { var b = noeuds[i].box; x0 = Math.min(x0, b[0]); y0 = Math.min(y0, b[1]); x1 = Math.max(x1, b[0] + b[2]); y1 = Math.max(y1, b[1] + b[3]); });
       var pad = id === "t1a" ? 14 : 34; x0 -= pad; y0 -= pad; x1 += pad; y1 += pad;
@@ -233,10 +238,10 @@
     // id mis en valeur (null : tout) ; k de 0 à 1 = force de l'atténuation du reste
     function focus(id, k) {
       if (k == null) k = 1;
-      var garde = !id || id === "t1a" ? null : sousArbre(id).concat(ancetres(id));
+      var garde = !id || id === "t1a" ? null : sousArbre(id).concat(noeuds[id].niveau >= 2 ? [noeuds[id].parent] : []);   // la cible et son parent direct ; le reste (centre compris) s'efface
       Object.keys(groupes).forEach(function (g) {
         var on = !garde || garde.indexOf(g) >= 0;
-        groupes[g].forEach(function (e) { e.style.opacity = on ? "" : String(1 - .87 * k); });
+        groupes[g].forEach(function (e) { e.style.opacity = on ? "" : String(1 - (opt.fige ? .96 : .87) * k); });   // vidéo : le reste presque effacé (rien de rogné au bord du cadre)
       });
     }
     // la carte pousse : centre, chapitres, branches, puis feuilles (p de 0 à 1)
