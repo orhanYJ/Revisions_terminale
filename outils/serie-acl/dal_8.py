@@ -332,7 +332,7 @@ QUIZ = [
          ex="The ceremony “grows naturally into a secular celebration”: the opposite of Kate's Ballybeg."),
     dict(q="What does Kate demand at the end of the scene?",
          r=["That Jack's change be kept in the family", "That Jack leave the house", "That Maggie fetch the priest",
-            "That Rose and Agnes come home at once"], ok=0, voir="jeu4.19",
+            "That Rose and Agnes come home at once"], ok=0, voir="jeu4.12",
          ex="“Not a word of this must go outside these walls – d'you hear? – not a syllable!”"),
 ]
 

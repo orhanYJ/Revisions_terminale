@@ -30,7 +30,7 @@ DEPART = dict(pos={"Kate": [480, 410], "Agnes": "tricot_a", "Rose": "tricot_r", 
 SCENES = [
     # ------------------------------------------------------------------ ouverture
     dict(id="ouverture4", chap="Opening", fond="nuit", humeur="mystere", carton=False, beats=[
-        "{q4}A woman comes in from the garden with her hands cupped around something fragile. "
+        "{q4}A woman walks into the garden with her hands cupped around something fragile. "
         "She opens them, and her eyes follow something up into the sky.",
         "{-q4}{trois4}Part four. Kate has just cancelled the harvest dance. Now the house is shaken three times: "
         "by a fire in the hills, by Father Jack, and by an old friend's name.",
@@ -92,7 +92,7 @@ SCENES = [
     # ------------------------------------------------------------------ II. les courses (cuisine)
     dict(id="courses", chap="Back to the routine", fond="nuit", humeur="calme", beats=[
         "{jeu2}Back in the kitchen. Kate unpacks the shopping: tea, soap, Indian meal, jelly. "
-        "{jeu2.1}Maggie, bitten by Rose's white rooster, washes her hands and begins baking soda bread.",
+        "{jeu2.1}Maggie, pecked by Rose's white rooster, washes her hands and begins baking soda bread.",
         "{jeu2.2}Then Chris remembers a name.",
         ("C", "Doesn't Jack sometimes call you Okawa, too, Maggie?", "jeu2.3", {"voix": "F"}),
         ("C", "Okawa was his house boy, Kate says.", "jeu2.4", {"voix": "F"}),
@@ -254,7 +254,7 @@ SCENES = [
         "{-home}And Jack.",
         ("C", "I don't remember the – the architecture? – the planning? – what's the word? – the lay-out!", "c_layout"),
         "{-c_layout}{layout}He hunts for a simple word: big formal ones first, then the plain one. "
-        "And he arrives just after Kate's Catholic home, without his collar: dramatic irony.",
+        "And he arrives just after Kate's Catholic home, without his collar: an ironic juxtaposition.",
     ], vis={
         "quatre4": dict(type="mot", t="Four lines to know", g="Maggie · Rose · Kate · Jack · pages 16 – 19", y=250, taille=80),
         "c_glimpse": dict(type="cit", a="Maggie", o="p. 16", x=170, y=200, w=940),
@@ -272,7 +272,7 @@ SCENES = [
         "c_layout": dict(type="cit", a="Jack", o="p. 19", x=170, y=200, w=940),
         "layout": dict(type="note", cles=["word", "irony"], terme="Jack · p. 19",
                        t="Formal words first, then the plain one: English and the house escape him.",
-                       etape="No collar, just after “a Catholic home”: dramatic irony.", x=170, y=200, w=940),
+                       etape="No collar, just after “a Catholic home”: ironic juxtaposition.", x=170, y=200, w=940),
     }),
 
     # ------------------------------------------------------------------ VII. l'analyse
@@ -286,7 +286,7 @@ SCENES = [
         "{-b2}{b3}{b3.1}Three: Jack, the broken pillar. No collar, no accent, no words. "
         "As we learn later, Africa has changed his faith itself. Here, it is only foreshadowed.",
         "{-b3}{b4}{b4.1}Four: memory. Bernie remembers everyone, Jack almost nothing, Maggie too much. "
-        "And it was all in your mind: a perfect line on a memory play.",
+        "And it was all in your mind: a perfect line for a memory play.",
         "{-b4}{carte4}For your essay, this part supports: {carte4.1}lost love and missed chances. "
         "{carte4.2}Pagan against Christian. {carte4.3}Jack and the failure of language. {carte4.4}Memory and what it hides.",
     ], vis={
@@ -313,7 +313,7 @@ SCENES = [
 QUIZ = [
     dict(q="What does Maggie say after the boy asks what flew out of her hands?",
          r=["“It was all in your mind”", "“It was the fox”", "“It was Jack's parrot”", "“It was a white rooster”"], ok=0,
-         voir="jeu1.19", ex="The bird may never have existed: “It was all in your mind. Now we're quits.” A small joke about memory itself."),
+         voir="jeu1.16", ex="The bird may never have existed: “It was all in your mind. Now we're quits.” A small joke about memory itself."),
     dict(q="Why is the “one quick glimpse” line important?",
          r=["It foreshadows Maggie's own missed chance with Brian McGuinness", "It announces Jack's death",
             "It explains the Lughnasa rite", "It is Kate's warning to Rose"], ok=0, voir="c_glimpse",
@@ -326,11 +326,11 @@ QUIZ = [
             "She agrees and wants to go to the bonfire", "She asks Jack to bless the house"], ok=0, voir="c_home",
          ex="“Very angry, almost shouting”: “It's a sorry day to hear talk like that in a Christian home, a Catholic home!”"),
     dict(q="What is missing from Father Jack's appearance in the stage direction?",
-         r=["His clerical collar", "His hat", "His boots", "His coat"], ok=0, voir="jeu4.1",
-         ex="No clerical collar, scarcely any Irish accent: he enters just after Kate's “Catholic home”, a juxtaposition full of dramatic irony."),
+         r=["His clerical collar", "His hat", "His boots", "His coat"], ok=0, voir="jeu4",
+         ex="No clerical collar, scarcely any Irish accent: he enters just after Kate's “Catholic home”, a juxtaposition full of irony."),
     dict(q="Why does Maggie go to the window when Kate talks about Bernie?",
          r=["So that the others cannot see her face", "To look for the fox", "To call the hens", "To see if Gerry is coming"], ok=0,
-         voir="jeu5.5", ex="Her feelings stay hidden (subtext); the part ends with her “staring out of the window, seeing nothing”."),
+         voir="jeu5.4", ex="Her feelings stay hidden (subtext); the part ends with her “staring out of the window, seeing nothing”."),
 ]
 
 CREDITS = [

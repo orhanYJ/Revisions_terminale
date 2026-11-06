@@ -923,10 +923,10 @@
     var spots = sv("g", {}, monde), objG = sv("g", {}, monde), objEls = {};
     var calque = sv("g", {}, monde);
     var voileOr = sv("rect", { x: -200, y: -200, width: 1600, height: 1000, fill: "rgba(232,188,104,.16)", opacity: 0 }, monde);
-    var bulleG = sv("g", { opacity: 0 }, s), bulleR = sv("rect", { rx: 12, fill: "#fbfaf6" }, bulleG),
-      bulleQ = sv("path", { d: "", fill: "#fbfaf6" }, bulleG), bulleT = sv("text", { "text-anchor": "middle", "font-size": 22, fill: "#1e2330", "font-weight": 600 }, bulleG);
-    var noteG = sv("g", { opacity: 0 }, s), noteR = sv("rect", { x: 80, y: 18, width: 1000, height: 36, rx: 10, fill: "rgba(8,12,22,.72)" }, noteG),
-      noteT = sv("text", { x: 580, y: 43, "text-anchor": "middle", "font-size": 20, fill: C.iv, "font-style": "italic", class: "ser" }, noteG);
+    var bulleG = sv("g", { opacity: 0, class: "j-bulle" }, s), bulleR = sv("rect", { rx: 12, fill: "#fbfaf6", class: "j-bulleR" }, bulleG),
+      bulleQ = sv("path", { d: "", fill: "#fbfaf6" }, bulleG), bulleT = sv("text", { "text-anchor": "middle", "font-size": 22, fill: "#1e2330", "font-weight": 600, class: "j-bulleT" }, bulleG);
+    var noteG = sv("g", { opacity: 0, class: "j-note" }, s), noteR = sv("rect", { class: "j-noteR", x: 80, y: 18, width: 1000, height: 36, rx: 10, fill: "rgba(8,12,22,.72)" }, noteG),
+      noteT = sv("text", { x: 580, y: 43, "text-anchor": "middle", "font-size": 20, fill: C.iv, "font-style": "italic", class: "ser j-noteT" }, noteG);
 
     // états cumulés
     var noms = v.persos, ETATS = [], cur = { pos: {}, act: {}, masque: {}, surplis: {}, ronde: null, chemin: {}, radio: false, dit: null, note: null,
@@ -1032,7 +1032,7 @@
         halo[nm].setAttribute("cx", x.toFixed(1)); halo[nm].setAttribute("cy", (y + 2).toFixed(1));
         op(halo[nm], dim > 0 && S.eclaire.indexOf(nm) >= 0 ? vis * a * dim / .72 : 0);
         ordre.push([y, F.g]);
-        F._x = x; F._y = y;
+        F._x = x; F._y = y; F._vis = vis * a * lu;
       });
       ordre.sort(function (p, q) { return p[0] - q[0]; }).forEach(function (p) { calque.appendChild(p[1]); });
       // bulle de la réplique
@@ -1040,14 +1040,43 @@
         var F2 = figs[S.dit[0]], txt = S.dit[1];
         var lignes = coupe(txt, 40), lmax = Math.max.apply(null, lignes.map(function (l) { return l.length; }));
         var tete = ecran(F2._x, F2._y - 128 * echelle(F2._y)), fx = tete[0];
-        var wv = 26 + lmax * 11.4, hb = 14 + lignes.length * 28, bx = cl(fx, wv / 2 + 10, 1150 - wv / 2), by = Math.max(hb + 6, tete[1] - 14);
+        var wv = 26 + lmax * 11.4, hb = 14 + lignes.length * 28, bx = cl(fx, wv / 2 + 10, 1150 - wv / 2), by = tete[1] - 14;
         if (bulleT._txt !== txt) {
           bulleT._txt = txt; while (bulleT.firstChild) bulleT.removeChild(bulleT.firstChild);
           lignes.forEach(function (l, i) { sv("tspan", { x: 0, dy: i ? 28 : 0 }, bulleT, l); });
         }
-        bulleR.setAttribute("x", bx - wv / 2); bulleR.setAttribute("y", by - hb + 12); bulleR.setAttribute("width", wv); bulleR.setAttribute("height", hb);
-        bulleT.setAttribute("transform", "translate(" + bx.toFixed(1) + "," + (by - hb + 38).toFixed(1) + ")");
-        bulleQ.setAttribute("d", "M" + (fx - 9) + " " + (by + 11) + " L" + fx + " " + (by + 26) + " L" + (fx + 9) + " " + (by + 11) + " Z");
+        // au-dessus de la tête, sinon sur le côté du visage : la place qui cache le moins de visages
+        // (et jamais l'en-tête ni le bandeau de didascalie)
+        var haut = S.note ? 62 : 30, kk = echelle(F2._y) * sc, cy = tete[1] + 30 * kk;
+        var tetes = [];
+        noms.forEach(function (nm) {
+          var G = figs[nm]; if (G === F2 || !(G._vis > .3)) return;
+          var p = ecran(G._x, G._y), e = echelle(G._y) * sc;
+          tetes.push([p[0] - 16 * e, p[1] - 110 * e, p[0] + 16 * e, p[1] - 76 * e]);
+        });
+        var cand = [["haut", cl(fx, wv / 2 + 10, 1150 - wv / 2), tete[1] - hb - 2]];
+        [1, -1].forEach(function (c) {
+          [0, 36, 72].forEach(function (d) {
+            cand.push([c, cl(fx + c * (34 * kk + wv / 2), wv / 2 + 10, 1150 - wv / 2), cl(cy - hb / 2 + d, haut, 590 - hb), d / 60]);
+          });
+        });
+        var meilleur = null;
+        cand.forEach(function (c, i) {
+          var x0 = c[1] - wv / 2, y0 = c[2], cout = (i ? .5 : 0) + (c[3] || 0);
+          if (y0 < haut) cout += 100;
+          if (i && (c[0] > 0 ? x0 < fx : x0 + wv > fx)) cout += 50;
+          tetes.forEach(function (h) { if (x0 < h[2] && x0 + wv > h[0] && y0 < h[3] && y0 + hb > h[1]) cout += 10; });
+          if (!meilleur || cout < meilleur[3]) meilleur = [c[0], c[1], c[2], cout];
+        });
+        bx = meilleur[1]; var top = meilleur[2];
+        if (meilleur[0] === "haut") {
+          bulleQ.setAttribute("d", "M" + (fx - 9) + " " + (top + hb - 1) + " L" + fx + " " + (top + hb + 14) + " L" + (fx + 9) + " " + (top + hb - 1) + " Z");
+        } else {
+          var cote = meilleur[0], bord = bx - cote * wv / 2, my = cl(cy, top + 10, top + hb - 10);
+          bulleQ.setAttribute("d", "M" + bord + " " + (my - 8) + " L" + (fx + cote * 16 * kk).toFixed(1) + " " + cy.toFixed(1) + " L" + bord + " " + (my + 8) + " Z");
+        }
+        bulleR.setAttribute("x", bx - wv / 2); bulleR.setAttribute("y", top); bulleR.setAttribute("width", wv); bulleR.setAttribute("height", hb);
+        bulleT.setAttribute("transform", "translate(" + bx.toFixed(1) + "," + (top + 26).toFixed(1) + ")");
         bulleR.setAttribute("stroke", F2.couleur); bulleR.setAttribute("stroke-width", 3);
         op(bulleG, E(P(t, t0k + .1, .35)) * a);
       } else op(bulleG, 0);
