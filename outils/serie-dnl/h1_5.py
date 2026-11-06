@@ -11,8 +11,7 @@ document en une phrase, paragraphe d'atouts, paragraphe de limites), les documen
 graphique du chômage allemand, et source 5, mémoires de Melita Maschmann, 1963 ; Migrant Mother de Lange, 1936 ;
 « The Doormat » de David Low, 1933, décrit et non montré), les deux Key Terms. La question « Explain » et les copies
 modèles sont écrites pour la vidéo et dites comme telles.
-Correction signalée : en mars 1936, Lange travaillait pour la Resettlement Administration, devenue Farm Security
-Administration en 1937 (le cours dit « for the Farm Security Administration »).
+Lange : la Resettlement Administration (devenue Farm Security Administration en 1937), comme dans le cours.
 """
 
 SITE = "dnl"
@@ -111,14 +110,14 @@ SCENES = [
         "{ex1}Here is a typical part a), written for this video. {!Explain}Explain why the Wall Street Crash of 1929 became a world-wide depression.",
         "{-ex1}{pa1}",
         ("P", 2.0),
-        "{-pa1}{g1}Three channels, one example each. {g1.1}One: the recall of American loans. Since the Dawes Plan of 1924, "
-        "eight hundred million marks lent to Germany, Europe's finances rested on American credit. After October 1929, the money was called back. "
+        "{-pa1}{g1}Three channels, one example each. {g1.1}One: the recall of American loans. Under the Dawes Plan of 1924, America lent Germany eight hundred million marks. "
+        "From then on, Europe's finances rested on American credit. And after October 1929, the money was called back. "
         "Austria's largest bank, the Creditanstalt, failed in May 1931; German banks followed in July.",
         "{g1.2}Two: the Gold Standard, the transmission belt. To defend the dollar, the Federal Reserve raised its interest rates, "
         "and gold flowed out of every other country, which had to raise its own rates, the worst possible medicine. "
         "Britain left the Gold Standard in September 1931.",
         "{g1.3}Three: protectionism. On the seventeenth of June 1930, Hoover signed the Smoot–Hawley Tariff. "
-        "Canada retaliated within days, and world trade fell by about two thirds, in value, between 1929 and 1934.",
+        "Canada had already retaliated, in May, and world trade fell by about two thirds, in value, between 1929 and 1934.",
         "{-g1}{mod1}A model paragraph, for the first channel.",
         "The Crash became a world crisis first because Europe depended on American credit. Since the Dawes Plan of 1924, American loans "
         "allowed Germany to pay its reparations, and the Allies to repay their war debts to the United States. When American banks recalled "
@@ -183,7 +182,7 @@ SCENES = [
         "Not against what we know today.",
         "{-eff}{g2}Then three moves. {g2.1}It failed even on its own terms. Duties on more than twenty thousand goods, yet farm prices kept falling "
         "and unemployment kept rising; Smoot and Hawley both lost their seats in 1932. And the failure was predicted: one thousand and twenty-eight economists "
-        "had asked for a veto. {g2.2}Second, it triggered a trade war. Canada retaliated within days; Britain passed the Import Duties Act in 1932, "
+        "had asked for a veto. {g2.2}Second, it triggered a trade war. Canada retaliated even before it was signed, in May 1930; Britain passed the Import Duties Act in 1932, "
         "France set up quotas in 1931, each sparing its empire. The world split into closed blocs.",
         "{-g2}{nu2}Third, the nuance. It did not cause the Depression: the downturn began with the Crash and the bank failures, and the tariff deepened it. "
         "Roosevelt reversed the policy in 1934, but too late. So the judgement: ineffective on its aims, damaging in its consequences, "
@@ -209,9 +208,9 @@ SCENES = [
         "{mots.2}The great democratic powers: Britain, France and the United States, the guarantors of the liberal order of 1919.",
         "{-mots}{g3}Then argue in four moves. {g3.1}One: they built an order they would not underwrite. The American Senate refused to ratify Versailles, "
         "so the United States never joined the League its own president had conceived; and the League had no army. "
-        "When Japan seized Manchuria in September 1931, the League condemned, and Japan simply left. "
-        "{g3.2}Two: they weakened it economically after 1929: Smoot–Hawley, the recall of loans, the defence of gold. "
-        "{g3.3}Three: they refused to defend it. The Neutrality Acts of 1935 to 1937; no answer even when the USS Panay was bombed. "
+        "When Japan seized Manchuria in September 1931, the League condemned it. Japan simply left the League, in March 1933. "
+        "{g3.2}Two: they weakened it economically after 1929. Smoot-Hawley, the recall of loans, the defence of gold. "
+        "{g3.3}Three: they refused to defend it. America passed the Neutrality Acts, from 1935 to 1937, and did nothing even when the USS Panay was bombed. "
         "{g3.4}Britain refused an oil embargo on Italy in 1935. {g3.5}France and Britain let the Rhineland go in March 1936, "
         "{g3.6}and signed Munich in September 1938.",
         "{-g3}{mais}Four: the counter-argument. The initiative lay with the militarist regimes in Berlin, Rome and Tokyo. "
@@ -245,10 +244,10 @@ SCENES = [
         "{ki2}The second Key Issue. How far do you agree that economic nationalism was the key factor in the slide towards war in 1939?",
         "{-ki2}{def2}Start with a definition. Economic nationalism: putting national economic interest above international cooperation, "
         "through tariffs, quotas and currency manipulation. Then test the word key: was it the factor on which the others depended, or one link in a chain?",
-        "{-def2}{pl2}Three parts. {pl2.1}For: it corroded the international order. Smoot–Hawley, the French quotas and the Import Duties Act "
-        "cut world trade by two thirds and divided the world into imperial blocs. And it made autarky and conquest look rational for a state without an empire: "
+        "{-def2}{pl2}Three parts. {pl2.1}For: it corroded the international order. Smoot-Hawley, the French quotas and the Import Duties Act "
+        "cut world trade by two thirds. They divided the world into imperial blocs. And for a state without an empire, autarky and conquest began to look rational: "
         "exactly what Nazi economic policy claimed. {pl2.2}Against: it is a symptom as much as a cause. Protectionism answered the Depression, "
-        "which answered the Crash. And Britain and France practised it too, without going to war until their neighbours were invaded. "
+        "which answered the Crash. And Britain and France practised it too, yet they went to war only when Poland was invaded. "
         "{pl2.3}And ideology competes for the same place: militarism in Germany, Italy and Japan, and Nazi plunder and dispossession of Jewish citizens, "
         "crimes that no trade barrier explains.",
         "{-pl2}{cc4}The judgement: a serious contributing factor, but not the key one. It explains why the world could not cooperate, "
@@ -284,12 +283,12 @@ SCENES = [
         "{-ex4}{pa4}",
         ("P", 2.0),
         "{-pa4}{rep}A model answer. {rep.1}Sources 2 and 5 are largely useful for understanding how the Depression helped the Nazis. "
-        "{rep.2}Source 2 is a chart of German unemployment among insured workers, from 1928 to 1933; Source 5 is the memoir of Melita Maschmann, "
-        "a former Hitler Youth member, published in 1963 for a general readership.",
+        "{rep.2}Source 2 is a chart of unemployment among insured workers in Germany, from 1928 to 1933. "
+        "Source 5 is the memoir of Melita Maschmann, a former member of the Hitler Youth, published in 1963.",
         "{rep.3}Their strengths. First, Source 2 measures the scale of the crisis: unemployment multiplied by five in four years, "
         "and it peaks in 1932, the year before Hitler became chancellor. Second, Source 5 shows the mechanism from the inside: "
         "a young German explains why the Nazi promise worked on her. Third, together they link a figure to a feeling, the crisis to the vote.",
-        "{rep.4}Their limits. First, the chart counts insured workers only: across the whole workforce, the rate was about thirty per cent at the peak. "
+        "{rep.4}Their limits. First, the chart counts insured workers only, not the whole workforce. It gives a rate, not the number of people out of work. "
         "Second, the memoir was written thirty years later, with hindsight, by someone who may want to explain, or excuse, her choice. "
         "Third, what is missing: neither source shows that the Nazis never won a majority, nor that conservatives let Hitler in, in January 1933.",
     ], vis={
@@ -314,7 +313,7 @@ SCENES = [
         "rep": dict(type="liste", titre="A model answer", petit=True, items=[
             "Judgement: largely useful", "Source 2: chart, insured workers, 1928–33 · Source 5: Maschmann's memoir, 1963",
             "Strengths: the scale (×5, peak in 1932) · the mechanism from inside · figure + feeling",
-            "Limits: insured workers only (≈ 30% overall) · hindsight · no majority, no Jan. 1933"], x=150, y=120, w=980),
+            "Limits: insured workers only · hindsight · no majority, no Jan. 1933"], x=150, y=120, w=980),
     }),
 
     # ================================================================ IX. DBQ b)
@@ -345,9 +344,8 @@ SCENES = [
         "{ph}The documents of this chapter are of three kinds, and each has its own reflex. {ph.1}First, a commissioned photograph. "
         "Migrant Mother, by Dorothea Lange, March 1936: Florence Owens Thompson, aged thirty-two, mother of seven, in a pea-pickers' camp at Nipomo, in California.",
         "{ph.2}Its strength: the poverty is real. The pea crop had frozen, there was no work, and the family lived on frozen vegetables and on birds the children caught. "
-        "{ph.3}Its limit: it is composed, not accidental. Lange made five exposures, working closer and closer, for a federal agency that wanted public support for relief. "
-        "One detail: the course says the Farm Security Administration. In March 1936, the agency was still called the Resettlement Administration; "
-        "it became the Farm Security Administration in 1937.",
+        "{ph.3}Its limit: it is composed, not accidental. Lange made five exposures, working closer and closer, for a federal agency, the Resettlement Administration, "
+        "that wanted public support for relief.",
         "{-ph}{low}Second, a cartoon. {low.1}David Low's The Doormat, 1933. A Japanese soldier walks over the League of Nations, "
         "{low.2}while its officials bow, and the British Foreign Secretary, John Simon, powders the League's nose with a face-saving kit. "
         "{low.3}The reflex: a cartoon gives the opinion of a contemporary. Perceptions, not facts. But Low saw in 1933 what historians say today.",
@@ -379,8 +377,8 @@ SCENES = [
         "{-kt2}{g5}{g5.1}The examples. March 1936: German troops enter the Rhineland, and France and Britain do not intervene. "
         "{g5.2}September 1938: at Munich, Chamberlain and Daladier accept the cession of the Sudetenland. "
         "{g5.3}March 1939: Germany occupies Prague, and Munich has bought nothing; on the first of September, Poland is invaded.",
-        "{-g5}{rai}And the reasons, because the examiner will ask why. Six reasons: pacifism; an empire to police and no money to rearm; sympathy for a Germany "
-        "treated unfairly in 1918; their own economic problems first; American isolationism; and the fear of communism more than fascism. "
+        "{-g5}{rai}And the reasons, because the examiner will ask why. Six reasons. Pacifism. An empire to police, and no money to rearm. Sympathy for a Germany "
+        "treated unfairly by the Treaty of Versailles, in 1919. Their own economic problems, which came first. American isolationism, which left them alone. And the fear of communism, stronger than the fear of fascism. "
         "{!None of these reasons is stupid}None of these reasons is stupid.",
     ], vis={
         "kt1": dict(type="def", cles=["prolonged", "unemployment", "deflation"], terme="Key Term · World-wide Economic Depression (1930s)",
@@ -394,7 +392,7 @@ SCENES = [
                     etape="Britain and France, 1935–1938", x=150, y=200, w=980),
         "g5": dict(type="globe", code="H1", sc=[29, 30, 31]),
         "rai": dict(type="liste", titre="Six reasons for appeasement", petit=True, items=[
-            "Pacifism", "An empire to police, no money to rearm", "Sympathy for Germany (1918)",
+            "Pacifism", "An empire to police, no money to rearm", "Sympathy for Germany (Versailles, 1919)",
             "Their own economic problems first", "American isolationism", "Fear of communism more than fascism"],
             x=150, y=100, w=980),
     }),
@@ -432,7 +430,7 @@ QUIZ = [
          ex="Then each document in one sentence, a paragraph of strengths and a paragraph of limits."),
     dict(q="Which is a valid LIMIT of Source 2 (the chart of German unemployment)?", r=["It counts insured workers only",
          "It is a chart", "It ends in 1933", "It shows a peak in 1932"], ok=0, voir="rep",
-         ex="Across the whole workforce, the rate was about 30% at the 1932 peak."),
+         ex="It leaves out the rest of the workforce. Its other features (a chart, ending in 1933, peaking in 1932) are not limits in themselves."),
     dict(q="In the essay on the causes of the Crash, which factor is the trigger?", r=["Speculation", "Smoot–Hawley",
          "The Gold Standard", "The Dawes Plan"], ok=0, voir="hi",
          ex="Speculation explains the suddenness; overproduction and inequality explain the depth."),

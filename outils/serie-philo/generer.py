@@ -136,7 +136,8 @@ async def _synth(texte, voix, rate, pitch, chemin):
 
 def _pcm(mp3):
     wav = mp3[:-4] + ".wav"
-    if not os.path.exists(wav):
+    # décodage en cache, refait si le MP3 a été réenregistré depuis (SERIE_REVOIX, prise refaite)
+    if not os.path.exists(wav) or os.path.getmtime(wav) < os.path.getmtime(mp3):
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", mp3, "-ac", "1", "-ar", str(SR), wav], check=True)
     with wave.open(wav) as w:
         return np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float64) / 32768.0
