@@ -27,10 +27,11 @@ EMPIRE_GB = ["w:Canada", "w:British Raj", "w:Australia", "w:New Zealand", "w:Uni
 EMPIRE_FR = ["w:French West Africa", "w:French Equatorial Africa", "w:Algeria", "w:Morocco", "w:Tunisia", "w:French Indo-China", "w:Annam",
              "w:Cochin China", "w:Madagascar (France)", "w:Syria (France)", "w:French Cameroons", "w:French Guiana", "w:French Somaliland", "w:Togo", "france"]
 
+DEMO19 = "#5E9A78"   # vert : le bleu clair des démocraties se confondait avec l'océan (scène 1919)
 CLES = dict(base.CLES)
 CLES.update({
     "usa": {"c": [USA, None], "fr": "États-Unis", "en": "United States"},
-    "demo19": {"c": [DEMO, None], "fr": "Grandes démocraties de 1919", "en": "The great democracies of 1919"},
+    "demo19": {"c": [DEMO19, None], "fr": "Grandes démocraties de 1919", "en": "The great democracies of 1919"},
     "crise": {"c": [CRISE, None], "fr": "Frappé par la crise", "en": "Hit by the crisis"},
     "crise2": {"c": [CRISE2, None], "fr": "Touché plus tard", "en": "Hit later"},
     "or31": {"c": ["#3E6259", None], "fr": "Sort de l'étalon-or en 1931", "en": "Leaves gold, 1931"},
@@ -53,7 +54,7 @@ CLES.update({
 
 LABELS = dict(base.LABELS)
 LABELS.update({
-    "newyork": {"p": [-74.0, 40.71], "fr": "New York (Wall Street)", "en": "New York (Wall Street)", "t": "evt", "dx": -7},
+    "newyork": {"p": [-74.0, 40.71], "fr": "New York (Wall Street)", "en": "New York (Wall Street)", "t": "evt", "dx": 7},
     "detroit": {"p": [-83.05, 42.33], "fr": "Detroit (Ford)", "en": "Detroit (Ford)", "t": "ville"},
     "chicago": {"p": [-87.63, 41.88], "fr": "Chicago", "en": "Chicago", "t": "ville", "dx": -7},
     "stlouis": {"p": [-90.20, 38.63], "fr": "Saint-Louis", "en": "St Louis", "t": "evt"},
@@ -83,7 +84,7 @@ LABELS.update({
     "l_tch": {"p": [16.5, 49.4], "fr": "Tchécoslovaquie", "en": "Czechoslovakia"},
     "l_cuba": {"p": [-79.5, 21.8], "fr": "Cuba", "en": "Cuba", "t": "evt", "dx": 0, "dy": 12},
     "l_nica": {"p": [-85.0, 12.9], "fr": "Nicaragua", "en": "Nicaragua", "t": "evt", "dx": 0, "dy": 12},
-    "l_plaines": {"p": [-99.0, 41.5], "fr": "Grandes Plaines", "en": "Great Plains", "t": "mer"},
+    "l_plaines": {"p": [-101.5, 38.5], "fr": "Grandes Plaines", "en": "Great Plains", "t": "evt"},
 })
 
 ordre = base.ordre
@@ -123,7 +124,7 @@ def etat(k):
 
 DUST = {"dustbowl": ["#C9A66B", "#8C6A35"]}
 HL = {
-    "L'ordre libéral de 1919": {"w:United States": [DEMO, None], "ru": [DEMO, None], "france": [DEMO, None]},
+    "L'ordre libéral de 1919": {"w:United States": [DEMO19, None], "ru": [DEMO19, None], "france": [DEMO19, None]},
     "L'effet domino en Europe": {"ru": [CRISE, None]},
     "L'étalon-or, courroie de transmission": {"ru": ["#3E6259", None], "w:Empire of Japan": ["#3E6259", None], "w:United States": ["#7FA89F", None], "france": ["#C9DCD7", None]},
     "La périphérie frappée par la chute des prix": {"w:Brazil": [OR, None], "w:Chile": [OR, None], "w:Argentina": ["#E4CF9E", None]},
@@ -168,7 +169,7 @@ def scenes():
         L("Un circuit en trois flèches : un prêt international de 800 millions de marks-or à l'Allemagne, levé surtout à New York ; des réparations allemandes jusqu'à 2,5 milliards de marks par an vers la France et le Royaume-Uni ; leurs dettes de guerre remboursées aux États-Unis. Tout repose sur le crédit américain.",
           "A circuit in three arrows: an international loan of 800 million gold marks to Germany, raised mostly in New York; German reparations of up to 2.5 billion marks a year to France and Britain; their war debts repaid to the United States. Everything rested on American credit."),
         labels=["l_usa", "l_all"], cles=["usa", "weimar"],
-        arrows=[F((-74.0, 41.0), (11.0, 52.5), BLEU, -0.12, w=3, id="dw1", dur=2.4), F((10.0, 51.0), (2.5, 47.5), ROUGE, 0.25, w=3, id="dw2"),
+        arrows=[F((-74.0, 41.0), (7.2, 50.3), BLEU, -0.12, w=3, id="dw1", dur=2.4), F((9.5, 49.8), (2.5, 47.5), ROUGE, 0.25, w=3, id="dw2"),
                 F((-1.5, 51.0), (-73.0, 39.5), "#3E6259", -0.15, w=3, id="dw3", dur=2.4)])
     add("I.1", 15, [-74.0, 40.7, 9], L("1924-1929", "1924–1929"),
         L("La spéculation", "Speculation"),
