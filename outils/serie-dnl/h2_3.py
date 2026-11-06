@@ -355,8 +355,8 @@ SCENES = [
         "{def4}Idea twelve. Beyond the famine, collectivisation was an {!economic failure}economic failure. "
         "{def4.1}Peasants who had lost their land and animals had no reason to work hard for the kolkhoz. Many slaughtered their livestock "
         "rather than hand it over. Production fell. Resources became scarcer. And the countryside turned hostile.",
-        "{-def4}{lait}Here is the example, in source five. It is a letter written in Novosibirsk on the ninth of April, nineteen thirty-two, by an official named Feigin. "
-        "He writes to the Soviet leader Ordzhonikidze. {lait.g}Normally, a cow gives five to seven litres of milk a day. "
+        "{-def4}{src5}Here is the example, in source five. It is a letter written in Novosibirsk on the ninth of April, nineteen thirty-two, by an official named Feigin. "
+        "He writes to the Soviet leader Ordzhonikidze. {-src5}{lait}{lait.g}Normally, a cow gives five to seven litres of milk a day. "
         "{lait.d}The kolkhoz cows give one to three. The peasants are slaughtering their last animals. And Feigin writes,{-lait}",
         ("C", "people are starving", "c_fei"),
         "{-c_fei}{choix}So the regime made a choice. {!ideology and control}Ideology and control came first. Before feeding its own people.",
@@ -368,6 +368,9 @@ SCENES = [
         "def4": dict(type="def", cles=["motivation", "slaughtered", "fell"], terme="Idea 12 · an economic failure",
                      t="No motivation in the kolkhoz, livestock slaughtered, production down.",
                      etape="The countryside turns hostile", x=170, y=200, w=940),
+        "src5": dict(type="note", terme="Worksheet 2 · source 5", cles=["Feigin", "Ordzhonikidze"],
+                     t="A letter from Feigin, an official, to the Soviet leader Ordzhonikidze.",
+                     etape="Novosibirsk, 9 April 1932", x=170, y=200, w=940),
         "lait": dict(type="cols", g="A normal cow", gq="5 to 7 litres of milk a day", d="A kolkhoz cow, 1932",
                      dq="1 to 3 litres a day", vs="≠", repere="Feigin to Ordzhonikidze, Novosibirsk, 9 April 1932 (source 5)"),
         "c_fei": dict(type="cit", a="Feigin, letter to Ordzhonikidze", o="Novosibirsk, 9 April 1932 (Worksheet 2, source 5)", x=200, y=230, w=880),

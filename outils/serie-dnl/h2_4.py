@@ -171,7 +171,7 @@ SCENES = [
         "In nineteen thirty-eight, a German advertisement for the cheap people's radio, the Volksempfänger, made this promise.",
         "{-def2}",
         ("C", "Germany listens to the Führer thanks to the people's radio", "c_radio"),
-        "{-c_radio}{paris}The arts become a battlefield too. Take the Paris World Fair, in nineteen thirty-seven. {paris.g}On top of the Soviet pavilion "
+        "{-c_radio}{paris}{paris.g}The arts become a battlefield too. Take the Paris World Fair, in nineteen thirty-seven. On top of the Soviet pavilion "
         "stood Vera Mukhina's statue, the Worker and Kolkhoz Woman. {paris.d}And it stood directly facing the German pavilion. "
         "Two regimes. Two ideal societies, in stone and steel.",
         "{-paris}{equipe}In Germany, the whole machine had its team. {equipe.1}Joseph Goebbels, the propaganda specialist. "

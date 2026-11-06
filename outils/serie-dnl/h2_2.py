@@ -151,7 +151,7 @@ SCENES = [
         "{mots1.d}The Red Terror is something else. It is the violence of the Bolsheviks against their enemies, inside Russia, from nineteen eighteen.{-photo2}",
     ], vis={
         "g3": dict(type="globe", code="H2", sc=[2]),
-        "rus": dict(type="liste", titre="Russia, 1917 – 1922", x=700, y=110, w=540, petit=True, bande=True, items=[
+        "rus": dict(type="liste", titre="Russia, 1917 – 1922", x=790, y=110, w=460, petit=True, bande=True, items=[
             "Feb. 1917: the Tsar abdicates", "Oct. 1917: the Bolshevik coup (Lenin, Trotsky), with the soviets",
             "Peace with Germany", "Civil war against the Whites, won by the Red Army (to 1922)", "1922: the USSR is created"]),
         "photo2": dict(type="tableau", img="h2-lenin-putilov", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .35, .45],
@@ -513,7 +513,7 @@ SCENES = [
         "{qui.1}{!What matters}But what matters is how the regime used it. To suspend freedoms, and to crush its first enemies.",
     ], vis={
         "g11": dict(type="globe", code="H2", sc=[21]),
-        "rf": dict(type="liste", titre="27 February 1933 → the emergency", x=730, y=110, w=510, petit=True, bande=True, items=[
+        "rf": dict(type="liste", titre="27 February 1933 → the emergency", x=770, y=110, w=480, petit=True, bande=True, items=[
             "The Nazis blame the communists: “a revolution”",
             "28 Feb.: a decree suspends press, assembly, opinion (date outside the course)",
             "Thousands of communists arrested within days"]),
