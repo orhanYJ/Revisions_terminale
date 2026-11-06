@@ -47,7 +47,7 @@ SCENES = [
         ("P", 3.2),
     ], vis={
         "g0": dict(type="globe", code="H1", sc=[31]),
-        "q1": dict(type="question", t="1 September 1939: war, again.", bande=True),
+        "q1": dict(type="note", terme="1 September 1939", t="War, again.", x=440, y=560, w=800),
         "q2": dict(type="question", t="Why did the democracies let their order collapse?", bande=True),
         "plan": dict(type="liste", titre="Episode 4 · Democracies and the liberal order", items=[
             "On the map: from 1919 to 1939", "The liberal order and the League of Nations",
@@ -100,10 +100,10 @@ SCENES = [
         "g2": dict(type="globe", code="H1", sc=[26, 27, 29]),
         "g3": dict(type="globe", code="H1", sc=[30, 31, 32]),
         "fr1": dict(type="frise", items=[
-            dict(nom="League of Nations", d=1919, q="Geneva; the US stays out"), dict(nom="Manchuria", d=1931, q="18 Sept.: Mukden"),
-            dict(nom="Ethiopia", d=1935, q="+ first Neutrality Act"), dict(nom="Rhineland", d=1936, q="7 March"),
-            dict(nom="Anschluss", d=1938, q="March"), dict(nom="Munich", d=1938, q="September"),
-            dict(nom="Prague", d=1939, q="March"), dict(nom="Poland", d=1939, q="1 September: war"),
+            dict(nom="League of Nations", d=1919), dict(nom="Manchuria", d=1931, q="18 Sept.: Mukden"),
+            dict(nom="Ethiopia", d=1935), dict(nom="Rhineland", d=1936, q="7 March"),
+            dict(nom="Anschluss", d=1938), dict(nom="Munich", d=1938, q="September"),
+            dict(nom="Prague", d=1939), dict(nom="Poland", d=1939, q="1 September: war"),
         ]),
     }),
 
@@ -113,8 +113,8 @@ SCENES = [
          beats=[
         "{q3}Now the course, idea by idea. First, what exactly were the democracies supposed to defend?",
         "{-q3}{pw}{lo1}The great democracies of nineteen nineteen are three: {lo1.1}Britain, {lo1.2}France, {lo1.3}and the United States.",
-        "{-lo1}{wi}Their order rests on an idea: {!Wilsonianism}Wilsonianism. In his Fourteen Points speech of nineteen eighteen, President Woodrow Wilson "
-        "carries liberalism into foreign policy, through three principles. {wi.1}Democracy. {wi.2}The self-determination of peoples: "
+        "{-lo1}{wd}Their order rests on an idea: {!Wilsonianism}Wilsonianism. In his Fourteen Points speech of nineteen eighteen, President Woodrow Wilson "
+        "carries liberalism into foreign policy, {-wd}{wi}through three principles. {wi.1}Democracy. {wi.2}The self-determination of peoples: "
         "each people should choose its own government. {wi.3}And free trade.",
         "{-wi}{inst}Then the peace gives these principles institutions. {inst.1}The Paris Peace Conference. {inst.2}The Treaty of Versailles. "
         "{inst.3}And the League of Nations, seated in Geneva, to keep the peace by collective security. "
@@ -133,11 +133,13 @@ SCENES = [
                    legende="Woodrow Wilson, 1919, by Harris & Ewing (Library of Congress, Wikimedia Commons, public domain)"),
         "lo1": dict(type="liste", titre="The great democracies of 1919", items=["Britain", "France", "The United States"],
                     x=270, y=170, w=740),
+        "wd": dict(type="def", terme="Wilsonianism", cles=["Fourteen", "liberalism"],
+                   t="Woodrow Wilson's Fourteen Points (1918): liberalism carried into foreign policy.", x=170, y=200, w=940),
         "wi": dict(type="liste", titre="Wilsonianism · the Fourteen Points (1918)", cles=["Democracy", "self-determination", "free"],
                    items=["Democracy", "The self-determination of peoples", "Free trade"], x=270, y=170, w=740),
         "inst": dict(type="liste", titre="The institutions of the liberal order", items=[
             "The Paris Peace Conference", "The Treaty of Versailles", "The League of Nations, seated in Geneva"], x=270, y=170, w=740),
-        "gap": dict(type="tableau", img="h1-gap-bridge", de=[1.0, .5, .5], a=[1.25, .78, .4],
+        "gap": dict(type="tableau", img="h1-gap-bridge", de=[1.0, .5, .4], a=[1.06, .5, .2],
                     legende="Leonard Raven-Hill, “The Gap in the Bridge”, Punch, 10 December 1919 (Wikimedia Commons, public domain)"),
         "sen": dict(type="note", terme="The Senate says no", cles=["Senate", "never", "joined"],
                     t="The Republican majority in the Senate refused to ratify Versailles, which contained the League's covenant.",
@@ -162,7 +164,7 @@ SCENES = [
         "{ctx.2}before German militarism, {ctx.3}and before Japanese militarism.",
         "{-ctx}{-pal}{lien}In an essay, do not just list them. Use the five structural weaknesses to explain why the three failures "
         "of the nineteen thirties were inevitable. A League with no army, where every member had a veto, could not stop a great power.",
-        "{-lien}{low1}The British cartoonist David Low drew it in nineteen thirty-three, in a cartoon called The Doormat. We cannot show it here, "
+        "{-lien}{mlow1}The British cartoonist David Low drew it in nineteen thirty-three, in a cartoon called The Doormat. {-mlow1}{low1}We cannot show it here, "
         "so picture it. {low1.1}A Japanese soldier walks over the League of Nations, lying on the ground like a doormat. "
         "{low1.2}The League's officials bow. {low1.3}And the British Foreign Secretary, John Simon, powders the League's nose with a face-saving kit.",
     ], vis={
@@ -171,15 +173,16 @@ SCENES = [
         "d2": dict(type="cols", g="Structural", gq="weaknesses present from 1919", d="Contextual",
                    dq="the crises of the 1930s, which exposed them", vs="+", repere="Why the League of Nations failed"),
         "str": dict(type="liste", titre="Structural weaknesses (from 1919)", cles=["ratify", "national", "aggressor", "army", "veto"], items=[
-            "The US Congress failed to ratify Versailles, which contained the covenant",
+            "The US Congress failed to ratify Versailles and its covenant",
             "Members refused to put international interests before national ones",
-            "Aggressors undermined its authority, as the depression encouraged aggression",
+            "Aggressors undermined it; the depression encouraged aggression",
             "No army of its own",
-            "Every member had a veto; representation of the world's nations was incomplete"], x=110, y=110, w=1060),
+            "Every member had a veto; many nations were not represented"], x=110, y=95, w=1060),
         "ctx": dict(type="liste", titre="Contextual causes (1930s)", items=[
             "Powerless before Italian militarism", "Powerless before German militarism", "Powerless before Japanese militarism"],
                     x=170, y=160, w=940),
         "lien": dict(type="mot", t="Five weaknesses → three failures", g="the structure explains why the failures were inevitable", y=250, taille=70),
+        "mlow1": dict(type="mot", t="David Low, 1933", g="“The Doormat”: a cartoon described, not shown", y=250, taille=72),
         "low1": dict(type="liste", titre="David Low, “The Doormat” (1933) · described, not shown", items=[
             "A Japanese soldier walks over the League, lying like a doormat", "The League's officials bow",
             "John Simon, British Foreign Secretary, powders its nose: a “face-saving kit”"], x=150, y=150, w=980),
@@ -221,8 +224,8 @@ SCENES = [
     dict(id="stimson", chap="II.3 · America: words, not action", fond="nuit", humeur="tension",
          retenir="7 Jan. 1932, the Stimson note: no recognition of any situation brought about by force in China (sovereignty, territorial integrity, the open door). A doctrine of non-recognition, not of action. Japan bombs Shanghai (1932): no American response.",
          beats=[
-        "{g5}{st}Fourth idea: the United States condemned aggression in words, but refused to act. "
-        "{st.1}On the seventh of January nineteen thirty-two, the Secretary of State, Henry Stimson, sends a note to Japan and China. "
+        "{g5}Fourth idea: the United States condemned aggression in words, but refused to act. "
+        "{st}{st.1}On the seventh of January nineteen thirty-two, the Secretary of State, Henry Stimson, sends a note to Japan and China. "
         "{st.2}The message? The United States will not recognise any situation, treaty or agreement brought about by force, "
         "if it harms American treaty rights in China. "
         "{st.3}That means the sovereignty and territorial integrity of the Chinese Republic. "
@@ -235,7 +238,7 @@ SCENES = [
         "{jp.3}No American response follows.",
     ], vis={
         "g5": dict(type="globe", code="H1", sc=[20]),
-        "st": dict(type="liste", titre="The Stimson note · 7 Jan. 1932", bande=True, petit=True, x=620, y=380, w=620,
+        "st": dict(type="liste", titre="The Stimson note · 7 Jan. 1932", bande=True, petit=True, x=50, y=90, w=560,
                    cles=["recognition", "force", "open"], items=[
                        "To Japan and China", "No recognition of conquest by force",
                        "China's sovereignty, territorial integrity", "The open door in China"]),
@@ -253,11 +256,11 @@ SCENES = [
     dict(id="neutre", chap="II.3 · The Neutrality Acts", fond="nuit", humeur="mystere",
          retenir="Isolationism after the Depression: domestic policy first. Neutrality Acts (Nye, Vandenberg): 1935 weapons and funding · 1936 no travel on ships of nations at war · 1937 all trade (course's summary). Roosevelt: “I hate war” (1936). Dec. 1937: USS Panay; Japan apologises, pays — and reads it as a licence.",
          beats=[
-        "{fdr}{iso}Fifth idea: the Neutrality Acts made the largest democracy unavailable. "
-        "{iso.1}The cause is the Great Depression. The United States turns to {!isolationism}isolationism, and turns a blind eye to international tensions. "
+        "{fdr}Fifth idea: the Neutrality Acts made the largest democracy unavailable. "
+        "{iso}{iso.1}The cause is the Great Depression. The United States turns to {!isolationism}isolationism, and turns a blind eye to international tensions. "
         "{iso.2}Congress and the presidents turn to domestic policy: protectionism, and a welfare state. That was episode three.",
-        "{-iso}{na}Isolationists in Congress, among them the Republican senators Gerald Nye and Arthur Vandenberg, push through the Neutrality Acts. "
-        "The course gives three steps. {na.1}In nineteen thirty-five, an embargo on weapons and funding to any nation involved in a conflict. "
+        "{-iso}{nad}Isolationists in Congress, among them the Republican senators Gerald Nye and Arthur Vandenberg, push through the Neutrality Acts. "
+        "{-nad}{na}The course gives three steps. {na.1}In nineteen thirty-five, an embargo on weapons and funding to any nation involved in a conflict. "
         "{na.2}In nineteen thirty-six, a ban on Americans travelling aboard ships of nations at war. "
         "{na.3}In nineteen thirty-seven, an embargo on all trade with nations at war.",
         "{-na}{prec}Learn the course's summary, but know that historians describe the details a little differently. "
@@ -279,6 +282,9 @@ SCENES = [
         "iso": dict(type="liste", titre="America turns inward", cles=["isolationism", "domestic"], items=[
             "After the Depression: isolationism, a blind eye to international tensions",
             "Domestic policy first: protectionism and a welfare state"], x=170, y=170, w=940),
+        "nad": dict(type="def", terme="The Neutrality Acts (1935–1937)", cles=["Nye", "Vandenberg"],
+                    t="Pushed through by isolationists in Congress, among them the Republican senators Gerald Nye and Arthur Vandenberg.",
+                    x=170, y=200, w=940),
         "na": dict(type="liste", titre="The Neutrality Acts (course)", cles=["weapons", "travelling", "trade"], items=[
             "1935: embargo on weapons and funding to nations in a conflict",
             "1936: no Americans aboard ships of nations at war",
@@ -303,8 +309,8 @@ SCENES = [
     dict(id="cash", chap="II.3 · From neutrality to the Arsenal of Democracy", fond="nuit", humeur="lumiere",
          retenir="Nov. 1939, after war began: the Neutrality Act of 1939, cash and carry (pay cash, carry on your own ships) → favours Britain and France, who control the sea. America, Arsenal of Democracy: rearmament, not the New Deal, ended the Depression.",
          beats=[
-        "{g7}{cc}Sixth idea: from nineteen thirty-nine, the United States moved from neutrality to supplying the democracies. "
-        "{cc.1}Only after the war had begun did Roosevelt persuade Congress, in special session, to pass the Neutrality Act of nineteen thirty-nine. "
+        "{g7}Sixth idea: from nineteen thirty-nine, the United States moved from neutrality to supplying the democracies. "
+        "{cc}{cc.1}Only after the war had begun did Roosevelt persuade Congress, in special session, to pass the Neutrality Act of nineteen thirty-nine. "
         "{cc.2}The United States may now sell weapons to the European democracies, on a {!cash and carry}cash and carry basis: "
         "{cc.3}pay in cash, and carry the goods away on your own ships.",
         "{-cc}{fv}Who does it favour? {fv.1}Whoever controls the sea: Britain and France. "
@@ -345,7 +351,7 @@ SCENES = [
         "{-dbl}{g8}{rh}{rh.1}And in March nineteen thirty-six, Hitler sends troops into the Rhineland, demilitarised by Versailles. France and Britain decide not to intervene. "
         "{rh.2}The example of the course: the German army marched in with orders to withdraw at the first sign of French resistance. "
         "{!There was none}There was none. {rh.3}Hitler later said the forty-eight hours after the march were the most nerve-racking of his life.",
-        "{-rh}{-g8}{six}Why did they give way? The course gives six reasons, and they must be learned. "
+        "{-rh}{-g8}Why did they give way? {six}The course gives six reasons, and they must be learned. "
         "{six.1}One: pacifism. Both countries were desperate to avoid another world war. "
         "{six.2}Two: Britain was policing its empire, and could not afford major rearmament. "
         "{six.3}Three: many Britons sympathised with Germany. They felt it had been treated unfairly at the end of the war. "
@@ -389,14 +395,14 @@ SCENES = [
         "{sl.7}And the first of September nineteen thirty-nine, Poland. On the third, France and Britain declare war.",
         "{-sl}{mun}Munich is the defining act of appeasement. The agreement accepts",
         ("C", "the cession to Germany of the Sudeten German territory", "c_mun"),
-        "{-c_mun}{ch}Here is Neville Chamberlain, back from Munich, on the thirtieth of September nineteen thirty-eight, at Heston aerodrome near London, "
-        "waving the paper he has signed with Hitler. {ch.1}That evening, outside the course, he speaks of {!peace for our time}peace for our time. "
+        "{-c_mun}{-mun}{mun2}Here is Neville Chamberlain, back from Munich, on the thirtieth of September nineteen thirty-eight, at Heston aerodrome near London, "
+        "waving the paper he has signed with Hitler. {ch}{ch.1}That evening, outside the course, he speaks of {!peace for our time}peace for our time. "
         "{ch.2}Six months later, Germany occupies Prague. Munich had bought nothing.",
-        "{-ch}{-mun}{axe}Meanwhile, the three militarist powers draw together. The course speaks of a pact between Rome, Berlin and Tokyo: the Axis. "
+        "{-ch}{-mun2}{axe}Meanwhile, the three militarist powers draw together. The course speaks of a pact between Rome, Berlin and Tokyo: the Axis. "
         "{axe.1}Be precise about the dates, which are outside the course. Germany and Japan sign the Anti-Comintern Pact in nineteen thirty-six. "
         "Italy joins it in nineteen thirty-seven. And the formal pact between Rome, Berlin and Tokyo is only signed in September nineteen forty.",
-        "{-axe}{low2}David Low drew the whole chain two years before Munich, in July nineteen thirty-six, in a cartoon called Stepping Stones to Glory. "
-        "Again, picture it. {low2.1}Hitler climbs a staircase made of the bent backs of the spineless leaders of democracy. "
+        "{-axe}{mlow2}David Low drew the whole chain two years before Munich, in July nineteen thirty-six, in a cartoon called Stepping Stones to Glory. "
+        "{-mlow2}{low2}Again, picture it. {low2.1}Hitler climbs a staircase made of the bent backs of the spineless leaders of democracy. "
         "{low2.2}The steps are marked rearmament, the Rhineland, {low2.3}and the top step: Boss of the Universe.",
         "{-low2}{arg}This is the central argument against appeasement: {!a larger demand}every concession was followed by a larger demand. "
         "European turmoil worsened at every concession.",
@@ -409,12 +415,15 @@ SCENES = [
             "1 Sept. 1939 · Poland: invasion; war on 3 Sept."], x=120, y=95, w=1040),
         "mun": dict(type="tableau", img="h1-chamberlain-munich", fond=True, de=[1.0, .5, .4], a=[1.25, .52, .4],
                     legende="Neville Chamberlain back from Munich, Heston aerodrome, 30 September 1938 (Ministry of Information, Wikimedia Commons, public domain)"),
+        "mun2": dict(type="tableau", img="h1-chamberlain-munich", de=[1.0, .5, .4], a=[1.15, .52, .4],
+                     legende="Neville Chamberlain back from Munich, Heston aerodrome, 30 September 1938 (Ministry of Information, Wikimedia Commons, public domain)"),
         "c_mun": dict(type="cit", a="The Munich Agreement", o="29–30 September 1938", x=200, y=200, w=880),
         "ch": dict(type="liste", titre="Heston aerodrome · 30 September 1938", bande=True, petit=True, x=60, y=430, w=620,
                    items=["“Peace for our time” (that evening; outside the course)", "March 1939: Prague. Munich bought nothing."]),
         "axe": dict(type="note", terme="The Axis · dates outside the course", cles=["Anti-Comintern", "Italy", "formal"],
                     t="Anti-Comintern Pact: Germany and Japan 1936, Italy joins 1937.",
                     etape="The formal Rome–Berlin–Tokyo pact: September 1940", x=170, y=200, w=940),
+        "mlow2": dict(type="mot", t="David Low, July 1936", g="“Stepping Stones to Glory”: described, not shown", y=250, taille=72),
         "low2": dict(type="liste", titre="David Low, “Stepping Stones to Glory” (July 1936) · described", items=[
             "Hitler climbs on the bent backs of “the spineless leaders of democracy”",
             "The steps: rearmament, the Rhineland …", "The top step: “Boss of the Universe”"], x=150, y=150, w=980),
@@ -444,7 +453,7 @@ SCENES = [
         "{mots.2}The great democratic powers: Britain, France and the United States, the guarantors of the order of nineteen nineteen. "
         "{mots.3}How far: arguments for, arguments against, and a judgement.",
         "{-mots}{pa1}",
-        ("P", 2.0),
+        ("P", 4.0),
         "{-pa1}{pl}Here is a model plan, from the essay card of the site. {pl.1}One: they built an order they would not underwrite. "
         "The Senate refused Versailles; the League had no army, every member a veto; Kellogg–Briand had no mechanism. "
         "{pl.2}Two: they weakened it economically after nineteen twenty-nine. Smoot–Hawley and the retaliation that followed choked world trade: by nineteen thirty-four, it had fallen by two thirds. "
@@ -453,7 +462,7 @@ SCENES = [
         "no oil embargo on Italy, the Rhineland, Munich. "
         "{pl.4}And four, the other side: the initiative lay with the militarist regimes, in Berlin, Rome and Tokyo.",
         "{-pl}{pa2}",
-        ("P", 2.0),
+        ("P", 4.0),
         "{-pa2}{par}Here is a model of that last paragraph, written for this video. "
         "{par.1}However, the democracies were reluctant, not responsible for the decision to go to war. "
         "{par.2}Militarism was a deliberate choice in Berlin, Rome and Tokyo. They built up their armies, gave the military control of government, and chose an aggressive foreign policy. "
