@@ -369,7 +369,7 @@ SCENES = [
         "{att1.2}And many estimates go up to thirty thousand marchers. The safest answer? October nineteen twenty-two, and some twenty thousand Blackshirts.",
     ], vis={
         "g8": dict(type="globe", code="H2", sc=[6]),
-        "mr": dict(type="liste", titre="The March on Rome · October 1922", x=720, y=110, w=520, petit=True, bande=True, items=[
+        "mr": dict(type="liste", titre="The March on Rome · October 1922", x=40, y=110, w=520, petit=True, bande=True, items=[
             "The aim: push the king to appoint him", "≈ 20,000 Blackshirts, fewer than hoped (course figure)",
             "Not violent during the march… but feared", "30 Oct.: the king refuses martial law, appoints Mussolini"]),
         "photo5": dict(type="tableau", img="h2-march-rome", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.12, .5, .35],

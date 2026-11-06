@@ -111,7 +111,7 @@ SCENES = [
         "fr": dict(type="frise", items=[
             dict(nom="Matteotti", d=1924, q="murdered"), dict(nom="Fascistissime laws", d=1925, q="Mein Kampf"),
             dict(nom="Five-Year Plan", d=1928, q="collectivisation"), dict(nom="Lateran Accords", d=1929, q="the Church"),
-            dict(nom="Doctrine of Fascism", d=1932, q="Holodomor 1932–33"), dict(nom="Racial instruction", d=1933, q="German schools"),
+            dict(nom="Doctrine of Fascism", d=1932, q="the Holodomor"), dict(nom="Racial instruction", d=1933, q="German schools"),
             dict(nom="La Difesa della Razza", d=1938, q="Italy turns racist"), dict(nom="T4", d=1939, q="disabled Germans")]),
     }),
 
@@ -168,7 +168,7 @@ SCENES = [
         "Nineteen twenty-five is the year the murder bore fruit. So in your copy, write nineteen twenty-four. Or nineteen twenty-four to twenty-five.",
     ], vis={
         "g3": dict(type="globe", code="H2", sc=[8]),
-        "mat": dict(type="liste", titre="The Matteotti affair", petit=True, bande=True, x=60, y=120, w=620, items=[
+        "mat": dict(type="liste", titre="The Matteotti affair", petit=True, bande=True, x=40, y=120, w=540, items=[
             "10 June 1924: Matteotti, socialist deputy, kidnapped and killed", "3 Jan. 1925: Mussolini claims responsibility",
             "1925: the “fascistissime” laws, a totalitarian State", "The king remains; Parliament no longer counts"]),
         "att1": dict(type="note", terme="Watch out · a date", cles=["1924"],
@@ -228,15 +228,15 @@ SCENES = [
         "{lim.2}And its power was incomplete. Mussolini was not strong enough to take control of the Church. So he came to terms with the Pope. "
         "They signed a concordat, the Lateran Accords, in nineteen twenty-nine. {lim.3}And the king remained head of the State.",
         "{-lim}{-g4}{amb}Here is a sentence to remember for an essay. {amb.1}A totalitarian ambition does not always mean totalitarian control.",
-        "{-amb}{rac}Idea seven. Unlike Nazism, Italian Fascism was not founded on racism. Anti-Semitism was not part of its early programme. "
-        "{rac.1}The turn came in nineteen thirty-eight. Now allied with Hitler, Mussolini brought in anti-Semitic laws, and the nation became officially racist. "
-        "{rac.2}{rac.3}Here is the example. A magazine called La Difesa della Razza, the Defence of the Race, published from August nineteen thirty-eight. It set a Roman profile "
+        "{-amb}{rac}{rac.1}Idea seven. Unlike Nazism, Italian Fascism was not founded on racism. Anti-Semitism was not part of its early programme. "
+        "{rac.2}The turn came in nineteen thirty-eight. Now allied with Hitler, Mussolini brought in anti-Semitic laws, and the nation became officially racist. "
+        "{rac.3}Here is the example. A magazine called La Difesa della Razza, the Defence of the Race, published from August nineteen thirty-eight. It set a Roman profile "
         "against Jewish and African faces. And so-called race specialists came into schools, to teach the superiority of the fascist race.",
         "{-rac}{nuance}So, in Italy, racism was a late turn, tied to the German alliance. It was not the core of the ideology. "
         "{nuance.1}But that makes it no less real for its victims. Roberto Benigni's film, Life is Beautiful, from nineteen ninety-seven, mocks this racism.",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[14]),
-        "lim": dict(type="liste", titre="Idea 6 · less oppressive, less complete", petit=True, bande=True, x=60, y=120, w=620, items=[
+        "lim": dict(type="liste", titre="Idea 6 · less oppressive, less complete", petit=True, bande=True, x=40, y=120, w=520, items=[
             "Opponents silenced rather than all killed: exile on islands such as Lipari (outside the notes)",
             "A counter-power: the Church · Lateran Accords, 1929", "The king remains head of the State"]),
         "amb": dict(type="mot", t="Ambition ≠ control", g="a totalitarian ambition does not always mean totalitarian control", y=250, taille=96),
@@ -317,7 +317,7 @@ SCENES = [
         "peasants who hid grain were accused of kulak sabotage. Whatever the size of their land.",
     ], vis={
         "g6": dict(type="globe", code="H2", sc=[15]),
-        "kul": dict(type="liste", titre="The kulak label", petit=True, bande=True, x=60, y=120, w=620, items=[
+        "kul": dict(type="liste", titre="The kulak label", petit=True, bande=True, x=40, y=120, w=540, items=[
             "On paper: a peasant owning more than 8 acres", "In practice: any peasant refusing collectivisation",
             "Persecuted as a class: land, animals confiscated; deported", "Resistance branded “kulak sabotage”"]),
         "ex10": dict(type="cols", g="1929 · M. Ros's slide", gq="kolkhoz farmers under a banner: liquidate the kulaks as a class",
@@ -340,7 +340,7 @@ SCENES = [
         "It killed about four million people in Ukraine. That death toll is added from outside the class notes.",
     ], vis={
         "g7": dict(type="globe", code="H2", sc=[19]),
-        "hol": dict(type="liste", titre="Ukraine, 1932: step by step", petit=True, bande=True, x=60, y=120, w=620, items=[
+        "hol": dict(type="liste", titre="Ukraine, 1932: step by step", petit=True, bande=True, x=40, y=120, w=540, items=[
             "Peasants hide grain in pits; children cut stalks at night", "OGPU-backed brigades sent to “take the grain”",
             "Molotov and Kaganovich halt manufactured goods to failing districts", "“Rebellious” villages “placed on the blackboard”: no food"]),
         "pct": dict(type="cols", g="September 1932", gq="32% of the monthly grain target reached", d="25 October 1932",
@@ -355,8 +355,8 @@ SCENES = [
         "{def4}Idea twelve. Beyond the famine, collectivisation was an {!economic failure}economic failure. "
         "{def4.1}Peasants who had lost their land and animals had no reason to work hard for the kolkhoz. Many slaughtered their livestock "
         "rather than hand it over. Production fell. Resources became scarcer. And the countryside turned hostile.",
-        "{-def4}{lait}{lait.g}Here is the example, in source five. It is a letter written in Novosibirsk on the ninth of April, nineteen thirty-two, by an official named Feigin. "
-        "He writes to the Soviet leader Ordzhonikidze. Normally, a cow gives five to seven litres of milk a day. "
+        "{-def4}{lait}Here is the example, in source five. It is a letter written in Novosibirsk on the ninth of April, nineteen thirty-two, by an official named Feigin. "
+        "He writes to the Soviet leader Ordzhonikidze. {lait.g}Normally, a cow gives five to seven litres of milk a day. "
         "{lait.d}The kolkhoz cows give one to three. The peasants are slaughtering their last animals. And Feigin writes,{-lait}",
         ("C", "people are starving", "c_fei"),
         "{-c_fei}{choix}So the regime made a choice. {!ideology and control}Ideology and control came first. Before feeding its own people.",
@@ -394,7 +394,7 @@ SCENES = [
         "{hum.d}The slide also shows a chart of the Nazi health ministry, from Bamberg. It ranks the racial groups of the earth.",
     ], vis={
         "g8": dict(type="globe", code="H2", sc=[23]),
-        "race": dict(type="liste", titre="Idea 13 · the Nazi view of history", petit=True, bande=True, x=60, y=120, w=620, items=[
+        "race": dict(type="liste", titre="Idea 13 · the Nazi view of history", petit=True, bande=True, x=40, y=120, w=500, items=[
             "History = a struggle between races, ranked in a hierarchy", "A collective instinct for survival",
             "Survival 1: race purity · relations between “races” banned", "Survival 2: territory, to expand the population"]),
         "hum": dict(type="cols", g="1935 · public humiliation", gq="a couple forced by SA men to wear placards denouncing their relationship",
