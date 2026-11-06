@@ -1095,12 +1095,12 @@ SCENES = [
     }),
 
     # ================================================================ exercice type bac (inventé)
-    # 412 + 398 = 810 parentaux (81 %) ; 92 + 98 = 190 recombinés (19 %) ; total 1 000
+    # 408 + 402 = 810 parentaux (81 %) ; 92 + 98 = 190 recombinés (19 %) ; total 1 000
     dict(id="exobac", chap="Exercice type bac · un test-cross", fond="nuit", humeur="tension", beats=[
         "{exb}Pour finir, un exercice au format du bac. Il n'est pas dans ton cours : il est inventé pour la vidéo, sur le modèle des TP. "
         "Chez une plante, on étudie deux gènes. La couleur du fruit : rouge ou jaune. Sa forme : ronde ou allongée. "
         "On croise deux lignées pures, l'une à fruits rouges et ronds, l'autre à fruits jaunes et allongés. Toute la F1 a des fruits rouges et ronds.",
-        "Puis on réalise un test-cross de la F1. Sur mille plantes : quatre cent douze à fruits rouges et ronds, trois cent quatre-vingt-dix-huit jaunes et allongés, "
+        "Puis on réalise un test-cross de la F1. Sur mille plantes : quatre cent huit à fruits rouges et ronds, quatre cent deux jaunes et allongés, "
         "quatre-vingt-douze rouges et allongés, quatre-vingt-dix-huit jaunes et ronds.",
         "Quatre questions. {exb.1}Un : quels allèles sont dominants ? Écris le génotype de la F1. {exb.2}Deux : pourquoi faire un test-cross, et avec quel partenaire ? "
         "{exb.3}Trois : les deux gènes sont-ils indépendants ou liés ? Justifie avec des pourcentages. "
@@ -1110,7 +1110,7 @@ SCENES = [
         "Rouge et rond sont donc dominants. {s1.2}La F1 est double hétérozygote. Si les gènes sont liés, on l'écrit R L sur r l, les deux allèles de chaque parent du même côté de la double barre.",
         "{-s1}{exbc.q2}{s2}{s2.1}Question deux : on croise la F1 avec un double homozygote récessif, à fruits jaunes et allongés. "
         "{s2.2}Il ne transmet que des allèles récessifs, qui ne masquent rien : les phénotypes des descendants révèlent directement les gamètes de la F1.",
-        "{-s2}{exbc.q3}{s3}{s3.1}Question trois. Quatre phénotypes, mais pas quatre fois vingt-cinq pour cent. {s3.2}Les deux majoritaires reproduisent les parents : quatre cent douze plus trois cent quatre-vingt-dix-huit, "
+        "{-s2}{exbc.q3}{s3}{s3.1}Question trois. Quatre phénotypes, mais pas quatre fois vingt-cinq pour cent. {s3.2}Les deux majoritaires reproduisent les parents : quatre cent huit plus quatre cent deux, "
         "huit cent dix sur mille, quatre-vingt-un pour cent de parentaux. {s3.3}Les deux minoritaires sont recombinés : cent quatre-vingt-dix, dix-neuf pour cent. "
         "{s3.4}Gamètes non équiprobables : les gènes sont partiellement liés, sur la même paire de chromosomes.",
         "{-s3}{exbc.q4}{s4}{s4.1}Question quatre. En prophase un, chez la F1, les homologues s'apparient en bivalent. {s4.2}Deux chromatides non sœurs se croisent, au niveau d'un chiasma situé entre les deux gènes, "
@@ -1120,13 +1120,13 @@ SCENES = [
     ], vis={
         "exb": dict(type="exo", niveau="Exercice type bac", y=70, titre="Couleur et forme du fruit", src="Exercice inventé pour la vidéo, sur le modèle des TP 2 et 3",
                     enonce=["Lignée pure [rouge ; rond] × lignée pure [jaune ; allongé] → F1 100 % [rouge ; rond].",
-                            "Test-cross de la F1, 1 000 plantes : 412 [rouge ; rond], 398 [jaune ; allongé], 92 [rouge ; allongé], 98 [jaune ; rond]."],
+                            "Test-cross de la F1, 1 000 plantes : 408 [rouge ; rond], 402 [jaune ; allongé], 92 [rouge ; allongé], 98 [jaune ; rond]."],
                     questions=["Allèles dominants, génotype de la F1.", "Pourquoi un test-cross ? Avec quel partenaire ?",
                                "Gènes indépendants ou liés ? Justifier par des pourcentages.",
                                "Expliquer par un schéma l'origine des plantes [rouge ; allongé]."]),
         "pa_exb": dict(type="pause", t="Dominance, test-cross, gènes liés ou non, schéma du crossing-over."),
         "exbc": dict(type="exo", mode="coin", niveau="Exercice type bac", titre="Couleur et forme du fruit",
-                     donnees=["F1 [rouge ; rond]", "412 · 398 · 92 · 98 sur 1 000"],
+                     donnees=["F1 [rouge ; rond]", "408 · 402 · 92 · 98 sur 1 000"],
                      questions=["Dominance, génotype F1 ?", "Pourquoi un test-cross ?", "Indépendants ou liés ?", "Origine des [rouge ; allongé] ?"]),
         "s1": dict(type="formule", titre="1 · Dominance et génotype", x=540, y=170, w=700, lignes=[
             dict(f="F1 uniforme [rouge ; rond] : R et L dominants", taille=32),
@@ -1136,7 +1136,7 @@ SCENES = [
             dict(f="le récessif ne masque rien : phénotypes de la F2 = gamètes de la F1", cadre=True, taille=28)]),
         "s3": dict(type="formule", titre="3 · Indépendants ou liés ?", x=540, y=120, w=700, lignes=[
             dict(f="pas 4 × 25 %", taille=34, ko=True),
-            dict(f="parentaux : (412 + 398) / 1 000 = 81 %", taille=32),
+            dict(f="parentaux : (408 + 402) / 1 000 = 81 %", taille=32),
             dict(f="recombinés : (92 + 98) / 1 000 = 19 %", taille=32),
             dict(f="gamètes non équiprobables : gènes liés", cadre=True, ok=True, taille=32)]),
         "s4": dict(type="formule", titre="4 · L'origine des recombinés", x=540, y=110, w=700, lignes=[
