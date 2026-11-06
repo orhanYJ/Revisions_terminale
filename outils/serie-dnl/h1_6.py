@@ -34,12 +34,12 @@ VOTE_NSDAP = [[1928.4, 2.6], [1930.7, 18.3], [1932.55, 37.3], [1932.85, 33.1]]
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Opening", fond="nuit", humeur="mystere", carton=False, beats=[
-        "{g0}{q1}October 1929. A silent crowd gathers outside the New York Stock Exchange. "
-        "Ten years later, Europe is at war again. How do we get from one to the other?",
-        "{-q1}{q2}That is the whole of chapter one, in one episode.",
-        "{-q2}{-g0}{plan}Here is the plan of this recap. {plan.1}The story on the map. "
-        "{plan.2}The timeline and the chain of the crisis. {plan.3}The six parts, one example each. "
-        "{plan.4}People and figures. {plan.5}And the exam.",
+        "{g0}{q1}October, nineteen twenty-nine. A silent crowd waits outside the New York Stock Exchange. "
+        "Ten years later, Europe is at war again. So how do we get from one to the other?",
+        "{-q1}{q2}That question is the whole of chapter one. And this episode goes through all of it.",
+        "{-q2}{-g0}{plan}Here is the plan. {plan.1}First, the story on the map. "
+        "{plan.2}Then the timeline, and the chain of the crisis. {plan.3}Then the six parts, with one example each. "
+        "{plan.4}The people and the figures. {plan.5}And finally, the exam.",
         "{-plan}{titre}",
         ("P", 3.0),
     ], vis={
@@ -58,24 +58,25 @@ SCENES = [
     dict(id="film", chap="The story on the map", fond="nuit", humeur="tension",
          retenir="1919 the liberal order · 1924 Dawes · Oct. 1929 the Crash · 1930–32 bank failures · 1930 Smoot–Hawley · 1931 dominoes and Manchuria · 1933 Hitler and the New Deal · 1936 Rhineland · 1938 Munich.",
          beats=[
-        "{g1}{g1.1}It all starts with a peace. In 1919, in Paris, President Wilson's Fourteen Points become a liberal world order: "
-        "democracy, the self-determination of peoples, free trade, and a League of Nations in Geneva. "
-        "But the American Senate refuses to join it.",
-        "{g1.2}1924: the Dawes Plan. Eight hundred million marks lent to Germany. American money pays German reparations, "
-        "and the Allies' war debts flow back to Washington. Europe now hangs on American credit.",
-        "{g1.3}October 1929: the Crash. Black Thursday, the twenty-fourth; then Black Monday and Black Tuesday. "
+        "{g1}{g1.1}It all starts with a peace. Paris, nineteen nineteen. President Wilson's Fourteen Points become a liberal world order. "
+        "Democracy. The self-determination of peoples. Free trade. And a League of Nations, in Geneva. "
+        "But the American Senate refuses the treaty, and the United States never joins.",
+        "{g1.2}Nineteen twenty-four: the Dawes Plan. Germany borrows eight hundred million marks. American money pays German reparations, "
+        "and the Allies' war debts flow back to Washington. From now on, Europe hangs on American credit.",
+        "{g1.3}October, nineteen twenty-nine: the Crash. Black Thursday, on the twenty-fourth. Then Black Monday, and Black Tuesday. "
         "The market had tripled in five years, on speculation. Now it collapses.",
-        "{g1.4}From 1930, the banks fail: about five thousand by 1932. That is when the Great Depression really begins. "
-        "{g1.5}American banks recall their loans to Europe, and Germany, the most exposed, is hit first.",
-        "{g1.6}On the seventeenth of June 1930, Hoover signs the Smoot–Hawley Tariff. Canada retaliates within days. "
+        "{g1.4}From nineteen thirty, the banks start to fail. About five thousand of them, by nineteen thirty-two. "
+        "And that is when the Great Depression really begins. "
+        "{g1.5}American banks call back their loans to Europe. Germany, the most exposed, is hit first.",
+        "{g1.6}The seventeenth of June, nineteen thirty: Hoover signs the Smoot–Hawley Tariff. Within days, Canada hits back. "
         "The trade war has begun.",
-        "{-g1}{g2}{g2.1}1931: the dominoes fall in Europe. The Creditanstalt in Vienna in May, the German banks in July, "
-        "and in September, Britain leaves the Gold Standard. {g2.2}That same month, on the eighteenth of September, "
-        "the Mukden incident: Japan invades Manchuria, and the League of Nations is powerless.",
-        "{g2.3}January 1933: Hitler is appointed chancellor, although the Nazis never won a majority. "
-        "{g2.4}The same year, in the United States, Roosevelt launches the New Deal: relief, recovery, reform.",
-        "{g2.5}On the seventh of March 1936, the German army marches into the Rhineland. France and Britain do nothing. "
-        "{g2.6}In 1938, the Anschluss, and then Munich: the Sudetenland is handed over to Hitler. That is appeasement.",
+        "{-g1}{g2}{g2.1}Nineteen thirty-one: the dominoes fall in Europe. The Creditanstalt, in Vienna, in May. The German banks in July. "
+        "And in September, Britain leaves the Gold Standard. {g2.2}That same month, on the eighteenth, "
+        "comes the Mukden incident. Japan invades Manchuria, and the League of Nations can do nothing.",
+        "{g2.3}January, nineteen thirty-three: Hitler is appointed chancellor. Yet the Nazis never won a majority. "
+        "{g2.4}That same year, in the United States, Roosevelt launches the New Deal. Relief, recovery, reform.",
+        "{g2.5}The seventh of March, nineteen thirty-six: the German army marches into the Rhineland. France and Britain do nothing. "
+        "{g2.6}Nineteen thirty-eight: the Anschluss, and then Munich. The Sudetenland is handed over to Hitler. That is appeasement.",
         ("P", 1.5),
     ], vis={
         "g1": dict(type="globe", code="H1", sc=[0, 3, 5, 8, 9, 15]),
@@ -86,15 +87,16 @@ SCENES = [
     dict(id="dates", chap="The timeline", fond="nuit", humeur="calme",
          retenir="1919 · 1924 · 1928 · Oct. 1929 · June 1930 · 1931 · 1932 · 1933 · 1935 · 1936 · 1938 · 1939.",
          beats=[
-        "{fr}Now the timeline of the course, twelve steps. {fr.1}1919: Versailles and the League of Nations. "
-        "{fr.2}1924: the Dawes Plan. {fr.3}1928: the Kellogg–Briand Pact declares war illegal. "
-        "{fr.4}October 1929: the Crash. {fr.5}June 1930: Smoot–Hawley. "
-        "{fr.6}1931: the Creditanstalt, Britain leaves gold, Manchuria. "
-        "{fr.7}1932: the Import Duties Act, the Stimson note, and Roosevelt elected. "
-        "{fr.8}1933: Hitler chancellor, the hundred days of the New Deal, Japan quits the League. "
-        "{fr.9}1935: Italy invades Ethiopia; the first Neutrality Act. {fr.10}1936: the Rhineland, and the Front populaire. "
-        "{fr.11}1938: the Anschluss and Munich. {fr.12}And 1939: Prague in March, Poland on the first of September, "
-        "and cash and carry in November.",
+        "{fr}Now the timeline of the course, in twelve steps. {fr.1}Nineteen nineteen: Versailles, and the League of Nations. "
+        "{fr.2}Nineteen twenty-four: the Dawes Plan. {fr.3}Nineteen twenty-eight: the Kellogg–Briand Pact declares war illegal. "
+        "{fr.4}October, nineteen twenty-nine: the Crash. {fr.5}June, nineteen thirty: Smoot–Hawley. "
+        "{fr.6}Nineteen thirty-one: the Creditanstalt fails. Britain leaves gold. Japan takes Manchuria. "
+        "{fr.7}Nineteen thirty-two: the Import Duties Act, the Stimson note… and Roosevelt is elected. "
+        "{fr.8}Nineteen thirty-three: Hitler becomes chancellor. The New Deal has its hundred days. Japan quits the League. "
+        "{fr.9}Nineteen thirty-five: Italy invades Ethiopia, and America passes its first Neutrality Act. "
+        "{fr.10}Nineteen thirty-six: the Rhineland, and the Front populaire. "
+        "{fr.11}Nineteen thirty-eight: the Anschluss, then Munich. {fr.12}And nineteen thirty-nine. Prague in March. Poland on the first of September. "
+        "And cash and carry in November.",
         ("P", 7.0),
     ], vis={
         "fr": dict(type="frise", items=[
@@ -110,14 +112,16 @@ SCENES = [
     dict(id="chaine", chap="The chain of the crisis", fond="nuit", humeur="tension",
          retenir="Crash → bank failures → loans recalled → protectionism → world trade −66% → global Depression. Then two roads: democracies retreat, three regimes choose militarism.",
          beats=[
-        "{ch}One schema of the course holds part one together: how the crash became a global depression. "
-        "{ch.1}The Wall Street Crash, in October 1929: share prices collapse. {ch.2}Banking failures: credit dries up, savings are destroyed. "
-        "{ch.3}The United States recalls its foreign loans: Europe, and above all Germany, loses American capital. "
-        "{ch.4}Protectionism: tariffs, and a chain of retaliation. {ch.5}World trade collapses: its value falls by about two thirds "
-        "between 1929 and 1934. {ch.6}And the result: a global Depression, with mass unemployment and deflation.",
-        "{-ch}{deux}And part two follows from it. Faced with the Depression, the world splits into two roads. "
-        "The great democracies retreat: economic nationalism, isolation, appeasement. "
-        "Three regimes, in Germany, Italy and Japan, choose militarism.",
+        "{ch}One schema holds part one together. How did a crash become a global depression? Six links. "
+        "{ch.1}The Wall Street Crash, in October, nineteen twenty-nine: share prices collapse. "
+        "{ch.2}Then the banks fail. Credit dries up, and savings are wiped out. "
+        "{ch.3}The United States calls back its foreign loans. Europe loses American capital, and Germany above all. "
+        "{ch.4}Protectionism follows: tariffs, and a chain of retaliation. "
+        "{ch.5}World trade collapses. Its value falls by about two thirds, between nineteen twenty-nine and nineteen thirty-four. "
+        "{ch.6}And the result is a global Depression, with mass unemployment and falling prices.",
+        "{-ch}{deux}Part two follows from that. Faced with the Depression, the world takes two roads. "
+        "The great democracies retreat. Economic nationalism, isolation, appeasement. "
+        "And three regimes, in Germany, Italy and Japan, choose militarism.",
     ], vis={
         "ch": dict(type="liste", titre="How the crash became a global depression", items=[
             "Wall Street Crash (Oct. 1929): share prices collapse", "Banking failures: credit dries up, savings destroyed",
@@ -132,20 +136,21 @@ SCENES = [
     dict(id="p11", chap="I.1 · The Great Crash", fond="nuit", humeur="tension",
          retenir="Stock market · Roaring Twenties · mass production · speculation (margin: 90%) · a real economy already slowing · the panic: −89% (381 → 41).",
          beats=[
-        "{ph}{i1}And now the ideas, part by part, one example each. Part I.1: what is the Great Crash? "
+        "{ph}{i1}Now the ideas, part by part, with one example each. Part one, section one: what was the Great Crash? "
         "{i1.1}A stock market is where companies raise money, and investors buy a claim on profits. "
-        "The site's example, from outside the course: RCA paid no dividend at all, yet its price multiplied.",
-        "{i1.2}The Roaring Twenties: growth and optimism, built on Republican policy. Three Republican presidents, "
-        "Harding, Coolidge and Hoover: low taxes, trusts, tariffs. {i1.3}Mass production made mass consumption possible: "
-        "a Ford Model T fell to about two hundred and sixty dollars by 1925.",
-        "{i1.4}Speculation inflated the market: brokers lent up to ninety per cent of a share's price. "
-        "A ten per cent fall wiped the buyer out. {i1.5}Meanwhile, the real economy was already slowing: "
-        "farm prices had been falling since 1920. {i1.6}And in late October 1929, the panic: selling fed on itself.",
-        "{-i1}{-ph}{dj}Remember one figure. From its peak of three hundred and eighty-one, in September 1929, "
-        "the Dow Jones fell to forty-one in July 1932. Minus eighty-nine per cent.",
-        "{-dj}{fac}And for the essay on the causes: rank the factors, do not list them. {fac.1}Speculation is the trigger. "
-        "{fac.2}Overproduction and the unequal distribution of wealth explain why the fall did not stop. "
-        "{fac.3}Panic and policy are amplifiers, not the origin.",
+        "One example, from outside the course: RCA paid no dividend at all. Yet its share price multiplied.",
+        "{i1.2}The Roaring Twenties brought growth and optimism, built on Republican policy. Three Republican presidents in a row: "
+        "Harding, Coolidge, and Hoover. Low taxes. Trusts. Tariffs. {i1.3}Mass production made mass consumption possible. "
+        "By nineteen twenty-five, a Ford Model T cost only about two hundred and sixty dollars.",
+        "{i1.4}Speculation inflated the market. Brokers lent up to ninety per cent of a share's price. "
+        "So a fall of just ten per cent wiped the buyer out. {i1.5}Meanwhile, the real economy was already slowing. "
+        "Farm prices had been falling since nineteen twenty. {i1.6}Then, in late October, nineteen twenty-nine, came the panic. "
+        "And the selling fed on itself.",
+        "{-i1}{-ph}{dj}Remember one figure. In September, nineteen twenty-nine, the Dow Jones peaked at three hundred and eighty-one. "
+        "By July, nineteen thirty-two, it was down to forty-one. A loss of eighty-nine per cent.",
+        "{-dj}{fac}For an essay on the causes, rank the factors. Don't just list them. {fac.1}Speculation is the trigger. "
+        "{fac.2}Overproduction and unequal wealth explain why the fall did not stop. "
+        "{fac.3}And panic and policy made it worse. They are amplifiers, not the origin.",
     ], vis={
         "ph": dict(type="tableau", img="h1-wallstreet", fond=True, sombre=True, de=[1.0, .5, .45], a=[1.2, .5, .6],
                    legende="Crowd outside the New York Stock Exchange after the Crash, October 1929 (Wikimedia Commons, public domain)"),
@@ -164,15 +169,16 @@ SCENES = [
     dict(id="p12", chap="I.2 · A world-wide crisis", fond="nuit", humeur="tension",
          retenir="Bank failures (5,000 by 1932) · loans recalled · the Dawes circuit · the Gold Standard · dominoes in Europe, falling prices in the periphery.",
          beats=[
-        "{i2}Part I.2: from the American crash to a world-wide crisis. {i2.1}The Great Depression really began when banks failed. "
-        "There was no deposit insurance before 1933: about five thousand banks failed by 1932.",
-        "{i2.2}The crisis spread through two channels: the recall of American loans, and weaknesses all economies shared. "
-        "Example: the Creditanstalt in May 1931, the German banks in July, Britain off gold in September. "
-        "{i2.3}The Dawes Plan had tied Europe to American credit: eight hundred million marks in 1924, "
-        "and reparations of two and a half billion marks a year by 1928.",
-        "{i2.4}The Gold Standard was the transmission belt: France defended the franc's gold value until 1936, "
-        "and was the worst-performing developed economy of the decade. {i2.5}Europe was hit by domino effect, "
-        "and the periphery by falling prices: Brazil burned some seventy-eight million bags of coffee; "
+        "{i2}Section two: from the American crash to a world-wide crisis. {i2.1}The Great Depression really began when the banks failed. "
+        "Before nineteen thirty-three, deposits were not insured. A rumour could empty a bank. About five thousand had failed by nineteen thirty-two.",
+        "{i2.2}The crisis spread through two channels. The recall of American loans, and weaknesses that every economy shared. "
+        "Watch the dominoes: the Creditanstalt in May, nineteen thirty-one. The German banks in July. Britain off gold in September. "
+        "{i2.3}Why was Europe so fragile? Because the Dawes Plan had tied it to American credit. "
+        "Eight hundred million marks were lent in nineteen twenty-four. And by nineteen twenty-eight, "
+        "reparations had reached two and a half billion marks a year.",
+        "{i2.4}The Gold Standard was the transmission belt. France clung to the franc's gold value until nineteen thirty-six. "
+        "It was the worst-performing developed economy of the decade. {i2.5}Europe was hit by a domino effect. "
+        "And the rest of the world, by falling prices. Brazil burned some seventy-eight million bags of coffee. "
         "Chile's nitrate earnings fell by more than eighty per cent.",
     ], vis={
         "i2": dict(type="liste", titre="I.2 · From the US Crash to a world-wide financial crisis", items=[
@@ -184,14 +190,15 @@ SCENES = [
     dict(id="p13", chap="I.3 · A defining trauma", fond="nuit", humeur="calme",
          retenir="14 million unemployed (25%) · Hoovervilles · Lange's Migrant Mother (1936) · the Dust Bowl (14 April 1935) · a global trauma, but uneven: the USSR barely touched.",
          beats=[
-        "{hv}{i3}Part I.3: one of the defining traumas of the twentieth century. {i3.1}Jobs, wages and savings destroyed, "
-        "with no safety net: unemployment went from three per cent in 1929 to twenty-five per cent in 1933, fourteen million Americans.",
-        "{i3.2}The Hoovervilles made poverty visible in the heart of the cities: the largest in St Louis, another in Central Park.",
-        "{-hv}{mm}{i3.3}The federal state itself photographed poverty. Migrant Mother, by Dorothea Lange, March 1936: "
-        "Florence Owens Thompson, thirty-two, at a pea-pickers' camp in Nipomo, California. "
-        "{i3.4}The Dust Bowl turned the economic crisis into an ecological one: Black Sunday, the fourteenth of April 1935, "
-        "turned day into night. {i3.5}And the trauma was global, but uneven: the Soviet Union, outside world trade, "
-        "in its first Five-Year Plan, was barely touched.",
+        "{hv}{i3}Section three: one of the defining traumas of the twentieth century. {i3.1}Jobs, wages and savings were destroyed, "
+        "and there was no safety net. Unemployment rose from three per cent in nineteen twenty-nine to twenty-five per cent in nineteen thirty-three. "
+        "That is fourteen million Americans.",
+        "{i3.2}The Hoovervilles made poverty visible, right in the heart of the cities. The largest was in St Louis. Another stood in Central Park.",
+        "{-hv}{mm}{i3.3}The federal state itself photographed poverty. This is Migrant Mother, by Dorothea Lange, March, nineteen thirty-six. "
+        "Florence Owens Thompson, aged thirty-two, at a pea-pickers' camp in Nipomo, California. "
+        "{i3.4}Then the Dust Bowl turned the economic crisis into an ecological one. On Black Sunday, the fourteenth of April, nineteen thirty-five, "
+        "day turned into night. {i3.5}So the trauma was global. But it was uneven. The Soviet Union, outside world trade "
+        "and in its first Five-Year Plan, was barely touched.",
         "{-mm}",
     ], vis={
         "hv": dict(type="tableau", img="h1-hooverville-seattle", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .4, .5],
@@ -208,12 +215,13 @@ SCENES = [
     dict(id="p21", chap="II.1 · Economic nationalism", fond="nuit", humeur="tension",
          retenir="Independent internationalism · Smoot–Hawley (17 June 1930, 20,000 goods) · retaliation and imperial blocs (Ottawa 1932) · Roosevelt reverses the policy (gold 1933, RTAA 1934).",
          beats=[
-        "{i4}Part II.1: economic nationalism. {i4.1}Before the Crash, Hoover's America practised independent internationalism: "
-        "American banks lent to Germany, but Washington signed no alliance. {i4.2}Then protectionism: Smoot–Hawley raised duties "
-        "on more than twenty thousand goods. Smoot and Hawley both lost their seats in 1932.",
-        "{i4.3}Protectionism spread by retaliation, and the empires became closed blocs: the Ottawa Conference of 1932 "
-        "and imperial preference. World trade lost two thirds of its value. {i4.4}Roosevelt reversed the policy, off gold in 1933, "
-        "and reciprocal agreements from 1934: about twenty by 1939. None with Germany, Italy or Japan.",
+        "{i4}Part two, section one: economic nationalism. {i4.1}Before the Crash, Hoover's America practised independent internationalism. "
+        "American banks lent to Germany. But Washington signed no alliance. {i4.2}Then came protectionism. Smoot–Hawley raised duties "
+        "on more than twenty thousand goods. Two years later, Smoot and Hawley both lost their seats.",
+        "{i4.3}Protectionism spread by retaliation, and the empires closed into blocs. At Ottawa, in nineteen thirty-two, "
+        "Britain and its dominions chose imperial preference. World trade lost two thirds of its value. "
+        "{i4.4}Roosevelt reversed the policy. He left gold in nineteen thirty-three, and signed reciprocal trade agreements from nineteen thirty-four. "
+        "About twenty, by nineteen thirty-nine. And not one with Germany, Italy or Japan.",
     ], vis={
         "i4": dict(type="liste", titre="II.1 · Economic nationalism", items=[
             "Independent internationalism: loans, but no alliance", "Smoot–Hawley (1930): 20,000 goods, 23 protests",
@@ -224,20 +232,21 @@ SCENES = [
     dict(id="p22", chap="II.2 · Political responses", fond="nuit", humeur="tension",
          retenir="Germany broke: 43.8% unemployed (1932) · the Nazis let in, never a majority · autarky and rearmament · militarism in three regimes · the New Deal · New Deal diplomacy · the Front populaire.",
          beats=[
-        "{gr}Part II.2: the political responses. First, Germany, the country that broke. {gr.1}Worksheet 3: unemployment among "
-        "insured workers, from eight point six per cent in 1928 to forty-three point eight per cent in 1932. "
-        "{gr.2}And the Nazi vote follows the curve: two point six per cent in 1928, eighteen point three in 1930, "
-        "thirty-seven point three in July 1932… then down to thirty-three point one in November.",
-        "{-gr}{i5}{i5.1}So the Nazis never won a majority: they were let in, in January 1933, by conservatives "
-        "who thought they could use Hitler. {i5.2}Nazi economic policy: stability, full employment and autarky, at any price. "
-        "Rearmament brought unemployment down from six million in 1933 to under one million by 1937. "
-        "{i5.3}Militarism spread to three regimes: armed build-up, military control of government, aggressive foreign policy. "
-        "In Japan, the Kwantung Army acted first in Manchuria, and Tokyo explained afterwards.",
-        "{-i5}{i6}Three other answers. {i6.1}The New Deal: relief, recovery, reform. The Civilian Conservation Corps, the Tennessee "
-        "Valley Authority, and in 1935, Social Security. {i6.2}New Deal diplomacy: recognition of the Soviet Union in November 1933, "
-        "trade agreements, but no alliance. {i6.3}And France's Front populaire, in 1936, under Léon Blum: the Matignon Agreements raised "
-        "wages by seven to fifteen per cent in a week, with the forty-hour week and two weeks' paid holiday. "
-        "But abroad, it chose appeasement.",
+        "{gr}Section two: the political responses. And first, Germany, the country that broke. {gr.1}Look at Worksheet three. "
+        "Among insured workers, unemployment climbs from eight point six per cent in nineteen twenty-eight… "
+        "to forty-three point eight per cent in nineteen thirty-two. "
+        "{gr.2}Now the Nazi vote. It follows the curve. Two point six per cent in nineteen twenty-eight. Eighteen point three in nineteen thirty. "
+        "Thirty-seven point three in July, nineteen thirty-two. Then, in November, it drops to thirty-three point one.",
+        "{-gr}{i5}{i5.1}So the Nazis never won a majority. They were let in, in January, nineteen thirty-three, by conservatives "
+        "who thought they could use Hitler. {i5.2}Nazi economic policy wanted stability, full employment and autarky, at any price. "
+        "Rearmament cut unemployment from six million in nineteen thirty-three to under one million by nineteen thirty-seven. "
+        "{i5.3}And militarism spread to three regimes. It means an armed build-up, the military in control of government, "
+        "and an aggressive foreign policy. In Japan, the Kwantung Army struck first in Manchuria. Tokyo explained afterwards.",
+        "{-i5}{i6}Now, three other answers. {i6.1}The New Deal: relief, recovery, reform. It brought the Civilian Conservation Corps, the Tennessee "
+        "Valley Authority, and, in nineteen thirty-five, Social Security. {i6.2}New Deal diplomacy recognised the Soviet Union, in November, nineteen thirty-three. "
+        "It signed trade agreements, but no alliance. {i6.3}And in France, the Front populaire of nineteen thirty-six, under Léon Blum. "
+        "The Matignon Agreements raised wages by seven to fifteen per cent, in a week. New laws brought the forty-hour week, "
+        "and two weeks of paid holiday. But abroad, it chose appeasement.",
     ], vis={
         "gr": dict(type="graphe", titre="Germany: unemployment and the Nazi vote (%)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1927.6, 1933.4], y=[0, 50], gx=[1928, 1929, 1930, 1931, 1932, 1933], gy=[10, 20, 30, 40, 50],

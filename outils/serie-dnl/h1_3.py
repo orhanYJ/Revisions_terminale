@@ -79,17 +79,18 @@ SCENES = [
     dict(id="carte1", chap="On the map · 1930 – 1932", fond="nuit", humeur="tension",
          retenir="1930–32: Germany the most exposed · militarism in Berlin, Rome, Tokyo · 17 June 1930 Smoot–Hawley · 1931–32 closed imperial blocs · 18 Sept. 1931 Manchuria.",
          beats=[
-        "{g1}Let's follow the story on the map first. {g1.1}From 1930 to 1932, look at Germany. Its industry lived on American credit. "
-        "When the loans are recalled, output falls by forty per cent, and unemployment explodes. "
-        "In the same years, the Nazi vote climbs.",
-        "{g1.2}Across the decade, three regimes choose the same road: Hitler's Germany, Mussolini's Italy and Japan. "
-        "A strong army, the military in control, and an aggressive foreign policy. That is {!militarism}militarism.",
-        "{g1.3}Now the United States. On the seventeenth of June 1930, President Hoover signs the Smoot–Hawley Tariff. "
-        "Duties go up on more than twenty thousand imported goods. Canada, America's closest partner, retaliates within days.",
-        "{g1.4}In 1931 and 1932, the great empires close up. Britain and its dominions trade among themselves, "
-        "France sets quotas, Germany aims at autarky. World trade falls by about two thirds in value between 1929 and 1934.",
-        "{g1.5}And in Asia, on the eighteenth of September 1931, the Japanese army invades Manchuria. "
-        "The League of Nations condemns, and can do nothing more.",
+        "{g1}Let's follow the story on the map first. {g1.1}From nineteen thirty to nineteen thirty-two, look at Germany. "
+        "Its industry lived on American credit. When the loans are recalled, output falls by forty per cent. "
+        "Unemployment explodes. And in the same years, the Nazi vote climbs.",
+        "{g1.2}Across the decade, three regimes choose the same road: Hitler's Germany, Mussolini's Italy, and Japan. "
+        "A strong army. The military in control. An aggressive foreign policy. That is {!militarism}militarism.",
+        "{g1.3}Now the United States. On the seventeenth of June, nineteen thirty, President Hoover signs the Smoot–Hawley Tariff. "
+        "Duties go up on more than twenty thousand imported goods. And Canada, America's closest partner, hits back.",
+        "{g1.4}In nineteen thirty-one and thirty-two, the great empires close up. Britain trades with its dominions. "
+        "France sets quotas. Germany aims at autarky. Between nineteen twenty-nine and nineteen thirty-four, "
+        "world trade falls by about two thirds in value.",
+        "{g1.5}And in Asia, on the eighteenth of September, nineteen thirty-one, the Japanese army invades Manchuria. "
+        "The League of Nations condemns it… and can do nothing more.",
     ], vis={
         "g1": dict(type="globe", code="H1", sc=[13, 14, 15, 16, 18]),
     }),
@@ -98,23 +99,23 @@ SCENES = [
     dict(id="carte2", chap="On the map · 1932 – 1936", fond="nuit", humeur="tension",
          retenir="Jan. 1932 Stimson note, Shanghai bombed · Jan. 1933 Hitler chancellor · 1933–35 the New Deal · 1933–34 off gold, RTAA, USSR recognised · 1934–36 6 February riots, then the Front populaire.",
          beats=[
-        "{g2}{g2.1}January 1932. The American Secretary of State, Henry Stimson, announces that the United States will recognise "
-        "no conquest by force in China. Japan answers by bombing Shanghai. And Washington does nothing.",
-        "{g2.2}January 1933, Berlin. The conservatives appoint Adolf Hitler chancellor. His regime will end unemployment… "
+        "{g2}{g2.1}January nineteen thirty-two. The American Secretary of State, Henry Stimson, makes an announcement: "
+        "the United States will recognise no conquest by force in China. Japan's answer? It bombs Shanghai. And Washington does nothing.",
+        "{g2.2}January nineteen thirty-three, Berlin. Conservatives bring Adolf Hitler in as chancellor. His regime will end unemployment… "
         "by preparing for war.",
-        "{g2.3}March 1933, Washington. Franklin Roosevelt takes office and launches the New Deal: relief, recovery, reform.",
-        "{g2.4}In 1933 and 1934, Roosevelt reverses Hoover's policy. He takes the dollar off gold, and from 1934 he signs trade agreements "
-        "country by country. He also recognises the Soviet Union.",
-        "{g2.5}And France. On the sixth of February 1934, far-right leagues riot in Paris. Against the fear of fascism, the left unites: "
-        "in 1936, the Front populaire wins the elections, under Léon Blum.",
+        "{g2.3}March nineteen thirty-three, Washington. Franklin Roosevelt takes office, and launches the New Deal. Relief. Recovery. Reform.",
+        "{g2.4}In nineteen thirty-three and thirty-four, Roosevelt reverses Hoover's policy. He takes the dollar off gold. "
+        "From nineteen thirty-four, he signs trade agreements, country by country. And he recognises the Soviet Union.",
+        "{g2.5}And France. On the sixth of February, nineteen thirty-four, far-right leagues riot in Paris. Fear of fascism unites the left. "
+        "In nineteen thirty-six, the Front populaire wins the elections, under Léon Blum.",
         "{-g2}{dates}Here are the dates to copy. Pause the video if you need to.",
         ("P", 5.0),
     ], vis={
         "g2": dict(type="globe", code="H1", sc=[20, 21, 22, 23, 24]),
         "dates": dict(type="liste", titre="The dates to know", petit=True, items=[
-            "17 June 1930 · Smoot–Hawley; Canada retaliates", "1931 · French quotas · 18 Sept.: Manchuria",
+            "17 June 1930 · Smoot–Hawley (Canada had hit back in May)", "1931 · French quotas · 18 Sept.: Manchuria",
             "1932 · Import Duties Act · Ottawa · Stimson note", "Jan. 1933 · Hitler chancellor",
-            "1933 · the hundred days · off gold · USSR recognised (Nov.)", "1934 · 6 February riots · Reciprocal Tariff Act",
+            "1933 · the hundred days · off gold · USSR recognised (Nov.)", "1934 · 6 February riots · Reciprocal Trade Agreements Act",
             "1935 · Second New Deal", "June 1936 · Front populaire, Matignon"], x=170, y=90, w=940),
     }),
 
@@ -131,7 +132,7 @@ SCENES = [
         "no alliance, and outside the League of Nations.",
         "{-cmp1}{ex1}The example: you saw it in episode two. Under the Dawes Plan, American banks lend to Germany, "
         "and American firms invest across Europe. But Washington signs no alliance and joins no collective-security body. "
-        "{ex1.1}So when the money goes home, in 1930, nothing political is left behind.",
+        "{ex1.1}So when the money goes home, in nineteen thirty, nothing political is left behind.",
         "{-ex1}{surv}After the Crash, the priority becomes {!domestic survival}domestic survival. The United States cuts off most of its "
         "international commitments, and keeps only a minimum of trade.",
     ], vis={
