@@ -105,7 +105,7 @@ def etat(k):
         c["w:United States"] = [CRISE, None]
     if (1930, 0, 0) <= k < (1933, 1, 0):
         c["germany"] = [CRISE, None]
-    if (1931, 5, 0) <= k < (1938, 3, 0):
+    if (1931, 5, 0) <= k < (1932, 1, 0):      # le krach du Creditanstalt (1931) ; ensuite, plus de clé « crise » pour l'Autriche
         c["austria"] = [CRISE, None]
     if k >= (1931, 9, 18):
         c["w:Manchuria"] = ["#E9D9C4", JAP]
@@ -126,6 +126,7 @@ DUST = {"dustbowl": ["#C9A66B", "#8C6A35"]}
 HL = {
     "L'ordre libéral de 1919": {"w:United States": [DEMO19, None], "ru": [DEMO19, None], "france": [DEMO19, None]},
     "L'effet domino en Europe": {"ru": [CRISE, None]},
+    "La France : le Front populaire": {"france": [DEMO19, None], "ru": [DEMO19, None]},
     "L'étalon-or, courroie de transmission": {"ru": ["#3E6259", None], "w:Empire of Japan": ["#3E6259", None], "w:United States": ["#7FA89F", None], "france": ["#C9DCD7", None]},
     "La périphérie frappée par la chute des prix": {"w:Brazil": [OR, None], "w:Chile": [OR, None], "w:Argentina": ["#E4CF9E", None]},
     "Une crise durable dans tout le monde dominé": {"w:British Raj": [CRISE, None], "w:Australia": [CRISE, None], "w:New Zealand": [CRISE, None], "w:Canada": [CRISE, None]},
