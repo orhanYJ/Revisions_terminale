@@ -323,8 +323,8 @@ def scenes():
         arrows=[F((39.0, 15.5), (38.9, 9.6), IT, 0.15, w=3, id="eth1"), F((45.0, 4.0), (40.0, 8.0), IT, -0.15, w=3, id="eth2")])
     add("III.1", 15, [28, 52, 2.4], L("1901-1925", "1901–1925"),
         L("Le Lebensraum : conquérir l'Est", "Lebensraum: conquering the East"),
-        L("Le géographe Ratzel (1901) : une nation a besoin d'un territoire et de ressources pour survivre (l'autarcie). Dans Mein Kampf (1925), Hitler en fait un plan : conquérir les terres slaves, y installer des colons allemands, déporter les Russes en Sibérie, asservir les autres. Le vieux slogan disait déjà « Drang nach Osten ».",
-          "The geographer Ratzel (1901): a nation needs territory and resources to survive (autarky). In Mein Kampf (1925) Hitler turned it into a plan: conquer the Slavic lands, settle German colonists there, deport the Russians to Siberia, enslave the rest. The old slogan already said “Drang nach Osten”."),
+        L("Le géographe Ratzel (1901) : une nation a besoin d'un territoire et de ressources pour survivre (l'autarcie). Dans Mein Kampf (1925-1926), Hitler en fait un plan : conquérir les terres slaves, y installer des colons allemands, déporter les Russes en Sibérie, asservir les autres. Le vieux slogan disait déjà « Drang nach Osten ».",
+          "The geographer Ratzel (1901): a nation needs territory and resources to survive (autarky). In Mein Kampf (1925–26) Hitler turned it into a plan: conquer the Slavic lands, settle German colonists there, deport the Russians to Siberia, enslave the rest. The old slogan already said “Drang nach Osten”."),
         labels=["l_all", "l_urss", "l_pol"], cles=["nazi", "stal"],
         arrows=[F((13.5, 52.0), (38.0, 53.0), G33, -0.1, w=3.6, dash=True, id="leb", dur=2.8)])
     add("III.1", 15, [122, 38, 2.4], L("1931-1937", "1931–1937"),
@@ -363,8 +363,8 @@ def scenes():
         arrows=[F((10.0, 51.5), (7.4, 50.9), ROUGE, 0.2, w=3, id="rh1"), F((9.8, 49.7), (7.6, 49.6), ROUGE, -0.2, w=3, id="rh2")])
     add("III.3", 15, [15, 48, 6.0], L("12 mars 1938", "12 March 1938"),
         L("L'Anschluss", "The Anschluss"),
-        L("Hitler menace le chancelier autrichien Schuschnigg et masse ses troupes à la frontière ; le nazi Seyss-Inquart devient chancelier et appelle l'armée allemande, qui entre à Vienne le 12 mars 1938. Le plébiscite, d'où opposants et Juifs (8 % de la population) sont exclus, donne 99 % de oui.",
-          "Hitler bullied the Austrian chancellor Schuschnigg and massed troops on the border; the Nazi Seyss-Inquart became chancellor and invited the German army in — it entered Vienna on 12 March 1938. The plebiscite, from which opponents and Jews (8% of the population) were excluded, gave 99% yes."), pins=["vienne38"], labels=["l_aut"], cles=["nazi"],
+        L("Hitler menace le chancelier autrichien Schuschnigg et masse ses troupes à la frontière ; le nazi Seyss-Inquart devient chancelier et appelle l'armée allemande, qui entre en Autriche le 12 mars 1938 ; Hitler est à Vienne le 14. Le plébiscite, d'où opposants et Juifs (ensemble 8 % de la population) sont exclus, donne 99 % de oui.",
+          "Hitler bullied the Austrian chancellor Schuschnigg and massed troops on the border; the Nazi Seyss-Inquart became chancellor and invited the German army in — it crossed the border on 12 March 1938, and Hitler was in Vienna on the 14th. The plebiscite, from which opponents and Jews (together 8% of the population) were excluded, gave 99% yes."), pins=["vienne38"], labels=["l_aut"], cles=["nazi"],
         arrows=[F((12.6, 48.3), (16.0, 48.2), ROUGE, -0.15, w=3.2, id="ans")])
     add("III.3", 16, [13.5, 50.0, 5.8], L("29-30 septembre 1938", "29–30 September 1938"),
         L("Munich : les Sudètes livrés sans les Tchèques", "Munich: the Sudetenland handed over without the Czechs"),
