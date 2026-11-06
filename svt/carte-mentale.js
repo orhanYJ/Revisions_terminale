@@ -218,6 +218,7 @@
       ratio = ratio || opt.ratio || 16 / 9;
       var ids = id === "t1a" ? ordre.slice(1) : sousArbre(id), n = noeuds[id];
       if (n.niveau === 3) ids.push(n.parent);
+      if (n.niveau === 2) ids.push(n.parent);   // zoom sur une branche : la bulle du chapitre reste entière dans le cadre
       var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
       ids.forEach(function (i) { var b = noeuds[i].box; x0 = Math.min(x0, b[0]); y0 = Math.min(y0, b[1]); x1 = Math.max(x1, b[0] + b[2]); y1 = Math.max(y1, b[1] + b[3]); });
       var pad = id === "t1a" ? 14 : 34; x0 -= pad; y0 -= pad; x1 += pad; y1 += pad;
@@ -237,10 +238,10 @@
     // id mis en valeur (null : tout) ; k de 0 à 1 = force de l'atténuation du reste
     function focus(id, k) {
       if (k == null) k = 1;
-      var garde = !id || id === "t1a" ? null : sousArbre(id).concat(ancetres(id));
+      var garde = !id || id === "t1a" ? null : sousArbre(id).concat(noeuds[id].niveau >= 2 ? [noeuds[id].parent] : []);   // la cible et son parent direct ; le reste (centre compris) s'efface
       Object.keys(groupes).forEach(function (g) {
         var on = !garde || garde.indexOf(g) >= 0;
-        groupes[g].forEach(function (e) { e.style.opacity = on ? "" : String(1 - .87 * k); });
+        groupes[g].forEach(function (e) { e.style.opacity = on ? "" : String(1 - (opt.fige ? .96 : .87) * k); });   // vidéo : le reste presque effacé (rien de rogné au bord du cadre)
       });
     }
     // la carte pousse : centre, chapitres, branches, puis feuilles (p de 0 à 1)
