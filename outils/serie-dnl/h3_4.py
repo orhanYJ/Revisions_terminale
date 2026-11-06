@@ -5,7 +5,7 @@ outils/serie-philo/generer.py h3_4 ; sortie dans dnl/serie/ (moteur dnl/serie/mo
 du chapitre, dnl/cartes/H3.html, pilotée par le temps de la vidéo ; sc = numéros de scènes de la carte, dans l'ordre
 chronologique de la carte).
   H3 : 4 pacte · 7 partage de la Pologne · 19 annexions soviétiques de 1940 · 24 pourquoi l'URSS · 25 Barbarossa ·
-       26 avance et terre brûlée · 27 Einsatzgruppen · 28 anéantissement · 29 Staline, 7 nov. 1941 · 30 arrêtés devant
+       26 avance et terre brûlée · 27 Einsatzgruppen · 28 anéantissement · 29 Staline, 6 nov. 1941 · 30 arrêtés devant
        Leningrad et Moscou · 36 seconde offensive (été 1942) · 38 Stalingrad · 40 encerclement · 42 capitulation de Paulus
 Contenu : CHAPTERS.H3 du site (dnl/index.html), sections II.1 (4 idées) et II.2 (8 idées), schémas h3forces (H3_FORCES)
 et h3ws3 (Worksheet 3 : sources et réponses ; réponses 1, 2, 3 et 5 « proposées par le site », réponse 4 donnée par le
@@ -101,7 +101,7 @@ SCENES = [
         "{g2.3}Behind the army come the Einsatzgruppen, the mobile killing squads that shoot the Jews: that will be episode five. "
         "{g2.4}And on this front, the rules of war disappear. Prisoners and civilians are murdered as a matter of routine. "
         "This is already a war of annihilation.",
-        "{g2.5}The seventh of November, in Moscow, with the Germans still advancing on the capital, Stalin answers: "
+        "{g2.5}The sixth of November, in Moscow, with the Germans still advancing on the capital, Stalin answers: "
         "if the Germans want a war of annihilation, they will get it. "
         "{g2.6}And in December 1941, the Germans are stopped, before Leningrad, now besieged, and before Moscow. "
         "The lightning war has failed: the war in the East will be long.",
@@ -112,7 +112,7 @@ SCENES = [
 
     # ================================================================ la carte : 1942-1943
     dict(id="carte2", chap="On the map: 1942 – 1943", fond="nuit", humeur="tension",
-         retenir="Summer 1942: the second offensive, towards Stalingrad and the Caucasus · Nov. 1942: the German army encircled · 2 Feb. 1943: Paulus capitulates.",
+         retenir="Summer 1942: the second offensive, towards Stalingrad and the Caucasus · Nov. 1942: the German army encircled · 31 Jan. 1943: Paulus surrenders (the battle ends on 2 Feb.).",
          beats=[
         "{g3}{g3.1}Summer 1942. Stopped before Moscow, the Germans strike in the south: a second offensive, "
         "towards the Volga and the oil of the Caucasus. On the twenty-eighth of July, Stalin's Order number 227 demands: "
@@ -121,17 +121,17 @@ SCENES = [
         "street by street, factory by factory. Here, the German advance reaches its furthest point.",
         "{g3.3}November 1942. The Red Army now lines up more men, more guns and more tanks than the Germans. "
         "And that same month, the Soviet counter-attack closes around the German army: it is encircled.",
-        "{g3.4}The second of February 1943. Paulus, the German commander, capitulates. Ninety-five thousand German soldiers "
-        "are taken prisoner. A resounding defeat for the Wehrmacht: the turning point of the war.",
+        "{g3.4}The thirty-first of January 1943. Paulus, the German commander, surrenders; the last troops give up on the second of February. "
+        "About ninety-one thousand German soldiers are taken prisoner. A resounding defeat for the Wehrmacht: the turning point of the war.",
         "{-g3}{fr1}So, six dates to know by heart. {fr1.1}August 1939, the pact. {fr1.2}The twenty-second of June 1941, Barbarossa. "
         "{fr1.3}December 1941, stopped before Moscow. {fr1.4}Summer 1942, the second offensive. "
-        "{fr1.5}November 1942, the encirclement. {fr1.6}And the second of February 1943, Paulus capitulates.",
+        "{fr1.5}November 1942, the encirclement. {fr1.6}And the thirty-first of January 1943, Paulus surrenders.",
     ], vis={
         "g3": dict(type="globe", code="H3", sc=[36, 38, 40, 42]),
         "fr1": dict(type="frise", items=[
             dict(nom="The pact", d=1939, q="August"), dict(nom="Barbarossa", d=1941, q="22 June"),
             dict(nom="Moscow", d=1941, q="December: stopped"), dict(nom="Second offensive", d=1942, q="summer"),
-            dict(nom="Encirclement", d=1942, q="November"), dict(nom="Capitulation", d=1943, q="2 February")]),
+            dict(nom="Encirclement", d=1942, q="November"), dict(nom="Surrender", d=1943, q="31 January")]),
     }),
 
     # ================================================================ II.1, idée 1 : le pacte
@@ -187,13 +187,13 @@ SCENES = [
 
     # ================================================================ II.1, idées 3 et 4 : idéologique et raciale
     dict(id="raisons2", chap="II.1 · The ideological and the racial reasons", fond="guerre", humeur="tension",
-         retenir="Ideological: the crusade against “Jewish Bolshevism” (Jodl's order, May 1941: commissars “dispatched by firearms”). Racial: Übermensch against Untermensch (Reichenau's Severity Order, 10 Oct. 1941).",
+         retenir="Ideological: the crusade against “Jewish Bolshevism” (the Commissar Order, drafted May, issued 6 June 1941: commissars “dispatched by firearms”). Racial: Übermensch against Untermensch (Reichenau's Severity Order, 10 Oct. 1941).",
          beats=[
         "{def6}Reason two, the ideological reason. Two populations were seen as hostile and dangerous to German rule in the East: "
         "the communist leaders, and the Jews. Nazi rhetoric called the Soviet Union a {!Jewish Bolshevik}Jewish Bolshevik regime, "
         "merging the political enemy and the racial enemy into one. "
         "{def6.1}So this war was not only a conquest. It was a war against a worldview.",
-        "{-def6}The example: Source one of Worksheet three, an order signed by General Alfred Jodl in May 1941. "
+        "{-def6}The example: Source one of Worksheet three, the Commissar Order, drafted in May 1941 and issued on the sixth of June by the Wehrmacht high command. "
         "It calls the political commissars, the communist leaders,",
         ("C", "the originators of barbaric, Asiatic methods of warfare", "c_jodl"),
         "{-c_jodl}{jodl}When captured, they must be dispatched by firearms, as a matter of routine. Shot on the spot.",
@@ -206,15 +206,15 @@ SCENES = [
         "{-c_rei1}and for severe but just retribution against what it calls",
         ("C", "the subhuman species of Jewry", "c_rei2"),
         "{-c_rei2}{tab3}So here is the table to copy: three reasons, one example each. "
-        "{tab3.1}Economic: Stalingrad and Caucasus oil. {tab3.2}Ideological: Jodl's order. {tab3.3}Racial: Reichenau's Severity Order. "
+        "{tab3.1}Economic: Stalingrad and Caucasus oil. {tab3.2}Ideological: the Commissar Order. {tab3.3}Racial: Reichenau's Severity Order. "
         "And notice the link: the words Jewish Bolshevism already mix the ideological enemy and the racial enemy.",
         ("P", 4.0),
     ], vis={
         "def6": dict(type="def", cles=["communist", "Jews", "one"], terme="2 · The ideological reason: “Jewish Bolshevism”",
                      t="Communist leaders and Jews: the political enemy and the racial enemy merged into one.",
                      etape="Not only a conquest: a war against a worldview", x=170, y=200, w=940),
-        "c_jodl": dict(type="cit", a="General Alfred Jodl", o="order on the political commissars, May 1941 (Worksheet 3, Source 1)", x=200, y=190, w=880),
-        "jodl": dict(type="note", terme="Source 1 · Jodl's order, May 1941", cles=["firearms", "routine"],
+        "c_jodl": dict(type="cit", a="Wehrmacht High Command", o="Commissar Order, drafted May, issued 6 June 1941 (Worksheet 3, Source 1)", x=200, y=190, w=880),
+        "jodl": dict(type="note", terme="Source 1 · the Commissar Order, 6 June 1941", cles=["firearms", "routine"],
                      t="Captured political commissars are to be “dispatched by firearms”, as a matter of routine.",
                      etape="Shot on the spot: the laws of war no longer apply", x=170, y=200, w=940),
         "def7": dict(type="def", cles=["Übermensch", "Untermensch", "eliminated"], terme="3 · The racial reason",
@@ -224,7 +224,7 @@ SCENES = [
         "c_rei2": dict(type="cit", a="Field Marshal Walther von Reichenau", o="Severity Order, 10 October 1941 (Worksheet 3, Source 2)", x=200, y=210, w=880),
         "tab3": dict(type="liste", titre="Why invade the USSR? · reason → example", items=[
             "Economic: Grossraum, Germanisation, resources → Stalingrad, Caucasus oil",
-            "Ideological: the crusade against “Jewish Bolshevism” → Jodl's order, May 1941",
+            "Ideological: the crusade against “Jewish Bolshevism” → the Commissar Order, June 1941",
             "Racial: Übermensch / Untermensch → Reichenau's Severity Order, 10 Oct. 1941"], x=130, y=150, w=1020),
     }),
 
@@ -239,7 +239,7 @@ SCENES = [
         "{thr.1}In the north, through the Baltic states, towards Leningrad. {thr.2}In the centre, through Minsk and Smolensk, towards Moscow. "
         "{thr.3}In the south, through Ukraine and Kiev, towards Rostov. "
         "{thr.4}And Germany does not fight alone: Monsieur Ros's map labels Finland, Romania, Hungary, Slovakia, Italy and Croatia as its allies.",
-        "{-thr}{-g5}{att}Watch out. A second course map, Operation Barbarossa, stars Stalingrad as one of the three objectives. "
+        "{-thr}{-g5}{att}Watch out. A second course map, Operation Barbarossa, shows Stalingrad as one of the three objectives. "
         "But in 1941, the southern thrust aims at Ukraine, Kiev and Rostov. "
         "{att.1}Stalingrad and the Caucasus are the targets of the second offensive, in the summer of 1942. In an essay, write it that way.",
         "{-att}{bil2}Until December 1941, the Germans advance deep into the Soviet Union, but stiffening Red Army resistance "
@@ -253,7 +253,7 @@ SCENES = [
             "Allies: Finland, Romania, Hungary, Slovakia, Italy, Croatia"]),
         "att": dict(type="note", terme="Watch out · a course map", cles=["Rostov", "second"],
                     t="1941: Leningrad, Moscow, Kiev and Rostov. Stalingrad and the Caucasus: the second offensive, summer 1942.",
-                    etape="The map “Operation Barbarossa” stars Stalingrad among the objectives: not in 1941", x=170, y=200, w=940),
+                    etape="The map “Operation Barbarossa” shows Stalingrad among the objectives: not in 1941", x=170, y=200, w=940),
         "bil2": dict(type="mot", t="5 million dead", g="200 days of war · a thousand an hour, mostly civilians", y=250, taille=100),
     }),
 
@@ -284,29 +284,29 @@ SCENES = [
 
     # ================================================================ II.2, idée 4 : la réponse de Staline
     dict(id="staline", chap="II.2 · Stalin's answer", fond="guerre", humeur="tension",
-         retenir="7 Nov. 1941, Moscow: Stalin turns the Nazis' own word, Vernichtungskrieg, against them: destroy the invaders “to the last man”. On both sides, a war without mercy.",
+         retenir="6 Nov. 1941, Moscow: Stalin turns the Nazis' own word, Vernichtungskrieg, against them: destroy the invaders “to the last man”. On both sides, a war without mercy.",
          beats=[
-        "{g6}{g6.1}Idea four: Stalin's answer. The seventh of November 1941, in Moscow. The German troops are still advancing on the capital. "
+        "{g6}{g6.1}Idea four: Stalin's answer. The sixth of November 1941, in Moscow, on the eve of the anniversary of the revolution. The German troops are still advancing on the capital. "
         "Stalin takes up the Nazis' own word, {!Vernichtungskrieg}Vernichtungskrieg, war of annihilation… and turns it against them.",
         "{-g6}",
         ("C", "Well, if the Germans want a war of annihilation, they will get it.", "c_st1"),
         "{-c_st1}In the lesson notes, this sentence is followed by stormy, prolonged applause. Then: the task is",
         ("C", "to destroy all invading Germans occupying the territory of our homeland to the last man. No mercy to the German occupiers!", "c_st2"),
-        "{-c_st2}{miroir}All the peoples of the Soviet Union must now destroy the invaders to the last man. {miroir.g}On the German side, the enemy is subhuman: Jodl, Reichenau. "
+        "{-c_st2}{miroir}All the peoples of the Soviet Union must now destroy the invaders to the last man. {miroir.g}On the German side, the enemy is subhuman: the Commissar Order, Reichenau. "
         "{miroir.d}On the Soviet side: no mercy. {!Annihilation for annihilation}Annihilation for annihilation. "
         "On both sides, the war in the East is declared a war without mercy: that is why it is called a war of annihilation.",
     ], vis={
         "g6": dict(type="globe", code="H3", sc=[29]),
-        "c_st1": dict(type="cit", a="Joseph Stalin", o="speech, Moscow, 7 November 1941", x=200, y=210, w=880),
-        "c_st2": dict(type="cit", a="Joseph Stalin", o="speech, Moscow, 7 November 1941", x=200, y=170, w=880),
-        "miroir": dict(type="cols", g="Germany", gq="the enemy as “subhuman”: Jodl's order, Reichenau's Severity Order",
-                       d="USSR", dq="“No mercy to the German occupiers!” Stalin, 7 Nov. 1941", vs="=",
+        "c_st1": dict(type="cit", a="Joseph Stalin", o="speech, Moscow, 6 November 1941", x=200, y=210, w=880),
+        "c_st2": dict(type="cit", a="Joseph Stalin", o="speech, Moscow, 6 November 1941", x=200, y=170, w=880),
+        "miroir": dict(type="cols", g="Germany", gq="the enemy as “subhuman”: the Commissar Order, Reichenau's Severity Order",
+                       d="USSR", dq="“No mercy to the German occupiers!” Stalin, 6 Nov. 1941", vs="=",
                        repere="Annihilation for annihilation"),
     }),
 
     # ================================================================ II.2, idée 5 : une guerre d'anéantissement
     dict(id="aneantissement", chap="II.2 · A war of annihilation", fond="guerre", humeur="tension",
-         retenir="No rules of war: war crimes became the normal course of the war. Soviet POWs: about 2.8 million killed (June 1941 – Feb. 1942), 3 in 100 survived; Auschwitz-Birkenau first built for them. 3/5 of WWII dead on the Eastern Front.",
+         retenir="No rules of war: war crimes became the normal course of the war. Soviet POWs: about 2.8 million killed (June 1941 – Feb. 1942); in all, 3.3 of 5.7 million died in captivity, nearly 6 in 10; Auschwitz-Birkenau first built for them. 3/5 of WWII dead on the Eastern Front.",
          beats=[
         "{def4}Idea five. On the Eastern Front, the rules of war disappear. The violence is unprecedented in history: "
         "the sole aim is the total destruction of the enemy… or resistance until death. "
@@ -314,7 +314,7 @@ SCENES = [
         "and violence without any clear military objective.",
         "{-def4}{pow}The clearest example: the Soviet prisoners of war. {pow.1}About two point eight million of them were killed "
         "by the German armed forces and special units between June 1941 and February 1942, mainly through starvation. "
-        "{pow.2}Out of every hundred Soviet prisoners, only three would survive the war. "
+        "{pow.2}In all, about three point three million of the five point seven million Soviet prisoners died in German captivity: nearly six in ten. "
         "{pow.3}And Worksheet three, Source eight: the camp of Auschwitz-Birkenau was first built for Soviet prisoners, "
         "and gassing was applied first to them… then to the Jews.",
         "{-pow}{fig}Careful: the course text gives about two point eight million; Source eight of the Worksheet gives "
@@ -325,8 +325,8 @@ SCENES = [
         "def4": dict(type="def", cles=["total", "destruction", "rules"], terme="Key term · war of annihilation (Vernichtungskrieg)",
                      t="A war aiming at the total destruction of the enemy, without rules.",
                      etape="War crimes as the normal course of the war: civilians and prisoners murdered or ill-treated", x=170, y=200, w=940),
-        "pow": dict(type="liste", titre="Soviet prisoners of war", cles=["starvation", "survived", "gassing"], items=[
-            "≈ 2.8 million killed, June 1941 – Feb. 1942, mainly through starvation", "3 in 100 survived the war",
+        "pow": dict(type="liste", titre="Soviet prisoners of war", cles=["starvation", "captivity", "gassing"], items=[
+            "≈ 2.8 million killed, June 1941 – Feb. 1942, mainly through starvation", "In all, 3.3 of 5.7 million died in captivity: nearly 6 in 10",
             "Auschwitz-Birkenau first built for them; gassing applied to them first, then to the Jews (Source 8)"],
             x=150, y=140, w=980),
         "fig": dict(type="note", terme="Watch out · two figures", cles=["course", "document"],
@@ -337,7 +337,7 @@ SCENES = [
 
     # ================================================================ II.2, idée 6 : Stalingrad, le tournant
     dict(id="stalingrad", chap="II.2 · Stalingrad, the turning point", fond="nuit", humeur="tension",
-         retenir="Why defend Stalingrad? A stronghold of Stalin's defensive strategy · an industrial and transport hub on the Volga · access to Caucasus oil · Stalin's city. Order No. 227 · encircled Nov. 1942 · Paulus capitulates 2 Feb. 1943: 95,000 prisoners.",
+         retenir="Why defend Stalingrad? A stronghold of Stalin's defensive strategy · an industrial and transport hub on the Volga · access to Caucasus oil · Stalin's city. Order No. 227 · encircled Nov. 1942 · Paulus surrenders 31 Jan. 1943 (last troops 2 Feb.): about 91,000 prisoners.",
          beats=[
         "{g7}{g7.1}Idea six: Stalingrad, the turning point of the war. Leningrad, Moscow and Stalingrad are the strongholds of the Soviet defence. "
         "In the summer of 1942, the Germans, euphoric, drive towards the Volga and the Caucasus. And Stalingrad stands in their way.",
@@ -352,8 +352,8 @@ SCENES = [
         "{-c_227}{eta}The battle, in stages. {eta.1}Summer 1942: euphoria. The Germans reach the Volga on the twenty-third of August. "
         "{eta.2}September and October: fighting street by street, factory by factory: the Barricade factory, Red October. "
         "{eta.3}Late November: the German army is encircled. {eta.4}Then the winter, and starvation. "
-        "{eta.5}And on the second of February 1943, Paulus, commander of the German army, capitulates. Ninety-five thousand German soldiers "
-        "are taken prisoner. A resounding defeat for the Wehrmacht.",
+        "{eta.5}And on the thirty-first of January 1943, Paulus, commander of the German army, surrenders; the last troops give up on the second of February. "
+        "About ninety-one thousand German soldiers are taken prisoner; Worksheet three says ninety-five thousand. A resounding defeat for the Wehrmacht.",
     ], vis={
         "g7": dict(type="globe", code="H3", sc=[36, 38]),
         "why": dict(type="liste", titre="Why defend Stalingrad at all costs?", cles=["strategy", "Volga", "oil", "symbol"], items=[
@@ -363,7 +363,7 @@ SCENES = [
         "eta": dict(type="liste", titre="The battle in five stages", items=[
             "Summer 1942: euphoria; the Volga reached on 23 August", "Sept.–Oct.: street by street, factory by factory",
             "Late November: the German army encircled", "Winter: starvation",
-            "2 Feb. 1943: Paulus capitulates · 95,000 prisoners"], x=150, y=130, w=980),
+            "31 Jan. 1943: Paulus surrenders · ≈ 91,000 prisoners"], x=150, y=130, w=980),
     }),
 
     # ================================================================ II.2, idée 7 : le rapport de forces
@@ -433,7 +433,7 @@ SCENES = [
          retenir="Worksheet 3: the enemy dehumanised and murdered (Sources 1, 2, 8) · five stages of the battle · extreme brutality · four reasons to defend the city · total war: largely.",
          beats=[
         "{wsrc}Now, Worksheet three: the Battle of Stalingrad, a war of annihilation. Seven sources: "
-        "{wsrc.1}the orders of Jodl {wsrc.2}and Reichenau, {wsrc.3}Stalin's Order number 227, "
+        "{wsrc.1}the Commissar Order, {wsrc.2}Reichenau's Severity Order, {wsrc.3}Stalin's Order number 227, "
         "{wsrc.4}a poster and photographs, {wsrc.5}a soldier's letters, {wsrc.6}the toll, {wsrc.7}the Soviet prisoners.",
         "{-wsrc}{wq}Five questions, with their key answers, suggested by the site except the fourth, given by the course. "
         "{wq.1}One: in the German orders, the enemy is dehumanised: barbaric, Asiatic, subhuman; commissars shot, prisoners starved, "
@@ -443,12 +443,12 @@ SCENES = [
         "{wq.5}And five: total war. That one, you are going to write.",
     ], vis={
         "wsrc": dict(type="liste", titre="Worksheet 3 · the sources", marques=["1", "2", "3", "5", "6", "7", "8"], petit=True, items=[
-            "Jodl's order on the commissars, May 1941", "Reichenau's Severity Order, 10 Oct. 1941", "Stalin's Order No. 227, 28 July 1942",
+            "The Commissar Order, May–June 1941", "Reichenau's Severity Order, 10 Oct. 1941", "Stalin's Order No. 227, 28 July 1942",
             "A Bolshevik poster (1943); photographs of soldiers", "A German soldier's letters, July–Dec. 1942",
             "The toll of the battle", "The Soviet prisoners of war"], x=170, y=90, w=940),
         "wq": dict(type="liste", titre="Worksheet 3 · the key answers", petit=True, items=[
             "Enemies dehumanised: “barbaric”, “Asiatic”, “subhuman” · commissars shot, POWs starved, first gassed",
-            "Context and stages: Barbarossa stalled → euphoria → streets → encirclement → hunger → 2 Feb. 1943",
+            "Context and stages: Barbarossa stalled → euphoria → streets → encirclement → hunger → 31 Jan. 1943",
             "Brutality: factory by factory, “crosses with our helmets on top”, horses eaten",
             "Why defend it: strategy, Volga hub, Caucasus oil, Stalin's city (course answer)",
             "Total war? → your turn"], x=130, y=110, w=1020),
@@ -520,7 +520,7 @@ SCENES = [
         "economic, ideological, racial, each with its example. "
         "{carte.2}Barbarossa: the twenty-second of June 1941, three thrusts, stopped before Leningrad and Moscow; five million dead in two hundred days. "
         "{carte.3}A war of annihilation: no rules, Stalin's no mercy, the Soviet prisoners starved, three fifths of all the dead in the East. "
-        "{carte.4}And Stalingrad: the turning point, encircled in November 1942, Paulus capitulates on the second of February 1943. A total war.",
+        "{carte.4}And Stalingrad: the turning point, encircled in November 1942, Paulus surrenders on the thirty-first of January 1943. A total war.",
         ("P", 4.0),
         "{-carte}{fin}Next episode: towards the genocide. The ghettos, the Einsatzgruppen, the killing centres… and Treblinka.",
         ("P", 2.0),
@@ -528,8 +528,8 @@ SCENES = [
         "carte": dict(type="carte", centre="BARBAROSSA", branches=[
             dict(t="II.1 · The plans", items=["Aug. 1939 pact · Poland shared", "economic: Grossraum, oil", "ideological · racial"]),
             dict(t="Barbarossa", items=["22 June 1941 · three thrusts", "purges · scorched earth", "Dec. 1941: Moscow holds"]),
-            dict(t="Annihilation", items=["Stalin, 7 Nov. 1941", "≈ 2.8 million POWs killed", "3/5 of the dead in the East"]),
-            dict(t="Stalingrad", items=["Order No. 227", "Nov. 1942: forces turned", "2 Feb. 1943 · total war"])]),
+            dict(t="Annihilation", items=["Stalin, 6 Nov. 1941", "≈ 2.8 million POWs killed", "3/5 of the dead in the East"]),
+            dict(t="Stalingrad", items=["Order No. 227", "Nov. 1942: forces turned", "31 Jan. 1943 · total war"])]),
         "fin": dict(type="mot", t="Next: towards the genocide", g="Episode 5 · ghettos, Einsatzgruppen, killing centres", y=270, taille=72),
     }),
 ]
@@ -540,10 +540,10 @@ QUIZ = [
             "The Baltic states and Bessarabia", "Soviet oil in exchange for the Sudetenland"], ok=0, voir="def3",
          ex="It was the USSR that annexed the Baltic states, Northern Bukovina and Bessarabia in 1940."),
     dict(q="Which example illustrates the economic reason for invading the USSR?",
-         r=["Stalingrad, a hub on the Volga ensuring access to Caucasus oil", "Jodl's order on the political commissars",
-            "Reichenau's Severity Order", "Stalin's speech of 7 November 1941"], ok=0, voir="eco",
+         r=["Stalingrad, a hub on the Volga ensuring access to Caucasus oil", "The Commissar Order on the political commissars",
+            "Reichenau's Severity Order", "Stalin's speech of 6 November 1941"], ok=0, voir="eco",
          ex="The Grossraum needed the USSR's resources: farmland, minerals, oil."),
-    dict(q="What did Jodl's order of May 1941 prescribe for captured political commissars?",
+    dict(q="What did the Commissar Order (issued 6 June 1941) prescribe for captured political commissars?",
          r=["To be “dispatched by firearms” as a matter of routine", "To be exchanged for German prisoners",
             "To be sent to labour camps in Germany", "To be tried by military courts"], ok=0, voir="jodl",
          ex="An example of the ideological reason: the crusade against “Jewish Bolshevism”."),
@@ -551,15 +551,15 @@ QUIZ = [
          r=["Ukraine, Kiev and Rostov", "Stalingrad and the Caucasus", "Moscow", "Leningrad"], ok=0, voir="att",
          ex="Stalingrad and the Caucasus were the targets of the second offensive, in the summer of 1942."),
     dict(q="What was the toll of the first 200 days of Barbarossa, according to the course?",
-         r=["5 million dead, a thousand an hour", "60 million dead", "95,000 prisoners", "27–28 million dead"], ok=0, voir="bil2",
-         ex="27–28 million is the Soviet toll for the whole war; 95,000 the Germans captured at Stalingrad."),
-    dict(q="How did Stalin answer the Nazis on 7 November 1941?",
+         r=["5 million dead, a thousand an hour", "60 million dead", "91,000 prisoners", "27–28 million dead"], ok=0, voir="bil2",
+         ex="27–28 million is the Soviet toll for the whole war; about 91,000 the Germans captured at Stalingrad."),
+    dict(q="How did Stalin answer the Nazis on 6 November 1941?",
          r=["“If the Germans want a war of annihilation, they will get it”", "“Not one step back!”",
             "“We shall never surrender”", "He offered an armistice"], ok=0, voir="c_st1",
          ex="“Not one step back!” is Order No. 227, of 28 July 1942."),
-    dict(q="How many Soviet prisoners in 100 survived the war?",
-         r=["3", "30", "50", "97"], ok=0, voir="pow",
-         ex="About 2.8 million were killed between June 1941 and February 1942, mainly through starvation (course text)."),
+    dict(q="In all, how many of the 5.7 million Soviet prisoners of war died in German captivity?",
+         r=["About 3.3 million: nearly 6 in 10", "About 170,000: 3 in 100", "About 1 million: fewer than 2 in 10", "Almost all of them"], ok=0, voir="pow",
+         ex="About 2.8 million had already been killed between June 1941 and February 1942, mainly through starvation (course text)."),
     dict(q="At Stalingrad in November 1942, in which category were the Germans still ahead?",
          r=["Planes", "Men", "Artillery guns", "Tanks"], ok=0, voir="gf",
          ex="1,216 German planes against 1,115; the Soviets led in men, guns and tanks."),

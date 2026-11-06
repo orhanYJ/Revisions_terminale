@@ -146,7 +146,7 @@ SCENES = [
         "{-chif}{-ph}",
     ], vis={
         "ph": dict(type="tableau", img="h3-blitz", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .45, .62],
-                   legende="Children of East London made homeless by a night raid, 1940 (Wikimedia Commons, CC BY-SA 2.0)"),
+                   legende="Children of an eastern suburb of London made homeless by a night raid, September 1940 · New Times Paris Bureau Collection (USIA), US National Archives 306-NT-3163V, public domain"),
         "def3": dict(type="def", cles=["bombing", "1940", "1941"], terme="Key word · the Blitz",
                      t="The German bombing campaign against the United Kingdom, in 1940 and 1941.",
                      etape="Aim: to bomb Britain into submission", x=170, y=200, w=940),
@@ -198,7 +198,7 @@ SCENES = [
         "{pwc}{wc}Fourth idea: in June 1940, two men refuse defeat. Churchill first. "
         "{wc.1}He is already a major figure of the Conservative party, and he had opposed appeasement, the policy of giving way to Hitler. "
         "{wc.2}In April 1940, during the phoney war, Britain fails to prevent the German occupation of Norway. "
-        "{wc.3}Then German forces invade Belgium: Chamberlain loses the support of the House of Commons, and resigns. "
+        "{wc.3}Chamberlain loses the support of the House of Commons, and when German forces invade Belgium, he resigns. "
         "{wc.4}On the tenth of May 1940, the very day the German offensive in the west begins, Churchill becomes prime minister.",
         "{-wc}{-pwc}{dg}Now de Gaulle. {dg.1}He has just been promoted general, and appointed to Paul Reynaud's government. "
         "{dg.2}But Reynaud resigns, and Marshal Pétain, a hero of the First World War, becomes head of the government, pledging to sign an armistice. "
@@ -211,7 +211,7 @@ SCENES = [
                     legende="Winston Churchill, Ottawa, December 1941, by Yousuf Karsh (Library and Archives Canada, Wikimedia Commons, CC BY 2.0)"),
         "wc": dict(type="liste", titre="Winston Churchill", cles=["appeasement", "Norway", "Commons", "10"], items=[
             "A major Conservative, who had opposed appeasement", "April 1940: Britain fails to prevent the occupation of Norway",
-            "Belgium invaded: Chamberlain loses the Commons and resigns", "10 May 1940: prime minister, the day the attack in the west begins"],
+            "Chamberlain loses the Commons; Belgium invaded: he resigns", "10 May 1940: prime minister, the day the attack in the west begins"],
                    x=150, y=130, w=980),
         "dg": dict(type="liste", titre="Charles de Gaulle", cles=["general", "Pétain", "refuses", "Churchill"], items=[
             "Newly promoted general, in Paul Reynaud's government", "Reynaud resigns; Pétain, a WWI hero, pledges an armistice",
@@ -298,18 +298,20 @@ SCENES = [
 
     # ================================================================ IX. idée 6 : l'arsenal de la démocratie
     dict(id="arsenal", chap="The Arsenal of Democracy", fond="nuit", humeur="lumiere",
-         retenir="Neutrality Acts (1935–37) → cash and carry (Nov. 1939) → the Arsenal of Democracy → Lend-Lease (March 1941, outside the course). American factories worked for Britain long before American soldiers fought.",
+         retenir="Neutrality Acts (1935–37) → cash and carry extended to arms (Nov. 1939) → the Arsenal of Democracy → Lend-Lease (March 1941, outside the course). American factories worked for Britain long before American soldiers fought.",
          beats=[
         "{g7}{g7.1}Sixth idea. The title of the lesson says it: the British resistance, supported by the US. But in 1940 the United States is neutral, by law. "
-        "Remember chapter one: the Neutrality Acts, from 1935 to 1937. An arms embargo, then an embargo on all trade with nations at war.",
-        "{g7.2}Then, in November 1939, once war has begun, Roosevelt obtains a new Neutrality Act: cash and carry. "
+        "Remember chapter one: the Neutrality Acts. In 1935, an embargo on arms for nations at war. In 1936, a ban on loans to them. "
+        "In 1937, the arms embargo made permanent, Americans forbidden to travel on ships of nations at war, "
+        "and other goods sold to those nations only for cash, carried away on their own ships: cash and carry.",
+        "{g7.2}Then, in November 1939, once war has begun, Roosevelt obtains a new Neutrality Act: the arms embargo is lifted, and cash and carry now applies to weapons. "
         "The democracies can buy American weapons, if they pay in cash and carry them away on their own ships. "
         "The formula favours whoever controls the sea: Britain and France, and after June 1940, Britain alone.",
         "{-g7}{ars}Roosevelt then presents his country as the {!Arsenal of Democracy}Arsenal of Democracy. "
         "Britain could hold out because American factories worked for it long before American soldiers fought.",
         "{ars.1}One example from outside the course, but very useful: the Lend-Lease Act of March 1941. "
         "The United States can now lend or lease war materials to Britain, without immediate payment. That is the end of cash and carry.",
-        "{-ars}{et3}So, step by step, America moves towards Britain. {et3.1}1935 to 1937: neutrality, by law. {et3.2}November 1939: cash and carry. "
+        "{-ars}{et3}So, step by step, America moves towards Britain. {et3.1}1935 to 1937: neutrality, by law. {et3.2}November 1939: cash and carry, for arms too. "
         "{et3.3}Then the Arsenal of Democracy. {et3.4}March 1941: Lend-Lease, outside the course. "
         "{et3.5}And December 1941: the United States is at war.",
     ], vis={
@@ -318,7 +320,7 @@ SCENES = [
                     t="Britain could hold out because American factories worked for it long before American soldiers fought.",
                     etape="Outside the course: the Lend-Lease Act, March 1941 — no immediate payment", x=170, y=200, w=940),
         "et3": dict(type="liste", titre="Step by step towards Britain", items=[
-            "1935–1937: the Neutrality Acts", "Nov. 1939: cash and carry", "The “Arsenal of Democracy”",
+            "1935–1937: the Neutrality Acts", "Nov. 1939: cash and carry for arms", "The “Arsenal of Democracy”",
             "March 1941: Lend-Lease (outside the course)", "Dec. 1941: the United States at war"], x=170, y=120, w=940),
     }),
 
@@ -406,7 +408,7 @@ SCENES = [
             dict(t="The German attack", items=["Jodl: direct or peripheral", "7 Sept. 1940: the Blitz", "≈ 43,000 civilians (UK)"]),
             dict(t="Why Britain held", items=["no air superiority", "Dec. 1940: invasion off", "Hitler turns east"]),
             dict(t="Two men", items=["Churchill, 4 June 1940", "de Gaulle, 18 June 1940", "a bet on a world war"]),
-            dict(t="America", items=["cash and carry (1939)", "Arsenal of Democracy", "Dec. 1941: global war"])]),
+            dict(t="America", items=["cash and carry for arms (1939)", "Arsenal of Democracy", "Dec. 1941: global war"])]),
         "fin": dict(type="mot", t="Next: Barbarossa", g="Episode 4 · a war of annihilation", y=270, taille=84),
     }),
 ]
@@ -451,7 +453,9 @@ CREDITS = [
     "Content: M. Ros's course (DNL History, H3 · Part I.2, “The British resistance supported by the US”) and Worksheet 2 as written on the site "
     "(the worksheet answers are suggested by the site, not M. Ros's answer key); reminders of chapter 1; animated maps of chapters 1 and 3 (site). "
     "Outside the course: the Lend-Lease Act, Operation Sea Lion, the Battle of Britain. The DBQ question and model answer were written for this video.",
-    "Photograph: children of East London made homeless by a night raid, 1940 (Wikimedia Commons, CC BY-SA 2.0).",
+    "Photograph: children of an eastern suburb of London made homeless by a night raid, September 1940 (New Times Paris Bureau Collection, USIA; "
+    "US National Archives, 306-NT-3163V; public domain according to its source; Wikimedia Commons file “WWII London Blitz East London.jpg”, "
+    "tagged CC BY-SA 2.0 via pingnews.com on Flickr).",
     "Photograph: Winston Churchill, Ottawa, December 1941, by Yousuf Karsh (Library and Archives Canada, Wikimedia Commons, CC BY 2.0).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

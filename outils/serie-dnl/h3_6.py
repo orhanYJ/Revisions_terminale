@@ -3,7 +3,7 @@
 Même chaîne que l'épisode 1 (voir h3_1.py). Contenu : le format officiel de l'écrit BFI tel que le site le présente
 (TRAIN_QCM, « Réflexes d'épreuve », guide élève de l'ASIBA), la structure de la question a) du DBQ imposée par Cengiz
 (jugement dès la première ligne, document en une phrase, paragraphe d'atouts, paragraphe de limites), les documents du
-cours (ordre de sévérité de Reichenau, 10 octobre 1941 ; discours de Staline, 7 novembre 1941 ; Worksheet 3), les points
+cours (ordre de sévérité de Reichenau, 10 octobre 1941 ; discours de Staline, 6 novembre 1941 ; Worksheet 3), les points
 à vérifier du chapitre (H3Check). Les sujets et les copies modèles sont écrits pour la vidéo et dits comme tels.
 """
 
@@ -143,7 +143,7 @@ SCENES = [
          beats=[
         "{doc}Now the DBQ, on two documents of the course. {doc.1}Document A: the Severity Order of Field Marshal von Reichenau, "
         "the tenth of October 1941. It calls on German soldiers to destroy the Jewish-Bolshevik system and to punish what it calls "
-        "the subhuman species of Jewry. {doc.2}Document B: Stalin's speech in Moscow, on the seventh of November 1941.",
+        "the subhuman species of Jewry. {doc.2}Document B: Stalin's speech in Moscow, on the sixth of November 1941.",
         "{-doc}",
         ("C", "Well, if the Germans want a war of annihilation, they will get it.", "c_stal"),
         "{-c_stal}{ex3}The question: {!How useful}how useful are Documents A and B for understanding the war of annihilation on the Eastern Front?",
@@ -163,9 +163,9 @@ SCENES = [
         "Taken together, though, they explain why no rules remained on the Eastern Front.",
     ], vis={
         "doc": dict(type="liste", titre="Two documents of the course", items=[
-            "A · Reichenau's Severity Order, 10 Oct. 1941: “the subhuman species of Jewry”", "B · Stalin's speech, Moscow, 7 Nov. 1941"],
+            "A · Reichenau's Severity Order, 10 Oct. 1941: “the subhuman species of Jewry”", "B · Stalin's speech, Moscow, 6 Nov. 1941"],
             x=170, y=150, w=940),
-        "c_stal": dict(type="cit", a="Joseph Stalin", o="speech, Moscow, 7 November 1941", x=200, y=190, w=880),
+        "c_stal": dict(type="cit", a="Joseph Stalin", o="speech, Moscow, 6 November 1941", x=200, y=190, w=880),
         "ex3": dict(type="exo", niveau="dbq", titre="How useful are Documents A and B for understanding the war of annihilation on the Eastern Front?",
                     src="Question written for this video, on two documents of the course", enonce=["Part a) of a DBQ"]),
         "str": dict(type="liste", titre="DBQ a): the structure", cles=["judgement", "sentence", "strengths", "limits"], items=[
@@ -181,12 +181,12 @@ SCENES = [
 
     # ================================================================ V. DBQ b)
     dict(id="dbq_b", chap="DBQ b) · Beyond the documents", fond="nuit", humeur="tension",
-         retenir="Assess the extent to which the war in the East was a war of annihilation: documents + own knowledge (Jodl's order, 2.8 million Soviet POWs, scorched earth, Einsatzgruppen, Stalingrad).",
+         retenir="Assess the extent to which the war in the East was a war of annihilation: documents + own knowledge (the Commissar Order, Soviet POWs: 3.3 of 5.7 million dead, scorched earth, Einsatzgruppen, Stalingrad).",
          beats=[
         "{ex4}Part b) goes further. Assess the extent to which the war in the East was a war of annihilation.",
-        "{-ex4}{g1}Use the documents, then your own knowledge from episodes four and five. {g1.1}Jodl's order of May 1941: "
+        "{-ex4}{g1}Use the documents, then your own knowledge from episodes four and five. {g1.1}The Commissar Order of June 1941: "
         "political commissars shot on capture. About two point eight million Soviet prisoners of war killed between June 1941 and February 1942, "
-        "mainly by starvation; only three in a hundred survived the war. {g1.2}Scorched earth on the Soviet side. "
+        "mainly by starvation; in all, about three point three million of the five point seven million died in German captivity, nearly six in ten. {g1.2}Scorched earth on the Soviet side. "
         "{g1.3}The Einsatzgruppen shooting the Jews behind the front. {g1.4}And Stalingrad, where the fighting went street by street.",
         "{-g1}{nua}And to assess, add a nuance. The war in the East was still a war between armies, with a front, offensives and a turning point. "
         "But on this front, the war of armies and the war against civilians were the same war. "
@@ -269,7 +269,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: the format of the BFI written exam as presented on the site (ASIBA student guide, 2024 paper); documents of M. Ros's course (Reichenau's Severity Order, Stalin's speech of 7 November 1941); the points to check of chapter H3.",
+    "Content: the format of the BFI written exam as presented on the site (ASIBA student guide, 2024 paper); documents of M. Ros's course (Reichenau's Severity Order, Stalin's speech of 6 November 1941); the points to check of chapter H3.",
     "Questions and model answers written for this video.",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

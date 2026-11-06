@@ -165,8 +165,8 @@ def scenes():
           "Three Republican presidents (Harding, Coolidge, Hoover): low taxes, trusts, tariffs. Mass production (the Ford Model T at $260 by 1925) and credit made mass consumption possible: cars, radios and refrigerators entered ordinary homes."), labels=["l_usa", "detroit"], cles=["usa"])
     add("I.2", 15, [-28, 47, 1.5], L("1924", "1924"),
         L("Le plan Dawes : l'Europe suspendue au crédit américain", "The Dawes Plan: Europe hangs on American credit"),
-        L("Un circuit en trois flèches : 800 millions de marks prêtés à l'Allemagne par les États-Unis ; des réparations allemandes jusqu'à 2,5 milliards de marks par an vers la France et le Royaume-Uni ; leurs dettes de guerre remboursées aux États-Unis. Tout repose sur le crédit américain.",
-          "A circuit in three arrows: 800 million marks lent to Germany by the United States; German reparations of up to 2.5 billion marks a year to France and Britain; their war debts repaid to the United States. Everything rested on American credit."),
+        L("Un circuit en trois flèches : un prêt international de 800 millions de marks-or à l'Allemagne, levé surtout à New York ; des réparations allemandes jusqu'à 2,5 milliards de marks par an vers la France et le Royaume-Uni ; leurs dettes de guerre remboursées aux États-Unis. Tout repose sur le crédit américain.",
+          "A circuit in three arrows: an international loan of 800 million gold marks to Germany, raised mostly in New York; German reparations of up to 2.5 billion marks a year to France and Britain; their war debts repaid to the United States. Everything rested on American credit."),
         labels=["l_usa", "l_all"], cles=["usa", "weimar"],
         arrows=[F((-74.0, 41.0), (11.0, 52.5), BLEU, -0.12, w=3, id="dw1", dur=2.4), F((10.0, 51.0), (2.5, 47.5), ROUGE, 0.25, w=3, id="dw2"),
                 F((-1.5, 51.0), (-73.0, 39.5), "#3E6259", -0.15, w=3, id="dw3", dur=2.4)])
@@ -257,8 +257,8 @@ def scenes():
         labels=["l_can", "l_ind", "l_aus", "l_afn"], cles=["empgb", "empfr", "autarcie"])
     add("II.1", 15, [-55, 30, 1.25], L("1933-1934", "1933–1934"),
         L("Roosevelt renverse la politique", "Roosevelt reverses the policy"),
-        L("Roosevelt sort de l'étalon-or en 1933, puis la loi de 1934 sur les accords tarifaires réciproques (RTAA) lui permet de baisser les droits pays par pays : environ vingt accords en 1939. Il reconnaît l'URSS (novembre 1933) et sa politique de « bon voisinage » retire les troupes de Cuba et du Nicaragua. Hitler et Mussolini, eux, refusent tout accord commercial.",
-          "Roosevelt took the US off gold in 1933; the Reciprocal Tariff Agreement Act of 1934 let him cut duties country by country: about twenty agreements by 1939. He recognised the USSR (November 1933), and his “Good Neighbor” policy withdrew troops from Cuba and Nicaragua. Hitler and Mussolini rejected any trade agreement."),
+        L("Roosevelt sort de l'étalon-or en 1933, puis la loi de 1934 sur les accords tarifaires réciproques (RTAA) lui permet de baisser les droits pays par pays : environ vingt accords en 1939. Il reconnaît l'URSS (novembre 1933) et sa politique de « bon voisinage » renonce aux interventions armées : Cuba et Haïti (1934) ; les derniers marines avaient quitté le Nicaragua en janvier 1933. Hitler et Mussolini, eux, refusent tout accord commercial.",
+          "Roosevelt took the US off gold in 1933; the Reciprocal Tariff Agreement Act of 1934 let him cut duties country by country: about twenty agreements by 1939. He recognised the USSR (November 1933), and his “Good Neighbor” policy gave up armed intervention: Cuba and Haiti (1934); the last marines had left Nicaragua in January 1933. Hitler and Mussolini rejected any trade agreement."),
         labels=["l_usa", "l_cuba", "l_nica", "washington"], cles=["usa"])
 
     # ---------------- II.2 réponses politiques
