@@ -204,7 +204,7 @@
     return function (t, st) {
       var tk = [1, 2, 3].map(function (k) { return et(v, String(k), 1 + (k - 1) * 2.5); }), t4 = et(v, "4", 9);
       apparait(ti, st.tl, .2);
-      nds.forEach(function (b, k) { var q = apparait(b, t, tk[k], .7); decale(b, q, 18); });
+      nds.forEach(function (b, k) { var q = E(P(t, tk[k], .7)), pre = .3 * E(P(st.tl, .4 + k * .4, .6)); op(b, Math.max(pre, q)); decale(b, Math.max(pre / .3 * .6, q), 18); });
       f1(EIO(P(t, tk[1] - .2, .9))); apparait(e1, t, tk[1] + .4);
       f2(EIO(P(t, tk[2] - .2, .9))); apparait(e2, t, tk[2] + .4);
       f3(EIO(P(t, t4, 1.1))); apparait(e3, t, t4 + .6);
@@ -360,7 +360,7 @@
       apparait(ax, st.tl, .3);
       rangs.forEach(function (r, k) {
         var tk = et(v, String(k + 1), .5 + k * 2.5), q = apparait(r.b, st.tl, .3 + k * .3, .5), u = P(t, tk + .3, 2.4);
-        r.notes.forEach(function (n, i) { trace(n, P(u, motif[i][0], .08)); });
+        r.notes.forEach(function (n, i) { var q = P(u, motif[i][0], .08); trace(n, q); op(n, q > 0 ? 1 : 0); });
         r.tete.setAttribute("transform", "translate(" + (u * (x1 - x0)).toFixed(1) + ",0)"); op(r.tete, u > 0 && u < 1 ? 1 : 0);
       });
     };

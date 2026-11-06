@@ -60,7 +60,7 @@ CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
-V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2, "acl-lughnasa": 2, "dnl": 2, "svt": 2}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
+V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2, "acl-lughnasa": 2, "dnl": 3, "svt": 2}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
 TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729", "svt": "#0b120e"}
 PAGE = """<!DOCTYPE html>
 <html lang="{langue}">
@@ -209,6 +209,20 @@ def generer(nom_module):
             passages.append(b)
             if not os.path.exists(chemin):
                 a_faire.append((lu, VOIX[b["v"]], pros["rate"], pros["pitch"], chemin))
+            elif MOTEUR == "qwen" and os.environ.get("SERIE_REVOIX") and not os.path.exists(chemin + ".vu"):
+                # SERIE_REVOIX=1 : un passage déjà enregistré mais monocorde est refait (prosodie.py) ; « .vu » = déjà contrôlé
+                import prosodie
+                try:
+                    import librosa
+                    y, _sr = librosa.load(chemin, sr=16000, mono=True)
+                    pm = prosodie.mesure(y, 16000)
+                except Exception:
+                    pm = None
+                if pm and prosodie.plat(pm):
+                    print(f"  monocorde, à refaire (relief {pm['relief']}, élan {pm['elan']}) : {lu[:60]}", flush=True)
+                    a_faire.append((lu, VOIX[b["v"]], pros["rate"], pros["pitch"], chemin))
+                else:
+                    open(chemin + ".vu", "w").close()
     if a_faire and MOTEUR == "qwen":
         import voix_qwen
         print(f"enregistrement de {len(a_faire)} passages (clonage local)…", flush=True)
@@ -374,6 +388,21 @@ def generer(nom_module):
             if v["type"] == "tableau" and not v.get("fond"):
                 plein.append((v["t0"], v["t1"]))
             vis.append(v)
+        # écrans vides (DNL, 06/11/2026) : un visuel fermé par un repère reste affiché jusqu'au visuel suivant
+        # quand, sinon, l'écran resterait vide plus de 2 s pendant que la voix continue
+        if getattr(ep, "COMBLER", site == "dnl"):
+            contenu = [v for v in vis if v["scene"] == sc["id"] and v["type"] not in ("chapitre", "notion", "flash", "generique", "frappe", "tag")]
+            contenu.sort(key=lambda v: v["t0"])
+            for k, v in enumerate(contenu):
+                if "-" + v["id"] not in cues:
+                    continue
+                suite = [w["t0"] for w in contenu[k + 1:] if w["t0"] > v["t1"]]
+                autres = [w["t1"] for w in contenu if w is not v and w["t0"] <= v["t1"] < w["t1"]]
+                if autres:          # un autre visuel couvre déjà la suite
+                    continue
+                cible = min(suite) if suite else t_parole
+                if 2.0 < cible - v["t1"] < 40:
+                    v["t1"] = round(cible, 3)
     duree = t + 0.5
     vis.sort(key=lambda v: (v["t0"], v["type"] != "tableau"))
     bruitages.append((next(v["t0"] for v in vis if v["type"] == "titre"), "cloche"))
