@@ -176,7 +176,7 @@ SCENES = [
         "traverse la campagne française en direction de la Somme.",
         "Les meilleures forces alliées, en Belgique, sont désormais coupées du reste de la France. {!Un piège}C'est un piège.",
     ], vis={
-        "def4": dict(type="def", cles=["rapide", "chars", "avions"], terme="Blitzkrieg · « guerre éclair »",
+        "def4": dict(type="def", cles=["rapide", "chars", "avions"], terme="Blitzkrieg · « guerre éclair »",
                      t="Une offensive rapide qui combine les chars et les avions, pour remporter une victoire rapide.",
                      etape="Raids aériens déjà testés en Belgique et aux Pays-Bas", x=170, y=200, w=940),
         "cmp1": dict(type="cols", g="Ce qu'on attendait", gq="une attaque par le centre de la Belgique, comme en 1914", d="La réalité",
@@ -208,7 +208,7 @@ SCENES = [
 
     # ================================================================ VII. la défaite en six semaines (idée 5)
     dict(id="defaite", chap="La défaite en six semaines", fond="guerre", humeur="tension",
-         retenir="Paris tombe le 14 juin 1940. ≈ 100 000 soldats français tués (recherches récentes : ≈ 60 000), 200 000 blessés, 1 850 000 prisonniers ; 8 millions sur les routes. Armistice : 22 juin, Rethondes.",
+         retenir="Paris tombe le 14 juin 1940. ≈ 100 000 soldats français tués (recherches récentes : ≈ 60 000), 200 000 blessés, 1 850 000 prisonniers ; 8 millions sur les routes. Armistice : 22 juin, Rethondes.",
          beats=[
         "{g6}{g6.1}À partir du cinq juin, les forces allemandes frappent de la Somme vers Paris. Le gouvernement fuit, "
         "et Paris tombe le quatorze, cinq semaines après le début de la campagne. Des millions de civils affolés prennent les routes du sud.",
@@ -221,8 +221,8 @@ SCENES = [
     ], vis={
         "g6": dict(type="globe", code="H3", sc=[14]),
         "toll": dict(type="liste", titre="Le coût de six semaines (chiffres du cours)", items=[
-            "≈ 100 000 soldats français tués (recherches récentes : ≈ 60 000)", "200 000 blessés", "1 850 000 prisonniers de guerre",
-            "≈ 8 millions de civils dans l'exode"], x=170, y=130, w=940),
+            "≈ 100 000 soldats français tués (recherches récentes : ≈ 60 000)", "200 000 blessés", "1 850 000 prisonniers de guerre",
+            "≈ 8 millions de civils dans l'exode"], x=170, y=130, w=940),
         "arm": dict(type="def", cles=["fin", "combats"], terme="Armistice · 22 juin 1940, Rethondes",
                     t="Un accord qui met fin aux combats, signé par la France dans la forêt de Compiègne.",
                     etape="Pas un traité de paix · le Royaume-Uni est désormais seul face à l'Allemagne", x=170, y=200, w=940),
@@ -259,7 +259,7 @@ SCENES = [
             "Alliés : les meilleures forces au centre de la Belgique (10 mai) ; Dunkerque, 338 000 évacués",
             "Allemagne : percée blindée par les Ardennes jusqu'à la Manche (13-20 mai) ; raids aériens testés",
             "Allemagne : offensive de la Somme vers Paris (5-13 juin)"], x=170, y=140, w=940),
-        "ws_res": dict(type="cols", g="Alliés · résultat", gq="le gouvernement à Vichy (Pétain) ; ≈ 100 000 morts, 1 850 000 prisonniers ; 8 millions dans l'exode",
+        "ws_res": dict(type="cols", g="Alliés · résultat", gq="le gouvernement à Vichy (Pétain) ; ≈ 100 000 morts, 1 850 000 prisonniers ; 8 millions dans l'exode",
                        d="Allemagne · résultat", dq="Paris occupé, 14 juin ; armistice, 22 juin", vs="vs", repere="Dossier documentaire · ligne 3"),
         "pa1": dict(type="pause", t="Question problématisée : pourquoi la France est-elle vaincue si vite en 1940 ?",
                     sous="Trois arguments, un exemple précis pour chacun. Mets la vidéo en pause, rédige, puis relance pour voir un modèle."),
@@ -272,7 +272,7 @@ SCENES = [
 
     # ================================================================ IX. la France découpée (idée 6)
     dict(id="zones", chap="La France découpée en zones", fond="nuit", humeur="tension",
-         retenir="Cinq zones : occupée (3/5, MBF), « libre » (Vichy), italienne (≈ 15 communes), Nord–Pas-de-Calais (Bruxelles), Alsace-Moselle annexée. La zone libre envahie le 11 nov. 1942.",
+         retenir="Cinq zones : occupée (3/5, MBF), « libre » (Vichy), italienne (≈ 15 communes), Nord–Pas-de-Calais (Bruxelles), Alsace-Moselle annexée. La zone libre envahie le 11 nov. 1942.",
          beats=[
         "{g7}{g7.1}Venons-en à la France occupée. L'armistice découpe le pays en cinq zones, chacune avec un maître différent.",
         "{zones}{zones.1}Un : la zone occupée. L'Allemagne occupe les trois cinquièmes de la France métropolitaine : les régions au plus fort potentiel économique, "
@@ -287,10 +287,10 @@ SCENES = [
         "Et de novembre 1942 à septembre 1943, les troupes italiennes occupent une bien plus grande partie du sud-est.",
     ], vis={
         "g7": dict(type="globe", code="H3", sc=[16, 39]),
-        "zones": dict(type="liste", titre="La France découpée : cinq zones", x=905, y=24, w=362, petit=True, bande=True, items=[
-            "Zone occupée : 3/5, les régions les plus riches et les côtes (MBF)", "« Zone libre », gouvernée depuis Vichy",
-            "Zone italienne : ≈ 15 communes (Alpes-Maritimes)", "Nord et Pas-de-Calais : rattachés à Bruxelles",
-            "Alsace et Moselle : annexées (frontières de 1871)"]),
+        "zones": dict(type="liste", titre="Cinq zones", x=942, y=20, w=328, petit=True, bande=True, items=[
+            "Zone occupée : 3/5, régions riches, côtes (MBF)", "« Zone libre » : Vichy",
+            "Zone italienne : ≈ 15 communes", "Nord, Pas-de-Calais : Bruxelles",
+            "Alsace-Moselle annexée (1871)"]),
     }),
 
     # ================================================================ X. Vichy (idée 7)
@@ -313,7 +313,7 @@ SCENES = [
                        legende="Pétain serre la main de Hitler, Montoire, 24 octobre 1940 (hors du cours) · Heinrich Hoffmann, Bundesarchiv, Bild 183-H25217, CC BY-SA 3.0 DE"),
         "def5": dict(type="def", cles=["Pétain", "Vichy"], terme="Le régime de Vichy",
                      t="Le nouveau gouvernement du maréchal Pétain, installé dans la ville thermale de Vichy.",
-                     etape="« L'État français » : un régime autoritaire", x=170, y=200, w=940),
+                     etape="« L'État français » : un régime autoritaire", x=170, y=200, w=940),
         "collab": dict(type="note", terme="Attention à la nuance", cles=["pression", "empressé"],
                        t="La collaboration : recherchée par Vichy dès l'armistice.",
                        etape="Sous la pression nazie… mais souvent empressé de collaborer.", x=170, y=200, w=940),
@@ -340,9 +340,9 @@ SCENES = [
         "Souviens-toi du million huit cent cinquante mille prisonniers de 1940 : les voici, utilisés comme monnaie d'échange.",
     ], vis={
         "g9": dict(type="globe", code="H3", sc=[34]),
-        "expl": dict(type="liste", titre="Exploitée : argent, biens, travailleurs", x=850, y=330, w=400, petit=True, bande=True, items=[
-            "20 millions de Reichsmarks par jour de frais d'occupation", "Réquisitions : charbon, nourriture, carburant",
-            "Rationnement et marché noir", "1942 : la Relève ; févr. 1943 : le STO, travail forcé"]),
+        "expl": dict(type="liste", titre="La France exploitée", x=850, y=270, w=400, petit=True, bande=True, items=[
+            "Argent : 20 millions de RM par jour", "Réquisitions : charbon, nourriture, carburant",
+            "Rationnement et marché noir", "La Relève (1942), puis le STO (1943)"]),
         "sto": dict(type="def", cles=["Vichy", "femmes"], terme="STO · Service du travail obligatoire",
                     t="Créé par Vichy en février 1943 : des travailleurs français envoyés de force en Allemagne.",
                     etape="Hommes de 18 à 50 ans, femmes célibataires de 21 à 35 ans · avant, la Relève (juin 1942) : un prisonnier libéré pour trois volontaires", x=170, y=200, w=940),
@@ -350,7 +350,7 @@ SCENES = [
 
     # ================================================================ XII. les Juifs persécutés (idée 9)
     dict(id="persecution", chap="Persécutés, spoliés, déportés", fond="guerre", humeur="tension",
-         retenir="≈ 350 000 Juifs en France en 1940. Aryanisation, étoile jaune (juin 1942), arrestations à partir de l'été 1942 par la police française. ≈ 80 000 déportés ; environ 3 % ont survécu.",
+         retenir="≈ 350 000 Juifs en France en 1940. Aryanisation, étoile jaune (juin 1942), arrestations à partir de l'été 1942 par la police française. ≈ 80 000 déportés ; environ 3 % ont survécu.",
          beats=[
         "{g10}{g10.1}En 1940, environ trois cent cinquante mille Juifs vivent en France ; plus de la moitié sont des réfugiés étrangers. Dans la zone occupée, "
         "ils subissent aussitôt une persécution comparable à celle de la Pologne. {pers}Elle se fait par étapes. "
@@ -366,9 +366,9 @@ SCENES = [
     ], vis={
         "g10": dict(type="globe", code="H3", sc=[35]),
         "pers": dict(type="liste", titre="La persécution, étape par étape", x=850, y=70, w=400, petit=True, bande=True, items=[
-            "Spoliation : « aryanisation » des entreprises et des biens", "Marquage : l'étoile jaune, juin 1942",
+            "Spoliation : « aryanisation » des entreprises et des biens", "Marquage : l'étoile jaune, juin 1942",
             "Arrestation en vue de la déportation, été 1942 : la police française", "Dès 1942 : déportations depuis la zone de Vichy aussi"]),
-        "bilj": dict(type="mot", t="≈ 80 000 déportés", g="Juifs déportés de France · environ 3 % ont survécu", y=250, taille=96),
+        "bilj": dict(type="mot", t="≈ 80 000 déportés", g="Juifs déportés de France · environ 3 % ont survécu", y=250, taille=96),
         "milice": dict(type="note", terme="Attention · une erreur du cours", cles=["Milice", "police"],
                        t="Pas « la Milice » (créée seulement en janvier 1943), mais la police française.",
                        etape="Rafle du Vel' d'Hiv, Paris, 16-17 juillet 1942", x=170, y=200, w=940),
@@ -376,7 +376,7 @@ SCENES = [
 
     # ================================================================ XIII. répression et séduction (idée 10)
     dict(id="seduction", chap="Répression et séduction", fond="nuit", humeur="mystere",
-         retenir="La terreur pour les opposants (Juifs, communistes, « terroristes » : Gestapo et polices de Vichy) ; la flatterie pour les autres. The Observer, 7 sept. 1941 : gagner Paris « par la flatterie plutôt que par la répression ».",
+         retenir="La terreur pour les opposants (Juifs, communistes, « terroristes » : Gestapo et polices de Vichy) ; la flatterie pour les autres. The Observer, 7 sept. 1941 : gagner Paris « par la flatterie plutôt que par la répression ».",
          beats=[
         "{cols3}L'occupant se sert de deux armes à la fois. {cols3.g}La terreur pour les opposants. Les Juifs, les communistes et les « terroristes », "
         "le mot de l'occupant pour désigner les résistants, sont visés à la fois par la Gestapo et par les polices de Vichy. "
@@ -389,17 +389,17 @@ SCENES = [
         ("C", "par la flatterie plutôt que par la répression", "c_obs"),
         "{-c_obs}Répression et séduction vont donc ensemble : la terreur pour les quelques-uns qui résistent, la flatterie pour le plus grand nombre.",
     ], vis={
-        "cols3": dict(type="cols", g="Répression", gq="Juifs, communistes, « terroristes » : la Gestapo et les polices de Vichy",
+        "cols3": dict(type="cols", g="Répression", gq="Juifs, communistes, « terroristes » : la Gestapo et les polices de Vichy",
                       d="Séduction", dq="faire l'éloge de la culture française, flatter les affaires, vendre la collaboration", vs="+"),
         "obs": dict(type="note", terme="The Observer · 7 septembre 1941", cles=["Paris", "collaboration"],
                     t="La Pariser Zeitung, aux mains des Allemands, présente Paris comme le lieu de villégiature du « Herrenvolk » nazi.",
-                    etape="« La collaboration » : son thème quotidien", x=170, y=200, w=940),
+                    etape="« La collaboration » : son thème quotidien", x=170, y=200, w=940),
         "c_obs": dict(type="cit", a="The Observer", o="7 septembre 1941, à propos de la Pariser Zeitung (traduction)", x=200, y=220, w=880),
     }),
 
     # ================================================================ XIV. trois documents sur la France occupée
     dict(id="sources", chap="La vie en France occupée : trois documents", fond="aube", humeur="calme",
-         retenir="Document 1 (The Observer, 1941) : le découpage et la séduction · Document 2 (affiche d'aryanisation, 1942) : la persécution, ≈ 10 000 entreprises · Document 3 (affiche du STO, 1943) : l'exploitation organisée par Vichy.",
+         retenir="Document 1 (The Observer, 1941) : le découpage et la séduction · Document 2 (affiche d'aryanisation, 1942) : la persécution, ≈ 10 000 entreprises · Document 3 (affiche du STO, 1943) : l'exploitation organisée par Vichy.",
          beats=[
         "{src}Le cours propose ensuite trois documents sur la France occupée. La consigne : repérer dans chacun le découpage du territoire "
         "et les politiques de répression ou de persécution. {src.1}Document un : l'article de l'Observer que nous venons de lire, septembre 1941. "
@@ -415,11 +415,11 @@ SCENES = [
         "et celle de février 1943, le STO, signée par Laval. La collaboration servait l'effort de guerre allemand.",
     ], vis={
         "src": dict(type="liste", titre="La vie en France occupée · trois documents", items=[
-            "The Observer, 7 septembre 1941", "Une affiche d'« aryanisation », Paris, avril 1942",
+            "The Observer, 7 septembre 1941", "Une affiche d'« aryanisation », Paris, avril 1942",
             "Une affiche de propagande pour le STO, 1943"], x=170, y=150, w=940),
         "srep": dict(type="liste", titre="Les réponses", petit=True, items=[
-            "Document 1 → le découpage (pas vendu en zone libre ; presse de Vichy « étrangère »), une ligne antisémite, surtout la séduction",
-            "Document 2 → la persécution : l'aryanisation (oct. 1940, puis Vichy, juillet 1941) ; ≈ 10 000 entreprises (Henry Rousso)",
+            "Document 1 → le découpage (pas vendu en zone libre ; presse de Vichy « étrangère »), une ligne antisémite, surtout la séduction",
+            "Document 2 → la persécution : l'aryanisation (oct. 1940, puis Vichy, juillet 1941) ; ≈ 10 000 entreprises (Henry Rousso)",
             "Document 3 → l'exploitation : lois de sept. 1942 (Pétain) et de févr. 1943 (STO, Laval) ; Vichy organise le travail forcé"], x=150, y=140, w=980),
     }),
 
@@ -448,7 +448,7 @@ SCENES = [
         "dbq": dict(type="exo", niveau="dbq", titre="Que nous apprend le document 1 sur la politique allemande en France occupée ?",
                     src="Document 1 · The Observer (hebdomadaire britannique), 7 septembre 1941, à propos de la Pariser Zeitung",
                     enonce=["La Pariser Zeitung, aux mains des Allemands, présente Paris comme le futur lieu de villégiature du « Herrenvolk » nazi ; "
-                            "« la collaboration » est son thème quotidien : une tentative de gagner Paris « par la flatterie plutôt que par la répression »."],
+                            "« la collaboration » est son thème quotidien : une tentative de gagner Paris « par la flatterie plutôt que par la répression »."],
                     questions=["Présenter le document : nature, auteur, date",
                                "Le situer dans son contexte",
                                "L'expliquer et montrer son intérêt : plusieurs arguments", "Montrer ses limites, puis un bilan critique"]),
@@ -457,14 +457,14 @@ SCENES = [
         "rep2": dict(type="liste", titre="Un modèle de réponse", petit=True, items=[
             "Présentation : The Observer, hebdomadaire britannique, 7 sept. 1941, à propos de la Pariser Zeitung",
             "Contexte : Paris occupé depuis le 14 juin 1940 ; la ligne de démarcation ; Vichy collabore",
-            "Intérêt : la séduction (Herrenvolk, « collaboration ») ; le découpage ; la ligne antisémite ; écrit sur le moment",
+            "Intérêt : la séduction (Herrenvolk, « collaboration ») ; le découpage ; la ligne antisémite ; écrit sur le moment",
             "Limites : un regard britannique hostile ; un seul journal ; les buts, pas la réception ; rien sur l'argent, le STO, les rafles · bilan : très utile pour la séduction"],
                      x=150, y=130, w=980),
     }),
 
     # ================================================================ XVI. conclusion sur la France (idée 11)
     dict(id="casparticulier", chap="Un cas particulier", fond="nuit", humeur="lumiere",
-         retenir="La France, un cas particulier : un pouvoir de décision partagé (l'occupant et Vichy). Répression, racisme et ressources pour la guerre totale : 20 millions de RM par jour, le STO, ≈ 80 000 Juifs déportés.",
+         retenir="La France, un cas particulier : un pouvoir de décision partagé (l'occupant et Vichy). Répression, racisme et ressources pour la guerre totale : 20 millions de RM par jour, le STO, ≈ 80 000 Juifs déportés.",
          beats=[
         "{q6}Alors, pour conclure : pourquoi la France est-elle un cas particulier ?",
         "{-q6}{def6}Parce que le pouvoir de décision n'y était pas unifié. Les forces d'occupation allemandes et les autorités françaises coexistaient : "
@@ -487,8 +487,8 @@ SCENES = [
             "Ressources pour la guerre totale : hommes, biens, argent"], x=170, y=150, w=940),
         "chif": dict(type="liste", titre="Trois chiffres, trois dimensions", items=[
             "20 millions de Reichsmarks par jour → l'argent", "La Relève (1942), le STO (1943) → les travailleurs",
-            "≈ 80 000 Juifs déportés → la politique raciale"], x=170, y=150, w=940),
-        "lien2": dict(type="cols", g="À l'Ouest", gq="la France exploitée, « partenaire » en apparence", d="À l'Est",
+            "≈ 80 000 Juifs déportés → la politique raciale"], x=170, y=150, w=940),
+        "lien2": dict(type="cols", g="À l'Ouest", gq="la France exploitée, « partenaire » en apparence", d="À l'Est",
                       dq="une guerre d'anéantissement (épisode 4)", vs="≠"),
     }),
 
@@ -507,13 +507,13 @@ SCENES = [
             dict(t="Pourquoi la France tombe", items=["105 divisions, vieille stratégie", "ligne Maginot · drôle de guerre", "Ardennes · Blitzkrieg"]),
             dict(t="Six semaines", items=["Dunkerque : 338 000", "Paris 14 juin · exode", "armistice 22 juin"]),
             dict(t="Découpée · Vichy", items=["5 zones · 3/5 occupés", "Pétain : la collaboration", "zone libre envahie 11/1942"]),
-            dict(t="Exploitée · persécutée", items=["20 millions de RM par jour", "STO · étoile jaune", "≈ 80 000 Juifs déportés"])]),
+            dict(t="Exploitée · persécutée", items=["20 millions de RM par jour", "STO · étoile jaune", "≈ 80 000 Juifs déportés"])]),
         "fin": dict(type="mot", t="Le Royaume-Uni seul", g="Prochain épisode · épisode 3 · 1940 – 1941", y=270, taille=78),
     }),
 ]
 
 QUIZ = [
-    dict(q="Qu'est-ce que la « drôle de guerre » ?",
+    dict(q="Qu'est-ce que la « drôle de guerre » ?",
          r=["Sept. 1939 – mai 1940 : la guerre est déclarée, mais on ne se bat presque pas à l'ouest", "L'attaque allemande par les Ardennes",
             "L'évacuation de Dunkerque", "La guerre entre Vichy et de Gaulle"], ok=0, voir="drole",
          ex="La France et le Royaume-Uni attendent derrière la ligne Maginot : une stratégie défensive."),
@@ -529,9 +529,9 @@ QUIZ = [
             "Les Britanniques signent l'armistice", "Les Britanniques envahissent la Normandie"], ok=0, voir="cols2",
          ex="26 mai – 4 juin 1940 : 338 000 soldats alliés évacués ; pour le Royaume-Uni, la Royal Navy et la RAF sont sauvées."),
     dict(q="Quels chiffres donnent le coût humain de la défaite de 1940 ?",
-         r=["≈ 100 000 tués, 200 000 blessés, 1 850 000 prisonniers", "338 000 tués et 8 millions de prisonniers",
+         r=["≈ 100 000 tués, 200 000 blessés, 1 850 000 prisonniers", "338 000 tués et 8 millions de prisonniers",
             "20 millions de morts", "1 850 000 tués"], ok=0, voir="toll",
-         ex="Le cours donne ≈ 100 000 morts (recherches récentes : ≈ 60 000). 338 000, c'est Dunkerque ; 8 millions, l'exode ; 20 millions, les frais d'occupation quotidiens en Reichsmarks."),
+         ex="Le cours donne ≈ 100 000 morts (recherches récentes : ≈ 60 000). 338 000, c'est Dunkerque ; 8 millions, l'exode ; 20 millions, les frais d'occupation quotidiens en Reichsmarks."),
     dict(q="Quel territoire est purement et simplement annexé à l'Allemagne en 1940 ?",
          r=["L'Alsace et la Moselle", "Le Nord et le Pas-de-Calais", "Les Alpes-Maritimes", "La zone libre"], ok=0, voir="zones",
          ex="Retour aux frontières de 1871 ; le Nord et le Pas-de-Calais sont rattachés au commandement allemand de Bruxelles."),
@@ -545,7 +545,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Contenu : le cours d'histoire de Terminale, chapitre 3 « La Seconde Guerre mondiale », partie I.1 (l'invasion nazie de l'Europe de l'Ouest : le cas français), avec le dossier documentaire, la carte des zones, trois documents sur la France occupée et le tableau des divisions, tel qu'il est rédigé sur le site ; carte animée du chapitre (site).",
+    "Contenu : le cours d'histoire de Terminale, chapitre 3 « La Seconde Guerre mondiale », partie I.1 (l'invasion nazie de l'Europe de l'Ouest : le cas français), avec le dossier documentaire, la carte des zones, trois documents sur la France occupée et le tableau des divisions, tel qu'il est rédigé sur le site ; carte animée du chapitre (site).",
     "Correction du cours : les arrestations de l'été 1942 (rafle du Vel' d'Hiv, 16-17 juillet 1942) sont l'œuvre de la police française, non de la Milice (créée en janvier 1943).",
     "Citations : appel du 18 juin 1940 du général de Gaulle (texte original) ; Winston Churchill (4 juin 1940) et The Observer (7 septembre 1941) en traduction française.",
     "Photographie : le maréchal Pétain et Adolf Hitler à Montoire, 24 octobre 1940 (Heinrich Hoffmann, Bundesarchiv, Bild 183-H25217, via Wikimedia Commons, CC BY-SA 3.0 DE) ; la rencontre elle-même est hors du cours.",

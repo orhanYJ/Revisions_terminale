@@ -117,8 +117,8 @@ SCENES = [
         "du sept septembre 1940. C'est le Blitz.",
     ], vis={
         "q3": dict(type="question", t="La France est vaincue. Comment vaincre le Royaume-Uni ?"),
-        "jo": dict(type="cols", g="Directe", gq="« une attaque directe contre la métropole anglaise »", d="Périphérique",
-                   dq="« une extension de la guerre aux zones périphériques » : Méditerranée, routes commerciales", vs="ou",
+        "jo": dict(type="cols", g="Directe", gq="« une attaque directe contre la métropole anglaise »", d="Périphérique",
+                   dq="« une extension de la guerre aux zones périphériques » : Méditerranée, routes commerciales", vs="ou",
                    repere="Mémorandum d'Alfred Jodl, juin 1940"),
         "dir": dict(type="liste", titre="Une attaque directe : trois formes", cles=["marine", "terreur", "débarquement"], items=[
             "Offensive aérienne et navale contre la marine marchande britannique + attaques aériennes sur l'industrie",
@@ -155,13 +155,13 @@ SCENES = [
                    x=170, y=140, w=940),
         "civ": dict(type="note", terme="Les civils en première ligne", cles=["Espagne", "Pologne"],
                     t="Comme en Espagne et en Pologne, les bombardiers visent la population elle-même.",
-                    etape="Est de Londres, 1940 : le foyer est un champ de bataille", x=170, y=420, w=940),
+                    etape="Est de Londres, 1940 : le foyer est un champ de bataille", x=170, y=340, w=940),
         "hp": dict(type="note", terme="Une photographie du cours", cles=["Hyde", "Park"],
                    t="Des canons antiaériens installés à Hyde Park, au cœur de la capitale.",
                    etape="La ligne de front passe par Londres", x=170, y=200, w=940),
         "chif": dict(type="note", terme="Attention · un chiffre à vérifier", cles=["civils", "Londres"],
                      t="Le cours : 43 000 civils tués à Londres pendant le Blitz.",
-                     etape="D'ordinaire, le chiffre de tout le Royaume-Uni, dont environ la moitié à Londres. Écris : « au Royaume-Uni ».", x=170, y=200, w=940),
+                     etape="D'ordinaire, le chiffre de tout le Royaume-Uni, dont environ la moitié à Londres. Écris : « au Royaume-Uni ».", x=170, y=200, w=940),
     }),
 
     # ================================================================ V. idée 3 : pourquoi le Royaume-Uni tient
@@ -221,7 +221,7 @@ SCENES = [
 
     # ================================================================ VII. le dossier documentaire : les deux documents
     dict(id="docs", chap="Le dossier documentaire : deux discours", fond="guerre", humeur="tension",
-         retenir="Doc. B, Churchill, 4 juin 1940, Communes : « nous ne nous rendrons jamais ». Doc. A, de Gaulle, 18 juin 1940, BBC : « la flamme de la résistance française ne doit pas s'éteindre et ne s'éteindra pas ».",
+         retenir="Doc. B, Churchill, 4 juin 1940, Communes : « nous ne nous rendrons jamais ». Doc. A, de Gaulle, 18 juin 1940, BBC : « la flamme de la résistance française ne doit pas s'éteindre et ne s'éteindra pas ».",
          beats=[
         "{ws}Le dossier documentaire met leurs deux discours côte à côte. La consigne : comparer leurs attitudes face à l'Axe. "
         "{ws.1}Comparer, c'est relever les ressemblances et les différences, en parlant des deux hommes tout du long, côte à côte.",
@@ -243,14 +243,14 @@ SCENES = [
         "ws": dict(type="def", cles=["comparez", "ressemblances", "différences"], terme="Le dossier documentaire · la consigne",
                    t="De Gaulle et Churchill : comparez leurs attitudes face à l'Axe, ressemblances et différences.",
                    etape="Les deux hommes tout du long, côte à côte", x=170, y=200, w=940),
-        "docb": dict(type="liste", titre="Document B · Churchill, « nous ne nous rendrons jamais »", items=[
-            "4 juin 1940 · Chambre des communes · fin de l'évacuation de Dunkerque", "« s'il le faut pendant des années, s'il le faut seuls »",
+        "docb": dict(type="liste", titre="Document B · Churchill, « nous ne nous rendrons jamais »", items=[
+            "4 juin 1940 · Chambre des communes · fin de l'évacuation de Dunkerque", "« s'il le faut pendant des années, s'il le faut seuls »",
             "L'Empire britannique et la République française défendront leur sol jusqu'à la mort",
             "Si l'île tombait, l'Empire et la flotte poursuivraient la lutte"], x=150, y=130, w=980),
         "c_wc": dict(type="cit", a="Winston Churchill", o="Chambre des communes, 4 juin 1940 (traduction française)", x=200, y=200, w=880),
         "doca": dict(type="liste", titre="Document A · De Gaulle, l'appel du 18 juin 1940", items=[
             "Radio de la BBC, Londres · le lendemain de la demande d'armistice de Pétain", "La défaite vient des chars, des avions, de la tactique des Allemands",
-            "« la France n'est pas seule » : l'empire, la flotte britannique, l'industrie américaine",
+            "« la France n'est pas seule » : l'empire, la flotte britannique, l'industrie américaine",
             "Un appel aux officiers, soldats, ingénieurs et ouvriers en territoire britannique"], x=150, y=130, w=980),
         "c_dg": dict(type="cit", a="Charles de Gaulle", o="Appel du 18 juin 1940, BBC", x=200, y=200, w=880),
     }),
@@ -323,7 +323,7 @@ SCENES = [
                     t="Le Royaume-Uni a pu tenir parce que les usines américaines travaillaient pour lui bien avant que les soldats américains ne combattent.",
                     etape="Hors du cours : la loi prêt-bail, mars 1941 — sans paiement immédiat", x=170, y=200, w=940),
         "et3": dict(type="liste", titre="Pas à pas vers le Royaume-Uni", items=[
-            "1935-1937 : les lois de neutralité", "Nov. 1939 : le cash and carry pour les armes", "L'« arsenal de la démocratie »",
+            "1935-1937 : les lois de neutralité", "Nov. 1939 : le cash and carry pour les armes", "L'« arsenal de la démocratie »",
             "Mars 1941 : le prêt-bail (hors du cours)", "Déc. 1941 : les États-Unis en guerre"], x=170, y=120, w=940),
     }),
 
@@ -345,11 +345,11 @@ SCENES = [
     ], vis={
         "g8": dict(type="globe", code="H3", sc=[26, 30, 31, 33]),
         "une": dict(type="liste", titre="The Erie Daily Times, 11 décembre 1941 (traduction)", items=[
-            "« Les États-Unis déclarent la guerre à l'Allemagne et à l'Italie »",
-            "« L'Amérique se range aux côtés de la Grande-Bretagne et des Soviétiques contre l'Axe dans la lutte mondiale »"], x=150, y=200, w=980),
+            "« Les États-Unis déclarent la guerre à l'Allemagne et à l'Italie »",
+            "« L'Amérique se range aux côtés de la Grande-Bretagne et des Soviétiques contre l'Axe dans la lutte mondiale »"], x=150, y=200, w=980),
         "bil2": dict(type="note", terme="Le Royaume-Uni n'est plus seul", cles=["pari", "Nouveau", "Monde"],
                      t="Décembre 1941 : la guerre devient mondiale ; le pari de Churchill et de De Gaulle est gagné, le Nouveau Monde s'avance.",
-                     etape="« le Nouveau Monde … s'avance pour secourir et libérer l'Ancien »", x=170, y=200, w=940),
+                     etape="« le Nouveau Monde … s'avance pour secourir et libérer l'Ancien »", x=170, y=200, w=940),
     }),
 
     # ================================================================ XI. à l'épreuve : une analyse de document
@@ -385,9 +385,9 @@ SCENES = [
                     sous="Mets la vidéo en pause, suis la démarche, puis relance pour voir un modèle."),
         "m1": dict(type="liste", titre="Un modèle (écrit pour la vidéo)", items=[
             "Discours de Churchill, Premier ministre, Chambre des communes, 4 juin 1940, fin de Dunkerque",
-            "« Il éclaire bien pourquoi le Royaume-Uni continue la guerre… mais pas, à lui seul, comment le pays a tenu. »"], x=150, y=170, w=980),
+            "« Il éclaire bien pourquoi le Royaume-Uni continue la guerre… mais pas, à lui seul, comment le pays a tenu. »"], x=150, y=170, w=980),
         "fo": dict(type="liste", titre="Intérêt", marques=["+", "+", "+"], items=[
-            "Le chef du gouvernement : la volonté officielle, « s'il le faut seuls »",
+            "Le chef du gouvernement : la volonté officielle, « s'il le faut seuls »",
             "4 juin, avant l'armistice : le choix de se battre est fait tout de suite",
             "La stratégie : l'Empire, la flotte, le Nouveau Monde (confirmée par de Gaulle)"], x=150, y=150, w=980),
         "li": dict(type="liste", titre="Limites", marques=["−", "−", "−", "−"], items=[
@@ -410,10 +410,10 @@ SCENES = [
         ("P", 2.0),
     ], vis={
         "carte": dict(type="carte", centre="LE ROYAUME-UNI SEUL", branches=[
-            dict(t="L'attaque allemande", items=["Jodl : directe ou périphérique", "7 sept. 1940 : le Blitz", "≈ 43 000 civils (R.-U.)"]),
+            dict(t="L'attaque allemande", items=["Jodl : directe ou périphérique", "7 sept. 1940 : le Blitz", "≈ 43 000 civils (R.-U.)"]),
             dict(t="Pourquoi il a tenu", items=["pas de maîtrise du ciel", "déc. 1940 : invasion reportée", "Hitler se tourne vers l'Est"]),
             dict(t="Deux hommes", items=["Churchill, 4 juin 1940", "de Gaulle, 18 juin 1940", "le pari d'une guerre mondiale"]),
-            dict(t="L'Amérique", items=["cash and carry pour les armes (1939)", "l'arsenal de la démocratie", "déc. 1941 : guerre mondiale"])]),
+            dict(t="L'Amérique", items=["1939 : cash and carry (armes)", "l'arsenal de la démocratie", "déc. 1941 : guerre mondiale"])]),
         "fin": dict(type="mot", t="À suivre : Barbarossa", g="Épisode 4 · une guerre d'anéantissement", y=270, taille=76),
     }),
 ]
@@ -443,7 +443,7 @@ QUIZ = [
             "Seul Churchill compte sur les États-Unis", "Seul de Gaulle croit à une guerre mondiale",
             "Tous deux parlent devant la Chambre des communes"], ok=0, voir="dif",
          ex="Tous deux comptent sur les empires, la flotte et l'industrie américaine ; leur position, la date, le destinataire et le but diffèrent."),
-    dict(q="Que permet la loi de neutralité de novembre 1939, le « cash and carry » pour les armes ?",
+    dict(q="Que permet la loi de neutralité de novembre 1939, le « cash and carry » pour les armes ?",
          r=["Les démocraties peuvent acheter des armes américaines si elles paient comptant et les emportent sur leurs navires",
             "Les États-Unis peuvent prêter des armes sans paiement", "Des soldats américains peuvent combattre en Europe",
             "L'Allemagne peut acheter du pétrole américain"], ok=0, voir="g7",
@@ -455,14 +455,14 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Contenu : le cours d'histoire de Terminale, chapitre « La Seconde Guerre mondiale » (partie I.2, « La résistance britannique soutenue "
-    "par les États-Unis »), et le dossier documentaire qui compare les discours de Churchill et de De Gaulle, tels qu'ils sont présentés sur le site "
+    "Contenu : le cours d'histoire de Terminale, chapitre « La Seconde Guerre mondiale » (partie I.2, « La résistance britannique soutenue "
+    "par les États-Unis »), et le dossier documentaire qui compare les discours de Churchill et de De Gaulle, tels qu'ils sont présentés sur le site "
     "(les réponses du dossier sont proposées par le site, ce n'est pas un corrigé officiel) ; rappels du chapitre 1 ; cartes animées des chapitres 1 et 3 (site). "
     "Hors du cours : la loi prêt-bail, l'opération Otarie, la bataille d'Angleterre. La consigne d'analyse et le modèle ont été écrits pour cette vidéo.",
     "Citations : Winston Churchill, discours du 4 juin 1940 à la Chambre des communes, en traduction française ; Charles de Gaulle, "
     "appel du 18 juin 1940, texte original ; titres de l'Erie Daily Times du 11 décembre 1941, traduits.",
     "Photographie : enfants d'une banlieue est de Londres, sans abri après un raid nocturne, septembre 1940 (New Times Paris Bureau Collection, USIA ; "
-    "US National Archives, 306-NT-3163V ; domaine public selon sa source ; fichier Wikimedia Commons « WWII London Blitz East London.jpg », "
+    "US National Archives, 306-NT-3163V ; domaine public selon sa source ; fichier Wikimedia Commons « WWII London Blitz East London.jpg », "
     "indiqué sous CC BY-SA 2.0 via pingnews.com sur Flickr).",
     "Photographie : Winston Churchill, Ottawa, décembre 1941, par Yousuf Karsh (Bibliothèque et Archives Canada, Wikimedia Commons, CC BY 2.0).",
     "Narration : voix de synthèse générées localement (Qwen3-TTS) ; musique originale.",

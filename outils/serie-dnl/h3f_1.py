@@ -88,7 +88,7 @@ SCENES = [
         "la guerre a commencé en Asie, deux ans avant de commencer en Europe.",
     ], vis={
         "g1": dict(type="globe", code="H3", sc=[1, 3]),
-        "lig1": dict(type="liste", titre="Mandchourie, 1931 : la réponse de la SDN", x=60, y=150, w=600, petit=True, bande=True, items=[
+        "lig1": dict(type="liste", titre="Mandchourie, 1931 : la réponse de la SDN", x=40, y=150, w=490, petit=True, bande=True, items=[
             "Elle condamne l'invasion", "Le Japon quitte la SDN (1933)", "Ni sanctions, ni armée : la sécurité collective échoue"]),
         "g1b": dict(type="globe", code="H2", sc=[18, 32]),
         "livre": dict(type="mot", t="1937 – 1947", g="Robert Frank et Alya Aglan, La Guerre-monde (2015)", y=250, taille=110),
@@ -168,7 +168,7 @@ SCENES = [
             "Nazisme : l'histoire comme lutte des races", "Fascisme : l'État tout-puissant", "Communisme : l'histoire comme lutte des classes",
             "Démocratie libérale : la liberté… et les empires"], x=170, y=130, w=940),
         "bil": dict(type="liste", titre="Le bilan (chiffres du cours)", items=[
-            "≈ 60 millions de morts", "3/5 sur le front de l'Est", "URSS : 27 à 28 millions, un habitant sur sept",
+            "≈ 60 millions de morts", "3/5 sur le front de l'Est", "URSS : 27 à 28 millions, un habitant sur sept",
             "6 millions de Juifs assassinés"], x=170, y=130, w=940),
     }),
 
@@ -229,7 +229,7 @@ SCENES = [
         "g5": dict(type="globe", code="H3", sc=[41]),
         "def2": dict(type="def", cles=["domination", "présentée", "salut"], terme="Notion clé · le Nouvel Ordre européen",
                      t="La domination nazie sur l'Europe, présentée par ses partisans comme le salut d'une civilisation européenne menacée d'effondrement.",
-                     etape="« Présentée » : de la propagande. En réalité, l'Europe est organisée au profit de l'Allemagne.", x=170, y=200, w=940),
+                     etape="« Présentée » : de la propagande. En réalité, l'Europe est organisée au profit de l'Allemagne.", x=170, y=200, w=940),
         "unex": dict(type="mot", t="Un moteur · un exemple", g="dans une composition, un argument sans exemple ne vaut rien", y=260, taille=80),
         "forces": dict(type="liste", titre="Les cinq moteurs", cles=["raciale", "Lebensraum", "communisme", "Grossraum", "totale"], items=[
             "L'Europe comme entité raciale : la purification par le génocide", "Le Lebensraum : l'espace vital à l'Est",
@@ -259,14 +259,14 @@ SCENES = [
     ], vis={
         "g6": dict(type="globe", code="H3", sc=[45, 25, 28, 24, 34]),
         "tab5": dict(type="liste", titre="Cinq moteurs · cinq exemples", items=[
-            "Entité raciale → 6 millions de Juifs assassinés (90 % en Pologne)", "Lebensraum → Barbarossa, 22 juin 1941 ; les Slaves vus comme des « Untermenschen »",
+            "Entité raciale → 6 millions de Juifs assassinés (90 % en Pologne)", "Lebensraum → Barbarossa, 22 juin 1941 ; les Slaves vus comme des « Untermenschen »",
             "Anticommunisme → l'ordre des commissaires (juin 1941) : commissaires fusillés", "Grossraum → blé ukrainien, pétrole du Caucase",
             "Guerre totale → France : 20 millions de RM par jour, le STO"], x=150, y=110, w=980),
     }),
 
     # ================================================================ VII. Hitler le dit lui-même
     dict(id="hitler", chap="Hitler le dit lui-même", fond="guerre", humeur="tension",
-         retenir="Hitler, 11 décembre 1941, tel que le cours le cite : « l'élimination absolue des Juifs, l'établissement de la suprématie du peuple allemand et la création d'une véritable communauté des nations sous direction allemande ».",
+         retenir="Hitler, 11 décembre 1941, tel que le cours le cite : « l'élimination absolue des Juifs, l'établissement de la suprématie du peuple allemand et la création d'une véritable communauté des nations sous direction allemande ».",
          beats=[
         "{reich}Et Hitler l'a dit lui-même, d'après le cours, devant le Reichstag, le onze décembre 1941, "
         "le jour où l'Allemagne déclare la guerre aux États-Unis. Voici la phrase telle que le cours la cite. Écoute bien.",
@@ -285,8 +285,8 @@ SCENES = [
                       legende="Hitler déclare la guerre aux États-Unis, Reichstag, 11 décembre 1941 (Wikimedia Commons, CC BY-SA 3.0)"),
         "c_hitler": dict(type="cit", a="Adolf Hitler", o="discours au Reichstag, 11 décembre 1941, tel que le cours le cite (traduction)", x=200, y=170, w=880),
         "ana": dict(type="liste", titre="Trois buts en une phrase", cles=["racial", "national", "européen"], items=[
-            "« l'élimination absolue des Juifs » → le but racial", "« la suprématie du peuple allemand » → le but national",
-            "« une communauté des nations sous direction allemande » → le but européen"], x=150, y=130, w=980),
+            "« l'élimination absolue des Juifs » → le but racial", "« la suprématie du peuple allemand » → le but national",
+            "« une communauté des nations sous direction allemande » → le but européen"], x=150, y=130, w=980),
         "lien": dict(type="note", terme="Pourquoi cette citation compte", cles=["buts", "déclarés"],
                      t="Le génocide n'était pas un effet secondaire caché de la guerre, mais l'un de ses buts déclarés.",
                      etape="Un discours public, le 11 décembre 1941, alors que les tueries ont commencé à l'Est.", x=170, y=200, w=940),
@@ -306,7 +306,7 @@ SCENES = [
         "ce contraste est un excellent argument pour une composition.",
     ], vis={
         "g7": dict(type="globe", code="H3", sc=[16, 25, 32]),
-        "cmp": dict(type="cols", g="À l'Ouest", gq="la France exploitée, « partenaire » en apparence : la collaboration", d="À l'Est",
+        "cmp": dict(type="cols", g="À l'Ouest", gq="la France exploitée, « partenaire » en apparence : la collaboration", d="À l'Est",
                     dq="des peuples asservis ou exterminés : une guerre d'anéantissement", vs="≠"),
     }),
 
@@ -344,7 +344,7 @@ SCENES = [
                        "1939-1942, de la France à la Volga. Quels buts ? Un ordre racial, un ordre colonial, un ordre pour la guerre totale.",
                      etape="Accroche · définition · contexte · problématique · plan", x=150, y=150, w=980),
         "plan2": dict(type="liste", titre="Un plan en trois parties, avec des exemples", items=[
-            "I. Racial et idéologique : le génocide (6 millions), le « judéo-bolchevisme »",
+            "I. Racial et idéologique : le génocide (6 millions), le « judéo-bolchevisme »",
             "II. Colonial et économique : Lebensraum, Barbarossa, Grossraum",
             "III. Guerre totale : 20 millions de RM par jour, le STO, les prisonniers soviétiques",
             "Discuter : les limites — Stalingrad (févr. 1943), les résistances"], x=150, y=110, w=980),
@@ -363,7 +363,7 @@ SCENES = [
     ], vis={
         "carte": dict(type="carte", centre="UNE GUERRE MONDIALE", branches=[
             dict(t="Dates", items=["1931 Mandchourie · 1937 Chine", "1939 Pologne · 1941 mondiale", "1937-1947 : Frank et Aglan"]),
-            dict(t="Idéologie", items=["détruire une civilisation", "≈ 60 millions de morts", "3/5 sur le front de l'Est"]),
+            dict(t="Idéologie", items=["détruire une civilisation", "≈ 60 millions de morts", "3/5 sur le front de l'Est"]),
             dict(t="Nombres", items=["1940 : 393 / 272", "1945 : 656 / 328", "URSS : 488"]),
             dict(t="Nouvel Ordre européen", items=["race · Lebensraum", "anticommunisme", "Grossraum · guerre totale"])]),
         "fin": dict(type="mot", t="La défaite de la France", g="Prochain épisode · épisode 2 · mai – juin 1940", y=270, taille=78),
@@ -397,13 +397,13 @@ QUIZ = [
          r=["Le blé ukrainien et le pétrole du Caucase pour l'Allemagne", "L'ordre des commissaires de juin 1941",
             "Le ghetto de Varsovie", "L'appel du 18 juin 1940 du général de Gaulle"], ok=0, voir="g6",
          ex="Le Grossraum, c'est l'Europe comme un seul espace économique au service de l'Allemagne : l'Est devait nourrir le Reich."),
-    dict(q="Quand Hitler définit-il l'« ordre nouveau » devant le Reichstag ?",
+    dict(q="Quand Hitler définit-il l'« ordre nouveau » devant le Reichstag ?",
          r=["Le 11 décembre 1941", "Le 1er septembre 1939", "Le 22 juin 1941", "Le 30 janvier 1933"], ok=0, voir="c_hitler",
          ex="Le jour où l'Allemagne déclare la guerre aux États-Unis : « l'élimination absolue des Juifs… », selon la citation du cours."),
 ]
 
 CREDITS = [
-    "Contenu : le cours d'histoire de Terminale, chapitre 3 « La Seconde Guerre mondiale » (introduction, avec des exemples des parties I à III, et des rappels des chapitres 1 et 2), tel qu'il est rédigé sur le site ; cartes animées des chapitres 2 et 3 (site).",
+    "Contenu : le cours d'histoire de Terminale, chapitre 3 « La Seconde Guerre mondiale » (introduction, avec des exemples des parties I à III, et des rappels des chapitres 1 et 2), tel qu'il est rédigé sur le site ; cartes animées des chapitres 2 et 3 (site).",
     "Citation de Hitler (11 décembre 1941) : traduction française de la version que cite le cours.",
     "Photographie : Hitler déclare la guerre aux États-Unis, Reichstag, 11 décembre 1941 (photographe inconnu, Wikimedia Commons, CC BY-SA 3.0).",
     "Narration : voix de synthèse générées localement (Qwen3-TTS) ; musique originale.",

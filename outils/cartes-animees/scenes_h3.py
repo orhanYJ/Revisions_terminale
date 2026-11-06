@@ -82,7 +82,7 @@ LABELS = {
     "l_occ": {"p": [0.6, 48.2], "fr": "Zone occupée", "en": "Occupied zone"},
     "l_libre": {"p": [2.0, 45.0], "fr": "« Zone libre »", "en": "“Free zone”"},
     "l_annex": {"p": [6.9, 48.75], "fr": "Annexée", "en": "Annexed", "t": "evt", "dx": 8},
-    "l_afn": {"p": [2.0, 31.5], "fr": "Afrique du Nord française", "en": "French North Africa"},
+    "l_afn": {"p": [4.5, 33.6], "fr": "Afrique du Nord française", "en": "French North Africa"},
     "l_pac": {"p": [-170.0, 30.0], "fr": "Océan Pacifique", "en": "Pacific Ocean", "t": "mer"},
     "l_atl": {"p": [-38.0, 40.0], "fr": "Océan Atlantique", "en": "Atlantic Ocean", "t": "mer"},
     "l_manche": {"p": [-1.2, 50.15], "fr": "Manche", "en": "Channel", "t": "mer"},
