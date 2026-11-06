@@ -380,7 +380,7 @@ SCENES = [
         ("P", 2.0),
         "{-pa6}{g3}First, the chain of events, on the map. {g3.1}October nineteen thirty-five. Italy invades Abyssinia, in the name of Rome. "
         "{g3.2}March nineteen thirty-six. German troops enter the Rhineland, and nobody reacts. {g3.3}March nineteen thirty-eight: the Anschluss. "
-        "{g3.4}September nineteen thirty-eight. At Munich, the Sudetenland is handed over, without the Czechs. {g3.5}March nineteen thirty-nine: Prague. "
+        "{g3.4}September nineteen thirty-eight. At Munich, the Sudetenland is handed over, without the Czechs. {g3.5}In March nineteen thirty-nine, Hitler takes Prague. "
         "{g3.6}August nineteen thirty-nine: the Nazi-Soviet pact. {g3.7}And on the first of September: Poland.",
         "{-g3}{pl2}Now the plan, from the course. {pl2.1}Part one: totalitarian ideologies made war a value, and expansion a goal. "
         "Fascism invades Abyssinia in nineteen thirty-five. Nazism wants Lebensraum, announced in Mein Kampf in nineteen twenty-five. "
