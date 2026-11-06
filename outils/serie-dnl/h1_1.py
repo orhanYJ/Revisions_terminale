@@ -28,25 +28,26 @@ DOW_CHUTE = [[1929.67, 381], [1929.87, 198], [1930.3, 294], [1931.0, 165], [1932
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Opening", fond="nuit", humeur="mystere", carton=False, beats=[
-        "{ph1}{q1}Nineteen twenty-nine. Two photographs open this chapter. The first one: a crowd, silent and solemn, "
+        "{ph1}Nineteen twenty-nine. Two photographs open this chapter. The first one: a crowd, silent and solemn, "
         "standing in the street outside the New York Stock Exchange. Thousands of people waiting for news… of their money.",
-        "{-q1}{ph2}The second one, the same year, in Germany: Adolf Hitler greeting his supporters at the Nuremberg party congress. "
+        "{-ph1}{ph1b}{ph2}The second one, the same year, in Germany: Adolf Hitler greeting his supporters at the Nuremberg party congress. "
         "In nineteen twenty-nine, his party is still small. Ten years later, he plunges Europe into war.",
         "{-ph2}{q2}So here is the question that historians still argue about. What caused the Second World War? "
         "The crisis of capitalism that followed the Crash? The threat of totalitarianism? {!Or both}Or both?",
-        "{-q2}{-ph1}{winter}The historian Jay Winter gives a bold answer. For him, there was one single war, "
+        "{-q2}{-ph1b}{winter}The historian Jay Winter gives a bold answer. For him, there was one single war, "
         "a {!thirty years' war}thirty years' war, from nineteen fourteen to nineteen forty-five. Why? Because in between, "
         "peace was never really achieved. The guns stopped in nineteen eighteen… but the conflict went on, by other means.",
-        "{-winter}{plan}This series follows the first link in that chain, in six episodes. {plan.1}Today: the Great Crash of nineteen twenty-nine. "
+        "This series follows the first link in that chain, {-winter}{plan}in six episodes. {plan.1}Today: the Great Crash of nineteen twenty-nine. "
         "What it was, and why it happened. {plan.2}Then how an American crash became a world crisis. "
         "{plan.3}Then economic nationalism, and the political answers to the crisis. {plan.4}Then the democracies and the liberal order. "
         "{plan.5}After that, an episode only for the exam: essay and DBQ. {plan.6}And a final recap.",
         "{-plan}{titre}",
         ("P", 3.2),
     ], vis={
-        "ph1": dict(type="tableau", img="h1-wallstreet", fond=True, sombre=True, de=[1.0, .5, .55], a=[1.2, .45, .5],
+        "ph1": dict(type="tableau", img="h1-wallstreet", de=[1.0, .5, .55], a=[1.08, .48, .53],
                     legende="Crowd outside the New York Stock Exchange, October 1929 (Wikimedia Commons, public domain)"),
-        "q1": dict(type="question", t="1929: a crowd outside the Stock Exchange.", bande=True),
+        "ph1b": dict(type="tableau", img="h1-wallstreet", fond=True, sombre=True, de=[1.08, .48, .53], a=[1.2, .45, .5],
+                     legende="Crowd outside the New York Stock Exchange, October 1929 (Wikimedia Commons, public domain)"),
         "ph2": dict(type="note", terme="The second photograph of 1929", cles=["Hitler", "Nuremberg"],
                     t="Adolf Hitler greeting his supporters at the Nuremberg party congress.",
                     etape="Described here, not shown. In 1929 the Nazi party is still small.", x=170, y=200, w=940),
@@ -81,10 +82,10 @@ SCENES = [
         "Today, we look at the very first link: the Crash itself.",
     ], vis={
         "g0": dict(type="globe", code="H1", sc=[0]),
-        "lib": dict(type="liste", titre="The liberal order of 1919", x=60, y=130, w=600, petit=True, bande=True,
+        "lib": dict(type="liste", titre="The liberal order of 1919", x=640, y=290, w=620, petit=True, bande=True,
                     cles=["democracy", "free trade", "never"], items=[
                         "Wilson's Fourteen Points (1918): democracy, self-determination, free trade",
-                        "Versailles and the League of Nations, in Geneva",
+                        "Versailles and the League of Nations (Geneva)",
                         "The US Senate refuses: the US never joins the League",
                         "Then the fragile prosperity of the 1920s"]),
         "obj": dict(type="def", terme="The chapter's objective", cles=["one country", "world depression", "militarism"],
@@ -122,7 +123,7 @@ SCENES = [
         "Now let's go back over each one, slowly, as the course does.",
     ], vis={
         "g1": dict(type="globe", code="H1", sc=[1, 2, 3, 4, 5]),
-        "fr2": dict(type="liste", titre="Why overproduction?", x=60, y=130, w=600, petit=True, bande=True, items=[
+        "fr2": dict(type="liste", titre="Why overproduction?", x=860, y=250, w=400, petit=True, bande=True, items=[
             "Most Americans are poor: they cannot buy", "Europe is still recovering from the war"]),
     }),
 
@@ -137,7 +138,7 @@ SCENES = [
         "{mec.2}So they sell {!shares}shares, small pieces of the company. Whoever buys one becomes a shareholder.",
         "{mec.3}And a shareholder is rewarded in two ways. {mec.4}First way: the {!dividend}dividend, a share of the company's profits, "
         "paid out every year. {mec.5}Second way: selling the share to someone else, for more than it cost.",
-        "{-mec}{deux}Look closely at these two ways, because the whole chapter starts here. {deux.g}The dividend depends on the company: "
+        "{-mec}{deux}{deux.g}Look closely at these two ways, because the whole chapter starts here. The dividend depends on the company: "
         "if it makes profits, you are paid. {deux.d}But reselling higher does not depend on the company at all. "
         "It depends only on what the next buyer is prepared to pay. {!That is where the trouble starts}That is where the trouble starts.",
         "{-deux}{rca}An example, which the course itself says comes from outside the course: Radio Corporation of America, RCA, "
@@ -152,8 +153,8 @@ SCENES = [
                      etape="The Stock Exchange is the facility; the people who work there are traders.", x=170, y=200, w=940),
         "mec": dict(type="liste", titre="How a stock market works", cles=["shares", "dividend", "resell"], items=[
             "Large companies need investors", "They sell shares: the buyer becomes a shareholder",
-            "Two rewards for a shareholder:", "1. the dividend: a share of profits, paid every year",
-            "2. selling the share to someone else for more than it cost"], x=170, y=110, w=940),
+            "Two rewards for a shareholder:", "Reward one: the dividend, a share of profits paid every year",
+            "Reward two: selling the share to someone else for more than it cost"], x=170, y=110, w=940),
         "deux": dict(type="cols", g="The dividend", gq="depends on the company: its profits", d="Reselling higher",
                      dq="depends only on the next buyer: the trouble starts here", vs="≠"),
         "rca": dict(type="note", terme="Example · RCA (outside the course)", cles=["no dividend", "several times"],
@@ -166,7 +167,7 @@ SCENES = [
          retenir="Republican policy (Harding, Coolidge, Hoover): low taxes, trusts, tariffs; plus credit and marketing, and vast resources. A boom that felt permanent: 8 → 23 million cars, 1920–1929.",
          beats=[
         "{mt}Second idea. The {!Roaring Twenties}Roaring Twenties: growth, optimism and affluence… built on Republican policy.",
-        "{rep}Three Republican presidents in a row: Harding, Coolidge, then Hoover. Their policy has three pillars. "
+        "Three Republican presidents in a row: Harding, Coolidge, then Hoover. {rep}Their policy has three pillars. "
         "{rep.1}One: they keep taxation low. "
         "{rep.2}Two: they allow the development of {!trusts}trusts, giant combinations of companies. "
         "{rep.3}Three: they protect American industry with tariffs, taxes on imported goods.",
@@ -203,7 +204,7 @@ SCENES = [
         "For the first time, they enter ordinary homes. Consumer goods are mass-produced, and massively available.",
         "{-bien}{fordt}The main example: the Ford Model T. By nineteen twenty-five, its price has fallen to roughly "
         "{!two hundred and sixty dollars}two hundred and sixty dollars. Within reach of a middle-class family.",
-        "{-fordt}{trust}But mass production has a second face. Industries concentrate into {!trusts}trusts and monopolies. "
+        "But mass production has a second face. {-fordt}{trust}Industries concentrate into {!trusts}trusts and monopolies. "
         "The course gives two famous models. {trust.1}Rockefeller's Standard Oil controlled everything in oil, from the well to the pump. "
         "{trust.2}And Carnegie did the same for steel. Careful with the dates, though. Both are older than the twenties: "
         "Standard Oil was broken up in nineteen eleven, and Carnegie's company became United States Steel in nineteen-oh-one. "
@@ -211,7 +212,7 @@ SCENES = [
         "{trust.4}And that is the trap. Giant firms, rising sales, rising profits: the boom looks much more secure than it really is. "
         "That false sense of security is exactly what feeds the next idea: speculation.",
     ], vis={
-        "chn": dict(type="tableau", img="h1-assembly", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .55, .5],
+        "chn": dict(type="tableau", img="h1-assembly", de=[1.0, .5, .5], a=[1.2, .55, .5],
                     legende="Ford assembly line, Highland Park, Michigan, 1913 (Wikimedia Commons, public domain)"),
         "bien": dict(type="liste", titre="Consumer goods enter ordinary homes", items=[
             "Cars", "Radios", "Vacuum cleaners", "Refrigerators", "Washing machines"], x=170, y=110, w=940),
@@ -227,7 +228,7 @@ SCENES = [
          beats=[
         "{def4}Fourth idea, the heart of the episode. {!Speculation}Speculation. What does it mean, to speculate? "
         "It means treating the stock market as an easy way to get richer, fast. You buy a share not for the dividend… but to resell it higher.",
-        "{-def4}{bul}It is a new trend in the nineteen twenties, and it spreads fast. Watch the Dow Jones, the index of the big American shares. "
+        "It is a new trend in the nineteen twenties, and it spreads fast. {-def4}{bul}Watch the Dow Jones, the index of the big American shares. "
         "{bul.1}In nineteen twenty-four, it stands at about one hundred. Shares are still bought for their dividends. "
         "{bul.2}Then prices rise faster than profits. Between nineteen twenty-four and nineteen twenty-nine, the market {!triples}triples in five years.",
         "{bul.3}By nineteen twenty-nine, about ten per cent of American households own shares, and demand for shares is at an all-time high. "
@@ -250,7 +251,7 @@ SCENES = [
                             lx="year", ly="index"),
                     el=[dict(type="point", x=1924, y=100, c="el", lbl="1924: ≈ 100", lp=[1924.2, 130]),
                         dict(type="courbe", pts=DOW_MONTEE, c="sa", dur=3.0),
-                        dict(type="point", x=1929.67, y=381, c="ca", lbl="Sept. 1929: 381", lp=[1927.4, 405])]),
+                        dict(type="point", x=1929.67, y=381, c="ca", lbl="Sept. 1929: 381", lp=[1928.6, 405])]),
         "cred": dict(type="liste", titre="Buying on credit: a circle", items=["Borrow", "Buy shares", "Resell higher", "Repay, keep the profit"],
                      x=170, y=130, w=940),
         "marg": dict(type="formule", titre="Buying on margin: the course's example", lignes=[
@@ -266,7 +267,7 @@ SCENES = [
          retenir="Before the Crash, farming, coal, textiles and construction were in trouble: overproduction, because most Americans were poor and Europe was still recovering. Farm prices had fallen since 1920.",
          beats=[
         "{g2}Fifth idea, and it is the one students forget. {!Meanwhile}Meanwhile, the real economy had already started its downturn.",
-        "{sec}The slides make the point in one diagram. Before the Crash, several sectors are already in trouble. "
+        "The slides make the point in one diagram. {sec}Before the Crash, several sectors are already in trouble. "
         "{sec.1}Farming. {sec.2}Coal. {sec.3}Textiles, and the other traditional trades. {sec.4}And the construction industry.",
         "{-sec}{-g2}{para0}Why? Because consumer goods are massively available… more than the market can absorb. "
         "That is overproduction, and overproduction leads to recession. {-para0}{surp}{surp.g}Two facts explain it. "
@@ -279,8 +280,8 @@ SCENES = [
         "{para.d}on an economy that is already shrinking. Share prices and the real economy have separated. Sooner or later, they must meet again.",
     ], vis={
         "g2": dict(type="globe", code="H1", sc=[2], dt=1.5),
-        "sec": dict(type="liste", titre="Already in trouble before the Crash", x=60, y=130, w=600, petit=True, bande=True, items=[
-            "Farming", "Coal", "Textiles and other traditional trades", "Construction"]),
+        "sec": dict(type="liste", titre="Already in trouble before the Crash", x=860, y=250, w=400, petit=True, bande=True, items=[
+            "Farming", "Coal", "Textiles, traditional trades", "Construction"]),
         "para0": dict(type="mot", t="Overproduction", g="more goods than the market can absorb → recession", y=260, taille=96),
         "surp": dict(type="cols", g="Most Americans are poor", gq="they cannot buy what the factories produce", d="Europe is recovering",
                      dq="from the First World War: it cannot buy either", vs="+", repere="→ overproduction and recession"),
@@ -325,9 +326,9 @@ SCENES = [
                      etape="That is what a panic is.", x=170, y=200, w=940),
         "chute": dict(type="graphe", titre="The collapse · Dow Jones index, 1929–1932", x=300, y=110, w=680, h=520,
                       ax=dict(x=[1929.4, 1932.8], y=[0, 420], gx=[1930, 1931, 1932], gy=[100, 200, 300, 400], lx="year", ly="index"),
-                      el=[dict(type="point", x=1929.67, y=381, c="sa", lbl="Sept. 1929: 381", lp=[1929.9, 405]),
+                      el=[dict(type="point", x=1929.67, y=381, c="sa", lbl="Sept. 1929: 381", lp=[1930.1, 395]),
                           dict(type="courbe", pts=DOW_CHUTE, c="ca", dur=3.0),
-                          dict(type="point", x=1932.5, y=41, c="ca", lbl="July 1932: 41 (−89%)", lp=[1931.3, 95])]),
+                          dict(type="point", x=1932.5, y=41, c="ca", lbl="July 1932: 41 (−89%)", lp=[1931.4, 5])]),
         "def6": dict(type="def", terme="Key term · the Great Crash (1929)", cles=["late October 1929", "not"],
                      t="The collapse of American share prices in late October 1929.",
                      etape="Not the same as the Depression that followed: a few days, against ten years.", x=170, y=200, w=940),
@@ -343,7 +344,7 @@ SCENES = [
         "{fac.4}The real economy already in decline. {fac.5}And the panic. The word assess means: do not list them. {!Rank them}Rank them.",
         "{-fac}{pa1}",
         ("P", 3.0),
-        "{-pa1}{intro1}Here is one way to do it. Start the introduction with three moves. {intro1.1}Define the Crash precisely: "
+        "Here is one way to do it. {-pa1}{intro1}Start the introduction with three moves. {intro1.1}Define the Crash precisely: "
         "the collapse of American share prices in late October nineteen twenty-nine, distinct from the Depression that followed. "
         "{intro1.2}State the problem: the factors are not independent, they reinforce each other. So the question is: which one do the others depend on? "
         "{intro1.3}And announce a hierarchy, not a list.",
@@ -368,9 +369,9 @@ SCENES = [
             "Define the Crash: late October 1929 — not the Depression", "The problem: the factors reinforce each other",
             "Announce a hierarchy, not a list"], x=170, y=140, w=940),
         "arg": dict(type="liste", titre="A model plan, with evidence", cles=["trigger", "catastrophic", "amplifiers"], items=[
-            "I. Speculation, the trigger: ×3 in five years, 90% lent · limit: explains the suddenness, not the depth",
-            "II. Structural weaknesses made it catastrophic: overproduction, poor majority, Europe, farms since 1920",
-            "III. Panic and Republican policy: amplifiers and conditions, not the origin"], x=150, y=130, w=980),
+            "Speculation, the trigger: ×3 in five years, 90% lent · limit: explains the suddenness, not the depth",
+            "Structural weaknesses made it catastrophic: overproduction, poor majority, Europe, farms since 1920",
+            "Panic and Republican policy: amplifiers and conditions, not the origin"], x=150, y=130, w=980),
         "ccl": dict(type="note", terme="Conclusion", cles=["triggered", "determined"],
                     t="Speculation triggered the Crash; structural overproduction and inequality determined that it would not correct itself.",
                     etape="Assess = rank the factors, not list them.", x=170, y=200, w=940),

@@ -59,7 +59,7 @@ SCENES = [
         "or open them, and try to rebuild the world market together?",
         "{-q1}{q2}And why did the same crisis produce a New Deal in America, "
         "a Front populaire in France… and Hitler in Germany?",
-        "{-q2}{-g0}{plan}This is episode three of our series on chapter one. {plan.1}Episode one was the Great Crash, "
+        "{-q2}This is episode three of our series on chapter one. {-g0}{plan}{plan.1}Episode one was the Great Crash, "
         "{plan.2}episode two how an American crash became a world crisis. {plan.3}Today: economic nationalism, and the political "
         "answers to the crisis. {plan.4}Next time, the democracies and the liberal order. {plan.5}Then the exam, essay and DBQ, "
         "{plan.6}and a final recap.",
@@ -111,14 +111,13 @@ SCENES = [
         "{g2.5}And France. On the sixth of February, nineteen thirty-four, far-right leagues riot in Paris. Fear of fascism unites the left. "
         "In nineteen thirty-six, the Front populaire wins the elections, under Léon Blum.",
         "{-g2}{dates}Here are the dates to copy. Pause the video if you need to.",
-        ("P", 5.0),
+        ("P", 10.0),
     ], vis={
         "g2": dict(type="globe", code="H1", sc=[20, 21, 22, 23, 24]),
-        "dates": dict(type="liste", titre="The dates to know", petit=True, items=[
-            "17 June 1930 · Smoot–Hawley (Canada had hit back in May)", "1931 · French quotas · 18 Sept.: Manchuria",
-            "1932 · Import Duties Act · Ottawa · Stimson note", "Jan. 1933 · Hitler chancellor",
-            "1933 · the hundred days · off gold · USSR recognised (Nov.)", "1934 · 6 February riots · Reciprocal Trade Agreements Act",
-            "1935 · Second New Deal", "June 1936 · Front populaire, Matignon"], x=170, y=90, w=940),
+        "dates": dict(type="liste", titre="The dates to know", items=[
+            "17 June 1930 · Smoot–Hawley (Canada: May 1930)", "1931 · French quotas · 18 Sept.: Manchuria",
+            "1932 · Import Duties Act · Ottawa · Stimson note", "1933 · Hitler (Jan.) · hundred days · off gold · USSR",
+            "1934 · 6 February riots · RTAA · 1935: Second New Deal", "June 1936 · Front populaire, Matignon"], x=130, y=90, w=1020),
     }),
 
     # ================================================================ II.1, idée 1 : l'internationalisme indépendant
@@ -138,7 +137,7 @@ SCENES = [
         "{-ex1}{surv}After the Crash, the priority becomes {!domestic survival}domestic survival. The United States cuts off most of its "
         "international commitments, and keeps only a minimum of trade.",
     ], vis={
-        "q3": dict(type="question", t="II.1 · Economic nationalism"),
+        "q3": dict(type="mot", t="Economic nationalism", g="Part II.1 of the course", y=260, taille=90),
         "def1": dict(type="def", cles=["engaged", "absent"], terme="Independent internationalism (Hoover, 1920s)",
                      t="Fully engaged in the world economy, deliberately absent from its political institutions.",
                      etape="Not isolationism: trade and investment, yes; alliances and the League, no.", x=170, y=200, w=940),
@@ -165,7 +164,7 @@ SCENES = [
         "{fiche.4}Who opposed it? One thousand and twenty-eight economists signed a petition, begging Hoover to veto it. "
         "Henry Ford called it an economic stupidity. And the banker Thomas Lamont said he almost went down on his knees to stop it. "
         "{fiche.5}Its aims? Protect farms and industry. Support jobs. Raise customs revenue. In short, a bet on the home market. "
-        "{fiche.6}And its consequences? We come to them in a moment.",
+        "And its consequences? We come to them in a moment.",
         "{-fiche}{ex2}Hoover signed anyway, under pressure from his party and from business. "
         "{ex2.1}The example to quote: twenty-three countries had lodged formal protests before the bill was even law. "
         "{ex2.2}And two years later, in the election of nineteen thirty-two, Smoot and Hawley both lost their seats. "
@@ -173,13 +172,12 @@ SCENES = [
     ], vis={
         "mot1": dict(type="mot", t="20,000 goods", g="Smoot–Hawley Tariff Act · signed 17 June 1930", y=250, taille=100),
         "fiche": dict(type="liste", titre="Fact file · the Smoot–Hawley Tariff (June 1930)",
-                      cles=["20,000", "nationalism", "Republicans", "1,028", "home market", "consequences"], items=[
+                      cles=["20,000", "nationalism", "Republicans", "1,028", "home market"], items=[
             "What? Duties on 20,000+ goods, the 2nd-highest level in US history",
             "Ideology: economic nationalism, shut out foreign competition",
             "Promoted by Smoot and Hawley (Republicans), from a 1928 promise to farmers",
             "Opposed by 1,028 economists, Henry Ford (“an economic stupidity”), Thomas Lamont",
-            "Aims: protect farms and industry, jobs, customs revenue",
-            "Consequences: see the next idea…"], x=130, y=100, w=1020),
+            "Aims: protect farms and industry, jobs, customs revenue"], x=130, y=100, w=1020),
         "ex2": dict(type="liste", titre="A law that failed before it began", cles=["protests", "lost"], items=[
             "23 countries protest before the vote", "1932: Smoot and Hawley both lose their seats"], x=170, y=170, w=940),
     }),
@@ -230,7 +228,7 @@ SCENES = [
          beats=[
         "{photo}Idea four. The fourth of March, nineteen thirty-three. In the same car, on the way to the Capitol, sit two men. "
         "The outgoing president, Herbert Hoover. And the new one, Franklin Roosevelt. Two men, two policies.",
-        "{-photo}{rev}The slides pair Smoot–Hawley with a second box: off the gold standard. {rev.1}In nineteen thirty-three, "
+        "The slides pair Smoot–Hawley with a second box: off the gold standard. {-photo}{rev}{rev.1}In nineteen thirty-three, "
         "Roosevelt takes the United States off gold. The dollar is free to fall, and prices to rise. "
         "{rev.2}In nineteen thirty-four comes the {!Reciprocal Tariff Agreement Act}Reciprocal Tariff Agreement Act, as the course calls it. "
         "Its official name is the Reciprocal Trade Agreements Act. It lets him negotiate tariff cuts, country by country. "
@@ -258,7 +256,7 @@ SCENES = [
         "One tip. Measure effective against the Act's own aims: protecting American farmers and industry. "
         "Find three arguments, then pause.",
         "{-ex3}{pa1}",
-        ("P", 2.0),
+        ("P", 4.0),
         "{-pa1}{rep1}Here is a model plan. {rep1.1}First: it failed even on its own terms. Farm prices kept falling. Unemployment kept rising. "
         "And Smoot and Hawley lost their seats in nineteen thirty-two. This failure was predicted, not discovered: "
         "remember the one thousand and twenty-eight economists, and the twenty-three countries. "
@@ -303,7 +301,7 @@ SCENES = [
         "{-soc}{-arb}{masch}Melita Maschmann was a teenager at the time. She remembered adults talking of six million unemployed… "
         "and blaming the reparations, not the world crisis.",
     ], vis={
-        "q4": dict(type="question", t="II.2 · Political responses to the crisis"),
+        "q4": dict(type="mot", t="Political responses", g="Part II.2 of the course · responses to the crisis", y=260, taille=90),
         "cause": dict(type="liste", titre="Why Germany broke", cles=["credit", "forty", "reparations"], items=[
             "Industry dependent on American credit: the loans recalled", "Manufacturing −40%, prices collapse",
             "Reparations and repayments: no way to borrow or spend"], x=170, y=140, w=940),
@@ -324,10 +322,10 @@ SCENES = [
     dict(id="nazis", chap="II.2 · Never a majority, but let in", fond="guerre", humeur="tension",
          retenir="The Nazi vote followed unemployment: 2.6% (1928), 18.3% (1930), 37.3% (July 1932), 33.1% (Nov. 1932). Never a majority: Hitler appointed in January 1933 by conservatives, out of fear of communism. The crisis created the audience; a calculation opened the door.",
          beats=[
-        "{nsdap}Idea two. The Nazi party, the NSDAP, fed on this discontent. {nsdap.1}It blamed the weakness of the young Weimar Republic. "
+        "{m_ns}Idea two. The Nazi party, the NSDAP, fed on this discontent. {-m_ns}{nsdap}{nsdap.1}It blamed the weakness of the young Weimar Republic. "
         "{nsdap.2}It offered simple solutions to complex problems. {nsdap.3}And it spoke straight to the unemployed, even to communist workers. "
         "A slogan of nineteen thirty-three promised: work, freedom, bread.",
-        "{-nsdap}Melita Maschmann again, in her memoir:",
+        "{-nsdap}{m_masch}Melita Maschmann again, in her memoir:{-m_masch}",
         ("C", "The Nazis promised to end unemployment and poverty, and I believed them.", "c_masch"),
         "{-c_masch}{gv}Now watch two curves on the same chart. {gv.1}Unemployment. {gv.2}And the Nazi vote. "
         "Two point six per cent in nineteen twenty-eight. Eighteen point three in nineteen thirty. "
@@ -340,15 +338,17 @@ SCENES = [
         "{-porte}{dist}This is a very useful distinction for an essay. {dist.g}The crisis created the audience. "
         "{dist.d}But a political calculation opened the door.",
     ], vis={
+        "m_ns": dict(type="mot", t="The NSDAP", g="the Nazi party feeds on the discontent", y=260, taille=96),
         "nsdap": dict(type="liste", titre="How the NSDAP used the crisis", cles=["Weimar", "simple", "unemployed"], items=[
             "It blamed the weakness of the Weimar Republic", "Simple solutions to complex problems",
             "It spoke to the unemployed, even communists: “Work! Freedom! Bread!” (1933)"], x=170, y=140, w=940),
+        "m_masch": dict(type="mot", t="Melita Maschmann", g="a teenager in the 1930s · memoir, 1963", y=260, taille=80),
         "c_masch": dict(type="cit", a="Melita Maschmann", o="memoir, 1963 (Worksheet 3, Source 5)", x=200, y=230, w=880),
         "gv": dict(type="graphe", titre="Unemployment (insured workers) and the Nazi vote, % (course)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1927.6, 1933.4], y=[0, 50], gx=[1928, 1929, 1930, 1931, 1932, 1933], gy=[10, 20, 30, 40, 50], lx="", ly="%"),
                    el=[dict(type="courbe", pts=[list(p) for p in CHOMAGE], c="sa", lbl="unemployment", lp=[1929.0, 22], dur=1.8),
-                       dict(type="courbe", pts=[list(p) for p in VOTE[:3]], c="ca", lbl="Nazi vote", lp=[1931.0, 14], dur=1.8),
-                       dict(type="courbe", pts=[list(p) for p in VOTE[2:]], c="ca", lbl="Nov. 1932: 33.1%", lp=[1932.0, 27], dur=.8)]),
+                       dict(type="courbe", pts=[list(p) for p in VOTE[:3]], c="ca", lbl="Nazi vote", lp=[1930.6, 7], dur=1.8),
+                       dict(type="courbe", pts=[list(p) for p in VOTE[2:]], c="ca", lbl="Nov. 1932: 33.1%", lp=[1932.6, 18], dur=.8)]),
         "maj": dict(type="mot", t="Never a majority", g="the Nazi vote never passed 50%", y=260, taille=96),
         "porte": dict(type="liste", titre="Let in, not elected", cles=["fear of communism", "conservatives"], items=[
             "The fear of communism: middle class and centre parties side with the Nazis",
@@ -374,10 +374,10 @@ SCENES = [
     ], vis={
         "buts": dict(type="liste", titre="Three goals", cles=["stability", "unemployment", "autarky"], items=[
             "Economic stability", "An end to unemployment", "Autarky"], x=170, y=160, w=940),
-        "moy": dict(type="liste", titre="The means (course order)", petit=True, cles=["banned", "Tariffs", "Autobahn", "Rearmament", "privatisation", "crime"], items=[
+        "moy": dict(type="liste", titre="The means (course order)", cles=["banned", "Tariffs", "Autobahn", "Rearmament", "Privatisations", "Crime"], items=[
             "Unions banned · wages frozen · longer hours", "Tariffs on imports",
-            "Public works, as under Weimar: schools, hospitals, the Autobahn", "Rearmament, despite Versailles",
-            "Privatisations: Deutsche Bank, railways, shipyards", "Crime: plunder of conquered nations, Jewish property seized"], x=130, y=100, w=1020),
+            "Public works, as under Weimar: the Autobahn", "Rearmament, despite Versailles",
+            "Privatisations: Deutsche Bank, railways, shipyards", "Crime: plunder abroad, Jewish property seized"], x=130, y=80, w=1020),
         "six": dict(type="mot", t="6 million → under 1 million", g="registered unemployment in Germany, 1933 → 1937", y=250, taille=80),
         "lec": dict(type="note", terme="Read the list together", cles=["war", "theft"],
                     t="A regime that solved unemployment by preparing for war, and paid for it with theft.",
@@ -391,7 +391,7 @@ SCENES = [
         "{def3}Idea four: {!militarism}militarism. It spreads to three regimes at once: Hitler's, Mussolini's, and the Japanese government. "
         "What is it? The belief that a government should maintain a strong military force… and be prepared to use it aggressively, "
         "to defend or promote national interests.",
-        "{-def3}{dims}It has three dimensions, and an essay should name all three. {dims.1}The building up of armed forces: a budget choice. "
+        "It has three dimensions, and an essay should name all three. {-def3}{dims}{dims.1}The building up of armed forces: a budget choice. "
         "{dims.2}Control of the government by the military: a constitutional choice. "
         "{dims.3}And an aggressive foreign policy: the one that ends in war.",
         "{-dims}{g3}{g3.1}Japan shows the second dimension most clearly. In September nineteen thirty-one, the Kwantung Army acted in Manchuria first. "
@@ -412,9 +412,9 @@ SCENES = [
     dict(id="newdeal", chap="II.2 · The New Deal", fond="aube", humeur="lumiere",
          retenir="Roosevelt, Democrat, elected 1932: the New Deal, Relief, Recovery, Reform. First New Deal (1933–35): the hundred days, CCC, TVA, deposits insured. Second New Deal (1935): Social Security Act, WPA. Public money for bridges and rights, not an army.",
          beats=[
-        "{rrr}Idea five. The United States chose the opposite road. Hoover's protectionism had proved ineffective. "
-        "Roosevelt, a Democrat, was elected in nineteen thirty-two. He promoted a {!New Deal}New Deal, and a welfare state: "
-        "expansionary economics. In three words: {rrr.1}Relief, for the destitute. {rrr.2}Recovery, for the economy. "
+        "{m_nd}Idea five. The United States chose the opposite road. Hoover's protectionism had proved ineffective. "
+        "Roosevelt, a Democrat, was elected in nineteen thirty-two. He promoted a New Deal, and a welfare state: "
+        "expansionary economics. {-m_nd}{rrr}In three words: {rrr.1}Relief, for the destitute. {rrr.2}Recovery, for the economy. "
         "{rrr.3}Reform, of the system that had failed.",
         "{-rrr}{hd}It came in two stages. The First New Deal runs from nineteen thirty-three to thirty-five. "
         "It opens with the emergency laws of the first hundred days. {-hd}{c_fdr}Their aim, as the course sums it up: "
@@ -429,11 +429,12 @@ SCENES = [
         "{-fr1}{cmp2}{cmp2.g}And now, the point of the comparison. Both states spent public money against unemployment. "
         "{cmp2.d}But one built bridges and social insurance… The other built an army.",
     ], vis={
+        "m_nd": dict(type="mot", t="The New Deal", g="Roosevelt, Democrat, elected 1932 · a welfare state, expansionary economics", y=250, taille=96),
         "rrr": dict(type="liste", titre="The New Deal: three words", cles=["Relief", "Recovery", "Reform"], items=[
             "Relief · for the destitute", "Recovery · for the economy", "Reform · of the system that failed"], x=170, y=160, w=940),
         "fr1": dict(type="frise", items=[
-            dict(nom="Elected", d=1932, q="Roosevelt, a Democrat"), dict(nom="Hundred days", d=1933, q="CCC · TVA · deposits insured"),
-            dict(nom="Second New Deal", d=1935, q="Social Security Act · WPA"), dict(nom="Golden Gate", d=1937, q="built 1933–37 (local project)")]),
+            dict(nom="FDR elected", d=1932), dict(nom="Hundred days", d=1933, q="CCC · TVA · deposits insured"),
+            dict(nom="Second New Deal", d=1935), dict(nom="Golden Gate", d=1937, q="built 1933–37 (local project)")]),
         "hd": dict(type="mot", t="The hundred days", g="First New Deal · 1933 – 1935 · emergency laws", y=260, taille=90),
         "c_fdr": dict(type="note", terme="The aim of the New Deal (course)", cles=["millions", "chance"],
                       t="Help the millions who never had a chance: men on starvation wages, women in sweatshops, children at looms.",
@@ -446,8 +447,8 @@ SCENES = [
     dict(id="diplo", chap="II.2 · New Deal diplomacy", fond="aube", humeur="calme",
          retenir="New Deal diplomacy: the RTAA (1934) to liberalise trade; the USSR recognised (Nov. 1933); the “Good Neighbor” policy in Latin America. Trade and new partners, but no alliance.",
          beats=[
-        "{dip}Idea six. The New Deal also had a foreign policy, and it ran against economic nationalism. "
-        "{dip.1}First, the trade agreements act of nineteen thirty-four, which you already know: trade deals, country by country. "
+        "{m_dip}Idea six. The New Deal also had a foreign policy, and it ran against economic nationalism. "
+        "{-m_dip}{dip}{dip.1}First, the trade agreements act of nineteen thirty-four, which you already know: trade deals, country by country. "
         "Its limit? The fascist leaders turned them down.",
         "{dip.2}Second. In November nineteen thirty-three, Roosevelt recognised the Soviet Union, sixteen years after the revolution. "
         "Why? The Soviet Union might help against Japan. And trade with it might help the American economy.",
@@ -458,6 +459,7 @@ SCENES = [
         "{-dip}{bil2}So here is the picture. A president trying to reopen the world economically, {!while his Congress was closing it politically}"
         "while his Congress was closing it politically. Trade, and new partners… {bil2.1}but no alliance. That is episode four.",
     ], vis={
+        "m_dip": dict(type="mot", t="New Deal diplomacy", g="a foreign policy against economic nationalism", y=260, taille=86),
         "dip": dict(type="liste", titre="New Deal diplomacy", cles=["trade", "Soviet Union", "Good Neighbor"], items=[
             "1934 · the RTAA: liberalise trade, deal by deal", "Nov. 1933 · the USSR recognised: against Japan, for trade",
             "The “Good Neighbor” policy: interventions ended (Nicaragua Jan. 1933; Cuba and Haiti 1934)"], x=150, y=140, w=980),
@@ -513,7 +515,7 @@ SCENES = [
         "Define economic nationalism: national economic interest above international cooperation, "
         "through tariffs, quotas and currency choices. Then test the word key.",
         "{-ex4}{pa2}",
-        ("P", 2.0),
+        ("P", 4.0),
         "{-pa2}{rep2}A model plan. {rep2.1}Part one. Yes, economic nationalism corroded the international order. "
         "Smoot–Hawley, French quotas, the Import Duties Act. World trade fell by two thirds, and the world split into imperial blocs. "
         "It even made autarky and conquest look rational, to a state without an empire. That is exactly what Nazi policy claimed.",
@@ -550,7 +552,7 @@ SCENES = [
         "and the road to Munich.",
         ("P", 2.0),
     ], vis={
-        "carte": dict(type="carte", centre="ECONOMIC NATIONALISM AND POLITICAL RESPONSES", branches=[
+        "carte": dict(type="carte", centre="ECONOMIC NATIONALISM", branches=[
             dict(t="II.1 · Nationalism", items=["Smoot–Hawley, 17 June 1930", "blocs · Ottawa 1932 · −66%", "FDR: off gold, RTAA 1934"]),
             dict(t="Germany", items=["43.8% unemployed (1932)", "never a majority · Jan. 1933", "rearmament · plunder"]),
             dict(t="Militarism", items=["build-up · military rule", "aggressive foreign policy", "Germany · Italy · Japan"]),
