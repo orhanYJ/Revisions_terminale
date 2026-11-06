@@ -528,7 +528,7 @@ SCENES = [
         "carte": dict(type="carte", centre="BARBAROSSA", branches=[
             dict(t="II.1 · The plans", items=["Aug. 1939 pact · Poland shared", "economic: Grossraum, oil", "ideological · racial"]),
             dict(t="Barbarossa", items=["22 June 1941 · three thrusts", "purges · scorched earth", "Dec. 1941: Moscow holds"]),
-            dict(t="Annihilation", items=["Stalin, 6 Nov. 1941", "≈ 2.8 million POWs killed", "3/5 of the dead in the East"]),
+            dict(t="Annihilation", items=["Stalin, 6 Nov. 1941", "3.3 of 5.7 million POWs died", "3/5 of the dead in the East"]),
             dict(t="Stalingrad", items=["Order No. 227", "Nov. 1942: forces turned", "31 Jan. 1943 · total war"])]),
         "fin": dict(type="mot", t="Next: towards the genocide", g="Episode 5 · ghettos, Einsatzgruppen, killing centres", y=270, taille=72),
     }),
