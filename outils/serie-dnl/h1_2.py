@@ -8,7 +8,7 @@ Carte animée H1 (dnl/cartes/H1.html), scènes utilisées (ordre chronologique d
   17 l'effet domino en Europe · 19 l'étalon-or · 25 le Dust Bowl · 28 Migrant Mother
 Contenu : CHAPTERS.H1, section I.2 (cinq idées ; schémas h1dawes H1DawesAnim, crisis H1Chain, h1factors H1Factors)
 et section I.3 (cinq idées) ; chiffres du cours. Ce qui vient d'ailleurs est dit « outside the course ».
-Le cours dit « average wages fell by 60% » : signalé à l'oral (chiffre qui correspond plutôt à la masse salariale).
+Le cours dit « average wages fell by 60% » : corrigé à l'oral (≈ masse salariale de l'industrie, plus que divisée par deux ; salaire horaire ≈ −20 %).
 Pauses « Your turn » : un paragraphe Explain, puis un DBQ a) « How useful » sur Migrant Mother (structure imposée :
 jugement dès la première ligne, document en une phrase, atouts, limites).
 Plan de la série H1 : 1 The Great Crash of 1929 · 2 From an American crash to a world crisis ·
@@ -55,13 +55,13 @@ SCENES = [
     dict(id="chrono", chap="The crisis on the map", fond="nuit", humeur="tension",
          retenir="1924 Dawes Plan · Oct. 1929 Crash · 1930–32 bank failures, loans recalled · May–Sept. 1931 dominoes in Europe · 1931–36 leaving gold · 1935 Dust Bowl · 1936 Migrant Mother.",
          beats=[
-        "{g1}Let's follow the crisis on the map first, date by date. {g1.1}It starts before the crash, in 1924. "
-        "The Dawes Plan: the United States lends eight hundred million marks to Germany; Germany pays reparations to France and Britain; "
-        "France and Britain repay their war debts to the United States. It all rests on American credit.",
+        "{g1}Let's follow the crisis on the map first, date by date. {g1.1}It starts before the crash, in nineteen twenty-four, with the Dawes Plan. "
+        "Germany receives a loan of eight hundred million marks, largely American money. With it, Germany pays reparations to France and Britain. "
+        "And France and Britain repay their war debts to the United States. Everything rests on American credit.",
         "{g1.2}October 1929: the Crash. Black Thursday, then Black Monday and Black Tuesday. Everyone sells, nobody buys.",
         "{g1.3}From 1929 to 1933, millions of American lives are broken, with no safety net.",
         "{g1.4}Far from New York, the countries that sell raw materials are hit by falling prices. "
-        "Brazil, which lives on coffee; Chile, which lives on nitrate.",
+        "Brazil lives on coffee. Chile lives on nitrate.",
         "{g1.5}From 1930, the banks fail one after another: about five thousand by 1932. "
         "This is the moment the crash becomes the Great Depression.",
         "{g1.6}And American banks recall their loans to Europe. The money that kept the European economies afloat goes back across the Atlantic.",
@@ -151,10 +151,10 @@ SCENES = [
     dict(id="dawes", chap="I.2 · The Dawes Plan", fond="nuit", humeur="tension",
          retenir="Dawes Plan (1924): 800 million marks lent to Germany → reparations up to 2.5 billion marks a year to France and Britain → war debts repaid to the USA. Europe's solvency hung on American credit: the recall of loans broke all three sides.",
          beats=[
-        "{g4}Third idea: the Dawes Plan had tied Europe's finances to American credit. Go back to 1918. "
+        "{g4}Third idea: the Dawes Plan had tied Europe's finances to American credit. Go back to the years after the war. "
         "Germany owes reparations to France and Britain. And France and Britain owe war debts to the United States. Deadlock.",
         "{g4.1}The Dawes Plan of 1924 breaks the deadlock by putting American money at the start of the chain.",
-        "{tri}Follow the circuit. {tri.1}One: an American loan of eight hundred million marks to Germany. "
+        "{tri}Follow the circuit. {tri.1}One: a loan of eight hundred million marks to Germany, largely raised in New York. "
         "{tri.2}Two: German reparations to France and Britain, rising to two and a half billion marks a year by 1928 and 1929. "
         "{tri.3}Three: France and Britain repay their war debts to Washington. The money goes round the triangle.",
         "{-tri}{-g4}{daw}Charles G. Dawes, the banker behind the plan, shared the Nobel Peace Prize in 1925 for it, and became Vice-President "
@@ -193,9 +193,9 @@ SCENES = [
         "{-mec}{fr2}So the exit was to leave gold. {fr2.1}Britain, in September 1931. {fr2.2}Japan, in December 1931. "
         "{fr2.3}The United States, under Roosevelt, in 1933. {fr2.4}And France, only in 1936.",
         "{-fr2}{g5}{g5.1}The rule is simple: the earlier a country left, the earlier it recovered. France, last out, recovered last.",
-        "{-g5}{ex2}The example compares two neighbours. {ex2.1}Germany's output recovered strongly after 1932, once monetary constraint "
-        "gave way to state spending. {ex2.2}France, which defended the gold value of the franc until 1936, was the worst-performing "
-        "developed economy of the decade.",
+        "{-g5}{ex2}The example compares two neighbours. {ex2.1}Germany's output recovered strongly after nineteen thirty-two, "
+        "when state spending replaced tight money. {ex2.2}France defended the gold value of the franc until nineteen thirty-six. "
+        "It was the worst-performing developed economy of the decade.",
     ], vis={
         "def1": dict(type="def", terme="The gold standard", cles=["fixed", "gold"],
                      t="Most countries fixed the value of their currency to gold.",
@@ -267,8 +267,8 @@ SCENES = [
         "{-pa1}{rep1}Here is a model plan, in three reasons. {rep1.1}First, because the banks failed, carrying the crash into the real economy: "
         "about five thousand by 1932, with no deposit insurance. {rep1.2}Second, because Europe depended on American credit: "
         "the Dawes circuit broke when the loans were recalled, and the dominoes fell from Vienna to London in 1931. "
-        "{rep1.3}Third, because the gold standard forced every country to raise its interest rates, and falling prices ruined "
-        "the exporters of raw materials, like Brazil and Chile.",
+        "{rep1.3}Third, because of gold and falling prices. The gold standard forced every country to raise its interest rates. "
+        "And falling prices ruined the exporters of raw materials, like Brazil and Chile.",
     ], vis={
         "wk": dict(type="note", terme="Worksheet · weighing the causes", cles=["decisive", "contributing", "minor"],
                    t="Nine factors. For each one: decisive, contributing or minor? Then test it against the argument and its limit.",
@@ -297,9 +297,9 @@ SCENES = [
         "{-pain}{gr}{gr.1}First, unemployment in the United States. Three per cent in 1929. Twenty-five per cent in 1933. "
         "One worker in four: fourteen million Americans.",
         "{-gr}{chi}And the other figures of the course. {chi.1}Industrial and farm production fell by forty per cent. "
-        "{chi.2}Average wages, says the course, fell by sixty per cent. Be careful: outside the course, "
-        "this figure usually describes the total paid in wages, cut by lay-offs and short hours; "
-        "the pay of a worker who kept his job fell much less. {chi.3}Five thousand banks had gone bankrupt. "
+        "{chi.2}Wages, says the course, fell by sixty per cent. Careful with that figure. Outside the course: "
+        "it is close to the fall in the total wage bill of industry, which more than halved because of lay-offs and short hours. "
+        "The hourly pay of a worker who kept his job fell much less: by about a fifth. {chi.3}Five thousand banks had gone bankrupt. "
         "{chi.4}Farm prices had plummeted, because of overproduction, drought and the Dust Bowl. "
         "{chi.5}And American exports broke down, as trading partners closed their markets.",
         "{-chi}{fil}But the worst is this. {fil.1}There was no federal unemployment insurance. {fil.2}No social security. "
@@ -314,7 +314,7 @@ SCENES = [
                    el=[dict(type="droite", pts=[[1929, 3], [1933, 25]], c="ca", tir=True, dur=1.6),
                        dict(type="points", pts=[[1929, 3], [1933, 25]], c="sa", lbl="3% → 25% · 14 million", lp=[1930.6, 22])]),
         "chi": dict(type="liste", titre="The United States, 1929 – 1933 (course)", items=[
-            "Industrial and farm production: −40%", "Average wages: −60% (course figure — see the note)", "5,000 banks bankrupt",
+            "Industrial and farm production: −40%", "Wages: −60% (course) — the total wage bill; hourly pay ≈ −20%", "5,000 banks bankrupt",
             "Farm prices collapse: overproduction, drought, Dust Bowl", "Exports break down: markets closed"], x=150, y=110, w=980),
         "fil": dict(type="liste", titre="No safety net", items=[
             "No federal unemployment insurance", "No social security", "No public pension (first federal one: 1935)",
@@ -324,7 +324,7 @@ SCENES = [
 
     # ================================================================ I.3 idée 2 : Hoovervilles
     dict(id="hoover", chap="I.3 · Hoovervilles", fond="guerre", humeur="mystere",
-         retenir="Hoovervilles: shanty towns of scrap wood, stone and metal built by evicted people, often in the heart of big cities, named after President Hoover — a political verdict. Largest in St Louis; one in Central Park; Al Capone's soup kitchen in Chicago (1931).",
+         retenir="Hoovervilles: shanty towns of scrap wood, stone and metal built by evicted people, often in the heart of big cities, named after President Hoover — a political verdict. Largest in St Louis; one in Central Park; Al Capone's soup kitchen in Chicago (winter 1930–31).",
          beats=[
         "{hv}Second idea: the Hoovervilles made poverty visible, in the middle of American cities. "
         "People evicted from their homes built shanty towns out of scrap wood, stone and metal, on waste ground, "
@@ -333,7 +333,7 @@ SCENES = [
         "So the name itself is a political verdict.",
         "{-nom}{g7}{g7.1}The largest Hooverville was in St Louis. Another one occupied part of Central Park, in New York: "
         "poverty in the centre of the wealthiest country in the world.",
-        "{-g7}{capf}{cap}And a strange detail of the course. In Chicago, in 1931, the gangster {!Al Capone}Al Capone opened a soup kitchen. "
+        "{-g7}{capf}{cap}And a strange detail of the course. In Chicago, in the winter of nineteen thirty to thirty-one, the gangster {!Al Capone}Al Capone ran a soup kitchen. "
         "Charity… but also a bid for public sympathy, from a man under federal investigation.",
         "{-cap}{-capf}{or1}The Hoovervilles are the first oral topic of the course. Prepare four questions. "
         "{or1.1}What? {or1.2}Where? {or1.3}Who? {or1.4}And when? The answers are on the screen.",
@@ -346,8 +346,8 @@ SCENES = [
         "g7": dict(type="globe", code="H1", sc=[11]),
         "capf": dict(type="tableau", img="h1-soupkitchen", fond=True, sombre=True, de=[1.0, .3, .3], a=[1.2, .35, .3],
                      legende="The soup kitchen opened by Al Capone, Chicago, February 1931 (US National Archives, public domain)"),
-        "cap": dict(type="note", terme="Chicago, 1931", cles=["soup kitchen", "sympathy"],
-                    t="Al Capone opens a soup kitchen: charity, and a bid for public sympathy from a gangster under federal investigation.",
+        "cap": dict(type="note", terme="Chicago, winter 1930 – 1931", cles=["soup kitchen", "sympathy"],
+                    t="Al Capone runs a soup kitchen: charity, and a bid for public sympathy from a gangster under federal investigation.",
                     etape="An example from the course", x=170, y=200, w=940),
         "or1": dict(type="liste", titre="Oral topic · the Hoovervilles", items=[
             "What: shanty towns of scrap wood, stone and metal", "Where: waste ground in big cities — St Louis, Central Park",
@@ -356,12 +356,12 @@ SCENES = [
 
     # ================================================================ I.3 idée 3 : Lange et la photographie
     dict(id="lange", chap="I.3 · Photography as an argument", fond="nuit", humeur="calme",
-         retenir="The federal state documented poverty: Dorothea Lange (1895–1965), White Angel Breadline (1933), then Migrant Mother (March 1936, Nipomo, California) for a federal agency. A composed image (five exposures), made to win support for relief.",
+         retenir="The federal state documented poverty: Dorothea Lange (1895–1965), White Angel Breadline (1933), then Migrant Mother (March 1936, Nipomo, California) for a federal agency. A composed image (a series of exposures, closer and closer), made to win support for relief.",
          beats=[
         "{etat}Third idea, and a surprising one: the federal state itself documented poverty, and turned photography into an argument for reform.",
         "{-etat}{dl}The photographer is {!Dorothea Lange}Dorothea Lange, from 1895 to 1965. {dl.1}In 1933 she photographs the "
-        "White Angel soup kitchen in San Francisco. {dl.2}Then she works for the Farm Security Administration, a federal agency, "
-        "and photographs the migrant farm workers of California.",
+        "White Angel soup kitchen in San Francisco. {dl.2}Then she works for a federal agency, the Resettlement Administration, "
+        "which later became the Farm Security Administration. She photographs the migrant farm workers of California.",
         "{-dl}{mm}In March 1936, at a pea-pickers' camp in Nipomo, California, she photographs {!Florence Owens Thompson}Florence Owens Thompson, "
         "thirty-two years old, living in a tent with her seven children. This is Migrant Mother.",
         "Look at the composition. The mother's gaze goes out of the frame. The children turn their faces away.",
@@ -371,13 +371,13 @@ SCENES = [
         ("C", "working closer and closer from the same direction", "c_proche"),
         "{-c_proche}She learned that the family had been living on frozen vegetables from the field and on birds the children caught. "
         "The pea crop had frozen, and there was no work. And they could not move on: the mother had sold the tyres of the car to buy food.",
-        "{-rec}{cmp}So what is this photograph? {cmp.1}It is composed, not accidental: five exposures, closer and closer. "
+        "{-rec}{cmp}So what is this photograph? {cmp.1}It is composed, not accidental: a series of exposures, closer and closer. "
         "{cmp.2}And it was made with a purpose: to win public support for relief programmes. "
         "{cmp.3}Published at once, the image helped bring federal relief to the camp.",
     ], vis={
         "etat": dict(type="question", t="Why would a state photograph its own poverty?"),
         "dl": dict(type="liste", titre="Dorothea Lange (1895 – 1965)", items=[
-            "1933: the White Angel soup kitchen, San Francisco", "For a federal agency, the Farm Security Administration: migrant workers in California"],
+            "1933: the White Angel soup kitchen, San Francisco", "For a federal agency, the Resettlement Administration (later the FSA): migrant workers in California"],
             x=170, y=160, w=940),
         "mm": dict(type="tableau", img="h1-lange-migrant", de=[1.0, .5, .3], a=[1.12, .5, .28],
                    legende="Dorothea Lange, Migrant Mother, Nipomo, California, March 1936 (Library of Congress, public domain)"),
@@ -386,7 +386,7 @@ SCENES = [
         "c_aimant": dict(type="cit", a="Dorothea Lange", o="her account of the photograph", x=200, y=190, w=880),
         "c_proche": dict(type="cit", a="Dorothea Lange", o="her account of the photograph", x=200, y=190, w=880),
         "cmp": dict(type="liste", titre="A photograph as an argument", cles=["composed", "purpose", "relief"], items=[
-            "Composed, not accidental: five exposures", "Made with a purpose: support for relief programmes",
+            "Composed, not accidental: a series of exposures", "Made with a purpose: support for relief programmes",
             "Published at once: federal relief sent to the camp"], x=170, y=150, w=940),
     }),
 
@@ -408,7 +408,7 @@ SCENES = [
         "{fo.2}It shows what the figures cannot: hunger, a tent, a family with no safety net. "
         "{fo.3}With Lange's account, it shows the rural side of the crisis: frozen crops, no work, the car's tyres sold for food. "
         "{fo.4}And its provenance is itself evidence: the federal state was documenting poverty to justify relief.",
-        "{-fo}{li}Its limits. {li.1}It is composed: five exposures, the gaze, the children turned away. "
+        "{-fo}{li}Its limits. {li.1}It is composed: a series of exposures, the gaze, the children turned away. "
         "{li.2}It was made with a purpose, to win support for relief programmes: it is an argument, not a neutral record. "
         "{li.3}It shows one family, of migrant farm workers in California: not the fourteen million unemployed in the cities, "
         "not the Hoovervilles, not the bank failures. {li.4}And, outside the course: Florence Thompson said later that Lange never asked her name, "
@@ -431,7 +431,7 @@ SCENES = [
             "With Lange's account: frozen crops, no work, tyres sold", "Provenance as evidence: the state documents poverty"],
             x=150, y=130, w=980),
         "li": dict(type="liste", titre="Limits", items=[
-            "Composed: five exposures, made to move", "A purpose: support for relief — an argument",
+            "Composed: a series of exposures, made to move", "A purpose: support for relief — an argument",
             "One rural family: not the 14 million, not the cities", "Outside the course: the mother's own voice is missing"],
             x=150, y=130, w=980),
         "bl": dict(type="mot", t="Significantly useful", g="read it as an argument, beside the figures", y=260, taille=84),
@@ -548,6 +548,6 @@ CREDITS = [
     "Photographs: unemployed men queued outside Al Capone's soup kitchen, Chicago, February 1931 (US National Archives, public domain); "
     "Hooverville on the Seattle tideflats, 1933 (Seattle Municipal Archives, CC BY 2.0); Dorothea Lange, Migrant Mother, 1936 (Library of Congress, public domain); "
     "George E. Marsh Jr., dust storm approaching Stratford, Texas, 1935 (NOAA, public domain); via Wikimedia Commons.",
-    "Questions and model answers written for this video. Outside the course: the note on the wage figure; Florence Owens Thompson's later account.",
+    "Questions and model answers written for this video. Outside the course: the note on the wage figure (total wage bill vs hourly pay); the Resettlement Administration, Lange's employer in 1936 (the FSA from 1937); the dating of Capone's soup kitchen (winter 1930–31); Florence Owens Thompson's later account.",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]
