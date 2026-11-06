@@ -30,7 +30,7 @@ PAGE = """<!doctype html>
 </head>
 <body>
 <div class="page">
-  <div class="kick">DNL History-Geography · M. Ros · {code}</div>
+  <div class="kick">DNL History-Geography · {code}</div>
   <h1>{titre_fr}</h1>
   <div id="carte"></div>
   <p class="src">{sources}</p>

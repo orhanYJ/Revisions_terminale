@@ -44,7 +44,7 @@ SCENES = [
         "{g0}{q1}Sixty million dead. Battles from the Atlantic to the Pacific, from the Arctic to the deserts of Africa, "
         "from the streets of Stalingrad to the islands of the Pacific. The Second World War is the deadliest conflict in human history.",
         "{-q1}{q2}But when did it start? Most people would answer: on the first of September, 1939, when Germany invaded Poland. "
-        "In this chapter, Monsieur Ros gives you a different answer… and that answer is your first argument in an essay.",
+        "In this chapter, the course gives a different answer… and that answer is your first argument in an essay.",
         "{-q2}{q3}And a second question, even more important: what did the Nazis want to build with this war? "
         "Not just a bigger Germany. A whole new continent. That is what this episode is about.",
         "{-q3}{-g0}{plan}This series covers the whole chapter, in seven episodes. {plan.1}Today: why this was a world war, "
@@ -144,7 +144,7 @@ SCENES = [
         "{-q4}{def1}In most wars, the aim is to defeat the enemy's armies, then to negotiate a peace. "
         "Here, the aim was to destroy the enemy's civilisation. It was an {!ideological war}ideological war, "
         "in which no side would give up until death.",
-        "{-def1}{photo}Monsieur Ros opens the chapter with a photograph that says this better than any definition. "
+        "{-def1}{photo}The course opens the chapter with a photograph that says this better than any definition. "
         "Einsatzgruppen killers, around 1941 or 1942, shooting men standing in a pit. A photograph probably taken by one of the killers. "
         "The killers photograph their own crimes: they are not ashamed, they think they are building something. "
         "We will come back to these mobile killing squads in episode five.",
@@ -403,7 +403,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H3 · introduction, with examples from Parts I to III, and reminders of chapters 1 and 2) as written on the site; animated maps of chapters 2 and 3 (site).",
+    "Content: the DNL History course (DNL History, H3 · introduction, with examples from Parts I to III, and reminders of chapters 1 and 2) as written on the site; animated maps of chapters 2 and 3 (site).",
     "Photograph: Hitler declares war on the United States, Reichstag, 11 December 1941 (unknown photographer, Wikimedia Commons, CC BY-SA 3.0).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]
