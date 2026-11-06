@@ -142,9 +142,9 @@ SCENES = [
         "into a physical experience, shared by the crowd. The individual feels dissolved into a disciplined mass.",
         "{rit}{rit.1}In Germany, the official greeting becomes Heil Hitler, with the Nazi salute. "
         "{rit.2}In Italy, one motto says it all. Il Duce ha sempre ragione. Mussolini is always right. "
-        "{rit.3}The class noted another fascist motto. Credere, obbedire, combattere. Believe, obey, fight. "
+        "{rit.3}The course gives another fascist motto. Credere, obbedire, combattere. Believe, obey, fight. "
         "{rit.4}And Leni Riefenstahl films the Nuremberg rally of nineteen thirty-four, in Triumph of the Will.",
-        "{-rit}{-g4}{photo2}{disc}The class notes add one detail. Hitler's speeches lasted three to four hours. And they held the crowd spellbound. "
+        "{-rit}{-g4}{photo2}{disc}The course adds one detail. Hitler's speeches lasted three to four hours. And they held the crowd spellbound. "
         "{disc.1}The ritual is repeated until it becomes ordinary. A greeting. A gesture. A sentence learned by heart.",
         "{-disc}{mot1}Obedience is produced {!by emotion}by emotion. Not by argument.{-photo2}",
     ], vis={
@@ -155,7 +155,7 @@ SCENES = [
             "“Credere, obbedire, combattere”: believe, obey, fight", "Nuremberg rally, 1934: Riefenstahl, Triumph of the Will"]),
         "photo2": dict(type="tableau", img="h2-nuremberg-1936", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
                        legende="The 'cathedral of light' over the Zeppelin Field, Nuremberg rally, September 1936 · Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE"),
-        "disc": dict(type="note", terme="From the class notes", cles=["three", "spellbound"],
+        "disc": dict(type="note", terme="One more detail", cles=["three", "spellbound"],
                      t="Hitler's speeches lasted three to four hours and held the crowd spellbound.",
                      etape="Repeated until it becomes ordinary: a greeting, a gesture, a sentence learned by heart", x=170, y=200, w=940),
         "mot1": dict(type="mot", t="Emotion, not argument", g="the ritual makes the crowd obey", y=260, taille=90),
@@ -199,7 +199,7 @@ SCENES = [
         "{-def3}{photo}The example is famous. A photograph shows Stalin at the Moscow-Volga canal. Beside him stands Nikolai Yezhov, "
         "head of the N. K. V. D., the political police. {photo.d}Yezhov is executed in nineteen forty. "
         "And in the same image, retouched, he has simply vanished. Only the water of the canal remains.",
-        "{-photo}{err}Watch out here. The class notes say that Beria and Molotov were executed. "
+        "{-photo}{err}Watch out here. A common mistake is to write that Beria and Molotov were executed. "
         "{err.1}In fact, Molotov never was. And Beria was executed only in nineteen fifty-three. The head of the political police executed in nineteen forty was Yezhov, as Worksheet four says.",
     ], vis={
         "photo3": dict(type="tableau", img="h2-book-burning", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
@@ -210,7 +210,7 @@ SCENES = [
         "photo": dict(type="cols", g="Before", gq="Stalin at the Moscow–Volga canal, Yezhov, head of the NKVD, beside him",
                       d="After 1940", dq="Yezhov executed… and erased from the same photograph", vs="→",
                       repere="The archive itself is corrected"),
-        "err": dict(type="note", terme="Watch out · the class notes", cles=["Yezhov", "1940"],
+        "err": dict(type="note", terme="Watch out · a common mistake", cles=["Yezhov", "1940"],
                     t="Executed head of the NKVD: Yezhov, in 1940. Not Molotov (never executed), not Beria (executed in 1953).",
                     etape="Worksheet 4 gives Yezhov, executed in 1940", x=170, y=200, w=940),
     }),
@@ -247,7 +247,7 @@ SCENES = [
         "in Russian. The cult of one man went hand in hand with the forced unification of a whole empire.",
         "{-fam}{dat}Here is the example. From March nineteen thirty-eight, learning Russian became compulsory in every Soviet school. "
         "That included the national republics, such as Georgia. The date of that decree comes from outside the course. "
-        "{dat.1}And one correction. The class notes say that Stalin banned the Georgian language. He did not. "
+        "{dat.1}And one correction. Some revision notes say that Stalin banned the Georgian language. He did not. "
         "Georgian remained the official language of the Georgian republic. What was imposed was Russian, as the common language.",
     ], vis={
         "g5": dict(type="globe", code="H2", sc=[9]),
@@ -613,7 +613,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H2 · Parts II.1 and II.2, Worksheet 3, schemas “Three leaders, three cults” and “Manufacturing a New Man”) as written on the site; corrections of the class notes from the site's checks; outside the course and said so: the date of the 1938 decree on Russian, the preparation of Stakhanov's record, the Hitler Youth made truly compulsory in 1939; the essay and DBQ questions and model answers written for this video; animated map of chapter 2 (site).",
+    "Content: the DNL History course (chapter H2 · Parts II.1 and II.2, Worksheet 3, schemas “Three leaders, three cults” and “Manufacturing a New Man”) as written on the site; corrections of common mistakes from the site's checks; outside the course and said so: the date of the 1938 decree on Russian, the preparation of Stakhanov's record, the Hitler Youth made truly compulsory in 1939; the essay and DBQ questions and model answers written for this video; animated map of chapter 2 (site).",
     "Photographs (via Wikimedia Commons): Joseph Stalin, Moscow, 1937 (unknown photographer, public domain); the Nuremberg rally of September 1936 (Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE); the book burning on the Opernplatz, Berlin, May 1933 (Georg Pahl, Bundesarchiv, Bild 102-14597, CC BY-SA 3.0 DE; the event is outside the course); Alexei Stakhanov explaining his method (Eleazar Langman, public domain).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

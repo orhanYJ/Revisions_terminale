@@ -120,7 +120,7 @@ SCENES = [
         "And into politics. The traumas of the war raised the level of violence in post-war societies.",
         "{-def1}{mat}For Mosse, the war is the matrix of totalitarianism. Look at the new regimes. {mat.1}The uniforms. {mat.2}The ranks. "
         "{mat.3}The parades. {mat.4}The contempt for human life. They all come from the front.",
-        "{-mat}{-photo1}{ex1}Monsieur Ros gives an example on his slide. It is a photograph of Adolf Hitler as a soldier, in nineteen fifteen, sitting among his comrades. "
+        "{-mat}{-photo1}{ex1}The course slide gives an example. It is a photograph of Adolf Hitler as a soldier, in nineteen fifteen, sitting among his comrades. "
         "{ex1.1}Mosse develops the idea in his book, Fallen Soldiers.",
     ], vis={
         "photo1": dict(type="tableau", img="h2-ypres", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .5, .4],
@@ -130,7 +130,7 @@ SCENES = [
                      etape="The traumas of the war raised the level of violence after 1918", x=170, y=200, w=940),
         "mat": dict(type="liste", titre="WW1, “the matrix of totalitarianism”", items=[
             "Uniforms", "Ranks", "Parades", "Contempt for human life"], x=170, y=140, w=940),
-        "ex1": dict(type="note", terme="Example · M. Ros's slide", cles=["soldier", "trenches"],
+        "ex1": dict(type="note", terme="Example · the course slide", cles=["soldier", "trenches"],
                     t="Adolf Hitler as a soldier in 1915, sitting among his comrades.",
                     etape="George Mosse, Fallen Soldiers: Reshaping the Memory of the World Wars", x=170, y=200, w=940),
     }),
@@ -141,7 +141,7 @@ SCENES = [
          beats=[
         "{g3}{g3.1}Idea two: Russia. This is a recap from Première, and it is on the programme. "
         "{rus}The war ruined the Russian empire. {rus.1}In February nineteen seventeen, a revolution forces the Tsar to abdicate. "
-        "{rus.2}In October, the Bolsheviks, led by Lenin and Trotsky, carry out what Monsieur Ros calls a communist coup. "
+        "{rus.2}In October, the Bolsheviks, led by Lenin and Trotsky, carry out what the course calls a communist coup. "
         "They are supported by the {!soviets}soviets. Those are the workers' councils, in the factories and in the countryside.",
         "{rus.3}The Bolsheviks sign peace with Germany. {rus.4}Then they fight a civil war against the Whites. The Red Army wins it, in nineteen twenty-two. "
         "{rus.5}And that same year, the Soviet Union is created.",
@@ -158,7 +158,7 @@ SCENES = [
                        legende="Lenin speaks to the workers of the Putilov factory, Petrograd, May 1917 · Painting by Isaak Brodsky, 1929, public domain"),
         "rs": dict(type="def", cles=["property", "Europe"], terme="The Red Scare",
                    t="Bolshevism means the end of private property: the fear of communism spreads all over Europe.",
-                   etape="Example: Lenin speaks to workers, soldiers and sailors in Petrograd, April 1917 (M. Ros's slide)",
+                   etape="Example: Lenin speaks to workers, soldiers and sailors in Petrograd, April 1917 (course slide)",
                    x=170, y=200, w=940),
         "mots1": dict(type="cols", g="Red Scare", gq="the fear of communism in the West", d="Red Terror",
                       dq="Bolshevik violence inside Russia, from 1918", vs="≠", repere="Watch the vocabulary"),
@@ -177,7 +177,7 @@ SCENES = [
         "{-fiu}{-g4}{photo3}{br}Idea four: the {!Biennio Rosso}Biennio Rosso. The two red years, nineteen nineteen and nineteen twenty. "
         "{br.g}Peasants seize land. Workers go on strike, or take over the factories. The property owners believe an Italian nineteen seventeen is coming. "
         "{br.d}Mussolini's Blackshirts, the fascist militia, answer with violent repression. And the landowners pay them to take back the land.",
-        "{-br}{tur}Monsieur Ros's slide gives the example. {tur.1}The general strike of nineteen twenty, in Turin. The workers occupied the factories, and ran them themselves. "
+        "{-br}{tur}The course slide gives the example. {tur.1}The general strike of nineteen twenty, in Turin. The workers occupied the factories, and ran them themselves. "
         "{tur.2}So the fear was real. And fascism grew as the armed wing of the frightened propertied classes.{-photo3}",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[4]),
@@ -228,7 +228,7 @@ SCENES = [
         "{ver.4}So the Germans called it a {!Diktat}Diktat. A dictated peace.",
         "{-ver}{-g6}{dol}At the same time, military circles spread a conspiracy theory. The {!stab in the back}stab in the back. "
         "{dol.1}The army, they said, had not been beaten at the front. It had been betrayed at home.",
-        "{-dol}{cp}Monsieur Ros shows a German postcard from nineteen nineteen. {cp.1}A soldier is stabbed from behind by a caricatured Jew. "
+        "{-dol}{cp}The course shows a German postcard from nineteen nineteen. {cp.1}A soldier is stabbed from behind by a caricatured Jew. "
         "{cp.2}The myth blamed democrats, pacifists and socialists. Or, as here, Jews. "
         "{cp.3}It turned defeat into a grievance. And it gave the far right its enemies, ready-made.",
     ], vis={
@@ -252,7 +252,7 @@ SCENES = [
         "{g7}{g7.1}Idea seven. The Weimar Republic never won over its enemies. In November nineteen twenty-three, in Munich, "
         "Hitler tries to seize power by force. It is a failure.",
         "{-g7}{les}He is sent to prison. And he learns a lesson from his failure. {les.1}Power must be won through the institutions. "
-        "{!not against them}Not against them. {les.2}In prison, he writes Mein Kampf. As Monsieur Ros's slides note, "
+        "{!not against them}Not against them. {les.2}In prison, he writes Mein Kampf. As the course slides note, "
         "he sets out his racist views there as early as nineteen twenty-four and twenty-five.",
         "{-les}{cr}Then come the nineteen thirties. The extreme economic crisis of chapter one gives his party the mass audience it had lacked. "
         "{cr.1}Here is one sentence to remember, and to use in your essays.",
@@ -273,7 +273,7 @@ SCENES = [
     dict(id="legacy", chap="Three wounds of the war", fond="aube", humeur="calme",
          retenir="Russia: war ruins the empire → Bolshevik Revolution → single party, property abolished, fear of communism. Italy: mutilated victory → Fiume, paid Blackshirts → armed nationalism. Germany: defeat, Diktat → Spartacists crushed, stab-in-the-back → a republic tied to defeat.",
          beats=[
-        "{bl}Here is Monsieur Ros's schema: three wounds of the war. {bl.1}Start with the wound itself. In Russia, the war ruins the Tsarist empire. "
+        "{bl}Here is the course schema: three wounds of the war. {bl.1}Start with the wound itself. In Russia, the war ruins the Tsarist empire. "
         "{bl.2}In Italy, it leaves a mutilated victory. {bl.3}In Germany, defeat, the end of the Empire, and the Diktat.",
         "{-bl}{rp}Next, the response. {rp.1}In Russia, the Bolshevik Revolution. {rp.2}In Italy, Fiume, and the paid Blackshirts. "
         "{rp.3}In Germany, the Spartacists are crushed, and the stab-in-the-back myth spreads.",
@@ -332,7 +332,7 @@ SCENES = [
     dict(id="fascisme", chap="I.2 · Mussolini's fascism: the building blocks", fond="nuit", humeur="tension",
          retenir="Fascism: a growing party + one leader (Mussolini) · a programme: “Law and Order” · a symbol: the fasces · paramilitary squads (Blackshirts). Supported by landowners and shopkeepers terrified by communism.",
          beats=[
-        "{fa}Part one, point two: the seizure of power. Idea one. Monsieur Ros breaks fascism down into its building blocks. "
+        "{fa}Part one, point two: the seizure of power. Idea one. The course breaks fascism down into its building blocks. "
         "{fa.1}A party with a growing influence, and more and more supporters. And one leader, Mussolini. "
         "{fa.2}A programme that appealed to voters: {!Law and Order}Law and Order. "
         "{fa.3}A symbol. {fa.4}And paramilitary squads, led by fascist squad leaders.",
@@ -358,7 +358,7 @@ SCENES = [
          beats=[
         "{g8}{g8.1}Idea two. In October nineteen twenty-two, the Blackshirts march on Rome. {mr}But Mussolini does not organise the march "
         "to take power by arms. {mr.1}He organises it to push the king into appointing him prime minister.",
-        "{mr.2}Only a few thousand come. About twenty thousand, according to the class. Far fewer than he had hoped. "
+        "{mr.2}Only a few thousand come. About twenty thousand, according to the course. Far fewer than he had hoped. "
         "{mr.3}Most of them are suspected of murder. They are not violent during the march. But everyone knows they could be.",
         "{mr.4}And the threat is enough. King Victor Emmanuel the Third refuses to declare martial law. On the thirtieth of October, nineteen twenty-two, "
         "he appoints Mussolini prime minister.",
@@ -376,7 +376,7 @@ SCENES = [
                        legende="Mussolini with the four quadrumvirs of the March on Rome, 1922, commemorative painting · Photo Silvio Galimberti, CC BY-SA 4.0"),
         "int": dict(type="def", cles=["threat", "legal"], terme="Intimidation, not a coup",
                     t="The threat of violence forced a legal appointment.",
-                    etape="M. Ros's slide: Mussolini with De Bono, Balbo and De Vecchi", x=170, y=200, w=940),
+                    etape="Course slide: Mussolini with De Bono, Balbo and De Vecchi", x=170, y=200, w=940),
         "att1": dict(type="note", terme="Watch out · dates and numbers", cles=["usually", "estimates"],
                      t="Slide: 22–29 Oct. 1922. Usually dated 27–31 Oct. Course: ≈ 20,000; other estimates: 25,000–30,000.",
                      etape="Safest in an essay: October 1922, some 20,000 Blackshirts", x=170, y=200, w=940),
@@ -393,11 +393,11 @@ SCENES = [
         "{-pg}{hk}A point from outside the course. These demands were already in the party's twenty-five point programme, in nineteen twenty. "
         "{hk.1}Mein Kampf develops them.",
         "{-hk}{sw}The symbol is the black {!swastika}swastika. {sw.1}It was an ancient sign, long seen as lucky. The Nazis made it Aryan. "
-        "{sw.2}The class noted that it was chosen for no particular reason. In fact, Hitler does explain its symbolism, in Mein Kampf. "
+        "{sw.2}Some revision notes say that it was chosen for no particular reason. In fact, Hitler does explain its symbolism, in Mein Kampf. "
         "{sw.3}And the paramilitary organisations are the S. A. and the S. S.",
-        "{-sw}{tb}So here is Monsieur Ros's table. Two movements, the same building blocks. {tb.g}Fascism on one side. "
+        "{-sw}{tb}So here is the course table. Two movements, the same building blocks. {tb.g}Fascism on one side. "
         "{tb.d}Nazism on the other.",
-        "{-tb}{dif}Two things to add. {dif.1}Mussolini came to power eleven years before Hitler. So, for Monsieur Ros, fascism is the first totalitarianism. "
+        "{-tb}{dif}Two things to add. {dif.1}Mussolini came to power eleven years before Hitler. So, for the course, fascism is the first totalitarianism. "
         "{dif.2}And what separates the two movements? {!race}Race. It is at the heart of the Nazi programme, from Mein Kampf onwards.",
     ], vis={
         "pg": dict(type="liste", titre="Nazism: party, leader, programme", cles=["Versailles", "Austria", "nationalise", "exclude"], items=[
@@ -444,8 +444,8 @@ SCENES = [
          retenir="Unemployment ≈ 5.6 million (1932). NSDAP: 2.6% (May 1928) → 18.3% (Sept. 1930) → 37.4% (July 1932, first party) → 33.1% (Nov. 1932). Never a majority in a free election.",
          beats=[
         "{g9}{g9.1}Idea five. The crisis turned the Nazis from a fringe party into the first party in Germany. "
-        "Monsieur Ros's slide shows unemployed men queuing for food aid, in Hanover, in nineteen thirty-two.",
-        "{-g9}{gu}Look first at unemployment in Germany, on Monsieur Ros's chart. {gu.1}In the nineteen twenties, it stays around two million at most. "
+        "The course slide shows unemployed men queuing for food aid, in Hanover, in nineteen thirty-two.",
+        "{-g9}{gu}Look first at unemployment in Germany, on the course chart. {gu.1}In the nineteen twenties, it stays around two million at most. "
         "{gu.2}Then the crisis hits. By nineteen thirty-two, about five point six million Germans are out of work.",
         ("P", 2.5),
         "{-gu}{gv}Now, the Nazi vote. {gv.1}This red line is the majority. Fifty per cent. "
@@ -457,12 +457,12 @@ SCENES = [
         "{maj.3}He was appointed on the thirtieth of January, nineteen thirty-three. And his party was losing votes at the time.",
     ], vis={
         "g9": dict(type="globe", code="H2", sc=[16]),
-        "gu": dict(type="graphe", titre="Unemployed in Germany, millions (M. Ros's chart, rounded)", x=300, y=110, w=680, h=520,
+        "gu": dict(type="graphe", titre="Unemployed in Germany, millions (course chart, rounded)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1920.5, 1932.8], y=[0, 6.5], gx=[1922, 1924, 1926, 1928, 1930, 1932], gy=[1, 2, 3, 4, 5, 6],
                            lx="year", ly="millions"),
                    el=[dict(type="courbe", pts=CHOMAGE[:9], c="iv2", lbl="the 1920s", lp=[1924.5, 2.3], dur=2.0),
                        dict(type="courbe", pts=CHOMAGE[8:], c="ca", lbl="1932: ≈ 5.6 million", lp=[1929.6, 5.8], dur=1.6)]),
-        "gv": dict(type="graphe", titre="NSDAP vote in Reichstag elections (M. Ros's chart)", x=300, y=110, w=680, h=520,
+        "gv": dict(type="graphe", titre="NSDAP vote in Reichstag elections (course chart)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1927.6, 1933.4], y=[0, 60], gx=[1928, 1930, 1932], gy=[10, 20, 30, 40, 50], lx="year", ly="%"),
                    el=[dict(type="droite", pts=[[1927.6, 50], [1933.4, 50]], c="rouge", tir=True, ep=2.4,
                             lbl="majority: 50%", lp=[1929.3, 53.5]),
@@ -485,7 +485,7 @@ SCENES = [
         "{-g10}{hb}So who was Hindenburg? {hb.1}An old general of the Empire, who had supported the monarchy. "
         "{hb.2}The conservatives around him thought they could control Hitler, once he was in government. "
         "{hb.3}The legal façade let the Nazis dismantle the republic {!from inside}from inside.",
-        "{-hb}{photo7}{pot}A photograph opens Monsieur Ros's section, and it shows exactly this. {pot.1}Hitler bows to greet Hindenburg, at Potsdam. "
+        "{-hb}{photo7}{pot}A photograph opens this section of the course, and it shows exactly this. {pot.1}Hitler bows to greet Hindenburg, at Potsdam. "
         "The date, the twenty-first of March, nineteen thirty-three, is from outside the course. "
         "{pot.2}The image is designed to present Nazism as the heir of the old Prussian order.{-photo7}",
     ], vis={
@@ -497,7 +497,7 @@ SCENES = [
                        legende="Hitler bows to Hindenburg, Potsdam, 21 March 1933 · Bundesarchiv, Bild 183-S38324, CC BY-SA 3.0 DE"),
         "pot": dict(type="note", terme="Example · Potsdam, 21 March 1933", cles=["bows", "heir"],
                     t="Hitler bows to greet President Hindenburg: Nazism as the heir of the old Prussian order.",
-                    etape="The photograph opens M. Ros's section · exact date outside the course", x=170, y=200, w=940),
+                    etape="The photograph opens this section of the course · exact date outside the course", x=170, y=200, w=940),
     }),
 
     # ================================================================ I.2, idée 7 : l'incendie du Reichstag
@@ -526,7 +526,7 @@ SCENES = [
     dict(id="seizure", chap="Two roads to power", fond="aube", humeur="calme",
          retenir="Italy: squads paid (1919–20) → March on Rome (Oct. 1922) → appointed by the king (30 Oct. 1922) → Matteotti, fascistissime laws (1924–26). Germany: failed coup (Nov. 1923) → crisis, 18.3% → 37.4% → appointed by Hindenburg (30 Jan. 1933) → Reichstag fire, emergency decree. Common: paramilitary violence + legal appointment + conservative elites. Different: the pace.",
          beats=[
-        "{it}Now, let's compare the two roads to power, with Monsieur Ros's schema. The street threatens. The top appoints. "
+        "{it}Now, let's compare the two roads to power, with the course schema. The street threatens. The top appoints. "
         "{it.1}In Italy, first the paid squads. {it.2}Then the March on Rome. {it.3}Then the king's appointment. "
         "{it.4}And then, the murder of Matteotti and the fascistissime laws. That is for episode three.",
         "{al}{al.1}In Germany, first the failed coup. {al.2}Then the crisis vote. "
@@ -630,7 +630,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H2 · Parts I.1 “The legacy of WW1” and I.2 “The seizure of power”), with the schemas “Three wounds of the war”, “Two movements, the same building blocks”, “The end of Weimar” (unemployment values read off M. Ros's chart, rounded) and “Two roads to power”, as written on the site; animated map of chapter 2 (site).",
+    "Content: the DNL History course (chapter H2 · Parts I.1 “The legacy of WW1” and I.2 “The seizure of power”), with the schemas “Three wounds of the war”, “Two movements, the same building blocks”, “The end of Weimar” (unemployment values read off the course chart, rounded) and “Two roads to power”, as written on the site; animated map of chapter 2 (site).",
     "Points to handle with care (site's checks): Red Scare and Red Terror; the March on Rome usually dated 27–31 October 1922, with estimates up to 25,000–30,000 marchers; Hitler explains the swastika in Mein Kampf.",
     "Added from outside the course: the 25-point programme of 1920; the size of the SA by 1933; the date of the Potsdam ceremony (21 March 1933) and of the emergency decree (28 February 1933).",
     "Photographs (via Wikimedia Commons): Ypres cathedral in ruins, 1917 (Henry Armytage Sanders, Archives New Zealand, CC BY-SA 2.0); a Spartacist barricade, Berlin, January 1919 (Illustrirte Zeitung, public domain); Red Guards occupying the factories, Italy, 1920 (unknown photographer, public domain); unemployed SA men, Berlin, 1932 (Bundesarchiv, Bild 146-1985-054-02, CC BY-SA 3.0 DE); Hitler and Hindenburg at Potsdam, 21 March 1933 (Bundesarchiv, Bild 183-S38324, CC BY-SA 3.0 DE).",

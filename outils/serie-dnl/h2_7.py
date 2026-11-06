@@ -158,7 +158,7 @@ SCENES = [
         "{usq}Idea two. The strongest democracy stays out of Europe's crises. In the United States, President Roosevelt tries "
         "to break with isolationism. But Congress holds him back. {-usq}{us}{us.1}It passes the {!Neutrality Acts}Neutrality Acts. "
         "They forbid arms sales and loans to countries at war. {us.2}One in nineteen thirty-five. {us.3}Another in thirty-six. {us.4}And a third in thirty-seven.",
-        "{-us}{rep}Watch out: here, the course corrects itself. Monsieur Ros's slide speaks of a Republican Congress. "
+        "{-us}{rep}Watch out: here, the course corrects itself. The course slide speaks of a Republican Congress. "
         "In fact, the Democrats held the majority from nineteen thirty-five to nineteen thirty-nine. Isolationism ran across both parties. "
         "{rep.1}So in an essay, write: {!an isolationist Congress}an isolationist Congress.",
     ], vis={
@@ -453,7 +453,7 @@ SCENES = [
         "gain": dict(type="cols", g="Hitler", gq="no war on two fronts: the attack on Poland can begin",
                      d="Stalin", dq="an army gutted by the purges: time and territory", vs="+",
                      repere="23 August 1939 · a deal of pure interest"),
-        "c_car": dict(type="cit", a="Stalin, in a cartoon", o="cartoon shown in M. Ros's course", x=200, y=210, w=880),
+        "c_car": dict(type="cit", a="Stalin, in a cartoon", o="cartoon shown in the course", x=200, y=210, w=880),
         "chif": dict(type="note", terme="Watch out · a cartoon's figure", cles=["680,000", "officers"],
                      t="The course: ≈ 680,000 executions in the whole Great Purge (1937–38), far from all officers.",
                      etape="The point stands: the Red Army was not ready", x=170, y=200, w=940),
@@ -651,7 +651,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H2 · Parts III.2 and III.3, schemas “Appeasement: what it gave away, and why” and “Stepping stones to war”, DBQ 2 and DBQ 3 with the site's model answers) as written on the site; DBQ 3 b) written for this video on the chapter's key issue; Guernica given as a complementary example, not in the lesson; the share of Jews in Austria's population added from outside the course; animated map of chapter 2 (site).",
+    "Content: the DNL History course (chapter H2 · Parts III.2 and III.3, schemas “Appeasement: what it gave away, and why” and “Stepping stones to war”, DBQ 2 and DBQ 3 with the site's model answers) as written on the site; DBQ 3 b) written for this video on the chapter's key issue; Guernica given as a complementary example, not in the lesson; the share of Jews in Austria's population added from outside the course; animated map of chapter 2 (site).",
     "Photographs (via Wikimedia Commons): the Munich Agreement, 29 September 1938 (Bundesarchiv, Bild 183-R69173, CC BY-SA 3.0 DE); Chamberlain at Heston airport, 30 September 1938 (Imperial War Museums, D 2239, public domain); the ruins of Guernica, 1937 (Bundesarchiv, Bild 183-H25224, CC BY-SA 3.0 DE); Hitler on the Heldenplatz, Vienna, 15 March 1938 (Bundesarchiv, Bild 183-1987-0922-500, CC BY-SA 3.0 DE); Stalin and Ribbentrop, Moscow, 23 August 1939 (Helmut Laux, Bundesarchiv, Bild 183-H27337, CC BY-SA 3.0 DE).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]
