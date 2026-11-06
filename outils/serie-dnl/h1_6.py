@@ -457,7 +457,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: the synthesis of M. Ros's course (DNL History, H1 “The Wall Street Crash and its Impact”) as written on the site: "
+    "Content: the synthesis of the DNL History course (chapter H1, “The Wall Street Crash and its Impact”) as written on the site: "
     "timeline, the chain of the crisis, the ideas of Parts I.1 to II.3, key figures, key terms and key issues, Worksheet 3; "
     "the animated maps of chapters 1 and 2 (site).",
     "Photographs: crowd outside the New York Stock Exchange, October 1929 (Wikimedia Commons, public domain); "

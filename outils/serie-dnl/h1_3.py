@@ -200,7 +200,7 @@ SCENES = [
         "But the more careful judgement, the one to write, is this: it turned a downturn into a trade war.",
     ], vis={
         "q5": dict(type="question", t="Did it work?"),
-        "c_pal": dict(type="cit", a="Caption of a cartoon", o="M. Ros's slides, on Smoot–Hawley", x=200, y=230, w=880),
+        "c_pal": dict(type="cit", a="Caption of a cartoon", o="The course slides, on Smoot–Hawley", x=200, y=230, w=880),
         "chaine": dict(type="liste", titre="Protectionism spreads by retaliation", cles=["Canada", "quotas", "ten per cent", "autarky"], items=[
             "Canada strikes first (Dunning budget, May 1930): 30% of US exports to it", "France: import quotas (1931)",
             "Britain: Import Duties Act, 10% on most imports (1932)", "Empires exempted · Germany: autarky"], x=150, y=130, w=980),
@@ -262,7 +262,7 @@ SCENES = [
         "Its real importance is political: it destroyed the free-trade pillar of the liberal order of nineteen nineteen.",
     ], vis={
         "ex3": dict(type="exo", niveau="essay", titre="Assess how effective the 1930 Tariff Act was in responding to the challenges posed by the Great Depression.",
-                    src="M. Ros's slides, closing question on Smoot–Hawley", enonce=["Measure “effective” against the Act's own aims",
+                    src="The course slides, closing question on Smoot–Hawley", enonce=["Measure “effective” against the Act's own aims",
                                                                                      "Three arguments, then a judgement"]),
         "pa1": dict(type="pause", t="Find three arguments, each with a precise example, and a judgement.",
                     sous="Pause the video, write your plan, then play on for a model."),
@@ -586,7 +586,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H1 · Parts II.1 and II.2: the Smoot–Hawley fact file, Worksheet 3) as written on the site; animated map of chapter 1 (site).",
+    "Content: the DNL History course (chapter H1: Parts II.1 and II.2: the Smoot–Hawley fact file, Worksheet 3) as written on the site; animated map of chapter 1 (site).",
     "Photograph: Herbert Hoover and Franklin D. Roosevelt on the way to the inauguration, 4 March 1933 (Architect of the Capitol, public domain, Wikimedia Commons).",
     "Photograph: unemployed outside the employment office Berlin-Nordost, 4 May 1932 (Bundesarchiv, Bild 146-1976-033-23, photographer Seiler, CC BY-SA 3.0 de, Wikimedia Commons).",
     "Photograph: Léon Blum at his desk, with a microphone, 1936 (Agence de presse Meurisse, public domain, Wikimedia Commons).",
