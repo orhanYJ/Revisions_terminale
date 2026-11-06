@@ -60,7 +60,7 @@ CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
-V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2, "acl-lughnasa": 2, "dnl": 2, "svt": 1}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
+V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2, "acl-lughnasa": 2, "dnl": 2, "svt": 2}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
 TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729", "svt": "#0b120e"}
 PAGE = """<!DOCTYPE html>
 <html lang="{langue}">
@@ -76,6 +76,7 @@ PAGE = """<!DOCTYPE html>
 <div id="serie"></div>
 <script src="{code}.data.js?v={v}"></script>
 {extra}<script src="moteur.js?v={vm}"></script>
+{apres}
 <script>SERIE.lancer(window.EPISODE);</script>
 </body>
 </html>
@@ -461,15 +462,15 @@ def generer(nom_module):
     titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site in ("pc", "svt")
              else f"{ep.NOTION} · Episode {ep.NUM} — {ep.TITRE}" if site == "dnl"
              else f"{ep.NOTION} · Part {ep.NUM} — {ep.TITRE}" if langue == "en" else f"{ep.NOTION} · Épisode {ep.NUM} — {ep.TITRE}")
-    extra = ""
+    extra, apres = "", ""
     if site == "svt":   # carte mentale du thème (type mental) et illustrations propres au chapitre (illu-<code>.js)
         with open(os.path.join(RACINE, "svt", "carte-mentale.js"), "rb") as f:
             extra += f'<script src="../carte-mentale.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'
         illu = os.path.join(SORTIE, "illu-" + ep.CODE + ".js")
         if os.path.exists(illu):
             with open(illu, "rb") as f:
-                extra += f'<script src="illu-{ep.CODE}.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'
-    page = PAGE.format(titre=titre, code=ep.CODE, v=v, vm=V_MOTEUR_SITE[site], teinte=TEINTE[site], langue=langue, extra=extra)
+                apres += f'<script src="illu-{ep.CODE}.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'   # après le moteur : SERIE_OUTILS existe
+    page = PAGE.format(titre=titre, code=ep.CODE, v=v, vm=V_MOTEUR_SITE[site], teinte=TEINTE[site], langue=langue, extra=extra, apres=apres)
     with open(os.path.join(SORTIE, ep.CODE + ".html"), "w", encoding="utf-8") as f:
         f.write(page)
     print(f"{ep.CODE} : {duree / 60:.1f} min, {len(vis)} visuels, {len(sous)} sous-titres, audio {noms}")
