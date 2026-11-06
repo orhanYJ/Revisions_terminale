@@ -614,7 +614,7 @@ SCENES = [
         "bac": dict(type="liste", titre="Pour le bac · à cocher", petit=True, items=[
             "Définir l'hérédité non génétique", "Mutualisme et parasitisme, un exemple chacun", "La symbiose, en précisant le sens",
             "Le phénotype étendu et ses exemples", "Exploiter un graphique d'apprentissage", "Montrer qu'un comportement n'est pas inné",
-            "Rédiger une synthèse sur la diversité non génétique"], marques=["✓"] * 7, x=170, y=80, w=940),
+            "Rédiger une synthèse sur la diversité non génétique"], marques=["✓"] * 7, x=170, y=120, w=940),
         "cm4": dict(type="mental", vers=["c4", "t1a"]),
     }),
 ]
