@@ -23,9 +23,10 @@ TITRE = "Recap"
 SUIVANT = "Next chapter · H2 Totalitarian regimes"
 PRONONCIATION = {"Creditanstalt": "Kred-it-an-shtalt", "Anschluss": "Ahn-shloos", "Sudetenland": "Soo-day-ten-land",
                  "Mukden": "Mook-den", "Manchukuo": "Man-choo-kwo", "Matignon": "Mah-tee-nyon", "Nipomo": "Nee-poh-moh",
-                 "Daladier": "Dah-lah-dyay", "Maschmann": "Mash-man", "Keynes": "Kaynz", "Kellogg–Briand": "Kellogg-Bree-on",
+                 "Daladier": "Dah-lah-dyay", "Maschmann": "Mash-man", "Keynes": "Kaynz", "Kellogg-Briand": "Kellogg-Bree-on",
                  "Léon Blum": "Lay-on Bloom", "Front populaire": "Front poppu-lair", "Kwantung": "Kwan-tung",
-                 "Lytton": "Litton", "Hoovervilles": "Hoover-villes", "Weimar": "Vy-mar"}
+                 "Lytton": "Litton", "Hoovervilles": "Hoover-villes", "Weimar": "Vy-mar",
+                 "RCA": "R. C. A.", "Dawes": "Daws", "USS Panay": "U. S. S. Pah-nye"}
 
 # Worksheet 3, source 2 : chômage allemand (travailleurs assurés, %) ; vote nazi (course, II.2 idée 2)
 CHOMAGE = [[1928, 8.6], [1929, 13.3], [1930, 22.7], [1931, 34.3], [1932, 43.8], [1933, 36.2]]
@@ -68,7 +69,7 @@ SCENES = [
         "{g1.4}From nineteen thirty, the banks start to fail. About five thousand of them, by nineteen thirty-two. "
         "And that is when the Great Depression really begins. "
         "{g1.5}American banks call back their loans to Europe. Germany, the most exposed, is hit first.",
-        "{g1.6}The seventeenth of June, nineteen thirty: Hoover signs the Smoot–Hawley Tariff. Within days, Canada hits back. "
+        "{g1.6}The seventeenth of June, nineteen thirty: Hoover signs the Smoot-Hawley Tariff. Within days, Canada hits back. "
         "The trade war has begun.",
         "{-g1}{g2}{g2.1}Nineteen thirty-one: the dominoes fall in Europe. The Creditanstalt, in Vienna, in May. The German banks in July. "
         "And in September, Britain leaves the Gold Standard. {g2.2}That same month, on the eighteenth, "
@@ -88,8 +89,8 @@ SCENES = [
          retenir="1919 · 1924 · 1928 · Oct. 1929 · June 1930 · 1931 · 1932 · 1933 · 1935 · 1936 · 1938 · 1939.",
          beats=[
         "{fr}Now the timeline of the course, in twelve steps. {fr.1}Nineteen nineteen: Versailles, and the League of Nations. "
-        "{fr.2}Nineteen twenty-four: the Dawes Plan. {fr.3}Nineteen twenty-eight: the Kellogg–Briand Pact declares war illegal. "
-        "{fr.4}October, nineteen twenty-nine: the Crash. {fr.5}June, nineteen thirty: Smoot–Hawley. "
+        "{fr.2}Nineteen twenty-four: the Dawes Plan. {fr.3}Nineteen twenty-eight: the Kellogg-Briand Pact declares war illegal. "
+        "{fr.4}October, nineteen twenty-nine: the Crash. {fr.5}June, nineteen thirty: Smoot-Hawley. "
         "{fr.6}Nineteen thirty-one: the Creditanstalt fails. Britain leaves gold. Japan takes Manchuria. "
         "{fr.7}Nineteen thirty-two: the Import Duties Act, the Stimson note… and Roosevelt is elected. "
         "{fr.8}Nineteen thirty-three: Hitler becomes chancellor. The New Deal has its hundred days. Japan quits the League. "
@@ -216,7 +217,7 @@ SCENES = [
          retenir="Independent internationalism · Smoot–Hawley (17 June 1930, 20,000 goods) · retaliation and imperial blocs (Ottawa 1932) · Roosevelt reverses the policy (gold 1933, RTAA 1934).",
          beats=[
         "{i4}Part two, section one: economic nationalism. {i4.1}Before the Crash, Hoover's America practised independent internationalism. "
-        "American banks lent to Germany. But Washington signed no alliance. {i4.2}Then came protectionism. Smoot–Hawley raised duties "
+        "American banks lent to Germany. But Washington signed no alliance. {i4.2}Then came protectionism. Smoot-Hawley raised duties "
         "on more than twenty thousand goods. Two years later, Smoot and Hawley both lost their seats.",
         "{i4.3}Protectionism spread by retaliation, and the empires closed into blocs. At Ottawa, in nineteen thirty-two, "
         "Britain and its dominions chose imperial preference. World trade lost two thirds of its value. "
@@ -265,35 +266,41 @@ SCENES = [
     dict(id="p23", chap="II.3 · Reluctant democracies", fond="nuit", humeur="tension",
          retenir="Wilsonianism · a League weak from birth · Manchuria · the Stimson note · the Neutrality Acts · cash and carry · appeasement (six reasons) · Munich, Prague, Poland.",
          beats=[
-        "{i7}Last part, II.3: great democracies reluctant to defend the liberal order of 1919. "
-        "{i7.1}The order rested on Wilsonianism. A Punch cartoon of December 1919 already shows the keystone marked USA "
-        "missing from the League's arch. {i7.2}The League had structural weaknesses: no army, a veto for every member. "
-        "David Low's cartoon The Doormat, in 1933, shows a Japanese soldier stepping over it.",
-        "{i7.3}It could not stop a great power: Manchuria, 1931 to 1933. The Lytton Commission condemned, and Japan simply left the League. "
-        "{i7.4}The United States condemned in words only: the Stimson note of the seventh of January 1932… and Japan bombed Shanghai.",
-        "{-i7}{i8}{i8.1}The Neutrality Acts, from 1935 to 1937, made the largest democracy unavailable, even after the USS Panay was bombed "
-        "in December 1937. {i8.2}Only in 1939 did cash and carry turn America into the Arsenal of Democracy: "
-        "the Sherman tanks of the Detroit Tank Arsenal. Rearmament, not the New Deal, ended the Depression.",
-        "{i8.3}On the other side of the Atlantic, appeasement. In 1936, the German army entered the Rhineland with orders to withdraw "
-        "at the first sign of French resistance. There was none. {i8.4}And appeasement let Hitler go further: Ethiopia, the Anschluss, "
-        "Munich, Prague, Poland. Low drew it in 1936: Stepping Stones to Glory, Hitler climbing on the bent backs of the democracies.",
-        "{-i8}{rais}Why appease? The course gives six reasons, and none of them is stupid. {rais.1}Pacifism: avoid another world war. "
-        "{rais.2}Britain was policing its empire and could not afford major rearmament. {rais.3}Many Britons felt Germany had been "
-        "treated unfairly in 1918. {rais.4}Their own economic problems came first. {rais.5}American isolationism left them unprotected. "
+        "{i7}The last section: great democracies, reluctant to defend the liberal order of nineteen nineteen. "
+        "{i7.1}That order rested on Wilson's ideas. A Punch cartoon of December, nineteen nineteen, already shows the gap. "
+        "The keystone marked U. S. A. is missing from the League's arch. {i7.2}The League was weak from birth. No army. A veto for every member. "
+        "In David Low's cartoon The Doormat, from nineteen thirty-three, a Japanese soldier simply walks over it.",
+        "{i7.3}So it could not stop a great power. Look at Manchuria, from nineteen thirty-one to thirty-three. The Lytton Commission condemned Japan. "
+        "And Japan simply left the League. {i7.4}The United States condemned it too, but only in words. "
+        "The Stimson note came on the seventh of January, nineteen thirty-two… and Japan bombed Shanghai.",
+        "{-i7}{i8}{i8.1}From nineteen thirty-five to thirty-seven, the Neutrality Acts kept the largest democracy out of the game. "
+        "Even after Japan bombed the USS Panay, in December, nineteen thirty-seven. "
+        "{i8.2}Only in nineteen thirty-nine, with cash and carry, did America begin to arm the democracies. "
+        "Later, it became the Arsenal of Democracy, with the Sherman tanks of the Detroit Tank Arsenal. "
+        "In the end, rearmament, not the New Deal, ended the Depression.",
+        "{i8.3}Across the Atlantic, the answer was appeasement. In nineteen thirty-six, German troops entered the Rhineland, "
+        "with orders to pull back at the first sign of French resistance. There was none. "
+        "{i8.4}And appeasement let the dictators go further. Mussolini took Ethiopia. Then Hitler took Austria, "
+        "the Sudetenland at Munich, Prague… and then he invaded Poland. "
+        "David Low saw it coming in nineteen thirty-six. In Stepping Stones to Glory, Hitler climbs on the bent backs of the democracies.",
+        "{-i8}{rais}So why appease? The course gives six reasons. And none of them is stupid. {rais.1}Pacifism: avoid another world war. "
+        "{rais.2}Britain was policing its empire, and could not afford to rearm on a large scale. {rais.3}Many Britons felt that Germany had been "
+        "treated unfairly at Versailles. {rais.4}Their own economic problems came first. {rais.5}American isolationism left them on their own. "
         "{rais.6}And they feared communism more than fascism.",
-        "{-rais}{axe}One correction. The course places the Rome–Berlin–Tokyo pact between Munich and Prague. "
-        "In fact, it was signed in September 1940, a date outside the course.",
+        "{-rais}{axe}One correction to the course. It places a Rome-Berlin-Tokyo pact between Munich and Prague. "
+        "In fact, the Rome-Berlin Axis dates from nineteen thirty-six. And the three powers signed their military alliance "
+        "only in September, nineteen forty, after the war had begun. These dates are outside the course.",
     ], vis={
         "i7": dict(type="liste", titre="II.3 · The liberal order, undefended (1)", items=[
             "Wilsonianism: the USA, missing keystone (Punch, 1919)", "A weak League: no army, a veto each · The Doormat (1933)",
             "Manchuria 1931–33: Lytton condemns, Japan leaves", "Stimson note (7 Jan. 1932): words, then Shanghai bombed"],
             x=130, y=125, w=1020),
         "i8": dict(type="liste", titre="II.3 · The liberal order, undefended (2)", items=[
-            "Neutrality Acts 1935–37: even after the USS Panay", "Cash and carry (1939): the Arsenal of Democracy",
+            "Neutrality Acts 1935–37: even after the USS Panay", "Cash and carry (1939), then the Arsenal of Democracy",
             "Appeasement: the Rhineland, 7 March 1936", "Consequences: Munich (Sept. 1938) → Poland (1 Sept. 1939)"],
             x=130, y=125, w=1020),
         "rais": dict(type="liste", titre="Six reasons for appeasement", items=[
-            "Pacifism: avoid another world war", "An empire to police, no money to rearm", "Germany treated unfairly in 1918?",
+            "Pacifism: avoid another world war", "An empire to police, no money to rearm", "Germany treated unfairly at Versailles?",
             "Their own economic problems first", "American isolationism: no protection", "Communism feared more than fascism"],
             x=150, y=105, w=980),
         "axe": dict(type="note", terme="A correction", cles=["1940", "1936"],
@@ -305,15 +312,17 @@ SCENES = [
     dict(id="gens", chap="People and figures", fond="nuit", humeur="calme",
          retenir="Roosevelt · Hoover · Dawes · Smoot and Hawley · Lange · Wilson · Stimson · Hitler · Blum · Chamberlain and Daladier. ×3 · −89% · 14 million · −66% · 43.8%.",
          beats=[
-        "{pe}Twelve people to know. {pe.1}Roosevelt, and the New Deal. {pe.2}Hoover, whose name went to the shanty towns. "
-        "{pe.3}Charles Dawes and his plan. {pe.4}Smoot and Hawley, and their tariff. {pe.5}Dorothea Lange, the photographer, "
-        "{pe.6}and Florence Owens Thompson, the face of Migrant Mother. {pe.7}Wilson, and the Fourteen Points. "
+        "{pe}Now, the names to know. {pe.1}Roosevelt, and the New Deal. {pe.2}Hoover, who gave his name to the shanty towns. "
+        "{pe.3}Charles Dawes, and his plan. {pe.4}Smoot and Hawley, and their tariff. {pe.5}Dorothea Lange, the photographer. "
+        "{pe.6}And Florence Owens Thompson, the face of Migrant Mother. {pe.7}Wilson, and the Fourteen Points. "
         "{pe.8}Stimson, and his note. {pe.9}Hitler, chancellor without a majority. {pe.10}Léon Blum, and the Front populaire. "
         "{pe.11}Chamberlain and Daladier, at Munich. {pe.12}And David Low, the cartoonist.",
-        "{-pe}{chf}And seven figures. {chf.1}Times three: the stock market between 1924 and 1929. {chf.2}Minus eighty-nine per cent: "
-        "the Dow Jones, to 1932. {chf.3}Fourteen million unemployed Americans, a quarter of all workers. "
-        "{chf.4}Twenty thousand goods taxed by Smoot–Hawley. {chf.5}Minus sixty-six per cent: world trade, 1929 to 1934. "
-        "{chf.6}Forty-three point eight per cent: German unemployment in 1932. {chf.7}And ten per cent: the British general tariff of 1932.",
+        "{-pe}{chf}And seven figures. {chf.1}Times three: the stock market, from nineteen twenty-four to nineteen twenty-nine. "
+        "{chf.2}Minus eighty-nine per cent: the fall of the Dow Jones, by nineteen thirty-two. "
+        "{chf.3}Fourteen million: the unemployed Americans. A quarter of all workers. "
+        "{chf.4}Twenty thousand: the goods taxed by Smoot-Hawley. {chf.5}Minus two thirds: world trade, from nineteen twenty-nine to thirty-four. "
+        "{chf.6}Forty-three point eight per cent: German unemployment in nineteen thirty-two. "
+        "{chf.7}And ten per cent: Britain's general tariff, also in nineteen thirty-two.",
     ], vis={
         "pe": dict(type="nuage", items=["Roosevelt", "Hoover", "Dawes", "Smoot & Hawley", "Dorothea Lange", "F. Owens Thompson",
                                         "Wilson", "Stimson", "Hitler", "Léon Blum", "Chamberlain & Daladier", "David Low"]),
@@ -327,12 +336,12 @@ SCENES = [
     dict(id="atoi", chap="Your turn", fond="nuit", humeur="calme",
          retenir="24 Oct. 1929 · 17 June 1930 · 18 Sept. 1931 · Jan. 1933 · Sept. 1938.",
          beats=[
-        "{pa}Your turn. Without looking: give five key dates of the chapter, with what happened, in one line each.",
+        "{pa}Your turn. Don't look back. Give five key dates of the chapter, and say what happened, in one line each.",
         ("P", 2.0),
-        "{-pa}{rep}Here is one answer. {rep.1}The twenty-fourth of October 1929: Black Thursday, the Crash begins. "
-        "{rep.2}The seventeenth of June 1930: the Smoot–Hawley Tariff. {rep.3}The eighteenth of September 1931: the Mukden incident, "
-        "Japan invades Manchuria. {rep.4}January 1933: Hitler is appointed chancellor. {rep.5}And September 1938: Munich, "
-        "appeasement's defining act.",
+        "{-pa}{rep}Here is one possible answer. {rep.1}The twenty-fourth of October, nineteen twenty-nine: Black Thursday. The Crash begins. "
+        "{rep.2}The seventeenth of June, nineteen thirty: the Smoot-Hawley Tariff. {rep.3}The eighteenth of September, nineteen thirty-one: "
+        "the Mukden incident. Japan invades Manchuria. {rep.4}January, nineteen thirty-three: Hitler is appointed chancellor. "
+        "{rep.5}And September, nineteen thirty-eight: Munich. Appeasement's defining act.",
     ], vis={
         "pa": dict(type="pause", t="Five key dates of the chapter, with what happened.",
                    sous="Pause the video, write them down, then play on to compare."),
@@ -346,22 +355,23 @@ SCENES = [
     dict(id="examen", chap="Key terms and key issues", fond="nuit", humeur="lumiere",
          retenir="Key terms: World-wide Economic Depression · Appeasement. Key issues: the democracies' share of blame · economic nationalism, a key factor?",
          beats=[
-        "{kt}Now the exam. Two key terms. The World-wide Economic Depression of the 1930s: "
-        "a prolonged, global fall in output, with mass unemployment and severe deflation. "
-        "And appeasement: conceding to an aggressor's demands in the hope of avoiding war.",
-        "{-kt}{ki1}And two key issues, which can come up at the oral. The first one: "
-        "blame for the origins of the Second World War lies in part with the great democratic powers themselves. How far do you agree?",
-        "{-ki1}{pl1}A plan in three parts. {pl1.1}One: the democracies built an order they would not underwrite, and weakened it "
-        "after 1929: the Senate refused Versailles; Smoot–Hawley cut world trade by two thirds. "
-        "{pl1.2}Two: they refused to defend it when tested: Manchuria, the Neutrality Acts, no oil embargo on Italy, the Rhineland, Munich. "
-        "{pl1.3}Three: but the initiative lay with the militarist regimes, in Berlin, Rome and Tokyo. "
-        "{pl1.4}So, agree in part. The course's own word is the right one: reluctant. They could have acted, and chose not to.",
-        "{-pl1}{ki2}The second key issue: how far do you agree that economic nationalism was the key factor in the slide towards war in 1939?",
-        "{-ki2}{pl2}Again, three parts. {pl2.1}One: economic nationalism corroded the international order: tariffs, quotas, "
-        "imperial blocs, and autarky made conquest look rational. {pl2.2}Two: but it is a symptom as much as a cause: "
-        "the chain starts on Wall Street, not in the customs houses. {pl2.3}Three: ideology competes for the same place: "
-        "militarism in three regimes, and Nazi plunder that no trade barrier explains. "
-        "{pl2.4}Conclusion: economic factors created the opportunity; ideology supplied the intent.",
+        "{kt}Now, the exam. There are two key terms. First, the World-wide Economic Depression of the nineteen thirties. "
+        "It means a long, global fall in output, with mass unemployment and severe deflation. "
+        "Second, appeasement. Giving in to an aggressor's demands, in the hope of avoiding war.",
+        "{-kt}{ki1}There are also two key issues, and either one can come up at the oral. Here is the first. "
+        "Blame for the origins of the Second World War lies in part with the great democratic powers themselves. How far do you agree?",
+        "{-ki1}{pl1}Here is a plan in three parts. {pl1.1}One. The democracies built an order they would not guarantee, and after nineteen twenty-nine "
+        "they weakened it. The Senate refused Versailles. Smoot-Hawley, and the retaliation it set off, cut world trade by two thirds. "
+        "{pl1.2}Two. When the order was tested, they refused to defend it. Manchuria. The Neutrality Acts. No oil embargo on Italy. "
+        "The Rhineland. Munich. "
+        "{pl1.3}Three. But the initiative lay with the militarist regimes, in Berlin, Rome and Tokyo. "
+        "{pl1.4}So, agree in part. And use the course's own word: reluctant. They could have acted, and they chose not to.",
+        "{-pl1}{ki2}Now the second key issue. How far do you agree that economic nationalism was the key factor in the slide towards war in nineteen thirty-nine?",
+        "{-ki2}{pl2}Again, three parts. {pl2.1}One. Economic nationalism ate away at the international order. Tariffs, quotas, "
+        "imperial blocs. And autarky made conquest look rational. {pl2.2}Two. But it is a symptom as much as a cause. "
+        "The chain starts on Wall Street, not in the customs houses. {pl2.3}Three. Ideology competes for the same place. "
+        "Militarism, in three regimes. And Nazi plunder, which no trade barrier can explain. "
+        "{pl2.4}Your conclusion: economic factors created the opportunity. Ideology supplied the intent.",
     ], vis={
         "kt": dict(type="cols", g="World-wide Economic Depression", gq="a prolonged, global fall in output: mass unemployment, severe deflation",
                    d="Appeasement", dq="conceding to an aggressor's demands in the hope of avoiding war", vs="+"),
@@ -383,12 +393,12 @@ SCENES = [
     dict(id="suite", chap="Towards chapter 2", fond="nuit", humeur="tension",
          retenir="March 1939 Prague · 1 Sept. 1939 Poland · Nov. 1939 cash and carry. Chapter 2: the totalitarian regimes.",
          beats=[
-        "{g3}{g3.1}And the end of the story. In March 1939, Germany occupies Prague: Munich bought nothing. "
-        "On the first of September 1939, Germany invades Poland; France and Britain declare war. "
-        "{g3.2}In November, cash and carry: the United States starts to supply the democracies.",
-        "{-g3}{g4}{g4.1}Chapter two picks up exactly here: the totalitarian regimes whose militarism the reluctant democracies "
-        "failed to check. Three regimes, one trajectory. {g4.2}And one date links the two chapters: the thirtieth of January 1933, "
-        "when Hitler is appointed chancellor, in the middle of the Depression.",
+        "{g3}{g3.1}And now, the end of the story. In March, nineteen thirty-nine, Germany occupies Prague. Munich had bought nothing. "
+        "On the first of September, Germany invades Poland. France and Britain declare war. "
+        "{g3.2}In November comes cash and carry. The United States starts to supply the democracies.",
+        "{-g3}{g4}{g4.1}Chapter two picks up exactly here. It looks at the totalitarian regimes, whose militarism the reluctant democracies "
+        "failed to check. Three regimes, one trajectory. {g4.2}And one date links the two chapters. The thirtieth of January, nineteen thirty-three: "
+        "Hitler is appointed chancellor, in the depths of the Depression.",
         "{-g4}",
     ], vis={
         "g3": dict(type="globe", code="H1", sc=[31, 32]),
@@ -397,13 +407,13 @@ SCENES = [
 
     # ================================================================ récap final
     dict(id="fin", chap="The whole chapter", fond="nuit", humeur="calme", beats=[
-        "{carte}One last map of the chapter. {carte.1}The Crash: speculation, then panic, in October 1929. "
+        "{carte}One last map of the whole chapter. {carte.1}The Crash: speculation, then panic, in October, nineteen twenty-nine. "
         "{carte.2}The world crisis: banks, loans, gold… and fourteen million unemployed, the Hoovervilles, the Dust Bowl. "
-        "{carte.3}Economic nationalism: Smoot–Hawley, and the imperial blocs. "
-        "{carte.4}The political answers: Hitler, the New Deal, the Front populaire. {carte.5}And the liberal order, undefended: "
-        "the League, neutrality, appeasement.",
+        "{carte.3}Economic nationalism: Smoot-Hawley, and the imperial blocs. "
+        "{carte.4}The political answers: Hitler, the New Deal, the Front populaire. {carte.5}And the liberal order, left undefended. "
+        "The League. Neutrality. Appeasement.",
         ("P", 5.0),
-        "{-carte}{fin}That is the end of the series on chapter one. Now, do the quiz… and on to chapter two.",
+        "{-carte}{fin}And that is the end of the series on chapter one. Now, try the quiz. Then, on to chapter two.",
         ("P", 2.0),
     ], vis={
         "carte": dict(type="carte", centre="THE CRASH AND ITS IMPACT", branches=[
