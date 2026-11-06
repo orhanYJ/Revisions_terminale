@@ -204,7 +204,7 @@
       o.sv("path", { d: "M" + xs(8, G3p[i]) + " " + (ys[1] + 26) + " L" + xs(10, i) + " " + (ys[2] - 26), stroke: "rgba(255,210,74,.45)", "stroke-width": 2, fill: "none" }, liens2);
       return bille(o, g, xs(10, i), ys[2], 24, cc[c]);
     });
-    var pert = o.etiquette(g, W - 30, ys[0] + 60, "4 individus sans descendant", { fs: 20, c: o.C.ca, ancre: "end" });
+    var pert = o.etiquette(g, 26, ys[0] + 38, "4 sans descendant", { fs: 19, c: o.C.ca, ancre: "start" });
     var fin = o.etiquette(g, W / 2, H - 22, "Génération 10 : composition impossible à prévoir", { fs: 28, c: o.C.or });
     return function (t, st) {
       var t1 = o.et(v, "1", .3), t2 = o.et(v, "2", 2.5), t3 = o.et(v, "3", 4.5), t4 = o.et(v, "4", 6.5), t5 = o.et(v, "5", 8.5);
@@ -403,14 +403,14 @@
     var N2 = [];
     for (i = 0; i < 24; i++) N2.push([W / 2 + 60 + (i % 6) * ((W / 2 - 120) / 5), 200 + Math.floor(i / 6) * ((H - 270) / 3) + (o.alea(i + 50) - .5) * 20, o.alea(i * 3.3 + 8) < .55]);
     var lv2 = N2.map(function (p) { return larve(p[0], p[1], p[2] ? o.C.or : o.C.te); });
-    larve(80, H - 12, o.C.or);
+    var lg1 = larve(80, H - 12, o.C.or);
     var t1l = o.etiquette(g, 105, H - 4, "AceR (résistante)", { fs: 19, ancre: "start", c: o.C.or });
-    larve(330, H - 12, o.C.te);
+    var lg2 = larve(330, H - 12, o.C.te);
     var t2l = o.etiquette(g, 355, H - 4, "AceS (sensible)", { fs: 19, ancre: "start", c: o.C.te });
     var fl = o.sv("path", { d: "M" + (W / 2 - 24) + " " + (H / 2 + 30) + " H" + (W / 2 + 24), stroke: o.C.iv, "stroke-width": 3 }, g);
     return function (t, st) {
       var t1 = o.et(v, "1", .3), t2 = o.et(v, "2", 3), t3 = o.et(v, "3", 5), t4 = o.et(v, "4", 7);
-      apparait(o, eau, t, t1, .5); apparait(o, l1, t, t1, .5); apparait(o, t1l, t, t1 + .5, .5); apparait(o, t2l, t, t1 + .5, .5);
+      apparait(o, eau, t, t1, .5); apparait(o, l1, t, t1, .5); apparait(o, t1l, t, t1 + .5, .5); apparait(o, t2l, t, t1 + .5, .5); apparait(o, lg1, t, t1 + .5, .5); apparait(o, lg2, t, t1 + .5, .5);
       lv.forEach(function (l, k) {
         var mort = !L[k][2], d = mort ? o.E(o.P(t, t3 + k * .03, .6)) : 0;
         l.setAttribute("opacity", (o.E(o.P(t, t1 + k * .03, .4)) * (1 - .8 * d)).toFixed(3));
@@ -493,7 +493,8 @@
     var fl = o.sv("g", {}, g);
     o.sv("path", { d: "M" + (W / 2 - 90) + " " + (H / 2) + " H" + (W / 2 + 90), stroke: o.C.iv, "stroke-width": 3, "stroke-dasharray": "8 6" }, fl);
     o.etiquette(fl, W / 2, H / 2 + 14, "✕", { fs: 46, c: o.C.ca });
-    o.etiquette(fl, W / 2, H / 2 + 54, "plus de reproduction entre elles", { fs: 20, c: o.C.ca });
+    o.sv("rect", { x: W / 2 - 175, y: H / 2 + 34, width: 350, height: 30, rx: 10, fill: "#06120b", "fill-opacity": .85 }, fl);
+    o.etiquette(fl, W / 2, H / 2 + 55, "plus de reproduction entre elles", { fs: 20, c: o.C.ca });
     var cap = o.etiquette(g, W / 2, H - 20, "", { fs: 24, c: o.C.or });
     // couleur finale : à gauche surtout A puis X, à droite surtout B
     var fin = P.map(function (p, k) { var gauche = p[0] < W / 2; var r = o.alea(k * 9.1); return gauche ? (r < .6 ? COUL.X : COUL.A) : (r < .8 ? COUL.B : COUL.O); });
