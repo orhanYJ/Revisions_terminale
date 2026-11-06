@@ -104,7 +104,7 @@ SCENES = [
             dict(nom="Leningrad, Stalingrad", d=1924, q="1924–1925"), dict(nom="Balilla", d=1926, q="Italy"),
             dict(nom="Racial instruction", d=1933, q="September"), dict(nom="Triumph of the Will", d=1934, q="Nuremberg rally"),
             dict(nom="Nuremberg laws · Stakhanov", d=1935, q="1935"),
-            dict(nom="Hitler Youth law", d=1936, q="Germany")]),
+            dict(nom="Hitler Youth", d=1936, q="the law")]),
     }),
 
     # ================================================================ II.1, idée 1 : le Guide
@@ -242,7 +242,7 @@ SCENES = [
          beats=[
         "{g5}{g5.1}Idea six. Stalin's cult presented him as the protective father of all the nations of the Soviet Union. "
         "It was a union of many nations, from Ukraine to Central Asia.",
-        "{-g5}{fam}But behind the image, the father imposed {!one culture}one culture. {fam.g}Stalin himself was Georgian. "
+        "{-g5}{fam}{fam.g}But behind the image, the father imposed {!one culture}one culture. Stalin himself was Georgian. "
         "{fam.d}Yet he made Russian the language of the whole Union. The Georgians were pushed to speak Russian, and to study even their own texts "
         "in Russian. The cult of one man went hand in hand with the forced unification of a whole empire.",
         "{-fam}{dat}Here is the example. From March nineteen thirty-eight, learning Russian became compulsory in every Soviet school. "
@@ -335,7 +335,7 @@ SCENES = [
         "the Wehrmacht will take care of it. From the age of ten, the regime never lets go.",
     ], vis={
         "g6": dict(type="globe", code="H2", sc=[11]),
-        "org": dict(type="liste", titre="Youth organisations", petit=True, bande=True, x=60, y=120, w=600,
+        "org": dict(type="liste", titre="Youth organisations", petit=True, bande=True, x=40, y=120, w=480,
                     marques=REG + ["→"], items=[
             "Opera Nazionale Balilla, 1926", "Hitler Youth: law of 1936, ≈ 8 million members by 1939",
             "Komsomol, 1918", "Bypassing the family and the church"]),
@@ -376,8 +376,8 @@ SCENES = [
         "{def5}Idea four. In Nazi Germany, the ideology became {!legislation}legislation. Take the Nuremberg laws, of the fifteenth of September, nineteen thirty-five. "
         "They forbade marriage and sexual relations between Jews and what they called persons of German blood. "
         "{def5.1}They banned Jewish households from employing young German women. And they forbade Jews to fly the Reich flag.",
-        "{-def5}{tab}So the state defined citizenship by descent. And the administration drew up the tables to apply it. "
-        "An official table of nineteen thirty-five sorted people by fractions of ancestry. {tab.1}German-blooded. "
+        "So the state defined citizenship by descent. And the administration drew up the tables to apply it. "
+        "{-def5}{tab}An official table of nineteen thirty-five sorted people by fractions of ancestry. {tab.1}German-blooded. "
         "{tab.2}Mischling of the second degree: one quarter Jewish, that is, one Jewish grandparent. "
         "{tab.3}Mischling of the first degree: half Jewish, two Jewish grandparents. "
         "{tab.4}And Jew: three quarters or more. People in that last category were refused Reich citizenship altogether.",
