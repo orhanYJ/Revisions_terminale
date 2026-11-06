@@ -25,7 +25,7 @@ SCENES = [
         ("P", 3.0),
     ], vis={
         "q1": dict(type="question", t="Tout le chapitre, d'un seul tenant."),
-        "titre": dict(type="titre", sur="Histoire · Terminale · Épisode 7", t="Récap",
+        "titre": dict(type="titre", sur="Histoire · La Seconde Guerre mondiale · Épisode 7", t="Récap",
                       sous="La Seconde Guerre mondiale · 1931 – 1943"),
     }),
 

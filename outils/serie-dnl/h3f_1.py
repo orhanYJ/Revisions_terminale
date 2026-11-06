@@ -60,7 +60,7 @@ SCENES = [
             "Une guerre mondiale : dates, idéologie, Nouvel Ordre européen", "La défaite de la France (partie I.1)",
             "Le Royaume-Uni seul, soutenu par les États-Unis (partie I.2)", "Barbarossa : une guerre d'anéantissement (partie II)",
             "Vers le génocide (partie III)", "La Seconde Guerre mondiale à l'examen : composition et analyse de document", "Récap"], x=170, y=110, w=940),
-        "titre": dict(type="titre", sur="Histoire · Seconde Guerre mondiale · Épisode 1", t="Une guerre mondiale",
+        "titre": dict(type="titre", sur="Histoire · La Seconde Guerre mondiale · Épisode 1", t="Une guerre mondiale",
                       sous="1931 – 1947 · une guerre idéologique · le Nouvel Ordre européen"),
     }),
 

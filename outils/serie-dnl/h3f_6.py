@@ -35,7 +35,7 @@ SCENES = [
         "plan": dict(type="liste", titre="Cet épisode, un atelier", items=[
             "Les deux exercices", "La question problématisée : paragraphes, introduction, conclusion",
             "L'analyse de document(s) : présenter, expliquer, critiquer", "Les pièges du chapitre"], x=170, y=130, w=940),
-        "titre": dict(type="titre", sur="Histoire · Terminale · Épisode 6", t="La Seconde Guerre mondiale à l'examen",
+        "titre": dict(type="titre", sur="Histoire · La Seconde Guerre mondiale · Épisode 6", t="La Seconde Guerre mondiale à l'examen",
                       sous="question problématisée · analyse de document(s) · les pièges du chapitre"),
     }),
 

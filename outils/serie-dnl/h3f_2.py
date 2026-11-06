@@ -57,7 +57,7 @@ SCENES = [
             "L'histoire sur la carte : 1939 – 1942", "Pourquoi la France tombe : stratégie et Blitzkrieg",
             "Dunkerque, la défaite, l'exode", "La France découpée ; le régime de Vichy",
             "Exploitée, persécutée, réprimée, séduite", "Entraînement : composition et analyse de document"], x=170, y=110, w=940),
-        "titre": dict(type="titre", sur="Histoire · Seconde Guerre mondiale · Épisode 2", t="La défaite de la France",
+        "titre": dict(type="titre", sur="Histoire · La Seconde Guerre mondiale · Épisode 2", t="La défaite de la France",
                       sous="mai 1940 – novembre 1942 · défaite · occupation · collaboration"),
     }),
 
