@@ -759,7 +759,7 @@
   function lieu(p) { return typeof p === "string" ? (LIEUX[p] || [580, 400]) : p; }
   function echelle(y) { return 1.05 * (0.74 + (y - 200) / 360 * 0.5); }
   var CAMS = { cuisine: [20, 60, 860, 445], tout: [100, 100, 980, 507], porte: [250, 90, 760, 393],
-    jardin: [560, 150, 600, 310], arbre: [760, 0, 420, 217], michael: [640, 300, 520, 269], large: [0, 0, 1160, 600] };
+    jardin: [470, 190, 700, 362], arbre: [760, 0, 420, 217], michael: [640, 300, 520, 269], large: [0, 0, 1160, 600] };
   var COUL = { blanc: "#ece8dc" };
 
   // objets : dessinés autour de (0, 0) ; tenus = plus petits, au bout du bras
