@@ -1,4 +1,4 @@
-"""SVT, chapitre 3 du thème 1.A (Mme Philip) : « L'évolution du génome au sein des populations » — le cours en vidéo.
+"""SVT, chapitre 3 du thème 1.A : « L'évolution du génome au sein des populations » — le cours en vidéo.
 
 Même chaîne que les vidéos de physique-chimie (outils/serie-philo/generer.py, voix clonée, calage des visuels sur les
 mots) ; moteur svt/serie/moteur.js (type mental = carte mentale du thème 1.A) ; illustrations propres au chapitre dans
@@ -24,7 +24,7 @@ PRONONCIATION = {"p": "pé", "q": "ku", "m": "ème", "Hardy": "Hardi", "Weinberg
                  "pipiens": "pipiènce", "Ellis-van": "Élisse-vane", "Creveld": "Crévelde", "HLA": "ache èl a",
                  "Kell": "Kèl", "Doolittle": "Doulitel", "Denisova": "Dénissova", "Mezmaiskaya": "Mezmaïskaïa",
                  "Vindija": "Vindiya", "Han": "Hane", "lugubris": "lugubrisse", "paralugubris": "paralugubrisse",
-                 "Mendel": "Mendèle", "Philip": "Philippe", "Huttérites": "Hutérites", "Linné": "Liné"}
+                 "Mendel": "Mendèle", "Huttérites": "Hutérites", "Linné": "Liné"}
 
 
 def fr(a, b):
@@ -87,7 +87,7 @@ def gr_freq(titre, courbes, y=110, x=300, w=680, h=520, gens=10, note=None):
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Ouverture", fond="foret", humeur="mystere", carton=False, beats=[
-        "{ouv_m}Voici la carte mentale du thème un, partie A, telle que Madame Philip l'a dessinée : génétique et évolution. "
+        "{ouv_m}Voici la carte mentale du thème un, partie A, celle de ton cours : génétique et évolution. "
         "Quatre chapitres. Le premier expliquait comment chaque individu reçoit un génotype unique. Le deuxième, comment les génomes se complexifient.",
         "{ouv_m.1}Ce chapitre-ci, le troisième, change d'échelle. On ne regarde plus un individu, ni une cellule, "
         "mais une population entière, et ce que deviennent ses allèles au fil des générations.",
@@ -464,7 +464,7 @@ SCENES = [
         "Quatre individus ne laissent aucun descendant : leurs allèles sont perdus pour la génération suivante.",
         "{d9.3}La deuxième génération ne compte plus que huit individus, et les couleurs ne sont plus dans les mêmes proportions. "
         "{d9.4}La troisième en compte dix. {d9.5}Au bout de dix générations, la composition allélique est impossible à prévoir.",
-        "{-d9}{expl}Pourquoi ? Voici l'explication de Madame Philip, diapositive quarante-six. "
+        "{-d9}{expl}Pourquoi ? Voici l'explication de ton cours, diapositive quarante-six. "
         "{expl.1}Dans une petite population, les allèles n'ont pas tous la même probabilité de se transmettre. "
         "{expl.2}Pour qu'un individu transmette à coup sûr tous ses allèles, il faudrait que son nombre de descendants tende vers l'infini. "
         "{expl.3}Il est donc statistiquement inévitable que certains allèles ne soient transmis à aucun enfant. "
@@ -955,6 +955,6 @@ CREDITS = [
     "Photos : Drosophila melanogaster, André Karwath (CC BY-SA 2.5) ; buggy amish, Ad Meskens (CC BY-SA 3.0) ; Culex pipiens, gbohne "
     "(CC BY-SA 2.0) ; phalènes du bouleau, Olaf Leillinger (CC BY-SA 2.5) ; route de la grotte de Denisova, Yuriy59 (CC BY-SA 3.0) ; "
     "Carl von Linné par Alexander Roslin, 1775, et Charles Darwin (domaine public). Images trouvées sur Wikimedia Commons.",
-    "Carte mentale d'après la carte de Mme Philip. Schémas, graphiques et simulations faits pour le site : les courbes de l'activité 1 "
+    "Carte mentale d'après celle du cours. Schémas, graphiques et simulations faits pour le site : les courbes de l'activité 1 "
     "et l'histogramme de Buri sont des simulations du protocole, pas les résultats de la classe ni ceux de Buri. Les trois exercices sont inventés pour la vidéo.",
 ]

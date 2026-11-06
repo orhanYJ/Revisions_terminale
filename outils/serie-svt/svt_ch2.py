@@ -1,9 +1,9 @@
-"""SVT, chapitre 2 : « La complexification des génomes » — le cours en vidéo (thème 1.A, Mme Philip).
+"""SVT, chapitre 2 : « La complexification des génomes » — le cours en vidéo (thème 1.A).
 
 Même chaîne que les vidéos de physique-chimie (outils/serie-pc/pc_ch5.py) : generer.py svt_ch2, sortie dans svt/serie/.
 Contenu : les pages t2 (transferts horizontaux de gènes) et t2b (endosymbioses) du site, rien au-delà ; ce que le site
 marque « hors programme » ou « source extérieure » est dit comme tel à l'oral.
-Plan : la carte mentale de Mme Philip (svt/carte-mentale.js) : c2a Transferts horizontaux (★ schéma à savoir refaire),
+Plan : la carte mentale du thème (svt/carte-mentale.js) : c2a Transferts horizontaux (★ schéma à savoir refaire),
 c2b Endosymbioses (★ chloroplastes / mitochondries).
 Animations du site rejouées : svt/anim/thg.html (62 s), insuline.html (50 s), endosymbiose.html (62 s).
 Illustrations propres au chapitre : svt/serie/illu-svt-ch2.js (griffith, grille, barres, lignee).
@@ -29,7 +29,7 @@ PRONONCIATION = {
 SCENES = [
     # ================================================================ ouverture : la carte du thème, puis le chapitre 2
     dict(id="ouverture", chap="Ouverture", fond="foret", humeur="mystere", carton=False, beats=[
-        "{carte}Voici la carte mentale du thème génétique et évolution, celle de Madame Philip. Quatre chapitres. "
+        "{carte}Voici la carte mentale du thème génétique et évolution, celle de ton cours. Quatre chapitres. "
         "Le premier, que tu connais déjà, parlait des transferts verticaux : les gènes passent des parents aux enfants, "
         "par la reproduction, et la méiose et la fécondation les brassent à chaque génération.",
         "{carte.1}Aujourd'hui, chapitre deux : la complexification des génomes. Et la question change de direction. "
@@ -37,7 +37,7 @@ SCENES = [
         "La réponse est oui, et c'est partout dans le vivant. Une bactérie qui donne à sa voisine un gène de résistance aux antibiotiques. "
         "Un virus dont un gène est devenu, chez nous, indispensable à la formation du placenta. "
         "Et même des bactéries entières, avalées il y a très longtemps, qui sont devenues les mitochondries et les chloroplastes de nos cellules.",
-        "{-carte}{plan}{plan.1}Sur la carte de Madame Philip, le chapitre a deux branches. La première : les transferts horizontaux de gènes. "
+        "{-carte}{plan}{plan.1}Sur la carte du cours, le chapitre a deux branches. La première : les transferts horizontaux de gènes. "
         "Transformation, conjugaison, transgenèse, transferts viraux, et la transduction. Elle porte une étoile : il y a un schéma à savoir refaire. "
         "{plan.2}La seconde : les endosymbioses, avec les chloroplastes et les mitochondries, et une étoile elle aussi. "
         "{plan.3}À la fin, on fera ensemble le point sur ce qu'il faut savoir rédiger pour le bac.",
@@ -50,7 +50,7 @@ SCENES = [
             "Les endosymbioses : chloroplastes et mitochondries ★",
             "Pour le bac : ce qu'il faut savoir rédiger et dessiner"], x=150, y=190, w=980),
         "titre": dict(type="titre", sur="SVT · Thème 1 · Chapitre 2", t="La complexification des génomes",
-                      sous="Le cours complet, avec les exemples de Mme Philip"),
+                      sous="Le cours complet, avec tous les exemples du cours"),
     }),
 
     # ================================================================ A. le problème : vertical / horizontal
@@ -340,7 +340,7 @@ SCENES = [
         "{-env}{crit}Voici le critère du TP. Quand un gène est transmis verticalement, les mutations s'accumulent au fil du temps : deux espèces éloignées "
         "devraient donc avoir des protéines très différentes. {crit.1}Si les protéines de deux organismes éloignés se ressemblent à plus de quatre-vingts pour cent, "
         "cela trahit un transfert horizontal récent.",
-        "{-crit}{bar}{bar.s}Les résultats, d'après la correction de Madame Philip. Le seuil de quatre-vingts pour cent. "
+        "{-crit}{bar}{bar.s}Les résultats, d'après la correction du TP. Le seuil de quatre-vingts pour cent. "
         "{bar.1}Syncytine un humaine contre protéine du virus MSRV : quatre-vingt-sept pour cent. Au-delà du seuil, entre un virus et un primate : c'est un indice fort. "
         "{bar.2}Syncytine deux contre MSRV : vingt pour cent seulement. Une ressemblance faible, loin sous le seuil : on y reviendra.",
         "{-bar}{args}Le raisonnement, en trois arguments. {args.1}Un argument moléculaire : quatre-vingt-sept pour cent de similitude entre la syncytine un et la protéine ENV. "
@@ -412,7 +412,7 @@ SCENES = [
             "Exploiter : 87 % > 80 %, compatible avec une origine virale",
             "Ressource : similitude fonctionnelle et arbre des primates",
             "Conclure : gène rétroviral intégré chez l'ancêtre commun des grands singes"], x=130, y=120, w=1020),
-        "note_ece": dict(type="liste", titre="La grille de Mme Philip", items=[
+        "note_ece": dict(type="liste", titre="La grille de notation de l'ECE", items=[
             "Communication (/5) : techniquement correcte, bien renseignée, pertinente",
             "Conclusion (/3) : complète, organisée, distanciée",
             "Distanciée : par exemple, insérer ENW1 dans des cellules et observer leur fusion"], marques=["5", "3", "!"], x=150, y=180, w=980),
@@ -459,7 +459,7 @@ SCENES = [
         "Dans la base, ils s'appellent ERVW-1 et ERVFRD-1 : E R V, pour rétrovirus endogène.",
         "{-ncbi}{trans}Dernier mécanisme de la branche : la transduction. {trans.1}C'est un transfert d'ADN bactérien par un virus de bactérie, un bactériophage. "
         "En se multipliant dans une bactérie, le virus emporte par erreur un fragment d'ADN bactérien, qu'il injecte ensuite dans la bactérie suivante. "
-        "{trans.2}Madame Philip le précise : sache que ce mécanisme existe. On ne te demandera ni de l'expliquer, ni d'en connaître le schéma.",
+        "{trans.2}Ton cours le précise : sache que ce mécanisme existe. On ne te demandera ni de l'expliquer, ni d'en connaître le schéma.",
         "{-trans}",
     ], vis={
         "idee": dict(type="def", terme="L'idée", cles=["tous", "fonctions"],
@@ -546,7 +546,7 @@ SCENES = [
         "{dm.2}La membrane interne correspond à la membrane de la bactérie. {dm.3}La membrane externe, à la membrane de la vésicule formée par la cellule hôte.",
         "{-dm}{pa_en}C'est le schéma étoilé de cette branche : l'endosymbiose, avec la double membrane légendée. Refais-le.",
         "{pa_en.stop}{-pa_en}{-an6}{tab_ch}Au microscope électronique, un chloroplaste. On voit son enveloppe, et ses empilements de membranes à l'intérieur. "
-        "Madame Philip commente un schéma de l'endosymbiose : on se rend compte que la membrane interne du chloroplaste est, à l'origine, la membrane de la cyanobactérie. "
+        "Ta professeure commente un schéma de l'endosymbiose : on se rend compte que la membrane interne du chloroplaste est, à l'origine, la membrane de la cyanobactérie. "
         "Cela explique les ressemblances de structure entre l'une et l'autre. L'endosymbiose de cyanobactéries a ainsi donné naissance à la lignée verte.",
         "{-tab_ch}{tab_mi}Et voici deux mitochondries, dans une cellule de poumon de mammifère. Même enveloppe double.",
         "{-tab_mi}{nuance}Une nuance, hors programme. Le modèle du cours, une membrane bactérienne plus une membrane de vésicule, est celui qu'on attend au bac. "
@@ -617,7 +617,7 @@ SCENES = [
     dict(id="objections", chap="Deux objections qui se retournent", fond="cellule", humeur="tension",
          retenir="Peu de gènes dans les organites (67, 87) : transfert de gènes vers le noyau, prise de relais par le noyau, protéines importées. Un transfert horizontal qui complexifie le génome de l'hôte.",
          beats=[
-        "{pc2}{pc2.1}La correction de Madame Philip, au cours du douze octobre : le tableau des arguments, pour et contre. "
+        "{pc2}{pc2.1}La correction faite en classe : le tableau des arguments, pour et contre. "
         "En faveur : la similitude des ARN ribosomiques ; la RubisCo commune ; la membrane interne de composition bactérienne ; l'ADN circulaire ; "
         "la même fonction ; la taille et la division ; l'arbre phylogénétique.",
         "{pc2.2}Contre ? Deux membranes chez les organites, une seule chez la bactérie. Réponse : cette double membrane est justement la preuve de l'ingestion d'une bactérie.",
@@ -825,5 +825,5 @@ CREDITS = [
     "galles du collet sur un orme, Rosser1954 (CC BY-SA 4.0) ; particules de VIH-1, NIAID (CC BY 2.0) ; placenta humain, Asturnut (CC BY-SA 3.0) ; "
     "cellules d'élodée, Kelvinsong (CC BY-SA 3.0) ; Lynn Margulis en 2005, Javier Pedreira (CC BY 2.0) ; Amoeba proteus, SmallRex (CC BY-SA 4.0) ; "
     "chloroplaste d'anémone, National Cancer Institute (domaine public) ; mitochondries, Louisa Howard (domaine public) ; Nostoc, Christian Fischer (CC BY-SA 3.0).",
-    "Animations, carte mentale et schémas : faits pour le site, d'après le cours et les corrections de Mme Philip.",
+    "Animations, carte mentale et schémas : faits pour le site, d'après le cours et les corrections faites en classe.",
 ]

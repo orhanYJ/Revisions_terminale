@@ -209,8 +209,8 @@ SCENES = [
                      etape="A set of rival imperial blocs, rather than one world market", x=170, y=200, w=940),
         "gc": dict(type="graphe", titre="World trade in value (1929 = 100, course figure: about −66%)", x=340, y=110, w=600, h=520,
                    ax=dict(x=[1927.5, 1935.5], y=[0, 120], gx=[], gy=[50, 100], lx="", ly="index"),
-                   el=[dict(type="droite", pts=[[1929, 5], [1929, 95]], c="sa", ep=60, dur=1.0, lbl="1929: 100", lp=[1929, 108]),
-                       dict(type="droite", pts=[[1934, 5], [1934, 29]], c="ca", ep=60, dur=1.0, lbl="1934: about 34", lp=[1934, 45])]),
+                   el=[dict(type="droite", pts=[[1929, 7], [1929, 93]], c="sa", ep=60, dur=1.0, lbl="1929: 100", lp=[1929, 108]),
+                       dict(type="droite", pts=[[1934, 7], [1934, 27]], c="ca", ep=60, dur=1.0, lbl="1934: about 34", lp=[1934, 45])]),
         "ott": dict(type="note", terme="Example · Ottawa, 1932", cles=["each other", "everyone else"],
                     t="“Imperial preference”: low tariffs between Britain and its dominions, high tariffs for everyone else.",
                     etape="Free trade, the pillar of the 1919 liberal order, is gone.", x=170, y=200, w=940),
@@ -319,7 +319,7 @@ SCENES = [
         "{m_ns}Idea two. The Nazi party, the NSDAP, fed on this discontent. {-m_ns}{nsdap}{nsdap.1}It blamed the weakness of the young Weimar Republic. "
         "{nsdap.2}It offered simple solutions to complex problems. {nsdap.3}And it spoke straight to the unemployed, even to communist workers. "
         "A slogan of nineteen thirty-three promised: work, freedom, bread.",
-        "{-nsdap}{m_masch}Melita Maschmann again, in her memoir:{-m_masch}",
+        "Melita Maschmann again, in her memoir:{-nsdap}",
         ("C", "The Nazis promised to end unemployment and poverty, and I believed them.", "c_masch"),
         "{-c_masch}{gv}Now watch two curves on the same chart. {gv.1}Unemployment. {gv.2}And the Nazi vote. "
         "Two point six per cent in nineteen twenty-eight. Eighteen point three in nineteen thirty. "
@@ -336,7 +336,6 @@ SCENES = [
         "nsdap": dict(type="liste", titre="How the NSDAP used the crisis", cles=["Weimar", "simple", "unemployed"], items=[
             "It blamed the weakness of the Weimar Republic", "Simple solutions to complex problems",
             "It spoke to the unemployed, even communists: “Work! Freedom! Bread!” (1933)"], x=170, y=140, w=940),
-        "m_masch": dict(type="mot", t="Melita Maschmann", g="a teenager in the 1930s · memoir, 1963", y=260, taille=80),
         "c_masch": dict(type="cit", a="Melita Maschmann", o="memoir, 1963 (Worksheet 3, Source 5)", x=200, y=230, w=880),
         "gv": dict(type="graphe", titre="Unemployment (insured workers) and the Nazi vote, % (course)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1927.6, 1933.4], y=[0, 50], gx=[1928, 1929, 1930, 1931, 1932, 1933], gy=[10, 20, 30, 40, 50], lx="", ly="%"),

@@ -245,7 +245,7 @@ SCENES = [
         "Outside the course: at Babi Yar, near Kiev, more than thirty-three thousand Jews were shot in two days, in September 1941.",
     ], vis={
         "g7": dict(type="globe", code="H3", sc=[27]),
-        "ein": dict(type="liste", titre="Four Einsatzgruppen, June 1941", x=820, y=60, w=420, petit=True, bande=True, items=[
+        "ein": dict(type="liste", titre="Four Einsatzgruppen, June 1941", x=40, y=70, w=340, petit=True, bande=True, items=[
             "A: the Baltic states", "B: Belarus, towards Moscow", "C: Ukraine", "D: southern Ukraine, the Crimea"]),
         "def7": dict(type="def", cles=["Mobile", "SS", "police"], terme="Einsatzgruppen",
                      t="Mobile killing squads of the SS and the police that followed the army into the USSR.",
@@ -307,7 +307,7 @@ SCENES = [
         ("C", "the whole thing took I would say between 5–7 minutes", "c_bomba"),
     ], vis={
         "g9": dict(type="globe", code="H3", sc=[32]),
-        "six": dict(type="liste", titre="Six killing centres, occupied Poland", x=820, y=50, w=420, petit=True, bande=True, items=[
+        "six": dict(type="liste", titre="Six killing centres, occupied Poland", x=40, y=60, w=340, petit=True, bande=True, items=[
             "Chelmno", "Treblinka", "Sobibor", "Belzec", "Majdanek", "Auschwitz"]),
         "cmp9": dict(type="cols", g="Concentration camp", gq="imprisons and exploits its inmates", d="Killing centre",
                      dq="exists to kill, on arrival", vs="≠"),
@@ -381,7 +381,7 @@ SCENES = [
     dict(id="ws4", chap="Worksheet 4: the key answers", fond="aube", humeur="calme",
          retenir="Worksheet 4: present Treblinka (dates, place, toll) · the victims (ghettos, trains, deception) · the slaves' tasks · the killing process, from the ramp to the burning of the bodies.",
          beats=[
-        "{ws}The four questions of Worksheet 4, with the key points suggested by the site, not Monsieur Ros's answer key. "
+        "{ws}The four questions of Worksheet 4, with the key points suggested by the site, not an official answer key. "
         "{ws.1}One: present Treblinka, with its dates, its place and its toll. "
         "{ws.2}Two: the victims: from the ghettos, Lindwasser from Warsaw, Bomba from Czestochowa; by train, deceived. "
         "{ws.3}Three: the tasks of the slave Jews. Barbers like Bomba, inside the gas chamber itself; sorting the victims' belongings; "
@@ -426,12 +426,12 @@ SCENES = [
         "{rep1.3}From December 1941, six killing centres gassed them on arrival: six million murdered in all.",
     ], vis={
         "g13": dict(type="globe", code="H3", sc=[45]),
-        "pays": dict(type="liste", titre="Share of Jews killed (course map)", x=820, y=50, w=420, petit=True, bande=True, items=[
+        "pays": dict(type="liste", titre="Share of Jews killed (course map)", x=880, y=380, w=370, petit=True, bande=True, items=[
             "Poland: 3,000,000 of 3,350,000 (90%)", "Lithuania: 97%", "Netherlands: 100,000 of 140,000 (71%)",
             "France: 75,000 of 270,000 (28%)", "Italy: 8,000 of 50,000 (16%)"]),
         "lien13": dict(type="note", terme="Link to episode 1", cles=["racial", "murder"],
                        t="The genocide carried out the first driving force of the New European Order: Europe as a racial entity.",
-                       etape="“The absolute elimination of the Jews” (Hitler, 11 December 1941).", x=170, y=200, w=940),
+                       etape="“The absolute elimination of the Jews” (Hitler, 11 December 1941, as quoted in the course).", x=170, y=200, w=940),
         "eta": dict(type="liste", titre="From persecution to genocide: the stages", items=[
             "1939 – 41 · Ghettos: concentrate, isolate, starve", "From June 1941 · Bullets: Einsatzgruppen A–D",
             "From Dec. 1941 · Gas: six killing centres in Poland", "1943 · Revolts: Warsaw ghetto (April – May), Treblinka (2 August)"],
@@ -562,8 +562,8 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H3 · Part III: the Nazi racial policy, towards the genocide; Worksheet 4 · Treblinka; the course videos on Raul Hilberg and the Einsatzgruppen) as written on the site, with additions marked “outside the course” (US Holocaust Memorial Museum); animated map of chapter 3 (site).",
-    "Answers to the worksheet and to the video questions: suggested by the site, not M. Ros's answer key.",
+    "Content: the DNL History course (DNL History, H3 · Part III: the Nazi racial policy, towards the genocide; Worksheet 4 · Treblinka; the course videos on Raul Hilberg and the Einsatzgruppen) as written on the site, with additions marked “outside the course” (US Holocaust Memorial Museum); animated map of chapter 3 (site).",
+    "Answers to the worksheet and to the video questions: suggested by the site, not an official answer key.",
     "No photographs of the victims: the documents of the course are described in words.",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]
