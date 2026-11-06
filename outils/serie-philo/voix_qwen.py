@@ -108,8 +108,12 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
     import soundfile as sf
     m = _charger()
     p = _prompt(voix)
+    # Chaque prise est jugée sur deux plans : la justesse (reconnaissance vocale) et l'intonation (prosodie.py :
+    # une prise monocorde est refaite, demande de Cengiz du 06/11/2026 : « une voix naturelle, des intonations,
+    # moins de robotisme »). On garde la prise juste la plus vivante ; au plus quatre prises.
+    import prosodie
     meilleur = None
-    for essai in range(3):
+    for essai in range(4):
         torch.manual_seed(1234 + 17 * essai + len(texte))
         w, sr = m.generate_voice_clone(text=texte, language=LANGUES[langue], voice_clone_prompt=p)
         a = w[0].astype(np.float32)
@@ -117,11 +121,22 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
         segs, _ = _whisper.transcribe(y, language=langue, word_timestamps=True)
         mots = [(x.start, x.end - x.start, x.word.strip()) for s in segs for x in (s.words or [])]
         sc = _score(texte, " ".join(x[2] for x in mots))
-        if meilleur is None or sc > meilleur[0]:
-            meilleur = (sc, a, sr, mots)
-        if sc >= 0.9:
+        try:
+            pm = prosodie.mesure(y, 16000)
+        except Exception:
+            pm = {"relief": 3.0, "elan": 2.0}
+        vie = pm["relief"] + pm["elan"]
+        # rang : d'abord la justesse (au-dessus de 0,88 toutes les prises se valent), puis l'intonation
+        rang = (min(sc, 0.88), vie)
+        if meilleur is None or rang > meilleur[0]:
+            meilleur = (rang, sc, a, sr, mots, pm)
+        if sc >= 0.9 and not prosodie.plat(pm):
             break
-    sc, a, sr, mots = meilleur
+        if essai >= 1 and meilleur[1] >= 0.9 and not prosodie.plat(meilleur[5]):
+            break
+    _, sc, a, sr, mots, pm = meilleur
+    if prosodie.plat(pm):
+        print(f"    intonation plate (relief {pm['relief']}, élan {pm['elan']}) : {texte[:60]}", flush=True)
     tmp = chemin + ".wav.part"
     sf.write(tmp, a, sr, format="WAV")
     filtre = ["-af", f"atempo={tempo}"] if abs(tempo - 1) > 1e-3 else []
@@ -134,4 +149,5 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
     with open(chemin + ".json", "w", encoding="utf-8") as f:
         json.dump(_caler(texte, mots, len(a) / sr / tempo), f, ensure_ascii=False)
     os.replace(chemin + ".part.mp3", chemin)
+    open(chemin + ".vu", "w").close()   # intonation déjà jugée à l'enregistrement
     return sc
