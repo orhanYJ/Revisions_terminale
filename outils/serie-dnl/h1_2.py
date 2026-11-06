@@ -40,9 +40,9 @@ SCENES = [
         ("P", 3.2),
     ], vis={
         "g0": dict(type="globe", code="H1", sc=[5]),
-        "q1": dict(type="question", t="October 1929: a crash in New York.", bande=True),
-        "q2": dict(type="question", t="How did it become a world crisis?", bande=True),
-        "q3": dict(type="question", t="What did it do to people's lives?", bande=True),
+        "q1": dict(type="note", terme="October 1929", t="A crash in New York.", x=480, y=470, w=760),
+        "q2": dict(type="note", terme="The question", t="How did it become a world crisis?", x=480, y=470, w=760),
+        "q3": dict(type="note", terme="And the people?", t="What did it do to people's lives?", x=480, y=470, w=760),
         "plan": dict(type="liste", titre="H1 · The Wall Street Crash, in six episodes", items=[
             "The Great Crash of 1929 (Part I.1)", "From an American crash to a world crisis (Parts I.2 – I.3)",
             "Economic nationalism and political responses (II.1 – II.2)", "Democracies and the liberal order (II.3)",
@@ -65,7 +65,7 @@ SCENES = [
         "{g1.5}From 1930, the banks fail one after another: about five thousand by 1932. "
         "This is the moment the crash becomes the Great Depression.",
         "{g1.6}And American banks recall their loans to Europe. The money that kept the European economies afloat goes back across the Atlantic.",
-        "{g1.7}Across the dependent world, the crisis lasts: Latin America, Canada, India, Australia, New Zealand.",
+        "{g1.7}Across the dependent world, the crisis lasts: in India, in Australia, in New Zealand.",
         "{g1.8}In American cities, evicted families build shanty towns. People call them Hoovervilles.",
         "{g1.9}The trauma is global… but uneven: the Soviet Union, outside world trade, is barely touched.",
         "{-g1}{g2}{g2.1}Back to Europe, in 1931. The dominoes fall: Austria's largest bank in May, the German banks in July, "
@@ -80,9 +80,9 @@ SCENES = [
         "g1": dict(type="globe", code="H1", sc=[3, 5, 6, 7, 8, 9, 10, 11, 12]),
         "g2": dict(type="globe", code="H1", sc=[17, 19, 25, 28]),
         "fr1": dict(type="frise", items=[
-            dict(nom="Dawes Plan", d=1924, q="Europe hangs on US credit"), dict(nom="The Crash", d=1929, q="24–29 October"),
-            dict(nom="Bank failures", d=1930, q="≈ 5,000 by 1932"), dict(nom="Dominoes", d=1931, q="Vienna · Berlin · London"),
-            dict(nom="Black Sunday", d=1935, q="the Dust Bowl"), dict(nom="Migrant Mother", d=1936, q="Dorothea Lange")]),
+            dict(nom="Dawes Plan", d=1924), dict(nom="The Crash", d=1929, q="24–29 October"),
+            dict(nom="Bank failures", d=1930), dict(nom="Dominoes", d=1931, q="Vienna · Berlin · London"),
+            dict(nom="Dust Bowl", d=1935), dict(nom="Migrant Mother", d=1936, q="Dorothea Lange")]),
     }),
 
     # ================================================================ I.2 idée 1 : les banques
@@ -126,8 +126,8 @@ SCENES = [
         "{-q4}{cc}{!short-term}Short-term causes, first: the important international linkages. American banks suddenly recall their loans "
         "to European banks. The European banks collapse. And because the European banks also held assets in American banks, "
         "the collapse comes back across the Atlantic.",
-        "{-cc}{lt}Then the {!long-term}long-term, underlying causes. Economies all over the world already shared the same weaknesses. "
-        "{lt.1}Overproduction. {lt.2}Falling prices. {lt.3}Decreasing incomes for farmers. "
+        "{-cc}{lt}Then the {!long-term}long-term, underlying causes. {lt.1}Economies all over the world already shared the same weaknesses. "
+        "Overproduction. {lt.2}Falling prices. {lt.3}Decreasing incomes for farmers. "
         "{lt.4}Over-investment in industry, with overconfidence in its development. "
         "{lt.5}And, holding them all together: the gold standard. We'll come back to it in a minute.",
         "{-lt}{g3}{g3.1}The example: four months of dominoes. In May 1931, the Creditanstalt, "
@@ -168,7 +168,7 @@ SCENES = [
         "g4": dict(type="globe", code="H1", sc=[3]),
         "tri": dict(type="liste", titre="The Dawes circuit, 1924 – 1929", cles=["800 million", "2.5 billion", "war debts"], items=[
             "USA → Germany: a loan of 800 million marks (1924)", "Germany → France and Britain: reparations, up to 2.5 billion marks a year",
-            "France and Britain → USA: war-debt repayments"], x=540, y=400, w=720, petit=True, bande=True),
+            "France and Britain → USA: war-debt repayments"], x=660, y=400, w=580, petit=True, bande=True),
         "daw": dict(type="note", terme="Charles G. Dawes", cles=["Nobel", "Vice-President"],
                     t="Author of the 1924 plan; shared the Nobel Peace Prize in 1925 and became Vice-President (1925–1929).",
                     etape="The plan worked — as long as American credit kept flowing.", x=170, y=210, w=940),
@@ -205,8 +205,8 @@ SCENES = [
             "Higher US rates draw gold out of other countries", "They must raise their own rates",
             "Dearer money → less investment, less spending: the worst medicine"], x=150, y=110, w=980),
         "fr2": dict(type="frise", items=[
-            dict(nom="Britain", d=1931, q="September"), dict(nom="Japan", d=1931.9, q="December"),
-            dict(nom="United States", d=1933, q="Roosevelt"), dict(nom="France", d=1936, q="last out")]),
+            dict(nom="Britain · Sept.", d=1931), dict(nom="Japan", d=1931, q="December"),
+            dict(nom="USA · Roosevelt", d=1933), dict(nom="France", d=1936, q="last out")]),
         "g5": dict(type="globe", code="H1", sc=[19]),
         "ex2": dict(type="cols", g="Germany", gq="output recovers strongly after 1932: state spending replaces monetary constraint",
                     d="France", dq="defends the franc's gold value until 1936: the worst-performing developed economy of the decade", vs="≠"),
@@ -216,7 +216,7 @@ SCENES = [
     dict(id="domino", chap="I.2 · Dominoes and falling prices", fond="nuit", humeur="tension",
          retenir="Europe, by domino effect: Germany and Austria first (no more reparations), then British banks, then France in 1932. The periphery, by falling prices: Brazil burned some 78 million bags of coffee (1931–1944); Chile's nitrate earnings fell by more than 80% (1929–1932).",
          beats=[
-        "{dom}Fifth idea: the Depression hits Europe by domino effect, and the rest of the world by falling prices. Europe first. "
+        "{m5}Fifth idea: the Depression hits Europe by domino effect, and the rest of the world by falling prices. {-m5}{dom}Europe first. "
         "{dom.1}The German and Austrian economies are hit first, and they become unable to pay their reparations. "
         "{dom.2}By domino effect, the British banks, which had invested in Germany, are rapidly affected. "
         "{dom.3}France, less indebted to the United States, is affected only in 1932, when the German reparation payments stop flowing smoothly.",
@@ -226,13 +226,14 @@ SCENES = [
         "{-g6}{per}Two examples. {per.1}Brazil, whose economy depended on coffee, burned some seventy-eight million bags of it "
         "between 1931 and 1944, to hold the price up. {per.2}Chile, which lived on nitrate, saw its export earnings collapse by more than "
         "eighty per cent between 1929 and 1932. {per.3}The lesson: {!no cushion}a country that sells one commodity has no cushion.",
-        "{-per}{cha}Let's put the whole of part two together. This is the chain from the course, step by step. "
-        "{cha.1}The Wall Street Crash, October 1929: share prices collapse. {cha.2}Banking failures: credit dries up, savings are destroyed. "
+        "Let's put the whole of part two together. {-per}{cha}This is the chain from the course, {cha.1}step by step. "
+        "The Wall Street Crash, October 1929: share prices collapse. {cha.2}Banking failures: credit dries up, savings are destroyed. "
         "{cha.3}The United States recalls its foreign loans: Europe, especially Germany, loses American capital. "
         "{cha.4}Protectionism: tariffs and a chain of retaliation. That is episode three. "
         "{cha.5}World trade collapses: its value falls by about two thirds between 1929 and 1934. "
         "{cha.6}And the result: a global depression in the 1930s, with mass unemployment and deflation.",
     ], vis={
+        "m5": dict(type="mot", t="Dominoes and falling prices", g="Europe by domino effect · the rest of the world by falling prices", y=260, taille=72),
         "dom": dict(type="liste", titre="Europe: the domino effect", items=[
             "Germany and Austria hit first → no more reparations", "British banks, invested in Germany, hit in turn",
             "France, less indebted to the US, hit only in 1932"], x=170, y=150, w=940),
@@ -335,7 +336,7 @@ SCENES = [
         "poverty in the centre of the wealthiest country in the world.",
         "{-g7}{capf}{cap}And a strange detail of the course. In Chicago, in the winter of nineteen thirty to thirty-one, the gangster {!Al Capone}Al Capone ran a soup kitchen. "
         "Charity… but also a bid for public sympathy, from a man under federal investigation.",
-        "{-cap}{-capf}{or1}The Hoovervilles are the first oral topic of the course. Prepare four questions. "
+        "The Hoovervilles are the first oral topic of the course. {-cap}{-capf}{or1}Prepare four questions. "
         "{or1.1}What? {or1.2}Where? {or1.3}Who? {or1.4}And when? The answers are on the screen.",
     ], vis={
         "hv": dict(type="tableau", img="h1-hooverville", de=[1.0, .5, .5], a=[1.15, .45, .5],
@@ -359,7 +360,7 @@ SCENES = [
          retenir="The federal state documented poverty: Dorothea Lange (1895–1965), White Angel Breadline (1933), then Migrant Mother (March 1936, Nipomo, California) for a federal agency. A composed image (a series of exposures, closer and closer), made to win support for relief.",
          beats=[
         "{etat}Third idea, and a surprising one: the federal state itself documented poverty, and turned photography into an argument for reform.",
-        "{-etat}{dl}The photographer is {!Dorothea Lange}Dorothea Lange, from 1895 to 1965. {dl.1}In 1933 she photographs the "
+        "{-etat}{dl}The photographer is {!Dorothea Lange}Dorothea Lange, {dl.1}from 1895 to 1965. In 1933 she photographs the "
         "White Angel soup kitchen in San Francisco. {dl.2}Then she works for a federal agency, the Resettlement Administration, "
         "which later became the Farm Security Administration. She photographs the migrant farm workers of California.",
         "{-dl}{mm}In March 1936, at a pea-pickers' camp in Nipomo, California, she photographs {!Florence Owens Thompson}Florence Owens Thompson, "
@@ -369,9 +370,9 @@ SCENES = [
         ("C", "as if drawn by a magnet", "c_aimant"),
         "{-c_aimant}and that she made five exposures,",
         ("C", "working closer and closer from the same direction", "c_proche"),
-        "{-c_proche}She learned that the family had been living on frozen vegetables from the field and on birds the children caught. "
+        "{-c_proche}{acc}She learned that the family had been living on frozen vegetables from the field and on birds the children caught. "
         "The pea crop had frozen, and there was no work. And they could not move on: the mother had sold the tyres of the car to buy food.",
-        "{-rec}{cmp}So what is this photograph? {cmp.1}It is composed, not accidental: a series of exposures, closer and closer. "
+        "{-acc}{-rec}{cmp}So what is this photograph? {cmp.1}It is composed, not accidental: a series of exposures, closer and closer. "
         "{cmp.2}And it was made with a purpose: to win public support for relief programmes. "
         "{cmp.3}Published at once, the image helped bring federal relief to the camp.",
     ], vis={
@@ -381,10 +382,13 @@ SCENES = [
             x=170, y=160, w=940),
         "mm": dict(type="tableau", img="h1-lange-migrant", de=[1.0, .5, .3], a=[1.12, .5, .28],
                    legende="Dorothea Lange, Migrant Mother, Nipomo, California, March 1936 (Library of Congress, public domain)"),
-        "rec": dict(type="tableau", img="h1-lange-migrant", fond=True, sombre=True, de=[1.12, .5, .28], a=[1.2, .5, .3],
+        "rec": dict(type="tableau", img="h1-lange-migrant", fond=True, de=[1.12, .5, .28], a=[1.2, .5, .3],
                     legende="Dorothea Lange, Migrant Mother, March 1936 (public domain)"),
         "c_aimant": dict(type="cit", a="Dorothea Lange", o="her account of the photograph", x=200, y=190, w=880),
         "c_proche": dict(type="cit", a="Dorothea Lange", o="her account of the photograph", x=200, y=190, w=880),
+        "acc": dict(type="note", terme="Lange's account", cles=["frozen", "work", "tyres"],
+                    t="The family lived on frozen vegetables from the field and on birds the children caught. The pea crop had frozen: no work.",
+                    etape="They could not move on: the tyres of the car had been sold for food.", x=170, y=330, w=940),
         "cmp": dict(type="liste", titre="A photograph as an argument", cles=["composed", "purpose", "relief"], items=[
             "Composed, not accidental: a series of exposures", "Made with a purpose: support for relief programmes",
             "Published at once: federal relief sent to the camp"], x=170, y=150, w=940),
@@ -447,8 +451,8 @@ SCENES = [
         "{cau.3}When the rains failed, the exposed topsoil rose into storms that buried farms and made whole counties unliveable.",
         "{-cau}{nat}So the disaster was {!not simply natural}not simply natural. It was the price of a farming technique "
         "that relied on heavy machinery, without regard for the soil.",
-        "{-nat}{g8}{g8.1}The example. A dust storm photographed approaching Stratford, Texas, in 1935, fills the sky like a wall. "
-        "And Black Sunday, the fourteenth of April 1935, turned day into night across Oklahoma and Texas. "
+        "{-nat}{ds2}The example. A dust storm photographed approaching Stratford, Texas, in 1935, fills the sky like a wall. "
+        "{-ds2}{g8}{g8.1}And Black Sunday, the fourteenth of April 1935, turned day into night across Oklahoma and Texas. "
         "Dust pneumonia killed children and the old.",
         "{-g8}{dep}Ruined twice over, by prices and by dust, families left for California. And that is where Dorothea Lange found them.",
     ], vis={
@@ -458,6 +462,8 @@ SCENES = [
             "Severe drought in the 1930s", "No dryland farming methods: mechanised ploughing stripped the deep grasses",
             "Exposed topsoil → dust storms bury farms and counties"], x=170, y=140, w=940),
         "nat": dict(type="cols", g="Natural", gq="drought: the rains failed", d="Human", dq="heavy machinery, no regard for the soil", vs="+"),
+        "ds2": dict(type="tableau", img="h1-dustbowl", de=[1.12, .5, .45], a=[1.2, .5, .4],
+                    legende="Dust storm approaching Stratford, Texas, 1935 (George E. Marsh Jr., NOAA, Wikimedia Commons, public domain)"),
         "g8": dict(type="globe", code="H1", sc=[25]),
         "dep": dict(type="note", terme="Ruined twice over", cles=["prices", "dust", "California"],
                     t="By prices and by dust: families left the Great Plains for California — where Lange found them.",
