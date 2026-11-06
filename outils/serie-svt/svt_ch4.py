@@ -1,4 +1,4 @@
-"""SVT, thème 1.A, chapitre 4 (Mme Philip) : « Mécanismes de diversité non génétique du vivant » — le cours en vidéo.
+"""SVT, thème 1.A, chapitre 4 : « Mécanismes de diversité non génétique du vivant » — le cours en vidéo.
 
 Même chaîne que les vidéos de physique-chimie (outils/serie-pc/pc_ch5.py) : outils/serie-philo/generer.py svt_ch4,
 verifier.py, chevauchements.py svt-ch4, fermer.py. Moteur svt/serie/moteur.js (type mental : la carte mentale du
@@ -9,7 +9,7 @@ nids et termitières, chimpanzés et noix (avec l'exercice du graphique), chant 
 macaques du bilan (exemple de Koshima, déjà signalé sur le site comme extérieur au diaporama). Ce qui vient d'ailleurs
 est dit à voix haute (« précision qui ne vient pas de ton cours ») ; ce qui dépasse le programme est dit « hors programme ».
 Le graphique du chimpanzé est redessiné d'après la description du site (valeurs approchées) ; la question 3 de
-l'exercice est incomplète sur la diapositive : la réponse est une proposition (aucune correction de Mme Philip).
+l'exercice est incomplète sur la diapositive : la réponse est une proposition (aucune correction reçue).
 """
 
 SITE = "svt"
@@ -30,7 +30,7 @@ AXES_CHIMP = dict(x=[0, 72], y=[0, 1], gx=[12, 24, 36, 48, 60, 72], gy=[.2, .4, 
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Ouverture", fond="foret", humeur="mystere", carton=False, beats=[
-        "{cm0}Voici la carte mentale de Madame Philip pour la partie A du thème un : génétique et évolution. "
+        "{cm0}Voici la carte mentale de la partie A du thème un : génétique et évolution. "
         "Quatre chapitres. Les trois premiers expliquent la diversité du vivant par les gènes : "
         "les brassages de la reproduction sexuée, les transferts de gènes, la dérive et la sélection dans les populations.",
         "{cm0.1}Le chapitre quatre, lui, s'intéresse à tout le reste. Ta prof l'appelle, sur sa carte : autres mécanismes évolutifs. "
@@ -72,7 +72,7 @@ SCENES = [
         "Le génome, lui, ne change pas. {trois.1}Le phénotype peut changer par des associations entre êtres vivants. "
         "{trois.2}Par ce que l'animal construit hors de son corps. {trois.3}Et par des comportements appris. "
         "Ce sont exactement les trois branches de la carte de ta prof.",
-        "{-trois}{but_c}Madame Philip donne le but du chapitre dès sa première diapositive. "
+        "{-trois}{but_c}Ton cours donne le but du chapitre dès sa première diapositive. "
         "{but_c.1}Il s'agit de reconsidérer la place centrale des gènes dans l'explication de la construction, de la diversification et de l'évolution du vivant.",
         "{-but_c}{def_hng}Et elle introduit une idée nouvelle : l'hérédité non génétique. "
         "{def_hng.1}C'est la transmission, de génération en génération, d'informations qui ne sont pas codées dans l'ADN. "
@@ -404,13 +404,13 @@ SCENES = [
         "Cette réponse est donc une proposition, mais c'est bien ce qu'on attend.",
         "{-rep3}{-ex1c}",
     ], vis={
-        "ex1": dict(type="exo", niveau="simple", titre="L'acquisition de comportements chez le jeune chimpanzé", src="Exercice du cours de Mme Philip",
+        "ex1": dict(type="exo", niveau="simple", titre="L'acquisition de comportements chez le jeune chimpanzé", src="Exercice du cours",
                     enonce=["Le graphique donne le taux de succès du jeune chimpanzé en fonction de son âge (en mois), pour deux tâches.",
                             "Tâche facile : manger les fruits tendres de Parinari excelsa. Tâche compliquée : casser avec un outil les noix très nourrissantes, mais très dures, de Coula edulis."]),
         "gr1": dict(type="graphe", titre="Taux de succès selon l'âge", x=300, y=100, w=680, h=520, ax=AXES_CHIMP, el=[
             dict(type="courbe", pts=PARINARI, c="vert", lbl="fruits de Parinari", lp=[20, .72]),
             dict(type="courbe", pts=COULA, c="ca", lbl="noix de Coula", lp=[58, .7])]),
-        "ex1b": dict(type="exo", niveau="simple", titre="Les questions", src="Exercice du cours de Mme Philip",
+        "ex1b": dict(type="exo", niveau="simple", titre="Les questions", src="Exercice du cours",
                      questions=["Décrire le graphique.", "Comparer les deux comportements.",
                                 "Des jeunes élevés sans congénères ont un taux de succès de 0,2. Qu'en conclure ?"]),
         "pa1": dict(type="pause", t="Décrire chaque courbe avec des valeurs, comparer, puis conclure sur les jeunes élevés seuls."),
@@ -661,6 +661,6 @@ CREDITS = [
     "Photos : iNaturalist, licence CC BY : Lou Wagstaffe (vers de Roscoff), Alexis Tinker-Tsavalas (gammare), Jonas V. (phrygane), "
     "Sockrosma (tonnelle du jardinier satiné, termitières), Ben G. (épeire), Vladimir Kharuk (mésange bleue), Marios Thoma (lavande papillon), "
     "Stan Rullman (chimpanzés), Donald Davesne (pinson des arbres), Lawrence Hylton (baleine à bosse), Justin (macaque japonais).",
-    "Carte mentale d'après celle de Mme Philip. Illustrations, schémas et graphique : faits pour la vidéo ; le graphique du chimpanzé "
+    "Carte mentale du thème. Illustrations, schémas et graphique : faits pour la vidéo ; le graphique du chimpanzé "
     "est redessiné d'après la description du cours (valeurs approchées), les sonogrammes et la carte des baleines sont schématiques.",
 ]
