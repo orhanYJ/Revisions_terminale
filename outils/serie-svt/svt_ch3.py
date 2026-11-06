@@ -597,8 +597,8 @@ SCENES = [
     dict(id="groupeo", chap="Le groupe O des Amérindiens", fond="cellule", humeur="mystere",
          retenir="Groupe O : 90 à 100 % chez les Amérindiens. Explication proposée : un effet fondateur à l'échelle d'un continent, puis la dérive.",
          beats=[
-        "{obs_o}Deuxième cas, diapositive trente et un : une carte de la proportion de personnes de groupe sanguin O dans les populations autochtones du monde. "
-        "{obs_o.1}Elle est élevée presque partout : souvent cinquante à soixante-dix pour cent. "
+        "{obs_o}{obs_o.1}Deuxième cas, diapositive trente et un : une carte de la proportion de personnes de groupe sanguin O dans les populations autochtones du monde. "
+        "Elle est élevée presque partout : souvent cinquante à soixante-dix pour cent. "
         "{obs_o.2}Mais chez les populations amérindiennes, elle atteint quatre-vingt-dix à cent pour cent. En Amérique, presque tout le monde est de groupe O.",
         "{-obs_o}{ber}{ber.1}La diapositive laisse la case de l'explication à remplir. Voici une explication possible, proposée sur le site. "
         "En Asie, les trois allèles A, B et O sont présents. "
