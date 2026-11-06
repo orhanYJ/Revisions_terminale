@@ -151,7 +151,7 @@ SCENES = [
         "{mots1.d}The Red Terror is something else. It is the violence of the Bolsheviks against their enemies, inside Russia, from nineteen eighteen.{-photo2}",
     ], vis={
         "g3": dict(type="globe", code="H2", sc=[2]),
-        "rus": dict(type="liste", titre="Russia, 1917 – 1922", x=60, y=110, w=620, petit=True, bande=True, items=[
+        "rus": dict(type="liste", titre="Russia, 1917 – 1922", x=700, y=110, w=540, petit=True, bande=True, items=[
             "Feb. 1917: the Tsar abdicates", "Oct. 1917: the Bolshevik coup (Lenin, Trotsky), with the soviets",
             "Peace with Germany", "Civil war against the Whites, won by the Red Army (to 1922)", "1922: the USSR is created"]),
         "photo2": dict(type="tableau", img="h2-lenin-putilov", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .35, .45],
@@ -369,7 +369,7 @@ SCENES = [
         "{att1.2}And many estimates go up to thirty thousand marchers. The safest answer? October nineteen twenty-two, and some twenty thousand Blackshirts.",
     ], vis={
         "g8": dict(type="globe", code="H2", sc=[6]),
-        "mr": dict(type="liste", titre="The March on Rome · October 1922", x=60, y=110, w=620, petit=True, bande=True, items=[
+        "mr": dict(type="liste", titre="The March on Rome · October 1922", x=720, y=110, w=520, petit=True, bande=True, items=[
             "The aim: push the king to appoint him", "≈ 20,000 Blackshirts, fewer than hoped (course figure)",
             "Not violent during the march… but feared", "30 Oct.: the king refuses martial law, appoints Mussolini"]),
         "photo5": dict(type="tableau", img="h2-march-rome", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.12, .5, .35],
@@ -513,7 +513,7 @@ SCENES = [
         "{qui.1}{!What matters}But what matters is how the regime used it. To suspend freedoms, and to crush its first enemies.",
     ], vis={
         "g11": dict(type="globe", code="H2", sc=[21]),
-        "rf": dict(type="liste", titre="27 February 1933 → the emergency", x=60, y=110, w=620, petit=True, bande=True, items=[
+        "rf": dict(type="liste", titre="27 February 1933 → the emergency", x=730, y=110, w=510, petit=True, bande=True, items=[
             "The Nazis blame the communists: “a revolution”",
             "28 Feb.: a decree suspends press, assembly, opinion (date outside the course)",
             "Thousands of communists arrested within days"]),
