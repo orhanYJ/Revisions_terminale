@@ -165,7 +165,7 @@
       }
       else { x0 = s > 0 ? p.box[0] + p.box[2] : p.box[0]; w0 = n.niveau === 2 ? 5 : 3.2; w1 = n.niveau === 2 ? 3.2 : 1.4; }
       x1 = s > 0 ? n.box[0] + (n.niveau === 3 ? 5 : 0) : n.box[0] + n.box[2] - (n.niveau === 3 ? 5 : 0);   // feuilles : jusqu'au centre de la pastille
-      reg(id, el("path", { d: tige(x0, y0, x1, y1, w0, w1), fill: col(n.c), opacity: n.niveau === 3 ? .5 : .8 }, Lbr)).dataset.niv = n.niveau;
+      reg("tige:" + id, el("path", { d: tige(x0, y0, x1, y1, w0, w1), fill: col(n.c), opacity: n.niveau === 3 ? .5 : .8 }, Lbr)).dataset.niv = n.niveau;   // la tige qui arrive au nœud id
     });
     (function () {
       var b = [CX - CARTE.w / 2, CY - CARTE.h / 2, CARTE.w, CARTE.h];
@@ -240,8 +240,11 @@
       if (k == null) k = 1;
       var garde = !id || id === "t1a" ? null : sousArbre(id).concat(noeuds[id].niveau >= 2 ? [noeuds[id].parent] : []);   // la cible et son parent direct ; le reste (centre compris) s'efface
       Object.keys(groupes).forEach(function (g) {
-        var on = !garde || garde.indexOf(g) >= 0;
-        groupes[g].forEach(function (e) { e.style.opacity = on ? "" : String(1 - (opt.fige ? .96 : .87) * k); });   // vidéo : le reste presque effacé (rien de rogné au bord du cadre)
+        var nid = g.indexOf("tige:") === 0 ? g.slice(5) : g;
+        // la tige qui arrive sur la cible ne reste que si son parent est gardé (zoom de branche), pas pour un chapitre ; la tige du parent s'efface
+        var on = !garde || (g === nid ? garde.indexOf(nid) >= 0
+          : sousArbre(id).indexOf(nid) >= 0 && (nid !== id || noeuds[id].niveau >= 2));   // tiges : seulement celles de la cible et de ses descendants
+        groupes[g].forEach(function (e) { e.style.opacity = on ? "" : String(1 - (opt.fige ? 1 : .87) * k); });   // vidéo : le reste s'efface tout à fait (rien de rogné au bord du cadre)
       });
     }
     // la carte pousse : centre, chapitres, branches, puis feuilles (p de 0 à 1)
