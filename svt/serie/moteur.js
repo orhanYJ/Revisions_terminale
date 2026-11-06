@@ -1174,7 +1174,7 @@
         var v = o.v;
         if (t < v.t0 || t > v.t1 + (v.type === "tableau" ? 1 : .7)) { if (o.vis) { o.el.style.display = "none"; o.vis = false; } return; }
         if (!o.vis) { o.el.style.display = o.disp; o.vis = true; }
-        if (v.type === "titre" || v.type === "chapitre" || v.type === "generique") plein = true;
+        if (v.type === "titre" || v.type === "chapitre" || v.type === "generique" || v.type === "mental") plein = true;   // la carte mentale occupe tout le cadre : pas d'en-tête par-dessus
         var a = E(P(t, v.t0, .7)), out = EIO(P(t, v.t1, .6));
         if (v.type !== "tableau") o.el.style.opacity = (o.entree === "aucune" ? 1 : a) * (1 - out);
         // profondeur : le texte et les images dérivent doucement, à des vitesses différentes
