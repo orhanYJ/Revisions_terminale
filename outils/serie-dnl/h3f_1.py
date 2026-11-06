@@ -59,7 +59,7 @@ SCENES = [
         "plan": dict(type="liste", titre="La Seconde Guerre mondiale en sept épisodes", items=[
             "Une guerre mondiale : dates, idéologie, Nouvel Ordre européen", "La défaite de la France (partie I.1)",
             "Le Royaume-Uni seul, soutenu par les États-Unis (partie I.2)", "Barbarossa : une guerre d'anéantissement (partie II)",
-            "Vers le génocide (partie III)", "La guerre à l'épreuve : composition et analyse de document", "Récapitulatif"], x=170, y=110, w=940),
+            "Vers le génocide (partie III)", "La Seconde Guerre mondiale à l'examen : composition et analyse de document", "Récap"], x=170, y=110, w=940),
         "titre": dict(type="titre", sur="Histoire · Seconde Guerre mondiale · Épisode 1", t="Une guerre mondiale",
                       sous="1931 – 1947 · une guerre idéologique · le Nouvel Ordre européen"),
     }),
