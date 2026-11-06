@@ -712,7 +712,7 @@ SCENES = [
         "Montrer que les transferts horizontaux de gènes contribuent à la complexification des génomes. Tu rédigeras une introduction, "
         "un développement structuré, illustré d'exemples précis, et une conclusion. Un schéma est valorisé.",
         "{-ex}{pa_ex}Prends vingt minutes. Fais d'abord ton plan au brouillon, avec un exemple précis par idée.",
-        "{pa_ex.stop}{-pa_ex}{exc}{exc.q1}{intro}La correction. L'introduction. {intro.1}Partir du transfert vertical, des parents aux descendants, "
+        "{pa_ex.stop}{-pa_ex}La correction. {exc}{exc.q1}{intro}L'introduction. {intro.1}Partir du transfert vertical, des parents aux descendants, "
         "et dire que ses brassages ne suffisent pas à expliquer toute la diversité génétique. {intro.2}Définir le transfert horizontal, et dire ce qui le rend possible : "
         "l'universalité de l'ADN et du code génétique. {intro.3}Poser la question : comment ces transferts enrichissent-ils les génomes ?",
         "{-intro}{exc.q2}{plan_ex}{plan_ex.1}Le développement, en trois parties, des gènes isolés à la cellule entière. "
