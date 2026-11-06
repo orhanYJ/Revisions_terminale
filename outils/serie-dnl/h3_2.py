@@ -151,7 +151,7 @@ SCENES = [
         "q5": dict(type="question", t="One of the biggest armies in the world… beaten in six weeks?"),
         "gr": dict(type="graphe", titre="Divisions available (course table)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1939.5, 1945.5], y=[0, 120], gx=ANS, gy=[20, 40, 60, 80, 100], lx="year", ly="divisions"),
-                   el=[dict(type="point", x=1940, y=105, c="el", lbl="France 1940: 105", lp=[1940.9, 112], proj=True),
+                   el=[dict(type="point", x=1940, y=105, c="el", lbl="France 1940: 105", lp=[1941.3, 98], proj=True),
                        dict(type="point", x=1940, y=34, c="vert", lbl="Britain: 34", lp=[1940.7, 40]),
                        dict(type="courbe", pts=[list(p) for p in DIV_FRA], c="ca", lbl="France: 0 in 1942", lp=[1943.0, 26], dur=2.0)]),
         "def3": dict(type="def", cles=["trench", "withstand", "fortifications"], terme="A defensive strategy",
@@ -220,7 +220,7 @@ SCENES = [
         "recent research says about sixty thousand. {toll.2}200,000 wounded. "
         "{toll.3}1,850,000 taken prisoner. Keep that figure in mind: it comes back with the STO. "
         "{toll.4}And some eight million people in the exodus.",
-        "{-toll}{arm}On the twenty-second of June 1940, France signs an {!armistice}armistice at Rethondes, in the forest of Compiègne. "
+        "{-toll}{arm}On the twenty-second of June 1940, France signs an armistice at Rethondes, in the forest of Compiègne. "
         "{arm.1}Not a peace treaty: an agreement that ends the fighting. And Britain is now alone against Germany.",
     ], vis={
         "g6": dict(type="globe", code="H3", sc=[14]),
