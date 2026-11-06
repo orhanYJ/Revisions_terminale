@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070B14">
 <title>Le crossing-over inégal</title>
-<link rel="stylesheet" href="moteur.css?v=6">
+<link rel="stylesheet" href="moteur.css?v=7">
 </head>
 <body>
 <main class="wrap">
@@ -96,7 +96,7 @@
     </div>
   </section>
 </main>
-<script src="moteur.js?v=6"></script>
+<script src="moteur.js?v=7"></script>
 <script>
 (() => {
 const {clamp, ease, sm, lerp, f, op, smooth, ys, strand, wobblyEllipse, cellPath, flash, halo, arc, mix, label, AMB, MAG, CYA} = ANIM.H;
@@ -225,8 +225,13 @@ function draw(c){
     const g = st['m1' + (which === 1 ? 'h' : 'b')]; if(!g) continue;
     const p = clamp((t - (h - .6))/1.4, 0, 1);
     const sx = g[0] + 60*(1-p)*(which === 1 ? -1 : 1), sy = g[1] - 50*(1-p);
-    if(p < .45) fx += `<circle cx="${f(sx)}" cy="${f(sy)}" r="2.6" fill="#FFFFFF"/><path d="M${f(sx)} ${f(sy)} L${f(sx + 12*(which === 1 ? -1 : 1))} ${f(sy - 10)}" stroke="#FFFFFF" stroke-opacity=".5" stroke-width="1.4"/>`;
-    else fx += `<circle cx="${f(g[0])}" cy="${f(g[1])}" r="${f(6 + 18*(p-.45))}" fill="none" stroke="#FFFFFF" stroke-opacity="${op((1-p)*1.6)}" stroke-width="1.4"/>`;
+    // une comète dorée file vers la copie touchée (longue traîne qui s'efface), puis une onde sur le gène
+    const dx = which === 1 ? -1 : 1;
+    if(p < .45){
+      for(let i = 3; i >= 1; i--) fx += `<path d="M${f(sx)} ${f(sy)} L${f(sx + 11*i*dx)} ${f(sy - 9*i)}" stroke="${AMB}" stroke-opacity="${op(.55/i)}" stroke-width="${f(3.4 - .7*i)}" stroke-linecap="round"/>`;
+      fx += `<circle cx="${f(sx)}" cy="${f(sy)}" r="8" fill="${AMB}" fill-opacity=".22"/><circle cx="${f(sx)}" cy="${f(sy)}" r="3.4" fill="#FFF3C4"/>`;
+    }
+    else fx += `<circle cx="${f(g[0])}" cy="${f(g[1])}" r="${f(6 + 18*(p-.45))}" fill="none" stroke="${AMB}" stroke-opacity="${op((1-p)*1.6)}" stroke-width="1.6"/>`;
   }
 
   /* transposition : un autre chromosome reçoit la copie 2 */
@@ -300,6 +305,7 @@ const CALL = [
   {a:16.6, b:20.2, text:"chiasma", lab:[300,150], anc:()=>[[200,CUT]]},
   {a:21.6, b:25, text:"segments de longueurs différentes", lab:[200,404], anc:st=>[st.m1end, st.p0end].filter(Boolean)},
   {a:36.6, b:40.8, text:"2 copies du gène", lab:[290,120], anc:st=>[st.m1h, st.m1b].filter(Boolean)},
+  {a:42.4, b:44.3, text:"une mutation sur une copie", lab:[290,120], anc:st=>[st.m1h].filter(Boolean)},
   {a:55.2, b:59.6, text:"transposition", lab:[300,322], anc:st=>[st.tr].filter(Boolean)}
 ];
 

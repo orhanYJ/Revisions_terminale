@@ -221,7 +221,7 @@
       if (n.niveau === 2) ids.push(n.parent);   // zoom sur une branche : la bulle du chapitre reste entière dans le cadre
       var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
       ids.forEach(function (i) { var b = noeuds[i].box; x0 = Math.min(x0, b[0]); y0 = Math.min(y0, b[1]); x1 = Math.max(x1, b[0] + b[2]); y1 = Math.max(y1, b[1] + b[3]); });
-      var pad = id === "t1a" ? 14 : 34; x0 -= pad; y0 -= pad; x1 += pad; y1 += pad;
+      var pad = id === "t1a" ? 30 : 34; x0 -= pad; y0 -= pad; x1 += pad; y1 += pad;   // vue d'ensemble : une marge pour que les libellés des feuilles ne touchent pas le bord
       var w = x1 - x0, h = y1 - y0;
       if (w / h < ratio) { var nw = h * ratio; x0 -= (nw - w) / 2; w = nw; } else { var nh = w / ratio; y0 -= (nh - h) / 2; h = nh; }
       return [x0, y0, w, h];
