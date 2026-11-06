@@ -1,9 +1,9 @@
-"""SVT, thème 1.A, chapitre 1 « L'origine du génotype des individus » (Mme Philip) — le chapitre en vidéo.
+"""SVT, thème 1.A, chapitre 1 « L'origine du génotype des individus » — le chapitre en vidéo.
 
 Même chaîne que les vidéos de physique-chimie (voir outils/serie-pc/pc_ch4.py) : generer.py svt_ch1, verifier.py,
 chevauchements.py svt-ch1, fermer.py svt_ch1. Contenu : les pages t1u1, t1u2, t1u2b et t1u3 de svt/index.html, rien
 au-delà ; ce que le site marque « hors programme » l'est aussi dans la vidéo, et ce qui ne vient pas du cours est dit.
-Plan : la carte mentale de Mme Philip (svt/carte-mentale.js), branche par branche (c1a, c1b, c1c, c1d).
+Plan : la carte mentale du thème (svt/carte-mentale.js), branche par branche (c1a, c1b, c1c, c1d).
 Animations du site rejouées (svt/anim/) : clonal, mitose, replication, meiose (deux orientations), nondisj (anaphase I
 et anaphase II), coinegal, globines. Illustrations propres au chapitre : svt/serie/illu-svt-ch1.js.
 Exercice type bac : inventé pour la vidéo (valeurs en commentaire).
@@ -29,10 +29,10 @@ PRONONCIATION = {
 SCENES = [
     # ================================================================ ouverture : la carte du thème, puis le chapitre 1
     dict(id="ouverture", chap="Ouverture", fond="foret", humeur="mystere", carton=False, beats=[
-        "{carte}Voici la carte mentale que Mme Philip a dessinée pour toute la partie A du thème un : génétique et évolution. "
+        "{carte}Voici la carte mentale de toute la partie A du thème un : génétique et évolution. "
         "Quatre chapitres. Ils racontent comment se construit, puis se transforme, le génome des êtres vivants.",
         "{carte.1}Nous allons dans le premier : l'origine du génotype des individus. "
-        "Mme Philip l'a annoté d'un mot qui le résume : transferts verticaux. Des gènes transmis de cellule en cellule, et des parents aux enfants.",
+        "Ta carte l'annote d'un mot qui le résume : transferts verticaux. Des gènes transmis de cellule en cellule, et des parents aux enfants.",
         "Le chapitre a quatre branches, et la vidéo les suit dans l'ordre. "
         "D'abord la stabilité du génome et l'évolution clonale : comment un organisme entier peut descendre d'une seule cellule. "
         "Ensuite les conséquences de la reproduction sexuée : méiose, fécondation, et les deux brassages. "
@@ -380,7 +380,7 @@ SCENES = [
     dict(id="cadre", chap="Reproduction sexuée · méiose et fécondation", fond="foret", humeur="lumiere",
          retenir="Diploïde 2n (cellules du corps), haploïde n (gamètes). Méiose : 2n → n. Fécondation : n + n → 2n. La mitose donne des clones ; la méiose, non.",
          beats=[
-        "{z1b}{z1b.1}Deuxième branche : les conséquences de la reproduction sexuée, et la diversité. Deux schémas y portent l'étoile de Mme Philip.",
+        "{z1b}{z1b.1}Deuxième branche : les conséquences de la reproduction sexuée, et la diversité. Deux schémas y portent l'étoile : à savoir refaire.",
         "{-z1b}{q_div}Deux parents, quatre enfants. Aucun n'est identique aux autres, aucun n'est identique à ses parents. "
         "Pourtant, tous appartiennent à la même espèce, et tous possèdent quarante-six chromosomes, comme leurs père et mère.",
         "{-q_div}{deux_ex}Il y a donc deux exigences contradictoires à satisfaire en même temps. {deux_ex.g}Conserver le caryotype de l'espèce, génération après génération. "
@@ -455,7 +455,7 @@ SCENES = [
         "lors de la formation des gamètes, les deux allèles d'un gène, portés par les deux chromosomes d'une paire, se séparent obligatoirement. Chaque gamète n'en reçoit qu'un.",
         "{lois.2}La loi de dominance : chez un hétérozygote, l'allèle dominant masque l'expression de l'allèle récessif. D'où l'uniformité de la F1. "
         "{lois.3}La loi de ségrégation indépendante : les allèles de gènes différents sont distribués dans les gamètes indépendamment les uns des autres.",
-        "Attention : la fiche d'activité numérotait ces lois autrement. Retiens l'ordre du diaporama, celui-ci : c'est lui qu'utilise Mme Philip.",
+        "Attention : la fiche d'activité numérotait ces lois autrement. Retiens l'ordre du diaporama, celui-ci : c'est celui de ton cours.",
         "{-lois}{frise_m}Hors programme, l'histoire de ce que tu apprends. {frise_m.1}Mendel publie en mille huit cent soixante-six, et personne ne comprend. "
         "Il meurt en mille huit cent quatre-vingt-quatre sans savoir ce qu'il avait trouvé. {frise_m.2}En mille neuf cent, trois botanistes, de Vries, Correns et Tschermak, "
         "refont les mêmes expériences et exhument son article. {frise_m.3}Et en mille neuf cent deux, Sutton et Boveri font le rapprochement avec les chromosomes, "
@@ -691,7 +691,7 @@ SCENES = [
         "Deux homologues peuvent s'apparier de travers.",
         "{-q_acc}{acc}On parle d'accidents génétiques : des erreurs rares, survenant au hasard, qui produisent des gamètes anormaux. "
         "{acc.1}La plupart sont néfastes : fausses couches, syndromes, maladies. {acc.2}Mais certains, très rares, enrichissent le génome de gènes nouveaux, et ont joué un rôle majeur dans l'évolution. "
-        "Le plan suit l'exposé de ta classe : le nombre de chromosomes, puis les échanges de portions, puis l'évolution.",
+        "Le plan suit l'exposé présenté en classe : le nombre de chromosomes, puis les échanges de portions, puis l'évolution.",
         "{-acc}{an_nd}{pts_nd}Premier accident : une mauvaise répartition des chromosomes. {an_nd.1}{pts_nd.1}Une cellule à deux n égale quatre entre en méiose. Le petit chromosome joue le rôle du chromosome vingt et un. "
         "{an_nd.2}{pts_nd.2}En métaphase un, les paires sont en place, comme d'habitude.",
         "{an_nd.3}{pts_nd.3}Mais en anaphase un, les deux homologues de la paire vingt et un partent vers le même pôle. C'est une mauvaise disjonction, en anaphase un. "
@@ -705,7 +705,7 @@ SCENES = [
         "{tab_nd.2}Erreur en anaphase deux : deux chromatides migrent ensemble, deux gamètes anormaux, deux normaux. "
         "{tab_nd.3}Après fécondation par un gamète normal : n plus un plus n, deux n plus un, quarante-sept, une trisomie. "
         "{tab_nd.4}Ou n moins un plus n, deux n moins un, quarante-cinq, une monosomie.",
-        "{-tab_nd}{voc_nd}Le vocabulaire exact : Mme Philip dit mauvaise disjonction, ou migration anormale des chromosomes. Les manuels disent non-disjonction : c'est la même chose. "
+        "{-tab_nd}{voc_nd}Le vocabulaire exact : ton cours dit mauvaise disjonction, ou migration anormale des chromosomes. Les manuels disent non-disjonction : c'est la même chose. "
         "Et on nomme l'anomalie d'après le chromosome concerné : trois chromosomes vingt et un, trisomie vingt et un. Un seul X sans Y, monosomie X.",
         "{-voc_nd}{pa_nd}À toi : schéma étoilé. Dessine une mauvaise disjonction en anaphase un, puis en anaphase deux, avec les quatre gamètes obtenus dans chaque cas, "
         "et le caryotype de la cellule-œuf après fécondation.",
@@ -921,8 +921,8 @@ SCENES = [
         "{strat.2}On compare donc, avec Geniegen deux, les séquences nucléotidiques et les séquences d'acides aminés des globines alpha, bêta, delta, gamma, epsilon et de la myoglobine. "
         "{strat.3}Si c'est une famille multigénique, on s'attend à plus de vingt pour cent de similitudes entre toutes les séquences, deux à deux. "
         "Et attention : les deux types de séquences, et pas l'un ou l'autre. Sinon la démonstration est à moitié faite.",
-        "{-strat}{res}Pour communiquer, Mme Philip a corrigé un point : ne recopie pas le tableau brut du logiciel. Fais un tableau titré, qui ne retient que l'essentiel. "
-        "{res.1}D'après ta copie : environ cinquante-sept pour cent entre alpha et bêta, quatre-vingt-treize entre bêta et delta, {res.2}de soixante-dix-huit à quatre-vingt-quatre entre epsilon et les autres du groupe bêta, "
+        "{-strat}{res}Pour communiquer, la correction du TP insiste sur un point : ne recopie pas le tableau brut du logiciel. Fais un tableau titré, qui ne retient que l'essentiel. "
+        "{res.1}D'après une copie d'élève : environ cinquante-sept pour cent entre alpha et bêta, quatre-vingt-treize entre bêta et delta, {res.2}de soixante-dix-huit à quatre-vingt-quatre entre epsilon et les autres du groupe bêta, "
         "{res.3}de quarante et un à quarante-six entre la myoglobine et les globines. {res.4}Toutes les similitudes dépassent vingt pour cent : au moins quarante et un pour cent en nucléotides, vingt-deux en acides aminés. "
         "Ces ressemblances ne peuvent pas être dues au hasard : origine commune.",
         "{-res}{an_gl}{pts_gl}Reste à raconter cette histoire. {an_gl.1}{pts_gl.1}Au départ, un seul gène de globine. Il est dupliqué, {an_gl.2}{pts_gl.2}puis une copie est transposée sur un autre chromosome. "
@@ -952,7 +952,7 @@ SCENES = [
             "Montrer que les gènes des globines forment une famille multigénique",
             "Comparer avec Geniegen2 les séquences nucléotidiques ET protéiques (α, β, δ, γ, ε, myoglobine)",
             "Attendu : plus de 20 % de similitudes, deux à deux"]),
-        "res": dict(type="formule", titre="Similitudes nucléotidiques (copie d'Orhan)", x=150, y=110, w=980, lignes=[
+        "res": dict(type="formule", titre="Similitudes nucléotidiques (une copie d'élève)", x=150, y=110, w=980, lignes=[
             dict(f="α / β ≈ 57 %  ·  β / δ ≈ 93 %", taille=34),
             dict(f="ε / autres globines du groupe bêta : 78 à 84 %", taille=34),
             dict(f="myoglobine / globines : 41 à 46 %", taille=34),
@@ -1155,7 +1155,7 @@ SCENES = [
         "{bac.6}Expliquer les deux brassages, et interpréter un test-cross. "
         "{bac.7}Expliquer une trisomie, une translocation, un crossing-over inégal, et la formation d'une famille multigénique. "
         "{bac.8}Et donner deux arguments pour et deux contre le séquençage.",
-        "{-bac}{schemas}Et les schémas étoilés de Mme Philip, à savoir refaire sans modèle. {schemas.1}Le cycle méiose, fécondation. {schemas.2}Le brassage interchromosomique. "
+        "{-bac}{schemas}Et les schémas étoilés de la carte, à savoir refaire sans modèle. {schemas.1}Le cycle méiose, fécondation. {schemas.2}Le brassage interchromosomique. "
         "{schemas.3}Le crossing-over. {schemas.4}La mauvaise disjonction, en anaphase un et en anaphase deux. {schemas.5}Le crossing-over inégal. "
         "{schemas.6}Et la famille multigénique, avec les opsines.",
         "{-schemas}",
