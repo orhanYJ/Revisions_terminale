@@ -446,8 +446,8 @@ def scenes():
                 F((24.2, 50.7), (39.0, 47.6), ROUGE, 0.08, w=3.6, id="bS")])
     add("II.2", 15, [31, 51.5, 3.8], L("Automne 1941", "Autumn 1941"),
         L("Une guerre d'anéantissement", "A war of annihilation"),
-        L("Sur le front de l'Est, les règles de la guerre disparaissent : meurtres de civils et de prisonniers deviennent la norme. L'ordre de Jodl de mai 1941 prescrit d'exécuter les commissaires politiques ; l'« ordre de sévérité » de Reichenau (10 octobre 1941) vise « l'espèce sous-humaine de la juiverie ». Environ 2,8 millions de prisonniers soviétiques meurent, surtout de faim.",
-          "On the Eastern Front the rules of war disappeared: the murder of civilians and prisoners became the norm. the Commissar Order (drafted in May, issued on 6 June 1941) prescribed shooting political commissars; Reichenau's “Severity Order” (10 October 1941) targeted “the subhuman species of Jewry”. About 2.8 million Soviet prisoners died, mainly of starvation."),
+        L("Sur le front de l'Est, les règles de la guerre disparaissent : meurtres de civils et de prisonniers deviennent la norme. L'ordre des commissaires (rédigé en mai, signé le 6 juin 1941) prescrit d'exécuter les commissaires politiques ; l'« ordre de sévérité » de Reichenau (10 octobre 1941) vise « l'espèce sous-humaine de la juiverie ». Environ 3,3 millions des 5,7 millions de prisonniers soviétiques meurent en captivité, surtout de faim.",
+          "On the Eastern Front the rules of war disappeared: the murder of civilians and prisoners became the norm. The Commissar Order (drafted in May, issued on 6 June 1941) prescribed shooting political commissars; Reichenau's “Severity Order” (10 October 1941) targeted “the subhuman species of Jewry”. About 3.3 million of the 5.7 million Soviet prisoners died in captivity, mainly of starvation."),
         front="F41", labels=["kiev", "minsk", "moscou", "leningrad"], cles=["occ", "urss", "front"])
     add("II.2", 14, [37.0, 55.6, 8.0], L("6 novembre 1941", "6 November 1941"),
         L("Staline : « Pas de pitié pour les occupants ! »", "Stalin: “No mercy to the occupiers!”"),

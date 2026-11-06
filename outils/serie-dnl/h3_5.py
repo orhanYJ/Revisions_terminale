@@ -245,7 +245,7 @@ SCENES = [
         "Outside the course: at Babi Yar, near Kiev, more than thirty-three thousand Jews were shot in two days, in September 1941.",
     ], vis={
         "g7": dict(type="globe", code="H3", sc=[27]),
-        "ein": dict(type="liste", titre="Four Einsatzgruppen, June 1941", x=700, y=60, w=540, petit=True, bande=True, items=[
+        "ein": dict(type="liste", titre="Four Einsatzgruppen, June 1941", x=820, y=60, w=420, petit=True, bande=True, items=[
             "A: the Baltic states", "B: Belarus, towards Moscow", "C: Ukraine", "D: southern Ukraine, the Crimea"]),
         "def7": dict(type="def", cles=["Mobile", "SS", "police"], terme="Einsatzgruppen",
                      t="Mobile killing squads of the SS and the police that followed the army into the USSR.",
@@ -307,7 +307,7 @@ SCENES = [
         ("C", "the whole thing took I would say between 5–7 minutes", "c_bomba"),
     ], vis={
         "g9": dict(type="globe", code="H3", sc=[32]),
-        "six": dict(type="liste", titre="Six killing centres, occupied Poland", x=760, y=50, w=480, petit=True, bande=True, items=[
+        "six": dict(type="liste", titre="Six killing centres, occupied Poland", x=820, y=50, w=420, petit=True, bande=True, items=[
             "Chelmno", "Treblinka", "Sobibor", "Belzec", "Majdanek", "Auschwitz"]),
         "cmp9": dict(type="cols", g="Concentration camp", gq="imprisons and exploits its inmates", d="Killing centre",
                      dq="exists to kill, on arrival", vs="≠"),
@@ -426,7 +426,7 @@ SCENES = [
         "{rep1.3}From December 1941, six killing centres gassed them on arrival: six million murdered in all.",
     ], vis={
         "g13": dict(type="globe", code="H3", sc=[45]),
-        "pays": dict(type="liste", titre="Share of Jews killed (course map)", x=720, y=50, w=520, petit=True, bande=True, items=[
+        "pays": dict(type="liste", titre="Share of Jews killed (course map)", x=820, y=50, w=420, petit=True, bande=True, items=[
             "Poland: 3,000,000 of 3,350,000 (90%)", "Lithuania: 97%", "Netherlands: 100,000 of 140,000 (71%)",
             "France: 75,000 of 270,000 (28%)", "Italy: 8,000 of 50,000 (16%)"]),
         "lien13": dict(type="note", terme="Link to episode 1", cles=["racial", "murder"],
@@ -446,13 +446,13 @@ SCENES = [
 
     # ================================================================ comment le sait-on ?
     dict(id="sources", chap="How do we know?", fond="nuit", humeur="calme",
-         retenir="How do we know? Survivors (Lindwasser 1961, Bomba 1990), perpetrators (Stroop's report; Stangl's sketch, 1967), survivors' plans (Willenberg: to scale, but he never saw the extermination area).",
+         retenir="How do we know? Survivors (Lindwasser 1961; Bomba in Shoah, 1985, and in 1990), perpetrators (Stroop's report; Stangl's sketch, after his arrest in 1967), survivors' plans (Willenberg: to scale, but he never saw the extermination area).",
          beats=[
         "{q14}The last question of the course, and a very important one for the exam: how do we know?",
         "{-q14}{src}Three kinds of sources, each with its value and its limits. "
-        "{src.1}The testimonies of survivors: Lindwasser in 1961, Bomba in 1990, in Lanzmann's film. "
+        "{src.1}The testimonies of survivors: Lindwasser in 1961; Bomba in Claude Lanzmann's film Shoah, in 1985, and in an interview of 1990. "
         "{src.2}The documents of the perpetrators: Stroop's report; the sketch plan of Treblinka drawn by Franz Stangl, its commandant, "
-        "during his trial in 1967. {src.3}And the plans drawn by survivors.",
+        "after his arrest in 1967; he was tried in 1970. {src.3}And the plans drawn by survivors.",
         "{-src}{wil}The most famous is by Samuel Willenberg. A member of the camouflage commando, he had access to most of the camp. "
         "He drew a plan of Treblinka to scale, with every detail: it is considered one of the most reliable. "
         "{wil.1}Except for one area: the extermination area, which he never saw.",
@@ -461,8 +461,8 @@ SCENES = [
     ], vis={
         "q14": dict(type="question", t="How do we know?"),
         "src": dict(type="liste", titre="Three kinds of sources", cles=["survivors", "perpetrators", "plans"], items=[
-            "Testimonies of survivors: Lindwasser (1961), Bomba (1990)",
-            "Documents of the perpetrators: Stroop's report; Stangl's sketch (1967)",
+            "Testimonies of survivors: Lindwasser (1961), Bomba (Shoah, 1985; 1990)",
+            "Documents of the perpetrators: Stroop's report; Stangl's sketch (after his arrest, 1967)",
             "Plans drawn by survivors: Samuel Willenberg"], x=150, y=150, w=980),
         "wil": dict(type="note", terme="Samuel Willenberg's plan", cles=["scale", "reliable"],
                     t="Drawn to scale by a survivor of the camouflage commando: one of the most reliable plans of Treblinka.",

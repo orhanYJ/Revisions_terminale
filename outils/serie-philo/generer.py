@@ -136,7 +136,8 @@ async def _synth(texte, voix, rate, pitch, chemin):
 
 def _pcm(mp3):
     wav = mp3[:-4] + ".wav"
-    if not os.path.exists(wav) or os.path.getmtime(wav) < os.path.getmtime(mp3):   # passage réenregistré (SERIE_REVOIX) : refaire le décodage
+    # décodage en cache, refait si le MP3 a été réenregistré depuis (SERIE_REVOIX, prise refaite)
+    if not os.path.exists(wav) or os.path.getmtime(wav) < os.path.getmtime(mp3):
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", mp3, "-ac", "1", "-ar", str(SR), wav], check=True)
     with wave.open(wav) as w:
         return np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float64) / 32768.0
@@ -155,11 +156,27 @@ def _rogne(x):
 
 def _aligne(lu, mots):
     """Position de chaque mot (offset, durée, texte) dans le texte lu."""
+    # mots dits selon PRONONCIATION (« Man-choo-kwo ») : on les ramène au mot écrit (« Manchukuo »), sinon
+    # le sous-titre perd ou tronque le mot ; les morceaux suivants d'une graphie en plusieurs mots allongent le premier
+    inverse = {}
+    for mot, dit in PRONONCIATION.items():
+        for k, tk in enumerate(re.findall(r"[\wÀ-ÿœæ'’-]+", dit)):
+            inverse.setdefault(tk.lower(), (mot, k == 0))
     res, p = [], 0
     for off, dur, w in mots:
         i = lu.find(w, p)
         if i < 0:
             i = lu.lower().find(w.lower(), p)
+        if i < 0 and w.lower() in inverse:
+            mot, premier = inverse[w.lower()]
+            if not premier:
+                if res:
+                    a = res[-1]
+                    res[-1] = (a[0], a[1], round(off + dur - a[1], 3), a[3])
+                continue
+            i = lu.find(mot, p)
+            if i >= 0:
+                w = mot
         if i < 0:
             continue
         res.append((i, off, dur, w))
