@@ -97,7 +97,7 @@ SCENES = [
         "{jeu2.7}Then Rose adds that Austin is going with a wee young thing from Carrickfad. Why are you blushing then? "
         "Why, why, why, Kate?",
         ("C", "For God's sake, Rose, shut up, would you!", "jeu2.8", {"voix": "F"}),
-        "{jeu2.9}Agnes cuts Rose off: pass me those steel needles. A pause. Chris, gently: are you tired? "
+        "{jeu2.9}Agnes cuts Rose off: pass me those steel needles. A pause. Then Chris: are you tired? "
         "{jeu2.10}And Kate flops into a seat.",
     ], vis={
         "jeu2": dict(type="jeu", persos=PERSOS, etats=[

@@ -634,7 +634,7 @@
     var ans = [[-400, "−400"], [0, "0"], [1600, "1600"], [1700, "1700"], [1800, "1800"], [1900, "1900"]].map(function (a) {
       var d = h("div", "an", e, a[1]); d.style.left = X(a[0]) + "px"; return d;
     });
-    var RANGS = [{ top: 210, tige: [84, 78] }, { top: 420, tige: [-48, 48] }, { top: 66, tige: [84, 222] }, { top: 560, tige: [-188, 188] }];
+    var RANGS = [{ top: 176, tige: [84, 112] }, { top: 420, tige: [-48, 48] }, { top: 66, tige: [84, 222] }, { top: 560, tige: [-188, 188] }];
     var tri = v.items.slice().sort(function (a, b) { return a.d - b.d; });
     // dates trop serrées (plus de deux rangées nécessaires) : espacement régulier, ordre chronologique conservé
     var fin = RANGS.map(function () { return -1e9; }), serre = false;

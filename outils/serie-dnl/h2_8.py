@@ -132,7 +132,7 @@ SCENES = [
     dict(id="explain_mod", chap="Essay a) · Model paragraphs", fond="nuit", humeur="calme",
          retenir="Model paragraph: point (the Depression) · evidence (5.6 million unemployed; 2.6% → 18.3% → 37.4% → 33.1%) · explanation (despair turned into votes) · link (largest party, never a majority: the crisis opened the door, others opened it wider).",
          beats=[
-        "{gr}Before the first paragraph, look at Mister Ros's chart. {gr.1}May nineteen twenty-eight, before the crisis. "
+        "{gr}Before the first paragraph, look at the course chart. {gr.1}May nineteen twenty-eight, before the crisis. "
         "The Nazi party wins just two point six per cent of the vote. {gr.2}September nineteen thirty: eighteen point three. "
         "Seven times more. {gr.3}July nineteen thirty-two, at the height of unemployment: thirty-seven point four. "
         "Now it is the largest party in the Reichstag. {gr.4}But look at November nineteen thirty-two. It falls back, to thirty-three point one.",
@@ -153,7 +153,7 @@ SCENES = [
         "Without it, a party in decline since November nineteen thirty-two might never have reached power.",
         "Point, evidence, explanation, link. And listen to two little words: above all. Even in an Explain answer, you can rank your reasons.{-mod2}",
     ], vis={
-        "gr": dict(type="graphe", titre="The NSDAP vote, 1928–1932 (M. Ros's chart)", x=300, y=110, w=680, h=520,
+        "gr": dict(type="graphe", titre="The NSDAP vote, 1928–1932 (course chart)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1928, 1933.2], y=[0, 45], gx=[1928, 1929, 1930, 1931, 1932, 1933], gy=[10, 20, 30, 40], lx="year", ly="% of the vote"),
                    el=[dict(type="point", x=1928.4, y=2.6, c="sa", lbl="May 1928: 2.6%", lp=[1929.1, 8]),
                        dict(type="courbe", pts=VOTE[:2], c="ca", lbl="Sept. 1930: 18.3%", lp=[1929.4, 24], dur=1.4),
@@ -380,7 +380,7 @@ SCENES = [
         ("P", 2.0),
         "{-pa6}{g3}First, the chain of events, on the map. {g3.1}October nineteen thirty-five. Italy invades Abyssinia, in the name of Rome. "
         "{g3.2}March nineteen thirty-six. German troops enter the Rhineland, and nobody reacts. {g3.3}March nineteen thirty-eight: the Anschluss. "
-        "{g3.4}September nineteen thirty-eight. At Munich, the Sudetenland is handed over, without the Czechs. {g3.5}March nineteen thirty-nine: Prague. "
+        "{g3.4}September nineteen thirty-eight. At Munich, the Sudetenland is handed over, without the Czechs. {g3.5}In March nineteen thirty-nine, Hitler takes Prague. "
         "{g3.6}August nineteen thirty-nine: the Nazi-Soviet pact. {g3.7}And on the first of September: Poland.",
         "{-g3}{pl2}Now the plan, from the course. {pl2.1}Part one: totalitarian ideologies made war a value, and expansion a goal. "
         "Fascism invades Abyssinia in nineteen thirty-five. Nazism wants Lebensraum, announced in Mein Kampf in nineteen twenty-five. "
@@ -440,13 +440,12 @@ SCENES = [
 
     # ================================================================ XII. les pièges
     dict(id="pieges", chap="The traps of this chapter", fond="guerre", humeur="mystere",
-         retenir="Matteotti killed in 1924 (claimed 3 Jan. 1925) · Yezhov executed in 1940, Molotov never · T4: ≈ 70,000 killed 1939–41 · “an isolationist Congress” · Corfu 1923 is not the mutilated victory · Hitler never won a majority.",
-         beats=[
-        "{pi}Finally, six traps. Each comes from a slide or the class notes, and each can cost you points. "
+                  beats=[
+        "{pi}Finally, six traps. Each comes from a course slide or a common mistake, and each can cost you points. "
         "{pi.1}Trap one: Matteotti. The slide dates his murder to nineteen twenty-five. In fact, he was kidnapped and killed "
         "on the tenth of June nineteen twenty-four. Nineteen twenty-five is the year Mussolini claimed responsibility. "
         "It is also the year of the fascistissime laws.",
-        "{pi.2}Trap two. The class notes say that Molotov was executed. He never was. He died in nineteen eighty-six. "
+        "{pi.2}Trap two. A common mistake is to write that Molotov was executed. He never was. He died in nineteen eighty-six. "
         "The head of the NKVD executed at the end of the Great Purge is Yezhov, in nineteen forty.",
         "{pi.3}Trap three: the T four programme. Write that about seventy thousand disabled people were murdered between nineteen thirty-nine "
         "and nineteen forty-one. The older figure, two hundred thousand, is the toll up to nineteen forty-five.",
@@ -494,7 +493,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: the essay subjects of chapter H2 (course exam data), its Key Issue and Key Terms, the revision cards (essay and DBQ), two documents of the course DBQs (Roosevelt's telegram of 14 April 1939; Hitler's speech at the Obersalzberg, 22 August 1939), M. Ros's chart of the NSDAP vote, the points to check of the chapter.",
+    "Content: the essay subjects of chapter H2 (course exam data), its Key Issue and Key Terms, the revision cards (essay and DBQ), two documents of the course DBQs (Roosevelt's telegram of 14 April 1939; Hitler's speech at the Obersalzberg, 22 August 1939), the course chart of the NSDAP vote, the points to check of the chapter.",
     "The Explain question, the DBQ a) question and the model answers were written for this video.",
     "Photographs (via Wikimedia Commons): Ypres cathedral in ruins, 1917 (Henry Armytage Sanders, Archives New Zealand, CC BY-SA 2.0); Hannah Arendt in 1958 (Barbara Niggl Radloff, Münchner Stadtmuseum, CC BY-SA 4.0).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",

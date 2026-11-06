@@ -222,7 +222,9 @@ body.pseudo{overflow:hidden}
 .v-frise .p .md img{width:100%;height:100%;object-fit:cover}
 .v-frise .p .nm{font-family:'Spectral',serif;font-weight:600;font-size:22px;margin-top:8px;white-space:nowrap}
 .v-frise .p .dt{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--safran-c)}
-.v-frise .p .tige{position:absolute;left:59px;width:2px;background:rgba(230,203,139,.5)}
+.v-frise .p .tige{position:absolute;left:59px;width:2px;background:rgba(230,203,139,.5);z-index:0}
+/* libellés au-dessus du trait des jalons (rangée du haut : la tige traversait le nom et la date) */
+.v-frise .p .nm,.v-frise .p .dt,.v-frise .p .q{position:relative;z-index:1;background:rgba(9,13,24,.82);border-radius:5px;padding:0 5px;display:table;margin-left:auto;margin-right:auto}
 
 /* illustrations */
 .v-illu svg{width:100%;height:100%;overflow:visible}

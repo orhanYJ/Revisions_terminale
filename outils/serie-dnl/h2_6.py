@@ -48,7 +48,7 @@ SCENES = [
     dict(id="ouverture6", chap="Opening", fond="guerre", humeur="mystere", carton=False, beats=[
         "{g0}{q1}The twelfth of March, nineteen thirty-eight. German troops cross into Austria. "
         "Two days later, Hitler enters Vienna in triumph.",
-        "{-q1}{q2}This is the image Monsieur Ros chose to open part three. Because it raises the real question. "
+        "{-q1}{q2}This is the image the course chose to open part three. Because it raises the real question. "
         "Was this aggression an accident? Or was it written into the regimes themselves?",
         "{-q2}{q3}Italy in Africa. Germany in Europe. Japan in China. In the nineteen thirties, three regimes set out to conquer. "
         "So why was war so central to what they believed?",
@@ -131,7 +131,7 @@ SCENES = [
         "{trois.4}So aggression abroad was the logical extension of the regimes built at home. "
         "Think back to episodes four and five. A New Man trained for combat. A nation in arms. An enemy everywhere. "
         "A regime built for struggle at home will look for struggle abroad.",
-        "{-trois}{photo1}That is why Monsieur Ros opens the part with the Anschluss, in March nineteen thirty-eight. "
+        "{-trois}{photo1}That is why the course opens the part with the Anschluss, in March nineteen thirty-eight. "
         "Here, Hitler carries out abroad the programme he had announced in Mein Kampf, back in nineteen twenty-five. "
         "Bring all Germans into one Reich. And expand.{-photo1}",
     ], vis={
@@ -376,14 +376,14 @@ SCENES = [
     dict(id="grille", chap="Filling the grid: international issues", fond="aube", humeur="calme",
          retenir="Will of expansion: Italy → Rome's empire, Libya, Ethiopia · Germany → Lebensraum in the East · Japan → Manchuria, China. Feeling of superiority: the glory of Rome · the master race · the “superior” Asian race.",
          beats=[
-        "{gr}Remember Monsieur Ros's synthesis grid, from episode three? Its block called International issues has two rows, still empty. "
+        "{gr}Remember the synthesis grid of the course, from episode three? Its block called International issues has two rows, still empty. "
         "With this part, you can fill them in. {gr.1}First row: the will of expansion. For Italy, an empire in the name of Rome. Libya, then Ethiopia. "
         "{gr.2}For Germany, Lebensraum: the conquest of the East, announced in Mein Kampf. "
         "{gr.3}Second row: the feeling of superiority. Italy sees itself as the heir of Rome. Germany, as a master race over the Slavs.",
         "{gr.4}And the Soviet column? This part of the course says nothing about Soviet expansion. Leave it for episode seven, "
         "and the pact of August nineteen thirty-nine. Instead, the course adds a third aggressor. Japan, with its autarky, and its superior race.",
     ], vis={
-        "gr": dict(type="liste", titre="M. Ros's grid · International issues (suggested, from Part III.1)", petit=True, items=[
+        "gr": dict(type="liste", titre="The course grid · International issues (suggested, from Part III.1)", petit=True, items=[
             "Will of expansion · Italy: Rome's empire; Libya, then Ethiopia (1935 – 36)",
             "Will of expansion · Germany: Lebensraum, the East (Mein Kampf, 1925)",
             "Feeling of superiority · Italy: heirs of Rome · Germany: a master race over the Slavs",
@@ -554,7 +554,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H2 · Part III.1 “Hegemonic ambitions of totalitarian regimes”, the course map “Authoritarian expansion in the 1930s”, DBQ 1 on “The Doctrine of Fascism” and its model answer, the synthesis grid, the key issue) as written on the site; the grid's “International issues” rows are suggested by this video; animated map of chapter 2 (site).",
+    "Content: the DNL History course (chapter H2 · Part III.1 “Hegemonic ambitions of totalitarian regimes”, the course map “Authoritarian expansion in the 1930s”, DBQ 1 on “The Doctrine of Fascism” and its model answer, the synthesis grid, the key issue) as written on the site; the grid's “International issues” rows are suggested by this video; animated map of chapter 2 (site).",
     "Outside the course: the League's sanctions against Italy were voted in October 1935 and applied from 18 November 1935; the oil embargo was debated until the spring of 1936 and never adopted.",
     "Photographs (via Wikimedia Commons): Hitler on the Heldenplatz, Vienna, 15 March 1938 (Bundesarchiv, Bild 183-1987-0922-500, CC BY-SA 3.0 DE); Benito Mussolini, 1930s (Keystone, public domain).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",

@@ -269,7 +269,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: the format of the BFI written exam as presented on the site (ASIBA student guide, 2024 paper); documents of M. Ros's course (Reichenau's Severity Order, Stalin's speech of 6 November 1941); the points to check of chapter H3.",
+    "Content: the format of the BFI written exam as presented on the site (ASIBA student guide, 2024 paper); documents of the DNL History course (Reichenau's Severity Order, Stalin's speech of 6 November 1941); the points to check of chapter H3.",
     "Questions and model answers written for this video.",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

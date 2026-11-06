@@ -63,7 +63,7 @@ SCENES = [
         ("P", 1.0),
     ], vis={
         "jeu1": dict(type="jeu", persos=PERSOS, etats=[
-            dict(pos={"Maggie": "buffet", "Chris": "table", "Kate": [290, 515], "Agnes": [450, 450], "Rose": [370, 470]},
+            dict(pos={"Maggie": "buffet", "Chris": "table", "Kate": [290, 515], "Agnes": [450, 450], "Rose": [160, 470]},
                  act={"Maggie": "range", "Chris": "range", "Kate": "debout", "Agnes": "debout", "Rose": "debout"},
                  objets=KITES, note="Rose: “That's all any of you are going to hear.” (p. 62)"),
             dict(pos={"Rose": "arriere"}, duree=3.0),
@@ -150,9 +150,9 @@ SCENES = [
         "blowing a dozen theatrical kisses back to Chris and the boy.",
         ("C", "He was wounded in Barcelona – he fell off his motor-bike – so that for the rest of his life he walked with a limp.",
          "jeu4.7"),
-        "{jeu4.8}He still visited about once a year: a new career, a proposal to Chris, a new bike promised to the boy. After the war came in 1939, he stopped coming.",
+        "{jeu4.8}He still visited about once a year: a new career, a proposal to Chris, a new bike promised to the boy. After the war came in 1939, his visits grew rarer, and finally he stopped coming.",
         "{jeu4.9}In the mid-fifties, a letter came from a tiny village in the south of Wales, "
-        "from a young man also called Michael Evans: Michael's half-brother. "
+        "from a young man of Michael's own age, also called Michael Evans: Michael's half-brother. "
         "Gerry had died peacefully, nursed by his wife and his three grown children.",
         ("C", "My mother never knew of that letter.", "jeu4.10"),
         "{jeu4.11}Michael hesitated for years, as his father would have done. And in the end, rightly or wrongly, he kept it to himself.",
@@ -168,7 +168,7 @@ SCENES = [
             dict(note="Jack dies within a year, “on the very eve of the following La Lughnasa” (p. 63 – 64)"),
             dict(note="Gerry dances down the lane “in imitation of Fred Astaire”, Jack's tricorn on his head (told)"),
             dict(dit=["Michael", "He was wounded in Barcelona – he fell off his motor-bike – …"], note="(p. 64)"),
-            dict(note="Once a year: a new career, a proposal, a new bike · 1939: he stops coming"),
+            dict(note="Once a year: a new career, a proposal, a new bike · 1939: rarer visits, then none"),
             dict(note="Mid-fifties: a letter from Wales · a half-brother · Gerry's wife and three children"),
             dict(dit=["Michael", "My mother never knew of that letter."]),
             dict(note="“… and eventually, rightly or wrongly, kept the information to myself.” (p. 64)"),
@@ -212,7 +212,7 @@ SCENES = [
         "{cinq}Michael's speech is pure narration: no stage directions, only his voice. Five lines are worth knowing by heart.",
         "{-cinq}First, the factory.",
         ("C", "The Industrial Revolution had finally caught up with Ballybeg.", "c_indus"),
-        "{-c_indus}{indus}A huge historical phrase for one small glove factory. Gentle irony, hard meaning: "
+        "{-c_indus}{indus}A huge historical phrase for one new glove factory. Gentle irony, hard meaning: "
         "hand work is over, and with it, the sisters' only money.",
         "{-indus}Then, Agnes's note.",
         ("C", "We are gone for good. This is best for all. Do not try to find us.", "c_note", {"voix": "F"}),
@@ -220,7 +220,7 @@ SCENES = [
         "makes the boldest decision of anyone. And she makes it in writing, in silence, like so much in this house.",
         "{-trois}Then, London.",
         ("C", "They took to drink; slept in parks, in doorways, on the Thames Embankment. Then Agnes died of exposure.", "c_drink"),
-        "{-c_drink}{ironie}Feel the irony. They left to escape the factory, and ended up cleaning toilets in factories. "
+        "{-c_drink}{ironie}Feel the irony. Perhaps they left to avoid the factory; they ended up cleaning in factories. "
         "They left to be free, and died homeless. And Kate's question from Act One, what would become of our Rosie, "
         "gets its answer here. Outside the text: many thousands of Irish people left for Britain, "
         "often for low-paid work. Agnes and Rose belong to that silent story.",
@@ -245,7 +245,7 @@ SCENES = [
                       etape="In writing, in silence: nothing is discussed.", x=170, y=200, w=940),
         "c_drink": dict(type="cit", a="Michael", o="p. 63", x=170, y=200, w=940),
         "ironie": dict(type="note", cles=["irony", "free"], terme="Irony · and history",
-                       t="They flee the factory… and clean toilets in factories; they leave to be free… and die homeless.",
+                       t="They refuse the factory… and end up cleaning in factories; they leave to be free… and die homeless.",
                        etape="Outside the text: Irish emigration to Britain, often for low-paid work.", x=170, y=200, w=940),
         "c_limp": dict(type="cit", a="Michael", o="p. 64", x=170, y=200, w=940),
         "limp": dict(type="note", cles=["motorbike", "dancing"], terme="Anticlimax · p. 64",
@@ -267,7 +267,7 @@ SCENES = [
         "And his knowledge has holes: perhaps, perhaps, perhaps; mere scraps. Memory, again, is incomplete and selective.",
         "{-a2}{a3}{a3.1}Three: economics and the outside world. Industrialisation kills the cottage economy; emigration finishes the job. "
         "The modern world arrives in Ballybeg as a factory, and takes its people away. "
-        "Spain, London, Wales: the world beyond Ballybeg brings no happy endings.",
+        "Spain and London bring the Mundys no happy endings; Wales gives Gerry a peace he never gave Chris.",
         "{-a3}{a4}{a4.1}Four: irony. No bands and flags for Jack. A motorbike, not a battle, for Gerry. "
         "Good news about the Sweeney boy, right after the deaths. "
         "The gap between hopes and outcomes is the tragedy.",
@@ -297,9 +297,9 @@ SCENES = [
 
 QUIZ = [
     dict(q="Why can Vera McLaughlin no longer buy Agnes and Rose's gloves?",
-         r=["Her home knitters are already working in the new factory", "Kate has forbidden it", "The wool has become too expensive",
+         r=["A new factory in Donegal Town makes gloves more cheaply", "Kate has forbidden it", "The wool has become too expensive",
             "She is leaving for America"], ok=0, voir="jeu2.1",
-         ex="“Most of her home knitters were already working in the new factory”: “The Industrial Revolution had finally caught up with Ballybeg.”"),
+         ex="Chris (p. 56): “Too dear”; the new factory sells gloves cheaply. “The Industrial Revolution had finally caught up with Ballybeg.” (p. 63)"),
     dict(q="What does Agnes's note say?",
          r=["“We are gone for good. This is best for all. Do not try to find us.”", "“We will write from London.”",
             "“Forgive us, Kate.”", "“We have gone to the factory.”"], ok=0, voir="c_note",

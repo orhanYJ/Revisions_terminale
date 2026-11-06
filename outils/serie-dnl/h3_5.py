@@ -381,7 +381,7 @@ SCENES = [
     dict(id="ws4", chap="Worksheet 4: the key answers", fond="aube", humeur="calme",
          retenir="Worksheet 4: present Treblinka (dates, place, toll) · the victims (ghettos, trains, deception) · the slaves' tasks · the killing process, from the ramp to the burning of the bodies.",
          beats=[
-        "{ws}The four questions of Worksheet 4, with the key points suggested by the site, not Monsieur Ros's answer key. "
+        "{ws}The four questions of Worksheet 4, with the key points suggested by the site, not an official answer key. "
         "{ws.1}One: present Treblinka, with its dates, its place and its toll. "
         "{ws.2}Two: the victims: from the ghettos, Lindwasser from Warsaw, Bomba from Czestochowa; by train, deceived. "
         "{ws.3}Three: the tasks of the slave Jews. Barbers like Bomba, inside the gas chamber itself; sorting the victims' belongings; "
@@ -562,8 +562,8 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H3 · Part III: the Nazi racial policy, towards the genocide; Worksheet 4 · Treblinka; the course videos on Raul Hilberg and the Einsatzgruppen) as written on the site, with additions marked “outside the course” (US Holocaust Memorial Museum); animated map of chapter 3 (site).",
-    "Answers to the worksheet and to the video questions: suggested by the site, not M. Ros's answer key.",
+    "Content: the DNL History course (DNL History, H3 · Part III: the Nazi racial policy, towards the genocide; Worksheet 4 · Treblinka; the course videos on Raul Hilberg and the Einsatzgruppen) as written on the site, with additions marked “outside the course” (US Holocaust Memorial Museum); animated map of chapter 3 (site).",
+    "Answers to the worksheet and to the video questions: suggested by the site, not an official answer key.",
     "No photographs of the victims: the documents of the course are described in words.",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

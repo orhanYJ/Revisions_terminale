@@ -130,7 +130,7 @@ SCENES = [
     dict(id="comparer1", chap="Three regimes, one machine", fond="nuit", humeur="lumiere",
          retenir="Nation, race, class: three supreme goals. One leader, one party, one symbol in each.",
          beats=[
-        "{gc}{l1}Now, the three regimes side by side, as in Mister Ros's synthesis grid. "
+        "{gc}{l1}Now, the three regimes side by side, as in the synthesis grid of the course. "
         "F for Fascism, N for Nazism, S for Stalinism. {gc.1}First, the ideology: a set of beliefs that sets a supreme goal. "
         "{l1.1}For Mussolini, it is the nation, and the absolute State. Everything is in the State. Humanity is divided into nations, not classes. "
         "And Fascism is racist only from nineteen thirty-eight. {l1.2}For Hitler, it is the race. History is a permanent war between races. "
@@ -265,8 +265,8 @@ SCENES = [
     dict(id="question", chap="The chapter's question", fond="guerre", humeur="mystere",
          retenir="Ideology supplied the will to war; the democracies' reluctance, the opportunity.",
          beats=[
-        "{hi}So, did totalitarian ideology cause the war? At the start of the chapter, Mister Ros gave three historians' answers. "
-        "{hi.1}For A. J. P. Taylor, the war came from the failure of the democracies to stop Hitler. Mister Ros calls it a very controversial thesis. "
+        "{hi}So, did totalitarian ideology cause the war? At the start of the chapter, the course gave three historians' answers. "
+        "{hi.1}For A. J. P. Taylor, the war came from the failure of the democracies to stop Hitler. The course calls it a very controversial thesis. "
         "{hi.2}For Paul Hehn, it was an economic conflict, born of the crash. "
         "{hi.3}And for Jay Winter, the years nineteen fourteen to nineteen forty-five form one single Thirty Years War.",
         "{-hi}{tr}Each of them holds part of the truth. And the chapter shows where. {tr.1}Winter: the regimes were born in the trenches, "
@@ -356,7 +356,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: the synthesis of M. Ros's course (DNL History, H2) as written on the site, with M. Ros's synthesis grid; "
+    "Content: the synthesis of the DNL History course (chapter H2) as written on the site, with the synthesis grid of the course; "
     "the animated map of the chapter (site).",
     "Photographs (via Wikimedia Commons): the Nuremberg rally of September 1936 (Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE); the Munich Agreement, 29 September 1938 (Bundesarchiv, Bild 183-R69173, CC BY-SA 3.0 DE).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",

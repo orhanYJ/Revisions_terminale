@@ -78,7 +78,7 @@ SCENES = [
         "{g1}Let's start on the map, in chronological order. {g1.1}Italy, from nineteen twenty-nine. "
         "Mussolini has to come to terms with the Church, and with the king. His opponents are usually not executed. "
         "They are sent into internal exile, on islands such as Lipari. "
-        "Monsieur Ros asks it with a question mark. A less oppressive terror?",
+        "The course asks it with a question mark. A less oppressive terror?",
         "{g1.2}Now the Soviet Union, from nineteen twenty-nine to nineteen thirty-two. This is forced collectivisation, "
         "which you saw in episode three. Any peasant who resists is called a kulak. A class enemy. "
         "His land and his animals are confiscated. And many are deported.",
@@ -211,7 +211,7 @@ SCENES = [
 
     # ================================================================ II.3, idée 4 : le camp
     dict(id="camps", chap="II.3 · The camp, a permanent institution", fond="nuit", humeur="mystere",
-         retenir="The Gulag: camps placed where labour was needed; the White Sea–Baltic Canal (227 km, 1931–33, by hand); over 1.5 million prisoners in the early 1950s. Dachau (1933): prisoners sorted by coloured triangles. M. Ros: the Nazis did not invent the camp; they added the gas chamber.",
+         retenir="The Gulag: camps placed where labour was needed; the White Sea–Baltic Canal (227 km, 1931–33, by hand); over 1.5 million prisoners in the early 1950s. Dachau (1933): prisoners sorted by coloured triangles. The course: the Nazis did not invent the camp; they added the gas chamber.",
          beats=[
         "{g5}{g5.1}Idea four. The camp becomes a permanent institution, and forced labour becomes an economic resource. "
         "Repression is not only judicial. It is territorial. Whole populations are confined.",
@@ -226,7 +226,7 @@ SCENES = [
         "Inside, prisoners were sorted by coloured triangles. "
         "{tri.1}Red for political prisoners. {tri.2}Green for criminals. {tri.3}Pink for homosexuals. "
         "{tri.4}Black for those called anti-social. {tri.5}Purple for Jehovah's Witnesses. {tri.6}And a yellow triangle was added for Jews.",
-        "{-tri}{ros}Keep Monsieur Ros's sentence. The Nazis did not invent the camp. {ros.1}What they added was the gas chamber.",
+        "{-tri}{phr}Keep this sentence of the course. The Nazis did not invent the camp. {phr.1}What they added was the gas chamber.",
     ], vis={
         "g5": dict(type="globe", code="H2", sc=[17]),
         "photo3": dict(type="tableau", img="h2-belomorkanal", de=[1.0, .3, .5], a=[1.05, .7, .5],
@@ -241,7 +241,7 @@ SCENES = [
                     marques=["R", "G", "P", "B", "Pu", "Y"], items=[
             "Red: political prisoners", "Green: criminals", "Pink: homosexuals", "Black: “anti-socials”",
             "Purple: Jehovah's Witnesses", "Yellow, added: Jews"], x=170, y=100, w=940),
-        "ros": dict(type="note", terme="M. Ros, in class", cles=["invent", "gas"],
+        "phr": dict(type="note", terme="The course sums it up", cles=["invent", "gas"],
                     t="The Nazis did not invent the camp…",
                     etape="… what they added was the gas chamber", x=170, y=200, w=940),
     }),
@@ -319,7 +319,7 @@ SCENES = [
         "{it.4}But the Special Court passed far fewer death sentences than the Soviet or German systems. "
         "Opponents were sent to the confino. That meant internal exile, on remote islands.",
         "{-it}{form}So use this formula. In Italy, repression was {!legalised rather than industrialised}legalised rather than industrialised. "
-        "Hence Monsieur Ros's question: a less oppressive terror?",
+        "Hence the course's question: a less oppressive terror?",
         "{-form}{lib}Now, one correction. The course says that Italy had no concentration camps. "
         "That is true of the way opponents were punished in Italy before the war. They were sent to the confino. "
         "{lib.1}But here is a fact from outside the course. In its colony of Libya, Fascist Italy locked up the population of Cyrenaica "
@@ -330,7 +330,7 @@ SCENES = [
         "it": dict(type="liste", titre="Italy: terror made legal", items=[
             "1924 · Matteotti murdered → the totalitarian state", "1926 · State Defence Law: death penalty, Special Court",
             "1927 · the OVRA", "Far fewer death sentences · opponents sent to the confino"], x=150, y=130, w=980),
-        "form": dict(type="mot", t="Legalised, not industrialised", g="“Less oppressive terror?” · M. Ros's question mark", y=250, taille=78),
+        "form": dict(type="mot", t="Legalised, not industrialised", g="“Less oppressive terror?” · the course's question mark", y=250, taille=78),
         "lib": dict(type="note", terme="Watch out · a correction", cles=["opponents", "Libya", "Cyrenaica"],
                     t="No camps for opponents in Italy itself: they were sent to the confino.",
                     etape="Outside the course: in Libya, Italy confined the population of Cyrenaica in camps, 1930–33", x=170, y=200, w=940),
@@ -404,7 +404,7 @@ SCENES = [
     dict(id="tableau1", chap="The totalitarianism table · seizure of power and ideology", fond="aube", humeur="calme",
          retenir="Seizure of power: Italy Oct. 1922 (squadristi, then the king) · Germany 30 Jan. 1933 (elections, Hindenburg, Reichstag fire decree, Enabling Act) · USSR from 1924, struggle inside the party, no electoral path. Ideology: same method; nation · race · class.",
          beats=[
-        "{tb}Let's put everything together in Monsieur Ros's totalitarianism table, filled in as far as the course has gone. "
+        "{tb}Let's put everything together in the totalitarianism table of the course, filled in as far as the course has gone. "
         "It has five blocks. {tb.1}Seizure of power. {tb.2}Ideology. {tb.3}Dictatorship. {tb.4}State terrorism. {tb.5}A controlled society. "
         "It is a synthesis of parts one and two. If you can fill it in from memory, you are ready.",
         "{-tb}{t1}Block one: the seizure of power. First, the date. {t1.1}Italy: October nineteen twenty-two. "
@@ -428,7 +428,7 @@ SCENES = [
         "{t4.3}Germany: race struggle, antisemitism, and Lebensraum. "
         "{t4.4}The Soviet Union: class struggle, the abolition of private property, and socialism in one country.",
     ], vis={
-        "tb": dict(type="liste", titre="M. Ros's table · five blocks", items=[
+        "tb": dict(type="liste", titre="The course table · five blocks", items=[
             "Seizure of power: date, causes, process", "Ideology: similarities, specificities",
             "Dictatorship: cult, supports, party, symbols, slogans", "State terrorism: police, opponents",
             "A controlled society: youth, thought, economy, administration"], x=150, y=110, w=980),
@@ -602,7 +602,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H2 · Part II.3, Worksheet 4, the totalitarianism table, Arendt in the introduction) as written on the site; Worksheet 4 answers suggested by the site; outside the course: Fascist camps in Libya (Cyrenaica, 1930–33) and Beria's dates at the head of the NKVD (1938–45); animated map of chapter 2 (site).",
+    "Content: the DNL History course (chapter H2 · Part II.3, Worksheet 4, the totalitarianism table, Arendt in the introduction) as written on the site; Worksheet 4 answers suggested by the site; outside the course: Fascist camps in Libya (Cyrenaica, 1930–33) and Beria's dates at the head of the NKVD (1938–45); animated map of chapter 2 (site).",
     "Photographs (via Wikimedia Commons): Hannah Arendt in 1958 (Barbara Niggl Radloff, Münchner Stadtmuseum, CC BY-SA 4.0); the defendants of the second Moscow trial, January 1937 (unknown photographer, public domain); Gulag prisoners digging the White Sea-Baltic Canal, 1932 (unknown photographer, public domain).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

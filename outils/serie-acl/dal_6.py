@@ -164,7 +164,7 @@ SCENES = [
         "{jeu3.2}Then: a single magpie! A bad omen, one for sorrow. He raises his stick as a gun. Bang! Missed. They both laugh.",
         "{jeu3.3}In the kitchen, Kate: laughing? Beyond my comprehension. Like so many things, Kate, says Agnes.",
         "{jeu3.4}Then Gerry's news. He is thinking of going away for a while. Home to Wales, asks Chris?",
-        ("C", "Wales isn't my home any more. My home is here -- well, Ireland.", "jeu3.5"),
+        ("C", "Wales isn't my home any more. My home is here – well, Ireland.", "jeu3.5"),
         "{jeu3.6}He is going to Spain, to do a spot of fighting, with the International Brigade. Why?",
         ("C", "Give Evans a Big Cause and he won't let you down.", "jeu3.7"),
         ("C", "It's only everyday stuff he's not so successful at.", "jeu3.8"),
@@ -179,7 +179,7 @@ SCENES = [
             dict(note="“one for sorrow.” (His stick as a gun.) “Bang! Missed.” (p. 33)"),
             dict(note="“Laughing? Absolutely beyond my comprehension.” (Kate)"),
             dict(note="“Thinking of going away for a while, Chrissie.”"),
-            dict(dit=["Gerry", "Wales isn't my home any more. My home is here -- well, Ireland."]),
+            dict(dit=["Gerry", "Wales isn't my home any more. My home is here – well, Ireland."]),
             dict(note="“to do a spot of fighting. With the International Brigade.”"),
             dict(dit=["Gerry", "Give Evans a Big Cause and he won't let you down."]),
             dict(dit=["Gerry", "It's only everyday stuff he's not so successful at."]),
@@ -208,12 +208,13 @@ SCENES = [
         ("C", "They dance so well together. They're such a beautiful couple.", "jeu4.15", {"voix": "F"}),
         "{jeu4.16}She's as beautiful as Bernie O'Donnell any day, isn't she? "
         "And Maggie moves slowly away from the window, and sits motionless.",
-        "{jeu4.17}In the garden, Gerry: marry me, Chrissie. I don't think so, Gerry.",
+        "{jeu4.17}In the garden, Gerry asks: do you know the words? I never know any words, says Chris. "
+        "Neither do I, he says. Doesn't matter. This is more important. Then: marry me, Chrissie. I don't think so, Gerry.",
         ("C", "But you'd walk out on me again.", "jeu4.18", {"voix": "F"}),
         ("C", "Don't talk any more; no more words. Just dance me down the lane and then you'll leave.", "jeu4.19", {"voix": "F"}),
         "{jeu4.20}They dance off. The music continues for a few seconds, {jeu4.21}and stops suddenly, in mid-phrase. "
         "Maggie goes to the set, slaps it, turns it off. Kate moves away from the window.",
-        ("C", "Whatever's wrong with it, that's all it seems to last -- a few minutes at a time.", "jeu4.22", {"voix": "F"}),
+        ("C", "Whatever's wrong with it, that's all it seems to last – a few minutes at a time.", "jeu4.22", {"voix": "F"}),
         "{jeu4.23}Kate goes on: Christina's heart gets crushed again; the creature has no sense of ordinary duty. "
         "{jeu4.24}Agnes rises, and goes to the back door. Kate does not stop.",
         ("C", "You are such a damned righteous bitch! And his name is Gerry! – Gerry! Gerry!", "jeu4.25", {"voix": "F"}),
@@ -251,7 +252,7 @@ SCENES = [
             dict(pos={"Chris": "off", "Gerry": "off", "Maggie": "radio", "Kate": [300, 380]},
                  act={"Chris": "debout", "Gerry": "debout", "Maggie": "debout", "Kate": "debout"}, radio=False, duree=2.0,
                  note="The music stops suddenly in mid-phrase. MAGGIE slaps the set, turns it off."),
-            dict(dit=["Maggie", "Whatever's wrong with it, that's all it seems to last -- a few minutes at a time."]),
+            dict(dit=["Maggie", "Whatever's wrong with it, that's all it seems to last – a few minutes at a time."]),
             dict(note="“the creature has no sense of ordinary duty” (Kate)"),
             dict(pos={"Agnes": "porte"}, act={"Agnes": "debout"}, duree=2.0, note="(AGNES rises and goes to the back door.)"),
             dict(dit=["Agnes", "You are such a damned righteous bitch! And his name is Gerry! – Gerry! Gerry!"]),
@@ -267,7 +268,7 @@ SCENES = [
         ("C", "Of course ask him in. And give the creature his tea. And stay the night if he wants to. But in the outside loft. "
               "And alone.", "c_tea", {"voix": "F"}),
         "{-c_tea}{deux}First, tenderness. Then, firm again: the outside loft, and alone. Love, but respectability first. "
-        "And creature: she will not even say his name.",
+        "And creature: she will not even use his first name.",
         "Then Gerry.{-deux}",
         ("C", "Give Evans a Big Cause and he won't let you down. It's only everyday stuff he's not so successful at.", "c_cause"),
         "{-c_cause}{cause}His most honest line. A big cause, yes. Everyday duty, a son behind a bush: no. "
@@ -303,7 +304,7 @@ SCENES = [
          retenir="Gerry the performer, the watchers in the kitchen, the dance as escape, and the subtext of Agnes and Kate.", beats=[
         "{a1}Now the analysis. Four ideas. One: Gerry is a performer. He knows he is being watched, and everything is a show. "
         "His charm is unreliable, and we see through it.",
-        "Dramatic irony too: on page sixty-four, Michael reveals that Gerry had a wife and three children in Wales. "
+        "Irony in hindsight too: on page sixty-four, Michael reveals that Gerry had a wife and three children in Wales. "
         "So much for: Wales isn't my home any more.",
         "{-a1}{a2}Two: the watchers. The split stage makes the sisters an audience inside the play, almost a chorus. "
         "We watch them watching, and their comments reveal them more than Gerry.",
@@ -317,7 +318,7 @@ SCENES = [
     ], vis={
         "a1": dict(type="note", cles=["performer", "unreliable"], terme="1 · Gerry, the performer",
                    t="“He knows he is being watched”: six months for thirteen, “I'm a liar”, four brochures.",
-                   etape="Unreliable charm, and dramatic irony: his family in Wales (p. 64).", x=170, y=200, w=940),
+                   etape="Unreliable charm, and irony in hindsight: his family in Wales (p. 64).", x=170, y=200, w=940),
         "a2": dict(type="note", cles=["split", "chorus"], terme="2 · The watchers",
                    t="A split stage: the garden performs, the kitchen comments, like a chorus.",
                    etape="We watch the sisters watching. Michael watches too.", x=170, y=200, w=940),
@@ -349,7 +350,7 @@ QUIZ = [
     dict(q="Why is Gerry going to Spain?",
          r=["To fight with the International Brigade", "To sell gramophones", "To find work as a dance teacher",
             "To visit his family"], ok=0, voir="c_cause",
-         ex="“to do a spot of fighting. With the International Brigade.” Context: the Spanish Civil War began in July 1936."),
+         ex="“to do a spot of fighting. With the International Brigade.” Context (outside the play): the Spanish Civil War began in July 1936."),
     dict(q="How does Chris answer Gerry's proposal?",
          r=["“Just dance me down the lane and then you'll leave.”", "She says yes, for after his return",
             "She asks Kate's permission", "She runs into the house"], ok=0, voir="c_lane",

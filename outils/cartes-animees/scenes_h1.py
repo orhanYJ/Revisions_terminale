@@ -105,7 +105,7 @@ def etat(k):
         c["w:United States"] = [CRISE, None]
     if (1930, 0, 0) <= k < (1933, 1, 0):
         c["germany"] = [CRISE, None]
-    if (1931, 5, 0) <= k < (1938, 3, 0):
+    if (1931, 5, 0) <= k < (1932, 1, 0):      # le krach du Creditanstalt (1931) ; ensuite, plus de clé « crise » pour l'Autriche
         c["austria"] = [CRISE, None]
     if k >= (1931, 9, 18):
         c["w:Manchuria"] = ["#E9D9C4", JAP]
@@ -126,6 +126,7 @@ DUST = {"dustbowl": ["#C9A66B", "#8C6A35"]}
 HL = {
     "L'ordre libéral de 1919": {"w:United States": [DEMO19, None], "ru": [DEMO19, None], "france": [DEMO19, None]},
     "L'effet domino en Europe": {"ru": [CRISE, None]},
+    "La France : le Front populaire": {"france": [DEMO19, None], "ru": [DEMO19, None]},
     "L'étalon-or, courroie de transmission": {"ru": ["#3E6259", None], "w:Empire of Japan": ["#3E6259", None], "w:United States": ["#7FA89F", None], "france": ["#C9DCD7", None]},
     "La périphérie frappée par la chute des prix": {"w:Brazil": [OR, None], "w:Chile": [OR, None], "w:Argentina": ["#E4CF9E", None]},
     "Une crise durable dans tout le monde dominé": {"w:British Raj": [CRISE, None], "w:Australia": [CRISE, None], "w:New Zealand": [CRISE, None], "w:Canada": [CRISE, None]},
@@ -301,7 +302,7 @@ def scenes():
         L("Les lois de neutralité ; l'USS Panay", "The Neutrality Acts; the USS Panay"),
         L("Le Congrès vote les lois de neutralité : embargo sur les armes (1935), prêts interdits (1936), puis embargo permanent, voyages interdits sur les navires des pays en guerre et « cash and carry » pour les autres marchandises (1937). En décembre 1937, le Japon coule la canonnière USS Panay sur le Yangzi, puis s'excuse et paie : il y lit un permis d'aller plus loin.",
           "Congress passed the Neutrality Acts: an arms embargo (1935), a ban on loans (1936), then a permanent embargo, no travel on ships of nations at war and “cash and carry” for other goods (1937). In December 1937 Japan sank the gunboat USS Panay on the Yangtze, then apologised and paid — and read the American tone as a licence to go further."),
-        pins=["nankin_p"], cles=["japon", "usa"])
+        pins=["nankin_p"], labels=["l_chine", "l_jap", "shanghai"], cles=["japon", "usa"])
     add("II.3", 15, [30, 18, 2.2], L("Octobre 1935", "October 1935"),
         L("L'Italie envahit l'Éthiopie", "Italy invades Ethiopia"),
         L("Mussolini attaque l'Éthiopie. Le Royaume-Uni refuse l'embargo sur le pétrole qui l'aurait arrêté : c'est l'apaisement. Ses raisons : pacifisme, un empire à surveiller, la crise d'abord, l'isolationnisme américain, la peur du communisme plus que du fascisme.",
