@@ -114,7 +114,7 @@ SCENES = [
         "combined with air attacks on centres of industry. {dir.2}Two: terror attacks by air against population centres, that is, the cities. "
         "{dir.3}And three, finally: a landing, to occupy England. Notice the order. The landing comes last: {!first, the air}first, the air.",
         "{-dir}{g5}{g5.1}And look at what happened. The second form, terror from the air, is exactly what the Germans put into practice. "
-        "{g5.2}Monsieur Ros's slide shows a Luftwaffe bomber flying over the East End of London, at the start of the evening raids "
+        "{g5.2}The course slide shows a Luftwaffe bomber flying over the East End of London, at the start of the evening raids "
         "of the seventh of September 1940. That is the Blitz.",
     ], vis={
         "q3": dict(type="question", t="France is beaten. How do you beat Britain?"),
@@ -138,7 +138,7 @@ SCENES = [
         "{lo.4}And above all, cities, to break the will of the population.",
         "{-lo}{civ}This means that civilians are in the front line, as they had been in Spain, during the civil war, and in Poland, in 1939. "
         "{civ.1}Look at these children of East London, sitting in front of what was their home. In this war, the home is a battlefield.",
-        "{-civ}{hp}Another photograph on Monsieur Ros's slide: anti-aircraft guns set up in Hyde Park, in the heart of the capital. "
+        "{-civ}{hp}Another photograph on the course slide: anti-aircraft guns set up in Hyde Park, in the heart of the capital. "
         "The front line runs through the middle of London.",
         "{-hp}{chif}And the toll. The course gives forty-three thousand civilians killed in London. "
         "{chif.1}Be careful: this figure is usually the one for the whole United Kingdom during the Blitz, and about half of them died in London. "
@@ -157,7 +157,7 @@ SCENES = [
         "civ": dict(type="note", terme="Civilians in the front line", cles=["Spain", "Poland"],
                     t="As in Spain and in Poland, the bombers target the population itself.",
                     etape="East London, 1940: the home is a battlefield", x=170, y=420, w=940),
-        "hp": dict(type="note", terme="On M. Ros's slide", cles=["Hyde", "Park"],
+        "hp": dict(type="note", terme="On the course slide", cles=["Hyde", "Park"],
                    t="Anti-aircraft guns set up in Hyde Park, in the heart of the capital.",
                    etape="The front line runs through London", x=170, y=200, w=940),
         "chif": dict(type="note", terme="Watch out · a figure to check", cles=["43,000"],
@@ -334,7 +334,7 @@ SCENES = [
         "The United States immediately declares war on Japan.",
         "{g8.4}And on the eleventh of December, Germany and Italy declare war on the United States. "
         "From then on, the war is fought on every ocean and every continent.",
-        "{-g8}{une}Monsieur Ros's slide shows the front page of The Erie Daily Times, on the eleventh of December 1941. Two headlines. "
+        "{-g8}{une}The course slide shows the front page of The Erie Daily Times, on the eleventh of December 1941. Two headlines. "
         "{une.1}U.S. Declares War on Germany, Italy. {une.2}And below: America Lines Up With Britain, Soviet Against Axis In World Struggle.",
         "{-une}{bil2}Look at the words: lines up with Britain. Eighteen months after Dunkirk, {!no longer alone}Britain is no longer alone. "
         "{bil2.1}The bet of Churchill and de Gaulle has paid off: the New World has stepped forth.",
@@ -450,8 +450,8 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H3 · Part I.2, “The British resistance supported by the US”) and Worksheet 2 as written on the site "
-    "(the worksheet answers are suggested by the site, not M. Ros's answer key); reminders of chapter 1; animated maps of chapters 1 and 3 (site). "
+    "Content: the DNL History course (DNL History, H3 · Part I.2, “The British resistance supported by the US”) and Worksheet 2 as written on the site "
+    "(the worksheet answers are suggested by the site, not an official answer key); reminders of chapter 1; animated maps of chapters 1 and 3 (site). "
     "Outside the course: the Lend-Lease Act, Operation Sea Lion, the Battle of Britain. The DBQ question and model answer were written for this video.",
     "Photograph: children of an eastern suburb of London made homeless by a night raid, September 1940 (New Times Paris Bureau Collection, USIA; "
     "US National Archives, 306-NT-3163V; public domain according to its source; Wikimedia Commons file “WWII London Blitz East London.jpg”, "

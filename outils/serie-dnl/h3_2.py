@@ -543,7 +543,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H3 · Part I.1 “Nazi invasion of Western Europe: the French case”, Worksheet 1, the course map of the zones, three sources on occupied France, the divisions table) as written on the site; animated map of chapter 3 (site).",
+    "Content: the DNL History course (DNL History, H3 · Part I.1 “Nazi invasion of Western Europe: the French case”, Worksheet 1, the course map of the zones, three sources on occupied France, the divisions table) as written on the site; animated map of chapter 3 (site).",
     "Course correction: the arrests of summer 1942 (Vel' d'Hiv, 16–17 July 1942) were carried out by the French police, not by the Milice (created in January 1943).",
     "Photograph: Marshal Pétain and Adolf Hitler at Montoire, 24 October 1940 (Heinrich Hoffmann, Bundesarchiv, Bild 183-H25217, via Wikimedia Commons, CC BY-SA 3.0 DE); the meeting itself is outside the course.",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",

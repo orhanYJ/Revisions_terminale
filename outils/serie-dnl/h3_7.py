@@ -159,6 +159,6 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: the synthesis of M. Ros's course (DNL History, H3) as written on the site; the animated map of the chapter (site).",
+    "Content: the synthesis of the DNL History course (DNL History, H3) as written on the site; the animated map of the chapter (site).",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

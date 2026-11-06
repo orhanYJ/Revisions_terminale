@@ -1173,7 +1173,7 @@ html[data-theme="dark"] .cm{--cm-etoile:#F08DB8}
 .vidbanner b{font-family:var(--serif);font-size:1.05rem}
 .vidbanner span{font-size:.85rem;opacity:.8}
 .video-c{margin:16px 0 8px;border-radius:16px;overflow:hidden;background:#0c120e;box-shadow:var(--shadow-m)}
-.video-c iframe{display:block;width:100%;height:62vw;max-height:80vh;border:0}
+.video-c iframe{display:block;width:100%;height:62vw;border:0}
 </style>
 <!-- carte-mentale:debut — carte du thème 1.A, partagée avec les vidéos (svt/serie/) -->
 <script src="carte-mentale.js?v=1"></script>
@@ -7260,6 +7260,13 @@ window.addEventListener('popstate', function(){ if(ouverte) fermer(); });
 /* Échap pressée dans l'animation elle-même */
 window.addEventListener('message', function(e){ var d = e.data || {}; if(d.type === 'anim-echap' && ouverte) demanderFermeture(); });
 })();
+/* vidéo du cours (serie/*.html) : le cadre prend la hauteur du lecteur (image, commandes, chapitres, quiz),
+   pour que rien ne soit caché dans un cadre qui défile à part */
+window.addEventListener("message", e => {
+  const d = e.data || {};
+  if(d.type !== "serie-h" || !d.h) return;
+  document.querySelectorAll("iframe[data-serie]").forEach(fr => { if(fr.contentWindow === e.source) fr.style.height = Math.ceil(d.h) + "px"; });
+});
 window.addEventListener("message", e => {
   const d = e.data || {};
   if(d.type !== "anim-h" && d.type !== "anim-goto") return;
