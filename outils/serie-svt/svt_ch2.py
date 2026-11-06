@@ -267,7 +267,7 @@ SCENES = [
         "{-bil_a}",
     ], vis={
         "pb2": dict(type="question", t="En quoi les transferts horizontaux ont-ils permis des applications biotechnologiques ?"),
-        "an4": dict(type="anim", nom="insuline", x=40, y=72, h=624, seg=[[0, 7], [7, 14], [14, 21], [21, 28], [28, 39], [39, 50]]),
+        "an4": dict(type="anim", nom="insuline", x=40, y=72, h=624, seg=[[0, 7], [7, 14], [14, 21], [21, 28], [28, 39], [39, 50]], vit=1.4),
         "pt4": dict(type="liste", petit=True, titre="Produire de l'insuline humaine", x=680, y=100, w=560, items=[
             "Identifier le gène d'intérêt (insuline)", "Ouvrir un plasmide",
             "Insérer le gène : plasmide recombinant (vecteur)", "Le transférer : bactérie transformée",
