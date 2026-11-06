@@ -291,7 +291,7 @@ SCENES = [
         "And from November 1942 to September 1943, Italian troops occupy a much larger part of the south-east.",
     ], vis={
         "g7": dict(type="globe", code="H3", sc=[16, 39]),
-        "zones": dict(type="liste", titre="France cut up: five zones", x=60, y=110, w=620, petit=True, bande=True, items=[
+        "zones": dict(type="liste", titre="France cut up: five zones", x=850, y=70, w=400, petit=True, bande=True, items=[
             "Occupied zone: 3/5, the richest areas and the coasts (MBF)", "“Free zone”, governed from Vichy",
             "Italian zone: ≈ 15 communes (Alpes-Maritimes)", "Nord and Pas-de-Calais: attached to Brussels",
             "Alsace and Moselle: annexed (borders of 1871)"]),
@@ -343,7 +343,7 @@ SCENES = [
         "here they are, used as a bargaining tool.",
     ], vis={
         "g9": dict(type="globe", code="H3", sc=[34]),
-        "expl": dict(type="liste", titre="Exploited: money, goods, workers", x=60, y=120, w=620, petit=True, bande=True, items=[
+        "expl": dict(type="liste", titre="Exploited: money, goods, workers", x=850, y=330, w=400, petit=True, bande=True, items=[
             "20 million Reichsmarks a day in occupation fees", "Requisitions: coal, food, fuel",
             "Rationing and the black market", "1942: the Relève; Feb. 1943: the STO, forced labour"]),
         "sto": dict(type="def", cles=["Vichy", "women"], terme="STO · Service du travail obligatoire",
@@ -367,7 +367,7 @@ SCENES = [
         "In your essay, write: the French police.",
     ], vis={
         "g10": dict(type="globe", code="H3", sc=[35]),
-        "pers": dict(type="liste", titre="Persecution, step by step", x=60, y=120, w=620, petit=True, bande=True, items=[
+        "pers": dict(type="liste", titre="Persecution, step by step", x=850, y=70, w=400, petit=True, bande=True, items=[
             "Dispossession: “Aryanisation” of businesses and property", "Marking: the yellow star, June 1942",
             "Arrest for deportation, summer 1942: the French police", "From 1942: deportations from the Vichy zone too"]),
         "bilj": dict(type="mot", t="≈ 80,000 deported", g="Jews deported from France · about 3% survived", y=250, taille=96),
