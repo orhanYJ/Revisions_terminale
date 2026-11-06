@@ -10,9 +10,8 @@ Contenu : les huit idées de la partie II.3 dans le site (dnl/index.html, CHAPTE
 structurelles / causes contextuelles), H1SlideAnim (les marches vers la guerre, 1931-1939) et H1Check (points à vérifier),
 la carte d'essai du Key Issue « Blame for the origins of WWII lies in part with the great democratic powers themselves ».
 Les dessins de David Low (The Doormat, Stepping Stones to Glory) ne sont pas dans le domaine public : décrits, pas montrés.
-Hors cours, dit comme tel : Henry Cabot Lodge, le détail des Neutrality Acts de 1936 et 1937, le pacte anti-Komintern et le
-pacte tripartite (1940), « peace for our time ». Corrections du cours dites sobrement : Hoover n'était pas un adversaire
-de la SDN (il en défendait l'adhésion, avec réserves) ; la loi de 1937 n'imposait pas un embargo sur tout le commerce.
+Le cours a été corrigé depuis (Lodge, détail des Neutrality Acts, axe et pacte tripartite) : la vidéo dit la version du
+cours. Hors cours, dit comme tel : « peace for our time ».
 Le sujet d'essay vient du cours (Key Issue) ; le modèle de réponse suit la carte d'essai du site, écrit pour la vidéo.
 """
 
@@ -123,9 +122,8 @@ SCENES = [
         "The sign says it: this bridge was designed by the President of the United States. Belgium, France, England, Italy are in place. "
         "But there is a gap in the middle. And Uncle Sam lounges on the bank, his feet up, leaning on the missing stone. {!Keystone USA}Keystone: U S A.",
         "{-gap}{sen}Why? In the Senate, the Republicans held the majority. And the Senate refused to ratify the Treaty of Versailles, "
-        "which contained the covenant of the League. {sen.1}A small correction here. The course names Hoover among the opponents of the League. "
-        "In fact, Hoover himself was in favour of joining, with reservations. The opposition in the Senate was led by Henry Cabot Lodge, "
-        "a name from outside the course. {sen.2}The result is the same, and it is the sentence to learn: "
+        "which contained the covenant of the League. {sen.1}The opposition was led by Senator {!Henry Cabot Lodge}Henry Cabot Lodge. "
+        "{sen.2}And here is the sentence to learn: "
         "the United States never joined the League its own president had conceived.",
     ], vis={
         "q3": dict(type="question", t="What were the democracies supposed to defend?"),
@@ -143,7 +141,7 @@ SCENES = [
                     legende="Leonard Raven-Hill, “The Gap in the Bridge”, Punch, 10 December 1919 (Wikimedia Commons, public domain)"),
         "sen": dict(type="note", terme="The Senate says no", cles=["Senate", "never", "joined"],
                     t="The Republican majority in the Senate refused to ratify Versailles, which contained the League's covenant.",
-                    etape="Correction: Hoover favoured joining, with reservations; the opposition was led by Henry Cabot Lodge (outside the course).",
+                    etape="The opposition was led by Senator Henry Cabot Lodge.",
                     x=170, y=200, w=940),
     }),
 
@@ -254,19 +252,19 @@ SCENES = [
 
     # ================================================================ VII. idée 5 : les lois de neutralité
     dict(id="neutre", chap="II.3 · The Neutrality Acts", fond="nuit", humeur="mystere",
-         retenir="Isolationism after the Depression: domestic policy first. Neutrality Acts (Nye, Vandenberg): 1935 weapons and funding · 1936 no travel on ships of nations at war · 1937 all trade (course's summary). Roosevelt: “I hate war” (1936). Dec. 1937: USS Panay; Japan apologises, pays — and reads it as a licence.",
+         retenir="Isolationism after the Depression: domestic policy first. Neutrality Acts (a Democratic Congress, pressed by Nye, Vandenberg): 1935 arms embargo · 1936 no loans · 1937 embargo permanent, no travel on ships of nations at war, other goods cash and carry. Roosevelt: “I hate war” (1936). Dec. 1937: USS Panay; Japan apologises, pays — and reads it as a licence.",
          beats=[
         "{fdr}Fifth idea: the Neutrality Acts made the largest democracy unavailable. "
         "{iso}{iso.1}The cause is the Great Depression. The United States turns to {!isolationism}isolationism, and turns a blind eye to international tensions. "
         "{iso.2}Congress and the presidents turn to domestic policy: protectionism, and a welfare state. That was episode three.",
-        "{-iso}{nad}Isolationists in Congress, among them the Republican senators Gerald Nye and Arthur Vandenberg, push through the Neutrality Acts. "
-        "{-nad}{na}The course gives three steps. {na.1}In nineteen thirty-five, an embargo on weapons and funding to any nation involved in a conflict. "
-        "{na.2}In nineteen thirty-six, a ban on Americans travelling aboard ships of nations at war. "
-        "{na.3}In nineteen thirty-seven, an embargo on all trade with nations at war.",
-        "{-na}{prec}Learn the course's summary, but know that historians describe the details a little differently. "
-        "{prec.1}The ban on loans came in nineteen thirty-six, and the travel ban only became strict in nineteen thirty-seven. "
-        "{prec.2}And the law of nineteen thirty-seven did not ban all trade: it let nations at war buy goods other than weapons, if they paid cash "
-        "and carried them away themselves. A first cash and carry, two years early. These details are outside the course.",
+        "{-iso}{nad}A Democratic Congress, under pressure from isolationists, among them the Republican senators Gerald Nye and Arthur Vandenberg, "
+        "passes the Neutrality Acts. "
+        "{-nad}{na}Learn them in three steps. {na.1}In nineteen thirty-five, an embargo on weapons to any nation involved in a conflict. "
+        "{na.2}In nineteen thirty-six, a ban on loans to them. "
+        "{na.3}In nineteen thirty-seven, the embargo is made permanent, and Americans are forbidden to travel on ships of nations at war.",
+        "{-na}{prec}The law of nineteen thirty-seven adds one more rule. "
+        "{prec.1}Other goods can still be sold to nations at war, but only for cash. "
+        "{prec.2}And they must carry them away on their own ships. Cash and carry, already, two years before the law of nineteen thirty-nine.",
         "{-prec}{nye}Why such laws? Take the Nye Committee, from nineteen thirty-four to nineteen thirty-six. For two years, it argued that arms manufacturers and bankers "
         "had dragged America into the First World War. {nye.1}The Neutrality Acts were written to make sure it could not happen again, "
         "whatever happened in Europe or in Asia.",
@@ -282,16 +280,16 @@ SCENES = [
         "iso": dict(type="liste", titre="America turns inward", cles=["isolationism", "domestic"], items=[
             "After the Depression: isolationism, a blind eye to international tensions",
             "Domestic policy first: protectionism and a welfare state"], x=170, y=170, w=940),
-        "nad": dict(type="def", terme="The Neutrality Acts (1935–1937)", cles=["Nye", "Vandenberg"],
-                    t="Pushed through by isolationists in Congress, among them the Republican senators Gerald Nye and Arthur Vandenberg.",
+        "nad": dict(type="def", terme="The Neutrality Acts (1935–1937)", cles=["Democratic", "Nye", "Vandenberg"],
+                    t="Passed by a Democratic Congress, under pressure from isolationists such as the Republican senators Gerald Nye and Arthur Vandenberg.",
                     x=170, y=200, w=940),
-        "na": dict(type="liste", titre="The Neutrality Acts (course)", cles=["weapons", "travelling", "trade"], items=[
-            "1935: embargo on weapons and funding to nations in a conflict",
-            "1936: no Americans aboard ships of nations at war",
-            "1937: embargo on all trade with nations at war"], x=150, y=150, w=980),
-        "prec": dict(type="note", terme="More precisely · outside the course", cles=["loans", "travel", "cash"],
-                     t="Loans banned in 1936; the travel ban strict only in 1937.",
-                     etape="1937: non-military goods still sold, if paid cash and carried away — a first “cash and carry”.",
+        "na": dict(type="liste", titre="The Neutrality Acts", cles=["weapons", "loans", "permanent"], items=[
+            "1935: embargo on weapons to nations in a conflict",
+            "1936: no loans to them",
+            "1937: embargo made permanent; no Americans aboard ships of nations at war"], x=150, y=150, w=980),
+        "prec": dict(type="note", terme="1937 · a first “cash and carry”", cles=["cash", "ships"],
+                     t="Other goods still sold to nations at war, but only for cash…",
+                     etape="…and carried away on their own ships.",
                      x=170, y=200, w=940),
         "nye": dict(type="note", terme="The Nye Committee (1934–1936)", cles=["arms", "bankers"],
                     t="Arms manufacturers and bankers, it argued, had dragged America into the First World War.",
@@ -374,7 +372,7 @@ SCENES = [
                        "Hitler: the most nerve-racking 48 hours"]),
         "six": dict(type="liste", titre="Six rational reasons for appeasement", cles=["pacifism", "empire", "unfairly", "economic", "isolationism", "communism"], items=[
             "Pacifism: avoid another world war at all costs", "Britain polices its empire; it cannot afford major rearmament",
-            "Sympathy for a Germany treated unfairly after 1918", "Weakened countries: their own economic problems first",
+            "Sympathy for a Germany treated unfairly by Versailles (1919)", "Weakened countries: their own economic problems first",
             "American isolationism leaves them unprotected", "They fear communism more than fascism"], x=120, y=105, w=1040),
         "ns": dict(type="mot", t="None of these reasons is stupid", g="democracies that could have acted chose not to", y=250, taille=72),
     }),
@@ -398,9 +396,9 @@ SCENES = [
         "{-c_mun}{-mun}{mun2}Here is Neville Chamberlain, back from Munich, on the thirtieth of September nineteen thirty-eight, at Heston aerodrome near London, "
         "waving the paper he has signed with Hitler. {ch}{ch.1}That evening, outside the course, he speaks of {!peace for our time}peace for our time. "
         "{ch.2}Six months later, Germany occupies Prague. Munich had bought nothing.",
-        "{-ch}{-mun2}{axe}Meanwhile, the three militarist powers draw together. The course speaks of a pact between Rome, Berlin and Tokyo: the Axis. "
-        "{axe.1}Be precise about the dates, which are outside the course. Germany and Japan sign the Anti-Comintern Pact in nineteen thirty-six. "
-        "Italy joins it in nineteen thirty-seven. And the formal pact between Rome, Berlin and Tokyo is only signed in September nineteen forty.",
+        "{-ch}{-mun2}{axe}Meanwhile, the three militarist powers draw together. In nineteen thirty-six, the Rome-Berlin Axis. "
+        "{axe.1}The same year, Germany and Japan sign the Anti-Comintern Pact, and Italy joins it in nineteen thirty-seven. "
+        "Their formal alliance, the Tripartite Pact, only comes in September nineteen forty.",
         "{-axe}{mlow2}David Low drew the whole chain two years before Munich, in July nineteen thirty-six, in a cartoon called Stepping Stones to Glory. "
         "{-mlow2}{low2}Again, picture it. {low2.1}Hitler climbs a staircase made of the bent backs of the spineless leaders of democracy. "
         "{low2.2}The steps are marked rearmament, the Rhineland, {low2.3}and the top step: Boss of the Universe.",
@@ -420,9 +418,9 @@ SCENES = [
         "c_mun": dict(type="cit", a="The Munich Agreement", o="29–30 September 1938", x=200, y=200, w=880),
         "ch": dict(type="liste", titre="Heston aerodrome · 30 September 1938", bande=True, petit=True, x=60, y=430, w=620,
                    items=["“Peace for our time” (that evening; outside the course)", "March 1939: Prague. Munich bought nothing."]),
-        "axe": dict(type="note", terme="The Axis · dates outside the course", cles=["Anti-Comintern", "Italy", "formal"],
-                    t="Anti-Comintern Pact: Germany and Japan 1936, Italy joins 1937.",
-                    etape="The formal Rome–Berlin–Tokyo pact: September 1940", x=170, y=200, w=940),
+        "axe": dict(type="note", terme="The Axis", cles=["Axis", "Anti-Comintern", "Tripartite"],
+                    t="Rome–Berlin Axis (1936) · Anti-Comintern Pact: Germany and Japan 1936, Italy 1937.",
+                    etape="The formal alliance, the Tripartite Pact: September 1940", x=170, y=200, w=940),
         "mlow2": dict(type="mot", t="David Low, July 1936", g="“Stepping Stones to Glory”: described, not shown", y=250, taille=72),
         "low2": dict(type="liste", titre="David Low, “Stepping Stones to Glory” (July 1936) · described", items=[
             "Hitler climbs on the bent backs of “the spineless leaders of democracy”",
@@ -432,15 +430,15 @@ SCENES = [
 
     # ================================================================ XI. à vérifier
     dict(id="verif", chap="Watch out: points to check", fond="aube", humeur="calme",
-         retenir="Check with M. Ros: Nye Committee (beyond the slides) · Hoover favoured the League (with reservations) · the Neutrality Acts in detail · the Axis pact signed only in 1940.",
+         retenir="Beyond the slides, to check with M. Ros: the Nye Committee · Lodge, leader of the opposition to the League · the Neutrality Acts in detail · the Tripartite Pact, only in 1940.",
          beats=[
-        "{chk}Four points to check with Monsieur Ros. {chk.1}The Nye Committee was added by the site, beyond the slides. "
-        "{chk.2}Hoover favoured the League. {chk.3}The nineteen thirty-seven Act did not ban all trade. "
-        "{chk.4}And the formal Axis pact only dates from nineteen forty.",
+        "{chk}Four points go beyond Monsieur Ros's slides: check them with him. {chk.1}The Nye Committee. "
+        "{chk.2}Senator Lodge, who led the opposition to the League. {chk.3}The detail of each Neutrality Act. "
+        "{chk.4}And the date of the Tripartite Pact: September nineteen forty.",
     ], vis={
-        "chk": dict(type="liste", titre="To confirm with M. Ros", cles=["Nye", "Hoover", "trade", "Axis"], items=[
-            "The Nye Committee: added by the site, beyond the slides", "Hoover favoured the League; Lodge led the opposition",
-            "1937 Act: not an embargo on all trade", "Rome–Berlin–Tokyo pact: September 1940"], x=150, y=140, w=980),
+        "chk": dict(type="liste", titre="Beyond the slides · check with M. Ros", cles=["Nye", "Lodge", "Neutrality", "Tripartite"], items=[
+            "The Nye Committee (1934–1936)", "Senator Lodge led the opposition to the League",
+            "The Neutrality Acts, one by one: 1935, 1936, 1937", "The Tripartite Pact: September 1940"], x=150, y=140, w=980),
     }),
 
     # ================================================================ XII. à l'examen : le key issue en essay
@@ -540,7 +538,7 @@ QUIZ = [
          ex="It favoured whoever controlled the sea, Britain and France — if they had the cash."),
     dict(q="Which is NOT one of the course's six reasons for appeasement?",
          r=["A military alliance with Nazi Germany", "Pacifism", "A greater fear of communism than of fascism",
-            "Sympathy for a Germany treated unfairly after 1918"], ok=0, voir="six",
+            "Sympathy for a Germany treated unfairly by Versailles (1919)"], ok=0, voir="six",
          ex="The six: pacifism, an empire to police, sympathy for Germany, economic problems first, American isolationism, fear of communism."),
     dict(q="What did Chamberlain and Daladier accept at Munich in September 1938?",
          r=["The cession of the Sudetenland to Germany", "The Anschluss of Austria", "The occupation of Prague",
@@ -551,8 +549,7 @@ QUIZ = [
 CREDITS = [
     "Content: M. Ros's course (DNL History, H1 · Part II.3, “Great democracies reluctant to defend the Liberal order established in 1919”) "
     "as written on the site, with its diagrams (why the League failed, stepping stones to war, points to check) and the essay card of the key issue; "
-    "animated map of chapter 1 (site). Outside the course: Henry Cabot Lodge, the details of the Neutrality Acts of 1936 and 1937, "
-    "the Anti-Comintern Pact and the Tripartite Pact (1940), “peace for our time”. David Low's cartoons are described, not reproduced. "
+    "animated map of chapter 1 (site). Outside the course: “peace for our time”. David Low's cartoons are described, not reproduced. "
     "The model paragraph was written for this video.",
     "Photograph: Woodrow Wilson, 1919, by Harris & Ewing (Library of Congress, Wikimedia Commons, public domain).",
     "Cartoon: Leonard Raven-Hill, “The Gap in the Bridge”, Punch, 10 December 1919 (Wikimedia Commons, public domain).",

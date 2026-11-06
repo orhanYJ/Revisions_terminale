@@ -11,8 +11,7 @@ document en une phrase, paragraphe d'atouts, paragraphe de limites), les documen
 graphique du chômage allemand, et source 5, mémoires de Melita Maschmann, 1963 ; Migrant Mother de Lange, 1936 ;
 « The Doormat » de David Low, 1933, décrit et non montré), les deux Key Terms. La question « Explain » et les copies
 modèles sont écrites pour la vidéo et dites comme telles.
-Correction signalée : en mars 1936, Lange travaillait pour la Resettlement Administration, devenue Farm Security
-Administration en 1937 (le cours dit « for the Farm Security Administration »).
+Lange : la Resettlement Administration (devenue Farm Security Administration en 1937), comme dans le cours.
 """
 
 SITE = "dnl"
@@ -118,7 +117,7 @@ SCENES = [
         "and gold flowed out of every other country, which had to raise its own rates, the worst possible medicine. "
         "Britain left the Gold Standard in September 1931.",
         "{g1.3}Three: protectionism. On the seventeenth of June 1930, Hoover signed the Smoot–Hawley Tariff. "
-        "Canada retaliated within days, and world trade fell by about two thirds, in value, between 1929 and 1934.",
+        "Canada had already retaliated, in May, and world trade fell by about two thirds, in value, between 1929 and 1934.",
         "{-g1}{mod1}A model paragraph, for the first channel.",
         "The Crash became a world crisis first because Europe depended on American credit. Since the Dawes Plan of 1924, American loans "
         "allowed Germany to pay its reparations, and the Allies to repay their war debts to the United States. When American banks recalled "
@@ -183,7 +182,7 @@ SCENES = [
         "Not against what we know today.",
         "{-eff}{g2}Then three moves. {g2.1}It failed even on its own terms. Duties on more than twenty thousand goods, yet farm prices kept falling "
         "and unemployment kept rising; Smoot and Hawley both lost their seats in 1932. And the failure was predicted: one thousand and twenty-eight economists "
-        "had asked for a veto. {g2.2}Second, it triggered a trade war. Canada retaliated within days; Britain passed the Import Duties Act in 1932, "
+        "had asked for a veto. {g2.2}Second, it triggered a trade war. Canada retaliated even before it was signed, in May 1930; Britain passed the Import Duties Act in 1932, "
         "France set up quotas in 1931, each sparing its empire. The world split into closed blocs.",
         "{-g2}{nu2}Third, the nuance. It did not cause the Depression: the downturn began with the Crash and the bank failures, and the tariff deepened it. "
         "Roosevelt reversed the policy in 1934, but too late. So the judgement: ineffective on its aims, damaging in its consequences, "
@@ -345,9 +344,8 @@ SCENES = [
         "{ph}The documents of this chapter are of three kinds, and each has its own reflex. {ph.1}First, a commissioned photograph. "
         "Migrant Mother, by Dorothea Lange, March 1936: Florence Owens Thompson, aged thirty-two, mother of seven, in a pea-pickers' camp at Nipomo, in California.",
         "{ph.2}Its strength: the poverty is real. The pea crop had frozen, there was no work, and the family lived on frozen vegetables and on birds the children caught. "
-        "{ph.3}Its limit: it is composed, not accidental. Lange made five exposures, working closer and closer, for a federal agency that wanted public support for relief. "
-        "One detail: the course says the Farm Security Administration. In March 1936, the agency was still called the Resettlement Administration; "
-        "it became the Farm Security Administration in 1937.",
+        "{ph.3}Its limit: it is composed, not accidental. Lange made five exposures, working closer and closer, for a federal agency, the Resettlement Administration, "
+        "that wanted public support for relief.",
         "{-ph}{low}Second, a cartoon. {low.1}David Low's The Doormat, 1933. A Japanese soldier walks over the League of Nations, "
         "{low.2}while its officials bow, and the British Foreign Secretary, John Simon, powders the League's nose with a face-saving kit. "
         "{low.3}The reflex: a cartoon gives the opinion of a contemporary. Perceptions, not facts. But Low saw in 1933 what historians say today.",
@@ -380,7 +378,7 @@ SCENES = [
         "{g5.2}September 1938: at Munich, Chamberlain and Daladier accept the cession of the Sudetenland. "
         "{g5.3}March 1939: Germany occupies Prague, and Munich has bought nothing; on the first of September, Poland is invaded.",
         "{-g5}{rai}And the reasons, because the examiner will ask why. Six reasons. Pacifism. An empire to police, and no money to rearm. Sympathy for a Germany "
-        "treated unfairly in 1918. Their own economic problems, which came first. American isolationism, which left them alone. And the fear of communism, stronger than the fear of fascism. "
+        "treated unfairly by the Treaty of Versailles, in 1919. Their own economic problems, which came first. American isolationism, which left them alone. And the fear of communism, stronger than the fear of fascism. "
         "{!None of these reasons is stupid}None of these reasons is stupid.",
     ], vis={
         "kt1": dict(type="def", cles=["prolonged", "unemployment", "deflation"], terme="Key Term · World-wide Economic Depression (1930s)",
@@ -394,7 +392,7 @@ SCENES = [
                     etape="Britain and France, 1935–1938", x=150, y=200, w=980),
         "g5": dict(type="globe", code="H1", sc=[29, 30, 31]),
         "rai": dict(type="liste", titre="Six reasons for appeasement", petit=True, items=[
-            "Pacifism", "An empire to police, no money to rearm", "Sympathy for Germany (1918)",
+            "Pacifism", "An empire to police, no money to rearm", "Sympathy for Germany (Versailles, 1919)",
             "Their own economic problems first", "American isolationism", "Fear of communism more than fascism"],
             x=150, y=100, w=980),
     }),

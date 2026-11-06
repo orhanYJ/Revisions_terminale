@@ -8,7 +8,7 @@ Carte animée H1 (dnl/cartes/H1.html), scènes utilisées (ordre chronologique d
   17 l'effet domino en Europe · 19 l'étalon-or · 25 le Dust Bowl · 28 Migrant Mother
 Contenu : CHAPTERS.H1, section I.2 (cinq idées ; schémas h1dawes H1DawesAnim, crisis H1Chain, h1factors H1Factors)
 et section I.3 (cinq idées) ; chiffres du cours. Ce qui vient d'ailleurs est dit « outside the course ».
-Le cours dit « average wages fell by 60% » : corrigé à l'oral (≈ masse salariale de l'industrie, plus que divisée par deux ; salaire horaire ≈ −20 %).
+Chiffres des salaires comme dans le cours corrigé : masse salariale ≈ −60 %, salaire horaire ≈ −20 %.
 Pauses « Your turn » : un paragraphe Explain, puis un DBQ a) « How useful » sur Migrant Mother (structure imposée :
 jugement dès la première ligne, document en une phrase, atouts, limites).
 Plan de la série H1 : 1 The Great Crash of 1929 · 2 From an American crash to a world crisis ·
@@ -298,9 +298,8 @@ SCENES = [
         "{-pain}{gr}{gr.1}First, unemployment in the United States. Three per cent in 1929. Twenty-five per cent in 1933. "
         "One worker in four: fourteen million Americans.",
         "{-gr}{chi}And the other figures of the course. {chi.1}Industrial and farm production fell by forty per cent. "
-        "{chi.2}Wages, says the course, fell by sixty per cent. Careful with that figure. Outside the course: "
-        "it is close to the fall in the total wage bill of industry, which more than halved because of lay-offs and short hours. "
-        "The hourly pay of a worker who kept his job fell much less: by about a fifth. {chi.3}Five thousand banks had gone bankrupt. "
+        "{chi.2}The total wage bill fell by about sixty per cent. Hourly wages fell by only about a fifth, "
+        "but millions lost their jobs, or were put on short time. {chi.3}Five thousand banks had gone bankrupt. "
         "{chi.4}Farm prices had plummeted, because of overproduction, drought and the Dust Bowl. "
         "{chi.5}And American exports broke down, as trading partners closed their markets.",
         "{-chi}{fil}But the worst is this. {fil.1}There was no federal unemployment insurance. {fil.2}No social security. "
@@ -315,7 +314,7 @@ SCENES = [
                    el=[dict(type="droite", pts=[[1929, 3], [1933, 25]], c="ca", tir=True, dur=1.6),
                        dict(type="points", pts=[[1929, 3], [1933, 25]], c="sa", lbl="3% → 25% · 14 million", lp=[1930.6, 22])]),
         "chi": dict(type="liste", titre="The United States, 1929 – 1933 (course)", items=[
-            "Industrial and farm production: −40%", "Wages: −60% (course) — the total wage bill; hourly pay ≈ −20%", "5,000 banks bankrupt",
+            "Industrial and farm production: −40%", "Total wage bill: about −60% (hourly wages: about −20%)", "5,000 banks bankrupt",
             "Farm prices collapse: overproduction, drought, Dust Bowl", "Exports break down: markets closed"], x=150, y=110, w=980),
         "fil": dict(type="liste", titre="No safety net", items=[
             "No federal unemployment insurance", "No social security", "No public pension (first federal one: 1935)",
@@ -325,7 +324,7 @@ SCENES = [
 
     # ================================================================ I.3 idée 2 : Hoovervilles
     dict(id="hoover", chap="I.3 · Hoovervilles", fond="guerre", humeur="mystere",
-         retenir="Hoovervilles: shanty towns of scrap wood, stone and metal built by evicted people, often in the heart of big cities, named after President Hoover — a political verdict. Largest in St Louis; one in Central Park; Al Capone's soup kitchen in Chicago (winter 1930–31).",
+         retenir="Hoovervilles: shanty towns of scrap wood, stone and metal built by evicted people, often in the heart of big cities, named after President Hoover — a political verdict. Largest in St Louis; one in Central Park; Al Capone's soup kitchen in Chicago (autumn 1930).",
          beats=[
         "{hv}Second idea: the Hoovervilles made poverty visible, in the middle of American cities. "
         "People evicted from their homes built shanty towns out of scrap wood, stone and metal, on waste ground, "
@@ -334,7 +333,7 @@ SCENES = [
         "So the name itself is a political verdict.",
         "{-nom}{g7}{g7.1}The largest Hooverville was in St Louis. Another one occupied part of Central Park, in New York: "
         "poverty in the centre of the wealthiest country in the world.",
-        "{-g7}{capf}{cap}And a strange detail of the course. In Chicago, in the winter of nineteen thirty to thirty-one, the gangster {!Al Capone}Al Capone ran a soup kitchen. "
+        "{-g7}{capf}{cap}And a strange detail of the course. In Chicago, in the autumn of nineteen thirty, the gangster {!Al Capone}Al Capone opened a soup kitchen. "
         "Charity… but also a bid for public sympathy, from a man under federal investigation.",
         "The Hoovervilles are the first oral topic of the course. {-cap}{-capf}{or1}Prepare four questions. "
         "{or1.1}What? {or1.2}Where? {or1.3}Who? {or1.4}And when? The answers are on the screen.",
@@ -347,8 +346,8 @@ SCENES = [
         "g7": dict(type="globe", code="H1", sc=[11]),
         "capf": dict(type="tableau", img="h1-soupkitchen", fond=True, sombre=True, de=[1.0, .3, .3], a=[1.2, .35, .3],
                      legende="The soup kitchen opened by Al Capone, Chicago, February 1931 (US National Archives, public domain)"),
-        "cap": dict(type="note", terme="Chicago, winter 1930 – 1931", cles=["soup kitchen", "sympathy"],
-                    t="Al Capone runs a soup kitchen: charity, and a bid for public sympathy from a gangster under federal investigation.",
+        "cap": dict(type="note", terme="Chicago, autumn 1930", cles=["soup kitchen", "sympathy"],
+                    t="Al Capone opens a soup kitchen: charity, and a bid for public sympathy from a gangster under federal investigation.",
                     etape="An example from the course", x=170, y=200, w=940),
         "or1": dict(type="liste", titre="Oral topic · the Hoovervilles", items=[
             "What: shanty towns of scrap wood, stone and metal", "Where: waste ground in big cities — St Louis, Central Park",
@@ -554,6 +553,6 @@ CREDITS = [
     "Photographs: unemployed men queued outside Al Capone's soup kitchen, Chicago, February 1931 (US National Archives, public domain); "
     "Hooverville on the Seattle tideflats, 1933 (Seattle Municipal Archives, CC BY 2.0); Dorothea Lange, Migrant Mother, 1936 (Library of Congress, public domain); "
     "George E. Marsh Jr., dust storm approaching Stratford, Texas, 1935 (NOAA, public domain); via Wikimedia Commons.",
-    "Questions and model answers written for this video. Outside the course: the note on the wage figure (total wage bill vs hourly pay); the Resettlement Administration, Lange's employer in 1936 (the FSA from 1937); the dating of Capone's soup kitchen (winter 1930–31); Florence Owens Thompson's later account.",
+    "Questions and model answers written for this video. Outside the course: Florence Owens Thompson's later account.",
     "Narration: synthetic voices generated locally (Qwen3-TTS); original music.",
 ]

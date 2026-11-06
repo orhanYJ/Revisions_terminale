@@ -205,10 +205,10 @@ SCENES = [
         "{-bien}{fordt}The main example: the Ford Model T. By nineteen twenty-five, its price has fallen to roughly "
         "{!two hundred and sixty dollars}two hundred and sixty dollars. Within reach of a middle-class family.",
         "But mass production has a second face. {-fordt}{trust}Industries concentrate into {!trusts}trusts and monopolies. "
-        "The course gives two famous models. {trust.1}Rockefeller's Standard Oil controlled everything in oil, from the well to the pump. "
-        "{trust.2}And Carnegie did the same for steel. Careful with the dates, though. Both are older than the twenties: "
-        "Standard Oil was broken up in nineteen eleven, and Carnegie's company became United States Steel in nineteen-oh-one. "
-        "But the concentration went on. {trust.3}In the twenties, these giants are large enough to set their own prices.",
+        "Earlier trusts set the pattern. {trust.1}Rockefeller's Standard Oil controlled everything in oil, from the well to the pump, "
+        "until it was broken up in nineteen eleven. "
+        "{trust.2}And Carnegie did the same for steel, before selling out to form United States Steel, in nineteen-oh-one. "
+        "{trust.3}In the twenties, giants such as US Steel and General Motors are large enough to set their own prices.",
         "{trust.4}And that is the trap. Giant firms, rising sales, rising profits: the boom looks much more secure than it really is. "
         "That false sense of security is exactly what feeds the next idea: speculation.",
     ], vis={
@@ -219,7 +219,7 @@ SCENES = [
         "fordt": dict(type="mot", t="≈ $260", g="the price of a Ford Model T by 1925: within reach of a middle-class family", y=250, taille=120),
         "trust": dict(type="liste", titre="The other face: trusts and monopolies", cles=["Standard Oil", "Carnegie", "prices", "secure"], items=[
             "Rockefeller's Standard Oil: from the well to the pump (broken up in 1911)", "Carnegie: the same for steel (US Steel from 1901)",
-            "Large enough to set their own prices", "The boom looks more secure than it is"], x=170, y=130, w=940),
+            "1920s: US Steel, General Motors set their own prices", "The boom looks more secure than it is"], x=170, y=130, w=940),
     }),
 
     # ================================================================ VI. idée 4 : la spéculation (schéma h1speculation)
@@ -431,7 +431,7 @@ QUIZ = [
 
 CREDITS = [
     "Content: M. Ros's course (DNL History, H1 · big picture, objective, link and Part I.1) as written on the site; the site's animated map of chapter 1 and its bubble diagram (h1speculation).",
-    "Outside the course (flagged in the video): RCA (as on the site), car registrations 1920–1929 (as on the site), The Great Gatsby, intermediate values of the Dow Jones curve, the 1930 rebound, the dates of Standard Oil's break-up (1911) and of US Steel (1901).",
+    "Outside the course (flagged in the video): RCA (as on the site), car registrations 1920–1929 (as on the site), The Great Gatsby, intermediate values of the Dow Jones curve, the 1930 rebound.",
     "Photograph: crowd outside the New York Stock Exchange, October 1929 (Wikimedia Commons, public domain).",
     "Photograph: Ford assembly line, Highland Park, 1913 (Wikimedia Commons, public domain).",
     "Photograph: 1925 Ford Model T touring, restored (ModelTMitch, Wikimedia Commons, CC BY-SA 4.0).",

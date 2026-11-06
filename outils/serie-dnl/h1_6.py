@@ -10,8 +10,7 @@ Worksheet 3 pour la courbe allemande), avec la carte animée H1 (numéros de sc�
   H2 : 0 trois régimes, une trajectoire · 20 Hitler chancelier (30 janvier 1933)
 Plan de la série H1 : 1 The Great Crash of 1929 · 2 From an American crash to a world crisis · 3 Economic nationalism and
 political responses · 4 Democracies and the liberal order · 5 The crisis at the exam · 6 Recap.
-Correction du cours : la chaîne de II.3 place le pacte Rome-Berlin-Tokyo entre Munich et Prague ; le pacte tripartite date
-de septembre 1940 (dit « outside the course » dans la vidéo).
+Axe : axe Rome-Berlin 1936, pacte tripartite septembre 1940, comme dans le cours corrigé.
 """
 
 SITE = "dnl"
@@ -69,7 +68,7 @@ SCENES = [
         "{g1.4}From nineteen thirty, the banks start to fail. About five thousand of them, by nineteen thirty-two. "
         "And that is when the Great Depression really begins. "
         "{g1.5}American banks call back their loans to Europe. Germany, the most exposed, is hit first.",
-        "{g1.6}The seventeenth of June, nineteen thirty: Hoover signs the Smoot-Hawley Tariff. Within days, Canada hits back. "
+        "{g1.6}The seventeenth of June, nineteen thirty: Hoover signs the Smoot-Hawley Tariff. Canada had already hit back, in May. "
         "The trade war has begun.",
         "{-g1}{g2}{g2.1}Nineteen thirty-one: the dominoes fall in Europe. The Creditanstalt, in Vienna, in May. The German banks in July. "
         "And in September, Britain leaves the Gold Standard. {g2.2}That same month, on the eighteenth, "
@@ -287,9 +286,9 @@ SCENES = [
         "{rais.2}Britain was policing its empire, and could not afford to rearm on a large scale. {rais.3}Many Britons felt that Germany had been "
         "treated unfairly at Versailles. {rais.4}Their own economic problems came first. {rais.5}American isolationism left them on their own. "
         "{rais.6}And they feared communism more than fascism.",
-        "{-rais}{axe}One correction to the course. It places a Rome-Berlin-Tokyo pact between Munich and Prague. "
-        "In fact, the Rome-Berlin Axis dates from nineteen thirty-six. And the three powers signed their military alliance "
-        "only in September, nineteen forty, after the war had begun. These dates are outside the course.",
+        "{-rais}{axe}Meanwhile, the dictators drew together. The Rome-Berlin Axis dates from nineteen thirty-six. "
+        "But the three powers signed their formal alliance, the Tripartite Pact, "
+        "only in September, nineteen forty, after the war had begun.",
     ], vis={
         "i7": dict(type="liste", titre="II.3 · The liberal order, undefended (1)", items=[
             "Wilsonianism: the USA, missing keystone (Punch, 1919)", "A weak League: no army, a veto each · The Doormat (1933)",
@@ -303,9 +302,9 @@ SCENES = [
             "Pacifism: avoid another world war", "An empire to police, no money to rearm", "Germany treated unfairly at Versailles?",
             "Their own economic problems first", "American isolationism: no protection", "Communism feared more than fascism"],
             x=150, y=105, w=980),
-        "axe": dict(type="note", terme="A correction", cles=["1940", "1936"],
-                    t="The three-power pact (Germany, Italy, Japan) was signed in September 1940, after Poland; the Rome–Berlin Axis dates from 1936.",
-                    etape="Dates outside the course: the course places the pact between Munich and Prague.", x=170, y=200, w=940),
+        "axe": dict(type="note", terme="The Axis", cles=["1936", "Tripartite"],
+                    t="Rome–Berlin Axis: 1936.",
+                    etape="Tripartite Pact (Germany, Italy, Japan): September 1940, after Poland.", x=170, y=200, w=940),
     }),
 
     # ================================================================ VIII. personnes et chiffres
@@ -446,7 +445,7 @@ QUIZ = [
          ex="Aged 32, at a pea-pickers' camp in Nipomo, California."),
     dict(q="What did the Smoot–Hawley Tariff (17 June 1930) do?", r=["Raised duties on over 20,000 imported goods",
          "Insured bank deposits", "Took the US off gold", "Lent money to Germany"], ok=0, voir="i4",
-         ex="Canada retaliated within days; world trade lost two thirds of its value."),
+         ex="Canada had already retaliated in May 1930; world trade lost two thirds of its value."),
     dict(q="German unemployment among insured workers in 1932 (Worksheet 3)?", r=["43.8%", "8.6%", "25%", "37.3%"], ok=0,
          voir="gr", ex="37.3% is the Nazi vote in July 1932; 25% is US unemployment in 1933."),
     dict(q="Which is NOT one of the six reasons for appeasement?", r=["Fear of a Japanese invasion of Britain",
@@ -461,8 +460,6 @@ CREDITS = [
     "Content: the synthesis of M. Ros's course (DNL History, H1 “The Wall Street Crash and its Impact”) as written on the site: "
     "timeline, the chain of the crisis, the ideas of Parts I.1 to II.3, key figures, key terms and key issues, Worksheet 3; "
     "the animated maps of chapters 1 and 2 (site).",
-    "Course correction: the three-power (Rome–Berlin–Tokyo) pact dates from September 1940, not between Munich and Prague; "
-    "the Rome–Berlin Axis from 1936 (outside the course).",
     "Photographs: crowd outside the New York Stock Exchange, October 1929 (Wikimedia Commons, public domain); "
     "Hooverville on the Seattle waterfront, 1933 (Seattle Municipal Archives, via Wikimedia Commons, CC BY 2.0); "
     "Dorothea Lange, Migrant Mother, 1936 (Library of Congress, public domain).",

@@ -12,13 +12,9 @@ Contenu : CHAPTERS.H1 du site (dnl/index.html), sections II.1 (4 idées) et II.2
 les six entrées de la fiche Smoot-Hawley) et h1germany (H1Germany : chômage allemand 1928-1933, Worksheet 3, et ses
 trois questions), sujet d'essay « Assess how effective the 1930 Tariff Act was… » et key issue « economic nationalism »
 (champ exam de H1). Ce qui n'est pas dans le cours est dit « outside the course ».
-Précisions apportées au cours (dites dans la vidéo) : le Canada riposte dès mai 1930 (budget Dunning, pendant
-l'examen du projet), pas « within days » après la signature ; le nom officiel de la loi de 1934 est Reciprocal Trade
-Agreements Act (le cours dit « Reciprocal Tariff Agreement Act ») ; le pont du Golden Gate est un projet local, financé par
-emprunt du district, pas un chantier fédéral du New Deal ; les derniers marines quittent le Nicaragua en janvier 1933,
-avant l'entrée en fonctions de Roosevelt (sous Roosevelt : renonciation au droit d'intervention à Cuba, 1934, et départ
-de Haïti, 1934) ; le Front populaire vote aussi un plan de réarmement en septembre 1936 (le cours dit « no money for
-the army »).
+Le cours a été corrigé depuis (Canada en mai 1930, budget Dunning ; Reciprocal Trade Agreements Act ; bon voisinage ;
+plan de réarmement de Blum) : la vidéo dit la version du cours. Reste dit « outside the course » :
+le pont du Golden Gate (ouvert en 1937, projet local financé par emprunt du district, pas un chantier fédéral du New Deal).
 Plan de la série H1 : 1 The Great Crash of 1929 · 2 From an American crash to a world crisis ·
 3 Economic nationalism and political responses · 4 Democracies and the liberal order · 5 The crisis at the exam · 6 Recap.
 """
@@ -189,8 +185,7 @@ SCENES = [
         "{q5}Idea three. Did it work? The slides answer their own question with a cartoon, and a caption:{-q5}",
         ("C", "I'm not sure we nailed it, pal.", "c_pal"),
         "{-c_pal}{chaine}Why not? Because protectionism spreads by {!retaliation}retaliation. {chaine.1}Take Canada, America's closest trading partner. "
-        "The course says it hit back within days. In fact, and this is outside the course, it struck first: in May nineteen thirty, "
-        "while the bill was still before Congress. Its new duties hit about thirty per cent of American exports to Canada. "
+        "It hit back even before the bill was signed: in May nineteen thirty, with the Dunning budget. Its new duties hit about thirty per cent of American exports to Canada. "
         "And it turned towards the British Empire instead. {chaine.2}France sets up import quotas in nineteen thirty-one. "
         "{chaine.3}Britain passes the Import Duties Act in nineteen thirty-two: a general tariff of ten per cent on most imports. "
         "{chaine.4}Both spare their own empires. And Germany builds a system of autarky.",
@@ -207,7 +202,7 @@ SCENES = [
         "q5": dict(type="question", t="Did it work?"),
         "c_pal": dict(type="cit", a="Caption of a cartoon", o="M. Ros's slides, on Smoot–Hawley", x=200, y=230, w=880),
         "chaine": dict(type="liste", titre="Protectionism spreads by retaliation", cles=["Canada", "quotas", "ten per cent", "autarky"], items=[
-            "Canada strikes first (May 1930): 30% of US exports to it", "France: import quotas (1931)",
+            "Canada strikes first (Dunning budget, May 1930): 30% of US exports to it", "France: import quotas (1931)",
             "Britain: Import Duties Act, 10% on most imports (1932)", "Empires exempted · Germany: autarky"], x=150, y=130, w=980),
         "def2": dict(type="def", cles=["inwards", "colonies"], terme="Closed imperial blocs",
                      t="Trade redirected inwards, towards colonies that could not refuse.",
@@ -230,8 +225,7 @@ SCENES = [
         "The outgoing president, Herbert Hoover. And the new one, Franklin Roosevelt. Two men, two policies.",
         "The slides pair Smoot–Hawley with a second box: off the gold standard. {-photo}{rev}{rev.1}In nineteen thirty-three, "
         "Roosevelt takes the United States off gold. The dollar is free to fall, and prices to rise. "
-        "{rev.2}In nineteen thirty-four comes the {!Reciprocal Tariff Agreement Act}Reciprocal Tariff Agreement Act, as the course calls it. "
-        "Its official name is the Reciprocal Trade Agreements Act. It lets him negotiate tariff cuts, country by country. "
+        "{rev.2}In nineteen thirty-four comes the {!Reciprocal Trade Agreements Act}Reciprocal Trade Agreements Act. It lets him negotiate tariff cuts, country by country. "
         "{rev.3}The aim? Rebuild trade relations, and liberalise global markets.",
         "{-rev}{lim}But the world had already changed. {lim.1}By nineteen thirty-nine, the United States had signed reciprocal agreements "
         "with about twenty countries. {lim.2}Not one with Germany, Italy or Japan. Hitler and Mussolini wanted no part of them. "
@@ -453,9 +447,8 @@ SCENES = [
         "{dip.2}Second. In November nineteen thirty-three, Roosevelt recognised the Soviet Union, sixteen years after the revolution. "
         "Why? The Soviet Union might help against Japan. And trade with it might help the American economy.",
         "{dip.3}Third, the {!Good Neighbor}Good Neighbor policy. It ended decades of American interventions in Latin America. "
-        "The course says it withdrew American forces from Cuba and Nicaragua. A precision, outside the course: the last Marines left Nicaragua "
-        "in January nineteen thirty-three, just before Roosevelt took office. Under Roosevelt, in nineteen thirty-four, "
-        "the United States gave up its right to intervene in Cuba. And it pulled its Marines out of Haiti.",
+        "The last Marines had left Nicaragua in January nineteen thirty-three, just before Roosevelt took office. "
+        "Then, in nineteen thirty-four, the United States gave up its right to intervene in Cuba. And it pulled its Marines out of Haiti.",
         "{-dip}{bil2}So here is the picture. A president trying to reopen the world economically, {!while his Congress was closing it politically}"
         "while his Congress was closing it politically. Trade, and new partners… {bil2.1}but no alliance. That is episode four.",
     ], vis={
@@ -481,8 +474,8 @@ SCENES = [
         "{fp.4}And its economics are {!Keynesian}Keynesian: spending and deficits, to revive demand. "
         "The exact opposite of Germany's path, which was austerity, then rearmament.",
         "{-fp}{-blum}{intl}{intl.g}Abroad, it chooses appeasement, and non-intervention in the Spanish Civil War. "
-        "{intl.d}The course adds: no money for the army. A precision, outside the course: in September nineteen thirty-six, "
-        "Blum's government did vote a large rearmament plan. But deficits and a falling franc limited what it could do.",
+        "{intl.d}But it also launched a rearmament plan, in September nineteen thirty-six: "
+        "fourteen billion francs, over four years.",
         "{-intl}{mat}The example. {mat.1}The Matignon Agreements, in June nineteen thirty-six, raised wages by seven to fifteen per cent in a week. "
         "{mat.2}But France only left the gold standard that autumn, and the fall of the franc ate the gains. "
         "{mat.3}By nineteen thirty-eight, the forty-hour week was being dismantled.",
@@ -497,7 +490,7 @@ SCENES = [
             "The 40-hour week", "Two weeks' paid holiday", "Railways nationalised: the SNCF",
             "Keynesian: spending and deficits to revive demand"], x=170, y=130, w=940),
         "intl": dict(type="cols", g="Abroad", gq="appeasement · non-intervention in Spain", d="The army",
-                     dq="course: “no money for the army” · in fact a rearmament plan, Sept. 1936, limited by deficits", vs="+"),
+                     dq="a rearmament plan, Sept. 1936: 14 billion francs over four years", vs="+"),
         "mat": dict(type="liste", titre="Example · the Matignon Agreements", cles=["seven to fifteen", "franc", "dismantled"], items=[
             "June 1936: wages +7 to 15% in a week", "Autumn 1936: off gold, the franc's fall eats the gains",
             "1938: the 40-hour week dismantled"], x=170, y=150, w=940),
@@ -580,7 +573,7 @@ QUIZ = [
     dict(q="What did the Reciprocal Trade Agreements Act (RTAA) of 1934 allow?",
          r=["Tariff cuts negotiated country by country", "A general tariff of 10%",
             "The recognition of the USSR", "The withdrawal from the gold standard"], ok=0, voir="rev",
-         ex="About twenty agreements by 1939, none with Germany, Italy or Japan. The course calls it the “Reciprocal Tariff Agreement Act”."),
+         ex="About twenty agreements by 1939, none with Germany, Italy or Japan."),
     dict(q="What was German unemployment among insured workers in 1932 (Worksheet 3)?",
          r=["43.8%", "8.6%", "25%", "13.3%"], ok=0, voir="gch",
          ex="8.6% in 1928, 43.8% in 1932: across the whole workforce, the rate was lower, about 30%."),
