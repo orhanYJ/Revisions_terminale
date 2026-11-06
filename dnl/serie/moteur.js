@@ -1165,7 +1165,7 @@
       });
       // en-tête : notion, épisode, chapitre
       var sc_ = EP.scenes.filter(function (s) { return t >= s.t0; }).pop() || EP.scenes[0];
-      ent.innerHTML = esc(EP.notion) + " · Ep. " + EP.num + (sc_.id !== EP.scenes[0].id ? " &nbsp;—&nbsp; <b>" + esc(sc_.chap) + "</b>" : "");
+      ent.innerHTML = esc(EP.notion) + " · " + T_("Ep. ") + EP.num + (sc_.id !== EP.scenes[0].id ? " &nbsp;—&nbsp; <b>" + esc(sc_.chap) + "</b>" : "");
       op(ent, plein ? 0 : E(P(t, EP.scenes[0].t0 + 1, 1)) * .9);
       fil.style.width = (W * cl(t / EP.dur, 0, 1)).toFixed(1) + "px";
       // sous-titres
