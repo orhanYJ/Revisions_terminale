@@ -302,7 +302,7 @@ def scenes():
         L("Les lois de neutralité ; l'USS Panay", "The Neutrality Acts; the USS Panay"),
         L("Le Congrès vote les lois de neutralité : embargo sur les armes (1935), prêts interdits (1936), puis embargo permanent, voyages interdits sur les navires des pays en guerre et « cash and carry » pour les autres marchandises (1937). En décembre 1937, le Japon coule la canonnière USS Panay sur le Yangzi, puis s'excuse et paie : il y lit un permis d'aller plus loin.",
           "Congress passed the Neutrality Acts: an arms embargo (1935), a ban on loans (1936), then a permanent embargo, no travel on ships of nations at war and “cash and carry” for other goods (1937). In December 1937 Japan sank the gunboat USS Panay on the Yangtze, then apologised and paid — and read the American tone as a licence to go further."),
-        pins=["nankin_p"], cles=["japon", "usa"])
+        pins=["nankin_p"], labels=["l_chine", "l_jap", "shanghai"], cles=["japon", "usa"])
     add("II.3", 15, [30, 18, 2.2], L("Octobre 1935", "October 1935"),
         L("L'Italie envahit l'Éthiopie", "Italy invades Ethiopia"),
         L("Mussolini attaque l'Éthiopie. Le Royaume-Uni refuse l'embargo sur le pétrole qui l'aurait arrêté : c'est l'apaisement. Ses raisons : pacifisme, un empire à surveiller, la crise d'abord, l'isolationnisme américain, la peur du communisme plus que du fascisme.",
