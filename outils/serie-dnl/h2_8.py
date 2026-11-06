@@ -440,8 +440,7 @@ SCENES = [
 
     # ================================================================ XII. les pièges
     dict(id="pieges", chap="The traps of this chapter", fond="guerre", humeur="mystere",
-         retenir="Matteotti killed in 1924 (claimed 3 Jan. 1925) · Yezhov executed in 1940, Molotov never · T4: ≈ 70,000 killed 1939–41 · “an isolationist Congress” · Corfu 1923 is not the mutilated victory · Hitler never won a majority.",
-         beats=[
+                  beats=[
         "{pi}Finally, six traps. Each comes from a course slide or a common mistake, and each can cost you points. "
         "{pi.1}Trap one: Matteotti. The slide dates his murder to nineteen twenty-five. In fact, he was kidnapped and killed "
         "on the tenth of June nineteen twenty-four. Nineteen twenty-five is the year Mussolini claimed responsibility. "
