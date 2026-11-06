@@ -31,14 +31,14 @@ SCENES = [
         "{ph1}{q1}Nineteen twenty-nine. Two photographs open this chapter. The first one: a crowd, silent and solemn, "
         "standing in the street outside the New York Stock Exchange. Thousands of people waiting for news… of their money.",
         "{-q1}{ph2}The second one, the same year, in Germany: Adolf Hitler greeting his supporters at the Nuremberg party congress. "
-        "In nineteen twenty-nine, he is still the leader of a small party. Ten years later, he is at war with half of Europe.",
+        "In nineteen twenty-nine, his party is still small. Ten years later, he plunges Europe into war.",
         "{-ph2}{q2}So here is the question that historians still argue about. What caused the Second World War? "
         "The crisis of capitalism that followed the Crash? The threat of totalitarianism? {!Or both}Or both?",
         "{-q2}{-ph1}{winter}The historian Jay Winter gives a bold answer. For him, there was one single war, "
         "a {!thirty years' war}thirty years' war, from nineteen fourteen to nineteen forty-five. Why? Because in between, "
         "peace was never really achieved. The guns stopped in nineteen eighteen… but the conflict went on, by other means.",
-        "{-winter}{plan}This series follows the first link in that chain, in six episodes. {plan.1}Today: the Great Crash of 1929, "
-        "what it was and why it happened. {plan.2}Then how an American crash became a world crisis. "
+        "{-winter}{plan}This series follows the first link in that chain, in six episodes. {plan.1}Today: the Great Crash of nineteen twenty-nine. "
+        "What it was, and why it happened. {plan.2}Then how an American crash became a world crisis. "
         "{plan.3}Then economic nationalism, and the political answers to the crisis. {plan.4}Then the democracies and the liberal order. "
         "{plan.5}After that, an episode only for the exam: essay and DBQ. {plan.6}And a final recap.",
         "{-plan}{titre}",
@@ -72,9 +72,9 @@ SCENES = [
         "{lib.3}But the American Senate refused to ratify the treaty. The United States never joined the League that its own president had imagined.",
         "{lib.4}This is the {!liberal order}liberal order of nineteen nineteen. Then came the fragile prosperity of the nineteen twenties. "
         "And this chapter will expose how fragile that order really was.",
-        "{-lib}{-g0}{obj}So here is the objective of the whole chapter, in one sentence. Explain how a stock-market collapse "
-        "in one country became a world depression… and why that depression pushed the great democracies into economic nationalism "
-        "and retreat, while three regimes chose militarism.",
+        "{-lib}{-g0}{obj}So what is the objective of the whole chapter? First, explain how a stock-market collapse "
+        "in one country became a world depression. Then, explain why that depression pushed the great democracies into economic nationalism "
+        "and retreat… while three regimes chose militarism.",
         "{-obj}{chaine}Think of it as a chain. {chaine.1}An American financial collapse. "
         "{chaine.2}It spreads through loans, trade and currencies. {chaine.3}It becomes a world depression. "
         "{chaine.4}And at the end of the chain, the liberal order built in nineteen nineteen is defeated. "
@@ -105,12 +105,12 @@ SCENES = [
         "Low taxes, giant companies, protection against foreign goods.",
         "In Detroit, Henry Ford's factories mass-produce cars. Cars, radios, refrigerators enter ordinary homes. "
         "America enjoys a boom built on mass production and mass consumption. It feels permanent.",
-        "{g1.2}Step two. But look away from the cities, to the Great Plains. From nineteen twenty, the real economy is already slowing down. "
-        "Farm prices have been falling since the end of the war. Coal, textiles and construction are in trouble too.",
+        "{g1.2}Step two. Now look away from the cities, to the Great Plains. Here, the boom never really arrived. "
+        "Farm prices have been falling since nineteen twenty. And coal, textiles and construction are in trouble too.",
         "{fr2}Why? {fr2.1}Most Americans are poor: they cannot buy everything the factories produce. "
         "{fr2.2}And the Europeans are still recovering from the war: they cannot buy it either. That is overproduction.",
-        "{-fr2}{g1.3}Step three, nineteen twenty-four: the Dawes Plan. The United States lends eight hundred million marks to Germany. "
-        "Germany pays its reparations to France and Britain. And France and Britain repay their war debts to the United States. "
+        "{-fr2}{g1.3}Step three, nineteen twenty-four: the Dawes Plan. Germany receives a loan of eight hundred million marks, "
+        "much of it raised in the United States. With it, Germany pays its reparations to France and Britain. And France and Britain repay their war debts to the United States. "
         "A circle of money… that rests entirely on American credit. Keep this in mind: it is the key to episode two.",
         "{g1.4}Step four, from nineteen twenty-four to nineteen twenty-nine, in New York. On Wall Street, the stock market triples in five years. "
         "By nineteen twenty-nine, about one American household in ten owns shares. People buy shares not for the profits, "
@@ -194,7 +194,7 @@ SCENES = [
 
     # ================================================================ V. idée 3 : production et consommation de masse
     dict(id="masse", chap="Mass production, mass consumption", fond="nuit", humeur="lumiere",
-         retenir="The assembly line cut costs: cars, radios, refrigerators entered ordinary homes (Model T ≈ $260 by 1925). Trusts and monopolies (Standard Oil, Carnegie) made the boom look safer than it was.",
+         retenir="The assembly line cut costs: cars, radios, refrigerators entered ordinary homes (Model T ≈ $260 by 1925). Trusts and monopolies, on the model of Standard Oil and Carnegie's steel, made the boom look safer than it was.",
          beats=[
         "{chn}Third idea. {!Mass production}Mass production made mass consumption possible… and concentrated economic power.",
         "Look at this photograph: a Ford assembly line. The product moves past the workers; each worker repeats one simple task. "
@@ -204,8 +204,10 @@ SCENES = [
         "{-bien}{fordt}The main example: the Ford Model T. By nineteen twenty-five, its price has fallen to roughly "
         "{!two hundred and sixty dollars}two hundred and sixty dollars. Within reach of a middle-class family.",
         "{-fordt}{trust}But mass production has a second face. Industries concentrate into {!trusts}trusts and monopolies. "
-        "{trust.1}Rockefeller's Standard Oil controls everything in oil: extraction, refining, distribution, and the pumps. "
-        "{trust.2}Carnegie does the same for steel. {trust.3}These giants are large enough to set their own prices.",
+        "The course gives two famous models. {trust.1}Rockefeller's Standard Oil controlled everything in oil, from the well to the pump. "
+        "{trust.2}And Carnegie did the same for steel. Careful with the dates, though. Both are older than the twenties: "
+        "Standard Oil was broken up in nineteen eleven, and Carnegie's company became United States Steel in nineteen-oh-one. "
+        "But the concentration went on. {trust.3}In the twenties, these giants are large enough to set their own prices.",
         "{trust.4}And that is the trap. Giant firms, rising sales, rising profits: the boom looks much more secure than it really is. "
         "That false sense of security is exactly what feeds the next idea: speculation.",
     ], vis={
@@ -215,7 +217,7 @@ SCENES = [
             "Cars", "Radios", "Vacuum cleaners", "Refrigerators", "Washing machines"], x=170, y=110, w=940),
         "fordt": dict(type="mot", t="≈ $260", g="the price of a Ford Model T by 1925: within reach of a middle-class family", y=250, taille=120),
         "trust": dict(type="liste", titre="The other face: trusts and monopolies", cles=["Standard Oil", "Carnegie", "prices", "secure"], items=[
-            "Rockefeller's Standard Oil: extraction, refining, distribution, pumping", "Carnegie: the same for steel",
+            "Rockefeller's Standard Oil: from the well to the pump (broken up in 1911)", "Carnegie: the same for steel (US Steel from 1901)",
             "Large enough to set their own prices", "The boom looks more secure than it is"], x=170, y=130, w=940),
     }),
 
@@ -223,8 +225,8 @@ SCENES = [
     dict(id="specu", chap="Speculation: the bubble", fond="nuit", humeur="tension",
          retenir="Speculation: buying to resell higher, often on credit. The market tripled 1924–29; 10% of households held shares; brokers lent up to 90%: a 10% fall wiped a buyer out.",
          beats=[
-        "{def4}Fourth idea, the heart of the episode. {!Speculation}Speculation. To speculate is to treat the stock market "
-        "as an easy way to increase your income quickly: you buy a share not for the dividend, but to resell it higher.",
+        "{def4}Fourth idea, the heart of the episode. {!Speculation}Speculation. What does it mean, to speculate? "
+        "It means treating the stock market as an easy way to get richer, fast. You buy a share not for the dividend… but to resell it higher.",
         "{-def4}{bul}It is a new trend in the nineteen twenties, and it spreads fast. Watch the Dow Jones, the index of the big American shares. "
         "{bul.1}In nineteen twenty-four, it stands at about one hundred. Shares are still bought for their dividends. "
         "{bul.2}Then prices rise faster than profits. Between nineteen twenty-four and nineteen twenty-nine, the market {!triples}triples in five years.",
@@ -303,13 +305,13 @@ SCENES = [
         "{-cerc}{cle6}And here is the key sentence for an essay. Shareholders were not selling because they had changed their minds "
         "about American industry. {!because everyone else was}They were selling because everyone else was. That is what a panic is.",
         "{-cle6}{chute}Now look at the whole fall. {chute.1}From its peak of three hundred and eighty-one in September nineteen twenty-nine… "
-        "{chute.2}the Dow Jones goes down, with a brief rebound in nineteen thirty, outside the course… "
-        "{chute.3}to forty-one in July nineteen thirty-two. A loss of {!eighty-nine per cent}eighty-nine per cent.",
+        "{chute.2}the Dow Jones goes down. There is a short rebound in the spring of nineteen thirty; that detail is outside the course. "
+        "Then the fall resumes… {chute.3}down to forty-one in July nineteen thirty-two. A loss of {!eighty-nine per cent}eighty-nine per cent.",
         "And the index will not regain its nineteen twenty-nine level until nineteen fifty-four. A quarter of a century. "
         "Shares bought on credit are now worth almost nothing.",
-        "{-chute}{def6}So you can now define the key term precisely. {!The Great Crash}The Great Crash of 1929 is the collapse of American share prices "
+        "{-chute}{def6}So you can now define the key term precisely. {!The Great Crash}The Great Crash of nineteen twenty-nine is the collapse of American share prices "
         "in late October nineteen twenty-nine. Be careful: it is not the same thing as the Depression that followed. "
-        "The Crash is a few days in October; the Depression lasts ten years. That is episode two.",
+        "The Crash lasts a few days in October. The Depression lasts about ten years. That is episode two.",
     ], vis={
         "g3": dict(type="globe", code="H1", sc=[5], dt=1.5),
         "trois": dict(type="liste", titre="Three days in October 1929", cles=["Black Thursday", "13%", "12%", "16 million"], items=[
@@ -346,13 +348,13 @@ SCENES = [
         "{intro1.2}State the problem: the factors are not independent, they reinforce each other. So the question is: which one do the others depend on? "
         "{intro1.3}And announce a hierarchy, not a list.",
         "{-intro1}{arg}Then three parts. {arg.1}One: speculation is the strongest candidate for the trigger. The market tripled between "
-        "nineteen twenty-four and nineteen twenty-nine; brokers lent up to ninety per cent, so a ten per cent fall wiped a buyer out. "
+        "nineteen twenty-four and nineteen twenty-nine. Brokers lent up to ninety per cent. So a ten per cent fall wiped a buyer out. "
         "But speculation explains the suddenness of the fall… not its depth.",
         "{arg.2}Two: structural weaknesses explain why the fall became catastrophic. Overproduction, and an unequal distribution of wealth: "
         "most Americans were too poor to buy what the factories made. Europe could not buy either. And farming had been in crisis since nineteen twenty.",
-        "{arg.3}Three: confidence and policy were amplifiers, not the origin. The panic explains the mechanism, selling because others sell, "
-        "but it is itself a consequence of the fall. Republican policy, low taxes, trusts, tariffs, easy credit, created the conditions, "
-        "without causing the collapse directly.",
+        "{arg.3}Three: confidence and policy were amplifiers, not the origin. The panic explains the mechanism: people sell because others sell. "
+        "But the panic is itself a consequence of the fall. As for Republican policy, low taxes, trusts and tariffs, it created the conditions. "
+        "It did not cause the collapse directly.",
         "{-arg}{ccl}And the conclusion, in one sentence. Speculation {!triggered}triggered the Crash; structural overproduction and inequality "
         "{!determined}determined that it would not correct itself. Ranking the factors matters more than listing them: that is what assess asks for.",
     ], vis={
@@ -378,8 +380,8 @@ SCENES = [
     dict(id="recap", chap="Recap", fond="nuit", humeur="calme", beats=[
         "{carte}Let's sum up. {carte.1}A stock market: two rewards, the dividend… or reselling higher, which depends only on the next buyer. "
         "{carte.2}The boom: Republican policy, mass production, the Model T at two hundred and sixty dollars, cars on credit. "
-        "{carte.3}The weakness: speculation on margin, ninety per cent borrowed, and a real economy already shrinking since nineteen twenty. "
-        "{carte.4}And the panic: twenty-four, twenty-eight, twenty-nine October nineteen twenty-nine, and a fall from three hundred and eighty-one to forty-one.",
+        "{carte.3}The weakness: speculation on margin, with up to ninety per cent borrowed. And farm prices falling since nineteen twenty. "
+        "{carte.4}And the panic: the twenty-fourth, the twenty-eighth and the twenty-ninth of October. Then a fall from three hundred and eighty-one… to forty-one.",
         ("P", 4.0),
         "{-carte}{fin}Next episode: how this American crash became a world crisis. Banks that fail, loans recalled from Europe… "
         "and the circle of the Dawes Plan that breaks.",
@@ -428,7 +430,7 @@ QUIZ = [
 
 CREDITS = [
     "Content: M. Ros's course (DNL History, H1 · big picture, objective, link and Part I.1) as written on the site; the site's animated map of chapter 1 and its bubble diagram (h1speculation).",
-    "Outside the course (flagged in the video): RCA (as on the site), car registrations 1920–1929 (as on the site), The Great Gatsby, intermediate values of the Dow Jones curve, the 1930 rebound.",
+    "Outside the course (flagged in the video): RCA (as on the site), car registrations 1920–1929 (as on the site), The Great Gatsby, intermediate values of the Dow Jones curve, the 1930 rebound, the dates of Standard Oil's break-up (1911) and of US Steel (1901).",
     "Photograph: crowd outside the New York Stock Exchange, October 1929 (Wikimedia Commons, public domain).",
     "Photograph: Ford assembly line, Highland Park, 1913 (Wikimedia Commons, public domain).",
     "Photograph: 1925 Ford Model T touring, restored (ModelTMitch, Wikimedia Commons, CC BY-SA 4.0).",
