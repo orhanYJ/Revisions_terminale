@@ -241,7 +241,7 @@ SCENES = [
         "des civils pour la plupart.",
     ], vis={
         "g5": dict(type="globe", code="H3", sc=[25]),
-        "thr": dict(type="liste", titre="Trois poussées, juin 1941", petit=True, bande=True, x=60, y=130, w=560, items=[
+        "thr": dict(type="liste", titre="Trois poussées, juin 1941", petit=True, bande=True, x=870, y=110, w=390, items=[
             "Nord : pays baltes → Leningrad", "Centre : Minsk, Smolensk → Moscou", "Sud : Ukraine, Kiev → Rostov",
             "Alliés : Finlande, Roumanie, Hongrie, Slovaquie, Italie, Croatie"]),
         "att": dict(type="note", terme="Attention · une carte du cours", cles=["Rostov", "seconde"],
@@ -302,7 +302,7 @@ SCENES = [
 
     # ================================================================ II.2, idée 5 : une guerre d'anéantissement
     dict(id="aneantissement", chap="II.2 · Une guerre d'anéantissement", fond="guerre", humeur="tension",
-         retenir="Plus de lois de la guerre : les crimes de guerre deviennent le cours normal de la guerre. Prisonniers soviétiques : environ 2,8 millions tués (juin 1941 – févr. 1942) ; au total 3,3 millions morts en captivité sur 5,7, près de 6 sur 10 ; Auschwitz-Birkenau d'abord construit pour eux. Les 3/5 des morts de la guerre sur le front de l'Est.",
+         retenir="Plus de lois de la guerre : les crimes de guerre deviennent la norme. Prisonniers soviétiques : ≈ 2,8 millions tués (juin 1941 – févr. 1942) ; 3,3 millions morts en captivité sur 5,7 ; Birkenau d'abord construit pour eux. Les 3/5 des morts de la guerre sur le front de l'Est.",
          beats=[
         "{def4}Cinquième idée. Sur le front de l'Est, les lois de la guerre disparaissent. La violence est sans précédent : "
         "le seul but est la destruction totale de l'ennemi… ou la résistance jusqu'à la mort. "
@@ -333,7 +333,7 @@ SCENES = [
 
     # ================================================================ II.2, idée 6 : Stalingrad, le tournant
     dict(id="stalingrad", chap="II.2 · Stalingrad, le tournant", fond="nuit", humeur="tension",
-         retenir="Pourquoi défendre Stalingrad ? Un bastion de la stratégie défensive de Staline · un centre industriel et de transport sur la Volga · l'accès au pétrole du Caucase · la ville de Staline. Ordre n° 227 · encerclement en nov. 1942 · Paulus capitule le 31 janv. 1943 (dernières troupes le 2 févr.) : environ 91 000 prisonniers.",
+         retenir="Défendre Stalingrad : un bastion de Staline · un centre industriel et de transport sur la Volga · l'accès au pétrole du Caucase · la ville de Staline. Ordre n° 227 · encerclement en nov. 1942 · Paulus capitule le 31 janv. 1943 (derniers combats le 2 févr.) : ≈ 91 000 prisonniers.",
          beats=[
         "{g7}{g7.1}Sixième idée : Stalingrad, le tournant de la guerre. Leningrad, Moscou et Stalingrad sont les bastions de la défense soviétique. "
         "À l'été 1942, les Allemands, euphoriques, foncent vers la Volga et le Caucase. Et Stalingrad leur barre la route.",
@@ -385,12 +385,12 @@ SCENES = [
                     el=[dict(type="courbe", pts=[list(p) for p in DIV_URSS], c="el", lbl="URSS", lp=[1944.8, 505], dur=1.8),
                         dict(type="courbe", pts=[list(p) for p in DIV_ALL], c="ca", lbl="Allemagne", lp=[1942.3, 205], dur=1.8),
                         dict(type="courbe", pts=[list(p) for p in DIV_AXE], c="sa", tir=True, lbl="tout l'Axe", lp=[1941.2, 380], dur=1.8),
-                        dict(type="points", pts=[[1944, 400], [1944, 349]], c="iv", lbl="1944 : 400 / 349", lp=[1943.6, 455])]),
+                        dict(type="points", pts=[[1944, 400], [1944, 349]], c="iv", lbl="1944 : 400 / 349", lp=[1943.3, 455])]),
     }),
 
     # ================================================================ II.2, idée 8 : une guerre totale
     dict(id="totale", chap="II.2 · Stalingrad, une guerre totale", fond="guerre", humeur="tension",
-         retenir="Guerre totale = mobilisation de toutes les ressources d'une société + effacement de la limite entre front et arrière (vu en Première). Stalingrad : usines de l'arrière, combats de rue au milieu des civils, propagande, aucune reddition. Bilan (document 7) : URSS 1,13 million (500 000 tués), Allemagne et alliés 760 000. L'URSS dans la guerre : 27 à 28 millions de morts, un habitant sur sept.",
+         retenir="Guerre totale : toutes les ressources mobilisées, plus de limite entre front et arrière. Stalingrad : usines de l'arrière, combats de rue parmi les civils, propagande, aucune reddition. Bilan (document 7) : URSS 1,13 million (500 000 tués), Allemagne et alliés 760 000. URSS : 27 à 28 millions de morts dans la guerre.",
          beats=[
         "{def5}Huitième idée : Stalingrad correspond à la définition de la guerre totale. Souviens-toi de la définition vue en Première : "
         "la guerre totale, c'est {!la mobilisation de toutes les ressources d'une société}la mobilisation de toutes les ressources d'une société, "

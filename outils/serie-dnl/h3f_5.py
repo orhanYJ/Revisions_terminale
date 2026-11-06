@@ -117,7 +117,7 @@ SCENES = [
             "Europe de l'Est : 6 760 000", "Europe centrale : 1 644 200", "Europe du Nord et de l'Ouest : 766 600",
             "Europe du Sud : 329 200"], x=170, y=130, w=940),
         "g3": dict(type="globe", code="H3", sc=[41]),
-        "out": dict(type="liste", titre="Hors de la domination allemande en 1942", x=700, y=60, w=540, petit=True, bande=True, items=[
+        "out": dict(type="liste", titre="Hors de la domination allemande en 1942", x=780, y=450, w=480, petit=True, bande=True, items=[
             "Le Royaume-Uni", "États neutres : Espagne, Suisse, Suède"]),
     }),
 
@@ -187,15 +187,15 @@ SCENES = [
 
     # ================================================================ III.1 Hilberg
     dict(id="hilberg", chap="III.1 · Raul Hilberg : trois étapes", fond="nuit", humeur="calme",
-         retenir="Hilberg : conversion (« vous n'avez pas le droit de vivre parmi nous en tant que Juifs ») → expulsion (« vous n'avez pas le droit de vivre parmi nous ») → destruction (« vous n'avez pas le droit de vivre »). L'insigne et le ghetto avaient des précédents ; la seule « invention » nazie : la Solution finale.",
+         retenir="Hilberg : conversion (« pas le droit de vivre parmi nous en tant que Juifs ») → expulsion (« pas le droit de vivre parmi nous ») → destruction (« pas le droit de vivre »). Insigne et ghetto avaient des précédents ; la seule « invention » nazie : la Solution finale.",
          beats=[
         "{hil}D'où vient le génocide ? Le cours répond avec un historien, Raul Hilberg, auteur de La Destruction des Juifs d'Europe, en 1961. "
         "Dans le film Shoah de Claude Lanzmann, il replace la politique nazie dans une longue histoire de persécutions.",
         "{-hil}{st}{st.1}D'abord, la conversion. Les missionnaires chrétiens disaient en substance aux Juifs : vous n'avez pas le droit de vivre parmi nous en tant que Juifs. "
         "{st.2}Puis, l'expulsion. Les dirigeants séculiers qui ont suivi leur disaient : vous n'avez pas le droit de vivre parmi nous. "
         "{st.3}Enfin, la destruction. Les nazis ont décrété : vous n'avez pas le droit de vivre.",
-        "{-st}{can}Avant le vingtième siècle, l'Église et les États chrétiens avaient déjà inventé la plupart des mesures reprises par les nazis : "
-        "l'insigne distinctif, le ghetto, l'interdiction des mariages mixtes. {can.g}Hilberg met en regard le droit canonique {can.d}et les mesures nazies : "
+        "{-st}{can}{can.g}Avant le vingtième siècle, l'Église et les États chrétiens avaient déjà inventé la plupart des mesures reprises par les nazis : "
+        "l'insigne distinctif, le ghetto, l'interdiction des mariages mixtes. Hilberg met en regard le droit canonique {can.d}et les mesures nazies : "
         "l'insigne imposé par le concile du Latran, en 1215, et l'étoile juive de 1941 ; les ghettos du synode de Breslau, "
         "en 1267, et l'ordre de Heydrich de 1939. Ces dates viennent du livre de Hilberg, hors du cours.",
         "{-can}{inv}Alors, qu'ont inventé les nazis ? Seulement la dernière étape : la décision de tuer tous les Juifs, "
@@ -422,7 +422,7 @@ SCENES = [
         "{rep1.3}À partir de décembre 1941, six centres de mise à mort les gazent dès leur arrivée : six millions de morts en tout.",
     ], vis={
         "g13": dict(type="globe", code="H3", sc=[45]),
-        "pays": dict(type="liste", titre="Part des Juifs tués (carte du cours)", x=880, y=380, w=370, petit=True, bande=True, items=[
+        "pays": dict(type="liste", titre="Part des Juifs tués (carte du cours)", x=890, y=100, w=365, petit=True, bande=True, items=[
             "Pologne : 3 000 000 sur 3 350 000 (90 %)", "Lituanie : 97 %", "Pays-Bas : 100 000 sur 140 000 (71 %)",
             "France : 75 000 sur 270 000 (28 %)", "Italie : 8 000 sur 50 000 (16 %)"]),
         "lien13": dict(type="note", terme="Lien avec l'épisode 1", cles=["raciale", "meurtre"],
@@ -469,7 +469,7 @@ SCENES = [
 
     # ================================================================ à l'examen : analyse de document
     dict(id="dbq", chap="À l'examen : une analyse de document", fond="aube", humeur="calme",
-         retenir="Analyse de document : présenter le document (nature, auteur, date) · le situer dans son contexte · l'expliquer · bilan critique : intérêt (témoin direct, à l'échelle, recoupé par d'autres sources) et limites (zone d'extermination jamais vue, un seul témoin, des lieux et non des chiffres).",
+         retenir="Analyse de document : présenter (nature, auteur, date) · situer dans le contexte · expliquer · bilan critique : intérêt (témoin direct, à l'échelle, recoupé par d'autres sources) et limites (zone d'extermination jamais vue, un seul témoin, des lieux et non des chiffres).",
          beats=[
         "{ex}Un exercice d'examen. {ex.p1}Une analyse de document : le plan de Treblinka dessiné par Samuel Willenberg. "
         "{ex.1}La consigne : montrez en quoi ce document permet de comprendre le fonctionnement du centre de mise à mort de Treblinka, et quelles en sont les limites.",
@@ -521,10 +521,10 @@ SCENES = [
     ], vis={
         "carte": dict(type="carte", centre="VERS LE GÉNOCIDE", branches=[
             dict(t="Ghettos · III.1", items=["9,5 millions de Juifs, surtout à l'Est", "Varsovie : 440 000 sur 4 km²", "Hilberg : la Solution finale"]),
-            dict(t="Balles · III.2", items=["Einsatzgruppen A à D, juin 1941", "Juifs, communistes, Roms", "plus d'1 million de Juifs soviétiques"]),
+            dict(t="Balles · III.2", items=["Einsatzgruppen A à D, juin 1941", "Juifs, communistes, Roms", "plus d'un million de Juifs tués"]),
             dict(t="Gaz · III.3", items=["6 centres de mise à mort en Pologne", "Treblinka : 876 000 morts", "6 millions : 2/3 des Juifs d'Europe"]),
             dict(t="Sources", items=["survivants : Lindwasser, Bomba", "bourreaux : Stroop, Stangl", "plans : Willenberg"])]),
-        "fin": dict(type="mot", t="Ensuite : la guerre à l'examen", g="Épisode 6 · question problématisée et analyse de document", y=270, taille=78),
+        "fin": dict(type="mot", t="Ensuite : la guerre à l'examen", g="Épisode 6 · question problématisée et analyse de document", y=270, taille=66),
     }),
 ]
 

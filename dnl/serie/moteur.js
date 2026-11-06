@@ -421,8 +421,8 @@
     var e = o.el; e.classList.add("v-question"); if (v.bande) e.classList.add("bande");
     var tt = h("div", "tt", e);
     var sp = mots(tt, v.t);
-    sp[0].innerHTML = '<span class="gu">“</span>' + sp[0].innerHTML;
-    sp[sp.length - 1].innerHTML += '<span class="gu">”</span>';
+    sp[0].innerHTML = '<span class="gu">' + (FR ? "«\u00a0" : "“") + '</span>' + sp[0].innerHTML;
+    sp[sp.length - 1].innerHTML += '<span class="gu">' + (FR ? "\u00a0»" : "”") + '</span>';
     return function (t, st) {
       sp.forEach(function (m, i) {
         var p = E(P(st.tl, .1 + i * .12, .7));

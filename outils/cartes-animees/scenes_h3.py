@@ -427,7 +427,7 @@ def scenes():
         L("Pourquoi envahir l'URSS ? Trois raisons", "Why invade the USSR? Three reasons"),
         L("Économique : le Grossraum, un Reich plus vaste et autosuffisant, la colonisation et l'asservissement des Slaves, le blé d'Ukraine et le pétrole du Caucase. Idéologique : la croisade contre le « judéo-bolchevisme ». Raciale : l'« Übermensch » aryen contre l'« Untermensch » slave ; les Juifs doivent être éliminés.",
           "Economic: the Grossraum, a larger self-sufficient Reich, German settlement and the enslavement of the Slavs, Ukrainian wheat and Caucasus oil. Ideological: the crusade against “Jewish Bolshevism”. Racial: the Aryan “Übermensch” against the Slavic “Untermensch”; the Jews were to be eliminated."),
-        labels=["l_ukr", "l_cauc", "l_urss", "l_all", "moscou", "berlin"], cles=["reich", "occ", "allie", "urss", "su"])
+        labels=["l_ukr", "l_cauc", "l_urss", "l_all", "moscou"], cles=["reich", "occ", "allie", "urss", "su"])
 
     # ---------------- II.2 : Barbarossa
     add("II.2", 15, [29, 53, 3.0], L("22 juin 1941", "22 June 1941"),
