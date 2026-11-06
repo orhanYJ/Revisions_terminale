@@ -46,7 +46,7 @@ SCENES = [
         ("P", 3.2),
     ], vis={
         "g0": dict(type="globe", code="H1", sc=[31]),
-        "q1": dict(type="note", terme="1 September 1939", t="War, again.", x=440, y=560, w=800),
+        "q1": dict(type="note", terme="1 September 1939", t="War, again.", x=490, y=500, w=750),
         "q2": dict(type="question", t="Why did the democracies let their order collapse?", bande=True),
         "plan": dict(type="liste", titre="Episode 4 · Democracies and the liberal order", items=[
             "On the map: from 1919 to 1939", "The liberal order and the League of Nations",
@@ -252,7 +252,7 @@ SCENES = [
 
     # ================================================================ VII. idée 5 : les lois de neutralité
     dict(id="neutre", chap="II.3 · The Neutrality Acts", fond="nuit", humeur="mystere",
-         retenir="Isolationism after the Depression: domestic policy first. Neutrality Acts (a Democratic Congress, pressed by Nye, Vandenberg): 1935 arms embargo · 1936 no loans · 1937 embargo permanent, no travel on ships of nations at war, other goods cash and carry. Roosevelt: “I hate war” (1936). Dec. 1937: USS Panay; Japan apologises, pays — and reads it as a licence.",
+         retenir="Domestic policy first. Neutrality Acts: 1935 arms embargo · 1936 no loans · 1937 embargo made permanent, other goods cash and carry. Roosevelt: “I hate war” (1936). Dec. 1937: USS Panay sunk; Japan apologises and pays.",
          beats=[
         "{fdr}Fifth idea: the Neutrality Acts made the largest democracy unavailable. "
         "{iso}{iso.1}The cause is the Great Depression. The United States turns to {!isolationism}isolationism, and turns a blind eye to international tensions. "
