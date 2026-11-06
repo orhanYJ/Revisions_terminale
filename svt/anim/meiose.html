@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070B14">
 <title>Méiose et brassage génétique</title>
-<link rel="stylesheet" href="moteur.css?v=6">
+<link rel="stylesheet" href="moteur.css?v=7">
 </head>
 <body>
 <main class="wrap">
@@ -96,7 +96,7 @@
     </div>
   </section>
 </main>
-<script src="moteur.js?v=6"></script>
+<script src="moteur.js?v=7"></script>
 <script>
 (() => {
 /* Portage sur le moteur commun de l'animation de référence « Méiose et brassage génétique » (artefact Claude.ai du 29/09). */
@@ -118,7 +118,7 @@ function strand(d, col){
 function states(){
   const P0 = {Lm:[122,60,-16], Lp:[266,78,12], Sm:[148,250,20], Sp:[268,242,-10]};
   const kp = k(14.5,19.5), vp = vel(14.5,19.5);
-  const hs = 14 + 3*k(31,34);
+  const hs = 15.5 + 1.5*k(31,34);   // homologues un peu écartés : les lettres B et b des chromatides du milieu ne se touchent plus
   const P1 = {Lm:[200-hs,55], Lp:[200+hs,55], Sm:[200-hs,262], Sp:[200+hs,262]};
   const q = 6.9*k(9,11.5);
   let splay = 9*k(8,11.5); splay = lerp(splay, 1.5, kp); splay = lerp(splay, 7, k(47,54));
@@ -128,7 +128,7 @@ function states(){
     s[id] = {cx:lerp(a[0],b[0],kp), top:lerp(a[1],b[1],kp), rot:lerp(a[2],0,kp), q, splay, sep:0, lag:-dir*vp*16, lagS:0, op:1};
   }
   const dim = k(22.3,23.3) - k(34.5,36);
-  s.Sm.op = s.Sp.op = 1 - .7*dim;
+  s.Sm.op = s.Sp.op = 1 - dim;   // pendant le zoom sur le crossing-over, l'autre paire s'efface (elle était coupée au bas du cadre)
   if(orient){ const th = Math.PI*k(38,40.5); s.Sm.cx = 200 - hs*Math.cos(th); s.Sp.cx = 200 + hs*Math.cos(th); s.Sp.op *= 1 - .45*Math.sin(th); }
   const ka = k(44.5,49.8), va = vel(44.5,49.8), left = ['Lm', orient ? 'Sp' : 'Sm'];
   for(const id in s){ const L = left.includes(id); s[id].cx = lerp(s[id].cx, L ? 100 : 300, ka); s[id].lag += (L ? 1 : -1)*va*22; }
@@ -227,6 +227,7 @@ function draw(c){
         g += strand(smooth(ys(top, top+CUT, 11).map(y => pt(st,id,j,y))), COL[o]);
         g += strand(smooth(ys(top+CUT, top+LEN.L, 6).map(y => pt(st,id,j,y))), COL[bo]);
         const pa = pt(st,id,j,top+LOC.A), pb = pt(st,id,j,top+LOC.B);
+        if((id==='Lm' && j===1) || (id==='Lp' && j===0)) pb[0] += 3.5*Math.sign(pb[0] - 200);   // chromatides du milieu : les lettres B et b s'écartent un peu
         l += `<text x="${f(pa[0])}" y="${f(pa[1])}" dy=".36em">${AL.Lt[o]}</text><text x="${f(pb[0])}" y="${f(pb[1])}" dy=".36em">${AL.Lb[bo]}</text>`;
       } else {
         g += strand(smooth(ys(top, top+LEN.S, 7).map(y => pt(st,id,j,y))), COL[o]);
@@ -298,7 +299,7 @@ const CALL = [
   {a:10.6, b:13.9, text:"centromère", lab:[52,196], anc:st=>[cen(st,'Lm')]},
   {a:14.3, b:17, text:"l'enveloppe du noyau disparaît", lab:[128,414], anc:()=>[[92,312]]},
   {a:19.2, b:21.9, text:"bivalent : 4 chromatides", lab:[300,34], anc:st=>[at(st,'Lp',1,.3)]},
-  {a:23, b:27.2, text:"chromatides non sœurs", lab:[200,22], anc:st=>[at(st,'Lm',1,.22), at(st,'Lp',0,.22)]},
+  {a:23, b:27.2, text:"chromatides non sœurs", lab:[200,22], anc:st=>[at(st,'Lm',1,.3), at(st,'Lp',0,.3)]},
   {a:26.2, b:32.8, text:"chiasma", lab:[284,150], anc:st=>[[200, st.Lm.top + CUT]]},
   {a:31.4, b:35.6, text:"chromatides recombinées", lab:[200,236], anc:st=>[at(st,'Lm',1,.74), at(st,'Lp',0,.74)]},
   {a:38, b:43.2, text:"pôle du fuseau", lab:[72,118], anc:()=>[[40,CY]]},
