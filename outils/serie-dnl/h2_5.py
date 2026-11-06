@@ -16,8 +16,9 @@ Corrections et précisions dites dans la vidéo :
   - le cours écrit « Italy had no concentration camps » : vrai pour la répression des opposants en Italie avant la
     guerre (le confino), mais l'Italie fasciste a ouvert des camps de concentration en Libye (Cyrénaïque, 1930-1933),
     puis des camps d'internement pendant la guerre — dit « outside the course » ;
-  - le cours dit que Beria « held the post until 1953 » : il dirige le NKVD de 1938 à 1945, puis supervise la police
-    jusqu'en 1953 — formulé « in charge of the Soviet police apparatus until 1953 », précision hors cours dite ;
+  - le cours dit que Beria « held the post until 1953 » : il dirige le NKVD de 1938 à 1945 seulement, puis reste
+    l'un des hommes les plus puissants autour de Staline jusqu'à sa chute en 1953 — précision hors cours dite ;
+  - Iejov est remplacé par Beria (novembre 1938) avant d'être exécuté (1940) : ordre rétabli dans la narration ;
   - procès de Moscou 1936-38 et Grande Purge 1937-38 : deux dates distinctes, rappelées.
 Le « Your turn » 1 est la Worksheet 4 (similitudes) ; le « Your turn » 2 un essay « How far » (plan et introduction)
 sur « Terror was the main tool of totalitarian regimes », avec un modèle.
@@ -42,19 +43,21 @@ PRONONCIATION = {"Il Duce ha sempre ragione": "Eel Doo-chay ah sem-preh ra-jo-ne
                  "Reichsmarks": "Rikes-marks", "Hergé": "Air-zhay", "confino": "con-fee-no", "Lipari": "Lee-pa-ree",
                  "Arendt": "Ah-rent", "Duce": "Doo-chay", "Führer": "Fyoo-rer", "Balilla": "Ba-lee-la",
                  "Komsomol": "Kom-so-mol", "squadristi": "skwa-dree-stee", "Hindenburg": "Hin-den-burg",
-                 "Lebensraum": "Lay-bens-rowm", "Cyrenaica": "Sigh-reh-nay-ika"}
+                 "Lebensraum": "Lay-bens-rowm", "Cyrenaica": "Sigh-reh-nay-ika",
+                 "S.S.": "Ess Ess", "SA": "Ess Ay", "T4": "T four"}
 
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Opening", fond="guerre", humeur="mystere", carton=False, beats=[
-        "{g0}{g0.1}Moscow, 1936. On trial, old companions of Lenin confess to crimes they never committed. "
-        "Within two years, the Great Purge has carried out six hundred and eighty thousand executions.",
-        "{q1}Why would a regime terrorise its own people? And why would it end by striking its own men?",
-        "{-q1}{-g0}{plan}Today, Part two point three of the chapter: mass terror. {plan.1}First, the events on the map. "
-        "{plan.2}Then the course, idea by idea: the police, the trials, the camps, the purges. "
-        "{plan.3}Then Worksheet four: what the three terrors have in common, and what they do not. "
-        "{plan.4}Then the whole totalitarianism table, as a synthesis of Parts one and two. "
-        "{plan.5}And an essay: was terror the main tool of these regimes?",
+        "{g0}{g0.1}Moscow, nineteen thirty-six. In the dock stand old companions of Lenin. "
+        "They confess to crimes they never committed. "
+        "By the end of nineteen thirty-eight, the Great Purge has carried out six hundred and eighty thousand executions.",
+        "{q1}Why would a regime terrorise its own people? And why would it end up striking its own men?",
+        "{-q1}{-g0}{plan}Today: part two point three of the chapter. Mass terror. {plan.1}We start with the events, on the map. "
+        "{plan.2}Then the course, idea by idea. The police, the trials, the camps, the purges. "
+        "{plan.3}Then Worksheet four. What do the three terrors have in common? And what sets them apart? "
+        "{plan.4}After that, the whole totalitarianism table, as a synthesis of parts one and two. "
+        "{plan.5}Finally, an essay. Was terror the main tool of these regimes?",
         "{-plan}{titre}",
         ("P", 3.2),
     ], vis={
@@ -72,15 +75,18 @@ SCENES = [
     dict(id="carte1", chap="On the map: 1929 – 1933", fond="nuit", humeur="mystere",
          retenir="Italy: opponents sent to islands (the confino) · USSR 1929–32: the kulaks deported · 1931–33: the White Sea Canal, dug by Gulag prisoners · 1932–33: the Holodomor in Ukraine.",
          beats=[
-        "{g1}Let's start on the map, in chronological order. {g1.1}Italy, from 1929. Mussolini has to come to terms with the Church "
-        "and the king. His opponents are usually not executed: they are sent into internal exile, on islands such as Lipari. "
-        "Monsieur Ros asks the question with a question mark: a less oppressive terror?",
-        "{g1.2}The Soviet Union, 1929 to 1932. Forced collectivisation, seen in episode three. Any peasant who resists is called a kulak, "
-        "a class enemy: land and animals confiscated, and many deported.",
-        "{g1.3}1931 to 1933, in the far north. Prisoners of the Gulag dig the White Sea to Baltic Canal: two hundred and twenty-seven kilometres, "
-        "largely with hand tools. The camp has become a building site.",
-        "{g1.4}And 1932 to 1933, in Ukraine: the Holodomor. Grain is requisitioned whatever the harvest, rebellious villages are cut off "
-        "from all supplies, and the famine kills millions. A famine made by a political decision.",
+        "{g1}Let's start on the map, in chronological order. {g1.1}Italy, from nineteen twenty-nine. "
+        "Mussolini has to come to terms with the Church, and with the king. His opponents are usually not executed. "
+        "They are sent into internal exile, on islands such as Lipari. "
+        "Monsieur Ros asks it with a question mark. A less oppressive terror?",
+        "{g1.2}Now the Soviet Union, from nineteen twenty-nine to nineteen thirty-two. This is forced collectivisation, "
+        "which you saw in episode three. Any peasant who resists is called a kulak. A class enemy. "
+        "His land and his animals are confiscated. And many are deported.",
+        "{g1.3}Then the far north, from nineteen thirty-one to nineteen thirty-three. Prisoners of the Gulag dig the White Sea to Baltic Canal. "
+        "Two hundred and twenty-seven kilometres, largely with hand tools. The camp has become a building site.",
+        "{g1.4}And Ukraine, in nineteen thirty-two and thirty-three. This is the Holodomor. Grain is requisitioned, whatever the harvest. "
+        "Rebellious villages are cut off from all supplies. The famine kills millions. "
+        "It is a famine made by a political decision.",
     ], vis={
         "g1": dict(type="globe", code="H2", sc=[14, 15, 17, 19]),
     }),
@@ -89,17 +95,20 @@ SCENES = [
     dict(id="carte2", chap="On the map: 1933 – 1940", fond="nuit", humeur="tension",
          retenir="27 Feb. 1933: the Reichstag fire · 1933: Gestapo, Dachau · 1933–39: sterilisation, Nuremberg laws, T4 · 1936–38: Moscow trials, Great Purge · 1940: Yezhov executed, Trotsky murdered in Mexico.",
          beats=[
-        "{g2}{g2.1}Germany, the twenty-seventh of February 1933. The Reichstag burns. The Nazis blame the communists, "
-        "freedoms are suspended, and thousands of communists are arrested.",
-        "{g2.2}The same year, the political police is placed above the law, and the first camp opens at Dachau, near Munich. "
-        "In Italy the OVRA exists since 1927; in the Soviet Union, the NKVD from 1934.",
-        "{g2.3}From 1933, Nazi violence also strikes Germans in the name of biology: forced sterilisation, "
-        "the Nuremberg laws of 1935, and from 1939, the murder of disabled people.",
-        "{g2.4}Moscow, 1936 to 1938: the show trials, and the Great Purge. The party is decimated, the army weakened.",
-        "{g2.5}And 1940. Yezhov, the head of the Soviet police during the purge, is executed. "
-        "And in Mexico, Trotsky, Stalin's great rival, is murdered by an agent of the Soviet police. Terror devours its own, even abroad.",
-        "{-g2}{fr1}Six dates to keep. {fr1.1}1927, the OVRA. {fr1.2}1931, the White Sea Canal begins. {fr1.3}1933, Dachau. "
-        "{fr1.4}1934, the Night of the Long Knives. {fr1.5}1937 and 1938, the Great Purge. {fr1.6}And 1940, Yezhov and Trotsky.",
+        "{g2}{g2.1}Germany, the twenty-seventh of February, nineteen thirty-three. The Reichstag is on fire. "
+        "The Nazis blame the communists. Freedoms are suspended. Thousands of communists are arrested.",
+        "{g2.2}The same year, the political police is placed above the law. And the first camp opens at Dachau, near Munich. "
+        "Italy has had its own political police, the OVRA, since nineteen twenty-seven. The Soviet Union gets the NKVD in nineteen thirty-four.",
+        "{g2.3}From nineteen thirty-three, Nazi violence also strikes Germans, in the name of biology. "
+        "First comes forced sterilisation. Then the Nuremberg laws, in nineteen thirty-five. "
+        "And from nineteen thirty-nine, the murder of disabled people.",
+        "{g2.4}Moscow, from nineteen thirty-six to nineteen thirty-eight. These are the show trials, and the Great Purge. "
+        "The party is decimated. The army is weakened.",
+        "{g2.5}And then, nineteen forty. Yezhov, who ran the Soviet police during the purge, is executed. "
+        "In Mexico, Trotsky, Stalin's great rival, is murdered by an agent of the Soviet police. Terror devours its own. Even abroad.",
+        "{-g2}{fr1}Six dates to keep. {fr1.1}Nineteen twenty-seven: the OVRA. {fr1.2}Nineteen thirty-one: work starts on the White Sea Canal. "
+        "{fr1.3}Nineteen thirty-three: Dachau. {fr1.4}Nineteen thirty-four: the Night of the Long Knives. "
+        "{fr1.5}Nineteen thirty-seven and thirty-eight: the Great Purge. {fr1.6}And nineteen forty: Yezhov, and Trotsky.",
     ], vis={
         "g2": dict(type="globe", code="H2", sc=[21, 22, 23, 30, 38]),
         "fr1": dict(type="frise", items=[
@@ -112,15 +121,16 @@ SCENES = [
     dict(id="methode", chap="II.3 · Terror, a method of government", fond="nuit", humeur="mystere",
          retenir="Totalitarian violence is permanent, organised, planned. Arendt: “dominating and terrorizing human beings from within”: fear so deep that each person censors himself. Example: Tintin in the Land of the Soviets (1930).",
          beats=[
-        "{def1}Now the course, idea by idea. Idea one: in a totalitarian regime, terror is not a failure of order. "
+        "{def1}Now the course, idea by idea. Idea one. In a totalitarian regime, terror is not a failure of order. "
         "It is {!a method of government}a method of government. "
-        "{def1.1}Violence is not the exceptional answer to a crisis: it is permanent, organised and planned.",
+        "{def1.1}Violence is not an exceptional answer to a crisis. It is permanent. It is organised. It is planned.",
         "{photo1}Hannah Arendt, whom you met in episode one, wrote that these regimes had found{-def1}",
         ("C", "a means of dominating and terrorizing human beings from within", "c_ar"),
-        "{-c_ar}{-photo1}{fear}So the point is not only to punish. {fear.1}It is to install fear so deeply {fear.2}that each person censors himself. "
-        "{fear.3}And so, {fear.4}obedience no longer needs to be commanded.",
-        "{-fear}{tin}The example: a comic book. In 1930, Hergé's Tintin in the Land of the Soviets already showed Western readers "
-        "a police state, with staged elections and a hidden famine. A caricature, of course. "
+        "{-c_ar}{-photo1}{fear}So what is terror for? {fear.1}Not only to punish. {fear.2}It plants fear deep inside each person. "
+        "{fear.3}So deep that everyone censors himself. "
+        "{fear.4}And then, obedience no longer needs to be commanded.",
+        "{-fear}{tin}The example is a comic book. In nineteen thirty, Hergé's Tintin in the Land of the Soviets "
+        "already showed Western readers a police state. Staged elections. A hidden famine. A caricature, of course. "
         "{tin.1}But it spread the image of Soviet terror long before historians could open the archives.",
     ], vis={
         "def1": dict(type="def", cles=["permanent", "organised", "planned"], terme="Idea 1 · terror as a method",
@@ -141,15 +151,17 @@ SCENES = [
     dict(id="police", chap="II.3 · A political police above the law", fond="nuit", humeur="tension",
          retenir="Italy: the OVRA (1927) · Germany: the Gestapo (state police, 1933) and the S.S. (party police), both under Himmler from 1936 · USSR: the OGPU, then the NKVD (1934), which runs the deportations. They answer to the leader, never to a judge.",
          beats=[
-        "{g3}{g3.1}Idea two: each regime built a political police that answered to the party, not to the courts. "
+        "{g3}{g3.1}Idea two. Each regime built a political police. It answered to the party, not to the courts. "
         "This is the instrument of terror: {!a police above the law}a police placed above the law.",
-        "{pol}{pol.1}In Italy, Mussolini created the OVRA in 1927. "
-        "{pol.2}In Germany, two forces: the Gestapo, the state police, from 1933, and the S.S., the police of the party. "
-        "{pol.3}In the Soviet Union, the OGPU, then from 1934 the NKVD, which organised the deportations to the labour camps.",
-        "{-pol}{-g3}{him}The example to remember: Heinrich Himmler. The Gestapo was placed under his authority, "
-        "and from 1936 he held both German police forces at once, the state police and the party police. "
-        "{him.1}The party and the state merged in one man.",
-        "{-him}{voc}The key point: because these bodies answered to the leader, {!no judge}no judge could protect a citizen from them. "
+        "{pol}{pol.1}In Italy, Mussolini created the OVRA in nineteen twenty-seven. "
+        "{pol.2}Germany had two forces. The Gestapo, the state police, from nineteen thirty-three. And the S.S., the police of the party. "
+        "{pol.3}In the Soviet Union, there was first the OGPU. Then, from nineteen thirty-four, the NKVD. "
+        "It organised the deportations to the labour camps.",
+        "{-pol}{-g3}{him}The example to remember is Heinrich Himmler. The Gestapo was placed under his authority. "
+        "And from nineteen thirty-six, he held both German police forces at once: the state police, and the party police. "
+        "{him.1}In one man, party and state had merged.",
+        "{-him}{voc}Why? Because these bodies answered to the leader. "
+        "So {!no judge}no judge could protect a citizen from them. "
         "In your copy, call it by its name: a political police.",
     ], vis={
         "g3": dict(type="globe", code="H2", sc=[22]),
@@ -166,20 +178,22 @@ SCENES = [
     dict(id="proces", chap="II.3 · Justice as theatre: the Moscow trials", fond="guerre", humeur="tension",
          retenir="Show trials (1936–38): old Bolsheviks confess to invented crimes after threats to their families. The Great Purge (1937–38): 680,000 executions, the party decimated, the army weakened, Stalin reinforced. Zinoviev and Kamenev shot in 1936, Rykov in 1938.",
          beats=[
-        "{g4}{g4.1}Idea three: justice is turned into theatre. Soviet terror culminated in the Moscow trials: "
-        "{!show trials}show trials, staged for the public. Old Bolsheviks, companions of Lenin, confessed to crimes they had not committed, "
-        "after their families had been threatened.",
-        "At his trial in 1936, Zinoviev declared himself{-g4}",
+        "{g4}{g4.1}Idea three. Justice is turned into theatre. Soviet terror reached its peak with the Moscow trials. "
+        "These were {!show trials}show trials, staged for the public. Old Bolsheviks, companions of Lenin, "
+        "confessed to crimes they had not committed. Why? Because their families had been threatened.",
+        "At his trial in nineteen thirty-six, Zinoviev declared himself{-g4}",
         ("C", "the principal organiser of Kirov's assassination", "c_zi"),
         "{-c_zi}And Kamenev said he had been",
         ("C", "actuated by boundless hatred and by lust of power", "c_ka"),
-        "{-c_ka}{photo}Now look at one photograph of 1925. {photo.1}Stalin stands with Zinoviev, Kamenev and Alexei Rykov. "
-        "{photo.2}Stalin had all three men in that picture shot: {photo.3}Zinoviev and Kamenev in 1936, Rykov in 1938.",
-        "{-photo}{photo2}{purge}Then the Great Purge of 1937 and 1938. {!680,000}The worksheet counts six hundred and eighty thousand executions. "
-        "It decimated the party and weakened the army.",
-        "{-purge}{para}And here is the paradox to explain in an essay: the purge reinforced Stalin, "
-        "precisely because it destroyed everyone who could have replaced him. "
-        "{para.1}One detail of dates: the show trials run from 1936 to 1938; the Great Purge, in 1937 and 1938.{-photo2}",
+        "{-c_ka}{photo}Now look at one photograph, taken in nineteen twenty-five. {photo.1}Stalin stands with Zinoviev, Kamenev, and Alexei Rykov. "
+        "{photo.2}Stalin had all three of those men shot. {photo.3}Zinoviev and Kamenev in nineteen thirty-six. Rykov in nineteen thirty-eight.",
+        "{-photo}{photo2}{purge}Then came the Great Purge, in nineteen thirty-seven and thirty-eight. "
+        "{!680,000}The worksheet counts six hundred and eighty thousand executions. "
+        "The party was decimated. The army was weakened.",
+        "{-purge}{para}Here is the paradox to explain in an essay. The purge made Stalin stronger. Why? "
+        "Precisely because it destroyed everyone who could have replaced him. "
+        "{para.1}And one detail of dates. The show trials run from nineteen thirty-six to thirty-eight. "
+        "The Great Purge covers nineteen thirty-seven and thirty-eight.{-photo2}",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[30]),
         "c_zi": dict(type="cit", a="Grigory Zinoviev", o="Moscow trial, 1936", x=200, y=210, w=880),
@@ -199,19 +213,20 @@ SCENES = [
     dict(id="camps", chap="II.3 · The camp, a permanent institution", fond="nuit", humeur="mystere",
          retenir="The Gulag: camps placed where labour was needed; the White Sea–Baltic Canal (227 km, 1931–33, by hand); over 1.5 million prisoners in the early 1950s. Dachau (1933): prisoners sorted by coloured triangles. M. Ros: the Nazis did not invent the camp; they added the gas chamber.",
          beats=[
-        "{g5}{g5.1}Idea four: the camp becomes a permanent institution, and forced labour an economic resource. "
-        "Repression is not only judicial: it is territorial. Whole populations are confined.",
-        "{g5.2}The Soviet Gulag spread its camps across the whole country, and it chose their places where labour was needed: "
-        "mines, timber, canals. So terror also produced. "
-        "{-g5}{photo3}The example: the White Sea to Baltic Canal, two hundred and twenty-seven kilometres dug between 1931 and 1933, "
-        "largely with hand tools: the first great Soviet project built by Gulag prisoners.",
-        "{-photo3}{gul}And the worksheet's graph gives the scale. {gul.1}{gul.2}{gul.3}In the early 1950s, the camp population passes "
-        "{!one and a half million}one and a half million prisoners.",
-        "{-gul}{tri}In Germany, Dachau opened in 1933, for everyone deemed incompatible with society. "
-        "And the camps classified their prisoners by coloured triangles. "
+        "{g5}{g5.1}Idea four. The camp becomes a permanent institution, and forced labour becomes an economic resource. "
+        "Repression is not only judicial. It is territorial. Whole populations are confined.",
+        "{g5.2}The Soviet Gulag spread its camps across the whole country. And it placed them where labour was needed. "
+        "In mines, in forests, along canals. So terror also produced. "
+        "{-g5}{photo3}The example is the White Sea to Baltic Canal. Two hundred and twenty-seven kilometres, "
+        "dug between nineteen thirty-one and nineteen thirty-three, largely with hand tools. "
+        "It was the first great Soviet project built by Gulag prisoners.",
+        "{-photo3}{gul}The worksheet's graph gives the scale. {gul.1}{gul.2}{gul.3}By the early nineteen-fifties, "
+        "the camps hold more than {!one and a half million}one and a half million prisoners.",
+        "{-gul}{tri}Germany opened Dachau in nineteen thirty-three. It was meant for everyone judged incompatible with society. "
+        "Inside, prisoners were sorted by coloured triangles. "
         "{tri.1}Red for political prisoners. {tri.2}Green for criminals. {tri.3}Pink for homosexuals. "
-        "{tri.4}Black for those called anti-social. {tri.5}Purple for Jehovah's Witnesses. {tri.6}And a yellow triangle added for Jews.",
-        "{-tri}{ros}And keep Monsieur Ros's sentence. The Nazis did not invent the camp. {ros.1}What they added was the gas chamber.",
+        "{tri.4}Black for those called anti-social. {tri.5}Purple for Jehovah's Witnesses. {tri.6}And a yellow triangle was added for Jews.",
+        "{-tri}{ros}Keep Monsieur Ros's sentence. The Nazis did not invent the camp. {ros.1}What they added was the gas chamber.",
     ], vis={
         "g5": dict(type="globe", code="H2", sc=[17]),
         "photo3": dict(type="tableau", img="h2-belomorkanal", de=[1.0, .3, .5], a=[1.05, .7, .5],
@@ -219,7 +234,7 @@ SCENES = [
         "gul": dict(type="graphe", titre="Gulag camp population (worksheet graph)", x=300, y=110, w=680, h=520,
                     ax=dict(x=[1929.5, 1953.5], y=[0, 2.0], gx=[1930, 1935, 1940, 1945, 1950], gy=[0.5, 1.0, 1.5],
                             lx="year", ly="million prisoners"),
-                    el=[dict(type="droite", pts=[[1930, 1.5], [1953, 1.5]], c="iv", tir=True, lbl="1.5 million", lp=[1932.5, 1.6], dur=1.0),
+                    el=[dict(type="droite", pts=[[1947, 1.5], [1953, 1.5]], c="iv", tir=True, lbl="1.5 million", lp=[1944, 1.62], dur=1.0),
                         dict(type="texte", x=1932, y=0.25, t="1931–33: the White Sea Canal", c="sa"),
                         dict(type="point", x=1952, y=1.6, c="ca", lbl="early 1950s", lp=[1948.5, 1.82])]),
         "tri": dict(type="liste", titre="Nazi camps · coloured triangles", petit=True,
@@ -235,18 +250,19 @@ SCENES = [
     dict(id="biologie", chap="II.3 · Germans struck in the name of biology", fond="nuit", humeur="mystere",
          retenir="1933: law on forced sterilisation (nine conditions, e.g. blindness, deafness, schizophrenia): about 400,000 sterilised, 1933–45. Propaganda by cost: 5.50 Reichsmarks a day. T4 (1939–41): about 70,000 disabled Germans killed, mostly in gas chambers.",
          beats=[
-        "{g6}{g6.1}Idea five: Nazi violence also struck Germans themselves, in the name of biology. "
+        "{g6}{g6.1}Idea five. Nazi violence also struck Germans themselves, in the name of biology. "
         "Racial doctrine produced violence inside the German population.",
-        "{-g6}{bio}{bio.1}In 1933, a law allowed the forced sterilisation of Germans with conditions presumed hereditary. "
-        "{bio.2}Nine conditions were listed, including blindness, deafness and schizophrenia. "
-        "About {!400,000}four hundred thousand people were sterilised between 1933 and 1945.",
-        "{bio.3}And propaganda justified it by cost. A poster compared the five Reichsmarks fifty spent every day on one sick person "
-        "with the cost of a healthy family.",
-        "{bio.4}In 1939, the logic went further, into killing. Between 1939 and 1941, the doctors of the T4 programme, "
-        "called euthanasia, killed about {!70,000}seventy thousand disabled Germans, mostly in gas chambers built for the purpose.",
-        "{-bio}{lien}Notice the link with episode four: the German New Man was a purified race. "
-        "{lien.1}Sterilisation and T4 are that ideology applied to human bodies. "
-        "And notice the gas chambers: built here, in Germany, before the war in the East.",
+        "{-g6}{bio}{bio.1}In nineteen thirty-three, a law allowed forced sterilisation. It targeted Germans with conditions presumed to be hereditary. "
+        "{bio.2}The law listed nine conditions. Among them: blindness, deafness, and schizophrenia. "
+        "Between nineteen thirty-three and nineteen forty-five, about {!400,000}four hundred thousand people were sterilised.",
+        "{bio.3}Propaganda justified it by cost. One poster showed what one sick person cost every day: five Reichsmarks fifty. "
+        "And it set that sum against the cost of a healthy family.",
+        "{bio.4}In nineteen thirty-nine, the logic went further. Into killing. "
+        "From nineteen thirty-nine to nineteen forty-one, the doctors of the T4 programme, called euthanasia, "
+        "killed about {!70,000}seventy thousand disabled Germans. Most of them died in gas chambers built for the purpose.",
+        "{-bio}{lien}Notice the link with episode four. The German New Man was a purified race. "
+        "{lien.1}Sterilisation and T4 are that ideology, applied to human bodies. "
+        "And notice the gas chambers. They were built here, in Germany, before the war in the East.",
     ], vis={
         "g6": dict(type="globe", code="H2", sc=[23]),
         "bio": dict(type="liste", titre="Violence in the name of biology", cles=["sterilisation", "400,000", "cost", "70,000"], items=[
@@ -262,26 +278,26 @@ SCENES = [
     dict(id="siens", chap="II.3 · Terror strikes the regime's own men", fond="guerre", humeur="tension",
          retenir="No one is safe: Night of the Long Knives (1934, 85 murdered, the SA leadership) · Yezhov, head of the NKVD, executed in 1940 and replaced by Beria · Trotsky murdered in Mexico (1940) by a Soviet agent. When loyalty no longer protects, obedience is anticipated.",
          beats=[
-        "{g7}{g7.1}Idea six, the most revealing one: terror turns against the regime's own men. {!No one is safe}No one is safe, "
-        "not even those who serve it. And that is what makes it total.",
-        "{own}{own.1}In Germany, the Night of the Long Knives, in 1934: the regime purges its own paramilitary ranks. "
-        "Eighty-five people are murdered, among them the leadership of the SA. "
-        "{own.2}In the Soviet Union, the Great Purge ends by devouring the head of the police himself: Yezhov, "
-        "Stalin's most trusted police chief, is executed in 1940. He is replaced by Beria. "
-        "{own.3}And terror reaches abroad: Leon Trotsky, Stalin's most influential rival, is assassinated in Mexico in 1940, "
-        "by an agent of the Soviet police.",
-        "{-own}{-g7}{ber}One precision about Beria, from outside the course: he headed the NKVD from 1938 to 1945, "
-        "then stayed in charge of the Soviet police apparatus until 1953.",
+        "{g7}{g7.1}Idea six is the most revealing one. Terror turns against the regime's own men. "
+        "{!No one is safe}No one is safe, not even those who serve it. And that is what makes it total.",
+        "{own}{own.1}Germany, nineteen thirty-four: the Night of the Long Knives. The regime purges its own paramilitary ranks. "
+        "Eighty-five people are murdered, among them the leaders of the SA. "
+        "{own.2}In the Soviet Union, the Great Purge ends by devouring the police chief himself. "
+        "Yezhov was Stalin's most trusted police chief. He is replaced by Beria, and executed in nineteen forty. "
+        "{own.3}Terror even reaches abroad. Leon Trotsky, Stalin's most influential rival, is assassinated in Mexico in nineteen forty. "
+        "The killer is an agent of the Soviet police.",
+        "{-own}{-g7}{ber}A precision about Beria, from outside the course. He headed the NKVD from nineteen thirty-eight to nineteen forty-five. "
+        "Then he stayed among Stalin's most powerful men, until his fall in nineteen fifty-three.",
         "{-ber}{eff}Now, why is this so important? {eff.1}When loyalty no longer protects you, obeying is not enough. "
-        "{eff.2}You must anticipate what the leader wants, before he asks. {eff.3}And that is exactly the effect sought. "
-        "Remember the photograph of episode four: Yezhov beside Stalin, then erased from the same image.",
+        "{eff.2}You must guess what the leader wants, before he even asks. {eff.3}And that is exactly the effect the regime is looking for. "
+        "Remember the photograph from episode four? Yezhov beside Stalin. Then erased from the very same image.",
     ], vis={
         "g7": dict(type="globe", code="H2", sc=[38]),
         "own": dict(type="liste", titre="Terror devours its own", petit=True, bande=True, x=60, y=130, w=620, items=[
             "1934 · Night of the Long Knives: 85 murdered", "1940 · Yezhov, head of the NKVD, executed",
             "1940 · Trotsky murdered in Mexico"]),
         "ber": dict(type="note", terme="A precision · outside the course", cles=["1938", "1945", "1953"],
-                    t="Beria headed the NKVD from 1938 to 1945, then stayed in charge of the Soviet police apparatus until 1953.",
+                    t="Beria headed the NKVD from 1938 to 1945, then remained one of Stalin's most powerful men until his fall in 1953.",
                     etape="The course says he “held the post until 1953”", x=170, y=200, w=940),
         "eff": dict(type="liste", titre="The effect sought", items=[
             "Loyalty no longer protects", "Obedience must be anticipated, not just given", "Exactly what the regime wants"],
@@ -292,19 +308,23 @@ SCENES = [
     dict(id="italie", chap="II.3 · Italian terror: a different scale", fond="nuit", humeur="calme",
          retenir="Matteotti murdered (1924) → the totalitarian state. State Defence Law (1926): death penalty, Special Court for “enemies of the State” · OVRA (1927). Far fewer death sentences; opponents sent to the confino, on islands. Repression legalised rather than industrialised.",
          beats=[
-        "{g8}{g8.1}Idea seven: Italian terror was real, but of a different scale, and the comparison must respect that. "
-        "Fascist violence founded the regime, then became routine. It never reached the scale of the other two.",
-        "{-g8}{it}{it.1}The turning point: the murder of the socialist deputy Matteotti, in 1924. After it, Mussolini abandoned parliament "
-        "and built the totalitarian state: the opposition press suppressed, the non-fascist ministers excluded. "
-        "{it.2}In 1926, the State Defence Law restored the death penalty, and set up a Special Court for the enemies of the State. "
-        "{it.3}In 1927, the OVRA followed. "
+        "{g8}{g8.1}Idea seven. Italian terror was real. But its scale was different, and a fair comparison must respect that. "
+        "Fascist violence founded the regime, and then it became routine. It never reached the scale of the other two.",
+        "{-g8}{it}{it.1}The turning point came in nineteen twenty-four, with the murder of the socialist deputy Matteotti. "
+        "After it, Mussolini abandoned parliament and built the totalitarian state. The opposition press was suppressed. "
+        "The non-fascist ministers were excluded. "
+        "{it.2}In nineteen twenty-six, the State Defence Law restored the death penalty. "
+        "It also set up a Special Court for the enemies of the State. "
+        "{it.3}The OVRA followed, in nineteen twenty-seven. "
         "{it.4}But the Special Court passed far fewer death sentences than the Soviet or German systems. "
-        "Opponents were sent to the confino: internal exile, on remote islands.",
-        "{-it}{form}So the formula to use: in Italy, repression was {!legalised rather than industrialised}legalised rather than industrialised. "
+        "Opponents were sent to the confino. That meant internal exile, on remote islands.",
+        "{-it}{form}So use this formula. In Italy, repression was {!legalised rather than industrialised}legalised rather than industrialised. "
         "Hence Monsieur Ros's question: a less oppressive terror?",
-        "{-form}{lib}One correction. The course says that Italy had no concentration camps. That is true of the repression of opponents "
-        "in Italy before the war: they were sent to the confino. {lib.1}But, outside the course: in its colony of Libya, Fascist Italy "
-        "confined the population of Cyrenaica in concentration camps, from 1930 to 1933. Write: no camps for opponents in Italy itself.",
+        "{-form}{lib}Now, one correction. The course says that Italy had no concentration camps. "
+        "That is true of the way opponents were punished in Italy before the war. They were sent to the confino. "
+        "{lib.1}But here is a fact from outside the course. In its colony of Libya, Fascist Italy locked up the population of Cyrenaica "
+        "in concentration camps, from nineteen thirty to nineteen thirty-three. "
+        "So write it precisely: no camps for opponents in Italy itself.",
     ], vis={
         "g8": dict(type="globe", code="H2", sc=[14]),
         "it": dict(type="liste", titre="Italy: terror made legal", items=[
@@ -322,12 +342,12 @@ SCENES = [
          beats=[
         "{g9}{g9.1}Idea eight: the common logic of the three terrors. All three used a secret police to threaten the population. "
         "All three silenced or killed their opponents. And above all, all three {!chose an enemy of the nation}chose an enemy of the nation.",
-        "{-g9}{en}Once an enemy is chosen, violence against part of the population seems justified to the rest. "
-        "{en.1}In the Soviet Union: the kulaks, as in Worksheet two. "
-        "{en.2}In Germany: Jews, Roma, prostitutes, homosexuals and disabled people, four hundred thousand of whom were forcibly sterilised. "
+        "{-g9}{en}Once an enemy is chosen, violence against it seems justified to the rest of the population. "
+        "{en.1}In the Soviet Union, the enemy was the kulaks, as in Worksheet two. "
+        "{en.2}In Germany: Jews, Roma, prostitutes, homosexuals, and disabled people. Four hundred thousand people were forcibly sterilised. "
         "{en.3}In Italy: the enemies of the State, tried by the Special Court.",
-        "{-en}{cons}And in Germany, this rested on a conspiracy theory: the nation was supposedly undermined by {!enemies from within}enemies from within. "
-        "{cons.1}You know its origin: the stab-in-the-back myth of 1918, from episode two.",
+        "{-en}{cons}In Germany, all this rested on a conspiracy theory. The nation was supposedly undermined by {!enemies from within}enemies from within. "
+        "{cons.1}You know where that comes from. It is the stab-in-the-back myth of nineteen eighteen, from episode two.",
     ], vis={
         "g9": dict(type="globe", code="H2", sc=[15]),
         "en": dict(type="liste", titre="One enemy of the nation per regime", cles=["kulaks", "Jews", "enemies"], items=[
@@ -342,23 +362,26 @@ SCENES = [
     dict(id="ws4", chap="Your turn · Worksheet 4", fond="aube", humeur="calme",
          retenir="Worksheet 4, six similarities: police above the law · terror wearing legality · enemies by category · camps and forced labour · terror striking the regime's men · the same function: to govern. Differences: scale, criterion (social / biological / political), counter-powers in Italy.",
          beats=[
-        "{ex1}Your turn. This is the task of Worksheet four: {!find the similarities}find the similarities in the use of violence "
-        "by the three regimes. Aim for five or six, each with one example per regime.",
+        "{ex1}Your turn. Here is the task of Worksheet four. {!find the similarities}Find the similarities in the use of violence "
+        "by the three regimes. Aim for five or six. For each one, give an example from each regime.",
         "{-ex1}{pa1}",
         ("P", 2.0),
-        "{-pa1}{sim}Here are the six similarities on the site. "
-        "{sim.1}One: a political police above the law: the OVRA, the Gestapo and the S.S., the NKVD. "
-        "{sim.2}Two: terror wearing the mask of legality: the State Defence Law of 1926, the Nuremberg laws of 1935, the Moscow trials. "
-        "{sim.3}Three: enemies designated by category, not by act: enemies of the State, Jews, kulaks. Violence becomes preventive. "
-        "{sim.4}Four: the camp as a system and forced labour as a resource: Dachau, the Gulag. "
-        "{sim.5}Five: terror striking the regime's own men: the Night of the Long Knives, Yezhov. "
-        "{sim.6}And six, the same function: to govern. Remove rivals, destroy every autonomous organisation, produce the fear that makes people docile.",
-        "{-sim}{dif}But a good answer never stops at similarities. Three differences. "
-        "{dif.1}The scale: Italy is by far the least lethal. "
-        "{dif.2}The criterion: social in the Soviet Union, biological in Germany, political in Italy. "
-        "{dif.3}And Italy left counter-powers standing: the monarchy, and the Church, with the Concordat of 1929.",
-        "{-dif}{ccl}The course's essay on this question concludes: {!identical in method, unequal in scale}identical in method and purpose, "
-        "unequal in scale and in the principle that designates the victim.",
+        "{-pa1}{sim}Here are the six similarities. "
+        "{sim.1}One. A political police above the law: the OVRA, the Gestapo and the S.S., the NKVD. "
+        "{sim.2}Two. Terror wearing the mask of legality. Think of the State Defence Law of nineteen twenty-six, "
+        "the Nuremberg laws of nineteen thirty-five, and the Moscow trials. "
+        "{sim.3}Three. Enemies designated by category, not by what they did: enemies of the State, Jews, kulaks. Violence becomes preventive. "
+        "{sim.4}Four. The camp as a system, and forced labour as a resource: Dachau, the Gulag. "
+        "{sim.5}Five. Terror striking the regime's own men: the Night of the Long Knives, and Yezhov. "
+        "{sim.6}And six. The same function, which is to govern. Remove rivals. Destroy every autonomous organisation. "
+        "Produce the fear that makes people docile.",
+        "{-sim}{dif}But a good answer never stops at similarities. "
+        "{dif.1}First, the scale. Italy is by far the least lethal. "
+        "{dif.2}Then, the criterion. It is social in the Soviet Union, biological in Germany, and political in Italy. "
+        "{dif.3}And finally, Italy left counter-powers standing: the monarchy, and the Church, with the Concordat of nineteen twenty-nine.",
+        "{-dif}{ccl}The course's essay concludes: the three terrors were "
+        "{!identical in method, unequal in scale}identical in method and purpose. But they were unequal in scale, "
+        "and in the principle that designates the victim.",
     ], vis={
         "ex1": dict(type="exo", niveau="quiz", titre="Find the similarities in the use of violence by the three regimes",
                     src="Worksheet 4", enonce=["Five or six similarities", "One example per regime for each"]),
@@ -381,23 +404,29 @@ SCENES = [
     dict(id="tableau1", chap="The totalitarianism table · seizure of power and ideology", fond="aube", humeur="calme",
          retenir="Seizure of power: Italy Oct. 1922 (squadristi, then the king) · Germany 30 Jan. 1933 (elections, Hindenburg, Reichstag fire decree, Enabling Act) · USSR from 1924, struggle inside the party, no electoral path. Ideology: same method; nation · race · class.",
          beats=[
-        "{tb}Now let's put everything together: Monsieur Ros's totalitarianism table, filled in as far as the course has gone. "
-        "Five blocks. {tb.1}Seizure of power. {tb.2}Ideology. {tb.3}Dictatorship. {tb.4}State terrorism. {tb.5}A controlled society. "
-        "This is a synthesis of Parts one and two: if you can fill it from memory, you are ready.",
-        "{-tb}{t1}Block one, seizure of power. The date. {t1.1}Italy: October 1922, the March on Rome, Mussolini appointed prime minister; "
-        "a totalitarian state from 1925. {t1.2}Germany: the thirtieth of January 1933, Hitler chancellor; full powers in March 1933. "
-        "{t1.3}The Soviet Union: from 1924, the death of Lenin; Stalin's power consolidated by 1928 and 1929.",
-        "{-t1}{t2}The causes. {t2.1}Italy: the mutilated victory, the Biennio Rosso, the fear of communism, a weak parliament. "
-        "{t2.2}Germany: the defeat of 1918, the Versailles Diktat, the stab-in-the-back myth, and the crisis of 1929, with about six million unemployed. "
-        "{t2.3}The Soviet Union: the collapse of the Tsarist state in the war, the revolutions of 1917, and the civil war until 1922.",
-        "{-t2}{t3}The process. {t3.1}Italy: squadristi violence, then a legal appointment by the king. "
-        "{t3.2}Germany: elections, thirty-seven per cent in July 1932, the appointment by Hindenburg, the Reichstag fire decree, the Enabling Act. "
-        "{t3.3}The Soviet Union: a struggle inside the party, Trotsky expelled in 1929. No electoral path at all.",
-        "{-t3}{t4}Block two, ideology. {t4.1}The similarities are identical in all three: one single truth, the rejection of liberal democracy, "
-        "total control, a New Man, violence held to be legitimate. These shared traits are precisely what the word totalitarianism designates. "
-        "{t4.2}The specificities: the nation and the absolute State in Italy, not racist before 1938. "
-        "{t4.3}Race struggle, antisemitism and Lebensraum in Germany. "
-        "{t4.4}Class struggle, the abolition of private property and socialism in one country in the Soviet Union.",
+        "{tb}Let's put everything together in Monsieur Ros's totalitarianism table, filled in as far as the course has gone. "
+        "It has five blocks. {tb.1}Seizure of power. {tb.2}Ideology. {tb.3}Dictatorship. {tb.4}State terrorism. {tb.5}A controlled society. "
+        "It is a synthesis of parts one and two. If you can fill it in from memory, you are ready.",
+        "{-tb}{t1}Block one: the seizure of power. First, the date. {t1.1}Italy: October nineteen twenty-two. "
+        "After the March on Rome, Mussolini is appointed prime minister. The state becomes totalitarian from nineteen twenty-five. "
+        "{t1.2}Germany: the thirtieth of January, nineteen thirty-three. Hitler becomes chancellor. He gets full powers in March. "
+        "{t1.3}The Soviet Union: it starts in nineteen twenty-four, with the death of Lenin. "
+        "Stalin's power is consolidated by nineteen twenty-eight or twenty-nine.",
+        "{-t1}{t2}Next, the causes. {t2.1}In Italy: the mutilated victory, the Biennio Rosso, the fear of communism, and a weak parliament. "
+        "{t2.2}In Germany: the defeat of nineteen eighteen, the Versailles Diktat, and the stab-in-the-back myth. "
+        "Then the crisis of nineteen twenty-nine, with about six million unemployed. "
+        "{t2.3}In the Soviet Union: the Tsarist state collapses in the war. Then come the revolutions of nineteen seventeen, "
+        "and a civil war that lasts until nineteen twenty-two.",
+        "{-t2}{t3}Then, the process. {t3.1}Italy: squadristi violence first, and then a legal appointment by the king. "
+        "{t3.2}Germany: elections, with thirty-seven per cent of the vote in July nineteen thirty-two. "
+        "Then the appointment by Hindenburg, the Reichstag fire decree, and the Enabling Act. "
+        "{t3.3}The Soviet Union: a struggle inside the party, and Trotsky expelled in nineteen twenty-nine. No electoral path at all.",
+        "{-t3}{t4}Block two: ideology. {t4.1}Here, the similarities are the same in all three. One single truth. "
+        "The rejection of liberal democracy. Total control. A New Man. And violence held to be legitimate. "
+        "These shared traits are exactly what the word totalitarianism means. "
+        "{t4.2}Then, the specificities. Italy: the nation and the absolute State, and no racism before nineteen thirty-eight. "
+        "{t4.3}Germany: race struggle, antisemitism, and Lebensraum. "
+        "{t4.4}The Soviet Union: class struggle, the abolition of private property, and socialism in one country.",
     ], vis={
         "tb": dict(type="liste", titre="M. Ros's table · five blocks", items=[
             "Seizure of power: date, causes, process", "Ideology: similarities, specificities",
@@ -426,25 +455,31 @@ SCENES = [
     dict(id="tableau2", chap="The totalitarianism table · dictatorship, terror, society", fond="aube", humeur="calme",
          retenir="Dictatorship: Duce / Führer / little father · PNF / NSDAP / CPSU · fasces / swastika / hammer and sickle. Terror: OVRA and Special Court / Gestapo and S.S. / OGPU, NKVD, Gulag. Society: Balilla / Hitler Youth / Komsomol. Part III blocks still to fill.",
          beats=[
-        "{t5}Block three, the dictatorship. {t5.1}The cult of personality: il Duce, der Führer, the little father of the peoples, with Stalingrad in 1925. "
-        "{t5.2}The single party: the PNF, the National Fascist Party; the NSDAP; the Communist Party of the Soviet Union. "
+        "{t5}Block three: the dictatorship. {t5.1}The cult of personality. Il Duce. Der Führer. "
+        "And the little father of the peoples, with a city renamed Stalingrad in nineteen twenty-five. "
+        "{t5.2}The single party. In Italy, the National Fascist Party. In Germany, the Nazi Party. In the Soviet Union, the Communist Party. "
         "{t5.3}The symbols: the Roman fasces, the swastika, the hammer and sickle. "
-        "{t5.4}The slogans: Il Duce ha sempre ragione; Heil Hitler; and Thank you Comrade Stalin, for our happy childhood.",
-        "{-t5}{t6}And the supports, because these regimes did not rest on terror alone. "
-        "{t6.1}In Italy: landowners, shopkeepers, veterans, the monarchy and the Church. "
-        "{t6.2}In Germany: the middle classes, the conservative elites, the industrialists, the army. "
-        "{t6.3}In the Soviet Union: the party apparatus, the bureaucracy, part of the working class.",
-        "{-t6}{t7}Block four, state terrorism: today's lesson. {t7.1}The political police: the OVRA and the Special Court; "
-        "the Gestapo and the S.S., both under Himmler; the OGPU, then the NKVD, and the Gulag. "
-        "{t7.2}The opponents in Italy: socialists and communists, like Matteotti, and Jews from 1938. "
-        "{t7.3}In Germany: communists, socialists, Jews, gypsies, homosexuals, the disabled, Jehovah's Witnesses. "
-        "{t7.4}In the Soviet Union: kulaks, class enemies, old Bolsheviks, army officers.",
-        "{-t7}{t8}Block five, a controlled society, from episode four. {t8.1}Youth: the Balilla, the Hitler Youth from ten to eighteen, the Komsomol. "
-        "{t8.2}Thought and culture: the opposition press suppressed; racial instruction from 1933; socialist realism and retouched photographs. "
-        "{t8.3}The economy: corporatism and autarky; rearmament and the Four-Year Plan; five-year plans and collectivisation. "
-        "{t8.4}And the administration: in all three, the party doubles or controls the state.",
-        "{-t8}{rest}Two blocks of the table are still empty: international issues, and on the road to war. "
-        "They belong to Part three, the next two episodes.",
+        "{t5.4}And the slogans. Il Duce ha sempre ragione: the Duce is always right. Heil Hitler. "
+        "And: Thank you, Comrade Stalin, for our happy childhood.",
+        "{-t5}{t6}Next, the supports. These regimes did not rest on terror alone. "
+        "{t6.1}In Italy: landowners, shopkeepers, veterans, the monarchy, and the Church. "
+        "{t6.2}In Germany: the middle classes, the conservative elites, the industrialists, and the army. "
+        "{t6.3}In the Soviet Union: the party apparatus, the bureaucracy, and part of the working class.",
+        "{-t6}{t7}Block four, state terrorism: today's lesson. {t7.1}The political police. "
+        "In Italy, the OVRA and the Special Court. In Germany, the Gestapo and the S.S., both under Himmler. "
+        "In the Soviet Union, the OGPU, then the NKVD, and the Gulag. "
+        "{t7.2}The opponents. In Italy: socialists and communists, like Matteotti. And Jews, from nineteen thirty-eight. "
+        "{t7.3}In Germany: communists, socialists, Jews, Roma, homosexuals, the disabled, and Jehovah's Witnesses. "
+        "{t7.4}In the Soviet Union: kulaks, class enemies, old Bolsheviks, and army officers.",
+        "{-t7}{t8}Block five: a controlled society, from episode four. {t8.1}Youth: the Balilla, the Hitler Youth from ten to eighteen, and the Komsomol. "
+        "{t8.2}Thought and culture. In Italy, the opposition press is suppressed. "
+        "In Germany, racial instruction is compulsory from nineteen thirty-three. "
+        "In the Soviet Union, socialist realism, and retouched photographs. "
+        "{t8.3}The economy. Corporatism and autarky in Italy. Rearmament and the Four-Year Plan in Germany. "
+        "Five-year plans and collectivisation in the Soviet Union. "
+        "{t8.4}And the administration. In all three, the party doubles or controls the state.",
+        "{-t8}{rest}Two blocks of the table are still empty: international issues, and the road to war. "
+        "They belong to part three, in the next two episodes.",
     ], vis={
         "t5": dict(type="liste", titre="Table · dictatorship", marques=["★", "P", "S", "“"], petit=True, items=[
             "Cult: il Duce · der Führer · “the little father of the peoples” (Stalingrad, 1925)",
@@ -459,7 +494,7 @@ SCENES = [
         "t7": dict(type="liste", titre="Table · state terrorism", marques=["⚑", "IT", "DE", "SU"], petit=True, items=[
             "Police: OVRA (1927), Special Court (1926) · Gestapo and S.S. under Himmler · OGPU, NKVD, the Gulag",
             "Opponents: socialists, communists (Matteotti, 1924); Jews from 1938",
-            "Communists, socialists, Jews, gypsies, homosexuals, the disabled, Jehovah's Witnesses",
+            "Communists, socialists, Jews, Roma, homosexuals, the disabled, Jehovah's Witnesses",
             "Kulaks, “class enemies”, old Bolsheviks, army officers"], x=130, y=120, w=1020),
         "t8": dict(type="liste", titre="Table · a controlled society", marques=["Y", "T", "€", "A"], petit=True, items=[
             "Youth: Balilla · Hitler Youth, 10 to 18 · Komsomol",
@@ -476,26 +511,26 @@ SCENES = [
     dict(id="essai", chap="Your turn · an essay", fond="aube", humeur="calme",
          retenir="“Terror was the main tool”: I. Yes, a central and permanent tool (police, trials, camps, purges) · II. But not alone: propaganda, the cult, the New Man, the confidence of the masses (Arendt) · III. Unequal: Italy legalised rather than industrialised. Judgement: an essential tool, never the only one.",
          beats=[
-        "{ex2}Now an essay. {!How far do you agree}“Terror was the main tool of totalitarian regimes.” How far do you agree?",
-        "{-ex2}{met}Remember the method. {met.1}“How far” asks you to weigh: never “entirely”, never “not at all”. "
-        "{met.2}Define the key word in the introduction. {met.3}Three parts: the case for, the case against, the nuance. "
-        "{met.4}And a clear judgement, in the introduction and in the conclusion.",
+        "{ex2}Now, an essay. {!How far do you agree}“Terror was the main tool of totalitarian regimes.” How far do you agree?",
+        "{-ex2}{met}Remember the method. {met.1}How far asks you to weigh. Never entirely. Never not at all. "
+        "{met.2}Define the key word in the introduction. {met.3}Write three parts: the case for, the case against, and the nuance. "
+        "{met.4}And give a clear judgement, both in the introduction and in the conclusion.",
         "{-met}{pa2}",
         ("P", 2.0),
-        "{-pa2}{plan2}Here is a model plan. {plan2.1}Part one: yes, terror was a central tool, and a permanent one: "
-        "a political police above the law, the Moscow trials and six hundred and eighty thousand executions, the camps from Dachau to the Gulag, "
-        "and terror striking even the regime's own men. "
-        "{plan2.2}Part two: but terror was never alone. Totalitarianism means coercion through terror and propaganda together: "
-        "the cult of the leader, the rallies, the youth organisations, the New Man. "
-        "And Hannah Arendt warns that Hitler and Stalin needed the confidence of the masses. "
-        "{plan2.3}Part three: terror was unequal. Italy legalised repression rather than industrialised it, "
-        "and Mussolini had to accept the king and the Church.",
-        "{-plan2}{intro}And a model introduction. "
-        "{intro.1}Totalitarianism is a regime that seeks total control of society, through coercion, to transform man according to an ideology. "
-        "In Fascist Italy, Nazi Germany and Stalin's Soviet Union, terror was everywhere: police, trials, camps, purges. "
-        "{intro.2}But was it their main tool, or one tool among others? "
-        "{intro.3}This essay argues that terror was an essential tool of all three, but never the only one: "
-        "it worked together with propaganda and popular support, and its scale varied greatly from one regime to another.",
+        "{-pa2}{plan2}Here is a model plan. {plan2.1}Part one. Yes, terror was a central tool, and a permanent one. "
+        "Think of the political police above the law. The Moscow trials, and the Great Purge with its six hundred and eighty thousand executions. "
+        "The camps, from Dachau to the Gulag. And terror striking even the regime's own men. "
+        "{plan2.2}Part two. But terror never worked alone. Totalitarianism means coercion through terror and propaganda together. "
+        "The cult of the leader, the rallies, the youth organisations, the New Man. "
+        "And Hannah Arendt warns us: Hitler and Stalin needed the confidence of the masses. "
+        "{plan2.3}Part three. Terror was unequal. Italy legalised repression rather than industrialising it. "
+        "And Mussolini had to accept the king and the Church.",
+        "{-plan2}{intro}And here is a model introduction. "
+        "{intro.1}Totalitarianism is a regime that seeks total control of society, through coercion, in order to transform man according to an ideology. "
+        "In Fascist Italy, Nazi Germany and Stalin's Soviet Union, terror was everywhere. Police, trials, camps, purges. "
+        "{intro.2}But was it their main tool? Or one tool among others? "
+        "{intro.3}This essay argues that terror was an essential tool for all three, but never the only one. "
+        "It worked together with propaganda and popular support. And its scale varied greatly from one regime to another.",
     ], vis={
         "ex2": dict(type="exo", niveau="essay", titre="“Terror was the main tool of totalitarian regimes.” How far do you agree?",
                     src="Essay question written for this video, on Parts I and II", enonce=["A plan in three parts", "Then write the introduction"]),
@@ -506,7 +541,7 @@ SCENES = [
         "pa2": dict(type="pause", t="Write your plan in three parts, then your introduction: definition, problem, judgement.",
                     sous="Pause the video, write it on a sheet, then play on for a model."),
         "plan2": dict(type="liste", titre="A model plan", petit=True, items=[
-            "Yes: a central, permanent tool · police above the law, Moscow trials (680,000 executions), camps, purges of the regime's own men",
+            "Yes: a central, permanent tool · police above the law, Moscow trials, Great Purge (680,000 executions), camps, the regime's own men",
             "But never alone: terror + propaganda · cult, rallies, youth, the New Man · Arendt: “the confidence of the masses”",
             "Unequal: Italy legalised rather than industrialised · the king and the Church remained"], x=110, y=120, w=1060),
         "intro": dict(type="liste", titre="A model introduction", petit=True, items=[
@@ -518,17 +553,17 @@ SCENES = [
 
     # ================================================================ récap
     dict(id="recap", chap="Recap", fond="nuit", humeur="calme", beats=[
-        "{carte}Let's sum up. {carte.1}Terror is a method of government: permanent, organised, planned, so that each person censors himself. "
+        "{carte}Let's sum up. {carte.1}Terror is a method of government. It is permanent, organised and planned, so that each person censors himself. "
         "{carte.2}Its instruments: a political police above the law, show trials, and the camp as a permanent institution, from Dachau to the Gulag. "
-        "{carte.3}Its victims: enemies chosen by category, the kulaks, the Jews, the disabled, and even the regime's own men. "
-        "{carte.4}And its limits: Italy legalised its repression rather than industrialised it, and terror never ruled alone.",
+        "{carte.3}Its victims: enemies chosen by category. The kulaks, the Jews, the disabled. And even the regime's own men. "
+        "{carte.4}Its limits: Italy legalised its repression rather than industrialising it. And nowhere did terror rule alone.",
         ("P", 4.0),
         "{-carte}{fin}Next episode: hegemonic ambitions. War as a value: Abyssinia, Lebensraum, and Japan.",
         ("P", 2.0),
     ], vis={
         "carte": dict(type="carte", centre="MASS TERROR", branches=[
             dict(t="A method", items=["permanent, planned", "Arendt: “from within”", "self-censorship"]),
-            dict(t="Instruments", items=["OVRA · Gestapo, S.S. · NKVD", "Moscow trials · 680,000", "Dachau · the Gulag"]),
+            dict(t="Instruments", items=["OVRA · Gestapo, S.S. · NKVD", "Moscow trials · Great Purge", "Dachau · the Gulag"]),
             dict(t="Victims", items=["kulaks · Jews · disabled", "400,000 sterilised · T4", "Long Knives · Yezhov"]),
             dict(t="Limits", items=["Italy: legalised", "confino, Special Court", "terror + support"])]),
         "fin": dict(type="mot", t="Next: hegemonic ambitions", g="Episode 6 · Abyssinia, Lebensraum, Japan", y=270, taille=72),

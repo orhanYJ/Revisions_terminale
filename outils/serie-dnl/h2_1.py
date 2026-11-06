@@ -34,7 +34,7 @@ PRONONCIATION = {"Arendt": "Ah-rent", "Hehn": "Hayn", "Duce": "Doo-chay", "Führ
                  "Sudetenland": "Soo-day-ten-land", "Hindenburg": "Hin-den-boorg", "U.S.S.R.": "U S S R",
                  "Littell": "Lih-tell", "Amarcord": "Ah-mar-cord", "Shalamov": "Sha-la-mov", "Kolyma": "Ko-ly-ma",
                  "Benigni": "Ben-een-yee", "Gansel": "Gahn-zel", "Costelle": "Coss-tell", "Cohen-Scali": "Co-en Scah-lee",
-                 "Riefenstahl": "Reef-en-shtahl"}
+                 "Riefenstahl": "Reef-en-shtahl", "DBQ": "D B Q"}
 
 # vote nazi (cours, I.2, graphiques de M. Ros) : mai 1928, septembre 1930, juillet 1932, novembre 1932
 VOTE = [[1928.4, 2.6], [1930.7, 18.3], [1932.55, 37.4], [1932.85, 33.1]]
@@ -42,16 +42,16 @@ VOTE = [[1928.4, 2.6], [1930.7, 18.3], [1932.55, 37.4], [1932.85, 33.1]]
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Opening", fond="guerre", humeur="mystere", carton=False, beats=[
-        "{g0}{q1}Nineteen twenty-nine. In New York, a silent crowd stands outside the Stock Exchange: the crash has begun. "
-        "The same year, in Nuremberg, Adolf Hitler greets his supporters at a congress of the Nazi Party. Two photographs, one year.",
-        "{-q1}{q2}Between nineteen seventeen and nineteen thirty-nine, three regimes tried to do something no tyranny had tried before: "
-        "to control not only the state, but the whole of society… and to remake human beings.",
-        "{-q2}{q3}So what exactly is totalitarianism? And did it lead the world into the Second World War? "
+        "{g0}{q1}Nineteen twenty-nine. In New York, a silent crowd waits outside the Stock Exchange. The crash has begun. "
+        "That same year, in Nuremberg, Adolf Hitler greets his supporters at a congress of the Nazi Party. Two photographs. One year.",
+        "{-q1}{q2}Between nineteen seventeen and nineteen thirty-nine, three regimes tried something no tyranny had tried before. "
+        "They wanted to control not only the state, but the whole of society. And they wanted to remake human beings.",
+        "{-q2}{q3}So what exactly is totalitarianism? And did it drag the world into the Second World War? "
         "Those are the two questions of this chapter.",
-        "{-q3}{-g0}{plan}This series covers the whole chapter in nine episodes. {plan.1}Today: what is totalitarianism? "
+        "{-q3}{-g0}{plan}This series covers the whole chapter, in nine episodes. {plan.1}Today: what is totalitarianism? "
         "{plan.2}Then, from the Great War to power. {plan.3}Three regimes, three ideologies. {plan.4}The leader, the party and the New Man. "
-        "{plan.5}Mass terror. {plan.6}Hegemonic ambitions. {plan.7}Appeasement and the road to war. "
-        "{plan.8}After that, an episode only for the exam, essay and DBQ. {plan.9}And a final recap.",
+        "{plan.5}Mass terror. {plan.6}Hegemonic ambitions. {plan.7}Appeasement, and the road to war. "
+        "{plan.8}After that comes an episode just for the exam, with the essay and the DBQ. {plan.9}And a final recap.",
         "{-plan}{titre}",
         ("P", 3.2),
     ], vis={
@@ -72,17 +72,17 @@ SCENES = [
     dict(id="naissance", chap="1914 – 1933 on the map", fond="nuit", humeur="tension",
          retenir="1914–1918: the trenches, matrix of the regimes · 1917: the Bolsheviks seize power · 1922: the USSR and the March on Rome · 1929: two crises · 30 Jan. 1933: Hitler chancellor.",
          beats=[
-        "{g1}Before the definitions, let's take the whole story on the map, in a few minutes. Every episode will come back to these dates. "
-        "{g1.1}It all begins in the trenches of the First World War. For the historian George Mosse, four years of mass killing "
-        "made violence ordinary: the Great War is the matrix of totalitarianism. That is episode two.",
-        "{g1.2}Nineteen seventeen, Russia. In February, the war brings down the Tsar. In October, the Bolsheviks of Lenin and Trotsky "
-        "seize power, then win a civil war. In nineteen twenty-two, the Soviet Union is created; from nineteen twenty-four, it is Stalin's USSR.",
-        "{g1.3}Nineteen twenty-two, Italy. A victorious country, but frustrated, and afraid of a communist revolution. "
-        "In October, Mussolini's Blackshirts march on Rome, and the king appoints him prime minister. Fascist Italy lasts until nineteen forty-three.",
-        "{g1.4}Nineteen twenty-nine. The crash in New York, and the world crisis of chapter one. In Germany, the Nazi Party is still a small party… "
-        "but the crisis is about to change everything.",
-        "{g1.5}The thirtieth of January, nineteen thirty-three. President Hindenburg appoints Hitler chancellor, legally. "
-        "Nazi Germany is born, and it lasts until nineteen forty-five.",
+        "{g1}Before any definition, let's run through the whole story on the map. Every episode will come back to these dates. "
+        "{g1.1}It all begins in the trenches of the First World War. Four years of mass killing made violence ordinary. "
+        "For the historian George Mosse, the Great War is the matrix of totalitarianism. We'll see it in episode two.",
+        "{g1.2}Nineteen seventeen, in Russia. In February, the war brings down the Tsar. In October, Lenin and Trotsky's Bolsheviks seize power. "
+        "Then they win a civil war. The Soviet Union is created in nineteen twenty-two. And from nineteen twenty-four, it is Stalin's Soviet Union.",
+        "{g1.3}Nineteen twenty-two, in Italy. The country won the war, but it feels cheated. And it is afraid of a communist revolution. "
+        "In October, Mussolini's Blackshirts march on Rome. The king appoints him prime minister. Fascist Italy will last until nineteen forty-three.",
+        "{g1.4}Nineteen twenty-nine. The crash in New York, and the world crisis of chapter one. In Germany, the Nazi Party is still a small party. "
+        "But the crisis is about to change everything.",
+        "{g1.5}The thirtieth of January, nineteen thirty-three. President Hindenburg appoints Hitler chancellor. Legally. "
+        "Nazi Germany is born. It will last until nineteen forty-five.",
     ], vis={
         "g1": dict(type="globe", code="H2", sc=[1, 2, 6, 13, 20]),
     }),
@@ -91,19 +91,19 @@ SCENES = [
     dict(id="versguerre", chap="1933 – 1939 on the map", fond="nuit", humeur="tension",
          retenir="7 March 1936: the Rhineland · Oct. 1936: the Rome–Berlin Axis · 12 March 1938: the Anschluss · Sept. 1938: Munich · 23 Aug. 1939: the Nazi-Soviet pact · 1–3 Sept. 1939: war.",
          beats=[
-        "{g2}And from there, the road leads to war. {g2.1}The seventh of March, nineteen thirty-six: German troops enter the demilitarised Rhineland. "
+        "{g2}And from there, the road leads to war. {g2.1}The seventh of March, nineteen thirty-six. German troops march into the demilitarised Rhineland. "
         "France and Britain do nothing. Hitler's gamble pays off.",
-        "{g2.2}October nineteen thirty-six: the Rome–Berlin Axis. Despite their mistrust, the two fascist dictators become allies, "
-        "and both support Franco in the Spanish Civil War.",
+        "{g2.2}October nineteen thirty-six: the Rome-Berlin Axis. The two fascist dictators mistrust each other, yet they become allies. "
+        "And both of them back Franco in the Spanish Civil War.",
         "{g2.3}March nineteen thirty-eight: the Anschluss. The German army enters Vienna, and Austria is annexed. "
-        "{g2.4}September nineteen thirty-eight: at Munich, France and Britain hand the Sudetenland over to Hitler, without the Czechs. "
-        "This is appeasement, the second key term of the chapter.",
-        "{g2.5}August nineteen thirty-nine: the shock. Nazi Germany and Stalin's Soviet Union, sworn ideological enemies, sign a pact. "
-        "{g2.6}And on the first of September, Germany attacks Poland. Two days later, France and Britain declare war.",
-        "{-g2}{frise}So here are the dates to keep in mind. {frise.1}Nineteen seventeen: the Bolsheviks in power. "
+        "{g2.4}September nineteen thirty-eight. At Munich, France and Britain hand the Sudetenland over to Hitler. The Czechs are not even invited. "
+        "This is appeasement. It is the second key term of the chapter.",
+        "{g2.5}August nineteen thirty-nine. Now comes the shock. Nazi Germany and Stalin's Soviet Union are sworn ideological enemies. And they sign a pact. "
+        "{g2.6}On the first of September, Germany attacks Poland. Two days later, France and Britain declare war.",
+        "{-g2}{frise}Let's fix the dates in your mind. {frise.1}Nineteen seventeen: the Bolsheviks take power. "
         "{frise.2}Nineteen twenty-two: the March on Rome. {frise.3}Nineteen twenty-nine: two crises at once. "
-        "{frise.4}Nineteen thirty-three: Hitler chancellor. {frise.5}Nineteen thirty-six: the Rhineland and the Axis. "
-        "{frise.6}Nineteen thirty-eight: the Anschluss and Munich. {frise.7}Nineteen thirty-nine: the pact, and war.",
+        "{frise.4}Nineteen thirty-three: Hitler becomes chancellor. {frise.5}Nineteen thirty-six: the Rhineland, and the Axis. "
+        "{frise.6}Nineteen thirty-eight: the Anschluss, and Munich. {frise.7}Nineteen thirty-nine: the pact. And war.",
         ("P", 3.0),
     ], vis={
         "g2": dict(type="globe", code="H2", sc=[28, 29, 33, 34, 36, 37]),
@@ -118,20 +118,20 @@ SCENES = [
     dict(id="deuxcrises", chap="1929: two crises at once", fond="nuit", humeur="mystere",
          retenir="1929 opens two crises: the crisis of capitalism (chapter 1) and the threat of totalitarianism (chapter 2). Which one led to war: one, the other, or both?",
          beats=[
-        "{photos}Now the course. Monsieur Ros opens the chapter with those two photographs from nineteen twenty-nine. "
-        "{photos.1}A solemn crowd outside the New York Stock Exchange, after the crash. And Adolf Hitler greeting his supporters "
+        "{photos}Now for the course. Monsieur Ros opens the chapter with those two photographs from nineteen twenty-nine. "
+        "{photos.1}On one, a solemn crowd stands outside the New York Stock Exchange, after the crash. On the other, Adolf Hitler greets his supporters "
         "at the fourth Nazi Party Congress, in Nuremberg.",
         "{-photos}{deux}{deux.g}Why put them side by side? Because nineteen twenty-nine opens two crises at once. "
-        "On one side, the crisis of capitalism: the crash, the Depression, democracy in retreat. That was chapter one. "
-        "{deux.d}On the other, the threat of totalitarianism: that is this chapter. And both roads end in the same place: the Second World War.",
-        "{-deux}{etou}On the slide, between the two, there are just three words: {!and or}and, or? "
-        "Did one crisis cause the war, or did the two work together? Keep that question in mind: it is the thread of the whole chapter.",
-        "{-etou}{gr}Germany shows how the two roads met. {gr.1}In May nineteen twenty-eight, before the crisis, the Nazi Party wins two point six per cent of the vote: "
-        "a fringe party. {gr.2}September nineteen thirty: eighteen point three per cent. "
-        "{gr.3}July nineteen thirty-two: thirty-seven point four per cent, the first party of Germany, with five point six million unemployed. "
-        "{gr.4}And in November, it falls back to thirty-three point one. Never a majority. Remember that: it matters for Arendt, later in this episode.",
-        "{-gr}{crise}So the world crisis of the nineteen thirties is two things at once: {crise.1}a crisis of democracy in retreat, "
-        "{crise.2}and the steady advance of totalitarianism.",
+        "The first is the crisis of capitalism. The crash, the Depression, democracy in retreat. That was chapter one. "
+        "{deux.d}The second is the threat of totalitarianism. That is this chapter. And both roads end in the same place. The Second World War.",
+        "{-deux}{etou}On the slide, between the two pictures, there are just three words. {!and or}And, or? "
+        "Did one crisis cause the war? Or did the two work together? Keep that question in mind. It is the thread of the whole chapter.",
+        "{-etou}{gr}Germany shows how the two roads met. {gr.1}May nineteen twenty-eight, before the crisis. The Nazi Party wins two point six per cent of the vote. "
+        "It is a fringe party. {gr.2}September nineteen thirty: eighteen point three per cent. "
+        "{gr.3}July nineteen thirty-two: thirty-seven point four per cent. Now it is the first party in Germany. And Germany has five point six million unemployed. "
+        "{gr.4}In November, the Nazis fall back to thirty-three point one. So, never a majority. Remember that. It will matter when we get to Arendt.",
+        "{-gr}{crise}So the world crisis of the nineteen thirties is two things at once. {crise.1}It is a crisis of democracy, in retreat. "
+        "{crise.2}And it is the steady advance of totalitarianism.",
     ], vis={
         "photos": dict(type="note", terme="Two photographs, 1929", cles=["crash", "Nuremberg"],
                        t="A solemn crowd outside the New York Stock Exchange after the crash; Hitler at the Nazi Party Congress in Nuremberg.",
@@ -155,19 +155,19 @@ SCENES = [
          retenir="Underlying causes of WWII: Taylor (1961), the democracies' failure, “very controversial” · Hehn, an economic conflict · Winter, a “Thirty Years War” 1914–1945 · this chapter: totalitarian ideology.",
          beats=[
         "{q4}The aim of the whole of Theme one is to assess the underlying causes of the Second World War. "
-        "And on this question, historians disagree. Monsieur Ros puts three of them on his slide.",
-        "{-q4}{g3}{hist}{g3.1}{hist.1}First, A. J. P. Taylor, a British historian, nineteen-oh-six to nineteen ninety. "
-        "In The Origins of the Second World War, in nineteen sixty-one, he puts the blame on the failure of the democracies to stop Hitler. "
-        "Appeasement, Munich: Hitler went further because nobody stopped him.",
-        "{g3.2}{hist.2}Second, Paul N. Hehn, nineteen twenty-seven to two thousand and fourteen. For him, the Second World War was an economic conflict, "
-        "born of the crash and its consequences: markets closing, raw materials, the search for resources.",
-        "{g3.3}{hist.3}Third, Jay Winter, born in nineteen forty-five. For him, nineteen fourteen to nineteen forty-five is one single "
-        "{!Thirty Years War}Thirty Years War: the second conflict is the direct continuation of the first.",
-        "{-hist}{-g3}{taylor}Notice the warning on the reading list. Taylor's book is there, with three words next to it: {!very controversial thesis}very controversial thesis. "
-        "{taylor.1}Why? Because if the democracies are to blame, Hitler's own will to war almost disappears. "
-        "You can quote Taylor, but you must discuss him.",
-        "{-taylor}{quatre}And this chapter adds a fourth candidate to the list: {!totalitarian ideology}totalitarian ideology. "
-        "Did the ideologies of these regimes make war inevitable? That is the question of Part three, and the key issue of the chapter.",
+        "And here, historians disagree. Monsieur Ros puts three of them on his slide.",
+        "{-q4}{g3}{hist}{g3.1}{hist.1}The first is A. J. P. Taylor, a British historian, who lived from nineteen-oh-six to nineteen ninety. "
+        "His book, The Origins of the Second World War, came out in nineteen sixty-one. He blames the democracies, for failing to stop Hitler. "
+        "Think of appeasement, of Munich. Hitler went further because nobody stopped him.",
+        "{g3.2}{hist.2}The second is Paul N. Hehn, from nineteen twenty-seven to two thousand and fourteen. For him, the war was an economic conflict. "
+        "It was born of the crash. Markets closing, and a scramble for resources.",
+        "{g3.3}{hist.3}The third is Jay Winter, born in nineteen forty-five. He sees nineteen fourteen to nineteen forty-five as one single "
+        "{!Thirty Years War}Thirty Years War. The second conflict simply continues the first.",
+        "{-hist}{-g3}{taylor}Now, notice the warning on the reading list. Taylor's book is there, with three words beside it. {!very controversial thesis}Very controversial thesis. "
+        "{taylor.1}Why? Because if the democracies are to blame, Hitler's own will to war almost vanishes. "
+        "Quote Taylor, but discuss him.",
+        "{-taylor}{quatre}And this chapter adds a fourth candidate to the list. {!totalitarian ideology}Totalitarian ideology. "
+        "Did the ideologies of these regimes make war inevitable? That is the question of Part three. And it is the key issue of the chapter.",
     ], vis={
         "q4": dict(type="question", t="What were the underlying causes of the Second World War?"),
         "g3": dict(type="globe", code="H2", sc=[31, 13, 1]),
@@ -186,17 +186,17 @@ SCENES = [
     dict(id="definition", chap="A definition in three parts", fond="aube", humeur="lumiere",
          retenir="Key term. Totalitarianism: a regime that seeks total control of society, through coercion, to transform man according to an ideology.",
          beats=[
-        "{def1}Here is the first key term of the chapter, and you must know it word for word. {!Totalitarianism}Totalitarianism: "
+        "{def1}Here is the first key term of the chapter. You must know it word for word. {!Totalitarianism}Totalitarianism: "
         "a regime that seeks total control of society, through coercion, in order to transform man according to an ideology.",
-        "{-def1}{trois}The definition has three parts. {trois.1}One: control is {!total}total. It does not stop at political life: "
-        "it reaches work, leisure, the family, the school, religion… and even thought.",
-        "{trois.2}Two: it relies on {!coercion}coercion, and coercion means two things together: terror and propaganda. "
+        "{-def1}{trois}The definition has three parts. {trois.1}Part one. The control is {!total}total. It does not stop at politics. "
+        "It reaches work, leisure, the family, the school, religion. Even thought.",
+        "{trois.2}Part two. It relies on {!coercion}coercion. And coercion means two things together. Terror, and propaganda. "
         "Fear, and persuasion.",
-        "{trois.3}Three, and this is the most important: its aim is not obedience, but {!transformation}transformation. "
+        "{trois.3}Part three, the most important one. The aim is not obedience. It is {!transformation}transformation. "
         "The regime wants to create a New Man, shaped by its ideology.",
-        "{-trois}{photo3}{dict}{dict.g}That third part is what separates a totalitarian regime from an ordinary dictatorship. "
-        "An ordinary dictatorship is content if people keep quiet. {dict.d}A totalitarian regime wants people to believe, "
-        "to cheer, to change. Silence is not enough: it wants your soul.{-photo3}",
+        "{-trois}{photo3}{dict}{dict.g}That third part is what sets a totalitarian regime apart from an ordinary dictatorship. "
+        "An ordinary dictatorship is happy if people keep quiet. {dict.d}A totalitarian regime wants them to believe. "
+        "To cheer. To change. Silence is not enough. It wants your soul.{-photo3}",
     ], vis={
         "def1": dict(type="def", cles=["total", "coercion", "transform", "ideology"], terme="Key term · Totalitarianism",
                      t="A regime that seeks total control of society, through coercion, in order to transform man according to an ideology.",
@@ -215,20 +215,20 @@ SCENES = [
     dict(id="roue", chap="The seven key traits", fond="nuit", humeur="calme",
          retenir="Seven traits: ideology · dynamic leader · dictatorship and one-party rule · state control of individuals · state control of society · methods of enforcement · modern technology.",
          beats=[
-        "{src}On his slide, Monsieur Ros shows a wheel: the key traits of totalitarianism, taken from an American textbook, "
-        "World History, published by McDougal Littell in two thousand and nine. Seven traits. "
-        "{-src}{roue}{roue.1}One: an ideology, which sets the goals of the state, glorifies them and justifies every action of the government. "
-        "{roue.2}Two: a dynamic leader, who unites the people, symbolises the government and encourages popular support.",
-        "{roue.3}Three: dictatorship and one-party rule. Absolute authority; the party dominates the government. "
-        "{roue.4}Four: state control of individuals. The regime demands loyalty, denies basic liberties, and expects personal sacrifice for the state.",
-        "{roue.5}Five: state control of society. Business, labour and housing; education, religion and the arts; even personal life and youth groups. "
+        "{src}On his slide, Monsieur Ros shows a wheel. It gives the key traits of totalitarianism. It comes from an American textbook, "
+        "World History, published by McDougal Littell in two thousand and nine. There are seven traits. "
+        "{-src}{roue}{roue.1}One: an ideology. It sets the goals of the state, glorifies them, and justifies everything the government does. "
+        "{roue.2}Two: a dynamic leader. He unites the people, symbolises the government, and stirs up popular support.",
+        "{roue.3}Three: dictatorship and one-party rule. The authority is absolute, and the party dominates the government. "
+        "{roue.4}Four: state control of individuals. The regime demands loyalty. It denies basic liberties. And it expects personal sacrifice for the state.",
+        "{roue.5}Five: state control of society. Business, labour and housing. Education, religion and the arts. Even private life, and youth groups. "
         "{roue.6}Six: methods of enforcement. Police terror, indoctrination, censorship, persecution.",
-        "{roue.7}And seven: modern technology. Mass communication to spread propaganda, and advanced military weapons.",
-        "{-roue}{memo}Seven is a lot to remember, so here is a memory aid. {memo.1}The ideology sets the goal. "
-        "{memo.2}The leader and the party embody it. {memo.3}Control and enforcement impose it. {memo.4}Modern technology spreads it.",
-        "{-memo}{techno}And look closely at the last trait. It is what separates totalitarianism from the older tyrannies. "
-        "{techno.1}An ancient tyrant could frighten a city. With the radio, film and modern weapons, a twentieth-century regime "
-        "can reach every home, every day.",
+        "{roue.7}And seven: modern technology. Mass communication, to spread propaganda. And advanced military weapons.",
+        "{-roue}{memo}Seven is a lot to remember. So here is a memory aid. {memo.1}The ideology sets the goal. "
+        "{memo.2}The leader and the party embody it. {memo.3}Control and enforcement impose it. {memo.4}And modern technology spreads it.",
+        "{-memo}{techno}Look closely at that last trait. It is what separates totalitarianism from the tyrannies of the past. "
+        "{techno.1}An ancient tyrant could frighten a city. But a twentieth-century regime has the radio, film, and modern weapons. "
+        "It can reach every home, every single day.",
     ], vis={
         "roue": dict(type="liste", titre="The seven key traits of totalitarianism (after McDougal Littell, 2009)", petit=True,
                      cles=["Ideology", "leader", "one-party", "individuals", "society", "enforcement", "technology"], items=[
@@ -254,21 +254,21 @@ SCENES = [
     dict(id="ideologie", chap="Ideology: a supreme goal", fond="nuit", humeur="tension",
          retenir="Ideology: a set of beliefs that sets a supreme goal. USSR: a classless society · Fascist Italy: the nation and the State · Nazi Germany: the purity and domination of the race. A supreme goal justifies any means.",
          beats=[
-        "{def2}The first trait of the wheel is the key to the whole chapter. An {!ideology}ideology is a set of beliefs that sets a supreme goal to be achieved.",
-        "{-def2}{g4}{buts}And each regime has its own supreme goal. {buts.1}For the Soviet Union: a classless society. "
-        "{buts.2}For Fascist Italy: the greatness of the nation and of the State. "
-        "{buts.3}For Nazi Germany: the purity and the domination of the race. Class, nation, race: remember these three words, "
-        "they come back in every episode.",
-        "{-buts}{-g4}{moyens}Now, why does it matter so much? Because when a goal is presented as {!supreme}supreme, it justifies any means… "
-        "{moyens.1}including the suffering of millions of people.",
-        "{-moyens}{photo1}{g5}The course gives a chilling example. On the seventh of January nineteen thirty-three, in a speech studied in Worksheet two, "
-        "Stalin presents his Five-Year Plan as the road to…{-g5}",
+        "{def2}The first trait of the wheel is the key to the whole chapter. What is an {!ideology}ideology? It is a set of beliefs that sets a supreme goal to be achieved.",
+        "{-def2}{g4}{buts}And each regime has its own supreme goal. {buts.1}For the Soviet Union, it is a classless society. "
+        "{buts.2}For Fascist Italy, the greatness of the nation and of the State. "
+        "{buts.3}For Nazi Germany, the purity and the domination of the race. Class, nation, race. Remember these three words. "
+        "They come back in every episode.",
+        "{-buts}{-g4}{moyens}Why does it matter so much? Because when a goal is {!supreme}supreme, it justifies any means. "
+        "{moyens.1}Even the suffering of millions of people.",
+        "{-moyens}{photo1}{g5}The course gives a chilling example. It is a speech by Stalin, on the seventh of January, nineteen thirty-three. It is in Worksheet two. "
+        "Stalin presents his Five-Year Plan as the road to{-g5}",
         ("C", "the abolition of classes in the U.S.S.R.", "c_staline"),
-        "{-c_staline}{-photo1}{g5b}{g5b.1}And in those very months, in Ukraine, the famine of nineteen thirty-two to thirty-three, the Holodomor, "
-        "is killing the peasants whose grain the regime is requisitioning. The supreme goal on one side; millions of victims on the other. "
-        "That is episode three.",
-        "{-g5b}{dedans}So ideology explains two things. {dedans.1}What these regimes did inside their borders: Parts one and two. "
-        "{dedans.2}And, in Part three, why they looked for war outside them.",
+        "{-c_staline}{-photo1}{g5b}{g5b.1}And in those very months, Ukraine is starving. This is the famine of nineteen thirty-two and thirty-three, the Holodomor. "
+        "It kills the peasants whose grain the regime is taking. On one side, the supreme goal. On the other, millions of victims. "
+        "We come back to it in episode three.",
+        "{-g5b}{dedans}So ideology explains two things. {dedans.1}What these regimes did inside their borders. That is Parts one and two. "
+        "{dedans.2}And why they went looking for war outside them. That is Part three.",
     ], vis={
         "def2": dict(type="def", cles=["beliefs", "supreme"], terme="Ideology",
                      t="A set of beliefs that sets a supreme goal to be achieved.",
@@ -295,23 +295,23 @@ SCENES = [
     dict(id="arendt", chap="Arendt: the confidence of the masses", fond="guerre", humeur="mystere",
          retenir="Arendt, The Origins of Totalitarianism (1951): Hitler's rise “was legal in terms of majority rule”; both dictators needed “the confidence of the masses”. Explain support as well as terror.",
          beats=[
-        "{photo2}{ar}Here is a warning against a black-and-white picture. It comes from Hannah Arendt, nineteen-oh-six to nineteen seventy-five, "
-        "a German American political theorist. In The Origins of Totalitarianism, in nineteen fifty-one, she writes that…{-ar}",
+        "{photo2}{ar}Now, a warning against a black-and-white picture. It comes from Hannah Arendt, who lived from nineteen-oh-six to nineteen seventy-five. "
+        "She was a German American political theorist. In The Origins of Totalitarianism, published in nineteen fifty-one, she writes that{-ar}",
         ("C", "Hitler's rise to power was legal in terms of majority rule", "c_ar1"),
-        "{-c_ar1}{ar2}…and that neither Hitler nor Stalin could have kept power through so many crises without…{-ar2}",
+        "{-c_ar1}{ar2}She adds that neither Hitler nor Stalin could have kept power, through so many crises, without{-ar2}",
         ("C", "the confidence of the masses", "c_ar2"),
         "{-c_ar2}{sens}What does she mean? {sens.1}That large masses trusted these regimes. {sens.2}That not everyone felt oppressed. "
-        "{sens.3}And so, to understand totalitarianism, you must explain support, as well as terror.",
-        "{-sens}{-photo2}{g6}{g6.1}Germany is the best example. Remember the curve: thirty-seven point four per cent in July nineteen thirty-two. "
-        "Millions of Germans voted for Hitler, freely. {g6.2}And on the thirtieth of January nineteen thirty-three, he was appointed chancellor "
-        "by President Hindenburg, through the institutions.",
-        "{-g6}{nuance}But be precise in an essay. {nuance.1}Legal, yes: Hitler was appointed, not imposed by a coup. "
-        "{nuance.2}But the Nazis never won a majority in a free election: their best score was thirty-seven point four per cent. "
-        "Write: a legal appointment, with mass support, but without a majority.",
-        "{-nuance}{deuxfaces}{deuxfaces.g}So keep both faces of these regimes together. Terror, for the enemies. "
-        "{deuxfaces.d}And consent, enthusiasm, confidence, for millions of others.",
-        "{-deuxfaces}{faits}And Arendt adds one last idea, in the epigraph on the cover sheet of the chapter. {faits.1}Totalitarian propaganda "
-        "treats facts as something that power can manufacture. It shows contempt for facts: what the leader says becomes true.",
+        "{sens.3}So, to understand totalitarianism, you have to explain support. Not only terror.",
+        "{-sens}{-photo2}{g6}{g6.1}Germany is the best example. Remember the curve. Thirty-seven point four per cent, in July nineteen thirty-two. "
+        "Millions of Germans voted for Hitler, freely. {g6.2}Then, on the thirtieth of January, nineteen thirty-three, President Hindenburg appointed him chancellor. "
+        "It happened through the institutions.",
+        "{-g6}{nuance}But be precise in an essay. {nuance.1}Was it legal? Yes. Hitler was appointed. He did not seize power in a coup. "
+        "{nuance.2}But did the Nazis ever win a majority in a free election? No. Their best score was thirty-seven point four per cent. "
+        "So write this. A legal appointment, with mass support, but without a majority.",
+        "{-nuance}{deuxfaces}{deuxfaces.g}Keep both faces of these regimes together. Terror, for the enemies. "
+        "{deuxfaces.d}And consent, enthusiasm and confidence, for millions of others.",
+        "{-deuxfaces}{faits}Arendt adds one last idea. It is the epigraph on the cover sheet of the chapter. {faits.1}Totalitarian propaganda "
+        "treats facts as something power can manufacture. It despises facts. Whatever the leader says becomes true.",
     ], vis={
         "photo2": dict(type="tableau", img="h2-arendt", fond=True, sombre=True, de=[1.0, .5, .3], a=[1.12, .5, .25],
                        legende="Hannah Arendt, author of The Origins of Totalitarianism (1951), in 1958 · Barbara Niggl Radloff, Münchner Stadtmuseum, CC BY-SA 4.0"),
@@ -325,9 +325,9 @@ SCENES = [
             "Large masses trusted these regimes", "Not everyone felt oppressed",
             "Explain support as well as terror"], x=170, y=150, w=940),
         "g6": dict(type="globe", code="H2", sc=[16, 20]),
-        "nuance": dict(type="liste", titre="Be precise", petit=True, cles=["Legal", "majority"], items=[
+        "nuance": dict(type="liste", titre="Be precise", cles=["Legal", "majority"], items=[
             "Legal: appointed by Hindenburg, 30 January 1933, not a coup",
-            "But never a majority: 37.4% at best (July 1932)"], x=60, y=120, w=620, bande=True),
+            "But never a majority: 37.4% at best (July 1932)"], x=170, y=150, w=940),
         "deuxfaces": dict(type="cols", g="Terror", gq="for the enemies of the regime", d="Confidence",
                           dq="consent and enthusiasm of millions", vs="+", repere="Arendt: explain support as well as terror"),
         "faits": dict(type="def", cles=["facts", "manufacture"], terme="Propaganda, according to Arendt",
@@ -339,25 +339,25 @@ SCENES = [
     dict(id="trajectoire", chap="Three regimes, one trajectory", fond="nuit", humeur="tension",
          retenir="Stalin's USSR (1924–1953), Fascist Italy (1922–1943), Nazi Germany (1933–1945): born from the overthrow of a democratic framework, they paved the way to war, all ended in failure.",
          beats=[
-        "{fr2}{fr2.1}So the chapter studies three regimes side by side. Monsieur Ros dates them on his slide, each with its flag. "
-        "Fascist Italy, under the fascist eagle, from nineteen twenty-two to nineteen forty-three. "
-        "{fr2.2}Stalin's USSR, under the hammer and sickle, from nineteen twenty-four. "
-        "{fr2.3}Nazi Germany, under the swastika, from nineteen thirty-three. "
-        "{fr2.4}Fascist Italy falls in nineteen forty-three, {fr2.5}Nazi Germany in nineteen forty-five, "
-        "{fr2.6}and Stalin's USSR lasts until his death, in nineteen fifty-three.",
-        "{-fr2}{meme}The same totalitarian ambition… but opposite ideologies. {meme.1}The nation, for Fascism. "
-        "{meme.2}The race, for Nazism. {meme.3}The class, for Stalinism. That is why Stalin and Hitler are sworn enemies, until the pact of nineteen thirty-nine.",
-        "{-meme}{g7}{traj}And yet, one common path, in three steps. {traj.1}One: each was born from the overthrow of a democratic framework. "
-        "The Weimar Republic in Germany; the parliamentary monarchy in Italy; and in Russia, the fragile freedoms born in February nineteen seventeen, "
-        "swept away by the Bolsheviks. {traj.2}Two: all three paved the way to the Second World War. "
-        "{traj.3}Three: all three ended in failure.",
+        "{fr2}{fr2.1}So the chapter studies three regimes side by side. Monsieur Ros dates each one on his slide, under its flag. "
+        "First, Fascist Italy, under the fascist eagle, from nineteen twenty-two to nineteen forty-three. "
+        "{fr2.2}Next, Stalin's Soviet Union, under the hammer and sickle, from nineteen twenty-four. "
+        "{fr2.3}Then Nazi Germany, under the swastika, from nineteen thirty-three. "
+        "{fr2.4}Fascist Italy falls in nineteen forty-three. {fr2.5}Nazi Germany, in nineteen forty-five. "
+        "{fr2.6}And Stalin's Soviet Union lasts until his death, in nineteen fifty-three.",
+        "{-fr2}{meme}They share the same totalitarian ambition. But their ideologies are opposites. {meme.1}The nation, for Fascism. "
+        "{meme.2}The race, for Nazism. {meme.3}The class, for Stalinism. That is why Stalin and Hitler are sworn enemies. At least until their pact, in nineteen thirty-nine.",
+        "{-meme}{g7}{traj}And yet they follow one common path, in three steps. {traj.1}Step one. Each was born from the overthrow of a democratic framework. "
+        "In Germany, the Weimar Republic. In Italy, the parliamentary monarchy. In Russia, the fragile freedoms born in February nineteen seventeen, "
+        "which the Bolsheviks swept away. {traj.2}Step two. All three paved the way to the Second World War. "
+        "{traj.3}Step three. All three ended in failure.",
         "{-traj}{-g7}{nu}One nuance on that last step. {nu.1}For Italy and Germany, failure means total defeat in war. "
-        "{nu.2}The USSR, on the contrary, was among the victors of nineteen forty-five; Stalinism ended with Stalin's death, in nineteen fifty-three, "
-        "and the Soviet Union itself collapsed in nineteen ninety-one. That last date is outside the course, but it is a good way to discuss the word failure.",
-        "{-nu}{g8}One last map, from the course: Europe of regimes, around nineteen thirty-eight. {g8.1}In the west, the democracies: "
-        "Britain, France, and a few smaller countries. In the centre, the two fascist regimes, Germany and Italy. In the east, the communist USSR. "
-        "And almost everywhere else, other authoritarian regimes: Poland, Austria, Spain… {g8.2}By the end of the nineteen thirties, "
-        "the democracies are an island in the west of the continent.",
+        "{nu.2}The Soviet Union, on the contrary, was among the victors of nineteen forty-five. Stalinism ended with Stalin's death, in nineteen fifty-three. "
+        "And the Soviet Union itself collapsed in nineteen ninety-one. That last date is outside the course. But it helps you discuss the word failure.",
+        "{-nu}{g8}One last map from the course. Europe and its regimes, around nineteen thirty-eight. {g8.1}In the west, the democracies. "
+        "Britain, France, and a few smaller countries. In the centre, the two fascist regimes, Germany and Italy. In the east, the communist Soviet Union. "
+        "And almost everywhere else, other authoritarian regimes, such as Poland, Austria, or Spain. {g8.2}By the end of the nineteen thirties, "
+        "the democracies are an island, in the west of the continent.",
     ], vis={
         "fr2": dict(type="frise", items=[
             dict(nom="Fascist Italy", d=1922, q="the March on Rome"), dict(nom="Stalin's USSR", d=1924, q="Stalin in power"),
@@ -379,20 +379,20 @@ SCENES = [
     dict(id="lectures", chap="Read and watch", fond="aube", humeur="calme",
          retenir="Quote a work from M. Ros's list, with one sentence on what it shows: e.g. Arendt (1951), Shalamov's Kolyma Tales, Life is Beautiful, The Wave.",
          beats=[
-        "{lire}{lire.1}Monsieur Ros also gives a reading list. Here is what each work shows; the one-line descriptions are written by the site, outside the course. "
-        "First, Eric Hobsbawm, The Age of Extremes, nineteen ninety-four: the short twentieth century, from nineteen fourteen to nineteen ninety-one, an age of catastrophes. "
-        "{lire.2}George Mosse, Fallen Soldiers: brutalisation, and the memory of the world wars. "
-        "{lire.3}Hannah Arendt, The Origins of Totalitarianism: the theory, and the chapter's epigraph. "
-        "{lire.4}A. J. P. Taylor, The Origins of the Second World War: the very controversial thesis.",
-        "{lire.5}Will Eisner's comic The Plot: the story of a forgery, the Protocols of the Elders of Zion, propaganda and antisemitism. "
-        "{lire.6}Varlam Shalamov's Kolyma Tales: the Gulag, from inside. "
-        "{lire.7}And Sarah Cohen-Scali's Max: a boy born in Nazi Germany, for young readers.",
-        "{-lire}{voir}And four films. {voir.1}Roberto Benigni's Life is Beautiful: Italian Jews under the racial laws and deportation. "
-        "{voir.2}Dennis Gansel's The Wave: how easily a group slides into authoritarian discipline. "
-        "{voir.3}Daniel Costelle's documentary Apocalypse: Hitler, on his rise to power. "
-        "{voir.4}And Federico Fellini's Amarcord: provincial life in Fascist Italy, seen through memory.",
-        "{-voir}{astuce}A tip for the exam: quoting one of these works, with one sentence on what it shows, "
-        "proves that you have read beyond the course.",
+        "{lire}{lire.1}Monsieur Ros also gives a reading list. The one-line descriptions come from the site, not from the course. "
+        "First, Eric Hobsbawm, The Age of Extremes, from nineteen ninety-four. It tells the short twentieth century, nineteen fourteen to nineteen ninety-one, as an age of catastrophes. "
+        "{lire.2}George Mosse, Fallen Soldiers. Brutalisation, and the memory of the world wars. "
+        "{lire.3}Hannah Arendt, The Origins of Totalitarianism. The theory, and the chapter's epigraph. "
+        "{lire.4}A. J. P. Taylor, The Origins of the Second World War. The very controversial thesis.",
+        "{lire.5}Will Eisner's comic, The Plot. It tells the story of a forgery, the Protocols of the Elders of Zion. Propaganda, and antisemitism. "
+        "{lire.6}Varlam Shalamov's Kolyma Tales. The Gulag, from inside. "
+        "{lire.7}And Sarah Cohen-Scali's Max. A boy born in Nazi Germany, for young readers.",
+        "{-lire}{voir}And four films. {voir.1}Roberto Benigni's Life is Beautiful. Italian Jews, under the racial laws, and deportation. "
+        "{voir.2}Dennis Gansel's The Wave. How easily a group slides into authoritarian discipline. "
+        "{voir.3}Daniel Costelle's documentary, Apocalypse: Hitler. His rise to power. "
+        "{voir.4}And Federico Fellini's Amarcord. Provincial life in Fascist Italy, seen through memory.",
+        "{-voir}{astuce}A tip for the exam. Quote one of these works, with one sentence on what it shows. "
+        "It proves that you have read beyond the course.",
     ], vis={
         "lire": dict(type="liste", titre="Read · M. Ros's list", petit=True, items=[
             "Hobsbawm, The Age of Extremes (1994): an age of catastrophes", "Mosse, Fallen Soldiers: brutalisation",
@@ -412,27 +412,27 @@ SCENES = [
          retenir="A definition paragraph: the key term word for word · its three parts · the difference from a dictatorship · one precise example · Arendt's nuance.",
          beats=[
         "{pa1}Your turn. Write one paragraph that defines totalitarianism, with a precise example. "
-        "Use the three parts of the definition, and the difference from an ordinary dictatorship.",
+        "Use the three parts of the definition. And show how it differs from an ordinary dictatorship.",
         ("P", 2.0),
         "{-pa1}{rep1}Here is one way to write it. {rep1.1}Totalitarianism is a regime that seeks total control of society, "
         "through coercion, in order to transform man according to an ideology. "
-        "{rep1.2}Its control is total, since it reaches work, leisure, school, religion and even thought; "
-        "and its coercion combines terror and propaganda. "
-        "{rep1.3}Unlike an ordinary dictatorship, which is content with obedience, it wants to create a New Man. "
-        "{rep1.4}For example, Stalin presented the Five-Year Plan, in January nineteen thirty-three, as the road to the abolition of classes, "
-        "while the famine was killing peasants in Ukraine: a supreme goal justified any means. "
-        "{rep1.5}Yet, as Hannah Arendt warned, these regimes did not rest on terror alone, but also on the confidence of the masses.",
-        "{-rep1}{ki}And here is where this definition will serve you. The key issue of the chapter: {!Assess the role of totalitarianism}"
-        "assess the role of totalitarianism in the collapse of global peace in the late nineteen thirties. "
-        "{ki.1}And the two key terms: totalitarianism, and appeasement. "
-        "The definition you have just written is the first step of the introduction.",
+        "{rep1.2}Its control is total, since it reaches work, leisure, school, religion, and even thought. "
+        "And its coercion combines terror with propaganda. "
+        "{rep1.3}An ordinary dictatorship is content with obedience. A totalitarian regime wants to create a New Man. "
+        "{rep1.4}For example, in January nineteen thirty-three, Stalin presented the Five-Year Plan as the road to the abolition of classes. "
+        "Meanwhile, famine was killing the peasants of Ukraine. A supreme goal justified any means. "
+        "{rep1.5}Yet, as Hannah Arendt warned, these regimes did not rest on terror alone. They also rested on the confidence of the masses.",
+        "{-rep1}{ki}Where will this definition serve you? In the key issue of the chapter. {!Assess the role of totalitarianism}"
+        "Assess the role of totalitarianism in the collapse of global peace in the late nineteen thirties. "
+        "{ki.1}And in the two key terms: totalitarianism, and appeasement. "
+        "The definition you have just written is the first step of your introduction.",
     ], vis={
         "pa1": dict(type="pause", t="Define totalitarianism in one paragraph, with a precise example.",
                     sous="Three parts, the difference from a dictatorship, one example. Pause the video, write, then play on for a model."),
         "rep1": dict(type="liste", titre="A model paragraph", petit=True, items=[
             "Definition: total control of society, through coercion, to transform man according to an ideology",
             "Total (work, leisure, school, religion, thought); coercion = terror + propaganda",
-            "Unlike a dictatorship, content with obedience: a “New Man”",
+            "Not mere obedience, as in a dictatorship: a “New Man”",
             "Example: Stalin, 7 Jan. 1933, “the abolition of classes”, during the famine in Ukraine",
             "Nuance: Arendt, “the confidence of the masses”"], x=150, y=110, w=980),
         "ki": dict(type="def", cles=["role", "collapse"], terme="Key issue of the chapter",
@@ -442,14 +442,14 @@ SCENES = [
 
     # ================================================================ récap
     dict(id="recap", chap="Recap", fond="nuit", humeur="calme", beats=[
-        "{carte}Let's sum up. {carte.1}Nineteen twenty-nine opens two crises at once, capitalism and totalitarianism; "
-        "and historians disagree on the causes of the war: Taylor, Hehn, Winter. "
-        "{carte.2}The definition: total control of society, through coercion, to transform man according to an ideology, with its seven traits. "
-        "{carte.3}Ideology, a supreme goal: class, nation, race. And Arendt: the confidence of the masses, not terror alone. "
-        "{carte.4}Three regimes, one trajectory: born from the overthrow of democracy, they paved the way to war, and ended in failure.",
+        "{carte}Let's sum up. {carte.1}Nineteen twenty-nine opens two crises at once. Capitalism, and totalitarianism. "
+        "Historians disagree on the causes of the war. Taylor, Hehn, Winter. "
+        "{carte.2}Then, the definition. Total control of society, through coercion, to transform man according to an ideology. And its seven traits. "
+        "{carte.3}Ideology sets a supreme goal. Class, nation, race. And Arendt reminds us: the confidence of the masses, not terror alone. "
+        "{carte.4}Three regimes, one trajectory. Born from the overthrow of democracy, they paved the way to war. And they ended in failure.",
         ("P", 4.0),
-        "{-carte}{fin}Next episode: from the Great War to power. The trenches, the revolutions of nineteen seventeen to nineteen twenty, "
-        "the March on Rome… and how Hitler was handed power.",
+        "{-carte}{fin}Next episode: from the Great War to power. The trenches. The revolutions of nineteen seventeen to nineteen twenty. "
+        "The March on Rome. And how Hitler was handed power.",
         ("P", 2.0),
     ], vis={
         "carte": dict(type="carte", centre="TOTALITARIANISM", branches=[
