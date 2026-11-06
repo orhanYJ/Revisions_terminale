@@ -6,6 +6,7 @@ Contenu : la synthèse du chapitre dans le site (dnl/index.html, CHAPTERS.H2 : o
 idées des parties Intro, I.1 à I.3, II.1 à II.3, III.1 à III.3, key issue, key terms ; grille de synthèse de M. Ros H2_GRID et
 tableau comparatif H2_TABLE ; QCM H2_QCM). Rien n'est ajouté au cours ; seul le décret de 1938 sur l'enseignement du russe
 n'est pas repris (sa date vient d'ailleurs dans le site).
+Révision « pour l'oreille » du 06/11/2026 : phrases courtes, nombres et dates écrits comme ils se disent.
 Carte animée H2 (numéros de scènes, ordre chronologique de la carte) :
   0 définition · 1 brutalisation · 2 Russie 1917 · 3 Allemagne 1918-19 · 4 Italie 1919-20 · 5 Versailles · 6 marche sur Rome ·
   7 putsch de Munich · 8 dictature fasciste légale · 9 culte du chef · 10 Lebensraum · 11 jeunesse · 12 plan quinquennal ·
@@ -32,18 +33,18 @@ PRONONCIATION = {"Reichstag": "Rikes-tahg", "Hindenburg": "Hin-den-burg", "Bienn
                  "fascistissime": "fa-shis-tee-see-meh", "Lebensraum": "Lay-bens-rowm", "Abyssinia": "Abby-sinnia",
                  "Daladier": "Da-la-dyay", "Hehn": "Hayn", "Mosse": "Mossy", "Volk": "Folk",
                  "Riefenstahl": "Ree-fen-shtahl", "Himmler": "Him-ler", "Gestapo": "Geh-stah-po",
-                 "Mussolini": "Moos-so-lee-nee"}
+                 "Mussolini": "Moos-so-lee-nee", "Spartacist": "Spar-ta-sist"}
 
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Opening", fond="guerre", humeur="mystere", carton=False, beats=[
-        "{g0}{q1}Mussolini's Italy, Hitler's Germany, Stalin's Soviet Union. Three regimes that wanted to control everything, "
-        "and to remake human beings according to an ideology. And one road, which ends in September 1939… in war.",
-        "{-q1}{q2}This last episode puts the whole chapter together, and answers its question: did totalitarian ideology cause "
+        "{g0}{q1}Mussolini's Italy. Hitler's Germany. Stalin's Soviet Union. Three regimes that wanted to control everything, "
+        "and to remake human beings according to an ideology. And one road, which ends in September nineteen thirty-nine. In war.",
+        "{-q1}{q2}This last episode puts the whole chapter together. And it answers the chapter's question. Did totalitarian ideology cause "
         "the Second World War?",
         "{-q2}{-g0}{plan}Here is the plan. {plan.1}The chapter on the map, from the trenches to Poland. {plan.2}Twelve dates. "
-        "{plan.3}The three regimes, side by side. {plan.4}The people and the figures. {plan.5}One mind map for each part. "
-        "{plan.6}And the answer to the question… before a final quiz.",
+        "{plan.3}The three regimes, side by side. {plan.4}The people, and the figures. {plan.5}One mind map for each part. "
+        "{plan.6}And finally, the answer to the question. Then, a last quiz.",
         "{-plan}{titre}",
         ("P", 3.0),
     ], vis={
@@ -61,22 +62,23 @@ SCENES = [
     dict(id="film1", chap="From the trenches to power", fond="nuit", humeur="tension",
          retenir="Born in the trenches · 1917 Bolsheviks · Oct. 1922 March on Rome · 1928 the Plan · 30 Jan. 1933 Hitler chancellor.",
          beats=[
-        "{g1}{g1.1}It all begins in the trenches. Four years of mass killing made violence ordinary: George Mosse calls it "
-        "{!brutalisation}brutalisation, and sees the Great War as the matrix of totalitarianism. "
-        "{g1.2}In Russia, the war brings down the Tsar in February 1917; in October, Lenin and Trotsky's Bolsheviks seize power, "
-        "then win a civil war. Europe is afraid of communism.",
-        "{g1.3}In Germany, defeat ends the Empire, and the Weimar Republic is born in violence: the Spartacist uprising is crushed in January 1919. "
-        "{g1.4}Italy has won the war, but speaks of a mutilated victory. In the Biennio Rosso, the red years of 1919 and 1920, "
-        "peasants seize land and workers occupy the factories, and landowners pay Mussolini's Blackshirts to repress them. "
-        "{g1.5}And Versailles: for the Germans, a Diktat; for the army, a stab in the back.",
-        "{g1.6}October 1922: the March on Rome. About twenty thousand Blackshirts; the threat is enough, and the king appoints Mussolini. "
-        "{g1.7}November 1923: Hitler's putsch fails in Munich. In prison, he writes Mein Kampf.",
-        "{-g1}{g2}{g2.1}In Italy, after the murder of Matteotti in 1924, the fascistissime laws of 1925 make the dictatorship legal. "
-        "{g2.2}In the Soviet Union, Stalin launches the first Five-Year Plan in 1928, and forced collectivisation. "
-        "{g2.3}The kulaks become class enemies, {g2.4}and in 1932 and 1933 the Holodomor, a man-made famine, kills millions in Ukraine.",
-        "{-g2}{g3}{g3.1}In Germany, the crisis of 1929 turns the Nazis into the largest party: thirty-seven point four per cent in July 1932… "
-        "never a majority. {g3.2}On the thirtieth of January 1933, Hindenburg appoints Hitler chancellor, legally. "
-        "{g3.3}On the twenty-seventh of February, the Reichstag burns: freedoms are suspended, and the communists are hunted down.",
+        "{g1}{g1.1}It all begins in the trenches. Four years of mass killing made violence ordinary. George Mosse calls it "
+        "{!brutalisation}brutalisation. For him, the Great War is the matrix of totalitarianism. "
+        "{g1.2}In Russia, the war brings down the Tsar, in February nineteen seventeen. In October, the Bolsheviks of Lenin and Trotsky seize power. "
+        "Then they win a civil war. And Europe is afraid of communism.",
+        "{g1.3}In Germany, defeat ends the Empire. The Weimar Republic is born in violence: in January nineteen nineteen, the Spartacist uprising is crushed. "
+        "{g1.4}Italy has won the war. Yet Italians speak of a mutilated victory. Then come the Biennio Rosso, the red years of nineteen nineteen and nineteen twenty. "
+        "Peasants seize land. Workers occupy the factories. And landowners pay Mussolini's Blackshirts to repress them. "
+        "{g1.5}Then Versailles. For the Germans, it is a Diktat. For the army, a stab in the back.",
+        "{g1.6}October nineteen twenty-two: the March on Rome. About twenty thousand Blackshirts. The threat is enough, and the king appoints Mussolini. "
+        "{g1.7}November nineteen twenty-three: Hitler's putsch fails in Munich. In prison, he writes Mein Kampf.",
+        "{-g1}{g2}{g2.1}In Italy, Matteotti is murdered in nineteen twenty-four. The next year, the fascistissime laws make the dictatorship legal. "
+        "{g2.2}In the Soviet Union, Stalin launches the first Five-Year Plan in nineteen twenty-eight, with forced collectivisation. "
+        "{g2.3}The kulaks become class enemies. {g2.4}And in nineteen thirty-two and thirty-three, the Holodomor, a man-made famine, kills millions in Ukraine.",
+        "{-g2}{g3}{g3.1}In Germany, the crisis of nineteen twenty-nine turns the Nazis into the largest party. "
+        "Thirty-seven point four per cent in July nineteen thirty-two. But never a majority. "
+        "{g3.2}On the thirtieth of January nineteen thirty-three, Hindenburg appoints Hitler chancellor, quite legally. "
+        "{g3.3}On the twenty-seventh of February, the Reichstag burns. Freedoms are suspended, and the communists are hunted down.",
     ], vis={
         "g1": dict(type="globe", code="H2", sc=[1, 2, 3, 4, 5, 6, 7]),
         "g2": dict(type="globe", code="H2", sc=[8, 12, 15, 19]),
@@ -87,14 +89,16 @@ SCENES = [
     dict(id="film2", chap="The road to war", fond="nuit", humeur="tension",
          retenir="1935 Abyssinia · 1936 Rhineland · 1938 Anschluss and Munich · March 1939 Prague · 1 Sept. 1939 Poland.",
          beats=[
-        "{g4}{g4.1}In Asia, Japan wants autarky and claims to be a superior race: it seizes Manchuria in 1931. "
-        "{g4.2}October 1935: Mussolini invades Abyssinia, in the name of Rome. The League debates sanctions for seven months… and spares oil. "
-        "{g4.3}March 1936: Hitler's troops enter the demilitarised Rhineland. A gamble: they had orders to retreat if France reacted. It did not. "
-        "{g4.4}1936: the Rome–Berlin Axis, and the Spanish Civil War, where the dictators intervene and the democracies stay out.",
-        "{g4.5}December 1937: at Nanjing, the Japanese army kills civilians and prisoners by the hundred thousand. "
-        "{g4.6}March 1938: the Anschluss. {g4.7}September 1938: at Munich, Chamberlain and Daladier hand the Sudetenland to Hitler, "
-        "without the Czechs. Appeasement at its height. {g4.8}March 1939: Prague. Hitler had lied, and appeasement is dead.",
-        "{g4.9}August 1939: the Nazi-Soviet pact secretly plans to divide Poland. {g4.10}And on the first of September, Germany attacks Poland. "
+        "{g4}{g4.1}In Asia, Japan wants autarky, and claims to be a superior race. In nineteen thirty-one, it seizes Manchuria. "
+        "{g4.2}October nineteen thirty-five: Mussolini invades Abyssinia, in the name of Rome. The League debates sanctions for seven months. "
+        "And it spares oil. "
+        "{g4.3}March nineteen thirty-six: Hitler's troops enter the demilitarised Rhineland. It is a gamble. They had orders to retreat if France reacted. "
+        "France did not. "
+        "{g4.4}Nineteen thirty-six is also the year of the Rome-Berlin Axis. And of the Spanish Civil War, where the dictators intervene, and the democracies stay out.",
+        "{g4.5}December nineteen thirty-seven, at Nanjing. The Japanese army kills civilians and prisoners by the hundred thousand. "
+        "{g4.6}March nineteen thirty-eight: the Anschluss. {g4.7}September nineteen thirty-eight, at Munich. Chamberlain and Daladier hand the Sudetenland to Hitler, "
+        "without the Czechs. This is appeasement at its height. {g4.8}March nineteen thirty-nine: Prague. Hitler had lied, and appeasement is dead.",
+        "{g4.9}August nineteen thirty-nine: the Nazi-Soviet pact. In secret, it plans to divide Poland. {g4.10}And on the first of September, Germany attacks Poland. "
         "On the third, France and Britain declare war.",
     ], vis={
         "g4": dict(type="globe", code="H2", sc=[18, 27, 28, 29, 32, 33, 34, 35, 36, 37]),
@@ -104,11 +108,13 @@ SCENES = [
     dict(id="dates", chap="Twelve dates", fond="nuit", humeur="calme",
          retenir="1917 · 1919 · 1922 · 1925 · 1928 · 1932–33 · 1933 · 1935 · 1936 · 1937–38 · 1938 · 1939.",
          beats=[
-        "{fr}Twelve dates to know by heart. {fr.1}October 1917, the Bolshevik coup. {fr.2}1919, the Treaty of Versailles. "
-        "{fr.3}October 1922, the March on Rome. {fr.4}1925, the fascistissime laws, and Mein Kampf. {fr.5}1928, the first Five-Year Plan. "
-        "{fr.6}1932 and 1933, the Holodomor. {fr.7}The thirtieth of January 1933, Hitler chancellor. {fr.8}October 1935, Abyssinia. "
-        "{fr.9}March 1936, the Rhineland. {fr.10}1937 and 1938, the Great Purge. {fr.11}September 1938, Munich. "
-        "{fr.12}And the end of August 1939: the pact, then Poland.",
+        "{fr}Now, twelve dates to know by heart. {fr.1}October nineteen seventeen: the Bolshevik coup. {fr.2}Nineteen nineteen: the Treaty of Versailles. "
+        "{fr.3}October nineteen twenty-two: the March on Rome. {fr.4}Nineteen twenty-five: the fascistissime laws, and Mein Kampf. "
+        "{fr.5}Nineteen twenty-eight: the first Five-Year Plan. "
+        "{fr.6}Nineteen thirty-two and thirty-three: the Holodomor. {fr.7}The thirtieth of January nineteen thirty-three: Hitler becomes chancellor. "
+        "{fr.8}October nineteen thirty-five: Abyssinia. "
+        "{fr.9}March nineteen thirty-six: the Rhineland. {fr.10}Nineteen thirty-seven and thirty-eight: the Great Purge. {fr.11}September nineteen thirty-eight: Munich. "
+        "{fr.12}And the end of August nineteen thirty-nine: the pact. Then, Poland.",
         ("P", 3.0),
     ], vis={
         "fr": dict(type="frise", items=[
@@ -124,17 +130,17 @@ SCENES = [
     dict(id="comparer1", chap="Three regimes, one machine", fond="nuit", humeur="lumiere",
          retenir="Nation, race, class: three supreme goals. One leader, one party, one symbol in each.",
          beats=[
-        "{gc}{l1}Now the three regimes, side by side, as in Monsieur Ros's synthesis grid. "
+        "{gc}{l1}Now, the three regimes side by side, as in Mister Ros's synthesis grid. "
         "F for Fascism, N for Nazism, S for Stalinism. {gc.1}First, the ideology: a set of beliefs that sets a supreme goal. "
-        "{l1.1}For Mussolini, the nation and the absolute State: everything is in the State. Divided into nations, not classes, "
-        "and racist only from 1938. {l1.2}For Hitler, the race: history as a permanent war between races. "
-        "{l1.3}For Stalin, the class: class struggle, no private property, a classless society.",
-        "{-l1}{l2}{gc.2}Second, the leader, built as an ideal man in whom the nation recognises itself. {l2.1}Mussolini is il Duce, "
-        "and il Duce is always right. {l2.2}Hitler is der Führer; the official greeting becomes Heil Hitler. "
-        "{l2.3}Stalin is the little father of the peoples, and in 1925 a city is renamed Stalingrad.",
+        "{l1.1}For Mussolini, it is the nation, and the absolute State. Everything is in the State. Humanity is divided into nations, not classes. "
+        "And Fascism is racist only from nineteen thirty-eight. {l1.2}For Hitler, it is the race. History is a permanent war between races. "
+        "{l1.3}For Stalin, it is the class. Class struggle, no private property, and in the end, a classless society.",
+        "{-l1}{l2}{gc.2}Second, the leader. He is built as an ideal man, in whom the nation recognises itself. {l2.1}Mussolini is il Duce. "
+        "And il Duce is always right. {l2.2}Hitler is der Führer. The official greeting becomes Heil Hitler. "
+        "{l2.3}Stalin is the little father of the peoples. In nineteen twenty-five, a city is even renamed Stalingrad.",
         "{-l2}{l3}Third, one single party, with one symbol. {l3.1}The National Fascist Party, and the Roman fasces. "
-        "{l3.2}The NSDAP, and the swastika. {l3.3}The Communist Party, and the hammer and sickle. The purpose is the same: "
-        "to make the nation, the party and the leader one and the same, so that criticising the leader means betraying the country.",
+        "{l3.2}The Nazi Party, and the swastika. {l3.3}The Communist Party, and the hammer and sickle. Why all this? "
+        "To make the nation, the party and the leader one and the same. Then, criticising the leader means betraying the country.",
     ], vis={
         "gc": dict(type="globe", code="H2", sc=[0, 9]),
         "l1": dict(type="liste", titre="1 · The supreme goal", x=60, y=110, w=620, petit=True, bande=True, marques=["F", "N", "S"],
@@ -152,21 +158,23 @@ SCENES = [
     dict(id="comparer2", chap="New Man, terror, expansion", fond="nuit", humeur="tension",
          retenir="Same method, same New Man — but not the same scale: the USSR deadliest, Italy least.",
          beats=[
-        "{gn}{l4}{gn.1}Fourth, the New Man. A dictatorship wants silence; a totalitarian regime wants you to change, and it starts with children. "
-        "{l4.1}In Italy, the Balilla, and a New Man strong and cultured, in the service of the Party. "
-        "{l4.2}In Germany, the Hitler Youth, compulsory from ten to eighteen, and a purified race, the Volk: racial instruction in schools, "
-        "the Nuremberg laws of 1935. {gn.2}{l4.3}In the Soviet Union, the Komsomol, and the worker, whose hero is the miner Stakhanov.",
-        "{-l4}{l5}{gn.3}Fifth, terror, which is a method of government. {l5.1}In Italy, the OVRA and the Special Court; opponents are "
-        "silenced, sent into internal exile, rather than killed. {l5.2}In Germany, the Gestapo and the S.S., both under Himmler, "
-        "the camps from Dachau in 1933, and four hundred thousand Germans sterilised. "
+        "{gn}{l4}{gn.1}Fourth, the New Man. A dictatorship wants silence. A totalitarian regime wants you to change. And it starts with children. "
+        "{l4.1}In Italy, there is the Balilla. The New Man must be strong and cultured, in the service of the Party. "
+        "{l4.2}In Germany, the Hitler Youth is compulsory from ten to eighteen. The goal is a purified race, the Volk. "
+        "Hence racial instruction in schools, and the Nuremberg laws of nineteen thirty-five. "
+        "{gn.2}{l4.3}In the Soviet Union, there is the Komsomol. The New Man is the worker, and his hero is the miner Stakhanov.",
+        "{-l4}{l5}{gn.3}Fifth, terror. Not an accident: a method of government. {l5.1}In Italy, the OVRA and the Special Court. "
+        "Opponents are silenced, or sent into internal exile, rather than killed. {l5.2}In Germany, the Gestapo and the S.S., both under Himmler. "
+        "The camps, from Dachau in nineteen thirty-three. And four hundred thousand Germans sterilised. "
         "{gn.4}{l5.3}In the Soviet Union, the NKVD, the Gulag, and the Great Purge: six hundred and eighty thousand executions. "
-        "{gn.5}Terror even devours its own: the Night of the Long Knives, Yezhov shot and erased from the photographs, Trotsky murdered in Mexico.",
-        "{-l5}{l6}{gn.6}Sixth, expansion. {l6.1}Mussolini wants an empire in the name of Rome: Abyssinia. "
-        "{l6.2}Hitler wants Lebensraum, living space in the East, announced in Mein Kampf. "
-        "{l6.3}Stalin builds socialism in one country, but in August 1939 he shares Poland with Hitler.",
-        "{-l6}{-gn}{nu}So, {!the same machine}the same machine in all three, but not the same scale. Soviet terror killed on the largest scale; "
-        "Nazi violence was biological, aimed at a race and at the unfit; and Italy was the least lethal, and kept counter-powers: "
-        "the king and the Church. That nuance separates a good answer from a list of similarities.",
+        "{gn.5}Terror even devours its own. The Night of the Long Knives. Yezhov, shot and erased from the photographs. Trotsky, murdered in Mexico.",
+        "{-l5}{l6}{gn.6}Sixth, expansion. {l6.1}Mussolini wants an empire in the name of Rome. That means Abyssinia. "
+        "{l6.2}Hitler wants Lebensraum: living space in the East, announced in Mein Kampf. "
+        "{l6.3}Stalin builds socialism in one country. But in August nineteen thirty-nine, he shares Poland with Hitler.",
+        "{-l6}{-gn}{nu}So, what do we see? {!the same machine}The same machine in all three. But not the same scale. "
+        "Soviet terror killed on the largest scale. Nazi violence was biological, aimed at a race, and at the unfit. "
+        "And Italy was the least lethal. It kept counter-powers: the king, and the Church. "
+        "That nuance separates a good answer from a list of similarities.",
     ], vis={
         "gn": dict(type="globe", code="H2", sc=[11, 26, 22, 17, 38, 10]),
         "l4": dict(type="liste", titre="4 · The New Man", x=60, y=110, w=620, petit=True, bande=True, marques=["F", "N", "S"], items=[
@@ -187,15 +195,16 @@ SCENES = [
     dict(id="gens", chap="People and figures", fond="nuit", humeur="calme",
          retenir="37.4%: never a majority · 7% → 90% collectivised · 680,000 executions in the Great Purge.",
          beats=[
-        "{pe}Twelve people. {pe.1}Mussolini, {pe.2}Hitler {pe.3}and Stalin. {pe.4}Victor Emmanuel the Third, who appointed Mussolini, "
-        "{pe.5}and Hindenburg, who appointed Hitler. {pe.6}Matteotti, the socialist deputy murdered in 1924. "
-        "{pe.7}Himmler, head of the Gestapo and the S.S. {pe.8}Yezhov, head of the NKVD, executed in 1940. "
+        "{pe}Twelve people. {pe.1}Mussolini, {pe.2}Hitler {pe.3}and Stalin. {pe.4}Victor Emmanuel the Third, who appointed Mussolini. "
+        "{pe.5}Hindenburg, who appointed Hitler. {pe.6}Matteotti, the socialist deputy murdered in nineteen twenty-four. "
+        "{pe.7}Himmler, head of the Gestapo and the S.S. {pe.8}Yezhov, head of the NKVD, executed in nineteen forty. "
         "{pe.9}Stakhanov, the worker-hero. {pe.10}Chamberlain {pe.11}and Daladier, the men of Munich. "
-        "{pe.12}And Hannah Arendt: these regimes rested on the confidence of the masses, not on terror alone.",
+        "{pe.12}And Hannah Arendt. For her, these regimes rested on the confidence of the masses, not on terror alone.",
         "{-pe}{ch}And six figures. {ch.1}About twenty thousand Blackshirts on the road to Rome. "
-        "{ch.2}Thirty-seven point four per cent for the Nazis in July 1932: never a majority. {ch.3}Five point six million unemployed "
-        "in Germany in 1932. {ch.4}Seven per cent of Soviet peasant households collectivised in 1928… ninety per cent in 1936. "
-        "{ch.5}Six hundred and eighty thousand executions in the Great Purge. {ch.6}Four hundred thousand Germans forcibly sterilised.",
+        "{ch.2}Thirty-seven point four per cent for the Nazis in July nineteen thirty-two. Never a majority. "
+        "{ch.3}Five point six million unemployed in Germany, the same year. "
+        "{ch.4}Collectivisation: seven per cent of Soviet peasant households in nineteen twenty-eight. Ninety per cent in nineteen thirty-six. "
+        "{ch.5}Six hundred and eighty thousand executions in the Great Purge. {ch.6}And four hundred thousand Germans forcibly sterilised.",
     ], vis={
         "pe": dict(type="nuage", items=["Mussolini", "Hitler", "Stalin", "Victor Emmanuel III", "Hindenburg", "Matteotti",
                                         "Himmler", "Yezhov", "Stakhanov", "Chamberlain", "Daladier", "Hannah Arendt"]),
@@ -211,20 +220,20 @@ SCENES = [
          retenir="Total control · coercion · transformation: a New Man, not just obedience.",
          beats=[
         "{photo1}{def}First, the key term of the chapter. {def.1}Totalitarianism: a regime that seeks total control of society, through coercion, "
-        "to transform man according to an ideology. Three parts: total control, coercion, transformation. "
+        "to transform man according to an ideology. Three parts, then. Total control. Coercion. Transformation. "
         "The last one is what separates it from an ordinary dictatorship.",
         "{-def}{-photo1}{c1}Part one: where the regimes came from, and how they took power. {c1.1}The legacy of the Great War: "
         "brutalisation, and the Russian revolution. {c1.2}In Italy, the mutilated victory, the red years, and the March on Rome. "
-        "{c1.3}In Germany, Versailles, the crisis, and a legal appointment. {c1.4}Then three ideologies: nation, race, class. "
+        "{c1.3}In Germany, Versailles, the crisis, and a legal appointment. {c1.4}Then, three ideologies: nation, race, class. "
         "{c1.5}And Stalinism: collectivisation, the kulaks, the Holodomor.",
         ("P", 2.0),
         "{-c1}{c2}Part two: how they controlled society. {c2.1}The cult of the leader, with rallies, radio and censorship. "
-        "{c2.2}The New Man, shaped from childhood, by the school, the law and work. {c2.3}Mass terror: political police and camps. "
+        "{c2.2}The New Man, shaped from childhood, by the school, the law and work. {c2.3}Mass terror: political police, and camps. "
         "{c2.4}Terror against the regime's own men. {c2.5}And the nuance: the same method, at a different scale.",
         ("P", 2.0),
         "{-c2}{c3}Part three: why they went to war. {c3.1}War as a value: Abyssinia, and Lebensraum. "
-        "{c3.2}Japan: autarky and a superior race, from Manchuria to Nanjing. {c3.3}Democracies unable to act: a powerless League, "
-        "American isolationism. {c3.4}Appeasement: the Rhineland, the Anschluss, Munich. "
+        "{c3.2}Japan: autarky, and a superior race, from Manchuria to Nanjing. {c3.3}Democracies unable to act: a powerless League, "
+        "and American isolationism. {c3.4}Appeasement: the Rhineland, the Anschluss, Munich. "
         "{c3.5}And war: Prague, the pact, Poland.",
         ("P", 2.5),
     ], vis={
@@ -256,25 +265,25 @@ SCENES = [
     dict(id="question", chap="The chapter's question", fond="guerre", humeur="mystere",
          retenir="Ideology supplied the will to war; the democracies' reluctance, the opportunity.",
          beats=[
-        "{hi}So, did totalitarian ideology cause the war? At the start of the chapter, Monsieur Ros gave three historians' answers. "
-        "{hi.1}For A. J. P. Taylor, the war came from the failure of the democracies to stop Hitler: a very controversial thesis. "
+        "{hi}So, did totalitarian ideology cause the war? At the start of the chapter, Mister Ros gave three historians' answers. "
+        "{hi.1}For A. J. P. Taylor, the war came from the failure of the democracies to stop Hitler. Mister Ros calls it a very controversial thesis. "
         "{hi.2}For Paul Hehn, it was an economic conflict, born of the crash. "
-        "{hi.3}For Jay Winter, 1914 to 1945 is one single thirty years' war.",
-        "{-hi}{tr}Each of them holds part of the truth, and the chapter shows where. {tr.1}Winter: the regimes were born in the trenches, "
+        "{hi.3}And for Jay Winter, the years nineteen fourteen to nineteen forty-five form one single Thirty Years War.",
+        "{-hi}{tr}Each of them holds part of the truth. And the chapter shows where. {tr.1}Winter: the regimes were born in the trenches, "
         "out of brutalisation and Versailles. {tr.2}Hehn: the crisis made the Nazis a mass party, and pushed Japan towards autarky. "
         "{tr.3}Taylor: appeasement let every aggression succeed.",
-        "{-tr}{photo2}{rep}{rep.g}But the chapter adds its own candidate, and here is the answer. Totalitarian ideology supplied "
-        "{!the will to war}the will to war: war as a value for Fascism, Lebensraum for Nazism, a superior race for Japan. "
-        "{rep.d}The democracies' reluctance supplied the opportunity: each unpunished aggression prepared the next. "
+        "{-tr}{photo2}{rep}{rep.g}But the chapter adds its own candidate. So here is the answer. Totalitarian ideology supplied "
+        "{!the will to war}the will to war. War as a value for Fascism. Lebensraum for Nazism. A superior race for Japan. "
+        "{rep.d}And the democracies' reluctance supplied the opportunity. Each aggression left unpunished prepared the next. "
         "A strong answer keeps both halves.",
         "{-rep}{-photo2}{pa}Now it is your turn, with the key issue of the chapter.",
         ("P", 2.5),
-        "{-pa}{mod}Here is one way to say it. {mod.1}Totalitarian ideologies made war a value and expansion a goal: Abyssinia in 1935, "
-        "Lebensraum in Mein Kampf. {mod.2}But the democracies let aggression succeed: the League, American isolationism, "
-        "and appeasement, from the Rhineland to Munich. {mod.3}The two combined into a chain that only war could break: "
-        "after Prague and the pact, Poland.",
-        "{-mod}{kt}And the key terms of the chapter. {kt.1}Totalitarianism. {kt.2}Lebensraum, living space. "
-        "{kt.3}And appeasement: accepting the aggressors' demands in order to avoid war.",
+        "{-pa}{mod}Here is one way to say it. {mod.1}Totalitarian ideologies made war a value, and expansion a goal. "
+        "Think of Abyssinia in nineteen thirty-five, and of Lebensraum in Mein Kampf. {mod.2}But the democracies let aggression succeed. "
+        "The League, American isolationism, and appeasement, from the Rhineland to Munich. {mod.3}The two combined into a chain that only war could break. "
+        "After Prague and the pact, came Poland.",
+        "{-mod}{kt}And the key terms of the chapter. {kt.1}Totalitarianism. {kt.2}Lebensraum: living space. "
+        "{kt.3}And appeasement: accepting the aggressors' demands, in order to avoid war.",
     ], vis={
         "hi": dict(type="liste", titre="Three historians, three causes", items=[
             "A. J. P. Taylor (1961): the democracies' failure — “very controversial”",
@@ -303,8 +312,8 @@ SCENES = [
 
     # ================================================================ fin
     dict(id="fin", chap="The end", fond="nuit", humeur="calme", beats=[
-        "{fin}That is the end of the series. Go back to the course on the site, do the quiz of the chapter… "
-        "and write one essay on totalitarian regimes before the exam.",
+        "{fin}That is the end of the series. Go back to the course on the site. Do the quiz of the chapter. "
+        "And before the exam, write at least one essay on totalitarian regimes.",
         ("P", 2.0),
     ], vis={
         "fin": dict(type="mot", t="Your turn now", g="the course, the quiz, one essay", y=270, taille=88),
