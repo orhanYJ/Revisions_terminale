@@ -5519,17 +5519,17 @@ function CarteAnim({ code, lang }) {
    pilotées par la vidéo). dispo:true quand l'épisode est publié ; validation itérative, épisode par épisode. */
 const SERIES_DNL = {
   H1: [
-    { n: 1, t: "The Great Crash of 1929", fr: "Le grand krach de 1929" },
-    { n: 2, t: "From an American crash to a world crisis", fr: "D'un krach américain à une crise mondiale" },
-    { n: 3, t: "Economic nationalism and political responses", fr: "Nationalisme économique et réponses politiques" },
+    { n: 1, code: "h1-1", t: "The Great Crash of 1929", fr: "Le grand krach de 1929", min: 18, dispo: true },
+    { n: 2, code: "h1-2", t: "From an American crash to a world crisis", fr: "D'un krach américain à une crise mondiale", min: 23, dispo: true },
+    { n: 3, code: "h1-3", t: "Economic nationalism and political responses", fr: "Nationalisme économique et réponses politiques", min: 24, dispo: true },
     { n: 4, t: "Democracies and the liberal order", fr: "Les démocraties et l'ordre libéral" },
     { n: 5, t: "The crisis at the exam: essay and DBQ", fr: "La crise à l'épreuve : essay et DBQ" },
     { n: 6, t: "Recap", fr: "Récap" }
   ],
   H2: [
-    { n: 1, t: "What is totalitarianism?", fr: "Qu'est-ce que le totalitarisme ?" },
-    { n: 2, t: "From the Great War to power", fr: "De la Grande Guerre au pouvoir" },
-    { n: 3, t: "Three regimes, three ideologies", fr: "Trois régimes, trois idéologies" },
+    { n: 1, code: "h2-1", t: "What is totalitarianism?", fr: "Qu'est-ce que le totalitarisme ?", min: 20, dispo: true },
+    { n: 2, code: "h2-2", t: "From the Great War to power", fr: "De la Grande Guerre au pouvoir", min: 23, dispo: true },
+    { n: 3, code: "h2-3", t: "Three regimes, three ideologies", fr: "Trois régimes, trois idéologies", min: 24, dispo: true },
     { n: 4, t: "The leader, the party and the New Man", fr: "Le chef, le parti et l'homme nouveau" },
     { n: 5, t: "Mass terror", fr: "La terreur de masse" },
     { n: 6, t: "Hegemonic ambitions", fr: "Des ambitions hégémoniques" },
@@ -5543,8 +5543,8 @@ const SERIES_DNL = {
     { n: 3, code: "h3-3", t: "Britain alone", fr: "Le Royaume-Uni seul", min: 19, dispo: true },
     { n: 4, code: "h3-4", t: "Barbarossa: a war of annihilation", fr: "Barbarossa : une guerre d'anéantissement", min: 24, dispo: true },
     { n: 5, code: "h3-5", t: "Towards the genocide", fr: "Vers le génocide", min: 24, dispo: true },
-    { n: 6, t: "WWII at the exam: essay and DBQ", fr: "La guerre à l'épreuve : essay et DBQ" },
-    { n: 7, t: "Recap", fr: "Récap" }
+    { n: 6, code: "h3-6", t: "WWII at the exam: essay and DBQ", fr: "La guerre à l'épreuve : essay et DBQ", min: 11, dispo: true },
+    { n: 7, code: "h3-7", t: "Recap", fr: "Récap", min: 6, dispo: true }
   ]
 };
 /* l'onglet Vidéo n'apparaît qu'à partir du premier épisode publié */
