@@ -706,7 +706,7 @@
 
   TYPES.generique = function (o, v) {
     var e = o.el; e.classList.add("v-generique"); o.entree = "aucune"; o.disp = "flex";
-    var halo = h("div", "g-halo", e), haut = h("div", "g-haut", e, "Physique-chimie · Terminale");
+    var halo = h("div", "g-halo", e), haut = h("div", "g-haut", e, "SVT · Terminale");
     var l1 = h("div", "g-ligne", e), tt = h("div", "g-titre", e), sp = lettres(tt, v.serie);
     tt.style.fontSize = Math.min(120, Math.floor(2300 / Math.max(12, String(v.serie).length))) + "px"; tt.style.textAlign = "center";
     var l2 = h("div", "g-ligne", e), bas = h("div", "g-bas", e, "Le cours en vidéo · chapitre " + v.num);
@@ -1237,7 +1237,7 @@
     var L = h("div", "lecteur", racine);
     if (!EMBED) {
       var tete = h("div", "l-tete", L);
-      h("span", "k", tete, "Physique-chimie · chapitre " + EP.num + " · le cours en vidéo");
+      h("span", "k", tete, "SVT · chapitre " + EP.num + " · le cours en vidéo");
       h("h1", "", tete, esc(EP.titre));
     }
     var boite = h("div", "boite", L), cadre = h("div", "cadre", boite);
@@ -1435,7 +1435,7 @@
 
     if ("mediaSession" in navigator) {
       try {
-        navigator.mediaSession.metadata = new MediaMetadata({ title: "Ch. " + EP.num + " · " + EP.titre, artist: "Physique-chimie · le cours en vidéo", album: "Terminale spécialité" });
+        navigator.mediaSession.metadata = new MediaMetadata({ title: "Ch. " + EP.num + " · " + EP.titre, artist: "SVT · le cours en vidéo", album: "Terminale spécialité" });
         navigator.mediaSession.setActionHandler("play", jouer); navigator.mediaSession.setActionHandler("pause", pause);
         navigator.mediaSession.setActionHandler("seekbackward", function () { aller(T - 10); });
         navigator.mediaSession.setActionHandler("seekforward", function () { aller(T + 10); });
