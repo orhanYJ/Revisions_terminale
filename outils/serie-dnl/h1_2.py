@@ -168,7 +168,7 @@ SCENES = [
         "g4": dict(type="globe", code="H1", sc=[3]),
         "tri": dict(type="liste", titre="The Dawes circuit, 1924 – 1929", cles=["800 million", "2.5 billion", "war debts"], items=[
             "USA → Germany: a loan of 800 million marks (1924)", "Germany → France and Britain: reparations, up to 2.5 billion marks a year",
-            "France and Britain → USA: war-debt repayments"], x=660, y=400, w=580, petit=True, bande=True),
+            "France and Britain → USA: war-debt repayments"], x=660, y=330, w=580, petit=True, bande=True),
         "daw": dict(type="note", terme="Charles G. Dawes", cles=["Nobel", "Vice-President"],
                     t="Author of the 1924 plan; shared the Nobel Peace Prize in 1925 and became Vice-President (1925–1929).",
                     etape="The plan worked — as long as American credit kept flowing.", x=170, y=210, w=940),
