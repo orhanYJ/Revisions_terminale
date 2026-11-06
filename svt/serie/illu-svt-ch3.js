@@ -436,22 +436,23 @@
       "M" + F[2] + " " + yF + " V" + y3 + " H" + x2 + " V" + y2, "M" + x1 + " " + y1 + " V" + yR + " H" + x3 + " V" + y3, "M" + xR + " " + yR + " V" + (yR + 60)];
     var arb = D.map(function (d) { return o.sv("path", { d: d, stroke: o.C.sa, "stroke-width": 4, fill: "none", "stroke-linecap": "round", "stroke-linejoin": "round" }, g); });
     var ls = noms.map(function (n, k) { return o.etiquette(g, F[k], yF - 18, n, { fs: 21, c: o.C.iv }); });
-    var anc = o.etiquette(g, xR, yR + 90, "ancêtre commun", { fs: 20, c: o.C.iv2 });
+    var anc = o.etiquette(g, xR + 14, yR + 52, "ancêtre commun", { fs: 20, c: o.C.iv2, ancre: "start" });
     var tr = [[1, 3, 150], [0, 2, 200], [2, 4, 130], [1, 4, 215]].map(function (x) {
       var xa = F[x[0]], xb = F[x[1]], y = x[2];
       var p = o.sv("path", { d: "M" + xa + " " + y + " Q" + (xa + xb) / 2 + " " + (y - 60) + " " + xb + " " + y, stroke: o.C.or, "stroke-width": 3, fill: "none", "stroke-dasharray": "9 7" }, g);
       var a = o.sv("circle", { cx: xa, cy: y, r: 6, fill: o.C.or }, g), b = o.sv("circle", { cx: xb, cy: y, r: 6, fill: o.C.or }, g);
       return [p, a, b];
     });
-    var t1x = o.etiquette(g, W / 2, H - 10, v.legende1 || "arbre : les branches ne se croisent jamais", { fs: 23, c: o.C.sa });
-    var t2x = o.etiquette(g, W / 2, H - 10, v.legende2 || "réseau du vivant : des transferts horizontaux relient les branches", { fs: 23, c: o.C.or });
+    var L1 = v.legende1 || "arbre : les branches ne se croisent jamais", L2 = v.legende2 || "réseau du vivant : des transferts horizontaux relient les branches";
+    var tx = o.etiquette(g, W / 2, H - 10, L1, { fs: 23, c: o.C.sa });
     return function (t, st) {
       var t1 = o.et(v, "1", .3), t2 = o.et(v, "2", 4), t3 = v.et && v.et["3"] != null ? v.et["3"] : t2 + 1.5;
       arb.forEach(function (a, k) { o.trace(a, o.P(t, t1 + k * .25, .9)); });
       ls.forEach(function (l, k) { apparait(o, l, t, t1 + 1.2 + k * .1, .4); }); apparait(o, anc, t, t1 + 1.6, .4);
-      t1x.setAttribute("opacity", (o.E(o.P(t, t1 + 1.5, .5)) * (1 - o.E(o.P(t, t2, .4)))).toFixed(3));
+      var deux = t >= t3;
+      tx.textContent = deux ? L2 : L1; tx.setAttribute("fill", deux ? o.C.or : o.C.sa);
+      tx.setAttribute("opacity", (deux ? o.E(o.P(t, t3, .5)) : o.E(o.P(t, t1 + 1.5, .5)) * (1 - o.E(o.P(t, t2, .4)))).toFixed(3));
       tr.forEach(function (x, k) { x.forEach(function (e) { apparait(o, e, t, t2 + k * .5, .5); }); });
-      apparait(o, t2x, t, t3, .5);
     };
   };
 
