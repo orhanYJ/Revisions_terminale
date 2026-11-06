@@ -1176,7 +1176,7 @@ SCENES = [
             "Le cycle méiose – fécondation (2n, n)", "Le brassage interchromosomique (deux orientations)",
             "Le crossing-over (brassage intrachromosomique)", "La mauvaise disjonction en anaphase I et en anaphase II",
             "Le crossing-over inégal : duplication et délétion", "La famille multigénique : les opsines"]),
-        "carte_f": dict(type="mental", vers=["t1a"], vol=2.0),
+        "carte_f": dict(type="mental", vers=["t1a", "c1"], vol=2.0),
     }),
 ]
 
