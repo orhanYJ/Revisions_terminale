@@ -61,7 +61,7 @@ SCENES = [
         "who the enemy is. And the enemy decides who the victims are.",
         "{-q3}{-g0}{plan}Here is the plan. {plan.1}First, the story on the map. {plan.2}Then Fascism, with the nation and the State. "
         "{plan.3}Then Stalinism. The class, collectivisation, and the famine. {plan.4}Then Nazism, and the race. "
-        "{plan.5}After that, the comparison, with Monsieur Ros's synthesis grid. {plan.6}And then it's your turn, with an essay paragraph.",
+        "{plan.5}After that, the comparison, with the synthesis grid of the course. {plan.6}And then it's your turn, with an essay paragraph.",
         "{-plan}{titre}",
         ("P", 3.2),
     ], vis={
@@ -72,7 +72,7 @@ SCENES = [
         "plan": dict(type="liste", titre="Episode 3 · Part I.3 of the course", items=[
             "The story on the map: 1923 – 1939", "Fascism: the nation and the absolute State",
             "Stalinism: class struggle, collectivisation, the Holodomor", "Nazism: race struggle",
-            "The comparison: M. Ros's synthesis grid", "Your turn: an essay paragraph"], x=170, y=110, w=940),
+            "The comparison: the synthesis grid of the course", "Your turn: an essay paragraph"], x=170, y=110, w=940),
         "titre": dict(type="titre", sur="DNL History · H2 · Episode 3", t="Three regimes, three ideologies",
                       sous="Fascism · Stalinism · Nazism · Part I.3 of the course"),
     }),
@@ -141,7 +141,7 @@ SCENES = [
         "{def2.1}Its aim was to transform Italian civilisation, and to bring back the greatness of ancient Rome. "
         "Mussolini wanted a disciplined, warlike people, united behind the State.",
         "{-def2}{an11}And the ambition was total. History itself was to start again with Fascism. "
-        "The proof is on Monsieur Ros's slide. It is the poster of the Exhibition of the Fascist Revolution, the Mostra della Rivoluzione Fascista, "
+        "The proof is on the course slide. It is the poster of the Exhibition of the Fascist Revolution, the Mostra della Rivoluzione Fascista, "
         "in Rome, in nineteen thirty-two. And it is dated year eleven. {an11.1}Why? Because the Fascist calendar starts in nineteen twenty-two, the year Mussolini seized power. "
         "Year one. A new era.{-photo1}",
     ], vis={
@@ -164,7 +164,7 @@ SCENES = [
         "{mat.3}Then came the fascistissime laws, the most fascist laws. They turned Italy into a totalitarian State.",
         "{mat.4}This is the end of the parliamentary monarchy. The king remained. But Parliament no longer counted. "
         "{!Violence first, then the law}Violence first. Then the law.",
-        "{-mat}{-g3}{att1}One point to watch. Monsieur Ros's slide dates the murder to nineteen twenty-five. {att1.1}In fact, Matteotti was kidnapped and killed in June nineteen twenty-four. "
+        "{-mat}{-g3}{att1}One point to watch. The course slide dates the murder to nineteen twenty-five. {att1.1}In fact, Matteotti was kidnapped and killed in June nineteen twenty-four. "
         "Nineteen twenty-five is the year the murder bore fruit. So in your copy, write nineteen twenty-four. Or nineteen twenty-four to twenty-five.",
     ], vis={
         "g3": dict(type="globe", code="H2", sc=[8]),
@@ -180,7 +180,7 @@ SCENES = [
     dict(id="doctrine", chap="Fascism · the Doctrine of 1932", fond="aube", humeur="calme",
          retenir="Doctrine of Fascism (Mussolini and Gentile, 1932): “everything is in the State” · nations, not classes · against parliamentarism, liberalism, Marxism and human rights · nationalist, militaristic.",
          beats=[
-        "{photo2}{doc}Ideas three, four and five all come from one text, on Monsieur Ros's slide. The {!Doctrine of Fascism}Doctrine of Fascism. "
+        "{photo2}{doc}Ideas three, four and five all come from one text, on the course slide. The {!Doctrine of Fascism}Doctrine of Fascism. "
         "It was written in nineteen thirty-two, by Mussolini and the philosopher Giovanni Gentile. {doc.1}Idea three is about the word totalitarian. "
         "Today, it is an accusation. But the fascists used it with pride. For them, it meant a State that swallows everything.{-doc}",
         ("C", "everything is in the State … in this sense Fascism is totalitarian", "c_doc1"),
@@ -191,7 +191,7 @@ SCENES = [
         "under the State. So the Doctrine attacks Socialism, which{-cl}",
         ("C", "confines the movement of history within the class struggle", "c_doc2"),
         "{-c_doc2}{ban}Class struggle is banned. That is why owners who feared socialism liked Fascism. "
-        "{-ban}{contre}Idea five. For Monsieur Ros, Fascism is the first totalitarianism. And it is defined by what it rejects. "
+        "{-ban}{contre}Idea five. For the course, Fascism is the first totalitarianism. And it is defined by what it rejects. "
         "{contre.1}It rejects parliamentarism, the rule of elected assemblies. {contre.2}It does not believe in human rights. "
         "{contre.3}It is against liberalism, and against Marxism too. {contre.4}And it is nationalist and militaristic.",
         "{-contre}{ind}Liberalism starts from the individual, and his rights. Fascism starts from the State. Only the State gives the individual his value. "
@@ -203,7 +203,7 @@ SCENES = [
         "doc": dict(type="def", cles=["Mussolini", "Gentile"], terme="The Doctrine of Fascism · 1932",
                     t="Written by Mussolini and the philosopher Giovanni Gentile.",
                     etape="Idea 3: “totalitarian”, a word the fascists used with pride", x=170, y=200, w=940),
-        "c_doc1": dict(type="cit", a="Mussolini and Gentile", o="The Doctrine of Fascism, 1932 (M. Ros's slide)", x=200, y=200, w=880),
+        "c_doc1": dict(type="cit", a="Mussolini and Gentile", o="The Doctrine of Fascism, 1932 (course slide)", x=200, y=200, w=880),
         "tot": dict(type="cols", g="For the fascists", gq="“totalitarian” = complete, united, strong",
                     d="After the war", dq="an accusation: Arendt, on Nazism and Stalinism", vs="→"),
         "cl": dict(type="cols", g="Marxism", gq="society divided into classes, locked in struggle", d="Fascism",
@@ -215,16 +215,16 @@ SCENES = [
             "Liberalism and Marxism alike", "… and it is nationalist and militaristic"], x=170, y=140, w=940),
         "ind": dict(type="cols", g="Liberalism", gq="starts from the individual and his rights", d="Fascism",
                     dq="starts from the State, which alone gives the individual his value", vs="≠"),
-        "c_doc3": dict(type="cit", a="Mussolini and Gentile", o="The Doctrine of Fascism, 1932 (M. Ros's slide)", x=200, y=220, w=880),
+        "c_doc3": dict(type="cit", a="Mussolini and Gentile", o="The Doctrine of Fascism, 1932 (course slide)", x=200, y=220, w=880),
     }),
 
     # ================================================================ fascisme, idées 6 et 7
     dict(id="fas67", chap="Fascism · a less oppressive terror?", fond="nuit", humeur="mystere",
          retenir="Less oppressive: opponents silenced, not all killed · a counter-power: the Church (Lateran Accords, 1929), and the king · not racist before 1938: La Difesa della Razza (Aug. 1938), anti-Semitic laws.",
          beats=[
-        "{g4}{g4.1}Idea six. Monsieur Ros asks a question, and he puts a question mark on it. {!a less oppressive terror}A less oppressive terror? "
+        "{g4}{g4.1}Idea six. The course asks a question, and puts a question mark on it. {!a less oppressive terror}A less oppressive terror? "
         "{lim}{lim.1}In one sense, yes. Fascism wanted to silence its opponents, not to kill them all. "
-        "Most were sent into internal exile, on islands such as Lipari. That example is from outside Monsieur Ros's notes.",
+        "Most were sent into internal exile, on islands such as Lipari. That example is from outside the course.",
         "{lim.2}And its power was incomplete. Mussolini was not strong enough to take control of the Church. So he came to terms with the Pope. "
         "They signed a concordat, the Lateran Accords, in nineteen twenty-nine. {lim.3}And the king remained head of the State.",
         "{-lim}{-g4}{amb}Here is a sentence to remember for an essay. {amb.1}A totalitarian ambition does not always mean totalitarian control.",
@@ -286,7 +286,7 @@ SCENES = [
         "{def3}Idea nine. {!collectivisation}Collectivisation. It meant merging small, scattered farms into large collective ones. "
         "{def3.1}Independent households were suppressed. The peasants were grouped in kolkhozes, which are collective farms, or in sovkhozes, "
         "which belong to the state. The aim of the Plan was total collectivisation, in five years. Then there could be no return to capitalism in the countryside.",
-        "{-def3}{poster}The propaganda was cheerful. Monsieur Ros shows a Soviet poster from nineteen thirty. It calls out, "
+        "{-def3}{poster}The propaganda was cheerful. The course shows a Soviet poster from nineteen thirty. It calls out, "
         "{!Come with us to the kolkhoz, comrades!}Come with us to the kolkhoz, comrades!",
         "{-poster}{gc}But now look at the figures, in Worksheet two, source two. This is the share of peasant households collectivised. "
         "{gc.1}{gc.2}{gc.3}{gc.4}{gc.5}In nineteen twenty-eight, seven per cent. {gc.6}In nineteen twenty-nine, fifteen per cent. "
@@ -298,7 +298,7 @@ SCENES = [
         "def3": dict(type="def", cles=["merging", "kolkhozes", "sovkhozes"], terme="Collectivisation",
                      t="Small, scattered farms merged into large collective ones; independent households suppressed.",
                      etape="Kolkhozes (collective farms) · sovkhozes (state-owned farms) · total collectivisation in 5 years", x=170, y=200, w=940),
-        "poster": dict(type="mot", t="“Come with us to the kolkhoz, comrades!”", g="Soviet poster, 1930 (M. Ros's slide)", y=260, taille=64),
+        "poster": dict(type="mot", t="“Come with us to the kolkhoz, comrades!”", g="Soviet poster, 1930 (course slide)", y=260, taille=64),
         "gc": dict(type="graphe", titre="Peasant households collectivised (Worksheet 2, source 2)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[0.4, 4.6], y=[0, 105], gx=[], gy=[25, 50, 75, 100], lx="", ly="%"), el=barres_collect()),
     }),
@@ -312,7 +312,7 @@ SCENES = [
         "{kul.3}So the kulaks were persecuted {!as a class}as a class. Their land and animals were confiscated, and many were deported. "
         "The arrows on the map show deportations to Siberia and Kazakhstan. That detail is outside the course. "
         "{kul.4}And when they resisted, the regime called it kulak sabotage. Sabotage that had to be broken.",
-        "{-kul}{-g6}{ex10}Here are two examples. {ex10.g}First, Monsieur Ros's slide. In nineteen twenty-nine, farmers of the kolkhozes protest against the kulaks. "
+        "{-kul}{-g6}{ex10}Here are two examples. {ex10.g}First, the course slide. In nineteen twenty-nine, farmers of the kolkhozes protest against the kulaks. "
         "Their banner calls for the kulaks' liquidation as a class. {ex10.d}Second, Ukraine, in nineteen thirty-two. According to the historian Nicolas Werth, "
         "peasants who hid grain were accused of kulak sabotage. Whatever the size of their land.",
     ], vis={
@@ -320,7 +320,7 @@ SCENES = [
         "kul": dict(type="liste", titre="The kulak label", petit=True, bande=True, x=40, y=120, w=540, items=[
             "On paper: a peasant owning more than 8 acres", "In practice: any peasant refusing collectivisation",
             "Persecuted as a class: land, animals confiscated; deported", "Resistance branded “kulak sabotage”"]),
-        "ex10": dict(type="cols", g="1929 · M. Ros's slide", gq="kolkhoz farmers under a banner: liquidate the kulaks as a class",
+        "ex10": dict(type="cols", g="1929 · course slide", gq="kolkhoz farmers under a banner: liquidate the kulaks as a class",
                      d="1932 · Ukraine (Werth)", dq="peasants who hid grain accused of “kulak sabotage”", vs="+"),
     }),
 
@@ -337,7 +337,7 @@ SCENES = [
         "{-hol}{-g7}{pct}The historian Nicolas Werth, in source four, gives the figures. {pct.g}In September nineteen thirty-two, Ukraine reached only thirty-two per cent "
         "of its monthly grain target. {pct.d}By the twenty-fifth of October, only twenty-two per cent.",
         "{-pct}{bil}The result is a man-made famine. The {!Holodomor}Holodomor, in nineteen thirty-two and thirty-three. "
-        "It killed about four million people in Ukraine. That death toll is added from outside the class notes.",
+        "It killed about four million people in Ukraine. That death toll is added from outside the course.",
     ], vis={
         "g7": dict(type="globe", code="H2", sc=[19]),
         "hol": dict(type="liste", titre="Ukraine, 1932: step by step", petit=True, bande=True, x=40, y=120, w=540, items=[
@@ -345,7 +345,7 @@ SCENES = [
             "Molotov and Kaganovich halt manufactured goods to failing districts", "“Rebellious” villages “placed on the blackboard”: no food"]),
         "pct": dict(type="cols", g="September 1932", gq="32% of the monthly grain target reached", d="25 October 1932",
                     dq="only 22%", vs="→", repere="Nicolas Werth (Worksheet 2, source 4)"),
-        "bil": dict(type="mot", t="≈ 4 million dead", g="the Holodomor, Ukraine, 1932–33 · toll added from outside the class notes", y=250, taille=96),
+        "bil": dict(type="mot", t="≈ 4 million dead", g="the Holodomor, Ukraine, 1932–33 · toll added from outside the course", y=250, taille=96),
     }),
 
     # ================================================================ stalinisme, idée 12 et Worksheet 2
@@ -392,7 +392,7 @@ SCENES = [
         "{race.2}Every individual shares a collective instinct for survival. {race.3}And the survival of the race depends on two things. "
         "The first is race purity. Hence the ban on relations between races. {race.4}The second is the seizure of territory, so that the population can grow. "
         "Hitler had set out these racist views as early as nineteen twenty-four and twenty-five, in Mein Kampf.",
-        "{-race}{-g8}{hum}Monsieur Ros's slide gives the example. {hum.g}A scene of public humiliation, in nineteen thirty-five. A non-Jewish woman and a Jewish man "
+        "{-race}{-g8}{hum}The course slide gives the example. {hum.g}A scene of public humiliation, in nineteen thirty-five. A non-Jewish woman and a Jewish man "
         "are surrounded by S. A. men. They are forced to wear placards that denounce their relationship. "
         "{hum.d}The slide also shows a chart of the Nazi health ministry, from Bamberg. It ranks the racial groups of the earth.",
     ], vis={
@@ -401,7 +401,7 @@ SCENES = [
             "History = a struggle between races, ranked in a hierarchy", "A collective instinct for survival",
             "Survival 1: race purity · relations between “races” banned", "Survival 2: territory, to expand the population"]),
         "hum": dict(type="cols", g="1935 · public humiliation", gq="a couple forced by SA men to wear placards denouncing their relationship",
-                    d="Bamberg · a health-ministry chart", dq="the “racial groups of the earth” ranked", vs="+", repere="M. Ros's slide"),
+                    d="Bamberg · a health-ministry chart", dq="the “racial groups of the earth” ranked", vs="+", repere="course slide"),
     }),
 
     # ================================================================ nazisme, idée 14
@@ -411,7 +411,7 @@ SCENES = [
         "{dang}Idea fourteen. In Nazi ideology, the Jews were the most dangerous race. {dang.1}Why? Because, the Nazis claimed, "
         "unlike the others, they had no living space of their own. {dang.2}So they were accused of trying to dominate the peoples they lived among, "
         "by destroying the nation-state. {dang.3}And of aiming at the bastardisation of all peoples, and the end of all states.",
-        "{-dang}{bio}The class noted the {!biological language}biological language that followed. {bio.1}Jews were described as bacteria, infecting "
+        "{-dang}{bio}The course notes the {!biological language}biological language that followed. {bio.1}Jews were described as bacteria, infecting "
         "the body of the nation. A virus, to be eliminated. {bio.2}And if a people is described as a disease, then eliminating it becomes hygiene. "
         "Not a crime. {!Words prepared deeds}Words prepared deeds.",
         "{-bio}{eco14}The example is the school. {eco14.1}In September nineteen thirty-three, racial instruction became compulsory in German schools. "
@@ -437,7 +437,7 @@ SCENES = [
         "{unfit}Idea fifteen. The list of people to be eliminated went beyond the Jews. {unfit.1}It included disabled people. "
         "{unfit.2}People with genetic diseases. {unfit.3}And anyone who had a sexual relationship with those the Nazis called viruses.",
         "{-unfit}{t4}The example is the {!T4 programme}T four programme, launched in nineteen thirty-nine. It was the murder of disabled people, in Germany itself, "
-        "in specially built gas chambers. {t4.1}According to Monsieur Ros's revised slides, about seventy thousand people were killed between nineteen thirty-nine and nineteen forty-one. "
+        "in specially built gas chambers. {t4.1}According to the revised course slides, about seventy thousand people were killed between nineteen thirty-nine and nineteen forty-one. "
         "{t4.2}An earlier version said two hundred thousand. That is the toll up to nineteen forty-five. For the course, keep seventy thousand, for nineteen thirty-nine to forty-one.",
     ], vis={
         "unfit": dict(type="liste", titre="Idea 15 · also targeted", items=[
@@ -486,25 +486,25 @@ SCENES = [
     }),
 
     # ================================================================ la grille de M. Ros et les points à confirmer
-    dict(id="grille", chap="M. Ros's synthesis grid", fond="aube", humeur="calme",
+    dict(id="grille", chap="The synthesis grid of the course", fond="aube", humeur="calme",
          retenir="The grid, “Ideology” block: similarities (rejects liberal democracy; a supreme goal; total control for a New Man) · specificities: absolute State / race struggle / class struggle.",
          beats=[
-        "{gr}{gr.1}Monsieur Ros sums up the chapter in a synthesis grid. Fascism, Nazism, Stalinism. On the site, you can hide the cells and recite them. "
+        "{gr}{gr.1}The course sums up the chapter in a synthesis grid. Fascism, Nazism, Stalinism. On the site, you can hide the cells and recite them. "
         "Here is its ideology block. "
         "First, the similarities, the same for all three. They reject liberal democracy. They have a supreme goal. And they want total control, to create a New Man.",
         "{gr.2}Then the specificities of Fascism. {gr.3}Of Nazism. {gr.4}And of Stalinism. That is everything you have just seen. "
         "Pause the video, and recite each column out loud.",
-        "{-gr}{chk}{chk.1}And there are three points to confirm with Monsieur Ros. Matteotti: nineteen twenty-four, not twenty-five. {chk.2}Collectivisation: nineteen twenty-eight, or late nineteen twenty-nine. "
-        "{chk.3}And the examples from outside the course. They are accurate. But in an essay, prefer Monsieur Ros's own.",
+        "{-gr}{chk}{chk.1}And there are three points to watch. Matteotti: nineteen twenty-four, not twenty-five. {chk.2}Collectivisation: nineteen twenty-eight, or late nineteen twenty-nine. "
+        "{chk.3}And the examples from outside the course. They are accurate. But in an essay, prefer the course's own.",
         ("P", 3.0),
     ], vis={
-        "gr": dict(type="liste", titre="M. Ros's grid · Ideology", petit=True, items=[
+        "gr": dict(type="liste", titre="The course grid · Ideology", petit=True, items=[
             "Similarities (all three): reject liberal democracy · a supreme goal · total control to create a New Man",
             "Fascism: the absolute State · against liberalism, Marxism, parliamentarism, human rights · nationalist, militaristic · racist only from 1938",
             "Nazism: race struggle · hierarchy of races, “Aryans” the purest · purity and territory · Jews, the “most dangerous race” · T4",
             "Stalinism: class struggle · no property, no classes · Five-Year Plan, collectivisation · kulaks as class enemies"],
             x=110, y=110, w=1060),
-        "chk": dict(type="liste", titre="To confirm with M. Ros", items=[
+        "chk": dict(type="liste", titre="Three points to watch", items=[
             "Matteotti: killed on 10 June 1924, not 1925", "Collectivisation: “from 1928” (Worksheet 2); late 1929 for many historians",
             "Outside the course: Lipari, ≈ 4 million Holodomor deaths, 1.8 million kulaks deported"], x=150, y=150, w=980),
     }),
@@ -598,7 +598,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H2 · Part I.3 “Specific aspects of each regime”, Worksheet 2 on collectivisation, the comparison of the three ideologies, the synthesis grid, the points to confirm) as written on the site; animated map of chapter 2 (site).",
+    "Content: the DNL History course (chapter H2 · Part I.3 “Specific aspects of each regime”, Worksheet 2 on collectivisation, the comparison of the three ideologies, the synthesis grid, the points to confirm) as written on the site; animated map of chapter 2 (site).",
     "Added from outside the course, and said so: the Holodomor death toll (≈ 4 million), internal exile on Lipari, the deportation of the kulaks to Siberia and Kazakhstan, the “Great Turn” of late 1929, the figure of 1.8 million kulaks deported.",
     "Course correction: Matteotti was kidnapped and killed on 10 June 1924 (the slide says 1925, the year of Mussolini's claim of responsibility and of the fascistissime laws).",
     "Quotations: The Doctrine of Fascism (Mussolini and Gentile, 1932) and Stalin's speech of 7 January 1933, as quoted in the course; Feigin's letter of 9 April 1932 (Worksheet 2, source 5).",

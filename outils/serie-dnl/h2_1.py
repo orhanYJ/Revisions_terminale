@@ -118,7 +118,7 @@ SCENES = [
     dict(id="deuxcrises", chap="1929: two crises at once", fond="nuit", humeur="mystere",
          retenir="1929 opens two crises: the crisis of capitalism (chapter 1) and the threat of totalitarianism (chapter 2). Which one led to war: one, the other, or both?",
          beats=[
-        "{photos}Now for the course. Monsieur Ros opens the chapter with those two photographs from nineteen twenty-nine. "
+        "{photos}Now for the course. The chapter opens with those two photographs from nineteen twenty-nine. "
         "{photos.1}On one, a solemn crowd stands outside the New York Stock Exchange, after the crash. On the other, Adolf Hitler greets his supporters "
         "at the fourth Nazi Party Congress, in Nuremberg.",
         "{-photos}{deux}{deux.g}Why put them side by side? Because nineteen twenty-nine opens two crises at once. "
@@ -155,7 +155,7 @@ SCENES = [
          retenir="Underlying causes of WWII: Taylor (1961), the democracies' failure, “very controversial” · Hehn, an economic conflict · Winter, a “Thirty Years War” 1914–1945 · this chapter: totalitarian ideology.",
          beats=[
         "{q4}The aim of the whole of Theme one is to assess the underlying causes of the Second World War. "
-        "And here, historians disagree. Monsieur Ros puts three of them on his slide.",
+        "And here, historians disagree. The course slide puts three of them side by side.",
         "{-q4}{g3}{hist}{g3.1}{hist.1}The first is A. J. P. Taylor, a British historian, who lived from nineteen-oh-six to nineteen ninety. "
         "His book, The Origins of the Second World War, came out in nineteen sixty-one. He blames the democracies, for failing to stop Hitler. "
         "Think of appeasement, of Munich. Hitler went further because nobody stopped him.",
@@ -176,7 +176,7 @@ SCENES = [
             "A. J. P. Taylor (1906–1990): the failure of the democracies to stop Hitler",
             "Paul N. Hehn (1927–2014): an economic conflict, born of the crash",
             "Jay Winter (b. 1945): 1914–1945, one “Thirty Years War”"]),
-        "taylor": dict(type="note", terme="On M. Ros's reading list", cles=["controversial"],
+        "taylor": dict(type="note", terme="On the reading list of the course", cles=["controversial"],
                        t="A. J. P. Taylor, The Origins of the Second World War (1961): “very controversial thesis”.",
                        etape="Blame the democracies… and Hitler's own will to war almost disappears.", x=170, y=200, w=940),
         "quatre": dict(type="mot", t="+ totalitarian ideology?", g="the fourth candidate, tested in this chapter", y=250, taille=88),
@@ -215,7 +215,7 @@ SCENES = [
     dict(id="roue", chap="The seven key traits", fond="nuit", humeur="calme",
          retenir="Seven traits: ideology · dynamic leader · dictatorship and one-party rule · state control of individuals · state control of society · methods of enforcement · modern technology.",
          beats=[
-        "{src}On his slide, Monsieur Ros shows a wheel. It gives the key traits of totalitarianism. It comes from an American textbook, "
+        "{src}The course slide shows a wheel. It gives the key traits of totalitarianism. It comes from an American textbook, "
         "World History, published by McDougal Littell in two thousand and nine. There are seven traits. "
         "{-src}{roue}{roue.1}One: an ideology. It sets the goals of the state, glorifies them, and justifies everything the government does. "
         "{roue.2}Two: a dynamic leader. He unites the people, symbolises the government, and stirs up popular support.",
@@ -239,7 +239,7 @@ SCENES = [
             "State control of society: economy, school, religion, arts, youth",
             "Methods of enforcement: police terror, indoctrination, censorship, persecution",
             "Modern technology: mass communication, advanced weapons"], x=150, y=90, w=980),
-        "src": dict(type="note", terme="M. Ros's slide · Key Traits of Totalitarianism", cles=["wheel", "Seven"],
+        "src": dict(type="note", terme="The course slide · Key Traits of Totalitarianism", cles=["wheel", "Seven"],
                     t="A wheel of seven traits, from World History (McDougal Littell, 2009), an American textbook.",
                     etape="The course spells it “MacDougal Littell”: the publisher is McDougal Littell.", x=170, y=200, w=940),
         "memo": dict(type="liste", titre="A memory aid", cles=["sets", "embody", "impose", "spreads"], items=[
@@ -339,7 +339,7 @@ SCENES = [
     dict(id="trajectoire", chap="Three regimes, one trajectory", fond="nuit", humeur="tension",
          retenir="Stalin's USSR (1924–1953), Fascist Italy (1922–1943), Nazi Germany (1933–1945): born from the overthrow of a democratic framework, they paved the way to war, all ended in failure.",
          beats=[
-        "{fr2}{fr2.1}So the chapter studies three regimes side by side. Monsieur Ros dates each one on his slide, under its flag. "
+        "{fr2}{fr2.1}So the chapter studies three regimes side by side. The course slide dates each one, under its flag. "
         "First, Fascist Italy, under the fascist eagle, from nineteen twenty-two to nineteen forty-three. "
         "{fr2.2}Next, Stalin's Soviet Union, under the hammer and sickle, from nineteen twenty-four. "
         "{fr2.3}Then Nazi Germany, under the swastika, from nineteen thirty-three. "
@@ -377,9 +377,9 @@ SCENES = [
 
     # ================================================================ X. lire et voir (h2reads)
     dict(id="lectures", chap="Read and watch", fond="aube", humeur="calme",
-         retenir="Quote a work from M. Ros's list, with one sentence on what it shows: e.g. Arendt (1951), Shalamov's Kolyma Tales, Life is Beautiful, The Wave.",
+         retenir="Quote a work from the reading list of the course, with one sentence on what it shows: e.g. Arendt (1951), Shalamov's Kolyma Tales, Life is Beautiful, The Wave.",
          beats=[
-        "{lire}{lire.1}Monsieur Ros also gives a reading list. The one-line descriptions come from the site, not from the course. "
+        "{lire}{lire.1}The course also gives a reading list. The one-line descriptions come from the site, not from the course. "
         "First, Eric Hobsbawm, The Age of Extremes, from nineteen ninety-four. It tells the short twentieth century, nineteen fourteen to nineteen ninety-one, as an age of catastrophes. "
         "{lire.2}George Mosse, Fallen Soldiers. Brutalisation, and the memory of the world wars. "
         "{lire.3}Hannah Arendt, The Origins of Totalitarianism. The theory, and the chapter's epigraph. "
@@ -394,12 +394,12 @@ SCENES = [
         "{-voir}{astuce}A tip for the exam. Quote one of these works, with one sentence on what it shows. "
         "It proves that you have read beyond the course.",
     ], vis={
-        "lire": dict(type="liste", titre="Read · M. Ros's list", petit=True, items=[
+        "lire": dict(type="liste", titre="Read · the course list", petit=True, items=[
             "Hobsbawm, The Age of Extremes (1994): an age of catastrophes", "Mosse, Fallen Soldiers: brutalisation",
             "Arendt, The Origins of Totalitarianism (1951): the theory", "Taylor, The Origins of the Second World War (1961): “very controversial”",
             "Eisner, The Plot (2005): the forged Protocols, antisemitism", "Shalamov, Kolyma Tales (1954): the Gulag from inside",
             "Cohen-Scali, Max (2012): a boy born in Nazi Germany"], x=150, y=90, w=980),
-        "voir": dict(type="liste", titre="Watch · M. Ros's list", items=[
+        "voir": dict(type="liste", titre="Watch · the course list", items=[
             "Benigni, Life is Beautiful (1997): Italian Jews, racial laws", "Gansel, The Wave (2008): sliding into authoritarian discipline",
             "Costelle, Apocalypse: Hitler (2011): the rise to power", "Fellini, Amarcord (1973): provincial Fascist Italy"],
                      x=150, y=140, w=980),
@@ -462,13 +462,13 @@ SCENES = [
 ]
 
 QUIZ = [
-    dict(q="Why does M. Ros open the chapter with two photographs from 1929?",
+    dict(q="Why does the chapter open with two photographs from 1929?",
          r=["1929 opened two crises at once: capitalism and totalitarianism", "1929 is the year Hitler came to power",
             "1929 is the year the war began", "1929 is the year of the March on Rome"], ok=0, voir="deux",
          ex="The crash in New York and the Nazi Party Congress in Nuremberg: did one crisis lead to war, the other, or both?"),
     dict(q="Which historian blamed the Second World War on the failure of the democracies to stop Hitler?",
          r=["A. J. P. Taylor", "Paul N. Hehn", "Jay Winter", "Hannah Arendt"], ok=0, voir="hist",
-         ex="The Origins of the Second World War (1961): a “very controversial thesis”, says M. Ros."),
+         ex="The Origins of the Second World War (1961): a “very controversial thesis”, says the course."),
     dict(q="For Jay Winter, what was the period 1914–1945?",
          r=["A single “Thirty Years War”", "An economic conflict", "An age of prosperity", "The failure of appeasement only"], ok=0, voir="hist",
          ex="The second conflict is the direct continuation of the first. Hehn sees an economic conflict."),
@@ -495,7 +495,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: M. Ros's course (DNL History, H2 · Introduction “Defining totalitarianism: a debate and a definition”, the seven key traits wheel, Europe of regimes c. 1938, the reading list; Nazi vote figures from Part I.2) as written on the site; animated map of chapter 2 (site).",
+    "Content: the DNL History course (chapter H2 · Introduction “Defining totalitarianism: a debate and a definition”, the seven key traits wheel, Europe of regimes c. 1938, the reading list; Nazi vote figures from Part I.2) as written on the site; animated map of chapter 2 (site).",
     "Course correction: the key traits wheel comes from the publisher McDougal Littell (World History, 2009), spelled “MacDougal Littell” in the course.",
     "Outside the course: the collapse of the USSR in 1991; the one-line descriptions of the reading list.",
     "Photographs and posters (via Wikimedia Commons): Five-Year Plan poster “2 + 2 = 5”, 1931 (Yakov Guminer, public domain); Hannah Arendt in 1958 (Barbara Niggl Radloff, Münchner Stadtmuseum, CC BY-SA 4.0); the Nuremberg rally of September 1936 (Bundesarchiv, Bild 183-1982-1130-502, CC BY-SA 3.0 DE).",
