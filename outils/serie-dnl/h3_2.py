@@ -32,7 +32,7 @@ PRONONCIATION = {"Pétain": "Pay-tan", "Vichy": "Vee-shee", "Rethondes": "Ruh-to
                  "Alpes-Maritimes": "Alp-Mah-ree-teem", "Milice": "Mee-leess", "Vel' d'Hiv": "Vel Deev",
                  "Pariser Zeitung": "Pa-ree-zer Tsy-toong", "Herrenvolk": "Hair-en-folk", "Gestapo": "Geh-stah-po",
                  "Service du travail obligatoire": "Ser-veess dü trah-vye ob-lee-gah-twahr",
-                 "Rousso": "Roo-so", "Panzer": "Pants-er", "Blitzkrieg": "Blits-kreeg"}
+                 "Rousso": "Roo-so", "Panzer": "Pants-er", "Blitzkrieg": "Blits-kreeg", "Relève": "Ruh-lev"}
 
 # tableau des divisions du cours (H3_DIV) : 1940, 1942, 1943, 1944, 1945
 ANS = [1940, 1942, 1943, 1944, 1945]
@@ -42,8 +42,8 @@ DIV_GB = list(zip(ANS, [34, 38, 39, 37, 31]))
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture2", chap="Opening", fond="guerre", humeur="mystere", carton=False, beats=[
-        "{g0}{q1}The fourteenth of June 1940. German troops enter Paris. Five weeks earlier, France had probably "
-        "the biggest army in the world.",
+        "{g0}{q1}The fourteenth of June 1940. German troops enter Paris. On the tenth of May, France still had "
+        "one of the biggest armies in the world.",
         "{-q1}{q2}So how could it collapse in only six weeks? That is the first question of this episode.",
         "{-q2}{q3}And the second: what did Germany do with France afterwards? Occupation, collaboration, exploitation, "
         "persecution. France is the first case study of the New European Order.",
@@ -136,7 +136,7 @@ SCENES = [
     dict(id="strategie", chap="A huge army, an old strategy", fond="nuit", humeur="calme",
          retenir="France: 105 divisions in 1940, Britain 34. But an army led by the victors of WWI, a defensive strategy, the Maginot Line (not on the Belgian border), the phoney war.",
          beats=[
-        "{q5}First paradox. In 1940, France had probably the biggest army in the world. So the defeat was not a question of numbers.",
+        "{q5}First paradox. In 1940, France had one of the biggest armies in the world. So the defeat was not a question of numbers.",
         "{-q5}{gr}Look at the course table of divisions. {gr.1}France: 105 divisions in 1940. {gr.2}Britain: only 34. "
         "Remember from episode one: the Allies had 393 divisions in all, against 272 for the Axis. "
         "{gr.3}And now look at France in 1942: zero. In two years, the French army has disappeared.",
@@ -148,7 +148,7 @@ SCENES = [
         "{-mag}{drole}And so, from September 1939 to May 1940, France and Britain wait: war declared, but almost no fighting. "
         "{drole.1}The phoney war.",
     ], vis={
-        "q5": dict(type="question", t="The biggest army in the world… beaten in six weeks?"),
+        "q5": dict(type="question", t="One of the biggest armies in the world… beaten in six weeks?"),
         "gr": dict(type="graphe", titre="Divisions available (course table)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1939.5, 1945.5], y=[0, 120], gx=ANS, gy=[20, 40, 60, 80, 100], lx="year", ly="divisions"),
                    el=[dict(type="point", x=1940, y=105, c="el", lbl="France 1940: 105", lp=[1940.9, 112], proj=True),
@@ -212,11 +212,12 @@ SCENES = [
 
     # ================================================================ VII. la défaite en six semaines (idée 5)
     dict(id="defaite", chap="Defeat in six weeks", fond="guerre", humeur="tension",
-         retenir="Paris falls on 14 June 1940. 100,000 French soldiers killed, 200,000 wounded, 1,850,000 prisoners; 8 million on the roads. Armistice: 22 June, Rethondes.",
+         retenir="Paris falls on 14 June 1940. ≈ 100,000 French soldiers killed (recent research: ≈ 60,000), 200,000 wounded, 1,850,000 prisoners; 8 million on the roads. Armistice: 22 June, Rethondes.",
          beats=[
         "{g6}{g6.1}From the fifth of June, the German forces strike from the Somme towards Paris. The government flees the capital, "
-        "and Paris falls on the fourteenth: six weeks after the campaign began. Millions of panic-stricken civilians take the roads south.",
-        "{-g6}{toll}The human cost is huge. {toll.1}About 100,000 French soldiers killed in combat. {toll.2}200,000 wounded. "
+        "and Paris falls on the fourteenth, five weeks after the campaign began. Millions of panic-stricken civilians take the roads south.",
+        "{-g6}{toll}The human cost is huge. {toll.1}About 100,000 French soldiers killed in combat, according to the course; "
+        "recent research says about sixty thousand. {toll.2}200,000 wounded. "
         "{toll.3}1,850,000 taken prisoner. Keep that figure in mind: it comes back with the STO. "
         "{toll.4}And some eight million people in the exodus.",
         "{-toll}{arm}On the twenty-second of June 1940, France signs an {!armistice}armistice at Rethondes, in the forest of Compiègne. "
@@ -224,7 +225,7 @@ SCENES = [
     ], vis={
         "g6": dict(type="globe", code="H3", sc=[14]),
         "toll": dict(type="liste", titre="The cost of six weeks (course figures)", items=[
-            "≈ 100,000 French soldiers killed", "200,000 wounded", "1,850,000 prisoners of war",
+            "≈ 100,000 French soldiers killed (recent research: ≈ 60,000)", "200,000 wounded", "1,850,000 prisoners of war",
             "≈ 8 million civilians in the exodus"], x=170, y=130, w=940),
         "arm": dict(type="def", cles=["ends", "fighting"], terme="Armistice · 22 June 1940, Rethondes",
                     t="An agreement that ends the fighting, signed by France in the forest of Compiègne.",
@@ -262,7 +263,7 @@ SCENES = [
             "Allies: best forces into central Belgium (10 May); Dunkirk, 338,000 evacuated",
             "Germany: armoured breakthrough via the Ardennes to the Channel (13–20 May); air raids tested",
             "Germany: offensive from the Somme to Paris (5–13 June)"], x=170, y=140, w=940),
-        "ws_res": dict(type="cols", g="Allies · outcome", gq="government to Vichy (Pétain); 100,000 dead, 1,850,000 POWs; 8 million in the exodus",
+        "ws_res": dict(type="cols", g="Allies · outcome", gq="government to Vichy (Pétain); ≈ 100,000 dead, 1,850,000 POWs; 8 million in the exodus",
                        d="Germany · outcome", dq="Paris occupied, 14 June; armistice, 22 June", vs="vs", repere="Worksheet 1 · row 3"),
         "pa1": dict(type="pause", t="Essay paragraph: explain why France was defeated so quickly in 1940.",
                     sous="Three reasons, one precise example each. Pause the video, write, then play on for a model."),
@@ -298,7 +299,7 @@ SCENES = [
 
     # ================================================================ X. Vichy (idée 7)
     dict(id="vichy", chap="Vichy: a state that chose to collaborate", fond="guerre", humeur="tension",
-         retenir="Vichy: Pétain's authoritarian French State, keen to collaborate. Oct. 1940: decree defining who is a Jew; March 1941: Office for Jewish Affairs. De Gaulle: a government in exile in London.",
+         retenir="Vichy: Pétain's authoritarian French State, keen to collaborate. Oct. 1940: decree defining who is a Jew; March 1941: Office for Jewish Affairs. De Gaulle: Free France, from London.",
          beats=[
         "{photo1}{def5}In the free zone, a new government takes over, led by Marshal Pétain, and established in the spa town of Vichy. "
         "{def5.1}It calls itself the French State, and it is an authoritarian regime.",
@@ -310,7 +311,7 @@ SCENES = [
         "{antij.2}In March 1941, Vichy creates an Office for Jewish Affairs. "
         "{antij.3}These are French initiatives, not German orders. That is a precise, powerful argument in any essay on collaboration.",
         "{-antij}{-photo1}{dg}Facing Vichy, one man says no. {dg.g}On one side, Vichy: Pétain and collaboration. "
-        "{dg.d}On the other, London: General de Gaulle, who rejected the surrender and set up a government in exile.",
+        "{dg.d}On the other, London: General de Gaulle, who rejected the surrender and launched Free France.",
     ], vis={
         "photo1": dict(type="tableau", img="h3-montoire", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .3, .45],
                        legende="Pétain shakes Hitler's hand, Montoire, 24 October 1940 (outside the course) · Heinrich Hoffmann, Bundesarchiv, Bild 183-H25217, CC BY-SA 3.0 DE"),
@@ -324,30 +325,30 @@ SCENES = [
             "October 1940: a decree defines who is a Jew", "March 1941: an Office for Jewish Affairs",
             "French initiatives, not German orders"], x=170, y=150, w=940),
         "dg": dict(type="cols", g="Vichy", gq="Marshal Pétain · an authoritarian state · collaboration", d="London",
-                   dq="General de Gaulle · a government in exile · resistance", vs="≠"),
+                   dq="General de Gaulle · Free France · resistance", vs="≠"),
     }),
 
     # ================================================================ XI. la France exploitée (idée 8)
     dict(id="exploitation", chap="France exploited", fond="nuit", humeur="tension",
-         retenir="Exploitation: 20 million Reichsmarks a day, requisitions (coal, food, fuel), rationing and black market. The STO (1942), created by Vichy: men 18–50, single women 21–35.",
+         retenir="Exploitation: 20 million Reichsmarks a day, requisitions (coal, food, fuel), rationing and black market. Workers: the Relève (June 1942), then forced labour, the STO (Feb. 1943), created by Vichy: men 18–50, single women 21–35.",
          beats=[
         "{g9}{g9.1}For Germany, France is above all a resource. The occupation is first of all an economic exploitation. "
         "{expl}{expl.1}Money: France must pay heavy occupation fees, twenty million Reichsmarks a day. "
         "{expl.2}This money finances German requisitions, and the plundering of French resources: coal, food, fuel. "
         "{expl.3}The result for the French: rationing, and a {!black market}black market. "
-        "{expl.4}And workers: from 1942, the STO sends French workers to Germany as forced labour.",
-        "{-expl}{-g9}{sto}Look closely at the STO, the Service du travail obligatoire: it was created by Vichy, not by Germany. {sto.1}Under the laws of 1942 and 1943, signed by Pétain, all able-bodied men aged eighteen to fifty, "
+        "{expl.4}And workers: from 1942, French workers are sent to Germany, first as volunteers, then, from February 1943, as forced labour, with the STO.",
+        "{-expl}{-g9}{sto}Look closely at the STO, the Service du travail obligatoire: it was created by Vichy, not by Germany. {sto.1}Under the labour law of September 1942 and the STO law of February 1943, all able-bodied men aged eighteen to fifty, "
         "and single women aged twenty-one to thirty-five, could be sent.",
-        "And Germany promised to free one French prisoner of war for every three workers sent. Remember the 1,850,000 prisoners of 1940: "
+        "Before that, from June 1942, the Relève had promised to free one French prisoner of war for every three volunteer workers. Remember the 1,850,000 prisoners of 1940: "
         "here they are, used as a bargaining tool.",
     ], vis={
         "g9": dict(type="globe", code="H3", sc=[34]),
         "expl": dict(type="liste", titre="Exploited: money, goods, workers", x=60, y=120, w=620, petit=True, bande=True, items=[
             "20 million Reichsmarks a day in occupation fees", "Requisitions: coal, food, fuel",
-            "Rationing and the black market", "From 1942: the STO, forced labour in Germany"]),
+            "Rationing and the black market", "1942: the Relève; Feb. 1943: the STO, forced labour"]),
         "sto": dict(type="def", cles=["Vichy", "women"], terme="STO · Service du travail obligatoire",
-                    t="Created by Vichy in 1942: French workers sent to Germany as forced labour.",
-                    etape="Men aged 18–50, single women aged 21–35 · one POW freed for three workers", x=170, y=200, w=940),
+                    t="Created by Vichy in February 1943: French workers sent to Germany as forced labour.",
+                    etape="Men aged 18–50, single women aged 21–35 · before it, the Relève (June 1942): one POW freed for three volunteers", x=170, y=200, w=940),
     }),
 
     # ================================================================ XII. les Juifs persécutés (idée 9)
@@ -412,7 +413,7 @@ SCENES = [
         "{srep.2}Source two shows persecution: dispossession, decided by the Germans in October 1940 in the occupied zone, "
         "then made mandatory by Vichy in July 1941 in the rest of France. The historian Henry Rousso counts about ten thousand Aryanised businesses: "
         "racial measures also served economic exploitation.",
-        "{srep.3}Source three shows exploitation and constraint: the STO laws, signed by Pétain. Collaboration served the German war effort.",
+        "{srep.3}Source three shows exploitation and constraint: Vichy's own labour laws: September 1942, signed by Pétain; February 1943, the STO, signed by Laval. Collaboration served the German war effort.",
     ], vis={
         "src": dict(type="liste", titre="Life in occupied France · three sources", items=[
             "The Observer, 7 September 1941", "An “Aryanisation” poster, Paris, April 1942",
@@ -420,7 +421,7 @@ SCENES = [
         "srep": dict(type="liste", titre="The answers", petit=True, items=[
             "Source 1 → division (not sold in the free zone; Vichy press as “foreign”), an antisemitic line, above all seduction",
             "Source 2 → persecution: Aryanisation (Oct. 1940, then Vichy, July 1941); ≈ 10,000 businesses (Henry Rousso)",
-            "Source 3 → exploitation: STO laws of 1942–43 signed by Pétain; Vichy organises forced labour"], x=150, y=140, w=980),
+            "Source 3 → exploitation: labour laws of Sept. 1942 (Pétain) and Feb. 1943 (STO, Laval); Vichy organises forced labour"], x=150, y=140, w=980),
     }),
 
     # ================================================================ XV. le DBQ : « How useful… ? »
@@ -470,7 +471,7 @@ SCENES = [
         "used both by the Nazis and by Vichy. {trois.2}Racist policies, implemented by both. "
         "{trois.3}And the use of French territory and population to supply Germany with the human, material and financial resources "
         "it needed for total war.",
-        "{-trois}{chif}Three figures sum it up. {chif.1}Twenty million Reichsmarks a day: the money. {chif.2}The STO, from 1942: the workers. "
+        "{-trois}{chif}Three figures sum it up. {chif.1}Twenty million Reichsmarks a day: the money. {chif.2}The Relève, then the STO: the workers. "
         "{chif.3}Some 80,000 Jews deported: the racial policy.",
         "{-chif}{lien2}That is the fifth driving force of the New European Order, from episode one: supplying total war. "
         "In the West, France is exploited, but treated as a partner on the surface. In the East, episode four, it is a war of annihilation.",
@@ -483,7 +484,7 @@ SCENES = [
             "Repression and terror: Nazis and Vichy", "Racist policies: implemented by both",
             "Resources for total war: people, goods, money"], x=170, y=150, w=940),
         "chif": dict(type="liste", titre="Three figures, three dimensions", items=[
-            "20 million Reichsmarks a day → the money", "The STO, from 1942 → the workers",
+            "20 million Reichsmarks a day → the money", "The Relève (1942), the STO (1943) → the workers",
             "≈ 80,000 Jews deported → the racial policy"], x=170, y=150, w=940),
         "lien2": dict(type="cols", g="In the West", gq="France exploited, a “partner” on the surface", d="In the East",
                       dq="a war of annihilation (episode 4)", vs="≠"),
@@ -528,7 +529,7 @@ QUIZ = [
     dict(q="Which figures give the human cost of the defeat of 1940?",
          r=["≈ 100,000 killed, 200,000 wounded, 1,850,000 prisoners", "338,000 killed and 8 million prisoners",
             "20 million dead", "1,850,000 killed"], ok=0, voir="toll",
-         ex="338,000 is Dunkirk; 8 million is the exodus; 20 million is the daily occupation fee in Reichsmarks."),
+         ex="The course's figure is ≈ 100,000 dead (recent research: ≈ 60,000). 338,000 is Dunkirk; 8 million is the exodus; 20 million is the daily occupation fee in Reichsmarks."),
     dict(q="Which territory was annexed outright to Germany in 1940?",
          r=["Alsace and Moselle", "The Nord and the Pas-de-Calais", "The Alpes-Maritimes", "The free zone"], ok=0, voir="zones",
          ex="Back to the borders of 1871; the Nord and Pas-de-Calais were attached to the German command in Brussels."),

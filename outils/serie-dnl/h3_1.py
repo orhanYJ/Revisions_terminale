@@ -26,7 +26,8 @@ SUIVANT = "Episode 2 · The fall of France"
 PRONONCIATION = {"Grossraum": "Gross-rowm", "Lebensraum": "Lay-bens-rowm", "Aglan": "Ag-lan", "Mukden": "Mook-den",
                  "Reichstag": "Rikes-tahg", "Wehrmacht": "Vair-markt", "Einsatzgruppen": "Ine-zats-groopen",
                  "Übermensch": "Oober-mensh", "Untermensch": "Oonter-mensh", "Anschluss": "Ahn-shloos",
-                 "Sudetenland": "Soo-day-ten-land", "Reichsmarks": "Rikes-marks", "Abyssinia": "Abby-sinnia"}
+                 "Sudetenland": "Soo-day-ten-land", "Reichsmarks": "Rikes-marks", "Abyssinia": "Abby-sinnia",
+                 "Puyi": "Poo-yee", "Relève": "Ruh-lev"}
 
 # tableau des divisions du cours (introduction) : 1940, 1942, 1943, 1944, 1945
 ANS = [1940, 1942, 1943, 1944, 1945]
@@ -74,7 +75,7 @@ SCENES = [
         "{g1.1}September 1931. You saw it in chapter one: the Great Depression hits Japan hard, and its army wants raw materials "
         "and markets of its own. After the Mukden incident, the Japanese army conquers Manchuria, in north-eastern China.",
         "Manchuria is rich in coal and iron: exactly what an industrial power without resources needs. "
-        "Japan turns it into a puppet state, governed in name by Chinese authorities, but controlled from Tokyo.",
+        "Japan turns it into a puppet state, Manchukuo, with the last emperor of China, Puyi, as its nominal head, but controlled from Tokyo.",
         "{lig1}What does the League of Nations do? {lig1.1}It condemns the invasion. {lig1.2}Japan simply leaves the League, in 1933. "
         "{lig1.3}And nothing else happens: no sanctions, no army. The lesson is clear for every aggressive regime: "
         "collective security has no teeth.",
@@ -239,7 +240,7 @@ SCENES = [
 
     # ================================================================ VI. cinq forces, cinq exemples
     dict(id="exemples", chap="Five forces, five examples", fond="nuit", humeur="tension",
-         retenir="Racial: 6 million Jews murdered · Lebensraum: Barbarossa · anti-communism: commissars shot · Grossraum: Ukrainian wheat, Caucasus oil · total war: 20 million Reichsmarks a day from France.",
+         retenir="Racial: 6 million Jews murdered · Lebensraum: Barbarossa · anti-communism: commissars shot (Commissar Order, June 1941) · Grossraum: Ukrainian wheat, Caucasus oil · total war: 20 million Reichsmarks a day from France.",
          beats=[
         "{g6}{g6.1}One: the racial entity. The Nazis wanted a Europe purified by race. The result: six million Jews murdered, "
         "two thirds of the Jews of Europe. On the map, the share of Jews killed: ninety per cent in Poland, ninety-seven in Lithuania.",
@@ -247,28 +248,28 @@ SCENES = [
         "Operation Barbarossa launches the German army towards Leningrad, Moscow and Kiev. "
         "The Slavs are seen as Untermenschen, sub-humans, to be enslaved or driven out to make room for German settlers.",
         "{g6.3}Three: the crusade against communism. The Nazis speak of Jewish Bolshevism, as if communists and Jews were one enemy. "
-        "General Jodl's order of May 1941: Soviet political commissars are to be shot as soon as they are captured. "
+        "The Commissar Order, issued by the Wehrmacht high command on the sixth of June 1941: Soviet political commissars are to be shot as soon as they are captured. "
         "No prisoners, no rules: a war of annihilation.",
         "{g6.4}Four: the Grossraum, the great economic space. The East must feed Germany: the wheat of Ukraine, the oil of the Caucasus. "
         "That is why, in 1942, the German army heads for Stalingrad and the Caucasus.",
         "{g6.5}And five: supplying total war. Occupied France pays twenty million Reichsmarks a day in occupation fees. "
-        "Its coal, its food, its fuel are requisitioned. And from 1942, French workers are sent to Germany, with the STO.",
+        "Its coal, its food, its fuel are requisitioned. And from 1942, French workers are sent to Germany: first volunteers, through the Relève, then, from February 1943, forced labourers, with the STO.",
         "{-g6}{tab5}So here is your table: five forces, five examples. Pause the video and copy it: it is the backbone of any essay on this chapter.",
         ("P", 4.0),
     ], vis={
         "g6": dict(type="globe", code="H3", sc=[45, 25, 28, 24, 34]),
         "tab5": dict(type="liste", titre="Five forces · five examples", items=[
             "Racial entity → 6 million Jews murdered (90% in Poland)", "Lebensraum → Barbarossa, 22 June 1941; Slavs as “Untermenschen”",
-            "Anti-communism → Jodl's order: commissars shot", "Grossraum → Ukrainian wheat, Caucasus oil",
+            "Anti-communism → the Commissar Order (June 1941): commissars shot", "Grossraum → Ukrainian wheat, Caucasus oil",
             "Total war → France: 20 million RM a day, the STO"], x=150, y=110, w=980),
     }),
 
     # ================================================================ VII. Hitler le dit lui-même
     dict(id="hitler", chap="In Hitler's own words", fond="guerre", humeur="tension",
-         retenir="11 December 1941: “the absolute elimination of the Jews, the establishment of the supremacy of the German people, and the creation of a real community of nations under German leadership”.",
+         retenir="Hitler, 11 December 1941, as the course quotes him: “the absolute elimination of the Jews, the establishment of the supremacy of the German people, and the creation of a real community of nations under German leadership”.",
          beats=[
-        "{reich}And Hitler himself said it, before the Reichstag, on the eleventh of December 1941, "
-        "the day Germany declared war on the United States. Listen carefully.",
+        "{reich}And Hitler himself said it, according to the course, before the Reichstag, on the eleventh of December 1941, "
+        "the day Germany declared war on the United States. Here is the sentence as the course quotes it. Listen carefully.",
         ("C", "the absolute elimination of the Jews, the establishment of the supremacy of the German people, "
               "and the creation of a real community of nations under German leadership", "c_hitler"),
         "{-c_hitler}{-reich}{ana}Let's take it apart. {ana.1}First, the absolute elimination of the Jews: the racial goal, "
@@ -282,7 +283,7 @@ SCENES = [
     ], vis={
         "reich": dict(type="tableau", img="h3-reichstag", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.25, .5, .4],
                       legende="Hitler declares war on the United States, Reichstag, 11 December 1941 (Wikimedia Commons, CC BY-SA 3.0)"),
-        "c_hitler": dict(type="cit", a="Adolf Hitler", o="speech to the Reichstag, 11 December 1941", x=200, y=170, w=880),
+        "c_hitler": dict(type="cit", a="Adolf Hitler", o="speech to the Reichstag, 11 December 1941, as quoted in the course", x=200, y=170, w=880),
         "ana": dict(type="liste", titre="Three goals in one sentence", cles=["racial", "national", "European"], items=[
             "“the absolute elimination of the Jews” → the racial goal", "“the supremacy of the German people” → the national goal",
             "“a community of nations under German leadership” → the European goal"], x=150, y=130, w=980),
@@ -320,7 +321,7 @@ SCENES = [
         "{intro.4}The question, rephrased. {intro.5}And the plan, announced.",
         "{-intro}{pa2}",
         ("P", 2.0),
-        "{-pa2}{rep2}Here is a model. On the eleventh of December 1941, Hitler announced the absolute elimination of the Jews "
+        "{-pa2}{rep2}Here is a model. On the eleventh of December 1941, Hitler announced, as the course quotes him, the absolute elimination of the Jews "
         "and the creation of a community of nations under German leadership. This was the New European Order: Nazi rule over Europe, "
         "presented as saving European civilisation. Between 1939 and 1942, Germany built it by conquest, from France to the Volga. "
         "What were its aims, and to what extent were they achieved? We will see that it was a racial and ideological order, "
@@ -339,7 +340,7 @@ SCENES = [
         "pa2": dict(type="pause", t="Write the introduction of an essay on the aims of the New European Order.",
                     sous="Pause the video, use the five steps, then play on for a model."),
         "rep2": dict(type="note", terme="A model introduction", cles=["hook", "racial", "colonial", "total"],
-                     t="11 Dec. 1941: Hitler announces “the absolute elimination of the Jews”… The New European Order: Nazi rule presented as saving Europe. "
+                     t="11 Dec. 1941: Hitler announces (as the course quotes him) “the absolute elimination of the Jews”… The New European Order: Nazi rule presented as saving Europe. "
                        "1939–1942, from France to the Volga. What were its aims? A racial order, a colonial order, an order for total war.",
                      etape="Hook · definition · context · question · plan", x=150, y=150, w=980),
         "plan2": dict(type="liste", titre="A three-part plan, with evidence", items=[
@@ -393,12 +394,12 @@ QUIZ = [
             "The League of Nations reformed in 1940", "The Vichy constitution"], ok=0, voir="def2",
          ex="It is a key term of the chapter: define it, then give its five driving forces with an example each."),
     dict(q="Which example illustrates the Grossraum?",
-         r=["Ukrainian wheat and Caucasus oil for Germany", "Jodl's order to shoot commissars",
+         r=["Ukrainian wheat and Caucasus oil for Germany", "The Commissar Order of June 1941",
             "The Warsaw ghetto", "De Gaulle's appeal of 18 June 1940"], ok=0, voir="g6",
          ex="The Grossraum is Europe as one economic unit serving Germany: the East had to feed the Reich."),
     dict(q="When did Hitler define the “new order” before the Reichstag?",
          r=["11 December 1941", "1 September 1939", "22 June 1941", "30 January 1933"], ok=0, voir="c_hitler",
-         ex="The day Germany declared war on the United States: “the absolute elimination of the Jews…”."),
+         ex="The day Germany declared war on the United States: “the absolute elimination of the Jews…”, as the course quotes him."),
 ]
 
 CREDITS = [
