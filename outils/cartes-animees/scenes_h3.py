@@ -447,12 +447,12 @@ def scenes():
     add("II.2", 15, [31, 51.5, 3.8], L("Automne 1941", "Autumn 1941"),
         L("Une guerre d'anéantissement", "A war of annihilation"),
         L("Sur le front de l'Est, les règles de la guerre disparaissent : meurtres de civils et de prisonniers deviennent la norme. L'ordre de Jodl de mai 1941 prescrit d'exécuter les commissaires politiques ; l'« ordre de sévérité » de Reichenau (10 octobre 1941) vise « l'espèce sous-humaine de la juiverie ». Environ 2,8 millions de prisonniers soviétiques meurent, surtout de faim.",
-          "On the Eastern Front the rules of war disappeared: the murder of civilians and prisoners became the norm. Jodl's order of May 1941 prescribed shooting political commissars; Reichenau's “Severity Order” (10 October 1941) targeted “the subhuman species of Jewry”. About 2.8 million Soviet prisoners died, mainly of starvation."),
+          "On the Eastern Front the rules of war disappeared: the murder of civilians and prisoners became the norm. the Commissar Order (drafted in May, issued on 6 June 1941) prescribed shooting political commissars; Reichenau's “Severity Order” (10 October 1941) targeted “the subhuman species of Jewry”. About 2.8 million Soviet prisoners died, mainly of starvation."),
         front="F41", labels=["kiev", "minsk", "moscou", "leningrad"], cles=["occ", "urss", "front"])
-    add("II.2", 14, [37.0, 55.6, 8.0], L("7 novembre 1941", "7 November 1941"),
+    add("II.2", 14, [37.0, 55.6, 8.0], L("6 novembre 1941", "6 November 1941"),
         L("Staline : « Pas de pitié pour les occupants ! »", "Stalin: “No mercy to the occupiers!”"),
-        L("À Moscou, alors que les Allemands avancent encore vers la capitale, Staline reprend le mot des nazis : « Si les Allemands veulent une guerre d'anéantissement, ils l'auront. » Tous les peuples soviétiques doivent détruire les envahisseurs « jusqu'au dernier ».",
-          "In Moscow, while the Germans were still advancing on the capital, Stalin took up the Nazis' own word: “If the Germans want a war of annihilation, they will get it.” All the Soviet peoples were to destroy the invaders “to the last man”."),
+        L("À Moscou, la veille de l'anniversaire de la révolution, alors que les Allemands avancent encore vers la capitale, Staline reprend le mot des nazis : « Si les Allemands veulent une guerre d'anéantissement, ils l'auront. » Tous les peuples soviétiques doivent détruire les envahisseurs « jusqu'au dernier ».",
+          "In Moscow, on the eve of the anniversary of the revolution, while the Germans were still advancing on the capital, Stalin took up the Nazis' own word: “If the Germans want a war of annihilation, they will get it.” All the Soviet peoples were to destroy the invaders “to the last man”."),
         front="F41", labels=["smolensk"], pins=["moscou"], cles=["occ", "urss", "front"])
     add("II.2", 14, [34, 57.5, 4.4], L("Décembre 1941", "December 1941"),
         L("Arrêtés devant Leningrad et Moscou", "Stopped before Leningrad and Moscow"),
@@ -513,10 +513,10 @@ def scenes():
           "In November 1942 the Red Army lined up at Stalingrad more men (1,143,500 against 1,011,500), more guns and more tanks than the Germans, who kept only a slight edge in planes. Despite its losses, the USSR was mobilising faster. That same month, the German army was encircled."),
         front="F42", labels=["l_volga"], pins=["stalingrad"], cles=["occ", "urss", "front"],
         arrows=[F((42.0, 50.4), (43.3, 48.9), BLEU, 0.2, w=3.6, id="enc1"), F((45.4, 47.4), (43.7, 48.6), BLEU, -0.2, w=3.6, id="enc2")])
-    add("II.2", 16, [44.5, 48.7, 9.5], L("2 février 1943", "2 February 1943"),
+    add("II.2", 16, [44.5, 48.7, 9.5], L("31 janvier 1943", "31 January 1943"),
         L("Paulus capitule : le tournant de la guerre", "Paulus capitulates: the turning point of the war"),
-        L("Le 2 février 1943, Paulus capitule : 95 000 soldats allemands sont faits prisonniers. L'URSS a perdu 1,13 million de soldats et de civils à Stalingrad, l'Allemagne et ses alliés 760 000. C'est une défaite retentissante pour la Wehrmacht, et une bataille qui correspond à la définition de la guerre totale.",
-          "On 2 February 1943 Paulus capitulated: 95,000 German soldiers were taken prisoner. The USSR lost 1.13 million soldiers and civilians at Stalingrad, Germany and its allies 760,000. It was a resounding defeat for the Wehrmacht, and a battle that fits the definition of total war."),
+        L("Le 31 janvier 1943, Paulus capitule ; les dernières troupes se rendent le 2 février. Environ 91 000 soldats allemands sont faits prisonniers. L'URSS a perdu 1,13 million de soldats et de civils à Stalingrad, l'Allemagne et ses alliés 760 000. C'est une défaite retentissante pour la Wehrmacht, et une bataille qui correspond à la définition de la guerre totale.",
+          "On 31 January 1943 Paulus surrendered; the last troops gave up on 2 February. About 91,000 German soldiers were taken prisoner. The USSR lost 1.13 million soldiers and civilians at Stalingrad, Germany and its allies 760,000. It was a resounding defeat for the Wehrmacht, and a battle that fits the definition of total war."),
         front="F42", pins=["stalingrad"], labels=["l_volga"], cles=["occ", "urss", "front"])
 
     # ---------------- bilan

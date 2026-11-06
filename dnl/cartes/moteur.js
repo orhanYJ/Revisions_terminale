@@ -424,7 +424,7 @@
     ecrireLeg(SC[Math.max(0, lastScene)]);
   }
   function majLegende(i) {
-    var s = SC[i], fade = lastScene !== -1;
+    var s = SC[i], fade = lastScene !== -1 && !PILOTE;   // piloté par la vidéo : légende écrite tout de suite, l'image capturée doit être juste
     lastScene = i;
     var ecrire = function () { ecrireLeg(s); leg.classList.remove("out"); hauteur(); };
     if (fade) { leg.classList.add("out"); clearTimeout(majLegende.t); majLegende.t = setTimeout(ecrire, 160); } else ecrire();

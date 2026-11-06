@@ -50,16 +50,18 @@
   }
   window.SERIE_ILLU.griffith = function (svg, v) {
     O = window.SERIE_OUTILS;
-    var W = v.w, g = O.sv("g", {}, svg), cw = W / 4;
+    var W = v.w, cadres = O.sv("g", {}, svg), g = O.sv("g", {}, svg), cw = W / 4;
     var lots = [
       { b: [["S", 0]], txt: "S vivants", res: "meurt", morte: true },
       { b: [["R", 0]], txt: "R vivants", res: "survit", morte: false },
       { b: [["Smort", 0]], txt: "S tués par la chaleur", res: "survit", morte: false },
       { b: [["Smort", -46], ["R", 46]], txt: "S tués + R vivants", res: "meurt", morte: true, sang: true }];
     var cols = lots.map(function (L, i) {
-      var cx = cw * i + cw / 2, c = O.sv("g", {}, g);
-      O.sv("rect", { x: cw * i + 10, y: 8, width: cw - 20, height: v.h - 16, rx: 18, fill: "rgba(231,242,218,.05)", stroke: "rgba(231,242,218,.16)", "stroke-width": 1.5 }, c);
-      O.etiquette(c, cx, 50, "Lot " + (i + 1), { fs: 22, c: O.C.sa, fw: 700, ls: ".12em" });
+      var cx = cw * i + cw / 2, f = O.sv("g", {}, cadres), c = O.sv("g", {}, g);
+      // le cadre et le numéro du lot sont là dès le début (pas d'écran vide) ; le contenu entre au repère du lot
+      O.sv("rect", { x: cw * i + 10, y: 8, width: cw - 20, height: v.h - 16, rx: 18, fill: "rgba(231,242,218,.05)", stroke: "rgba(231,242,218,.16)", "stroke-width": 1.5 }, f);
+      O.etiquette(f, cx, 50, "Lot " + (i + 1), { fs: 22, c: O.C.sa, fw: 700, ls: ".12em" });
+      O.etiquette(f, cx, v.h / 2, "?", { fs: 64, c: "rgba(231,242,218,.18)", fw: 700, cls: "attente" });
       L.b.forEach(function (b) { bacterie(c, cx + b[1], 125, b[0]); });
       bloc(c, cx, 200, L.txt, { fs: 23, max: cw - 40, ancre: "middle", fw: 600 });
       var fl = O.sv("path", { d: "M" + cx + " 258 V318", stroke: O.C.iv2, "stroke-width": 3, "marker-end": "" }, c);
@@ -71,13 +73,15 @@
         sg = O.sv("g", {}, c);
         bloc(sg, cx, 470, "dans son sang : des S vivants", { fs: 21, max: cw - 36, ancre: "middle", c: O.C.or, fw: 600 });
       }
-      return { c: c, sg: sg, fl: fl };
+      return { c: c, sg: sg, fl: fl, q: f.querySelector(".attente") };
     });
     var cadre = O.sv("rect", { x: cw * 3 + 4, y: 2, width: cw - 8, height: v.h - 4, rx: 22, fill: "none", stroke: O.C.or, "stroke-width": 4 }, g);
     return function (t, st) {
+      O.op(cadres, O.E(O.P(st.tl, 0, .6)));
       cols.forEach(function (c, i) {
         var k = O.et(v, String(i + 1), .4 + i * 1.2), p = O.E(O.P(t, k, .7));
         apparait(c.c, p, 24);
+        if (c.q) O.op(c.q, 1 - p);
         if (c.sg) O.op(c.sg, O.E(O.P(t, O.et(v, "5", 6), .7)));
       });
       var q = O.P(t, O.et(v, "5", 6) + .2, .8);

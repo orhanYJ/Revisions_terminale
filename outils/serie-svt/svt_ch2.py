@@ -58,11 +58,11 @@ SCENES = [
          retenir="Transfert horizontal : un organisme incorpore le matériel génétique d'un organisme non apparenté. Il est possible parce que l'ADN et le code génétique sont universels.",
          beats=[
         "{ma}Première branche de la carte : les transferts horizontaux de gènes. {ma.1}Partons du chapitre un.",
-        "{-ma}{vh}Les brassages créent de la diversité, les accidents de la méiose aussi. Mais ces mécanismes ne suffisent pas "
-        "à expliquer toute la diversité génétique du vivant. Une propriété de l'ADN ouvre une autre voie : il est universel. "
+        "{-ma}{univ}Les brassages créent de la diversité, les accidents de la méiose aussi. Mais ces mécanismes ne suffisent pas "
+        "à expliquer toute la diversité génétique du vivant. Une propriété de l'ADN ouvre une autre voie : {univ.1}il est universel. "
         "Même molécule chez tous les êtres vivants, lue partout avec le même code génétique. Un gène peut donc passer d'un organisme à un autre, "
         "même sans aucun lien de parenté, et continuer à s'y exprimer.",
-        "Compare les deux transferts. {vh.1}Entre qui ? Le transfert vertical va des parents aux descendants. "
+        "{-univ}{vh}Compare les deux transferts. {vh.1}Entre qui ? Le transfert vertical va des parents aux descendants. "
         "Le transfert horizontal se fait entre organismes contemporains, sans lien de descendance, parfois d'espèces très éloignées. "
         "{vh.2}Par quel moyen ? Le vertical passe par la reproduction. L'horizontal, par la transformation, la conjugaison, la transgenèse ou les virus. "
         "{vh.3}Et ce qui le rend possible : la méiose et la fécondation d'un côté ; l'universalité de l'ADN et du code génétique de l'autre.",
@@ -73,6 +73,10 @@ SCENES = [
         ("P", 2.0),
     ], vis={
         "ma": dict(type="mental", vers=["c2", "c2a"]),
+        "univ": dict(type="def", terme="Au-delà des transferts verticaux", cles=["universel", "code"],
+                     t="Les brassages et les accidents de la méiose ne suffisent pas à expliquer toute la diversité génétique du vivant.",
+                     etape="L'ADN est universel, lu partout avec le même code génétique : un gène peut passer d'un organisme à un autre et s'y exprimer.",
+                     x=150, y=200, w=980),
         "vh": dict(type="illu", nom="grille", x=90, y=110, w=1100, h=540, fs=29, larg=[1, 2, 2],
                    cols=["", "Transfert vertical", "Transfert horizontal"], rows=[
                        ["Entre qui ?", "Des parents à leurs descendants", "Entre organismes contemporains, non apparentés, parfois d'espèces très éloignées"],
@@ -267,7 +271,7 @@ SCENES = [
         "{-bil_a}",
     ], vis={
         "pb2": dict(type="question", t="En quoi les transferts horizontaux ont-ils permis des applications biotechnologiques ?"),
-        "an4": dict(type="anim", nom="insuline", x=40, y=72, h=624, seg=[[0, 7], [7, 14], [14, 21], [21, 28], [28, 39], [39, 50]]),
+        "an4": dict(type="anim", nom="insuline", x=40, y=72, h=624, seg=[[0, 7], [7, 14], [14, 21], [21, 28], [28, 39], [39, 50]], vit=1.4),
         "pt4": dict(type="liste", petit=True, titre="Produire de l'insuline humaine", x=680, y=100, w=560, items=[
             "Identifier le gène d'intérêt (insuline)", "Ouvrir un plasmide",
             "Insérer le gène : plasmide recombinant (vecteur)", "Le transférer : bactérie transformée",
@@ -326,17 +330,17 @@ SCENES = [
     dict(id="syncytine", chap="La syncytine", fond="foret", humeur="mystere",
          retenir="Syncytine 1 / protéine ENV du virus MSRV : 87 % de similitude, et même fonction (fusion des membranes). Le gène de la syncytine 1 est issu d'un transfert horizontal de gène viral.",
          beats=[
-        "{tab_pl}L'exemple à connaître : la syncytine. Les syncytines sont des protéines qui jouent un rôle important dans le développement du placenta. "
+        "{tab_pl}L'exemple à connaître : la syncytine. {syn}Les syncytines sont des protéines qui jouent un rôle important dans le développement du placenta. "
         "Elles font fusionner les membranes des cellules de l'embryon et des cellules maternelles, qui forment ensemble une couche massive et continue : le syncytium.",
         "On les a trouvées chez les mammifères : primates, rongeurs, lapins, carnivores, grands ruminants. "
-        "Le génome humain en contient deux gènes : celui de la syncytine un, appelé ENW1, sur le chromosome sept ; et celui de la syncytine deux, sur le chromosome six.",
-        "{-tab_pl}{env}Or certains rétrovirus, comme le virus MSRV, savent faire fusionner leur enveloppe avec la membrane des cellules qu'ils infectent. "
+        "{syn.1}Le génome humain en contient deux gènes : celui de la syncytine un, appelé ENW1, sur le chromosome sept ; et celui de la syncytine deux, sur le chromosome six.",
+        "{-syn}{-tab_pl}{env}Or certains rétrovirus, comme le virus MSRV, savent faire fusionner leur enveloppe avec la membrane des cellules qu'ils infectent. "
         "{env.1}Ils le font grâce à des protéines de fusion, les protéines ENV, codées par un gène du virus. "
         "Les protéines ENV du virus et les syncytines des primates ont donc la même fonction : faire fusionner des membranes. Coïncidence ?",
         "{-env}{crit}Voici le critère du TP. Quand un gène est transmis verticalement, les mutations s'accumulent au fil du temps : deux espèces éloignées "
         "devraient donc avoir des protéines très différentes. {crit.1}Si les protéines de deux organismes éloignés se ressemblent à plus de quatre-vingts pour cent, "
         "cela trahit un transfert horizontal récent.",
-        "{-crit}{bar}Les résultats, d'après la correction de Madame Philip. {bar.s}Le seuil de quatre-vingts pour cent. "
+        "{-crit}{bar}{bar.s}Les résultats, d'après la correction de Madame Philip. Le seuil de quatre-vingts pour cent. "
         "{bar.1}Syncytine un humaine contre protéine du virus MSRV : quatre-vingt-sept pour cent. Au-delà du seuil, entre un virus et un primate : c'est un indice fort. "
         "{bar.2}Syncytine deux contre MSRV : vingt pour cent seulement. Une ressemblance faible, loin sous le seuil : on y reviendra.",
         "{-bar}{args}Le raisonnement, en trois arguments. {args.1}Un argument moléculaire : quatre-vingt-sept pour cent de similitude entre la syncytine un et la protéine ENV. "
@@ -356,8 +360,12 @@ SCENES = [
         "Conclure « transfert vertical » est une erreur de raisonnement.",
         "{-piege2}",
     ], vis={
-        "tab_pl": dict(type="tableau", img="ch2-placenta", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.2, .5, .45],
+        "tab_pl": dict(type="tableau", img="ch2-placenta", fond=True, de=[1.0, .5, .5], a=[1.2, .5, .45],
                        legende="Placenta humain, face fœtale · Asturnut, CC BY-SA 3.0"),
+        "syn": dict(type="def", terme="Les syncytines", cles=["fusionner", "placenta"],
+                    t="Protéines du placenta : elles font fusionner les membranes des cellules de l'embryon et de la mère, qui forment le syncytium.",
+                    etape="Chez l'humain, deux gènes : syncytine 1 (ENW1, chromosome 7) et syncytine 2 (chromosome 6).",
+                    x=150, y=150, w=980),
         "env": dict(type="cols", g="Syncytines des primates", gq="font fusionner les cellules de l'embryon et de la mère (placenta)",
                     d="Protéines ENV du virus MSRV", dq="font fusionner l'enveloppe du virus avec la cellule infectée", vs="="),
         "crit": dict(type="def", terme="Le critère du TP", cles=["80", "horizontal"],
@@ -383,7 +391,7 @@ SCENES = [
     dict(id="ece", chap="Le TP syncytine, façon bac", fond="foret", humeur="calme",
          retenir="Une conclusion d'ECE est complète, organisée et distanciée : une phrase sur les limites de la démarche, ou une expérience qui la compléterait.",
          beats=[
-        "{etapes}Ce TP est un vrai TP type bac. Reprenons sa correction, étape par étape. {etapes.1}La stratégie : comparer avec Geniegen2 les séquences en acides aminés "
+        "{etapes}Ce TP est un vrai TP type bac. {etapes.1}Reprenons sa correction, étape par étape. La stratégie : comparer avec Geniegen2 les séquences en acides aminés "
         "des syncytines humaines et de primates avec celles des protéines virales MSRV. On s'attend à démontrer un transfert viral si la similitude dépasse quatre-vingts pour cent.",
         "{etapes.2}Communiquer : un tableau titré, « Tableau de comparaison des protéines syncytines humaines et MSRV », avec deux lignes seulement : "
         "syncytine un, quatre-vingt-sept pour cent ; syncytine deux, vingt pour cent. Seulement l'essentiel.",
@@ -475,8 +483,8 @@ SCENES = [
          beats=[
         "{mb}Deuxième branche de la carte : les endosymbioses. {mb.1}Les transferts horizontaux ne concernent pas que des gènes isolés : "
         "une cellule entière peut en intégrer une autre.",
-        "{-mb}{ah}Les cellules eucaryotes possèdent des organites qui produisent ou convertissent l'énergie. Pour comprendre leur origine, rappel des deux grands modes de vie. "
-        "{ah.1}Les autotrophes produisent leur propre matière organique à partir de matière minérale. Les hétérotrophes en sont incapables : ils utilisent une matière organique préexistante.",
+        "Les cellules eucaryotes possèdent des organites qui produisent ou convertissent l'énergie. Pour comprendre leur origine, rappel des deux grands modes de vie. "
+        "{-mb}{ah}{ah.1}Les autotrophes produisent leur propre matière organique à partir de matière minérale. Les hétérotrophes en sont incapables : ils utilisent une matière organique préexistante.",
         "{ah.2}Exemples : plantes vertes et algues vertes d'un côté ; animaux et champignons de l'autre. "
         "{ah.3}Les processus : la photosynthèse, dioxyde de carbone plus eau plus lumière donnent des glucides et du dioxygène ; "
         "et la respiration cellulaire, matière organique plus dioxygène donnent de l'énergie, du dioxyde de carbone et de l'eau. "
@@ -609,8 +617,8 @@ SCENES = [
     dict(id="objections", chap="Deux objections qui se retournent", fond="cellule", humeur="tension",
          retenir="Peu de gènes dans les organites (67, 87) : transfert de gènes vers le noyau, prise de relais par le noyau, protéines importées. Un transfert horizontal qui complexifie le génome de l'hôte.",
          beats=[
-        "{pc2}La correction de Madame Philip, au cours du douze octobre : le tableau des arguments, pour et contre. "
-        "{pc2.1}En faveur : la similitude des ARN ribosomiques ; la RubisCo commune ; la membrane interne de composition bactérienne ; l'ADN circulaire ; "
+        "{pc2}{pc2.1}La correction de Madame Philip, au cours du douze octobre : le tableau des arguments, pour et contre. "
+        "En faveur : la similitude des ARN ribosomiques ; la RubisCo commune ; la membrane interne de composition bactérienne ; l'ADN circulaire ; "
         "la même fonction ; la taille et la division ; l'arbre phylogénétique.",
         "{pc2.2}Contre ? Deux membranes chez les organites, une seule chez la bactérie. Réponse : cette double membrane est justement la preuve de l'ingestion d'une bactérie.",
         "{pc2.3}Contre ? Beaucoup plus de gènes dans la bactérie ancestrale que dans les organites. Réponse : il y a eu perte de gènes dans les organites.",
