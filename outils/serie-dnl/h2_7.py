@@ -238,7 +238,7 @@ SCENES = [
         "{wh.7}And seven. Many feared communism more than fascism.",
         "{-wh}In February nineteen thirty-three, the Oxford Union votes:",
         ("C", "This House will in no circumstances fight for its King and Country.", "c_ox"),
-        "{-c_ox}{deux}So, in an essay, say both. {deux.g}Discredited today, because each concession was followed by a larger demand. "
+        "So, in an essay, say both. {-c_ox}{deux}{deux.g}Discredited today, because each concession was followed by a larger demand. "
         "{deux.d}But popular then, because it rested on solid reasons, and on public opinion.",
     ], vis={
         "qw": dict(type="question", t="Weakness… or pragmatism?"),
@@ -292,7 +292,7 @@ SCENES = [
         "They must promise not to attack thirty-one named states, from Finland to Iran. "
         "{doc2.3}But there is no sanction. No alliance. No threat of force. {-doc2}He writes:",
         ("C", "Three nations in Europe and one in Africa have seen their independent existence terminated.", "c_fdr1"),
-        "{-c_fdr1}That means Austria, Czechoslovakia, Albania and Ethiopia. And he warns the dictators:",
+        "That means Austria, Czechoslovakia, Albania and Ethiopia. {-c_fdr1}And he warns the dictators:",
         ("C", "History will hold them accountable.", "c_fdr2"),
         "{-c_fdr2}{ex2}The question: {!How useful}how useful is this document to a historian studying the democracies' response to Hitler's ambitions?",
         "{-ex2}{m2}Here is the site's model, in short. {m2.1}Largely useful, although it lights only one corner of that response. "
