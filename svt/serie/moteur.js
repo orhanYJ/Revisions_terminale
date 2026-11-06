@@ -891,6 +891,8 @@
       .catch(function () { if (window.CARTE_MENTALE) api = CARTE_MENTALE.creer(svg, { fige: true, ratio: 16 / 9 }); });
     var vers = v.vers || ["t1a"], vol = v.vol || 1.6, cadres = null;
     return function (t, st) {
+      // entrée en fondu, un peu après le début : le carton de chapitre qui précède a le temps de s'effacer
+      e.style.opacity = (E(P(st.tl, .45, .7)) * (1 - st.o)).toFixed(3);
       if (!api) return;
       if (!cadres) cadres = vers.map(function (id) { return api.cadre(id, 16 / 9); });
       var k = 0, tk = v.t0;
@@ -1103,7 +1105,7 @@
       var tl = st.tl, a = E(P(tl, 0, .6));
       op(c, a); tr(c, "translateY(" + (24 * (1 - a)) + "px) scale(" + (0.95 + 0.05 * EB(P(tl, 0, .7))) + ")");
       tr(ic, "scale(" + (0.6 + 0.4 * EB(P(tl, .2, .6))) + ")");
-      var r = (tl % 1.6) / 1.6; op(an, (1 - r) * .7); tr(an, "scale(" + (1 + r * .8) + ")");
+      var r = (tl % 1.6) / 1.6; op(an, (1 - r) * .7); tr(an, "scale(" + (1 + r * .4) + ")");   // l'anneau ne touche plus le libellé « À toi »
       op(te, E(P(tl, .3, .5))); op(tx, E(P(tl, .5, .6))); op(so, E(P(tl, 1, .6)) * .9);
     };
   };
@@ -1172,10 +1174,10 @@
       var plein = false;
       objs.forEach(function (o) {
         var v = o.v;
-        if (t < v.t0 || t > v.t1 + (v.type === "tableau" ? 1 : .7)) { if (o.vis) { o.el.style.display = "none"; o.vis = false; } return; }
+        if (t < v.t0 || t > v.t1 + (v.type === "tableau" ? 1 : .45)) { if (o.vis) { o.el.style.display = "none"; o.vis = false; } return; }
         if (!o.vis) { o.el.style.display = o.disp; o.vis = true; }
         if (v.type === "titre" || v.type === "chapitre" || v.type === "generique" || v.type === "mental") plein = true;   // la carte mentale occupe tout le cadre : pas d'en-tête par-dessus
-        var a = E(P(t, v.t0, .7)), out = EIO(P(t, v.t1, .6));
+        var a = E(P(t, v.t0, .7)), out = EIO(P(t, v.t1, v.type === "tableau" ? .6 : .35));   // sortie courte : pas de fantôme sous le visuel suivant
         if (v.type !== "tableau") o.el.style.opacity = (o.entree === "aucune" ? 1 : a) * (1 - out);
         // profondeur : le texte et les images dérivent doucement, à des vitesses différentes
         var pr = o.prof != null ? o.prof : (v.type === "tableau" ? 0 : 1);

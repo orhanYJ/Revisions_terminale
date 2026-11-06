@@ -372,7 +372,7 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 
 /* « À toi » */
 .pa-carte{text-align:center;padding:40px 50px 36px;border-radius:26px;background:rgba(14,36,24,.94);border:2px solid rgba(183,217,76,.75);box-shadow:0 0 60px rgba(183,217,76,.18)}
-.pa-ic{position:relative;width:92px;height:92px;margin:0 auto 16px;border-radius:50%;background:var(--safran);display:flex;align-items:center;justify-content:center}
+.pa-ic{position:relative;width:92px;height:92px;margin:0 auto 34px;border-radius:50%;background:var(--safran);display:flex;align-items:center;justify-content:center}
 .pa-ic svg{width:42px;height:42px;fill:#fff}
 .pa-anneau{position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--safran-c)}
 .pa-te{font-family:'JetBrains Mono',monospace;font-size:20px;letter-spacing:.3em;text-transform:uppercase;color:var(--safran-c);margin-bottom:14px}

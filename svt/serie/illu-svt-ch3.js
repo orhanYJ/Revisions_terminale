@@ -48,16 +48,16 @@
     for (var i = 0; i < 5; i++) souris(W * .22 + i * W * .14, 430, "#8b8f8c", .7);
     var lab2 = o.etiquette(g, W * .5, 495, "… puis toutes grises : la diversité disparaîtrait", { fs: 24, c: o.C.ca });
     var vrai = o.sv("g", {}, g);
-    o.sv("rect", { x: 30, y: 380, width: W - 60, height: 150, rx: 18, fill: "#0a1a11", stroke: o.C.sa, "stroke-width": 2 }, vrai);
+    o.sv("rect", { x: 30, y: 376, width: W - 60, height: 180, rx: 18, fill: "#0a1a11", stroke: o.C.sa, "stroke-width": 2 }, vrai);
     o.etiquette(vrai, W * .5, 416, "En réalité : les allèles se transmettent intacts", { fs: 26, c: o.C.sa });
     individu(o, vrai, W * .3, 475, 30, "X", "O");
-    o.etiquette(vrai, W * .3, 528, "hybride : deux allèles distincts", { fs: 18, c: o.C.iv2 });
+    o.etiquette(vrai, W * .3, 534, "hybride : deux allèles distincts", { fs: 18, c: o.C.iv2 });
     var gam = o.sv("g", {}, vrai);
-    o.sv("path", { d: "M" + (W * .3 + 44) + " 475 H" + (W * .52), stroke: o.C.iv2, "stroke-width": 2.5, fill: "none" }, gam);
-    o.sv("circle", { cx: W * .6, cy: 460, r: 18, fill: COUL.X, stroke: "#06120b", "stroke-width": 2 }, gam);
-    o.sv("circle", { cx: W * .7, cy: 490, r: 18, fill: COUL.O, stroke: "#06120b", "stroke-width": 2 }, gam);
-    o.etiquette(gam, W * .78, 470, "gamètes", { fs: 20, c: o.C.iv2, ancre: "start" });
-    o.etiquette(gam, W * .78, 498, "les deux variants restent", { fs: 20, c: o.C.iv2, ancre: "start" });
+    o.sv("path", { d: "M" + (W * .3 + 44) + " 475 H" + (W * .5), stroke: o.C.iv2, "stroke-width": 2.5, fill: "none" }, gam);
+    o.sv("circle", { cx: W * .555, cy: 460, r: 18, fill: COUL.X, stroke: "#06120b", "stroke-width": 2 }, gam);
+    o.sv("circle", { cx: W * .615, cy: 490, r: 18, fill: COUL.O, stroke: "#06120b", "stroke-width": 2 }, gam);
+    o.etiquette(gam, W * .665, 470, "gamètes", { fs: 20, c: o.C.iv2, ancre: "start" });
+    o.etiquette(gam, W * .665, 498, "les deux variants restent", { fs: 20, c: o.C.iv2, ancre: "start" });
     return function (t, st) {
       var tl = st.tl;
       apparait(o, noire, t, v.t0, .6); apparait(o, blanche, t, v.t0 + .3, .6); apparait(o, x1, t, v.t0 + .6, .4);
@@ -119,7 +119,7 @@
     var ga = o.sv("g", {}, g);
     o.etiquette(ga, x0 + L / 2, y0 - 66, "gamètes mâles", { fs: 22, c: o.C.iv2 });
     o.sv("rect", { x: x0, y: y0 - 34, width: a, height: 20, fill: COUL.A }, ga); o.sv("rect", { x: x0 + a, y: y0 - 34, width: b, height: 20, fill: COUL.m }, ga);
-    o.etiquette(ga, x0 + a / 2, y0 - 40, "A : p", { fs: 20, c: "#06120b" }); o.etiquette(ga, x0 + a + b / 2, y0 - 40, "m : q", { fs: 20, c: o.C.iv });
+    o.etiquette(ga, x0 + a / 2, y0 - 40, "A : p", { fs: 20, c: o.C.iv }); o.etiquette(ga, x0 + a + b / 2, y0 - 40, "m : q", { fs: 20, c: o.C.iv });
     o.sv("rect", { x: x0 - 34, y: y0, width: 20, height: a, fill: COUL.A }, ga); o.sv("rect", { x: x0 - 34, y: y0 + a, width: 20, height: b, fill: COUL.m }, ga);
     o.etiquette(ga, x0 - 46, y0 + a / 2 + 7, "A : p", { fs: 20, c: o.C.iv, ancre: "end" }); o.etiquette(ga, x0 - 46, y0 + a + b / 2 + 7, "m : q", { fs: 20, c: o.C.iv, ancre: "end" });
     var gf = o.etiquette(ga, x0 - 120, y0 + L + 34, "gamètes femelles", { fs: 22, c: o.C.iv2 });
@@ -177,7 +177,7 @@
         b.ra.setAttribute("y", base - b.ha * pa); b.ra.setAttribute("height", b.ha * pa);
         b.to.setAttribute("opacity", o.E(o.P(t, t1 + i * .25 + .6, .4))); b.ta.setAttribute("opacity", o.E(o.P(t, t2 + i * .25 + .6, .4)));
       });
-      apparait(o, ver, t, t3, .6);
+      apparait(o, ver, t, Math.max(t3, t2 + 1.4), .6);
     };
   };
 
@@ -232,7 +232,7 @@
     o.sv("path", { d: "M" + x0 + " " + base + " V" + top, stroke: o.C.iv, "stroke-width": 2, fill: "none" }, g);
     [0, 8, 16, 24, 32].forEach(function (k) { o.etiquette(g, x0 + (k + .5) * bw, base + 28, (k / 32).toFixed(2).replace(".", ","), { fs: 18, c: o.C.iv2 }); });
     o.etiquette(g, (x0 + x1) / 2, base + 60, "fréquence de l'allèle bw75 dans la population", { fs: 20, c: o.C.iv2 });
-    [10, 20, 30, 40].forEach(function (y) {
+    [10, 20, 30, 40].filter(function (y) { return y <= mx; }).forEach(function (y) {
       var yy = base - (base - top) * y / mx;
       o.sv("path", { d: "M" + x0 + " " + yy + " H" + x1, stroke: "rgba(231,242,218,.08)", "stroke-width": 1 }, g);
       o.etiquette(g, x0 - 12, yy + 6, String(y), { fs: 17, c: o.C.iv2, ancre: "end" });
