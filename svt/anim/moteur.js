@@ -162,10 +162,14 @@ function label(x,y,txt,col='#F2F5FA',size=11,o=1){
 /* ---------- légendes pointées ---------- */
 function callouts(st){
   let s = '';
+  const tb = E.world && E.world.transform && E.world.transform.baseVal.consolidate(), M = tb ? tb.matrix : {a:1, d:1, e:0, f:0};
   for(const c of (C.CALL || [])){
     if(c.si && !c.si(opt)) continue;
     const o = k(c.a, c.a+.45) * (1 - k(c.b-.45, c.b)); if(o <= 0) continue;
-    const g = k(c.a+.15, c.a+1), [lx,ly] = c.lab, w = c.text.length*5.7 + 20, oo = op(o);
+    const g = k(c.a+.15, c.a+1), w = c.text.length*5.7 + 20, oo = op(o);
+    // la bulle reste entière dans le cadre (viewBox 400 × 430) : bornée à l'écran, à travers le zoom du monde
+    const sx = M.a*c.lab[0] + M.e, sy = M.d*c.lab[1] + M.f, hw = M.a*w/2 + 4, hh = M.d*10.5 + 3;
+    const lx = (Math.max(hw, Math.min(400 - hw, sx)) - M.e) / M.a, ly = (Math.max(hh, Math.min(430 - hh, sy)) - M.f) / M.d;
     for(const A of (c.anc ? c.anc(st) : [])){
       const ex = lerp(lx,A[0],g), ey = lerp(ly,A[1],g);
       s += `<line x1="${lx}" y1="${ly}" x2="${f(ex)}" y2="${f(ey)}" stroke="#E9EEF7" stroke-opacity="${op(.7*o)}" stroke-width=".9"/>`;

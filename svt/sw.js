@@ -4,12 +4,12 @@
    Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. Même chose pour les
    vidéos des chapitres (serie/*.html) ; leurs MP3 passent par le réseau. */
-const CACHE = "svt-v30";
+const CACHE = "svt-v31";
 const ANIMS = ["mitose", "replication", "expression", "enzyme", "globe", "tectonique",
   "ecosysteme", "immunite", "anticorps", "clonal", "meiose", "nondisj", "coinegal", "globines",
   "thg", "insuline", "endosymbiose"];
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png",
-  "anim/moteur.css?v=6", "anim/moteur.js?v=6", "carte-mentale.js?v=4"].concat(ANIMS.map((a) => "anim/" + a + ".html"));
+  "anim/moteur.css?v=7", "anim/moteur.js?v=7", "carte-mentale.js?v=5"].concat(ANIMS.map((a) => "anim/" + a + ".html"));
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
