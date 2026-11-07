@@ -92,7 +92,7 @@
     tampon(p, t) {
       const k = pr(t, p.a, .3);
       fondImg('neurones', 1.4, .5, .5, .22);
-      tampon(p.t, W / 2, 900, k, -.12, p.t.length > 6 ? 118 : 230);
+      tampon(p.t, W / 2, 900, k, -.1, p.t.length > 6 ? 96 : 230);
     },
     date(p, t) {
       const k = eo(pr(t, p.a, .7)), an = Math.round(lerp(p.de, +p.t, k));
@@ -240,7 +240,7 @@
     g.fillStyle = NOIR; g.fillRect(0, 0, W, H);
     g.drawImage(lignes, 0, 0);
     // caméra : coup de zoom à l'entrée du plan, puis lente avancée ; secousse sur les chocs
-    const kz = eo(pr(t, p.a, .22)), z = lerp(1.1, 1, kz) * (1 + l * .012);
+    const kz = eo(pr(t, p.a, .22)), z = lerp(1.1, 1, kz) * (1 + l * .012) * (1 + .055 * eo(S.coup(t)));
     let sx = 0, sy = 0; if (p.choc && l < .35) { const a = (1 - l / .35) * 22; sx = (rnd(t * 99) - .5) * a; sy = (rnd(t * 77 + 3) - .5) * a; }
     g.save(); g.translate(W / 2 + sx, H / 2 + sy); g.scale(z, z); g.translate(-W / 2, -H / 2);
     R[p.type](p, t, l);

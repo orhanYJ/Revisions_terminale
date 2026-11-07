@@ -7,11 +7,7 @@
     { bg: NOIR, fg: BLANC, acc: JAUNE }, { bg: JAUNE, fg: NOIR, acc: ROUGE }, { bg: BLANC, fg: NOIR, acc: ROUGE },
     { bg: NOIR, fg: BLANC, acc: ROUGE }, { bg: ROUGE, fg: BLANC, acc: JAUNE },
   ];
-  const CLES = new Set(['cerveau', 'marche', '1983', 'libet', 'experience', 'poignet', 'veux', 'horloge', 'instant', 'electrodes',
-    'resultat', 'demiseconde', 'geste', 'deux', 'dixiemes', 'trois', 'sans', 'toi', 'spinoza', 'pierre', 'penser', 'vole', 'veut',
-    'pareils', 'libre', 'ignore', 'causes', 'illusion', 'vite', 'pouvoir', 'non', 'veto', 'bruit', 'fond', 'bac', 'revisions', 'animees',
-    'decides', 'sur', 'avant', 'signal']);
-  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]/g, '');
+  const CLES = { has: w => S.cle(w) }, norm = w => w;
   const cv = document.getElementById('c');
 
   function schema(p) {
@@ -95,13 +91,14 @@
     const L = mise(p), tot = L.reduce((a, x) => a + x.h, 0);
     let y = (p.type === 'mot' || p.type === 'stop' || p.type === 'tampon' || p.type === 'date') ? 960 - tot / 2 : 1000;
     // si le texte déborde (plan long), on fait glisser vers le haut
-    const bas = y + tot, lim = 1560; if (bas > lim) { const vis = L.filter(Lg => Lg[0].m.t <= t); const hv = vis.reduce((a, x) => a + x.h, 0); y -= Math.max(0, y + hv - lim); }
-    L.forEach(Lg => {
+    const lim = 1600; let vis = L.filter(Lg => Lg[0].m.t <= t + .02);
+    while (vis.length > 1 && y + vis.reduce((a, x) => a + x.h, 0) > lim) vis = vis.slice(1);
+    vis.forEach(Lg => {
       const tot2 = Lg.reduce((a, x) => a + x.w, 0) + 30 * (Lg.length - 1); let x = W / 2 - tot2 / 2;
       Lg.forEach(o => {
         const k = pr(t, o.m.t - .03, .16);
         if (k > 0) {
-          const s = o.cle ? lerp(1.9, 1, back(k)) : lerp(1.35, 1, eo(k)), cx = x + o.w / 2, cy = y + Lg.h / 2;
+          const s = o.cle ? lerp(1.9, 1, back(k)) : lerp(1.2, 1, eo(k)), cx = x + o.w / 2, cy = y + Lg.h / 2;
           g.save(); g.translate(cx, cy); g.scale(s, s); g.rotate(o.cle ? (rnd(o.m.t) - .5) * .08 : 0);
           if (o.cle && c.acc !== c.bg) { g.fillStyle = c.acc; const pad = 14; g.fillRect(-o.w / 2 - pad, -o.taille * .47, o.w + 2 * pad, o.taille * .9); }
           S.texte(o.s, 0, 0, { taille: o.taille, coul: o.cle ? (c.acc === JAUNE || c.acc === BLANC ? NOIR : c.bg === ROUGE ? NOIR : BLANC) : c.fg });

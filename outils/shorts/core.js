@@ -94,7 +94,14 @@
   function plans(liste) { PLANS = liste.map(p => Object.assign({}, p, { a: Array.isArray(p.a) ? T(...p.a) - (p.av ?? .06) : p.a })).sort((x, y) => x.a - y.a); PLANS.forEach((p, i) => { p.i = i; p.b = i + 1 < PLANS.length ? PLANS[i + 1].a : D.dur; }); return PLANS; }
   const planA = t => { let r = PLANS[0]; for (const p of PLANS) if (p.a <= t) r = p; return r; };
 
-  const S = { W, H, g, D, T, Tfin, MOTS, GROUPES, groupeA, avecPonct, seg, cl, lerp, pr, eo, eio, back, elas, rnd, img, cover, texte, largeur, plans, planA, get PLANS() { return PLANS; } };
+  const CLES = new Set(['cerveau', 'marche', '1983', 'libet', 'experience', 'poignet', 'veux', 'horloge', 'linstant', 'electrodes',
+    'resultat', 'demiseconde', 'geste', 'deux', 'dixiemes', 'trois', 'sans', 'toi', 'spinoza', 'pierre', 'penser', 'vole', 'veut',
+    'pareils', 'libre', 'ignore', 'causes', 'illusion', 'vite', 'pouvoir', 'non', 'veto', 'bruit', 'fond', 'bac', 'revisions', 'animees',
+    'decides', 'sur', 'avant', 'signal']);
+  const cle = w => CLES.has(norm(w));
+  // coup de zoom sur le dernier mot clé dit : 0 → 1 → 0 en d secondes
+  const coup = (t, d = .2) => { let r = 0; for (const m of MOTS) { if (m.t > t) break; if (cle(m.w)) r = 1 - pr(t, m.t, d); } return r; };
+  const S = { cle, coup, W, H, g, D, T, Tfin, MOTS, GROUPES, groupeA, avecPonct, seg, cl, lerp, pr, eo, eio, back, elas, rnd, img, cover, texte, largeur, plans, planA, get PLANS() { return PLANS; } };
   window.S = S;
 
   window.SHORT_LANCER = function (modele) {

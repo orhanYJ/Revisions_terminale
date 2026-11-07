@@ -59,13 +59,18 @@ def main(nom):
             brut = json.load(open(ch + ".json", encoding="utf-8"))
             # mots reconnus sur le texte lu → on remet les mots affichés (même découpe sauf prononciations)
             mots_lus = [w for _, _, w in brut]
-            if len(mots_lus) != len(mots_aff):
-                print("  découpe différente, mots affichés recalés par proportion", sid)
-            mots = []
-            for i, w in enumerate(mots_aff):
-                j = min(len(brut) - 1, round(i * (len(brut) - 1) / max(1, len(mots_aff) - 1))) if len(mots_lus) != len(mots_aff) else i
-                o, dd, _ = brut[j]
-                mots.append([round(t + o - a0 / SR, 3), round(dd, 3), w])
+            nl = sum(max(1, len(re.findall(r"[\wÀ-ÿœæ'’-]+", lu(w, m.PRONONCIATION)))) for w in mots_aff)
+            if nl != len(mots_lus):
+                print("  ATTENTION découpe différente", sid, nl, len(mots_lus))
+            # chaque mot affiché correspond à un ou plusieurs mots lus (« 1983 » → « mille neuf cent… »)
+            mots, j = [], 0
+            for w in mots_aff:
+                nlus = max(1, len(re.findall(r"[\wÀ-ÿœæ'’-]+", lu(w, m.PRONONCIATION))))
+                o = brut[min(j, len(brut) - 1)][0]
+                k = min(j + nlus, len(brut)) - 1
+                fin = brut[k][0] + brut[k][1]
+                mots.append([round(t + o - a0 / SR, 3), round(max(.05, fin - o), 3), w])
+                j += nlus
         segs.append({"id": sid, "t0": round(t, 3), "t1": round(t + len(audio) / SR, 3), "texte": texte, "mots": mots})
         morceaux.append(audio)
         t += len(audio) / SR

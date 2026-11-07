@@ -70,10 +70,10 @@
     tampon(p, t) {
       const k = back(pr(t, p.a, .25));
       g.save(); g.translate(W / 2, 900); g.scale(lerp(2.4, 1, k), lerp(2.4, 1, k));
-      const w = S.largeur(p.t, { taille: p.t.length > 6 ? 120 : 230 }) + 90, h = p.t.length > 6 ? 200 : 330;
+      const w = Math.min(980, S.largeur(p.t, { taille: p.t.length > 6 ? 110 : 230 }) + 90), h = p.t.length > 6 ? 200 : 330;
       g.strokeStyle = NEON[2]; g.lineWidth = 12; g.shadowColor = NEON[2]; g.shadowBlur = 40; g.beginPath(); g.roundRect(-w / 2, -h / 2, w, h, 26); g.stroke();
       g.restore();
-      g.save(); g.translate(W / 2, 900); g.scale(lerp(2.4, 1, k), lerp(2.4, 1, k)); neon(p.t, 0, 4, p.t.length > 6 ? 120 : 230, NEON[2]); g.restore();
+      g.save(); g.translate(W / 2, 900); g.scale(lerp(2.4, 1, k), lerp(2.4, 1, k)); neon(p.t, 0, 4, p.t.length > 6 ? 110 : 230, NEON[2], { max: 900 }); g.restore();
       if (p.t === 'DÉJÀ EN MARCHE') S.d.cerveau(540, 1320, 160, st({ trait: NEON[2], lueur: NEON[2], ep: 6 }));
     },
     date(p, t) {
@@ -213,7 +213,7 @@
     // halo de couleur du chapitre
     const h = g.createRadialGradient(W / 2, 900, 50, W / 2, 900, 900); h.addColorStop(0, coul + '22'); h.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = h; g.fillRect(0, 0, W, H);
     // entrée de plan : glissement rapide latéral (whip) puis léger zoom
-    const kw = eo(pr(t, p.a, .18)), dx = (1 - kw) * (p.i % 2 ? -260 : 260), z = 1 + l * .01;
+    const kw = eo(pr(t, p.a, .18)), dx = (1 - kw) * (p.i % 2 ? -260 : 260), z = (1 + l * .01) * (1 + .05 * eo(S.coup(t)));
     let sx = 0, sy = 0; if (p.choc && l < .3) { const a = (1 - l / .3) * 18; sx = (rnd(t * 91) - .5) * a; sy = (rnd(t * 57) - .5) * a; }
     g.save(); g.translate(W / 2 + dx + sx, H / 2 + sy); g.scale(z, z); g.translate(-W / 2, -H / 2);
     g.globalAlpha = cl(kw * 1.5);
