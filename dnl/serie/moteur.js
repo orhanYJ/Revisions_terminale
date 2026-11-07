@@ -36,8 +36,13 @@
   function EB(x) { x = cl(x, 0, 1); var c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }
   function P(t, t0, d) { return cl((t - t0) / d, 0, 1); }
   // texte enrichi pour les sciences : x^{2} ou 10^-19 (exposant), E_c ou P_{reçue} (indice), [[num|den]] (fraction)
+  // typographie française (pages en français) : espaces insécables autour des guillemets, avant : ; ? ! et après ≈,
+  // pour qu'aucun signe ne se retrouve seul en début ou en fin de ligne
+  function typo(s) {
+    return !FR ? s : s.replace(/« /g, "«\u00a0").replace(/ »/g, "\u00a0»").replace(/ ([:;?!])/g, "\u00a0$1").replace(/≈ /g, "≈\u00a0");
+  }
   function esc(s) {
-    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    return typo(String(s)).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
       .replace(/\[\[([^|\]]*)\|([^\]]*)\]\]/g, '<span class="frac"><span class="nu">$1</span><span class="de">$2</span></span>')
       .replace(/\^\{([^}]*)\}/g, "<sup>$1</sup>").replace(/\^([\u2212-]?[0-9]+)/g, function (_, x) { return "<sup>" + x.replace("-", "\u2212") + "</sup>"; })
       .replace(/_\{([^}]*)\}/g, "<sub>$1</sub>").replace(/_([^\s{<&_])/g, "<sub>$1</sub>");
@@ -421,8 +426,8 @@
     var e = o.el; e.classList.add("v-question"); if (v.bande) e.classList.add("bande");
     var tt = h("div", "tt", e);
     var sp = mots(tt, v.t);
-    sp[0].innerHTML = '<span class="gu">“</span>' + sp[0].innerHTML;
-    sp[sp.length - 1].innerHTML += '<span class="gu">”</span>';
+    sp[0].innerHTML = '<span class="gu">' + (FR ? "«\u00a0" : "“") + '</span>' + sp[0].innerHTML;
+    sp[sp.length - 1].innerHTML += '<span class="gu">' + (FR ? "\u00a0»" : "”") + '</span>';
     return function (t, st) {
       sp.forEach(function (m, i) {
         var p = E(P(st.tl, .1 + i * .12, .7));
@@ -1165,7 +1170,7 @@
       });
       // en-tête : notion, épisode, chapitre
       var sc_ = EP.scenes.filter(function (s) { return t >= s.t0; }).pop() || EP.scenes[0];
-      ent.innerHTML = esc(EP.notion) + " · Ep. " + EP.num + (sc_.id !== EP.scenes[0].id ? " &nbsp;—&nbsp; <b>" + esc(sc_.chap) + "</b>" : "");
+      ent.innerHTML = esc(EP.notion) + " · " + T_("Ep. ") + EP.num + (sc_.id !== EP.scenes[0].id ? " &nbsp;—&nbsp; <b>" + esc(sc_.chap) + "</b>" : "");
       op(ent, plein ? 0 : E(P(t, EP.scenes[0].t0 + 1, 1)) * .9);
       fil.style.width = (W * cl(t / EP.dur, 0, 1)).toFixed(1) + "px";
       // sous-titres

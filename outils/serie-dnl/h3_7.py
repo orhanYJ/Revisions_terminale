@@ -155,7 +155,7 @@ QUIZ = [
          voir="kt", ex="The Grossraum is the single economic space; Lebensraum, the land to conquer for German settlers."),
     dict(q="How much did occupied France pay in occupation fees?", r=["20 million Reichsmarks a day", "20 million a year",
          "Nothing: it was a partner", "1 million francs a month"], ok=0, voir="ch",
-         ex="Plus requisitions and, from 1942, the STO."),
+         ex="Plus requisitions, the Relève (1942) and then the STO (1943)."),
 ]
 
 CREDITS = [

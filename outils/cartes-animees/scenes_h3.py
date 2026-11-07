@@ -82,7 +82,7 @@ LABELS = {
     "l_occ": {"p": [0.6, 48.2], "fr": "Zone occupée", "en": "Occupied zone"},
     "l_libre": {"p": [2.0, 45.0], "fr": "« Zone libre »", "en": "“Free zone”"},
     "l_annex": {"p": [6.9, 48.75], "fr": "Annexée", "en": "Annexed", "t": "evt", "dx": 8},
-    "l_afn": {"p": [2.0, 31.5], "fr": "Afrique du Nord française", "en": "French North Africa"},
+    "l_afn": {"p": [4.5, 33.6], "fr": "Afrique du Nord française", "en": "French North Africa"},
     "l_pac": {"p": [-170.0, 30.0], "fr": "Océan Pacifique", "en": "Pacific Ocean", "t": "mer"},
     "l_atl": {"p": [-38.0, 40.0], "fr": "Océan Atlantique", "en": "Atlantic Ocean", "t": "mer"},
     "l_manche": {"p": [-1.2, 50.15], "fr": "Manche", "en": "Channel", "t": "mer"},
@@ -427,7 +427,7 @@ def scenes():
         L("Pourquoi envahir l'URSS ? Trois raisons", "Why invade the USSR? Three reasons"),
         L("Économique : le Grossraum, un Reich plus vaste et autosuffisant, la colonisation et l'asservissement des Slaves, le blé d'Ukraine et le pétrole du Caucase. Idéologique : la croisade contre le « judéo-bolchevisme ». Raciale : l'« Übermensch » aryen contre l'« Untermensch » slave ; les Juifs doivent être éliminés.",
           "Economic: the Grossraum, a larger self-sufficient Reich, German settlement and the enslavement of the Slavs, Ukrainian wheat and Caucasus oil. Ideological: the crusade against “Jewish Bolshevism”. Racial: the Aryan “Übermensch” against the Slavic “Untermensch”; the Jews were to be eliminated."),
-        labels=["l_ukr", "l_cauc", "l_urss", "l_all", "moscou", "berlin"], cles=["reich", "occ", "allie", "urss", "su"])
+        labels=["l_ukr", "l_cauc", "l_urss", "l_all", "moscou"], cles=["reich", "occ", "allie", "urss", "su"])
 
     # ---------------- II.2 : Barbarossa
     add("II.2", 15, [29, 53, 3.0], L("22 juin 1941", "22 June 1941"),
