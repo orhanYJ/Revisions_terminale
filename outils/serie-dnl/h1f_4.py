@@ -44,7 +44,7 @@ SCENES = [
         ("P", 3.2),
     ], vis={
         "g0": dict(type="globe", code="H1", sc=[31]),
-        "q1": dict(type="note", terme="1er septembre 1939", t="La guerre, de nouveau.", x=440, y=560, w=800),
+        "q1": dict(type="note", terme="1er septembre 1939", t="La guerre, de nouveau.", x=490, y=500, w=750),
         "q2": dict(type="question", t="Pourquoi les démocraties ont-elles laissé leur ordre s'effondrer ?", bande=True),
         "plan": dict(type="liste", titre="Épisode 4 · Les démocraties et l'ordre libéral", items=[
             "Sur la carte : de 1919 à 1939", "L'ordre libéral et la Société des Nations",
@@ -186,7 +186,7 @@ SCENES = [
 
     # ================================================================ V. idée 3 : la Mandchourie
     dict(id="mandch", chap="II.3 · La Mandchourie : la SDN face à une grande puissance", fond="nuit", humeur="tension",
-         retenir="La Corée déjà japonaise · 18 sept. 1931 attentat sous faux drapeau à Mukden → le Mandchoukouo, État fantoche · commission Lytton (rapport oct. 1932, adopté fév. 1933) · le Japon quitte la SDN (mars 1933) · Hoover : aucune action militaire américaine · Kellogg-Briand (1928) : la guerre mise hors la loi, sans moyen de contrainte.",
+         retenir="18 sept. 1931 : attentat sous faux drapeau à Mukden → le Mandchoukouo, État fantoche · commission Lytton (rapport oct. 1932, adopté fév. 1933) · le Japon quitte la SDN (mars 1933) · Hoover n'agit pas · Briand-Kellogg (1928) : la guerre hors la loi, sans contrainte.",
          beats=[
         "{g4}Troisième idée : la Société des Nations s'est montrée incapable d'arrêter l'agression d'une grande puissance. Le cas d'école, c'est la Mandchourie. "
         "La Corée, juste à côté, est déjà une possession japonaise. "
@@ -250,7 +250,7 @@ SCENES = [
 
     # ================================================================ VII. idée 5 : les lois de neutralité
     dict(id="neutre", chap="II.3 · Les lois de neutralité", fond="nuit", humeur="mystere",
-         retenir="L'isolationnisme après la Dépression : la politique intérieure d'abord. Lois de neutralité (un Congrès démocrate, sous la pression de Nye, Vandenberg) : 1935 embargo sur les armes · 1936 pas de prêts · 1937 embargo permanent, pas de voyages sur les navires des belligérants, autres marchandises au comptant et transportées par l'acheteur. Roosevelt : « Je hais la guerre » (1936). Déc. 1937 : l'USS Panay ; le Japon s'excuse, paie — et y voit un permis.",
+         retenir="Isolationnisme. Lois de neutralité : 1935 embargo sur les armes · 1936 pas de prêts · 1937 embargo permanent, « cash and carry ». Roosevelt : « Je hais la guerre ». Déc. 1937 : l'USS Panay ; le Japon s'excuse et y voit un permis.",
          beats=[
         "{fdr}Cinquième idée : les lois de neutralité rendent indisponible la plus grande des démocraties. "
         "{iso}{iso.1}La cause, c'est la Grande Dépression. Les États-Unis se replient dans {!l'isolationnisme}l'isolationnisme, et ferment les yeux sur les tensions internationales. "
@@ -338,7 +338,7 @@ SCENES = [
 
     # ================================================================ IX. idée 7 : l'apaisement et ses six raisons
     dict(id="apais", chap="II.3 · L'apaisement, et six raisons rationnelles", fond="nuit", humeur="tension",
-         retenir="L'apaisement (notion clé) : céder aux exigences d'un agresseur dans l'espoir d'éviter la guerre. 1935 Éthiopie : pas d'embargo pétrolier · 1936 Rhénanie : pas d'intervention. Six raisons : pacifisme · un empire à surveiller, pas d'argent pour réarmer · sympathie pour l'Allemagne · les problèmes économiques d'abord · l'isolationnisme américain · la peur du communisme plus que du fascisme.",
+         retenir="L'apaisement : céder aux exigences d'un agresseur pour éviter la guerre. 1935 Éthiopie : pas d'embargo pétrolier · 1936 Rhénanie : pas d'intervention. Six raisons : pacifisme · empire · sympathie pour l'Allemagne · économie d'abord · isolationnisme américain · peur du communisme.",
          beats=[
         "{ap}Septième idée. De l'autre côté de l'Atlantique, le Royaume-Uni et la France suivent une politique qui porte un nom. La notion clé de cet épisode : "
         "{!l'apaisement}l'apaisement. {ap.1}Céder aux exigences d'un agresseur, dans l'espoir d'éviter la guerre.",
@@ -471,7 +471,7 @@ SCENES = [
         "ki": dict(type="question", t="Les grandes puissances démocratiques sont-elles en partie responsables des origines de la Seconde Guerre mondiale ?"),
         "mots": dict(type="liste", titre="Lire le sujet", cles=["partie", "démocratiques", "mesure"], items=[
             "« En partie » : une réponse nuancée", "« Les grandes puissances démocratiques » : Royaume-Uni, France, États-Unis",
-            "« Dans quelle mesure » : pour, contre, une réponse argumentée"], x=150, y=150, w=980),
+            "« En partie » : dans quelle mesure ? Pour, contre, une réponse argumentée"], x=150, y=150, w=980),
         "pa1": dict(type="pause", t="Les grandes démocraties sont-elles responsables des origines de la Seconde Guerre mondiale ? Écris ton plan : trois ou quatre parties.",
                     sous="Mets la vidéo en pause, écris ton plan, puis reprends pour comparer."),
         "pl": dict(type="liste", titre="Un plan modèle", items=[
