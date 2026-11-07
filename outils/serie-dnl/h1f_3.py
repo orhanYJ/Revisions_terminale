@@ -187,7 +187,7 @@ SCENES = [
             "Idéologie : le nationalisme économique, fermer la porte à la concurrence étrangère",
             "Portée par Smoot et Hawley (républicains), d'après une promesse de 1928 aux agriculteurs",
             "Contre elle : 1 028 économistes, Henry Ford (« une stupidité économique »), Thomas Lamont",
-            "Objectifs : protéger agriculture et industrie, l'emploi, les recettes douanières : un pari sur le marché intérieur"], x=130, y=100, w=1020),
+            "Objectifs : protéger l'agriculture, l'industrie et l'emploi ; parier sur le marché intérieur"], x=130, y=55, w=1020),
         "ex2": dict(type="liste", titre="Une loi qui échoue avant même de commencer", cles=["protestations", "perdent"], items=[
             "23 pays déposent des protestations avant le vote", "1932 : Smoot et Hawley perdent tous deux leur siège"], x=170, y=170, w=940),
     }),
@@ -316,7 +316,7 @@ SCENES = [
             "Réparations et remboursements : ni emprunter ni dépenser"], x=170, y=140, w=940),
         "gch": dict(type="graphe", titre="Chômage en Allemagne chez les travailleurs assurés, en % (dossier documentaire, document 2)", x=300, y=110, w=680, h=520,
                     ax=dict(x=[1927.4, 1933.6], y=[0, 52], gx=[1928, 1929, 1930, 1931, 1932, 1933], gy=[10, 20, 30, 40, 50], lx="", ly="%"),
-                    el=barres_ans(CHOMAGE) + [dict(type="texte", x=1928.7, y=38, t="travailleurs assurés seulement", c="iv")]),
+                    el=barres_ans(CHOMAGE) + [dict(type="texte", x=1929.6, y=46, t="travailleurs assurés seulement", c="iv")]),
         "arb": dict(type="tableau", img="h1-arbeitsamt-1932", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.15, .6, .55],
                     legende="Chômeurs devant l'office de l'emploi de Berlin-Nord-Est, 4 mai 1932 (Bundesarchiv, Bild 146-1976-033-23, Seiler, CC BY-SA 3.0 de)"),
         "soc": dict(type="liste", titre="Qui est touché ?", cles=["prolétariat", "classes", "soupes", "parti"], items=[
@@ -560,7 +560,7 @@ SCENES = [
         ("P", 2.0),
     ], vis={
         "carte": dict(type="carte", centre="NATIONALISME ÉCONOMIQUE", branches=[
-            dict(t="II.1 · Nationalisme", items=["Smoot-Hawley, 17 juin 1930", "blocs · Ottawa 1932 · −66 %", "Roosevelt : sortie de l'or, RTAA 1934"]),
+            dict(t="II.1 · Nationalisme", items=["Smoot-Hawley, 17 juin 1930", "blocs · Ottawa 1932 · −66 %", "sortie de l'or · RTAA 1934"]),
             dict(t="Allemagne", items=["43,8 % de chômeurs (1932)", "jamais majoritaires · janv. 1933", "réarmement · pillage"]),
             dict(t="Militarisme", items=["forces armées · pouvoir militaire", "politique étrangère agressive", "Allemagne · Italie · Japon"]),
             dict(t="Démocraties", items=["New Deal : les 3 R · 1933-1935", "URSS reconnue · bon voisinage", "Front populaire 1936"])]),
