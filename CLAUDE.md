@@ -169,6 +169,13 @@ Le hub porte les onglets de cadrage, l'onglet de thèses transversales, le diagr
 
 ---
 
+## 4 bis. Shorts TikTok / YouTube Shorts (`outils/shorts/`, depuis le 07/11/2026)
+
+Demande de Cengiz : des vidéos courtes verticales, en français, pour attirer vers la chaîne YouTube « Révisions Animées ». Recette validée (Milgram jugé « banger ») : **une histoire vraie et folle, facile à comprendre**, racontée à la 2e personne et au présent, accroche-question dans la première seconde, suspense qui monte, révélation simple, lien avec un chapitre de la chaîne et une question de bac, « La réponse est sur Révisions Animées », dernière phrase qui relance la première (boucle) ; 70 à 78 s ; faits vérifiés sur sources sérieuses (listées en tête du script), aucune information personnelle. Le pilote Libet (« ton cerveau décide avant toi ») a été jugé ennuyeux : que des faits, pas d'histoire.
+- Chaîne : `<code>.py` (texte lu par passages, `PRONONCIATION` avec tous les nombres en lettres, `TEMPO`, `ACCEL` = accélération d'ensemble), `voix.py <code>` (voix clonée Qwen des séries, cache `.cache/` ; `SHORT_MUET=1` = brouillon), `<code>.plan.js` (plans calés sur les mots, `ch` chapitres, `choc`, `silence`, plans `bac` et `chaine`), `<code>.types-a.js` (plans dessinés propres au short), `node verifier.js <code>` (sans navigateur), `node rendu.js <code> a [--planche|--son|--muet]` (MP4 1080 × 1920, 30 i/s, serveur `python3 -m http.server 8765` à la racine), `<code>.description.md` (titre, description, hashtags, sources). File d'attente : `file.sh` (une voix à la fois, puis planche et vidéo ; jamais de navigateur pendant une voix). MP4 dans `outils/shorts/sortie/` (non versionné).
+- Style retenu : modèle A « Archives » (noir, crème, or, rouge ; `modele-a.js`). Musique : `phonk_tension` (`musique_short.py`, synthèse originale) : la tension monte pendant toute la vidéo et lâche sur le plan `chaine` (environ 5 s avant la fin), coupure avant chaque choc. Sons de coupe espacés et discrets (Cengiz : trop de « fioups »). Modèles B (néon) et C (typo choc) disponibles mais non retenus.
+- Livrés le 07/11/2026 : `milgram` (le devoir), `ata` (l'État), `butler` (Parable of the Sower), `lughnasa` (Dancing at Lughnasa), `stockdale` (la liberté), `cerveau` (la conscience, expérience du cerveau divisé, hors série : renvoi honnête à la série).
+
 ## 5. Couche de mouvement
 
 Sur les sites animés, le mouvement est maintenu **à part du contenu** dans `motion.css` et `motion.js`, chargés par un bloc repéré juste avant `</head>` :
