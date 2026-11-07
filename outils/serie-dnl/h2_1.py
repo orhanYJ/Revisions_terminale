@@ -130,7 +130,7 @@ SCENES = [
         "It is a fringe party. {gr.2}September nineteen thirty: eighteen point three per cent. "
         "{gr.3}July nineteen thirty-two: thirty-seven point four per cent. Now it is the first party in Germany. And Germany has five point six million unemployed. "
         "{gr.4}In November, the Nazis fall back to thirty-three point one. So, never a majority. Remember that. It will matter when we get to Arendt.",
-        "{-gr}{crise}So the world crisis of the nineteen thirties is two things at once. {crise.1}It is a crisis of democracy, in retreat. "
+        "{-gr}So the world crisis of the nineteen thirties is two things at once. {crise}{crise.1}It is a crisis of democracy, in retreat. "
         "{crise.2}And it is the steady advance of totalitarianism.",
     ], vis={
         "photos": dict(type="note", terme="Two photographs, 1929", cles=["crash", "Nuremberg"],
@@ -186,7 +186,7 @@ SCENES = [
     dict(id="definition", chap="A definition in three parts", fond="aube", humeur="lumiere",
          retenir="Key term. Totalitarianism: a regime that seeks total control of society, through coercion, to transform man according to an ideology.",
          beats=[
-        "{def1}Here is the first key term of the chapter. You must know it word for word. {!Totalitarianism}Totalitarianism: "
+        "{def1}Here is the first key term of the chapter. You must know it word for word. Totalitarianism: "
         "a regime that seeks total control of society, through coercion, in order to transform man according to an ideology.",
         "{-def1}{trois}The definition has three parts. {trois.1}Part one. The control is {!total}total. It does not stop at politics. "
         "It reaches work, leisure, the family, the school, religion. Even thought.",
@@ -224,7 +224,7 @@ SCENES = [
         "{roue.5}Five: state control of society. Business, labour and housing. Education, religion and the arts. Even private life, and youth groups. "
         "{roue.6}Six: methods of enforcement. Police terror, indoctrination, censorship, persecution.",
         "{roue.7}And seven: modern technology. Mass communication, to spread propaganda. And advanced military weapons.",
-        "{-roue}{memo}Seven is a lot to remember. So here is a memory aid. {memo.1}The ideology sets the goal. "
+        "{-roue}Seven is a lot to remember. So here is a memory aid. {memo}{memo.1}The ideology sets the goal. "
         "{memo.2}The leader and the party embody it. {memo.3}Control and enforcement impose it. {memo.4}And modern technology spreads it.",
         "{-memo}{techno}Look closely at that last trait. It is what separates totalitarianism from the tyrannies of the past. "
         "{techno.1}An ancient tyrant could frighten a city. But a twentieth-century regime has the radio, film, and modern weapons. "
@@ -345,9 +345,9 @@ SCENES = [
         "{fr2.3}Then Nazi Germany, under the swastika, from nineteen thirty-three. "
         "{fr2.4}Fascist Italy falls in nineteen forty-three. {fr2.5}Nazi Germany, in nineteen forty-five. "
         "{fr2.6}And Stalin's Soviet Union lasts until his death, in nineteen fifty-three.",
-        "{-fr2}{meme}They share the same totalitarian ambition. But their ideologies are opposites. {meme.1}The nation, for Fascism. "
+        "{-fr2}They share the same totalitarian ambition. But their ideologies are opposites. {meme}{meme.1}The nation, for Fascism. "
         "{meme.2}The race, for Nazism. {meme.3}The class, for Stalinism. That is why Stalin and Hitler are sworn enemies. At least until their pact, in nineteen thirty-nine.",
-        "{-meme}{g7}{traj}And yet they follow one common path, in three steps. {traj.1}Step one. Each was born from the overthrow of a democratic framework. "
+        "{-meme}{g7}And yet they follow one common path, in three steps. {traj}{traj.1}Step one. Each was born from the overthrow of a democratic framework. "
         "In Germany, the Weimar Republic. In Italy, the parliamentary monarchy. In Russia, the fragile freedoms born in February nineteen seventeen, "
         "which the Bolsheviks swept away. {traj.2}Step two. All three paved the way to the Second World War. "
         "{traj.3}Step three. All three ended in failure.",
