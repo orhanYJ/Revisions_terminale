@@ -365,7 +365,7 @@ SCENES = [
 
     # ================================================================ XI. les notions clés
     dict(id="kt", chap="Les notions clés", fond="nuit", humeur="calme",
-         retenir="Dépression économique mondiale (années 1930) : chute durable et mondiale de la production, chômage de masse, déflation (États-Unis 25 % en 1933 ; Allemagne 43,8 % en 1932). Apaisement : céder à un agresseur pour éviter la guerre (Rhénanie 1936, Munich 1938).",
+         retenir="Dépression économique mondiale (années 1930) : chute durable et mondiale de la production, chômage de masse, déflation (États-Unis 25\u00a0% en 1933 ; Allemagne 43,8\u00a0% en 1932). Apaisement : céder à un agresseur pour éviter la guerre (Rhénanie 1936, Munich 1938).",
          beats=[
         "{kt1}Une notion clé se maîtrise toujours de la même façon : une définition en une phrase, puis des exemples, des dates, et un lien avec un autre chapitre. "
         "Première notion : la dépression économique mondiale des années 1930. "

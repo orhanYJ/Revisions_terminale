@@ -342,6 +342,7 @@ SCENES = [
         "De la charité… mais aussi une opération de sympathie, pour un homme visé par une enquête fédérale.",
         "Les Hoovervilles sont le premier sujet d'exposé oral du cours. {-cap}{-capf}{or1}Prépare quatre questions. "
         "{or1.1}Quoi ? {or1.2}Où ? {or1.3}Qui ? {or1.4}Et quand ? Les réponses sont à l'écran.",
+        ("P", 5.0),
     ], vis={
         "hv": dict(type="tableau", img="h1-hooverville", de=[1.0, .5, .5], a=[1.15, .45, .5],
                    legende="Hooverville sur les vasières de Seattle, 7 février 1933 (Seattle Municipal Archives, Wikimedia Commons, CC BY 2.0)"),
