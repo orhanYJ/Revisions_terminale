@@ -88,7 +88,7 @@ body.pseudo{overflow:hidden}
 .fond .lueur{position:absolute;border-radius:50%;will-change:transform}
 .poussiere{position:absolute;inset:0}
 .voile{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,0,0,.45) 100%);pointer-events:none}
-.entete{position:absolute;left:46px;top:34px;font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,239,228,.55);white-space:nowrap}
+.entete{position:absolute;left:46px;top:34px;font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,239,228,.55);white-space:nowrap;text-shadow:0 0 6px #0e1729,0 0 12px #0e1729,0 0 18px #0e1729}
 .entete b{color:var(--safran-c);font-weight:500}
 .fil{position:absolute;left:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--safran),var(--safran-c));opacity:.75}
 .st{position:absolute;left:140px;right:140px;bottom:30px;text-align:center;pointer-events:none}

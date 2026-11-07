@@ -33,7 +33,7 @@ SCENES = [
     dict(id="ouverture", chap="Opening", fond="nuit", humeur="mystere", carton=False, beats=[
         "{tab_don}{q1}A man climbs to the top of a tree and calls down: from up here, you can see into the future.",
         "{-q1}The audience smiles. Because we can see into the future too: Michael has already told us how this summer ends.",
-        "{-tab_don}{serie}Part nine: Gerry comes back. Spain, a factory, a dead branch… and a sister who does not come home.",
+        "{-tab_don}{serie}Part nine: Gerry comes back. Spain, a factory, a dead branch… and a sister who has not come home.",
         ("P", 0.3),
         "{-serie}{titre}",
         ("P", 3.2),
@@ -59,7 +59,8 @@ SCENES = [
         ("C", "A Catholic church as a matter of interest.", "jeu1.6"),
         "{jeu1.7}Page fifty-three. "
         "Naturally I thought he was Spanish, says Gerry. From Armagh, as it turned out. {jeu1.8}She laughs, and avoids his embrace. "
-        "Then the questions: do you speak Spanish? No. Can you make explosives? No.",
+        "Then the questions: a Marxist? No. A Republican, a Socialist, a Communist? No. "
+        "Do you speak Spanish? No. Can you make explosives? No.",
         ("C", "Can you ride a motor-bike? Yes. You're in. Sign here.", "jeu1.9"),
         ("C", "So you'll be a dispatch rider?", "jeu1.10", {"voix": "F"}),
         "{jeu1.11}Gerry imitates riding a motor-bike. He leaves on Saturday: first tide. Keep that motor-bike in mind.",
@@ -112,7 +113,7 @@ SCENES = [
         ("C", "Let me check the aerial first. Very often that's where the trouble lies.", "jeu2.4"),
         ("C", "Then I'll have a look at the ignition and sparking plugs. Leave it to Gerry.", "jeu2.5"),
         "{jeu2.6}Car words, for a radio: he is bluffing. He winks at Chris as he goes out the front door. "
-        "{jeu2.7}And at once, Kate speaks. It would be on her conscience, she says, to stay silent.",
+        "{jeu2.7}Then Kate speaks. It would be on her conscience, she says, to stay silent.",
         ("C", "It's a sorry day for Ireland when we send young men off to Spain to fight for godless Communism.", "jeu2.8",
          {"voix": "F"}),
         ("C", "For democracy, Kate.", "jeu2.9", {"voix": "F"}),
@@ -231,7 +232,7 @@ SCENES = [
         ("C", "Maybe that's the important thing for a man: a named destination – democracy, Ballybeg, heaven.", "c_dest"),
         "{-c_dest}{drift}Democracy, Ballybeg, heaven: a cause, a village, a religion, all on the same level. "
         ""
-        "{drift.1}Women, he adds, make better drifters. A strange thing to say in a house where five women can go nowhere at all.",
+        "{drift.1}Women, he adds, make better drifters. Bitter irony: Agnes and Rose will end their lives drifting through London.",
         "{-drift}Then Kate.",
         ("C", "It's a sorry day for Ireland when we send young men off to Spain to fight for godless Communism.", "c_sorry",
          {"voix": "F"}),
@@ -270,7 +271,7 @@ SCENES = [
          retenir="Gerry the drifter, the outside world breaking in, dramatic irony, and comedy that turns to fear.", beats=[
         "{a1}Now the analysis. Four ideas. "
         "{a1.1}One: Gerry the drifter. Dancing teacher, gramophone salesman, now a soldier: he moves freely, the sisters cannot. "
-        "Useful for an essay on gender: men leave, women stay and wait.",
+        "Useful for an essay on gender: men leave freely; for the women, leaving means exile, as Agnes and Rose will show.",
         "{-a1}{a2}{a2.1}Two: the outside world breaks in. History, with the Spanish war and the Church's view of it. "
         "Industry, with machines and buses. Kate answers both with silence: tell them later. But silence stops nothing.",
         "{-a2}{a3}{a3.1}Three: dramatic irony and foreshadowing. Only the audience can really see into the future. "
@@ -283,7 +284,7 @@ SCENES = [
     ], vis={
         "a1": dict(type="note", cles=["drifter", "destination"], terme="1 · Gerry the drifter",
                    t="“a named destination – democracy, Ballybeg, heaven”: any cause will do.",
-                   etape="Men leave; the women stay and wait.", x=170, y=200, w=940),
+                   etape="Men leave freely; for the women, leaving means exile.", x=170, y=200, w=940),
         "a2": dict(type="note", cles=["History", "industry"], terme="2 · The outside world breaks in",
                    t="Spain and “godless Communism”; a factory that makes gloves “far more cheaply”.",
                    etape="Kate answers with silence: “Tell them later.”", x=170, y=200, w=940),

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070B14">
 <title>Quand les chromosomes migrent mal</title>
-<link rel="stylesheet" href="moteur.css?v=6">
+<link rel="stylesheet" href="moteur.css?v=7">
 </head>
 <body>
 <main class="wrap">
@@ -97,7 +97,7 @@
     </div>
   </section>
 </main>
-<script src="moteur.js?v=6"></script>
+<script src="moteur.js?v=7"></script>
 <script>
 (() => {
 const {clamp, ease, lerp, f, op, smooth, ys, strand, wobblyEllipse, cellPath, fiber, pole, flash, halo, label, AMB, MAG, CYA} = ANIM.H;
@@ -156,7 +156,7 @@ function joined(ch, t, o){
 const kAtL = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
 
 /* gamète de l'autre parent */
-function gKeys(c){ const top = c === 'L' ? 70 : 262; const z = c === 'L' ? ZYG.Lg : ZYG.Sg; return [[46,450,top],[47,450,top],[51,250,top],[51.5,250,top],[55.5,...z]]; }
+function gKeys(c){ const top = c === 'L' ? 70 : 262; const z = c === 'L' ? ZYG.Lg : ZYG.Sg; return [[46,330,top],[48,330,top],[51,250,top],[51.5,250,top],[55.5,...z]]; }   // le gamète vert naît dans le cadre (il glissait depuis le bord droit, coupé)
 
 function chromatidPath(x0, top, c, side, jn, lag, t, ph){
   const L = LEN[c], yc = top + CEN[c];
@@ -186,9 +186,9 @@ function draw(c){
     cp = cellPath(bl);
   } else {
     const g1 = kf([[46,50,0],[50,160,0],[51.5,160,0],[55.5,200,0]], t)[0];
-    const g2 = kf([[46,450,0],[47,450,0],[51,250,0],[51.5,250,0],[55.5,200,0]], t)[0];
-    const w = lerp(37, 72, k(51.5,55.5)), h = lerp(184, 172, k(51.5,55.5));
-    cp = cellPath([[g1,CY,w,h],[g2,CY,w,h]]);
+    const g2 = kf([[46,330,0],[48,330,0],[51,250,0],[51.5,250,0],[55.5,200,0]], t)[0];
+    const w = lerp(37, 72, k(51.5,55.5)), h = lerp(184, 172, k(51.5,55.5)), gs = .02 + .98*k(47,48.2);   // il grandit sur place, une fois les autres gamètes effacés
+    cp = cellPath([[g1,CY,w,h],[g2,CY,w*gs,h*gs]]);
     const fade = 1 - k(45,47);
     if(fade > 0) for(const x of [150,250,350]){ const d = wobblyEllipse(x,CY,37,184,x); cells += `<g opacity="${op(fade)}"><path d="${d}" fill="url(#cyto)"/><path d="${d}" fill="none" stroke="#86A9DB" stroke-width="2"/></g>`; }
     st.g1 = g1; st.g2 = g2;
@@ -250,7 +250,7 @@ function draw(c){
     st[key] = [mx, y];
   }
   /* gamète de l'autre parent : chromosomes à une chromatide */
-  const ga = k(46.5,47.5);
+  const ga = k(47.6,48.4);
   if(ga > 0) for(const c2 of ['L','S']){
     const [bx, top] = kf(gKeys(c2), t), [b1] = kf(gKeys(c2), t+.04), [b0] = kf(gKeys(c2), t-.04);
     const lag = clamp(-(b1-b0)/.08*.22, -22, 22);

@@ -156,9 +156,8 @@ SCENES = [
             dict(pos={"Agnes": "fenetre"}, act={"Agnes": "debout"}),
             dict(dit=["Agnes", "What's that son of yours at out there?"]),
             dict(note="“She taps on the window, calls ‘Michael!’ and blows a kiss to the imaginary child.”"),
-            dict(pos={"Agnes": "tricot_a"}, act={"Agnes": "tricote"}, cam="cuisine",
-                 note="“Pity there aren't some boys about to play with.” · “Couldn't we all do with that?”"),
-            dict(note="“There's going to be pictures in the hall next Saturday, Aggie.” (p. 5)"),
+            dict(cam="cuisine", note="“Pity there aren't some boys about to play with.” · “Couldn't we all do with that?”"),
+            dict(pos={"Agnes": "tricot_a"}, act={"Agnes": "tricote"}, note="“There's going to be pictures in the hall next Saturday, Aggie.” (p. 5)"),
             dict(dit=["Rose", "And he wants to bring me up to the back hills next Sunday – up to Lough Anna."]),
             dict(dit=["Chris", "Danny Bradley is a scut, Rose."]),
             dict(dit=["Chris", "He's a married man with three young children."]),
@@ -201,7 +200,7 @@ SCENES = [
                  objets={"kites": "kites", "garcon": GARCON}, note="“MICHAEL enters and stands L.” (p. 6)"),
             dict(act={"Rose": "range"}, note="“ROSE takes the lid off the range and throws turf into the fire.”"),
             dict(pos={"Rose": "tricot_r"}, act={"Rose": "tricote"}, note="“For God's sake, I have an iron in there!” · “Rosie, love, would you give me a hand with this.”"),
-            dict(note="“the [imaginary BOY MICHAEL is working at the kite materials lying on the ground”"),
+            dict(note="“the imaginary BOY MICHAEL is working at the kite materials lying on the ground”"),
             dict(note="“MICHAEL responds to MAGGIE in his ordinary narrator's voice.”"),
             dict(pos={"Maggie": [740, 290]}, act={"Maggie": "debout"}, note="“MAGGIE enters the garden from the back of the house.”"),
             dict(pos={"Maggie": [615, 440]}, dit=["Maggie", "What are these supposed to be?"]),
@@ -262,7 +261,7 @@ SCENES = [
         "And third, Michael himself.{-effet}",
         ("C", "it must have helped my aunts to bear the shame Mother brought on the household by having me – as it was called then – "
               "out of wedlock.", "c_shame"),
-        "{-c_shame}{shame}The shame: that is the word the parish used for Chris's child, Michael himself. "
+        "{-c_shame}{shame}The shame: that is how the household was made to feel about Chris's child, Michael himself. "
         "Notice the distance in as it was called then: the adult narrator quotes the judgement of 1936 without sharing it. "
         "And see the balance: Jack's holiness protects the family's reputation. "
         "So what happens if the saint comes home… changed?",
@@ -285,7 +284,7 @@ SCENES = [
          retenir="Subtext, the outside world in songs, the invisible boy, reputation: the house is held together by fragile balances.", beats=[
         "{a1}Time for the analysis. Four ideas to take from this afternoon. "
         "{a1.1}One: subtext. Almost nothing happens, but every small exchange carries something bigger: a cracked mirror, "
-        "a lipstick, a surplice. This is Friel's Chekhovian method: the drama is under the surface, in what the characters do not say.",
+        "a lipstick, a surplice. Critics often call this Friel's Chekhovian method: the drama is under the surface, in what the characters do not say.",
         "{-a1}{a2}{a2.1}Two: desire under surveillance. Lipstick is pagan, Rose's love is for a married man, Chris has a child "
         "outside marriage. Each sister wants something, and Kate's rules, even when Kate is absent, keep watch.",
         "{-a2}{a3}{a3.1}Three: the outside world gets in, but only in fragments. A detail from outside the text: Italy had invaded "
@@ -333,8 +332,8 @@ QUIZ = [
          r=["He is imaginary: the adult narrator speaks his lines", "A child actor plays him", "He is a puppet",
             "He never speaks at all"], ok=0, voir="c_conv",
          ex="Stage direction p. 6: no child appears; adult Michael answers the sisters in his narrator's voice."),
-    dict(q="Why was Jack's photograph in uniform never mentioned in the house?",
-         r=["Kate had fought in the War of Independence against Britain", "Jack had deserted",
+    dict(q="Why was Jack's British army career never mentioned in the house?",
+         r=["Kate had been involved locally in the War of Independence", "Jack had deserted",
             "The photo was of another priest", "Maggie had broken the frame"], ok=0, voir="jeu5.3",
          ex="He had been a chaplain to the British forces; Kate had been involved in the War of Independence."),
     dict(q="According to Michael, what did Jack's fame help the aunts to bear?",

@@ -61,7 +61,7 @@ SCENES = [
         "{tab_fri}{fiche}First, the essentials. Dancing at Lughnasa is a play by the Irish writer Brian Friel. "
         "{-tab_fri}{tab_abb}{fiche.1}It was first staged in 1990, at the Abbey Theatre in Dublin.",
         "{fiche.2}But it is set more than fifty years earlier: in August 1936, in and around a cottage near Ballybeg, "
-        "a small village in County Donegal, in the north-west of Ireland.",
+        "a small fictional village in County Donegal, in the north-west of Ireland.",
         "{-fiche}{-tab_abb}{lug}And the title? {lug.1}Lughnasa is the old Celtic harvest festival, held at the start of August, "
         "in honour of the pagan god Lugh. Keep that word pagan in mind: it will come back, again and again.",
     ], vis={
@@ -243,14 +243,14 @@ SCENES = [
         "{a1.1}One: this is a memory play, told by a retrospective narrator. The adult Michael reconstructs the summer "
         "he lived as a child of seven. So we see the events through a double lens: a child who did not understand, "
         "and an adult who knows how it all ended.",
-        "Michael even admits it: memories offer themselves to me. He selects, he arranges, like the frozen tableau behind him. "
+        "Michael even admits it: memories offer themselves to me. They come to him unbidden, and he arranges them, like the frozen tableau behind him. "
         "In an essay on memory, this is your starting point: the play does not show the past, it shows remembering.",
         "{-a1}{a2}{a2.1}Two: prolepsis. As it turned out, to die. By giving away Jack's death in the first minute, "
         "Friel creates dramatic irony. We know more than the characters do. "
         "Every joke, every dance, every plan we see will be watched with that knowledge.",
         "{-a2}{a3}{a3.1}Three: the pagan and the Christian. Lugh against Kate's sinful. Marconi's voodoo against kind, sensible women. "
         "In a few lines, Friel sets up the play's central tension: an old pagan energy pressing against the rules of a Catholic house.",
-        "{-a3}{a4}{a4.1}Four: the dance. The very first image of the sisters is a dance, and it is ambiguous. "
+        "{-a3}{a4}{a4.1}Four: the dance. The first picture Michael paints of the sisters together is a dance, and it is ambiguous. "
         "It is joy, laughing like schoolgirls… and it is loss of control, screaming, shrieking strangers. "
         "Dance in this play is a release, a way of saying what cannot be said, and a sign that order is cracking.",
         "{-a4}{carte}So, if you use this scene in an essay, here is what it can support. {carte.1}Memory and narration. "
@@ -293,7 +293,7 @@ QUIZ = [
     dict(q="Which two memories are “always linked” in Michael's mind?",
          r=["The first wireless and Father Jack's return", "Lughnasa and Christmas", "His father and his mother",
             "The harvest dance and the kites"], ok=0, voir="jeu3.1",
-         ex="The radio's “sheer magic” always comes back with Jack's shock appearance, “shrunken and jaundiced with malaria”: a juxtaposition."),
+         ex="The radio's “sheer magic” always comes back with the shock of Jack's appearance, “shrunken and jaundiced with malaria”: a juxtaposition."),
     dict(q="The “widening breach” is a gap between…",
          r=["what seemed to be and what was", "the kitchen and the garden", "Ireland and Africa", "Kate and Maggie"], ok=0,
          voir="c_breach", ex="Appearance against reality: on the surface a stable house, underneath “things changing too quickly”."),

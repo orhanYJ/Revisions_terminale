@@ -34,7 +34,7 @@ VOTE_NSDAP = [[1928.4, 2.6], [1930.7, 18.3], [1932.55, 37.3], [1932.85, 33.1]]
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Opening", fond="nuit", humeur="mystere", carton=False, beats=[
-        "{g0}{q1}October, nineteen twenty-nine. A silent crowd waits outside the New York Stock Exchange. "
+        "{g0}October, nineteen twenty-nine. A silent crowd waits outside the New York Stock Exchange. {q1}"
         "Ten years later, Europe is at war again. So how do we get from one to the other?",
         "{-q1}{q2}That question is the whole of chapter one. And this episode goes through all of it.",
         "{-q2}{-g0}{plan}Here is the plan. {plan.1}First, the story on the map. "
@@ -112,7 +112,7 @@ SCENES = [
     dict(id="chaine", chap="The chain of the crisis", fond="nuit", humeur="tension",
          retenir="Crash → bank failures → loans recalled → protectionism → world trade −66% → global Depression. Then two roads: democracies retreat, three regimes choose militarism.",
          beats=[
-        "{ch}One schema holds part one together. How did a crash become a global depression? Six links. "
+        "One schema holds part one together. {ch}How did a crash become a global depression? Six links. "
         "{ch.1}The Wall Street Crash, in October, nineteen twenty-nine: share prices collapse. "
         "{ch.2}Then the banks fail. Credit dries up, and savings are wiped out. "
         "{ch.3}The United States calls back its foreign loans. Europe loses American capital, and Germany above all. "
@@ -136,7 +136,7 @@ SCENES = [
     dict(id="p11", chap="I.1 · The Great Crash", fond="nuit", humeur="tension",
          retenir="Stock market · Roaring Twenties · mass production · speculation (margin: 90%) · a real economy already slowing · the panic: −89% (381 → 41).",
          beats=[
-        "{ph}{i1}Now the ideas, part by part, with one example each. Part one, section one: what was the Great Crash? "
+        "{ph}Now the ideas, part by part, with one example each. {i1}Part one, section one: what was the Great Crash? "
         "{i1.1}A stock market is where companies raise money, and investors buy a claim on profits. "
         "One example, from outside the course: RCA paid no dividend at all. Yet its share price multiplied.",
         "{i1.2}The Roaring Twenties brought growth and optimism, built on Republican policy. Three Republican presidents in a row: "
@@ -457,7 +457,7 @@ QUIZ = [
 ]
 
 CREDITS = [
-    "Content: the synthesis of M. Ros's course (DNL History, H1 “The Wall Street Crash and its Impact”) as written on the site: "
+    "Content: the synthesis of the DNL History course (chapter H1, “The Wall Street Crash and its Impact”) as written on the site: "
     "timeline, the chain of the crisis, the ideas of Parts I.1 to II.3, key figures, key terms and key issues, Worksheet 3; "
     "the animated maps of chapters 1 and 2 (site).",
     "Photographs: crowd outside the New York Stock Exchange, October 1929 (Wikimedia Commons, public domain); "

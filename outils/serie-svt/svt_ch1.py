@@ -86,12 +86,12 @@ SCENES = [
         "toutes portent la même information génétique. Le caryotype est conservé d'une génération cellulaire à l'autre.",
         "{pts_cl.3}Attention au mot. Dans le langage courant, « clonage » évoque la brebis Dolly et le laboratoire. "
         "En biologie cellulaire, c'est un phénomène parfaitement ordinaire, qui se produit dans ton corps à chaque seconde. Ton intestin fabrique des milliards de cellules par jour.",
-        "{-pts_cl}{-an_clonal}{formes}Les cellules d'un clone ne sont pas forcément collées les unes aux autres. "
-        "{formes.g}Elles peuvent rester associées et jointives : on parle alors d'un tissu, comme l'épiderme ou l'épithélium intestinal. "
+        "Les cellules d'un clone ne sont pas forcément collées les unes aux autres. "
+        "{-pts_cl}{-an_clonal}{formes}{formes.g}Elles peuvent rester associées et jointives : on parle alors d'un tissu, comme l'épiderme ou l'épithélium intestinal. "
         "{formes.d}Ou elles peuvent se séparer et circuler indépendamment, comme les lymphocytes B issus d'un même lymphocyte activé. "
         "La différence est spatiale, pas génétique. Dans les deux cas, une cellule mère, des mitoses, des copies.",
-        "{-formes}{cinq}C'est maintenant le point qu'on attend en devoir. Une seule mécanique, la mitose, rend possibles cinq fonctions qui n'ont, en apparence, rien à voir entre elles. "
-        "{cinq.1}La croissance des tissus : un organisme grandit parce que ses cellules se copient. "
+        "C'est maintenant le point qu'on attend en devoir. Une seule mécanique, la mitose, rend possibles cinq fonctions qui n'ont, en apparence, rien à voir entre elles. "
+        "{-formes}{cinq}{cinq.1}La croissance des tissus : un organisme grandit parce que ses cellules se copient. "
         "{cinq.2}La régénération des tissus lésés : la cicatrisation d'une plaie, le renouvellement des cellules intestinales mortes. "
         "{cinq.3}La reproduction asexuée, chez les végétaux et les bactéries : des individus entiers produits par simples mitoses, sans deux partenaires.",
         "{cinq.4}La défense immunitaire : face à un antigène, le lymphocyte qui le reconnaît se multiplie à l'identique, pour produire une armée de cellules de même spécificité. "
@@ -102,8 +102,8 @@ SCENES = [
         "{pando.2}Ils sont apparus par drageonnage, c'est-à-dire par mitoses à partir des racines. Un clone d'environ quatre-vingt mille ans. "
         "{pando.3}Et l'intérêt est direct : les racines partagent l'eau et les nutriments entre tous les troncs. Un tronc à l'ombre est nourri par ses voisins au soleil. "
         "La collaboration, à l'échelle d'un hectare.",
-        "{-pando}{-tab_pando}{tab_cmp}Dans la séance un, tu as comparé cinq situations. Voici le tableau, en entier. "
-        "{tab_cmp.1}Le peuplier faux-tremble : Pando, une forêt issue d'un seul individu, qui partage ses nutriments par les racines. "
+        "Dans la séance un, tu as comparé cinq situations. Voici le tableau, en entier. "
+        "{-pando}{-tab_pando}{tab_cmp}{tab_cmp.1}Le peuplier faux-tremble : Pando, une forêt issue d'un seul individu, qui partage ses nutriments par les racines. "
         "{tab_cmp.2}Les lymphocytes : des cellules séparées, lymphocytes B mémoire et plasmocytes, qui stockent l'information de l'antigène et détruisent le pathogène. "
         "{tab_cmp.3}L'intestin grêle : le renouvellement des cellules mortes. "
         "{tab_cmp.4}La peau : la cicatrisation, et les autogreffes. "
@@ -128,7 +128,7 @@ SCENES = [
             "La croissance des tissus", "La régénération des tissus lésés : cicatrisation, renouvellement de l'intestin",
             "La reproduction asexuée des végétaux et des bactéries", "La défense immunitaire : une armée de lymphocytes identiques",
             "Le partage et la collaboration entre cellules"]),
-        "tab_pando": dict(type="tableau", img="ch1-pando", fond=True, de=[1.0, .5, .5], a=[1.3, .55, .45],
+        "tab_pando": dict(type="tableau", img="ch1-pando", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .55, .45],
                           legende="Pando, peupliers faux-trembles, Utah, photo Mx. Granger, CC0 (Wikimedia Commons)"),
         "pando": dict(type="liste", titre="Pando, un clone de 80 000 ans", x=170, y=170, w=940, items=[
             "Un seul individu : un système racinaire, des troncs génétiquement identiques",
@@ -149,27 +149,27 @@ SCENES = [
     dict(id="mitose", chap="La mitose conserve le caryotype", fond="cellule", humeur="calme",
          retenir="Le nombre de chromosomes ne varie jamais au cours du cycle. La phase S double les chromatides et l'ADN ; l'anaphase sépare les chromatides. La conformité vient de la réplication semi-conservative.",
          beats=[
-        "{an_mit}{pts_mit}Comment un clone reste-t-il conforme ? Par la mitose, préparée par la réplication. Suis cette cellule à quatre chromosomes, deux paires. "
-        "{an_mit.1}{pts_mit.1}En G1, chaque chromosome n'a qu'une chromatide, et l'ADN est décondensé dans le noyau.",
+        "{an_mit}{pts_mit}Comment un clone reste-t-il conforme ? Par la mitose, préparée par la réplication. {an_mit.1}{pts_mit.1}Suis cette cellule à quatre chromosomes, deux paires. "
+        "En G1, chaque chromosome n'a qu'une chromatide, et l'ADN est décondensé dans le noyau.",
         "{an_mit.2}{pts_mit.2}En phase S, l'ADN est répliqué : chaque chromosome passe de une à deux chromatides. La quantité d'ADN double. "
         "Mais le nombre de chromosomes, lui, ne change pas. C'est le piège de tous les graphiques.",
         "{an_mit.3}{pts_mit.3}En prophase, les chromosomes se condensent : chacun montre ses deux chromatides sœurs, reliées par le centromère. "
         "En métaphase, ils s'alignent sur la plaque équatoriale.",
         "{an_mit.4}{pts_mit.4}En anaphase, les centromères se clivent : les deux chromatides de chaque chromosome partent vers des pôles opposés. "
         "{an_mit.5}Et après la télophase, deux cellules filles, avec chacune quatre chromosomes à une chromatide. Deux clones de la cellule mère.",
-        "{-pts_mit}{-an_mit}{tab_cy}Résume-le dans ce tableau, qui fait tomber la moitié des copies. "
-        "{tab_cy.1}En G1 : deux n chromosomes, une chromatide chacun, une quantité d'ADN Q. "
+        "Résume-le dans ce tableau, qui fait tomber la moitié des copies. "
+        "{-pts_mit}{-an_mit}{tab_cy}{tab_cy.1}En G1 : deux n chromosomes, une chromatide chacun, une quantité d'ADN Q. "
         "{tab_cy.2}Après la phase S : toujours deux n chromosomes, mais deux chromatides, et deux Q. "
         "{tab_cy.3}En métaphase : pareil. {tab_cy.4}Et après l'anaphase, dans chaque futur noyau : deux n, une chromatide, Q.",
         "{tab_cy.5}Une seule colonne ne bouge jamais : le nombre de chromosomes. Ce que la phase S double, c'est le nombre de chromatides, donc la quantité d'ADN. "
         "Et l'anaphase ne divise pas le nombre de chromosomes : elle sépare les deux chromatides de chacun.",
         "{-tab_cy}{gr_adn}{gr_adn.1}Sur un graphique de la quantité d'ADN par cellule, ça donne ceci : un plateau à Q en G1, "
         "{gr_adn.2}une montée progressive pendant la phase S, jusqu'à deux Q, {gr_adn.3}puis une chute brutale à la division, quand l'ADN est partagé entre les deux cellules filles.",
-        "{-gr_adn}{an_rep}{pts_rep}Mais alors, d'où vient la conformité ? Pas de la mitose elle-même. Elle est héritée de la réplication, qui a eu lieu bien avant, en phase S. "
-        "{an_rep.1}{pts_rep.1}L'hélicase ouvre la double hélice. {an_rep.2}{pts_rep.2}Chaque brin parental sert de matrice : les nucléotides s'apparient par complémentarité, "
+        "Mais alors, d'où vient la conformité ? Pas de la mitose elle-même. Elle est héritée de la réplication, qui a eu lieu bien avant, en phase S. "
+        "{-gr_adn}{an_rep}{pts_rep}{an_rep.1}{pts_rep.1}L'hélicase ouvre la double hélice. {an_rep.2}{pts_rep.2}Chaque brin parental sert de matrice : les nucléotides s'apparient par complémentarité, "
         "A en face de T, C en face de G, et l'ADN polymérase les assemble.",
         "{pts_rep.3}La réplication est semi-conservative : chaque nouvelle molécule garde un brin parental comme référence. C'est ce qui rend l'erreur peu probable.",
-        "{-pts_rep}{-an_rep}{maillons}Le raisonnement tient donc en trois maillons. {maillons.1}En phase S, chaque molécule d'ADN est copiée de façon semi-conservative. "
+        "Le raisonnement tient donc en trois maillons. {-pts_rep}{-an_rep}{maillons}{maillons.1}En phase S, chaque molécule d'ADN est copiée de façon semi-conservative. "
         "{maillons.2}Les deux chromatides sœurs qui en résultent sont donc, sauf accident, strictement identiques. "
         "{maillons.3}Et la mitose se contente de distribuer une chromatide à chaque cellule fille.",
         "Autrement dit, la mitose ne vérifie rien et ne copie rien. Elle partage un travail déjà fait. "
@@ -213,13 +213,13 @@ SCENES = [
          retenir="La mutation est aléatoire. Elle ne s'installe que si la réparation échoue avant la réplication suivante. Les agents mutagènes augmentent le taux d'erreurs, au hasard.",
          beats=[
         "{q_err}Copier trois milliards de paires de bases, des milliards de fois par jour, sans jamais se tromper : c'est impossible.",
-        "{-q_err}{secu}Il existe pourtant des sécurités. {secu.1}La complémentarité des bases ne laisse qu'un seul nucléotide possible en face de chaque base de la matrice. "
+        "Il existe pourtant des sécurités. {-q_err}{secu}{secu.1}La complémentarité des bases ne laisse qu'un seul nucléotide possible en face de chaque base de la matrice. "
         "{secu.2}L'ADN polymérase relit ce qu'elle vient de poser, et remplace le nucléotide mal apparié. "
         "Ces deux filtres ramènent le taux d'erreur à environ une pour un milliard de nucléotides. "
         "{secu.3}Restent les systèmes de réparation, dernière ligne de défense, qui corrigent les lésions avant la division suivante.",
         "{-secu}{f_mut}{f_mut.1}D'où la règle à écrire : une mutation ne s'installe que si la réparation échoue avant la réplication suivante. "
         "Après, elle est copiée comme le reste.",
-        "{-f_mut}{doc4}Le document quatre de l'activité deux donne l'ordre de grandeur. {doc4.1}Un nouveau-né compte environ un virgule vingt-cinq fois dix puissance douze cellules. "
+        "Le document quatre de l'activité deux donne l'ordre de grandeur. {-f_mut}{doc4}{doc4.1}Un nouveau-né compte environ un virgule vingt-cinq fois dix puissance douze cellules. "
         "{doc4.2}Chacune porte six virgule quatre milliards de nucléotides. {doc4.3}Et le taux de mutation vaut deux virgule soixante-six fois dix puissance moins neuf par nucléotide. "
         "{doc4.4}Multiplie : à chaque copie du génome, environ dix-sept nucléotides sont changés. "
         "La mutation n'est pas un accident rare. C'est le bruit de fond inévitable de la réplication.",
@@ -234,7 +234,7 @@ SCENES = [
         "secu": dict(type="liste", titre="Trois sécurités", x=150, y=110, w=980, items=[
             "La complémentarité des bases : un seul nucléotide possible", "L'ADN polymérase relit et corrige : ≈ 1 erreur pour 10⁹ nucléotides",
             "Les systèmes de réparation, dernière ligne de défense"]),
-        "f_mut": dict(type="formule", x=150, y=450, w=980, nu=True, lignes=[
+        "f_mut": dict(type="formule", x=150, y=300, w=980, nu=True, lignes=[
             dict(f="Mutation = erreur que la réparation n'a pas corrigée avant la réplication suivante", cadre=True, taille=30)]),
         "doc4": dict(type="formule", titre="Activité 2 · document 4, l'ordre de grandeur", x=150, y=110, w=980, lignes=[
             dict(f="nouveau-né : ≈ 1,25 × 10^{12} cellules", taille=34),
@@ -259,7 +259,7 @@ SCENES = [
         "{an_cl2.3}{pts_cl2.3}D'autres mutations peuvent s'ajouter dans le sous-clone, puis dans ses propres descendants. "
         "{an_cl2.4}La diversification progressive d'un clone, par accumulation de sous-clones successifs, s'appelle l'évolution clonale.",
         "{-pts_cl2}{-an_cl2}{def_sc}{def_sc.1}Retiens les deux définitions mot pour mot : le sous-clone, et l'évolution clonale.",
-        "{-def_sc}{echelles}Le phénomène s'observe à toutes les échelles du vivant. {echelles.g}Chez un unicellulaire : le document un de l'activité deux montre des colonies de levures, "
+        "Le phénomène s'observe à toutes les échelles du vivant. {-def_sc}{echelles}{echelles.g}Chez un unicellulaire : le document un de l'activité deux montre des colonies de levures, "
         "la souche ade deux, qui synthétisent un pigment rouge. Après sept jours de culture à trente degrés, certaines colonies rouges portent un secteur blanc. "
         "Une cellule a muté pendant la multiplication et a perdu le pigment. Toutes ses descendantes sont blanches : la mutation se voit à l'œil nu.",
         "{echelles.d}Chez un pluricellulaire : une tumeur. Le document deux la modélise : chaque point coloré est une cellule, et plus les couleurs sont proches, "
@@ -267,8 +267,8 @@ SCENES = [
         "{-echelles}{mosa}Et compte tenu des dix-sept erreurs par copie du génome vues plus haut, chacun de nous naît déjà mosaïque. "
         "Un organisme n'est jamais un clone parfait de sa cellule-œuf, mais un assemblage de sous-clones légèrement différents. "
         "La très grande majorité de ces différences est sans aucune conséquence.",
-        "{-mosa}{tab_chat2}{chat}Et notre chat ? Son cas est hors programme, mais il mérite une précision : sa robe ne vient pas d'une mutation. "
-        "{chat.1}Chez les mammifères femelles, chaque cellule de l'embryon précoce inactive au hasard l'un de ses deux chromosomes X, "
+        "Et notre chat ? Son cas est hors programme, mais il mérite une précision : sa robe ne vient pas d'une mutation. "
+        "{-mosa}{tab_chat2}{chat}{chat.1}Chez les mammifères femelles, chaque cellule de l'embryon précoce inactive au hasard l'un de ses deux chromosomes X, "
         "et cette inactivation est transmise à toute sa descendance. {chat.2}Or le gène de la couleur orange du pelage est porté par le X. "
         "Chez une chatte hétérozygote, les cellules qui ont éteint l'X portant l'allèle orange donnent du poil noir, les autres du poil orange.",
         "{chat.3}Chaque plage de couleur est donc le clone d'une cellule embryonnaire. D'où les taches, et d'où le fait que ces chats soient presque toujours des femelles. "
@@ -298,7 +298,7 @@ SCENES = [
     dict(id="cancer", chap="Où tombe la mutation décide de tout", fond="nuit", humeur="tension",
          retenir="Séquence codante → protéine modifiée (levure ade2). Séquence régulatrice → expression modifiée (TERT). Gène du contrôle du cycle → prolifération (p53). Le cancer : une accumulation de mutations.",
          beats=[
-        "{trois}C'est le cœur de l'unité. Les conséquences d'une mutation dépendent moins de la mutation elle-même que de l'endroit où elle tombe. Trois cas, par gravité croissante. "
+        "C'est le cœur de l'unité. {trois}Les conséquences d'une mutation dépendent moins de la mutation elle-même que de l'endroit où elle tombe. Trois cas, par gravité croissante. "
         "{trois.1}Sur une séquence codante : c'est la protéine elle-même qui change, donc le phénotype de la cellule mutée et de tout son sous-clone. Exemple : la levure ade deux qui perd son pigment rouge.",
         "{trois.2}Sur une séquence régulatrice : la protéine ne change pas, mais son niveau d'expression, qui peut être augmenté ou supprimé. Exemple : le gène TERT, surexprimé. "
         "{trois.3}Sur un gène du contrôle du cycle : la cellule endommagée n'est plus ni réparée, ni éliminée. Elle prolifère, et accumule d'autres mutations. Exemple : le gène p53.",
@@ -308,8 +308,8 @@ SCENES = [
         "{il_p53.3}Soit l'arrêt de la division, le temps que la réparation fasse son travail. {il_p53.4}Soit l'apoptose, la mort programmée de la cellule, si les dégâts sont irréparables.",
         "{il_p53.5}Sans p53 fonctionnelle, aucune de ces deux issues ne se déclenche. Les cellules à l'ADN endommagé survivent, se divisent, et accumulent les mutations suivantes. "
         "C'est pourquoi p53 est le gène le plus fréquemment altéré dans les cellules tumorales. On l'appelle parfois le gardien du génome.",
-        "{-il_p53}{tert}Passons à TERT, l'accélérateur. Son cas est plus subtil. Le document six compare la séquence d'un témoin à celles de deux cancers : "
-        "{tert.1}on relève deux substitutions, non pas dans la partie codante du gène, mais dans sa séquence régulatrice. {tert.2}La mutation n'est pas dans le gène, elle est à côté. "
+        "Passons à TERT, l'accélérateur. Son cas est plus subtil. Le document six compare la séquence d'un témoin à celles de deux cancers : "
+        "{-il_p53}{tert}{tert.1}on relève deux substitutions, non pas dans la partie codante du gène, mais dans sa séquence régulatrice. {tert.2}La mutation n'est pas dans le gène, elle est à côté. "
         "Elle suffit à faire fabriquer beaucoup plus de protéine TERT. {tert.3}La protéine, elle, est parfaitement normale.",
         "{-tert}{telo}Pourquoi est-ce si grave ? C'est hors programme, mais éclairant. Les extrémités des chromosomes portent des séquences répétées, les télomères. "
         "À chaque réplication, le bout du brin n'est pas tout à fait copié : le chromosome raccourcit un peu. "
@@ -346,7 +346,7 @@ SCENES = [
     dict(id="lignee", chap="Qui hérite ? Somatique ou germinale", fond="foret", humeur="calme",
          retenir="Mutation somatique : change le phénotype de l'individu, pas transmise. Mutation germinale : transmise à la descendance. Conséquences selon la nature, la portion touchée, la lignée.",
          beats=[
-        "{som_ger}Dernière distinction, décisive. {som_ger.g}Une mutation somatique touche une cellule du corps. Elle peut modifier le phénotype de l'individu, "
+        "{som_ger}{som_ger.g}Dernière distinction, décisive. Une mutation somatique touche une cellule du corps. Elle peut modifier le phénotype de l'individu, "
         "mais elle n'est pas transmise à ses enfants. {som_ger.d}Une mutation germinale touche une cellule de la lignée reproductrice. "
         "Elle peut ne rien changer chez l'individu, et pourtant être transmise à toute sa descendance.",
         "{-som_ger}{souris}Le document cinq le montre en une image : deux embryons de souris. {souris.1}Même mutation, même moment du développement. "
@@ -357,8 +357,8 @@ SCENES = [
         "{-souris}{mosg}Pour aller plus loin, hors programme : il existe un cas intermédiaire, le mosaïcisme germinal. "
         "Une mutation survenue tôt dans le développement peut toucher une partie seulement des futurs gamètes. "
         "Des parents en apparence indemnes, chez qui aucun test sanguin ne détecte rien, peuvent alors avoir plusieurs enfants atteints de la même maladie génétique.",
-        "{-mosg}{bilan1}Voici le bilan de toute la branche, qui fait un plan de paragraphe argumenté tout prêt. Les conséquences d'une mutation varient selon trois critères. "
-        "{bilan1.1}Sa nature : silencieuse ou non. {bilan1.2}La portion du chromosome affectée : séquence codante, séquence régulatrice, ou gène du contrôle du cycle. "
+        "Voici le bilan de toute la branche, qui fait un plan de paragraphe argumenté tout prêt. Les conséquences d'une mutation varient selon trois critères. "
+        "{-mosg}{bilan1}{bilan1.1}Sa nature : silencieuse ou non. {bilan1.2}La portion du chromosome affectée : séquence codante, séquence régulatrice, ou gène du contrôle du cycle. "
         "{bilan1.3}Et la lignée cellulaire concernée : somatique, ou germinale.",
         "Voilà pour la conservation du génome et ses accidents. La branche suivante aborde une autre source de diversité : ni accidentelle, ni pathologique, mais programmée, et massive. "
         "La reproduction sexuée.",
@@ -383,7 +383,7 @@ SCENES = [
         "{z1b}{z1b.1}Deuxième branche : les conséquences de la reproduction sexuée, et la diversité. Deux schémas y portent l'étoile : à savoir refaire.",
         "{-z1b}{q_div}Deux parents, quatre enfants. Aucun n'est identique aux autres, aucun n'est identique à ses parents. "
         "Pourtant, tous appartiennent à la même espèce, et tous possèdent quarante-six chromosomes, comme leurs père et mère.",
-        "{-q_div}{deux_ex}Il y a donc deux exigences contradictoires à satisfaire en même temps. {deux_ex.g}Conserver le caryotype de l'espèce, génération après génération. "
+        "Il y a donc deux exigences contradictoires à satisfaire en même temps. {-q_div}{deux_ex}{deux_ex.g}Conserver le caryotype de l'espèce, génération après génération. "
         "{deux_ex.d}Et produire, à chaque fois, un individu qui n'a jamais existé. "
         "La réponse tient en deux mécanismes complémentaires : la méiose fabrique des gamètes tous différents, et la fécondation en combine deux, au hasard.",
         "{-deux_ex}{diplo}D'abord le vocabulaire. {diplo.1}Les cellules somatiques possèdent deux exemplaires de chaque information génétique, portés par des chromosomes homologues réunis en paires. "
@@ -391,15 +391,15 @@ SCENES = [
         "{diplo.2}Les gamètes n'ont qu'un exemplaire de chaque paire. Ils sont haploïdes, notés n : vingt-trois chez l'humain.",
         "{-diplo}{homol}Un point à ne pas laisser flou : deux chromosomes homologues portent les mêmes gènes, aux mêmes emplacements, mais pas forcément les mêmes allèles. "
         "L'un vient du père, l'autre de la mère. Tout le chapitre découle de cette dissymétrie. S'ils portaient les mêmes allèles, il n'y aurait rien à brasser.",
-        "{-homol}{cyc}Voici maintenant le premier schéma à savoir refaire : le cycle de vie. {cyc.1}Une cellule de l'individu est diploïde : deux n. "
+        "{-homol}{cyc}{cyc.1}Voici maintenant le premier schéma à savoir refaire : le cycle de vie. Une cellule de l'individu est diploïde : deux n. "
         "{cyc.2}Dans les gonades, la méiose forme les gamètes. Elle divise le nombre de chromosomes par deux : de deux n à n. "
         "{cyc.3}La fécondation réunit deux gamètes, deux génomes haploïdes d'origine indépendante, et rétablit la diploïdie : n plus n donne deux n. La cellule obtenue est le zygote, ou cellule-œuf.",
         "{cyc.4}Puis des mitoses successives, qui forment un clone, construisent l'individu, toujours à deux n. "
         "{cyc.5}C'est cet aller-retour, entre une phase diploïde et une courte phase haploïde, qui maintient quarante-six chromosomes d'une génération à la suivante. "
         "Sans méiose, le nombre de chromosomes doublerait à chaque génération.",
         "{-cyc}{pa_cyc}À toi. Sur une feuille, refais ce cycle : l'individu, la méiose, les gamètes, la fécondation, le zygote, les mitoses, avec deux n et n à chaque étape.",
-        "{pa_cyc.stop}{-pa_cyc}{mit_mei}Et une confusion à ne pas faire. Toute division cellulaire ne mène pas à un clone. "
-        "{mit_mei.g}La mitose répartit équitablement le matériel génétique dans chaque cellule fille, et forme des clones. "
+        "{pa_cyc.stop}Et une confusion à ne pas faire. Toute division cellulaire ne mène pas à un clone. "
+        "{-pa_cyc}{mit_mei}{mit_mei.g}La mitose répartit équitablement le matériel génétique dans chaque cellule fille, et forme des clones. "
         "{mit_mei.d}La méiose ne transmet que la moitié de l'information génétique de la cellule initiale, et s'accompagne d'un brassage des allèles maternels et paternels. "
         "La reproduction sexuée ne produit donc pas de clones.",
         "{-mit_mei}{bil_fec}Le bilan à savoir écrire : {bil_fec.1}la fécondation entre gamètes haploïdes rassemble, au hasard, dans une même cellule diploïde, deux génomes d'origine indépendante, "
@@ -444,14 +444,14 @@ SCENES = [
         "Le pois n'est pas un choix anodin : il s'autoféconde naturellement, ce qui donne des lignées pures, et on peut empêcher cette autofécondation pour croiser comme on veut. "
         "Et Mendel a compté ses plants, par milliers. C'est la première fois que la statistique entre dans l'étude de l'hérédité.",
         "{-voc_m}{-por_mendel}{tab_pois}Il croise deux lignées pures : des pois à fleurs violettes, de génotype V V, et des pois à fleurs blanches, v v.",
-        "{-tab_pois}{ech1}{ech1.1}Chaque parent de lignée pure ne produit qu'un seul type de gamète : V pour l'un, {ech1.2}v pour l'autre. "
+        "Chaque parent de lignée pure ne produit qu'un seul type de gamète : {-tab_pois}{ech1}{ech1.1}V pour l'un, {ech1.2}v pour l'autre. "
         "{ech1.3}Toutes les cases donnent le même génotype, V v, et le même phénotype : violet. {ech1.4}La F1 est uniforme. Et surtout, pas de rose : la théorie du mélange tombe.",
-        "{-ech1}{ech2}Puis il laisse les F1 s'autoféconder. {ech2.1}Cette fois, chaque F1 produit deux types de gamètes, V et v, {ech2.2}de chaque côté. "
+        "{-ech1}Puis il laisse les F1 s'autoféconder. {ech2}{ech2.1}Cette fois, chaque F1 produit deux types de gamètes, V et v, {ech2.2}de chaque côté. "
         "{ech2.3}Trois cases sur quatre donnent du violet, une seule du blanc. {ech2.4}Le blanc réapparaît, dans un rapport de trois quarts, un quart. "
         "Et c'est exactement ce que Mendel a compté : sept cent cinq plants à fleurs violettes, deux cent vingt-quatre à fleurs blanches.",
-        "{-ech2}{reapp}C'est la réapparition qui est le coup décisif. {reapp.1}Un caractère qui disparaît puis revient intact n'a pas été dilué. Il a été transmis sans s'exprimer. "
+        "{-ech2}C'est la réapparition qui est le coup décisif. {reapp}{reapp.1}Un caractère qui disparaît puis revient intact n'a pas été dilué. Il a été transmis sans s'exprimer. "
         "Il existe donc, dans l'hybride, deux éléments distincts qui ne se mélangent pas : ce que nous appelons aujourd'hui des allèles.",
-        "{-reapp}{lois}D'où les trois lois, dans l'ordre du cours. {lois.1}La loi de pureté des gamètes, ou loi de ségrégation, ou de disjonction des allèles : "
+        "D'où les trois lois, dans l'ordre du cours. {-reapp}{lois}{lois.1}La loi de pureté des gamètes, ou loi de ségrégation, ou de disjonction des allèles : "
         "lors de la formation des gamètes, les deux allèles d'un gène, portés par les deux chromosomes d'une paire, se séparent obligatoirement. Chaque gamète n'en reçoit qu'un.",
         "{lois.2}La loi de dominance : chez un hétérozygote, l'allèle dominant masque l'expression de l'allèle récessif. D'où l'uniformité de la F1. "
         "{lois.3}La loi de ségrégation indépendante : les allèles de gènes différents sont distribués dans les gamètes indépendamment les uns des autres.",
@@ -496,13 +496,13 @@ SCENES = [
     dict(id="groupes", chap="Une application : les groupes sanguins", fond="aube", humeur="calme",
          retenir="Trois allèles A, B, O ; deux par individu. A et B dominants sur O, codominants entre eux. Génotype (A//O), phénotype [A].",
          beats=[
-        "{gs}Application immédiate : les groupes sanguins. Le gène possède trois allèles, A, B et O, alors qu'un individu n'en porte que deux. "
+        "Application immédiate : les groupes sanguins. {gs}Le gène possède trois allèles, A, B et O, alors qu'un individu n'en porte que deux. "
         "{gs.1}A A ou A O donnent le groupe A : A est dominant sur O, un seul allèle A suffit. {gs.2}De même, B B ou B O donnent le groupe B. "
         "{gs.3}A B donne le groupe A B : A et B sont codominants, aucun ne masque l'autre. {gs.4}Et O O donne le groupe O : O est récessif, il faut les deux allèles pour qu'il s'exprime.",
-        "{-gs}{ech3}Conséquence pratique : un individu de groupe A peut cacher un allèle O. Prenons un homme A O et une femme B O. "
-        "{ech3.1}La femme produit des gamètes B et O. {ech3.2}L'homme, des gamètes A et O. "
+        "Conséquence pratique : un individu de groupe A peut cacher un allèle O. Prenons un homme A O et une femme B O. "
+        "{-gs}{ech3}{ech3.1}La femme produit des gamètes B et O. {ech3.2}L'homme, des gamètes A et O. "
         "{ech3.3}Le couple peut avoir des enfants des quatre groupes : A B, A, B et O. {ech3.4}En proportions égales, un quart chacun.",
-        "{-ech3}{ecr}Et une exigence d'écriture, valable à chaque exercice : {ecr.1}le génotype s'écrit entre parenthèses, les deux allèles séparés par une double barre. "
+        "Et une exigence d'écriture, valable à chaque exercice : {-ech3}{ecr}{ecr.1}le génotype s'écrit entre parenthèses, les deux allèles séparés par une double barre. "
         "{ecr.2}Le phénotype s'écrit entre crochets. Cette convention se perd vite : garde-la.",
         "{-ecr}",
     ], vis={
@@ -537,7 +537,7 @@ SCENES = [
         "{an_me2.3}{pts_me2.3}Puis vient la méiose deux. Dans chacune des deux cellules, les chromatides sœurs se séparent, comme lors d'une mitose. "
         "On obtient quatre cellules haploïdes, avec un seul chromosome de chaque paire. Compare-les avec celles de la première orientation : "
         "les associations d'allèles ne sont plus les mêmes. Ce sont d'autres gamètes, avec d'autres combinaisons d'allèles.",
-        "{-pts_me2}{-an_me2}{deux_v}Les deux verbes sont attendus mot pour mot. {deux_v.1}Le brassage interchromosomique est préparé en métaphase un : les paires d'homologues s'y placent de part et d'autre du plan équatorial, dans une position aléatoire. "
+        "Les deux verbes sont attendus mot pour mot. {-pts_me2}{-an_me2}{deux_v}{deux_v.1}Le brassage interchromosomique est préparé en métaphase un : les paires d'homologues s'y placent de part et d'autre du plan équatorial, dans une position aléatoire. "
         "{deux_v.2}Il s'effectue en anaphase un, quand les homologues se séparent. "
         "{deux_v.3}Et le mot décisif est : indépendant. L'orientation d'une paire ne dit rien de l'orientation des autres. Avec deux paires, on obtient quatre gamètes équiprobables, au contenu allélique différent.",
         "{-deux_v}{kineto}Pour aller plus loin : pourquoi est-ce vraiment aléatoire ? Rien ne marque un chromosome comme paternel ou maternel. "
@@ -556,7 +556,7 @@ SCENES = [
         "def_inter": dict(type="def", terme="Brassage interchromosomique", cles=["hasard", "indépendants"], x=150, y=180, w=980,
                           t="Mécanisme de la méiose qui répartit au hasard les chromosomes paternels et maternels dans les gamètes.",
                           etape="Il concerne des gènes portés par des paires différentes : des gènes indépendants."),
-        "an_me1": dict(type="anim", nom="meiose", x=40, y=72, h=624, seg=[[0, 6.9], [7, 13.9], [36, 43.9], [44, 50.9]]),
+        "an_me1": dict(type="anim", nom="meiose", x=40, y=72, h=624, seg=[[0, 6.9], [7, 13.9], [36, 43.9], [44, 57.9]]),
         "pts_me1": dict(type="liste", petit=True, titre="La méiose, première orientation", x=680, y=110, w=560, items=[
             "2n = 4 : deux paires, maternel en magenta, paternel en cyan", "Réplication : deux chromatides par chromosome",
             "Métaphase I : paires sur le plan équatorial, orientation aléatoire", "Anaphase I : les homologues se séparent"]),
@@ -592,11 +592,11 @@ SCENES = [
         "{an_me3.2}{pts_me3.2}Deux chromatides non sœurs se croisent en un point : le chiasma. {pts_me3.3}À cet endroit, elles se cassent au même niveau et échangent leurs segments. "
         "C'est le crossing-over, ou enjambement. Les allèles B et b changent de chromatide : A b et a B sont des combinaisons nouvelles.",
         "{pts_me3.4}Sur les quatre chromatides du bivalent, deux restent parentales, et deux deviennent recombinées.",
-        "{-pts_me3}{-an_me3}{deux_p}Deux précisions qui font la différence en devoir. {deux_p.1}L'échange a lieu entre chromatides non sœurs. "
+        "Deux précisions qui font la différence en devoir. {-pts_me3}{-an_me3}{deux_p}{deux_p.1}L'échange a lieu entre chromatides non sœurs. "
         "Entre chromatides sœurs, identiques, il ne produirait rigoureusement rien. "
         "{deux_p.2}Et le crossing-over ne se produit pas dans toutes les cellules, ni toujours au même endroit. C'est pourquoi les gamètes recombinés restent minoritaires. "
         "{deux_p.3}L'individu produit donc quatre types de gamètes, mais non équiprobables.",
-        "{-deux_p}{piege_b}Le piège classique : confondre les deux brassages. {piege_b.g}L'interchromosomique concerne des paires différentes, se joue en métaphase un puis en anaphase un, et donne des gamètes équiprobables. "
+        "Le piège classique : confondre les deux brassages. {-deux_p}{piege_b}{piege_b.g}L'interchromosomique concerne des paires différentes, se joue en métaphase un puis en anaphase un, et donne des gamètes équiprobables. "
         "{piege_b.d}L'intrachromosomique concerne une seule paire, se joue en prophase un, et donne des gamètes non équiprobables. "
         "Et surtout : ils ne s'excluent pas. Ils se cumulent à chaque méiose, leurs effets se multiplient. Puis la fécondation multiplie encore le résultat.",
         "{-piege_b}{sturt}Pour aller plus loin, hors programme. Plus deux gènes sont éloignés sur le chromosome, plus il y a de place entre eux pour qu'un crossing-over tombe, "
@@ -617,8 +617,8 @@ SCENES = [
             "Entre chromatides non sœurs (entre sœurs, rien ne changerait)",
             "Pas dans toutes les cellules, pas toujours au même endroit : recombinés minoritaires",
             "Quatre types de gamètes, non équiprobables"]),
-        "piege_b": dict(type="cols", g="Interchromosomique", gq="paires différentes · métaphase I puis anaphase I · gamètes équiprobables",
-                        d="Intrachromosomique", dq="une seule paire · prophase I · gamètes non équiprobables", vs="+",
+        "piege_b": dict(type="cols", g="Interchromosomique", gq="paires différentes, métaphase I puis anaphase I, gamètes équiprobables",
+                        d="Intrachromosomique", dq="une seule paire, prophase I, gamètes non équiprobables", vs="+",
                         repere="Ils se cumulent à chaque méiose"),
         "sturt": dict(type="note", titre="Une distance en pourcentages · hors programme", plus=True, cles=["distance", "centimorgan"], x=170, y=190, w=940,
                       t="Plus deux gènes sont éloignés, plus les recombinés sont fréquents. Sturtevant, 1913 : 1 centimorgan = 1 % de recombinés."),
@@ -637,7 +637,7 @@ SCENES = [
         "Chaque descendant exprime donc directement l'allèle qu'il a reçu de la F1. On lit les gamètes de la F1 sur les phénotypes de la F2.",
         "{-def_tc}{fam}Deux familles de phénotypes. {fam.g}Les phénotypes parentaux reproduisent les combinaisons d'allèles de la génération P. "
         "{fam.d}Les phénotypes recombinés portent une combinaison nouvelle. C'est là qu'est créée la diversité génétique.",
-        "{-fam}{reflexes}La méthode, en trois réflexes, à appliquer sur n'importe quel énoncé. {reflexes.1}Compte les phénotypes : s'il y en a quatre, les deux gènes ont chacun deux allèles. "
+        "La méthode, en trois réflexes, à appliquer sur n'importe quel énoncé. {-fam}{reflexes}{reflexes.1}Compte les phénotypes : s'il y en a quatre, les deux gènes ont chacun deux allèles. "
         "{reflexes.2}Regarde les proportions. Quatre classes à vingt-cinq pour cent : gamètes équiprobables, gènes indépendants, brassage interchromosomique seul. "
         "Deux classes majoritaires et deux minoritaires : gènes partiellement liés, et les minoritaires sont le produit d'un crossing-over. "
         "{reflexes.3}Identifie parentaux et recombinés, en revenant toujours aux phénotypes des parents de lignée pure.",
@@ -689,8 +689,8 @@ SCENES = [
         "{-z1c}{q_acc}La méiose qu'on vient de voir fonctionne : elle produit des gamètes tous différents, mais tous équilibrés, avec exactement un chromosome de chaque paire. "
         "Cette mécanique est précise. Elle n'est pas infaillible. Un chromosome peut migrer du mauvais côté. Deux chromosomes peuvent se casser et échanger des morceaux. "
         "Deux homologues peuvent s'apparier de travers.",
-        "{-q_acc}{acc}On parle d'accidents génétiques : des erreurs rares, survenant au hasard, qui produisent des gamètes anormaux. "
-        "{acc.1}La plupart sont néfastes : fausses couches, syndromes, maladies. {acc.2}Mais certains, très rares, enrichissent le génome de gènes nouveaux, et ont joué un rôle majeur dans l'évolution. "
+        "On parle d'accidents génétiques : des erreurs rares, survenant au hasard, qui produisent des gamètes anormaux. "
+        "{-q_acc}{acc}{acc.1}La plupart sont néfastes : fausses couches, syndromes, maladies. {acc.2}Mais certains, très rares, enrichissent le génome de gènes nouveaux, et ont joué un rôle majeur dans l'évolution. "
         "Le plan suit l'exposé présenté en classe : le nombre de chromosomes, puis les échanges de portions, puis l'évolution.",
         "{-acc}{an_nd}{pts_nd}Premier accident : une mauvaise répartition des chromosomes. {an_nd.1}{pts_nd.1}Une cellule à deux n égale quatre entre en méiose. Le petit chromosome joue le rôle du chromosome vingt et un. "
         "{an_nd.2}{pts_nd.2}En métaphase un, les paires sont en place, comme d'habitude.",
@@ -698,10 +698,11 @@ SCENES = [
         "{an_nd.4}La cellule se divise : l'une des deux cellules filles a reçu les deux chromosomes vingt et un, l'autre aucun. "
         "{an_nd.5}Puis la méiose deux sépare les chromatides. Les quatre gamètes sont anormaux : deux en ont un en trop, n plus un, et deux un en moins, n moins un.",
         "{an_nd.6}{pts_nd.4}Si un gamète n plus un est fécondé par un gamète normal, la cellule-œuf a trois chromosomes vingt et un : quarante-sept chromosomes. C'est une trisomie vingt et un.",
+        ("P", 4.0),
         "{-pts_nd}{-an_nd}{an_nd2}{pts_nd2}L'erreur peut aussi survenir plus tard. {an_nd2.1}{pts_nd2.1}Cette fois, l'anaphase un se passe bien : chaque pôle reçoit un chromosome de chaque paire. "
         "{an_nd2.2}{pts_nd2.2}C'est en méiose deux que les deux chromatides d'un chromosome vingt et un restent ensemble, et partent vers le même pôle, dans une seule des deux cellules. "
         "{an_nd2.3}{pts_nd2.3}Résultat : deux gamètes anormaux, un n plus un et un n moins un, et deux gamètes normaux.",
-        "{-pts_nd2}{-an_nd2}{tab_nd}La différence est souvent demandée. {tab_nd.1}Erreur en anaphase un : les deux homologues d'une paire migrent ensemble, les quatre gamètes sont anormaux. "
+        "La différence est souvent demandée. {-pts_nd2}{-an_nd2}{tab_nd}{tab_nd.1}Erreur en anaphase un : les deux homologues d'une paire migrent ensemble, les quatre gamètes sont anormaux. "
         "{tab_nd.2}Erreur en anaphase deux : deux chromatides migrent ensemble, deux gamètes anormaux, deux normaux. "
         "{tab_nd.3}Après fécondation par un gamète normal : n plus un plus n, deux n plus un, quarante-sept, une trisomie. "
         "{tab_nd.4}Ou n moins un plus n, deux n moins un, quarante-cinq, une monosomie.",
@@ -756,7 +757,7 @@ SCENES = [
         "{-t21}{age}Hors programme : pourquoi le risque augmente-t-il avec l'âge de la mère ? Le plus souvent, le chromosome en trop vient de l'ovocyte, et l'erreur date de la méiose un. "
         "Chez la femme, la méiose un commence avant la naissance, puis s'arrête en prophase un. Elle ne reprend qu'à l'ovulation, parfois quarante ans plus tard. "
         "Pendant ce temps, les protéines qui tiennent les homologues ensemble s'usent.",
-        "{-age}{turner}Un exemple de monosomie viable : le syndrome de Turner. {turner.1}Il ne touche que les filles. Leur caryotype n'a qu'un seul chromosome X, sans second chromosome sexuel. "
+        "Un exemple de monosomie viable : le syndrome de Turner. {-age}{turner}{turner.1}Il ne touche que les filles. Leur caryotype n'a qu'un seul chromosome X, sans second chromosome sexuel. "
         "On écrit quarante-cinq, X zéro. Le gamète fécondant ne contenait aucun chromosome sexuel. "
         "{turner.2}Il est rare parce que, dans la grande majorité des cas, l'embryon X zéro meurt.",
         "{turner.3}Le phénotype : une petite taille, environ un mètre quarante-cinq à l'âge adulte ; pas de puberté spontanée ; une infertilité définitive ; "
@@ -772,7 +773,7 @@ SCENES = [
         "viab": dict(type="liste", titre="Viables ou non viables", x=130, y=140, w=1020, items=[
             "Non viables : trisomie 14, monosomies d'autosomes → fausse couche",
             "Viables avec symptômes : trisomie 21, XXY (Klinefelter), X0 (Turner)",
-            "Fréquences (sources médicales, hors cours) : trisomie 21 ≈ 1 naissance sur 700 à 1 000"]),
+            "Fréquences (sources médicales, hors cours) : trisomie 21 ≈ 1 naissance sur 700 à 1 000"]),
         "tab_k21": dict(type="tableau", img="ch1-caryotype21", de=[1.0, .5, .5], a=[1.15, .62, .62],
                         legende="Chromosomes d'une cellule 47, XY, +21 en métaphase, Doc. Josef Reischig, CC BY-SA 3.0 (Wikimedia Commons)"),
         "k21": dict(type="illu", nom="caryo21", x=140, y=90, w=1000, h=600),
@@ -798,7 +799,7 @@ SCENES = [
         "{def_tr.1}Une translocation, c'est un segment de chromosome qui se casse et va se fixer sur un autre chromosome, non homologue, c'est-à-dire d'une autre paire.",
         "{-def_tr}{types_tr}Il en existe deux types. {types_tr.1}La translocation réciproque : deux chromosomes de paires différentes échangent chacun un segment. "
         "{types_tr.2}La translocation robertsonienne : deux chromosomes de paires différentes, dont le centromère est tout près d'une extrémité, fusionnent au niveau du centromère, pour n'en former plus qu'un.",
-        "{-types_tr}{tr_co}Ne confonds pas avec le crossing-over. {tr_co.g}Le crossing-over se fait entre chromatides de chromosomes homologues, de la même paire. Il est normal. "
+        "Ne confonds pas avec le crossing-over. {-types_tr}{tr_co}{tr_co.g}Le crossing-over se fait entre chromatides de chromosomes homologues, de la même paire. Il est normal. "
         "{tr_co.d}La translocation se fait entre chromosomes de paires différentes. C'est un accident.",
         "{-tr_co}{il_tr}Une translocation est le plus souvent équilibrée : aucun gène n'est perdu, il a seulement changé de place. Le porteur est en bonne santé, et l'ignore souvent. "
         "Le problème apparaît dans sa descendance. L'exemple du cours : {il_tr.1}un chromosome vingt et un s'est fixé sur un chromosome quatorze. "
@@ -843,11 +844,11 @@ SCENES = [
         "L'une récupère un segment plus long que celui qu'elle cède. L'autre, un plus court.",
         "{an_ci.4}{pts_ci.4}Après les deux divisions de la méiose, chaque chromatide se retrouve dans un gamète. Deux gamètes normaux. "
         "Un gamète porte une duplication : le gène en deux exemplaires sur le même chromosome. Et un gamète porte une délétion : le gène a disparu.",
-        "{-pts_ci}{-an_ci}{cons_ci}Les conséquences sont très différentes. {cons_ci.g}Une délétion fait perdre un gène : c'est souvent néfaste. "
+        "Les conséquences sont très différentes. {-pts_ci}{-an_ci}{cons_ci}{cons_ci.g}Une délétion fait perdre un gène : c'est souvent néfaste. "
         "{cons_ci.d}Une duplication est souvent sans effet visible, puisque l'une des deux copies continue d'assurer la fonction. "
         "Et c'est précisément ce qui en fait une matière première pour l'évolution.",
         "{-cons_ci}{pa_ci}À toi : schéma étoilé. Dessine deux homologues mal appariés, le crossing-over inégal, puis les quatre gamètes : deux normaux, une duplication, une délétion.",
-        "{pa_ci.stop}{-pa_ci}{bil_ech}Le bilan des échanges de portions, en deux phrases. {bil_ech.1}La translocation, entre chromosomes de paires différentes, est souvent sans effet chez le porteur, "
+        "{pa_ci.stop}Le bilan des échanges de portions, en deux phrases. {-pa_ci}{bil_ech}{bil_ech.1}La translocation, entre chromosomes de paires différentes, est souvent sans effet chez le porteur, "
         "mais peut provoquer une trisomie ou une monosomie dans sa descendance. "
         "{bil_ech.2}Le crossing-over inégal, entre homologues mal appariés, produit des gamètes porteurs d'une délétion, ou d'une duplication de gènes.",
         "{-bil_ech}",
@@ -917,12 +918,12 @@ SCENES = [
         "{glob}Second exemple, celui du TP : les globines. {glob.1}Les hémoglobines, qui transportent le dioxygène dans les hématies, sont faites de quatre chaînes, les globines. "
         "{glob.2}Leurs gènes forment deux groupes : le groupe alpha sur le chromosome seize, le groupe bêta sur le chromosome onze, rangés dans l'ordre de leur expression. "
         "{glob.3}Car les globines exprimées changent au cours de la vie : zêta et epsilon chez l'embryon ; alpha et gamma chez le fœtus ; alpha et bêta chez l'adulte, très majoritaires, avec un peu de delta.",
-        "{-glob}{strat}La stratégie, rédigée comme à l'épreuve pratique. {strat.1}On cherche à montrer que les gènes des globines appartiennent à une famille multigénique. "
+        "La stratégie, rédigée comme à l'épreuve pratique. {-glob}{strat}{strat.1}On cherche à montrer que les gènes des globines appartiennent à une famille multigénique. "
         "{strat.2}On compare donc, avec Geniegen deux, les séquences nucléotidiques et les séquences d'acides aminés des globines alpha, bêta, delta, gamma, epsilon et de la myoglobine. "
         "{strat.3}Si c'est une famille multigénique, on s'attend à plus de vingt pour cent de similitudes entre toutes les séquences, deux à deux. "
         "Et attention : les deux types de séquences, et pas l'un ou l'autre. Sinon la démonstration est à moitié faite.",
-        "{-strat}{res}Pour communiquer, la correction du TP insiste sur un point : ne recopie pas le tableau brut du logiciel. Fais un tableau titré, qui ne retient que l'essentiel. "
-        "{res.1}D'après une copie d'élève : environ cinquante-sept pour cent entre alpha et bêta, quatre-vingt-treize entre bêta et delta, {res.2}de soixante-dix-huit à quatre-vingt-quatre entre epsilon et les autres du groupe bêta, "
+        "Pour communiquer, la correction du TP insiste sur un point : ne recopie pas le tableau brut du logiciel. Fais un tableau titré, qui ne retient que l'essentiel. "
+        "{-strat}{res}{res.1}D'après une copie d'élève : environ cinquante-sept pour cent entre alpha et bêta, quatre-vingt-treize entre bêta et delta, {res.2}de soixante-dix-huit à quatre-vingt-quatre entre epsilon et les autres du groupe bêta, "
         "{res.3}de quarante et un à quarante-six entre la myoglobine et les globines. {res.4}Toutes les similitudes dépassent vingt pour cent : au moins quarante et un pour cent en nucléotides, vingt-deux en acides aminés. "
         "Ces ressemblances ne peuvent pas être dues au hasard : origine commune.",
         "{-res}{an_gl}{pts_gl}Reste à raconter cette histoire. {an_gl.1}{pts_gl.1}Au départ, un seul gène de globine. Il est dupliqué, {an_gl.2}{pts_gl.2}puis une copie est transposée sur un autre chromosome. "
@@ -930,13 +931,13 @@ SCENES = [
         "{an_gl.3}{pts_gl.3}Chaque copie accumule ses mutations, puis de nouvelles duplications ont lieu sur le même chromosome, sans transposition : les gènes restent voisins. "
         "C'est le futur chromosome onze, le groupe bêta. Sur l'autre chromosome, le gène se duplique lui aussi, sur place : ce sera le groupe alpha, sur le chromosome seize. "
         "{an_gl.4}{pts_gl.4}On aboutit aux deux groupes, et à l'arbre de parenté.",
-        "{-pts_gl}{-an_gl}{arbre}L'arbre de la correction, construit à partir des séquences nucléotidiques. {arbre.1}Le premier nœud sépare la myoglobine de toutes les globines : duplication plus transposition. "
+        "L'arbre de la correction, construit à partir des séquences nucléotidiques. {-pts_gl}{-an_gl}{arbre}{arbre.1}Le premier nœud sépare la myoglobine de toutes les globines : duplication plus transposition. "
         "{arbre.2}Le nœud qui sépare alpha, sur le seize, du groupe bêta, sur le onze : duplication plus transposition, lui aussi. "
         "{arbre.3}Les nœuds internes du groupe bêta, gamma et epsilon d'un côté, delta et bêta de l'autre : duplication seule. Ces gènes sont restés côte à côte sur le onze.",
         "{arbre.4}Ce que signifie chaque nœud : une duplication génique, avec ou sans changement de chromosome. Un nœud ne porte jamais une transposition seule. "
         "Et des mutations sont notées sur chaque branche, après chaque nœud.",
-        "{-arbre}{concl}La conclusion de la correction rassemble quatre types d'arguments, et c'est ce qui la rend complète. "
-        "{concl.1}Les séquences : plus de vingt pour cent de similitudes, nucléotidiques et protéiques. {concl.2}La structure tridimensionnelle : les chaînes sont presque superposables. "
+        "La conclusion de la correction rassemble quatre types d'arguments, et c'est ce qui la rend complète. "
+        "{-arbre}{concl}{concl.1}Les séquences : plus de vingt pour cent de similitudes, nucléotidiques et protéiques. {concl.2}La structure tridimensionnelle : les chaînes sont presque superposables. "
         "{concl.3}La fonction : toutes transportent le dioxygène, à des moments différents de la vie. {concl.4}La localisation : des gènes regroupés sur les chromosomes seize et onze. "
         "Les globines forment bien une famille multigénique, issue d'une globine ancestrale par duplications, mutations et transpositions.",
         "{-concl}{myo}Un point douteux de la correction : elle place la myoglobine sur le chromosome vingt. Les bases de données de génétique humaine indiquent le chromosome vingt-deux. "
@@ -984,9 +985,9 @@ SCENES = [
         "{-amy_doc}{il_amy}{il_amy.1}Et chez les individus étudiés, le nombre de copies n'est pas le même. {il_amy.2}Un individu en a peu, {il_amy.3}un autre beaucoup. "
         "{il_amy.4}Plus un individu possède de copies, plus il produit d'amylase.",
         ("P", 1.5),
-        "{-il_amy}{sel}Ce lien a une portée évolutive. Les populations à l'alimentation traditionnellement riche en amidon, céréales ou tubercules, ont en moyenne plus de copies que les autres. "
+        "Ce lien a une portée évolutive. Les populations à l'alimentation traditionnellement riche en amidon, céréales ou tubercules, ont en moyenne plus de copies que les autres. "
         "Cette comparaison de populations, publiée en deux mille sept, vient de sources extérieures au cours. Le raisonnement est celui de la sélection naturelle. "
-        "{sel.1}Les duplications d'AMY un sont survenues au hasard, par accident génétique : le nombre de copies varie entre individus. "
+        "{-il_amy}{sel}{sel.1}Les duplications d'AMY un sont survenues au hasard, par accident génétique : le nombre de copies varie entre individus. "
         "{sel.2}Là où l'on mange beaucoup d'amidon, ceux qui ont plus de copies digèrent mieux, en tirent plus d'énergie : un avantage sélectif. "
         "{sel.3}Ils survivent et se reproduisent davantage, et transmettent leurs copies. Au fil des générations, le nombre moyen de copies augmente.",
         "{-sel}{causal}Attention au sens de la causalité. N'écris pas : s'ils ont beaucoup de gènes de l'amylase, alors leur régime consomme plus d'amidon. C'est l'inverse. "
@@ -1020,7 +1021,7 @@ SCENES = [
         "{-il_fus}{mots_sp}Trois mots clés. {mots_sp.1}Un remaniement chromosomique : une modification de la structure des chromosomes, fusion, inversion, translocation, addition ou perte d'un segment. "
         "{mots_sp.2}Une barrière entre populations : un obstacle qui empêche les échanges génétiques entre deux groupes d'une même espèce. Géographique, une montagne, un bras de mer, ou génétique. "
         "{mots_sp.3}La spéciation : le processus par lequel de nouvelles espèces apparaissent à partir d'une espèce d'origine.",
-        "{-mots_sp}{pourquoi}Pourquoi ces remaniements comptent-ils ? {pourquoi.1}Quand une population accumule des remaniements, ses chromosomes deviennent différents de ceux des populations voisines. "
+        "Pourquoi ces remaniements comptent-ils ? {-mots_sp}{pourquoi}{pourquoi.1}Quand une population accumule des remaniements, ses chromosomes deviennent différents de ceux des populations voisines. "
         "{pourquoi.2}Chez un éventuel hybride, les chromosomes hérités des deux parents ne sont plus parfaitement homologues : ils s'apparient mal en prophase un, et la méiose produit des gamètes déséquilibrés. "
         "{pourquoi.3}L'hybride est peu fertile, ou stérile : les échanges génétiques cessent. Une barrière, ici génétique, s'est installée. "
         "{pourquoi.4}Ajoutés à l'éloignement géographique et au temps, ces remaniements font diverger les populations, jusqu'à des espèces distinctes : c'est la spéciation.",
@@ -1080,7 +1081,7 @@ SCENES = [
                         legende="Séquenceur Illumina MiSeq, photo Konrad Förstner, CC BY 2.0 (Wikimedia Commons)"),
         "seq": dict(type="liste", titre="Une technique devenue rapide et bon marché", x=130, y=140, w=1020, items=[
             "Séquencer : lire l'enchaînement exact des nucléotides", "Premier génome humain : avril 2003, Human Genome Project",
-            "> 70 M€ (2001) → ≈ 5 000 € (2013) → < 1 000 $ en quelques heures (2019)"]),
+            "> 70 M€ (2001) → ≈ 5 000 € (2013) → < 1 000 $ en quelques heures (2019)"]),
         "pour": dict(type="liste", titre="Pour", x=130, y=110, w=1020, marques=["+", "+", "+", "+", "+"], items=[
             "Trouver les gènes des maladies (bases de données mondiales)", "Prédire : mucoviscidose, CFTR, ΔF508 (66 %), risque 1/4",
             "Dépister et prévenir : test BRCA1, Angelina Jolie (2013)", "DPI et DPN : éviter une maladie grave",
@@ -1120,13 +1121,13 @@ SCENES = [
     ], vis={
         "exb": dict(type="exo", niveau="Exercice type bac", y=70, titre="Couleur et forme du fruit", src="Exercice inventé pour la vidéo, sur le modèle des TP 2 et 3",
                     enonce=["Lignée pure [rouge ; rond] × lignée pure [jaune ; allongé] → F1 100 % [rouge ; rond].",
-                            "Test-cross de la F1, 1 000 plantes : 408 [rouge ; rond], 402 [jaune ; allongé], 92 [rouge ; allongé], 98 [jaune ; rond]."],
+                            "Test-cross de la F1, 1 000 plantes : 408 [rouge ; rond], 402 [jaune ; allongé], 92 [rouge ; allongé], 98 [jaune ; rond]."],
                     questions=["Allèles dominants, génotype de la F1.", "Pourquoi un test-cross ? Avec quel partenaire ?",
                                "Gènes indépendants ou liés ? Justifier par des pourcentages.",
                                "Expliquer par un schéma l'origine des plantes [rouge ; allongé]."]),
         "pa_exb": dict(type="pause", t="Dominance, test-cross, gènes liés ou non, schéma du crossing-over."),
         "exbc": dict(type="exo", mode="coin", niveau="Exercice type bac", titre="Couleur et forme du fruit",
-                     donnees=["F1 [rouge ; rond]", "408 · 402 · 92 · 98 sur 1 000"],
+                     donnees=["F1 [rouge ; rond]", "408 · 402 · 92 · 98 sur 1 000"],
                      questions=["Dominance, génotype F1 ?", "Pourquoi un test-cross ?", "Indépendants ou liés ?", "Origine des [rouge ; allongé] ?"]),
         "s1": dict(type="formule", titre="1 · Dominance et génotype", x=540, y=170, w=700, lignes=[
             dict(f="F1 uniforme [rouge ; rond] : R et L dominants", taille=32),
@@ -1136,8 +1137,8 @@ SCENES = [
             dict(f="le récessif ne masque rien : phénotypes de la F2 = gamètes de la F1", cadre=True, taille=28)]),
         "s3": dict(type="formule", titre="3 · Indépendants ou liés ?", x=540, y=120, w=700, lignes=[
             dict(f="pas 4 × 25 %", taille=34, ko=True),
-            dict(f="parentaux : (408 + 402) / 1 000 = 81 %", taille=32),
-            dict(f="recombinés : (92 + 98) / 1 000 = 19 %", taille=32),
+            dict(f="parentaux : (408 + 402) / 1 000 = 81 %", taille=32),
+            dict(f="recombinés : (92 + 98) / 1 000 = 19 %", taille=32),
             dict(f="gamètes non équiprobables : gènes liés", cadre=True, ok=True, taille=32)]),
         "s4": dict(type="formule", titre="4 · L'origine des recombinés", x=540, y=110, w=700, lignes=[
             dict(f="prophase I : bivalent (R L // r l)", taille=32),
@@ -1155,7 +1156,7 @@ SCENES = [
         "{bac.6}Expliquer les deux brassages, et interpréter un test-cross. "
         "{bac.7}Expliquer une trisomie, une translocation, un crossing-over inégal, et la formation d'une famille multigénique. "
         "{bac.8}Et donner deux arguments pour et deux contre le séquençage.",
-        "{-bac}{schemas}Et les schémas étoilés de la carte, à savoir refaire sans modèle. {schemas.1}Le cycle méiose, fécondation. {schemas.2}Le brassage interchromosomique. "
+        "Et les schémas étoilés de la carte, à savoir refaire sans modèle. {-bac}{schemas}{schemas.1}Le cycle méiose, fécondation. {schemas.2}Le brassage interchromosomique. "
         "{schemas.3}Le crossing-over. {schemas.4}La mauvaise disjonction, en anaphase un et en anaphase deux. {schemas.5}Le crossing-over inégal. "
         "{schemas.6}Et la famille multigénique, avec les opsines.",
         "{-schemas}",
