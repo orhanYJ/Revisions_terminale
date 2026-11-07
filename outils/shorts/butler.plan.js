@@ -55,7 +55,7 @@ window.PLAN = S => S.plans([
   // s16 « Il est au programme de l'ACL oral, en BFI. Pourquoi nous parle-t-il autant ? La réponse est sur Révisions Animées. »
   { a: ['s16', 0], type: 'programme' },
   { a: ['s16', 'pourquoi'], type: 'mot', t: 'POURQUOI IL NOUS|PARLE AUTANT ?' },
-  { a: ['s16', 'réponse'], type: 'chaine', serie: 'Parable', fond: 'ecriture' },
+  { a: ['s16', 'réponse'], type: 'chaine', serie: 'Parable of the Sower', fond: 'ecriture' },
   // s17 « Et tout ça… une femme l'avait écrit. » (boucle vers « En 1993, une femme écrit un roman… »)
   { a: ['s17', 0], type: 'boucle' },
 ]);

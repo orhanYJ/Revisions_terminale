@@ -232,7 +232,7 @@
       S.texte('RÉVISIONS', W / 2, 1010, { taille: 150, coul: CREME, contour: NOIR, contourL: 12 });
       S.texte('ANIMÉES', W / 2, 1150, { taille: 150, coul: OR, contour: NOIR, contourL: 12 });
       const k2 = eo(pr(t, p.a + .4, .4)); g.save(); g.globalAlpha = k2;
-      S.texte(`la série « ${p.serie || 'La liberté'} » sur YouTube`, W / 2, 1280, { taille: 54, it: true, poids: 400, police: 'Spectral', coul: CREME });
+      S.texte(`la série « ${p.serie || 'La liberté'} » sur YouTube`, W / 2, 1280, { taille: 54, it: true, poids: 400, police: 'Spectral', coul: CREME, max: 980 });
       g.restore();
     },
   };

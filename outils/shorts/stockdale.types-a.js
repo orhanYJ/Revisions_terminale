@@ -98,7 +98,7 @@ window.TYPES_A = O => {
     const kf = pr(t, p.a, .2); if (kf < 1) { g.fillStyle = `rgba(255,246,216,${(1 - kf) * .8})`; g.beginPath(); g.arc(x + 120, y - 50, 80 + kf * 500, 0, 7); g.fill(); }
     // traits de vitesse
     for (let i = 0; i < 10; i++) { const xx = 120 + rnd(i) * 840, yy = ((rnd(i + 3) * H + l * 2400) % H); g.fillStyle = 'rgba(239,230,210,.18)'; g.fillRect(xx, yy, 4, 160); }
-    deux(p.t, 1520, 130);
+    deux(p.t, 1480, 130);
   }
   // descente en parachute ; p.chrono : compte à rebours ; p.village : toits au sol
   function chute(p, t, l) {
@@ -279,7 +279,7 @@ window.TYPES_A = O => {
     g.lineWidth = 6; g.strokeStyle = CREME; g.beginPath(); g.roundRect(-160, -24, 320, 48, 14); g.fill(); g.stroke();
     g.restore();
     if (apres) { const ki = pr(t, tc, .4); g.strokeStyle = `rgba(239,230,210,${1 - ki})`; g.lineWidth = 8;
-      for (let i = 0; i < 10; i++) { const a = i / 10 * 6.28, r0 = 60 + ki * 120, r1 = r0 + 80; g.beginPath(); g.moveTo(420 + Math.cos(a) * r0, 640 + Math.sin(a) * r0); g.lineTo(420 + Math.cos(a) * r1, 640 + Math.sin(a) * r1); g.stroke(); } }
+      for (let i = 0; i < 10; i++) { const a = i / 10 * 6.28, r0 = 60 + ki * 120, r1 = r0 + 80; g.beginPath(); g.moveTo(400 + Math.cos(a) * r0, 790 + Math.sin(a) * r0); g.lineTo(400 + Math.cos(a) * r1, 790 + Math.sin(a) * r1); g.stroke(); } }
     g.restore();
     if (apres) { const kf = pr(t, tc, .2); if (kf < 1) { g.fillStyle = `rgba(255,248,230,${(1 - kf) * .6})`; g.fillRect(0, 0, W, H); } }
     deux(p.t, 1340, 110);
