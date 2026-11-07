@@ -18,7 +18,7 @@ META = {
     "ch1": dict(
         gros="Acides & bases", sous="pH · couples · Brønsted", img="c1-citron.jpg",
         accroche="Un citron, du vinaigre, un détartrant : qu'ont-ils en commun, et que mesure vraiment le pH ?",
-        exos=["Exercice 1 (pour démarrer) : l'acide lactique, son couple et le pH de sa solution.",
+        exos=["Exercice 1 (pour démarrer) : l'acide lactique, son couple, [H₃O⁺] et réaction totale ou non.",
               "Exercice 2 (plus difficile) : deux flacons de même concentration, acide fort ou acide faible ?",
               "Exercice 3 (type bac) : l'acidité des pluies, à partir de documents."],
         tags=["acide base", "pH", "Brønsted", "couple acide base", "acide fort acide faible", "dilution pH",
