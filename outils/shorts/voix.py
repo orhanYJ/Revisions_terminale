@@ -69,7 +69,7 @@ def main(nom):
                 o = brut[min(j, len(brut) - 1)][0]
                 k = min(j + nlus, len(brut)) - 1
                 fin = brut[k][0] + brut[k][1]
-                mots.append([round(t + o - a0 / SR, 3), round(max(.05, fin - o), 3), w])
+                mots.append([round(max(t, t + o - a0 / SR), 3), round(max(.05, fin - max(o, a0 / SR)), 3), w])
                 j += nlus
         segs.append({"id": sid, "t0": round(t, 3), "t1": round(t + len(audio) / SR, 3), "texte": texte, "mots": mots})
         morceaux.append(audio)
