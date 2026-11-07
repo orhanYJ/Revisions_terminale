@@ -203,9 +203,131 @@ STYLES.update({
 ANCIENS = {"drone": "cine", "pulse": "synth", "beat": "trap"}
 
 
+# ---------------------------------------------------------------- variantes suspense / phonk (07/11/2026)
+def echo(x, retard, fb=.38, n=4):
+    y = x.copy(); d = int(retard * SR)
+    for k in range(1, n + 1):
+        if d * k < len(x): y[d * k:] += x[:-d * k] * fb ** k
+    return y
+
+
+def _grille(bpm, dur):
+    s16 = 60 / bpm / 4
+    return s16, [(i, i * s16) for i in range(int(dur / s16) + 1)]
+
+
+def v_suspense_phonk(dur, niveau):
+    n = int(dur * SR); y = np.zeros(n); cl = np.zeros(n); s16, G = _grille(120, dur); b = 4 * s16; mes = 4 * b
+    acc = [["D4", "F4", "A4"], ["D4", "F4", "Bb4"], ["C4", "E4", "A4"], ["C#4", "E4", "A4"]]; bas = ["D1", "Bb0", "A0", "A0"]
+    mel = [0, 2, 1, 2, 0, 2, 1, 0]
+    for i, t in G:
+        nv = niveau(t); k = int(t / mes) % 4; pos = i % 16; f = lambda x, o=0: hz(x) * 2 ** o
+        if pos == 0: poser(y, tremolo([f(x, 1) for x in acc[k]], mes + .05), t, .1)
+        if pos % 4 == 0: poser(y, charley(.05), t, .17)
+        poser(y, basse(f(bas[k], 2), s16 * .8, 500), t, .13)
+        if nv >= 2 and pos % 2 == 0: poser(cl, cloche_phonk(f(acc[k][mel[(pos // 2) % 8]], 1)), t, .26)
+        if nv >= 3:
+            if pos in (0, 10): poser(y, kick(), t, .8)
+            if pos == 8: poser(y, clap(), t, .5)
+            if pos in (0, 6, 11): poser(y, b808(f(bas[k], 1), b * 1.4), t, .5)
+            if pos % 2 == 1: poser(y, charley(.03), t, .08)
+    return y + echo(cl, b * .75)
+
+
+def v_phonk_sombre(dur, niveau):
+    n = int(dur * SR); y = np.zeros(n); cl = np.zeros(n); s16, G = _grille(126, dur); b = 4 * s16; mes = 4 * b
+    # mi phrygien : la couleur sombre du phonk
+    mel = ["E4", "F4", "G4", "E4", "B4", "A4", "G4", "F4"]; bas = ["E1", "E1", "C1", "D1"]; nap = [["E3", "G3", "B3"], ["E3", "G3", "B3"], ["C3", "E3", "G3"], ["D3", "F3", "A3"]]
+    for i, t in G:
+        nv = niveau(t); k = int(t / mes) % 4; pos = i % 16; f = lambda x, o=0: hz(x) * 2 ** o
+        if pos == 0: poser(y, nappe([f(x) for x in nap[k]], mes + .05, 700), t, .35)
+        if pos in (0, 3, 6, 8, 10, 12, 14): poser(cl, cloche_phonk(f(mel[(i // 2) % 8])), t, .3)
+        if nv >= 2:
+            if pos == 0: poser(y, b808(f(bas[k], 1), mes * .9), t, .6)
+            trip = pos >= 12 and k % 2 == 1
+            if trip: [poser(y, charley(.03), t + q * s16 * 2 / 3, .1) for q in range(3)] if pos % 2 == 0 else None
+            elif pos % 2 == 0: poser(y, charley(), t, .13)
+        if nv >= 3:
+            if pos in (0, 7, 10): poser(y, kick(), t, .85)
+            if pos == 8: poser(y, clap(), t, .55)
+            if pos in (7, 10, 14): poser(y, b808(f(bas[k], 1), b * .9), t, .45)
+    return np.tanh(y * 1.4) / 1.4 + echo(cl, b * .5, .45, 5)
+
+
+def v_funk_bresil(dur, niveau):
+    n = int(dur * SR); y = np.zeros(n); s16, G = _grille(130, dur); b = 4 * s16; mes = 4 * b
+    acc = [["A3", "C4", "E4"], ["F3", "A3", "C4"], ["G3", "B3", "D4"], ["E3", "G#3", "B3"]]; bas = ["A0", "F0", "G0", "E1"]
+    lead = [4, 4, 2, 0, 4, 2, 1, 0]
+    for i, t in G:
+        nv = niveau(t); k = int(t / mes) % 4; pos = i % 16; f = lambda x, o=0: hz(x) * 2 ** o
+        if pos == 0: poser(y, tremolo([f(x, 1) for x in acc[k]], mes + .05), t, .08)
+        if pos in (0, 3, 6, 10, 12): poser(y, cloche_phonk(f(acc[k][lead[(i // 2) % 8] % 3], 1)), t, .24)
+        if nv >= 2:
+            # tamborzão : grosse caisse 1, 4, 7, 11 ; tambours 3, 8, 13
+            if pos in (0, 6, 10): poser(y, kick(), t, .8)
+            if pos in (3, 8, 13): poser(y, taiko(.3, 160), t, .35)
+            if pos % 2 == 0: poser(y, shaker(), t, .08)
+        if nv >= 3:
+            if pos in (0, 6, 10): poser(y, b808(f(bas[k], 1), b * 1.3), t, .5)
+            if pos in (4, 12): poser(y, clap(), t, .45)
+    return np.tanh(y * 1.3) / 1.3
+
+
+def v_suspense_trap(dur, niveau):
+    n = int(dur * SR); y = np.zeros(n); s16, G = _grille(140, dur); b = 4 * s16; mes = 4 * b
+    acc = [["C4", "Eb4", "G4"], ["Ab3", "C4", "Eb4"], ["F3", "Ab3", "C4"], ["G3", "B3", "D4"]]; bas = ["C1", "Ab0", "F0", "G0"]
+    seq = [0, 1, 2, 1, 0, 2, 1, 2]
+    for i, t in G:
+        nv = niveau(t); k = int(t / mes) % 4; pos = i % 16; f = lambda x, o=0: hz(x) * 2 ** o
+        if pos == 0: poser(y, tremolo([f(x, 1) for x in acc[k]], mes + .05), t, .1)
+        if pos % 4 == 0 and nv < 3: poser(y, charley(.05), t, .15)
+        if pos % 2 == 0: poser(y, pizz(f(acc[k][seq[(pos // 2) % 8]])), t, .3 if nv >= 2 else .22)
+        if nv >= 2:
+            roll = k % 2 == 1 and pos >= 12
+            if roll: [poser(y, charley(.03), t + q * s16 / 2, .1) for q in range(2)]
+            elif pos % 2 == 0: poser(y, charley(), t, .13)
+            if pos == 0: poser(y, b808(f(bas[k], 1), mes * .9), t, .5)
+        if nv >= 3:
+            if pos in (0, 7, 10): poser(y, kick(), t, .8)
+            if pos == 8: poser(y, clap(), t, .55)
+    return y
+
+
+def braam(f, d):
+    n = int(d * SR); t = np.arange(n) / SR
+    x = sum(scie(f * m, n, dt) for m in (1, 2) for dt in (-.006, .006))
+    cut = 200 + 1600 * np.minimum(1, t / .6) * np.exp(-t / 2.5)
+    out = np.zeros(n); blk = 2048
+    for o in range(0, n, blk): out[o:o + blk] = lp(x[o:o + blk + 256], cut[o])[:len(out[o:o + blk])]
+    return np.tanh(out * .6) * adsr(n, .05, .6)
+
+
+def v_thriller(dur, niveau):
+    n = int(dur * SR); y = np.zeros(n); cl = np.zeros(n); s16, G = _grille(110, dur); b = 4 * s16; mes = 4 * b
+    bas = ["D1", "D1", "Bb0", "A0"]; acc = [["D4", "F4", "A4"], ["D4", "F4", "A4"], ["Bb3", "D4", "F4"], ["A3", "C#4", "E4"]]
+    dern = -1
+    for i, t in G:
+        nv = niveau(t); k = int(t / mes) % 4; pos = i % 16; f = lambda x, o=0: hz(x) * 2 ** o
+        if pos % 4 == 0: poser(y, charley(.06), t, .22)            # horloge
+        if pos % 4 == 2: poser(y, lp(charley(.06), 5000), t, .13)
+        if pos == 0 and k % 2 == 0: poser(y, braam(f(bas[k], 1), mes * 1.8), t, .3)
+        if nv >= 2 and pos in (0, 3): poser(y, lp(kick(.4), 400), t + (0 if pos == 0 else -s16 * .4), .6)   # cœur
+        if nv >= 2 and pos in (6, 14): poser(cl, cloche_phonk(f(acc[k][pos % 3], 1)), t, .2)
+        if nv >= 3:
+            if pos in (0, 10): poser(y, kick(), t, .7)
+            if pos in (4, 12): poser(y, clap(), t, .45)
+            if pos in (0, 7, 10): poser(y, b808(f(bas[k], 1), b * 1.2), t, .4)
+            poser(y, basse(f(bas[k], 2), s16 * .8, 500), t, .1)
+    return y + echo(cl, b * .75, .4, 4)
+
+
+VARIANTES = {"suspense_phonk": v_suspense_phonk, "phonk_sombre": v_phonk_sombre, "funk_bresil": v_funk_bresil,
+             "suspense_trap": v_suspense_trap, "thriller": v_thriller}
+
+
 def composer(style, dur, sections, chocs):
     style = ANCIENS.get(style, style)
-    S = STYLES[style]; n = int(dur * SR); y = np.zeros(n)
+    S = STYLES.get(style) or dict(bpm=120); n = int(dur * SR); y = np.zeros(n)
     b = 60 / S["bpm"]; s16 = b / 4; mes = 4 * b
     sections = sorted(sections) or [[0, 0]]
 
@@ -216,6 +338,9 @@ def composer(style, dur, sections, chocs):
         return nv
 
     pas = int(dur / s16) + 1
+    if style in VARIANTES:
+        y = VARIANTES[style](dur, niveau)
+        pas = 0
     for i in range(pas):
         t = i * s16; nv = niveau(t)
         k = int(t / mes) % 4; ac, bs = S["accords"][k], S["basses"][k]
