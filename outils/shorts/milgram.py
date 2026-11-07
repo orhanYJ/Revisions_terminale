@@ -12,6 +12,7 @@ les camps de la mort nazis. Lien avec la série « Le devoir », épisode 5 (Eic
 """
 CODE = "milgram"
 TEMPO = 1.1
+ACCEL = 1.1        # accélération d'ensemble après coup (84 s → 77 s)
 PRONONCIATION = {"Yale": "Yèle", "Milgram": "Milgrame", "450": "quatre cent cinquante", "15": "quinze",
                  "45": "quarante-cinq", "75": "soixante-quinze", "150": "cent cinquante", "300": "trois cents",
                  "315": "trois cent quinze", "1961": "mille neuf cent soixante et un", "26": "vingt-six", "40": "quarante"}

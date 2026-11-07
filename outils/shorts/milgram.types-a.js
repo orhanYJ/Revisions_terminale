@@ -6,6 +6,7 @@ window.TYPES_A = O => {
   const { g, W, H, cl, lerp, pr, eo, back, rnd } = S;
   const { NOIR, CREME, OR, ROUGE, GRIS } = O.C;
   const GROUPES = ['CHOC LÉGER', 'CHOC MODÉRÉ', 'CHOC FORT', 'CHOC TRÈS FORT', 'CHOC INTENSE', 'CHOC EXTRÊMEMENT INTENSE', 'DANGER : CHOC VIOLENT', 'XXX'];
+  const deux = (txt, y, taille = 110) => { const L = txt.split('|'); L.forEach((s, i) => O.multi([[s, i ? OR : CREME]], y + (i - (L.length - 1) / 2) * taille * 1.08, i ? taille : taille * .85)); };
   const groupe = v => GROUPES[Math.min(7, Math.floor((v - 15) / 60))];
   const tps = a => Array.isArray(a) ? S.T(...a) - .04 : a;
   // valeur courante d'une suite d'étapes [[repère, valeur], …] (le premier repère peut être null = début du plan)
@@ -18,13 +19,13 @@ window.TYPES_A = O => {
   // tableau des 30 interrupteurs (15 à 450 volts), lampes rouges jusqu'à la tension courante
   function panneau(p, t, l) {
     const { v, v0, t0 } = etape(p, t), k = eo(pr(t, t0, .35)), vv = Math.round(lerp(v0, v, k) / 15) * 15;
-    const z = p.zoom ? lerp(1, 1.45, eo(pr(t, p.a, .6))) : 1;
+    const z = p.zoom ? lerp(1, 1.18, eo(pr(t, p.a, .6))) : 1;
     g.save();
     if (p.zoom) { const idx = Math.max(0, v / 15 - 1), cx = 110 + (idx % 15) * 62, cy = idx < 15 ? 820 : 1060; g.translate(cx, cy); g.scale(z, z); g.translate(-cx, -cy); }
     // compteur
     const r = cl(vv / 450), coul = `rgb(${Math.round(lerp(217, 220, r))},${Math.round(lerp(180, 55, r))},${Math.round(lerp(90, 45, r))})`;
     S.texte(vv + ' V', W / 2, 470, { taille: 210, police: 'Spectral', poids: 600, coul, ombre: r > .6 ? 'rgba(200,55,45,.6)' : 'rgba(217,180,90,.4)', flou: 40 });
-    S.texte(groupe(Math.max(15, vv)), W / 2, 610, { taille: 44, coul: r > .6 ? ROUGE : CREME, esp: 6, max: 960 });
+    if (vv > 0) S.texte(groupe(vv), W / 2, 610, { taille: 44, coul: r > .6 ? ROUGE : CREME, esp: 6, max: 960 });
     // boîtier
     g.fillStyle = '#26221d'; g.strokeStyle = CREME; g.lineWidth = 5; g.beginPath(); g.roundRect(50, 680, 980, 500, 18); g.fill(); g.stroke();
     S.texte('GÉNÉRATEUR DE CHOCS · 15 – 450 VOLTS', W / 2, 720, { taille: 26, police: 'JetBrains Mono', poids: 500, coul: GRIS });
@@ -37,9 +38,9 @@ window.TYPES_A = O => {
       S.texte(volts >= 435 ? 'XXX' : String(volts), x, y + 64, { taille: 20, police: 'JetBrains Mono', poids: 500, coul: volts >= 435 ? ROUGE : CREME });
     }
     g.restore();
-    if (p.t) O.multi(p.t.split('|').map((s, i) => [s, i ? OR : CREME]), 1330, p.taille || 110);
+    if (p.t) deux(p.t, 1330, p.taille || 110);
     // étincelle à chaque nouvelle tension
-    const ke = pr(t, t0, .25); if (ke > 0 && ke < 1 && v > v0) { g.save(); g.globalAlpha = 1 - ke; g.fillStyle = '#fff6d8'; g.fillRect(0, 0, W, H); g.restore(); }
+    const ke = pr(t, t0, .25); if (ke > 0 && ke < 1 && v > v0) { g.save(); g.globalAlpha = (1 - ke) * .3; g.fillStyle = '#fff6d8'; g.fillRect(0, 0, W, H); g.restore(); }
   }
 
   function annonce(p, t) {
@@ -62,7 +63,7 @@ window.TYPES_A = O => {
   // homme assis attaché ; p.zoom : gros plan sur le poignet et l'électrode
   function chaise(p, t, l) {
     const zz = p.zoom ? eo(pr(t, p.a, .5)) : 0, z = lerp(1, 2.4, zz);
-    g.save(); g.translate(W / 2, 900); g.scale(z, z); g.translate(-lerp(540, 690, zz), -lerp(900, 930, zz));
+    g.save(); g.translate(W / 2, 900); g.scale(z, z); g.translate(-lerp(540, 735, zz), -lerp(900, 878, zz));
     // chaise
     g.fillStyle = '#3a2f25'; g.strokeStyle = CREME; g.lineWidth = 6;
     g.beginPath(); g.roundRect(380, 560, 60, 520, 10); g.fill(); g.stroke();      // dossier
@@ -82,7 +83,7 @@ window.TYPES_A = O => {
     if (p.zoom) for (let i = 0; i < 6; i++) { const a = rnd(i + Math.floor(t * 20)) * 6.3, r = 20 + rnd(i * 3 + Math.floor(t * 20)) * 30; g.strokeStyle = '#fff3c4'; g.lineWidth = 3;
       g.beginPath(); g.moveTo(735, 878); g.lineTo(735 + Math.cos(a) * r, 878 + Math.sin(a) * r); g.stroke(); }
     g.restore();
-    if (p.t) O.multi(p.t.split('|').map((s, i) => [s, i ? OR : CREME]), 1420, 100);
+    if (p.t) deux(p.t, 1420, 100);
   }
 
   // mur de briques qui tremble à chaque coup
@@ -102,7 +103,7 @@ window.TYPES_A = O => {
     g.restore();
     coups.forEach((c, i) => { const k = pr(t, c, .3); if (k > 0) { g.save(); g.translate(W / 2 + (i % 2 ? 120 : -120), 820 + i * 140); g.rotate((i % 2 ? .12 : -.1)); const s = lerp(2.2, 1, back(k));
       g.scale(s, s); S.texte('BOUM', 0, 0, { taille: 170, coul: ROUGE, contour: NOIR, contourL: 16 }); g.restore(); } });
-    if (p.t) O.multi(p.t.split('|').map((s, i) => [s, i ? OR : CREME]), 1480, 100);
+    if (p.t) deux(p.t, 1480, 100);
   }
 
   // l'expérimentateur en blouse grise
@@ -123,10 +124,10 @@ window.TYPES_A = O => {
   function ordre(p, t, l) {
     O.fondImg(p.fond || 'nuremberg', 1.3, .5, .4, .0);
     const txt = p.t, n = Math.floor(cl((t - p.a) / (p.duree || .9)) * txt.length);
-    S.texte('L’EXPÉRIMENTATEUR', W / 2, 640, { taille: 36, coul: GRIS, esp: 8 });
+    S.texte('L’EXPÉRIMENTATEUR', W / 2, 700, { taille: 36, coul: GRIS, esp: 8 });
     const lignes = txt.split('|');
     let c = 0; lignes.forEach((s, i) => { const vis = s.slice(0, Math.max(0, n - c)); c += s.length;
-      S.texte((i === 0 ? '« ' : '') + vis + (i === lignes.length - 1 && n >= txt.replace(/\|/g, '').length ? ' »' : ''), W / 2, 820 + i * 120,
+      S.texte((i === 0 ? '« ' : '') + vis + (i === lignes.length - 1 && n >= txt.replace(/\|/g, '').length ? ' »' : ''), W / 2, 900 + i * 125,
         { taille: p.taille || 92, police: 'Spectral', it: true, poids: 500, coul: p.tampon ? ROUGE : CREME, max: 980 }); });
     if (p.tampon) O.tampon('ORDRE', W / 2, 1220, pr(t, p.a + (p.duree || .9), .3), -.08, 120);
     else O.barreRouge(1000 + lignes.length * 60, eo(pr(t, p.a + (p.duree || .9), .3)), 12, -.02);
@@ -153,7 +154,7 @@ window.TYPES_A = O => {
       g.beginPath(); g.ellipse(x, y + taille * .2, taille * .27, taille * .2, 0, Math.PI, 0); g.fill();
     }
     if (e === 1) {
-      O.petitTitre('LE PRONOSTIC DES ÉTUDIANTS DE YALE', 420, CREME);
+      S.texte('LE PRONOSTIC DES ÉTUDIANTS DE YALE', W / 2, 420, { taille: 38, coul: CREME, esp: 6, poids: 600, max: 960 });
       const k = back(pr(t, p.a + .4, .3)); g.save(); g.translate(W / 2, 1500); g.scale(k, k);
       S.texte('1 %', 0, 0, { taille: 230, police: 'Spectral', poids: 600, coul: OR, contour: NOIR, contourL: 14 }); g.restore();
       S.texte('à peine 1 personne sur 100', W / 2, 1650, { taille: 56, police: 'Spectral', it: true, poids: 400, coul: CREME });
@@ -173,8 +174,8 @@ window.TYPES_A = O => {
       g.fillStyle = `rgba(150,190,220,${1 - ph})`; g.beginPath(); g.moveTo(x, y - 26); g.quadraticCurveTo(x + 16, y, x, y + 14); g.quadraticCurveTo(x - 16, y, x, y - 26); g.fill(); }
     let lab = p.etapes[0][1]; p.etapes.forEach(([a, s]) => { if (!a || t >= tps(a)) lab = s; });
     const ka = p.etapes.map(([a]) => a ? tps(a) : p.a).filter(x => x <= t).pop();
-    const k = back(pr(t, ka, .25)); g.save(); g.translate(W / 2, 1400); g.scale(lerp(1.6, 1, k), lerp(1.6, 1, k));
-    O.multi([[lab, OR]], 0, 130); g.restore();
+    const k = back(pr(t, ka, .25)); g.save(); g.translate(W / 2, 1400); g.scale(lerp(1.6, 1, k), lerp(1.6, 1, k)); g.translate(-W / 2, 0);
+    O.multi([[lab, OR]], 0, 120); g.restore();
   }
 
   // révélation : c'était un acteur
@@ -196,7 +197,7 @@ window.TYPES_A = O => {
     g.save(); g.fillStyle = '#d8b48c'; g.strokeStyle = NOIR; g.lineWidth = 6;
     g.beginPath(); g.roundRect(495, y - 400, 90, 420, 45); g.fill(); g.stroke();
     g.fillStyle = '#f1d9c0'; g.beginPath(); g.ellipse(540, y - 20, 30, 22, 0, 0, 7); g.fill(); g.restore();
-    O.multi(p.t.split('|').map((s, i) => [s, i ? OR : CREME]), 1480, 110);
+    deux(p.t, 1480, 110);
   }
 
   return { panneau, annonce, chaise, mur, blouse, ordre, silence, sondage, sueur, acteur, doigt };

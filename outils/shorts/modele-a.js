@@ -70,7 +70,8 @@
       const t2 = p.t2 && t >= S.T(...p.a2) - .05;
       const coul = p.sombre ? ROUGE : p.bruit ? CREME : CREME;
       const mots = p.t.split(' ');
-      if (mots.length > 2 && !p.img) { multi([[mots.slice(0, -1).join(' ') + ' ', coul]], y - 95, 130); multi([[mots[mots.length - 1], OR]], y + 50, 150); }
+      if (p.t.includes('|')) { const [l1, l2] = p.t.split('|'); multi([[l1, coul]], y - 95, 120); multi([[l2, OR]], y + 50, 140); }
+      else if (mots.length > 2 && !p.img) { multi([[mots.slice(0, -1).join(' ') + ' ', coul]], y - 95, 130); multi([[mots[mots.length - 1], OR]], y + 50, 150); }
       else multi(mots.length > 1 ? [[mots.slice(0, -1).join(' ') + ' ', coul], [mots[mots.length - 1], OR]] : [[p.t, p.sombre ? ROUGE : OR]], y, p.petit ? 120 : 170);
       g.restore();
       if (p.sous) S.texte(p.sous, W / 2, y + 120, { taille: 64, it: true, poids: 400, police: 'Spectral', coul: CREME, contour: NOIR, contourL: 8 });

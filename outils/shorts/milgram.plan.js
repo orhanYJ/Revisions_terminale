@@ -43,13 +43,13 @@ window.PLAN = S => S.plans([
   { a: ['s13', 'mais'], type: 'tampon', t: 'ILS APPUIENT', choc: true },
   // s14 « Le plus fou ? L'homme était un acteur. Il n'a jamais reçu la moindre décharge. Eux ne le savaient pas. »
   { a: ['s14', 0], type: 'mot', t: 'LE PLUS FOU ?' },
-  { a: ['s14', 'homme'], type: 'acteur', tampon: ['s14', 'acteur'], zero: ['s14', 'jamais'] },
-  { a: ['s14', 'eux'], type: 'mot', t: 'EUX NE LE', t2: 'SAVAIENT PAS', a2: ['s14', 'savaient'] },
+  { a: ['s14', "l'homme"], type: 'acteur', tampon: ['s14', 'acteur'], zero: ['s14', 'jamais'] },
+  { a: ['s14', 'eux'], type: 'mot', t: 'EUX NE LE|SAVAIENT PAS' },
   // s15 « Milgram voulait comprendre une chose : comment des gens ordinaires avaient pu obéir aux nazis. »
   { a: ['s15', 0], type: 'perso', t: 'STANLEY MILGRAM', sous: 'psychologue · université Yale', ch: 4 },
   { a: ['s15', 'comment'], type: 'portrait', img: 'nuremberg', t: 'OBÉIR', sous: 'aux nazis ?' },
   // s16 « Obéir, est-ce faire son devoir ? C'est une vraie question de bac. La réponse est sur Révisions Animées. »
-  { a: ['s16', 0], type: 'mot', t: 'OBÉIR', t2: '= FAIRE SON DEVOIR ?', a2: ['s16', 'faire'] },
+  { a: ['s16', 0], type: 'mot', t: 'OBÉIR, EST-CE|FAIRE SON DEVOIR\u202f?' },
   { a: ['s16', 'question'], type: 'bac', sujet: ['Obéir, est-ce', 'faire son devoir ?'] },
   { a: ['s16', 'réponse'], type: 'chaine', serie: 'Le devoir', fond: 'nuremberg' },
   // s17 « Et toi… tu aurais appuyé ? » (boucle vers le début)

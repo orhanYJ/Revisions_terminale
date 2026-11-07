@@ -79,8 +79,16 @@ def main(nom):
     fin = 0.6
     morceaux.append(np.zeros(int(fin * SR), np.float32))
     voix = np.concatenate(morceaux)
-    dur = round(len(voix) / SR, 3)
     import soundfile as sf
+    acc = getattr(m, "ACCEL", 1.0)
+    if abs(acc - 1) > 1e-3 and not muet:   # accélération d'ensemble, hauteur conservée
+        tmp = os.path.join(SORTIE, "accel.wav"); sf.write(tmp, voix, SR)
+        r = subprocess.run(["ffmpeg", "-v", "error", "-i", tmp, "-af", f"atempo={acc}", "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"], capture_output=True, check=True)
+        os.remove(tmp); voix = np.frombuffer(r.stdout, dtype=np.float32)
+        for s in segs:
+            s["t0"] = round(s["t0"] / acc, 3); s["t1"] = round(s["t1"] / acc, 3)
+            s["mots"] = [[round(o / acc, 3), round(d / acc, 3), w] for o, d, w in s["mots"]]
+    dur = round(len(voix) / SR, 3)
     sf.write(os.path.join(SORTIE, f"{m.CODE}.voix.wav"), voix, SR)
     with open(os.path.join(SORTIE, f"{m.CODE}.data.js"), "w", encoding="utf-8") as f:
         f.write("window.SHORT = " + json.dumps({"code": m.CODE, "dur": dur, "segs": segs}, ensure_ascii=False) + ";\n")
