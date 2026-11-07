@@ -287,7 +287,7 @@
       if (p.type === 'chaine') L.push([p.a, 'gong', .8]);
       if (window.SONS_A) window.SONS_A(p, L);
     });
-    return Object.assign({ sons: L, musique: 'phonk_tension' }, S.structure());
+    return Object.assign({ sons: L, musique: window.MUSIQUE || 'phonk_tension' }, S.structure());
   }
 
   window.MODELE = { images: window.IMAGES, init, rendu, sons };
