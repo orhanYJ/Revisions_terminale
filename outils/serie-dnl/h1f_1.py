@@ -270,7 +270,7 @@ SCENES = [
                         dict(type="point", x=1929.67, y=381, c="ca", lbl="sept. 1929 : 381", lp=[1928.6, 405])]),
         "cred": dict(type="liste", titre="Acheter à crédit : un cercle", items=["Emprunter", "Acheter des actions", "Revendre plus cher", "Rembourser, garder le gain"],
                      x=170, y=130, w=940),
-        "marg": dict(type="formule", titre="L'achat sur marge : l'exemple du cours", lignes=[
+        "marg": dict(type="formule", y=100, titre="L'achat sur marge : l'exemple du cours", lignes=[
             dict(f="Une action coûte 100 $", n="le prix"),
             dict(f="Tu paies 10 $ · le courtier prête 90 $", n="jusqu'à 90 % prêtés"),
             dict(f="La Bourse baisse de 10 % → l'action vaut 90 $", n="une baisse modérée"),
@@ -336,13 +336,13 @@ SCENES = [
             "Lundi 28 oct. · lundi noir : ≈ −13 % en une séance",
             "Mardi 29 oct. · mardi noir : ≈ −12 % ; 16 millions d'actions, un record pour 40 ans"], x=150, y=140, w=980),
         "cerc": dict(type="liste", titre="Un cercle de panique", items=[
-            "Tout le monde veut vendre en même temps", "Plus d'acheteurs", "Les cours baissent encore", "Davantage de gens vendent, à n'importe quel prix ↺"], x=170, y=130, w=940),
+            "Tout le monde veut vendre en même temps", "Plus aucun acheteur", "Les cours baissent encore", "Davantage de gens vendent, à n'importe quel prix ↺"], x=170, y=130, w=940),
         "cle6": dict(type="note", terme="La phrase clé pour une copie", cles=["changé d'avis", "tous les autres"],
                      t="Les actionnaires ne vendent pas parce qu'ils ont changé d'avis sur l'industrie américaine, mais parce que tous les autres vendent.",
                      etape="C'est cela, une panique.", x=170, y=200, w=940),
         "chute": dict(type="graphe", titre="L'effondrement · indice Dow Jones, 1929-1932", x=300, y=110, w=680, h=520,
                       ax=dict(x=[1929.4, 1932.8], y=[0, 420], gx=[1930, 1931, 1932], gy=[100, 200, 300, 400], lx="année", ly="indice"),
-                      el=[dict(type="point", x=1929.67, y=381, c="sa", lbl="sept. 1929 : 381", lp=[1930.1, 395]),
+                      el=[dict(type="point", x=1929.67, y=381, c="sa", lbl="sept. 1929 : 381", lp=[1930.35, 381]),
                           dict(type="courbe", pts=DOW_CHUTE, c="ca", dur=3.0),
                           dict(type="point", x=1932.5, y=41, c="ca", lbl="juillet 1932 : 41 (−89 %)", lp=[1931.4, 5])]),
         "def6": dict(type="def", terme="Notion clé · le grand krach (1929)", cles=["fin octobre 1929", "pas"],
