@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Dancing at Lughnasa — thumbnail</title>
+<link rel="stylesheet" href="../../acl-lughnasa/serie/fonts.css">
+<style>
+html,body{margin:0;background:#0e1729}
+#m{position:relative;width:1280px;height:720px;overflow:hidden;
+  background:radial-gradient(circle at 78% 30%,rgba(230,203,139,.28),transparent 45%),linear-gradient(160deg,#0c1322 0%,#19213a 55%,#121a2b 100%)}
+#t{position:absolute;left:64px;top:70px;width:600px;color:#f3efe4}
+.sur{font:500 22px 'JetBrains Mono',monospace;letter-spacing:.32em;color:#e6cb8b}
+h1{font:600 104px/0.98 'Spectral',serif;margin:22px 0 26px;letter-spacing:-.01em;text-shadow:0 6px 30px rgba(0,0,0,.5)}
+.pill{display:inline-block;font:700 34px 'Archivo',sans-serif;letter-spacing:.04em;color:#10182a;background:#e6cb8b;padding:12px 26px;border-radius:14px}
+.sous{margin-top:26px;font:600 27px 'Archivo',sans-serif;color:#d8d2c0;line-height:1.35}
+.sous b{color:#e6cb8b}
+svg{position:absolute;right:0;top:0}
+</style></head><body>
+<div id="m">
+  <svg width="700" height="720" viewBox="0 0 700 720" id="s"></svg>
+  <div id="t">
+    <div class="sur">BRIAN FRIEL</div>
+    <h1>Dancing at Lughnasa</h1>
+    <div class="pill">FULL SUMMARY &amp; ANALYSIS</div>
+    <div class="sous">The play <b>performed</b>, scene by scene<br>Key quotes · essay analysis</div>
+  </div>
+</div>
+<script>
+// les sœurs dansent autour de Marconi, dans le style des figures de la vidéo (moteur jeu)
+var NS = "http://www.w3.org/2000/svg", s = document.getElementById("s");
+function sv(t, a, p, txt) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (txt) e.textContent = txt; (p || s).appendChild(e); return e; }
+// sol
+sv("ellipse", { cx: 360, cy: 610, rx: 330, ry: 70, fill: "rgba(243,239,228,.06)" });
+// Marconi et ses notes
+sv("rect", { x: 300, y: 92, width: 120, height: 84, rx: 16, fill: "#6b4b2e", stroke: "#e6cb8b", "stroke-width": 5 });
+sv("circle", { cx: 336, cy: 134, r: 20, fill: "none", stroke: "#e6cb8b", "stroke-width": 4 });
+[[384, 118], [384, 134], [384, 150]].forEach(function (p) { sv("path", { d: "M" + (p[0] - 12) + " " + p[1] + " h26", stroke: "#e6cb8b", "stroke-width": 3 }); });
+sv("text", { x: 360, y: 72, "text-anchor": "middle", fill: "#e6cb8b", "font-size": 24, "letter-spacing": 5, "font-family": "Archivo" }, null, "MARCONI");
+[[450, 90, 46, -12], [500, 150, 38, 10], [250, 110, 40, -8], [540, 70, 34, 14]].forEach(function (n) {
+  sv("text", { x: n[0], y: n[1], fill: "#e6cb8b", "font-size": n[2], transform: "rotate(" + n[3] + " " + n[0] + " " + n[1] + ")", opacity: .9 }, null, "♪");
+});
+// une figure dansante : robe, bras levés, jambes en mouvement
+function figure(x, y, k, c, h, opt) {
+  var g = sv("g", { transform: "translate(" + x + "," + y + ") scale(" + k + ") rotate(" + (opt.rot || 0) + " 0 -40)" });
+  sv("ellipse", { cx: 0, cy: 4, rx: 26, ry: 7, fill: "rgba(0,0,0,.35)" }, g);
+  var jambe = function (a, sx) { sv("path", { d: "M" + sx + " -26 L" + (sx + Math.sin(a) * 28).toFixed(1) + " " + (-26 + Math.cos(a) * 28).toFixed(1), stroke: opt.bottes ? "#2c2c2c" : "#d9d2c0", "stroke-width": opt.bottes ? 9 : 6, "stroke-linecap": "round" }, g); };
+  jambe(opt.jg, -7); jambe(opt.jd, 7);
+  sv("path", { d: "M-14 -78 Q0 -84 14 -78 L26 -24 Q0 -18 -26 -24 Z", fill: c }, g);
+  if (opt.tablier) sv("path", { d: "M-9 -60 L9 -60 L13 -28 L-13 -28 Z", fill: "rgba(255,255,255,.75)" }, g);
+  var bras = function (a, sx) { sv("path", { d: "M" + sx + " -72 L" + (sx + Math.sin(a) * 32).toFixed(1) + " " + (-72 + Math.cos(a) * 32).toFixed(1), stroke: c, "stroke-width": 7, "stroke-linecap": "round" }, g); };
+  bras(opt.ag, -12); bras(opt.ad, 12);
+  sv("circle", { cx: 0, cy: -95, r: 14, fill: h }, g);
+  sv("circle", { cx: 0, cy: -92, r: 11.5, fill: opt.masque ? "#fbfaf6" : "#f0d6bf" }, g);
+  return g;
+}
+// Kate, seule, à part ; Rose, Agnes, Maggie (masque de farine), Chris : la ronde
+figure(110, 600, 2.05, "#8fa9d9", "#3b3125", { rot: -3, ag: -0.5, ad: 0.6, jg: .3, jd: -.2 });
+figure(250, 545, 1.75, "#e996a6", "#6b4a2a", { rot: 8, ag: -2.3, ad: 2.6, jg: .6, jd: -.5, bottes: true });
+figure(370, 600, 2.15, "#e3a95c", "#5a3a22", { rot: -9, ag: -2.5, ad: 2.3, jg: -.5, jd: .55, tablier: true, masque: true });
+figure(490, 548, 1.75, "#79c2a6", "#4a3420", { rot: 5, ag: -2.6, ad: 2.4, jg: .4, jd: -.35 });
+figure(610, 610, 2.0, "#c3a2e6", "#7a5a36", { rot: -6, ag: -2.3, ad: 2.5, jg: -.45, jd: .4 });
+// la bulle de Maggie
+var b = sv("g", {});
+sv("rect", { x: 300, y: 300, width: 170, height: 58, rx: 14, fill: "#fbfaf6", stroke: "#e3a95c", "stroke-width": 4 }, b);
+sv("path", { d: "M366 357 L376 380 L388 357 Z", fill: "#fbfaf6" }, b);
+sv("text", { x: 385, y: 340, "text-anchor": "middle", "font-size": 32, "font-weight": 700, fill: "#1e2330", "font-family": "Archivo" }, b, "Yaaaah!");
+</script>
+</body></html>
