@@ -14,10 +14,17 @@ window.TYPES_A = O => {
   // ------------------------------------------------------------ petits dessins
   // patte de poulet : trois doigts vers le bas, un ergot
   function patte(x, y, s, coul) {
-    g.save(); g.translate(x, y); g.scale(s / 100, s / 100); g.strokeStyle = coul; g.lineWidth = 12; g.lineCap = 'round'; g.lineJoin = 'round';
-    g.beginPath(); g.moveTo(0, -80); g.lineTo(0, 10); g.stroke();
-    [[-60, 70], [0, 85], [60, 70]].forEach(([dx, dy]) => { g.beginPath(); g.moveTo(0, 10); g.quadraticCurveTo(dx * .4, dy * .5, dx, dy); g.stroke(); });
-    g.beginPath(); g.moveTo(0, -10); g.lineTo(-32, -28); g.stroke();
+    g.save(); g.translate(x, y); g.scale(s / 100, s / 100); g.rotate(-.35); g.lineCap = 'round'; g.lineJoin = 'round';
+    const trait = (w, c, f) => { g.strokeStyle = c; g.lineWidth = w; f(); };
+    const forme = () => {
+      g.beginPath(); g.moveTo(0, -95); g.lineTo(0, 5); g.stroke();
+      [[-70, 55], [-8, 80], [62, 58]].forEach(([dx, dy]) => { g.beginPath(); g.moveTo(0, 5); g.quadraticCurveTo(dx * .45, dy * .3, dx, dy); g.stroke(); });
+      g.beginPath(); g.moveTo(0, -5); g.lineTo(-38, -32); g.stroke();
+    };
+    trait(30, coul, forme); trait(17, '#e2b45a', forme);
+    g.strokeStyle = coul; g.lineWidth = 6;
+    [[-70, 55], [-8, 80], [62, 58], [-38, -32]].forEach(([dx, dy]) => { const a = Math.atan2(dy, dx); g.beginPath(); g.moveTo(dx, dy); g.lineTo(dx + Math.cos(a + .6) * 20, dy + Math.sin(a + .6) * 20); g.stroke(); });
+    for (let k = 0; k < 5; k++) { g.beginPath(); g.moveTo(-8, -85 + k * 18); g.lineTo(8, -85 + k * 18); g.stroke(); }
     g.restore();
   }
   // paysage de neige : collines, sapin, flocons
@@ -136,7 +143,7 @@ window.TYPES_A = O => {
     else k = .82 + Math.sin(lt * 4) * .06;
     carteDessin('pelle', 330, 820 - lev * 120, 300, 400, -.05 - lev * .1, { nom: 'PELLE', bord: lev > 0 ? ROUGE : null });
     carteDessin('poulet', 750, 820, 300, 400, .04, { nom: 'POULET' });
-    bras(150, 1900, 330, 900 - lev * 120, k);
+    bras(-120, 1180, 300, 930 - lev * 120, k);
     if (p.etape === 'hesite') S.texte('?', 560, 560, { taille: 200, coul: OR, contour: NOIR, contourL: 12 });
     deux(p.t, 1330, 100);
   }
@@ -205,7 +212,7 @@ window.TYPES_A = O => {
       S.texte('?', 0, 4, { taille: 100, coul: NOIR }); g.restore(); });
     const kx = pop(t, p.a + 1.1);
     g.save(); g.setLineDash([18, 16]); g.strokeStyle = 'rgba(239,230,210,.5)'; g.lineWidth = 6; g.beginPath(); g.moveTo(W / 2 - 180, 470); g.lineTo(W / 2 + 180, 470); g.stroke(); g.restore();
-    if (kx > 0) { g.save(); g.translate(W / 2, 470); g.scale(kx, kx); S.texte('✕', 0, 0, { taille: 140, coul: ROUGE, contour: NOIR, contourL: 10 }); g.restore(); }
+    if (kx > 0) { g.save(); g.translate(W / 2, 470); g.scale(kx, kx); g.lineCap = 'round'; [[NOIR, 30], [ROUGE, 16]].forEach(([c, w]) => { g.strokeStyle = c; g.lineWidth = w; g.beginPath(); g.moveTo(-45, -45); g.lineTo(45, 45); g.moveTo(45, -45); g.lineTo(-45, 45); g.stroke(); }); g.restore(); }
     deux(p.t, 1450, 110);
   }
 
@@ -243,10 +250,10 @@ window.TYPES_A = O => {
 
   // le croisement : l'image de gauche ne va que dans le cerveau droit
   function croise(p, t) {
-    g.save(); g.fillStyle = '#0a0907'; g.strokeStyle = CREME; g.lineWidth = 7; g.beginPath(); g.roundRect(160, 330, 760, 400, 20); g.fill(); g.stroke(); g.restore();
-    g.fillStyle = OR; g.beginPath(); g.arc(W / 2, 530, 12, 0, 7); g.fill();
-    neige(330, 530, 170, CREME, t);
-    g.save(); g.globalAlpha = .3; patte(750, 525, 150, CREME); g.restore();
+    g.save(); g.fillStyle = '#0a0907'; g.strokeStyle = CREME; g.lineWidth = 7; g.beginPath(); g.roundRect(160, 360, 760, 380, 20); g.fill(); g.stroke(); g.restore();
+    g.fillStyle = OR; g.beginPath(); g.arc(W / 2, 550, 12, 0, 7); g.fill();
+    neige(330, 550, 170, CREME, t);
+    g.save(); g.globalAlpha = .3; patte(750, 545, 140, CREME); g.restore();
     const cy = 1180, s = 270;
     const k = p.fl ? eo(pr(t, tps(p.fl), 1.4)) : 0;
     dessus(W / 2, cy, s, { coupe: 1, lab: true, hd: cl((k - .8) * 5) });
@@ -254,13 +261,13 @@ window.TYPES_A = O => {
     [-1, 1].forEach(sd => { g.fillStyle = CREME; g.beginPath(); g.ellipse(W / 2 + sd * 70, 860, 34, 22, 0, 0, 7); g.fill(); g.fillStyle = NOIR; g.beginPath(); g.arc(W / 2 + sd * 70, 860, 12, 0, 7); g.fill(); });
     if (k > 0) {
       // trajet : de l'image de gauche, par les yeux, jusqu'à la moitié droite
-      const P = [[330, 650], [W / 2 - 30, 900], [W / 2 + 30, 1020], [W / 2 + s * .56, cy]], n = 40;
+      const P = [[330, 660], [W / 2 - 30, 900], [W / 2 + 30, 1020], [W / 2 + s * .56, cy]], n = 40;
       const pt = u => { const seg = Math.min(2, Math.floor(u * 3)), v = u * 3 - seg, a = P[seg], b = P[seg + 1]; return [lerp(a[0], b[0], v), lerp(a[1], b[1], v)]; };
       g.save(); g.strokeStyle = ROUGE; g.lineWidth = 14; g.lineCap = 'round'; g.lineJoin = 'round'; g.shadowColor = ROUGE; g.shadowBlur = 25;
       g.beginPath(); for (let i = 0; i <= n * k; i++) { const [x, y] = pt(i / n); i ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke(); g.restore();
       const [hx, hy] = pt(Math.min(1, k)); g.save(); g.fillStyle = '#fff3c4'; g.shadowColor = ROUGE; g.shadowBlur = 30; g.beginPath(); g.arc(hx, hy, 16, 0, 7); g.fill(); g.restore();
     }
-    O.petitTitre(p.t || 'LE SECRET', 260, OR);
+    O.petitTitre(p.t || 'LE SECRET', 300, OR);
     if (k >= 1) { const kk = pop(t, tps(p.fl) + 1.4); g.save(); g.translate(W / 2, 1560); g.scale(kk, kk);
       S.texte('CERVEAU DROIT', 0, 0, { taille: 90, coul: ROUGE, contour: NOIR, contourL: 10 }); g.restore(); }
   }
@@ -289,12 +296,12 @@ window.TYPES_A = O => {
     carteDessin('poulet', X[2], Y + (1 - ks[2]) * 900, 210, 290, -.03, { nom: 'POULET', bord: p.main ? OR : null });
     carteDessin(null, X[3], Y + (1 - ks[3]) * 900, 210, 290, .05, { dos: true });
     if (p.main) {
-      bras(1000, 1950, X[2] + 20, Y + 200, p.main === 'd' ? eo(pr(t, p.a, .5)) : 1);
-      S.texte('MAIN DROITE', 850, 1180, { taille: 44, coul: OR, esp: 4, contour: NOIR, contourL: 8 });
+      bras(1160, 1260, X[2] + 30, Y + 190, p.main === 'd' ? eo(pr(t, p.a, .5)) : 1);
+      S.texte('MAIN DROITE', 840, 1200, { taille: 44, coul: OR, esp: 4, contour: NOIR, contourL: 8 });
     }
     if (p.main === 'g') {
-      bras(80, 1950, X[1] - 20, Y + 200, eo(pr(t, p.a + .1, .5)));
-      const k = pop(t, p.a + .5); g.save(); g.translate(250, 1180); g.scale(k, k);
+      bras(-80, 1260, X[1] - 30, Y + 190, eo(pr(t, p.a + .1, .5)));
+      const k = pop(t, p.a + .5); g.save(); g.translate(240, 1200); g.scale(k, k);
       S.texte('MAIN GAUCHE', 0, 0, { taille: 44, coul: ROUGE, esp: 4, contour: NOIR, contourL: 8 }); g.restore();
     }
     if (p.t) deux(p.t, 1420, 100);

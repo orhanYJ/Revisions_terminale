@@ -18,7 +18,7 @@ window.PLAN = S => S.plans([
   { a: ['s5', 0], type: 'fibres', choc: true },
   { a: ['s5', 'tes'], type: 'separe', t: 'ELLES NE SE|PARLENT PLUS' },
   // s6 « Au quotidien ? Presque rien ne change. »
-  { a: ['s6', 0], type: 'mot', t: 'AU QUOTIDIEN ?' },
+  { a: ['s6', 0], type: 'mot', t: 'AU QUOTIDIEN\u202f?' },
   { a: ['s6', 'presque'], type: 'mot', t: 'PRESQUE RIEN|NE CHANGE' },
   // s7 « Michael Gazzaniga, élève du futur Nobel Roger Sperry, te fait passer un test. »
   { a: ['s7', 0], type: 'nom', t: 'MICHAEL GAZZANIGA', sous: 'neuroscientifique', ch: 2 },
@@ -51,7 +51,7 @@ window.PLAN = S => S.plans([
   { a: ['s15', 'gazzaniga'], type: 'interprete', titre: ['s15', 'linterprete'] },
   // s16 « Et si, toi aussi, tu expliquais tes choix après coup ? »
   { a: ['s16', 0], type: 'mot', t: 'ET SI|TOI AUSSI ?', ch: 4 },
-  { a: ['s16', 'tu'], type: 'mot', t: 'TU EXPLIQUES TES CHOIX|APRÈS COUP ?', img: 'penseur' },
+  { a: ['s16', 'tu'], type: 'mot', t: 'APRÈS\u202fCOUP\u202f?', sous: 'tu expliques tes choix…', img: 'penseur' },
   // s17 « Suis-je ce que j'ai conscience d'être ? Question de bac. Descartes, Freud et Nietzsche y répondent sur Révisions Animées. »
   { a: ['s17', 0], type: 'bac', sujet: ['Suis-je ce que', 'j’ai conscience d’être ?'] },
   { a: ['s17', 'descartes'], type: 'trio', noms: [['s17', 'descartes'], ['s17', 'freud'], ['s17', 'nietzsche']] },
