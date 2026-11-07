@@ -175,8 +175,8 @@ SCENES = [
     dict(id="stresa", chap="III.2 · The Stresa Front and German rearmament", fond="nuit", humeur="tension",
          retenir="April 1935: the Stresa Front (Britain, France, Italy) against Germany → Mussolini spared over Abyssinia; it collapsed. 1935: the Wehrmacht (Heer, Kriegsmarine, Luftwaffe). June 1935: the naval agreement, 35% of the Royal Navy.",
          beats=[
-        "{g3}{g3.1}{sf}Idea three: the Stresa Front. In April nineteen thirty-five, at Stresa, in northern Italy, Britain and France try to build a front "
-        "with Italy, against German ambitions. {sf.1}It is a calculation that weighs on everything that follows. "
+        "{g3}{g3.1}Idea three: the Stresa Front. In April nineteen thirty-five, at Stresa, in northern Italy, Britain and France try to build a front "
+        "with Italy, against German ambitions. {sf}{sf.1}It is a calculation that weighs on everything that follows. "
         "{sf.2}To keep Mussolini away from Hitler, London and Paris are reluctant to punish him over Abyssinia. "
         "{sf.3}And the front collapses anyway. Italy turns towards Germany.",
         "{-sf}{-g3}{wm}Idea four. Germany breaks the Treaty of Versailles, openly. From nineteen thirty-five, it rearms on a massive scale. "
@@ -257,8 +257,8 @@ SCENES = [
     dict(id="munich", chap="III.2 · Munich, 1938", fond="guerre", humeur="tension",
          retenir="29–30 Sept. 1938, Munich: Hitler, Chamberlain, Daladier, Mussolini. The Sudetenland (≈ 3 million German speakers) handed over; the Czechs not invited; Hitler promises not to threaten the rest of Czechoslovakia. Low: Hitler as Krampus (10 Oct. 1938).",
          beats=[
-        "{g4}{g4.1}{mu}Idea seven: Munich, nineteen thirty-eight. Hitler demands the Sudetenland, the German-speaking region of Czechoslovakia. "
-        "About three million German speakers live there. {mu.1}Czechoslovakia is the only democracy left in central Europe. "
+        "{g4}{g4.1}Idea seven: Munich, nineteen thirty-eight. Hitler demands the Sudetenland, the German-speaking region of Czechoslovakia. "
+        "About three million German speakers live there. {mu}{mu.1}Czechoslovakia is the only democracy left in central Europe. "
         "And Hitler threatens to invade the whole country.",
         "{mu.2}The conference meets on the twenty-ninth and thirtieth of September. Around the table: Hitler, Chamberlain, Daladier, and Mussolini. "
         "Mussolini poses as a moderate working for peace. In fact, he helps Germany get what it wants. "
@@ -334,7 +334,7 @@ SCENES = [
         ("C", "Racism is blondes' stuff!", "c_mus"),
         "{-c_mus}{ax}{ax.g}So why become allies? Because Italy was economically too weak to face the democracies alone. Mussolini needed German support. "
         "The Rome–Berlin Axis was declared on the twenty-fifth of October, nineteen thirty-six. {ax.d}It became a military alliance, the Pact of Steel, in nineteen thirty-nine. "
-        "And Japan joined in nineteen forty. {!An alliance of interest}An alliance of interest, not of friendship.",
+        "And Japan joined in nineteen forty. An alliance of interest, not of friendship.",
         "{-ax}{g6}{g6.1}{es}Idea two: Spain. {es.1}Civil war broke out in Spain in nineteen thirty-six. Germany and Italy supported General Franco's nationalists. "
         "{es.2}And Germany used the conflict to test its air force. "
         "{es.3}France and Britain did not intervene to help the Spanish Republic. "
@@ -383,8 +383,8 @@ SCENES = [
     dict(id="anschluss", chap="III.3 · The Anschluss, 1938", fond="nuit", humeur="tension",
          retenir="Hitler bullied Schuschnigg and massed troops on the border → Seyss-Inquart chancellor, invites the German army → Austria, 12 Mar. 1938 → a plebiscite without opponents and Jews: 99% yes. Britain and France did nothing.",
          beats=[
-        "{g8}{g8.1}{an}Idea four: the Anschluss, the annexation of Austria. It happens in four steps. "
-        "{an.1}First, pressure. In speech after speech, Hitler bullies the Austrian chancellor, Schuschnigg. He moves troops to the border. "
+        "{g8}{g8.1}Idea four: the Anschluss, the annexation of Austria. It happens in four steps. "
+        "{an}{an.1}First, pressure. In speech after speech, Hitler bullies the Austrian chancellor, Schuschnigg. He moves troops to the border. "
         "And he threatens to invade, unless Schuschnigg resigns in favour of a Nazi, Seyss-Inquart. "
         "{an.2}Second, Seyss-Inquart becomes chancellor, and he invites German troops into Austria. "
         "{an.3}Third, on the twelfth of March, nineteen thirty-eight, the German army marches in. "
