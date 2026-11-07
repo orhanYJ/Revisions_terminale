@@ -102,8 +102,8 @@ SCENES = [
         "{fr1.3}March nineteen thirty-six: the Rhineland. {fr1.4}October nineteen thirty-six: the Axis. {fr1.5}December nineteen thirty-seven: Nanjing. "
         "{fr1.6}March nineteen thirty-eight: the Anschluss. Pause the video if you need to copy them.",
         ("P", 3.0),
-        "{-fr1}{exp}The course sums up Europe in a single map: authoritarian expansion in the nineteen thirties. "
-        "{exp.1}Germany takes the Rhineland in nineteen thirty-six. Then the Anschluss, and the Sudetenland, in nineteen thirty-eight. "
+        "{-fr1}The course sums up Europe in a single map: authoritarian expansion in the nineteen thirties. "
+        "{exp}{exp.1}Germany takes the Rhineland in nineteen thirty-six. Then the Anschluss, and the Sudetenland, in nineteen thirty-eight. "
         "{exp.2}Italy conquers Abyssinia, between nineteen thirty-five and thirty-six. "
         "{exp.3}And Spain is in civil war from nineteen thirty-six to thirty-nine, with both dictators involved. "
         "The Sudetenland is for episode seven.",
@@ -376,8 +376,8 @@ SCENES = [
     dict(id="grille", chap="Filling the grid: international issues", fond="aube", humeur="calme",
          retenir="Will of expansion: Italy → Rome's empire, Libya, Ethiopia · Germany → Lebensraum in the East · Japan → Manchuria, China. Feeling of superiority: the glory of Rome · the master race · the “superior” Asian race.",
          beats=[
-        "{gr}Remember the synthesis grid of the course, from episode three? Its block called International issues has two rows, still empty. "
-        "With this part, you can fill them in. {gr.1}First row: the will of expansion. For Italy, an empire in the name of Rome. Libya, then Ethiopia. "
+        "Remember the synthesis grid of the course, from episode three? Its block called International issues has two rows, still empty. "
+        "With this part, you can fill them in. {gr}{gr.1}First row: the will of expansion. For Italy, an empire in the name of Rome. Libya, then Ethiopia. "
         "{gr.2}For Germany, Lebensraum: the conquest of the East, announced in Mein Kampf. "
         "{gr.3}Second row: the feeling of superiority. Italy sees itself as the heir of Rome. Germany, as a master race over the Slavs.",
         "{gr.4}And the Soviet column? This part of the course says nothing about Soviet expansion. Leave it for episode seven, "
