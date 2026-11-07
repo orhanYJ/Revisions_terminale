@@ -73,7 +73,7 @@ SCENES = [
 
     # ================================================================ II. la méthode de la question problématisée
     dict(id="methode", chap="La question problématisée : la méthode", fond="aube", humeur="calme",
-         retenir="Expliquer = plusieurs causes, « parce que ». Discuter (« dans quelle mesure », « quel rôle ») = pour, contre, une hiérarchie, un bilan. Introduction : accroche, définitions, contexte, problématique, plan. Un paragraphe = une idée, un exemple précis, une explication, un lien. La conclusion répond.",
+         retenir="Expliquer = plusieurs causes, « parce que ». Discuter (« dans quelle mesure », « quel rôle ») = pour, contre, hiérarchie, bilan. Introduction : accroche, définitions, contexte, problématique, plan. Un paragraphe = idée, exemple précis, explication, lien. La conclusion répond.",
          beats=[
         "{ess}Une question problématisée prend en général l'une de deux formes. {ess.1}Certaines demandent d'expliquer : pourquoi, comment. "
         "Tu donnes plusieurs causes bien argumentées, et tu dois te surprendre à écrire « parce que ». "
@@ -136,7 +136,7 @@ SCENES = [
 
     # ================================================================ IV. discuter : les causes du krach
     dict(id="assess1", chap="Question problématisée · discuter les causes", fond="nuit", humeur="tension",
-         retenir="Le rôle de chaque facteur dans le déclenchement du krach : la spéculation est le déclencheur (bourse ×3, achats à crédit jusqu'à 90 %) · les faiblesses structurelles expliquent la profondeur (surproduction, inégalités, prix agricoles en baisse depuis 1920) · la panique et la politique suivie sont des amplificateurs.",
+         retenir="Le rôle de chaque facteur : la spéculation est le déclencheur (bourse ×3, achats à crédit jusqu'à 90 %) · les faiblesses structurelles expliquent la profondeur (surproduction, inégalités, prix agricoles) · la panique et la politique suivie amplifient.",
          beats=[
         "{ex2}Maintenant, un sujet tiré directement du cours. {!Quel rôle}Quel rôle chaque facteur a-t-il joué dans le déclenchement du krach de 1929 ? Lequel fut le plus important ?",
         "{-ex2}{pa2}",
@@ -172,7 +172,7 @@ SCENES = [
 
     # ================================================================ V. discuter : Smoot-Hawley
     dict(id="assess2", chap="Question problématisée · juger une politique", fond="nuit", humeur="tension",
-         retenir="Le tarif de 1930 : un échec au regard de ses propres buts · il déclenche une guerre commerciale (Canada, Import Duties Act 1932, quotas français 1931 ; commerce mondial −66 %) · mais il ne cause pas la Dépression. Sa vraie portée : il détruit le pilier libre-échangiste de l'ordre de 1919.",
+         retenir="Le tarif de 1930 : un échec au regard de ses propres buts · il déclenche une guerre commerciale (Canada, Import Duties Act 1932, quotas français 1931 ; commerce mondial −66 %) · sans causer la Dépression. Surtout, il détruit le libre-échange de 1919.",
          beats=[
         "{ex3}Un second sujet du cours, sur une seule politique. Le tarif douanier de 1930 a-t-il été efficace "
         "face aux défis posés par la Grande Dépression ?",
@@ -198,7 +198,7 @@ SCENES = [
 
     # ================================================================ VI. problématique 1
     dict(id="ki1", chap="Problématique 1 · Les démocraties responsables ?", fond="guerre", humeur="tension",
-         retenir="Problématique 1 : les démocraties ont bâti un ordre qu'elles n'ont pas voulu garantir (Sénat américain, SDN sans armée), l'ont affaibli économiquement (Smoot-Hawley, prêts, or), ont refusé de le défendre (Mandchourie, lois de neutralité, Éthiopie, Rhénanie, Munich) ; mais les agresseurs ont voulu la guerre. Possible, pas inévitable.",
+         retenir="Problématique 1 : les démocraties ont bâti un ordre sans le garantir (Sénat américain, SDN sans armée), l'ont affaibli (Smoot-Hawley, prêts, or), ne l'ont pas défendu (Mandchourie, Éthiopie, Munich) ; mais les agresseurs ont voulu la guerre. Possible, pas inévitable.",
          beats=[
         "{ki}Voici la première grande problématique du chapitre, un excellent sujet de question problématisée. "
         "Dans quelle mesure les grandes démocraties portent-elles elles-mêmes une part de responsabilité dans les origines de la Seconde Guerre mondiale ?",
@@ -237,7 +237,7 @@ SCENES = [
 
     # ================================================================ VII. problématique 2
     dict(id="ki2", chap="Problématique 2 · Le nationalisme économique", fond="guerre", humeur="mystere",
-         retenir="Problématique 2 : le nationalisme économique a rongé l'ordre de 1919 (tarifs, quotas, blocs ; l'autarcie rend la conquête rationnelle en apparence) · mais il est un symptôme de la Dépression, et le Royaume-Uni et la France l'ont pratiqué aussi · l'idéologie dispute la première place. Un facteur aggravant sérieux, pas le facteur décisif.",
+         retenir="Problématique 2 : le nationalisme économique a rongé l'ordre de 1919 (tarifs, quotas, blocs, autarcie) · mais il est un symptôme de la Dépression, pratiqué aussi par Londres et Paris · l'idéologie compte autant. Un facteur aggravant, pas décisif.",
          beats=[
         "{ki2}La seconde problématique. Dans quelle mesure le nationalisme économique est-il le facteur décisif de la marche à la guerre en 1939 ?",
         "{-ki2}{def2}Commence par une définition. Le nationalisme économique : placer l'intérêt économique national au-dessus de la coopération internationale, "
@@ -339,7 +339,7 @@ SCENES = [
 
     # ================================================================ X. trois réflexes face aux documents
     dict(id="sources", chap="Trois sortes de documents", fond="aube", humeur="calme",
-         retenir="Réflexes critiques : un dessin de presse (Low, 1933) = l'opinion d'un contemporain, des perceptions, pas des faits · une photo de commande (Lange, 1936) = une misère réelle, cadrée pour justifier des réformes · des mémoires (Maschmann, 1963) = un témoignage direct, mais avec le recul.",
+         retenir="Réflexes critiques : un dessin de presse (Low, 1933) = une opinion, des perceptions, pas des faits · une photo de commande (Lange, 1936) = une misère réelle, cadrée · des mémoires (Maschmann, 1963) = un témoignage direct, avec le recul.",
          beats=[
         "{ph}Les documents de ce chapitre sont de trois sortes, et chacune appelle son réflexe. {ph.1}D'abord, une photographie de commande. "
         "Migrant Mother, de Dorothea Lange, mars 1936 : Florence Owens Thompson, trente-deux ans, mère de sept enfants, dans un camp de cueilleurs de petits pois à Nipomo, en Californie.",
@@ -349,7 +349,7 @@ SCENES = [
         "{-ph}{low}Ensuite, un dessin de presse. {low.1}The Doormat, « le paillasson », de David Low, 1933. Un soldat japonais marche sur la Société des Nations, "
         "{low.2}pendant que ses fonctionnaires s'inclinent, et que le ministre britannique des Affaires étrangères, John Simon, lui poudre le nez avec un nécessaire « pour sauver la face ». "
         "{low.3}Le réflexe : un dessin de presse donne l'opinion d'un contemporain. Des perceptions, pas des faits. Mais Low voyait en 1933 ce que disent aujourd'hui les historiens.",
-        "{-low}{ref}Enfin, des mémoires, comme ceux de Maschmann : un témoignage direct, mais écrit avec le recul. {ref.1}Donc, trois réflexes. "
+        "Enfin, des mémoires, comme ceux de Maschmann : un témoignage direct, mais écrit avec le recul. {-low}{ref}{ref.1}Donc, trois réflexes. "
         "{ref.2}Un dessin de presse : une opinion. {ref.3}Une photographie de commande : réelle, mais cadrée. {ref.4}Des mémoires : un témoignage direct, mais tardif.",
     ], vis={
         "ph": dict(type="tableau", img="h1-lange-migrant", de=[1.0, .5, .35], a=[1.25, .5, .3],
@@ -365,7 +365,7 @@ SCENES = [
 
     # ================================================================ XI. les notions clés
     dict(id="kt", chap="Les notions clés", fond="nuit", humeur="calme",
-         retenir="Dépression économique mondiale (années 1930) : une chute durable et mondiale de la production, avec un chômage de masse et une forte déflation (États-Unis 25 % en 1933 ; Allemagne 43,8 % en 1932 ; commerce mondial −66 %). Apaisement : céder aux exigences d'un agresseur dans l'espoir d'éviter la guerre (Rhénanie 1936, Munich 1938).",
+         retenir="Dépression économique mondiale (années 1930) : chute durable et mondiale de la production, chômage de masse, déflation (États-Unis 25 % en 1933 ; Allemagne 43,8 % en 1932). Apaisement : céder à un agresseur pour éviter la guerre (Rhénanie 1936, Munich 1938).",
          beats=[
         "{kt1}Une notion clé se maîtrise toujours de la même façon : une définition en une phrase, puis des exemples, des dates, et un lien avec un autre chapitre. "
         "Première notion : la dépression économique mondiale des années 1930. "
@@ -449,6 +449,6 @@ CREDITS = [
     "Contenu : le cours d'histoire de Terminale, chapitre 1 « Le krach de 1929 et ses conséquences » : sujets, problématiques et notions clés ; le dossier documentaire (documents 2 et 5) ; les descriptions de Migrant Mother et du dessin de David Low « The Doormat ».",
     "Le sujet « Pourquoi le krach… » et les modèles de réponse ont été écrits pour cette vidéo.",
     "Photographie : Dorothea Lange, Migrant Mother, Nipomo, Californie, mars 1936 (Library of Congress ; Wikimedia Commons, domaine public).",
-    "Carte animée du chapitre : le site (dnl/cartes/H1).",
+    "Carte animée du chapitre : la carte animée du site.",
     "Narration : voix de synthèse générées localement (Qwen3-TTS) ; musique originale.",
 ]
