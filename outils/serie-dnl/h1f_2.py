@@ -112,8 +112,8 @@ SCENES = [
                    g="la phrase du cours · la charnière du chapitre", y=230, taille=50),
         "spi": dict(type="liste", titre="La spirale des faillites bancaires", cles=["confiance", "retire", "tombent", "dépenses", "licenciés", "faillite"], items=[
             "La confiance est perdue", "Les épargnants retirent leur argent", "Plus de retraits → plus de banques tombent",
-            "Entreprises et ménages réduisent leurs dépenses", "La production chute", "Ouvriers licenciés ou moins payés → ils achètent encore moins",
-            "Investisseurs en faillite (actif < passif) : l'investissement s'arrête"], x=150, y=100, w=980),
+            "Entreprises et ménages réduisent leurs dépenses", "La production chute", "Ouvriers licenciés ou moins payés → ils achètent moins",
+            "Investisseurs en faillite (actif < passif) : plus d'investissement"], x=150, y=80, w=980),
         "ex1": dict(type="note", terme="Exemple · aucun filet pour les épargnants", cles=["dépôts", "rumeur", "5 000"],
                     t="Pas d'assurance des dépôts avant 1933 : quand une banque tombe, l'épargne de ses clients disparaît. Une simple rumeur peut vider une banque.",
                     etape="Environ 5 000 banques en faillite avant 1932.", x=170, y=200, w=940),
@@ -392,7 +392,7 @@ SCENES = [
         "c_proche": dict(type="cit", a="Dorothea Lange", o="son récit de la prise de vue, Popular Photography, février 1960 (traduction)", x=200, y=190, w=880),
         "acc": dict(type="note", terme="Le récit de Lange", cles=["gelés", "travail", "pneus"],
                     t="La famille vit de légumes gelés ramassés dans les champs et d'oiseaux attrapés par les enfants. La récolte de pois a gelé : pas de travail.",
-                    etape="Impossible de repartir : les pneus de la voiture ont été vendus pour manger.", x=170, y=330, w=940),
+                    etape="Impossible de repartir : les pneus ont été vendus pour manger.", x=170, y=250, w=940),
         "cmp": dict(type="liste", titre="Une photographie comme argument", cles=["composée", "but", "secours"], items=[
             "Composée, pas prise au hasard : une série de prises", "Faite dans un but : gagner l'opinion aux programmes d'aide",
             "Publiée aussitôt : des secours fédéraux envoyés au camp"], x=170, y=150, w=940),
@@ -494,7 +494,7 @@ SCENES = [
             x=640, y=440, w=600, petit=True, bande=True),
         "kt": dict(type="def", terme="Notion clé · dépression économique mondiale", cles=["intégrés", "épargnés", "même façon"],
                    t="Une dépression qui se propage à toute l'économie mondiale — mais les pays qui n'étaient pas intégrés aux marchés et au commerce mondiaux sont largement épargnés.",
-                   etape="Mondiale ne veut pas dire que tous les pays souffrent de la même façon.", x=170, y=200, w=940),
+                   etape="Mondiale ne veut pas dire que tous les pays souffrent de la même façon.", x=170, y=130, w=940),
         "urss": dict(type="note", terme="L'exception · l'URSS", cles=["plan quinquennal", "planification"],
                      t="Hors du système d'échanges capitaliste, en plein premier plan quinquennal : à peine touchée.",
                      etape="Les visiteurs occidentaux du début des années 1930 rentrent impressionnés par la planification.", x=170, y=200, w=940),
