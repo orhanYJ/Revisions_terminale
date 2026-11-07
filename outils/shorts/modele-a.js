@@ -264,8 +264,10 @@
   function sons() {
     const L = [];
     S.PLANS.forEach(p => {
-      L.push([p.a, p.choc ? 'boum' : 'papier', p.choc ? 1 : .7]);
-      if (p.choc) L.push([p.a - .45, 'montee', .6]);
+      // son de coupe : pas à chaque plan, varié et discret (les plans qui ont leur propre son n'en prennent pas)
+      const propre = ['tampon', 'date', 'horloge', 'stop', 'pierre', 'eeg', 'bac', 'chaine'].includes(p.type) || p.t2;
+      if (p.choc) L.push([p.a, 'boum', 1]);
+      else if (!propre) { const v = [['papier', .22], null, ['clic', .3], ['frotte', .25], null][p.i % 5]; if (v) L.push([p.a, v[0], v[1]]); }
       if (p.type === 'tampon') L.push([p.a + .08, 'tampon', 1]);
       if (p.type === 'date') for (let k = 0; k < 10; k++) L.push([p.a + k * .06, 'tic', .5]);
       if (p.type === 'horloge' && !p.fige) for (let k = 0; k < Math.floor((p.b - p.a) / .25); k++) L.push([p.a + k * .25, 'tic', .45]);

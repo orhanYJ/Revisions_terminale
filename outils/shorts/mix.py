@@ -63,6 +63,10 @@ def sfx(nom):
         return s * 1.1 + lp(bruit(1.2), 900) * env(int(1.2 * SR), .001, .08) * .5
     if nom == "papier":
         return balaye(.28, 900, 3500, .6) * .6 + hp(bruit(.28), 4000) * env(int(.28 * SR), .002, .05) * .3
+    if nom == "clic":
+        n = int(.08 * SR); return sinus_glisse(900, 500, .08, 6) * env(n, .0005, .015) * .8
+    if nom == "frotte":
+        return lp(balaye(.18, 600, 1400, .5), 2500) * .7
     if nom == "whoosh":
         return balaye(.32, 400, 2600, .5) * .8
     if nom == "souffle":
@@ -208,7 +212,7 @@ def main(code, m):
     n = len(voix)
     import musique_short
     if "sections" in info:
-        mus = musique_short.composer(info["musique"], n / SR, info["sections"], info["chocs"])[:n]
+        mus = musique_short.composer(os.environ.get("SHORT_STYLE") or info["musique"], n / SR, info["sections"], info["chocs"])[:n]
     else:
         mus = musique(info["musique"], n / SR, info.get("bpm") or 0)[:n]
     # sidechain léger : la musique se tasse sous la voix sans disparaître
