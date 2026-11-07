@@ -206,11 +206,20 @@ def main(code, m):
     assert sr == SR
     info = json.load(open(os.path.join(SORTIE, f"{code}-{m}.sons.json"), encoding="utf-8"))
     n = len(voix)
-    mus = musique(info["musique"], n / SR, info.get("bpm") or 0)[:n]
-    # sidechain : la musique s'efface sous la voix
+    import musique_short
+    if "sections" in info:
+        mus = musique_short.composer(info["musique"], n / SR, info["sections"], info["chocs"])[:n]
+    else:
+        mus = musique(info["musique"], n / SR, info.get("bpm") or 0)[:n]
+    # sidechain léger : la musique se tasse sous la voix sans disparaître
     e = np.abs(voix); e = lp(e, 8, 1); e = e / (np.percentile(e, 98) + 1e-9)
-    duck = 1 - .55 * np.clip(e, 0, 1)
-    mus = mus / (np.max(np.abs(mus)) + 1e-9) * .32 * duck
+    duck = 1 - .3 * np.clip(e, 0, 1)
+    mus = mus * duck
+    v0 = voix / (np.max(np.abs(voix)) + 1e-9) * .8
+    # niveau : la musique à SHORT_MUSIQUE dB sous la voix pendant la parole (−9 par défaut), plus forte dans les silences
+    parle = lp(np.abs(v0), 5, 1) > .02
+    rv, rm = np.sqrt(np.mean(v0[parle] ** 2)), np.sqrt(np.mean(mus[parle] ** 2)) + 1e-9
+    mus = mus * rv / rm * 10 ** (float(os.environ.get("SHORT_MUSIQUE", "-9")) / 20)
     fx = np.zeros(n); cache = {}
     for t, nom, gain in info["sons"]:
         if nom not in cache:

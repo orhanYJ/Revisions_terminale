@@ -251,7 +251,7 @@
       if (p.bruit) L.push([p.a, 'statique', .5]);
       if (p.type === 'chaine') L.push([p.a, 'valide', .9]);
     });
-    return { sons: L, musique: 'pulse', bpm: 112 };
+    return Object.assign({ sons: L, musique: 'synth' }, S.structure());
   }
 
   window.MODELE = { images: window.IMAGES, rendu, sons };

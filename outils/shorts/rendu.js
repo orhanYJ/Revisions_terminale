@@ -2,6 +2,7 @@
 // Usage (depuis la racine du dépôt, serveur local : python3 -m http.server 8765) :
 //   node outils/shorts/rendu.js libet a [--muet] [--planche]
 //   --planche : une image par seconde en planche contact (contrôle), sans vidéo.
+//   --son : refait seulement la bande son et la repose sur le MP4 existant.
 // Écrit outils/shorts/sortie/<code>-<m>.mp4 (non versionné).
 const { chromium } = require('playwright');
 const { spawn, execFileSync } = require('child_process');
@@ -41,6 +42,12 @@ const image = async (p, t) => { await p.evaluate(t => window.RENDU(t), t); retur
     fs.writeFileSync(path.join(SORTIE, `${code}-${m}.sons.json`), JSON.stringify(await p.evaluate(() => window.SONS)));
     await b.close(); }
   if (!muet) execFileSync('python3', [path.join(ICI, 'mix.py'), code, m], { stdio: 'inherit' });
+  if (process.argv.includes('--son')) {   // bande son seule : on la repose sur la vidéo déjà calculée
+    const mp4 = path.join(SORTIE, `${code}-${m}.mp4`), tmp2 = mp4.replace('.mp4', '.tmp.mp4');
+    execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', mp4, '-i', path.join(SORTIE, `${code}-${m}.mix.wav`), '-map', '0:v', '-map', '1:a',
+      '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', tmp2]);
+    fs.renameSync(tmp2, mp4); console.log('son reposé :', mp4); return;
+  }
   const data = fs.readFileSync(path.join(SORTIE, `${code}${muet ? '.muet' : ''}.data.js`), 'utf8');
   const dur = JSON.parse(data.slice(data.indexOf('=') + 1).trim().replace(/;\s*$/, '')).dur;
   const n = Math.ceil(dur * FPS), pas = Math.ceil(n / PARTS);

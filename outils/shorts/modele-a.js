@@ -280,7 +280,7 @@
       if (p.bruit) L.push([p.a, 'statique', .5]);
       if (p.type === 'chaine') L.push([p.a, 'gong', .8]);
     });
-    return { sons: L, musique: 'drone', bpm: 0 };
+    return Object.assign({ sons: L, musique: 'cine' }, S.structure());
   }
 
   window.MODELE = { images: window.IMAGES, init, rendu, sons };

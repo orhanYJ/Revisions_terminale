@@ -133,7 +133,7 @@
     });
     // un petit coup sur chaque mot clé
     S.MOTS.forEach(m => { if (CLES.has(norm(m.w))) L.push([m.t - .01, 'frappe', .55]); });
-    return { sons: L, musique: 'beat', bpm: 128 };
+    return Object.assign({ sons: L, musique: 'trap' }, S.structure());
   }
 
   window.MODELE = { images: window.IMAGES, rendu, sons };
