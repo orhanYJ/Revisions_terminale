@@ -130,12 +130,12 @@ SCENES = [
     dict(id="comparer1", chap="Three regimes, one machine", fond="nuit", humeur="lumiere",
          retenir="Nation, race, class: three supreme goals. One leader, one party, one symbol in each.",
          beats=[
-        "{gc}{l1}Now, the three regimes side by side, as in the synthesis grid of the course. "
+        "{gc}Now, the three regimes side by side, as in the synthesis grid of the course. "
         "F for Fascism, N for Nazism, S for Stalinism. {gc.1}First, the ideology: a set of beliefs that sets a supreme goal. "
-        "{l1.1}For Mussolini, it is the nation, and the absolute State. Everything is in the State. Humanity is divided into nations, not classes. "
+        "{l1}{l1.1}For Mussolini, it is the nation, and the absolute State. Everything is in the State. Humanity is divided into nations, not classes. "
         "And Fascism is racist only from nineteen thirty-eight. {l1.2}For Hitler, it is the race. History is a permanent war between races. "
         "{l1.3}For Stalin, it is the class. Class struggle, no private property, and in the end, a classless society.",
-        "{-l1}{l2}{gc.2}Second, the leader. He is built as an ideal man, in whom the nation recognises itself. {l2.1}Mussolini is il Duce. "
+        "{-l1}{gc.2}Second, the leader. He is built as an ideal man, in whom the nation recognises itself. {l2}{l2.1}Mussolini is il Duce. "
         "And il Duce is always right. {l2.2}Hitler is der Führer. The official greeting becomes Heil Hitler. "
         "{l2.3}Stalin is the little father of the peoples. In nineteen twenty-five, a city is even renamed Stalingrad.",
         "{-l2}{l3}Third, one single party, with one symbol. {l3.1}The National Fascist Party, and the Roman fasces. "
@@ -158,8 +158,8 @@ SCENES = [
     dict(id="comparer2", chap="New Man, terror, expansion", fond="nuit", humeur="tension",
          retenir="Same method, same New Man — but not the same scale: the USSR deadliest, Italy least.",
          beats=[
-        "{gn}{l4}{gn.1}Fourth, the New Man. A dictatorship wants silence. A totalitarian regime wants you to change. And it starts with children. "
-        "{l4.1}In Italy, there is the Balilla. The New Man must be strong and cultured, in the service of the Party. "
+        "{gn}{gn.1}Fourth, the New Man. A dictatorship wants silence. A totalitarian regime wants you to change. And it starts with children. "
+        "{l4}{l4.1}In Italy, there is the Balilla. The New Man must be strong and cultured, in the service of the Party. "
         "{l4.2}In Germany, the Hitler Youth is compulsory from ten to eighteen. The goal is a purified race, the Volk. "
         "Hence racial instruction in schools, and the Nuremberg laws of nineteen thirty-five. "
         "{gn.2}{l4.3}In the Soviet Union, there is the Komsomol. The New Man is the worker, and his hero is the miner Stakhanov.",
@@ -265,8 +265,8 @@ SCENES = [
     dict(id="question", chap="The chapter's question", fond="guerre", humeur="mystere",
          retenir="Ideology supplied the will to war; the democracies' reluctance, the opportunity.",
          beats=[
-        "{hi}So, did totalitarian ideology cause the war? At the start of the chapter, the course gave three historians' answers. "
-        "{hi.1}For A. J. P. Taylor, the war came from the failure of the democracies to stop Hitler. The course calls it a very controversial thesis. "
+        "So, did totalitarian ideology cause the war? At the start of the chapter, the course gave three historians' answers. "
+        "{hi}{hi.1}For A. J. P. Taylor, the war came from the failure of the democracies to stop Hitler. The course calls it a very controversial thesis. "
         "{hi.2}For Paul Hehn, it was an economic conflict, born of the crash. "
         "{hi.3}And for Jay Winter, the years nineteen fourteen to nineteen forty-five form one single Thirty Years War.",
         "{-hi}{tr}Each of them holds part of the truth. And the chapter shows where. {tr.1}Winter: the regimes were born in the trenches, "
