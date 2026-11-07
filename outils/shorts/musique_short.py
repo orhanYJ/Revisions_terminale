@@ -234,6 +234,20 @@ def v_suspense_phonk(dur, niveau):
     return y + echo(cl, b * .75)
 
 
+# mélodie du phonk sombre : une phrase de 8 mesures (pas de double croche → note), mi phrygien,
+# question (1-2), montée (3), suspension (4), reprise variée (5-6), sommet (7), retombée (8)
+PHRASE_SOMBRE = [
+    {0: "E4", 3: "F4", 6: "G4", 8: "E4", 10: "B4", 12: "A4", 14: "G4"},
+    {0: "F4", 3: "E4", 6: "F4", 10: "G4", 12: "F4"},
+    {0: "C5", 3: "B4", 6: "G4", 8: "E4", 11: "G4", 14: "F4"},
+    {0: "D4", 2: "E4", 4: "F4", 8: "A4", 10: "G4", 12: "F4", 14: "E4"},
+    {0: "E4", 3: "F4", 6: "G4", 8: "B4", 11: "C5", 14: "B4"},
+    {0: "A4", 3: "G4", 6: "F4", 10: "E4", 12: "F4", 14: "G4"},
+    {0: "C5", 2: "D5", 4: "C5", 6: "B4", 8: "G4", 11: "A4", 14: "B4"},
+    {0: "A4", 3: "G4", 6: "F4", 8: "E4"},
+]
+
+
 def v_phonk_sombre(dur, niveau):
     n = int(dur * SR); y = np.zeros(n); cl = np.zeros(n); s16, G = _grille(126, dur); b = 4 * s16; mes = 4 * b
     # mi phrygien : la couleur sombre du phonk
@@ -241,7 +255,10 @@ def v_phonk_sombre(dur, niveau):
     for i, t in G:
         nv = niveau(t); k = int(t / mes) % 4; pos = i % 16; f = lambda x, o=0: hz(x) * 2 ** o
         if pos == 0: poser(y, nappe([f(x) for x in nap[k]], mes + .05, 700), t, .35)
-        if pos in (0, 3, 6, 8, 10, 12, 14): poser(cl, cloche_phonk(f(mel[(i // 2) % 8])), t, .3)
+        note = PHRASE_SOMBRE[(i // 16) % 8].get(pos)
+        if note: poser(cl, cloche_phonk(f(note)), t, .22 * (1.1 if pos == 0 else 1))
+        # au plus fort, une réponse discrète à l'octave sur les temps forts
+        if nv >= 3 and note and pos in (0, 8) and (i // 16) % 2 == 1: poser(cl, cloche_phonk(f(note, 1)), t, .08)
         if nv >= 2:
             if pos == 0: poser(y, b808(f(bas[k], 1), mes * .9), t, .6)
             trip = pos >= 12 and k % 2 == 1
@@ -251,7 +268,7 @@ def v_phonk_sombre(dur, niveau):
             if pos in (0, 7, 10): poser(y, kick(), t, .85)
             if pos == 8: poser(y, clap(), t, .55)
             if pos in (7, 10, 14): poser(y, b808(f(bas[k], 1), b * .9), t, .45)
-    return np.tanh(y * 1.4) / 1.4 + echo(cl, b * .5, .45, 5)
+    return np.tanh(y * 1.4) / 1.4 + echo(cl, b * .5, .36, 4)
 
 
 def v_funk_bresil(dur, niveau):
