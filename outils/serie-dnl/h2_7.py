@@ -334,7 +334,7 @@ SCENES = [
         ("C", "Racism is blondes' stuff!", "c_mus"),
         "{-c_mus}{ax}{ax.g}So why become allies? Because Italy was economically too weak to face the democracies alone. Mussolini needed German support. "
         "The Rome–Berlin Axis was declared on the twenty-fifth of October, nineteen thirty-six. {ax.d}It became a military alliance, the Pact of Steel, in nineteen thirty-nine. "
-        "And Japan joined in nineteen forty. {!An alliance of interest}An alliance of interest, not of friendship.",
+        "And Japan joined in nineteen forty. An alliance of interest, not of friendship.",
         "{-ax}{g6}{g6.1}{es}Idea two: Spain. {es.1}Civil war broke out in Spain in nineteen thirty-six. Germany and Italy supported General Franco's nationalists. "
         "{es.2}And Germany used the conflict to test its air force. "
         "{es.3}France and Britain did not intervene to help the Spanish Republic. "
