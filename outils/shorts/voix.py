@@ -17,8 +17,8 @@ SR = 48000
 
 
 def lu(texte, prono):
-    for a, b in prono.items():
-        texte = re.sub(r"\b%s\b" % re.escape(a), b, texte)
+    for a, b in sorted(prono.items(), key=lambda x: -len(x[0])):
+        texte = re.sub(r"(?<!\w)(?<!\d,)%s(?!\w)(?!,\d)" % re.escape(a), b, texte)
     return texte.replace("1983", "mille neuf cent quatre-vingt-trois")
 
 

@@ -63,6 +63,10 @@ def sfx(nom):
         return s * 1.1 + lp(bruit(1.2), 900) * env(int(1.2 * SR), .001, .08) * .5
     if nom == "papier":
         return balaye(.28, 900, 3500, .6) * .6 + hp(bruit(.28), 4000) * env(int(.28 * SR), .002, .05) * .3
+    if nom == "buzz":
+        d = .45; n = int(d * SR); t = np.arange(n) / SR
+        x = np.sign(np.sin(2 * np.pi * 120 * t)) * .5 + np.sin(2 * np.pi * 240 * t) * .3 + bp(bruit(d), 2000, 8000) * .4 * (R.random(n) > .5)
+        return lp(x, 5000) * env(n, .003, .18)
     if nom == "clic":
         n = int(.08 * SR); return sinus_glisse(900, 500, .08, 6) * env(n, .0005, .015) * .8
     if nom == "frotte":
@@ -212,7 +216,7 @@ def main(code, m):
     n = len(voix)
     import musique_short
     if "sections" in info:
-        mus = musique_short.composer(os.environ.get("SHORT_STYLE") or info["musique"], n / SR, info["sections"], info["chocs"], info.get("relache"))[:n]
+        mus = musique_short.composer(os.environ.get("SHORT_STYLE") or info["musique"], n / SR, info["sections"], info["chocs"], info.get("relache"), info.get("silences"))[:n]
     else:
         mus = musique(info["musique"], n / SR, info.get("bpm") or 0)[:n]
     # sidechain léger : la musique se tasse sous la voix sans disparaître

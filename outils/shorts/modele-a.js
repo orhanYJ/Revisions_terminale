@@ -6,6 +6,7 @@
   let grain, lignes;
 
   function init() {
+    if (window.TYPES_A) Object.assign(R, window.TYPES_A({ carte, multi, tampon, barreRouge, petitTitre, fondImg, C: { NOIR, CREME, OR, ROUGE, GRIS } }));
     // grain de papier (deux trames, alternées pour un léger scintillement de pellicule)
     grain = [0, 1].map(k => { const c = document.createElement('canvas'); c.width = 540; c.height = 960; const x = c.getContext('2d');
       const d = x.createImageData(540, 960); for (let i = 0; i < d.data.length; i += 4) { const v = rnd(i * .37 + k * 11) * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 22; }
@@ -96,12 +97,13 @@
     },
     date(p, t) {
       const k = eo(pr(t, p.a, .7)), an = Math.round(lerp(p.de, +p.t, k));
-      petitTitre('— ÉTATS-UNIS —', 640);
+      petitTitre(p.sous ? `— ${p.sous} —` : '— ÉTATS-UNIS —', 640);
       g.save(); g.strokeStyle = OR; g.lineWidth = 6; g.strokeRect(150, 700, 780, 440); g.lineWidth = 2; g.strokeRect(170, 720, 740, 400); g.restore();
       S.texte(String(an), W / 2, 930, { taille: 300, police: 'Spectral', poids: 600, coul: OR, ombre: 'rgba(217,180,90,.5)', flou: 40 });
     },
     perso(p, t, l) {
-      carte(p.img, W / 2, 700, 820, 700, -.02, 1.6 + l * .04, .5, .55, { contraste: 1.7 });
+      if (p.img) carte(p.img, W / 2, 700, 820, 700, -.02, 1.6 + l * .04, .5, .55, { contraste: 1.7 });
+      else { S.d.tete(560, 760, 300, { trait: CREME, fond: '#1b1712', ep: 9 }); S.texte('?', 590, 700, { taille: 160, coul: OR }); }
       // fiche d'identité
       const k = eo(pr(t, p.a + .1, .3));
       g.save(); g.translate(lerp(-600, 0, k), 0);
@@ -211,8 +213,9 @@
       S.texte('PHILOSOPHIE', 0, -315, { taille: 40, coul: GRIS, esp: 8, poids: 600 });
       g.fillStyle = NOIR; g.fillRect(-300, -260, 600, 3);
       S.texte('Sujet 1', -300, -180, { taille: 40, coul: GRIS, align: 'left', police: 'Spectral', it: true, poids: 400 });
-      S.texte('Sommes-nous libres', 0, -80, { taille: 72, police: 'Spectral', poids: 600, coul: NOIR });
-      S.texte('de nos choix ?', 0, 10, { taille: 72, police: 'Spectral', poids: 600, coul: NOIR });
+      const suj = p.sujet || ['Sommes-nous libres', 'de nos choix ?'];
+      S.texte(suj[0], 0, -80, { taille: 72, police: 'Spectral', poids: 600, coul: NOIR, max: 680 });
+      S.texte(suj[1], 0, 10, { taille: 72, police: 'Spectral', poids: 600, coul: NOIR, max: 680 });
       for (let i = 0; i < 6; i++) { g.fillStyle = 'rgba(0,0,0,.12)'; g.fillRect(-300, 120 + i * 50, 600 - (i === 5 ? 250 : 0), 6); }
       // cercle rouge au stylo
       const kc = pr(t, p.a + .35, .5); g.strokeStyle = ROUGE; g.lineWidth = 9; g.beginPath(); g.ellipse(0, -35, 360, 130, -.04, -1.5, -1.5 + kc * 6.6); g.stroke();
@@ -221,20 +224,20 @@
     },
     chaine(p, t) {
       const k = back(pr(t, p.a, .35));
-      fondImg('penseur', 1.2, .5, .4, .25);
+      fondImg(p.fond || 'penseur', 1.2, .5, .4, .25);
       g.save(); g.translate(W / 2, 820); g.scale(k, k);
       S.d.lecture(0, -120, 110, CREME, ROUGE);
       g.restore();
       S.texte('RÉVISIONS', W / 2, 1010, { taille: 150, coul: CREME, contour: NOIR, contourL: 12 });
       S.texte('ANIMÉES', W / 2, 1150, { taille: 150, coul: OR, contour: NOIR, contourL: 12 });
       const k2 = eo(pr(t, p.a + .4, .4)); g.save(); g.globalAlpha = k2;
-      S.texte('la série « La liberté » sur YouTube', W / 2, 1280, { taille: 54, it: true, poids: 400, police: 'Spectral', coul: CREME });
+      S.texte(`la série « ${p.serie || 'La liberté'} » sur YouTube`, W / 2, 1280, { taille: 54, it: true, poids: 400, police: 'Spectral', coul: CREME });
       g.restore();
     },
   };
 
   // ---------------------------------------------------------------- image complète
-  const SANS_ST = new Set(['mot', 'tampon', 'stop', 'date', 'chaine', 'bac', 'perso', 'portrait']);
+  const SANS_ST = new Set(['mot', 'tampon', 'stop', 'date', 'chaine', 'bac', 'perso', 'portrait', ...(window.SANS_ST_A || [])]);
   function rendu(t) {
     const p = S.planA(t), l = t - p.a;
     g.fillStyle = NOIR; g.fillRect(0, 0, W, H);
@@ -265,7 +268,7 @@
     const L = [];
     S.PLANS.forEach(p => {
       // son de coupe : pas à chaque plan, varié et discret (les plans qui ont leur propre son n'en prennent pas)
-      const propre = ['tampon', 'date', 'horloge', 'stop', 'pierre', 'eeg', 'bac', 'chaine'].includes(p.type) || p.t2;
+      const propre = ['tampon', 'date', 'horloge', 'stop', 'pierre', 'eeg', 'bac', 'chaine', ...(window.PROPRES_A || [])].includes(p.type) || p.t2 || p.muet;
       if (p.choc) L.push([p.a, 'boum', 1]);
       else if (!propre) { const v = [['papier', .22], null, ['clic', .3], ['frotte', .25], null][p.i % 5]; if (v) L.push([p.a, v[0], v[1]]); }
       if (p.type === 'tampon') L.push([p.a + .08, 'tampon', 1]);
@@ -281,6 +284,7 @@
       if (p.type === 'eeg') L.push([p.a, 'bip', .35]);
       if (p.bruit) L.push([p.a, 'statique', .5]);
       if (p.type === 'chaine') L.push([p.a, 'gong', .8]);
+      if (window.SONS_A) window.SONS_A(p, L);
     });
     return Object.assign({ sons: L, musique: 'phonk_tension' }, S.structure());
   }

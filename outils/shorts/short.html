@@ -14,6 +14,7 @@ const charge = s => new Promise((r, e) => { const x = document.createElement('sc
   await charge('core.js?' + Date.now());
   await charge('dessins.js?' + Date.now());
   await charge(`${C}.plan.js?` + Date.now());
+  await charge(`${C}.types-${M}.js?` + Date.now()).catch(() => {});
   await charge(`modele-${M}.js?` + Date.now());
   window.PLAN(S);
   SHORT_LANCER(window.MODELE);

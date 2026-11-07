@@ -388,7 +388,7 @@ def v_phonk_tension(dur, niveau, rel=None):
 VARIANTES["phonk_tension"] = v_phonk_tension
 
 
-def composer(style, dur, sections, chocs, relache=None):
+def composer(style, dur, sections, chocs, relache=None, silences=None):
     style = ANCIENS.get(style, style)
     S = STYLES.get(style) or dict(bpm=120); n = int(dur * SR); y = np.zeros(n)
     b = 60 / S["bpm"]; s16 = b / 4; mes = 4 * b
@@ -510,6 +510,11 @@ def composer(style, dur, sections, chocs, relache=None):
         gain[a:z] = 0
         fa = int(.02 * SR); gain[a - fa:a] = np.minimum(gain[a - fa:a], np.linspace(1, 0, fa))
         poser(y, montee(.4), tc - .4, 1)
+    # silences voulus (« plus rien ») : la musique se tait sur tout le plan
+    for a0, a1 in (silences or []):
+        a, z = int(a0 * SR), int(a1 * SR); f2 = int(.03 * SR)
+        gain[a:z] = 0; gain[max(0, a - f2):a] = np.minimum(gain[max(0, a - f2):a], np.linspace(1, 0, min(f2, a)))
+        gain[z:z + f2] = np.minimum(gain[z:z + f2], np.linspace(0, 1, len(gain[z:z + f2])))
     y = y * gain
     for tc in chocs:
         poser(y, impact(), tc, .9)
