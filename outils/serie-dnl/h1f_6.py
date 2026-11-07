@@ -24,7 +24,7 @@ PRONONCIATION = {"Creditanstalt": "Krédit-anchtalt", "Anschluss": "Anchlouss", 
                  "Briand-Kellogg": "Briand-Kélog", "Roosevelt": "Rouzvelt", "Coolidge": "Coulidje", "Lange": "Lang",
                  "Owens": "Ôwennz", "Chamberlain": "Tchèmbeurlinne", "Panay": "Panaï", "Low": "Lô",
                  "Dow Jones": "Dao Djonce", "Migrant Mother": "Maïgrante Mazeur", "RCA": "R. C. A.",
-                 "USS": "U. S. S.", "Stimson": "Stimsonne", "Ottawa": "Otaoua", "Nipomo": "Nipômo",
+                 "USS": "U. S. S.", "USA": "U. S. A.", "Stimson": "Stimsonne", "Ottawa": "Otaoua", "Nipomo": "Nipômo",
                  "Dust Bowl": "Deust Bôl", "Import Duties Act": "Importe Diouti-z Acte", "cash and carry": "cache ènde carri",
                  "Tennessee Valley Authority": "Ténéssi Vali Otorité", "Civilian Conservation Corps": "Civilianne Conservation Corps",
                  "Stepping Stones to Glory": "Stèpingue Stônz tou Glori", "Sherman": "Chèrmane"}
@@ -208,7 +208,7 @@ SCENES = [
                    legende="Hooverville sur le front de mer de Seattle, 1933 · Seattle Municipal Archives (Wikimedia Commons, CC BY 2.0)"),
         "mm": dict(type="tableau", img="h1-lange-migrant", fond=True, sombre=True, de=[1.0, .5, .35], a=[1.2, .5, .3],
                    legende="Dorothea Lange, Migrant Mother, Nipomo, mars 1936 (Library of Congress, domaine public)"),
-        "i3": dict(type="liste", titre="I.3 · L'un des traumatismes fondateurs du XXe siècle", items=[
+        "i3": dict(type="liste", titre="I.3 · L'un des traumatismes fondateurs du XXᵉ siècle", items=[
             "Aucun filet de sécurité : chômage 3 % (1929) → 25 % (1933)", "Hoovervilles : Saint-Louis, Central Park",
             "La photographie comme argument : Migrant Mother (1936)", "Le Dust Bowl : le dimanche noir, 14 avril 1935",
             "Mondial mais inégal : l'URSS à peine touchée"], x=130, y=110, w=1020),
@@ -254,7 +254,7 @@ SCENES = [
         "gr": dict(type="graphe", titre="Allemagne : chômage et vote nazi (%)", x=300, y=110, w=680, h=520,
                    ax=dict(x=[1927.6, 1933.4], y=[0, 50], gx=[1928, 1929, 1930, 1931, 1932, 1933], gy=[10, 20, 30, 40, 50],
                            lx="année", ly="%"),
-                   el=[dict(type="courbe", pts=CHOMAGE, c="ca", lbl="Chômeurs (travailleurs assurés)", lp=[1928.1, 47], dur=2.0),
+                   el=[dict(type="courbe", pts=CHOMAGE, c="ca", lbl="Chômeurs (travailleurs assurés)", lp=[1929.0, 47], dur=2.0),
                        dict(type="courbe", pts=VOTE_NSDAP, c="el", lbl="Vote NSDAP", lp=[1930.9, 12], dur=2.0)]),
         "i5": dict(type="liste", titre="II.2 · L'Allemagne, le régime qui s'est brisé", items=[
             "Appelés, jamais élus : Hitler chancelier, janv. 1933", "Autarcie et réarmement : 6 millions → moins d'1 million de chômeurs",
@@ -270,7 +270,7 @@ SCENES = [
          beats=[
         "{i7}Dernière section : de grandes démocraties réticentes à défendre l'ordre libéral de 1919. "
         "{i7.1}Cet ordre repose sur les idées de Wilson. Un dessin de Punch, en décembre 1919, montre déjà la faille. "
-        "La clé de voûte marquée U. S. A. manque à l'arche de la Société des Nations. {i7.2}La SDN est faible dès sa naissance. Pas d'armée. Un droit de veto pour chaque membre. "
+        "La clé de voûte marquée USA manque à l'arche de la Société des Nations. {i7.2}La SDN est faible dès sa naissance. Pas d'armée. Un droit de veto pour chaque membre. "
         "Dans le dessin de David Low, Le Paillasson, en 1933, un soldat japonais lui marche simplement dessus.",
         "{i7.3}Elle ne peut donc pas arrêter une grande puissance. Regarde la Mandchourie, de 1931 à 1933. La commission Lytton condamne le Japon. "
         "Et le Japon quitte tout simplement la SDN. {i7.4}Les États-Unis le condamnent aussi, mais seulement en paroles. "
@@ -420,8 +420,8 @@ SCENES = [
     ], vis={
         "carte": dict(type="carte", centre="LE KRACH ET SES CONSÉQUENCES", branches=[
             dict(t="Le krach", items=["spéculation · achat à crédit", "24–29 oct. 1929 · −89 %"]),
-            dict(t="Une crise mondiale", items=["banques · prêts · or", "14 millions de chômeurs · Dust Bowl"]),
-            dict(t="Nationalisme économique", items=["Smoot–Hawley (1930)", "blocs impériaux · commerce −66 %"]),
+            dict(t="Une crise mondiale", items=["banques · prêts · or", "14 millions de chômeurs · Dust\u00a0Bowl"]),
+            dict(t="Nationalisme économique", items=["Smoot–Hawley (1930)", "blocs impériaux · −66\u00a0%"]),
             dict(t="Réponses politiques", items=["Hitler · militarisme", "New Deal · Front populaire"]),
             dict(t="L'ordre sans défense", items=["SDN · lois de neutralité", "apaisement · Munich"])]),
         "fin": dict(type="mot", t="Suite : le chapitre 2", g="H2 · Les régimes totalitaires", y=270, taille=88),
