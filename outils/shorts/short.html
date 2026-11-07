@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Short</title>
+<link rel="stylesheet" href="../../philo/serie/fonts.css">
+<style>html,body{margin:0;background:#000;height:100%}canvas{display:block;height:100vh;margin:0 auto}
+body.export canvas{height:auto;width:1080px}</style></head>
+<body><canvas id="c"></canvas>
+<script>
+const q = new URLSearchParams(location.search), C = q.get('c') || 'libet', M = q.get('m') || 'a';
+if (q.has('export')) document.body.classList.add('export');
+const charge = s => new Promise((r, e) => { const x = document.createElement('script'); x.src = s; x.onload = r; x.onerror = e; document.body.appendChild(x); });
+(async () => {
+  await charge(`sortie/${C}${q.has('muet') ? '.muet' : ''}.data.js?${Date.now()}`);
+  await charge('core.js?' + Date.now());
+  await charge('dessins.js?' + Date.now());
+  await charge(`${C}.plan.js?` + Date.now());
+  await charge(`modele-${M}.js?` + Date.now());
+  window.PLAN(S);
+  SHORT_LANCER(window.MODELE);
+})();
+</script></body></html>
