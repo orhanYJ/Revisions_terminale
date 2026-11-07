@@ -342,7 +342,53 @@ VARIANTES = {"suspense_phonk": v_suspense_phonk, "phonk_sombre": v_phonk_sombre,
              "suspense_trap": v_suspense_trap, "thriller": v_thriller}
 
 
-def composer(style, dur, sections, chocs):
+def v_phonk_tension(dur, niveau, rel=None):
+    """Phonk sombre en tension continue : chaque couche entre à son tour, le filtre s'ouvre, une seconde mineure
+    aiguë frotte, le cœur bat, roulement final ; à rel (apparition de la chaîne), tout lâche : impact, accord de
+    mi majeur, une cloche en écho, plus de batterie."""
+    rel = rel or dur - 5
+    n = int(dur * SR); y = np.zeros(n); cl = np.zeros(n); s16, G = _grille(126, dur); b = 4 * s16; mes = 4 * b
+    bas = ["E1", "E1", "C1", "D1"]; nap = [["E3", "G3", "B3"], ["E3", "G3", "B3"], ["C3", "E3", "G3"], ["D3", "F3", "A3"]]
+    f = lambda x, o=0: hz(x) * 2 ** o
+    for i, t in G:
+        if t >= rel - .02: break
+        u = min(1, t / rel); k = int(t / mes) % 4; pos = i % 16; reste = rel - t
+        g = .75 + .35 * u
+        if pos == 0: poser(y, nappe([f(x) for x in nap[k]], mes + .05, 500 + 2200 * u), t, (.3 + .15 * u) * g)
+        note = PHRASE_SOMBRE[(i // 16) % 8].get(pos)
+        if note: poser(cl, cloche_phonk(f(note)), t, .21)
+        if u > .12:
+            if u > .8 and pos >= 12 and pos % 2 == 0: [poser(y, charley(.03), t + q * s16 * 2 / 3, .1 * g) for q in range(3)]
+            elif u > .55 or pos % 2 == 0: poser(y, charley(), t, (.12 if pos % 2 == 0 else .07) * g)
+        if u > .2 and pos == 0: poser(y, b808(f(bas[k], 1), mes * .9), t, .55 * g)
+        if t >= 17 - .05:   # la batterie entre sur le drop de « Résultat ? »
+            if pos in (0, 7, 10): poser(y, kick(), t, .8 * g)
+            if pos == 8: poser(y, clap(), t, .5 * g)
+            if u > .5 and pos in (7, 10, 14): poser(y, b808(f(bas[k], 1), b * .9), t, .42 * g)
+        if u > .45 and pos == 0:   # frottement aigu mi / fa qui grossit
+            poser(y, tremolo([f("E5"), f("F5")], mes + .05), t, .05 + .09 * (u - .45) / .55)
+        if u > .65 and pos in (0, 3):   # cœur
+            poser(y, lp(kick(.35), 300), t, .5 * g)
+        if reste <= 2 * mes and pos % (2 if reste > mes else 1) == 0:   # roulement de caisse qui s'accélère
+            poser(y, clap(.12), t, (.12 + .25 * (1 - reste / (2 * mes)))); 
+            if reste <= mes / 2: poser(y, clap(.08), t + s16 / 2, .3)
+    y = y + echo(cl, b * .5, .36, 4)
+    # montée de souffle sur les 6 dernières secondes avant le relâchement
+    d = 6.0; m = int(d * SR); r = np.linspace(0, 1, m) ** 2.5
+    poser(y, hp(R.standard_normal(m), 1500) * r * .3 + np.sin(2 * np.pi * np.cumsum(np.linspace(200, 1400, m)) / SR) * r * .05, rel - d)
+    # le relâchement : coupe nette, impact, accord majeur ouvert, une cloche qui s'éloigne
+    o = int(rel * SR); y[o:] = 0; cl[o:] = 0
+    poser(y, impact(2.5), rel, 1.0)
+    fin = dur - rel + .5
+    poser(y, nappe([f("E3"), f("G#3"), f("B3"), f("E4")], fin, 1800), rel + .05, .45)
+    poser(y, echo(np.concatenate([cloche_phonk(f("B4"), .4), np.zeros(int(.55 * SR)), cloche_phonk(f("E5"), .4)]), b * .75, .5, 6), rel + .3, .22)
+    return y
+
+
+VARIANTES["phonk_tension"] = v_phonk_tension
+
+
+def composer(style, dur, sections, chocs, relache=None):
     style = ANCIENS.get(style, style)
     S = STYLES.get(style) or dict(bpm=120); n = int(dur * SR); y = np.zeros(n)
     b = 60 / S["bpm"]; s16 = b / 4; mes = 4 * b
@@ -356,7 +402,7 @@ def composer(style, dur, sections, chocs):
 
     pas = int(dur / s16) + 1
     if style in VARIANTES:
-        y = VARIANTES[style](dur, niveau)
+        y = VARIANTES[style](dur, niveau, relache) if style == 'phonk_tension' else VARIANTES[style](dur, niveau)
         pas = 0
     for i in range(pas):
         t = i * s16; nv = niveau(t)

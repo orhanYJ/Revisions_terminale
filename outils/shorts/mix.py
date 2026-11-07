@@ -212,7 +212,7 @@ def main(code, m):
     n = len(voix)
     import musique_short
     if "sections" in info:
-        mus = musique_short.composer(os.environ.get("SHORT_STYLE") or info["musique"], n / SR, info["sections"], info["chocs"])[:n]
+        mus = musique_short.composer(os.environ.get("SHORT_STYLE") or info["musique"], n / SR, info["sections"], info["chocs"], info.get("relache"))[:n]
     else:
         mus = musique(info["musique"], n / SR, info.get("bpm") or 0)[:n]
     # sidechain léger : la musique se tasse sous la voix sans disparaître

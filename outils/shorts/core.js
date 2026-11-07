@@ -102,7 +102,7 @@
   // coup de zoom sur le dernier mot clé dit : 0 → 1 → 0 en d secondes
   const coup = (t, d = .2) => { let r = 0; for (const m of MOTS) { if (m.t > t) break; if (cle(m.w)) r = 1 - pr(t, m.t, d); } return r; };
   // structure pour la musique : début de chaque chapitre, instants des chocs
-  const structure = () => ({ sections: PLANS.filter(p => p.ch !== undefined).map(p => [p.a, p.ch]), chocs: PLANS.filter(p => p.choc).map(p => p.a) });
+  const structure = () => ({ sections: PLANS.filter(p => p.ch !== undefined).map(p => [p.a, p.ch]), chocs: PLANS.filter(p => p.choc).map(p => p.a), relache: (PLANS.find(p => p.type === 'chaine') || {}).a });
   const S = { structure, cle, coup, W, H, g, D, T, Tfin, MOTS, GROUPES, groupeA, avecPonct, seg, cl, lerp, pr, eo, eio, back, elas, rnd, img, cover, texte, largeur, plans, planA, get PLANS() { return PLANS; } };
   window.S = S;
 
