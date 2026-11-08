@@ -64,3 +64,5 @@ window.IMAGES = {
   manuel: '../../philo/serie/img/t4-epictete.jpg',       // frontispice du Manuel, Oxford, 1715 (gravure de M. Burghers), domaine public
   hoalo: '../../philo/serie/img/t4-hoalo.jpg',           // Hanoï, entrée de la prison de Hoa Lo (photo David McKelvey, CC BY 2.0)
 };
+
+window.MUSIQUE = 'thriller';   // musique propre à ce short (08/11/2026 : une musique différente par short)

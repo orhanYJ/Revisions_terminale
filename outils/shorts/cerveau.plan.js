@@ -67,3 +67,5 @@ window.IMAGES = {
   freud: '../../philo/serie/img/freud.jpg',              // Max Halberstadt, vers 1921, domaine public
   nietzsche: '../../philo/serie/img/nietzsche.jpg',      // Gustav Schultze, 1882, domaine public
 };
+
+window.MUSIQUE = 'synth';   // musique propre à ce short (08/11/2026 : une musique différente par short)

@@ -63,3 +63,5 @@ window.CHAPITRES = ['ACCROCHE', 'LE MONDE', 'LA CHUTE', 'LE RÉEL', 'LE DESTIN']
 window.IMAGES = {
   ecriture: '../../philo/serie/img/cs6-ecriture.jpg',   // Albert Anker, La Leçon d'écriture, XIXᵉ siècle (Anker † 1910), domaine public
 };
+
+window.MUSIQUE = 'suspense_trap';   // musique propre à ce short (08/11/2026 : une musique différente par short)

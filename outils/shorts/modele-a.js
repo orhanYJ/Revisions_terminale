@@ -6,7 +6,9 @@
   let grain, lignes;
 
   function init() {
-    if (window.TYPES_A) Object.assign(R, window.TYPES_A({ carte, multi, tampon, barreRouge, petitTitre, fondImg, C: { NOIR, CREME, OR, ROUGE, GRIS } }));
+    const O = { carte, multi, tampon, barreRouge, petitTitre, fondImg, C: { NOIR, CREME, OR, ROUGE, GRIS } };
+    if (window.FORMATS_A) Object.assign(R, window.FORMATS_A(O));
+    if (window.TYPES_A) Object.assign(R, window.TYPES_A(O));
     // grain de papier (deux trames, alternées pour un léger scintillement de pellicule)
     grain = [0, 1].map(k => { const c = document.createElement('canvas'); c.width = 540; c.height = 960; const x = c.getContext('2d');
       const d = x.createImageData(540, 960); for (let i = 0; i < d.data.length; i += 4) { const v = rnd(i * .37 + k * 11) * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 22; }
@@ -238,7 +240,7 @@
   };
 
   // ---------------------------------------------------------------- image complète
-  const SANS_ST = new Set(['mot', 'tampon', 'stop', 'date', 'chaine', 'bac', 'perso', 'portrait', ...(window.SANS_ST_A || [])]);
+  const SANS_ST = new Set(['mot', 'tampon', 'stop', 'date', 'chaine', 'bac', 'perso', 'portrait', ...(window.SANS_ST_A || []), ...(window.TYPES_FORMATS || [])]);
   function rendu(t) {
     const p = S.planA(t), l = t - p.a;
     g.fillStyle = NOIR; g.fillRect(0, 0, W, H);
@@ -269,7 +271,7 @@
     const L = [];
     S.PLANS.forEach(p => {
       // son de coupe : pas à chaque plan, varié et discret (les plans qui ont leur propre son n'en prennent pas)
-      const propre = ['tampon', 'date', 'horloge', 'stop', 'pierre', 'eeg', 'bac', 'chaine', ...(window.PROPRES_A || [])].includes(p.type) || p.t2 || p.muet;
+      const propre = ['tampon', 'date', 'horloge', 'stop', 'pierre', 'eeg', 'bac', 'chaine', ...(window.PROPRES_A || []), ...(window.TYPES_FORMATS || [])].includes(p.type) || p.t2 || p.muet;
       if (p.choc) L.push([p.a, 'boum', 1]);
       else if (!propre) { const v = [['papier', .22], null, ['clic', .3], ['frotte', .25], null][p.i % 5]; if (v) L.push([p.a, v[0], v[1]]); }
       if (p.type === 'tampon') L.push([p.a + .08, 'tampon', 1]);
@@ -286,6 +288,7 @@
       if (p.bruit) L.push([p.a, 'statique', .5]);
       if (p.type === 'chaine') L.push([p.a, 'gong', .8]);
       if (window.SONS_A) window.SONS_A(p, L);
+      if (window.SONS_FORMATS) window.SONS_FORMATS(p, L);
     });
     return Object.assign({ sons: L, musique: window.MUSIQUE || 'phonk_tension' }, S.structure());
   }

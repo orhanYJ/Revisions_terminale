@@ -65,3 +65,5 @@ window.IMAGES = {
   hobbes: '../../philo/serie/img/hobbes.jpg',            // John Michael Wright, Thomas Hobbes, vers 1669-1670, domaine public
   leviathan: '../../philo/serie/img/et2-leviathan.jpg',  // Abraham Bosse, frontispice du Léviathan, 1651 (British Library), domaine public
 };
+
+window.MUSIQUE = 'docu';   // musique propre à ce short (08/11/2026 : une musique différente par short)

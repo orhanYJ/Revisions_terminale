@@ -64,3 +64,5 @@ window.IMAGES = {
   nocturne: '../../philo/serie/img/cs1-nocturne.jpg',            // Whistler, Nocturne en bleu et or : le vieux pont de Battersea, vers 1872-1875 (Tate), domaine public
   corot: '../../philo/serie/img/cs4-souvenir.jpg',               // Corot, Souvenir de Mortefontaine, 1864 (Louvre), domaine public
 };
+
+window.MUSIQUE = 'piano';   // musique propre à ce short (08/11/2026 : une musique différente par short)

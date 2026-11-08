@@ -32,11 +32,15 @@ if (fs.existsSync(path.join(ICI, `${code}.types-a.js`))) {
   lire(`${code}.types-a.js`);
   typesShort = Object.keys(ctx.window.TYPES_A({ C: {} }));
 }
+ctx.S = Object.assign({}, S, { g: {}, W: 1080, H: 1920 });
+lire('formats-a.js');
+typesShort = typesShort.concat(ctx.window.TYPES_FORMATS);
 const tps = a => Array.isArray(a) ? T(...a) : a;
 const res = PLANS.map((p, i) => {
   let a;
   try { a = Array.isArray(p.a) ? T(...p.a) - (p.av ?? .06) : p.a; } catch (e) { console.log(`plan ${i} (${p.type}) : ${e.message}`); erreurs++; return null; }
-  for (const k of ['a2', 'cercle', 'rouges', 'pct', 'tampon', 'zero']) if (Array.isArray(p[k])) { try { tps(p[k]); } catch (e) { console.log(`plan ${i} champ ${k} : ${e.message}`); erreurs++; } }
+  for (const k of ['a2', 'cercle', 'rouges', 'pct', 'tampon', 'zero', 'rep']) if (Array.isArray(p[k])) { try { tps(p[k]); } catch (e) { console.log(`plan ${i} champ ${k} : ${e.message}`); erreurs++; } }
+  [...(p.lignes || []), ...(p.items || []), ...(p.souligne ? [p.souligne] : [])].forEach(([x]) => { if (Array.isArray(x)) try { tps(x); } catch (e) { console.log(`plan ${i} ligne : ${e.message}`); erreurs++; } });
   (p.etapes || []).forEach(([x]) => { if (Array.isArray(x)) try { tps(x); } catch (e) { console.log(`plan ${i} étape : ${e.message}`); erreurs++; } });
   if (!typesA.includes(p.type) && !typesShort.includes(p.type)) { console.log(`plan ${i} : type inconnu « ${p.type} »`); erreurs++; }
   return { i, a, type: p.type };

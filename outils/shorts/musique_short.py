@@ -342,6 +342,116 @@ VARIANTES = {"suspense_phonk": v_suspense_phonk, "phonk_sombre": v_phonk_sombre,
              "suspense_trap": v_suspense_trap, "thriller": v_thriller}
 
 
+# ---------------------------------------------------------------- musiques ajoutées le 08/11/2026 (une par short)
+def _boucle(bpm, dur, niveau, f):
+    """appelle f(y, i, t, pos, mesure, nv, s16) à chaque double croche ; renvoie y"""
+    n = int(dur * SR); y = np.zeros(n); s16, G = _grille(bpm, dur)
+    for i, t in G:
+        f(y, i, t, i % 16, i // 16, niveau(t), s16)
+    return y
+
+
+def v_piano(dur, niveau):
+    """piano mélancolique rythmé (la mineur) : arpèges, nappe douce, battement feutré qui s'installe"""
+    acc = [["A3", "C4", "E4"], ["F3", "A3", "C4"], ["C4", "E4", "G4"], ["E3", "G#3", "B3"]]; bas = ["A1", "F1", "C2", "E1"]
+    def f(y, i, t, pos, m, nv, s16):
+        k = m % 4; ac = acc[k]; b = 4 * s16
+        if pos == 0: poser(y, nappe([hz(x) for x in ac], 16 * s16 + .05, 900), t, .15)
+        if pos % 2 == 0:
+            seq = [0, 1, 2, 1, 2, 1, 0, 1]; o = 1 if (pos // 2) % 8 >= 4 else 0
+            poser(y, piano(hz(ac[seq[(pos // 2) % 8]]) * 2 ** o, 1.0), t, .3)
+        if nv >= 2:
+            if pos in (0, 8): poser(y, lp(kick(.4), 900), t, .45)
+            if pos in (4, 12): poser(y, caisse_feutree(), t, .2)
+        if nv >= 3:
+            if pos in (0, 10): poser(y, basse(hz(bas[k]) * 2, b * 1.5, 300), t, .35)
+            if pos in (3, 7, 11, 15) and m % 2: poser(y, piano(hz(ac[2]) * 4, .5), t, .1)
+    return _boucle(84, dur, niveau, f)
+
+
+def v_lofi2(dur, niveau):
+    """lo-fi d'étude (ré mineur 9) : piano électrique chaloupé, vinyle, batterie très douce, mélodie de flûte"""
+    acc = [["D3", "F3", "A3", "C4", "E4"], ["G3", "Bb3", "D4", "F4"], ["C3", "E3", "G3", "Bb3", "D4"], ["F3", "A3", "C4", "E4"]]
+    bas = ["D1", "G1", "C2", "F1"]
+    mel = {2: 0, 6: 1, 9: 2, 14: 1}
+    def f(y, i, t, pos, m, nv, s16):
+        k = m % 4; ac = acc[k]; sw = s16 * .3 if pos % 2 else 0
+        if pos == 0:
+            for q, x in enumerate(ac): poser(y, rhodes(hz(x) * 2, 16 * s16), t + q * .02, .15)
+            poser(y, craquement(16 * s16), t, .55)
+        if pos in (0, 7, 10): poser(y, lp(kick(.45), 1200), t, .55)
+        if pos in (4, 12): poser(y, caisse_feutree(), t + sw, .3)
+        if pos % 2 == 0: poser(y, lp(charley(), 8000), t + sw, .07)
+        if nv >= 2 and pos in (0, 10): poser(y, basse(hz(bas[k]) * 2, s16 * 5, 220), t, .4)
+        if nv >= 2 and pos in mel and m % 2 == 1:
+            n = int(.5 * SR); tt = np.arange(n) / SR
+            fl = np.sin(2 * np.pi * hz(ac[mel[pos] + 1]) * 4 * tt + .3 * np.sin(2 * np.pi * 5 * tt)) * ar(n, .04, .3)
+            poser(y, fl, t + sw, .08)
+    return lp(_boucle(78, dur, niveau, f), 6000)
+
+
+def v_house(dur, niveau):
+    """house (124 bpm) : grosse caisse à chaque temps, accords piano house sur les contretemps, basse rebondie"""
+    acc = [["A3", "C4", "E4", "G4"], ["F3", "A3", "C4", "E4"], ["G3", "B3", "D4", "F4"], ["E3", "G3", "B3", "D4"]]; bas = ["A1", "F1", "G1", "E1"]
+    def f(y, i, t, pos, m, nv, s16):
+        k = m % 4; ac = acc[k]
+        if pos % 4 == 0 and nv >= 1: poser(y, kick(), t, .7 if nv >= 2 else .45)
+        if pos in (3, 6, 11, 14):
+            for x in ac: poser(y, piano(hz(x) * 2, .35), t, .1)
+        if nv >= 2:
+            if pos % 4 == 2: poser(y, charley(.1, True), t, .14)
+            if pos in (4, 12): poser(y, clap(), t, .35)
+            if pos in (2, 6, 10, 14): poser(y, basse(hz(bas[k]) * 2, s16 * 1.6, 600), t, .35)
+        if nv >= 3 and pos % 2 == 1: poser(y, charley(), t, .07)
+    return _boucle(124, dur, niveau, f)
+
+
+def v_pop(dur, niveau):
+    """pop lumineuse (do majeur, 116 bpm) : pizzicati, claps, synthé doux, mélodie en cloches"""
+    acc = [["C4", "E4", "G4"], ["G3", "B3", "D4"], ["A3", "C4", "E4"], ["F3", "A3", "C4"]]; bas = ["C2", "G1", "A1", "F1"]
+    mel = [4, 2, 0, 2, 4, 4, 4, None, 2, 2, 2, None, 4, 7, 7, None]
+    def f(y, i, t, pos, m, nv, s16):
+        k = m % 4; ac = acc[k]
+        if pos == 0: poser(y, nappe([hz(x) for x in ac], 16 * s16 + .05, 2200), t, .14)
+        if pos % 2 == 0: poser(y, pizz(hz(ac[(pos // 2) % 3]) * 2), t, .22)
+        if nv >= 2:
+            if pos in (0, 8): poser(y, kick(), t, .55)
+            if pos in (4, 12): poser(y, clap(), t, .38)
+            if pos % 2 == 0: poser(y, shaker(), t, .08)
+            if pos in (0, 6, 8, 14): poser(y, basse(hz(bas[k]) * 2, s16 * 1.8, 700), t, .3)
+        if nv >= 3 and pos % 2 == 0 and m % 2 == 0:
+            d = mel[(pos // 2) + 8 * (m // 2 % 2)]
+            if d is not None: poser(y, cloche(hz("C5") * 2 ** (d / 12), .5), t, .12)
+    return _boucle(116, dur, niveau, f)
+
+
+def _quiz(dur, niveau, bpm, tonique, maj=True):
+    """jeu télévisé : tic-tac de chrono, basse qui marche, cuivres synthétiques en ponctuation"""
+    deg = [0, 4, 7] if maj else [0, 3, 7]
+    prog = [0, 5, 7, 5] if maj else [0, 8, 5, 7]
+    def f(y, i, t, pos, m, nv, s16):
+        r = hz(tonique) * 2 ** (prog[m % 4] / 12)
+        if pos % 4 == 0: poser(y, charley(.05), t, .22)            # tic
+        if pos % 4 == 2: poser(y, lp(charley(.05), 4000), t, .15)  # tac
+        if pos % 2 == 0: poser(y, basse(r / 2 * 2 ** ([0, 7, 12, 7][(pos // 2) % 4] / 12), s16 * 1.8, 500), t, .3)
+        if nv >= 2 and pos in (0, 3, 6):
+            for d in deg: poser(y, lp(scie(r * 2 ** (d / 12), int(s16 * 1.2 * SR)), 2500) * ar(int(s16 * 1.2 * SR), .005, .08), t, .09)
+        if nv >= 2 and pos in (4, 12): poser(y, clap(), t, .3)
+        if nv >= 3 and pos % 4 == 0: poser(y, kick(), t, .55)
+    return _boucle(bpm, dur, niveau, f)
+
+
+def v_quiz(dur, niveau):
+    return _quiz(dur, niveau, 132, "C3", True)
+
+
+def v_quiz2(dur, niveau):
+    return _quiz(dur, niveau, 120, "D3", False)
+
+
+VARIANTES.update({"piano": v_piano, "lofi2": v_lofi2, "house": v_house, "pop": v_pop, "quiz": v_quiz, "quiz2": v_quiz2})
+
+
 def v_phonk_tension(dur, niveau, rel=None):
     """Phonk sombre en tension continue : chaque couche entre à son tour, le filtre s'ouvre, une seconde mineure
     aiguë frotte, le cœur bat, roulement final ; à rel (apparition de la chaîne), tout lâche : impact, accord de
