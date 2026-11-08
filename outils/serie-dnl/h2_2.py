@@ -52,7 +52,7 @@ SCENES = [
         "{-q1}{q2}Eleven years earlier, the king of Italy had done the same for Mussolini. So how did these men reach power?",
         "{-q2}{q3}To answer, we have to go further back. Back to the trenches of nineteen fourteen. Because the totalitarian regimes "
         "were born from the First World War.",
-        "{-q3}{-g0}{plan}Today, we cover part one of the chapter, sections one and two. {plan.1}First, the story on the map, from nineteen fourteen to nineteen thirty-three. "
+        "{-q3}{-g0}Today, we cover part one of the chapter, sections one and two. {plan}{plan.1}First, the story on the map, from nineteen fourteen to nineteen thirty-three. "
         "{plan.2}Then, the legacy of the war, in Russia, Italy and Germany. {plan.3}Next, the seizure of power, starting with Mussolini's fascism. "
         "{plan.4}Then Hitler's Nazism. The crisis, and the legal appointment. {plan.5}And finally, two exercises for the essay.",
         "{-plan}{titre}",
@@ -118,7 +118,7 @@ SCENES = [
         "Idea one. The historian George Mosse coined a word for it. {!brutalisation}Brutalisation. "
         "{def1.1}Four years of mass killing got soldiers used to violence. After nineteen eighteen, they brought it home, into civilian life. "
         "And into politics. The traumas of the war raised the level of violence in post-war societies.",
-        "{-def1}{mat}For Mosse, the war is the matrix of totalitarianism. Look at the new regimes. {mat.1}The uniforms. {mat.2}The ranks. "
+        "{-def1}For Mosse, the war is the matrix of totalitarianism. Look at the new regimes. {mat}{mat.1}The uniforms. {mat.2}The ranks. "
         "{mat.3}The parades. {mat.4}The contempt for human life. They all come from the front.",
         "{-mat}{-photo1}{ex1}The course slide gives an example. It is a photograph of Adolf Hitler as a soldier, in nineteen fifteen, sitting among his comrades. "
         "{ex1.1}Mosse develops the idea in his book, Fallen Soldiers.",
@@ -169,10 +169,10 @@ SCENES = [
          retenir="“Mutilated victory”: Italy did not get all the promised lands → irredentism; turmoil, inflation, mass unemployment. Fiume (D'Annunzio, Sept. 1919 – Dec. 1920). Biennio Rosso (1919–20): land and factory occupations (Turin, 1920); Blackshirts paid by landowners.",
          beats=[
         "{g4}{g4.1}Idea three: Italy. In nineteen eighteen, Italy is on the winning side. But it does not get all the lands it was promised. "
-        "{vm}The nationalists speak of a {!mutilated victory}mutilated victory. The country won. It paid in blood. And yet it feels cheated. "
-        "{vm.1}This feeds an {!irredentist}irredentist movement, which demands the unredeemed territories. "
+        "The nationalists speak of a {!mutilated victory}mutilated victory. The country won. It paid in blood. And yet it feels cheated. "
+        "{vm}{vm.1}This feeds an {!irredentist}irredentist movement, which demands the unredeemed territories. "
         "{vm.2}And the frustration comes on top of social turmoil, inflation, and mass unemployment.",
-        "{-vm}{fiu}The example is Fiume. {fiu.1}In September nineteen nineteen, the poet Gabriele D'Annunzio seizes the city with nationalist volunteers. "
+        "{-vm}The example is Fiume. {fiu}{fiu.1}In September nineteen nineteen, the poet Gabriele D'Annunzio seizes the city with nationalist volunteers. "
         "{fiu.2}He holds it until December nineteen twenty. {fiu.3}Mussolini will later borrow his rituals.",
         "{-fiu}{-g4}{photo3}{br}Idea four: the {!Biennio Rosso}Biennio Rosso. The two red years, nineteen nineteen and nineteen twenty. "
         "{br.g}Peasants seize land. Workers go on strike, or take over the factories. The property owners believe an Italian nineteen seventeen is coming. "
@@ -200,7 +200,7 @@ SCENES = [
          beats=[
         "{g5}{g5.1}Idea five: Germany. In nineteen eighteen, military defeat brings the end of the German Empire. A new regime is born. "
         "The {!Weimar Republic}Weimar Republic.",
-        "{spa}But in the cities, some revolutionaries want to go further. {spa.1}In January nineteen nineteen comes the {!Spartacist}Spartacist uprising. "
+        "But in the cities, some revolutionaries want to go further. {spa}{spa.1}In January nineteen nineteen comes the {!Spartacist}Spartacist uprising. "
         "It is a communist revolt, led by Rosa Luxemburg and Karl Liebknecht. They want a revolution on the Russian model. "
         "{spa.2}It fails. {spa.3}On the fifteenth of January, nineteen nineteen, Luxemburg and Liebknecht are murdered by Freikorps soldiers. "
         "The Freikorps are armed volunteers, many of them former soldiers.",
@@ -222,8 +222,8 @@ SCENES = [
     dict(id="versailles", chap="I.1 · The Diktat and the stab in the back", fond="nuit", humeur="tension",
          retenir="Versailles (1919), imposed not negotiated: War Guilt Clause, Alsace-Lorraine and the eastern territories lost, huge reparations → the “Diktat”. The stab-in-the-back myth: betrayed at home (example: the 1919 postcard).",
          beats=[
-        "{g6}{g6.1}Idea six: the Treaty of Versailles, in nineteen nineteen. {ver}It was imposed, not negotiated. If Germany refused to sign, it would be invaded. "
-        "{ver.1}It contained the War Guilt Clause. Germany was held responsible for the war. "
+        "{g6}{g6.1}Idea six: the Treaty of Versailles, in nineteen nineteen. It was imposed, not negotiated. If Germany refused to sign, it would be invaded. "
+        "{ver}{ver.1}It contained the War Guilt Clause. Germany was held responsible for the war. "
         "{ver.2}It took away Alsace-Lorraine, and the eastern territories. {ver.3}It imposed huge reparations. "
         "{ver.4}So the Germans called it a {!Diktat}Diktat. A dictated peace.",
         "{-ver}{-g6}{dol}At the same time, military circles spread a conspiracy theory. The {!stab in the back}stab in the back. "
@@ -356,8 +356,8 @@ SCENES = [
     dict(id="marche", chap="I.2 · The March on Rome", fond="guerre", humeur="tension",
          retenir="Oct. 1922: the March on Rome (≈ 20,000 Blackshirts, course figure). Intimidation, not a coup: the king refuses martial law and appoints Mussolini prime minister on 30 Oct. 1922.",
          beats=[
-        "{g8}{g8.1}Idea two. In October nineteen twenty-two, the Blackshirts march on Rome. {mr}But Mussolini does not organise the march "
-        "to take power by arms. {mr.1}He organises it to push the king into appointing him prime minister.",
+        "{g8}{g8.1}Idea two. In October nineteen twenty-two, the Blackshirts march on Rome. But Mussolini does not organise the march "
+        "to take power by arms. {mr}{mr.1}He organises it to push the king into appointing him prime minister.",
         "{mr.2}Only a few thousand come. About twenty thousand, according to the course. Far fewer than he had hoped. "
         "{mr.3}Most of them are suspected of murder. They are not violent during the march. But everyone knows they could be.",
         "{mr.4}And the threat is enough. King Victor Emmanuel the Third refuses to declare martial law. On the thirtieth of October, nineteen twenty-two, "
