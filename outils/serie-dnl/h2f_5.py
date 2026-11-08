@@ -140,7 +140,7 @@ SCENES = [
 
     # ================================================================ II.3, idée 2 : la police politique
     dict(id="police", chap="II.3 · Une police politique au-dessus des lois", fond="nuit", humeur="tension",
-         retenir="Italie : l'OVRA (1927) · Allemagne : la Gestapo (police d'État, 1933) et la SS (police du parti), toutes deux sous Himmler à partir de 1936 · URSS : l'OGPU, puis le NKVD (1934), qui organise les déportations. Elles répondent au chef, jamais à un juge.",
+         retenir="Italie : l'OVRA (1927) · Allemagne : la Gestapo (police d'État, 1933) et la SS (police du parti), sous Himmler dès 1936 · URSS : l'OGPU, puis le NKVD (1934), qui organise les déportations. Elles répondent au chef, jamais à un juge.",
          beats=[
         "{g3}{g3.1}Deuxième idée. Chaque régime a bâti une police politique. Elle répond au parti, pas aux tribunaux. "
         "C'est l'instrument de la terreur : {!une police au-dessus des lois}une police placée au-dessus des lois.",
@@ -167,7 +167,7 @@ SCENES = [
 
     # ================================================================ II.3, idée 3 : les procès de Moscou
     dict(id="proces", chap="II.3 · La justice en spectacle : les procès de Moscou", fond="guerre", humeur="tension",
-         retenir="Procès spectacles (1936-1938) : de vieux bolcheviks avouent des crimes inventés après des menaces contre leurs familles. La Grande Purge (1937-1938) : 680 000 exécutions, le parti décimé, l'armée affaiblie, Staline renforcé. Zinoviev et Kamenev fusillés en 1936, Rykov en 1938.",
+         retenir="Procès spectacles (1936-1938) : de vieux bolcheviks avouent des crimes inventés, leurs familles menacées. Grande Purge (1937-1938) : 680 000 exécutions, parti décimé, armée affaiblie, Staline renforcé. Zinoviev et Kamenev fusillés (1936).",
          beats=[
         "{g4}{g4.1}Troisième idée. La justice devient un spectacle. La terreur soviétique atteint son sommet avec les procès de Moscou. "
         "Ce sont des {!procès spectacles}procès spectacles, mis en scène pour le public. De vieux bolcheviks, compagnons de Lénine, "
@@ -202,7 +202,7 @@ SCENES = [
 
     # ================================================================ II.3, idée 4 : le camp
     dict(id="camps", chap="II.3 · Le camp, une institution permanente", fond="nuit", humeur="mystere",
-         retenir="Le Goulag : des camps placés là où il faut de la main-d'œuvre ; le canal mer Blanche-Baltique (227 km, 1931-1933, à la main) ; plus de 1,5 million de détenus au début des années 1950. Dachau (1933) : détenus classés par triangles de couleur. Le cours : les nazis n'ont pas inventé le camp ; ils ont ajouté la chambre à gaz.",
+         retenir="Goulag : des camps là où il faut de la main-d'œuvre ; canal mer Blanche-Baltique (227 km, 1931-1933) ; 1,5 million de détenus au début des années 1950. Dachau (1933) : triangles de couleur. Le camp n'est pas nazi ; la chambre à gaz l'est.",
          beats=[
         "{g5}{g5.1}Quatrième idée. Le camp devient une institution permanente, et le travail forcé une ressource économique. "
         "La répression n'est pas seulement judiciaire. Elle est territoriale. Des populations entières sont enfermées.",
@@ -239,7 +239,7 @@ SCENES = [
 
     # ================================================================ II.3, idée 5 : au nom de la biologie
     dict(id="biologie", chap="II.3 · Des Allemands frappés au nom de la biologie", fond="nuit", humeur="mystere",
-         retenir="1933 : loi sur la stérilisation forcée (neuf affections, par exemple cécité, surdité, schizophrénie) : environ 400 000 stérilisés, 1933-1945. Propagande par le coût : 5,50 Reichsmarks par jour. T4 (1939-1941) : environ 70 000 Allemands handicapés tués, surtout dans des chambres à gaz.",
+         retenir="1933 : loi de stérilisation forcée (neuf affections, ex. cécité, surdité, schizophrénie) : ≈ 400 000 stérilisés, 1933-1945. Propagande : 5,50 Reichsmarks par jour. T4 (1939-1941) : ≈ 70 000 Allemands handicapés tués, surtout par gaz.",
          beats=[
         "{g6}{g6.1}Cinquième idée. La violence nazie frappe aussi les Allemands eux-mêmes, au nom de la biologie. "
         "La doctrine raciale produit de la violence à l'intérieur même de la population allemande.",
@@ -267,7 +267,7 @@ SCENES = [
 
     # ================================================================ II.3, idée 6 : la terreur dévore les siens
     dict(id="siens", chap="II.3 · La terreur frappe les hommes du régime", fond="guerre", humeur="tension",
-         retenir="Personne n'est à l'abri : nuit des Longs Couteaux (1934, 85 assassinés, les chefs de la SA) · Iejov, chef du NKVD, remplacé par Beria puis exécuté en 1940 · Trotski assassiné au Mexique (1940) par un agent soviétique. Quand la loyauté ne protège plus, on devance l'obéissance.",
+         retenir="Personne n'est à l'abri : nuit des Longs Couteaux (1934, 85 assassinés, chefs SA) · Iejov, chef du NKVD, remplacé par Beria, exécuté en 1940 · Trotski assassiné au Mexique (1940). Quand la loyauté ne protège plus, on devance l'obéissance.",
          beats=[
         "{g7}{g7.1}La sixième idée est la plus révélatrice. La terreur se retourne contre les hommes du régime. "
         "{!Personne n'est à l'abri}Personne n'est à l'abri, pas même ceux qui le servent. Et c'est cela qui la rend totale.",
@@ -297,7 +297,7 @@ SCENES = [
 
     # ================================================================ II.3, idée 7 : l'Italie
     dict(id="italie", chap="II.3 · La terreur italienne : une autre échelle", fond="nuit", humeur="calme",
-         retenir="Matteotti assassiné (1924) → l'État totalitaire. Loi de défense de l'État (1926) : peine de mort, Tribunal spécial pour les « ennemis de l'État » · OVRA (1927). Bien moins de condamnations à mort ; opposants envoyés au confino, sur des îles. Une répression légalisée plutôt qu'industrialisée.",
+         retenir="Matteotti assassiné (1924) → l'État totalitaire. Loi de défense de l'État (1926) : peine de mort, Tribunal spécial · OVRA (1927). Moins de condamnations à mort ; opposants au confino (îles). Répression légalisée plus qu'industrialisée.",
          beats=[
         "{g8}{g8.1}Septième idée. La terreur italienne était réelle. Mais son échelle était différente, et une comparaison honnête doit le respecter. "
         "La violence fasciste a fondé le régime, puis elle est devenue routinière. Elle n'a jamais atteint l'échelle des deux autres.",
@@ -329,7 +329,7 @@ SCENES = [
 
     # ================================================================ II.3, idée 8 : la logique commune
     dict(id="ennemi", chap="II.3 · La logique commune : désigner un ennemi", fond="nuit", humeur="tension",
-         retenir="Les trois : une police secrète, des opposants réduits au silence ou tués, et surtout un ennemi de la nation, qui fait paraître la violence justifiée. URSS : les koulaks · Allemagne : Juifs, Roms, homosexuels, handicapés (théorie du complot des ennemis de l'intérieur) · Italie : les « ennemis de l'État ».",
+         retenir="Les trois : une police secrète, des opposants réduits au silence ou tués, surtout un ennemi de la nation qui justifie la violence. URSS : les koulaks · Allemagne : Juifs, Roms, homosexuels, handicapés · Italie : les « ennemis de l'État ».",
          beats=[
         "{g9}{g9.1}Huitième idée : la logique commune des trois terreurs. Toutes trois utilisent une police secrète pour menacer la population. "
         "Toutes trois réduisent au silence ou tuent leurs opposants. Et surtout, toutes trois {!désignent un ennemi de la nation}désignent un ennemi de la nation.",
@@ -351,7 +351,7 @@ SCENES = [
 
     # ================================================================ à toi : le dossier documentaire sur la terreur
     dict(id="ws4", chap="À toi · le dossier documentaire sur la terreur", fond="aube", humeur="calme",
-         retenir="Le dossier documentaire, six similitudes : une police au-dessus des lois · une terreur qui prend l'apparence de la légalité · des ennemis par catégorie · camps et travail forcé · une terreur qui frappe les hommes du régime · la même fonction : gouverner. Différences : l'échelle, le critère (social / biologique / politique), les contre-pouvoirs en Italie.",
+         retenir="Six similitudes : police au-dessus des lois · terreur d'apparence légale · ennemis par catégorie · camps et travail forcé · terreur contre les siens · même fonction : gouverner. Différences : échelle, critère, contre-pouvoirs en Italie.",
          beats=[
         "{ex1}À toi. Voici la consigne du dossier documentaire. {!trouve les similitudes}Trouve les similitudes dans l'usage de la violence "
         "par les trois régimes. Vise cinq ou six. Pour chacune, donne un exemple pour chaque régime.",
@@ -393,7 +393,7 @@ SCENES = [
 
     # ================================================================ le tableau des totalitarismes (1)
     dict(id="tableau1", chap="Le tableau des totalitarismes · prise du pouvoir et idéologie", fond="aube", humeur="calme",
-         retenir="Prise du pouvoir : Italie oct. 1922 (squadristi, puis le roi) · Allemagne 30 janv. 1933 (élections, Hindenburg, décret de l'incendie du Reichstag, loi des pleins pouvoirs) · URSS à partir de 1924, lutte au sein du parti, aucune voie électorale. Idéologie : même méthode ; nation · race · classe.",
+         retenir="Prise du pouvoir : Italie oct. 1922 (squadristi, le roi) · Allemagne 30 janv. 1933 (élections, Hindenburg, décret du Reichstag, pleins pouvoirs) · URSS dès 1924, lutte au sein du parti. Idéologie : même méthode ; nation · race · classe.",
          beats=[
         "{tb}Rassemblons tout dans le tableau des totalitarismes du cours, rempli jusqu'où le cours est allé. "
         "Il a cinq blocs. {tb.1}La prise du pouvoir. {tb.2}L'idéologie. {tb.3}La dictature. {tb.4}Le terrorisme d'État. {tb.5}Une société contrôlée. "
@@ -444,7 +444,7 @@ SCENES = [
 
     # ================================================================ le tableau des totalitarismes (2)
     dict(id="tableau2", chap="Le tableau des totalitarismes · dictature, terreur, société", fond="aube", humeur="calme",
-         retenir="Dictature : Duce / Führer / petit père · PNF / NSDAP / PCUS · faisceau / croix gammée / faucille et marteau. Terreur : OVRA et Tribunal spécial / Gestapo et SS / OGPU, NKVD, Goulag. Société : Balilla / Jeunesses hitlériennes / Komsomol. Blocs de la partie III encore à remplir.",
+         retenir="Dictature : Duce / Führer / petit père · PNF / NSDAP / PCUS · faisceau / croix gammée / faucille et marteau. Terreur : OVRA, Tribunal spécial / Gestapo, SS / NKVD, Goulag. Société : Balilla / Hitlerjugend / Komsomol. Partie III à remplir.",
          beats=[
         "{t5}Troisième bloc : la dictature. {t5.1}Le culte de la personnalité. Il Duce. Der Führer. "
         "Et le petit père des peuples, avec une ville rebaptisée Stalingrad en mille neuf cent vingt-cinq. "
@@ -500,7 +500,7 @@ SCENES = [
 
     # ================================================================ à toi : une réponse à une question problématisée
     dict(id="essai", chap="À toi · une question problématisée", fond="aube", humeur="calme",
-         retenir="« La terreur, principal instrument ? » : I. Oui, un instrument central et permanent (police, procès, camps, purges) · II. Mais jamais seule : propagande, culte, homme nouveau, confiance des masses (Arendt) · III. Inégale : l'Italie a légalisé plutôt qu'industrialisé. Réponse : un instrument essentiel, jamais le seul.",
+         retenir="Terreur, principal instrument ? I. Oui, central et permanent (police, camps) · II. Jamais seule : propagande, culte, homme nouveau, masses (Arendt) · III. Inégale : en Italie, légalisée plus qu'industrialisée. Essentielle, pas la seule.",
          beats=[
         "{ex2}Maintenant, une question problématisée. {!Dans quelle mesure}Dans quelle mesure la terreur a-t-elle été le principal instrument des régimes totalitaires ?",
         "{-ex2}{met}Rappelle-toi la méthode. {met.1}Dans quelle mesure, cela veut dire peser. Jamais totalement. Jamais pas du tout. "

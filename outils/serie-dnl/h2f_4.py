@@ -262,7 +262,7 @@ SCENES = [
 
     # ================================================================ h2cult : trois chefs, trois cultes
     dict(id="h2cult", chap="Schéma · Trois chefs, trois cultes", fond="aube", humeur="calme",
-         retenir="Même machine, trois contenus : Duce / Führer / petit père · « Il Duce ha sempre ragione » / « Heil Hitler » / « Merci, camarade Staline, pour notre enfance heureuse » · faisceau / croix gammée / faucille et marteau · portrait en aviateur / Riefenstahl / photographies retouchées.",
+         retenir="Même machine, trois contenus : Duce / Führer / petit père · « Il Duce ha sempre ragione » / « Heil Hitler » / « Merci, camarade Staline… » · faisceau / croix gammée / faucille et marteau · aviateur / Riefenstahl / photos retouchées.",
          beats=[
         "{c1}Passons au schéma du cours. Trois chefs, trois cultes, comparés ligne par ligne. "
         "{c1.1}D'abord, le nom. Il Duce. {c1.2}Der Führer. {c1.3}Le petit père des peuples.",
@@ -294,7 +294,7 @@ SCENES = [
 
     # ================================================================ II.2, idée 1 : produire un homme nouveau
     dict(id="nouveau", chap="II.2 · Pas des sujets obéissants : un homme nouveau", fond="nuit", humeur="lumiere",
-         retenir="Une dictature exige qu'on se taise ; un régime totalitaire exige qu'on change. Trois modèles : le Volk allemand, une race purifiée (loi de stérilisation, 1933) · le travailleur soviétique (Stakhanov, 1935) · le fasciste, fort et cultivé, au service du Parti.",
+         retenir="Une dictature exige qu'on se taise ; un régime totalitaire exige qu'on change. Trois modèles : le Volk, race purifiée (stérilisation, 1933) · le travailleur soviétique (Stakhanov, 1935) · le fasciste, fort et cultivé, au service du Parti.",
          beats=[
         "{cmp}Partie deux, point deux : le contrôle total de la société, et la fabrication d'un homme nouveau. Première idée. "
         "Qu'est-ce qui sépare un régime totalitaire d'une dictature ordinaire ? "
@@ -318,7 +318,7 @@ SCENES = [
 
     # ================================================================ II.2, idée 2 : la jeunesse
     dict(id="jeunesse", chap="II.2 · La jeunesse d'abord", fond="guerre", humeur="tension",
-         retenir="Balilla (1926) · Jeunesses hitlériennes, loi de 1936, ≈ 8 millions de membres en 1939 · Komsomol (1918). Mussolini : « Je prends les hommes au berceau… ». Hitler, 1938 : dix ans → Jungvolk (4 ans) → Jeunesses hitlériennes (4 ans) → Service du travail → Wehrmacht.",
+         retenir="Balilla (1926) · Jeunesses hitlériennes, loi de 1936, ≈ 8 millions en 1939 · Komsomol (1918). Mussolini : « Je prends les hommes au berceau… ». Hitler, 1938 : dix ans → Jungvolk → Jeunesses hitlériennes → Service du travail → Wehrmacht.",
          beats=[
         "{g6}{g6.1}Deuxième idée. La jeunesse d'abord. Pourquoi ? Parce qu'on peut façonner les enfants {!avant qu'ils sachent juger}avant qu'ils sachent juger. "
         "Les trois régimes ont créé des organisations de jeunesse, qui prenaient en charge le temps hors de l'école : "
@@ -372,7 +372,7 @@ SCENES = [
 
     # ================================================================ II.2, idée 4 : la loi
     dict(id="loi", chap="II.2 · La loi trie les êtres humains", fond="guerre", humeur="tension",
-         retenir="Lois de Nuremberg, 15 sept. 1935 : ni mariage ni relations entre Juifs et « personnes de sang allemand » ; citoyenneté selon l'ascendance. Tableau officiel : sang allemand · Mischling du 2e degré (1/4) · Mischling du 1er degré (1/2) · Juif (3/4 ou plus) : citoyenneté du Reich refusée.",
+         retenir="Lois de Nuremberg, 15 sept. 1935 : ni mariage ni relations entre Juifs et « personnes de sang allemand » ; citoyenneté selon l'ascendance. Sang allemand · Mischling 2e degré (1/4) · 1er degré (1/2) · Juif (≥ 3/4) : citoyenneté refusée.",
          beats=[
         "{def5}Quatrième idée. Dans l'Allemagne nazie, l'idéologie devient {!la loi}la loi. Prends les lois de Nuremberg, du quinze septembre mille neuf cent trente-cinq. "
         "Elles interdisent le mariage et les relations sexuelles entre Juifs et ce qu'elles appellent les personnes de sang allemand. "
@@ -431,7 +431,7 @@ SCENES = [
 
     # ================================================================ II.2, idée 6 : trois hommes nouveaux
     dict(id="trois", chap="II.2 · Trois hommes nouveaux pour trois buts suprêmes", fond="aube", humeur="calme",
-         retenir="Même méthode (enfants pris tôt, uniformes, camps, idéologie), idéaux différents : la race (fort, obéissant, « aryen », darwinisme social) · la classe (un travailleur instruit, qui a étudié Marx et Lénine) · la nation (prêt à combattre, de sang-froid, nourri de latin et de Plutarque, héritier de Rome).",
+         retenir="Même méthode (enfants pris tôt, uniformes, camps, idéologie), idéaux différents : la race (fort, obéissant, « aryen ») · la classe (un travailleur instruit, qui a étudié Marx et Lénine) · la nation (prêt à combattre, héritier de Rome).",
          beats=[
         "{nuage}Sixième idée. Trois hommes nouveaux, pour trois buts suprêmes. Le dossier documentaire sur la jeunesse compare les trois organisations. "
         "La méthode est la même. {nuage.1}Prendre les enfants tôt. {nuage.2}Des uniformes. {nuage.3}Des camps. {nuage.4}L'idéologie. Mais l'idéal diffère.",
@@ -458,7 +458,7 @@ SCENES = [
 
     # ================================================================ h2newman : le modèle et les moyens
     dict(id="h2newman", chap="Schéma · Fabriquer un « homme nouveau »", fond="aube", humeur="calme",
-         retenir="Modèle : serviteur du Parti / le Volk, l'eugénisme / le travailleur, le stakhanovisme · Jeunesse : Balilla / Jeunesses hitlériennes 10-18 ans / Komsomol · École : la race enseignée dès 1938 / enseignement racial 1933, Der Giftpilz / réalisme socialiste · Économie : corporatisme, autarcie après 1935 / réarmement, plan de quatre ans 1936 / plans quinquennaux, kolkhozes.",
+         retenir="Modèle : Parti / Volk, eugénisme / travailleur, stakhanovisme · Jeunesse : Balilla / Hitlerjugend / Komsomol · École : race dès 1938 / race dès 1933 / réalisme socialiste · Économie : corporatisme / plan de quatre ans / plans quinquennaux.",
          beats=[
         "{n1}Le second schéma montre comment fabriquer un homme nouveau : le modèle, et les moyens. Là encore, ligne par ligne. "
         "{n1.1}D'abord, le modèle. Un serviteur du Parti. {n1.2}Une race purifiée, et l'eugénisme. {n1.3}Un travailleur, et le stakhanovisme.",
@@ -493,7 +493,7 @@ SCENES = [
 
     # ================================================================ à toi : un paragraphe de réponse à une question problématisée
     dict(id="essai", chap="À toi · un paragraphe de question problématisée", fond="aube", humeur="calme",
-         retenir="Une idée directrice (un seul but, un homme nouveau) · la jeunesse (Balilla, Jeunesses hitlériennes, Komsomol ; Hitler 1938) · l'école et la loi (1933, lois de Nuremberg) · le travail (Stakhanov) · la phrase de conclusion (la transformation, pas seulement l'obéissance).",
+         retenir="Idée directrice (un seul but, un homme nouveau) · la jeunesse (Balilla, Jeunesses hitlériennes, Komsomol) · l'école et la loi (1933, Nuremberg) · le travail (Stakhanov) · conclusion : la transformation, pas seulement l'obéissance.",
          beats=[
         "{ex1}À toi. Voici une question problématisée, écrite pour cette vidéo : "
         "comment les régimes totalitaires ont-ils cherché à créer {!un homme nouveau}un homme nouveau ?",
@@ -527,7 +527,7 @@ SCENES = [
 
     # ================================================================ à toi : une analyse de document
     dict(id="dbq", chap="À toi · une analyse de document", fond="guerre", humeur="tension",
-         retenir="Analyse de document : présenter (nature, auteur, date) · situer dans le contexte · intérêt (le dictateur lui-même, toute la chaîne, l'intention) · limites (un discours, pas la réalité ; un seul régime ; pas de chiffres ; pas la voix des jeunes) · bilan critique.",
+         retenir="Analyse de document : présenter (nature, auteur, date) · contexte · intérêt (le dictateur lui-même, toute la chaîne, l'intention) · limites (un discours, pas la réalité ; un seul régime ; pas la voix des jeunes) · bilan critique.",
          beats=[
         "{ex2}Maintenant, une analyse de document, sur le document deux du dossier : le discours de Hitler de mille neuf cent trente-huit, qui décrit le parcours "
         "de la jeunesse allemande. La consigne : montrez ce que ce discours {!nous apprend}nous apprend sur l'encadrement des jeunes par le régime nazi, puis portez un regard critique sur ce document.",

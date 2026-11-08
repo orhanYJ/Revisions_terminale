@@ -248,7 +248,7 @@ SCENES = [
 
     # ================================================================ stalinisme, idée 8
     dict(id="sta8", chap="Le stalinisme · la lutte des classes pour moteur", fond="nuit", humeur="tension",
-         retenir="Le marxisme : l'histoire = la lutte des classes, qui aboutit à une société sans classes, sans propriété, sans profit. Le plan quinquennal (1928) : une URSS industrielle, indépendante du capitalisme mondial, et débarrassée des derniers éléments capitalistes.",
+         retenir="Marxisme : l'histoire = la lutte des classes, vers une société sans classes, sans propriété, sans profit. Plan quinquennal (1928) : une URSS industrielle, indépendante du capitalisme mondial, débarrassée des derniers éléments capitalistes.",
          beats=[
         "{g5}{g5.1}Passons au stalinisme. Idée huit. L'idéologie soviétique est marxiste. L'histoire est une {!lutte des classes}lutte des classes. "
         "Et elle aboutit à une société sans classes, sans propriété privée, et sans profit.",
@@ -323,7 +323,7 @@ SCENES = [
 
     # ================================================================ stalinisme, idée 11
     dict(id="sta11", chap="Le stalinisme · l'Holodomor", fond="guerre", humeur="tension",
-         retenir="Grain réquisitionné quelle que soit la récolte · brigades de la Guépéou pour « prendre le grain » · Molotov et Kaganovitch : villages « rebelles » privés de tout ravitaillement · sept. 1932 : 32 % de l'objectif, 25 oct. : 22 % · l'Holodomor, 1932-1933.",
+         retenir="Grain réquisitionné quelle que soit la récolte · brigades de la Guépéou · Molotov et Kaganovitch : villages « rebelles » privés de tout ravitaillement · sept. 1932 : 32 % de l'objectif, 25 oct. : 22 % · l'Holodomor, 1932-1933.",
          beats=[
         "{g7}{g7.1}Idée onze : le résultat. Ukraine, mille neuf cent trente-deux. Le grain est {!réquisitionné}réquisitionné, quelle que soit la récolte. "
         "Cela se fait étape par étape. {hol}{hol.1}Les paysans résistent. Ils cachent du grain dans des fosses, et dans des greniers secrets. "

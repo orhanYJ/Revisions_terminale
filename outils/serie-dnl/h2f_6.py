@@ -112,7 +112,7 @@ SCENES = [
 
     # ================================================================ III. la guerre, valeur centrale (idée 1)
     dict(id="valeur", chap="La guerre : une valeur centrale", fond="guerre", humeur="tension",
-         retenir="La guerre n'est pas un accident mais une valeur centrale : le fascisme glorifie la guerre, le nazisme a besoin d'espace vital, le militarisme japonais voit l'expansion comme une mission. L'agression à l'extérieur = le prolongement logique du régime à l'intérieur.",
+         retenir="La guerre n'est pas un accident mais une valeur centrale : le fascisme la glorifie, le nazisme a besoin d'espace vital, le militarisme japonais voit l'expansion comme une mission. L'agression au-dehors prolonge le régime au-dedans.",
          beats=[
         "{q4}Passons au cours, idée par idée. Voici la question de cette partie. Pourquoi le recours à la guerre était-il si fondamental pour ces régimes ?",
         "{-q4}{def1}Le cours donne une réponse claire. La guerre n'était pas un accident de la politique totalitaire. "
@@ -237,7 +237,7 @@ SCENES = [
 
     # ================================================================ VII. Mein Kampf (idée 5)
     dict(id="meinkampf", chap="Mein Kampf : conquérir l'Est", fond="guerre", humeur="tension",
-         retenir="Mein Kampf (1925-1926), chapitre « Politique orientale » (vol. 2) : conquérir les terres slaves, y installer des Allemands en race de seigneurs, déporter les Russes en Sibérie, réduire les autres en esclavage. Une vieille devise : Drang nach Osten.",
+         retenir="Mein Kampf (1925-1926), « Politique orientale » (vol. 2) : conquérir les terres slaves, y installer des Allemands en race de seigneurs, déporter les Russes en Sibérie, réduire les autres en esclavage. Une vieille devise : Drang nach Osten.",
          beats=[
         "{nt1}Hitler fait de l'espace vital un plan. Mein Kampf paraît en mille neuf cent vingt-cinq. "
         "Dans le second volume, tout un chapitre lui est consacré : Politique orientale. Hitler y annonce{-nt1}",
@@ -285,7 +285,7 @@ SCENES = [
 
     # ================================================================ IX. le Japon : la race (idée 7)
     dict(id="japon2", chap="Le Japon (2) : la dimension raciale", fond="nuit", humeur="mystere",
-         retenir="Le Japon, côté racial : une « race supérieure » destinée à diriger l'Asie ; le panasiatisme, un « ordre nouveau en Asie orientale ». Le ressentiment : la clause d'égalité raciale rejetée en avril 1919. Hirohito en uniforme ; le drapeau au soleil levant.",
+         retenir="Le Japon, côté racial : une « race supérieure » destinée à diriger l'Asie ; le panasiatisme, un « ordre nouveau en Asie orientale ». Le ressentiment : clause d'égalité raciale rejetée en avril 1919. Hirohito en uniforme ; le soleil levant.",
          beats=[
         "{def7}La seconde dimension est raciale. L'impérialisme japonais est nourri par un fort sentiment de supériorité raciale. "
         "{def7.1}Son nom : le panasiatisme. Le Japon se voit comme une race asiatique supérieure. Il devrait donc, selon lui, libérer les territoires asiatiques "
@@ -340,7 +340,7 @@ SCENES = [
 
     # ================================================================ XI. Nankin annonce la guerre mondiale (idée 9)
     dict(id="nankin2", chap="Nankin annonce la guerre mondiale", fond="guerre", humeur="tension",
-         retenir="Nankin (déc. 1937 – janv. 1938) concentre les traits de la Seconde Guerre mondiale : une idéologie violente et raciste ; expansionnisme et militarisme ; davantage de violence ; les civils pris pour cibles. ≈ 200 000 (tribunal de Tokyo) à 300 000 (Chine) tués. Une raison de dater la guerre de 1937.",
+         retenir="Nankin (déc. 1937 – janv. 1938) concentre les traits de la guerre : idéologie raciste, expansionnisme, militarisme, civils pris pour cibles. ≈ 200 000 (tribunal de Tokyo) à 300 000 (Chine) tués. Une raison de dater la guerre de 1937.",
          beats=[
         "{q6}Pourquoi Nankin est-il une étude de cas ? Parce qu'il concentre ce que deviendra la guerre mondiale.",
         "{-q6}{trait}Il montre quatre traits. {trait.1}Une idéologie violente et raciste. {trait.2}L'expansionnisme et le militarisme. "
@@ -366,7 +366,7 @@ SCENES = [
 
     # ================================================================ XII. la grille de synthèse
     dict(id="grille", chap="Remplir la grille : les enjeux internationaux", fond="aube", humeur="calme",
-         retenir="Volonté d'expansion : Italie → l'empire de Rome, la Libye, l'Éthiopie · Allemagne → le Lebensraum à l'Est · Japon → la Mandchourie, la Chine. Sentiment de supériorité : la gloire de Rome · la race des seigneurs · la race asiatique « supérieure ».",
+         retenir="Expansion : Italie → l'empire de Rome, la Libye, l'Éthiopie · Allemagne → le Lebensraum à l'Est · Japon → la Mandchourie, la Chine. Sentiment de supériorité : la gloire de Rome · la race des seigneurs · la race asiatique « supérieure ».",
          beats=[
         "Tu te souviens de la grille de synthèse du cours, vue dans l'épisode trois ? Son bloc Enjeux internationaux a deux lignes, encore vides. "
         "Avec cette partie, tu peux les remplir. {gr}{gr.1}Première ligne : la volonté d'expansion. Pour l'Italie, un empire au nom de Rome : la Libye, puis l'Éthiopie. "
@@ -460,7 +460,7 @@ SCENES = [
 
     # ================================================================ XV. paragraphe de réponse à la grande question du chapitre
     dict(id="essai", chap="À toi · un paragraphe de question problématisée", fond="aube", humeur="calme",
-         retenir="Grande question du chapitre, argument 1 : les idéologies totalitaires ont fait de la guerre une valeur et de l'expansion un but — l'Éthiopie 1935 (Rome), le Lebensraum (Ratzel 1901, Mein Kampf 1925), le Japon (Mandchourie 1931, Nankin 1937). Nuance : les démocraties ont laissé faire (épisode 7).",
+         retenir="Argument 1 : les totalitarismes font de la guerre une valeur, de l'expansion un but — l'Éthiopie 1935 (Rome), le Lebensraum (Ratzel 1901, Mein Kampf 1925), le Japon (Mandchourie 1931, Nankin 1937). Nuance : les démocraties laissent faire.",
          beats=[
         "{ex2}Un dernier exercice. C'est la grande question du chapitre. "
         "Quel rôle les régimes totalitaires ont-ils joué dans l'effondrement de la paix mondiale à la fin des années trente ?",
