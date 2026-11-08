@@ -52,7 +52,7 @@ window.TYPES_A = O => {
   // double hélice d'ADN qui tourne
   function helice(p, t) {
     const lt = t - p.a, k = eo(pr(t, p.a, .5));
-    for (let i = 0; i < 26; i++) {
+    for (let i = 0; i < 24; i++) {
       const y = 480 + i * 34, ph = i * .45 + lt * 3, a = Math.sin(ph) * 230 * k, b = -a, z = Math.cos(ph);
       g.strokeStyle = 'rgba(239,230,210,.35)'; g.lineWidth = 6; g.beginPath(); g.moveTo(W / 2 + a, y); g.lineTo(W / 2 + b, y); g.stroke();
       g.fillStyle = z > 0 ? OR : '#8a7440'; g.beginPath(); g.arc(W / 2 + a, y, 14, 0, 7); g.fill();
@@ -103,7 +103,7 @@ window.TYPES_A = O => {
   function bacteries(p, t) {
     const cx = W / 2, cy = 860, R = 380, lt = t - p.a;
     g.fillStyle = 'rgba(158,195,214,.06)'; g.strokeStyle = CREME; g.lineWidth = 8; g.beginPath(); g.arc(cx, cy, R, 0, 7); g.fill(); g.stroke();
-    const tue = p.etape === 2 ? eo(pr(t, p.a + .2, 1.2)) : 0;
+    const tue = p.etape === 2 ? eo(pr(t, p.a + .1, .9)) : 0;
     if (p.etape === 2) { g.fillStyle = 'rgba(158,195,214,.18)'; g.beginPath(); g.arc(cx, cy, R * tue, 0, 7); g.fill(); }
     for (let i = 0; i < 34; i++) {
       const a = rnd(i * 3.1) * 6.283, r = Math.sqrt(rnd(i * 7.7 + 1)) * (R - 70), x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r, rot = rnd(i * 5.3) * 3;
@@ -122,7 +122,7 @@ window.TYPES_A = O => {
   function tubes(p, t) {
     const e = p.etape || 1, lt = t - p.a;
     const gen = e === 1 ? 0 : e === 2 ? Math.min(19, Math.floor(lt / 1.8 * 19)) : 19;
-    O.petitTitre(e === 1 ? '— 107 POPULATIONS · 16 DROSOPHILES —' : `— GÉNÉRATION ${gen} —`, 380, e >= 3 ? CREME : OR);
+    O.petitTitre(e === 1 ? '— 107 POPULATIONS —' : `— GÉNÉRATION ${gen} —`, 380, e >= 3 ? CREME : OR);
     for (let i = 0; i < 107; i++) {
       const c = i % 15, r = Math.floor(i / 15), x = 106 + c * 62, y = 470 + r * 108;
       const kin = e === 1 ? back(pr(t, p.a + i * .006, .25)) : 1; if (kin <= 0) continue;
@@ -134,8 +134,8 @@ window.TYPES_A = O => {
       if (perdu) { g.strokeStyle = ROUGE; g.lineWidth = 5; g.beginPath(); g.moveTo(-14, -14); g.lineTo(14, 14); g.moveTo(14, -14); g.lineTo(-14, 14); g.stroke(); }
       g.restore();
     }
-    S.texte('schéma : simulation du protocole de Buri', W / 2, 1290, { taille: 32, police: 'Spectral', it: true, poids: 400, coul: GRIS });
-    if (e === 1) deux(p.t || '0,5 AU DÉPART|PARTOUT', 1440, 100);
+    S.texte('schéma : simulation du protocole de Buri', W / 2, 1312, { taille: 32, police: 'Spectral', it: true, poids: 400, coul: GRIS });
+    if (e === 1) deux(p.t || '16 DROSOPHILES|PAR POPULATION', 1440, 100);
     else if (e === 2) deux('LE HASARD|SEUL', 1440, 110);
     else if (e === 3) deuxR('L’ALLÈLE|A DISPARU', 1440, 110);
     else deux('ICI, IL EST|LE SEUL', 1440, 110);
@@ -162,7 +162,7 @@ window.TYPES_A = O => {
   // conjugaison : étape 1 un pont se forme ; étape 2 une copie du plasmide passe
   function conjugaison(p, t) {
     const lt = t - p.a, kp = p.etape === 2 ? 1 : eo(pr(t, p.a + .2, .7));
-    O.petitTitre('— DEUX ESPÈCES DE BACTÉRIES —', 420);
+    O.petitTitre('— DEUX ESPÈCES —', 420);
     g.strokeStyle = CREME; g.lineWidth = 22; g.lineCap = 'round'; g.beginPath(); g.moveTo(400, 860); g.lineTo(lerp(400, 680, kp), 860); g.stroke();
     bacterie(270, 860, 170, 0, OR, { chromo: true });
     bacterie(810, 860, 170, 0, BLEU, { chromo: true, plasmide: p.etape === 2 && t >= p.a + 1.2 });

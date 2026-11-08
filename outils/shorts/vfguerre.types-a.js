@@ -114,7 +114,7 @@ window.TYPES_A = O => {
 
   // une bulle de commentaire qui s'écrit
   function commentaire(p, t) {
-    const k = back(pr(t, p.a, .3)), txt = 'J’en ai eu 4 sur 5 !', n = Math.floor(cl((t - p.a - .3) / .8) * txt.length);
+    const k = back(pr(t, p.a, .3)), txt = 'Mon score : … / 5', n = Math.floor(cl((t - p.a - .3) / .8) * txt.length);
     g.save(); g.translate(W / 2, 860); g.scale(k, k);
     g.fillStyle = CREME; g.beginPath(); g.roundRect(-430, -170, 860, 340, 50); g.fill();
     g.beginPath(); g.moveTo(-300, 165); g.lineTo(-340, 260); g.lineTo(-220, 165); g.fill();

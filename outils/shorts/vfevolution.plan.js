@@ -17,7 +17,7 @@ window.PLAN = S => S.plans([
   // r2 « Faux ! Les mutations arrivent au hasard, avant. L'antibiotique sélectionne celles qui résistaient déjà. »
   { a: ['r2', 'mutations'], type: 'bacteries' },
   { a: ['r2', "l'antibiotique"], type: 'bacteries', etape: 2, choc: true },
-  { a: ['r2', 'celles'], type: 'portrait', img: 'antibio', t: 'DÉJÀ RÉSISTANTES', sous: 'pas de halo : la souche résiste' },
+  { a: ['r2', 'résistaient'], av: .15, type: 'portrait', img: 'antibio', t: 'DÉJÀ RÉSISTANTES', sous: 'pas de halo : la souche résiste' },
   // q3 « Trois. Une population peut évoluer par pur hasard. Vrai… ou faux ? »
   { a: ['q3', 0], av: .15, type: 'vraifaux', n: '3 / 5', t: 'Une population|peut évoluer|par pur hasard', rep: ['r3', 0], v: true, expl: 'C’est la dérive génétique' },
   // r3 « Vrai ! C'est la dérive. En 1956, Buri suit 107 populations de 16 drosophiles, sans aucune sélection. »
@@ -29,7 +29,7 @@ window.PLAN = S => S.plans([
   { a: ['r3b', 'disparu'], type: 'tubes', etape: 3, choc: true },
   { a: ['r3b', 'dans'], type: 'tubes', etape: 4 },
   // q4 « Quatre. Deux animaux qui se ressemblent sont forcément de la même espèce. Vrai… ou faux ? »
-  { a: ['q4', 0], av: .15, type: 'vraifaux', n: '4 / 5', t: 'Deux animaux qui|se ressemblent sont forcément|de la même espèce', rep: ['r4', 0], v: false, expl: 'La ressemblance peut tromper', ch: 3 },
+  { a: ['q4', 0], av: .15, type: 'vraifaux', n: '4 / 5', t: 'Deux animaux|qui se ressemblent|sont forcément|de la même espèce', rep: ['r4', 0], v: false, expl: 'La ressemblance peut tromper', ch: 3 },
   // r4 « Faux ! Deux fourmis des bois ont longtemps été confondues. En 1996, leur ADN a révélé deux espèces. »
   { a: ['r4', 'deux'], type: 'fourmis', etape: 0 },
   { a: ['r4', 'longtemps'], type: 'fourmis', etape: 1 },

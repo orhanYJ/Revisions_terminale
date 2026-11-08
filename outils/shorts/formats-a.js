@@ -9,7 +9,9 @@
 // fiche    : fiche résumé. Champs : t (titre), sur (petit sur-titre), items = [[repère, texte, sous], …]
 //            (5 au plus, chacun coché à son repère).
 // vraifaux : une affirmation, un chrono, le verdict. Champs : n ('1 / 5'), t (affirmation, « | » = retour à la ligne),
-//            rep (repère du verdict), v (true = VRAI, false = FAUX), expl (explication courte, après le verdict).
+//            rep (repère du verdict), v (true = VRAI, false = FAUX), expl (explication courte, après le verdict),
+//            chrono (repère où le compte à rebours démarre, par ex. [passage, 'vrai'] ; sinon dès le début du plan),
+//            doux: true (verdict sans buzzer, pour un sujet grave).
 window.FORMATS_A = O => {
   const { g, W, H, cl, lerp, pr, eo, back, rnd } = S;
   const { NOIR, CREME, OR, ROUGE, GRIS } = O.C;
@@ -71,15 +73,16 @@ window.FORMATS_A = O => {
     const L = p.t.split('|'); L.forEach((s, i) => S.texte(s, 0, (i - (L.length - 1) / 2) * 76, { taille: 60, police: 'Spectral', poids: 600, coul: NOIR, max: 840 }));
     g.restore();
     // chrono
-    if (avant) {
-      const tot = Math.max(.6, tr - p.a), u = cl((t - p.a) / tot), reste = Math.ceil((tr - t));
+    const tc = p.chrono ? tps(p.chrono) : p.a;
+    if (avant && t >= tc) {
+      const tot = Math.max(.6, tr - tc), u = cl((t - tc) / tot), reste = Math.ceil((tr - t));
       g.save(); g.translate(W / 2, 1060); g.strokeStyle = 'rgba(239,230,210,.2)'; g.lineWidth = 18; g.beginPath(); g.arc(0, 0, 110, 0, 7); g.stroke();
       g.strokeStyle = u > .7 ? ROUGE : OR; g.beginPath(); g.arc(0, 0, 110, -Math.PI / 2, -Math.PI / 2 + (1 - u) * 6.283); g.stroke();
       S.texte(String(Math.max(0, reste)), 0, 4, { taille: 110, coul: CREME }); g.restore();
       // les deux boutons
       [['VRAI', -230, VERT], ['FAUX', 230, ROUGE]].forEach(([s, dx, c]) => { g.save(); g.translate(W / 2 + dx, 1350); g.strokeStyle = c; g.lineWidth = 6;
         g.beginPath(); g.roundRect(-180, -70, 360, 140, 30); g.stroke(); S.texte(s, 0, 4, { taille: 72, coul: c }); g.restore(); });
-    } else {
+    } else if (!avant) {
       const kv = pr(t, tr, .3), c = p.v ? VERT : ROUGE;
       O.tampon(p.v ? 'VRAI' : 'FAUX', W / 2, 1080, kv, -.08, 190, c);
       if (p.expl) { const ke = eo(pr(t, tr + .35, .35)); g.save(); g.globalAlpha = ke;
@@ -94,8 +97,9 @@ window.SONS_FORMATS = (p, L) => {
   if (p.type === 'copie') { L.push([p.a, 'papier', .5]); (p.lignes || []).forEach(([a]) => L.push([tps(a), 'stylo', .35])); }
   if (p.type === 'fiche') (p.items || []).forEach(([a]) => L.push([tps(a), 'valide', .5]));
   if (p.type === 'vraifaux') {
-    const tr = tps(p.rep); for (let x = p.a + .1; x < tr - .05; x += 1) L.push([x, 'tic', .5]);
-    L.push([tr, p.v ? 'valide' : 'buzz', .9]);
+    const tr = tps(p.rep), tc = p.chrono ? tps(p.chrono) : p.a;
+    for (let x = tc + .1; x < tr - .05; x += 1) L.push([x, 'tic', .5]);
+    L.push([tr, p.v ? 'valide' : (p.doux ? 'gong' : 'buzz'), p.doux ? .5 : .9]);
   }
 };
 window.TYPES_FORMATS = ['copie', 'fiche', 'vraifaux'];

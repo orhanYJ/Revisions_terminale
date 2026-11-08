@@ -26,7 +26,7 @@ window.TYPES_A = O => {
 
   // courbe de la Bourse qui monte puis s'effondre (Wall Street, octobre 1929)
   function krach(p, t) {
-    O.petitTitre('— WALL STREET · OCTOBRE 1929 —', 420);
+    O.petitTitre('— WALL STREET · OCT. 1929 —', 420);
     g.strokeStyle = 'rgba(239,230,210,.25)'; g.lineWidth = 3;
     for (let y = 600; y <= 1200; y += 100) { g.beginPath(); g.moveTo(110, y); g.lineTo(970, y); g.stroke(); }
     const pts = []; for (let i = 0; i <= 60; i++) { const u = i / 60, x = lerp(120, 960, u);
@@ -175,7 +175,7 @@ window.TYPES_A = O => {
 
   // le commerce mondial perd environ deux tiers de sa valeur (1929 → 1934)
   function commerce(p, t) {
-    O.petitTitre('— COMMERCE MONDIAL, EN VALEUR —', 400);
+    O.petitTitre('— COMMERCE MONDIAL —', 400);
     const k = eo(pr(t, p.a + .15, .9)), base = 1180, hmax = 640;
     const barre = (x, h, coul, lab) => { g.fillStyle = coul; g.fillRect(x - 130, base - h, 260, h); g.strokeStyle = CREME; g.lineWidth = 5; g.strokeRect(x - 130, base - h, 260, h);
       S.texte(lab, x, base + 60, { taille: 60, police: 'Spectral', poids: 600, coul: CREME }); };

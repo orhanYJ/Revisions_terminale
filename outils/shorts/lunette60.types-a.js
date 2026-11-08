@@ -90,7 +90,7 @@ window.TYPES_A = O => {
     const kf1 = p.f1 ? eo(pr(t, tps(p.f1), .3)) : 0, kf2 = p.f2 ? eo(pr(t, tps(p.f2), .3)) : 0;
     if (kf1 > 0) { point(XF, Y0, OR, 12 * kf1); pop(kf1, XF - 10, Y0 - 60, () => lab('F′₁', 0, 0, OR, 50)); }
     if (kf2 > 0) { pop(kf2, XF + 70, Y0 + 60, () => lab('F₂', 0, 0, BLEU, 50)); }
-    if (kf1 >= 1 && kf2 >= 1 && p.egal) { const k = back(pr(t, tps(p.egal), .3)); pop(pr(t, tps(p.egal), .3), W / 2, 520, () => S.texte('F′₁ = F₂', 0, 0, { taille: 110, coul: OR, contour: NOIR, contourL: 12 })); }
+    if (p.egal && t >= tps(p.egal)) { pop(pr(t, tps(p.egal), .3), W / 2, 520, () => S.texte('F′₁ = F₂', 0, 0, { taille: 110, coul: OR, contour: NOIR, contourL: 12 })); }
     // sens de propagation : ça descend, puis ça remonte
     if (p.fleches) {
       pop(pr(t, p.a + .3, .3), 330, 420, () => { lab('↘', 0, 0, OR, 110); lab('ENTRENT EN DESCENDANT', 0, 90, CREME, 34); });
