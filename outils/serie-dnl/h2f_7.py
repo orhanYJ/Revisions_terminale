@@ -120,8 +120,8 @@ SCENES = [
         "{eu.3}Et l'Union soviétique, immense et isolée.",
         "{-eu}{sdn}Entre eux, la Société des Nations. Elle a été créée en mille neuf cent dix-neuf pour empêcher les agressions. "
         "{sdn.1}Mais chaque fois que les grandes puissances ne la soutiennent pas, elle {!ne peut pas agir}ne peut pas agir.",
-        "{-sdn}{low1}Le dessinateur britannique David Low a fait de cet échec son sujet. En juillet mille neuf cent trente-cinq, "
-        "Mussolini prépare l'invasion de l'Abyssinie. Low dessine {low1.1}trois singes, assis sur le trône du droit international. "
+        "{-sdn}Le dessinateur britannique David Low a fait de cet échec son sujet. En juillet mille neuf cent trente-cinq, "
+        "Mussolini prépare l'invasion de l'Abyssinie. Low dessine {low1}{low1.1}trois singes, assis sur le trône du droit international. "
         "L'un se cache les yeux. L'autre les oreilles. Le troisième la bouche. {low1.2}Ne rien voir de l'Abyssinie. N'en rien entendre. N'en rien dire.",
     ], vis={
         "eu": dict(type="liste", titre="L'Europe des années 1930 : trois camps", cles=["démocraties", "dictatures", "isolé"], items=[
@@ -164,9 +164,9 @@ SCENES = [
         "avec l'Italie, contre les ambitions allemandes. {sf}{sf.1}C'est un calcul qui pèse sur toute la suite. "
         "{sf.2}Pour garder Mussolini loin de Hitler, Londres et Paris hésitent à le punir pour l'Abyssinie. "
         "{sf.3}Et le front s'effondre quand même. L'Italie se tourne vers l'Allemagne.",
-        "{-sf}{-g3}{wm}Quatrième idée. L'Allemagne viole ouvertement le traité de Versailles. À partir de mille neuf cent trente-cinq, elle réarme massivement. "
+        "{-sf}{-g3}Quatrième idée. L'Allemagne viole ouvertement le traité de Versailles. À partir de mille neuf cent trente-cinq, elle réarme massivement. "
         "Elle crée une force armée unique, la {!Wehrmacht}Wehrmacht, avec trois branches. "
-        "{wm.1}L'armée de terre, la Heer. {wm.2}La marine, la Kriegsmarine. {wm.3}Et l'armée de l'air, la Luftwaffe. "
+        "{wm}{wm.1}L'armée de terre, la Heer. {wm.2}La marine, la Kriegsmarine. {wm.3}Et l'armée de l'air, la Luftwaffe. "
         "Chaque violation impunie rend la suivante plus facile.",
         "{-wm}{pct}Voici l'exemple. En juin mille neuf cent trente-cinq, deux mois après Stresa, le Royaume-Uni signe seul un accord naval avec l'Allemagne. "
         "Il autorise la Kriegsmarine à atteindre {!35 %}trente-cinq pour cent du tonnage de la Royal Navy. "
@@ -190,8 +190,8 @@ SCENES = [
         "Et ceux de son homologue français, Édouard Daladier. Tous deux cherchent à éviter la guerre en acceptant les exigences des puissances de l'Axe. "
         "{def1.1}Ce faisant, les démocraties renoncent aux buts qu'elles s'étaient fixés en mille neuf cent dix-neuf. L'Allemagne, l'Italie et le Japon ne sont pas arrêtés. "
         "Pourtant, leur militarisme contredit ouvertement les traités de paix.",
-        "{-def1}{-photo1}{ced}Voici la première colonne du schéma du cours : ce que l'apaisement a cédé. "
-        "{ced.1}En mille neuf cent trente-cinq, l'accord naval germano-britannique. "
+        "{-def1}{-photo1}Voici la première colonne du schéma du cours : ce que l'apaisement a cédé. "
+        "{ced}{ced.1}En mille neuf cent trente-cinq, l'accord naval germano-britannique. "
         "{ced.2}La même année, le Royaume-Uni refuse un embargo sur le pétrole. C'était la seule sanction qui aurait arrêté Mussolini en Éthiopie. "
         "{ced.3}En mars mille neuf cent trente-six, aucune réaction quand Hitler envoie ses troupes dans la Rhénanie démilitarisée. "
         "{ced.4}Et en mille neuf cent trente-huit, Munich. Les Sudètes sont livrées, sans les Tchèques.",
@@ -210,7 +210,7 @@ SCENES = [
 
     # ================================================================ III.2, idée 6 : pourquoi l'apaisement
     dict(id="pourquoi", chap="III.2 · Pourquoi l'apaisement semblait raisonnable", fond="aube", humeur="calme",
-         retenir="Sept raisons : le pacifisme (1914-1918 ; l'Oxford Union, févr. 1933) · le Commonwealth (le Canada) · un empire à tenir (l'Inde) · une Allemagne maltraitée en 1919 · la Dépression d'abord · l'isolationnisme américain · la peur du communisme. Discrédité aujourd'hui, populaire à l'époque.",
+         retenir="Sept raisons : le pacifisme (Oxford Union, 1933) · le Commonwealth · l'empire (l'Inde) · une Allemagne maltraitée en 1919 · la Dépression d'abord · l'isolationnisme américain · la peur du communisme. Discrédité aujourd'hui, populaire à l'époque.",
          beats=[
         "{qw}Sixième idée. Aujourd'hui, on voit souvent dans l'apaisement une politique de faiblesse. Mais à l'époque, il est populaire. Et il paraît pragmatique. "
         "{-qw}{wh}La deuxième colonne du schéma donne sept raisons. "
@@ -269,7 +269,7 @@ SCENES = [
 
     # ================================================================ analyse de document : le télégramme de Roosevelt (DBQ 2)
     dict(id="dbq2", chap="Analyse de document · le télégramme de Roosevelt", fond="aube", humeur="calme",
-         retenir="Le télégramme de Roosevelt (14 avril 1939) : d'un grand intérêt pour la réponse américaine au printemps 1939 (auteur, date, méthode : une « assurance » sans sanction, un bilan des échecs, une diplomatie publique) · limites : une seule démocratie, neutre, aucun résultat, rien sur les lois de neutralité, un texte écrit pour être publié.",
+         retenir="Le télégramme de Roosevelt (14 avril 1939) · intérêt : l'auteur, la date, une « assurance » sans sanction, une diplomatie publique · limites : une seule démocratie, neutre, sans résultat, muette sur les lois de neutralité, écrite pour être publiée.",
          beats=[
         "{doc2}Voici maintenant un document du chapitre. {doc2.1}C'est un télégramme du président Roosevelt à Hitler, "
         "daté du quatorze avril mille neuf cent trente-neuf. Le même texte est envoyé à Mussolini. "
@@ -311,7 +311,7 @@ SCENES = [
 
     # ================================================================ III.3, idées 1 et 2 : l'Axe et l'Espagne
     dict(id="axe", chap="III.3 · L'Axe et la guerre d'Espagne", fond="guerre", humeur="tension",
-         retenir="25 oct. 1936 : l'Axe Rome-Berlin, une alliance d'intérêt entre deux dictateurs qui se méfient l'un de l'autre (pacte d'Acier 1939, le Japon 1940). Espagne 1936 : l'Allemagne et l'Italie soutiennent Franco, la Luftwaffe s'y essaie ; la France et le Royaume-Uni restent à l'écart.",
+         retenir="25 oct. 1936 : l'Axe Rome-Berlin, une alliance d'intérêt (pacte d'Acier 1939, le Japon 1940). Espagne 1936 : l'Allemagne et l'Italie soutiennent Franco, la Luftwaffe s'y essaie ; la France et le Royaume-Uni restent à l'écart.",
          beats=[
         "{g5}{g5.1}Partie trois point trois : la marche à la Seconde Guerre mondiale. Première idée, l'Axe. Hitler a besoin d'alliés. "
         "Il en trouve un en Mussolini, malgré un certain mépris réciproque. "
@@ -345,7 +345,7 @@ SCENES = [
 
     # ================================================================ III.3, idée 3 : la Rhénanie
     dict(id="rhenanie", chap="III.3 · La Rhénanie, 1936", fond="nuit", humeur="tension",
-         retenir="7 mars 1936 : un risque calculé. Des troupes trop faibles pour résister à l'armée française, avec l'ordre de se retirer si la France réagissait. Aucune réaction : le pari réussit, et apprend à Hitler que les démocraties céderont. Low, « Les marchepieds de la gloire » (1936).",
+         retenir="7 mars 1936 : un risque calculé. Des troupes trop faibles face à l'armée française, avec l'ordre de se retirer si la France réagissait. Aucune réaction : le pari réussit, et Hitler apprend que les démocraties céderont.",
          beats=[
         "{g7}{g7.1}Troisième idée : la Rhénanie, le sept mars mille neuf cent trente-six. Réoccuper cette zone démilitarisée est un risque calculé.",
         "{rh}{rh.1}Les troupes allemandes ne sont pas assez fortes pour résister à l'armée française, si la France réagit. "
@@ -421,7 +421,7 @@ SCENES = [
 
     # ================================================================ III.3, idée 6 : le pacte germano-soviétique
     dict(id="pacte", chap="III.3 · Le pacte germano-soviétique", fond="guerre", humeur="tension",
-         retenir="23 août 1939 : un pacte de non-agression ; en secret, le partage de la Pologne. Hitler : pas de guerre sur deux fronts. Staline, son armée décimée par les purges : du temps et des territoires. 1er sept. 1939 : la Pologne attaquée ; 3 sept. : la France et le Royaume-Uni déclarent la guerre.",
+         retenir="23 août 1939 : un pacte de non-agression et, en secret, le partage de la Pologne. Hitler évite deux fronts ; Staline, l'armée décimée par les purges, gagne du temps. 1er sept. : la Pologne attaquée ; 3 sept. : la guerre.",
          beats=[
         "{g10}{g10.1}Sixième idée. Le vingt-trois août mille neuf cent trente-neuf, l'Allemagne signe un pacte de non-agression avec l'Union soviétique. "
         "Ses clauses secrètes prévoient de se partager la Pologne. Deux ennemis idéologiques concluent un accord de {!pur intérêt}pur intérêt.",
@@ -449,7 +449,7 @@ SCENES = [
 
     # ================================================================ III.3, idée 7 : la chaîne
     dict(id="chaine", chap="III.3 · Chaque agression prépare la suivante", fond="nuit", humeur="tension",
-         retenir="La chaîne : 1931 la Mandchourie · 1933 l'Allemagne et le Japon quittent la SDN · 1935 l'Éthiopie · 1936 la Rhénanie, l'Espagne · 1937 la Chine, l'Italie quitte la SDN · 1938 l'Anschluss, Munich · mars 1939 Prague · 1er sept. 1939 la Pologne. L'idéologie = la volonté ; la réticence des démocraties = l'occasion.",
+         retenir="La chaîne : 1931 Mandchourie · 1933 départs de la SDN · 1935 Éthiopie · 1936 Rhénanie, Espagne · 1937 Chine · 1938 Anschluss, Munich · mars 1939 Prague · 1er sept. 1939 Pologne. L'idéologie = la volonté ; les démocraties = l'occasion.",
          beats=[
         "{st}Septième idée : la conséquence de l'apaisement. Montons les marches de David Low, comme le fait le schéma du cours. "
         "{st.1}{st.2}Mille neuf cent trente et un : la Mandchourie. Aucune sanction. "
@@ -480,7 +480,7 @@ SCENES = [
 
     # ================================================================ à toi : analyse du discours de l'Obersalzberg (DBQ 3 a)
     dict(id="dbq3a", chap="À toi · analyse de document", fond="guerre", humeur="tension",
-         retenir="Le discours de l'Obersalzberg (22 août 1939) : Hitler à ses commandants en chef, dix jours avant la Pologne · intérêt : un auditoire fermé, la date, une guerre préparée, sa lecture des démocraties, un quasi-silence sur le Lebensraum · limites : des notes d'auditeurs (798-PS), le but du discours, une cause immédiate et non profonde, des silences, une intention seulement.",
+         retenir="Le discours de l'Obersalzberg (22 août 1939) · intérêt : un auditoire fermé, la date, une guerre préparée, sa lecture des démocraties · limites : des notes d'auditeurs (798-PS), le but du discours, une cause immédiate, une intention seulement.",
          beats=[
         "{doc3}À toi maintenant, avec un autre document du chapitre. {doc3.1}C'est un discours d'Adolf Hitler à ses commandants en chef. "
         "Il le prononce à l'Obersalzberg, sa résidence de montagne, le vingt-deux août mille neuf cent trente-neuf. Dix jours avant l'invasion de la Pologne. "
@@ -537,13 +537,13 @@ SCENES = [
 
     # ================================================================ à toi : question problématisée (DBQ 3 b)
     dict(id="dbq3b", chap="À toi · question problématisée", fond="nuit", humeur="tension",
-         retenir="L'idéologie a fait de la guerre une valeur et de l'expansion un but (fascisme, Lebensraum, Japon) · mais les démocraties ont laissé l'agression réussir (SDN, apaisement, isolationnisme) · les deux ont formé une chaîne que seule la guerre pouvait rompre → l'idéologie la volonté, les démocraties l'occasion.",
+         retenir="L'idéologie a fait de la guerre une valeur et de l'expansion un but · les démocraties ont laissé l'agression réussir (SDN, apaisement, isolationnisme) · une chaîne que seule la guerre pouvait rompre : la volonté et l'occasion.",
          beats=[
         "{ex4}Allons plus loin que le document, avec tes connaissances. Voici une question problématisée, écrite pour cette vidéo, sur la problématique du chapitre. "
         "{!Dans quelle mesure}Dans quelle mesure l'idéologie totalitaire est-elle la cause principale de la Seconde Guerre mondiale ?",
         "{-ex4}{pa2}",
         ("P", 2.0),
-        "{-pa2}{pb}Un plan modèle, tiré de la composition du cours sur cette problématique. {pb.1}En introduction, définis le totalitarisme. "
+        "{-pa2}Un plan modèle, tiré de la composition du cours sur cette problématique. {pb}{pb.1}En introduction, définis le totalitarisme. "
         "Puis définis la paix qu'il menace : l'ordre de mille neuf cent dix-neuf, garanti par la Société des Nations. Ensuite, trois parties.",
         "{pb.2}Première partie. Les idéologies totalitaires font de la guerre une valeur, et de l'expansion un but. Le fascisme fait de la guerre l'épreuve suprême : l'Abyssinie, en mille neuf cent trente-cinq. "
         "Le nazisme transforme le Lebensraum en programme, dans Mein Kampf. Le Japon cherche l'autarcie : la Mandchourie, puis Nankin.",
@@ -575,8 +575,8 @@ SCENES = [
         "La nation et l'empire de Rome. La race et son espace vital. Et l'empire du Japon en Asie. "
         "{rep4.d}Mais pas à elle seule. Entre mille neuf cent trente-cinq et mille neuf cent trente-neuf, chaque agression réussit parce que les démocraties la laissent réussir. "
         "Une bonne réponse garde {!les deux moitiés}les deux moitiés.",
-        "{-rep4}{lien}Et c'est là que commence le chapitre suivant. Chapitre trois : la Seconde Guerre mondiale. "
-        "{lien.1}La guerre qui commence en Pologne est la guerre de ces régimes. "
+        "{-rep4}Et c'est là que commence le chapitre suivant. Chapitre trois : la Seconde Guerre mondiale. "
+        "{lien}{lien.1}La guerre qui commence en Pologne est la guerre de ces régimes. "
         "{lien.2}La défaite de la France, en mille neuf cent quarante. {lien.3}Barbarossa, en mille neuf cent quarante et un : une guerre d'anéantissement pour l'espace vital à l'Est. "
         "{lien.4}Et le génocide des Juifs d'Europe. Les idéologies de ce chapitre, mises en pratique par la guerre.",
     ], vis={
