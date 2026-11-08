@@ -26,6 +26,15 @@ CANDIDATES = {
                "rhythm, strong emphasis, dynamic and vivid, native French accent.",
     "5-ado": "A lively French man about twenty-two, fairly high-pitched for a man, playful and dynamic, speaking quickly with "
              "excitement and wonder, big intonation contrasts, native French accent.",
+    # 2e série (08/11/2026) : la 1re sortait trop aiguë (210 à 270 Hz) ; on vise un homme adulte vers 130-170 Hz
+    "6-conteur": "Male, 28 years old, adult man's voice, tenor with a medium pitch (not high, not deep). A captivating French "
+                 "storyteller on social media: energetic, fast, lively intonation, punchy on key words, slight smile. Clearly a man.",
+    "7-mystere": "Male, 30 years old, adult man, medium pitch baritone-tenor, clearly masculine. Suspenseful French narrator of "
+                 "true stories: tension in the voice, quick rhythm, dramatic pauses, then energetic reveals. Very expressive.",
+    "8-energique": "Male, 25 years old, young adult man with a clear masculine tenor voice, medium pitch. Dynamic French YouTuber, "
+                   "enthusiastic and vivid, fast delivery, strong emphasis, big intonation contrasts but never shrill.",
+    "9-docu": "Male, 32 years old, masculine voice, medium pitch, bright timbre. Modern French documentary voice-over for "
+              "short videos: vivid, engaging, fast and rhythmic, curious tone, strong emphasis on surprising facts.",
 }
 
 
