@@ -98,7 +98,7 @@ SCENES = [
         "Les SS sont l'élite. Le parti est mis en scène comme un mouvement, comme au congrès de Nuremberg de mille neuf cent vingt-neuf. "
         "{rais.3}La troisième raison, ce sont les élites. Hitler ne s'empare pas du pouvoir : Hindenburg et les conservateurs qui l'entourent le lui donnent. "
         "Ils sont convaincus de pouvoir le contrôler.",
-        "{-rais}{peel}Comment le rédiger ? Chaque raison devient un paragraphe, en quatre temps. {peel.1}L'argument : la raison, en une phrase. "
+        "{-rais}Comment le rédiger ? Chaque raison devient un paragraphe, en quatre temps. {peel}{peel.1}L'argument : la raison, en une phrase. "
         "{peel.2}L'exemple précis : une date, un chiffre, un nom. {peel.3}L'explication : en quoi cela a-t-il aidé Hitler ? "
         "{peel.4}Et le lien avec la question.",
         "{-peel}",
@@ -166,8 +166,8 @@ SCENES = [
          beats=[
         "{photo1}{ex2}Passons au gros morceau : un sujet tiré du cours lui-même. "
         "{!Dans quelle mesure}Dans quelle mesure la Première Guerre mondiale est-elle responsable de l'essor des régimes totalitaires ?",
-        "{-ex2}{-photo1}{meth}Que veut dire dans quelle mesure ? Qu'il faut peser un facteur. Ni oui, ni non : jusqu'à quel point ? "
-        "{meth.1}Il te faut donc les arguments en faveur de ce facteur. {meth.2}Puis les arguments contre, ou les autres facteurs. "
+        "{-ex2}{-photo1}Que veut dire dans quelle mesure ? Qu'il faut peser un facteur. Ni oui, ni non : jusqu'à quel point ? "
+        "{meth}{meth.1}Il te faut donc les arguments en faveur de ce facteur. {meth.2}Puis les arguments contre, ou les autres facteurs. "
         "{meth.3}Et une réponse qui traverse tout le devoir : la problématique la pose dans l'introduction, la conclusion la tranche. "
         "{meth.4}Et le piège ? Raconter les années mille neuf cent dix-huit à mille neuf cent trente-trois, sans jamais répondre.",
         "{-meth}{g2}Souviens-toi de ce que montrait la carte. {g2.1}Les tranchées : quatre ans de massacre de masse. {g2.2}L'Italie : une victoire mutilée, "
@@ -206,8 +206,8 @@ SCENES = [
         "{ing.5}Et l'annonce du plan.",
         "{-ing}{pa3}",
         ("P", 2.0),
-        "{-pa3}{mod3}Voici un modèle, construit à partir du cours. Écoute les cinq temps.",
-        "{mod3.1}En mille neuf cent vingt-deux, Mussolini devient président du Conseil en Italie. En mille neuf cent trente-trois, Hitler devient chancelier en Allemagne. "
+        "{-pa3}Voici un modèle, construit à partir du cours. Écoute les cinq temps.",
+        "{mod3}{mod3.1}En mille neuf cent vingt-deux, Mussolini devient président du Conseil en Italie. En mille neuf cent trente-trois, Hitler devient chancelier en Allemagne. "
         "Les deux régimes naissent dans l'ombre de la Grande Guerre. "
         "{mod3.2}Un régime totalitaire cherche à contrôler totalement la société, par la contrainte, pour transformer l'homme selon une idéologie. "
         "{mod3.3}Les trois régimes étudiés, en Russie, en Italie et en Allemagne, apparaissent tous après mille neuf cent dix-huit. "
@@ -222,9 +222,9 @@ SCENES = [
         "pa3": dict(type="pause", t="Écris ton introduction en cinq phrases.",
                     sous="Accroche, définition, contexte, problématique, plan. Mets la vidéo en pause, puis relance pour voir un modèle."),
         "mod3": dict(type="liste", titre="Une introduction modèle", items=[
-            "Accroche · 1922 Mussolini, 1933 Hitler : nés dans l'ombre de la Grande Guerre",
-            "Définition · le contrôle total de la société, par la contrainte, pour transformer l'homme selon une idéologie",
-            "Contexte · trois régimes, en Russie, en Italie, en Allemagne, tous nés après 1918",
+            "Accroche · Mussolini 1922, Hitler 1933 : nés de la Grande Guerre",
+            "Définition · contrôle total, par la contrainte, pour transformer l'homme",
+            "Contexte · Russie, Italie, Allemagne : trois régimes nés après 1918",
             "Problématique · naître après la guerre, est-ce être causé par elle ?",
             "Plan · violence et rancœurs · la révolution et sa peur · mais pas tout"], x=130, y=110, w=1020),
     }),
@@ -235,8 +235,8 @@ SCENES = [
          beats=[
         "{pa4}",
         ("P", 2.0),
-        "{-pa4}{mod4}Voici un modèle du troisième paragraphe. C'est celui qui pèse.",
-        "{mod4.1}Cependant, la Première Guerre mondiale n'explique pas tout. Chaque régime a été façonné par sa propre idéologie, et par des choix délibérés. "
+        "{-pa4}Voici un modèle du troisième paragraphe. C'est celui qui pèse.",
+        "{mod4}{mod4.1}Cependant, la Première Guerre mondiale n'explique pas tout. Chaque régime a été façonné par sa propre idéologie, et par des choix délibérés. "
         "{mod4.2}Les trois régimes reposent sur des idées opposées. La nation et l'État absolu, pour le fascisme. La race, pour le nazisme. La classe, pour le stalinisme. "
         "Une même guerre ne peut pas expliquer des buts aussi différents. "
         "{mod4.3}De plus, le pouvoir a été cédé par les élites. Le roi Victor-Emmanuel trois nomme Mussolini le trente octobre "
