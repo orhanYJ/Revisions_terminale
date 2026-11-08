@@ -295,8 +295,79 @@ while((g.scrollWidth>g.clientWidth||g.offsetHeight>330)&&f>56){f-=4;g.style.font
                          pill2=e(T["pills"][1]), dates=e(C["dates"]), lg="ENGLISH" if lang == "en" else "FRANÇAIS")
 
 
+def kit_episode(code, dossier):
+    """Kit d'un seul épisode (publication en série, comme la philo) : <code>-youtube.txt, <code>.<langue>.srt, miniature."""
+    ep = episode(code)
+    lang = "fr" if re.match(r"h\df-", code) else "en"
+    chap = "H" + code[1]
+    C, T = CHAPITRES[chap], TXT[lang]
+    n = int(code.split("-")[-1])
+    notion = ep["notion"]
+    ep_lbl = "Ep." if lang == "en" else "Ép."
+    suff = ["DNL History Terminale", "DNL History", ""] if lang == "en" else ["Histoire Terminale", "Histoire", ""]
+    for sf in suff:
+        titre = "%s %d · %s | %s" % (ep_lbl, n, ep["titre"], C["gros"][lang]) + (" · " + sf if sf else "")
+        if len(titre) <= 100:
+            break
+    if lang == "en":
+        intro = ("Episode %d of the series « %s » (chapter %d of Terminale history, in English: DNL / European section). "
+                 "Animated maps, archive images, key dates, figures and documents. About %d min." % (n, notion, C["num"], round(ep["dur"] / 60)))
+        serie = "The whole series, episode by episode: see the playlist « %s · DNL History »." % notion
+        contenu = "Content: the DNL History course of Terminale, as written on the revision site; animated maps of the site."
+    else:
+        intro = ("Épisode %d de la série « %s » (chapitre %d d'histoire de Terminale). "
+                 "Cartes animées, images d'archives, dates, chiffres et documents clés. Environ %d min." % (n, notion, C["num"], round(ep["dur"] / 60)))
+        serie = "Toute la série, épisode par épisode : voir la playlist « %s · Histoire Terminale »." % notion
+        contenu = "Contenu : le cours d'histoire de Terminale, tel qu'il est rédigé sur le site de révision ; cartes animées du site."
+    assert len(titre) <= 100, (len(titre), titre)
+    vus, ch = set(), []
+    for s in ep["scenes"]:
+        c = s.get("chap")
+        if c and c not in vus:
+            vus.add(c); ch.append([s["t0"], c])
+    ch.insert(0, [0, ep["titre"]])
+    chapitres = ["%s %s" % (hms(t), c) for t, c in ch]
+    credits = [c for c in ep.get("credits", []) if not re.match(r"(Content|Contenu|Narration|Voix|Music|Musique)", c)]
+    desc = [intro, "", T["pause"], "", T["chap"]] + chapitres + ["", serie, "", T["cred"], contenu] + credits + [T["voix"]]
+    desc_txt = "\n".join(desc)
+    if len(desc_txt) >= 5000:
+        desc_txt = "\n".join(desc[:desc.index(T["cred"]) + 2] + [T["voix"]])
+    assert len(desc_txt) < 5000, len(desc_txt)
+    tags = C["tags"][lang]
+    q = [(T["quiz"] % len(ep["quiz"])).replace(" on the whole chapter (from the recap)", "").replace(" sur tout le chapitre (tirées du récap)", ""), ""]
+    r = ["", T["rep"]]
+    for i, x in enumerate(ep["quiz"], 1):
+        q.append("%d. %s" % (i, plat(x["q"])))
+        for j, rr in enumerate(x["r"]):
+            q.append("   %s) %s" % ("abcd"[j], plat(rr)))
+        r.append("%d. %s) %s. %s %s" % (i, "abcd"[x["ok"]], plat(x["r"][x["ok"]]), plat(x.get("ex", "")), T["revoir"] % hms(x.get("voir", 0))))
+    comm = "\n".join(q + r)
+    blocs = ["TITRE (%d caractères)" % len(titre), titre, "", "DESCRIPTION (%d caractères)" % len(desc_txt), desc_txt, "",
+             "TAGS", ", ".join(tags), "", "COMMENTAIRE ÉPINGLÉ (%d caractères)" % len(comm), comm, "",
+             "RÉGLAGES CONSEILLÉS"] + [x % code if "%s" in x else x for x in T["reglages"]] + [
+             "Playlist : « %s » (un épisode après l'autre, dans l'ordre)." % (notion + (" · DNL History" if lang == "en" else " · Histoire Terminale"))]
+    os.makedirs(dossier, exist_ok=True)
+    open(os.path.join(dossier, code + "-youtube.txt"), "w", encoding="utf-8").write("\n".join(blocs) + "\n")
+    sous = []
+    for a_, b_, x in ep["sous"]:
+        sous += decouper(a_, b_, plat(x))
+    open(os.path.join(dossier, "%s.%s.srt" % (code, lang)), "w", encoding="utf-8").write(
+        "\n".join("%d\n%s --> %s\n%s\n" % (i, hms(a_, True), hms(b_, True), x) for i, (a_, b_, x) in enumerate(sous, 1)))
+    img = next((v["img"] + ".jpg" for v in ep["vis"] if v["type"] == "tableau" and v.get("img")), C["img"])
+    C2 = dict(C, img=img, gros={lang: ep["titre"]})
+    T2 = dict(T, sur=(T["mat"] + " · Ch. %d" + (" · Ep. %d" % n if lang == "en" else " · Ép. %d" % n)))
+    T2["pills"] = (C["gros"][lang] + " · %d min" % round(ep["dur"] / 60) + "%.0s%.0s", T["pills"][1] if n == len(SERIE_N[chap]) - 1 else
+                   ("Episode %d/%d" % (n, len(SERIE_N[chap])) if lang == "en" else "Épisode %d/%d" % (n, len(SERIE_N[chap]))))
+    open(os.path.join(dossier, code + "-miniature.html"), "w", encoding="utf-8").write(
+        miniature(C2, T2, lang, 0, "", 0, 0, [code]))
+    print("%s : %s · %d chapitres · %d sous-titres · description %d · image %s" % (code, titre, len(chapitres), len(sous), len(desc_txt), img))
+
+
+SERIE_N = {"H1": range(1, 7), "H2": range(1, 10), "H3": range(1, 8)}
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 3:
         sys.exit(__doc__)
     for c in sys.argv[2:]:
-        kit(c, sys.argv[1])
+        (kit if c in KITS else kit_episode)(c, sys.argv[1])
