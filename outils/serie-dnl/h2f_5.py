@@ -202,7 +202,7 @@ SCENES = [
 
     # ================================================================ II.3, idée 4 : le camp
     dict(id="camps", chap="II.3 · Le camp, une institution permanente", fond="nuit", humeur="mystere",
-         retenir="Goulag : des camps là où il faut de la main-d'œuvre ; canal mer Blanche-Baltique (227 km, 1931-1933) ; 1,5 million de détenus vers 1950. Dachau (1933) : triangles de couleur. Le camp n'est pas une invention nazie ; la chambre à gaz, si.",
+         retenir="Goulag : des camps là où il faut de la main-d'œuvre ; canal mer Blanche-Baltique (227 km, 1931-1933) ; 1,5 million de détenus début 1950. Dachau (1933) : triangles de couleur. Le camp n'est pas une invention nazie ; la chambre à gaz, si.",
          beats=[
         "{g5}{g5.1}Quatrième idée. Le camp devient une institution permanente, et le travail forcé une ressource économique. "
         "La répression n'est pas seulement judiciaire. Elle est territoriale. Des populations entières sont enfermées.",
