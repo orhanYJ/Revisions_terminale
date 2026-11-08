@@ -19,8 +19,9 @@ Faits vérifiés :
 La dernière phrase relance la première (boucle).
 """
 CODE = "stockdale"
-TEMPO = 1.1
-ACCEL = 1.1
+TEMPO = 1.0
+VOIX = "energique"   # voix des shorts choisie par Cengiz le 08/11/2026 (voix C)
+CIBLE = 75           # durée visée en secondes (accélération calculée, au plus 15 %)
 PRONONCIATION = {"Stockdale": "Stokdèle", "Épictète": "Épiktète",
                  "Hoa Lo": "Hoa Lô", "Hanoï": "Anoï", "Hilton": "Hiltonne", "Medal of Honor": "Médeul ov Onneur",
                  "30": "trente", "1965": "mille neuf cent soixante-cinq", "1973": "mille neuf cent soixante-treize",

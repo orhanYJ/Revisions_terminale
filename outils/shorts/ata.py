@@ -16,8 +16,9 @@ Lien : série « L'État » (etat_2.py, Hobbes : « guerre de tous contre tous �
 La dernière phrase relance la première (boucle).
 """
 CODE = "ata"
-TEMPO = 1.1
-ACCEL = 1.1
+TEMPO = 1.0
+VOIX = "energique"   # voix des shorts choisie par Cengiz le 08/11/2026 (voix C)
+CIBLE = 75           # durée visée en secondes (accélération calculée, au plus 15 %)
 PRONONCIATION = {"'Ata": "Ata", "Tonga": "Tonnga", "Hobbes": "Obbse", "Stephen": "Stivène",
                  "6": "six", "8": "huit", "2": "deux", "15": "quinze",
                  "1965": "mille neuf cent soixante-cinq", "1966": "mille neuf cent soixante-six"}

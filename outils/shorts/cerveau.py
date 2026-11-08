@@ -23,8 +23,9 @@ Cette expérience n'est pas dans la série « La conscience » : le short pose l
 série (Descartes, Freud, Nietzsche) pour la réponse philosophique.
 """
 CODE = "cerveau"
-TEMPO = 1.1
-ACCEL = 1.1
+TEMPO = 1.0
+VOIX = "energique"   # voix des shorts choisie par Cengiz le 08/11/2026 (voix C)
+CIBLE = 75           # durée visée en secondes (accélération calculée, au plus 15 %)
 PRONONCIATION = {"Gazzaniga": "Gazaniga", "Sperry": "Spéri", "P.S.": "Pé Esse", "1970": "mille neuf cent soixante-dix",
                  "200": "deux cents"}
 PASSAGES = [

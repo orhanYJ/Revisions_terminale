@@ -24,8 +24,9 @@ la version de Kilroy (Friel partant jeune à Londres à leur recherche).
 Lien avec la série « Dancing at Lughnasa » (résumé-analyse en 13 parties, partie 11 : la prolepse de Londres).
 """
 CODE = "lughnasa"
-TEMPO = 1.1
-ACCEL = 1.1
+TEMPO = 1.0
+VOIX = "energique"   # voix des shorts choisie par Cengiz le 08/11/2026 (voix C)
+CIBLE = 75           # durée visée en secondes (accélération calculée, au plus 15 %)
 PRONONCIATION = {"1936": "mille neuf cent trente-six", "1960": "mille neuf cent soixante",
                  "1962": "mille neuf cent soixante-deux", "25": "vingt-cinq", "10": "dix",
                  "Agnes": "Agnèsse", "Friel": "Fril", "Brian": "Braïane", "Dancing": "Dancinng",

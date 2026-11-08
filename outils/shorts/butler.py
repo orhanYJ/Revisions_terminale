@@ -20,8 +20,9 @@ Faits vérifiés :
   again » chez Reagan en 1980 : écarté (ni dans ce roman, ni une invention de Butler).
 """
 CODE = "butler"
-TEMPO = 1.1
-ACCEL = 1.1
+TEMPO = 1.0
+VOIX = "energique"   # voix des shorts choisie par Cengiz le 08/11/2026 (voix C)
+CIBLE = 75           # durée visée en secondes (accélération calculée, au plus 15 %)
 PRONONCIATION = {"Butler": "Beutleur", "Lauren": "Lorène", "God is Change": "Gode iz Tchéïndje",
                  "New York Times": "Niou York Taïmz", "ACL": "a cé elle", "BFI": "bé èf i",
                  "1993": "mille neuf cent quatre-vingt-treize", "2024": "deux mille vingt-quatre",

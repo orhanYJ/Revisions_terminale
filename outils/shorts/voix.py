@@ -87,6 +87,10 @@ def main(nom):
     voix = np.concatenate(morceaux)
     import soundfile as sf
     acc = getattr(m, "ACCEL", 1.0)
+    cible = float(os.environ.get("SHORT_CIBLE") or getattr(m, "CIBLE", 0) or 0)
+    if cible and not muet:   # accélération calculée pour viser la durée cible (au plus 15 %)
+        acc = min(1.15, max(1.0, len(voix) / SR / cible))
+        print(f"  accélération {acc:.3f} (durée brute {len(voix) / SR:.1f} s, cible {cible:.0f} s)")
     if abs(acc - 1) > 1e-3 and not muet:   # accélération d'ensemble, hauteur conservée
         tmp = os.path.join(SORTIE, "accel.wav"); sf.write(tmp, voix, SR)
         r = subprocess.run(["ffmpeg", "-v", "error", "-i", tmp, "-af", f"atempo={acc}", "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"], capture_output=True, check=True)
