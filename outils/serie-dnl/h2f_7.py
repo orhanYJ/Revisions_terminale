@@ -321,7 +321,7 @@ SCENES = [
         ("C", "Le racisme, c'est une affaire de blonds !", "c_mus"),
         "{-c_mus}{ax}{ax.g}Alors pourquoi s'allier ? Parce que l'Italie est économiquement trop faible pour affronter seule les démocraties. Mussolini a besoin de l'appui allemand. "
         "L'Axe Rome-Berlin est proclamé le vingt-cinq octobre mille neuf cent trente-six. {ax.d}Il devient une alliance militaire, le pacte d'Acier, en mille neuf cent trente-neuf. "
-        "Et le Japon s'y joint en mille neuf cent quarante. Une alliance d'intérêt, pas d'amitié.",
+        "Le Japon rejoint l'alliance en mille neuf cent quarante. Une alliance d'intérêt, pas d'amitié.",
         "{-ax}{g6}{g6.1}{es}Deuxième idée : l'Espagne. {es.1}La guerre civile éclate en Espagne en mille neuf cent trente-six. L'Allemagne et l'Italie soutiennent les nationalistes du général Franco. "
         "{es.2}Et l'Allemagne profite du conflit pour mettre à l'essai son aviation. "
         "{es.3}La France et le Royaume-Uni n'interviennent pas pour aider la République espagnole. "
