@@ -93,8 +93,8 @@ window.TYPES_A = O => {
     if (kf1 >= 1 && kf2 >= 1 && p.egal) { const k = back(pr(t, tps(p.egal), .3)); pop(pr(t, tps(p.egal), .3), W / 2, 520, () => S.texte('F′₁ = F₂', 0, 0, { taille: 110, coul: OR, contour: NOIR, contourL: 12 })); }
     // sens de propagation : ça descend, puis ça remonte
     if (p.fleches) {
-      pop(pr(t, p.a + .3, .3), 330, 560, () => { lab('↘', 0, 0, OR, 110); lab('ENTRENT EN DESCENDANT', 0, 90, CREME, 34); });
-      if (t >= tps(p.fleches)) pop(pr(t, tps(p.fleches), .3), 880, 560, () => { lab('↗', 0, 0, OR, 110); lab('RESSORTENT EN MONTANT', -60, 90, CREME, 34); });
+      pop(pr(t, p.a + .3, .3), 330, 420, () => { lab('↘', 0, 0, OR, 110); lab('ENTRENT EN DESCENDANT', 0, 90, CREME, 34); });
+      if (t >= tps(p.fleches)) pop(pr(t, tps(p.fleches), .3), 860, 420, () => { lab('↗', 0, 0, OR, 110); lab('RESSORTENT EN MONTANT', -40, 90, CREME, 34); });
     }
     // angles α (incident, en O1) et α′ (émergent, en O2) ; la droite (B1O2) en pointillés
     if (p.angles) {
@@ -102,7 +102,7 @@ window.TYPES_A = O => {
       g.save(); g.globalAlpha = k; g.strokeStyle = CREME; g.lineWidth = 4; g.setLineDash([10, 10]); g.beginPath(); g.moveTo(XF, Y0 + B); g.lineTo(XE, Y0 + PENTE * (XE - X2)); g.stroke(); g.restore();
       g.save(); g.globalAlpha = k; g.strokeStyle = VERT; g.lineWidth = 6; g.beginPath(); g.arc(X1, Y0, 150, 0, aa); g.stroke();
       g.strokeStyle = ROUGE; g.beginPath(); g.arc(X2, Y0, 105, -ab, 0); g.stroke(); g.restore();
-      g.save(); g.globalAlpha = k; lab('α', X1 + 190, Y0 + 30, VERT, 60); lab('α′', X2 + 125, Y0 - 40, ROUGE, 60); g.restore();
+      g.save(); g.globalAlpha = k; lab('α', X1 + 175, Y0 + 42, VERT, 52); lab('α′', X2 + 55, Y0 - 80, ROUGE, 52); g.restore();
     }
     // focales (schéma pas à l'échelle : seulement les noms)
     if (p.focales) { const k = eo(pr(t, p.a + .2, .4)); g.save(); g.globalAlpha = k; g.strokeStyle = OR; g.lineWidth = 5;
@@ -124,7 +124,7 @@ window.TYPES_A = O => {
       g.beginPath(); g.moveTo(a, yy - 16); g.lineTo(a, yy + 16); g.moveTo(a, yy); g.lineTo(lerp(a, b, eo(k)), yy); if (k >= 1) { g.moveTo(b, yy - 16); g.lineTo(b, yy + 16); } g.stroke(); g.restore();
       if (k >= .6) lab(s, (a + b) / 2, yy - 50, c, 56); };
     cote(x0, xf, y - 330, '50 cm', p.e50 ? pr(t, tps(p.e50), .4) : 1, OR);
-    cote(xf, x2, y - 330, '5', p.e5 ? pr(t, tps(p.e5), .3) : 1, BLEU);
+    cote(xf, x2, y - 330, '5 cm', p.e5 ? pr(t, tps(p.e5), .3) : 1, BLEU);
     cote(x0, x2, y + 230, 'O₁O₂ = 55 cm', p.e55 ? pr(t, tps(p.e55), .5) : 1, CREME);
     S.texte('à l’échelle', W - 50, y + 330, { taille: 32, it: true, poids: 400, police: 'Spectral', coul: GRIS, align: 'right' });
     deux(p.t || 'O₁O₂ = f′₁ + f′₂', 1390, 100);
@@ -158,13 +158,12 @@ window.TYPES_A = O => {
       deux(p.t || 'RÉELLE|ET MINUSCULE', 1420, 100);
       return;
     }
-    const tf = p.flip ? tps(p.flip) : 1e9, kf = eio(pr(t, tf, .6)), avant = t < tf + .3;
+    const tf = p.flip ? tps(p.flip) : 1e9, kf = S.eio(pr(t, tf, .6)), avant = t < tf + .3;
     disque(W / 2, 830, 300, Math.PI * kf, true);
     if (avant) { lab('NORD', W / 2, 440, OR, 50); lab('À L’ŒIL NU', W / 2, 1250, CREME, 60); }
     else { pop(pr(t, tf + .3, .3), W / 2, 1250, () => lab('DANS LA LUNETTE : EN BAS', 0, 0, ROUGE, 66, { max: 980 })); }
     if (p.t) deux(p.t, 1420, 100);
   }
-  const eio = k => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
 
   // l'œil au repos : un faisceau parallèle converge sur la rétine, rétine dans le plan focal du cristallin
   function oeil(p, t) {
