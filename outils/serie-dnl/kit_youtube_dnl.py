@@ -309,6 +309,8 @@ def kit_episode(code, dossier):
         titre = "%s %d · %s | %s" % (ep_lbl, n, ep["titre"], C["gros"][lang]) + (" · " + sf if sf else "")
         if len(titre) <= 100:
             break
+    else:
+        titre = "%s %d · %s" % (ep_lbl, n, ep["titre"])
     if lang == "en":
         intro = ("Episode %d of the series « %s » (chapter %d of Terminale history, in English: DNL / European section). "
                  "Animated maps, archive images, key dates, figures and documents. About %d min." % (n, notion, C["num"], round(ep["dur"] / 60)))
