@@ -60,11 +60,29 @@ META = {
         tags=["lunette astronomique", "lentille convergente", "relation de conjugaison", "lunette afocale",
               "grossissement", "optique terminale", "physique chimie terminale", "spécialité physique chimie",
               "bac physique chimie", "exercices corrigés"]),
+    "svt-ch4": dict(
+        gros="Au-delà des gènes", sous="symbiose · phénotype étendu · comportements", img="ch4-baleine.jpg",
+        accroche="Un ver qui vit de la lumière, un gammare qui se jette dans le bec d'un oiseau, des baleines qui changent de chant : "
+                 "des différences entre individus qui ne viennent pas de leurs gènes.",
+        pill2="+ 2 exercices corrigés", exos_txt="deux exercices corrigés pas à pas : l'exploitation d'un graphique et une rédaction type bac",
+        exos=["Exercice 1 : exploiter le graphique d'apprentissage d'un jeune chimpanzé (cassage de noix).",
+              "Exercice 2 (type bac) : rédiger une synthèse sur la diversité non génétique du vivant."],
+        tags=["hérédité non génétique", "symbiose", "mutualisme", "parasitisme", "phénotype étendu", "microbiote",
+              "ver de Roscoff", "gammare", "chant des oiseaux", "baleine à bosse", "culture animale", "comportement inné acquis",
+              "SVT terminale", "spécialité SVT", "bac SVT", "génétique et évolution"]),
+}
+
+# matière : libellés et couleurs de la miniature
+MATIERE = {
+    "pc": dict(nom="Physique-chimie", court="PC", desc="physique-chimie", fond="#17100a", fond_rgb="23,16,10",
+               acc="#ff8b3e", pill="#e45c10", pill_c="#fff", txt="#f2e7da", txt2="#cbb49c", ombre="0,0,0"),
+    "svt": dict(nom="SVT", court="SVT", desc="SVT", fond="#0b120e", fond_rgb="11,18,14",
+                acc="#B7D94C", pill="#B7D94C", pill_c="#0b120e", txt="#F1EFE3", txt2="#b8c9a8", ombre="0,0,0"),
 }
 
 
 def episode(code):
-    for site in ("pc", "philo"):
+    for site in ("pc", "svt", "philo"):
         f = os.path.join(RACINE, site, "serie", code + ".data.js")
         if os.path.exists(f):
             d = open(f, encoding="utf-8").read()
@@ -155,24 +173,26 @@ def chapitres(ep):
 def kit(code, dossier):
     site, ep = episode(code)
     m = META[code]
-    titre = "%s · Cours complet + exercices corrigés | Physique-chimie Terminale" % ep["titre"]
+    mt = MATIERE[site]
+    titre = "%s · Cours complet + exercices corrigés | %s Terminale" % (ep["titre"], mt["nom"])
     if len(titre) > 100:
-        titre = "%s · Cours + exercices corrigés | PC Terminale" % ep["titre"]
+        titre = "%s · Cours + exercices corrigés | %s Terminale" % (ep["titre"], mt["court"])
     assert len(titre) <= 100, titre
     duree = round(ep["dur"] / 60)
     desc = [
         m["accroche"],
         "",
-        "Chapitre %d de physique-chimie de Terminale (spécialité) : « %s ». Tout le cours, en partant de zéro, "
-        "avec les exemples, les méthodes et les pièges, puis trois exercices corrigés pas à pas : un simple, "
-        "un plus difficile, un type bac. Environ %d minutes." % (ep["num"], ep["titre"], duree),
+        "Chapitre %d de %s de Terminale (spécialité) : « %s ». Tout le cours, en partant de zéro, "
+        "avec les exemples, les méthodes et les pièges, puis %s. Environ %d minutes." % (
+            ep["num"], mt["desc"], ep["titre"], m.get("exos_txt", "trois exercices corrigés pas à pas : un simple, "
+                                                       "un plus difficile, un type bac"), duree),
         "",
         "Avant chaque correction, l'écran « À toi » t'invite à mettre la vidéo en pause et à chercher seul.",
         "",
         "CHAPITRES",
     ] + chapitres(ep) + [
         "",
-        "LES EXERCICES (inventés pour la vidéo)",
+        "LES EXERCICES" + ("" if site == "svt" else " (inventés pour la vidéo)"),
     ] + m["exos"] + [
         "",
         "Le quiz de fin est dans le commentaire épinglé.",
@@ -215,32 +235,34 @@ def kit(code, dossier):
 def miniature(site, ep, m):
     base = "http://localhost:8765/%s/serie/" % site
     e = html.escape
+    mt = MATIERE[site]
     return """<!doctype html><html lang="fr"><head><meta charset="utf-8">
 <link rel="stylesheet" href="%(base)sfonts.css">
 <style>
-html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#17100a}
+html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:%(fond)s}
 .img{position:absolute;right:0;top:0;width:760px;height:720px;background:url(%(base)simg/%(img)s) center/cover}
-.img:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#17100a 0%%,rgba(23,16,10,.85) 22%%,rgba(23,16,10,.15) 60%%,rgba(23,16,10,0) 100%%)}
-.txt{position:absolute;left:70px;top:0;bottom:0;width:780px;display:flex;flex-direction:column;justify-content:center;color:#f2e7da;font-family:Archivo,sans-serif}
-.sur{font-weight:700;font-size:34px;letter-spacing:.08em;text-transform:uppercase;color:#ff8b3e}
-.gros{overflow:hidden;font-weight:700;font-size:132px;line-height:.95;margin:22px 0 22px;letter-spacing:-.02em;text-shadow:0 4px 30px rgba(0,0,0,.6)}
-.sous{font-family:Spectral,serif;font-style:italic;font-size:40px;color:#cbb49c}
+.img:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,%(fond)s 0%%,rgba(%(rgb)s,.85) 22%%,rgba(%(rgb)s,.15) 60%%,rgba(%(rgb)s,0) 100%%)}
+.txt{position:absolute;left:70px;top:0;bottom:0;width:780px;display:flex;flex-direction:column;justify-content:center;color:%(txt)s;font-family:Archivo,sans-serif}
+.sur{font-weight:700;font-size:34px;letter-spacing:.08em;text-transform:uppercase;color:%(acc)s}
+.gros{overflow:hidden;font-weight:700;font-size:132px;line-height:.95;padding-bottom:.14em;margin:22px 0 8px;letter-spacing:-.02em;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.sous{font-family:Spectral,serif;font-style:italic;font-size:40px;color:%(txt2)s}
 .bas{display:flex;gap:16px;margin-top:44px}
-.pill{font-weight:700;font-size:30px;padding:12px 24px;border-radius:999px;background:#e45c10;color:#fff}
+.pill{font-weight:700;font-size:30px;padding:12px 24px;border-radius:999px;background:%(pill)s;color:%(pillc)s}
 .pill.c{background:rgba(242,231,218,.12);color:#f2e7da;border:2px solid rgba(242,231,218,.35)}
-.num{position:absolute;right:36px;bottom:24px;font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;color:#f2e7da;background:rgba(23,16,10,.75);padding:8px 18px;border-radius:12px}
+.num{position:absolute;right:36px;bottom:24px;font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;color:%(txt)s;background:rgba(%(rgb)s,.75);padding:8px 18px;border-radius:12px}
 </style></head><body>
 <div class="img"></div>
 <div class="txt">
-  <div class="sur">Terminale · Physique-chimie · Ch. %(num)d</div>
+  <div class="sur">Terminale · %(mat)s · Ch. %(num)d</div>
   <div class="gros">%(gros)s</div>
   <div class="sous">%(sous)s</div>
-  <div class="bas"><span class="pill">Cours complet</span><span class="pill c">+ 3 exercices corrigés</span></div>
+  <div class="bas"><span class="pill">Cours complet</span><span class="pill c">%(pill2)s</span></div>
 </div>
 <div class="num">%(min)d min</div>
 <script>/* titre trop large : on réduit la taille */var g=document.querySelector(".gros"),f=132;while(g.scrollWidth>g.clientWidth&&f>60){f-=4;g.style.fontSize=f+"px"}</script>
 </body></html>""" % dict(base=base, img=m["img"], num=ep["num"], gros=e(m["gros"]).replace("-", "\u2011"), sous=e(m["sous"]),
-                         min=round(ep["dur"] / 60))
+                         min=round(ep["dur"] / 60), fond=mt["fond"], rgb=mt["fond_rgb"], txt=mt["txt"], txt2=mt["txt2"],
+                         acc=mt["acc"], pill=mt["pill"], pillc=mt["pill_c"], mat=mt["nom"], pill2=e(m.get("pill2", "+ 3 exercices corrigés")))
 
 
 if __name__ == "__main__":
