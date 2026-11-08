@@ -16,7 +16,7 @@ RACINE = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 META = {
     "ch1": dict(
-        gros="Acides & bases", sous="pH · couples · Brønsted", img="c1-citron.jpg",
+        sous="pH · couples · Brønsted", img="c1-citron.jpg",
         accroche="Un citron, du vinaigre, un détartrant : qu'ont-ils en commun, et que mesure vraiment le pH ?",
         exos=["Exercice 1 (pour démarrer) : l'acide lactique, son couple, [H₃O⁺] et réaction totale ou non.",
               "Exercice 2 (plus difficile) : deux flacons de même concentration, acide fort ou acide faible ?",
@@ -25,7 +25,7 @@ META = {
               "transformations acides-bases", "physique chimie terminale", "spécialité physique chimie", "bac physique chimie",
               "cours terminale", "exercices corrigés"]),
     "ch2": dict(
-        gros="Beer-Lambert", sous="absorbance · conductivité · infrarouge", img="c2-cuves.jpg",
+        sous="absorbance · conductivité · infrarouge", img="c2-cuves.jpg",
         accroche="Comment doser un colorant sans en détruire une goutte ? En faisant passer de la lumière ou du courant.",
         exos=["Exercice 1 (pour démarrer) : un colorant alimentaire, loi de Beer-Lambert et étalonnage.",
               "Exercice 2 (plus difficile) : la conductivité d'une solution de chlorure de calcium, loi de Kohlrausch.",
@@ -34,7 +34,7 @@ META = {
               "loi de Kohlrausch", "spectroscopie infrarouge", "méthodes physiques d'analyse", "physique chimie terminale",
               "spécialité physique chimie", "bac physique chimie", "exercices corrigés"]),
     "ch3": dict(
-        gros="Le titrage", sous="équivalence · pH-métrie · conductimétrie", img="c3-chou.jpg",
+        sous="équivalence · pH-métrie · conductimétrie", img="c3-chou.jpg",
         accroche="« 7 % » sur l'étiquette d'un vinaigre : comment le vérifier quand on ne peut pas compter les molécules ?",
         exos=["Exercice 1 (pour démarrer) : le titrage d'un comprimé d'aspirine par la soude.",
               "Exercice 2 (plus difficile) : l'acide sulfurique d'un électrolyte de batterie, de l'étiquette au titrage.",
@@ -43,7 +43,7 @@ META = {
               "méthode des tangentes", "indicateur coloré", "méthodes chimiques d'analyse", "physique chimie terminale",
               "spécialité physique chimie", "bac physique chimie", "exercices corrigés"]),
     "ch4": dict(
-        gros="Le photon", sous="E = hν · effet photoélectrique · cellules", img="c4-panneaux.jpg",
+        sous="E = hν · effet photoélectrique · cellules", img="c4-panneaux.jpg",
         accroche="Une calculatrice sans pile marche à la lumière : comment la lumière fabrique-t-elle un courant ?",
         exos=["Exercice 1 (pour démarrer) : l'énergie des photons d'une lampe germicide.",
               "Exercice 2 (plus difficile) : un pointeur laser vert et une cellule photoélectrique au césium.",
@@ -52,7 +52,7 @@ META = {
               "cellule photovoltaïque", "rendement", "physique chimie terminale", "spécialité physique chimie",
               "bac physique chimie", "exercices corrigés"]),
     "ch5": dict(
-        gros="La lunette", sous="conjugaison · afocale · grossissement", img="c5-lune.jpg",
+        sous="conjugaison · afocale · grossissement", img="c5-lune.jpg",
         accroche="Une lunette rapproche-t-elle vraiment la Lune ? Deux lentilles dans un tube, et tout s'explique.",
         exos=["Exercice 1 (pour démarrer) : vergence, focale et grossissement d'une lunette.",
               "Exercice 2 (plus difficile) : refaire le raisonnement du grossissement sur un astre de 0,50°.",
@@ -61,7 +61,7 @@ META = {
               "grossissement", "optique terminale", "physique chimie terminale", "spécialité physique chimie",
               "bac physique chimie", "exercices corrigés"]),
     "svt-ch4": dict(
-        gros="Au-delà des gènes", sous="symbiose · phénotype étendu · comportements", img="ch4-baleine.jpg",
+        sous="symbiose · phénotype étendu · comportements", img="ch4-baleine.jpg",
         accroche="Un ver qui vit de la lumière, un gammare qui se jette dans le bec d'un oiseau, des baleines qui changent de chant : "
                  "des différences entre individus qui ne viennent pas de leurs gènes.",
         pill2="+ 2 exercices corrigés", exos_txt="deux exercices corrigés pas à pas : l'exploitation d'un graphique et une rédaction type bac",
@@ -259,8 +259,8 @@ html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:%(fond)s
   <div class="bas"><span class="pill">Cours complet</span><span class="pill c">%(pill2)s</span></div>
 </div>
 <div class="num">%(min)d min</div>
-<script>/* titre trop large : on réduit la taille */var g=document.querySelector(".gros"),f=132;while(g.scrollWidth>g.clientWidth&&f>60){f-=4;g.style.fontSize=f+"px"}</script>
-</body></html>""" % dict(base=base, img=m["img"], num=ep["num"], gros=e(m["gros"]).replace("-", "\u2011"), sous=e(m["sous"]),
+<script>/* titre trop large ou trop haut : on réduit la taille */var g=document.querySelector(".gros"),t=document.querySelector(".txt"),f=120;g.style.fontSize=f+"px";function trop(){var a=t.firstElementChild.getBoundingClientRect(),b=t.lastElementChild.getBoundingClientRect();return g.scrollWidth>g.clientWidth||a.top<40||b.bottom>650}while(trop()&&f>48){f-=4;g.style.fontSize=f+"px"}</script>
+</body></html>""" % dict(base=base, img=m["img"], num=ep["num"], gros=e(m.get("gros", ep["titre"])).replace("-", "\u2011"), sous=e(m["sous"]),
                          min=round(ep["dur"] / 60), fond=mt["fond"], rgb=mt["fond_rgb"], txt=mt["txt"], txt2=mt["txt2"],
                          acc=mt["acc"], pill=mt["pill"], pillc=mt["pill_c"], mat=mt["nom"], pill2=e(m.get("pill2", "+ 3 exercices corrigés")))
 
