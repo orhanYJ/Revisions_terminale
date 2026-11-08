@@ -222,6 +222,7 @@ def main(code, m):
     # sidechain léger : la musique se tasse sous la voix sans disparaître
     e = np.abs(voix); e = lp(e, 8, 1); e = e / (np.percentile(e, 98) + 1e-9)
     duck = 1 - .3 * np.clip(e, 0, 1)
+    mus = np.pad(mus, (0, max(0, n - len(mus))))[:n]   # même longueur que la voix (arrondi de la durée)
     mus = mus * duck
     v0 = voix / (np.max(np.abs(voix)) + 1e-9) * .8
     # niveau : la musique à SHORT_MUSIQUE dB sous la voix pendant la parole (−9 par défaut), plus forte dans les silences
