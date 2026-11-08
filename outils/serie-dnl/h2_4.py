@@ -222,8 +222,8 @@ SCENES = [
         "{eq}Idea five: the purpose. The cult of personality is not vanity. It is {!a technique of government}a technique of government. "
         "{eq.1}The regime identifies the nation with the party. {eq.2}And it identifies the party with one man.",
         "{eq.3}So any opposition looks like treason against the country itself. And the leader no longer needs an election.",
-        "{-eq}{sym}Each regime summed up this idea in one symbol, adopted when the party was founded, or soon after. "
-        "{sym.1}The Roman fasces, for the Fascist Party, in nineteen twenty-one. {sym.2}The swastika, for the Nazi Party, in nineteen twenty. "
+        "{-eq}Each regime summed up this idea in one symbol, adopted when the party was founded, or soon after. "
+        "{sym}{sym.1}The Roman fasces, for the Fascist Party, in nineteen twenty-one. {sym.2}The swastika, for the Nazi Party, in nineteen twenty. "
         "{sym.3}And the hammer and sickle, on the Soviet state emblem, in nineteen twenty-three.",
         "{-sym}{mot2}Remember the formula of the schema. Criticising the leader becomes {!betraying the country}betraying the country.",
     ], vis={
@@ -329,8 +329,8 @@ SCENES = [
         "But membership only became truly compulsory in nineteen thirty-nine. {nuance.1}Mussolini summed up the ambition.",
         "{-nuance}",
         ("C", "I take men in the cradle and I do not return them to the pope until after their death.", "c_muss"),
-        "{-c_muss}{chaine}And Hitler described the chain himself, in a speech of nineteen thirty-eight. It is Worksheet three, source two. "
-        "{chaine.1}Children enter at ten. {chaine.2}Four years in the Young Folk. {chaine.3}Four years in the Hitler Youth. "
+        "{-c_muss}And Hitler described the chain himself, in a speech of nineteen thirty-eight. It is Worksheet three, source two. "
+        "{chaine}{chaine.1}Children enter at ten. {chaine.2}Four years in the Young Folk. {chaine.3}Four years in the Hitler Youth. "
         "{chaine.4}Then the Labour Service. {chaine.5}And whatever class consciousness or pride of status is still left, "
         "the Wehrmacht will take care of it. From the age of ten, the regime never lets go.",
     ], vis={
@@ -377,7 +377,7 @@ SCENES = [
         "They forbade marriage and sexual relations between Jews and what they called persons of German blood. "
         "{def5.1}They banned Jewish households from employing young German women. And they forbade Jews to fly the Reich flag.",
         "So the state defined citizenship by descent. And the administration drew up the tables to apply it. "
-        "{-def5}{tab}An official table of nineteen thirty-five sorted people by fractions of ancestry. {tab.1}German-blooded. "
+        "{-def5}An official table of nineteen thirty-five sorted people by fractions of ancestry. {tab}{tab.1}German-blooded. "
         "{tab.2}Mischling of the second degree: one quarter Jewish, that is, one Jewish grandparent. "
         "{tab.3}Mischling of the first degree: half Jewish, two Jewish grandparents. "
         "{tab.4}And Jew: three quarters or more. People in that last category were refused Reich citizenship altogether.",
