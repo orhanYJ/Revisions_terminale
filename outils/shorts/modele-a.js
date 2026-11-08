@@ -213,7 +213,7 @@
       g.save(); g.translate(W / 2, lerp(1500, 900, k)); g.rotate(-.04);
       g.shadowColor = 'rgba(0,0,0,.6)'; g.shadowBlur = 40; g.fillStyle = CREME; g.fillRect(-380, -480, 760, 960); g.shadowColor = 'transparent';
       S.texte('BACCALAURÉAT', 0, -380, { taille: 50, coul: NOIR, esp: 6 });
-      S.texte('PHILOSOPHIE', 0, -315, { taille: 40, coul: GRIS, esp: 8, poids: 600 });
+      S.texte(p.matiere || 'PHILOSOPHIE', 0, -315, { taille: 40, coul: GRIS, esp: 8, poids: 600 });
       g.fillStyle = NOIR; g.fillRect(-300, -260, 600, 3);
       S.texte('Sujet 1', -300, -180, { taille: 40, coul: GRIS, align: 'left', police: 'Spectral', it: true, poids: 400 });
       const suj = p.sujet || ['Sommes-nous libres', 'de nos choix ?'];
