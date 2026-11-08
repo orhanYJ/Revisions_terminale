@@ -43,12 +43,18 @@ def main(nom):
             audio = np.zeros(int(d * SR), np.float32)
         else:
             import voix_qwen
+            # voix des shorts : SHORT_VOIX ou VOIX du script ; « narrateur » = voix grave des séries.
+            # Une autre voix = outils/shorts/voix_ref/<nom>.wav + <nom>.txt (texte exact de l'enregistrement).
+            nom_voix = os.environ.get("SHORT_VOIX") or getattr(m, "VOIX", "narrateur")
+            if nom_voix not in voix_qwen.REF:
+                ref = os.path.join(ICI, "voix_ref", nom_voix)
+                voix_qwen.REF[nom_voix] = (ref + ".wav", open(ref + ".txt", encoding="utf-8").read().strip())
             parle = lu(texte, m.PRONONCIATION)
-            h = hashlib.sha1(f"{parle}|{m.TEMPO}".encode()).hexdigest()[:10]
+            h = hashlib.sha1((f"{parle}|{m.TEMPO}" + ("" if nom_voix == "narrateur" else f"|{nom_voix}")).encode()).hexdigest()[:10]
             ch = os.path.join(CACHE, f"{m.CODE}-{sid}-{h}.mp3")
             if not os.path.exists(ch):
                 print("voix", sid, parle[:50], flush=True)
-                sc = voix_qwen.dire(parle, "narrateur", ch, tempo=m.TEMPO)
+                sc = voix_qwen.dire(parle, nom_voix, ch, tempo=m.TEMPO)
                 print("   score", round(sc, 3), flush=True)
             audio = decoder(ch)
             # coupe les silences de bord pour un rythme serré
