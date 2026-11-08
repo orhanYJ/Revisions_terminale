@@ -325,7 +325,7 @@ def scenes():
         L("Le Lebensraum : conquérir l'Est", "Lebensraum: conquering the East"),
         L("Le géographe Ratzel (1901) : une nation a besoin d'un territoire et de ressources pour survivre (l'autarcie). Dans Mein Kampf (1925-1926), Hitler en fait un plan : conquérir les terres slaves, y installer des colons allemands, déporter les Russes en Sibérie, asservir les autres. Le vieux slogan disait déjà « Drang nach Osten ».",
           "The geographer Ratzel (1901): a nation needs territory and resources to survive (autarky). In Mein Kampf (1925–26) Hitler turned it into a plan: conquer the Slavic lands, settle German colonists there, deport the Russians to Siberia, enslave the rest. The old slogan already said “Drang nach Osten”."),
-        labels=["l_all", "l_urss", "l_pol"], cles=["nazi", "stal"],
+        labels=["l_all", "l_urss", "l_pol"], cles=["weimar", "stal"],
         arrows=[F((13.5, 52.0), (38.0, 53.0), G33, -0.1, w=3.6, dash=True, id="leb", dur=2.8)])
     add("III.1", 15, [122, 38, 2.4], L("1931-1937", "1931–1937"),
         L("L'impérialisme japonais : autarcie et « race supérieure »", "Japanese imperialism: autarky and a “superior race”"),
