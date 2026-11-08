@@ -61,7 +61,7 @@
     for (let i = 0; i < 70; i++) { g.beginPath(); g.arc((rnd(i) - .5) * w, (rnd(i + 50) - .5) * taille * 1.4, 3 + rnd(i + 9) * 9, 0, 7); g.fill(); }
     g.restore();
   }
-  function petitTitre(s, y, coul = OR) { S.texte(s, W / 2, y, { taille: 40, coul, esp: 10, poids: 600 }); }
+  function petitTitre(s, y, coul = OR) { S.texte(s, W / 2, y, { taille: 40, coul, esp: 10, poids: 600, max: 960 }); }
 
   // ---------------------------------------------------------------- plans
   const R = {
