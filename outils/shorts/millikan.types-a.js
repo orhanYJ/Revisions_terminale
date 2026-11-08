@@ -187,13 +187,13 @@ window.TYPES_A = O => {
     if (e === 1) S.texte('MESURES DE 1916', W / 2, 330, { taille: 44, coul: OR, esp: 8, poids: 700 });
     if (e === 2) {
       S.texte('Ec = h × ν − Φ', W / 2, 360, { taille: 90, police: 'Spectral', poids: 600, coul: OR, contour: NOIR, contourL: 10 });
-      O.tampon('EINSTEIN AVAIT RAISON', W / 2, 1380, pr(t, p.a + .05, .3), -.07, 74);
+      O.tampon('EINSTEIN AVAIT RAISON', W / 2, 1380, pr(t, p.a + .05, .3), -.07, 60);
     }
     if (e === 3) {
       const k = eo(pr(t, p.a + .15, .4)), u1 = .55, u2 = .85;
       g.save(); g.globalAlpha = k; g.strokeStyle = CREME; g.lineWidth = 6; g.setLineDash([16, 12]);
       g.beginPath(); g.moveTo(px(u1), py(f(u1))); g.lineTo(px(u2), py(f(u1))); g.lineTo(px(u2), py(f(u2))); g.stroke(); g.restore();
-      pop(pr(t, p.a + .4, .3), px(u2) + 20, py((f(u1) + f(u2)) / 2) + 150, () => S.texte('PENTE = h', 0, 0, { taille: 76, coul: OR, contour: NOIR, contourL: 10 }));
+      pop(pr(t, p.a + .4, .3), px(.68), py(f(u1)) + 75, () => S.texte('PENTE = h', 0, 0, { taille: 76, coul: OR, contour: NOIR, contourL: 10 }));
       if (p.h && t >= tps(p.h)) pop(pr(t, tps(p.h), .3), W / 2, 1380, () => {
         S.texte('LA CONSTANTE DE PLANCK', 0, -70, { taille: 50, coul: CREME, esp: 4 });
         S.texte('h ≈ 6,6 × 10⁻³⁴ J·s', 0, 30, { taille: 92, police: 'Spectral', poids: 600, coul: OR, contour: NOIR, contourL: 10 }); });

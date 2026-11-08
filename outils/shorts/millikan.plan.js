@@ -5,10 +5,10 @@ window.PLAN = S => S.plans([
   { a: ['s1', 'prouver'], type: 'tort', t: 'À PROUVER|QU’IL A TORT ?' },
   { a: ['s1', 'pour'], type: 'tort', raison: ['s1', 'raison'], t: 'POUR FINIR PAR|LUI DONNER RAISON ?' },
   // s2 « Robert Millikan, lui, l'a fait. »
-  { a: ['s2', 0], type: 'perso', img: 'millikan', t: 'ROBERT MILLIKAN', sous: 'physicien américain · 1868 – 1953' },
+  { a: ['s2', 0], type: 'portrait', img: 'millikan', t: 'MILLIKAN', sous: 'physicien américain' },
   // s3 « 1905. Albert Einstein, jeune employé des brevets, ose une idée folle : la lumière est faite de grains. »
   { a: ['s3', 0], type: 'date', t: '1905', de: 1880, sous: 'BERNE · OFFICE DES BREVETS', ch: 1 },
-  { a: ['s3', 'jeune'], type: 'perso', img: 'einstein', t: 'ALBERT EINSTEIN', sous: 'jeune employé des brevets' },
+  { a: ['s3', 'jeune'], type: 'portrait', img: 'einstein', t: 'EINSTEIN', sous: 'jeune employé des brevets' },
   { a: ['s3', 'idée'], type: 'mot', t: 'UNE IDÉE|FOLLE' },
   { a: ['s3', 'lumière'], type: 'grains' },
   // s4 « Pour arracher un électron à un métal, c'est la fréquence qui compte. Pas l'intensité. »
@@ -40,7 +40,7 @@ window.PLAN = S => S.plans([
   { a: ['s12', 0], type: 'mot', t: 'PIRE…', sombre: true },
   { a: ['s12', 'pente'], type: 'droite', etape: 3, h: ['s12', 'constante'] },
   // s13 « Le plus fou ? Même là, tu n'y crois pas. Tu écris que son idée est téméraire. »
-  { a: ['s13', 0], type: 'mot', t: 'LE PLUS FOU ?' },
+  { a: ['s13', 0], type: 'mot', t: 'LE PLUS|FOU ?' },
   { a: ['s13', 'même'], type: 'portrait', img: 'millikan', t: 'TU N’Y CROIS PAS', sous: 'même après tes mesures' },
   { a: ['s13', 'écris'], type: 'article' },
   { a: ['s13', 'téméraire'], type: 'article', tampon: ['s13', 'téméraire'], choc: true },
@@ -49,7 +49,7 @@ window.PLAN = S => S.plans([
   { a: ['s14', 'pas'], type: 'mot', t: 'PAS POUR|LA RELATIVITÉ', choc: true },
   { a: ['s14', 'toi'], type: 'nobel', img: 'millikan', an: '1923', t: 'MILLIKAN', sous: 'en partie pour l’effet photoélectrique' },
   // s15 « C'est le chapitre 4 de physique. Établir la relation d'Einstein : vraie question de bac. »
-  { a: ['s15', 0], type: 'mot', t: 'CHAPITRE 4|LA LUMIÈRE, DES PHOTONS', petit: true },
+  { a: ['s15', 0], type: 'mot', t: 'CHAPITRE 4', sous: 'physique · la lumière, un flux de photons' },
   { a: ['s15', 'établir'], type: 'sujetpc', formule: 'h × ν = Φ + Ec' },
   // s16 « La réponse est sur Révisions Animées. »
   { a: ['s16', 0], type: 'chaine', serie: 'Physique · chapitre 4', fond: 'einstein' },

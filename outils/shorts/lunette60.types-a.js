@@ -90,11 +90,11 @@ window.TYPES_A = O => {
     const kf1 = p.f1 ? eo(pr(t, tps(p.f1), .3)) : 0, kf2 = p.f2 ? eo(pr(t, tps(p.f2), .3)) : 0;
     if (kf1 > 0) { point(XF, Y0, OR, 12 * kf1); pop(kf1, XF - 10, Y0 - 60, () => lab('F′₁', 0, 0, OR, 50)); }
     if (kf2 > 0) { pop(kf2, XF + 70, Y0 + 60, () => lab('F₂', 0, 0, BLEU, 50)); }
-    if (p.egal && t >= tps(p.egal)) { pop(pr(t, tps(p.egal), .3), W / 2, 520, () => S.texte('F′₁ = F₂', 0, 0, { taille: 110, coul: OR, contour: NOIR, contourL: 12 })); }
+    if (p.egal && t >= tps(p.egal)) { pop(pr(t, tps(p.egal), .3), W / 2, 470, () => S.texte('F′₁ = F₂', 0, 0, { taille: 110, coul: OR, contour: NOIR, contourL: 12 })); }
     // sens de propagation : ça descend, puis ça remonte
     if (p.fleches) {
-      pop(pr(t, p.a + .3, .3), 330, 420, () => { lab('↘', 0, 0, OR, 110); lab('ENTRENT EN DESCENDANT', 0, 90, CREME, 34); });
-      if (t >= tps(p.fleches)) pop(pr(t, tps(p.fleches), .3), 860, 420, () => { lab('↗', 0, 0, OR, 110); lab('RESSORTENT EN MONTANT', -40, 90, CREME, 34); });
+      pop(pr(t, p.a + .3, .3), 270, 400, () => { lab('↘', 0, 0, OR, 110); lab('ENTRENT', 0, 85, CREME, 34); lab('EN DESCENDANT', 0, 130, CREME, 34); });
+      if (t >= tps(p.fleches)) pop(pr(t, tps(p.fleches), .3), 860, 400, () => { lab('↗', 0, 0, OR, 110); lab('RESSORTENT', 0, 85, CREME, 34); lab('EN MONTANT', 0, 130, CREME, 34); });
     }
     // angles α (incident, en O1) et α′ (émergent, en O2) ; la droite (B1O2) en pointillés
     if (p.angles) {
@@ -106,7 +106,7 @@ window.TYPES_A = O => {
     }
     // focales (schéma pas à l'échelle : seulement les noms)
     if (p.focales) { const k = eo(pr(t, p.a + .2, .4)); g.save(); g.globalAlpha = k; g.strokeStyle = OR; g.lineWidth = 5;
-      [[X1, XF, 'f′₁', -300], [XF, X2, 'f′₂', -200]].forEach(([a, b, s, dy]) => { g.beginPath(); g.moveTo(a, Y0 + dy + 18); g.lineTo(a, Y0 + dy); g.lineTo(b, Y0 + dy); g.lineTo(b, Y0 + dy + 18); g.stroke(); lab(s, (a + b) / 2, Y0 + dy - 40, OR, 54); });
+      [[X1, XF, 'f′₁', 300], [XF, X2, 'f′₂', 200]].forEach(([a, b, s, dy]) => { g.beginPath(); g.moveTo(a, Y0 + dy - 18); g.lineTo(a, Y0 + dy); g.lineTo(b, Y0 + dy); g.lineTo(b, Y0 + dy - 18); g.stroke(); lab(s, (a + b) / 2, Y0 + dy + 45, OR, 54); });
       g.restore(); }
     if (p.note !== false && p.rayons) S.texte('schéma : angles exagérés', W - 40, Y0 + A1 + 70, { taille: 30, it: true, poids: 400, police: 'Spectral', coul: GRIS, align: 'right' });
     if (p.t) { const k = eo(pr(t, p.at ? tps(p.at) : p.a + .2, .3)); g.save(); g.globalAlpha = k; deux(p.t, 1390, 100); g.restore(); }
@@ -144,17 +144,17 @@ window.TYPES_A = O => {
   }
   function lune(p, t) {
     if (p.etape === 'taille') {
-      // règle graduée en millimètres (1 mm = 80 px), image de la Lune : 700 mm × 9,0 × 10⁻³ rad = 6,3 mm
-      const x0 = 140, mm = 80, y = 1080, k = eo(pr(t, p.a + .2, .5));
+      // règle graduée en millimètres (1 mm = 70 px), image de la Lune : 700 mm × 9,0 × 10⁻³ rad = 6,3 mm
+      const x0 = 190, mm = 70, y = 1090, k = eo(pr(t, p.a + .2, .5));
       g.save(); g.fillStyle = '#e9dfc8'; g.fillRect(x0 - 30, y, 10 * mm + 60, 110); g.strokeStyle = NOIR; g.lineWidth = 3;
       for (let i = 0; i <= 10; i++) { g.beginPath(); g.moveTo(x0 + i * mm, y); g.lineTo(x0 + i * mm, y + (i % 5 ? 36 : 56)); g.stroke(); S.texte(String(i), x0 + i * mm, y + 82, { taille: 28, coul: NOIR }); }
       g.restore();
-      S.texte('mm', x0 + 10 * mm + 60, y + 82, { taille: 28, coul: CREME });
+      S.texte('mm', x0 + 10 * mm + 70, y + 82, { taille: 28, coul: CREME });
       disque(x0 + 3.15 * mm, y - 3.15 * mm - 30, 3.15 * mm * k, Math.PI, false);
-      if (k > .5) { g.save(); g.strokeStyle = ROUGE; g.lineWidth = 5; g.beginPath(); g.moveTo(x0, y - 20); g.lineTo(x0 + 6.3 * mm, y - 20); g.stroke(); g.restore(); }
-      pop(pr(t, p.a + .6, .3), 860, 740, () => { S.texte('≈ 6,3 mm', 0, 0, { taille: 96, coul: OR, contour: NOIR, contourL: 10 }); });
-      S.texte('l’image de la Lune', 860, 840, { taille: 44, it: true, poids: 400, police: 'Spectral', coul: CREME });
-      S.texte('au foyer d’un objectif de 700 mm', 860, 895, { taille: 40, it: true, poids: 400, police: 'Spectral', coul: CREME, max: 400 });
+      if (k > .5) { g.save(); g.strokeStyle = ROUGE; g.lineWidth = 5; g.beginPath(); g.moveTo(x0, y - 15); g.lineTo(x0 + 6.3 * mm, y - 15); g.stroke(); g.restore(); }
+      pop(pr(t, p.a + .6, .3), W / 2, 400, () => { S.texte('≈ 6,3 mm', 0, 0, { taille: 100, coul: OR, contour: NOIR, contourL: 10 }); });
+      S.texte('l’image de la Lune au foyer', W / 2, 500, { taille: 46, it: true, poids: 400, police: 'Spectral', coul: CREME, max: 960 });
+      S.texte('d’un objectif de 700 mm', W / 2, 555, { taille: 46, it: true, poids: 400, police: 'Spectral', coul: CREME, max: 960 });
       deux(p.t || 'RÉELLE|ET MINUSCULE', 1420, 100);
       return;
     }
@@ -176,7 +176,7 @@ window.TYPES_A = O => {
     [-95, 0, 95].forEach((d, i) => { const ya = cy + d, y0 = ya - pen * xl; poly([[0, y0], [xl, ya], [xr, fy]], k, i === 1 ? VERT : OR, 6); });
     if (k >= 1) point(xr, fy, ROUGE, 14);
     lab('CRISTALLIN', xl, cy + 170, BLEU, 36); lab('RÉTINE', xr - 10, cy + 300, ROUGE, 36);
-    S.texte('rayons parallèles entre eux', 230, 560, { taille: 40, it: true, poids: 400, police: 'Spectral', coul: CREME });
+    S.texte('rayons parallèles entre eux', W / 2, 520, { taille: 40, it: true, poids: 400, police: 'Spectral', coul: CREME });
     deux(p.t || 'NET|SANS ACCOMMODER', 1390, 110);
   }
 
@@ -198,10 +198,10 @@ window.TYPES_A = O => {
   function erreur(p, t) {
     S.texte('L’ERREUR CLASSIQUE', W / 2, 420, { taille: 50, coul: ROUGE, esp: 8, poids: 700 });
     const k1 = p.bon ? pr(t, tps(p.bon), .3) : 1;
-    pop(k1, W / 2, 700, () => { S.texte('✓  F′₁ = F₂', 0, 0, { taille: 130, police: 'Spectral', poids: 600, coul: VERT, contour: NOIR, contourL: 10 });
+    pop(k1, W / 2, 700, () => { S.texte('✓', -330, 0, { taille: 110, coul: VERT }); S.texte('F′₁ = F₂', 50, 0, { taille: 130, police: 'Spectral', poids: 600, coul: VERT, contour: NOIR, contourL: 10 });
       S.texte('foyer image de l’objectif = foyer objet de l’oculaire', 0, 100, { taille: 38, it: true, poids: 400, police: 'Spectral', coul: CREME, max: 960 }); });
     if (p.faux) { const tf = tps(p.faux), k2 = pr(t, tf, .3);
-      pop(k2, W / 2, 1060, () => { S.texte('✗  F₁ = F′₂', 0, 0, { taille: 130, police: 'Spectral', poids: 600, coul: ROUGE, contour: NOIR, contourL: 10 }); });
+      pop(k2, W / 2, 1060, () => { S.texte('✗', -330, 0, { taille: 110, coul: ROUGE }); S.texte('F₁ = F′₂', 50, 0, { taille: 130, police: 'Spectral', poids: 600, coul: ROUGE, contour: NOIR, contourL: 10 }); });
       if (t >= tf + .35) { g.save(); g.strokeStyle = ROUGE; g.lineWidth = 12; g.beginPath(); g.moveTo(250, 1070); g.lineTo(lerp(250, 830, eo(pr(t, tf + .35, .25))), 1050); g.stroke(); g.restore();
         O.tampon('FAUX', W / 2, 1330, pr(t, tf + .5, .3), -.1, 150); } }
   }
