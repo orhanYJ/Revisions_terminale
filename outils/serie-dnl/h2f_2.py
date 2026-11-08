@@ -160,7 +160,7 @@ SCENES = [
 
     # ================================================================ I.1, idées 3 et 4 : l'Italie
     dict(id="italie", chap="I.1 · L'Italie : une victoire mutilée, deux années rouges", fond="nuit", humeur="tension",
-         retenir="« Victoire mutilée » : l'Italie n'obtient pas toutes les terres promises → irrédentisme ; troubles, inflation, chômage de masse. Fiume (D'Annunzio, sept. 1919 – déc. 1920). Biennio Rosso (1919-1920) : occupations des terres et des usines (Turin, 1920) ; Chemises noires payées par les propriétaires.",
+         retenir="« Victoire mutilée » : pas toutes les terres promises → irrédentisme ; troubles, inflation, chômage. Fiume (D'Annunzio, 1919-1920). Biennio Rosso (1919-1920) : terres et usines occupées ; Chemises noires payées par les propriétaires.",
          beats=[
         "{g4}{g4.1}Idée trois : l'Italie. En mille neuf cent dix-huit, l'Italie est dans le camp des vainqueurs. Mais elle n'obtient pas toutes les terres promises. "
         "Les nationalistes parlent de {!victoire mutilée}victoire mutilée. Le pays a gagné. Il a payé le prix du sang. Et pourtant il se sent floué. "
@@ -214,7 +214,7 @@ SCENES = [
 
     # ================================================================ I.1, idée 6 : Versailles et le coup de poignard
     dict(id="versailles", chap="I.1 · Le Diktat et le coup de poignard dans le dos", fond="nuit", humeur="tension",
-         retenir="Versailles (1919), imposé et non négocié : clause de culpabilité, Alsace-Lorraine et territoires de l'Est perdus, réparations énormes → le « Diktat ». Le mythe du coup de poignard dans le dos : trahie de l'intérieur (exemple : la carte postale de 1919).",
+         retenir="Versailles (1919), imposé et non négocié : clause de culpabilité, Alsace-Lorraine et territoires de l'Est perdus, réparations énormes → le « Diktat ». Le mythe du coup de poignard dans le dos : trahie de l'intérieur.",
          beats=[
         "{g6}{g6.1}Idée six : le traité de Versailles, en mille neuf cent dix-neuf. Il est imposé, pas négocié. Si l'Allemagne refuse de signer, elle sera envahie. "
         "{ver}{ver.1}Il contient la clause de culpabilité : l'Allemagne est tenue pour responsable de la guerre. "
@@ -241,7 +241,7 @@ SCENES = [
 
     # ================================================================ I.1, idée 7 : le putsch de Munich
     dict(id="munich", chap="I.1 · Du putsch de Munich à la crise", fond="guerre", humeur="tension",
-         retenir="Nov. 1923 : échec du coup de force de Hitler à Munich → la leçon : conquérir le pouvoir par les institutions. En prison : Mein Kampf (1924-1925), ses idées racistes. Puis la crise des années 1930 : « la guerre a créé les rancœurs ; la crise les a changées en voix ».",
+         retenir="Nov. 1923 : échec du coup de force de Hitler à Munich → la leçon : conquérir le pouvoir par les institutions. En prison : Mein Kampf (1924-1925). Puis la crise : « la guerre a créé les rancœurs ; la crise les a changées en voix ».",
          beats=[
         "{g7}{g7.1}Idée sept. La république de Weimar n'a jamais rallié ses ennemis. En novembre mille neuf cent vingt-trois, à Munich, "
         "Hitler tente de prendre le pouvoir par la force. C'est un échec.",
@@ -265,7 +265,7 @@ SCENES = [
 
     # ================================================================ schéma h2legacy
     dict(id="legacy", chap="Trois blessures de la guerre", fond="aube", humeur="calme",
-         retenir="Russie : la guerre ruine l'empire → révolution bolchevique → parti unique, propriété abolie, peur du communisme. Italie : victoire mutilée → Fiume, Chemises noires payées → nationalisme armé. Allemagne : défaite, Diktat → spartakistes écrasés, coup de poignard → une république liée à la défaite.",
+         retenir="Russie : guerre → bolcheviks → parti unique, propriété abolie, peur du communisme. Italie : victoire mutilée → Fiume, Chemises noires → nationalisme armé. Allemagne : défaite, Diktat, coup de poignard → une république liée à la défaite.",
          beats=[
         "{bl}Voici le schéma du cours : trois blessures de la guerre. {bl.1}Commence par la blessure elle-même. En Russie, la guerre ruine l'empire des tsars. "
         "{bl.2}En Italie, elle laisse une victoire mutilée. {bl.3}En Allemagne, la défaite, la fin de l'Empire, et le Diktat.",
@@ -324,7 +324,7 @@ SCENES = [
 
     # ================================================================ I.2, idée 1 : les composantes du fascisme
     dict(id="fascisme", chap="I.2 · Le fascisme de Mussolini : ses composantes", fond="nuit", humeur="tension",
-         retenir="Le fascisme : un parti en pleine croissance + un chef (Mussolini) · un programme : « la loi et l'ordre » · un symbole : les faisceaux · des escouades paramilitaires (les Chemises noires). Soutenu par les propriétaires et les commerçants terrifiés par le communisme.",
+         retenir="Le fascisme : un parti en croissance + un chef (Mussolini) · un programme : « la loi et l'ordre » · un symbole : les faisceaux · des escouades (Chemises noires). Soutenu par propriétaires et commerçants terrifiés par le communisme.",
          beats=[
         "{fa}Première partie, point deux : la prise du pouvoir. Idée un. Le cours décompose le fascisme en ses composantes. "
         "{fa.1}Un parti à l'influence croissante, avec de plus en plus de partisans. Et un chef, Mussolini. "
@@ -378,7 +378,7 @@ SCENES = [
 
     # ================================================================ I.2, idée 3 : le nazisme, mêmes composantes
     dict(id="nazisme", chap="I.2 · Le nazisme de Hitler : les mêmes composantes", fond="nuit", humeur="tension",
-         retenir="Le nazisme : NSDAP + un chef (Hitler) · un programme tiré de Mein Kampf : abolir Versailles, unir l'Allemagne et l'Autriche, nationaliser les grandes industries, exclure les Juifs · la croix gammée noire (« aryenne ») · la SA et la SS. Ce qui le distingue du fascisme : la race.",
+         retenir="Le nazisme : NSDAP + un chef (Hitler) · Mein Kampf : abolir Versailles, unir Allemagne et Autriche, nationaliser les grandes industries, exclure les Juifs · la croix gammée · la SA et la SS. Ce qui le distingue du fascisme : la race.",
          beats=[
         "{pg}Idée trois. Le nazisme de Hitler a les mêmes composantes. {pg.1}Un parti à l'influence croissante, le parti nazi. Et un chef, Hitler. "
         "{pg.2}Un programme, fondé sur Mein Kampf. Il prévoit d'abolir le traité de Versailles. "
@@ -413,7 +413,7 @@ SCENES = [
 
     # ================================================================ I.2, idée 4 : la SA et la SS
     dict(id="rue", chap="I.2 · Conquérir la rue : la SA et la SS", fond="guerre", humeur="tension",
-         retenir="SA (sections d'assaut) : une force de masse, des hommes sans emploi et peu instruits, certains avec un casier judiciaire ; bagarres de rue avec les communistes. SS : une élite, sélectionnée, plus instruite. La violence comme outil de conquête. En 1933, plusieurs centaines de milliers de SA (hors du cours).",
+         retenir="SA : une force de masse, des hommes sans emploi et peu instruits, certains avec un casier judiciaire ; bagarres de rue avec les communistes. SS : une élite sélectionnée, plus instruite. La violence comme outil de conquête.",
          beats=[
         "{photo6}{sa}Idée quatre. Le mouvement nazi a deux bras armés. {sa.g}D'abord, la {!SA}SA, les sections d'assaut. C'est une force de masse. "
         "La plupart sont des hommes sans emploi et peu instruits, et certains ont un casier judiciaire. "
@@ -496,7 +496,7 @@ SCENES = [
 
     # ================================================================ I.2, idée 7 : l'incendie du Reichstag
     dict(id="reichstag", chap="I.2 · L'incendie du Reichstag", fond="nuit", humeur="tension",
-         retenir="27 févr. 1933 : l'incendie du Reichstag ; les nazis accusent les communistes. Le lendemain, un décret suspend la liberté de la presse, de réunion et d'opinion (date hors du cours) ; des milliers de communistes arrêtés. Qui a mis le feu reste débattu : ce qui compte, c'est l'usage qui en est fait.",
+         retenir="27 févr. 1933 : incendie du Reichstag ; les nazis accusent les communistes. Le lendemain, un décret suspend les libertés de presse, de réunion et d'opinion ; des milliers de communistes arrêtés. L'auteur reste débattu ; l'usage compte.",
          beats=[
         "{g11}{g11.1}Idée sept. Le vingt-sept février mille neuf cent trente-trois, un mois après la nomination de Hitler, le parlement allemand est incendié. Le Reichstag.",
         "{rf}{rf.1}Les nazis accusent aussitôt les communistes. Ils prétendent que l'incendie est le signal d'une révolution. "
@@ -518,7 +518,7 @@ SCENES = [
 
     # ================================================================ schéma h2seizure : deux chemins vers le pouvoir
     dict(id="seizure", chap="Deux chemins vers le pouvoir", fond="aube", humeur="calme",
-         retenir="Italie : escouades payées (1919-1920) → marche sur Rome (oct. 1922) → nommé par le roi (30 oct. 1922) → Matteotti, lois fascistissimes (1924-1926). Allemagne : putsch manqué (nov. 1923) → crise, 18,3 % → 37,4 % → nommé par Hindenburg (30 janv. 1933) → incendie du Reichstag, décret d'urgence. Points communs : violence paramilitaire + nomination légale + élites conservatrices. Différence : le rythme.",
+         retenir="Italie : escouades → marche sur Rome → le roi (oct. 1922) → lois fascistissimes. Allemagne : putsch raté (1923) → 37,4 % → Hindenburg (30 janv. 1933) → Reichstag. Commun : violence + nomination légale + élites. Différence : le rythme.",
          beats=[
         "{it}Comparons maintenant les deux chemins vers le pouvoir, avec le schéma du cours. La rue menace. Le sommet nomme. "
         "{it.1}En Italie, d'abord les escouades payées. {it.2}Puis la marche sur Rome. {it.3}Puis la nomination par le roi. "
@@ -543,7 +543,7 @@ SCENES = [
 
     # ================================================================ à toi : « Dans quelle mesure… légalement ? »
     dict(id="essai2", chap="À toi · dans quelle mesure légalement ?", fond="aube", humeur="calme",
-         retenir="Pour et contre : légal dans la forme pour l'essentiel (Hindenburg, 30 janv. 1933 ; 37,4 % ; la leçon de 1923) · mais préparé et achevé par la violence (SA, incendie du Reichstag, décret, arrestations) et jamais majoritaire · bilan : légal dans la forme, pas démocratique.",
+         retenir="Légal dans la forme (Hindenburg, 30 janv. 1933 ; 37,4 % ; la leçon de 1923) · mais préparé et achevé par la violence (SA, incendie du Reichstag, décret, arrestations), jamais majoritaire · bilan : légal dans la forme, pas démocratique.",
          beats=[
         "{ex2}À toi de nouveau. Cette fois, un sujet qui demande de mesurer. {!Dans quelle mesure}Dans quelle mesure Hitler est-il arrivé au pouvoir légalement ? "
         "{ex2.1}Pour ce type de sujet, tu pèses le pour et le contre. Puis tu donnes un bilan clair.",

@@ -56,7 +56,7 @@ SCENES = [
 
     # ================================================================ I. les deux exercices
     dict(id="format", chap="Les deux exercices", fond="nuit", humeur="calme",
-         retenir="Deux exercices : la réponse à une question problématisée et l'analyse de document(s), souvent associés dans un même devoir. Question problématisée : expliquer (« parce que ») ou discuter (pour, contre, hiérarchie, bilan). Analyse : présenter, situer, expliquer, intérêt et limites.",
+         retenir="Deux exercices : réponse à une question problématisée et analyse de document(s). Question : expliquer (« parce que ») ou discuter (pour, contre, hiérarchie, bilan). Analyse : présenter, situer, expliquer, intérêt et limites.",
          beats=[
         "{fmt}Un rappel rapide d'abord, comme dans la série sur la Seconde Guerre mondiale. {fmt.1}En histoire-géographie, le premier exercice est la réponse "
         "à une question problématisée : un texte construit, qui répond à une question précise. "
@@ -83,7 +83,7 @@ SCENES = [
 
     # ================================================================ II. expliquer : les raisons
     dict(id="explain", chap="Question problématisée · expliquer", fond="nuit", humeur="tension",
-         retenir="Pourquoi Hitler parvient-il au pouvoir en janvier 1933 ? La Dépression fait des nazis le premier parti (2,6 % → 37,4 %) · la violence de rue et un parti mis en scène comme un mouvement (SA, SS) · des élites conservatrices qui croient pouvoir le contrôler (Hindenburg, 30 janv. 1933).",
+         retenir="Pourquoi Hitler parvient-il au pouvoir en 1933 ? Dépression : premier parti (2,6 % → 37,4 %) · violence de rue et parti mis en scène comme un mouvement (SA, SS) · élites conservatrices qui croient le contrôler (Hindenburg, 30 janv. 1933).",
          beats=[
         "{ex1}Voici un sujet type, écrit pour cette vidéo. {!Pourquoi}Pourquoi Hitler parvient-il au pouvoir en janvier mille neuf cent trente-trois ?",
         "{-ex1}{pa1}",
@@ -98,7 +98,7 @@ SCENES = [
         "Les SS sont l'élite. Le parti est mis en scène comme un mouvement, comme au congrès de Nuremberg de mille neuf cent vingt-neuf. "
         "{rais.3}La troisième raison, ce sont les élites. Hitler ne s'empare pas du pouvoir : Hindenburg et les conservateurs qui l'entourent le lui donnent. "
         "Ils sont convaincus de pouvoir le contrôler.",
-        "{-rais}{peel}Comment le rédiger ? Chaque raison devient un paragraphe, en quatre temps. {peel.1}L'argument : la raison, en une phrase. "
+        "{-rais}Comment le rédiger ? Chaque raison devient un paragraphe, en quatre temps. {peel}{peel.1}L'argument : la raison, en une phrase. "
         "{peel.2}L'exemple précis : une date, un chiffre, un nom. {peel.3}L'explication : en quoi cela a-t-il aidé Hitler ? "
         "{peel.4}Et le lien avec la question.",
         "{-peel}",
@@ -119,7 +119,7 @@ SCENES = [
 
     # ================================================================ III. expliquer : les paragraphes modèles
     dict(id="explain_mod", chap="Question problématisée · paragraphes modèles", fond="nuit", humeur="calme",
-         retenir="Paragraphe modèle : argument (la Dépression) · exemple (5,6 millions de chômeurs ; 2,6 % → 18,3 % → 37,4 % → 33,1 %) · explication (le désespoir devient des voix) · lien (premier parti, jamais majoritaire : la crise ouvre la porte, d'autres l'ouvrent plus grand).",
+         retenir="Argument (la Dépression) · exemple (5,6 millions de chômeurs ; 2,6 % → 18,3 % → 37,4 % → 33,1 %) · explication (le désespoir devient des voix) · lien (premier parti, jamais majoritaire : la crise ouvre la porte, d'autres l'élargissent).",
          beats=[
         "{gr}Avant le premier paragraphe, regarde le graphique du cours. {gr.1}Mai mille neuf cent vingt-huit, avant la crise. "
         "Le parti nazi ne recueille que deux virgule six pour cent des voix. {gr.2}Septembre mille neuf cent trente : dix-huit virgule trois. "
@@ -162,12 +162,12 @@ SCENES = [
 
     # ================================================================ IV. discuter : méthode et plan
     dict(id="howfar", chap="Question problématisée · discuter : le plan", fond="nuit", humeur="tension",
-         retenir="Dans quelle mesure la Première Guerre mondiale est-elle responsable de l'essor des régimes totalitaires ? I. La guerre a créé la violence et les rancœurs · II. Elle a ouvert la voie à la révolution, et à la peur de la révolution · III. Mais elle n'explique pas tout (idéologies, élites, Dépression).",
+         retenir="Dans quelle mesure la Première Guerre mondiale est-elle responsable de l'essor des régimes totalitaires ? I. Violence et rancœurs · II. Révolution et peur de la révolution · III. Mais pas tout (idéologies, élites, Dépression).",
          beats=[
         "{photo1}{ex2}Passons au gros morceau : un sujet tiré du cours lui-même. "
         "{!Dans quelle mesure}Dans quelle mesure la Première Guerre mondiale est-elle responsable de l'essor des régimes totalitaires ?",
-        "{-ex2}{-photo1}{meth}Que veut dire dans quelle mesure ? Qu'il faut peser un facteur. Ni oui, ni non : jusqu'à quel point ? "
-        "{meth.1}Il te faut donc les arguments en faveur de ce facteur. {meth.2}Puis les arguments contre, ou les autres facteurs. "
+        "{-ex2}{-photo1}Que veut dire dans quelle mesure ? Qu'il faut peser un facteur. Ni oui, ni non : jusqu'à quel point ? "
+        "{meth}{meth.1}Il te faut donc les arguments en faveur de ce facteur. {meth.2}Puis les arguments contre, ou les autres facteurs. "
         "{meth.3}Et une réponse qui traverse tout le devoir : la problématique la pose dans l'introduction, la conclusion la tranche. "
         "{meth.4}Et le piège ? Raconter les années mille neuf cent dix-huit à mille neuf cent trente-trois, sans jamais répondre.",
         "{-meth}{g2}Souviens-toi de ce que montrait la carte. {g2.1}Les tranchées : quatre ans de massacre de masse. {g2.2}L'Italie : une victoire mutilée, "
@@ -206,8 +206,8 @@ SCENES = [
         "{ing.5}Et l'annonce du plan.",
         "{-ing}{pa3}",
         ("P", 2.0),
-        "{-pa3}{mod3}Voici un modèle, construit à partir du cours. Écoute les cinq temps.",
-        "{mod3.1}En mille neuf cent vingt-deux, Mussolini devient président du Conseil en Italie. En mille neuf cent trente-trois, Hitler devient chancelier en Allemagne. "
+        "{-pa3}Voici un modèle, construit à partir du cours. Écoute les cinq temps.",
+        "{mod3}{mod3.1}En mille neuf cent vingt-deux, Mussolini devient président du Conseil en Italie. En mille neuf cent trente-trois, Hitler devient chancelier en Allemagne. "
         "Les deux régimes naissent dans l'ombre de la Grande Guerre. "
         "{mod3.2}Un régime totalitaire cherche à contrôler totalement la société, par la contrainte, pour transformer l'homme selon une idéologie. "
         "{mod3.3}Les trois régimes étudiés, en Russie, en Italie et en Allemagne, apparaissent tous après mille neuf cent dix-huit. "
@@ -222,21 +222,21 @@ SCENES = [
         "pa3": dict(type="pause", t="Écris ton introduction en cinq phrases.",
                     sous="Accroche, définition, contexte, problématique, plan. Mets la vidéo en pause, puis relance pour voir un modèle."),
         "mod3": dict(type="liste", titre="Une introduction modèle", items=[
-            "Accroche · 1922 Mussolini, 1933 Hitler : nés dans l'ombre de la Grande Guerre",
-            "Définition · le contrôle total de la société, par la contrainte, pour transformer l'homme selon une idéologie",
-            "Contexte · trois régimes, en Russie, en Italie, en Allemagne, tous nés après 1918",
+            "Accroche · Mussolini 1922, Hitler 1933 : nés de la Grande Guerre",
+            "Définition · contrôle total, par la contrainte, pour transformer l'homme",
+            "Contexte · Russie, Italie, Allemagne : trois régimes nés après 1918",
             "Problématique · naître après la guerre, est-ce être causé par elle ?",
             "Plan · violence et rancœurs · la révolution et sa peur · mais pas tout"], x=130, y=110, w=1020),
     }),
 
     # ================================================================ VI. discuter : paragraphe et conclusion
     dict(id="paragraphe", chap="Question problématisée · paragraphe et conclusion", fond="nuit", humeur="tension",
-         retenir="Partie III : chaque régime repose sur sa propre idéologie (nation, race, classe) · les élites cèdent le pouvoir (Victor-Emmanuel III 1922, Hindenburg 1933) · la Dépression (5,6 millions de chômeurs). Conclusion : la guerre a été le terreau commun, pas la cause suffisante.",
+         retenir="Partie III : chaque régime a son idéologie (nation, race, classe) · les élites cèdent (Victor-Emmanuel III 1922, Hindenburg 1933) · la Dépression (5,6 millions de chômeurs). Conclusion : la guerre, terreau commun, pas cause suffisante.",
          beats=[
         "{pa4}",
         ("P", 2.0),
-        "{-pa4}{mod4}Voici un modèle du troisième paragraphe. C'est celui qui pèse.",
-        "{mod4.1}Cependant, la Première Guerre mondiale n'explique pas tout. Chaque régime a été façonné par sa propre idéologie, et par des choix délibérés. "
+        "{-pa4}Voici un modèle du troisième paragraphe. C'est celui qui pèse.",
+        "{mod4}{mod4.1}Cependant, la Première Guerre mondiale n'explique pas tout. Chaque régime a été façonné par sa propre idéologie, et par des choix délibérés. "
         "{mod4.2}Les trois régimes reposent sur des idées opposées. La nation et l'État absolu, pour le fascisme. La race, pour le nazisme. La classe, pour le stalinisme. "
         "Une même guerre ne peut pas expliquer des buts aussi différents. "
         "{mod4.3}De plus, le pouvoir a été cédé par les élites. Le roi Victor-Emmanuel trois nomme Mussolini le trente octobre "
@@ -264,7 +264,7 @@ SCENES = [
 
     # ================================================================ VII. deux autres sujets
     dict(id="sujets", chap="Deux autres sujets", fond="nuit", humeur="calme",
-         retenir="Mussolini et Hitler comparés : une même méthode (pression de la rue + nomination légale), des circonstances différentes, le même résultat ; le rythme : 2 à 3 ans contre quelques semaines. Le même contrôle ? Identiques dans la méthode et le but, inégaux par l'ampleur et par le critère qui désigne la victime.",
+         retenir="Mussolini et Hitler : même méthode (rue + nomination légale), circonstances différentes, même résultat ; rythme : 2 à 3 ans contre quelques semaines. Même contrôle ? Inégal par l'ampleur et par le critère qui désigne la victime.",
          beats=[
         "{s1}Deux autres sujets du chapitre, avec la clé de chacun. {s1.1}D'abord : comparez la manière dont Mussolini et Hitler arrivent au pouvoir. "
         "Ici, la comparaison te donne le plan. Une même méthode : la pression de la rue, et la légalité au sommet. "
@@ -293,7 +293,7 @@ SCENES = [
 
     # ================================================================ VIII. analyse de documents : la démarche
     dict(id="dbq_meth", chap="Analyse de documents · la démarche", fond="nuit", humeur="calme",
-         retenir="Analyse : la consigne et la présentation (nature, auteur, date, destinataire) · le contexte · l'explication · l'intérêt (auteur, date, ce qu'il dit, ce qu'il sous-entend, son but) et les limites (portée, résultat, silences, nature, instantané), puis un bilan critique. Un texte de propagande prouve sûrement ce que le régime voulait montrer.",
+         retenir="Présentation (nature, auteur, date, destinataire) · contexte · explication · intérêt (propos, sous-entendus, but) · limites (portée, résultat, silences, nature) · bilan critique. Une propagande prouve sûrement ce que le régime veut montrer.",
          beats=[
         "{str}Passons à l'analyse de documents. La démarche est toujours la même. {str.1}D'abord, la consigne, lue deux fois, puis la présentation : "
         "la nature du document, son auteur, sa date, son destinataire. {str.2}Ensuite, le contexte : dans quelle situation a-t-il été produit ? "
@@ -317,7 +317,7 @@ SCENES = [
 
     # ================================================================ IX. analyse : intérêt et limites
     dict(id="dbq_a", chap="Analyse de documents · présenter et critiquer", fond="guerre", humeur="tension",
-         retenir="A (télégramme de Roosevelt, 14 avril 1939) et B (Hitler à l'Obersalzberg, 22 août 1939) pour comprendre l'échec de l'apaisement : l'échec vu des deux côtés, daté, l'un public, l'autre secret. Limites : aucune voix britannique ou française, des intentions et non des résultats, des notes d'auditeurs, les derniers mois seulement.",
+         retenir="A (télégramme de Roosevelt, 14 avril 1939) et B (Hitler à l'Obersalzberg, 22 août 1939) : l'échec de l'apaisement vu des deux côtés, public / secret. Limites : ni Londres ni Paris, intentions, pas résultats, des notes d'auditeurs.",
          beats=[
         "{doc}Voici deux documents du cours. {doc.1}Le document A est un télégramme du président Roosevelt à Hitler, "
         "daté du quatorze avril mille neuf cent trente-neuf. Il est publié aussitôt, et un télégramme identique part pour Mussolini. "
@@ -363,7 +363,7 @@ SCENES = [
 
     # ================================================================ X. analyse : au-delà des documents
     dict(id="dbq_b", chap="Analyse de documents · au-delà des documents", fond="nuit", humeur="tension",
-         retenir="Le rôle du totalitarisme dans l'effondrement de la paix : I. les idéologies font de la guerre une valeur (Abyssinie 1935, Lebensraum, Mandchourie 1931, Nankin 1937) · II. les démocraties laissent l'agression réussir (SDN, apaisement, lois de neutralité) · III. une chaîne que seule la guerre peut rompre (Rhénanie 1936 → Prague → le pacte). Le totalitarisme a fourni la volonté ; la réticence des démocraties, l'occasion.",
+         retenir="I. La guerre comme valeur (Abyssinie 1935, Mandchourie 1931, Nankin 1937) · II. les démocraties laissent faire (SDN, apaisement) · III. une chaîne (Rhénanie 1936 → Prague → pacte). Le totalitarisme, la volonté ; les démocraties, l'occasion.",
          beats=[
         "{ex4}La consigne peut aller plus loin : les documents, plus tes connaissances. Et la question est la problématique du chapitre. "
         "À l'aide des documents et de vos connaissances, montrez quel rôle le totalitarisme a joué dans l'effondrement de la paix mondiale, à la fin des années mille neuf cent trente.",
@@ -402,7 +402,7 @@ SCENES = [
 
     # ================================================================ XI. les notions clés
     dict(id="oral", chap="Les notions clés", fond="aube", humeur="calme",
-         retenir="Une notion clé : une définition, une date, un exemple, un lien avec un autre chapitre. Notions clés du chapitre : le totalitarisme, l'apaisement. Arendt : la propagande fabrique les faits (incendie du Reichstag) ; des masses ont soutenu ces régimes.",
+         retenir="Une notion clé : une définition, une date, un exemple, un lien avec un autre chapitre. Notions : le totalitarisme, l'apaisement. Arendt : la propagande fabrique les faits (incendie du Reichstag) ; des masses ont soutenu ces régimes.",
          beats=[
         "{or}Les notions clés servent dans les deux exercices : une définition juste, au bon moment, rapporte toujours. Chacune se maîtrise de la même façon. "
         "{or.1}Une définition, en une phrase. {or.2}Une date. {or.3}Un exemple précis. {or.4}Et un lien avec un autre chapitre.",
