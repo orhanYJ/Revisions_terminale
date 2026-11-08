@@ -68,25 +68,25 @@ window.FORMATS_A = O => {
     if (p.n) S.texte(p.n, W / 2, 330, { taille: 44, coul: OR, esp: 10, poids: 600 });
     // carte de l'affirmation
     const k = back(pr(t, p.a, .3));
-    g.save(); g.translate(W / 2, 640); g.scale(lerp(.6, 1, k), lerp(.6, 1, k));
-    g.fillStyle = '#f3ecdc'; g.shadowColor = 'rgba(0,0,0,.6)'; g.shadowBlur = 40; g.fillRect(-460, -200, 920, 400); g.shadowColor = 'transparent';
-    const L = p.t.split('|'); L.forEach((s, i) => S.texte(s, 0, (i - (L.length - 1) / 2) * 76, { taille: 60, police: 'Spectral', poids: 600, coul: NOIR, max: 840 }));
+    g.save(); g.translate(W / 2, 700); g.scale(lerp(.6, 1, k), lerp(.6, 1, k));
+    g.fillStyle = '#f3ecdc'; g.shadowColor = 'rgba(0,0,0,.6)'; g.shadowBlur = 40; g.fillRect(-480, -230, 960, 460); g.shadowColor = 'transparent';
+    const L = p.t.split('|'); L.forEach((s, i) => S.texte(s, 0, (i - (L.length - 1) / 2) * 92, { taille: 74, police: 'Spectral', poids: 600, coul: NOIR, max: 880 }));
     g.restore();
     // chrono
     const tc = p.chrono ? tps(p.chrono) : p.a;
     if (avant && t >= tc) {
       const tot = Math.max(.6, tr - tc), u = cl((t - tc) / tot), reste = Math.ceil((tr - t));
-      g.save(); g.translate(W / 2, 1060); g.strokeStyle = 'rgba(239,230,210,.2)'; g.lineWidth = 18; g.beginPath(); g.arc(0, 0, 110, 0, 7); g.stroke();
+      g.save(); g.translate(W / 2, 1110); g.strokeStyle = 'rgba(239,230,210,.2)'; g.lineWidth = 18; g.beginPath(); g.arc(0, 0, 110, 0, 7); g.stroke();
       g.strokeStyle = u > .7 ? ROUGE : OR; g.beginPath(); g.arc(0, 0, 110, -Math.PI / 2, -Math.PI / 2 + (1 - u) * 6.283); g.stroke();
       S.texte(String(Math.max(0, reste)), 0, 4, { taille: 110, coul: CREME }); g.restore();
       // les deux boutons
-      [['VRAI', -230, VERT], ['FAUX', 230, ROUGE]].forEach(([s, dx, c]) => { g.save(); g.translate(W / 2 + dx, 1350); g.strokeStyle = c; g.lineWidth = 6;
+      [['VRAI', -230, VERT], ['FAUX', 230, ROUGE]].forEach(([s, dx, c]) => { g.save(); g.translate(W / 2 + dx, 1390); g.strokeStyle = c; g.lineWidth = 6;
         g.beginPath(); g.roundRect(-180, -70, 360, 140, 30); g.stroke(); S.texte(s, 0, 4, { taille: 72, coul: c }); g.restore(); });
     } else if (!avant) {
       const kv = pr(t, tr, .3), c = p.v ? VERT : ROUGE;
-      O.tampon(p.v ? 'VRAI' : 'FAUX', W / 2, 1080, kv, -.08, 190, c);
+      O.tampon(p.v ? 'VRAI' : 'FAUX', W / 2, 1130, kv, -.08, 190, c);
       if (p.expl) { const ke = eo(pr(t, tr + .35, .35)); g.save(); g.globalAlpha = ke;
-        const E = p.expl.split('|'); E.forEach((s, i) => S.texte(s, W / 2, 1330 + i * 66, { taille: 52, coul: CREME, max: 960, contour: NOIR, contourL: 8 })); g.restore(); }
+        const E = p.expl.split('|'); E.forEach((s, i) => S.texte(s, W / 2, 1370 + i * 66, { taille: 54, coul: CREME, max: 960, contour: NOIR, contourL: 8 })); g.restore(); }
     }
   }
 
