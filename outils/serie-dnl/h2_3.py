@@ -111,7 +111,7 @@ SCENES = [
         "fr": dict(type="frise", items=[
             dict(nom="Matteotti", d=1924, q="murdered"), dict(nom="Fascistissime laws", d=1925, q="Mein Kampf"),
             dict(nom="Five-Year Plan", d=1928, q="collectivisation"), dict(nom="Lateran Accords", d=1929, q="the Church"),
-            dict(nom="Doctrine of Fascism", d=1932, q="the Holodomor"), dict(nom="Racial instruction", d=1933, q="German schools"),
+            dict(nom="Doctrine of Fascism", d=1932, q="Mussolini and Gentile"), dict(nom="Racial instruction", d=1933, q="German schools"),
             dict(nom="La Difesa della Razza", d=1938, q="Italy turns racist"), dict(nom="T4", d=1939, q="disabled Germans")]),
     }),
 
@@ -191,8 +191,8 @@ SCENES = [
         "under the State. So the Doctrine attacks Socialism, which{-cl}",
         ("C", "confines the movement of history within the class struggle", "c_doc2"),
         "{-c_doc2}{ban}Class struggle is banned. That is why owners who feared socialism liked Fascism. "
-        "{-ban}{contre}Idea five. For the course, Fascism is the first totalitarianism. And it is defined by what it rejects. "
-        "{contre.1}It rejects parliamentarism, the rule of elected assemblies. {contre.2}It does not believe in human rights. "
+        "{-ban}Idea five. For the course, Fascism is the first totalitarianism. And it is defined by what it rejects. "
+        "{contre}{contre.1}It rejects parliamentarism, the rule of elected assemblies. {contre.2}It does not believe in human rights. "
         "{contre.3}It is against liberalism, and against Marxism too. {contre.4}And it is nationalist and militaristic.",
         "{-contre}{ind}Liberalism starts from the individual, and his rights. Fascism starts from the State. Only the State gives the individual his value. "
         "In the words of the Doctrine,{-ind}",
@@ -329,14 +329,14 @@ SCENES = [
          retenir="Grain requisitioned whatever the harvest · OGPU brigades to “take the grain” · Molotov and Kaganovich: “rebellious” villages cut off from all supplies · Sept. 1932: 32% of the target, 25 Oct.: 22% · the Holodomor, 1932–33.",
          beats=[
         "{g7}{g7.1}Idea eleven: the result. Ukraine, nineteen thirty-two. The grain is {!requisitioned}requisitioned, whatever the harvest. "
-        "{hol}It happens step by step. {hol.1}The peasants resist. They hide grain in pits, and in secret granaries. "
+        "It happens step by step. {hol}{hol.1}The peasants resist. They hide grain in pits, and in secret granaries. "
         "Or they send children and old people to cut stalks at night. "
         "{hol.2}The regime answers with brigades, backed by the political police, the O. G. P. U. Their job is to take the grain.",
         "{hol.3}The Politburo sends Molotov and Kaganovich. First, they stop deliveries of manufactured goods to the districts that have not met the plan. "
         "{hol.4}Then the most rebellious villages are placed on the blackboard. That means they are cut off from all supplies, including food.",
         "{-hol}{-g7}{pct}The historian Nicolas Werth, in source four, gives the figures. {pct.g}In September nineteen thirty-two, Ukraine reached only thirty-two per cent "
         "of its monthly grain target. {pct.d}By the twenty-fifth of October, only twenty-two per cent.",
-        "{-pct}{bil}The result is a man-made famine. The {!Holodomor}Holodomor, in nineteen thirty-two and thirty-three. "
+        "{-pct}{bil}The result is a man-made famine. The Holodomor, in nineteen thirty-two and thirty-three. "
         "It killed about four million people in Ukraine. That death toll is added from outside the course.",
     ], vis={
         "g7": dict(type="globe", code="H2", sc=[19]),
@@ -360,7 +360,7 @@ SCENES = [
         "{lait.d}The kolkhoz cows give one to three. The peasants are slaughtering their last animals. And Feigin writes,{-lait}",
         ("C", "people are starving", "c_fei"),
         "{-c_fei}{choix}So the regime made a choice. {!ideology and control}Ideology and control came first. Before feeding its own people.",
-        "{-choix}{ws2}Worksheet two sums up the whole process in four boxes. {ws2.1}The ideology: Marxism. {ws2.2}The objective: "
+        "{-choix}Worksheet two sums up the whole process in four boxes. {ws2}{ws2.1}The ideology: Marxism. {ws2.2}The objective: "
         "total collectivisation in five years. {ws2.3}The implementation: collective farms, and the persecution of the kulaks. "
         "{ws2.4}And the results. The Holodomor, resistance, and economic failure.",
         ("P", 3.0),
