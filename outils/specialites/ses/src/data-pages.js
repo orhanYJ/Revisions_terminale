@@ -20,7 +20,7 @@ var EPREUVE = '' +
 
 '<h2 class="sec"><span class="n">2</span>L’épreuve composée</h2>' +
 '<h3>Partie 1 · Mobilisation des connaissances (3,5 points)</h3>' +
-'<p>Une question, sans document. On attend une réponse courte et construite (une vingtaine de lignes au plus) qui <b>répond exactement à la consigne</b>.</p>' +
+'<p>Une question, sans document. On attend une réponse courte et construite (en pratique, une vingtaine de lignes) qui <b>répond exactement à la consigne</b>.</p>' +
 '<ol><li>Repère le verbe : « montrez que » (un mécanisme qui va dans un sens), « présentez deux… » (exactement deux éléments, bien séparés), « expliquez » (le comment et le pourquoi), « distinguez » (deux notions et leur différence).</li><li>Définis les notions du sujet en une phrase.</li><li>Rédige un ou deux paragraphes <b>AEI</b> : <b>A</b>ffirmer l’idée, <b>E</b>xpliquer le mécanisme (une chaîne causale), <b>I</b>llustrer par un exemple précis, chiffré ou daté.</li></ol>' +
 '<h3>Partie 2 · Étude d’un document (5,5 points)</h3>' +
 '<p>Un document statistique (graphique, tableau, carte…) de 120 données au plus, et <b>deux questions</b>. La première demande en général de lire, comparer ou calculer ; la seconde de mobiliser le document <b>et</b> tes connaissances pour montrer quelque chose.</p>' +

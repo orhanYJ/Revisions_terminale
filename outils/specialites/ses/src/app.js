@@ -210,19 +210,23 @@
     var u = g.unite || "", dec = g.dec === undefined ? 1 : g.dec;
     var H = Math.round((g.h || 300) * (W < 500 ? 0.95 : 1)), ml = 40, mr = 12, mt = 14, mb = 30, s = "";
     if (g.type === "hbarres") {
-      var nc = g.cats.length, ns = g.series.length, bh = ns > 1 ? 14 : 20, gh = bh * ns + 16;
-      var lab = Math.min(g.lab || 190, Math.round(W * 0.42)); H = mt + nc * gh + 26; ml = lab;
+      var nc = g.cats.length, ns = g.series.length, bh = ns > 1 ? 14 : 20, gh0 = bh * ns + 16;
+      var lab = Math.min(g.lab || 190, Math.round(W * 0.42)); ml = lab;
+      var policeLb = "12px " + getComputedStyle(document.body).fontFamily;
+      var lignesC = g.cats.map(function (c) { return couper(c, ml - 14, policeLb); });
+      var hC = lignesC.map(function (l) { return Math.max(gh0, l.length * 14 + 12); });
+      var yC = [], cumul = mt; hC.forEach(function (h) { yC.push(cumul); cumul += h; });
+      H = cumul + 26;
       var vals = []; g.series.forEach(function (sr) { vals = vals.concat(sr.v); });
       var mn = Math.min(0, Math.min.apply(null, vals)), mx = Math.max.apply(null, vals);
       var tk = echelle(mn, mx, 4), a = tk[0], b = tk[tk.length - 1];
       var X = function (v) { return ml + (v - a) / (b - a) * (W - ml - mr - 30); };
       tk.forEach(function (t) { s += '<line class="ax' + (t === 0 ? "0" : "") + '" x1="' + X(t) + '" x2="' + X(t) + '" y1="' + mt + '" y2="' + (H - 22) + '"/><text class="lb" x="' + X(t) + '" y="' + (H - 6) + '" text-anchor="middle">' + fr(t, 0) + u + "</text>"; });
       g.cats.forEach(function (c, i) {
-        var y0 = mt + i * gh + 8;
-        var lignes = couper(c, ml - 14, "12px " + getComputedStyle(document.body).fontFamily);
-        lignes.forEach(function (l, j) { s += '<text class="lb" x="' + (ml - 8) + '" y="' + (y0 + gh / 2 - 4 - (lignes.length - 1) * 7 + j * 14) + '" text-anchor="end" style="font-size:12px;fill:var(--encre)">' + esc(l) + "</text>"; });
+        var gh = hC[i], y0 = yC[i], lignes = lignesC[i], yb = y0 + (gh - bh * ns) / 2;
+        lignes.forEach(function (l, j) { s += '<text class="lb" x="' + (ml - 8) + '" y="' + (y0 + gh / 2 + 4 - (lignes.length - 1) * 7 + j * 14) + '" text-anchor="end" style="font-size:12px;fill:var(--encre)">' + esc(l) + "</text>"; });
         g.series.forEach(function (sr, k) {
-          var v = sr.v[i], x1 = X(Math.min(0, v)), x2 = X(Math.max(0, v)), y = y0 + k * bh;
+          var v = sr.v[i], x1 = X(Math.min(0, v)), x2 = X(Math.max(0, v)), y = yb + k * bh;
           s += '<rect class="hb c' + (sr.c || k + 1) + '" style="animation-delay:' + (i * 50) + 'ms" x="' + x1 + '" y="' + y + '" width="' + Math.max(1, x2 - x1) + '" height="' + (bh - 3) + '" rx="3" data-tip="' + esc((ns > 1 ? sr.n + " · " : "") + c) + '" data-v="' + v + '"><title>' + esc(c + " : " + fr(v, dec) + u) + "</title></rect>";
           s += '<text class="lbv" x="' + (v < 0 ? x1 - 4 : x2 + 4) + '" y="' + (y + bh - 6) + '" text-anchor="' + (v < 0 ? "end" : "start") + '">' + fr(v, dec) + u + "</text>";
         });
