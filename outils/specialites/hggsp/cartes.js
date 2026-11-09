@@ -71,7 +71,7 @@ const pt = (c, ll, n, a, t, d) => { const [x, y] = M.P(ll); return { c, x, y, n,
   const chokes = [[[56.3, 26.6], "Ormuz"], [[43.4, 12.6], "Bab el-Mandeb"], [[32.4, 30.5], "Suez"], [[101.5, 2.6], "Malacca"], [[-79.7, 9.1], "Panama"], [[-5.6, 35.95], "Gibraltar"]];
   let deco = "";
   chokes.forEach(([ll, n]) => { const [x, y] = M.P(ll); deco += '<g class="k-choke"><path d="M' + (x - 4) + "," + (y - 4) + "L" + (x + 4) + "," + (y + 4) + "M" + (x + 4) + "," + (y - 4) + "L" + (x - 4) + "," + (y + 4) + '"/></g>'; });
-  deco += M.txt([-100, 40], "ÉTATS-UNIS", { a: "middle" }) + M.txt([100, 62], "RUSSIE", { a: "middle" }) + M.txt([103, 33], "CHINE", { a: "middle" }) + M.txt([79, 21], "INDE", { a: "middle" }) +
+  deco += M.txt([-100, 40], "ÉTATS-UNIS", { a: "middle" }) + M.txt([100, 62], "RUSSIE", { a: "middle" }) + M.txt([103, 33], "CHINE", { a: "middle" }) + M.txt([77, 26], "INDE", { a: "middle" }) +
     M.txt([-35, 30], "OCÉAN ATLANTIQUE", { cl: "k-mer", a: "middle" }) + M.txt([-150, 5], "OCÉAN PACIFIQUE", { cl: "k-mer", a: "middle" }) + M.txt([78, -25], "OCÉAN INDIEN", { cl: "k-mer", a: "middle" });
   const pts = [
     pt("snle", [-4.5, 48.3], "Île Longue", "end", "Île Longue (France)", "Base des 4 sous-marins nucléaires lanceurs d'engins (SNLE) français, en rade de Brest. Au moins un SNLE est en patrouille en permanence depuis 1972."),
@@ -128,7 +128,7 @@ const pt = (c, ll, n, a, t, d) => { const [x, y] = M.P(ll); return { c, x, y, n,
 /* ---------------- 3. Terrorisme transnational ---------------- */
 {
   const calif = [[38.0, 36.4], [40.2, 36.7], [42.6, 36.6], [43.6, 36.3], [44.0, 35.3], [43.7, 34.1], [44.1, 33.2], [43.3, 32.9], [42.0, 33.6], [40.8, 34.3], [39.2, 34.5], [37.6, 34.8], [37.4, 35.6], [38.0, 36.4]];
-  let deco = M.poly(calif, 'class="k-zone-ei"') + M.txt([-100, 40], "ÉTATS-UNIS", { a: "middle" }) + M.txt([67, 35], "AFGH.", { a: "middle", dy: -8 }) + M.txt([45, 15], "YÉMEN", { a: "start", dx: 8, dy: 6 });
+  let deco = M.poly(calif, 'class="k-zone-ei"') + M.txt([64.5, 33.2], "AFGH.", { a: "middle" }) + M.txt([47.5, 17.2], "YÉMEN", { a: "middle" });
   const pts = [
     pt("aq", [-74.0, 40.7], "New York", "start", "11 septembre 2001 : New York et Washington", "19 terroristes d'Al-Qaïda détournent quatre avions : 2 977 morts (World Trade Center, Pentagone, Pennsylvanie). Les États-Unis répondent par la « guerre contre le terrorisme » et attaquent l'Afghanistan le 7 octobre 2001."),
     pt("aq", [36.8, -1.3], "Nairobi", "start", "7 août 1998 : Nairobi et Dar es Salaam", "Attentats contre les ambassades américaines au Kenya et en Tanzanie : 224 morts. Al-Qaïda se révèle comme organisation terroriste transnationale."),
@@ -179,7 +179,7 @@ const pt = (c, ll, n, a, t, d) => { const [x, y] = M.P(ll); return { c, x, y, n,
     '<path d="' + C.pays(f => f.properties.ADMIN !== "China") + '" class="k-terre"/><path d="' + C.pays(f => f.properties.ADMIN === "China") + '" class="k-terre-cn"/>';
   const NEUF = [[108.3, 18.0], [109.2, 15.5], [109.6, 12.5], [109.8, 10.0], [109.0, 7.5], [110.6, 5.5], [112.3, 3.9], [113.9, 5.7], [115.2, 7.0], [116.3, 8.4], [117.1, 10.2], [118.4, 12.4], [119.1, 15.0], [119.7, 17.8], [120.8, 20.0], [121.8, 21.8]];
   const CHAINE = [[131, 33], [128.5, 29], [125, 25], [122.2, 22.5], [121, 19], [119.5, 13], [117.5, 8], [116, 5.5]];
-  const ROUTE = [[121.5, 31.2], [118, 22], [113, 15], [106, 6], [103.6, 1.3], [98.5, 5], [92, 8], [81.1, 5.8], [72, 10], [62.3, 24.5], [58, 18], [51, 13], [43.4, 12.3], [38, 20], [33, 29]];
+  const ROUTE = [[121.5, 31.2], [123, 28], [120.5, 23.5], [118, 21.5], [113, 15], [106, 6], [103.6, 1.3], [98.5, 5], [92, 8], [81.1, 5.8], [72, 10], [62.3, 24.5], [58, 18], [51, 13], [43.4, 12.3], [38, 20], [33, 29]];
   let deco = C.ligne(ROUTE, 'class="k-route"') + C.ligne(NEUF, 'class="k-neuf"') + C.ligne(CHAINE, 'class="k-chaine"') +
     C.txt([104, 35], "CHINE", { a: "middle", cl: "k-pays k-gros" }) + C.txt([79, 22], "INDE", { a: "middle" }) + C.txt([138, 36.5], "JAPON", { a: "middle" }) + C.txt([121, 23.7], "TAÏWAN", { a: "start", dx: 10 }) +
     C.txt([123.5, 12.3], "PHILIPPINES", { a: "start" }) + C.txt([116, 0], "INDONÉSIE", { a: "middle" }) + C.txt([106.5, 15.5], "VIÊT NAM", { a: "end", dx: -4 }) + C.txt([69, 29], "PAKISTAN", { a: "middle" }) +
@@ -235,14 +235,14 @@ const pt = (c, ll, n, a, t, d) => { const [x, y] = M.P(ll); return { c, x, y, n,
 
 /* ajustements d'étiquettes (ancre, décalage vertical) pour éviter les chevauchements */
 const RETOUCHES = {
-  mer: { Toulon: ["start", -6], Naples: ["start", 7], "Bahreïn": ["end", -7], "Abu Dhabi": ["start", 7], Djibouti: ["end", 9] },
-  espace: { "Cap Canaveral": ["start", 2], Starbase: ["end", 4], Naro: ["start", 4], Taiyuan: ["start", -9], Sohae: ["start", -6] },
+  mer: { Toulon: ["start", -6], Naples: ["start", 7], "Bahreïn": ["end", -7], "Abu Dhabi": ["end", 10], Djibouti: ["end", 9] },
+  espace: { "Cap Canaveral": ["start", 2], Starbase: ["end", 4], Naro: ["start", 4], Taiyuan: ["start", 0, ""], Sohae: ["start", -6] },
   terro: { Londres: ["end", -4], Bruxelles: ["start", -5], Paris: ["start", 6], Nice: ["start", 7], Raqqa: ["end", -6], Baghouz: ["end", 8], Mossoul: ["start", -3] },
-  onu: { "Sierra Leone": ["end", -5], Liberia: ["end", 7], Rwanda: ["end", -5], Burundi: ["start", 6], Srebrenica: ["end", -2], Kosovo: ["start", 2] },
+  onu: { "Sierra Leone": ["end", -5], Liberia: ["end", 7], Rwanda: ["end", -5], Burundi: ["start", 6], RDC: ["end", 4], "Timor oriental": ["end", 0], Srebrenica: ["end", -2], Kosovo: ["start", 2] },
   chine: { Paracels: ["start", 4], Wenchang: ["start", -5] },
   mo: { "Jérusalem": ["end", -5], Gaza: ["end", 9] }
 };
-for (const [c, t] of Object.entries(RETOUCHES)) for (const p of OUT.cartes[c].pts) if (t[p.n]) { p.a = t[p.n][0]; p.dy = t[p.n][1]; }
+for (const [c, t] of Object.entries(RETOUCHES)) for (const p of OUT.cartes[c].pts) if (t[p.n]) { p.a = t[p.n][0]; p.dy = t[p.n][1]; if (t[p.n].length > 2) p.n = t[p.n][2]; }
 /* recadrage des cartes mondiales sur leurs points (même fond, autre fenêtre) */
 for (const c of ["terro", "onu"]) {
   const P = OUT.cartes[c].pts, mx = 70, my = 50;
