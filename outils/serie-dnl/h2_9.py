@@ -138,7 +138,7 @@ SCENES = [
         "{-l1}{gc.2}Second, the leader. He is built as an ideal man, in whom the nation recognises itself. {l2}{l2.1}Mussolini is il Duce. "
         "And il Duce is always right. {l2.2}Hitler is der Führer. The official greeting becomes Heil Hitler. "
         "{l2.3}Stalin is the little father of the peoples. In nineteen twenty-five, a city is even renamed Stalingrad.",
-        "{-l2}{l3}Third, one single party, with one symbol. {l3.1}The National Fascist Party, and the Roman fasces. "
+        "{-l2}Third, one single party, with one symbol. {l3}{l3.1}The National Fascist Party, and the Roman fasces. "
         "{l3.2}The Nazi Party, and the swastika. {l3.3}The Communist Party, and the hammer and sickle. Why all this? "
         "To make the nation, the party and the leader one and the same. Then, criticising the leader means betraying the country.",
     ], vis={
@@ -163,7 +163,7 @@ SCENES = [
         "{l4.2}In Germany, the Hitler Youth is compulsory from ten to eighteen. The goal is a purified race, the Volk. "
         "Hence racial instruction in schools, and the Nuremberg laws of nineteen thirty-five. "
         "{gn.2}{l4.3}In the Soviet Union, there is the Komsomol. The New Man is the worker, and his hero is the miner Stakhanov.",
-        "{-l4}{l5}{gn.3}Fifth, terror. Not an accident: a method of government. {l5.1}In Italy, the OVRA and the Special Court. "
+        "{-l4}{gn.3}Fifth, terror. Not an accident: a method of government. {l5}{l5.1}In Italy, the OVRA and the Special Court. "
         "Opponents are silenced, or sent into internal exile, rather than killed. {l5.2}In Germany, the Gestapo and the S.S., both under Himmler. "
         "The camps, from Dachau in nineteen thirty-three. And four hundred thousand Germans sterilised. "
         "{gn.4}{l5.3}In the Soviet Union, the NKVD, the Gulag, and the Great Purge: six hundred and eighty thousand executions. "
@@ -265,8 +265,8 @@ SCENES = [
     dict(id="question", chap="The chapter's question", fond="guerre", humeur="mystere",
          retenir="Ideology supplied the will to war; the democracies' reluctance, the opportunity.",
          beats=[
-        "So, did totalitarian ideology cause the war? At the start of the chapter, the course gave three historians' answers. "
-        "{hi}{hi.1}For A. J. P. Taylor, the war came from the failure of the democracies to stop Hitler. The course calls it a very controversial thesis. "
+        "{hi}So, did totalitarian ideology cause the war? At the start of the chapter, the course gave three historians' answers. "
+        "{hi.1}For A. J. P. Taylor, the war came from the failure of the democracies to stop Hitler. The course calls it a very controversial thesis. "
         "{hi.2}For Paul Hehn, it was an economic conflict, born of the crash. "
         "{hi.3}And for Jay Winter, the years nineteen fourteen to nineteen forty-five form one single Thirty Years War.",
         "{-hi}{tr}Each of them holds part of the truth. And the chapter shows where. {tr.1}Winter: the regimes were born in the trenches, "

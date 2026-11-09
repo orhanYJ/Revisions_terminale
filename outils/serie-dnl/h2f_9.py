@@ -122,7 +122,7 @@ SCENES = [
         "{-l1}{gc.2}Ensuite, le chef. Il est construit comme un homme idéal, en qui la nation se reconnaît. {l2}{l2.1}Mussolini est il Duce. "
         "Et il Duce a toujours raison. {l2.2}Hitler est der Führer. Le salut officiel devient Heil Hitler. "
         "{l2.3}Staline est le petit père des peuples. En mille neuf cent vingt-cinq, une ville est même rebaptisée Stalingrad.",
-        "{-l2}{l3}Enfin, un parti unique, avec un symbole. {l3.1}Le Parti national fasciste, et le faisceau romain. "
+        "{-l2}Enfin, un parti unique, avec un symbole. {l3}{l3.1}Le Parti national fasciste, et le faisceau romain. "
         "{l3.2}Le parti nazi, et la croix gammée. {l3.3}Le Parti communiste, et la faucille et le marteau. Pourquoi tout cela ? "
         "Pour confondre la nation, le parti et le chef. Dès lors, critiquer le chef, c'est trahir son pays.",
     ], vis={
@@ -147,7 +147,7 @@ SCENES = [
         "{l4.2}En Allemagne, les Jeunesses hitlériennes sont obligatoires de dix à dix-huit ans. Le but : une race purifiée, le Volk. "
         "D'où l'enseignement racial à l'école, et les lois de Nuremberg de mille neuf cent trente-cinq. "
         "{gn.2}{l4.3}En Union soviétique, il y a le Komsomol. L'homme nouveau est l'ouvrier, et son héros est le mineur Stakhanov.",
-        "{-l4}{l5}{gn.3}Cinquièmement, la terreur. Pas un accident : une méthode de gouvernement. {l5.1}En Italie, l'OVRA et le Tribunal spécial. "
+        "{-l4}{gn.3}Cinquièmement, la terreur. Pas un accident : une méthode de gouvernement. {l5}{l5.1}En Italie, l'OVRA et le Tribunal spécial. "
         "Les opposants sont réduits au silence, ou envoyés en relégation, plutôt que tués. {l5.2}En Allemagne, la Gestapo et les SS, tous deux sous Himmler. "
         "Les camps, à partir de Dachau en mille neuf cent trente-trois. Et quatre cent mille Allemands stérilisés. "
         "{gn.4}{l5.3}En Union soviétique, le NKVD, le Goulag, et la Grande Purge : six cent quatre-vingt mille exécutions. "
@@ -249,8 +249,8 @@ SCENES = [
     dict(id="question", chap="La question du chapitre", fond="guerre", humeur="mystere",
          retenir="L'idéologie a fourni la volonté de guerre ; la réticence des démocraties, l'occasion.",
          beats=[
-        "Alors, l'idéologie totalitaire a-t-elle causé la guerre ? Au début du chapitre, le cours donnait les réponses de trois historiens. "
-        "{hi}{hi.1}Pour A. J. P. Taylor, la guerre vient de l'échec des démocraties à arrêter Hitler. Le cours la dit très controversée. "
+        "{hi}Alors, l'idéologie totalitaire a-t-elle causé la guerre ? Au début du chapitre, le cours donnait les réponses de trois historiens. "
+        "{hi.1}Pour A. J. P. Taylor, la guerre vient de l'échec des démocraties à arrêter Hitler. Le cours la dit très controversée. "
         "{hi.2}Pour Paul Hehn, c'est un conflit économique, né du krach. "
         "{hi.3}Et pour Jay Winter, les années mille neuf cent quatorze à mille neuf cent quarante-cinq forment une seule guerre de Trente Ans.",
         "{-hi}{tr}Chacun tient une part de la vérité. Et le chapitre montre laquelle. {tr.1}Winter : les régimes sont nés dans les tranchées, "
