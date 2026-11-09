@@ -945,6 +945,14 @@ html.mo .mo-ph-cap.new{animation:mo-capin .45s var(--mo-ease)}
 .mo-ph-steps i{width:16px;height:4px;border-radius:2px;background:#d8cfbb;transition:background .3s}
 .mo-ph-steps i.on{background:var(--mo-gold)}
 
+/* ---------- 7. complément : chaque commande réagit (09/11/2026) ---------- */
+html.mo :where(.tr-chip,.tr-opt,.tr-tab,.tr-btn,.tr-link,.chap-btn,.chap-tab,.gloss-tab,.gloss-row,.kt-chip,.srch-row,.foot-btn,.tool-btn,.fold-tools button,.fiche-toggle,.fr-toggle,.lt-seg,.train-btn,.subj-tab,.ft-btn,.fold-close,.pdf-btn,.mo-ph-btn,.glvoir button){
+  transition:background-color .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease,opacity .22s ease,transform .18s var(--mo-ease)}
+html.mo :where(.tr-chip,.foot-btn,.tool-btn,.subj-tab,.ft-btn,.pdf-btn,.train-btn,.tr-btn):hover{transform:translateY(-1px)}
+html.mo .scrim.show{animation:mo-fadein .28s ease both}
+@keyframes mo-fadein{from{opacity:0}to{opacity:1}}
+.mo-ghost{pointer-events:none}
+
 @media (max-width:860px){
   .mo-sound{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:40px;height:40px}
   .mo-seal.on-hero{right:4px;top:-14px;width:66px;height:66px}
@@ -7051,6 +7059,112 @@ new MutationObserver(() => { if(!planif){ planif = true; requestAnimationFrame(r
   .observe(document.getElementById("root") || document.body, {childList:true, subtree:true, attributes:true, attributeFilter:["class", "disabled"]});
 addEventListener("resize", () => curseur(), {passive:true});
 document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", rafraichir) : rafraichir();
+
+/* ---------------- 10. complément général (09/11/2026) ----------------
+   Toute action de l'utilisateur qui change la page reçoit un mouvement, même
+   quand le composant React n'en prévoit pas : on observe ce que le clic a
+   modifié dans les 700 ms qui suivent et on anime
+   - les blocs qui apparaissent (panneaux, réponses, résultats) : ils se déplient ;
+   - les blocs qui disparaissent : un fantôme se replie à leur place ;
+   - le texte remplacé sur place (question suivante, autre carte) : il glisse ;
+   - le changement de page (chapitre, Entraînement, glossaire, accueil) : la page entre ;
+   - le changement de langue : fondu enchaîné.
+   Ce que le site anime déjà (parties, onglets, quiz, cartes, info-bulles) est laissé tel quel. */
+let actionJusqu = 0, actionCible = null;
+/* blocs qui ont déjà leur propre mouvement quand ils apparaissent */
+const DEJA = ".fold-body,.tab-body,.mo-card,.mo-expl,.mo-seal,.mo-sealtag,.mo-stamp,.mo-leaf,.mo-streak,.mo-end-seal,.mo-route,.mo-cursor,.mo-sound,.mo-ghost,.fr-panel,.exam-body,.glpop";
+/* zones où l'on ne touche à rien : dessins animés par le site, médias, bascule de langue */
+const DEDANS = "svg,canvas,iframe,video,audio,.lang-toggle,.glpop,.mo-ph,.mo-sound,.fr-panel,.exam-body";
+const ancetreAnime = el => { for(let p = el.parentElement; p && p !== document.body; p = p.parentElement){ if(p.getAnimations({subtree:false}).some(a => a.playState === "running")) return true; } return false; };
+const ACTION = "button,a,[role=button],summary,label,select,.fold-head,.chap-btn,.srch-row,.gloss-row,.gl,.kt-chip";
+function action(e){
+  const c = e.target && e.target.closest ? e.target.closest(ACTION) : null;
+  if(!c || c.closest(".mo-sound")) return;
+  actionJusqu = performance.now() + 700; actionCible = c;
+  if(!calme && c.matches("button,[role=button],.chap-btn,.srch-row,.gloss-row,.kt-chip")) presser(c);
+}
+document.addEventListener("click", action, true);
+document.addEventListener("keydown", e => { if(e.key === "Enter" || e.key === " ") action(e); }, true);
+function presser(el){
+  if(el.closest(".mo-opt") || el.getAnimations().length) return;
+  el.animate([{transform:"scale(1)"}, {transform:"scale(.965)", offset:.35}, {transform:"scale(1)"}], {duration:240, easing:"cubic-bezier(.2,.7,.2,1)"});
+}
+const enAction = () => performance.now() < actionJusqu;
+const dejaAnime = el => el.matches(DEJA) || !!el.closest(DEDANS) || el.getAnimations({subtree:false}).length > 0 || ancetreAnime(el);
+const visible = el => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0 && r.bottom > -50 && r.top < innerHeight + 50; };
+
+function entrer(el){
+  if(!(el instanceof HTMLElement) || dejaAnime(el) || !visible(el)) return;
+  const h = el.offsetHeight;
+  if(h > 900){ el.animate([{opacity:0, transform:"translateY(10px)"}, {opacity:1, transform:"none"}], {duration:380, easing:"cubic-bezier(.2,.7,.2,1)"}); return; }
+  el.animate([{opacity:0, transform:"translateY(-6px)", clipPath:"inset(0 0 100% 0)"}, {opacity:1, transform:"none", clipPath:"inset(0 0 0 0)"}],
+             {duration:Math.min(460, 240 + h * .4), easing:"cubic-bezier(.2,.7,.2,1)"});
+  el.querySelectorAll(":scope > *").forEach((k, i) => { if(i < 8 && k instanceof HTMLElement && !dejaAnime(k))
+    k.animate([{opacity:0, transform:"translateY(4px)"}, {opacity:1, transform:"none"}], {duration:300, delay:60 + i * 40, easing:"cubic-bezier(.2,.7,.2,1)", fill:"backwards"}); });
+}
+function sortir(rec, el){
+  /* fantôme du bloc retiré, replié à sa place puis supprimé */
+  if(!(el instanceof HTMLElement) || !rec.target.isConnected) return;
+  const partie = el.matches(".fold-body");
+  if((el.matches(DEJA) && !partie) || (rec.target.closest && rec.target.closest(DEDANS))) return;
+  const r = el.__moBox; if(!r || r.h < 4 || (r.h > 700 && !partie)) return;
+  const g = el.cloneNode(true); g.classList.add("mo-ghost"); g.setAttribute("aria-hidden", "true"); g.inert = true;
+  g.style.cssText += ";overflow:hidden;pointer-events:none;margin-top:0;margin-bottom:0";
+  try{ rec.target.insertBefore(g, rec.nextSibling && rec.nextSibling.parentNode === rec.target ? rec.nextSibling : null); }catch(e){ return; }
+  const h0 = Math.min(r.h, 640);
+  const a = g.animate([{height:h0 + "px", opacity:1}, {height:"0px", opacity:0, paddingTop:"0px", paddingBottom:"0px"}], {duration:partie ? 320 : 240, easing:"cubic-bezier(.4,0,.6,1)"});
+  a.onfinish = a.oncancel = () => g.remove();
+}
+function glisser(el){
+  if(!(el instanceof HTMLElement) || dejaAnime(el) || !visible(el)) return;
+  el.animate([{opacity:.25, transform:"translateX(10px)"}, {opacity:1, transform:"none"}], {duration:320, easing:"cubic-bezier(.2,.7,.2,1)"});
+}
+function nouvellePage(main){
+  if(dejaAnime(main)) return;
+  main.animate([{opacity:0, transform:"translateY(14px)"}, {opacity:1, transform:"none"}], {duration:420, easing:"cubic-bezier(.2,.7,.2,1)"});
+  son.page();
+}
+/* mémoriser la taille des blocs avant qu'ils disparaissent : on la prend au clic, sur le voisinage de l'action */
+document.addEventListener("pointerdown", e => {
+  const zone = e.target.closest && (e.target.closest(".schema,.section,.idea,.train-root,.tr-card,.exam-card,.main") || document.body);
+  if(!zone) return;
+  zone.querySelectorAll("div,p,ul,ol,table,section,details").forEach((el, i) => { if(i < 600){ const r = el.getBoundingClientRect(); el.__moBox = {h:r.height}; } });
+}, true);
+
+let pageAvant = null, langAvant = null;
+const signePage = () => {
+  const m = document.querySelector(".main"); if(!m) return null;
+  const k = m.querySelector(".hero-code,.train-root,.gloss-terms,.prem-root,.soon-wrap,.home-hero,.hero-cartouche");
+  return (k ? (k.className + "|" + k.textContent.slice(0, 40)) : "") + "|" + (m.firstElementChild ? m.firstElementChild.className : "");
+};
+new MutationObserver(recs => {
+  if(calme) return;
+  const lang = FR();
+  if(langAvant !== null && lang !== langAvant){ langAvant = lang; const m = document.querySelector(".main"); if(m) m.animate([{opacity:.15}, {opacity:1}], {duration:360, easing:"ease-out"}); return; }
+  langAvant = lang;
+  const sp = signePage();
+  if(pageAvant !== null && sp !== pageAvant){ pageAvant = sp; const m = document.querySelector(".main"); if(m && enAction()) nouvellePage(m); return; }
+  pageAvant = sp;
+  if(!enAction()) return;
+  const ajoutes = new Set(), textes = new Set();
+  for(const r of recs){
+    if(r.type === "childList"){
+      r.addedNodes.forEach(n => { if(n.nodeType === 1) ajoutes.add(n); else if(n.nodeType === 3 && n.parentElement) textes.add(n.parentElement); });
+      r.removedNodes.forEach(n => { if(n.nodeType === 1 && !n.classList.contains("mo-ghost")) sortir(r, n); });
+    } else if(r.type === "characterData" && r.target.parentElement) textes.add(r.target.parentElement);
+  }
+  /* seulement les racines : un bloc ajouté dont le parent est aussi ajouté n'est pas animé à part */
+  ajoutes.forEach(n => { let p = n.parentElement, haut = true; while(p){ if(ajoutes.has(p)){ haut = false; break; } p = p.parentElement; } if(haut && !n.classList.contains("mo-ghost")) entrer(n); });
+  /* texte remplacé sur place : on anime le plus petit bloc commun */
+  if(textes.size){
+    const blocs = [...textes].filter(t => !t.closest(DEDANS) && !t.closest(".mo-sound") && ![...ajoutes].some(a => a.contains(t)));
+    if(blocs.length){
+      let c = blocs[0];
+      while(c && !blocs.every(b => c.contains(b))) c = c.parentElement;
+      if(c && c !== document.body && c.textContent.length < 4000) glisser(c.closest("p,li,div,section,button") || c);
+    }
+  }
+}).observe(document.getElementById("root") || document.body, {childList:true, subtree:true, characterData:true});
 
 window.MO = {son, feuilles, cachetSVG, repondre, finQuiz, retourner, carteSuivante, calme: () => calme};
 })();
