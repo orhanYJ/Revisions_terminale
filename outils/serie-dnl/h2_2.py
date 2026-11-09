@@ -395,7 +395,7 @@ SCENES = [
         "{-hk}{sw}The symbol is the black {!swastika}swastika. {sw.1}It was an ancient sign, long seen as lucky. The Nazis made it Aryan. "
         "{sw.2}Some revision notes say that it was chosen for no particular reason. In fact, Hitler does explain its symbolism, in Mein Kampf. "
         "{sw.3}And the paramilitary organisations are the S. A. and the S. S.",
-        "{-sw}{tb}So here is the course table. Two movements, the same building blocks. {tb.g}Fascism on one side. "
+        "So here is the course table. Two movements, the same building blocks. {-sw}{tb}{tb.g}Fascism on one side. "
         "{tb.d}Nazism on the other.",
         "{-tb}{dif}Two things to add. {dif.1}Mussolini came to power eleven years before Hitler. So, for the course, fascism is the first totalitarianism. "
         "{dif.2}And what separates the two movements? {!race}Race. It is at the heart of the Nazi programme, from Mein Kampf onwards.",

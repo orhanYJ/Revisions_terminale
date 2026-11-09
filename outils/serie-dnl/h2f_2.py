@@ -389,7 +389,7 @@ SCENES = [
         "{-hk}{sw}Le symbole, c'est la {!croix gammée}croix gammée noire. {sw.1}Un signe ancien, longtemps vu comme un porte-bonheur. Les nazis en font un signe aryen. "
         "{sw.2}Certaines fiches de révision disent qu'elle a été choisie sans raison particulière. En réalité, Hitler explique son symbolisme dans Mein Kampf. "
         "{sw.3}Et les organisations paramilitaires sont la SA et la SS.",
-        "{-sw}{tb}Voici donc le tableau du cours. Deux mouvements, les mêmes composantes. {tb.g}Le fascisme d'un côté. "
+        "Voici donc le tableau du cours. Deux mouvements, les mêmes composantes. {-sw}{tb}{tb.g}Le fascisme d'un côté. "
         "{tb.d}Le nazisme de l'autre.",
         "{-tb}{dif}Deux choses à ajouter. {dif.1}Mussolini arrive au pouvoir onze ans avant Hitler. Pour le cours, le fascisme est donc le premier totalitarisme. "
         "{dif.2}Et qu'est-ce qui sépare les deux mouvements ? La {!race}race. Elle est au cœur du programme nazi, dès Mein Kampf.",
