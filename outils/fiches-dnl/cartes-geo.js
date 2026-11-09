@@ -1,7 +1,8 @@
-/* Cartes des fiches de géographie (G1, G2, G3) : les cartes du site, telles qu'elles sont injectées dans dnl/index.html
-   (G1_FOND, G1_MAPS, G2_MAPS, G3_MAPS, produites par outils/cartes-geo/), écrites en SVG autonomes dans cartes/,
+/* Cartes de la fiche de géographie G1 (tout le thème 1 ; en géographie, un chapitre par thème) : les cartes du site,
+   telles qu'elles sont injectées dans dnl/index.html (G1_FOND, G1_MAPS ; G2_MAPS = parties III-IV ; G3_MAPS = partie V ;
+   produites par outils/cartes-geo/), écrites en SVG autonomes dans cartes/,
    avec les couleurs du site à la place des variables CSS.
-   Usage, depuis la racine du dépôt :  node outils/fiches-dnl/cartes-geo.js   (avant generer.js G1 G2 G3) */
+   Usage, depuis la racine du dépôt :  node outils/fiches-dnl/cartes-geo.js   (avant generer.js G1) */
 const fs = require("fs");
 const path = require("path");
 const ICI = __dirname;
@@ -13,8 +14,8 @@ const M = { G1: lire("G1_MAPS"), G2: lire("G2_MAPS"), G3: lire("G3_MAPS") };
 /* fichier de la fiche → [chapitre, clé de la carte] ; « <code> » seul = carte principale */
 const SORTIES = {
   "G1": ["G1", "routes"], "G1-choke": ["G1", "choke"],
-  "G2": ["G2", "arctic"], "G2-scs": ["G2", "scs"], "G2-bases": ["G2", "bases"],
-  "G3": ["G3", "monde"], "G3-metro": ["G3", "metro"], "G3-synth": ["G3", "synth"]
+  "G1-arctic": ["G2", "arctic"], "G1-scs": ["G2", "scs"], "G1-bases": ["G2", "bases"],
+  "G1-monde": ["G3", "monde"], "G1-metro": ["G3", "metro"], "G1-synth": ["G3", "synth"]
 };
 const remplacer = s => s.replace(/var\((--g1-[a-z]+)\)/g, (_, v) => VARS[v]);
 for (const [fichier, [ch, cle]] of Object.entries(SORTIES)) {
