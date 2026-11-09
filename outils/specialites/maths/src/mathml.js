@@ -167,15 +167,18 @@ var TeX = (function () {
     var p = new Parser(src.replace(/\{,\}/g, ",")), r = [];
     try { r = p.liste(null); } catch (e) { r = [el("mtext", esc(src))]; }
     var out;
-    if (bloc || r.length < 4) out = '<math' + (bloc ? ' display="block"' : "") + '>' + (r.length > 1 ? el("mrow", r.join("")) : r.join("")) + "</math>";
+    if (r.length < 4) out = '<math' + (bloc ? ' display="block"' : "") + '>' + (r.length > 1 ? el("mrow", r.join("")) : r.join("")) + "</math>";
     else {
-      /* en ligne : coupure possible avant chaque relation, pour que la formule passe à la ligne sur téléphone */
-      var REL = /^<mo>(=|⇔|⇒|⩽|⩾|&lt;|&gt;|≠|≈|∈|≡)<\/mo>$/, morceaux = [[]];
+      /* coupures possibles avant chaque relation (et après un \quad) : la formule passe à la ligne sur téléphone */
+      var REL = /^<mo>(=|⇔|⇒|⩽|⩾|&lt;|&gt;|≠|≈|∈|≡)<\/mo>$/, ESP = /^<mspace width="[12]em"><\/mspace>$/, morceaux = [[]];
       r.forEach(function (x, k) {
-        if (REL.test(x) && k > 0) { morceaux.push([]); x = x.replace("<mo>", '<mo lspace="0.278em" rspace="0.278em">'); }
+        if (REL.test(x) && k > 0 && morceaux[morceaux.length - 1].length) { morceaux.push([]); x = x.replace("<mo>", '<mo lspace="0.278em" rspace="0.278em">'); }
         morceaux[morceaux.length - 1].push(x);
+        if (bloc && ESP.test(x) && k < r.length - 1) morceaux.push([]);
       });
-      out = morceaux.map(function (m) { return "<math>" + (m.length > 1 ? el("mrow", m.join("")) : m.join("")) + "</math>"; }).join("<wbr>");
+      var att = bloc ? ' displaystyle="true"' : "";
+      out = morceaux.filter(function (m) { return m.length; }).map(function (m) { return "<math" + att + ">" + (m.length > 1 ? el("mrow", m.join("")) : m.join("")) + "</math>"; }).join("<wbr>");
+      if (bloc) out = '<span class="mb">' + out + "</span>";
     }
     cache[k] = out;
     return out;

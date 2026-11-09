@@ -50,6 +50,8 @@ body{margin:0;background-color:var(--papier);color:var(--encre);font:16.5px/1.6 
   background-size:22px 22px;background-attachment:fixed}
 math{font-family:var(--math);font-size:1.08em}
 math[display="block"]{margin:.6em 0;overflow-x:auto;overflow-y:hidden;padding:.15em 0;max-width:100%}
+.mb{display:block;text-align:center;margin:.6em 0;padding:.15em 0;overflow-x:auto;overflow-y:hidden;line-height:2.4}
+.mb>math{line-height:normal;vertical-align:middle}
 .m-red{color:var(--rouge)} .m-blue{color:var(--bleu)} .m-hl{background:var(--surligne)}
 a{color:var(--bleu);text-underline-offset:2px}
 button{font:inherit;color:inherit}
@@ -99,7 +101,7 @@ main{flex:1;min-width:0;padding:18px 16px 90px}
   .menu.ouvert{transform:none}
   .voile.ouvert{display:block;position:fixed;inset:0;z-index:55;background:rgba(10,15,30,.35)}
 }
-@media (min-width:960px){#bMenu{display:none}main{padding:26px 32px 90px}.page{position:relative}
+@media (min-width:960px){#bMenu{display:none}.onglets{flex-wrap:wrap}main{padding:26px 32px 90px}.page{position:relative}
   .page::before{content:"";position:absolute;left:-18px;top:0;bottom:0;width:1.5px;background:var(--marge)}}
 
 /* ---------- éléments de cours ---------- */
@@ -515,15 +517,18 @@ var TeX = (function () {
     var p = new Parser(src.replace(/\{,\}/g, ",")), r = [];
     try { r = p.liste(null); } catch (e) { r = [el("mtext", esc(src))]; }
     var out;
-    if (bloc || r.length < 4) out = '<math' + (bloc ? ' display="block"' : "") + '>' + (r.length > 1 ? el("mrow", r.join("")) : r.join("")) + "</math>";
+    if (r.length < 4) out = '<math' + (bloc ? ' display="block"' : "") + '>' + (r.length > 1 ? el("mrow", r.join("")) : r.join("")) + "</math>";
     else {
-      /* en ligne : coupure possible avant chaque relation, pour que la formule passe à la ligne sur téléphone */
-      var REL = /^<mo>(=|⇔|⇒|⩽|⩾|&lt;|&gt;|≠|≈|∈|≡)<\/mo>$/, morceaux = [[]];
+      /* coupures possibles avant chaque relation (et après un \quad) : la formule passe à la ligne sur téléphone */
+      var REL = /^<mo>(=|⇔|⇒|⩽|⩾|&lt;|&gt;|≠|≈|∈|≡)<\/mo>$/, ESP = /^<mspace width="[12]em"><\/mspace>$/, morceaux = [[]];
       r.forEach(function (x, k) {
-        if (REL.test(x) && k > 0) { morceaux.push([]); x = x.replace("<mo>", '<mo lspace="0.278em" rspace="0.278em">'); }
+        if (REL.test(x) && k > 0 && morceaux[morceaux.length - 1].length) { morceaux.push([]); x = x.replace("<mo>", '<mo lspace="0.278em" rspace="0.278em">'); }
         morceaux[morceaux.length - 1].push(x);
+        if (bloc && ESP.test(x) && k < r.length - 1) morceaux.push([]);
       });
-      out = morceaux.map(function (m) { return "<math>" + (m.length > 1 ? el("mrow", m.join("")) : m.join("")) + "</math>"; }).join("<wbr>");
+      var att = bloc ? ' displaystyle="true"' : "";
+      out = morceaux.filter(function (m) { return m.length; }).map(function (m) { return "<math" + att + ">" + (m.length > 1 ? el("mrow", m.join("")) : m.join("")) + "</math>"; }).join("<wbr>");
+      if (bloc) out = '<span class="mb">' + out + "</span>";
     }
     cache[k] = out;
     return out;
@@ -660,10 +665,10 @@ var WIDGETS = (function () {
     c.scene.appendChild(svg);
     N("line", { x1: 4, x2: Wd - 4, y1: 118, y2: 118, "class": "g-axe" }, svg);
     var doms = [], timers = [];
-    function pos(i, ecart) { return 14 + i * 29 + (ecart && i > 4 ? 22 : 0); }
+    function pos(i, ecart) { return 12 + i * 29 + (ecart && i > 4 ? 32 : 0); }
     function dessine() {
       timers.forEach(clearTimeout); timers = [];
-      doms.forEach(function (d) { d.g.remove(); }); doms = [];
+      doms.forEach(function (d) { d.g.remove(); if (d.t !== d.g) d.t.remove(); }); doms = [];
       var ecart = +cas.value === 2;
       for (var i = 0; i < nb; i++) {
         var x = pos(i, ecart);
@@ -676,7 +681,7 @@ var WIDGETS = (function () {
         var t = N("text", { x: x + 4.5, y: 134, "text-anchor": "middle", "class": "g-txt" }, svg); t.textContent = i;
         doms.push({ g: g, t: t });
       }
-      if (ecart) { var tx = N("text", { x: pos(5, true) - 15, y: 60, "text-anchor": "middle", "class": "g-lab r" }, svg); tx.textContent = "écart"; doms.push({ g: tx, t: tx }); }
+      if (ecart) { var tx = N("text", { x: pos(5, true) - 12, y: 60, "text-anchor": "middle", "class": "g-lab r" }, svg); tx.textContent = "écart"; doms.push({ g: tx, t: tx }); }
       c.note.innerHTML = F(["Chaque domino $n$ fait tomber le suivant $n+1$ : c'est l'<b>hérédité</b>. Pousse le domino $0$ : c'est l'<b>initialisation</b>.",
         "L'hérédité est vraie (chaque domino ferait tomber le suivant)… mais si personne ne pousse le domino $0$, rien ne tombe. <b>Sans initialisation, on ne prouve rien.</b>",
         "On pousse le domino $0$, mais entre le domino $4$ et le domino $5$ l'écart est trop grand : « si $n$ tombe alors $n+1$ tombe » est faux pour $n=4$. <b>Sans hérédité pour tout $n$, la chaîne casse.</b>"][+cas.value]);
@@ -693,7 +698,7 @@ var WIDGETS = (function () {
       if (k === 1) { c.note.innerHTML = F("On attend… rien ne se passe : l'hérédité seule ne fait jamais tomber le premier domino. Il manque $P(0)$."); return; }
       var stop = k === 2 ? 5 : nb, pas = mo() ? 230 : 0;
       for (var i = 0; i < stop; i++) (function (i) {
-        timers.push(setTimeout(function () { tombe(i, i === stop - 1 && stop < nb ? 62 : (i === nb - 1 ? 66 : 34)); }, i * pas));
+        timers.push(setTimeout(function () { tombe(i, i === stop - 1 && stop < nb ? 88 : (i === nb - 1 ? 66 : 34)); }, i * pas));
       })(i);
       timers.push(setTimeout(function () {
         c.note.innerHTML = F(k === 0 ? "Tous les dominos sont tombés : $P(n)$ est vraie <b>pour tout entier</b> $n\\geq 0$. Même s'il y en avait une infinité !" : "Les dominos $0$ à $4$ sont tombés, puis tout s'arrête : $P(5)$, $P(6)$… ne sont pas démontrées. Vérifier quelques cas ne prouve rien.");
@@ -2350,7 +2355,8 @@ def seuil():
       var q = liste[i]; rep = false;
       var h = '<div class="qcm"><div class="haut"><span>Question ' + (i + 1) + " / " + liste.length + '</span><span class="barre"><i style="width:' + (100 * i / liste.length) + '%"></i></span><span>' + bons + " ✓</span></div>";
       if (el.getAttribute("data-qcm") === "tout") h += '<div style="font-size:.78rem;color:var(--rouge);font-weight:600">' + esc(PARCH[q.ch].court) + "</div>";
-      h += '<div class="q">' + F(q.q) + '</div><div class="opts">' + q.c.map(function (o, k) { return '<button type="button" class="opt" data-k="' + k + '"><span class="l">' + "abcd"[k] + "</span><span>" + F(o) + "</span></button>"; }).join("") + '</div><div class="suite"></div></div>';
+      var ordre = melange(q.c.map(function (_, k) { return k; }));
+      h += '<div class="q">' + F(q.q) + '</div><div class="opts">' + ordre.map(function (k, pos) { return '<button type="button" class="opt" data-k="' + k + '"><span class="l">' + "abcd"[pos] + "</span><span>" + F(q.c[k]) + "</span></button>"; }).join("") + '</div><div class="suite"></div></div>';
       el.innerHTML = h;
       $$(".opt", el).forEach(function (b) {
         b.onclick = function () {

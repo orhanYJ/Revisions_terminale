@@ -170,7 +170,8 @@
       var q = liste[i]; rep = false;
       var h = '<div class="qcm"><div class="haut"><span>Question ' + (i + 1) + " / " + liste.length + '</span><span class="barre"><i style="width:' + (100 * i / liste.length) + '%"></i></span><span>' + bons + " ✓</span></div>";
       if (el.getAttribute("data-qcm") === "tout") h += '<div style="font-size:.78rem;color:var(--rouge);font-weight:600">' + esc(PARCH[q.ch].court) + "</div>";
-      h += '<div class="q">' + F(q.q) + '</div><div class="opts">' + q.c.map(function (o, k) { return '<button type="button" class="opt" data-k="' + k + '"><span class="l">' + "abcd"[k] + "</span><span>" + F(o) + "</span></button>"; }).join("") + '</div><div class="suite"></div></div>';
+      var ordre = melange(q.c.map(function (_, k) { return k; }));
+      h += '<div class="q">' + F(q.q) + '</div><div class="opts">' + ordre.map(function (k, pos) { return '<button type="button" class="opt" data-k="' + k + '"><span class="l">' + "abcd"[pos] + "</span><span>" + F(q.c[k]) + "</span></button>"; }).join("") + '</div><div class="suite"></div></div>';
       el.innerHTML = h;
       $$(".opt", el).forEach(function (b) {
         b.onclick = function () {

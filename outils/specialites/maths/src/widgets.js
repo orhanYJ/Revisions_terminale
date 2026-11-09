@@ -115,10 +115,10 @@ var WIDGETS = (function () {
     c.scene.appendChild(svg);
     N("line", { x1: 4, x2: Wd - 4, y1: 118, y2: 118, "class": "g-axe" }, svg);
     var doms = [], timers = [];
-    function pos(i, ecart) { return 14 + i * 29 + (ecart && i > 4 ? 22 : 0); }
+    function pos(i, ecart) { return 12 + i * 29 + (ecart && i > 4 ? 32 : 0); }
     function dessine() {
       timers.forEach(clearTimeout); timers = [];
-      doms.forEach(function (d) { d.g.remove(); }); doms = [];
+      doms.forEach(function (d) { d.g.remove(); if (d.t !== d.g) d.t.remove(); }); doms = [];
       var ecart = +cas.value === 2;
       for (var i = 0; i < nb; i++) {
         var x = pos(i, ecart);
@@ -131,7 +131,7 @@ var WIDGETS = (function () {
         var t = N("text", { x: x + 4.5, y: 134, "text-anchor": "middle", "class": "g-txt" }, svg); t.textContent = i;
         doms.push({ g: g, t: t });
       }
-      if (ecart) { var tx = N("text", { x: pos(5, true) - 15, y: 60, "text-anchor": "middle", "class": "g-lab r" }, svg); tx.textContent = "écart"; doms.push({ g: tx, t: tx }); }
+      if (ecart) { var tx = N("text", { x: pos(5, true) - 12, y: 60, "text-anchor": "middle", "class": "g-lab r" }, svg); tx.textContent = "écart"; doms.push({ g: tx, t: tx }); }
       c.note.innerHTML = F(["Chaque domino $n$ fait tomber le suivant $n+1$ : c'est l'<b>hérédité</b>. Pousse le domino $0$ : c'est l'<b>initialisation</b>.",
         "L'hérédité est vraie (chaque domino ferait tomber le suivant)… mais si personne ne pousse le domino $0$, rien ne tombe. <b>Sans initialisation, on ne prouve rien.</b>",
         "On pousse le domino $0$, mais entre le domino $4$ et le domino $5$ l'écart est trop grand : « si $n$ tombe alors $n+1$ tombe » est faux pour $n=4$. <b>Sans hérédité pour tout $n$, la chaîne casse.</b>"][+cas.value]);
@@ -148,7 +148,7 @@ var WIDGETS = (function () {
       if (k === 1) { c.note.innerHTML = F("On attend… rien ne se passe : l'hérédité seule ne fait jamais tomber le premier domino. Il manque $P(0)$."); return; }
       var stop = k === 2 ? 5 : nb, pas = mo() ? 230 : 0;
       for (var i = 0; i < stop; i++) (function (i) {
-        timers.push(setTimeout(function () { tombe(i, i === stop - 1 && stop < nb ? 62 : (i === nb - 1 ? 66 : 34)); }, i * pas));
+        timers.push(setTimeout(function () { tombe(i, i === stop - 1 && stop < nb ? 88 : (i === nb - 1 ? 66 : 34)); }, i * pas));
       })(i);
       timers.push(setTimeout(function () {
         c.note.innerHTML = F(k === 0 ? "Tous les dominos sont tombés : $P(n)$ est vraie <b>pour tout entier</b> $n\\geq 0$. Même s'il y en avait une infinité !" : "Les dominos $0$ à $4$ sont tombés, puis tout s'arrête : $P(5)$, $P(6)$… ne sont pas démontrées. Vérifier quelques cas ne prouve rien.");

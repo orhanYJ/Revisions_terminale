@@ -36,6 +36,8 @@ body{margin:0;background-color:var(--papier);color:var(--encre);font:16.5px/1.6 
   background-size:22px 22px;background-attachment:fixed}
 math{font-family:var(--math);font-size:1.08em}
 math[display="block"]{margin:.6em 0;overflow-x:auto;overflow-y:hidden;padding:.15em 0;max-width:100%}
+.mb{display:block;text-align:center;margin:.6em 0;padding:.15em 0;overflow-x:auto;overflow-y:hidden;line-height:2.4}
+.mb>math{line-height:normal;vertical-align:middle}
 .m-red{color:var(--rouge)} .m-blue{color:var(--bleu)} .m-hl{background:var(--surligne)}
 a{color:var(--bleu);text-underline-offset:2px}
 button{font:inherit;color:inherit}
@@ -85,7 +87,7 @@ main{flex:1;min-width:0;padding:18px 16px 90px}
   .menu.ouvert{transform:none}
   .voile.ouvert{display:block;position:fixed;inset:0;z-index:55;background:rgba(10,15,30,.35)}
 }
-@media (min-width:960px){#bMenu{display:none}main{padding:26px 32px 90px}.page{position:relative}
+@media (min-width:960px){#bMenu{display:none}.onglets{flex-wrap:wrap}main{padding:26px 32px 90px}.page{position:relative}
   .page::before{content:"";position:absolute;left:-18px;top:0;bottom:0;width:1.5px;background:var(--marge)}}
 
 /* ---------- éléments de cours ---------- */
