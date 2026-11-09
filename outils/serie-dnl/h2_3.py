@@ -334,7 +334,7 @@ SCENES = [
         "{hol.2}The regime answers with brigades, backed by the political police, the O. G. P. U. Their job is to take the grain.",
         "{hol.3}The Politburo sends Molotov and Kaganovich. First, they stop deliveries of manufactured goods to the districts that have not met the plan. "
         "{hol.4}Then the most rebellious villages are placed on the blackboard. That means they are cut off from all supplies, including food.",
-        "{-hol}{-g7}{pct}The historian Nicolas Werth, in source four, gives the figures. {pct.g}In September nineteen thirty-two, Ukraine reached only thirty-two per cent "
+        "The historian Nicolas Werth, in source four, gives the figures. {-hol}{-g7}{pct}{pct.g}In September nineteen thirty-two, Ukraine reached only thirty-two per cent "
         "of its monthly grain target. {pct.d}By the twenty-fifth of October, only twenty-two per cent.",
         "{-pct}{bil}The result is a man-made famine. The Holodomor, in nineteen thirty-two and thirty-three. "
         "It killed about four million people in Ukraine. That death toll is added from outside the course.",
