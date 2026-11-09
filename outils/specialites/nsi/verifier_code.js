@@ -38,7 +38,7 @@ for (const id of Object.keys(CODE)) {
     bon = res.status === 0;
     obtenu = res.stdout + res.stderr;
   } else {
-    fs.writeFileSync(path.join(dir, "prog.py"), (deps ? "import sys as _s, io as _io\n_v = _s.stdout\n_s.stdout = _io.StringIO()\n" + deps + "\n_s.stdout = _v\n\n" : "") + c.src);
+    fs.writeFileSync(path.join(dir, "prog.py"), (c.verif ? "" : "") + (deps ? "import sys as _s, io as _io\n_v = _s.stdout\n_s.stdout = _io.StringIO()\n" + deps + "\n_s.stdout = _v\n\n" : "") + c.src + (c.verif ? "\n" + c.verif : ""));
     res = cp.spawnSync("python3", ["prog.py"], { cwd: dir, encoding: "utf8", timeout: 60000 });
     obtenu = norm(res.stdout);
     attendu = c.out === undefined ? null : norm(c.out);

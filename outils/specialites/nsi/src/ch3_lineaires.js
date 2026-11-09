@@ -205,7 +205,7 @@ class FileListe:
         self.contenu.append(x)           # à la queue : coût constant
 
     def defiler(self):
-        return self.contenu.pop(0)       # à la tête : TOUS les éléments sont décalés`, { run: false });
+        return self.contenu.pop(0)       # à la tête : TOUS les éléments sont décalés`, { verif: "f = FileListe()\nfor x in 'abc':\n    f.enfiler(x)\nprint(f.defiler(), f.defiler(), f.est_vide())", out: "a b False", montrer: false });
 
 C("c3-file-chainee", String.raw`
 class File:

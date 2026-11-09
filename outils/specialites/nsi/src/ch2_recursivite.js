@@ -119,7 +119,7 @@ def puissance_rapide(a, n):          # l'exposant est divisé par 2 à chaque ap
 
 print(puissance(2, 10), puissance_rapide(2, 10))
 print(puissance_rapide(3, 13) == 3 ** 13)
-print(puissance_rapide(2, 1000000).bit_length())   # 22 appels seulement`, { out: "1024 1024\nTrue\n1000001" });
+print(puissance_rapide(2, 1000000).bit_length())   # 21 appels seulement`, { out: "1024 1024\nTrue\n1000001" });
 
 C("c2-puissance-naive-ko", String.raw`
 def puissance(a, n):

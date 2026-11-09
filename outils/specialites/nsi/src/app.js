@@ -91,14 +91,14 @@
     var out = "";
     var montrer = mode !== "nosortie" && ((c.out && c.out.trim()) || c.err) && c.montrer !== false;
     if (montrer) {
-      var t = (c.out || "").replace(/\s+$/, "");
-      if (c.err) t = (t ? t + "\n" : "") + (c.trace || "Traceback (most recent call last):\n  …\n" + c.err);
-      out = '<div class="sortie"><div class="tete"><span class="f">' + esc(c.cmd || "python3 " + (c.fichier || "programme.py")) + '</span></div><pre class="' + (c.err ? "err" : "") + '">' + esc(t) + "</pre></div>";
+      out = '<div class="sortie"><div class="tete"><span class="f">' + esc(c.cmd || "python3 " + (c.fichier || "programme.py")) + '</span></div><pre>' + sortieTexte(c) + "</pre></div>";
     }
     return '<div class="code zebre' + (cons ? " console" : "") + '" data-code="' + esc(id) + '"><div class="tete"><span class="f">' + esc(nom) + '</span><button type="button" data-copie="' + esc(id) + '">copier</button></div><pre><code>' + lignes(h, { vise: c.vise, trous: c.trous }) + "</code></pre>" + out + "</div>";
   }
-  function srcHTML(src, nom) {
-    return '<div class="code zebre"><div class="tete"><span class="f">' + esc(nom || "python") + '</span></div><pre><code>' + lignes(hlPy(src.replace(/^\n+|\s+$/g, ""))) + "</code></pre></div>";
+  function sortieTexte(c) {
+    var t = esc((c.out || "").replace(/\s+$/, ""));
+    if (c.err) t = (t ? t + "\n" : "") + '<span class="err-t">' + esc(c.trace || "Traceback (most recent call last):\n  …\n" + c.err) + "</span>";
+    return t;
   }
   function fill(html) {
     return String(html).replace(/\[\[([\w-]+)(?:\|(\w+))?\]\]/g, function (_, id, mode) {
@@ -186,7 +186,7 @@
       '<div class="rangee"><a class="btn prim" href="#' + CH[0].id + '">' + ic("lecture") + "Commencer le chapitre 1</a>" +
       '<a class="btn" href="#entrainement">' + ic("cible") + "S’entraîner</a></div></div>" +
       '<div class="terminal" aria-label="Exemple de session Python"><div class="tete"><i></i><i></i><i></i><span>bac — python3</span></div><pre>' + term + "</pre></div></div>";
-    h += '<div class="chiffres"><div><b>' + CH.length + '</b><span>chapitres rédigés</span></div><div><b>' + nbQ + '</b><span>questions de QCM</span></div><div><b>' + nbC + '</b><span>cartes mémoire</span></div><div><b>' + Object.keys(CODE).length + '</b><span>extraits de code exécutés et vérifiés</span></div></div>';
+    h += '<div class="chiffres"><div><b>' + CH.length + '</b><span>chapitres rédigés</span></div><div><b>' + nbQ + '</b><span>questions de QCM</span></div><div><b>' + nbC + '</b><span>cartes mémoire</span></div><div><b>' + Object.keys(CODE).filter(function (k) { return CODE[k].run !== false; }).length + '</b><span>extraits de code exécutés et vérifiés</span></div></div>';
     h += "<h2>Chapitres rédigés</h2><p class=\"muet\">L’ordre suit les progressions les plus courantes en début d’année ; ton professeur peut en suivre un autre, chaque chapitre se lit seul.</p><div class=\"grille\">";
     CH.forEach(function (c) {
       h += '<a class="carte-ch" href="#' + c.id + '"><span class="fic">' + c.fichier + '</span><span class="nom">' + c.n + ". " + esc(c.titre) + '</span><span class="desc">' + esc(c.accroche) + '</span><span class="pied">' + c.idees.length + " notions · " + c.qcm.length + " QCM · " + c.cartes.length + " cartes</span></a>";
@@ -251,9 +251,7 @@
   }
   function sortieSeule(id) {
     var c = CODE[id]; if (!c) return "";
-    var t = (c.out || "").replace(/\s+$/, "");
-    if (c.err) t = (t ? t + "\n" : "") + (c.trace || "Traceback (most recent call last):\n  …\n" + c.err);
-    return '<div class="code"><div class="sortie" style="border-top:0"><div class="tete"><span class="f">python3 prédis.py</span></div><pre class="' + (c.err ? "err" : "") + '">' + esc(t) + "</pre></div></div>";
+    return '<div class="code"><div class="sortie" style="border-top:0"><div class="tete"><span class="f">python3 prédis.py</span></div><pre>' + sortieTexte(c) + "</pre></div></div>";
   }
   function exoHTML(e, fic, badge) {
     var h = '<div class="exo"><div class="tete"><span class="t">' + esc(fic) + " · " + e.titre + "</span>" + (badge || "") + '</div><div class="corps">';
@@ -357,7 +355,7 @@
         } else {
           h += '<details class="item-prog" id="prog-' + it.id + '"><summary><span class="st bt">bientôt</span><span class="ti">' + esc(it.t) + '</span><span class="muet">▾</span></summary><div class="corps">' +
             "<h4>Contenus</h4><p>" + it.contenus + "</p><h4>Capacités attendues</h4><ul>" + it.capacites.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>" +
-            (it.comm ? "<h4>Précisions du programme</h4><p>" + it.comm + "</p>" : "") + (it.avant ? "<h4>À revoir avant</h4><p>" + it.avant + "</p>" : "") + "</div></details>";
+            (it.comm ? "<h4>Précisions</h4><p>" + it.comm + "</p>" : "") + (it.avant ? "<h4>À revoir avant</h4><p>" + it.avant + "</p>" : "") + "</div></details>";
         }
       });
       h += "</div>";
@@ -474,6 +472,14 @@
   function fermerMenu(depuisHistorique) { if (!menuOuvert) return; menuOuvert = false; $(".lat").classList.remove("ouvert"); $(".voile").classList.remove("on"); if (!depuisHistorique) history.back(); }
 
   /* ---------- démarrage ---------- */
+  /* Les bonnes réponses sont réparties sur toutes les lettres par une rotation fixe des propositions. */
+  CH.forEach(function (c) {
+    c.qcm.forEach(function (q, k) {
+      var n = q.c.length, t = (k * 3 + c.n) % n, r = (t - q.a + n) % n, nv = [];
+      q.c.forEach(function (x, i) { nv[(i + r) % n] = x; });
+      q.c = nv; q.a = t;
+    });
+  });
   function demarrer() {
     $(".lat").innerHTML = latHTML();
     $(".btn-menu").addEventListener("click", ouvrirMenu);
@@ -674,6 +680,7 @@
       inp.value = String(cpt);
     }
     function tube(t, cl, neuf, haut) {
+      if (!t.length) return '<div class="tube ' + cl + '"><div class="repere" style="margin:auto">vide</div></div>';
       return '<div class="tube ' + cl + '">' + t.map(function (v, k) { return '<div class="elt' + (k === t.length - 1 && haut ? " haut" : "") + (neuf && k === t.length - 1 ? " entre" : "") + '">' + esc(v) + "</div>"; }).join("") + "</div>";
     }
     function dessine(neuf) {

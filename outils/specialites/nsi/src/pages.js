@@ -5,9 +5,7 @@ def mystere(t, i):
         return 0
     if t[i] % 2 == 0:
         return 1 + mystere(t, i + 1)
-    return mystere(t, i + 1)
-
-print(mystere([4, 7, 2, 9, 6], 0))`, { fichier: "sujet.py", out: "3" });
+    return mystere(t, i + 1)`, { fichier: "sujet.py", verif: "print(mystere([4, 7, 2, 9, 6], 0))", out: "3", montrer: false });
 
 C("ep-copie-q4", String.raw`
 def nb_pairs(t):
@@ -118,8 +116,8 @@ var PAGE_RESSOURCES = {
 </ul>
 <h2>Cours en ligne de professeurs</h2>
 <ul class="liens">
-<li><a href="https://glassus.github.io/terminale_nsi/" target="_blank" rel="noopener">Terminale NSI — Lycée François Mauriac (Bordeaux)</a> <span class="gratuit">gratuit</span><br><span class="src">tout le programme, exercices corrigés, sujets de la banque pratique commentés</span></li>
-<li><a href="https://fjunier.forge.apps.education.fr/tnsi/" target="_blank" rel="noopener">Terminale NSI — Lycée du Parc (Lyon)</a> <span class="gratuit">gratuit</span><br><span class="src">progression complète, synthèses de cours</span></li>
+<li><a href="https://glassus.github.io/terminale_nsi/" target="_blank" rel="noopener">Cours de Terminale NSI d’un professeur de lycée (glassus.github.io)</a> <span class="gratuit">gratuit</span><br><span class="src">tout le programme, exercices corrigés, sujets de la banque pratique commentés</span></li>
+<li><a href="https://fjunier.forge.apps.education.fr/tnsi/" target="_blank" rel="noopener">Progression de Terminale NSI d’un professeur de lycée (forge.apps.education.fr)</a> <span class="gratuit">gratuit</span><br><span class="src">progression complète, synthèses de cours</span></li>
 <li><a href="https://www.zonensi.fr/NSI/Terminale/home/" target="_blank" rel="noopener">ZoneNSI : Terminale</a> <span class="gratuit">gratuit</span></li>
 </ul>
 <h2>Documentation de Python (en français)</h2>
