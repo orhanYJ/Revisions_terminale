@@ -296,13 +296,14 @@ table.t th{font-family:var(--ui);font-size:.74rem;letter-spacing:.08em;text-tran
 .champ{width:100%;min-height:46px;border-radius:24px;border:1px solid var(--filet2);background:var(--surface);color:var(--encre);padding:8px 16px;font-family:var(--ui);font-size:16px}
 
 /* ---------- schémas ---------- */
-.schema{margin:18px 0;background:var(--surface);border:1px solid var(--filet);border-radius:16px;padding:12px}
-.schema svg{display:block;width:100%;height:auto;max-width:640px;margin:0 auto}
+.schema{margin:18px 0;background:var(--surface);border:1px solid var(--filet);border-radius:16px;padding:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.schema svg{display:block;width:100%;min-width:560px;height:auto;max-width:640px;margin:0 auto}
+.schema figcaption{position:sticky;left:0;max-width:calc(100vw - 58px)}
 .schema figcaption{font-family:var(--ui);font-size:.78rem;color:var(--encre2);text-align:center;margin-top:6px}
 .sch-trait{fill:none;stroke:var(--filet2);stroke-width:1.5}
 .sch-fort{fill:none;stroke:var(--cuivre);stroke-width:2}
-.sch-txt{font-family:var(--ui);font-size:13px;fill:var(--encre)}
-.sch-txt2{font-family:var(--ui);font-size:11px;fill:var(--encre2)}
+.sch-txt{font-family:var(--ui);font-size:14px;fill:var(--encre)}
+.sch-txt2{font-family:var(--ui);font-size:11.5px;fill:var(--encre2)}
 .sch-tit{font-family:var(--titre);font-size:17px;fill:var(--encre)}
 .sch-boite{fill:var(--surface2);stroke:var(--filet2)}
 
@@ -427,7 +428,7 @@ window.HLP = { ENTREES: [] };
   }
   H.CHIFFRES = { I: chiffre("I"), II: chiffre("II"), III: chiffre("III") };
   H.ACCUEIL_INTRO = "La spécialité HLP fait travailler ensemble un professeur de lettres et un professeur de philosophie sur les mêmes questions. En Terminale, le premier semestre s’intitule « La recherche de soi » et couvre la période qui va du romantisme au XX<sup>e</sup> siècle ; le second, « L’Humanité en question », porte sur le monde contemporain. Ce site rédige à fond les trois entrées du premier semestre : pour chacune, un cours, des textes clés du domaine public analysés, un sujet type bac corrigé, un QCM, des cartes mémoire et une fiche à imprimer.";
-  H.ACCUEIL_BAS = '<div class="carte lecture" style="margin-top:26px"><p class="surtitre">À savoir pour 2027</p><p style="margin:.2em 0">Une nouvelle note de service (11 septembre 2026) définit l’épreuve à partir de la session 2027 : 4 heures, un texte, une question d’<b>interprétation</b> et un <b>essai</b>, notés chacun sur 10, sur deux copies séparées. Elle ne reprend plus la liste limitative de l’ancienne note : prépare les six entrées. <a href="#epreuve">Tout savoir sur l’épreuve →</a></p></div>';
+  H.ACCUEIL_BAS = '<div class="carte lecture" style="margin-top:26px"><p class="surtitre">À savoir pour 2027</p><p style="margin:.2em 0">Une nouvelle note de service (11 septembre 2026) définit l’épreuve à partir de la session 2027 : 4 heures, un texte, une question d’<b>interprétation</b> et un <b>essai</b>, notés chacun sur 10, sur deux copies séparées. Comme depuis 2024, tout le programme de Terminale peut tomber : prépare les six entrées. <a href="#epreuve">Tout savoir sur l’épreuve →</a></p></div>';
   H.PIED = "L’Heure bleue · HLP Terminale · Contenu original rédigé à partir du programme officiel (BO spécial n° 8 du 25 juillet 2019) et de la note de service du 11 septembre 2026. Extraits d’œuvres du domaine public d’après Wikisource ; œuvres protégées seulement résumées ou citées brièvement. Fonctionne hors connexion.";
   H.TITRES = { accueil: "Accueil", s2: "Semestre 2", epreuve: "L’épreuve", atelier: "Atelier de lecture", qui: "Qui a écrit ?", frise: "Frise", notions: "Tableau des notions", entrainement: "Entraînement", ressources: "Ressources" };
   H.PAGES_IDX = [
@@ -1437,7 +1438,7 @@ HLP.EPREUVE = `<header class="page-entete"><p class="surtitre">Méthode</p><h1>L
 <tr><th>Langue</th><td>La qualité de l’expression entre dans la note : une copie « défaillante sur l’ensemble des aspects relatifs à la maîtrise de la langue ne peut avoir la moyenne ».</td></tr>
 </tbody></table></div>
 <p>L’intitulé du sujet dit toujours quelle approche est attendue. Si l’interprétation est littéraire, l’essai est philosophique, et inversement : sur les sujets de métropole de 2023 à 2026, les deux combinaisons sont tombées.</p>
-<div class="cle"><b class="l">Quelles parties du programme ?</b>L’ancienne note de service (2020) limitait l’écrit à quatre entrées : « Les expressions de la sensibilité », « Les métamorphoses du moi », « Histoire et violence » et « L’humain et ses limites ». La note de 2026 indique seulement que l’épreuve « porte sur le programme de l’enseignement de spécialité de la classe de terminale en vigueur » et ne reprend pas cette liste. Par prudence, <b>prépare les six entrées</b>, dont « Éducation, transmission et émancipation », et vérifie auprès de tes professeurs. Les notions de Première « doivent être connues et mobilisables », sans pouvoir être « un ressort essentiel du sujet ».</div>
+<div class="cle"><b class="l">Quelles parties du programme ?</b><b>Tout le programme de Terminale, soit les six entrées.</b> Pour les sessions 2021 à 2023, un « programme limitatif » réduisait l’écrit à quatre entrées (« Les expressions de la sensibilité », « Les métamorphoses du moi », « Histoire et violence », « L’humain et ses limites »). Depuis la session 2024, l’épreuve « porte sur le programme de l’enseignement de spécialité de la classe de terminale en vigueur » (version consolidée d’Éduscol, août 2024), et la note de 2026 reprend cette formule. « Éducation, transmission et émancipation » et « Création, continuités et ruptures » peuvent donc tomber : le sujet de 2025 (Condorcet, sur l’éducation de la sensibilité) en est un exemple. Les notions de Première « doivent être connues et mobilisables », sans pouvoir être « un ressort essentiel du sujet ».</div>
 <p class="petit mute">Depuis 2024, l’épreuve a lieu en juin (19-20 juin 2024, 17-18 juin 2025, 16-17 juin 2026, avec un sujet différent chaque jour). La date de 2027 est fixée par le calendrier officiel de l’examen.</p>
 <h3>L’oral de contrôle (second groupe)</h3><p>20 minutes de préparation, 20 minutes d’épreuve : une question de littérature ou de philosophie selon l’examinateur, liée au thème de l’écrit ; 10 minutes de réponse au maximum, puis un entretien.</p>
 </section>
@@ -1574,6 +1575,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
 <section><h2>Textes officiels</h2><ul class="puces">
 <li><a href="https://eduscol.education.fr/document/24331/download" rel="noopener" target="_blank">Programme d’HLP de Terminale</a> (Éduscol, PDF) — et sa version au <a href="https://cache.media.education.gouv.fr/file/SPE8_MENJ_25_7_2019/92/0/spe255_annexe_1158920.pdf" rel="noopener" target="_blank">BO spécial n° 8 du 25 juillet 2019</a>. La bibliographie indicative de la fin est une mine.</li>
 <li><a href="https://www.education.gouv.fr/sites/default/files/document/20260917boenjsspe4pdf-520753.pdf" rel="noopener" target="_blank">BO spécial n° 4 du 17 septembre 2026</a> (PDF) : note de service de l’épreuve d’HLP pour la session 2027, avec l’échelle de notation, et celle du Grand oral. <a href="https://www.education.gouv.fr/bo/2026/Hebdo4/MENE2622659N" rel="noopener" target="_blank">Version en ligne de la note HLP</a>.</li>
+<li><a href="https://eduscol.education.fr/document/52920/download" rel="noopener" target="_blank">Définition de l’épreuve, version consolidée d’août 2024</a> (Éduscol, PDF) : le texte en vigueur jusqu’à la session 2026.</li>
 <li><a href="https://eduscol.education.fr/document/24361/download" rel="noopener" target="_blank">Sujet zéro n° 2 commenté</a> (Rivière, lettre à Artaud, 1924) : un modèle officiel d’attentes.</li>
 <li><a href="https://cache.media.eduscol.education.fr/file/HLP/35/3/RA19_Lycee_G_1-T_HLP_attendus-epreuves_elements-evaluation_1205353.pdf" rel="noopener" target="_blank">Les attendus des épreuves et éléments d’évaluation</a> (Éduscol, PDF).</li>
 <li><a href="https://eduscol.education.fr/document/24355/download" rel="noopener" target="_blank">Coopération des professeurs de lettres et de philosophie</a> (Éduscol, PDF) : comprendre la logique de la spécialité.</li>

@@ -284,13 +284,14 @@ table.t th{font-family:var(--ui);font-size:.74rem;letter-spacing:.08em;text-tran
 .champ{width:100%;min-height:46px;border-radius:24px;border:1px solid var(--filet2);background:var(--surface);color:var(--encre);padding:8px 16px;font-family:var(--ui);font-size:16px}
 
 /* ---------- schémas ---------- */
-.schema{margin:18px 0;background:var(--surface);border:1px solid var(--filet);border-radius:16px;padding:12px}
-.schema svg{display:block;width:100%;height:auto;max-width:640px;margin:0 auto}
+.schema{margin:18px 0;background:var(--surface);border:1px solid var(--filet);border-radius:16px;padding:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.schema svg{display:block;width:100%;min-width:560px;height:auto;max-width:640px;margin:0 auto}
+.schema figcaption{position:sticky;left:0;max-width:calc(100vw - 58px)}
 .schema figcaption{font-family:var(--ui);font-size:.78rem;color:var(--encre2);text-align:center;margin-top:6px}
 .sch-trait{fill:none;stroke:var(--filet2);stroke-width:1.5}
 .sch-fort{fill:none;stroke:var(--cuivre);stroke-width:2}
-.sch-txt{font-family:var(--ui);font-size:13px;fill:var(--encre)}
-.sch-txt2{font-family:var(--ui);font-size:11px;fill:var(--encre2)}
+.sch-txt{font-family:var(--ui);font-size:14px;fill:var(--encre)}
+.sch-txt2{font-family:var(--ui);font-size:11.5px;fill:var(--encre2)}
 .sch-tit{font-family:var(--titre);font-size:17px;fill:var(--encre)}
 .sch-boite{fill:var(--surface2);stroke:var(--filet2)}
 
