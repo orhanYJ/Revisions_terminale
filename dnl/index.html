@@ -7119,10 +7119,46 @@ function glisser(el){
   if(!(el instanceof HTMLElement) || dejaAnime(el) || !visible(el)) return;
   el.animate([{opacity:.25, transform:"translateX(10px)"}, {opacity:1, transform:"none"}], {duration:320, easing:"cubic-bezier(.2,.7,.2,1)"});
 }
+/* arrivée d'une page : une vraie mise en scène, jouée après la fermeture du menu sur téléphone */
+const EASE = "cubic-bezier(.2,.7,.2,1)";
+function jouer(el, kf, opt){ if(el instanceof Element && el.isConnected) el.animate(kf, Object.assign({easing:EASE, fill:"backwards"}, opt)); }
+const monte = (el, d, dy) => jouer(el, [{opacity:0, transform:"translateY(" + (dy || 16) + "px)"}, {opacity:1, transform:"none"}], {duration:460, delay:d});
 function nouvellePage(main){
-  if(dejaAnime(main)) return;
-  main.animate([{opacity:0, transform:"translateY(14px)"}, {opacity:1, transform:"none"}], {duration:420, easing:"cubic-bezier(.2,.7,.2,1)"});
-  son.page();
+  const menu = document.querySelector(".sidebar.open, .scrim.show");
+  const t0 = menu ? 230 : 0;                   /* le tiroir du téléphone se referme d'abord */
+  const hero = main.querySelector(".chap-hero");
+  if(hero){
+    /* chapitre : bandeau, code tamponné, cartouche qui monte, titre qui s'écrit, rappels, onglets, parties en cascade */
+    const band = hero.querySelector(".hero-band");
+    if(band) [...band.children].forEach((c, i) => jouer(c, [{opacity:0, transform:"translateX(-12px)"}, {opacity:1, transform:"none"}], {duration:380, delay:t0 + i * 55}));
+    const code = hero.querySelector(".hero-code");
+    if(code) jouer(code, [{opacity:0, transform:"scale(1.8) rotate(-8deg)"}, {opacity:1, transform:"scale(.92)", offset:.6}, {opacity:1, transform:"none"}], {duration:560, delay:t0});
+    const cart = hero.querySelector(".hero-cartouche");
+    if(cart){
+      jouer(cart, [{opacity:0, transform:"translateY(22px) scale(.97)"}, {opacity:1, transform:"none"}], {duration:560, delay:t0 + 90});
+      const ic = cart.querySelector(".hero-icon"); if(ic) jouer(ic, [{opacity:0, transform:"rotate(-120deg) scale(.4)"}, {opacity:1, transform:"none"}], {duration:700, delay:t0 + 200});
+      const ti = cart.querySelector(".hero-title"); if(ti) jouer(ti, [{clipPath:"inset(0 100% 0 0)", opacity:.3}, {clipPath:"inset(0 0 0 0)", opacity:1}], {duration:720, delay:t0 + 230, easing:"cubic-bezier(.5,0,.2,1)"});
+    }
+    hero.querySelectorAll(".prem-strip > *").forEach((c, i) => monte(c, t0 + 380 + i * 60, 10));
+    const tabs = main.querySelector(".chap-tabs");
+    if(tabs) [...tabs.querySelectorAll(".chap-tab")].forEach((c, i) => monte(c, t0 + 440 + i * 45, 10));
+    [...main.querySelectorAll(".tab-body .section, .tab-body > div > *")].filter(visible).slice(0, 10).forEach((c, i) => monte(c, t0 + 520 + i * 55, 14));
+  } else {
+    /* autre page (accueil, Entraînement, glossaire, rappels) : les blocs visibles montent l'un après l'autre */
+    const blocs = []; const prendre = el => { for(const c of el.children){ if(blocs.length >= 12) return; if(!visible(c)) continue;
+      if(c.children.length > 1 && c.offsetHeight > innerHeight * .7) prendre(c); else blocs.push(c); } };
+    prendre(main.firstElementChild && main.children.length === 1 ? main.firstElementChild : main);
+    blocs.forEach((c, i) => monte(c, t0 + i * 60, 16));
+  }
+  /* l'entrée active du menu s'allume */
+  const act = document.querySelector(".chap-btn.active, .train-btn.here");
+  if(act) jouer(act, [{boxShadow:"inset 0 0 0 40px rgba(184,146,79,.38)"}, {boxShadow:"inset 0 0 0 40px rgba(184,146,79,0)"}], {duration:900, delay:80, fill:"none"});
+  setTimeout(() => son.page(), t0);
+}
+/* menu Histoire / Géographie / 1re : la liste des chapitres se distribue */
+function distribuerMenu(groupe){
+  groupe.querySelectorAll(".theme-head, .chap-btn, .theme-group > *").forEach((c, i) => { if(i < 30)
+    jouer(c, [{opacity:0, transform:"translateX(-16px)"}, {opacity:1, transform:"none"}], {duration:340, delay:i * 28}); });
 }
 /* mémoriser la taille des blocs avant qu'ils disparaissent : on la prend au clic, sur le voisinage de l'action */
 document.addEventListener("pointerdown", e => {
@@ -7150,11 +7186,15 @@ new MutationObserver(recs => {
   for(const r of recs){
     if(r.type === "childList"){
       r.addedNodes.forEach(n => { if(n.nodeType === 1) ajoutes.add(n); else if(n.nodeType === 3 && n.parentElement) textes.add(n.parentElement); });
-      r.removedNodes.forEach(n => { if(n.nodeType === 1 && !n.classList.contains("mo-ghost")) sortir(r, n); });
+      r.removedNodes.forEach(n => { if(n.nodeType === 1 && !n.classList.contains("mo-ghost") && !(r.target.closest && r.target.closest(".sidebar"))) sortir(r, n); });
     } else if(r.type === "characterData" && r.target.parentElement) textes.add(r.target.parentElement);
   }
   /* seulement les racines : un bloc ajouté dont le parent est aussi ajouté n'est pas animé à part */
-  ajoutes.forEach(n => { let p = n.parentElement, haut = true; while(p){ if(ajoutes.has(p)){ haut = false; break; } p = p.parentElement; } if(haut && !n.classList.contains("mo-ghost")) entrer(n); });
+  const menu = [];
+  ajoutes.forEach(n => { let p = n.parentElement, haut = true; while(p){ if(ajoutes.has(p)){ haut = false; break; } p = p.parentElement; }
+    if(!haut || n.classList.contains("mo-ghost")) return;
+    if(n.closest(".sidebar")) menu.push(n); else entrer(n); });
+  if(menu.length) new Set(menu.map(n => n.parentElement || n)).forEach(distribuerMenu);
   /* texte remplacé sur place : on anime le plus petit bloc commun */
   if(textes.size){
     const blocs = [...textes].filter(t => !t.closest(DEDANS) && !t.closest(".mo-sound") && ![...ajoutes].some(a => a.contains(t)));
