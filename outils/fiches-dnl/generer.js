@@ -105,7 +105,7 @@ ${vides.length ? `<div class="partiel">${t.partiel}${vides.map(s => esc(s.num + 
   <div><h2>${t.enjeu}</h2><p class="enjeu">${esc(m.bigPicture || d.bigPicture)}</p></div>
   <div class="kik"><h3>${t.ki}</h3><ul>${d.keyIssues.map(k => `<li>${esc(k)}</li>`).join("")}</ul><h3>${t.kt}</h3><p>${d.keyTerms.map(esc).join(" · ")}</p></div>
 </section>
-<section class="bloc"><h2>${t.schema} — ${esc(c.schema.titre[F ? 1 : 0])}</h2>${schema(c.schema, lang)}</section>
+${(c.schemas || [c.schema]).map(sc => `<section class="bloc"><h2>${t.schema} — ${esc(sc.titre[F ? 1 : 0])}</h2>${schema(sc, lang)}</section>`).join("\n")}
 ${blocCarte(c.carte, carte, t.carte, lang, c.carte.serie ? `<h3 class="serie-t">${t.serie}</h3>
   <div class="serie${c.carte.monde ? " monde" : ""}" style="--n:${c.carte.serie.length}">${c.carte.serie.map((e, i) => `<figure><div class="svg">${fs.readFileSync(path.join(ICI, "cartes", `${code}-serie${i + 1}-${lang}.svg`), "utf8")}</div><figcaption><b>${esc(e[0][F ? 1 : 0])}</b> ${esc(e[F ? 2 : 1])}</figcaption></figure>`).join("")}</div>` : "")}
 ${(c.zooms || (c.zoom ? [Object.assign({ fichier: "france" }, c.zoom)] : [])).map(z => blocCarte(z, fs.readFileSync(path.join(ICI, "cartes", `${code}-${z.fichier}-${lang}.svg`), "utf8"), z.label ? esc(z.label[F ? 1 : 0]) : t.zoom, lang)).join("\n")}

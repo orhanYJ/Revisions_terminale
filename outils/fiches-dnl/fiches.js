@@ -220,14 +220,16 @@ module.exports = {
   /* ---------- Géographie, thème 1 « Maritime Areas and Geopolitics » : les cartes sont celles du site (cartes-geo.js),
      légende comprise ; la fiche ne fait qu'ajouter des repères. ---------- */
   G1: {
+    /* Géographie : un chapitre par thème. G1 = tout le thème 1 « Maritime Areas and Geopolitics », parties I à V ;
+       les cartes sont celles du site (cartes-geo.js), légende comprise ; la fiche ne fait qu'ajouter des repères. */
     frise: [
       ["1869", "The Suez Canal opens", "Ouverture du canal de Suez"],
-      ["1914", "The Panama Canal opens", "Ouverture du canal de Panama"],
       ["1956", "Nasser nationalises Suez: the Suez Crisis", "Nasser nationalise Suez : crise de Suez"],
       ["1982", "UNCLOS (Montego Bay) creates the EEZs", "Convention de Montego Bay : création des ZEE"],
       ["2010", "Shanghai becomes the first container port", "Shanghai devient le premier port à conteneurs"],
-      ["2011", "Piracy peaks: 668 incidents", "Pic de la piraterie : 668 incidents"],
+      ["12 July 2016", "Arbitral ruling rejects the nine-dash line", "La sentence arbitrale rejette la ligne en neuf traits"],
       ["Mar. 2021", "The Ever Given blocks the Suez Canal", "L'Ever Given bloque le canal de Suez"],
+      ["2022", "Israel–Lebanon maritime border agreement", "Accord frontalier maritime Israël–Liban"],
       ["Late 2023", "Houthi attacks: ships turn to the Cape", "Attaques houthies : les navires passent par le Cap"],
       ["June 2025", "UN Ocean Conference in Nice", "Conférence des Nations unies sur l'océan à Nice"],
       ["2026", "CMA CGM Notre Dame: 24,000 TEUs", "CMA CGM Notre Dame : 24 000 EVP"]
@@ -255,30 +257,8 @@ module.exports = {
         ["Piracy: 668 incidents in 2011, 375 in 2020; Nigeria, Indonesia, Singapore first; in 2025 South-East Asia leads.", "Piraterie : 668 incidents en 2011, 375 en 2020 ; Nigeria, Indonésie, Singapour en tête ; en 2025, l'Asie du Sud-Est domine."]
       ],
       note: ["Volumes: U.S. Energy Information Administration; piracy: French Ministry of the Armed Forces and IMB.", "Volumes : U.S. Energy Information Administration ; piraterie : ministère des Armées et BMI."]
-    }],
-    schema: {
-      type: "chaine",
-      titre: ["How maritimisation organises the global economy — and makes it vulnerable", "Comment la maritimisation organise l'économie mondiale, et la rend vulnérable"],
-      etapes: [
-        ["Containerisation", "One standard box for ship, truck and train", "Conteneurisation", "Une boîte standard pour le navire, le camion et le train"],
-        ["Gigantism", "24,000-TEU ships; a few lines (MSC, Maersk, CMA CGM)", "Gigantisme", "Navires de 24 000 EVP ; quelques armateurs (MSC, Maersk, CMA CGM)"],
-        ["Hubs and ports", "East Asia leads; ports move offshore", "Hubs et ports", "L'Asie orientale domine ; les ports gagnent le large"],
-        ["Value chains", "TNCs produce near Asian ports: the NIDL", "Chaînes de valeur", "Les FTN produisent près des ports d'Asie : la NDIT"],
-        ["Choke points", "Suez, Malacca, Hormuz: blockage, attacks, piracy", "Choke points", "Suez, Malacca, Ormuz : blocage, attaques, piraterie"],
-        ["Rules", "EEZs (1982), protected areas, high seas treaty", "Règles", "ZEE (1982), aires protégées, traité sur la haute mer"]
-      ]
-    }
-  },
-  G2: {
-    frise: [
-      ["2010", "Denmark retires its last icebreakers", "Le Danemark retire ses derniers brise-glace"],
-      ["12 July 2016", "Arbitral ruling rejects the nine-dash line", "La sentence arbitrale rejette la ligne en neuf traits"],
-      ["21 Mar. 2021", "About 220 Chinese militia vessels in the Spratlys", "Environ 220 navires de la milice chinoise aux Spratleys"],
-      ["2022", "Israel–Lebanon maritime border agreement", "Accord frontalier maritime Israël–Liban"],
-      ["2023", "Vietnam bans Barbie over the nine-dash line", "Le Vietnam interdit Barbie pour la ligne en neuf traits"],
-      ["Jan. 2025", "Trump does not rule out force for Greenland", "Trump n'exclut pas la force pour le Groenland"]
-    ],
-    carte: {
+    }, {
+      fichier: "arctic", label: ["Map", "Carte"],
       titre: ["The Arctic shipping routes opened by the melting ice", "Les routes arctiques ouvertes par la fonte des glaces"],
       cote: true,
       cles: [],
@@ -288,8 +268,7 @@ module.exports = {
         ["Canada claims the Northwest Passage as Canadian waters; Greenland lies on its route.", "Le Canada revendique le passage du Nord-Ouest comme eaux canadiennes ; le Groenland est sur sa route."]
       ],
       note: ["Azimuthal polar projection, Natural Earth; routes simplified.", "Projection polaire azimutale, Natural Earth ; tracés simplifiés."]
-    },
-    zooms: [{
+    }, {
       fichier: "scs", label: ["Map", "Carte"], cote: true,
       titre: ["Territorial claims in the South China Sea", "Les revendications en mer de Chine méridionale"],
       cles: [],
@@ -308,29 +287,8 @@ module.exports = {
         ["Navies by tonnage: USA 3.4 million t, far ahead of Russia, China, Japan, the UK and France.", "Marines par tonnage : États-Unis 3,4 millions de t, loin devant la Russie, la Chine, le Japon, le Royaume-Uni et la France."]
       ],
       note: ["Bases from the course's map; Natural Earth base map.", "Bases d'après la carte du cours ; fond Natural Earth."]
-    }],
-    schema: {
-      type: "tableau",
-      titre: ["Maritime areas: a source of conflict or of cooperation?", "Les espaces maritimes : source de conflit ou de coopération ?"],
-      colonnes: [["Stakes", "Enjeux"], ["Sources of tension", "Sources de tension"], ["Cooperation or settlement", "Coopération ou règlement"]],
-      lignes: [
-        [["The Arctic", "L'Arctique"], ["Shorter routes, ores and fuels, development of remote regions", "Routes plus courtes, minerais et hydrocarbures, essor de régions isolées"], ["Sovereignty, crime, militarisation; icebreakers; Greenland", "Souveraineté, criminalité, militarisation ; brise-glace ; Groenland"], ["Long a region of cooperation and low tensions", "Longtemps une région de coopération et de faibles tensions"]],
-        [["Northwest Passage", "Passage du Nord-Ouest"], ["A short cut instead of the Panama Canal", "Un raccourci au lieu du canal de Panama"], ["Canada claims it as Canadian waters", "Le Canada le revendique comme eaux canadiennes"], ["Benefits on paper, constraints in reality (DBQ)", "Atouts sur le papier, contraintes dans les faits (DBQ)"]],
-        [["South China Sea", "Mer de Chine méridionale"], ["Trade, fish, oil and gas, approaches to China", "Commerce, pêche, hydrocarbures, approches de la Chine"], ["Nine-dash line, artificial islands, militia (2021)", "Ligne en neuf traits, îles artificielles, milice (2021)"], ["2016 ruling ignored; the Quad and a “Free and Open Indo-Pacific”", "Sentence de 2016 ignorée ; le Quad et un « Indo-Pacifique libre et ouvert »"]],
-        [["Eastern Mediterranean", "Méditerranée orientale"], ["Gas fields (Karish, Qana)", "Gisements de gaz (Karish, Qana)"], ["Israel and Lebanon, technically at war", "Israël et le Liban, techniquement en guerre"], ["2022 agreement on the maritime border", "Accord de 2022 sur la frontière maritime"]]
-      ]
-    }
-  },
-  G3: {
-    frise: [
-      ["1982", "UNCLOS: France gains a huge EEZ", "Convention de Montego Bay : la France gagne une immense ZEE"],
-      ["2011", "The aircraft carrier is used in Libya", "Le porte-avions engagé en Libye"],
-      ["2014", "French MPAs jump to 16.3% of waters", "Les AMP françaises passent à 16,3 % des eaux"],
-      ["July 2018", "MPs vote to protect the seas in the Constitution", "Les députés inscrivent la protection des mers dans la Constitution"],
-      ["July 2019", "Suffren inaugurated; MPAs: 23.5% of waters", "Inauguration du Suffren ; AMP : 23,5 % des eaux"],
-      ["Apr. 2020", "The Suffren's sea trials begin", "Début des essais en mer du Suffren"]
-    ],
-    carte: {
+    }, {
+      fichier: "monde", label: ["Map", "Carte"],
       titre: ["France, a great maritime power", "La France, une grande puissance maritime"],
       cles: [],
       reperes: [
@@ -339,8 +297,7 @@ module.exports = {
         ["EXTRAPLAC: requests to extend the continental shelf; Atalanta against piracy; Total's gas off Mozambique.", "EXTRAPLAC : demandes d'extension du plateau continental ; Atalanta contre la piraterie ; le gaz de Total au large du Mozambique."]
       ],
       note: ["After the course's map (French Navy and Ministry for the Overseas, 2019); EEZ approximated by 200-nautical-mile circles.", "D'après la carte du cours (Marine nationale et ministère des Outre-mer, 2019) ; ZEE approchée par des cercles de 200 milles."]
-    },
-    zooms: [{
+    }, {
       fichier: "metro", label: ["Zoom", "Zoom"], cote: true,
       titre: ["Ports, naval bases and shipyards of mainland France", "Ports, arsenaux et chantiers de la France métropolitaine"],
       cles: [],
@@ -359,7 +316,28 @@ module.exports = {
       ],
       note: ["After the course's summary map; Arctic routes cut by the edge of the map.", "D'après la carte de synthèse du cours ; routes arctiques coupées par le bord de la carte."]
     }],
-    schema: {
+    schemas: [{
+      type: "chaine",
+      titre: ["How maritimisation organises the global economy — and makes it vulnerable", "Comment la maritimisation organise l'économie mondiale, et la rend vulnérable"],
+      etapes: [
+        ["Containerisation", "One standard box for ship, truck and train", "Conteneurisation", "Une boîte standard pour le navire, le camion et le train"],
+        ["Gigantism", "24,000-TEU ships; a few lines (MSC, Maersk, CMA CGM)", "Gigantisme", "Navires de 24 000 EVP ; quelques armateurs (MSC, Maersk, CMA CGM)"],
+        ["Hubs and ports", "East Asia leads; ports move offshore", "Hubs et ports", "L'Asie orientale domine ; les ports gagnent le large"],
+        ["Value chains", "TNCs produce near Asian ports: the NIDL", "Chaînes de valeur", "Les FTN produisent près des ports d'Asie : la NDIT"],
+        ["Choke points", "Suez, Malacca, Hormuz: blockage, attacks, piracy", "Choke points", "Suez, Malacca, Ormuz : blocage, attaques, piraterie"],
+        ["Rules", "EEZs (1982), protected areas, high seas treaty", "Règles", "ZEE (1982), aires protégées, traité sur la haute mer"]
+      ]
+    }, {
+      type: "tableau",
+      titre: ["Maritime areas: a source of conflict or of cooperation?", "Les espaces maritimes : source de conflit ou de coopération ?"],
+      colonnes: [["Stakes", "Enjeux"], ["Sources of tension", "Sources de tension"], ["Cooperation or settlement", "Coopération ou règlement"]],
+      lignes: [
+        [["The Arctic", "L'Arctique"], ["Shorter routes, ores and fuels, development of remote regions", "Routes plus courtes, minerais et hydrocarbures, essor de régions isolées"], ["Sovereignty, crime, militarisation; icebreakers; Greenland", "Souveraineté, criminalité, militarisation ; brise-glace ; Groenland"], ["Long a region of cooperation and low tensions", "Longtemps une région de coopération et de faibles tensions"]],
+        [["Northwest Passage", "Passage du Nord-Ouest"], ["A short cut instead of the Panama Canal", "Un raccourci au lieu du canal de Panama"], ["Canada claims it as Canadian waters", "Le Canada le revendique comme eaux canadiennes"], ["Benefits on paper, constraints in reality (DBQ)", "Atouts sur le papier, contraintes dans les faits (DBQ)"]],
+        [["South China Sea", "Mer de Chine méridionale"], ["Trade, fish, oil and gas, approaches to China", "Commerce, pêche, hydrocarbures, approches de la Chine"], ["Nine-dash line, artificial islands, militia (2021)", "Ligne en neuf traits, îles artificielles, milice (2021)"], ["2016 ruling ignored; the Quad and a “Free and Open Indo-Pacific”", "Sentence de 2016 ignorée ; le Quad et un « Indo-Pacifique libre et ouvert »"]],
+        [["Eastern Mediterranean", "Méditerranée orientale"], ["Gas fields (Karish, Qana)", "Gisements de gaz (Karish, Qana)"], ["Israel and Lebanon, technically at war", "Israël et le Liban, techniquement en guerre"], ["2022 agreement on the maritime border", "Accord de 2022 sur la frontière maritime"]]
+      ]
+    }, {
       type: "tableau",
       titre: ["A great maritime power, between power and fear of decline", "Une grande puissance maritime, entre puissance et peur du déclin"],
       colonnes: [["Strengths", "Atouts"], ["Limits", "Limites"]],
@@ -371,6 +349,6 @@ module.exports = {
         [["Economy and resources", "Économie et ressources"], ["2.5% of GDP, 300,000 jobs; 3rd in Europe for fishing", "2,5 % du PIB, 300 000 emplois ; 3e en Europe pour la pêche"], ["Little offshore oil; marine renewables only 800 jobs", "Peu de pétrole en mer ; EMR : 800 emplois seulement"]],
         [["Protection", "Protection"], ["546 MPAs, 23.5% of waters (2019); Scandola", "546 AMP, 23,5 % des eaux (2019) ; Scandola"], ["The 2018 constitutional reform never completed", "La révision constitutionnelle de 2018 jamais aboutie"]]
       ]
-    }
+    }]
   }
 };
