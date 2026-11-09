@@ -331,7 +331,7 @@ SCENES = [
         "{hol.2}Le régime répond par des brigades, appuyées par la police politique, la Guépéou. Leur mission : prendre le grain.",
         "{hol.3}Le Politburo envoie Molotov et Kaganovitch. D'abord, ils suspendent les livraisons de produits manufacturés aux districts qui n'ont pas rempli le plan. "
         "{hol.4}Puis les villages les plus rebelles sont inscrits au tableau noir. Cela veut dire qu'ils sont privés de tout ravitaillement, nourriture comprise.",
-        "{-hol}{-g7}{pct}L'historien Nicolas Werth, dans le document quatre, donne les chiffres. {pct.g}En septembre mille neuf cent trente-deux, l'Ukraine n'atteint que trente-deux pour cent "
+        "L'historien Nicolas Werth, dans le document quatre, donne les chiffres. {-hol}{-g7}{pct}{pct.g}En septembre mille neuf cent trente-deux, l'Ukraine n'atteint que trente-deux pour cent "
         "de son objectif mensuel de collecte de grain. {pct.d}Le vingt-cinq octobre, plus que vingt-deux pour cent.",
         "{-pct}{bil}Le résultat est une famine provoquée par l'homme : l'Holodomor, en mille neuf cent trente-deux et trente-trois. "
         "Elle a tué environ quatre millions de personnes en Ukraine. Ce bilan est ajouté hors du cours.",
