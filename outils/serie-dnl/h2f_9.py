@@ -97,7 +97,7 @@ SCENES = [
         "{fr.5}Mille neuf cent vingt-huit : le premier plan quinquennal. "
         "{fr.6}Mille neuf cent trente-deux et trente-trois : l'Holodomor. {fr.7}Le trente janvier mille neuf cent trente-trois : Hitler devient chancelier. "
         "{fr.8}Octobre mille neuf cent trente-cinq : l'Abyssinie. "
-        "{fr.9}Mars mille neuf cent trente-six : la Rhénanie. {fr.10}Mille neuf cent trente-sept et trente-huit : la Grande Purge. {fr.11}Septembre mille neuf cent trente-huit : Munich. "
+        "{fr.9}En mars mille neuf cent trente-six, la Rhénanie. {fr.10}Mille neuf cent trente-sept et trente-huit : la Grande Purge. {fr.11}Septembre mille neuf cent trente-huit : Munich. "
         "{fr.12}Août mille neuf cent trente-neuf : le pacte. Et enfin, la Pologne.",
         ("P", 3.0),
     ], vis={
