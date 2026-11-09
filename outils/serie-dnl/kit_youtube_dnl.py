@@ -254,7 +254,7 @@ def miniature(C, T, lang, n, duree, part, nparts, codes):
 <link rel="stylesheet" href="%(base)sfonts.css">
 <style>
 html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#15130f}
-.photo{position:absolute;inset:0 0 0 380px;background:url(%(base)simg/%(img)s) center/cover;
+.photo{position:absolute;inset:0 0 0 380px;background:url(%(src)s) center/cover;
   filter:grayscale(1) sepia(.55) contrast(1.12) brightness(.92)}
 .photo:after{content:"";position:absolute;inset:0;
   background:radial-gradient(ellipse at 70%% 45%%,rgba(0,0,0,0) 35%%,rgba(10,8,5,.65) 100%%)}
@@ -291,7 +291,7 @@ html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#15130f}
 <div class="langue">%(lg)s</div>
 <script>/* titre trop grand : on réduit */var g=document.querySelector(".gros"),f=112;
 while((g.scrollWidth>g.clientWidth||g.offsetHeight>330)&&f>56){f-=4;g.style.fontSize=f+"px"}</script>
-</body></html>""" % dict(base=base, img=C["img"], lang=lang, sur=e(T["sur"] % C["num"]), gros=gros, pill1=e(pill1),
+</body></html>""" % dict(base=base, src=(MINI_DIR + C["img"][1:]) if C["img"].startswith("/") else base + "img/" + C["img"], lang=lang, sur=e(T["sur"] % C["num"]), gros=gros, pill1=e(pill1),
                          pill2=e(T["pills"][1]), dates=e(C["dates"]), lg="ENGLISH" if lang == "en" else "FRANÇAIS")
 
 
@@ -330,6 +330,12 @@ def kit_episode(code, dossier):
     ch.insert(0, [0, ep["titre"]])
     chapitres = ["%s %s" % (hms(t), c) for t, c in ch]
     credits = [c for c in ep.get("credits", []) if not re.match(r"(Content|Contenu|Narration|Voix|Music|Musique)", c)]
+    base = code.replace("f-", "-")
+    if base in MINI:
+        img, cr_en, cr_fr = MINI[base]
+        credits = credits + ["Thumbnail photo: " + cr_en if lang == "en" else "Photo de la miniature : " + cr_fr]
+    else:
+        img = next((v["img"] + ".jpg" for v in ep["vis"] if v["type"] == "tableau" and v.get("img")), C["img"])
     desc = [intro, "", T["pause"], "", T["chap"]] + chapitres + ["", serie, "", T["cred"], contenu] + credits + [T["voix"]]
     desc_txt = "\n".join(desc)
     if len(desc_txt) >= 5000:
@@ -355,7 +361,6 @@ def kit_episode(code, dossier):
         sous += decouper(a_, b_, plat(x))
     open(os.path.join(dossier, "%s.%s.srt" % (code, lang)), "w", encoding="utf-8").write(
         "\n".join("%d\n%s --> %s\n%s\n" % (i, hms(a_, True), hms(b_, True), x) for i, (a_, b_, x) in enumerate(sous, 1)))
-    img = next((v["img"] + ".jpg" for v in ep["vis"] if v["type"] == "tableau" and v.get("img")), C["img"])
     C2 = dict(C, img=img, gros={lang: ep["titre"]})
     T2 = dict(T, sur=(T["mat"] + " · Ch. %d" + (" · Ep. %d" % n if lang == "en" else " · Ép. %d" % n)))
     T2["pills"] = (C["gros"][lang] + " · %d min" % round(ep["dur"] / 60) + "%.0s%.0s", T["pills"][1] if n == len(SERIE_N[chap]) - 1 else
@@ -366,6 +371,19 @@ def kit_episode(code, dossier):
 
 
 SERIE_N = {"H1": range(1, 7), "H2": range(1, 10), "H3": range(1, 8)}
+
+# Photo de miniature imposée quand la première image de l'épisode est déjà prise par un autre épisode de la même
+# série (chaque miniature d'une série doit avoir sa propre photo) ; chemin « / » = fichier de outils/serie-dnl/miniatures.
+MINI_DIR = "file://" + os.path.join(os.path.dirname(os.path.abspath(__file__)), "miniatures") + "/"
+MINI = {
+    "h1-6": ("h1-hooverville-seattle.jpg", "Hooverville on the Seattle waterfront, 1933 (Seattle Municipal Archives, via Wikimedia Commons, CC BY 2.0).", "Hooverville sur le front de mer de Seattle, 1933 (Seattle Municipal Archives, via Wikimedia Commons, CC BY 2.0)."),
+    "h2-8": ("h2-pact.jpg", "Stalin and Ribbentrop, Moscow, 23 August 1939 (Helmut Laux, Bundesarchiv, Bild 183-H27337, via Wikimedia Commons, CC BY-SA 3.0 DE).", "Staline et Ribbentrop, Moscou, 23 août 1939 (Helmut Laux, Bundesarchiv, Bild 183-H27337, via Wikimedia Commons, CC BY-SA 3.0 DE)."),
+    "h2-9": ("h2-guernica.jpg", "the ruins of Guernica, 1937 (Bundesarchiv, Bild 183-H25224, via Wikimedia Commons, CC BY-SA 3.0 DE).", "les ruines de Guernica, 1937 (Bundesarchiv, Bild 183-H25224, via Wikimedia Commons, CC BY-SA 3.0 DE)."),
+    "h3-4": ("/h3-lettland-1941.jpg", "German advance through Latvia, 1941 (Bundesarchiv, Bild 101I-009-0870-23A, via Wikimedia Commons, CC BY-SA 3.0 DE).", "avance allemande en Lettonie, 1941 (Bundesarchiv, Bild 101I-009-0870-23A, via Wikimedia Commons, CC BY-SA 3.0 DE)."),
+    "h3-5": ("/h3-treblinka-stones.jpg", "the stones of the Treblinka memorial (Adrian Grycuk, via Wikimedia Commons, CC BY-SA 3.0 PL).", "les pierres du mémorial de Treblinka (Adrian Grycuk, via Wikimedia Commons, CC BY-SA 3.0 PL)."),
+    "h3-6": ("h3-churchill.jpg", "Winston Churchill, Ottawa, December 1941, by Yousuf Karsh (Library and Archives Canada, via Wikimedia Commons, CC BY 2.0).", "Winston Churchill, Ottawa, décembre 1941, par Yousuf Karsh (Bibliothèque et Archives Canada, via Wikimedia Commons, CC BY 2.0)."),
+    "h3-7": ("/h3-stalingrad-ruins.jpg", "Stalingrad in ruins, 1942 (Heine, Bundesarchiv, Bild 183-B22800, via Wikimedia Commons, CC BY-SA 3.0 DE).", "Stalingrad en ruines, 1942 (Heine, Bundesarchiv, Bild 183-B22800, via Wikimedia Commons, CC BY-SA 3.0 DE)."),
+}
 
 
 if __name__ == "__main__":
