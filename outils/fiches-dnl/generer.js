@@ -1,6 +1,7 @@
 /* Génère les fiches imprimables du site DNL : dnl/fiches/<CHAPITRE>-<en|fr>.pdf
-   Le cours est lu dans dnl/index.html (constantes H1, H2, H3…) ; la frise, la carte et le schéma
-   viennent de fiches.js et de cartes/ (produites par cartes.py).
+   Le cours est lu dans dnl/index.html (constantes H1, H2, H3…, G1…) ; la frise, la carte et le schéma
+   viennent de fiches.js et de cartes/ (produites par cartes.py pour l'histoire, par cartes-geo.js pour la géographie,
+   à relancer d'abord : node outils/fiches-dnl/cartes-geo.js).
    Usage, depuis la racine du dépôt :  node outils/fiches-dnl/generer.js [H1 H2 …]
    Dépendance : playwright (Chromium). Relancer après toute modification d'un chapitre. */
 const fs = require("fs");
@@ -27,13 +28,13 @@ function lire(nom) {
 
 const esc = t => String(t == null ? "" : t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const T = {
-  en: { kicker: "DNL History-Geography · Terminale BFI · M. Ros", frise: "Ten dates to know", enjeu: "The big picture", objective: "Objective", ki: "Key Issues", kt: "Key Terms", carte: "Summary map", zoom: "Zoom", serie: "Stage by stage (same colours)", schema: "Summary diagram", cours: "The course", ex: "Example", hors: "outside the course", acteurs: "Key figures", chiffres: "Numbers", vocab: "Vocabulary", partiel: "Partial sheet: only what has been taught in class so far. Still to come: ", genere: "Revision Atlas · printable sheet", pdate: "Generated on " },
-  fr: { kicker: "DNL Histoire-Géographie · Terminale BFI · M. Ros", frise: "Dix dates à connaître", enjeu: "L'enjeu", objective: "Objectif", ki: "Key Issues", kt: "Key Terms", carte: "Carte de synthèse", zoom: "Zoom", serie: "Étape par étape (mêmes couleurs)", schema: "Schéma de synthèse", cours: "Le cours", ex: "Exemple", hors: "hors cours", acteurs: "Acteurs", chiffres: "Chiffres clés", vocab: "Vocabulaire", partiel: "Fiche partielle : seulement ce qui a été vu en classe. Reste à venir : ", genere: "Atlas de révision · fiche imprimable", pdate: "Générée le " }
+  en: { kicker: "DNL History-Geography · Terminale BFI · M. Ros", frise: "Ten dates to know", frise2: "Dates to know", enjeu: "The big picture", objective: "Objective", ki: "Key Issues", kt: "Key Terms", carte: "Summary map", zoom: "Zoom", serie: "Stage by stage (same colours)", schema: "Summary diagram", cours: "The course", ex: "Example", hors: "outside the course", acteurs: "Key figures", chiffres: "Numbers", vocab: "Vocabulary", partiel: "Partial sheet: only what has been taught in class so far. Still to come: ", genere: "Revision Atlas · printable sheet", pdate: "Generated on " },
+  fr: { kicker: "DNL Histoire-Géographie · Terminale BFI · M. Ros", frise: "Dix dates à connaître", frise2: "Dates à connaître", enjeu: "L'enjeu", objective: "Objectif", ki: "Key Issues", kt: "Key Terms", carte: "Carte de synthèse", zoom: "Zoom", serie: "Étape par étape (mêmes couleurs)", schema: "Schéma de synthèse", cours: "Le cours", ex: "Exemple", hors: "hors cours", acteurs: "Acteurs", chiffres: "Chiffres clés", vocab: "Vocabulaire", partiel: "Fiche partielle : seulement ce qui a été vu en classe. Reste à venir : ", genere: "Atlas de révision · fiche imprimable", pdate: "Générée le " }
 };
 
 /* dates de la frise en français : mois abrégés à la française, « 1er » */
 const MOIS = { "Jan.": "janv.", "Feb.": "févr.", "Mar.": "mars", "Apr.": "avr.", "May": "mai", "June": "juin", "July": "juil.", "Aug.": "août", "Sept.": "sept.", "Oct.": "oct.", "Nov.": "nov.", "Dec.": "déc." };
-const dateFr = d => d.replace(/\b(Jan\.|Feb\.|Mar\.|Apr\.|May|June|July|Aug\.|Sept\.|Oct\.|Nov\.|Dec\.)/g, m => MOIS[m]).replace(/\b1 (?=[a-zé])/g, "1er ").replace(/–/g, "-");
+const dateFr = d => d.replace(/\b(Jan\.|Feb\.|Mar\.|Apr\.|May|June|July|Aug\.|Sept\.|Oct\.|Nov\.|Dec\.)/g, m => MOIS[m]).replace(/\b1 (?=[a-zé])/g, "1er ").replace(/^Late /, "fin ").replace(/–/g, "-");
 /* frise : axe horizontal, dates à pas régulier, textes alternés au-dessus et au-dessous */
 function frise(items, lang) {
   const L = lang === "fr" ? 2 : 1, n = items.length, W = 1000, H = 330, ax = H / 2, pas = (W - 170) / (n - 1);
@@ -61,9 +62,9 @@ function legendeCle(c, lang) {
 
 function blocCarte(cc, svg, titre, lang, apres) {
   const F = lang === "fr";
-  return `<section class="bloc carte large${cc.carre ? " carre" : ""}${cc.petit ? " petit" : ""}"><div class="tete-carte"><h2>${titre} — ${esc(cc.titre[F ? 1 : 0])}</h2><div class="svg">${svg}</div></div>
+  return `<section class="bloc carte large${cc.carre ? " carre" : ""}${cc.petit ? " petit" : ""}${cc.cote ? " cote" : ""}"><div class="tete-carte"><h2>${titre} — ${esc(cc.titre[F ? 1 : 0])}</h2><div class="svg">${svg}</div></div>
   <div class="carte-corps">
-  <div class="leg"><ul class="cles">${cc.cles.map(k => legendeCle(k, lang)).join("")}</ul>
+  <div class="leg${cc.cles.length ? "" : " une"}">${cc.cles.length ? `<ul class="cles">${cc.cles.map(k => legendeCle(k, lang)).join("")}</ul>` : ""}
   <ol class="reperes">${cc.reperes.map(r => `<li>${esc(r[F ? 1 : 0])}</li>`).join("")}</ol>
   <p class="note">${esc(cc.note[F ? 1 : 0])}</p></div></div>${apres || ""}
 </section>`;
@@ -99,7 +100,7 @@ function fiche(code, lang) {
   <p class="obj"><b>${t.objective}.</b> ${esc(m.objective || d.objective)}</p>
 </header>
 ${vides.length ? `<div class="partiel">${t.partiel}${vides.map(s => esc(s.num + " " + (F && s.frTitle ? s.frTitle : s.title))).join(" · ")}.</div>` : ""}
-<section class="bloc"><h2>${t.frise}</h2><div class="frise">${frise(c.frise, lang)}</div></section>
+<section class="bloc"><h2>${c.frise.length === 10 ? t.frise : t.frise2}</h2><div class="frise">${frise(c.frise, lang)}</div></section>
 <section class="bloc duo">
   <div><h2>${t.enjeu}</h2><p class="enjeu">${esc(m.bigPicture || d.bigPicture)}</p></div>
   <div class="kik"><h3>${t.ki}</h3><ul>${d.keyIssues.map(k => `<li>${esc(k)}</li>`).join("")}</ul><h3>${t.kt}</h3><p>${d.keyTerms.map(esc).join(" · ")}</p></div>
@@ -107,11 +108,11 @@ ${vides.length ? `<div class="partiel">${t.partiel}${vides.map(s => esc(s.num + 
 <section class="bloc"><h2>${t.schema} — ${esc(c.schema.titre[F ? 1 : 0])}</h2>${schema(c.schema, lang)}</section>
 ${blocCarte(c.carte, carte, t.carte, lang, c.carte.serie ? `<h3 class="serie-t">${t.serie}</h3>
   <div class="serie${c.carte.monde ? " monde" : ""}" style="--n:${c.carte.serie.length}">${c.carte.serie.map((e, i) => `<figure><div class="svg">${fs.readFileSync(path.join(ICI, "cartes", `${code}-serie${i + 1}-${lang}.svg`), "utf8")}</div><figcaption><b>${esc(e[0][F ? 1 : 0])}</b> ${esc(e[F ? 2 : 1])}</figcaption></figure>`).join("")}</div>` : "")}
-${c.zoom ? blocCarte(c.zoom, fs.readFileSync(path.join(ICI, "cartes", `${code}-france-${lang}.svg`), "utf8"), t.zoom, lang) : ""}
+${(c.zooms || (c.zoom ? [Object.assign({ fichier: "france" }, c.zoom)] : [])).map(z => blocCarte(z, fs.readFileSync(path.join(ICI, "cartes", `${code}-${z.fichier}-${lang}.svg`), "utf8"), z.label ? esc(z.label[F ? 1 : 0]) : t.zoom, lang)).join("\n")}
 <section class="cours"><h2 class="h2c">${t.cours}</h2>
 ${secs.map(s => `<div class="sec"><div class="tete-sec"><h3><span>${esc(s.num)}</span> ${esc(F && s.frTitle ? s.frTitle : s.title)}</h3>${idee(s.ideas[0])}</div>${s.ideas.slice(1).map(idee).join("")}</div>`).join("")}
 </section>
-<section class="bloc annexe"><h2>${t.acteurs}</h2><dl class="kf">${kf.people.map(p => `<dt>${esc(p[0])}</dt><dd>${esc(p[1])}</dd>`).join("")}</dl>
+<section class="bloc annexe">${kf.people.length ? `<h2>${t.acteurs}</h2><dl class="kf">${kf.people.map(p => `<dt>${esc(p[0])}</dt><dd>${esc(p[1])}</dd>`).join("")}</dl>` : ""}
 <h2>${t.chiffres}</h2><dl class="kf num">${kf.numbers.map(p => `<dt>${esc(p[0])}</dt><dd>${esc(p[1])}</dd>`).join("")}</dl></section>
 <section class="bloc annexe"><h2>${t.vocab}</h2>${(d.vocab || []).map(g => `<div class="vg"><h3>${esc(F && g.frGroup ? g.frGroup : g.group)}</h3><dl>${g.items.map(v => `<dt>${esc(v[0])}${F && v[1] && v[1] !== v[0] ? ` <span class="vfr">(${esc(v[1])})</span>` : ""}</dt><dd>${esc(F ? v[3] : v[2])}</dd>`).join("")}</dl></div>`).join("")}</section>
 <footer class="fin">${t.genere} · ${t.pdate}${date}</footer>
