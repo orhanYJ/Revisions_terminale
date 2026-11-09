@@ -92,7 +92,7 @@
     var montrer = mode !== "nosortie" && ((c.out && c.out.trim()) || c.err) && c.montrer !== false;
     if (montrer) {
       var t = (c.out || "").replace(/\s+$/, "");
-      if (c.err) t = (t ? t + "\n" : "") + "Traceback (most recent call last):\n  …\n" + c.err;
+      if (c.err) t = (t ? t + "\n" : "") + (c.trace || "Traceback (most recent call last):\n  …\n" + c.err);
       out = '<div class="sortie"><div class="tete"><span class="f">' + esc(c.cmd || "python3 " + (c.fichier || "programme.py")) + '</span></div><pre class="' + (c.err ? "err" : "") + '">' + esc(t) + "</pre></div>";
     }
     return '<div class="code zebre' + (cons ? " console" : "") + '" data-code="' + esc(id) + '"><div class="tete"><span class="f">' + esc(nom) + '</span><button type="button" data-copie="' + esc(id) + '">copier</button></div><pre><code>' + lignes(h, { vise: c.vise, trous: c.trous }) + "</code></pre>" + out + "</div>";
@@ -252,7 +252,7 @@
   function sortieSeule(id) {
     var c = CODE[id]; if (!c) return "";
     var t = (c.out || "").replace(/\s+$/, "");
-    if (c.err) t = (t ? t + "\n" : "") + "Traceback (most recent call last):\n  …\n" + c.err;
+    if (c.err) t = (t ? t + "\n" : "") + (c.trace || "Traceback (most recent call last):\n  …\n" + c.err);
     return '<div class="code"><div class="sortie" style="border-top:0"><div class="tete"><span class="f">python3 prédis.py</span></div><pre class="' + (c.err ? "err" : "") + '">' + esc(t) + "</pre></div></div>";
   }
   function exoHTML(e, fic, badge) {
@@ -283,7 +283,7 @@
     function maj() {
       var n = 0, ok = 0;
       Object.keys(st.rep).forEach(function (k) { n++; if (st.rep[k] === liste[k].a) ok++; });
-      $(".sc", zone).textContent = "score : " + ok + " / " + n + "  (" + liste.length + " questions)";
+      $(".sc", zone).textContent = ok + " / " + n + " juste" + (ok > 1 ? "s" : "") + " · " + liste.length + " q.";
       $(".barre-p i", zone).style.width = (100 * n / liste.length) + "%";
     }
     function montre(qel, k, j, anim) {
@@ -408,7 +408,7 @@
 
   /* ---------- recherche plein écran ---------- */
   var INDEX = null;
-  function texte(h) { return String(h).replace(/\[\[([\w-]+)(?:\|\w+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim(); }
+  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|\w+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim(); }
   function construireIndex() {
     INDEX = [];
     CH.forEach(function (c) {
@@ -452,7 +452,7 @@
     $("#srch").classList.add("on");
     history.pushState({ srch: 1 }, "");
     var i = $("#sq"); i.value = ""; $("#sres").innerHTML = '<div class="aide">Tape un mot : récursivité, self, FIFO, assert, IndexError, maillon…<br>Échap ou bouton retour pour fermer.</div>';
-    setTimeout(function () { i.focus(); }, 30);
+    i.focus();
   }
   function fermerRecherche(depuisHistorique) {
     if (!srchOuvert) return;
