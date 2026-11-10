@@ -456,3 +456,18 @@ html.mo .essentiel li:nth-child(2){animation-delay:.05s}html.mo .essentiel li:nt
 .w .cmd .cpt.mono{font-family:var(--mono);white-space:nowrap}
 .res-sql{margin:0;border:0;border-radius:0}
 .res-sql table{font-family:var(--mono);font-size:.82rem}
+/* animation : table de hachage */
+.hash-calc{font-size:.8rem;color:var(--ambre);background:var(--ambre-f);border-radius:8px;padding:6px 10px;margin-bottom:8px;overflow-wrap:anywhere}
+.hash-table{display:grid;gap:4px}
+.hash-table .bk{display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-height:38px;padding:3px 6px;border-radius:8px;border:1px solid var(--ligne)}
+.hash-table .bk.vise{border-color:var(--ambre);box-shadow:inset 3px 0 0 var(--ambre)}
+.hash-table .ix{color:var(--encre3);font-size:.78rem;width:2.4em}
+.hash-table .vide{color:var(--encre3);font-size:.74rem}
+.hash-table .lien-c{color:var(--encre3)}
+.puce{display:inline-flex;align-items:center;font-family:var(--mono);font-size:.8rem;padding:3px 9px;border-radius:999px;border:1.5px solid var(--bleu);background:var(--bleu-f);color:var(--encre)}
+.puce.vu{border-color:var(--ambre);background:var(--ambre-f)}
+.puce.trouve{border-color:var(--vert);background:var(--vert-f);font-weight:700}
+.puce.passe{opacity:.55}
+.puce.neuf{border-color:var(--vert)}
+html.mo .puce.neuf,html.mo .puce.vu,html.mo .puce.trouve{animation:pop .35s cubic-bezier(.2,.9,.3,1.3)}
+.hash-liste{display:flex;flex-wrap:wrap;gap:6px}
