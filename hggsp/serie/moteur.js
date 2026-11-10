@@ -1,16 +1,22 @@
-/* Vidéos HGGSP « Ligne rouge » — moteur du lecteur, copie du moteur SVT (svt/serie/moteur.js, lui-même copie du moteur
-   PC) aux couleurs du site HGGSP : salle de crise (noir, rouge signal, acier), bandeau « CONFIDENTIEL », tampons,
-   dates au télétype, radar, fiches de renseignement.
-   Ajouts propres à l'HGGSP :
+/* Vidéos HGGSP « Ligne rouge » — moteur du lecteur. Identité : la table des cartes de l'état-major.
+   Toute la vidéo se joue sur une table de feutre vert, sous une lampe, filmée d'en haut : chaque partie de l'épisode
+   est un poste de travail de la table (boussole, règle, rapporteur, compas, crayon gras, cartes et dossiers en
+   attente) et la caméra vole d'un poste à l'autre au changement de partie. Les cartes sont des feuilles gravées
+   (papier ancien, lignes d'eau le long des côtes, liseré aquarellé, cadre à degrés, plis) que la caméra survole ;
+   les tracés y sont faits au crayon gras, hachures, pions et étiquettes calligraphiées. Les textes sont des fiches,
+   cartouches, registres et pièces de dossier posés à la main sur la table ; le mot qui frappe est un tampon.
+   Les scripts n'ont pas à changer : chaque type de visuel garde ses champs, seul le rendu change.
+   Types : titre, chapitre (cartouche de partie), mot, question, def, note (fiches cartonnées), liste (registre),
+   cols, cartes, cit, tableau (tirage photographique posé sur la table), frappe (tampon), flash (« À retenir »),
+   carte (carte mentale), generique, notion, nuage, tag, portrait, dialogue, frise, formule, graphe, exo, pause, anim ;
+   propres à l'HGGSP :
    - scene : une scène d'animation du site (cartes et schémas de outils/specialites/hggsp/, extraites dans
-     hggsp/serie/illu-<code>.js par outils/serie-hggsp/scenes.js) jouée par le temps de la vidéo : l'étape k au
-     repère {id.k}, date au télétype, caméra qui zoome d'un cadrage à l'autre ;
+     hggsp/serie/illu-<code>.js par outils/serie-hggsp/scenes.js), gravée sur une feuille de la table ; l'étape k
+     au repère {id.k}, cartouche date / titre en haut de l'écran, caméra qui survole la feuille d'un cadrage à l'autre ;
    - chiffres : grands chiffres qui défilent jusqu'à leur valeur ;
-   - chrono : frise de dates (télétype, tampons), l'événement k au repère {id.k} ;
-   - document : une pièce du dossier (texte d'un document), passages surlignés au repère {id.k} ;
-   - illustrations orbites (satellites en orbite) et kessler (collision et réaction en chaîne).
-   Repris des moteurs PC et SVT : titre, chapitre, mot, question, def, note, liste, cols, cartes, cit, tableau,
-   frappe, flash, carte (carte mentale finale), formule, graphe, exo (sujets de bac), pause (« À toi »)…
+   - chrono : réglette de dates, l'événement k au repère {id.k} ;
+   - document : une pièce du dossier (texte d'un document), passages hachurés au crayon au repère {id.k} ;
+   - illustrations orbites (satellites en orbite) et kessler (collision et réaction en chaîne), en planches gravées.
    L'image est une fonction pure du temps t : lecture, retour en arrière, glisser sur la barre et export vidéo
    image par image (?export=1) donnent exactement le même rendu. Les données de l'épisode (window.EPISODE)
    sont générées par outils/serie-philo/generer.py depuis outils/serie-hggsp/<module>.py. */
@@ -21,8 +27,9 @@
   var EMBED = Q.has("embed"), EXPORT = Q.has("export");
   var NS = "http://www.w3.org/2000/svg";
   // palette du site en mode sombre (outils/specialites/hggsp/src/style.css) : encre, rouge signal, acier, kraft
-  var C = { iv: "#dce3e8", iv2: "#93a3af", sa: "#ff5b49", sa2: "#b3241b", ca: "#ff8273", te: "#82b2d8", eau: "#6e9cc0", nuit: "#0a0f13",
-    el: "#82b2d8", uv: "#b48cff", rouge: "#ff5b49", vert: "#6cc082", or: "#c2a878", kraft: "#c2a878" };
+  // encres sur papier (table des cartes) : encre de bistre, sépia, crayon gras rouge, encre bleue, vert de vessie, or
+  var C = { iv: "#2b1d10", iv2: "#6b4c2c", sa: "#b8281b", sa2: "#8e1d13", ca: "#c4483a", te: "#2d4f86", eau: "#3f6f96", nuit: "#eadbb8",
+    el: "#2d4f86", uv: "#6a4a8a", rouge: "#b8281b", vert: "#3d6b3a", or: "#8a6a2a", kraft: "#8a6a2a" };
 
   /* ---------- outils ---------- */
   function h(tag, cls, parent, html) {
@@ -121,13 +128,330 @@
       var p = P(t, c.t, .35), f = P(t, c.t + .35, 1.4);
       if (p <= 0) { c.sp.style.color = ""; c.sp.style.textShadow = ""; c.sp.style.backgroundSize = "0% 3px"; return; }
       c.sp.style.color = C.sa;
-      c.sp.style.textShadow = "0 0 " + (18 * (1 - f)).toFixed(1) + "px rgba(255,91,73," + (0.7 * (1 - f)).toFixed(2) + ")";
       c.sp.style.backgroundSize = (100 * E(p)).toFixed(0) + "% 3px";
     });
   }
 
   // étape k d'un visuel : instant (repère {id.k}) ou, à défaut, une valeur de repli
   function et(v, k, repli) { return v.et && v.et[k] != null ? v.et[k] : v.t0 + repli; }
+
+  /* ---------- la table des cartes : textures, instruments, feuilles de carte gravées ----------
+     Tout ce qui est coûteux (papier, feutre, instruments, cartes gravées) est calculé une fois, dans des canevas ;
+     à chaque image on ne fait que les poser (drawImage) sous la caméra. */
+  var ENC = { encre: "#2b1d10", sepia: "#5a3d22", crayon: "#b8281b", bleu: "#2d4f86", pap: "#eadbb8", terre: "#e6d3a3" };
+  var F = { titre: "'Exlibris Titrage',Georgia,serif", texte: "'Exlibris Texte',Georgia,serif", main: "'Caveat',cursive" };
+  function canv(w, hh) { var c = document.createElement("canvas"); c.width = Math.max(1, Math.round(w)); c.height = Math.max(1, Math.round(hh)); return c; }
+  function rng(seed) { var a = seed >>> 0; return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  // bruit de valeur lissé, périodique (texture qui se répète sans couture)
+  function bruit(w, hh, cell, seed) {
+    var r = rng(seed), gw = Math.max(1, Math.round(w / cell)), gh = Math.max(1, Math.round(hh / cell)), g = new Float32Array(gw * gh), cx = w / gw, cy = hh / gh;
+    for (var i = 0; i < g.length; i++) g[i] = r();
+    function s(k) { return k * k * (3 - 2 * k); }
+    return function (x, y) {
+      var gx = x / cx, gy = y / cy, i = Math.floor(gx), j = Math.floor(gy), fx = s(gx - i), fy = s(gy - j);
+      var i0 = ((i % gw) + gw) % gw, i1 = (i0 + 1) % gw, j0 = ((j % gh) + gh) % gh, j1 = (j0 + 1) % gh;
+      var a = g[j0 * gw + i0], b = g[j0 * gw + i1], c = g[j1 * gw + i0], d = g[j1 * gw + i1];
+      return (a + (b - a) * fx) + ((c + (d - c) * fx) - (a + (b - a) * fx)) * fy;
+    };
+  }
+  // papier ancien (fibres, taches, rousseurs) ; bord = assombrissement des bords (feuille entière) ou 0 (motif répété)
+  function papierTex(w, hh, seed, bord, base) {
+    var c = canv(w, hh), x = c.getContext("2d"); x.fillStyle = base || ENC.pap; x.fillRect(0, 0, w, hh);
+    var d = x.getImageData(0, 0, w, hh), r = rng(seed), n1 = bruit(w, hh, 230, seed), n2 = bruit(w, hh, 32, seed + 3), n3 = bruit(w, hh, 5, seed + 5);
+    for (var p = 0, k = 0; p < d.data.length; p += 4, k++) {
+      var i = k % w, j = (k / w) | 0, b = 0;
+      if (bord) { var ex = Math.min(i, w - i, j, hh - j) / (Math.min(w, hh) * bord); b = ex < 1 ? (1 - ex) * (1 - ex) : 0; }
+      var v = (n1(i, j) - .5) * 24 + (n2(i, j) - .5) * 11 + (n3(i, j) - .5) * 7 + (r() - .5) * 6 - b * 38;
+      d.data[p] += v; d.data[p + 1] += v * .96; d.data[p + 2] += v * .84 - b * 10;
+    }
+    x.putImageData(d, 0, 0);
+    for (var q = 0; q < w * hh / 16000; q++) { var a = r() * w, bb = r() * hh, rr = 1.5 + r() * 7; x.fillStyle = "rgba(140,90,40," + (.04 + r() * .09).toFixed(3) + ")"; x.beginPath(); x.arc(a, bb, rr, 0, 6.3); x.fill(); }
+    return c;
+  }
+  function feutreTex() {
+    var w = 512, c = canv(w, w), x = c.getContext("2d"), d = x.createImageData(w, w), r = rng(41), n = bruit(w, w, 64, 5), n2 = bruit(w, w, 8, 6);
+    for (var p = 0, k = 0; p < d.data.length; p += 4, k++) {
+      var i = k % w, j = (k / w) | 0, v = .8 + (r() - .5) * .2 + (n(i, j) - .5) * .22 + (n2(i, j) - .5) * .08;
+      d.data[p] = 37 * v; d.data[p + 1] = 63 * v; d.data[p + 2] = 47 * v; d.data[p + 3] = 255;
+    }
+    x.putImageData(d, 0, 0); return c;
+  }
+  function grainTex(seed, amp) {   // grain fin à poser en « produit » sur les grandes feuilles
+    var w = 256, c = canv(w, w), x = c.getContext("2d"), d = x.createImageData(w, w), r = rng(seed), n = bruit(w, w, 3, seed + 1);
+    for (var p = 0, k = 0; p < d.data.length; p += 4, k++) { var i = k % w, j = (k / w) | 0, v = 255 - (n(i, j) * .6 + r() * .4) * amp; d.data[p] = d.data[p + 1] = d.data[p + 2] = v; d.data[p + 3] = 255; }
+    x.putImageData(d, 0, 0); return c;
+  }
+  function cireTex() {   // trous de la trace de crayon gras (masque : opaque = trace)
+    var w = 128, c = canv(w, w), x = c.getContext("2d"), d = x.createImageData(w, w), r = rng(77), n = bruit(w, w, 3, 9);
+    for (var p = 0, k = 0; p < d.data.length; p += 4, k++) { var i = k % w, j = (k / w) | 0, v = n(i, j) * .7 + r() * .3; d.data[p] = d.data[p + 1] = d.data[p + 2] = 0; d.data[p + 3] = v > .72 ? 40 : v > .64 ? 170 : 255; }
+    x.putImageData(d, 0, 0); return c;
+  }
+
+  /* instruments (sprites calculés une fois, ombre comprise) ; ancre = point de pose */
+  var SPR = {};
+  function sprite(w, hh, ax, ay, dessin, ech) {
+    ech = ech || 1.5;
+    var c = canv(w * ech, hh * ech), x = c.getContext("2d"); x.scale(ech, ech); x.translate(ax, ay); dessin(x);
+    return { c: c, w: w, h: hh, ax: ax, ay: ay };
+  }
+  function ombre(x, flou, dx, dy, a) { x.shadowColor = "rgba(8,4,0," + (a || .55) + ")"; x.shadowBlur = flou; x.shadowOffsetX = dx; x.shadowOffsetY = dy; }
+  function sansOmbre(x) { x.shadowColor = "transparent"; x.shadowBlur = 0; x.shadowOffsetX = x.shadowOffsetY = 0; }
+  function fabriqueSprites() {
+    SPR.boussole = sprite(420, 420, 200, 200, function (x) {   // boussole de laiton (sans l'aiguille, dessinée à part)
+      var r = 150;
+      ombre(x, 30, 14, 20); x.fillStyle = "#7a5418"; x.beginPath(); x.arc(0, 0, r, 0, 6.3); x.fill(); sansOmbre(x);
+      var g = x.createLinearGradient(-r, -r, r, r); g.addColorStop(0, "#f3d58b"); g.addColorStop(.35, "#b8862f"); g.addColorStop(.65, "#7a5418"); g.addColorStop(1, "#d8b060");
+      x.fillStyle = g; x.beginPath(); x.arc(0, 0, r, 0, 6.3); x.fill();
+      x.fillStyle = "#f2ead6"; x.beginPath(); x.arc(0, 0, r * .84, 0, 6.3); x.fill();
+      x.strokeStyle = "#3a2a18";
+      for (var i = 0; i < 72; i++) { var a = i * Math.PI / 36, l = i % 9 === 0 ? .14 : i % 3 === 0 ? .09 : .05; x.lineWidth = i % 9 === 0 ? 2 : 1; x.beginPath(); x.moveTo(Math.cos(a) * r * .84, Math.sin(a) * r * .84); x.lineTo(Math.cos(a) * r * (.84 - l), Math.sin(a) * r * (.84 - l)); x.stroke(); }
+      x.font = "400 " + (r * .2) + "px " + F.titre; x.fillStyle = "#3a2a18"; x.textAlign = "center"; x.textBaseline = "middle";
+      [["N", 0], ["E", 1], ["S", 2], ["O", 3]].forEach(function (z) { var a = z[1] * Math.PI / 2 - Math.PI / 2; x.fillText(z[0], Math.cos(a) * r * .56, Math.sin(a) * r * .56); });
+    });
+    SPR.regle = sprite(860, 130, 20, 20, function (x) {   // règle de bois et laiton
+      var len = 800;
+      ombre(x, 16, 8, 14); x.fillStyle = "#5a3518"; x.fillRect(0, 0, len, 76); sansOmbre(x);
+      var g = x.createLinearGradient(0, 0, 0, 76); g.addColorStop(0, "#7a4f2a"); g.addColorStop(.5, "#5a3518"); g.addColorStop(1, "#3d230f");
+      x.fillStyle = g; x.fillRect(0, 0, len, 76);
+      x.fillStyle = "#c79a45"; x.fillRect(0, 0, len, 10); x.fillRect(0, 66, len, 10);
+      x.strokeStyle = "#f0dca8"; x.lineWidth = 1.2;
+      for (var i = 0; i * 10 < len - 20; i++) { var l = i % 10 === 0 ? 22 : i % 5 === 0 ? 15 : 9; x.beginPath(); x.moveTo(10 + i * 10, 10); x.lineTo(10 + i * 10, 10 + l); x.stroke(); }
+      x.font = "400 15px " + F.titre; x.fillStyle = "#f0dca8"; x.textAlign = "center"; for (var j = 0; j * 100 < len - 20; j++) x.fillText(String(j), 10 + j * 100, 52);
+    });
+    SPR.rapporteur = sprite(400, 230, 190, 190, function (x) {   // rapporteur de corne, translucide
+      var r = 170;
+      ombre(x, 12, 8, 12, .3); x.fillStyle = "rgba(235,225,190,.25)"; x.beginPath(); x.arc(0, 0, r, Math.PI, 0); x.closePath(); x.fill(); sansOmbre(x);
+      x.strokeStyle = "rgba(60,40,20,.85)"; x.lineWidth = 2; x.stroke();
+      x.lineWidth = 1; for (var i = 0; i <= 180; i += 2) { var a = Math.PI + i * Math.PI / 180, l = i % 10 === 0 ? 18 : i % 5 === 0 ? 12 : 7; x.beginPath(); x.moveTo(Math.cos(a) * r, Math.sin(a) * r); x.lineTo(Math.cos(a) * (r - l), Math.sin(a) * (r - l)); x.stroke(); }
+      x.font = "400 14px " + F.titre; x.fillStyle = "rgba(50,30,15,.9)"; x.textAlign = "center"; x.textBaseline = "middle";
+      for (var k = 0; k <= 180; k += 30) { var b = Math.PI + k * Math.PI / 180; x.fillText(String(k), Math.cos(b) * (r - 34), Math.sin(b) * (r - 34)); }
+      x.beginPath(); x.arc(0, 0, r * .35, Math.PI, 0); x.stroke(); x.beginPath(); x.arc(0, 0, 4, 0, 6.3); x.stroke();
+      x.fillStyle = "rgba(255,255,255,.18)"; x.beginPath(); x.ellipse(-r * .4, -r * .55, r * .3, r * .08, -.4, 0, 6.3); x.fill();
+    });
+    SPR.crayon = sprite(520, 90, 30, 40, function (x) {   // crayon gras rouge, pointe à l'ancre
+      ombre(x, 10, 10, 14, .45);
+      x.fillStyle = "#d8c9a8"; x.fillRect(34, -14, 420, 28); sansOmbre(x);
+      x.fillStyle = ENC.crayon; x.beginPath(); x.moveTo(0, 0); x.lineTo(34, -12); x.lineTo(34, 12); x.closePath(); x.fill();
+      var g = x.createLinearGradient(0, -14, 0, 14); g.addColorStop(0, "#f0e6d0"); g.addColorStop(.5, "#d8c9a8"); g.addColorStop(1, "#a8987a");
+      x.fillStyle = g; x.fillRect(34, -14, 420, 28);
+      x.strokeStyle = "rgba(120,90,50,.55)"; x.lineWidth = 1.2; for (var i = 0; i < 18; i++) { x.beginPath(); x.moveTo(60 + i * 22, -14); x.lineTo(74 + i * 22, 14); x.stroke(); }
+      x.fillStyle = ENC.crayon; x.fillRect(34, -14, 26, 28); x.fillStyle = "rgba(255,255,255,.25)"; x.fillRect(34, -9, 420, 4);
+    });
+    SPR.compas = sprite(170, 520, 85, 30, function (x) {   // compas à pointes sèches, ouvert
+      ombre(x, 10, 8, 12, .45);
+      x.strokeStyle = "#b9b2a2"; x.lineCap = "round";
+      x.lineWidth = 9; x.beginPath(); x.moveTo(0, 0); x.lineTo(-58, 460); x.stroke(); x.beginPath(); x.moveTo(0, 0); x.lineTo(58, 460); x.stroke(); sansOmbre(x);
+      var g = x.createLinearGradient(-60, 0, 60, 0); g.addColorStop(0, "#8d8676"); g.addColorStop(.5, "#ece6d6"); g.addColorStop(1, "#8d8676");
+      x.strokeStyle = g; x.lineWidth = 7; x.beginPath(); x.moveTo(0, 0); x.lineTo(-58, 460); x.moveTo(0, 0); x.lineTo(58, 460); x.stroke();
+      x.fillStyle = "#c79a45"; x.beginPath(); x.arc(0, 0, 16, 0, 6.3); x.fill(); x.strokeStyle = "#5a3d22"; x.lineWidth = 1.5; x.stroke();
+      x.fillStyle = "#5a3d22"; x.beginPath(); x.arc(0, 0, 4, 0, 6.3); x.fill();
+    });
+    SPR.loupe = sprite(560, 260, 130, 130, function (x) {   // loupe de lecture des cartes, manche de bois
+      ombre(x, 18, 12, 16, .5);
+      x.fillStyle = "#4a2c14"; x.beginPath(); x.moveTo(104, -14); x.lineTo(400, -20); x.quadraticCurveTo(420, 0, 400, 20); x.lineTo(104, 14); x.closePath(); x.fill();
+      x.fillStyle = "#9a7a3a"; x.beginPath(); x.arc(0, 0, 112, 0, 6.3); x.fill(); sansOmbre(x);
+      var g = x.createLinearGradient(104, -16, 104, 16); g.addColorStop(0, "#7a4f2a"); g.addColorStop(.5, "#5a3518"); g.addColorStop(1, "#3d230f");
+      x.fillStyle = g; x.beginPath(); x.moveTo(104, -14); x.lineTo(400, -20); x.quadraticCurveTo(420, 0, 400, 20); x.lineTo(104, 14); x.closePath(); x.fill();
+      x.fillStyle = "#c79a45"; x.fillRect(104, -16, 22, 32);
+      var b = x.createLinearGradient(-112, -112, 112, 112); b.addColorStop(0, "#f3d58b"); b.addColorStop(.5, "#9a6a24"); b.addColorStop(1, "#d8b060");
+      x.strokeStyle = b; x.lineWidth = 14; x.beginPath(); x.arc(0, 0, 104, 0, 6.3); x.stroke();
+      x.fillStyle = "rgba(200,225,235,.12)"; x.beginPath(); x.arc(0, 0, 97, 0, 6.3); x.fill();
+      x.fillStyle = "rgba(255,255,255,.22)"; x.beginPath(); x.ellipse(-36, -40, 44, 16, -.7, 0, 6.3); x.fill();
+    });
+    // feuilles posées sur la table, entre les postes : carte marine, carte du ciel, chemise de dossier
+    var pap = papierTex(420, 300, 91, .12);
+    function feuille(nom, w, hh, motif) {
+      SPR[nom] = sprite(w + 60, hh + 60, 30, 30, function (x) {
+        ombre(x, 22, 10, 16, .5); x.fillStyle = ENC.pap; x.fillRect(0, 0, w, hh); sansOmbre(x);
+        x.drawImage(pap, 0, 0, w, hh); motif(x, w, hh);
+        x.strokeStyle = "rgba(255,250,235,.5)"; x.lineWidth = 2; x.beginPath(); x.moveTo(w / 2, 0); x.lineTo(w / 2, hh); x.stroke();
+        x.strokeStyle = "rgba(90,60,30,.2)"; x.beginPath(); x.moveTo(w / 2 + 3, 0); x.lineTo(w / 2 + 3, hh); x.stroke();
+      });
+    }
+    feuille("marine", 620, 440, function (x, w, hh) {
+      x.strokeStyle = "rgba(60,75,95,.5)"; x.lineWidth = 1; x.strokeRect(18, 18, w - 36, hh - 36);
+      for (var i = 0; i < 16; i++) { var a = i * Math.PI / 8; x.beginPath(); x.moveTo(w * .62, hh * .46); x.lineTo(w * .62 + Math.cos(a) * 700, hh * .46 + Math.sin(a) * 700); x.stroke(); }
+      x.fillStyle = "#e3cf9f"; x.strokeStyle = ENC.encre; x.lineWidth = 2;
+      x.beginPath(); x.moveTo(18, 120); x.bezierCurveTo(120, 140, 150, 220, 110, 300); x.bezierCurveTo(90, 360, 160, 400, 200, hh - 18); x.lineTo(18, hh - 18); x.closePath(); x.fill(); x.stroke();
+      x.font = "italic 400 26px " + F.texte; x.fillStyle = "#2f3d52"; x.fillText("Océan", w * .5, hh * .3);
+    });
+    feuille("ciel", 520, 520, function (x, w, hh) {
+      x.strokeStyle = "rgba(43,29,16,.55)"; x.lineWidth = 1.2;
+      [230, 180, 120, 60].forEach(function (r) { x.beginPath(); x.arc(w / 2, hh / 2, r, 0, 6.3); x.stroke(); });
+      for (var i = 0; i < 12; i++) { var a = i * Math.PI / 6; x.beginPath(); x.moveTo(w / 2, hh / 2); x.lineTo(w / 2 + Math.cos(a) * 230, hh / 2 + Math.sin(a) * 230); x.stroke(); }
+      var r = rng(5); x.fillStyle = ENC.encre;
+      for (var k = 0; k < 90; k++) { var b = r() * 6.3, d = r() * 225; x.beginPath(); x.arc(w / 2 + Math.cos(b) * d, hh / 2 + Math.sin(b) * d, .8 + r() * 2.4, 0, 6.3); x.fill(); }
+    });
+    feuille("dossier", 560, 400, function (x, w, hh) {
+      x.fillStyle = "rgba(160,110,50,.35)"; x.fillRect(0, 0, w, hh);
+      x.save(); x.translate(w * .6, hh * .45); x.rotate(-.12); x.strokeStyle = "rgba(184,40,27,.75)"; x.lineWidth = 4; x.strokeRect(-130, -36, 260, 72);
+      x.font = "400 44px " + F.titre; x.fillStyle = "rgba(184,40,27,.75)"; x.textAlign = "center"; x.textBaseline = "middle"; x.fillText("SECRET", 0, 4); x.restore();
+    });
+  }
+  function aiguille(x, r, ang) {   // aiguille de la boussole (dessinée à chaque image : elle oscille)
+    x.save(); x.rotate(ang);
+    x.fillStyle = "rgba(0,0,0,.25)"; x.beginPath(); x.moveTo(4, -r * .62 + 6); x.lineTo(r * .08 + 4, 6); x.lineTo(4, r * .62 + 6); x.lineTo(-r * .08 + 4, 6); x.fill();
+    x.fillStyle = "#b3241b"; x.beginPath(); x.moveTo(0, -r * .62); x.lineTo(r * .08, 0); x.lineTo(-r * .08, 0); x.fill();
+    x.fillStyle = "#2b3d5c"; x.beginPath(); x.moveTo(0, r * .62); x.lineTo(r * .08, 0); x.lineTo(-r * .08, 0); x.fill();
+    x.fillStyle = "#c9a14a"; x.beginPath(); x.arc(0, 0, r * .06, 0, 6.3); x.fill();
+    x.restore();
+    var gl = x.createLinearGradient(-r, -r, r * .3, r * .3); gl.addColorStop(0, "rgba(255,255,255,.4)"); gl.addColorStop(.5, "rgba(255,255,255,0)");
+    x.fillStyle = gl; x.beginPath(); x.arc(0, 0, r * .84, 0, 6.3); x.fill();
+  }
+
+  /* postes de travail sur la table : une partie (scène de l'épisode) = un poste ; la caméra glisse de l'un à l'autre.
+     Coordonnées du monde : le poste i occupe le rectangle [X, Y, 1280, 720] ; les instruments débordent dans le cadre. */
+  function poste(i) { return { x: i * 1720, y: (i % 2) * 380 - (i % 3) * 120, r: (i % 2 ? .012 : -.009) }; }
+  var DECORS = [
+    [["boussole", 1318, -8, 0], ["regle", -470, 640, -.07], ["crayon", 1170, 712, -2.55], ["marine", 1420, 380, .08]],
+    [["rapporteur", 1210, 742, .35], ["regle", 1336, -260, 1.6], ["boussole", -70, -50, 0], ["ciel", -560, 300, -.1], ["loupe", 1500, 520, -.5]],
+    [["crayon", -20, 140, .95], ["boussole", 1335, 660, 0], ["compas", 1250, -120, -.5], ["dossier", -620, -300, .15]],
+    [["regle", -560, -40, .06], ["rapporteur", -40, 780, -.3], ["boussole", 1330, 20, 0], ["marine", 1450, -340, -.06], ["loupe", -330, 460, 2.6]]
+  ];
+  var FOND_DECOR = { ocean: "marine", orbite: "ciel", archive: "dossier", crise: "dossier" };
+  function decorsPoste(i, fond) {
+    var d = DECORS[i % DECORS.length].map(function (x) { return x.slice(); });
+    var f = FOND_DECOR[fond];
+    d.forEach(function (x) { if (/^(marine|ciel|dossier)$/.test(x[0]) && f) x[0] = f; });
+    return d;
+  }
+
+  /* feuilles de carte gravées (type scene) : le fond de la scène (mer, terres, graticule) est lu dans son SVG, retiré du
+     calque animé, et gravé une fois dans un canevas : papier ancien, lignes d'eau le long des côtes, trait de côte,
+     liseré aquarellé, frontières en pointillé, cadre à degrés, plis. */
+  var LISERE = ["#c0695e", "#7f9a55", "#c49a48", "#5a8a86", "#9c7896", "#c98a5a", "#6f82ab", "#a99a55", "#8aa070", "#b78a7c"];
+  function lireFond(svgTxt) {
+    var tmp = document.createElementNS(NS, "svg"); tmp.innerHTML = svgTxt;
+    var res = { mer: [], terre: [], grat: [], air: [], geo: false };
+    function d_(el) {
+      if (el.tagName === "rect") {
+        var x = +el.getAttribute("x") || 0, y = +el.getAttribute("y") || 0, w = +el.getAttribute("width"), hh = +el.getAttribute("height");
+        return "M" + x + " " + y + "H" + (x + w) + "V" + (y + hh) + "H" + x + "Z";
+      }
+      return el.getAttribute("d") || "";
+    }
+    Array.prototype.slice.call(tmp.children).forEach(function (el) {
+      if (el.hasAttribute("data-k") || !/^(rect|path)$/.test(el.tagName)) return;
+      var c = el.getAttribute("class") || "", f = el.getAttribute("fill") || "";
+      var role = c === "k-mer-f" || f === "var(--k-mer)" ? "mer" : c === "k-terre" || c === "k-terre-cn" || /^var\(--k-terre/.test(f) ? "terre" : c === "k-grat" ? "grat" : f === "var(--papier2)" ? "air" : null;
+      if (!role) return;
+      if (c === "k-terre" || c === "k-mer-f") res.geo = true;
+      res[role].push(d_(el)); el.remove();
+    });
+    res.svg = tmp.innerHTML;
+    return res;
+  }
+  // grave la feuille : canevas couvrant la carte (vb) et sa marge, à R pixels par unité de la carte
+  function graverFeuille(F_, vb, k, R, rose) {
+    var Mu = 50 / k, W_ = (vb[2] + 2 * Mu) * R, H_ = (vb[3] + 2 * Mu) * R;
+    var c = canv(W_, H_), x = c.getContext("2d"), u = 1 / k;          // u : un pixel du monde, en unités de la carte
+    x.drawImage(TEX.papierGrand, 0, 0, c.width, c.height);
+    x.save(); x.globalCompositeOperation = "multiply"; x.fillStyle = x.createPattern(TEX.grain, "repeat"); x.fillRect(0, 0, c.width, c.height); x.restore();
+    var T = function (cx) { cx.setTransform(R, 0, 0, R, (Mu - vb[0]) * R, (Mu - vb[1]) * R); };
+    var P2 = function (lst) { var p = new Path2D(); lst.forEach(function (d) { if (d) p.addPath(new Path2D(d)); }); return p; };
+    var pMer = P2(F_.mer), pTerre = P2(F_.terre), pGrat = P2(F_.grat), pAir = P2(F_.air);
+    T(x); x.save(); x.beginPath(); x.rect(vb[0], vb[1], vb[2], vb[3]); x.clip();
+    // mer : lavis bleu-gris ; sur un schéma (coupe), lignes d'eau horizontales gravées
+    if (F_.mer.length) {
+      if (F_.geo) { x.fillStyle = "rgba(96,128,150,.10)"; x.fill(pMer); }
+      else {   // coupe : lavis qui fonce avec la profondeur, hachures d'eau ondulées, de plus en plus serrées
+        var gm = x.createLinearGradient(0, vb[1], 0, vb[1] + vb[3]); gm.addColorStop(0, "rgba(110,150,185,.16)"); gm.addColorStop(1, "rgba(40,70,110,.34)");
+        x.fillStyle = gm; x.fill(pMer);
+        x.save(); x.clip(pMer); x.lineWidth = .8 * u;
+        for (var yy = vb[1], pas_ = 7 * u, q_ = 0; yy < vb[1] + vb[3]; yy += pas_, q_++) {
+          var prof = (yy - vb[1]) / vb[3];
+          x.strokeStyle = "rgba(40,66,96," + (.12 + .2 * prof).toFixed(3) + ")";
+          x.beginPath();
+          for (var xx = vb[0]; xx <= vb[0] + vb[2] + 4 * u; xx += 4 * u) { var oy = Math.sin(xx / (34 * u) + q_ * 1.7) * .9 * u; if (xx === vb[0]) x.moveTo(xx, yy + oy); else x.lineTo(xx, yy + oy); }
+          x.stroke();
+          pas_ = (8.5 - 3.5 * prof) * u;
+        }
+        x.restore();
+      }
+    }
+    if (F_.air.length) { x.fillStyle = "rgba(150,170,190,.06)"; x.fill(pAir); }
+    // lignes d'eau autour des côtes : anneaux de plus en plus pâles (calque à part, découpé)
+    if (F_.terre.length) {
+      var lw = canv(c.width, c.height), y = lw.getContext("2d"); T(y); y.lineJoin = "round";
+      var sp = 5.2 * u, N = F_.geo ? 8 : 6;
+      for (var i = N; i >= 1; i--) {
+        y.globalCompositeOperation = "source-over"; y.strokeStyle = "rgba(55,72,95," + (.6 - i * .058).toFixed(3) + ")"; y.lineWidth = 2 * i * sp; y.stroke(pTerre);
+        y.globalCompositeOperation = "destination-out"; y.lineWidth = 2 * i * sp - 1.2 * u; y.strokeStyle = "#000"; y.stroke(pTerre);
+      }
+      x.save(); x.setTransform(1, 0, 0, 1, 0, 0); x.drawImage(lw, 0, 0); x.restore();
+    }
+    // graticule
+    if (F_.grat.length) { x.strokeStyle = "rgba(70,50,30,.30)"; x.lineWidth = .9 * u; x.stroke(pGrat); }
+    if (F_.terre.length) {
+      // trait de côte (la moitié intérieure est recouverte par la teinte des terres)
+      x.strokeStyle = ENC.encre; x.lineWidth = 2.8 * u; x.lineJoin = "round"; x.stroke(pTerre);
+      x.fillStyle = F_.geo ? ENC.terre : "#e2cc98"; x.fill(pTerre);
+      if (!F_.geo) {   // coupe : pointillé du sol
+        x.save(); x.clip(pTerre); var rr = rng(3); x.fillStyle = "rgba(90,61,34,.35)";
+        for (var n_ = 0; n_ < vb[2] * vb[3] / (90 * u * u); n_++) { x.beginPath(); x.arc(vb[0] + rr() * vb[2], vb[1] + rr() * vb[3], (.5 + rr() * .7) * u, 0, 6.3); x.fill(); }
+        x.restore();
+      }
+      // liseré aquarellé : chaque terre (anneau) bordée de sa couleur, dans ses limites, puis estompé
+      var li = canv(c.width, c.height), z = li.getContext("2d"); T(z);
+      var n = 0;
+      F_.terre.forEach(function (d) {
+        String(d).split(/(?=M)/).forEach(function (ring) {
+          if (!/\d/.test(ring)) return;
+          var p = new Path2D(ring), col = F_.geo ? LISERE[(n * 7 + 3) % LISERE.length] : "#b7a24a"; n++;
+          z.save(); z.clip(p); z.strokeStyle = col; z.globalAlpha = .5; z.lineWidth = 11 * u; z.stroke(p); z.restore();
+        });
+      });
+      x.save(); x.setTransform(1, 0, 0, 1, 0, 0); x.filter = "blur(" + (2.2 * R * u).toFixed(1) + "px)"; x.drawImage(li, 0, 0); x.filter = "none"; x.restore();
+      // frontières en pointillé (sur les côtes, le pointillé tombe sur le trait déjà encré)
+      if (F_.geo) { x.strokeStyle = "rgba(90,40,30,.7)"; x.lineWidth = 1.1 * u; x.setLineDash([5 * u, 3 * u, 1.5 * u, 3 * u]); x.stroke(pTerre); x.setLineDash([]); }
+      else { x.strokeStyle = ENC.encre; x.lineWidth = 1.6 * u; x.stroke(pTerre); }
+    }
+    if (rose) roseVents(x, rose[0], rose[1], rose[2]);
+    x.restore();
+    // cadre : double filet, barres de degrés alternées, coins
+    T(x);
+    var X0 = vb[0], Y0 = vb[1], X1 = vb[0] + vb[2], Y1 = vb[1] + vb[3], b = 15 * u, pas = 26 * u;
+    x.strokeStyle = ENC.encre; x.lineWidth = 2.2 * u; x.strokeRect(X0, Y0, vb[2], vb[3]);
+    x.lineWidth = 1 * u; x.strokeRect(X0 - b, Y0 - b, vb[2] + 2 * b, vb[3] + 2 * b);
+    x.fillStyle = ENC.encre;
+    for (var a = X0, m = 0; a < X1; a += pas, m++) if (m % 2) { x.fillRect(a, Y0 - b, Math.min(pas, X1 - a), b); x.fillRect(a, Y1, Math.min(pas, X1 - a), b); }
+    for (var bb = Y0, q = 0; bb < Y1; bb += pas, q++) if (q % 2) { x.fillRect(X0 - b, bb, b, Math.min(pas, Y1 - bb)); x.fillRect(X1, bb, b, Math.min(pas, Y1 - bb)); }
+    [[X0 - b, Y0 - b], [X1, Y0 - b], [X0 - b, Y1], [X1, Y1]].forEach(function (p) { x.fillRect(p[0], p[1], b, b); });
+    x.lineWidth = .8 * u; x.strokeRect(X0 - b - 6 * u, Y0 - b - 6 * u, vb[2] + 2 * b + 12 * u, vb[3] + 2 * b + 12 * u);
+    // plis de la feuille
+    x.setTransform(1, 0, 0, 1, 0, 0);
+    function pli(x1, y1, x2, y2) {
+      x.strokeStyle = "rgba(255,250,235,.5)"; x.lineWidth = 3; x.beginPath(); x.moveTo(x1, y1); x.lineTo(x2, y2); x.stroke();
+      x.strokeStyle = "rgba(90,60,30,.2)"; x.lineWidth = 2; x.beginPath(); x.moveTo(x1 + 3, y1 + 3); x.lineTo(x2 + 3, y2 + 3); x.stroke();
+    }
+    pli(c.width / 2, 0, c.width / 2, c.height); pli(0, c.height / 2, c.width, c.height / 2);
+    var gp = x.createLinearGradient(0, 0, c.width, 0); gp.addColorStop(0, "rgba(0,0,0,.05)"); gp.addColorStop(.5, "rgba(0,0,0,0)"); gp.addColorStop(.501, "rgba(255,255,255,.04)"); gp.addColorStop(1, "rgba(0,0,0,.07)");
+    x.fillStyle = gp; x.fillRect(0, 0, c.width, c.height);
+    return { c: c, Mu: Mu };
+  }
+  function roseVents(x, cx, cy, r) {
+    x.save(); x.translate(cx, cy); x.strokeStyle = ENC.encre; x.lineWidth = r / 92;
+    x.beginPath(); x.arc(0, 0, r * .78, 0, 6.3); x.stroke(); x.beginPath(); x.arc(0, 0, r * .7, 0, 6.3); x.stroke();
+    for (var i = 0; i < 32; i++) { var a = i * Math.PI / 16; x.beginPath(); x.moveTo(Math.cos(a) * r * .7, Math.sin(a) * r * .7); x.lineTo(Math.cos(a) * r * (i % 4 ? .74 : .78), Math.sin(a) * r * (i % 4 ? .74 : .78)); x.stroke(); }
+    for (var j = 0; j < 8; j++) {
+      var b = j * Math.PI / 4 - Math.PI / 2, l = j % 2 ? r * .55 : r, w = j % 2 ? r * .09 : r * .14;
+      [-1, 1].forEach(function (s) { x.beginPath(); x.moveTo(0, 0); x.lineTo(Math.cos(b) * l, Math.sin(b) * l); x.lineTo(Math.cos(b + s * Math.PI / 2) * w, Math.sin(b + s * Math.PI / 2) * w); x.closePath(); x.fillStyle = s > 0 ? ENC.encre : "#efe2c2"; x.fill(); x.stroke(); });
+    }
+    x.font = "400 " + (r * .3) + "px " + F.titre; x.fillStyle = ENC.encre; x.textAlign = "center"; x.textBaseline = "middle"; x.fillText("N", 0, -r - r * .18);
+    x.restore();
+  }
+  var TEX = {};   // textures communes (remplies par preparerTable)
+  var FEUILLES = {};   // feuilles gravées, par scène de carte
+  function preparerTable() {
+    TEX.feutre = feutreTex(); TEX.grain = grainTex(12, 26); TEX.cire = cireTex();
+    TEX.papierGrand = papierTex(1024, 640, 5, .1);
+    var pf = papierTex(900, 900, 21, 0);                     // papier des fiches (CSS), sans bord : il se répète
+    TEX.urlPapier = pf.toDataURL("image/jpeg", .86);
+    var bc = papierTex(700, 700, 33, 0, "#f1e7cf");          // bristol des fiches cartonnées, plus clair
+    TEX.urlBristol = bc.toDataURL("image/jpeg", .86);
+    TEX.urlCire = TEX.cire.toDataURL("image/png");
+    fabriqueSprites();
+  }
 
   /* ---------- illustrations ---------- */
   function etiquette(g, x, y, txt, opt) {
@@ -185,33 +509,131 @@
   /* ---------- types de visuels ---------- */
   var TYPES = {};
 
+  // l'encre se dépose de gauche à droite (révélation par découpe)
+  function encreH(el, k) { el.style.clipPath = k >= 1 ? "none" : "inset(-30% " + (100 * (1 - cl(k, 0, 1))).toFixed(2) + "% -30% -2%)"; }
+  // cartouche gravé : double filet (CSS) et quatre coins ornés
+  function coins(c) { ["hg", "hd", "bg", "bd"].forEach(function (k) { h("i", "co " + k, c); }); return c; }
+  // trait au crayon gras rouge, tracé le long d'un chemin SVG (largeur w, h) ; renvoie la fonction de tracé (0..1)
+  function traitCrayon(parent, d, w, hh, ep) {
+    var s = sv("svg", { viewBox: "0 0 " + w + " " + hh, class: "crayon-svg" }, parent);
+    s.style.width = w + "px"; s.style.height = hh + "px";
+    var p = sv("path", { d: d, fill: "none", stroke: "#b8281b", "stroke-width": ep || 7, "stroke-linecap": "round", "stroke-linejoin": "round", pathLength: 1 }, s);
+    var p2 = sv("path", { d: d, fill: "none", stroke: "#b8281b", "stroke-width": (ep || 7) * .6, "stroke-linecap": "round", opacity: .55, pathLength: 1, transform: "translate(1.5,-1.2)" }, s);
+    [p, p2].forEach(function (x) { x.style.strokeDasharray = "1 1"; x.style.strokeDashoffset = 1; });
+    return { s: s, f: function (k) { var o = (1 - cl(k, 0, 1)).toFixed(4); p.style.strokeDashoffset = o; p2.style.strokeDashoffset = o; } };
+  }
+
   TYPES.titre = function (o, v) {
-    o.disp = "flex"; o.entree = "aucune";
+    o.disp = "flex"; o.plein = true;
     var e = o.el; e.classList.add("v-titre");
-    var halo = h("div", "halo", e), sur = h("div", "sur", e, esc(v.sur || "")), tt = h("div", "tt serif", e);
-    var sp = lettres(tt, v.t), regle = h("div", "regle", e), ss = h("div", "ss", e, esc(v.sous || ""));
+    var c = coins(h("div", "cartouche grand", e));
+    var sur = h("div", "sur", c, esc(v.sur || "")), tt = h("div", "tt", c);
+    var sp = lettres(tt, v.t), regle = h("div", "regle", c), ss = h("div", "ss", c, esc(v.sous || ""));
+    h("i", "pt", regle);
     return function (t, st) {
       var tl = st.tl;
-      op(halo, E(P(tl, 0, 1.2)) * (0.75 + 0.25 * Math.sin(t * 1.3))); tr(halo, "scale(" + (0.85 + 0.15 * E(P(tl, 0, 2))) + ")");
-      op(sur, E(P(tl, .1, .7))); sur.style.letterSpacing = (0.6 - 0.28 * E(P(tl, .1, 1.2))) + "em";
-      animLettres(sp, tl, .3, .035, .7, true);
-      tr(regle, "scaleX(" + E(P(tl, .8, 1)) + ")");
-      op(ss, E(P(tl, 1.2, .8))); tr(ss, "translateY(" + (14 * (1 - E(P(tl, 1.2, .8)))) + "px)");
-      tr(tt, "scale(" + (1 + 0.02 * tl) + ")");
+      encreH(sur, P(tl, .2, .7));
+      animLettres(sp, tl, .4, Math.min(.035, 1.1 / sp.length), .45, false);
+      tr(regle, "scaleX(" + E(P(tl, 1.1, .6)) + ")");
+      encreH(ss, P(tl, 1.3, .8));
     };
   };
 
   TYPES.chapitre = function (o, v) {
-    o.entree = "aucune";
+    o.disp = "flex"; o.plein = true;
     var e = o.el; e.classList.add("v-chapitre");
-    var num = h("div", "num", e, esc(v.num)), tt = h("div", "tt", e), sp = lettres(tt, v.t), trait = h("div", "trait", e);
+    var c = coins(h("div", "cartouche", e));
+    var lb = h("div", "lb", c, "Partie"), num = h("div", "num", c, esc(v.num)), tt = h("div", "tt", c), sp = lettres(tt, v.t);
+    var tc = traitCrayon(c, "M6 12 C120 4 260 16 380 8 S560 14 594 9", 600, 22, 6);
     return function (t, st) {
       var tl = st.tl;
-      op(num, E(P(tl, 0, .8)) * .9); tr(num, "scale(" + (1.25 - 0.25 * E(P(tl, 0, 1.2)) + 0.02 * tl) + ")");
-      animLettres(sp, tl, .35, .03, .6, true);
-      tr(trait, "scaleX(" + E(P(tl, .7, .9)) + ")");
+      encreH(lb, P(tl, .35, .4));
+      var q = P(tl, .45, .45); op(num, E(q)); tr(num, "scale(" + (1.35 - .35 * EB(q)).toFixed(3) + ") rotate(" + (-8 * (1 - E(q))).toFixed(2) + "deg)");
+      animLettres(sp, tl, .7, Math.min(.03, .9 / sp.length), .4, false);
+      tc.f(EIO(P(tl, 1.2, .7)));
     };
   };
+
+  TYPES.generique = function (o, v) {
+    var e = o.el; e.classList.add("v-generique"); o.disp = "flex"; o.plein = true; o.pose = false;
+    var c = coins(h("div", "cartouche grand", e));
+    var haut = h("div", "g-haut", c, "HGGSP · Terminale");
+    var marque = h("div", "g-marque", c, "Ligne rouge");
+    var tc = traitCrayon(c, "M8 16 C140 6 300 22 460 12 S700 18 792 10", 800, 28, 9);
+    var tt = h("div", "g-titre", c), sp = lettres(tt, v.serie);
+    tt.style.fontSize = Math.min(64, Math.floor(1700 / Math.max(14, String(v.serie).length))) + "px";
+    var bas = h("div", "g-bas", c, esc(dossierDe(EPI.code)));
+    return function (t, st) {
+      var tl = st.tl, a = E(P(tl, .1, 1));
+      op(c, Math.min(1, a * 2)); tr(c, "translate(" + (60 * (1 - a)).toFixed(1) + "px," + (-30 * (1 - a)).toFixed(1) + "px) rotate(" + (-1.2 - 3 * (1 - a)).toFixed(2) + "deg)");
+      encreH(haut, P(tl, .7, .6));
+      encreH(marque, P(tl, 1.1, .9));
+      tc.f(EIO(P(tl, 1.9, .9)));
+      animLettres(sp, tl, 2.5, Math.min(.04, 1.2 / sp.length), .45, false);
+      encreH(bas, P(tl, 3.4, .7));
+      op(e, 1 - EIO(P(t, v.t1 - .55, .55)));
+    };
+  };
+
+  // mot qui frappe : un tampon d'état-major appliqué sur la table
+  TYPES.frappe = function (o, v) {
+    var e = o.el; e.classList.add("v-frappe"); o.entree = "aucune"; o.disp = "flex"; o.pose = false;
+    var fond = h("div", "fr-fond", e), m = h("div", "fr-mot", e);
+    h("span", "", m, esc(v.t));
+    m.style.fontSize = Math.min(118, Math.floor(1500 / (String(v.t).length * 0.9 + 2))) + "px";
+    var rot = -4 - alea(v.t0) * 4;
+    return function (t, st) {
+      var tl = st.tl, a = P(tl, 0, .2), out = P(tl, 1.05, .45);
+      op(fond, E(P(tl, 0, .3)) * (1 - E(out)));
+      op(m, (tl < .2 ? .25 + .75 * a : 1) * (1 - E(out)));
+      var sc = tl < .2 ? 1.7 - .7 * a * a : 1 + .015 * Math.max(0, Math.sin((tl - .2) * 30)) * Math.exp(-(tl - .2) * 8);
+      var sh = tl > .2 && tl < .5 ? Math.sin(tl * 90) * 3 * (1 - (tl - .2) / .3) : 0;
+      tr(m, "translate(" + sh.toFixed(1) + "px,0) rotate(" + rot.toFixed(2) + "deg) scale(" + sc.toFixed(3) + ")");
+    };
+  };
+
+  // tableau : un tirage photographique posé sur la table, travelling lent dans l'image (Ken Burns) ;
+  // en fond (fond=True), le tirage est grand et assombri sous la fiche suivante
+  TYPES.tableau = function (o, v) {
+    var e = o.el; e.classList.add("v-tableau"); if (v.fond) e.classList.add("fond-t"); if (v.sombre) e.classList.add("sombre");
+    o.entree = "aucune"; o.pose = false; o.plein = !v.fond;
+    var tir = h("div", "tirage", e), ph = h("div", "photo", tir), img = h("img", "", ph); img.alt = v.legende || ""; img.decoding = "sync";
+    var voile = h("div", "ombre", ph);
+    var lg = v.legende ? h("div", "lg", tir, esc(v.legende)) : null;
+    var pret = false, enCours = false, pw = 0, phh = 0;
+    var BW = v.fond ? 1180 : 1060, BH = v.fond ? 640 : 560, B = 16, BB = lg ? 54 : 16;
+    function charge() {
+      if (enCours) return; enCours = true;
+      var iw = img.naturalWidth || 1600, ih = img.naturalHeight || 900, ar = cl(iw / ih, .7, 2);
+      pw = Math.min(BW, BH * ar); phh = pw / ar;
+      ph.style.width = pw + "px"; ph.style.height = phh + "px";
+      tir.style.width = (pw + 2 * B) + "px"; tir.style.height = (phh + B + BB) + "px";
+      tir.style.left = (640 - (pw + 2 * B) / 2) + "px"; tir.style.top = (v.fond ? 360 : 352) - (phh + B + BB) / 2 + "px";
+      img.style.width = iw + "px"; img.style.height = ih + "px";
+      var fin = function () { pret = true; };
+      if (img.decode) img.decode().then(fin, fin); else fin();
+    }
+    o.attente = new Promise(function (r) { var k = setInterval(function () { if (pret) { clearInterval(k); r(); } }, 30); });
+    img.addEventListener("load", charge);
+    img.src = "img/" + v.img + ".jpg";
+    var de = v.de || [1.15, .5, .4], a_ = v.a || [1, .5, .5], rot = v.fond ? 1.1 : -1.4;
+    return function (t, st) {
+      if (!pret && img.complete && img.naturalWidth) charge();
+      var iw = img.naturalWidth || 1600, ih = img.naturalHeight || 900;
+      var u = EIO(P(t, v.t0, Math.max(4, v.t1 - v.t0 + .6)));
+      var z = de[0] + (a_[0] - de[0]) * u, fx = de[1] + (a_[1] - de[1]) * u, fy = de[2] + (a_[2] - de[2]) * u;
+      z = 1 + (z - 1) * .8;   // le tirage montre l'image entière : on ne recadre qu'à peine
+      var sc = Math.max(pw / iw, phh / ih) * z, w = iw * sc, hh = ih * sc;
+      var x = cl(pw / 2 - fx * w, pw - w, 0), y = cl(phh / 2 - fy * hh, phh - hh, 0);
+      img.style.transform = "translate3d(" + x.toFixed(2) + "px," + y.toFixed(2) + "px,0) scale(" + sc.toFixed(5) + ")";
+      var a = E(P(t, v.t0, .9)), s = EIO(P(t, v.t1, .7));
+      op(e, pret ? Math.min(1, a * 2.5) * (1 - s) : 0);
+      tr(tir, "translate(" + ((1 - a) * -260 + s * 300).toFixed(1) + "px," + ((1 - a) * 90 - s * 40).toFixed(1) + "px) rotate(" + (rot - 4 * (1 - a) + 3 * s).toFixed(2) + "deg) scale(" + (1 + .04 * (1 - a)).toFixed(4) + ")");
+      if (lg) op(lg, E(P(st.tl, 1, .8)));
+    };
+  };
+
+
 
   TYPES.mot = function (o, v) {
     var e = o.el; e.classList.add("v-mot");
@@ -317,8 +739,8 @@
     return function (t, st) {
       sp.forEach(function (s, i) {
         var p = E(P(t, tm[i] - .05, .3)), f = P(t, tm[i] + .35, .8);
-        s.style.opacity = 0.2 + 0.8 * p;
-        s.style.color = p > 0 && f < 1 ? "rgb(" + Math.round(232 + 11 * f) + "," + Math.round(178 + 61 * f) + "," + Math.round(90 + 138 * f) + ")" : (p > 0 ? C.iv : C.iv2);
+        s.style.opacity = 0.42 + 0.58 * p;
+        s.style.color = p > 0 && f < 1 ? "rgb(" + Math.round(184 - 141 * f) + "," + Math.round(40 - 11 * f) + "," + Math.round(27 - 11 * f) + ")" : (p > 0 ? C.iv : C.iv2);
         s.style.transform = "translateY(" + (-3 * p * (1 - f)).toFixed(2) + "px)";
       });
       op(au, E(P(st.tl, .7, .7)));
@@ -358,7 +780,7 @@
       if (mf) {
         op(mf.f, E(P(st.tl, 1.3, .7)) * (1 - E(P(st.tl, 5.5, .8)) * .55));
         var q = P(st.tl, 1.7, .6); tr(mf.pt, "translate(-50%,-50%) scale(" + (0.3 + 0.7 * EB(q)) + ")");
-        mf.pt.style.boxShadow = "0 0 " + (6 + 8 * Math.max(0, Math.sin(t * 3))) + "px rgba(255,91,73,.9)";
+        mf.pt.style.boxShadow = "0 0 " + (6 + 8 * Math.max(0, Math.sin(t * 3))) + "px rgba(184,40,27,.9)";
         op(mf.an, E(P(st.tl, 2, .5)));
       }
     };
@@ -400,8 +822,8 @@
         c.ic.forEach(function (pa, j) { trace(pa, P(t, tk[i] + .2 + j * .15, .8)); });
         var actif = (t >= tk[i] && (i === cs.length - 1 || t < tk[i + 1]) && v.et && v.et[String(i + 1)] != null) || (hl != null && t >= hl);
         var pul = hl != null && t >= hl ? 0.5 + 0.5 * Math.sin((t - hl) * 4 + i) : 1;
-        c.c.style.borderColor = actif ? "rgba(255,91,73," + (0.5 + 0.4 * pul) + ")" : "rgba(220,227,232,.14)";
-        c.c.style.boxShadow = actif ? "0 0 " + (30 + 20 * pul) + "px rgba(255,91,73,.25)" : "none";
+        
+        c.c.style.boxShadow = actif ? "0 0 0 " + (2 + 1.5 * pul).toFixed(1) + "px rgba(184,40,27," + (.55 + .3 * pul).toFixed(2) + "),0 20px 34px rgba(6,3,0,.55)" : "";
       });
     };
   };
@@ -481,63 +903,7 @@
   };
 
   // tableau : œuvre plein cadre, travelling lent (Ken Burns) d'un cadrage à l'autre ; en fond, assombri sous les autres visuels
-  TYPES.tableau = function (o, v) {
-    var e = o.el; e.classList.add("v-tableau"); if (v.fond) e.classList.add("fond-t"); if (v.sombre) e.classList.add("sombre"); o.entree = "aucune";
-    var img = h("img", "", e); img.alt = v.legende || ""; img.decoding = "sync";
-    var pret = false, enCours = false;
-    // l'image n'apparaît qu'une fois décodée : pas de cadre vide ni de flash au premier affichage
-    function charge() {
-      if (enCours) return; enCours = true;
-      img.style.width = img.naturalWidth + "px"; img.style.height = img.naturalHeight + "px";
-      var fin = function () { pret = true; };
-      if (img.decode) img.decode().then(fin, fin); else fin();
-    }
-    o.attente = new Promise(function (r) { var k = setInterval(function () { if (pret) { clearInterval(k); r(); } }, 30); });
-    img.addEventListener("load", charge);
-    img.src = "img/" + v.img + ".jpg";
-    h("div", "ombre", e);
-    var lg = v.legende ? h("div", "lg", e, esc(v.legende)) : null;
-    var de = v.de || [1.15, .5, .4], a_ = v.a || [1, .5, .5];
-    return function (t, st) {
-      if (!pret && img.complete && img.naturalWidth) charge();
-      // l'image garde sa taille réelle ; seul le transform (translation + échelle) change : pas de redimensionnement
-      // ni de nouveau décodage à chaque image, donc pas de clignotement
-      var iw = img.naturalWidth || 1600, ih = img.naturalHeight || 900;
-      var u = EIO(P(t, v.t0, Math.max(4, v.t1 - v.t0 + .6)));
-      var z = de[0] + (a_[0] - de[0]) * u, fx = de[1] + (a_[1] - de[1]) * u, fy = de[2] + (a_[2] - de[2]) * u;
-      var sc = Math.max(W / iw, H / ih) * z, w = iw * sc, hh = ih * sc;
-      var x = cl(W / 2 - fx * w, W - w, 0), y = cl(H / 2 - fy * hh, H - hh, 0);
-      img.style.transform = "translate3d(" + x.toFixed(2) + "px," + y.toFixed(2) + "px,0) scale(" + sc.toFixed(5) + ")";
-      op(e, pret ? E(P(t, v.t0, 1.2)) * (1 - EIO(P(t, v.t1, .9))) : 0);
-      if (lg) op(lg, E(P(st.tl, 1.2, .8)) * .9);
-    };
-  };
 
-  TYPES.generique = function (o, v) {
-    var e = o.el; e.classList.add("v-generique"); o.entree = "aucune"; o.disp = "flex";
-    var halo = h("div", "g-halo", e), haut = h("div", "g-haut", e, "HGGSP · Terminale · Ligne rouge");
-    var radar = h("div", "g-radar", e, '<svg viewBox="0 0 260 260"><g fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="130" cy="130" r="40"/><circle cx="130" cy="130" r="80"/><circle cx="130" cy="130" r="120"/><path d="M130 0V260M0 130H260"/></g><g class="g-bras"><path d="M130 130L130 10A120 120 0 0 1 233 70Z" fill="currentColor" opacity=".35"/></g></svg>');
-    var bras = radar.querySelector(".g-bras");
-    var conf = h("div", "g-conf", e, "<span>Confidentiel</span>");
-    var l1 = h("div", "g-ligne", e), tt = h("div", "g-titre", e), sp = lettres(tt, v.serie);
-    tt.style.fontSize = Math.min(110, Math.floor(2300 / Math.max(12, String(v.serie).length))) + "px"; tt.style.textAlign = "center";
-    var l2 = h("div", "g-ligne", e), bas = h("div", "g-bas", e, esc(dossierDe(EPI.code)));
-    var balai = h("div", "g-balai", e);
-    return function (t, st) {
-      var tl = st.tl;
-      op(halo, E(P(tl, 0, 1.5)) * (1 - E(P(tl, 4.6, 1)))); tr(halo, "scale(" + (0.7 + 0.4 * E(P(tl, 0, 5))) + ")");
-      op(haut, E(P(tl, .3, .9))); haut.style.letterSpacing = (0.7 - 0.35 * E(P(tl, .3, 2))) + "em";
-      tr(l1, "scaleX(" + EIO(P(tl, .6, 1.4)) + ")"); tr(l2, "scaleX(" + EIO(P(tl, .8, 1.4)) + ")");
-      animLettres(sp, tl, 1.0, .07, .9, true);
-      tr(tt, "scale(" + (1.08 - 0.08 * E(P(tl, 1, 4))) + ")");
-      op(bas, E(P(tl, 2.2, .8)));
-      op(radar, E(P(tl, 0, 1.2)) * .5); bras.setAttribute("transform", "rotate(" + (tl * 120 % 360).toFixed(1) + " 130 130)");
-      var cq = P(tl, 1.6, .35); op(conf, E(cq)); tr(conf, "translate(-50%,0) rotate(-4deg) scale(" + (1.6 - .6 * EB(cq)).toFixed(3) + ")");
-      tr(balai, "translateX(" + (-400 + 2100 * EIO(P(tl, 2.4, 1.6))) + "px) skewX(-20deg)");
-      op(balai, P(tl, 2.4, .2) * (1 - P(tl, 3.8, .2)));
-      op(e, 1 - EIO(P(t, v.t1 - .6, .8)));
-    };
-  };
 
   // notions du programme abordées : encadré au début d'une partie, ou étiquette quand le texte touche une autre notion
   TYPES.notion = function (o, v) {
@@ -560,21 +926,6 @@
     };
   };
 
-  TYPES.frappe = function (o, v) {
-    var e = o.el; e.classList.add("v-frappe"); o.entree = "aucune"; o.disp = "flex";
-    var fond = h("div", "fr-fond", e), m = h("div", "fr-mot", e, esc(v.t));
-    m.style.fontSize = Math.min(150, Math.floor(1120 / (String(v.t).length * 0.8))) + "px";   // un mot long tient dans l'écran
-    return function (t, st) {
-      var tl = st.tl, a = P(tl, 0, .35), out = P(tl, 1.05, .45);
-      op(fond, E(a) * (1 - E(out)));
-      op(m, E(P(tl, 0, .2)) * (1 - E(out)));
-      var sc = 1.35 - 0.35 * EB(a) + 0.04 * tl;
-      var sh = tl < .45 ? Math.sin(tl * 70) * 5 * (1 - tl / .45) : 0;
-      tr(m, "translateX(" + sh.toFixed(1) + "px) scale(" + sc.toFixed(3) + ")");
-      m.style.letterSpacing = (0.12 - 0.08 * E(a)) + "em";
-      m.style.filter = out > 0 ? "blur(" + (8 * out).toFixed(1) + "px)" : "none";
-    };
-  };
 
   TYPES.flash = function (o, v) {
     var e = o.el; e.classList.add("v-flash"); o.entree = "aucune"; o.disp = "flex";
@@ -582,9 +933,9 @@
     h("div", "fl-te", c, "À retenir");
     var tx = h("div", "fl-tx", c), sp = mots(tx, v.t);
     return function (t, st) {
-      var tl = st.tl, a = E(P(tl, 0, .6)), out = EIO(P(t, v.t1 - .3, .6));
-      op(fond, a * (1 - out));
-      op(c, a * (1 - out)); tr(c, "translateY(" + (24 * (1 - a)) + "px) scale(" + (0.96 + 0.04 * a) + ")");
+      var tl = st.tl, a = E(P(tl, 0, .6));
+      op(fond, 0);
+      tr(c, "translateY(" + (24 * (1 - a)) + "px) scale(" + (0.96 + 0.04 * a) + ")");
       sp.forEach(function (m, i) { var p = E(P(tl, .35 + i * .05, .4)); m.style.opacity = p; });
     };
   };
@@ -606,7 +957,7 @@
     return function (t, st) {
       var a = E(P(st.tl, 0, .7));
       op(centre, a); tr(centre, "translate(-50%,-50%) scale(" + (0.6 + 0.4 * EB(P(st.tl, 0, .7))) + ")");
-      centre.style.boxShadow = "0 0 " + (20 + 12 * Math.sin(t * 2)) + "px rgba(255,91,73,.35)";
+      
       br.forEach(function (b, i) {
         var tk = et(v, String(i + 1), .6 + i * 1.2);
         trace(b.ln, P(t, tk, .8));
@@ -687,7 +1038,7 @@
         x.d.style.filter = p < 1 ? "blur(" + ((1 - p) * 5).toFixed(1) + "px)" : "none";
         if (x.l.cadre) {
           var q = P(t, t1 + .45, .9), g = Math.max(0, Math.sin((t - t1) * 2.2)) * (t > t1 + 1.3 ? .25 : 0);
-          x.d.style.boxShadow = "0 0 0 2px rgba(255,91,73," + (.85 * E(q)).toFixed(2) + "),0 0 " + (34 * (1 - q) + 14 + 10 * g).toFixed(0) + "px rgba(255,91,73," + (.32 * E(q) + .1 * g).toFixed(2) + ")";
+          x.d.style.boxShadow = "0 0 0 2px rgba(184,40,27," + (.85 * E(q)).toFixed(2) + "),0 0 " + (34 * (1 - q) + 14 + 10 * g).toFixed(0) + "px rgba(184,40,27," + (.32 * E(q) + .1 * g).toFixed(2) + ")";
         }
         if (x.n) op(x.n, E(P(t, t1 + .45, .6)));
       });
@@ -709,11 +1060,11 @@
     var fond = sv("g", {}, s), grille = [], ticks = [];
     var x0 = cl(0, ax.x[0], ax.x[1]), y0 = cl(0, ax.y[0], ax.y[1]);
     (ax.gx || []).forEach(function (x) {
-      grille.push(sv("line", { x1: X(x), x2: X(x), y1: m[2], y2: m[2] + ph, stroke: "rgba(220,227,232,.09)", "stroke-width": 1 }, fond));
+      grille.push(sv("line", { x1: X(x), x2: X(x), y1: m[2], y2: m[2] + ph, stroke: "rgba(43,29,16,.09)", "stroke-width": 1 }, fond));
       ticks.push(txt(X(x), Y(y0) + 12, esc(String(x).replace(".", ",")), "tx"));
     });
     (ax.gy || []).forEach(function (y) {
-      grille.push(sv("line", { x1: m[0], x2: m[0] + pw, y1: Y(y), y2: Y(y), stroke: "rgba(220,227,232,.09)", "stroke-width": 1 }, fond));
+      grille.push(sv("line", { x1: m[0], x2: m[0] + pw, y1: Y(y), y2: Y(y), stroke: "rgba(43,29,16,.09)", "stroke-width": 1 }, fond));
       ticks.push(txt(X(x0) - 12, Y(y), esc(String(y).replace(".", ",")), "ty"));
     });
     var axX = sv("path", { d: "M" + m[0] + " " + Y(y0) + " H" + (m[0] + pw + 14), stroke: C.iv, "stroke-width": 2.2, fill: "none" }, s);
@@ -783,8 +1134,8 @@
   };
 
   // exercice : énoncé en grand (mode « plein »), ou rappel compact à gauche pendant la correction (mode « coin »)
-  var NIVEAUX = { simple: ["Exercice · pour démarrer", "#6cc082"], difficile: ["Exercice · plus difficile", "#c2a878"], bac: ["Exercice · type bac", "#ff8273"],
-    dissert: ["Sujet de dissertation", "#ff5b49"], etude: ["Étude critique de document", "#82b2d8"] };
+  var NIVEAUX = { simple: ["Exercice · pour démarrer", "#3d6b3a"], difficile: ["Exercice · plus difficile", "#8a6a2a"], bac: ["Exercice · type bac", "#b8281b"],
+    dissert: ["Sujet de dissertation", "#b8281b"], etude: ["Étude critique de document", "#2d4f86"] };
   TYPES.exo = function (o, v) {
     var e = o.el, coin = v.mode === "coin"; e.classList.add("v-exo", coin ? "coin" : "plein");
     if (!coin) { e.style.left = (v.x || 110) + "px"; e.style.top = (v.y || 96) + "px"; e.style.width = (v.w || 1060) + "px"; }
@@ -835,7 +1186,7 @@
   function teletype(txt, t, t0, pas) {
     var n = Math.floor((t - t0) / (pas || .045));
     if (n <= 0) return "";
-    return n >= txt.length ? txt : txt.slice(0, n) + "▌";
+    return n >= txt.length ? txt : txt.slice(0, n);
   }
 
   // scène du site (carte ou schéma) jouée par le temps : window.HG_SCENES[v.anim] (hggsp/serie/illu-<code>.js).
@@ -843,15 +1194,51 @@
   // (de 1) commence au repère {id.k}. État cumulé comme sur le site (montre / cache), accent = pulsation.
   // v.cam = { "0": [x, y, w, h], "3": […] } : cadrage avant l'étape 1 (clé 0) et à partir de l'étape k (vol de 1,6 s).
   // v.fs : taille d'écran des étiquettes en px (20 par défaut) ; v.legende = false : pas de bande date / titre.
+  // scène du site (carte ou schéma) jouée par le temps : window.HG_SCENES[v.anim] (hggsp/serie/illu-<code>.js).
+  // La carte est une feuille gravée posée sur la table (fond gravé une fois dans un canevas, voir graverFeuille) ;
+  // les éléments animés (data-k) restent en SVG par-dessus : traits au crayon gras, hachures, pions, étiquettes
+  // calligraphiées. La caméra de la table survole la feuille : v.cam = { "0": [x, y, w, h], "3": […] } donne le
+  // cadrage (unités de la carte) avant l'étape 1 (clé 0) et à partir de l'étape k (vol de v.vol ou 1,6 s).
+  // Étapes : celles du site (v.pas = [indices du site, de 0] pour en garder une partie) ou v.etapes ; l'étape k
+  // (de 1) commence au repère {id.k}. État cumulé comme sur le site (montre / cache), accent = pulsation.
+  // v.fs : taille d'écran des étiquettes en px (20 par défaut) ; v.legende = false : pas de cartouche date / titre.
+  // La feuille occupe toujours la même zone de l'écran (ZONE_CARTE) : v.x, v.y, v.w, v.h ne servent plus.
+  var ZONE_CARTE = { x: 40, y: 100, w: 1200, h: 548 };
+  var DEFS_CARTE = "<defs>" +
+    "<pattern id='hg-hach' width='9' height='9' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'><rect width='9' height='9' fill='rgba(200,50,35,.12)'/><path d='M0 0V9' stroke='rgba(178,38,26,.55)' stroke-width='2'/></pattern>" +
+    "<pattern id='hg-glace' width='7' height='7' patternUnits='userSpaceOnUse' patternTransform='rotate(-30)'><rect width='7' height='7' fill='rgba(250,252,250,.82)'/><path d='M0 0H7' stroke='rgba(70,110,150,.32)' stroke-width='1.1'/></pattern>" +
+    "<radialGradient id='hg-pion-r' cx='.35' cy='.32' r='.75'><stop offset='0' stop-color='#ea6a5c'/><stop offset='1' stop-color='#7a1810'/></radialGradient>" +
+    "<radialGradient id='hg-pion-b' cx='.35' cy='.32' r='.75'><stop offset='0' stop-color='#7f9ed0'/><stop offset='1' stop-color='#1c2f5a'/></radialGradient>" +
+    "<filter id='hg-cire' x='-5%' y='-5%' width='110%' height='110%'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='1' seed='7' result='b'/>" +
+    "<feColorMatrix in='b' type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 2.05' result='m'/><feComposite in='SourceGraphic' in2='m' operator='in'/></filter>" +
+    "</defs>";
+  var ROSE = {};   // rose des vents d'une carte : HG_SCENES[nom].rose = [x, y, r] (unités de la carte), sinon aucune
+  function feuilleDe(nom, S) {   // fond lu et retiré du calque animé ; la gravure est faite à la demande (graver)
+    if (FEUILLES[nom]) return FEUILLES[nom];
+    var vb = S.vb || [0, 0, S.w, S.h], txt = (S.fond === "monde" && window.HG_FONDS ? HG_FONDS.monde : "") + S.svg;
+    var F_ = lireFond(txt), k = Math.min(ZONE_CARTE.w / vb[2], ZONE_CARTE.h / vb[3]);
+    var f = FEUILLES[nom] = { F: F_, vb: vb, k: k, zmax: 1, rose: S.rose || ROSE[nom], g: null };
+    f.graver = function () {
+      if (f.g) return f.g;
+      var ech = EXPORT ? 1.5 : Math.min(1.5, Math.max(.6, (window.devicePixelRatio || 1) * Math.min(1, innerWidth / W)));
+      var R = k * Math.max(1, f.zmax) * ech, Mu = 50 / k;
+      var cote = Math.max((vb[2] + 2 * Mu) * R, (vb[3] + 2 * Mu) * R), aire = (vb[2] + 2 * Mu) * (vb[3] + 2 * Mu) * R * R;
+      var lim = Math.min(4096 / cote, Math.sqrt(1.4e7 / aire), 1);   // canevas raisonnable (mémoire du téléphone)
+      f.g = graverFeuille(F_, vb, k, R * lim, f.rose);
+      return f.g;
+    };
+    return f;
+  }
   TYPES.scene = function (o, v) {
-    var e = o.el; e.classList.add("v-scene"); o.prof = .25;
+    var e = o.el; e.classList.add("v-scene"); o.pose = false; o.plein = true;
     var S = (window.HG_SCENES || {})[v.anim];
-    var x0 = v.x != null ? v.x : 60, y0 = v.y != null ? v.y : 92, ww = v.w || 1160, hh = v.h || 500;
-    e.style.left = x0 + "px"; e.style.top = y0 + "px"; e.style.width = ww + "px";
-    var cad = h("div", "sc-cadre", e); cad.style.height = hh + "px";
-    if (!S) { h("div", "sc-manque", cad, "scène absente : " + esc(v.anim)); return function () {}; }
-    var svg = sv("svg", { viewBox: (S.vb || [0, 0, S.w, S.h]).join(" "), preserveAspectRatio: "xMidYMid meet" }, cad);
-    svg.innerHTML = (S.fond === "monde" && window.HG_FONDS ? HG_FONDS.monde : "") + S.svg;
+    if (!S) { h("div", "sc-manque", e, "scène absente : " + esc(v.anim)); return function () {}; }
+    var f = feuilleDe(v.anim, S), vb = f.vb, k = f.k, mw = vb[2] * k, mh = vb[3] * k;
+    var mx = ZONE_CARTE.x + (ZONE_CARTE.w - mw) / 2, my = ZONE_CARTE.y + (ZONE_CARTE.h - mh) / 2;
+    e.style.left = mx + "px"; e.style.top = my + "px"; e.style.width = mw + "px"; e.style.height = mh + "px";
+    var svg = sv("svg", { viewBox: vb.join(" "), preserveAspectRatio: "none", width: mw, height: mh }, e);
+    svg.innerHTML = f.F.svg;   // motifs et filtres : une seule fois, dans la scène (DEFS_CARTE)
+    if (S.source && v.source !== false) h("div", "sc-src", e, esc(v.source || S.source));
     var ets = v.etapes || (v.pas ? v.pas.map(function (i) { return S.etapes[i]; }) : S.etapes);
     // états cumulés (avant l'étape 1 : rien de ce qui est animé n'est visible)
     var base = {};
@@ -861,7 +1248,7 @@
     if (v.depart) v.depart.forEach(function (x) { base[x] = 1; });
     var etats = [base];
     ets.forEach(function (et_, i) {
-      var s = {}; Object.keys(etats[i]).forEach(function (k) { s[k] = 1; });
+      var s = {}; Object.keys(etats[i]).forEach(function (kk) { s[kk] = 1; });
       (et_.montre || []).forEach(function (x) { s[x] = 1; }); (et_.cache || []).forEach(function (x) { delete s[x]; });
       etats.push(s);
     });
@@ -870,44 +1257,73 @@
       traces.forEach(function (p) { if (!p.getAttribute("pathLength")) p.setAttribute("pathLength", "1"); p.style.strokeDasharray = "1 1"; });
       return { el: el, k: el.getAttribute("data-k"), tr: traces };
     });
-    // caméra
-    var vb0 = S.vb || [0, 0, S.w, S.h], cams = [];
-    for (var c = 0; c <= ets.length; c++) cams.push((v.cam && v.cam[String(c)]) || (c ? cams[c - 1] : vb0));
-    var bande = v.legende === false ? null : h("div", "sc-bande", e);
-    var dEl = bande ? h("span", "sc-date", bande) : null, tEl = bande ? h("span", "sc-titre", bande) : null, nEl = bande ? h("span", "sc-num", bande) : null;
-    if (S.source && v.source !== false) h("div", "sc-src", e, esc(v.source || S.source));
-    var fs = v.fs || 20, dernierVb = "";
+    // cadrages (unités de la carte) ; la feuille doit être gravée assez fin pour le plus fort
+    var cams = [];
+    for (var c = 0; c <= ets.length; c++) cams.push((v.cam && v.cam[String(c)]) || (c ? cams[c - 1] : vb));
+    cams.forEach(function (w) { f.zmax = Math.max(f.zmax, Math.min(ZONE_CARTE.w / (w[2] * k), ZONE_CARTE.h / (w[3] * k))); });
+    // cartouche date / titre : à l'écran, en haut, au-dessus de la carte
+    var bande = null, dEl, tEl, nEl;
+    if (v.legende !== false && ets.length) {
+      bande = h("div", "sc-bande", o.ecran); bande.style.display = "none"; o.extra = [bande];
+      dEl = h("span", "sc-date", bande); tEl = h("span", "sc-titre", bande); nEl = h("span", "sc-num", bande);
+    }
+    var fs = v.fs || 20, suite = false, enchaine = false;
+    o.lier = function (prec, suiv) {   // même carte juste avant / juste après : la feuille reste posée
+      suite = !!(prec && prec.v.type === "scene" && prec.v.anim === v.anim && Math.abs(prec.v.t1 - v.t0) < .1);
+      enchaine = !!(suiv && suiv.v.type === "scene" && suiv.v.anim === v.anim && Math.abs(suiv.v.t0 - v.t1) < .1);
+      if (enchaine) o.fin = v.t1 + .02;
+    };
     function tk(i) { return et(v, String(i), .6 + (i - 1) * 3); }
+    function etape(t) { var kk = 0; for (var i = 1; i <= ets.length; i++) if (t >= tk(i)) kk = i; return kk; }
+    function fenetre(t) {
+      var kk = etape(t), a = cams[kk ? kk - 1 : 0], bb = cams[kk], u = kk ? EIO(P(t, tk(kk), v.vol || 1.6)) : 1;
+      return [0, 1, 2, 3].map(function (j) { return a[j] + (bb[j] - a[j]) * u; });
+    }
+    // pose de la feuille sur la table (glisse depuis la droite) et retrait (vers la gauche)
+    function pose(t) {
+      var a = suite ? 1 : E(P(t, v.t0 - .15, .95)), s = enchaine ? 0 : EIO(P(t, v.t1, .5));
+      return { dx: (1 - a) * 420 - s * 520, dy: (1 - a) * -70 + s * 30, r: (1 - a) * .07 - s * .05, al: Math.min(1, a * 3) * (1 - s), lev: 1 - a + s };
+    }
+    // caméra : la fenêtre de la carte remplit la zone de la carte à l'écran
+    o.cam = function (t) {
+      var w = fenetre(t), z = Math.min(ZONE_CARTE.w / (w[2] * k), ZONE_CARTE.h / (w[3] * k));
+      var poids = (suite ? 1 : E(P(t, v.t0, 1.1))) * (enchaine ? 1 : 1 - EIO(P(t, v.t1 - .1, .8)));
+      return { x: mx + (w[0] + w[2] / 2 - vb[0]) * k, y: my + (w[1] + w[3] / 2 - vb[1]) * k, z: z, ax: ZONE_CARTE.x + ZONE_CARTE.w / 2, ay: ZONE_CARTE.y + ZONE_CARTE.h / 2, w: poids };
+    };
+    // la table dessine la feuille gravée sous le calque SVG, avec la même pose
+    o.feuille = function (ctx, t) {
+      var g = f.graver(), p = pose(t), Mu = g.Mu;
+      ctx.save(); ctx.translate(mx + mw / 2 + p.dx, my + mh / 2 + p.dy); ctx.rotate(p.r);
+      ctx.globalAlpha = p.al;
+      ctx.shadowColor = "rgba(8,4,0,.6)"; ctx.shadowBlur = 34 + 40 * p.lev; ctx.shadowOffsetY = 16 + 30 * p.lev; ctx.shadowOffsetX = 6 + 20 * p.lev;
+      ctx.drawImage(g.c, -mw / 2 - Mu * k, -mh / 2 - Mu * k, mw + 2 * Mu * k, mh + 2 * Mu * k);
+      ctx.restore();
+    };
+    o.apres = function (cam) { svg.style.setProperty("--kf", (1 / (k * cam.z)).toFixed(4)); svg.style.setProperty("--kfs", (fs / 20).toFixed(3)); };
     return function (t, st) {
-      var k = 0;
-      for (var i = 1; i <= ets.length; i++) if (t >= tk(i)) k = i;
-      var tK = k ? tk(k) : v.t0;
-      // caméra : vol de cams[k-1] à cams[k]
-      var a = cams[k ? k - 1 : 0], b = cams[k], u = k ? EIO(P(t, tK, v.vol || 1.6)) : 1;
-      var vb = [0, 1, 2, 3].map(function (j) { return a[j] + (b[j] - a[j]) * u; });
-      var key = vb.map(function (x) { return x.toFixed(1); }).join(" ");
-      if (key !== dernierVb) { svg.setAttribute("viewBox", key); dernierVb = key; }
-      var ech = Math.min(ww / vb[2], hh / vb[3]);
-      svg.style.setProperty("--kf", (1 / ech).toFixed(4));
-      svg.style.setProperty("--kfs", (fs / 20).toFixed(3));
-      var acc = {}; ((ets[k - 1] || {}).accent || []).forEach(function (x) { acc[x] = 1; });
+      var p = pose(t);
+      e.style.transform = "translate(" + p.dx.toFixed(1) + "px," + p.dy.toFixed(1) + "px) rotate(" + (p.r * 57.296).toFixed(3) + "deg)";
+      e.style.opacity = p.al.toFixed(3);
+      var kk = etape(t), tK = kk ? tk(kk) : v.t0;
+      var acc = {}; ((ets[kk - 1] || {}).accent || []).forEach(function (x) { acc[x] = 1; });
       els.forEach(function (x) {
-        var on = !!etats[k][x.k], av = k ? !!etats[k - 1][x.k] : false, p;
+        var on = !!etats[kk][x.k], av = kk ? !!etats[kk - 1][x.k] : false, pp;
         if (on) {
-          var s0 = k; while (s0 > 0 && etats[s0 - 1][x.k]) s0--;          // étape où l'élément est apparu
+          var s0 = kk; while (s0 > 0 && etats[s0 - 1][x.k]) s0--;          // étape où l'élément est apparu
           var ta = s0 ? tk(s0) : v.t0;
-          p = s0 === 0 && !v.pas && !v.depart ? 1 : E(P(t, ta, .7));
-          x.tr.forEach(function (pp) { pp.style.strokeDashoffset = (1 - EIO(P(t, ta, 1.4))).toFixed(4); });
+          pp = s0 === 0 && !v.pas && !v.depart ? 1 : E(P(t, ta, .7));
+          x.tr.forEach(function (q) { q.style.strokeDashoffset = (1 - EIO(P(t, ta, 1.4))).toFixed(4); });
           var pul = acc[x.k] ? .5 + .5 * Math.cos((t - tK) * 4.2) : 0;
-          x.el.style.opacity = (p * (1 - .18 * pul)).toFixed(3);
-          x.el.style.filter = acc[x.k] ? "drop-shadow(0 0 " + (2 + 5 * pul).toFixed(1) + "px rgba(255,91,73,.85))" : "none";
+          x.el.style.opacity = (pp * (1 - .2 * pul)).toFixed(3);
+          x.el.style.filter = acc[x.k] ? "drop-shadow(0 0 " + (1 + 2 * pul).toFixed(1) + "px rgba(184,40,27," + (.35 + .45 * pul).toFixed(2) + "))" : "none";
         } else if (av) {
           x.el.style.opacity = (1 - E(P(t, tK, .5))).toFixed(3); x.el.style.filter = "none";
         } else { x.el.style.opacity = 0; x.el.style.filter = "none"; }
       });
       if (bande) {
-        var e_ = ets[k - 1];
-        op(bande, k ? E(P(t, tk(1), .5)) : 0);
+        var e_ = ets[kk - 1], vis = kk ? E(P(t, tk(1), .5)) * (1 - EIO(P(t, v.t1, .35))) : 0;
+        bande.style.display = vis > .002 ? "" : "none";
+        op(bande, vis); tr(bande, "translate(-50%," + (-16 * (1 - E(P(t, tk(1), .5)))).toFixed(1) + "px) rotate(-.6deg)");
         if (e_) {
           var txt = teletype(e_.date || "", t, tK + .1);
           if (dEl.textContent !== txt) dEl.textContent = txt;
@@ -915,7 +1331,7 @@
           var ti = esc(e_.titre || "");
           if (tEl._t !== ti) { tEl.innerHTML = ti; tEl._t = ti; }
           op(tEl, E(P(t, tK + .3, .5)));
-          nEl.textContent = ets.length > 1 ? "ÉTAPE " + k + " / " + ets.length : "";
+          nEl.textContent = ets.length > 1 ? "étape " + kk + " / " + ets.length : "";
         }
       }
     };
@@ -947,7 +1363,7 @@
         op(x.c, p); tr(x.c, "translateY(" + (30 * (1 - p)).toFixed(1) + "px)");
         var it = x.it, val = typeof it.v === "number" ? (it.de || 0) + (it.v - (it.de || 0)) * q : null;
         x.nb.innerHTML = '<span class="ch-av">' + esc(it.avant || "") + "</span>" + (val == null ? esc(it.v) : nombre(val, it.dec)) + '<span class="ch-ap">' + esc(it.apres || "") + "</span>";
-        x.nb.style.textShadow = "0 0 " + (26 * (1 - P(t, t1 + 1.2, .8))).toFixed(1) + "px rgba(255,91,73,.55)";
+        
         op(x.tx, E(P(t, t1 + .5, .6)));
         if (x.jr) x.jr.style.width = (100 * it.jauge * EIO(P(t, t1 + .2, 1.6))).toFixed(2) + "%";
         if (x.src) op(x.src, E(P(t, t1 + 1, .6)) * .85);
@@ -957,17 +1373,17 @@
 
   // frise de dates : items [{d: "1982", t: "Montego Bay", c: "mer" | "espace" | "droit" | "conflit"}], l'événement k
   // au repère {id.k} (date au télétype, tampon) ; dates à espacement régulier, en alternance au-dessus et au-dessous
-  var CATS = { mer: "#6e9cc0", espace: "#b48cff", droit: "#c2a878", conflit: "#ff5b49", prive: "#6cc082" };
+  var CATS = { mer: "#2d5f8a", espace: "#5e3f86", droit: "#7a5a22", conflit: "#b8281b", prive: "#3d6b3a" };
   TYPES.chrono = function (o, v) {
     var e = o.el; e.classList.add("v-chrono"); o.entree = "aucune";
     e.style.left = (v.x != null ? v.x : 60) + "px"; e.style.top = (v.y != null ? v.y : 120) + "px"; e.style.width = (v.w || 1160) + "px";
     var hh = v.h || 470; e.style.height = hh + "px";
     if (v.titre) h("div", "chr-ti", e, esc(v.titre));
-    var axe = h("div", "chr-axe", e); axe.style.top = (hh / 2) + "px";
-    var n = v.items.length, pas = (v.w || 1160) / n;
+    var axe = h("div", "chr-axe", e); axe.style.top = (hh / 2 + 14) + "px";
+    var n = v.items.length, pas = ((v.w || 1160) - 70) / n;
     var its = v.items.map(function (it, i) {
       var haut = i % 2 === 0, p = h("div", "chr-p " + (haut ? "haut" : "bas"), e);
-      p.style.left = (pas * (i + .5)) + "px"; p.style.top = (hh / 2) + "px"; p.style.width = Math.min(250, pas * 1.75) + "px";
+      p.style.left = (35 + pas * (i + .5)) + "px"; p.style.top = (hh / 2 + 14) + "px"; p.style.width = Math.min(250, pas * 1.75) + "px";
       var col = CATS[it.c] || C.sa;
       var pt = h("div", "chr-pt", p); pt.style.background = col;
       var tige = h("div", "chr-tige", p); tige.style.background = col;
@@ -1029,10 +1445,10 @@
   ILLU.orbites = function (s, v) {
     var W_ = v.w, H_ = v.h, cx = W_ * .3, cy = H_ * .5, g = sv("g", {}, s), R = { T: 86, b: 132, m: 196, g: 262 };
     var terre = sv("g", {}, g);
-    sv("circle", { cx: cx, cy: cy, r: R.T, fill: "#2d5675" }, terre);
-    var mer = sv("path", { d: "", fill: "none", stroke: "rgba(220,227,232,.3)", "stroke-width": 1.4 }, terre);
+    sv("circle", { cx: cx, cy: cy, r: R.T, fill: "#9db8cb", stroke: C.iv, "stroke-width": 2.2 }, terre);
+    var mer = sv("path", { d: "", fill: "none", stroke: "rgba(43,29,16,.45)", "stroke-width": 1.2 }, terre);
     var repere = sv("line", { x1: cx, y1: cy, x2: cx, y2: cy - R.T, stroke: C.or, "stroke-width": 3, "stroke-linecap": "round" }, terre);
-    etiquette(terre, cx, cy + 9, "Terre", { fs: 24, c: C.iv, fw: 700 });
+    etiquette(terre, cx, cy + 9, "Terre", { fs: 27, c: C.iv, fw: 700, cls: "ser" });
     var COL = { b: C.te, m: C.vert, g: C.sa }, orb = {}, sats = {};
     // étiquettes en colonne à droite, reliées à leur orbite par un trait
     var LAB = { g: [-48, cy - 150, "Géostationnaire : 35 786 km", v.lg || "télécoms, météo : le satellite paraît immobile"],
@@ -1084,9 +1500,9 @@
   // {id.1} deux satellites se percutent (débris) ; {id.2} les débris en frappent d'autres : la cascade
   ILLU.kessler = function (s, v) {
     var W_ = v.w, H_ = v.h, g = sv("g", {}, s), cx = W_ / 2, cy = H_ + 520, RT = 600;
-    sv("circle", { cx: cx, cy: cy, r: RT, fill: "#16212a", stroke: "#2d5675", "stroke-width": 3 }, g);
+    sv("circle", { cx: cx, cy: cy, r: RT, fill: "#b9cbd6", stroke: C.iv, "stroke-width": 2.5 }, g);
     var ORB = [RT + 90, RT + 150, RT + 210];
-    ORB.forEach(function (r) { sv("circle", { cx: cx, cy: cy, r: r, fill: "none", stroke: "rgba(220,227,232,.14)", "stroke-width": 1.4, "stroke-dasharray": "5 7" }, g); });
+    ORB.forEach(function (r) { sv("circle", { cx: cx, cy: cy, r: r, fill: "none", stroke: "rgba(43,29,16,.14)", "stroke-width": 1.4, "stroke-dasharray": "5 7" }, g); });
     function pos(r, a) { return [cx + r * Math.sin(a), cy - r * Math.cos(a)]; }
     // satellites : orbite, angle de départ, vitesse (rad/s) ; 0 et 1 se croisent au premier repère
     var k1 = et(v, "1", 2.5), k2 = et(v, "2", 6.5), D1 = v.t0, wc = .7 / Math.max(2, k1 - D1);   // les deux satellites partent à ±0,7 rad
@@ -1096,7 +1512,7 @@
       sv("rect", { x: -9, y: -6, width: 18, height: 12, rx: 2, fill: i < 2 ? C.te : C.iv2 }, st_.el);
       sv("path", { d: "M-22 0 H22", stroke: i < 2 ? C.te : C.iv2, "stroke-width": 4 }, st_.el);
       if (st_.nom) st_.lb = etiquette(g, 0, 0, st_.nom, { fs: 20, c: C.iv }); });
-    var flash = sv("circle", { r: 10, fill: "rgba(255,210,150,.9)" }, g);
+    var flash = sv("circle", { r: 10, fill: "rgba(214,90,40,.85)" }, g);
     var N = 90, deb = []; for (var d = 0; d < N; d++) deb.push({ el: sv("circle", { r: 2.2, fill: C.sa }, g), o: alea(d + 9) < .5 ? 1 : (alea(d + 3) < .5 ? 0 : 2), w: (alea(d) - .5) * .22, dr: (alea(d + 50) - .5) * 30, vague: d < 40 ? 1 : 2 });
     var t1 = etiquette(g, cx, 60, v.l1 || "10 février 2009 : première collision accidentelle", { fs: 26, c: C.sa, fw: 700 });
     var t2 = etiquette(g, cx, 100, v.l2 || "les débris en frappent d'autres : la réaction en chaîne", { fs: 22, c: C.iv });
@@ -1121,97 +1537,160 @@
     };
   };
 
-  /* ---------- scène ---------- */
-  var FONDS = {
-    // salle de crise (défaut), océan (bleu profond), orbite (nuit étoilée), archive (dossier kraft) ; nuit = crise
-    crise: { base: "linear-gradient(160deg,#07090b 0%,#10161b 55%,#080a0c 100%)", lueurs: ["rgba(255,91,73,.16)", "rgba(130,178,216,.10)", "rgba(255,91,73,.07)"] },
-    ocean: { base: "linear-gradient(170deg,#050d14 0%,#0b2232 55%,#06111a 100%)", lueurs: ["rgba(110,156,192,.22)", "rgba(130,178,216,.12)", "rgba(255,91,73,.08)"] },
-    orbite: { base: "linear-gradient(160deg,#05060a 0%,#0e1220 55%,#06070c 100%)", lueurs: ["rgba(130,178,216,.16)", "rgba(180,140,255,.10)", "rgba(255,91,73,.08)"] },
-    archive: { base: "linear-gradient(160deg,#0e0c09 0%,#1d1a14 55%,#0f0d0a 100%)", lueurs: ["rgba(194,168,120,.18)", "rgba(255,91,73,.10)", "rgba(130,178,216,.08)"] }
-  };
-  FONDS.nuit = FONDS.crise;
-  // nom du dossier d'après le code de l'épisode : hggsp-t1-intro → « Thème 1 · introduction »
+  /* ---------- scène : la table des cartes, filmée d'en haut ---------- */
   var EPI = { code: "" };
+  // nom du dossier d'après le code de l'épisode : hggsp-t1-intro → « Thème 1 · introduction »
   function dossierDe(code) {
     var m = /t(\d)-(intro|a1|a2|otc)/.exec(code || "");
     if (!m) return "HGGSP";
     return "Thème " + m[1] + " · " + { intro: "introduction", a1: "axe 1", a2: "axe 2", otc: "objet de travail conclusif" }[m[2]];
   }
+  var ECRAN = { frappe: 1, notion: 1 };          // visuels fixes à l'écran (ne bougent pas avec la table)
+  var PLEIN = { titre: 1, chapitre: 1, generique: 1, scene: 1, frappe: 1 };   // l'en-tête s'efface
+  var GLISSE = 1.6;                              // durée du vol de la caméra d'un poste à l'autre
 
   function Scene(EP, racine) {
     var sc = h("div", "scene", racine);
     EPI.code = EP.code;
-    var fonds = EP.scenes.map(function (s, i) {
-      var f = h("div", "fond", sc), def = FONDS[s.fond] || FONDS.nuit;
-      f.style.background = def.base;
-      var lu = def.lueurs.map(function (c, j) {
-        var l = h("div", "lueur", f); var r = 520 + j * 140;
-        l.style.width = l.style.height = r + "px"; l.style.background = "radial-gradient(circle," + c + ",transparent 65%)";
-        l.style.left = (j === 0 ? 700 : j === 1 ? -100 : 300) + "px"; l.style.top = (j === 0 ? -150 : j === 1 ? 300 : 380) + "px";
-        return l;
-      });
-      return { el: f, lu: lu, s: s, i: i };
-    });
-    h("div", "grille", sc);
-    var cv = h("canvas", "poussiere", sc); cv.width = W; cv.height = H;
+    var cv = h("canvas", "table", sc); cv.width = W * 1.5; cv.height = H * 1.5;
     var cx = cv.getContext("2d");
-    var parts = []; for (var i = 0; i < 70; i++) parts.push({ x: alea(i) * W, y: alea(i + 100) * H, vx: (alea(i + 200) - .5) * 14, vy: 6 + alea(i + 300) * 16, r: .8 + alea(i + 400) * 2, ph: alea(i + 500) * 6.28 });
-    var couche = h("div", "", sc); couche.style.cssText = "position:absolute;inset:0";
+    // motifs, dégradés et filtres des cartes : un seul exemplaire, toujours affiché (une référence url(#…) vers un SVG masqué ne rend rien)
+    var defs = sv("svg", { width: 0, height: 0, "aria-hidden": "true" }, sc); defs.style.position = "absolute"; defs.innerHTML = DEFS_CARTE;
+    var monde = h("div", "monde", sc);
+    var ecran = h("div", "ecran", sc);
     h("div", "voile", sc);
-    var ent = h("div", "entete", sc), fil = h("div", "fil", sc), st = h("div", "st", sc), stS = h("span", "", st);
+    var ent = h("div", "entete", sc), fil = h("div", "fil", sc), st = h("div", "st", sc), stS = h("span", "", st), noir = h("div", "noir", sc);
+    // un poste de la table par partie de l'épisode
+    var idx = {};
+    var postes = EP.scenes.map(function (s, i) {
+      idx[s.id] = i;
+      var p = poste(i); p.s = s; p.dec = decorsPoste(i, s.fond);
+      p.el = h("div", "poste", monde); p.el.style.left = p.x + "px"; p.el.style.top = p.y + "px";
+      return p;
+    });
     // illustrations propres à la vidéo (hggsp/serie/illu-<code>.js) : SERIE_ILLU.nom = function (svg, v) { … return function (t, st) { … }; }
     if (window.SERIE_ILLU) Object.keys(window.SERIE_ILLU).forEach(function (k) { ILLU[k] = window.SERIE_ILLU[k]; });
-    var objs = EP.vis.map(function (v) {
-      var el = h("div", "v", couche), o = { v: v, el: el, disp: "block", entree: "monte", vis: false };
+    var objs = EP.vis.map(function (v, n) {
+      var parent = ECRAN[v.type] ? ecran : (postes[idx[v.scene]] || postes[0]).el;
+      var el = h("div", "v", parent), o = { v: v, el: el, disp: "block", pose: !ECRAN[v.type], vis: false, ecran: ecran, n: n };
       el.style.display = "none";
       o.upd = (TYPES[v.type] || function () { return function () {}; })(o, v);
       return o;
     });
+    // fin d'affichage : le dernier visuel d'une partie reste posé pendant que la caméra s'en va
+    objs.forEach(function (o, i) {
+      var v = o.v, s = EP.scenes[idx[v.scene]] || EP.scenes[0], der = idx[v.scene] < EP.scenes.length - 1;
+      o.reste = der && !ECRAN[v.type] && v.type !== "scene" && v.t1 >= s.t1 - .7;
+      if (o.fin == null) o.fin = o.reste ? s.t1 + GLISSE + .2 : v.t1 + (v.type === "tableau" ? .9 : v.type === "scene" ? .55 : .42);
+      o.rot = (alea(i * 7 + 3) - .5) * 2.4;      // chaque fiche est posée un peu de travers
+      o.dir = alea(i * 13 + 1) < .5 ? -1 : 1;
+    });
+    objs.forEach(function (o, i) {
+      if (!o.lier) return;
+      var prec = null, suiv = null;
+      for (var a = i - 1; a >= 0; a--) if (objs[a].v.type === "scene") { prec = objs[a]; break; }
+      for (var b = i + 1; b < objs.length; b++) if (objs[b].v.type === "scene") { suiv = objs[b]; break; }
+      o.lier(prec, suiv);
+    });
     var sousOn = false, dernierSous = -1;
+    var fin0 = (EP.vis.filter(function (v) { return v.type === "generique"; })[0] || { t1: 0 }).t1;
+
+    // caméra de base : le poste de la partie en cours ; vol (avec recul) d'un poste à l'autre ; descente au générique
+    function camBase(t) {
+      var i = 0; for (var j = 1; j < EP.scenes.length; j++) if (t >= EP.scenes[j].t0 - .3) i = j;
+      var p = postes[i], q = i ? postes[i - 1] : p, u = i ? EIO(P(t, EP.scenes[i].t0 - .3, GLISSE)) : 1;
+      var z = 1 - .24 * Math.sin(Math.PI * u), r = q.r + (p.r - q.r) * u;
+      if (t < fin0 + .6) { var d = EIO(P(t, 0, fin0 + .6)); z *= .78 + .22 * d; r += -.05 * (1 - d); }
+      return { x: q.x + (p.x - q.x) * u + 640, y: q.y + (p.y - q.y) * u + 360, ax: 640, ay: 360, z: z, r: r, i: i, arr: i ? EP.scenes[i].t0 - .3 + GLISSE * .8 : 0 };
+    }
+    function camera(t, vus) {
+      var c = camBase(t);
+      vus.forEach(function (o) {
+        if (!o.cam) return;
+        var m = o.cam(t), w = cl(m.w, 0, 1), p = postes[idx[o.v.scene]] || postes[0];
+        if (w <= 0) return;
+        c.x += (p.x + m.x - c.x) * w; c.y += (p.y + m.y - c.y) * w; c.ax += (m.ax - c.ax) * w; c.ay += (m.ay - c.ay) * w;
+        c.z += (m.z - c.z) * w; c.r *= 1 - w * .7;
+      });
+      // la caméra respire : léger flottement, comme filmée à la main au-dessus de la table
+      c.x += Math.sin(t * .13) * 5 + Math.sin(t * .31 + 1) * 1.5; c.y += Math.cos(t * .11) * 4;
+      c.r += Math.sin(t * .07 + .5) * .0035; c.z *= 1 + Math.sin(t * .09) * .006;
+      return c;
+    }
+    function decor(ctx, p, t, arr) {
+      p.dec.forEach(function (d) {
+        var s = SPR[d[0]]; if (!s) return;
+        var x = p.x + d[1], y = p.y + d[2];
+        ctx.save(); ctx.translate(x, y); ctx.rotate(d[3]);
+        ctx.drawImage(s.c, -s.ax, -s.ay, s.w, s.h);
+        if (d[0] === "boussole") { var tl = Math.max(0, t - arr); aiguille(ctx, 150, .14 + 1.15 * Math.exp(-tl * 1.5) * Math.cos(tl * 6.5)); }
+        ctx.restore();
+      });
+    }
+    var pret = false, motif = null;
+    function table(t, c, vus) {
+      cx.setTransform(1, 0, 0, 1, 0, 0);
+      if (!pret) { cx.fillStyle = "#1e3428"; cx.fillRect(0, 0, cv.width, cv.height); return; }
+      // feutre : simple translation du motif (sa rotation et son échelle ne se voient pas ; c'est bien plus rapide)
+      var ox = ((c.ax - c.x * c.z) * 1.5) % 512, oy = ((c.ay - c.y * c.z) * 1.5) % 512;
+      cx.setTransform(1, 0, 0, 1, Math.round(ox), Math.round(oy)); cx.fillStyle = motif; cx.fillRect(-512, -512, cv.width + 1024, cv.height + 1024);
+      cx.setTransform(1.5, 0, 0, 1.5, 0, 0); cx.translate(c.ax, c.ay); cx.rotate(c.r); cx.scale(c.z, c.z); cx.translate(-c.x, -c.y);
+      for (var i = Math.max(0, c.i - 1); i <= Math.min(postes.length - 1, c.i + 1); i++) decor(cx, postes[i], t, i === c.i ? c.arr : 0);
+      vus.forEach(function (o) { if (o.feuille) { var p = postes[idx[o.v.scene]] || postes[0]; cx.save(); cx.translate(p.x, p.y); o.feuille(cx, t); cx.restore(); } });
+      cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(lampe, 0, 0);   // la lampe : lumière chaude au centre, pénombre sur les bords
+    }
+    var lampe = canv(cv.width, cv.height);
+    (function () {
+      var x = lampe.getContext("2d"), w = lampe.width, hh = lampe.height;
+      var g = x.createRadialGradient(w * .44, hh * .4, hh * .12, w * .46, hh * .46, w * .72);
+      g.addColorStop(0, "rgba(255,214,150,.10)"); g.addColorStop(.4, "rgba(40,24,8,0)"); g.addColorStop(.75, "rgba(22,13,4,.32)"); g.addColorStop(1, "rgba(12,7,2,.62)");
+      x.fillStyle = g; x.fillRect(0, 0, w, hh);
+    })();
+    var attente = (document.fonts && document.fonts.load ? Promise.all([
+      document.fonts.load("400 40px 'Exlibris Titrage'"), document.fonts.load("400 40px 'Exlibris Texte'"), document.fonts.load("italic 400 40px 'Exlibris Texte'"),
+      document.fonts.load("600 40px 'Exlibris Texte'"), document.fonts.load("700 40px 'Caveat'")]) : Promise.resolve()).then(function () {
+      preparerTable();
+      motif = cx.createPattern(TEX.feutre, "repeat");
+      sc.style.setProperty("--papier", "url(" + TEX.urlPapier + ")");
+      sc.style.setProperty("--bristol", "url(" + TEX.urlBristol + ")");
+      sc.style.setProperty("--cire", "url(" + TEX.urlCire + ")");
+      if (EXPORT) objs.forEach(function (o) { if (o.v.type === "scene" && HG_SCENES && HG_SCENES[o.v.anim]) feuilleDe(o.v.anim, HG_SCENES[o.v.anim]).graver(); });
+      pret = true;
+    });
 
     function rendu(t) {
-      // fonds
-      fonds.forEach(function (f, i) {
-        var s = f.s, a = i === 0 ? 1 : E(P(t, s.t0 - .6, 1.2)), b = i === fonds.length - 1 ? 0 : E(P(t, s.t1 - .6, 1.2));
-        var w = a * (1 - b);
-        if (w <= 0.001) { if (f.on) { f.el.style.display = "none"; f.on = false; } return; }
-        if (!f.on) { f.el.style.display = "block"; f.on = true; }
-        f.el.style.opacity = w;
-        f.lu.forEach(function (l, j) {
-          l.style.transform = "translate(" + (Math.sin(t * .07 + j * 2.1) * 120).toFixed(1) + "px," + (Math.cos(t * .05 + j * 1.3) * 80).toFixed(1) + "px) scale(" + (1 + .12 * Math.sin(t * .09 + j)).toFixed(3) + ")";
-        });
-      });
-      // poussière lumineuse
-      cx.clearRect(0, 0, W, H);
-      parts.forEach(function (p) {
-        var x = ((p.x + p.vx * t) % W + W) % W, y = ((p.y - p.vy * t) % H + H) % H;
-        var a = .25 + .25 * Math.sin(t * 1.3 + p.ph);
-        cx.fillStyle = "rgba(190,214,232," + a.toFixed(3) + ")";
-        cx.beginPath(); cx.arc(x, y, p.r, 0, 6.283); cx.fill();
-      });
-      // visuels
-      var plein = false;
+      // visuels visibles à l'instant t
+      var vus = [], plein = false;
       objs.forEach(function (o) {
         var v = o.v;
-        if (t < v.t0 || t > v.t1 + (v.type === "tableau" ? 1 : .45)) { if (o.vis) { o.el.style.display = "none"; o.vis = false; } return; }
+        if (t < v.t0 || t > o.fin) {
+          if (o.vis) { o.el.style.display = "none"; (o.extra || []).forEach(function (x) { x.style.display = "none"; }); o.vis = false; }
+          return;
+        }
         if (!o.vis) { o.el.style.display = o.disp; o.vis = true; }
-        if (v.type === "titre" || v.type === "chapitre" || v.type === "generique") plein = true;
-        var a = E(P(t, v.t0, .7)), out = EIO(P(t, v.t1, v.type === "tableau" ? .6 : .35));   // sortie courte : pas de fantôme sous le visuel suivant
-        if (v.type !== "tableau") o.el.style.opacity = (o.entree === "aucune" ? 1 : a) * (1 - out);
-        // profondeur : le texte et les images dérivent doucement, à des vitesses différentes
-        var pr = o.prof != null ? o.prof : (v.type === "tableau" ? 0 : 1);
-        var dx = (Math.sin(t * .071 + 1) * 7 * pr).toFixed(2), dy = (Math.cos(t * .053) * 5 * pr).toFixed(2);
-        var flou = (o.entree === "monte" ? (1 - a) * 7 : 0) + out * 6;
-        if (v.type !== "tableau") o.el.style.filter = flou > .05 ? "blur(" + flou.toFixed(1) + "px)" : "none";
-        if (o.entree === "monte") o.el.style.transform = "translate(" + dx + "px," + (26 * (1 - a) - 14 * out + +dy).toFixed(2) + "px) scale(" + (0.97 + 0.03 * a + 0.02 * out).toFixed(4) + ")";
-        else if (v.type !== "tableau") o.el.style.transform = "translate(" + dx + "px," + dy + "px)" + (out > 0 ? " scale(" + (1 + .025 * out) + ")" : "");
+        vus.push(o);
+        if (PLEIN[v.type] || o.plein) plein = true;
+      });
+      var c = camera(t, vus);
+      monde.style.transform = "translate(" + c.ax.toFixed(2) + "px," + c.ay.toFixed(2) + "px) rotate(" + (c.r * 57.296).toFixed(4) + "deg) scale(" + c.z.toFixed(5) + ") translate(" + (-c.x).toFixed(2) + "px," + (-c.y).toFixed(2) + "px)";
+      table(t, c, vus);
+      vus.forEach(function (o) {
+        var v = o.v, a = E(P(t, v.t0, .6)), out = o.reste ? 0 : EIO(P(t, v.t1, .45));
+        if (o.pose) {   // la fiche est posée à la main sur la table, puis retirée (glissée hors du poste)
+          var l = 1 - a, s = out;
+          o.el.style.opacity = (Math.min(1, P(t, v.t0, .12)) * (o.reste ? 1 : 1 - P(t, v.t1 + .3, .14))).toFixed(3);
+          o.el.style.transform = "translate(" + (-34 * l * o.dir + 620 * s * o.dir).toFixed(1) + "px," + (-48 * l - 70 * s).toFixed(1) + "px) rotate(" + (o.rot - 2.6 * l * o.dir + 7 * s * o.dir).toFixed(3) + "deg) scale(" + (1 + .045 * l + .04 * s).toFixed(4) + ")";
+        }
         o.upd(t, { tl: t - v.t0, a: a, o: out });
+        if (o.apres) o.apres(c);
       });
       // en-tête : notion, épisode, chapitre
       var sc_ = EP.scenes.filter(function (s) { return t >= s.t0; }).pop() || EP.scenes[0];
-      ent.innerHTML = esc(dossierDe(EP.code)) + (sc_.id !== EP.scenes[0].id ? " &nbsp;—&nbsp; <b>" + esc(sc_.chap) + "</b>" : "");
-      op(ent, plein ? 0 : E(P(t, EP.scenes[0].t0 + 1, 1)) * .9);
+      var txt = esc(dossierDe(EP.code)) + (sc_.id !== EP.scenes[0].id ? " &nbsp;·&nbsp; <b>" + esc(sc_.chap) + "</b>" : "");
+      if (ent._t !== txt) { ent.innerHTML = txt; ent._t = txt; }
+      op(ent, plein ? 0 : E(P(t, EP.scenes[0].t0 + 1, 1)));
       fil.style.width = (W * cl(t / EP.dur, 0, 1)).toFixed(1) + "px";
+      var nn = 1 - E(P(t, 0, .7)); noir.style.display = nn > .002 ? "" : "none"; op(noir, nn);   // ouverture au noir
       // sous-titres
       if (sousOn) {
         var k = -1;
@@ -1219,8 +1698,8 @@
         if (k !== dernierSous) { stS.textContent = k >= 0 ? EP.sous[k][2] : ""; st.style.display = k >= 0 ? "block" : "none"; dernierSous = k; }
       } else st.style.display = "none";
     }
-    return { el: sc, rendu: rendu, sous: function (b) { sousOn = b; dernierSous = -2; },
-      attentes: function () { return objs.filter(function (o) { return o.attente; }).map(function (o) { return o.attente; }); } };
+    return { el: sc, rendu: rendu, pret: attente, sous: function (b) { sousOn = b; dernierSous = -2; },
+      attentes: function () { return [attente].concat(objs.filter(function (o) { return o.attente; }).map(function (o) { return o.attente; })); } };
   }
 
   /* ---------- lecteur ---------- */
@@ -1241,7 +1720,7 @@
     var racine = document.getElementById("serie");
 
     if (EXPORT) { // rendu seul, pour fabriquer la vidéo image par image
-      document.body.style.margin = 0;
+      document.body.style.margin = 0; document.body.classList.add("export");
       racine.style.cssText = "position:fixed;inset:0;overflow:hidden;background:#000";
       var S0 = Scene(EP, racine);
       var k0 = Math.min(innerWidth / W, innerHeight / H);
@@ -1477,11 +1956,12 @@
     var titre = EP.vis.filter(function (v) { return v.type === "titre"; })[0];
     var tA = Q.get("t") != null ? parseFloat(Q.get("t")) : null;
     S.rendu(titre ? titre.t0 + 2.6 : 2);
+    S.pret.then(function () { S.rendu(tA != null || affiche.classList.contains("off") ? T : (titre ? titre.t0 + 2.6 : 2)); });
     if (tA != null) { aller(tA); affiche.classList.add("off"); }
     majUI(); setTimeout(hauteur, 300);
   }
 
   window.SERIE = { lancer: lancer };
   // outils du moteur, pour les illustrations écrites à part (hggsp/serie/illu-<code>.js)
-  window.SERIE_OUTILS = { W: W, H: H, C: C, h: h, sv: sv, cl: cl, E: E, EIO: EIO, EB: EB, P: P, op: op, tr: tr, trace: trace, et: et, etiquette: etiquette, esc: esc, alea: alea };
+  window.SERIE_OUTILS = { W: W, H: H, C: C, ENC: ENC, F: F, h: h, sv: sv, cl: cl, E: E, EIO: EIO, EB: EB, P: P, op: op, tr: tr, trace: trace, et: et, etiquette: etiquette, esc: esc, alea: alea };
 })();

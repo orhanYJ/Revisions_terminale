@@ -6,7 +6,9 @@
    À relancer quand une animation du site ou une carte propre à la vidéo change, puis relancer generer.py (l'empreinte
    du fichier change l'adresse chargée par la page).
 
-   Chaque scène : { titre, w, h, vb, svg (fond + calques ; les éléments animés portent data-k), etapes, source }.
+   Chaque scène : { titre, w, h, vb, svg (fond + calques ; les éléments animés portent data-k), etapes, source, rose }.
+   Le moteur grave le fond (mer k-mer-f, terres k-terre, graticule k-grat) sur une feuille de papier ancien ; rose = [x, y, r]
+   (facultatif) place une rose des vents gravée, dans un coin de mer libre.
    Les étapes du site (date, titre, montre, cache, accent) servent par défaut ; le script de la vidéo peut en choisir
    une partie (pas=[…]) ou en donner d'autres (etapes=[…]).
    Fond Natural Earth 1:50m (téléchargé une fois dans ~/.cache/hggsp/, comme build.py), d3-geo local
@@ -165,7 +167,7 @@ const CARTES_VIDEO = {
       C.etiq("drapeaut", [0, 90], "drapeau russe · plus de 4 000 m de fond", { cl: "lbl-f", dy: 36 }),
       C.etiq("pole", [0, 90], "pôle Nord", { cl: "lbl", a: "end", dx: -14, dy: 6 })
     ].join("");
-    return { titre: "L'Arctique, un front pionnier", w: W, h: H, vb: [0, 0, W, H], svg: fond + s, etapes: [],
+    return { titre: "L'Arctique, un front pionnier", w: W, h: H, vb: [0, 0, W, H], svg: fond + s, etapes: [], rose: [628, 628, 46],   // rose des vents (coin vide, hors du disque)
       source: "Fond Natural Earth (domaine public). Étendues de banquise schématiques." };
   }
 };
