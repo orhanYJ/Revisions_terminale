@@ -383,6 +383,12 @@
         if (on && !avant[id]) { el.classList.remove("anim-in"); void el.getBoundingClientRect(); el.classList.add("anim-in"); }
       });
       k = n;
+      /* sur téléphone, le cadre défile : on le recentre sur le premier élément mis en valeur de l'étape */
+      var cible = (e.accent || [])[0] || (e.montre || [])[0], cadreA = $(".a-cadre", f), el = cible && $('[data-k="' + cible + '"]', f);
+      if (el && cadreA.scrollWidth > cadreA.clientWidth + 2) {
+        var r = el.getBoundingClientRect(), rc = cadreA.getBoundingClientRect();
+        cadreA.scrollTo({ left: Math.max(0, cadreA.scrollLeft + r.left + r.width / 2 - rc.left - rc.width / 2), behavior: MO() && k >= 0 && auto !== undefined ? "smooth" : "auto" });
+      }
       teletype(dateEl, e.date || "");
       leg.innerHTML = '<div class="a-num">ÉTAPE ' + (n + 1) + ' / ' + A.etapes.length + (e.date ? ' · ' + esc(e.date) : "") + '</div><b>' + typo(e.titre) + '</b>' + typo(e.texte || "");
       $$(".a-pt", f).forEach(function (b, i) { b.classList.toggle("fait", i < n); b.setAttribute("aria-current", i === n ? "step" : "false"); });

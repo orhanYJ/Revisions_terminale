@@ -15,9 +15,10 @@ function dp(pts, tol) {
   const st = [[0, pts.length - 1]];
   while (st.length) {
     const [a, b] = st.pop(); let md = -1, mi = -1;
-    const [x1, y1] = pts[a], [x2, y2] = pts[b], dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy) || 1e-9;
+    const [x1, y1] = pts[a], [x2, y2] = pts[b], dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy);
     for (let i = a + 1; i < b; i++) {
-      const d = Math.abs(dy * pts[i][0] - dx * pts[i][1] + x2 * y1 - y2 * x1) / L;
+      /* extrémités confondues (anneau refermé sur son premier point) : distance au point, sinon tout l'anneau disparaîtrait */
+      const d = L > 1e-6 ? Math.abs(dy * pts[i][0] - dx * pts[i][1] + x2 * y1 - y2 * x1) / L : Math.hypot(pts[i][0] - x1, pts[i][1] - y1);
       if (d > md) { md = d; mi = i; }
     }
     if (md > tol) { keep[mi] = 1; st.push([a, mi], [mi, b]); }
@@ -28,7 +29,8 @@ function simplifier(d, tol, minAire) {
   let out = "";
   for (const ring of (d || "").split("M").filter(Boolean)) {
     const closed = /Z\s*$/.test(ring);
-    const pts = ring.replace(/Z\s*$/, "").split("L").map(s => s.split(",").map(Number));
+    let pts = ring.replace(/Z\s*$/, "").split("L").map(s => s.split(",").map(Number));
+    if (pts.length > 2 && pts[0][0] === pts[pts.length - 1][0] && pts[0][1] === pts[pts.length - 1][1]) pts = pts.slice(0, -1);
     const q = dp(pts, tol);
     let minx = 1e9, maxx = -1e9, miny = 1e9, maxy = -1e9;
     for (const [x, y] of q) { minx = Math.min(minx, x); maxx = Math.max(maxx, x); miny = Math.min(miny, y); maxy = Math.max(maxy, y); }

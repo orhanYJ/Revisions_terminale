@@ -47,39 +47,8 @@ module.exports = function (ctx) {
     const PL = (k, ll, s, o = {}) => pt(k, ll, o) + lb(k + "L", ll, s, Object.assign({}, o, { cl: o.lc }));
     return { defs, pt, lb, point, fleche, cartouche, st, PL };
   }
-  /* Simplification des fonds régionaux. Correctif : quand d3 découpe un pays au bord du cadre, l'anneau se termine
-     par son premier point ; la simplification de cartes.js (segment de longueur nulle) l'effaçait entièrement
-     (États-Unis et Canada disparaissaient). On retire ce point en double avant de simplifier. */
-  function dp(pts, tol) {
-    if (pts.length < 3) return pts;
-    const keep = new Uint8Array(pts.length); keep[0] = keep[pts.length - 1] = 1;
-    const st = [[0, pts.length - 1]];
-    while (st.length) {
-      const [a, b] = st.pop(); let md = -1, mi = -1;
-      const [x1, y1] = pts[a], [x2, y2] = pts[b], dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy);
-      for (let i = a + 1; i < b; i++) {
-        const d = L > 1e-6 ? Math.abs(dy * pts[i][0] - dx * pts[i][1] + x2 * y1 - y2 * x1) / L : Math.hypot(pts[i][0] - x1, pts[i][1] - y1);
-        if (d > md) { md = d; mi = i; }
-      }
-      if (md > tol) { keep[mi] = 1; st.push([a, mi], [mi, b]); }
-    }
-    return pts.filter((_, i) => keep[i]);
-  }
-  function simplifier(d, tol, minAire) {
-    let out = "";
-    for (const ring of (d || "").split("M").filter(Boolean)) {
-      const closed = /Z\s*$/.test(ring);
-      let pts = ring.replace(/Z\s*$/, "").split("L").map(s => s.split(",").map(Number));
-      if (pts.length > 2 && pts[0][0] === pts[pts.length - 1][0] && pts[0][1] === pts[pts.length - 1][1]) pts = pts.slice(0, -1);
-      const q = dp(pts, tol);
-      let minx = 1e9, maxx = -1e9, miny = 1e9, maxy = -1e9;
-      for (const [x, y] of q) { minx = Math.min(minx, x); maxx = Math.max(maxx, x); miny = Math.min(miny, y); maxy = Math.max(maxy, y); }
-      if (closed && (maxx - minx) * (maxy - miny) < minAire) continue;
-      if (q.length < (closed ? 3 : 2)) continue;
-      out += "M" + q.map(([x, y]) => Math.round(x) + "," + Math.round(y)).join("L") + (closed ? "Z" : "");
-    }
-    return out;
-  }
+  /* simplification : celle de cartes.js (ctx.simplifier), corrigée pour les anneaux refermés au bord du cadre */
+  const simplifier = ctx.simplifier;
   const vbDe = (C, sw, ne, W, H) => {
     let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
     for (let i = 0; i <= 20; i++) for (const [lo, la] of [[sw[0] + (ne[0] - sw[0]) * i / 20, sw[1]], [sw[0] + (ne[0] - sw[0]) * i / 20, ne[1]], [sw[0], sw[1] + (ne[1] - sw[1]) * i / 20], [ne[0], sw[1] + (ne[1] - sw[1]) * i / 20]]) {

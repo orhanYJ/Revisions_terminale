@@ -328,7 +328,7 @@ CHAPS["t3-a2"] = { th: "t3", code: "T3 · AXE 2", t: "Histoire, mémoire et just
   ],
   retenir: [
     ["Génocide des Tutsis", "7 avril-juillet 1994 ; environ 800 000 morts (ONU), plus d'un million selon les autorités rwandaises ; Interahamwe, RTLM."],
-    ["Gacaca", "Loi du 26 janv. 2001 ; juges élus (inyangamugayo) ; pilote 18 juin 2002, généralisation 2005 ; aveux et peines réduites ; 1 958 634 affaires ; clôture le 18 juin 2012 ; critiques (HRW, 2011)."],
+    ["Gacaca", "Loi du 26 janv. 2001 ; juges élus (inyangamugayo) ; pilote 18 juin 2002, généralisation 2005 ; aveux et peines réduites ; 1 958 634 affaires selon le bilan officiel ; clôture le 18 juin 2012 ; critiques (HRW, 2011)."],
     ["Autres échelles", "TPIR (résolution 955, 8 nov. 1994 ; Akayesu 1998, Kambanda 1998 ; fermé en 2015) ; compétence universelle (Simbikangwa, 2014) ; rapport Duclert (2021)."],
     ["TPIY", "Résolutions 808 et 827 (1993) ; La Haye ; Tadić (1997), Kunarac (2001), Krstić (2001-2004) ; Milošević (mort en 2006), Karadžić (2019), Mladić (2017-2021) ; 161 accusés, 93 condamnés ; fermé le 31 déc. 2017."],
     ["Srebrenica", "Juillet 1995, environ 8 000 morts ; génocide (TPIY 2001-2004, CIJ 26 févr. 2007) ; journée du 11 juillet (ONU, 23 mai 2024)."],
@@ -364,7 +364,7 @@ CHAPS["t3-a2"] = { th: "t3", code: "T3 · AXE 2", t: "Histoire, mémoire et just
     ["Statut de Rome", "Traité du 17 juillet 1998 créant la Cour pénale internationale (en fonction en 2002)."],
     ["Complémentarité", "Principe selon lequel la CPI n'agit que si les justices nationales ne veulent ou ne peuvent pas juger."]
   ],
-  bac: { s: "Juger les crimes de masse à différentes échelles depuis les années 1990", type: "Sujet de dissertation inventé pour le site (thème 3, axe 2)", h: "<p><b>Problématique possible :</b> en quoi la justice, aux échelles locale, nationale et internationale, contribue-t-elle à la reconstruction des sociétés après les crimes de masse, et quelles en sont les limites ?</p><p><b>I. Juger pour établir les faits et reconnaître les victimes.</b> TPIY (1993) et TPIR (1994) ; jurisprudences (Akayesu 1998, Kunarac 2001, Krstić) ; archives pour l'histoire.</p><p><b>II. Une justice adaptée aux échelles et aux sociétés.</b> Gacaca (2002-2012, 1 958 634 affaires, aveux) ; compétence universelle (Simbikangwa 2014) ; tribunaux mixtes (Sierra Leone, Cambodge, Dakar).</p><p><b>III. Des limites qui pèsent sur la réconciliation.</b> Justice des vainqueurs (crimes du FPR exclus) ; mémoires divisées (Praljak 2017, négation de Srebrenica, résolution de 2024) ; CPI contestée (mandats non exécutés, retraits 2025-2026).</p>" }
+  bac: { s: "Juger les crimes de masse à différentes échelles depuis les années 1990", type: "Sujet de dissertation inventé pour le site (thème 3, axe 2)", h: "<p><b>Problématique possible :</b> en quoi la justice, aux échelles locale, nationale et internationale, contribue-t-elle à la reconstruction des sociétés après les crimes de masse, et quelles en sont les limites ?</p><p><b>I. Juger pour établir les faits et reconnaître les victimes.</b> TPIY (1993) et TPIR (1994) ; jurisprudences (Akayesu 1998, Kunarac 2001, Krstić) ; archives pour l'histoire.</p><p><b>II. Une justice adaptée aux échelles et aux sociétés.</b> Gacaca (2002-2012, 1 958 634 affaires selon le bilan officiel, aveux) ; compétence universelle (Simbikangwa 2014) ; tribunaux mixtes (Sierra Leone, Cambodge, Dakar).</p><p><b>III. Des limites qui pèsent sur la réconciliation.</b> Justice des vainqueurs (crimes du FPR exclus) ; mémoires divisées (Praljak 2017, négation de Srebrenica, résolution de 2024) ; CPI contestée (mandats non exécutés, retraits 2025-2026).</p>" }
 };
 
 /* Animation : des prisons aux collines, la justice gacaca */
@@ -385,7 +385,7 @@ CHAPS["t3-a2"] = { th: "t3", code: "T3 · AXE 2", t: "Histoire, mémoire et just
       "<g data-k='coll'>" + collines + "<text x='430' y='272' text-anchor='middle' class='lbl'>plus de 12 000 juridictions gacaca</text></g>" +
       "<g data-k='flux'><path class='fleche trace' pathLength='1' d='M240,190 Q270,170 292,166'/><path class='fleche trace' pathLength='1' d='M240,226 Q275,250 300,232'/></g>" +
       "<g data-k='aveu'><rect x='282' y='80' width='330' height='34' rx='17' fill='var(--papier)' stroke='var(--acier)' stroke-width='2'/><text x='446' y='102' text-anchor='middle' class='lbl'>aveu + pardon → peine réduite, travaux d'intérêt général</text></g>" +
-      "<g data-k='bilan'><rect x='300' y='290' width='300' height='56' rx='6' fill='var(--ok)' opacity='.18'/><text x='450' y='314' text-anchor='middle' class='lbl-f' style='fill:var(--ok)'>1 958 634 affaires</text><text x='450' y='334' text-anchor='middle' class='lbl'>clôture : 18 juin 2012</text></g>" +
+      "<g data-k='bilan'><rect x='300' y='290' width='300' height='56' rx='6' fill='var(--ok)' opacity='.18'/><text x='450' y='314' text-anchor='middle' class='lbl-f' style='fill:var(--ok)'>1 958 634 affaires (bilan officiel)</text><text x='450' y='334' text-anchor='middle' class='lbl'>clôture : 18 juin 2012</text></g>" +
       "<g data-k='crit'><text x='20' y='330' class='lbl-f'>Limites :</text><text x='20' y='346' class='lbl' style='font-weight:500'>pas d'avocat, pressions, crimes du FPR exclus</text></g>"
     },
     etapes: [
