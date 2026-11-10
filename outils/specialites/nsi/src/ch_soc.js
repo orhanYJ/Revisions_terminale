@@ -5,7 +5,8 @@
 function archStyle() {}
 /* jeton qui parcourt un chemin SVG (seulement quand l'étape s'anime) */
 function archJeton(d, cl, dur, delai) {
-  return '<circle class="jeton ' + (cl || "") + '" r="6.5" cx="0" cy="0"><animateMotion dur="' + (dur || 0.9) + 's" begin="' + (delai || 0) + 's" fill="freeze" path="' + d + '"/></circle>';
+  /* invisible avant son départ (sinon il attendrait au point 0, 0 du dessin) */
+  return '<circle class="jeton ' + (cl || "") + '" r="6.5" cx="0" cy="0" opacity="0"><set attributeName="opacity" to="1" begin="' + (delai || 0) + 's" fill="freeze"/><animateMotion dur="' + (dur || 0.9) + 's" begin="' + (delai || 0) + 's" fill="freeze" path="' + d + '"/></circle>';
 }
 
 C("soc-cycle", String.raw`
@@ -201,6 +202,57 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
     etapes: function (k) { return SC[k]; }, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar", "ar-large"); }, dessine: dessine, vitesse: 2600 });
 };
 
+/* Animation : le cycle lecture / exécution d'une machine de von Neumann (assembleur simplifié, fictif) et le trafic sur le bus. */
+WIDGETS_EXT["von-neumann"] = function (z, opt, O) {
+  var PROG = ["LOAD R0, @5", "ADD R0, @6", "STORE R0, @7", "HALT"];
+  var MX = 214, MY = 34, MH = 21; /* mémoire : 8 cases d'adresses 0 à 7 */
+  function yCase(a) { return MY + a * MH + MH / 2; }
+  var P = { ri: [104, 78], r0: [104, 186], ual: [104, 136] };
+  function etapes() {
+    var E = [], mem = PROG.concat(["", "12", "30", "0"]), pc = 0, ri = "", r0 = "", ual = "", bus = 0;
+    function snap(msg, o) { o = o || {}; E.push({ mem: mem.slice(), pc: pc, ri: ri, r0: r0, ual: ual, bus: bus, lit: o.lit === undefined ? -1 : o.lit, cible: o.cible || "", jeton: o.jeton || null, phase: o.phase || "", msg: msg }); }
+    snap("Modèle de <b>von Neumann</b> : le <b>programme</b> (adresses 0 à 3) et les <b>données</b> (5 à 7) sont dans la <b>même mémoire</b>. Le processeur ne garde que quelques registres : le compteur de programme PC, le registre d’instruction RI, un registre de calcul R0. Le programme calcule 12 + 30 et range le résultat à l’adresse 7.");
+    var exec = [
+      function () { r0 = mem[5]; bus++; snap("<b>Exécution</b> de LOAD : la case 5 est lue ; la valeur 12 voyage sur le bus jusqu’au registre R0.", { lit: 5, cible: "r0", phase: "exec", jeton: { t: "12", de: [MX, yCase(5)], a: P.r0 } }); },
+      function () { bus++; ual = r0 + " + " + mem[6] + " = " + (+r0 + +mem[6]); r0 = String(+r0 + +mem[6]); snap("<b>Exécution</b> de ADD : la valeur 30 (case 6) arrive par le bus dans l’<b>UAL</b>, qui calcule 12 + 30 = 42 ; le résultat remplace le contenu de R0.", { lit: 6, cible: "ual", phase: "exec", jeton: { t: "30", de: [MX, yCase(6)], a: P.ual } }); },
+      function () { mem[7] = r0; bus++; ual = ""; snap("<b>Exécution</b> de STORE : la valeur de R0 repart par le bus et s’écrit à l’adresse 7. La mémoire contient maintenant le résultat.", { lit: 7, cible: "mem", phase: "exec", jeton: { t: "42", de: P.r0, a: [MX, yCase(7)] } }); },
+      function () { snap("<b>HALT</b> : la machine s’arrête.", { phase: "exec" }); }
+    ];
+    for (var i = 0; i < PROG.length; i++) {
+      ri = PROG[i]; bus++; pc = i + 1;
+      snap("<b>Lecture</b> de l’instruction : l’unité de contrôle envoie l’adresse PC = " + i + " ; l’instruction « " + PROG[i] + " » arrive par le <b>bus</b> dans RI, et PC passe à " + (i + 1) + ".", { lit: i, cible: "ri", phase: "lecture", jeton: { t: PROG[i], de: [MX, yCase(i)], a: P.ri } });
+      exec[i]();
+    }
+    snap("Bilan : <b>" + bus + " passages sur le bus</b> pour trois instructions utiles (quatre lectures d’instructions, trois de données). Instructions et données empruntent le même chemin, un seul transfert à la fois : c’est le « <b>goulot d’étranglement</b> de von Neumann ». Caches et SoC rapprochent la mémoire des cœurs pour l’atténuer.");
+    return E;
+  }
+  O.lecteur(z, {
+    titre: "cycle d’une machine de von Neumann", sous: "assembleur simplifié", vitesse: 2300,
+    etapes: etapes,
+    prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar"); },
+    dessine: function (sc, e, i, E, saut) {
+      var s = '<svg class="vn" viewBox="0 0 340 244" role="img" aria-label="Processeur, bus et mémoire d’une machine de von Neumann">';
+      s += '<rect class="vn-bloc" x="4" y="4" width="160" height="214" rx="8"/><text class="gd" x="84" y="20" text-anchor="middle">processeur</text>';
+      s += '<rect class="vn-bloc" x="208" y="4" width="128" height="214" rx="8"/><text class="gd" x="272" y="20" text-anchor="middle">mémoire</text>';
+      s += '<rect class="noc' + (e.jeton ? " on" : "") + '" x="170" y="28" width="32" height="186" rx="6"/><text class="pt" x="186" y="121" text-anchor="middle" transform="rotate(-90 186 121)">bus</text>';
+      s += '<g class="bl' + (e.phase === "lecture" ? " on" : "") + '"><rect x="12" y="30" width="144" height="62" rx="6"/></g><text class="pt" x="18" y="45">unité de contrôle</text>';
+      s += '<text x="18" y="63">PC = ' + e.pc + '</text><text x="18" y="82">RI = ' + O.esc(e.ri || "—") + "</text>";
+      s += '<g class="bl' + (e.cible === "ual" ? " on" : "") + '"><rect x="12" y="102" width="144" height="54" rx="6"/></g><text class="pt" x="18" y="117">UAL (calcul)</text><text x="18" y="140">' + O.esc(e.ual || "—") + "</text>";
+      s += '<g class="bl' + (e.cible === "r0" || e.cible === "ual" ? " ok" : "") + '"><rect x="12" y="166" width="144" height="44" rx="6"/></g><text class="pt" x="18" y="181">registre</text><text x="18" y="200">R0 = ' + O.esc(e.r0 || "—") + "</text>";
+      e.mem.forEach(function (v, a) {
+        var y = MY + a * MH, cl = a === e.lit ? (e.cible === "mem" ? " ok" : " on") : "";
+        s += '<g class="bl' + cl + '"><rect x="' + MX + '" y="' + y + '" width="116" height="' + (MH - 2) + '" rx="3"/></g><text class="pt" x="' + (MX + 5) + '" y="' + (y + 14) + '">' + a + '</text><text x="' + (MX + 22) + '" y="' + (y + 14) + '"' + (a >= 5 ? ' class="gd"' : "") + ">" + O.esc(v || "—") + "</text>";
+      });
+      if (e.jeton && !saut) {
+        var j = e.jeton, w = Math.max(26, j.t.length * 7 + 12), d = "M" + j.de[0] + " " + j.de[1] + " L" + j.a[0] + " " + j.a[1];
+        s += '<g class="vn-jeton"><rect x="' + (-w / 2) + '" y="-10" width="' + w + '" height="20" rx="10"/><text x="0" y="4" text-anchor="middle">' + O.esc(j.t) + '</text><animateMotion dur="0.8s" fill="freeze" path="' + d + '"/><animate attributeName="opacity" values="1;1;0" keyTimes="0;0.7;1" dur="1.1s" fill="freeze"/></g>';
+      }
+      s += '<text class="pt" x="170" y="236" text-anchor="middle">transferts sur le bus : ' + e.bus + "</text>";
+      sc.innerHTML = s + "</svg>";
+    }
+  });
+};
+
 CH.push({
   id: "soc", court: "soc", fichier: "soc.py",
   titre: "Systèmes sur puce (SoC)",
@@ -222,6 +274,7 @@ CH.push({
   idees: [
     { id: "i1", t: "Point de départ : le modèle de von Neumann", h: `
 <p>En Première, tu as vu le modèle de <b>von Neumann</b> (1945) : une <b>unité arithmétique et logique</b> qui calcule, une <b>unité de contrôle</b> qui enchaîne les instructions, une <b>mémoire</b> qui contient à la fois le programme et les données, des <b>entrées-sorties</b>, le tout relié par des <b>bus</b>.</p>
+[[w-von-neumann]]
 <p>Dans un ordinateur de bureau, ces fonctions sont réparties sur des composants <b>séparés</b>, assemblés sur une carte mère : le processeur dans son support, des barrettes de RAM qu’on peut changer, une carte graphique enfichée dans un connecteur PCI Express, un disque, une carte réseau. Chaque composant est une puce (ou plusieurs), et ils communiquent par des pistes de cuivre de plusieurs centimètres.</p>
 <div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>circuit intégré</b> (une « puce ») est un morceau de silicium sur lequel sont gravés des millions ou des milliards de <b>transistors</b>, les interrupteurs électroniques qui réalisent les portes logiques de Première.</p></div>
 <div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1971 <b>·</b></span> Intel commercialise le <b>4004</b>, premier microprocesseur sur une seule puce : environ 2 300 transistors. <span class="commit">1965 <b>·</b></span> Gordon Moore avait observé que le nombre de transistors d’une puce doublait à intervalle régulier (il retiendra en 1975 un doublement tous les deux ans) : c’est la « loi de Moore », une observation et non une loi physique. Cette miniaturisation est ce qui a rendu possible le SoC.</p></div>` },

@@ -16,6 +16,7 @@
   --papier:#F6F3EC; --carte:#FFFDF8; --carte2:#EFEAE0; --encre:#14232B; --encre2:#56636B; --ligne:#DDD5C7;
   --canard:#0B5563; --canard-f:#073E49; --canard-c:#DCEBEC;
   --corail:#E5533F; --corail-c:#FBE3DE; --moutarde:#D99A1E; --moutarde-c:#F7EBCB;
+  --corail-t:#B9381F; --moutarde-t:#946408; --sur-corail:#fff;
   --vert:#2E7D4F; --ombre:0 1px 2px rgba(20,35,43,.06),0 6px 18px rgba(20,35,43,.07); --ess-f:#14232B; --ess-t:#F6F3EC;
   --titre:"Avenir Next Condensed","Roboto Condensed","sans-serif-condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
   --texte:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -27,6 +28,7 @@
     --papier:#0D181C; --carte:#14232A; --carte2:#1B2E36; --encre:#ECE6DA; --encre2:#A5B0B3; --ligne:#2A3F47;
     --canard:#5BB8C4; --canard-f:#8BD0D8; --canard-c:#173A42;
     --corail:#FF7B65; --corail-c:#3D2420; --moutarde:#F0BE4F; --moutarde-c:#3A311B;
+    --corail-t:#FF7B65; --moutarde-t:#F0BE4F; --sur-corail:#14232A;
     --vert:#6CC18E; --ombre:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.28); --ess-f:#1D3741; --ess-t:#ECE6DA;
     color-scheme:dark;
   }
@@ -35,11 +37,13 @@
   --papier:#0D181C; --carte:#14232A; --carte2:#1B2E36; --encre:#ECE6DA; --encre2:#A5B0B3; --ligne:#2A3F47;
   --canard:#5BB8C4; --canard-f:#8BD0D8; --canard-c:#173A42;
   --corail:#FF7B65; --corail-c:#3D2420; --moutarde:#F0BE4F; --moutarde-c:#3A311B;
-  --vert:#6CC18E; --ombre:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.28); --ess-f:#1D3741; --ess-t:#ECE6DA;
+  --corail-t:#FF7B65; --moutarde-t:#F0BE4F; --sur-corail:#14232A;
+    --vert:#6CC18E; --ombre:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.28); --ess-f:#1D3741; --ess-t:#ECE6DA;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:72px}
+html:has(.onglets){scroll-padding-top:128px}
 body{margin:0;background:var(--papier);color:var(--encre);font:16px/1.62 var(--texte);overflow-x:hidden}
 a{color:var(--canard)}
 button{font:inherit;color:inherit}
@@ -88,8 +92,8 @@ h1,h2,h3,h4{font-family:var(--titre);font-stretch:condensed;letter-spacing:-.01e
 /* ---------- contenu ---------- */
 main{padding:0 16px 120px;max-width:780px;margin:0 auto}
 @media (min-width:1000px){main{padding:0 32px 120px}}
-.kick{display:inline-block;font:700 12px/1.3 var(--texte);letter-spacing:.13em;text-transform:uppercase;color:var(--corail)}
-.kick.c{color:var(--canard)} .kick.m{color:var(--moutarde)}
+.kick{display:inline-block;font:700 12px/1.3 var(--texte);letter-spacing:.13em;text-transform:uppercase;color:var(--corail-t)}
+.kick.c{color:var(--canard)} .kick.m{color:var(--moutarde-t)}
 .tete{padding:22px 0 14px;border-bottom:1px solid var(--ligne);margin-bottom:18px}
 .tete h1{font-size:clamp(30px,8.4vw,48px);font-weight:800;margin:6px 0 10px;color:var(--encre)}
 .tete.court{padding-bottom:6px;margin-bottom:6px;border:0}
@@ -98,10 +102,10 @@ main{padding:0 16px 120px;max-width:780px;margin:0 auto}
 .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .pastille{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;border-radius:99px;padding:3px 10px;background:var(--carte2);color:var(--encre2);border:1px solid var(--ligne)}
 .pastille.ok{background:var(--canard-c);color:var(--canard-f);border-color:transparent}
-.pastille.non{background:var(--corail-c);color:var(--corail);border-color:transparent}
+.pastille.non{background:var(--corail-c);color:var(--corail-t);border-color:transparent}
 .pastille.bt{background:var(--moutarde-c);color:var(--encre);border-color:transparent}
 h2.sec{font-size:clamp(25px,6.4vw,32px);font-weight:800;margin:34px 0 10px;padding-top:12px;border-top:3px solid var(--encre);display:flex;gap:10px;align-items:baseline}
-h2.sec .n{font:800 15px/1 var(--titre);color:var(--carte);background:var(--corail);border-radius:6px;padding:5px 7px;flex:none;transform:translateY(-3px)}
+h2.sec .n{font:800 15px/1 var(--titre);color:var(--sur-corail);background:var(--corail-t);border-radius:6px;padding:5px 7px;flex:none;transform:translateY(-3px)}
 h3{font-size:22px;font-weight:750;margin:26px 0 8px}
 h4{font-size:18px;font-weight:700;margin:18px 0 6px}
 p{margin:0 0 12px}
@@ -116,7 +120,7 @@ li{margin:4px 0}
 .def{background:var(--carte);border:1px solid var(--ligne);border-left:5px solid var(--canard)}
 .def b:first-child{color:var(--canard-f);font-family:var(--titre);font-size:18px;font-stretch:condensed;letter-spacing:.01em}
 .ex{background:var(--moutarde-c);border:0}
-.ex::before{content:"Exemple";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--moutarde);margin-bottom:6px;filter:brightness(.8)}
+.ex::before{content:"Exemple";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--moutarde-t);margin-bottom:6px}
 .ex.src::before{content:"Exemple · hors cours, source citée"}
 .aut{background:var(--carte);border:1px solid var(--ligne);display:grid;grid-template-columns:46px 1fr;gap:4px 12px}
 .aut .mono{grid-row:span 2;width:46px;height:46px;border-radius:50%;background:var(--canard);color:var(--carte);display:flex;align-items:center;justify-content:center;font:800 17px/1 var(--titre)}
@@ -128,7 +132,7 @@ li{margin:4px 0}
 .plus::before{content:"Pour aller plus loin";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--canard);margin-bottom:6px}
 .plus.hp::before{content:"Hors programme"}
 .attn{background:var(--corail-c)}
-.attn::before{content:"Attention";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--corail);margin-bottom:6px}
+.attn::before{content:"Attention";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--corail-t);margin-bottom:6px}
 .cle{background:var(--canard);color:#fff}
 .cle a{color:#fff}
 :root[data-theme="dark"] .cle{color:var(--papier)}
@@ -142,6 +146,19 @@ details.pli>summary::before{content:"+";flex:none;width:24px;height:24px;border-
 details.pli[open]>summary::before{content:"–"}
 details.pli>div{padding:0 14px 12px}
 .tbl{overflow-x:auto;margin:12px 0;border:1px solid var(--ligne);border-radius:10px;background:var(--carte)}
+/* tableau plus large que l'écran : ombres qui signalent la suite, première colonne figée */
+.tbl.defile{background:linear-gradient(90deg,var(--carte) 30%,color-mix(in srgb,var(--carte) 0%,transparent)) left/36px 100% no-repeat local,linear-gradient(270deg,var(--carte) 30%,color-mix(in srgb,var(--carte) 0%,transparent)) right/36px 100% no-repeat local,radial-gradient(farthest-side at 100% 50%,rgba(0,0,0,.2),transparent) right/14px 100% no-repeat scroll,var(--carte)}
+.tbl.defile tr>:first-child{position:sticky;left:0;z-index:1;background:var(--carte);box-shadow:inset -1px 0 0 var(--ligne)}
+.tbl.defile thead tr>:first-child{background:var(--carte2)}
+@media (max-width:599px){
+  .tbl.empile{overflow:visible;border:0;background:none;border-radius:0}
+  .tbl.empile table,.tbl.empile tbody{display:block}
+  .tbl.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .tbl.empile tr{display:block;background:var(--carte);border:1px solid var(--ligne);border-radius:12px;margin:0 0 10px;padding:4px 0 6px}
+  .tbl.empile td,.tbl.empile tbody th{display:block;border:0;padding:5px 14px;text-align:left;white-space:normal}
+  .tbl.empile tr>:first-child{font:800 16.5px/1.25 var(--titre);font-stretch:condensed;color:var(--encre);border-bottom:1px solid var(--ligne);padding:8px 14px;margin-bottom:2px;text-transform:none;letter-spacing:0;background:none}
+  .tbl.empile [data-l]::before{content:attr(data-l);display:block;font:700 11px/1.3 var(--texte);letter-spacing:.08em;text-transform:uppercase;color:var(--encre2);margin-bottom:1px}
+}
 table{border-collapse:collapse;width:100%;font-size:14.5px}
 th,td{padding:8px 10px;border-bottom:1px solid var(--ligne);text-align:left;vertical-align:top}
 th{font-family:var(--texte);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--encre2);background:var(--carte2)}
@@ -154,7 +171,7 @@ tr:last-child td{border-bottom:0}
 .chiffre{background:var(--carte);border:1px solid var(--ligne);border-top:4px solid var(--corail);border-radius:4px 4px 12px 12px;padding:12px 14px}
 .chiffre b{display:block;font:800 44px/1 var(--titre);font-stretch:condensed;color:var(--corail);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .chiffre:nth-child(3n+2){border-top-color:var(--canard)} .chiffre:nth-child(3n+2) b{color:var(--canard)}
-.chiffre:nth-child(3n+3){border-top-color:var(--moutarde)} .chiffre:nth-child(3n+3) b{color:var(--moutarde)}
+.chiffre:nth-child(3n+3){border-top-color:var(--moutarde)} .chiffre:nth-child(3n+3) b{color:var(--moutarde-t)}
 .chiffre span{display:block;font-size:14.5px;margin-top:6px;line-height:1.4}
 .chiffre small{display:block;font-size:12px;color:var(--encre2);margin-top:6px}
 
@@ -178,6 +195,9 @@ tr:last-child td{border-bottom:0}
 .onglets::-webkit-scrollbar{display:none}
 .onglets a{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:99px;text-decoration:none;color:var(--encre);font-weight:600;font-size:14.5px;border:1px solid var(--ligne);background:var(--carte)}
 .onglets a.act{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+@media (max-width:520px){.onglets{gap:3px;padding:8px 12px}.onglets a{padding:0 9px;font-size:14px}}
+.onglets::after{content:"";flex:none;position:sticky;right:-16px;width:26px;margin-left:-26px;pointer-events:none;background:linear-gradient(90deg,color-mix(in srgb,var(--papier) 0%,transparent),var(--papier) 80%)}
+.onglets.plein::after,.onglets.fin::after{display:none}
 
 /* boutons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--ligne);background:var(--carte);color:var(--encre);cursor:pointer;font-weight:600;text-decoration:none;font-size:15px}
@@ -185,7 +205,7 @@ tr:last-child td{border-bottom:0}
 .btn.p{background:var(--canard);color:#fff;border-color:var(--canard)}
 :root[data-theme="dark"] .btn.p{color:var(--papier)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.p{color:var(--papier)}}
-.btn.c{background:var(--corail);border-color:var(--corail);color:#fff}
+.btn.c{background:var(--corail-t);border-color:var(--corail-t);color:var(--sur-corail)}
 .btn[disabled]{opacity:.45;cursor:default}
 .btns{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
 
@@ -221,11 +241,17 @@ tr:last-child td{border-bottom:0}
 .graph .ax0{stroke:var(--encre2);stroke-width:1}
 .graph .lb{font:11px var(--texte);fill:var(--encre2)}
 .graph .lbv{font:700 11.5px var(--texte);fill:var(--encre)}
+.graph .lbh{font-size:12px;fill:var(--encre);paint-order:stroke;stroke:var(--carte);stroke-width:4px;stroke-linejoin:round}
+.graph .bulle{white-space:normal!important;max-width:min(250px,86vw);width:max-content}
 .graph .bulle{position:absolute;pointer-events:none;background:var(--encre);color:var(--papier);font-size:13px;line-height:1.35;padding:6px 9px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-110%);display:none;z-index:3}
 .graph .bulle b{font-family:var(--titre);font-size:15px}
+.graph .hit{fill:transparent;cursor:crosshair}
+.graph rect.vu{stroke:var(--encre);stroke-width:1.5px}
+.graph svg:has(rect.vu) rect.hb:not(.vu),.graph svg:has(rect.vu) rect.bar:not(.vu){opacity:.45}
 .leg{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
 .leg button{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 10px;border-radius:99px;border:1px solid var(--ligne);background:var(--carte);font-size:13px;cursor:pointer}
-.leg button i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.leg button i{width:12px;height:12px;border-radius:3px;display:inline-block;flex:none}
+.leg button{text-align:left;line-height:1.25;padding-top:4px;padding-bottom:4px}
 .leg button.off{opacity:.4}
 .c1{fill:var(--canard);stroke:var(--canard)} .c2{fill:var(--corail);stroke:var(--corail)} .c3{fill:var(--moutarde);stroke:var(--moutarde)}
 .c4{fill:var(--vert);stroke:var(--vert)} .c5{fill:#7B5EA7;stroke:#7B5EA7} .c6{fill:var(--encre2);stroke:var(--encre2)}
@@ -242,7 +268,7 @@ tr:last-child td{border-bottom:0}
 .q-ch button.faux{border-color:var(--corail);background:var(--corail-c)}
 .q-ch button[disabled]{cursor:default;color:var(--encre);opacity:1}
 .q-exp{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--carte2);font-size:15px}
-.q-exp b.v{color:var(--vert)} .q-exp b.f{color:var(--corail)}
+.q-exp b.v{color:var(--vert)} .q-exp b.f{color:var(--corail-t)}
 .score{font:800 64px/1 var(--titre);color:var(--corail)}
 .fc-zone{perspective:1200px;margin:12px 0}
 .fc{position:relative;min-height:230px;cursor:pointer;border:0;padding:0;width:100%;background:none;display:block;text-align:left}
@@ -293,13 +319,14 @@ tr:last-child td{border-bottom:0}
 .qc:hover{border-color:var(--canard)}
 .qc.red{border-left:6px solid var(--corail)}
 .qc .qt{font:750 19px/1.2 var(--titre);font-stretch:condensed;margin:6px 0 8px;display:block}
-.qc .qd{font-size:13.5px;color:var(--encre2);display:block}
+.qc .qd{font-size:13.5px;color:var(--encre2);display:block;padding-right:62px}
 .qc .spark{position:absolute;right:10px;top:10px;width:64px;height:22px;opacity:.9}
 .qc.bt{background:transparent;border-style:dashed}
 .acces{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0}
 .acces a{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--encre);background:var(--carte);border:1px solid var(--ligne);border-radius:14px;padding:12px;min-height:84px;font-weight:650}
 .acces a svg{width:26px;height:26px;color:var(--corail)}
 .acces a small{font-weight:400;color:var(--encre2);font-size:12.5px}
+@media (max-width:520px){.acces a:last-child:nth-child(odd){grid-column:1/-1}}
 
 /* ressources, auteurs */
 .res-l{list-style:none;padding:0}
@@ -316,6 +343,7 @@ tr:last-child td{border-bottom:0}
 #srch.on{display:block}
 #srch .sbox{max-width:720px;margin:0 auto;padding:12px 16px 80px}
 #srch .sl{display:flex;gap:8px;align-items:center;position:sticky;top:0;padding:8px 0;background:transparent}
+#sq::-webkit-search-cancel-button{display:none}
 #sq{flex:1;min-width:0;height:52px;border-radius:14px;border:2px solid var(--canard);background:var(--carte);color:var(--encre);font:18px var(--texte);padding:0 14px}
 #sq:focus{outline:none;box-shadow:0 0 0 4px var(--canard-c)}
 .sres a{display:block;text-decoration:none;color:var(--encre);background:var(--carte);border:1px solid var(--ligne);border-radius:12px;padding:10px 14px;margin:8px 0}
@@ -336,17 +364,17 @@ tr:last-child td{border-bottom:0}
 .exo h3{margin:4px 0 8px;font-size:21px}
 .exo .enon{font:17px/1.5 var(--serif);margin-bottom:10px}
 .corr{border-top:1px dashed var(--ligne);margin-top:10px}
-.corr>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--corail);list-style:none}
+.corr>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--corail-t);list-style:none}
 .corr>summary::-webkit-details-marker{display:none}
 .corr>summary::after{content:"▾";margin-left:6px}
 .marge{border-left:3px solid var(--moutarde);padding:2px 0 2px 10px;margin:8px 0;font-size:14.5px;color:var(--encre2)}
 .marge b{color:var(--encre)}
 .copie{font:16.5px/1.6 var(--serif);background:var(--papier);border:1px solid var(--ligne);border-radius:10px;padding:12px 14px;margin:8px 0}
 .piege{display:grid;gap:4px;background:var(--carte);border:1px solid var(--ligne);border-radius:12px;padding:12px 14px;margin:10px 0}
-.piege .f{color:var(--corail);font-weight:650}
+.piege .f{color:var(--corail-t);font-weight:650}
 .piege .f::before{content:"✕ ";font-weight:800}
 .piege .v::before{content:"✓ ";font-weight:800;color:var(--vert)}
-.pied{margin-top:50px;padding-top:14px;border-top:3px double var(--ligne);font-size:13px;color:var(--encre2)}
+.pied{margin-top:50px;padding:14px 0 76px;border-top:3px double var(--ligne);font-size:13px;color:var(--encre2)}
 
 @media print{
   .haut,.lat,.voile,.outils-h,.onglets,.btns,.asr-btn,.asr-pan,.asr-voile,#srch,.noprint,.pied{display:none!important}
@@ -367,10 +395,23 @@ tr:last-child td{border-bottom:0}
   html.mo .lat{transition:transform .28s cubic-bezier(.2,.7,.2,1),visibility .28s}
   html.mo .chaine .et.vient{animation:mo-pop .5s cubic-bezier(.2,.9,.3,1.25) both;transform-box:fill-box;transform-origin:50% 0}
   html.mo .chaine .fl.vient{stroke-dasharray:80;animation:mo-trace .5s ease-out both}
-  html.mo .graph .bar{animation:mo-pousse .7s cubic-bezier(.2,.7,.2,1) both;transform-box:fill-box;transform-origin:50% 100%}
+  /* les graphiques se construisent quand ils arrivent à l'écran (classe posée par l'observateur, jamais cachés avant) */
+  html.mo .graph.vu .bar{animation:mo-pousse .7s cubic-bezier(.2,.7,.2,1) both;transform-box:fill-box;transform-origin:50% 100%}
   html.mo .graph .bar.neg{transform-origin:50% 0}
-  html.mo .graph .hb{animation:mo-glisse .7s cubic-bezier(.2,.7,.2,1) both;transform-box:fill-box;transform-origin:0 50%}
-  html.mo .graph .ligne{stroke-dasharray:2000;animation:mo-trace2 1.4s ease-out both}
+  html.mo .graph.vu .hb{animation:mo-glisse .7s cubic-bezier(.2,.7,.2,1) both;transform-box:fill-box;transform-origin:0 50%}
+  html.mo .graph.vu .ligne{stroke-dasharray:2000;animation:mo-trace2 1.4s ease-out both}
+  html.mo .graph.vu .lbv{animation:mo-chiffre .5s ease-out .45s both}
+  html.mo .graph .bulle{animation:mo-fondu .18s ease-out}
+  /* panneaux repliables, recherche, menu, score */
+  html.mo details[open]>:not(summary){animation:mo-deplie .35s cubic-bezier(.2,.7,.2,1)}
+  html.mo details.pli>summary::before{transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+  html.mo details.pli[open]>summary::before{transform:rotate(180deg)}
+  html.mo #srch.on{animation:mo-fondu .22s ease-out}
+  html.mo #srch.on .sbox{animation:mo-entre .35s cubic-bezier(.2,.7,.2,1)}
+  html.mo .voile.on{animation:mo-fondu .25s ease-out}
+  html.mo .score{animation:mo-pop .55s cubic-bezier(.2,.9,.3,1.3)}
+  html.mo .q-carte ul li{animation:mo-entre .4s cubic-bezier(.2,.7,.2,1) both}
+  html.mo .tbl.empile tr{animation:mo-entre .4s cubic-bezier(.2,.7,.2,1) both}
   html.mo .chiffre b{animation:mo-chiffre .6s cubic-bezier(.2,.7,.2,1) both}
   html.mo .fc{transition:transform .5s}
   html.mo .fc.tourne-anim{animation:mo-flip .45s ease-in-out}
@@ -383,6 +424,8 @@ tr:last-child td{border-bottom:0}
   html.mo .qc:hover{transform:translateY(-2px)}
 }
 @keyframes mo-entre{from{opacity:.001;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes mo-deplie{from{opacity:.001;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes mo-fondu{from{opacity:.001}to{opacity:1}}
 @keyframes mo-pop{from{opacity:.001;transform:scale(.92)}to{opacity:1;transform:none}}
 @keyframes mo-trace{from{stroke-dashoffset:80}to{stroke-dashoffset:0}}
 @keyframes mo-trace2{from{stroke-dashoffset:2000}to{stroke-dashoffset:0}}
@@ -396,13 +439,13 @@ tr:last-child td{border-bottom:0}
 /* ---------- animations explicatives ---------- */
 .anim{background:var(--carte);border:1px solid var(--ligne);border-radius:16px;margin:20px 0;overflow:hidden;box-shadow:var(--ombre)}
 .an-tete{display:flex;gap:10px;align-items:center;padding:10px 14px;background:var(--ess-f);color:var(--ess-t)}
-.an-k{flex:none;font:800 10.5px/1 var(--texte);letter-spacing:.16em;text-transform:uppercase;background:var(--corail);color:#fff;padding:5px 7px;border-radius:4px}
+.an-k{flex:none;font:800 10.5px/1 var(--texte);letter-spacing:.16em;text-transform:uppercase;background:var(--corail-t);color:var(--sur-corail);padding:5px 7px;border-radius:4px}
 .an-t{font:800 17px/1.2 var(--titre);font-stretch:condensed}
 .an-scene{padding:10px 8px 2px;background-image:radial-gradient(var(--ligne) 1px,transparent 1.2px);background-size:14px 14px}
 .an-scene svg{display:block;width:100%;max-width:580px;margin:0 auto;height:auto;overflow:visible}
 .an-scene text{font-family:var(--texte)}
 .an-leg{padding:10px 16px 6px;min-height:78px;border-top:1px solid var(--ligne)}
-.an-n{display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--corail);margin-bottom:5px}
+.an-n{display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--corail-t);margin-bottom:5px}
 .an-l{display:block;font:17px/1.45 var(--serif)}
 .an-barre{display:flex;gap:4px;padding:2px 16px}
 .an-barre button{flex:1;height:24px;border:0;background:none;padding:0;cursor:pointer;display:flex;align-items:center}
@@ -414,7 +457,7 @@ tr:last-child td{border-bottom:0}
 .an-cmd{display:flex;justify-content:center;align-items:center;gap:12px;padding:4px 10px 10px}
 .an-b{width:44px;height:44px;border-radius:50%;border:1px solid var(--ligne);background:var(--papier);color:var(--encre);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
 .an-b svg{width:20px;height:20px}
-.an-b.an-jouer{width:56px;height:56px;background:var(--corail);border-color:var(--corail);color:#fff}
+.an-b.an-jouer{width:56px;height:56px;background:var(--corail-t);border-color:var(--corail-t);color:var(--sur-corail)}
 .an-b.an-jouer svg{width:26px;height:26px}
 .an-txt{margin:0 14px 10px;font-size:14px}
 .an-txt summary{cursor:pointer;color:var(--encre2);min-height:36px;display:flex;align-items:center}
@@ -436,13 +479,14 @@ tr:last-child td{border-bottom:0}
 .couv-corps::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,var(--carte) 52%,color-mix(in srgb,var(--carte) 30%,transparent) 100%);pointer-events:none}
 .couv-corps>*{position:relative}
 .couv-num{position:absolute!important;right:10px;top:-14px;font:900 clamp(110px,30vw,190px)/1 var(--titre);font-stretch:condensed;color:transparent;-webkit-text-stroke:2px color-mix(in srgb,var(--corail) 55%,transparent);letter-spacing:-.04em;pointer-events:none;user-select:none}
-.couv-ic{display:flex;width:54px;height:54px;border-radius:14px;background:var(--corail);color:#fff;align-items:center;justify-content:center;margin-bottom:12px;box-shadow:0 6px 16px color-mix(in srgb,var(--corail) 35%,transparent)}
+.couv-ic{display:flex;width:54px;height:54px;border-radius:14px;background:var(--corail-t);color:var(--sur-corail);align-items:center;justify-content:center;margin-bottom:12px;box-shadow:0 6px 16px color-mix(in srgb,var(--corail) 35%,transparent)}
 .couv-ic svg{width:32px;height:32px}
-.couv h1{font-size:clamp(32px,8.8vw,52px);font-weight:900;margin:6px 0 12px;line-height:1.04;max-width:16ch}
+.couv h1{font-size:clamp(32px,8.8vw,52px);font-weight:900;margin:6px 0 12px;line-height:1.04;max-width:16ch;overflow-wrap:break-word;hyphens:auto}
+.couv h1.long{font-size:clamp(26px,7.4vw,48px);max-width:18ch}
 .couv .chapo{font:19px/1.5 var(--serif);margin:0 0 4px;max-width:62ch}
 .couv .chapo::first-letter{float:left;font:900 3.3em/.82 var(--titre);color:var(--corail);margin:6px 8px 0 0}
-.pastille.ani{background:var(--corail);color:#fff;border-color:transparent}
-.reg-h{border-top:0!important;border-bottom:3px solid var(--encre)!important;margin:0 0 8px!important;color:var(--corail)}
+.pastille.ani{background:var(--corail-t);color:var(--sur-corail);border-color:transparent}
+.reg-h{border-top:0!important;border-bottom:3px solid var(--encre)!important;margin:0 0 8px!important;color:var(--corail-t)}
 h2.sec{position:relative}
 h2.sec::after{content:"";position:absolute;left:0;top:-3px;width:72px;height:3px;background:var(--corail)}
 .idee>.lede:first-of-type::first-letter{float:left;font:900 3.1em/.82 var(--titre);color:var(--canard);margin:6px 8px 0 0}
@@ -453,11 +497,13 @@ h2.sec::after{content:"";position:absolute;left:0;top:-3px;width:72px;height:3px
 .qc.bt .qc-ic{color:var(--encre2)}
 .qc .qt{padding-right:30px}
 .ticker{display:flex;align-items:stretch;margin:4px 0 18px;border-top:2px solid var(--encre);border-bottom:2px solid var(--encre);background:var(--carte)}
-.tk-t{flex:none;display:flex;align-items:center;padding:0 12px;background:var(--corail);color:#fff;font:800 11px/1.2 var(--texte);letter-spacing:.14em;text-transform:uppercase}
-.tk-fen{flex:1;min-width:0;overflow:hidden}
-.tk-piste{display:flex;flex-wrap:wrap;gap:0}
+.tk-t{flex:none;display:flex;align-items:center;padding:0 12px;background:var(--corail-t);color:var(--sur-corail);font:800 11px/1.2 var(--texte);letter-spacing:.14em;text-transform:uppercase}
+.tk-fen{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tk-fen::-webkit-scrollbar{display:none}
+.tk-piste{display:flex;flex-wrap:nowrap;width:max-content;gap:0}
+html.mo .tk-fen{overflow:hidden}
 .tk{display:inline-flex;align-items:baseline;gap:6px;padding:9px 14px;border-right:1px solid var(--ligne);text-decoration:none;color:var(--encre);font-size:13.5px;white-space:nowrap}
-.tk b{font:900 18px/1 var(--titre);color:var(--corail)}
+.tk b{font:900 18px/1 var(--titre);color:var(--corail-t)}
 .tk-dup{display:none}
 @media (prefers-reduced-motion:no-preference){
   html.mo .tk-piste{flex-wrap:nowrap;width:max-content;animation:mo-ticker 90s linear infinite}
@@ -543,6 +589,9 @@ var ANIM_MOTEUR = (function () {
   function ease(p) { p = borne(p); return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
   var COUL = { canard: "var(--canard)", corail: "var(--corail)", moutarde: "var(--moutarde)", encre: "var(--encre)", gris: "var(--encre2)", vert: "var(--vert)", ligne: "var(--ligne)", carte: "var(--carte)", papier: "var(--papier)", canardc: "var(--canard-c)", corailc: "var(--corail-c)", moutardec: "var(--moutarde-c)", carte2: "var(--carte2)" };
   function c(n) { return COUL[n] || n; }
+  /* couleurs de texte : corail et moutarde foncés en thème clair (contraste AA sur le papier) */
+  var COUL_T = { corail: "var(--corail-t)", moutarde: "var(--moutarde-t)" };
+  function ct(n) { return COUL_T[n] || c(n); }
 
   var A = {
     W: W, fr: fr, esc: esc,
@@ -553,7 +602,7 @@ var ANIM_MOTEUR = (function () {
     t: function (x, y, txt, o) {
       o = o || {}; var t = o.t || 13, lignes = o.w ? couper(txt, o.w, t, o.g) : [String(txt)];
       var dy = o.v ? -(lignes.length - 1) * t * 0.6 : 0;
-      return '<text x="' + x + '" y="' + (y + dy) + '" text-anchor="' + (o.a || "start") + '" style="font-size:' + t + "px;" + (o.g ? "font-weight:700;" : "") + (o.it ? "font-style:italic;" : "") + "fill:" + c(o.c || "encre") + ";opacity:" + (o.op === undefined ? 1 : o.op) + (o.f ? ";font-family:var(--titre);font-stretch:condensed" : "") + (o.h ? ";paint-order:stroke;stroke:var(--carte);stroke-width:4px;stroke-linejoin:round" : "") + '">' +
+      return '<text x="' + x + '" y="' + (y + dy) + '" text-anchor="' + (o.a || "start") + '" style="font-size:' + t + "px;" + (o.g ? "font-weight:700;" : "") + (o.it ? "font-style:italic;" : "") + "fill:" + ct(o.c || "encre") + ";opacity:" + (o.op === undefined ? 1 : o.op) + (o.f ? ";font-family:var(--titre);font-stretch:condensed" : "") + (o.h ? ";paint-order:stroke;stroke:var(--carte);stroke-width:4px;stroke-linejoin:round" : "") + '">' +
         lignes.map(function (l, k) { return '<tspan x="' + x + '" dy="' + (k ? t * 1.2 : 0) + '">' + esc(l) + "</tspan>"; }).join("") + "</text>";
     },
     /* rectangle : o = { f: remplissage, s: trait, r: arrondi, op, sw } */
@@ -750,7 +799,7 @@ var PROG = [
       titre: "Comment expliquer les crises financières et réguler le système financier ?",
       objectifs: [
         "Connaître les principales caractéristiques de la crise financière des années 1930 et de celle de 2008 (effondrement boursier, faillites en chaîne, chute du PIB et accroissement du chômage).",
-        "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties autoréalisatrices).",
+        "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties auto réalisatrices).",
         "Comprendre les phénomènes de panique bancaire et de faillites bancaires en chaîne.",
         "Connaître les principaux canaux de transmission d’une crise financière à l’économie réelle : effets de richesse négatif, baisse du prix du collatéral et ventes forcées, contraction du crédit.",
         "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l’aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité."],
@@ -815,7 +864,7 @@ var PROG = [
       titre: "Quelles inégalités sont compatibles avec les différentes conceptions de la justice sociale ?",
       objectifs: [
         "Connaître les grandes tendances d’évolution des inégalités économiques depuis le début du XXe siècle et comprendre que les inégalités économiques et sociales présentent un caractère multiforme et cumulatif.",
-        "Savoir interpréter les principaux outils de mesure des inégalités, statique (rapport inter-quantiles, courbe de Lorenz et coefficient de Gini, top 1 %) et dynamique (corrélation de revenu parents-enfants).",
+        "Savoir interpréter les principaux outils de mesure des inégalités, statique (rapport inter-quantiles, courbe de Lorenz et coefficient de Gini, top 1%) et dynamique (corrélation de revenu parents-enfants).",
         "Comprendre que les différentes formes d’égalité (égalité des droits, des chances ou des situations) permettent de définir ce qui est considéré comme juste selon différentes conceptions de la justice sociale (notamment l’utilitarisme, le libertarisme, l’égalitarisme libéral, l’égalitarisme strict).",
         "Comprendre que l’action des pouvoirs publics en matière de justice sociale (fiscalité, protection sociale, services collectifs, mesures de lutte contre les discriminations) s’exerce sous contrainte de financement et fait l’objet de débats en termes d’efficacité (réduction des inégalités), de légitimité (notamment consentement à l’impôt) et de risque d’effets pervers (désincitations)."],
       notions: ["inégalités économiques et sociales", "caractère multiforme et cumulatif des inégalités", "rapport inter-quantiles", "courbe de Lorenz", "coefficient de Gini", "top 1 %", "corrélation des revenus parents-enfants", "égalité des droits", "égalité des chances", "égalité des situations", "utilitarisme", "libertarisme", "égalitarisme libéral", "égalitarisme strict", "fiscalité", "protection sociale", "services collectifs", "discriminations", "consentement à l’impôt", "désincitations"],
@@ -2032,8 +2081,8 @@ ANIMS["e1-pib"] = {
     var x0 = 34, w = 316, yz = 158, sc = 12, bw = w / n;
     var Y = function (v) { return yz - v * sc; };
     var s = "";
-    [-8, -4, 0, 4, 8].forEach(function (t) { s += '<line x1="' + x0 + '" x2="' + (x0 + w) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--' + (t === 0 ? "encre2" : "ligne") + ');stroke-width:1"/>' + A.t(x0 - 5, Y(t) + 4, (t > 0 ? "+" : "") + t + " %", { t: 9.5, a: "end", c: "gris" }); });
-    [1950, 1970, 1990, 2010, 2025].forEach(function (yr) { s += A.t(x0 + (yr - 1950 + 0.5) * bw, 282, String(yr), { t: 9.5, a: "middle", c: "gris" }); });
+    [-8, -4, 0, 4, 8].forEach(function (t) { s += '<line x1="' + x0 + '" x2="' + (x0 + w) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--' + (t === 0 ? "encre2" : "ligne") + ');stroke-width:1"/>' + A.t(x0 - 5, Y(t) + 4, (t > 0 ? "+" : "") + t + " %", { t: 10.5, a: "end", c: "gris" }); });
+    [1950, 1970, 1990, 2010, 2025].forEach(function (yr) { s += A.t(x0 + (yr - 1950 + 0.5) * bw, 282, String(yr), { t: 10.5, a: "middle", c: "gris" }); });
     var etapes = this.etapes;
     var et = etapes[i], fin = et.a, debut = et.de, nb = fin - debut + 1;
     var courant = debut + (nb) * p;
@@ -2120,7 +2169,7 @@ ANIMS["e2-ricardo"] = {
         s += A.r(P.x + 34, y, P.h[k] * 0.8 * q, 18, { f: b.c, op: i === 1 && j === 0 ? 0.45 : 1, s: hl ? "moutarde" : null, sw: 3 });
         s += A.t(P.x + 40 + P.h[k] * 0.8 * q, y + 13, A.fr(P.h[k] * q, 0) + " h", { t: 11.5, g: true, op: q });
       });
-      if (i === 1 && j === 1) s += A.t(P.x + 81, 120, "avantage absolu dans les deux biens", { t: 11.5, g: true, a: "middle", c: "moutarde", op: A.s(p, 0.3, 0.8) });
+      if (i === 1 && j === 1) s += A.t(P.x + 81, 120, "avantage absolu dans les deux biens", { t: 11.5, g: true, a: "middle", c: "moutarde", op: A.s(p, 0.3, 0.8), w: 150 });
       if (i >= 2) {
         var ratio = P.h[0] / P.h[1], q2 = i === 2 ? A.s(p, j * 0.3, j * 0.3 + 0.5) : 1;
         s += A.t(P.x + 81, 120, "1 drap = " + A.fr(ratio, ratio === 1.125 ? 3 : 2) + " vin", { t: 13, g: true, a: "middle", op: q2 });
@@ -2209,9 +2258,9 @@ function ANIM_SERIES(A, x0, y0, w, h, xs, series, ymax, jusqua, opts) {
   opts = opts || {};
   var n = xs.length, X = function (k) { return x0 + w * k / (n - 1); }, Y = function (v) { return y0 - h * v / ymax; };
   var s = "";
-  (opts.ticks || []).forEach(function (t) { s += '<line x1="' + x0 + '" x2="' + (x0 + w) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--ligne);stroke-width:1"/>' + A.t(x0 - 4, Y(t) + 4, t + (opts.u || ""), { t: 9.5, a: "end", c: "gris" }); });
-  (opts.annees || []).forEach(function (yr) { var k = xs.indexOf(yr); if (k >= 0) s += A.t(X(k), y0 + 16, String(yr), { t: 9.5, a: "middle", c: "gris" }); });
-  var kmax = Math.floor(jusqua), fr = jusqua - kmax;
+  (opts.ticks || []).forEach(function (t) { s += '<line x1="' + x0 + '" x2="' + (x0 + w) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--ligne);stroke-width:1"/>' + A.t(x0 - 4, Y(t) + 4, t + (opts.u || ""), { t: 10.5, a: "end", c: "gris" }); });
+  (opts.annees || []).forEach(function (yr) { var k = xs.indexOf(yr); if (k >= 0) s += A.t(X(k), y0 + 16, String(yr), { t: 10.5, a: "middle", c: "gris" }); });
+  var kmax = Math.floor(jusqua), fr = jusqua - kmax, labs = [];
   series.forEach(function (sr) {
     var pts = [];
     for (var k = 0; k <= Math.min(kmax, n - 1); k++) pts.push([X(k), Y(sr.v[k])]);
@@ -2220,8 +2269,12 @@ function ANIM_SERIES(A, x0, y0, w, h, xs, series, ymax, jusqua, opts) {
     s += A.pl(pts, 1, { c: sr.c, sw: sr.sw || 2.4, op: sr.op });
     var der = pts[pts.length - 1], kv = Math.min(kmax, n - 1), val = kmax < n - 1 ? sr.v[kmax] + (sr.v[kmax + 1] - sr.v[kmax]) * fr : sr.v[n - 1];
     s += A.cercle(der[0], der[1], 3.6, { f: sr.c });
-    if (sr.lab !== false) s += A.t(der[0] + 6, der[1] + 4 + (sr.dy || 0), (sr.court ? sr.court + " " : "") + A.fr(val, 1) + (opts.u || ""), { t: 10.5, g: true, c: sr.c });
+    if (sr.lab !== false) labs.push({ x: der[0] + 6, y: der[1] + 4 + (sr.dy || 0), t: (sr.court ? sr.court + " " : "") + A.fr(val, 1) + (opts.u || ""), c: sr.c });
   });
+  /* étiquettes de fin de courbe : écartées d’au moins 12 px pour ne jamais se chevaucher */
+  labs.sort(function (a, b) { return a.y - b.y; });
+  for (var m = 1; m < labs.length; m++) if (labs[m].y - labs[m - 1].y < 12) labs[m].y = labs[m - 1].y + 12;
+  labs.forEach(function (l) { s += A.t(l.x, l.y, l.t, { t: 10.5, g: true, c: l.c }); });
   return s;
 }
 
@@ -2263,7 +2316,7 @@ ANIMS["s2-mass"] = {
     var fin = i < 4 ? this.etapes[i].a : 2025, debut = i === 0 ? 1970 : (i < 4 ? this.etapes[i - 1].a : 2025);
     var jusqua = (debut - 1970) + (fin - debut) * (i < 4 ? p : 1);
     var opC = i === 4 ? 1 - 0.75 * A.s(p, 0, 0.4) : 1;
-    s += A.g(opC, ANIM_SERIES(A, 34, 270, 280, 240, xs, [{ v: g.series[0].v, c: "corail", sw: 3 }], 100, jusqua, { ticks: [0, 20, 40, 60, 80, 100], u: " %", annees: [1970, 1985, 1995, 2009, 2025] }));
+    s += A.g(opC, ANIM_SERIES(A, 38, 270, 276, 240, xs, [{ v: g.series[0].v, c: "corail", sw: 3 }], 100, jusqua, { ticks: [0, 20, 40, 60, 80, 100], u: " %", annees: [1970, 1985, 1995, 2009, 2025] }));
     var jalons = [[1975, "collège unique"], [1985, "objectif 80 %, bac pro"], [2009, "bac pro en 3 ans"]];
     jalons.forEach(function (j) {
       var k = j[0] - 1970; if (k > jusqua) return;
@@ -2272,11 +2325,11 @@ ANIMS["s2-mass"] = {
     });
     if (i === 4) {
       var q = A.s(p, 0.25, 0.75);
-      s += A.r(20, 60, 320, 170, { f: "carte", s: "ligne", r: 12, op: A.s(p, 0.15, 0.4) });
+      s += A.r(20, 60, 320, 182, { f: "carte", s: "ligne", r: 12, op: A.s(p, 0.15, 0.4) });
       s += A.t(180, 86, "Élèves de classes préparatoires (2023-2024)", { t: 13, g: true, a: "middle", op: A.s(p, 0.2, 0.45) });
       s += A.t(36, 124, "enfants de cadres", { t: 12, c: "gris", op: q }) + A.r(36, 130, 260 * 0.537 * q, 22, { f: "canard" }) + A.t(42 + 260 * 0.537 * q, 146, A.fr(53.7 * q, 1) + " %", { t: 13, g: true, op: q });
       s += A.t(36, 178, "enfants d’ouvriers", { t: 12, c: "gris", op: q }) + A.r(36, 184, 260 * 0.064 * q, 22, { f: "corail" }) + A.t(42 + 260 * 0.064 * q, 200, A.fr(6.4 * q, 1) + " %", { t: 13, g: true, op: q });
-      s += A.t(180, 222, "pour 23,0 % de cadres et 18,0 % d’ouvriers dans l’emploi (2024)", { t: 10.5, a: "middle", c: "gris", op: A.s(p, 0.7, 1) });
+      s += A.t(180, 222, "pour 23,0 % de cadres et 18,0 % d’ouvriers dans l’emploi (2024)", { t: 10.5, a: "middle", c: "gris", op: A.s(p, 0.7, 1), w: 270, v: true });
     }
     return s;
   }
@@ -2343,7 +2396,7 @@ ANIMS["s1-marx-weber"] = {
     if (opM > 0.02) {
       var m = A.boite(110, 20, 140, 40, "Bourgeoisie : propriétaires", { k: "cause", t: 12, g: true }) ;
       for (var k = 0; k < 3; k++) m += pers(150 + k * 30, 84, "canard");
-      m += '<line x1="20" x2="340" y1="112" y2="112" style="stroke:var(--encre);stroke-width:3"/>' + A.t(20, 106, "propriété des moyens de production", { t: 10.5, c: "gris" });
+      m += '<line x1="20" x2="340" y1="112" y2="112" style="stroke:var(--encre);stroke-width:3"/>' + A.t(20, 101, "propriété des moyens de production", { t: 10.5, c: "gris", w: 118, v: true });
       var conscience = i >= 2 ? (i === 2 ? A.s(p, 0.2, 0.8) : 1) : 0;
       for (var j = 0; j < 12; j++) {
         var x0 = 30 + j * 26, y0 = 160 + (j % 2) * 26, xf = 120 + (j % 6) * 24, yf = 158 + Math.floor(j / 6) * 26;
@@ -2368,6 +2421,263 @@ ANIMS["s1-marx-weber"] = {
         w += A.cercle(40, 296, 7, { f: "canard" }) + A.t(52, 300, "professeur", { t: 11.5, g: true }) + A.cercle(170, 296, 7, { f: "moutarde" }) + A.t(182, 300, "commerçant aisé", { t: 11.5, g: true });
       }
       s += A.g(opW, w);
+    }
+    return s;
+  }
+};
+
+/* Animations explicatives supplémentaires : S3 (mobilité structurelle), S4 (critères du BIT),
+   S5 (répertoires d'action collective), R1 (conceptions de la justice sociale).
+   Chiffres S3 et S4 recalculés par outils/specialites/ses/verif/renfort_s3s4s5r1.py. */
+
+/* Point situé à la fraction q (0…1) de la longueur d'une ligne brisée */
+function ANIM_LE_LONG(pts, q) {
+  var L = 0, seg = [];
+  for (var i = 1; i < pts.length; i++) { var d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); seg.push(d); L += d; }
+  var r = L * Math.max(0, Math.min(1, q));
+  for (var j = 1; j < pts.length; j++) {
+    if (seg[j - 1] >= r) { var f = seg[j - 1] ? r / seg[j - 1] : 0; return [pts[j - 1][0] + (pts[j][0] - pts[j - 1][0]) * f, pts[j - 1][1] + (pts[j][1] - pts[j - 1][1]) * f]; }
+    r -= seg[j - 1];
+  }
+  return pts[pts.length - 1];
+}
+
+ANIMS["s3-structure"] = {
+  t: "La mobilité structurelle mesurée : les hommes en 2015",
+  h: 340,
+  src: "Source : Insee, enquête Formation et qualification professionnelle 2014-2015 (Insee Première n° 1739, février 2019). Hommes de 35 à 59 ans, comparés à leur père. Mobilité structurelle = moitié de la somme des écarts entre les deux structures (calcul vérifié).",
+  etapes: [
+    { l: "Les pères d’abord : en 2015, on compare la catégorie sociale des hommes de 35 à 59 ans à celle de leur père. Parmi les pères, 8,3 % d’agriculteurs et 13,9 % de cadres.", d: 4 },
+    { l: "Puis les fils : 2,8 % d’agriculteurs seulement, mais 20,4 % de cadres et 25,3 % de professions intermédiaires. En une génération, la structure des emplois s’est déplacée vers le haut.", d: 4.5 },
+    { l: "Des places ont disparu (agriculteurs −5,5 points, artisans et commerçants −3,9, employés et ouvriers −6,2) ; d’autres sont apparues (cadres +6,5, professions intermédiaires +9,4).", d: 4.5 },
+    { l: "Même si chacun voulait rester dans le groupe de son père, ce serait impossible : au moins 15,8 fils sur 100 doivent changer de groupe. C’est la mobilité structurelle, la moitié de la somme des écarts (31,5 ÷ 2).", d: 5 },
+    { l: "Or 65,2 % des hommes ont changé de groupe (mobilité observée). La structure n’en explique qu’environ un quart (15,8 ÷ 65,2 ≈ 24 %) : le reste est la mobilité nette, ou de circulation.", d: 5 }
+  ],
+  rendu: function (A, i, p) {
+    var noms = ["Agriculteurs", "Artisans, commerçants", "Cadres", "Professions intermédiaires", "Employés et ouvriers qualifiés", "Employés et ouvriers non qualifiés"];
+    var P = [8.3, 13.0, 13.9, 15.9, 35.6, 13.1], F = [2.8, 9.1, 20.4, 25.3, 32.4, 10.1];
+    var x0 = 112, sc = 4.9, y0 = 34, rh = 37, s = "";
+    s += A.r(x0 - 2, 8, 12, 9, { f: "gris", r: 2, op: 0.55 }) + A.t(x0 + 15, 16, "pères (origine)", { t: 11, c: "gris" });
+    s += A.r(x0 + 112, 8, 12, 9, { f: "canard", r: 2, op: i >= 1 ? 1 : 0.3 }) + A.t(x0 + 129, 16, "fils (position)", { t: 11, c: "canard", g: true, op: i >= 1 ? 1 : 0.4 });
+    var somme = 0;
+    noms.forEach(function (n, k) {
+      var y = y0 + k * rh, qP = i === 0 ? A.s(p, k * 0.08, 0.45 + k * 0.08) : 1, qF = i === 0 ? 0 : i === 1 ? A.s(p, k * 0.08, 0.45 + k * 0.08) : 1;
+      s += A.t(x0 - 8, y + 13, n, { t: 10.5, a: "end", w: 100, v: true, c: "encre" });
+      s += A.r(x0, y, P[k] * sc * qP, 11, { f: "gris", r: 2, op: 0.55 });
+      s += A.t(x0 + P[k] * sc * qP + 4, y + 10, A.fr(P[k] * qP, 1), { t: 10, c: "gris", op: qP });
+      if (qF > 0) {
+        s += A.r(x0, y + 13, F[k] * sc * qF, 11, { f: "canard", r: 2 });
+        s += A.t(x0 + F[k] * sc * qF + 4, y + 23, A.fr(F[k] * qF, 1), { t: 10.5, g: true, c: "canard", op: qF });
+      }
+      var d = F[k] - P[k];
+      if (i >= 2) {
+        var qd = i === 2 ? A.s(p, 0.1 + k * 0.1, 0.4 + k * 0.1) : 1;
+        s += A.t(356, y + 18, (d > 0 ? "+" : "−") + A.fr(Math.abs(d), 1), { t: 12, g: true, a: "end", c: d > 0 ? "vert" : "corail", op: qd });
+        if (i === 3) somme += Math.abs(d) * A.s(p, k * 0.1, 0.1 + k * 0.1);
+      }
+    });
+    var yb = y0 + 6 * rh + 8;
+    if (i === 2) s += A.t(180, yb + 22, "places créées : +15,9 points · places disparues : −15,6 points", { t: 11.5, g: true, a: "middle", op: A.s(p, 0.7, 1), w: 320 });
+    if (i === 3) {
+      s += A.t(180, yb + 14, "somme des écarts : " + A.fr(somme, 1) + " points", { t: 12, a: "middle", c: "gris" });
+      s += A.t(180, yb + 40, "mobilité structurelle = " + A.fr(somme, 1) + " ÷ 2 = " + A.fr(somme / 2, 1) + " %", { t: 14.5, g: true, a: "middle", c: "corail", f: true, op: A.s(p, 0.65, 1) });
+    }
+    if (i === 4) {
+      var q = A.s(p, 0, 0.6), q2 = A.s(p, 0.45, 1);
+      s += A.t(20, yb + 10, "Mobilité observée des hommes : " + A.fr(65.2 * q, 1) + " %", { t: 11.5, g: true });
+      s += A.r(20, yb + 18, 320, 16, { f: "carte2", r: 5 }) + A.r(20, yb + 18, 320 * 0.652 * q, 16, { f: "canard", r: 5, op: 0.35 });
+      s += A.r(20, yb + 18, 320 * 0.158 * q2, 16, { f: "corail", r: 5 });
+      s += A.t(24, yb + 50, "dont structurelle : 15,8 points, soit 24 %", { t: 11.5, g: true, c: "corail", op: q2 });
+      s += A.t(24, yb + 66, "le reste, mobilité nette : 49,4 points", { t: 11.5, g: true, c: "canard", op: q2 });
+    }
+    return s;
+  }
+};
+
+ANIMS["s4-bit"] = {
+  t: "Chômeur, halo ou inactif ? Les trois critères du BIT",
+  h: 340,
+  src: "Cas fictifs construits pour le site. Définitions : Insee (chômage au sens du BIT, halo autour du chômage). Chiffres : Insee, enquête Emploi 2025 (Insee Première n° 2096), part de la population des 15-64 ans.",
+  etapes: [
+    { l: "Le Bureau international du travail classe chacun avec trois critères, dans l’ordre. D’abord : avoir travaillé, ne serait-ce qu’une heure, pendant la semaine de référence.", d: 3.5 },
+    { l: "Un étudiant a fait 3 heures de livraison cette semaine-là : il est en emploi. Une heure suffit. S’il souhaite travailler davantage et qu’il est disponible, il est en sous-emploi.", d: 4.5 },
+    { l: "Une ancienne vendeuse n’a pas travaillé, peut commencer tout de suite et envoie des candidatures : les trois critères sont remplis, elle est chômeuse au sens du BIT.", d: 5 },
+    { l: "Une mère cherche un emploi mais ne peut pas commencer avant un mois, faute de garde d’enfant : pas disponible, donc pas chômeuse. Elle souhaite travailler : elle est dans le halo autour du chômage.", d: 5 },
+    { l: "Un ouvrier de 58 ans, disponible, a cessé de chercher, découragé : sans recherche active, il n’est pas chômeur au sens du BIT. Il souhaite travailler : il est lui aussi dans le halo.", d: 5 },
+    { l: "Un retraité qui ne souhaite pas travailler est inactif. En 2025, 5,8 % des 15-64 ans sont au chômage et 4,5 % dans le halo : 10,3 % sont sans emploi et souhaitent travailler.", d: 5 }
+  ],
+  rendu: function (A, i, p) {
+    var s = "", bx = 36, bw = 190, bh = 34;
+    var Q = [{ y: 30, t: "A travaillé au moins 1 heure dans la semaine ?" }, { y: 92, t: "Disponible dans les 2 semaines ?" }, { y: 154, t: "A cherché activement dans le mois ?" }, { y: 230, t: "Souhaite travailler ?" }];
+    var R = { emploi: { y: 30, t: "En emploi", k: "canard" }, chomeur: { y: 154, t: "Chômeur (BIT)", k: "corail" }, halo: { y: 230, t: "Halo du chômage", k: "moutarde" }, inactif: { y: 292, t: "Inactif", k: "gris" } };
+    var rx = 250, rw = 104;
+    var qa = i === 0 ? p : 1;
+    /* rails : « non » descend à gauche vers la question 4, « oui » descend au centre */
+    var rail = '<line x1="12" x2="12" y1="' + (92 + bh / 2) + '" y2="' + (230 + bh / 2) + '" style="stroke:var(--ligne);stroke-width:2"/>';
+    s += A.g(A.s(qa, 0.3, 0.7), rail +
+      A.fl(bx, 92 + bh / 2, 12, 92 + bh / 2, { c: "ligne", sw: 2, tete: false }) + A.fl(bx, 154 + bh / 2, 12, 154 + bh / 2, { c: "ligne", sw: 2, tete: false }) +
+      A.fl(12, 230 + bh / 2, bx - 2, 230 + bh / 2, { c: "ligne", sw: 2 }) +
+      A.t(15, 92 + bh / 2 - 5, "non", { t: 10.5, c: "gris", it: true }) + A.t(15, 154 + bh / 2 - 5, "non", { t: 10.5, c: "gris", it: true }) +
+      A.fl(bx + bw / 2, 30 + bh, bx + bw / 2, 92 - 2, { c: "ligne", sw: 2 }) + A.fl(bx + bw / 2, 92 + bh, bx + bw / 2, 154 - 2, { c: "ligne", sw: 2 }) +
+      A.t(bx + bw / 2 + 6, 82, "non", { t: 10.5, c: "gris", it: true }) + A.t(bx + bw / 2 + 6, 144, "oui", { t: 10.5, c: "gris", it: true }) +
+      A.fl(bx + bw, 30 + bh / 2, rx - 2, 30 + bh / 2, { c: "ligne", sw: 2 }) + A.t(bx + bw + 6, 30 + bh / 2 - 5, "oui", { t: 10.5, c: "gris", it: true }) +
+      A.fl(bx + bw, 154 + bh / 2, rx - 2, 154 + bh / 2, { c: "ligne", sw: 2 }) + A.t(bx + bw + 6, 154 + bh / 2 - 5, "oui", { t: 10.5, c: "gris", it: true }) +
+      A.fl(bx + bw, 230 + bh / 2, rx - 2, 230 + bh / 2, { c: "ligne", sw: 2 }) + A.t(bx + bw + 6, 230 + bh / 2 - 5, "oui", { t: 10.5, c: "gris", it: true }) +
+      A.fl(bx + bw / 2, 230 + bh, bx + bw / 2, 292 + bh / 2, { c: "ligne", sw: 2, tete: false }) + A.fl(bx + bw / 2, 292 + bh / 2, rx - 2, 292 + bh / 2, { c: "ligne", sw: 2 }) +
+      A.t(bx + bw / 2 + 6, 280, "non", { t: 10.5, c: "gris", it: true }));
+    /* trajets : de l'entrée jusqu'au bord de la case d'arrivée ; le tracé passe sous les cases */
+    var cx = bx + bw / 2, M = function (y) { return y + bh / 2; }, fin = rx - 3;
+    var T = {
+      1: { pts: [[cx, 8], [cx, M(30)], [fin, M(30)]], c: "canard", lab: "3 h de livraison" },
+      2: { pts: [[cx, 8], [cx, M(30)], [cx, M(92)], [cx, M(154)], [fin, M(154)]], c: "corail", lab: "disponible, cherche" },
+      3: { pts: [[cx, 8], [cx, M(30)], [cx, M(92)], [12, M(92)], [12, M(230)], [cx, M(230)], [fin, M(230)]], c: "moutarde", lab: "pas disponible" },
+      4: { pts: [[cx, 8], [cx, M(30)], [cx, M(92)], [cx, M(154)], [12, M(154)], [12, M(230)], [cx, M(230)], [fin, M(230)]], c: "moutarde", lab: "ne cherche plus" },
+      5: { pts: [[cx, 8], [cx, M(30)], [cx, M(92)], [12, M(92)], [12, M(230)], [cx, M(230)], [cx, M(292)], [fin, M(292)]], c: "gris", lab: "ne veut pas travailler" }
+    };
+    var tr = T[i], qt = A.s(p, 0, 0.85);
+    if (tr) s += A.pl(tr.pts, qt, { c: tr.c, sw: 3.2, op: 0.8 });
+    Q.forEach(function (q, k) { s += A.boite(bx, q.y, bw, bh, q.t, { k: "meca", t: 11.5, op: i === 0 ? A.s(p, k * 0.15, 0.3 + k * 0.15) : 1 }); });
+    var bilan = i === 5 && p > 0.75;
+    Object.keys(R).forEach(function (k, j) {
+      var r = R[k], q = i === 0 ? A.s(p, 0.5 + j * 0.1, 0.8 + j * 0.1) : 1;
+      var txt = bilan && k === "chomeur" ? "Chômage : 5,8 %" : bilan && k === "halo" ? "Halo : 4,5 %" : r.t;
+      s += A.boite(rx, r.y, rw, bh, txt, { k: k === "chomeur" ? "effet" : k === "halo" ? "frein" : k === "emploi" ? "cause" : "neutre", t: 11.5, g: true, op: q });
+    });
+    if (tr) {
+      var pos = ANIM_LE_LONG(tr.pts, qt);
+      s += A.cercle(pos[0], pos[1], 8, { f: tr.c, s: "carte", sw: 2.5 });
+      s += A.t(rx + rw, pos[1] - 21, tr.lab, { t: 11, g: true, c: tr.c === "gris" ? "encre" : tr.c, h: true, a: "end", op: A.s(p, 0.8, 1) });
+    }
+    return s;
+  }
+};
+
+ANIMS["s5-tilly"] = {
+  t: "Comment le répertoire d’action collective change",
+  h: 330,
+  src: "D’après Charles Tilly, <i>La France conteste, de 1600 à nos jours</i>, 1986. Dates : abolition du délit de coalition (loi du 25 mai 1864), liberté syndicale (loi du 21 mars 1884) ; tribunal administratif de Paris, 3 février 2021 (L’Affaire du siècle).",
+  etapes: [
+    { l: "Charles Tilly appelle répertoire d’action collective l’ensemble limité des moyens d’action qu’un groupe connaît et juge légitimes à une époque. Il ne change que lentement.", d: 3.5 },
+    { l: "Du XVIIe au milieu du XIXe siècle : un répertoire local et patronné. On agit dans sa communauté, souvent par l’intermédiaire d’un notable, directement contre l’adversaire : charivaris, émeutes de subsistance, révoltes contre l’impôt.", d: 5 },
+    { l: "Au XIXe siècle, l’État national et l’industrie s’imposent : les décisions se prennent dans la capitale et les grandes entreprises. Les luttes changent d’échelle et s’adressent à l’État.", d: 4.5 },
+    { l: "Vers le milieu du XIXe siècle naît un répertoire national et autonome : grève (le délit de coalition est aboli en 1864), syndicats (autorisés en 1884), manifestation, pétition, réunion publique. Des organisations permanentes agissent en leur nom propre.", d: 5.5 },
+    { l: "Depuis la fin du XXe siècle, le répertoire s’enrichit : actions médiatiques, contre-expertise, pétitions en ligne, recours en justice (L’Affaire du siècle, jugée le 3 février 2021), désobéissance civile, marches pour le climat dans de nombreux pays (2019).", d: 5.5 },
+    { l: "Les anciens moyens ne disparaissent pas : la grève et la manifestation restent au cœur des mobilisations de 2023 contre la réforme des retraites. Le répertoire s’élargit : les militants combinent les formes.", d: 4.5 }
+  ],
+  rendu: function (A, i, p) {
+    var s = "", X = function (an) { return 22 + (an - 1600) * 316 / 430; }, ya = 300;
+    var qa = i === 0 ? A.s(p, 0, 0.7) : 1;
+    s += A.fl(X(1600), ya, X(1600) + (X(2030) - X(1600)) * qa, ya, { c: "encre", sw: 1.6 });
+    [1600, 1700, 1800, 1900, 2000].forEach(function (an, k) {
+      var q = i === 0 ? A.s(p, 0.1 + k * 0.12, 0.3 + k * 0.12) : 1;
+      s += '<line x1="' + X(an) + '" x2="' + X(an) + '" y1="' + (ya - 4) + '" y2="' + (ya + 4) + '" style="stroke:var(--encre);stroke-width:1.5;opacity:' + q + '"/>' + A.t(X(an), ya + 18, String(an), { t: 11, a: "middle", c: "gris", op: q });
+    });
+    if (i === 0) s += A.boite(60, 70, 240, 74, "Répertoire : les moyens d’action connus et jugés légitimes à une époque", { k: "cause", t: 13, g: true, op: A.s(p, 0.5, 0.9) });
+    /* bande 1 : local et patronné (1600-1850) */
+    if (i >= 1) {
+      var q1 = i === 1 ? A.s(p, 0, 0.4) : 1, op1 = i >= 3 ? 0.55 : 1;
+      s += A.r(X(1600), 252, (X(1850) - X(1600)) * q1, 34, { f: "moutardec", s: "moutarde", r: 6, op: op1 });
+      s += A.t(X(1600) + 8, 266, "local et patronné", { t: 12, g: true, c: "moutarde", op: q1 * op1 });
+      s += A.t(X(1600) + 8, 280, "village, notable", { t: 10.5, c: "gris", op: q1 * op1 });
+      if (i <= 2) ["charivari", "émeute de subsistance", "révolte contre l’impôt"].forEach(function (f, k) {
+        var q = i === 1 ? A.s(p, 0.35 + k * 0.15, 0.6 + k * 0.15) : 1;
+        s += A.boite(18 + k * 112, 140 + (k % 2) * 40, 104, 32, f, { k: "frein", t: 11.5, op: q * (i === 2 ? 0.5 : 1) });
+      });
+    }
+    /* changement d'échelle : les villages convergent vers l'État */
+    if (i === 2) {
+      var vil = [[40, 70], [90, 34], [140, 72], [270, 50], [320, 84], [220, 28]], cE = [180, 100];
+      vil.forEach(function (v, k) {
+        var q = A.s(p, 0.1 + k * 0.06, 0.55 + k * 0.06);
+        s += A.cercle(v[0], v[1], 7, { f: "moutarde", op: 0.8 }) + A.fl(v[0], v[1], v[0] + (cE[0] - v[0]) * 0.8 * q, v[1] + (cE[1] - v[1]) * 0.8 * q, { c: "canard", sw: 1.8, p: q > 0 ? 1 : 0 });
+      });
+      s += A.boite(cE[0] - 70, cE[1] - 2, 140, 30, "État national, industrie", { k: "cause", t: 12, g: true, op: A.s(p, 0.45, 0.8) });
+    }
+    /* bande 2 : national et autonome (1850-) */
+    if (i >= 3) {
+      var q2 = i === 3 ? A.s(p, 0, 0.45) : 1;
+      s += A.r(X(1850), 252, (X(2026) - X(1850)) * q2, 34, { f: "canardc", s: "canard", r: 6 });
+      s += A.t(X(1850) + 5, 266, "national, autonome", { t: 11.5, g: true, c: "canard", op: q2 });
+      s += A.t(X(1850) + 6, 280, "syndicats, partis", { t: 10.5, c: "gris", op: q2 });
+      [[1864, "1864"], [1884, "1884"]].forEach(function (d, k) {
+        var q = i === 3 ? A.s(p, 0.35 + k * 0.1, 0.55 + k * 0.1) : 1;
+        s += A.cercle(X(d[0]), ya, 4.5, { f: "canard", op: q });
+      });
+      if (i === 3) ["grève (1864)", "syndicats (1884)", "manifestation", "pétition, réunion"].forEach(function (f, k) {
+        var q = A.s(p, 0.4 + k * 0.12, 0.65 + k * 0.12);
+        s += A.boite(14 + (k % 2) * 170, 60 + Math.floor(k / 2) * 46, 160, 36, f, { k: "cause", t: 12.5, g: true, op: q });
+      });
+    }
+    /* bande 3 : élargissement (fin du XXe siècle -) */
+    if (i >= 4) {
+      var q3 = i === 4 ? A.s(p, 0, 0.4) : 1;
+      s += A.r(X(1975), 210, (X(2026) - X(1975)) * q3, 36, { f: "corailc", s: "corail", r: 6 });
+      s += A.t(X(1975) - 6, 224, "élargi", { t: 12, g: true, a: "end", c: "corail", op: q3 });
+      s += A.t(X(1975) - 6, 238, "médias, justice, en ligne", { t: 10.5, a: "end", c: "gris", op: q3 });
+      if (i === 4) ["action médiatique", "contre-expertise", "pétition en ligne", "recours en justice (2021)", "désobéissance civile", "marches pour le climat (2019)"].forEach(function (f, k) {
+        var q = A.s(p, 0.3 + k * 0.09, 0.55 + k * 0.09);
+        s += A.boite(14 + (k % 2) * 170, 22 + Math.floor(k / 2) * 44, 160, 34, f, { k: "effet", t: 12, op: q });
+      });
+    }
+    if (i === 5) {
+      var q5 = A.s(p, 0.1, 0.6);
+      s += A.boite(30, 40, 300, 46, "2023, retraites : grèves et manifestations, mais aussi pétitions et réseaux sociaux", { k: "cause", t: 12.5, g: true, op: q5 });
+      s += A.fl(316, 92, 316, 204, { c: "canard", sw: 2, p: A.s(p, 0.4, 0.8) });
+      s += A.t(306, 150, "les couches s’empilent", { t: 12, g: true, a: "end", c: "canard", op: A.s(p, 0.6, 1), h: true });
+    }
+    return s;
+  }
+};
+
+ANIMS["r1-voile"] = {
+  t: "Trois sociétés, quatre conceptions de la justice",
+  h: 330,
+  src: "Exemple fictif construit pour le site (revenus en milliers d’euros par an, sommes vérifiées). Ici, pour simplifier, le bien-être total est mesuré par la somme des revenus. Auteurs : J. Bentham et J. S. Mill ; J. Rawls, <i>Théorie de la justice</i>, 1971 ; R. Nozick, <i>Anarchie, État et utopie</i>, 1974.",
+  etapes: [
+    { l: "Trois sociétés de cinq personnes (revenus fictifs, en milliers d’euros par an). A est parfaitement égale ; B produit le plus, mais avec de fortes inégalités ; C est inégale, mais moins que B.", d: 4 },
+    { l: "Utilitarisme : est juste la société où le bien-être total est le plus grand. En le mesurant par la somme des revenus, B l’emporte : 310, contre 150 pour A et 260 pour C.", d: 4.5 },
+    { l: "Égalitarisme strict : est juste la société où les situations sont égales. Seule A convient, même si chacun y est moins riche qu’une partie des habitants de B et C.", d: 4 },
+    { l: "Rawls : choisis sans savoir quelle place tu occuperas, derrière un « voile d’ignorance ». Prudent, tu regardes la pire place : 30 en A, 10 en B, 38 en C.", d: 5 },
+    { l: "Principe de différence : les inégalités de C sont acceptables, car le plus défavorisé y vit mieux que dans la société égale (38 contre 30). Rawls choisit C, à condition que les libertés de base et l’égalité des chances soient garanties.", d: 5.5 },
+    { l: "Libertarisme (Nozick) : on ne compare pas les résultats. Une répartition est juste si chacun a acquis ses revenus par le travail, l’échange libre ou le don ; prendre aux uns pour donner aux autres porte atteinte à leurs droits.", d: 5 }
+  ],
+  rendu: function (A, i, p) {
+    var S = [{ n: "Société A", v: [30, 30, 30, 30, 30] }, { n: "Société B", v: [10, 25, 50, 90, 135] }, { n: "Société C", v: [38, 42, 48, 58, 74] }];
+    var base = 222, k = 1.18, s = "";
+    var choix = i === 1 ? 1 : i === 2 ? 0 : i === 4 ? 2 : -1, qc = A.s(p, 0.35, 0.8);
+    S.forEach(function (so, j) {
+      var x0 = 14 + j * 116, tot = so.v.reduce(function (a, b) { return a + b; }, 0), mn = Math.min.apply(null, so.v);
+      var choisi = choix === j, eteint = choix >= 0 && !choisi;
+      if (choisi) s += A.r(x0 - 6, 30, 110, base - 30 + 34, { f: "moutardec", s: "moutarde", r: 10, op: qc });
+      s += A.t(x0 + 49, 48, so.n, { t: 14, g: true, a: "middle", f: true, op: eteint ? 0.45 : 1 });
+      so.v.forEach(function (v, m) {
+        var q = i === 0 ? A.s(p, j * 0.2 + m * 0.04, j * 0.2 + m * 0.04 + 0.35) : 1;
+        var pire = (i === 3 || i === 4) && v === mn && m === 0;
+        var h = v * k * q;
+        s += A.r(x0 + m * 20, base - h, 16, h, { f: pire ? "corail" : j === 0 ? "gris" : j === 1 ? "canard" : "vert", r: 2, op: eteint ? 0.3 : (i === 3 && !pire ? 0.35 : 1) });
+        if (i === 0 || pire) s += A.t(x0 + m * 20 + 8, base - h - 4, String(Math.round(v * q)), { t: 10, a: "middle", g: pire, c: pire ? "corail" : "gris", op: i === 0 ? q : (i === 3 ? A.s(p, 0.5, 0.9) : 1) });
+      });
+      s += '<line x1="' + (x0 - 3) + '" x2="' + (x0 + 101) + '" y1="' + base + '" y2="' + base + '" style="stroke:var(--encre2);stroke-width:1"/>';
+      if (i === 1) s += A.t(x0 + 49, base + 22, "total : " + Math.round(tot * A.s(p, 0, 0.5)), { t: 12.5, g: true, a: "middle", c: choisi ? "encre" : "gris" });
+      if (i === 2) s += A.t(x0 + 49, base + 22, j === 0 ? "aucun écart" : "écart : " + (Math.max.apply(null, so.v) - mn), { t: 12.5, g: true, a: "middle", c: choisi ? "encre" : "gris", op: A.s(p, 0.1, 0.5) });
+      if (i === 3 || i === 4) s += A.t(x0 + 49, base + 22, "pire place : " + mn, { t: 12.5, g: true, a: "middle", c: j === 2 && i === 4 ? "corail" : "gris" });
+    });
+    if (i === 3) {
+      /* le voile : un rideau translucide passe sur les trois sociétés */
+      var v = A.s(p, 0, 0.45) * (1 - A.s(p, 0.55, 0.85));
+      s += A.r(4, 56, 352, base - 52, { f: "encre", r: 10, op: 0.55 * v });
+      s += A.t(180, 140, "Quelle place auras-tu ?", { t: 16, g: true, a: "middle", c: "papier", op: v, f: true });
+    }
+    if (i === 4) s += A.fl(14 + 8, base - 30 * k - 10, 14 + 232 + 8, base - 38 * k - 18, { c: "corail", sw: 2, p: A.s(p, 0.1, 0.6), tir: true });
+    var verdict = ["", "Utilitarisme → B", "Égalitarisme strict → A", "", "Rawls → C", ""][i];
+    if (verdict) s += A.t(180, base + 56, verdict, { t: 16, g: true, a: "middle", c: "corail", f: true, op: A.s(p, 0.5, 0.9) });
+    if (i === 5) {
+      var q5 = A.s(p, 0.2, 0.7);
+      s += A.r(20, 56, 320, 112, { f: "carte", s: "canard", r: 12, op: q5 });
+      s += A.t(180, 92, "Nozick ne choisit pas un tableau :", { t: 13.5, g: true, a: "middle", c: "canard", op: q5 });
+      s += A.t(180, 118, "les trois peuvent être justes", { t: 13, a: "middle", op: q5 });
+      s += A.t(180, 142, "si les revenus ont été acquis légitimement.", { t: 13, a: "middle", op: q5 });
+      s += A.t(180, base + 56, "Libertarisme → la procédure, pas le résultat", { t: 14, g: true, a: "middle", c: "corail", f: true, op: A.s(p, 0.6, 1), w: 330 });
     }
     return s;
   }
@@ -2463,7 +2773,7 @@ ANIMS["e3-spirale"] = {
     }
     noeuds.forEach(function (n, k) {
       var q = pos(n.a), act = (i <= 3 && k <= i) || i >= 4;
-      s += A.boite(q[0] - 50, q[1] - 19, 100, 38, n.t + (act ? (sens < 0 ? " ↓" : (i === 5 || k === 0 ? " ↑" : "")) : ""), { k: act ? (sens < 0 ? "effet" : "cause") : "neutre", t: 12.5, g: true });
+      var lg = k === 3; s += A.boite(lg ? 0 : q[0] - 50, q[1] - (lg ? 22 : 19), lg ? 110 : 100, lg ? 44 : 38, n.t + (act ? (sens < 0 ? " ↓" : (i === 5 || k === 0 ? " ↑" : "")) : ""), { k: act ? (sens < 0 ? "effet" : "cause") : "neutre", t: lg ? 11.5 : 12.5, g: true });
     });
     var ch = i <= 1 ? 7.4 : i === 2 ? A.l(7.4, 9.1, A.s(p, 0, 1)) : i === 3 ? A.l(9.1, 9.8, A.s(p, 0, 1)) : i === 4 ? 9.8 : A.l(9.8, 8.4, A.s(p, 0, 1));
     s += A.jauge(110, 300, 140, ch, 12, { c: i >= 5 ? "vert" : "corail", l: "chômage (illustratif)", val: A.fr(ch, 1) + " %" });
@@ -2819,9 +3129,9 @@ ANIMS["e4-contagion"] = {
       if (k === "A" && i === 1) r = 24 - 4 * A.s(p, 0, 1);
       s += A.cercle(c[0], c[1], r, { f: f, s: "carte", sw: 3 });
       s += A.t(c[0], c[1] + 6, k, { t: 17, g: true, a: "middle", c: "carte", f: true });
-      if (faillite[k]) s += A.t(c[0], c[1] + 40, "faillite", { t: 11, g: true, a: "middle", c: "corail", h: true });
+      if (faillite[k]) s += A.t(c[0], c[1] + (k === "E" ? 40 : -31), "faillite", { t: 11, g: true, a: "middle", c: "corail", h: true });
     });
-    if (i === 1) s += A.jauge(20, 120, 100, 10 * (1 - A.s(p, 0, 1)) + 1, 11, { c: "corail", l: "fonds propres de A" });
+    if (i === 1) s += A.jauge(14, 120, 84, 10 * (1 - A.s(p, 0, 1)) + 1, 11, { c: "corail", l: "fonds propres de A" });
     if (i === 3) {
       for (var k = 0; k < 12; k++) {
         var q = A.s(p, k * 0.05, 0.4 + k * 0.05), gauche = k < 6, j = k % 6;
@@ -2857,7 +3167,7 @@ CH.e4 = {
   ],
   objectifs: [
     { bo: "Connaître les principales caractéristiques de la crise financière des années 1930 et de celle de 2008 (effondrement boursier, faillites en chaîne, chute du PIB et accroissement du chômage).", clair: "Savoir raconter les deux crises avec leurs dates et leurs chiffres clés.", voir: "e4-1" },
-    { bo: "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties autoréalisatrices).", clair: "Expliquer pas à pas comment une bulle gonfle et éclate, avec un exemple.", voir: "e4-2" },
+    { bo: "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties auto réalisatrices).", clair: "Expliquer pas à pas comment une bulle gonfle et éclate, avec un exemple.", voir: "e4-2" },
     { bo: "Comprendre les phénomènes de panique bancaire et de faillites bancaires en chaîne.", clair: "Expliquer pourquoi une banque saine peut tomber et comment une faillite en entraîne d’autres.", voir: "e4-3" },
     { bo: "Connaître les principaux canaux de transmission d’une crise financière à l’économie réelle : effets de richesse négatif, baisse du prix du collatéral et ventes forcées, contraction du crédit.", clair: "Présenter les trois canaux par lesquels la crise financière fait baisser production et emploi.", voir: "e4-4" },
     { bo: "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l’aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité.", clair: "Définir l’aléa moral et expliquer comment supervision et ratio de solvabilité le limitent.", voir: "e4-5" }
@@ -2983,10 +3293,10 @@ AUTEURS.push(
 
 GRAPHES["e5-bce"] = {
   type: "lignes", t: "Le taux de la facilité de dépôt de la BCE, 2021-2026",
-  s: "Taux en vigueur à la fin de chaque trimestre, en % (repères : premier trimestre de chaque année). Touche le graphique pour lire un trimestre.",
+  s: "Taux en vigueur à la fin de chaque trimestre (dernier point : novembre 2026, trimestre en cours), en % (repères : premier trimestre de chaque année). Touche le graphique pour lire un trimestre.",
   src: "Source : Banque centrale européenne, taux directeurs (dates d’effet des décisions). Dernière valeur : 2,50 % depuis le 16 septembre 2026 (taux inchangé le 29 octobre 2026).",
   unite: " %", pasX: 4, h: 260, min: -1, max: 5, dec: 2, sansDernier: true,
-  x: ["2021","2021 T2","2021 T3","2021 T4","2022","2022 T2","2022 T3","2022 T4","2023","2023 T2","2023 T3","2023 T4","2024","2024 T2","2024 T3","2024 T4","2025","2025 T2","2025 T3","2025 T4","2026","2026 T2","2026 T3","2026 T4"],
+  x: ["2021","2021 T2","2021 T3","2021 T4","2022","2022 T2","2022 T3","2022 T4","2023","2023 T2","2023 T3","2023 T4","2024","2024 T2","2024 T3","2024 T4","2025","2025 T2","2025 T3","2025 T4","2026","2026 T2","2026 T3","nov. 2026"],
   series: [{ n: "Facilité de dépôt", c: 1, v: [-0.5,-0.5,-0.5,-0.5,-0.5,-0.5,0.75,2,3,3.5,4,4,4,3.75,3.5,3,2.5,2,2,2,2,2.25,2.5,2.5] }]
 };
 GRAPHES["e5-budget"] = {
@@ -3034,7 +3344,7 @@ ANIMS["e5-transmission"] = {
     { l: "Les banques se refinancent plus cher : elles relèvent les taux de leurs crédits aux ménages et aux entreprises.", d: 3 },
     { l: "On emprunte moins : achats de logements, investissement des entreprises et consommation à crédit ralentissent.", d: 3.5 },
     { l: "La demande ralentit, les prix augmentent moins vite : l’inflation retombe à 2,4 % en moyenne en 2024. Le prix à payer : une croissance plus faible.", d: 4 },
-    { l: "À l’inverse, quand l’inflation est maîtrisée et l’activité faible, la BCE baisse ses taux pour relancer le crédit : de juin 2024 à juin 2025, de 4 % à 2 %.", d: 4 }
+    { l: "À l’inverse, quand l’inflation est maîtrisée et l’activité faible, la BCE baisse ses taux pour relancer le crédit : de juin 2024 à juin 2025, de 4 % à 2 % (puis deux hausses en 2026 : 2,50 % depuis septembre).", d: 4 }
   ],
   rendu: function (A, i, p) {
     var s = "", et = [["Taux directeur de la BCE", 30], ["Taux des crédits bancaires", 98], ["Crédit, investissement, consommation", 166], ["Inflation", 234]];
@@ -3115,7 +3425,7 @@ CH.e5 = {
   ],
   chiffres: [
     { n: "21", l: "pays membres de la zone euro depuis l’entrée de la Bulgarie le 1er janvier 2026.", s: "Banque de France ; Commission européenne" },
-    { n: "10,6 %", l: "d’inflation dans la zone euro en octobre 2022 ; la BCE a relevé son taux de dépôt de −0,50 % à 4 % en un an.", s: "Eurostat ; BCE" },
+    { n: "10,6 %", l: "d’inflation dans la zone euro en octobre 2022 ; la BCE a relevé son taux de dépôt de −0,50 % à 4 % en quatorze mois (juillet 2022-septembre 2023).", s: "Eurostat ; BCE" },
     { n: "5,1 %", l: "du PIB : le déficit public de la France en 2025, pour une dette de 115,6 % du PIB.", s: "Insee, mars 2026" }
   ],
   objectifs: [
@@ -3127,7 +3437,7 @@ CH.e5 = {
   notions: ["intégration européenne", "marché unique", "union douanière", "zone euro", "politique de la concurrence", "entente", "abus de position dominante", "contrôle des concentrations", "aides d’État", "politique monétaire", "taux directeur", "inflation", "politique budgétaire", "multiplicateur", "stabilisateurs automatiques", "déficit public", "dette publique", "conjoncture", "Banque centrale européenne", "indépendance de la banque centrale", "Pacte de stabilité et de croissance", "coordination des politiques", "choc asymétrique"],
   sections: [
     { id: "e5-1", t: "L’intégration européenne : marché unique et zone euro", h:
-      '<div class="def"><b>Intégration économique</b> — processus par lequel des pays suppriment progressivement les obstacles à leurs échanges, jusqu’à mettre en commun des politiques. Bela Balassa (1961) en distinguait les étapes : zone de libre-échange, union douanière, marché commun, union économique et monétaire.</div>' +
+      '<div class="def"><b>Intégration économique</b> — processus par lequel des pays suppriment progressivement les obstacles à leurs échanges, jusqu’à mettre en commun des politiques. Bela Balassa (1961) en distinguait les étapes : zone de libre-échange, union douanière, marché commun, union économique, intégration économique totale.</div>' +
       '<div class="tbl"><table><thead><tr><th>Date</th><th>Étape</th></tr></thead><tbody>' +
       '<tr><td>1957</td><td>Traité de Rome : Communauté économique européenne (six pays)</td></tr>' +
       '<tr><td>1968</td><td>Union douanière : plus de droits de douane entre membres, un tarif extérieur commun</td></tr>' +
@@ -3258,7 +3568,7 @@ AUTEURS.push(
 GRAPHES["r1-ineg"] = {
   type: "lignes", t: "Les inégalités de niveau de vie en France, 1996-2024", spark: 1,
   s: "Deux rapports, après impôts et prestations sociales. Touche le graphique pour lire une année ; touche la légende pour masquer une courbe.",
-  src: "Source : Insee-DGFiP-Cnaf-Cnav-CCMSA, enquêtes Revenus fiscaux et sociaux (Insee Première n° 2117, juillet 2026). Champ : France métropolitaine, personnes vivant dans un logement ordinaire. Ruptures de série en 2010, 2012 et 2020 ; données de 2020 fragiles.",
+  src: "Source : Insee-DGFiP-Cnaf-Cnav-CCMSA, enquêtes Revenus fiscaux et sociaux (Insee Première n° 2117, juillet 2026). Champ : France métropolitaine, personnes vivant dans un logement ordinaire. Séries rétropolées par l’Insee de 1996 à 2020 pour corriger les ruptures de 2010, 2012 et 2020 ; point 2020 fragile.",
   unite: "", dec: 2, pasX: 7, h: 280, min: 2, max: 6,
   x: [1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],
   series: [
@@ -3382,6 +3692,7 @@ CH.r1 = {
       '<h3>3. L’égalitarisme libéral</h3><div class="aut"><span class="mono">JR</span><span class="an">John Rawls<small><i>Théorie de la justice</i>, 1971</small></span><span class="ad">Placés sous un <b>voile d’ignorance</b>, des individus rationnels choisiraient deux principes : 1) des <b>libertés de base égales</b> pour tous ; 2) des inégalités économiques et sociales acceptables seulement si a) elles sont attachées à des positions ouvertes à tous selon une <b>juste égalité des chances</b> et b) elles profitent aux plus défavorisés (<b>principe de différence</b>).</span></div><div data-chain="r1-rawls"></div><div class="ex"><p>Un salaire élevé pour un chirurgien est juste, selon Rawls, s’il est nécessaire pour que des personnes se forment à ce métier long et difficile, et si les plus modestes en bénéficient (soins de qualité accessibles à tous).</p></div>' +
       '<div class="plus"><p>Amartya Sen (prix Nobel 1998, <i>Repenser l’inégalité</i>, 1992) propose d’égaliser les <b>capabilités</b> : les libertés réelles de faire et d’être (se soigner, s’instruire, participer). Deux personnes avec le même revenu n’ont pas les mêmes capabilités si l’une est handicapée.</p></div>' +
       '<h3>4. L’égalitarisme strict</h3><p>La justice exige l’<b>égalité des situations</b> : toute inégalité de revenu ou de condition est suspecte. Gracchus Babeuf et la Conjuration des Égaux (1796) réclamaient l’égalité réelle des biens ; Karl Marx formule le principe « de chacun selon ses capacités, à chacun selon ses besoins » (<i>Critique du programme de Gotha</i>, 1875).</p>' +
+      '<div data-anim="r1-voile"></div>' +
       '<div class="tbl"><table><thead><tr><th>Conception</th><th>Égalité visée</th><th>Inégalités acceptées</th><th>Rôle de l’État</th></tr></thead><tbody>' +
       '<tr><td><b>Utilitarisme</b></td><td>Aucune en soi : maximiser le bien-être total</td><td>Celles qui augmentent la somme des utilités</td><td>Variable, selon ce qui maximise le bien-être</td></tr>' +
       '<tr><td><b>Libertarisme</b> (Nozick, Hayek)</td><td>Droits</td><td>Toutes celles issues d’acquisitions et d’échanges libres</td><td>Minimal</td></tr>' +
@@ -3499,7 +3810,7 @@ ANIMS["r1-lorenz"] = {
     { l: "Le patrimoine est bien plus concentré : début 2021, la moitié la moins dotée des ménages ne détient que 8 % du patrimoine brut. Gini du patrimoine : 0,662, plus du double de celui du niveau de vie.", d: 5 }
   ],
   rendu: function (A, i, p) {
-    var X0 = 34, Y0 = 268, S = 200, s = "";
+    var X0 = 38, Y0 = 268, S = 200, s = "";
     var X = function (v) { return X0 + S * v / 100; }, Y = function (v) { return Y0 - S * v / 100; };
     function courbeRev(r) { var tot = r.reduce(function (a, b) { return a + b; }, 0), c = 0, pts = [[0, 0]]; r.forEach(function (v, k) { c += v; pts.push([20 * (k + 1), 100 * c / tot]); }); return pts; }
     var FR = [[0, 0], [20, 8.4], [40, 21.9], [50, 30.1], [80, 61.2], [90, 75.1], [100, 100]];
@@ -3516,7 +3827,7 @@ ANIMS["r1-lorenz"] = {
     s += '<polygon points="' + aire + " " + X(0) + "," + Y(0) + '" style="fill:var(--corail);opacity:.18"/>';
     s += A.pl([[X(0), Y(0)], [X(100), Y(100)]], 1, { c: "gris", sw: 1.5, tir: true });
     s += A.pl(cur.map(function (q) { return [X(q[0]), Y(q[1])]; }), 1, { c: "corail", sw: 3 });
-    for (var t = 0; t <= 100; t += 50) { s += A.t(X(t), Y0 + 14, t + " %", { t: 9.5, a: "middle", c: "gris" }) + A.t(X0 - 4, Y(t) + 3, t + " %", { t: 9.5, a: "end", c: "gris" }); }
+    for (var t = 0; t <= 100; t += 50) { s += A.t(X(t), Y0 + 14, t + " %", { t: 10.5, a: "middle", c: "gris" }) + A.t(X0 - 4, Y(t) + 3, t + " %", { t: 10.5, a: "end", c: "gris" }); }
     s += A.t(X0 + S / 2, Y0 + 30, "part cumulée de la population →", { t: 10.5, a: "middle", c: "gris" });
     s += A.t(X0 + 4, Y0 - S - 8, "↑ part cumulée des revenus", { t: 10.5, c: "gris" });
     s += A.t(X(3), Y(30), "égalité parfaite", { t: 10, c: "gris", it: true, h: true });
@@ -3599,7 +3910,7 @@ ANIMS["r2-quotas"] = {
     { l: "Le prix du quota pousse à réduire les émissions là où c’est le moins cher. Le plafond garantit la quantité ; c’est le prix qui varie.", d: 3.5 }
   ],
   rendu: function (A, i, p) {
-    var s = "", us = [{ n: "Usine A", x: 20, cout: 20 }, { n: "Usine B", x: 190, cout: 60 }];
+    var s = "", us = [{ n: "Usine A", x: 8, cout: 20 }, { n: "Usine B", x: 172, cout: 60 }];
     var red = i === 0 ? [0, 0] : i === 1 ? [10 * A.s(p, 0.1, 0.7), 10 * A.s(p, 0.1, 0.7)] : i === 2 ? [A.l(10, 20, A.s(p, 0.1, 0.8)), 10] : i === 3 ? [20, A.l(10, 0, A.s(p, 0.2, 0.9))] : [20, 0];
     var sc = 2.6, base = 230;
     us.forEach(function (u, j) {
@@ -3607,7 +3918,7 @@ ANIMS["r2-quotas"] = {
       s += A.t(u.x + 75, 38, "réduire 1 t coûte " + u.cout + " €", { t: 11, a: "middle", c: "gris" });
       var em = 60 - red[j], hEm = em * sc, hRed = red[j] * sc;
       s += A.r(u.x + 40, base - hEm, 70, hEm, { f: "gris", r: 3, op: 0.75 });
-      if (hRed > 0.5) s += A.r(u.x + 40, base - 60 * sc, 70, hRed, { f: "none", s: "vert", sw: 2, r: 3 }) + (red[j] > 3 ? A.t(u.x + 75, base - 60 * sc + hRed / 2 + 4, "−" + A.fr(red[j], 0) + " t", { t: 11.5, g: true, a: "middle", c: "vert" }) : "");
+      if (hRed > 0.5) s += A.r(u.x + 40, base - 60 * sc, 70, hRed, { f: "none", s: "vert", sw: 2, r: 3 }) + (red[j] > 3 ? A.t(u.x + 75, base - 60 * sc + Math.min(hRed / 2, 15) + 4, "−" + A.fr(red[j], 0) + " t", { t: 11.5, g: true, a: "middle", c: "vert" }) : "");
       s += A.t(u.x + 75, base - hEm / 2 + 4, A.fr(em, 0) + " t émises", { t: 11.5, g: true, a: "middle", c: "carte" });
       var quotas = j === 0 ? (i >= 3 ? A.l(50, 40, i === 3 ? A.s(p, 0.2, 0.9) : 1) : 50) : (i >= 3 ? A.l(50, 60, i === 3 ? A.s(p, 0.2, 0.9) : 1) : 50);
       s += '<line x1="' + (u.x + 30) + '" x2="' + (u.x + 120) + '" y1="' + (base - quotas * sc) + '" y2="' + (base - quotas * sc) + '" style="stroke:var(--corail);stroke-width:2.5;stroke-dasharray:5 3"/>';
@@ -3620,7 +3931,7 @@ ANIMS["r2-quotas"] = {
     if (i === 1) s += A.t(180, 290, "coût total sans échange : 800 €", { t: 13, g: true, a: "middle", op: A.s(p, 0.6, 1) });
     if (i >= 3) {
       var q = i === 3 ? A.s(p, 0, 0.7) : 1;
-      s += A.fl(150, 72, 210, 72, { c: "corail", sw: 2.5, p: q }) + A.t(180, 64, "10 quotas × 40 €", { t: 11.5, g: true, a: "middle", c: "corail", op: q, h: true });
+      s += A.fl(136, 72, 204, 72, { c: "corail", sw: 2.5, p: q }) + A.t(170, 64, "10 quotas × 40 €", { t: 11.5, g: true, a: "middle", c: "corail", op: q, h: true });
     }
     if (i >= 4) s += A.t(180, 290, "toujours 100 t émises, coût total : 400 €", { t: 13, g: true, a: "middle", c: "vert", op: i === 4 ? A.s(p, 0.3, 0.8) : 1 });
     if (i === 5) s += A.t(180, 312, "le plafond fixe la quantité, le marché fixe le prix", { t: 12, a: "middle", c: "gris", op: A.s(p, 0.3, 0.8) });
@@ -3836,7 +4147,7 @@ GRAPHES["s3-dest"] = {
 GRAPHES["s3-or"] = {
   type: "barres", t: "La fluidité sociale progresse : le rapport des chances relatives, 1977-2015",
   s: "Rapport des chances relatives (odds ratio) d’être cadre plutôt qu’employé ou ouvrier non qualifié, entre fils de cadres et fils d’employés ou d’ouvriers non qualifiés. 1 = parfaite fluidité.",
-  src: "Source : Marc Collet et Émilie Pénicaud, « La mobilité sociale des femmes et des hommes : évolutions entre 1977 et 2015 », Insee, Économie et Statistique n° 510-511-512, 2019 (figure 7). Champ : hommes de 35 à 59 ans comparés à leur père.",
+  src: "Source : Marc Collet et Émilie Pénicaud, « La mobilité sociale des femmes et des hommes : évolutions entre 1977 et 2015 », Insee, France, portrait social, édition 2019, coll. Insee Références (figure 7c). Champ : hommes de 35 à 59 ans comparés à leur père.",
   unite: "", dec: 1, h: 260, pasX: 1,
   x: [1977, 1985, 1993, 2003, 2015], y: [165.0, 92.3, 65.3, 29.3, 34.7], etiquette: "fois"
 };
@@ -3897,7 +4208,7 @@ CH.s3 = {
       '<div class="def"><b>Mobilité intragénérationnelle (ou professionnelle)</b> — changement de position au cours de la vie active d’un même individu : promotion, changement de métier, passage du salariat à l’indépendance, chômage.</div>' +
       '<div class="ex"><p>Un technicien promu ingénieur après une formation continue passe de profession intermédiaire à cadre : mobilité professionnelle ascendante, sans rien dire de ses parents.</p></div>' +
       '<div class="def"><b>Mobilité géographique</b> — changement de lieu de résidence (d’une commune, d’une région ou d’un pays à l’autre).</div>' +
-      '<p>Les trois se combinent souvent : quitter une région peu dynamique pour une métropole facilite l’accès à un emploi qualifié. Une étude de l’Institut des politiques publiques (Kenedi et Sirugue, note n° 95, 2023) montre que les enfants des familles les plus modestes qui partent vers un département à hauts revenus atteignent en moyenne le même revenu que les enfants de familles aisées restés dans leur département.</p>' +
+      '<p>Les trois se combinent souvent : quitter une région peu dynamique pour une métropole facilite l’accès à un emploi qualifié. Une étude de l’Institut des politiques publiques (Kenedi et Sirugue, note n° 95, 2023) montre que les enfants des familles les plus modestes qui partent vers un département à hauts revenus atteignent en moyenne à peu près le même rang dans l’échelle des revenus que les enfants dont les parents se situaient au 75<sup>e</sup> centile (à l’entrée du quart le plus aisé) et qui sont restés dans leur département.</p>' +
       '<h3>Le sens de la mobilité</h3><ul><li><b>Verticale ascendante</b> : position plus élevée que celle du parent (fils d’employé devenu cadre).</li><li><b>Verticale descendante</b> : position moins élevée (fille de cadre devenue employée) ; on parle de <b>déclassement</b>.</li><li><b>Horizontale</b> ou « non verticale » : changement de groupe sans hiérarchie nette, par exemple d’agriculteur à ouvrier qualifié, ou d’artisan à profession intermédiaire. L’Insee distingue ici une mobilité « de statut » (salarié / indépendant).</li><li><b>Immobilité</b> ou <b>reproduction sociale</b> : même groupe que le parent.</li></ul>' +
       '<div class="attn"><p>Une mobilité géographique ou professionnelle n’est pas une mobilité sociale intergénérationnelle. Dans une copie, nomme précisément la mobilité dont tu parles et l’<b>étalon</b> de comparaison (le père ? la mère ? le premier emploi ?).</p></div>' },
 
@@ -3943,6 +4254,7 @@ CH.s3 = {
       '<h3>La composante structurelle</h3><div class="def"><b>Mobilité structurelle</b> — partie de la mobilité observée imposée par la différence entre la structure des emplois des pères (origines) et celle des fils (positions). Elle se mesure par l’écart entre les marges de la table.</div>' +
       '<div class="ex"><p>En 2015, 13,9 % des pères étaient cadres, mais 20,4 % des fils le sont ; 8,3 % des pères étaient agriculteurs, 2,8 % des fils. Même si chacun héritait autant que possible du groupe de son père, au moins 15,8 % des hommes auraient changé de groupe (indice de dissimilarité de l’Insee : la moitié de la somme des écarts entre les deux marges). Cela représente 24,2 % de la mobilité observée des hommes (15,8 ÷ 65,2) ; c’était 39,6 % en 1977. Pour les femmes par rapport à leur mère : 24,5 %, soit 34,8 % de leur mobilité.</p></div>' +
       '<div data-chain="s3-struct"></div>' +
+      '<div data-anim="s3-structure"></div>' +
       '<p>Le reste de la mobilité observée est parfois appelé mobilité <b>nette</b> (ou de circulation) : celle qui ne s’explique pas mécaniquement par l’évolution des emplois. Cette décomposition est simple mais imparfaite ; les sociologues lui préfèrent aujourd’hui la mesure de la fluidité.</p>' +
       '<h3>La fluidité sociale : raisonner en chances relatives</h3>' +
       '<div class="def"><b>Fluidité sociale</b> — degré d’indépendance entre l’origine et la position sociale, une fois neutralisés les changements de structure. Une société parfaitement fluide est une société où les chances relatives d’accéder à une position ne dépendent pas de l’origine (égalité des chances).</div>' +
@@ -4241,6 +4553,7 @@ CH.s4 = {
       '<li><b>Entre emploi et chômage : le sous-emploi.</b> Des personnes à temps partiel voudraient travailler plus et sont disponibles (ou sont en chômage partiel). En 2025, 4,4 % des personnes en emploi sont en sous-emploi, 12,3 % des employés peu qualifiés (Insee). Elles ont un emploi, mais pas assez.</li>' +
       '<li><b>Entre salariat et indépendance.</b> Le régime de micro-entrepreneur (créé en 2009 sous le nom d’auto-entrepreneur) concerne 3,7 % des personnes en emploi en 2025. Un livreur ou un chauffeur qui ne travaille que pour une plateforme, aux tarifs qu’elle fixe, est juridiquement indépendant mais économiquement dépendant (section 5).</li></ul>' +
       '<div data-graph="s4-halo"></div>' +
+      '<div data-anim="s4-bit"></div>' +
       '<div class="attn"><p>Ne confonds pas la <b>part</b> du chômage dans la population (5,8 % des 15-64 ans) et le <b>taux</b> de chômage, qui rapporte les chômeurs aux seuls actifs (7,7 % en 2025). Pour les 15-24 ans, l’écart est énorme : part de 8,5 % mais taux de 19,8 %, car beaucoup de jeunes sont inactifs (en études).</p></div>' },
 
     { id: "s4-2", t: "La qualité des emplois : six descripteurs", h:
@@ -4575,7 +4888,7 @@ CH.s5 = {
   chiffres: [
     { n: "15,8 %", l: "des inscrits n’ont voté à aucun tour de la présidentielle et des législatives de 2022 (12,2 % en 2002).", s: "Insee Première n° 1929" },
     { n: "× 3,2", l: "l’abstention systématique est 3,2 fois plus fréquente chez les inscrits sans diplôme (30,4 %) que chez les diplômés du supérieur (9,5 %) en 2022.", s: "Insee Première n° 1929" },
-    { n: "21 %", l: "des Français de métropole font du bénévolat dans une association en 2025, soit environ 12 millions de personnes.", s: "Baromètre France Bénévolat / Ifop 2025" }
+    { n: "21 %", l: "des Français de 15 ans ou plus font du bénévolat dans une association en 2025, soit environ 12 millions de personnes.", s: "Baromètre France Bénévolat / Ifop 2025" }
   ],
   objectifs: [
     { bo: "Comprendre que l’engagement politique prend des formes variées (vote, militantisme, engagement associatif, consommation engagée).", clair: "Définir et illustrer les quatre formes d’engagement citées par le programme.", voir: "s5-1" },
@@ -4591,7 +4904,7 @@ CH.s5 = {
       '<div data-graph="s5-tend"></div>' +
       '<p>Lecture : selon l’Insee, en 2022, 37,0 % des inscrits ont voté à tous les tours de la présidentielle et des législatives, 47,2 % à certains tours seulement et 15,8 % à aucun. Depuis 2017, le <b>vote intermittent</b> dépasse le vote systématique : beaucoup votent pour l’élection qui leur paraît décisive (la présidentielle) et s’abstiennent aux autres. L’abstention n’est donc pas toujours un retrait : elle peut être un choix ponctuel.</p>' +
       '<h3>2. Le militantisme</h3><div class="def"><b>Militantisme</b> — engagement durable et actif au service d’une organisation ou d’une cause : coller des affiches, tracter, organiser des réunions, représenter ses collègues.</div><p>Il se fait dans les <b>partis politiques</b>, qui visent la conquête du pouvoir, et dans les <b>syndicats</b>, qui défendent les intérêts des salariés. Environ un salarié sur dix est syndiqué en France (environ 10 % en 2019, Dares, 2023), beaucoup plus dans la fonction publique que dans le privé.</p>' +
-      '<h3>3. L’engagement associatif</h3><p>Les associations (loi du 1<sup>er</sup> juillet 1901) défendent des causes (environnement, droits humains, solidarité) ou rendent des services. En 2025, 21 % des Français de métropole font du bénévolat dans une association, soit environ 12 millions de personnes (baromètre France Bénévolat / Ifop). Toutes les associations ne sont pas politiques, mais beaucoup interpellent les pouvoirs publics (Restos du cœur, Greenpeace, Ligue des droits de l’homme).</p>' +
+      '<h3>3. L’engagement associatif</h3><p>Les associations (loi du 1<sup>er</sup> juillet 1901) défendent des causes (environnement, droits humains, solidarité) ou rendent des services. En 2025, 21 % des Français de 15 ans ou plus font du bénévolat dans une association, soit environ 12 millions de personnes (baromètre France Bénévolat / Ifop). Toutes les associations ne sont pas politiques, mais beaucoup interpellent les pouvoirs publics (Restos du cœur, Greenpeace, Ligue des droits de l’homme).</p>' +
       '<h3>4. La consommation engagée</h3><div class="def"><b>Consommation engagée</b> — usage politique de ses achats : <b>boycott</b> (refuser d’acheter les produits d’une entreprise) ou <b>buycott</b> (acheter de préférence des produits jugés responsables : commerce équitable, produits locaux).</div><div class="ex"><p>Le label de commerce équitable Max Havelaar est créé en 1988 aux Pays-Bas. En 2001, un appel au boycott des produits Danone répond à l’annonce de fermetures d’usines de biscuits LU. La sociologue Sophie Dubuisson-Quellier (<i>La Consommation engagée</i>, 2009) montre que ces gestes individuels sont souvent organisés par des collectifs.</p></div>' +
       '<div class="plus"><p>On peut ajouter d’autres formes : signer une pétition (en ligne ou non), manifester, faire grève, s’exprimer sur les réseaux sociaux, participer à une consultation publique. Les mêmes personnes cumulent souvent plusieurs formes d’engagement.</p></div>' },
 
@@ -4632,7 +4945,8 @@ CH.s5 = {
       '<div class="ex"><p>Le mouvement des « gilets jaunes », lancé le 17 novembre 2018 contre la hausse de la taxe sur les carburants, s’est organisé sur les réseaux sociaux et sur les ronds-points, sans parti ni syndicat à sa tête et en refusant souvent les porte-parole.</p></div>' +
       '<h3>3. Des répertoires d’action qui changent</h3><div class="aut"><span class="mono">CT</span><span class="an">Charles Tilly<small><i>La France conteste, de 1600 à nos jours</i>, 1986</small></span><span class="ad">Le <b>répertoire d’action collective</b> est l’ensemble limité des moyens d’action qu’un groupe connaît et juge légitimes à une époque. En France, vers le milieu du XIX<sup>e</sup> siècle, on passe d’un répertoire <b>local et patronné</b> (charivaris, émeutes de subsistance) à un répertoire <b>national et autonome</b> (grève, manifestation, réunion publique, pétition).</span></div>' +
       '<p>Depuis la fin du XX<sup>e</sup> siècle, ce répertoire s’enrichit :</p><ul><li><b>Médiatisation et expertise</b> : actions spectaculaires pensées pour les caméras, contre-expertises scientifiques.</li><li><b>Numérique</b> : pétitions en ligne, mots-dièses, mobilisation rapide. La pétition « L’Affaire du siècle », lancée en décembre 2018, a réuni plus de deux millions de signatures.</li><li><b>Action en justice</b> : dans la même affaire, le tribunal administratif de Paris a reconnu le 3 février 2021 la carence fautive de l’État en matière climatique.</li><li><b>Occupation et désobéissance civile</b> : la « zone à défendre » de Notre-Dame-des-Landes (projet d’aéroport abandonné le 17 janvier 2018), actions non violentes d’Extinction Rebellion.</li><li><b>Échelle européenne et mondiale</b> : marches pour le climat coordonnées dans de nombreux pays en 2019.</li></ul>' +
-      '<div class="attn"><p>Les anciens moyens ne disparaissent pas : la grève et la manifestation restent centrales (mobilisations de 2023). On dit plutôt que le répertoire s’<b>élargit</b> et que les militants combinent les formes.</p></div>' }
+      '<div class="attn"><p>Les anciens moyens ne disparaissent pas : la grève et la manifestation restent centrales (mobilisations de 2023). On dit plutôt que le répertoire s’<b>élargit</b> et que les militants combinent les formes.</p></div>' +
+      '<div data-anim="s5-tilly"></div>' }
   ],
   pieges: [
     { f: "« L’abstention montre que les Français se désintéressent de la politique. »", v: "L’abstention est souvent <b>intermittente</b> (47,2 % de votants intermittents en 2022) et coexiste avec d’autres formes d’engagement (pétitions, associations, manifestations)." },
@@ -4925,8 +5239,9 @@ ANIMS["s5-olson"] = {
           });
         });
         if (el.a) {
-          var lx = cur.length === 1 && prev.length === 1 ? cur[0].cx + 10 : W / 2 + 10;
-          grp += '<text class="fl-t" x="' + lx + '" y="' + (y - GAP / 2 + 4) + '">' + esc(el.a) + "</text>";
+          /* une seule flèche : le mot à droite de la flèche ; plusieurs : centré entre les flèches qui s'écartent ou se rejoignent */
+          var seul = cur.length === 1 && prev.length === 1, lx = seul ? cur[0].cx + 10 : W / 2;
+          grp += '<text class="fl-t" x="' + lx + '" y="' + (y - GAP / 2 + 4) + '"' + (seul ? "" : ' text-anchor="middle"') + ">" + esc(el.a) + "</text>";
         }
       }
       grp += "</g>";
@@ -4986,25 +5301,39 @@ ANIMS["s5-olson"] = {
     var H = Math.round((g.h || 300) * (W < 500 ? 0.95 : 1)), ml = 40, mr = 12, mt = 14, mb = 30, s = "";
     if (g.type === "hbarres") {
       var nc = g.cats.length, ns = g.series.length, bh = ns > 1 ? 14 : 20, gh0 = bh * ns + 16;
-      var lab = Math.min(g.lab || 190, Math.round(W * 0.42)); ml = lab;
-      var policeLb = "12px " + getComputedStyle(document.body).fontFamily;
-      var lignesC = g.cats.map(function (c) { return couper(c, ml - 14, policeLb); });
-      var hC = lignesC.map(function (l) { return Math.max(gh0, l.length * 14 + 12); });
-      var yC = [], cumul = mt; hC.forEach(function (h) { yC.push(cumul); cumul += h; });
-      H = cumul + 26;
       var vals = []; g.series.forEach(function (sr) { vals = vals.concat(sr.v); });
       var mn = Math.min(0, Math.min.apply(null, vals)), mx = Math.max.apply(null, vals);
+      /* place réservée aux étiquettes de valeur (à gauche des barres négatives, à droite des positives) */
+      var fam = getComputedStyle(document.body).fontFamily, policeV = "700 11.5px " + fam, policeT = "11px " + fam;
+      var padG = mn < 0 ? largeurTexte(fr(mn, dec) + u, policeV) + 8 : 0, padD = mx > 0 ? largeurTexte(fr(mx, dec) + u, policeV) + 8 : 6;
+      /* écran étroit : si les barres n'ont plus la place à côté des libellés, les libellés passent au-dessus */
+      var lab = Math.min(g.lab || 190, Math.round(W * 0.42));
+      var haut = W - lab - mr - padG - padD < 150; ml = haut ? 14 : lab;
+      var policeLb = "12px " + fam;
+      var lignesC = g.cats.map(function (c) { return couper(c, haut ? W - 6 : ml - 14, policeLb); });
+      var hC = lignesC.map(function (l) { return haut ? l.length * 14 + 10 + bh * ns : Math.max(gh0, l.length * 14 + 12); });
+      var yC = [], cumul = mt; hC.forEach(function (h) { yC.push(cumul); cumul += h; });
+      H = cumul + 26;
+      var pw = W - ml - mr - padG - padD;
       var tk = echelle(mn, mx, 4), a = tk[0], b = tk[tk.length - 1];
-      var X = function (v) { return ml + (v - a) / (b - a) * (W - ml - mr - 30); };
-      tk.forEach(function (t) { s += '<line class="ax' + (t === 0 ? "0" : "") + '" x1="' + X(t) + '" x2="' + X(t) + '" y1="' + mt + '" y2="' + (H - 22) + '"/><text class="lb" x="' + X(t) + '" y="' + (H - 6) + '" text-anchor="middle">' + fr(t, 0) + u + "</text>"; });
+      var X = function (v) { return ml + padG + (v - a) / (b - a) * pw; };
+      /* graduations : une étiquette sur k si elles se chevaucheraient */
+      var lT = Math.max.apply(null, tk.map(function (t) { return largeurTexte(fr(t, 0) + u, policeT); }));
+      var kT = Math.max(1, Math.ceil((lT + 8) / (pw / (tk.length - 1))));
+      var j0 = Math.max(0, tk.indexOf(0));
+      tk.forEach(function (t, j) { s += '<line class="ax' + (t === 0 ? "0" : "") + '" x1="' + X(t) + '" x2="' + X(t) + '" y1="' + mt + '" y2="' + (H - 22) + '"/>' + ((j - j0) % kT === 0 ?'<text class="lb" x="' + X(t) + '" y="' + (H - 6) + '" text-anchor="middle">' + fr(t, 0) + u + "</text>" : ""); });
       g.cats.forEach(function (c, i) {
-        var gh = hC[i], y0 = yC[i], lignes = lignesC[i], yb = y0 + (gh - bh * ns) / 2;
-        lignes.forEach(function (l, j) { s += '<text class="lb" x="' + (ml - 8) + '" y="' + (y0 + gh / 2 + 4 - (lignes.length - 1) * 7 + j * 14) + '" text-anchor="end" style="font-size:12px;fill:var(--encre)">' + esc(l) + "</text>"; });
+        var gh = hC[i], y0 = yC[i], lignes = lignesC[i], yb = haut ? y0 + lignes.length * 14 + 4 : y0 + (gh - bh * ns) / 2;
+        lignes.forEach(function (l, j) {
+          if (haut) s += '<text class="lb lbh" x="0" y="' + (y0 + 11 + j * 14) + '">' + esc(l) + "</text>";
+          else s += '<text class="lb" x="' + (ml - 8) + '" y="' + (y0 + gh / 2 + 4 - (lignes.length - 1) * 7 + j * 14) + '" text-anchor="end" style="font-size:12px;fill:var(--encre)">' + esc(l) + "</text>";
+        });
         g.series.forEach(function (sr, k) {
           var v = sr.v[i], x1 = X(Math.min(0, v)), x2 = X(Math.max(0, v)), y = yb + k * bh;
           s += '<rect class="hb c' + (sr.c || k + 1) + '" style="animation-delay:' + (i * 50) + 'ms" x="' + x1 + '" y="' + y + '" width="' + Math.max(1, x2 - x1) + '" height="' + (bh - 3) + '" rx="3" data-tip="' + esc((ns > 1 ? sr.n + " · " : "") + c) + '" data-v="' + v + '"><title>' + esc(c + " : " + fr(v, dec) + u) + "</title></rect>";
           s += '<text class="lbv" x="' + (v < 0 ? x1 - 4 : x2 + 4) + '" y="' + (y + bh - 6) + '" text-anchor="' + (v < 0 ? "end" : "start") + '">' + fr(v, dec) + u + "</text>";
         });
+        s += '<rect class="hit" x="0" y="' + y0 + '" width="' + W + '" height="' + gh + '" data-i="' + i + '"/>';
       });
     } else {
       var xs = g.x, n = xs.length, all = [];
@@ -5012,6 +5341,8 @@ ANIMS["s5-olson"] = {
       series.forEach(function (sr) { all = all.concat(sr.v.filter(function (v) { return v !== null; })); });
       var mn2 = g.min !== undefined ? g.min : Math.min(0, Math.min.apply(null, all)), mx2 = g.max !== undefined ? g.max : Math.max.apply(null, all);
       var tk2 = echelle(mn2, mx2, 5), a2 = tk2[0], b2 = tk2[tk2.length - 1];
+      var fam2 = getComputedStyle(document.body).fontFamily, policeT2 = "11px " + fam2;
+      ml = Math.max(34, Math.ceil(Math.max.apply(null, tk2.map(function (t) { return largeurTexte(fr(t, 0) + u, policeT2); }))) + 12);
       var step = (W - ml - mr) / n;
       var Xc = function (i) { return ml + step * (i + 0.5); };
       var Y = function (v) { return mt + (b2 - v) / (b2 - a2) * (H - mt - mb); };
@@ -5022,8 +5353,11 @@ ANIMS["s5-olson"] = {
         s += '<text class="lb" x="' + (Xc(i1) - step / 2 + 4) + '" y="' + (mt + 12) + '" style="font-weight:700;fill:var(--encre)">' + esc(bd.l) + "</text>";
       });
       tk2.forEach(function (t) { s += '<line class="ax' + (t === 0 ? "0" : "") + '" x1="' + ml + '" x2="' + (W - mr) + '" y1="' + Y(t) + '" y2="' + Y(t) + '"/><text class="lb" x="' + (ml - 6) + '" y="' + (Y(t) + 4) + '" text-anchor="end">' + fr(t, 0) + u + "</text>"; });
-      var pas = g.pasX || Math.ceil(n / 8);
-      xs.forEach(function (x, i) { if (i % pas === 0 || (i === n - 1 && !g.sansDernier && (n - 1) % pas >= pas / 2)) s += '<text class="lb" x="' + Xc(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + x + "</text>"; });
+      var p0 = g.pasX || Math.ceil(n / 8);
+      var lX = Math.max.apply(null, xs.map(function (x, i) { return i % p0 === 0 || i === n - 1 ? largeurTexte(String(x), policeT2) : 0; }));
+      var pas = p0 * Math.max(1, Math.ceil((lX + 6) / (step * p0)));
+      var dernier = Math.floor((n - 1) / pas) * pas;
+      xs.forEach(function (x, i) { if (i % pas === 0 || (i === n - 1 && !g.sansDernier && (n - 1 - dernier) * step >= lX + 6)) s +='<text class="lb" x="' + Xc(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + x + "</text>"; });
       if (g.type === "barres") {
         g.y.forEach(function (v, i) {
           var y1 = Y(Math.max(0, v)), y2 = Y(Math.min(0, v));
@@ -5051,7 +5385,7 @@ ANIMS["s5-olson"] = {
       }).join("") + "</div>";
     }
     return '<p class="gt">' + esc(g.t) + "</p>" + (g.s ? '<p class="gs">' + esc(g.s) + "</p>" : "") + leg +
-      '<div class="zone"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(g.t) + '">' + s + '</svg><div class="bulle"></div></div>' +
+      '<div class="zone"><svg viewBox="0 0 ' + W + " " + H + '" data-ml="' + ml + '" role="img" aria-label="' + esc(g.t) + '">' + s + '</svg><div class="bulle"></div></div>' +
       '<p class="src-l">' + g.src + "</p>";
   }
   function monterGraphes(racine) {
@@ -5060,6 +5394,11 @@ ANIMS["s5-olson"] = {
       d.className = "graph";
       var W = Math.round(Math.max(320, Math.min(720, (d.clientWidth || 340) - 26)));
       d.innerHTML = graphe(g, W);
+      /* mouvement : le graphique se construit quand il entre à l'écran ; sans observateur, tout de suite */
+      if (mouvement() && "IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { d.classList.add("vu"); io.disconnect(); } }, { rootMargin: "0px 0px -12% 0px" });
+        io.observe(d);
+      } else d.classList.add("vu");
       $$(".leg button", d).forEach(function (b) { var c = $("i", b); c.style.color = getComputedStyle(c).fill || ""; });
       var svg = $("svg", d), bulle = $(".bulle", d), zone = $(".zone", d), u = g.unite || "", dec = g.dec === undefined ? 1 : g.dec;
       var cach = {};
@@ -5080,18 +5419,29 @@ ANIMS["s5-olson"] = {
         var x = e.clientX - r.left + zone.scrollLeft, y = e.clientY - r.top;
         var bw = bulle.offsetWidth / 2;
         x = Math.max(bw + 2, Math.min(zone.clientWidth - bw - 2, x));
-        bulle.style.left = x + "px"; bulle.style.top = Math.max(y, 50) + "px";
+        /* au-dessus du doigt ou du pointeur s'il y a la place, sinon en dessous : jamais coupée par le cadre */
+        var hb = bulle.offsetHeight, haut = y - hb - 14;
+        if (haut < 2) haut = Math.min(y + 22, zone.clientHeight - hb - 2);
+        bulle.style.left = x + "px"; bulle.style.top = Math.max(2, haut) + "px"; bulle.style.transform = "translateX(-50%)";
       }
-      function cacher() { bulle.style.display = "none"; var c = $(".curseur", svg); if (c) c.style.display = "none"; }
-      svg.addEventListener("pointerleave", cacher);
-      svg.addEventListener("pointermove", function (e) {
+      function cacher() { bulle.style.display = "none"; var c = $(".curseur", svg); if (c) c.style.display = "none"; $$("rect.vu", svg).forEach(function (r) { r.classList.remove("vu"); }); }
+      svg.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") cacher(); });
+      document.addEventListener("pointerdown", function ailleurs(e) {
+        if (!svg.isConnected) { document.removeEventListener("pointerdown", ailleurs); return; }
+        if (bulle.style.display === "block" && !svg.contains(e.target)) cacher();
+      }, { passive: true });
+      svg.addEventListener("pointerdown", lire);
+      svg.addEventListener("pointermove", lire);
+      function lire(e) {
         if (g.type === "hbarres") {
-          var t = e.target.closest("rect.hb");
+          var t = e.target.closest("rect.hit");
           if (!t) { cacher(); return; }
-          placer(e, esc(t.getAttribute("data-tip")) + "<br><b>" + fr(+t.getAttribute("data-v"), dec) + u + "</b>");
+          var i = +t.getAttribute("data-i");
+          $$("rect.hb", svg).forEach(function (r) { r.classList.toggle("vu", Math.floor($$("rect.hb", svg).indexOf(r) / g.series.length) === i); });
+          placer(e, "<b>" + esc(g.cats[i]) + "</b>" + g.series.map(function (sr) { return "<br>" + (g.series.length > 1 ? esc(sr.n) + " : " : "") + fr(sr.v[i], dec) + u; }).join(""));
           return;
         }
-        var p = point(e), ml = 40, mr = 12, n = g.x.length, step = (W - ml - mr) / n;
+        var p = point(e), ml = +svg.getAttribute("data-ml"), mr = 12, n = g.x.length, step = (W - ml - mr) / n;
         var i = Math.floor((p.x - ml) / step);
         if (i < 0 || i >= n) { cacher(); return; }
         var h = "<b>" + esc(g.x[i]) + "</b>";
@@ -5099,8 +5449,9 @@ ANIMS["s5-olson"] = {
         else g.series.forEach(function (sr, k) { if (!cach[k] && sr.v[i] !== null) h += "<br>" + esc(sr.n) + " : " + fr(sr.v[i], dec) + u; });
         var c = $(".curseur", svg);
         if (c) { var cx = ml + step * (i + 0.5); c.setAttribute("x1", cx); c.setAttribute("x2", cx); c.style.display = ""; }
+        if (g.type === "barres") $$("rect.bar", svg).forEach(function (r, j) { r.classList.toggle("vu", j === i); });
         placer(e, h);
-      });
+      }
     });
   }
 
@@ -5240,6 +5591,23 @@ ANIMS["s5-olson"] = {
     if (window.ANIM_MOTEUR) ANIM_MOTEUR.monter(racine);
     $$("[data-calc]", racine).forEach(function (d) { d.className = "calc"; monterCalc(d); });
     $$("[data-relier]", racine).forEach(function (d) { monterRelier(d); });
+    monterTableaux(racine);
+  }
+
+  /* ---------- tableaux : en fiches sur téléphone (texte), colonne figée et ombre de défilement (chiffres) ---------- */
+  function monterTableaux(racine) {
+    $$(".tbl", racine).forEach(function (bloc) {
+      var t = $("table", bloc); if (!t || !t.tHead) return;
+      var tetes = Array.prototype.map.call(t.tHead.rows[0].cells, function (c) { return c.textContent.trim(); });
+      var cellules = $$("tbody td, tbody th", t), nums = cellules.filter(function (c) { return c.classList.contains("n"); }).length;
+      if (tetes.length >= 3 && nums < cellules.length / 2) {
+        bloc.classList.add("empile");
+        Array.prototype.forEach.call(t.tBodies[0].rows, function (r) {
+          Array.prototype.forEach.call(r.cells, function (c, k) { if (k && tetes[k]) c.setAttribute("data-l", tetes[k]); });
+        });
+      }
+      if (bloc.scrollWidth > bloc.clientWidth + 2) bloc.classList.add("defile");
+    });
   }
 
   function $$anims(ch) { var n = 0; ch.sections.forEach(function (s) { n += (s.h.match(/data-anim=/g) || []).length; }); return n; }
@@ -5301,7 +5669,7 @@ ANIMS["s5-olson"] = {
   function enteteChap(q, ch, sous) {
     var h = sous ? '<header class="tete court"><span class="kick">' + esc(q.champ) + " · " + esc(q.code) + '</span><h1>' + esc(q.titre) + "</h1>" :
       '<header class="couv"><div class="couv-band"><span>Faits &amp; Courbes</span><span>Dossier N° ' + NUMQ[q.id] + "</span><span>" + esc(q.champ) + '</span></div><div class="couv-corps"><span class="couv-num" aria-hidden="true">' + NUMQ[q.id] + "</span>" + (ICQ[q.id] ? '<span class="couv-ic">' + ic(ICQ[q.id]) + "</span>" : "") +
-      '<span class="kick">Le dossier · ' + esc(q.court) + '</span><h1>' + esc(q.titre) + "</h1>" + (ch.chapo ? '<p class="chapo">' + ch.chapo + "</p>" : "");
+      '<span class="kick">Le dossier · ' + esc(q.court) + '</span><h1' + (/\S{17,}/.test(q.titre) ? ' class="long"' : "") + '>' + esc(q.titre) + "</h1>" + (ch.chapo ? '<p class="chapo">' + ch.chapo + "</p>" : "");
     h +=
       (sous ? "" : '<div class="meta">' + (q.ecrit ? '<span class="pastille ok">Évaluable à l\'écrit</span>' : '<span class="pastille non">Non évalué à l\'écrit en 2027</span>') + '<span class="pastille">' + ch.quiz.length + " questions</span><span class=\"pastille\">" + ch.cartes.length + " cartes</span><span class=\"pastille\">" + ch.bac.length + " exercices corrigés</span>" + ($$anims(ch) ? '<span class="pastille ani">' + $$anims(ch) + " animation" + ($$anims(ch) > 1 ? "s" : "") + "</span>" : "") + "</div></div>") + "</header>";
     h += '<nav class="onglets" aria-label="Parties du chapitre">' + ONGLETS.map(function (o) {
@@ -5432,6 +5800,12 @@ ANIMS["s5-olson"] = {
       Array.prototype.slice.call(vue.children, 0, 12).forEach(function (el, k) { el.style.animationDelay = (k * 55) + "ms"; });
     }
     compteurs(app);
+    $$(".onglets", app).forEach(function (nav) {
+      nav.classList.toggle("plein", nav.scrollWidth <= nav.clientWidth + 1);
+      var act = $("a.act", nav); if (act && nav.scrollWidth > nav.clientWidth) nav.scrollLeft = act.offsetLeft - (nav.clientWidth - act.offsetWidth) / 2;
+      function fin() { nav.classList.toggle("fin", nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 2); }
+      nav.addEventListener("scroll", fin, { passive: true }); fin();
+    });
     document.title = (v.titre === "Accueil" ? "" : v.titre + " · ") + "Faits & Courbes · SES Terminale";
     $$("#lat .nav a").forEach(function (a) { a.classList.toggle("act", a.getAttribute("data-r") === r.page); if (a.getAttribute("data-r") === r.page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
     if (r.ancre) {
@@ -5503,7 +5877,23 @@ ANIMS["s5-olson"] = {
   }
 
   /* ---------- démarrage ---------- */
+  /* ---------- typographie française à l'affichage : espace insécable avant ? ! : ; » % et après « ---------- */
+  function typoTexte(v) { return v.replace(/ ([?!:;»%])/g, "\u00a0$1").replace(/« /g, "«\u00a0"); }
+  function typo(racine) {
+    if (!racine) return;
+    if (racine.nodeType === 3) { var t = typoTexte(racine.nodeValue); if (t !== racine.nodeValue) racine.nodeValue = t; return; }
+    if (racine.nodeType !== 1 || /^(SCRIPT|STYLE|TEXTAREA|INPUT)$/.test(racine.tagName)) return;
+    var w = document.createTreeWalker(racine, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) { var v = typoTexte(n.nodeValue); if (v !== n.nodeValue) n.nodeValue = v; }
+  }
   function demarrer() {
+    typo(document.body);
+    if ("MutationObserver" in window) new MutationObserver(function (recs) {
+      recs.forEach(function (r) {
+        if (r.target.closest && r.target.closest("svg")) return;
+        Array.prototype.forEach.call(r.addedNodes, typo);
+      });
+    }).observe(document.body, { childList: true, subtree: true });
     app = $("#app");
     $("#lat").innerHTML = navHTML();
     $("#b-menu").innerHTML = ic("menu"); $("#b-q").innerHTML = ic("loupe"); $("#b-th").innerHTML = ic("theme"); $("#b-th2").innerHTML = ic("theme");

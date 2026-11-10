@@ -146,7 +146,7 @@ HLP.ENTREES.push({
       contexte: "Écrit après la Première Guerre mondiale, d’abord publié en anglais, puis en français dans la <i>Nouvelle Revue française</i>.",
       analyse: "<p>La première phrase est une <b>maxime</b> célèbre : le « Nous » collectif et l’adverbe « maintenant » marquent une prise de conscience historique. La métaphore du naufrage (« coulés à pic ») étend aux civilisations le destin des individus.</p>",
       enjeu: "<p>La culture ne protège pas de la barbarie : c’est la « crise de la rationalité » dont parle le programme, et le terreau des ruptures d’après-guerre.</p>",
-      liens: "Dada (1916) ; Freud, <i>Malaise dans la civilisation</i> (1929) ; l’entrée « Histoire et violence »." }
+      liens: "Dada (1916) ; Freud, <i>Malaise dans la civilisation</i> (1930) ; l’entrée « Histoire et violence »." }
   ],
   sujet: {
     chapeau: "Dans une conférence publiée en 1918, le poète Guillaume Apollinaire définit l’« esprit nouveau » de la poésie de son temps.",
@@ -169,7 +169,7 @@ HLP.ENTREES.push({
       "neuf."
     ],
     ref: "Guillaume Apollinaire, « L’Esprit nouveau et les poètes », Mercure de France, 1er décembre 1918.",
-    notes: "Texte d’après Wikisource. « Ils » (l. 10) : les savants et les inventeurs, évoqués juste avant dans la conférence.",
+    notes: "Texte d’après Wikisource. « Ils » (l. 10) : les hommes, dont Apollinaire vient d’évoquer les inventions (machines, découvertes des savants), contre l’idée qu’il n’y aurait « rien de nouveau sous le soleil ».",
     q1: { type: "interprétation philosophique", q: "D’après ce texte, en quoi le nouveau se distingue-t-il du progrès ?",
       methode: `<ol class="puces"><li><b>Repère les deux concepts</b> que le texte oppose : le progrès (l. 10-13) et le nouveau (l. 14-16).</li><li><b>Reconstitue l’argument</b> : l’esprit nouveau hérite (l. 1-9), le progrès existe « en ce sens » (combinaisons de la nature), mais le nouveau est d’une autre nature (la surprise).</li><li>En interprétation <i>philosophique</i>, définis précisément les concepts et montre la démarche (concession, distinction, thèse).</li></ol>` },
     q2: { type: "essai littéraire", q: "Pour créer, faut-il rompre avec le passé ?",

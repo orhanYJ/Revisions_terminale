@@ -8,6 +8,23 @@
   function sansAccent(s) { return String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
   function melange(t) { t = t.slice(); for (var i = t.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var x = t[i]; t[i] = t[j]; t[j] = x; } return t; }
   function chap(id) { for (var i = 0; i < CH.length; i++) if (CH[i].id === id) return CH[i]; return null; }
+  function toutRedige() { return PROG.every(function (r) { return r.items.every(function (it) { return !!it.ch; }); }); }
+  /* Ordre des propositions des QCM : dans les données, la bonne réponse est souvent la deuxième. On les range une fois
+     pour toutes, de façon déterministe (même ordre à chaque visite) : réponses numériques par ordre croissant,
+     sinon permutation tirée de l'énoncé. Seul l'indice de la bonne réponse (a) est recalculé. */
+  (function () {
+    function nb(s) { var t = String(s).replace(/<[^>]+>/g, "").replace(/[\s  ]/g, "").replace(",", "."); return /^-?\d+(\.\d+)?$/.test(t) ? parseFloat(t) : NaN; }
+    function graine(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h; }
+    CH.forEach(function (c) {
+      c.qcm.forEach(function (q) {
+        var idx = q.c.map(function (_, i) { return i; });
+        if (q.c.every(function (x) { return !isNaN(nb(x)); })) idx.sort(function (i, j) { return nb(q.c[i]) - nb(q.c[j]); });
+        else { var h = graine(q.q); for (var i = idx.length - 1; i > 0; i--) { h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0; var j = h % (i + 1), x = idx[i]; idx[i] = idx[j]; idx[j] = x; } }
+        q.a = idx.indexOf(q.a);
+        q.c = idx.map(function (i) { return q.c[i]; });
+      });
+    });
+  })();
 
   /* ---------- icônes ---------- */
   var IC = {
@@ -195,6 +212,38 @@
     var b = $(".lecture-p i"); if (b) b.style.width = pc + "%";
     var s = $("#st-pc"); if (s) s.textContent = "lecture " + pc + " %";
   }
+  /* Typographie française du texte rédigé (jamais dans le code) : espace insécable avant « : » et « » », fine insécable
+     avant « ; ! ? », insécable après « « », et entre les tranches de chiffres (1 000), pour qu’aucune ligne ne commence
+     par un signe isolé sur téléphone. */
+  var SANS_TYPO = { CODE: 1, PRE: 1, KBD: 1, SCRIPT: 1, STYLE: 1, TEXTAREA: 1, svg: 1, SVG: 1 };
+  function horsTypo(p) { return SANS_TYPO[p.nodeName] || (p.classList && (p.classList.contains("code") || p.classList.contains("invite"))); }
+  function typo(racine) {
+    for (var a = racine; a && a.nodeType === 1; a = a.parentNode) if (horsTypo(a)) return;
+    var w =document.createTreeWalker(racine, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {
+      for (var p = n.parentNode; p && p !== racine; p = p.parentNode) if (horsTypo(p)) return NodeFilter.FILTER_REJECT;
+      return /[ :;!?«»\d]/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    } });
+    var l = [], n;
+    while ((n = w.nextNode())) l.push(n);
+    l.forEach(function (t) {
+      var v = t.nodeValue, x = v.replace(/ ([:»])/g, " $1").replace(/ ([;!?])/g, " $1").replace(/« /g, "« ").replace(/(\d) (?=\d{3}(?!\d))/g, "$1 ");
+      if (x !== v) t.nodeValue = x;
+    });
+  }
+  /* Les schémas et le QCM réécrivent leur texte après le rendu : on applique la même typographie à ce qu’ils ajoutent. */
+  var obsTypo = null;
+  function suivreTypo(page) {
+    if (obsTypo || typeof MutationObserver === "undefined") return;
+    obsTypo = new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        Array.prototype.forEach.call(m.addedNodes, function (n) {
+          if (n.nodeType === 1) typo(n);
+          else if (n.nodeType === 3 && n.parentNode) { var p = n.parentNode; if (p.nodeType === 1) typo(p); }
+        });
+      });
+    });
+    obsTypo.observe(page, { childList: true, subtree: true });
+  }
   function render() {
     var r = routeCourante();
     var page = $("#page");
@@ -208,6 +257,8 @@
     else if (r.page === "entrainement") html = pageEntrainement(r);
     else { html = pageAccueil(); page.className = "page large"; }
     page.innerHTML = html;
+    typo(page);
+    suivreTypo(page);
     $("#fic").textContent = nomFichier(r);
     $$(".lat a").forEach(function (a) { a.classList.toggle("actif", a.getAttribute("data-r") === r.page); });
     document.title = (c ? c.titre + " — " : r.page !== "accueil" && r.page ? nomFichier(r).replace(/\..*$/, "") + " — " : "") + "import bac · NSI Terminale";
@@ -238,7 +289,7 @@
       ['<span class="pr">&gt;&gt;&gt;</span> bac.nsi.epreuve', 4],
       ['<span class="ok">écrit 3 h 30 + pratique 1 h · coef. 16</span>', 5],
       ['<span class="pr">&gt;&gt;&gt;</span> <span class="curseur"></span>', 6]
-    ].map(function (l) { return '<span class="ligne" style="animation-delay:' + (0.25 + l[1] * 0.42).toFixed(2) + 's">' + l[0] + "</span>"; }).join("\n");
+    ].map(function (l) { return '<span class="ligne" style="animation-delay:' + (0.2 + l[1] * 0.3).toFixed(2) + 's">' + l[0] + "</span>"; }).join("\n");
     var h = '<div class="heros"><div>' + invite("", "python3 -m bac --nsi") + '<h1><span class="kw">import</span> <span class="bac">bac</span></h1>' +
       '<p class="acc">Le terminal de révision de la spécialité <b>NSI en Terminale</b> : cours rédigés à fond, code Python testé ligne à ligne, schémas qui s’animent, QCM, cartes mémoire et exercices type bac.</p>' +
       '<div class="rangee"><a class="btn prim" href="#' + CH[0].id + '">' + ic("lecture") + "Commencer le chapitre 1</a>" +
@@ -253,7 +304,7 @@
       });
       h += "</div>";
     });
-    h += "<h2>Carte du programme</h2><p class=\"muet\">Les six rubriques officielles du programme de Terminale. Ce qui n’est pas encore rédigé est marqué « bientôt », avec ce que le programme demande.</p>";
+    h += "<h2>Carte du programme</h2><p class=\"muet\">Les six rubriques officielles du programme de Terminale" + (toutRedige() ? ", toutes rédigées sur le site." : ". Ce qui n’est pas encore rédigé est marqué « bientôt », avec ce que le programme demande.") + "</p>";
     PROG.forEach(function (r) {
       h += '<div class="rubrique"><div class="tete"><span class="n">' + r.n + "</span>" + esc(r.t) + "</div>";
       r.items.forEach(function (it) {
@@ -353,6 +404,7 @@
       var ref = q.ref ? q.ref.split(":") : null;
       var lien = ref ? '<a class="lien-revoir" href="#' + ref[0] + "/" + ref[1] + '">' + ic("retour") + "Revoir le paragraphe</a>" : "";
       $(".slot", qel).innerHTML = '<div class="expl"><span class="v ' + (bon ? "ok" : "ko") + '">' + (bon ? "PASSED ✔ " : "FAILED ✘ attendu : " + "ABCDE"[q.a] + " · ") + "</span>" + q.e + "<br>" + lien + "</div>";
+      typo($(".slot", qel));
       qel.classList.add("repondu", bon ? "ok" : "ko");
       if (anim === false) qel.classList.remove("ok", "ko");
     }
@@ -407,7 +459,8 @@
   /* ---------- programme ---------- */
   function pageProgramme(r) {
     var h = invite("", "less programme.txt") + "<h1>Carte du programme</h1><p class=\"soustitre\">Programme de Terminale (arrêté du 19/07/2019, BO spécial n° 8 du 25/07/2019), en six rubriques. Le BO précise qu’il « ne constitue pas un plan de cours » : chaque professeur choisit sa progression.</p>";
-    h += '<div class="boite def"><div class="lab"># légende</div><p><span class="etiq v">rédigé</span> chapitre complet sur le site · <span class="etiq">bientôt</span> pas encore rédigé : tu trouves déjà ce que le programme demande (contenus, capacités, commentaires officiels reformulés) et ce qu’il faut avoir revu avant.</p></div>';
+    if (toutRedige()) h += '<div class="boite def"><div class="lab"># légende</div><p><span class="etiq v">rédigé</span> chaque point du programme renvoie à son chapitre complet sur le site.</p></div>';
+    else h += '<div class="boite def"><div class="lab"># légende</div><p><span class="etiq v">rédigé</span> chapitre complet sur le site · <span class="etiq">bientôt</span> pas encore rédigé : tu trouves déjà ce que le programme demande (contenus, capacités, commentaires officiels reformulés) et ce qu’il faut avoir revu avant.</p></div>';
     PROG.forEach(function (rb) {
       h += '<div class="rubrique"><div class="tete"><span class="n">' + rb.n + "</span>" + esc(rb.t) + "</div>";
       if (rb.intro) h += '<div style="padding:8px 14px" class="petit muet">' + rb.intro + "</div>";
@@ -458,7 +511,23 @@
     var imp = $("[data-imprimer]", page);
     if (imp) imp.addEventListener("click", function () { window.print(); });
     $$("[data-w]", page).forEach(function (z) { var k = z.getAttribute("data-w"), f = WIDGETS[k] || (window.WIDGETS_EXT || {})[k]; if (f) f(z, z.getAttribute("data-opt"), OUTILS); });
+    marquerDefilement(page);
   }
+  /* Blocs de code plus larges que l'écran : un fondu à droite signale qu'on peut faire glisser le code. */
+  function marquerDefilement(racine) {
+    $$(".code > pre", racine).forEach(function (pre) {
+      var c = pre.parentNode, f = $(":scope > .fondu-d", c);
+      var deborde = pre.scrollWidth > pre.clientWidth + 2;
+      if (!deborde) { if (f) c.removeChild(f); return; }
+      if (!f) {
+        f = document.createElement("span"); f.className = "fondu-d"; f.setAttribute("aria-hidden", "true"); c.appendChild(f);
+        pre.addEventListener("scroll", function () { f.classList.toggle("fin", pre.scrollLeft + pre.clientWidth >= pre.scrollWidth - 4); }, { passive: true });
+      }
+      f.style.top = pre.offsetTop + "px"; f.style.height = pre.offsetHeight + "px";
+    });
+  }
+  var attenteTaille = null;
+  window.addEventListener("resize", function () { clearTimeout(attenteTaille); attenteTaille = setTimeout(function () { marquerDefilement($("#page")); }, 200); });
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-copie]");
     if (!b) return;
@@ -469,7 +538,7 @@
 
   /* ---------- recherche plein écran ---------- */
   var INDEX = null;
-  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|[\w,-]+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim(); }
+  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|[\w,-]+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").replace(/\( /g, "(").replace(/ ([),.])/g, "$1").trim(); }
   function construireIndex() {
     INDEX = [];
     CH.forEach(function (c) {
@@ -707,7 +776,7 @@
         return '<div class="cadre-pile ' + (f.et === "actif" ? "actif" : f.et === "renvoie" ? "renvoie" : "") + (k >= avant && !neuf ? " neuf" : "") + '"><div class="nm">' + esc(f.lab) + '</div><div class="vr">' + f.vars.map(esc).join(" · ") + (f.ret !== null ? ' · <span class="rv">renvoie ' + f.ret + "</span>" : f.et === "attente" ? " · en attente…" : "") + "</div></div>";
       }).join("") : '<div class="vide">pile vide</div>';
       if (type === "fib") {
-        var L = layoutArbre(T.nds), W = 74, H = 54, larg = Math.max(L.larg * W, 520);
+        var L = layoutArbre(T.nds), W = 74, H = 54, larg = Math.max(L.larg * W, 300);
         var svg = '<svg viewBox="0 0 ' + larg + " " + (4 * H + 40) + '" role="img" aria-label="Arbre des appels de fibonacci(4)">';
         var dx = (larg - L.larg * W) / 2;
         T.nds.forEach(function (n) { if (n.parent !== null) { var a = L.pos[n.parent], b = L.pos[n.id]; var vu = s.nd[n.id]; svg += '<line class="' + (vu ? "vu" : "") + '" x1="' + (dx + a.x * W + W / 2) + '" y1="' + (a.y * H + 20 + 26) + '" x2="' + (dx + b.x * W + W / 2) + '" y2="' + (b.y * H + 20) + '"/>'; } });
@@ -718,8 +787,10 @@
         });
         $(".arbre", z).innerHTML = '<div class="titre-pile" style="margin-top:10px">arbre des appels</div><div class="arbre-appels">' + svg + "</svg></div>";
       } else $(".arbre", z).innerHTML = "";
-      $(".msg", z).innerHTML = s.msg;
+      var m = $(".msg", z); m.innerHTML = s.msg;
+      if (!neuf && MO()) { m.classList.remove("neuf"); void m.offsetWidth; m.classList.add("neuf"); }
       $(".cpt", z).textContent = "étape " + (i + 1) + " / " + T.S.length;
+      $('[data-c="suiv"]', z).disabled = i >= T.S.length - 1; $('[data-c="prec"]', z).disabled = i === 0; $('[data-c="debut"]', z).disabled = i === 0;
     }
     function stop() { if (jeu) { clearInterval(jeu); jeu = null; } var b = $('[data-c="jeu"]', z); if (b) b.innerHTML = ic("lecture") + "<span>lecture</span>"; }
     $$(".choix-w button", z).forEach(function (b) { b.addEventListener("click", function () { charger(b.getAttribute("data-t")); }); });
@@ -950,7 +1021,8 @@
     function dessine(saut) {
       var e = etapes[i], n = etapes.length, plein = Math.round(10 * (i + 1) / n);
       o.dessine(scene, e, i, etapes, saut || !MO());
-      $(".msg", z).innerHTML = e.msg || "";
+      var m = $(".msg", z); m.innerHTML = e.msg || "";
+      if (!saut && MO()) { m.classList.remove("neuf"); void m.offsetWidth; m.classList.add("neuf"); }
       $(".cpt", z).textContent = "[" + "#".repeat(plein) + ".".repeat(10 - plein) + "] " + (i + 1) + "/" + n;
       $('[data-c="prec"]', z).disabled = i === 0; $('[data-c="debut"]', z).disabled = i === 0;
       $('[data-c="suiv"]', z).disabled = i === n - 1;

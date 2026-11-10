@@ -206,7 +206,7 @@ ANIMS.rectangles = {
     }
     S.courbe(f, 0, 1.05, "g-c", 120, { "stroke-width": 2.6 });
     if (k === 0) { S.rect(0, 0, 1, 0.001, "a-plein"); S.poly([[0, 0]].concat(Array.apply(null, Array(41)).map(function (_, i) { return [i / 40, f(i / 40)]; })).concat([[1, 0]]), "a-plein", true, { opacity: E(t) }); }
-    if (k === 3) S.txt(0.55, 0.12, "→ 1/3 ≈ 0,333", "r", "start", { opacity: E(t) });
+    if (k === 3) S.txt(0.05, 0.6, "aire → 1/3 ≈ 0,333", "r", "start", { opacity: E(t) });
   }
 };
 

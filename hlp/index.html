@@ -227,7 +227,7 @@ table.t th{font-family:var(--ui);font-size:.74rem;letter-spacing:.08em;text-tran
 .copie .seg{padding:10px 14px;border-left:2px solid var(--filet2);background:var(--surface)}
 .copie .seg p{margin:.2em 0}
 .copie .marge{font-family:var(--ui);font-size:.8rem;line-height:1.45;color:var(--rose);padding:6px 14px 12px 14px;border-left:2px solid var(--rose);margin-bottom:8px;background:transparent}
-.copie .marge::before{content:"✎ ";}
+.copie .marge::before{content:"☞ ";}
 @media(min-width:860px){.copie{grid-template-columns:minmax(0,1fr) 230px;column-gap:18px}.copie .marge{border-left:0;border-top:1px solid var(--rose);padding:6px 0;margin:0 0 8px;align-self:start}}
 
 /* ---------- QCM ---------- */
@@ -384,7 +384,7 @@ table.t th{font-family:var(--ui);font-size:.74rem;letter-spacing:.08em;text-tran
 @font-face{font-family:"Exlibris Titrage";src:url(polices/titrage.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
 :root{
   --fond:#f1e7d0; --surface:#f7efdd; --surface2:#e9dcbd; --encre:#2b1c11; --encre2:#6a5440;
-  --cuivre:#9c2a1b; --cuivre2:#b8432e; --rose:#8a4a2b; --brume:#34496a; --or:#86601c; --filet:#d6c39b; --filet2:#b99e6c;
+  --cuivre:#9c2a1b; --cuivre2:#b8432e; --rose:#8a4a2b; --brume:#34496a; --or:#7a5516; --filet:#d6c39b; --filet2:#b99e6c;
   --voile:rgba(43,28,17,.45); --ombre:0 1px 0 rgba(255,250,235,.7) inset,0 1px 2px rgba(70,45,15,.08),0 6px 18px rgba(70,45,15,.08);
   --t-m1:rgba(52,73,106,.16); --t-m2:rgba(156,42,27,.14); --t-m3:rgba(165,118,39,.2);
   --serif:"Exlibris Texte","EB Garamond",Garamond,"Iowan Old Style","Palatino Linotype",Georgia,serif;
@@ -421,6 +421,13 @@ h4{font-family:var(--serif)}
 a{color:var(--cuivre)}
 ::selection{background:var(--t-m2)}
 .sch-txt,.sch-txt2{font-family:var(--serif)}
+.schema .sch-port{display:none}
+@media(max-width:620px){
+  .schema.a-deux{overflow-x:visible}
+  .schema.a-deux>svg:not(.sch-port){display:none}
+  .schema.a-deux .sch-port{display:block;min-width:0;width:100%;max-width:400px}
+  .schema.a-deux figcaption{max-width:none}
+}
 
 /* ---------- en-tête et menu : table des matières ---------- */
 .tete{background:color-mix(in srgb,var(--fond) 90%,transparent);border-bottom:0;box-shadow:0 1px 0 var(--filet2),0 4px 0 -1px var(--fond),0 4px 0 0 var(--filet2)}
@@ -439,6 +446,11 @@ a{color:var(--cuivre)}
 .page-entete{padding:30px 0 10px;text-align:center;border-bottom:0}
 .page-entete h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.08}
 .page-entete .chapo{margin:0 auto;max-width:38rem;font-size:1.12rem}
+.page-entete{position:relative}
+.page-entete::before{content:"";position:absolute;top:-2px;right:-13px;width:12px;height:62px;pointer-events:none;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--cuivre) 78%,#000),var(--cuivre) 45%,color-mix(in srgb,var(--cuivre) 82%,#000));
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);box-shadow:0 2px 3px rgba(0,0,0,.2)}
+@media(min-width:700px){.page-entete::before{right:0;width:16px;height:84px}}
 .paraphe{display:block;width:min(320px,80%);height:34px;margin:2px auto 10px;color:var(--cuivre);overflow:visible}
 .paraphe path{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
 .paraphe .plume{fill:var(--encre);stroke:none;opacity:0}
@@ -456,6 +468,7 @@ a{color:var(--cuivre)}
 /* ---------- onglets : signets ---------- */
 .onglets{background:color-mix(in srgb,var(--fond) 94%,transparent);border-bottom:3px double var(--filet2)}
 .onglets a{font-size:1rem;color:var(--encre2)}
+@media(max-width:700px){.onglets{-webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 34px),transparent);mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 34px),transparent)}}
 .onglets a.actif{color:var(--cuivre);border-bottom:2px solid var(--cuivre)}
 
 /* ---------- encadrés : gloses, notes en marge, nota bene ---------- */
@@ -493,10 +506,21 @@ details.pli>summary::after{border-color:var(--cuivre)}
 .puce-f[aria-pressed="true"]{background:var(--cuivre);border-color:var(--cuivre);color:var(--surface)}
 .champ{border-radius:2px;font-family:var(--serif);font-size:17px}
 table.t{background:transparent}
+table.t.rep{min-width:0}
+@media(max-width:620px){
+  table.t.empile{min-width:0}
+  table.t.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  table.t.empile tr{display:block;padding:10px 0 8px;border-bottom:3px double var(--filet2)}
+  table.t.empile td,table.t.empile tbody th{display:block;border:0;padding:3px 4px;background:transparent}
+  table.t.empile tbody th,table.t.empile td:first-child{font-family:var(--titre);font-size:1.08rem;color:var(--cuivre);font-variant:normal;text-transform:none;letter-spacing:0}
+  table.t.empile td[data-col]:not(:first-child)::before{content:attr(data-col);display:block;font-variant:small-caps;text-transform:lowercase;letter-spacing:.09em;color:var(--encre2);font-size:.86rem;margin-top:4px}
+}
+@media(max-width:620px){table.t.rep td,table.t.rep th{padding:8px 6px}table.t.rep td:first-child{width:1%}}
 table.t th{background:transparent;border-bottom:3px double var(--filet2);color:var(--cuivre)}
 .tag{border-radius:2px;font-size:.82rem;hyphens:none;-webkit-hyphens:none}
 .tag.e1{color:var(--brume);border-color:var(--brume)} .tag.e2{color:var(--cuivre);border-color:var(--cuivre)} .tag.e3{color:var(--or);border-color:var(--or)} .tag.e4,.tag.e5,.tag.e6{color:var(--encre);border-color:var(--encre)}
 .qcm .question,.qui-c blockquote{font-family:var(--titre)}
+.qui-c blockquote{padding-left:0}.qui-c blockquote::before{position:static;width:auto;border:0}
 .qcm .choix button,.qui-c .choix button{border-radius:2px;font-family:var(--serif);font-size:1.05rem;background:var(--surface)}
 .qcm .barre i,.anim-prog i{background:var(--cuivre)}
 .score{font-family:var(--titre)}
@@ -568,10 +592,32 @@ table.t th{background:transparent;border-bottom:3px double var(--filet2);color:v
 .a-lien .a-trait{fill:none;stroke:var(--encre2);stroke-width:1.4}
 .a-lien.contre .a-trait{stroke:var(--brume);stroke-dasharray:6 4}
 .a-pointe{fill:var(--encre2)}
-.a-lt{font-family:var(--serif);font-style:italic;font-size:13px;fill:var(--cuivre)}
+.a-lt{font-family:var(--serif);font-style:italic;font-size:13px;fill:var(--cuivre);paint-order:stroke;stroke:var(--surface);stroke-width:5px;stroke-linejoin:round}
 .a-el.neuf rect{stroke:var(--cuivre);stroke-width:2.4}
 .anim.en-cours .a-el.avenir{opacity:0}
 .a-el{transition:opacity .6s}
+/* schéma d'argumentation en colonne (écrans étroits) */
+.a-pile{display:none}
+.anim.a-mode-pile .a-svg{display:none}
+.anim.a-mode-pile .a-pile{display:block;padding:4px 2px 6px}
+.anim.a-mode-pile .anim-scene{max-height:min(62vh,520px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain}
+.a-pc{border:1px solid var(--filet2);background:var(--surface);padding:8px 12px;text-align:center;font-size:1rem;line-height:1.38;border-radius:3px;hyphens:none;-webkit-hyphens:none}
+.a-pc b{font-weight:600}
+.a-pc.ex::before{display:none}
+.a-pc{text-wrap:balance}
+.a-pc.these{border:1.5px solid var(--cuivre);background:color-mix(in srgb,var(--cuivre) 7%,var(--surface))}
+.a-pc.obj{border:1px dashed var(--brume)}
+.a-pc.ex{background:color-mix(in srgb,var(--or) 10%,var(--surface));border-color:var(--or);font-style:italic}
+.a-pc.concl{background:color-mix(in srgb,var(--cuivre) 14%,var(--surface));border:2px solid var(--cuivre)}
+.a-pc.neuf{box-shadow:0 0 0 2px var(--cuivre),var(--ombre)}
+.a-pl-lien{display:flex;flex-direction:column;align-items:center;padding:2px 0;color:var(--cuivre);font-size:.92rem;line-height:1.3;text-align:center}
+.a-pl-lien::before{content:"";width:0;height:10px;border-left:1.4px solid var(--encre2)}
+.a-pl-lien::after{content:"";width:0;height:0;border:5px solid transparent;border-top:7px solid var(--encre2);border-bottom:0}
+.a-pl-lien.contre::before{border-left:1.4px dashed var(--brume)} .a-pl-lien.contre::after{border-top-color:var(--brume)}
+.a-pl-lien span{padding:1px 8px}
+.a-pl-lien span:empty{display:none}
+.a-pl-de{color:var(--encre2);font-size:.86em}
+.anim.en-cours .a-pile .a-el.avenir{opacity:.22}
 .a-axe{stroke:var(--encre);stroke-width:1.6}
 .a-grad line{stroke:var(--encre2)} .a-grad text{font-family:var(--serif);font-size:13px;fill:var(--encre2)}
 .a-per rect{stroke:none} .a-per text{font-family:var(--titre);font-size:15px;fill:var(--encre)}
@@ -620,6 +666,27 @@ table.t th{background:transparent;border-bottom:3px double var(--filet2);color:v
   @keyframes surgit{from{background-size:0 100%;box-shadow:0 2px 0 transparent}to{box-shadow:0 2px 0 var(--cuivre)}}
   html.mo .a-curseur{transition:transform .9s cubic-bezier(.4,.1,.2,1)}
   html.mo .anim-cmd button:active{transform:translateY(1px)}
+  /* signet qui se balance à l'arrivée d'une page */
+  html.mo .page-entete::before{transform-origin:50% 0;animation:signet 1.6s cubic-bezier(.3,.6,.3,1) .15s both}
+  @keyframes signet{0%{transform:scaleY(.2) rotate(0)}35%{transform:scaleY(1.04) rotate(4deg)}60%{transform:scaleY(1) rotate(-2.5deg)}80%{transform:rotate(1deg)}100%{transform:none}}
+  /* panneaux repliables : le contenu se déplie */
+  html.mo details.pli[open]>.dedans{animation:deplie .45s cubic-bezier(.2,.7,.2,1) both;transform-origin:50% 0}
+  @keyframes deplie{from{opacity:0;transform:translateY(-6px);clip-path:inset(0 0 100% 0)}to{opacity:1;transform:none;clip-path:inset(0 0 0 0)}}
+  html.mo details.pli>summary::after{transition:transform .3s ease}
+  /* QCM : la bonne réponse reçoit un sceau, la mauvaise frémit, l'explication s'écrit */
+  html.mo .choix button.bon{animation:sceau .5s cubic-bezier(.3,1.6,.5,1) both}
+  @keyframes sceau{0%{transform:scale(1)}45%{transform:scale(1.035)}100%{transform:scale(1)}}
+  html.mo .choix button.faux{animation:fremit .42s ease both}
+  @keyframes fremit{0%,100%{transform:none}20%{transform:translateX(-4px)}45%{transform:translateX(3px)}70%{transform:translateX(-2px)}}
+  html.mo .zone-e .expl{animation:encre .55s ease both}
+  html.mo .zone-e .bas{animation:encre .55s ease .12s both}
+  html.mo .score{animation:encre .8s ease both}
+  /* onglet actif : le filet rouge se trace */
+  html.mo .onglets a.actif{background:linear-gradient(var(--cuivre),var(--cuivre)) no-repeat 50% 100%/100% 2px;border-bottom-color:transparent;animation:filet .5s cubic-bezier(.3,.7,.3,1) both}
+  @keyframes filet{from{background-size:0 2px}to{background-size:100% 2px}}
+  /* résultats de recherche : en cascade */
+  html.mo #sres a{animation:encre .35s ease both}
+  html.mo #sres a:nth-child(2){animation-delay:.03s} html.mo #sres a:nth-child(3){animation-delay:.06s} html.mo #sres a:nth-child(4){animation-delay:.09s} html.mo #sres a:nth-child(n+5){animation-delay:.12s}
   html.mo .fc:hover .face{box-shadow:inset 0 0 0 5px var(--surface),inset 0 0 0 6px var(--filet2),0 12px 28px rgba(60,35,10,.16)}
 }
 
@@ -708,12 +775,12 @@ window.HLP = { ENTREES: [], ANIMS: {} };
     { num: "I", titre: "Création, continuités et ruptures", accroche: "Avant-gardes, manifestes, « fin de l’art » : y a-t-il des ruptures radicales ?",
       resume: "Le XX<sup>e</sup> siècle est une ère de ruptures : expressionnisme, futurisme, Dada, surréalisme multiplient les manifestes ; la philosophie parle d’une « crise de la rationalité » ; radio et cinéma transforment la culture. Mais l’ancien subsiste à côté du nouveau, en accord ou en tension.",
       questions: ["Y a-t-il des ruptures radicales en art, en littérature ou dans la pensée ?", "L’ancien ne subsiste-t-il pas, en accord ou en tension, à côté du nouveau ou à travers lui ?", "D’autres époques ont-elles connu des querelles et débats comparables ?"],
-      oeuvres: "Marinetti, <i>Manifeste du futurisme</i> (1908) ; Apollinaire, <i>Alcools</i> (1913) ; Breton, <i>Manifeste du surréalisme</i> (1924) ; Césaire, <i>Cahier d’un retour au pays natal</i> (1947) ; Ionesco, <i>La Cantatrice chauve</i> (1950) ; Sarraute, <i>L’Ère du soupçon</i> (1956) ; Beckett, <i>Fin de partie</i> (1957) ; Foucault, « Qu’est-ce qu’un auteur ? » (1969)." },
+      oeuvres: "Marinetti, <i>Manifeste du futurisme</i> (paru dans <i>Le Figaro</i> le 20 février 1909 ; daté de 1908 dans la bibliographie officielle) ; Apollinaire, <i>Alcools</i> (1913) ; Breton, <i>Manifeste du surréalisme</i> (1924) ; Césaire, <i>Cahier d’un retour au pays natal</i> (1947) ; Ionesco, <i>La Cantatrice chauve</i> (1950) ; Sarraute, <i>L’Ère du soupçon</i> (1956) ; Beckett, <i>Fin de partie</i> (1957) ; Foucault, « Qu’est-ce qu’un auteur ? » (1969)." },
     { num: "II", titre: "Histoire et violence", accroche: "Guerres, totalitarismes, témoignages : dire l’inhumain.",
       resume: "Destructions et massacres sans précédent, en particulier lors des deux guerres mondiales ; peuples dominés qui revendiquent leur dignité. La littérature témoigne, dénonce, ou tente d’exprimer la violence jusque dans son inhumanité ; la philosophie se demande si la violence est irréductible.",
       questions: ["La violence dont toutes les sociétés humaines ont fait l’expérience est-elle irréductible ?", "L’histoire universelle donne-t-elle les signes d’une marche vers des relations pacifiées ?", "Si la violence précède le droit, quel droit pourra la limiter ?", "Qu’appelle-t-on « violence » ? Toutes les violences sont-elles comparables ?"],
       oeuvres: "Kant, <i>Idée d’une histoire universelle d’un point de vue cosmopolitique</i> (1784) ; Remarque, <i>À l’Ouest, rien de nouveau</i> (1929) ; Céline, <i>Voyage au bout de la nuit</i> (1932) ; Camus, <i>La Peste</i> (1947) ; Antelme, <i>L’Espèce humaine</i> (1947) ; Arendt, <i>Les Origines du totalitarisme</i> ; Perec, <i>W ou le souvenir d’enfance</i> (1975 selon l’édition originale ; 1974 dans la bibliographie officielle) ; Semprun, <i>L’Écriture ou la vie</i> (1994).",
-      annales: "2022 (métropole) : Paul Ricœur, <i>Histoire et vérité</i> ; Louis Calaferte, <i>C’est la guerre</i>. 2024 (métropole) : Aragon, <i>Le Roman inachevé</i> — « Quelles violences ce poème dit-il ? » / « Peut-on perdre son humanité ? ». 2025 (métropole) : Wisława Szymborska — « Que dit ce poème des victimes de la guerre ? » / « Peut-on conserver son humanité dans des circonstances qui risquent de nous en dépouiller ? »" },
+      annales: "2021 (métropole, session de remplacement de septembre) : Hannah Arendt, <i>Journal de pensée</i> (1953) — « La littérature et les arts peuvent-ils représenter la guerre sans la dénoncer ? ». 2022 (métropole) : Paul Ricœur, <i>Histoire et vérité</i> ; Louis Calaferte, <i>C’est la guerre</i>. 2024 (métropole) : Aragon, <i>Le Roman inachevé</i> — « Quelles violences ce poème dit-il ? » / « Peut-on perdre son humanité ? ». 2025 (métropole) : Wisława Szymborska — « Que dit ce poème des victimes de la guerre ? » / « Peut-on conserver son humanité dans des circonstances qui risquent de nous en dépouiller ? »" },
     { num: "III", titre: "L’humain et ses limites", accroche: "Technique, écologie, humain « augmenté » : jusqu’où peut-on aller ?",
       resume: "« Jusqu’où peut-on aller ? » : la technique semble promettre un pouvoir sans limite (numérique, génétique, intelligence artificielle), mais engendre dépendances, destructions et déséquilibres écologiques. Littérature et philosophie interrogent la finitude humaine et ce que peut signifier aujourd’hui l’idée d’humanité.",
       questions: ["Quelle sorte de bonheur et quelle durée de vie pour un homme entièrement « réparé », voire « augmenté » ?", "Comment penser l’équilibre entre exploitation et conservation de la nature ?", "Le nouvel univers numérique et ses réseaux créent-ils une nouvelle sociabilité ?"],
@@ -895,6 +962,18 @@ HLP.ENTREES.push({
 <text class="sch-txt apparait" style="--d:1.9s" x="580" y="210" text-anchor="end">accord des trois</text><text class="sch-txt2 apparait" style="--d:1.9s" x="580" y="232" text-anchor="end">→ un homme « bien élevé »</text>
 <text class="sch-txt2 apparait" style="--d:2.1s" x="320" y="272" text-anchor="middle">Seule l’éducation des hommes dépend vraiment de nous : c’est elle qu’il faut régler sur les deux autres.</text>
 </svg><figcaption>D’après <i>Émile</i>, livre I : « Cette éducation nous vient de la nature, ou des hommes, ou des choses. »</figcaption>`,
+  schemaP: `<svg class="sch-port" viewBox="0 0 320 352" role="img" aria-labelledby="sch1p"><title id="sch1p">Les trois maîtres selon Rousseau et le chemin vers l’autonomie</title>
+<text class="sch-tit" x="160" y="26" text-anchor="middle">Les « trois maîtres » de l’Émile</text><text class="sch-txt2" x="160" y="45" text-anchor="middle">Rousseau, livre I</text>
+<rect class="sch-boite apparait" style="--d:.1s" x="12" y="62" width="196" height="52" rx="10"/><text class="sch-txt" x="110" y="84" text-anchor="middle">La nature</text><text class="sch-txt2" x="110" y="102" text-anchor="middle">développement des organes</text>
+<rect class="sch-boite apparait" style="--d:.3s" x="12" y="124" width="196" height="52" rx="10"/><text class="sch-txt" x="110" y="146" text-anchor="middle">Les hommes</text><text class="sch-txt2" x="110" y="164" text-anchor="middle">l’usage qu’on nous apprend</text>
+<rect class="sch-boite apparait" style="--d:.5s" x="12" y="186" width="196" height="52" rx="10"/><text class="sch-txt" x="110" y="208" text-anchor="middle">Les choses</text><text class="sch-txt2" x="110" y="226" text-anchor="middle">l’expérience des objets</text>
+<path class="sch-fort trace" style="--d:.7s" d="M208 88 C238 88 244 120 252 134"/><path class="sch-fort trace" style="--d:.8s" d="M208 150 L246 150"/><path class="sch-fort trace" style="--d:.9s" d="M208 212 C238 212 244 180 252 166"/>
+<circle class="apparait" style="--d:1.2s" cx="270" cy="150" r="24" fill="var(--cuivre)"/><text class="sch-txt apparait" style="--d:1.2s;fill:var(--fond)" x="270" y="155" text-anchor="middle">élève</text>
+<path class="sch-trait trace" style="--d:1.5s" d="M270 176 L270 244" marker-end="url(#fl1p)"/>
+<defs><marker id="fl1p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--filet2)"/></marker></defs>
+<text class="sch-txt apparait" style="--d:1.9s" x="308" y="266" text-anchor="end">accord des trois</text><text class="sch-txt2 apparait" style="--d:1.9s" x="308" y="285" text-anchor="end">→ un homme « bien élevé »</text>
+<text class="sch-txt2 apparait" style="--d:2.1s" x="160" y="318" text-anchor="middle">Seule l’éducation des hommes dépend vraiment</text><text class="sch-txt2 apparait" style="--d:2.1s" x="160" y="335" text-anchor="middle">de nous : il faut la régler sur les deux autres.</text>
+</svg>`,
   cours: [
     { id: "e1-1", titre: "L’héritage humaniste : « une tête bien faite »", html: `
 <p class="lettrine">L’entrée part d’une rupture, il faut donc savoir avec quoi l’on rompt. Les humanistes de la Renaissance ont déjà critiqué l’école de leur temps. Dans le chapitre « De l’institution des enfants » (<i>Essais</i>, I, 26, 1580), Montaigne souhaite pour l’enfant un précepteur qui ait « plutôt la tête bien faite que bien pleine » : mieux vaut former le <b>jugement</b> que gaver la mémoire. Il veut qu’on fasse « passer » les idées des livres « par l’étamine » (le tamis) du jugement de l’élève.</p>
@@ -913,14 +992,14 @@ HLP.ENTREES.push({
 <div class="plus"><b class="l">Pour aller plus loin</b>Rousseau parle ailleurs de la <i>perfectibilité</i> (<i>Discours sur l’origine de l’inégalité</i>, 1755) : l’homme se distingue de l’animal par sa capacité à se transformer, en bien comme en mal.</div>
 <div data-anim="e1-paradoxe"></div>` },
     { id: "e1-4", titre: "Condorcet : instruire pour rendre les citoyens libres", html: `
-<p>Pendant la Révolution, la question devient politique. Dans ses <i>Cinq mémoires sur l’instruction publique</i> (1791), Condorcet pose que « l’instruction publique est un devoir de la société à l’égard des citoyens ». Pourquoi ? Parce que l’égalité des droits resterait vaine si « l’inégalité dans les facultés morales » empêchait le plus grand nombre d’en jouir. Un homme qui dépend d’un autre faute de savoir lire ou compter n’est pas « véritablement libre ».</p>
+<p>Pendant la Révolution, la question devient politique. Dans ses <i>Cinq mémoires sur l’instruction publique</i> (1791), Condorcet pose que « l’instruction publique est un devoir de la société à l’égard des citoyens ». Pourquoi ? Parce que l’égalité des droits resterait vaine si « l’inégalité dans les facultés morales » empêchait le plus grand nombre d’en jouir. Celui qui ne sait pas écrire et ignore l’arithmétique « dépend réellement de l’homme plus instruit » : il ne peut pas exercer ses droits « avec la même étendue et la même indépendance ».</p>
 <p>Condorcet en tire une exigence d’<b>esprit critique</b> : « Le but de l’instruction n’est pas de faire admirer aux hommes une législation toute faite, mais de les rendre capables de l’apprécier et de la corriger. » L’école ne doit pas fabriquer une « religion politique ». Il distingue l’<b>instruction</b> (transmettre des vérités et leurs preuves), qui revient à la puissance publique, et l’<b>éducation</b> morale et religieuse, qui revient aux familles.</p>
 <div class="ex"><b class="l">Exemple</b>Le premier mémoire contient une section intitulée « L’instruction doit être la même pour les femmes et pour les hommes » : en 1791, c’est une position très en avance. Condorcet présente ensuite à l’Assemblée législative, en avril 1792, un rapport sur l’organisation de l’instruction publique, qui ne sera pas appliqué.</div>` },
     { id: "e1-5", titre: "L’école de la République : instruire, unir, émanciper", html: `
 <p>Le XIX<sup>e</sup> siècle construit peu à peu un système d’éducation publique : loi Guizot (1833) sur les écoles primaires de garçons, loi Camille Sée (1880) sur l’enseignement secondaire des jeunes filles, puis les <b>lois Ferry</b> : gratuité de l’école primaire publique (1881), instruction obligatoire de 6 à 13 ans et laïcité de l’enseignement public (1882).</p>
 <p>Dans sa <i>Lettre aux instituteurs</i> du 17 novembre 1883, Jules Ferry leur confie l’enseignement moral et leur donne une règle de prudence : avant de dire une maxime, « demandez-vous si un père de famille, je dis un seul, présent à votre classe et vous écoutant, pourrait de bonne foi refuser son assentiment à ce qu’il vous entendrait dire ». L’instituteur est « l’auxiliaire et, à certains égards, le suppléant du père de famille ».</p>
 <div class="ex"><b class="l">Exemple</b>Au début du XX<sup>e</sup> siècle, le sociologue Émile Durkheim formule la fonction sociale de l’école : « l’éducation consiste en une socialisation méthodique de la jeune génération » (<i>Éducation et sociologie</i>, publié en 1922). L’école intègre à une société autant qu’elle émancipe : c’est toute la tension de l’entrée.</div>
-<div class="plus"><b class="l">Pour aller plus loin</b>Au XX<sup>e</sup> siècle, la sociologie montre que l’école peut aussi reproduire les inégalités (Bourdieu et Passeron, <i>Les Héritiers</i>, 1964) : la promesse d’émancipation n’est pas toujours tenue. Le programme invite justement à réfléchir à « la justice sociale et l’équité au sein d’un système éducatif ».</div>` },
+<div class="plus"><b class="l">Pour aller plus loin</b>Au XX<sup>e</sup> siècle, la sociologie montre que l’école peut aussi reproduire les inégalités (Bourdieu et Passeron, <i>Les Héritiers</i>, 1964) : la promesse d’émancipation n’est pas toujours tenue. Le programme invite justement à réfléchir à « la question de la justice sociale et de l’équité au sein d’un système éducatif ».</div>` },
     { id: "e1-6", titre: "Kant : sortir de la minorité", html: `
 <p>Dans <i>Réponse à la question : Qu’est-ce que les Lumières ?</i> (1784), Kant définit l’émancipation comme une sortie : « Les lumières sont ce qui fait sortir l’homme de la minorité qu’il doit s’imputer à lui-même. » La <b>minorité</b> est « l’incapacité où il est de se servir de son intelligence sans être dirigé par autrui ». Elle n’est pas un défaut d’intelligence mais un défaut de <b>courage</b>. D’où la devise : « <i>Sapere aude</i>, aie le courage de te servir de ta propre intelligence ! » (trad. Barni, 1853).</p>
 <p>Pourquoi reste-t-on mineur ? Par « paresse » et « lâcheté » : « Il est si commode d’être mineur ! J’ai un livre qui a de l’esprit pour moi, un directeur qui a de la conscience pour moi, un médecin qui juge pour moi du régime qui me convient ». Les « tuteurs » profitent de ce confort. Kant ajoute qu’un individu seul s’en sort difficilement, mais qu’un <b>public</b> peut s’éclairer lui-même s’il a la liberté de faire un « usage public » de sa raison.</p>
@@ -930,7 +1009,7 @@ HLP.ENTREES.push({
     { id: "e1-7", titre: "Raconter son éducation : le récit d’enfance et la rupture", html: `
 <p>Le programme le souligne : le rôle nouveau de l’école se marque par la place des <b>souvenirs d’écoliers</b> dans les récits du XIX<sup>e</sup> siècle. Ces récits cherchent à comprendre ce qu’un individu est devenu à partir de ce qu’il a reçu, mais aussi de ce avec quoi il a rompu.</p>
 <p>Jules Vallès en donne l’exemple le plus violent. <i>L’Enfant</i> (1878), premier volet de la trilogie de Jacques Vingtras (avec <i>Le Bachelier</i>, 1881, et <i>L’Insurgé</i>, 1886), raconte une enfance battue et un collège ennuyeux, vus à hauteur d’enfant et avec une ironie mordante. La trilogie mène de l’enfant humilié à l’insurgé de la Commune de 1871 : la révolte politique prolonge la révolte contre l’éducation reçue.</p>
-<div class="ex"><b class="l">Exemple</b>La dédicace : « À tous ceux qui crevèrent d’ennui au collège ou qu’on fit pleurer dans la famille, qui, pendant leur enfance, furent tyrannisés par leurs maîtres ou rossés par leurs parents, je dédie ce livre. »</div>
+<div class="ex"><b class="l">Exemple</b>La dédicace : « À tous ceux qui crevèrent d’ennui au collège ou qu’on fit pleurer dans la famille qui, pendant leur enfance, furent tyrannisés par leurs maîtres ou rossés par leurs parents, je dédie ce livre. »</div>
 <div class="cle"><b class="l">D’autres souvenirs d’école</b>Chateaubriand, <i>Mémoires d’outre-tombe</i>, livres I à V (enfance à Combourg et collèges) ; Colette, <i>Claudine à l’école</i> (1900), école de village racontée avec insolence ; Renan, <i>Souvenirs d’enfance et de jeunesse</i> (1883). Pour aller plus loin, au XX<sup>e</sup> siècle : Annie Ernaux, <i>La Place</i> (1983), sur la distance que les études créent avec un père ouvrier puis commerçant.</div>` },
     { id: "e1-8", titre: "Le roman d’apprentissage, ou l’éducation par la vie", html: `
 <p>Le <b>roman d’apprentissage</b> (en allemand <i>Bildungsroman</i>, « roman de formation ») suit un jeune héros qui se forme au contact du monde. Le modèle est Goethe, <i>Les Années d’apprentissage de Wilhelm Meister</i> (1795-1796). En France, Stendhal (<i>Le Rouge et le Noir</i>, 1830) montre Julien Sorel, fils de charpentier, qui se forme par les livres et l’ambition, et Balzac multiplie les jeunes provinciaux qui « montent » à Paris.</p>
@@ -1013,9 +1092,9 @@ HLP.ENTREES.push({
       analyse: "<p>Le texte est une <b>règle pratique</b> à l’impératif. L’incise « je dis un seul » durcit le critère : il suffit d’un désaccord pour se taire. La construction en alternative (« Si oui… sinon… ») donne une méthode simple, presque juridique.</p>",
       enjeu: "<p>Comment transmettre une morale commune sans heurter la liberté de conscience ? La laïcité scolaire est une limite que l’école se donne à elle-même.</p>",
       liens: "Condorcet (instruction publique / éducation familiale) ; Durkheim (l’éducation comme socialisation)." },
-    { id: "t1-6", auteur: "Jules Vallès", oeuvre: "L’Enfant, dédicace", ref: "1878 (éd. Charpentier, 1889)",
+    { id: "t1-6", auteur: "Jules Vallès", oeuvre: "L’Enfant, dédicace", ref: "1878 (texte de l’édition Charpentier, 1888)",
       extrait: "À tous ceux\nqui crevèrent d’ennui au collège\nou\nqu’on fit pleurer dans la famille\nqui, pendant leur enfance,\nfurent tyrannisés par leurs maîtres\nou\nrossés par leurs parents\nJe dédie ce livre.",
-      contexte: "Vallès, journaliste et membre de la Commune de Paris (1871), écrit la trilogie de Jacques Vingtras en exil à Londres. <i>L’Enfant</i> paraît d’abord en feuilleton en 1878, sous pseudonyme.",
+      contexte: "Vallès, journaliste et membre de la Commune de Paris (1871), commence en exil à Londres la trilogie de Jacques Vingtras (la dédicace est signée « Londres ») et la termine après l’amnistie de 1880. <i>L’Enfant</i> paraît d’abord en feuilleton en 1878, sous pseudonyme.",
       analyse: "<p>La dédicace, disposée comme une <b>inscription</b>, s’adresse à une communauté de victimes. Le parallélisme (collège / famille, maîtres / parents) met l’école et la famille sur le même plan. Le <b>registre familier</b> (« crevèrent », « rossés ») tranche avec la solennité de la forme : c’est déjà de la révolte.</p>",
       enjeu: "<p>L’éducation peut être une <b>violence</b>. Mais écrire ce récit, c’est retourner l’éducation reçue contre elle-même : l’enfant humilié devient l’écrivain qui juge.</p>",
       liens: "Rousseau (l’éducation qui « défigure ») ; Colette, <i>Claudine à l’école</i> ; au XX<sup>e</sup> siècle, Ernaux, <i>La Place</i>." }
@@ -1065,7 +1144,7 @@ HLP.ENTREES.push({
   e.sujet.q2.concl = `<p>La littérature montre bien des ruptures : on ne devient pas soi-même en reproduisant docilement ce que l’on a reçu. Mais elle montre aussi que ces ruptures se font avec les armes de l’éducation, la langue, les livres, l’ambition, et qu’une révolte sans forme peut tourner à vide. Le récit d’enfance accomplit ce mouvement : il juge l’éducation reçue tout en la transformant en œuvre. On ne devient donc pas soi « contre » son éducation, mais en la reprenant pour son propre compte, ce qui rejoint le souhait de Kant : penser par soi-même, après avoir appris à penser.</p>`;
   e.retenir = `
 <section><h3>Définitions</h3><ul class="puces"><li><b>Instruction</b> : transmission de savoirs et de leurs preuves. <b>Éducation</b> : formation de la personne entière.</li><li><b>Minorité</b> (Kant) : incapacité de penser sans être dirigé, par paresse et lâcheté. <b>Émancipation</b> : sortie d’une tutelle.</li><li><b>Éducation négative</b> (Rousseau) : protéger l’enfant du vice et de l’erreur plutôt que lui enseigner la vertu.</li><li><b>Bildungsroman</b> : roman d’apprentissage (Goethe ; version ironique chez Flaubert).</li></ul></section>
-<section><h3>Thèses et auteurs</h3><ul class="puces"><li><b>Montaigne</b> (1580) : une « tête bien faite » plutôt que « bien pleine ».</li><li><b>Rousseau</b> (1762) : l’enfance a sa logique ; les choses avant les mots ; l’éducation menace et protège.</li><li><b>Kant</b> (1784) : « <i>Sapere aude</i> » ; (1803) « L’homme ne peut devenir homme que par l’éducation ».</li><li><b>Condorcet</b> (1791) : l’instruction publique rend l’égalité réelle ; former des citoyens capables de corriger la loi.</li><li><b>Ferry</b> (1881-1883) : école gratuite, obligatoire, laïque ; la règle du « père de famille ».</li><li><b>Vallès</b> (1878) : l’éducation comme violence ; récit de la révolte.</li><li><b>Flaubert</b> (1869) : l’éducation qui ne forme rien.</li><li><b>Beauvoir</b> (1949) : « On ne naît pas femme : on le devient ».</li><li><b>Arendt</b> (1961) : transmettre l’ancien pour protéger le nouveau.</li></ul></section>
+<section><h3>Thèses et auteurs</h3><ul class="puces"><li><b>Montaigne</b> (1580) : une « tête bien faite » plutôt que « bien pleine ».</li><li><b>Rousseau</b> (1762) : l’enfance a sa logique ; les choses avant les mots ; l’éducation menace et protège.</li><li><b>Kant</b> : « <i>Sapere aude</i> » (<i>Qu’est-ce que les Lumières ?</i>, 1784) ; « L’homme ne peut devenir homme que par l’éducation » (<i>Traité de pédagogie</i>, publié en 1803).</li><li><b>Condorcet</b> (1791) : l’instruction publique rend l’égalité réelle ; former des citoyens capables de corriger la loi.</li><li><b>Ferry</b> (1881-1883) : école gratuite, obligatoire, laïque ; la règle du « père de famille ».</li><li><b>Vallès</b> (1878) : l’éducation comme violence ; récit de la révolte.</li><li><b>Flaubert</b> (1869) : l’éducation qui ne forme rien.</li><li><b>Beauvoir</b> (1949) : « On ne naît pas femme : on le devient ».</li><li><b>Arendt</b> (1961) : transmettre l’ancien pour protéger le nouveau.</li></ul></section>
 <section><h3>Le problème en une phrase</h3><p>L’éducation est la condition de la liberté (on ne pense pas seul sans avoir appris) et sa menace (elle peut dresser) : l’émancipation consiste à <b>reprendre pour son compte</b> ce que l’on a reçu.</p></section>
 <section><h3>Trois citations à savoir par cœur</h3><ul class="puces"><li>« Tout est bien, sortant des mains de l’Auteur des choses : tout dégénère entre les mains de l’homme. » (Rousseau)</li><li>« Aie le courage de te servir de ta propre intelligence ! » (Kant, trad. Barni)</li><li>« Le but de l’instruction n’est pas de faire admirer aux hommes une législation toute faite, mais de les rendre capables de l’apprécier et de la corriger. » (Condorcet)</li></ul></section>`;
   e.qcm = [
@@ -1132,20 +1211,34 @@ HLP.ENTREES.push({
     "Ressentir, est-ce subir ?",
     "La sensibilité nous rapproche-t-elle des autres ou nous enferme-t-elle en nous-mêmes ?"
   ],
-  schema: `<svg viewBox="0 0 640 320" role="img" aria-labelledby="sch2t"><title id="sch2t">Les correspondances : les sens se répondent</title>
+  schema: `<svg viewBox="0 0 640 336" role="img" aria-labelledby="sch2t"><title id="sch2t">Les correspondances : les sens se répondent</title>
 <text class="sch-tit" x="320" y="26" text-anchor="middle">« Les parfums, les couleurs et les sons se répondent »</text>
 <g class="sch-fort">
 <path class="trace" style="--d:.5s" d="M190 110 Q320 60 450 110"/><path class="trace" style="--d:.65s" d="M450 110 Q520 200 400 262"/><path class="trace" style="--d:.8s" d="M400 262 Q320 300 240 262"/>
 <path class="trace" style="--d:.95s" d="M240 262 Q120 200 190 110"/><path class="trace" style="--d:1.1s" d="M190 110 L400 262"/><path class="trace" style="--d:1.2s" d="M450 110 L240 262"/>
 </g>
-<circle class="apparait" style="--d:0s" cx="190" cy="110" r="34" fill="var(--t-m1)" stroke="var(--brume)"/><text class="sch-txt" x="190" y="115" text-anchor="middle">couleurs</text>
-<circle class="apparait" style="--d:.1s" cx="450" cy="110" r="34" fill="var(--t-m2)" stroke="var(--rose)"/><text class="sch-txt" x="450" y="115" text-anchor="middle">sons</text>
-<circle class="apparait" style="--d:.2s" cx="400" cy="262" r="34" fill="var(--t-m3)" stroke="var(--cuivre)"/><text class="sch-txt" x="400" y="267" text-anchor="middle">parfums</text>
-<circle class="apparait" style="--d:.3s" cx="240" cy="262" r="34" fill="var(--t-m1)" stroke="var(--brume)"/><text class="sch-txt" x="240" y="267" text-anchor="middle">toucher</text>
-<text class="sch-txt2 apparait" style="--d:1.5s" x="320" y="176" text-anchor="middle">« ténébreuse et profonde unité »</text>
-<text class="sch-txt2 apparait" style="--d:1.7s" x="40" y="300">« frais comme des chairs d’enfants » : odorat → toucher</text>
-<text class="sch-txt2 apparait" style="--d:1.8s" x="600" y="300" text-anchor="end">« doux comme les hautbois » : odorat → ouïe</text>
+<circle class="apparait" style="--d:0s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="190" cy="110" r="34" stroke="var(--brume)"/><text class="sch-txt" x="190" y="115" text-anchor="middle">couleurs</text>
+<circle class="apparait" style="--d:.1s;fill:color-mix(in srgb,var(--rose) 22%,var(--surface))" cx="450" cy="110" r="34" stroke="var(--rose)"/><text class="sch-txt" x="450" y="115" text-anchor="middle">sons</text>
+<circle class="apparait" style="--d:.2s;fill:color-mix(in srgb,var(--cuivre) 22%,var(--surface))" cx="400" cy="262" r="34" stroke="var(--cuivre)"/><text class="sch-txt" x="400" y="267" text-anchor="middle">parfums</text>
+<circle class="apparait" style="--d:.3s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="240" cy="262" r="34" stroke="var(--brume)"/><text class="sch-txt" x="240" y="267" text-anchor="middle">toucher</text>
+<rect class="apparait" style="--d:1.5s" x="228" y="162" width="184" height="20" rx="3" fill="var(--surface)"/><text class="sch-txt2 apparait" style="--d:1.5s" x="320" y="176" text-anchor="middle">« ténébreuse et profonde unité »</text>
+<text class="sch-txt2 apparait" style="--d:1.7s" x="40" y="324">« frais comme des chairs d’enfants » : odorat → toucher</text>
+<text class="sch-txt2 apparait" style="--d:1.8s" x="600" y="324" text-anchor="end">« doux comme les hautbois » : odorat → ouïe</text>
 </svg><figcaption>Baudelaire, « Correspondances » (<i>Les Fleurs du mal</i>, 1857) : les synesthésies relient les sens entre eux, et le monde sensible à un sens caché.</figcaption>`,
+  schemaP: `<svg class="sch-port" viewBox="0 0 320 356" role="img" aria-labelledby="sch2p"><title id="sch2p">Les correspondances : les sens se répondent</title>
+<text class="sch-tit" x="160" y="24" text-anchor="middle">« Les parfums, les couleurs</text><text class="sch-tit" x="160" y="45" text-anchor="middle">et les sons se répondent »</text>
+<g class="sch-fort">
+<path class="trace" style="--d:.5s" d="M80 100 Q160 58 240 100"/><path class="trace" style="--d:.65s" d="M240 100 Q296 172 212 228"/><path class="trace" style="--d:.8s" d="M212 228 Q160 256 108 228"/>
+<path class="trace" style="--d:.95s" d="M108 228 Q24 172 80 100"/><path class="trace" style="--d:1.1s" d="M80 100 L212 228"/><path class="trace" style="--d:1.2s" d="M240 100 L108 228"/>
+</g>
+<circle class="apparait" style="--d:0s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="80" cy="100" r="32" stroke="var(--brume)"/><text class="sch-txt" x="80" y="105" text-anchor="middle">couleurs</text>
+<circle class="apparait" style="--d:.1s;fill:color-mix(in srgb,var(--rose) 22%,var(--surface))" cx="240" cy="100" r="32" stroke="var(--rose)"/><text class="sch-txt" x="240" y="105" text-anchor="middle">sons</text>
+<circle class="apparait" style="--d:.2s;fill:color-mix(in srgb,var(--cuivre) 22%,var(--surface))" cx="212" cy="228" r="32" stroke="var(--cuivre)"/><text class="sch-txt" x="212" y="233" text-anchor="middle">parfums</text>
+<circle class="apparait" style="--d:.3s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="108" cy="228" r="32" stroke="var(--brume)"/><text class="sch-txt" x="108" y="233" text-anchor="middle">toucher</text>
+<rect class="apparait" style="--d:1.5s" x="72" y="152" width="176" height="20" rx="3" fill="var(--surface)"/><text class="sch-txt2 apparait" style="--d:1.5s" x="160" y="166" text-anchor="middle">« ténébreuse et profonde unité »</text>
+<text class="sch-txt2 apparait" style="--d:1.7s" x="160" y="290" text-anchor="middle">« frais comme des chairs d’enfants »</text><text class="sch-txt2 apparait" style="--d:1.7s" x="160" y="306" text-anchor="middle">odorat → toucher</text>
+<text class="sch-txt2 apparait" style="--d:1.8s" x="160" y="330" text-anchor="middle">« doux comme les hautbois »</text><text class="sch-txt2 apparait" style="--d:1.8s" x="160" y="346" text-anchor="middle">odorat → ouïe</text>
+</svg>`,
   cours: [
     { id: "e2-1", titre: "Les « droits de la sensibilité » au XVIII<sup>e</sup> siècle", html: `
 <p class="lettrine">Le mot <b>sensibilité</b> a plusieurs sens qu’il faut savoir distinguer : la capacité de recevoir des sensations (sens physique), de s’émouvoir (sens affectif), de juger du beau (sens esthétique) et de compatir à la souffrance d’autrui (sens moral). Au XVIII<sup>e</sup> siècle, ces sens se rejoignent : le cœur devient un organe de connaissance et de moralité.</p>
@@ -1169,7 +1262,7 @@ HLP.ENTREES.push({
     { id: "e2-5", titre: "Baudelaire : correspondances, spleen et modernité", html: `
 <p>Avec <i>Les Fleurs du mal</i> (1857, condamné la même année pour six poèmes), Baudelaire transforme la sensibilité romantique. Dans « Correspondances », « La Nature est un temple » où l’homme passe « à travers des forêts de symboles » ; « Les parfums, les couleurs et les sons se répondent ». Ces <b>synesthésies</b> (« doux comme les hautbois, verts comme les prairies ») relient les sens entre eux et le visible à l’invisible.</p>
 <p>Baudelaire invente aussi une sensibilité de la <b>ville</b> et du présent. Dans <i>Le Peintre de la vie moderne</i> (1863), il définit la modernité : « La modernité, c’est le transitoire, le fugitif, le contingent, la moitié de l’art, dont l’autre moitié est l’éternel et l’immuable. » Le <b>spleen</b>, enfin, est un ennui oppressant, qui succède au mal du siècle.</p>
-<div class="ex"><b class="l">Exemple</b>Rimbaud pousse plus loin : « Le poète se fait voyant par un long, immense et raisonné dérèglement de tous les sens » (lettre à Paul Demeny, 15 mai 1871). Le dérèglement est « raisonné » : c’est une méthode, pas un abandon.</div>` },
+<div class="ex"><b class="l">Exemple</b>Rimbaud pousse plus loin : « Le Poète se fait voyant par un long, immense et raisonné dérèglement de tous les sens » (lettre à Paul Demeny, 15 mai 1871). Le dérèglement est « raisonné » : c’est une méthode, pas un abandon.</div>` },
     { id: "e2-6", titre: "Le roman et la vie intérieure : de Flaubert au flux de conscience", html: `
 <p>Le roman du XIX<sup>e</sup> siècle cherche à rendre la vie intérieure des personnages. Flaubert perfectionne le <b>discours indirect libre</b> : les pensées d’un personnage passent dans la voix du narrateur sans « il pensait que ». Dans <i>Madame Bovary</i> (1857), on suit Emma de l’intérieur, et l’on voit que sa sensibilité a été <b>façonnée par ses lectures</b> romanesques au couvent : elle cherche dans la vie les émotions des livres.</p>
 <p>Dans <i>L’Éducation sentimentale</i> (1869), la première vision de Mme Arnoux est donnée par une phrase isolée : « Ce fut comme une apparition : ». La comparaison et les deux-points mettent le lecteur dans l’éblouissement de Frédéric. Plus tard, le <b>monologue intérieur</b> et le « flux de conscience » (Édouard Dujardin, <i>Les Lauriers sont coupés</i>, 1887 ; Virginia Woolf, <i>Les Vagues</i>, 1931) tentent de saisir les pensées « telles qu’elles surviennent ».</p>
@@ -1381,7 +1474,7 @@ HLP.ENTREES.push({
     "Écrire sur soi, est-ce se découvrir ou s’inventer ?",
     "Est-on toujours maître de soi ?"
   ],
-  schema: `<svg viewBox="0 0 640 330" role="img" aria-labelledby="sch3t"><title id="sch3t">Les figures du moi, de Montaigne à Sartre</title>
+  schema: `<svg viewBox="0 0 640 330" role="img" aria-labelledby="sch3t"><title id="sch3t">Les figures du moi, de Montaigne à Freud</title>
 <text class="sch-tit" x="320" y="24" text-anchor="middle">Un moi, ou plusieurs ?</text>
 <circle class="sch-fort trace" style="--d:.1s" cx="320" cy="180" r="70"/>
 <path class="sch-trait trace" style="--d:.5s" d="M320 110 L320 250"/><path class="sch-trait trace" style="--d:.6s" d="M255 155 Q320 185 385 155"/>
@@ -1392,6 +1485,17 @@ HLP.ENTREES.push({
 <g class="apparait" style="--d:1.5s"><path class="sch-trait" d="M390 205 L470 250"/><rect class="sch-boite" x="430" y="232" width="190" height="44" rx="8"/><text class="sch-txt" x="525" y="251" text-anchor="middle">ça · moi · surmoi</text><text class="sch-txt2" x="525" y="268" text-anchor="middle">Freud, 1923</text></g>
 <g class="apparait" style="--d:1.7s"><rect class="sch-boite" x="225" y="282" width="190" height="40" rx="8"/><text class="sch-txt" x="320" y="300" text-anchor="middle">moi profond / superficiel</text><text class="sch-txt2" x="320" y="315" text-anchor="middle">Bergson, 1889</text></g>
 </svg><figcaption>Le moi unifié de la tradition se fissure : passage, altérité, couches de la vie psychique.</figcaption>`,
+  schemaP: `<svg class="sch-port" viewBox="0 0 320 376" role="img" aria-labelledby="sch3p"><title id="sch3p">Les figures du moi, de Montaigne à Freud</title>
+<text class="sch-tit" x="160" y="26" text-anchor="middle">Un moi, ou plusieurs ?</text>
+<g class="apparait" style="--d:.9s"><path class="sch-trait" d="M126 154 L90 100"/><rect class="sch-boite" x="4" y="54" width="152" height="46" rx="8"/><text class="sch-txt" x="80" y="74" text-anchor="middle">« une chose qui pense »</text><text class="sch-txt2" x="80" y="91" text-anchor="middle">Descartes, 1641</text></g>
+<g class="apparait" style="--d:1.1s"><path class="sch-trait" d="M194 154 L230 100"/><rect class="sch-boite" x="164" y="54" width="152" height="46" rx="8"/><text class="sch-txt" x="240" y="74" text-anchor="middle">« je peins le passage »</text><text class="sch-txt2" x="240" y="91" text-anchor="middle">Montaigne, 1588</text></g>
+<g class="apparait" style="--d:1.3s"><path class="sch-trait" d="M126 226 L90 272"/><rect class="sch-boite" x="4" y="272" width="152" height="46" rx="8"/><text class="sch-txt" x="80" y="292" text-anchor="middle">« Je est un autre »</text><text class="sch-txt2" x="80" y="309" text-anchor="middle">Rimbaud, 1871</text></g>
+<g class="apparait" style="--d:1.5s"><path class="sch-trait" d="M194 226 L230 272"/><rect class="sch-boite" x="164" y="272" width="152" height="46" rx="8"/><text class="sch-txt" x="240" y="292" text-anchor="middle">ça · moi · surmoi</text><text class="sch-txt2" x="240" y="309" text-anchor="middle">Freud, 1923</text></g>
+<circle class="sch-fort trace" style="--d:.1s" cx="160" cy="190" r="54"/>
+<path class="sch-trait trace" style="--d:.5s" d="M160 136 L160 244"/><path class="sch-trait trace" style="--d:.6s" d="M110 170 Q160 196 210 170"/>
+<text class="sch-tit apparait" style="--d:.3s" x="160" y="200" text-anchor="middle">moi</text>
+<g class="apparait" style="--d:1.7s"><rect class="sch-boite" x="62" y="326" width="196" height="44" rx="8"/><text class="sch-txt" x="160" y="345" text-anchor="middle">moi profond / superficiel</text><text class="sch-txt2" x="160" y="362" text-anchor="middle">Bergson, 1889</text></g>
+</svg>`,
   cours: [
     { id: "e3-1", titre: "Qu’appelle-t-on le « moi » ?", html: `
 <p class="lettrine">Il faut distinguer des mots voisins. Le <b>moi</b> désigne l’ensemble de ce que je suis pour moi-même : mon caractère, mes souvenirs, mes désirs. Le <b>sujet</b> est celui qui pense, perçoit, agit (le « je » de la phrase). La <b>personne</b> est le moi en tant qu’être moral et juridique, responsable. L’<b>individu</b>, enfin, est l’être singulier, indivisible, distinct des autres. Le mot latin <i>persona</i> désignait le masque de l’acteur : la personne a d’abord été un rôle.</p>
@@ -1401,6 +1505,7 @@ HLP.ENTREES.push({
 <p>Montaigne invente l’<b>autoportrait</b> littéraire. Dès l’avis « Au lecteur » des <i>Essais</i> (1580), il annonce : « je suis moi-même la matière de mon livre ». Mais ce moi est mouvant : « Je ne peins pas l’être. Je peins le passage » (<i>Essais</i>, III, 2, « Du repentir »). Le monde est une « branloire pérenne » (une balançoire perpétuelle) et le moi aussi : il se contredit, et l’écriture doit suivre ses variations « de jour en jour, de minute en minute ».</p>
 <p>Descartes cherche au contraire un point fixe. Dans le <i>Discours de la méthode</i> (1637), après avoir douté de tout, il trouve une certitude : « Je pense, donc je suis ». Dans la deuxième des <i>Méditations métaphysiques</i> (1641), il précise : « Je suis, j’existe, cela est certain ; mais combien de temps ? autant de temps que je pense », et définit le moi comme « une chose qui pense ». Le moi est une <b>substance</b>, connue par la conscience avant le corps.</p>
 <div class="ex"><b class="l">Exemple</b>Pour Descartes, l’esprit se connaît plus facilement que le corps : le morceau de cire de la deuxième Méditation change de forme, d’odeur et de couleur près du feu, mais c’est l’esprit seul qui le reconnaît comme le même.</div>
+<div data-anim="e3-cogito"></div>
 <div class="plus"><b class="l">Pour aller plus loin</b>David Hume (<i>Traité de la nature humaine</i>, 1739) répond qu’en regardant en lui il ne trouve jamais un « moi », seulement des perceptions particulières (chaud, froid, plaisir…) : le moi serait un « faisceau » de perceptions qui se succèdent. Locke (1694) avait déjà fondé l’identité personnelle sur la conscience et la mémoire.</div>` },
     { id: "e3-3", titre: "Rousseau : se montrer « dans toute la vérité de la nature »", html: `
 <p>Les <i>Confessions</i> (livres I à VI publiés en 1782, livres VII à XII en 1789) s’ouvrent sur un défi : « Je forme une entreprise qui n’eut jamais d’exemple, et dont l’exécution n’aura point d’imitateur. Je veux montrer à mes semblables un homme dans toute la vérité de la nature, et cet homme, ce sera moi. » Puis : « Moi seul. […] Si je ne vaux pas mieux, au moins je suis autre. »</p>
@@ -1756,7 +1861,7 @@ HLP.ENTREES.push({
       contexte: "Écrit après la Première Guerre mondiale, d’abord publié en anglais, puis en français dans la <i>Nouvelle Revue française</i>.",
       analyse: "<p>La première phrase est une <b>maxime</b> célèbre : le « Nous » collectif et l’adverbe « maintenant » marquent une prise de conscience historique. La métaphore du naufrage (« coulés à pic ») étend aux civilisations le destin des individus.</p>",
       enjeu: "<p>La culture ne protège pas de la barbarie : c’est la « crise de la rationalité » dont parle le programme, et le terreau des ruptures d’après-guerre.</p>",
-      liens: "Dada (1916) ; Freud, <i>Malaise dans la civilisation</i> (1929) ; l’entrée « Histoire et violence »." }
+      liens: "Dada (1916) ; Freud, <i>Malaise dans la civilisation</i> (1930) ; l’entrée « Histoire et violence »." }
   ],
   sujet: {
     chapeau: "Dans une conférence publiée en 1918, le poète Guillaume Apollinaire définit l’« esprit nouveau » de la poésie de son temps.",
@@ -1779,7 +1884,7 @@ HLP.ENTREES.push({
       "neuf."
     ],
     ref: "Guillaume Apollinaire, « L’Esprit nouveau et les poètes », Mercure de France, 1er décembre 1918.",
-    notes: "Texte d’après Wikisource. « Ils » (l. 10) : les savants et les inventeurs, évoqués juste avant dans la conférence.",
+    notes: "Texte d’après Wikisource. « Ils » (l. 10) : les hommes, dont Apollinaire vient d’évoquer les inventions (machines, découvertes des savants), contre l’idée qu’il n’y aurait « rien de nouveau sous le soleil ».",
     q1: { type: "interprétation philosophique", q: "D’après ce texte, en quoi le nouveau se distingue-t-il du progrès ?",
       methode: `<ol class="puces"><li><b>Repère les deux concepts</b> que le texte oppose : le progrès (l. 10-13) et le nouveau (l. 14-16).</li><li><b>Reconstitue l’argument</b> : l’esprit nouveau hérite (l. 1-9), le progrès existe « en ce sens » (combinaisons de la nature), mais le nouveau est d’une autre nature (la surprise).</li><li>En interprétation <i>philosophique</i>, définis précisément les concepts et montre la démarche (concession, distinction, thèse).</li></ol>` },
     q2: { type: "essai littéraire", q: "Pour créer, faut-il rompre avec le passé ?",
@@ -1860,7 +1965,7 @@ HLP.ENTREES.push({
     "Deux lectures de l’histoire s’opposent : la violence est <b>irréductible</b> (Hobbes, Freud, Simone Weil) ou elle sert, malgré elle, une <b>marche vers le droit</b> (Kant, 1784 et 1795 ; Hegel ; Hugo en 1849).",
     "Les deux guerres mondiales, la Shoah, le Goulag, les violences coloniales ruinent la confiance « humaniste » en un progrès continu : « Nous autres, civilisations, nous savons maintenant que nous sommes mortelles » (Valéry, 1919).",
     "La littérature a des pouvoirs propres : <b>témoigner</b> (Barbusse, Primo Levi, Antelme), <b>dénoncer et s’engager</b> (Voltaire, Zola, Éluard), et <b>dire l’inhumain</b> jusque dans ce qui échappe aux mots (Perec, Semprun).",
-    "Après 1945, le <b>droit</b> tente de limiter la violence (ONU, crime contre l’humanité, génocide, Cour pénale internationale) ; mais, comme le dit Pascal, « La justice sans la force est impuissante : la force sans la justice est tyrannique »."
+    "Après 1945, le <b>droit</b> tente de limiter la violence (ONU, crime contre l’humanité, génocide, Cour pénale internationale) ; mais, comme le dit Pascal, « La justice sans la force est impuissante ; la force sans la justice est tyrannique »."
   ],
   attendus: [
     "Étudier les grands conflits et traumatismes du XX<sup>e</sup> siècle, qui ont changé notre vision de l’humanité et notre compréhension de l’histoire, et les diverses formes de la violence.",
@@ -1876,7 +1981,7 @@ HLP.ENTREES.push({
     "Le droit peut-il mettre fin à la violence ?",
     "Toutes les violences se valent-elles ? Une violence peut-elle être légitime ?",
     "Peut-on témoigner de l’inhumain ? Les mots suffisent-ils ?",
-    "La littérature peut-elle représenter la guerre sans la dénoncer ? (bac 2021)",
+    "La littérature et les arts peuvent-ils représenter la guerre sans la dénoncer ? (bac 2021)",
     "Peut-on perdre son humanité ? (bac 2024)"
   ],
   anims: ["e5-frise", "e5-kant"],
@@ -1928,16 +2033,16 @@ HLP.ENTREES.push({
 <div class="ex"><b class="l">Exemple</b>Le 8 mai 1945, jour de la victoire en Europe, des manifestations nationalistes à Sétif (Algérie) sont suivies d’une répression qui fait des milliers de morts. La guerre d’Algérie (1954-1962) mêlera ensuite attentats, torture et répression.</div>` },
     { id: "e5-9", titre: "Le droit peut-il limiter la violence ?", html: `
 <p>« Si la violence précède le droit, quel droit pourra la limiter […] ? » demande le programme. Après 1918, la <b>Société des Nations</b> (1920) et le pacte Briand-Kellogg (1928), par lequel les signataires renoncent à la guerre comme instrument de politique nationale, échouent à empêcher la Seconde Guerre mondiale. Après 1945, le droit se renforce : la <b>Charte des Nations unies</b> (26 juin 1945) interdit le recours à la force entre États ; le tribunal de Nuremberg (1945-1946) juge les dirigeants nazis pour <b>crimes contre la paix</b>, <b>crimes de guerre</b> et <b>crimes contre l’humanité</b> ; la Convention contre le génocide (9 décembre 1948) et la Déclaration universelle des droits de l’homme (10 décembre 1948) suivent ; la <b>Cour pénale internationale</b> est créée par le statut de Rome (1998) et fonctionne depuis 2002.</p>
-<p>Ces institutions réalisent en partie le projet kantien d’une fédération des peuples. Mais elles se heurtent à une difficulté ancienne : sans force, le droit reste lettre morte. Pascal l’avait formulé : « La justice sans la force est impuissante : la force sans la justice est tyrannique » (<i>Pensées</i>). Le Rwanda (1994), où les casques bleus présents n’ont pas reçu les moyens d’intervenir, en est un exemple tragique.</p>
+<p>Ces institutions réalisent en partie le projet kantien d’une fédération des peuples. Mais elles se heurtent à une difficulté ancienne : sans force, le droit reste lettre morte. Pascal l’avait formulé : « La justice sans la force est impuissante ; la force sans la justice est tyrannique » (<i>Pensées</i>, fragment 103 dans l’édition Lafuma, 298 dans l’édition Brunschvicg). Le Rwanda (1994), où les casques bleus présents n’ont pas reçu les moyens d’intervenir, en est un exemple tragique.</p>
 <div class="ex"><b class="l">Exemple</b>Le crime contre l’humanité est <b>imprescriptible</b> en droit français (loi du 26 décembre 1964) : Klaus Barbie a été jugé à Lyon en 1987, plus de quarante ans après les faits. Le droit ne répare pas, mais il nomme et il juge.</div>
 <div class="cle"><b class="l">Pour la copie</b>Plan possible pour « Le droit peut-il mettre fin à la violence ? » : I. Le droit naît pour sortir de la violence (Hobbes, Kant, Weber) ; II. Mais il n’est rien sans force et peut lui-même couvrir la violence (Pascal ; le « droit public » ironique de Voltaire ; les lois de Vichy) ; III. Il ne la supprime pas, il la transforme en jugement et en mémoire (Nuremberg, imprescriptibilité, témoignage).</div>` },
     { id: "e5-10", titre: "Ce qui est déjà tombé au bac", html: `
 <p>Cette entrée est l’une des plus présentes dans les sujets de métropole. Retiens surtout le type de questions posées : elles portent sur la <b>nature</b> de la violence, sur l’<b>humanité</b> qu’elle menace, et sur le <b>pouvoir des œuvres</b>.</p>
 <details class="pli"><summary>Les sujets de métropole depuis 2021</summary><div class="dedans"><ul class="puces">
-<li><b>2021</b> (9 septembre, sujet 2) : Hannah Arendt, <i>Journal de pensée</i> (1953). Interprétation philosophique : « À quelles conditions peut-on, selon Hannah Arendt, prendre le risque de la guerre ? » Essai littéraire : « La littérature et les arts peuvent-ils représenter la guerre sans la dénoncer ? »</li>
+<li><b>2021</b> (9 septembre, session de remplacement, sujet 2) : Hannah Arendt, <i>Journal de pensée</i> (1953). Interprétation philosophique : « À quelles conditions peut-on, selon Hannah Arendt, prendre le risque de la guerre ? » Essai littéraire : « La littérature et les arts peuvent-ils représenter la guerre sans la dénoncer ? »</li>
 <li><b>2022</b> (11 mai, sujet 2) : Paul Ricœur, <i>Histoire et vérité</i> (1955). Interprétation philosophique : « D’après l’auteur, qu’est-ce qui explique la permanence de la violence dans l’histoire ? » Essai littéraire : « La littérature et les arts naissent-ils de “l’appétit de catastrophe” des hommes ? »</li>
 <li><b>2022</b> (12 mai, sujet 2) : Louis Calaferte, <i>C’est la guerre</i> (1993), l’annonce de la mobilisation de 1939 vue par un enfant. Interprétation littéraire : « “C’est la guerre” : ce texte vous en donne-t-il l’impression ? » Essai philosophique : « Qu’est-ce qu’être en guerre ? »</li>
-<li><b>2024</b> (19 juin) : Louis Aragon, « Classe 17 », <i>Le Roman inachevé</i> (1956), des prisonniers allemands traversant la Bretagne en 1917. Interprétation littéraire : « Quelles violences ce poème dit-il ? » Essai philosophique : « Peut-on perdre son humanité ? »</li>
+<li><b>2024</b> (19 juin) : Louis Aragon, « Classe 17 », <i>Le Roman inachevé</i> (1956), des prisonniers allemands, capturés près de Reims, conduits à pied à travers la Bretagne pendant la Grande Guerre (le titre désigne la classe d’âge recensée en 1917, celle du poète). Interprétation littéraire : « Quelles violences ce poème dit-il ? » Essai philosophique : « Peut-on perdre son humanité ? »</li>
 <li><b>2025</b> (18 juin) : Wisława Szymborska, « Je ne sais quelles gens » (<i>Vue avec grain de sable</i>, 1996), des réfugiés fuyant une guerre. Interprétation littéraire : « Que dit ce poème des victimes de la guerre ? » Essai philosophique : « Peut-on conserver son humanité dans des circonstances qui risquent de nous en dépouiller ? »</li>
 </ul></div></details>
 <div class="cle"><b class="l">Ce qu’il faut en tirer</b>Les textes ne sont presque jamais des « classiques » attendus : un poème d’Aragon, un récit de Calaferte, une poétesse polonaise. Ce qui compte, c’est d’avoir des <b>notions</b> claires (violence, guerre, humanité, témoignage) et une dizaine de <b>références précises</b>, datées, que tu sais relier au texte.</div>` }
@@ -2091,7 +2196,7 @@ HLP.ENTREES.push({
   e.sujet.q2.concl = `<p>La littérature court toujours le risque de rendre la violence séduisante, parce que mettre en forme, c’est embellir et donner un sens. Mais elle dispose de moyens propres, l’ironie, la sobriété du témoignage, le point de vue des victimes, pour montrer la violence sans la glorifier. Les plus grandes œuvres vont plus loin : elles font éprouver la fascination pour mieux en révéler le prix. Montrer la violence sans la rendre séduisante n’est donc pas renoncer à la beauté, mais mettre la beauté au service de la vérité, comme l’<i>Iliade</i> selon Simone Weil.</p>`;
   e.retenir = `
 <section><h3>Définitions</h3><ul class="puces"><li><b>Violence</b> : force qui viole une volonté, un corps, une dignité (≠ <b>force</b>, ≠ <b>contrainte</b>, ≠ <b>pouvoir</b> selon Arendt).</li><li><b>Violence légitime</b> : monopole de l’État (Weber, 1919).</li><li><b>Totalitarisme</b> (Arendt, 1951) ≠ régime oppressif. <b>Génocide</b> (Lemkin, 1944 ; ONU, 1948). <b>Crime contre l’humanité</b> (Nuremberg, 1945 ; imprescriptible en France depuis 1964).</li><li><b>Témoignage</b> (effort d’objectivation) ≠ <b>engagement</b> (prendre parti pour agir).</li></ul></section>
-<section><h3>Thèses et auteurs</h3><ul class="puces"><li><b>Montaigne</b> (1580) : « chacun appelle barbarie ce qui n’est pas de son usage ».</li><li><b>Hobbes</b> (1651) : sans pouvoir commun, guerre de chacun contre chacun. <b>Rousseau</b> (1755) : la guerre naît avec la société.</li><li><b>Voltaire</b> (1759) : la « boucherie héroïque ».</li><li><b>Kant</b> : l’« insociable sociabilité » (1784) ; l’état de paix « a donc besoin d’être établi » (1795).</li><li><b>Hegel</b> : l’histoire comme « abattoir », la « ruse de la raison ». <b>Marx</b> : « la force est l’accoucheuse de toute vieille société en travail ».</li><li><b>Hugo</b> (1849) : « Un jour viendra où les armes vous tomberont des mains ».</li><li><b>Barbusse</b> (1916) : « une grande armée qui se suicide ». <b>Apollinaire</b> (1918) : « Ah Dieu ! que la guerre est jolie », par ironie.</li><li><b>Valéry</b> (1919) : « Nous autres, civilisations, nous savons maintenant que nous sommes mortelles ». <b>Freud</b> : la désillusion (1915), <i>Homo homini lupus</i> (1930).</li><li><b>Simone Weil</b> (1940) : « La force, c’est ce qui fait de quiconque lui est soumis une chose. »</li><li><b>Arendt</b> : totalitarisme, « banalité du mal ». <b>Levi</b>, <b>Antelme</b>, <b>Semprun</b>, <b>Perec</b> : témoigner de l’inhumain.</li><li><b>Pascal</b> : « La justice sans la force est impuissante : la force sans la justice est tyrannique. »</li></ul></section>
+<section><h3>Thèses et auteurs</h3><ul class="puces"><li><b>Montaigne</b> (1580) : « chacun appelle barbarie ce qui n’est pas de son usage ».</li><li><b>Hobbes</b> (1651) : sans pouvoir commun, guerre de chacun contre chacun. <b>Rousseau</b> (1755) : la guerre naît avec la société.</li><li><b>Voltaire</b> (1759) : la « boucherie héroïque ».</li><li><b>Kant</b> : l’« insociable sociabilité » (1784) ; l’état de paix « a donc besoin d’être établi » (1795).</li><li><b>Hegel</b> : l’histoire comme « abattoir », la « ruse de la raison ». <b>Marx</b> : « la force est l’accoucheuse de toute vieille société en travail ».</li><li><b>Hugo</b> (1849) : « Un jour viendra où les armes vous tomberont des mains ».</li><li><b>Barbusse</b> (1916) : « une grande armée qui se suicide ». <b>Apollinaire</b> (1918) : « Ah Dieu ! que la guerre est jolie », par ironie.</li><li><b>Valéry</b> (1919) : « Nous autres, civilisations, nous savons maintenant que nous sommes mortelles ». <b>Freud</b> : la désillusion (1915), <i>Homo homini lupus</i> (1930).</li><li><b>Simone Weil</b> (1940) : « La force, c’est ce qui fait de quiconque lui est soumis une chose. »</li><li><b>Arendt</b> : totalitarisme, « banalité du mal ». <b>Levi</b>, <b>Antelme</b>, <b>Semprun</b>, <b>Perec</b> : témoigner de l’inhumain.</li><li><b>Pascal</b> : « La justice sans la force est impuissante ; la force sans la justice est tyrannique. »</li></ul></section>
 <section><h3>Le problème en une phrase</h3><p>La violence semble indéracinable et le XX<sup>e</sup> siècle a ruiné la foi dans un progrès continu ; pourtant le droit et la parole, témoignage, dénonciation, jugement, restent les seuls moyens de la limiter et de lui refuser le dernier mot.</p></section>
 <section><h3>Trois citations à savoir par cœur</h3><ul class="puces"><li>« Nous autres, civilisations, nous savons maintenant que nous sommes mortelles. » (Valéry, 1919)</li><li>« La force, c’est ce qui fait de quiconque lui est soumis une chose. » (Simone Weil)</li><li>« chacun appelle barbarie ce qui n’est pas de son usage » (Montaigne)</li></ul></section>`;
   e.qcm = [
@@ -2109,7 +2214,7 @@ HLP.ENTREES.push({
     { q: "Quel livre de Primo Levi témoigne de sa déportation à Auschwitz ?", c: ["<i>Si c’est un homme</i> (1947)", "<i>L’Espèce humaine</i> (1947)", "<i>L’Écriture ou la vie</i> (1994)", "<i>W ou le souvenir d’enfance</i> (1975)"], r: 0, e: "<i>L’Espèce humaine</i> est de Robert Antelme, <i>L’Écriture ou la vie</i> de Semprun, <i>W</i> de Perec.", ref: "e5-6" },
     { q: "Quand Zola publie-t-il « J’accuse… ! » ?", c: ["Le 13 janvier 1898, dans <i>L’Aurore</i>", "En 1871, pendant la Commune", "En 1914, à la déclaration de guerre", "En 1853, depuis l’exil"], r: 0, e: "Zola défend Dreyfus, condamné à tort : modèle de l’engagement de l’écrivain.", ref: "e5-7" },
     { q: "Qui écrit le <i>Discours sur le colonialisme</i> (1950) ?", c: ["Aimé Césaire", "Frantz Fanon", "Joseph Conrad", "Jean-Paul Sartre"], r: 0, e: "Fanon écrit <i>Les Damnés de la terre</i> (1961), préfacé par Sartre ; Conrad, <i>Au cœur des ténèbres</i> (1899).", ref: "e5-8" },
-    { q: "« La justice sans la force est impuissante : la force sans la justice est tyrannique » : qui l’écrit ?", c: ["Pascal", "Kant", "Hobbes", "Weber"], r: 0, e: "<i>Pensées</i> : faute de pouvoir rendre la justice forte, on a rendu juste ce qui est fort.", ref: "e5-9" }
+    { q: "« La justice sans la force est impuissante ; la force sans la justice est tyrannique » : qui l’écrit ?", c: ["Pascal", "Kant", "Hobbes", "Weber"], r: 0, e: "<i>Pensées</i> : faute de pouvoir rendre la justice forte, on a rendu juste ce qui est fort.", ref: "e5-9" }
   ];
   e.cartes = [
     { t: "notion", cat: "Notion", r: "Violence / force / pouvoir", v: "Violence : force qui viole une volonté, un corps, une dignité. Force : peut être légitime. Pouvoir (Arendt) : agir ensemble ; la violence n’est qu’un instrument." },
@@ -2127,7 +2232,7 @@ HLP.ENTREES.push({
     { t: "citation", cat: "Qui l’a écrit ?", r: "« Ah Dieu ! que la guerre est jolie »", v: "Apollinaire, « L’Adieu du cavalier », <i>Calligrammes</i> (1918) ; le cavalier meurt à la fin du poème." },
     { t: "citation", cat: "Qui l’a écrit ?", r: "« Nous autres, civilisations, nous savons maintenant que nous sommes mortelles. »", v: "Valéry, « La Crise de l’esprit » (1919)." },
     { t: "citation", cat: "Qui l’a écrit ?", r: "« La force, c’est ce qui fait de quiconque lui est soumis une chose. »", v: "Simone Weil, « L’Iliade ou le poème de la force » (1940-1941)." },
-    { t: "citation", cat: "Qui l’a écrit ?", r: "« La justice sans la force est impuissante : la force sans la justice est tyrannique. »", v: "Pascal, <i>Pensées</i>." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« La justice sans la force est impuissante ; la force sans la justice est tyrannique. »", v: "Pascal, <i>Pensées</i>." },
     { t: "date", cat: "Date", r: "Charte des Nations unies / procès de Nuremberg", v: "26 juin 1945 / novembre 1945 – octobre 1946." },
     { t: "date", cat: "Œuvre", r: "<i>Si c’est un homme</i> / <i>L’Espèce humaine</i>", v: "Primo Levi / Robert Antelme, tous deux en 1947." }
   ];
@@ -2220,7 +2325,7 @@ HLP.ENTREES.push({
     { id: "e6-10", titre: "Ce qui est déjà tombé au bac", html: `
 <p>Cette entrée tombe moins souvent que « Histoire et violence », mais le sujet de 2026 montre qu’elle est bien au programme de l’écrit, et le Grand oral s’y prête très bien.</p>
 <details class="pli"><summary>Les sujets de métropole depuis 2021</summary><div class="dedans"><ul class="puces">
-<li><b>2021</b> (9 septembre, sujet 2) : Hannah Arendt, <i>Journal de pensée</i> (1953), sur la guerre à l’âge de la bombe. Le texte touche les deux entrées du semestre 2. Interprétation philosophique : « À quelles conditions peut-on, selon Hannah Arendt, prendre le risque de la guerre ? » Essai littéraire : « La littérature et les arts peuvent-ils représenter la guerre sans la dénoncer ? »</li>
+<li><b>2021</b> (9 septembre, session de remplacement, sujet 2) : Hannah Arendt, <i>Journal de pensée</i> (1953), sur la guerre à l’âge de la bombe. Le texte touche les deux entrées du semestre 2. Interprétation philosophique : « À quelles conditions peut-on, selon Hannah Arendt, prendre le risque de la guerre ? » Essai littéraire : « La littérature et les arts peuvent-ils représenter la guerre sans la dénoncer ? »</li>
 <li><b>2026</b> (16 juin) : Jean Giono, <i>Triomphe de la vie</i> (1941), « l’immense armée des machines ». Interprétation littéraire : « Quel regard Jean Giono porte-t-il sur le travail de la machine ? » Essai philosophique : « Dans quelle mesure les machines échappent-elles à l’humain ? »</li>
 </ul></div></details>
 <div class="cle"><b class="l">Ce qu’il faut en tirer</b>Les sujets associent souvent un texte littéraire d’avant le numérique (Giono, 1941) à une question très actuelle (les machines qui échappent à l’humain). Prépare des exemples des deux époques : Vigny ou Giono d’un côté, l’intelligence artificielle ou le climat de l’autre.</div>` }
@@ -2356,7 +2461,7 @@ HLP.ENTREES.push({
       "Plongé dans un calcul silencieux et froid."
     ],
     ref: "Alfred de Vigny, « La Maison du berger », Les Destinées (1864, posthume ; poème paru en 1844 dans la Revue des Deux Mondes).",
-    notes: "1. Allusion aux sacrifices d’enfants que les auteurs anciens attribuaient aux Carthaginois, qui les auraient jetés dans le brasier d’une statue de bronze ; Vigny en fait un taureau. Sujet inventé pour le site, sur le modèle officiel ; le texte est du domaine public.",
+    notes: "« Chardons » (v. 10) est la leçon de l’édition des <i>Destinées</i> (1864) ; la <i>Revue des Deux Mondes</i> (1844) et beaucoup d’éditions modernes portent « charbons ». 1. Allusion aux sacrifices d’enfants que les auteurs anciens attribuaient aux Carthaginois, qui les auraient jetés dans le brasier d’une statue de bronze ; Vigny en fait un taureau. Sujet inventé pour le site, sur le modèle officiel ; le texte est du domaine public.",
     q1: { type: "interprétation littéraire", q: "Comment Vigny fait-il du chemin de fer une figure inquiétante du progrès ?",
       methode: `<ol class="puces"><li><b>Partir de l’image centrale</b> : le « taureau de fer », puis le « dragon mugissant » (v. 1 et 13). Le train est un monstre ; il faut montrer comment les images, les rythmes et les oppositions construisent l’inquiétude.</li><li>Mouvements : le monstre et ses victimes (v. 1-7) ; la course que personne ne maîtrise (v. 8-14) ; le voyage perdu (v. 16-29) ; le monde rétréci (v. 30-36).</li><li>Outils : métaphores et allégories (taureau, dragon, « Dieu de l’or »), mythe antique, champ lexical du feu et de la mort, anaphores et énumérations (v. 25-29), rythme des alexandrins (coupes, rejets : « L’homme a monté trop tôt »), passage du « il » au « nous ».</li></ol>` },
     q2: { type: "essai philosophique", q: "Le progrès technique nous rend-il maîtres de notre destin ?",
@@ -2527,7 +2632,7 @@ HLP.ENTREES.push({
 })(HLP);
 
 HLP.ATELIER = [
-  { court: "Lamartine, « Le Lac »", titre: "Lamartine, « Le Lac » (strophes 1-2 et 6-7)", ref: "Méditations poétiques, 1820, texte de l’édition originale, orthographe modernisée",
+  { court: "Lamartine, « Le Lac »", titre: "Lamartine, « Le Lac » (strophes 1-2, 6 et 8)", ref: "Méditations poétiques, 1820, texte de l’édition originale (où le poème s’intitule « Le Lac de B*** »), orthographe modernisée",
     mouvements: ["1. La condition humaine : un temps sans escale", "2. Le retour au lac, sans elle", "3. La voix de l’aimée : prière au temps"],
     aide: "Touche un passage surligné pour lire la note. Commence par le premier vers.",
     segs: [
@@ -2550,7 +2655,7 @@ HLP.ATELIER = [
       { t: "et vous, heures propices\n« Suspendez votre cours :", m: 3, p: 1, titre: "Insistance", n: "Le verbe est repris sous une autre forme (« suspends » / « Suspendez ») : la prière insiste. Le vers bref de six syllabes semble lui-même suspendu." },
       "\n",
       { t: "« Laissez-nous savourer les rapides délices\n« Des plus beaux de nos jours !", m: 3, p: 1, titre: "Un oxymore discret", n: "« Savourer » fait du bonheur une sensation. « Rapides délices » associe le plaisir et sa fuite : le bonheur est menacé par sa vitesse même." },
-      "\n\n",
+      "\n[…]\n",
       { t: "« Mais je demande en vain quelques moments encore,", m: 3, titre: "Le retour du réel", n: "« Mais » et « en vain » avouent l’échec de la prière, dans la bouche même de celle qui la formule." },
       "\n",
       { t: "« Le temps m’échappe et fuit ;", m: 3, p: 1, titre: "Accélération", n: "Deux verbes de fuite dans un vers bref : le rythme imite ce qu’il dit." },
@@ -2620,7 +2725,7 @@ HLP.ATELIER = [
       " Dès qu’il la sait, il doit la cultiver […].\n",
       { t: "Je dis qu’il faut être voyant, se faire VOYANT.", m: 3, p: 1, titre: "Une correction", n: "« Être » est corrigé en « se faire » : le voyant n’est pas né, il se fabrique. Les majuscules donnent au mot la force d’un manifeste." },
       "\n",
-      { t: "Le poète se fait voyant par un long, immense et raisonné dérèglement de tous les sens.", m: 3, p: 1, titre: "Un oxymore de méthode", n: "« Raisonné dérèglement » : le désordre des sens est une méthode, voulue et conduite. Les trois adjectifs (« long, immense et raisonné ») donnent l’ampleur de l’entreprise." }
+      { t: "Le Poète se fait voyant par un long, immense et raisonné dérèglement de tous les sens.", m: 3, p: 1, titre: "Un oxymore de méthode", n: "« Raisonné dérèglement » : le désordre des sens est une méthode, voulue et conduite. Les trois adjectifs (« long, immense et raisonné ») donnent l’ampleur de l’entreprise." }
     ],
     bilan: "<p>La lettre déplace la question du moi : le poète n’exprime pas un moi déjà là (critique du lyrisme romantique), il découvre en lui un autre et doit se transformer pour l’entendre. À rapprocher de Montaigne (le moi en mouvement), de Nietzsche (devenir ce que l’on est) et de Freud (le moi n’est pas maître chez lui).</p>" }
 ];
@@ -2660,14 +2765,14 @@ Object.assign(HLP.ANIMS, {
     intro: "Pourquoi tant d’hommes restent-ils « mineurs » toute leur vie, et comment en sortir ?",
     noeuds: [
       { id: "m", x: 200, y: 14, w: 240, h: 54, s: "these", t: "Minorité :|penser sous la direction d’autrui" },
-      { id: "p", x: 20, y: 110, w: 180, h: 54, s: "arg", t: "Paresse|« Il est si commode… »" },
-      { id: "l", x: 230, y: 110, w: 180, h: 54, s: "arg", t: "Lâcheté|peur de penser seul" },
-      { id: "t", x: 440, y: 110, w: 180, h: 54, s: "obj", t: "Les tuteurs|en profitent" },
+      { id: "p", x: 14, y: 110, w: 172, h: 54, s: "arg", t: "Paresse|« Il est si commode… »" },
+      { id: "l", x: 234, y: 110, w: 172, h: 54, s: "arg", t: "Lâcheté|peur de penser seul" },
+      { id: "t", x: 454, y: 110, w: 172, h: 54, s: "obj", t: "Les tuteurs|en profitent" },
       { id: "s", x: 120, y: 214, w: 400, h: 54, s: "ex", t: "« Sapere aude, aie le courage de te servir|de ta propre intelligence ! »" },
       { id: "u", x: 120, y: 304, w: 180, h: 66, s: "arg", t: "Liberté de l’usage|public de la raison|(écrire, publier)" },
       { id: "c", x: 340, y: 304, w: 180, h: 66, s: "concl", t: "Un public qui|s’éclaire lui-même :|les Lumières" }
     ],
-    liens: [{ de: "p", a: "m", t: "cause" }, { de: "l", a: "m", t: "cause" }, { de: "t", a: "m", t: "entretiennent" }, { de: "m", a: "s", t: "remède", courbe: 0 }, { de: "s", a: "u", t: "condition" }, { de: "u", a: "c" }],
+    liens: [{ de: "p", a: "m", t: "cause" }, { de: "l", a: "m", t: "cause" }, { de: "t", a: "m", t: "entretiennent", via: [[540, 60], [470, 41]], lx: 506, ly: 52, la: "start" }, { de: "m", a: "s", t: "remède", via: [[430, 96], [440, 200]], lx: 448, ly: 198, la: "start" }, { de: "s", a: "u", t: "condition" }, { de: "u", a: "c" }],
     etapes: [
       { montre: ["m"], legende: "<b>Définition.</b> La minorité n’est pas un âge : c’est l’incapacité de penser sans être dirigé." },
       { montre: ["p"], legende: "<b>Première cause : la paresse.</b> Un livre, un directeur, un médecin pensent à ma place." },
@@ -2688,7 +2793,7 @@ Object.assign(HLP.ANIMS, {
       { id: "e", x: 20, y: 202, w: 260, h: 54, s: "these", t: "« la vérité que je cherche|n’est pas en lui, mais en moi »" },
       { id: "f", x: 360, y: 202, w: 260, h: 54, s: "arg", t: "Le narrateur se tourne vers son esprit :|le souvenir résiste, remonte" },
       { id: "g", x: 190, y: 296, w: 260, h: 54, s: "concl", t: "« Et tout d’un coup|le souvenir m’est apparu »" },
-      { id: "h", x: 120, y: 380, w: 400, h: 54, s: "ex", t: "Combray, le dimanche matin, la tante Léonie|et sa madeleine trempée dans le tilleul" }
+      { id: "h", x: 120, y: 380, w: 400, h: 54, s: "ex", t: "Combray, le dimanche matin : la madeleine|trempée dans le thé ou le tilleul de la tante Léonie" }
     ],
     liens: [{ de: "a", a: "b", t: "sensation" }, { de: "b", a: "c", t: "joie" }, { de: "c", a: "d", t: "répéter ?" }, { de: "d", a: "e", t: "donc" }, { de: "e", a: "f", t: "chercher" }, { de: "f", a: "g" }, { de: "g", a: "h", t: "tout revient" }],
     etapes: [
@@ -2706,14 +2811,14 @@ Object.assign(HLP.ANIMS, {
     intro: "Comment construire une réponse à la question du programme sur le langage commun et l’expérience singulière.",
     noeuds: [
       { id: "q", x: 150, y: 12, w: 340, h: 50, s: "these", t: "Problème : l’expérience est singulière,|les mots sont communs" },
-      { id: "a", x: 20, y: 100, w: 280, h: 58, s: "obj", t: "Bergson : « le mot brutal »|écrase les impressions fugitives" },
-      { id: "b", x: 340, y: 100, w: 280, h: 58, s: "ex", t: "Le mets « réputé exquis » : le nom|s’interpose entre sensation et conscience" },
+      { id: "a", x: 20, y: 100, w: 270, h: 58, s: "obj", t: "Bergson : « le mot brutal »|écrase les impressions fugitives" },
+      { id: "b", x: 360, y: 100, w: 260, h: 58, s: "ex", t: "Le mets « réputé exquis » : le nom|s’interpose entre sensation et conscience" },
       { id: "c", x: 20, y: 196, w: 280, h: 58, s: "arg", t: "Wittgenstein : un langage privé|est impossible ; les mots s’apprennent" },
       { id: "d", x: 340, y: 196, w: 280, h: 58, s: "arg", t: "Proust : le style, « question|non de technique, mais de vision »" },
       { id: "e", x: 340, y: 286, w: 280, h: 52, s: "ex", t: "Baudelaire : les synesthésies|inventent des manières de sentir" },
       { id: "f", x: 90, y: 362, w: 460, h: 56, s: "concl", t: "On ne dit pas l’intime malgré les mots communs,|mais en les travaillant : c’est le rôle de l’art" }
     ],
-    liens: [{ de: "q", a: "a", t: "objection" }, { de: "a", a: "b", t: "exemple" }, { de: "q", a: "c", t: "réponse" }, { de: "c", a: "d", t: "et" }, { de: "d", a: "e", t: "exemple" }, { de: "c", a: "f" }, { de: "e", a: "f" }],
+    liens: [{ de: "q", a: "a", t: "objection" }, { de: "a", a: "b", t: "exemple", lx: 331, ly: 122 }, { de: "q", a: "c", t: "réponse", via: [[298, 120], [305, 190]], lx: 286, ly: 186, la: "end" }, { de: "c", a: "d", t: "et" }, { de: "d", a: "e", t: "exemple" }, { de: "c", a: "f" }, { de: "e", a: "f" }],
     etapes: [
       { montre: ["q"], legende: "<b>Poser le problème.</b> Ce que je ressens n’appartient qu’à moi ; les mots appartiennent à tous." },
       { montre: ["a"], legende: "<b>L’objection forte :</b> le langage fixe et généralise ce qui est mouvant et singulier." },
@@ -2748,8 +2853,31 @@ Object.assign(HLP.ANIMS, {
       { montre: ["b"], legende: "<b>Bergson</b> distingue le moi social, découpé par le langage, et le moi profond, durée vivante." },
       { montre: ["c"], legende: "<b>Bilan pour la copie :</b> le moi n’est pas donné ; on y accède par des récits, des interprétations, une œuvre." }
     ] },
+  "e3-cogito": { type: "graphe", titre: "Du doute au « je pense » : le chemin de Descartes (1637-1641)", w: 640, h: 476,
+    intro: "Comment Descartes trouve, au bout du doute, une certitude que rien ne peut ébranler : celle du moi qui pense. Citations des <i>Méditations</i> dans la traduction du duc de Luynes (1647), orthographe modernisée.",
+    noeuds: [
+      { id: "p", x: 130, y: 12, w: 380, h: 54, s: "these", t: "Projet : établir « quelque chose|de ferme et de constant dans les sciences »" },
+      { id: "s", x: 10, y: 104, w: 196, h: 66, s: "obj", t: "1. Les sens|ils se sont « quelquefois »|montrés trompeurs" },
+      { id: "r", x: 222, y: 104, w: 196, h: 66, s: "obj", t: "2. Le rêve|veille ou sommeil ? point|d’« indices certains »" },
+      { id: "g", x: 434, y: 104, w: 196, h: 66, s: "obj", t: "3. Le « mauvais génie »|« rusé et trompeur » :|même 2 + 3 = 5 ?" },
+      { id: "c", x: 100, y: 206, w: 440, h: 66, s: "arg", t: "Mais pour être trompé, il faut être :|« Il n’y a donc point de doute|que je suis, s’il me trompe »" },
+      { id: "q", x: 24, y: 310, w: 284, h: 58, s: "these", t: "« Je pense, donc je suis »|Discours de la méthode, 1637" },
+      { id: "e", x: 332, y: 310, w: 284, h: 58, s: "ex", t: "« je suis, j’existe » : vrai « toutes|les fois que je la prononce »" },
+      { id: "f", x: 70, y: 404, w: 500, h: 58, s: "concl", t: "Ce que je suis : « une chose qui pense, c’est-à-dire|un esprit, un entendement ou une raison »" }
+    ],
+    liens: [{ de: "p", a: "s", t: "douter" }, { de: "p", a: "r" }, { de: "p", a: "g" }, { de: "s", a: "c" }, { de: "r", a: "c" }, { de: "g", a: "c", t: "même alors" }, { de: "c", a: "q", t: "donc" }, { de: "c", a: "e" }, { de: "q", a: "f" }, { de: "e", a: "f" }],
+    etapes: [
+      { montre: ["p"], legende: "<b>Le projet.</b> Pour fonder le savoir sur un point indubitable, Descartes rejette tout ce qui laisse le moindre doute. C’est une méthode, pas un scepticisme : on doute pour trouver le certain." },
+      { montre: ["s"], legende: "<b>Premier niveau : les sens.</b> Ils nous ont parfois trompés ; par prudence, on ne se fie plus à ce qui nous a trompés une fois." },
+      { montre: ["r"], legende: "<b>Deuxième niveau : le rêve.</b> Je crois souvent être éveillé quand je dors : rien ne garantit que ce que je perçois existe." },
+      { montre: ["g"], legende: "<b>Troisième niveau, « hyperbolique » :</b> un trompeur tout-puissant pourrait m’abuser même quand je calcule que deux et trois font cinq. Plus rien ne semble résister." },
+      { montre: ["c"], legende: "<b>Le retournement.</b> Le doute bute sur une limite : si l’on me trompe, c’est que j’existe pour être trompé. Le trompeur « ne saura jamais faire que je ne sois rien, tant que je penserai être quelque chose »." },
+      { montre: ["q"], legende: "<b>La formule du <i>Discours de la méthode</i></b> (IV<sup>e</sup> partie) : la première vérité certaine, que Descartes reçoit comme « le premier principe de la philosophie »." },
+      { montre: ["e"], legende: "<b>Dans les <i>Méditations</i> (1641),</b> la certitude tient à l’acte de penser : elle vaut chaque fois que je pense ou que je dis « je suis », pas une fois pour toutes." },
+      { montre: ["f"], legende: "<b>Ce qu’est ce moi :</b> une chose « qui doute, qui entend, qui conçoit, qui affirme, qui nie, qui veut, qui ne veut pas, qui imagine aussi, et qui sent ». Un moi stable, substance pensante : c’est ce que Hume, Nietzsche et Freud contesteront." }
+    ] },
   "e3-rimbaud-lecture": { type: "texte", atelier: 3, titre: "Lecture animée : Rimbaud, lettre du voyant", intro: "La grammaire, les images et la ponctuation qui disent un moi dédoublé, une à une." },
-  "frise-mouvements": { type: "frise", titre: "La frise qui se déroule : des Lumières au surréalisme", debut: 1750, fin: 1960, pas: 25, h: 290, min: 820,
+  "frise-mouvements": { type: "frise", titre: "La frise qui se déroule : des Lumières au surréalisme", debut: 1750, fin: 1960, pas: 25, h: 330, min: 820,
     intro: "Les grands mouvements apparaissent dans l’ordre, avec une œuvre repère pour chacun. Dates indicatives : un mouvement n’a ni naissance ni mort précises.",
     periodes: [
       { id: "lum", de: 1750, a: 1789, nom: "Lumières", rang: 0, c: 0 },
@@ -2759,7 +2887,7 @@ Object.assign(HLP.ANIMS, {
       { id: "sym", de: 1886, a: 1905, nom: "Symbolisme", rang: 0, c: 0 },
       { id: "avg", de: 1909, a: 1924, nom: "Avant-gardes", rang: 1, c: 1 },
       { id: "sur", de: 1924, a: 1945, nom: "Surréalisme", rang: 0, c: 2 },
-      { id: "exi", de: 1943, a: 1960, nom: "Existentialisme", rang: 1, c: 3 }
+      { id: "exi", de: 1943, a: 1960, nom: "Existentialisme", rang: 2, c: 3 }
     ],
     evts: [
       { id: "a", an: 1762, t: "Émile", h: 30 }, { id: "b", an: 1782, t: "Confessions", h: 58 },
@@ -3146,7 +3274,7 @@ HLP.EPREUVE = `<header class="page-entete"><p class="surtitre">Méthode</p><h1>L
 <li>personnels, l’habitude de la dureté produit cette disposition à la férocité qui est le plus</li>
 <li>grand ennemi des vertus et de la liberté du peuple, la seule excuse des tyrans, le seul</li>
 <li>prétexte spécieux de toutes les lois inégales.</li>
-</ol><p class="ref" style="text-align:right">Condorcet, <i>Cinq mémoires sur l’instruction publique</i>, 1791. (« spécieux » : qui a une belle apparence, mais qui est faux.)</p>
+</ol><p class="ref" style="text-align:right">Condorcet, <i>Cinq mémoires sur l’instruction publique</i>, 1791. (« spécieux » : qui a une belle apparence, mais qui est faux et sans valeur.)</p>
 <div class="q"><b>Première partie : interprétation philosophique</b>Pourquoi, d’après ce texte, faut-il « exercer l’âme des enfants » à la pitié ?</div>
 <div class="q"><b>Deuxième partie : essai littéraire</b>La littérature a-t-elle pour vocation d’éduquer à la sensibilité ?</div></div>
 
@@ -3158,7 +3286,7 @@ HLP.EPREUVE = `<header class="page-entete"><p class="surtitre">Méthode</p><h1>L
 <div class="marge">La question devient un problème (un paradoxe : raison / sentiment). La thèse est annoncée avec ses raisons, le plan suit les mouvements du texte, lignes à l’appui.</div>
 <div class="seg"><p><b>I.</b> Condorcet ne demande pas à l’école de créer la pitié. Ces sentiments sont « de tous les âges » et « fondés sur des motifs simples et voisins de nos sensations immédiates de plaisir ou de peine » : ils sont naturels et précoces, puisqu’ils existent « aussitôt que nous pouvons avoir l’idée distincte d’un individu ». Le rôle de l’éducation est donc modeste et précis : « nous n’avons besoin que d’en être avertis pour apprendre à les apercevoir, à les reconnaître, à les distinguer ». La gradation des trois verbes décrit une éducation de l’<b>attention</b> : percevoir le sentiment, l’identifier, puis le différencier des autres. Le verbe « exercer » le confirme : on exerce ce qui existe déjà, comme un muscle. On retrouve ici une idée de Rousseau, pour qui la pitié est un sentiment naturel antérieur à la réflexion ; mais Condorcet en tire une tâche pour l’école.</p></div>
 <div class="marge">Citations courtes, intégrées à la phrase, analysées (gradation, sens du verbe « exercer »). Une connaissance (Rousseau) est mobilisée « à bon escient » : elle éclaire le texte au lieu de le remplacer.</div>
-<div class="seg"><p><b>II.</b> Pourquoi cette éducation est-elle si importante ? Parce que la pitié est « le premier principe actif de toute moralité comme de toute vertu ». Condorcet l’explique par son origine : une « douleur irréfléchie et presque organique » produite par la vue des souffrances « d’un autre être sensible ». Le critère n’est pas l’espèce mais la sensibilité ; c’est pourquoi « la pitié pour les animaux a le même principe que la pitié pour les hommes ». L’argument est alors redoutable : habituer un enfant à voir souffrir des animaux « avec indifférence ou même avec plaisir », c’est détruire en lui, « même à l’égard des hommes », le germe de la moralité. La gradation « on affaiblit, on détruit » montre qu’une habitude suffit à corrompre une nature. Sans ce sentiment, la morale ne serait plus qu’« un calcul d’intérêt », « une froide combinaison de la raison » : pour un rationaliste des Lumières, l’aveu est remarquable. La raison calcule, mais seule la sensibilité met en mouvement. D’où l’impératif collectif « Gardons-nous » et la métaphore de la « plante faible encore, qu’un instant peut flétrir » : l’éducation doit protéger une fragilité.</p></div>
+<div class="seg"><p><b>II.</b> Pourquoi cette éducation est-elle si importante ? Parce que la sensibilité naturelle dont elle procède est le « premier principe actif de toute moralité comme de toute vertu ». Condorcet l’explique par son origine : une « douleur irréfléchie et presque organique » produite par la vue des souffrances « d’un autre être sensible ». Le critère n’est pas l’espèce mais la sensibilité ; c’est pourquoi « la pitié pour les animaux a le même principe que la pitié pour les hommes ». L’argument est alors redoutable : habituer un enfant à voir souffrir des animaux « avec indifférence ou même avec plaisir », c’est détruire en lui, « même à l’égard des hommes », « le germe de la sensibilité naturelle », donc la source de toute moralité. La gradation « on affaiblit, on détruit » montre qu’une habitude suffit à corrompre une nature. Sans ce sentiment, la morale ne serait plus qu’« un calcul d’intérêt », « une froide combinaison de la raison » : pour un rationaliste des Lumières, l’aveu est remarquable. La raison calcule, mais seule la sensibilité met en mouvement. D’où l’impératif collectif « Gardons-nous » et la métaphore de la « plante faible encore, qu’un instant peut flétrir » : l’éducation doit protéger une fragilité.</p></div>
 <div class="marge">Le cœur de l’argument est reconstitué (principe → conséquence → menace). Les concepts sont nommés (moralité, raison, sensibilité) et le texte est situé dans son époque sans hors-sujet.</div>
 <div class="seg"><p><b>III.</b> La dernière phrase élargit la perspective : de l’enfant, on passe au « peuple ». Chez l’homme « occupé de travaux grossiers qui émoussent sa sensibilité », « l’habitude de la dureté » produit une « disposition à la férocité ». Or cette férocité est « le plus grand ennemi des vertus et de la liberté du peuple, la seule excuse des tyrans, le seul prétexte spécieux de toutes les lois inégales ». La phrase culmine en trois groupes de plus en plus politiques : si le peuple paraît féroce, les tyrans justifient leur pouvoir par la nécessité de le contenir, et les lois inégales par son incapacité supposée à être libre. Éduquer la sensibilité de tous, c’est donc retirer aux despotes leur meilleur argument. On comprend alors pourquoi ce passage figure dans un mémoire sur l’<b>instruction publique</b> : l’égalité des droits suppose des citoyens que la dureté n’a pas abrutis. On peut seulement regretter que Condorcet attribue la dureté au travail « grossier » plutôt qu’aux conditions qui l’imposent ; mais sa conclusion est justement qu’il faut une éducation pour tous.</p></div>
 <div class="marge">Mise au jour d’un implicite (la logique des tyrans), lien avec le projet d’ensemble de l’œuvre, et une nuance critique, brève et argumentée : c’est ce qui fait passer au-dessus de 8.</div>
@@ -3188,11 +3316,11 @@ HLP.EPREUVE = `<header class="page-entete"><p class="surtitre">Méthode</p><h1>L
 <tr><td>2025, jour 1</td><td>Condorcet, <i>Cinq mémoires sur l’instruction publique</i> (1791)</td><td>Interprétation philosophique : « Pourquoi, d’après ce texte, faut-il “exercer l’âme des enfants” à la pitié ? »</td><td>Essai littéraire : « La littérature a-t-elle pour vocation d’éduquer à la sensibilité ? »</td></tr>
 <tr><td>2026, jour 2</td><td>Raymond Aron, <i>Introduction à la philosophie de l’histoire</i> (1938 ; extrait daté de 1946 par le sujet)</td><td>Interprétation philosophique : « Dans quelle mesure peut-on, selon ce texte, se connaître authentiquement ? »</td><td>Essai littéraire : « La littérature permet-elle “de discerner les sentiments que l’on éprouve et ceux que l’on se figure éprouver” ? »</td></tr>
 </tbody></table></div>
-<p class="petit">Les sujets du semestre 2 (Ricœur et Calaferte en 2022, Aragon en 2024, Szymborska en 2025, Giono en 2026) sont recensés dans la page <a href="#s2">Semestre 2</a>. Sujet zéro n° 2 (Éduscol, 2020) : Jacques Rivière, lettre à Antonin Artaud du 8 juin 1924 ; « En quoi la réflexion de Jacques Rivière expose-t-elle les déchirements du Moi ? » / « Parvient-on jamais à être soi-même ? ».</p>
+<p class="petit">Les sujets du semestre 2 (Arendt en 2021, session de remplacement ; Ricœur et Calaferte en 2022, Aragon en 2024, Szymborska en 2025, Giono en 2026) sont recensés dans la page <a href="#s2">Semestre 2</a>. Sujet zéro n° 2 (Éduscol, 2020) : Jacques Rivière, lettre à Antonin Artaud du 8 juin 1924 ; « En quoi la réflexion de Jacques Rivière expose-t-elle les déchirements du Moi ? » / « Parvient-on jamais à être soi-même ? ».</p>
 </section>
 
 <section id="ep-go"><h2>Le Grand oral en quelques lignes</h2>
-<p>À partir de la session 2027 (note de service du 10 septembre 2026) : 20 minutes de préparation, 20 minutes d’épreuve, <b>coefficient 8</b>. Tu présentes au jury <b>deux questions</b> adossées à tes deux spécialités (une par spécialité, ou transversales) ; le jury en choisit une. Premier temps (10 min, debout) : tu expliques pourquoi tu as choisi la question, tu la développes et tu y réponds. Second temps (10 min) : échange avec le jury, qui peut t’interroger sur tout le programme du cycle terminal de tes spécialités. Aucun matériel autorisé hormis de quoi écrire ; un support peut être préparé pendant les 20 minutes, il n’est pas évalué.</p>
+<p>À partir de la session 2027 (note de service du 10 septembre 2026) : 20 minutes de préparation, 20 minutes d’épreuve, <b>coefficient 8</b>. Tu présentes au jury <b>deux questions</b> adossées à tes deux spécialités (une par spécialité, ou transversales) ; le jury en choisit une. Premier temps (10 min, debout) : tu expliques pourquoi tu as choisi la question, tu la développes et tu y réponds. Second temps (10 min) : échange avec le jury, qui peut t’interroger sur toute partie du programme du cycle terminal de tes spécialités, en lien avec le premier temps. Aucun matériel autorisé hormis de quoi écrire ; un support peut être préparé pendant les 20 minutes, il n’est pas évalué.</p>
 <div class="ex"><b class="l">Idées de questions HLP</b>« Peut-on se connaître en écrivant sur soi ? » · « L’école libère-t-elle ? » · « Faut-il se méfier de ses émotions ? » · « Les réseaux sociaux changent-ils notre rapport à nous-mêmes ? » (à croiser avec l’entrée « L’humain et ses limites »).</div>
 </section>
 </div>`;
@@ -3273,20 +3401,69 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     var quand = {}; a.etapes.forEach(function (e, k) { (e.montre || []).forEach(function (id) { if (!(id in quand)) quand[id] = k; }); });
     var h = '<svg class="a-svg" viewBox="0 0 ' + a.w + " " + a.h + '" role="img" aria-label="' + esc(a.titre) + '" style="min-width:' + (a.min || 560) + 'px">' +
       '<defs><marker id="fl-' + a.id + '" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="a-pointe"/></marker></defs>';
+    var etiquettes = ""; /* mots de liaison : dessinés après les cases, sur un halo, pour rester lisibles */
     (a.liens || []).forEach(function (l, i) {
-      var A = pos[l.de], B = pos[l.a], p1 = bord(A, B.x + B.w / 2, B.y + B.h / 2), p2 = bord(B, A.x + A.w / 2, A.y + A.h / 2);
+      var A = pos[l.de], B = pos[l.a], v = l.via; /* via : [[x1, y1], [x2, y2]] = courbe de Bézier qui contourne une case */
+      var p1 = v ? bord(A, v[0][0], v[0][1]) : bord(A, B.x + B.w / 2, B.y + B.h / 2), p2 = v ? bord(B, v[1][0], v[1][1]) : bord(B, A.x + A.w / 2, A.y + A.h / 2);
       var id = l.id || ("l" + i), k = id in quand ? quand[id] : (Math.max(quand[l.de] || 0, quand[l.a] || 0));
-      var mx = (p1[0] + p2[0]) / 2, my = (p1[1] + p2[1]) / 2, c = l.courbe || 0;
-      var d = c ? "M" + p1[0] + " " + p1[1] + " Q" + (mx + c) + " " + (my - c) + " " + p2[0] + " " + p2[1] : "M" + p1[0] + " " + p1[1] + " L" + p2[0] + " " + p2[1];
-      h += '<g class="a-el a-lien' + (l.s ? " " + l.s : "") + '" data-k="' + k + '"><path class="a-trait" d="' + d + '" marker-end="url(#fl-' + a.id + ')"/>' +
-        (l.t ? '<text class="a-lt" x="' + (mx + c / 2) + '" y="' + (my - c / 2 - 6) + '" text-anchor="middle">' + esc(l.t) + "</text>" : "") + "</g>";
+      var mx = (p1[0] + p2[0]) / 2, my = (p1[1] + p2[1]) / 2, c = l.courbe || 0, lx = mx + c / 2, ly = my - c / 2 - 6;
+      var d = v ? "M" + p1[0] + " " + p1[1] + " C" + v[0][0] + " " + v[0][1] + " " + v[1][0] + " " + v[1][1] + " " + p2[0] + " " + p2[1]
+        : c ? "M" + p1[0] + " " + p1[1] + " Q" + (mx + c) + " " + (my - c) + " " + p2[0] + " " + p2[1] : "M" + p1[0] + " " + p1[1] + " L" + p2[0] + " " + p2[1];
+      if (v) { lx = (p1[0] + 3 * v[0][0] + 3 * v[1][0] + p2[0]) / 8; ly = (p1[1] + 3 * v[0][1] + 3 * v[1][1] + p2[1]) / 8 - 6; }
+      if (l.lx != null) { lx = l.lx; ly = l.ly; }
+      h += '<g class="a-el a-lien' + (l.s ? " " + l.s : "") + '" data-k="' + k + '"><path class="a-trait" d="' + d + '" marker-end="url(#fl-' + a.id + ')"/></g>';
+      if (l.t) etiquettes += '<g class="a-el a-lien-t" data-k="' + k + '"><text class="a-lt" x="' + lx + '" y="' + ly + '" text-anchor="' + (l.la || "middle") + '">' + esc(l.t) + "</text></g>";
     });
     a.noeuds.forEach(function (n) {
       var lignes = String(n.t).split("|"), k = n.id in quand ? quand[n.id] : 0, y0 = n.y + n.h / 2 - (lignes.length - 1) * 8.5 + 5;
       h += '<g class="a-el a-noeud ' + (n.s || "arg") + '" data-k="' + k + '"><rect x="' + n.x + '" y="' + n.y + '" width="' + n.w + '" height="' + n.h + '" rx="3"/>' +
         lignes.map(function (t, j) { return '<text x="' + (n.x + n.w / 2) + '" y="' + (y0 + j * 17) + '" text-anchor="middle"' + (j === 0 && n.titre ? ' class="a-nt"' : "") + ">" + esc(t) + "</text>"; }).join("") + "</g>";
     });
-    return { html: h + "</svg>", etapes: a.etapes };
+    h += etiquettes + "</svg>";
+    /* Version « en colonne » pour les écrans étroits : les mêmes cases, dans l'ordre de l'argument,
+       reliées par leurs mots de liaison ; elle remplace le schéma qui défilait de côté. */
+    var vus = [], nom = function (id) { /* nom court d'une case : avant les deux-points, sans guillemets, quatre mots au plus */
+      var t = String(pos[id].t).split("|")[0].replace(/[«»]/g, "").trim(), c = t.indexOf(" :");
+      if (c > 2) t = t.slice(0, c);
+      var m = t.split(/\s+/); if (m.length > 4) t = m.slice(0, 4).join(" ") + "…";
+      return esc(t.replace(/[\s;,.]+$/, ""));
+    };
+    var rang = a.noeuds.map(function (n, j) { return { n: n, k: n.id in quand ? quand[n.id] : 0, j: j }; })
+      .sort(function (u, v) { return u.k - v.k || u.j - v.j; });
+    var p = '<div class="a-pile" role="list" aria-label="' + esc(a.titre) + '">';
+    rang.forEach(function (r, j) {
+      var n = r.n, prec = j ? rang[j - 1].n.id : null, lg = [];
+      /* liens entrants regroupés par mot de liaison : « donc (suite de « A » et de « B ») » */
+      var grp = {}, ordreG = [];
+      (a.liens || []).forEach(function (l) {
+        var t = l.t ? esc(l.t) : "", cle;
+        if (l.a === n.id && vus.indexOf(l.de) >= 0) {
+          cle = "e:" + (t || "puis");
+          if (!grp[cle]) { grp[cle] = { s: l.s, mot: t || "puis", adj: false, noms: [], sortant: false }; ordreG.push(cle); }
+          if (l.de === prec) grp[cle].adj = true; else grp[cle].noms.push("« " + nom(l.de) + " »");
+          if (l.s) grp[cle].s = l.s;
+        } else if (l.de === n.id && vus.indexOf(l.a) >= 0) {
+          cle = "s:" + (t || "vers") + l.a; grp[cle] = { s: l.s, mot: t || "vers", noms: ["« " + nom(l.a) + " »"], sortant: true }; ordreG.push(cle);
+        }
+      });
+      /* liens sans mot de liaison : rattachés au premier lien nommé (« même alors (et de « A ») ») */
+      var autres = ordreG.filter(function (c) { return c.indexOf("e:") === 0 && c !== "e:puis"; });
+      if (grp["e:puis"] && !grp["e:puis"].adj && autres.length) {
+        var g0 = grp[autres[0]]; if (!g0.noms.length) g0.adj = true;
+        g0.noms = g0.noms.concat(grp["e:puis"].noms); ordreG.splice(ordreG.indexOf("e:puis"), 1);
+      }
+      lg = ordreG.map(function (c) {
+        var g = grp[c], h = "<i>" + g.mot + "</i>";
+        if (g.sortant) h += ' <span class="a-pl-de">→ ' + g.noms[0] + "</span>";
+        else if (g.noms.length) h += ' <span class="a-pl-de">(' + (g.adj ? "et de " : "suite de ") + g.noms.join(" et de ") + ")</span>";
+        return { s: g.s, h: h };
+      });
+      if (j) p += '<div class="a-el a-pl-lien' + (lg.some(function (x) { return x.s === "contre"; }) ? " contre" : "") + '" data-k="' + r.k + '" aria-hidden="true"><span>' + lg.map(function (x) { return x.h; }).join(" · ") + "</span></div>";
+      var lignes = String(n.t).split("|");
+      p += '<div class="a-el a-pc ' + (n.s || "arg") + '" data-k="' + r.k + '" role="listitem">' + (n.titre ? "<b>" + esc(lignes.shift()) + "</b><br>" : "") + lignes.map(esc).join("<br>") + "</div>";
+      vus.push(n.id);
+    });
+    return { html: h + p + "</div>", etapes: a.etapes };
   }
   function sceneFrise(a) {
     var W = 1000, H = a.h || 270, x = function (an) { return 40 + (an - a.debut) / (a.fin - a.debut) * (W - 80); };
@@ -3308,6 +3485,54 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     return { html: h, etapes: a.etapes, x: x };
   }
 
+  /* Frises : une fois le texte mesuré, les noms de période qui débordent de leur barre passent à côté
+     (là où la ligne est libre) ou se resserrent, et les étiquettes d'événements qui se chevauchent montent ou descendent. */
+  function ajusterFrise(svg) {
+    if (!svg || !svg.getBoundingClientRect().width) return;
+    var W = svg.viewBox.baseVal.width, pers = Array.prototype.slice.call(svg.querySelectorAll(".a-per"));
+    var bar = pers.map(function (g) { var r = g.querySelector("rect"); return { g: g, r: r, t: g.querySelector("text"), x: +r.getAttribute("x"), y: +r.getAttribute("y"), w: +r.getAttribute("width") }; });
+    var occupe = []; /* zones déjà prises par du texte : [x1, x2, y1, y2] */
+    bar.forEach(function (b) {
+      var t = b.t; t.removeAttribute("font-size"); t.removeAttribute("textLength"); t.removeAttribute("lengthAdjust"); t.removeAttribute("data-hors");
+      t.setAttribute("x", b.x + 7); t.setAttribute("text-anchor", "start");
+      var tw = t.getBBox().width;
+      if (tw + 12 > b.w) {
+        var libreD = W - 6, libreG = 6;
+        bar.forEach(function (o) { if (o === b || o.y !== b.y) return; if (o.x >= b.x + b.w - 1) libreD = Math.min(libreD, o.x - 4); if (o.x + o.w <= b.x + 1) libreG = Math.max(libreG, o.x + o.w + 4); });
+        var place = function () {
+          if (b.x + b.w + 6 + tw <= libreD) { t.setAttribute("x", b.x + b.w + 6); t.setAttribute("data-hors", "1"); return true; }
+          if (b.x - 6 - tw >= libreG) { t.setAttribute("x", b.x - 6); t.setAttribute("text-anchor", "end"); t.setAttribute("data-hors", "1"); return true; }
+          return false;
+        };
+        if (!place()) {
+          t.setAttribute("font-size", "12.5"); tw = t.getBBox().width;
+          if (tw + 10 > b.w && !place()) { t.setAttribute("textLength", Math.max(10, b.w - 10)); t.setAttribute("lengthAdjust", "spacingAndGlyphs"); }
+        }
+      }
+      var bb = t.getBBox(); occupe.push([bb.x - 2, bb.x + bb.width + 2, bb.y, bb.y + bb.height]);
+    });
+    var basPer = bar.reduce(function (m, b) { return Math.max(m, b.y + 34); }, 0);
+    var evts = Array.prototype.slice.call(svg.querySelectorAll(".a-evt")).map(function (g) {
+      var ln = g.querySelector("line"), t = g.querySelector("text");
+      if (!g.hasAttribute("data-y0")) g.setAttribute("data-y0", ln.getAttribute("y2"));
+      var y0 = +g.getAttribute("data-y0"); ln.setAttribute("y2", y0); t.setAttribute("y", y0 + 4);
+      return { ln: ln, t: t, y0: y0, x: +ln.getAttribute("x1") };
+    }).sort(function (u, v) { return u.x - v.x; });
+    var axe = evts.length ? +evts[0].ln.getAttribute("y1") : 0;
+    evts.forEach(function (e) {
+      var essais = [0], k;
+      for (k = 1; k <= 8; k++) { essais.push(-15 * k); essais.push(15 * k); }
+      for (k = 0; k < essais.length; k++) {
+        var y = e.y0 + essais[k];
+        if (y < basPer + 14 || y > axe - 14) continue;
+        e.t.setAttribute("y", y + 4); var bb = e.t.getBBox(), z = [bb.x - 3, bb.x + bb.width + 3, bb.y - 1, bb.y + bb.height + 1];
+        var libre = occupe.every(function (o) { return z[1] <= o[0] || z[0] >= o[1] || z[3] <= o[2] || z[2] >= o[3]; }) && z[0] >= 0 && z[1] <= W;
+        if (libre) { e.ln.setAttribute("y2", y); occupe.push(z); return; }
+      }
+      e.t.setAttribute("y", e.y0 + 4); var b2 = e.t.getBBox(); occupe.push([b2.x - 3, b2.x + b2.width + 3, b2.y, b2.y + b2.height]);
+    });
+  }
+
   /* ---------- lecteur ---------- */
   function monterUn(el) {
     var id = el.getAttribute("data-anim"), a = D.ANIMS && D.ANIMS[id];
@@ -3322,6 +3547,10 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
       '<div class="anim-cmd" role="group" aria-label="Commandes de l’animation">' +
       '<button type="button" data-a="debut" aria-label="Recommencer">' + IC.debut + '</button><button type="button" data-a="prec" aria-label="Étape précédente">' + IC.prec + "</button>" +
       '<button type="button" class="anim-lire" data-a="lire" aria-label="Lecture">' + IC.lire + '<span>Lecture</span></button><button type="button" data-a="suiv" aria-label="Étape suivante">' + IC.suiv + '</button><span class="anim-prog"><i></i></span></div>';
+    if (a.type === "frise") {
+      var fsvg = el.querySelector(".a-frise"); ajusterFrise(fsvg);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ajusterFrise(fsvg); });
+    }
     var scene = el.querySelector(".anim-scene"), leg = el.querySelector(".anim-legende p"), num = el.querySelector(".anim-n"),
       btn = el.querySelector(".anim-lire"), prog = el.querySelector(".anim-prog i"), i = -1, minuteur = null, cur = el.querySelector(".a-curseur");
     function appliquer() {
@@ -3345,6 +3574,8 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
         var rs2 = scene.getBoundingClientRect(), re2 = el2.getBoundingClientRect();
         scene.scrollTo({ left: Math.max(0, scene.scrollLeft + re2.left + re2.width / 2 - rs2.left - rs2.width / 2), behavior: reduit ? "auto" : "smooth" });
       }
+      var pc = el.classList.contains("a-mode-pile") && scene.querySelector(".a-pc.neuf");
+      if (pc) { var rp = scene.getBoundingClientRect(), rc = pc.getBoundingClientRect(); if (rc.top < rp.top + 8 || rc.bottom > rp.bottom - 8) scene.scrollTo({ top: Math.max(0, scene.scrollTop + rc.top - rp.top - 70), behavior: reduit ? "auto" : "smooth" }); }
       var actif = scene.querySelector(".a-seg.neuf:not(.a-plain)");
       if (actif && a.type === "texte") { var rs = scene.getBoundingClientRect(), ra = actif.getBoundingClientRect(); if (ra.top < rs.top || ra.bottom > rs.bottom) scene.scrollTop += ra.top - rs.top - 40; }
     }
@@ -3366,6 +3597,11 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
       if (x === "prec") { i = Math.max(0, i - 1); } else if (x === "suiv") { i = Math.min(N - 1, i + 1); }
       appliquer(); if (minuteur) planifier();
     });
+    if (a.type === "graphe") {
+      var bascule = function () { var w = scene.clientWidth; if (w) el.classList.toggle("a-mode-pile", w < (a.min || 560) - 8); };
+      bascule();
+      if (window.ResizeObserver) new ResizeObserver(bascule).observe(scene); else window.addEventListener("resize", bascule);
+    }
     appliquer();
   }
   window.HLPANIM = { monter: function (racine) { Array.prototype.forEach.call((racine || document).querySelectorAll("[data-anim]"), monterUn); } };
@@ -3489,14 +3725,15 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     var h = '<div class="lecture"><section class="essentiel"><h2>L’essentiel en 5 lignes</h2><ol>' + e.essentiel.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ol></section>";
     h += '<section class="cadre-prog"><h3>Ce que le programme attend</h3><ul class="puces">' + e.attendus.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul></section>";
     h += "<h2>Les problématiques</h2><ul class='puces'>" + e.problematiques.map(function (l) { return "<li><i>" + l + "</i></li>"; }).join("") + "</ul>";
-    h += e.schema ? '<figure class="schema" data-schema>' + e.schema + "</figure>" : "";
+    /* schemaP : la même figure en portrait, montrée sur téléphone à la place de la version en largeur */
+    h += e.schema ? '<figure class="schema' + (e.schemaP ? " a-deux" : "") + '" data-schema>' + (e.schemaP ? e.schema.replace("<figcaption>", e.schemaP + "<figcaption>") : e.schema) + "</figure>" : "";
     (e.anims || []).forEach(function (id) { h += '<div data-anim="' + id + '"></div>'; });
     h += ORN + "<h2>Le cours</h2>";
     e.cours.forEach(function (c, i) {
       h += '<section class="idee" id="' + c.id + '"><h3><span class="n">' + (i + 1) + ".</span><span>" + c.titre + "</span></h3>" + c.html + "</section>";
     });
     h += ORN + "<h2>Les notions à manier</h2><dl class='defs'>" + e.notions.map(function (n) { return "<dt>" + n[0] + "</dt><dd>" + n[1] + "</dd>"; }).join("") + "</dl>";
-    h += "<h2>Repères chronologiques</h2><div class='defile'><table class='t'><thead><tr><th>Date</th><th>Repère</th></tr></thead><tbody>" +
+    h += "<h2>Repères chronologiques</h2><div class='defile'><table class='t rep'><thead><tr><th>Date</th><th>Repère</th></tr></thead><tbody>" +
       e.reperes.map(function (r) { return "<tr><td style='white-space:nowrap'><b>" + r[0] + "</b></td><td>" + r[1] + "</td></tr>"; }).join("") + "</tbody></table></div>";
     h += "<h2>Les pièges</h2>" + e.pieges.map(function (p) { return '<div class="attention"><b class="l">Piège</b>' + p + "</div>"; }).join("");
     h += '<div class="rang non-imp"><a class="btn plein" href="#' + e.id + '/textes">Lire les textes clés</a><a class="btn" href="#' + e.id + '/qcm">Faire le QCM</a></div></div>';
@@ -3558,6 +3795,8 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   function an(t) { var m = /(\d{4})/.exec(String(t).replace(/<[^>]+>/g, "")); return m ? +m[1] : null; }
   function friseComplete() {
     var per = D.FRISE.map(function (p) { var a = String(p.dates).match(/\d{4}/g) || []; return { nom: p.nom, dates: p.dates, def: p.def, de: +a[0], a: +a[a.length - 1], evts: p.evts.slice() }; });
+    /* repères antérieurs aux Lumières (Montaigne, Descartes, Pascal…) : rangés à part, pas sous « Les Lumières » */
+    var avant = { nom: "Avant les Lumières", dates: "XVI<sup>e</sup>-XVII<sup>e</sup> siècles", def: "les sources : humanisme, rationalisme, moralistes", de: 0, a: 1715, evts: [] };
     var apres = { nom: "Depuis 1950", dates: "1950 à nos jours", def: "témoigner, juger, limiter la puissance", de: 1950, a: 9999, evts: [] };
     ordre().forEach(function (x) {
       if (D.FRISE.some(function (p) { return p.evts.some(function (ev) { return ev[2] === x.id; }); })) return;
@@ -3565,11 +3804,12 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
         var y = an(r[0]); if (y === null) return;
         var cible = y >= 1950 ? apres : null;
         per.forEach(function (p) { if (!cible && y >= p.de && y < p.a) cible = p; });
-        if (!cible) cible = y < per[0].de ? per[0] : per[per.length - 1];
+        if (!cible) cible = y < per[0].de ? avant : per[per.length - 1];
         cible.evts.push([r[0], r[1], x.id]);
       });
     });
     if (apres.evts.length) per.push(apres);
+    if (avant.evts.length) per.unshift(avant);
     per.forEach(function (p) { p.evts.sort(function (u, v) { return (an(u[0]) || 0) - (an(v[0]) || 0); }); });
     return per;
   }
@@ -3657,7 +3897,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
         return;
       }
       var x = q[i], ordre = melange(x.c.map(function (c, k) { return k; }));
-      var h = '<div class="qcm"><div class="prog"><span>Question ' + (i + 1) + " / " + q.length + '</span><span class="barre"><i style="width:' + Math.round(i / q.length * 100) + '%"></i></span><span>' + bons + " ✓</span></div>" +
+      var h = '<div class="qcm"><div class="prog"><span>Question ' + (i + 1) + " / " + q.length + '</span><span class="barre"><i style="width:' + Math.round(i / q.length * 100) + '%"></i></span><span>' + bons + (bons > 1 ? " justes" : " juste") + "</span></div>" +
         '<p class="question">' + x.q + '</p><div class="choix">' + ordre.map(function (k) { return '<button data-k="' + k + '">' + x.c[k] + "</button>"; }).join("") + "</div><div class='zone-e'></div></div>";
       zone.innerHTML = ty(h);
     }
@@ -3829,6 +4069,12 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
         p.classList.add("lettrine-ok"); break;
       }
     });
+    /* tableaux de trois colonnes ou plus : sur téléphone, chaque ligne devient une fiche (titre de colonne en petites capitales) */
+    $$("table.t", main).forEach(function (t) {
+      var th = $$("thead th", t); if (th.length < 3) return;
+      t.classList.add("empile");
+      $$("tbody tr", t).forEach(function (tr) { $$("td,th", tr).forEach(function (c, k) { var l = th[k] && th[k].textContent.trim(); if (l && c.colSpan < 2) c.setAttribute("data-col", l); }); });
+    });
   }
   function router() {
     var h = (location.hash || "#accueil").slice(1), parts = h.split("/"), r = parts[0] || "accueil", sous = parts[1] || "";
@@ -3838,6 +4084,8 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     else { r = "accueil"; html = PAGES.accueil(); }
     main.innerHTML = ty(html) + '<div aria-hidden="true">' + D.CUL + "</div>" + folio(e ? e.id : r) + '<footer class="pied">' + D.PIED + "</footer>";
     orner();
+    /* sur téléphone, l'onglet actif (QCM, cartes, fiche) est souvent hors de la barre : on l'y ramène */
+    var oa = $(".onglets a.actif", main); if (oa) { var nav = oa.parentNode; nav.scrollLeft = Math.max(0, oa.offsetLeft - (nav.clientWidth - oa.offsetWidth) / 2); }
     if (window.HLPANIM) window.HLPANIM.monter(main);
     if (!premier && !reduit) { main.classList.toggle("tourne", false); void main.offsetWidth; main.classList.add("tourne"); setTimeout(function () { main.classList.toggle("tourne", false); }, 900); }
     premier = false;

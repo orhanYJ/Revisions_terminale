@@ -39,6 +39,9 @@ var ANIM_MOTEUR = (function () {
   function ease(p) { p = borne(p); return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
   var COUL = { canard: "var(--canard)", corail: "var(--corail)", moutarde: "var(--moutarde)", encre: "var(--encre)", gris: "var(--encre2)", vert: "var(--vert)", ligne: "var(--ligne)", carte: "var(--carte)", papier: "var(--papier)", canardc: "var(--canard-c)", corailc: "var(--corail-c)", moutardec: "var(--moutarde-c)", carte2: "var(--carte2)" };
   function c(n) { return COUL[n] || n; }
+  /* couleurs de texte : corail et moutarde foncés en thème clair (contraste AA sur le papier) */
+  var COUL_T = { corail: "var(--corail-t)", moutarde: "var(--moutarde-t)" };
+  function ct(n) { return COUL_T[n] || c(n); }
 
   var A = {
     W: W, fr: fr, esc: esc,
@@ -49,7 +52,7 @@ var ANIM_MOTEUR = (function () {
     t: function (x, y, txt, o) {
       o = o || {}; var t = o.t || 13, lignes = o.w ? couper(txt, o.w, t, o.g) : [String(txt)];
       var dy = o.v ? -(lignes.length - 1) * t * 0.6 : 0;
-      return '<text x="' + x + '" y="' + (y + dy) + '" text-anchor="' + (o.a || "start") + '" style="font-size:' + t + "px;" + (o.g ? "font-weight:700;" : "") + (o.it ? "font-style:italic;" : "") + "fill:" + c(o.c || "encre") + ";opacity:" + (o.op === undefined ? 1 : o.op) + (o.f ? ";font-family:var(--titre);font-stretch:condensed" : "") + (o.h ? ";paint-order:stroke;stroke:var(--carte);stroke-width:4px;stroke-linejoin:round" : "") + '">' +
+      return '<text x="' + x + '" y="' + (y + dy) + '" text-anchor="' + (o.a || "start") + '" style="font-size:' + t + "px;" + (o.g ? "font-weight:700;" : "") + (o.it ? "font-style:italic;" : "") + "fill:" + ct(o.c || "encre") + ";opacity:" + (o.op === undefined ? 1 : o.op) + (o.f ? ";font-family:var(--titre);font-stretch:condensed" : "") + (o.h ? ";paint-order:stroke;stroke:var(--carte);stroke-width:4px;stroke-linejoin:round" : "") + '">' +
         lignes.map(function (l, k) { return '<tspan x="' + x + '" dy="' + (k ? t * 1.2 : 0) + '">' + esc(l) + "</tspan>"; }).join("") + "</text>";
     },
     /* rectangle : o = { f: remplissage, s: trait, r: arrondi, op, sw } */

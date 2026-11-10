@@ -30,6 +30,7 @@ De façon équivalente, par passage au contraire : $P(|X-\mu|<\delta)\geq1-\frac
 <p><b>Ce que ça dit.</b> La variance contrôle la probabilité des grands écarts : plus $V$ est petit, moins $X$ a de chances de s'éloigner de sa moyenne. Et l'inégalité vaut pour <b>n'importe quelle</b> loi : on n'a besoin que de $\mu$ et $V$.</p>
 [ex|Un dé]$\mu=3{,}5$, $V=\frac{35}{12}$. $P(|X-3{,}5|\geq2)\leq\frac{35/12}{4}=\frac{35}{48}\approx0{,}73$. En réalité, $|X-3{,}5|\geq2$ signifie $X\in\{1;6\}$ : probabilité $\frac13$. La majoration est vraie, mais large.[/]
 [ex|Une loi binomiale]$X\sim\mathcal B(100;0{,}5)$ : $\mu=50$, $V=25$. $P(|X-50|\geq10)\leq\frac{25}{100}=0{,}25$, alors que le calcul exact donne environ $0{,}057$.[/]
+<div data-anim="tchebychev"></div>
 [ex|Un intervalle (bac, Amérique du Nord, 20 mai 2026)]Un prix $Z$ a pour espérance $9$ € et pour écart type $2$ €. « Il y a au moins $50\,\%$ de chances que le prix soit strictement compris entre $6$ et $12$ € » : $P(6<Z<12)=P(|Z-9|<3)\geq1-\frac{4}{9}=\frac59\approx0{,}56$. Affirmation justifiée.[/]
 [meth|Utiliser l'inégalité]<ol><li>Identifie $\mu$ et $V$ (variance, pas écart type).</li><li>Écris l'événement sous la forme $|X-\mu|\geq\delta$ ou $|X-\mu|<\delta$ : l'intervalle doit être <b>centré</b> sur $\mu$.</li><li>Applique : $\leq\frac V{\delta^2}$, ou $\geq1-\frac V{\delta^2}$ pour le contraire.</li></ol>[/]` },
     { id: "ecarttype", titre: "L'écart type, unité naturelle de dispersion", html: R`
@@ -282,5 +283,44 @@ ANIMS.lgn = {
     }
     if (k >= 4) S.px.math(40, 180, 300, 40, R`$P(|F_n-0{,}5|\geq0{,}05)\leq\frac{100}n$`, { opacity: E(ANIM.p(t, 0, 0.4)) });
     S.txt(NL - 4, 0.04, "n", "", "end", { "font-size": 11, style: "fill:var(--encre3)" });
+  }
+};
+
+/* Animation : Bienaymé-Tchebychev face au calcul exact, pour une loi binomiale */
+ANIMS.tchebychev = {
+  titre: R`Bienaymé-Tchebychev : une borne sûre, mais large`,
+  vb: [360, 262],
+  etapes: [
+    { d: 4, l: R`$X\sim\mathcal B(100;0{,}5)$ : $\mu=50$, $V=25$ (écart type $5$). Voici sa loi.` },
+    { d: 4.5, l: R`Pour $\delta=10$, l'événement $|X-50|\geq10$ correspond aux barres rouges, aux deux bouts. Probabilité exacte : environ $0{,}057$. L'inégalité garantit seulement $P(|X-50|\geq10)\leq\frac{25}{10^2}=0{,}25$.` },
+    { d: 5, l: R`Si $\delta$ descend jusqu'à $5$ (un écart type), la borne $\frac{V}{\delta^2}$ atteint $1$ : elle est vraie, mais n'apprend plus rien (la probabilité exacte est environ $0{,}37$).` },
+    { d: 5.5, l: R`Si $\delta$ monte jusqu'à $15$, les deux chutent : exacte environ $0{,}0035$, borne $\frac{25}{225}\approx0{,}11$. La borne reste toujours au-dessus.` },
+    { d: 4, l: R`Bilan : la majoration est souvent large, mais elle ne demande que $\mu$ et $V$, et vaut pour n'importe quelle loi. C'est ce qui la rend utile pour <b>garantir</b> un résultat.` }
+  ],
+  _p: null,
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, A = ANIMS.tchebychev;
+    if (!A._p) { A._p = [Math.pow(2, -100)]; for (var i = 0; i < 100; i++) A._p.push(A._p[i] * (100 - i) / (i + 1)); }
+    var pr = A._p;
+    S.rep(29.5, 70.5, 0, 0.09, { px: 5, py: 0.02, marges: { l: 40, r: 10, t: 14, b: 84 }, fx: function (x) { return String(Math.round(x)); }, fy: function (y) { return nf(y, 2); } });
+    var d = k === 0 ? null : k === 1 ? 10 : k === 2 ? Math.round(ANIM.l(10, 5, E(p(t, 0, 0.8)))) : k === 3 ? Math.round(ANIM.l(5, 15, E(p(t, 0, 0.8)))) : 15;
+    var o1 = k === 1 ? E(p(t, 0, 0.4)) : 1;
+    for (var j = 30; j <= 70; j++) {
+      var h = pr[j] * (k === 0 ? E(p(t, Math.abs(j - 50) / 40, Math.abs(j - 50) / 40 + 0.5)) : 1), dehors = d !== null && Math.abs(j - 50) >= d;
+      S.rect(j - 0.42, 0, j + 0.42, h, dehors ? "a-plein2" : "a-plein", { opacity: dehors ? 0.4 + 0.6 * o1 : 1 });
+    }
+    if (d === null) { S.txt(70, 0.082, "μ = 50, V = 25", "b", "end"); return; }
+    [50 - d, 50 + d].forEach(function (x) { S.seg(x, 0, x, 0.088, "g-as", { opacity: o1 }); });
+    S.txt(70, 0.082, "δ = " + d, "r", "end", { opacity: o1 });
+    var reel = 0; for (var m = 0; m <= 100; m++) if (Math.abs(m - 50) >= d) reel += pr[m];
+    var borne = Math.min(1, 25 / (d * d)), X0 = 122, LW = 200;
+    function jauge(y, lab, v, cls, txt) {
+      S.px.txt(X0 - 8, y + 10, lab, cls === "a-plein2" ? "r" : "", "end", { "font-size": 12, opacity: o1 });
+      S.px.rect(X0, y, LW, 14, "", { style: "fill:none;stroke:var(--ligne2)", opacity: o1 });
+      S.px.rect(X0, y, Math.max(1.5, LW * v), 14, cls, { opacity: o1 });
+      S.px.txt(X0 + Math.max(1.5, LW * v) + 5, y + 11, txt, cls === "a-plein2" ? "r" : "b", "start", { "font-size": 12, opacity: o1 });
+    }
+    jauge(208, "P exacte", reel, "a-plein2", "≈ " + (reel < 0.01 ? nf(reel, 4) : nf(reel, 3)));
+    jauge(234, "borne V/δ²", borne, "a-plein", (25 / (d * d) >= 1 ? "= 1" : "≈ " + nf(borne, 3)));
   }
 };

@@ -34,7 +34,7 @@
 
   /* ---------- blocs de contenu ---------- */
   function boite(type, lab, html) {
-    return '<div class="boite ' + type + '"><span class="lab">' + lab + '</span><div class="corps">' + F(html) + "</div></div>";
+    return '<div class="boite ' + type + '"><span class="lab">' + F(lab) + '</span><div class="corps">' + F(html) + "</div></div>";
   }
   /* Le cours est écrit en HTML enrichi : [def|Titre] … [/], [prop|…], [thm|…], [ex|…], [meth|…], [piege|…], [hist|…] */
   var LABS = { def: "Définition", prop: "Propriété", thm: "Théorème", ex: "Exemple", meth: "Méthode", piege: "Piège", hist: "Histoire" };
@@ -246,6 +246,32 @@
 
   /* ---------- routeur ---------- */
   var main = $("#page"), menu = $("#menu");
+
+  /* Formules trop larges (petits téléphones) : une formule en ligne ne passe pas à la ligne au milieu d'une racine
+     ou d'une fraction ; si elle dépasse son bloc, on réduit sa taille (jusqu'à 70 %) au lieu de la laisser
+     déborder. Toutes les mesures d'abord, puis toutes les écritures. */
+  var attente = 0;
+  function ajusteMaths() {
+    attente = 0;
+    var mesures = [];
+    $$("math[data-ajuste]", main).forEach(function (m) { m.style.fontSize = ""; m.removeAttribute("data-ajuste"); });
+    $$("math", main).forEach(function (m) {
+      if (m.closest("svg, td, th, pre, .face")) return;
+      if (m.getAttribute("display") === "block") { if (m.scrollWidth > m.clientWidth + 1) mesures.push([m, m.clientWidth / m.scrollWidth]); return; }
+      var w = m.getBoundingClientRect().width; if (!w) return;
+      var b = m.parentElement; while (b && /^inline/.test(getComputedStyle(b).display)) b = b.parentElement;
+      if (!b) return;
+      var cs = getComputedStyle(b), dispo = b.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      if (w > dispo + 1) mesures.push([m, (dispo - 2) / w]);
+    });
+    mesures.forEach(function (x) { x[0].style.fontSize = (1.08 * Math.max(0.7, x[1])).toFixed(3) + "em"; x[0].setAttribute("data-ajuste", ""); });
+  }
+  function planifieAjuste() { if (!attente) attente = requestAnimationFrame(ajusteMaths); }
+  if ("MutationObserver" in window) new MutationObserver(function (ms) {
+    for (var i = 0; i < ms.length; i++) { var c = ms[i].target; if (!(c.closest && c.closest("svg"))) { planifieAjuste(); return; } }
+  }).observe(main, { childList: true, subtree: true });
+  window.addEventListener("resize", planifieAjuste);
+  D.addEventListener("toggle", planifieAjuste, true);
   function route() {
     var h = decodeURIComponent(location.hash.replace(/^#/, "")) || "accueil";
     var p = h.split("/"), html = "", actif = p[0], cible = null, titre = "CQFD";

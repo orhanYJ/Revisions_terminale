@@ -48,7 +48,8 @@ var CH7 = {
 <ol><li>Si $a>1$ ou $a<-1$ : pas de solution.</li><li>Sinon, trouver un angle $\alpha\in[0;\pi]$ tel que $\cos\alpha=a$ (valeur remarquable, ou calculatrice).</li><li>Sur $[-\pi;\pi]$, les solutions sont $\alpha$ et $-\alpha$ (une seule si $a=\pm1$).</li></ol>[/]
 [ex|Exemples]$\cos x=\frac12$ : $x=\frac\pi3$ ou $x=-\frac\pi3$. $\cos x=-\frac{\sqrt3}2$ : $x=\pm\frac{5\pi}6$. $\sin x=\frac{\sqrt2}2$ sur $[-\pi;\pi]$ : $x=\frac\pi4$ ou $x=\pi-\frac\pi4=\frac{3\pi}4$ (avec $\sin(\pi-x)=\sin x$).[/]
 [meth|Inéquation $\cos x\leq a$]Sur le cercle, $\cos x\leq a$ correspond aux points <b>à gauche</b> de la droite verticale d'abscisse $a$. Pour $a=\frac12$, sur $[-\pi;\pi]$ : $x\in\left[-\pi;-\frac\pi3\right]\cup\left[\frac\pi3;\pi\right]$.[/]
-[ex|Avec le sinus]$2\sin x-1\geq0$ sur $[0;2\pi]$ ⟺ $\sin x\geq\frac12$ ⟺ $x\in\left[\frac\pi6;\frac{5\pi}6\right]$ (points au-dessus de la droite horizontale d'ordonnée $\frac12$).[/]` },
+[ex|Avec le sinus]$2\sin x-1\geq0$ sur $[0;2\pi]$ ⟺ $\sin x\geq\frac12$ ⟺ $x\in\left[\frac\pi6;\frac{5\pi}6\right]$ (points au-dessus de la droite horizontale d'ordonnée $\frac12$).[/]
+<div data-anim="trigEq"></div>` },
     { id: "optimum", titre: "Étudier une fonction : un optimum géométrique", html: R`
 [ex|Le plus grand rectangle dans un demi-disque]On inscrit un rectangle dans un demi-disque de rayon $1$ : un côté sur le diamètre, deux sommets sur le demi-cercle, repérés par l'angle $\theta\in\left[0;\frac\pi2\right]$. Le rectangle a pour largeur $2\cos\theta$ et pour hauteur $\sin\theta$ : $A(\theta)=2\sin\theta\cos\theta$.
 <p>$A'(\theta)=2\left(\cos\theta\cos\theta+\sin\theta\times(-\sin\theta)\right)=2\left(\cos^2\theta-\sin^2\theta\right)$.</p>
@@ -196,5 +197,74 @@ ANIMS.cercle = {
       S.px.seg(x0 - dx, y0 + s * dx * sc / (L / (2 * P)), x0 + dx, y0 - s * dx * sc / (L / (2 * P)), "g-c", { "stroke-width": 2 });
       S.px.txt(250, 196, "pente = " + ANIM.nf(s, 2), "b");
     }
+  }
+};
+
+/* Animation : résoudre cos x = 1/2 et des inéquations sur le cercle */
+ANIMS.trigEq = {
+  titre: R`Résoudre $\cos x=\frac12$ sur le cercle`,
+  vb: [370, 236],
+  etapes: [
+    { d: 4, l: R`Sur le cercle trigonométrique, le point $M$ associé au réel $x$ a pour abscisse $\cos x$ (en vert). Résoudre $\cos x=\frac12$, c'est chercher les points d'abscisse $\frac12$.` },
+    { d: 4.5, l: R`La droite verticale d'abscisse $\frac12$ coupe le cercle en deux points : ceux de $\frac\pi3$ et de $-\frac\pi3$ (car $\cos\frac\pi3=\frac12$ et $\cos(-x)=\cos x$).` },
+    { d: 5, l: R`Un tour de plus ($+2\pi$) ramène au même point. Sur $\R$, les solutions sont $\frac\pi3+2k\pi$ et $-\frac\pi3+2k\pi$, $k\in\Z$ ; sur $[-\pi;\pi]$, il n'en reste que deux.` },
+    { d: 4.5, l: R`$\cos x\leq\frac12$ : les points <b>à gauche</b> de la droite. Sur $[-\pi;\pi]$ : $x\in\left[-\pi;-\frac\pi3\right]\cup\left[\frac\pi3;\pi\right]$.` },
+    { d: 5, l: R`Avec le sinus, la droite est horizontale. $\sin x\geq\frac12$ : les points <b>au-dessus</b> de la droite d'ordonnée $\frac12$. Sur $[0;2\pi]$ : $x\in\left[\frac\pi6;\frac{5\pi}6\right]$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, cx = 110, cy = 118, r = 88, PI = Math.PI;
+    function pt(a) { return [cx + r * Math.cos(a), cy - r * Math.sin(a)]; }
+    function arc(a1, a2, cls, at) { var n = Math.max(2, Math.ceil(Math.abs(a2 - a1) * 24)), d = ""; for (var i = 0; i <= n; i++) { var q = pt(a1 + (a2 - a1) * i / n); d += (i ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1); } return S.px.path(d, cls, ajoute({ fill: "none" }, at)); }
+    function ajoute(a, b) { for (var c in b || {}) a[c] = b[c]; return a; }
+    function lab(a, s, cls, d) { var q = [cx + (r + (d || 16)) * Math.cos(a), cy - (r + (d || 16)) * Math.sin(a) + 4]; S.px.txt(q[0], q[1], s, cls, Math.cos(a) > 0.2 ? "start" : Math.cos(a) < -0.2 ? "end" : "middle"); }
+    S.px.seg(cx - r - 12, cy, cx + r + 12, cy, "g-axe");
+    S.px.seg(cx, cy - r - 12, cx, cy + r + 12, "g-axe");
+    S.px.cercle(cx, cy, r, "", { style: "fill:none;stroke:var(--encre2);stroke-width:1.4" });
+    S.px.txt(cx + r + 4, cy + 14, "1", "", "start", { "font-size": 11 });
+    S.px.txt(cx - r - 4, cy + 14, "−1", "", "end", { "font-size": 11 });
+    var px0 = 210, pw = 158;
+    if (k === 0) {
+      var a = 2 * PI * E(t), M = pt(a);
+      S.px.seg(M[0], M[1], M[0], cy, "a-craie");
+      S.px.seg(cx, cy, M[0], cy, "g-c3", { "stroke-width": 4 });
+      S.px.seg(cx, cy, M[0], M[1], "a-branche");
+      S.px.cercle(M[0], M[1], 5, "g-pt");
+      S.px.txt(M[0] + (Math.cos(a) >= 0 ? 8 : -8), M[1] - 6, "M", "b", Math.cos(a) >= 0 ? "start" : "end");
+      S.px.math(px0, 50, pw, 34, "$x\\approx" + nf(a, 2).replace(",", "{,}") + "$");
+      S.px.math(px0, 90, pw, 34, "$\\cos x\\approx" + nf(Math.cos(a), 2).replace(",", "{,}") + "$");
+      return;
+    }
+    if (k <= 3) {
+      var o = k === 1 ? E(p(t, 0, 0.4)) : 1, xv = cx + r / 2;
+      S.px.seg(xv, cy - r - 14, xv, cy + r + 14, "g-as", { opacity: o });
+      S.px.txt(xv - 5, cy + r + 12, "x = 1/2", "r", "end", { opacity: o, "font-size": 12 });
+      if (k === 3) { var f3 = E(p(t, 0, 0.7)); arc(PI / 3, PI / 3 + f3 * 2 * PI / 3, "g-c2", { "stroke-width": 6, opacity: 0.75 }); arc(-PI, -PI + f3 * 2 * PI / 3, "g-c2", { "stroke-width": 6, opacity: 0.75 }); }
+      var o2 = k === 1 ? E(p(t, 0.35, 0.7)) : 1;
+      [PI / 3, -PI / 3].forEach(function (b) { var q = pt(b); S.px.seg(cx, cy, q[0], q[1], "a-branche", { opacity: o2 }); S.px.cercle(q[0], q[1], 5.5, "g-pt2", { opacity: o2 }); });
+      if (o2 > 0.01) { lab(PI / 3, "π/3", "r"); lab(-PI / 3, "−π/3", "r"); }
+      if (k === 1) {
+        S.px.math(px0, 46, pw, 34, R`$\cos x=\frac12$`, { opacity: o2 });
+        S.px.math(px0, 88, pw, 34, R`$x=\frac\pi3$ ou $x=-\frac\pi3$`, { opacity: o2 });
+      }
+      if (k === 2) {
+        var b2 = PI / 3 + 2 * PI * E(p(t, 0, 0.75)), M2 = pt(b2);
+        arc(PI / 3, Math.min(b2, PI / 3 + 2 * PI - 0.001), "g-c", { "stroke-width": 3, opacity: 0.55 });
+        S.px.cercle(M2[0], M2[1], 5, "g-pt");
+        S.px.math(px0, 40, pw, 34, "$x=\\frac\\pi3+" + nf((b2 - PI / 3) / PI, 2).replace(",", "{,}") + "\\pi$");
+        if (t > 0.75) S.px.math(px0, 84, pw, 60, R`$x=\pm\frac\pi3+2k\pi$`, { opacity: E(p(t, 0.75, 0.95)) });
+      }
+      if (k === 3) {
+        S.px.math(px0, 40, pw, 34, R`$\cos x\leq\frac12$`);
+        S.px.math(px0, 82, pw, 44, R`$\left[-\pi;-\frac\pi3\right]\cup\left[\frac\pi3;\pi\right]$`, { opacity: E(p(t, 0.6, 0.9)) });
+      }
+      return;
+    }
+    var o5 = E(p(t, 0, 0.35)), yh = cy - r / 2, f5 = E(p(t, 0.35, 0.8));
+    S.px.seg(cx - r - 14, yh, cx + r + 14, yh, "g-as", { opacity: o5, style: "stroke:var(--vert)" });
+    arc(PI / 6, PI / 6 + f5 * 2 * PI / 3, "g-c3", { "stroke-width": 6, opacity: 0.8 });
+    [PI / 6, 5 * PI / 6].forEach(function (b) { var q = pt(b); S.px.cercle(q[0], q[1], 5.5, "g-pt", { opacity: o5 }); });
+    if (o5 > 0.01) { var q6 = pt(PI / 6), q56 = pt(5 * PI / 6); S.px.txt(q6[0] - 6, q6[1] + 17, "π/6", "c3", "end", { opacity: o5 }); S.px.txt(q56[0] + 6, q56[1] + 17, "5π/6", "c3", "start", { opacity: o5 }); }
+    S.px.math(px0, 40, pw, 34, R`$\sin x\geq\frac12$`, { opacity: o5 });
+    S.px.math(px0, 82, pw, 44, R`$\left[\frac\pi6;\frac{5\pi}6\right]$`, { opacity: E(p(t, 0.7, 0.95)) });
   }
 };

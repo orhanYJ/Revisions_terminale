@@ -39,6 +39,7 @@ C'est la traduction en coordonnées de $\vec{AM}=t\vec u$.[/]
 [ex|Lire un vecteur normal]Le plan $x-2z+5=0$ a pour vecteur normal $\vec n(1;0;-2)$ (le coefficient de $y$ est nul). Le plan $z=4$ est normal à $\vec k$ : il est parallèle au plan $(xOy)$, d'équation $z=0$.[/]
 [meth|Équation du plan passant par trois points $A$, $B$, $C$]<ol><li>Vérifie que $A$, $B$, $C$ ne sont pas alignés.</li><li>Cherche $\vec n(a;b;c)$ tel que $\vec n\cdot\vec{AB}=0$ et $\vec n\cdot\vec{AC}=0$ : deux équations à trois inconnues, on fixe une inconnue (par exemple $c=1$, ou une valeur qui évite les fractions).</li><li>Écris $ax+by+cz+d=0$ et trouve $d$ avec $A$. Vérifie avec $B$ et $C$.</li></ol>[/]
 [ex|Le plan qui coupe les trois axes]$A(1;0;0)$, $B(0;2;0)$, $C(0;0;3)$. $\vec{AB}(-1;2;0)$, $\vec{AC}(-1;0;3)$. Les conditions $-a+2b=0$ et $-a+3c=0$ donnent, avec $a=6$ : $b=3$, $c=2$. Équation $6x+3y+2z+d=0$ avec $A$ : $d=-6$. Plan : $6x+3y+2z-6=0$. Contrôle : $B$ donne $6-6=0$ ✓, $C$ donne $6-6=0$ ✓.[/]
+<div data-anim="planAxes"></div>
 [ex|Plan médiateur en équation]$A(1;0;2)$, $B(3;4;0)$ : milieu $I(2;2;1)$, $\vec{AB}(2;4;-2)$, que l'on peut remplacer par $(1;2;-1)$. Plan médiateur : $x+2y-z+d=0$ avec $I$ : $2+4-1+d=0$, $d=-5$. Équation : $x+2y-z-5=0$.[/]` },
     { id: "positions", titre: "Positions relatives en coordonnées", html: R`
 <div class="tab-wrap"><table><tr><th>Objets</th><th>Test</th><th>Conclusion</th></tr>
@@ -224,7 +225,7 @@ ANIMS.droitePlan = {
   rendu: function (S, k, t) {
     var E = ANIM.e, nf = ANIM.nf, P = CAV.vue({ ox: 150, oy: 196, s: 50, k: 0.5, a: 40, repere: true });
     var O = [0, 0, 0];
-    [[[4, 0, 0], "x"], [[0, 4.1, 0], "y"], [[0, 0, 4.2], "z"]].forEach(function (a) { CAV.trait(S, P, O, a[0], "g-axe", {}); CAV.txt(S, P, a[0], a[1], "", "middle", 0, a[1] === "z" ? -6 : 14); });
+    [[[4, 0, 0], "x"], [[0, 4.1, 0], "y"], [[0, 0, 3.5], "z"]].forEach(function (a) { CAV.trait(S, P, O, a[0], "g-axe", {}); CAV.txt(S, P, a[0], a[1], "", "middle", 0, a[1] === "z" ? -6 : 14); });
     CAV.txt(S, P, O, "O", "", "end", -5, 12);
     var T1 = [3, 0, 0], T2 = [0, 3, 0], T3 = [0, 0, 3];
     CAV.poly(S, P, [T1, T2, T3], "a-plein");
@@ -257,7 +258,7 @@ ANIMS.droitePlan = {
       if (k >= 1) {
         var Mt = D(tm), v = 2 * tm - 2, ici = k >= 2 && Math.abs(tm - 1) < 0.01;
         CAV.pt(S, P, Mt, ici ? "g-pt" : "g-pt2", 5);
-        CAV.txt(S, P, Mt, ici ? "I" : "M", ici ? "b" : "r", "start", 8, -6);
+        CAV.txt(S, P, Mt, ici ? "I" : "M", ici ? "b" : "r", ici ? "start" : "end", ici ? 8 : -8, -6);
         if (k <= 2) {
           S.px.txt(8, 309, "t = " + nf(tm, 2) + "    M(" + nf(Mt[0], 2) + " ; " + nf(Mt[1], 2) + " ; " + nf(Mt[2], 2) + ")", "", "start", { "font-size": 12 });
           S.px.txt(8, 325, "x + y + z − 3 = 2t − 2 = " + nf(v, 2) + (Math.abs(v) < 0.01 ? "  : sur le plan" : v < 0 ? "  : derrière" : "  : devant"), Math.abs(v) < 0.01 ? "b" : "r", "start", { "font-size": 12 });
@@ -274,5 +275,60 @@ ANIMS.droitePlan = {
       S.px.txt(8, 316, "S + t·n = (2 + t ; 3 + t ; 2 + t)", "", "start", { "font-size": 12 });
       if (f > 0.98) { CAV.txt(S, P, Hp, "H", "b", "end", -8, 12); S.px.math(186, 296, 172, 32, R`$t=-\frac43$, $SH=\frac{4\sqrt3}3$`); }
     }
+  }
+};
+
+/* Animation : l'équation d'un plan, de trois points à ax + by + cz + d = 0 */
+ANIMS.planAxes = {
+  titre: R`Trouver l'équation d'un plan`,
+  vb: [360, 300],
+  etapes: [
+    { d: 4, l: R`Le plan passant par $A(1;0;0)$, $B(0;2;0)$ et $C(0;0;3)$, un point sur chaque axe. On cherche une équation cartésienne.` },
+    { d: 4, l: R`Deux vecteurs du plan, non colinéaires : $\vec{AB}(-1;2;0)$ et $\vec{AC}(-1;0;3)$.` },
+    { d: 5, l: R`Un vecteur normal $\vec n(a;b;c)$ vérifie $\vec n\cdot\vec{AB}=0$ et $\vec n\cdot\vec{AC}=0$, soit $-a+2b=0$ et $-a+3c=0$. Avec $a=6$ : $\vec n(6;3;2)$.` },
+    { d: 6, l: R`$M(x;y;z)$ est dans le plan si et seulement si $\vec{AM}\cdot\vec n=0$ : $6(x-1)+3y+2z=0$, soit $6x+3y+2z-6=0$. Quand $M$ glisse dans le plan, la quantité reste nulle.` },
+    { d: 5.5, l: R`Hors du plan, $6x+3y+2z-6$ n'est plus nul : positif du côté où pointe $\vec n$, négatif de l'autre. L'équation caractérise exactement les points du plan.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, P = CAV.vue({ ox: 128, oy: 206, s: 46, k: 0.5, a: 40, repere: true });
+    var O = [0, 0, 0], A = [1, 0, 0], B = [0, 2, 0], C = [0, 0, 3], G = [1 / 3, 2 / 3, 1], N = [6, 3, 2];
+    function add(U, V, s) { return [U[0] + s * V[0], U[1] + s * V[1], U[2] + s * V[2]]; }
+    [[[2.4, 0, 0], "x"], [[0, 3.4, 0], "y"], [[0, 0, 3.7], "z"]].forEach(function (a) { CAV.trait(S, P, O, a[0], "g-axe", {}); CAV.txt(S, P, a[0], a[1], "", "middle", a[1] === "y" ? 8 : 0, a[1] === "z" ? -6 : 14); });
+    CAV.txt(S, P, O, "O", "", "end", -5, 12);
+    var o0 = k === 0 ? E(p(t, 0.3, 0.8)) : 1;
+    CAV.poly(S, P, [A, B, C], "a-plein", { opacity: o0 });
+    [[A, "A", -10, 14], [B, "B", 4, 16], [C, "C", -10, 2]].forEach(function (q, i) {
+      var o = k === 0 ? E(p(t, 0.1 * i, 0.1 * i + 0.3)) : 1;
+      CAV.pt(S, P, q[0], "g-pt", 4, { opacity: o }); CAV.txt(S, P, q[0], q[1], "b", "middle", q[2], q[3], { opacity: o });
+    });
+    S.px.rect(0, 262, 360, 38, "", { style: "fill:var(--papier);stroke:var(--ligne)" });
+    function bas(s1, s2, o) { S.px.math(4, 263, 352, 36, s1 + (s2 ? R`$\quad$` + s2 : ""), { opacity: o === undefined ? 1 : o }); }
+    if (k === 0) { bas(R`$A(1;0;0)$, $B(0;2;0)$, $C(0;0;3)$`, "", o0); return; }
+    if (k <= 2) {
+      var o1 = k === 1 ? E(p(t, 0, 0.6)) : 1;
+      CAV.fleche(S, P, A, B, o1, "g-c3", { "stroke-width": 2.6 });
+      CAV.fleche(S, P, A, C, o1, "g-c2", { "stroke-width": 2.6 });
+      if (k === 1) { bas(R`$\vec{AB}(-1;2;0)$`, R`$\vec{AC}(-1;0;3)$`, E(p(t, 0.4, 0.9))); return; }
+    }
+    var fn = k === 2 ? E(p(t, 0, 0.5)) : 1;
+    CAV.fleche(S, P, G, add(G, N, 0.2), fn, "g-c", { "stroke-width": 3 });
+    CAV.txt(S, P, add(G, N, 0.2), "n", "b", "start", 6, 0, { opacity: fn });
+    if (k === 2) { bas(R`$\vec n\cdot\vec{AB}=-6+6=0$`, R`$\vec n\cdot\vec{AC}=-6+6=0$`, E(p(t, 0.4, 0.9))); return; }
+    var M;
+    if (k === 3) {
+      var w = 2 * Math.PI * E(t), u = 0.3 + 0.2 * Math.cos(w), v = 0.3 + 0.2 * Math.sin(w);
+      M = add(add(A, [-1, 2, 0], u), [-1, 0, 3], v);
+      CAV.fleche(S, P, A, M, 1, "g-c", { "stroke-width": 2.2, style: "stroke:var(--encre)" });
+    } else {
+      var s = t < 0.4 ? E(p(t, 0, 0.4)) : ANIM.l(1, -1, E(p(t, 0.45, 1)));
+      M = add(G, N, 0.2 * s);
+      CAV.trait(S, P, G, M, "g-as");
+    }
+    var val = 6 * M[0] + 3 * M[1] + 2 * M[2] - 6;
+    if (Math.abs(val) < 0.005) val = 0;
+    CAV.pt(S, P, M, "g-pt2", 5); CAV.txt(S, P, M, "M", "r", "start", 8, -4);
+    function n2(x) { return nf(x, 2).replace(",", "{,}"); }
+    S.px.math(186, 30, 172, 30, "$M(" + n2(M[0]) + ";" + n2(M[1]) + ";" + n2(M[2]) + ")$");
+    bas("$6x+3y+2z-6=" + n2(val) + "$", k === 4 && val !== 0 ? (val > 0 ? R`côté de $\vec n$` : R`côté opposé à $\vec n$`) : "");
   }
 };

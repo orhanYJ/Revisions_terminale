@@ -294,6 +294,67 @@ INSERT INTO Table1 VALUES (v1, v2, v3);
 UPDATE Table1 SET col = valeur WHERE condition;
 DELETE FROM Table1 WHERE condition;`, { sql: true, run: false });
 
+/* ---------- animation : dans quel ordre le SGBD traite une requête ---------- */
+C("c6-ordre", String.raw`
+SELECT titre, annee
+FROM Livre
+WHERE id_auteur = 1
+ORDER BY annee;`, { sql: true, deps: ["c6-schema"], out: "titre | annee\nNotre-Dame de Paris | 1831\nLes Contemplations | 1856\nLes Misérables | 1862" });
+
+WIDGETS_EXT["requete"] = function (z, opt, O) {
+  var T = BIB.Livre, L = T.lignes, COLS = T.cols;
+  var REQ = {
+    ordre: [["SELECT", "SELECT titre, annee"], ["FROM", "FROM Livre"], ["WHERE", "WHERE id_auteur = 1"], ["ORDER", "ORDER BY annee;"]],
+    agreg: [["SELECT", "SELECT COUNT(*) AS nb_livres, MIN(annee) AS plus_ancien, MAX(annee) AS plus_recent"], ["FROM", "FROM Livre"], ["WHERE", "WHERE id_auteur = 1;"]]
+  };
+  function etapes(k) {
+    var E = [], marks = {}, rows = L.map(function (_, i) { return i; }), cols = [1, 2, 3];
+    function snap(cl, msg, o) { o = o || {}; E.push({ cl: cl, rows: rows.slice(), cols: cols.slice(), marks: JSON.parse(JSON.stringify(marks)), test: o.test === undefined ? -1 : o.test, agg: o.agg || null, msg: msg }); }
+    snap("FROM", "Le SGBD ne lit pas la requête dans l’ordre où on l’écrit. Il commence par <b>FROM</b> : la table Livre, ses " + L.length + " lignes (sa clé primaire id_livre n’est pas affichée ici).");
+    L.forEach(function (l, i) {
+      var ok = l[3] === 1;
+      marks[i] = ok ? "ok" : "ko";
+      snap("WHERE", "<b>WHERE</b> teste chaque ligne : « " + O.esc(l[1]) + " » a <code>id_auteur = " + l[3] + "</code> → " + (ok ? "condition <b>vraie</b>, ligne gardée." : "condition fausse, ligne écartée."), { test: i });
+    });
+    rows = rows.filter(function (i) { return marks[i] === "ok"; });
+    snap("WHERE", "Il reste <b>" + rows.length + " lignes</b> (les livres de Victor Hugo), toujours dans l’ordre de stockage : une table n’a pas d’ordre propre.");
+    if (k === "agreg") {
+      var an = rows.map(function (i) { return L[i][2]; });
+      snap("SELECT", "<b>SELECT</b> avec des fonctions d’agrégation : les " + rows.length + " lignes retenues sont <b>résumées en une seule</b>. COUNT(*) les compte, MIN et MAX cherchent la plus petite et la plus grande année.", { agg: [rows.length, Math.min.apply(null, an), Math.max.apply(null, an)] });
+      return E;
+    }
+    cols = [1, 2];
+    snap("SELECT", "<b>SELECT titre, annee</b> : la <b>projection</b> ne garde que les colonnes demandées.");
+    rows.sort(function (a, b) { return L[a][2] - L[b][2]; });
+    snap("ORDER", "<b>ORDER BY annee</b> vient en dernier : les lignes du résultat sont rangées par année croissante (ASC par défaut). Ordre d’écriture : SELECT, FROM, WHERE, ORDER BY ; ordre de traitement : FROM, WHERE, SELECT, ORDER BY.");
+    return E;
+  }
+  function dessine(sc, e, i, E, saut) {
+    var k = e.agg || E[E.length - 1].agg ? "agreg" : "ordre";
+    var avant = {};
+    if (!saut) O.$$("tr[data-k]", sc).forEach(function (tr) { avant[tr.getAttribute("data-k")] = tr.getBoundingClientRect().top; });
+    var q = '<div class="req-sql mono">' + REQ[k].map(function (c) { return '<span class="' + (c[0] === e.cl ? "on" : "") + '">' + O.esc(c[1]) + "</span>"; }).join(" ") + "</div>";
+    var t;
+    if (e.agg) t = '<div class="tab-wrap table-bd"><table><caption class="mono">résultat</caption><tr><th>nb_livres</th><th>plus_ancien</th><th>plus_recent</th></tr><tr class="neuf"><td>' + e.agg.join("</td><td>") + "</td></tr></table></div>";
+    else t = '<div class="tab-wrap table-bd"><table><caption class="mono">' + (e.cl === "FROM" || e.cl === "WHERE" ? "Livre" : "résultat") + "</caption><tr>" + e.cols.map(function (c) { return "<th>" + (c === 3 ? "#" : "") + COLS[c] + "</th>"; }).join("") + "</tr>" +
+      e.rows.map(function (r) {
+        var m = e.marks[r], cl = r === e.test ? "vise " + m : (e.cl === "WHERE" && m ? m : "");
+        return '<tr data-k="' + r + '" class="' + cl + '">' + e.cols.map(function (c) { return "<td>" + O.esc(L[r][c]) + "</td>"; }).join("") + "</tr>";
+      }).join("") + "</table></div>";
+    sc.innerHTML = '<div class="requete">' + q + t + "</div>";
+    if (!saut) O.$$("tr[data-k]", sc).forEach(function (tr) {
+      var a = avant[tr.getAttribute("data-k")];
+      if (a === undefined) return;
+      var d = a - tr.getBoundingClientRect().top;
+      if (Math.abs(d) < 1) return;
+      tr.style.transform = "translateY(" + d + "px)"; tr.style.transition = "none";
+      void tr.offsetWidth;
+      tr.style.transition = "transform .55s cubic-bezier(.3,.7,.2,1)"; tr.style.transform = "";
+    });
+  }
+  O.lecteur(z, { titre: "ordre de traitement d’une requête", sous: "FROM → WHERE → SELECT → ORDER BY", choix: [{ k: "ordre", t: "WHERE + ORDER BY" }, { k: "agreg", t: "COUNT, MIN, MAX" }], etapes: etapes, dessine: dessine, vitesse: 1300 });
+};
+
 /* ---------- animation : une jointure qui assemble les lignes ---------- */
 WIDGETS_EXT["jointure"] = function (z, opt, O) {
   var L = BIB.Livre.lignes, A = BIB.Auteur.lignes;
@@ -383,6 +444,7 @@ CH.push({
     { id: "i6", t: "Interroger : SELECT, FROM, WHERE, ORDER BY", h: `
 <p>Une requête d’interrogation dit <b>quelles colonnes</b> (SELECT), <b>de quelle table</b> (FROM), <b>pour quelles lignes</b> (WHERE) et <b>dans quel ordre</b> (ORDER BY). Le résultat est lui-même une table.</p>
 [[c6-select]]
+[[w-requete]]
 <p><code>SELECT *</code> garde toutes les colonnes ; les conditions se combinent avec <code>AND</code>, <code>OR</code>, <code>NOT</code> ; les chaînes s’écrivent entre apostrophes simples.</p>
 [[c6-etoile]]
 <p><code>DISTINCT</code> supprime les doublons du résultat ; <code>ORDER BY … DESC</code> trie par ordre décroissant.</p>

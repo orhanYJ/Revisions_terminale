@@ -1,7 +1,7 @@
 GRAPHES["r1-ineg"] = {
   type: "lignes", t: "Les inégalités de niveau de vie en France, 1996-2024", spark: 1,
   s: "Deux rapports, après impôts et prestations sociales. Touche le graphique pour lire une année ; touche la légende pour masquer une courbe.",
-  src: "Source : Insee-DGFiP-Cnaf-Cnav-CCMSA, enquêtes Revenus fiscaux et sociaux (Insee Première n° 2117, juillet 2026). Champ : France métropolitaine, personnes vivant dans un logement ordinaire. Ruptures de série en 2010, 2012 et 2020 ; données de 2020 fragiles.",
+  src: "Source : Insee-DGFiP-Cnaf-Cnav-CCMSA, enquêtes Revenus fiscaux et sociaux (Insee Première n° 2117, juillet 2026). Champ : France métropolitaine, personnes vivant dans un logement ordinaire. Séries rétropolées par l’Insee de 1996 à 2020 pour corriger les ruptures de 2010, 2012 et 2020 ; point 2020 fragile.",
   unite: "", dec: 2, pasX: 7, h: 280, min: 2, max: 6,
   x: [1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],
   series: [
@@ -125,6 +125,7 @@ CH.r1 = {
       '<h3>3. L’égalitarisme libéral</h3><div class="aut"><span class="mono">JR</span><span class="an">John Rawls<small><i>Théorie de la justice</i>, 1971</small></span><span class="ad">Placés sous un <b>voile d’ignorance</b>, des individus rationnels choisiraient deux principes : 1) des <b>libertés de base égales</b> pour tous ; 2) des inégalités économiques et sociales acceptables seulement si a) elles sont attachées à des positions ouvertes à tous selon une <b>juste égalité des chances</b> et b) elles profitent aux plus défavorisés (<b>principe de différence</b>).</span></div><div data-chain="r1-rawls"></div><div class="ex"><p>Un salaire élevé pour un chirurgien est juste, selon Rawls, s’il est nécessaire pour que des personnes se forment à ce métier long et difficile, et si les plus modestes en bénéficient (soins de qualité accessibles à tous).</p></div>' +
       '<div class="plus"><p>Amartya Sen (prix Nobel 1998, <i>Repenser l’inégalité</i>, 1992) propose d’égaliser les <b>capabilités</b> : les libertés réelles de faire et d’être (se soigner, s’instruire, participer). Deux personnes avec le même revenu n’ont pas les mêmes capabilités si l’une est handicapée.</p></div>' +
       '<h3>4. L’égalitarisme strict</h3><p>La justice exige l’<b>égalité des situations</b> : toute inégalité de revenu ou de condition est suspecte. Gracchus Babeuf et la Conjuration des Égaux (1796) réclamaient l’égalité réelle des biens ; Karl Marx formule le principe « de chacun selon ses capacités, à chacun selon ses besoins » (<i>Critique du programme de Gotha</i>, 1875).</p>' +
+      '<div data-anim="r1-voile"></div>' +
       '<div class="tbl"><table><thead><tr><th>Conception</th><th>Égalité visée</th><th>Inégalités acceptées</th><th>Rôle de l’État</th></tr></thead><tbody>' +
       '<tr><td><b>Utilitarisme</b></td><td>Aucune en soi : maximiser le bien-être total</td><td>Celles qui augmentent la somme des utilités</td><td>Variable, selon ce qui maximise le bien-être</td></tr>' +
       '<tr><td><b>Libertarisme</b> (Nozick, Hayek)</td><td>Droits</td><td>Toutes celles issues d’acquisitions et d’échanges libres</td><td>Minimal</td></tr>' +
@@ -242,7 +243,7 @@ ANIMS["r1-lorenz"] = {
     { l: "Le patrimoine est bien plus concentré : début 2021, la moitié la moins dotée des ménages ne détient que 8 % du patrimoine brut. Gini du patrimoine : 0,662, plus du double de celui du niveau de vie.", d: 5 }
   ],
   rendu: function (A, i, p) {
-    var X0 = 34, Y0 = 268, S = 200, s = "";
+    var X0 = 38, Y0 = 268, S = 200, s = "";
     var X = function (v) { return X0 + S * v / 100; }, Y = function (v) { return Y0 - S * v / 100; };
     function courbeRev(r) { var tot = r.reduce(function (a, b) { return a + b; }, 0), c = 0, pts = [[0, 0]]; r.forEach(function (v, k) { c += v; pts.push([20 * (k + 1), 100 * c / tot]); }); return pts; }
     var FR = [[0, 0], [20, 8.4], [40, 21.9], [50, 30.1], [80, 61.2], [90, 75.1], [100, 100]];
@@ -259,7 +260,7 @@ ANIMS["r1-lorenz"] = {
     s += '<polygon points="' + aire + " " + X(0) + "," + Y(0) + '" style="fill:var(--corail);opacity:.18"/>';
     s += A.pl([[X(0), Y(0)], [X(100), Y(100)]], 1, { c: "gris", sw: 1.5, tir: true });
     s += A.pl(cur.map(function (q) { return [X(q[0]), Y(q[1])]; }), 1, { c: "corail", sw: 3 });
-    for (var t = 0; t <= 100; t += 50) { s += A.t(X(t), Y0 + 14, t + " %", { t: 9.5, a: "middle", c: "gris" }) + A.t(X0 - 4, Y(t) + 3, t + " %", { t: 9.5, a: "end", c: "gris" }); }
+    for (var t = 0; t <= 100; t += 50) { s += A.t(X(t), Y0 + 14, t + " %", { t: 10.5, a: "middle", c: "gris" }) + A.t(X0 - 4, Y(t) + 3, t + " %", { t: 10.5, a: "end", c: "gris" }); }
     s += A.t(X0 + S / 2, Y0 + 30, "part cumulée de la population →", { t: 10.5, a: "middle", c: "gris" });
     s += A.t(X0 + 4, Y0 - S - 8, "↑ part cumulée des revenus", { t: 10.5, c: "gris" });
     s += A.t(X(3), Y(30), "égalité parfaite", { t: 10, c: "gris", it: true, h: true });

@@ -381,8 +381,8 @@ ANIMS.galton = {
     var nb;
     if (k === 0) { nb = 0; }
     else if (k === 1) { nb = 1; }
-    else if (k === 2) { nb = 1 + Math.floor(29 * E(t)); }
-    else if (k === 3) { nb = 30 + Math.floor((NB - 30) * ANIM.e(t)); }
+    else if (k === 2) { nb = 1 + Math.round(29 * E(t)); }
+    else if (k === 3) { nb = 30 + Math.round((NB - 30) * ANIM.e(t)); }
     else nb = NB;
     function E(x) { return ANIM.e(x); }
     var cases = [0, 0, 0, 0, 0, 0, 0];

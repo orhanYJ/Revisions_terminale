@@ -30,6 +30,7 @@ var CH11 = {
 [prop|Formules de polarisation]$$\vec u\cdot\vec v=\frac12\left(\|\vec u+\vec v\|^2-\|\vec u\|^2-\|\vec v\|^2\right)=\frac14\left(\|\vec u+\vec v\|^2-\|\vec u-\vec v\|^2\right).$$
 Le produit scalaire se calcule donc avec des longueurs seulement.[/]
 [ex|Avec la projection, dans le cube d'arête $a$]La droite $(AB)$ est orthogonale à la face $BCGF$ (elle est orthogonale à $(BC)$ et à $(BF)$, sécantes en $B$), donc à la droite $(BG)$ de cette face : le projeté orthogonal de $G$ sur $(AB)$ est $B$. Par la formule de projection, $\vec{AB}\cdot\vec{AG}=\vec{AB}\cdot\vec{AB}=a^2$.[/]
+<div data-anim="projCube"></div>
 [ex|Avec un triangle équilatéral]Dans le cube d'arête $1$, $AC=AF=CF=\sqrt2$ (diagonales de faces) : le triangle $ACF$ est équilatéral. Donc $\vec{AC}\cdot\vec{AF}=\sqrt2\times\sqrt2\times\cos60°=1$.[/]` },
     { id: "orthonormee", titre: "Base orthonormée : produit scalaire, norme, distance", html: R`
 [def|Base et repère orthonormés]Une base $(\vec i,\vec j,\vec k)$ est <b>orthonormée</b> si les trois vecteurs sont deux à deux orthogonaux et de norme $1$. Exemple : $(\vec{AB},\vec{AD},\vec{AE})$ dans un cube d'arête $1$ (mais pas dans un pavé de dimensions différentes).[/]
@@ -254,5 +255,58 @@ ANIMS.projete3d = {
     S.px.txt(8, 24, l1, "b", "start", { "font-size": 13 });
     if (l2) S.px.txt(8, 44, l2, "r", "start", { "font-size": 13 });
     if (k >= 4) S.px.math(4, 52, 144, 34, R`$d(M;\mathcal P)=MH$`, { opacity: E(t) });
+  }
+};
+
+/* Animation : le produit scalaire par projection, dans le cube */
+ANIMS.projCube = {
+  titre: R`Produit scalaire et projection dans le cube`,
+  vb: [360, 250],
+  etapes: [
+    { d: 4, l: R`Cube d'arête $1$, repère orthonormé $(A;\vec{AB},\vec{AD},\vec{AE})$. On cherche $\vec{AB}\cdot\vec{AG}$.` },
+    { d: 4.5, l: R`$(AB)$ est orthogonale à la face $BCGF$, donc à $(BG)$ : le projeté orthogonal de $G$ sur $(AB)$ est $B$. Ainsi $\vec{AB}\cdot\vec{AG}=\vec{AB}\cdot\vec{AB}=AB^2=1$.` },
+    { d: 6, l: R`Faisons glisser $M$ sur toute la face $BCGF$ : son projeté sur $(AB)$ reste $B$. En coordonnées, $M(1;y;z)$ et $\vec{AB}\cdot\vec{AM}=1\times1+0\times y+0\times z=1$ : le produit ne change pas.` },
+    { d: 5.5, l: R`Si $M$ recule vers la face $ADHE$, son projeté $H$ recule sur $[AB]$ : $\vec{AB}\cdot\vec{AM}=AB\times AH=x_M$. Sur la face $ADHE$, il vaut $0$ : $\vec{AM}$ est orthogonal à $\vec{AB}$.` },
+    { d: 4, l: R`Les points $M$ qui donnent le même produit scalaire avec $\vec{AB}$ forment un plan orthogonal à $(AB)$ : ici les plans d'équation $x=c$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, P = CAV.vue({ ox: 30, oy: 222, s: 126, k: 0.5, a: 40 });
+    var A = [0, 0, 0], B = [1, 0, 0], C = [1, 1, 0], D = [0, 1, 0], Ee = [0, 0, 1], F = [1, 0, 1], G = [1, 1, 1], H = [0, 1, 1];
+    function n2(x) { return nf(x, 2).replace(",", "{,}"); }
+    function tranche(x, cls, at) { CAV.poly(S, P, [[x, 0, 0], [x, 1, 0], [x, 1, 1], [x, 0, 1]], cls, at); }
+    if (k >= 1 && k <= 2) tranche(1, "a-plein2", { opacity: k === 1 ? E(p(t, 0, 0.4)) : 1 });
+    [[A, B], [B, C], [B, F], [Ee, F], [F, G], [G, H], [H, Ee], [A, Ee], [C, G]].forEach(function (s) { CAV.seg(S, P, s[0], s[1], false, { opacity: 0.55 }); });
+    [[A, D], [D, C], [D, H]].forEach(function (s) { CAV.seg(S, P, s[0], s[1], true, { opacity: 0.55 }); });
+    var lab = { A: [A, -8, 14], B: [B, 8, 14], C: [C, 12, 6], D: [D, -10, -4], E: [Ee, -10, -2], F: [F, 10, 14], G: [G, 10, -4], H: [H, -6, -8] };
+    Object.keys(lab).forEach(function (n) { CAV.txt(S, P, lab[n][0], n, "", "middle", lab[n][1], lab[n][2]); });
+    var X0 = 222, W0 = 136;
+    if (k === 3) { var s3 = ANIM.l(1, 0, E(p(t, 0, 0.8))); tranche(s3, "a-plein"); }
+    if (k === 4) [0, 0.5, 1].forEach(function (x, i) { var o = E(p(t, 0.15 * i, 0.15 * i + 0.4)); tranche(x, "a-plein", { opacity: 0.4 + 0.6 * o }); CAV.txt(S, P, [x, 0.5, 1], "= " + nf(x, 1), "b", "middle", 0, -6, { opacity: o }); });
+    CAV.fleche(S, P, A, B, k === 0 ? E(p(t, 0, 0.4)) : 1, "g-c", { "stroke-width": 3.2 });
+    if (k <= 1) {
+      CAV.fleche(S, P, A, G, k === 0 ? E(p(t, 0.3, 0.8)) : 1, "g-c", { "stroke-width": 2.6, style: "stroke:var(--encre)" });
+      S.px.math(X0, 30, W0, 34, R`$\vec{AB}\cdot\vec{AG}=\ ?$`, { opacity: k === 0 ? E(p(t, 0.6, 1)) : 1 });
+      if (k === 1) {
+        var o1 = E(p(t, 0.35, 0.7));
+        CAV.trait(S, P, G, B, "g-as", { opacity: o1 });
+        CAV.droit(S, P, B, [-1, 0, 0], [0, Math.SQRT1_2, Math.SQRT1_2], 0.09);
+        S.px.math(X0, 72, W0, 34, R`$\vec{AB}\cdot\vec{AG}$`, { opacity: o1 });
+        S.px.math(X0, 106, W0, 34, R`$=AB^2=1$`, { opacity: E(p(t, 0.6, 0.9)) });
+      }
+      return;
+    }
+    var M, Hh;
+    if (k === 2) { var u = 2 * Math.PI * E(t); M = [1, 0.5 + 0.38 * Math.sin(u), 0.5 + 0.38 * Math.cos(u)]; Hh = B; }
+    else if (k === 3) { M = [s3, 0.6, 0.7]; Hh = [s3, 0, 0]; }
+    else { M = [0.5, 0.6, 0.7]; Hh = [0.5, 0, 0]; }
+    if (k >= 3) CAV.trait(S, P, A, Hh, "g-c", { "stroke-width": 5, opacity: 0.45 });
+    CAV.trait(S, P, M, Hh, "g-as");
+    CAV.fleche(S, P, A, M, 1, "g-c3", { "stroke-width": 2.6 });
+    CAV.pt(S, P, M, "g-pt2", 4.5); CAV.txt(S, P, M, "M", "r", "start", 7, -5);
+    CAV.pt(S, P, Hh, "g-pt", 4); if (k >= 3) CAV.txt(S, P, Hh, "H", "b", "middle", 0, 16);
+    S.px.math(X0, 30, W0, 30, "$M(" + n2(M[0]) + ";" + n2(M[1]) + ";" + n2(M[2]) + ")$");
+    S.px.math(X0, 66, W0, 30, R`$\vec{AB}\cdot\vec{AM}$`);
+    S.px.math(X0, 98, W0, 30, "$=" + n2(M[0]) + "$");
+    if (k === 3 && t > 0.8) S.px.math(X0, 132, W0, 30, R`$\vec{AM}\perp\vec{AB}$`, { opacity: E(p(t, 0.8, 1)) });
   }
 };

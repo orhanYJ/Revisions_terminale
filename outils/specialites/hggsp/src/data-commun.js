@@ -90,9 +90,9 @@ var EPREUVE = {
     ["Coefficient", "16 (épreuve terminale de spécialité). En 2027, l'écrit d'HGGSP a lieu à la mi-juin (calendrier officiel : BO spécial n° 2 du 25 août 2026)."],
     ["Structure", "Deux exercices obligatoires : une <b>dissertation</b> (au choix entre deux sujets, chacun sur un thème différent) et une <b>étude critique d'un ou deux documents</b>, sur un troisième thème, différent des deux sujets de dissertation."],
     ["Notation", "Note sur 20, appréciée avec deux échelles descriptives (une par exercice). Si tu ne traites qu'un exercice, ta copie ne peut pas dépasser 10/20. La maîtrise de la langue compte : une copie défaillante sur ce point ne peut pas avoir la moyenne."],
-    ["Croquis", "Un croquis ou un schéma qui appuie la dissertation est valorisé ; il n'est jamais obligatoire."],
+    ["Croquis", "Un croquis ou un schéma qui appuie la dissertation est valorisé (un fond de carte peut être fourni) ; il n'est jamais obligatoire et son absence ne pénalise pas."],
     ["Programme", "Rotation annuelle des thèmes. Session paire (2028…) : thèmes 1, 2, 3 et 5. Session impaire (2027…) : thèmes 2, 4, 5 et 6. Les notions de Première peuvent être mobilisées."],
-    ["Oral de rattrapage", "20 min de préparation, 20 min d'épreuve : tu choisis une question problématisée parmi deux, tu réponds pendant 10 min, puis 10 min d'échange. Même programme que l'écrit."]
+    ["Oral de rattrapage", "20 min de préparation, 20 min d'épreuve : tu tires un sujet de deux questions problématisées, portant sur deux parties différentes du programme, et tu en choisis une ; tu réponds pendant 10 min, puis 10 min d'échange. Même programme que l'écrit."]
   ],
   dissert: [
     ["Analyser le sujet (15 min)", "Souligne chaque mot. Définis les notions (« puissance », « paix », « espace »…). Repère le cadre : dates, espaces, acteurs. Note le type de sujet : sujet-question (« … ? »), sujet à deux termes (« A et B ») ou sujet-affirmation."],
@@ -152,10 +152,18 @@ var RESSOURCES = [
 ];
 var MANUELS = "Manuels de spécialité HGGSP de Terminale (programme 2020) : Hachette, Hatier, Nathan, Magnard, Belin, entre autres. Ils sont payants et réservés aux établissements ; nous n'avons pas trouvé de manuel d'HGGSP de Terminale consultable gratuitement en ligne. Demande à ton professeur l'accès au manuel numérique de ton lycée.";
 
-/* Sujets tombés (intitulés relevés par la presse spécialisée) */
+/* Sujets tombés en métropole (sujets officiels publiés par Eduscol, relevés par Géoconfluences) */
 var SUJETS_TOMBES = [
+  ["Juin 2026, jour 1", "Dissertation", "Les acteurs de la construction des mémoires", "t3"],
+  ["Juin 2026, jour 1", "Dissertation", "Les évolutions des formes de la guerre du XVIIIe siècle à nos jours", "t2"],
+  ["Juin 2026, jour 1", "Étude critique", "Les États-Unis et la question environnementale", "t5"],
+  ["Juin 2026, jour 2", "Dissertation", "L'État, seul acteur de la protection de l'environnement ?", "t5"],
+  ["Juin 2026, jour 2", "Dissertation", "Les acteurs et les modes de résolution des conflits depuis 1648", "t2"],
+  ["Juin 2026, jour 2", "Étude critique", "Espace et océans, outils de la puissance des États", "t1"],
+  ["Juin 2025, jour 1", "Dissertation", "Les usages du patrimoine en France", "t4"],
   ["Juin 2025, jour 1", "Dissertation", "La puissance des États dans les espaces maritimes et extra-atmosphériques", "t1"],
+  ["Juin 2025, jour 1", "Étude critique", "Juger les génocides", "t3"],
+  ["Juin 2025, jour 2", "Dissertation", "Le changement climatique, un enjeu géopolitique", "t5"],
   ["Juin 2025, jour 2", "Dissertation", "Construire la paix depuis le XVIIe siècle", "t2"],
-  ["Juin 2025, jour 2", "Étude critique", "L'affirmation de la puissance chinoise", "t1"],
-  ["Juin 2026, jour 1", "Dissertation", "Les évolutions des formes de la guerre du XVIIIe siècle à nos jours", "t2"]
+  ["Juin 2025, jour 2", "Étude critique", "L'affirmation de la puissance chinoise", "t1"]
 ];

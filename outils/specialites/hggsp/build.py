@@ -9,6 +9,7 @@ Usage : python3 outils/specialites/hggsp/build.py [--sans-cartes]
 import glob
 import json
 import os
+import re
 import subprocess
 import sys
 import urllib.request
@@ -34,6 +35,66 @@ def cartes():
     subprocess.run(["node", os.path.join(ICI, "cartes.js"), geo, os.path.join(SRC, "cartes.json")], check=True)
 
 
+CHEMIN = re.compile(r"(?:[MLZ](?:-?\d+(?:\.\d)?,-?\d+(?:\.\d)?)?)+")
+
+
+def _n(v):
+    t = ("%.1f" % v).rstrip("0").rstrip(".")
+    return "0" if t in ("-0", "") else t
+
+
+def relatif(d):
+    """Chemin M/L/Z absolu (entiers ou une décimale) → même tracé en coordonnées relatives, lignes implicites.
+    Sans perte : chaque point est retrouvé exactement ; seuls les points répétés à l'identique dans un segment sont
+    retirés. Renvoie None si le chemin contient autre chose (courbes, arcs…), qui est alors laissé tel quel."""
+    d2 = d.replace(" ", "")
+    if not d2 or not CHEMIN.fullmatch(d2):
+        return None
+    out, cx, cy, sx, sy, prec = [], 0.0, 0.0, 0.0, 0.0, None
+    for cmd, arg in re.findall(r"([MLZ])([^MLZ]*)", d2):
+        if cmd == "Z":
+            out.append("z"); cx, cy, prec = sx, sy, "z"
+            continue
+        x, y = (float(v) for v in arg.split(","))
+        if cmd == "L" and prec == "l" and x == cx and y == cy:
+            continue
+        a, b = _n(round(x - cx, 1)), _n(round(y - cy, 1))
+        paire = a + ("" if b.startswith("-") else ",") + b
+        if cmd == "M":
+            out.append("m" + paire); sx, sy, prec = x, y, "m"
+        else:
+            out.append(("" if paire.startswith("-") else " ") + paire if prec in ("m", "l") else "l" + paire); prec = "l"
+        cx, cy = x, y
+    return "".join(out)
+
+
+def compacter(c):
+    """Allège la constante CARTES sans rien changer au dessin : chemins en relatif, fonds régionaux identiques stockés
+    une seule fois dans CARTES.fonds (référencés par « @n », résolus par fondSVG dans app.js)."""
+    def attr(s):
+        return re.sub(r"""(?<![\w-])d=(["'])([^"']*)\1""", lambda m: "d=" + m.group(1) + (relatif(m.group(2)) or m.group(2)) + m.group(1), s)
+
+    def parcourir(o, cle=None):
+        if isinstance(o, dict):
+            return {k: parcourir(v, k) for k, v in o.items()}
+        if isinstance(o, list):
+            return [parcourir(v) for v in o]
+        if isinstance(o, str):
+            return (relatif(o) or o) if cle in ("terre", "grat") else attr(o)
+        return o
+    c = parcourir(c)
+    fonds, index = [], {}
+    for grp in ("cartes", "anims"):
+        for v in c.get(grp, {}).values():
+            f = v.get("fond")
+            if isinstance(f, str) and f != "monde" and len(f) > 200:
+                if f not in index:
+                    index[f] = len(fonds); fonds.append(f)
+                v["fond"] = "@" + str(index[f])
+    c["fonds"] = fonds
+    return c
+
+
 def main():
     if "--sans-cartes" not in sys.argv or not os.path.exists(os.path.join(SRC, "cartes.json")):
         cartes()
@@ -44,7 +105,7 @@ def main():
             sys.exit("Erreur de syntaxe dans " + f + "\n" + r.stderr)
     html = lire("shell.html")
     with open(os.path.join(SRC, "cartes.json"), encoding="utf-8") as f:
-        c = json.load(f)
+        c = compacter(json.load(f))
     morceaux = [
         ("/*STYLE*/", lire("style.css")),
         ("/*CARTES*/", "var CARTES = " + json.dumps(c, ensure_ascii=False, separators=(",", ":")) + ";"),

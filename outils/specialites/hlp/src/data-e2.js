@@ -25,20 +25,34 @@ HLP.ENTREES.push({
     "Ressentir, est-ce subir ?",
     "La sensibilité nous rapproche-t-elle des autres ou nous enferme-t-elle en nous-mêmes ?"
   ],
-  schema: `<svg viewBox="0 0 640 320" role="img" aria-labelledby="sch2t"><title id="sch2t">Les correspondances : les sens se répondent</title>
+  schema: `<svg viewBox="0 0 640 336" role="img" aria-labelledby="sch2t"><title id="sch2t">Les correspondances : les sens se répondent</title>
 <text class="sch-tit" x="320" y="26" text-anchor="middle">« Les parfums, les couleurs et les sons se répondent »</text>
 <g class="sch-fort">
 <path class="trace" style="--d:.5s" d="M190 110 Q320 60 450 110"/><path class="trace" style="--d:.65s" d="M450 110 Q520 200 400 262"/><path class="trace" style="--d:.8s" d="M400 262 Q320 300 240 262"/>
 <path class="trace" style="--d:.95s" d="M240 262 Q120 200 190 110"/><path class="trace" style="--d:1.1s" d="M190 110 L400 262"/><path class="trace" style="--d:1.2s" d="M450 110 L240 262"/>
 </g>
-<circle class="apparait" style="--d:0s" cx="190" cy="110" r="34" fill="var(--t-m1)" stroke="var(--brume)"/><text class="sch-txt" x="190" y="115" text-anchor="middle">couleurs</text>
-<circle class="apparait" style="--d:.1s" cx="450" cy="110" r="34" fill="var(--t-m2)" stroke="var(--rose)"/><text class="sch-txt" x="450" y="115" text-anchor="middle">sons</text>
-<circle class="apparait" style="--d:.2s" cx="400" cy="262" r="34" fill="var(--t-m3)" stroke="var(--cuivre)"/><text class="sch-txt" x="400" y="267" text-anchor="middle">parfums</text>
-<circle class="apparait" style="--d:.3s" cx="240" cy="262" r="34" fill="var(--t-m1)" stroke="var(--brume)"/><text class="sch-txt" x="240" y="267" text-anchor="middle">toucher</text>
-<text class="sch-txt2 apparait" style="--d:1.5s" x="320" y="176" text-anchor="middle">« ténébreuse et profonde unité »</text>
-<text class="sch-txt2 apparait" style="--d:1.7s" x="40" y="300">« frais comme des chairs d’enfants » : odorat → toucher</text>
-<text class="sch-txt2 apparait" style="--d:1.8s" x="600" y="300" text-anchor="end">« doux comme les hautbois » : odorat → ouïe</text>
+<circle class="apparait" style="--d:0s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="190" cy="110" r="34" stroke="var(--brume)"/><text class="sch-txt" x="190" y="115" text-anchor="middle">couleurs</text>
+<circle class="apparait" style="--d:.1s;fill:color-mix(in srgb,var(--rose) 22%,var(--surface))" cx="450" cy="110" r="34" stroke="var(--rose)"/><text class="sch-txt" x="450" y="115" text-anchor="middle">sons</text>
+<circle class="apparait" style="--d:.2s;fill:color-mix(in srgb,var(--cuivre) 22%,var(--surface))" cx="400" cy="262" r="34" stroke="var(--cuivre)"/><text class="sch-txt" x="400" y="267" text-anchor="middle">parfums</text>
+<circle class="apparait" style="--d:.3s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="240" cy="262" r="34" stroke="var(--brume)"/><text class="sch-txt" x="240" y="267" text-anchor="middle">toucher</text>
+<rect class="apparait" style="--d:1.5s" x="228" y="162" width="184" height="20" rx="3" fill="var(--surface)"/><text class="sch-txt2 apparait" style="--d:1.5s" x="320" y="176" text-anchor="middle">« ténébreuse et profonde unité »</text>
+<text class="sch-txt2 apparait" style="--d:1.7s" x="40" y="324">« frais comme des chairs d’enfants » : odorat → toucher</text>
+<text class="sch-txt2 apparait" style="--d:1.8s" x="600" y="324" text-anchor="end">« doux comme les hautbois » : odorat → ouïe</text>
 </svg><figcaption>Baudelaire, « Correspondances » (<i>Les Fleurs du mal</i>, 1857) : les synesthésies relient les sens entre eux, et le monde sensible à un sens caché.</figcaption>`,
+  schemaP: `<svg class="sch-port" viewBox="0 0 320 356" role="img" aria-labelledby="sch2p"><title id="sch2p">Les correspondances : les sens se répondent</title>
+<text class="sch-tit" x="160" y="24" text-anchor="middle">« Les parfums, les couleurs</text><text class="sch-tit" x="160" y="45" text-anchor="middle">et les sons se répondent »</text>
+<g class="sch-fort">
+<path class="trace" style="--d:.5s" d="M80 100 Q160 58 240 100"/><path class="trace" style="--d:.65s" d="M240 100 Q296 172 212 228"/><path class="trace" style="--d:.8s" d="M212 228 Q160 256 108 228"/>
+<path class="trace" style="--d:.95s" d="M108 228 Q24 172 80 100"/><path class="trace" style="--d:1.1s" d="M80 100 L212 228"/><path class="trace" style="--d:1.2s" d="M240 100 L108 228"/>
+</g>
+<circle class="apparait" style="--d:0s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="80" cy="100" r="32" stroke="var(--brume)"/><text class="sch-txt" x="80" y="105" text-anchor="middle">couleurs</text>
+<circle class="apparait" style="--d:.1s;fill:color-mix(in srgb,var(--rose) 22%,var(--surface))" cx="240" cy="100" r="32" stroke="var(--rose)"/><text class="sch-txt" x="240" y="105" text-anchor="middle">sons</text>
+<circle class="apparait" style="--d:.2s;fill:color-mix(in srgb,var(--cuivre) 22%,var(--surface))" cx="212" cy="228" r="32" stroke="var(--cuivre)"/><text class="sch-txt" x="212" y="233" text-anchor="middle">parfums</text>
+<circle class="apparait" style="--d:.3s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="108" cy="228" r="32" stroke="var(--brume)"/><text class="sch-txt" x="108" y="233" text-anchor="middle">toucher</text>
+<rect class="apparait" style="--d:1.5s" x="72" y="152" width="176" height="20" rx="3" fill="var(--surface)"/><text class="sch-txt2 apparait" style="--d:1.5s" x="160" y="166" text-anchor="middle">« ténébreuse et profonde unité »</text>
+<text class="sch-txt2 apparait" style="--d:1.7s" x="160" y="290" text-anchor="middle">« frais comme des chairs d’enfants »</text><text class="sch-txt2 apparait" style="--d:1.7s" x="160" y="306" text-anchor="middle">odorat → toucher</text>
+<text class="sch-txt2 apparait" style="--d:1.8s" x="160" y="330" text-anchor="middle">« doux comme les hautbois »</text><text class="sch-txt2 apparait" style="--d:1.8s" x="160" y="346" text-anchor="middle">odorat → ouïe</text>
+</svg>`,
   cours: [
     { id: "e2-1", titre: "Les « droits de la sensibilité » au XVIII<sup>e</sup> siècle", html: `
 <p class="lettrine">Le mot <b>sensibilité</b> a plusieurs sens qu’il faut savoir distinguer : la capacité de recevoir des sensations (sens physique), de s’émouvoir (sens affectif), de juger du beau (sens esthétique) et de compatir à la souffrance d’autrui (sens moral). Au XVIII<sup>e</sup> siècle, ces sens se rejoignent : le cœur devient un organe de connaissance et de moralité.</p>
@@ -62,7 +76,7 @@ HLP.ENTREES.push({
     { id: "e2-5", titre: "Baudelaire : correspondances, spleen et modernité", html: `
 <p>Avec <i>Les Fleurs du mal</i> (1857, condamné la même année pour six poèmes), Baudelaire transforme la sensibilité romantique. Dans « Correspondances », « La Nature est un temple » où l’homme passe « à travers des forêts de symboles » ; « Les parfums, les couleurs et les sons se répondent ». Ces <b>synesthésies</b> (« doux comme les hautbois, verts comme les prairies ») relient les sens entre eux et le visible à l’invisible.</p>
 <p>Baudelaire invente aussi une sensibilité de la <b>ville</b> et du présent. Dans <i>Le Peintre de la vie moderne</i> (1863), il définit la modernité : « La modernité, c’est le transitoire, le fugitif, le contingent, la moitié de l’art, dont l’autre moitié est l’éternel et l’immuable. » Le <b>spleen</b>, enfin, est un ennui oppressant, qui succède au mal du siècle.</p>
-<div class="ex"><b class="l">Exemple</b>Rimbaud pousse plus loin : « Le poète se fait voyant par un long, immense et raisonné dérèglement de tous les sens » (lettre à Paul Demeny, 15 mai 1871). Le dérèglement est « raisonné » : c’est une méthode, pas un abandon.</div>` },
+<div class="ex"><b class="l">Exemple</b>Rimbaud pousse plus loin : « Le Poète se fait voyant par un long, immense et raisonné dérèglement de tous les sens » (lettre à Paul Demeny, 15 mai 1871). Le dérèglement est « raisonné » : c’est une méthode, pas un abandon.</div>` },
     { id: "e2-6", titre: "Le roman et la vie intérieure : de Flaubert au flux de conscience", html: `
 <p>Le roman du XIX<sup>e</sup> siècle cherche à rendre la vie intérieure des personnages. Flaubert perfectionne le <b>discours indirect libre</b> : les pensées d’un personnage passent dans la voix du narrateur sans « il pensait que ». Dans <i>Madame Bovary</i> (1857), on suit Emma de l’intérieur, et l’on voit que sa sensibilité a été <b>façonnée par ses lectures</b> romanesques au couvent : elle cherche dans la vie les émotions des livres.</p>
 <p>Dans <i>L’Éducation sentimentale</i> (1869), la première vision de Mme Arnoux est donnée par une phrase isolée : « Ce fut comme une apparition : ». La comparaison et les deux-points mettent le lecteur dans l’éblouissement de Frédéric. Plus tard, le <b>monologue intérieur</b> et le « flux de conscience » (Édouard Dujardin, <i>Les Lauriers sont coupés</i>, 1887 ; Virginia Woolf, <i>Les Vagues</i>, 1931) tentent de saisir les pensées « telles qu’elles surviennent ».</p>
