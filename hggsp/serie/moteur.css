@@ -408,7 +408,7 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
   --k-mer:transparent;--k-terre:#e6d3a3;--k-terre2:#e6d3a3;--k-front:#2b1d10;--k-halo:#ece0c4;z-index:1;transform-origin:50% 50%}
 .v-scene svg{display:block;overflow:visible;--kf:1;--kfs:1}
 .sc-manque{padding:40px;color:var(--crayon)}
-.sc-src{position:absolute;right:0;bottom:-46px;max-width:100%;font:italic 400 16px/1.2 var(--f-texte);color:var(--sepia);text-align:right;white-space:nowrap}
+.sc-src{position:absolute;right:0;bottom:-40px;max-width:100%;font:italic 400 15px/1.2 var(--f-texte);color:var(--sepia);text-align:right;white-space:nowrap}
 .sc-bande{position:absolute;left:50%;top:14px;display:flex;align-items:baseline;gap:18px;max-width:1200px;padding:12px 30px 10px;white-space:nowrap;
   background:var(--papier) 0 0/900px,var(--pap);box-shadow:0 2px 3px rgba(8,4,0,.4),0 14px 28px rgba(8,4,0,.5),var(--vieilli)}
 .sc-bande:before{content:"";position:absolute;inset:5px;border:1px solid rgba(43,29,16,.75);pointer-events:none}

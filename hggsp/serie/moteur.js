@@ -343,7 +343,7 @@
   }
   // grave la feuille : canevas couvrant la carte (vb) et sa marge, à R pixels par unité de la carte
   function graverFeuille(F_, vb, k, R, rose) {
-    var Mu = 50 / k, W_ = (vb[2] + 2 * Mu) * R, H_ = (vb[3] + 2 * Mu) * R;
+    var Mu = 42 / k, W_ = (vb[2] + 2 * Mu) * R, H_ = (vb[3] + 2 * Mu) * R;
     var c = canv(W_, H_), x = c.getContext("2d"), u = 1 / k;          // u : un pixel du monde, en unités de la carte
     x.drawImage(TEX.papierGrand, 0, 0, c.width, c.height);
     x.save(); x.globalCompositeOperation = "multiply"; x.fillStyle = x.createPattern(TEX.grain, "repeat"); x.fillRect(0, 0, c.width, c.height); x.restore();
@@ -1203,7 +1203,8 @@
   // (de 1) commence au repère {id.k}. État cumulé comme sur le site (montre / cache), accent = pulsation.
   // v.fs : taille d'écran des étiquettes en px (20 par défaut) ; v.legende = false : pas de cartouche date / titre.
   // La feuille occupe toujours la même zone de l'écran (ZONE_CARTE) : v.x, v.y, v.w, v.h ne servent plus.
-  var ZONE_CARTE = { x: 40, y: 100, w: 1200, h: 548 };
+  // La feuille entière (carte + marge de 42 px pour le cadre et la source) tient à l'écran, avec de la table autour.
+  var ZONE_CARTE = { x: 104, y: 116, w: 1072, h: 526 }, MARGE_F = 42;
   var DEFS_CARTE = "<defs>" +
     "<pattern id='hg-hach' width='9' height='9' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'><rect width='9' height='9' fill='rgba(200,50,35,.12)'/><path d='M0 0V9' stroke='rgba(178,38,26,.55)' stroke-width='2'/></pattern>" +
     "<pattern id='hg-glace' width='7' height='7' patternUnits='userSpaceOnUse' patternTransform='rotate(-30)'><rect width='7' height='7' fill='rgba(250,252,250,.82)'/><path d='M0 0H7' stroke='rgba(70,110,150,.32)' stroke-width='1.1'/></pattern>" +
@@ -1221,7 +1222,7 @@
     f.graver = function () {
       if (f.g) return f.g;
       var ech = EXPORT ? 1.5 : Math.min(1.5, Math.max(.6, (window.devicePixelRatio || 1) * Math.min(1, innerWidth / W)));
-      var R = k * Math.max(1, f.zmax) * ech, Mu = 50 / k;
+      var R = k * Math.max(1, f.zmax) * ech, Mu = MARGE_F / k;
       var cote = Math.max((vb[2] + 2 * Mu) * R, (vb[3] + 2 * Mu) * R), aire = (vb[2] + 2 * Mu) * (vb[3] + 2 * Mu) * R * R;
       var lim = Math.min(4096 / cote, Math.sqrt(1.4e7 / aire), 1);   // canevas raisonnable (mémoire du téléphone)
       f.g = graverFeuille(F_, vb, k, R * lim, f.rose);
@@ -1260,7 +1261,10 @@
     // cadrages (unités de la carte) ; la feuille doit être gravée assez fin pour le plus fort
     var cams = [];
     for (var c = 0; c <= ets.length; c++) cams.push((v.cam && v.cam[String(c)]) || (c ? cams[c - 1] : vb));
-    cams.forEach(function (w) { f.zmax = Math.max(f.zmax, Math.min(ZONE_CARTE.w / (w[2] * k), ZONE_CARTE.h / (w[3] * k))); });
+    // zoom d'un cadrage (marge du cadre comprise) ; un cadrage qui ne grossit guère (< 1,25) montre la feuille entière
+    function zoomDe(w) { var p = MARGE_F / k; return Math.min(ZONE_CARTE.w / ((w[2] + 2 * p) * k), ZONE_CARTE.h / ((w[3] + 2 * p) * k)); }
+    cams = cams.map(function (w) { return zoomDe(w) < 1.25 ? vb : w; });
+    cams.forEach(function (w) { f.zmax = Math.max(f.zmax, zoomDe(w)); });
     // cartouche date / titre : à l'écran, en haut, au-dessus de la carte
     var bande = null, dEl, tEl, nEl;
     if (v.legende !== false && ets.length) {
@@ -1286,7 +1290,7 @@
     }
     // caméra : la fenêtre de la carte remplit la zone de la carte à l'écran
     o.cam = function (t) {
-      var w = fenetre(t), z = Math.min(ZONE_CARTE.w / (w[2] * k), ZONE_CARTE.h / (w[3] * k));
+      var w = fenetre(t), z = Math.max(1, zoomDe(w));
       var poids = (suite ? 1 : E(P(t, v.t0, 1.1))) * (enchaine ? 1 : 1 - EIO(P(t, v.t1 - .1, .8)));
       return { x: mx + (w[0] + w[2] / 2 - vb[0]) * k, y: my + (w[1] + w[3] / 2 - vb[1]) * k, z: z, ax: ZONE_CARTE.x + ZONE_CARTE.w / 2, ay: ZONE_CARTE.y + ZONE_CARTE.h / 2, w: poids };
     };
@@ -1576,6 +1580,20 @@
       el.style.display = "none";
       o.upd = (TYPES[v.type] || function () { return function () {}; })(o, v);
       return o;
+    });
+    // pas de table vide : une fiche reste posée jusqu'à ce que la suivante montre quelque chose (même poste, trou de
+    // moins de 8 s) ; « montrer » = le premier élément d'un visuel dont le contenu arrive au repère {id.1} ou {id.g}
+    function premier(v) {
+      var e_ = v.et || {};
+      if (v.type === "cols") return Math.min(e_.g != null ? e_.g : v.t0 + .1, e_.d != null ? e_.d : v.t0 + .9);
+      if ((v.type === "cartes" || v.type === "chiffres") && e_["1"] != null) return Math.max(v.t0, e_["1"]);
+      return v.t0;
+    }
+    var pose_ = objs.filter(function (o) { return !ECRAN[o.v.type] && o.v.type !== "generique"; }).sort(function (a, b) { return a.v.t0 - b.v.t0; });
+    pose_.forEach(function (o, i) {
+      var suiv = pose_[i + 1]; if (!suiv || suiv.v.scene !== o.v.scene) return;
+      var tv = premier(suiv.v);
+      if (tv > o.v.t1 && tv - o.v.t1 < 8) o.v.t1 = tv;
     });
     // fin d'affichage : le dernier visuel d'une partie reste posé pendant que la caméra s'en va
     objs.forEach(function (o, i) {
