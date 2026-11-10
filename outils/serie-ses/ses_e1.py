@@ -19,13 +19,15 @@ NUM = 1
 TITRE = "Quels sont les sources et les défis de la croissance économique ?"
 SUIVANT = "É2 · Les fondements du commerce international"
 RYTHME = "vivant"
-PRONONCIATION = {"Solow": "Solo", "Romer": "Romeure", "Barro": "Baro", "Douglass": "Douglasse", "North": "Norse",
-                 "Acemoglu": "Adjémoglou", "Schumpeter": "Choumpéteur", "Aghion": "Aguion", "Howitt": "Haouitte",
+PRONONCIATION = {"Solow": "Sollo", "Romer": "Romeure", "Barro": "Baro", "Douglass": "Douglasse", "North": "Norse",
+                 "Acemoglu": "Adjémo-olou", "Schumpeter": "Choumpéteur", "Aghion": "Aguion", "Howitt": "Haouitte",
                  "Mokyr": "Mokir", "Goldin": "Goldine", "Katz": "Katse", "Autor": "Otor", "Meadows": "Médoze",
                  "Donella": "Donéla", "Jevons": "Djévonse", "Stanley": "Stanlé", "Karikó": "Kariko", "Katalin": "Katalinne",
-                 "Weissman": "Vaïsmane", "Drew": "Drou", "BioNTech": "Bio-ène-tèque", "Pfizer": "Faïzeur", "Insee": "Inssé",
+                 "Weissman": "Ouaïsmane", "Drew": "Drou", "BioNTech": "Bio-ène-tèque", "Pfizer": "Faïzeur", "Insee": "Inssé",
                  "Citepa": "Sitépa", "Lawrence": "Lorince", "Peter": "Piteur", "Joel": "Djoël", "Simon": "Saïmone",
-                 "Johnson": "Djonsone", "James": "Djèmse", "Daron": "Daronne", "David": "Dévid", "LED": "èl-eu-dé"}
+                 "Johnson": "Djonsone", "James": "Djèmse", "Daron": "Daronne", "David": "Dévid", "LED": "èl-eu-dé",
+                 "Dennis": "Dénisse", "Covid-19": "Covid dix-neuf", "PIB": "pé-i-bé", "PGF": "pé-gé-èf",
+                 "ARN": "a-èr-ène", "SES": "èss-eu-èss"}
 
 D = site_ses.donnees()
 G, CHN, CH = D["graphes"], D["chaines"], D["ch"]["e1"]
@@ -71,14 +73,14 @@ SCENES = [
         "de la production de biens et de services d'un pays.",
         "Durable : pas un bond d'une seule année. {def_cr.1}Et on la mesure par le taux de variation du PIB, le produit intérieur brut… en volume.",
         "{-def_cr}{def_pib}Le PIB, c'est la somme des valeurs ajoutées produites sur le territoire pendant un an. "
-        "On y ajoute les impôts sur les produits, et on retire les subventions.",
+        "On y ajoute les impôts sur les produits, et on retire les subventions sur les produits.",
         "{-def_pib}{cols_vv}Pourquoi en volume ? {cols_vv.g}Parce qu'un PIB en valeur peut augmenter… simplement parce que les prix montent. "
         "{cols_vv.d}Le PIB en volume, lui, est corrigé de la hausse des prix : il mesure les quantités produites, pas l'inflation.",
         "C'est un rappel de Première, mais c'est le piège numéro un des copies : la croissance, c'est toujours le PIB en volume.",
         ("P", 0.5),
         "{-cols_vv}{gr_pib}Maintenant, regardons soixante-quinze ans de croissance française, année par année. "
         "Chaque barre, c'est le taux de croissance d'une année. La source : l'Insee.",
-        "{gr_pib.1}Premier âge : de mille neuf cent cinquante à mille neuf cent soixante-treize, les Trente Glorieuses. "
+        "{gr_pib.1}Premier âge : de mille neuf cent cinquante à mille neuf cent soixante-treize, le cœur des Trente Glorieuses. "
         "La croissance dépasse souvent cinq pour cent. En moyenne : cinq virgule deux pour cent par an. La France rattrape son retard.",
         "{gr_pib.2}Puis viennent les chocs pétroliers. En mille neuf cent soixante-quinze, le PIB recule : moins zéro virgule neuf pour cent. "
         "Et la croissance ne retrouvera plus jamais ce rythme : deux virgule quatre pour cent par an en moyenne de mille neuf cent soixante-treize "
@@ -103,7 +105,7 @@ SCENES = [
                        t="Augmentation durable de la production de biens et de services d'un pays.",
                        etape="On la mesure par le taux de variation du PIB en volume.", x=170, y=170, w=940),
         "def_pib": dict(type="def", terme="PIB · produit intérieur brut", cles=["valeurs", "territoire"],
-                        t="Somme des valeurs ajoutées produites sur le territoire pendant un an (plus les impôts sur les produits, moins les subventions).",
+                        t="Somme des valeurs ajoutées produites sur le territoire pendant un an (plus les impôts sur les produits, moins les subventions sur les produits).",
                         x=170, y=180, w=940),
         "cols_vv": dict(type="cols", g="En valeur", gq="Aux prix de l'année : il monte aussi quand seuls les prix montent.",
                         d="En volume", dq="Corrigé de la hausse des prix : il mesure les quantités produites.", vs="≠",
@@ -140,9 +142,9 @@ SCENES = [
         "C'est le modèle de Solow, en mille neuf cent cinquante-six.",
         "{an_solow.4}Alors, comment croître durablement ? Grâce au progrès technique. Il déplace toute la courbe vers le haut : "
         "avec le même capital, on produit plus. C'est exactement la hausse de la productivité globale des facteurs.",
-        "{an_solow.5}Et Solow le mesure. Aux États-Unis, de mille neuf cent neuf à mille neuf cent quarante-neuf, environ quatre-vingt-sept virgule cinq pour cent "
+        "{an_solow.5}Et en mille neuf cent cinquante-sept, Solow le mesure. Aux États-Unis, de mille neuf cent neuf à mille neuf cent quarante-neuf, quatre-vingt-sept et demi pour cent, sept huitièmes, "
         "de la hausse de la production par heure de travail ne vient pas du capital. Elle vient du progrès technique. "
-        "Ce supplément, il l'appelle le {!résidu}résidu.",
+        "Ce supplément, on l'appelle le {!résidu}résidu : le résidu de Solow.",
         "{-an_solow}{ill_res}Comment mesure-t-on ce résidu ? En creux. Prenons un exemple chiffré, inventé. Une économie croît de deux pour cent par an. "
         "{ill_res.1}La hausse du travail y contribue pour zéro virgule quatre point. {ill_res.2}Celle du capital, pour zéro virgule six point. "
         "{ill_res.3}Et le reste, c'est la PGF. {ill_res.4}Deux, moins zéro virgule quatre, moins zéro virgule six : un point. La moitié de la croissance.",
@@ -214,7 +216,7 @@ SCENES = [
         "{!endogène}endogène : il est produit par la croissance elle-même.",
         ("P", 1.2),
         "{-ch_endo}{ex_arn}Un exemple qui montre tout ça en action : les vaccins à ARN messager contre le Covid-19. "
-        "{ex_arn.1}Ils arrivent sur le marché fin deux mille vingt, avec BioNTech-Pfizer et Moderna. "
+        "{ex_arn.1}Ils arrivent sur le marché fin deux mille vingt, avec BioNTech et Pfizer, et avec Moderna. "
         "{ex_arn.2}Mais ils reposent sur des décennies de recherche, en grande partie publique et universitaire.",
         "{ex_arn.3}Les travaux de Katalin Karikó et Drew Weissman sur la modification de l'ARN datent de deux mille cinq. "
         "Ils leur ont valu le prix Nobel de médecine en deux mille vingt-trois. "
@@ -276,7 +278,7 @@ SCENES = [
         "{-ch_inst}{au_ar}Daron Acemoglu et James Robinson, prix Nobel deux mille vingt-quatre avec Simon Johnson, vont plus loin. "
         "Des institutions {!inclusives}inclusives, avec des droits de propriété pour tous, de la concurrence, un pouvoir politique partagé, "
         "favorisent la croissance. Des institutions extractives, qui permettent à une élite de capter les richesses, la bloquent.",
-        "{-au_ar}{cols_coree}Leur exemple le plus cité : la Corée, divisée depuis la fin des années mille neuf cent quarante. "
+        "{-au_ar}{cols_coree}L'un de leurs exemples les plus célèbres : la Corée, divisée depuis la fin des années mille neuf cent quarante. "
         "Même peuple, même culture, même géographie au départ. "
         "{cols_coree.g}Au Sud : une économie de marché, devenue démocratique. Aujourd'hui, un pays riche et innovant. "
         "{cols_coree.d}Au Nord : une économie planifiée, sous dictature. L'un des pays les plus pauvres du monde.",
@@ -312,7 +314,7 @@ SCENES = [
          beats=[
         "{au_schum}Place à Joseph Schumpeter. Pour lui, le moteur du capitalisme, c'est l'entrepreneur innovateur. "
         "Les innovations majeures arrivent en grappes. Et elles provoquent une {!destruction créatrice}destruction créatrice : "
-        "les activités nouvelles remplacent les anciennes. C'est dans Capitalisme, socialisme et démocratie, en mille neuf cent quarante-deux.",
+        "les activités nouvelles remplacent les anciennes. L'expression vient de son livre Capitalisme, socialisme et démocratie, en mille neuf cent quarante-deux.",
         "{-au_schum}{ch_dc}{ch_dc.1}Déroulons. Une innovation majeure apparaît : l'appareil photo numérique, puis le smartphone. "
         "{ch_dc.2}Et en même temps, deux choses se produisent. Création : de nouvelles entreprises, de nouveaux produits, de nouveaux emplois. "
         "Et destruction : des produits, des entreprises, des emplois anciens deviennent obsolètes.",
@@ -420,8 +422,8 @@ SCENES = [
         "{ch_lim.2}Donc plus de prélèvements, et plus de rejets. "
         "{ch_lim.3}Donc épuisement des ressources, pollution, réchauffement.",
         "{ch_lim.4}Donc le capital naturel se dégrade. {ch_lim.5}Et la croissance future est menacée : catastrophes, pénuries, coûts de réparation.",
-        "{-ch_lim}{au_mead}L'alerte date de mille neuf cent soixante-douze, avec le rapport au Club de Rome dirigé par Donella Meadows, sur les limites de la croissance. "
-        "Dans un monde fini, une croissance exponentielle de la production et de la population mène à l'épuisement des ressources, et à une pollution croissante.",
+        "{-ch_lim}{au_mead}L'alerte date de mille neuf cent soixante-douze, avec le rapport Meadows sur les limites de la croissance, écrit pour le Club de Rome par une équipe menée par Donella et Dennis Meadows. "
+        "Sa thèse : dans un monde fini, si les tendances se poursuivent, une croissance exponentielle de la production et de la population mène à l'épuisement des ressources, et à une pollution croissante.",
         "{-au_mead}{def_ext}Pourquoi le marché ne règle-t-il pas ça tout seul ? Parce que ces dommages sont des {!externalités négatives}externalités négatives : "
         "le pollueur ne paie pas le coût qu'il impose aux autres. Donc le marché, seul, produit trop de pollution.",
         "{-def_ext}{li_inno}La bonne nouvelle : l'innovation peut reculer ces limites. {li_inno.1}Elle améliore l'efficacité : produire autant avec moins d'énergie "
@@ -461,9 +463,9 @@ SCENES = [
             dict(ic="pollution", t="Pollution", q="De l'air, de l'eau et des sols."),
             dict(ic="climat", t="Réchauffement", q="Dû aux émissions de gaz à effet de serre.")]),
         "ch_lim": dict(type="chaine", c=CHN["e1-limites"], x=170, w=940),
-        "au_mead": dict(type="auteur", mono="DM", nom="Donella Meadows (dir.)", info="The Limits to Growth, rapport au Club de Rome, 1972",
+        "au_mead": dict(type="auteur", mono="DM", nom="Donella et Dennis Meadows", info="The Limits to Growth, rapport au Club de Rome, 1972",
                         cles=["fini", "exponentielle"],
-                        t="Dans un monde fini, une croissance exponentielle de la production et de la population mène à l'épuisement des ressources et à une pollution croissante.",
+                        t="Dans un monde fini, si les tendances se poursuivent, une croissance exponentielle de la production et de la population mène à l'épuisement des ressources et à une pollution croissante.",
                         x=170, y=210, w=940),
         "def_ext": dict(type="def", terme="Externalité négative", cles=["pollueur", "coût"],
                         t="Le pollueur ne paie pas le coût qu'il impose aux autres : le marché seul produit trop de pollution.",
@@ -549,10 +551,10 @@ SCENES = [
         "{-ex_c}{pa_c}À toi. Mets la vidéo sur pause, prends une feuille, et fais les trois calculs.",
         "{pa_c.stop}{-pa_c}{ex_cc}{ex_cc.q1}Correction. {s_c1}{s_c1.1}Un coefficient multiplicateur, c'est la valeur d'arrivée divisée par la valeur de départ. "
         "{s_c1.2}Neuf cent quatre-vingt-dix-neuf virgule un, divisé par trois cent neuf virgule un. À la main : trois fois trois cent neuf, ça fait neuf cent vingt-sept. "
-        "Il reste soixante-douze, à peu près un quart de plus. Environ trois virgule vingt-trois : le PIB a été multiplié par trois virgule deux en vingt-trois ans.",
-        "{s_c1.3}Entre deux mille sept et deux mille dix-neuf : environ un virgule douze. Plus douze pour cent… en douze ans seulement.",
+        "Il reste soixante-douze, un peu moins d'un quart de trois cent neuf. Environ trois virgule vingt-trois : le PIB a été multiplié par trois virgule deux en vingt-trois ans.",
+        "{s_c1.3}Entre deux mille sept et deux mille dix-neuf : deux mille cinq cent quatre virgule six, divisé par deux mille deux cent trente-trois. Deux mille deux cent trente-trois fois un virgule un, ça fait environ deux mille quatre cent cinquante-six ; il reste une cinquantaine, encore deux pour cent environ. Donc environ un virgule douze. Plus douze pour cent… en douze ans seulement.",
         "{-s_c1}{ex_cc.q2}{s_c2}{s_c2.1}Deux : un taux de variation, c'est l'arrivée moins le départ, divisé par le départ, fois cent. "
-        "{s_c2.2}L'écart vaut vingt et un virgule un milliards. Rapporté à deux mille six cent vingt-cinq : environ plus zéro virgule huit pour cent.",
+        "{s_c2.2}L'écart vaut vingt et un virgule un milliards. Rapporté à deux mille six cent vingt-cinq virgule six. Un pour cent, ce serait environ vingt-six milliards ; vingt et un, c'est un peu plus des trois quarts de vingt-six. Donc environ plus zéro virgule huit pour cent.",
         "{-s_c2}{ex_cc.q3}{s_c3}{s_c3.1}Trois : la racine vingt-troisième est donnée, un virgule zéro cinquante-deux. Donc cinq virgule deux pour cent par an. "
         "{s_c3.2}La phrase : « Entre mille neuf cent cinquante et mille neuf cent soixante-treize, selon l'Insee, le PIB de la France en volume a crû en moyenne "
         "d'environ cinq virgule deux pour cent par an : il a été multiplié par trois virgule deux. »",
@@ -639,7 +641,7 @@ SCENES = [
         "{pa_p2.stop}{-pa_p2}{ex_p2c}{ex_p2c.q1}{gr_q1}Correction de la question un. Il faut des données précises, avec l'année, l'unité et la source. "
         "{gr_q1.1}{s_p21}{s_p21.1}Selon l'Insee, la croissance du PIB en volume dépasse le plus souvent quatre pour cent par an entre mille neuf cent cinquante et mille neuf cent soixante-treize : "
         "huit pour cent en mille neuf cent soixante, sept virgule un pour cent en mille neuf cent soixante-neuf. Cinq virgule deux pour cent par an en moyenne.",
-        "{gr_q1.2}{s_p21.2}Dans les années deux mille dix, elle reste presque toujours sous deux virgule cinq pour cent : zéro virgule deux en deux mille douze, "
+        "{gr_q1.2}{s_p21.2}Dans les années deux mille dix, elle reste toujours sous deux virgule cinq pour cent : zéro virgule deux en deux mille douze, "
         "deux virgule un en deux mille dix-sept. {s_p21.3}En moyenne, un virgule quatre pour cent par an de deux mille dix à deux mille dix-neuf : près de quatre fois moins.",
         "{-s_p21}{-gr_q1}{ex_p2c.q2}{s_p22}Question deux : un mécanisme, relié au document. {s_p22.1}La croissance intensive repose sur la hausse de la productivité globale des facteurs. "
         "{s_p22.2}Pendant les Trente Glorieuses, la France rattrape son retard technologique sur les États-Unis : elle adopte des techniques déjà inventées, "
@@ -659,10 +661,10 @@ SCENES = [
         "ex_p2c": dict(type="exo", mode="coin", niveau="p2", titre="La croissance française",
                        questions=["Comparer 1950-1973 et les années 2010", "Expliquer par les gains de productivité"]),
         "gr_q1": dict(type="donnees", g=G["e1-pib"], kicker="Le document", titre="Croissance du PIB en volume (Insee)", sous=False,
-                      src="Source : Insee, comptes nationaux annuels, base 2020.", x=530, y=66, w=720, h=372, phases=[dict(de=1950, a=1973, moy=5.2, dur=2.5), dict(de=2010, a=2019, moy=1.4, dur=1.5, lp=[2014, 5])]),
-        "s_p21": dict(type="liste", titre="Question 1 · comparer", x=540, y=456, w=700, petit=True, items=[
+                      src="Source : Insee, comptes nationaux annuels, base 2020.", x=530, y=66, w=720, h=340, phases=[dict(de=1950, a=1973, moy=5.2, dur=2.5), dict(de=2010, a=2019, moy=1.4, dur=1.5, lp=[2014, 5])]),
+        "s_p21": dict(type="liste", titre="Question 1 · comparer", x=540, y=424, w=700, petit=True, items=[
             "1950-1973 : souvent > 4 % (8,0 % en 1960, 7,1 % en 1969)",
-            "Années 2010 : presque toujours < 2,5 % (0,2 % en 2012)",
+            "Années 2010 : toujours < 2,5 % (0,2 % en 2012)",
             "5,2 %/an contre 1,4 %/an : près de quatre fois moins"]),
         "s_p22": dict(type="liste", titre="Question 2 · le mécanisme", x=540, y=110, w=700, petit=True, items=[
             "Croissance intensive = hausse de la PGF",
