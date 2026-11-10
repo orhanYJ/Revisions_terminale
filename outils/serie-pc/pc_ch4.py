@@ -399,7 +399,7 @@ SCENES = [
                       ax=dict(x=[0, 16], y=[-5, 5], gx=[4, 8, 12, 16], gy=[-4, -2, 2, 4], lx="ν (10^14 Hz)", ly="E_c (eV)"),
                       el=[dict(type="droite", pts=[[2.3 / H_EV, 0], [16, 16 * H_EV - 2.3]], c="vert", lbl="potassium", lp=[12.2, 4.3]),
                           dict(type="droite", pts=[[4.3 / H_EV, 0], [16, 16 * H_EV - 4.3]], c="sa", lbl="zinc · pente h", lp=[14.6, 1.0]),
-                          dict(type="point", x=4.3 / H_EV, y=0, c="sa", lbl="ν_0 du zinc", lp=[10.4, -0.6]),
+                          dict(type="point", x=4.3 / H_EV, y=0, c="sa", lbl="ν_0 du zinc", lp=[10.4, -1.35]),
                           dict(type="droite", pts=[[0, -4.3], [4.3 / H_EV, 0]], c="sa", tir=True, ep=2.4)]),
         "ex_zn": dict(type="formule", titre="Exemple · le zinc éclairé à 200 nm", x=150, y=100, w=980, lignes=[
             dict(f="E_{photon} ≈ " + fr("1 240", "200") + " ≈ 6,2 eV"),

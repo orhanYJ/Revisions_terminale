@@ -134,7 +134,7 @@ const POINTS = Array.from({length:100}, () => [BOITE[0] + 8 + rnd()*(BOITE[2] - 
 const ORDRE = POINTS.map((_, i) => i).sort((a, b) => ((a*37) % 101) - ((b*37) % 101));
 /* étape 7 : deux béchers de 25 molécules */
 const BECHERS = [[30, 60], [212, 60]], BW = 158, BH = 168;
-const MOLS = Array.from({length:25}, (_, i) => [14 + (i % 5)*32 + (Math.floor(i/5) % 2)*10, 24 + Math.floor(i/5)*30]);
+const MOLS = Array.from({length:25}, (_, i) => [12 + (i % 5)*29 + (Math.floor(i/5) % 2)*8, 24 + Math.floor(i/5)*30]);
 
 function draw(c){
   const {t, k} = c;
@@ -201,11 +201,15 @@ function draw(c){
     /* à gauche, l'eau capte un H⁺ venu de la gauche ; à droite, elle en cède un vers la droite */
     const ua = kAt(t, 31.6, 33.6), ub = kAt(t, 32.6, 34.6);
     const Hin = [lerp(20, A[0] - 24, ua), A[1]], Hout = [lerp(B[0] + 24, 390, ub), B[1]];
-    for(const [W, dir] of [[A, 1], [B, -1]]){
-      const h1 = [W[0] + 15*dir, W[1] - 19], h2 = [W[0] + 15*dir, W[1] + 19];
-      M.chr += liaison(W, h1, v4) + liaison(W, h2, v4) + atome(W[0], W[1], 14, C_O, 'O', v4) + atome(h1[0], h1[1], H_R, C_H, 'H', v4) + atome(h2[0], h2[1], H_R, C_H, 'H', v4);
-    }
+    /* liaisons d'abord (sous les atomes) : le H⁺ qui arrive à gauche, celui qui part à droite */
     M.chr += liaison(A, [A[0] - 24, A[1]], v4*lin(t, 33.4, 33.8)) + liaison(B, [B[0] + 24, B[1]], v4*(1 - lin(t, 32.6, 33)));
+    /* à gauche, H₂O (deux H, molécule coudée) qui deviendra H₃O⁺ ; à droite, H₂O = un H fixe + le H qui part : il reste HO⁻ */
+    const hA = [[A[0] + 15, A[1] - 19], [A[0] + 15, A[1] + 19]], hB = [[B[0] - 15, B[1] - 19]];
+    for(const [W, hs] of [[A, hA], [B, hB]]){
+      hs.forEach(h => { M.chr += liaison(W, h, v4); });
+      M.chr += atome(W[0], W[1], 14, C_O, 'O', v4);
+      hs.forEach(h => { M.chr += atome(h[0], h[1], H_R, C_H, 'H', v4); });
+    }
     M.chr += atome(Hin[0], Hin[1], H_R, C_H, 'H', v4*k(31.4, 31.8)) + atome(Hout[0], Hout[1], H_R, C_H, 'H', v4*(1 - lin(t, 34.2, 34.6)));
     M.sp += charge(A[0] + 6, A[1] - 34, '+', v4*k(33.6, 34.2)) + charge(B[0] - 6, B[1] - 34, '−', v4*k(34.4, 35));
     lab += label(A[0], 232, "H₂O + H⁺ → H₃O⁺", '#C9DAFF', 9.5, v4*k(34, 34.8)) + label(B[0], 232, "H₂O → HO⁻ + H⁺", '#FFC9A8', 9.5, v4*k(34.6, 35.4));
@@ -217,14 +221,14 @@ function draw(c){
   const v5 = vis(t, 38.5, 49.5);
   if(v5 > 0){
     const C1 = [86, 150], C2 = [120, 150], Od = [134, 124], Os = [140, 172], H0 = [164, 180];
-    const O = [284, 160], OH = [306, 160], cible = [260, 160];
+    const O = [284, 160], OH = [303, 145], cible = [265, 145];   /* H₂O formée coudée : H à ±19 en x, −15 en y (≈ 104°) */
     const u = kAt(t, 41, 43.6);
     const H = u > 0 ? arcH(H0, cible, u, 40) : H0;
     M.chr += liaison(C1, C2, v5) + liaison(C2, Od, v5, 5) + liaison(C2, Os, v5) + liaison(Os, H0, v5*(1 - lin(t, 41, 41.6)));
     M.chr += atome(C1[0], C1[1], 16, C_C, 'CH₃', v5) + atome(C2[0], C2[1], 13, C_C, 'C', v5) + atome(Od[0], Od[1], 13, C_O, 'O', v5) + atome(Os[0], Os[1], 13, C_O, 'O', v5);
     M.chr += liaison(O, OH, v5) + liaison(O, cible, v5*lin(t, 43.2, 43.8)) + atome(O[0], O[1], 14, C_O, 'O', v5) + atome(OH[0], OH[1], H_R, C_H, 'H', v5);
     M.chr += atome(H[0], H[1], H_R, C_H, 'H', v5);
-    M.sp += charge(O[0] + 4, O[1] - 30, '−', v5*(1 - k(43.4, 44))) + charge(Os[0] + 18, Os[1] + 10, '−', v5*k(43.6, 44.2));
+    M.sp += charge(O[0] - 2, O[1] + 26, '−', v5*(1 - k(43.4, 44))) + charge(Os[0] + 18, Os[1] + 10, '−', v5*k(43.6, 44.2));
     M.fx += flash(cible[0], cible[1], 43.6, 1);
     lab += label(120, 70, "couple CH₃COOH / CH₃COO⁻", '#FFC9A8', 8.8, v5*k(39, 39.8)) + label(290, 104, "couple H₂O / HO⁻", '#C9DAFF', 8.8, v5*k(39.4, 40.2));
     lab += label(200, 300, "CH₃COOH + HO⁻ → CH₃COO⁻ + H₂O", OR, 10.5, v5*k(44, 44.8));
@@ -271,10 +275,13 @@ function draw(c){
       const nb = j === 0 ? 25 : 4;
       MOLS.forEach(([mx, my], i) => {
         const x = bx + mx, y = by + my;
-        const dis = i < nb ? kAt(t, 62 + i*.06, 63.2 + i*.06) : 0;
-        /* équilibre : quelques molécules d'acide faible se dissocient puis se reforment */
-        const va = (j === 1 && i >= 4 && i < 8) ? Math.max(0, Math.sin((t - 64 - i)*1.3))*k(64, 65) : 0;
-        const d = Math.max(dis, va);
+        let d = i < nb ? kAt(t, 62 + i*.06, 63.2 + i*.06) : 0;
+        /* équilibre : chaque paire (i, i + 4) échange son état, il y a toujours 4 molécules dissociées sur 25 */
+        if(j === 1 && i < 8){
+          const q = i % 4, base = kAt(t, 62 + q*.06, 63.2 + q*.06);
+          const sw = lerp(0, .5 - .5*Math.cos((t - 64)*1.1 + q*1.6), k(64, 65));
+          d = base*(i < 4 ? 1 - sw : sw);
+        }
         if(d < .5){
           chr += `<g opacity="${op(v7*(1 - d*2))}"><circle cx="${f(x)}" cy="${f(y)}" r="5.4" fill="${j === 0 ? C_Cl : C_C}"/><circle cx="${f(x + 7)}" cy="${f(y)}" r="3.4" fill="${C_H}"/></g>`;
         }

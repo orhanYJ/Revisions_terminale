@@ -99,6 +99,7 @@ SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
 
 def plat(t):
     """Texte enrichi du moteur (10^-19, x^{2}, E_c, P_{reçue}, [[a|b]]) → texte simple pour YouTube."""
+    t = re.sub(r"‾\{([^}]*)\}", "\\1", t)   # mesure algébrique : la barre ne passe pas en texte simple
     t = re.sub(r"\[\[(.+?)\|(.+?)\]\]", lambda m: "%s/%s" % tuple(x if re.fullmatch(r"[\w,.]+", x) else "(%s)" % x for x in m.groups()), t)
     def sup(m):
         x = m.group(1) or m.group(2)
