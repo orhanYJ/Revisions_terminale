@@ -212,7 +212,7 @@ def executer(machine, mot, max_pas=1000):
     cases = range(min(ruban), max(ruban) + 1)
     return "".join(ruban.get(k, "_") for k in cases).strip("_"), pas
 
-INVERSE = {}       # à écrire : remplace chaque 0 par 1 et chaque 1 par 0`, { fichier: "turing.py", run: false, trous: [9, 11, 13, 17] });
+INVERSE = {}       # à écrire : remplace chaque 0 par 1 et chaque 1 par 0`, { fichier: "turing.py", run: false, trous: [8, 10, 12, 17] });
 
 C("calc-ep1-corr", String.raw`
 def executer(machine, mot, max_pas=1000):
@@ -443,7 +443,7 @@ CH.push({
   ep: [
     { titre: "Un simulateur de machine de Turing", enonce: `<p>On représente une machine de Turing par un dictionnaire : à chaque couple (état, symbole lu) on associe le triplet (symbole à écrire, déplacement « G », « D » ou « - », nouvel état). L’état initial est « debut », l’état final « fin », le blanc « _ ».</p>[[calc-ep1-fourni]]`,
       questions: [
-        { q: "Compléter les lignes 9, 11 et 13. Pourquoi a-t-on besoin du paramètre <code>max_pas</code> ?", c: `<p>Ligne 9 : <code>return None</code>. Ligne 11 : <code>machine[(etat, lu)]</code>. Ligne 13 : <code>pos + {"G": -1, "D": 1, "-": 0}[dep]</code>. Sans limite, une machine qui ne s’arrête pas ferait tourner le simulateur indéfiniment ; et on ne peut pas savoir à l’avance si elle s’arrêtera (problème de l’arrêt). La limite permet de répondre « je ne sais pas » (<code>None</code>).</p>` },
+        { q: "Compléter les lignes 8, 10 et 12. Pourquoi a-t-on besoin du paramètre <code>max_pas</code> ?", c: `<p>Ligne 8 : <code>return None</code>. Ligne 10 : <code>machine[(etat, lu)]</code>. Ligne 12 : <code>pos + {"G": -1, "D": 1, "-": 0}[dep]</code>. Sans limite, une machine qui ne s’arrête pas ferait tourner le simulateur indéfiniment ; et on ne peut pas savoir à l’avance si elle s’arrêtera (problème de l’arrêt). La limite permet de répondre « je ne sais pas » (<code>None</code>).</p>` },
         { q: "Écrire la machine <code>INVERSE</code> (ligne 17) qui remplace chaque 0 par 1 et chaque 1 par 0, puis s’arrête.", c: `<p>Trois transitions depuis l’état « debut » : 0 → écrire 1, D ; 1 → écrire 0, D ; _ → rien, s’arrêter.</p>` },
         { q: "Écrire une machine <code>PAIR</code> qui remplace le dernier chiffre d’un nombre binaire par V s’il est pair, F sinon. Écrire des tests, dont un pour une machine qui ne s’arrête jamais.", c: `[[calc-ep1-corr]]` },
         { q: "À l’oral : si <code>executer</code> renvoie <code>None</code>, peut-on conclure que la machine ne s’arrête pas ?", c: `<p>Non : on sait seulement qu’elle ne s’est pas arrêtée en <code>max_pas</code> pas. Elle pourrait s’arrêter plus tard (comme la suite de Syracuse de 27, qui demande 111 étapes). Aucun choix de limite ne permet de conclure dans tous les cas.</p>` }

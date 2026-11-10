@@ -427,7 +427,7 @@ def josephe(n, k):
     """n personnes numérotées de 1 à n sont en cercle. On compte k personnes ;
     la k-ième sort du cercle ; on recommence à compter avec la suivante.
     Renvoie la liste des numéros dans l'ordre de sortie."""
-    ...`, { fichier: "josephe.py", run: false, trous: [14, 20] });
+    ...`, { fichier: "josephe.py", run: false, trous: [15, 21] });
 
 C("c3-ep2-corr", String.raw`
 class File:

@@ -201,7 +201,7 @@ TABLES = {
 
 def route(tables, depart, arrivee):
     """Renvoie la liste des routeurs traversés par un paquet de depart à arrivee."""
-    ...`, { fichier: "chemin.py", run: false, trous: [10] });
+    ...`, { fichier: "chemin.py", run: false, trous: [11] });
 
 C("rout-ep-corr", String.raw`
 TABLES = {

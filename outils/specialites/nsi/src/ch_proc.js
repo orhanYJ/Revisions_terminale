@@ -217,7 +217,7 @@ class Ordonnanceur:
         while self.file != []:
             pid, d = self.tranche()
             ...
-        return termines`, { fichier: "tourniquet.py", run: false, trous: [18, 24] });
+        return termines`, { fichier: "tourniquet.py", run: false, trous: [18, 25] });
 
 C("proc-ep-corr", String.raw`
 class Processus:
