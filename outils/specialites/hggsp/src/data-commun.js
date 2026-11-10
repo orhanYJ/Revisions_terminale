@@ -152,10 +152,18 @@ var RESSOURCES = [
 ];
 var MANUELS = "Manuels de spécialité HGGSP de Terminale (programme 2020) : Hachette, Hatier, Nathan, Magnard, Belin, entre autres. Ils sont payants et réservés aux établissements ; nous n'avons pas trouvé de manuel d'HGGSP de Terminale consultable gratuitement en ligne. Demande à ton professeur l'accès au manuel numérique de ton lycée.";
 
-/* Sujets tombés (intitulés relevés par la presse spécialisée) */
+/* Sujets tombés en métropole (sujets officiels publiés par Eduscol, relevés par Géoconfluences) */
 var SUJETS_TOMBES = [
+  ["Juin 2026, jour 1", "Dissertation", "Les acteurs de la construction des mémoires", "t3"],
+  ["Juin 2026, jour 1", "Dissertation", "Les évolutions des formes de la guerre du XVIIIe siècle à nos jours", "t2"],
+  ["Juin 2026, jour 1", "Étude critique", "Les États-Unis et la question environnementale", "t5"],
+  ["Juin 2026, jour 2", "Dissertation", "L'État, seul acteur de la protection de l'environnement ?", "t5"],
+  ["Juin 2026, jour 2", "Dissertation", "Les acteurs et les modes de résolution des conflits depuis 1648", "t2"],
+  ["Juin 2026, jour 2", "Étude critique", "Espace et océans, outils de la puissance des États", "t1"],
+  ["Juin 2025, jour 1", "Dissertation", "Les usages du patrimoine en France", "t4"],
   ["Juin 2025, jour 1", "Dissertation", "La puissance des États dans les espaces maritimes et extra-atmosphériques", "t1"],
+  ["Juin 2025, jour 1", "Étude critique", "Juger les génocides", "t3"],
+  ["Juin 2025, jour 2", "Dissertation", "Le changement climatique, un enjeu géopolitique", "t5"],
   ["Juin 2025, jour 2", "Dissertation", "Construire la paix depuis le XVIIe siècle", "t2"],
-  ["Juin 2025, jour 2", "Étude critique", "L'affirmation de la puissance chinoise", "t1"],
-  ["Juin 2026, jour 1", "Dissertation", "Les évolutions des formes de la guerre du XVIIIe siècle à nos jours", "t2"]
+  ["Juin 2025, jour 2", "Étude critique", "L'affirmation de la puissance chinoise", "t1"]
 ];

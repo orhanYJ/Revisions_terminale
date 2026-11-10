@@ -223,7 +223,7 @@
 
   ANIMS.usa = { titre: "Les États-Unis : exploiter, protéger, se diviser", scene: "carte:usa",
     etapes: [
-      { date: "1862-1889", titre: "La conquête des Plaines", texte: "Homestead Act (1862), chemins de fer, labours : les bisons, plusieurs dizaines de millions, sont presque exterminés (à peine un millier en 1889).", montre: ["plaines"], accent: ["plaines"] },
+      { date: "1862-1889", titre: "La conquête des Plaines", texte: "Homestead Act (1862), chemins de fer, labours : les bisons, plusieurs dizaines de millions, sont presque exterminés (environ un millier en 1889).", montre: ["plaines"], accent: ["plaines"] },
       { date: "1872-1913", titre: "Préserver la nature sauvage", texte: "Yellowstone, premier parc national (1872) ; John Muir et le Sierra Club (1892) défendent Yosemite, mais la vallée de Hetch Hetchy est noyée par un barrage (1913).", montre: ["yell", "yose"], accent: ["yell"] },
       { date: "Années 1930", titre: "Le Dust Bowl", texte: "Sécheresse et labour intensif : des tempêtes de poussière ruinent les Grandes Plaines (14 avril 1935) ; le New Deal crée un service de conservation des sols.", montre: ["dust", "dustz"], accent: ["dustz"] },
       { date: "1969-1973", titre: "La révolution des lois", texte: "La rivière Cuyahoga prend feu (1969) ; Jour de la Terre et EPA (1970) ; lois sur l'air (1970), l'eau (1972), les espèces menacées (1973).", montre: ["cuya", "wash"], accent: ["wash"] },
