@@ -501,8 +501,9 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
 <script src="motion.js?v=1" defer></script>
 <!-- mouvement:fin -->
 <!-- identite:debut — habillage « Liaisons » (elements.css, elements.js, polices/) ; à conserver lors des mises à jour -->
-<link rel="stylesheet" href="elements.css?v=1">
-<script src="elements.js?v=1" defer></script>
+<link rel="stylesheet" href="elements.css?v=2">
+<script src="elements.js?v=2" defer></script>
+<script>(function(){try{var d=document.documentElement,i=localStorage.getItem("pc-identite"),m=localStorage.getItem("pc-mode");if(m==="clair"||m==="sombre")d.setAttribute("data-theme",m);if(i==="lumiere"){d.setAttribute("data-identite","lumiere");var l=document.createElement("link");l.rel="stylesheet";l.href="lumiere.css?v=1";l.id="css-lumiere";document.head.appendChild(l);}}catch(e){}})();</script>
 <!-- identite:fin -->
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
 <script src="assistant.js?v=9" defer></script>
@@ -8673,7 +8674,7 @@ function maj(){
 </div>
 
 </main>
-<footer>Liaisons · Physique-Chimie de spécialité, Terminale · le réglage clair/sombre n'est pas mémorisé entre deux ouvertures (fichier autonome, sans stockage local).</footer>
+<footer>Liaisons · Physique-Chimie de spécialité, Terminale · le thème et le mode clair / sombre sont retenus sur cet appareil seulement (fichier autonome, sans stockage local).</footer>
 <script>
 document.documentElement.classList.add('js');
 

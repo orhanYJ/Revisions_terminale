@@ -204,13 +204,37 @@ figure.animfig .stitle{font-family:var(--f-mono);font-weight:600;letter-spacing:
 /* fiche mémo à l'écran */
 #fiche-memo,.fmemo{border-radius:18px}
 
+/* ---------- Choix du thème (bouton de l'en-tête et menu) ---------- */
+.btn-ident{flex:none;display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 11px;border-radius:99px;cursor:pointer;
+  background:transparent;border:1px solid #3B3842;color:var(--sur-graphite);font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.btn-ident svg{width:16px;height:16px}
+.btn-ident:hover,.btn-ident[aria-expanded="true"]{border-color:var(--orange)}
+.btn-ident:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+@media (max-width:520px){.btn-ident span{display:none}.btn-ident{padding:0;width:32px;justify-content:center}}
+.el-menu{position:fixed;top:58px;right:12px;z-index:120;width:min(320px,calc(100vw - 24px));padding:12px;border-radius:18px;
+  background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.28)}
+.el-menu[hidden]{display:none}
+.el-menu-t{font-family:var(--f-mono);font-weight:600;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:2px 4px 8px}
+.el-menu button{display:flex;align-items:center;gap:12px;width:100%;text-align:left;margin:4px 0;padding:9px;border-radius:14px;cursor:pointer;
+  background:transparent;border:1.5px solid transparent;color:inherit;font:inherit}
+.el-menu button:hover{border-color:var(--line)}
+.el-menu button[aria-checked="true"]{border-color:var(--orange);background:color-mix(in srgb,var(--orange) 8%,transparent)}
+.el-menu .el-ap{flex:none;width:58px;height:40px;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.el-menu b{display:block;font-family:var(--f-sans);font-weight:700;font-size:.95rem}
+.el-menu small{display:block;font-size:.78rem;color:var(--muted);line-height:1.3}
+.el-menu-n{font-size:.72rem;color:var(--muted);margin:6px 4px 0}
+html.mo .el-menu:not([hidden]){animation:el-menu .28s cubic-bezier(.2,.9,.3,1.15)}
+@keyframes el-menu{from{opacity:0;transform:translateY(-8px) scale(.97)}}
+@media (min-width:1180px){body.el-avec-side .el-menu{top:58px}}
+@media print{.btn-ident,.el-menu{display:none !important}}
+
 /* ---------- Barre latérale (ordinateur) ---------- */
 .el-side{display:none}
 @media (min-width:1180px){
   body.el-avec-side{padding-left:var(--side)}
   .el-side{display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;width:var(--side);z-index:70;overflow-y:auto;
     background:var(--graphite);color:var(--sur-graphite);padding:20px 16px 26px;scrollbar-width:thin}
-  body.el-avec-side header .brand{visibility:hidden;width:0;overflow:hidden;margin:0}
+  body.el-avec-side header .brand{visibility:hidden;width:0;height:0;white-space:nowrap;overflow:hidden;margin:0}
 }
 .el-side .el-logo{display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:6px}
 .el-side .el-logo svg{width:40px;height:40px;flex:none}
