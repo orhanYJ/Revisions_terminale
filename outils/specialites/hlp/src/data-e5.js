@@ -92,7 +92,7 @@ HLP.ENTREES.push({
   ],
   notions: [
     ["Violence / force / pouvoir", "<b>Force</b> : capacité d’agir, qui peut être légitime. <b>Violence</b> : force qui viole une volonté, un corps, une dignité. <b>Pouvoir</b> (Arendt) : capacité d’agir ensemble, qui repose sur l’accord ; la violence en est l’instrument, pas la source."],
-    ["Violence légitime", "Pour Weber (1919), l’État revendique le « monopole de la violence physique légitime » : la violence n’est permise que par le droit et pour le droit."],
+    ["Violence légitime", "Pour Weber (1919), l’État revendique le « monopole de la violence physique légitime » (traduction usuelle) : la violence n’est permise que par le droit et pour le droit."],
     ["État de nature / état civil", "Situation fictive des hommes sans lois communes (Hobbes : une guerre de chacun contre chacun) / situation sous des lois et un pouvoir commun."],
     ["Insociable sociabilité", "Kant (1784) : les hommes ont besoin de vivre ensemble et pourtant se repoussent ; cet antagonisme est le moteur du développement de l’espèce."],
     ["Philosophie de l’histoire", "Réflexion sur le sens (direction et signification) de l’histoire humaine : progrès (Kant, Hegel, Marx) ou absence de sens."],

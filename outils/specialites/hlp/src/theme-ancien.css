@@ -221,8 +221,8 @@ table.t th{background:transparent;border-bottom:3px double var(--filet2);color:v
 @media (prefers-reduced-motion:no-preference){
   html.mo main.tourne{animation:tourne .7s cubic-bezier(.25,.75,.3,1) both;transform-origin:0 50%}
   @keyframes tourne{from{transform:perspective(1600px) rotateY(10deg);opacity:.15}to{transform:none;opacity:1}}
-  html.mo main.tourne::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;background:linear-gradient(90deg,transparent 0%,rgba(80,50,20,.16) 48%,transparent 56%);animation:ombre-page .7s ease-out both}
-  @keyframes ombre-page{from{transform:translateX(-60%);opacity:1}to{transform:translateX(70%);opacity:0}}
+  html.mo main.tourne::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;background:linear-gradient(90deg,transparent 40%,rgba(80,50,20,.16) 49%,transparent 56%) no-repeat;background-size:300% 100%;animation:ombre-page .7s ease-out both}
+  @keyframes ombre-page{from{background-position:100% 0;opacity:1}to{background-position:0 0;opacity:0}}
   html.mo .entre>*{animation:encre .55s ease both}
   @keyframes encre{from{opacity:0;filter:blur(2.2px);transform:translateY(5px)}to{opacity:1;filter:none;transform:none}}
   html.mo .lettre{animation:enlumine 1.6s ease .25s both}
@@ -242,3 +242,6 @@ table.t th{background:transparent;border-bottom:3px double var(--filet2);color:v
   html.mo .anim-cmd button:active{transform:translateY(1px)}
   html.mo .fc:hover .face{box-shadow:inset 0 0 0 5px var(--surface),inset 0 0 0 6px var(--filet2),0 12px 28px rgba(60,35,10,.16)}
 }
+
+.fc .face .fc-t{display:block}
+.nw{white-space:nowrap}

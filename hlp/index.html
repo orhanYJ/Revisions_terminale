@@ -600,8 +600,8 @@ table.t th{background:transparent;border-bottom:3px double var(--filet2);color:v
 @media (prefers-reduced-motion:no-preference){
   html.mo main.tourne{animation:tourne .7s cubic-bezier(.25,.75,.3,1) both;transform-origin:0 50%}
   @keyframes tourne{from{transform:perspective(1600px) rotateY(10deg);opacity:.15}to{transform:none;opacity:1}}
-  html.mo main.tourne::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;background:linear-gradient(90deg,transparent 0%,rgba(80,50,20,.16) 48%,transparent 56%);animation:ombre-page .7s ease-out both}
-  @keyframes ombre-page{from{transform:translateX(-60%);opacity:1}to{transform:translateX(70%);opacity:0}}
+  html.mo main.tourne::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;background:linear-gradient(90deg,transparent 40%,rgba(80,50,20,.16) 49%,transparent 56%) no-repeat;background-size:300% 100%;animation:ombre-page .7s ease-out both}
+  @keyframes ombre-page{from{background-position:100% 0;opacity:1}to{background-position:0 0;opacity:0}}
   html.mo .entre>*{animation:encre .55s ease both}
   @keyframes encre{from{opacity:0;filter:blur(2.2px);transform:translateY(5px)}to{opacity:1;filter:none;transform:none}}
   html.mo .lettre{animation:enlumine 1.6s ease .25s both}
@@ -621,6 +621,9 @@ table.t th{background:transparent;border-bottom:3px double var(--filet2);color:v
   html.mo .anim-cmd button:active{transform:translateY(1px)}
   html.mo .fc:hover .face{box-shadow:inset 0 0 0 5px var(--surface),inset 0 0 0 6px var(--filet2),0 12px 28px rgba(60,35,10,.16)}
 }
+
+.fc .face .fc-t{display:block}
+.nw{white-space:nowrap}
 
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -642,7 +645,7 @@ table.t th{background:transparent;border-bottom:3px double var(--filet2);color:v
   <div class="res" id="sres"></div>
 </div>
 <script>
-window.HLP = { ENTREES: [] };
+window.HLP = { ENTREES: [], ANIMS: {} };
 (function (H) {
   var s = ' fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
   H.ICONES = {
@@ -1846,6 +1849,586 @@ HLP.ENTREES.push({
   ];
 })();
 
+HLP.ENTREES.push({
+  id: "e5", sem: 2, num: "II",
+  titre: "Histoire et violence",
+  accroche: "Guerres mondiales, génocides, colonisation : la violence mène-t-elle l’histoire, et peut-on la dire ?",
+  chapo: "Le XX<sup>e</sup> siècle a connu des destructions et des massacres sans précédent par leur nature et leur ampleur. Faut-il y voir la preuve que la violence est indéracinable, ou une étape d’une histoire qui avance, malgré tout, vers le droit ? Et que peuvent les mots devant l’inhumain : témoigner, dénoncer, ou seulement montrer leurs limites ?",
+  essentiel: [
+    "La <b>violence</b> n’est pas seulement la force : c’est une force qui <b>viole</b> (du latin <i>vis</i>, la force, et <i>violare</i>) la volonté, le corps ou la dignité d’autrui. Le programme demande de <b>distinguer</b> : guerre de conquête ou de libération, régime oppressif ou totalitaire, violence physique ou diffuse.",
+    "Deux lectures de l’histoire s’opposent : la violence est <b>irréductible</b> (Hobbes, Freud, Simone Weil) ou elle sert, malgré elle, une <b>marche vers le droit</b> (Kant, 1784 et 1795 ; Hegel ; Hugo en 1849).",
+    "Les deux guerres mondiales, la Shoah, le Goulag, les violences coloniales ruinent la confiance « humaniste » en un progrès continu : « Nous autres, civilisations, nous savons maintenant que nous sommes mortelles » (Valéry, 1919).",
+    "La littérature a des pouvoirs propres : <b>témoigner</b> (Barbusse, Primo Levi, Antelme), <b>dénoncer et s’engager</b> (Voltaire, Zola, Éluard), et <b>dire l’inhumain</b> jusque dans ce qui échappe aux mots (Perec, Semprun).",
+    "Après 1945, le <b>droit</b> tente de limiter la violence (ONU, crime contre l’humanité, génocide, Cour pénale internationale) ; mais, comme le dit Pascal, « La justice sans la force est impuissante : la force sans la justice est tyrannique »."
+  ],
+  attendus: [
+    "Étudier les grands conflits et traumatismes du XX<sup>e</sup> siècle, qui ont changé notre vision de l’humanité et notre compréhension de l’histoire, et les diverses formes de la violence.",
+    "Se demander si la violence dont toutes les sociétés ont fait l’expérience est irréductible, ou si l’histoire universelle montre une marche vers des relations pacifiées (États de droit, institutions internationales).",
+    "Réfléchir au rapport entre violence et droit : si la violence précède le droit, quel droit pourra la limiter, le plus possible et le plus durablement ?",
+    "Définir la violence et distinguer ses formes : types de guerre (conquête / libération), régimes (oppressif / totalitaire), violences sociales quotidiennes et diffuses.",
+    "Analyser les pouvoirs propres de la littérature : le témoignage et son effort d’objectivation, l’engagement et la dénonciation, l’expression de la violence jusque dans son inhumanité.",
+    "Comparer, si besoin, avec des références antérieures (Montaigne, Hobbes, Voltaire, Kant, Hugo)."
+  ],
+  problematiques: [
+    "La violence est-elle naturelle à l’homme ?",
+    "L’histoire a-t-elle un sens, ou n’est-elle qu’une suite de violences ?",
+    "Le droit peut-il mettre fin à la violence ?",
+    "Toutes les violences se valent-elles ? Une violence peut-elle être légitime ?",
+    "Peut-on témoigner de l’inhumain ? Les mots suffisent-ils ?",
+    "La littérature peut-elle représenter la guerre sans la dénoncer ? (bac 2021)",
+    "Peut-on perdre son humanité ? (bac 2024)"
+  ],
+  anims: ["e5-frise", "e5-kant"],
+  cours: [
+    { id: "e5-1", titre: "Qu’appelle-t-on « violence » ?", html: `
+<p class="lettrine">Le mot vient du latin <i>violentia</i>, de <i>vis</i>, la force. Mais toute force n’est pas violence : la pesanteur, le courant d’un fleuve sont des forces. On parle de <b>violence</b> quand une force s’exerce <b>contre</b> une volonté, un corps, une dignité, qu’elle les <b>viole</b> (<i>violare</i>). La violence suppose donc une victime, et elle appelle un jugement : on la subit, on la dénonce, on la justifie.</p>
+<p>Il faut distinguer la violence de notions voisines. La <b>force</b> peut être légitime (la police qui arrête un criminel). La <b>contrainte</b> oblige sans forcément blesser (la loi). Le <b>pouvoir</b>, pour Hannah Arendt (<i>Du mensonge à la violence</i>, essai « Sur la violence », 1970), naît de l’accord de ceux qui agissent ensemble, alors que la violence est un <b>instrument</b> : là où le pouvoir se défait, la violence prend sa place ; elle peut détruire le pouvoir, jamais le créer.</p>
+<p>Le programme demande de ne pas tout confondre. Une <b>guerre de conquête</b> n’est pas une <b>guerre de libération</b>. Un <b>régime oppressif</b> (une dictature militaire qui censure et emprisonne) n’est pas nécessairement une <b>entreprise totalitaire</b> (qui veut contrôler toute la vie et refaire l’homme). Et il existe des violences <b>diffuses</b>, quotidiennes, qui ne prennent pas la forme de l’agression physique : humiliation, misère, exclusion.</p>
+<div class="ex"><b class="l">Exemple</b>Max Weber, dans la conférence <i>Le Métier et la vocation d’homme politique</i> (Munich, 28 janvier 1919), définit l’État moderne comme la communauté humaine qui revendique avec succès, sur un territoire, le <b>« monopole de la violence physique légitime »</b>. La violence n’est pas supprimée par l’État : elle est confisquée et encadrée par le droit.</div>
+<div class="plus"><b class="l">Pour aller plus loin</b>Pierre Bourdieu et Jean-Claude Passeron parlent de « violence symbolique » (<i>La Reproduction</i>, 1970) : une domination qui s’impose sans coups, parce que ceux qui la subissent la jugent normale. Utile pour la question des violences « diffuses », mais à présenter comme une référence de sociologie.</div>` },
+    { id: "e5-2", titre: "Une violence de toujours ? Les références antérieures", html: `
+<p>Thomas Hobbes, dans le <i>Léviathan</i> (1651, chapitre XIII), imagine les hommes sans pouvoir commun pour les tenir en respect : chacun, craignant l’autre, attaque le premier. C’est une guerre de chacun contre chacun, où il n’y a ni industrie, ni arts, ni sécurité, et où la vie est brève. Pour en sortir, les hommes confient leur force à un souverain. La violence est première ; la paix est construite.</p>
+<p>Rousseau répond dans le <i>Discours sur l’origine de l’inégalité</i> (1755) que Hobbes prête à l’homme naturel des passions qui sont celles de l’homme social : la guerre naît avec la propriété et la société, non avant elles ; l’homme naturel a la <b>pitié</b>. Le débat est posé pour toute l’entrée : la violence est-elle dans la nature humaine ou dans l’histoire ?</p>
+<p>La littérature, elle, démasque les justifications. Montaigne, dans « Des cannibales » (<i>Essais</i>, I, 31, 1580), retourne l’accusation de barbarie contre les Européens des guerres de Religion : « chacun appelle barbarie ce qui n’est pas de son usage », et il y a « plus de barbarie à manger un homme vivant qu’à le manger mort ». Voltaire, dans <i>Candide</i> (1759, chapitre 3), décrit une bataille en termes de spectacle (« Rien n’était si beau, si leste, si brillant ») pour mieux montrer la « boucherie héroïque ».</p>
+<div class="ex"><b class="l">Exemple</b>Chez Voltaire, le village brûlé « selon les lois du droit public » : l’ironie oppose le vocabulaire juridique à l’horreur des corps. La violence de guerre se donne toujours un langage qui la rend acceptable.</div>` },
+    { id: "e5-3", titre: "L’histoire a-t-elle un sens ? Kant, Hegel, Marx", html: `
+<p>Kant, dans l’<i>Idée d’une histoire universelle d’un point de vue cosmopolitique</i> (1784), part d’un constat : les hommes ne sont ni des animaux guidés par l’instinct, ni des citoyens raisonnables. Ils ont une <b>« insociable sociabilité »</b> (<i>ungesellige Geselligkeit</i>) : ils ont besoin les uns des autres et pourtant se repoussent, par ambition, désir de domination, cupidité. Or cet <b>antagonisme</b> est fécond : la rivalité pousse à développer les talents, et l’insécurité contraint à fonder des États, puis à chercher une paix entre États.</p>
+<p>Dans le <i>Projet de paix perpétuelle</i> (1795), il précise : l’état de paix n’est pas un état de nature : il « a donc besoin d’être établi ». Il propose une <b>fédération</b> d’États libres et un droit cosmopolitique (l’hospitalité). Une guerre d’extermination, au contraire, ne laisserait de place à la paix perpétuelle « que dans le vaste cimetière du genre humain ».</p>
+<p>Hegel (<i>Leçons sur la philosophie de l’histoire</i>, cours publiés en 1837) voit dans l’histoire un « abattoir » (<i>Schlachtbank</i>) où sont sacrifiés le bonheur des peuples et la vertu des individus ; mais la raison s’y réalise par une <b>« ruse »</b> : elle se sert des passions des grands hommes pour accomplir le progrès de la liberté. Marx, enfin, écrit dans <i>Le Capital</i> (1867) que « la force est l’accoucheuse de toute vieille société en travail » (trad. Joseph Roy) : la violence accompagne les changements de société.</p>
+<div class="ex"><b class="l">Exemple</b>Victor Hugo, président du Congrès de la paix à Paris (21 août 1849) : « Un jour viendra où les armes vous tomberont des mains, à vous aussi ! » Il annonce des « États-Unis d’Europe » où les votes remplaceront les boulets. L’optimisme du XIX<sup>e</sup> siècle sera mis à l’épreuve par 1914.</div>
+<div class="cle"><b class="l">Pour la copie</b>Ces philosophies de l’histoire ne nient pas la violence : elles lui donnent un <b>sens</b>. C’est ce qui devient difficile après Auschwitz : quel progrès pourrait « justifier » un génocide ?</div>` },
+    { id: "e5-4", titre: "1914-1918 : la guerre industrielle et la fin d’une confiance", html: `
+<p>La Première Guerre mondiale fait environ 10 millions de morts parmi les soldats (dont près de 1,4 million de Français). C’est une guerre <b>industrielle</b> : artillerie lourde, mitrailleuses, gaz (Ypres, 1915), tranchées. À Verdun (21 février – 18 décembre 1916), les combats font environ 300 000 morts. La violence devient anonyme et massive.</p>
+<p>Les écrivains combattants inventent une littérature du <b>témoignage</b>. Henri Barbusse publie <i>Le Feu, journal d’une escouade</i> (prix Goncourt 1916) : la langue des poilus, la boue, et la révolte : « Deux armées qui se battent, c’est comme une grande armée qui se suicide ! » Erich Maria Remarque, dans <i>À l’Ouest, rien de nouveau</i> (1929), raconte la même guerre du côté allemand. Céline (<i>Voyage au bout de la nuit</i>, 1932) fait de Bardamu un soldat qui découvre l’absurdité du massacre et refuse l’héroïsme.</p>
+<p>Apollinaire, engagé volontaire, blessé à la tête en mars 1916, publie <i>Calligrammes</i> en 1918. Dans « L’Adieu du cavalier », le vers « Ah Dieu ! que la guerre est jolie » est démenti par la mort du cavalier à la fin du poème : la légèreté apparente rend la violence plus saisissante.</p>
+<div class="ex"><b class="l">Exemple</b>Paul Valéry, « La Crise de l’esprit » (1919) : « Nous autres, civilisations, nous savons maintenant que nous sommes mortelles. » Plus grave encore : « Tant d’horreurs n’auraient pas été possibles sans tant de vertus. » La science, la discipline, le travail ont servi à tuer.</div>
+<div class="plus"><b class="l">Pour aller plus loin</b>Freud, dans <i>Considérations actuelles sur la guerre et sur la mort</i> (1915), parle de la « désillusion » des Européens : ils croyaient les États civilisés capables de régler leurs conflits autrement. Dans <i>Malaise dans la civilisation</i> (1930), il reprend la formule de Plaute <i>Homo homini lupus</i> (l’homme est un loup pour l’homme) : la culture ne fait que contenir une agressivité qui ne disparaît pas.</div>` },
+    { id: "e5-5", titre: "Le totalitarisme, les camps, le génocide : un mal sans précédent", html: `
+<p>Le XX<sup>e</sup> siècle invente des violences d’une <b>nature nouvelle</b>. Le <b>génocide</b> (mot forgé en 1944 par le juriste Raphael Lemkin) vise la destruction d’un groupe humain en tant que tel : génocide des Arméniens par l’Empire ottoman (1915-1916, plus d’un million de morts), <b>Shoah</b> (environ six millions de Juifs assassinés par les nazis), génocide des Tutsi au Rwanda (avril-juillet 1994, au moins 800 000 morts). Le Goulag soviétique enferme des millions de détenus (Soljenitsyne, <i>L’Archipel du Goulag</i>, 1973).</p>
+<p>Hannah Arendt (<i>Les Origines du totalitarisme</i>, 1951) distingue le <b>totalitarisme</b> des tyrannies anciennes : il ne se contente pas d’interdire, il veut transformer la nature humaine par l’<b>idéologie</b> et la <b>terreur</b> ; les camps en sont le laboratoire, où l’on rend les hommes « superflus ». Après le procès Eichmann (Jérusalem, 1961), elle parle de la <b>« banalité du mal »</b> (<i>Eichmann à Jérusalem</i>, 1963) : un des organisateurs de la déportation n’était pas un monstre, mais un fonctionnaire qui ne pensait pas.</p>
+<p>La violence passe aussi par la <b>langue</b>. Victor Klemperer, philologue juif resté à Dresde, note dans <i>LTI, la langue du Troisième Reich</i> (1947) comment les mots du régime (euphémismes, superlatifs, vocabulaire mécanique) ont préparé les esprits.</p>
+<div class="ex"><b class="l">Exemple</b>La distinction du programme : la France de Vichy est un régime <b>oppressif</b> et collaborateur, qui participe à la déportation des Juifs (rafle du Vél’d’Hiv, 16-17 juillet 1942) ; l’Allemagne nazie et l’URSS stalinienne sont des entreprises <b>totalitaires</b>.</div>
+<div class="cle"><b class="l">Pour la copie</b>« Toutes les violences sont-elles comparables ? » : on peut comparer pour distinguer, pas pour confondre. Le génocide n’est pas une guerre plus meurtrière : il vise à effacer un peuple, sans qu’aucune conduite des victimes puisse les sauver.</div>` },
+    { id: "e5-6", titre: "Témoigner : dire l’indicible", html: `
+<p>Le <b>témoignage</b> repose sur un pacte : « j’y étais ». Il demande un effort d’<b>objectivation</b> : dire précisément, sans effet, ce qui s’est passé. Primo Levi, chimiste italien déporté à Auschwitz de février 1944 à la libération du camp (27 janvier 1945), écrit <i>Si c’est un homme</i> (1947) dans une langue sobre, presque scientifique, qui décrit la destruction méthodique de l’humanité des détenus. Robert Antelme, déporté à Buchenwald puis Gandersheim, conclut <i>L’Espèce humaine</i> (1947) sur une idée forte : les SS ont voulu faire des déportés une autre espèce, et ils ont échoué ; l’espèce humaine est une.</p>
+<p>Mais l’expérience extrême semble dépasser les mots. Jorge Semprun, déporté à Buchenwald, attend des décennies pour écrire <i>L’Écriture ou la vie</i> (1994) : il défend l’idée que seul l’<b>artifice</b> de la littérature peut transmettre la vérité vécue. Georges Perec, dont la mère a été déportée à Auschwitz, construit <i>W ou le souvenir d’enfance</i> (1975) en alternant une fiction et des souvenirs lacunaires : le vide du texte dit la disparition.</p>
+<p>Le philosophe Theodor Adorno écrit en 1949 qu’écrire un poème après Auschwitz serait barbare (formule publiée en 1951, qu’il nuancera plus tard). La littérature d’après les camps se construit en partie contre cette interdiction : ne pas embellir, mais ne pas se taire.</p>
+<div class="ex"><b class="l">Exemple</b>Dans <i>W ou le souvenir d’enfance</i>, une page presque blanche, marquée de points de suspension entre parenthèses, sépare les deux parties du livre : la forme même montre ce que l’enfant n’a pas pu savoir ni dire.</div>` },
+    { id: "e5-7", titre: "Dénoncer, s’engager : la littérature agit-elle sur l’histoire ?", html: `
+<p>La littérature d’<b>engagement</b> prétend agir sur le cours des événements. Hugo, exilé après le coup d’État de 1851, écrit <i>Les Châtiments</i> (1853) contre Napoléon III. Zola publie « J’accuse… ! » dans <i>L’Aurore</i> (13 janvier 1898) pour défendre Dreyfus, condamné à tort. Éluard écrit « La Victoire de Guernica » (<i>Cours naturel</i>, 1938) après le bombardement de la ville basque par l’aviation allemande et italienne (26 avril 1937), que Picasso peint la même année.</p>
+<p>L’engagement a ses formes indirectes : l’<b>allégorie</b> (Camus, <i>La Peste</i>, 1947, où l’épidémie d’Oran figure l’Occupation et toute violence collective), le théâtre (Giraudoux, <i>La guerre de Troie n’aura pas lieu</i>, 1935), le roman (Malraux, <i>La Condition humaine</i>, 1933).</p>
+<p>Mais l’engagement a ses risques : la <b>propagande</b> (mettre la littérature au service d’un camp), l’<b>esthétisation</b> (rendre la violence belle, donc désirable : le <i>Manifeste du futurisme</i> de Marinetti, publié dans <i>Le Figaro</i> le 20 février 1909, glorifiait la guerre). Simone Weil admire au contraire l’<i>Iliade</i> parce qu’elle montre la force avec une égale amertume pour les deux camps.</p>
+<div data-anim="e5-weil"></div>
+<div class="ex"><b class="l">Exemple</b>Le sujet du bac 2021 demandait : « La littérature et les arts peuvent-ils représenter la guerre sans la dénoncer ? » Voltaire (ironie), Apollinaire (fausse légèreté), Barbusse (témoignage) et Picasso (déformation) donnent quatre réponses différentes.</div>` },
+    { id: "e5-8", titre: "Violence coloniale et combats pour la dignité", html: `
+<p>Le programme rappelle que l’histoire contemporaine a vu « de nombreux peuples soumis » revendiquer leur dignité et leur indépendance. La <b>colonisation</b> repose sur une violence de conquête puis de domination, souvent justifiée par une prétendue mission « civilisatrice ». Joseph Conrad, dans <i>Au cœur des ténèbres</i> (1899), montre le Congo exploité par l’Europe : le personnage de Kurtz, arrivé en apôtre du progrès, sombre dans la sauvagerie qu’il prétendait combattre.</p>
+<p>Aimé Césaire, dans le <i>Discours sur le colonialisme</i> (1950), retourne l’accusation : la colonisation ensauvage le colonisateur lui-même, et le nazisme a appliqué à l’Europe des procédés jusque-là réservés aux peuples colonisés. Frantz Fanon, dans <i>Les Damnés de la terre</i> (1961, préface de Sartre), voit dans la violence du colonisé une réponse à la violence première du colonisateur.</p>
+<p>D’autres choisissent la <b>non-violence</b> : Gandhi, dont la campagne de désobéissance civile conduit l’Inde à l’indépendance (15 août 1947) ; Martin Luther King aux États-Unis. La question devient : une violence de libération est-elle comparable à une violence d’oppression ?</p>
+<div class="ex"><b class="l">Exemple</b>Le 8 mai 1945, jour de la victoire en Europe, des manifestations nationalistes à Sétif (Algérie) sont suivies d’une répression qui fait des milliers de morts. La guerre d’Algérie (1954-1962) mêlera ensuite attentats, torture et répression.</div>` },
+    { id: "e5-9", titre: "Le droit peut-il limiter la violence ?", html: `
+<p>« Si la violence précède le droit, quel droit pourra la limiter […] ? » demande le programme. Après 1918, la <b>Société des Nations</b> (1920) et le pacte Briand-Kellogg (1928), par lequel les signataires renoncent à la guerre comme instrument de politique nationale, échouent à empêcher la Seconde Guerre mondiale. Après 1945, le droit se renforce : la <b>Charte des Nations unies</b> (26 juin 1945) interdit le recours à la force entre États ; le tribunal de Nuremberg (1945-1946) juge les dirigeants nazis pour <b>crimes contre la paix</b>, <b>crimes de guerre</b> et <b>crimes contre l’humanité</b> ; la Convention contre le génocide (9 décembre 1948) et la Déclaration universelle des droits de l’homme (10 décembre 1948) suivent ; la <b>Cour pénale internationale</b> est créée par le statut de Rome (1998) et fonctionne depuis 2002.</p>
+<p>Ces institutions réalisent en partie le projet kantien d’une fédération des peuples. Mais elles se heurtent à une difficulté ancienne : sans force, le droit reste lettre morte. Pascal l’avait formulé : « La justice sans la force est impuissante : la force sans la justice est tyrannique » (<i>Pensées</i>). Le Rwanda (1994), où les casques bleus présents n’ont pas reçu les moyens d’intervenir, en est un exemple tragique.</p>
+<div class="ex"><b class="l">Exemple</b>Le crime contre l’humanité est <b>imprescriptible</b> en droit français (loi du 26 décembre 1964) : Klaus Barbie a été jugé à Lyon en 1987, plus de quarante ans après les faits. Le droit ne répare pas, mais il nomme et il juge.</div>
+<div class="cle"><b class="l">Pour la copie</b>Plan possible pour « Le droit peut-il mettre fin à la violence ? » : I. Le droit naît pour sortir de la violence (Hobbes, Kant, Weber) ; II. Mais il n’est rien sans force et peut lui-même couvrir la violence (Pascal ; le « droit public » ironique de Voltaire ; les lois de Vichy) ; III. Il ne la supprime pas, il la transforme en jugement et en mémoire (Nuremberg, imprescriptibilité, témoignage).</div>` },
+    { id: "e5-10", titre: "Ce qui est déjà tombé au bac", html: `
+<p>Cette entrée est l’une des plus présentes dans les sujets de métropole. Retiens surtout le type de questions posées : elles portent sur la <b>nature</b> de la violence, sur l’<b>humanité</b> qu’elle menace, et sur le <b>pouvoir des œuvres</b>.</p>
+<details class="pli"><summary>Les sujets de métropole depuis 2021</summary><div class="dedans"><ul class="puces">
+<li><b>2021</b> (9 septembre, sujet 2) : Hannah Arendt, <i>Journal de pensée</i> (1953). Interprétation philosophique : « À quelles conditions peut-on, selon Hannah Arendt, prendre le risque de la guerre ? » Essai littéraire : « La littérature et les arts peuvent-ils représenter la guerre sans la dénoncer ? »</li>
+<li><b>2022</b> (11 mai, sujet 2) : Paul Ricœur, <i>Histoire et vérité</i> (1955). Interprétation philosophique : « D’après l’auteur, qu’est-ce qui explique la permanence de la violence dans l’histoire ? » Essai littéraire : « La littérature et les arts naissent-ils de “l’appétit de catastrophe” des hommes ? »</li>
+<li><b>2022</b> (12 mai, sujet 2) : Louis Calaferte, <i>C’est la guerre</i> (1993), l’annonce de la mobilisation de 1939 vue par un enfant. Interprétation littéraire : « “C’est la guerre” : ce texte vous en donne-t-il l’impression ? » Essai philosophique : « Qu’est-ce qu’être en guerre ? »</li>
+<li><b>2024</b> (19 juin) : Louis Aragon, « Classe 17 », <i>Le Roman inachevé</i> (1956), des prisonniers allemands traversant la Bretagne en 1917. Interprétation littéraire : « Quelles violences ce poème dit-il ? » Essai philosophique : « Peut-on perdre son humanité ? »</li>
+<li><b>2025</b> (18 juin) : Wisława Szymborska, « Je ne sais quelles gens » (<i>Vue avec grain de sable</i>, 1996), des réfugiés fuyant une guerre. Interprétation littéraire : « Que dit ce poème des victimes de la guerre ? » Essai philosophique : « Peut-on conserver son humanité dans des circonstances qui risquent de nous en dépouiller ? »</li>
+</ul></div></details>
+<div class="cle"><b class="l">Ce qu’il faut en tirer</b>Les textes ne sont presque jamais des « classiques » attendus : un poème d’Aragon, un récit de Calaferte, une poétesse polonaise. Ce qui compte, c’est d’avoir des <b>notions</b> claires (violence, guerre, humanité, témoignage) et une dizaine de <b>références précises</b>, datées, que tu sais relier au texte.</div>` }
+  ],
+  notions: [
+    ["Violence / force / pouvoir", "<b>Force</b> : capacité d’agir, qui peut être légitime. <b>Violence</b> : force qui viole une volonté, un corps, une dignité. <b>Pouvoir</b> (Arendt) : capacité d’agir ensemble, qui repose sur l’accord ; la violence en est l’instrument, pas la source."],
+    ["Violence légitime", "Pour Weber (1919), l’État revendique le « monopole de la violence physique légitime » (traduction usuelle) : la violence n’est permise que par le droit et pour le droit."],
+    ["État de nature / état civil", "Situation fictive des hommes sans lois communes (Hobbes : une guerre de chacun contre chacun) / situation sous des lois et un pouvoir commun."],
+    ["Insociable sociabilité", "Kant (1784) : les hommes ont besoin de vivre ensemble et pourtant se repoussent ; cet antagonisme est le moteur du développement de l’espèce."],
+    ["Philosophie de l’histoire", "Réflexion sur le sens (direction et signification) de l’histoire humaine : progrès (Kant, Hegel, Marx) ou absence de sens."],
+    ["Ruse de la raison", "Hegel : la raison se réalise dans l’histoire en se servant des passions des individus, qui poursuivent leurs propres buts."],
+    ["Totalitarisme", "Régime qui vise le contrôle total de la société et la transformation de l’homme par l’idéologie et la terreur (Arendt, 1951). ≠ dictature ou régime oppressif."],
+    ["Génocide", "Destruction intentionnelle de tout ou partie d’un groupe national, ethnique, racial ou religieux comme tel (mot de Lemkin, 1944 ; convention de l’ONU, 1948)."],
+    ["Crime contre l’humanité", "Crime (assassinat, extermination, déportation, persécutions) commis contre des populations civiles ; défini par le statut du tribunal de Nuremberg (1945) ; imprescriptible en France depuis 1964."],
+    ["Banalité du mal", "Arendt (1963) : le mal extrême peut être commis par des hommes ordinaires, qui obéissent et ne pensent pas."],
+    ["Témoignage", "Récit de celui qui a vu ou vécu ; il engage la parole du témoin et suppose un effort d’objectivation."],
+    ["Littérature engagée", "Œuvre qui prend position dans les conflits de son temps et prétend agir sur eux (Zola, Sartre, Éluard)."],
+    ["Barbarie / civilisation", "Le barbare est d’abord l’étranger ; Montaigne montre que « chacun appelle barbarie ce qui n’est pas de son usage ». Valéry et Freud montrent qu’une civilisation peut produire la barbarie."]
+  ],
+  reperes: [
+    ["1580", "Montaigne, « Des cannibales » (<i>Essais</i>, I, 31)."],
+    ["1651", "Hobbes, <i>Léviathan</i>."],
+    ["1755", "Rousseau, <i>Discours sur l’origine de l’inégalité</i>."],
+    ["1759", "Voltaire, <i>Candide</i> : la « boucherie héroïque »."],
+    ["1784 / 1795", "Kant, <i>Idée d’une histoire universelle</i> ; <i>Projet de paix perpétuelle</i>."],
+    ["1837", "Hegel, <i>Leçons sur la philosophie de l’histoire</i> (posthumes)."],
+    ["1849", "Hugo, discours d’ouverture du Congrès de la paix (21 août)."],
+    ["1867", "Marx, <i>Le Capital</i>, livre I."],
+    ["1898", "Zola, « J’accuse… ! » (13 janvier)."],
+    ["1899", "Conrad, <i>Au cœur des ténèbres</i>."],
+    ["1914-1918", "Première Guerre mondiale ; Barbusse, <i>Le Feu</i> (1916) ; Apollinaire, <i>Calligrammes</i> (1918)."],
+    ["1915", "Génocide des Arméniens ; Freud, <i>Considérations actuelles sur la guerre et sur la mort</i>."],
+    ["1919", "Valéry, « La Crise de l’esprit » ; Weber, <i>Le Métier et la vocation d’homme politique</i>."],
+    ["1929 / 1932", "Remarque, <i>À l’Ouest, rien de nouveau</i> ; Céline, <i>Voyage au bout de la nuit</i>."],
+    ["1937", "Bombardement de Guernica (26 avril) ; Picasso, <i>Guernica</i>."],
+    ["1939-1945", "Seconde Guerre mondiale ; Shoah ; Hiroshima et Nagasaki (6 et 9 août 1945)."],
+    ["1940-1941", "Simone Weil, « L’Iliade ou le poème de la force »."],
+    ["1945-1946", "Charte des Nations unies ; procès de Nuremberg."],
+    ["1947", "Primo Levi, <i>Si c’est un homme</i> ; Antelme, <i>L’Espèce humaine</i> ; Camus, <i>La Peste</i>."],
+    ["1948", "Convention contre le génocide ; Déclaration universelle des droits de l’homme."],
+    ["1950 / 1961", "Césaire, <i>Discours sur le colonialisme</i> ; Fanon, <i>Les Damnés de la terre</i>."],
+    ["1951 / 1963", "Arendt, <i>Les Origines du totalitarisme</i> ; <i>Eichmann à Jérusalem</i>."],
+    ["1954-1962", "Guerre d’Algérie."],
+    ["1973", "Soljenitsyne, <i>L’Archipel du Goulag</i>."],
+    ["1975", "Perec, <i>W ou le souvenir d’enfance</i>."],
+    ["1994", "Génocide des Tutsi au Rwanda ; Semprun, <i>L’Écriture ou la vie</i>."],
+    ["1998 / 2002", "Statut de Rome ; la Cour pénale internationale entre en fonction."]
+  ],
+  pieges: [
+    "Employer « violence » comme un mot vague : définis-le (force qui viole) et distingue-le de la force, de la contrainte, du pouvoir.",
+    "Tout mettre sur le même plan : le programme exige de distinguer guerre de conquête et de libération, régime oppressif et totalitaire, violence physique et diffuse.",
+    "Faire de Kant un naïf : il part au contraire de la méchanceté des hommes (un État doit pouvoir être organisé même « pour un peuple de démons ») et pense un état de paix qui « a donc besoin d’être établi ».",
+    "Citer des chiffres approximatifs comme s’ils étaient sûrs : écris « environ six millions », « environ 10 millions de soldats » ; n’invente pas.",
+    "Confondre témoignage et engagement : le témoin dit ce qu’il a vécu (Levi), l’écrivain engagé prend position (Zola) ; certains font les deux (Barbusse).",
+    "Raconter l’histoire au lieu de répondre : dans l’essai, chaque fait historique doit servir un argument.",
+    "Oublier le texte du sujet dans l’essai : la question part toujours d’une formule du texte."
+  ],
+  textesIntro: "Sept extraits du domaine public, de Montaigne à Valéry. Ceux de Montaigne sont donnés en orthographe modernisée. Pour les auteurs protégés (Levi, Antelme, Camus, Arendt, Semprun…), le cours résume et cite très brièvement.",
+  textes: [
+    { id: "t5-1", auteur: "Montaigne", oeuvre: "Essais, I, 31, « Des cannibales »", ref: "1580, orthographe modernisée",
+      extrait: "Or je trouve, pour revenir à mon propos, qu’il n’y a rien de barbare et de sauvage en cette nation, à ce qu’on m’en a rapporté : sinon que chacun appelle barbarie ce qui n’est pas de son usage. […] Je pense qu’il y a plus de barbarie à manger un homme vivant qu’à le manger mort, à déchirer par tourments et par géhennes un corps encore plein de sentiment, le faire rôtir par le menu, le faire mordre et meurtrir aux chiens et aux pourceaux (comme nous l’avons non seulement lu, mais vu de fraîche mémoire, non entre des ennemis anciens, mais entre des voisins et concitoyens, et, qui pis est, sous prétexte de piété et de religion), que de le rôtir et manger après qu’il est trépassé.",
+      contexte: "Montaigne écrit pendant les guerres de Religion (1562-1598), qui opposent catholiques et protestants. Il a rencontré à Rouen, en 1562, des Indiens du Brésil (Tupinambas) amenés en France.",
+      analyse: "<p>Le texte procède par <b>renversement</b> : le mot « barbarie », réservé aux autres, est retourné contre « nous ». La <b>comparaison</b> (« plus de barbarie à… qu’à… ») et l’<b>accumulation</b> des supplices (« déchirer », « rôtir », « faire mordre ») mettent sous les yeux une cruauté que la parenthèse ancre dans l’actualité (« vu de fraîche mémoire »). La chute (« sous prétexte de piété ») dénonce la justification religieuse.</p>",
+      enjeu: "<p>La violence la pire n’est pas celle des « sauvages », mais celle qui se donne bonne conscience. Le relativisme du jugement (« chacun appelle barbarie… ») oblige à se demander d’où l’on juge la violence.</p>",
+      liens: "Voltaire, <i>Candide</i> (la « boucherie héroïque ») ; Lévi-Strauss, <i>Race et histoire</i> (1952), qui prolonge l’argument contre l’ethnocentrisme ; Césaire, <i>Discours sur le colonialisme</i>." },
+    { id: "t5-2", auteur: "Voltaire", oeuvre: "Candide ou l’Optimisme, chapitre 3", ref: "1759",
+      extrait: "Rien n’était si beau, si leste, si brillant, si bien ordonné que les deux armées. Les trompettes, les fifres, les hautbois, les tambours, les canons, formaient une harmonie telle qu’il n’y en eut jamais en enfer. Les canons renversèrent d’abord à peu près six mille hommes de chaque côté ; ensuite la mousqueterie ôta du meilleur des mondes environ neuf à dix mille coquins qui en infectaient la surface. La baïonnette fut aussi la raison suffisante de la mort de quelques milliers d’hommes. Le tout pouvait bien se monter à une trentaine de mille âmes. Candide, qui tremblait comme un philosophe, se cacha du mieux qu’il put pendant cette boucherie héroïque.",
+      contexte: "Conte philosophique écrit pendant la guerre de Sept Ans (1756-1763). Candide, chassé du château, a été enrôlé de force par les Bulgares (figure des Prussiens), en guerre contre les Abares.",
+      analyse: "<p>L’<b>ironie</b> repose sur le décalage entre l’éloge (« si beau, si leste, si brillant ») et la chute « en enfer ». Les chiffres, d’une précision comptable, transforment les morts en quantités. Le vocabulaire de l’optimisme de Leibniz (« meilleur des mondes », « raison suffisante ») est retourné contre lui. L’<b>oxymore</b> « boucherie héroïque » condense la dénonciation.</p>",
+      enjeu: "<p>La guerre se présente comme un spectacle ordonné et glorieux ; l’ironie en révèle la vérité de massacre. Elle vise aussi la philosophie qui justifie le mal au nom d’un ordre supérieur, comme le feront plus tard certaines philosophies de l’histoire.</p>",
+      liens: "Montaigne ; Apollinaire, « Ah Dieu ! que la guerre est jolie » ; Barbusse, <i>Le Feu</i>." },
+    { id: "t5-3", auteur: "Kant", oeuvre: "Projet de paix perpétuelle, deuxième section", ref: "1795, trad. Jules Barni (1853)",
+      extrait: "L’état de paix parmi les hommes vivant les uns à côté des autres n’est pas un état de nature (status naturalis), lequel est bien plutôt un état de guerre, sinon toujours déclarée, du moins toujours menaçante. Il a donc besoin d’être établi ; car la cessation des hostilités n’est pas encore une garantie, et si un voisin n’obtient pas d’un autre cette garantie (ce qui ne peut avoir lieu que dans un état légal), il peut traiter en ennemi celui de qui il l’a vainement sollicitée.",
+      contexte: "Kant écrit après le traité de Bâle (1795) entre la Prusse et la France révolutionnaire. L’ouvrage imite la forme d’un traité diplomatique, avec des articles « préliminaires » et « définitifs ».",
+      analyse: "<p>Une <b>définition négative</b> (« n’est pas un état de nature ») suivie d’une <b>correction</b> (« bien plutôt un état de guerre ») ; la gradation « sinon toujours déclarée, du moins toujours menaçante » élargit la guerre à la simple menace. La conséquence (« Il a donc besoin d’être établi ») fait de la paix une <b>tâche</b>.</p>",
+      enjeu: "<p>La paix n’est pas l’absence de combats mais un état <b>juridique</b>, garanti par des lois communes. D’où le projet d’une fédération d’États et d’un droit cosmopolitique : réponse à la question du programme sur le droit capable de limiter durablement la violence.</p>",
+      liens: "Hobbes (l’état de nature comme guerre) ; Hugo, 1849 ; la Société des Nations (1920) et l’ONU (1945) ; Pascal (la justice et la force)." },
+    { id: "t5-4", auteur: "Hugo", oeuvre: "Actes et paroles, Congrès de la paix, discours d’ouverture", ref: "Paris, 21 août 1849",
+      extrait: "Un jour viendra où les armes vous tomberont des mains, à vous aussi ! Un jour viendra où la guerre paraîtra aussi absurde et sera aussi impossible entre Paris et Londres, entre Pétersbourg et Berlin, entre Vienne et Turin, qu’elle serait impossible et qu’elle paraîtrait absurde aujourd’hui entre Rouen et Amiens, entre Boston et Philadelphie. […] Un jour viendra où les boulets et les bombes seront remplacés par les votes, par le suffrage universel des peuples, par le vénérable arbitrage d’un grand sénat souverain qui sera à l’Europe ce que le parlement est à l’Angleterre, ce que la diète est à l’Allemagne, ce que l’assemblée législative est à la France !",
+      contexte: "Hugo, député, préside le Congrès international de la paix réuni à Paris, un an après les révolutions de 1848. Le compte rendu note les « applaudissements » de la salle.",
+      analyse: "<p>L’<b>anaphore</b> « Un jour viendra » donne au discours la force d’une prophétie. Les <b>parallélismes</b> (Paris et Londres / Rouen et Amiens) rendent la paix future aussi évidente que la paix entre provinces d’un même pays. L’<b>antithèse</b> « les boulets et les bombes » / « les votes » oppose deux manières de régler les conflits.</p>",
+      enjeu: "<p>Hugo croit à une histoire orientée vers la paix par l’union politique des peuples. Le XX<sup>e</sup> siècle semblera le démentir (1914, 1939), puis en partie lui donner raison : la construction européenne a rendu la guerre entre la France et l’Allemagne impensable.</p>",
+      liens: "Kant (fédération) ; Valéry (1919), qui découvre la mortalité des civilisations ; la Société des Nations." },
+    { id: "t5-5", auteur: "Barbusse", oeuvre: "Le Feu, journal d’une escouade, chapitre XXIV, « L’Aube »", ref: "1916",
+      extrait: "— Deux armées qui se battent, c’est comme une grande armée qui se suicide !\n— Tout de même, qu’est-ce que nous sommes depuis deux ans ? De pauvres malheureux incroyables, mais aussi des sauvages, des brutes, des bandits, des salauds.\n[…] ces hommes […] entrevoyaient à quel point la guerre, aussi hideuse au moral qu’au physique, non seulement viole le bon sens, avilit les grandes idées, commande tous les crimes – mais ils se rappelaient combien elle avait développé en eux et autour d’eux tous les mauvais instincts sans en excepter un seul : la méchanceté jusqu’au sadisme, l’égoïsme jusqu’à la férocité, le besoin de jouir jusqu’à la folie.",
+      contexte: "Barbusse, engagé volontaire à 41 ans, a combattu en première ligne. <i>Le Feu</i> paraît en feuilleton en 1916, puis en volume ; il reçoit le prix Goncourt en décembre 1916. Le dernier chapitre montre les soldats au matin d’une nuit d’inondation.",
+      analyse: "<p>Le chapitre fait entendre des <b>voix</b> de soldats (tirets du dialogue), puis la voix du narrateur qui généralise. La <b>comparaison</b> « une grande armée qui se suicide » renverse la logique des camps : l’humanité se tue elle-même. L’<b>énumération</b> « des sauvages, des brutes, des bandits, des salauds » et le parallélisme « la méchanceté jusqu’au sadisme, l’égoïsme jusqu’à la férocité » disent l’ensauvagement.</p>",
+      enjeu: "<p>La guerre ne détruit pas seulement les corps : elle dégrade ceux qui la font. C’est la question du bac 2024 : « Peut-on perdre son humanité ? » Le témoignage devient aussi accusation (le livre finit par un appel à la paix).</p>",
+      liens: "Remarque, <i>À l’Ouest, rien de nouveau</i> ; Simone Weil (la force pétrifie aussi ceux qui la manient) ; Aragon, « Classe 17 » (bac 2024)." },
+    { id: "t5-6", auteur: "Apollinaire", oeuvre: "Calligrammes, « L’Adieu du cavalier »", ref: "Mercure de France, 1918", vers: true,
+      extrait: "Ah Dieu ! que la guerre est jolie\nAvec ses chants ses longs loisirs\nCette bague je l’ai polie\nLe vent se mêle à vos soupirs\n\nAdieu ! voici le boute-selle\nIl disparut dans un tournant\nEt mourut là-bas tandis qu’elle\nRiait au destin surprenant",
+      contexte: "Apollinaire s’est engagé en 1914 (artilleur, puis fantassin). Le poème vient d’une lettre de 1915 à Lou. Blessé à la tête le 17 mars 1916, il meurt de la grippe le 9 novembre 1918. Le « boute-selle » est la sonnerie qui ordonne aux cavaliers de seller les chevaux.",
+      analyse: "<p>Deux quatrains d’octosyllabes, sans ponctuation, à rimes croisées, comme une <b>chanson</b>. La première strophe accumule les clichés d’une guerre aimable (« chants », « loisirs », bague polie dans les tranchées). La seconde, au passé simple, tue le cavalier en un vers : la <b>rupture de ton</b> et l’<b>ellipse</b> (« Il disparut dans un tournant ») rendent la mort soudaine. Le rire final de la femme, qui ne sait pas, est d’une cruauté glaçante.</p>",
+      enjeu: "<p>Le poème ne dénonce pas directement : il fait éprouver l’écart entre l’image de la guerre et sa réalité. Une réponse possible au sujet de 2021 : on peut « représenter la guerre sans la dénoncer », mais la forme dénonce alors à la place du discours.</p>",
+      liens: "Voltaire (l’ironie de la « belle » bataille) ; Barbusse ; Éluard, « La Victoire de Guernica »." },
+    { id: "t5-7", auteur: "Valéry", oeuvre: "« La Crise de l’esprit », première lettre", ref: "<i>The Athenaeum</i>, avril-mai 1919 ; texte français, <i>NRF</i>, 1919",
+      extrait: "Nous autres, civilisations, nous savons maintenant que nous sommes mortelles.\n[…] Et nous voyons maintenant que l’abîme de l’histoire est assez grand pour tout le monde. Nous sentons qu’une civilisation a la même fragilité qu’une vie. […]\nTant d’horreurs n’auraient pas été possibles sans tant de vertus. Il a fallu, sans doute, beaucoup de science pour tuer tant d’hommes, dissiper tant de biens, anéantir tant de villes en si peu de temps ; mais il a fallu non moins de qualités morales. Savoir et Devoir, vous êtes donc suspects ?",
+      contexte: "Valéry écrit deux lettres pour une revue londonienne au lendemain de la Grande Guerre (numéros des 11 avril et 2 mai 1919) ; la <i>NRF</i> en publie le texte français la même année.",
+      analyse: "<p>La première phrase, isolée, a la force d’une <b>maxime</b> ; le « nous » inclut le lecteur européen. La <b>comparaison</b> (« la même fragilité qu’une vie ») rapproche l’histoire d’une biographie. Le <b>paradoxe</b> « Tant d’horreurs […] sans tant de vertus » et l’<b>apostrophe</b> finale aux allégories « Savoir et Devoir » renversent les valeurs de la civilisation.</p>",
+      enjeu: "<p>Le progrès des sciences et des vertus morales n’empêche pas la barbarie : il peut la rendre plus efficace. C’est la crise de la confiance « humaniste » en un progrès continu dont parle le programme.</p>",
+      liens: "Freud (1915, la « désillusion ») ; Hugo, 1849, dont l’optimisme est démenti ; Arendt (la banalité du mal) ; l’entrée « L’humain et ses limites » (la technique au service de la destruction)." }
+  ],
+  sujet: {
+    chapeau: "Simone Weil écrit cette étude de l’Iliade, le poème d’Homère sur la guerre de Troie, en 1939-1940 ; elle la publie dans une revue de Marseille, sous un pseudonyme, en décembre 1940 et janvier 1941.",
+    texte: [
+      "Le vrai héros, le vrai sujet, le centre de l’Iliade, c’est la force. La force qui est maniée",
+      "par les hommes, la force qui soumet les hommes, la force devant quoi la chair des hommes",
+      "se rétracte. L’âme humaine ne cesse pas d’y apparaître modifiée par ses rapports avec la",
+      "force, entraînée, aveuglée par la force dont elle croit disposer, courbée sous la contrainte",
+      "de la force qu’elle subit. Ceux qui avaient rêvé que la force, grâce au progrès,",
+      "appartenait désormais au passé, ont pu voir dans ce poème un document ; ceux qui savent",
+      "discerner la force, aujourd’hui comme autrefois, au centre de toute histoire humaine, y",
+      "trouvent le plus beau, le plus pur des miroirs.",
+      "La force, c’est ce qui fait de quiconque lui est soumis une chose. Quand elle s’exerce",
+      "jusqu’au bout, elle fait de l’homme une chose au sens le plus littéral, car elle en fait un",
+      "cadavre. Il y avait quelqu’un, et, un instant plus tard, il n’y a personne. […]",
+      "La force qui tue est une forme sommaire, grossière de la force. Combien plus variée en",
+      "ses procédés, combien plus surprenante en ses effets, est l’autre force, celle qui ne tue",
+      "pas ; c’est-à-dire celle qui ne tue pas encore. Elle va tuer sûrement, ou elle va tuer",
+      "peut-être, ou bien elle est seulement suspendue sur l’être qu’à tout instant elle peut tuer ;",
+      "de toutes façons, elle change l’homme en pierre. Du pouvoir de transformer un homme",
+      "en chose en le faisant mourir procède un autre pouvoir, et bien autrement prodigieux,",
+      "celui de faire une chose d’un homme qui reste vivant. Il est vivant, il a une âme ; il est",
+      "pourtant une chose. […]",
+      "Aussi impitoyablement la force écrase, aussi impitoyablement elle enivre quiconque la",
+      "possède, ou croit la posséder. Personne ne la possède véritablement."
+    ],
+    ref: "Simone Weil, « L’Iliade ou le poème de la force » (1940-1941), repris dans La Source grecque (1953).",
+    notes: "Sujet inventé pour le site, sur le modèle officiel ; le texte est du domaine public.",
+    q1: { type: "interprétation philosophique", q: "Pourquoi, selon Simone Weil, la force fait-elle de l’homme une « chose » ?",
+      methode: `<ol class="puces"><li><b>Partir de la définition</b> (l. 9) : « La force, c’est ce qui fait de quiconque lui est soumis une chose. » Toute l’explication consiste à comprendre ce que veut dire « chose » et pourquoi cette transformation est un fait plus qu’une métaphore.</li><li>Mouvements : la force, vrai sujet de l’<i>Iliade</i> et de toute histoire (l. 1-8) ; la force qui tue fait un cadavre (l. 9-11) ; la force qui menace fait une chose d’un vivant (l. 12-19) ; la force enivre aussi celui qui croit la posséder (l. 20-21).</li><li>Mobiliser des notions : force / violence, personne / chose, sujet / objet, liberté. Une ou deux références (Kant : la personne a une dignité, la chose un prix ; Hegel, le maître et l’esclave) suffisent si elles éclairent le texte.</li></ol>` },
+    q2: { type: "essai littéraire", q: "La littérature peut-elle montrer la violence sans la rendre séduisante ?",
+      methode: `<ol class="puces"><li><b>Les termes</b> : « montrer » (représenter, décrire, faire voir, non pas seulement dénoncer) ; « séduisante » (belle, héroïque, désirable, fascinante).</li><li><b>Problème</b> : toute mise en forme embellit ; mais refuser la forme, c’est renoncer à faire comprendre. Simone Weil admire l’<i>Iliade</i> parce qu’elle montre la force sans l’admirer : est-ce possible, et par quels moyens ?</li><li>Références littéraires attendues, précises et variées : épopée, conte, poésie, roman, témoignage, théâtre.</li></ol>` }
+  }
+});
+(function () {
+  var e = HLP.ENTREES[HLP.ENTREES.length - 1];
+  e.sujet.q1.intro = `<p>« Ceux qui avaient rêvé que la force, grâce au progrès, appartenait désormais au passé » : en 1940, alors que la France vient d’être vaincue et occupée, Simone Weil relit l’<i>Iliade</i> comme un miroir du présent. Le poème d’Homère, qui semblait raconter une guerre lointaine et héroïque, devient pour elle l’analyse la plus exacte de ce que la violence fait aux hommes. Sa thèse tient en une définition : « La force, c’est ce qui fait de quiconque lui est soumis une chose. » On pourrait n’y voir qu’une image : un homme menacé reste un homme, libre au moins de penser. Pourquoi, selon Simone Weil, la force transforme-t-elle réellement l’homme en chose ? Nous verrons d’abord qu’elle fait de la force le vrai sujet de toute histoire humaine, puis que cette transformation va du cadavre au vivant pétrifié, avant de montrer qu’elle atteint aussi ceux qui croient posséder la force.</p>`;
+  e.sujet.q1.plan = [
+    ["I. La force, « centre de toute histoire humaine » (l. 1-8)", `<ul class="puces"><li>Une définition par <b>substitution</b> : le héros de l’<i>Iliade</i> n’est ni Achille ni Hector, mais la force. La reprise anaphorique (« la force qui… la force qui… la force devant quoi… ») en décline les trois rapports : manier, soumettre, faire reculer la chair.</li><li>L’âme est toujours « modifiée » par la force, qu’elle l’exerce (« aveuglée ») ou la subisse (« courbée ») : aucune position n’échappe à son effet.</li><li>Portée historique : contre l’idée d’un progrès qui aurait relégué la force « au passé », le poème est un « miroir » du présent. Lien avec Valéry (1919) : la civilisation n’a pas aboli la barbarie.</li></ul>` ],
+    ["II. Du cadavre à la « chose qui a une âme » (l. 9-19)", `<ul class="puces"><li>Premier sens, « littéral » : tuer, c’est faire d’un sujet un objet. La phrase « Il y avait quelqu’un, et, un instant plus tard, il n’y a personne » oppose deux pronoms : la personne disparaît, reste une chose.</li><li>Deuxième sens, plus profond : la force « qui ne tue pas encore ». La gradation (« sûrement », « peut-être », « suspendue ») montre que la simple menace suffit : « elle change l’homme en pierre » ; l’homme menacé ne peut plus délibérer, choisir, agir ; il obéit.</li><li>Le paradoxe central : « Il est vivant, il a une âme ; il est pourtant une chose. » L’esclave, le prisonnier, le suppliant gardent une conscience, mais sont traités et se vivent comme des instruments. On peut éclairer par Kant : une personne a une <b>dignité</b>, une chose a un <b>prix</b> ; la force efface cette différence.</li></ul>` ],
+    ["III. Personne ne possède la force (l. 20-21)", `<ul class="puces"><li>Le parallélisme « Aussi impitoyablement la force écrase, aussi impitoyablement elle enivre » met sur le même plan la victime et le vainqueur.</li><li>« Personne ne la possède véritablement » : celui qui croit manier la force est lui-même manié par elle (ivresse, aveuglement, démesure). Le vainqueur devient à son tour une chose, entraînée par l’élan de la violence.</li><li>Conséquence : la force n’est pas un instrument neutre au service d’une volonté libre ; elle dégrade tous ceux qu’elle touche. D’où la valeur de l’<i>Iliade</i>, qui ne prend parti pour aucun camp.</li></ul>` ]
+  ];
+  e.sujet.q1.concl = `<p>Pour Simone Weil, la force fait de l’homme une chose parce qu’elle lui retire ce qui le fait sujet : la vie d’abord, puis, plus insidieusement, la possibilité de penser et de choisir, chez celui qu’elle menace comme chez celui qui croit la détenir. Le texte ne décrit donc pas seulement la guerre antique : il donne une définition de la violence qui vaut pour son temps, celui de l’Occupation et des camps. Primo Levi, quelques années plus tard, intitulera son témoignage <i>Si c’est un homme</i>, comme pour vérifier jusqu’où la force peut faire d’un homme une chose, et ce qui en lui y résiste.</p>`;
+  e.sujet.q2.intro = `<p>Simone Weil admire l’<i>Iliade</i> parce que le poème montre la force sans jamais l’admirer : il fait voir la mort d’un guerrier sans en faire une gloire. Pourtant, l’épopée a longtemps servi à exalter la guerre, et l’on pourrait penser que toute représentation de la violence l’embellit : mettre en forme, c’est rendre beau ; raconter, c’est donner un sens ; montrer, c’est déjà fasciner. Montrer la violence, c’est la faire voir, la décrire, la représenter ; la rendre séduisante, c’est la rendre belle, héroïque ou désirable. La littérature peut-elle faire voir la violence telle qu’elle est, sans que la beauté de la forme la rende attirante ? Nous verrons d’abord que la littérature risque toujours d’embellir la violence, puis qu’elle dispose de moyens propres pour la montrer sans la glorifier, avant de nous demander si ce n’est pas justement en faisant éprouver la fascination qu’elle permet de la comprendre.</p>`;
+  e.sujet.q2.plan = [
+    ["I. La violence mise en forme risque d’être embellie", `<ul class="puces"><li>L’épopée et le roman d’aventures font de la guerre le lieu de l’héroïsme : on admire les exploits, on oublie les corps. Le <i>Manifeste du futurisme</i> (1909) glorifie la guerre.</li><li>La forme elle-même séduit : rythme, images, suspense. Apollinaire écrit « Ah Dieu ! que la guerre est jolie » ; la tentation existe chez le lecteur comme chez l’écrivain.</li><li>Le récit donne un sens à ce qui n’en a pas : une bataille racontée devient une histoire, avec un vainqueur et une morale.</li></ul>` ],
+    ["II. Mais la littérature a des moyens de montrer sans glorifier", `<ul class="puces"><li>L’<b>ironie</b> : Voltaire décrit une armée « si belle » pour aboutir à la « boucherie héroïque » (<i>Candide</i>, 1759) ; Apollinaire tue son cavalier en un vers.</li><li>Le <b>témoignage</b> et la sobriété : Barbusse donne la parole aux soldats (« une grande armée qui se suicide ») ; Primo Levi refuse l’effet et décrit avec une précision de chimiste.</li><li>Le <b>point de vue</b> des victimes et des humbles : Hugo, dans <i>Les Misérables</i>, termine Waterloo sur les détrousseurs de cadavres ; Szymborska (bac 2025) parle de « je ne sais quelles gens » qui fuient.</li></ul>` ],
+    ["III. Faire éprouver la fascination pour la comprendre", `<ul class="puces"><li>Une littérature qui refuserait toute séduction ne ferait pas comprendre pourquoi les hommes aiment la guerre (Ricœur, bac 2022 : « l’appétit de catastrophe »).</li><li>Certaines œuvres font éprouver la fascination pour la retourner : la beauté de l’<i>Iliade</i> rend la mort de chaque guerrier plus amère ; le récit de Calaferte (bac 2022) montre un enfant « bien content que ce soit la guerre », et le lecteur mesure ce que l’enfant ignore.</li><li>La forme devient jugement : elle ne dit pas « la guerre est mauvaise », elle fait sentir le prix de chaque vie. C’est ce que Simone Weil appelle la justice du poème.</li></ul>` ]
+  ];
+  e.sujet.q2.concl = `<p>La littérature court toujours le risque de rendre la violence séduisante, parce que mettre en forme, c’est embellir et donner un sens. Mais elle dispose de moyens propres, l’ironie, la sobriété du témoignage, le point de vue des victimes, pour montrer la violence sans la glorifier. Les plus grandes œuvres vont plus loin : elles font éprouver la fascination pour mieux en révéler le prix. Montrer la violence sans la rendre séduisante n’est donc pas renoncer à la beauté, mais mettre la beauté au service de la vérité, comme l’<i>Iliade</i> selon Simone Weil.</p>`;
+  e.retenir = `
+<section><h3>Définitions</h3><ul class="puces"><li><b>Violence</b> : force qui viole une volonté, un corps, une dignité (≠ <b>force</b>, ≠ <b>contrainte</b>, ≠ <b>pouvoir</b> selon Arendt).</li><li><b>Violence légitime</b> : monopole de l’État (Weber, 1919).</li><li><b>Totalitarisme</b> (Arendt, 1951) ≠ régime oppressif. <b>Génocide</b> (Lemkin, 1944 ; ONU, 1948). <b>Crime contre l’humanité</b> (Nuremberg, 1945 ; imprescriptible en France depuis 1964).</li><li><b>Témoignage</b> (effort d’objectivation) ≠ <b>engagement</b> (prendre parti pour agir).</li></ul></section>
+<section><h3>Thèses et auteurs</h3><ul class="puces"><li><b>Montaigne</b> (1580) : « chacun appelle barbarie ce qui n’est pas de son usage ».</li><li><b>Hobbes</b> (1651) : sans pouvoir commun, guerre de chacun contre chacun. <b>Rousseau</b> (1755) : la guerre naît avec la société.</li><li><b>Voltaire</b> (1759) : la « boucherie héroïque ».</li><li><b>Kant</b> : l’« insociable sociabilité » (1784) ; l’état de paix « a donc besoin d’être établi » (1795).</li><li><b>Hegel</b> : l’histoire comme « abattoir », la « ruse de la raison ». <b>Marx</b> : « la force est l’accoucheuse de toute vieille société en travail ».</li><li><b>Hugo</b> (1849) : « Un jour viendra où les armes vous tomberont des mains ».</li><li><b>Barbusse</b> (1916) : « une grande armée qui se suicide ». <b>Apollinaire</b> (1918) : « Ah Dieu ! que la guerre est jolie », par ironie.</li><li><b>Valéry</b> (1919) : « Nous autres, civilisations, nous savons maintenant que nous sommes mortelles ». <b>Freud</b> : la désillusion (1915), <i>Homo homini lupus</i> (1930).</li><li><b>Simone Weil</b> (1940) : « La force, c’est ce qui fait de quiconque lui est soumis une chose. »</li><li><b>Arendt</b> : totalitarisme, « banalité du mal ». <b>Levi</b>, <b>Antelme</b>, <b>Semprun</b>, <b>Perec</b> : témoigner de l’inhumain.</li><li><b>Pascal</b> : « La justice sans la force est impuissante : la force sans la justice est tyrannique. »</li></ul></section>
+<section><h3>Le problème en une phrase</h3><p>La violence semble indéracinable et le XX<sup>e</sup> siècle a ruiné la foi dans un progrès continu ; pourtant le droit et la parole, témoignage, dénonciation, jugement, restent les seuls moyens de la limiter et de lui refuser le dernier mot.</p></section>
+<section><h3>Trois citations à savoir par cœur</h3><ul class="puces"><li>« Nous autres, civilisations, nous savons maintenant que nous sommes mortelles. » (Valéry, 1919)</li><li>« La force, c’est ce qui fait de quiconque lui est soumis une chose. » (Simone Weil)</li><li>« chacun appelle barbarie ce qui n’est pas de son usage » (Montaigne)</li></ul></section>`;
+  e.qcm = [
+    { q: "D’où vient le mot « violence » ?", c: ["Du latin <i>vis</i>, la force (et <i>violare</i>, violer)", "Du grec <i>polemos</i>, la guerre", "Du latin <i>vita</i>, la vie", "Du grec <i>bia</i>, l’arc"], r: 0, e: "La violence est une force qui « viole » : elle s’exerce contre une volonté, un corps, une dignité.", ref: "e5-1" },
+    { q: "Selon Max Weber (1919), l’État moderne revendique…", c: ["le monopole de la violence physique légitime", "la suppression de toute violence", "le droit de guerre illimité", "le monopole de la vérité"], r: 0, e: "La violence n’est pas supprimée par l’État : elle est confisquée et encadrée par le droit.", ref: "e5-1" },
+    { q: "Pour Hannah Arendt (« Sur la violence », 1970), le pouvoir…", c: ["naît de l’accord de ceux qui agissent ensemble, alors que la violence n’est qu’un instrument", "est la même chose que la violence", "naît toujours de la violence", "n’existe que dans les États totalitaires"], r: 0, e: "La violence peut détruire le pouvoir, jamais le créer : elle prend sa place quand il se défait.", ref: "e5-1" },
+    { q: "« Chacun appelle barbarie ce qui n’est pas de son usage » : qui l’écrit, et dans quel chapitre ?", c: ["Montaigne, « Des cannibales »", "Voltaire, <i>Candide</i>", "Rousseau, <i>Discours sur l’inégalité</i>", "Pascal, <i>Pensées</i>"], r: 0, e: "<i>Essais</i>, I, 31 (1580) : Montaigne retourne l’accusation de barbarie contre les Européens des guerres de Religion.", ref: "e5-2" },
+    { q: "Que désigne l’« insociable sociabilité » chez Kant ?", c: ["Le fait que les hommes ont besoin de vivre ensemble mais se repoussent, antagonisme qui fait progresser l’espèce", "Le refus de toute société", "La bonté naturelle de l’homme", "La guerre de chacun contre chacun, sans issue"], r: 0, e: "<i>Idée d’une histoire universelle</i> (1784) : la rivalité pousse à développer les talents et à fonder des États.", ref: "e5-3" },
+    { q: "Pour Kant (<i>Projet de paix perpétuelle</i>, 1795), l’état de paix…", c: ["n’est pas un état de nature et « a besoin d’être établi »", "est l’état naturel des hommes", "est impossible à atteindre", "suppose un seul État mondial"], r: 0, e: "La paix est un état juridique ; Kant propose une fédération d’États libres, pas un État universel.", ref: "e5-3" },
+    { q: "Quelle formule Hegel emploie-t-il pour dire que la raison se sert des passions humaines ?", c: ["La ruse de la raison", "La banalité du mal", "L’insociable sociabilité", "La violence légitime"], r: 0, e: "Les grands hommes poursuivent leurs passions ; à travers elles, la raison réalise le progrès de la liberté.", ref: "e5-3" },
+    { q: "« Nous autres, civilisations, nous savons maintenant que nous sommes mortelles » : de qui et de quand ?", c: ["Valéry, 1919", "Freud, 1930", "Camus, 1947", "Hugo, 1849"], r: 0, e: "« La Crise de l’esprit », lettre publiée au lendemain de la Grande Guerre.", ref: "e5-4" },
+    { q: "Quel livre de témoignage sur la Grande Guerre reçoit le prix Goncourt 1916 ?", c: ["<i>Le Feu</i> d’Henri Barbusse", "<i>Voyage au bout de la nuit</i> de Céline", "<i>À l’Ouest, rien de nouveau</i> de Remarque", "<i>Les Croix de bois</i> de Dorgelès"], r: 0, e: "<i>Le Feu, journal d’une escouade</i> donne la parole aux soldats ; Céline (1932) et Remarque (1929) sont postérieurs.", ref: "e5-4" },
+    { q: "Selon Arendt, qu’est-ce qui distingue le totalitarisme d’une tyrannie classique ?", c: ["Il veut transformer la nature humaine par l’idéologie et la terreur", "Il est moins violent", "Il n’a pas d’idéologie", "Il repose sur l’accord des citoyens"], r: 0, e: "<i>Les Origines du totalitarisme</i> (1951) : les camps sont le laboratoire où l’on rend les hommes « superflus ».", ref: "e5-5" },
+    { q: "Que veut dire l’expression « banalité du mal » ?", c: ["Le mal extrême peut être commis par des hommes ordinaires qui ne pensent pas", "Le mal est sans gravité", "Le mal est toujours le fait de monstres", "Le mal n’existe pas"], r: 0, e: "Arendt, <i>Eichmann à Jérusalem</i> (1963), après le procès de 1961.", ref: "e5-5" },
+    { q: "Quel livre de Primo Levi témoigne de sa déportation à Auschwitz ?", c: ["<i>Si c’est un homme</i> (1947)", "<i>L’Espèce humaine</i> (1947)", "<i>L’Écriture ou la vie</i> (1994)", "<i>W ou le souvenir d’enfance</i> (1975)"], r: 0, e: "<i>L’Espèce humaine</i> est de Robert Antelme, <i>L’Écriture ou la vie</i> de Semprun, <i>W</i> de Perec.", ref: "e5-6" },
+    { q: "Quand Zola publie-t-il « J’accuse… ! » ?", c: ["Le 13 janvier 1898, dans <i>L’Aurore</i>", "En 1871, pendant la Commune", "En 1914, à la déclaration de guerre", "En 1853, depuis l’exil"], r: 0, e: "Zola défend Dreyfus, condamné à tort : modèle de l’engagement de l’écrivain.", ref: "e5-7" },
+    { q: "Qui écrit le <i>Discours sur le colonialisme</i> (1950) ?", c: ["Aimé Césaire", "Frantz Fanon", "Joseph Conrad", "Jean-Paul Sartre"], r: 0, e: "Fanon écrit <i>Les Damnés de la terre</i> (1961), préfacé par Sartre ; Conrad, <i>Au cœur des ténèbres</i> (1899).", ref: "e5-8" },
+    { q: "« La justice sans la force est impuissante : la force sans la justice est tyrannique » : qui l’écrit ?", c: ["Pascal", "Kant", "Hobbes", "Weber"], r: 0, e: "<i>Pensées</i> : faute de pouvoir rendre la justice forte, on a rendu juste ce qui est fort.", ref: "e5-9" }
+  ];
+  e.cartes = [
+    { t: "notion", cat: "Notion", r: "Violence / force / pouvoir", v: "Violence : force qui viole une volonté, un corps, une dignité. Force : peut être légitime. Pouvoir (Arendt) : agir ensemble ; la violence n’est qu’un instrument." },
+    { t: "notion", cat: "Notion", r: "Violence physique légitime", v: "Weber (1919) : l’État en revendique le monopole sur un territoire." },
+    { t: "notion", cat: "Notion", r: "Insociable sociabilité", v: "Kant (1784) : besoin de vivre ensemble + rivalité ; cet antagonisme fait progresser l’espèce." },
+    { t: "notion", cat: "Notion", r: "Totalitarisme", v: "Arendt (1951) : contrôle total, idéologie et terreur, volonté de transformer l’homme ; ≠ régime oppressif." },
+    { t: "notion", cat: "Notion", r: "Génocide / crime contre l’humanité", v: "Génocide : destruction d’un groupe comme tel (Lemkin, 1944 ; ONU, 1948). Crime contre l’humanité : Nuremberg (1945), imprescriptible en France (1964)." },
+    { t: "notion", cat: "Notion", r: "Banalité du mal", v: "Arendt (1963) : le mal extrême commis par des hommes ordinaires qui obéissent sans penser." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« chacun appelle barbarie ce qui n’est pas de son usage »", v: "Montaigne, « Des cannibales », <i>Essais</i>, I, 31 (1580)." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« cette boucherie héroïque »", v: "Voltaire, <i>Candide</i>, chapitre 3 (1759)." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "L’état de paix « a donc besoin d’être établi »", v: "Kant, <i>Projet de paix perpétuelle</i> (1795), trad. Barni." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« Un jour viendra où les armes vous tomberont des mains »", v: "Hugo, discours au Congrès de la paix, 21 août 1849." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« la force est l’accoucheuse de toute vieille société en travail »", v: "Marx, <i>Le Capital</i>, livre I (1867), trad. Joseph Roy." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« Deux armées qui se battent, c’est comme une grande armée qui se suicide ! »", v: "Barbusse, <i>Le Feu</i> (1916), chapitre « L’Aube »." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« Ah Dieu ! que la guerre est jolie »", v: "Apollinaire, « L’Adieu du cavalier », <i>Calligrammes</i> (1918) ; le cavalier meurt à la fin du poème." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« Nous autres, civilisations, nous savons maintenant que nous sommes mortelles. »", v: "Valéry, « La Crise de l’esprit » (1919)." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« La force, c’est ce qui fait de quiconque lui est soumis une chose. »", v: "Simone Weil, « L’Iliade ou le poème de la force » (1940-1941)." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« La justice sans la force est impuissante : la force sans la justice est tyrannique. »", v: "Pascal, <i>Pensées</i>." },
+    { t: "date", cat: "Date", r: "Charte des Nations unies / procès de Nuremberg", v: "26 juin 1945 / novembre 1945 – octobre 1946." },
+    { t: "date", cat: "Œuvre", r: "<i>Si c’est un homme</i> / <i>L’Espèce humaine</i>", v: "Primo Levi / Robert Antelme, tous deux en 1947." }
+  ];
+  HLP.QUI.push(
+    { c: "chacun appelle barbarie ce qui n’est pas de son usage", a: "Montaigne", o: "Essais, I, 31, « Des cannibales »", d: "1580", e: "Orthographe modernisée." },
+    { c: "Candide, qui tremblait comme un philosophe, se cacha du mieux qu’il put pendant cette boucherie héroïque.", a: "Voltaire", o: "Candide, chapitre 3", d: "1759", e: "La bataille entre Bulgares et Abares." },
+    { c: "Un jour viendra où les armes vous tomberont des mains, à vous aussi !", a: "Hugo", o: "Discours au Congrès de la paix", d: "21 août 1849", e: "Les « États-Unis d’Europe »." },
+    { c: "Deux armées qui se battent, c’est comme une grande armée qui se suicide !", a: "Barbusse", o: "Le Feu, chapitre XXIV", d: "1916", e: "Prix Goncourt 1916." },
+    { c: "Nous autres, civilisations, nous savons maintenant que nous sommes mortelles.", a: "Valéry", o: "« La Crise de l’esprit »", d: "1919", e: "Au lendemain de la Grande Guerre." },
+    { c: "La force, c’est ce qui fait de quiconque lui est soumis une chose.", a: "Simone Weil", o: "« L’Iliade ou le poème de la force »", d: "1940-1941", e: "Publié sous un pseudonyme pendant l’Occupation." }
+  );
+})();
+
+HLP.ENTREES.push({
+  id: "e6", sem: 2, num: "III",
+  titre: "L’humain et ses limites",
+  accroche: "Technique, nature, humain « augmenté » : jusqu’où peut-on aller ?",
+  chapo: "« Jusqu’où peut-on aller ? » : c’est, selon le programme, la question de l’âge moderne. La technique a promis un pouvoir sans limite, de la machine à vapeur à l’intelligence artificielle ; elle a aussi produit la bombe, la crise écologique et de nouvelles dépendances. Qu’est-ce qu’un être humain quand il peut se réparer, s’augmenter, et détruire son propre monde ?",
+  essentiel: [
+    "Une <b>limite</b> peut être une borne qu’on subit (la mort, la faiblesse du corps) ou une règle qu’on se donne (ce qu’il ne faut pas faire). La question du programme joue sur les deux sens : jusqu’où <b>pouvons</b>-nous aller, et jusqu’où <b>devons</b>-nous aller ?",
+    "L’homme est un être de <b>technique</b> : nu à l’origine selon le mythe de Prométhée (Platon, <i>Protagoras</i>), il compense sa faiblesse par les arts et le feu ; Descartes veut nous rendre « comme maîtres et possesseurs de la nature » (1637).",
+    "Ce pouvoir a son <b>envers</b> : machines qui asservissent (Vigny, 1844 ; Giono, sujet 2026), destruction à l’échelle du monde (Hiroshima, 1945), crise écologique ; d’où l’éthique de la responsabilité de Hans Jonas (1979).",
+    "La technique s’applique désormais à l’<b>homme lui-même</b> : médecine, génétique, numérique, intelligence artificielle. Faut-il vouloir un homme « réparé », « augmenté » ? Les dystopies (Huxley, 1932 ; Orwell, 1949) imaginent le prix à payer.",
+    "La <b>finitude</b> n’est pas seulement une faiblesse : « roseau pensant », l’homme est grand parce qu’il sait qu’il meurt (Pascal) ; être fini, il fait pourtant l’expérience de l’illimité (pensée, désir, création)."
+  ],
+  attendus: [
+    "Comprendre la question « Jusqu’où peut-on aller ? » appliquée à l’extension des capacités humaines par la technique : machines, médecine, architecture, conquête de l’atome et de l’espace, numérique, génétique, intelligence artificielle.",
+    "Analyser l’envers de ces progrès : nouvelles contraintes et dépendances, captation des richesses, moyens de destruction changeant d’échelle, déséquilibres sociaux et écologiques, spectre d’un monde inhabitable.",
+    "Étudier l’imaginaire contemporain qui répond à ces inquiétudes : dystopies, mondes post-humains, univers parallèles.",
+    "Savoir que littérature et philosophie ont pensé les limites de l’action humaine sur la nature bien avant l’âge technique, et que les interventions sur l’homme lui-même posent le problème de la définition de l’humain et de la vie humaine désirable.",
+    "Connaître le renouvellement de la question de la finitude : avertir des dangers de son oubli, ou montrer que cet être « fini » fait l’expérience de l’illimité.",
+    "Réfléchir aux trois questions du programme : bonheur et durée de vie d’un homme « réparé » ou « augmenté » ; équilibre entre exploitation et conservation de la nature ; nouvelle sociabilité des réseaux numériques."
+  ],
+  problematiques: [
+    "Faut-il fixer des limites à la technique ?",
+    "La technique nous libère-t-elle ou nous asservit-elle ?",
+    "Dans quelle mesure les machines échappent-elles à l’humain ? (bac 2026)",
+    "Sommes-nous maîtres de la nature ?",
+    "Un homme « augmenté » est-il encore un homme ?",
+    "La finitude est-elle une faiblesse ?",
+    "Les réseaux numériques créent-ils de nouveaux liens ou de nouvelles solitudes ?"
+  ],
+  anims: ["e6-promethee", "e6-frise"],
+  cours: [
+    { id: "e6-1", titre: "« Jusqu’où peut-on aller ? » : les deux sens de la limite", html: `
+<p class="lettrine">Le mot <b>limite</b> vient du latin <i>limes</i>, le chemin qui borde un champ, puis la frontière fortifiée de l’Empire romain. Une limite peut être une <b>borne de fait</b>, ce qu’on ne peut pas dépasser (la vitesse de la lumière, la mort), ou une <b>norme</b>, ce qu’on ne doit pas dépasser (l’interdit, la loi). La technique moderne recule sans cesse les premières : la question devient alors de savoir s’il faut poser les secondes.</p>
+<p>Les Grecs avaient un mot pour le dépassement fautif des limites : l’<b>hybris</b> (la démesure), que punit la <b>Némésis</b>. Icare, qui vole trop près du soleil avec les ailes de cire fabriquées par son père Dédale, en est l’image. La <b>finitude</b> désigne la condition d’un être limité : mortel, dépendant d’un corps, ignorant d’une partie du monde et de lui-même.</p>
+<p>Pascal donne la formule la plus forte de cette condition : « L’homme n’est qu’un roseau le plus faible de la nature ; mais c’est un roseau pensant. » Une goutte d’eau suffit pour le tuer, mais il sait qu’il meurt, et l’univers n’en sait rien : « toute notre dignité consiste dans la pensée ». La limite du corps n’est pas la limite de l’esprit : « l’homme passe infiniment l’homme » (<i>Pensées</i>).</p>
+<div class="ex"><b class="l">Exemple</b>Le programme parle d’un être « fini » qui fait l’expérience de l’illimité : l’astronome qui calcule des distances de milliards d’années-lumière, le lecteur qui vit d’autres vies, l’amoureux dont le désir semble sans fin. La finitude n’empêche pas l’infini ; elle le rend sensible.</div>` },
+    { id: "e6-2", titre: "L’homme, animal technique : Prométhée et la perfectibilité", html: `
+<p>Dans le <i>Protagoras</i> de Platon, le sophiste raconte un mythe : chargé de distribuer les qualités aux animaux, Épiméthée a tout donné aux bêtes (griffes, fourrures, vitesse) et laissé l’homme « nu, sans chaussures, ni couverture, ni armes ». Prométhée vole alors à Héphaïstos et à Athéna « la connaissance des arts avec le feu ». L’homme peut survivre, « mais il n’avait pas la science politique » : il faudra que Zeus lui donne la justice et la pudeur pour que les hommes vivent ensemble sans se détruire.</p>
+<p>Le mythe dit deux choses : la technique compense un <b>manque</b> originel ; et elle ne suffit pas, il faut encore une sagesse pour l’employer. Rousseau, dans le <i>Discours sur l’origine de l’inégalité</i> (1755), fait de la <b>perfectibilité</b> le propre de l’homme : un animal est, au bout de quelques mois, ce qu’il sera toute sa vie, alors que l’homme se transforme sans cesse. Mais cette faculté « presque illimitée » est aussi « la source de tous les malheurs de l’homme » et le rend « à la longue le tyran de lui-même et de la nature ».</p>
+<div class="ex"><b class="l">Exemple</b>Bergson propose de définir l’homme comme <i>homo faber</i> plutôt que comme <i>homo sapiens</i> (<i>L’Évolution créatrice</i>, 1907) : l’intelligence est d’abord la faculté de fabriquer des outils, et des outils à faire des outils. Freud, dans <i>Malaise dans la civilisation</i> (1930), compare l’homme équipé de ses instruments à une sorte de « dieu prothétique » (<i>Prothesengott</i>, selon la traduction courante) : grandiose quand il revêt ses organes auxiliaires, mais qui n’a pas fait corps avec eux.</div>
+<div class="plus"><b class="l">Pour aller plus loin</b>Mary Shelley sous-titre son roman <i>Frankenstein</i> (1818) « ou le Prométhée moderne » : le savant crée la vie, puis abandonne sa créature. Le mythe de la technique qui échappe à son créateur est né.</div>` },
+    { id: "e6-3", titre: "« Maîtres et possesseurs de la nature » : le projet moderne", html: `
+<p>Au XVII<sup>e</sup> siècle, la science moderne change de but : il ne s’agit plus seulement de contempler le monde, mais de le <b>transformer</b>. Francis Bacon écrit dans le <i>Novum Organum</i> (1620) que la science et la puissance humaines coïncident (<i>scientia et potentia humana in idem coincidunt</i>) : on ne commande à la nature qu’en lui obéissant, c’est-à-dire en connaissant ses lois.</p>
+<p>Descartes, dans la sixième partie du <i>Discours de la méthode</i> (1637), oppose à la « philosophie spéculative » des écoles une philosophie « pratique », par laquelle nous pourrions « nous rendre comme maîtres et possesseurs de la nature ». Le but est d’abord la santé : Descartes espère qu’on pourra s’exempter d’une infinité de maladies, « et même aussi peut-être de l’affaiblissement de la vieillesse ». Le mot « comme » est important : l’homme n’est pas Dieu, il agit comme s’il était maître.</p>
+<p>Au XIX<sup>e</sup> siècle, ce projet devient une foi dans le <b>progrès</b> : la vapeur, le chemin de fer, l’électricité semblent prouver que l’humanité avance. Baudelaire s’en moque en 1855 : l’idée du progrès est un « fanal obscur », qui confond les « choses de l’ordre matériel et de l’ordre spirituel » ; avoir la vapeur et l’éclairage au gaz ne rend pas meilleur.</p>
+<div class="ex"><b class="l">Exemple</b>Vigny, dans « La Maison du berger » (1844), voit le train comme un « taureau de fer qui fume, souffle et beugle » sur lequel « L’homme a monté trop tôt ». Deux ans plus tôt, le 8 mai 1842, la catastrophe ferroviaire de Meudon avait fait plusieurs dizaines de morts, dont l’explorateur Dumont d’Urville, brûlés dans des wagons fermés à clé.</div>
+<div data-anim="e6-vigny"></div>` },
+    { id: "e6-4", titre: "L’envers du progrès : machines, travail, dépendances", html: `
+<p>La machine promet de libérer l’homme du travail pénible. Mais elle impose aussi son rythme. Charlie Chaplin, dans <i>Les Temps modernes</i> (1936), montre l’ouvrier pris dans les engrenages de la chaîne. Jean Giono, dans <i>Triomphe de la vie</i> (1941), texte du bac 2026, décrit « l’immense armée des machines » et affirme que chaque machine transforme deux matières : celle pour laquelle on l’a inventée, « et l’homme qui se sert de la machine ».</p>
+<p>Les philosophes du XX<sup>e</sup> siècle approfondissent ce soupçon. Martin Heidegger (« La question de la technique », 1954) voit dans la technique moderne une manière de <b>« arraisonner »</b> la nature (<i>Gestell</i>) : le fleuve devient un fournisseur d’énergie, la forêt un stock de bois. Günther Anders (<i>L’Obsolescence de l’homme</i>, 1956) parle de « honte prométhéenne » : l’homme se sent inférieur aux machines qu’il a produites, plus parfaites et plus durables que lui. Hannah Arendt (<i>Condition de l’homme moderne</i>, 1958) s’inquiète d’une société de travailleurs privés de travail, qui ne connaît plus d’autre activité que produire et consommer.</p>
+<div class="ex"><b class="l">Exemple</b>Arendt ouvre son livre sur le lancement de Spoutnik, le 4 octobre 1957 : pour la première fois, un objet fabriqué par l’homme tourne autour de la Terre. Elle note qu’on a salué l’événement comme un premier pas pour échapper à la prison terrestre, comme si la condition humaine était une prison.</div>
+<div class="cle"><b class="l">Pour la copie</b>Ne pas faire de la technique un monstre extérieur : la question est plutôt celle de la <b>maîtrise</b>. Qui décide de son usage ? Peut-on encore choisir de s’en passer ? C’est le sens du sujet de 2026 : « Dans quelle mesure les machines échappent-elles à l’humain ? »</div>` },
+    { id: "e6-5", titre: "Changement d’échelle : pouvoir détruire le monde", html: `
+<p>Le 6 août 1945, une bombe atomique détruit Hiroshima ; le 9 août, Nagasaki. Pour la première fois, l’humanité a les moyens de se détruire elle-même. Hannah Arendt le note dès 1953 dans son <i>Journal de pensée</i> (texte du bac 2021) : aucune guerre ne devrait avoir le droit de mettre en jeu l’existence de l’humanité, « Or c’est précisément cela qui est devenu une possibilité ». Le film d’Alain Resnais sur un scénario de Marguerite Duras, <i>Hiroshima mon amour</i> (1959), fait dialoguer la mémoire d’une histoire d’amour et celle de la ville détruite.</p>
+<p>Hans Jonas en tire une éthique nouvelle dans <i>Le Principe responsabilité</i> (1979). Les morales traditionnelles concernaient le prochain, ici et maintenant ; la technique moderne agit à distance et pour des siècles. Il faut donc un nouvel impératif : « Agis de façon que les effets de ton action soient compatibles avec la permanence d’une vie authentiquement humaine sur terre » (traduction usuelle de Jean Greisch). Jonas propose une <b>« heuristique de la peur »</b> : imaginer le pire pour savoir ce qu’il faut préserver.</p>
+<div class="ex"><b class="l">Exemple</b>L’accident de la centrale de Tchernobyl (26 avril 1986) puis celui de Fukushima (11 mars 2011) montrent qu’une technique maîtrisée en temps normal peut produire des effets qui dépassent les frontières et les générations : une zone d’exclusion existe toujours autour de Tchernobyl.</div>` },
+    { id: "e6-6", titre: "Exploiter ou conserver la nature ?", html: `
+<p>Le programme note que la question écologique n’est plus seulement la préservation des espèces : elle laisse entrevoir « le spectre d’un monde inhabitable ». Les alertes se succèdent : Rachel Carson, <i>Printemps silencieux</i> (1962), sur les pesticides ; le rapport Meadows pour le Club de Rome (1972, <i>The Limits to Growth</i>, publié en français sous le titre <i>Halte à la croissance ?</i>) ; la création du GIEC (1988) ; l’accord de Paris (12 décembre 2015), qui vise à contenir le réchauffement nettement en dessous de 2 °C par rapport à l’ère préindustrielle.</p>
+<p>Deux attitudes s’opposent. La première <b>gère</b> la nature comme une ressource à exploiter durablement. La seconde lui reconnaît une <b>valeur propre</b> : Aldo Leopold, forestier américain (<i>Almanach d’un comté des sables</i>, 1949), propose une « éthique de la terre » où l’homme devient un simple membre de la communauté biotique. Claude Lévi-Strauss, à la fin de <i>Tristes tropiques</i> (1955), rappelle que le monde a commencé sans l’homme et s’achèvera sans lui.</p>
+<p>La littérature imagine l’effondrement : René Barjavel, dans <i>Ravage</i> (1943), prive brusquement une société hypertechnique d’électricité ; C. F. Ramuz, dans <i>La Grande Peur dans la montagne</i> (1926), raconte comment des villageois envoient leurs bêtes dans un alpage réputé maudit, malgré l’avertissement des anciens, jusqu’à la catastrophe.</p>
+<div class="ex"><b class="l">Exemple</b>Le chimiste Paul Crutzen propose en 2000 le mot <b>Anthropocène</b> : une époque où l’homme est devenu une force géologique. La commission internationale chargée de la stratigraphie a refusé en mars 2024 d’en faire officiellement une époque géologique, mais le mot reste employé partout pour dire ce changement d’échelle.</div>` },
+    { id: "e6-7", titre: "L’homme réparé, l’homme augmenté", html: `
+<p>La médecine <b>répare</b> : vaccins, antibiotiques, greffes (premier cœur greffé par Christiaan Barnard, au Cap, le 3 décembre 1967), prothèses. Mais elle peut aussi <b>augmenter</b> : modifier le génome (l’outil CRISPR-Cas9, décrit en 2012 par Emmanuelle Charpentier et Jennifer Doudna, prix Nobel de chimie en 2020), prolonger la vie, connecter le cerveau à des machines. En 2018, le chercheur chinois He Jiankui annonce la naissance de jumelles dont il a modifié le génome ; il est condamné à trois ans de prison en 2019.</p>
+<p>Le <b>transhumanisme</b> (mot employé par le biologiste Julian Huxley en 1957) veut dépasser les limites biologiques : vieillissement, maladie, peut-être la mort. Le programme pose la question : « Quelle sorte de bonheur et quelle durée de vie pour un homme entièrement “réparé”, voire “augmenté” ? » Son frère Aldous Huxley avait imaginé dans <i>Le Meilleur des mondes</i> (1932) une société où les enfants sont fabriqués en laboratoire et conditionnés au bonheur : on n’y souffre plus, mais on n’y aime plus, on n’y lit plus.</p>
+<p>Où passe la limite de l’humain ? Vercors, dans <i>Les Animaux dénaturés</i> (1952), imagine un procès où il faut décider si des êtres mi-singes mi-hommes sont humains : c’est l’occasion de chercher une définition. Philip K. Dick, dans <i>Les androïdes rêvent-ils de moutons électriques ?</i> (1968), fait de l’<b>empathie</b> le critère qui distingue l’humain de l’androïde.</p>
+<div class="ex"><b class="l">Exemple</b>En France, les lois de bioéthique (première loi en 1994, révisée en 2004, 2011 et 2021) interdisent le clonage reproductif et les modifications génétiques transmissibles à la descendance : le droit pose des limites là où la technique n’en a plus.</div>
+<div class="cle"><b class="l">Pour la copie</b>Distinction utile : <b>réparer</b> (revenir à une norme de santé) / <b>augmenter</b> (dépasser la norme). La frontière est floue : des lunettes augmentent-elles ? Un vaccin ? Mais elle permet de poser la question de la « vie humaine désirable ».</div>` },
+    { id: "e6-8", titre: "Le numérique, l’intelligence artificielle et la nouvelle sociabilité", html: `
+<p>En 1950, le mathématicien Alan Turing propose, dans l’article « Computing Machinery and Intelligence », un « jeu de l’imitation » : une machine pense-t-elle si l’on ne peut plus la distinguer d’un humain dans une conversation écrite ? Le 11 mai 1997, l’ordinateur Deep Blue bat le champion du monde d’échecs Garry Kasparov ; le 30 novembre 2022, l’entreprise OpenAI met en ligne ChatGPT, un programme qui produit des textes. La question de 2026 se pose avec force : les machines échappent-elles à l’humain ?</p>
+<p>Le programme demande si l’univers numérique et ses réseaux créent une <b>nouvelle sociabilité</b>. Michel Serres, dans <i>Petite Poucette</i> (2012), décrit avec bienveillance une génération qui a le savoir dans la poche et pense autrement. D’autres soulignent la <b>surveillance</b> et la dépendance : Orwell, dans <i>1984</i> (1949), imagine le « télécran » qui voit et entend tout. Rousseau avait écrit que « l’homme sociable, toujours hors de lui, ne sait vivre que dans l’opinion des autres » : les réseaux, avec leurs compteurs de « j’aime », en sont une version mesurée.</p>
+<div class="ex"><b class="l">Exemple</b>Isaac Asimov formule dès 1942, dans la nouvelle « Cercle vicieux » (« Runaround »), les « trois lois de la robotique » : un robot ne peut nuire à un humain, doit lui obéir, doit se protéger, dans cet ordre. Toute son œuvre montre que des règles simples produisent des situations imprévues : on ne programme pas l’éthique comme une machine.</div>` },
+    { id: "e6-9", titre: "Que signifie aujourd’hui l’idée d’humanité ?", html: `
+<p>Le programme conclut : il s’agit de réfléchir à « ce que peut signifier aujourd’hui l’idée d’humanité ». Trois pistes. D’abord, l’humanité comme <b>espèce</b> menacée : Jonas fait de sa survie un devoir. Ensuite, l’humanité comme <b>valeur</b> : ce que l’on doit à tout homme (Levinas, <i>Humanisme de l’autre homme</i>, 1972, fonde l’éthique sur le visage d’autrui qui m’interdit de tuer). Enfin, l’humanité comme <b>condition</b> : être fini, mortel, qui donne sens à sa vie parce qu’elle est limitée.</p>
+<p>Valéry place en épigraphe du « Cimetière marin » (1920) deux vers de Pindare qui invitent l’âme à ne pas aspirer à la vie immortelle, mais à épuiser le champ du possible. Le poème s’achève sur un élan : « Le vent se lève !… Il faut tenter de vivre ! » Arendt, dans le texte du bac 2021, remarquait déjà que c’est parce que nous savons que nous devons mourir que nous pouvons risquer notre vie pour quelque chose : un être immortel n’aurait plus rien à sacrifier.</p>
+<div class="ex"><b class="l">Exemple</b>Saint-Exupéry, pilote de l’Aéropostale, raconte dans <i>Terre des hommes</i> (1939) comment son ami Guillaumet, perdu dans les Andes après un accident d’avion en 1930, marche pendant cinq jours et quatre nuits pour survivre. L’homme se mesure à l’obstacle : la limite révèle ce qu’il est.</div>
+<div class="cle"><b class="l">Pour la copie</b>Conclusion possible de beaucoup de sujets : la limite n’est pas seulement ce qui nous arrête, c’est aussi ce qui nous définit. Une humanité sans limites ne serait plus une humanité, mais elle n’est pas non plus condamnée à se résigner : elle doit choisir ses limites.</div>` },
+    { id: "e6-10", titre: "Ce qui est déjà tombé au bac", html: `
+<p>Cette entrée tombe moins souvent que « Histoire et violence », mais le sujet de 2026 montre qu’elle est bien au programme de l’écrit, et le Grand oral s’y prête très bien.</p>
+<details class="pli"><summary>Les sujets de métropole depuis 2021</summary><div class="dedans"><ul class="puces">
+<li><b>2021</b> (9 septembre, sujet 2) : Hannah Arendt, <i>Journal de pensée</i> (1953), sur la guerre à l’âge de la bombe. Le texte touche les deux entrées du semestre 2. Interprétation philosophique : « À quelles conditions peut-on, selon Hannah Arendt, prendre le risque de la guerre ? » Essai littéraire : « La littérature et les arts peuvent-ils représenter la guerre sans la dénoncer ? »</li>
+<li><b>2026</b> (16 juin) : Jean Giono, <i>Triomphe de la vie</i> (1941), « l’immense armée des machines ». Interprétation littéraire : « Quel regard Jean Giono porte-t-il sur le travail de la machine ? » Essai philosophique : « Dans quelle mesure les machines échappent-elles à l’humain ? »</li>
+</ul></div></details>
+<div class="cle"><b class="l">Ce qu’il faut en tirer</b>Les sujets associent souvent un texte littéraire d’avant le numérique (Giono, 1941) à une question très actuelle (les machines qui échappent à l’humain). Prépare des exemples des deux époques : Vigny ou Giono d’un côté, l’intelligence artificielle ou le climat de l’autre.</div>` }
+  ],
+  notions: [
+    ["Limite / borne / norme", "<b>Limite</b> : ce qui sépare, termine. <b>Borne</b> (de fait) : ce qu’on ne peut pas dépasser. <b>Norme</b> : ce qu’on ne doit pas dépasser."],
+    ["Finitude", "Condition d’un être limité : mortel, dépendant d’un corps, ignorant d’une partie de lui-même et du monde."],
+    ["Hybris", "Mot grec : la démesure, le dépassement orgueilleux des limites humaines, puni par les dieux (Némésis)."],
+    ["Technique", "Ensemble des procédés et des outils par lesquels l’homme transforme la nature pour ses fins (du grec <i>technè</i>, l’art de faire)."],
+    ["Perfectibilité", "Rousseau (1755) : faculté propre à l’homme de se transformer, « presque illimitée », source de ses progrès et de ses malheurs."],
+    ["Progrès", "Passage à un état meilleur. Distinguer progrès technique (plus de moyens) et progrès moral (devenir meilleur) : Baudelaire dénonce leur confusion."],
+    ["Responsabilité (Jonas)", "Devoir envers les générations futures et la nature, à la mesure du pouvoir de la technique ; « heuristique de la peur »."],
+    ["Anthropocène", "Mot proposé en 2000 par Paul Crutzen : époque où l’activité humaine devient une force qui transforme la planète."],
+    ["Réparer / augmenter", "Réparer : rendre la santé, revenir à une norme. Augmenter : dépasser les capacités humaines ordinaires."],
+    ["Transhumanisme / posthumain", "Mouvement qui veut dépasser les limites biologiques par la technique (le mot est employé par Julian Huxley en 1957) / humanité qui aurait dépassé sa condition."],
+    ["Dystopie", "Récit d’une société imaginaire cauchemardesque, souvent née d’une utopie réalisée (Huxley, Orwell)."],
+    ["Aliénation", "Fait de devenir étranger à soi-même, dépossédé par ce qu’on a produit (l’ouvrier et la machine)."]
+  ],
+  reperes: [
+    ["vers 390 av. J.-C.", "Platon, <i>Protagoras</i> : le mythe de Prométhée."],
+    ["1620", "Bacon, <i>Novum Organum</i>."],
+    ["1637", "Descartes, <i>Discours de la méthode</i> : « comme maîtres et possesseurs de la nature »."],
+    ["1670", "Pascal, <i>Pensées</i> (posthumes) : le roseau pensant."],
+    ["1755", "Rousseau, <i>Discours sur l’origine de l’inégalité</i> : la perfectibilité."],
+    ["1818", "Mary Shelley, <i>Frankenstein ou le Prométhée moderne</i>."],
+    ["1842 / 1844", "Catastrophe ferroviaire de Meudon ; Vigny, « La Maison du berger »."],
+    ["1855", "Baudelaire, « Exposition universelle » : le progrès, « fanal obscur »."],
+    ["1920", "Valéry, « Le Cimetière marin »."],
+    ["1930", "Freud, <i>Malaise dans la civilisation</i>."],
+    ["1932", "Aldous Huxley, <i>Le Meilleur des mondes</i>."],
+    ["1936", "Chaplin, <i>Les Temps modernes</i>."],
+    ["1939", "Saint-Exupéry, <i>Terre des hommes</i>."],
+    ["1941", "Giono, <i>Triomphe de la vie</i> (bac 2026)."],
+    ["1945", "Hiroshima et Nagasaki (6 et 9 août)."],
+    ["1949", "Orwell, <i>1984</i> ; Leopold, <i>Almanach d’un comté des sables</i>."],
+    ["1950", "Turing, « Computing Machinery and Intelligence »."],
+    ["1954 / 1956 / 1958", "Heidegger, « La question de la technique » ; Anders, <i>L’Obsolescence de l’homme</i> ; Arendt, <i>Condition de l’homme moderne</i>."],
+    ["1957", "Spoutnik (4 octobre)."],
+    ["1962 / 1972", "Carson, <i>Printemps silencieux</i> ; rapport du Club de Rome."],
+    ["1967", "Première greffe du cœur (3 décembre)."],
+    ["1979", "Jonas, <i>Le Principe responsabilité</i>."],
+    ["1986", "Tchernobyl (26 avril)."],
+    ["1997", "Deep Blue bat Kasparov (11 mai)."],
+    ["2012", "CRISPR-Cas9 ; Serres, <i>Petite Poucette</i>."],
+    ["2015", "Accord de Paris sur le climat (12 décembre)."],
+    ["2022", "ChatGPT mis en ligne (30 novembre)."]
+  ],
+  pieges: [
+    "Opposer naïvement « la technique, c’est mal » et « le progrès, c’est bien » : l’homme est un être technique (Prométhée) ; la question est celle de la maîtrise et des fins.",
+    "Oublier le double sens de « limite » : ce qu’on ne peut pas (borne) et ce qu’on ne doit pas (norme) dépasser. La plupart des sujets jouent sur ce glissement.",
+    "Citer Descartes sans le « comme » : « comme maîtres et possesseurs de la nature ». L’homme n’est pas Dieu ; et le but premier est la santé.",
+    "Multiplier les exemples d’actualité sans date ni source : un fait vague (« l’IA va remplacer l’homme ») ne vaut rien ; un fait précis et daté vaut beaucoup.",
+    "Confondre science-fiction et prédiction : la dystopie ne prédit pas, elle grossit une tendance présente pour la juger.",
+    "Ne parler que de la nature extérieure : le programme insiste sur les interventions sur l’homme lui-même (biotechnologies, numérique)."
+  ],
+  textesIntro: "Six extraits du domaine public, de Platon à Valéry. Les textes de Descartes sont cités en orthographe modernisée ; Platon dans la traduction d’Émile Chambry. Pour les auteurs protégés (Jonas, Arendt, Anders, Huxley, Saint-Exupéry, Serres…), le cours résume et cite très brièvement.",
+  textes: [
+    { id: "t6-1", auteur: "Platon", oeuvre: "Protagoras, 320c-322d, le mythe de Prométhée", ref: "vers 390 av. J.-C., trad. Émile Chambry",
+      extrait: "Dans cet embarras, Prométhée vient pour examiner le partage ; il voit les animaux bien pourvus, mais l’homme nu, sans chaussures, ni couverture, ni armes, et le jour fixé approchait où il fallait l’amener du sein de la terre à la lumière. Alors Prométhée, ne sachant qu’imaginer pour donner à l’homme le moyen de se conserver, vole à Héphaïstos et à Athéna la connaissance des arts avec le feu ; car, sans le feu, la connaissance des arts était impossible et inutile ; et il en fait présent à l’homme. L’homme eut ainsi la science propre à conserver sa vie ; mais il n’avait pas la science politique ; celle-ci se trouvait chez Zeus […].",
+      contexte: "Dans ce dialogue, Socrate se demande si la vertu peut s’enseigner. Le sophiste Protagoras répond par un mythe : Épiméthée (« celui qui réfléchit après coup ») a distribué toutes les qualités aux animaux et n’a rien laissé à l’homme.",
+      analyse: "<p>Le récit oppose l’homme « nu », décrit par une <b>énumération négative</b> (« sans chaussures, ni couverture, ni armes »), aux animaux « bien pourvus ». Le don de Prométhée est un <b>vol</b> : la technique a une origine transgressive. La dernière phrase, construite sur une <b>opposition</b> (« L’homme eut ainsi… ; mais il n’avait pas… »), annonce la suite du mythe.</p>",
+      enjeu: "<p>L’homme n’a pas de nature fixe : sa faiblesse l’oblige à inventer. Mais la technique, qui permet de survivre, ne dit pas comment vivre ensemble : il faut une autre science, politique et morale. C’est déjà la question de la maîtrise.</p>",
+      liens: "Rousseau (la perfectibilité) ; Mary Shelley, <i>Frankenstein ou le Prométhée moderne</i> ; Anders (la « honte prométhéenne ») ; Jonas, qui ouvre <i>Le Principe responsabilité</i> sur l’image d’un Prométhée désormais déchaîné." },
+    { id: "t6-2", auteur: "Descartes", oeuvre: "Discours de la méthode, sixième partie", ref: "1637, orthographe modernisée",
+      extrait: "elles m’ont fait voir qu’il est possible de parvenir à des connaissances qui soient fort utiles à la vie ; et qu’au lieu de cette philosophie spéculative qu’on enseigne dans les écoles, on en peut trouver une pratique, par laquelle, connaissant la force et les actions du feu, de l’eau, de l’air, des astres, des cieux, et de tous les autres corps qui nous environnent, aussi distinctement que nous connaissons les divers métiers de nos artisans, nous les pourrions employer en même façon à tous les usages auxquels ils sont propres, et ainsi nous rendre comme maîtres et possesseurs de la nature. Ce qui n’est pas seulement à désirer pour l’invention d’une infinité d’artifices, qui feraient qu’on jouirait sans aucune peine des fruits de la terre et de toutes les commodités qui s’y trouvent, mais principalement aussi pour la conservation de la santé.",
+      contexte: "Le <i>Discours</i> est publié en français (et non en latin), pour être lu de tous. Dans la sixième partie, Descartes explique pourquoi il publie ses recherches de physique : elles peuvent servir « le bien général de tous les hommes ».",
+      analyse: "<p>Une <b>opposition</b> structure la phrase : philosophie « spéculative » / philosophie « pratique ». L’<b>énumération</b> des éléments (« du feu, de l’eau, de l’air, des astres, des cieux ») embrasse toute la nature, et la <b>comparaison</b> avec les « métiers de nos artisans » fait de la nature un atelier. La modalisation « comme maîtres et possesseurs » nuance l’ambition.</p>",
+      enjeu: "<p>C’est l’acte de naissance du projet technique moderne : connaître pour agir, agir pour le confort et surtout la santé. Le texte pose aussi la question de la limite : l’homme maître de la nature reste une créature, et le « comme » rappelle sa finitude.</p>",
+      liens: "Bacon (savoir et pouvoir) ; Heidegger (la nature « arraisonnée ») ; Jonas (la responsabilité qu’impose ce pouvoir) ; l’homme « réparé » du programme." },
+    { id: "t6-3", auteur: "Pascal", oeuvre: "Pensées, « le roseau pensant »", ref: "édition de 1670 (Port-Royal)",
+      extrait: "L’homme n’est qu’un roseau le plus faible de la nature ; mais c’est un roseau pensant. Il ne faut pas que l’univers entier s’arme pour l’écraser. Une vapeur, une goutte d’eau suffit pour le tuer. Mais quand l’univers l’écraserait, l’homme serait encore plus noble que ce qui le tue ; parce qu’il sait qu’il meurt ; et l’avantage que l’univers a sur lui, l’univers n’en sait rien. Ainsi toute notre dignité consiste dans la pensée. C’est de là qu’il faut nous relever, non de l’espace et de la durée.",
+      contexte: "Pascal, mathématicien et physicien (il a inventé une machine à calculer, la pascaline), prépare une apologie de la religion chrétienne. Ses notes, publiées après sa mort (1662), décrivent la « misère » et la « grandeur » de l’homme.",
+      analyse: "<p>La <b>métaphore</b> du roseau dit la fragilité ; l’ajout de l’adjectif « pensant » la renverse. Le texte avance par <b>paradoxes</b> : l’univers qui écrase est moins « noble » que l’homme écrasé. L’<b>antithèse</b> savoir / ne pas savoir (« il sait qu’il meurt » / « l’univers n’en sait rien ») fonde la conclusion, introduite par « Ainsi ».</p>",
+      enjeu: "<p>La grandeur de l’homme ne vient pas de sa puissance sur la nature (« non de l’espace et de la durée ») mais de sa conscience. Réponse possible au rêve d’un homme « augmenté » : allonger la vie ou étendre le pouvoir ne rend pas plus digne ; c’est la pensée qui fait l’humanité.</p>",
+      liens: "Descartes (la pensée comme essence) ; Valéry (« Il faut tenter de vivre ! ») ; Jonas (la vulnérabilité comme fondement de la responsabilité)." },
+    { id: "t6-4", auteur: "Rousseau", oeuvre: "Discours sur l’origine et les fondements de l’inégalité parmi les hommes, première partie", ref: "1755",
+      extrait: "il y a une autre qualité très spécifique qui les distingue, et sur laquelle il ne peut y avoir de contestation ; c’est la faculté de se perfectionner ; faculté qui, à l’aide des circonstances, développe successivement toutes les autres, et réside parmi nous tant dans l’espèce que dans l’individu, au lieu qu’un animal est, au bout de quelques mois, ce qu’il sera toute sa vie, et son espèce, au bout de mille ans, ce qu’elle était la première année de ces mille ans. […] Il serait triste pour nous d’être forcés de convenir que cette faculté distinctive et presque illimitée, est la source de tous les malheurs de l’homme ; que c’est elle qui le tire, à force de temps, de cette condition originaire, dans laquelle il coulerait des jours tranquilles et innocents ; que c’est elle qui, faisant éclore avec les siècles ses lumières et ses erreurs, ses vices et ses vertus, le rend à la longue le tyran de lui-même et de la nature ?",
+      contexte: "Rousseau répond à une question de l’Académie de Dijon sur l’origine de l’inégalité. Il imagine un « homme naturel » pour distinguer ce qui vient de la nature et ce qui vient de la société.",
+      analyse: "<p>Une <b>comparaison</b> entre l’homme et l’animal, appuyée sur une opposition temporelle (« au bout de quelques mois » / « au bout de mille ans »), définit l’homme par son <b>historicité</b>. La seconde phrase, <b>interrogation oratoire</b> introduite par « Il serait triste », accumule les relatives (« que c’est elle qui… ») et les <b>antithèses</b> (« ses lumières et ses erreurs, ses vices et ses vertus »).</p>",
+      enjeu: "<p>La faculté qui fait la grandeur de l’homme fait aussi son malheur : « presque illimitée », elle le pousse à dominer jusqu’à devenir « le tyran de lui-même et de la nature ». Formule prophétique pour penser la crise écologique et l’homme augmenté.</p>",
+      liens: "Platon (Prométhée) ; Descartes (la maîtrise) ; Kant (l’éducation, entrée I) ; Jonas." },
+    { id: "t6-5", auteur: "Baudelaire", oeuvre: "Curiosités esthétiques, « Exposition universelle, 1855 »", ref: "article de 1855, recueilli en 1868",
+      extrait: "Je veux parler de l’idée du progrès. Ce fanal obscur, invention du philosophisme actuel, breveté sans garantie de la Nature ou de la Divinité, cette lanterne moderne jette des ténèbres sur tous les objets de la connaissance ; la liberté s’évanouit, le châtiment disparaît. […] Demandez à tout bon Français qui lit tous les jours son journal dans son estaminet ce qu’il entend par progrès, il répondra que c’est la vapeur, l’électricité et l’éclairage au gaz, miracles inconnus aux Romains, et que ces découvertes témoignent pleinement de notre supériorité sur les anciens ; tant il s’est fait de ténèbres dans ce malheureux cerveau et tant les choses de l’ordre matériel et de l’ordre spirituel s’y sont si bizarrement confondues !",
+      contexte: "Baudelaire rend compte de l’Exposition universelle de Paris (1855), vitrine de l’industrie et des arts. Il s’en prend à la croyance, très répandue, en un progrès général et automatique.",
+      analyse: "<p>L’<b>oxymore</b> « fanal obscur » (une lumière qui obscurcit) et sa reprise ironique « lanterne moderne » qui « jette des ténèbres » condensent la critique. Le vocabulaire commercial (« breveté sans garantie ») ridiculise l’idée. Le <b>discours rapporté</b> du « bon Français » de l’estaminet, avec son énumération (« la vapeur, l’électricité et l’éclairage au gaz »), donne un exemple de la confusion dénoncée.</p>",
+      enjeu: "<p>Distinguer progrès technique et progrès moral : avoir plus de moyens ne rend ni plus libre ni meilleur. L’idée du progrès automatique « a déchargé chacun de son devoir » : la responsabilité disparaît.</p>",
+      liens: "Rousseau (le progrès des arts n’épure pas les mœurs) ; Vigny, « La Maison du berger » ; Valéry, « La Crise de l’esprit » (entrée « Histoire et violence »)." },
+    { id: "t6-6", auteur: "Valéry", oeuvre: "Charmes, « Le Cimetière marin », dernière strophe", ref: "1920", vers: true,
+      extrait: "Le vent se lève !… Il faut tenter de vivre !\nL’air immense ouvre et referme mon livre,\nLa vague en poudre ose jaillir des rocs !\nEnvolez-vous, pages tout éblouies !\nRompez, vagues ! Rompez d’eaux réjouies\nCe toit tranquille où picoraient des focs !",
+      contexte: "Le poème médite, face à la mer, dans le cimetière de Sète où Valéry sera enterré. Pendant des strophes, le poète contemple l’immobilité de midi, la mort, les morts « cachés » sous la terre, la tentation d’une pensée pure et immobile.",
+      analyse: "<p>Rupture de ton : <b>exclamations</b>, <b>impératifs</b> (« Envolez-vous », « Rompez ») et verbes de mouvement (« se lève », « jaillir ») succèdent à la contemplation immobile. Le « toit tranquille » de la première strophe (la mer où passent les voiles) est ici brisé : la <b>reprise</b> de l’image signale le renversement. Le livre qui s’ouvre et se ferme seul dit que la vie l’emporte sur la pensée abstraite.</p>",
+      enjeu: "<p>La finitude n’est pas une raison de désespérer : parce que nous sommes mortels, il faut « tenter de vivre ». La limite devient appel à l’action. Une réponse poétique à l’idée d’un homme qui voudrait abolir la mort.</p>",
+      liens: "Pascal (le roseau pensant) ; Arendt, <i>Journal de pensée</i> (bac 2021) ; Saint-Exupéry, <i>Terre des hommes</i>." }
+  ],
+  sujet: {
+    chapeau: "Dans « La Maison du berger », Alfred de Vigny invite une femme, Éva, à fuir les villes pour la nature. Le chemin de fer se développe alors en France : la ligne Paris-Saint-Germain, première ligne de voyageurs au départ de Paris, a ouvert en 1837.",
+    texte: [
+      "Sur le taureau de fer qui fume, souffle et beugle,",
+      "L’homme a monté trop tôt. Nul ne connaît encor",
+      "Quels orages en lui porte ce rude aveugle,",
+      "Et le gai voyageur lui livre son trésor ;",
+      "Son vieux père et ses fils, il les jette en otage",
+      "Dans le ventre brûlant du taureau de Carthage<sup>1</sup>,",
+      "Qui les rejette en cendre aux pieds du Dieu de l’or.",
+      "Mais il faut triompher du temps et de l’espace,",
+      "Arriver ou mourir. Les marchands sont jaloux.",
+      "L’or pleut sous les chardons de la vapeur qui passe,",
+      "Le moment et le but sont l’univers pour nous.",
+      "Tous se sont dit : « Allons ! » − Mais aucun n’est le maître",
+      "Du dragon mugissant qu’un savant a fait naître ;",
+      "Nous nous sommes joués à plus fort que nous tous.",
+      "[…]",
+      "Évitons ces chemins. — Leur voyage est sans grâces,",
+      "Puisqu’il est aussi prompt, sur ses lignes de fer,",
+      "Que la flèche lancée à travers les espaces",
+      "Qui va de l’arc au but en faisant siffler l’air.",
+      "Ainsi jetée au loin, l’humaine créature",
+      "Ne respire et ne voit, dans toute la nature,",
+      "Qu’un brouillard étouffant que traverse un éclair.",
+      "On n’entendra jamais piaffer sur une route",
+      "Le pied vif du cheval sur les pavés en feu ;",
+      "Adieu, voyages lents, bruits lointains qu’on écoute,",
+      "Le rire du passant, les retards de l’essieu,",
+      "Les détours imprévus des pentes variées,",
+      "Un ami rencontré, les heures oubliées,",
+      "L’espoir d’arriver tard dans un sauvage lieu.",
+      "La distance et le temps sont vaincus. La science",
+      "Trace autour de la terre un chemin triste et droit.",
+      "Le Monde est rétréci par notre expérience",
+      "Et l’équateur n’est plus qu’un anneau trop étroit.",
+      "Plus de hasard. Chacun glissera sur sa ligne,",
+      "Immobile au seul rang que le départ assigne,",
+      "Plongé dans un calcul silencieux et froid."
+    ],
+    ref: "Alfred de Vigny, « La Maison du berger », Les Destinées (1864, posthume ; poème paru en 1844 dans la Revue des Deux Mondes).",
+    notes: "1. Allusion aux sacrifices d’enfants que les auteurs anciens attribuaient aux Carthaginois, qui les auraient jetés dans le brasier d’une statue de bronze ; Vigny en fait un taureau. Sujet inventé pour le site, sur le modèle officiel ; le texte est du domaine public.",
+    q1: { type: "interprétation littéraire", q: "Comment Vigny fait-il du chemin de fer une figure inquiétante du progrès ?",
+      methode: `<ol class="puces"><li><b>Partir de l’image centrale</b> : le « taureau de fer », puis le « dragon mugissant » (v. 1 et 13). Le train est un monstre ; il faut montrer comment les images, les rythmes et les oppositions construisent l’inquiétude.</li><li>Mouvements : le monstre et ses victimes (v. 1-7) ; la course que personne ne maîtrise (v. 8-14) ; le voyage perdu (v. 16-29) ; le monde rétréci (v. 30-36).</li><li>Outils : métaphores et allégories (taureau, dragon, « Dieu de l’or »), mythe antique, champ lexical du feu et de la mort, anaphores et énumérations (v. 25-29), rythme des alexandrins (coupes, rejets : « L’homme a monté trop tôt »), passage du « il » au « nous ».</li></ol>` },
+    q2: { type: "essai philosophique", q: "Le progrès technique nous rend-il maîtres de notre destin ?",
+      methode: `<ol class="puces"><li><b>Les termes</b> : « progrès technique » (accroissement des moyens d’agir sur la nature) ; « maîtres » (qui décide, qui commande, qui n’est pas commandé) ; « destin » (ce qui nous arrive sans que nous le choisissions : maladie, mort, hasard, histoire).</li><li><b>Problème</b> : la technique semble faire reculer le destin (maladies vaincues, distances abolies) ; mais Vigny écrit « aucun n’est le maître / Du dragon mugissant » : la technique ne crée-t-elle pas un nouveau destin, auquel nous sommes soumis ?</li><li>Ne pas oublier le texte du sujet : la formule « Nous nous sommes joués à plus fort que nous tous » peut servir de point de départ et de fil conducteur.</li></ol>` }
+  }
+});
+(function () {
+  var e = HLP.ENTREES[HLP.ENTREES.length - 1];
+  e.sujet.q1.intro = `<p>En 1844, quand Vigny publie « La Maison du berger » dans la <i>Revue des Deux Mondes</i>, le chemin de fer est encore une nouveauté : la première ligne de voyageurs au départ de Paris a ouvert en 1837, et la catastrophe de Meudon, en 1842, a fait plusieurs dizaines de morts. Dans ce long poème qui invite une femme, Éva, à fuir les villes, le poète consacre plusieurs strophes au train. Là où son époque célèbre la victoire de la science sur la distance, il voit un monstre. Comment Vigny fait-il du chemin de fer une figure inquiétante du progrès ? Nous verrons d’abord comment il transforme la machine en monstre mythologique qui dévore ses passagers, puis comment il montre une humanité entraînée dans une course qu’elle ne maîtrise plus, avant d’étudier la perte que ce progrès fait subir à l’expérience humaine du voyage et du monde.</p>`;
+  e.sujet.q1.plan = [
+    ["I. Le train, monstre dévorant (v. 1-7)", `<ul class="puces"><li>La <b>métaphore</b> du « taureau de fer », renforcée par le rythme ternaire « qui fume, souffle et beugle » : la machine devient un animal furieux. Le <b>rejet</b> « L’homme a monté trop tôt » met en relief l’imprudence humaine.</li><li>« ce rude aveugle » porte des « orages » : la force n’a pas d’yeux, elle ne sait pas où elle va. Le « gai voyageur » ignore le danger : <b>ironie tragique</b>.</li><li>Le <b>mythe</b> du « taureau de Carthage » transforme le voyage en sacrifice humain : le « vieux père et ses fils » sont rejetés « en cendre » (souvenir possible de Meudon). Le « Dieu de l’or » désigne la vraie divinité de ce culte : l’argent.</li></ul>` ],
+    ["II. Une course que personne ne maîtrise (v. 8-14)", `<ul class="puces"><li>Le <b>discours</b> de l’époque est cité pour être jugé : « Mais il faut triompher du temps et de l’espace, / Arriver ou mourir » ; l’alternative brutale révèle l’absurdité de la vitesse érigée en absolu.</li><li>Le moteur caché, c’est le commerce : « Les marchands sont jaloux », « L’or pleut ». Le progrès technique est aussi un système de captation des richesses (le programme le note).</li><li>Le tiret marque le retournement : « Mais aucun n’est le maître / Du dragon mugissant qu’un savant a fait naître ». La créature échappe à son créateur ; le dernier vers, au « nous », généralise : « Nous nous sommes joués à plus fort que nous tous. »</li></ul>` ],
+    ["III. Le voyage perdu, le monde rétréci (v. 16-36)", `<ul class="puces"><li>La <b>comparaison</b> avec la flèche montre un trajet sans étapes ; « l’humaine créature » ne voit plus « qu’un brouillard étouffant que traverse un éclair » : la vitesse supprime le paysage.</li><li>L’<b>adieu</b> au voyage lent repose sur une <b>énumération</b> nostalgique (« Le rire du passant, les retards de l’essieu, […] Un ami rencontré ») : tout ce que le progrès élimine, le hasard, la rencontre, la lenteur, fait la valeur humaine du voyage.</li><li>La dernière strophe est une <b>prophétie</b> : « La distance et le temps sont vaincus », mais le chemin est « triste et droit », le monde « rétréci », l’homme « Immobile au seul rang que le départ assigne, / Plongé dans un calcul silencieux et froid ». Le voyageur devient un objet transporté : paradoxe d’un mouvement qui immobilise.</li></ul>` ]
+  ];
+  e.sujet.q1.concl = `<p>Vigny fait du chemin de fer une figure inquiétante du progrès en le transformant en monstre mythologique, taureau sacrificiel et dragon que personne ne maîtrise, puis en montrant ce que sa victoire sur l’espace fait perdre : la lenteur, le hasard, la rencontre, le regard sur le monde. Le poème ne refuse pas la technique en bloc ; il en dénonce l’imprudence (« trop tôt ») et l’asservissement à l’or. Un siècle plus tard, Giono décrira de même « l’immense armée des machines » qui transforme l’homme qui s’en sert : la question de Vigny, celle de la maîtrise, est restée la nôtre.</p>`;
+  e.sujet.q2.intro = `<p>« Mais aucun n’est le maître / Du dragon mugissant qu’un savant a fait naître » : en 1844, Vigny voit dans le chemin de fer une puissance que les hommes ont créée et qui les entraîne. On pense pourtant spontanément que le progrès technique nous libère : il guérit des maladies, abolit les distances, protège des famines, bref il fait reculer ce qui nous arrivait autrefois sans que nous puissions rien y faire. Le progrès technique désigne l’accroissement de nos moyens d’agir sur la nature ; être maître, c’est décider et ne pas être commandé ; le destin, c’est ce qui nous arrive sans que nous l’ayons choisi. Le problème est donc le suivant : la technique, en nous donnant du pouvoir, nous rend-elle maîtres de ce qui nous arrive, ou bien crée-t-elle un nouveau destin, auquel nous sommes d’autant plus soumis que nous l’avons nous-mêmes produit ? Nous verrons d’abord que la technique fait reculer le destin, puis qu’elle produit de nouvelles fatalités, avant de montrer que la maîtrise ne dépend pas de la technique seule, mais de notre capacité à en fixer les fins et les limites.</p>`;
+  e.sujet.q2.plan = [
+    ["I. La technique fait reculer le destin", `<ul class="puces"><li>L’homme naît démuni ; la technique est sa manière de survivre (Platon, mythe de Prométhée). Ce qui était fatalité devient problème à résoudre.</li><li>Descartes (1637) : la science pratique doit nous rendre « comme maîtres et possesseurs de la nature », d’abord pour la santé. Exemples : vaccins, greffes (1967), prévisions météorologiques.</li><li>Les distances et le temps ne s’imposent plus : « La distance et le temps sont vaincus » (Vigny). La technique élargit le champ de nos choix.</li></ul>` ],
+    ["II. Mais elle crée un nouveau destin", `<ul class="puces"><li>La puissance technique échappe à ceux qui l’ont produite : « Nous nous sommes joués à plus fort que nous tous » (Vigny) ; Frankenstein (1818) ; Giono (bac 2026) : la machine transforme l’homme qui s’en sert.</li><li>Elle devient un système dont on dépend : impossible de vivre sans électricité (Barjavel, <i>Ravage</i>, 1943), sans réseaux numériques. Rousseau : la perfectibilité rend l’homme « tyran de lui-même et de la nature ».</li><li>Elle change l’échelle des risques : Hiroshima (1945), Tchernobyl (1986), dérèglement climatique ; l’humanité peut désormais se détruire (Arendt, bac 2021). Le destin collectif est plus menaçant que jamais.</li></ul>` ],
+    ["III. La maîtrise n’est pas technique, elle est morale et politique", `<ul class="puces"><li>Le mythe le disait déjà : Prométhée donne les arts, pas la « science politique ». Avoir les moyens ne dit pas quoi en faire.</li><li>Être maître de son destin, c’est pouvoir fixer des fins et des limites : Jonas (1979) et la responsabilité envers les générations futures ; les lois de bioéthique qui interdisent ce que la technique permet.</li><li>Et accepter une part de destin : Pascal (le « roseau pensant », grand parce qu’il sait qu’il meurt), Valéry (« Il faut tenter de vivre ! »). La maîtrise totale serait une illusion ; la liberté consiste à choisir dans la limite.</li></ul>` ]
+  ];
+  e.sujet.q2.concl = `<p>Le progrès technique fait réellement reculer une part du destin : maladies, distances, famines. Mais il crée aussi un nouveau destin, celui d’un système que personne ne commande et de risques à l’échelle de l’humanité entière, comme le pressentait Vigny devant son « dragon mugissant ». La maîtrise de notre destin ne peut donc venir de la technique seule : elle dépend de notre capacité à décider de ses fins et de ses limites, c’est-à-dire de la morale et de la politique, et à accepter la finitude qui nous définit.</p>`;
+  e.retenir = `
+<section><h3>Définitions</h3><ul class="puces"><li><b>Limite</b> : borne (ce qu’on ne peut pas) / norme (ce qu’on ne doit pas dépasser). <b>Finitude</b> : condition d’un être mortel et limité. <b>Hybris</b> : démesure.</li><li><b>Technique</b> (<i>technè</i>) ; <b>perfectibilité</b> (Rousseau) ; <b>progrès technique</b> ≠ <b>progrès moral</b> (Baudelaire).</li><li><b>Réparer</b> ≠ <b>augmenter</b> ; <b>transhumanisme</b> ; <b>dystopie</b> ; <b>Anthropocène</b> (Crutzen, 2000).</li></ul></section>
+<section><h3>Thèses et auteurs</h3><ul class="puces"><li><b>Platon</b>, <i>Protagoras</i> : Prométhée donne les arts et le feu, pas la « science politique ».</li><li><b>Bacon</b> (1620) : savoir et pouvoir coïncident. <b>Descartes</b> (1637) : « comme maîtres et possesseurs de la nature », pour la santé d’abord.</li><li><b>Pascal</b> : « un roseau pensant » ; « toute notre dignité consiste dans la pensée ».</li><li><b>Rousseau</b> (1755) : la perfectibilité « presque illimitée » rend l’homme « le tyran de lui-même et de la nature ».</li><li><b>Vigny</b> (1844) : « Sur le taureau de fer […] L’homme a monté trop tôt ». <b>Baudelaire</b> (1855) : le progrès, « fanal obscur ».</li><li><b>Freud</b> : l’homme, « dieu prothétique ». <b>Heidegger</b> : la nature « arraisonnée ». <b>Anders</b> : la « honte prométhéenne ». <b>Arendt</b> : Spoutnik, la société de travailleurs.</li><li><b>Jonas</b> (1979) : « Agis de façon que les effets de ton action soient compatibles avec la permanence d’une vie authentiquement humaine sur terre » (traduction usuelle).</li><li><b>Huxley</b> (1932), <b>Orwell</b> (1949), <b>Barjavel</b> (1943), <b>Dick</b> (1968) : les dystopies. <b>Valéry</b> (1920) : « Il faut tenter de vivre ! »</li></ul></section>
+<section><h3>Le problème en une phrase</h3><p>La technique, qui compense la faiblesse humaine, donne un pouvoir sans limite apparente ; mais ce pouvoir se retourne contre l’homme et la nature : la question n’est plus de savoir jusqu’où l’on peut aller, mais jusqu’où l’on doit aller.</p></section>
+<section><h3>Trois citations à savoir par cœur</h3><ul class="puces"><li>« nous rendre comme maîtres et possesseurs de la nature » (Descartes, 1637)</li><li>« L’homme n’est qu’un roseau le plus faible de la nature ; mais c’est un roseau pensant. » (Pascal)</li><li>« Le vent se lève !… Il faut tenter de vivre ! » (Valéry, 1920)</li></ul></section>`;
+  e.qcm = [
+    { q: "Quelle différence entre une limite-« borne » et une limite-« norme » ?", c: ["La borne est ce qu’on ne peut pas dépasser, la norme ce qu’on ne doit pas dépasser", "Ce sont des synonymes", "La borne est morale, la norme physique", "La norme est toujours naturelle"], r: 0, e: "« Jusqu’où peut-on aller ? » joue sur les deux sens : pouvoir (borne) et devoir (norme).", ref: "e6-1" },
+    { q: "« L’homme n’est qu’un roseau le plus faible de la nature ; mais c’est un roseau pensant. » Qui l’écrit ?", c: ["Pascal", "Descartes", "Montaigne", "Rousseau"], r: 0, e: "<i>Pensées</i> : la dignité de l’homme vient de la pensée, « non de l’espace et de la durée ».", ref: "e6-1" },
+    { q: "Dans le mythe du <i>Protagoras</i>, que vole Prométhée pour l’homme ?", c: ["La connaissance des arts avec le feu", "La science politique", "L’immortalité", "La parole"], r: 0, e: "L’homme a la technique, « mais il n’avait pas la science politique » : il faudra que Zeus la lui donne.", ref: "e6-2" },
+    { q: "Pour Rousseau (1755), la perfectibilité…", c: ["est « presque illimitée » et peut rendre l’homme « le tyran de lui-même et de la nature »", "est propre aux animaux", "garantit le bonheur", "n’existe que chez quelques individus"], r: 0, e: "Elle distingue l’homme de l’animal, mais elle est aussi « la source de tous les malheurs de l’homme ».", ref: "e6-2" },
+    { q: "Quel mot Freud emploie-t-il pour l’homme équipé de ses instruments (1930) ?", c: ["Un « dieu prothétique »", "Un « roseau pensant »", "Un « animal politique »", "Un « surhomme »"], r: 0, e: "<i>Prothesengott</i>, dans <i>Malaise dans la civilisation</i> : grandiose, mais pas fait corps avec ses organes auxiliaires.", ref: "e6-2" },
+    { q: "Dans le <i>Discours de la méthode</i> (1637), quel est le but premier que Descartes assigne à la science pratique ?", c: ["La conservation de la santé", "La guerre", "Le commerce", "La conquête de l’espace"], r: 0, e: "Descartes espère même s’exempter « peut-être de l’affaiblissement de la vieillesse » : l’homme « réparé » avant l’heure.", ref: "e6-3" },
+    { q: "Pourquoi le « comme » de « comme maîtres et possesseurs de la nature » est-il important ?", c: ["Parce que l’homme agit en maître sans être Dieu : il reste une créature finie", "Parce qu’il s’agit d’une comparaison sans importance", "Parce que Descartes refuse toute technique", "Parce que la nature appartient au roi"], r: 0, e: "La modalisation nuance l’ambition : maîtrise par la connaissance, non possession absolue.", ref: "e6-3" },
+    { q: "Pour Baudelaire (1855), l’idée de progrès est…", c: ["un « fanal obscur » qui confond l’ordre matériel et l’ordre spirituel", "la plus belle invention du siècle", "une idée de l’Antiquité", "un sujet indifférent à l’art"], r: 0, e: "Avoir la vapeur et l’électricité ne rend ni plus libre ni meilleur.", ref: "e6-3" },
+    { q: "Quel texte est tombé au bac en 2026 (métropole, jour 1) ?", c: ["Giono, <i>Triomphe de la vie</i> (1941), sur les machines", "Vigny, « La Maison du berger »", "Huxley, <i>Le Meilleur des mondes</i>", "Jonas, <i>Le Principe responsabilité</i>"], r: 0, e: "Essai philosophique : « Dans quelle mesure les machines échappent-elles à l’humain ? »", ref: "e6-10" },
+    { q: "Que désigne la « honte prométhéenne » selon Günther Anders ?", c: ["Le sentiment d’infériorité de l’homme devant les machines qu’il a produites", "La honte d’avoir volé le feu", "La culpabilité écologique", "La peur de la mort"], r: 0, e: "<i>L’Obsolescence de l’homme</i> (1956) : les machines sont plus parfaites et plus durables que nous.", ref: "e6-4" },
+    { q: "Sur quel événement Arendt ouvre-t-elle <i>Condition de l’homme moderne</i> (1958) ?", c: ["Le lancement de Spoutnik (1957)", "Hiroshima (1945)", "Le premier pas sur la Lune (1969)", "Tchernobyl (1986)"], r: 0, e: "Un objet fabriqué par l’homme tourne autour de la Terre : on y voit un premier pas pour échapper à la condition terrestre.", ref: "e6-4" },
+    { q: "Quel impératif Hans Jonas propose-t-il dans <i>Le Principe responsabilité</i> (1979) ?", c: ["Agir de façon que les effets de son action soient compatibles avec la permanence d’une vie authentiquement humaine sur terre", "Agir seulement selon la maxime qu’on peut vouloir universelle", "Chercher le plus grand bonheur du plus grand nombre", "Suivre la nature"], r: 0, e: "La morale doit s’étendre aux générations futures, à la mesure du pouvoir technique ; la deuxième réponse est l’impératif de Kant.", ref: "e6-5" },
+    { q: "Qui a proposé le mot « Anthropocène » en 2000 ?", c: ["Le chimiste Paul Crutzen", "Hans Jonas", "Claude Lévi-Strauss", "Rachel Carson"], r: 0, e: "L’homme comme force géologique ; la commission internationale de stratigraphie a refusé en 2024 d’en faire une époque officielle.", ref: "e6-6" },
+    { q: "Dans <i>Le Meilleur des mondes</i> (1932), Aldous Huxley imagine…", c: ["une société où les enfants sont fabriqués et conditionnés au bonheur", "une surveillance par le télécran", "un monde privé d’électricité", "des robots soumis à trois lois"], r: 0, e: "Le télécran est dans <i>1984</i> (Orwell), la panne d’électricité dans <i>Ravage</i> (Barjavel), les trois lois chez Asimov.", ref: "e6-7" },
+    { q: "Que propose Alan Turing en 1950 ?", c: ["Un « jeu de l’imitation » : une machine pense-t-elle si on ne la distingue plus d’un humain dans une conversation ?", "Les trois lois de la robotique", "La première bombe atomique", "Le premier ordinateur personnel"], r: 0, e: "Article « Computing Machinery and Intelligence ».", ref: "e6-8" }
+  ];
+  e.cartes = [
+    { t: "notion", cat: "Notion", r: "Limite : borne / norme", v: "Borne : ce qu’on ne peut pas dépasser. Norme : ce qu’on ne doit pas dépasser." },
+    { t: "notion", cat: "Notion", r: "Finitude", v: "Condition d’un être mortel, dépendant d’un corps, ignorant d’une partie du monde et de lui-même." },
+    { t: "notion", cat: "Notion", r: "Hybris", v: "La démesure (grec), le dépassement orgueilleux des limites humaines, puni par la Némésis." },
+    { t: "notion", cat: "Notion", r: "Perfectibilité", v: "Rousseau (1755) : faculté « presque illimitée » de se transformer, source des progrès et des malheurs de l’homme." },
+    { t: "notion", cat: "Notion", r: "Réparer / augmenter", v: "Réparer : revenir à une norme de santé. Augmenter : dépasser les capacités humaines ordinaires (transhumanisme)." },
+    { t: "notion", cat: "Notion", r: "Anthropocène", v: "Paul Crutzen (2000) : l’homme devenu force géologique ; refusé comme époque officielle en 2024." },
+    { t: "notion", cat: "Notion", r: "Heuristique de la peur", v: "Jonas (1979) : imaginer le pire pour savoir ce qu’il faut préserver." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« L’homme eut ainsi la science propre à conserver sa vie ; mais il n’avait pas la science politique »", v: "Platon, <i>Protagoras</i>, mythe de Prométhée (trad. Chambry)." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« nous rendre comme maîtres et possesseurs de la nature »", v: "Descartes, <i>Discours de la méthode</i>, VI (1637)." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« c’est un roseau pensant »", v: "Pascal, <i>Pensées</i>." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "La perfectibilité rend l’homme « le tyran de lui-même et de la nature »", v: "Rousseau, <i>Discours sur l’origine de l’inégalité</i> (1755)." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« Sur le taureau de fer qui fume, souffle et beugle, / L’homme a monté trop tôt. »", v: "Vigny, « La Maison du berger » (1844)." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "Le progrès, « Ce fanal obscur »", v: "Baudelaire, « Exposition universelle, 1855 »." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« Le vent se lève !… Il faut tenter de vivre ! »", v: "Valéry, « Le Cimetière marin » (1920)." },
+    { t: "citation", cat: "Qui l’a écrit ?", r: "« Agis de façon que les effets de ton action soient compatibles avec la permanence d’une vie authentiquement humaine sur terre »", v: "Hans Jonas, <i>Le Principe responsabilité</i> (1979), traduction usuelle de Jean Greisch." },
+    { t: "date", cat: "Date", r: "Hiroshima / Spoutnik", v: "6 août 1945 / 4 octobre 1957." },
+    { t: "date", cat: "Date", r: "Première greffe du cœur / Deep Blue bat Kasparov", v: "3 décembre 1967 (Christiaan Barnard) / 11 mai 1997." },
+    { t: "date", cat: "Œuvre", r: "<i>Le Meilleur des mondes</i> / <i>1984</i>", v: "Aldous Huxley, 1932 / George Orwell, 1949." }
+  ];
+  HLP.QUI.push(
+    { c: "nous rendre comme maîtres et possesseurs de la nature", a: "Descartes", o: "Discours de la méthode, VI", d: "1637", e: "Le projet technique moderne." },
+    { c: "L’homme n’est qu’un roseau le plus faible de la nature ; mais c’est un roseau pensant.", a: "Pascal", o: "Pensées", d: "1670 (posthume)", e: "La grandeur dans la faiblesse." },
+    { c: "Sur le taureau de fer qui fume, souffle et beugle, / L’homme a monté trop tôt.", a: "Vigny", o: "« La Maison du berger », Les Destinées", d: "1844", e: "Le chemin de fer." },
+    { c: "Je veux parler de l’idée du progrès. Ce fanal obscur, invention du philosophisme actuel", a: "Baudelaire", o: "« Exposition universelle, 1855 »", d: "1855", e: "Progrès matériel ≠ progrès moral." },
+    { c: "Le vent se lève !… Il faut tenter de vivre !", a: "Valéry", o: "« Le Cimetière marin », Charmes", d: "1920", e: "La finitude comme élan." }
+  );
+})();
+
 /* Annales liées à chaque entrée et sujets d'essai supplémentaires (avec pistes). Rattachés par identifiant d'entrée. */
 (function (H) {
   function e(id) { for (var i = 0; i < H.ENTREES.length; i++) if (H.ENTREES[i].id === id) return H.ENTREES[i]; return null; }
@@ -2047,7 +2630,8 @@ HLP.ATELIER = [
               etapes: [{ montre: [ids], legende }] } ;
    - frise  : { debut, fin, pas, periodes: [{ id, de, a, nom, rang }], evts: [{ id, an, t, h, g }], etapes: [{ an, montre, legende }] }.
    Une entrée les appelle par son champ anims: ["id", …] ; une page par <div data-anim="id"></div>. */
-HLP.ANIMS = {
+HLP.ANIMS = HLP.ANIMS || {};
+Object.assign(HLP.ANIMS, {
   "e1-paradoxe": { type: "graphe", titre: "Le paradoxe de l’Émile : éduquer sans dénaturer", w: 640, h: 420,
     intro: "Rousseau ouvre son traité par une accusation contre l’homme… puis la retourne. Suis l’argument étape par étape.",
     noeuds: [
@@ -2221,7 +2805,7 @@ HLP.ANIMS = {
       { montre: ["iii"], legende: "<b>Partie III</b> : une réponse plus juste, qui tient compte des deux premières." },
       { montre: ["c"], legende: "<b>Conclure</b> : répondre clairement à la question posée, sans formule creuse." }
     ] }
-};
+});
 Object.assign(HLP.ANIMS, {
   "e4-frise": { type: "frise", titre: "Les ruptures se suivent : de la modernité aux avant-gardes", debut: 1860, fin: 1965, pas: 15, h: 300, min: 860,
     intro: "Chaque rupture répond à la précédente. Dates indicatives pour les mouvements, exactes pour les œuvres.",
@@ -2295,6 +2879,172 @@ Object.assign(HLP.ANIMS, {
       { montre: ["c"], legende: "<b>Dépassement :</b> la création réorganise l’héritage au lieu de l’abolir." },
       { montre: ["ce"], legende: "<b>Exemples</b> : les variations de Picasso, les mythes réécrits au théâtre." },
       { montre: ["z"], legende: "<b>Conclusion :</b> la rupture est un geste réel, mais elle appartient elle-même à une histoire." }
+    ] }
+});
+
+/* Animations des entrées « Histoire et violence » (e5) et « L’humain et ses limites » (e6) ; moteur : animations.js. */
+Object.assign(HLP.ANIMS, {
+  "e5-frise": { type: "frise", titre: "La violence et le droit, de 1914 à 2002 : chaque catastrophe appelle une institution", debut: 1910, fin: 2005, pas: 10, h: 330, min: 860,
+    intro: "Suis le curseur : à chaque grande violence du siècle répond, souvent après coup, une tentative du droit pour la limiter.",
+    periodes: [
+      { id: "p1", de: 1914, a: 1918, nom: "14-18", rang: 0, c: 1 },
+      { id: "p2", de: 1919, a: 1939, nom: "Entre-deux-guerres", rang: 1, c: 0 },
+      { id: "p3", de: 1939, a: 1945, nom: "39-45", rang: 0, c: 1 },
+      { id: "p5", de: 1945, a: 1975, nom: "Décolonisations", rang: 0, c: 2 },
+      { id: "p4", de: 1947, a: 1991, nom: "Guerre froide", rang: 1, c: 3 }
+    ],
+    evts: [
+      { id: "a", an: 1915, t: "Arméniens", h: 30 }, { id: "b", an: 1916, t: "Verdun · Le Feu", h: 58 },
+      { id: "c", an: 1919, t: "Valéry, « La Crise de l’esprit »", h: 142 }, { id: "d", an: 1920, t: "SDN", h: 114 },
+      { id: "e", an: 1928, t: "Pacte Briand-Kellogg", h: 30 }, { id: "f", an: 1937, t: "Guernica", h: 58 },
+      { id: "g", an: 1942, t: "Shoah", h: 86 }, { id: "h", an: 1945, t: "Hiroshima · ONU · Nuremberg", h: 114 },
+      { id: "i", an: 1948, t: "Convention génocide · DUDH", h: 142 }, { id: "j", an: 1954, t: "Guerre d’Algérie", h: 30 },
+      { id: "k", an: 1961, t: "Procès Eichmann", h: 58 }, { id: "l", an: 1973, t: "L’Archipel du Goulag", h: 86 },
+      { id: "m", an: 1994, t: "Rwanda", h: 30, g: true }, { id: "n", an: 2002, t: "CPI", h: 58, g: true }
+    ],
+    etapes: [
+      { an: 1916, montre: ["p1", "a", "b"], legende: "<b>1914-1918</b> : la guerre devient industrielle (environ 10 millions de soldats tués). En 1915, l’Empire ottoman extermine les Arméniens. Barbusse témoigne dans <i>Le Feu</i> (1916)." },
+      { an: 1919, montre: ["c"], legende: "<b>1919</b> : Valéry tire la leçon : « Nous autres, civilisations, nous savons maintenant que nous sommes mortelles. » La science et les vertus ont servi à tuer." },
+      { an: 1920, montre: ["p2", "d"], legende: "<b>Le droit répond</b> : la Société des Nations (1920) réalise en partie le projet de Kant, une fédération des peuples pour garantir la paix." },
+      { an: 1928, montre: ["e"], legende: "<b>1928</b> : par le pacte Briand-Kellogg, les États signataires renoncent à la guerre comme instrument de politique nationale. Mais le droit n’a pas de force pour se faire respecter." },
+      { an: 1937, montre: ["f"], legende: "<b>26 avril 1937</b> : l’aviation allemande et italienne bombarde Guernica. Picasso peint, Éluard écrit : l’art dénonce ce que le droit n’a pas empêché." },
+      { an: 1942, montre: ["p3", "g"], legende: "<b>La Shoah</b> : environ six millions de Juifs assassinés. Une violence d’une nature nouvelle, le génocide, que les mots ont du mal à dire (Levi, Antelme)." },
+      { an: 1945, montre: ["h"], legende: "<b>1945</b> : Hiroshima et Nagasaki montrent que l’humanité peut se détruire. La Charte des Nations unies interdit le recours à la force ; Nuremberg juge les crimes contre l’humanité." },
+      { an: 1948, montre: ["i"], legende: "<b>Décembre 1948</b> : convention contre le génocide (le 9) et Déclaration universelle des droits de l’homme (le 10). La violence extrême reçoit un nom juridique." },
+      { an: 1954, montre: ["p5", "p4", "j"], legende: "<b>Décolonisations et guerre froide</b> : des peuples dominés revendiquent leur dignité, parfois par les armes (guerre d’Algérie, 1954-1962). Toutes les violences sont-elles comparables ?" },
+      { an: 1961, montre: ["k"], legende: "<b>1961</b> : procès d’Eichmann à Jérusalem. Arendt y voit la « banalité du mal » : un fonctionnaire qui ne pense pas peut organiser l’extermination." },
+      { an: 1973, montre: ["l"], legende: "<b>1973</b> : Soljenitsyne publie <i>L’Archipel du Goulag</i>. Le système concentrationnaire soviétique est révélé au grand public." },
+      { an: 1994, montre: ["m"], legende: "<b>Avril-juillet 1994</b> : génocide des Tutsi au Rwanda, au moins 800 000 morts. Les casques bleus présents n’ont pas les moyens d’agir : « La justice sans la force est impuissante » (Pascal)." },
+      { an: 2002, montre: ["n"], legende: "<b>2002</b> : la Cour pénale internationale entre en fonction. <b>Bilan</b> : le droit avance après chaque catastrophe ; il suit la violence plus qu’il ne la prévient, mais il la nomme et la juge." }
+    ] },
+  "e5-kant": { type: "graphe", titre: "Kant : comment la discorde mène (peut-être) à la paix", w: 640, h: 530,
+    intro: "Kant ne croit pas les hommes bons. Il montre comment leur rivalité même peut les conduire au droit. Suis l’argument, puis l’objection du XX<sup>e</sup> siècle.",
+    noeuds: [
+      { id: "a", x: 170, y: 10, w: 300, h: 54, s: "these", t: "Les hommes : une « insociable|sociabilité » (1784)" },
+      { id: "b", x: 20, y: 100, w: 280, h: 54, s: "arg", t: "Ils ont besoin les uns|des autres : ils s’associent" },
+      { id: "c", x: 340, y: 100, w: 280, h: 54, s: "obj", t: "Ambition, rivalité, cupidité :|ils se repoussent" },
+      { id: "d", x: 170, y: 190, w: 300, h: 54, s: "arg", t: "Cet antagonisme développe les talents|et force à fonder des États" },
+      { id: "e", x: 20, y: 280, w: 280, h: 54, s: "obj", t: "Mais entre États : état de nature,|donc menace de guerre" },
+      { id: "f", x: 340, y: 280, w: 280, h: 54, s: "arg", t: "Paix perpétuelle (1795) :|fédération d’États libres" },
+      { id: "g", x: 20, y: 370, w: 280, h: 54, s: "ex", t: "En partie réalisée : SDN (1920),|ONU (1945), CPI (2002)" },
+      { id: "h", x: 340, y: 370, w: 280, h: 54, s: "obj", t: "Objection : 1914, la Shoah,|Hiroshima (Valéry, Weil)" },
+      { id: "i", x: 120, y: 460, w: 400, h: 58, s: "concl", t: "L’état de paix « a donc besoin|d’être établi » : c’est une tâche" }
+    ],
+    liens: [{ de: "a", a: "b", t: "d’un côté" }, { de: "a", a: "c", t: "de l’autre" }, { de: "b", a: "d" }, { de: "c", a: "d", t: "mais" }, { de: "d", a: "e", t: "pourtant", s: "contre" },
+      { de: "e", a: "f", t: "remède" }, { de: "f", a: "g" }, { de: "g", a: "h", t: "mais", s: "contre" }, { de: "g", a: "i" }, { de: "h", a: "i" }],
+    etapes: [
+      { montre: ["a"], legende: "<b>Le point de départ.</b> Les hommes ne vivent ni par instinct comme les animaux, ni par raison comme des citoyens du monde : ils ont une « insociable sociabilité »." },
+      { montre: ["b"], legende: "<b>Sociabilité.</b> Seul, l’homme ne développe pas ses capacités : il cherche la société des autres." },
+      { montre: ["c"], legende: "<b>Insociabilité.</b> Il veut aussi tout diriger selon son seul intérêt : il rencontre partout la résistance des autres, et leur résiste." },
+      { montre: ["d"], legende: "<b>Le retournement.</b> Cette rivalité est féconde : elle éveille les talents et oblige les hommes à se donner des lois communes. La nature se sert de la discorde." },
+      { montre: ["e"], legende: "<b>Le problème recommence plus haut.</b> Les États restent entre eux comme les individus sans lois : la guerre menace toujours." },
+      { montre: ["f"], legende: "<b>La solution (1795).</b> Une fédération d’États libres et un droit cosmopolitique. Sinon, la seule paix perpétuelle serait celle du « vaste cimetière du genre humain »." },
+      { montre: ["g"], legende: "<b>L’histoire semble lui donner raison</b> : Société des Nations, Organisation des Nations unies, Cour pénale internationale." },
+      { montre: ["h"], legende: "<b>Mais le XX<sup>e</sup> siècle objecte</b> : deux guerres mondiales, les génocides, la bombe. Valéry et Simone Weil doutent d’un progrès qui ferait reculer la force." },
+      { montre: ["i"], legende: "<b>Ce qu’on retient.</b> Kant n’annonce pas une paix fatale : l’état de paix « a donc besoin d’être établi ». Le progrès est un devoir, pas une garantie." }
+    ] },
+  "e5-weil": { type: "texte", titre: "Lecture animée : Simone Weil, « L’Iliade ou le poème de la force »",
+    intro: "Les trois mouvements du texte du sujet type bac s’allument au fil de la lecture. Bleu : la force au centre de l’histoire ; rose : de l’homme à la chose ; cuivre : personne ne possède la force.",
+    segs: [
+      { t: "Le vrai héros, le vrai sujet, le centre de l’Iliade, c’est la force.", m: 1, p: 1, titre: "Une définition par substitution", n: "Le rythme ternaire (« héros », « sujet », « centre ») retarde la révélation : ni Achille ni Hector, mais une abstraction. Le présentatif « c’est » donne à la phrase la force d’une thèse." },
+      " ",
+      { t: "La force qui est maniée par les hommes, la force qui soumet les hommes, la force devant quoi la chair des hommes se rétracte.", m: 1, p: 1, titre: "L’anaphore", n: "« la force » est repris trois fois, et « les hommes » aussi : la phrase passe de l’homme qui agit à l’homme qui subit, jusqu’à la « chair » qui recule. Tous les rapports à la force sont couverts." },
+      " ",
+      { t: "Ceux qui avaient rêvé que la force, grâce au progrès, appartenait désormais au passé, ont pu voir dans ce poème un document ; ceux qui savent discerner la force, aujourd’hui comme autrefois, au centre de toute histoire humaine, y trouvent le plus beau, le plus pur des miroirs.", m: 1, titre: "Deux lectures, deux philosophies de l’histoire", n: "L’opposition « document » / « miroir » oppose ceux qui croient au progrès (la force serait du passé) et ceux qui voient la force « au centre de toute histoire humaine ». En 1940, Simone Weil a choisi." },
+      "\n",
+      { t: "La force, c’est ce qui fait de quiconque lui est soumis une chose.", m: 2, p: 1, titre: "La thèse", n: "Définition générale (« quiconque ») et radicale : la force ne blesse pas seulement, elle change la nature de celui qu’elle touche. Sujet devient objet." },
+      " Quand elle s’exerce jusqu’au bout, elle fait de l’homme une chose au sens le plus littéral, car elle en fait un cadavre. ",
+      { t: "Il y avait quelqu’un, et, un instant plus tard, il n’y a personne.", m: 2, p: 1, titre: "Deux pronoms", n: "« quelqu’un » / « personne » : la phrase, au rythme brisé par les virgules, fait disparaître le sujet. Passage de l’imparfait au présent : la mort est immédiate et définitive." },
+      " […] ",
+      { t: "La force qui tue est une forme sommaire, grossière de la force.", m: 2, titre: "La gradation vers le pire", n: "Tuer n’est que la forme « grossière » : le texte annonce une force plus « surprenante », celle qui menace sans tuer encore." },
+      " […] de toutes façons, elle change l’homme en pierre. […] ",
+      { t: "Il est vivant, il a une âme ; il est pourtant une chose.", m: 2, p: 1, titre: "Le paradoxe central", n: "Trois propositions courtes ; « pourtant » renverse les deux premières. C’est l’esclave, le prisonnier, le suppliant : vivants, conscients, traités et se vivant comme des choses." },
+      "\n",
+      { t: "Aussi impitoyablement la force écrase, aussi impitoyablement elle enivre quiconque la possède, ou croit la posséder.", m: 3, p: 1, titre: "Le parallélisme", n: "« Aussi… aussi… » met sur le même plan la victime et le vainqueur. La correction « ou croit la posséder » prépare la chute." },
+      " ",
+      { t: "Personne ne la possède véritablement.", m: 3, titre: "La chute", n: "Phrase brève, négation totale : celui qui manie la force est lui-même manié par elle. Le vainqueur devient une chose à son tour. C’est la grande leçon du texte, à placer dans la troisième partie de l’explication." }
+    ] },
+  "e6-promethee": { type: "graphe", titre: "Jusqu’où peut-on aller ? La puissance technique et son envers", w: 640, h: 530,
+    intro: "De Prométhée à Hans Jonas : comment le pouvoir technique, né d’une faiblesse, finit par poser la question de ses propres limites.",
+    noeuds: [
+      { id: "a", x: 170, y: 10, w: 300, h: 54, s: "these", t: "L’homme naît « nu » : Prométhée|lui donne les arts et le feu" },
+      { id: "b", x: 20, y: 100, w: 280, h: 54, s: "arg", t: "Perfectibilité « presque|illimitée » (Rousseau, 1755)" },
+      { id: "c", x: 340, y: 100, w: 280, h: 54, s: "arg", t: "« comme maîtres et possesseurs|de la nature » (Descartes)" },
+      { id: "d", x: 170, y: 190, w: 300, h: 54, s: "ex", t: "Vapeur, rail, électricité :|la foi dans le progrès (XIXe s.)" },
+      { id: "e", x: 20, y: 280, w: 280, h: 54, s: "obj", t: "Le train, « dragon mugissant »|dont nul n’est maître (Vigny)" },
+      { id: "f", x: 340, y: 280, w: 280, h: 54, s: "obj", t: "Hiroshima (1945) : l’humanité|peut se détruire elle-même" },
+      { id: "g", x: 20, y: 370, w: 280, h: 54, s: "obj", t: "Crise écologique : le spectre|d’un monde inhabitable" },
+      { id: "h", x: 340, y: 370, w: 280, h: 54, s: "obj", t: "La technique vise l’homme|lui-même : réparé, augmenté ?" },
+      { id: "i", x: 120, y: 460, w: 400, h: 58, s: "concl", t: "Jonas (1979) : une responsabilité|à la mesure de notre pouvoir" }
+    ],
+    liens: [{ de: "a", a: "b", t: "faiblesse" }, { de: "a", a: "c", t: "puissance" }, { de: "b", a: "d" }, { de: "c", a: "d" }, { de: "d", a: "e", t: "envers", s: "contre" },
+      { de: "d", a: "f", t: "envers", s: "contre" }, { de: "e", a: "g" }, { de: "f", a: "h" }, { de: "g", a: "i", t: "donc" }, { de: "h", a: "i", t: "donc" }],
+    etapes: [
+      { montre: ["a"], legende: "<b>Le mythe (Platon, <i>Protagoras</i>).</b> Épiméthée a tout donné aux animaux ; l’homme est « nu, sans chaussures, ni couverture, ni armes ». Prométhée vole pour lui les arts et le feu." },
+      { montre: ["b"], legende: "<b>Rousseau (1755)</b> : l’homme se définit par la perfectibilité, une faculté « presque illimitée »… qui peut le rendre « le tyran de lui-même et de la nature »." },
+      { montre: ["c"], legende: "<b>Descartes (1637)</b> : la science doit devenir pratique et nous rendre « comme maîtres et possesseurs de la nature », d’abord pour la santé." },
+      { montre: ["d"], legende: "<b>Le XIX<sup>e</sup> siècle</b> croit au progrès : la vapeur, le chemin de fer, l’électricité. Baudelaire se moque de ce « fanal obscur » (1855)." },
+      { montre: ["e"], legende: "<b>Premier envers</b> : la machine échappe à ceux qui l’ont faite. Vigny (1844) : « aucun n’est le maître / Du dragon mugissant qu’un savant a fait naître »." },
+      { montre: ["f"], legende: "<b>Changement d’échelle</b> : le 6 août 1945, Hiroshima. Pour la première fois, l’humanité peut se détruire elle-même." },
+      { montre: ["g"], legende: "<b>La nature</b> n’est plus un stock inépuisable : pesticides (Carson, 1962), climat (GIEC, 1988), « le spectre d’un monde inhabitable » (programme)." },
+      { montre: ["h"], legende: "<b>L’homme lui-même</b> devient matière à transformer : greffes, génétique (CRISPR, 2012), intelligence artificielle. Quel bonheur pour un homme « augmenté » ?" },
+      { montre: ["i"], legende: "<b>La réponse de Jonas (1979)</b> : agir de façon que les effets de nos actions restent compatibles avec la permanence d’une vie authentiquement humaine sur terre. La question n’est plus « jusqu’où peut-on ? » mais « jusqu’où doit-on ? »." }
+    ] },
+  "e6-frise": { type: "frise", titre: "Les seuils de la puissance technique, de 1945 à nos jours", debut: 1940, fin: 2025, pas: 10, h: 330, min: 860,
+    intro: "Le curseur parcourt quatre-vingts ans : à chaque pouvoir nouveau répond une alerte, ou une limite que le droit essaie de poser.",
+    periodes: [
+      { id: "p1", de: 1945, a: 1991, nom: "Âge atomique et guerre froide", rang: 0, c: 1 },
+      { id: "p2", de: 1957, a: 1972, nom: "Conquête spatiale", rang: 1, c: 0 },
+      { id: "p3", de: 1991, a: 2025, nom: "Âge numérique", rang: 0, c: 2 },
+      { id: "p4", de: 1988, a: 2025, nom: "Alerte climatique", rang: 1, c: 3 }
+    ],
+    evts: [
+      { id: "a", an: 1945, t: "Hiroshima", h: 30 }, { id: "b", an: 1950, t: "Turing", h: 58 },
+      { id: "c", an: 1957, t: "Spoutnik", h: 86 }, { id: "d", an: 1962, t: "Printemps silencieux", h: 114 },
+      { id: "e", an: 1967, t: "Greffe du cœur", h: 30 }, { id: "f", an: 1969, t: "Apollo 11", h: 58 },
+      { id: "g", an: 1972, t: "Club de Rome", h: 142 }, { id: "h", an: 1979, t: "Jonas", h: 86 },
+      { id: "i", an: 1986, t: "Tchernobyl", h: 30 }, { id: "j", an: 1994, t: "Loi de bioéthique", h: 114 },
+      { id: "k", an: 1997, t: "Dolly · Deep Blue", h: 58 }, { id: "l", an: 2012, t: "CRISPR", h: 86, g: true },
+      { id: "m", an: 2015, t: "Accord de Paris", h: 142, g: true }, { id: "n", an: 2022, t: "ChatGPT", h: 30, g: true }
+    ],
+    etapes: [
+      { an: 1945, montre: ["p1", "a"], legende: "<b>6 août 1945</b> : Hiroshima. L’humanité acquiert le pouvoir de se détruire ; Arendt (1953), puis Jonas, en tireront les conséquences." },
+      { an: 1950, montre: ["b"], legende: "<b>1950</b> : Alan Turing propose le « jeu de l’imitation » : une machine pense-t-elle si on ne la distingue plus d’un humain ?" },
+      { an: 1957, montre: ["p2", "c"], legende: "<b>4 octobre 1957</b> : Spoutnik. Arendt ouvre <i>Condition de l’homme moderne</i> (1958) sur ce désir d’échapper à la Terre." },
+      { an: 1962, montre: ["d"], legende: "<b>1962</b> : Rachel Carson, <i>Printemps silencieux</i>, alerte sur les pesticides. La nature n’est pas un stock inépuisable." },
+      { an: 1967, montre: ["e"], legende: "<b>3 décembre 1967</b> : Christiaan Barnard réussit la première greffe du cœur. La médecine répare ce qu’on croyait irréparable." },
+      { an: 1969, montre: ["f"], legende: "<b>Juillet 1969</b> : des hommes marchent sur la Lune. La limite terrestre est franchie." },
+      { an: 1972, montre: ["g"], legende: "<b>1972</b> : le rapport Meadows pour le Club de Rome annonce les limites physiques de la croissance." },
+      { an: 1979, montre: ["h"], legende: "<b>1979</b> : Hans Jonas, <i>Le Principe responsabilité</i> : une éthique à la mesure du pouvoir technique, tournée vers les générations futures." },
+      { an: 1986, montre: ["i"], legende: "<b>26 avril 1986</b> : l’accident de Tchernobyl dépasse les frontières et les générations." },
+      { an: 1994, montre: ["p3", "p4", "j"], legende: "<b>1994</b> : première loi française de bioéthique. Le droit pose des limites là où la technique n’en a plus. Le GIEC existe depuis 1988." },
+      { an: 1997, montre: ["k"], legende: "<b>1997</b> : la brebis Dolly, premier mammifère cloné à partir d’une cellule adulte, est présentée ; le 11 mai, Deep Blue bat Kasparov aux échecs." },
+      { an: 2012, montre: ["l"], legende: "<b>2012</b> : Charpentier et Doudna décrivent l’outil CRISPR-Cas9, qui permet de modifier le génome avec précision (prix Nobel de chimie 2020)." },
+      { an: 2015, montre: ["m"], legende: "<b>12 décembre 2015</b> : l’accord de Paris vise à contenir le réchauffement nettement en dessous de 2 °C." },
+      { an: 2022, montre: ["n"], legende: "<b>30 novembre 2022</b> : ChatGPT est mis en ligne. <b>Bilan</b> : chaque seuil franchi déplace la question, de « que peut-on faire ? » à « que doit-on faire ? »." }
+    ] },
+  "e6-vigny": { type: "texte", vers: true, titre: "Lecture animée : Vigny, « La Maison du berger » (le chemin de fer)",
+    intro: "Les mouvements du texte du sujet type bac s’allument au fil de la lecture. Bleu : le monstre ; rose : la course sans maître ; cuivre : le voyage perdu.",
+    segs: [
+      { t: "Sur le taureau de fer qui fume, souffle et beugle,", m: 1, p: 1, titre: "La métaphore animale", n: "Le train devient un taureau ; le rythme ternaire « fume, souffle et beugle » fait entendre la machine à vapeur comme un animal furieux." },
+      "\n",
+      { t: "L’homme a monté trop tôt.", m: 1, p: 1, titre: "Le rejet", n: "Rejeté au début du vers, le jugement « L’homme a monté trop tôt » tombe comme un verdict : ce n’est pas la technique qui est condamnée, c’est la précipitation." },
+      " Nul ne connaît encor\nQuels orages en lui porte ce rude aveugle,\nEt le gai voyageur lui livre son trésor ;\n",
+      { t: "Son vieux père et ses fils, il les jette en otage\nDans le ventre brûlant du taureau de Carthage,\nQui les rejette en cendre aux pieds du Dieu de l’or.", m: 1, p: 1, titre: "Le mythe du sacrifice", n: "Allusion aux sacrifices d’enfants attribués à Carthage : le voyage devient un sacrifice humain. Le « Dieu de l’or » nomme la vraie divinité de ce culte : l’argent." },
+      "\n",
+      { t: "Mais il faut triompher du temps et de l’espace,\nArriver ou mourir.", m: 2, p: 1, titre: "Le discours de l’époque", n: "Vigny cite pour juger : l’alternative brutale « Arriver ou mourir » révèle l’absurdité de la vitesse érigée en absolu." },
+      " ",
+      { t: "Les marchands sont jaloux.\nL’or pleut sous les chardons de la vapeur qui passe,", m: 2, titre: "Le moteur caché", n: "Le progrès sert d’abord le commerce. Le programme parle des « systèmes de captation des richesses »." },
+      "\nLe moment et le but sont l’univers pour nous.\nTous se sont dit : « Allons ! » − ",
+      { t: "Mais aucun n’est le maître\nDu dragon mugissant qu’un savant a fait naître ;\nNous nous sommes joués à plus fort que nous tous.", m: 2, p: 1, titre: "La créature échappe au créateur", n: "Le tiret marque le retournement. Le « dragon » renforce le monstre ; le « nous » final inclut le poète et le lecteur : toute l’humanité a perdu la maîtrise." },
+      "\n[…]\n",
+      { t: "Évitons ces chemins. — Leur voyage est sans grâces,", m: 3, titre: "Le refus", n: "Impératif à la première personne du pluriel : le poète invite Éva à un autre voyage, celui de la « maison du berger », lent et libre." },
+      "\nPuisqu’il est aussi prompt, sur ses lignes de fer,\nQue la flèche lancée à travers les espaces\nQui va de l’arc au but en faisant siffler l’air.\nAinsi jetée au loin, l’humaine créature\nNe respire et ne voit, dans toute la nature,\nQu’un brouillard étouffant que traverse un éclair.\nOn n’entendra jamais piaffer sur une route\nLe pied vif du cheval sur les pavés en feu ;\n",
+      { t: "Adieu, voyages lents, bruits lointains qu’on écoute,\nLe rire du passant, les retards de l’essieu,\nLes détours imprévus des pentes variées,\nUn ami rencontré, les heures oubliées,\nL’espoir d’arriver tard dans un sauvage lieu.", m: 3, p: 1, titre: "L’énumération nostalgique", n: "Tout ce que la vitesse supprime : la lenteur, le hasard, la rencontre. La valeur humaine du voyage est dans ce que le train considère comme des défauts (« les retards »)." },
+      "\n",
+      { t: "La distance et le temps sont vaincus. La science\nTrace autour de la terre un chemin triste et droit.\nLe Monde est rétréci par notre expérience\nEt l’équateur n’est plus qu’un anneau trop étroit.", m: 3, p: 1, titre: "La victoire amère", n: "La phrase du triomphe (« sont vaincus ») est aussitôt assombrie : chemin « triste », monde « rétréci », équateur « trop étroit ». Le progrès appauvrit le monde qu’il conquiert." },
+      "\n",
+      { t: "Plus de hasard. Chacun glissera sur sa ligne,\nImmobile au seul rang que le départ assigne,\nPlongé dans un calcul silencieux et froid.", m: 3, p: 1, titre: "Le paradoxe final", n: "Le voyageur « immobile » au cœur de la vitesse : le mouvement mécanique supprime la liberté. Prophétie d’une humanité réglée par le « calcul »." }
     ] }
 });
 
@@ -2645,10 +3395,11 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   function sem(e) { return e.sem === 2 ? 2 : 1; }
   function ecrite2(num) { for (var i = 0; i < D.ENTREES.length; i++) if (sem(D.ENTREES[i]) === 2 && D.ENTREES[i].num === num) return D.ENTREES[i]; return null; }
   function ordre() { return D.ENTREES.slice().sort(function (a, b) { return sem(a) - sem(b) || ["I", "II", "III"].indexOf(a.num) - ["I", "II", "III"].indexOf(b.num); }); }
-  var COURT = { e1: "Éducation", e2: "Sensibilité", e3: "Moi", e4: "Création" };
+  var COURT = { e1: "Éducation", e2: "Sensibilité", e3: "Moi", e4: "Création", e5: "Violence", e6: "Limites" };
   function court(id) { if (COURT[id]) return COURT[id]; var x = entree(id); return x ? (x.court || x.titre) : id; }
   function boutonsS2() {
-    return ordre().filter(function (x) { return sem(x) === 2 && D.NOTIONS.some(function (n) { return n.e.indexOf(x.id) >= 0; }); })
+    var tn = toutesNotions();
+    return ordre().filter(function (x) { return sem(x) === 2 && tn.some(function (n) { return n.e.indexOf(x.id) >= 0; }); })
       .map(function (x) { return '<button class="puce-f" data-fn="' + x.id + '" aria-pressed="false">' + court(x.id) + "</button>"; }).join("");
   }
   var NOM_SEM = { 1: "Semestre 1 · La recherche de soi", 2: "Semestre 2 · L’Humanité en question" };
@@ -2667,7 +3418,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
         : '<a href="#s2" data-r="s2-' + p.num + '"><span class="num">' + p.num + "</span>" + p.titre + '<span class="bientot">Bientôt</span></a>';
     });
     h += "<h6>Méthode & outils</h6>";
-    [["epreuve", "plume", "L’épreuve"], ["atelier", "loupe", "Atelier de lecture"], ["qui", "guillemets", "Qui a écrit ?"], ["frise", "sablier", "Frise 1750-1950"],
+    [["epreuve", "plume", "L’épreuve"], ["atelier", "loupe", "Atelier de lecture"], ["qui", "guillemets", "Qui a écrit ?"], ["frise", "sablier", "Frise des repères"],
       ["notions", "constellation", "Tableau des notions"], ["entrainement", "cible", "Entraînement"], ["ressources", "livres", "Ressources"]].forEach(function (x) {
       h += '<a href="#' + x[0] + '" data-r="' + x[0] + '">' + ico(x[1]) + x[2] + "</a>";
     });
@@ -2709,7 +3460,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     });
     h += "</div></section>" + ORN + "<h2>Accès rapide</h2><div class='acces'>";
     [["epreuve", "plume", "L’épreuve", "Format 2027, méthode, copie commentée"], ["atelier", "loupe", "Atelier de lecture", "Surligne les procédés d’un texte"],
-      ["qui", "guillemets", "Qui a écrit ?", "Une citation, quatre auteurs"], ["frise", "sablier", "La frise", "Des Lumières à 1950"],
+      ["qui", "guillemets", "Qui a écrit ?", "Une citation, quatre auteurs"], ["frise", "sablier", "La frise", "Des Lumières à nos jours"],
       ["notions", "constellation", "Les notions", "Définitions et distinctions"], ["entrainement", "cible", "Entraînement", "QCM mélangé et cartes"],
       ["ressources", "livres", "Ressources", "Programme, annales, textes"], ["s2", "eclipse", "Semestre 2", "Ce qui t’attend"]].forEach(function (x) {
       h += '<a href="#' + x[0] + '">' + ico(x[1]) + "<b>" + x[2] + "</b><small>" + x[3] + "</small></a>";
@@ -2720,14 +3471,14 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
 
   var ONGLETS = [["", "Cours"], ["textes", "Textes clés"], ["sujet", "Sujet type bac"], ["qcm", "QCM"], ["cartes", "Cartes mémoire"], ["fiche", "À retenir"]];
   function pageEntree(e, sous) {
-    var h = '<header class="page-entete"><p class="surtitre">' + NOM_SEM[sem(e)] + " · Entrée " + e.num + "</p><h1>" + e.titre + '</h1><p class="chapo">' + e.chapo + "</p></header>";
+    var h = '<header class="page-entete"><p class="surtitre">' + NOM_SEM[sem(e)] + ' · <span class="nw">Entrée ' + e.num + "</span></p><h1>" + e.titre + '</h1><p class="chapo">' + e.chapo + "</p></header>";
     h += '<nav class="onglets non-imp" aria-label="Parties de l’entrée">';
     ONGLETS.forEach(function (o) { h += '<a href="#' + e.id + (o[0] ? "/" + o[0] : "") + '"' + (sous === o[0] ? ' class="actif" aria-current="page"' : "") + ">" + o[1] + "</a>"; });
     h += "</nav><div class='entre'>";
     if (!sous) h += coursHTML(e);
     else if (sous === "textes") h += textesHTML(e);
     else if (sous === "sujet") h += sujetHTML(e);
-    else if (sous === "qcm") h += '<p class="lecture">Douze questions sur les idées du cours. Chaque réponse est expliquée, avec un lien pour revoir le paragraphe.</p><div id="qcm-zone"></div>';
+    else if (sous === "qcm") h += '<p class="lecture">' + (["zéro", "Une", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix", "Onze", "Douze", "Treize", "Quatorze", "Quinze", "Seize", "Dix-sept", "Dix-huit", "Dix-neuf", "Vingt"][e.qcm.length] || e.qcm.length) + ' questions sur les idées du cours. Chaque réponse est expliquée, avec un lien pour revoir le paragraphe.</p><div id="qcm-zone"></div>';
     else if (sous === "cartes") h += '<p class="lecture">Touche la carte pour la retourner. Les citations sont exactes, avec leur référence.</p><div id="fc-zone"></div>';
     else if (sous === "fiche") h += ficheHTML(e);
     h += "</div>";
@@ -2803,12 +3554,30 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   };
   PAGES.epreuve = function () { return D.EPREUVE; };
   PAGES.ressources = function () { return D.RESSOURCES; };
+  function an(t) { var m = /(\d{4})/.exec(String(t).replace(/<[^>]+>/g, "")); return m ? +m[1] : null; }
+  function friseComplete() {
+    var per = D.FRISE.map(function (p) { var a = String(p.dates).match(/\d{4}/g) || []; return { nom: p.nom, dates: p.dates, def: p.def, de: +a[0], a: +a[a.length - 1], evts: p.evts.slice() }; });
+    var apres = { nom: "Depuis 1950", dates: "1950 à nos jours", def: "témoigner, juger, limiter la puissance", de: 1950, a: 9999, evts: [] };
+    ordre().forEach(function (x) {
+      if (D.FRISE.some(function (p) { return p.evts.some(function (ev) { return ev[2] === x.id; }); })) return;
+      (x.reperes || []).forEach(function (r) {
+        var y = an(r[0]); if (y === null) return;
+        var cible = y >= 1950 ? apres : null;
+        per.forEach(function (p) { if (!cible && y >= p.de && y < p.a) cible = p; });
+        if (!cible) cible = y < per[0].de ? per[0] : per[per.length - 1];
+        cible.evts.push([r[0], r[1], x.id]);
+      });
+    });
+    if (apres.evts.length) per.push(apres);
+    per.forEach(function (p) { p.evts.sort(function (u, v) { return (an(u[0]) || 0) - (an(v[0]) || 0); }); });
+    return per;
+  }
   PAGES.frise = function () {
-    var h = '<header class="page-entete"><p class="surtitre">Repères</p><h1>La frise, des Lumières à 1950</h1><p class="chapo">La période de référence du semestre 1 va « du romantisme au XX<sup>e</sup> siècle ». Ces repères permettent de situer un texte inconnu le jour de l’épreuve.</p></header>';
-    h += '<div class="rang" role="group" aria-label="Filtrer"><button class="puce-f" data-ff="" aria-pressed="true">Tout</button><button class="puce-f" data-ff="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-ff="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-ff="e3" aria-pressed="false">Moi</button><button class="puce-f" data-ff="e4" aria-pressed="false">Création</button><button class="puce-f" data-ff="hist" aria-pressed="false">Histoire</button></div>';
+    var h = '<header class="page-entete"><p class="surtitre">Repères</p><h1>La frise, des Lumières à nos jours</h1><p class="chapo">La période de référence du semestre 1 va « du romantisme au XX<sup>e</sup> siècle », celle du semestre 2 couvre les XX<sup>e</sup> et XXI<sup>e</sup> siècles. Ces repères permettent de situer un texte inconnu le jour de l’épreuve.</p></header>';
+    h += '<div class="rang" role="group" aria-label="Filtrer"><button class="puce-f" data-ff="" aria-pressed="true">Tout</button><button class="puce-f" data-ff="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-ff="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-ff="e3" aria-pressed="false">Moi</button><button class="puce-f" data-ff="e4" aria-pressed="false">Création</button><button class="puce-f" data-ff="e5" aria-pressed="false">Violence</button><button class="puce-f" data-ff="e6" aria-pressed="false">Limites</button><button class="puce-f" data-ff="hist" aria-pressed="false">Histoire</button></div>';
     h += '<div data-anim="frise-mouvements"></div>';
     h += '<div class="frise lecture" id="frise">';
-    D.FRISE.forEach(function (p) {
+    friseComplete().forEach(function (p) {
       h += '<div class="periode">' + p.nom + "<small>" + p.dates + " — " + p.def + "</small></div>";
       p.evts.forEach(function (ev) {
         h += '<div class="evt' + (ev[2] === "hist" ? " hist" : "") + '" data-f="' + ev[2] + '"><span class="an">' + ev[0] + "</span>" + ev[1] + "</div>";
@@ -2822,11 +3591,19 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
       '<div class="rang" role="group" aria-label="Entrée"><button class="puce-f" data-fn="" aria-pressed="true">Toutes</button><button class="puce-f" data-fn="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-fn="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-fn="e3" aria-pressed="false">Moi</button>' + boutonsS2() + '</div><div class="notion-l" id="liste-n"></div></div>';
     return h;
   };
+  function toutesNotions() {
+    var l = D.NOTIONS.slice();
+    ordre().forEach(function (x) {
+      if (sem(x) !== 2 || D.NOTIONS.some(function (n) { return n.e.indexOf(x.id) >= 0; })) return;
+      (x.notions || []).forEach(function (n) { l.push({ n: n[0], e: [x.id], d: n[1], dist: "", a: x.titre }); });
+    });
+    return l;
+  }
   function remplirNotions() {
     var l = $("#liste-n"); if (!l) return;
     var q = norm($("#filtre-n").value), f = ($(".puce-f[data-fn][aria-pressed='true']") || {}).getAttribute ? $(".puce-f[data-fn][aria-pressed='true']").getAttribute("data-fn") : "";
     var h = "";
-    D.NOTIONS.forEach(function (n) {
+    toutesNotions().forEach(function (n) {
       if (f && n.e.indexOf(f) < 0) return;
       if (q && norm(n.n + " " + n.d + " " + n.dist + " " + n.a).indexOf(q) < 0) return;
       h += '<div class="notion"><h3>' + n.n + " " + n.e.map(function (x) { return '<span class="tag ' + x + '">' + court(x) + "</span>"; }).join("") +
@@ -2864,7 +3641,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     return '<header class="page-entete"><p class="surtitre">Jeu de mémoire</p><h1>Qui a écrit ?</h1><p class="chapo">Une citation exacte, quatre auteurs. Le jour de l’épreuve, une citation bien attribuée vaut plus qu’une longue paraphrase.</p></header><div class="lecture" id="qui-zone"></div>';
   };
   PAGES.entrainement = function () {
-    return '<header class="page-entete"><p class="surtitre">Révisions</p><h1>Entraînement</h1><p class="chapo">Un QCM tiré au hasard dans les trois entrées du semestre 1, puis toutes les cartes mémoire mélangées.</p></header>' +
+    return '<header class="page-entete"><p class="surtitre">Révisions</p><h1>Entraînement</h1><p class="chapo">Un QCM tiré au hasard dans les six entrées des deux semestres, puis toutes les cartes mémoire mélangées.</p></header>' +
       '<div class="lecture"><h2>QCM mélangé</h2><div id="qcm-zone"></div>' + ORN + '<h2>Cartes mémoire</h2><div class="rang" role="group" aria-label="Type de cartes"><button class="puce-f" data-fct="" aria-pressed="true">Toutes</button><button class="puce-f" data-fct="notion" aria-pressed="false">Notions</button><button class="puce-f" data-fct="citation" aria-pressed="false">Citations</button><button class="puce-f" data-fct="date" aria-pressed="false">Dates & œuvres</button></div><div id="fc-zone"></div></div>';
   };
 
@@ -2905,7 +3682,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     var i = 0, l = melange(cartes), su = 0, rev = 0;
     function rendre() {
       var c = l[i];
-      zone.innerHTML = ty('<div class="fc-zone"><button class="fc" aria-label="Retourner la carte"><span class="face recto"><small>' + c.cat + "</small>" + c.r + '</span><span class="face verso"><small>Réponse</small>' + c.v + "</span></button></div>" +
+      zone.innerHTML = ty('<div class="fc-zone"><button class="fc" aria-label="Retourner la carte"><span class="face recto"><small>' + c.cat + '</small><span class="fc-t">' + c.r + '</span></span><span class="face verso"><small>Réponse</small><span class="fc-t">' + c.v + "</span></span></button></div>" +
         '<div class="fc-nav"><button class="btn" data-fc="prec" ' + (i === 0 ? "disabled" : "") + '>←</button><span class="mute ui petit">' + (i + 1) + " / " + l.length + " · " + su + " sues · " + rev + ' à revoir</span><button class="btn" data-fc="suiv">→</button></div>' +
         '<div class="rang" style="justify-content:center"><button class="btn" data-fc="rev">À revoir</button><button class="btn plein" data-fc="su">Je savais</button></div>');
     }
@@ -3061,7 +3838,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     main.innerHTML = ty(html) + '<div aria-hidden="true">' + D.CUL + "</div>" + folio(e ? e.id : r) + '<footer class="pied">' + D.PIED + "</footer>";
     orner();
     if (window.HLPANIM) window.HLPANIM.monter(main);
-    if (!premier && !reduit) { main.classList.toggle("tourne", false); void main.offsetWidth; main.classList.add("tourne"); }
+    if (!premier && !reduit) { main.classList.toggle("tourne", false); void main.offsetWidth; main.classList.add("tourne"); setTimeout(function () { main.classList.toggle("tourne", false); }, 900); }
     premier = false;
     $$("#menu a").forEach(function (a) { var x = a.getAttribute("data-r"); a.classList.toggle("actif", x === r && r !== "s2"); if (x === r) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
     document.title = (e ? e.titre : (D.TITRES[r] || "Accueil")) + " · Ex libris — HLP Terminale";
