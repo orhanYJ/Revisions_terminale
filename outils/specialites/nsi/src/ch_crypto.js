@@ -249,21 +249,29 @@ WIDGETS_EXT["arch-tls"] = function (z, opt, O) {
   function dessine(scene, e, i, E, saut) {
     var hist = [];
     for (var k = 0; k <= i; k++) E[k].m.forEach(function (m) { hist.push({ m: m, neuf: k === i }); });
-    var H = 96 + hist.length * 58 + (e.verif ? 34 : 0);
-    function coupe(t) { if (t.length <= 46) return [t]; var k = t.lastIndexOf(" ", 46); if (k < 20) k = t.indexOf(" ", 46); return k < 0 ? [t] : [t.slice(0, k), t.slice(k + 1)]; }
-    var s = '<svg viewBox="0 0 420 ' + H + '" role="img" aria-label="Poignée de main TLS entre le navigateur et le serveur">';
-    s += '<g class="bl' + (e.cle ? " ok" : "") + '"><rect x="8" y="8" width="112" height="44" rx="8"/><text class="gd" x="64" y="28" text-anchor="middle">navigateur</text><text class="pt" x="64" y="44" text-anchor="middle">client</text></g>';
-    s += '<g class="bl' + (e.cle ? " ok" : "") + '"><rect x="300" y="8" width="112" height="44" rx="8"/><text class="gd" x="356" y="28" text-anchor="middle">serveur</text><text class="pt" x="356" y="44" text-anchor="middle">exemple.fr · 443</text></g>';
-    s += '<line x1="64" y1="52" x2="64" y2="' + (H - 6) + '" stroke="var(--ligne2)" stroke-width="2" stroke-dasharray="4 4"/><line x1="356" y1="52" x2="356" y2="' + (H - 6) + '" stroke="var(--ligne2)" stroke-width="2" stroke-dasharray="4 4"/>';
-    if (e.cle) s += '<text x="64" y="70" text-anchor="middle" class="pt" style="fill:var(--vert)">🔑 clé de session</text>' + (e.cle === "deux" ? '<text x="356" y="70" text-anchor="middle" class="pt" style="fill:var(--vert)">🔑 clé de session</text>' : "");
+    /* téléphone : dessin plus étroit (texte presque à taille réelle), détails coupés plus court */
+    var et = scene.clientWidth < 400, W = et ? 320 : 420, XC = et ? 50 : 64, XS = W - XC, BW = et ? 94 : 112, MAXC = et ? 32 : 46, MI = W / 2;
+    function coupe(t) {
+      var l = [], r = t;
+      while (r.length > MAXC) { var k = r.lastIndexOf(" ", MAXC); if (k < 12) k = r.indexOf(" ", MAXC); if (k < 0) break; l.push(r.slice(0, k)); r = r.slice(k + 1); }
+      l.push(r); return l;
+    }
+    var Y = [], y0 = 100;
+    hist.forEach(function (h) { Y.push(y0); y0 += 34 + coupe(h.m[2]).length * 14; });
+    var H = y0 + (e.verif ? 26 : -4);
+    var s = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Poignée de main TLS entre le navigateur et le serveur">';
+    s += '<g class="bl' + (e.cle ? " ok" : "") + '"><rect x="' + (XC - BW / 2) + '" y="8" width="' + BW + '" height="44" rx="8"/><text class="gd" x="' + XC + '" y="28" text-anchor="middle">navigateur</text><text class="pt" x="' + XC + '" y="44" text-anchor="middle">client</text></g>';
+    s += '<g class="bl' + (e.cle ? " ok" : "") + '"><rect x="' + (XS - BW / 2) + '" y="8" width="' + BW + '" height="44" rx="8"/><text class="gd" x="' + XS + '" y="28" text-anchor="middle">serveur</text><text class="pt" x="' + XS + '" y="44" text-anchor="middle">' + (et ? "exemple.fr" : "exemple.fr · 443") + "</text></g>";
+    s += '<line x1="' + XC + '" y1="52" x2="' + XC + '" y2="' + (H - 6) + '" stroke="var(--ligne2)" stroke-width="2" stroke-dasharray="4 4"/><line x1="' + XS + '" y1="52" x2="' + XS + '" y2="' + (H - 6) + '" stroke="var(--ligne2)" stroke-width="2" stroke-dasharray="4 4"/>';
+    if (e.cle) s += '<text x="' + (et ? 4 : XC) + '" y="70" text-anchor="' + (et ? "start" : "middle") + '" class="pt" style="fill:var(--vert)">🔑 clé de session</text>' + (e.cle === "deux" ? '<text x="' + (et ? W - 4 : XS) + '" y="70" text-anchor="' + (et ? "end" : "middle") + '" class="pt" style="fill:var(--vert)">🔑 clé de session</text>' : "");
     hist.forEach(function (h, k) {
-      var y = 100 + k * 58, m = h.m, x1 = m[0] > 0 ? 66 : 354, x2 = m[0] > 0 ? 350 : 70, cl = m[3] ? "ok" : "on";
+      var y = Y[k], m = h.m, x1 = m[0] > 0 ? XC + 2 : XS - 2, x2 = m[0] > 0 ? XS - 6 : XC + 6, cl = m[3] ? "ok" : "on";
       var d = "M" + x1 + " " + y + " L" + x2 + " " + y;
-      s += '<path class="fil ' + cl + (h.neuf && !saut ? " trace" : "") + '" style="--l:290" d="' + d + '"/><path class="tete-f ' + cl + '" d="M' + (x2 + (m[0] > 0 ? 6 : -6)) + " " + y + " l" + (m[0] > 0 ? -10 : 10) + ' -6 l0 12z"/>';
-      s += '<text x="210" y="' + (y - 7) + '" text-anchor="middle" style="font-weight:700">' + (m[3] ? "🔒 " : "") + m[1] + '</text>' + coupe(m[2]).map(function (l, j) { return '<text class="pt" style="font-size:11.5px" x="210" y="' + (y + 17 + j * 14) + '" text-anchor="middle">' + l + "</text>"; }).join("");
+      s += '<path class="fil ' + cl + (h.neuf && !saut ? " trace" : "") + '" style="--l:' + (XS - XC) + '" d="' + d + '"/><path class="tete-f ' + cl + '" d="M' + (x2 + (m[0] > 0 ? 6 : -6)) + " " + y + " l" + (m[0] > 0 ? -10 : 10) + ' -6 l0 12z"/>';
+      s += '<text x="' + MI + '" y="' + (y - 7) + '" text-anchor="middle" style="font-weight:700">' + (m[3] ? "🔒 " : "") + m[1] + '</text>' + coupe(m[2]).map(function (l, j) { return '<text class="pt" style="font-size:11.5px" x="' + MI + '" y="' + (y + 17 + j * 14) + '" text-anchor="middle">' + l + "</text>"; }).join("");
       if (h.neuf && !saut) s += archJeton(d, m[3] ? "v" : "", 0.8, 0);
     });
-    if (e.verif) s += '<text x="64" y="' + (H - 16) + '" text-anchor="middle" style="font-weight:700;fill:var(--vert)">✓ certificat vérifié</text>';
+    if (e.verif) s += '<text x="' + MI + '" y="' + (H - 12) + '" text-anchor="middle" style="font-weight:700;fill:var(--vert)">✓ certificat vérifié par le client</text>';
     scene.innerHTML = s + "</svg>";
   }
   O.lecteur(z, { titre: "la poignée de main de HTTPS", sous: "TLS", choix: [{ k: "prog", t: "le modèle du programme" }, { k: "tls13", t: "TLS 1.3 aujourd’hui" }],

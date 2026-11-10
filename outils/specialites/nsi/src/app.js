@@ -776,7 +776,7 @@
         return '<div class="cadre-pile ' + (f.et === "actif" ? "actif" : f.et === "renvoie" ? "renvoie" : "") + (k >= avant && !neuf ? " neuf" : "") + '"><div class="nm">' + esc(f.lab) + '</div><div class="vr">' + f.vars.map(esc).join(" · ") + (f.ret !== null ? ' · <span class="rv">renvoie ' + f.ret + "</span>" : f.et === "attente" ? " · en attente…" : "") + "</div></div>";
       }).join("") : '<div class="vide">pile vide</div>';
       if (type === "fib") {
-        var L = layoutArbre(T.nds), W = 74, H = 54, larg = Math.max(L.larg * W, 520);
+        var L = layoutArbre(T.nds), W = 74, H = 54, larg = Math.max(L.larg * W, 300);
         var svg = '<svg viewBox="0 0 ' + larg + " " + (4 * H + 40) + '" role="img" aria-label="Arbre des appels de fibonacci(4)">';
         var dx = (larg - L.larg * W) / 2;
         T.nds.forEach(function (n) { if (n.parent !== null) { var a = L.pos[n.parent], b = L.pos[n.id]; var vu = s.nd[n.id]; svg += '<line class="' + (vu ? "vu" : "") + '" x1="' + (dx + a.x * W + W / 2) + '" y1="' + (a.y * H + 20 + 26) + '" x2="' + (dx + b.x * W + W / 2) + '" y2="' + (b.y * H + 20) + '"/>'; } });

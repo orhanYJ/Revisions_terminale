@@ -5,7 +5,8 @@
 function archStyle() {}
 /* jeton qui parcourt un chemin SVG (seulement quand l'étape s'anime) */
 function archJeton(d, cl, dur, delai) {
-  return '<circle class="jeton ' + (cl || "") + '" r="6.5" cx="0" cy="0"><animateMotion dur="' + (dur || 0.9) + 's" begin="' + (delai || 0) + 's" fill="freeze" path="' + d + '"/></circle>';
+  /* invisible avant son départ (sinon il attendrait au point 0, 0 du dessin) */
+  return '<circle class="jeton ' + (cl || "") + '" r="6.5" cx="0" cy="0" opacity="0"><set attributeName="opacity" to="1" begin="' + (delai || 0) + 's" fill="freeze"/><animateMotion dur="' + (dur || 0.9) + 's" begin="' + (delai || 0) + 's" fill="freeze" path="' + d + '"/></circle>';
 }
 
 C("soc-cycle", String.raw`

@@ -333,8 +333,8 @@ html.mo .fc .in{transition:transform .5s cubic-bezier(.3,.7,.2,1)}
 .w .cmd .cpt{font-family:var(--mono);font-size:.8rem;color:var(--encre2);margin-left:auto}
 .w input[type=text]{font:inherit;font-family:var(--mono);min-height:44px;width:7em;padding:0 10px;border-radius:9px;border:1px solid var(--ligne2);background:var(--bg);color:var(--encre)}
 /* pile d'appels */
-.pa{display:grid;gap:12px}
-@media (min-width:720px){.pa{grid-template-columns:1.15fr 1fr}}
+.pa{display:grid;gap:12px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:720px){.pa{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}}
 .pa .code{margin:0}
 .pa .pile{display:flex;flex-direction:column-reverse;justify-content:flex-start;gap:6px;min-height:210px;padding:10px;border:1px dashed var(--ligne2);border-radius:10px;background:var(--bg);position:relative}
 .pa .pile::after{content:"fond de la pile";position:absolute;bottom:-1px;left:50%;transform:translate(-50%,50%);font-family:var(--mono);font-size:.68rem;color:var(--encre3);background:var(--bg2);padding:0 6px}
@@ -349,7 +349,7 @@ html.mo .cadre-pile.neuf{animation:empile .32s cubic-bezier(.2,.8,.2,1)}
 @keyframes empile{from{transform:translateY(-14px);opacity:0}}
 .titre-pile{font-family:var(--mono);font-size:.76rem;color:var(--encre2);margin-bottom:4px}
 .arbre-appels{margin-top:10px;overflow-x:auto;border:1px dashed var(--ligne2);border-radius:10px;background:var(--bg)}
-.arbre-appels svg{display:block;min-width:520px;width:100%;height:auto}
+.arbre-appels svg{display:block;width:100%;max-width:560px;height:auto;margin:0 auto}
 .arbre-appels text{font-family:var(--mono);font-size:12px;fill:var(--encre)}
 .arbre-appels .nd rect{fill:var(--bg2);stroke:var(--ligne2)}
 .arbre-appels .nd.attente rect{stroke:var(--bleu)}
@@ -360,7 +360,7 @@ html.mo .cadre-pile.neuf{animation:empile .32s cubic-bezier(.2,.8,.2,1)}
 .arbre-appels line.vu{stroke:var(--encre3)}
 /* pile / file manipulables */
 .pf{display:grid;gap:12px}
-@media (min-width:720px){.pf{grid-template-columns:1fr 1fr}}
+@media (min-width:720px){.pf{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 .scene-pf{min-height:250px;border:1px dashed var(--ligne2);border-radius:10px;background:var(--bg);padding:12px;display:flex;align-items:center;justify-content:center;overflow-x:auto}
 .tube{display:flex;flex-direction:column-reverse;gap:6px;width:150px;min-height:220px;padding:8px;border:3px solid var(--encre3);border-top:0;border-radius:0 0 12px 12px}
 .tube.file{flex-direction:row;width:auto;min-width:100%;min-height:70px;border:3px solid var(--encre3);border-left:0;border-right:0;border-radius:0;align-items:center;padding:8px 6px}
@@ -692,6 +692,9 @@ html.mo .w .msg.neuf{animation:msg-in .35s cubic-bezier(.2,.8,.2,1)}
 .code>.fondu-d.fin{opacity:0}
 html.mo .code>.fondu-d{transition:opacity .25s}
 @media print{.fondu-d{display:none}}
+@media print{.code pre{overflow:visible;white-space:pre-wrap;word-break:break-word}.code pre .l{min-width:0;padding-left:3.9em;text-indent:-3.9em}.tab-wrap{overflow:visible}}
+@media (max-width:480px){.jointure .table-bd td:nth-child(2),.requete .table-bd td:first-child{white-space:normal;min-width:7.5em}.jointure .table-bd table,.requete .table-bd table{font-size:.76rem}.jointure .table-bd th,.jointure .table-bd td,.requete .table-bd th,.requete .table-bd td{padding:5px 6px}}
+@media (max-width:380px){.requete .table-bd table{font-size:.72rem}.ar-tab th,.ar-tab td{padding:4px 4px}.w .aa table td,.w .aa table th{padding:4px 5px}.w .aa .tab-wrap th{white-space:normal}.requete .table-bd th,.requete .table-bd td{padding:5px 4px}}
 
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -8511,7 +8514,8 @@ CH.push({
 function archStyle() {}
 /* jeton qui parcourt un chemin SVG (seulement quand l'étape s'anime) */
 function archJeton(d, cl, dur, delai) {
-  return '<circle class="jeton ' + (cl || "") + '" r="6.5" cx="0" cy="0"><animateMotion dur="' + (dur || 0.9) + 's" begin="' + (delai || 0) + 's" fill="freeze" path="' + d + '"/></circle>';
+  /* invisible avant son départ (sinon il attendrait au point 0, 0 du dessin) */
+  return '<circle class="jeton ' + (cl || "") + '" r="6.5" cx="0" cy="0" opacity="0"><set attributeName="opacity" to="1" begin="' + (delai || 0) + 's" fill="freeze"/><animateMotion dur="' + (dur || 0.9) + 's" begin="' + (delai || 0) + 's" fill="freeze" path="' + d + '"/></circle>';
 }
 
 C("soc-cycle", String.raw`
@@ -10323,21 +10327,29 @@ WIDGETS_EXT["arch-tls"] = function (z, opt, O) {
   function dessine(scene, e, i, E, saut) {
     var hist = [];
     for (var k = 0; k <= i; k++) E[k].m.forEach(function (m) { hist.push({ m: m, neuf: k === i }); });
-    var H = 96 + hist.length * 58 + (e.verif ? 34 : 0);
-    function coupe(t) { if (t.length <= 46) return [t]; var k = t.lastIndexOf(" ", 46); if (k < 20) k = t.indexOf(" ", 46); return k < 0 ? [t] : [t.slice(0, k), t.slice(k + 1)]; }
-    var s = '<svg viewBox="0 0 420 ' + H + '" role="img" aria-label="Poignée de main TLS entre le navigateur et le serveur">';
-    s += '<g class="bl' + (e.cle ? " ok" : "") + '"><rect x="8" y="8" width="112" height="44" rx="8"/><text class="gd" x="64" y="28" text-anchor="middle">navigateur</text><text class="pt" x="64" y="44" text-anchor="middle">client</text></g>';
-    s += '<g class="bl' + (e.cle ? " ok" : "") + '"><rect x="300" y="8" width="112" height="44" rx="8"/><text class="gd" x="356" y="28" text-anchor="middle">serveur</text><text class="pt" x="356" y="44" text-anchor="middle">exemple.fr · 443</text></g>';
-    s += '<line x1="64" y1="52" x2="64" y2="' + (H - 6) + '" stroke="var(--ligne2)" stroke-width="2" stroke-dasharray="4 4"/><line x1="356" y1="52" x2="356" y2="' + (H - 6) + '" stroke="var(--ligne2)" stroke-width="2" stroke-dasharray="4 4"/>';
-    if (e.cle) s += '<text x="64" y="70" text-anchor="middle" class="pt" style="fill:var(--vert)">🔑 clé de session</text>' + (e.cle === "deux" ? '<text x="356" y="70" text-anchor="middle" class="pt" style="fill:var(--vert)">🔑 clé de session</text>' : "");
+    /* téléphone : dessin plus étroit (texte presque à taille réelle), détails coupés plus court */
+    var et = scene.clientWidth < 400, W = et ? 320 : 420, XC = et ? 50 : 64, XS = W - XC, BW = et ? 94 : 112, MAXC = et ? 32 : 46, MI = W / 2;
+    function coupe(t) {
+      var l = [], r = t;
+      while (r.length > MAXC) { var k = r.lastIndexOf(" ", MAXC); if (k < 12) k = r.indexOf(" ", MAXC); if (k < 0) break; l.push(r.slice(0, k)); r = r.slice(k + 1); }
+      l.push(r); return l;
+    }
+    var Y = [], y0 = 100;
+    hist.forEach(function (h) { Y.push(y0); y0 += 34 + coupe(h.m[2]).length * 14; });
+    var H = y0 + (e.verif ? 26 : -4);
+    var s = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Poignée de main TLS entre le navigateur et le serveur">';
+    s += '<g class="bl' + (e.cle ? " ok" : "") + '"><rect x="' + (XC - BW / 2) + '" y="8" width="' + BW + '" height="44" rx="8"/><text class="gd" x="' + XC + '" y="28" text-anchor="middle">navigateur</text><text class="pt" x="' + XC + '" y="44" text-anchor="middle">client</text></g>';
+    s += '<g class="bl' + (e.cle ? " ok" : "") + '"><rect x="' + (XS - BW / 2) + '" y="8" width="' + BW + '" height="44" rx="8"/><text class="gd" x="' + XS + '" y="28" text-anchor="middle">serveur</text><text class="pt" x="' + XS + '" y="44" text-anchor="middle">' + (et ? "exemple.fr" : "exemple.fr · 443") + "</text></g>";
+    s += '<line x1="' + XC + '" y1="52" x2="' + XC + '" y2="' + (H - 6) + '" stroke="var(--ligne2)" stroke-width="2" stroke-dasharray="4 4"/><line x1="' + XS + '" y1="52" x2="' + XS + '" y2="' + (H - 6) + '" stroke="var(--ligne2)" stroke-width="2" stroke-dasharray="4 4"/>';
+    if (e.cle) s += '<text x="' + (et ? 4 : XC) + '" y="70" text-anchor="' + (et ? "start" : "middle") + '" class="pt" style="fill:var(--vert)">🔑 clé de session</text>' + (e.cle === "deux" ? '<text x="' + (et ? W - 4 : XS) + '" y="70" text-anchor="' + (et ? "end" : "middle") + '" class="pt" style="fill:var(--vert)">🔑 clé de session</text>' : "");
     hist.forEach(function (h, k) {
-      var y = 100 + k * 58, m = h.m, x1 = m[0] > 0 ? 66 : 354, x2 = m[0] > 0 ? 350 : 70, cl = m[3] ? "ok" : "on";
+      var y = Y[k], m = h.m, x1 = m[0] > 0 ? XC + 2 : XS - 2, x2 = m[0] > 0 ? XS - 6 : XC + 6, cl = m[3] ? "ok" : "on";
       var d = "M" + x1 + " " + y + " L" + x2 + " " + y;
-      s += '<path class="fil ' + cl + (h.neuf && !saut ? " trace" : "") + '" style="--l:290" d="' + d + '"/><path class="tete-f ' + cl + '" d="M' + (x2 + (m[0] > 0 ? 6 : -6)) + " " + y + " l" + (m[0] > 0 ? -10 : 10) + ' -6 l0 12z"/>';
-      s += '<text x="210" y="' + (y - 7) + '" text-anchor="middle" style="font-weight:700">' + (m[3] ? "🔒 " : "") + m[1] + '</text>' + coupe(m[2]).map(function (l, j) { return '<text class="pt" style="font-size:11.5px" x="210" y="' + (y + 17 + j * 14) + '" text-anchor="middle">' + l + "</text>"; }).join("");
+      s += '<path class="fil ' + cl + (h.neuf && !saut ? " trace" : "") + '" style="--l:' + (XS - XC) + '" d="' + d + '"/><path class="tete-f ' + cl + '" d="M' + (x2 + (m[0] > 0 ? 6 : -6)) + " " + y + " l" + (m[0] > 0 ? -10 : 10) + ' -6 l0 12z"/>';
+      s += '<text x="' + MI + '" y="' + (y - 7) + '" text-anchor="middle" style="font-weight:700">' + (m[3] ? "🔒 " : "") + m[1] + '</text>' + coupe(m[2]).map(function (l, j) { return '<text class="pt" style="font-size:11.5px" x="' + MI + '" y="' + (y + 17 + j * 14) + '" text-anchor="middle">' + l + "</text>"; }).join("");
       if (h.neuf && !saut) s += archJeton(d, m[3] ? "v" : "", 0.8, 0);
     });
-    if (e.verif) s += '<text x="64" y="' + (H - 16) + '" text-anchor="middle" style="font-weight:700;fill:var(--vert)">✓ certificat vérifié</text>';
+    if (e.verif) s += '<text x="' + MI + '" y="' + (H - 12) + '" text-anchor="middle" style="font-weight:700;fill:var(--vert)">✓ certificat vérifié par le client</text>';
     scene.innerHTML = s + "</svg>";
   }
   O.lecteur(z, { titre: "la poignée de main de HTTPS", sous: "TLS", choix: [{ k: "prog", t: "le modèle du programme" }, { k: "tls13", t: "TLS 1.3 aujourd’hui" }],
@@ -12932,7 +12944,7 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
         return '<div class="cadre-pile ' + (f.et === "actif" ? "actif" : f.et === "renvoie" ? "renvoie" : "") + (k >= avant && !neuf ? " neuf" : "") + '"><div class="nm">' + esc(f.lab) + '</div><div class="vr">' + f.vars.map(esc).join(" · ") + (f.ret !== null ? ' · <span class="rv">renvoie ' + f.ret + "</span>" : f.et === "attente" ? " · en attente…" : "") + "</div></div>";
       }).join("") : '<div class="vide">pile vide</div>';
       if (type === "fib") {
-        var L = layoutArbre(T.nds), W = 74, H = 54, larg = Math.max(L.larg * W, 520);
+        var L = layoutArbre(T.nds), W = 74, H = 54, larg = Math.max(L.larg * W, 300);
         var svg = '<svg viewBox="0 0 ' + larg + " " + (4 * H + 40) + '" role="img" aria-label="Arbre des appels de fibonacci(4)">';
         var dx = (larg - L.larg * W) / 2;
         T.nds.forEach(function (n) { if (n.parent !== null) { var a = L.pos[n.parent], b = L.pos[n.id]; var vu = s.nd[n.id]; svg += '<line class="' + (vu ? "vu" : "") + '" x1="' + (dx + a.x * W + W / 2) + '" y1="' + (a.y * H + 20 + 26) + '" x2="' + (dx + b.x * W + W / 2) + '" y2="' + (b.y * H + 20) + '"/>'; } });
