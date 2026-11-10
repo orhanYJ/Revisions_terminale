@@ -163,7 +163,7 @@ CH.e4 = {
   ],
   objectifs: [
     { bo: "Connaître les principales caractéristiques de la crise financière des années 1930 et de celle de 2008 (effondrement boursier, faillites en chaîne, chute du PIB et accroissement du chômage).", clair: "Savoir raconter les deux crises avec leurs dates et leurs chiffres clés.", voir: "e4-1" },
-    { bo: "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties autoréalisatrices).", clair: "Expliquer pas à pas comment une bulle gonfle et éclate, avec un exemple.", voir: "e4-2" },
+    { bo: "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties auto réalisatrices).", clair: "Expliquer pas à pas comment une bulle gonfle et éclate, avec un exemple.", voir: "e4-2" },
     { bo: "Comprendre les phénomènes de panique bancaire et de faillites bancaires en chaîne.", clair: "Expliquer pourquoi une banque saine peut tomber et comment une faillite en entraîne d’autres.", voir: "e4-3" },
     { bo: "Connaître les principaux canaux de transmission d’une crise financière à l’économie réelle : effets de richesse négatif, baisse du prix du collatéral et ventes forcées, contraction du crédit.", clair: "Présenter les trois canaux par lesquels la crise financière fait baisser production et emploi.", voir: "e4-4" },
     { bo: "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l’aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité.", clair: "Définir l’aléa moral et expliquer comment supervision et ratio de solvabilité le limitent.", voir: "e4-5" }

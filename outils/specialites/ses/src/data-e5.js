@@ -132,7 +132,7 @@ CH.e5 = {
   ],
   chiffres: [
     { n: "21", l: "pays membres de la zone euro depuis l’entrée de la Bulgarie le 1er janvier 2026.", s: "Banque de France ; Commission européenne" },
-    { n: "10,6 %", l: "d’inflation dans la zone euro en octobre 2022 ; la BCE a relevé son taux de dépôt de −0,50 % à 4 % en un an.", s: "Eurostat ; BCE" },
+    { n: "10,6 %", l: "d’inflation dans la zone euro en octobre 2022 ; la BCE a relevé son taux de dépôt de −0,50 % à 4 % en quatorze mois (juillet 2022-septembre 2023).", s: "Eurostat ; BCE" },
     { n: "5,1 %", l: "du PIB : le déficit public de la France en 2025, pour une dette de 115,6 % du PIB.", s: "Insee, mars 2026" }
   ],
   objectifs: [
@@ -144,7 +144,7 @@ CH.e5 = {
   notions: ["intégration européenne", "marché unique", "union douanière", "zone euro", "politique de la concurrence", "entente", "abus de position dominante", "contrôle des concentrations", "aides d’État", "politique monétaire", "taux directeur", "inflation", "politique budgétaire", "multiplicateur", "stabilisateurs automatiques", "déficit public", "dette publique", "conjoncture", "Banque centrale européenne", "indépendance de la banque centrale", "Pacte de stabilité et de croissance", "coordination des politiques", "choc asymétrique"],
   sections: [
     { id: "e5-1", t: "L’intégration européenne : marché unique et zone euro", h:
-      '<div class="def"><b>Intégration économique</b> — processus par lequel des pays suppriment progressivement les obstacles à leurs échanges, jusqu’à mettre en commun des politiques. Bela Balassa (1961) en distinguait les étapes : zone de libre-échange, union douanière, marché commun, union économique et monétaire.</div>' +
+      '<div class="def"><b>Intégration économique</b> — processus par lequel des pays suppriment progressivement les obstacles à leurs échanges, jusqu’à mettre en commun des politiques. Bela Balassa (1961) en distinguait les étapes : zone de libre-échange, union douanière, marché commun, union économique, intégration économique totale.</div>' +
       '<div class="tbl"><table><thead><tr><th>Date</th><th>Étape</th></tr></thead><tbody>' +
       '<tr><td>1957</td><td>Traité de Rome : Communauté économique européenne (six pays)</td></tr>' +
       '<tr><td>1968</td><td>Union douanière : plus de droits de douane entre membres, un tarif extérieur commun</td></tr>' +

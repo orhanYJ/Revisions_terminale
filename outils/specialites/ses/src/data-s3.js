@@ -22,7 +22,7 @@ GRAPHES["s3-dest"] = {
 GRAPHES["s3-or"] = {
   type: "barres", t: "La fluidité sociale progresse : le rapport des chances relatives, 1977-2015",
   s: "Rapport des chances relatives (odds ratio) d’être cadre plutôt qu’employé ou ouvrier non qualifié, entre fils de cadres et fils d’employés ou d’ouvriers non qualifiés. 1 = parfaite fluidité.",
-  src: "Source : Marc Collet et Émilie Pénicaud, « La mobilité sociale des femmes et des hommes : évolutions entre 1977 et 2015 », Insee, Économie et Statistique n° 510-511-512, 2019 (figure 7). Champ : hommes de 35 à 59 ans comparés à leur père.",
+  src: "Source : Marc Collet et Émilie Pénicaud, « La mobilité sociale des femmes et des hommes : évolutions entre 1977 et 2015 », Insee, France, portrait social, édition 2019, coll. Insee Références (figure 7c). Champ : hommes de 35 à 59 ans comparés à leur père.",
   unite: "", dec: 1, h: 260, pasX: 1,
   x: [1977, 1985, 1993, 2003, 2015], y: [165.0, 92.3, 65.3, 29.3, 34.7], etiquette: "fois"
 };
@@ -83,7 +83,7 @@ CH.s3 = {
       '<div class="def"><b>Mobilité intragénérationnelle (ou professionnelle)</b> — changement de position au cours de la vie active d’un même individu : promotion, changement de métier, passage du salariat à l’indépendance, chômage.</div>' +
       '<div class="ex"><p>Un technicien promu ingénieur après une formation continue passe de profession intermédiaire à cadre : mobilité professionnelle ascendante, sans rien dire de ses parents.</p></div>' +
       '<div class="def"><b>Mobilité géographique</b> — changement de lieu de résidence (d’une commune, d’une région ou d’un pays à l’autre).</div>' +
-      '<p>Les trois se combinent souvent : quitter une région peu dynamique pour une métropole facilite l’accès à un emploi qualifié. Une étude de l’Institut des politiques publiques (Kenedi et Sirugue, note n° 95, 2023) montre que les enfants des familles les plus modestes qui partent vers un département à hauts revenus atteignent en moyenne le même revenu que les enfants de familles aisées restés dans leur département.</p>' +
+      '<p>Les trois se combinent souvent : quitter une région peu dynamique pour une métropole facilite l’accès à un emploi qualifié. Une étude de l’Institut des politiques publiques (Kenedi et Sirugue, note n° 95, 2023) montre que les enfants des familles les plus modestes qui partent vers un département à hauts revenus atteignent en moyenne à peu près le même rang dans l’échelle des revenus que les enfants dont les parents se situaient au 75<sup>e</sup> centile (à l’entrée du quart le plus aisé) et qui sont restés dans leur département.</p>' +
       '<h3>Le sens de la mobilité</h3><ul><li><b>Verticale ascendante</b> : position plus élevée que celle du parent (fils d’employé devenu cadre).</li><li><b>Verticale descendante</b> : position moins élevée (fille de cadre devenue employée) ; on parle de <b>déclassement</b>.</li><li><b>Horizontale</b> ou « non verticale » : changement de groupe sans hiérarchie nette, par exemple d’agriculteur à ouvrier qualifié, ou d’artisan à profession intermédiaire. L’Insee distingue ici une mobilité « de statut » (salarié / indépendant).</li><li><b>Immobilité</b> ou <b>reproduction sociale</b> : même groupe que le parent.</li></ul>' +
       '<div class="attn"><p>Une mobilité géographique ou professionnelle n’est pas une mobilité sociale intergénérationnelle. Dans une copie, nomme précisément la mobilité dont tu parles et l’<b>étalon</b> de comparaison (le père ? la mère ? le premier emploi ?).</p></div>' },
 

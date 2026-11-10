@@ -1,7 +1,7 @@
 GRAPHES["r1-ineg"] = {
   type: "lignes", t: "Les inégalités de niveau de vie en France, 1996-2024", spark: 1,
   s: "Deux rapports, après impôts et prestations sociales. Touche le graphique pour lire une année ; touche la légende pour masquer une courbe.",
-  src: "Source : Insee-DGFiP-Cnaf-Cnav-CCMSA, enquêtes Revenus fiscaux et sociaux (Insee Première n° 2117, juillet 2026). Champ : France métropolitaine, personnes vivant dans un logement ordinaire. Ruptures de série en 2010, 2012 et 2020 ; données de 2020 fragiles.",
+  src: "Source : Insee-DGFiP-Cnaf-Cnav-CCMSA, enquêtes Revenus fiscaux et sociaux (Insee Première n° 2117, juillet 2026). Champ : France métropolitaine, personnes vivant dans un logement ordinaire. Séries rétropolées par l’Insee de 1996 à 2020 pour corriger les ruptures de 2010, 2012 et 2020 ; point 2020 fragile.",
   unite: "", dec: 2, pasX: 7, h: 280, min: 2, max: 6,
   x: [1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],
   series: [
