@@ -82,7 +82,7 @@ MATIERE = {
 
 
 def episode(code):
-    for site in ("pc", "svt", "philo"):
+    for site in ("pc", "svt", "philo", "maths", "ses", "hggsp"):
         f = os.path.join(RACINE, site, "serie", code + ".data.js")
         if os.path.exists(f):
             d = open(f, encoding="utf-8").read()
