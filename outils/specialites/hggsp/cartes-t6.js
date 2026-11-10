@@ -368,6 +368,16 @@ module.exports = function (ctx) {
 
   /* ================= Cartes interactives du dossier ================= */
   const P = (c, ll, n, a, t, d) => { const [x, y] = M.P(ll); return { c, x, y, n, a, t, d }; };
+  /* retouches d'étiquettes (ancre, décalage vertical) et recadrage sur les points */
+  const RET = {
+    t6savoir: { "Silicon Valley": ["start", -10], "Los Alamos": ["start", 10], Boston: ["start", -2], Londres: ["end", -6], Paris: ["end", 8], "Genève": ["start", 10], Vienne: ["start", 0], Stockholm: ["start", -4], Moscou: ["start", -4] },
+    t6cyber: { "Fort Meade": ["end", -8], "Virginia Beach": ["end", 12], "Virginie du Nord": ["start", 0], "Los Angeles": ["start", 14], Baltique: ["end", -6], ANSSI: ["end", 10], Bruxelles: ["start", -8], Marseille: ["start", 8], Tallinn: ["start", -4] }
+  };
+  const finir = (nom, sw, ne) => {
+    const c = OUT.cartes[nom];
+    for (const p of c.pts) if (RET[nom][p.n]) { p.a = RET[nom][p.n][0]; p.dy = RET[nom][p.n][1]; }
+    c.vb = vbDe(M, sw, ne, WM, HM);
+  };
   OUT.cartes.t6savoir = {
     w: WM, h: HM, fond: "monde", deco: M.txt([-100, 40], "ÉTATS-UNIS", { a: "middle" }) + M.txt([103, 33], "CHINE", { a: "middle" }) + M.txt([79, 22], "INDE", { a: "middle" }),
     pts: [
@@ -408,4 +418,6 @@ module.exports = function (ctx) {
     ],
     meta: { t: "Le cyberespace : infrastructures, attaques et souveraineté", c: { infra: ["Infrastructures (câbles, données)", "#2D5675"], att: ["Cyberattaques majeures", "#B3241B"], souv: ["Surveillance, contrôle et régulation", "#B07A1E"] } }
   };
+  finir("t6savoir", [-128, -5], [128, 66]);
+  finir("t6cyber", [-128, -5], [128, 66]);
 };
