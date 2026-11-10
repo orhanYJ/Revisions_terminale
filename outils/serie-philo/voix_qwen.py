@@ -112,9 +112,18 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
     # une prise monocorde est refaite, demande de Cengiz du 06/11/2026 : « une voix naturelle, des intonations,
     # moins de robotisme »). On garde la prise juste la plus vivante ; au plus quatre prises.
     import prosodie
+    # Défauts de voix (10/11/2026, Cengiz : « souvent elle vrille, elle prononce mal, elle fait des trucs haut et
+    # robotique ») : une prise trop haute, qui décroche, qui bafouille après le dernier mot ou au débit anormal passe
+    # après toutes les prises propres, et on tente jusqu'à six prises tant qu'aucune n'est propre. Un passage écarté
+    # par controle_voix.py --rejeter repart avec d'autres graines (nombre de rejets déjà faits).
+    ref = prosodie.ref_hz(REF[voix][0])
+    rejets = os.path.join(os.path.dirname(chemin), "rejets")
+    decal = len([x for x in os.listdir(rejets) if x.startswith(os.path.basename(chemin)) and x.endswith(".mp3")]) if os.path.isdir(rejets) else 0
     meilleur = None
-    for essai in range(4):
-        torch.manual_seed(1234 + 17 * essai + len(texte))
+    for essai in range(6):
+        if essai >= 4 and meilleur is not None and meilleur[0][0]:
+            break
+        torch.manual_seed(1234 + 17 * (essai + 6 * decal) + len(texte))
         w, sr = m.generate_voice_clone(text=texte, language=LANGUES[langue], voice_clone_prompt=p)
         a = w[0].astype(np.float32)
         y = np.interp(np.arange(0, len(a), sr / 16000), np.arange(len(a)), a).astype(np.float32)
@@ -126,15 +135,21 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
         except Exception:
             pm = {"relief": 3.0, "elan": 2.0}
         vie = pm["relief"] + pm["elan"]
-        # rang : d'abord la justesse (au-dessus de 0,88 toutes les prises se valent), puis l'intonation
-        rang = (min(sc, 0.88), vie)
+        try:
+            df = prosodie.suspect(prosodie.defauts(y, 16000, ref, mots, len(texte)))
+        except Exception:
+            df = []
+        # rang : d'abord une prise sans défaut, puis la justesse (au-dessus de 0,88 toutes les prises se valent), puis l'intonation
+        rang = (not df, min(sc, 0.88), vie)
         if meilleur is None or rang > meilleur[0]:
-            meilleur = (rang, sc, a, sr, mots, pm)
-        if sc >= 0.9 and not prosodie.plat(pm):
+            meilleur = (rang, sc, a, sr, mots, pm, df)
+        if not df and sc >= 0.9 and not prosodie.plat(pm):
             break
-        if essai >= 1 and meilleur[1] >= 0.9 and not prosodie.plat(meilleur[5]):
+        if essai >= 1 and not meilleur[6] and meilleur[1] >= 0.9 and not prosodie.plat(meilleur[5]):
             break
-    _, sc, a, sr, mots, pm = meilleur
+    _, sc, a, sr, mots, pm, df = meilleur
+    if df:
+        print(f"    défaut de voix gardé faute de mieux ({' ; '.join(df)}) : {texte[:60]}", flush=True)
     if prosodie.plat(pm):
         print(f"    intonation plate (relief {pm['relief']}, élan {pm['elan']}) : {texte[:60]}", flush=True)
     tmp = chemin + ".wav.part"
