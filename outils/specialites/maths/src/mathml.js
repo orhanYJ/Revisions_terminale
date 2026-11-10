@@ -127,7 +127,7 @@ var TeX = (function () {
     if (n === "e") return el("mi", "e", 'mathvariant="normal"');
     if (n === "i") return el("mi", "i", 'mathvariant="normal"');
     if (GREC[n]) return el("mi", GREC[n], /^[A-Z]/.test(n) ? 'mathvariant="normal"' : "");
-    if (FONCS[n]) { this.blanc(); var par = this.peek() === "(" || this.peek() === "'" || /^\\left|^\^|^_/.test(this.s.slice(this.i)); return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="' + (par ? "0" : "0.17em") + '">&#x2061;</mo>'); }
+    if (FONCS[n]) { this.blanc(); var par = this.peek() === "(" || this.peek() === "'" || /^(?:\\left|\\right|\^|_|[.,;:)\]}]|$)/.test(this.s.slice(this.i)); return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="' + (par ? "0" : "0.17em") + '">&#x2061;</mo>'); }
     if (n === "lim") return el("mo", "lim", 'data-dessous movablelimits="false" lspace="0" rspace="0.17em"');
     if (n === "sum") return el("mo", "∑", 'data-dessous largeop="true" movablelimits="false"');
     if (n === "prod") return el("mo", "∏", 'data-dessous largeop="true" movablelimits="false"');
@@ -190,7 +190,28 @@ var TeX = (function () {
   /* texte riche : $$…$$ (bloc), $…$ (en ligne) ; le reste est du HTML laissé tel quel */
   function fmt(txt) {
     if (txt == null) return "";
-    return String(txt).replace(/\$\$([\s\S]+?)\$\$|\$([^$]+?)\$/g, function (_, b, i) { return b != null ? math(b, true) : math(i, false); });
+    /* Typographie : espace insécable avant « : ; ! ? » et après « (le texte seulement, jamais le code ni les balises),
+       et une formule en ligne reste collée à la ponctuation qui la suit (pas de virgule en début de ligne). */
+    var t = String(txt).split(/(<pre[\s\S]*?<\/pre>|<code[\s\S]*?<\/code>|<math[\s\S]*?<\/math>|\$\$[\s\S]+?\$\$|\$[^$]+?\$|<[^>]*>)/), out = "";
+    for (var k = 0; k < t.length; k++) {
+      var s = t[k];
+      if (k % 2 === 0) { out += s.replace(/ ([;!?])/g, " $1").replace(/ ([:»])/g, " $1").replace(/« /g, "« "); continue; }
+      if (s.slice(0, 2) === "$$") { out += math(s.slice(2, -2), true); continue; }
+      if (s[0] !== "$") { out += s; continue; }
+      var suite = k + 1 < t.length ? t[k + 1].replace(/ ([;!?])/g, " $1").replace(/ ([:»])/g, " $1") : "", m = /^[  ]?[,.;:!?)»…]+/.exec(suite);
+      var av = /[(\[«]\u00A0?$/.exec(out), ap = m ? m[0] : "", bouts = math(s.slice(1, -1), false).split("<wbr>");
+      if (m) t[k + 1] = suite.slice(ap.length);
+      if (av) out = out.slice(0, out.length - av[0].length);
+      if (av || ap) {
+        if (bouts.length === 1) bouts[0] = '<span class="nw">' + (av ? av[0] : "") + bouts[0] + ap + "</span>";
+        else {
+          if (av) bouts[0] = '<span class="nw">' + av[0] + bouts[0] + "</span>";
+          if (ap) bouts[bouts.length - 1] = '<span class="nw">' + bouts[bouts.length - 1] + ap + "</span>";
+        }
+      }
+      out += bouts.join("<wbr>");
+    }
+    return out;
   }
   /* version texte brut (recherche) */
   function plat(txt) {

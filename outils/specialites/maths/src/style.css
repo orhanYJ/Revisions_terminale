@@ -1,7 +1,7 @@
 @font-face{font-family:"Carnet Math";src:local("STIX Two Math"),url(carnet-math.woff2) format("woff2");font-display:swap}
 :root{
   --papier:#FBF8EF;--papier2:#FFFDF7;--carreau:rgba(38,72,150,.075);--marge:rgba(201,58,46,.32);
-  --encre:#1B2A5E;--encre2:#4D5779;--encre3:#7A82A0;--ligne:#E3DCC8;--ligne2:#D2C9AF;
+  --encre:#1B2A5E;--encre2:#4D5779;--encre3:#5E6685;--ligne:#E3DCC8;--ligne2:#D2C9AF;
   --bleu:#2343A8;--bleu-p:rgba(35,67,168,.08);--rouge:#C2372B;--rouge-p:rgba(194,55,43,.07);
   --surligne:rgba(255,226,74,.55);--surligne2:#FFE24A;--vert:#23774F;--vert-p:rgba(35,119,79,.09);
   --ombre:0 1px 2px rgba(27,42,94,.06),0 6px 18px rgba(27,42,94,.07);
@@ -9,12 +9,12 @@
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Helvetica Neue",Arial,sans-serif;
   --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,"DejaVu Sans Mono","Liberation Mono",monospace;
   --math:"Carnet Math","STIX Two Math","Cambria Math","Latin Modern Math",math;
-  --code-bg:#F3EFE2;--code-fg:#1B2A5E;--kw:#A3302A;--str:#23774F;--num:#2343A8;--com:#8A8572;
+  --code-bg:#F3EFE2;--code-fg:#1B2A5E;--kw:#A3302A;--str:#23774F;--num:#2343A8;--com:#6E6A58;
   color-scheme:light;
 }
 :root[data-theme="sombre"]{
   --papier:#1E2725;--papier2:#25302D;--carreau:rgba(236,235,228,.045);--marge:rgba(255,140,120,.22);
-  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#8D958C;--ligne:#3A4743;--ligne2:#4A5853;
+  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#9AA299;--ligne:#3A4743;--ligne2:#4A5853;
   --bleu:#9CC3F0;--bleu-p:rgba(156,195,240,.10);--rouge:#FF907E;--rouge-p:rgba(255,144,126,.09);
   --surligne:rgba(244,211,94,.22);--surligne2:#F4D35E;--vert:#8FD6A8;--vert-p:rgba(143,214,168,.10);
   --ombre:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.25);
@@ -23,7 +23,7 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="clair"]){
   --papier:#1E2725;--papier2:#25302D;--carreau:rgba(236,235,228,.045);--marge:rgba(255,140,120,.22);
-  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#8D958C;--ligne:#3A4743;--ligne2:#4A5853;
+  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#9AA299;--ligne:#3A4743;--ligne2:#4A5853;
   --bleu:#9CC3F0;--bleu-p:rgba(156,195,240,.10);--rouge:#FF907E;--rouge-p:rgba(255,144,126,.09);
   --surligne:rgba(244,211,94,.22);--surligne2:#F4D35E;--vert:#8FD6A8;--vert-p:rgba(143,214,168,.10);
   --ombre:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.25);
@@ -49,6 +49,7 @@ h4{font-size:1.02rem;margin:1em 0 .3em}
 p{margin:.55em 0}
 ul,ol{padding-left:1.3em;margin:.5em 0}
 li{margin:.2em 0}
+.nw{white-space:nowrap}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:2.5px solid var(--bleu);outline-offset:2px;border-radius:4px}
 
@@ -183,7 +184,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 .g-as{fill:none;stroke:var(--rouge);stroke-width:1.5;stroke-dasharray:6 5}
 .g-pt{fill:var(--bleu)} .g-pt2{fill:var(--rouge)}
 .g-bande{fill:var(--surligne)}
-.g-lab{font:600 13px var(--serif);fill:var(--encre)}
+.g-lab{font:600 13px var(--serif);fill:var(--encre);paint-order:stroke;stroke:var(--papier2);stroke-width:3px;stroke-linejoin:round}
 .g-lab.r{fill:var(--rouge)} .g-lab.b{fill:var(--bleu)}
 
 /* ---------- accueil ---------- */
@@ -311,6 +312,7 @@ html.mo .trace{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:tr
 .anim{margin:20px 0;border:1.5px solid var(--encre);border-radius:4px 16px 16px 16px;background:var(--papier2);box-shadow:4px 4px 0 var(--ligne2);overflow:hidden;position:relative}
 .anim .at{display:flex;align-items:center;gap:8px;padding:9px 14px;font:600 1rem var(--serif);border-bottom:1px dashed var(--ligne2);background:var(--bleu-p)}
 .anim .at svg{width:22px;height:22px;color:var(--rouge);flex:none}
+@media (max-width:560px){.anim .at{flex-wrap:wrap;row-gap:0}.anim .at span{flex:1 1 0;min-width:0}.anim .at small{flex-basis:100%;margin-left:30px}}
 .anim .at small{margin-left:auto;font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rouge);white-space:nowrap}
 .anim .scene{padding:6px 6px 0}
 .anim .scene svg{display:block;width:100%;height:auto;max-height:62vh}

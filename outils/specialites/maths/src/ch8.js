@@ -28,6 +28,7 @@ var CH8 = {
 [thm|Toutes les primitives]Si $F$ est une primitive de $f$ sur un intervalle $I$, les primitives de $f$ sur $I$ sont exactement les fonctions $x\mapsto F(x)+C$, $C$ réel. (Démonstration exigible : deux primitives diffèrent d'une constante.)[/]
 [prop|Une seule primitive passe par un point]Pour $x_0\in I$ et $y_0$ réel, il existe une unique primitive $F$ de $f$ telle que $F(x_0)=y_0$.[/]
 [ex|Condition initiale]Primitive de $f(x)=2x$ qui vaut $5$ en $1$ : $F(x)=x^2+C$ et $F(1)=1+C=5$, donc $F(x)=x^2+4$.[/]
+<div data-anim="primitives"></div>
 [thm|Existence (admise ici)]Toute fonction continue sur un intervalle admet des primitives. Mais certaines n'ont pas d'expression avec les fonctions usuelles : c'est le cas de $x\mapsto\e^{-x^2}$.[/]` },
     { id: "usuelles", titre: "Primitives usuelles et formes composées", html: R`
 <div class="tab-wrap"><table><tr><th>$f(x)$</th><th>Une primitive $F(x)$</th><th>Intervalle</th></tr>
@@ -212,5 +213,59 @@ ANIMS.champ = {
       pts.forEach(function (q) { S.pt(q[0], q[1], "g-pt2", 3.4); });
       if (n >= 8) S.txt(4.1, 1.45, "Euler : 1,80", "r");
     }
+  }
+};
+
+/* Animation : la famille des primitives, et celle qui passe par un point */
+ANIMS.primitives = {
+  titre: R`Toutes les primitives de $f(x)=2x$`,
+  vb: [360, 250],
+  etapes: [
+    { d: 5, l: R`$F(x)=x^2$ est une primitive de $f(x)=2x$ : en chaque point d'abscisse $a$, la tangente à la courbe de $F$ a pour pente $F'(a)=f(a)=2a$.` },
+    { d: 5.5, l: R`$x^2+C$ a la même dérivée $2x$, pour tout réel $C$ : on obtient toutes les primitives en translatant la courbe verticalement. À la même abscisse, toutes les tangentes sont parallèles (ici en $x=1$, pente $2$).` },
+    { d: 4.5, l: R`Condition $F(1)=5$ : $1+C=5$, donc $C=4$. Une seule courbe passe par le point $(1;5)$ : $F(x)=x^2+4$.` },
+    { d: 5, l: R`Entre deux primitives, l'écart vertical est le même partout : $(x^2+4)-x^2=4$. C'est le théorème « deux primitives d'une même fonction diffèrent d'une constante ».` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf;
+    S.rep(-2.5, 2.5, -4, 10, { px: 1, py: 2 });
+    function F(C) { return function (x) { return x * x + C; }; }
+    function tangente(a, C, cls, at) { var y = a * a + C; S.seg(a - 0.55, y - 1.1 * a, a + 0.55, y + 1.1 * a, cls, at); }
+    if (k === 0) {
+      S.courbe(F(0), -2.5, 2.5, "g-c");
+      var a = ANIM.l(-2, 2, E(t));
+      tangente(a, 0, "g-c2", { "stroke-width": 2.4 });
+      S.pt(a, a * a, "g-pt2", 4.5);
+      S.px.txt(44, 24, "a = " + nf(a, 1) + "   pente = 2a = " + nf(2 * a, 1), "r", "start");
+      return;
+    }
+    if (k === 1) {
+      for (var C = -3; C <= 5; C++) {
+        var o = C === 0 ? 1 : E(p(t, 0.08 * (C + 3), 0.08 * (C + 3) + 0.3));
+        if (o < 0.01) continue;
+        S.courbe(F(C), -2.5, 2.5, "g-c", 120, { opacity: C === 0 ? 1 : 0.5 * o });
+        tangente(1, C, "g-c3", { opacity: o, "stroke-width": 2 });
+      }
+      S.px.txt(44, 24, "F(x) = x² + C", "b", "start");
+      return;
+    }
+    if (k === 2) {
+      var o2 = E(p(t, 0.2, 0.7));
+      for (var C2 = -3; C2 <= 5; C2++) S.courbe(F(C2), -2.5, 2.5, "g-c", 120, { opacity: C2 === 4 ? 0.5 + 0.5 * o2 : 0.5 - 0.38 * o2, "stroke-width": C2 === 4 ? 2.2 + 1.2 * o2 : 2.2 });
+      S.pt(1, 5, "g-pt2", 6, { opacity: E(p(t, 0, 0.25)) });
+      S.txt(1.12, 4.3, "(1 ; 5)", "r", "start", { opacity: E(p(t, 0, 0.25)) });
+      S.txt(-1.3, 9.2, "F(x) = x² + 4", "b", "start", { opacity: o2 });
+      return;
+    }
+    S.courbe(F(0), -2.5, 2.5, "g-c", 120, { opacity: 0.6 });
+    S.courbe(F(4), -2.5, 2.5, "g-c", 120, { "stroke-width": 3 });
+    [-1.6, 0, 1.6].forEach(function (x, i) {
+      var f = E(p(t, 0.15 * i, 0.15 * i + 0.4));
+      if (f < 0.01) return;
+      S.fleche(x, x * x, x, x * x + 4 * f, "g-c2", { "stroke-width": 2.2 });
+      if (f > 0.9) S.txt(x + 0.08, x * x + 2.2, "4", "r", "start");
+    });
+    S.txt(-1.3, 8.6, "x² + 4", "b", "start");
+    S.txt(1.95, 1.6, "x²", "b", "start", { opacity: 0.8 });
   }
 };

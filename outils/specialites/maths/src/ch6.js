@@ -33,6 +33,7 @@ var CH6 = {
     { id: "algebre", titre: "Propriétés algébriques", html: R`
 [thm|Relation fonctionnelle]Pour tous réels $a>0$ et $b>0$ : $\ln(ab)=\ln a+\ln b$.[/]
 <p><b>Preuve.</b> $\e^{\ln a+\ln b}=\e^{\ln a}\times\e^{\ln b}=ab=\e^{\ln(ab)}$. L'exponentielle étant strictement croissante, deux réels qui ont la même exponentielle sont égaux : $\ln a+\ln b=\ln(ab)$.</p>
+<div data-anim="regle"></div>
 [prop|Conséquences]Pour $a>0$, $b>0$ et $n\in\Z$ : $$\ln\frac1a=-\ln a,\qquad\ln\frac ab=\ln a-\ln b,\qquad\ln(a^n)=n\ln a,\qquad\ln\sqrt a=\frac12\ln a.$$[/]
 [ex|Calculs]$\ln8=\ln(2^3)=3\ln2\approx2{,}079$ ; $\ln\frac{1}{\e^2}=-2$ ; $\ln\sqrt\e=\frac12$ ; $\e^{2\ln3}=\left(\e^{\ln3}\right)^2=9$ ; $\ln12-\ln3=\ln4=2\ln2$.[/]
 [piege|Il n'y a pas de formule pour une somme]<span class="rature">$\ln(a+b)=\ln a+\ln b$</span> est faux : $\ln(1+1)=\ln2\approx0{,}69$ alors que $\ln1+\ln1=0$. Et <span class="rature">$\ln(a)\times\ln(b)=\ln(ab)$</span> aussi.[/]` },
@@ -189,15 +190,18 @@ ANIMS.reciproque = {
     S.seg(-3, -3, 5, 5, "g-as");
     S.txt(4.6, 4.95, "y = x", "r", "end");
     S.courbe(ex, -3, ln(5), "g-c", 160);
-    S.txt(1.2, 4.6, "exp", "b", "start");
+    S.txt(1.22, 4.6, "exp", "b", "end");
     var aMax = k === 0 ? -3 : k === 1 ? ANIM.l(-3, ln(5) - 0.01, E(t)) : ln(5) - 0.01;
     if (aMax > -3) S.courbe(ln, ex(-3), ex(aMax), "g-c2", 160, { "stroke-width": 3 });
-    if (k >= 2 || (k === 1 && t > 0.6)) S.txt(4.3, 1.8, "ln", "r", "start");
+    if (k >= 2 || (k === 1 && t > 0.6)) S.txt(3.9, 0.95, "ln", "r", "start");
     function paire(a, lab) {
       var M = [a, ex(a)], P = [ex(a), a];
       S.seg(M[0], M[1], P[0], P[1], "a-craie");
       S.pt(M[0], M[1], "g-pt", 4.5); S.pt(P[0], P[1], "g-pt2", 4.5);
-      if (lab) { S.txt(M[0] - 0.12, M[1] + 0.25, lab[0], "b", "end"); S.txt(P[0] + 0.12, P[1] - 0.4, lab[1], "r", "start"); }
+      if (lab) {
+        S.txt(M[0] - 0.15, Math.min(M[1] + 0.25, 4.65), lab[0], "b", "end");
+        if (P[0] > 4) S.txt(P[0] - 0.1, P[1] + 0.35, lab[1], "r", "end"); else S.txt(P[0] + 0.12, P[1] - 0.4, lab[1], "r", "start");
+      }
     }
     if (k === 1) paire(aMax, ["M", "M'"]);
     if (k === 2) { paire(0, ["(0;1)", "(1;0)"]); if (t > 0.45) paire(1, ["(1;e)", "(e;1)"]); }
@@ -206,15 +210,74 @@ ANIMS.reciproque = {
       paire(a, ["M", "M'"]);
       S.seg(a - 2, m - 2 * m, a + 2, m + 2 * m, "g-c3");
       S.seg(m - 2 * m, a - 2, m + 2 * m, a + 2, "g-c3");
-      S.txt(-2.8, 4.4, "pente en M : " + ANIM.nf(m, 2), "b");
-      S.txt(-2.8, 3.8, "pente en M' : " + ANIM.nf(1 / m, 2) + " = 1/" + ANIM.nf(m, 2), "r");
+      S.txt(4.9, -2.05, "pente en M : " + ANIM.nf(m, 2), "b", "end");
+      S.txt(4.9, -2.65, "pente en M' : " + ANIM.nf(1 / m, 2) + " = 1/" + ANIM.nf(m, 2), "r", "end");
     }
     if (k === 4) {
       var o = E(t);
       S.seg(-3, 0, 5, 0, "g-c", { "stroke-width": 3, opacity: 0.25 + 0.5 * o });
       S.seg(0, -3, 0, 5, "g-c2", { "stroke-width": 3, opacity: 0.25 + 0.5 * o });
-      S.txt(-2.9, 0.25, "asymptote y = 0", "b");
+      S.txt(-2.9, 0.42, "asymptote y = 0", "b", "start");
       S.txt(0.12, -2.7, "asymptote x = 0", "r");
+    }
+  }
+};
+
+/* Animation : la règle à calcul, ou ln(ab) = ln a + ln b */
+ANIMS.regle = {
+  titre: R`La règle à calcul : multiplier en ajoutant des $\ln$`,
+  vb: [360, 220],
+  etapes: [
+    { d: 4, l: R`Une règle graduée « en logarithmes » : chaque nombre $x$ est placé à une distance proportionnelle à $\ln x$ du bord. Le $1$ est au bord, car $\ln1=0$ ; les graduations se serrent vers la droite.` },
+    { d: 4, l: R`La longueur de $1$ à $2$ représente $\ln2\approx0{,}69$ ; celle de $1$ à $3$ représente $\ln3\approx1{,}10$.` },
+    { d: 5, l: R`On met les deux longueurs bout à bout : on arrive exactement sur la graduation $6$. $\ln2+\ln3=\ln6$ : c'est $\ln(ab)=\ln a+\ln b$.` },
+    { d: 6, l: R`Une seconde règle glisse : son $1$ vient sous le $2$. Au-dessus de chaque nombre $b$ de la règle mobile, on lit $2b$ sur la règle fixe : $2\times1{,}5=3$, $2\times2=4$, $2\times3=6$, $2\times4=8$, $2\times5=10$.` },
+    { d: 4, l: R`Multiplier, c'est additionner des longueurs de logarithmes. Les règles à calcul, utilisées du XVII<sup>e</sup> siècle jusqu'à l'arrivée des calculatrices électroniques dans les années 1970, reposent sur cette propriété.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, x0 = 30, L = 300, pos = function (v) { return x0 + L * Math.log(v) / Math.LN10; };
+    var REG = "fill:var(--papier);stroke:var(--encre2);stroke-width:1.2";
+    /* règle fixe : graduations sur le bord bas */
+    S.px.rect(x0 - 8, 66, L + 16, 32, "", { rx: 4, style: REG });
+    for (var v = 1; v <= 10; v += 0.5) {
+      var o = k === 0 ? E(p(t, (v - 1) / 12, (v - 1) / 12 + 0.25)) : 1, ent = v % 1 === 0;
+      S.px.seg(pos(v), 98, pos(v), ent ? 84 : 90, "a-branche", { opacity: o, style: "stroke:var(--encre)" });
+      if (ent) S.px.txt(pos(v), 80, String(v), "", "middle", { opacity: o, "font-size": 12 });
+    }
+    function crochet(a, b, y, cls, lab, op) {
+      S.px.seg(a, y, b, y, cls, { opacity: op, "stroke-width": 3 });
+      S.px.seg(a, y - 5, a, y + 5, cls, { opacity: op });
+      S.px.seg(b, y - 5, b, y + 5, cls, { opacity: op });
+      S.px.txt((a + b) / 2, y - 8, lab, cls === "g-c2" ? "r" : "b", "middle", { opacity: op });
+    }
+    if (k === 1 || k === 2) {
+      var o1 = k === 1 ? E(p(t, 0, 0.4)) : 1, o2 = k === 1 ? E(p(t, 0.4, 0.8)) : 1;
+      crochet(pos(1), pos(2), 52, "g-c", "ln 2", o1);
+      var dx = k === 2 ? E(p(t, 0, 0.6)) * (pos(2) - pos(1)) : 0, yy = k === 2 ? ANIM.l(28, 52, E(p(t, 0, 0.6))) : 28;
+      crochet(pos(1) + dx, pos(3) + dx, yy, "g-c2", "ln 3", o2);
+      if (k === 2 && t > 0.6) {
+        var o3 = E(p(t, 0.6, 0.85));
+        S.px.seg(pos(6), 52, pos(6), 98, "g-c3", { opacity: o3, "stroke-dasharray": "4 3" });
+        S.px.cercle(pos(6), 80, 11, "", { opacity: o3, style: "fill:none;stroke:var(--vert);stroke-width:2" });
+        S.px.math(20, 150, 320, 40, R`$\ln2+\ln3=\ln6$`, { opacity: o3 });
+      }
+    }
+    if (k >= 3) {
+      var dec = (k === 3 ? E(p(t, 0, 0.4)) : 1) * (pos(2) - pos(1)), lim = x0 + L + 8;
+      S.px.rect(x0 - 8 + dec, 102, lim - (x0 - 8 + dec), 32, "", { style: REG + ";fill:var(--bleu-p)" });
+      for (var w = 1; w <= 10; w += 0.5) {
+        var X = pos(w) + dec; if (X > lim - 2) break;
+        var en = w % 1 === 0;
+        S.px.seg(X, 102, X, en ? 116 : 110, "a-branche", { style: "stroke:var(--bleu)" });
+        if (en) S.px.txt(X, 128, String(w), "b", "middle", { "font-size": 12 });
+      }
+      var o4 = k === 3 ? E(p(t, 0.45, 0.7)) : 1;
+      [1.5, 2, 3, 4, 5].forEach(function (b, i) {
+        var oi = k === 3 ? E(p(t, 0.45 + i * 0.09, 0.6 + i * 0.09)) : 1;
+        S.px.seg(pos(2 * b), 84, pos(2 * b), 116, "g-c3", { opacity: oi, "stroke-width": 2.6 });
+      });
+      S.px.math(20, 148, 320, 34, R`$2\times b$ se lit au-dessus de $b$`, { opacity: o4 });
+      if (k === 4) S.px.math(20, 182, 320, 36, R`$\ln(ab)=\ln a+\ln b$`, { opacity: E(p(t, 0, 0.5)) });
     }
   }
 };

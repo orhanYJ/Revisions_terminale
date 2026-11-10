@@ -16,7 +16,7 @@
 @font-face{font-family:"Carnet Math";src:local("STIX Two Math"),url(carnet-math.woff2) format("woff2");font-display:swap}
 :root{
   --papier:#FBF8EF;--papier2:#FFFDF7;--carreau:rgba(38,72,150,.075);--marge:rgba(201,58,46,.32);
-  --encre:#1B2A5E;--encre2:#4D5779;--encre3:#7A82A0;--ligne:#E3DCC8;--ligne2:#D2C9AF;
+  --encre:#1B2A5E;--encre2:#4D5779;--encre3:#5E6685;--ligne:#E3DCC8;--ligne2:#D2C9AF;
   --bleu:#2343A8;--bleu-p:rgba(35,67,168,.08);--rouge:#C2372B;--rouge-p:rgba(194,55,43,.07);
   --surligne:rgba(255,226,74,.55);--surligne2:#FFE24A;--vert:#23774F;--vert-p:rgba(35,119,79,.09);
   --ombre:0 1px 2px rgba(27,42,94,.06),0 6px 18px rgba(27,42,94,.07);
@@ -24,12 +24,12 @@
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Helvetica Neue",Arial,sans-serif;
   --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,"DejaVu Sans Mono","Liberation Mono",monospace;
   --math:"Carnet Math","STIX Two Math","Cambria Math","Latin Modern Math",math;
-  --code-bg:#F3EFE2;--code-fg:#1B2A5E;--kw:#A3302A;--str:#23774F;--num:#2343A8;--com:#8A8572;
+  --code-bg:#F3EFE2;--code-fg:#1B2A5E;--kw:#A3302A;--str:#23774F;--num:#2343A8;--com:#6E6A58;
   color-scheme:light;
 }
 :root[data-theme="sombre"]{
   --papier:#1E2725;--papier2:#25302D;--carreau:rgba(236,235,228,.045);--marge:rgba(255,140,120,.22);
-  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#8D958C;--ligne:#3A4743;--ligne2:#4A5853;
+  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#9AA299;--ligne:#3A4743;--ligne2:#4A5853;
   --bleu:#9CC3F0;--bleu-p:rgba(156,195,240,.10);--rouge:#FF907E;--rouge-p:rgba(255,144,126,.09);
   --surligne:rgba(244,211,94,.22);--surligne2:#F4D35E;--vert:#8FD6A8;--vert-p:rgba(143,214,168,.10);
   --ombre:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.25);
@@ -38,7 +38,7 @@
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="clair"]){
   --papier:#1E2725;--papier2:#25302D;--carreau:rgba(236,235,228,.045);--marge:rgba(255,140,120,.22);
-  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#8D958C;--ligne:#3A4743;--ligne2:#4A5853;
+  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#9AA299;--ligne:#3A4743;--ligne2:#4A5853;
   --bleu:#9CC3F0;--bleu-p:rgba(156,195,240,.10);--rouge:#FF907E;--rouge-p:rgba(255,144,126,.09);
   --surligne:rgba(244,211,94,.22);--surligne2:#F4D35E;--vert:#8FD6A8;--vert-p:rgba(143,214,168,.10);
   --ombre:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.25);
@@ -64,6 +64,7 @@ h4{font-size:1.02rem;margin:1em 0 .3em}
 p{margin:.55em 0}
 ul,ol{padding-left:1.3em;margin:.5em 0}
 li{margin:.2em 0}
+.nw{white-space:nowrap}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:2.5px solid var(--bleu);outline-offset:2px;border-radius:4px}
 
@@ -198,7 +199,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 .g-as{fill:none;stroke:var(--rouge);stroke-width:1.5;stroke-dasharray:6 5}
 .g-pt{fill:var(--bleu)} .g-pt2{fill:var(--rouge)}
 .g-bande{fill:var(--surligne)}
-.g-lab{font:600 13px var(--serif);fill:var(--encre)}
+.g-lab{font:600 13px var(--serif);fill:var(--encre);paint-order:stroke;stroke:var(--papier2);stroke-width:3px;stroke-linejoin:round}
 .g-lab.r{fill:var(--rouge)} .g-lab.b{fill:var(--bleu)}
 
 /* ---------- accueil ---------- */
@@ -326,6 +327,7 @@ html.mo .trace{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:tr
 .anim{margin:20px 0;border:1.5px solid var(--encre);border-radius:4px 16px 16px 16px;background:var(--papier2);box-shadow:4px 4px 0 var(--ligne2);overflow:hidden;position:relative}
 .anim .at{display:flex;align-items:center;gap:8px;padding:9px 14px;font:600 1rem var(--serif);border-bottom:1px dashed var(--ligne2);background:var(--bleu-p)}
 .anim .at svg{width:22px;height:22px;color:var(--rouge);flex:none}
+@media (max-width:560px){.anim .at{flex-wrap:wrap;row-gap:0}.anim .at span{flex:1 1 0;min-width:0}.anim .at small{flex-basis:100%;margin-left:30px}}
 .anim .at small{margin-left:auto;font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rouge);white-space:nowrap}
 .anim .scene{padding:6px 6px 0}
 .anim .scene svg{display:block;width:100%;height:auto;max-height:62vh}
@@ -634,7 +636,7 @@ var TeX = (function () {
     if (n === "e") return el("mi", "e", 'mathvariant="normal"');
     if (n === "i") return el("mi", "i", 'mathvariant="normal"');
     if (GREC[n]) return el("mi", GREC[n], /^[A-Z]/.test(n) ? 'mathvariant="normal"' : "");
-    if (FONCS[n]) { this.blanc(); var par = this.peek() === "(" || this.peek() === "'" || /^\\left|^\^|^_/.test(this.s.slice(this.i)); return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="' + (par ? "0" : "0.17em") + '">&#x2061;</mo>'); }
+    if (FONCS[n]) { this.blanc(); var par = this.peek() === "(" || this.peek() === "'" || /^(?:\\left|\\right|\^|_|[.,;:)\]}]|$)/.test(this.s.slice(this.i)); return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="' + (par ? "0" : "0.17em") + '">&#x2061;</mo>'); }
     if (n === "lim") return el("mo", "lim", 'data-dessous movablelimits="false" lspace="0" rspace="0.17em"');
     if (n === "sum") return el("mo", "∑", 'data-dessous largeop="true" movablelimits="false"');
     if (n === "prod") return el("mo", "∏", 'data-dessous largeop="true" movablelimits="false"');
@@ -697,7 +699,28 @@ var TeX = (function () {
   /* texte riche : $$…$$ (bloc), $…$ (en ligne) ; le reste est du HTML laissé tel quel */
   function fmt(txt) {
     if (txt == null) return "";
-    return String(txt).replace(/\$\$([\s\S]+?)\$\$|\$([^$]+?)\$/g, function (_, b, i) { return b != null ? math(b, true) : math(i, false); });
+    /* Typographie : espace insécable avant « : ; ! ? » et après « (le texte seulement, jamais le code ni les balises),
+       et une formule en ligne reste collée à la ponctuation qui la suit (pas de virgule en début de ligne). */
+    var t = String(txt).split(/(<pre[\s\S]*?<\/pre>|<code[\s\S]*?<\/code>|<math[\s\S]*?<\/math>|\$\$[\s\S]+?\$\$|\$[^$]+?\$|<[^>]*>)/), out = "";
+    for (var k = 0; k < t.length; k++) {
+      var s = t[k];
+      if (k % 2 === 0) { out += s.replace(/ ([;!?])/g, " $1").replace(/ ([:»])/g, " $1").replace(/« /g, "« "); continue; }
+      if (s.slice(0, 2) === "$$") { out += math(s.slice(2, -2), true); continue; }
+      if (s[0] !== "$") { out += s; continue; }
+      var suite = k + 1 < t.length ? t[k + 1].replace(/ ([;!?])/g, " $1").replace(/ ([:»])/g, " $1") : "", m = /^[  ]?[,.;:!?)»…]+/.exec(suite);
+      var av = /[(\[«]\u00A0?$/.exec(out), ap = m ? m[0] : "", bouts = math(s.slice(1, -1), false).split("<wbr>");
+      if (m) t[k + 1] = suite.slice(ap.length);
+      if (av) out = out.slice(0, out.length - av[0].length);
+      if (av || ap) {
+        if (bouts.length === 1) bouts[0] = '<span class="nw">' + (av ? av[0] : "") + bouts[0] + ap + "</span>";
+        else {
+          if (av) bouts[0] = '<span class="nw">' + av[0] + bouts[0] + "</span>";
+          if (ap) bouts[bouts.length - 1] = '<span class="nw">' + bouts[bouts.length - 1] + ap + "</span>";
+        }
+      }
+      out += bouts.join("<wbr>");
+    }
+    return out;
   }
   /* version texte brut (recherche) */
   function plat(txt) {
@@ -1184,7 +1207,7 @@ var ANIM = (function () {
       rect: function (x, y, w, h, cls, at) { return N("rect", ajoute({ x: x, y: y, width: w, height: h, "class": cls || "g-bande" }, at), g); },
       cercle: function (x, y, r, cls, at) { return N("circle", ajoute({ cx: x, cy: y, r: r, "class": cls || "g-pt" }, at), g); },
       path: function (d, cls, at) { return N("path", ajoute({ d: d, "class": cls || "g-c" }, at), g); },
-      math: function (x, y, w, h, html, at) { var fo = N("foreignObject", ajoute({ x: x, y: y, width: w, height: h }, at), g); var d = document.createElement("div"); d.className = "a-math"; d.innerHTML = TeX.fmt(html); fo.appendChild(d); return fo; }
+      math: function (x, y, w, h, html, at) { var fo = N("foreignObject", ajoute({ x: x, y: y, width: w, height: h }, at), g); var d = document.createElement("div"); d.className = "a-math"; d.innerHTML = "<span>" + TeX.fmt(html) + "</span>"; fo.appendChild(d); return fo; }
     };
     S.vider();
     return S;
@@ -1304,7 +1327,11 @@ ANIMS.propagation = {
       S.px.txt(x + w / 2, y - 26, "n=" + i, "", "middle", { "font-size": 11 });
       S.px.txt(x + w / 2, y + 5, on ? String(vals[i]) : "?", on ? "b" : "", "middle", { "font-size": vals[i] > 99 ? 11 : 13 });
       if (on) S.px.txt(x + w / 2, y + 36, "✓", "c3", "middle", { "font-size": 15 });
-      if (i < n - 1 && (k >= 3 ? i < valide : false)) S.px.fleche(x + w - 2, y - 30, x + dx + 4, y - 30, "g-c3", { "stroke-width": 1.8 });
+      if (i < n - 1 && (k >= 3 ? i < valide : false)) {
+        var xa = x + w / 2 + 3, xb = x + dx + w / 2 - 3, ya = y - 40, cy = y - 58;
+        S.px.path("M" + xa + " " + ya + "Q" + (xa + xb) / 2 + " " + cy + " " + xb + " " + ya, "g-c3", { fill: "none", "stroke-width": 1.8 });
+        S.px.path("M" + xb + " " + ya + "l-6.5 -4.2l1.2 5.6z", "g-c3", { fill: "currentColor", style: "fill:var(--vert)" });
+      }
     }
     S.px.txt(x0 + n * dx - 6, y + 5, "…", "", "start", { "font-size": 18 });
     if (k === 2) {
@@ -1333,7 +1360,8 @@ ANIMS.bande = {
     S.rep(0, 30, -1.2, 5.2, { px: 5, py: 1 });
     function N0(eps) { for (var m = 200; m >= 0; m--) if (Math.abs(u(m) - 2) >= eps) return m + 1; return 0; }
     var eps = k < 1 ? null : k === 1 ? 1 : k === 2 ? ANIM.l(1, 0.5, E(t)) : k === 3 ? ANIM.l(0.5, 0.2, E(t)) : ANIM.l(0.2, 0.08, E(t));
-    if (eps) { S.rect(0, 2 - eps, 30, 2 + eps, "g-bande", { opacity: k === 1 ? E(t * 2) : 1 }); S.txt(29.5, 2 + eps + 0.15, "2 ± " + ANIM.nf(eps, 2), "r", "end"); }
+    if (eps) eps = Math.round(eps * 1000) / 1000;
+    if (eps) { S.rect(0, 2 - eps, 30, 2 + eps, "g-bande", { opacity: k === 1 ? E(t * 2) : 1 }); S.txt(29.5, 2 + Math.max(eps, 0.5) + 0.15, "2 ± " + ANIM.nf(eps, 2), "r", "end"); }
     S.seg(0, 2, 30, 2, "g-as");
     var nb = k === 0 ? Math.floor(E(t) * 30.99) : 30, Nn = eps ? N0(eps) : null;
     for (var i = 0; i <= nb; i++) S.pt(i, u(i), eps && i >= Nn ? "g-pt" : (eps ? "g-pt2" : "g-pt"), 3.3);
@@ -1495,7 +1523,7 @@ ANIMS.geometrique = {
       pts.forEach(function (p) { S.pt(p[0], p[1], cols[i], 3.4, { opacity: k < 4 ? 1 : 0.7 }); });
       if (k === 4) { var last = pts[pts.length - 1]; S.txt(14.8, Math.max(-5.6, Math.min(5.6, last[1])) + [0.3, 0.5, -1.1, 0.3][i], "q = " + ANIM.nf(q, 1), cols[i] === "g-pt2" ? "r" : "b", "end"); }
     });
-    if (k < 4) S.txt(0.3, 5.3, "q = " + ANIM.nf(Q[k], 1) + "   q^n pour n = 0…15", k === 0 || k === 3 ? "r" : "b");
+    if (k < 4) S.txt(0.3, 5.3, "q = " + ANIM.nf(Q[k], 1) + " : les termes qⁿ, n de 0 à 15", k === 0 || k === 3 ? "r" : "b");
   }
 };
 
@@ -1599,6 +1627,7 @@ Donc $P(k+1)$ est vraie.</p>
 <p><b>Hérédité.</b> Soit $k\geq1$ tel que $1+3+\dots+(2k-1)=k^2$. Au rang $k+1$, on ajoute le terme suivant $2(k+1)-1=2k+1$ :
 $$1+3+\dots+(2k-1)+(2k+1)=k^2+2k+1=(k+1)^2.$$</p>
 <p><b>Conclusion.</b> Par récurrence, la formule est vraie pour tout $n\geq1$.</p>[/]
+<div data-anim="impairs"></div>
 <p>Avec le symbole somme, on écrit $\sum_{k=1}^{n}(2k-1)=n^2$. Le programme permet d'utiliser ce symbole pour abréger, mais sa manipulation pour démontrer des égalités n'est pas un objectif : en cas de doute, écris la somme avec des pointillés.</p>
 [prop|Somme des carrés]Pour tout $n\geq1$ : $1^2+2^2+\dots+n^2=\frac{n(n+1)(2n+1)}{6}$. (Démonstration dans l'onglet Démonstrations.)[/]` },
     { id: "inegalites", titre: "Récurrence et inégalités : encadrer, montrer la monotonie", html: R`
@@ -1787,6 +1816,57 @@ def seuil():
   ]
 };
 
+/* Animation : la somme des impairs remplit un carré (hérédité en image) */
+ANIMS.impairs = {
+  titre: R`Les nombres impairs construisent des carrés`,
+  vb: [360, 230],
+  etapes: [
+    { d: 3, l: R`Pourquoi $1+3+5+\dots+(2n-1)=n^2$ ? Au départ, $1$ carreau : $1=1^2$.` },
+    { d: 3.5, l: R`On ajoute l'impair suivant, $3$, en équerre autour du carreau : on obtient un carré $2\times2$. $1+3=4=2^2$.` },
+    { d: 3.5, l: R`Puis $5$ carreaux : une équerre de $2+2+1$ autour du carré $2\times2$ donne le carré $3\times3$. $1+3+5=9=3^2$.` },
+    { d: 5, l: R`$7$, puis $9$ : chaque nombre impair complète exactement le carré suivant. $1+3+5+7+9=25=5^2$.` },
+    { d: 5, l: R`C'est l'hérédité en image : autour d'un carré $k\times k$, l'équerre compte $k+k+1=2k+1$ carreaux, le terme suivant de la somme, et $k^2+(2k+1)=(k+1)^2$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, c = 26, x0 = 22, y0 = 206;
+    var STY = ["fill:var(--bleu-p);stroke:var(--bleu)", "fill:var(--rouge-p);stroke:var(--rouge)"];
+    function carreau(i, j, m, o) { S.px.rect(x0 + i * c + 1.5, y0 - (j + 1) * c + 1.5, c - 3, c - 3, "", { rx: 3, style: STY[m % 2] + ";stroke-width:1.4", opacity: o }); }
+    function equerre(m, f) {
+      var cel = [], i;
+      for (i = 0; i < m; i++) cel.push([m, i]);
+      cel.push([m, m]);
+      for (i = m - 1; i >= 0; i--) cel.push([i, m]);
+      cel.forEach(function (q, j) { var a = j / cel.length * 0.7, o = f >= 1 ? 1 : E(p(f, a, a + 0.3)); if (o > 0.01) carreau(q[0], q[1], m, o); });
+    }
+    if (k < 4) {
+      var SOM = ["1 = 1²", "1 + 3 = 4 = 2²", "1 + 3 + 5 = 9 = 3²", "1 + 3 + 5 + 7 = 16 = 4²", "1 + 3 + 5 + 7 + 9 = 25 = 5²"];
+      var faites = [1, 2, 3, 5][k];
+      for (var m = 0; m < faites; m++) {
+        var f = 1;
+        if (k === 0) f = p(t, 0, 0.5);
+        if (k === 1 && m === 1) f = p(t, 0, 0.8);
+        if (k === 2 && m === 2) f = p(t, 0, 0.8);
+        if (k === 3 && m === 3) f = p(t, 0, 0.45);
+        if (k === 3 && m === 4) f = p(t, 0.5, 0.95);
+        equerre(m, f);
+        var o = f >= 1 ? 1 : E(p(f, 0.6, 1));
+        if (o > 0.01) S.px.txt(170, 74 + m * 28, SOM[m], m === faites - 1 ? "b" : "", "start", { "font-size": 14, opacity: o });
+      }
+      return;
+    }
+    var n = 4, a = E(p(t, 0, 0.3));
+    S.px.rect(x0 + 1.5, y0 - n * c + 1.5, n * c - 3, n * c - 3, "", { rx: 4, style: STY[0] + ";stroke-width:1.4" });
+    S.px.txt(x0 + n * c / 2, y0 - n * c / 2 + 6, "k × k", "b", "middle", { "font-size": 16 });
+    equerre(n, p(t, 0.1, 0.7));
+    S.px.txt(x0 + (n + 1) * c + 6, y0 - n * c / 2 + 5, "k", "r", "start", { opacity: a, "font-size": 15 });
+    S.px.txt(x0 + n * c / 2, y0 - (n + 1) * c - 7, "k", "r", "middle", { opacity: a, "font-size": 15 });
+    S.px.txt(x0 + (n + 1) * c + 6, y0 - (n + 1) * c + 4, "1", "r", "start", { opacity: a, "font-size": 15 });
+    var b = E(p(t, 0.6, 1));
+    S.px.math(172, 70, 184, 40, R`$k^2+(2k+1)$`, { opacity: b });
+    S.px.math(172, 112, 184, 40, R`$=(k+1)^2$`, { opacity: b });
+  }
+};
+
 /* ---------- Chapitre 2 : limites de suites ---------- */
 var CH2 = {
   id: "ch2", num: 2, statut: "ok", partie: "Analyse", titre: "Limites de suites", court: "Limites de suites",
@@ -1839,7 +1919,7 @@ var CH2 = {
 <tr><td>$\ell$</td><td>$\ell'\neq0$</td><td>$\frac{\ell}{\ell'}$</td></tr>
 <tr><td>$\ell$</td><td>$\pm\infty$</td><td>$0$</td></tr>
 <tr><td>$\ell\neq0$ ou $\pm\infty$</td><td>$0$ (de signe constant)</td><td>$\pm\infty$ (règle des signes)</td></tr>
-<tr><td>$\pm\infty$</td><td>$\ell'$</td><td>$\pm\infty$ (règle des signes)</td></tr>
+<tr><td>$\pm\infty$</td><td>$\ell'\neq0$</td><td>$\pm\infty$ (règle des signes)</td></tr>
 <tr><td>$0$</td><td>$0$</td><td><b>F.I.</b></td></tr>
 <tr><td>$\pm\infty$</td><td>$\pm\infty$</td><td><b>F.I.</b></td></tr></table></div>
 [meth|Lever une indétermination : le terme prépondérant]$u_n=\frac{3n^2-n+1}{2n^2+5}$ est de la forme $\frac{\infty}{\infty}$. On factorise par $n^2$ en haut et en bas :
@@ -2082,7 +2162,8 @@ var CH3 = {
     { id: "comparaison", titre: "Comparaison et gendarmes", html: R`
 [thm|Comparaison]Si $f(x)\geq g(x)$ pour $x$ assez grand et $\lim_{x\to+\infty}g(x)=+\infty$, alors $\lim_{x\to+\infty}f(x)=+\infty$. (Énoncés analogues en $-\infty$, en $a$, et pour $-\infty$.)[/]
 [thm|Gendarmes]Si $g(x)\leq f(x)\leq h(x)$ pour $x$ assez grand, et si $g$ et $h$ ont la même limite finie $\ell$ en $+\infty$, alors $\lim_{x\to+\infty}f(x)=\ell$.[/]
-[ex|Avec un cosinus]$f(x)=\frac{\cos x}{x}$ pour $x>0$ : $-\frac1x\leq f(x)\leq\frac1x$, et $\pm\frac1x\to0$ : par les gendarmes, $\lim_{x\to+\infty}f(x)=0$.<br>$g(x)=x+\cos x\geq x-1\to+\infty$ : par comparaison, $\lim_{x\to+\infty}g(x)=+\infty$.[/]` },
+[ex|Avec un cosinus]$f(x)=\frac{\cos x}{x}$ pour $x>0$ : $-\frac1x\leq f(x)\leq\frac1x$, et $\pm\frac1x\to0$ : par les gendarmes, $\lim_{x\to+\infty}f(x)=0$.<br>$g(x)=x+\cos x\geq x-1\to+\infty$ : par comparaison, $\lim_{x\to+\infty}g(x)=+\infty$.[/]
+<div data-anim="gendarmes"></div>` },
     { id: "croissances", titre: "Croissances comparées", html: R`
 <p>Face à $\frac{\e^x}{x}$ en $+\infty$, on a une forme $\frac\infty\infty$. Qui gagne ? Toujours l'exponentielle.</p>
 [thm|Croissances comparées]Pour tout entier $n\geq1$ :
@@ -2098,7 +2179,7 @@ $$\lim_{x\to+\infty}\frac{\e^x}{x^n}=+\infty,\qquad\lim_{x\to+\infty}x^n\e^{-x}=
     { t: "« $\\frac{3}{0}=\\infty$ »", h: R`On ne divise pas par zéro : on étudie la limite d'un quotient dont le dénominateur <b>tend</b> vers $0$, avec son signe ($0^+$ ou $0^-$).` },
     { t: "Asymptote et courbe", h: R`Une courbe peut couper son asymptote horizontale (exemple : $\frac{\sin x}{x}$ coupe $y=0$ une infinité de fois). L'asymptote décrit le comportement <b>à l'infini</b>.` },
     { t: "Terme prépondérant en $0$", h: R`En $0$, c'est le terme de <b>plus bas</b> degré qui domine : $x^3+2x\approx2x$ près de $0$. Ne factorise pas par $x^3$.` },
-    { t: "Croissances comparées à l'envers", h: R`$\frac{x^{100}}{\e^x}\to0$ en $+\infty$, même si $x^{100}$ est énorme pour $x=10$. Mais en $-\infty$, $\e^x\to0$ et c'est $x^n\e^x\to0$.` }
+    { t: "Croissances comparées à l'envers", h: R`$\frac{x^{100}}{\e^x}\to0$ en $+\infty$, même si $x^{100}$ est énorme pour $x=10$ : c'est toujours l'exponentielle qui gagne. En $-\infty$ aussi : $\e^x\to0$ l'emporte sur $x^n\to\pm\infty$, donc $x^n\e^x\to0$ (et non $\pm\infty$).` }
   ],
   demos: [
     { bo: true, t: "Limites de l'exponentielle en $+\\infty$ et en $-\\infty$", h: R`
@@ -2210,6 +2291,41 @@ print(round(b, 4))`, sortie: `35.7715`,
     [R`Forme $\frac00$ en $a$ : réflexe`, R`Factoriser numérateur et dénominateur par $(x-a)$.`],
     [R`Encadrer $\cos x$`, R`$-1\leq\cos x\leq1$`]
   ]
+};
+
+/* Animation : les gendarmes se resserrent, puis la comparaison */
+ANIMS.gendarmes = {
+  titre: R`Deux gendarmes qui se resserrent`,
+  vb: [360, 240],
+  etapes: [
+    { d: 4, l: R`$f(x)=\frac{\cos x}{x}$ pour $x>0$ : la courbe oscille, de moins en moins fort.` },
+    { d: 4, l: R`Comme $-1\leq\cos x\leq1$, on a $-\frac1x\leq f(x)\leq\frac1x$ : la courbe reste coincée entre deux « gendarmes ».` },
+    { d: 5, l: R`On recule jusqu'à $x=100$ : les deux gendarmes tendent vers $0$ et resserrent l'étau. Par le théorème des gendarmes, $\lim_{x\to+\infty}f(x)=0$.` },
+    { d: 5, l: R`Comparaison : $g(x)=x+\cos x\geq x-1$, et $x-1\to+\infty$. La courbe de $g$ reste au-dessus d'une droite qui monte sans fin : $\lim_{x\to+\infty}g(x)=+\infty$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, f = function (x) { return Math.cos(x) / x; };
+    if (k <= 2) {
+      var X = k < 2 ? 20 : ANIM.l(20, 100, E(p(t, 0, 0.8)));
+      S.rep(0, X, -1, 1.5, { px: X > 45 ? 20 : 5, py: 0.5 });
+      if (k >= 1) {
+        var o = k === 1 ? E(p(t, 0, 0.6)) : 1, xl = X * 0.16;
+        S.courbe(function (x) { return 1 / x; }, 0.5, X, "g-c2", 300, { opacity: o, "stroke-dasharray": "6 4" });
+        S.courbe(function (x) { return -1 / x; }, 0.5, X, "g-c2", 300, { opacity: o, "stroke-dasharray": "6 4" });
+        S.txt(xl, 1 / xl + 0.14, "y = 1/x", "r", "start", { opacity: o });
+        S.txt(xl, -1 / xl - 0.24, "y = −1/x", "r", "start", { opacity: o });
+      }
+      S.courbe(f, 0.7, k === 0 ? ANIM.l(0.7, 20, E(t)) : X, "g-c", Math.round(80 + X * 8));
+      S.px.txt(350, 24, "f(x) = cos x / x", "b", "end");
+      if (k === 2 && t > 0.8) S.px.txt(350, 44, "en x = 100 : |f(x)| ≤ 0,01", "r", "end", { opacity: E(p(t, 0.8, 1)) });
+      return;
+    }
+    S.rep(0, 12, -2, 13, { px: 2, py: 2 });
+    S.seg(0, -1, 12, 11, "g-as");
+    S.courbe(function (x) { return x + Math.cos(x); }, 0, ANIM.l(0.01, 12, E(p(t, 0, 0.8))), "g-c", 240);
+    S.txt(0.4, 11.3, "g(x) = x + cos x", "b", "start");
+    S.txt(11.6, 6.8, "y = x − 1", "r", "end");
+  }
 };
 
 /* ---------- Chapitre 4 : dérivation, convexité, continuité ---------- */
@@ -2667,6 +2783,7 @@ var CH6 = {
     { id: "algebre", titre: "Propriétés algébriques", html: R`
 [thm|Relation fonctionnelle]Pour tous réels $a>0$ et $b>0$ : $\ln(ab)=\ln a+\ln b$.[/]
 <p><b>Preuve.</b> $\e^{\ln a+\ln b}=\e^{\ln a}\times\e^{\ln b}=ab=\e^{\ln(ab)}$. L'exponentielle étant strictement croissante, deux réels qui ont la même exponentielle sont égaux : $\ln a+\ln b=\ln(ab)$.</p>
+<div data-anim="regle"></div>
 [prop|Conséquences]Pour $a>0$, $b>0$ et $n\in\Z$ : $$\ln\frac1a=-\ln a,\qquad\ln\frac ab=\ln a-\ln b,\qquad\ln(a^n)=n\ln a,\qquad\ln\sqrt a=\frac12\ln a.$$[/]
 [ex|Calculs]$\ln8=\ln(2^3)=3\ln2\approx2{,}079$ ; $\ln\frac{1}{\e^2}=-2$ ; $\ln\sqrt\e=\frac12$ ; $\e^{2\ln3}=\left(\e^{\ln3}\right)^2=9$ ; $\ln12-\ln3=\ln4=2\ln2$.[/]
 [piege|Il n'y a pas de formule pour une somme]<span class="rature">$\ln(a+b)=\ln a+\ln b$</span> est faux : $\ln(1+1)=\ln2\approx0{,}69$ alors que $\ln1+\ln1=0$. Et <span class="rature">$\ln(a)\times\ln(b)=\ln(ab)$</span> aussi.[/]` },
@@ -2823,15 +2940,18 @@ ANIMS.reciproque = {
     S.seg(-3, -3, 5, 5, "g-as");
     S.txt(4.6, 4.95, "y = x", "r", "end");
     S.courbe(ex, -3, ln(5), "g-c", 160);
-    S.txt(1.2, 4.6, "exp", "b", "start");
+    S.txt(1.22, 4.6, "exp", "b", "end");
     var aMax = k === 0 ? -3 : k === 1 ? ANIM.l(-3, ln(5) - 0.01, E(t)) : ln(5) - 0.01;
     if (aMax > -3) S.courbe(ln, ex(-3), ex(aMax), "g-c2", 160, { "stroke-width": 3 });
-    if (k >= 2 || (k === 1 && t > 0.6)) S.txt(4.3, 1.8, "ln", "r", "start");
+    if (k >= 2 || (k === 1 && t > 0.6)) S.txt(3.9, 0.95, "ln", "r", "start");
     function paire(a, lab) {
       var M = [a, ex(a)], P = [ex(a), a];
       S.seg(M[0], M[1], P[0], P[1], "a-craie");
       S.pt(M[0], M[1], "g-pt", 4.5); S.pt(P[0], P[1], "g-pt2", 4.5);
-      if (lab) { S.txt(M[0] - 0.12, M[1] + 0.25, lab[0], "b", "end"); S.txt(P[0] + 0.12, P[1] - 0.4, lab[1], "r", "start"); }
+      if (lab) {
+        S.txt(M[0] - 0.15, Math.min(M[1] + 0.25, 4.65), lab[0], "b", "end");
+        if (P[0] > 4) S.txt(P[0] - 0.1, P[1] + 0.35, lab[1], "r", "end"); else S.txt(P[0] + 0.12, P[1] - 0.4, lab[1], "r", "start");
+      }
     }
     if (k === 1) paire(aMax, ["M", "M'"]);
     if (k === 2) { paire(0, ["(0;1)", "(1;0)"]); if (t > 0.45) paire(1, ["(1;e)", "(e;1)"]); }
@@ -2840,15 +2960,74 @@ ANIMS.reciproque = {
       paire(a, ["M", "M'"]);
       S.seg(a - 2, m - 2 * m, a + 2, m + 2 * m, "g-c3");
       S.seg(m - 2 * m, a - 2, m + 2 * m, a + 2, "g-c3");
-      S.txt(-2.8, 4.4, "pente en M : " + ANIM.nf(m, 2), "b");
-      S.txt(-2.8, 3.8, "pente en M' : " + ANIM.nf(1 / m, 2) + " = 1/" + ANIM.nf(m, 2), "r");
+      S.txt(4.9, -2.05, "pente en M : " + ANIM.nf(m, 2), "b", "end");
+      S.txt(4.9, -2.65, "pente en M' : " + ANIM.nf(1 / m, 2) + " = 1/" + ANIM.nf(m, 2), "r", "end");
     }
     if (k === 4) {
       var o = E(t);
       S.seg(-3, 0, 5, 0, "g-c", { "stroke-width": 3, opacity: 0.25 + 0.5 * o });
       S.seg(0, -3, 0, 5, "g-c2", { "stroke-width": 3, opacity: 0.25 + 0.5 * o });
-      S.txt(-2.9, 0.25, "asymptote y = 0", "b");
+      S.txt(-2.9, 0.42, "asymptote y = 0", "b", "start");
       S.txt(0.12, -2.7, "asymptote x = 0", "r");
+    }
+  }
+};
+
+/* Animation : la règle à calcul, ou ln(ab) = ln a + ln b */
+ANIMS.regle = {
+  titre: R`La règle à calcul : multiplier en ajoutant des $\ln$`,
+  vb: [360, 220],
+  etapes: [
+    { d: 4, l: R`Une règle graduée « en logarithmes » : chaque nombre $x$ est placé à une distance proportionnelle à $\ln x$ du bord. Le $1$ est au bord, car $\ln1=0$ ; les graduations se serrent vers la droite.` },
+    { d: 4, l: R`La longueur de $1$ à $2$ représente $\ln2\approx0{,}69$ ; celle de $1$ à $3$ représente $\ln3\approx1{,}10$.` },
+    { d: 5, l: R`On met les deux longueurs bout à bout : on arrive exactement sur la graduation $6$. $\ln2+\ln3=\ln6$ : c'est $\ln(ab)=\ln a+\ln b$.` },
+    { d: 6, l: R`Une seconde règle glisse : son $1$ vient sous le $2$. Au-dessus de chaque nombre $b$ de la règle mobile, on lit $2b$ sur la règle fixe : $2\times1{,}5=3$, $2\times2=4$, $2\times3=6$, $2\times4=8$, $2\times5=10$.` },
+    { d: 4, l: R`Multiplier, c'est additionner des longueurs de logarithmes. Les règles à calcul, utilisées du XVII<sup>e</sup> siècle jusqu'à l'arrivée des calculatrices électroniques dans les années 1970, reposent sur cette propriété.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, x0 = 30, L = 300, pos = function (v) { return x0 + L * Math.log(v) / Math.LN10; };
+    var REG = "fill:var(--papier);stroke:var(--encre2);stroke-width:1.2";
+    /* règle fixe : graduations sur le bord bas */
+    S.px.rect(x0 - 8, 66, L + 16, 32, "", { rx: 4, style: REG });
+    for (var v = 1; v <= 10; v += 0.5) {
+      var o = k === 0 ? E(p(t, (v - 1) / 12, (v - 1) / 12 + 0.25)) : 1, ent = v % 1 === 0;
+      S.px.seg(pos(v), 98, pos(v), ent ? 84 : 90, "a-branche", { opacity: o, style: "stroke:var(--encre)" });
+      if (ent) S.px.txt(pos(v), 80, String(v), "", "middle", { opacity: o, "font-size": 12 });
+    }
+    function crochet(a, b, y, cls, lab, op) {
+      S.px.seg(a, y, b, y, cls, { opacity: op, "stroke-width": 3 });
+      S.px.seg(a, y - 5, a, y + 5, cls, { opacity: op });
+      S.px.seg(b, y - 5, b, y + 5, cls, { opacity: op });
+      S.px.txt((a + b) / 2, y - 8, lab, cls === "g-c2" ? "r" : "b", "middle", { opacity: op });
+    }
+    if (k === 1 || k === 2) {
+      var o1 = k === 1 ? E(p(t, 0, 0.4)) : 1, o2 = k === 1 ? E(p(t, 0.4, 0.8)) : 1;
+      crochet(pos(1), pos(2), 52, "g-c", "ln 2", o1);
+      var dx = k === 2 ? E(p(t, 0, 0.6)) * (pos(2) - pos(1)) : 0, yy = k === 2 ? ANIM.l(28, 52, E(p(t, 0, 0.6))) : 28;
+      crochet(pos(1) + dx, pos(3) + dx, yy, "g-c2", "ln 3", o2);
+      if (k === 2 && t > 0.6) {
+        var o3 = E(p(t, 0.6, 0.85));
+        S.px.seg(pos(6), 52, pos(6), 98, "g-c3", { opacity: o3, "stroke-dasharray": "4 3" });
+        S.px.cercle(pos(6), 80, 11, "", { opacity: o3, style: "fill:none;stroke:var(--vert);stroke-width:2" });
+        S.px.math(20, 150, 320, 40, R`$\ln2+\ln3=\ln6$`, { opacity: o3 });
+      }
+    }
+    if (k >= 3) {
+      var dec = (k === 3 ? E(p(t, 0, 0.4)) : 1) * (pos(2) - pos(1)), lim = x0 + L + 8;
+      S.px.rect(x0 - 8 + dec, 102, lim - (x0 - 8 + dec), 32, "", { style: REG + ";fill:var(--bleu-p)" });
+      for (var w = 1; w <= 10; w += 0.5) {
+        var X = pos(w) + dec; if (X > lim - 2) break;
+        var en = w % 1 === 0;
+        S.px.seg(X, 102, X, en ? 116 : 110, "a-branche", { style: "stroke:var(--bleu)" });
+        if (en) S.px.txt(X, 128, String(w), "b", "middle", { "font-size": 12 });
+      }
+      var o4 = k === 3 ? E(p(t, 0.45, 0.7)) : 1;
+      [1.5, 2, 3, 4, 5].forEach(function (b, i) {
+        var oi = k === 3 ? E(p(t, 0.45 + i * 0.09, 0.6 + i * 0.09)) : 1;
+        S.px.seg(pos(2 * b), 84, pos(2 * b), 116, "g-c3", { opacity: oi, "stroke-width": 2.6 });
+      });
+      S.px.math(20, 148, 320, 34, R`$2\times b$ se lit au-dessus de $b$`, { opacity: o4 });
+      if (k === 4) S.px.math(20, 182, 320, 36, R`$\ln(ab)=\ln a+\ln b$`, { opacity: E(p(t, 0, 0.5)) });
     }
   }
 };
@@ -2903,7 +3082,8 @@ var CH7 = {
 <ol><li>Si $a>1$ ou $a<-1$ : pas de solution.</li><li>Sinon, trouver un angle $\alpha\in[0;\pi]$ tel que $\cos\alpha=a$ (valeur remarquable, ou calculatrice).</li><li>Sur $[-\pi;\pi]$, les solutions sont $\alpha$ et $-\alpha$ (une seule si $a=\pm1$).</li></ol>[/]
 [ex|Exemples]$\cos x=\frac12$ : $x=\frac\pi3$ ou $x=-\frac\pi3$. $\cos x=-\frac{\sqrt3}2$ : $x=\pm\frac{5\pi}6$. $\sin x=\frac{\sqrt2}2$ sur $[-\pi;\pi]$ : $x=\frac\pi4$ ou $x=\pi-\frac\pi4=\frac{3\pi}4$ (avec $\sin(\pi-x)=\sin x$).[/]
 [meth|Inéquation $\cos x\leq a$]Sur le cercle, $\cos x\leq a$ correspond aux points <b>à gauche</b> de la droite verticale d'abscisse $a$. Pour $a=\frac12$, sur $[-\pi;\pi]$ : $x\in\left[-\pi;-\frac\pi3\right]\cup\left[\frac\pi3;\pi\right]$.[/]
-[ex|Avec le sinus]$2\sin x-1\geq0$ sur $[0;2\pi]$ ⟺ $\sin x\geq\frac12$ ⟺ $x\in\left[\frac\pi6;\frac{5\pi}6\right]$ (points au-dessus de la droite horizontale d'ordonnée $\frac12$).[/]` },
+[ex|Avec le sinus]$2\sin x-1\geq0$ sur $[0;2\pi]$ ⟺ $\sin x\geq\frac12$ ⟺ $x\in\left[\frac\pi6;\frac{5\pi}6\right]$ (points au-dessus de la droite horizontale d'ordonnée $\frac12$).[/]
+<div data-anim="trigEq"></div>` },
     { id: "optimum", titre: "Étudier une fonction : un optimum géométrique", html: R`
 [ex|Le plus grand rectangle dans un demi-disque]On inscrit un rectangle dans un demi-disque de rayon $1$ : un côté sur le diamètre, deux sommets sur le demi-cercle, repérés par l'angle $\theta\in\left[0;\frac\pi2\right]$. Le rectangle a pour largeur $2\cos\theta$ et pour hauteur $\sin\theta$ : $A(\theta)=2\sin\theta\cos\theta$.
 <p>$A'(\theta)=2\left(\cos\theta\cos\theta+\sin\theta\times(-\sin\theta)\right)=2\left(\cos^2\theta-\sin^2\theta\right)$.</p>
@@ -3054,6 +3234,75 @@ ANIMS.cercle = {
   }
 };
 
+/* Animation : résoudre cos x = 1/2 et des inéquations sur le cercle */
+ANIMS.trigEq = {
+  titre: R`Résoudre $\cos x=\frac12$ sur le cercle`,
+  vb: [370, 236],
+  etapes: [
+    { d: 4, l: R`Sur le cercle trigonométrique, le point $M$ associé au réel $x$ a pour abscisse $\cos x$ (en vert). Résoudre $\cos x=\frac12$, c'est chercher les points d'abscisse $\frac12$.` },
+    { d: 4.5, l: R`La droite verticale d'abscisse $\frac12$ coupe le cercle en deux points : ceux de $\frac\pi3$ et de $-\frac\pi3$ (car $\cos\frac\pi3=\frac12$ et $\cos(-x)=\cos x$).` },
+    { d: 5, l: R`Un tour de plus ($+2\pi$) ramène au même point. Sur $\R$, les solutions sont $\frac\pi3+2k\pi$ et $-\frac\pi3+2k\pi$, $k\in\Z$ ; sur $[-\pi;\pi]$, il n'en reste que deux.` },
+    { d: 4.5, l: R`$\cos x\leq\frac12$ : les points <b>à gauche</b> de la droite. Sur $[-\pi;\pi]$ : $x\in\left[-\pi;-\frac\pi3\right]\cup\left[\frac\pi3;\pi\right]$.` },
+    { d: 5, l: R`Avec le sinus, la droite est horizontale. $\sin x\geq\frac12$ : les points <b>au-dessus</b> de la droite d'ordonnée $\frac12$. Sur $[0;2\pi]$ : $x\in\left[\frac\pi6;\frac{5\pi}6\right]$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, cx = 104, cy = 118, r = 88, PI = Math.PI;
+    function pt(a) { return [cx + r * Math.cos(a), cy - r * Math.sin(a)]; }
+    function arc(a1, a2, cls, at) { var n = Math.max(2, Math.ceil(Math.abs(a2 - a1) * 24)), d = ""; for (var i = 0; i <= n; i++) { var q = pt(a1 + (a2 - a1) * i / n); d += (i ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1); } return S.px.path(d, cls, ajoute({ fill: "none" }, at)); }
+    function ajoute(a, b) { for (var c in b || {}) a[c] = b[c]; return a; }
+    function lab(a, s, cls, d) { var q = [cx + (r + (d || 16)) * Math.cos(a), cy - (r + (d || 16)) * Math.sin(a) + 4]; S.px.txt(q[0], q[1], s, cls, Math.cos(a) > 0.2 ? "start" : Math.cos(a) < -0.2 ? "end" : "middle"); }
+    S.px.seg(cx - r - 12, cy, cx + r + 12, cy, "g-axe");
+    S.px.seg(cx, cy - r - 12, cx, cy + r + 12, "g-axe");
+    S.px.cercle(cx, cy, r, "", { style: "fill:none;stroke:var(--encre2);stroke-width:1.4" });
+    S.px.txt(cx + r + 4, cy + 14, "1", "", "start", { "font-size": 11 });
+    S.px.txt(cx - r - 4, cy + 14, "−1", "", "end", { "font-size": 11 });
+    var px0 = 210, pw = 158;
+    if (k === 0) {
+      var a = 2 * PI * E(t), M = pt(a);
+      S.px.seg(M[0], M[1], M[0], cy, "a-craie");
+      S.px.seg(cx, cy, M[0], cy, "g-c3", { "stroke-width": 4 });
+      S.px.seg(cx, cy, M[0], M[1], "a-branche");
+      S.px.cercle(M[0], M[1], 5, "g-pt");
+      S.px.txt(M[0] + (Math.cos(a) >= 0 ? 8 : -8), M[1] - 6, "M", "b", Math.cos(a) >= 0 ? "start" : "end");
+      S.px.math(px0, 50, pw, 34, "$x\\approx" + nf(a, 2).replace(",", "{,}") + "$");
+      S.px.math(px0, 90, pw, 34, "$\\cos x\\approx" + nf(Math.cos(a), 2).replace(",", "{,}") + "$");
+      return;
+    }
+    if (k <= 3) {
+      var o = k === 1 ? E(p(t, 0, 0.4)) : 1, xv = cx + r / 2;
+      S.px.seg(xv, cy - r - 14, xv, cy + r + 14, "g-as", { opacity: o });
+      S.px.txt(xv - 5, cy + r + 12, "x = 1/2", "r", "end", { opacity: o, "font-size": 12 });
+      if (k === 3) { var f3 = E(p(t, 0, 0.7)); arc(PI / 3, PI / 3 + f3 * 2 * PI / 3, "g-c2", { "stroke-width": 6, opacity: 0.75 }); arc(-PI, -PI + f3 * 2 * PI / 3, "g-c2", { "stroke-width": 6, opacity: 0.75 }); }
+      var o2 = k === 1 ? E(p(t, 0.35, 0.7)) : 1;
+      [PI / 3, -PI / 3].forEach(function (b) { var q = pt(b); S.px.seg(cx, cy, q[0], q[1], "a-branche", { opacity: o2 }); S.px.cercle(q[0], q[1], 5.5, "g-pt2", { opacity: o2 }); });
+      if (o2 > 0.01) { lab(PI / 3, "π/3", "r"); lab(-PI / 3, "−π/3", "r"); }
+      if (k === 1) {
+        S.px.math(px0, 46, pw, 34, R`$\cos x=\frac12$`, { opacity: o2 });
+        S.px.math(px0, 88, pw, 34, R`$x=\frac\pi3$ ou $x=-\frac\pi3$`, { opacity: o2 });
+      }
+      if (k === 2) {
+        var b2 = PI / 3 + 2 * PI * E(p(t, 0, 0.75)), M2 = pt(b2);
+        arc(PI / 3, Math.min(b2, PI / 3 + 2 * PI - 0.001), "g-c", { "stroke-width": 3, opacity: 0.55 });
+        S.px.cercle(M2[0], M2[1], 5, "g-pt");
+        S.px.math(px0, 40, pw, 34, "$x=\\frac\\pi3+" + nf((b2 - PI / 3) / PI, 2).replace(",", "{,}") + "\\pi$");
+        if (t > 0.75) S.px.math(px0, 84, pw, 60, R`$x=\pm\frac\pi3+2k\pi$`, { opacity: E(p(t, 0.75, 0.95)) });
+      }
+      if (k === 3) {
+        S.px.math(px0, 40, pw, 34, R`$\cos x\leq\frac12$`);
+        S.px.math(px0, 82, pw, 44, R`$\left[-\pi;-\frac\pi3\right]\cup\left[\frac\pi3;\pi\right]$`, { opacity: E(p(t, 0.6, 0.9)) });
+      }
+      return;
+    }
+    var o5 = E(p(t, 0, 0.35)), yh = cy - r / 2, f5 = E(p(t, 0.35, 0.8));
+    S.px.seg(cx - r - 14, yh, cx + r + 14, yh, "g-as", { opacity: o5, style: "stroke:var(--vert)" });
+    arc(PI / 6, PI / 6 + f5 * 2 * PI / 3, "g-c3", { "stroke-width": 6, opacity: 0.8 });
+    [PI / 6, 5 * PI / 6].forEach(function (b) { var q = pt(b); S.px.cercle(q[0], q[1], 5.5, "g-pt", { opacity: o5 }); });
+    if (o5 > 0.01) { var q6 = pt(PI / 6), q56 = pt(5 * PI / 6); S.px.txt(q6[0] - 6, q6[1] + 17, "π/6", "c3", "end", { opacity: o5 }); S.px.txt(q56[0] + 6, q56[1] + 17, "5π/6", "c3", "start", { opacity: o5 }); }
+    S.px.math(px0, 40, pw, 34, R`$\sin x\geq\frac12$`, { opacity: o5 });
+    S.px.math(px0, 82, pw, 44, R`$\left[\frac\pi6;\frac{5\pi}6\right]$`, { opacity: E(p(t, 0.7, 0.95)) });
+  }
+};
+
 /* ---------- Chapitre 8 : primitives, équations différentielles ---------- */
 var CH8 = {
   id: "ch8", num: 8, statut: "ok", partie: "Analyse", titre: "Primitives, équations différentielles", court: "Primitives, éq. diff.",
@@ -3084,6 +3333,7 @@ var CH8 = {
 [thm|Toutes les primitives]Si $F$ est une primitive de $f$ sur un intervalle $I$, les primitives de $f$ sur $I$ sont exactement les fonctions $x\mapsto F(x)+C$, $C$ réel. (Démonstration exigible : deux primitives diffèrent d'une constante.)[/]
 [prop|Une seule primitive passe par un point]Pour $x_0\in I$ et $y_0$ réel, il existe une unique primitive $F$ de $f$ telle que $F(x_0)=y_0$.[/]
 [ex|Condition initiale]Primitive de $f(x)=2x$ qui vaut $5$ en $1$ : $F(x)=x^2+C$ et $F(1)=1+C=5$, donc $F(x)=x^2+4$.[/]
+<div data-anim="primitives"></div>
 [thm|Existence (admise ici)]Toute fonction continue sur un intervalle admet des primitives. Mais certaines n'ont pas d'expression avec les fonctions usuelles : c'est le cas de $x\mapsto\e^{-x^2}$.[/]` },
     { id: "usuelles", titre: "Primitives usuelles et formes composées", html: R`
 <div class="tab-wrap"><table><tr><th>$f(x)$</th><th>Une primitive $F(x)$</th><th>Intervalle</th></tr>
@@ -3185,8 +3435,8 @@ print(y)`, sortie: `2.704813829421526` }
       corrige: R`<p>$f$ : $\frac12\e^{x^2}$ ; $g$ : $\frac12\ln(x^2+4)$ ; $h$ : forme $\frac{u'}{u^2}$ avec $u=\e^x+1$ : $-\frac1{\e^x+1}$ ; $k$ : forme $u'u^2$ avec $u=\sin x$ : $\frac{\sin^3x}3$.</p>` },
     { niv: 2, t: "Solution particulière donnée", enonce: R`<p>$(E)$ : $y'=2y-4x$.</p><ol><li>Montrer que $g(x)=2x+1$ est solution de $(E)$.</li><li>En déduire toutes les solutions, puis celle qui vaut $0$ en $0$.</li></ol>`,
       corrige: R`<ol><li>$g'(x)=2$ et $2g(x)-4x=4x+2-4x=2$. ✓</li><li>$y=2x+1+C\e^{2x}$ ; $y(0)=1+C=0$, $C=-1$ : $y(x)=2x+1-\e^{2x}$.</li></ol>` },
-    { niv: 3, t: "Le café refroidit (type bac)", enonce: R`<p>On note $T(t)$ la température d'un café, en $^\circ$C, $t$ minutes après l'avoir servi. On admet que $T$ est solution de $(E)$ : $y'=-0{,}1y+2$ et que $T(0)=90$.</p><ol><li>Déterminer la solution constante de $(E)$ et l'interpréter.</li><li>Déterminer $T(t)$.</li><li>Calculer $T(10)$ arrondi au dixième, et la limite de $T$ en $+\infty$.</li><li>Au bout de combien de temps le café sera-t-il en dessous de $30\,^\circ$C ? Arrondir à la minute.</li><li>Écrire un programme Python appliquant la méthode d'Euler avec un pas de $0{,}1$ pour estimer $T(10)$.</li></ol>`,
-      corrige: R`<ol><li>$0=-0{,}1k+2$ : $k=20$, la température de la pièce (équilibre).</li><li>$T(t)=20+C\e^{-0{,}1t}$ et $T(0)=20+C=90$ : $T(t)=20+70\e^{-0{,}1t}$.</li><li>$T(10)=20+70\e^{-1}\approx45{,}8\,^\circ$C. $\e^{-0{,}1t}\to0$ donc $T\to20$.</li><li>$70\e^{-0{,}1t}<10\iff\e^{-0{,}1t}<\frac17\iff t>10\ln7\approx19{,}46$ : au bout de $20$ minutes.</li><li><code>T = 90</code>, puis <code>for k in range(100): T = T + 0.1*(-0.1*T + 2)</code>, puis <code>print(T)</code> : on obtient environ $45{,}6$ (calcul refait en Python), proche de la valeur exacte $45{,}75$.</li></ol>` }
+    { niv: 3, t: "Le café refroidit (type bac)", enonce: R`<p>On note $T(t)$ la température d'un café, en $^\circ$C, $t$ minutes après l'avoir servi. On admet que $T$ est solution de $(E)$ : $y'=-0{,}1y+2$ et que $T(0)=90$.</p><ol><li>Déterminer la solution constante de $(E)$ et l'interpréter.</li><li>Déterminer $T(t)$.</li><li>Calculer $T(10)$ arrondi au dixième, et la limite de $T$ en $+\infty$.</li><li>Au bout de combien de temps le café sera-t-il en dessous de $30\,^\circ$C ? Donner la durée en minutes et secondes, puis le premier nombre entier de minutes qui convient.</li><li>Écrire un programme Python appliquant la méthode d'Euler avec un pas de $0{,}1$ pour estimer $T(10)$.</li></ol>`,
+      corrige: R`<ol><li>$0=-0{,}1k+2$ : $k=20$, la température de la pièce (équilibre).</li><li>$T(t)=20+C\e^{-0{,}1t}$ et $T(0)=20+C=90$ : $T(t)=20+70\e^{-0{,}1t}$.</li><li>$T(10)=20+70\e^{-1}\approx45{,}8\,^\circ$C. $\e^{-0{,}1t}\to0$ donc $T\to20$.</li><li>$70\e^{-0{,}1t}<10\iff\e^{-0{,}1t}<\frac17\iff t>10\ln7\approx19{,}46$, soit environ $19$ min $28$ s : en minutes entières, le café est sous $30\,^\circ$C au bout de $20$ minutes (à $19$ minutes, il est encore à $T(19)\approx30{,}5\,^\circ$C).</li><li><code>T = 90</code>, puis <code>for k in range(100): T = T + 0.1*(-0.1*T + 2)</code>, puis <code>print(T)</code> : on obtient environ $45{,}6$ (calcul refait en Python), proche de la valeur exacte $45{,}75$.</li></ol>` }
   ],
   annales: [
     { ref: "Bac 2026, Métropole, 17 juin 2026 (sujet 2), exercice 2, partie B", url: "https://www.apmep.fr/IMG/pdf/BAC_generale_specialite_J2_2026-06-17_Metropole_FK-v4.pdf", h: R`$y'=-0{,}005y+6$, $v(0)=0$ : solutions, $v(t)=1200\left(1-\e^{-0{,}005t}\right)$, limite, seuil de $50$ litres (contrôle : $t\approx8{,}51$ h, soit $8$ h $31$ min).` },
@@ -3268,6 +3518,60 @@ ANIMS.champ = {
       pts.forEach(function (q) { S.pt(q[0], q[1], "g-pt2", 3.4); });
       if (n >= 8) S.txt(4.1, 1.45, "Euler : 1,80", "r");
     }
+  }
+};
+
+/* Animation : la famille des primitives, et celle qui passe par un point */
+ANIMS.primitives = {
+  titre: R`Toutes les primitives de $f(x)=2x$`,
+  vb: [360, 250],
+  etapes: [
+    { d: 5, l: R`$F(x)=x^2$ est une primitive de $f(x)=2x$ : en chaque point d'abscisse $a$, la tangente à la courbe de $F$ a pour pente $F'(a)=f(a)=2a$.` },
+    { d: 5.5, l: R`$x^2+C$ a la même dérivée $2x$, pour tout réel $C$ : on obtient toutes les primitives en translatant la courbe verticalement. À la même abscisse, toutes les tangentes sont parallèles (ici en $x=1$, pente $2$).` },
+    { d: 4.5, l: R`Condition $F(1)=5$ : $1+C=5$, donc $C=4$. Une seule courbe passe par le point $(1;5)$ : $F(x)=x^2+4$.` },
+    { d: 5, l: R`Entre deux primitives, l'écart vertical est le même partout : $(x^2+4)-x^2=4$. C'est le théorème « deux primitives d'une même fonction diffèrent d'une constante ».` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf;
+    S.rep(-2.5, 2.5, -4, 10, { px: 1, py: 2 });
+    function F(C) { return function (x) { return x * x + C; }; }
+    function tangente(a, C, cls, at) { var y = a * a + C; S.seg(a - 0.55, y - 1.1 * a, a + 0.55, y + 1.1 * a, cls, at); }
+    if (k === 0) {
+      S.courbe(F(0), -2.5, 2.5, "g-c");
+      var a = ANIM.l(-2, 2, E(t));
+      tangente(a, 0, "g-c2", { "stroke-width": 2.4 });
+      S.pt(a, a * a, "g-pt2", 4.5);
+      S.px.txt(44, 24, "a = " + nf(a, 1) + "   pente = 2a = " + nf(2 * a, 1), "r", "start");
+      return;
+    }
+    if (k === 1) {
+      for (var C = -3; C <= 5; C++) {
+        var o = C === 0 ? 1 : E(p(t, 0.08 * (C + 3), 0.08 * (C + 3) + 0.3));
+        if (o < 0.01) continue;
+        S.courbe(F(C), -2.5, 2.5, "g-c", 120, { opacity: C === 0 ? 1 : 0.5 * o });
+        tangente(1, C, "g-c3", { opacity: o, "stroke-width": 2 });
+      }
+      S.px.txt(44, 24, "F(x) = x² + C", "b", "start");
+      return;
+    }
+    if (k === 2) {
+      var o2 = E(p(t, 0.2, 0.7));
+      for (var C2 = -3; C2 <= 5; C2++) S.courbe(F(C2), -2.5, 2.5, "g-c", 120, { opacity: C2 === 4 ? 0.5 + 0.5 * o2 : 0.5 - 0.38 * o2, "stroke-width": C2 === 4 ? 2.2 + 1.2 * o2 : 2.2 });
+      S.pt(1, 5, "g-pt2", 6, { opacity: E(p(t, 0, 0.25)) });
+      S.txt(1.12, 4.3, "(1 ; 5)", "r", "start", { opacity: E(p(t, 0, 0.25)) });
+      S.txt(-1.3, 9.2, "F(x) = x² + 4", "b", "start", { opacity: o2 });
+      return;
+    }
+    S.courbe(F(0), -2.5, 2.5, "g-c", 120, { opacity: 0.6 });
+    S.courbe(F(4), -2.5, 2.5, "g-c", 120, { "stroke-width": 3 });
+    [-1.6, 0, 1.6].forEach(function (x, i) {
+      var f = E(p(t, 0.15 * i, 0.15 * i + 0.4));
+      if (f < 0.01) return;
+      S.fleche(x, x * x, x, x * x + 4 * f, "g-c2", { "stroke-width": 2.2 });
+      if (f > 0.9) S.txt(x + 0.08, x * x + 2.2, "4", "r", "start");
+    });
+    S.txt(-1.3, 8.6, "x² + 4", "b", "start");
+    S.txt(1.95, 1.6, "x²", "b", "start", { opacity: 0.8 });
   }
 };
 
@@ -3479,7 +3783,7 @@ ANIMS.rectangles = {
     }
     S.courbe(f, 0, 1.05, "g-c", 120, { "stroke-width": 2.6 });
     if (k === 0) { S.rect(0, 0, 1, 0.001, "a-plein"); S.poly([[0, 0]].concat(Array.apply(null, Array(41)).map(function (_, i) { return [i / 40, f(i / 40)]; })).concat([[1, 0]]), "a-plein", true, { opacity: E(t) }); }
-    if (k === 3) S.txt(0.55, 0.12, "→ 1/3 ≈ 0,333", "r", "start", { opacity: E(t) });
+    if (k === 3) S.txt(0.05, 0.6, "aire → 1/3 ≈ 0,333", "r", "start", { opacity: E(t) });
   }
 };
 
@@ -3908,6 +4212,7 @@ var CH11 = {
 [prop|Formules de polarisation]$$\vec u\cdot\vec v=\frac12\left(\|\vec u+\vec v\|^2-\|\vec u\|^2-\|\vec v\|^2\right)=\frac14\left(\|\vec u+\vec v\|^2-\|\vec u-\vec v\|^2\right).$$
 Le produit scalaire se calcule donc avec des longueurs seulement.[/]
 [ex|Avec la projection, dans le cube d'arête $a$]La droite $(AB)$ est orthogonale à la face $BCGF$ (elle est orthogonale à $(BC)$ et à $(BF)$, sécantes en $B$), donc à la droite $(BG)$ de cette face : le projeté orthogonal de $G$ sur $(AB)$ est $B$. Par la formule de projection, $\vec{AB}\cdot\vec{AG}=\vec{AB}\cdot\vec{AB}=a^2$.[/]
+<div data-anim="projCube"></div>
 [ex|Avec un triangle équilatéral]Dans le cube d'arête $1$, $AC=AF=CF=\sqrt2$ (diagonales de faces) : le triangle $ACF$ est équilatéral. Donc $\vec{AC}\cdot\vec{AF}=\sqrt2\times\sqrt2\times\cos60°=1$.[/]` },
     { id: "orthonormee", titre: "Base orthonormée : produit scalaire, norme, distance", html: R`
 [def|Base et repère orthonormés]Une base $(\vec i,\vec j,\vec k)$ est <b>orthonormée</b> si les trois vecteurs sont deux à deux orthogonaux et de norme $1$. Exemple : $(\vec{AB},\vec{AD},\vec{AE})$ dans un cube d'arête $1$ (mais pas dans un pavé de dimensions différentes).[/]
@@ -4135,6 +4440,59 @@ ANIMS.projete3d = {
   }
 };
 
+/* Animation : le produit scalaire par projection, dans le cube */
+ANIMS.projCube = {
+  titre: R`Produit scalaire et projection dans le cube`,
+  vb: [360, 250],
+  etapes: [
+    { d: 4, l: R`Cube d'arête $1$, repère orthonormé $(A;\vec{AB},\vec{AD},\vec{AE})$. On cherche $\vec{AB}\cdot\vec{AG}$.` },
+    { d: 4.5, l: R`$(AB)$ est orthogonale à la face $BCGF$, donc à $(BG)$ : le projeté orthogonal de $G$ sur $(AB)$ est $B$. Ainsi $\vec{AB}\cdot\vec{AG}=\vec{AB}\cdot\vec{AB}=AB^2=1$.` },
+    { d: 6, l: R`Faisons glisser $M$ sur toute la face $BCGF$ : son projeté sur $(AB)$ reste $B$. En coordonnées, $M(1;y;z)$ et $\vec{AB}\cdot\vec{AM}=1\times1+0\times y+0\times z=1$ : le produit ne change pas.` },
+    { d: 5.5, l: R`Si $M$ recule vers la face $ADHE$, son projeté $H$ recule sur $[AB]$ : $\vec{AB}\cdot\vec{AM}=AB\times AH=x_M$. Sur la face $ADHE$, il vaut $0$ : $\vec{AM}$ est orthogonal à $\vec{AB}$.` },
+    { d: 4, l: R`Les points $M$ qui donnent le même produit scalaire avec $\vec{AB}$ forment un plan orthogonal à $(AB)$ : ici les plans d'équation $x=c$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, P = CAV.vue({ ox: 30, oy: 222, s: 126, k: 0.5, a: 40 });
+    var A = [0, 0, 0], B = [1, 0, 0], C = [1, 1, 0], D = [0, 1, 0], Ee = [0, 0, 1], F = [1, 0, 1], G = [1, 1, 1], H = [0, 1, 1];
+    function n2(x) { return nf(x, 2).replace(",", "{,}"); }
+    function tranche(x, cls, at) { CAV.poly(S, P, [[x, 0, 0], [x, 1, 0], [x, 1, 1], [x, 0, 1]], cls, at); }
+    if (k >= 1 && k <= 2) tranche(1, "a-plein2", { opacity: k === 1 ? E(p(t, 0, 0.4)) : 1 });
+    [[A, B], [B, C], [B, F], [Ee, F], [F, G], [G, H], [H, Ee], [A, Ee], [C, G]].forEach(function (s) { CAV.seg(S, P, s[0], s[1], false, { opacity: 0.55 }); });
+    [[A, D], [D, C], [D, H]].forEach(function (s) { CAV.seg(S, P, s[0], s[1], true, { opacity: 0.55 }); });
+    var lab = { A: [A, -8, 14], B: [B, 8, 14], C: [C, 12, 6], D: [D, -10, -4], E: [Ee, -10, -2], F: [F, 10, 14], G: [G, 10, -4], H: [H, -6, -8] };
+    Object.keys(lab).forEach(function (n) { CAV.txt(S, P, lab[n][0], n, "", "middle", lab[n][1], lab[n][2]); });
+    var X0 = 222, W0 = 136;
+    if (k === 3) { var s3 = ANIM.l(1, 0, E(p(t, 0, 0.8))); tranche(s3, "a-plein"); }
+    if (k === 4) [0, 0.5, 1].forEach(function (x, i) { var o = E(p(t, 0.15 * i, 0.15 * i + 0.4)); tranche(x, "a-plein", { opacity: 0.4 + 0.6 * o }); CAV.txt(S, P, [x, 0.5, 1], "= " + nf(x, 1), "b", "middle", 0, -6, { opacity: o }); });
+    CAV.fleche(S, P, A, B, k === 0 ? E(p(t, 0, 0.4)) : 1, "g-c", { "stroke-width": 3.2 });
+    if (k <= 1) {
+      CAV.fleche(S, P, A, G, k === 0 ? E(p(t, 0.3, 0.8)) : 1, "g-c", { "stroke-width": 2.6, style: "stroke:var(--encre)" });
+      S.px.math(X0, 30, W0, 34, R`$\vec{AB}\cdot\vec{AG}=\ ?$`, { opacity: k === 0 ? E(p(t, 0.6, 1)) : 1 });
+      if (k === 1) {
+        var o1 = E(p(t, 0.35, 0.7));
+        CAV.trait(S, P, G, B, "g-as", { opacity: o1 });
+        CAV.droit(S, P, B, [-1, 0, 0], [0, Math.SQRT1_2, Math.SQRT1_2], 0.09);
+        S.px.math(X0, 72, W0, 34, R`$\vec{AB}\cdot\vec{AG}$`, { opacity: o1 });
+        S.px.math(X0, 106, W0, 34, R`$=AB^2=1$`, { opacity: E(p(t, 0.6, 0.9)) });
+      }
+      return;
+    }
+    var M, Hh;
+    if (k === 2) { var u = 2 * Math.PI * E(t); M = [1, 0.5 + 0.38 * Math.sin(u), 0.5 + 0.38 * Math.cos(u)]; Hh = B; }
+    else if (k === 3) { M = [s3, 0.6, 0.7]; Hh = [s3, 0, 0]; }
+    else { M = [0.5, 0.6, 0.7]; Hh = [0.5, 0, 0]; }
+    if (k >= 3) CAV.trait(S, P, A, Hh, "g-c", { "stroke-width": 5, opacity: 0.45 });
+    CAV.trait(S, P, M, Hh, "g-as");
+    CAV.fleche(S, P, A, M, 1, "g-c3", { "stroke-width": 2.6 });
+    CAV.pt(S, P, M, "g-pt2", 4.5); CAV.txt(S, P, M, "M", "r", "start", 7, -5);
+    CAV.pt(S, P, Hh, "g-pt", 4); if (k >= 3) CAV.txt(S, P, Hh, "H", "b", "middle", 0, 16);
+    S.px.math(X0, 30, W0, 30, "$M(" + n2(M[0]) + ";" + n2(M[1]) + ";" + n2(M[2]) + ")$");
+    S.px.math(X0, 66, W0, 30, R`$\vec{AB}\cdot\vec{AM}$`);
+    S.px.math(X0, 98, W0, 30, "$=" + n2(M[0]) + "$");
+    if (k === 3 && t > 0.8) S.px.math(X0, 132, W0, 30, R`$\vec{AM}\perp\vec{AB}$`, { opacity: E(p(t, 0.8, 1)) });
+  }
+};
+
 /* ---------- Chapitre 12 : représentations paramétriques et équations cartésiennes ---------- */
 var CH12 = {
   id: "ch12", num: 12, statut: "ok", partie: "Algèbre et géométrie", titre: "Représentations paramétriques et équations cartésiennes", court: "Droites et plans repérés",
@@ -4176,6 +4534,7 @@ C'est la traduction en coordonnées de $\vec{AM}=t\vec u$.[/]
 [ex|Lire un vecteur normal]Le plan $x-2z+5=0$ a pour vecteur normal $\vec n(1;0;-2)$ (le coefficient de $y$ est nul). Le plan $z=4$ est normal à $\vec k$ : il est parallèle au plan $(xOy)$, d'équation $z=0$.[/]
 [meth|Équation du plan passant par trois points $A$, $B$, $C$]<ol><li>Vérifie que $A$, $B$, $C$ ne sont pas alignés.</li><li>Cherche $\vec n(a;b;c)$ tel que $\vec n\cdot\vec{AB}=0$ et $\vec n\cdot\vec{AC}=0$ : deux équations à trois inconnues, on fixe une inconnue (par exemple $c=1$, ou une valeur qui évite les fractions).</li><li>Écris $ax+by+cz+d=0$ et trouve $d$ avec $A$. Vérifie avec $B$ et $C$.</li></ol>[/]
 [ex|Le plan qui coupe les trois axes]$A(1;0;0)$, $B(0;2;0)$, $C(0;0;3)$. $\vec{AB}(-1;2;0)$, $\vec{AC}(-1;0;3)$. Les conditions $-a+2b=0$ et $-a+3c=0$ donnent, avec $a=6$ : $b=3$, $c=2$. Équation $6x+3y+2z+d=0$ avec $A$ : $d=-6$. Plan : $6x+3y+2z-6=0$. Contrôle : $B$ donne $6-6=0$ ✓, $C$ donne $6-6=0$ ✓.[/]
+<div data-anim="planAxes"></div>
 [ex|Plan médiateur en équation]$A(1;0;2)$, $B(3;4;0)$ : milieu $I(2;2;1)$, $\vec{AB}(2;4;-2)$, que l'on peut remplacer par $(1;2;-1)$. Plan médiateur : $x+2y-z+d=0$ avec $I$ : $2+4-1+d=0$, $d=-5$. Équation : $x+2y-z-5=0$.[/]` },
     { id: "positions", titre: "Positions relatives en coordonnées", html: R`
 <div class="tab-wrap"><table><tr><th>Objets</th><th>Test</th><th>Conclusion</th></tr>
@@ -4394,7 +4753,7 @@ ANIMS.droitePlan = {
       if (k >= 1) {
         var Mt = D(tm), v = 2 * tm - 2, ici = k >= 2 && Math.abs(tm - 1) < 0.01;
         CAV.pt(S, P, Mt, ici ? "g-pt" : "g-pt2", 5);
-        CAV.txt(S, P, Mt, ici ? "I" : "M", ici ? "b" : "r", "start", 8, -6);
+        CAV.txt(S, P, Mt, ici ? "I" : "M", ici ? "b" : "r", ici ? "start" : "end", ici ? 8 : -8, -6);
         if (k <= 2) {
           S.px.txt(8, 309, "t = " + nf(tm, 2) + "    M(" + nf(Mt[0], 2) + " ; " + nf(Mt[1], 2) + " ; " + nf(Mt[2], 2) + ")", "", "start", { "font-size": 12 });
           S.px.txt(8, 325, "x + y + z − 3 = 2t − 2 = " + nf(v, 2) + (Math.abs(v) < 0.01 ? "  : sur le plan" : v < 0 ? "  : derrière" : "  : devant"), Math.abs(v) < 0.01 ? "b" : "r", "start", { "font-size": 12 });
@@ -4411,6 +4770,61 @@ ANIMS.droitePlan = {
       S.px.txt(8, 316, "S + t·n = (2 + t ; 3 + t ; 2 + t)", "", "start", { "font-size": 12 });
       if (f > 0.98) { CAV.txt(S, P, Hp, "H", "b", "end", -8, 12); S.px.math(186, 296, 172, 32, R`$t=-\frac43$, $SH=\frac{4\sqrt3}3$`); }
     }
+  }
+};
+
+/* Animation : l'équation d'un plan, de trois points à ax + by + cz + d = 0 */
+ANIMS.planAxes = {
+  titre: R`Trouver l'équation d'un plan`,
+  vb: [360, 300],
+  etapes: [
+    { d: 4, l: R`Le plan passant par $A(1;0;0)$, $B(0;2;0)$ et $C(0;0;3)$, un point sur chaque axe. On cherche une équation cartésienne.` },
+    { d: 4, l: R`Deux vecteurs du plan, non colinéaires : $\vec{AB}(-1;2;0)$ et $\vec{AC}(-1;0;3)$.` },
+    { d: 5, l: R`Un vecteur normal $\vec n(a;b;c)$ vérifie $\vec n\cdot\vec{AB}=0$ et $\vec n\cdot\vec{AC}=0$, soit $-a+2b=0$ et $-a+3c=0$. Avec $a=6$ : $\vec n(6;3;2)$.` },
+    { d: 6, l: R`$M(x;y;z)$ est dans le plan si et seulement si $\vec{AM}\cdot\vec n=0$ : $6(x-1)+3y+2z=0$, soit $6x+3y+2z-6=0$. Quand $M$ glisse dans le plan, la quantité reste nulle.` },
+    { d: 5.5, l: R`Hors du plan, $6x+3y+2z-6$ n'est plus nul : positif du côté où pointe $\vec n$, négatif de l'autre. L'équation caractérise exactement les points du plan.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, P = CAV.vue({ ox: 128, oy: 206, s: 46, k: 0.5, a: 40, repere: true });
+    var O = [0, 0, 0], A = [1, 0, 0], B = [0, 2, 0], C = [0, 0, 3], G = [1 / 3, 2 / 3, 1], N = [6, 3, 2];
+    function add(U, V, s) { return [U[0] + s * V[0], U[1] + s * V[1], U[2] + s * V[2]]; }
+    [[[2.4, 0, 0], "x"], [[0, 3.4, 0], "y"], [[0, 0, 3.7], "z"]].forEach(function (a) { CAV.trait(S, P, O, a[0], "g-axe", {}); CAV.txt(S, P, a[0], a[1], "", "middle", a[1] === "y" ? 8 : 0, a[1] === "z" ? -6 : 14); });
+    CAV.txt(S, P, O, "O", "", "end", -5, 12);
+    var o0 = k === 0 ? E(p(t, 0.3, 0.8)) : 1;
+    CAV.poly(S, P, [A, B, C], "a-plein", { opacity: o0 });
+    [[A, "A", -10, 14], [B, "B", 4, 16], [C, "C", -10, 2]].forEach(function (q, i) {
+      var o = k === 0 ? E(p(t, 0.1 * i, 0.1 * i + 0.3)) : 1;
+      CAV.pt(S, P, q[0], "g-pt", 4, { opacity: o }); CAV.txt(S, P, q[0], q[1], "b", "middle", q[2], q[3], { opacity: o });
+    });
+    S.px.rect(0, 262, 360, 38, "", { style: "fill:var(--papier);stroke:var(--ligne)" });
+    function bas(s1, s2, o) { S.px.math(4, 263, 352, 36, s1 + (s2 ? R`$\quad$` + s2 : ""), { opacity: o === undefined ? 1 : o }); }
+    if (k === 0) { bas(R`$A(1;0;0)$, $B(0;2;0)$, $C(0;0;3)$`, "", o0); return; }
+    if (k <= 2) {
+      var o1 = k === 1 ? E(p(t, 0, 0.6)) : 1;
+      CAV.fleche(S, P, A, B, o1, "g-c3", { "stroke-width": 2.6 });
+      CAV.fleche(S, P, A, C, o1, "g-c2", { "stroke-width": 2.6 });
+      if (k === 1) { bas(R`$\vec{AB}(-1;2;0)$`, R`$\vec{AC}(-1;0;3)$`, E(p(t, 0.4, 0.9))); return; }
+    }
+    var fn = k === 2 ? E(p(t, 0, 0.5)) : 1;
+    CAV.fleche(S, P, G, add(G, N, 0.2), fn, "g-c", { "stroke-width": 3 });
+    CAV.txt(S, P, add(G, N, 0.2), "n", "b", "start", 6, 0, { opacity: fn });
+    if (k === 2) { bas(R`$\vec n\cdot\vec{AB}=-6+6=0$`, R`$\vec n\cdot\vec{AC}=-6+6=0$`, E(p(t, 0.4, 0.9))); return; }
+    var M;
+    if (k === 3) {
+      var w = 2 * Math.PI * E(t), u = 0.3 + 0.2 * Math.cos(w), v = 0.3 + 0.2 * Math.sin(w);
+      M = add(add(A, [-1, 2, 0], u), [-1, 0, 3], v);
+      CAV.fleche(S, P, A, M, 1, "g-c", { "stroke-width": 2.2, style: "stroke:var(--encre)" });
+    } else {
+      var s = t < 0.4 ? E(p(t, 0, 0.4)) : ANIM.l(1, -1, E(p(t, 0.45, 1)));
+      M = add(G, N, 0.2 * s);
+      CAV.trait(S, P, G, M, "g-as");
+    }
+    var val = 6 * M[0] + 3 * M[1] + 2 * M[2] - 6;
+    if (Math.abs(val) < 0.005) val = 0;
+    CAV.pt(S, P, M, "g-pt2", 5); CAV.txt(S, P, M, "M", "r", "start", 8, -4);
+    function n2(x) { return nf(x, 2).replace(",", "{,}"); }
+    S.px.math(186, 30, 172, 30, "$M(" + n2(M[0]) + ";" + n2(M[1]) + ";" + n2(M[2]) + ")$");
+    bas("$6x+3y+2z-6=" + n2(val) + "$", k === 4 && val !== 0 ? (val > 0 ? R`côté de $\vec n$` : R`côté opposé à $\vec n$`) : "");
   }
 };
 
@@ -4797,8 +5211,8 @@ ANIMS.galton = {
     var nb;
     if (k === 0) { nb = 0; }
     else if (k === 1) { nb = 1; }
-    else if (k === 2) { nb = 1 + Math.floor(29 * E(t)); }
-    else if (k === 3) { nb = 30 + Math.floor((NB - 30) * ANIM.e(t)); }
+    else if (k === 2) { nb = 1 + Math.round(29 * E(t)); }
+    else if (k === 3) { nb = 30 + Math.round((NB - 30) * ANIM.e(t)); }
     else nb = NB;
     function E(x) { return ANIM.e(x); }
     var cases = [0, 0, 0, 0, 0, 0, 0];
@@ -5148,6 +5562,7 @@ De façon équivalente, par passage au contraire : $P(|X-\mu|<\delta)\geq1-\frac
 <p><b>Ce que ça dit.</b> La variance contrôle la probabilité des grands écarts : plus $V$ est petit, moins $X$ a de chances de s'éloigner de sa moyenne. Et l'inégalité vaut pour <b>n'importe quelle</b> loi : on n'a besoin que de $\mu$ et $V$.</p>
 [ex|Un dé]$\mu=3{,}5$, $V=\frac{35}{12}$. $P(|X-3{,}5|\geq2)\leq\frac{35/12}{4}=\frac{35}{48}\approx0{,}73$. En réalité, $|X-3{,}5|\geq2$ signifie $X\in\{1;6\}$ : probabilité $\frac13$. La majoration est vraie, mais large.[/]
 [ex|Une loi binomiale]$X\sim\mathcal B(100;0{,}5)$ : $\mu=50$, $V=25$. $P(|X-50|\geq10)\leq\frac{25}{100}=0{,}25$, alors que le calcul exact donne environ $0{,}057$.[/]
+<div data-anim="tchebychev"></div>
 [ex|Un intervalle (bac, Amérique du Nord, 20 mai 2026)]Un prix $Z$ a pour espérance $9$ € et pour écart type $2$ €. « Il y a au moins $50\,\%$ de chances que le prix soit strictement compris entre $6$ et $12$ € » : $P(6<Z<12)=P(|Z-9|<3)\geq1-\frac{4}{9}=\frac59\approx0{,}56$. Affirmation justifiée.[/]
 [meth|Utiliser l'inégalité]<ol><li>Identifie $\mu$ et $V$ (variance, pas écart type).</li><li>Écris l'événement sous la forme $|X-\mu|\geq\delta$ ou $|X-\mu|<\delta$ : l'intervalle doit être <b>centré</b> sur $\mu$.</li><li>Applique : $\leq\frac V{\delta^2}$, ou $\geq1-\frac V{\delta^2}$ pour le contraire.</li></ol>[/]` },
     { id: "ecarttype", titre: "L'écart type, unité naturelle de dispersion", html: R`
@@ -5403,6 +5818,45 @@ ANIMS.lgn = {
   }
 };
 
+/* Animation : Bienaymé-Tchebychev face au calcul exact, pour une loi binomiale */
+ANIMS.tchebychev = {
+  titre: R`Bienaymé-Tchebychev : une borne sûre, mais large`,
+  vb: [360, 262],
+  etapes: [
+    { d: 4, l: R`$X\sim\mathcal B(100;0{,}5)$ : $\mu=50$, $V=25$ (écart type $5$). Voici sa loi.` },
+    { d: 4.5, l: R`Pour $\delta=10$, l'événement $|X-50|\geq10$ correspond aux barres rouges, aux deux bouts. Probabilité exacte : environ $0{,}057$. L'inégalité garantit seulement $P(|X-50|\geq10)\leq\frac{25}{10^2}=0{,}25$.` },
+    { d: 5, l: R`Si $\delta$ descend jusqu'à $5$ (un écart type), la borne $\frac{V}{\delta^2}$ atteint $1$ : elle est vraie, mais n'apprend plus rien (la probabilité exacte est environ $0{,}37$).` },
+    { d: 5.5, l: R`Si $\delta$ monte jusqu'à $15$, les deux chutent : exacte environ $0{,}0035$, borne $\frac{25}{225}\approx0{,}11$. La borne reste toujours au-dessus.` },
+    { d: 4, l: R`Bilan : la majoration est souvent large, mais elle ne demande que $\mu$ et $V$, et vaut pour n'importe quelle loi. C'est ce qui la rend utile pour <b>garantir</b> un résultat.` }
+  ],
+  _p: null,
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, A = ANIMS.tchebychev;
+    if (!A._p) { A._p = [Math.pow(2, -100)]; for (var i = 0; i < 100; i++) A._p.push(A._p[i] * (100 - i) / (i + 1)); }
+    var pr = A._p;
+    S.rep(29.5, 70.5, 0, 0.09, { px: 5, py: 0.02, marges: { l: 40, r: 10, t: 14, b: 84 }, fx: function (x) { return String(Math.round(x)); }, fy: function (y) { return nf(y, 2); } });
+    var d = k === 0 ? null : k === 1 ? 10 : k === 2 ? Math.round(ANIM.l(10, 5, E(p(t, 0, 0.8)))) : k === 3 ? Math.round(ANIM.l(5, 15, E(p(t, 0, 0.8)))) : 15;
+    var o1 = k === 1 ? E(p(t, 0, 0.4)) : 1;
+    for (var j = 30; j <= 70; j++) {
+      var h = pr[j] * (k === 0 ? E(p(t, Math.abs(j - 50) / 40, Math.abs(j - 50) / 40 + 0.5)) : 1), dehors = d !== null && Math.abs(j - 50) >= d;
+      S.rect(j - 0.42, 0, j + 0.42, h, dehors ? "a-plein2" : "a-plein", { opacity: dehors ? 0.4 + 0.6 * o1 : 1 });
+    }
+    if (d === null) { S.txt(70, 0.082, "μ = 50, V = 25", "b", "end"); return; }
+    [50 - d, 50 + d].forEach(function (x) { S.seg(x, 0, x, 0.088, "g-as", { opacity: o1 }); });
+    S.txt(70, 0.082, "δ = " + d, "r", "end", { opacity: o1 });
+    var reel = 0; for (var m = 0; m <= 100; m++) if (Math.abs(m - 50) >= d) reel += pr[m];
+    var borne = Math.min(1, 25 / (d * d)), X0 = 122, LW = 200;
+    function jauge(y, lab, v, cls, txt) {
+      S.px.txt(X0 - 8, y + 10, lab, cls === "a-plein2" ? "r" : "", "end", { "font-size": 12, opacity: o1 });
+      S.px.rect(X0, y, LW, 14, "", { style: "fill:none;stroke:var(--ligne2)", opacity: o1 });
+      S.px.rect(X0, y, Math.max(1.5, LW * v), 14, cls, { opacity: o1 });
+      S.px.txt(X0 + Math.max(1.5, LW * v) + 5, y + 11, txt, cls === "a-plein2" ? "r" : "b", "start", { "font-size": 12, opacity: o1 });
+    }
+    jauge(208, "P exacte", reel, "a-plein2", "≈ " + (reel < 0.01 ? nf(reel, 4) : nf(reel, 3)));
+    jauge(234, "borne V/δ²", borne, "a-plein", (25 / (d * d) >= 1 ? "= 1" : "≈ " + nf(borne, 3)));
+  }
+};
+
 /* ---------- Chapitres « Bientôt » : contenu du programme officiel (BO spécial n° 8 du 25/07/2019) ---------- */
 var BIENTOT = [
   { id: "ch6", num: 6, partie: "Analyse", titre: "Fonction logarithme népérien", court: "Logarithme", resume: "Réciproque de l'exponentielle, propriétés algébriques, limites, croissances comparées.",
@@ -5601,7 +6055,7 @@ def seuil():
 
   /* ---------- blocs de contenu ---------- */
   function boite(type, lab, html) {
-    return '<div class="boite ' + type + '"><span class="lab">' + lab + '</span><div class="corps">' + F(html) + "</div></div>";
+    return '<div class="boite ' + type + '"><span class="lab">' + F(lab) + '</span><div class="corps">' + F(html) + "</div></div>";
   }
   /* Le cours est écrit en HTML enrichi : [def|Titre] … [/], [prop|…], [thm|…], [ex|…], [meth|…], [piege|…], [hist|…] */
   var LABS = { def: "Définition", prop: "Propriété", thm: "Théorème", ex: "Exemple", meth: "Méthode", piege: "Piège", hist: "Histoire" };

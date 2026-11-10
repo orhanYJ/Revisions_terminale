@@ -34,7 +34,7 @@
 
   /* ---------- blocs de contenu ---------- */
   function boite(type, lab, html) {
-    return '<div class="boite ' + type + '"><span class="lab">' + lab + '</span><div class="corps">' + F(html) + "</div></div>";
+    return '<div class="boite ' + type + '"><span class="lab">' + F(lab) + '</span><div class="corps">' + F(html) + "</div></div>";
   }
   /* Le cours est écrit en HTML enrichi : [def|Titre] … [/], [prop|…], [thm|…], [ex|…], [meth|…], [piege|…], [hist|…] */
   var LABS = { def: "Définition", prop: "Propriété", thm: "Théorème", ex: "Exemple", meth: "Méthode", piege: "Piège", hist: "Histoire" };
