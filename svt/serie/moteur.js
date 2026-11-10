@@ -1,4 +1,4 @@
-/* Vidéos de cours SVT — moteur du lecteur, copie du moteur PC (pc/serie/moteur.js) aux couleurs du site SVT.
+/* Vidéos SVT — moteur du lecteur, copie du moteur PC (pc/serie/moteur.js) aux couleurs du site SVT.
    Ajouts : type mental (carte mentale du thème 1.A, svt/carte-mentale.js, zooms calés sur la voix) ; illustrations
    propres à un chapitre dans svt/serie/illu-<code>.js (window.SERIE_ILLU, outils dans window.SERIE_OUTILS).
    Repris du moteur PC :
@@ -709,7 +709,7 @@
     var halo = h("div", "g-halo", e), haut = h("div", "g-haut", e, "SVT · Terminale");
     var l1 = h("div", "g-ligne", e), tt = h("div", "g-titre", e), sp = lettres(tt, v.serie);
     tt.style.fontSize = Math.min(120, Math.floor(2300 / Math.max(12, String(v.serie).length))) + "px"; tt.style.textAlign = "center";
-    var l2 = h("div", "g-ligne", e), bas = h("div", "g-bas", e, "Le cours en vidéo · chapitre " + v.num);
+    var l2 = h("div", "g-ligne", e), bas = h("div", "g-bas", e, "Chapitre " + v.num);
     var balai = h("div", "g-balai", e);
     return function (t, st) {
       var tl = st.tl;
@@ -1100,7 +1100,7 @@
     var c = h("div", "pa-carte", e), ic = h("div", "pa-ic", c, '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>');
     var an = h("div", "pa-anneau", ic);
     var te = h("div", "pa-te", c, "À toi"), tx = h("div", "pa-tx", c, esc(v.t));
-    var so = h("div", "pa-so", c, esc(v.sous || "Mets la vidéo sur pause, cherche sur une feuille, puis reprends pour la correction."));
+    var so = h("div", "pa-so", c, esc(v.sous || "Mets la vidéo sur pause, cherche sur une feuille, puis reprends pour la solution."));
     return function (t, st) {
       var tl = st.tl, a = E(P(tl, 0, .6));
       op(c, a); tr(c, "translateY(" + (24 * (1 - a)) + "px) scale(" + (0.95 + 0.05 * EB(P(tl, 0, .7))) + ")");
@@ -1217,7 +1217,7 @@
   };
 
   function lancer(EP) {
-    document.title = "Chapitre " + EP.num + " — " + EP.titre + " · le cours en vidéo";
+    document.title = "Chapitre " + EP.num + " — " + EP.titre + " · SVT Terminale";
     if (EMBED) document.body.classList.add("embed");
     var racine = document.getElementById("serie");
 
@@ -1239,7 +1239,7 @@
     var L = h("div", "lecteur", racine);
     if (!EMBED) {
       var tete = h("div", "l-tete", L);
-      h("span", "k", tete, "SVT · chapitre " + EP.num + " · le cours en vidéo");
+      h("span", "k", tete, "SVT Terminale · chapitre " + EP.num);
       h("h1", "", tete, esc(EP.titre));
     }
     var boite = h("div", "boite", L), cadre = h("div", "cadre", boite);
@@ -1255,7 +1255,7 @@
     h("span", "espace", barre);
     var bVit = h("button", "btn", barre, '<span class="mono">1×</span>'), bMus = h("button", "btn on", barre, ICO.musique),
       bCC = h("button", "btn", barre, ICO.cc), bPA = h("button", "btn on", barre, ICO.apause), bFS = h("button", "btn", barre, ICO.plein);
-    bPA.title = "Arrêt automatique avant chaque correction d'exercice";
+    bPA.title = "Arrêt automatique avant chaque solution d'exercice";
     bPlay.title = "Lecture / pause (espace)"; bM.title = "Reculer de 10 s"; bP.title = "Avancer de 10 s"; bVit.title = "Vitesse";
     bMus.title = "Musique de fond"; bCC.title = "Sous-titres"; bFS.title = "Plein écran";
 
@@ -1302,7 +1302,7 @@
     // arrêts « À toi » : la vidéo s'arrête d'elle-même avant chaque correction (option, active par défaut)
     var arrets = EP.vis.filter(function (v) { return v.type === "pause"; }).map(function (v) { return v.et && v.et.stop != null ? v.et.stop : v.t0 + 2.5; });
     var autoPause = true, arretSur = null;
-    var bandeau = h("div", "arret", cadre, '<span class="ic">' + ICO.pause + '</span><span><b>À toi.</b> La vidéo attend ta réponse : cherche, puis touche l\'image pour la correction.</span>');
+    var bandeau = h("div", "arret", cadre, '<span class="ic">' + ICO.pause + '</span><span><b>À toi.</b> La vidéo attend ta réponse : cherche, puis touche l\'image pour la solution.</span>');
     var T = 0, lecture = false, vitesse = 1, sonOK = true, dernier = 0, fini = false, enAttente = null;
     audio.addEventListener("loadedmetadata", function () { if (enAttente != null) { try { audio.currentTime = enAttente; } catch (e) {} enAttente = null; } });
     audio.addEventListener("error", function () { sonOK = false; });
@@ -1437,7 +1437,7 @@
 
     if ("mediaSession" in navigator) {
       try {
-        navigator.mediaSession.metadata = new MediaMetadata({ title: "Ch. " + EP.num + " · " + EP.titre, artist: "SVT · le cours en vidéo", album: "Terminale spécialité" });
+        navigator.mediaSession.metadata = new MediaMetadata({ title: "Ch. " + EP.num + " · " + EP.titre, artist: "SVT Terminale", album: "Terminale spécialité" });
         navigator.mediaSession.setActionHandler("play", jouer); navigator.mediaSession.setActionHandler("pause", pause);
         navigator.mediaSession.setActionHandler("seekbackward", function () { aller(T - 10); });
         navigator.mediaSession.setActionHandler("seekforward", function () { aller(T + 10); });
