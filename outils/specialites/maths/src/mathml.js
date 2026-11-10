@@ -126,7 +126,7 @@ var TeX = (function () {
     if (n === "e") return el("mi", "e", 'mathvariant="normal"');
     if (n === "i") return el("mi", "i", 'mathvariant="normal"');
     if (GREC[n]) return el("mi", GREC[n], /^[A-Z]/.test(n) ? 'mathvariant="normal"' : "");
-    if (FONCS[n]) return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="0">&#x2061;</mo>');
+    if (FONCS[n]) { this.blanc(); var par = this.peek() === "(" || /^\\left|^\^|^_/.test(this.s.slice(this.i)); return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="' + (par ? "0" : "0.17em") + '">&#x2061;</mo>'); }
     if (n === "lim") return el("mo", "lim", 'data-dessous movablelimits="false" lspace="0" rspace="0.17em"');
     if (n === "sum") return el("mo", "∑", 'data-dessous largeop="true" movablelimits="false"');
     if (n === "prod") return el("mo", "∏", 'data-dessous largeop="true" movablelimits="false"');

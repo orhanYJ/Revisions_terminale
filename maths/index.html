@@ -611,7 +611,7 @@ var TeX = (function () {
     if (n === "e") return el("mi", "e", 'mathvariant="normal"');
     if (n === "i") return el("mi", "i", 'mathvariant="normal"');
     if (GREC[n]) return el("mi", GREC[n], /^[A-Z]/.test(n) ? 'mathvariant="normal"' : "");
-    if (FONCS[n]) return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="0">&#x2061;</mo>');
+    if (FONCS[n]) { this.blanc(); var par = this.peek() === "(" || /^\\left|^\^|^_/.test(this.s.slice(this.i)); return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="' + (par ? "0" : "0.17em") + '">&#x2061;</mo>'); }
     if (n === "lim") return el("mo", "lim", 'data-dessous movablelimits="false" lspace="0" rspace="0.17em"');
     if (n === "sum") return el("mo", "∑", 'data-dessous largeop="true" movablelimits="false"');
     if (n === "prod") return el("mo", "∏", 'data-dessous largeop="true" movablelimits="false"');
@@ -2541,6 +2541,865 @@ print(melange([1, 2, 3, 4, 5]))`, sortie: `(une permutation au hasard, différen
     [R`Tirage simultané de $k$ parmi $n$`, R`$\binom nk$ (combinaisons)`],
     [R`« Au moins un » : méthode`, R`Total moins les cas « aucun ».`],
     [R`Ligne $n=5$ du triangle de Pascal`, R`$1\;5\;10\;10\;5\;1$`]
+  ]
+};
+
+/* ---------- Chapitre 6 : fonction logarithme népérien ---------- */
+var CH6 = {
+  id: "ch6", num: 6, statut: "ok", partie: "Analyse", titre: "Fonction logarithme népérien", court: "Logarithme",
+  sous: "La fonction qui défait l'exponentielle : elle transforme les produits en sommes.",
+  resume: "Réciproque de l'exponentielle, propriétés algébriques, équations, dérivée, limites, croissances comparées.",
+  essentiel: [
+    R`Pour tout réel $a>0$, l'équation $\e^x=a$ a une unique solution, notée $\ln(a)$. Ainsi $\e^{\ln a}=a$ pour $a>0$ et $\ln(\e^x)=x$ pour tout réel $x$ ; $\ln1=0$, $\ln\e=1$.`,
+    R`$\ln$ transforme les produits en sommes : $\ln(ab)=\ln a+\ln b$ ; d'où $\ln\frac1a=-\ln a$, $\ln\frac ab=\ln a-\ln b$, $\ln(a^n)=n\ln a$, $\ln\sqrt a=\frac12\ln a$.`,
+    R`$\ln$ est définie, dérivable et strictement croissante sur $]0;+\infty[$, avec $\ln'(x)=\frac1x$ ; $(\ln u)'=\frac{u'}{u}$.`,
+    R`$\lim_{x\to0^+}\ln x=-\infty$, $\lim_{x\to+\infty}\ln x=+\infty$ ; croissances comparées : $\frac{\ln x}{x}\to0$ en $+\infty$, $x\ln x\to0$ en $0$.`,
+    R`Le logarithme résout les équations « en exposant » : $q^n<s\iff n\ln q<\ln s$ ; attention, on divise par $\ln q$, négatif si $0<q<1$.`
+  ],
+  attendus: [
+    R`Connaître la fonction $\ln$, construite comme réciproque de la fonction exponentielle, ses propriétés algébriques, sa dérivée, ses variations, ses limites et sa courbe.`,
+    R`Utiliser l'équation fonctionnelle de l'exponentielle ou du logarithme pour transformer une écriture, résoudre une équation, une inéquation.`,
+    R`Dans le cadre d'une résolution de problème, utiliser les propriétés des fonctions exponentielle et logarithme.`,
+    R`Démonstrations exigibles : calcul de la dérivée de $\ln$ (la dérivabilité étant admise) ; limite en $0$ de $x\mapsto x\ln x$.`,
+    R`Algorithme : algorithme de Briggs pour le calcul du logarithme.`
+  ],
+  premiere: R`
+<ul><li>$\exp$ est définie, dérivable, strictement croissante sur $\R$, $\e^x>0$ ; $\e^{a+b}=\e^a\e^b$, $\e^{a-b}=\frac{\e^a}{\e^b}$, $(\e^a)^n=\e^{na}$.</li>
+<li>$\e^a=\e^b\iff a=b$ et $\e^a<\e^b\iff a<b$ (stricte croissance).</li>
+<li>Chapitre 4 : une fonction continue et strictement monotone sur un intervalle prend une fois et une seule chaque valeur intermédiaire.</li></ul>`,
+  cours: [
+    { id: "definition", titre: "Définition : la réciproque de l'exponentielle", html: R`
+<p>La fonction $\exp$ est continue et strictement croissante sur $\R$, avec $\lim_{-\infty}\exp=0$ et $\lim_{+\infty}\exp=+\infty$. D'après le corollaire du théorème des valeurs intermédiaires, chaque réel $a>0$ est atteint <b>une et une seule fois</b>.</p>
+[def|Logarithme népérien]Pour tout réel $a>0$, l'unique réel $x$ tel que $\e^x=a$ est noté $\ln(a)$. La fonction $\ln:x\mapsto\ln(x)$ est définie sur $]0;+\infty[$.[/]
+[prop|Les deux sens]Pour tout $a>0$ : $\e^{\ln a}=a$. Pour tout réel $x$ : $\ln(\e^x)=x$. Pour $a>0$ et $x$ réel : $\e^x=a\iff x=\ln a$. En particulier $\ln1=0$ et $\ln\e=1$.[/]
+[ex|Lire la définition]$\ln(\e^{3})=3$ ; $\e^{\ln 7}=7$ ; $\e^x=5\iff x=\ln5\approx1{,}609$. Et $\ln(-2)$ n'existe pas : aucune puissance de $\e$ n'est négative.[/]
+<p>Dans un repère orthonormé, les courbes de $\exp$ et de $\ln$ sont <b>symétriques par rapport à la droite $y=x$</b> : le point $(a;\e^a)$ de l'une correspond au point $(\e^a;a)$ de l'autre.</p>
+<div data-anim="reciproque"></div>
+[hist|Napier et Briggs]Le programme le rappelle : les tables de logarithmes (Napier, puis Briggs au début du XVII<sup>e</sup> siècle) ont été construites pour transformer les multiplications longues des astronomes en additions. Le « népérien » vient de Napier.[/]` },
+    { id: "algebre", titre: "Propriétés algébriques", html: R`
+[thm|Relation fonctionnelle]Pour tous réels $a>0$ et $b>0$ : $\ln(ab)=\ln a+\ln b$.[/]
+<p><b>Preuve.</b> $\e^{\ln a+\ln b}=\e^{\ln a}\times\e^{\ln b}=ab=\e^{\ln(ab)}$. L'exponentielle étant strictement croissante, deux réels qui ont la même exponentielle sont égaux : $\ln a+\ln b=\ln(ab)$.</p>
+[prop|Conséquences]Pour $a>0$, $b>0$ et $n\in\Z$ : $$\ln\frac1a=-\ln a,\qquad\ln\frac ab=\ln a-\ln b,\qquad\ln(a^n)=n\ln a,\qquad\ln\sqrt a=\frac12\ln a.$$[/]
+[ex|Calculs]$\ln8=\ln(2^3)=3\ln2\approx2{,}079$ ; $\ln\frac{1}{\e^2}=-2$ ; $\ln\sqrt\e=\frac12$ ; $\e^{2\ln3}=\left(\e^{\ln3}\right)^2=9$ ; $\ln12-\ln3=\ln4=2\ln2$.[/]
+[piege|Il n'y a pas de formule pour une somme]<span class="rature">$\ln(a+b)=\ln a+\ln b$</span> est faux : $\ln(1+1)=\ln2\approx0{,}69$ alors que $\ln1+\ln1=0$. Et <span class="rature">$\ln(a)\times\ln(b)=\ln(ab)$</span> aussi.[/]` },
+    { id: "equations", titre: "Équations, inéquations, seuils", html: R`
+[prop|Comparer]Pour $a>0$ et $b>0$ : $\ln a=\ln b\iff a=b$ et $\ln a<\ln b\iff a<b$. Le signe : $\ln x<0$ sur $]0;1[$, $\ln1=0$, $\ln x>0$ sur $]1;+\infty[$.[/]
+[meth|Résoudre une équation avec ln]
+<ol><li>Chercher le <b>domaine</b> : tout ce qui est sous un $\ln$ doit être strictement positif.</li><li>Regrouper avec les propriétés algébriques, puis passer à l'exponentielle (ou comparer les arguments).</li><li>Garder seulement les solutions du domaine.</li></ol>[/]
+[ex|Avec un domaine]$\ln x+\ln(x-1)=\ln6$. Domaine : $x>1$. L'équation devient $\ln(x(x-1))=\ln6$, soit $x^2-x-6=0$, $(x-3)(x+2)=0$. Seule $x=3$ est dans le domaine.[/]
+[ex|Inéquation]$\ln(2x-1)\leq\ln(x+3)$. Domaine : $x>\frac12$ (et alors $x+3>0$). $\ln$ est croissante : $2x-1\leq x+3\iff x\leq4$. Solution : $\left]\frac12;4\right]$.[/]
+[meth|Les seuils sans tâtonner]Pour $0{,}8^n<0{,}01$ : la fonction $\ln$ est strictement croissante, donc $n\ln0{,}8<\ln0{,}01$. Or $\ln0{,}8<0$ : on divise et l'inégalité <b>change de sens</b> : $n>\frac{\ln0{,}01}{\ln0{,}8}\approx20{,}64$. Le premier entier est $n=21$.[/]
+[ex|Doubler un capital]Placé à $3\,\%$ par an, un capital double quand $1{,}03^n\geq2\iff n\geq\frac{\ln2}{\ln1{,}03}\approx23{,}45$, soit au bout de $24$ ans.[/]` },
+    { id: "derivee", titre: "Dérivée et variations", html: R`
+[thm|Dérivée]$\ln$ est dérivable sur $]0;+\infty[$ et $\ln'(x)=\frac1x$. (Démonstration exigible, la dérivabilité étant admise.)[/]
+<p>Comme $\frac1x>0$ sur $]0;+\infty[$, $\ln$ est <b>strictement croissante</b>. Et $\ln''(x)=-\frac1{x^2}<0$ : $\ln$ est <b>concave</b>.</p>
+[prop|Composée]Si $u$ est dérivable et strictement positive sur $I$, alors $\ln(u)$ est dérivable sur $I$ et $\left(\ln u\right)'=\frac{u'}{u}$.[/]
+[ex|Dérivées]$f(x)=\ln(x^2+1)$ : $f'(x)=\frac{2x}{x^2+1}$. $g(x)=x\ln x$ : $g'(x)=\ln x+x\times\frac1x=\ln x+1$. $h(x)=\ln(3x-2)$ sur $\left]\frac23;+\infty\right[$ : $h'(x)=\frac{3}{3x-2}$.[/]
+[meth|Une inégalité par concavité]La tangente à la courbe de $\ln$ en $1$ a pour équation $y=x-1$. $\ln$ étant concave, sa courbe est sous ses tangentes : $\ln x\leq x-1$ pour tout $x>0$ (c'était l'affirmation 4, vraie, du sujet de Métropole du 18 juin 2025).[/]` },
+    { id: "limites", titre: "Limites, courbe, croissances comparées", html: R`
+[prop|Limites aux bornes]$\lim_{x\to+\infty}\ln x=+\infty$ et $\lim_{x\to0^+}\ln x=-\infty$ : l'axe des ordonnées est asymptote verticale.[/]
+<p>La courbe passe par $(1;0)$ et $(\e;1)$ ; sa tangente en $1$ est $y=x-1$. Elle monte de plus en plus lentement : il faut atteindre $x=\e^{10}\approx22\,026$ pour que $\ln x$ dépasse $10$.</p>
+[thm|Croissances comparées]Pour tout entier $n\geq1$ :
+$$\lim_{x\to+\infty}\frac{\ln x}{x}=0,\qquad\lim_{x\to+\infty}\frac{\ln x}{x^n}=0,\qquad\lim_{x\to0^+}x\ln x=0,\qquad\lim_{x\to0^+}x^n\ln x=0.$$
+<b>Toute puissance de $x$ l'emporte sur le logarithme.</b>[/]
+[prop|Un taux d'accroissement]$\lim_{x\to0}\frac{\ln(1+x)}{x}=1$ : c'est le nombre dérivé de $\ln$ en $1$, $\ln'(1)=1$.[/]
+[ex|Au bac (Centres étrangers, 10 juin 2026)]$f(x)=\frac{\ln x}{x^2}$ : en $0^+$, $\ln x\to-\infty$ et $\frac1{x^2}\to+\infty$, donc $f\to-\infty$ ; en $+\infty$, $\frac{\ln x}{x^2}\to0$ par croissance comparée : asymptotes $x=0$ et $y=0$.[/]
+<p><span class="tag hp">Pour aller plus loin</span> Le logarithme décimal $\log(x)=\frac{\ln x}{\ln10}$ (utilisé en chimie pour le pH, en acoustique pour les décibels) n'est pas au programme de spécialité.</p>` }
+  ],
+  pieges: [
+    { t: "Oublier le domaine", h: R`$\ln(x-3)$ n'existe que pour $x>3$. Une « solution » hors du domaine doit être rejetée.` },
+    { t: "Inventer une formule pour une somme", h: R`<span class="rature">$\ln(a+b)=\ln a\times\ln b$</span>, <span class="rature">$\ln(a+b)=\ln a+\ln b$</span> : aucune formule n'existe.` },
+    { t: "Diviser par un logarithme négatif", h: R`$\ln q<0$ quand $0<q<1$ : diviser par $\ln q$ change le sens de l'inégalité.` },
+    { t: "$\\ln(a^n)$ et $(\\ln a)^n$", h: R`$\ln(a^2)=2\ln a$, mais $(\ln a)^2$ est autre chose : pour $a=\e$, $\ln(\e^2)=2$ et $(\ln\e)^2=1$.` },
+    { t: "La dérivée de $\\ln u$", h: R`$\left(\ln(x^2+1)\right)'=\frac{2x}{x^2+1}$, pas <span class="rature">$\frac{1}{x^2+1}$</span> : il faut la dérivée de l'intérieur.` }
+  ],
+  demos: [
+    { bo: true, t: "Dérivée de $\\ln$ (la dérivabilité étant admise)", h: R`
+<p>Pour tout $x>0$, $\e^{\ln x}=x$. On dérive les deux membres. À gauche, c'est une composée $\e^{u}$ avec $u=\ln$ : sa dérivée est $u'\e^{u}=\ln'(x)\,\e^{\ln x}=\ln'(x)\times x$. À droite, la dérivée vaut $1$.</p>
+<p>Donc $x\ln'(x)=1$, et comme $x\neq0$ : $\ln'(x)=\frac1x$.</p>
+<p class="stylo">L'idée : dériver l'égalité $\e^{\ln x}=x$, qui définit $\ln$.</p>` },
+    { bo: true, t: "Limite en $0$ de $x\\mapsto x\\ln x$", h: R`
+<p>Pour $x>0$, on pose $X=-\ln x$, c'est-à-dire $x=\e^{-X}$. Quand $x\to0^+$, $\ln x\to-\infty$, donc $X\to+\infty$.</p>
+<p>Alors $x\ln x=\e^{-X}\times(-X)=-\frac{X}{\e^X}$. Par croissance comparée (chapitre 3), $\frac{X}{\e^X}\to0$ quand $X\to+\infty$. Donc $\lim_{x\to0^+}x\ln x=0$.</p>
+<p class="stylo">Le changement de variable ramène au résultat connu sur l'exponentielle.</p>` },
+    { bo: false, t: "$\\lim_{x\\to+\\infty}\\frac{\\ln x}{x}=0$", h: R`
+<p>On pose $X=\ln x$, donc $x=\e^X$, et $X\to+\infty$ quand $x\to+\infty$. Alors $\frac{\ln x}{x}=\frac{X}{\e^X}\to0$ (croissance comparée).</p>` },
+    { bo: false, t: "Limites de $\\ln$ en $+\\infty$ et en $0$", h: R`
+<p><b>En $+\infty$.</b> Soit $A$ un réel. Pour $x>\e^A$, la croissance de $\ln$ donne $\ln x>\ln(\e^A)=A$ : tout intervalle $[A;+\infty[$ contient $\ln x$ pour $x$ assez grand.</p>
+<p><b>En $0$.</b> Pour $x>0$, $\ln x=-\ln\frac1x$ ; quand $x\to0^+$, $\frac1x\to+\infty$, donc $\ln\frac1x\to+\infty$ et $\ln x\to-\infty$.</p>` }
+  ],
+  algos: [
+    { bo: true, t: "Algorithme de Briggs", avant: R`<p>Idée de Briggs : prendre plusieurs fois la racine carrée de $a$ ramène près de $1$, et près de $1$, $\ln(1+h)\approx h$. Comme $\ln\left(a^{1/2^k}\right)=\frac{\ln a}{2^k}$, on obtient $\ln a\approx2^k\left(a^{1/2^k}-1\right)$.</p>`,
+      code: `from math import sqrt
+
+def briggs(a, k):
+    for i in range(k):
+        a = sqrt(a)            # a devient a^(1/2^k)
+    return 2**k * (a - 1)
+
+print(briggs(2, 10))
+print(briggs(2, 20))`, sortie: `0.6933818297000016
+0.6931474097073078`,
+      apres: R`<p>$\ln2\approx0{,}693147$ : avec $k=20$, six décimales exactes. (Au-delà, les arrondis de la machine dégradent le résultat : $a-1$ devient trop petit.)</p>` },
+    { bo: false, t: "Seuil : boucle ou logarithme ?", code: `from math import log
+
+n = 0
+while 0.8**n >= 0.01:
+    n = n + 1
+print(n)
+print(log(0.01) / log(0.8))`, sortie: `21
+20.637702317032343`,
+      apres: R`<p>Les deux méthodes concordent : la boucle trouve $21$, le calcul donne $n>20{,}64$.</p>` }
+  ],
+  methodes: [
+    { t: "Comment résoudre une équation ou une inéquation avec $\\ln$ ou $\\exp$ ?", h: R`
+<ol><li>Domaine.</li><li>Isoler l'exponentielle ($\e^{u}=a$) ou le logarithme ($\ln u=b$).</li><li>Appliquer la fonction réciproque : $\e^u=a\iff u=\ln a$ ($a>0$) ; $\ln u=b\iff u=\e^b$.</li><li>Pour une inéquation, utiliser la croissance de $\ln$ ou de $\exp$ (le sens est conservé).</li></ol>` },
+    { t: "Comment étudier une fonction avec $\\ln$ ?", h: R`
+<ol><li>Domaine (argument du $\ln$ strictement positif).</li><li>Limites aux bornes : croissances comparées, factorisation du terme qui domine.</li><li>Dérivée avec $(\ln u)'=\frac{u'}u$, signe (souvent celui d'un numérateur), tableau de variations.</li></ol>` },
+    { t: "Comment trouver un seuil avec le logarithme ?", h: R`
+<p>$q^n<s$ (avec $q>0$, $s>0$) ⟺ $n\ln q<\ln s$. Si $q>1$ : $n<\frac{\ln s}{\ln q}$. Si $0<q<1$ : $n>\frac{\ln s}{\ln q}$ (le sens change). Conclure par le premier entier qui convient.</p>` }
+  ],
+  exos: [
+    { niv: 1, t: "Calculs et équations", enonce: R`<ol><li>Simplifier : $A=\ln(\e^3)$, $B=\e^{2\ln3}$, $C=\ln\frac1{\e^2}$, $D=\ln\sqrt\e$, $E=\ln12-\ln3-\ln4$.</li><li>Résoudre : $\e^{2x}=7$ ; $\ln(x)=-1$ ; $\ln x+\ln(x-1)=\ln6$.</li></ol>`,
+      corrige: R`<ol><li>$A=3$ ; $B=9$ ; $C=-2$ ; $D=\frac12$ ; $E=\ln\frac{12}{3\times4}=\ln1=0$.</li><li>$2x=\ln7$, $x=\frac{\ln7}2\approx0{,}973$ ; $x=\e^{-1}=\frac1\e$ ; $x=3$ (voir le cours : $x=-2$ est hors du domaine $x>1$).</li></ol>` },
+    { niv: 1, t: "Seuils", enonce: R`<ol><li>Plus petit entier $n$ tel que $2^n>1000$.</li><li>Plus petit entier $n$ tel que $\left(\frac12\right)^n<10^{-3}$.</li><li>Une substance a une concentration $c(t)=5\e^{-0{,}2t}$ (mg/L, $t$ en heures). À partir de quand $c(t)<1$ ?</li></ol>`,
+      corrige: R`<ol><li>$n\ln2>\ln1000$, $n>\frac{\ln1000}{\ln2}\approx9{,}97$ : $n=10$ ($2^{10}=1024$).</li><li>$n\ln\frac12<\ln10^{-3}$ ; $\ln\frac12<0$ donc $n>\frac{\ln10^{-3}}{\ln0{,}5}\approx9{,}97$ : $n=10$.</li><li>$\e^{-0{,}2t}<\frac15\iff-0{,}2t<\ln\frac15=-\ln5\iff t>5\ln5\approx8{,}05$ h, soit environ $8$ h $03$ min.</li></ol>` },
+    { niv: 2, t: "Une inégalité", enonce: R`<p>Soit $f(x)=x-\ln x$ sur $]0;+\infty[$.</p><ol><li>Étudier les variations de $f$.</li><li>En déduire que $\ln x\leq x-1$ pour tout $x>0$. Retrouver ce résultat par la concavité.</li></ol>`,
+      corrige: R`<ol><li>$f'(x)=1-\frac1x=\frac{x-1}x$ : négative sur $]0;1]$, positive sur $[1;+\infty[$. Minimum $f(1)=1$.</li><li>Donc $x-\ln x\geq1$, soit $\ln x\leq x-1$. Par concavité : $\ln''(x)=-\frac1{x^2}<0$, la courbe est sous sa tangente en $1$, $y=x-1$.</li></ol>` },
+    { niv: 2, t: "Limites", enonce: R`<p>Déterminer : $\lim_{x\to+\infty}(x-\ln x)$ ; $\lim_{x\to0^+}x^2\ln x$ ; $\lim_{x\to+\infty}\frac{\ln x+x}{x}$ ; $\lim_{x\to0^+}\frac{\ln x}{x}$.</p>`,
+      corrige: R`<ul><li>$x-\ln x=x\left(1-\frac{\ln x}x\right)\to+\infty$.</li><li>$x^2\ln x=x\times(x\ln x)\to0\times0=0$.</li><li>$\frac{\ln x}x+1\to1$.</li><li>$\ln x\to-\infty$ et $\frac1x\to+\infty$ : le produit tend vers $-\infty$ (pas de forme indéterminée).</li></ul>` },
+    { niv: 3, t: "Étude de $g(x)=x\\ln x-x$ (type bac)", enonce: R`<p>Soit $g$ définie sur $]0;+\infty[$ par $g(x)=x\ln x-x$.</p><ol><li>Déterminer les limites de $g$ en $0$ et en $+\infty$.</li><li>Montrer que $g'(x)=\ln x$ et dresser le tableau de variations.</li><li>Résoudre $g(x)=0$.</li><li>Étudier la convexité de $g$ et donner l'équation de sa tangente au point d'abscisse $\e$.</li><li>Que représente $g$ pour la fonction $\ln$ ? (lien avec le chapitre 8)</li></ol>`,
+      corrige: R`<ol><li>En $0$ : $x\ln x\to0$ (démonstration exigible) et $x\to0$, donc $g\to0$. En $+\infty$ : $g(x)=x(\ln x-1)\to+\infty$.</li>
+<li>$g'(x)=\ln x+x\times\frac1x-1=\ln x$ : négative sur $]0;1]$, positive ensuite. Minimum $g(1)=-1$.</li>
+<li>$x(\ln x-1)=0$ avec $x>0$ : $\ln x=1$, $x=\e$.</li>
+<li>$g''(x)=\frac1x>0$ : $g$ est convexe. Tangente en $\e$ : $g(\e)=0$, $g'(\e)=1$, donc $y=x-\e$.</li>
+<li>$g'=\ln$ : $g$ est une <b>primitive</b> de $\ln$ sur $]0;+\infty[$.</li></ol>` }
+  ],
+  annales: [
+    { ref: "Bac 2026, Centres étrangers, 10 juin 2026 (sujet 1), exercice 4, partie A", url: "https://www.apmep.fr/IMG/pdf/BAC_Specialite_Sujet_2026_J1_Centres_Etrangers_FK-v3-2.pdf", h: R`$f(x)=\frac{\ln x}{x^2}$ : limites et asymptotes, $f'(x)=\frac{1-2\ln x}{x^3}$, tableau de variations (maximum $\frac1{2\e}$ en $\sqrt\e$), tangente, convexité ($f''(x)=\frac{-5+6\ln x}{x^4}$, inflexion en $\e^{5/6}$).` },
+    { ref: "Bac 2024, Métropole, 20 juin 2024 (sujet 2), exercice 3, partie B", url: "https://www.apmep.fr/IMG/pdf/Me_tropole_J2_spe_20_06_2024_VTFK.pdf", h: R`$f(x)=x^2+2x-1+\ln(x+2)$ sur $]-2;+\infty[$ : limite en $-2$, dérivée, unique solution $\alpha$ de $f(x)=0$ (contrôle : $\alpha\approx0{,}12$), point d'inflexion.` },
+    { ref: "Bac 2025, Métropole, 18 juin 2025 (sujet 2), exercice 3, affirmation 4", url: "https://www.apmep.fr/IMG/pdf/Metropole__spe_J2_18_06_2025_DV_2.pdf", h: R`« Pour tout réel $x>0$, $\ln(x)-x+1\leq0$ » : vrai, par concavité ou étude de fonction (exercice 3 ci-dessus).` }
+  ],
+  retenir: R`
+[def|Définition]Pour $a>0$ : $\ln a$ est l'unique réel $x$ tel que $\e^x=a$. $\e^{\ln a}=a$ ($a>0$) ; $\ln(\e^x)=x$ ($x\in\R$) ; $\ln1=0$ ; $\ln\e=1$.[/]
+[prop|Algèbre ($a,b>0$, $n\in\Z$)]$\ln(ab)=\ln a+\ln b$ ; $\ln\frac ab=\ln a-\ln b$ ; $\ln\frac1a=-\ln a$ ; $\ln(a^n)=n\ln a$ ; $\ln\sqrt a=\frac12\ln a$.[/]
+[thm|Analyse]$\ln'(x)=\frac1x$ ; $(\ln u)'=\frac{u'}u$ ; $\ln$ strictement croissante, concave ; $\ln x<0$ sur $]0;1[$, $>0$ sur $]1;+\infty[$.<br>$\lim_{0^+}\ln=-\infty$ ; $\lim_{+\infty}\ln=+\infty$ ; $\frac{\ln x}{x}\to0$ en $+\infty$ ; $x\ln x\to0$ en $0^+$ ; $\frac{\ln(1+x)}x\to1$ en $0$.[/]
+<p>Inégalité : $\ln x\leq x-1$. Seuil : $q^n<s\iff n\ln q<\ln s$ (diviser par $\ln q<0$ change le sens).</p>
+<p class="stylo">Domaine d'abord. Pas de formule pour $\ln(a+b)$.</p>`,
+  qcm: [
+    { q: R`$\ln(\e^5)=$`, c: ["$5$", "$\\e^5$", "$\\ln5$", "$5\\e$"], r: 0, e: R`$\ln(\e^x)=x$ pour tout réel $x$.`, ref: "definition" },
+    { q: R`L'équation $\e^x=-3$ :`, c: ["a pour solution $\\ln3$", "a pour solution $-\\ln3$", "n'a pas de solution", "a pour solution $\\ln(-3)$"], r: 2, e: R`$\e^x>0$ pour tout $x$ : aucune solution. $\ln(-3)$ n'existe pas.`, ref: "definition" },
+    { q: R`$\ln12-\ln3=$`, c: ["$\\ln9$", "$2\\ln2$", "$4$", "$\\frac{\\ln12}{\\ln3}$"], r: 1, e: R`$\ln\frac{12}3=\ln4=\ln(2^2)=2\ln2$.`, ref: "algebre" },
+    { q: R`Pour $a,b>0$, laquelle est vraie ?`, c: [R`$\ln(a+b)=\ln a+\ln b$`, R`$\ln(ab)=\ln a\times\ln b$`, R`$\ln(ab)=\ln a+\ln b$`, R`$\ln\frac ab=\frac{\ln a}{\ln b}$`], r: 2, e: R`C'est la relation fonctionnelle : $\ln$ transforme les produits en sommes.`, ref: "algebre" },
+    { q: R`L'ensemble des solutions de $\ln(x)<0$ est :`, c: ["$]-\\infty;0[$", "$]0;1[$", "$]1;+\\infty[$", "$]0;\\e[$"], r: 1, e: R`$\ln x<\ln1\iff x<1$, et $x>0$ (domaine).`, ref: "equations" },
+    { q: R`Plus petit entier $n$ tel que $0{,}8^n<0{,}01$ :`, c: ["$20$", "$21$", "$11$", "$100$"], r: 1, e: R`$n>\frac{\ln0{,}01}{\ln0{,}8}\approx20{,}64$ ; attention au changement de sens car $\ln0{,}8<0$.`, ref: "equations" },
+    { q: R`L'équation $\ln x+\ln(x-1)=\ln6$ a pour solution(s) :`, c: ["$3$ et $-2$", "$3$", "$-2$", "$6$"], r: 1, e: R`On obtient $x^2-x-6=0$, mais le domaine impose $x>1$ : seule $x=3$ convient.`, ref: "equations" },
+    { q: R`La dérivée de $x\mapsto\ln(x^2+1)$ est :`, c: [R`$\frac1{x^2+1}$`, R`$\frac{2x}{x^2+1}$`, R`$2x\ln(x^2+1)$`, R`$\frac{2x}{\ln(x^2+1)}$`], r: 1, e: R`$(\ln u)'=\frac{u'}u$ avec $u=x^2+1$.`, ref: "derivee" },
+    { q: R`La démonstration exigible de $\ln'(x)=\frac1x$ consiste à :`, c: ["dériver l'égalité $\\e^{\\ln x}=x$", "utiliser le taux d'accroissement de $\\ln$ en $0$", "utiliser la convexité", "calculer une primitive"], r: 0, e: R`$\ln'(x)\e^{\ln x}=1$, soit $x\ln'(x)=1$.`, ref: "derivee" },
+    { q: R`$\lim_{x\to0^+}x\ln x=$`, c: ["$-\\infty$", "$0$", "$1$", "$+\\infty$"], r: 1, e: R`Démonstration exigible : avec $X=-\ln x$, $x\ln x=-\frac X{\e^X}\to0$.`, ref: "limites" },
+    { q: R`$\lim_{x\to+\infty}\frac{\ln x}{x}=$`, c: ["$0$", "$1$", "$+\\infty$", "elle n'existe pas"], r: 0, e: R`Croissance comparée : $x$ l'emporte sur $\ln x$.`, ref: "limites" },
+    { q: R`Pour tout $x>0$ :`, c: [R`$\ln x\geq x-1$`, R`$\ln x\leq x-1$`, R`$\ln x\leq x-2$`, R`$\ln x=x-1$`], r: 1, e: R`$\ln$ est concave : sa courbe est sous sa tangente en $1$, $y=x-1$.`, ref: "derivee" },
+    { q: R`Dans un repère orthonormé, les courbes de $\exp$ et $\ln$ sont symétriques par rapport :`, c: ["à l'axe des abscisses", "à l'origine", "à la droite $y=x$", "à la droite $x=1$"], r: 2, e: R`$(a;\e^a)$ sur l'une ⟷ $(\e^a;a)$ sur l'autre : on échange abscisse et ordonnée.`, ref: "definition" }
+  ],
+  cartes: [
+    [R`Définition de $\ln a$ ($a>0$)`, R`L'unique réel $x$ tel que $\e^x=a$.`],
+    [R`$\e^{\ln a}$ et $\ln(\e^x)$`, R`$a$ (pour $a>0$) et $x$ (pour tout réel $x$).`],
+    [R`$\ln1$ et $\ln\e$`, R`$0$ et $1$`],
+    [R`$\ln(ab)=$ ?`, R`$\ln a+\ln b$`],
+    [R`$\ln(a^n)=$ ? et $\ln\sqrt a=$ ?`, R`$n\ln a$ ; $\frac12\ln a$`],
+    [R`$\ln'(x)$ et $(\ln u)'$`, R`$\frac1x$ ; $\frac{u'}u$`],
+    [R`Signe de $\ln x$`, R`Négatif sur $]0;1[$, nul en $1$, positif sur $]1;+\infty[$.`],
+    [R`$\lim_{x\to0^+}\ln x$ et $\lim_{x\to+\infty}\ln x$`, R`$-\infty$ et $+\infty$`],
+    [R`$\lim_{x\to+\infty}\frac{\ln x}x$`, R`$0$`],
+    [R`$\lim_{x\to0^+}x\ln x$`, R`$0$`],
+    [R`$\lim_{x\to0}\frac{\ln(1+x)}x$`, R`$1$`],
+    [R`Inégalité de concavité du logarithme`, R`$\ln x\leq x-1$ pour tout $x>0$.`],
+    [R`Résoudre $q^n<s$ avec $0<q<1$`, R`$n>\frac{\ln s}{\ln q}$ (le sens change).`]
+  ]
+};
+
+/* Animation : ln, reflet de exp dans le miroir y = x */
+ANIMS.reciproque = {
+  titre: "$\\ln$ : l'exponentielle vue dans le miroir $y=x$",
+  vb: [340, 340],
+  etapes: [
+    { d: 3, l: R`La courbe de $\exp$ et la droite $y=x$, dans un repère orthonormé.` },
+    { d: 6, l: R`Chaque point $M(a;\e^a)$ a un reflet $M'(\e^a;a)$ de l'autre côté de la droite $y=x$. Les reflets dessinent la courbe de $\ln$ : on a échangé « l'entrée » et « la sortie ».` },
+    { d: 4, l: R`Lecture : $(0;1)$ se reflète en $(1;0)$, donc $\ln1=0$ ; $(1;\e)$ se reflète en $(\e;1)$, donc $\ln\e=1$.` },
+    { d: 5, l: R`La tangente en $M$ a pour pente $\e^a$ ; son reflet a pour pente $\frac1{\e^a}=\frac1x$ au point d'abscisse $x=\e^a$. C'est $\ln'(x)=\frac1x$.` },
+    { d: 4, l: R`L'asymptote $y=0$ de $\exp$ en $-\infty$ se reflète en l'asymptote $x=0$ de $\ln$ : $\lim_{x\to0^+}\ln x=-\infty$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, ex = Math.exp, ln = Math.log;
+    S.rep(-3, 5, -3, 5, { px: 1, py: 1, marges: { l: 26, r: 8, t: 8, b: 22 } });
+    S.seg(-3, -3, 5, 5, "g-as");
+    S.txt(4.6, 4.95, "y = x", "r", "end");
+    S.courbe(ex, -3, ln(5), "g-c", 160);
+    S.txt(1.2, 4.6, "exp", "b", "start");
+    var aMax = k === 0 ? -3 : k === 1 ? ANIM.l(-3, ln(5) - 0.01, E(t)) : ln(5) - 0.01;
+    if (aMax > -3) S.courbe(ln, ex(-3), ex(aMax), "g-c2", 160, { "stroke-width": 3 });
+    if (k >= 2 || (k === 1 && t > 0.6)) S.txt(4.3, 1.8, "ln", "r", "start");
+    function paire(a, lab) {
+      var M = [a, ex(a)], P = [ex(a), a];
+      S.seg(M[0], M[1], P[0], P[1], "a-craie");
+      S.pt(M[0], M[1], "g-pt", 4.5); S.pt(P[0], P[1], "g-pt2", 4.5);
+      if (lab) { S.txt(M[0] - 0.12, M[1] + 0.25, lab[0], "b", "end"); S.txt(P[0] + 0.12, P[1] - 0.4, lab[1], "r", "start"); }
+    }
+    if (k === 1) paire(aMax, ["M", "M'"]);
+    if (k === 2) { paire(0, ["(0;1)", "(1;0)"]); if (t > 0.45) paire(1, ["(1;e)", "(e;1)"]); }
+    if (k === 3) {
+      var a = ANIM.l(-1.2, 1.2, E(t)), m = ex(a);
+      paire(a, ["M", "M'"]);
+      S.seg(a - 2, m - 2 * m, a + 2, m + 2 * m, "g-c3");
+      S.seg(m - 2 * m, a - 2, m + 2 * m, a + 2, "g-c3");
+      S.txt(-2.8, 4.4, "pente en M : " + ANIM.nf(m, 2), "b");
+      S.txt(-2.8, 3.8, "pente en M' : " + ANIM.nf(1 / m, 2) + " = 1/" + ANIM.nf(m, 2), "r");
+    }
+    if (k === 4) {
+      var o = E(t);
+      S.seg(-3, 0, 5, 0, "g-c", { "stroke-width": 3, opacity: 0.25 + 0.5 * o });
+      S.seg(0, -3, 0, 5, "g-c2", { "stroke-width": 3, opacity: 0.25 + 0.5 * o });
+      S.txt(-2.9, 0.25, "asymptote y = 0", "b");
+      S.txt(0.12, -2.7, "asymptote x = 0", "r");
+    }
+  }
+};
+
+/* ---------- Chapitre 7 : fonctions sinus et cosinus ---------- */
+var CH7 = {
+  id: "ch7", num: 7, statut: "ok", partie: "Analyse", titre: "Fonctions sinus et cosinus", court: "Sinus et cosinus",
+  sous: "Le point qui tourne sur le cercle, déroulé en courbe : dérivées, variations, équations.",
+  resume: "Dérivées, variations, courbes ; équations et inéquations trigonométriques, optimisation.",
+  essentiel: [
+    R`Pour tout réel $x$, $\cos x$ et $\sin x$ sont l'abscisse et l'ordonnée du point du cercle trigonométrique associé à $x$ ; $\cos^2x+\sin^2x=1$.`,
+    R`$\cos$ et $\sin$ sont $2\pi$-périodiques ; $\cos$ est paire, $\sin$ est impaire : on les étudie sur $[0;\pi]$ ou $[-\pi;\pi]$.`,
+    R`$\sin'=\cos$ et $\cos'=-\sin$ ; plus généralement $(\sin u)'=u'\cos u$ et $(\cos u)'=-u'\sin u$.`,
+    R`Sur $[-\pi;\pi]$, $\cos x=a$ (avec $-1<a<1$) a deux solutions opposées $\pm\alpha$ ; $\cos x\leq a$ se lit sur le cercle.`,
+    R`$\lim_{x\to0}\frac{\sin x}{x}=1$ : c'est le nombre dérivé de $\sin$ en $0$.`
+  ],
+  attendus: [
+    R`Connaître les fonctions sinus et cosinus : dérivées, variations, courbes représentatives.`,
+    R`Résoudre une équation du type $\cos x=a$, une inéquation de la forme $\cos x\leq a$ sur $[-\pi;\pi]$.`,
+    R`Dans le cadre de la résolution de problème, notamment géométrique, étudier une fonction simple définie à partir de fonctions trigonométriques, pour déterminer des variations, un optimum.`,
+    R`Ce chapitre n'a pas de démonstration exigible ; la fonction tangente est un approfondissement possible.`
+  ],
+  premiere: R`
+<ul><li>Le radian : sur le cercle trigonométrique (rayon $1$), un arc de longueur $x$ correspond à l'angle $x$ radians ; $\pi$ rad $=180^\circ$.</li>
+<li>Valeurs remarquables :</li></ul>
+<div class="tab-wrap"><table><tr><th>$x$</th><th>$0$</th><th>$\frac\pi6$</th><th>$\frac\pi4$</th><th>$\frac\pi3$</th><th>$\frac\pi2$</th><th>$\pi$</th></tr>
+<tr><td>$\cos x$</td><td>$1$</td><td>$\frac{\sqrt3}2$</td><td>$\frac{\sqrt2}2$</td><td>$\frac12$</td><td>$0$</td><td>$-1$</td></tr>
+<tr><td>$\sin x$</td><td>$0$</td><td>$\frac12$</td><td>$\frac{\sqrt2}2$</td><td>$\frac{\sqrt3}2$</td><td>$1$</td><td>$0$</td></tr></table></div>
+<ul><li>$\cos(-x)=\cos x$, $\sin(-x)=-\sin x$, $\cos(\pi-x)=-\cos x$, $\sin(\pi-x)=\sin x$, $\cos(x+2\pi)=\cos x$.</li></ul>`,
+  cours: [
+    { id: "cercle", titre: "Du cercle à la courbe", html: R`
+[def|Cosinus et sinus d'un réel]Sur le cercle trigonométrique, on enroule la droite des réels à partir du point $I(1;0)$, dans le sens direct. Au réel $x$ correspond un point $M$ ; ses coordonnées sont $(\cos x;\sin x)$.[/]
+<p>Quand $x$ augmente, $M$ tourne : $\sin x$ (sa hauteur) et $\cos x$ (son abscisse) oscillent entre $-1$ et $1$. En reportant la hauteur en fonction de $x$, on « déroule » le cercle : c'est la sinusoïde.</p>
+<div data-anim="cercle"></div>
+[prop|Propriétés]Pour tout réel $x$ : $-1\leq\cos x\leq1$, $-1\leq\sin x\leq1$, $\cos^2x+\sin^2x=1$.<br>Périodicité : $\cos(x+2\pi)=\cos x$ et $\sin(x+2\pi)=\sin x$.<br>Parité : $\cos(-x)=\cos x$ ($\cos$ paire, courbe symétrique par rapport à l'axe des ordonnées), $\sin(-x)=-\sin x$ ($\sin$ impaire, courbe symétrique par rapport à l'origine).[/]
+[ex|Ce qu'on en déduit]Il suffit d'étudier $\cos$ sur $[0;\pi]$ : la parité donne $[-\pi;0]$, puis la périodicité tout $\R$. Et $\cos x=\sin\left(x+\frac\pi2\right)$ : la courbe de $\cos$ est celle de $\sin$ décalée de $\frac\pi2$ vers la gauche.[/]` },
+    { id: "derivees", titre: "Dérivées", html: R`
+[thm|Dérivées]$\sin$ et $\cos$ sont dérivables sur $\R$, et $\sin'(x)=\cos x$, $\cos'(x)=-\sin x$.[/]
+[prop|Un taux d'accroissement célèbre]Le nombre dérivé de $\sin$ en $0$ vaut $\cos0=1$, donc $\lim_{x\to0}\frac{\sin x}{x}=\lim_{x\to0}\frac{\sin x-\sin0}{x-0}=1$. Numériquement : $\frac{\sin(0{,}01)}{0{,}01}\approx0{,}99998$. (Utilisé au bac : Asie, 9 juin 2026.)[/]
+[prop|Composées]Si $u$ est dérivable : $\left(\sin u\right)'=u'\cos u$ et $\left(\cos u\right)'=-u'\sin u$. En particulier $\left(\sin(ax+b)\right)'=a\cos(ax+b)$.[/]
+[ex|Calculs (vérifiés numériquement)]$\left(\sin(3x+1)\right)'=3\cos(3x+1)$ ; $\left(\cos^2x\right)'=2\cos x\times(-\sin x)=-2\sin x\cos x$ ; $\left(\e^{-x}\cos x\right)'=-\e^{-x}\cos x-\e^{-x}\sin x=-\e^{-x}(\cos x+\sin x)$ ; $\left(x\sin x\right)'=\sin x+x\cos x$.[/]
+[piege|Le signe de la dérivée du cosinus]$\cos'=-\sin$ (avec un moins) ; $\sin'=\cos$ (sans). Moyen mnémotechnique : en dérivant quatre fois, on revient au départ : $\sin\to\cos\to-\sin\to-\cos\to\sin$.[/]` },
+    { id: "variations", titre: "Variations et courbes", html: R`
+<p>Sur $[0;\pi]$, $\cos'(x)=-\sin x\leq0$ : $\cos$ est décroissante, de $1$ à $-1$. Sur $\left[-\frac\pi2;\frac\pi2\right]$, $\sin'(x)=\cos x\geq0$ : $\sin$ est croissante, de $-1$ à $1$.</p>
+<div class="tab-wrap"><table><tr><th>$x$</th><th>$-\pi$</th><th>$-\frac\pi2$</th><th>$0$</th><th>$\frac\pi2$</th><th>$\pi$</th></tr>
+<tr><td>$\cos x$</td><td>$-1$ ↗</td><td>$0$ ↗</td><td>$1$ (max) ↘</td><td>$0$ ↘</td><td>$-1$</td></tr>
+<tr><td>$\sin x$</td><td>$0$ ↘</td><td>$-1$ (min) ↗</td><td>$0$ ↗</td><td>$1$ (max) ↘</td><td>$0$</td></tr></table></div>
+[ex|Tangente en $0$]La tangente à la courbe de $\sin$ en $0$ a pour équation $y=x$ (pente $\cos0=1$). Pour $x$ proche de $0$, $\sin x\approx x$ : $\sin(0{,}1)\approx0{,}0998$.[/]
+<p><span class="tag hp">Pour aller plus loin</span> La fonction tangente $\tan x=\frac{\sin x}{\cos x}$ (définie quand $\cos x\neq0$) a pour dérivée $1+\tan^2x=\frac1{\cos^2x}$. Approfondissement non exigible.</p>` },
+    { id: "equations", titre: "Équations et inéquations", html: R`
+[meth|Résoudre $\cos x=a$ sur $[-\pi;\pi]$]
+<ol><li>Si $a>1$ ou $a<-1$ : pas de solution.</li><li>Sinon, trouver un angle $\alpha\in[0;\pi]$ tel que $\cos\alpha=a$ (valeur remarquable, ou calculatrice).</li><li>Sur $[-\pi;\pi]$, les solutions sont $\alpha$ et $-\alpha$ (une seule si $a=\pm1$).</li></ol>[/]
+[ex|Exemples]$\cos x=\frac12$ : $x=\frac\pi3$ ou $x=-\frac\pi3$. $\cos x=-\frac{\sqrt3}2$ : $x=\pm\frac{5\pi}6$. $\sin x=\frac{\sqrt2}2$ sur $[-\pi;\pi]$ : $x=\frac\pi4$ ou $x=\pi-\frac\pi4=\frac{3\pi}4$ (avec $\sin(\pi-x)=\sin x$).[/]
+[meth|Inéquation $\cos x\leq a$]Sur le cercle, $\cos x\leq a$ correspond aux points <b>à gauche</b> de la droite verticale d'abscisse $a$. Pour $a=\frac12$, sur $[-\pi;\pi]$ : $x\in\left[-\pi;-\frac\pi3\right]\cup\left[\frac\pi3;\pi\right]$.[/]
+[ex|Avec le sinus]$2\sin x-1\geq0$ sur $[0;2\pi]$ ⟺ $\sin x\geq\frac12$ ⟺ $x\in\left[\frac\pi6;\frac{5\pi}6\right]$ (points au-dessus de la droite horizontale d'ordonnée $\frac12$).[/]` },
+    { id: "optimum", titre: "Étudier une fonction : un optimum géométrique", html: R`
+[ex|Le plus grand rectangle dans un demi-disque]On inscrit un rectangle dans un demi-disque de rayon $1$ : un côté sur le diamètre, deux sommets sur le demi-cercle, repérés par l'angle $\theta\in\left[0;\frac\pi2\right]$. Le rectangle a pour largeur $2\cos\theta$ et pour hauteur $\sin\theta$ : $A(\theta)=2\sin\theta\cos\theta$.
+<p>$A'(\theta)=2\left(\cos\theta\cos\theta+\sin\theta\times(-\sin\theta)\right)=2\left(\cos^2\theta-\sin^2\theta\right)$.</p>
+<p>Sur $\left[0;\frac\pi2\right]$, $\cos\theta$ et $\sin\theta$ sont positifs, donc $A'(\theta)\geq0\iff\cos\theta\geq\sin\theta\iff\theta\leq\frac\pi4$. L'aire est maximale pour $\theta=\frac\pi4$ : $A\left(\frac\pi4\right)=2\times\frac{\sqrt2}2\times\frac{\sqrt2}2=1$ (le rectangle mesure $\sqrt2$ sur $\frac{\sqrt2}2$).</p>[/]
+[meth|Les réflexes]Restreindre l'étude grâce à la périodicité et la parité ; factoriser la dérivée ; étudier le signe de $\sin$ ou $\cos$ sur l'intervalle avec le cercle.[/]` }
+  ],
+  pieges: [
+    { t: "Degrés et radians", h: R`En analyse, $x$ est en radians. Ta calculatrice doit être en mode radian : $\cos(60)$ en radians vaut environ $-0{,}952$, pas $\frac12$.` },
+    { t: "Oublier une solution", h: R`$\cos x=\frac12$ a <b>deux</b> solutions sur $[-\pi;\pi]$ : $\frac\pi3$ et $-\frac\pi3$. Fais toujours un dessin du cercle.` },
+    { t: "Signe de la dérivée", h: R`<span class="rature">$\cos'=\sin$</span> : non, $\cos'=-\sin$.` },
+    { t: "$\\cos^2x$ et $\\cos(x^2)$", h: R`$\cos^2x=(\cos x)^2$ ; sa dérivée est $-2\sin x\cos x$. $\cos(x^2)$ a pour dérivée $-2x\sin(x^2)$.` }
+  ],
+  demos: [
+    { bo: false, t: "Pourquoi $\\lim_{x\\to0}\\frac{\\sin x}{x}=1$ (idée géométrique)", h: R`
+<p><span class="tag hp">Pour aller plus loin</span> Pour $0<x<\frac\pi2$, sur le cercle trigonométrique, on compare trois aires : le triangle $OIM$ (aire $\frac{\sin x}2$), le secteur angulaire (aire $\frac x2$) et le triangle $OIT$ formé avec la tangente en $I$ (aire $\frac{\tan x}2$). D'où $\sin x\leq x\leq\frac{\sin x}{\cos x}$, puis $\cos x\leq\frac{\sin x}x\leq1$. Comme $\cos x\to1$, les gendarmes donnent la limite $1$. (Au programme, on admet $\sin'=\cos$.)</p>` },
+    { bo: false, t: "$\\cos'(x)=-\\sin x$ à partir de $\\sin'=\\cos$", h: R`
+<p>Pour tout réel $x$, $\cos x=\sin\left(x+\frac\pi2\right)$. Par la dérivée d'une composée : $\cos'(x)=\cos\left(x+\frac\pi2\right)=-\sin x$ (car $\cos\left(x+\frac\pi2\right)=-\sin x$ sur le cercle : rotation d'un quart de tour).</p>` }
+  ],
+  algos: [
+    { bo: false, t: "Une valeur approchée de $\\pi$ grâce au cosinus", avant: R`<p>$\cos$ s'annule une seule fois sur $[1;2]$, en $\frac\pi2$ (continue, strictement décroissante, $\cos1>0>\cos2$). Une dichotomie donne donc $\pi$ (algorithme de « recherche de valeurs approchées de $\pi$ » cité par le programme).</p>`,
+      code: `from math import cos
+
+a, b = 1.0, 2.0
+for k in range(40):
+    m = (a + b) / 2
+    if cos(a) * cos(m) <= 0:
+        b = m
+    else:
+        a = m
+print(2 * a)`, sortie: `3.1415926535883045`,
+      apres: R`<p>$\pi\approx3{,}14159265359$ : $11$ décimales exactes après $40$ étapes ($\frac1{2^{40}}\approx9\times10^{-13}$).</p>` },
+    { bo: false, t: "Tabuler une fonction trigonométrique", code: `from math import sin, pi
+
+for k in range(5):
+    x = k * pi / 4
+    print(round(x, 3), round(sin(x), 4))`, sortie: `0.0 0.0
+0.785 0.7071
+1.571 1.0
+2.356 0.7071
+3.142 0.0` }
+  ],
+  methodes: [
+    { t: "Comment résoudre $\\cos x=a$ ou $\\sin x=a$ ?", h: R`
+<p>Dessine le cercle et la droite verticale $x=a$ (pour $\cos$) ou horizontale $y=a$ (pour $\sin$). Les solutions sont les angles des points d'intersection : $\pm\alpha$ pour $\cos$, $\alpha$ et $\pi-\alpha$ pour $\sin$.</p>` },
+    { t: "Comment étudier une fonction trigonométrique ?", h: R`
+<ol><li>Réduire l'intervalle d'étude (périodicité, parité).</li><li>Dériver avec $(\sin u)'=u'\cos u$, $(\cos u)'=-u'\sin u$.</li><li>Étudier le signe de la dérivée en lisant le signe de $\sin$ ou $\cos$ sur le cercle ; tableau de variations, optimum.</li></ol>` },
+    { t: "Comment utiliser $\\lim_{x\\to0}\\frac{\\sin x}x=1$ ?", h: R`
+<p>Reconnaître un taux d'accroissement : $\frac{\sin x}{x}=\frac{\sin x-\sin0}{x-0}\to\sin'(0)=\cos0=1$. De même $\frac{\cos x-1}{x}\to\cos'(0)=0$.</p>` }
+  ],
+  exos: [
+    { niv: 1, t: "Équations", enonce: R`<p>Résoudre sur $[-\pi;\pi]$ :</p><ol><li>$\cos x=\frac{\sqrt2}2$</li><li>$\cos x=-1$</li><li>$2\cos x+\sqrt3=0$</li><li>$\cos x=2$</li></ol>`,
+      corrige: R`<ol><li>$x=\pm\frac\pi4$.</li><li>$x=\pi$ (et $-\pi$, qui est aussi dans l'intervalle fermé $[-\pi;\pi]$).</li><li>$\cos x=-\frac{\sqrt3}2$ : $x=\pm\frac{5\pi}6$.</li><li>Pas de solution ($\cos x\leq1$).</li></ol>` },
+    { niv: 1, t: "Dérivées", enonce: R`<p>Dériver : $f(x)=\sin(2x)$ ; $g(x)=x\cos x$ ; $h(x)=\cos(x^2)$ ; $k(x)=\frac{\sin x}{x}$ sur $]0;+\infty[$.</p>`,
+      corrige: R`<p>$f'(x)=2\cos(2x)$ ; $g'(x)=\cos x-x\sin x$ ; $h'(x)=-2x\sin(x^2)$ ; $k'(x)=\frac{x\cos x-\sin x}{x^2}$ (son signe est celui de $x\cos x-\sin x$, étudié au bac en Asie le 9 juin 2026).</p>` },
+    { niv: 2, t: "Inéquations", enonce: R`<ol><li>Résoudre $\cos x\leq\frac12$ sur $[-\pi;\pi]$.</li><li>Résoudre $2\sin x-1\geq0$ sur $[0;2\pi]$.</li></ol>`,
+      corrige: R`<ol><li>$\left[-\pi;-\frac\pi3\right]\cup\left[\frac\pi3;\pi\right]$.</li><li>$\sin x\geq\frac12$ : $\left[\frac\pi6;\frac{5\pi}6\right]$.</li></ol><p class="stylo">Contrôle : vérifié par un balayage numérique de l'intervalle.</p>` },
+    { niv: 2, t: "Un rectangle optimal", enonce: R`<p>Reprendre l'exemple du cours : rectangle inscrit dans un demi-disque de rayon $R=3$. Exprimer l'aire en fonction de $\theta$ et trouver l'aire maximale.</p>`,
+      corrige: R`<p>Largeur $2R\cos\theta=6\cos\theta$, hauteur $3\sin\theta$ : $A(\theta)=18\sin\theta\cos\theta$. Même étude : maximum en $\theta=\frac\pi4$, $A=18\times\frac12=9$ (soit $R^2$).</p>` },
+    { niv: 3, t: "Étude de $f(x)=x+2\\cos x$ (type bac)", enonce: R`<p>Soit $f$ définie sur $[0;2\pi]$ par $f(x)=x+2\cos x$.</p><ol><li>Calculer $f'(x)$ et résoudre $f'(x)=0$ sur $[0;2\pi]$.</li><li>Étudier le signe de $f'$ et dresser le tableau de variations (valeurs exactes et approchées).</li><li>Montrer que $f(x)>0$ sur $[0;2\pi]$.</li><li>Déterminer l'équation de la tangente en $0$.</li></ol>`,
+      corrige: R`<ol><li>$f'(x)=1-2\sin x$ ; $f'(x)=0\iff\sin x=\frac12\iff x=\frac\pi6$ ou $x=\frac{5\pi}6$.</li>
+<li>$f'(x)\geq0\iff\sin x\leq\frac12$ : sur $\left[0;\frac\pi6\right]$ et $\left[\frac{5\pi}6;2\pi\right]$ ; $f'\leq0$ sur $\left[\frac\pi6;\frac{5\pi}6\right]$. $f(0)=2$ ; maximum local $f\left(\frac\pi6\right)=\frac\pi6+\sqrt3\approx2{,}256$ ; minimum local $f\left(\frac{5\pi}6\right)=\frac{5\pi}6-\sqrt3\approx0{,}886$ ; $f(2\pi)=2\pi+2\approx8{,}283$.</li>
+<li>Le minimum de $f$ sur $[0;2\pi]$ est le plus petit de $f(0)=2$ et $f\left(\frac{5\pi}6\right)\approx0{,}886$ : il est strictement positif, donc $f>0$.</li>
+<li>$f(0)=2$, $f'(0)=1$ : $y=x+2$.</li></ol>` }
+  ],
+  annales: [
+    { ref: "Bac 2026, Asie, 9 juin 2026 (sujet 1), exercice 4", url: "https://www.apmep.fr/IMG/pdf/BAC_Specialite_Sujet_2026_J1_Asie_FK.pdf", h: R`$g(x)=x\cos x-\sin x$ sur $[0;2\pi]$ : $g'(x)=-x\sin x$, variations, signe ; puis $f(x)=\frac{\sin x}x$ : variations et limite en $0$ « en utilisant le taux d'accroissement de la fonction sinus en $0$ ».` },
+    { ref: "Bac 2025, Amérique du Nord, 22 mai 2025 (sujet 2), exercice 4, partie A", url: "https://www.apmep.fr/IMG/pdf/Amerique_du_Nord_J2_spe_22_05_2025_DV_FK.pdf", h: R`$f(x)=\e^x\sin x$ sur $[0;\pi]$ : $f'(x)=\e^x(\sin x+\cos x)$, variations, inégalité $\e^x\sin x\geq x$ par convexité. La partie B calcule des intégrales par parties (chapitre 9).` }
+  ],
+  retenir: R`
+[prop|Cercle]$M(\cos x;\sin x)$ ; $\cos^2x+\sin^2x=1$ ; $-1\leq\cos x,\sin x\leq1$ ; période $2\pi$ ; $\cos$ paire, $\sin$ impaire.[/]
+[thm|Dérivées]$\sin'=\cos$ ; $\cos'=-\sin$ ; $(\sin u)'=u'\cos u$ ; $(\cos u)'=-u'\sin u$ ; $\lim_{x\to0}\frac{\sin x}x=1$.[/]
+<p><b>Variations</b> : $\cos$ décroît sur $[0;\pi]$ de $1$ à $-1$ ; $\sin$ croît sur $\left[-\frac\pi2;\frac\pi2\right]$ de $-1$ à $1$.</p>
+<p><b>Équations sur $[-\pi;\pi]$</b> : $\cos x=a$ ⟹ $\pm\alpha$ ; $\sin x=a$ ⟹ $\alpha$ et $\pi-\alpha$. Inéquations : lire sur le cercle.</p>
+<p>Valeurs : $\cos\frac\pi3=\frac12$, $\cos\frac\pi4=\frac{\sqrt2}2$, $\cos\frac\pi6=\frac{\sqrt3}2$ (et l'inverse pour $\sin$).</p>
+<p class="stylo">Calculatrice en radians. Un dessin du cercle évite d'oublier une solution.</p>`,
+  qcm: [
+    { q: R`$\sin'(x)=$`, c: ["$\\cos x$", "$-\\cos x$", "$-\\sin x$", "$\\sin x$"], r: 0, e: R`$\sin'=\cos$ et $\cos'=-\sin$.`, ref: "derivees" },
+    { q: R`La dérivée de $x\mapsto\cos(3x)$ est :`, c: [R`$-\sin(3x)$`, R`$3\sin(3x)$`, R`$-3\sin(3x)$`, R`$3\cos(3x)$`], r: 2, e: R`$(\cos u)'=-u'\sin u$ avec $u'=3$.`, ref: "derivees" },
+    { q: R`Sur $[-\pi;\pi]$, $\cos x=\frac12$ a pour solutions :`, c: [R`$\frac\pi3$ seulement`, R`$\frac\pi3$ et $-\frac\pi3$`, R`$\frac\pi6$ et $\frac{5\pi}6$`, R`$\frac\pi3$ et $\frac{2\pi}3$`], r: 1, e: R`Deux points du cercle ont pour abscisse $\frac12$ : angles $\pm\frac\pi3$.`, ref: "equations" },
+    { q: R`Sur $[-\pi;\pi]$, $\sin x=\frac{\sqrt2}2$ a pour solutions :`, c: [R`$\pm\frac\pi4$`, R`$\frac\pi4$ et $\frac{3\pi}4$`, R`$\frac\pi4$ seulement`, R`$\frac\pi3$ et $\frac{2\pi}3$`], r: 1, e: R`$\sin(\pi-x)=\sin x$ : $\frac\pi4$ et $\pi-\frac\pi4$.`, ref: "equations" },
+    { q: R`$\lim_{x\to0}\frac{\sin x}x=$`, c: ["$0$", "$1$", "$+\\infty$", "elle n'existe pas"], r: 1, e: R`C'est $\sin'(0)=\cos0=1$.`, ref: "derivees" },
+    { q: R`$\cos$ est :`, c: ["paire et $\\pi$-périodique", "impaire et $2\\pi$-périodique", "paire et $2\\pi$-périodique", "ni paire ni impaire"], r: 2, e: R`$\cos(-x)=\cos x$ et $\cos(x+2\pi)=\cos x$.`, ref: "cercle" },
+    { q: R`Sur $[0;\pi]$, la fonction $\cos$ est :`, c: ["croissante", "décroissante", "constante", "croissante puis décroissante"], r: 1, e: R`$\cos'=-\sin\leq0$ sur $[0;\pi]$.`, ref: "variations" },
+    { q: R`L'ensemble des solutions de $\cos x\leq\frac12$ sur $[-\pi;\pi]$ est :`, c: [R`$\left[-\frac\pi3;\frac\pi3\right]$`, R`$\left[-\pi;-\frac\pi3\right]\cup\left[\frac\pi3;\pi\right]$`, R`$\left[\frac\pi3;\pi\right]$`, R`$\left[-\frac\pi6;\frac\pi6\right]$`], r: 1, e: R`Points du cercle à gauche de la droite $x=\frac12$.`, ref: "equations" },
+    { q: R`La dérivée de $x\mapsto\cos^2x$ est :`, c: [R`$2\cos x$`, R`$-2\sin x\cos x$`, R`$2\sin x\cos x$`, R`$-\sin^2x$`], r: 1, e: R`$(u^2)'=2u'u$ avec $u=\cos$, $u'=-\sin$.`, ref: "derivees" },
+    { q: R`$\cos^2x+\sin^2x=$`, c: ["$0$", "$1$", "$2$", "dépend de $x$"], r: 1, e: R`Pythagore dans le cercle de rayon $1$.`, ref: "cercle" },
+    { q: R`L'aire $A(\theta)=2\sin\theta\cos\theta$ sur $\left[0;\frac\pi2\right]$ est maximale pour :`, c: [R`$\theta=0$`, R`$\theta=\frac\pi4$`, R`$\theta=\frac\pi3$`, R`$\theta=\frac\pi2$`], r: 1, e: R`$A'(\theta)=2(\cos^2\theta-\sin^2\theta)$ s'annule quand $\cos\theta=\sin\theta$.`, ref: "optimum" },
+    { q: R`La tangente à la courbe de $\sin$ en $0$ a pour équation :`, c: [R`$y=0$`, R`$y=x$`, R`$y=1$`, R`$y=-x$`], r: 1, e: R`$\sin0=0$ et $\sin'(0)=\cos0=1$.`, ref: "variations" },
+    { q: R`En mode radian, $\cos(\pi)=$`, c: ["$0$", "$1$", "$-1$", "$\\frac12$"], r: 2, e: R`Le point associé à $\pi$ est $(-1;0)$.`, ref: "cercle" }
+  ],
+  cartes: [
+    [R`$\sin'$ et $\cos'$`, R`$\sin'=\cos$ ; $\cos'=-\sin$`],
+    [R`$(\sin u)'$ et $(\cos u)'$`, R`$u'\cos u$ ; $-u'\sin u$`],
+    [R`$\cos^2x+\sin^2x$`, R`$1$`],
+    [R`Parité de $\cos$ et de $\sin$`, R`$\cos$ paire ; $\sin$ impaire.`],
+    [R`Période de $\cos$ et $\sin$`, R`$2\pi$`],
+    [R`$\cos\frac\pi3$, $\cos\frac\pi4$, $\cos\frac\pi6$`, R`$\frac12$ ; $\frac{\sqrt2}2$ ; $\frac{\sqrt3}2$`],
+    [R`Solutions de $\cos x=a$ sur $[-\pi;\pi]$ ($|a|<1$)`, R`$\alpha$ et $-\alpha$, avec $\alpha\in]0;\pi[$, $\cos\alpha=a$.`],
+    [R`Solutions de $\sin x=a$ sur $[-\pi;\pi]$`, R`$\alpha$ et $\pi-\alpha$ (si $a>0$).`],
+    [R`$\lim_{x\to0}\frac{\sin x}x$`, R`$1$`],
+    [R`$\sin(\pi-x)$ et $\cos(\pi-x)$`, R`$\sin x$ ; $-\cos x$`],
+    [R`Variations de $\cos$ sur $[0;\pi]$`, R`Décroissante de $1$ à $-1$.`],
+    [R`Tangente à $\sin$ en $0$`, R`$y=x$`]
+  ]
+};
+
+/* Animation : le cercle tourne, la sinusoïde se déroule */
+ANIMS.cercle = {
+  titre: "Le cercle tourne, la courbe se déroule",
+  vb: [360, 205],
+  etapes: [
+    { d: 4, l: R`Le point $M$ part de $I(1;0)$ et tourne. Sa hauteur est $\sin x$ (en rouge), son abscisse $\cos x$ (en vert). On reporte la hauteur à droite, en fonction de $x$.` },
+    { d: 3.5, l: R`De $\frac\pi2$ à $\pi$ : $M$ redescend, $\sin x$ revient à $0$, $\cos x$ devient négatif.` },
+    { d: 6, l: R`De $\pi$ à $2\pi$ : $\sin x$ devient négatif, atteint $-1$ en $\frac{3\pi}2$, puis revient à $0$. Un tour complet = une vague : $2\pi$ est la période.` },
+    { d: 5, l: R`En reportant l'abscisse $\cos x$, on obtient la même vague, décalée de $\frac\pi2$ : $\cos x=\sin\left(x+\frac\pi2\right)$.` },
+    { d: 4.5, l: R`On pose la pente de la courbe de $\sin$ à côté de $\cos$ : là où $\sin$ monte le plus vite ($x=0$), $\cos$ vaut $1$ ; au sommet de $\sin$, $\cos$ vaut $0$. C'est $\sin'=\cos$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, cx = 58, cy = 98, r = 44, gx = 118, L = 232, sc = 44, P = Math.PI;
+    function GX(x) { return gx + x / (2 * P) * L; }
+    function GY(y) { return cy - y * sc; }
+    var x = k === 0 ? E(t) * P / 2 : k === 1 ? P / 2 + E(t) * P / 2 : k === 2 ? P + E(t) * P : 2 * P;
+    S.px.cercle(cx, cy, r, "a-craie");
+    S.px.seg(cx - r - 6, cy, cx + r + 6, cy, "g-axe"); S.px.seg(cx, cy - r - 6, cx, cy + r + 6, "g-axe");
+    S.px.seg(gx, cy, gx + L + 4, cy, "g-axe"); S.px.seg(gx, cy - r - 8, gx, cy + r + 8, "g-axe");
+    [[P / 2, "π/2"], [P, "π"], [3 * P / 2, "3π/2"], [2 * P, "2π"]].forEach(function (q) { S.px.seg(GX(q[0]), cy - 3, GX(q[0]), cy + 3, "g-axe"); S.px.txt(GX(q[0]), cy + 16, q[1], "", "middle", { "font-size": 11 }); });
+    S.px.txt(gx - 4, GY(1) + 4, "1", "", "end", { "font-size": 11 }); S.px.txt(gx - 4, GY(-1) + 4, "−1", "", "end", { "font-size": 11 });
+    function chemin(f, x1) { var d = ""; for (var i = 0; i <= 120; i++) { var u = x1 * i / 120; d += (i ? "L" : "M") + GX(u).toFixed(1) + " " + GY(f(u)).toFixed(1); } return d; }
+    if (k >= 3) S.px.path(chemin(Math.cos, k === 3 ? E(t) * 2 * P : 2 * P), "g-c3", { "stroke-width": 2.2 });
+    S.px.path(chemin(Math.sin, x), "g-c2", { "stroke-width": 2.6 });
+    var a = k >= 3 ? (k === 3 ? E(t) * 2 * P : ANIM.l(0, P / 2, E(t))) : x;
+    var mx = cx + r * Math.cos(a), my = cy - r * Math.sin(a);
+    S.px.seg(cx, cy, mx, my, "g-c", { "stroke-width": 1.4 });
+    S.px.seg(mx, cy, mx, my, "g-c2", { "stroke-width": 3 });
+    S.px.seg(cx, cy, mx, cy, "g-c3", { "stroke-width": 3 });
+    S.px.seg(mx, my, GX(a), GY(Math.sin(a)), "a-craie");
+    S.px.cercle(mx, my, 4.5, "g-pt");
+    S.px.cercle(GX(a), GY(Math.sin(a)), 4, "g-pt2");
+    if (k >= 3) S.px.cercle(GX(a), GY(Math.cos(a)), 4, "g-pt", { style: "fill:var(--vert)" });
+    S.px.txt(8, 20, "x = " + ANIM.nf(a, 2), "b");
+    S.px.txt(8, 196, "sin x = " + ANIM.nf(Math.sin(a), 2), "r");
+    S.px.txt(120, 196, "cos x = " + ANIM.nf(Math.cos(a), 2), "c3");
+    if (k === 4) {
+      var s = Math.cos(a), x0 = GX(a), y0 = GY(Math.sin(a)), dx = 26;
+      S.px.seg(x0 - dx, y0 + s * dx * sc / (L / (2 * P)), x0 + dx, y0 - s * dx * sc / (L / (2 * P)), "g-c", { "stroke-width": 2 });
+      S.px.txt(250, 196, "pente = " + ANIM.nf(s, 2), "b");
+    }
+  }
+};
+
+/* ---------- Chapitre 10 : vecteurs, droites et plans de l'espace ---------- */
+var CH10 = {
+  id: "ch10", num: 10, statut: "ok", partie: "Algèbre et géométrie", titre: "Vecteurs, droites et plans de l'espace", court: "Vecteurs de l'espace",
+  sous: "Le calcul vectoriel du plan, avec une dimension de plus : directions, combinaisons, bases et positions relatives.",
+  resume: "Combinaisons linéaires, droites et plans, coplanarité, bases et repères, positions relatives.",
+  essentiel: [
+    R`Un vecteur de l'espace se définit comme dans le plan (direction, sens, longueur) ; la relation de Chasles $\vec{AB}+\vec{BC}=\vec{AC}$ reste vraie. On fabrique des vecteurs par <b>combinaisons linéaires</b> $a\vec u+b\vec v+c\vec w$.`,
+    R`Une <b>droite</b> est déterminée par un point $A$ et un vecteur directeur $\vec u\neq\vec 0$ : $M\in(d)\iff\vec{AM}=t\vec u$ pour un réel $t$. Trois points sont alignés si et seulement si deux vecteurs qu'ils forment sont colinéaires.`,
+    R`Un <b>plan</b> est déterminé par un point $A$ et deux vecteurs <b>non colinéaires</b> $\vec u,\vec v$ : $M\in\mathcal P\iff\vec{AM}=s\vec u+t\vec v$. Trois vecteurs sont <b>coplanaires</b> si l'un est combinaison linéaire des deux autres.`,
+    R`Trois vecteurs <b>non coplanaires</b> forment une <b>base</b> : tout vecteur s'écrit de façon unique $x\vec i+y\vec j+z\vec k$. Avec une origine $O$, on obtient un repère et des coordonnées $(x;y;z)$.`,
+    R`Deux droites de l'espace peuvent être <b>sécantes, parallèles ou non coplanaires</b>. Une droite et un plan : sécants ou parallèles (la droite peut être incluse). Deux plans : sécants selon une droite, ou parallèles.`
+  ],
+  attendus: [
+    R`Représenter des combinaisons linéaires de vecteurs donnés ; exploiter une figure pour exprimer un vecteur comme combinaison linéaire d'autres vecteurs.`,
+    R`Décrire la position relative de deux droites, d'une droite et d'un plan, de deux plans.`,
+    R`Lire sur une figure si deux vecteurs d'un plan, trois vecteurs de l'espace, forment une base ; lire la décomposition d'un vecteur dans une base.`,
+    R`Étudier géométriquement des problèmes simples de configurations dans l'espace : alignement, colinéarité, parallélisme, coplanarité.`,
+    R`Supports privilégiés : le cube, le pavé, le tétraèdre. Aucune démonstration ni aucun algorithme n'est exigé dans ce chapitre.`
+  ],
+  premiere: R`
+<ul><li><b>Vecteurs du plan</b> : $\vec{AB}=\vec{DC}\iff ABCD$ est un parallélogramme (éventuellement aplati) ; relation de Chasles ; $\vec{AB}=-\vec{BA}$.</li>
+<li><b>Colinéarité dans le plan</b> : $\vec u(x;y)$ et $\vec v(x';y')$ sont colinéaires si et seulement si $xy'-x'y=0$ (déterminant nul).</li>
+<li><b>Coordonnées</b> : $\vec{AB}(x_B-x_A;y_B-y_A)$ ; milieu $I$ de $[AB]$ : $\left(\frac{x_A+x_B}2;\frac{y_A+y_B}2\right)$.</li>
+<li><b>Solides du collège</b> : cube, pavé droit, prisme, pyramide, tétraèdre ; volume d'une pyramide $V=\frac13\times\mathcal B\times h$.</li></ul>
+[piege|Ce qui change dans l'espace]Dans le plan, deux droites non parallèles se coupent toujours. Dans l'espace, non : elles peuvent ne pas être dans un même plan. Et le critère $xy'-x'y=0$ ne suffit plus pour trois coordonnées : il faut vérifier la proportionnalité sur les trois.[/]`,
+  cours: [
+    { id: "vecteurs", titre: "Vecteurs de l'espace et translations", html: R`
+<p>Tout ce que tu sais des vecteurs du plan reste vrai dans l'espace : on travaille simplement dans un monde à trois dimensions. Le support du chapitre : le <b>cube</b> $ABCDEFGH$, base $ABCD$ en bas, $EFGH$ au-dessus, $E$ au-dessus de $A$, $F$ au-dessus de $B$, etc.</p>
+<div data-w="cubeVecteurs"></div>
+[def|Vecteur, translation]À tout couple de points $(A;B)$ on associe le vecteur $\vec{AB}$ : la <b>translation</b> de vecteur $\vec{AB}$ transforme $A$ en $B$. Deux vecteurs sont égaux s'ils ont même direction, même sens et même longueur : $\vec{AB}=\vec{DC}$ si et seulement si $ABCD$ est un parallélogramme (éventuellement aplati). Le vecteur nul $\vec 0=\vec{AA}$.[/]
+[ex|Dans le cube]Les faces sont des carrés, donc des parallélogrammes : $\vec{AB}=\vec{DC}=\vec{EF}=\vec{HG}$, et $\vec{AE}=\vec{BF}=\vec{CG}=\vec{DH}$. Le quadrilatère $ACGE$ est un rectangle (une « tranche diagonale » du cube) : $\vec{AC}=\vec{EG}$.[/]
+[prop|Relation de Chasles]Pour tous points $A$, $B$, $C$ de l'espace : $\vec{AB}+\vec{BC}=\vec{AC}$. En particulier $\vec{AB}+\vec{BA}=\vec 0$, donc $\vec{BA}=-\vec{AB}$.[/]
+[ex|Un chemin le long des arêtes]$\vec{AG}=\vec{AB}+\vec{BC}+\vec{CG}$ : on va de $A$ à $G$ en suivant trois arêtes. Comme $\vec{BC}=\vec{AD}$ et $\vec{CG}=\vec{AE}$, on obtient $\vec{AG}=\vec{AB}+\vec{AD}+\vec{AE}$.[/]` },
+    { id: "combinaisons", titre: "Combinaisons linéaires de vecteurs", html: R`
+[def|Combinaison linéaire]Une <b>combinaison linéaire</b> des vecteurs $\vec u$, $\vec v$, $\vec w$ est un vecteur de la forme $a\vec u+b\vec v+c\vec w$, où $a$, $b$, $c$ sont des réels. Les règles de calcul sont celles du plan : $k(\vec u+\vec v)=k\vec u+k\vec v$, $(a+b)\vec u=a\vec u+b\vec u$, $a(b\vec u)=(ab)\vec u$.[/]
+[ex|Le milieu d'une arête]Soit $I$ le milieu de $[FG]$. Chemin $A\to B\to F\to I$ : $\vec{AI}=\vec{AB}+\vec{BF}+\vec{FI}=\vec{AB}+\vec{AE}+\frac12\vec{FG}=\vec{AB}+\frac12\vec{AD}+\vec{AE}$.[/]
+[ex|Le centre du cube]Soit $\Omega$ le milieu de la grande diagonale $[AG]$ : $\vec{A\Omega}=\frac12\vec{AG}=\frac12\vec{AB}+\frac12\vec{AD}+\frac12\vec{AE}$. On vérifie de même que $\Omega$ est le milieu de $[BH]$, $[CE]$ et $[DF]$ : les quatre grandes diagonales se coupent au centre du cube.[/]
+[meth|Exprimer un vecteur en fonction d'autres]<ol><li>Relie l'origine à l'extrémité par un <b>chemin</b> de points connus (relation de Chasles).</li><li>Remplace chaque morceau par un vecteur égal parmi ceux qu'on te donne (faces parallélogrammes, milieux : $\vec{FI}=\frac12\vec{FG}$).</li><li>Regroupe les termes.</li></ol>[/]
+[ex|Dans un tétraèdre]$ABCD$ est un tétraèdre, $I$ le milieu de $[BC]$ et $G$ le centre de gravité du triangle $BCD$, tel que $\vec{DG}=\frac23\vec{DI}$. Alors $\vec{AI}=\frac12\vec{AB}+\frac12\vec{AC}$, puis
+$$\vec{AG}=\vec{AD}+\frac23\vec{DI}=\vec{AD}+\frac23\left(\vec{AI}-\vec{AD}\right)=\frac13\vec{AB}+\frac13\vec{AC}+\frac13\vec{AD}.$$[/]` },
+    { id: "droites", titre: "Droites de l'espace, colinéarité, alignement", html: R`
+[def|Vecteur directeur]Un <b>vecteur directeur</b> d'une droite $(d)$ est un vecteur non nul $\vec u=\vec{AB}$, où $A$ et $B$ sont deux points distincts de $(d)$. Deux vecteurs $\vec u$ et $\vec v$ sont <b>colinéaires</b> s'il existe un réel $k$ tel que $\vec v=k\vec u$ (ou $\vec u=k\vec v$) ; le vecteur nul est colinéaire à tout vecteur.[/]
+[thm|Caractérisation d'une droite]La droite $(d)$ passant par $A$ et de vecteur directeur $\vec u$ est l'ensemble des points $M$ tels que $\vec{AM}=t\vec u$, $t$ décrivant $\R$.[/]
+[prop|Alignement et parallélisme]<ul><li>$A$, $B$, $C$ sont <b>alignés</b> si et seulement si $\vec{AB}$ et $\vec{AC}$ sont colinéaires.</li><li>Deux droites sont <b>parallèles</b> si et seulement si leurs vecteurs directeurs sont colinéaires.</li></ul>[/]
+[ex|Le centre du cube est sur la diagonale]Avec $\Omega$ défini par $\vec{A\Omega}=\frac12(\vec{AB}+\vec{AD}+\vec{AE})$ et $\vec{AG}=\vec{AB}+\vec{AD}+\vec{AE}$ : $\vec{AG}=2\vec{A\Omega}$. Les vecteurs sont colinéaires, donc $A$, $\Omega$, $G$ sont alignés.[/]
+[ex|Alignés ou pas ?]Dans le cube, $K$ est défini par $\vec{EK}=\frac13\vec{EC}$, et $J$ est le centre de la face $ABFE$ (milieu de $[EB]$). On a $\vec{EC}=\vec{AB}+\vec{AD}-\vec{AE}$, donc $\vec{EK}=\frac13\vec{AB}+\frac13\vec{AD}-\frac13\vec{AE}$. Et $\vec{EJ}=\frac12\vec{EB}=\frac12\vec{AB}-\frac12\vec{AE}$. Les vecteurs $\vec{EK}$ et $\vec{EJ}$ ne sont pas colinéaires (la composante sur $\vec{AD}$ de $\vec{EJ}$ est nulle, pas celle de $\vec{EK}$) : $E$, $J$, $K$ ne sont pas alignés.[/]` },
+    { id: "plans", titre: "Plans de l'espace, direction, coplanarité", html: R`
+[def|Plan, direction d'un plan]Soit $A$ un point et $\vec u$, $\vec v$ deux vecteurs <b>non colinéaires</b>. L'ensemble des points $M$ tels que $\vec{AM}=s\vec u+t\vec v$, avec $s,t\in\R$, est un <b>plan</b> : le plan passant par $A$ et dirigé par $\vec u$ et $\vec v$. Le couple $(\vec u,\vec v)$ en est une <b>base</b> ; l'ensemble des combinaisons $s\vec u+t\vec v$ est la <b>direction</b> du plan.[/]
+<p>Exemple : le plan $(ABC)$ est le plan passant par $A$ et dirigé par $\vec{AB}$ et $\vec{AC}$ (si $A$, $B$, $C$ ne sont pas alignés). Deux plans qui ont la même direction sont parallèles.</p>
+[def|Vecteurs coplanaires]Trois vecteurs $\vec u$, $\vec v$, $\vec w$ sont <b>coplanaires</b> si, en les représentant à partir d'un même point $O$, les quatre points $O$, $O+\vec u$, $O+\vec v$, $O+\vec w$ sont dans un même plan. Si $\vec u$ et $\vec v$ ne sont pas colinéaires, cela revient à : il existe deux réels $a$, $b$ tels que $\vec w=a\vec u+b\vec v$.[/]
+[prop|Quatre points coplanaires]$A$, $B$, $C$, $D$ (avec $A$, $B$, $C$ non alignés) sont <b>coplanaires</b> si et seulement si il existe des réels $a$, $b$ tels que $\vec{AD}=a\vec{AB}+b\vec{AC}$.[/]
+[ex|Coplanaires ou non ?]Dans le cube : $\vec{AC}=\vec{AB}+\vec{AD}$, donc $\vec{AB}$, $\vec{AD}$, $\vec{AC}$ sont coplanaires (ils sont tous dans la face $ABCD$). En revanche $\vec{AB}$, $\vec{AD}$, $\vec{AE}$ ne le sont pas : $\vec{AE}$ « sort » de la face du bas.[/]
+[ex|Le tétraèdre caché dans le cube]Les points $B$, $D$, $E$, $G$ sont-ils coplanaires ? $\vec{BD}=\vec{AD}-\vec{AB}$, $\vec{BE}=\vec{AE}-\vec{AB}$, $\vec{BG}=\vec{AD}+\vec{AE}$. Si $\vec{BG}=a\vec{BD}+b\vec{BE}$, alors $\vec{AD}+\vec{AE}=-(a+b)\vec{AB}+a\vec{AD}+b\vec{AE}$. Par unicité de la décomposition (partie 5) : $a=1$, $b=1$ et $a+b=0$. Impossible : les quatre points ne sont pas coplanaires. $BDEG$ est un tétraèdre (régulier : ses six arêtes sont des diagonales de faces).[/]
+[ex|Six milieux dans un même plan]Soit $I$, $J$, $K$, $L$ les milieux de $[AB]$, $[BC]$, $[CG]$, $[GH]$. $\vec{IL}=\vec{AD}+\vec{AE}$ et $\vec{JK}=\frac12\vec{BG}=\frac12(\vec{AD}+\vec{AE})$. Donc $\vec{IL}=2\vec{JK}$ : les droites $(IL)$ et $(JK)$ sont parallèles, donc contenues dans un même plan : $I$, $J$, $K$, $L$ sont coplanaires. (Avec les milieux de $[HE]$ et $[EA]$, on obtient un hexagone régulier : la section du cube par le plan médiateur de la grande diagonale $[DF]$.)[/]` },
+    { id: "bases", titre: "Bases, repères et coordonnées", html: R`
+[def|Base, repère]Trois vecteurs $\vec i$, $\vec j$, $\vec k$ <b>non coplanaires</b> forment une <b>base</b> de l'espace. Un point $O$ et une base forment un <b>repère</b> $(O;\vec i,\vec j,\vec k)$.[/]
+[thm|Décomposition dans une base]Si $(\vec i,\vec j,\vec k)$ est une base, pour tout vecteur $\vec u$ il existe un <b>unique</b> triplet $(x;y;z)$ de réels tel que $\vec u=x\vec i+y\vec j+z\vec k$ : ce sont les <b>coordonnées</b> de $\vec u$. Les coordonnées du point $M$ dans le repère $(O;\vec i,\vec j,\vec k)$ sont celles de $\vec{OM}$.[/]
+[prop|Calculs en coordonnées]Avec $A(x_A;y_A;z_A)$, $B(x_B;y_B;z_B)$ :
+<ul><li>$\vec{AB}(x_B-x_A;y_B-y_A;z_B-z_A)$ ; $\vec u+\vec v$ et $k\vec u$ se calculent coordonnée par coordonnée ;</li><li>milieu de $[AB]$ : $\left(\frac{x_A+x_B}2;\frac{y_A+y_B}2;\frac{z_A+z_B}2\right)$ ;</li><li>$\vec u(x;y;z)$ et $\vec v(x';y';z')$ sont colinéaires si et seulement si leurs coordonnées sont <b>proportionnelles</b> (il existe $k$ avec $x'=kx$, $y'=ky$, $z'=kz$, ou l'inverse).</li></ul>[/]
+[ex|Le cube en coordonnées]Dans le repère $(A;\vec{AB},\vec{AD},\vec{AE})$ : $A(0;0;0)$, $B(1;0;0)$, $C(1;1;0)$, $D(0;1;0)$, $E(0;0;1)$, $F(1;0;1)$, $G(1;1;1)$, $H(0;1;1)$. Le centre $\Omega\left(\frac12;\frac12;\frac12\right)$, le milieu $I$ de $[FG]$ : $\left(1;\frac12;1\right)$, ce qui confirme $\vec{AI}=\vec{AB}+\frac12\vec{AD}+\vec{AE}$.[/]
+[ex|Une base qui n'est pas « droite »]Dans le tétraèdre $ABCD$, $(\vec{AB},\vec{AC},\vec{AD})$ est une base (les quatre points ne sont pas coplanaires). Dans le repère $(A;\vec{AB},\vec{AC},\vec{AD})$, le centre de gravité $G$ de $BCD$ a pour coordonnées $\left(\frac13;\frac13;\frac13\right)$ (partie 2). La base n'a pas besoin d'être orthogonale : les angles et longueurs viendront au chapitre 11.[/]
+[piege|Colinéarité en dimension 3]$\vec u(1;2;3)$ et $\vec v(2;4;5)$ : $1\times4-2\times2=0$, mais les vecteurs ne sont pas colinéaires ($\frac21=\frac42\neq\frac53$). Vérifie la proportionnalité sur les <b>trois</b> coordonnées.[/]
+[ex|Trois vecteurs forment-ils une base ? (bac, Métropole, 8 septembre 2026)]$\vec u(1;0;2)$, $\vec v(0;1;3)$, $\vec w(2;1;0)$. Cherchons $a$, $b$ tels que $\vec w=a\vec u+b\vec v$ : la 1<sup>re</sup> coordonnée donne $a=2$, la 2<sup>e</sup> donne $b=1$, et la 3<sup>e</sup> devrait valoir $2a+3b=7$, or elle vaut $0$. Impossible ; et $\vec u$, $\vec v$ ne sont pas colinéaires. Donc $\vec u$, $\vec v$, $\vec w$ ne sont pas coplanaires : ils forment une base. L'affirmation « ils forment une base » est vraie.[/]` },
+    { id: "positions", titre: "Positions relatives de droites et de plans", html: R`
+<div class="tab-wrap"><table><tr><th>Objets</th><th>Positions possibles</th><th>Intersection</th></tr>
+<tr><td rowspan="2">Deux droites</td><td><b>coplanaires</b> : sécantes, ou parallèles (strictement ou confondues)</td><td>un point ; vide ; la droite</td></tr>
+<tr><td><b>non coplanaires</b> : ni parallèles, ni sécantes</td><td>vide</td></tr>
+<tr><td>Une droite et un plan</td><td>sécants ; ou parallèles (droite strictement parallèle, ou incluse)</td><td>un point ; vide ; la droite</td></tr>
+<tr><td>Deux plans</td><td>sécants ; ou parallèles (strictement ou confondus)</td><td>une droite ; vide ; le plan</td></tr></table></div>
+<div data-w="positions3d"></div>
+[ex|Dans le cube]$(AB)$ et $(CG)$ ne sont ni parallèles ni sécantes : elles sont <b>non coplanaires</b>. $(EG)$ et $(AC)$ sont parallèles ($\vec{EG}=\vec{AC}$). $(AG)$ coupe le plan $(EFG)$ en $G$. Les plans $(ABC)$ et $(EFG)$ sont parallèles ; les plans $(ABC)$ et $(BCG)$ sont sécants selon la droite $(BC)$.[/]
+[prop|Parallélisme d'une droite et d'un plan]Une droite est parallèle à un plan si et seulement si elle est parallèle à une droite de ce plan (son vecteur directeur est dans la direction du plan).[/]
+[prop|Plans parallèles]<ul><li>Si deux droites <b>sécantes</b> d'un plan $\mathcal P$ sont parallèles à un plan $\mathcal Q$, alors $\mathcal P$ et $\mathcal Q$ sont parallèles.</li><li>Si deux plans sont parallèles, tout plan qui coupe l'un coupe l'autre, et les deux droites d'intersection sont <b>parallèles</b>.</li></ul>[/]
+[thm|Théorème du toit]Si $(d_1)\subset\mathcal P_1$ et $(d_2)\subset\mathcal P_2$ sont deux droites parallèles, et si les plans $\mathcal P_1$ et $\mathcal P_2$ sont sécants selon une droite $(\Delta)$, alors $(\Delta)$ est parallèle à $(d_1)$ et à $(d_2)$.[/]
+[ex|Section d'un cube par un plan]On coupe le cube par le plan $(IJK)$, où $I$, $J$, $K$ sont les milieux de $[AB]$, $[BC]$ et $[CG]$. Le segment $[IJ]$ est la trace sur la face du bas. La face du haut $EFGH$ est parallèle à celle du bas : la trace du plan sur elle est parallèle à $(IJ)$, passe par le milieu $L$ de $[GH]$ (car $\vec{IL}=2\vec{JK}$, partie 4) et aboutit au milieu $M$ de $[HE]$. On complète avec le milieu $N$ de $[EA]$ : la section est l'hexagone $IJKLMN$.[/]
+<p><span class="tag hp">Pour aller plus loin</span> Le programme propose en approfondissement le <b>barycentre</b> : pour des réels $a$, $b$ de somme non nulle, il existe un unique point $G$ tel que $a\vec{GA}+b\vec{GB}=\vec 0$. Le milieu est le barycentre de $(A;1)$, $(B;1)$, le centre de gravité d'un triangle celui des trois sommets affectés du même poids. Non exigible.</p>` }
+  ],
+  pieges: [
+    { t: "« Pas parallèles » ne veut pas dire « sécantes »", h: R`Dans l'espace, deux droites qui ne se coupent pas peuvent aussi ne pas être parallèles : elles sont <b>non coplanaires</b> (comme $(AB)$ et $(CG)$ dans le cube).` },
+    { t: "Deux vecteurs ne font pas une base de l'espace", h: R`Il faut <b>trois</b> vecteurs, et non coplanaires. Deux vecteurs non colinéaires forment une base d'un <b>plan</b> seulement.` },
+    { t: "Deux à deux non colinéaires ≠ non coplanaires", h: R`$\vec{AB}$, $\vec{AD}$, $\vec{AC}$ sont deux à deux non colinéaires, mais coplanaires ($\vec{AC}=\vec{AB}+\vec{AD}$). Ils ne forment pas une base.` },
+    { t: "Une droite parallèle à un plan peut être dedans", h: R`« Parallèle » inclut le cas où la droite est contenue dans le plan. Pour « strictement parallèle », vérifie qu'un point de la droite n'est pas dans le plan.` },
+    { t: "Colinéarité : les trois coordonnées", h: R`Le test $xy'-x'y=0$ du plan ne suffit pas : $(1;2;3)$ et $(2;4;5)$ le vérifient sur les deux premières coordonnées sans être colinéaires.` },
+    { t: "Le théorème du toit demande deux plans sécants", h: R`Si les deux plans sont parallèles, il n'y a pas de droite d'intersection : le théorème ne s'applique pas.` }
+  ],
+  demos: [
+    { bo: false, t: "Unicité de la décomposition dans une base", h: R`
+<p>Soit $(\vec i,\vec j,\vec k)$ une base et supposons $\vec u=x\vec i+y\vec j+z\vec k=x'\vec i+y'\vec j+z'\vec k$. Alors $(x-x')\vec i+(y-y')\vec j+(z-z')\vec k=\vec 0$.</p>
+<p>Si $z\neq z'$, on peut diviser : $\vec k=-\frac{x-x'}{z-z'}\vec i-\frac{y-y'}{z-z'}\vec j$, donc $\vec k$ serait combinaison linéaire de $\vec i$ et $\vec j$ : les trois vecteurs seraient coplanaires, ce qui est exclu. Donc $z=z'$.</p>
+<p>Il reste $(x-x')\vec i+(y-y')\vec j=\vec 0$. Si $y\neq y'$, $\vec j$ serait colinéaire à $\vec i$, et les trois vecteurs seraient encore coplanaires. Donc $y=y'$, puis $(x-x')\vec i=\vec 0$ avec $\vec i\neq\vec 0$, donc $x=x'$.</p>
+<p class="stylo">C'est cette unicité qui permet d'« identifier les coefficients » dans les exemples de coplanarité.</p>` },
+    { bo: false, t: "Le théorème du toit", h: R`
+<p>Soit $\vec u$ un vecteur directeur commun de $(d_1)$ et $(d_2)$ (elles sont parallèles). Comme $(d_1)\subset\mathcal P_1$, $\vec u$ est dans la direction de $\mathcal P_1$ ; de même, $\vec u$ est dans la direction de $\mathcal P_2$.</p>
+<p>Soit $A$ un point de $(\Delta)$ et $(\delta)$ la droite passant par $A$ et dirigée par $\vec u$. Comme $A\in\mathcal P_1$ et $\vec u$ dirige $\mathcal P_1$, la droite $(\delta)$ est contenue dans $\mathcal P_1$ ; de même, elle est contenue dans $\mathcal P_2$. Donc $(\delta)\subset\mathcal P_1\cap\mathcal P_2=(\Delta)$.</p>
+<p>Deux droites dont l'une est incluse dans l'autre sont égales : $(\Delta)=(\delta)$, qui est dirigée par $\vec u$. Donc $(\Delta)$ est parallèle à $(d_1)$ et à $(d_2)$.</p>` },
+    { bo: false, t: "Trois points alignés : pourquoi la colinéarité suffit", h: R`
+<p>Supposons $A\neq B$ et $\vec{AC}=k\vec{AB}$. La droite $(AB)$ est l'ensemble des points $M$ tels que $\vec{AM}=t\vec{AB}$ ; avec $t=k$, on obtient $M=C$. Donc $C\in(AB)$.</p>
+<p>Réciproquement, si $C\in(AB)$, la caractérisation de la droite donne un réel $t$ tel que $\vec{AC}=t\vec{AB}$ : les vecteurs sont colinéaires.</p>` }
+  ],
+  algos: [
+    { bo: false, t: "Tester la colinéarité de deux vecteurs", code: `def colineaires(u, v):
+    # les trois « déterminants » 2x2 doivent être nuls
+    x, y, z = u
+    a, b, c = v
+    return x*b - y*a == 0 and x*c - z*a == 0 and y*c - z*b == 0
+
+print(colineaires((1, 2, 3), (2, 4, 6)))
+print(colineaires((1, 2, 3), (2, 4, 5)))
+print(colineaires((0, 0, 0), (5, -1, 2)))`, sortie: `True
+False
+True`,
+      apres: R`<p>Les trois produits en croix nuls signifient que les coordonnées sont proportionnelles. Le vecteur nul est colinéaire à tout vecteur, comme le dit la définition.</p>` },
+    { bo: false, t: "Quatre points sont-ils coplanaires ?", code: `from fractions import Fraction as Fr
+
+def vec(A, B):
+    return [B[i] - A[i] for i in range(3)]
+
+def coplanaires(A, B, C, D):
+    u, v, w = vec(A, B), vec(A, C), vec(A, D)
+    # on cherche a, b avec w = a*u + b*v sur deux coordonnées
+    for (i, j, k) in [(0, 1, 2), (0, 2, 1), (1, 2, 0)]:
+        det = u[i]*v[j] - u[j]*v[i]
+        if det != 0:
+            a = Fr(w[i]*v[j] - w[j]*v[i], det)
+            b = Fr(u[i]*w[j] - u[j]*w[i], det)
+            # la troisième coordonnée décide
+            return a*u[k] + b*v[k] == w[k], a, b
+    return None   # A, B, C alignés
+
+print(coplanaires((1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 1)))
+print(coplanaires((0, 0, 0), (1, 0, 0), (0, 1, 0), (2, 3, 0)))`, sortie: `(False, Fraction(0, 1), Fraction(1, 1))
+(True, Fraction(2, 1), Fraction(3, 1))`,
+      apres: R`<p>Les coordonnées sont celles du cube dans le repère $(A;\vec{AB},\vec{AD},\vec{AE})$ : $B$, $D$, $E$, $G$ ne sont pas coplanaires (tétraèdre régulier), tandis que $A$, $B$, $D$ et le point $(2;3;0)$ sont dans le plan du bas. On résout deux équations (méthode de Cramer, <span class="tag hp">hors programme</span>), puis la troisième tranche : c'est la méthode de la partie 4, automatisée. Le module <code>fractions</code> évite les arrondis.</p>` },
+    { bo: false, t: "Coordonnées d'un point défini par une combinaison", code: `def combinaison(O, coefs, vecteurs):
+    P = list(O)
+    for c, v in zip(coefs, vecteurs):
+        for i in range(3):
+            P[i] = P[i] + c * v[i]
+    return P
+
+A = (0, 0, 0)
+AB, AD, AE = (1, 0, 0), (0, 1, 0), (0, 0, 1)
+print(combinaison(A, [1, 0.5, 1], [AB, AD, AE]))     # I milieu de [FG]
+print(combinaison(A, [0.5, 0.5, 0.5], [AB, AD, AE])) # centre du cube`, sortie: `[1, 0.5, 1]
+[0.5, 0.5, 0.5]` }
+  ],
+  methodes: [
+    { t: "Montrer que trois points sont alignés, ou deux droites parallèles", h: R`
+<ol><li>Exprime $\vec{AB}$ et $\vec{AC}$ (ou les vecteurs directeurs) dans une même base, ou en coordonnées.</li><li>Trouve $k$ tel que $\vec{AC}=k\vec{AB}$ ; vérifie la relation sur <b>les trois</b> composantes.</li><li>Conclus : colinéaires ⟹ alignés (ou parallèles). Si une composante ne colle pas : pas alignés.</li></ol>` },
+    { t: "Montrer que quatre points sont coplanaires", h: R`
+<ol><li>Vérifie que $A$, $B$, $C$ ne sont pas alignés.</li><li>Cherche $a$, $b$ tels que $\vec{AD}=a\vec{AB}+b\vec{AC}$ : deux coordonnées (ou deux composantes) donnent $a$ et $b$, la troisième sert de <b>test</b>.</li><li>Test réussi : coplanaires. Échec : non coplanaires, et $(\vec{AB},\vec{AC},\vec{AD})$ est une base.</li></ol>
+<p>Raccourci fréquent : trouver deux droites parallèles (ou sécantes) qui passent par les quatre points, comme $(IL)∥(JK)$ dans la partie 4.</p>` },
+    { t: "Lire sur une figure si trois vecteurs forment une base", h: R`
+<p>Représente-les à partir d'un même point. S'ils restent dans un même plan (une face, une « tranche » du solide), ils sont coplanaires : pas une base. Si l'un « sort » du plan des deux autres, c'est une base. Dans le cube : $(\vec{AB},\vec{AD},\vec{AE})$ oui ; $(\vec{AB},\vec{AC},\vec{EF})$ non ($\vec{EF}=\vec{AB}$) ; $(\vec{AC},\vec{AE},\vec{AG})$ non ($\vec{AG}=\vec{AC}+\vec{AE}$, tous dans le rectangle $ACGE$).</p>` },
+    { t: "Construire la section d'un solide par un plan", h: R`
+<ol><li>Deux points du plan sur une même face : on les relie (c'est un segment de la section).</li><li>Sur deux faces <b>parallèles</b>, les segments de section sont <b>parallèles</b>.</li><li>Si besoin, prolonge une droite de la section jusqu'à une arête prolongée pour obtenir un nouveau point sur une face voisine.</li></ol>` },
+    { t: "Étudier la position relative de deux droites données par des points", h: R`
+<p>Compare les vecteurs directeurs : colinéaires ⟹ parallèles (confondues si un point de l'une est sur l'autre). Sinon, elles sont sécantes ou non coplanaires : elles sont sécantes si et seulement si les quatre points qui les définissent sont coplanaires. Avec des représentations paramétriques, on résout un système (chapitre 12).</p>` }
+  ],
+  exos: [
+    { niv: 1, t: "Chemins dans le cube", enonce: R`<p>$ABCDEFGH$ est un cube. $I$ est le milieu de $[EH]$, $J$ celui de $[BC]$.</p><ol><li>Exprimer $\vec{AH}$, $\vec{AF}$, $\vec{BH}$ en fonction de $\vec{AB}$, $\vec{AD}$, $\vec{AE}$.</li><li>Exprimer $\vec{AI}$ et $\vec{AJ}$ de même, puis $\vec{IJ}$.</li><li>Les droites $(IJ)$ et $(AB)$ sont-elles parallèles ?</li></ol>`,
+      corrige: R`<ol><li>$\vec{AH}=\vec{AD}+\vec{AE}$ ; $\vec{AF}=\vec{AB}+\vec{AE}$ ; $\vec{BH}=\vec{BA}+\vec{AH}=-\vec{AB}+\vec{AD}+\vec{AE}$.</li><li>$\vec{AI}=\vec{AE}+\frac12\vec{EH}=\frac12\vec{AD}+\vec{AE}$ ; $\vec{AJ}=\vec{AB}+\frac12\vec{AD}$. Donc $\vec{IJ}=\vec{AJ}-\vec{AI}=\vec{AB}-\vec{AE}$.</li><li>$\vec{IJ}=\vec{AB}-\vec{AE}$ a une composante non nulle sur $\vec{AE}$ : il n'est pas colinéaire à $\vec{AB}$. Les droites ne sont pas parallèles. (En fait $\vec{IJ}=\vec{EB}$ : $(IJ)$ est parallèle à la diagonale $(EB)$ de la face avant.)</li></ol>` },
+    { niv: 1, t: "Coordonnées et alignement", enonce: R`<p>Dans un repère de l'espace, $A(1;2;-1)$, $B(3;1;2)$, $C(7;-1;8)$, $D(0;4;1)$.</p><ol><li>Calculer les coordonnées de $\vec{AB}$, $\vec{AC}$ et du milieu $M$ de $[BD]$.</li><li>$A$, $B$, $C$ sont-ils alignés ?</li><li>Les vecteurs $\vec{AB}$ et $\vec{AD}$ sont-ils colinéaires ?</li></ol>`,
+      corrige: R`<ol><li>$\vec{AB}(2;-1;3)$ ; $\vec{AC}(6;-3;9)$ ; $M\left(\frac32;\frac52;\frac32\right)$.</li><li>$\vec{AC}=3\vec{AB}$ (vérifié sur les trois coordonnées : $6=3\times2$, $-3=3\times(-1)$, $9=3\times3$) : alignés.</li><li>$\vec{AD}(-1;2;2)$. Si $\vec{AD}=k\vec{AB}$, la 1<sup>re</sup> coordonnée donne $k=-\frac12$, mais la 2<sup>e</sup> donnerait $k=-2$ : pas colinéaires.</li></ol>` },
+    { niv: 2, t: "Coplanaires ou base ?", enonce: R`<p>Dans un repère, $A(1;0;2)$, $B(2;1;3)$, $C(0;2;1)$, $D(3;0;4)$ et $E(2;2;5)$.</p><ol><li>Montrer que $A$, $B$, $C$ ne sont pas alignés.</li><li>Les points $A$, $B$, $C$, $D$ sont-ils coplanaires ?</li><li>Et $A$, $B$, $C$, $E$ ? Que peut-on dire du triplet $(\vec{AB},\vec{AC},\vec{AE})$ ?</li></ol>`,
+      corrige: R`<ol><li>$\vec{AB}(1;1;1)$, $\vec{AC}(-1;2;-1)$ : la 1<sup>re</sup> coordonnée donnerait $k=-1$, la 2<sup>e</sup> $k=2$. Non colinéaires, donc non alignés.</li><li>$\vec{AD}(2;0;2)$. On cherche $\vec{AD}=a\vec{AB}+b\vec{AC}$ : $a-b=2$ et $a+2b=0$ donnent $b=-\frac23$, $a=\frac43$. Test sur la 3<sup>e</sup> coordonnée : $a-b=\frac43+\frac23=2$. ✓ Coplanaires.</li><li>$\vec{AE}(1;2;3)$ : $a-b=1$ et $a+2b=2$ donnent $b=\frac13$, $a=\frac43$ ; 3<sup>e</sup> coordonnée : $a-b=1\neq3$. Non coplanaires : $(\vec{AB},\vec{AC},\vec{AE})$ est une base de l'espace.</li></ol>` },
+    { niv: 2, t: "Positions relatives dans une pyramide", enonce: R`<p>$SABCD$ est une pyramide de sommet $S$ dont la base $ABCD$ est un parallélogramme. $I$ et $J$ sont les milieux de $[SA]$ et $[SB]$.</p><ol><li>Montrer que $(IJ)$ est parallèle à $(CD)$.</li><li>La droite $(IJ)$ est-elle parallèle au plan $(ABC)$ ?</li><li>Les plans $(SAD)$ et $(SBC)$ sont sécants (en $S$ au moins). Justifier que leur intersection est la droite passant par $S$ et parallèle à $(AD)$.</li></ol>`,
+      corrige: R`<ol><li>Théorème des milieux dans $SAB$ : $\vec{IJ}=\frac12\vec{AB}$. Comme $ABCD$ est un parallélogramme, $\vec{AB}=\vec{DC}$, donc $\vec{IJ}=\frac12\vec{DC}$ : $(IJ)∥(CD)$.</li><li>$(IJ)$ est parallèle à $(AB)$, droite du plan $(ABC)$ : $(IJ)$ est parallèle au plan $(ABC)$. Elle n'est pas incluse dedans ($I$ est le milieu de $[SA]$ et $S\notin(ABC)$), donc strictement parallèle.</li><li>$(AD)\subset(SAD)$ et $(BC)\subset(SBC)$ sont parallèles ($\vec{AD}=\vec{BC}$). Les deux plans sont sécants (ils contiennent $S$ et ne sont pas confondus). Théorème du toit : leur intersection est parallèle à $(AD)$ ; elle passe par $S$.</li></ol>` },
+    { niv: 3, t: "Les bimédianes du tétraèdre (type bac)", enonce: R`<p>$ABCD$ est un tétraèdre. On note $I$, $J$, $K$, $L$, $M$, $N$ les milieux respectifs de $[AB]$, $[CD]$, $[AC]$, $[BD]$, $[AD]$ et $[BC]$. On se place dans le repère $(A;\vec{AB},\vec{AC},\vec{AD})$.</p><ol><li>Justifier que ce repère est bien défini, puis donner les coordonnées des dix points.</li><li>Exprimer $\vec{KL}$ en fonction de $\vec{AB}$, $\vec{AC}$, $\vec{AD}$.</li><li>Soit $G$ le milieu de $[IJ]$. Montrer que $G$ est aussi le milieu de $[KL]$ et de $[MN]$.</li><li>En déduire que $I$, $J$, $K$, $L$ sont coplanaires et que $IKJL$ est un parallélogramme.</li><li>Montrer que la droite $(IK)$ est strictement parallèle au plan $(BCD)$.</li></ol>`,
+      corrige: R`<ol><li>$ABCD$ est un tétraèdre : les quatre points ne sont pas coplanaires, donc $\vec{AB}$, $\vec{AC}$, $\vec{AD}$ ne sont pas coplanaires et forment une base. $A(0;0;0)$, $B(1;0;0)$, $C(0;1;0)$, $D(0;0;1)$ ; $I\left(\frac12;0;0\right)$, $J\left(0;\frac12;\frac12\right)$, $K\left(0;\frac12;0\right)$, $L\left(\frac12;0;\frac12\right)$, $M\left(0;0;\frac12\right)$, $N\left(\frac12;\frac12;0\right)$.</li><li>$\vec{KL}\left(\frac12;-\frac12;\frac12\right)$, soit $\vec{KL}=\frac12\vec{AB}-\frac12\vec{AC}+\frac12\vec{AD}$.</li><li>$G\left(\frac{\frac12+0}2;\frac{0+\frac12}2;\frac{0+\frac12}2\right)=\left(\frac14;\frac14;\frac14\right)$. Milieu de $[KL]$ : $\left(\frac14;\frac14;\frac14\right)$ ; milieu de $[MN]$ : $\left(\frac14;\frac14;\frac14\right)$. C'est le même point $G$ : les trois segments qui joignent les milieux d'arêtes opposées (les <b>bimédianes</b>) se coupent en leur milieu.</li><li>Les droites $(IJ)$ et $(KL)$ sont sécantes en $G$ : elles sont contenues dans un même plan, donc $I$, $J$, $K$, $L$ sont coplanaires. Le quadrilatère $IKJL$ a des diagonales $[IJ]$ et $[KL]$ de même milieu : c'est un parallélogramme.</li><li>$\vec{IK}\left(-\frac12;\frac12;0\right)$ et $\vec{BC}(-1;1;0)$ : $\vec{IK}=\frac12\vec{BC}$ (théorème des milieux dans $ABC$). $(IK)$ est parallèle à $(BC)$, droite du plan $(BCD)$, donc parallèle à ce plan. Elle n'est pas incluse : $I$ est le milieu de $[AB]$ et $A\notin(BCD)$, donc $I\notin(BCD)$ (sinon la droite $(BI)$, qui contient $A$, serait dans ce plan). Le parallélisme est strict.</li></ol>
+<p class="stylo">Le point $G\left(\frac14;\frac14;\frac14\right)$ est l'isobarycentre des quatre sommets : la moyenne de leurs coordonnées.</p>` }
+  ],
+  annales: [
+    { ref: "Bac 2026, Métropole – La Réunion, 8 septembre 2026 (sujet 1), exercice 3, affirmation 1", url: "https://www.apmep.fr/IMG/pdf/Metropole_J_spe_8osep_2026.pdf", h: R`Vrai/faux : « les vecteurs $\vec u(1;0;2)$, $\vec v(0;1;3)$ et $\vec w(2;1;0)$ forment une base de l'espace ». Vrai : ils ne sont pas coplanaires (exemple traité dans la partie 5).` },
+    { ref: "Bac 2025, Amérique du Sud, 14 novembre 2025 (jour 2), exercice 2, question 3", url: "https://www.apmep.fr/IMG/pdf/Ame_du_Sud_J2_14_11_2025_DV.pdf", h: R`QCM : $A(3;2;1)$, $B(7;3;1)$, $C(-1;4;5)$, $D(-3;3;5)$ ; les points sont-ils coplanaires, alignés, $\vec{AB}$ et $\vec{CD}$ colinéaires ? Ici $\vec{AB}(4;1;0)$ et $\vec{CD}(-2;-1;0)$ ne sont pas colinéaires, $A$, $B$, $C$ ne sont pas alignés, et la recherche de $a$, $b$ avec $\vec{AD}=a\vec{AB}+b\vec{AC}$ donne $a=-\frac23$, $b=\frac56$, mais la troisième coordonnée ne colle pas ($\frac{10}3\neq4$) : les quatre points ne sont pas coplanaires (réponse a).` },
+    { ref: "Bac 2024, Métropole – Antilles-Guyane, 12 septembre 2024 (jour 2), exercice 1, question 1", url: "https://www.apmep.fr/IMG/pdf/Spe_J2_12_09_2024_Metropole_DV.pdf", h: R`Le cube $ABCDEFGH$ dans le repère $(A;\vec{AB},\vec{AD},\vec{AE})$, $I$ et $J$ milieux de $[AB]$ et $[CG]$ : coordonnées de $I$, $J$, du milieu $N$ de $[IJ]$, puis des vecteurs $\vec{IJ}$ et $\vec{NF}$. La suite de l'exercice relève des chapitres 11 et 12.` }
+  ],
+  retenir: R`
+[def|Droite et plan]Droite $(A;\vec u)$, $\vec u\neq\vec 0$ : $M\in(d)\iff\vec{AM}=t\vec u$. Plan $(A;\vec u,\vec v)$, $\vec u$, $\vec v$ non colinéaires : $M\in\mathcal P\iff\vec{AM}=s\vec u+t\vec v$.[/]
+[prop|Colinéarité, coplanarité]$\vec u$, $\vec v$ colinéaires : $\vec v=k\vec u$ (coordonnées proportionnelles sur les trois). $\vec u$, $\vec v$, $\vec w$ coplanaires : $\vec w=a\vec u+b\vec v$ (si $\vec u$, $\vec v$ non colinéaires).<br>Alignés ⟺ $\vec{AB}$, $\vec{AC}$ colinéaires. Coplanaires ⟺ $\vec{AD}=a\vec{AB}+b\vec{AC}$.[/]
+[thm|Base]Trois vecteurs non coplanaires forment une base : décomposition <b>unique</b> $\vec u=x\vec i+y\vec j+z\vec k$. Milieu : moyenne des coordonnées.[/]
+<div class="tab-wrap"><table><tr><th>Objets</th><th>Positions</th></tr>
+<tr><td>2 droites</td><td>sécantes · parallèles · <b>non coplanaires</b></td></tr>
+<tr><td>droite et plan</td><td>sécants · parallèles (dont : incluse)</td></tr>
+<tr><td>2 plans</td><td>sécants selon une droite · parallèles</td></tr></table></div>
+[thm|Toit]Deux droites parallèles dans deux plans sécants : l'intersection des plans leur est parallèle.[/]
+<p class="stylo">Cube $(A;\vec{AB},\vec{AD},\vec{AE})$ : $G(1;1;1)$, centre $\left(\frac12;\frac12;\frac12\right)$, $\vec{AG}=\vec{AB}+\vec{AD}+\vec{AE}$.</p>`,
+  qcm: [
+    { q: R`Dans le cube $ABCDEFGH$, $\vec{AB}+\vec{BF}+\vec{FG}=$`, c: [R`$\vec{AF}$`, R`$\vec{AG}$`, R`$\vec{AH}$`, R`$\vec{AC}$`], r: 1, e: R`Chasles : $A\to B\to F\to G$, donc $\vec{AG}$.`, ref: "vecteurs" },
+    { q: R`Dans le cube, $\vec{AG}$ s'écrit :`, c: [R`$\vec{AB}+\vec{AD}$`, R`$\vec{AB}+\vec{AD}+\vec{AE}$`, R`$\vec{AB}+\vec{AE}$`, R`$2\vec{AB}+\vec{AE}$`], r: 1, e: R`$\vec{AG}=\vec{AB}+\vec{BC}+\vec{CG}$ avec $\vec{BC}=\vec{AD}$ et $\vec{CG}=\vec{AE}$.`, ref: "vecteurs" },
+    { q: R`$I$ milieu de $[FG]$ dans le cube. $\vec{AI}=$`, c: [R`$\vec{AB}+\frac12\vec{AD}+\vec{AE}$`, R`$\frac12\vec{AB}+\vec{AD}+\vec{AE}$`, R`$\vec{AB}+\vec{AD}+\frac12\vec{AE}$`, R`$\frac12(\vec{AB}+\vec{AD}+\vec{AE})$`], r: 0, e: R`$\vec{AI}=\vec{AB}+\vec{BF}+\frac12\vec{FG}$.`, ref: "combinaisons" },
+    { q: R`Deux droites de l'espace qui n'ont aucun point commun sont :`, c: ["forcément parallèles", "parallèles ou non coplanaires", "forcément non coplanaires", "sécantes"], r: 1, e: R`Sans point commun : strictement parallèles (coplanaires) ou non coplanaires.`, ref: "positions" },
+    { q: R`Dans le cube, les droites $(AB)$ et $(CG)$ sont :`, c: ["parallèles", "sécantes", "non coplanaires", "confondues"], r: 2, e: R`Aucun plan ne les contient toutes les deux : elles ne se coupent pas et ne sont pas parallèles.`, ref: "positions" },
+    { q: R`$\vec u(1;2;3)$ et $\vec v(2;4;5)$ sont :`, c: ["colinéaires", "non colinéaires", "égaux", "opposés"], r: 1, e: R`$\frac21=\frac42$ mais $\frac53\neq2$ : pas proportionnels sur la troisième coordonnée.`, ref: "bases" },
+    { q: R`Trois vecteurs forment une base de l'espace si et seulement si :`, c: ["ils sont deux à deux non colinéaires", "ils sont non coplanaires", "ils sont non nuls", "ils sont orthogonaux deux à deux"], r: 1, e: R`Deux à deux non colinéaires ne suffit pas ($\vec{AB}$, $\vec{AD}$, $\vec{AC}$). Orthogonaux suffit mais n'est pas nécessaire.`, ref: "bases" },
+    { q: R`Dans le cube, $(\vec{AC},\vec{AE},\vec{AG})$ :`, c: ["est une base", "n'est pas une base car $\\vec{AG}=\\vec{AC}+\\vec{AE}$", "n'est pas une base car $\\vec{AC}$ et $\\vec{AE}$ sont colinéaires", "est une base orthonormée"], r: 1, e: R`Les trois vecteurs sont dans le rectangle $ACGE$ : coplanaires.`, ref: "plans" },
+    { q: R`$A(1;2;-1)$, $B(3;1;2)$. Le milieu de $[AB]$ est :`, c: [R`$(2;1{,}5;0{,}5)$`, R`$(4;3;1)$`, R`$(1;-0{,}5;1{,}5)$`, R`$(2;1;1)$`], r: 0, e: R`Moyenne des coordonnées : $\left(\frac{1+3}2;\frac{2+1}2;\frac{-1+2}2\right)$.`, ref: "bases" },
+    { q: R`$A$, $B$, $C$ non alignés. $D$ est dans le plan $(ABC)$ si et seulement si :`, c: [R`$\vec{AD}=k\vec{AB}$`, R`$\vec{AD}=a\vec{AB}+b\vec{AC}$ pour des réels $a$, $b$`, R`$\vec{AD}\neq\vec 0$`, R`$\vec{AB}+\vec{AC}+\vec{AD}=\vec 0$`], r: 1, e: R`Caractérisation d'un plan par un point et deux vecteurs non colinéaires.`, ref: "plans" },
+    { q: R`Une droite parallèle à une droite d'un plan $\mathcal P$ est :`, c: [R`sécante à $\mathcal P$`, R`parallèle à $\mathcal P$ (éventuellement incluse)`, R`strictement parallèle à $\mathcal P$`, R`orthogonale à $\mathcal P$`], r: 1, e: R`Elle peut être dans $\mathcal P$ : « parallèle » inclut ce cas.`, ref: "positions" },
+    { q: R`Deux plans parallèles sont coupés par un troisième plan. Les deux droites d'intersection sont :`, c: ["sécantes", "parallèles", "non coplanaires", "on ne peut rien dire"], r: 1, e: R`Propriété des plans parallèles (c'est ce qui guide les sections du cube).`, ref: "positions" },
+    { q: R`Théorème du toit : $(d_1)\subset\mathcal P_1$, $(d_2)\subset\mathcal P_2$, $(d_1)∥(d_2)$, $\mathcal P_1\cap\mathcal P_2=(\Delta)$. Alors :`, c: [R`$(\Delta)$ est parallèle à $(d_1)$ et $(d_2)$`, R`$(\Delta)$ coupe $(d_1)$`, R`$(\Delta)$ est orthogonale à $(d_1)$`, R`$\mathcal P_1∥\mathcal P_2$`], r: 0, e: R`L'arête du « toit » est parallèle aux deux droites.`, ref: "positions" },
+    { q: R`$\vec u(1;0;2)$, $\vec v(0;1;3)$, $\vec w(2;1;7)$ :`, c: ["forment une base", "sont coplanaires", "sont colinéaires deux à deux", "sont nuls"], r: 1, e: R`$\vec w=2\vec u+\vec v$ (coordonnée par coordonnée : $2$, $1$, $4+3=7$).`, ref: "plans" }
+  ],
+  cartes: [
+    [R`Relation de Chasles`, R`$\vec{AB}+\vec{BC}=\vec{AC}$`],
+    [R`$\vec{AB}=\vec{DC}$ signifie…`, R`$ABCD$ est un parallélogramme (éventuellement aplati).`],
+    [R`Caractérisation de la droite $(A;\vec u)$`, R`$M\in(d)\iff\vec{AM}=t\vec u$, $t\in\R$.`],
+    [R`Caractérisation du plan $(A;\vec u,\vec v)$`, R`$M\in\mathcal P\iff\vec{AM}=s\vec u+t\vec v$, avec $\vec u$, $\vec v$ non colinéaires.`],
+    [R`Vecteurs coplanaires`, R`L'un est combinaison linéaire des deux autres : $\vec w=a\vec u+b\vec v$.`],
+    [R`Base de l'espace`, R`Trois vecteurs non coplanaires.`],
+    [R`Décomposition dans une base`, R`Unique : $\vec u=x\vec i+y\vec j+z\vec k$.`],
+    [R`Colinéarité en coordonnées`, R`Coordonnées proportionnelles sur les trois composantes.`],
+    [R`Positions de deux droites de l'espace`, R`Sécantes, parallèles ou non coplanaires.`],
+    [R`Positions d'une droite et d'un plan`, R`Sécants (un point) ou parallèles (vide ou droite incluse).`],
+    [R`Positions de deux plans`, R`Sécants selon une droite, ou parallèles.`],
+    [R`Théorème du toit`, R`Deux droites parallèles dans deux plans sécants : l'intersection des plans leur est parallèle.`],
+    [R`$\vec{AG}$ dans le cube`, R`$\vec{AB}+\vec{AD}+\vec{AE}$`],
+    [R`Section d'un cube : faces parallèles`, R`Les segments de section sur deux faces parallèles sont parallèles.`]
+  ]
+};
+
+/* ---------- Chapitre 11 : orthogonalité et distances dans l'espace ---------- */
+var CH11 = {
+  id: "ch11", num: 11, statut: "ok", partie: "Algèbre et géométrie", titre: "Orthogonalité et distances dans l'espace", court: "Orthogonalité",
+  sous: "Le produit scalaire passe en trois dimensions : angles, longueurs, vecteur normal, projeté orthogonal.",
+  resume: "Produit scalaire, base orthonormée, droites et plans orthogonaux, vecteur normal, projeté orthogonal, distances.",
+  essentiel: [
+    R`Deux vecteurs de l'espace sont toujours dans un même plan : leur <b>produit scalaire</b> se définit comme en Première, $\vec u\cdot\vec v=\|\vec u\|\times\|\vec v\|\times\cos(\vec u,\vec v)$. Il est symétrique et bilinéaire.`,
+    R`Dans une base <b>orthonormée</b> : $\vec u\cdot\vec v=xx'+yy'+zz'$, $\|\vec u\|=\sqrt{x^2+y^2+z^2}$, $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$.`,
+    R`$\vec u⊥\vec v\iff\vec u\cdot\vec v=0$. Une droite est orthogonale à un plan si elle est orthogonale à <b>deux droites sécantes</b> de ce plan.`,
+    R`Un <b>vecteur normal</b> $\vec n$ à un plan est un vecteur non nul orthogonal à sa direction. Le plan passant par $A$ et normal à $\vec n$ est l'ensemble des points $M$ tels que $\vec{AM}\cdot\vec n=0$.`,
+    R`Le <b>projeté orthogonal</b> $H$ de $M$ sur un plan (ou une droite) est le point du plan le plus proche de $M$ : la distance de $M$ au plan est $MH$.`
+  ],
+  attendus: [
+    R`Utiliser le produit scalaire pour démontrer une orthogonalité, pour calculer un angle, une longueur dans l'espace.`,
+    R`Utiliser la projection orthogonale pour déterminer la distance d'un point à une droite ou à un plan.`,
+    R`Résoudre des problèmes impliquant des grandeurs et mesures : longueur, angle, aire, volume.`,
+    R`Étudier des problèmes de configuration : orthogonalité de deux droites, d'une droite et d'un plan ; lieux géométriques simples, par exemple le plan médiateur de deux points.`,
+    R`Démonstration exigible : le projeté orthogonal d'un point $M$ sur un plan $\mathcal P$ est le point de $\mathcal P$ le plus proche de $M$ <span class="tag bo">BO</span>.`
+  ],
+  premiere: R`
+<ul><li><b>Produit scalaire dans le plan</b> : $\vec u\cdot\vec v=\|\vec u\|\|\vec v\|\cos(\vec u,\vec v)$ ; en repère orthonormé $\vec u\cdot\vec v=xx'+yy'$.</li>
+<li><b>Projection</b> : si $H$ est le projeté orthogonal de $C$ sur $(AB)$, $\vec{AB}\cdot\vec{AC}=\vec{AB}\cdot\vec{AH}$ ($=AB\times AH$ si $\vec{AB}$ et $\vec{AH}$ ont le même sens, $-AB\times AH$ sinon).</li>
+<li><b>Identités</b> : $\|\vec u+\vec v\|^2=\|\vec u\|^2+2\vec u\cdot\vec v+\|\vec v\|^2$ ; formule d'Al-Kashi $BC^2=AB^2+AC^2-2AB\times AC\cos\alpha$, où $\alpha$ est l'angle du triangle en $A$.</li>
+<li><b>Trigonométrie</b> : $\cos60°=\frac12$, $\cos45°=\frac{\sqrt2}2$, $\cos90°=0$ ; $\cos$ est négatif pour un angle obtus.</li></ul>`,
+  cours: [
+    { id: "produit", titre: "Produit scalaire de deux vecteurs de l'espace", html: R`
+<p>Représentons $\vec u=\vec{AB}$ et $\vec v=\vec{AC}$ à partir d'un même point $A$ : les trois points $A$, $B$, $C$ sont toujours dans un même plan. On calcule donc le produit scalaire <b>dans ce plan</b>, avec les outils de Première.</p>
+[def|Produit scalaire]$\vec u\cdot\vec v=\|\vec u\|\times\|\vec v\|\times\cos(\vec u,\vec v)$ si les deux vecteurs sont non nuls, et $0$ sinon. En particulier $\vec u\cdot\vec u=\|\vec u\|^2$.[/]
+[prop|Règles de calcul]<ul><li><b>Symétrie</b> : $\vec u\cdot\vec v=\vec v\cdot\vec u$.</li><li><b>Bilinéarité</b> : $\vec u\cdot(\vec v+\vec w)=\vec u\cdot\vec v+\vec u\cdot\vec w$ et $\vec u\cdot(k\vec v)=k(\vec u\cdot\vec v)$.</li><li>$\|\vec u+\vec v\|^2=\|\vec u\|^2+2\vec u\cdot\vec v+\|\vec v\|^2$ et $\|\vec u-\vec v\|^2=\|\vec u\|^2-2\vec u\cdot\vec v+\|\vec v\|^2$.</li></ul>[/]
+[prop|Formules de polarisation]$$\vec u\cdot\vec v=\frac12\left(\|\vec u+\vec v\|^2-\|\vec u\|^2-\|\vec v\|^2\right)=\frac14\left(\|\vec u+\vec v\|^2-\|\vec u-\vec v\|^2\right).$$
+Le produit scalaire se calcule donc avec des longueurs seulement.[/]
+[ex|Avec la projection, dans le cube d'arête $a$]La droite $(AB)$ est orthogonale à la face $BCGF$ (elle est orthogonale à $(BC)$ et à $(BF)$, sécantes en $B$), donc à la droite $(BG)$ de cette face : le projeté orthogonal de $G$ sur $(AB)$ est $B$. Par la formule de projection, $\vec{AB}\cdot\vec{AG}=\vec{AB}\cdot\vec{AB}=a^2$.[/]
+[ex|Avec un triangle équilatéral]Dans le cube d'arête $1$, $AC=AF=CF=\sqrt2$ (diagonales de faces) : le triangle $ACF$ est équilatéral. Donc $\vec{AC}\cdot\vec{AF}=\sqrt2\times\sqrt2\times\cos60°=1$.[/]` },
+    { id: "orthonormee", titre: "Base orthonormée : produit scalaire, norme, distance", html: R`
+[def|Base et repère orthonormés]Une base $(\vec i,\vec j,\vec k)$ est <b>orthonormée</b> si les trois vecteurs sont deux à deux orthogonaux et de norme $1$. Exemple : $(\vec{AB},\vec{AD},\vec{AE})$ dans un cube d'arête $1$ (mais pas dans un pavé de dimensions différentes).[/]
+[thm|Expressions en base orthonormée]Si $\vec u(x;y;z)$ et $\vec v(x';y';z')$ dans une base orthonormée :
+$$\vec u\cdot\vec v=xx'+yy'+zz',\qquad\|\vec u\|=\sqrt{x^2+y^2+z^2},$$
+$$AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}.$$[/]
+[ex|Une longueur]$A(1;2;-1)$, $B(3;0;1)$ : $\vec{AB}(2;-2;2)$, $AB=\sqrt{4+4+4}=\sqrt{12}=2\sqrt3$.[/]
+[meth|Calculer un angle]$\cos(\vec u,\vec v)=\dfrac{\vec u\cdot\vec v}{\|\vec u\|\times\|\vec v\|}$, puis la calculatrice (touche $\cos^{-1}$ ou Arccos, en mode degrés).[/]
+[ex|L'angle entre deux grandes diagonales du cube]Repère $(A;\vec{AB},\vec{AD},\vec{AE})$, cube d'arête $1$ : $\vec{AG}(1;1;1)$, $\vec{BH}(-1;1;1)$. $\vec{AG}\cdot\vec{BH}=-1+1+1=1$ et $AG=BH=\sqrt3$, donc $\cos\theta=\frac13$ et $\theta\approx70{,}5°$. L'angle $\beta$ entre $\vec{AB}$ et $\vec{AG}$ : $\vec{AB}\cdot\vec{AG}=1$, $\cos\beta=\frac1{\sqrt3}$, soit environ $54{,}7°$.[/]
+[piege|Seulement en base orthonormée]Dans la base $(\vec{AB},\vec{AC},\vec{AD})$ d'un tétraèdre quelconque, $xx'+yy'+zz'$ ne donne <b>pas</b> le produit scalaire : les vecteurs de base ne sont ni orthogonaux ni de norme 1.[/]` },
+    { id: "orthogonalite", titre: "Droites orthogonales, droite orthogonale à un plan", html: R`
+[def|Vecteurs et droites orthogonaux]$\vec u$ et $\vec v$ sont <b>orthogonaux</b> si $\vec u\cdot\vec v=0$ (le vecteur nul est orthogonal à tout vecteur). Deux droites sont <b>orthogonales</b> si leurs vecteurs directeurs le sont. Elles sont <b>perpendiculaires</b> si elles sont orthogonales <b>et sécantes</b>.[/]
+[ex|Orthogonales sans se couper]Dans le cube, $(AE)$ et $(BC)$ sont orthogonales ($\vec{AE}\cdot\vec{BC}=\vec{AE}\cdot\vec{AD}=0$), mais elles sont non coplanaires : elles ne sont pas perpendiculaires.[/]
+[def|Droite orthogonale à un plan]Une droite est <b>orthogonale à un plan</b> si elle est orthogonale à toutes les droites de ce plan.[/]
+[thm|Critère pratique]Une droite est orthogonale à un plan si et seulement si elle est orthogonale à <b>deux droites sécantes</b> de ce plan : son vecteur directeur est orthogonal à deux vecteurs non colinéaires de la direction du plan.[/]
+[ex|La diagonale du cube est orthogonale à un triangle]$\vec{AG}(1;1;1)$, $\vec{BD}(-1;1;0)$, $\vec{BE}(-1;0;1)$ : $\vec{AG}\cdot\vec{BD}=0$ et $\vec{AG}\cdot\vec{BE}=0$. Les droites $(BD)$ et $(BE)$ sont sécantes en $B$ : la grande diagonale $(AG)$ est orthogonale au plan $(BDE)$.[/]
+[prop|Conséquences]<ul><li>Si $(d)$ est orthogonale à $\mathcal P$, elle est orthogonale à toute droite de $\mathcal P$ : par exemple $(AG)⊥(DE)$.</li><li>Deux droites orthogonales à un même plan sont parallèles ; deux plans orthogonaux à une même droite sont parallèles.</li></ul>[/]` },
+    { id: "normal", titre: "Vecteur normal à un plan, plan médiateur", html: R`
+[def|Vecteur normal]Un vecteur $\vec n$ <b>non nul</b> est <b>normal</b> au plan $\mathcal P$ s'il est orthogonal à tous les vecteurs de la direction de $\mathcal P$ ; il suffit qu'il soit orthogonal à deux vecteurs non colinéaires de $\mathcal P$. Tout vecteur directeur d'une droite orthogonale à $\mathcal P$ est normal à $\mathcal P$.[/]
+[thm|Plan défini par un point et un vecteur normal]Étant donnés un point $A$ et un vecteur non nul $\vec n$, l'ensemble des points $M$ tels que $\vec{AM}\cdot\vec n=0$ est le plan passant par $A$ et normal à $\vec n$.[/]
+[ex|Un vecteur normal à $(ABC)$]$A(2;0;0)$, $B(0;3;0)$, $C(0;0;6)$ et $\vec n(3;2;1)$. $\vec{AB}(-2;3;0)$ : $\vec n\cdot\vec{AB}=-6+6+0=0$. $\vec{AC}(-2;0;6)$ : $\vec n\cdot\vec{AC}=-6+0+6=0$. $\vec{AB}$ et $\vec{AC}$ ne sont pas colinéaires : $\vec n$ est normal au plan $(ABC)$.[/]
+[prop|Position de deux plans par leurs vecteurs normaux]Deux plans sont <b>parallèles</b> si et seulement si leurs vecteurs normaux sont colinéaires ; ils sont <b>perpendiculaires</b> si et seulement si leurs vecteurs normaux sont orthogonaux. Une droite de vecteur directeur $\vec u$ est orthogonale à un plan de vecteur normal $\vec n$ si et seulement si $\vec u$ et $\vec n$ sont colinéaires ; elle lui est parallèle si et seulement si $\vec u\cdot\vec n=0$.[/]
+[def|Plan médiateur]Le <b>plan médiateur</b> du segment $[AB]$ est le plan passant par son milieu $I$ et normal à $\vec{AB}$. C'est l'ensemble des points <b>équidistants</b> de $A$ et $B$.[/]
+<p><b>Pourquoi ?</b> $MA^2-MB^2=(\vec{MA}-\vec{MB})\cdot(\vec{MA}+\vec{MB})=\vec{BA}\cdot2\vec{MI}=2\,\vec{IM}\cdot\vec{AB}$. Donc $MA=MB\iff\vec{IM}\cdot\vec{AB}=0$.</p>
+[ex|Le plan médiateur d'une diagonale]Dans le cube, le centre $\Omega$ est le milieu de la grande diagonale $[DF]$. Le milieu $I\left(\frac12;0;0\right)$ de $[AB]$ vérifie $ID^2=\frac14+1+0=\frac54$ et $IF^2=\frac14+0+1=\frac54$ : il est équidistant de $D$ et $F$. Il en va de même des milieux de $[BC]$, $[CG]$, $[GH]$, $[HE]$, $[EA]$ : les six sommets de l'hexagone de la partie 4 du chapitre 10 sont dans le plan médiateur de $[DF]$, qui passe par $\Omega$ et est normal à $\vec{DF}(1;-1;1)$.[/]` },
+    { id: "projete", titre: "Projeté orthogonal et distances", html: R`
+[def|Projeté orthogonal]Le <b>projeté orthogonal</b> d'un point $M$ sur un plan $\mathcal P$ est le point d'intersection $H$ de $\mathcal P$ et de la droite passant par $M$ orthogonale à $\mathcal P$. Sur une droite $(d)$ : c'est le point $H$ de $(d)$ tel que $(MH)⊥(d)$ (ou $H=M$ si $M\in(d)$).[/]
+<div data-w="projete3d"></div>
+[thm|Le point le plus proche]Le projeté orthogonal $H$ de $M$ sur $\mathcal P$ est le point de $\mathcal P$ le plus proche de $M$ : pour tout point $A$ de $\mathcal P$, $MA\geq MH$, avec égalité seulement si $A=H$. La <b>distance de $M$ au plan</b> est $MH$. Même chose pour une droite.[/]
+[meth|Calculer le projeté sur une droite $(A;\vec u)$]$H=A+t\vec u$ avec $\vec{HM}\cdot\vec u=0$, ce qui donne $t=\dfrac{\vec{AM}\cdot\vec u}{\|\vec u\|^2}$.[/]
+[ex|Distance d'un sommet à une diagonale]Cube d'arête $1$ : projeté de $B$ sur $(AG)$. $t=\frac{\vec{AB}\cdot\vec{AG}}{AG^2}=\frac13$, donc $H\left(\frac13;\frac13;\frac13\right)$ et $BH=\sqrt{\left(\frac23\right)^2+\left(\frac13\right)^2+\left(\frac13\right)^2}=\frac{\sqrt6}3\approx0{,}816$.[/]
+[ex|Distance d'un point à un plan]Le projeté de $A$ sur le plan $(BDE)$ est sur la droite $(AG)$, orthogonale au plan : $H=\left(t;t;t\right)$. On cherche $t$ tel que $\vec{BH}\cdot\vec{AG}=0$ : $(t-1)+t+t=0$, d'où $t=\frac13$. Distance : $AH=\sqrt{3\times\frac19}=\frac{\sqrt3}3\approx0{,}577$.[/]` },
+    { id: "mesures", titre: "Longueurs, aires, volumes", html: R`
+<p>Le produit scalaire sert à trouver des longueurs, des angles droits (donc des hauteurs), et de là des aires et des volumes.</p>
+[prop|Volume d'une pyramide ou d'un tétraèdre]$V=\frac13\times\mathcal B\times h$, où $\mathcal B$ est l'aire d'une base et $h$ la hauteur relative à cette base : la distance du sommet opposé au plan de la base.[/]
+[ex|Un volume calculé de deux façons]Le tétraèdre $ABDE$ coupé dans le cube d'arête $1$ :
+<ul><li>base $ABD$ (aire $\frac12$), hauteur $AE=1$ : $V=\frac13\times\frac12\times1=\frac16$ ;</li><li>base $BDE$, équilatéral de côté $\sqrt2$, d'aire $\frac{\sqrt3}4\times2=\frac{\sqrt3}2$, et hauteur $\frac{\sqrt3}3$ (partie 5) : $V=\frac13\times\frac{\sqrt3}2\times\frac{\sqrt3}3=\frac16$. ✓</li></ul>
+Cette double écriture est une technique classique du bac : connaissant le volume, on en déduit une distance, ou l'aire d'un triangle.[/]
+[meth|Aire d'un triangle $ABC$]<ul><li>Si l'on sait que le triangle est rectangle en $A$ (produit scalaire nul) : $\frac{AB\times AC}2$.</li><li>Sinon : $\frac12\times AB\times AC\times\sin\alpha$, où $\alpha$ est l'angle en $A$, avec $\cos\alpha=\frac{\vec{AB}\cdot\vec{AC}}{AB\times AC}$ et $\sin\alpha=\sqrt{1-\cos^2\alpha}$ (car $\sin\alpha\geq0$ pour un angle de triangle).</li></ul>[/]
+[ex|Le triangle $ABC$ avec $A(2;0;0)$, $B(0;3;0)$, $C(0;0;6)$]$\vec{AB}\cdot\vec{AC}=4$, $AB=\sqrt{13}$, $AC=\sqrt{40}$, donc $\cos\alpha=\frac4{\sqrt{520}}$, $\sin\alpha=\sqrt{1-\frac{16}{520}}=\sqrt{\frac{504}{520}}$ et l'aire vaut $\frac12\sqrt{13}\sqrt{40}\sqrt{\frac{504}{520}}=\frac{\sqrt{504}}2=3\sqrt{14}\approx11{,}2$.[/]
+<p><span class="tag hp">Pour aller plus loin</span> La <b>sphère</b> de centre $\Omega$ et de rayon $r$ est l'ensemble des points $M$ tels que $\Omega M=r$. Un plan à la distance $d$ de $\Omega$ la coupe selon un cercle de rayon $\sqrt{r^2-d^2}$ si $d<r$, lui est tangent si $d=r$, ne la rencontre pas si $d>r$ (Pythagore dans le triangle $\Omega HM$). Approfondissement non exigible.</p>` }
+  ],
+  pieges: [
+    { t: "Orthogonales n'est pas perpendiculaires", h: R`Deux droites orthogonales peuvent ne pas se couper ($(AE)$ et $(BC)$ dans le cube). Perpendiculaires = orthogonales <b>et</b> sécantes.` },
+    { t: "Orthogonale à une seule droite du plan ne suffit pas", h: R`Pour montrer qu'une droite est orthogonale à un plan, il faut <b>deux</b> droites <b>sécantes</b> du plan (deux vecteurs non colinéaires). Deux droites parallèles ne suffisent pas.` },
+    { t: "La formule $xx'+yy'+zz'$", h: R`Elle n'est valable que dans une base <b>orthonormée</b>. Vérifie toujours que le repère de l'énoncé l'est.` },
+    { t: "Distance à un plan : pas n'importe quel point", h: R`La distance de $M$ au plan est $MH$ avec $H$ le <b>projeté orthogonal</b>, pas $MA$ pour un point $A$ quelconque du plan (qui est plus grand).` },
+    { t: "Norme et carré", h: R`$\|\vec u\|^2=x^2+y^2+z^2$, donc $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ : n'oublie pas la racine, ni les signes ($(-2)^2=4$).` },
+    { t: "Un angle obtus a un cosinus négatif", h: R`Si $\vec u\cdot\vec v<0$, l'angle entre les vecteurs est obtus. L'angle entre deux <b>droites</b> se prend en général aigu : on prend alors la valeur absolue du cosinus.` }
+  ],
+  demos: [
+    { bo: true, t: "Le projeté orthogonal de $M$ sur $\\mathcal P$ est le point de $\\mathcal P$ le plus proche de $M$", h: R`
+<p>Soit $H$ le projeté orthogonal de $M$ sur $\mathcal P$, et $A$ un point quelconque de $\mathcal P$.</p>
+<p>La droite $(MH)$ est orthogonale au plan $\mathcal P$, et $\vec{HA}$ est un vecteur de la direction de $\mathcal P$ (car $H$ et $A$ sont dans $\mathcal P$). Donc $\vec{MH}\cdot\vec{HA}=0$.</p>
+<p>Alors, par la relation de Chasles :
+$$MA^2=\|\vec{MH}+\vec{HA}\|^2=MH^2+2\,\vec{MH}\cdot\vec{HA}+HA^2=MH^2+HA^2.$$</p>
+<p>Comme $HA^2\geq0$, on a $MA^2\geq MH^2$, donc $MA\geq MH$ (ce sont des longueurs, positives). L'égalité a lieu si et seulement si $HA=0$, c'est-à-dire $A=H$.</p>
+<p>Conclusion : $H$ est l'unique point de $\mathcal P$ qui réalise la plus petite distance à $M$. CQFD.</p>
+<p class="stylo">C'est le théorème de Pythagore dans le triangle $MHA$, rectangle en $H$, écrit avec le produit scalaire.</p>` },
+    { bo: false, t: "Le produit scalaire en base orthonormée", h: R`
+<p>Soit $(\vec i,\vec j,\vec k)$ orthonormée : $\vec i\cdot\vec i=\vec j\cdot\vec j=\vec k\cdot\vec k=1$ et $\vec i\cdot\vec j=\vec i\cdot\vec k=\vec j\cdot\vec k=0$.</p>
+<p>Par bilinéarité, $(x\vec i+y\vec j+z\vec k)\cdot(x'\vec i+y'\vec j+z'\vec k)$ se développe en neuf termes ; les six termes « croisés » sont nuls, il reste $xx'\,\vec i\cdot\vec i+yy'\,\vec j\cdot\vec j+zz'\,\vec k\cdot\vec k=xx'+yy'+zz'$.</p>
+<p>Avec $\vec v=\vec u$ : $\|\vec u\|^2=x^2+y^2+z^2$.</p>` },
+    { bo: false, t: "Critère : deux droites sécantes suffisent", h: R`
+<p>Soit $\vec n$ orthogonal à deux vecteurs non colinéaires $\vec u$ et $\vec v$ de la direction de $\mathcal P$. Tout vecteur $\vec w$ de cette direction s'écrit $\vec w=a\vec u+b\vec v$ (chapitre 10). Par bilinéarité :
+$$\vec n\cdot\vec w=a\,\vec n\cdot\vec u+b\,\vec n\cdot\vec v=a\times0+b\times0=0.$$
+Donc $\vec n$ est orthogonal à toute la direction du plan : une droite dirigée par $\vec n$ est orthogonale à toute droite de $\mathcal P$.</p>` },
+    { bo: false, t: "Formules de polarisation", h: R`
+<p>En développant par bilinéarité et symétrie : $\|\vec u+\vec v\|^2=(\vec u+\vec v)\cdot(\vec u+\vec v)=\|\vec u\|^2+2\vec u\cdot\vec v+\|\vec v\|^2$, d'où $\vec u\cdot\vec v=\frac12\left(\|\vec u+\vec v\|^2-\|\vec u\|^2-\|\vec v\|^2\right)$.</p>
+<p>De même $\|\vec u-\vec v\|^2=\|\vec u\|^2-2\vec u\cdot\vec v+\|\vec v\|^2$. En soustrayant : $\|\vec u+\vec v\|^2-\|\vec u-\vec v\|^2=4\vec u\cdot\vec v$.</p>` }
+  ],
+  algos: [
+    { bo: false, t: "Produit scalaire, norme et angle", code: `from math import sqrt, acos, degrees
+
+def scal(u, v):
+    return u[0]*v[0] + u[1]*v[1] + u[2]*v[2]
+
+def norme(u):
+    return sqrt(scal(u, u))
+
+def angle(u, v):
+    return degrees(acos(scal(u, v) / (norme(u) * norme(v))))
+
+AG, BH, AB = (1, 1, 1), (-1, 1, 1), (1, 0, 0)
+print(scal(AG, BH), round(angle(AG, BH), 2))
+print(round(angle(AB, AG), 2))`, sortie: `1 70.53
+54.74`,
+      apres: R`<p>Cube d'arête $1$, repère $(A;\vec{AB},\vec{AD},\vec{AE})$ orthonormé : on retrouve les angles de la partie 2.</p>` },
+    { bo: false, t: "Projeté orthogonal d'un point sur une droite", code: `from fractions import Fraction as Fr
+
+def projete_droite(M, A, u):
+    AM = [M[i] - A[i] for i in range(3)]
+    t = Fr(sum(AM[i]*u[i] for i in range(3)), sum(x*x for x in u))
+    return [A[i] + t*u[i] for i in range(3)]
+
+H = projete_droite((1, 0, 0), (0, 0, 0), (1, 1, 1))
+print(H)`, sortie: `[Fraction(1, 3), Fraction(1, 3), Fraction(1, 3)]`,
+      apres: R`<p>Projeté de $B$ sur la diagonale $(AG)$ du cube : $t=\frac{\vec{AM}\cdot\vec u}{\|\vec u\|^2}$.</p>` },
+    { bo: false, t: "Une droite est-elle orthogonale à un plan (ABC) ?", code: `def scal(u, v):
+    return sum(u[i]*v[i] for i in range(3))
+
+def vec(P, Q):
+    return [Q[i] - P[i] for i in range(3)]
+
+def orthogonale_au_plan(u, A, B, C):
+    # u orthogonal à deux vecteurs non colinéaires du plan
+    return scal(u, vec(A, B)) == 0 and scal(u, vec(A, C)) == 0
+
+A, B, C = (2, 0, 0), (0, 3, 0), (0, 0, 6)
+print(orthogonale_au_plan((3, 2, 1), A, B, C))
+print(orthogonale_au_plan((1, 1, 1), A, B, C))`, sortie: `True
+False`,
+      apres: R`<p>On suppose $A$, $B$, $C$ non alignés (sinon ils ne définissent pas un plan).</p>` }
+  ],
+  methodes: [
+    { t: "Démontrer qu'une droite est orthogonale à un plan", h: R`
+<ol><li>Trouve deux vecteurs <b>non colinéaires</b> du plan (par exemple $\vec{AB}$ et $\vec{AC}$).</li><li>Calcule les deux produits scalaires avec le vecteur directeur de la droite.</li><li>S'ils sont nuls : la droite est orthogonale au plan (critère des deux droites sécantes).</li></ol>` },
+    { t: "Calculer la distance d'un point $M$ à un plan", h: R`
+<ol><li>Détermine un vecteur normal $\vec n$ au plan.</li><li>Écris le projeté $H=M+t\vec n$ (droite passant par $M$ orthogonale au plan).</li><li>Traduis $H\in\mathcal P$ (au chapitre 12 : on remplace dans l'équation cartésienne ; ici : $\vec{AH}\cdot\vec n=0$ pour un point $A$ du plan) et trouve $t$.</li><li>Distance : $MH=|t|\times\|\vec n\|$.</li></ol>
+<p>Variante « par le volume » : si tu connais le volume $V$ d'un tétraèdre et l'aire $\mathcal B$ d'une face, la hauteur relative à cette face vaut $h=\frac{3V}{\mathcal B}$.</p>` },
+    { t: "Vérifier qu'un point donné est le projeté orthogonal", h: R`
+<p>Au bac, on te donne souvent $H$ : vérifie (1) que $H\in\mathcal P$ et (2) que $\vec{MH}$ est colinéaire à un vecteur normal (ou orthogonal à deux vecteurs non colinéaires du plan). Les deux conditions sont nécessaires.</p>` },
+    { t: "Montrer qu'un triangle est rectangle", h: R`
+<p>Calcule le produit scalaire des deux vecteurs issus du sommet supposé de l'angle droit : $\vec{HA}\cdot\vec{HB}=0$ ⟹ rectangle en $H$. Ou utilise la réciproque de Pythagore avec les trois longueurs.</p>` }
+  ],
+  exos: [
+    { niv: 1, t: "Calculs de base", enonce: R`<p>Repère orthonormé. $\vec u(2;-1;3)$, $\vec v(1;5;1)$, $A(1;0;2)$, $B(4;-2;8)$.</p><ol><li>Calculer $\vec u\cdot\vec v$. Que peut-on en déduire ?</li><li>Calculer $\|\vec u\|$ et la distance $AB$.</li><li>Déterminer le réel $m$ pour lequel $\vec w(m;2;-2)$ est orthogonal à $\vec u$.</li></ol>`,
+      corrige: R`<ol><li>$\vec u\cdot\vec v=2-5+3=0$ : $\vec u$ et $\vec v$ sont orthogonaux.</li><li>$\|\vec u\|=\sqrt{4+1+9}=\sqrt{14}$. $\vec{AB}(3;-2;6)$, $AB=\sqrt{9+4+36}=7$.</li><li>$\vec u\cdot\vec w=2m-2-6=2m-8=0\iff m=4$.</li></ol>` },
+    { niv: 1, t: "Angles dans un pavé", enonce: R`<p>$ABCDEFGH$ est un pavé droit avec $AB=4$, $AD=3$, $AE=2$. On se place dans le repère orthonormé d'origine $A$ dont les axes portent $[AB]$, $[AD]$, $[AE]$ (unité : $1$).</p><ol><li>Donner les coordonnées de $C$, $F$, $G$, $H$.</li><li>Calculer la longueur de la diagonale $AG$.</li><li>Calculer $\vec{AC}\cdot\vec{AF}$ puis une mesure, au dixième de degré, de l'angle $\alpha$ du triangle $CAF$ en $A$.</li></ol>`,
+      corrige: R`<ol><li>$C(4;3;0)$, $F(4;0;2)$, $G(4;3;2)$, $H(0;3;2)$.</li><li>$AG=\sqrt{16+9+4}=\sqrt{29}\approx5{,}39$.</li><li>$\vec{AC}(4;3;0)$, $\vec{AF}(4;0;2)$ : $\vec{AC}\cdot\vec{AF}=16$. $AC=5$, $AF=\sqrt{20}$. $\cos\alpha=\frac{16}{5\sqrt{20}}\approx0{,}7155$, donc $\alpha\approx44{,}3°$.</li></ol>` },
+    { niv: 2, t: "Une droite orthogonale à un plan", enonce: R`<p>Repère orthonormé. $A(1;1;0)$, $B(3;0;1)$, $C(0;2;2)$, $D(4;6;-1)$.</p><ol><li>Montrer que $A$, $B$, $C$ ne sont pas alignés.</li><li>Montrer que la droite $(AD)$ est orthogonale au plan $(ABC)$.</li><li>En déduire la distance du point $D$ au plan $(ABC)$.</li><li>Calculer $\vec{AB}\cdot\vec{AC}$, puis le cosinus et le sinus de l'angle $\alpha$ du triangle $ABC$ en $A$. En déduire l'aire du triangle $ABC$.</li><li>Calculer le volume du tétraèdre $ABCD$.</li></ol>`,
+      corrige: R`<ol><li>$\vec{AB}(2;-1;1)$, $\vec{AC}(-1;1;2)$ : coordonnées non proportionnelles ($\frac{-1}2\neq\frac1{-1}$). Non colinéaires, donc $A$, $B$, $C$ non alignés.</li><li>$\vec{AD}(3;5;-1)$. $\vec{AD}\cdot\vec{AB}=6-5-1=0$ et $\vec{AD}\cdot\vec{AC}=-3+5-2=0$. $(AD)$ est orthogonale à deux droites sécantes du plan, $(AB)$ et $(AC)$ : elle est orthogonale au plan $(ABC)$.</li><li>$(AD)$ est orthogonale au plan et $A$ est dans le plan : $A$ est le projeté orthogonal de $D$. Distance : $AD=\sqrt{9+25+1}=\sqrt{35}\approx5{,}92$.</li><li>$\vec{AB}\cdot\vec{AC}=-2-1+2=-1$ ; $AB=AC=\sqrt6$. $\cos\alpha=\frac{-1}{6}$ (angle obtus), $\sin\alpha=\sqrt{1-\frac1{36}}=\frac{\sqrt{35}}6$. Aire : $\frac12\times\sqrt6\times\sqrt6\times\frac{\sqrt{35}}6=\frac{\sqrt{35}}2$.</li><li>$V=\frac13\times\frac{\sqrt{35}}2\times\sqrt{35}=\frac{35}6\approx5{,}83$.</li></ol>` },
+    { niv: 2, t: "Projeté orthogonal sur une droite", enonce: R`<p>Repère orthonormé. La droite $(d)$ passe par $A(1;0;-1)$ et est dirigée par $\vec u(2;1;2)$. Soit $M(5;3;6)$.</p><ol><li>Le point $M$ appartient-il à $(d)$ ?</li><li>Déterminer les coordonnées du projeté orthogonal $H$ de $M$ sur $(d)$.</li><li>En déduire la distance de $M$ à la droite $(d)$.</li></ol>`,
+      corrige: R`<ol><li>$\vec{AM}(4;3;7)$ et $\vec u(2;1;2)$ : $4=2\times2$ mais $3\neq2\times1$. Non colinéaires : $M\notin(d)$.</li><li>$t=\frac{\vec{AM}\cdot\vec u}{\|\vec u\|^2}=\frac{8+3+14}{9}=\frac{25}9$. $H=A+\frac{25}9\vec u=\left(\frac{59}9;\frac{25}9;\frac{41}9\right)$.</li><li>$\vec{HM}\left(-\frac{14}9;\frac29;\frac{13}9\right)$ (on vérifie $\vec{HM}\cdot\vec u=\frac{-28+2+26}9=0$). $MH=\frac{\sqrt{196+4+169}}9=\frac{\sqrt{369}}9=\frac{\sqrt{41}}3\approx2{,}13$.</li></ol>` },
+    { niv: 3, t: "Distance et volume dans un tétraèdre (type bac)", enonce: R`<p>Repère orthonormé $(O;\vec i,\vec j,\vec k)$. On considère $A(2;0;0)$, $B(0;3;0)$, $C(0;0;6)$ et $\vec n(3;2;1)$.</p><ol><li>Montrer que $\vec n$ est normal au plan $(ABC)$.</li><li>Soit $H$ le projeté orthogonal de $O$ sur $(ABC)$. Justifier qu'il existe un réel $t$ tel que $\vec{OH}=t\vec n$, puis, en utilisant $\vec{AH}\cdot\vec n=0$, déterminer $t$ et les coordonnées de $H$.</li><li>En déduire la distance du point $O$ au plan $(ABC)$.</li><li>Calculer le volume du tétraèdre $OABC$ en prenant pour base le triangle $OAB$.</li><li>En déduire l'aire du triangle $ABC$.</li></ol>`,
+      corrige: R`<ol><li>$\vec{AB}(-2;3;0)$ et $\vec{AC}(-2;0;6)$ sont non colinéaires ; $\vec n\cdot\vec{AB}=-6+6=0$ et $\vec n\cdot\vec{AC}=-6+6=0$. Donc $\vec n$ est normal à $(ABC)$.</li><li>$(OH)$ est orthogonale au plan, donc dirigée par $\vec n$ : $\vec{OH}=t\vec n$, $H(3t;2t;t)$. $\vec{AH}(3t-2;2t;t)$ et $\vec{AH}\cdot\vec n=9t-6+4t+t=14t-6=0$, d'où $t=\frac37$ et $H\left(\frac97;\frac67;\frac37\right)$.</li><li>$OH=\frac37\|\vec n\|=\frac37\sqrt{14}=\frac{3\sqrt{14}}7\approx1{,}60$.</li><li>Le triangle $OAB$ est rectangle en $O$, d'aire $\frac{2\times3}2=3$, et la hauteur relative est $OC=6$ (l'axe $(OC)$ est orthogonal au plan $(OAB)$). $V=\frac13\times3\times6=6$.</li><li>Avec la base $ABC$ et la hauteur $OH$ : $6=\frac13\times\mathcal A\times\frac{3\sqrt{14}}7$, donc $\mathcal A=\frac{42}{\sqrt{14}}=3\sqrt{14}\approx11{,}2$. On retrouve l'aire calculée dans la partie 6.</li></ol>` }
+  ],
+  annales: [
+    { ref: "Bac 2025, Métropole, 18 juin 2025 (sujet 2), exercice 2, partie A, questions 3 et 4", url: "https://www.apmep.fr/IMG/pdf/Metropole__spe_J2_18_06_2025_DV_2.pdf", h: R`Montrer que $H(-1;0;2)$ est le projeté orthogonal de $S$ sur le plan $(ABC)$, puis « en déduire qu'il n'existe aucun point $M$ du plan $(ABC)$ tel que $SM<\frac{\sqrt{21}}2$ » : c'est exactement la démonstration exigible ($SH=\frac{\sqrt{21}}2$).` },
+    { ref: "Bac 2024, Métropole, 19 juin 2024 (sujet 1), exercice 3", url: "https://www.apmep.fr/IMG/pdf/Metropole_J1_spe_19_06_2024_VTFK.pdf", h: R`Vecteur normal au plan $(CAD)$, projeté orthogonal $H$ de $B$ sur ce plan, triangle $ABH$ rectangle en $H$ (aire $\frac{25}4$), hauteur $(CO)$ et volume du tétraèdre $ABCH$, puis distance de $H$ au plan $(ABC)$ par le volume.` },
+    { ref: "Bac 2024, Métropole – Antilles-Guyane, 12 septembre 2024 (jour 2), exercice 1", url: "https://www.apmep.fr/IMG/pdf/Spe_J2_12_09_2024_Metropole_DV.pdf", h: R`Dans le cube : vecteurs $\vec{IJ}$ et $\vec{NF}$ orthogonaux, aire du triangle $FIJ$ ($\frac{\sqrt{21}}8$), vecteur normal au plan $(FIJ)$, distance de $H$ au plan $(FIJ)$ ($\frac{5\sqrt{21}}{21}$), volume du tétraèdre $HFIJ$.` },
+    { ref: "Bac 2026, Métropole – La Réunion, 8 septembre 2026 (sujet 1), exercice 3, affirmations 2 et 4", url: "https://www.apmep.fr/IMG/pdf/Metropole_J_spe_8osep_2026.pdf", h: R`« La droite $(CD)$ est orthogonale au plan $(ABC)$ » (deux produits scalaires à calculer) et « la distance de $N$ au plan $\mathcal P_2$ est $NH$ » (vérifier que $H$ est bien le projeté orthogonal : dans le plan, et $\vec{NH}$ normal).` }
+  ],
+  retenir: R`
+[def|Produit scalaire]$\vec u\cdot\vec v=\|\vec u\|\|\vec v\|\cos(\vec u,\vec v)=\frac12\left(\|\vec u+\vec v\|^2-\|\vec u\|^2-\|\vec v\|^2\right)$. Symétrique, bilinéaire.[/]
+[thm|Base orthonormée]$\vec u\cdot\vec v=xx'+yy'+zz'$ ; $\|\vec u\|=\sqrt{x^2+y^2+z^2}$ ; $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$ ; $\cos(\vec u,\vec v)=\frac{\vec u\cdot\vec v}{\|\vec u\|\|\vec v\|}$.[/]
+[prop|Orthogonalité]$\vec u⊥\vec v\iff\vec u\cdot\vec v=0$. Droite ⊥ plan ⟺ orthogonale à deux droites sécantes du plan. Perpendiculaires = orthogonales et sécantes.[/]
+[def|Vecteur normal]$\vec n\neq\vec 0$ orthogonal à deux vecteurs non colinéaires du plan. Plan $(A;\vec n)$ : $\vec{AM}\cdot\vec n=0$. Plan médiateur de $[AB]$ : points équidistants de $A$ et $B$.[/]
+[thm|Projeté orthogonal]$H$ = point du plan (de la droite) le plus proche de $M$ ; $MA^2=MH^2+HA^2$. Distance $=MH$. Sur $(A;\vec u)$ : $t=\frac{\vec{AM}\cdot\vec u}{\|\vec u\|^2}$.[/]
+<p class="stylo">Volume d'un tétraèdre : $\frac13\times$ aire de base $\times$ hauteur. Deux bases ⟹ une distance.</p>`,
+  qcm: [
+    { q: R`Dans un repère orthonormé, $\vec u(1;-2;2)$ et $\vec v(4;1;-1)$. $\vec u\cdot\vec v=$`, c: ["$0$", "$4$", "$-2$", "$8$"], r: 0, e: R`$4-2-2=0$ : les vecteurs sont orthogonaux.`, ref: "orthonormee" },
+    { q: R`$\|\vec u\|$ pour $\vec u(1;-2;2)$ :`, c: ["$1$", "$3$", "$5$", "$9$"], r: 1, e: R`$\sqrt{1+4+4}=3$.`, ref: "orthonormee" },
+    { q: R`La formule $\vec u\cdot\vec v=xx'+yy'+zz'$ est valable :`, c: ["dans toute base", "dans une base orthonormée", "seulement si les vecteurs sont orthogonaux", "seulement dans le cube"], r: 1, e: R`Elle repose sur $\vec i\cdot\vec j=0$ et $\vec i\cdot\vec i=1$, etc.`, ref: "orthonormee" },
+    { q: R`Dans le cube, les droites $(AE)$ et $(BC)$ sont :`, c: ["perpendiculaires", "orthogonales mais non sécantes", "parallèles", "ni orthogonales ni parallèles"], r: 1, e: R`$\vec{AE}\cdot\vec{AD}=0$ mais elles ne sont pas coplanaires.`, ref: "orthogonalite" },
+    { q: R`Pour qu'une droite soit orthogonale à un plan, il suffit qu'elle soit orthogonale à :`, c: ["une droite du plan", "deux droites parallèles du plan", "deux droites sécantes du plan", "un vecteur du plan"], r: 2, e: R`Deux vecteurs non colinéaires de la direction du plan.`, ref: "orthogonalite" },
+    { q: R`Cube d'arête $1$. L'angle entre $\vec{AG}$ et $\vec{BH}$ a pour cosinus :`, c: [R`$0$`, R`$\frac13$`, R`$\frac1{\sqrt3}$`, R`$\frac12$`], r: 1, e: R`$\vec{AG}\cdot\vec{BH}=1$ et $AG=BH=\sqrt3$.`, ref: "orthonormee" },
+    { q: R`$\vec n$ est normal au plan $\mathcal P$ passant par $A$. $M\in\mathcal P$ si et seulement si :`, c: [R`$\vec{AM}=k\vec n$`, R`$\vec{AM}\cdot\vec n=0$`, R`$AM=\|\vec n\|$`, R`$\vec{AM}\cdot\vec n=1$`], r: 1, e: R`Caractérisation du plan par un point et un vecteur normal.`, ref: "normal" },
+    { q: R`Deux plans de vecteurs normaux $\vec n(1;2;-1)$ et $\vec n'(2;-1;0)$ sont :`, c: ["parallèles", "perpendiculaires", "confondus", "ni parallèles ni perpendiculaires"], r: 1, e: R`$\vec n\cdot\vec n'=2-2+0=0$ : normaux orthogonaux.`, ref: "normal" },
+    { q: R`Le plan médiateur de $[AB]$ est l'ensemble des points $M$ tels que :`, c: [R`$MA=MB$`, R`$\vec{MA}\cdot\vec{MB}=0$`, R`$M$ est le milieu de $[AB]$`, R`$MA+MB=AB$`], r: 0, e: R`Plan passant par le milieu, normal à $\vec{AB}$ : les points équidistants. ($\vec{MA}\cdot\vec{MB}=0$ décrit une sphère.)`, ref: "normal" },
+    { q: R`$H$ projeté orthogonal de $M$ sur $\mathcal P$, $A\in\mathcal P$. Alors :`, c: [R`$MA^2=MH^2+HA^2$`, R`$MA=MH+HA$`, R`$MA\leq MH$`, R`$MH^2=MA^2+AH^2$`], r: 0, e: R`Pythagore dans $MHA$ rectangle en $H$ : c'est la démonstration du BO.`, ref: "projete" },
+    { q: R`Projeté de $M$ sur la droite $(A;\vec u)$ : $H=A+t\vec u$ avec $t=$`, c: [R`$\frac{\vec{AM}\cdot\vec u}{\|\vec u\|}$`, R`$\frac{\vec{AM}\cdot\vec u}{\|\vec u\|^2}$`, R`$\vec{AM}\cdot\vec u$`, R`$\frac{AM}{\|\vec u\|}$`], r: 1, e: R`On écrit $\vec{HM}\cdot\vec u=0$ : $\vec{AM}\cdot\vec u-t\|\vec u\|^2=0$.`, ref: "projete" },
+    { q: R`Un tétraèdre a pour volume $6$ ; une face a pour aire $9$. La hauteur relative à cette face vaut :`, c: ["$\\frac23$", "$2$", "$\\frac32$", "$18$"], r: 1, e: R`$V=\frac13\mathcal Bh$ donc $h=\frac{3V}{\mathcal B}=\frac{18}9=2$.`, ref: "mesures" },
+    { q: R`Cube d'arête $1$ : la distance du sommet $A$ au plan $(BDE)$ vaut :`, c: [R`$1$`, R`$\frac{\sqrt3}3$`, R`$\frac{\sqrt2}2$`, R`$\sqrt3$`], r: 1, e: R`Le projeté est $\left(\frac13;\frac13;\frac13\right)$ sur la diagonale $(AG)$.`, ref: "projete" },
+    { q: R`$\vec u\cdot\vec v<0$ signifie que l'angle $(\vec u,\vec v)$ est :`, c: ["droit", "aigu", "obtus", "nul"], r: 2, e: R`Le cosinus est négatif pour un angle compris entre $90°$ et $180°$.`, ref: "orthonormee" }
+  ],
+  cartes: [
+    [R`Produit scalaire (définition)`, R`$\vec u\cdot\vec v=\|\vec u\|\|\vec v\|\cos(\vec u,\vec v)$`],
+    [R`Polarisation`, R`$\vec u\cdot\vec v=\frac12\left(\|\vec u+\vec v\|^2-\|\vec u\|^2-\|\vec v\|^2\right)$`],
+    [R`$\vec u\cdot\vec v$ en base orthonormée`, R`$xx'+yy'+zz'$`],
+    [R`Distance $AB$ en repère orthonormé`, R`$\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$`],
+    [R`$\vec u⊥\vec v$`, R`$\vec u\cdot\vec v=0$`],
+    [R`Orthogonales / perpendiculaires`, R`Perpendiculaires = orthogonales et sécantes.`],
+    [R`Droite orthogonale à un plan (critère)`, R`Orthogonale à deux droites sécantes du plan.`],
+    [R`Vecteur normal à un plan`, R`Vecteur non nul orthogonal à deux vecteurs non colinéaires du plan.`],
+    [R`Plan passant par $A$ normal à $\vec n$`, R`$\{M : \vec{AM}\cdot\vec n=0\}$`],
+    [R`Plan médiateur de $[AB]$`, R`Ensemble des points équidistants de $A$ et $B$ ; passe par le milieu, normal à $\vec{AB}$.`],
+    [R`Projeté orthogonal : propriété clé`, R`C'est le point le plus proche : $MA^2=MH^2+HA^2\geq MH^2$.`],
+    [R`Projeté sur $(A;\vec u)$`, R`$H=A+t\vec u$, $t=\frac{\vec{AM}\cdot\vec u}{\|\vec u\|^2}$`],
+    [R`Volume d'un tétraèdre`, R`$\frac13\times\mathcal B\times h$`],
+    [R`Angle entre deux grandes diagonales du cube`, R`$\cos\theta=\frac13$, $\theta\approx70{,}5°$`]
   ]
 };
 
