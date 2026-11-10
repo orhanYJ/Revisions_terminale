@@ -132,7 +132,7 @@ var PAGE_RESSOURCES = {
 <p>Aucun manuel de NSI de Terminale entièrement consultable gratuitement en ligne n’a été trouvé ; ton établissement peut te donner accès à une version numérique par l’ENT.</p>
 <ul class="liens">
 <li><b>Spécialité NSI Terminale, 24 leçons avec exercices corrigés</b> (Ellipses), T. Balabonski, S. Conchon, J.-C. Filliâtre, K. Nguyen <span class="payant">payant</span><br><span class="src">édition 2024, ISBN 978-2-340-09653-0 ; cours complet et exigeant, écrit par des enseignants-chercheurs</span></li>
-<li><b>Numérique et sciences informatiques, spécialité Terminale</b> (Hachette Éducation) <span class="payant">payant</span><br><span class="src">ISBN 978-2-01-786634-3</span></li>
+<li><b>Numérique et sciences informatiques, spécialité Terminale</b> (Hachette Éducation) <span class="payant">payant</span><br><span class="src">manuel scolaire, souvent disponible en version numérique par l’ENT de l’établissement</span></li>
 </ul>
 <h2>Vidéos</h2>
 <ul class="liens">
