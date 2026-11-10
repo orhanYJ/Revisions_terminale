@@ -106,7 +106,8 @@ def ecarts_nombres(lu, entendu):
     e = _en_lettres(entendu)
     if e is None:
         return []
-    a, b = _flux_nombres(lu), _flux_nombres(e)
+    # le texte peut lui aussi porter des nombres en chiffres (dates) : la voix les lit en lettres
+    a, b = _flux_nombres(_en_lettres(lu)), _flux_nombres(e)
     out = []
     for op, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
         if op != "equal":

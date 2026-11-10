@@ -118,7 +118,9 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
     # par controle_voix.py --rejeter repart avec d'autres graines (nombre de rejets déjà faits).
     ref = prosodie.ref_hz(REF[voix][0])
     rejets = os.path.join(os.path.dirname(chemin), "rejets")
-    decal = len([x for x in os.listdir(rejets) if x.startswith(os.path.basename(chemin)) and x.endswith(".mp3")]) if os.path.isdir(rejets) else 0
+    # controle_voix range un passage rejeté sous <clé>.mp3.<n> (et .json, .wav, .vu à côté)
+    motif = re.compile(re.escape(os.path.basename(chemin)) + r"\.\d+$")
+    decal = len([x for x in os.listdir(rejets) if motif.match(x)]) if os.path.isdir(rejets) else 0
     meilleur = None
     for essai in range(6):
         if essai >= 4 and meilleur is not None and meilleur[0][0]:
