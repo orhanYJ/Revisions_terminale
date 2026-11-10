@@ -90,9 +90,9 @@ var EPREUVE = {
     ["Coefficient", "16 (épreuve terminale de spécialité). En 2027, l'écrit d'HGGSP a lieu à la mi-juin (calendrier officiel : BO spécial n° 2 du 25 août 2026)."],
     ["Structure", "Deux exercices obligatoires : une <b>dissertation</b> (au choix entre deux sujets, chacun sur un thème différent) et une <b>étude critique d'un ou deux documents</b>, sur un troisième thème, différent des deux sujets de dissertation."],
     ["Notation", "Note sur 20, appréciée avec deux échelles descriptives (une par exercice). Si tu ne traites qu'un exercice, ta copie ne peut pas dépasser 10/20. La maîtrise de la langue compte : une copie défaillante sur ce point ne peut pas avoir la moyenne."],
-    ["Croquis", "Un croquis ou un schéma qui appuie la dissertation est valorisé ; il n'est jamais obligatoire."],
+    ["Croquis", "Un croquis ou un schéma qui appuie la dissertation est valorisé (un fond de carte peut être fourni) ; il n'est jamais obligatoire et son absence ne pénalise pas."],
     ["Programme", "Rotation annuelle des thèmes. Session paire (2028…) : thèmes 1, 2, 3 et 5. Session impaire (2027…) : thèmes 2, 4, 5 et 6. Les notions de Première peuvent être mobilisées."],
-    ["Oral de rattrapage", "20 min de préparation, 20 min d'épreuve : tu choisis une question problématisée parmi deux, tu réponds pendant 10 min, puis 10 min d'échange. Même programme que l'écrit."]
+    ["Oral de rattrapage", "20 min de préparation, 20 min d'épreuve : tu tires un sujet de deux questions problématisées, portant sur deux parties différentes du programme, et tu en choisis une ; tu réponds pendant 10 min, puis 10 min d'échange. Même programme que l'écrit."]
   ],
   dissert: [
     ["Analyser le sujet (15 min)", "Souligne chaque mot. Définis les notions (« puissance », « paix », « espace »…). Repère le cadre : dates, espaces, acteurs. Note le type de sujet : sujet-question (« … ? »), sujet à deux termes (« A et B ») ou sujet-affirmation."],
