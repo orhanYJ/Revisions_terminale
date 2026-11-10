@@ -121,6 +121,29 @@ Object.assign(HLP.ANIMS, {
       { montre: ["b"], legende: "<b>Bergson</b> distingue le moi social, découpé par le langage, et le moi profond, durée vivante." },
       { montre: ["c"], legende: "<b>Bilan pour la copie :</b> le moi n’est pas donné ; on y accède par des récits, des interprétations, une œuvre." }
     ] },
+  "e3-cogito": { type: "graphe", titre: "Du doute au « je pense » : le chemin de Descartes (1637-1641)", w: 640, h: 476,
+    intro: "Comment Descartes trouve, au bout du doute, une certitude que rien ne peut ébranler : celle du moi qui pense. Citations des <i>Méditations</i> dans la traduction du duc de Luynes (1647), orthographe modernisée.",
+    noeuds: [
+      { id: "p", x: 130, y: 12, w: 380, h: 54, s: "these", t: "Projet : établir « quelque chose|de ferme et de constant dans les sciences »" },
+      { id: "s", x: 10, y: 104, w: 196, h: 66, s: "obj", t: "1. Les sens|ils se sont « quelquefois »|montrés trompeurs" },
+      { id: "r", x: 222, y: 104, w: 196, h: 66, s: "obj", t: "2. Le rêve|veille ou sommeil ? point|d’« indices certains »" },
+      { id: "g", x: 434, y: 104, w: 196, h: 66, s: "obj", t: "3. Le « mauvais génie »|« rusé et trompeur » :|même 2 + 3 = 5 ?" },
+      { id: "c", x: 100, y: 206, w: 440, h: 66, s: "arg", t: "Mais pour être trompé, il faut être :|« Il n’y a donc point de doute|que je suis, s’il me trompe »" },
+      { id: "q", x: 24, y: 310, w: 284, h: 58, s: "these", t: "« Je pense, donc je suis »|Discours de la méthode, 1637" },
+      { id: "e", x: 332, y: 310, w: 284, h: 58, s: "ex", t: "« je suis, j’existe » : vrai « toutes|les fois que je la prononce »" },
+      { id: "f", x: 70, y: 404, w: 500, h: 58, s: "concl", t: "Ce que je suis : « une chose qui pense, c’est-à-dire|un esprit, un entendement ou une raison »" }
+    ],
+    liens: [{ de: "p", a: "s", t: "douter" }, { de: "p", a: "r" }, { de: "p", a: "g" }, { de: "s", a: "c" }, { de: "r", a: "c" }, { de: "g", a: "c", t: "même alors" }, { de: "c", a: "q", t: "donc" }, { de: "c", a: "e" }, { de: "q", a: "f" }, { de: "e", a: "f" }],
+    etapes: [
+      { montre: ["p"], legende: "<b>Le projet.</b> Pour fonder le savoir sur un point indubitable, Descartes rejette tout ce qui laisse le moindre doute. C’est une méthode, pas un scepticisme : on doute pour trouver le certain." },
+      { montre: ["s"], legende: "<b>Premier niveau : les sens.</b> Ils nous ont parfois trompés ; par prudence, on ne se fie plus à ce qui nous a trompés une fois." },
+      { montre: ["r"], legende: "<b>Deuxième niveau : le rêve.</b> Je crois souvent être éveillé quand je dors : rien ne garantit que ce que je perçois existe." },
+      { montre: ["g"], legende: "<b>Troisième niveau, « hyperbolique » :</b> un trompeur tout-puissant pourrait m’abuser même quand je calcule que deux et trois font cinq. Plus rien ne semble résister." },
+      { montre: ["c"], legende: "<b>Le retournement.</b> Le doute bute sur une limite : si l’on me trompe, c’est que j’existe pour être trompé. Le trompeur « ne saura jamais faire que je ne sois rien, tant que je penserai être quelque chose »." },
+      { montre: ["q"], legende: "<b>La formule du <i>Discours de la méthode</i></b> (IV<sup>e</sup> partie) : la première vérité certaine, que Descartes reçoit comme « le premier principe de la philosophie »." },
+      { montre: ["e"], legende: "<b>Dans les <i>Méditations</i> (1641),</b> la certitude tient à l’acte de penser : elle vaut chaque fois que je pense ou que je dis « je suis », pas une fois pour toutes." },
+      { montre: ["f"], legende: "<b>Ce qu’est ce moi :</b> une chose « qui doute, qui entend, qui conçoit, qui affirme, qui nie, qui veut, qui ne veut pas, qui imagine aussi, et qui sent ». Un moi stable, substance pensante : c’est ce que Hume, Nietzsche et Freud contesteront." }
+    ] },
   "e3-rimbaud-lecture": { type: "texte", atelier: 3, titre: "Lecture animée : Rimbaud, lettre du voyant", intro: "La grammaire, les images et la ponctuation qui disent un moi dédoublé, une à une." },
   "frise-mouvements": { type: "frise", titre: "La frise qui se déroule : des Lumières au surréalisme", debut: 1750, fin: 1960, pas: 25, h: 330, min: 820,
     intro: "Les grands mouvements apparaissent dans l’ordre, avec une œuvre repère pour chacun. Dates indicatives : un mouvement n’a ni naissance ni mort précises.",

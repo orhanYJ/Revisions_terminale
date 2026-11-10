@@ -82,6 +82,12 @@
           cle = "s:" + (t || "vers") + l.a; grp[cle] = { s: l.s, mot: t || "vers", noms: ["« " + nom(l.a) + " »"], sortant: true }; ordreG.push(cle);
         }
       });
+      /* liens sans mot de liaison : rattachés au premier lien nommé (« même alors (et de « A ») ») */
+      var autres = ordreG.filter(function (c) { return c.indexOf("e:") === 0 && c !== "e:puis"; });
+      if (grp["e:puis"] && !grp["e:puis"].adj && autres.length) {
+        var g0 = grp[autres[0]]; if (!g0.noms.length) g0.adj = true;
+        g0.noms = g0.noms.concat(grp["e:puis"].noms); ordreG.splice(ordreG.indexOf("e:puis"), 1);
+      }
       lg = ordreG.map(function (c) {
         var g = grp[c], h = "<i>" + g.mot + "</i>";
         if (g.sortant) h += ' <span class="a-pl-de">→ ' + g.noms[0] + "</span>";

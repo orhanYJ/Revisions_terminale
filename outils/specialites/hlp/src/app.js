@@ -186,6 +186,8 @@
   function an(t) { var m = /(\d{4})/.exec(String(t).replace(/<[^>]+>/g, "")); return m ? +m[1] : null; }
   function friseComplete() {
     var per = D.FRISE.map(function (p) { var a = String(p.dates).match(/\d{4}/g) || []; return { nom: p.nom, dates: p.dates, def: p.def, de: +a[0], a: +a[a.length - 1], evts: p.evts.slice() }; });
+    /* repères antérieurs aux Lumières (Montaigne, Descartes, Pascal…) : rangés à part, pas sous « Les Lumières » */
+    var avant = { nom: "Avant les Lumières", dates: "XVI<sup>e</sup>-XVII<sup>e</sup> siècles", def: "les sources : humanisme, rationalisme, moralistes", de: 0, a: 1715, evts: [] };
     var apres = { nom: "Depuis 1950", dates: "1950 à nos jours", def: "témoigner, juger, limiter la puissance", de: 1950, a: 9999, evts: [] };
     ordre().forEach(function (x) {
       if (D.FRISE.some(function (p) { return p.evts.some(function (ev) { return ev[2] === x.id; }); })) return;
@@ -193,11 +195,12 @@
         var y = an(r[0]); if (y === null) return;
         var cible = y >= 1950 ? apres : null;
         per.forEach(function (p) { if (!cible && y >= p.de && y < p.a) cible = p; });
-        if (!cible) cible = y < per[0].de ? per[0] : per[per.length - 1];
+        if (!cible) cible = y < per[0].de ? avant : per[per.length - 1];
         cible.evts.push([r[0], r[1], x.id]);
       });
     });
     if (apres.evts.length) per.push(apres);
+    if (avant.evts.length) per.unshift(avant);
     per.forEach(function (p) { p.evts.sort(function (u, v) { return (an(u[0]) || 0) - (an(v[0]) || 0); }); });
     return per;
   }
@@ -461,7 +464,7 @@
     $$("table.t", main).forEach(function (t) {
       var th = $$("thead th", t); if (th.length < 3) return;
       t.classList.add("empile");
-      $$("tbody tr", t).forEach(function (tr) { $$("td,th", tr).forEach(function (c, k) { var l = th[k] && th[k].textContent.trim(); if (l) c.setAttribute("data-col", l); }); });
+      $$("tbody tr", t).forEach(function (tr) { $$("td,th", tr).forEach(function (c, k) { var l = th[k] && th[k].textContent.trim(); if (l && c.colSpan < 2) c.setAttribute("data-col", l); }); });
     });
   }
   function router() {
