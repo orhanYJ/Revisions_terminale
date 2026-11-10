@@ -271,7 +271,7 @@ WIDGETS_EXT["arch-tls"] = function (z, opt, O) {
 };
 
 CH.push({
-  id: "crypto", n: 18, court: "chiffrement", fichier: "chiffrement.py",
+  id: "crypto", court: "chiffrement", fichier: "chiffrement.py",
   titre: "Sécurisation des communications",
   rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : sécurisation des communications",
   accroche: "Chiffrement symétrique (César, XOR, AES), asymétrique (RSA, clé publique et clé privée), échange de clé, certificats, et comment HTTPS combine tout cela.",

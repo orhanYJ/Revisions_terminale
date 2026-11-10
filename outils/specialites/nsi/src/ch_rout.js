@@ -405,7 +405,7 @@ WIDGETS_EXT["arch-dijkstra"] = function (z, opt, O) {
 };
 
 CH.push({
-  id: "rout", n: 17, court: "routage", fichier: "routage.py",
+  id: "rout", court: "routage", fichier: "routage.py",
   titre: "Protocoles de routage",
   rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : protocoles de routage",
   accroche: "Comment un paquet traverse Internet de routeur en routeur : tables de routage, RIP (nombre de sauts, Bellman-Ford) et OSPF (coût selon le débit, Dijkstra), et ce qui se passe quand une liaison tombe.",

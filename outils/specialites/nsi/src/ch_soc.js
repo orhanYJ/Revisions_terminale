@@ -1,56 +1,8 @@
 /* ===================== Architectures matérielles — Système sur puce (SoC) ===================== */
 /* Feuille de style commune aux animations des chapitres « architectures, systèmes d'exploitation et réseaux »
    (soc, proc, rout, crypto) : injectée une seule fois, au premier affichage d'une de ces animations. */
-var ARCH_CSS = [
-  ".ar .scene svg{font-family:var(--mono)}",
-  ".ar .scene svg text{font-size:12px;fill:var(--encre)}",
-  ".ar .scene svg .pt{font-size:10.5px;fill:var(--encre2)}",
-  ".ar .scene svg .gd{font-size:13px;font-weight:700}",
-  ".ar-large .scene svg{min-width:540px}",
-  ".ar:not(.ar-large) .scene svg{max-width:540px}",
-  ".ar-tab th:first-child{width:1%}",
-  ".ar .bl rect{fill:var(--bg2);stroke:var(--ligne2);stroke-width:1.4}",
-  ".ar .bl.on rect{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.6}",
-  ".ar .bl.ok rect{fill:var(--vert-f);stroke:var(--vert);stroke-width:2}",
-  ".ar .bl.off{opacity:.35}",
-  ".ar .bl.ko rect{fill:var(--rouge-f);stroke:var(--rouge);stroke-width:2.4}",
-  ".ar .puce{fill:none;stroke:var(--encre3);stroke-width:2;stroke-dasharray:7 4}",
-  ".ar .noc{fill:var(--bleu-f);stroke:var(--bleu);stroke-width:1.4}",
-  ".ar .noc.on{stroke-width:2.6}",
-  ".ar .fil{stroke:var(--ligne2);stroke-width:2;fill:none}",
-  ".ar .fil.on{stroke:var(--ambre);stroke-width:3.2}",
-  ".ar .fil.ok{stroke:var(--vert);stroke-width:3.4}",
-  ".ar .fil.ko{stroke:var(--rouge);stroke-width:2.4;stroke-dasharray:6 5}",
-  ".ar .fil.att{stroke:var(--rouge);stroke-width:2.2;stroke-dasharray:6 5}",
-  ".ar .fil.tient{stroke:var(--vert);stroke-width:2.6}",
-  ".ar .jeton{fill:var(--ambre);stroke:var(--bg2);stroke-width:2}",
-  ".ar .jeton.b{fill:var(--bleu)}.ar .jeton.v{fill:var(--vert)}",
-  ".ar .tete-f{fill:var(--encre3)}.ar .tete-f.on{fill:var(--ambre)}.ar .tete-f.ok{fill:var(--vert)}.ar .tete-f.ko{fill:var(--rouge)}",
-  ".ar .nd circle{fill:var(--bg2);stroke:var(--encre3);stroke-width:1.6}",
-  ".ar .nd.on circle{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.8}",
-  ".ar .nd.ok circle{fill:var(--vert-f);stroke:var(--vert);stroke-width:2.4}",
-  ".ar .nd text{font-weight:700;font-size:14px}",
-  ".ar .cout{font-size:11px;fill:var(--encre2)}",
-  ".ar .cout-f{fill:var(--bg);stroke:none}",
-  ".ar .scene .halo{paint-order:stroke;stroke:var(--bleu-f);stroke-width:5px;stroke-linejoin:round}",
-  ".ar-tab{overflow-x:auto;margin-top:10px;-webkit-overflow-scrolling:touch}",
-  ".ar-tab table{border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:0 auto;min-width:100%}",
-  ".ar-tab th,.ar-tab td{border:1px solid var(--ligne);padding:4px 6px;text-align:center;white-space:nowrap}",
-  ".ar-tab th{background:var(--bg3);color:var(--encre2);font-weight:700}",
-  ".ar-tab td.chg{background:var(--ambre-f);color:var(--encre);font-weight:700}",
-  ".ar-tab td.fixe{background:var(--vert-f)}",
-  ".ar-tab caption{caption-side:top;text-align:left;font-size:.78rem;color:var(--encre2);padding:2px 0 6px}",
-  "html.mo .ar .neuf{animation:ar-app .5s cubic-bezier(.2,.8,.2,1) both;transform-box:fill-box;transform-origin:center}",
-  "html.mo .ar .trace{stroke-dasharray:var(--l,400);stroke-dashoffset:var(--l,400);animation:ar-trace .7s ease-out forwards}",
-  "html.mo .ar td.chg{animation:ar-cell .9s ease-out}",
-  "@keyframes ar-app{from{opacity:.15;transform:scale(.85)}}",
-  "@keyframes ar-trace{to{stroke-dashoffset:0}}",
-  "@keyframes ar-cell{from{background:var(--ambre);color:var(--bg)}}"
-].join("\n");
-function archStyle() {
-  if (document.getElementById("ar-style")) return;
-  var s = document.createElement("style"); s.id = "ar-style"; s.textContent = ARCH_CSS; document.head.appendChild(s);
-}
+/* Leur feuille de style est dans style.css (règles .ar, .ar-tab). */
+function archStyle() {}
 /* jeton qui parcourt un chemin SVG (seulement quand l'étape s'anime) */
 function archJeton(d, cl, dur, delai) {
   return '<circle class="jeton ' + (cl || "") + '" r="6.5" cx="0" cy="0"><animateMotion dur="' + (dur || 0.9) + 's" begin="' + (delai || 0) + 's" fill="freeze" path="' + d + '"/></circle>';
@@ -185,6 +137,21 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
   function cx(k) { return B[k][0] + B[k][2] / 2; }
   function bord(k) { var b = B[k]; return b[1] > YN ? b[1] : b[1] + b[3]; }
   function chemin(a, b) { return "M" + cx(a) + " " + bord(a) + " L" + cx(a) + " " + YN + " L" + cx(b) + " " + YN + " L" + cx(b) + " " + bord(b); }
+  /* deux dispositions : large (ordinateur) et étroite (téléphone, lisible sans défilement) */
+  var LARGE = { B: B, STUB: STUB, vb: "0 0 600 336", cadre: [110, 52, 382, 222], titre: [118, 68], noc: [122, YN - 9, 358, 18], lab: [474, YN + 4, "end"], chemin: chemin,
+    dedans: function (k) { var b = B[k]; return b[0] > 110 && b[0] < 490 && b[1] > 52 && b[1] < 274; } };
+  var XN = 180, BE = {}, col = { g: [["cpu", "gpu", "npu", "sram", "ener"], 22], d: [["isp", "aff", "radio", "mem", "es"], 198] };
+  Object.keys(col).forEach(function (c) { col[c][0].forEach(function (k, i) { BE[k] = [col[c][1], 92 + i * 62, 140, 48, B[k][4]]; }); });
+  [["capt", 10, 6], ["ant", 130, 6], ["batt", 250, 6], ["ecran", 10, 470], ["ram", 130, 470], ["flash", 250, 470]].forEach(function (x) { BE[x[0]] = [x[1], x[2], 100, 42, B[x[0]][4]]; });
+  BE.es[4] = "interfaces|USB, stockage"; BE.ener[4] = "gestion|d’énergie";
+  var STUBE = {}; ["capt", "ant", "batt"].forEach(function (k) { var x = BE[k][0] + 50; STUBE[k] = "M" + x + " 48 L" + x + " 68"; });
+  ["ecran", "ram", "flash"].forEach(function (k) { var x = BE[k][0] + 50; STUBE[k] = "M" + x + " 450 L" + x + " 470"; });
+  function cheminE(a, b) {
+    var A = BE[a], Bb = BE[b], xa = A[0] < XN ? A[0] + A[2] : A[0], xb = Bb[0] < XN ? Bb[0] + Bb[2] : Bb[0], ya = A[1] + A[3] / 2, yb = Bb[1] + Bb[3] / 2;
+    return "M" + xa + " " + ya + " L" + XN + " " + ya + " L" + XN + " " + yb + " L" + xb + " " + yb;
+  }
+  var ETROIT = { B: BE, STUB: STUBE, vb: "0 0 360 520", cadre: [6, 68, 348, 382], titre: [14, 84], noc: [XN - 9, 92, 18, 340], lab: [XN, 446, "middle"], chemin: cheminE,
+    dedans: function (k) { var b = BE[k]; return b[1] > 68 && b[1] < 450; } };
   var SC = {
     photo: [
       { on: [], ext: [], msg: "Le <b>SoC</b> (cadre en pointillés) réunit sur une seule puce de silicium ce qui occupait autrefois toute une carte : processeur (CPU), processeur graphique (GPU), accélérateur d’IA (NPU), processeur d’image (ISP), modem, contrôleurs… Ils communiquent par un <b>réseau sur puce</b> (bande bleue). Autour : ce qui reste en dehors de la puce. Suivons une photo." },
@@ -204,15 +171,17 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
     ]
   };
   function dessine(scene, e, i, etapes, saut) {
-    var s = '<svg viewBox="0 0 600 336" role="img" aria-label="Schéma d’un système sur puce de téléphone et de ses composants voisins">';
-    s += '<rect class="puce" x="110" y="52" width="382" height="222" rx="14"/><text class="gd" x="118" y="68">SoC (une seule puce)</text>';
+    var etroit = scene.clientWidth < 520, L = etroit ? ETROIT : LARGE, B = L.B, STUB = L.STUB, chemin = L.chemin;
+    scene.parentNode.parentNode.classList.toggle("etroit", etroit);
+    var s = '<svg viewBox="' + L.vb + '" role="img" aria-label="Schéma d’un système sur puce de téléphone et de ses composants voisins">';
+    s += '<rect class="puce" x="' + L.cadre[0] + '" y="' + L.cadre[1] + '" width="' + L.cadre[2] + '" height="' + L.cadre[3] + '" rx="14"/><text class="gd" x="' + L.titre[0] + '" y="' + L.titre[1] + '">SoC (une seule puce)</text>';
     Object.keys(STUB).forEach(function (k) { var on = e.ext && e.ext.indexOf(k) >= 0; s += '<path class="fil' + (on ? " on" : "") + '" d="' + STUB[k] + '"/>'; });
     var nocOn = e.va && e.va.length;
-    s += '<rect class="noc' + (nocOn ? " on" : "") + '" x="122" y="' + (YN - 9) + '" width="358" height="18" rx="9"/>';
-    (e.va || []).forEach(function (v) { if (B[v[0]][0] > 110 && B[v[0]][0] < 490 && B[v[1]][0] > 110 && B[v[1]][0] < 490) s += '<path class="fil on' + (saut ? "" : " trace") + '" style="--l:500" d="' + chemin(v[0], v[1]) + '"/>'; });
-    s += '<text class="pt halo" x="474" y="' + (YN + 4) + '" text-anchor="end">réseau sur puce</text>';
+    s += '<rect class="noc' + (nocOn ? " on" : "") + '" x="' + L.noc[0] + '" y="' + L.noc[1] + '" width="' + L.noc[2] + '" height="' + L.noc[3] + '" rx="9"/>';
+    (e.va || []).forEach(function (v) { if (L.dedans(v[0]) && L.dedans(v[1])) s += '<path class="fil on' + (saut ? "" : " trace") + '" style="--l:500" d="' + chemin(v[0], v[1]) + '"/>'; });
+    s += '<text class="pt halo" x="' + L.lab[0] + '" y="' + L.lab[1] + '" text-anchor="' + L.lab[2] + '">réseau sur puce</text>';
     Object.keys(B).forEach(function (k) {
-      var b = B[k], dedans = b[0] > 110 && b[0] < 490 && b[1] > 52 && b[1] < 274;
+      var b = B[k], dedans = L.dedans(k);
       var cl = (e.on.indexOf(k) >= 0 || (e.ext || []).indexOf(k) >= 0) ? " on" : (e.off && e.off.indexOf(k) >= 0 ? " off" : "");
       var l = b[4].split("|");
       s += '<g class="bl' + cl + (cl === " on" && !saut ? " neuf" : "") + '"><rect x="' + b[0] + '" y="' + b[1] + '" width="' + b[2] + '" height="' + b[3] + '" rx="' + (dedans ? 7 : 4) + '"' + (dedans ? "" : ' stroke-dasharray="3 3"') + "/>";
@@ -221,7 +190,7 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
     });
     if (!saut) (e.va || []).forEach(function (v, j) {
       var a = v[0], b = v[1], d;
-      if (STUB[a] && !(B[a][0] > 110 && B[a][0] < 490)) d = STUB[a].split(" M")[0];
+      if (STUB[a] && !L.dedans(a)) d = STUB[a].split(" M")[0];
       else d = chemin(a, b);
       s += archJeton(d, "", 0.9, j * 0.9);
     });
@@ -233,7 +202,7 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
 };
 
 CH.push({
-  id: "soc", n: 15, court: "soc", fichier: "soc.py",
+  id: "soc", court: "soc", fichier: "soc.py",
   titre: "Systèmes sur puce (SoC)",
   rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : composants intégrés d’un système sur puce",
   accroche: "Du modèle de von Neumann au SoC d’un téléphone : ce qu’il contient, pourquoi tout regrouper sur une puce accélère et économise l’énergie, et ce qu’on y perd.",

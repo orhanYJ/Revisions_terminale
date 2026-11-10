@@ -414,7 +414,7 @@ WIDGETS_EXT["arch-interblocage"] = function (z, opt, O) {
 };
 
 CH.push({
-  id: "proc", n: 16, court: "processus", fichier: "processus.py",
+  id: "proc", court: "processus", fichier: "processus.py",
   titre: "Processus et ordonnancement",
   rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : gestion des processus et des ressources par un système d’exploitation",
   accroche: "Ce qu’est un processus, comment le système le crée, le fait passer d’un état à l’autre et partage le processeur entre tous (FIFO, tourniquet, priorités) ; les commandes ps, top, kill ; le risque d’interblocage.",

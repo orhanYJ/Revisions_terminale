@@ -562,6 +562,52 @@ html.mo .carte-ch .fic::before{transition:opacity .2s}
 .qcm-score .sc{font-family:var(--mono)}
 .qcm-score .ok{color:var(--vert);font-weight:700}
 .qcm-score .ko{color:var(--rouge);font-weight:700}
+/* animations : architecture, systèmes, réseaux */
+.ar .scene svg{font-family:var(--mono)}
+.ar .scene svg text{font-size:12px;fill:var(--encre)}
+.ar .scene svg .pt{font-size:10.5px;fill:var(--encre2)}
+.ar .scene svg .gd{font-size:13px;font-weight:700}
+.ar-large .scene svg{min-width:540px}
+.ar-large.etroit .scene svg{min-width:0}
+.ar:not(.ar-large) .scene svg{max-width:540px}
+.ar-tab th:first-child{width:1%}
+.ar .bl rect{fill:var(--bg2);stroke:var(--ligne2);stroke-width:1.4}
+.ar .bl.on rect{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.6}
+.ar .bl.ok rect{fill:var(--vert-f);stroke:var(--vert);stroke-width:2}
+.ar .bl.off{opacity:.35}
+.ar .bl.ko rect{fill:var(--rouge-f);stroke:var(--rouge);stroke-width:2.4}
+.ar .puce{fill:none;stroke:var(--encre3);stroke-width:2;stroke-dasharray:7 4}
+.ar .noc{fill:var(--bleu-f);stroke:var(--bleu);stroke-width:1.4}
+.ar .noc.on{stroke-width:2.6}
+.ar .fil{stroke:var(--ligne2);stroke-width:2;fill:none}
+.ar .fil.on{stroke:var(--ambre);stroke-width:3.2}
+.ar .fil.ok{stroke:var(--vert);stroke-width:3.4}
+.ar .fil.ko{stroke:var(--rouge);stroke-width:2.4;stroke-dasharray:6 5}
+.ar .fil.att{stroke:var(--rouge);stroke-width:2.2;stroke-dasharray:6 5}
+.ar .fil.tient{stroke:var(--vert);stroke-width:2.6}
+.ar .jeton{fill:var(--ambre);stroke:var(--bg2);stroke-width:2}
+.ar .jeton.b{fill:var(--bleu)}.ar .jeton.v{fill:var(--vert)}
+.ar .tete-f{fill:var(--encre3)}.ar .tete-f.on{fill:var(--ambre)}.ar .tete-f.ok{fill:var(--vert)}.ar .tete-f.ko{fill:var(--rouge)}
+.ar .nd circle{fill:var(--bg2);stroke:var(--encre3);stroke-width:1.6}
+.ar .nd.on circle{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.8}
+.ar .nd.ok circle{fill:var(--vert-f);stroke:var(--vert);stroke-width:2.4}
+.ar .nd text{font-weight:700;font-size:14px}
+.ar .cout{font-size:11px;fill:var(--encre2)}
+.ar .cout-f{fill:var(--bg);stroke:none}
+.ar .scene .halo{paint-order:stroke;stroke:var(--bleu-f);stroke-width:5px;stroke-linejoin:round}
+.ar-tab{overflow-x:auto;margin-top:10px;-webkit-overflow-scrolling:touch}
+.ar-tab table{border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:0 auto;min-width:100%}
+.ar-tab th,.ar-tab td{border:1px solid var(--ligne);padding:4px 6px;text-align:center;white-space:nowrap}
+.ar-tab th{background:var(--bg3);color:var(--encre2);font-weight:700}
+.ar-tab td.chg{background:var(--ambre-f);color:var(--encre);font-weight:700}
+.ar-tab td.fixe{background:var(--vert-f)}
+.ar-tab caption{caption-side:top;text-align:left;font-size:.78rem;color:var(--encre2);padding:2px 0 6px}
+html.mo .ar .neuf{animation:ar-app .5s cubic-bezier(.2,.8,.2,1) both;transform-box:fill-box;transform-origin:center}
+html.mo .ar .trace{stroke-dasharray:var(--l,400);stroke-dashoffset:var(--l,400);animation:ar-trace .7s ease-out forwards}
+html.mo .ar td.chg{animation:ar-cell .9s ease-out}
+@keyframes ar-app{from{opacity:.15;transform:scale(.85)}}
+@keyframes ar-trace{to{stroke-dashoffset:0}}
+@keyframes ar-cell{from{background:var(--ambre);color:var(--bg)}}
 
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -603,6 +649,465 @@ var CH = [];
    (lecture, pause, étape précédente / suivante, légende par étape) : voir sa description dans app.js.
    Code SQL : C(id, requête, { sql: true, deps: [id du schéma], out: "col1 | col2\nval | val" }). */
 var WIDGETS_EXT = {};
+
+/* Animations pas à pas des chapitres Diviser pour régner, Programmation dynamique, Recherche textuelle,
+   Calculabilité, Paradigmes et Histoire. Chaque animation utilise le lecteur commun (outils.lecteur).
+   Les éléments qui se déplacent (lettres, fenêtre, tête de lecture) gardent leur nœud d'une étape à l'autre :
+   leur transition CSS (sous html.mo) montre le mouvement ; « saut » rend le dessin instantané. */
+(function () {
+  if (typeof document === "undefined") return;
+  var css = [
+    ".aa svg{font-family:var(--mono);font-size:13px}",
+    ".aa text{fill:var(--encre);dominant-baseline:central;text-anchor:middle}",
+    ".aa text.g{text-anchor:start}.aa text.p{font-size:10.5px;fill:var(--encre3)}.aa text.t{font-size:11.5px;fill:var(--encre2)}",
+    ".aa .c{fill:var(--bg2);stroke:var(--ligne2);stroke-width:1.2}",
+    ".aa .vide .c{fill:none;stroke-dasharray:3 3;stroke:var(--ligne)}.aa .vide text{opacity:0}",
+    ".aa .on .c,.aa .c.on{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2}",
+    ".aa .ok .c,.aa .c.ok{fill:var(--vert-f);stroke:var(--vert);stroke-width:2}",
+    ".aa .ko .c,.aa .c.ko{fill:var(--rouge-f);stroke:var(--rouge);stroke-width:2}",
+    ".aa .bl .c,.aa .c.bl{fill:var(--bleu-f);stroke:var(--bleu);stroke-width:2}",
+    ".aa .q0 .c{fill:var(--bleu-f);stroke:var(--bleu)}.aa .q1 .c{fill:var(--vert-f);stroke:var(--vert)}.aa .q2 .c{fill:var(--ambre-f);stroke:var(--ambre)}.aa .q3 .c{fill:var(--rouge-f);stroke:var(--rouge)}",
+    ".aa .muet{opacity:.38}.aa .trait{stroke:var(--ligne2);stroke-width:1.2;fill:none}.aa .fl{stroke:var(--ambre);stroke-width:2;fill:none}.aa .fl.v{stroke:var(--vert)}",
+    ".aa .tete-l{fill:var(--ambre)}.aa .fen{fill:none;stroke:var(--bleu);stroke-width:2;stroke-dasharray:5 3}",
+    ".aa .legende{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:.76rem;color:var(--encre2);margin-top:8px}",
+    ".aa .legende i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:5px;border:1.5px solid}",
+    ".aa .code-l{font-family:var(--mono);font-size:.82rem;white-space:pre;line-height:1.55;padding:8px 10px;border:1px solid var(--ligne);border-radius:8px;background:var(--code-bg);overflow-x:auto}",
+    ".aa .code-l .l{display:block;padding:0 4px;border-radius:4px}.aa .code-l .l.vise{background:var(--ambre-f);box-shadow:inset 3px 0 0 var(--ambre)}",
+    ".aa .vars{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;font-family:var(--mono);font-size:.82rem}.aa .vars span{border:1px solid var(--ligne2);border-radius:7px;padding:3px 8px;background:var(--bg2)}.aa .vars span.chg{border-color:var(--ambre);background:var(--ambre-f)}",
+    ".aa .reecr{font-family:var(--mono);font-size:.84rem;display:flex;flex-direction:column;gap:4px}.aa .reecr div{padding:3px 8px;border-radius:6px;border-left:3px solid var(--ligne2);overflow-wrap:anywhere}.aa .reecr div.der{border-left-color:var(--vert);background:var(--vert-f)}",
+    ".aa .deux{display:grid;gap:10px}@media (min-width:720px){.aa .deux{grid-template-columns:1.1fr 1fr}}",
+    ".aa .jauge{font-family:var(--mono);font-size:.76rem;color:var(--encre2)}",
+    "html.mo .aa .mv{transition:transform .55s cubic-bezier(.3,.7,.2,1)}",
+    "html.mo .aa .jg{transition:width .7s cubic-bezier(.3,.7,.2,1)}",
+    "html.mo .aa .neuf{animation:aa-pop .45s cubic-bezier(.2,.8,.2,1)}",
+    "html.mo .aa .instant .mv,html.mo .aa .instant .jg{transition:none}",
+    "@keyframes aa-pop{from{opacity:.2;transform:translateY(-6px)}}"
+  ].join("\n");
+  var st = document.createElement("style");
+  st.id = "anim-algo-css";
+  st.textContent = css;
+  (document.head || document.documentElement).appendChild(st);
+})();
+
+function aaPos(el, x, y) { el.style.transform = "translate(" + x + "px," + y + "px)"; }
+function aaInstant(scene, saut) {
+  if (!saut) { scene.classList.remove("instant"); return function () {}; }
+  scene.classList.add("instant");
+  return function () { void scene.getBoundingClientRect(); scene.classList.remove("instant"); };
+}
+function aaCase(cls, x, y, w, h, txt, extra) {
+  return '<g class="' + cls + '"' + (extra || "") + '><rect class="c" x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="5"/><text x="' + (x + w / 2) + '" y="' + (y + h / 2) + '">' + txt + "</text></g>";
+}
+
+/* ===================== 1. Tri fusion ===================== */
+WIDGETS_EXT["algo-tri-fusion"] = function (z, opt, O) {
+  var T = [38, 27, 43, 3, 9, 82, 10, 15], CW = 34, CH = 26, RH = 40;
+  function fusion(a, b) { var r = [], i = 0, j = 0; while (i < a.length && j < b.length) r.push(a[i] <= b[j] ? a[i++] : b[j++]); return r.concat(a.slice(i), b.slice(j)); }
+  function groupes(taille) { var g = []; for (var k = 0; k < 8; k += taille) g.push(T.slice(k, k + taille)); return g; }
+  var TAILLES = [8, 4, 2, 1, 2, 4, 8];
+  function rangees() {
+    var R = [0, 1, 2, 3].map(function (r) { return groupes(TAILLES[r]); });
+    var prec = R[3];
+    for (var r = 4; r < 7; r++) { var nv = []; for (var k = 0; k < prec.length; k += 2) nv.push(fusion(prec[k], prec[k + 1])); R.push(nv); prec = nv; }
+    return R;
+  }
+  var RG = rangees();
+  function x(i, taille) { var larg = 8 * CW + (8 / taille - 1) * 9; return (340 - larg) / 2 + i * CW + Math.floor(i / taille) * 9; }
+  function etapesTout() {
+    var E = [];
+    function snap(vis, cour, src, msg) { E.push({ vis: vis, cour: cour, src: src, msg: msg }); }
+    snap({ 0: 8 }, [0, 0], null, "La liste de 8 éléments à trier. Première phase : on <b>divise</b> jusqu’à n’avoir que des listes d’un élément.");
+    snap({ 0: 8, 1: 8 }, [1, -1], null, "<b>Diviser</b> : on coupe en deux moitiés de 4. Elles sont <b>indépendantes</b> : chacune sera triée sans regarder l’autre.");
+    snap({ 0: 8, 1: 8, 2: 8 }, [2, -1], null, "Encore une division : quatre listes de 2.");
+    snap({ 0: 8, 1: 8, 2: 8, 3: 8 }, [3, -1], null, "Huit listes d’<b>un</b> élément : c’est le <b>cas de base</b>, elles sont déjà triées. Il y a eu log₂ 8 = 3 niveaux de division.");
+    var vis = { 0: 8, 1: 8, 2: 8, 3: 8 };
+    for (var r = 4; r < 7; r++) {
+      var n = RG[r].length, taille = TAILLES[r];
+      for (var g = 0; g < n; g++) {
+        vis = JSON.parse(JSON.stringify(vis)); vis[r] = (g + 1) * taille;
+        var a = RG[r - 1][2 * g], b = RG[r - 1][2 * g + 1];
+        snap(vis, [r, g], [r - 1, 2 * g, 2 * g + 1], "<b>Fusionner</b> [" + a.join(", ") + "] et [" + b.join(", ") + "] : on compare les têtes, on prend la plus petite → <b>[" + RG[r][g].join(", ") + "]</b>." + (r === 6 ? " La liste est triée. Chaque niveau de fusion a traité les 8 éléments : 3 niveaux × 8 = au plus 24 comparaisons, soit n log₂ n." : ""));
+      }
+    }
+    return E;
+  }
+  function etapesFusion() {
+    var a = [3, 27, 38, 43], b = [9, 10, 15, 82], i = 0, j = 0, res = [], E = [], src;
+    E.push({ a: a, b: b, i: 0, j: 0, res: [], src: null, msg: "Deux listes <b>déjà triées</b>. On regarde leurs <b>têtes</b> (flèches) : le plus petit élément de tout l’ensemble est forcément l’une des deux." });
+    while (i < a.length && j < b.length) {
+      if (a[i] <= b[j]) { src = ["a", i]; res.push(a[i]); E.push({ a: a, b: b, i: i + 1, j: j, res: res.slice(), src: src, msg: "Comparer " + a[i] + " et " + b[j] + " : <b>" + a[i] + "</b> est le plus petit, il descend dans le résultat ; la flèche de la liste du haut avance." }); i++; }
+      else { src = ["b", j]; res.push(b[j]); E.push({ a: a, b: b, i: i, j: j + 1, res: res.slice(), src: src, msg: "Comparer " + a[i] + " et " + b[j] + " : <b>" + b[j] + "</b> est le plus petit, il descend ; la flèche de la liste du bas avance." }); j++; }
+    }
+    var reste = a.slice(i).concat(b.slice(j));
+    res = res.concat(reste);
+    E.push({ a: a, b: b, i: i, j: j + (i < a.length ? 0 : reste.length), res: res, src: null, msg: "Une liste est épuisée : on <b>recopie le reste</b> de l’autre (" + reste.join(", ") + ") sans comparer. Bilan : " + (E.length - 1) + " comparaisons pour 8 éléments, au plus p + q − 1 = 7. La fusion est <b>linéaire</b>." });
+    return E;
+  }
+  function prepare(sc, k) {
+    if (k === "tout") {
+      var s = '<svg viewBox="0 0 340 ' + (7 * RH + 14) + '" role="img" aria-label="Arbre du tri fusion">';
+      for (var r = 0; r < 7; r++) {
+        if (r === 4) s += '<line class="trait" x1="6" x2="334" y1="' + (r * RH + 4) + '" y2="' + (r * RH + 4) + '" stroke-dasharray="4 4"/>';
+        for (var i = 0; i < 8; i++) {
+          var v = RG[r][Math.floor(i / TAILLES[r])][i % TAILLES[r]];
+          s += aaCase("vide", x(i, TAILLES[r]), r * RH + 10, CW - 4, CH, v, ' id="tf-' + r + "-" + i + '"');
+        }
+      }
+      s += '<text class="p g" x="4" y="6">diviser ↓</text><text class="p g" x="4" y="' + (4 * RH + 2) + '">fusionner ↓</text></svg>';
+      sc.innerHTML = '<div class="aa">' + s + '<div class="legende"><span><i style="background:var(--ambre-f);border-color:var(--ambre)"></i>en cours</span><span><i style="background:var(--bleu-f);border-color:var(--bleu)"></i>listes fusionnées</span></div></div>';
+    } else {
+      var t = '<svg viewBox="0 0 340 250" role="img" aria-label="Fusion de deux listes triées">';
+      t += '<text class="t g" x="6" y="22">a</text><text class="t g" x="6" y="92">b</text><text class="t g" x="6" y="192">résultat</text>';
+      for (var k2 = 0; k2 < 4; k2++) { t += aaCase("", 40 + k2 * 44, 10, 38, 26, [3, 27, 38, 43][k2], ' id="fa-' + k2 + '"'); t += aaCase("", 40 + k2 * 44, 80, 38, 26, [9, 10, 15, 82][k2], ' id="fb-' + k2 + '"'); }
+      for (var m = 0; m < 8; m++) t += aaCase("vide", 6 + m * 41, 205, 36, 26, "", ' id="fr-' + m + '"');
+      t += '<g id="pa" class="mv"><path class="tete-l" d="M0 0 L-7 10 L7 10z"/></g><g id="pb" class="mv"><path class="tete-l" d="M0 0 L-7 10 L7 10z"/></g><g id="vol" class="mv" style="opacity:0"><rect class="c on" x="-19" y="-13" width="38" height="26" rx="5"/><text x="0" y="0"></text></g></svg>';
+      sc.innerHTML = '<div class="aa">' + t + "</div>";
+    }
+  }
+  function dessine(sc, e, i, E, saut) {
+    var aa = sc.querySelector(".aa");
+    if (e.vis) {
+      for (var r = 0; r < 7; r++) for (var c = 0; c < 8; c++) {
+        var el = sc.querySelector("#tf-" + r + "-" + c), vu = e.vis[r] !== undefined && c < e.vis[r];
+        var cl = vu ? "" : "vide";
+        var taille = TAILLES[r];
+        if (vu && e.cour[0] === r && (e.cour[1] === -1 || Math.floor(c / taille) === e.cour[1])) cl = "on" + (!saut && (r >= 4 || e.cour[1] === -1) ? " neuf" : "");
+        else if (vu && e.src && e.src[0] === r && (Math.floor(c / TAILLES[r]) === e.src[1] || Math.floor(c / TAILLES[r]) === e.src[2])) cl = "bl";
+        else if (vu && r < 4 && e.cour[0] >= 4) cl = "muet";
+        el.setAttribute("class", cl);
+      }
+      return;
+    }
+    var fin = aaInstant(aa, saut);
+    for (var k = 0; k < 4; k++) { sc.querySelector("#fa-" + k).setAttribute("class", k < e.i ? "muet" : k === e.i ? "on" : ""); sc.querySelector("#fb-" + k).setAttribute("class", k < e.j ? "muet" : k === e.j ? "on" : ""); }
+    for (var m = 0; m < 8; m++) { var rc = sc.querySelector("#fr-" + m); rc.setAttribute("class", m < e.res.length ? (m === e.res.length - 1 && e.src ? "ok" : "bl") : "vide"); rc.querySelector("text").textContent = m < e.res.length ? e.res[m] : ""; }
+    aaPos(sc.querySelector("#pa"), 59 + Math.min(e.i, 3.6) * 44, 40);
+    aaPos(sc.querySelector("#pb"), 59 + Math.min(e.j, 3.6) * 44, 110);
+    sc.querySelector("#pa").style.opacity = e.i < 4 ? 1 : 0;
+    sc.querySelector("#pb").style.opacity = e.j < 4 ? 1 : 0;
+    var vol = sc.querySelector("#vol");
+    if (e.src && !saut && O.MO()) {
+      var x0 = 59 + e.src[1] * 44, y0 = e.src[0] === "a" ? 23 : 93, d = e.res.length - 1;
+      vol.querySelector("text").textContent = e.res[d];
+      vol.style.transition = "none"; vol.style.opacity = 1; aaPos(vol, x0, y0); void vol.getBoundingClientRect();
+      vol.style.transition = ""; aaPos(vol, 24 + d * 41, 218);
+      setTimeout(function () { vol.style.opacity = 0; }, 560);
+    } else vol.style.opacity = 0;
+    fin();
+  }
+  var L = O.lecteur(z, { titre: "tri fusion pas à pas", sous: "diviser, puis fusionner", choix: [{ k: "tout", t: "vue d’ensemble" }, { k: "fusion", t: "une fusion pas à pas" }],
+    etapes: function (k) { return k === "tout" ? etapesTout() : etapesFusion(); }, prepare: prepare, dessine: dessine, vitesse: 1700 });
+  if (opt === "fusion") L.charger("fusion");
+};
+
+/* ===================== 2. Rotation d'image sur place ===================== */
+WIDGETS_EXT["algo-rotation"] = function (z, opt, O) {
+  var N = 4, C = 46, X0 = 60, Y0 = 14;
+  var L0 = "ABCDEFGHIJKLMNOP".split("");
+  function quart(lettre) { var k = L0.indexOf(lettre), i = Math.floor(k / N), j = k % N; return (i < 2 ? 0 : 2) + (j < 2 ? 0 : 1); }
+  function etapes() {
+    var img = [], E = [];
+    for (var i = 0; i < N; i++) img.push(L0.slice(i * N, i * N + N));
+    function snap(msg, vise) { E.push({ img: img.map(function (l) { return l.slice(); }), vise: vise || [], msg: msg }); }
+    function cycle(x, y, h, i, j) {
+      var hg = img[y + i][x + j];
+      img[y + i][x + j] = img[y + h + i][x + j];
+      img[y + h + i][x + j] = img[y + h + i][x + h + j];
+      img[y + h + i][x + h + j] = img[y + i][x + h + j];
+      img[y + i][x + h + j] = hg;
+      return [[y + i, x + j], [y + h + i, x + j], [y + h + i, x + h + j], [y + i, x + h + j]];
+    }
+    snap("Une image de 4 × 4 pixels (une lettre par pixel). Les couleurs repèrent les <b>quatre quarts</b> de départ. But : un quart de tour dans le sens horaire, <b>sans seconde image</b>.");
+    var Q = [[0, 0, "haut gauche"], [2, 0, "haut droit"], [0, 2, "bas gauche"], [2, 2, "bas droit"]];
+    Q.forEach(function (q) {
+      var v = cycle(q[0], q[1], 1, 0, 0);
+      snap("<b>Régner</b> : appel récursif sur le quart " + q[2] + " (2 × 2). Il tourne d’un quart de tour sur lui-même : ses 4 pixels font un échange circulaire.", v);
+    });
+    for (var i2 = 0; i2 < 2; i2++) for (var j2 = 0; j2 < 2; j2++) {
+      var v2 = cycle(0, 0, 2, i2, j2);
+      snap("<b>Combiner</b> : on fait tourner les quarts. Échange circulaire de 4 pixels, un par quart (haut gauche → haut droit → bas droit → bas gauche → haut gauche), avec une seule variable auxiliaire. (" + (2 * i2 + j2 + 1) + "/4)", v2);
+    }
+    snap("Terminé : chaque couleur a changé de quart et chaque quart a tourné. Le pixel en haut à gauche est M, l’ancien coin bas gauche. Aucune copie de l’image : la mémoire utilisée ne dépend pas de la taille.");
+    return E;
+  }
+  function prepare(sc) {
+    var s = '<svg viewBox="0 0 310 ' + (N * C + 30) + '" role="img" aria-label="Rotation d’une image 4 × 4">';
+    s += '<rect x="' + (X0 - 4) + '" y="' + (Y0 - 4) + '" width="' + (N * C + 8) + '" height="' + (N * C + 8) + '" rx="8" class="trait"/>';
+    s += '<line class="trait" x1="' + (X0 + 2 * C) + '" x2="' + (X0 + 2 * C) + '" y1="' + (Y0 - 4) + '" y2="' + (Y0 + N * C + 4) + '" stroke-dasharray="4 4"/><line class="trait" y1="' + (Y0 + 2 * C) + '" y2="' + (Y0 + 2 * C) + '" x1="' + (X0 - 4) + '" x2="' + (X0 + N * C + 4) + '" stroke-dasharray="4 4"/>';
+    L0.forEach(function (l) { s += '<g id="rot-' + l + '" class="mv q' + quart(l) + '"><rect class="c" x="3" y="3" width="' + (C - 6) + '" height="' + (C - 6) + '" rx="7"/><text x="' + C / 2 + '" y="' + C / 2 + '" style="font-size:17px;font-weight:700">' + l + "</text></g>"; });
+    s += "</svg>";
+    sc.innerHTML = '<div class="aa">' + s + "</div>";
+  }
+  function dessine(sc, e, i, E, saut) {
+    var fin = aaInstant(sc.querySelector(".aa"), saut);
+    var vise = {}; e.vise.forEach(function (p) { vise[p[0] + "-" + p[1]] = 1; });
+    for (var r = 0; r < N; r++) for (var c = 0; c < N; c++) {
+      var g = sc.querySelector("#rot-" + e.img[r][c]);
+      aaPos(g, X0 + c * C, Y0 + r * C);
+      g.querySelector("rect").style.strokeWidth = vise[r + "-" + c] ? "3.5" : "";
+    }
+    fin();
+  }
+  O.lecteur(z, { titre: "rotation d’un quart de tour, sur place", sous: "diviser pour régner", etapes: etapes, prepare: prepare, dessine: dessine, vitesse: 1800 });
+};
+
+/* ===================== 3. Tables de programmation dynamique ===================== */
+WIDGETS_EXT["algo-table-dyn"] = function (z, opt, O) {
+  var P = [1, 3, 4], S = 10, A = "PYTHON", B = "PHOTON";
+  function etapesMonnaie() {
+    var nb = [0], ch = [0], E = [];
+    E.push({ nb: nb.slice(), ch: ch.slice(), s: 0, cand: [], msg: "Pièces 1, 3 et 4. <b>nb[s]</b> = nombre minimal de pièces pour rendre s. Cas de base : nb[0] = 0. On remplit de gauche à droite." });
+    for (var s = 1; s <= S; s++) {
+      var best = s + 1, bp = 0, cand = [];
+      P.forEach(function (p) { if (p <= s) { cand.push(s - p); if (nb[s - p] + 1 < best) { best = nb[s - p] + 1; bp = p; } } });
+      nb.push(best); ch.push(bp);
+      var det = P.filter(function (p) { return p <= s; }).map(function (p) { return "1 + nb[" + (s - p) + "] = " + (nb[s - p] + 1); }).join(" ; ");
+      E.push({ nb: nb.slice(), ch: ch.slice(), s: s, cand: cand, choisi: s - bp, msg: "<b>s = " + s + "</b> : on essaie chaque première pièce possible : " + det + ". Minimum <b>" + best + "</b> (première pièce " + bp + "). Les cases utilisées sont déjà remplies." });
+    }
+    var reste = S, chemin = [];
+    while (reste > 0) { chemin.push(reste); reste -= ch[reste]; }
+    E.push({ nb: nb, ch: ch, s: -1, cand: [], chemin: chemin, msg: "<b>Reconstruction</b> pour 10 : choix[10] = 3, il reste 7 ; choix[7] = 3, il reste 4 ; choix[4] = 4, il reste 0. Réponse : <b>3 + 3 + 4</b>, 3 pièces. (Le glouton aurait donné 4 + 4 + 1 + 1.)" });
+    return E;
+  }
+  function etapesLcs() {
+    var n = A.length, m = B.length, L = [], E = [], i, j;
+    for (i = 0; i <= n; i++) { L.push([]); for (j = 0; j <= m; j++) L[i].push(i && j ? null : 0); }
+    function cp() { return L.map(function (l) { return l.slice(); }); }
+    E.push({ L: cp(), cur: null, dep: [], msg: "Table L de 7 × 7 : L[i][j] = longueur de la plus longue sous-séquence commune aux i premières lettres de PYTHON et aux j premières de PHOTON. Ligne 0 et colonne 0 : mot vide, 0." });
+    for (i = 1; i <= n; i++) for (j = 1; j <= m; j++) {
+      var eg = A[i - 1] === B[j - 1];
+      L[i][j] = eg ? L[i - 1][j - 1] + 1 : Math.max(L[i - 1][j], L[i][j - 1]);
+      E.push({ L: cp(), cur: [i, j], dep: eg ? [[i - 1, j - 1]] : [[i - 1, j], [i, j - 1]], eg: eg,
+        msg: "L[" + i + "][" + j + "] : " + A[i - 1] + (eg ? " = " : " ≠ ") + B[j - 1] + (eg ? " → diagonale + 1 = <b>" + L[i][j] + "</b>." : " → max(haut, gauche) = <b>" + L[i][j] + "</b>.") });
+    }
+    i = n; j = m; var ch = [], res = "";
+    while (i > 0 && j > 0) {
+      ch.push([i, j]);
+      if (A[i - 1] === B[j - 1]) { res = A[i - 1] + res; i--; j--; }
+      else if (L[i - 1][j] >= L[i][j - 1]) i--; else j--;
+      E.push({ L: cp(), cur: null, dep: [], chemin: ch.slice(), lu: res, msg: "<b>Remontée</b> depuis la case en bas à droite : diagonale quand les lettres sont égales (on note la lettre), sinon vers la plus grande voisine. Lettres notées : <b>" + (res || "…") + "</b>" + (i === 0 || j === 0 ? ". Fin : PLSC de longueur " + L[n][m] + "." : "") });
+    }
+    return E;
+  }
+  function svgMonnaie(e, saut) {
+    var W = 29, X = 10, s = '<svg viewBox="0 0 340 150" role="img" aria-label="Tableau nb du rendu de monnaie">';
+    for (var k = 0; k <= S; k++) {
+      var vu = k < e.nb.length, cl = !vu ? "vide" : k === e.s ? "on" + (saut ? "" : " neuf") : e.cand.indexOf(k) >= 0 ? (k === e.choisi ? "ok" : "bl") : e.chemin && e.chemin.indexOf(k) >= 0 ? "ok" : "";
+      s += '<text class="p" x="' + (X + k * W + 13) + '" y="20">' + k + "</text>" + aaCase(cl, X + k * W, 30, 26, 28, vu ? e.nb[k] : "");
+      if (vu && k > 0) s += '<text class="p" x="' + (X + k * W + 13) + '" y="72">' + e.ch[k] + "</text>";
+    }
+    s += '<text class="p g" x="10" y="98">ligne 1 : s · ligne 2 : nb[s] · ligne 3 : choix[s]</text>';
+    if (e.s > 0) e.cand.forEach(function (c) { var x1 = X + c * W + 13, x2 = X + e.s * W + 13; s += '<path class="fl' + (c === e.choisi ? " v" : "") + '" d="M' + x1 + " 60 Q" + (x1 + x2) / 2 + " " + (88 + (x2 - x1) / 4) + " " + x2 + ' 60"/>'; });
+    if (e.chemin) { for (var q = 0; q < e.chemin.length; q++) { var a = e.chemin[q], b = a - e.ch[a]; var xa = X + a * W + 13, xb = X + b * W + 13; s += '<path class="fl v" d="M' + xa + " 30 Q" + (xa + xb) / 2 + " " + (6 - (xa - xb) / 6) + " " + xb + ' 30"/><text class="t" x="' + (xa + xb) / 2 + '" y="' + (12 - (xa - xb) / 12) + '">' + e.ch[a] + "</text>"; } }
+    return s + "</svg>";
+  }
+  function svgLcs(e, saut) {
+    var W = 34, X = 40, Y = 34, s = '<svg viewBox="0 0 300 290" role="img" aria-label="Table de la plus longue sous-séquence commune">';
+    for (var j = 0; j <= 6; j++) s += '<text class="t" x="' + (X + j * W + 16) + '" y="12">' + (j ? B[j - 1] : "·") + "</text>";
+    for (var i = 0; i <= 6; i++) {
+      s += '<text class="t" x="20" y="' + (Y + i * W + 15) + '">' + (i ? A[i - 1] : "·") + "</text>";
+      for (var k = 0; k <= 6; k++) {
+        var v = e.L[i][k], cl = v === null ? "vide" : "";
+        if (e.cur && e.cur[0] === i && e.cur[1] === k) cl = "on" + (saut ? "" : " neuf");
+        else if (e.dep.some(function (d) { return d[0] === i && d[1] === k; })) cl = "bl";
+        else if (e.chemin && e.chemin.some(function (d) { return d[0] === i && d[1] === k; })) cl = A[i - 1] === B[k - 1] ? "ok" : "bl";
+        s += aaCase(cl, X + k * W, Y + i * W, 30, 30, v === null ? "" : v);
+      }
+    }
+    if (e.lu !== undefined) s += '<text x="150" y="282" style="font-weight:700">PLSC : ' + (e.lu || "…") + "</text>";
+    return s + "</svg>";
+  }
+  var L = O.lecteur(z, { titre: "une table qui se remplit", sous: "programmation dynamique", choix: [{ k: "monnaie", t: "rendu de monnaie" }, { k: "lcs", t: "PLSC PYTHON / PHOTON" }],
+    etapes: function (k) { return k === "lcs" ? etapesLcs() : etapesMonnaie(); },
+    dessine: function (sc, e, i, E, saut) { sc.innerHTML = '<div class="aa">' + (e.L ? svgLcs(e, saut) : svgMonnaie(e, saut)) + '<div class="legende"><span><i style="background:var(--ambre-f);border-color:var(--ambre)"></i>case calculée</span><span><i style="background:var(--bleu-f);border-color:var(--bleu)"></i>cases utilisées</span><span><i style="background:var(--vert-f);border-color:var(--vert)"></i>choix retenu</span></div></div>'; },
+    vitesse: 1200 });
+  if (opt === "lcs") L.charger("lcs");
+};
+
+/* ===================== 4. Recherche textuelle : naïf et Horspool ===================== */
+WIDGETS_EXT["algo-boyer-moore"] = function (z, opt, O) {
+  var T = "LES BANANES ET LES ANANAS", M = "ANANAS", n = T.length, m = M.length, W = 13.4, X = 6;
+  var D = {}; for (var k = 0; k < m - 1; k++) D[M[k]] = m - 1 - k;
+  function etapes(mode) {
+    var E = [], i = 0, cmp = 0, trouve = [];
+    function snap(o) { o.cmp = cmp; o.trouve = trouve.slice(); E.push(o); }
+    snap({ i: 0, j: null, msg: mode === "naif" ? "Algorithme <b>naïf</b> : on compare de <b>gauche à droite</b> ; à chaque échec, la fenêtre avance d’<b>une</b> case." : "Boyer-Moore-Horspool : table de décalage (prétraitement du motif) : <b>A → 1, N → 2</b>, tout autre caractère → 6. On compare de <b>droite à gauche</b>." });
+    while (i <= n - m) {
+      var j = mode === "naif" ? 0 : m - 1, ok = true, res = {};
+      while (mode === "naif" ? j < m : j >= 0) {
+        cmp++;
+        var eg = T[i + j] === M[j]; res[j] = eg ? "ok" : "ko";
+        snap({ i: i, j: j, res: JSON.parse(JSON.stringify(res)), msg: "Fenêtre en " + i + " : texte[" + (i + j) + "] = " + (T[i + j] === " " ? "espace" : T[i + j]) + (eg ? " = " : " ≠ ") + M[j] + " (motif[" + j + "])." + (eg ? "" : " <b>Échec.</b>") });
+        if (!eg) { ok = false; break; }
+        j = mode === "naif" ? j + 1 : j - 1;
+      }
+      if (ok) trouve.push(i);
+      var saut = mode === "naif" ? 1 : (D[T[i + m - 1]] || m), c = T[i + m - 1];
+      var txt = (ok ? "<b>Occurrence trouvée en " + i + "</b>. " : "") + (mode === "naif" ? "On avance d’une case." : "Sous la dernière case de la fenêtre : « " + (c === " " ? "espace" : c) + " » → saut de <b>" + saut + "</b>" + (saut === m ? " (absent de la table : on saute tout le motif)." : "."));
+      i += saut;
+      if (i <= n - m) snap({ i: i, j: null, res: {}, msg: txt });
+      else snap({ i: i - saut, j: null, res: res, fin: true, msg: txt + " La fenêtre dépasserait le texte : fin. <b>" + cmp + " comparaisons</b> " + (mode === "naif" ? "(Horspool en fait 13 sur cet exemple)." : "(le naïf en fait 31 sur cet exemple).") });
+    }
+    return E;
+  }
+  function prepare(sc) {
+    var s = '<svg viewBox="0 0 345 120" role="img" aria-label="Fenêtre de recherche glissant sur le texte">';
+    for (var k = 0; k < n; k++) { s += '<text class="p" x="' + (X + k * W + W / 2) + '" y="10">' + (k % 5 === 0 ? k : "") + "</text>"; s += aaCase("", X + k * W, 18, W - 1.5, 24, T[k] === " " ? "␣" : T[k], ' id="bt-' + k + '"'); }
+    s += '<g id="bmot" class="mv">';
+    for (k = 0; k < m; k++) s += aaCase("", k * W, 0, W - 1.5, 24, M[k], ' id="bm-' + k + '"');
+    s += '<rect class="fen" x="-2" y="-48" width="' + (m * W + 2.5) + '" height="76" rx="6"/></g>';
+    s += '<text id="bcpt" class="t g" x="6" y="108"></text><text id="btrouve" class="t" x="300" y="108"></text></svg>';
+    sc.innerHTML = '<div class="aa">' + s + "</div>";
+  }
+  function dessine(sc, e, i, E, saut) {
+    var fin = aaInstant(sc.querySelector(".aa"), saut);
+    aaPos(sc.querySelector("#bmot"), X + e.i * W, 62);
+    for (var k = 0; k < m; k++) sc.querySelector("#bm-" + k).setAttribute("class", e.res && e.res[k] ? e.res[k] : (e.j === null && !e.fin && k === m - 1 && E[0].msg.indexOf("Horspool") >= 0 ? "on" : ""));
+    for (k = 0; k < n; k++) {
+      var cl = "";
+      e.trouve.forEach(function (t) { if (k >= t && k < t + m) cl = "ok"; });
+      if (e.j !== null && e.j !== undefined && k === e.i + e.j) cl = e.res[e.j];
+      sc.querySelector("#bt-" + k).setAttribute("class", cl);
+    }
+    sc.querySelector("#bcpt").textContent = "comparaisons : " + e.cmp;
+    sc.querySelector("#btrouve").textContent = e.trouve.length ? "trouvé en " + e.trouve.join(", ") : "";
+    fin();
+  }
+  var L = O.lecteur(z, { titre: "la fenêtre glisse sur le texte", sous: "ANANAS dans « LES BANANES ET LES ANANAS »", choix: [{ k: "horspool", t: "Boyer-Moore-Horspool" }, { k: "naif", t: "naïf" }],
+    etapes: etapes, prepare: prepare, dessine: dessine, vitesse: 1100 });
+  if (opt === "naif") L.charger("naif");
+};
+
+/* ===================== 5. Machine de Turing ===================== */
+WIDGETS_EXT["algo-turing"] = function (z, opt, O) {
+  var TR = [["debut", "0", "0", "D", "debut"], ["debut", "1", "1", "D", "debut"], ["debut", "_", "_", "G", "retenue"], ["retenue", "1", "0", "G", "retenue"], ["retenue", "0", "1", "-", "fin"], ["retenue", "_", "1", "-", "fin"]];
+  var CW = 34, X0 = 14, NC = 9;
+  function etapes(mot) {
+    var ruban = {}, E = [], pos = 0, etat = "debut", k;
+    for (k = 0; k < mot.length; k++) ruban[k] = mot[k];
+    function vue() { var t = []; for (var c = -2; c < NC - 2; c++) t.push(ruban[c] || "_"); return t; }
+    E.push({ r: vue(), pos: 0, etat: etat, ligne: -1, ecrit: null, msg: "Ruban : le nombre binaire <b>" + mot + "</b> (" + parseInt(mot, 2) + " en décimal). Tête sur le premier chiffre, état <b>debut</b>. Les cases vides contiennent le blanc _." });
+    var garde = 0;
+    while (etat !== "fin" && garde++ < 50) {
+      var lu = ruban[pos] || "_", li = -1;
+      TR.forEach(function (t, q) { if (t[0] === etat && t[1] === lu) li = q; });
+      var t = TR[li];
+      ruban[pos] = t[2];
+      var avant = pos;
+      pos += t[3] === "G" ? -1 : t[3] === "D" ? 1 : 0;
+      var ancien = etat; etat = t[4];
+      E.push({ r: vue(), pos: pos, etat: etat, ligne: li, ecrit: avant, msg: "État <b>" + ancien + "</b>, lu <b>" + lu + "</b> → écrire <b>" + t[2] + "</b>, " + (t[3] === "G" ? "aller à gauche" : t[3] === "D" ? "aller à droite" : "ne pas bouger") + ", état <b>" + etat + "</b>." + (etat === "fin" ? " La machine s’arrête : le ruban contient <b>" + vue().join("").replace(/_/g, "") + "</b> (" + (parseInt(mot, 2) + 1) + ")." : "") });
+    }
+    return E;
+  }
+  function prepare(sc) {
+    var s = '<svg viewBox="0 0 340 112" role="img" aria-label="Ruban et tête d’une machine de Turing">';
+    for (var c = 0; c < NC; c++) s += aaCase("", X0 + c * CW, 46, CW - 3, 32, "", ' id="tu-' + c + '"') + '<text class="p" x="' + (X0 + c * CW + 15.5) + '" y="90">' + (c - 2) + "</text>";
+    s += '<text class="p g" x="' + X0 + '" y="104">…ruban infini des deux côtés…</text>';
+    s += '<g id="tete" class="mv"><path class="tete-l" d="M0 40 L-9 26 L9 26z"/><rect x="-32" y="0" width="64" height="22" rx="11" style="fill:var(--ambre-f);stroke:var(--ambre)"/><text id="tetat" x="0" y="11" style="font-size:11.5px"></text></g></svg>';
+    var tab = '<div class="tab-wrap" style="margin-top:8px"><table class="petit"><tr><th>état</th><th>lu</th><th>écrit</th><th>dépl.</th><th>nouvel état</th></tr>' + TR.map(function (t, q) { return '<tr id="tl-' + q + '"><td>' + t.join("</td><td>") + "</td></tr>"; }).join("") + "</table></div>";
+    sc.innerHTML = '<div class="aa">' + s + tab + "</div>";
+  }
+  function dessine(sc, e, i, E, saut) {
+    var fin = aaInstant(sc.querySelector(".aa"), saut);
+    for (var c = 0; c < NC; c++) { var g = sc.querySelector("#tu-" + c); g.querySelector("text").textContent = e.r[c]; g.setAttribute("class", e.ecrit !== null && c === e.ecrit + 2 ? "ok" + (saut ? "" : " neuf") : e.r[c] === "_" ? "muet" : ""); }
+    aaPos(sc.querySelector("#tete"), X0 + (e.pos + 2) * CW + 15.5, 2);
+    sc.querySelector("#tetat").textContent = e.etat;
+    for (var q = 0; q < TR.length; q++) { var tr = sc.querySelector("#tl-" + q); tr.style.background = q === e.ligne ? "var(--ambre-f)" : ""; tr.style.fontWeight = q === e.ligne ? "700" : ""; }
+    fin();
+  }
+  O.lecteur(z, { titre: "machine de Turing : ajouter 1 en binaire", choix: [{ k: "1011", t: "ruban 1011" }, { k: "111", t: "ruban 111" }], etapes: etapes, prepare: prepare, dessine: dessine, vitesse: 1300 });
+};
+
+/* ===================== 6. Trois paradigmes en action ===================== */
+WIDGETS_EXT["algo-paradigmes"] = function (z, opt, O) {
+  var CODE_IMP = ["s = 0", "for x in t:", "    if x % 2 == 0:", "        s = s + x * x", "print(s)"];
+  function etapes(k) {
+    var E = [];
+    if (k === "imp") {
+      var t = [1, 2, 3, 4], s = 0;
+      E.push({ l: 1, v: { t: "[1, 2, 3, 4]" }, chg: "", msg: "Impératif : on exécute des <b>instructions</b> qui modifient un <b>état</b> (la mémoire, à droite). Pour savoir ce que vaut s, il faut savoir où on en est." });
+      E.push({ l: 1, v: { t: "[1, 2, 3, 4]", s: 0 }, chg: "s", msg: "Affectation : s reçoit 0." });
+      t.forEach(function (x) {
+        E.push({ l: 2, v: { t: "[1, 2, 3, 4]", s: s, x: x }, chg: "x", msg: "La boucle donne à x la valeur " + x + "." });
+        E.push({ l: 3, v: { t: "[1, 2, 3, 4]", s: s, x: x }, chg: "", msg: x + " % 2 == 0 : " + (x % 2 === 0 ? "vrai." : "faux, on passe.") });
+        if (x % 2 === 0) { s += x * x; E.push({ l: 4, v: { t: "[1, 2, 3, 4]", s: s, x: x }, chg: "s", msg: "s est <b>modifiée</b> : elle vaut maintenant " + s + ". L’ancienne valeur est perdue." }); }
+      });
+      E.push({ l: 5, v: { t: "[1, 2, 3, 4]", s: s, x: 4 }, chg: "", msg: "Affichage de <b>20</b>. Le résultat est le dernier état de la variable s." });
+      return E;
+    }
+    if (k === "fonc") {
+      var R = ["somme(carres(pairs([1, 2, 3, 4])))", "somme(carres([2, 4]))", "somme([4, 16])", "20"];
+      var M = ["Fonctionnel : le programme est une <b>expression</b>. On l’évalue en remplaçant chaque appel de fonction par son résultat, de l’intérieur vers l’extérieur. Aucune variable n’est modifiée.", "pairs([1, 2, 3, 4]) vaut [2, 4] : on <b>remplace</b> l’appel par sa valeur (c’est ce que fait filter).", "carres([2, 4]) vaut [4, 16] (map). La liste [2, 4] n’a pas été modifiée : une nouvelle liste est créée.", "somme([4, 16]) vaut <b>20</b>. Une fonction pure peut toujours être remplacée par sa valeur : c’est la <b>transparence référentielle</b>."];
+      R.forEach(function (r, q) { E.push({ reecr: R.slice(0, q + 1), msg: M[q] }); });
+      var R2 = ["f([1, 2, 3, 4])", "f([2, 3, 4])", "4 + f([3, 4])", "4 + f([4])", "4 + (16 + f([]))", "4 + (16 + 0)", "20"];
+      R2.forEach(function (r, q) { E.push({ reecr: R2.slice(0, q + 1), msg: q === 0 ? "Même calcul en <b>récursif</b> (f renvoie 0 pour la liste vide, et ajoute le carré du premier élément s’il est pair) : la boucle est remplacée par la récursion." : q === R2.length - 1 ? "Résultat <b>20</b>, sans jamais modifier de variable." : "On remplace f(…) par sa définition." }); });
+      return E;
+    }
+    var vals = [];
+    E.push({ obj: [], appel: "s = Serie()", msg: "Objet : on crée un <b>objet</b> de la classe Serie. Il contient son propre état (l’attribut valeurs), vide pour l’instant." });
+    [1, 2, 3, 4].forEach(function (x) { vals.push(x); E.push({ obj: vals.slice(), appel: "s.ajouter(" + x + ")", msg: "On <b>envoie un message</b> à l’objet : la méthode ajouter modifie <b>son</b> attribut valeurs. Personne d’autre n’y touche directement (encapsulation)." }); });
+    E.push({ obj: vals.slice(), appel: "s.somme_carres_pairs()  →  20", msg: "La méthode lit l’état de l’objet et renvoie <b>20</b>. Les données et les traitements qui les concernent sont regroupés au même endroit." });
+    return E;
+  }
+  function dessine(sc, e, i, E, saut) {
+    var h = '<div class="aa">';
+    if (e.l) {
+      h += '<div class="deux"><div class="code-l">' + CODE_IMP.map(function (l, q) { return '<span class="l' + (q + 1 === e.l ? " vise" : "") + '">' + O.hlPy(l) + "</span>"; }).join("") + '</div><div><div class="titre-pile">état (variables)</div><div class="vars">' + Object.keys(e.v).map(function (k) { return '<span class="' + (k === e.chg ? "chg" + (saut ? "" : " neuf") : "") + '">' + k + " = " + e.v[k] + "</span>"; }).join("") + "</div></div></div>";
+    } else if (e.reecr) {
+      h += '<div class="titre-pile">évaluation par réécriture</div><div class="reecr">' + e.reecr.map(function (r, q) { return '<div class="' + (q === e.reecr.length - 1 ? "der" + (saut ? "" : " neuf") : "") + '">' + (q ? "= " : "") + O.esc(r) + "</div>"; }).join("") + "</div>";
+    } else {
+      h += '<svg viewBox="0 0 330 130" role="img" aria-label="Un objet et son état"><rect x="150" y="12" width="172" height="104" rx="10" style="fill:var(--bleu-f);stroke:var(--bleu);stroke-width:1.5"/><text x="236" y="30" style="font-weight:700">objet Serie</text><text class="t" x="236" y="54">valeurs =</text>';
+      e.obj.forEach(function (v, q) { h += aaCase(q === e.obj.length - 1 && /ajouter/.test(e.appel) ? "on" + (saut ? "" : " neuf") : "", 164 + q * 38, 66, 32, 30, v); });
+      if (!e.obj.length) h += '<text class="t" x="236" y="81">[ ]</text>';
+      h += '<text class="g" x="4" y="64" style="font-size:12px">s</text><path class="fl" d="M18 64 L146 64"/><path class="tete-l" d="M146 59 L154 64 L146 69z"/></svg><div class="code-l"><span class="l vise">' + O.esc(e.appel) + "</span></div>";
+    }
+    sc.innerHTML = h + "</div>";
+  }
+  O.lecteur(z, { titre: "un même calcul, trois paradigmes", sous: "somme des carrés des nombres pairs de [1, 2, 3, 4]", choix: [{ k: "imp", t: "impératif" }, { k: "fonc", t: "fonctionnel" }, { k: "obj", t: "objet" }], etapes: etapes, dessine: dessine, vitesse: 1500 });
+};
+
+/* ===================== 7. Frise de l'histoire ===================== */
+WIDGETS_EXT["algo-frise"] = function (z, opt, O) {
+  var ERES = [
+    { t: "Antiquité → XVIIe", m: 90, ev: [["−300", "Euclide", "i"], ["825", "al-Khwarizmi", "i"], ["1642", "Pascaline", "m"]], msg: "Des <b>algorithmes</b> sans machines (Euclide, al-Khwarizmi), puis des <b>machines à calculer</b> sans programme (la Pascaline ne sait qu’additionner et soustraire)." },
+    { t: "XIXe siècle", m: 85, ev: [["1801", "Jacquard", "m"], ["1843", "Lovelace", "l"], ["1854", "Boole", "i"]], msg: "Les <b>cartes perforées</b> séparent le « programme » du métier à tisser. Ada Lovelace publie un programme pour une machine qui n’existe pas encore : le logiciel naît sur le papier." },
+    { t: "1936-1945", m: 80, ev: [["1936", "Turing", "i"], ["1941", "Z3", "m"], ["1945", "von Neumann", "i"]], msg: "<b>1936</b> : la machine universelle (théorie). 1941-1945 : des calculateurs réels, programmés en <b>recâblant</b> ou par film perforé. Le matériel domine." },
+    { t: "1946-1949", m: 70, ev: [["1946", "ENIAC", "m"], ["1947", "transistor", "m"], ["1948", "Baby", "l"]], msg: "<b>21 juin 1948</b> : premier programme <b>enregistré en mémoire</b>. Changer de calcul ne demande plus de modifier la machine : le logiciel devient une donnée." },
+    { t: "1950-1968", m: 55, ev: [["1952", "A-0", "l"], ["1957", "Fortran", "l"], ["1958", "circuit intégré", "m"]], msg: "Compilateurs et <b>langages de haut niveau</b> : un même programme tourne sur plusieurs machines. Le circuit intégré miniaturise le matériel." },
+    { t: "1969-1980", m: 40, ev: [["1969", "ARPANET, Unix", "r"], ["1971", "Intel 4004", "m"], ["1973", "Micral N", "m"]], msg: "<b>1969</b> : ARPANET, Unix, et IBM qui vend ses logiciels à part. Le microprocesseur rend le matériel bon marché ; le logiciel devient un produit." },
+    { t: "1981-1999", m: 28, ev: [["1983", "TCP/IP", "r"], ["1991", "Web, Linux, Python", "l"]], msg: "Micro-ordinateurs dans les foyers, <b>Internet</b> (TCP/IP, 1983) et le <b>Web</b> (1989-1991). La valeur et le coût sont désormais surtout dans le logiciel." },
+    { t: "depuis 2000", m: 22, ev: [["2007", "smartphone", "m"], ["2016", "AlphaGo", "l"]], msg: "Smartphones (SoC), informatique en nuage et <b>virtualisation</b> : une machine peut être un logiciel. Retour de matériels spécialisés (GPU) pour l’intelligence artificielle." }
+  ];
+  function etapes() { return ERES.map(function (e, k) { return { k: k, msg: "<b>" + e.t + "</b> — " + e.msg }; }); }
+  var COUL = { m: ["var(--bleu)", "var(--bleu-f)", "matériel"], l: ["var(--vert)", "var(--vert-f)", "logiciel"], i: ["var(--ambre)", "var(--ambre-f)", "idée"], r: ["var(--violet)", "var(--bg2)", "réseau"] };
+  function prepare(sc) {
+    var h = '<div class="aa"><div class="frise-v" style="position:relative;padding-left:18px;border-left:3px solid var(--ligne2);margin-left:8px">';
+    ERES.forEach(function (e, k) {
+      h += '<div id="fe-' + k + '" style="position:relative;padding:5px 0 7px;transition:opacity .4s">' +
+        '<span id="fp-' + k + '" style="position:absolute;left:-26px;top:9px;width:13px;height:13px;border-radius:50%;border:2px solid var(--encre3);background:var(--bg2)"></span>' +
+        '<div style="font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--encre2)">' + e.t + '</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:3px">' +
+        e.ev.map(function (v) { var c = COUL[v[2]]; return '<span style="font-family:var(--mono);font-size:.76rem;border:1.5px solid ' + c[0] + ';background:' + c[1] + ';border-radius:7px;padding:2px 7px"><b>' + v[0] + "</b> " + O.esc(v[1]) + "</span>"; }).join("") + "</div></div>";
+    });
+    h += '</div><div class="jauge" style="margin-top:8px">part du matériel (bleu) et du logiciel (vert) dans l’effort et la valeur — ordre de grandeur illustratif<div style="display:flex;height:14px;border-radius:7px;overflow:hidden;border:1px solid var(--ligne2);margin-top:4px"><div id="jm" class="jg" style="background:var(--bleu)"></div><div style="flex:1;background:var(--vert)"></div></div></div>';
+    h += '<div class="legende">' + ["m", "l", "i", "r"].map(function (k) { return '<span><i style="background:' + COUL[k][1] + ";border-color:" + COUL[k][0] + '"></i>' + COUL[k][2] + "</span>"; }).join("") + "</div></div>";
+    sc.innerHTML = h;
+  }
+  function dessine(sc, e, i, E, saut) {
+    var fin = aaInstant(sc.querySelector(".aa"), saut);
+    ERES.forEach(function (er, k) {
+      var g = sc.querySelector("#fe-" + k), p = sc.querySelector("#fp-" + k);
+      g.style.opacity = k > e.k ? 0.22 : 1;
+      g.classList.toggle("neuf", k === e.k && !saut);
+      g.style.background = k === e.k ? "var(--bg3)" : "";
+      p.style.background = k <= e.k ? "var(--vert)" : "var(--bg2)";
+      p.style.borderColor = k <= e.k ? "var(--vert)" : "var(--encre3)";
+    });
+    sc.querySelector("#jm").style.width = ERES[e.k].m + "%";
+    fin();
+  }
+  O.lecteur(z, { titre: "la frise qui se déroule", sous: "matériel et logiciel", etapes: etapes, prepare: prepare, dessine: dessine, vitesse: 2600 });
+};
 
 /* ===================== Chapitre 1 — Programmation orientée objet ===================== */
 C("c1-dict", String.raw`
@@ -7708,56 +8213,8 @@ CH.push({
 /* ===================== Architectures matérielles — Système sur puce (SoC) ===================== */
 /* Feuille de style commune aux animations des chapitres « architectures, systèmes d'exploitation et réseaux »
    (soc, proc, rout, crypto) : injectée une seule fois, au premier affichage d'une de ces animations. */
-var ARCH_CSS = [
-  ".ar .scene svg{font-family:var(--mono)}",
-  ".ar .scene svg text{font-size:12px;fill:var(--encre)}",
-  ".ar .scene svg .pt{font-size:10.5px;fill:var(--encre2)}",
-  ".ar .scene svg .gd{font-size:13px;font-weight:700}",
-  ".ar-large .scene svg{min-width:540px}",
-  ".ar:not(.ar-large) .scene svg{max-width:540px}",
-  ".ar-tab th:first-child{width:1%}",
-  ".ar .bl rect{fill:var(--bg2);stroke:var(--ligne2);stroke-width:1.4}",
-  ".ar .bl.on rect{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.6}",
-  ".ar .bl.ok rect{fill:var(--vert-f);stroke:var(--vert);stroke-width:2}",
-  ".ar .bl.off{opacity:.35}",
-  ".ar .bl.ko rect{fill:var(--rouge-f);stroke:var(--rouge);stroke-width:2.4}",
-  ".ar .puce{fill:none;stroke:var(--encre3);stroke-width:2;stroke-dasharray:7 4}",
-  ".ar .noc{fill:var(--bleu-f);stroke:var(--bleu);stroke-width:1.4}",
-  ".ar .noc.on{stroke-width:2.6}",
-  ".ar .fil{stroke:var(--ligne2);stroke-width:2;fill:none}",
-  ".ar .fil.on{stroke:var(--ambre);stroke-width:3.2}",
-  ".ar .fil.ok{stroke:var(--vert);stroke-width:3.4}",
-  ".ar .fil.ko{stroke:var(--rouge);stroke-width:2.4;stroke-dasharray:6 5}",
-  ".ar .fil.att{stroke:var(--rouge);stroke-width:2.2;stroke-dasharray:6 5}",
-  ".ar .fil.tient{stroke:var(--vert);stroke-width:2.6}",
-  ".ar .jeton{fill:var(--ambre);stroke:var(--bg2);stroke-width:2}",
-  ".ar .jeton.b{fill:var(--bleu)}.ar .jeton.v{fill:var(--vert)}",
-  ".ar .tete-f{fill:var(--encre3)}.ar .tete-f.on{fill:var(--ambre)}.ar .tete-f.ok{fill:var(--vert)}.ar .tete-f.ko{fill:var(--rouge)}",
-  ".ar .nd circle{fill:var(--bg2);stroke:var(--encre3);stroke-width:1.6}",
-  ".ar .nd.on circle{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.8}",
-  ".ar .nd.ok circle{fill:var(--vert-f);stroke:var(--vert);stroke-width:2.4}",
-  ".ar .nd text{font-weight:700;font-size:14px}",
-  ".ar .cout{font-size:11px;fill:var(--encre2)}",
-  ".ar .cout-f{fill:var(--bg);stroke:none}",
-  ".ar .scene .halo{paint-order:stroke;stroke:var(--bleu-f);stroke-width:5px;stroke-linejoin:round}",
-  ".ar-tab{overflow-x:auto;margin-top:10px;-webkit-overflow-scrolling:touch}",
-  ".ar-tab table{border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:0 auto;min-width:100%}",
-  ".ar-tab th,.ar-tab td{border:1px solid var(--ligne);padding:4px 6px;text-align:center;white-space:nowrap}",
-  ".ar-tab th{background:var(--bg3);color:var(--encre2);font-weight:700}",
-  ".ar-tab td.chg{background:var(--ambre-f);color:var(--encre);font-weight:700}",
-  ".ar-tab td.fixe{background:var(--vert-f)}",
-  ".ar-tab caption{caption-side:top;text-align:left;font-size:.78rem;color:var(--encre2);padding:2px 0 6px}",
-  "html.mo .ar .neuf{animation:ar-app .5s cubic-bezier(.2,.8,.2,1) both;transform-box:fill-box;transform-origin:center}",
-  "html.mo .ar .trace{stroke-dasharray:var(--l,400);stroke-dashoffset:var(--l,400);animation:ar-trace .7s ease-out forwards}",
-  "html.mo .ar td.chg{animation:ar-cell .9s ease-out}",
-  "@keyframes ar-app{from{opacity:.15;transform:scale(.85)}}",
-  "@keyframes ar-trace{to{stroke-dashoffset:0}}",
-  "@keyframes ar-cell{from{background:var(--ambre);color:var(--bg)}}"
-].join("\n");
-function archStyle() {
-  if (document.getElementById("ar-style")) return;
-  var s = document.createElement("style"); s.id = "ar-style"; s.textContent = ARCH_CSS; document.head.appendChild(s);
-}
+/* Leur feuille de style est dans style.css (règles .ar, .ar-tab). */
+function archStyle() {}
 /* jeton qui parcourt un chemin SVG (seulement quand l'étape s'anime) */
 function archJeton(d, cl, dur, delai) {
   return '<circle class="jeton ' + (cl || "") + '" r="6.5" cx="0" cy="0"><animateMotion dur="' + (dur || 0.9) + 's" begin="' + (delai || 0) + 's" fill="freeze" path="' + d + '"/></circle>';
@@ -7892,6 +8349,21 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
   function cx(k) { return B[k][0] + B[k][2] / 2; }
   function bord(k) { var b = B[k]; return b[1] > YN ? b[1] : b[1] + b[3]; }
   function chemin(a, b) { return "M" + cx(a) + " " + bord(a) + " L" + cx(a) + " " + YN + " L" + cx(b) + " " + YN + " L" + cx(b) + " " + bord(b); }
+  /* deux dispositions : large (ordinateur) et étroite (téléphone, lisible sans défilement) */
+  var LARGE = { B: B, STUB: STUB, vb: "0 0 600 336", cadre: [110, 52, 382, 222], titre: [118, 68], noc: [122, YN - 9, 358, 18], lab: [474, YN + 4, "end"], chemin: chemin,
+    dedans: function (k) { var b = B[k]; return b[0] > 110 && b[0] < 490 && b[1] > 52 && b[1] < 274; } };
+  var XN = 180, BE = {}, col = { g: [["cpu", "gpu", "npu", "sram", "ener"], 22], d: [["isp", "aff", "radio", "mem", "es"], 198] };
+  Object.keys(col).forEach(function (c) { col[c][0].forEach(function (k, i) { BE[k] = [col[c][1], 92 + i * 62, 140, 48, B[k][4]]; }); });
+  [["capt", 10, 6], ["ant", 130, 6], ["batt", 250, 6], ["ecran", 10, 470], ["ram", 130, 470], ["flash", 250, 470]].forEach(function (x) { BE[x[0]] = [x[1], x[2], 100, 42, B[x[0]][4]]; });
+  BE.es[4] = "interfaces|USB, stockage"; BE.ener[4] = "gestion|d’énergie";
+  var STUBE = {}; ["capt", "ant", "batt"].forEach(function (k) { var x = BE[k][0] + 50; STUBE[k] = "M" + x + " 48 L" + x + " 68"; });
+  ["ecran", "ram", "flash"].forEach(function (k) { var x = BE[k][0] + 50; STUBE[k] = "M" + x + " 450 L" + x + " 470"; });
+  function cheminE(a, b) {
+    var A = BE[a], Bb = BE[b], xa = A[0] < XN ? A[0] + A[2] : A[0], xb = Bb[0] < XN ? Bb[0] + Bb[2] : Bb[0], ya = A[1] + A[3] / 2, yb = Bb[1] + Bb[3] / 2;
+    return "M" + xa + " " + ya + " L" + XN + " " + ya + " L" + XN + " " + yb + " L" + xb + " " + yb;
+  }
+  var ETROIT = { B: BE, STUB: STUBE, vb: "0 0 360 520", cadre: [6, 68, 348, 382], titre: [14, 84], noc: [XN - 9, 92, 18, 340], lab: [XN, 446, "middle"], chemin: cheminE,
+    dedans: function (k) { var b = BE[k]; return b[1] > 68 && b[1] < 450; } };
   var SC = {
     photo: [
       { on: [], ext: [], msg: "Le <b>SoC</b> (cadre en pointillés) réunit sur une seule puce de silicium ce qui occupait autrefois toute une carte : processeur (CPU), processeur graphique (GPU), accélérateur d’IA (NPU), processeur d’image (ISP), modem, contrôleurs… Ils communiquent par un <b>réseau sur puce</b> (bande bleue). Autour : ce qui reste en dehors de la puce. Suivons une photo." },
@@ -7911,15 +8383,17 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
     ]
   };
   function dessine(scene, e, i, etapes, saut) {
-    var s = '<svg viewBox="0 0 600 336" role="img" aria-label="Schéma d’un système sur puce de téléphone et de ses composants voisins">';
-    s += '<rect class="puce" x="110" y="52" width="382" height="222" rx="14"/><text class="gd" x="118" y="68">SoC (une seule puce)</text>';
+    var etroit = scene.clientWidth < 520, L = etroit ? ETROIT : LARGE, B = L.B, STUB = L.STUB, chemin = L.chemin;
+    scene.parentNode.parentNode.classList.toggle("etroit", etroit);
+    var s = '<svg viewBox="' + L.vb + '" role="img" aria-label="Schéma d’un système sur puce de téléphone et de ses composants voisins">';
+    s += '<rect class="puce" x="' + L.cadre[0] + '" y="' + L.cadre[1] + '" width="' + L.cadre[2] + '" height="' + L.cadre[3] + '" rx="14"/><text class="gd" x="' + L.titre[0] + '" y="' + L.titre[1] + '">SoC (une seule puce)</text>';
     Object.keys(STUB).forEach(function (k) { var on = e.ext && e.ext.indexOf(k) >= 0; s += '<path class="fil' + (on ? " on" : "") + '" d="' + STUB[k] + '"/>'; });
     var nocOn = e.va && e.va.length;
-    s += '<rect class="noc' + (nocOn ? " on" : "") + '" x="122" y="' + (YN - 9) + '" width="358" height="18" rx="9"/>';
-    (e.va || []).forEach(function (v) { if (B[v[0]][0] > 110 && B[v[0]][0] < 490 && B[v[1]][0] > 110 && B[v[1]][0] < 490) s += '<path class="fil on' + (saut ? "" : " trace") + '" style="--l:500" d="' + chemin(v[0], v[1]) + '"/>'; });
-    s += '<text class="pt halo" x="474" y="' + (YN + 4) + '" text-anchor="end">réseau sur puce</text>';
+    s += '<rect class="noc' + (nocOn ? " on" : "") + '" x="' + L.noc[0] + '" y="' + L.noc[1] + '" width="' + L.noc[2] + '" height="' + L.noc[3] + '" rx="9"/>';
+    (e.va || []).forEach(function (v) { if (L.dedans(v[0]) && L.dedans(v[1])) s += '<path class="fil on' + (saut ? "" : " trace") + '" style="--l:500" d="' + chemin(v[0], v[1]) + '"/>'; });
+    s += '<text class="pt halo" x="' + L.lab[0] + '" y="' + L.lab[1] + '" text-anchor="' + L.lab[2] + '">réseau sur puce</text>';
     Object.keys(B).forEach(function (k) {
-      var b = B[k], dedans = b[0] > 110 && b[0] < 490 && b[1] > 52 && b[1] < 274;
+      var b = B[k], dedans = L.dedans(k);
       var cl = (e.on.indexOf(k) >= 0 || (e.ext || []).indexOf(k) >= 0) ? " on" : (e.off && e.off.indexOf(k) >= 0 ? " off" : "");
       var l = b[4].split("|");
       s += '<g class="bl' + cl + (cl === " on" && !saut ? " neuf" : "") + '"><rect x="' + b[0] + '" y="' + b[1] + '" width="' + b[2] + '" height="' + b[3] + '" rx="' + (dedans ? 7 : 4) + '"' + (dedans ? "" : ' stroke-dasharray="3 3"') + "/>";
@@ -7928,7 +8402,7 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
     });
     if (!saut) (e.va || []).forEach(function (v, j) {
       var a = v[0], b = v[1], d;
-      if (STUB[a] && !(B[a][0] > 110 && B[a][0] < 490)) d = STUB[a].split(" M")[0];
+      if (STUB[a] && !L.dedans(a)) d = STUB[a].split(" M")[0];
       else d = chemin(a, b);
       s += archJeton(d, "", 0.9, j * 0.9);
     });
@@ -7940,7 +8414,7 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
 };
 
 CH.push({
-  id: "soc", n: 15, court: "soc", fichier: "soc.py",
+  id: "soc", court: "soc", fichier: "soc.py",
   titre: "Systèmes sur puce (SoC)",
   rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : composants intégrés d’un système sur puce",
   accroche: "Du modèle de von Neumann au SoC d’un téléphone : ce qu’il contient, pourquoi tout regrouper sur une puce accélère et économise l’énergie, et ce qu’on y perd.",
@@ -8050,7 +8524,7 @@ Entre deux puces d’une carte mère, il faut plusieurs cycles pour faire l’al
     { titre: "Bilan énergétique d’un téléphone", enonce: `<p>On modélise la consommation des blocs d’un SoC (valeurs fictives, en milliwatts) pour estimer l’autonomie d’une batterie de 15 Wh.</p>[[soc-ep-fourni]]`,
       questions: [
         { q: "Compléter <code>puissance(actifs)</code> avec une boucle.", c: `<p>On additionne <code>BLOCS[b]</code> pour chaque bloc <code>b</code> de la liste ; une liste vide donne 0.</p>` },
-        { q: "Un élève exécute le code ci-dessous et trouve une autonomie de 0,003 h en jeu. Expliquer et corriger.", code: "[[soc-ep-bug]]", c: `<p>Les puissances sont en <b>milliwatts</b> et l’énergie en <b>wattheures</b> : 15 / 4800 mélange les unités. Il faut convertir : 4800 mW = 4,8 W, et 15 / 4,8 = 3,125 h. C’est un bug d’unités, comme celui de la sonde Mars Climate Orbiter (chapitre mise au point).</p>` },
+        { q: "Un élève exécute le code ci-dessous et trouve une autonomie de 0,003 h en jeu. Expliquer et corriger.", code: "[[soc-ep-bug]]", c: `<p>Les puissances sont en <b>milliwatts</b> et l’énergie en <b>wattheures</b> : 15 / 4800 mélange les unités. Il faut convertir : 4800 mW = 4,8 W, et 15 / 4,8 = 3,125 h. C’est un bug d’unités, comme celui de la sonde Mars Climate Orbiter (chapitre « Modularité et mise au point »).</p>` },
         { q: "Écrire <code>bloc_le_plus_gourmand(actifs)</code> et un jeu de tests ; ajouter une assertion qui refuse un bloc inconnu.", c: `[[soc-ep-corr]]` },
         { q: "À l’oral : pourquoi l’autonomie est-elle quatre fois plus grande en écoutant de la musique ?", c: `<p>Écran éteint, le GPU et le contrôleur vidéo sont coupés et le CPU utilise ses cœurs économes : 1 200 mW au lieu de 4 800 mW. Cette coupure fine est possible parce que la gestion d’énergie du SoC pilote chaque bloc séparément.</p>` }
       ] }
@@ -8260,6 +8734,21 @@ def interblocage(attend):
 print(interblocage({"P1": "P2", "P2": None}))
 print(interblocage({"P1": "P2", "P2": "P3", "P3": "P1"}))
 print(interblocage({"P1": "P2", "P2": "P3", "P3": None, "P4": "P1"}))`, { out: "False\nTrue\nFalse" });
+
+C("proc-tr-rr", String.raw`
+from collections import deque
+
+file = deque([("A", 3), ("B", 2)])     # (nom, durée restante), tous prêts à t = 0
+quantum = 2
+t = 0
+while file:
+    nom, reste = file.popleft()          # l'ordonnanceur élit la tête de file
+    tranche = min(quantum, reste)
+    t = t + tranche
+    if reste > tranche:
+        file.append((nom, reste - tranche))   # pas fini : fin de file
+    else:
+        print(nom, "termine à", t)`, { fichier: "tourniquet_pas_a_pas.py", trace: true, titreTrace: "tourniquet, quantum 2", out: "B termine à 4\nA termine à 5" });
 
 /* prédis la sortie */
 C("proc-x1", String.raw`
@@ -8500,7 +8989,7 @@ WIDGETS_EXT["arch-interblocage"] = function (z, opt, O) {
 };
 
 CH.push({
-  id: "proc", n: 16, court: "processus", fichier: "processus.py",
+  id: "proc", court: "processus", fichier: "processus.py",
   titre: "Processus et ordonnancement",
   rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : gestion des processus et des ressources par un système d’exploitation",
   accroche: "Ce qu’est un processus, comment le système le crée, le fait passer d’un état à l’autre et partage le processeur entre tous (FIFO, tourniquet, priorités) ; les commandes ps, top, kill ; le risque d’interblocage.",
@@ -8557,10 +9046,12 @@ CH.push({
 <li><b>Priorités</b> : chaque processus a une priorité ; le plus prioritaire des prêts est élu, et l’arrivée d’un processus plus prioritaire interrompt l’élu. Risque : la <b>famine</b> d’un processus peu prioritaire qui n’est jamais élu.</li></ul>
 <p>On mesure : le <b>temps de séjour</b> = instant de fin − instant d’arrivée, et le <b>temps d’attente</b> = temps de séjour − durée d’exécution. Exemple avec quatre processus : P1 (arrivée 0, durée 5), P2 (1, 3), P3 (2, 1), P4 (4, 2).</p>
 [[w-arch-gantt]]
-<p>En Python, la file des prêts est une <b>file</b> du chapitre 3 (<code>deque</code>) :</p>
+<p>En Python, la file des prêts est une <b>file</b> du chapitre « Listes, piles, files » (<code>deque</code>) :</p>
 [[proc-donnees]]
 [[proc-fifo]]
 [[proc-rr]]
+<p>La même idée réduite à l’essentiel, à exécuter pas à pas (observe la file se vider et se remplir) :</p>
+[[w-trace|proc-tr-rr]]
 <details class="repli"><summary>Ordonnancement par priorités (préemptif) en Python</summary><div class="corps">[[proc-prio]]<p>À l’instant 1, P2 (priorité 1) interrompt P1 (priorité 2). À l’instant 4, P4 (priorité 1) passe devant P1. P3 (priorité 3) ne s’exécute qu’à la fin.</p></div></details>
 [[proc-temps]]
 <div class="boite attention"><div class="lab">⚠ les conventions changent d’un sujet à l’autre</div><p>Quand un processus arrive au moment même où un autre est interrompu, qui passe d’abord dans la file ? Ici, le nouveau venu. Un sujet de bac précise toujours sa règle : <b>lis-la</b> et applique-la à la lettre.</p></div>
@@ -8624,7 +9115,7 @@ CH.push({
         { q: "Compléter la méthode <code>tranche</code>.", c: `<p>Si la file est vide, renvoyer <code>None</code>. Sinon : retirer la tête (<code>self.file.pop(0)</code>), calculer <code>d = min(self.quantum, p.reste)</code>, diminuer <code>p.reste</code>, remettre <code>p</code> en fin de file s’il reste du travail, renvoyer <code>(p.pid, d)</code>.</p>` },
         { q: "Compléter <code>executer</code> : un processus est terminé quand il n’est pas revenu dans la file après sa tranche.", c: `[[proc-ep-corr]]` },
         { q: "Pour 3 processus de durées 5, 3, 1 (PID 10, 11, 12) et un quantum de 2, dans quel ordre finissent-ils ? Vérifier par un test.", c: `<p>12, puis 11, puis 10 : le chronogramme est 10 10 11 11 12 10 10 11 10. Le test <code>assert o2.executer() == [12, 11, 10]</code> le confirme.</p>` },
-        { q: "À l’oral : <code>self.file.pop(0)</code> est-il efficace ? Que proposer ?", c: `<p>Non : retirer l’élément d’indice 0 d’une liste Python décale tous les autres, coût proportionnel à la longueur. Une <code>collections.deque</code> retire en tête en temps constant (<code>popleft</code>), comme la file du chapitre 3.</p>[[proc-ep-cout]]` }
+        { q: "À l’oral : <code>self.file.pop(0)</code> est-il efficace ? Que proposer ?", c: `<p>Non : retirer l’élément d’indice 0 d’une liste Python décale tous les autres, coût proportionnel à la longueur. Une <code>collections.deque</code> retire en tête en temps constant (<code>popleft</code>), comme la file du chapitre « Listes, piles, files ».</p>[[proc-ep-cout]]` }
       ] }
   ],
   ecrit: { titre: "Ordonnancement, commandes et interblocage", points: "≈ 8 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite (on suppose un processeur à un seul cœur).",
@@ -8827,6 +9318,19 @@ g = graphe_ospf(LIENS_OSPF)
 dist, prec = dijkstra(g, "A")
 print(dist)
 print(chemin(prec, "F"), chemin(prec, "E"), chemin(prec, "B"))`, { fichier: "ospf.py", out: "{'A': 0, 'B': 10, 'C': 1, 'D': 2, 'E': 5, 'F': 4}\n['A', 'C', 'D', 'F'] ['A', 'C', 'D', 'F', 'E'] ['A', 'B']" });
+
+C("rout-tr-route", String.raw`
+TABLES = {"A": {"F": "B"}, "B": {"F": "F"}, "F": {"F": None}}   # passerelle vers F
+
+def route(depart, arrivee):
+    chemin = [depart]
+    r = depart
+    while r != arrivee:
+        r = TABLES[r][arrivee]       # le routeur r transmet à sa passerelle
+        chemin.append(r)
+    return chemin
+
+print(route("A", "F"))`, { fichier: "route_pas_a_pas.py", trace: true, titreTrace: "route(\"A\", \"F\")", out: "['A', 'B', 'F']" });
 
 /* prédis la sortie */
 C("rout-x1", String.raw`
@@ -9067,7 +9571,7 @@ WIDGETS_EXT["arch-dijkstra"] = function (z, opt, O) {
 };
 
 CH.push({
-  id: "rout", n: 17, court: "routage", fichier: "routage.py",
+  id: "rout", court: "routage", fichier: "routage.py",
   titre: "Protocoles de routage",
   rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : protocoles de routage",
   accroche: "Comment un paquet traverse Internet de routeur en routeur : tables de routage, RIP (nombre de sauts, Bellman-Ford) et OSPF (coût selon le débit, Dijkstra), et ce qui se passe quand une liaison tombe.",
@@ -9110,6 +9614,7 @@ CH.push({
 [[rout-rip]]
 <p>Un paquet suit ensuite les passerelles, routeur après routeur :</p>
 [[rout-route]]
+[[w-trace|rout-tr-route]]
 <div class="boite hp"><div class="lab"># pour aller plus loin : le comptage à l’infini</div><p>Le code n’annonce pas une route au voisin qui en est la passerelle (« horizon partagé », <i>split horizon</i>). Sans cette règle, après une panne, deux routeurs peuvent se renvoyer une route morte en augmentant sa distance d’un saut à chaque échange, jusqu’à 16 : c’est le « comptage à l’infini », qui explique le choix d’une limite aussi basse que 16.</p></div>` },
 
     { id: "i4", t: "RIP face à une panne", h: `
@@ -9218,6 +9723,451 @@ CH.push({
     { r: "RIP ou OSPF après une panne", v: "RIP : lent, de voisin en voisin. OSPF : diffusion de l’état de la liaison, recalcul immédiat." },
     { r: "traceroute", v: "Commande qui affiche les routeurs successifs traversés vers une destination." },
     { r: "Repères", v: "Bellman-Ford (1956-1958), Dijkstra (1959), ARPANET (1969), RIP (RFC 1058, 1988), OSPF (RFC 1131, 1989)." }
+  ]
+});
+
+/* ===================== Réseaux — sécurisation des communications (chiffrement, HTTPS) ===================== */
+C("cr-cesar", String.raw`
+ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+def cesar(texte, cle):
+    """Décale chaque lettre de cle rangs dans l'alphabet (les autres caractères restent)."""
+    resultat = ""
+    for c in texte:
+        if c in ALPHABET:
+            resultat = resultat + ALPHABET[(ALPHABET.index(c) + cle) % 26]
+        else:
+            resultat = resultat + c
+    return resultat
+
+chiffre = cesar("ATTAQUE A L AUBE", 3)
+print(chiffre)
+print(cesar(chiffre, -3))          # déchiffrer = décaler dans l'autre sens`, { fichier: "cesar.py", out: "DWWDTXH D O DXEH\nATTAQUE A L AUBE" });
+
+C("cr-force", String.raw`
+intercepte = "CPYOPK GZFD OPGLYE WP WJNPP"
+for cle in range(1, 26):                     # seulement 25 clés possibles
+    essai = cesar(intercepte, -cle)
+    if "VOUS" in essai:                      # un mot qu'on s'attend à trouver
+        print(cle, essai)`, { deps: ["cr-cesar"], out: "11 RENDEZ VOUS DEVANT LE LYCEE" });
+
+C("cr-frequences", String.raw`
+def lettre_la_plus_frequente(texte):
+    compte = {}
+    for c in texte:
+        if c in ALPHABET:
+            compte[c] = compte.get(c, 0) + 1
+    return max(compte, key=compte.get)
+
+intercepte = "SLZ LSLCLZ KL ALYTPUHSL YLCPZLUA SLBY LWYLBCL KL ZWLJPHSPAL HCLJ WHAPLUJL"
+x = lettre_la_plus_frequente(intercepte)
+cle = (ALPHABET.index(x) - ALPHABET.index("E")) % 26     # en français, E est la plus fréquente
+print(x, cle, cesar(intercepte, -cle))`, { deps: ["cr-cesar"], out: "L 7 LES ELEVES DE TERMINALE REVISENT LEUR EPREUVE DE SPECIALITE AVEC PATIENCE" });
+
+C("cr-xor-bits", String.raw`
+>>> 0b1100 ^ 0b1010          # 1 si les deux bits sont différents
+6
+>>> bin(0b1100 ^ 0b1010)
+'0b110'
+>>> m, k = 0b01001110, 0b01001011
+>>> (m ^ k) ^ k == m         # appliquer deux fois la même clé redonne le message
+True`, { console: true });
+
+C("cr-xor", String.raw`
+def xor_octets(donnees, cle):
+    """Combine chaque octet des données avec un octet de la clé (répétée si besoin)."""
+    return bytes(d ^ cle[i % len(cle)] for i, d in enumerate(donnees))
+
+message = "Rendez-vous à 18 h".encode("utf-8")   # texte -> octets
+cle = b"NSI"
+chiffre = xor_octets(message, cle)
+print(chiffre.hex())                              # illisible sans la clé
+print(xor_octets(chiffre, cle).decode("utf-8"))   # même opération pour déchiffrer`, { fichier: "xor.py", out: "1c36272a36336325263b20698df3697f6b6926\nRendez-vous à 18 h" });
+
+C("cr-masque", String.raw`
+import secrets
+
+message = "Rendez-vous à 18 h".encode("utf-8")
+masque = secrets.token_bytes(len(message))       # clé aléatoire aussi longue que le message
+chiffre = xor_octets(message, masque)
+print(xor_octets(chiffre, masque) == message, len(masque) == len(message))`, { deps: ["cr-xor"], out: "True True" });
+
+C("cr-nb-cles", String.raw`
+def cles_symetriques(n):
+    """Nombre de clés secrètes pour que chaque paire de personnes ait la sienne."""
+    return n * (n - 1) // 2
+
+for n in [2, 10, 100, 1000]:
+    print(n, "personnes :", cles_symetriques(n), "clés secrètes, ou", 2 * n, "clés en asymétrique")`, { out: "2 personnes : 1 clés secrètes, ou 4 clés en asymétrique\n10 personnes : 45 clés secrètes, ou 20 clés en asymétrique\n100 personnes : 4950 clés secrètes, ou 200 clés en asymétrique\n1000 personnes : 499500 clés secrètes, ou 2000 clés en asymétrique" });
+
+C("cr-rsa", String.raw`
+# RSA « jouet » : de très petits nombres, pour voir le principe (jamais pour de vrai !)
+p, q = 61, 53                   # deux nombres premiers, gardés secrets
+n = p * q                       # 3233 : public
+phi = (p - 1) * (q - 1)         # 3120 : secret
+e = 17                          # exposant public, sans diviseur commun avec phi
+d = pow(e, -1, phi)             # 2753 : exposant privé, inverse de e modulo phi
+print("clé publique :", (n, e), "clé privée :", (n, d), "e*d mod phi =", e * d % phi)
+
+m = 65                          # le message, codé par un nombre < n
+c = pow(m, e, n)                # chiffrement avec la clé PUBLIQUE : m**e mod n
+print("chiffré :", c, "déchiffré :", pow(c, d, n))   # déchiffrement avec la clé PRIVÉE`, { fichier: "rsa_jouet.py", out: "clé publique : (3233, 17) clé privée : (3233, 2753) e*d mod phi = 1\nchiffré : 2790 déchiffré : 65" });
+
+C("cr-signature", String.raw`
+empreinte = 1234                # résumé du document (en vrai : une fonction de hachage)
+signature = pow(empreinte, d, n)        # signée avec la clé PRIVÉE du serveur
+print(signature, pow(signature, e, n) == empreinte)   # tout le monde vérifie avec la clé PUBLIQUE
+print(pow(signature + 1, e, n) == empreinte)           # une signature modifiée ne passe pas`, { deps: ["cr-rsa"], out: "1512 True\nFalse" });
+
+C("cr-hybride", String.raw`
+import secrets
+
+# 1. Le serveur a publié sa clé publique (n, e) ; lui seul connaît d.
+# 2. Le client choisit une clé de session secrète, au hasard.
+cle_session = secrets.randbelow(255) + 1          # de 1 à 255 : un octet (jouet)
+# 3. Il l'envoie chiffrée avec la clé PUBLIQUE du serveur.
+envoi = pow(cle_session, e, n)
+# 4. Le serveur la déchiffre avec sa clé PRIVÉE : ils partagent maintenant la même clé.
+recue = pow(envoi, d, n)
+# 5. Tout le reste de l'échange est chiffré en SYMÉTRIQUE avec cette clé (ici, XOR).
+requete = xor_octets(b"GET /notes.html", bytes([recue]))
+print(recue == cle_session, xor_octets(requete, bytes([cle_session])))`, { deps: ["cr-rsa", "cr-xor"], out: "True b'GET /notes.html'" });
+
+C("cr-hachage", String.raw`
+>>> import hashlib
+>>> hashlib.sha256(b"bonjour").hexdigest()[:16]
+'2cb4b1431b84ec15'
+>>> hashlib.sha256(b"Bonjour").hexdigest()[:16]
+'9172e8eec99f144f'
+>>> len(hashlib.sha256(b"un texte de n'importe quelle longueur").hexdigest()) * 4
+256`, { console: true });
+
+C("cr-tr-cesar", String.raw`
+ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+def cesar(texte, cle):
+    resultat = ""
+    for c in texte:
+        i = ALPHABET.index(c)
+        resultat = resultat + ALPHABET[(i + cle) % 26]
+    return resultat
+
+print(cesar("NSIZ", 3))`, { fichier: "cesar_pas_a_pas.py", trace: true, titreTrace: "cesar(\"NSIZ\", 3)", out: "QVLC" });
+
+/* prédis la sortie */
+C("cr-x1", String.raw`
+print(cesar("NSI", 13), cesar(cesar("NSI", 13), 13))`, { deps: ["cr-cesar"], out: "AFV NSI" });
+
+C("cr-x2", String.raw`
+print(5 ^ 3, 5 ^ 5, 5 ^ 0, (5 ^ 3) ^ 3)`, { out: "6 0 5 5" });
+
+C("cr-x3", String.raw`
+n, e, d = 55, 3, 27
+c = pow(8, e, n)
+print(c, pow(c, d, n))`, { out: "17 8" });
+
+C("cr-x4", String.raw`
+m = b"AAAA"
+print(xor_octets(m, b"\x01"), xor_octets(m, b"\x01\x02"))`, { deps: ["cr-xor"], out: "b'@@@@' b'@C@C'" });
+
+/* épreuve pratique */
+C("cr-ep-fourni", String.raw`
+ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+def vigenere(texte, cle, sens=1):
+    """Chiffre (sens = 1) ou déchiffre (sens = -1) texte, en majuscules sans accents :
+    la lettre de rang i est décalée du rang de la lettre cle[i % len(cle)].
+    Les caractères hors de l'alphabet sont recopiés et ne consomment pas de lettre de la clé."""
+    resultat = ""
+    i = 0
+    for c in texte:
+        ...
+    return resultat`, { fichier: "vigenere.py", run: false, trous: [10] });
+
+C("cr-ep-corr", String.raw`
+ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+def vigenere(texte, cle, sens=1):
+    assert sens in (1, -1) and len(cle) > 0
+    resultat = ""
+    i = 0
+    for c in texte:
+        if c in ALPHABET:
+            decalage = ALPHABET.index(cle[i % len(cle)])
+            resultat = resultat + ALPHABET[(ALPHABET.index(c) + sens * decalage) % 26]
+            i = i + 1
+        else:
+            resultat = resultat + c
+    return resultat
+
+def test_vigenere():
+    assert vigenere("AAAA", "BC") == "BCBC"
+    assert vigenere("ATTAQUE", "A") == "ATTAQUE"              # clé A : décalage nul
+    c = vigenere("RENDEZ VOUS A MIDI", "NSI")
+    assert c == "EWVQWH IGCF S UVVQ"
+    assert vigenere(c, "NSI", -1) == "RENDEZ VOUS A MIDI"
+    assert vigenere("", "NSI") == ""
+
+test_vigenere()
+print(vigenere("RENDEZ VOUS A MIDI", "NSI"))`, { fichier: "vigenere.py", out: "EWVQWH IGCF S UVVQ" });
+
+C("cr-ep-freq", String.raw`
+print(vigenere("EEEEEE", "NSI"), cesar("EEEEEE", 13))`, { deps: ["cr-cesar", "cr-ep-corr"], out: "RWMRWM RRRRRR" });
+
+/* épreuve écrite */
+C("cr-ecrit-verif", String.raw`
+p, q, e = 5, 11, 3
+n, phi = p * q, (p - 1) * (q - 1)
+d = pow(e, -1, phi)
+print(n, phi, d, pow(8, e, n), pow(pow(8, e, n), d, n))`, { out: "55 40 27 17 8" });
+
+/* ---------- animation : le XOR bit à bit ---------- */
+WIDGETS_EXT["arch-xor"] = function (z, opt, O) {
+  archStyle();
+  var M = "01001110", K = "01001011", X = M.split("").map(function (b, i) { return b === K[i] ? "0" : "1"; }).join("");
+  var E = [
+    { l: ["m"], msg: "On chiffre un octet : la lettre <b>N</b>, codée 78 en ASCII, soit <b>01001110</b> en binaire." },
+    { l: ["m", "k"], msg: "La <b>clé</b> secrète est un autre octet, connu seulement des deux correspondants : ici <b>01001011</b>." },
+    { l: ["m", "k", "x"], col: true, msg: "Le <b>XOR</b> (ou exclusif) se calcule colonne par colonne : <b>1</b> si les deux bits sont <b>différents</b>, <b>0</b> s’ils sont égaux. 0⊕0 = 0, 0⊕1 = 1, 1⊕0 = 1, 1⊕1 = 0." },
+    { l: ["m", "k", "x"], msg: "Résultat : <b>00000101</b>. Sans la clé, cet octet ne dit rien de la lettre de départ : chaque bit du message a pu être inversé ou non." },
+    { l: ["x", "k", "m2"], col: true, msg: "Pour <b>déchiffrer</b>, le destinataire refait <b>la même opération</b> avec <b>la même clé</b> : 00000101 ⊕ 01001011 = 01001110. On retrouve N." },
+    { l: ["x", "k", "m2"], msg: "Pourquoi ça marche : (m ⊕ k) ⊕ k = m ⊕ (k ⊕ k) = m ⊕ 0 = m. C’est un chiffrement <b>symétrique</b> : une seule clé, pour chiffrer et pour déchiffrer. Avec une clé aléatoire aussi longue que le message et jamais réutilisée (masque jetable), il est même incassable." }
+  ];
+  var LIG = { m: ["message", M, "var(--bleu)"], k: ["clé", K, "var(--ambre)"], x: ["chiffré", X, "var(--rouge)"], m2: ["message", M, "var(--vert)"] };
+  function dessine(scene, e, i, Et, saut) {
+    var s = '<svg viewBox="0 0 400 ' + (30 + e.l.length * 40) + '" role="img" aria-label="Calcul d’un XOR bit à bit">';
+    e.l.forEach(function (k, r) {
+      var L = LIG[k], y = 20 + r * 40;
+      if (r === 2) s += '<line x1="96" y1="' + (y - 12) + '" x2="392" y2="' + (y - 12) + '" stroke="var(--encre2)" stroke-width="1.5"/><text class="gd" x="80" y="' + (y - 24) + '" text-anchor="middle">⊕</text>';
+      s += '<text x="6" y="' + (y + 16) + '" style="font-weight:700;fill:' + L[2] + '">' + L[0] + "</text>";
+      L[1].split("").forEach(function (b, j) {
+        var anim = r === 2 && e.col && !saut;
+        s += '<g' + (anim ? ' class="neuf" style="animation-delay:' + (j * 0.18).toFixed(2) + 's"' : "") + '><rect x="' + (100 + j * 36) + '" y="' + y + '" width="30" height="26" rx="5" style="fill:var(--bg2);stroke:' + L[2] + ';stroke-width:1.6"/><text class="gd" x="' + (115 + j * 36) + '" y="' + (y + 18) + '" text-anchor="middle" style="fill:' + L[2] + '">' + b + "</text></g>";
+      });
+    });
+    scene.innerHTML = s + "</svg>";
+  }
+  O.lecteur(z, { titre: "le XOR, chiffrement symétrique élémentaire", sous: "bit à bit", etapes: function () { return E; }, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar"); }, dessine: dessine, vitesse: 2600 });
+};
+
+/* ---------- animation : la poignée de main TLS ---------- */
+WIDGETS_EXT["arch-tls"] = function (z, opt, O) {
+  archStyle();
+  /* chaque message : [sens (1 = client → serveur), libellé, détail, chiffré ?] */
+  var SC = {
+    prog: [
+      { m: [], msg: "Le navigateur (client) veut ouvrir <code>https://exemple.fr</code>. Il se connecte au port <b>443</b> du serveur. Pour l’instant, rien n’est secret : un espion sur le réseau voit tout." },
+      { m: [[1, "ClientHello", "versions, méthodes de chiffrement connues, nombre aléatoire"]], msg: "<b>1.</b> Le client salue le serveur : versions de TLS et méthodes de chiffrement qu’il connaît, un nombre aléatoire." },
+      { m: [[-1, "ServerHello + certificat", "méthode choisie, nombre aléatoire, clé PUBLIQUE signée par une autorité"]], msg: "<b>2.</b> Le serveur répond et envoie son <b>certificat</b> : son nom de domaine, sa <b>clé publique</b>, et la <b>signature</b> d’une autorité de certification (AC)." },
+      { m: [], verif: true, msg: "<b>3.</b> Le client <b>vérifie le certificat</b> : la signature de l’autorité est-elle valide (il connaît les clés publiques des autorités reconnues) ? le nom est-il bien <code>exemple.fr</code> ? la date de validité est-elle bonne ? Sinon, le navigateur affiche une alerte." },
+      { m: [[1, "clé de session chiffrée", "secret tiré au hasard, chiffré avec la clé PUBLIQUE du serveur"]], cle: "client", msg: "<b>4.</b> Le client tire au hasard un <b>secret</b> qui servira à fabriquer la <b>clé de session</b>, le <b>chiffre avec la clé publique</b> du serveur et l’envoie. Un espion voit passer un message chiffré qu’il ne peut pas ouvrir." },
+      { m: [], cle: "deux", msg: "<b>5.</b> Seul le serveur peut le déchiffrer, avec sa <b>clé privée</b>. Client et serveur partagent maintenant le même secret, et en déduisent la même clé de session : c’est l’échange d’une clé <b>symétrique</b> grâce au chiffrement <b>asymétrique</b>." },
+      { m: [[1, "Finished", "résumé de l’échange", true], [-1, "Finished", "résumé de l’échange", true]], cle: "deux", msg: "<b>6.</b> Chacun envoie un résumé chiffré de tout l’échange : si un intermédiaire avait modifié un message, les résumés ne correspondraient pas." },
+      { m: [[1, "GET /index.html", "requête HTTP chiffrée (AES)", true], [-1, "200 OK + page", "réponse HTTP chiffrée (AES)", true]], cle: "deux", msg: "<b>7.</b> Le reste de la connexion est du <b>HTTP ordinaire</b>, chiffré en <b>symétrique</b> (AES) avec la clé de session : rapide, et illisible pour l’espion. C’est HTTPS = HTTP + TLS." }
+    ],
+    tls13: [
+      { m: [], msg: "Version actuelle, <b>TLS 1.3</b> (2018) : la clé de session n’est plus envoyée chiffrée par RSA, elle est <b>calculée des deux côtés</b> par un échange de Diffie-Hellman. Le principe reste : de l’asymétrique pour s’accorder sur une clé, du symétrique pour les données." },
+      { m: [[1, "ClientHello", "méthodes connues, nombre aléatoire, part publique d’un échange de clé"]], msg: "<b>1.</b> Dès son premier message, le client envoie sa <b>part publique</b> d’un échange de Diffie-Hellman (sa part privée reste chez lui)." },
+      { m: [[-1, "ServerHello", "méthode choisie, part publique du serveur"]], cle: "deux", msg: "<b>2.</b> Le serveur répond avec sa propre part publique. Chacun combine sa part privée avec la part publique de l’autre : ils obtiennent <b>le même secret</b>, que l’espion ne peut pas calculer à partir des seules parts publiques." },
+      { m: [[-1, "certificat + signature", "clé publique signée par une AC ; signature de l’échange avec la clé PRIVÉE", true]], cle: "deux", msg: "<b>3.</b> Déjà chiffré : le serveur envoie son <b>certificat</b> et <b>signe</b> l’échange avec sa <b>clé privée</b>. Il prouve ainsi qu’il est bien le propriétaire du certificat." },
+      { m: [], verif: true, cle: "deux", msg: "<b>4.</b> Le client vérifie le certificat (signature de l’autorité, nom, dates) et la signature de l’échange avec la clé publique du certificat. Personne ne s’est glissé au milieu." },
+      { m: [[1, "Finished", "résumé de l’échange", true], [1, "GET /index.html", "requête chiffrée", true], [-1, "200 OK + page", "réponse chiffrée", true]], cle: "deux", msg: "<b>5.</b> Le client confirme et peut envoyer sa requête aussitôt : un seul aller-retour avant les données. Tout est chiffré en symétrique (AES ou ChaCha20) avec la clé de session." }
+    ]
+  };
+  function dessine(scene, e, i, E, saut) {
+    var hist = [];
+    for (var k = 0; k <= i; k++) E[k].m.forEach(function (m) { hist.push({ m: m, neuf: k === i }); });
+    var H = 96 + hist.length * 58 + (e.verif ? 34 : 0);
+    function coupe(t) { if (t.length <= 46) return [t]; var k = t.lastIndexOf(" ", 46); if (k < 20) k = t.indexOf(" ", 46); return k < 0 ? [t] : [t.slice(0, k), t.slice(k + 1)]; }
+    var s = '<svg viewBox="0 0 420 ' + H + '" role="img" aria-label="Poignée de main TLS entre le navigateur et le serveur">';
+    s += '<g class="bl' + (e.cle ? " ok" : "") + '"><rect x="8" y="8" width="112" height="44" rx="8"/><text class="gd" x="64" y="28" text-anchor="middle">navigateur</text><text class="pt" x="64" y="44" text-anchor="middle">client</text></g>';
+    s += '<g class="bl' + (e.cle ? " ok" : "") + '"><rect x="300" y="8" width="112" height="44" rx="8"/><text class="gd" x="356" y="28" text-anchor="middle">serveur</text><text class="pt" x="356" y="44" text-anchor="middle">exemple.fr · 443</text></g>';
+    s += '<line x1="64" y1="52" x2="64" y2="' + (H - 6) + '" stroke="var(--ligne2)" stroke-width="2" stroke-dasharray="4 4"/><line x1="356" y1="52" x2="356" y2="' + (H - 6) + '" stroke="var(--ligne2)" stroke-width="2" stroke-dasharray="4 4"/>';
+    if (e.cle) s += '<text x="64" y="70" text-anchor="middle" class="pt" style="fill:var(--vert)">🔑 clé de session</text>' + (e.cle === "deux" ? '<text x="356" y="70" text-anchor="middle" class="pt" style="fill:var(--vert)">🔑 clé de session</text>' : "");
+    hist.forEach(function (h, k) {
+      var y = 100 + k * 58, m = h.m, x1 = m[0] > 0 ? 66 : 354, x2 = m[0] > 0 ? 350 : 70, cl = m[3] ? "ok" : "on";
+      var d = "M" + x1 + " " + y + " L" + x2 + " " + y;
+      s += '<path class="fil ' + cl + (h.neuf && !saut ? " trace" : "") + '" style="--l:290" d="' + d + '"/><path class="tete-f ' + cl + '" d="M' + (x2 + (m[0] > 0 ? 6 : -6)) + " " + y + " l" + (m[0] > 0 ? -10 : 10) + ' -6 l0 12z"/>';
+      s += '<text x="210" y="' + (y - 7) + '" text-anchor="middle" style="font-weight:700">' + (m[3] ? "🔒 " : "") + m[1] + '</text>' + coupe(m[2]).map(function (l, j) { return '<text class="pt" style="font-size:11.5px" x="210" y="' + (y + 17 + j * 14) + '" text-anchor="middle">' + l + "</text>"; }).join("");
+      if (h.neuf && !saut) s += archJeton(d, m[3] ? "v" : "", 0.8, 0);
+    });
+    if (e.verif) s += '<text x="64" y="' + (H - 16) + '" text-anchor="middle" style="font-weight:700;fill:var(--vert)">✓ certificat vérifié</text>';
+    scene.innerHTML = s + "</svg>";
+  }
+  O.lecteur(z, { titre: "la poignée de main de HTTPS", sous: "TLS", choix: [{ k: "prog", t: "le modèle du programme" }, { k: "tls13", t: "TLS 1.3 aujourd’hui" }],
+    etapes: function (k) { return SC[k]; }, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar"); }, dessine: dessine, vitesse: 3200 });
+};
+
+CH.push({
+  id: "crypto", court: "chiffrement", fichier: "chiffrement.py",
+  titre: "Sécurisation des communications",
+  rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : sécurisation des communications",
+  accroche: "Chiffrement symétrique (César, XOR, AES), asymétrique (RSA, clé publique et clé privée), échange de clé, certificats, et comment HTTPS combine tout cela.",
+  essentiel: [
+    "<b>Chiffrement symétrique</b> : une seule clé secrète, partagée, sert à chiffrer et à déchiffrer (César, XOR, AES). Rapide, mais il faut d’abord partager la clé.",
+    "<b>Chiffrement asymétrique</b> : chacun a une <b>clé publique</b> (diffusée, pour chiffrer) et une <b>clé privée</b> (secrète, pour déchiffrer). RSA en est l’exemple. Pas besoin de secret commun, mais calcul lent.",
+    "<b>Échange de clé</b> : on chiffre une clé symétrique avec la clé publique du destinataire ; ensuite tout l’échange se fait en symétrique. C’est le <b>chiffrement hybride</b>.",
+    "Un <b>certificat</b>, signé par une autorité de certification, garantit qu’une clé publique appartient bien au site visité : sans lui, un intermédiaire pourrait se faire passer pour le serveur.",
+    "<b>HTTPS</b> = HTTP + <b>TLS</b> (port 443) : poignée de main (certificat, échange de la clé de session), puis données chiffrées en symétrique."
+  ],
+  attendus: [
+    "Décrire les principes de chiffrement symétrique (clef partagée) et asymétrique (avec clef privée/clef publique).",
+    "Décrire l’échange d’une clef symétrique en utilisant un protocole asymétrique pour sécuriser une communication HTTPS.",
+    "Le programme précise : les protocoles peuvent être illustrés « en mode débranché, éventuellement avec description d’un chiffrement particulier » ; « la négociation de la méthode de chiffrement du protocole SSL (<i>Secure Sockets Layer</i>) n’est pas abordée »."
+  ],
+  intro: `<div class="boite ex"><div class="lab"># le vocabulaire compte</div><p><b>Chiffrer</b> : rendre un message illisible avec une clé. <b>Déchiffrer</b> : le rendre lisible <b>avec</b> la clé. <b>Décrypter</b> : le lire <b>sans</b> connaître la clé (casser le chiffrement). « Crypter » n’est pas employé en français correct. Le message lisible s’appelle le <b>texte clair</b>, le message chiffré le <b>cryptogramme</b>.</p></div>`,
+  idees: [
+    { id: "i1", t: "Les trois objectifs de la sécurité des échanges", h: `
+<p>Sur Internet, un paquet traverse des réseaux et des routeurs qui n’appartiennent ni à l’expéditeur ni au destinataire (chapitre « Protocoles de routage »). N’importe lequel pourrait lire ou modifier ce qui passe. Sécuriser une communication, c’est garantir :</p>
+<ul><li>la <b>confidentialité</b> : seul le destinataire peut lire le message (chiffrement) ;</li>
+<li>l’<b>intégrité</b> : le message n’a pas été modifié en route ;</li>
+<li>l’<b>authenticité</b> : on parle bien à celui qu’on croit (le vrai site de la banque, pas une imitation).</li></ul>
+<p><b>Exemple</b> : sur un Wi-Fi public, une page en <code>http://</code> circule en clair : le mot de passe tapé dans un formulaire peut être lu par un autre utilisateur du réseau. En <code>https://</code>, il voit seulement des octets chiffrés.</p>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1883 <b>·</b></span> Auguste Kerckhoffs énonce dans <i>La Cryptographie militaire</i> un principe toujours suivi : la sécurité d’un chiffrement doit reposer sur le secret de la <b>clé</b>, pas sur le secret de la <b>méthode</b>. AES et RSA sont publics ; seules les clés sont secrètes.</p></div>` },
+
+    { id: "i2", t: "Le chiffrement symétrique : César", h: `
+<div class="boite def"><div class="lab">"""définition"""</div><p>Un chiffrement est <b>symétrique</b> quand la <b>même clé</b> sert à chiffrer et à déchiffrer. Les deux correspondants doivent donc partager cette clé, et la garder secrète.</p></div>
+<p>Le plus ancien exemple connu : le <b>chiffre de César</b>, que Suétone attribue à Jules César : chaque lettre est remplacée par celle qui se trouve 3 rangs plus loin dans l’alphabet (A → D, B → E… Z → C). La clé est le décalage.</p>
+[[cr-cesar]]
+<p>Exécute-le pas à pas : regarde l’indice <code>i</code> de chaque lettre et le modulo 26 qui fait revenir Z sur C.</p>
+[[w-trace|cr-tr-cesar]]
+<p>Il est très faible : il n’y a que 25 clés possibles, on les essaie toutes (attaque par <b>force brute</b>).</p>
+[[cr-force]]
+<p>Même avec une substitution plus compliquée, chaque lettre est toujours remplacée par la même : l’<b>analyse des fréquences</b>, décrite dès le IXe siècle par le savant arabe al-Kindi, retrouve la lettre qui code E, la plus fréquente en français.</p>
+[[cr-frequences]]` },
+
+    { id: "i3", t: "XOR et chiffrements modernes (AES)", h: `
+<p>Un ordinateur chiffre des <b>octets</b>, pas des lettres. L’opération de base est le <b>XOR</b> (« ou exclusif », <code>^</code> en Python) : bit à bit, le résultat vaut 1 si les deux bits sont différents. Son intérêt : appliquer deux fois la même clé redonne le message, (m ⊕ k) ⊕ k = m.</p>
+[[w-arch-xor]]
+[[cr-xor-bits]]
+[[cr-xor]]
+<p>Si la clé est <b>aléatoire, aussi longue que le message et utilisée une seule fois</b>, le chiffrement est parfaitement sûr : c’est le <b>masque jetable</b> (Gilbert Vernam, 1917 ; Claude Shannon prouve en 1949 qu’il est incassable). Mais il faut échanger à l’avance une clé aussi longue que tous les messages futurs : inutilisable pour le Web.</p>
+[[cr-masque]]
+<p>Les chiffrements symétriques modernes combinent XOR, substitutions et permutations sur des blocs, en plusieurs tours. Le standard actuel est l’<b>AES</b> (<i>Advanced Encryption Standard</i>), choisi par l’agence américaine NIST en 2000 à l’issue d’un concours public (algorithme Rijndael, des Belges Joan Daemen et Vincent Rijmen) et publié en 2001 : blocs de 128 bits, clés de 128, 192 ou 256 bits. Avec une clé de 128 bits, il y a 2¹²⁸ clés possibles : la force brute est hors de portée. Les processeurs ont des instructions dédiées : il chiffre des gigaoctets par seconde.</p>
+<div class="boite attention"><div class="lab">⚠ le problème du symétrique</div><p>Comment Alice et un site web qu’elle n’a jamais visité pourraient-ils partager une clé secrète, alors que tout ce qu’ils s’envoient peut être lu ? Et il faut une clé par paire de correspondants : pour n personnes, n(n − 1) / 2 clés.</p>[[cr-nb-cles]]</div>` },
+
+    { id: "i4", t: "Le chiffrement asymétrique : clé publique, clé privée", h: `
+<div class="boite def"><div class="lab">"""définition"""</div><p>Dans un chiffrement <b>asymétrique</b>, chacun possède une <b>paire de clés</b> liées mathématiquement : une <b>clé publique</b>, que tout le monde peut connaître, et une <b>clé privée</b>, que lui seul connaît. Ce qui est chiffré avec la clé publique ne peut être déchiffré qu’avec la clé privée correspondante.</p></div>
+<p><b>Image</b> : Bob distribue des cadenas ouverts (clé publique) ; n’importe qui peut fermer une boîte avec, mais seul Bob a la clé qui les ouvre (clé privée). Plus besoin d’échanger un secret à l’avance.</p>
+<p>L’algorithme le plus connu est <b>RSA</b> (Rivest, Shamir et Adleman, 1977). Sa sécurité repose sur un problème difficile : à partir de n = p × q, retrouver les deux grands nombres premiers p et q. Multiplier est facile ; factoriser un nombre de plus de 600 chiffres est hors de portée des ordinateurs actuels.</p>
+<details class="repli"><summary>RSA avec de petits nombres (le calcul, pour comprendre)</summary><div class="corps">
+<ol><li>Choisir deux nombres premiers p et q ; calculer n = p × q et φ = (p − 1)(q − 1).</li>
+<li>Choisir e sans diviseur commun avec φ ; calculer d tel que e × d ≡ 1 (mod φ).</li>
+<li>Clé publique (n, e) ; clé privée (n, d).</li>
+<li>Chiffrer un nombre m &lt; n : c = mᵉ mod n. Déchiffrer : m = cᵈ mod n.</li></ol>
+[[cr-rsa]]
+<p>La fonction <code>pow(a, b, n)</code> calcule aᵇ mod n rapidement (exponentiation rapide, comme la puissance du chapitre « Récursivité »). Les calculs de modulo et la démonstration du fonctionnement ne sont pas au programme de NSI.</p></div></details>
+<p>Contrepartie : le chiffrement asymétrique est beaucoup plus <b>lent</b> que le symétrique (calculs sur des nombres de milliers de bits). On ne l’utilise donc pas pour chiffrer une vidéo entière, mais pour échanger une clé ou signer.</p>
+<div class="boite hp"><div class="lab"># la signature numérique</div><p>Dans l’autre sens : ce qui est « chiffré » avec la clé <b>privée</b> peut être vérifié par tous avec la clé <b>publique</b>. Seul le détenteur de la clé privée a pu produire cette valeur : c’est une <b>signature</b>. On signe en pratique une <b>empreinte</b> du document, calculée par une fonction de hachage.</p>[[cr-signature]]</div>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1976 <b>·</b></span> Whitfield Diffie et Martin Hellman publient l’idée de la cryptographie à clé publique et une méthode pour fabriquer un secret commun à travers un canal espionné. <span class="commit">1977 <b>·</b></span> Rivest, Shamir et Adleman proposent RSA. (Des chercheurs du renseignement britannique avaient trouvé des idées voisines quelques années plus tôt, restées secrètes jusqu’en 1997.)</p></div>` },
+
+    { id: "i5", t: "Échanger une clé symétrique grâce à l’asymétrique", h: `
+<p>On combine le meilleur des deux : l’asymétrique pour partager un secret, le symétrique pour tout le reste. C’est le <b>chiffrement hybride</b>, au cœur de la capacité du programme :</p>
+<ol><li>le serveur possède une paire de clés ; il donne sa <b>clé publique</b> au client ;</li>
+<li>le client tire au hasard une <b>clé de session</b> symétrique ;</li>
+<li>il la <b>chiffre avec la clé publique</b> du serveur et l’envoie ;</li>
+<li>le serveur la <b>déchiffre avec sa clé privée</b> ; un espion qui a tout vu passer ne peut pas la lire ;</li>
+<li>les deux chiffrent ensuite tous leurs messages avec cette clé de session, en <b>symétrique</b> (AES), ce qui est rapide.</li></ol>
+[[cr-hybride]]
+<p>Une nouvelle clé de session est tirée à chaque connexion : la découverte de l’une ne compromet pas les autres échanges.</p>` },
+
+    { id: "i6", t: "Certificats et autorités de certification", h: `
+<p>Reste une faille : quand le client reçoit « la clé publique du serveur », comment sait-il qu’elle vient vraiment du serveur ? Un attaquant placé entre les deux (attaque de l’<b>homme du milieu</b>) pourrait envoyer <b>sa</b> clé publique, déchiffrer la clé de session, puis relayer les messages en lisant tout.</p>
+<div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>certificat</b> est un document électronique qui associe un <b>nom de domaine</b> (par exemple <code>exemple.fr</code>) à une <b>clé publique</b>, avec des dates de validité, et qui est <b>signé</b> par une <b>autorité de certification</b> (AC) après vérification que le demandeur contrôle bien ce domaine.</p></div>
+<p>Le navigateur et le système d’exploitation contiennent la liste des clés publiques des autorités reconnues (autorités « racines »). En recevant un certificat, le navigateur vérifie la signature de l’autorité, le nom de domaine et les dates. Si quelque chose ne va pas, il affiche une alerte (« Votre connexion n’est pas privée »). Un attaquant ne peut pas fabriquer un certificat valide pour <code>exemple.fr</code> : il n’a pas la clé privée de l’autorité.</p>
+<p><b>Exemple</b> : l’autorité Let’s Encrypt, lancée en 2015, délivre gratuitement des certificats à n’importe quel site qui prouve contrôler son domaine ; elle a beaucoup contribué à généraliser HTTPS.</p>
+<div class="boite hp"><div class="lab"># pour aller plus loin : l’empreinte</div><p>Pour signer et pour vérifier l’<b>intégrité</b>, on utilise une <b>fonction de hachage</b> (SHA-256) : elle donne une empreinte de taille fixe ; changer une seule lettre change toute l’empreinte, et on ne sait pas retrouver le texte à partir d’elle.</p>[[cr-hachage]]</div>` },
+
+    { id: "i7", t: "HTTPS : HTTP dans un tunnel TLS", h: `
+<p><b>HTTPS</b> est le protocole HTTP du Web, transporté dans une connexion sécurisée par <b>TLS</b> (<i>Transport Layer Security</i>, successeur de SSL). Le serveur écoute sur le port <b>443</b> (au lieu de 80 pour HTTP). La connexion commence par une <b>poignée de main</b> (<i>handshake</i>) :</p>
+<ol><li>le client annonce les versions et méthodes de chiffrement qu’il connaît ;</li>
+<li>le serveur choisit et envoie son <b>certificat</b> (clé publique signée) ;</li>
+<li>le client vérifie le certificat ;</li>
+<li>client et serveur établissent une <b>clé de session</b> symétrique (dans le modèle du programme : le client l’envoie chiffrée avec la clé publique du serveur) ;</li>
+<li>tout le reste (requêtes, pages, mots de passe, cookies) est chiffré en symétrique avec cette clé.</li></ol>
+[[w-arch-tls]]
+<p>Le cadenas du navigateur signifie : la connexion est chiffrée, et le certificat est valide pour ce nom de domaine. Il ne dit <b>pas</b> que le site est honnête : un site d’hameçonnage peut avoir un certificat valide pour son propre nom (<code>banque-securite-connexion.com</code>). Il faut aussi lire l’adresse.</p>
+<div class="boite hp"><div class="lab"># ce qui se fait aujourd’hui</div><p>Dans TLS 1.3 (RFC 8446, 2018), la clé de session n’est plus envoyée chiffrée par RSA : elle est calculée des deux côtés par un échange de Diffie-Hellman, et le serveur <b>signe</b> l’échange avec sa clé privée pour prouver son identité. Ainsi, même si la clé privée du serveur était volée plus tard, les échanges passés resteraient secrets. Le principe exigé par le programme est le même : asymétrique pour s’accorder sur une clé, symétrique pour les données.</p></div>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1995 <b>·</b></span> Netscape diffuse SSL 2.0 dans son navigateur. <span class="commit">1999 <b>·</b></span> TLS 1.0 lui succède (RFC 2246). <span class="commit">2018 <b>·</b></span> TLS 1.3. SSL et les premières versions de TLS sont aujourd’hui abandonnées, à cause de failles.</p></div>` }
+  ],
+  pieges: [
+    { t: "Inverser clé publique et clé privée", h: `<p>Pour <b>chiffrer</b> un message à Bob : clé <b>publique</b> de Bob. Pour le <b>déchiffrer</b> : clé <b>privée</b> de Bob. Pour <b>signer</b> : clé privée de l’expéditeur ; pour vérifier la signature : sa clé publique.</p>` },
+    { t: "Dire que HTTPS utilise seulement l’asymétrique", h: `<p>L’asymétrique ne sert qu’au début (échange de la clé de session, authentification). Les données sont chiffrées en symétrique, beaucoup plus rapide.</p>` },
+    { t: "Croire que le cadenas garantit un site de confiance", h: `<p>Il garantit une connexion chiffrée avec le détenteur du certificat de <b>ce</b> nom de domaine. Un faux site a lui aussi un cadenas pour son propre nom.</p>` },
+    { t: "Confondre déchiffrer et décrypter", h: `<p>Déchiffrer : avec la clé. Décrypter : sans la clé, en cassant le chiffrement.</p>` },
+    { t: "Réutiliser un masque jetable", h: `<p>Avec deux messages chiffrés par la même clé XOR, (m₁ ⊕ k) ⊕ (m₂ ⊕ k) = m₁ ⊕ m₂ : la clé disparaît, et l’analyse des deux messages devient possible. Le masque n’est sûr que s’il sert une seule fois.</p>` }
+  ],
+  retenir: `
+<h2>Vocabulaire</h2>
+<p>Chiffrer / déchiffrer (avec la clé) / décrypter (sans la clé). Confidentialité, intégrité, authenticité.</p>
+<h2>Symétrique</h2>
+<ul><li>Une seule clé, partagée, pour chiffrer et déchiffrer.</li><li>César (décalage, 25 clés, analyse des fréquences), XOR ((m ⊕ k) ⊕ k = m), masque jetable, <b>AES</b> (2001, blocs de 128 bits).</li><li>Rapide ; problème : partager la clé (n(n − 1) / 2 clés pour n personnes).</li></ul>
+<h2>Asymétrique</h2>
+<ul><li>Paire de clés : <b>publique</b> (chiffrer, vérifier une signature) / <b>privée</b> (déchiffrer, signer).</li><li><b>RSA</b> (1977) : difficulté de factoriser n = p × q. Lent.</li></ul>
+<h2>Échange de clé (hybride)</h2>
+<ol><li>Le client tire une clé de session.</li><li>Il la chiffre avec la clé publique du serveur.</li><li>Le serveur la déchiffre avec sa clé privée.</li><li>Échange chiffré en symétrique avec la clé de session.</li></ol>
+<h2>Certificat</h2>
+<p>Nom de domaine + clé publique + dates, signé par une autorité de certification ; protège contre l’homme du milieu.</p>
+<h2>HTTPS</h2>
+<p>HTTP + TLS, port 443. Poignée de main : certificat, vérification, clé de session ; puis données en symétrique (AES).</p>`,
+  predis: [
+    { code: "cr-x1", niv: "facile", rep: "N + 13 = A, S + 13 = F, I + 13 = V. Avec 26 lettres, décaler deux fois de 13 revient à décaler de 26 : on retrouve le texte (c’est le « ROT13 »)." },
+    { code: "cr-x2", niv: "moyen", rep: "101 ⊕ 011 = 110 = 6 ; x ⊕ x = 0 ; x ⊕ 0 = x ; et (5 ⊕ 3) ⊕ 3 = 5 : appliquer la même clé deux fois redonne le message." },
+    { code: "cr-x3", niv: "moyen", rep: "8³ = 512 = 9 × 55 + 17, donc c = 17. Avec d = 27 (3 × 27 = 81 = 2 × 40 + 1), 17²⁷ mod 55 redonne 8." },
+    { code: "cr-x4", niv: "difficile", rep: "« A » vaut 65 = 0b1000001. 65 ⊕ 1 = 64, le caractère « @ ». Avec la clé de deux octets, les A de rang impair sont combinés avec 2 : 65 ⊕ 2 = 67, « C ». Avec une clé d’un seul octet, des lettres identiques donnent des octets identiques : l’analyse des fréquences marche encore." }
+  ],
+  ep: [
+    { titre: "Le chiffre de Vigenère", enonce: `<p>Le chiffre de Vigenère (XVIe siècle) améliore César : le décalage change à chaque lettre, selon un mot-clé. Avec la clé « NSI », la 1re lettre est décalée de 13 (N), la 2e de 18 (S), la 3e de 8 (I), la 4e de nouveau de 13, etc.</p>[[cr-ep-fourni]]`,
+      questions: [
+        { q: "Compléter <code>vigenere</code>.", c: `<p>Pour chaque lettre de l’alphabet, décaler de <code>sens × rang(cle[i % len(cle)])</code> modulo 26, puis augmenter <code>i</code> ; recopier les autres caractères sans toucher à <code>i</code>.</p>` },
+        { q: "Écrire un jeu de tests : clé « A », clé de deux lettres, aller-retour chiffrement / déchiffrement, texte vide.", c: `[[cr-ep-corr]]` },
+        { q: "Pourquoi Vigenère résiste-t-il mieux que César à l’analyse des fréquences ? Le montrer sur un texte de E.", c: `[[cr-ep-freq]]<p>Avec César, la même lettre est toujours chiffrée de la même façon (EEEEEE → RRRRRR). Avec Vigenère, elle donne trois lettres différentes selon sa position : les fréquences sont « lissées ». Il reste cassable (Babbage, Kasiski au XIXe siècle) en trouvant d’abord la longueur de la clé.</p>` },
+        { q: "À l’oral : Vigenère est-il un chiffrement symétrique ou asymétrique ?", c: `<p>Symétrique : la même clé (le mot « NSI ») sert à chiffrer et à déchiffrer ; les deux correspondants doivent la partager.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "Chiffrer un échange, du César au HTTPS", points: "≈ 7 points · 40 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite.",
+    enonce: `<p>Alice veut envoyer des messages à un serveur web sans qu’un espion connecté au même réseau Wi-Fi puisse les lire.</p>`,
+    questions: [
+      { q: "Alice et le serveur utilisent le chiffre de César. Chiffrer « BAC » avec la clé 3. Expliquer pourquoi l’espion peut casser ce chiffrement très vite.", pts: "1 pt", c: `<p>« EDF ». Il n’y a que 25 clés : l’espion les essaie toutes (force brute) et garde le texte qui a un sens.</p>` },
+      { q: "Rappeler ce qu’est un chiffrement symétrique, et donner la difficulté principale de son utilisation sur le Web.", pts: "1 pt", c: `<p>Une même clé sert à chiffrer et déchiffrer. Il faut la partager à l’avance, secrètement ; or Alice n’a jamais rencontré le serveur, et tout ce qu’ils s’envoient peut être lu.</p>` },
+      { q: "Le serveur publie la clé publique RSA (n, e) = (55, 3) ; sa clé privée est d = 27. Alice code sa clé de session par le nombre 8. Que transmet-elle ? Montrer que le serveur retrouve 8.", pts: "2 pts", c: `<p>Elle envoie 8³ mod 55 = 512 mod 55 = 17. Le serveur calcule 17²⁷ mod 55 = 8. L’espion voit 17 mais, sans d, ne peut pas retrouver 8 (avec de vrais nombres de plusieurs centaines de chiffres).</p>[[cr-ecrit-verif]]` },
+      { q: "Décrire, en quatre étapes, comment HTTPS utilise le chiffrement asymétrique pour échanger une clé symétrique.", pts: "2 pts", c: `<p>1. Le serveur envoie son certificat, qui contient sa clé publique. 2. Le client vérifie le certificat (signature d’une autorité, nom, dates) puis tire au hasard une clé de session. 3. Il la chiffre avec la clé publique du serveur et l’envoie ; seul le serveur peut la déchiffrer avec sa clé privée. 4. La suite de l’échange est chiffrée en symétrique (AES) avec la clé de session.</p>` },
+      { q: "À quoi sert l’autorité de certification ? Quelle attaque empêche-t-elle ?", pts: "1 pt", c: `<p>Elle signe le certificat qui lie le nom du site à sa clé publique. Sans elle, un attaquant placé entre Alice et le serveur pourrait envoyer sa propre clé publique et lire la clé de session : l’attaque de l’homme du milieu.</p>` }
+    ],
+    methode: `<p>Dans toute question sur les clés, précise <b>de qui</b> est la clé (du serveur, d’Alice) et <b>laquelle</b> (publique ou privée). Pour HTTPS, distingue bien les deux phases : poignée de main (asymétrique) puis données (symétrique).</p>` },
+  qcm: [
+    { q: "Qu’est-ce qu’un chiffrement symétrique ?", c: ["Un chiffrement dont la clé est un palindrome", "Un chiffrement où la même clé sert à chiffrer et à déchiffrer", "Un chiffrement avec une clé publique et une clé privée", "Un chiffrement sans clé"], a: 1, e: "Les deux correspondants partagent la même clé secrète.", ref: "i2" },
+    { q: "Combien de clés différentes (non nulles) le chiffre de César offre-t-il ?", c: ["3", "25", "26 × 26", "2¹²⁸"], a: 1, e: "Les décalages de 1 à 25 ; un décalage de 26 redonne le texte.", ref: "i2" },
+    { q: "Quelle méthode casse une substitution lettre à lettre ?", c: ["Le hachage", "L’analyse des fréquences", "Le routage", "Le tri fusion"], a: 1, e: "La lettre la plus fréquente du cryptogramme code souvent E.", ref: "i2" },
+    { q: "Que vaut <code>12 ^ 10</code> en Python ?", c: ["22", "6", "2", "120"], a: 1, e: "1100 ⊕ 1010 = 0110 = 6.", ref: "i3" },
+    { q: "Pourquoi le XOR convient-il au chiffrement symétrique ?", c: ["Il est irréversible", "(m ⊕ k) ⊕ k = m : la même clé chiffre et déchiffre", "Il compresse le message", "Il ne demande pas de clé"], a: 1, e: "C’est sa propriété clé.", ref: "i3" },
+    { q: "AES est…", c: ["un chiffrement asymétrique", "le standard actuel de chiffrement symétrique", "une autorité de certification", "un protocole de routage"], a: 1, e: "Advanced Encryption Standard (2001), blocs de 128 bits.", ref: "i3" },
+    { q: "Combien faut-il de clés secrètes pour que 10 personnes puissent chacune communiquer en privé avec chaque autre en symétrique ?", c: ["10", "20", "45", "100"], a: 2, e: "10 × 9 / 2 = 45 : une par paire.", ref: "i3" },
+    { q: "Pour envoyer un message confidentiel à Bob en asymétrique, Alice le chiffre avec…", c: ["sa propre clé privée", "la clé publique de Bob", "la clé privée de Bob", "sa propre clé publique"], a: 1, e: "Seul Bob, avec sa clé privée, pourra le déchiffrer.", ref: "i4" },
+    { q: "Sur quoi repose la sécurité de RSA ?", c: ["Le secret de l’algorithme", "La difficulté de factoriser un grand nombre n = p × q", "La vitesse du réseau", "La longueur du message"], a: 1, e: "Connaître n ne permet pas, en pratique, de retrouver p et q.", ref: "i4" },
+    { q: "Pourquoi n’utilise-t-on pas RSA pour chiffrer toute une vidéo ?", c: ["Il est trop lent", "Il ne chiffre que du texte", "Il est cassé", "Il demande une clé par image"], a: 0, e: "On l’utilise pour échanger une clé ; les données sont chiffrées en symétrique.", ref: "i5" },
+    { q: "Dans le chiffrement hybride, la clé de session est…", c: ["la clé privée du serveur", "une clé symétrique tirée au hasard, transmise chiffrée avec la clé publique du serveur", "le mot de passe de l’utilisateur", "la même pour tous les clients"], a: 1, e: "Elle sert ensuite à chiffrer tout l’échange en symétrique.", ref: "i5" },
+    { q: "Que contient un certificat de site web ?", c: ["La clé privée du site", "Le nom de domaine, la clé publique du site, des dates, la signature d’une autorité", "Le mot de passe de l’administrateur", "La liste des visiteurs"], a: 1, e: "La clé privée ne quitte jamais le serveur.", ref: "i6" },
+    { q: "Contre quelle attaque le certificat protège-t-il ?", c: ["La force brute", "L’homme du milieu, qui se ferait passer pour le serveur", "L’interblocage", "Le débordement de tableau"], a: 1, e: "Sans certificat, rien ne prouve que la clé publique reçue est celle du vrai serveur.", ref: "i6" },
+    { q: "HTTPS, c’est…", c: ["HTTP sur le port 80", "HTTP transporté dans une connexion TLS, en général sur le port 443", "un protocole de routage", "un format de page web"], a: 1, e: "TLS chiffre et authentifie ; HTTP reste le protocole du Web.", ref: "i7" },
+    { q: "Dans une connexion HTTPS établie, les pages sont chiffrées…", c: ["avec la clé publique du serveur", "en symétrique, avec la clé de session", "avec la clé privée du client", "elles ne sont pas chiffrées"], a: 1, e: "L’asymétrique ne sert qu’à la poignée de main.", ref: "i7" }
+  ],
+  cartes: [
+    { r: "Chiffrer / déchiffrer / décrypter", v: "Rendre illisible avec la clé / rendre lisible avec la clé / lire sans la clé." },
+    { r: "Confidentialité, intégrité, authenticité", v: "Seul le destinataire lit ; rien n’est modifié ; on parle au bon interlocuteur." },
+    { r: "Chiffrement symétrique", v: "Une même clé secrète, partagée, pour chiffrer et déchiffrer. Rapide." },
+    { r: "Chiffre de César", v: "Décalage des lettres (3 pour César) ; 25 clés ; cassé par force brute ou analyse des fréquences." },
+    { r: "XOR", v: "Bit à bit : 1 si les bits diffèrent. (m ⊕ k) ⊕ k = m." },
+    { r: "Masque jetable", v: "Clé aléatoire aussi longue que le message, utilisée une fois : incassable (Vernam 1917, Shannon 1949)." },
+    { r: "AES", v: "Standard de chiffrement symétrique (2001), blocs de 128 bits, clés de 128 à 256 bits." },
+    { r: "Chiffrement asymétrique", v: "Clé publique (chiffrer) et clé privée (déchiffrer), liées mathématiquement. Lent." },
+    { r: "RSA", v: "Rivest, Shamir, Adleman (1977) ; repose sur la difficulté de factoriser n = p × q." },
+    { r: "Signature numérique", v: "Calculée avec la clé privée de l’auteur, vérifiée par tous avec sa clé publique." },
+    { r: "Chiffrement hybride", v: "Clé de session symétrique envoyée chiffrée avec la clé publique du destinataire ; puis symétrique." },
+    { r: "Certificat", v: "Nom de domaine + clé publique + dates, signé par une autorité de certification." },
+    { r: "Homme du milieu", v: "Attaquant entre client et serveur qui se fait passer pour chacun ; contré par les certificats." },
+    { r: "HTTPS", v: "HTTP + TLS, port 443 : poignée de main (certificat, clé de session) puis données en symétrique." },
+    { r: "Repères", v: "Kerckhoffs 1883 · Diffie-Hellman 1976 · RSA 1977 · SSL 1995 · AES 2001 · TLS 1.3 2018." }
   ]
 });
 
@@ -10584,7 +11534,7 @@ var PROG = [
         capacites: ["Identifier, suivant le protocole de routage utilisé, la route empruntée par un paquet."],
         comm: "En mode débranché, avec les tables de routage données : RIP compte le nombre de sauts, OSPF le coût des routes. Lien avec les algorithmes de recherche de chemin dans un graphe.",
         avant: "Le réseau en Première : adresses IP, paquets, protocole TCP/IP." },
-      { id: "crypto", t: "Sécurisation des communications",
+      { ch: "crypto", id: "crypto", t: "Sécurisation des communications",
         contenus: "Chiffrement symétrique et asymétrique ; HTTPS.",
         capacites: ["Décrire les principes de chiffrement symétrique (clé partagée) et asymétrique (clé privée / clé publique).", "Décrire l’échange d’une clé symétrique en utilisant un protocole asymétrique pour sécuriser une communication HTTPS."],
         comm: "Illustration possible en mode débranché. La négociation de la méthode de chiffrement du protocole SSL n’est pas abordée." }
@@ -10771,7 +11721,7 @@ var PAGE_RESSOURCES = {
 </ul>`
 };
 
-var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 12, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "__init__()", "v": {"self": "(objet en cours de construction)", "titulaire": "'Ada'", "solde": "100"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "__init__()", "v": {"self": "(objet en cours de construction)", "titulaire": "'Ada'", "solde": "100"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "__init__()", "v": {"self": "Compte(Ada, 100)", "titulaire": "'Ada'", "solde": "100"}}], "o": "", "r": "None", "f": "__init__"}, {"l": 13, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)"}}, {"f": "__init__()", "v": {"self": "(objet en cours de construction)", "titulaire": "'Alan'", "solde": "0"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)"}}, {"f": "__init__()", "v": {"self": "(objet en cours de construction)", "titulaire": "'Alan'", "solde": "0"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)"}}, {"f": "__init__()", "v": {"self": "Compte(Alan, 0)", "titulaire": "'Alan'", "solde": "0"}}], "o": "", "r": "None", "f": "__init__"}, {"l": 14, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)", "b": "Compte(Alan, 0)"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)", "b": "Compte(Alan, 0)"}}, {"f": "deposer()", "v": {"self": "Compte(Ada, 100)", "montant": "50"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 0)"}}, {"f": "deposer()", "v": {"self": "Compte(Ada, 150)", "montant": "50"}}], "o": "", "r": "None", "f": "deposer"}, {"l": 15, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 0)"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 0)"}}, {"f": "deposer()", "v": {"self": "Compte(Alan, 0)", "montant": "20"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}, {"f": "deposer()", "v": {"self": "Compte(Alan, 20)", "montant": "20"}}], "o": "", "r": "None", "f": "deposer"}, {"l": 16, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}], "o": ""}, {"l": 10, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}, {"f": "__repr__()", "v": {"self": "Compte(Ada, 150)"}}], "o": ""}, {"l": 10, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}, {"f": "__repr__()", "v": {"self": "Compte(Ada, 150)"}}], "o": "", "r": "'Compte(Ada, 150)'", "f": "__repr__"}, {"l": 10, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}, {"f": "__repr__()", "v": {"self": "Compte(Alan, 20)"}}], "o": "Compte(Ada, 150) "}, {"l": 10, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}, {"f": "__repr__()", "v": {"self": "Compte(Alan, 20)"}}], "o": "Compte(Ada, 150) ", "r": "'Compte(Alan, 20)'", "f": "__repr__"}], "err": null, "o": "Compte(Ada, 150) Compte(Alan, 20)\n"}, "c2-tr-somme": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "3"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "3"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "3"}}], "o": "", "r": "0", "f": "somme_liste"}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}], "o": "", "r": "15", "f": "somme_liste"}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}], "o": "", "r": "23", "f": "somme_liste"}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}], "o": "", "r": "27", "f": "somme_liste"}], "err": null, "o": "27\n"}, "c3-tr-npi": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[]"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"pile": "[]", "jeton": "'3'"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"pile": "[]", "jeton": "'3'"}}], "o": ""}, {"l": 12, "p": [{"f": "programme principal", "v": {"pile": "[]", "jeton": "'3'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[3]", "jeton": "'3'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"pile": "[3]", "jeton": "'4'"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"pile": "[3]", "jeton": "'4'"}}], "o": ""}, {"l": 12, "p": [{"f": "programme principal", "v": {"pile": "[3]", "jeton": "'4'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[3, 4]", "jeton": "'4'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"pile": "[3, 4]", "jeton": "'+'"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"pile": "[3, 4]", "jeton": "'+'"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {"pile": "[3]", "jeton": "'+'", "b": "4"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"pile": "[]", "jeton": "'+'", "b": "4", "a": "3"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[7]", "jeton": "'+'", "b": "4", "a": "3"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"pile": "[7]", "jeton": "'2'", "b": "4", "a": "3"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"pile": "[7]", "jeton": "'2'", "b": "4", "a": "3"}}], "o": ""}, {"l": 12, "p": [{"f": "programme principal", "v": {"pile": "[7]", "jeton": "'2'", "b": "4", "a": "3"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[7, 2]", "jeton": "'2'", "b": "4", "a": "3"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"pile": "[7, 2]", "jeton": "'*'", "b": "4", "a": "3"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"pile": "[7, 2]", "jeton": "'*'", "b": "4", "a": "3"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {"pile": "[7, 2]", "jeton": "'*'", "b": "4", "a": "3"}}], "o": ""}, {"l": 9, "p": [{"f": "programme principal", "v": {"pile": "[7]", "jeton": "'*'", "b": "2", "a": "3"}}], "o": ""}, {"l": 10, "p": [{"f": "programme principal", "v": {"pile": "[]", "jeton": "'*'", "b": "2", "a": "7"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[14]", "jeton": "'*'", "b": "2", "a": "7"}}], "o": ""}, {"l": 13, "p": [{"f": "programme principal", "v": {"pile": "[14]", "jeton": "'*'", "b": "2", "a": "7"}}], "o": ""}], "err": null, "o": "14\n"}, "c4-tr-bug": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 13, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 11, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 11, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": "", "r": "-1", "f": "recherche"}], "err": null, "o": "-1\n"}, "c4-tr-ok": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 13, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "2"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "2"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "2"}}], "o": "", "r": "2", "f": "recherche"}], "err": null, "o": "2\n"}, "c4-tr-index": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "0"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "0"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "1"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "1"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "2"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "3"}}], "o": ""}], "err": "IndexError: list index out of range", "o": ""}, "c5-tr-occ": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{}"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{}", "c": "'a'"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"compte": "{}", "c": "'a'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1}", "c": "'a'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1}", "c": "'b'"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1}", "c": "'b'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 1}", "c": "'b'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 1}", "c": "'b'"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 1}", "c": "'b'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 2}", "c": "'b'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 2}", "c": "'a'"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 2}", "c": "'a'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 2, 'b': 2}", "c": "'a'"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"compte": "{'a': 2, 'b': 2}", "c": "'a'"}}], "o": ""}], "err": null, "o": "{'a': 2, 'b': 2}\n"}};
+var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 12, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "__init__()", "v": {"self": "(objet en cours de construction)", "titulaire": "'Ada'", "solde": "100"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "__init__()", "v": {"self": "(objet en cours de construction)", "titulaire": "'Ada'", "solde": "100"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "__init__()", "v": {"self": "Compte(Ada, 100)", "titulaire": "'Ada'", "solde": "100"}}], "o": "", "r": "None", "f": "__init__"}, {"l": 13, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)"}}, {"f": "__init__()", "v": {"self": "(objet en cours de construction)", "titulaire": "'Alan'", "solde": "0"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)"}}, {"f": "__init__()", "v": {"self": "(objet en cours de construction)", "titulaire": "'Alan'", "solde": "0"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)"}}, {"f": "__init__()", "v": {"self": "Compte(Alan, 0)", "titulaire": "'Alan'", "solde": "0"}}], "o": "", "r": "None", "f": "__init__"}, {"l": 14, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)", "b": "Compte(Alan, 0)"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 100)", "b": "Compte(Alan, 0)"}}, {"f": "deposer()", "v": {"self": "Compte(Ada, 100)", "montant": "50"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 0)"}}, {"f": "deposer()", "v": {"self": "Compte(Ada, 150)", "montant": "50"}}], "o": "", "r": "None", "f": "deposer"}, {"l": 15, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 0)"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 0)"}}, {"f": "deposer()", "v": {"self": "Compte(Alan, 0)", "montant": "20"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}, {"f": "deposer()", "v": {"self": "Compte(Alan, 20)", "montant": "20"}}], "o": "", "r": "None", "f": "deposer"}, {"l": 16, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}], "o": ""}, {"l": 10, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}, {"f": "__repr__()", "v": {"self": "Compte(Ada, 150)"}}], "o": ""}, {"l": 10, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}, {"f": "__repr__()", "v": {"self": "Compte(Ada, 150)"}}], "o": "", "r": "'Compte(Ada, 150)'", "f": "__repr__"}, {"l": 10, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}, {"f": "__repr__()", "v": {"self": "Compte(Alan, 20)"}}], "o": "Compte(Ada, 150) "}, {"l": 10, "p": [{"f": "programme principal", "v": {"a": "Compte(Ada, 150)", "b": "Compte(Alan, 20)"}}, {"f": "__repr__()", "v": {"self": "Compte(Alan, 20)"}}], "o": "Compte(Ada, 150) ", "r": "'Compte(Alan, 20)'", "f": "__repr__"}], "err": null, "o": "Compte(Ada, 150) Compte(Alan, 20)\n"}, "c2-tr-somme": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "3"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "3"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "3"}}], "o": "", "r": "0", "f": "somme_liste"}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "2"}}], "o": "", "r": "15", "f": "somme_liste"}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "1"}}], "o": "", "r": "23", "f": "somme_liste"}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "somme_liste()", "v": {"t": "[4, 8, 15]", "i": "0"}}], "o": "", "r": "27", "f": "somme_liste"}], "err": null, "o": "27\n"}, "c3-tr-npi": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[]"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"pile": "[]", "jeton": "'3'"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"pile": "[]", "jeton": "'3'"}}], "o": ""}, {"l": 12, "p": [{"f": "programme principal", "v": {"pile": "[]", "jeton": "'3'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[3]", "jeton": "'3'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"pile": "[3]", "jeton": "'4'"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"pile": "[3]", "jeton": "'4'"}}], "o": ""}, {"l": 12, "p": [{"f": "programme principal", "v": {"pile": "[3]", "jeton": "'4'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[3, 4]", "jeton": "'4'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"pile": "[3, 4]", "jeton": "'+'"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"pile": "[3, 4]", "jeton": "'+'"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {"pile": "[3]", "jeton": "'+'", "b": "4"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"pile": "[]", "jeton": "'+'", "b": "4", "a": "3"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[7]", "jeton": "'+'", "b": "4", "a": "3"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"pile": "[7]", "jeton": "'2'", "b": "4", "a": "3"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"pile": "[7]", "jeton": "'2'", "b": "4", "a": "3"}}], "o": ""}, {"l": 12, "p": [{"f": "programme principal", "v": {"pile": "[7]", "jeton": "'2'", "b": "4", "a": "3"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[7, 2]", "jeton": "'2'", "b": "4", "a": "3"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"pile": "[7, 2]", "jeton": "'*'", "b": "4", "a": "3"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"pile": "[7, 2]", "jeton": "'*'", "b": "4", "a": "3"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {"pile": "[7, 2]", "jeton": "'*'", "b": "4", "a": "3"}}], "o": ""}, {"l": 9, "p": [{"f": "programme principal", "v": {"pile": "[7]", "jeton": "'*'", "b": "2", "a": "3"}}], "o": ""}, {"l": 10, "p": [{"f": "programme principal", "v": {"pile": "[]", "jeton": "'*'", "b": "2", "a": "7"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"pile": "[14]", "jeton": "'*'", "b": "2", "a": "7"}}], "o": ""}, {"l": 13, "p": [{"f": "programme principal", "v": {"pile": "[14]", "jeton": "'*'", "b": "2", "a": "7"}}], "o": ""}], "err": null, "o": "14\n"}, "c4-tr-bug": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 13, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 11, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 11, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": "", "r": "-1", "f": "recherche"}], "err": null, "o": "-1\n"}, "c4-tr-ok": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 13, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "2"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "2"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "2"}}], "o": "", "r": "2", "f": "recherche"}], "err": null, "o": "2\n"}, "c4-tr-index": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "0"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "0"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "1"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "1"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "2"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "3"}}], "o": ""}], "err": "IndexError: list index out of range", "o": ""}, "c5-tr-occ": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{}"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{}", "c": "'a'"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"compte": "{}", "c": "'a'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1}", "c": "'a'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1}", "c": "'b'"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1}", "c": "'b'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 1}", "c": "'b'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 1}", "c": "'b'"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 1}", "c": "'b'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 2}", "c": "'b'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 2}", "c": "'a'"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 2}", "c": "'a'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 2, 'b': 2}", "c": "'a'"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"compte": "{'a': 2, 'b': 2}", "c": "'a'"}}], "o": ""}], "err": null, "o": "{'a': 2, 'b': 2}\n"}, "proc-tr-rr": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"file": "deque([('A', 3), ('B', 2)])"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {"file": "deque([('A', 3), ('B', 2)])", "quantum": "2"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"file": "deque([('A', 3), ('B', 2)])", "quantum": "2", "t": "0"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"file": "deque([('A', 3), ('B', 2)])", "quantum": "2", "t": "0"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {"file": "deque([('B', 2)])", "quantum": "2", "t": "0", "nom": "'A'", "reste": "3"}}], "o": ""}, {"l": 9, "p": [{"f": "programme principal", "v": {"file": "deque([('B', 2)])", "quantum": "2", "t": "0", "nom": "'A'", "reste": "3", "tranche": "2"}}], "o": ""}, {"l": 10, "p": [{"f": "programme principal", "v": {"file": "deque([('B', 2)])", "quantum": "2", "t": "2", "nom": "'A'", "reste": "3", "tranche": "2"}}], "o": ""}, {"l": 11, "p": [{"f": "programme principal", "v": {"file": "deque([('B', 2)])", "quantum": "2", "t": "2", "nom": "'A'", "reste": "3", "tranche": "2"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"file": "deque([('B', 2), ('A', 1)])", "quantum": "2", "t": "2", "nom": "'A'", "reste": "3", "tranche": "2"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"file": "deque([('B', 2), ('A', 1)])", "quantum": "2", "t": "2", "nom": "'A'", "reste": "3", "tranche": "2"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {"file": "deque([('A', 1)])", "quantum": "2", "t": "2", "nom": "'B'", "reste": "2", "tranche": "2"}}], "o": ""}, {"l": 9, "p": [{"f": "programme principal", "v": {"file": "deque([('A', 1)])", "quantum": "2", "t": "2", "nom": "'B'", "reste": "2", "tranche": "2"}}], "o": ""}, {"l": 10, "p": [{"f": "programme principal", "v": {"file": "deque([('A', 1)])", "quantum": "2", "t": "4", "nom": "'B'", "reste": "2", "tranche": "2"}}], "o": ""}, {"l": 13, "p": [{"f": "programme principal", "v": {"file": "deque([('A', 1)])", "quantum": "2", "t": "4", "nom": "'B'", "reste": "2", "tranche": "2"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"file": "deque([('A', 1)])", "quantum": "2", "t": "4", "nom": "'B'", "reste": "2", "tranche": "2"}}], "o": "B termine à 4\n"}, {"l": 7, "p": [{"f": "programme principal", "v": {"file": "deque([('A', 1)])", "quantum": "2", "t": "4", "nom": "'B'", "reste": "2", "tranche": "2"}}], "o": "B termine à 4\n"}, {"l": 8, "p": [{"f": "programme principal", "v": {"file": "deque([])", "quantum": "2", "t": "4", "nom": "'A'", "reste": "1", "tranche": "2"}}], "o": "B termine à 4\n"}, {"l": 9, "p": [{"f": "programme principal", "v": {"file": "deque([])", "quantum": "2", "t": "4", "nom": "'A'", "reste": "1", "tranche": "1"}}], "o": "B termine à 4\n"}, {"l": 10, "p": [{"f": "programme principal", "v": {"file": "deque([])", "quantum": "2", "t": "5", "nom": "'A'", "reste": "1", "tranche": "1"}}], "o": "B termine à 4\n"}, {"l": 13, "p": [{"f": "programme principal", "v": {"file": "deque([])", "quantum": "2", "t": "5", "nom": "'A'", "reste": "1", "tranche": "1"}}], "o": "B termine à 4\n"}, {"l": 6, "p": [{"f": "programme principal", "v": {"file": "deque([])", "quantum": "2", "t": "5", "nom": "'A'", "reste": "1", "tranche": "1"}}], "o": "B termine à 4\nA termine à 5\n"}], "err": null, "o": "B termine à 4\nA termine à 5\n"}, "rout-tr-route": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}], "o": ""}, {"l": 11, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'", "chemin": "['A']"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'", "chemin": "['A']", "r": "'A'"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'", "chemin": "['A']", "r": "'A'"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'", "chemin": "['A']", "r": "'B'"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'", "chemin": "['A', 'B']", "r": "'B'"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'", "chemin": "['A', 'B']", "r": "'B'"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'", "chemin": "['A', 'B']", "r": "'F'"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'", "chemin": "['A', 'B', 'F']", "r": "'F'"}}], "o": ""}, {"l": 9, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'", "chemin": "['A', 'B', 'F']", "r": "'F'"}}], "o": ""}, {"l": 9, "p": [{"f": "programme principal", "v": {"TABLES": "{'A': {'F': 'B'}, 'B': {'F': 'F'}, 'F': {'F': None}}"}}, {"f": "route()", "v": {"depart": "'A'", "arrivee": "'F'", "chemin": "['A', 'B', 'F']", "r": "'F'"}}], "o": "", "r": "['A', 'B', 'F']", "f": "route"}], "err": null, "o": "['A', 'B', 'F']\n"}, "cr-tr-cesar": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}], "o": ""}, {"l": 10, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "''"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "''", "c": "'N'"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "''", "c": "'N'", "i": "13"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'Q'", "c": "'N'", "i": "13"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'Q'", "c": "'S'", "i": "13"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'Q'", "c": "'S'", "i": "18"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'QV'", "c": "'S'", "i": "18"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'QV'", "c": "'I'", "i": "18"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'QV'", "c": "'I'", "i": "8"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'QVL'", "c": "'I'", "i": "8"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'QVL'", "c": "'Z'", "i": "8"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'QVL'", "c": "'Z'", "i": "25"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'QVLC'", "c": "'Z'", "i": "25"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'QVLC'", "c": "'Z'", "i": "25"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {"ALPHABET": "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"}}, {"f": "cesar()", "v": {"texte": "'NSIZ'", "cle": "3", "resultat": "'QVLC'", "c": "'Z'", "i": "25"}}], "o": "", "r": "'QVLC'", "f": "cesar"}], "err": null, "o": "QVLC\n"}};
 
 </script>
 <script>

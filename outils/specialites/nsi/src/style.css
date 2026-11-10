@@ -548,3 +548,49 @@ html.mo .carte-ch .fic::before{transition:opacity .2s}
 .qcm-score .sc{font-family:var(--mono)}
 .qcm-score .ok{color:var(--vert);font-weight:700}
 .qcm-score .ko{color:var(--rouge);font-weight:700}
+/* animations : architecture, systèmes, réseaux */
+.ar .scene svg{font-family:var(--mono)}
+.ar .scene svg text{font-size:12px;fill:var(--encre)}
+.ar .scene svg .pt{font-size:10.5px;fill:var(--encre2)}
+.ar .scene svg .gd{font-size:13px;font-weight:700}
+.ar-large .scene svg{min-width:540px}
+.ar-large.etroit .scene svg{min-width:0}
+.ar:not(.ar-large) .scene svg{max-width:540px}
+.ar-tab th:first-child{width:1%}
+.ar .bl rect{fill:var(--bg2);stroke:var(--ligne2);stroke-width:1.4}
+.ar .bl.on rect{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.6}
+.ar .bl.ok rect{fill:var(--vert-f);stroke:var(--vert);stroke-width:2}
+.ar .bl.off{opacity:.35}
+.ar .bl.ko rect{fill:var(--rouge-f);stroke:var(--rouge);stroke-width:2.4}
+.ar .puce{fill:none;stroke:var(--encre3);stroke-width:2;stroke-dasharray:7 4}
+.ar .noc{fill:var(--bleu-f);stroke:var(--bleu);stroke-width:1.4}
+.ar .noc.on{stroke-width:2.6}
+.ar .fil{stroke:var(--ligne2);stroke-width:2;fill:none}
+.ar .fil.on{stroke:var(--ambre);stroke-width:3.2}
+.ar .fil.ok{stroke:var(--vert);stroke-width:3.4}
+.ar .fil.ko{stroke:var(--rouge);stroke-width:2.4;stroke-dasharray:6 5}
+.ar .fil.att{stroke:var(--rouge);stroke-width:2.2;stroke-dasharray:6 5}
+.ar .fil.tient{stroke:var(--vert);stroke-width:2.6}
+.ar .jeton{fill:var(--ambre);stroke:var(--bg2);stroke-width:2}
+.ar .jeton.b{fill:var(--bleu)}.ar .jeton.v{fill:var(--vert)}
+.ar .tete-f{fill:var(--encre3)}.ar .tete-f.on{fill:var(--ambre)}.ar .tete-f.ok{fill:var(--vert)}.ar .tete-f.ko{fill:var(--rouge)}
+.ar .nd circle{fill:var(--bg2);stroke:var(--encre3);stroke-width:1.6}
+.ar .nd.on circle{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.8}
+.ar .nd.ok circle{fill:var(--vert-f);stroke:var(--vert);stroke-width:2.4}
+.ar .nd text{font-weight:700;font-size:14px}
+.ar .cout{font-size:11px;fill:var(--encre2)}
+.ar .cout-f{fill:var(--bg);stroke:none}
+.ar .scene .halo{paint-order:stroke;stroke:var(--bleu-f);stroke-width:5px;stroke-linejoin:round}
+.ar-tab{overflow-x:auto;margin-top:10px;-webkit-overflow-scrolling:touch}
+.ar-tab table{border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:0 auto;min-width:100%}
+.ar-tab th,.ar-tab td{border:1px solid var(--ligne);padding:4px 6px;text-align:center;white-space:nowrap}
+.ar-tab th{background:var(--bg3);color:var(--encre2);font-weight:700}
+.ar-tab td.chg{background:var(--ambre-f);color:var(--encre);font-weight:700}
+.ar-tab td.fixe{background:var(--vert-f)}
+.ar-tab caption{caption-side:top;text-align:left;font-size:.78rem;color:var(--encre2);padding:2px 0 6px}
+html.mo .ar .neuf{animation:ar-app .5s cubic-bezier(.2,.8,.2,1) both;transform-box:fill-box;transform-origin:center}
+html.mo .ar .trace{stroke-dasharray:var(--l,400);stroke-dashoffset:var(--l,400);animation:ar-trace .7s ease-out forwards}
+html.mo .ar td.chg{animation:ar-cell .9s ease-out}
+@keyframes ar-app{from{opacity:.15;transform:scale(.85)}}
+@keyframes ar-trace{to{stroke-dashoffset:0}}
+@keyframes ar-cell{from{background:var(--ambre);color:var(--bg)}}
