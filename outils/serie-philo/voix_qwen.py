@@ -151,17 +151,22 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
         a = w[0].astype(np.float32)
         y = np.interp(np.arange(0, len(a), sr / 16000), np.arange(len(a)), a).astype(np.float32)
         segs, _ = _whisper.transcribe(y, language=langue, word_timestamps=True)
-        mots = [(x.start, x.end - x.start, x.word.strip()) for s in segs for x in (s.words or [])]
+        mots_w = [x for s in segs for x in (s.words or [])]
+        mots = [(x.start, x.end - x.start, x.word.strip()) for x in mots_w]
         sc = _score(texte, " ".join(x[2] for x in mots))
+        # mots mal articulés (confiance de la reconnaissance sous 0,6, hors nombres) : voir audit_voix.py
+        flous = [x.word.strip() for x in mots_w if x.probability < 0.6 and len(re.sub(r"[^\w]", "", x.word)) > 2 and not re.search(r"\d", x.word)]
         try:
             pm = prosodie.mesure(y, 16000)
         except Exception:
             pm = {"relief": 3.0, "elan": 2.0}
         vie = pm["relief"] + pm["elan"]
         try:
-            an = prosodie.anomalies(y, 16000, reg)     # voix partie dans l'aigu, vrille, glissements (10/11/2026)
+            an = prosodie.anomalies(y, 16000, reg, seuil=1.35, duree=0.5)     # voix partie dans l'aigu, vrille, glissements (10/11/2026)
         except Exception:
             an = []
+        if flous:
+            an = an + ["mots flous (%s)" % ", ".join(flous[:3])]
         # rang : d'abord une prise sans dérapage, puis la justesse (au-dessus de 0,88 toutes les prises se valent),
         # puis l'intonation
         rang = (0 if an else 1, min(sc, 0.88), vie)

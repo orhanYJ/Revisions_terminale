@@ -7,7 +7,7 @@ Pour chaque passage du script : reconnaissance vocale (justesse, nombres remis e
 Usage : python3 audit_voix.py <module> [--supprimer]
 --supprimer efface du cache les passages fautifs : generer.py les réenregistrera (jusqu'à six prises, la meilleure gardée).
 """
-import json, os, subprocess, sys
+import json, os, re, subprocess, sys
 
 import numpy as np
 
@@ -16,6 +16,8 @@ sys.path.insert(0, ICI)
 import generer as G, prosodie, voix_qwen, recuperer
 
 SEUIL_SCORE = 0.86
+SEUIL_MOT = 0.6          # confiance de la reconnaissance sous laquelle un mot est jugé mal articulé
+SEUIL_AIGU, DUREE_AIGU = 1.35, 0.5   # montée au-delà de 135 % du registre pendant au moins 0,5 s
 
 
 def main(module, supprimer=False):
@@ -40,12 +42,15 @@ def main(module, supprimer=False):
         mots = [w for s_ in segs for w in (s_.words or [])]
         sc = voix_qwen._score(lu, " ".join(s.text for s in segs))
         lp = min([s.avg_logprob for s in segs], default=0)
-        an = prosodie.anomalies(y, 16000, regs[voix], seuil=1.45, duree=0.75)
+        an = prosodie.anomalies(y, 16000, regs[voix], seuil=SEUIL_AIGU, duree=DUREE_AIGU)
         pm = prosodie.mesure(y, 16000)
         motifs = list(an)
         # mot par mot : syllabes déformées (reconnaissance très incertaine) ou mot étiré
-        incertains = [w.word.strip() for w in mots if w.probability < 0.25 and len(w.word.strip()) > 2]
-        if len(incertains) >= 2:
+        # calé le 10/11/2026 sur deux défauts signalés par Cengiz (ch5 2:28 « foyer objet », 11:43 « Comment mesurer… ») :
+        # une syllabe mal articulée donne une confiance de 0,5 à 0,6 ; une montée aiguë dure environ 0,5 s à 145 %
+        incertains = [w.word.strip() for w in mots if w.probability < SEUIL_MOT and len(re.sub(r"[^\w]", "", w.word)) > 2
+                      and not re.search(r"\d", w.word)]
+        if len(incertains) >= 1:
             motifs.append("mots déformés (%s)" % ", ".join(incertains[:4]))
         etires = [w.word.strip() for w in mots if (w.end - w.start) > 1.3 and len(w.word.strip()) < 12]
         if etires:
