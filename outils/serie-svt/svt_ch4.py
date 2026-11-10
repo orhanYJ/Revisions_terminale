@@ -16,6 +16,7 @@ CODE = "svt-ch4"
 NOTION = "Mécanismes de diversité non génétique du vivant"
 NUM = 4
 TITRE = "Mécanismes de diversité non génétique du vivant"
+RYTHME = "vivant"
 SUIVANT = "Partie B · À la recherche du passé géologique de notre planète"
 PRONONCIATION = {"Roscoff": "Roscoffe", "Coula": "Coula", "Parinari": "Parinari", "Pigliucci": "Pilioutchi",
                  "Müller": "Muleur", "Dawkins": "Dôkinss", "Koshima": "Koshima", "Tonga": "Tonnga", "terpènes": "terpènnes",
@@ -29,19 +30,20 @@ AXES_CHIMP = dict(x=[0, 72], y=[0, 1], gx=[12, 24, 36, 48, 60, 72], gy=[.2, .4, 
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Ouverture", fond="foret", humeur="mystere", carton=False, beats=[
-        "{cm0}Voici la carte mentale de la partie A du thème un : génétique et évolution. "
-        "Quatre chapitres. Les trois premiers expliquent la diversité du vivant par les gènes : "
-        "les brassages de la reproduction sexuée, les transferts de gènes, la dérive et la sélection dans les populations.",
-        "{cm0.1}Le chapitre quatre, lui, s'intéresse à tout le reste : les autres mécanismes évolutifs. "
-        "Son titre complet : mécanismes de diversité non génétique du vivant. "
-        "Trois branches : les associations entre êtres vivants, le phénotype étendu, et les comportements.",
-        "{-cm0}{q0}Alors, posons la question du chapitre.",
+        "{cm0}Voici la carte mentale du thème un, partie A : génétique et évolution. Quatre chapitres.",
+        "Les trois premiers expliquent la diversité du vivant par les gènes. "
+        "Les brassages de la reproduction sexuée. Les transferts de gènes. La dérive et la sélection.",
+        "{cm0.1}Le chapitre quatre, lui, s'occupe de tout le reste : les autres mécanismes évolutifs. "
+        "Son titre complet : mécanismes de diversité non génétique du vivant.",
+        "Trois branches. Les associations entre êtres vivants. Le phénotype étendu. Et les comportements.",
+        "{-cm0}{q0}Alors, une question pour commencer.",
         ("Le phénotype d'un être vivant ne dépend-il que de ses gènes ?", {"rate": "-6%"}),
-        "{-q0}{plan}Voici le chemin. {plan.1}D'abord le but du chapitre, et l'idée d'hérédité non génétique. "
-        "{plan.2}Puis les associations entre êtres vivants : le mutualisme, avec le ver de Roscoff et le microbiote humain, et le parasitisme, avec le gammare. "
-        "{plan.3}Ensuite le phénotype étendu : ce qu'un animal construit hors de son corps, de la larve de phrygane au port de Marseille. "
-        "{plan.4}Puis les comportements appris : les chimpanzés qui cassent des noix, le chant des oiseaux, celui des baleines à bosse. "
-        "{plan.5}Et pour finir, l'exercice du graphique corrigé, une rédaction type bac, et tout ce qu'il faut savoir pour l'examen.",
+        ("P", 0.8),
+        "{-q0}{plan}Voici le chemin. {plan.1}D'abord, une idée neuve : l'hérédité non génétique.",
+        ("{plan.2}Puis les associations : le ver de Roscoff, le microbiote humain, le gammare parasité. "
+         "{plan.3}Ensuite, tout ce qu'un animal construit hors de son corps, de la larve de phrygane au port de Marseille. "
+         "{plan.4}Puis les comportements appris : chimpanzés, oiseaux chanteurs, baleines à bosse.", {"rate": "+4%"}),
+        "{plan.5}Et pour finir : un graphique à exploiter, une rédaction type bac, et l'essentiel pour l'examen.",
         "{-plan}{titre}",
         ("P", 3.4),
     ], vis={
@@ -61,21 +63,21 @@ SCENES = [
     dict(id="but", chap="Le but du chapitre", fond="foret", humeur="lumiere",
          retenir="Le phénotype se diversifie aussi sans que le génome change. Hérédité non génétique : transmission, de génération en génération, d'informations non codées dans l'ADN.",
          beats=[
-        "{rap}Un rappel de Première, d'abord. {rap.1}Le phénotype, ce sont les caractères d'un individu : sa forme, sa couleur, son métabolisme, son comportement. "
-        "{rap.2}Il dépend de son génotype, c'est-à-dire de ses allèles. Mais pas seulement : il dépend aussi de l'environnement.",
-        "Depuis le début de l'année, on a surtout expliqué la diversité des phénotypes par des mécanismes génétiques. "
-        "{-rap}{gen}{gen.1}Au chapitre un, les brassages de la reproduction sexuée, pendant la formation des gamètes et la fécondation. "
+        "{rap}Petit rappel de Première. {rap.1}Le phénotype, ce sont les caractères d'un individu. Sa forme, sa couleur, son métabolisme, son comportement.",
+        "{rap.2}Il dépend du génotype, c'est-à-dire des allèles. Mais pas seulement. L'environnement compte aussi.",
+        "Jusqu'ici, on a surtout expliqué la diversité par les gènes. "
+        "{-rap}{gen}{gen.1}Au chapitre un, les brassages de la reproduction sexuée : la formation des gamètes, puis la fécondation.",
         "{gen.2}Au chapitre deux, les transferts de gènes entre êtres vivants. "
-        "{gen.3}Au chapitre trois, la dérive et la sélection, qui font varier les fréquences des allèles dans les populations.",
-        "{-gen}{trois}Mais en dehors de ces processus génétiques, d'autres mécanismes diversifient aussi le phénotype des individus. "
-        "Le génome, lui, ne change pas. {trois.1}Le phénotype peut changer par des associations entre êtres vivants. "
-        "{trois.2}Par ce que l'animal construit hors de son corps. {trois.3}Et par des comportements appris. "
-        "Ce sont exactement les trois branches de la carte mentale.",
-        "{-trois}{but_c}Voici le but du chapitre. "
-        "{but_c.1}Il s'agit de reconsidérer la place centrale des gènes dans l'explication de la construction, de la diversification et de l'évolution du vivant.",
-        "{-but_c}{def_hng}Et elle introduit une idée nouvelle : l'hérédité non génétique. "
-        "{def_hng.1}C'est la transmission, de génération en génération, d'informations qui ne sont pas codées dans l'ADN. "
-        "Retiens cette définition mot pour mot : c'est le fil rouge de tout le chapitre.",
+        "{gen.3}Au chapitre trois, la dérive et la sélection, qui font varier les fréquences des allèles.",
+        ("P", 0.7),
+        "{-gen}{trois}Mais il existe d'autres façons de changer un phénotype. Et là, le génome ne bouge pas.",
+        "{trois.1}Une association avec un autre être vivant. {trois.2}Ce que l'animal construit hors de son corps. {trois.3}Des comportements appris. "
+        "Ce sont exactement les trois branches de la carte.",
+        "{-trois}{but_c}Le but du chapitre est donc clair. "
+        "{but_c.1}Reconsidérer la place centrale des gènes, pour expliquer comment le vivant se construit, se diversifie, et évolue.",
+        "{-but_c}{def_hng}Et pour ça, il faut une idée nouvelle : l'hérédité non génétique.",
+        ("{def_hng.1}C'est la transmission, de génération en génération, d'informations qui ne sont pas codées dans l'ADN.", {"rate": "-4%"}),
+        "Retiens-la mot pour mot. C'est le fil rouge de tout le chapitre.",
         "{-def_hng}",
     ], vis={
         "rap": dict(type="liste", titre="Rappel de Première", items=[
@@ -98,25 +100,23 @@ SCENES = [
     dict(id="roscoff", chap="Le mutualisme : le ver de Roscoff", fond="cellule", humeur="lumiere",
          retenir="Ver de Roscoff : les algues gagnent un habitat stable, le ver leur capacité photosynthétique. Association mutualiste ; partenaires interdépendants : symbiose.",
          beats=[
-        "{cm1}Première branche de la carte : {cm1.1}les associations entre êtres vivants. "
-        "Elle a deux sous-branches : le mutualisme, et le parasitisme.",
-        "{-cm1}{tab_ros}Premier exemple : le ver de Roscoff. C'est un minuscule ver plat marin, de un à cinq millimètres. "
-        "Il est vert pomme à vert foncé. "
-        "Et ce vert ne vient pas de lui : il vient de milliers de micro-algues vertes, logées sous son épiderme.",
-        "{-tab_ros}{ros}Regarde son histoire. {ros.1}Jeune, le ver est translucide, et il a un tube digestif. "
-        "Il ingère des micro-algues, une seule fois dans sa vie.",
-        "{ros.2}Les algues s'installent sous son épiderme et se multiplient. Pendant ce temps, le tube digestif du ver régresse. "
-        "{ros.3}Chez l'adulte, il a complètement disparu. Le ver ne mange plus : il est devenu autotrophe. "
-        "Ce sont les algues qui réalisent la photosynthèse, à la lumière du soleil, et qui partagent avec lui les nutriments produits.",
-        "{ros.4}Ces détails servent à comprendre. Ce qu'il faut retenir, c'est ce que gagne chaque partenaire.",
-        "{-ros}{gain_ros}{gain_ros.g}Les micro-algues gagnent un habitat, et une stabilité de leur environnement. "
-        "{gain_ros.d}Le ver, lui, gagne la capacité photosynthétique des algues : il devient totalement autonome pour fabriquer sa matière carbonée, "
-        "sans avoir besoin de consommer de matière organique venue de l'extérieur.",
-        "{-gain_ros}{def_mut}Voici la phrase à retenir mot pour mot. "
-        "{def_mut.1}On assiste à une association dont les deux partenaires tirent des bénéfices réciproques : on l'appelle une association mutualiste. "
-        "{def_mut.2}Les deux partenaires sont devenus interdépendants : on appelle cela une symbiose.",
-        "Et observe bien le point clé : le ver est devenu vert, autotrophe, sans tube digestif. Son phénotype a complètement changé. "
-        "Pourtant, son génome n'a pas bougé. C'est l'association qui a tout fait.",
+        "{cm1}Première branche : {cm1.1}les associations entre êtres vivants. Deux sous-branches : le mutualisme, et le parasitisme.",
+        "{-cm1}{tab_ros}Premier exemple : le ver de Roscoff. Un minuscule ver plat marin, de un à cinq millimètres. Vert pomme, ou vert foncé.",
+        "Et ce vert ne vient pas de lui. Il vient de milliers de micro-algues, logées sous sa peau.",
+        "{-tab_ros}{ros}Regarde bien son histoire. {ros.1}Jeune, le ver est translucide. Il a un tube digestif. "
+        "Et une seule fois dans sa vie, il avale des micro-algues.",
+        "{ros.2}Les algues s'installent sous son épiderme. Elles se multiplient. Pendant ce temps, le tube digestif du ver régresse.",
+        "{ros.3}Chez l'adulte, il a complètement disparu. Le ver ne mange plus ! Il est devenu autotrophe. "
+        "Les algues font la photosynthèse, au soleil, et partagent avec lui ce qu'elles produisent.",
+        "{ros.4}Alors, qui gagne quoi ?",
+        "{-ros}{gain_ros}{gain_ros.g}Les micro-algues gagnent un habitat, et un environnement stable. "
+        "{gain_ros.d}Le ver, lui, gagne leur photosynthèse. Il fabrique seul sa matière carbonée, sans rien manger venu de l'extérieur.",
+        ("P", 0.6),
+        "{-gain_ros}{def_mut}Voici la phrase à retenir.",
+        ("{def_mut.1}Quand les deux partenaires tirent des bénéfices réciproques, on parle d'association mutualiste. "
+         "{def_mut.2}Et quand ils sont devenus interdépendants, on parle de symbiose.", {"rate": "-4%"}),
+        "Et voilà le point clé. Le ver est devenu vert, autotrophe, sans tube digestif. Son phénotype a tout changé. "
+        "Son génome, lui, n'a pas bougé. C'est l'association qui a tout fait.",
         "{-def_mut}",
     ], vis={
         "cm1": dict(type="mental", vers=["c4", "c4a"]),
@@ -134,16 +134,17 @@ SCENES = [
     dict(id="microbiote", chap="Le mutualisme : le microbiote humain", fond="cellule", humeur="calme",
          retenir="Microbiote intestinal : les bactéries gagnent un habitat et une protection ; l'être humain digère des aliments sinon indigestes et voit son système immunitaire stimulé.",
          beats=[
-        "{tab_bac}Deuxième exemple de mutualisme, qui nous concerne directement : le microbiote intestinal humain. "
-        "L'intestin abrite un très grand nombre de bactéries. Ensemble, elles forment le microbiote.",
-        "{-tab_bac}{gain_bac}{gain_bac.g}Que gagnent les bactéries ? Un habitat, et une protection. "
-        "{gain_bac.d}Et l'être humain ? D'abord, la possibilité de digérer des aliments qui seraient sinon indigestes. "
-        "Ensuite, une protection : le microbiote stimule le système immunitaire.",
-        "{-gain_bac}{obes}Une remarque : le microbiote est aussi relié à l'obésité. "
-        "Autrement dit, la composition de ces bactéries influence un caractère du phénotype, sans que les gènes y soient pour rien.",
-        "{-obes}{prem}Et fais le lien avec la Première. {prem.1}Tu y as vu une autre association à bénéfices réciproques : la mycorhize, "
-        "où le champignon aide la plante à absorber les sels minéraux, et où la plante lui fournit des sucres. "
-        "{prem.2}Le bilan du chapitre cite aussi les nodosités des racines. C'est la même logique : deux espèces différentes, deux bénéficiaires.",
+        "{tab_bac}Deuxième exemple de mutualisme. Et celui-là nous concerne tous : le microbiote intestinal. "
+        "Notre intestin abrite un nombre immense de bactéries. Ensemble, elles forment le microbiote.",
+        "{-tab_bac}{gain_bac}{gain_bac.g}Que gagnent les bactéries ? Un habitat, et une protection.",
+        "{gain_bac.d}Et l'être humain ? D'abord, il digère des aliments qui seraient sinon indigestes. "
+        "Ensuite, son système immunitaire est stimulé.",
+        "{-gain_bac}{obes}Autre point étonnant : le microbiote est relié à l'obésité. "
+        "Des bactéries influencent donc un caractère du phénotype. Sans que les gènes y soient pour rien.",
+        ("P", 0.7),
+        "{-obes}{prem}Ça te rappelle quelque chose ? {prem.1}En Première, tu as vu la mycorhize. "
+        "Le champignon aide la plante à absorber les sels minéraux. La plante, elle, lui fournit des sucres.",
+        "{prem.2}Même chose avec les nodosités des racines. Deux espèces différentes, deux gagnants.",
         "{-prem}",
     ], vis={
         "tab_bac": dict(type="mot", t="Le microbiote", g="un très grand nombre de bactéries, dans l'intestin humain"),
@@ -160,24 +161,21 @@ SCENES = [
     dict(id="parasitisme", chap="Le parasitisme : le gammare", fond="cellule", humeur="tension",
          retenir="Parasitisme : un seul partenaire, le parasite, tire bénéfice de l'association ; pour l'hôte, elle est néfaste. Le parasite du gammare change son comportement.",
          beats=[
-        "{def_par}Deuxième sous-branche : le parasitisme. Voici la définition. "
-        "{def_par.1}Dans une association parasitaire, un seul des deux partenaires tire bénéfice de l'association ; pour l'autre, elle est néfaste.",
-        "{-def_par}{tab_gam}Exemple : les gammares. Ce sont de petits crustacés d'eau douce. "
-        "Et ce sont des proies pour les oiseaux.",
+        "{def_par}Deuxième sous-branche : le parasitisme. Et cette fois, le partage n'est plus équitable. "
+        "{def_par.1}Dans une association parasitaire, un seul des deux partenaires en tire bénéfice. Pour l'autre, elle est néfaste.",
+        "{-def_par}{tab_gam}Exemple : le gammare. Un petit crustacé d'eau douce. Une proie pour les oiseaux.",
         "{-tab_gam}{comp}Certains gammares sont infestés par des parasites, qui s'enkystent dans leur corps. "
-        "{comp.1}Et là, les crustacés changent de comportement. Un gammare sain reste au fond, à l'abri. Le gammare parasité, lui, est attiré par la lumière. "
-        "{comp.2}Il remonte à la surface, et il tournoie frénétiquement. "
-        "{comp.3}Résultat : il devient une proie facile pour les oiseaux.",
-        "Le parasite a modifié le comportement de son hôte. Et ce n'est pas un hasard : c'est ce qui lui permet de continuer son cycle.",
-        "{-comp}{cyc}Voici ce cycle. Le parasite passe d'un hôte à l'autre. "
-        "{cyc.1}Il se multiplie d'abord de façon asexuée chez un premier hôte intermédiaire. "
-        "{cyc.2}Il vit ensuite sous forme de larves chez le gammare, le second hôte intermédiaire. "
-        "{cyc.3}Et il atteint l'état adulte dans l'intestin de l'oiseau, l'hôte définitif, où il se reproduit sexuellement.",
-        "{cyc.4}Pour boucler le cycle, ses œufs retournent dans l'eau. "
-        "Retiens le principe du cycle, plus que les noms des espèces.",
-        "{-cyc}{bil_par}Faisons le bilan des gains. {bil_par.1}Le parasite exploite les ressources de son partenaire, à son détriment. "
-        "{bil_par.2}L'hôte lui offre un habitat, de la nourriture, {bil_par.3}et même un moyen efficace de dispersion : "
-        "le gammare transporte le parasite jusqu'à l'oiseau.",
+        "{comp.1}Et c'est là que tout bascule.",
+        "Un gammare sain reste au fond, à l'abri. Le gammare parasité, lui, est attiré par la lumière. "
+        "{comp.2}Il remonte à la surface. Il tournoie, frénétiquement. {comp.3}Résultat ? Une proie facile.",
+        "Le parasite a changé le comportement de son hôte. Et ce n'est pas un hasard : c'est ce qui lui permet de continuer son cycle.",
+        "{-comp}{cyc}Suivons ce cycle. Le parasite passe d'un hôte à l'autre. "
+        "{cyc.1}Il se multiplie d'abord, de façon asexuée, chez un premier hôte intermédiaire.",
+        "{cyc.2}Puis il vit sous forme de larves chez le gammare, le second hôte intermédiaire. "
+        "{cyc.3}Enfin, il devient adulte dans l'intestin de l'oiseau, l'hôte définitif. Là, il se reproduit sexuellement.",
+        "{cyc.4}Et ses œufs retournent dans l'eau. La boucle est bouclée. Retiens le principe, plus que les noms.",
+        "{-cyc}{bil_par}Le bilan, maintenant. {bil_par.1}Le parasite exploite les ressources de son hôte, à son détriment. "
+        "{bil_par.2}L'hôte lui offre un habitat, de la nourriture. {bil_par.3}Et même un taxi : le gammare emmène le parasite jusqu'à l'oiseau.",
         "{-bil_par}",
     ], vis={
         "def_par": dict(type="def", terme="Association parasitaire · parasitisme", cles=["seul", "néfaste"],
@@ -196,28 +194,29 @@ SCENES = [
     dict(id="symbiose", chap="Le bilan : symbiose et phénotype", fond="foret", humeur="calme",
          retenir="Symbiose : association étroite, intime et durable entre organismes d'espèces différentes (mutualisme ou parasitisme). Elle modifie le phénotype de l'hôte sans changer son génome.",
          beats=[
-        "{sym}Voici le bilan de cette première branche. {sym.3}La symbiose désigne une association biologique étroite, intime et durable, "
-        "entre deux ou plusieurs organismes d'espèces différentes. On en distingue deux formes. "
-        "{sym.1}Le mutualisme : une interaction où les deux partenaires tirent un avantage réciproque, comme les bactéries du microbiote et l'être humain. "
-        "{sym.2}Le parasitisme : une relation où l'un des partenaires, le parasite, profite au détriment de l'autre, l'hôte.",
-        "{sym.4}Attention, piège. Le mot symbiose s'emploie dans deux sens. Au chapitre deux, avec les endosymbioses, et pour le ver de Roscoff, "
-        "la symbiose est une association à bénéfices réciproques où les partenaires sont devenus interdépendants. "
-        "Dans le bilan de ce chapitre, c'est toute association étroite et durable, parasitisme compris.",
-        "{-sym}{piege_sym}Les deux usages existent chez les scientifiques. Alors en devoir, dis dans quel sens tu l'emploies. "
-        "Ou, plus simple : parle de mutualisme et de parasitisme. Là, aucune ambiguïté.",
-        "{-piege_sym}{effets}Et maintenant, l'idée qui relie tout. {effets.1}Les associations symbiotiques de toutes sortes, nodosités, microbiote, parasitisme, "
-        "contribuent à diversifier les métabolismes de certains êtres vivants, {effets.2}leurs comportements, {effets.3}et donc leur survie.",
-        "{-effets}{conc_sym}Dans toutes ces situations, les caractéristiques de l'hôte sont modifiées sans que son génome ait changé. "
-        "{conc_sym.1}La symbiose contribue donc bien à diversifier le phénotype des individus.",
-        "Un approfondissement, maintenant, pour la culture générale : il est hors programme. "
-        "{-conc_sym}{hp1}{hp1.1}Les chercheurs distinguent plusieurs hérédités non génétiques. L'hérédité d'associations symbiotiques, quand les symbiotes sont transmis à la descendance. "
-        "{hp1.2}L'hérédité épigénétique, quand une variation de l'expression des gènes, liée à l'environnement, est transmise. "
-        "{hp1.3}L'hérédité écologique, quand les descendants héritent de l'habitat de leurs parents. "
-        "{hp1.4}L'hérédité par effets parentaux, quand l'action des parents influe sur le phénotype des descendants. "
-        "{hp1.5}Et l'hérédité culturelle, par la transmission sociale de comportements appris.",
-        "{-hp1}{hp2}En deux mille dix, deux chercheurs, Pigliucci et Müller, ont proposé d'étendre la théorie de l'évolution, "
-        "pour reconnaître dans ces processus un rôle moteur de l'évolution. Ce point de vue est loin d'être partagé par toute la communauté scientifique : "
-        "il fait l'objet de vifs débats. Encore une fois : hors programme.",
+        "{sym}Faisons le point sur cette première branche. "
+        "{sym.3}La symbiose, c'est une association étroite, intime et durable, entre des organismes d'espèces différentes. Elle a deux formes.",
+        "{sym.1}Le mutualisme : les deux partenaires y gagnent, comme les bactéries du microbiote et l'être humain. "
+        "{sym.2}Le parasitisme : l'un profite, au détriment de l'autre, l'hôte.",
+        ("P", 0.6),
+        "{sym.4}Attention, piège ! Le mot symbiose a deux sens. "
+        "Au chapitre deux, avec les endosymbioses, et pour le ver de Roscoff, il désigne une association à bénéfices réciproques, avec des partenaires interdépendants.",
+        "Dans le bilan de ce chapitre, il désigne toute association étroite et durable. Parasitisme compris.",
+        "{-sym}{piege_sym}Les deux usages existent chez les scientifiques. Alors, à l'écrit, dis dans quel sens tu l'emploies. "
+        "Ou plus simple : parle de mutualisme et de parasitisme. Aucune ambiguïté.",
+        "{-piege_sym}{effets}Et maintenant, l'idée qui relie tout. "
+        "{effets.1}Nodosités, microbiote, parasitisme : toutes ces associations diversifient les métabolismes, {effets.2}les comportements, {effets.3}et donc la survie.",
+        "{-effets}{conc_sym}Dans chaque cas, l'hôte change. Mais son génome, non. "
+        "{conc_sym.1}La symbiose diversifie donc bien le phénotype des individus.",
+        ("P", 0.8),
+        "Pour aller plus loin, un détour hors programme. "
+        "{-conc_sym}{hp1}{hp1.1}Les chercheurs distinguent plusieurs hérédités non génétiques. L'hérédité d'associations symbiotiques : les symbiotes passent à la descendance.",
+        ("{hp1.2}L'hérédité épigénétique : une variation de l'expression des gènes, liée à l'environnement, est transmise. "
+         "{hp1.3}L'hérédité écologique : on hérite de l'habitat de ses parents. "
+         "{hp1.4}Les effets parentaux : l'action des parents influe sur le phénotype des petits. "
+         "{hp1.5}Et l'hérédité culturelle : des comportements appris, transmis socialement.", {"rate": "+4%"}),
+        "{-hp1}{hp2}En deux mille dix, deux chercheurs, Pigliucci et Müller, ont proposé d'étendre la théorie de l'évolution à ces processus. "
+        "Une idée loin de faire l'unanimité : elle fait l'objet de vifs débats. Encore une fois, hors programme.",
         "{-hp2}",
     ], vis={
         "sym": dict(type="illu", nom="c4_symbiose", x=90, y=100, w=1100, h=540),
@@ -242,18 +241,18 @@ SCENES = [
 
     # ================================================================ VI. le phénotype étendu : quatre exemples
     dict(id="exemples_pe", chap="Le phénotype étendu : quatre exemples", fond="foret", humeur="lumiere", beats=[
-        "{cm2}Deuxième branche de la carte : {cm2.1}le phénotype étendu. "
-        "L'idée est simple : le phénotype d'un animal ne s'arrête pas aux limites de son corps. Quatre exemples le montrent.",
-        "{-cm2}{tab_phr}Premier exemple : le fourreau de la larve de phrygane. La phrygane est un insecte, et sa larve vit dans l'eau.",
-        "{-tab_phr}{phr}{phr.1}La larve se construit un fourreau de soie, à partir des sécrétions de ses glandes. "
-        "{phr.2}Puis elle le recouvre d'éléments récoltés au fond de l'eau : des graviers, des débris. Ce fourreau la protège. "
-        "{phr.3}Quand il devient trop petit, elle l'abandonne, et elle en construit un autre.",
-        "{-phr}{tab_jar}Deuxième exemple : le nid du jardinier satiné, un oiseau d'Australie. "
-        "Le mâle construit et décore une sorte de tonnelle, pour attirer les femelles. Sur la photo, il l'a entourée d'objets bleus. "
-        "Retiens surtout qu'il s'agit d'une construction, hors du corps de l'animal.",
-        "{-tab_jar}{tab_ara}Troisième exemple : la toile et le cocon de l'araignée. Ils sont fabriqués par l'animal, avec sa soie, mais ils sont à l'extérieur de son corps.",
-        "{-tab_ara}{tab_mar}Et quatrième exemple, le plus surprenant : le port de Marseille, construit par l'espèce humaine. "
-        "Oui : nos constructions font aussi partie de notre phénotype étendu.",
+        "{cm2}Deuxième branche : {cm2.1}le phénotype étendu. "
+        "Une idée simple, mais vertigineuse : le phénotype d'un animal ne s'arrête pas aux limites de son corps. Quatre exemples.",
+        "{-cm2}{tab_phr}Premier exemple : la larve de phrygane. La phrygane est un insecte. Sa larve vit dans l'eau.",
+        "{-tab_phr}{phr}{phr.1}La larve se fabrique un fourreau de soie, avec les sécrétions de ses glandes. "
+        "{phr.2}Puis elle le couvre de ce qu'elle trouve au fond de l'eau : des graviers, des débris. Le voilà blindé.",
+        "{phr.3}Et quand il devient trop petit ? Elle l'abandonne. Et elle en construit un autre.",
+        "{-phr}{tab_jar}Deuxième exemple : le jardinier satiné, un oiseau d'Australie. "
+        "Le mâle construit une sorte de tonnelle, et il la décore, pour séduire les femelles. Sur la photo, il l'a entourée d'objets bleus.",
+        "Une construction, donc. Hors du corps de l'animal.",
+        "{-tab_jar}{tab_ara}Troisième exemple : l'araignée. Sa toile, son cocon. Fabriqués avec sa soie, mais à l'extérieur de son corps.",
+        "{-tab_ara}{tab_mar}Et le quatrième, le plus surprenant : le port de Marseille. Construit par l'espèce humaine. "
+        "Eh oui : nos constructions font partie de notre phénotype étendu.",
         "{-tab_mar}",
     ], vis={
         "cm2": dict(type="mental", vers=["c4", "c4b"]),
@@ -271,19 +270,21 @@ SCENES = [
     dict(id="def_pe", chap="Le phénotype étendu : la définition", fond="foret", humeur="calme",
          retenir="Phénotype étendu : tous les caractères d'un organisme situés hors de son corps, surtout son comportement et l'environnement qu'il construit. Un moteur évolutif non génétique.",
          beats=[
-        "{eten}Rassemblons ces exemples. Au centre, le corps de l'animal : sa forme, sa couleur, ses organes. C'est le phénotype au sens habituel. "
-        "Mais autour, il y a tout ce qu'il construit. {eten.1}Le fourreau de la phrygane. {eten.2}La tonnelle du jardinier. "
+        "{eten}Rassemblons tout ça. Au centre, le corps de l'animal : sa forme, sa couleur, ses organes. Le phénotype au sens habituel. "
+        "Et autour, tout ce qu'il construit. {eten.1}Le fourreau de la phrygane. {eten.2}La tonnelle du jardinier. "
         "{eten.3}La toile et le cocon de l'araignée. {eten.4}Le port des humains.",
-        "{-eten}{def_pe}D'où la définition. {def_pe.1}Le phénotype étendu désigne tous les caractères d'un organisme qui se situent hors de son corps. "
-        "Il s'agit principalement de son comportement, et de l'environnement qu'il construit : nid, terrier, relations sociales.",
-        "{-def_pe}{rec}On en tire trois idées. {rec.1}De nombreux animaux recrutent dans leur milieu des éléments non vivants, et modulent ainsi leur phénotype : "
-        "nids d'oiseaux, toiles d'araignées, ruches. Et dans l'espèce humaine, les exemples sont innombrables. "
-        "{rec.2}La prise de contrôle d'autres organismes élargit aussi le phénotype de certaines espèces. Tu connais déjà un exemple : "
-        "le parasite qui modifie le comportement du gammare. Le comportement du gammare fait partie du phénotype étendu du parasite. "
-        "{rec.3}Enfin, cet élargissement peut servir l'habitat, la survie, ou l'attrait du partenaire sexuel.",
+        "{-eten}{def_pe}D'où la définition.",
+        ("{def_pe.1}Le phénotype étendu, ce sont tous les caractères d'un organisme situés hors de son corps. "
+         "Surtout son comportement, et l'environnement qu'il construit : nid, terrier, relations sociales.", {"rate": "-4%"}),
+        ("P", 0.6),
+        "{-def_pe}{rec}Trois idées en découlent. {rec.1}Beaucoup d'animaux recrutent des éléments non vivants dans leur milieu, et modulent ainsi leur phénotype. "
+        "Nids d'oiseaux, toiles d'araignées, ruches. Et chez l'être humain, les exemples sont innombrables.",
+        "{rec.2}Deuxième idée : prendre le contrôle d'un autre organisme élargit aussi le phénotype. Tu connais déjà un exemple. "
+        "Le parasite du gammare ! Le comportement du gammare fait partie du phénotype étendu du parasite.",
+        "{rec.3}Troisième idée : cet élargissement sert l'habitat, la survie, ou la séduction du partenaire.",
         "{-rec}Conclusion : c'est un {!moteur évolutif}moteur évolutif non génétique.",
-        "{hp_dk}Une précision hors programme : l'expression phénotype étendu vient du biologiste britannique Richard Dawkins, "
-        "qui en a fait le titre d'un livre en mille neuf cent quatre-vingt-deux.",
+        "{hp_dk}Une précision hors programme. L'expression phénotype étendu vient du biologiste britannique Richard Dawkins. "
+        "C'est le titre d'un de ses livres, paru en mille neuf cent quatre-vingt-deux.",
         "{-hp_dk}",
     ], vis={
         "eten": dict(type="illu", nom="c4_etendu", x=90, y=100, w=1100, h=540),
@@ -302,16 +303,17 @@ SCENES = [
     dict(id="mesanges", chap="Des mésanges adeptes de l'aromathérapie", fond="foret", humeur="lumiere",
          retenir="La mésange bleue garnit son nid de plantes aromatiques riches en terpènes (insecticides, bactéricides, fongicides) : le nid protège les oisillons des parasites.",
          beats=[
-        "{tab_mes}Un exemple, pour voir jusqu'où va le phénotype étendu : les mésanges bleues, adeptes de l'aromathérapie.",
-        "{-tab_mes}{mes}{mes.1}Chez les mésanges bleues, la femelle ajoute dans le nid des fragments frais de plantes aromatiques, glissés entre les matériaux. "
-        "{mes.2}Et elle le fait chaque jour, depuis la fin de la construction du nid jusqu'à l'envol des jeunes.",
-        "Cinq espèces se retrouvent dans plus d'un quart des nids suivis. {-mes}{plantes}{plantes.1}L'achillée de Ligurie. {plantes.2}La lavande papillon. "
+        "{tab_mes}Jusqu'où peut aller le phénotype étendu ? Réponse avec les mésanges bleues. Des adeptes de l'aromathérapie !",
+        "{-tab_mes}{mes}{mes.1}Chez la mésange bleue, la femelle glisse dans le nid des fragments frais de plantes aromatiques. "
+        "{mes.2}Et elle le fait chaque jour, de la fin de la construction du nid jusqu'à l'envol des jeunes.",
+        "Cinq plantes reviennent dans plus d'un quart des nids suivis. "
+        "{-mes}{plantes}{plantes.1}L'achillée de Ligurie. {plantes.2}La lavande papillon. "
         "{plantes.3}L'immortelle d'Italie. {plantes.4}La menthe à feuilles rondes. {plantes.5}Et la pulicaire odorante.",
-        "{-plantes}{tab_lav}{terp}Pourquoi ces plantes ? {terp.1}Elles sont riches en terpènes, des molécules qui agissent comme insecticides, bactéricides et fongicides. "
+        "{-plantes}{tab_lav}{terp}Pourquoi celles-là ? {terp.1}Parce qu'elles sont riches en terpènes. Des molécules insecticides, bactéricides et fongicides.",
         "{terp.2}La lavande, par exemple, dégage du bêta-pinène, un puissant répulsif des insectes. "
-        "{terp.3}Et au Portugal, les mésanges ajoutent des aiguilles de pin parasol, riches en limonène, un composé connu pour réduire les puces et les poux.",
-        "Le nid protège ainsi les oisillons des parasites. Le comportement de la mère, et le nid qu'elle construit, "
-        "font partie de son phénotype étendu, et ils augmentent la survie de sa descendance.",
+        "{terp.3}Et au Portugal, les mésanges ajoutent des aiguilles de pin parasol, riches en limonène. De quoi réduire les puces et les poux.",
+        "Le nid protège donc les oisillons des parasites. Le comportement de la mère, et le nid qu'elle construit, font partie de son phénotype étendu. "
+        "Et ils augmentent la survie de ses petits.",
         "{-terp}{-tab_lav}",
     ], vis={
         "tab_mes": dict(type="tableau", img="ch4-mesange", de=[1.0, .5, .5], a=[1.2, .5, .45], legende="Une mésange bleue · Vladimir Kharuk, iNaturalist, CC BY"),
@@ -333,13 +335,13 @@ SCENES = [
     dict(id="ressources", chap="Des comportements qui dépendent du milieu", fond="foret", humeur="calme",
          retenir="Le comportement des individus dépend des ressources de leur environnement : nids, termitières, fourreaux de phryganes, parade du jardinier satiné.",
          beats=[
-        "{cm3}Troisième et dernière branche : {cm3.1}les comportements. La diversification des individus peut reposer sur des caractères comportementaux, "
-        "et pas seulement sur leur forme. On retrouve d'ailleurs le phénotype étendu. Cette branche a deux parties.",
-        "{-cm3}{tab_ter}Première partie : des comportements qui dépendent des ressources du milieu. "
-        "Le comportement des individus dépend des ressources dont ils disposent dans leur environnement. {res}Quatre cas. "
-        "{res.1}La construction des nids d'oiseaux. {res.2}Les termitières. {res.3}Les fourreaux des phryganes, faits avec les graviers et les débris disponibles. "
-        "{res.4}Et le comportement reproducteur de certains oiseaux, comme le jardinier satiné.",
-        "Le même animal, dans un milieu différent, construira donc autrement. Son génome est le même, son phénotype diffère.",
+        "{cm3}Troisième et dernière branche : {cm3.1}les comportements. "
+        "Les individus ne diffèrent pas seulement par leur forme. Ils diffèrent aussi par ce qu'ils font. Deux parties.",
+        "{-cm3}{tab_ter}Première partie : des comportements qui dépendent du milieu. "
+        "Un animal fait avec ce que son environnement lui offre. {res}Quatre cas.",
+        ("{res.1}La construction des nids d'oiseaux. {res.2}Les termitières. {res.3}Les fourreaux des phryganes, faits avec les graviers et les débris disponibles. "
+         "{res.4}Et le comportement reproducteur de certains oiseaux, comme le jardinier satiné.", {"rate": "+4%"}),
+        "Le même animal, dans un autre milieu, construira autrement. Même génome. Phénotype différent.",
         "{-res}{-tab_ter}",
     ], vis={
         "cm3": dict(type="mental", vers=["c4", "c4c"]),
@@ -354,16 +356,16 @@ SCENES = [
     dict(id="chimpanze", chap="Des comportements transmis : les chimpanzés", fond="foret", humeur="lumiere",
          retenir="Certains comportements se transmettent entre individus d'une même espèce par voie non héréditaire : la casse des noix chez le chimpanzé, une culture de plus de 4 300 ans.",
          beats=[
-        "{idee_c}Deuxième partie : des comportements non héréditaires, transmis au sein d'une espèce. Voici l'idée. "
-        "{idee_c.1}Certains comportements phénotypiques sont transmis, par voie non héréditaire, entre individus d'une même espèce. "
-        "Cela conforte l'idée que le phénotype ne repose pas que sur des bases génétiques.",
-        "{-idee_c}{tab_chi}Premier exemple : le chimpanzé, et la casse des noix.",
-        "{-tab_chi}{noix}{noix.1}Le chimpanzé place une noix sur un support qui sert d'enclume, en bois ou en pierre. "
-        "{noix.2}Puis il la frappe à l'aide d'un percuteur. Il recommence, encore et encore. {noix.3}Jusqu'à ce que la coque cède.",
-        "{-noix}{cult}Et ce savoir-faire est ancien. {cult.1}Des percuteurs ont été retrouvés enfouis dans le sol. "
-        "{cult.2}Le savoir-faire se transmet depuis plus de deux cents générations. "
+        "{idee_c}Deuxième partie : des comportements transmis au sein d'une espèce. Mais pas par les gènes.",
+        ("{idee_c.1}Certains comportements se transmettent, par voie non héréditaire, entre individus d'une même espèce. "
+         "Preuve de plus : le phénotype ne repose pas que sur des bases génétiques.", {"rate": "-4%"}),
+        "{-idee_c}{tab_chi}Premier exemple : le chimpanzé, casseur de noix.",
+        "{-tab_chi}{noix}{noix.1}Il pose une noix sur une enclume, en bois ou en pierre. "
+        "{noix.2}Il la frappe avec un percuteur. Encore. Et encore. {noix.3}Jusqu'à ce que la coque cède.",
+        "{-noix}{cult}Et ce savoir-faire ne date pas d'hier. {cult.1}On a retrouvé des percuteurs enfouis dans le sol. "
+        "{cult.2}Il se transmet depuis plus de deux cents générations. "
         "{cult.3}Les chercheurs parlent d'une véritable culture, vieille de plus de quatre mille trois cents ans.",
-        "Mais comment un jeune chimpanzé apprend-il ? C'est tout l'objet de l'exercice qui suit. À toi de jouer.",
+        "Mais alors, comment un jeune chimpanzé apprend-il ? C'est tout l'enjeu de l'exercice qui suit. À toi de jouer.",
         "{-cult}",
     ], vis={
         "idee_c": dict(type="def", terme="L'idée clé", cles=["non", "héréditaire", "génétiques"],
@@ -379,24 +381,23 @@ SCENES = [
 
     # ================================================================ XI. exercice 1 : le graphique du jeune chimpanzé
     dict(id="exo1", chap="Exercice · le jeune chimpanzé", fond="nuit", humeur="tension", beats=[
-        "{ex1}Voici l'exercice : l'acquisition de comportements chez le jeune chimpanzé. "
-        "Le document est un graphique : le taux de succès du jeune chimpanzé en fonction de son âge, en mois, pour deux tâches.",
-        "Une tâche facile : manger les fruits tendres de Parinari. Et une tâche compliquée : casser, avec un outil, les noix de Coula, très nourrissantes, mais très dures.",
-        "{-ex1}{gr1}{gr1.1}Voici la première courbe : les fruits de Parinari. {gr1.2}Et la seconde : les noix de Coula. "
-        "Ce graphique est schématique : les valeurs sont approchées.",
+        "{ex1}Exercice : l'acquisition de comportements chez le jeune chimpanzé. "
+        "Le document : un graphique. Le taux de succès du jeune, en fonction de son âge en mois, pour deux tâches.",
+        "Une tâche facile : manger les fruits tendres de Parinari. Et une tâche difficile : casser, avec un outil, les noix de Coula. Très nourrissantes. Mais très dures.",
+        "{-ex1}{gr1}{gr1.1}Première courbe : les fruits de Parinari. {gr1.2}Seconde courbe : les noix de Coula. "
+        "Graphique schématique : les valeurs sont approchées.",
         "{-gr1}{ex1b}Trois questions. Un : décrire le graphique. Deux : comparer les deux comportements. "
-        "Trois : des jeunes chimpanzés élevés sans congénères ont un taux de succès de zéro virgule deux seulement. Qu'en conclure ?",
-        "{-ex1b}{pa1}Prends une feuille. Mets la vidéo sur pause, et rédige tes trois réponses.",
-        "{pa1.stop}{-pa1}{ex1c}{ex1c.q1}{gr2}Voyons les réponses. Question un : décrire. On décrit chaque courbe, avec des valeurs, et dans l'ordre. "
-        "{gr2.1}Pour les fruits de Parinari, le taux de succès augmente dès l'âge de dix à quinze mois, {gr2.2}et il atteint un plateau d'environ zéro virgule six, vers trente mois.",
-        "{gr2.3}Pour les noix de Coula, le taux de succès reste nul jusque vers quarante-cinq à cinquante mois. "
-        "{gr2.4}Puis il augmente brusquement, jusqu'à un plateau d'environ zéro virgule cinquante-cinq, vers soixante mois.",
-        "{ex1c.q2}{gr2.5}Question deux : comparer. Les deux comportements finissent par être maîtrisés à un niveau proche. "
-        "Mais la casse des noix, plus complexe, et qui demande un outil, s'acquiert beaucoup plus tard : environ trois ans plus tard. "
-        "Il faut donc un long apprentissage.",
-        "{-gr2}{ex1c.q3}{rep3}{rep3.1}Question trois. Sans congénères à observer, le jeune chimpanzé n'atteint pas le niveau de ceux qui ont grandi dans le groupe. "
-        "{rep3.2}Le comportement n'est donc pas inné : il s'acquiert par observation et imitation des adultes. "
-        "{rep3.3}C'est une transmission culturelle, non génétique.",
+        "Trois : des jeunes élevés sans congénères n'atteignent qu'un taux de succès de zéro virgule deux. Qu'en conclure ?",
+        "{-ex1b}{pa1}Prends une feuille. Mets sur pause, et rédige tes trois réponses.",
+        "{pa1.stop}{-pa1}{ex1c}{ex1c.q1}{gr2}Voyons les réponses. Question un : décrire. Chaque courbe, avec des valeurs, dans l'ordre. "
+        "{gr2.1}Pour les fruits de Parinari, le succès grimpe dès dix à quinze mois. {gr2.2}Il plafonne vers zéro virgule six, autour de trente mois.",
+        "{gr2.3}Pour les noix de Coula, c'est zéro. Jusque vers quarante-cinq, cinquante mois. "
+        "{gr2.4}Puis la courbe décolle brusquement, jusqu'à un plateau d'environ zéro virgule cinquante-cinq, vers soixante mois.",
+        "{ex1c.q2}{gr2.5}Question deux : comparer. Au final, les deux niveaux sont proches. "
+        "Mais la casse des noix, plus complexe, avec un outil, arrive bien plus tard. Environ trois ans plus tard ! Il faut un long apprentissage.",
+        "{-gr2}{ex1c.q3}{rep3}{rep3.1}Question trois. Sans congénères à observer, le jeune n'atteint pas le niveau de ceux qui ont grandi dans le groupe. "
+        "{rep3.2}Le comportement n'est donc pas inné. Il s'acquiert en observant et en imitant les adultes.",
+        "{rep3.3}C'est une transmission culturelle. Pas génétique.",
         "{-rep3}{-ex1c}",
     ], vis={
         "ex1": dict(type="exo", niveau="simple", titre="L'acquisition de comportements chez le jeune chimpanzé", src="Exploitation d'un graphique",
@@ -428,25 +429,25 @@ SCENES = [
     dict(id="oiseaux", chap="La culture animale et le chant des oiseaux", fond="aube", humeur="lumiere",
          retenir="Un oisillon isolé de ses congénères ne peut pas apprendre le chant de son espèce : ce chant n'est pas inné, il est acquis par entraînement et apprentissage.",
          beats=[
-        "{cul}Parlons de la culture animale. {cul.1}Longtemps, la culture a été considérée comme propre à l'humanité. "
-        "{cul.2}Depuis les années mille neuf cent quatre-vingt-dix, les spécialistes du comportement animal ont montré qu'une culture animale existe aussi. "
-        "{cul.3}Apprentissage par imitation du langage, de techniques comme l'utilisation d'outils, élaboration de codes sociaux, "
-        "{cul.4}et transmission entre congénères, avec des variantes selon les régions.",
-        "{-cul}{def_cul}{def_cul.1}La culture concerne l'ensemble des animaux qui ont une organisation sociale. C'est l'ensemble des savoirs et des pratiques "
-        "qui se partagent et se transmettent socialement au sein d'un groupe. Et cette transmission n'est pas un héritage génétique.",
+        "{cul}La culture, est-ce propre à l'être humain ? {cul.1}On l'a longtemps cru. "
+        "{cul.2}Mais depuis les années mille neuf cent quatre-vingt-dix, les spécialistes du comportement animal ont montré qu'une culture animale existe.",
+        ("{cul.3}Imitation du langage, usage d'outils, codes sociaux. "
+         "{cul.4}Et transmission entre congénères, avec des variantes selon les régions.", {"rate": "+4%"}),
+        "{-cul}{def_cul}{def_cul.1}La culture concerne tous les animaux qui ont une organisation sociale. "
+        "C'est l'ensemble des savoirs et des pratiques qui se partagent et se transmettent dans un groupe. Et cette transmission n'a rien de génétique.",
         "{-def_cul}{tab_ois}Deuxième exemple : le chant des oiseaux.",
-        "En une phrase : un oisillon isolé de tous ses congénères ne peut pas apprendre, et présente un chant très éloigné de celui de son espèce. "
-        "{-tab_ois}{chant}Ce schéma te le montre, avec des sonogrammes simplifiés : le temps de gauche à droite, la hauteur du son de bas en haut. "
-        "{chant.1}En haut, le chant d'un adulte de l'espèce. {chant.2}Au milieu, un jeune élevé avec ses congénères : après entraînement, il reproduit ce chant. "
-        "{chant.3}En bas, un jeune élevé seul : son chant ne ressemble plus à celui de son espèce.",
-        "{-chant}{bil_ch}Le bilan. {bil_ch.1}Ce comportement montre une démarche d'apprentissage. "
-        "L'oisillon finit par maîtriser le chant de son espèce, par entraînement et par apprentissage. "
-        "{bil_ch.2}Il s'agit d'une transmission non génétique d'un comportement, c'est-à-dire qu'il n'est pas inné.",
-        "Profites-en pour fixer deux mots. {-bil_ch}{inne}{inne.g}Un comportement inné se met en place sans apprentissage. "
-        "{inne.d}Un comportement acquis s'apprend, par observation et entraînement. Et le test, c'est l'isolement : un individu isolé n'acquiert pas un comportement qui s'apprend.",
+        "Un oisillon isolé de tous ses congénères ne peut pas apprendre. Son chant sera très éloigné de celui de son espèce. "
+        "{-tab_ois}{chant}Regarde ce schéma. Des sonogrammes simplifiés : le temps de gauche à droite, la hauteur du son de bas en haut.",
+        "{chant.1}En haut, le chant d'un adulte. {chant.2}Au milieu, un jeune élevé avec ses congénères : après entraînement, il reproduit ce chant. "
+        "{chant.3}En bas, un jeune élevé seul. Son chant ne ressemble plus du tout à celui de son espèce.",
+        "{-chant}{bil_ch}Le bilan. {bil_ch.1}Ce chant s'apprend. L'oisillon le maîtrise par entraînement. "
+        "{bil_ch.2}C'est une transmission non génétique d'un comportement. Autrement dit : il n'est pas inné.",
+        "Deux mots à bien fixer. {-bil_ch}{inne}{inne.g}Un comportement inné se met en place sans apprentissage. "
+        "{inne.d}Un comportement acquis s'apprend, par observation et entraînement.",
+        "Et le test, c'est l'isolement. Un individu isolé n'acquiert pas un comportement qui s'apprend.",
         "{-inne}",
     ], vis={
-        "cul": dict(type="liste", titre="À lire · la culture animale", items=[
+        "cul": dict(type="liste", titre="La culture animale", items=[
             "Longtemps, la culture a été considérée comme propre à l'humanité",
             "Depuis les années 1990 : une culture animale existe aussi",
             "Imitation du langage, utilisation d'outils, codes sociaux",
@@ -468,16 +469,16 @@ SCENES = [
     dict(id="baleines", chap="Le chant des baleines à bosse", fond="nuit", humeur="mystere",
          retenir="Chez les baleines à bosse, un nouveau chant apparaît en Australie et gagne, en un ou deux ans, les populations plus à l'est : il se transmet par apprentissage, pas par les gènes.",
          beats=[
-        "Troisième exemple : {tab_bal}le chant des baleines à bosse du Pacifique. Chez cette espèce, seuls les mâles chantent, "
-        "notamment pour séduire les femelles, lors des migrations de la saison des amours.",
-        "{-tab_bal}{str}Un chant est très organisé. {str.1}Des unités sonores s'organisent en phrases, répétées. {str.2}Les phrases forment un thème. "
-        "{str.3}Un chant compte de quatre à sept thèmes différents, repris dans un ordre précis, {str.4}pendant huit à trente minutes.",
-        "{-str}{varie}Et ce chant n'est pas fixe. {varie.1}Il diffère selon la population, et selon le moment de l'année. {varie.2}Et des variations s'y accumulent.",
-        "{-varie}{bal}Le manuel suit, de mille neuf cent quatre-vingt-dix-huit à deux mille huit, le type de chant de six populations, de l'Australie à la Polynésie française. "
-        "{bal.1}Un nouveau chant apparaît d'abord chez les baleines d'Australie. "
-        "{bal.2}Puis on le retrouve, un ou deux ans plus tard, chez les populations situées plus à l'est : la Nouvelle-Calédonie, les Tonga, les Samoa américaines, les îles Cook, la Polynésie.",
-        "Un changement génétique ne pourrait jamais se propager aussi vite, d'une population à l'autre, en un an ou deux. "
-        "Le chant se transmet donc d'une population à l'autre par apprentissage, et non par les gènes.",
+        "Troisième exemple, et le plus spectaculaire : {tab_bal}le chant des baleines à bosse du Pacifique. "
+        "Chez cette espèce, seuls les mâles chantent. Surtout pour séduire les femelles, pendant les migrations de la saison des amours.",
+        "{-tab_bal}{str}Ce chant est très organisé. {str.1}Des unités sonores forment des phrases, répétées. {str.2}Les phrases forment un thème. "
+        "{str.3}Un chant compte de quatre à sept thèmes, dans un ordre précis, {str.4}pendant huit à trente minutes.",
+        "{-str}{varie}Et ce chant bouge. {varie.1}Il diffère selon la population, et selon le moment de l'année. {varie.2}Des variations s'y accumulent.",
+        "{-varie}{bal}De mille neuf cent quatre-vingt-dix-huit à deux mille huit, des chercheurs ont suivi le chant de six populations, de l'Australie à la Polynésie française. "
+        "{bal.1}Un nouveau chant apparaît d'abord en Australie.",
+        "{bal.2}Et un ou deux ans plus tard, on l'entend plus à l'est : en Nouvelle-Calédonie, aux Tonga, aux Samoa américaines, aux îles Cook, en Polynésie.",
+        ("P", 0.6),
+        "Aucun changement génétique ne pourrait voyager aussi vite. Le chant passe d'une population à l'autre par apprentissage. Pas par les gènes.",
         "{-bal}",
     ], vis={
         "tab_bal": dict(type="tableau", img="ch4-baleine", de=[1.0, .5, .5], a=[1.2, .5, .45], legende="Une baleine à bosse · Lawrence Hylton, iNaturalist, CC BY"),
@@ -494,19 +495,17 @@ SCENES = [
     dict(id="bilan", chap="Le bilan du chapitre", fond="aube", humeur="lumiere",
          retenir="La transmission culturelle et comportementale est aussi un moteur évolutif.",
          beats=[
-        "{bil}Voici le bilan du chapitre. {bil.1}Certains comportements se transmettent de manière non génétique entre congénères, "
-        "par observation et apprentissage : le chant et l'alimentation des oiseaux, l'alimentation des macaques.",
-        "{bil.2}Lorsqu'on isole des individus de leurs proches, on constate que le langage adulte ne se met pas en place, ou qu'il est incomplet : il n'est donc pas inné. "
-        "{bil.3}Cela contribue à la diversification des individus, car les sources des apprentissages varient, notamment dans les sociétés humaines, "
-        "où les échanges entre populations se sont accentués. "
-        "{bil.4}Et selon leurs conséquences, ces comportements ont pu se maintenir ou non dans les populations : "
-        "ils ont ainsi contribué à l'évolution technique et culturelle des espèces.",
-        "{-bil}{frappe_m}La conclusion du chapitre : la transmission culturelle et comportementale est donc, elle aussi, un moteur évolutif.",
-        "{-frappe_m}{tab_mac}Et les macaques du bilan ? Voici l'exemple classique, "
-        "bien connu des primatologues : {mac}{mac.1}les macaques japonais de l'île de Koshima. "
-        "{mac.2}Dans les années mille neuf cent cinquante, une jeune femelle s'est mise à laver dans l'eau les patates douces que lui donnaient les chercheurs. "
-        "{mac.3}Le comportement s'est ensuite répandu dans le groupe, d'abord chez les jeunes, puis de génération en génération.",
-        "C'est exactement le même mécanisme que pour les chimpanzés et les oiseaux : un comportement nouveau, appris, transmis, sans aucun gène nouveau.",
+        "{bil}Le bilan du chapitre. {bil.1}Certains comportements se transmettent entre congénères, sans les gènes : par observation et apprentissage. "
+        "Le chant et l'alimentation des oiseaux. L'alimentation des macaques.",
+        "{bil.2}Isolé de ses proches, un individu n'acquiert pas le langage adulte, ou alors incomplet. Il n'est donc pas inné.",
+        "{bil.3}Comme les sources d'apprentissage varient, les individus se diversifient. Surtout dans les sociétés humaines, où les échanges se sont multipliés. "
+        "{bil.4}Et selon leurs conséquences, ces comportements se maintiennent, ou non. Ils ont façonné l'évolution technique et culturelle des espèces.",
+        ("P", 0.6),
+        "{-bil}{frappe_m}La conclusion : la transmission culturelle et comportementale est, elle aussi, un moteur évolutif.",
+        "{-frappe_m}{tab_mac}Et ces macaques ? Voici l'exemple classique, bien connu des primatologues : {mac}{mac.1}les macaques japonais de l'île de Koshima.",
+        "{mac.2}Dans les années mille neuf cent cinquante, une jeune femelle se met à laver dans l'eau les patates douces données par les chercheurs. "
+        "{mac.3}L'habitude se répand dans le groupe. D'abord chez les jeunes. Puis de génération en génération.",
+        "Même mécanisme que pour les chimpanzés et les oiseaux. Un comportement nouveau, appris, transmis. Sans aucun gène nouveau.",
         "{-mac}{-tab_mac}",
     ], vis={
         "bil": dict(type="liste", titre="Bilan du chapitre", petit=True, items=[
@@ -525,27 +524,29 @@ SCENES = [
 
     # ================================================================ XV. exercice 2 : la rédaction type bac
     dict(id="exo2", chap="Exercice · une rédaction type bac", fond="nuit", humeur="tension", beats=[
-        "{ex2}Dernier exercice, au format du bac : une question de synthèse, qu'on appelle aussi restitution des connaissances. "
-        "Montrer, à l'aide d'exemples précis, que le phénotype des êtres vivants peut se diversifier sans modification de leur génome. "
-        "Avec une introduction, un développement structuré, et une conclusion. Comptez trente minutes.",
-        "{-ex2}{pa2}C'est le moment de vérité. Mets sur pause, fais d'abord un plan au brouillon, puis rédige.",
+        "{ex2}Dernier exercice, au format du bac : une question de synthèse. "
+        "Montrer, à l'aide d'exemples précis, que le phénotype des êtres vivants peut se diversifier sans modification de leur génome.",
+        "Une introduction, un développement structuré, une conclusion. Trente minutes.",
+        "{-ex2}{pa2}C'est le moment de vérité. Mets sur pause. Un plan au brouillon d'abord, puis la rédaction.",
         "{pa2.stop}{-pa2}{ex2c}{ex2c.q1}Voici une proposition de réponse. "
-        "{intro}{intro.1}L'introduction pose le décor : la diversité des phénotypes s'explique en grande partie par des mécanismes génétiques, "
-        "brassages de la reproduction sexuée, mutations, transferts de gènes. {intro.2}Pourtant, d'autres mécanismes diversifient le phénotype sans toucher à l'ADN. "
-        "{intro.3}Lesquels ? C'est la problématique.",
-        "{-intro}{ex2c.q2}{dev}Le développement suit les trois branches du chapitre. {dev.1}Première partie : les associations entre êtres vivants. "
-        "Le ver de Roscoff et ses algues, le microbiote et l'être humain, pour le mutualisme ; le gammare parasité, pour le parasitisme. "
-        "Et l'idée clé : le métabolisme ou le comportement de l'hôte changent, mais pas son génome.",
-        "{dev.2}Une phrase de transition : le phénotype ne s'arrête pas non plus aux limites du corps. "
-        "{dev.3}Deuxième partie : le phénotype étendu. Sa définition, puis les exemples : la phrygane, l'araignée, les mésanges et leurs plantes aromatiques, le port de Marseille. "
-        "{dev.4}Troisième partie : les comportements appris. Le jeune chimpanzé qui ne maîtrise la casse des noix que vers quarante-cinq à soixante mois, "
-        "l'oisillon isolé qui chante autrement, et le nouveau chant des baleines qui passe d'une population à l'autre en un ou deux ans.",
-        "{-dev}{ex2c.q3}{concl}{concl.1}Et la conclusion répond à la question : associations, phénotype étendu et apprentissage diversifient les phénotypes "
-        "sans modifier les génomes. {concl.2}Puis elle ouvre : selon leurs conséquences, ces caractères se maintiennent ou non dans les populations. "
-        "La transmission culturelle et comportementale est donc, elle aussi, un moteur évolutif.",
-        "{-concl}{grille}Vérifie ta rédaction avec cette grille. {grille.1}La problématique. {grille.2}Les trois exemples de mutualisme et de parasitisme, "
-        "et l'idée clé. {grille.3}Une transition. {grille.4}La définition du phénotype étendu, et ses exemples. "
-        "{grille.5}Le chimpanzé, l'oisillon isolé, les baleines. {grille.6}Et la conclusion sur le moteur évolutif. "
+        "{intro}{intro.1}L'introduction pose le décor. La diversité des phénotypes s'explique surtout par des mécanismes génétiques : "
+        "brassages de la reproduction sexuée, mutations, transferts de gènes.",
+        "{intro.2}Pourtant, d'autres mécanismes diversifient le phénotype sans toucher à l'ADN. {intro.3}Lesquels ? Voilà la problématique.",
+        "{-intro}{ex2c.q2}{dev}Le développement suit les trois branches du chapitre. {dev.1}Première partie : les associations. "
+        "Le ver de Roscoff et ses algues, le microbiote et l'être humain, pour le mutualisme. Le gammare parasité, pour le parasitisme. "
+        "Et l'idée clé : l'hôte change de métabolisme ou de comportement, mais pas de génome.",
+        "{dev.2}Une transition : le phénotype ne s'arrête pas non plus aux limites du corps. "
+        "{dev.3}Deuxième partie : le phénotype étendu. Sa définition, puis la phrygane, l'araignée, les mésanges et leurs plantes, le port de Marseille.",
+        "{dev.4}Troisième partie : les comportements appris. Le jeune chimpanzé, qui ne casse les noix que vers quarante-cinq à soixante mois. "
+        "L'oisillon isolé, qui chante autrement. Et le chant des baleines, qui passe d'une population à l'autre en un ou deux ans.",
+        "{-dev}{ex2c.q3}{concl}{concl.1}La conclusion répond à la question : associations, phénotype étendu et apprentissage diversifient les phénotypes, "
+        "sans modifier les génomes. {concl.2}Puis elle ouvre. Selon leurs conséquences, ces caractères se maintiennent ou non. "
+        "La transmission culturelle est, elle aussi, un moteur évolutif.",
+        ("P", 0.6),
+        "{-concl}{grille}Vérifie ta rédaction avec cette grille.",
+        ("{grille.1}La problématique. {grille.2}Les exemples de mutualisme et de parasitisme, avec l'idée clé. {grille.3}Une transition. "
+         "{grille.4}La définition du phénotype étendu, et ses exemples. {grille.5}Le chimpanzé, l'oisillon isolé, les baleines. "
+         "{grille.6}Et la conclusion sur le moteur évolutif.", {"rate": "+4%"}),
         "Chaque exemple doit être précis : un nom, un chiffre, un mécanisme. C'est ça qui fait la note.",
         "{-grille}{-ex2c}",
     ], vis={
@@ -578,23 +579,24 @@ SCENES = [
 
     # ================================================================ XVI. pour le bac
     dict(id="recap", chap="Ce qu'il faut savoir pour le bac", fond="aube", humeur="lumiere", beats=[
-        "{carte}Récapitulons tout le chapitre. Au centre, l'idée : le phénotype se diversifie sans que le génome change. "
-        "{carte.1}Le mutualisme : des bénéfices réciproques, avec le ver de Roscoff et le microbiote. "
-        "{carte.2}Le parasitisme : un seul bénéficiaire, avec le gammare. "
-        "{carte.3}Le phénotype étendu : ce qui est hors du corps, de la phrygane au port de Marseille, sans oublier les mésanges. "
+        "{carte}Récapitulons. Au centre, une idée : le phénotype se diversifie sans que le génome change. "
+        "{carte.1}Le mutualisme : des bénéfices réciproques. Le ver de Roscoff, le microbiote. "
+        "{carte.2}Le parasitisme : un seul gagnant. Le gammare.",
+        "{carte.3}Le phénotype étendu : tout ce qui est hors du corps. De la phrygane au port de Marseille, sans oublier les mésanges. "
         "{carte.4}Et les comportements appris : chimpanzés, oiseaux, baleines, macaques.",
-        "{-carte}{pieges}Quatre pièges à éviter. {pieges.1}Ne jamais écrire que le génome de l'hôte change : c'est tout le contraire du chapitre. "
-        "{pieges.2}Préciser le sens du mot symbiose, ou parler de mutualisme et de parasitisme. "
-        "{pieges.3}Ne pas confondre inné et acquis : l'expérience d'isolement fait la différence. "
-        "{pieges.4}Et toujours un exemple précis derrière chaque idée.",
-        "{-pieges}Voici ce que tu dois savoir faire, {bac}à cocher. {bac.1}Définir l'hérédité non génétique. {bac.2}Définir le mutualisme et le parasitisme, avec un exemple chacun. "
-        "{bac.3}Définir la symbiose, en précisant le sens. {bac.4}Définir le phénotype étendu, avec des exemples. "
-        "{bac.5}Décrire et exploiter un graphique d'apprentissage, comme celui du chimpanzé. "
+        "{-carte}{pieges}Quatre pièges à éviter. {pieges.1}Écrire que le génome de l'hôte change. C'est tout le contraire du chapitre ! "
+        "{pieges.2}Employer symbiose sans préciser le sens. Ou alors, parle de mutualisme et de parasitisme.",
+        "{pieges.3}Confondre inné et acquis. C'est l'isolement qui tranche. "
+        "{pieges.4}Et une idée sans exemple précis. Jamais.",
+        "{-pieges}{bac}Voici ce que tu dois savoir faire. À cocher.",
+        ("{bac.1}Définir l'hérédité non génétique. {bac.2}Définir le mutualisme et le parasitisme, avec un exemple chacun. "
+         "{bac.3}Définir la symbiose, en précisant le sens. {bac.4}Définir le phénotype étendu, avec des exemples.", {"rate": "+4%"}),
+        "{bac.5}Exploiter un graphique d'apprentissage, comme celui du chimpanzé. "
         "{bac.6}Expliquer pourquoi un comportement n'est pas inné. {bac.7}Et rédiger une synthèse sur la diversité non génétique.",
         "Si tu sais faire ces sept choses, tu as tout le bagage du chapitre.",
-        "{-bac}{cm4}Et voici la carte complète de la partie A du thème un. {cm4.1}Ce chapitre quatre la referme : "
-        "après les mécanismes génétiques, il montre que le vivant se diversifie et évolue aussi sans ses gènes. "
-        "Et maintenant, les questions du quiz, juste sous la vidéo.",
+        "{-bac}{cm4}Et voici la carte complète de la partie A. {cm4.1}Le chapitre quatre la referme. "
+        "Après les gènes, il montre que le vivant se diversifie, et évolue, aussi sans eux. "
+        "Et maintenant ? Les questions du quiz, juste sous la vidéo.",
         ("P", 2.5),
     ], vis={
         "carte": dict(type="carte", centre="LE PHÉNOTYPE SANS LE GÉNOME", branches=[
