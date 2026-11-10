@@ -186,7 +186,7 @@
     O.sv("path", { d: "M" + (ax - 82) + " " + (ay - 2) + " L" + (ax - 66) + " " + (ay + 8) + " L" + (ax - 82) + " " + (ay + 18), fill: "none", stroke: O.C.or, "stroke-width": 3 }, mh);
     O.etiquette(mh, ax - 185, ay - 14, "transfert horizontal", { fs: 24, c: O.C.or, fw: 700 });
     // arbre (topologie classique des hominoïdes)
-    var esp = ["gibbon", "orang-outan", "gorille", "chimpanzé", "humain"], ly = H - 70, lx0 = W * .14, lx1 = W * .86;
+    var esp = ["gibbon", "orang-outan", "gorille", "chimpanzé", "humain"], ly = H - 115, lx0 = W * .14, lx1 = W * .86;
     var feuilles = esp.map(function (n, i) { return lx0 + (lx1 - lx0) * i / (esp.length - 1); });
     var noeuds = [[ax, ay + 70]];
     var arbre = O.sv("g", {}, g), branches = [];
