@@ -454,25 +454,11 @@ def generer(nom_module):
         pv[i:i + len(x)] += x
     crete = np.abs(pv).max()
     pv *= 0.89 / max(crete, 1e-9)   # brouillon muet : crête nulle
-    # musique : une humeur par chapitre, fondu enchaîné de 2,5 s entre deux humeurs
+    # musique : composée partie par partie dans le style du site (musique.STYLE : identité sonore, une humeur par
+    # chapitre, variantes d'une partie à l'autre ; graine = code + scène) ; les paroles servent à retenir sous la voix
+    # ce qui la gêne et à placer les roulements dans les silences
     tt = np.arange(n) / SR
-    if site in musique.IDENTITES:
-        # maths, ses, hggsp : identité sonore du site, chaque partie composée à part (graine = code + scène), plus de boucle
-        mus = musique.piste(n / SR, humeurs, site, graine=ep.CODE)
-    else:
-        pistes = {}
-        for _, hu in humeurs:
-            if hu not in pistes:
-                x = musique.boucle(duree + 1, hu)[:n]
-                pistes[hu] = np.pad(x, (0, max(0, n - len(x))))[:n] / (np.abs(x).max() + 1e-9) * 0.42
-        mus = np.zeros(n)
-        poids_total = np.zeros(n)
-        for k, (deb, hu) in enumerate(humeurs):
-            fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
-            w = np.clip((tt - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt + 1.25) / 2.5, 0, 1)
-            mus += pistes[hu] * w
-            poids_total += w
-        mus /= np.maximum(poids_total, 1e-6)
+    mus = musique.piste(n / SR, humeurs, site, graine=ep.CODE, paroles=paroles)
     g = musique.enveloppe(n / SR, paroles, haut=1.0, bas=0.12)
     g = np.pad(g, (0, max(0, n - len(g))), constant_values=g[-1])[:n]
     for a, b in plein:       # images plein écran : la musique remonte un peu sous la voix
