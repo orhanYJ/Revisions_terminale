@@ -472,7 +472,7 @@ def generer(nom_module):
         pistes = {}
         for _, hu in humeurs:
             if hu not in pistes:
-                x = musique.boucle(duree + 1, hu)[:n]
+                x = musique.boucle(duree + 1, ("pc-" + hu) if site == "pc" and hu != "reel" else hu)[:n]   # PC : musique « labo »
                 pistes[hu] = np.pad(x, (0, max(0, n - len(x))))[:n] / (np.abs(x).max() + 1e-9) * 0.42
         for k, (deb, hu) in enumerate(humeurs):
             fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5

@@ -131,6 +131,8 @@ def boucle(duree, humeur="lumiere"):
     """Musique brute (sans dosage) de la durée demandée, dans l'humeur choisie."""
     if humeur == "reel":
         return reel(duree)
+    if humeur.startswith("pc-"):       # vidéos de physique-chimie : musique « labo »
+        return labo(duree, humeur[3:])
     H = HUMEURS[humeur]
     BEAT = 60.0 / H["bpm"]
     ACCORDS = H["accords"]
@@ -208,6 +210,121 @@ def enveloppe(duree, paroles, haut=1.0, bas=0.11, attaque=0.25, relache=0.9):
         g[i] = v
     return np.repeat(g, pas)[:n]
 
+
+# ---------------------------------------------------------------------------------------------------------------
+# Musique « labo » des vidéos de physique-chimie (11/2026, demande de Cengiz : « change de musique de fond, c'est tout
+# le temps la même chose ») : une identité sonore propre à la matière, composée ici. Marimba en modulation de fréquence,
+# basse synthétique, nappe large, pulsation douce (grosse caisse feutrée, charleston léger) et petites bulles qui
+# montent, comme dans une solution. Quatre variantes (les humeurs des scripts), même instrumentation.
+LABO = {
+    # bpm, accords (basse, notes) sur deux mesures, densité du marimba, pulsation, bulles
+    "lumiere": dict(bpm=100, accords=[(41, [53, 57, 60, 64, 67]), (38, [50, 53, 57, 60, 64]),       # Fa maj7(9), Ré m9
+                                      (46, [50, 53, 57, 60, 62]), (48, [52, 55, 60, 62, 67])],      # Si♭ maj7, Do add9
+                    motif=[0, 3, 2, 4, 1, 3, 2, 4], marimba=1.0, pulse=1.0, bulles=0.6),
+    "mystere": dict(bpm=88, accords=[(38, [50, 53, 57, 62, 64]), (46, [50, 53, 57, 58, 65]),       # Ré m(9), Si♭ maj7
+                                     (43, [50, 53, 55, 58, 62]), (45, [49, 52, 55, 57, 62])],      # Sol m7, La7sus
+                    motif=[0, 2, 4, 2, 3, 1, 4, 2], marimba=0.6, pulse=0.5, bulles=1.0),
+    "tension": dict(bpm=108, accords=[(40, [52, 55, 59, 62, 66]), (36, [52, 55, 59, 60, 64]),      # Mi m9, Do maj7
+                                      (45, [52, 55, 57, 60, 64]), (47, [51, 54, 57, 59, 64])],     # La m7, Si7sus
+                    motif=[0, 4, 2, 4, 1, 4, 3, 4], marimba=1.0, pulse=1.25, bulles=0.4),
+    "calme": dict(bpm=84, accords=[(36, [52, 55, 59, 60, 64]), (45, [52, 55, 57, 60, 64]),         # Do maj7, La m7
+                                   (41, [52, 57, 60, 64, 65]), (43, [50, 55, 59, 62, 64])],        # Fa maj7, Sol6
+                  motif=[0, 2, 3, 4, 3, 2, 1, 2], marimba=0.7, pulse=0.45, bulles=0.8),
+}
+
+
+def _marimba_labo(f, dur, amp):
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    ind = 2.2 * np.exp(-t * 18)                           # modulation qui s'éteint vite : attaque boisée
+    s = np.sin(2 * np.pi * f * t + ind * np.sin(2 * np.pi * 4 * f * t)) + 0.18 * np.sin(2 * np.pi * 10 * f * t) * np.exp(-t * 30)
+    env = np.exp(-t * 5.5) * np.minimum(1, t / 0.002)
+    return amp * env * s
+
+
+def _basse_synth(f, dur, amp):
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    s = np.tanh(2.2 * (np.sin(2 * np.pi * f * t) + 0.3 * np.sin(4 * np.pi * f * t)))
+    env = np.minimum(1, t / 0.008) * np.exp(-t * 2.6)
+    return amp * env * s
+
+
+def _nappe_large(freqs, dur, amp):
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    att = np.minimum(1, t / 2.2)
+    rel = np.minimum(1, (dur - t) / 1.6).clip(0, 1)
+    s = np.zeros(n)
+    for i, f in enumerate(freqs):
+        for d, p in ((-1.1, 0.0), (0.0, 1.3), (1.1, 2.1)):
+            s += np.sin(2 * np.pi * (f + d) * t + p + i)
+        s += 0.12 * np.sin(2 * np.pi * 3 * f * t + i) * (0.5 + 0.5 * np.sin(2 * np.pi * 0.11 * t + i))
+    return amp * att * rel * s / (3.2 * len(freqs))
+
+
+def _caisse(amp):
+    n = int(0.32 * SR)
+    t = np.arange(n) / SR
+    f = 46 + 70 * np.exp(-t * 28)
+    return amp * np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 11)
+
+
+def _charleston(rng, amp):
+    L = int(0.045 * SR)
+    b = rng.standard_normal(L)
+    b = np.diff(np.diff(b, prepend=0), prepend=0)         # bruit éclairci (aigus)
+    return amp * b * np.exp(-np.arange(L) / SR * 85)
+
+
+def _bulle(rng, amp):
+    d = 0.05 + 0.05 * rng.random()
+    n = int(d * SR)
+    t = np.arange(n) / SR
+    f0 = 500 + 500 * rng.random()
+    f = f0 * (1 + 1.6 * t / d)                            # la bulle monte
+    return amp * np.sin(2 * np.pi * np.cumsum(f) / SR) * np.sin(np.pi * t / d) ** 2
+
+
+def labo(duree, humeur="lumiere"):
+    """Musique « labo » brute (sans dosage) de la durée demandée, dans l'humeur choisie."""
+    H = LABO.get(humeur, LABO["lumiere"])
+    beat = 60.0 / H["bpm"]
+    n = int(duree * SR) + SR
+    out = np.zeros(n)
+    rng = np.random.default_rng(17)
+    mesure = 4 * beat
+    t, k = 0.0, 0
+    while t < duree:
+        basse, notes = H["accords"][k % 4]
+        d = 2 * mesure
+        i0 = int(t * SR)
+        _ajoute(out, _nappe_large([hz(m) for m in notes[:4]], d + 1.4, 0.16), i0)
+        # basse : sur le temps, puis une croche avant le temps suivant (petit balancement)
+        for b in (0, 1.5, 4, 5.5):
+            _ajoute(out, _basse_synth(hz(basse), 0.9, 0.075), int((t + b * beat) * SR))
+        # marimba : motif en croches, une note sur deux sautée dans les humeurs calmes ; variation toutes les 4 mesures
+        var = 1 if (k // 2) % 2 else 0
+        for c in range(16):
+            if H["marimba"] < 0.8 and c % 2 == 1:
+                continue
+            idx = H["motif"][(c + 3 * var) % 8] % len(notes)
+            m = notes[idx] + 12
+            amp = (0.11 if c % 4 == 0 else 0.08) * H["marimba"]
+            _ajoute(out, _marimba_labo(hz(m), 0.8, amp), int((t + c * beat / 2) * SR))
+        # pulsation feutrée
+        if H["pulse"] > 0:
+            for b in range(8):
+                if b % 2 == 0:
+                    _ajoute(out, _caisse(0.085 * H["pulse"]), int((t + b * beat) * SR))
+                _ajoute(out, _charleston(rng, 0.026 * H["pulse"]), int((t + (b + 0.5) * beat) * SR))
+        # bulles : quelques-unes par mesure, placées au hasard (graine fixe)
+        for _ in range(int(round(3 * H["bulles"]))):
+            _ajoute(out, _bulle(rng, 0.05 * H["bulles"]), int((t + rng.random() * d) * SR))
+        t += d
+        k += 1
+    out = _reverb(out, duree=1.8, mix=0.26)
+    return out[:int(duree * SR)]
 
 # ===================================================================================================
 # MUSIQUE « CARNET DE NATURALISTE » (vidéos SVT, 10/11/2026, demande de Cengiz : « changer la musique de fond,
