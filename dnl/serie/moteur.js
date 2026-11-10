@@ -13,7 +13,9 @@
   var Q = new URLSearchParams(location.search);
   var EMBED = Q.has("embed"), EXPORT = Q.has("export");
   var NS = "http://www.w3.org/2000/svg";
-  var C = { iv: "#f3efe4", iv2: "#d9d2c0", sa: "#e6cb8b", sa2: "#c4a052", ca: "#d0705c", te: "#5aa596", eau: "#74b9d8", nuit: "#0e1525", el: "#8fc7e8", uv: "#b48cff", rouge: "#e0604f", vert: "#7ce08a", or: "#ffd24a" };
+  // identité « dossier d'archives » (11/2026) : encres sur papier ; l'ancienne palette claire sur fond nuit est dans l'historique git
+  var FX = .84;   // les polices de machine à écrire sont plus larges que Spectral : les tailles calculées sont réduites d'autant
+  var C = { iv: "#2a1f14", iv2: "#5b4a36", sa: "#a3271c", sa2: "#7d1d14", ca: "#b0402c", te: "#2f6b5e", eau: "#3d6e8f", nuit: "#efe5c8", el: "#2f5f8a", uv: "#5d4596", rouge: "#b0281c", vert: "#2e7d4f", or: "#9a6a12" };
 
   /* ---------- outils ---------- */
   function h(tag, cls, parent, html) {
@@ -412,7 +414,7 @@
   TYPES.mot = function (o, v) {
     var e = o.el; e.classList.add("v-mot");
     e.style.left = (v.x != null ? v.x : 140) + "px"; e.style.width = (v.w || 1000) + "px"; e.style.top = (v.y != null ? v.y : 260) + "px";
-    var tt = h("div", "tt", e); tt.style.fontSize = (v.taille || 96) + "px";
+    var tt = h("div", "tt", e); tt.style.fontSize = Math.round((v.taille || 96) * FX) + "px";
     var sp = lettres(tt, v.t), gl = v.g ? h("div", "gl", e, esc(v.g)) : null;
     o.entree = "aucune";
     return function (t, st) {
@@ -501,7 +503,7 @@
     e.style.left = (v.x || 170) + "px"; e.style.top = (v.y || 170) + "px"; e.style.width = (v.w || 940) + "px";
     h("div", "gu", e, "«");
     var tx = h("div", "tx", e), L = (v.t || "").length;
-    tx.style.fontSize = (L <= 90 ? 46 : L <= 140 ? 41 : L <= 200 ? 36 : 32) * ((v.w || 940) < 800 ? .9 : 1) + "px";
+    tx.style.fontSize = Math.round((L <= 90 ? 46 : L <= 140 ? 41 : L <= 200 ? 36 : 32) * ((v.w || 940) < 800 ? .9 : 1) * FX) + "px";
     var sp = mots(tx, v.t, "mc");
     var au = h("div", "au", e, "— <b>" + esc(v.a || "") + "</b>" + (v.o ? ", " + esc(v.o) : "") + (v.para ? '<span class="ap">≈ PARAPHRASE</span>' : ""));
     var m = v.m || [], n = sp.length;
@@ -712,7 +714,7 @@
     var e = o.el; e.classList.add("v-generique"); o.entree = "aucune"; o.disp = "flex";
     var halo = h("div", "g-halo", e), haut = h("div", "g-haut", e, T_("DNL History · Terminale BFI"));
     var l1 = h("div", "g-ligne", e), tt = h("div", "g-titre", e), sp = lettres(tt, v.serie);
-    tt.style.fontSize = Math.min(120, Math.floor(2300 / Math.max(12, String(v.serie).length))) + "px"; tt.style.textAlign = "center";
+    tt.style.fontSize = Math.min(92, Math.floor(1500 / Math.max(12, String(v.serie).length))) + "px";   // tient dans l'étiquette de la chemise tt.style.textAlign = "center";
     var l2 = h("div", "g-ligne", e), bas = h("div", "g-bas", e, T_("The chapter in video · episode ") + v.num);
     var balai = h("div", "g-balai", e);
     return function (t, st) {
@@ -1097,28 +1099,37 @@
   };
 
   /* ---------- scène ---------- */
+  // le bureau de l'archiviste : carton kraft sous une lampe (une teinte par humeur de fond)
   var FONDS = {
-    nuit: { base: "linear-gradient(160deg,#0c1322 0%,#19213a 55%,#121a2b 100%)", lueurs: ["rgba(230,203,139,.20)", "rgba(79,154,142,.16)", "rgba(120,90,160,.16)"] },
-    aube: { base: "linear-gradient(160deg,#1a1527 0%,#2a2036 55%,#181d31 100%)", lueurs: ["rgba(230,203,139,.24)", "rgba(194,97,76,.18)", "rgba(79,154,142,.12)"] },
-    guerre: { base: "linear-gradient(160deg,#1b0f10 0%,#2b1718 55%,#16101a 100%)", lueurs: ["rgba(194,97,76,.24)", "rgba(230,203,139,.14)", "rgba(120,90,160,.12)"] }
+    nuit: { base: "var(--grain), linear-gradient(160deg,#a87d4e 0%,#9c7045 55%,#8f6440 100%)", lueurs: ["rgba(255,222,165,.30)"] },
+    aube: { base: "var(--grain), linear-gradient(160deg,#b08757 0%,#a27849 55%,#94693f 100%)", lueurs: ["rgba(255,226,175,.32)"] },
+    guerre: { base: "var(--grain), linear-gradient(160deg,#94683f 0%,#865b36 55%,#7a5131 100%)", lueurs: ["rgba(255,214,150,.26)"] }
   };
+  // texture de papier, calculée une fois, identique d'une exécution à l'autre (l'export MP4 rend la vidéo en plusieurs morceaux)
+  function grain(n, rgb, a) {
+    var c = document.createElement("canvas"); c.width = c.height = n; var x = c.getContext("2d"), im = x.createImageData(n, n);
+    for (var i = 0, k = 0; i < im.data.length; i += 4, k++) { im.data[i] = rgb[0]; im.data[i + 1] = rgb[1]; im.data[i + 2] = rgb[2]; im.data[i + 3] = alea(k * .37 + 11) * 255 * a; }
+    x.putImageData(im, 0, 0); return "url(" + c.toDataURL() + ")";
+  }
 
   function Scene(EP, racine) {
     var sc = h("div", "scene", racine);
+    sc.style.setProperty("--grain", grain(220, [52, 30, 12], .26));
+    sc.style.setProperty("--papier", grain(200, [110, 80, 40], .10));
     var fonds = EP.scenes.map(function (s, i) {
       var f = h("div", "fond", sc), def = FONDS[s.fond] || FONDS.nuit;
       f.style.background = def.base;
       var lu = def.lueurs.map(function (c, j) {
-        var l = h("div", "lueur", f); var r = 520 + j * 140;
-        l.style.width = l.style.height = r + "px"; l.style.background = "radial-gradient(circle," + c + ",transparent 65%)";
-        l.style.left = (j === 0 ? 700 : j === 1 ? -100 : 300) + "px"; l.style.top = (j === 0 ? -150 : j === 1 ? 300 : 380) + "px";
+        var l = h("div", "lueur", f); var r = 1300;
+        l.style.width = l.style.height = r + "px"; l.style.background = "radial-gradient(circle," + c + ",transparent 62%)";
+        l.style.left = "-180px"; l.style.top = "-520px";
         return l;
       });
       return { el: f, lu: lu, s: s, i: i };
     });
     var cv = h("canvas", "poussiere", sc); cv.width = W; cv.height = H;
     var cx = cv.getContext("2d");
-    var parts = []; for (var i = 0; i < 70; i++) parts.push({ x: alea(i) * W, y: alea(i + 100) * H, vx: (alea(i + 200) - .5) * 14, vy: 6 + alea(i + 300) * 16, r: .8 + alea(i + 400) * 2, ph: alea(i + 500) * 6.28 });
+    var parts = []; for (var i = 0; i < 34; i++) parts.push({ x: alea(i) * W, y: alea(i + 100) * H, vx: (alea(i + 200) - .5) * 6, vy: 2 + alea(i + 300) * 6, r: .8 + alea(i + 400) * 2, ph: alea(i + 500) * 6.28 });
     var couche = h("div", "", sc); couche.style.cssText = "position:absolute;inset:0";
     h("div", "voile", sc);
     var ent = h("div", "entete", sc), fil = h("div", "fil", sc), st = h("div", "st", sc), stS = h("span", "", st);
@@ -1139,15 +1150,15 @@
         if (!f.on) { f.el.style.display = "block"; f.on = true; }
         f.el.style.opacity = w;
         f.lu.forEach(function (l, j) {
-          l.style.transform = "translate(" + (Math.sin(t * .07 + j * 2.1) * 120).toFixed(1) + "px," + (Math.cos(t * .05 + j * 1.3) * 80).toFixed(1) + "px) scale(" + (1 + .12 * Math.sin(t * .09 + j)).toFixed(3) + ")";
+          l.style.transform = "translate(" + (Math.sin(t * .035 + j * 2.1) * 60).toFixed(1) + "px," + (Math.cos(t * .025 + j * 1.3) * 30).toFixed(1) + "px) scale(" + (1 + .04 * Math.sin(t * .05 + j)).toFixed(3) + ")";
         });
       });
       // poussière lumineuse
       cx.clearRect(0, 0, W, H);
       parts.forEach(function (p) {
         var x = ((p.x + p.vx * t) % W + W) % W, y = ((p.y - p.vy * t) % H + H) % H;
-        var a = .25 + .25 * Math.sin(t * 1.3 + p.ph);
-        cx.fillStyle = "rgba(255,214,170," + a.toFixed(3) + ")";
+        var a = .10 + .10 * Math.sin(t * 1.3 + p.ph);
+        cx.fillStyle = "rgba(255,238,205," + a.toFixed(3) + ")";
         cx.beginPath(); cx.arc(x, y, p.r, 0, 6.283); cx.fill();
       });
       // visuels
