@@ -183,7 +183,7 @@
   PAGES.ressources = function () { return D.RESSOURCES; };
   PAGES.frise = function () {
     var h = '<header class="page-entete"><p class="surtitre">Repères</p><h1>La frise, des Lumières à 1950</h1><p class="chapo">La période de référence du semestre 1 va « du romantisme au XX<sup>e</sup> siècle ». Ces repères permettent de situer un texte inconnu le jour de l’épreuve.</p></header>';
-    h += '<div class="rang" role="group" aria-label="Filtrer"><button class="puce-f" data-ff="" aria-pressed="true">Tout</button><button class="puce-f" data-ff="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-ff="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-ff="e3" aria-pressed="false">Moi</button><button class="puce-f" data-ff="hist" aria-pressed="false">Histoire</button></div>';
+    h += '<div class="rang" role="group" aria-label="Filtrer"><button class="puce-f" data-ff="" aria-pressed="true">Tout</button><button class="puce-f" data-ff="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-ff="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-ff="e3" aria-pressed="false">Moi</button><button class="puce-f" data-ff="e4" aria-pressed="false">Création</button><button class="puce-f" data-ff="hist" aria-pressed="false">Histoire</button></div>';
     h += '<div data-anim="frise-mouvements"></div>';
     h += '<div class="frise lecture" id="frise">';
     D.FRISE.forEach(function (p) {

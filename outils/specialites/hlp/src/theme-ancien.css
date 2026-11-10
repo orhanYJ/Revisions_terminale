@@ -115,7 +115,7 @@ details.pli>summary::after{border-color:var(--cuivre)}
 table.t{background:transparent}
 table.t th{background:transparent;border-bottom:3px double var(--filet2);color:var(--cuivre)}
 .tag{border-radius:2px;font-size:.82rem;hyphens:none;-webkit-hyphens:none}
-.tag.e1{color:var(--brume);border-color:var(--brume)} .tag.e2{color:var(--cuivre);border-color:var(--cuivre)} .tag.e3{color:var(--or);border-color:var(--or)}
+.tag.e1{color:var(--brume);border-color:var(--brume)} .tag.e2{color:var(--cuivre);border-color:var(--cuivre)} .tag.e3{color:var(--or);border-color:var(--or)} .tag.e4,.tag.e5,.tag.e6{color:var(--encre);border-color:var(--encre)}
 .qcm .question,.qui-c blockquote{font-family:var(--titre)}
 .qcm .choix button,.qui-c .choix button{border-radius:2px;font-family:var(--serif);font-size:1.05rem;background:var(--surface)}
 .qcm .barre i,.anim-prog i{background:var(--cuivre)}

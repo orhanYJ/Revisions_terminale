@@ -40,7 +40,7 @@ window.HLP = { ENTREES: [] };
       '<text x="24" y="30.5" text-anchor="middle" font-size="' + (n.length > 2 ? 15 : 18) + '" fill="currentColor" style="font-family:var(--titre)">' + n + '</text></svg>';
   }
   H.CHIFFRES = { I: chiffre("I"), II: chiffre("II"), III: chiffre("III") };
-  H.ACCUEIL_INTRO = "La spécialité HLP fait travailler ensemble un professeur de lettres et un professeur de philosophie sur les mêmes questions. En Terminale, le premier semestre s’intitule « La recherche de soi » et couvre la période qui va du romantisme au XX<sup>e</sup> siècle ; le second, « L’Humanité en question », porte sur le monde contemporain. Ce site rédige à fond les trois entrées du premier semestre : pour chacune, un cours, des textes clés du domaine public analysés, un sujet type bac corrigé, un QCM, des cartes mémoire et une fiche à imprimer.";
+  H.ACCUEIL_INTRO = "La spécialité HLP fait travailler ensemble un professeur de lettres et un professeur de philosophie sur les mêmes questions. En Terminale, le premier semestre s’intitule « La recherche de soi » et couvre la période qui va du romantisme au XX<sup>e</sup> siècle ; le second, « L’Humanité en question », porte sur le monde contemporain. Ce livre en réunit les six entrées : pour chacune, un cours, des textes clés du domaine public analysés, des animations qui montrent un raisonnement ou un texte pas à pas, un sujet type bac corrigé, les annales, un QCM, des cartes mémoire et une fiche à imprimer.";
   H.ACCUEIL_BAS = '<div class="carte lecture" style="margin-top:26px"><p class="surtitre">À savoir pour 2027</p><p style="margin:.2em 0">Une nouvelle note de service (11 septembre 2026) définit l’épreuve à partir de la session 2027 : 4 heures, un texte, une question d’<b>interprétation</b> et un <b>essai</b>, notés chacun sur 10, sur deux copies séparées. Comme depuis 2024, tout le programme de Terminale peut tomber : prépare les six entrées. <a href="#epreuve">Tout savoir sur l’épreuve →</a></p></div>';
   H.PIED = "Ex libris · HLP Terminale · Contenu original rédigé à partir du programme officiel (BO spécial n° 8 du 25 juillet 2019) et de la note de service du 11 septembre 2026. Extraits d’œuvres du domaine public d’après Wikisource ; œuvres protégées seulement résumées ou citées brièvement. Fonctionne hors connexion.";
   H.TITRES = { accueil: "Accueil", s2: "Semestre 2", epreuve: "L’épreuve", atelier: "Atelier de lecture", qui: "Qui a écrit ?", frise: "Frise", notions: "Tableau des notions", entrainement: "Entraînement", ressources: "Ressources" };
@@ -55,7 +55,7 @@ window.HLP = { ENTREES: [] };
     { t: "Ressources : programme, annales, textes", c: "Ressources", h: "#ressources", x: "eduscol programme wikisource gallica annales youtube manuels" }
   ];
 
-  H.S2_CHAPO = "Le second semestre porte sur la période contemporaine (XX<sup>e</sup>-XXI<sup>e</sup> siècles). Les cours seront rédigés plus tard ; voici dès maintenant les questions que pose le programme officiel, les œuvres qu’il cite et les sujets déjà tombés.";
+  H.S2_CHAPO = "Le second semestre porte sur la période contemporaine (XX<sup>e</sup>-XXI<sup>e</sup> siècles). Pour chaque entrée : le cours complet quand il est rédigé, et sinon les questions que pose le programme officiel, les œuvres qu’il cite et les sujets déjà tombés.";
   H.S2 = [
     { num: "I", titre: "Création, continuités et ruptures", accroche: "Avant-gardes, manifestes, « fin de l’art » : y a-t-il des ruptures radicales ?",
       resume: "Le XX<sup>e</sup> siècle est une ère de ruptures : expressionnisme, futurisme, Dada, surréalisme multiplient les manifestes ; la philosophie parle d’une « crise de la rationalité » ; radio et cinéma transforment la culture. Mais l’ancien subsiste à côté du nouveau, en accord ou en tension.",
@@ -115,7 +115,11 @@ window.HLP = { ENTREES: [] };
       ["1889", "Bergson, <i>Essai sur les données immédiates de la conscience</i>.", "e2"]] },
     { nom: "Les modernités", dates: "1900-1950", def: "l’inconscient, le temps, le soupçon", evts: [
       ["1900", "Freud, <i>L’Interprétation du rêve</i> ; Colette, <i>Claudine à l’école</i>.", "e3"],
+      ["1909", "Marinetti, <i>Manifeste du futurisme</i> (<i>Le Figaro</i>, 20 février) : « démolir les musées ».", "e4"],
       ["1913", "Proust, <i>Du côté de chez Swann</i>.", "e2"],
+      ["1913", "Apollinaire, <i>Alcools</i> (« Zone ») ; <i>Le Sacre du printemps</i> au Théâtre des Champs-Élysées.", "e4"],
+      ["1916-1917", "Dada au Cabaret Voltaire (Zurich) ; Duchamp, <i>Fontaine</i>.", "e4"],
+      ["1919", "Valéry, « La Crise de l’esprit » : « nous sommes mortelles ».", "e4"],
       ["1914-1918", "Première Guerre mondiale.", "hist"],
       ["1915", "Kafka, <i>La Métamorphose</i>.", "e3"],
       ["1923", "Freud, <i>Le Moi et le Ça</i>.", "e3"],
@@ -194,6 +198,12 @@ window.HLP = { ENTREES: [] };
     { c: "La durée toute pure est la forme que prend la succession de nos états de conscience quand notre moi se laisse vivre", a: "Bergson", o: "Essai sur les données immédiates de la conscience", d: "1889", e: "La durée vécue." },
     { c: "On ne naît pas femme : on le devient.", a: "Beauvoir", o: "Le Deuxième Sexe, t. II", d: "1949", e: "L’éducation façonne les rôles." },
     { c: "La modernité, c’est le transitoire, le fugitif, le contingent", a: "Baudelaire", o: "Le Peintre de la vie moderne", d: "1863", e: "Moitié de l’art." },
-    { c: "Le rêve est une seconde vie.", a: "Nerval", o: "Aurélia", d: "1855", e: "Incipit du récit." }
+    { c: "Le rêve est une seconde vie.", a: "Nerval", o: "Aurélia", d: "1855", e: "Incipit du récit." },
+    { c: "Il faut être absolument moderne.", a: "Rimbaud", o: "Une saison en enfer, « Adieu »", d: "1873", e: "La modernité comme devoir." },
+    { c: "Nous voulons démolir les musées, les bibliothèques", a: "Marinetti", o: "Manifeste du futurisme", d: "1909", e: "La table rase des avant-gardes." },
+    { c: "À la fin tu es las de ce monde ancien", a: "Apollinaire", o: "« Zone », Alcools", d: "1913", e: "Premier vers du recueil." },
+    { c: "Mais le nouveau existe bien, sans être en progrès. Il est tout dans la surprise.", a: "Apollinaire", o: "« L’Esprit nouveau et les poètes »", d: "1918", e: "Nouveau ≠ progrès." },
+    { c: "Nous autres, civilisations, nous savons maintenant que nous sommes mortelles.", a: "Valéry", o: "« La Crise de l’esprit »", d: "1919", e: "Après la Grande Guerre." },
+    { c: "La belle antiquité fut toujours vénérable ; / Mais je ne crus jamais qu’elle fût adorable.", a: "Perrault", o: "Le Siècle de Louis le Grand", d: "1687", e: "La querelle des Anciens et des Modernes." }
   ];
 })(window.HLP);
