@@ -100,12 +100,10 @@ module.exports = function (ctx) {
   {
     const pt = (c, ll, n, a, t, d) => { const [x, y] = M.P(ll); return { c, x, y, n, a, t, d }; };
     const pts = [
-      pt("etud", [2.12, 48.8], "Versailles", "end", "Palais et parc de Versailles (France, 1979)", "Résidence royale devenue musée de l'Histoire de France (1837), lieu de la proclamation de l'Empire allemand (1871) et du traité de 1919, cadre de la diplomatie française. Environ 8,4 millions de visiteurs en 2025."),
+      pt("etud", [2.35, 48.86], "France", "end", "France : 56 biens (septembre 2026)", "Versailles (1979), Paris, rives de la Seine (1991), bassin minier (2012), plages du Débarquement (2026)… : voir la carte de la France ci-dessous et l'objet de travail conclusif."),
       pt("etud", [23.73, 37.97], "Athènes", "start", "Acropole d'Athènes (Grèce, 1987)", "Les frises du Parthénon sont dispersées entre Athènes, Londres et d'autres musées ; la Grèce réclame les marbres du British Museum depuis 1983."),
-      pt("etud", [2.35, 48.86], "Paris", "start", "Paris, rives de la Seine (France, 1991)", "De la Concorde à Notre-Dame : un centre protégé, entre tours et nouvel urbanisme. Notre-Dame, incendiée le 15 avril 2019, a rouvert le 7 décembre 2024."),
       pt("etud", [-3.0, 16.77], "Tombouctou", "start", "Tombouctou (Mali, 1988, en péril depuis 2012)", "Mosquées et mausolées de saints, manuscrits : des mausolées détruits par des djihadistes en 2012, reconstruits avec l'UNESCO ; premier procès de la CPI pour destruction du patrimoine (2016)."),
       pt("etud", [12.33, 45.44], "Venise", "start", "Venise et sa lagune (Italie, 1987)", "Moins de 50 000 habitants dans le centre historique depuis 2022, des millions de visiteurs : grands navires interdits en 2021, droit d'accès payant certains jours depuis 2024."),
-      pt("etud", [2.83, 50.43], "Bassin minier", "end", "Bassin minier du Nord-Pas-de-Calais (France, 2012)", "Paysage culturel évolutif vivant : 109 biens, 353 éléments (terrils, chevalements, cités, écoles…), reconverti autour du Louvre-Lens."),
       pt("menace", [67.83, 34.83], "Bamiyan", "start", "Bamiyan (Afghanistan)", "Les deux bouddhas géants (VIe siècle) sont dynamités par les talibans en mars 2001. Le site est inscrit au patrimoine mondial et sur la liste en péril en 2003."),
       pt("menace", [38.27, 34.55], "Palmyre", "end", "Palmyre (Syrie, 1980)", "Daech détruit le temple de Baalshamin et le temple de Bel en 2015 et assassine l'archéologue Khaled al-Asaad, ancien directeur des antiquités du site (18 août 2015)."),
       pt("menace", [43.13, 36.34], "Mossoul", "start", "Mossoul (Irak)", "La mosquée al-Nouri et son minaret penché (XIIe siècle) sont détruits par Daech en juin 2017. L'UNESCO lance en 2018 l'initiative « Faire revivre l'esprit de Mossoul » pour les reconstruire."),
@@ -114,14 +112,13 @@ module.exports = function (ctx) {
       pt("menace", [13.74, 51.05], "Dresde", "start", "Vallée de l'Elbe à Dresde (Allemagne), radiée en 2009", "Un pont routier construit en plein paysage protégé conduit l'UNESCO à retirer le bien de la liste."),
       pt("memoire", [19.18, 50.03], "Auschwitz", "start", "Auschwitz-Birkenau (Pologne, 1979)", "Un des premiers lieux de mémoire inscrits : un patrimoine de l'horreur, à transmettre (voir le thème 3)."),
       pt("memoire", [30.06, -1.95], "Rwanda", "start", "Sites mémoriaux du génocide (Rwanda, 2023)", "Nyamata, Murambi, Gisozi et Bisesero : premiers lieux de mémoire africains inscrits au patrimoine mondial (20 septembre 2023)."),
-      pt("memoire", [-0.8, 49.35], "Débarquement", "end", "Plages du Débarquement (France, 2026)", "Utah, Omaha, Gold, Juno, Sword, la pointe du Hoc, la batterie de Longues-sur-Mer et le port artificiel d'Arromanches, inscrits le 26 juillet 2026 à Busan : 56e bien français."),
       pt("memoire", [132.45, 34.39], "Hiroshima", "end", "Mémorial de la paix d'Hiroshima (Japon, 1996)", "Le dôme de Genbaku, seul bâtiment resté debout près de l'hypocentre du 6 août 1945, inscrit malgré les réserves des États-Unis et de la Chine."),
       pt("valor", [-17.4, 14.67], "Gorée", "end", "Île de Gorée (Sénégal, 1978)", "Parmi les douze premiers biens inscrits : un lieu de mémoire de la traite atlantique, devenu un symbole visité par les chefs d'État."),
       pt("valor", [22.6, -19.3], "Okavango", "start", "Delta de l'Okavango (Botswana, 2014)", "Le 1 000e bien inscrit sur la liste du patrimoine mondial."),
       pt("valor", [32.59, 22.34], "Abou Simbel", "start", "Monuments de Nubie (Égypte, 1979)", "Sauvés de la montée des eaux du barrage d'Assouan par une campagne internationale de l'UNESCO lancée en 1960 : les temples d'Abou Simbel sont démontés et remontés (1964-1968)."),
       pt("valor", [104.0, 30.9], "Chine", "end", "La Chine, 61 biens", "Deuxième pays le plus doté après l'Italie (62 biens) en septembre 2026 : l'inscription est aussi un instrument de soft power et de tourisme.")
     ];
-    const R = { Paris: ["start", -8], Versailles: ["end", 6], "Bassin minier": ["end", -6], "Débarquement": ["end", 4], Dresde: ["start", -6], Auschwitz: ["start", 10], Liverpool: ["end", -4], Venise: ["start", 8] };
+    const R = { France: ["end", 10], Liverpool: ["end", -4], Dresde: ["start", -10], Auschwitz: ["start", 6], Venise: ["end", 10], "Athènes": ["end", 12], Odessa: ["start", 12] };
     pts.forEach(p => { if (R[p.n]) { p.a = R[p.n][0]; p.dy = R[p.n][1]; } });
     const meta = { t: "Le patrimoine mondial : lieux étudiés, menaces, mémoire", c: { etud: ["Lieux étudiés dans le thème", "#B3241B"], menace: ["Destructions, menaces, radiations", "#2D5675"], memoire: ["Lieux de mémoire inscrits", "#B07A1E"], valor: ["Repères de la liste", "#2F6B3B"] } };
     OUT.cartes.patrimoine = { w: WM, h: HM, fond: "monde", deco: "", pts, meta, vb: [300, 20, 640, 330] };
