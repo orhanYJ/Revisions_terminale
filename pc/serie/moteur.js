@@ -1119,6 +1119,17 @@
     cosmos: { base: "linear-gradient(170deg,#f7f8fd 0%,#eceffa 55%,#e3e8f5 100%)", lueurs: ["rgba(122,79,214,.10)", "rgba(47,111,209,.09)", "rgba(224,69,123,.05)"] }
   };
 
+  // une carte (formule, exercice, liste, définition…) plus haute que l'écran se réduit pour tenir en entier (bas à 706 px)
+  var AJUSTABLES = /\bv-(formule|exo|liste|def|note|cols|cartes|pause)\b|\bcarte\b/;
+  function tenir(o) {
+    var e = o.el, c = e.firstElementChild;
+    if (!c || o.tenu || !AJUSTABLES.test(e.className + " " + c.className) || /\bcoin\b/.test(e.className)) return;
+    if (document.fonts && document.fonts.status !== "loaded") return;     // on mesurera à la prochaine apparition
+    o.tenu = true;
+    var haut = e.offsetTop, h = e.offsetHeight;
+    if (haut + h > 706 && h > 0) c.style.zoom = Math.max(.7, (706 - haut) / h).toFixed(3);
+  }
+
   function Scene(EP, racine) {
     var sc = h("div", "scene", racine);
     var fonds = EP.scenes.map(function (s, i) {
@@ -1174,7 +1185,7 @@
       objs.forEach(function (o) {
         var v = o.v;
         if (t < v.t0 || t > v.t1 + (v.type === "tableau" ? 1 : .7)) { if (o.vis) { o.el.style.display = "none"; o.vis = false; } return; }
-        if (!o.vis) { o.el.style.display = o.disp; o.vis = true; }
+        if (!o.vis) { o.el.style.display = o.disp; o.vis = true; tenir(o); }
         if (v.type === "titre" || v.type === "chapitre" || v.type === "generique") plein = true;
         var a = E(P(t, v.t0, .7)), out = EIO(P(t, v.t1, .6));
         if (v.type !== "tableau") o.el.style.opacity = (o.entree === "aucune" ? 1 : a) * (1 - out);
