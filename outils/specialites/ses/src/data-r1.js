@@ -243,7 +243,7 @@ ANIMS["r1-lorenz"] = {
     { l: "Le patrimoine est bien plus concentré : début 2021, la moitié la moins dotée des ménages ne détient que 8 % du patrimoine brut. Gini du patrimoine : 0,662, plus du double de celui du niveau de vie.", d: 5 }
   ],
   rendu: function (A, i, p) {
-    var X0 = 34, Y0 = 268, S = 200, s = "";
+    var X0 = 38, Y0 = 268, S = 200, s = "";
     var X = function (v) { return X0 + S * v / 100; }, Y = function (v) { return Y0 - S * v / 100; };
     function courbeRev(r) { var tot = r.reduce(function (a, b) { return a + b; }, 0), c = 0, pts = [[0, 0]]; r.forEach(function (v, k) { c += v; pts.push([20 * (k + 1), 100 * c / tot]); }); return pts; }
     var FR = [[0, 0], [20, 8.4], [40, 21.9], [50, 30.1], [80, 61.2], [90, 75.1], [100, 100]];

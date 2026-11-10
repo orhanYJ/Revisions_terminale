@@ -61,7 +61,7 @@ ANIMS["s2-mass"] = {
     var fin = i < 4 ? this.etapes[i].a : 2025, debut = i === 0 ? 1970 : (i < 4 ? this.etapes[i - 1].a : 2025);
     var jusqua = (debut - 1970) + (fin - debut) * (i < 4 ? p : 1);
     var opC = i === 4 ? 1 - 0.75 * A.s(p, 0, 0.4) : 1;
-    s += A.g(opC, ANIM_SERIES(A, 34, 270, 280, 240, xs, [{ v: g.series[0].v, c: "corail", sw: 3 }], 100, jusqua, { ticks: [0, 20, 40, 60, 80, 100], u: " %", annees: [1970, 1985, 1995, 2009, 2025] }));
+    s += A.g(opC, ANIM_SERIES(A, 38, 270, 276, 240, xs, [{ v: g.series[0].v, c: "corail", sw: 3 }], 100, jusqua, { ticks: [0, 20, 40, 60, 80, 100], u: " %", annees: [1970, 1985, 1995, 2009, 2025] }));
     var jalons = [[1975, "collège unique"], [1985, "objectif 80 %, bac pro"], [2009, "bac pro en 3 ans"]];
     jalons.forEach(function (j) {
       var k = j[0] - 1970; if (k > jusqua) return;
@@ -141,7 +141,7 @@ ANIMS["s1-marx-weber"] = {
     if (opM > 0.02) {
       var m = A.boite(110, 20, 140, 40, "Bourgeoisie : propriétaires", { k: "cause", t: 12, g: true }) ;
       for (var k = 0; k < 3; k++) m += pers(150 + k * 30, 84, "canard");
-      m += '<line x1="20" x2="340" y1="112" y2="112" style="stroke:var(--encre);stroke-width:3"/>' + A.t(20, 106, "propriété des moyens de production", { t: 10.5, c: "gris" });
+      m += '<line x1="20" x2="340" y1="112" y2="112" style="stroke:var(--encre);stroke-width:3"/>' + A.t(20, 101, "propriété des moyens de production", { t: 10.5, c: "gris", w: 118, v: true });
       var conscience = i >= 2 ? (i === 2 ? A.s(p, 0.2, 0.8) : 1) : 0;
       for (var j = 0; j < 12; j++) {
         var x0 = 30 + j * 26, y0 = 160 + (j % 2) * 26, xf = 120 + (j % 6) * 24, yf = 158 + Math.floor(j / 6) * 26;

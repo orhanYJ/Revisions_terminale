@@ -498,8 +498,10 @@ h2.sec::after{content:"";position:absolute;left:0;top:-3px;width:72px;height:3px
 .qc .qt{padding-right:30px}
 .ticker{display:flex;align-items:stretch;margin:4px 0 18px;border-top:2px solid var(--encre);border-bottom:2px solid var(--encre);background:var(--carte)}
 .tk-t{flex:none;display:flex;align-items:center;padding:0 12px;background:var(--corail-t);color:var(--sur-corail);font:800 11px/1.2 var(--texte);letter-spacing:.14em;text-transform:uppercase}
-.tk-fen{flex:1;min-width:0;overflow:hidden}
-.tk-piste{display:flex;flex-wrap:wrap;gap:0}
+.tk-fen{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tk-fen::-webkit-scrollbar{display:none}
+.tk-piste{display:flex;flex-wrap:nowrap;width:max-content;gap:0}
+html.mo .tk-fen{overflow:hidden}
 .tk{display:inline-flex;align-items:baseline;gap:6px;padding:9px 14px;border-right:1px solid var(--ligne);text-decoration:none;color:var(--encre);font-size:13.5px;white-space:nowrap}
 .tk b{font:900 18px/1 var(--titre);color:var(--corail-t)}
 .tk-dup{display:none}
@@ -2314,7 +2316,7 @@ ANIMS["s2-mass"] = {
     var fin = i < 4 ? this.etapes[i].a : 2025, debut = i === 0 ? 1970 : (i < 4 ? this.etapes[i - 1].a : 2025);
     var jusqua = (debut - 1970) + (fin - debut) * (i < 4 ? p : 1);
     var opC = i === 4 ? 1 - 0.75 * A.s(p, 0, 0.4) : 1;
-    s += A.g(opC, ANIM_SERIES(A, 34, 270, 280, 240, xs, [{ v: g.series[0].v, c: "corail", sw: 3 }], 100, jusqua, { ticks: [0, 20, 40, 60, 80, 100], u: " %", annees: [1970, 1985, 1995, 2009, 2025] }));
+    s += A.g(opC, ANIM_SERIES(A, 38, 270, 276, 240, xs, [{ v: g.series[0].v, c: "corail", sw: 3 }], 100, jusqua, { ticks: [0, 20, 40, 60, 80, 100], u: " %", annees: [1970, 1985, 1995, 2009, 2025] }));
     var jalons = [[1975, "collège unique"], [1985, "objectif 80 %, bac pro"], [2009, "bac pro en 3 ans"]];
     jalons.forEach(function (j) {
       var k = j[0] - 1970; if (k > jusqua) return;
@@ -2394,7 +2396,7 @@ ANIMS["s1-marx-weber"] = {
     if (opM > 0.02) {
       var m = A.boite(110, 20, 140, 40, "Bourgeoisie : propriétaires", { k: "cause", t: 12, g: true }) ;
       for (var k = 0; k < 3; k++) m += pers(150 + k * 30, 84, "canard");
-      m += '<line x1="20" x2="340" y1="112" y2="112" style="stroke:var(--encre);stroke-width:3"/>' + A.t(20, 106, "propriété des moyens de production", { t: 10.5, c: "gris" });
+      m += '<line x1="20" x2="340" y1="112" y2="112" style="stroke:var(--encre);stroke-width:3"/>' + A.t(20, 101, "propriété des moyens de production", { t: 10.5, c: "gris", w: 118, v: true });
       var conscience = i >= 2 ? (i === 2 ? A.s(p, 0.2, 0.8) : 1) : 0;
       for (var j = 0; j < 12; j++) {
         var x0 = 30 + j * 26, y0 = 160 + (j % 2) * 26, xf = 120 + (j % 6) * 24, yf = 158 + Math.floor(j / 6) * 26;
@@ -2771,7 +2773,7 @@ ANIMS["e3-spirale"] = {
     }
     noeuds.forEach(function (n, k) {
       var q = pos(n.a), act = (i <= 3 && k <= i) || i >= 4;
-      s += A.boite(q[0] - 50, q[1] - 19, 100, 38, n.t + (act ? (sens < 0 ? " ↓" : (i === 5 || k === 0 ? " ↑" : "")) : ""), { k: act ? (sens < 0 ? "effet" : "cause") : "neutre", t: 12.5, g: true });
+      var lg = k === 3; s += A.boite(lg ? 0 : q[0] - 50, q[1] - (lg ? 22 : 19), lg ? 110 : 100, lg ? 44 : 38, n.t + (act ? (sens < 0 ? " ↓" : (i === 5 || k === 0 ? " ↑" : "")) : ""), { k: act ? (sens < 0 ? "effet" : "cause") : "neutre", t: lg ? 11.5 : 12.5, g: true });
     });
     var ch = i <= 1 ? 7.4 : i === 2 ? A.l(7.4, 9.1, A.s(p, 0, 1)) : i === 3 ? A.l(9.1, 9.8, A.s(p, 0, 1)) : i === 4 ? 9.8 : A.l(9.8, 8.4, A.s(p, 0, 1));
     s += A.jauge(110, 300, 140, ch, 12, { c: i >= 5 ? "vert" : "corail", l: "chômage (illustratif)", val: A.fr(ch, 1) + " %" });
@@ -3808,7 +3810,7 @@ ANIMS["r1-lorenz"] = {
     { l: "Le patrimoine est bien plus concentré : début 2021, la moitié la moins dotée des ménages ne détient que 8 % du patrimoine brut. Gini du patrimoine : 0,662, plus du double de celui du niveau de vie.", d: 5 }
   ],
   rendu: function (A, i, p) {
-    var X0 = 34, Y0 = 268, S = 200, s = "";
+    var X0 = 38, Y0 = 268, S = 200, s = "";
     var X = function (v) { return X0 + S * v / 100; }, Y = function (v) { return Y0 - S * v / 100; };
     function courbeRev(r) { var tot = r.reduce(function (a, b) { return a + b; }, 0), c = 0, pts = [[0, 0]]; r.forEach(function (v, k) { c += v; pts.push([20 * (k + 1), 100 * c / tot]); }); return pts; }
     var FR = [[0, 0], [20, 8.4], [40, 21.9], [50, 30.1], [80, 61.2], [90, 75.1], [100, 100]];

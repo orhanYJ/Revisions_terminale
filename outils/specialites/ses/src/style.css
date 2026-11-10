@@ -484,8 +484,10 @@ h2.sec::after{content:"";position:absolute;left:0;top:-3px;width:72px;height:3px
 .qc .qt{padding-right:30px}
 .ticker{display:flex;align-items:stretch;margin:4px 0 18px;border-top:2px solid var(--encre);border-bottom:2px solid var(--encre);background:var(--carte)}
 .tk-t{flex:none;display:flex;align-items:center;padding:0 12px;background:var(--corail-t);color:var(--sur-corail);font:800 11px/1.2 var(--texte);letter-spacing:.14em;text-transform:uppercase}
-.tk-fen{flex:1;min-width:0;overflow:hidden}
-.tk-piste{display:flex;flex-wrap:wrap;gap:0}
+.tk-fen{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tk-fen::-webkit-scrollbar{display:none}
+.tk-piste{display:flex;flex-wrap:nowrap;width:max-content;gap:0}
+html.mo .tk-fen{overflow:hidden}
 .tk{display:inline-flex;align-items:baseline;gap:6px;padding:9px 14px;border-right:1px solid var(--ligne);text-decoration:none;color:var(--encre);font-size:13.5px;white-space:nowrap}
 .tk b{font:900 18px/1 var(--titre);color:var(--corail-t)}
 .tk-dup{display:none}
