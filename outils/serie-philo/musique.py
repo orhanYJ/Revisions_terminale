@@ -207,3 +207,143 @@ def enveloppe(duree, paroles, haut=1.0, bas=0.11, attaque=0.25, relache=0.9):
         v += (x - v) * (ka if x < v else kr)
         g[i] = v
     return np.repeat(g, pas)[:n]
+
+
+# ===================================================================================================
+# MUSIQUE « CARNET DE NATURALISTE » (vidéos SVT, 10/11/2026, demande de Cengiz : « changer la musique de fond,
+# c'est tout le temps la même chose, la même que Philo »). Cinq thèmes originaux qui alternent d'une partie à
+# l'autre, autres instruments que la philo (marimba, kalimba, cordes pincées, flûte, shaker, wood-block) et une
+# ambiance de terrain (vent, eau, oiseaux, grillons). Chaque thème est une boucle de 32 mesures (deux phrases de
+# 16, mélodie variée), réverbération circulaire pour un raccord sans couture. Déterministe.
+# ===================================================================================================
+CARNET = {
+    # nom : bpm, grille de 4 accords (basse, notes), instrument principal, motif rythmique (en doubles croches),
+    # gamme de la mélodie, dosages (shaker, bois, nappe, ambiance), ambiance
+    "eclosion": dict(bpm=96, acc=[(38, [62, 66, 69, 74]), (47, [62, 66, 71, 74]), (43, [62, 67, 71, 74]), (45, [61, 64, 69, 73])],
+                     inst="marimba", motif=[0, 3, 6, 8, 10, 12, 14], gamme=[74, 76, 78, 81, 83, 86], shaker=.8, bois=.0, nappe=.10, amb="oiseaux"),
+    "sous_bois": dict(bpm=88, acc=[(40, [64, 67, 71, 74]), (45, [64, 69, 73, 76]), (40, [64, 67, 71, 74]), (38, [62, 66, 69, 74])],
+                      inst="kalimba", motif=[0, 3, 6, 8, 11, 14], gamme=[76, 78, 79, 81, 83, 86], shaker=.35, bois=.9, nappe=.12, amb="vent"),
+    "maree": dict(bpm=72, acc=[(43, [67, 71, 74, 78]), (45, [69, 73, 76, 79]), (40, [64, 67, 71, 74]), (48, [64, 67, 71, 76])],
+                  inst="corde", motif=[0, 4, 8, 12], gamme=[74, 76, 78, 79, 81, 83], shaker=.0, bois=.0, nappe=.20, amb="eau"),
+    "pollen": dict(bpm=104, acc=[(48, [64, 67, 72, 76]), (41, [65, 69, 72, 77]), (45, [64, 69, 72, 76]), (43, [62, 67, 71, 74])],
+                   inst="marimba", motif=[0, 2, 6, 7, 10, 12, 15], gamme=[76, 79, 81, 84, 86, 88], shaker=1.0, bois=.6, nappe=.08, amb="oiseaux"),
+    "crepuscule": dict(bpm=80, acc=[(45, [60, 64, 69, 72]), (41, [60, 65, 69, 72]), (48, [60, 64, 67, 72]), (40, [59, 64, 68, 71])],
+                       inst="kalimba", motif=[0, 4, 6, 10, 12], gamme=[72, 74, 76, 79, 81, 84], shaker=.25, bois=.0, nappe=.18, amb="grillons"),
+}
+ORDRE_CARNET = ["eclosion", "sous_bois", "pollen", "maree", "crepuscule"]
+
+
+def _marimba(f, dur, amp):
+    t = np.arange(int(dur * SR)) / SR
+    s = np.sin(2 * np.pi * f * t) + 0.18 * np.sin(2 * np.pi * 3.93 * f * t) * np.exp(-t * 14)
+    return amp * s * np.exp(-t * 5.5) * np.minimum(1, t / 0.002)
+
+
+def _kalimba(f, dur, amp):
+    t = np.arange(int(dur * SR)) / SR
+    s = (np.sin(2 * np.pi * f * t) + 0.32 * np.sin(2 * np.pi * 5.4 * f * t) * np.exp(-t * 9)
+         + 0.08 * np.sin(2 * np.pi * 2.01 * f * t) * np.exp(-t * 4))
+    return amp * s * np.exp(-t * 3.2) * np.minimum(1, t / 0.0015)
+
+
+def _corde(f, dur, amp):   # corde pincée (harmoniques qui s'éteignent d'autant plus vite qu'elles sont aiguës)
+    t = np.arange(int(dur * SR)) / SR
+    s = sum(np.sin(2 * np.pi * k * f * t) * np.exp(-t * (1.6 + 1.3 * k)) / k for k in range(1, 7))
+    return amp * s * np.minimum(1, t / 0.003)
+
+
+def _flute(f, dur, amp, rng):
+    t = np.arange(int(dur * SR)) / SR
+    vib = 1 + 0.006 * np.sin(2 * np.pi * 5.2 * t) * np.minimum(1, t / 0.4)
+    ph = 2 * np.pi * f * np.cumsum(vib) / SR
+    souffle = rng.standard_normal(len(t)) * 0.05
+    s = np.sin(ph) + 0.12 * np.sin(2 * ph) + souffle * np.sin(ph) ** 2
+    env = np.minimum(1, t / 0.09) * np.minimum(1, (dur - t) / 0.18).clip(0, 1)
+    return amp * env * s
+
+
+def _basse_ronde(f, dur, amp):
+    t = np.arange(int(dur * SR)) / SR
+    s = np.sin(2 * np.pi * f * t) + 0.3 * np.sin(4 * np.pi * f * t)
+    return amp * s * np.exp(-t * 1.6) * np.minimum(1, t / 0.01)
+
+
+def _passe_bas(x, a):
+    # filtre d'ordre 1 vectorisé par blocs (assez précis pour du bruit d'ambiance)
+    from scipy.signal import lfilter
+    return lfilter([a], [1, a - 1], x)
+
+
+def _ambiance(n, genre, rng):
+    t = np.arange(n) / SR
+    out = np.zeros(n)
+    if genre in ("vent", "eau"):
+        b = _passe_bas(rng.standard_normal(n), 0.02 if genre == "vent" else 0.06)
+        lfo = 0.6 + 0.4 * np.sin(2 * np.pi * t / (11 if genre == "vent" else 5.3)) * np.sin(2 * np.pi * t / 17)
+        out += b / (np.abs(b).max() + 1e-9) * lfo * (0.10 if genre == "vent" else 0.075)
+    if genre in ("oiseaux", "vent"):
+        k = 0.0
+        while k < n / SR:
+            k += 4.5 + rng.random() * 7
+            for j in range(1 + int(rng.random() * 3)):      # deux ou trois notes de chant
+                L = int(SR * (0.07 + rng.random() * 0.06)); tt = np.arange(L) / SR
+                f0 = 2600 + rng.random() * 1800
+                ch = np.sin(2 * np.pi * (f0 * tt + (700 + rng.random() * 900) * tt ** 2 / (2 * tt[-1] + 1e-9)))
+                _ajoute(out, 0.035 * ch * np.sin(np.pi * tt / tt[-1]) ** 2, int((k + j * 0.11) * SR))
+    if genre == "grillons":
+        pulse = (np.sin(2 * np.pi * 28 * t) > 0.3) * (np.sin(2 * np.pi * 0.45 * t) > -0.2)
+        out += 0.012 * np.sin(2 * np.pi * 4300 * t) * pulse
+    return out
+
+
+def carnet(theme, mesures=32):
+    """Boucle de `mesures` mesures du thème (sans dosage), raccord sans couture (réverbération circulaire)."""
+    H = CARNET[theme]
+    beat = 60.0 / H["bpm"]
+    dc = beat / 4                                        # double croche
+    n = int(round(mesures * 4 * beat * SR))
+    out = np.zeros(n + SR)
+    rng = np.random.default_rng(sum(map(ord, theme)) + 17)
+    inst = {"marimba": _marimba, "kalimba": _kalimba, "corde": _corde}[H["inst"]]
+    for m in range(mesures):
+        basse, notes = H["acc"][(m // 2) % 4]
+        t0 = m * 4 * beat
+        if m % 2 == 0:
+            _ajoute(out, _nappe([hz(x) for x in notes[:3]], 8 * beat + 1.0, H["nappe"]), int(t0 * SR))
+        _ajoute(out, _basse_ronde(hz(basse), 2.2 * beat, 0.22), int(t0 * SR))
+        _ajoute(out, _basse_ronde(hz(basse + (7 if m % 2 else 12)), 1.6 * beat, 0.12), int((t0 + 2 * beat) * SR))
+        for i, p in enumerate(H["motif"]):                  # motif de l'instrument principal
+            note = notes[(i + m) % len(notes)] + (12 if H["inst"] != "corde" else 0)
+            amp = (0.10 if p % 4 == 0 else 0.075) * (0.85 + 0.3 * rng.random())
+            _ajoute(out, inst(hz(note), 1.4, amp), int((t0 + p * dc) * SR))
+        for s in range(16):                                  # shaker : doubles croches, accent sur les contretemps
+            if H["shaker"] <= 0:
+                break
+            L = int(0.045 * SR); br = np.diff(rng.standard_normal(L), prepend=0) * np.exp(-np.arange(L) / SR * 70)
+            _ajoute(out, H["shaker"] * (0.016 if s % 4 == 2 else 0.007) * br, int((t0 + s * dc) * SR))
+        if H["bois"] > 0:                                     # wood-block sur les temps 2 et 4
+            for b in (1, 3):
+                L = int(0.06 * SR); tt = np.arange(L) / SR
+                _ajoute(out, H["bois"] * 0.05 * np.sin(2 * np.pi * 1150 * tt) * np.exp(-tt * 60), int((t0 + b * beat) * SR))
+    # mélodie de flûte : deux phrases dans la seconde moitié de chaque bloc de 16 mesures
+    for bloc in range(mesures // 16):
+        for phrase in range(2):
+            debut = (bloc * 16 + 8 + phrase * 4) * 4 * beat
+            pas = [0, 2, 3, 1, 4, 2, 5, 3] if (bloc + phrase) % 2 == 0 else [5, 4, 2, 3, 1, 2, 0, 1]
+            for j, g in enumerate(pas[:6 if phrase else 8]):
+                d = 2 * beat if j % 3 == 2 else beat
+                _ajoute(out, _flute(hz(H["gamme"][g]), d * 0.95, 0.055, rng), int((debut + sum(2 * beat if q % 3 == 2 else beat for q in range(j))) * SR))
+    out = out[:n] + np.concatenate([out[n:], np.zeros(n - len(out[n:]))])[:n]   # la queue revient au début : boucle continue
+    # réverbération circulaire (convolution par FFT sur la longueur exacte de la boucle)
+    rr = np.random.default_rng(7); L = int(2.0 * SR)
+    ir = rr.standard_normal(L) * np.exp(-np.arange(L) / SR * 3.4); ir /= np.sqrt((ir ** 2).sum())
+    irp = np.zeros(n); irp[:L] = ir
+    rev = np.fft.irfft(np.fft.rfft(out) * np.fft.rfft(irp), n)
+    out = 0.7 * out + 0.3 * rev * 0.9
+    out += _ambiance(n, H["amb"], np.random.default_rng(29))
+    return out.astype(np.float32)
+
+
+def theme_carnet(k, humeur=None):
+    """Thème de la k-ième partie de la vidéo : les cinq thèmes tournent, jamais deux fois de suite le même."""
+    return ORDRE_CARNET[k % len(ORDRE_CARNET)]
