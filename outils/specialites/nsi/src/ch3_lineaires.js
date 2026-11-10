@@ -427,7 +427,7 @@ def josephe(n, k):
     """n personnes numérotées de 1 à n sont en cercle. On compte k personnes ;
     la k-ième sort du cercle ; on recommence à compter avec la suivante.
     Renvoie la liste des numéros dans l'ordre de sortie."""
-    ...`, { fichier: "josephe.py", run: false, trous: [14, 20] });
+    ...`, { fichier: "josephe.py", run: false, trous: [15, 21] });
 
 C("c3-ep2-corr", String.raw`
 class File:
@@ -598,7 +598,7 @@ Une <b>implémentation</b> est une façon concrète de réaliser cette interface
 
     { id: "i8", t: "La file (FIFO) et ses implémentations", h: `
 <div class="boite def"><div class="lab">"""définition"""</div><p>Une <b>file</b> (<i>queue</i>) est une structure où l’on ajoute d’un côté (la <b>queue</b>) et retire de l’autre (la <b>tête</b>) : le premier entré est le premier sorti, <b>FIFO</b> (<i>First In, First Out</i>).</p></div>
-<p>Exemples : la file d’attente d’un guichet, la file d’impression, les touches tapées au clavier en attente de traitement, l’ordonnancement de processus, le parcours en largeur d’un arbre ou d’un graphe (chapitres à venir).</p>
+<p>Exemples : la file d’attente d’un guichet, la file d’impression, les touches tapées au clavier en attente de traitement, l’ordonnancement de processus, le parcours en largeur d’un arbre ou d’un graphe (chapitres 7 et 8).</p>
 [[w-pile-file|file]]
 <p><b>Implémentation 1</b>, avec une liste Python : simple, mais <code>pop(0)</code> a un coût linéaire.</p>
 [[c3-file-liste]]
@@ -616,7 +616,7 @@ Une <b>implémentation</b> est une façon concrète de réaliser cette interface
 <tr><td>servir des clients, des impressions, des requêtes dans l’ordre d’arrivée</td><td>file</td><td>premier arrivé, premier servi</td></tr>
 <tr><td>accéder souvent à l’élément n° <i>i</i></td><td>tableau (<code>list</code>)</td><td>accès en temps constant</td></tr>
 <tr><td>insérer et supprimer souvent en tête</td><td>liste chaînée</td><td>pas de décalage</td></tr>
-<tr><td>retrouver une valeur à partir d’une clé (nom → numéro)</td><td>dictionnaire</td><td>recherche par clé (chapitre à venir)</td></tr></table></div>
+<tr><td>retrouver une valeur à partir d’une clé (nom → numéro)</td><td>dictionnaire</td><td>recherche par clé (chapitre 5)</td></tr></table></div>
 <p>À l’écrit, une question classique : « Pourquoi utiliser une pile plutôt qu’une file ici ? » La réponse se justifie toujours par l’ordre de sortie voulu (LIFO ou FIFO).</p>` }
   ],
   pieges: [

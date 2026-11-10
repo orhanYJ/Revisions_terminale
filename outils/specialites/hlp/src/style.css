@@ -212,7 +212,7 @@ table.t th{font-family:var(--ui);font-size:.74rem;letter-spacing:.08em;text-tran
 .copie .seg{padding:10px 14px;border-left:2px solid var(--filet2);background:var(--surface)}
 .copie .seg p{margin:.2em 0}
 .copie .marge{font-family:var(--ui);font-size:.8rem;line-height:1.45;color:var(--rose);padding:6px 14px 12px 14px;border-left:2px solid var(--rose);margin-bottom:8px;background:transparent}
-.copie .marge::before{content:"✎ ";}
+.copie .marge::before{content:"☞ ";}
 @media(min-width:860px){.copie{grid-template-columns:minmax(0,1fr) 230px;column-gap:18px}.copie .marge{border-left:0;border-top:1px solid var(--rose);padding:6px 0;margin:0 0 8px;align-self:start}}
 
 /* ---------- QCM ---------- */

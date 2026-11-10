@@ -23,7 +23,7 @@ ANIMS["e2-ricardo"] = {
         s += A.r(P.x + 34, y, P.h[k] * 0.8 * q, 18, { f: b.c, op: i === 1 && j === 0 ? 0.45 : 1, s: hl ? "moutarde" : null, sw: 3 });
         s += A.t(P.x + 40 + P.h[k] * 0.8 * q, y + 13, A.fr(P.h[k] * q, 0) + " h", { t: 11.5, g: true, op: q });
       });
-      if (i === 1 && j === 1) s += A.t(P.x + 81, 120, "avantage absolu dans les deux biens", { t: 11.5, g: true, a: "middle", c: "moutarde", op: A.s(p, 0.3, 0.8) });
+      if (i === 1 && j === 1) s += A.t(P.x + 81, 120, "avantage absolu dans les deux biens", { t: 11.5, g: true, a: "middle", c: "moutarde", op: A.s(p, 0.3, 0.8), w: 150 });
       if (i >= 2) {
         var ratio = P.h[0] / P.h[1], q2 = i === 2 ? A.s(p, j * 0.3, j * 0.3 + 0.5) : 1;
         s += A.t(P.x + 81, 120, "1 drap = " + A.fr(ratio, ratio === 1.125 ? 3 : 2) + " vin", { t: 13, g: true, a: "middle", op: q2 });

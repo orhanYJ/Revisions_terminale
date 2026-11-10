@@ -91,7 +91,7 @@ module.exports = function (ctx) {
     s += "<g data-k='peril16'>" + anneau(P, S.djenne, 14, "var(--rouge)") + etiq(C, S.djenne, "en péril (2016)", { a: "end", dx: -18, dy: 16 }) + "</g>";
     s += "<g data-k='peril23'>" + anneau(P, S.band, 14, "var(--rouge)") + etiq(C, S.band, "en péril (2023)", { a: "start", dx: 18, dy: 20 }) + "</g>";
     s += "<g data-k='retour'>" + fleche(P, S.bamako, S.tomb, { courbe: 0.3, coul: "var(--ok)" }) + etiq(C, S.bamako, "retour des manuscrits (août 2025)", { a: "start", dx: -20, dy: 24 }) + "</g>";
-    const deco = etiq(C, [-5.5, 21.5], "MALI", { cl: "k-pays", a: "middle" }) + etiq(C, [-10.5, 21.5], "MAURITANIE", { cl: "k-pays", a: "middle" }) + etiq(C, [2.5, 23.6], "ALGÉRIE", { cl: "k-pays", a: "middle" }) +
+    const deco = etiq(C, [-5.5, 21.5], "MALI", { cl: "k-pays", a: "middle" }) + etiq(C, [-10.5, 21.5], "MAURITANIE", { cl: "k-pays", a: "middle" }) + etiq(C, [3.5, 21.4], "ALGÉRIE", { cl: "k-pays", a: "middle" }) +
       etiq(C, [2.8, 13.6], "NIGER", { cl: "k-pays", a: "middle" }) + etiq(C, [-1.6, 12.2], "BURKINA FASO", { cl: "k-pays", a: "middle" });
     OUT.anims.t4mali = { w: W, h: H, vb: [40, 120, 720, 470], fond, calques: deco + s };
   }
@@ -111,7 +111,7 @@ module.exports = function (ctx) {
       pt("menace", [-2.99, 53.41], "Liverpool", "end", "Liverpool (Royaume-Uni), radiée en 2021", "Le port marchand, inscrit en 2004, est retiré de la liste le 21 juillet 2021 à cause de projets immobiliers qui ont altéré son paysage : troisième radiation de l'histoire après l'Oman (2007) et Dresde (2009)."),
       pt("menace", [13.74, 51.05], "Dresde", "start", "Vallée de l'Elbe à Dresde (Allemagne), radiée en 2009", "Un pont routier construit en plein paysage protégé conduit l'UNESCO à retirer le bien de la liste."),
       pt("memoire", [19.18, 50.03], "Auschwitz", "start", "Auschwitz-Birkenau (Pologne, 1979)", "Un des premiers lieux de mémoire inscrits : un patrimoine de l'horreur, à transmettre (voir le thème 3)."),
-      pt("memoire", [30.06, -1.95], "Rwanda", "start", "Sites mémoriaux du génocide (Rwanda, 2023)", "Nyamata, Murambi, Gisozi et Bisesero : premiers lieux de mémoire africains inscrits au patrimoine mondial (20 septembre 2023)."),
+      pt("memoire", [30.06, -1.95], "Rwanda", "start", "Sites mémoriaux du génocide (Rwanda, 2023)", "Nyamata, Murambi, Gisozi et Bisesero, inscrits le 20 septembre 2023, après des années de débat sur les lieux liés à des conflits récents."),
       pt("memoire", [132.45, 34.39], "Hiroshima", "end", "Mémorial de la paix d'Hiroshima (Japon, 1996)", "Le dôme de Genbaku, seul bâtiment resté debout près de l'hypocentre du 6 août 1945, inscrit malgré les réserves des États-Unis et de la Chine."),
       pt("valor", [-17.4, 14.67], "Gorée", "end", "Île de Gorée (Sénégal, 1978)", "Parmi les douze premiers biens inscrits : un lieu de mémoire de la traite atlantique, devenu un symbole visité par les chefs d'État."),
       pt("valor", [22.6, -19.3], "Okavango", "start", "Delta de l'Okavango (Botswana, 2014)", "Le 1 000e bien inscrit sur la liste du patrimoine mondial."),
@@ -143,7 +143,7 @@ module.exports = function (ctx) {
       pt("unesco", [4.83, 45.76], "Lyon", "start", "Site historique de Lyon (1998)", "Du Vieux-Lyon à la Croix-Rousse : un centre ancien sauvé de la démolition par le premier secteur sauvegardé (1964)."),
       pt("unesco", [2.35, 43.21], "Carcassonne", "start", "Cité de Carcassonne (1997)", "Restaurée par Viollet-le-Duc au XIXe siècle : un exemple de restauration discutée."),
       pt("unesco", [-3.08, 47.58], "Carnac", "end", "Mégalithes de Carnac et des rives du Morbihan (2025)", "Plus de 3 000 menhirs alignés : inscription obtenue en 2025."),
-      pt("memoire", [-0.8, 49.35], "Débarquement", "start", "Plages du Débarquement (2026)", "Inscrites le 26 juillet 2026 : un patrimoine de mémoire, devenu le 56e bien français."),
+      pt("memoire", [-0.8, 49.35], "Débarquement", "start", "Plages du Débarquement (2026)", "Inscrites le 26 juillet 2026 : un patrimoine de mémoire, inscrit le même jour que les forteresses royales du Languedoc : la France compte 56 biens."),
       pt("memoire", [2.72, 50.4], "Lorette", "end", "Sites funéraires et mémoriels de la Première Guerre mondiale (2023)", "139 sites en France et en Belgique, inscrits le 20 septembre 2023, dont l'Anneau de la Mémoire de Notre-Dame-de-Lorette."),
       pt("memoire", [5.43, 49.21], "Verdun", "start", "Verdun (ossuaire de Douaumont)", "Un des sites du bien de 2023 ; lieu de la réconciliation franco-allemande (1984).")
     ];

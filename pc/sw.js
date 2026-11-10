@@ -1,9 +1,13 @@
-const CACHE = 'pc-v40';
+const CACHE = 'pc-v44';
 /* Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
 const ANIMS = ['photon', 'photoelec', 'cellule', 'acidebase', 'beerlambert', 'conductivite', 'titrage', 'lunette'];
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png',
-  './anim/moteur.css?v=4', './anim/moteur.js?v=4'].concat(ANIMS.map(function (a) { return './anim/' + a + '.html'; }));
+  './anim/moteur.css?v=4', './anim/moteur.js?v=4', './elements.css?v=2', './elements.js?v=2', './lumiere.css?v=1',
+  './polices/plex-sans-400.woff2', './polices/plex-sans-400i.woff2', './polices/plex-sans-600.woff2', './polices/plex-sans-700.woff2',
+  './polices/plex-cond-500.woff2', './polices/plex-cond-700.woff2', './polices/plex-mono-400.woff2', './polices/plex-mono-600.woff2',
+  './polices/instrument-serif.woff2', './polices/instrument-serif-i.woff2', './polices/space-grotesk-400.woff2', './polices/space-grotesk-500.woff2',
+  './polices/space-grotesk-700.woff2', './polices/jb-mono-400.woff2', './polices/jb-mono-600.woff2'].concat(ANIMS.map(function (a) { return './anim/' + a + '.html'; }));
 
 self.addEventListener('install', function (e) {
   e.waitUntil(

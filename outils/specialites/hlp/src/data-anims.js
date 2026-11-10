@@ -33,14 +33,14 @@ Object.assign(HLP.ANIMS, {
     intro: "Pourquoi tant d’hommes restent-ils « mineurs » toute leur vie, et comment en sortir ?",
     noeuds: [
       { id: "m", x: 200, y: 14, w: 240, h: 54, s: "these", t: "Minorité :|penser sous la direction d’autrui" },
-      { id: "p", x: 20, y: 110, w: 180, h: 54, s: "arg", t: "Paresse|« Il est si commode… »" },
-      { id: "l", x: 230, y: 110, w: 180, h: 54, s: "arg", t: "Lâcheté|peur de penser seul" },
-      { id: "t", x: 440, y: 110, w: 180, h: 54, s: "obj", t: "Les tuteurs|en profitent" },
+      { id: "p", x: 14, y: 110, w: 172, h: 54, s: "arg", t: "Paresse|« Il est si commode… »" },
+      { id: "l", x: 234, y: 110, w: 172, h: 54, s: "arg", t: "Lâcheté|peur de penser seul" },
+      { id: "t", x: 454, y: 110, w: 172, h: 54, s: "obj", t: "Les tuteurs|en profitent" },
       { id: "s", x: 120, y: 214, w: 400, h: 54, s: "ex", t: "« Sapere aude, aie le courage de te servir|de ta propre intelligence ! »" },
       { id: "u", x: 120, y: 304, w: 180, h: 66, s: "arg", t: "Liberté de l’usage|public de la raison|(écrire, publier)" },
       { id: "c", x: 340, y: 304, w: 180, h: 66, s: "concl", t: "Un public qui|s’éclaire lui-même :|les Lumières" }
     ],
-    liens: [{ de: "p", a: "m", t: "cause" }, { de: "l", a: "m", t: "cause" }, { de: "t", a: "m", t: "entretiennent" }, { de: "m", a: "s", t: "remède", courbe: 0 }, { de: "s", a: "u", t: "condition" }, { de: "u", a: "c" }],
+    liens: [{ de: "p", a: "m", t: "cause" }, { de: "l", a: "m", t: "cause" }, { de: "t", a: "m", t: "entretiennent", via: [[540, 60], [470, 41]], lx: 506, ly: 52, la: "start" }, { de: "m", a: "s", t: "remède", via: [[430, 96], [440, 200]], lx: 448, ly: 198, la: "start" }, { de: "s", a: "u", t: "condition" }, { de: "u", a: "c" }],
     etapes: [
       { montre: ["m"], legende: "<b>Définition.</b> La minorité n’est pas un âge : c’est l’incapacité de penser sans être dirigé." },
       { montre: ["p"], legende: "<b>Première cause : la paresse.</b> Un livre, un directeur, un médecin pensent à ma place." },
@@ -61,7 +61,7 @@ Object.assign(HLP.ANIMS, {
       { id: "e", x: 20, y: 202, w: 260, h: 54, s: "these", t: "« la vérité que je cherche|n’est pas en lui, mais en moi »" },
       { id: "f", x: 360, y: 202, w: 260, h: 54, s: "arg", t: "Le narrateur se tourne vers son esprit :|le souvenir résiste, remonte" },
       { id: "g", x: 190, y: 296, w: 260, h: 54, s: "concl", t: "« Et tout d’un coup|le souvenir m’est apparu »" },
-      { id: "h", x: 120, y: 380, w: 400, h: 54, s: "ex", t: "Combray, le dimanche matin, la tante Léonie|et sa madeleine trempée dans le tilleul" }
+      { id: "h", x: 120, y: 380, w: 400, h: 54, s: "ex", t: "Combray, le dimanche matin : la madeleine|trempée dans le thé ou le tilleul de la tante Léonie" }
     ],
     liens: [{ de: "a", a: "b", t: "sensation" }, { de: "b", a: "c", t: "joie" }, { de: "c", a: "d", t: "répéter ?" }, { de: "d", a: "e", t: "donc" }, { de: "e", a: "f", t: "chercher" }, { de: "f", a: "g" }, { de: "g", a: "h", t: "tout revient" }],
     etapes: [
@@ -79,14 +79,14 @@ Object.assign(HLP.ANIMS, {
     intro: "Comment construire une réponse à la question du programme sur le langage commun et l’expérience singulière.",
     noeuds: [
       { id: "q", x: 150, y: 12, w: 340, h: 50, s: "these", t: "Problème : l’expérience est singulière,|les mots sont communs" },
-      { id: "a", x: 20, y: 100, w: 280, h: 58, s: "obj", t: "Bergson : « le mot brutal »|écrase les impressions fugitives" },
-      { id: "b", x: 340, y: 100, w: 280, h: 58, s: "ex", t: "Le mets « réputé exquis » : le nom|s’interpose entre sensation et conscience" },
+      { id: "a", x: 20, y: 100, w: 270, h: 58, s: "obj", t: "Bergson : « le mot brutal »|écrase les impressions fugitives" },
+      { id: "b", x: 360, y: 100, w: 260, h: 58, s: "ex", t: "Le mets « réputé exquis » : le nom|s’interpose entre sensation et conscience" },
       { id: "c", x: 20, y: 196, w: 280, h: 58, s: "arg", t: "Wittgenstein : un langage privé|est impossible ; les mots s’apprennent" },
       { id: "d", x: 340, y: 196, w: 280, h: 58, s: "arg", t: "Proust : le style, « question|non de technique, mais de vision »" },
       { id: "e", x: 340, y: 286, w: 280, h: 52, s: "ex", t: "Baudelaire : les synesthésies|inventent des manières de sentir" },
       { id: "f", x: 90, y: 362, w: 460, h: 56, s: "concl", t: "On ne dit pas l’intime malgré les mots communs,|mais en les travaillant : c’est le rôle de l’art" }
     ],
-    liens: [{ de: "q", a: "a", t: "objection" }, { de: "a", a: "b", t: "exemple" }, { de: "q", a: "c", t: "réponse" }, { de: "c", a: "d", t: "et" }, { de: "d", a: "e", t: "exemple" }, { de: "c", a: "f" }, { de: "e", a: "f" }],
+    liens: [{ de: "q", a: "a", t: "objection" }, { de: "a", a: "b", t: "exemple", lx: 331, ly: 122 }, { de: "q", a: "c", t: "réponse", via: [[298, 120], [305, 190]], lx: 286, ly: 186, la: "end" }, { de: "c", a: "d", t: "et" }, { de: "d", a: "e", t: "exemple" }, { de: "c", a: "f" }, { de: "e", a: "f" }],
     etapes: [
       { montre: ["q"], legende: "<b>Poser le problème.</b> Ce que je ressens n’appartient qu’à moi ; les mots appartiennent à tous." },
       { montre: ["a"], legende: "<b>L’objection forte :</b> le langage fixe et généralise ce qui est mouvant et singulier." },
@@ -121,8 +121,31 @@ Object.assign(HLP.ANIMS, {
       { montre: ["b"], legende: "<b>Bergson</b> distingue le moi social, découpé par le langage, et le moi profond, durée vivante." },
       { montre: ["c"], legende: "<b>Bilan pour la copie :</b> le moi n’est pas donné ; on y accède par des récits, des interprétations, une œuvre." }
     ] },
+  "e3-cogito": { type: "graphe", titre: "Du doute au « je pense » : le chemin de Descartes (1637-1641)", w: 640, h: 476,
+    intro: "Comment Descartes trouve, au bout du doute, une certitude que rien ne peut ébranler : celle du moi qui pense. Citations des <i>Méditations</i> dans la traduction du duc de Luynes (1647), orthographe modernisée.",
+    noeuds: [
+      { id: "p", x: 130, y: 12, w: 380, h: 54, s: "these", t: "Projet : établir « quelque chose|de ferme et de constant dans les sciences »" },
+      { id: "s", x: 10, y: 104, w: 196, h: 66, s: "obj", t: "1. Les sens|ils se sont « quelquefois »|montrés trompeurs" },
+      { id: "r", x: 222, y: 104, w: 196, h: 66, s: "obj", t: "2. Le rêve|veille ou sommeil ? point|d’« indices certains »" },
+      { id: "g", x: 434, y: 104, w: 196, h: 66, s: "obj", t: "3. Le « mauvais génie »|« rusé et trompeur » :|même 2 + 3 = 5 ?" },
+      { id: "c", x: 100, y: 206, w: 440, h: 66, s: "arg", t: "Mais pour être trompé, il faut être :|« Il n’y a donc point de doute|que je suis, s’il me trompe »" },
+      { id: "q", x: 24, y: 310, w: 284, h: 58, s: "these", t: "« Je pense, donc je suis »|Discours de la méthode, 1637" },
+      { id: "e", x: 332, y: 310, w: 284, h: 58, s: "ex", t: "« je suis, j’existe » : vrai « toutes|les fois que je la prononce »" },
+      { id: "f", x: 70, y: 404, w: 500, h: 58, s: "concl", t: "Ce que je suis : « une chose qui pense, c’est-à-dire|un esprit, un entendement ou une raison »" }
+    ],
+    liens: [{ de: "p", a: "s", t: "douter" }, { de: "p", a: "r" }, { de: "p", a: "g" }, { de: "s", a: "c" }, { de: "r", a: "c" }, { de: "g", a: "c", t: "même alors" }, { de: "c", a: "q", t: "donc" }, { de: "c", a: "e" }, { de: "q", a: "f" }, { de: "e", a: "f" }],
+    etapes: [
+      { montre: ["p"], legende: "<b>Le projet.</b> Pour fonder le savoir sur un point indubitable, Descartes rejette tout ce qui laisse le moindre doute. C’est une méthode, pas un scepticisme : on doute pour trouver le certain." },
+      { montre: ["s"], legende: "<b>Premier niveau : les sens.</b> Ils nous ont parfois trompés ; par prudence, on ne se fie plus à ce qui nous a trompés une fois." },
+      { montre: ["r"], legende: "<b>Deuxième niveau : le rêve.</b> Je crois souvent être éveillé quand je dors : rien ne garantit que ce que je perçois existe." },
+      { montre: ["g"], legende: "<b>Troisième niveau, « hyperbolique » :</b> un trompeur tout-puissant pourrait m’abuser même quand je calcule que deux et trois font cinq. Plus rien ne semble résister." },
+      { montre: ["c"], legende: "<b>Le retournement.</b> Le doute bute sur une limite : si l’on me trompe, c’est que j’existe pour être trompé. Le trompeur « ne saura jamais faire que je ne sois rien, tant que je penserai être quelque chose »." },
+      { montre: ["q"], legende: "<b>La formule du <i>Discours de la méthode</i></b> (IV<sup>e</sup> partie) : la première vérité certaine, que Descartes reçoit comme « le premier principe de la philosophie »." },
+      { montre: ["e"], legende: "<b>Dans les <i>Méditations</i> (1641),</b> la certitude tient à l’acte de penser : elle vaut chaque fois que je pense ou que je dis « je suis », pas une fois pour toutes." },
+      { montre: ["f"], legende: "<b>Ce qu’est ce moi :</b> une chose « qui doute, qui entend, qui conçoit, qui affirme, qui nie, qui veut, qui ne veut pas, qui imagine aussi, et qui sent ». Un moi stable, substance pensante : c’est ce que Hume, Nietzsche et Freud contesteront." }
+    ] },
   "e3-rimbaud-lecture": { type: "texte", atelier: 3, titre: "Lecture animée : Rimbaud, lettre du voyant", intro: "La grammaire, les images et la ponctuation qui disent un moi dédoublé, une à une." },
-  "frise-mouvements": { type: "frise", titre: "La frise qui se déroule : des Lumières au surréalisme", debut: 1750, fin: 1960, pas: 25, h: 290, min: 820,
+  "frise-mouvements": { type: "frise", titre: "La frise qui se déroule : des Lumières au surréalisme", debut: 1750, fin: 1960, pas: 25, h: 330, min: 820,
     intro: "Les grands mouvements apparaissent dans l’ordre, avec une œuvre repère pour chacun. Dates indicatives : un mouvement n’a ni naissance ni mort précises.",
     periodes: [
       { id: "lum", de: 1750, a: 1789, nom: "Lumières", rang: 0, c: 0 },
@@ -132,7 +155,7 @@ Object.assign(HLP.ANIMS, {
       { id: "sym", de: 1886, a: 1905, nom: "Symbolisme", rang: 0, c: 0 },
       { id: "avg", de: 1909, a: 1924, nom: "Avant-gardes", rang: 1, c: 1 },
       { id: "sur", de: 1924, a: 1945, nom: "Surréalisme", rang: 0, c: 2 },
-      { id: "exi", de: 1943, a: 1960, nom: "Existentialisme", rang: 1, c: 3 }
+      { id: "exi", de: 1943, a: 1960, nom: "Existentialisme", rang: 2, c: 3 }
     ],
     evts: [
       { id: "a", an: 1762, t: "Émile", h: 30 }, { id: "b", an: 1782, t: "Confessions", h: 58 },

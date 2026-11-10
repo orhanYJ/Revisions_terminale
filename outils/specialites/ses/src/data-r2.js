@@ -47,7 +47,7 @@ ANIMS["r2-quotas"] = {
     { l: "Le prix du quota pousse à réduire les émissions là où c’est le moins cher. Le plafond garantit la quantité ; c’est le prix qui varie.", d: 3.5 }
   ],
   rendu: function (A, i, p) {
-    var s = "", us = [{ n: "Usine A", x: 20, cout: 20 }, { n: "Usine B", x: 190, cout: 60 }];
+    var s = "", us = [{ n: "Usine A", x: 8, cout: 20 }, { n: "Usine B", x: 172, cout: 60 }];
     var red = i === 0 ? [0, 0] : i === 1 ? [10 * A.s(p, 0.1, 0.7), 10 * A.s(p, 0.1, 0.7)] : i === 2 ? [A.l(10, 20, A.s(p, 0.1, 0.8)), 10] : i === 3 ? [20, A.l(10, 0, A.s(p, 0.2, 0.9))] : [20, 0];
     var sc = 2.6, base = 230;
     us.forEach(function (u, j) {
@@ -55,7 +55,7 @@ ANIMS["r2-quotas"] = {
       s += A.t(u.x + 75, 38, "réduire 1 t coûte " + u.cout + " €", { t: 11, a: "middle", c: "gris" });
       var em = 60 - red[j], hEm = em * sc, hRed = red[j] * sc;
       s += A.r(u.x + 40, base - hEm, 70, hEm, { f: "gris", r: 3, op: 0.75 });
-      if (hRed > 0.5) s += A.r(u.x + 40, base - 60 * sc, 70, hRed, { f: "none", s: "vert", sw: 2, r: 3 }) + (red[j] > 3 ? A.t(u.x + 75, base - 60 * sc + hRed / 2 + 4, "−" + A.fr(red[j], 0) + " t", { t: 11.5, g: true, a: "middle", c: "vert" }) : "");
+      if (hRed > 0.5) s += A.r(u.x + 40, base - 60 * sc, 70, hRed, { f: "none", s: "vert", sw: 2, r: 3 }) + (red[j] > 3 ? A.t(u.x + 75, base - 60 * sc + Math.min(hRed / 2, 15) + 4, "−" + A.fr(red[j], 0) + " t", { t: 11.5, g: true, a: "middle", c: "vert" }) : "");
       s += A.t(u.x + 75, base - hEm / 2 + 4, A.fr(em, 0) + " t émises", { t: 11.5, g: true, a: "middle", c: "carte" });
       var quotas = j === 0 ? (i >= 3 ? A.l(50, 40, i === 3 ? A.s(p, 0.2, 0.9) : 1) : 50) : (i >= 3 ? A.l(50, 60, i === 3 ? A.s(p, 0.2, 0.9) : 1) : 50);
       s += '<line x1="' + (u.x + 30) + '" x2="' + (u.x + 120) + '" y1="' + (base - quotas * sc) + '" y2="' + (base - quotas * sc) + '" style="stroke:var(--corail);stroke-width:2.5;stroke-dasharray:5 3"/>';
@@ -68,7 +68,7 @@ ANIMS["r2-quotas"] = {
     if (i === 1) s += A.t(180, 290, "coût total sans échange : 800 €", { t: 13, g: true, a: "middle", op: A.s(p, 0.6, 1) });
     if (i >= 3) {
       var q = i === 3 ? A.s(p, 0, 0.7) : 1;
-      s += A.fl(150, 72, 210, 72, { c: "corail", sw: 2.5, p: q }) + A.t(180, 64, "10 quotas × 40 €", { t: 11.5, g: true, a: "middle", c: "corail", op: q, h: true });
+      s += A.fl(136, 72, 204, 72, { c: "corail", sw: 2.5, p: q }) + A.t(170, 64, "10 quotas × 40 €", { t: 11.5, g: true, a: "middle", c: "corail", op: q, h: true });
     }
     if (i >= 4) s += A.t(180, 290, "toujours 100 t émises, coût total : 400 €", { t: 13, g: true, a: "middle", c: "vert", op: i === 4 ? A.s(p, 0.3, 0.8) : 1 });
     if (i === 5) s += A.t(180, 312, "le plafond fixe la quantité, le marché fixe le prix", { t: 12, a: "middle", c: "gris", op: A.s(p, 0.3, 0.8) });

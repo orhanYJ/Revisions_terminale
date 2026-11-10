@@ -21,6 +21,8 @@
   function ic(n, cl) { return '<svg class="ic ' + (cl || "") + '" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; }
   function melange(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   var MO = function () { return document.documentElement.classList.contains("mo"); };
+  /* relance l'animation d'arrivée d'un bloc dont le contenu change (légende d'animation, fiche d'un lieu, d'une date) */
+  function rejouer(el) { if (!el || !MO()) return; el.classList.remove("maj"); void el.offsetWidth; el.classList.add("maj"); }
 
   /* ---------------- navigation latérale ---------------- */
   function construireNav() {
@@ -96,8 +98,8 @@
     h += '<section class="une"><svg class="radar" viewBox="0 0 260 260" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="130" cy="130" r="40"/><circle cx="130" cy="130" r="80"/><circle cx="130" cy="130" r="120"/><path d="M130 0V260M0 130H260"/></g><g class="balai"><path d="M130 130L130 10A120 120 0 0 1 233 70Z" fill="currentColor" opacity=".35"/></g>' + [[178, 88], [92, 70], [206, 168], [64, 150], [150, 214], [110, 116]].map(function (p, i) { return '<circle class="blip" style="animation-delay:' + (i * 1) + 's" cx="' + p[0] + '" cy="' + p[1] + '" r="5" fill="#FF5B49"/>'; }).join("") + '</svg>';
     h += '<span class="classif">DOSSIER CLASSÉ · HGGSP · TERMINALE</span><h1>Ligne <i>rouge</i></h1>';
     h += '<p>' + typo("Histoire-géographie, géopolitique et sciences politiques : le programme de spécialité de Terminale, thème par thème, avec des cours rédigés, des frises et des cartes interactives, des sujets corrigés et de quoi t'entraîner.") + '</p></section>';
-    h += '<div class="raccourcis"><a href="#t2">' + ic("th2") + 'Thème 2 (écrit 2027)</a><a href="#t1">' + ic("th1") + 'Thème 1</a><a href="#epreuve">' + ic("stylo") + 'L\'épreuve</a><a href="#entrainement">' + ic("cible") + 'S\'entraîner</a><a href="#ressources">' + ic("livre") + 'Ressources</a></div>';
-    h += '<div class="alerte"><b>Bac 2027 :</b> ' + typo("l'écrit porte sur les thèmes 2, 4, 5 et 6 (rotation fixée par la note de service du 11 septembre 2026). Le thème 1 n'est pas à l'écrit en 2027, mais il reste au programme, au Grand oral et à l'écrit en 2028.") + '</div>';
+    h += '<div class="raccourcis"><a href="#t2">' + ic("th2") + 'Thème 2 (écrit chaque année)</a><a href="#t5">' + ic("th5") + 'Thème 5 (écrit chaque année)</a><a href="#epreuve">' + ic("stylo") + 'L\'épreuve</a><a href="#entrainement">' + ic("cible") + 'S\'entraîner</a><a href="#ressources">' + ic("livre") + 'Ressources</a></div>';
+    h += '<div class="alerte"><b>Bac 2027 :</b> ' + typo("l'écrit porte sur les thèmes 2, 4, 5 et 6 (rotation fixée par la note de service du 11 septembre 2026). Les thèmes 1 et 3 ne sont pas à l'écrit en 2027, mais ils restent au programme, au Grand oral, et reviennent à l'écrit en 2028.") + '</div>';
     h += '<h2 class="sec"><span class="n">00</span>La carte du programme</h2><div class="programme">';
     THEMES.forEach(function (t) {
       var red = t.statut === "redige";
@@ -344,23 +346,33 @@
     $$(".anim").forEach(activerAnim);
   }
 
+  /* fond d'une carte ou d'une scène : « monde » (fond mondial commun), « @n » (fond régional partagé, CARTES.fonds[n],
+     dédoublonné par build.py) ou le SVG du fond lui-même */
+  function fondSVG(f) {
+    if (f === "monde") return '<rect width="' + CARTES.monde.w + '" height="' + CARTES.monde.h + '" class="k-mer-f"/><path class="k-grat" d="' + CARTES.monde.grat + '"/><path class="k-terre" d="' + CARTES.monde.terre + '"/>';
+    if (f && f.charAt(0) === "@") return CARTES.fonds[+f.slice(1)];
+    return f || "";
+  }
+
   /* ---------------- animations explicatives pas à pas (ANIMS) ---------------- */
   function animHTML(nom, uid) {
     var A = ANIMS[nom];
     if (!A) return "";
     var sc = typeof A.scene === "string" ? CARTES.anims[A.scene.slice(6)] : A.scene;
     var vb = sc.vb || [0, 0, sc.w, sc.h], fond = "";
-    if (sc.fond === "monde") fond = '<rect width="' + CARTES.monde.w + '" height="' + CARTES.monde.h + '" class="k-mer-f"/><path class="k-grat" d="' + CARTES.monde.grat + '"/><path class="k-terre" d="' + CARTES.monde.terre + '"/>';
-    else if (sc.fond) fond = sc.fond;
+    fond = fondSVG(sc.fond);
+    /* la date de l'étape est tamponnée dans une bande au-dessus de la scène : elle ne masque plus le dessin */
+    var dates = A.etapes.some(function (e) { return e.date; });
     var pts = A.etapes.map(function (e, i) { return '<button class="a-pt" data-i="' + i + '" aria-label="Étape ' + (i + 1) + ' : ' + esc(sans(e.titre)) + '"><span>' + (i + 1) + '</span></button>'; }).join("");
     return '<figure class="anim" data-anim="' + nom + '" id="' + uid + '"><div class="a-tete"><span class="etiq">Animation · ' + A.etapes.length + ' étapes</span><h3>' + typo(A.titre) + '</h3></div>' +
-      '<div class="a-cadre"><svg viewBox="' + vb.join(" ") + '" role="img" aria-label="' + esc(sans(A.titre)) + '">' + fond + (sc.calques || sc.svg || "") + '</svg><div class="a-date" aria-hidden="true"></div></div>' +
+      (dates ? '<div class="a-bande" aria-hidden="true"><span class="a-date"></span></div>' : "") +
+      '<div class="a-cadre"><svg viewBox="' + vb.join(" ") + '" role="img" aria-label="' + esc(sans(A.titre)) + '" style="--mw:' + (sc.mw || Math.min(900, Math.max(560, Math.round(vb[2] * 0.86)))) + 'px">' + fond + (sc.calques || sc.svg || "") + '</svg></div>' +
       '<div class="a-cmd"><button class="a-b" data-a="prec" aria-label="Étape précédente"><svg class="ic"><use href="#i-prec"/></svg></button><button class="a-b a-lire" data-a="lire" aria-label="Lecture"><svg class="ic"><use href="#i-lire"/></svg></button><button class="a-b" data-a="suiv" aria-label="Étape suivante"><svg class="ic"><use href="#i-suiv"/></svg></button><div class="a-pts">' + pts + '</div></div>' +
       '<div class="a-legende" aria-live="polite"></div>' + (A.source ? '<div class="src">' + typo(A.source) + '</div>' : "") + '</figure>';
   }
   function activerAnim(f) {
     var A = ANIMS[f.getAttribute("data-anim")], k = -1, minuteur = null, lecture = false;
-    var els = $$("[data-k]", f), leg = $(".a-legende", f), dateEl = $(".a-date", f), bLire = $('[data-a="lire"]', f);
+    var els = $$("[data-k]", f), leg = $(".a-legende", f), dateEl = $(".a-date", f) || document.createElement("span"), bLire = $('[data-a="lire"]', f);
     function etat(n) {
       var vis = {};
       for (var i = 0; i <= n; i++) { (A.etapes[i].montre || []).forEach(function (x) { vis[x] = 1; }); (A.etapes[i].cache || []).forEach(function (x) { delete vis[x]; }); }
@@ -390,6 +402,7 @@
         cadreA.scrollTo({ left: Math.max(0, cadreA.scrollLeft + r.left + r.width / 2 - rc.left - rc.width / 2), behavior: MO() && k >= 0 && auto !== undefined ? "smooth" : "auto" });
       }
       teletype(dateEl, e.date || "");
+      rejouer(leg);
       leg.innerHTML = '<div class="a-num">ÉTAPE ' + (n + 1) + ' / ' + A.etapes.length + (e.date ? ' · ' + esc(e.date) : "") + '</div><b>' + typo(e.titre) + '</b>' + typo(e.texte || "");
       $$(".a-pt", f).forEach(function (b, i) { b.classList.toggle("fait", i < n); b.setAttribute("aria-current", i === n ? "step" : "false"); });
       $('[data-a="prec"]', f).disabled = n === 0;
@@ -416,8 +429,9 @@
   }
   function carteHTML(nom, uid) {
     var m = CARTES.cartes[nom], meta = m.meta, W = m.w, H = m.h, vb = m.vb || [0, 0, W, H];
-    var s = '<svg viewBox="' + vb.join(" ") + '" role="img" aria-label="' + esc(meta.t) + '">';
-    s += m.fond === "monde" ? '<rect width="' + W + '" height="' + H + '" class="k-mer-f"/><path class="k-grat" d="' + CARTES.monde.grat + '"/><path class="k-terre" d="' + CARTES.monde.terre + '"/>' : m.fond;
+    /* sur téléphone, largeur minimale proportionnelle au cadrage : les étiquettes gardent environ 9,5 px à l'écran */
+    var s = '<svg viewBox="' + vb.join(" ") + '" role="img" aria-label="' + esc(meta.t) + '" style="--mw:' + Math.min(1000, Math.max(680, Math.round(vb[2] * 0.9))) + 'px">';
+    s += fondSVG(m.fond);
     s += m.deco;
     m.pts.forEach(function (p, i) {
       var col = meta.c[p.c][1], dx = p.a === "end" ? -8 : 8;
@@ -433,10 +447,20 @@
     return '<figure class="carto" data-carte="' + nom + '" id="' + uid + '"><figcaption><span class="etiq">Carte interactive</span><h3>' + typo(meta.t) + '</h3></figcaption><div class="leg">' + leg + '</div><div class="carto-cadre">' + s + '</div><div class="carto-info" aria-live="polite">' + typo("Touche un point pour afficher la fiche du lieu ; touche une catégorie de la légende pour l'afficher ou la masquer.") + '</div><details class="pli"><summary>Tous les lieux de la carte</summary><div class="corps"><ul style="margin:0;padding-left:16px">' + liste + '</ul></div></details><div class="src">Fond : Natural Earth 1:50m (domaine public), pays actuels ; positions approximatives à cette échelle. Carte réalisée pour le site.</div></figure>';
   }
   function activerCarte(f) {
-    var m = CARTES.cartes[f.getAttribute("data-carte")];
+    var m = CARTES.cartes[f.getAttribute("data-carte")], cadreC = $(".carto-cadre", f);
+    /* sur téléphone, la carte défile de côté : la centrer sur les points au départ, puis sur le point choisi */
+    function centrer(x, doux) {
+      if (cadreC.scrollWidth <= cadreC.clientWidth + 2) return;
+      var vb = m.vb || [0, 0, m.w, m.h], k = cadreC.scrollWidth / vb[2];
+      cadreC.scrollTo({ left: Math.max(0, (x - vb[0]) * k - cadreC.clientWidth / 2), behavior: doux && MO() ? "smooth" : "auto" });
+    }
+    var xs = m.pts.map(function (p) { return p.x; }).sort(function (a, b) { return a - b; });
+    if (xs.length) centrer((xs[0] + xs[xs.length - 1]) / 2);
     function choisir(i) {
       var p = m.pts[i];
+      centrer(p.x, true);
       $$(".pt", f).forEach(function (g) { g.classList.toggle("sel", +g.getAttribute("data-i") === i); });
+      rejouer($(".carto-info", f));
       $(".carto-info", f).innerHTML = '<b>' + typo(esc(p.t)) + '</b>' + typo(p.d);
     }
     $$(".pt", f).forEach(function (g) {
@@ -472,7 +496,8 @@
         var e = D.frise[+b.getAttribute("data-i")];
         $$(".ev").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
         b.classList.add("vu");
-        info.innerHTML = '<b class="tt" style="color:' + couleur(D, e[2]) + '"></b><br><b>' + typo(e[3]) + '</b> — ' + typo(e[4]);
+        rejouer(info);
+        info.innerHTML = '<b class="tt" style="--c:' + couleur(D, e[2]) + '"></b><br><b>' + typo(e[3]) + '</b> — ' + typo(e[4]);
         var tt = $(".tt", info), d = sans(e[1]), n = 0;
         if (!MO()) tt.textContent = d;
         else { tt.textContent = ""; clearInterval(info._t); info._t = setInterval(function () { n++; tt.textContent = d.slice(0, n) + (n < d.length ? "▌" : ""); if (n >= d.length) clearInterval(info._t); }, 40); }
@@ -593,9 +618,9 @@
       ["Annonce du plan", "Nous verrons d'abord la paix par les traités entre États souverains, puis la paix par la sécurité collective, enfin les limites de cette construction face aux conflits contemporains.", "Trois parties claires, chronologiques puis critiques."]];
     segs.forEach(function (s) { h += '<div class="seg"><span class="etiq">' + s[0] + '</span>' + typo(s[1]) + '<span class="com">→ ' + typo(s[2]) + '</span></div>'; });
     h += '</div><p style="font:15px var(--sans);margin-top:10px"><a href="#t2:sujets">Lire le corrigé complet (plan détaillé, conclusion) →</a></p>';
-    h += '<h2 class="sec"><span class="n">04</span>L\'étude critique de document(s)</h2><div class="carte-p"><ol class="etapes">' + E.etude.map(function (e) { return '<li><b>' + e[0] + '</b>' + typo(e[1]) + '</li>'; }).join("") + '</ol><p style="font:15px var(--sans);margin:0">Deux études corrigées : <a href="#t2:sujets">Clausewitz (thème 2)</a> et <a href="#t1:sujets">le discours de Kennedy (thème 1)</a>.</p></div>';
+    h += '<h2 class="sec"><span class="n">04</span>L\'étude critique de document(s)</h2><div class="carte-p"><ol class="etapes">' + E.etude.map(function (e) { return '<li><b>' + e[0] + '</b>' + typo(e[1]) + '</li>'; }).join("") + '</ol><p style="font:15px var(--sans);margin:0">Une étude corrigée par thème : ' + THEMES.filter(function (t) { return DOSSIERS[t.id] && DOSSIERS[t.id].etude; }).map(function (t) { return '<a href="#' + t.id + ':sujets">' + typo(DOSSIERS[t.id].etude.titre) + ' (thème ' + t.n + ')</a>'; }).join(" ; ") + '.</p></div>';
     h += '<h2 class="sec"><span class="n">05</span>Le Grand oral</h2><div class="carte-p"><p style="font:15.5px/1.55 var(--sans)">' + typo(E.grandOral) + '</p><h3>Des idées de questions</h3><ul style="font:15px/1.5 var(--sans);padding-left:18px">' + E.idees.map(function (i) { return '<li>' + typo(i) + '</li>'; }).join("") + '</ul></div>';
-    h += '<h2 class="sec"><span class="n">06</span>Sujets tombés récemment</h2><div class="carte-p"><ul class="liens" style="padding-left:18px">' + SUJETS_TOMBES.map(function (s) { return '<li><b>' + typo(s[2]) + '</b><small>' + s[0] + ' · ' + s[1] + ' · <a href="#' + s[3] + '">thème ' + s[3].slice(1) + '</a></small></li>'; }).join("") + '</ul><p style="font:13px var(--sans);color:var(--encre2);margin:0">Intitulés relevés par la presse spécialisée (Diplomeo) ; pour les énoncés complets, voir les annales dans la page Ressources.</p></div>';
+    h += '<h2 class="sec"><span class="n">06</span>Sujets tombés récemment</h2><div class="carte-p"><ul class="liens" style="padding-left:18px">' + SUJETS_TOMBES.map(function (s) { return '<li><b>' + typo(s[2]) + '</b><small>' + s[0] + ' · ' + s[1] + ' · <a href="#' + s[3] + '">thème ' + s[3].slice(1) + '</a></small></li>'; }).join("") + '</ul><p style="font:13px var(--sans);color:var(--encre2);margin:0">Sujets de métropole (Eduscol, Géoconfluences). En 2025, la liste des thèmes évaluables n\'était pas celle qui s\'applique à partir de 2027 ; pour les énoncés complets, voir les annales dans la page Ressources.</p></div>';
     h += '</div>';
     APP.innerHTML = h;
   }

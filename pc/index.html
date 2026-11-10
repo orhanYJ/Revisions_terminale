@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Électron libre — Physique-Chimie Terminale</title>
+<title>Liaisons — Physique-Chimie Terminale</title>
 <meta name="apple-mobile-web-app-title" content="PC">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#E45C10">
+<meta name="theme-color" content="#1B1A1E">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
@@ -500,13 +500,18 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
 <link rel="stylesheet" href="motion.css?v=1">
 <script src="motion.js?v=1" defer></script>
 <!-- mouvement:fin -->
+<!-- identite:debut — habillage « Liaisons » (elements.css, elements.js, polices/) ; à conserver lors des mises à jour -->
+<link rel="stylesheet" href="elements.css?v=2">
+<script src="elements.js?v=2" defer></script>
+<script>(function(){try{var d=document.documentElement,i=localStorage.getItem("pc-identite"),m=localStorage.getItem("pc-mode");if(m==="clair"||m==="sombre")d.setAttribute("data-theme",m);if(i==="lumiere"){d.setAttribute("data-identite","lumiere");var l=document.createElement("link");l.rel="stylesheet";l.href="lumiere.css?v=1";l.id="css-lumiere";document.head.appendChild(l);}}catch(e){}})();</script>
+<!-- identite:fin -->
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
 <script src="assistant.js?v=9" defer></script>
 <!-- assistant:fin -->
 </head>
 <body>
 <header>
-  <div class="brand" onclick="go('accueil')">Électron <b>libre</b><span class="brand-s"> · Physique-Chimie</span></div>
+  <div class="brand" onclick="go('accueil')"><svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><path d="M9 29 L20 11 L31 29" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="20" cy="11" r="6.2" fill="#EA580C"/><circle cx="9" cy="29" r="5" fill="currentColor"/><circle cx="31" cy="29" r="5" fill="currentColor"/></svg><span>Liai<b>sons</b></span><span class="brand-s">Physique-Chimie</span></div>
   <div class="crumb" id="crumb"></div>
   <button class="btn-theme" id="btnTheme" onclick="basculeTheme()">Sombre</button>
 </header>
@@ -514,19 +519,25 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
 <!-- ================= ACCUEIL ================= -->
 <div class="page on" id="page-accueil">
   <div class="hero">
-    <svg class="wm" style="right:-30px;top:-14px;width:240px" viewBox="0 0 240 220" aria-hidden="true">
-      <g fill="none" stroke="currentColor" stroke-width="3">
-        <path d="M60 40 L100 18 L140 40 L140 84 L100 106 L60 84 Z"/>
-        <path d="M140 84 L180 62 L220 84 L220 128 L180 150 L140 128 Z"/>
-        <path d="M60 128 L100 106 L140 128 L140 172 L100 194 L60 172 Z"/>
-        <circle cx="100" cy="18" r="6" fill="currentColor" stroke="none"/>
-        <circle cx="220" cy="128" r="6" fill="currentColor" stroke="none"/>
-        <circle cx="60" cy="172" r="6" fill="currentColor" stroke="none"/>
+    <svg class="mol" viewBox="0 0 250 210" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="3.6" stroke-linecap="round" fill="none">
+        <path d="M70 62 L125 34 L180 62 L180 122 L125 150 L70 122 Z"/>
+        <path d="M180 122 L228 150 M125 150 L125 196 M70 62 L28 40"/>
       </g>
+      <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".45">
+        <path d="M82 70 L82 114 M133 45 L170 64 M133 139 L170 120"/>
+      </g>
+      <circle class="vib" cx="125" cy="34" r="11" fill="#EA580C"/>
+      <circle class="vib" cx="228" cy="150" r="14" fill="#EA580C"/>
+      <circle class="vib" cx="125" cy="196" r="9" fill="currentColor"/>
+      <circle class="vib" cx="28" cy="40" r="8" fill="#EA580C" opacity=".55"/>
+      <circle class="vib" cx="180" cy="62" r="6.5" fill="var(--surface)" stroke="currentColor" stroke-width="2.2"/>
+      <circle class="vib" cx="70" cy="122" r="6.5" fill="var(--surface)" stroke="currentColor" stroke-width="2.2"/>
     </svg>
-    <h1>Physique-Chimie<br>de spécialité, <span>comprise</span>.</h1>
-    <div class="eq">HCl<sub>(g)</sub> + H<sub>2</sub>O<sub>(l)</sub> → Cl<sup>−</sup><sub>(aq)</sub> + H<sub>3</sub>O<sup>+</sup><sub>(aq)</sub></div>
-    <p>Le programme de spécialité de Terminale, chapitre par chapitre : cours, TP, exercices corrigés et fiches mémo. L'objectif n'est pas de réciter : c'est de comprendre pourquoi chaque formule dit ce qu'elle dit.</p>
+    <div class="kick">Spécialité physique-chimie · Terminale</div>
+    <h1>Tout le programme, <em>liaison</em> par liaison.</h1>
+    <p class="lead">Chaque chapitre est un atome de la chaîne : il s'allume quand il est en ligne. Cours, TP corrigés, exercices, schémas interactifs, vidéo et fiche mémo. L'objectif n'est pas de réciter : c'est de comprendre pourquoi chaque formule dit ce qu'elle dit.</p>
+    <div class="el-stats" id="elStats"></div>
   </div>
 
   <a class="tile-tp" href="#" onclick="go('tpece');return false;">
@@ -538,45 +549,45 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
   <div class="theme-bloc">
     <h2><span class="tno">1</span> Constitution et transformations de la matière</h2>
     <ul class="chap-list">
-      <li class="actif"><a class="chap-link" href="#" onclick="go('ch1');return false;"><span class="no">1</span><span class="ti">Transformations acides-bases</span><span class="st st-actif">En cours</span></a></li>
-      <li class="actif"><a class="chap-link" href="#" onclick="go('ch2');return false;"><span class="no">2</span><span class="ti">Méthodes physiques d'analyse</span><span class="st st-actif">En cours</span></a></li>
-      <li class="actif"><a class="chap-link" href="#" onclick="go('ch3');return false;"><span class="no">3</span><span class="ti">Méthodes chimiques d'analyse</span><span class="st st-actif">En cours</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Sens d'évolution spontanée d'un système chimique</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Force des acides et des bases</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Forcer l'évolution d'un système</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Modélisation macroscopique de l'évolution d'un système</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Modélisation microscopique de l'évolution d'un système</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Synthèses organiques</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Évolution temporelle d'un système siège d'une transformation nucléaire</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="actif"><a class="chap-link" href="#" onclick="go('ch1');return false;"><span class="sym" aria-hidden="true">Ab</span><span class="no">1</span><span class="ti">Transformations acides-bases</span><span class="st st-actif">En cours</span></a></li>
+      <li class="actif"><a class="chap-link" href="#" onclick="go('ch2');return false;"><span class="sym" aria-hidden="true">Mp</span><span class="no">2</span><span class="ti">Méthodes physiques d'analyse</span><span class="st st-actif">En cours</span></a></li>
+      <li class="actif"><a class="chap-link" href="#" onclick="go('ch3');return false;"><span class="sym" aria-hidden="true">Mc</span><span class="no">3</span><span class="ti">Méthodes chimiques d'analyse</span><span class="st st-actif">En cours</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Se</span><span class="no" aria-hidden="true"></span><span class="ti">Sens d'évolution spontanée d'un système chimique</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Fa</span><span class="no" aria-hidden="true"></span><span class="ti">Force des acides et des bases</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Fo</span><span class="no" aria-hidden="true"></span><span class="ti">Forcer l'évolution d'un système</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Ma</span><span class="no" aria-hidden="true"></span><span class="ti">Modélisation macroscopique de l'évolution d'un système</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Mi</span><span class="no" aria-hidden="true"></span><span class="ti">Modélisation microscopique de l'évolution d'un système</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">So</span><span class="no" aria-hidden="true"></span><span class="ti">Synthèses organiques</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Nu</span><span class="no" aria-hidden="true"></span><span class="ti">Évolution temporelle d'un système siège d'une transformation nucléaire</span><span class="st st-verrou">À venir</span></a></li>
     </ul>
   </div>
 
   <div class="theme-bloc">
     <h2><span class="tno">2</span> Ondes et signaux</h2>
     <ul class="chap-list">
-      <li class="actif"><a class="chap-link" href="#" onclick="go('ch4');return false;"><span class="no">4</span><span class="ti">La lumière, un flux de photons</span><span class="st st-actif">En cours</span></a></li>
-      <li class="actif"><a class="chap-link" href="#" onclick="go('ch5');return false;"><span class="no">5</span><span class="ti">La lunette astronomique</span><span class="st st-actif">En cours</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Diffraction</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Interférences</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Atténuation des ondes et effet Doppler</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Dynamique du dipôle RC</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="actif"><a class="chap-link" href="#" onclick="go('ch4');return false;"><span class="sym" aria-hidden="true">Ph</span><span class="no">4</span><span class="ti">La lumière, un flux de photons</span><span class="st st-actif">En cours</span></a></li>
+      <li class="actif"><a class="chap-link" href="#" onclick="go('ch5');return false;"><span class="sym" aria-hidden="true">Lu</span><span class="no">5</span><span class="ti">La lunette astronomique</span><span class="st st-actif">En cours</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Di</span><span class="no" aria-hidden="true"></span><span class="ti">Diffraction</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">In</span><span class="no" aria-hidden="true"></span><span class="ti">Interférences</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Do</span><span class="no" aria-hidden="true"></span><span class="ti">Atténuation des ondes et effet Doppler</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">RC</span><span class="no" aria-hidden="true"></span><span class="ti">Dynamique du dipôle RC</span><span class="st st-verrou">À venir</span></a></li>
     </ul>
   </div>
 
   <div class="theme-bloc">
     <h2><span class="tno">3</span> Mouvements et interactions</h2>
     <ul class="chap-list">
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Mouvement et deuxième loi de Newton</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Mouvement dans un champ uniforme</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Mouvement dans un champ de gravitation</span><span class="st st-verrou">À venir</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">Modélisation de l'écoulement d'un fluide</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Nw</span><span class="no" aria-hidden="true"></span><span class="ti">Mouvement et deuxième loi de Newton</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Cu</span><span class="no" aria-hidden="true"></span><span class="ti">Mouvement dans un champ uniforme</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Gr</span><span class="no" aria-hidden="true"></span><span class="ti">Mouvement dans un champ de gravitation</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Fl</span><span class="no" aria-hidden="true"></span><span class="ti">Modélisation de l'écoulement d'un fluide</span><span class="st st-verrou">À venir</span></a></li>
     </ul>
   </div>
 
   <div class="theme-bloc">
     <h2><span class="tno">4</span> Conversions et transferts d'énergie</h2>
     <ul class="chap-list">
-      <li class="verrou"><a class="chap-link"><span class="no" aria-hidden="true"></span><span class="ti">L'énergie : conversions et transferts</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">En</span><span class="no" aria-hidden="true"></span><span class="ti">L'énergie : conversions et transferts</span><span class="st st-verrou">À venir</span></a></li>
     </ul>
   </div>
 
@@ -8663,7 +8674,7 @@ function maj(){
 </div>
 
 </main>
-<footer>Électron libre · Physique-Chimie de spécialité, Terminale · le réglage clair/sombre n'est pas mémorisé entre deux ouvertures (fichier autonome, sans stockage local).</footer>
+<footer>Liaisons · Physique-Chimie de spécialité, Terminale · le thème et le mode clair / sombre sont retenus sur cet appareil seulement (fichier autonome, sans stockage local).</footer>
 <script>
 document.documentElement.classList.add('js');
 

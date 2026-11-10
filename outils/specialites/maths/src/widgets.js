@@ -73,13 +73,19 @@ var WIDGETS = (function () {
     R.clipY = function (y) { return Math.max(-3000, Math.min(3000, R.Y(y))); };
     var g = N("g", {}, svg);
     var px = opt.px || 1, py = opt.py || 1, k;
+    /* grandes graduations en puissances de 10 (« 3·10⁵ ») : elles tiennent dans la marge */
+    function grand(v) {
+      if (Math.abs(v) < 1e4) return nf(v, 2);
+      var e = Math.floor(Math.log10(Math.abs(v)) + 1e-9), q = Math.round(v / Math.pow(10, e) * 10) / 10, SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹";
+      return (q === 1 ? "" : nf(q, 1) + "·") + "10" + String(e).split("").map(function (c) { return SUP[+c]; }).join("");
+    }
     for (k = Math.ceil(x0 / px) * px; k <= x1 + 1e-9; k += px) {
       N("line", { x1: R.X(k), x2: R.X(k), y1: m.t, y2: H - m.b, "class": "g-grille" }, g);
       if (Math.abs(k) > 1e-9 || !opt.sansZeroX) { var t = N("text", { x: R.X(k), y: H - m.b + 15, "text-anchor": "middle", "class": "g-txt" }, g); t.textContent = nf(k, 2); }
     }
     for (k = Math.ceil(y0 / py) * py; k <= y1 + 1e-9; k += py) {
       N("line", { x1: m.l, x2: W - m.r, y1: R.Y(k), y2: R.Y(k), "class": "g-grille" }, g);
-      var t2 = N("text", { x: m.l - 5, y: R.Y(k) + 4, "text-anchor": "end", "class": "g-txt" }, g); t2.textContent = nf(k, 2);
+      var t2 = N("text", { x: m.l - 5, y: R.Y(k) + 4, "text-anchor": "end", "class": "g-txt" }, g); t2.textContent = grand(k);
     }
     if (y0 <= 0 && y1 >= 0) N("line", { x1: m.l, x2: W - m.r, y1: R.Y(0), y2: R.Y(0), "class": "g-axe" }, g);
     if (x0 <= 0 && x1 >= 0) N("line", { x1: R.X(0), x2: R.X(0), y1: m.t, y2: H - m.b, "class": "g-axe" }, g);
@@ -268,7 +274,8 @@ var WIDGETS = (function () {
       var y = s.f(x);
       xs.parentNode.querySelector("b").textContent = nf(x, 2);
       R.pt(x, y, "g-pt2", 5);
-      R.txt(x + 0.2, Math.min(y, s.y[1] - 0.3) + 0.3, "f(" + nf(x, 2) + ") ≈ " + nf(y, 3), "r");
+      var droite = x > s.x[0] + 0.6 * (s.x[1] - s.x[0]);
+      R.txt(x + (droite ? -0.2 : 0.2), Math.min(y, s.y[1] - 0.3) + 0.3, "f(" + nf(x, 2) + ") ≈ " + nf(y, 3), "r", droite ? "end" : "start");
       c.note.innerHTML = F("$" + s.n + "$. " + s.txt + (s.ah !== undefined ? " Écart avec l'asymptote horizontale : $" + nf(Math.abs(y - s.ah), 4) + "$." : ""));
     }
     choix.onchange = maj; xs.addEventListener("input", maj); maj();
@@ -286,7 +293,7 @@ var WIDGETS = (function () {
       R.pt(k, M, "g-pt2", 4.5);
       R.txt(k + X * 0.02, M * 1.12, "max en x = " + k, "r");
       var x1 = dernierCroisement(k);
-      c.note.innerHTML = F("Courbe de $x\\mapsto\\frac{x^{" + k + "}}{\\e^x}$ : elle monte jusqu'à $x=" + k + "$ (maximum $\\left(\\frac{" + k + "}{\\e}\\right)^{" + k + "}\\approx" + nf(M, 3) + "$), puis retombe vers $0$. Donc $\\lim_{x\\to+\\infty}\\frac{x^{" + k + "}}{\\e^x}=0$. " + (k > 2 ? "Et $\\e^x$ dépasse définitivement $x^{" + k + "}$ dès $x\\approx" + nf(x1, 2) + "$." : "Et ici $\\e^x>x^{" + k + "}$ pour tout $x\\geq0$ ; plus la puissance est grande, plus l'exponentielle met de temps à gagner : essaie $n=10$."));
+      c.note.innerHTML = F("Courbe de $x\\mapsto\\frac{x^{" + k + "}}{\\e^x}$ : elle monte jusqu'à $x=" + k + "$ (maximum $\\left(\\frac{" + k + "}{\\e}\\right)^{" + k + "}\\approx" + nf(M, M > 1000 ? 0 : 3) + "$), puis retombe vers $0$. Donc $\\lim_{x\\to+\\infty}\\frac{x^{" + k + "}}{\\e^x}=0$. " + (k > 2 ? "Et $\\e^x$ dépasse définitivement $x^{" + k + "}$ dès $x\\approx" + nf(x1, 2) + "$." : "Et ici $\\e^x>x^{" + k + "}$ pour tout $x\\geq0$ ; plus la puissance est grande, plus l'exponentielle met de temps à gagner : essaie $n=10$."));
     }
     n.addEventListener("input", maj); maj();
   };

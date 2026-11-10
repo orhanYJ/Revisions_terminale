@@ -234,6 +234,45 @@ C("hist-retenir", String.raw`
 1843   Ada Lovelace              1957  Fortran               1989  Web (proposition)
 1854   Boole                     1958  circuit intégré       1991  Linux, Python, 1er site web`, { run: false });
 
+/* Animation : l'algorithme d'Euclide vu comme un pavage du rectangle a × b par des carrés (mêmes divisions que hist-euclide). */
+WIDGETS_EXT["euclide"] = function (z, opt, O) {
+  var W = 320, HMAX = 190, COUL = ["q0", "q1", "q2", "q3"];
+  function etapes(k) {
+    var a0 = k === "fibo" ? 21 : 1071, b0 = k === "fibo" ? 13 : 462, ech = Math.min(W / a0, HMAX / b0);
+    var E = [], carres = [], lignes = [], a = a0, b = b0, rect = { x: 0, y: 0, w: a0, h: b0 }, n = 0;
+    function snap(msg, neuf) { E.push({ carres: carres.slice(), rect: rect ? { x: rect.x, y: rect.y, w: rect.w, h: rect.h } : null, lignes: lignes.slice(), neuf: neuf || 0, a: a, b: b, ech: ech, a0: a0, b0: b0, msg: msg }); }
+    snap("Euclide raisonne sur des longueurs : <b>pgcd(" + a0 + ", " + b0 + ")</b> est le côté du plus grand carré qui pave <b>exactement</b> un rectangle " + a0 + " × " + b0 + ". Retirons des carrés aussi grands que possible.");
+    while (b !== 0) {
+      var q = Math.floor(a / b), r = a % b, horiz = rect.w >= rect.h, c = COUL[n % 4];
+      for (var j = 0; j < q; j++) carres.push({ x: horiz ? rect.x + j * b : rect.x, y: horiz ? rect.y : rect.y + j * b, s: b, c: c });
+      rect = r ? (horiz ? { x: rect.x + q * b, y: rect.y, w: r, h: b } : { x: rect.x, y: rect.y + q * b, w: b, h: r }) : null;
+      lignes.push(a + " = " + q + " × " + b + " + " + r);
+      var msg = "<code>" + a + " = " + q + " × " + b + " + " + r + "</code> : on retire <b>" + q + " carré" + (q > 1 ? "s" : "") + " de côté " + b + "</b>. ";
+      msg += r ? "Il reste un rectangle " + b + " × " + r + " : un carré pave l’ancien rectangle exactement quand il pave celui-ci, d’où <b>pgcd(" + a + ", " + b + ") = pgcd(" + b + ", " + r + ")</b>. C’est la ligne <code>a, b = b, a % b</code>." : "Le reste est <b>nul</b> : les carrés de côté " + b + " pavent exactement le dernier rectangle, donc aussi tous les précédents et le rectangle de départ.";
+      a = b; b = r; n++;
+      snap(msg, q);
+    }
+    snap("<b>pgcd(" + a0 + ", " + b0 + ") = " + a + "</b>, le dernier diviseur non nul. " + (a === 1 ? "Les nombres sont <b>premiers entre eux</b> : seul le carré de côté 1 pave le rectangle. 21 et 13, deux termes consécutifs de la suite de Fibonacci, sont les plus petits nombres qui demandent autant de divisions (théorème de Lamé, hors programme)." : "Seulement " + n + " divisions : le nombre d’étapes croît au plus proportionnellement au <b>nombre de chiffres</b>, pas aux nombres eux-mêmes (théorème de Lamé, hors programme)."));
+    return E;
+  }
+  O.lecteur(z, {
+    titre: "algorithme d’Euclide", sous: "pgcd par les carrés", vitesse: 1900,
+    choix: [{ k: "grand", t: "pgcd(1071, 462)" }, { k: "fibo", t: "pgcd(21, 13)" }],
+    etapes: etapes,
+    dessine: function (sc, e, i, E, saut) {
+      var f = e.ech, H = e.b0 * f, s = '<svg class="eu" viewBox="-2 -2 ' + (W + 4) + " " + (H + 4) + '" role="img" aria-label="Rectangle ' + e.a0 + " × " + e.b0 + ' pavé par des carrés">';
+      s += '<rect class="eu-fond" x="0" y="0" width="' + (e.a0 * f).toFixed(1) + '" height="' + H.toFixed(1) + '"/>';
+      e.carres.forEach(function (c, j) {
+        var nv = !saut && j >= e.carres.length - e.neuf, d = (j - (e.carres.length - e.neuf)) * 0.12;
+        s += '<g class="eu-c ' + c.c + (nv ? " neuf" : "") + '"' + (nv ? ' style="animation-delay:' + d.toFixed(2) + 's"' : "") + '><rect x="' + (c.x * f).toFixed(1) + '" y="' + (c.y * f).toFixed(1) + '" width="' + (c.s * f).toFixed(1) + '" height="' + (c.s * f).toFixed(1) + '"/>' + (c.s * f >= 26 ? '<text x="' + ((c.x + c.s / 2) * f).toFixed(1) + '" y="' + ((c.y + c.s / 2) * f).toFixed(1) + '">' + c.s + "</text>" : "") + "</g>";
+      });
+      if (e.rect) s += '<rect class="eu-reste" x="' + (e.rect.x * f).toFixed(1) + '" y="' + (e.rect.y * f).toFixed(1) + '" width="' + (e.rect.w * f).toFixed(1) + '" height="' + (e.rect.h * f).toFixed(1) + '"/>';
+      s += "</svg>";
+      sc.innerHTML = '<div class="eu-zone">' + s + '<div class="eu-cote mono"><div class="titre-pile">divisions</div>' + (e.lignes.length ? e.lignes.map(function (l, j) { return '<div class="' + COUL[j % 4] + '">' + l + "</div>"; }).join("") : '<span class="repere">…</span>') + '<div class="eu-ab">a = ' + e.a + " · b = " + e.b + "</div></div></div>";
+    }
+  });
+};
+
 CH.push({
   id: "hist", court: "histoire", fichier: "histoire.md",
   titre: "Histoire de l’informatique",
@@ -259,6 +298,7 @@ CH.push({
 <li>vers <b>−300</b>, <b>Euclide</b> décrit dans ses <i>Éléments</i> l’algorithme du plus grand commun diviseur, toujours utilisé (il sert dans le chiffrement RSA) ;</li>
 <li>vers <b>825</b>, le savant persan <b>al-Khwarizmi</b>, à Bagdad, écrit des traités de calcul et d’algèbre ; son nom latinisé a donné le mot « algorithme », et le titre d’un de ses livres le mot « algèbre ».</li></ul>
 [[hist-euclide]]
+[[w-euclide]]
 <p>La méthode de Héron d’Alexandrie (Ier siècle) pour approcher √2 double à peu près le nombre de décimales justes à chaque étape :</p>
 [[hist-heron]]
 [[w-algo-frise]]` },
@@ -309,7 +349,7 @@ CH.push({
 <li><b>1991</b> : <b>Linus Torvalds</b> publie le noyau <b>Linux</b>, logiciel libre ; la même année, <b>Guido van Rossum</b> publie la première version de <b>Python</b>. Richard Stallman avait lancé le projet GNU et le mouvement du logiciel libre en 1983-1985.</li></ul>` },
 
     { id: "i7", t: "Les réseaux : d’ARPANET au Web", h: `
-<ul><li><b>1969</b> : <b>ARPANET</b>, réseau financé par l’agence de recherche du ministère américain de la Défense, relie quatre universités. Le premier message, le <b>29 octobre 1969</b>, devait être « login » : la machine réceptrice plante après « lo ». Le programme de NSI retient 1969 comme le début du développement d’Internet.</li>
+<ul><li><b>1969</b> : <b>ARPANET</b>, réseau financé par l’agence de recherche du ministère américain de la Défense, relie quatre sites universitaires et de recherche (UCLA, le SRI, l’université de Californie à Santa Barbara et l’université de l’Utah). Le premier message, le <b>29 octobre 1969</b>, devait être « login » : la machine réceptrice plante après « lo ». Le programme de NSI retient 1969 comme le début du développement d’Internet.</li>
 <li><b>1974</b> : <b>Vint Cerf</b> et <b>Bob Kahn</b> décrivent le protocole <b>TCP</b>, qui permet de relier des réseaux différents ; ARPANET passe à <b>TCP/IP</b> le 1er janvier <b>1983</b>. Le Français Louis Pouzin avait conçu dès 1971-1973 le réseau Cyclades, fondé sur les datagrammes, une idée reprise par TCP/IP.</li>
 <li><b>1976-1977</b> : Diffie et Hellman inventent l’échange de clés, puis Rivest, Shamir et Adleman le chiffrement <b>RSA</b> : le chiffrement asymétrique au programme de Terminale.</li>
 <li><b>1982</b> : en France, le <b>Minitel</b> se diffuse dans les foyers (annuaire, services en ligne), dix ans avant le Web.</li>

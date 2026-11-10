@@ -89,7 +89,7 @@ var ANIM = (function () {
       rect: function (x, y, w, h, cls, at) { return N("rect", ajoute({ x: x, y: y, width: w, height: h, "class": cls || "g-bande" }, at), g); },
       cercle: function (x, y, r, cls, at) { return N("circle", ajoute({ cx: x, cy: y, r: r, "class": cls || "g-pt" }, at), g); },
       path: function (d, cls, at) { return N("path", ajoute({ d: d, "class": cls || "g-c" }, at), g); },
-      math: function (x, y, w, h, html, at) { var fo = N("foreignObject", ajoute({ x: x, y: y, width: w, height: h }, at), g); var d = document.createElement("div"); d.className = "a-math"; d.innerHTML = TeX.fmt(html); fo.appendChild(d); return fo; }
+      math: function (x, y, w, h, html, at) { var fo = N("foreignObject", ajoute({ x: x, y: y, width: w, height: h }, at), g); var d = document.createElement("div"); d.className = "a-math"; d.innerHTML = "<span>" + TeX.fmt(html) + "</span>"; fo.appendChild(d); return fo; }
     };
     S.vider();
     return S;
@@ -209,7 +209,11 @@ ANIMS.propagation = {
       S.px.txt(x + w / 2, y - 26, "n=" + i, "", "middle", { "font-size": 11 });
       S.px.txt(x + w / 2, y + 5, on ? String(vals[i]) : "?", on ? "b" : "", "middle", { "font-size": vals[i] > 99 ? 11 : 13 });
       if (on) S.px.txt(x + w / 2, y + 36, "✓", "c3", "middle", { "font-size": 15 });
-      if (i < n - 1 && (k >= 3 ? i < valide : false)) S.px.fleche(x + w - 2, y - 30, x + dx + 4, y - 30, "g-c3", { "stroke-width": 1.8 });
+      if (i < n - 1 && (k >= 3 ? i < valide : false)) {
+        var xa = x + w / 2 + 3, xb = x + dx + w / 2 - 3, ya = y - 40, cy = y - 58;
+        S.px.path("M" + xa + " " + ya + "Q" + (xa + xb) / 2 + " " + cy + " " + xb + " " + ya, "g-c3", { fill: "none", "stroke-width": 1.8 });
+        S.px.path("M" + xb + " " + ya + "l-6.5 -4.2l1.2 5.6z", "g-c3", { fill: "currentColor", style: "fill:var(--vert)" });
+      }
     }
     S.px.txt(x0 + n * dx - 6, y + 5, "…", "", "start", { "font-size": 18 });
     if (k === 2) {
@@ -238,7 +242,8 @@ ANIMS.bande = {
     S.rep(0, 30, -1.2, 5.2, { px: 5, py: 1 });
     function N0(eps) { for (var m = 200; m >= 0; m--) if (Math.abs(u(m) - 2) >= eps) return m + 1; return 0; }
     var eps = k < 1 ? null : k === 1 ? 1 : k === 2 ? ANIM.l(1, 0.5, E(t)) : k === 3 ? ANIM.l(0.5, 0.2, E(t)) : ANIM.l(0.2, 0.08, E(t));
-    if (eps) { S.rect(0, 2 - eps, 30, 2 + eps, "g-bande", { opacity: k === 1 ? E(t * 2) : 1 }); S.txt(29.5, 2 + eps + 0.15, "2 ± " + ANIM.nf(eps, 2), "r", "end"); }
+    if (eps) eps = Math.round(eps * 1000) / 1000;
+    if (eps) { S.rect(0, 2 - eps, 30, 2 + eps, "g-bande", { opacity: k === 1 ? E(t * 2) : 1 }); S.txt(29.5, 2 + Math.max(eps, 0.5) + 0.15, "2 ± " + ANIM.nf(eps, 2), "r", "end"); }
     S.seg(0, 2, 30, 2, "g-as");
     var nb = k === 0 ? Math.floor(E(t) * 30.99) : 30, Nn = eps ? N0(eps) : null;
     for (var i = 0; i <= nb; i++) S.pt(i, u(i), eps && i >= Nn ? "g-pt" : (eps ? "g-pt2" : "g-pt"), 3.3);
@@ -342,7 +347,7 @@ ANIMS.arbre = {
     { d: 3.5, l: R`Donc le nombre de trios (sans ordre) est $\frac{24}{6}=4=\binom43$. C'est la formule $\binom nk=\frac{n(n-1)\dots(n-k+1)}{k!}$.` }
   ],
   rendu: function (S, k, t) {
-    var E = ANIM.e, L = ["A", "B", "C", "D"], cols = { ABC: "#2343A8", ABD: "#C2372B", ACD: "#23774F", BCD: "#B8860B" };
+    var E = ANIM.e, L = ["A", "B", "C", "D"], cols = { ABC: "var(--bleu)", ABD: "var(--rouge)", ACD: "var(--vert)", BCD: "#B07F0A" };
     var feuilles = [];
     L.forEach(function (a) { L.forEach(function (b) { if (b === a) return; L.forEach(function (c) { if (c === a || c === b) return; feuilles.push(a + b + c); }); }); });
     var y = [22, 70, 130, 200], W = 360;
@@ -362,8 +367,8 @@ ANIMS.arbre = {
           else {
             var ty = y[3] + 2 + (k >= 3 ? 0 : 0);
             S.px.txt(x, ty, lab[0], col ? "" : "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
-            S.px.txt(x, ty + 10, lab[1], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
-            S.px.txt(x, ty + 20, lab[2], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
+            S.px.txt(x, ty + 11.5, lab[1], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
+            S.px.txt(x, ty + 23, lab[2], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
           }
         }
       }
@@ -372,7 +377,7 @@ ANIMS.arbre = {
     S.px.txt(8, 250, k === 4 ? "24 ÷ 3! = 4 trios" : tot + " branches", k === 4 ? "r" : "b", "start", k === 4 ? { "font-size": 14 } : null);
     if (k >= 3) {
       var a2 = k === 3 ? E(t) : 1;
-      Object.keys(cols).forEach(function (c, i) { S.px.txt(196 + i * 41, 250, c, "", "middle", { fill: cols[c], "font-weight": 700, opacity: a2, "font-size": 12 }); });
+      Object.keys(cols).forEach(function (c, i) { S.px.txt(196 + i * 41, 250, c, "", "middle", { style: "fill:" + cols[c] + ";font-weight:700", opacity: a2, "font-size": 12 }); });
     }
   }
 };
@@ -400,7 +405,7 @@ ANIMS.geometrique = {
       pts.forEach(function (p) { S.pt(p[0], p[1], cols[i], 3.4, { opacity: k < 4 ? 1 : 0.7 }); });
       if (k === 4) { var last = pts[pts.length - 1]; S.txt(14.8, Math.max(-5.6, Math.min(5.6, last[1])) + [0.3, 0.5, -1.1, 0.3][i], "q = " + ANIM.nf(q, 1), cols[i] === "g-pt2" ? "r" : "b", "end"); }
     });
-    if (k < 4) S.txt(0.3, 5.3, "q = " + ANIM.nf(Q[k], 1) + "   q^n pour n = 0…15", k === 0 || k === 3 ? "r" : "b");
+    if (k < 4) S.txt(0.3, 5.3, "q = " + ANIM.nf(Q[k], 1) + " : les termes qⁿ, n de 0 à 15", k === 0 || k === 3 ? "r" : "b");
   }
 };
 

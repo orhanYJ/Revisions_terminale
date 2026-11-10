@@ -403,3 +403,128 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
   --cm-serif:'Spectral',Georgia,serif;--cm-sans:'Archivo',system-ui,sans-serif}
 .v-mental svg{width:1280px;height:720px;display:block}
 .v-mental .cm-g{transition:none}
+
+/* ===================================================================================================
+   CARNET DE NATURALISTE VIVANT (10/11/2026, choix de Cengiz : « un mélange entre le A et le C »)
+   La scène est une page de carnet à spirale posée sur une table : papier quadrillé, lavis d'aquarelle qui
+   respirent, vrilles qui poussent à chaque partie, petites algues qui dérivent. Les textes sont à l'encre ;
+   les schémas, graphiques et animations (dessinés pour un fond sombre) deviennent des tirages photo à bord
+   blanc, scotchés dans le carnet (classe .plaque : couleurs claires rétablies à l'intérieur).
+   =================================================================================================== */
+.cadre{background:#33402f}
+.scene{--ivoire:#1b2a20;--ivoire2:#56665a;--safran:#2f7d52;--safran-c:#4d7f12;--carmin:#b0452c;--sarcelle:#2a7f8f;
+  --papier:#f2ead6;--carte-p:#fcf8ec;--citron:#b7d94c;--rouille:#a5462b;--encre:#1b2a20;
+  color:var(--ivoire);background:#33402f}
+.main{font-family:'Caveat','Segoe Print',cursive}
+.carnet{position:absolute;inset:0;z-index:0;pointer-events:none}
+.cn-page{position:absolute;left:16px;top:22px;right:16px;bottom:14px;border-radius:10px;overflow:hidden;
+  background-color:#f2ead6;
+  background-image:linear-gradient(rgba(118,140,92,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(118,140,92,.13) 1px,transparent 1px);
+  background-size:40px 40px;background-position:-1px -1px;box-shadow:0 10px 34px rgba(0,0,0,.42),inset 0 0 80px rgba(120,96,50,.14)}
+.cn-marge{position:absolute;left:88px;top:0;bottom:0;width:2px;background:rgba(190,120,96,.35)}
+.cn-grain{position:absolute;inset:0;opacity:.55;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .36 0 0 0 0 .24 0 0 0 -1.4 1.05'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23g)'/%3E%3C/svg%3E")}
+.cn-lavis{position:absolute;mix-blend-mode:multiply;will-change:transform,border-radius}
+.cn-vie{position:absolute;inset:0}
+.cn-anneaux{position:absolute;left:0;top:0;width:1280px;height:60px}
+.voile{background:radial-gradient(ellipse at 50% 45%,transparent 60%,rgba(70,55,20,.16) 100%)}
+.entete{top:44px;left:110px;color:rgba(40,60,45,.62);font-size:13px}
+.entete b{color:var(--safran)}
+.fil{bottom:0;height:4px;background:linear-gradient(90deg,#2f7d52,#b7d94c);opacity:.9}
+
+/* tirages scotchés : schémas, graphiques, animations */
+.plaque{--ivoire:#e7f2da;--ivoire2:#b4cb9c;--safran:#2f9d62;--safran-c:#b7d94c;--carmin:#ff6b5b;--sarcelle:#5cc8d6;color:var(--ivoire)}
+.v-illu.plaque,.v-graphe.plaque{background:radial-gradient(ellipse at 40% 35%,#183024,#0d1a13 75%);border-radius:6px;
+  box-shadow:0 0 0 12px #fdf9ee,0 0 0 13px rgba(60,50,30,.18),0 16px 34px rgba(40,30,10,.32)}
+.scotch{position:absolute;width:118px;height:30px;background:rgba(236,226,196,.82);box-shadow:0 1px 3px rgba(0,0,0,.12);z-index:3;pointer-events:none}
+.scotch.g{left:-34px;top:-22px;transform:rotate(-34deg)}
+.scotch.d{right:-34px;top:-22px;transform:rotate(32deg)}
+.v-anim .an-cadre{border-radius:6px;box-shadow:0 0 0 12px #fdf9ee,0 0 0 13px rgba(60,50,30,.18),0 16px 34px rgba(40,30,10,.32)}
+
+/* photos : tirages à bord blanc, légende manuscrite */
+.v-tableau{transform:scale(.885) rotate(-.7deg);transform-origin:50% 50%;overflow:hidden;border-radius:3px;
+  box-shadow:0 0 0 15px #fdf9ee,0 0 0 16px rgba(60,50,30,.2),0 22px 46px rgba(40,30,10,.4)}
+.v-tableau .ombre{background:linear-gradient(180deg,rgba(0,0,0,0) 70%,rgba(0,0,0,.18) 100%)}
+.v-tableau .lg{right:26px;bottom:22px;max-width:640px;padding:6px 14px 4px;background:#fdf9ee;color:#1b2a20;text-shadow:none;
+  font-family:'Caveat','Segoe Print',cursive;font-style:normal;font-size:27px;line-height:1.15;transform:rotate(-1.2deg);box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.v-tableau.fond-t{transform:scale(.885) rotate(-.7deg)}
+.v-tableau.fond-t .ombre{background:rgba(242,234,214,.70)}
+.v-tableau.fond-t.sombre .ombre{background:rgba(242,234,214,.9)}
+.v-tableau.fond-t .lg{font-size:22px;color:#55655a;background:transparent;box-shadow:none}
+
+/* cartes de texte : étiquettes de spécimen */
+.carte{background:#fcf8ec;border:1.5px solid #1b2a20;border-radius:4px;box-shadow:0 12px 26px rgba(60,48,20,.16)}
+.carte:after{content:"";position:absolute;inset:7px;border:.8px solid rgba(27,42,32,.55);pointer-events:none}
+.carte .barre-g{display:none}
+.carte .te{font-family:'Caveat','Segoe Print',cursive;font-size:36px;letter-spacing:0;text-transform:none;color:var(--safran);margin-bottom:8px;font-weight:700}
+.carte .et{border-top:1px dashed rgba(27,42,32,.3)}
+.carte.note{background:#f8efc8;border-color:rgba(165,70,43,.7);transform:rotate(-.6deg)}
+.carte.note:after{border-color:rgba(165,70,43,.35)}
+.carte.note .te{color:var(--rouille)}
+.badge{background:#fcf8ec;color:var(--safran);border:1.5px solid var(--safran)}
+.v-cols .col,.v-cartes .ca{background:#fcf8ec;border:1.5px solid rgba(27,42,32,.8);border-radius:4px;box-shadow:0 12px 24px rgba(60,48,20,.14)}
+.v-cols .col:before{background:var(--citron);height:6px}
+.v-cols .d:before{background:#7fc0cb}
+.v-cols .vs{background:#fcf8ec;border-color:var(--safran);color:var(--safran)}
+.v-cols .rp span,.v-tag .pill{background:rgba(42,127,143,.1);border-color:rgba(42,127,143,.55)}
+.v-cartes .ca .n{color:var(--safran)}
+.v-liste .ti,.fo-te,.v-mot .gl:before{color:var(--safran)}
+.v-liste .ti{font-family:'Caveat','Segoe Print',cursive;font-size:36px;letter-spacing:0;text-transform:none;font-weight:700;margin-bottom:18px}
+.v-liste.petit .ti{font-size:28px}
+.v-liste .mq{background:#fcf8ec;border-color:var(--safran);color:var(--safran)}
+.v-liste .mq.ok{border-color:#2e7d32;color:#2e7d32}.v-liste .mq.ko{border-color:var(--carmin);color:var(--carmin)}
+.v-question .gu,.v-cit .gu,.v-dialogue .l:nth-child(2){color:var(--safran)}
+.v-titre .sur,.v-chapitre .num{color:var(--safran)}
+.v-titre .regle,.v-chapitre .trait{height:7px;border-radius:4px;background:linear-gradient(90deg,rgba(183,217,76,0),rgba(183,217,76,.85) 12%,rgba(183,217,76,.85) 88%,rgba(183,217,76,0))}
+.v-titre .halo{background:radial-gradient(circle,rgba(183,217,76,.28),rgba(183,217,76,0) 60%)}
+.v-chapitre .num{-webkit-text-stroke:2px rgba(47,125,82,.55)}
+.v-nuage .ce{color:var(--safran);border-color:rgba(47,125,82,.6);background:#fcf8ec}
+.v-cit .ap{border-color:rgba(27,42,32,.35)}
+.v-portrait .pf{border-radius:3px;background:#ddd2b8}
+.v-portrait .pf:after{box-shadow:none}
+.v-portrait.grand .pf:after{background:linear-gradient(180deg,rgba(242,234,214,0) 60%,rgba(242,234,214,.6) 100%)}
+.bd-nom,.bd-info{text-shadow:none}
+.mf-axe{background:rgba(27,42,32,.35)}.mf-z{color:rgba(27,42,32,.6)}
+.v-frise .an{color:rgba(27,42,32,.55)}
+.v-frise .p .md{background:#fcf8ec;border-color:var(--safran)}
+.v-frise .p .tige{background:rgba(47,125,82,.5)}
+
+/* générique, mot qui frappe, « À retenir », pause, exercices, formules */
+.v-generique{background:transparent}
+.g-halo{background:radial-gradient(circle,rgba(183,217,76,.30),transparent 62%)}
+.g-haut{color:var(--safran)}
+.g-ligne{height:6px;border-radius:3px;background:linear-gradient(90deg,transparent,rgba(183,217,76,.9),transparent)}
+.g-balai{background:linear-gradient(90deg,transparent,rgba(183,217,76,.35),transparent);mix-blend-mode:multiply}
+.fr-fond{background:radial-gradient(ellipse at center,rgba(246,240,224,.98),rgba(242,234,214,.93))}
+.fr-mot{color:#1b2a20;background:linear-gradient(transparent 58%,rgba(183,217,76,.85) 58%,rgba(183,217,76,.85) 90%,transparent 90%);
+  -webkit-background-clip:border-box;background-clip:border-box;text-shadow:none;padding:0 .1em}
+.fl-fond{background:rgba(242,234,214,.94)}
+.fl-carte{background:#fcf8ec;border:2px solid rgba(165,70,43,.8);border-radius:4px;box-shadow:0 0 0 6px #fcf8ec,0 0 0 7.5px rgba(165,70,43,.45),0 16px 34px rgba(60,48,20,.2)}
+.fl-te{font-family:'Archivo',sans-serif;font-weight:700;color:var(--rouille);letter-spacing:.3em}
+.pa-carte{background:#fcf8ec;border:2px solid var(--safran);border-radius:6px;box-shadow:0 0 0 6px #fcf8ec,0 0 0 7.5px rgba(47,125,82,.4),0 16px 34px rgba(60,48,20,.2)}
+.pa-te{font-family:'Caveat','Segoe Print',cursive;font-size:40px;letter-spacing:0;text-transform:none;font-weight:700;color:var(--safran)}
+.ex-carte,.fo-carte{background:#fcf8ec;border:1.5px solid rgba(27,42,32,.8);border-radius:4px;box-shadow:0 12px 26px rgba(60,48,20,.16)}
+.fo-carte.nu{background:none;border:0;box-shadow:none}
+.ex-don{background:rgba(47,125,82,.08)}
+.ex-q.on{background:rgba(183,217,76,.38)}
+.ex-qn{border-color:var(--safran);color:var(--safran)}
+.fo-l.encadre{background:rgba(183,217,76,.3);border:1.5px solid rgba(47,125,82,.6)}
+.fo-l.ok .fo-f{color:#2e7d32}.fo-l.ko .fo-f{color:#b0452c}
+.fo-l.pt .fo-f:before{color:var(--safran)}
+
+/* mots clés : coup de surligneur citron quand la voix les dit */
+.cle{background:linear-gradient(rgba(183,217,76,.62),rgba(183,217,76,.62)) no-repeat 0 85%/0% 55%;padding-bottom:0}
+.plaque .cle{background:linear-gradient(var(--safran-c),var(--safran-c)) no-repeat 0 100%/0% 3px;padding-bottom:2px}
+
+/* carte mentale : couleurs claires du site */
+.v-mental{--cm-panel:#fffdf6;--cm-ink:#17281e;--cm-ink-2:#5e7263;--cm-leaf:#2f7d52;--cm-leaf-soft:#e4efdd;--cm-water:#3f8494;--cm-water-soft:#e0eef0;
+  --cm-clay:#b8643e;--cm-clay-soft:#f8e9df;--cm-plum:#7a5a8e;--cm-plum-soft:#efe8f4;--cm-etoile:#c2407a;--cm-coeur:#17281e;--cm-coeur-txt:#f7f4ec}
+.cm-centre{background:#fcf8ec;color:var(--safran);border-color:var(--safran)}
+.cm-noeud{background:#fcf8ec;border-color:rgba(47,125,82,.75)}
+
+.plaque .gr-ti{color:#2f7d52;top:-46px;font-weight:600}
+.plaque .badge{color:#2f7d52}
+.fr-fond,.fl-fond{inset:auto;left:16px;top:22px;right:16px;bottom:14px;border-radius:10px}
+.v-portrait.grand .pf:after{background:linear-gradient(180deg,rgba(242,234,214,0) 48%,rgba(242,234,214,.92) 80%,#f2ead6 100%)}
+.bd-nom{color:#1b2a20}
+.v-portrait.grand .pf{left:16px;top:22px;bottom:14px;border-radius:10px 0 0 10px}

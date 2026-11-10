@@ -50,7 +50,7 @@ var CH2 = {
 <tr><td>$\ell$</td><td>$\ell'\neq0$</td><td>$\frac{\ell}{\ell'}$</td></tr>
 <tr><td>$\ell$</td><td>$\pm\infty$</td><td>$0$</td></tr>
 <tr><td>$\ell\neq0$ ou $\pm\infty$</td><td>$0$ (de signe constant)</td><td>$\pm\infty$ (règle des signes)</td></tr>
-<tr><td>$\pm\infty$</td><td>$\ell'$</td><td>$\pm\infty$ (règle des signes)</td></tr>
+<tr><td>$\pm\infty$</td><td>$\ell'\neq0$</td><td>$\pm\infty$ (règle des signes)</td></tr>
 <tr><td>$0$</td><td>$0$</td><td><b>F.I.</b></td></tr>
 <tr><td>$\pm\infty$</td><td>$\pm\infty$</td><td><b>F.I.</b></td></tr></table></div>
 [meth|Lever une indétermination : le terme prépondérant]$u_n=\frac{3n^2-n+1}{2n^2+5}$ est de la forme $\frac{\infty}{\infty}$. On factorise par $n^2$ en haut et en bas :

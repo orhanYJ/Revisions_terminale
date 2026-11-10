@@ -28,6 +28,7 @@ var CH8 = {
 [thm|Toutes les primitives]Si $F$ est une primitive de $f$ sur un intervalle $I$, les primitives de $f$ sur $I$ sont exactement les fonctions $x\mapsto F(x)+C$, $C$ réel. (Démonstration exigible : deux primitives diffèrent d'une constante.)[/]
 [prop|Une seule primitive passe par un point]Pour $x_0\in I$ et $y_0$ réel, il existe une unique primitive $F$ de $f$ telle que $F(x_0)=y_0$.[/]
 [ex|Condition initiale]Primitive de $f(x)=2x$ qui vaut $5$ en $1$ : $F(x)=x^2+C$ et $F(1)=1+C=5$, donc $F(x)=x^2+4$.[/]
+<div data-anim="primitives"></div>
 [thm|Existence (admise ici)]Toute fonction continue sur un intervalle admet des primitives. Mais certaines n'ont pas d'expression avec les fonctions usuelles : c'est le cas de $x\mapsto\e^{-x^2}$.[/]` },
     { id: "usuelles", titre: "Primitives usuelles et formes composées", html: R`
 <div class="tab-wrap"><table><tr><th>$f(x)$</th><th>Une primitive $F(x)$</th><th>Intervalle</th></tr>
@@ -129,8 +130,8 @@ print(y)`, sortie: `2.704813829421526` }
       corrige: R`<p>$f$ : $\frac12\e^{x^2}$ ; $g$ : $\frac12\ln(x^2+4)$ ; $h$ : forme $\frac{u'}{u^2}$ avec $u=\e^x+1$ : $-\frac1{\e^x+1}$ ; $k$ : forme $u'u^2$ avec $u=\sin x$ : $\frac{\sin^3x}3$.</p>` },
     { niv: 2, t: "Solution particulière donnée", enonce: R`<p>$(E)$ : $y'=2y-4x$.</p><ol><li>Montrer que $g(x)=2x+1$ est solution de $(E)$.</li><li>En déduire toutes les solutions, puis celle qui vaut $0$ en $0$.</li></ol>`,
       corrige: R`<ol><li>$g'(x)=2$ et $2g(x)-4x=4x+2-4x=2$. ✓</li><li>$y=2x+1+C\e^{2x}$ ; $y(0)=1+C=0$, $C=-1$ : $y(x)=2x+1-\e^{2x}$.</li></ol>` },
-    { niv: 3, t: "Le café refroidit (type bac)", enonce: R`<p>On note $T(t)$ la température d'un café, en $^\circ$C, $t$ minutes après l'avoir servi. On admet que $T$ est solution de $(E)$ : $y'=-0{,}1y+2$ et que $T(0)=90$.</p><ol><li>Déterminer la solution constante de $(E)$ et l'interpréter.</li><li>Déterminer $T(t)$.</li><li>Calculer $T(10)$ arrondi au dixième, et la limite de $T$ en $+\infty$.</li><li>Au bout de combien de temps le café sera-t-il en dessous de $30\,^\circ$C ? Arrondir à la minute.</li><li>Écrire un programme Python appliquant la méthode d'Euler avec un pas de $0{,}1$ pour estimer $T(10)$.</li></ol>`,
-      corrige: R`<ol><li>$0=-0{,}1k+2$ : $k=20$, la température de la pièce (équilibre).</li><li>$T(t)=20+C\e^{-0{,}1t}$ et $T(0)=20+C=90$ : $T(t)=20+70\e^{-0{,}1t}$.</li><li>$T(10)=20+70\e^{-1}\approx45{,}8\,^\circ$C. $\e^{-0{,}1t}\to0$ donc $T\to20$.</li><li>$70\e^{-0{,}1t}<10\iff\e^{-0{,}1t}<\frac17\iff t>10\ln7\approx19{,}46$ : au bout de $20$ minutes.</li><li><code>T = 90</code>, puis <code>for k in range(100): T = T + 0.1*(-0.1*T + 2)</code>, puis <code>print(T)</code> : on obtient environ $45{,}6$ (calcul refait en Python), proche de la valeur exacte $45{,}75$.</li></ol>` }
+    { niv: 3, t: "Le café refroidit (type bac)", enonce: R`<p>On note $T(t)$ la température d'un café, en $^\circ$C, $t$ minutes après l'avoir servi. On admet que $T$ est solution de $(E)$ : $y'=-0{,}1y+2$ et que $T(0)=90$.</p><ol><li>Déterminer la solution constante de $(E)$ et l'interpréter.</li><li>Déterminer $T(t)$.</li><li>Calculer $T(10)$ arrondi au dixième, et la limite de $T$ en $+\infty$.</li><li>Au bout de combien de temps le café sera-t-il en dessous de $30\,^\circ$C ? Donner la durée en minutes et secondes, puis le premier nombre entier de minutes qui convient.</li><li>Écrire un programme Python appliquant la méthode d'Euler avec un pas de $0{,}1$ pour estimer $T(10)$.</li></ol>`,
+      corrige: R`<ol><li>$0=-0{,}1k+2$ : $k=20$, la température de la pièce (équilibre).</li><li>$T(t)=20+C\e^{-0{,}1t}$ et $T(0)=20+C=90$ : $T(t)=20+70\e^{-0{,}1t}$.</li><li>$T(10)=20+70\e^{-1}\approx45{,}8\,^\circ$C. $\e^{-0{,}1t}\to0$ donc $T\to20$.</li><li>$70\e^{-0{,}1t}<10\iff\e^{-0{,}1t}<\frac17\iff t>10\ln7\approx19{,}46$, soit environ $19$ min $28$ s : en minutes entières, le café est sous $30\,^\circ$C au bout de $20$ minutes (à $19$ minutes, il est encore à $T(19)\approx30{,}5\,^\circ$C).</li><li><code>T = 90</code>, puis <code>for k in range(100): T = T + 0.1*(-0.1*T + 2)</code>, puis <code>print(T)</code> : on obtient environ $45{,}6$ (calcul refait en Python), proche de la valeur exacte $45{,}75$.</li></ol>` }
   ],
   annales: [
     { ref: "Bac 2026, Métropole, 17 juin 2026 (sujet 2), exercice 2, partie B", url: "https://www.apmep.fr/IMG/pdf/BAC_generale_specialite_J2_2026-06-17_Metropole_FK-v4.pdf", h: R`$y'=-0{,}005y+6$, $v(0)=0$ : solutions, $v(t)=1200\left(1-\e^{-0{,}005t}\right)$, limite, seuil de $50$ litres (contrôle : $t\approx8{,}51$ h, soit $8$ h $31$ min).` },
@@ -212,5 +213,59 @@ ANIMS.champ = {
       pts.forEach(function (q) { S.pt(q[0], q[1], "g-pt2", 3.4); });
       if (n >= 8) S.txt(4.1, 1.45, "Euler : 1,80", "r");
     }
+  }
+};
+
+/* Animation : la famille des primitives, et celle qui passe par un point */
+ANIMS.primitives = {
+  titre: R`Toutes les primitives de $f(x)=2x$`,
+  vb: [360, 250],
+  etapes: [
+    { d: 5, l: R`$F(x)=x^2$ est une primitive de $f(x)=2x$ : en chaque point d'abscisse $a$, la tangente à la courbe de $F$ a pour pente $F'(a)=f(a)=2a$.` },
+    { d: 5.5, l: R`$x^2+C$ a la même dérivée $2x$, pour tout réel $C$ : on obtient toutes les primitives en translatant la courbe verticalement. À la même abscisse, toutes les tangentes sont parallèles (ici en $x=1$, pente $2$).` },
+    { d: 4.5, l: R`Condition $F(1)=5$ : $1+C=5$, donc $C=4$. Une seule courbe passe par le point $(1;5)$ : $F(x)=x^2+4$.` },
+    { d: 5, l: R`Entre deux primitives, l'écart vertical est le même partout : $(x^2+4)-x^2=4$. C'est le théorème « deux primitives d'une même fonction diffèrent d'une constante ».` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf;
+    S.rep(-2.5, 2.5, -4, 10, { px: 1, py: 2 });
+    function F(C) { return function (x) { return x * x + C; }; }
+    function tangente(a, C, cls, at) { var y = a * a + C; S.seg(a - 0.55, y - 1.1 * a, a + 0.55, y + 1.1 * a, cls, at); }
+    if (k === 0) {
+      S.courbe(F(0), -2.5, 2.5, "g-c");
+      var a = ANIM.l(-2, 2, E(t));
+      tangente(a, 0, "g-c2", { "stroke-width": 2.4 });
+      S.pt(a, a * a, "g-pt2", 4.5);
+      S.px.txt(44, 24, "a = " + nf(a, 1) + "   pente = 2a = " + nf(2 * a, 1), "r", "start");
+      return;
+    }
+    if (k === 1) {
+      for (var C = -3; C <= 5; C++) {
+        var o = C === 0 ? 1 : E(p(t, 0.08 * (C + 3), 0.08 * (C + 3) + 0.3));
+        if (o < 0.01) continue;
+        S.courbe(F(C), -2.5, 2.5, "g-c", 120, { opacity: C === 0 ? 1 : 0.5 * o });
+        tangente(1, C, "g-c3", { opacity: o, "stroke-width": 2 });
+      }
+      S.px.txt(44, 24, "F(x) = x² + C", "b", "start");
+      return;
+    }
+    if (k === 2) {
+      var o2 = E(p(t, 0.2, 0.7));
+      for (var C2 = -3; C2 <= 5; C2++) S.courbe(F(C2), -2.5, 2.5, "g-c", 120, { opacity: C2 === 4 ? 0.5 + 0.5 * o2 : 0.5 - 0.38 * o2, "stroke-width": C2 === 4 ? 2.2 + 1.2 * o2 : 2.2 });
+      S.pt(1, 5, "g-pt2", 6, { opacity: E(p(t, 0, 0.25)) });
+      S.txt(1.12, 4.3, "(1 ; 5)", "r", "start", { opacity: E(p(t, 0, 0.25)) });
+      S.txt(-1.3, 9.2, "F(x) = x² + 4", "b", "start", { opacity: o2 });
+      return;
+    }
+    S.courbe(F(0), -2.5, 2.5, "g-c", 120, { opacity: 0.6 });
+    S.courbe(F(4), -2.5, 2.5, "g-c", 120, { "stroke-width": 3 });
+    [-1.6, 0, 1.6].forEach(function (x, i) {
+      var f = E(p(t, 0.15 * i, 0.15 * i + 0.4));
+      if (f < 0.01) return;
+      S.fleche(x, x * x, x, x * x + 4 * f, "g-c2", { "stroke-width": 2.2 });
+      if (f > 0.9) S.txt(x + 0.08, x * x + 2.2, "4", "r", "start");
+    });
+    S.txt(-1.3, 8.6, "x² + 4", "b", "start");
+    S.txt(1.95, 1.6, "x²", "b", "start", { opacity: 0.8 });
   }
 };

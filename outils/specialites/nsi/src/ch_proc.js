@@ -217,7 +217,7 @@ class Ordonnanceur:
         while self.file != []:
             pid, d = self.tranche()
             ...
-        return termines`, { fichier: "tourniquet.py", run: false, trous: [18, 24] });
+        return termines`, { fichier: "tourniquet.py", run: false, trous: [18, 25] });
 
 C("proc-ep-corr", String.raw`
 class Processus:
@@ -493,7 +493,7 @@ CH.push({
 <p>Sous Windows, le <b>Gestionnaire des tâches</b> joue le rôle de <code>top</code>, et la commande <code>tasklist</code> celui de <code>ps</code>.</p>` },
 
     { id: "i6", t: "Ressources partagées et interblocage", h: `
-<p>Les processus se partagent des <b>ressources</b> : processeur, mémoire, fichiers, imprimante, connexion à une base de données. Certaines sont à <b>accès exclusif</b> : une seule utilisation à la fois (deux processus qui écrivent en même temps dans un fichier le corromprait). Le système les protège par des <b>verrous</b> : un processus qui demande une ressource déjà prise est <b>bloqué</b> jusqu’à sa libération.</p>
+<p>Les processus se partagent des <b>ressources</b> : processeur, mémoire, fichiers, imprimante, connexion à une base de données. Certaines sont à <b>accès exclusif</b> : une seule utilisation à la fois (deux processus qui écrivent en même temps dans un fichier le corrompraient). Le système les protège par des <b>verrous</b> : un processus qui demande une ressource déjà prise est <b>bloqué</b> jusqu’à sa libération.</p>
 <div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>interblocage</b> (<i>deadlock</i>) est une situation où plusieurs processus sont bloqués <b>indéfiniment</b>, chacun attendant une ressource détenue par un autre. Exemple : P1 tient l’imprimante et attend le scanner, P2 tient le scanner et attend l’imprimante.</p></div>
 [[w-arch-interblocage]]
 <p>On le reproduit en Python avec deux verrous (<code>threading.Lock</code>). Pour que la démonstration s’arrête, chaque attente est limitée à 0,5 s ; dans un vrai interblocage, l’attente durerait toujours :</p>

@@ -212,7 +212,7 @@ def executer(machine, mot, max_pas=1000):
     cases = range(min(ruban), max(ruban) + 1)
     return "".join(ruban.get(k, "_") for k in cases).strip("_"), pas
 
-INVERSE = {}       # à écrire : remplace chaque 0 par 1 et chaque 1 par 0`, { fichier: "turing.py", run: false, trous: [9, 11, 13, 17] });
+INVERSE = {}       # à écrire : remplace chaque 0 par 1 et chaque 1 par 0`, { fichier: "turing.py", run: false, trous: [8, 10, 12, 17] });
 
 C("calc-ep1-corr", String.raw`
 def executer(machine, mot, max_pas=1000):
@@ -328,6 +328,39 @@ def paradoxe(p):
 # paradoxe(paradoxe) boucle     ⇒ arret répond False ⇒ paradoxe s'arrête : contradiction
 # Donc arret ne peut pas exister : le problème de l'arrêt est indécidable.`, { run: false });
 
+/* Animation : la preuve par l'absurde de l'indécidabilité de l'arrêt, un cas après l'autre. */
+WIDGETS_EXT["arret"] = function (z, opt, O) {
+  var SRC = 'def paradoxe(prog):\n    if arret(prog, prog):\n        while True:\n            pass\n    else:\n        return "fini"\n\nparadoxe(paradoxe)';
+  function etapes(k) {
+    var s = k === "arrete", H = s ? "s’arrête" : "ne s’arrête pas (boucle)";
+    var E = [];
+    function snap(l, o, msg) { E.push({ l: l, hyp: o.hyp ? H : "", rep: o.rep || "", reel: o.reel || "", boucle: !!o.boucle, contra: !!o.contra, msg: msg }); }
+    snap(8, {}, "On lance <code>paradoxe(paradoxe)</code> : le programme reçoit <b>son propre texte</b> comme donnée. C’est permis : un programme est une donnée.");
+    snap(8, { hyp: 1 }, "Raisonnement par cas. <b>Cas " + (s ? 1 : 2) + "</b> : supposons que <code>paradoxe(paradoxe)</code> " + H + ".");
+    snap(2, { hyp: 1, rep: s ? "True" : "False" }, "Ligne 2 : il interroge <code>arret(paradoxe, paradoxe)</code>. Par hypothèse, <code>arret</code> ne se trompe jamais : elle répond <b>" + (s ? "True" : "False") + "</b> (« " + (s ? "il s’arrête" : "il ne s’arrête pas") + " »).");
+    if (s) snap(3, { hyp: 1, rep: "True", reel: "boucle indéfiniment", boucle: true }, "La condition est vraie : <code>paradoxe</code> entre dans <code>while True</code> et <b>tourne indéfiniment</b>.");
+    else snap(6, { hyp: 1, rep: "False", reel: "s’arrête (renvoie \"fini\")" }, "La condition est fausse : on passe dans le <code>else</code>, <code>paradoxe</code> renvoie \"fini\" et <b>s’arrête</b>.");
+    snap(s ? 3 : 6, { hyp: 1, rep: s ? "True" : "False", reel: s ? "boucle indéfiniment" : "s’arrête (renvoie \"fini\")", boucle: s, contra: true }, "On avait supposé qu’il " + H + ", et il fait <b>le contraire</b> : <b>contradiction</b>, ce cas est impossible. " + (s ? "Passe au cas 2." : "Les deux cas sont impossibles : l’hypothèse de départ est fausse. Aucune fonction <code>arret</code> correcte ne peut exister : le problème de l’arrêt est <b>indécidable</b>."));
+    return E;
+  }
+  O.lecteur(z, {
+    titre: "preuve par l’absurde", sous: "paradoxe(paradoxe)", vitesse: 2200,
+    choix: [{ k: "arrete", t: "cas 1 : il s’arrête" }, { k: "boucle", t: "cas 2 : il boucle" }],
+    etapes: etapes,
+    prepare: function (sc) {
+      sc.innerHTML = '<div class="trace arret-p"><div class="code zebre"><div class="tete"><span class="f">paradoxe.py</span></div><pre><code>' + O.lignes(O.hlPy(SRC)) + '</code></pre></div><div class="tr-cote"><div class="titre-pile">hypothèse</div><div class="ap-v" data-v="hyp"></div><div class="titre-pile">arret(paradoxe, paradoxe) répond</div><div class="ap-v" data-v="rep"></div><div class="titre-pile">ce que fait vraiment paradoxe(paradoxe)</div><div class="ap-v" data-v="reel"></div><div class="ap-contra" aria-hidden="true">✘ contradiction</div></div></div>';
+    },
+    dessine: function (sc, e, i, E, saut) {
+      O.$$(".l", sc).forEach(function (l, n) { l.classList.toggle("vise", n + 1 === e.l); });
+      ["hyp", "rep", "reel"].forEach(function (k) {
+        var el = O.$('[data-v="' + k + '"]', sc), v = e[k], nv = v && (saut || !i || E[i - 1][k] !== v);
+        el.innerHTML = v ? '<span class="' + (nv && !saut ? "neuf" : "") + '">' + O.esc(v) + (k === "reel" && e.boucle ? ' <span class="ap-tour" aria-hidden="true">↻</span>' : "") + "</span>" : '<span class="repere">…</span>';
+      });
+      O.$(".ap-contra", sc).classList.toggle("on", e.contra);
+    }
+  });
+};
+
 CH.push({
   id: "calc", court: "calculabilite", fichier: "calculabilite.py",
   titre: "Calculabilité, décidabilité",
@@ -404,6 +437,7 @@ CH.push({
 <p>Que se passe-t-il pour <code>paradoxe(paradoxe)</code> ? (Un programme est une donnée : on peut le donner à lui-même.)</p>
 <ul><li>Si <code>paradoxe(paradoxe)</code> <b>s’arrête</b>, alors <code>arret(paradoxe, paradoxe)</code> renvoie <code>True</code>… donc <code>paradoxe</code> entre dans la boucle infinie et <b>ne s’arrête pas</b>. Contradiction.</li>
 <li>Si <code>paradoxe(paradoxe)</code> <b>ne s’arrête pas</b>, alors <code>arret</code> renvoie <code>False</code>… donc <code>paradoxe</code> renvoie « fini » et <b>s’arrête</b>. Contradiction.</li></ul>
+[[w-arret]]
 <p>Les deux cas sont impossibles : l’hypothèse était fausse. <b>Aucune fonction <code>arret</code> correcte ne peut exister</b>, dans aucun langage. On peut le constater sur des candidats : chacun se trompe sur le <code>paradoxe</code> construit contre lui.</p>
 [[calc-candidats]]
 <div class="boite retenir-b"><div class="lab"># les trois ingrédients de la preuve</div><ol><li>un programme est une donnée (on peut le passer à <code>arret</code>, et à lui-même) ;</li><li>on suppose qu’<code>arret</code> existe et répond toujours ;</li><li><code>paradoxe</code> fait <b>le contraire</b> de ce qu’<code>arret</code> prédit sur lui.</li></ol></div>` },
@@ -443,7 +477,7 @@ CH.push({
   ep: [
     { titre: "Un simulateur de machine de Turing", enonce: `<p>On représente une machine de Turing par un dictionnaire : à chaque couple (état, symbole lu) on associe le triplet (symbole à écrire, déplacement « G », « D » ou « - », nouvel état). L’état initial est « debut », l’état final « fin », le blanc « _ ».</p>[[calc-ep1-fourni]]`,
       questions: [
-        { q: "Compléter les lignes 9, 11 et 13. Pourquoi a-t-on besoin du paramètre <code>max_pas</code> ?", c: `<p>Ligne 9 : <code>return None</code>. Ligne 11 : <code>machine[(etat, lu)]</code>. Ligne 13 : <code>pos + {"G": -1, "D": 1, "-": 0}[dep]</code>. Sans limite, une machine qui ne s’arrête pas ferait tourner le simulateur indéfiniment ; et on ne peut pas savoir à l’avance si elle s’arrêtera (problème de l’arrêt). La limite permet de répondre « je ne sais pas » (<code>None</code>).</p>` },
+        { q: "Compléter les lignes 8, 10 et 12. Pourquoi a-t-on besoin du paramètre <code>max_pas</code> ?", c: `<p>Ligne 8 : <code>return None</code>. Ligne 10 : <code>machine[(etat, lu)]</code>. Ligne 12 : <code>pos + {"G": -1, "D": 1, "-": 0}[dep]</code>. Sans limite, une machine qui ne s’arrête pas ferait tourner le simulateur indéfiniment ; et on ne peut pas savoir à l’avance si elle s’arrêtera (problème de l’arrêt). La limite permet de répondre « je ne sais pas » (<code>None</code>).</p>` },
         { q: "Écrire la machine <code>INVERSE</code> (ligne 17) qui remplace chaque 0 par 1 et chaque 1 par 0, puis s’arrête.", c: `<p>Trois transitions depuis l’état « debut » : 0 → écrire 1, D ; 1 → écrire 0, D ; _ → rien, s’arrêter.</p>` },
         { q: "Écrire une machine <code>PAIR</code> qui remplace le dernier chiffre d’un nombre binaire par V s’il est pair, F sinon. Écrire des tests, dont un pour une machine qui ne s’arrête jamais.", c: `[[calc-ep1-corr]]` },
         { q: "À l’oral : si <code>executer</code> renvoie <code>None</code>, peut-on conclure que la machine ne s’arrête pas ?", c: `<p>Non : on sait seulement qu’elle ne s’est pas arrêtée en <code>max_pas</code> pas. Elle pourrait s’arrêter plus tard (comme la suite de Syracuse de 27, qui demande 111 étapes). Aucun choix de limite ne permet de conclure dans tous les cas.</p>` }

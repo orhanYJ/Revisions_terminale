@@ -209,8 +209,8 @@ ANIMS.sommeDes = {
     var E = ANIM.e, c = 21, gx = 118, gy = 22, base = 284, cw = 26, ch = 13;
     var cols = ["#8E9AAF", "#5B7DB1", "#2343A8", "#23774F", "#B8860B", "#C2372B"];
     function teinte(s) { return cols[Math.min(5, 6 - Math.abs(7 - s) - 1 + 0)] || cols[0]; }
-    if (k <= 2) { S.px.txt(gx + 3 * c, gy - 6, "dé 2 →", "", "middle", { "font-size": 10, style: "fill:var(--encre3)" }); S.px.txt(gx - 18, gy + 3 * c, "dé 1", "", "end", { "font-size": 10, style: "fill:var(--encre3)" }); }
-    var oLab = k <= 2 ? 1 : 0;
+    var oLab = k < 2 ? 1 : k === 2 ? 1 - E(ANIM.p(t, 0, 0.35)) : 0;
+    if (oLab > 0.01) { S.px.txt(gx + 3 * c, gy - 6, "dé 2 →", "", "middle", { "font-size": 10, style: "fill:var(--encre3)", opacity: oLab }); S.px.txt(gx - 18, gy + 3 * c, "dé 1", "", "end", { "font-size": 10, style: "fill:var(--encre3)", opacity: oLab }); }
     for (var j = 0; j < 6; j++) { S.px.txt(gx + j * c + c / 2, gy + 6 * c + 12, String(j + 1), "", "middle", { "font-size": 9, style: "fill:var(--encre3)", opacity: oLab }); S.px.txt(gx - 6, gy + j * c + c / 2 + 4, String(j + 1), "", "end", { "font-size": 9, style: "fill:var(--encre3)", opacity: oLab }); }
     var pile = {};
     for (var a = 1; a <= 6; a++) for (var b = 1; b <= 6; b++) {
