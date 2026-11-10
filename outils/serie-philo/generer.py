@@ -55,6 +55,19 @@ VOIX_LANGUE = {
 VOIX = dict(VOIX_LANGUE["fr"])
 PROSODIE = {"H": {"rate": "+0%", "pitch": "+0Hz"}, "C": {"rate": "-6%", "pitch": "+0Hz"}, "F": {"rate": "-6%", "pitch": "+0Hz"}}
 ECART = {"H": 0.38, "C": 0.95, "F": 0.95}       # silence après un passage
+
+
+def _ecart_vivant(v, lu, k):
+    """RYTHME = "vivant" dans un script (SVT, demande de Cengiz du 10/11/2026 : « un rythme vivant ») : le silence après
+    un passage du narrateur dépend de la façon dont la phrase finit, au lieu d'un écart fixe ; légère variation
+    déterministe (k = rang du passage) pour éviter un tempo de métronome."""
+    if v != "H":
+        return ECART[v]
+    fin = lu.rstrip()[-1:] if lu.strip() else "."
+    base = {"?": 0.72, "!": 0.55, ":": 0.26, ",": 0.18, "…": 0.6, ";": 0.3}.get(fin, 0.42)
+    if len(lu) < 40 and fin in ".!":     # phrase courte qui claque : on la laisse respirer
+        base += 0.12
+    return round(base * (0.88 + 0.24 * ((k * 0.6180339) % 1)), 3)
 AVANT_CIT = 0.45                      # silence avant une citation
 CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
@@ -282,6 +295,8 @@ def generer(nom_module):
     cues = {}                 # id -> instant ; "id.k" -> instant ; "-id" -> instant
     cit_mots = {}
     n_chap = 0
+    n_pass = 0
+    vivant = getattr(ep, "RYTHME", "") == "vivant"   # silences variables après les passages (voir _ecart_vivant)
     n_frappe = 0
     n_notion = 0
     vis.append({"id": "_generique", "type": "generique", "scene": ep.SCENES[0]["id"], "serie": ep.NOTION,
@@ -370,7 +385,8 @@ def generer(nom_module):
                     reste = re.match(r"[^\w«]*", lu[pos + len(w):]).group(0).rstrip()
                     sous.append([round(debut, 3), round(min(fin, t + off - tete + d + 0.6), 3), (s + reste).strip()])
                     morceau, debut = [], None
-            t += dur + ECART[b["v"]]
+            n_pass += 1
+            t += dur + (_ecart_vivant(b["v"], lu, n_pass) if vivant else ECART[b["v"]])
         t_parole = t                  # fin de la voix : « À retenir » s'affiche seul
         if sc.get("retenir"):
             vis.append({"id": "_flash_" + sc["id"], "type": "flash", "scene": sc["id"], "t": sc["retenir"],
