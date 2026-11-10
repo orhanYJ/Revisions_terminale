@@ -1,4 +1,4 @@
-/* Carte mentale du thème 1.A (Génétique et évolution), d'après celle du cours.
+/* Carte mentale du thème 1.A (Génétique et évolution).
    Module partagé : le site (svt/index.html, page du thème et haut de chaque page du 1.A) et les vidéos des
    chapitres (svt/serie/, type « mental », piloté par le temps de la vidéo).
    Couleurs et polices par variables CSS : --cm-paper, --cm-panel, --cm-ink, --cm-ink-2, --cm-leaf, --cm-water,
@@ -9,8 +9,9 @@
   "use strict";
 
   /* ---------- Données ----------
-     Carte du cours (deux pages), recopiée avec ses mots ; s:"cours" = complété d'après le contenu du site ;
-     et:true = « schéma à savoir refaire » (étoile de la carte d'origine) ; page = page du site qui traite la branche. */
+     s:"cours" = branche ajoutée d'après le contenu du site (marque conservée dans les données, sans effet
+     sur l'affichage : toutes les branches sont dessinées de la même façon) ;
+     et:true = « schéma à savoir refaire » (étoile) ; page = page du site qui traite la branche. */
   var CARTE = {
     id: "t1a", sur: "Thème 1 · Partie A", titre: ["Génétique", "et évolution"],
     kids: [
@@ -178,10 +179,10 @@
     })();
     ordre.forEach(function (id) {
       var n = noeuds[id]; if (n.niveau !== 1 && n.niveau !== 2) return;
-      var b = n.box, ch = n.niveau === 1, ajout = n.s === "cours";
+      var b = n.box, ch = n.niveau === 1;
       var g = reg(id, el("g", bouton(id, (n.n ? n.n + " : " : "") + n.t), Lnd)); g.dataset.niv = n.niveau;
       el("rect", { x: b[0], y: b[1], width: b[2], height: b[3], rx: ch ? 20 : 14, fill: ch ? col(n.c + "-soft") : "var(--cm-panel)",
-        stroke: col(n.c), "stroke-width": ch ? 2 : 1.5, "stroke-dasharray": ajout ? "5 4" : "" }, g);
+        stroke: col(n.c), "stroke-width": ch ? 2 : 1.5 }, g);
       var y;
       if (ch) { txt(g, n.cx, b[1] + 21, n.n.toUpperCase(), "cm-k", { "text-anchor": "middle", fill: col(n.c) }); y = b[1] + 42; }
       else y = b[1] + 24;
@@ -194,10 +195,10 @@
     ordre.forEach(function (id) {
       var n = noeuds[id]; if (n.niveau !== 3) return;
       var g = reg(id, el("g", bouton(id, n.t), Lnd)); g.dataset.niv = 3;
-      var b = n.box, d = n.cote > 0, ajout = n.s === "cours";
+      var b = n.box, d = n.cote > 0;
       el("rect", { x: b[0] - 4, y: b[1] - 4, width: b[2] + 8, height: b[3] + 8, fill: "transparent" }, g);
       var px = d ? b[0] + 5 : b[0] + b[2] - 5;
-      el("circle", { cx: px, cy: n.ay, r: 4.6, fill: ajout ? "var(--cm-panel)" : col(n.c), stroke: col(n.c), "stroke-width": 1.6 }, g);
+      el("circle", { cx: px, cy: n.ay, r: 4.6, fill: col(n.c), stroke: col(n.c), "stroke-width": 1.6 }, g);
       var tx = d ? b[0] + 18 : b[0] + b[2] - 18, anc = d ? "start" : "end", y = n.y + 14;
       n.lt.forEach(function (t, i) { var e = txt(g, tx, y, t, "cm-ft", { "text-anchor": anc }); if (n.et && i === n.lt.length - 1) etoile(e); y += 18; });
       y += 2;
@@ -270,8 +271,7 @@
     div.innerHTML = '<div class="cm-chips" role="toolbar" aria-label="Zoom sur la carte"></div>' +
       '<div class="cm-scene"><svg role="img" aria-label="Carte mentale du thème 1.A"></svg></div>' +
       '<div class="cm-pied"><div class="cm-fil" aria-live="polite"></div><div class="cm-act"></div></div>' +
-      '<div class="cm-leg"><span><i class="cm-pt"></i>carte du cours</span><span><i class="cm-pt vide"></i>complété</span>' +
-      '<span><b>★</b> schéma à savoir refaire</span></div>';
+      '<div class="cm-leg"><span><b>★</b> schéma à savoir refaire</span></div>';
     var svg = div.querySelector("svg"), api = creer(svg, { interactif: true, ratio: opt.ratio });
     var chips = div.querySelector(".cm-chips"), fil = div.querySelector(".cm-fil"), act = div.querySelector(".cm-act");
     var VB = api.cadre("t1a"), focusId = "t1a", anim = null;
