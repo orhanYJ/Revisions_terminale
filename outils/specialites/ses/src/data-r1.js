@@ -125,6 +125,7 @@ CH.r1 = {
       '<h3>3. L’égalitarisme libéral</h3><div class="aut"><span class="mono">JR</span><span class="an">John Rawls<small><i>Théorie de la justice</i>, 1971</small></span><span class="ad">Placés sous un <b>voile d’ignorance</b>, des individus rationnels choisiraient deux principes : 1) des <b>libertés de base égales</b> pour tous ; 2) des inégalités économiques et sociales acceptables seulement si a) elles sont attachées à des positions ouvertes à tous selon une <b>juste égalité des chances</b> et b) elles profitent aux plus défavorisés (<b>principe de différence</b>).</span></div><div data-chain="r1-rawls"></div><div class="ex"><p>Un salaire élevé pour un chirurgien est juste, selon Rawls, s’il est nécessaire pour que des personnes se forment à ce métier long et difficile, et si les plus modestes en bénéficient (soins de qualité accessibles à tous).</p></div>' +
       '<div class="plus"><p>Amartya Sen (prix Nobel 1998, <i>Repenser l’inégalité</i>, 1992) propose d’égaliser les <b>capabilités</b> : les libertés réelles de faire et d’être (se soigner, s’instruire, participer). Deux personnes avec le même revenu n’ont pas les mêmes capabilités si l’une est handicapée.</p></div>' +
       '<h3>4. L’égalitarisme strict</h3><p>La justice exige l’<b>égalité des situations</b> : toute inégalité de revenu ou de condition est suspecte. Gracchus Babeuf et la Conjuration des Égaux (1796) réclamaient l’égalité réelle des biens ; Karl Marx formule le principe « de chacun selon ses capacités, à chacun selon ses besoins » (<i>Critique du programme de Gotha</i>, 1875).</p>' +
+      '<div data-anim="r1-voile"></div>' +
       '<div class="tbl"><table><thead><tr><th>Conception</th><th>Égalité visée</th><th>Inégalités acceptées</th><th>Rôle de l’État</th></tr></thead><tbody>' +
       '<tr><td><b>Utilitarisme</b></td><td>Aucune en soi : maximiser le bien-être total</td><td>Celles qui augmentent la somme des utilités</td><td>Variable, selon ce qui maximise le bien-être</td></tr>' +
       '<tr><td><b>Libertarisme</b> (Nozick, Hayek)</td><td>Droits</td><td>Toutes celles issues d’acquisitions et d’échanges libres</td><td>Minimal</td></tr>' +
@@ -259,7 +260,7 @@ ANIMS["r1-lorenz"] = {
     s += '<polygon points="' + aire + " " + X(0) + "," + Y(0) + '" style="fill:var(--corail);opacity:.18"/>';
     s += A.pl([[X(0), Y(0)], [X(100), Y(100)]], 1, { c: "gris", sw: 1.5, tir: true });
     s += A.pl(cur.map(function (q) { return [X(q[0]), Y(q[1])]; }), 1, { c: "corail", sw: 3 });
-    for (var t = 0; t <= 100; t += 50) { s += A.t(X(t), Y0 + 14, t + " %", { t: 9.5, a: "middle", c: "gris" }) + A.t(X0 - 4, Y(t) + 3, t + " %", { t: 9.5, a: "end", c: "gris" }); }
+    for (var t = 0; t <= 100; t += 50) { s += A.t(X(t), Y0 + 14, t + " %", { t: 10.5, a: "middle", c: "gris" }) + A.t(X0 - 4, Y(t) + 3, t + " %", { t: 10.5, a: "end", c: "gris" }); }
     s += A.t(X0 + S / 2, Y0 + 30, "part cumulée de la population →", { t: 10.5, a: "middle", c: "gris" });
     s += A.t(X0 + 4, Y0 - S - 8, "↑ part cumulée des revenus", { t: 10.5, c: "gris" });
     s += A.t(X(3), Y(30), "égalité parfaite", { t: 10, c: "gris", it: true, h: true });

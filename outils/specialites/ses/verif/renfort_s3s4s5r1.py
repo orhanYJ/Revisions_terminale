@@ -125,3 +125,20 @@ proche(5.89 / 3.48, 1.69, 0.01, "D9/D1 divisé par la redistribution")
 proche(0.378 - 0.302, 0.076, 0.0001, "baisse du Gini par la redistribution")
 proche(716300 / 4400, 162.8, 0.1, "D9/D1 du patrimoine brut 2021")
 print("Toutes les vérifications passent.")
+
+
+# 12. Animations ajoutées (contrôle visuel, 10/11/2026)
+# s3-structure : écarts entre structures des pères et des fils (hommes, 2015)
+ec = [round(f - p, 1) for p, f in zip(PERES, FILS)]
+assert ec == [-5.5, -3.9, 6.5, 9.4, -3.2, -3.0], ec
+proche(sum(x for x in ec if x > 0), 15.9, 0.01, "places créées")
+proche(-sum(x for x in ec if x < 0), 15.6, 0.01, "places disparues")
+proche(sum(abs(x) for x in ec), 31.5, 0.01, "somme des écarts")
+proche(65.2 - 15.8, 49.4, 0.01, "mobilité nette des hommes")
+# r1-voile : trois sociétés fictives
+SOC = {"A": [30] * 5, "B": [10, 25, 50, 90, 135], "C": [38, 42, 48, 58, 74]}
+assert {k: sum(v) for k, v in SOC.items()} == {"A": 150, "B": 310, "C": 260}
+assert max(SOC, key=lambda k: sum(SOC[k])) == "B"          # utilitarisme
+assert max(SOC, key=lambda k: min(SOC[k])) == "C"          # maximin de Rawls
+assert {k: max(v) - min(v) for k, v in SOC.items()} == {"A": 0, "B": 125, "C": 36}
+print("Animations S3 et R1 : chiffres vérifiés.")

@@ -91,6 +91,7 @@ CH.s4 = {
       '<li><b>Entre emploi et chômage : le sous-emploi.</b> Des personnes à temps partiel voudraient travailler plus et sont disponibles (ou sont en chômage partiel). En 2025, 4,4 % des personnes en emploi sont en sous-emploi, 12,3 % des employés peu qualifiés (Insee). Elles ont un emploi, mais pas assez.</li>' +
       '<li><b>Entre salariat et indépendance.</b> Le régime de micro-entrepreneur (créé en 2009 sous le nom d’auto-entrepreneur) concerne 3,7 % des personnes en emploi en 2025. Un livreur ou un chauffeur qui ne travaille que pour une plateforme, aux tarifs qu’elle fixe, est juridiquement indépendant mais économiquement dépendant (section 5).</li></ul>' +
       '<div data-graph="s4-halo"></div>' +
+      '<div data-anim="s4-bit"></div>' +
       '<div class="attn"><p>Ne confonds pas la <b>part</b> du chômage dans la population (5,8 % des 15-64 ans) et le <b>taux</b> de chômage, qui rapporte les chômeurs aux seuls actifs (7,7 % en 2025). Pour les 15-24 ans, l’écart est énorme : part de 8,5 % mais taux de 19,8 %, car beaucoup de jeunes sont inactifs (en études).</p></div>' },
 
     { id: "s4-2", t: "La qualité des emplois : six descripteurs", h:

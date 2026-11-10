@@ -69,8 +69,8 @@ ANIMS["e1-pib"] = {
     var x0 = 34, w = 316, yz = 158, sc = 12, bw = w / n;
     var Y = function (v) { return yz - v * sc; };
     var s = "";
-    [-8, -4, 0, 4, 8].forEach(function (t) { s += '<line x1="' + x0 + '" x2="' + (x0 + w) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--' + (t === 0 ? "encre2" : "ligne") + ');stroke-width:1"/>' + A.t(x0 - 5, Y(t) + 4, (t > 0 ? "+" : "") + t + " %", { t: 9.5, a: "end", c: "gris" }); });
-    [1950, 1970, 1990, 2010, 2025].forEach(function (yr) { s += A.t(x0 + (yr - 1950 + 0.5) * bw, 282, String(yr), { t: 9.5, a: "middle", c: "gris" }); });
+    [-8, -4, 0, 4, 8].forEach(function (t) { s += '<line x1="' + x0 + '" x2="' + (x0 + w) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--' + (t === 0 ? "encre2" : "ligne") + ');stroke-width:1"/>' + A.t(x0 - 5, Y(t) + 4, (t > 0 ? "+" : "") + t + " %", { t: 10.5, a: "end", c: "gris" }); });
+    [1950, 1970, 1990, 2010, 2025].forEach(function (yr) { s += A.t(x0 + (yr - 1950 + 0.5) * bw, 282, String(yr), { t: 10.5, a: "middle", c: "gris" }); });
     var etapes = this.etapes;
     var et = etapes[i], fin = et.a, debut = et.de, nb = fin - debut + 1;
     var courant = debut + (nb) * p;

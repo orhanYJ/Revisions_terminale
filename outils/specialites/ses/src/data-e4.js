@@ -125,9 +125,9 @@ ANIMS["e4-contagion"] = {
       if (k === "A" && i === 1) r = 24 - 4 * A.s(p, 0, 1);
       s += A.cercle(c[0], c[1], r, { f: f, s: "carte", sw: 3 });
       s += A.t(c[0], c[1] + 6, k, { t: 17, g: true, a: "middle", c: "carte", f: true });
-      if (faillite[k]) s += A.t(c[0], c[1] + 40, "faillite", { t: 11, g: true, a: "middle", c: "corail", h: true });
+      if (faillite[k]) s += A.t(c[0], c[1] + (k === "E" ? 40 : -31), "faillite", { t: 11, g: true, a: "middle", c: "corail", h: true });
     });
-    if (i === 1) s += A.jauge(20, 120, 100, 10 * (1 - A.s(p, 0, 1)) + 1, 11, { c: "corail", l: "fonds propres de A" });
+    if (i === 1) s += A.jauge(14, 120, 84, 10 * (1 - A.s(p, 0, 1)) + 1, 11, { c: "corail", l: "fonds propres de A" });
     if (i === 3) {
       for (var k = 0; k < 12; k++) {
         var q = A.s(p, k * 0.05, 0.4 + k * 0.05), gauche = k < 6, j = k % 6;
