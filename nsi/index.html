@@ -463,6 +463,13 @@ html.mo .page.entree>*:nth-child(n+6){animation-duration:.45s}
 @keyframes monte{from{opacity:.25;transform:translateY(8px)}}
 html.mo .essentiel li{animation:monte .4s cubic-bezier(.2,.8,.2,1) backwards}
 html.mo .essentiel li:nth-child(2){animation-delay:.05s}html.mo .essentiel li:nth-child(3){animation-delay:.1s}html.mo .essentiel li:nth-child(4){animation-delay:.15s}html.mo .essentiel li:nth-child(5){animation-delay:.2s}
+/* lecteur commun des animations */
+.w.anim .scene{min-height:120px;border:1px dashed var(--ligne2);border-radius:10px;background:var(--bg);padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.w.anim .scene svg{display:block;max-width:100%;height:auto;margin:0 auto}
+.w>.tete .sous{margin-left:auto;color:var(--encre3);font-size:.76rem}
+.w .cmd .cpt.mono{font-family:var(--mono);white-space:nowrap}
+.res-sql{margin:0;border:0;border-radius:0}
+.res-sql table{font-family:var(--mono);font-size:.82rem}
 
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -497,6 +504,11 @@ html.mo .essentiel li:nth-child(2){animation-delay:.05s}html.mo .essentiel li:nt
 var CODE = {};
 function C(id, src, o) { o = o || {}; o.src = src; CODE[id] = o; return id; }
 var CH = [];
+/* Animations propres à un chapitre : WIDGETS_EXT["nom"] = function (zone, option, outils) { … }.
+   Dans le texte du chapitre : [[w-nom]] ou [[w-nom|option]]. outils.lecteur(zone, {…}) fournit le lecteur commun
+   (lecture, pause, étape précédente / suivante, légende par étape) : voir sa description dans app.js.
+   Code SQL : C(id, requête, { sql: true, deps: [id du schéma], out: "col1 | col2\nval | val" }). */
+var WIDGETS_EXT = {};
 
 /* ===================== Chapitre 1 — Programmation orientée objet ===================== */
 C("c1-dict", String.raw`
@@ -3642,6 +3654,26 @@ var PAGE_RESSOURCES = {
     }).join("\n");
   }
   window.hlPy = hlPy;
+  var SQLKW = "SELECT FROM WHERE JOIN INNER LEFT ON AS AND OR NOT IN IS NULL INSERT INTO VALUES UPDATE SET DELETE CREATE TABLE PRIMARY KEY FOREIGN REFERENCES DISTINCT ORDER BY ASC DESC LIKE BETWEEN INTEGER TEXT REAL VARCHAR INT DATE CHAR BOOLEAN DROP UNIQUE".split(" ");
+  var SQLFN = "COUNT SUM AVG MIN MAX".split(" ");
+  function hlSql(src) {
+    var re = /(--[^\n]*)|('(?:''|[^'])*')|(\b\d+(?:\.\d+)?\b)|([A-Za-z_À-ɏ][\wÀ-ɏ]*)|([\s\S])/g, m, out = "";
+    while ((m = re.exec(src))) {
+      if (m[1]) out += span("k-com", m[0]);
+      else if (m[2]) out += span("k-str", m[0]);
+      else if (m[3]) out += span("k-num", m[0]);
+      else if (m[4]) { var u = m[0].toUpperCase(); out += SQLKW.indexOf(u) >= 0 ? span("k-kw", m[0]) : SQLFN.indexOf(u) >= 0 ? span("k-bi", m[0]) : esc(m[0]); }
+      else out += esc(m[0]);
+    }
+    return out;
+  }
+  function tableSql(txt) {
+    var l = txt.replace(/\s+$/, "").split("\n");
+    var cel = function (x) { return x.split(" | "); };
+    return '<div class="tab-wrap res-sql"><table><tr>' + cel(l[0]).map(function (x) { return "<th>" + esc(x) + "</th>"; }).join("") + "</tr>" +
+      l.slice(1).map(function (r) { return "<tr>" + cel(r).map(function (x) { return "<td>" + esc(x) + "</td>"; }).join("") + "</tr>"; }).join("") + "</table></div>";
+  }
+  function nbLignesSql(c) { var n = c.out.replace(/\s+$/, "").split("\n").length - 1; return n + " ligne" + (n > 1 ? "s" : ""); }
   function lignes(html, opts) {
     opts = opts || {};
     var vis = opts.vise || [], trous = opts.trous || [];
@@ -3655,12 +3687,13 @@ var PAGE_RESSOURCES = {
     if (!c) return '<p class="attention">Code manquant : ' + esc(id) + "</p>";
     var src = c.src.replace(/^\n+|\s+$/g, "");
     var cons = !!c.console;
-    var h = cons ? hlConsole(src) : hlPy(src);
-    var nom = c.fichier || (cons ? "console Python" : "python");
+    var h = c.sql ? hlSql(src) : cons ? hlConsole(src) : hlPy(src);
+    var nom = c.fichier || (c.sql ? "requête SQL" : cons ? "console Python" : "python");
     var out = "";
     var montrer = mode !== "nosortie" && ((c.out && c.out.trim()) || c.err) && c.montrer !== false;
     if (montrer) {
-      out = '<div class="sortie"><div class="tete"><span class="f">' + esc(c.cmd || "python3 " + (c.fichier || "programme.py")) + '</span></div><pre>' + sortieTexte(c) + "</pre></div>";
+      if (c.sql && !c.err) out = '<div class="sortie"><div class="tete"><span class="f">' + esc(c.cmd || "sqlite> résultat : " + nbLignesSql(c)) + '</span></div>' + tableSql(c.out) + "</div>";
+      else out = '<div class="sortie"><div class="tete"><span class="f">' + esc(c.cmd || (c.sql ? "sqlite>" : "python3 " + (c.fichier || "programme.py"))) + '</span></div><pre>' + sortieTexte(c) + "</pre></div>";
     }
     return '<div class="code zebre' + (cons ? " console" : "") + '" data-code="' + esc(id) + '"><div class="tete"><span class="f">' + esc(nom) + '</span><button type="button" data-copie="' + esc(id) + '">copier</button></div><pre><code>' + lignes(h, { vise: c.vise, trous: c.trous }) + "</code></pre>" + out + "</div>";
   }
@@ -3687,11 +3720,26 @@ var PAGE_RESSOURCES = {
   function latHTML() {
     var h = '<div class="titre-lat">Explorateur</div><div class="dossier">' + ic("dossier") + "import_bac/</div>";
     h += '<a class="ind" href="#accueil" data-r="accueil">' + ic("md") + "accueil.md</a>";
-    h += '<div class="dossier ind">' + ic("dossier") + "chapitres/</div>";
-    CH.forEach(function (c) { h += '<a class="ind2" href="#' + c.id + '" data-r="' + c.id + '">' + ic("py") + c.fichier + "</a>"; });
+    groupes().forEach(function (g) {
+      h += '<div class="dossier ind">' + ic("dossier") + g.dossier + "/</div>";
+      g.ch.forEach(function (c) { h += '<a class="ind2" href="#' + c.id + '" data-r="' + c.id + '">' + ic("py") + c.fichier + "</a>"; });
+    });
     PAGES_LAT.slice(1).forEach(function (p) { h += '<a class="ind" href="#' + p.h + '" data-r="' + p.h + '">' + ic(p.i) + p.t + "</a>"; });
     h += '<div class="pied-lat">NSI · spécialité Terminale<br>programme : BO spécial n° 8 du 25/07/2019<br>épreuve : session 2027</div>';
     return h;
+  }
+  /* Chapitres regroupés par rubrique du programme (dans l'ordre de PROG), les autres à la fin. */
+  var DOSSIERS = { "01": "histoire", "02": "structures", "03": "bases_de_donnees", "04": "architecture", "05": "langages", "06": "algorithmique" };
+  function groupes() {
+    var vus = {}, g = [];
+    PROG.forEach(function (rb) {
+      var l = [];
+      rb.items.forEach(function (it) { var c = it.ch && chap(it.ch); if (c && !vus[c.id]) { vus[c.id] = 1; l.push(c); } });
+      if (l.length) g.push({ dossier: DOSSIERS[rb.n] || "chapitres", titre: rb.t, n: rb.n, ch: l });
+    });
+    var reste = CH.filter(function (c) { return !vus[c.id]; });
+    if (reste.length) g.push({ dossier: "autres", titre: "Autres chapitres", n: "··", ch: reste });
+    return g;
   }
   var etat = { route: "", qcm: {}, entr: null, fc: {} };
   function routeCourante() {
@@ -3820,6 +3868,7 @@ var PAGE_RESSOURCES = {
   }
   function sortieSeule(id) {
     var c = CODE[id]; if (!c) return "";
+    if (c.sql && !c.err) return '<div class="code"><div class="sortie" style="border-top:0"><div class="tete"><span class="f">sqlite> résultat : ' + nbLignesSql(c) + '</span></div>' + tableSql(c.out) + "</div></div>";
     return '<div class="code"><div class="sortie" style="border-top:0"><div class="tete"><span class="f">python3 prédis.py</span></div><pre>' + sortieTexte(c) + "</pre></div></div>";
   }
   function exoHTML(e, fic, badge) {
@@ -3963,7 +4012,7 @@ var PAGE_RESSOURCES = {
     if (nv) nv.addEventListener("click", function () { etat.entr = null; delete etat.qcm.entr; render(); });
     var imp = $("[data-imprimer]", page);
     if (imp) imp.addEventListener("click", function () { window.print(); });
-    $$("[data-w]", page).forEach(function (z) { var f = WIDGETS[z.getAttribute("data-w")]; if (f) f(z, z.getAttribute("data-opt")); });
+    $$("[data-w]", page).forEach(function (z) { var k = z.getAttribute("data-w"), f = WIDGETS[k] || (window.WIDGETS_EXT || {})[k]; if (f) f(z, z.getAttribute("data-opt"), OUTILS); });
   }
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-copie]");
@@ -4427,6 +4476,53 @@ var PAGE_RESSOURCES = {
     $$("[data-c]", z).forEach(function (b) { b.addEventListener("click", function () { if (b.getAttribute("data-c") === "raz") { k = 0; dessine(0); } else if (k < ETAPES.length - 1) { k++; dessine(k); } }); });
     dessine(0);
   };
+
+  /* ---- lecteur commun des animations pas à pas ----
+     lecteur(zone, { titre, sous, choix: [{k, t}], etapes: function (k) -> [{msg, ...}],
+                     prepare: function (scene, k, etapes), dessine: function (scene, etape, i, etapes, saut), vitesse: ms })
+     Chaque étape porte sa légende (msg, en HTML). « saut » vaut true quand on recule ou qu'on recharge :
+     le dessin est alors instantané ; sinon il peut s'animer (sous html.mo). */
+  function lecteur(z, o) {
+    var etapes = [], i = 0, jeu = null, cle = o.choix ? o.choix[0].k : null;
+    z.innerHTML = '<div class="w anim"><div class="tete"><span class="lab">' + esc(o.titre) + "</span>" + (o.sous ? '<span class="sous">' + o.sous + "</span>" : "") + '</div><div class="corps">' +
+      (o.choix ? '<div class="choix-w">' + o.choix.map(function (c) { return '<button type="button" data-k="' + esc(c.k) + '">' + c.t + "</button>"; }).join("") + "</div>" : "") +
+      '<div class="scene"></div><div class="msg" aria-live="polite"></div><div class="cmd"><button class="btn petit" type="button" data-c="debut" aria-label="Revenir au début">' + ic("debut") + '</button><button class="btn petit" type="button" data-c="prec" aria-label="Étape précédente">' + ic("retour") + '</button><button class="btn petit prim" type="button" data-c="suiv">étape' + ic("suite") + '</button><button class="btn petit" type="button" data-c="jeu">' + ic("lecture") + '<span>lecture</span></button><span class="cpt mono"></span></div></div></div>';
+    var scene = $(".scene", z);
+    function stop() { if (jeu) { clearInterval(jeu); jeu = null; } var b = $('[data-c="jeu"]', z); if (b) b.innerHTML = ic("lecture") + "<span>lecture</span>"; }
+    function dessine(saut) {
+      var e = etapes[i], n = etapes.length, plein = Math.round(10 * (i + 1) / n);
+      o.dessine(scene, e, i, etapes, saut || !MO());
+      $(".msg", z).innerHTML = e.msg || "";
+      $(".cpt", z).textContent = "[" + "#".repeat(plein) + ".".repeat(10 - plein) + "] " + (i + 1) + "/" + n;
+      $('[data-c="prec"]', z).disabled = i === 0; $('[data-c="debut"]', z).disabled = i === 0;
+      $('[data-c="suiv"]', z).disabled = i === n - 1;
+    }
+    function charger(k) {
+      cle = k; stop(); etapes = o.etapes(k); i = 0;
+      $$(".choix-w button", z).forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-k") === String(k)); });
+      if (o.prepare) o.prepare(scene, k, etapes);
+      dessine(true);
+    }
+    $$(".choix-w button", z).forEach(function (b) { b.addEventListener("click", function () { charger(b.getAttribute("data-k")); }); });
+    $$("[data-c]", z).forEach(function (b) {
+      b.addEventListener("click", function () {
+        var c = b.getAttribute("data-c");
+        if (c === "debut") { stop(); i = 0; dessine(true); }
+        else if (c === "prec") { stop(); if (i > 0) { i--; dessine(true); } }
+        else if (c === "suiv") { stop(); if (i < etapes.length - 1) { i++; dessine(false); } }
+        else if (jeu) stop();
+        else {
+          if (i >= etapes.length - 1) { i = 0; dessine(true); }
+          b.innerHTML = ic("pause") + "<span>pause</span>";
+          jeu = setInterval(function () { if (!document.body.contains(z)) { stop(); return; } if (i < etapes.length - 1) { i++; dessine(false); } else stop(); }, o.vitesse || 1400);
+        }
+      });
+    });
+    charger(cle);
+    return { charger: charger };
+  }
+  var OUTILS = { $: $, $$: $$, esc: esc, ic: ic, MO: MO, hlPy: hlPy, hlSql: hlSql, lignes: lignes, lecteur: lecteur, codeHTML: codeHTML };
+  window.NSI_OUTILS = OUTILS;
 
   window.NSI = { render: render, codeHTML: codeHTML, chercher: function (q) { if (!INDEX) construireIndex(); return chercher(q); } };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", demarrer); else demarrer();

@@ -449,3 +449,10 @@ html.mo .page.entree>*:nth-child(n+6){animation-duration:.45s}
 @keyframes monte{from{opacity:.25;transform:translateY(8px)}}
 html.mo .essentiel li{animation:monte .4s cubic-bezier(.2,.8,.2,1) backwards}
 html.mo .essentiel li:nth-child(2){animation-delay:.05s}html.mo .essentiel li:nth-child(3){animation-delay:.1s}html.mo .essentiel li:nth-child(4){animation-delay:.15s}html.mo .essentiel li:nth-child(5){animation-delay:.2s}
+/* lecteur commun des animations */
+.w.anim .scene{min-height:120px;border:1px dashed var(--ligne2);border-radius:10px;background:var(--bg);padding:10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.w.anim .scene svg{display:block;max-width:100%;height:auto;margin:0 auto}
+.w>.tete .sous{margin-left:auto;color:var(--encre3);font-size:.76rem}
+.w .cmd .cpt.mono{font-family:var(--mono);white-space:nowrap}
+.res-sql{margin:0;border:0;border-radius:0}
+.res-sql table{font-family:var(--mono);font-size:.82rem}
