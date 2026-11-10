@@ -216,8 +216,8 @@ module.exports = function (ctx) {
       dwh: [[-88.4, 28.7], "Deepwater Horizon"], perm: [[-102.5, 31.8], "Bassin permien (Texas)"], calif: [[-121.5, 38.6], "Californie"],
       plaines: [[-99.0, 40.5], "Grandes Plaines"]
     };
-    const ord = [["plaines", "pt-a", "end"], ["yell", "pt-b", "start"], ["yose", "pt-b", "end"], ["dust", "pt-a", "start"], ["cuya", "pt-a", "start"], ["wash", "pt-b", "start"], ["valdez", "pt-a", "start"], ["dwh", "pt-a", "start"], ["perm", "pt-a", "end"], ["calif", "pt-b", "end"]];
-    const s = ord.map(([k, cl, a]) => T.point(k, L[k][0], L[k][1], { cl, a, dy: k === "calif" ? 14 : k === "yose" ? -6 : k === "perm" ? 6 : 0 })).join("") +
+    const ord = [["plaines", "pt-a", "end"], ["yell", "pt-b", "start"], ["yose", "pt-b", "start"], ["dust", "pt-a", "start"], ["cuya", "pt-a", "start"], ["wash", "pt-b", "start"], ["valdez", "pt-a", "start"], ["dwh", "pt-a", "start"], ["perm", "pt-a", "end"], ["calif", "pt-b", "end"]];
+    const s = ord.map(([k, cl, a]) => T.point(k, L[k][0], L[k][1], { cl, a, dy: k === "calif" ? 14 : k === "yose" ? -8 : k === "perm" ? 6 : 0 })).join("") +
       T.zone("dustz", [[-104, 35], [-98.5, 35], [-98.5, 38.5], [-104, 38.5], [-104, 35]]);
     OUT.anims.usa = { w: W, h: H, fond: fondUS, calques: T.defs + s };
     /* carte interactive à points */
@@ -235,6 +235,6 @@ module.exports = function (ctx) {
         pt("expl", [-102.5, 31.8], "Bassin permien", "end", "Le bassin permien (Texas, Nouveau-Mexique)", "Cœur du pétrole de schiste, exploité par fracturation hydraulique : les États-Unis sont le premier producteur mondial de pétrole depuis 2018."),
         pt("prot", [-121.5, 38.6], "Californie", "end", "La Californie", "État pionnier, longtemps autorisé à fixer des normes automobiles plus strictes ; cofondateur de l'Alliance des États-Unis pour le climat (2017) ; autorisation annulée par le Congrès en juin 2025, contestée en justice.")
       ] };
-    OUT.cartes.usa.pts.forEach(p => { if (p.n === "Californie") p.dy = 12; if (p.n === "Yosemite") p.dy = -4; });
+    OUT.cartes.usa.pts.forEach(p => { if (p.n === "Californie") p.dy = 14; if (p.n === "Yosemite") { p.a = "start"; p.dy = -8; } });
   }
 };
