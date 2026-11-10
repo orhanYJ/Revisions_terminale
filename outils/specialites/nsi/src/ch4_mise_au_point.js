@@ -266,6 +266,44 @@ max = 20                 # on écrase la fonction max de Python
 notes = [12, 18, 9]
 print(max(notes))`, { err: "TypeError: 'int' object is not callable" });
 
+/* traces pas à pas (calculées par traces.py) */
+C("c4-tr-bug", String.raw`
+def recherche(t, x):
+    g, d = 0, len(t) - 1
+    while g < d:
+        m = (g + d) // 2
+        if t[m] == x:
+            return m
+        elif t[m] < x:
+            g = m + 1
+        else:
+            d = m - 1
+    return -1
+
+print(recherche([1, 3, 5], 5))`, { fichier: "dicho_boguee.py", titreTrace: "while g < d (bogué)", trace: true, out: "-1" });
+
+C("c4-tr-ok", String.raw`
+def recherche(t, x):
+    g, d = 0, len(t) - 1
+    while g <= d:
+        m = (g + d) // 2
+        if t[m] == x:
+            return m
+        elif t[m] < x:
+            g = m + 1
+        else:
+            d = m - 1
+    return -1
+
+print(recherche([1, 3, 5], 5))`, { fichier: "dicho_corrigee.py", titreTrace: "while g <= d (corrigé)", trace: true, out: "2" });
+
+C("c4-tr-index", String.raw`
+t = [3, 1, 4]
+i = 0
+while t[i] != 9:
+    i = i + 1
+print(i)`, { fichier: "debordement.py", titreTrace: "débordement (IndexError)", trace: true, err: "IndexError: list index out of range" });
+
 /* pièges */
 C("c4-p-assert", String.raw`
 x = -5
@@ -644,6 +682,8 @@ CH.push({
 <li><b>Localiser</b> : afficher les valeurs intermédiaires (<code>print</code>), ou exécuter <b>pas à pas</b> avec le débogueur de ton éditeur (Thonny, par exemple, montre la pile et les variables) ou dans <a href="https://pythontutor.com/" target="_blank" rel="noopener">Python Tutor</a>.</li>
 <li><b>Comprendre</b> avant de corriger : formuler pourquoi le programme fait ce qu’il fait.</li>
 <li><b>Corriger</b>, puis relancer <b>tous</b> les tests (une correction peut en casser une autre).</li></ol>
+<p>Exécuter pas à pas, c’est regarder le programme ligne après ligne avec l’état de ses variables. Compare la version boguée et la version corrigée de la recherche dichotomique (idée 8, « choix des inégalités »), puis le débordement de tableau : chaque étape ci-dessous vient de la vraie exécution du code par Python.</p>
+[[w-trace|c4-tr-bug,c4-tr-ok,c4-tr-index]]
 <p>Expliquer son code ligne par ligne à quelqu’un, ou même à un objet posé sur le bureau, fait souvent apparaître l’erreur : c’est la méthode du « canard en plastique » (<i>rubber duck debugging</i>). C’est aussi exactement ce que demande l’examinateur pendant la partie pratique.</p>
 <div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">09/09/1947 <b>·</b></span> Sur le calculateur Harvard Mark II, l’équipe où travaille Grace Hopper trouve un papillon de nuit coincé dans un relais et le colle dans le cahier de bord avec la mention « First actual case of bug being found ». Le mot <i>bug</i> désignait déjà un défaut technique avant cette date, mais l’anecdote l’a rendu célèbre en informatique.</p></div>` }
   ],

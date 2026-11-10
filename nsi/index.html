@@ -60,7 +60,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;background:var(--bg);background-image:var(--scan);color:var(--encre);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
+body{margin:0;background:var(--bg);background-image:var(--scan);color:var(--encre);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden;font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
 a{color:var(--bleu);text-underline-offset:3px}
 button{font:inherit;color:inherit}
 code,kbd,pre,.mono{font-family:var(--mono);font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
@@ -283,7 +283,7 @@ html.mo .qcm-score .barre-p i{transition:width .35s}
 .q .lien-revoir svg{width:16px;height:16px;flex:none}
 .qcm-score .sc{white-space:nowrap}
 .qcm-score .btn{flex:none;padding:0 10px}
-@media (max-width:420px){.qcm-score{gap:8px;padding:6px 10px;font-size:.78rem}}
+@media (max-width:420px){.qcm-score{gap:8px;padding:6px 10px;font-size:.74rem}.qcm-score .barre-p{display:none}.qcm-score .sc{margin-right:auto}}
 html.mo .q.repondu.ok{animation:pouls .45s}
 html.mo .q.repondu.ko{animation:secoue .35s}
 @keyframes pouls{50%{box-shadow:0 0 0 6px var(--vert-f)}}
@@ -523,6 +523,45 @@ html.mo .nd-a.neuf,html.mo .nd-a.actif{animation:pop .4s cubic-bezier(.2,.9,.3,1
 .graphe-svg .ar.arb{stroke:var(--vert);stroke-width:4}
 .graphe-svg .ar.ch{stroke:var(--ambre);stroke-width:6;stroke-linecap:round}
 html.mo .graphe-svg .ar{transition:stroke .3s,stroke-width .3s}
+/* exécution pas à pas */
+.trace{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:760px){.trace{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}}
+.trace .code{margin:0}
+.trace pre{max-height:340px;overflow:auto}
+.tr-pile{display:flex;flex-direction:column;gap:6px}
+.tr-sortie{margin:0;min-height:2.4em;font-size:.82rem;background:var(--code-bg);border:1px solid var(--ligne);border-radius:8px;padding:6px 8px;white-space:pre-wrap}
+/* barre d'état (ordinateur), barre de lecture (téléphone) */
+.lecture-p{position:sticky;top:56px;z-index:39;height:3px;background:transparent;margin-bottom:-3px}
+.lecture-p i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--vert),var(--ambre))}
+.statut{display:none}
+@media (min-width:1000px){
+  .lecture-p{display:none}
+  .statut{display:flex;position:fixed;left:var(--side);right:0;bottom:0;z-index:35;height:26px;align-items:center;gap:18px;padding:0 14px;font-family:var(--mono);font-size:.72rem;color:var(--sur-accent);background:var(--accent);opacity:.96}
+  .statut .st-mil{margin-right:auto;opacity:.85}
+  main{padding-bottom:26px}
+}
+@media print{.statut,.lecture-p{display:none!important}}
+/* indicateur d'onglet qui glisse */
+.onglets{position:sticky}
+.ind-onglet{position:absolute;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--ambre);pointer-events:none}
+html.mo .ind-onglet{transition:left .32s cubic-bezier(.2,.8,.2,1),width .32s cubic-bezier(.2,.8,.2,1)}
+.onglets a.on{box-shadow:none}
+/* titres de page soulignés d'un trait qui se trace */
+.page>h1::after{content:"";display:block;width:72px;height:4px;margin-top:10px;border-radius:2px;background:linear-gradient(90deg,var(--ambre),var(--vert))}
+html.mo .page.entree>h1::after{animation:trait .7s .15s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes trait{from{transform:scaleX(0);transform-origin:left}}
+/* explorateur : fichier ouvert marqué d'un point */
+.lat a.actif::after{content:"●";margin-left:auto;font-size:.7rem;color:var(--ambre)}
+/* accueil : dossiers de chapitres */
+.dossier-acc{margin:18px 0 4px;font-size:.86rem;color:var(--ambre)}
+.dossier-acc .n{display:inline-block;border:1px solid var(--ambre);border-radius:5px;padding:0 5px;margin-right:4px}
+.carte-ch .fic::before{content:"▸ ";opacity:0}
+html.mo .carte-ch .fic::before{transition:opacity .2s}
+.carte-ch:hover .fic::before{opacity:1}
+/* QCM : lanceur de tests */
+.qcm-score .sc{font-family:var(--mono)}
+.qcm-score .ok{color:var(--vert);font-weight:700}
+.qcm-score .ko{color:var(--rouge);font-weight:700}
 
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -538,11 +577,13 @@ html.mo .graphe-svg .ar{transition:stroke .3s,stroke-width .3s}
   <button class="btn-cherche" type="button" aria-label="Rechercher"></button>
   <button class="ib" id="theme" type="button" aria-label="Changer de thème (clair ou sombre)"></button>
 </header>
+<div class="lecture-p" aria-hidden="true"><i></i></div>
 <div class="voile"></div>
 <div class="cadre">
   <nav class="lat" aria-label="Sommaire"></nav>
   <main><div id="page" class="page"><noscript><p>Ce site a besoin de JavaScript.</p></noscript></div></main>
 </div>
+<footer class="statut" aria-hidden="true"><span>⎇ terminale</span><span id="st-code"></span><span class="st-mil" id="st-fic"></span><span id="st-pc">lecture 0 %</span><span>UTF-8</span><span>Python 3</span><span>LF</span></footer>
 <div id="srch" role="dialog" aria-modal="true" aria-label="Recherche">
   <div class="boite-r">
     <div class="champ"><span class="pr">&gt;&gt;&gt;</span><label class="sr" for="sq">Rechercher dans le site</label><input id="sq" type="search" placeholder="chercher(…)" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"><button class="ib" id="sfermer" type="button" aria-label="Fermer la recherche"></button></div>
@@ -2900,6 +2941,44 @@ max = 20                 # on écrase la fonction max de Python
 notes = [12, 18, 9]
 print(max(notes))`, { err: "TypeError: 'int' object is not callable" });
 
+/* traces pas à pas (calculées par traces.py) */
+C("c4-tr-bug", String.raw`
+def recherche(t, x):
+    g, d = 0, len(t) - 1
+    while g < d:
+        m = (g + d) // 2
+        if t[m] == x:
+            return m
+        elif t[m] < x:
+            g = m + 1
+        else:
+            d = m - 1
+    return -1
+
+print(recherche([1, 3, 5], 5))`, { fichier: "dicho_boguee.py", titreTrace: "while g < d (bogué)", trace: true, out: "-1" });
+
+C("c4-tr-ok", String.raw`
+def recherche(t, x):
+    g, d = 0, len(t) - 1
+    while g <= d:
+        m = (g + d) // 2
+        if t[m] == x:
+            return m
+        elif t[m] < x:
+            g = m + 1
+        else:
+            d = m - 1
+    return -1
+
+print(recherche([1, 3, 5], 5))`, { fichier: "dicho_corrigee.py", titreTrace: "while g <= d (corrigé)", trace: true, out: "2" });
+
+C("c4-tr-index", String.raw`
+t = [3, 1, 4]
+i = 0
+while t[i] != 9:
+    i = i + 1
+print(i)`, { fichier: "debordement.py", titreTrace: "débordement (IndexError)", trace: true, err: "IndexError: list index out of range" });
+
 /* pièges */
 C("c4-p-assert", String.raw`
 x = -5
@@ -3278,6 +3357,8 @@ CH.push({
 <li><b>Localiser</b> : afficher les valeurs intermédiaires (<code>print</code>), ou exécuter <b>pas à pas</b> avec le débogueur de ton éditeur (Thonny, par exemple, montre la pile et les variables) ou dans <a href="https://pythontutor.com/" target="_blank" rel="noopener">Python Tutor</a>.</li>
 <li><b>Comprendre</b> avant de corriger : formuler pourquoi le programme fait ce qu’il fait.</li>
 <li><b>Corriger</b>, puis relancer <b>tous</b> les tests (une correction peut en casser une autre).</li></ol>
+<p>Exécuter pas à pas, c’est regarder le programme ligne après ligne avec l’état de ses variables. Compare la version boguée et la version corrigée de la recherche dichotomique (idée 8, « choix des inégalités »), puis le débordement de tableau : chaque étape ci-dessous vient de la vraie exécution du code par Python.</p>
+[[w-trace|c4-tr-bug,c4-tr-ok,c4-tr-index]]
 <p>Expliquer son code ligne par ligne à quelqu’un, ou même à un objet posé sur le bureau, fait souvent apparaître l’erreur : c’est la méthode du « canard en plastique » (<i>rubber duck debugging</i>). C’est aussi exactement ce que demande l’examinateur pendant la partie pratique.</p>
 <div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">09/09/1947 <b>·</b></span> Sur le calculateur Harvard Mark II, l’équipe où travaille Grace Hopper trouve un papillon de nuit coincé dans un relais et le colle dans le cahier de bord avec la mention « First actual case of bug being found ». Le mot <i>bug</i> désignait déjà un défaut technique avant cette date, mais l’anecdote l’a rendu célèbre en informatique.</p></div>` }
   ],
@@ -3433,6 +3514,15 @@ def plus_frequent(compte):
 occ = occurrences("abracadabra")
 print(occ)
 print(plus_frequent(occ), occ[plus_frequent(occ)])`, { out: "{'a': 5, 'b': 2, 'r': 2, 'c': 1, 'd': 1}\na 5" });
+
+C("c5-tr-occ", String.raw`
+compte = {}
+for c in "abba":
+    if c in compte:
+        compte[c] = compte[c] + 1
+    else:
+        compte[c] = 1
+print(compte)`, { fichier: "comptage.py", trace: true, out: "{'a': 2, 'b': 2}" });
 
 C("c5-cout", String.raw`
 def recherche_liste(couples, cle):
@@ -3763,6 +3853,8 @@ CH.push({
     { id: "i3", t: "Un algorithme à connaître : compter des occurrences", h: `
 <p>Compter combien de fois apparaît chaque élément d’une séquence est l’usage le plus fréquent des dictionnaires (à l’écrit comme en pratique). On parcourt une fois la séquence ; pour chaque élément, on crée la clé à la première rencontre puis on incrémente.</p>
 [[c5-occurrences]]
+<p>Pas à pas, sur un mot de quatre lettres : regarde le dictionnaire se remplir.</p>
+[[w-trace|c5-tr-occ]]
 <p>Le même schéma sert à compter des mots dans un texte, des votes, des notes, des visites par page… Un seul parcours : coût linéaire en la longueur du texte.</p>` },
 
     { id: "i4", t: "Chercher dans une liste ou dans un dictionnaire", h: `
@@ -6085,6 +6177,549 @@ CH.push({
   ]
 });
 
+/* ===================== Paradigmes de programmation ===================== */
+C("para-imp", String.raw`
+def somme_carres_pairs(t):
+    s = 0                            # un ÉTAT, modifié pas à pas
+    for x in t:
+        if x % 2 == 0:
+            s = s + x * x            # affectation : la valeur de s change
+    return s
+
+print(somme_carres_pairs([1, 2, 3, 4, 5, 6]))`, { out: "56" });
+
+C("para-fonc", String.raw`
+def carre(x):
+    return x * x
+
+def est_pair(x):
+    return x % 2 == 0
+
+def somme_carres_pairs_f(t):
+    return sum(map(carre, filter(est_pair, t)))      # une composition de fonctions
+
+def somme_carres_pairs_rec(t):
+    if t == []:
+        return 0
+    reste = somme_carres_pairs_rec(t[1:])
+    return carre(t[0]) + reste if est_pair(t[0]) else reste
+
+print(somme_carres_pairs_f([1, 2, 3, 4, 5, 6]), somme_carres_pairs_rec([1, 2, 3, 4, 5, 6]))
+print(sum(x * x for x in [1, 2, 3, 4, 5, 6] if x % 2 == 0))`, { out: "56 56\n56" });
+
+C("para-obj", String.raw`
+class Serie:
+    """Une série de mesures."""
+    def __init__(self):
+        self.valeurs = []            # l'état est rangé DANS l'objet
+
+    def ajouter(self, x):
+        self.valeurs.append(x)
+
+    def somme_carres_pairs(self):
+        return sum(x * x for x in self.valeurs if x % 2 == 0)
+
+s = Serie()
+for x in [1, 2, 3, 4, 5, 6]:
+    s.ajouter(x)
+print(s.somme_carres_pairs(), len(s.valeurs))`, { out: "56 6" });
+
+C("para-tri-imp", String.raw`
+def tri_selection(t):
+    """Trie t SUR PLACE : la liste elle-même est modifiée, rien n'est renvoyé."""
+    for i in range(len(t)):
+        imin = i
+        for j in range(i + 1, len(t)):
+            if t[j] < t[imin]:
+                imin = j
+        t[i], t[imin] = t[imin], t[i]
+
+notes = [14, 9, 17, 11]
+tri_selection(notes)
+print(notes)`, { out: "[9, 11, 14, 17]" });
+
+C("para-pure", String.raw`
+total = 0
+
+def ajoute(x):                       # IMPURE : lit et modifie une variable globale
+    global total
+    total = total + x
+    return total
+
+def somme(a, b):                     # PURE : le résultat ne dépend que des paramètres
+    return a + b
+
+print(ajoute(5), ajoute(5), ajoute(5))   # même appel, résultats différents
+print(somme(5, 5), somme(5, 5))          # même appel, même résultat`, { out: "5 10 15\n10 10" });
+
+C("para-effet", String.raw`
+def ajoute_bonus(notes):             # effet de bord : modifie la liste reçue
+    for i in range(len(notes)):
+        notes[i] = notes[i] + 1
+    return notes
+
+def avec_bonus(notes):               # sans effet de bord : renvoie une nouvelle liste
+    return [n + 1 for n in notes]
+
+notes = [12, 15]
+nouvelles = avec_bonus(notes)
+print(notes, nouvelles)
+nouvelles = ajoute_bonus(notes)
+print(notes, nouvelles, nouvelles is notes)`, { out: "[12, 15] [13, 16]\n[13, 16] [13, 16] True" });
+
+C("para-ordre-sup", String.raw`
+def appliquer_n_fois(f, n, x):
+    """f est une FONCTION passée en paramètre."""
+    for _ in range(n):
+        x = f(x)
+    return x
+
+def multiplicateur(k):
+    """Renvoie une FONCTION : x -> k * x."""
+    def mult(x):
+        return k * x
+    return mult
+
+triple = multiplicateur(3)
+print(triple(14), appliquer_n_fois(triple, 4, 1))
+print(list(map(len, ["NSI", "Turing", "Python"])))
+print(sorted(["pomme", "kiwi", "banane"], key=len))
+print(list(filter(lambda mot: "a" in mot, ["pomme", "kiwi", "banane"])))`, { out: "42 81\n[3, 6, 6]\n['kiwi', 'pomme', 'banane']\n['banane']" });
+
+C("para-reduce", String.raw`
+from functools import reduce
+
+print(reduce(lambda acc, x: acc * x, [1, 2, 3, 4, 5], 1))      # 1*1*2*3*4*5
+print(reduce(lambda acc, mot: acc + len(mot), ["un", "deux", "trois"], 0))`, { out: "120\n11" });
+
+C("para-immuable", String.raw`
+point = (3, 4)                       # un tuple : on ne peut pas le modifier
+deplace = (point[0] + 1, point[1])   # on en fabrique un nouveau
+print(point, deplace)
+point[0] = 10`, { out: "(3, 4) (4, 4)", err: "TypeError: 'tuple' object does not support item assignment" });
+
+C("para-compte-imp", String.raw`
+solde = 100                          # état global
+
+def deposer(montant):
+    global solde
+    solde = solde + montant
+
+def retirer(montant):
+    global solde
+    if montant <= solde:
+        solde = solde - montant
+
+deposer(50)
+retirer(30)
+retirer(500)                         # refusé
+print(solde)`, { out: "120" });
+
+C("para-compte-fonc", String.raw`
+from functools import reduce
+
+def appliquer(solde, operation):
+    """Renvoie le NOUVEAU solde ; ne modifie rien."""
+    nature, montant = operation
+    if nature == "depot":
+        return solde + montant
+    if nature == "retrait" and montant <= solde:
+        return solde - montant
+    return solde
+
+operations = (("depot", 50), ("retrait", 30), ("retrait", 500))
+print(reduce(appliquer, operations, 100))
+print(reduce(appliquer, operations[:1], 100))     # rejouer l'historique jusqu'à un moment donné`, { out: "120\n150" });
+
+C("para-compte-obj", String.raw`
+class Compte:
+    def __init__(self, titulaire, solde=0):
+        self.titulaire = titulaire
+        self.solde = solde
+
+    def deposer(self, montant):
+        self.solde = self.solde + montant
+
+    def retirer(self, montant):
+        if montant <= self.solde:
+            self.solde = self.solde - montant
+            return True
+        return False
+
+a = Compte("Ada", 100)
+b = Compte("Alan")
+a.deposer(50)
+print(a.retirer(30), a.retirer(500), b.retirer(1))
+print(a.titulaire, a.solde, "|", b.titulaire, b.solde)`, { out: "True False False\nAda 120 | Alan 0" });
+
+/* pièges */
+C("para-p-defaut", String.raw`
+def ajouter(element, liste=[]):      # la liste par défaut est créée une seule fois
+    liste.append(element)
+    return liste
+
+print(ajouter("a"))
+print(ajouter("b"))                  # surprise : la liste se souvient de "a"`, { out: "['a']\n['a', 'b']" });
+
+C("para-p-map", String.raw`
+r = map(lambda x: x * 10, [1, 2, 3])
+print(r)
+print(list(r))
+print(list(r))                       # un map ne se parcourt qu'une fois`, { out: "<map object at 0x...>\n[10, 20, 30]\n[]", run: false });
+
+C("para-p-sort", String.raw`
+t = [3, 1, 2]
+u = t.sort()                         # méthode impérative : trie t, renvoie None
+print(t, u)
+v = sorted([3, 1, 2])                # fonction : renvoie une nouvelle liste
+print(v)`, { out: "[1, 2, 3] None\n[1, 2, 3]" });
+
+/* prédis la sortie */
+C("para-x1", String.raw`
+print(list(map(lambda x: x + 1, filter(lambda x: x > 2, [1, 5, 2, 8]))))`, { out: "[6, 9]" });
+
+C("para-x2", String.raw`
+def f(t):
+    t.append(0)
+    return len(t)
+
+a = [1, 2]
+b = a
+print(f(b), a, f(a[:]), a)`, { out: "3 [1, 2, 0] 4 [1, 2, 0]" });
+
+C("para-x3", String.raw`
+def puissance(n):
+    return lambda x: x ** n
+
+carre, cube = puissance(2), puissance(3)
+print(carre(5), cube(2), puissance(0)(99))`, { out: "25 8 1" });
+
+C("para-x4", String.raw`
+fonctions = [lambda x: x + i for i in range(3)]
+print([f(10) for f in fonctions])`, { out: "[12, 12, 12]" });
+
+/* épreuve pratique 1 */
+C("para-ep1-fourni", String.raw`
+def moyennes_admis(eleves):
+    """eleves : liste de couples (nom, liste de notes).
+    Renvoie la liste des couples (nom, moyenne) des élèves dont la moyenne
+    est au moins 10, dans l'ordre de départ. Moyenne arrondie à 2 décimales."""
+    res = []
+    for i in range(len(eleves)):
+        nom = eleves[i][0]
+        notes = eleves[i][1]
+        s = 0
+        for n in notes:
+            s = s + n
+        m = round(s / len(notes), 2)
+        if m >= 10:
+            res.append((nom, m))
+    return res
+
+classe = [("Ada", [12, 15, 9]), ("Alan", [8, 9, 11]), ("Grace", [16, 14])]
+print(moyennes_admis(classe))`, { fichier: "paradigmes.py", out: "[('Ada', 12.0), ('Grace', 15.0)]" });
+
+C("para-ep1-corr", String.raw`
+def moyenne(notes):
+    return round(sum(notes) / len(notes), 2)
+
+def moyennes_admis_f(eleves):
+    """Style fonctionnel : aucune variable modifiée, aucune boucle explicite."""
+    avec_moy = map(lambda e: (e[0], moyenne(e[1])), eleves)
+    return list(filter(lambda c: c[1] >= 10, avec_moy))
+
+def moyennes_admis_c(eleves):
+    return [(nom, moyenne(notes)) for nom, notes in eleves if moyenne(notes) >= 10]
+
+def moyennes_admis_rec(eleves):
+    if eleves == []:
+        return []
+    nom, notes = eleves[0]
+    suite = moyennes_admis_rec(eleves[1:])
+    return [(nom, moyenne(notes))] + suite if moyenne(notes) >= 10 else suite
+
+def test():
+    classe = [("Ada", [12, 15, 9]), ("Alan", [8, 9, 11]), ("Grace", [16, 14])]
+    copie = [(n, list(t)) for n, t in classe]
+    attendu = [("Ada", 12.0), ("Grace", 15.0)]
+    for f in [moyennes_admis_f, moyennes_admis_c, moyennes_admis_rec]:
+        assert f(classe) == attendu
+        assert f([]) == []
+        assert f([("Linus", [10])]) == [("Linus", 10.0)]       # 10 compte
+    assert classe == copie                                     # aucune donnée modifiée
+
+test()
+print("tous les tests passent")`, { fichier: "paradigmes.py", out: "tous les tests passent" });
+
+/* épreuve pratique 2 */
+C("para-ep2-fourni", String.raw`
+class Pile:
+    def __init__(self):
+        self.contenu = []
+    def empiler(self, x):
+        self.contenu.append(x)
+    def depiler(self):
+        return self.contenu.pop()
+    def est_vide(self):
+        return self.contenu == []
+
+# Version fonctionnelle : une pile est un tuple, () est la pile vide,
+# (sommet, reste) une pile non vide. Rien n'est jamais modifié.
+def empiler_f(p, x):
+    ...
+def sommet_f(p):
+    ...
+def depiler_f(p):
+    """Renvoie la pile sans son sommet."""
+    ...`, { fichier: "piles.py", run: false, trous: [14, 16, 19] });
+
+C("para-ep2-corr", String.raw`
+class Pile:
+    def __init__(self):
+        self.contenu = []
+    def empiler(self, x):
+        self.contenu.append(x)
+    def depiler(self):
+        return self.contenu.pop()
+    def est_vide(self):
+        return self.contenu == []
+
+def empiler_f(p, x):
+    return (x, p)
+
+def sommet_f(p):
+    return p[0]
+
+def depiler_f(p):
+    return p[1]
+
+def parentheses_ok_objet(texte):
+    p = Pile()
+    for c in texte:
+        if c == "(":
+            p.empiler(c)
+        elif c == ")":
+            if p.est_vide():
+                return False
+            p.depiler()
+    return p.est_vide()
+
+def parentheses_ok_fonc(texte, p=()):
+    if texte == "":
+        return p == ()
+    if texte[0] == "(":
+        return parentheses_ok_fonc(texte[1:], empiler_f(p, "("))
+    if texte[0] == ")":
+        return p != () and parentheses_ok_fonc(texte[1:], depiler_f(p))
+    return parentheses_ok_fonc(texte[1:], p)
+
+def test():
+    p0 = ()
+    p1 = empiler_f(p0, 1)
+    p2 = empiler_f(p1, 2)
+    assert sommet_f(p2) == 2 and depiler_f(p2) == p1
+    assert p1 == (1, ())                       # p1 n'a pas été modifiée par l'ajout de 2
+    for t, ok in [("(a(b)c)", True), ("(()", False), (")(", False), ("", True), ("f(x) * (y + 1)", True)]:
+        assert parentheses_ok_objet(t) == ok == parentheses_ok_fonc(t)
+
+test()
+print("tous les tests passent")`, { fichier: "piles.py", out: "tous les tests passent" });
+
+/* épreuve écrite */
+C("para-ecrit-corr", String.raw`
+def compte_occurrences_imp(t, v):
+    n = 0
+    for x in t:
+        if x == v:
+            n = n + 1
+    return n
+
+def compte_occurrences_rec(t, v):
+    if t == []:
+        return 0
+    return (1 if t[0] == v else 0) + compte_occurrences_rec(t[1:], v)
+
+def compte_occurrences_f(t, v):
+    return len(list(filter(lambda x: x == v, t)))
+
+t = [3, 1, 3, 2, 3]
+print(compte_occurrences_imp(t, 3), compte_occurrences_rec(t, 3), compte_occurrences_f(t, 3))`, { out: "3 3 3" });
+
+C("para-retenir", String.raw`
+# impératif : un état modifié par des instructions
+s = 0
+for x in t:
+    s = s + x
+# fonctionnel : des fonctions pures, composées, sans modification
+s = reduce(lambda acc, x: acc + x, t, 0)        # ou sum(t), ou une fonction récursive
+# objet : l'état et les traitements regroupés dans des objets
+compteur = Compteur()
+for x in t:
+    compteur.ajouter(x)`, { run: false });
+
+CH.push({
+  id: "para", n: 17, court: "paradigmes", fichier: "paradigmes.py",
+  titre: "Paradigmes de programmation",
+  rubrique: "Rubrique « Langages et programmation » : paradigmes impératif, fonctionnel et objet",
+  accroche: "Impératif, fonctionnel, objet : trois façons de penser un programme, souvent mélangées en Python. Effets de bord, fonctions pures, fonctions d’ordre supérieur, et comment choisir.",
+  essentiel: [
+    "Un <b>paradigme</b> est une façon de structurer un programme et de penser le calcul. Un même problème s’écrit dans plusieurs paradigmes ; Python les permet tous les trois.",
+    "<b>Impératif</b> : une suite d’instructions qui <b>modifient un état</b> (affectations, boucles). C’est le plus proche du fonctionnement de la machine.",
+    "<b>Fonctionnel</b> : le programme est une composition de <b>fonctions pures</b> (même entrée → même sortie, aucun <b>effet de bord</b>), sans modifier de variables ; les fonctions sont des valeurs (map, filter, lambda).",
+    "<b>Objet</b> : les données et les traitements sont regroupés dans des <b>objets</b> (attributs + méthodes), instances de classes, qui communiquent par appels de méthodes.",
+    "On <b>choisit</b> le paradigme selon le champ d’application, et on les <b>mélange</b> souvent dans un même programme."
+  ],
+  attendus: [
+    "Distinguer sur des exemples les paradigmes impératif, fonctionnel et objet (BO).",
+    "Choisir le paradigme de programmation selon le champ d’application d’un programme (BO).",
+    "Savoir qu’avec un même langage on peut utiliser des paradigmes différents, et que dans un même programme on peut en mêler plusieurs (commentaire du BO).",
+    "Repérer un effet de bord, écrire une fonction pure, utiliser une fonction comme paramètre ou comme résultat."
+  ],
+  idees: [
+    { id: "i1", t: "Un même problème, trois façons de l’écrire", h: `
+<p>Calculons la somme des carrés des nombres pairs d’une liste. En <b>impératif</b>, on décrit <b>comment</b> faire, pas à pas, avec une variable qui change :</p>
+[[para-imp]]
+<p>En <b>fonctionnel</b>, on décrit <b>ce qu’on calcule</b> comme une composition de fonctions : garder les pairs, élever au carré, additionner. Aucune variable n’est modifiée.</p>
+[[para-fonc]]
+<p>En <b>objet</b>, on modélise une entité (ici une série de mesures) qui <b>contient</b> ses données et <b>sait</b> faire les calculs qui la concernent :</p>
+[[para-obj]]
+<div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>paradigme de programmation</b> est un style, une manière de concevoir et d’organiser un programme, avec ses concepts propres : instructions et état (impératif), fonctions et valeurs (fonctionnel), objets et messages (objet).</p></div>
+[[w-algo-paradigmes]]` },
+
+    { id: "i2", t: "Le paradigme impératif : un état qui change", h: `
+<p>Un programme impératif est une <b>séquence d’instructions</b> exécutées dans l’ordre, qui modifient l’<b>état</b> du programme (la valeur des variables, le contenu de la mémoire). Ses outils : l’<b>affectation</b>, la séquence, les tests, les <b>boucles</b>.</p>
+[[para-tri-imp]]
+<p>Le tri par sélection est typiquement impératif : il échange des cases de la liste <b>sur place</b>. C’est économe en mémoire et proche du processeur, qui exécute lui-même des instructions modifiant des registres et des cases mémoire (modèle de von Neumann). Fortran (1957) et C (1972) sont des langages d’abord impératifs.</p>
+<p>La difficulté : pour comprendre ce que fait une ligne, il faut savoir <b>l’état</b> à ce moment-là, donc tout ce qui s’est passé avant. Plus l’état est partagé (variables globales), plus les bugs sont difficiles à trouver.</p>` },
+
+    { id: "i3", t: "Fonctions pures et effets de bord", h: `
+<div class="boite def"><div class="lab">"""définitions"""</div><ul><li>Une fonction a un <b>effet de bord</b> si elle modifie quelque chose en dehors de ses variables locales : une variable globale, une liste reçue en paramètre, un fichier, l’écran.</li><li>Une fonction est <b>pure</b> si son résultat ne dépend <b>que de ses paramètres</b> et si elle n’a <b>aucun effet de bord</b>. Appelée deux fois avec les mêmes arguments, elle donne deux fois le même résultat.</li></ul></div>
+[[para-pure]]
+<p>L’effet de bord le plus piégeux en Python : modifier une liste reçue en paramètre. L’appelant voit sa liste changer, souvent sans s’y attendre.</p>
+[[para-effet]]
+<p>Une fonction pure se teste facilement (aucun contexte à préparer), se comprend seule, et peut être exécutée en parallèle sans risque. Le chapitre Mise au point classe les « effets de bord non désirés » parmi les causes typiques de bugs.</p>` },
+
+    { id: "i4", t: "Le paradigme fonctionnel", h: `
+<p>En programmation fonctionnelle, un programme est une <b>expression</b> à évaluer, construite à partir de <b>fonctions pures</b>. Ses principes :</p>
+<ul><li><b>pas de modification</b> : on ne change pas une valeur, on en fabrique une nouvelle (données <b>immuables</b>) ;</li>
+<li><b>récursivité</b> plutôt que boucles (une boucle a besoin d’un compteur qui change) ;</li>
+<li>les fonctions sont des <b>valeurs comme les autres</b> : on peut les passer en paramètre, les renvoyer, les ranger dans une liste. Une fonction qui prend ou renvoie une fonction est dite <b>d’ordre supérieur</b>.</li></ul>
+[[para-ordre-sup]]
+<p><code>map(f, t)</code> applique <code>f</code> à chaque élément, <code>filter(p, t)</code> garde ceux qui vérifient <code>p</code>, <code>lambda x: …</code> écrit une petite fonction sans nom. <code>reduce</code> (module <code>functools</code>) combine les éléments un à un dans un accumulateur :</p>
+[[para-reduce]]
+<p>En Python, les tuples et les chaînes sont immuables ; les listes ne le sont pas.</p>
+[[para-immuable]]
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1936 <b>·</b></span> Le lambda-calcul d’Alonzo Church, un modèle de calcul fait uniquement de fonctions, est l’ancêtre de la programmation fonctionnelle (le mot-clé <code>lambda</code> de Python en vient).<br><span class="commit">1958 <b>·</b></span> LISP (John McCarthy). <span class="commit">1990 <b>·</b></span> Haskell, langage fonctionnel pur. <span class="commit">1996 <b>·</b></span> OCaml, développé en France à l’Inria.</p></div>` },
+
+    { id: "i5", t: "Le paradigme objet", h: `
+<p>Le paradigme objet (chapitre Programmation objet) organise le programme autour d’<b>objets</b> qui regroupent un <b>état</b> (les attributs) et des <b>comportements</b> (les méthodes). Chaque objet est une <b>instance</b> d’une <b>classe</b>. L’état n’est plus global : chaque objet garde le sien, et on y accède par ses méthodes (<b>encapsulation</b>).</p>
+[[para-compte-obj]]
+<p>Les deux comptes sont indépendants : impossible de les confondre, ce qui serait facile avec des variables globales. C’est pour cela que l’objet domine dans les grands logiciels, les interfaces graphiques (chaque bouton, chaque fenêtre est un objet) et les jeux (chaque personnage).</p>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1967 <b>·</b></span> Simula 67 (Ole-Johan Dahl et Kristen Nygaard, Norvège) introduit classes et objets.<br><span class="commit">1972 <b>·</b></span> Smalltalk (Alan Kay et son équipe, Xerox PARC) popularise le terme « programmation orientée objet ».<br><span class="commit">1995 <b>·</b></span> Java, langage objet devenu l’un des plus utilisés au monde.</p></div>` },
+
+    { id: "i6", t: "Comparer : le même compte bancaire dans les trois paradigmes", h: `
+<p>Version impérative : un état global modifié par des procédures.</p>
+[[para-compte-imp]]
+<p>Version fonctionnelle : une fonction pure calcule le nouveau solde à partir de l’ancien et d’une opération ; l’historique est un tuple qu’on ne modifie jamais. Bonus : on peut <b>rejouer</b> l’historique jusqu’à n’importe quel moment.</p>
+[[para-compte-fonc]]
+<p>Version objet : voir l’idée précédente.</p>
+<div class="tab-wrap"><table><tr><th></th><th>impératif</th><th>fonctionnel</th><th>objet</th></tr>
+<tr><td>unité de base</td><td>instruction</td><td>fonction (pure)</td><td>objet (classe)</td></tr>
+<tr><td>état</td><td>variables modifiées</td><td>pas de modification : nouvelles valeurs</td><td>attributs, propres à chaque objet</td></tr>
+<tr><td>répétition</td><td>boucles</td><td>récursivité, map, filter, reduce</td><td>boucles ou récursion dans les méthodes</td></tr>
+<tr><td>point fort</td><td>proche de la machine, efficace</td><td>fiable, testable, parallélisable</td><td>modélise des entités, organise les grands programmes</td></tr>
+<tr><td>risque</td><td>effets de bord, état difficile à suivre</td><td>copies, récursion profonde (en Python)</td><td>surconception, état caché dans les objets</td></tr>
+<tr><td>langages typiques</td><td>C, Fortran</td><td>Haskell, OCaml, LISP</td><td>Java, Smalltalk, C++</td></tr></table></div>` },
+
+    { id: "i7", t: "Mélanger et choisir les paradigmes", h: `
+<p>Python, JavaScript, OCaml, Scala sont <b>multi-paradigmes</b> : on choisit le style à chaque endroit du programme. Une classe (objet) peut avoir des méthodes écrites avec des boucles (impératif) et utiliser <code>sorted(…, key=lambda …)</code> (fonctionnel). Le programme de NSI le dit : avec un même langage, et dans un même programme, on mêle les paradigmes.</p>
+<p>On choisit selon le <b>champ d’application</b> :</p>
+<ul><li><b>impératif</b> : programmes proches du matériel (systèmes d’exploitation, pilotes, objets embarqués), calcul intensif où l’on veut maîtriser la mémoire (Linux est écrit en C) ;</li>
+<li><b>objet</b> : logiciels de grande taille, interfaces graphiques, jeux vidéo, simulations, où l’on modélise beaucoup d’entités qui ont un état ;</li>
+<li><b>fonctionnel</b> : traitement de données (transformer, filtrer, agréger), calcul parallèle et distribué (le modèle MapReduce de Google, 2004, doit son nom à <code>map</code> et <code>reduce</code>), compilateurs, finance, et partout où la fiabilité prime.</li></ul>
+<div class="boite hp"><div class="lab"># pour aller plus loin : le paradigme déclaratif</div><p>On décrit le <b>résultat voulu</b>, pas la manière de l’obtenir. SQL en est l’exemple au programme : <code>SELECT nom FROM eleve WHERE note &gt;= 10</code> ne dit rien de l’algorithme ; le SGBD choisit. Prolog (1972, Alain Colmerauer et Philippe Roussel, Marseille) est un langage de programmation <b>logique</b>, une autre forme de déclaratif. Les compréhensions de liste de Python ont un air déclaratif.</p></div>` }
+  ],
+  pieges: [
+    { t: "Une liste comme valeur par défaut", h: `[[para-p-defaut]]<p>La valeur par défaut est évaluée <b>une fois</b>, à la définition de la fonction : la même liste est réutilisée et modifiée à chaque appel. C’est un effet de bord caché. Écrire <code>liste=None</code> puis <code>if liste is None: liste = []</code>.</p>` },
+    { t: "Confondre t.sort() et sorted(t)", h: `[[para-p-sort]]<p><code>t.sort()</code> est impératif : il modifie <code>t</code> et renvoie <code>None</code>. <code>sorted(t)</code> est fonctionnel : il renvoie une nouvelle liste et ne touche pas à <code>t</code>. Même distinction pour <code>t.reverse()</code> et <code>reversed(t)</code>.</p>` },
+    { t: "Oublier que map et filter sont paresseux", h: `[[para-p-map]]<p><code>map(…)</code> et <code>filter(…)</code> renvoient un objet qui calcule les valeurs <b>à la demande</b>, pas une liste : <code>print(map(f, t))</code> affiche <code>&lt;map object at 0x…&gt;</code>. On écrit <code>list(map(f, t))</code>. Et cet objet ne se parcourt qu’<b>une seule fois</b> : un second <code>list(r)</code> donne <code>[]</code>.</p>` },
+    { t: "Croire qu’une fonction qui renvoie une liste n’a pas d’effet de bord", h: `<p>Dans l’idée 3, <code>ajoute_bonus</code> renvoie bien une liste… mais c’est la liste reçue, modifiée. Pour savoir si une fonction est pure, regarde si elle <b>modifie</b> quelque chose, pas ce qu’elle renvoie.</p>` },
+    { t: "Penser qu’un paradigme est « meilleur » dans l’absolu", h: `<p>À l’écrit, la question « quel paradigme choisir ? » attend une <b>justification liée à l’application</b> (entités avec un état → objet ; transformation de données sans effet de bord, parallélisme → fonctionnel ; contrôle fin de la machine → impératif), pas une préférence.</p>` }
+  ],
+  retenir: `
+<h2>Les trois paradigmes au programme</h2>
+<div class="tab-wrap"><table><tr><th>paradigme</th><th>idée</th><th>outils</th><th>applications typiques</th></tr>
+<tr><td>impératif</td><td>instructions qui modifient un état</td><td>affectation, boucles, tests</td><td>systèmes, embarqué, calcul intensif</td></tr>
+<tr><td>fonctionnel</td><td>composition de fonctions pures, pas de modification</td><td>récursivité, map, filter, reduce, lambda, données immuables</td><td>traitement de données, parallélisme, fiabilité</td></tr>
+<tr><td>objet</td><td>objets = attributs + méthodes, instances de classes</td><td>classes, encapsulation</td><td>grands logiciels, interfaces, jeux, simulations</td></tr></table></div>
+[[para-retenir]]
+<h2>Vocabulaire</h2>
+<ul><li><b>Effet de bord</b> : modification de quelque chose hors des variables locales (global, liste reçue, fichier, affichage).</li><li><b>Fonction pure</b> : résultat dépendant seulement des paramètres, sans effet de bord.</li><li><b>Fonction d’ordre supérieur</b> : prend ou renvoie une fonction (map, filter, sorted avec key).</li><li><b>Immuable</b> : non modifiable (tuple, chaîne).</li><li><b>Multi-paradigme</b> : langage qui permet plusieurs paradigmes (Python).</li></ul>
+<h2>Repères</h2><ul><li>1957 Fortran, 1972 C (impératif) ; 1958 LISP, 1990 Haskell, 1996 OCaml (fonctionnel) ; 1967 Simula, 1972 Smalltalk, 1995 Java (objet) ; 1972 Prolog (logique).</li></ul>`,
+  predis: [
+    { code: "para-x1", niv: "facile", rep: "<code>filter</code> garde 5 et 8 (strictement plus grands que 2), puis <code>map</code> ajoute 1 : [6, 9]." },
+    { code: "para-x2", niv: "moyen", rep: "<code>b</code> et <code>a</code> désignent la même liste : <code>f(b)</code> lui ajoute 0 (effet de bord) et renvoie 3. <code>a[:]</code> est une <b>copie</b> : <code>f</code> la modifie (longueur 4) mais <code>a</code> ne change plus. Les arguments sont évalués de gauche à droite ; quand on affiche <code>a</code>, il vaut [1, 2, 0] les deux fois." },
+    { code: "para-x3", niv: "moyen", rep: "<code>puissance(n)</code> renvoie une fonction qui élève à la puissance <i>n</i> : 5² = 25, 2³ = 8, 99⁰ = 1." },
+    { code: "para-x4", niv: "difficile", rep: "Piège classique : chaque <code>lambda</code> utilise la variable <code>i</code> <b>au moment de l’appel</b>, pas sa valeur au moment de la création. Quand on appelle les fonctions, la boucle est finie et <code>i</code> vaut 2 : 10 + 2 = 12 trois fois. (Pour figer la valeur : <code>lambda x, i=i: x + i</code>.)" }
+  ],
+  ep: [
+    { titre: "Réécrire en style fonctionnel", enonce: `<p>La fonction ci-dessous est écrite en style impératif.</p>[[para-ep1-fourni]]`,
+      questions: [
+        { q: "Repérer dans <code>moyennes_admis</code> toutes les variables dont la valeur change. Cette fonction a-t-elle un effet de bord sur <code>eleves</code> ?", c: `<p><code>res</code> (liste modifiée par <code>append</code>), <code>i</code>, <code>nom</code>, <code>notes</code>, <code>s</code>, <code>n</code>, <code>m</code>. Aucun effet de bord sur <code>eleves</code> : elle le lit sans le modifier. Les modifications sont locales : la fonction est pure vue de l’extérieur, mais écrite de façon impérative.</p>` },
+        { q: "Écrire une fonction <code>moyenne(notes)</code> sans boucle, puis <code>moyennes_admis_f</code> avec <code>map</code> et <code>filter</code>, sans aucune affectation de variable modifiée.", c: `<p><code>sum(notes) / len(notes)</code> arrondi ; puis <code>map</code> pour fabriquer les couples (nom, moyenne) et <code>filter</code> pour garder ceux dont la moyenne est au moins 10.</p>` },
+        { q: "Écrire deux autres versions : par compréhension de liste et récursive. Écrire des tests qui vérifient que les trois versions donnent le même résultat et que la liste de départ n’est pas modifiée.", c: `[[para-ep1-corr]]` },
+        { q: "À l’oral : quelle version préférez-vous, et pourquoi ?", c: `<p>Toute réponse argumentée convient. Par exemple : la compréhension est la plus lisible en Python ; la version <code>map/filter</code> montre la composition ; la version récursive est la plus « fonctionnelle » mais risque la <code>RecursionError</code> au-delà d’environ 1 000 élèves et copie la liste à chaque appel.</p>` }
+      ] },
+    { titre: "Une pile en objet et en fonctionnel", enonce: `<p>On compare deux façons de réaliser une pile : une classe dont l’état change, et des tuples imbriqués qu’on ne modifie jamais.</p>[[para-ep2-fourni]]`,
+      questions: [
+        { q: "Compléter <code>empiler_f</code>, <code>sommet_f</code> et <code>depiler_f</code> (lignes 14, 16 et 19). Que vaut la pile obtenue en empilant 1 puis 2 sur la pile vide ?", c: `<p><code>return (x, p)</code>, <code>return p[0]</code>, <code>return p[1]</code>. On obtient <code>(2, (1, ()))</code>. La pile <code>(1, ())</code> existe toujours, inchangée : empiler fabrique une nouvelle pile qui <b>partage</b> l’ancienne.</p>` },
+        { q: "Écrire <code>parentheses_ok_objet(texte)</code> avec la classe, puis <code>parentheses_ok_fonc(texte)</code>, récursive, avec les fonctions sur les tuples. Tester les deux.", c: `[[para-ep2-corr]]` },
+        { q: "À l’oral : laquelle de ces deux piles peut-on partager sans risque entre deux parties d’un programme ?", c: `<p>La pile fonctionnelle : personne ne peut la modifier, chacun fabrique ses propres versions. Avec la classe, si deux parties du programme ont une référence vers le même objet, un <code>depiler</code> de l’une change ce que voit l’autre.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "Reconnaître et choisir un paradigme", points: "≈ 6 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite.",
+    enonce: `<p>On veut compter le nombre d’occurrences d’une valeur <code>v</code> dans une liste <code>t</code>.</p>`,
+    questions: [
+      { q: "Écrire une fonction impérative <code>compte_occurrences_imp(t, v)</code>.", pts: "1 pt", c: `<p>Un compteur initialisé à 0 et une boucle <code>for</code> qui l’incrémente quand l’élément vaut <code>v</code>.</p>` },
+      { q: "Écrire une version récursive, puis une version utilisant <code>filter</code>. À quel paradigme se rattachent-elles ? Justifier.", pts: "1,5 pt", c: `<p>Au paradigme fonctionnel : aucune variable n’est modifiée, le résultat est une expression composée de fonctions ; la répétition vient de la récursivité ou de <code>filter</code>.</p>[[para-ecrit-corr]]` },
+      { q: "Voici une fonction : <code>def ajoute(t, x): t.append(x); return len(t)</code>. Est-elle pure ? Justifier, puis écrire une version pure.", pts: "1 pt", c: `<p>Non : elle modifie la liste reçue (effet de bord), et deux appels identiques <code>ajoute(t, 5)</code> renvoient des longueurs différentes. Version pure : <code>def ajoute(t, x): return t + [x]</code>, qui renvoie une nouvelle liste (dont on prendra la longueur si besoin).</p>` },
+      { q: "Pour chacune des applications suivantes, proposer un paradigme et justifier en une phrase : (a) un jeu vidéo avec de nombreux personnages ; (b) le calcul de statistiques sur des millions de lignes réparties sur plusieurs serveurs ; (c) le pilote d’une carte réseau.", pts: "1,5 pt", c: `<p>(a) <b>Objet</b> : chaque personnage est une entité avec un état (position, vie) et des comportements ; une classe par type de personnage. (b) <b>Fonctionnel</b> : des transformations sans effet de bord (map, filter, reduce) peuvent s’exécuter en parallèle sur chaque serveur sans conflit. (c) <b>Impératif</b> : il faut contrôler précisément la mémoire et les registres du matériel, au plus près de la machine.</p>` },
+      { q: "Python est dit « multi-paradigme ». Expliquer, avec un exemple de programme qui mélange deux paradigmes.", pts: "1 pt", c: `<p>Python permet d’écrire des instructions et des boucles (impératif), des classes (objet) et des fonctions d’ordre supérieur, lambda, map, filter (fonctionnel). Exemple : une méthode de classe qui trie ses données avec <code>sorted(self.eleves, key=lambda e: e.moyenne)</code> mélange objet et fonctionnel.</p>` }
+    ],
+    methode: `<p>Pour reconnaître le paradigme d’un code : des <b>affectations qui modifient</b> et des boucles → impératif ; <code>class</code>, <code>self</code>, des méthodes → objet ; des fonctions passées en paramètre, <code>lambda</code>, <code>map</code>, de la récursion sans modification → fonctionnel. Pour « choisir un paradigme », la réponse attendue est toujours une <b>justification par l’application</b>.</p>` },
+  qcm: [
+    { q: "Qu’est-ce qu’un paradigme de programmation ?", c: ["Un langage de programmation", "Une façon de concevoir et de structurer un programme", "Un type de bug", "Un compilateur"], a: 1, e: "Un style, avec ses concepts : instructions et état, fonctions, objets.", ref: "i1" },
+    { q: "Quel paradigme repose sur des instructions qui modifient un état ?", c: ["Impératif", "Fonctionnel", "Logique", "Déclaratif"], a: 0, e: "Affectations, boucles, tests : on décrit comment faire.", ref: "i2" },
+    { q: "Une fonction pure…", c: ["n’a pas de paramètre", "renvoie un résultat qui ne dépend que de ses paramètres et n’a aucun effet de bord", "ne contient pas de boucle", "est écrite en une ligne"], a: 1, e: "Même appel, même résultat, rien de modifié à l’extérieur.", ref: "i3" },
+    { q: "Laquelle de ces fonctions a un effet de bord ?", c: ["<code>def f(t): return len(t)</code>", "<code>def f(t): return t + [0]</code>", "<code>def f(t): t.append(0)</code>", "<code>def f(x): return x * x</code>"], a: 2, e: "append modifie la liste reçue en paramètre.", ref: "i3" },
+    { q: "Que renvoie <code>list(map(lambda x: 2 * x, [1, 2, 3]))</code> ?", c: ["[1, 2, 3]", "[2, 4, 6]", "12", "[1, 4, 9]"], a: 1, e: "map applique la fonction à chaque élément.", ref: "i4" },
+    { q: "Que renvoie <code>list(filter(lambda x: x % 2 == 1, [1, 2, 3, 4, 5]))</code> ?", c: ["[2, 4]", "[1, 3, 5]", "[True, False, True, False, True]", "3"], a: 1, e: "filter garde les éléments pour lesquels la fonction renvoie True.", ref: "i4" },
+    { q: "Qu’est-ce qu’une fonction d’ordre supérieur ?", c: ["Une fonction très rapide", "Une fonction qui prend une fonction en paramètre ou en renvoie une", "Une fonction récursive", "Une méthode de classe"], a: 1, e: "Exemples : map, filter, sorted avec key.", ref: "i4" },
+    { q: "Quel type Python est immuable ?", c: ["list", "dict", "tuple", "set"], a: 2, e: "On ne peut pas modifier un tuple ; on en fabrique un nouveau.", ref: "i4" },
+    { q: "Dans le paradigme objet, où se trouve l’état ?", c: ["Dans des variables globales", "Dans les attributs de chaque objet", "Il n’y a pas d’état", "Dans les paramètres des fonctions"], a: 1, e: "Chaque instance a ses propres attributs, manipulés par ses méthodes.", ref: "i5" },
+    { q: "Quel langage a introduit les classes et les objets, en 1967 ?", c: ["C", "Simula", "LISP", "Python"], a: 1, e: "Simula 67, de Dahl et Nygaard.", ref: "i5" },
+    { q: "Quel avantage a la version fonctionnelle du compte bancaire ?", c: ["Elle est plus courte", "On peut rejouer l’historique, rien n’étant modifié", "Elle utilise moins de mémoire", "Elle n’a pas besoin de fonctions"], a: 1, e: "Les opérations sont des données ; le solde à tout moment se recalcule.", ref: "i6" },
+    { q: "Quel paradigme choisir pour une interface graphique avec de nombreuses fenêtres et boutons ?", c: ["Objet", "Uniquement impératif", "Logique", "Aucun"], a: 0, e: "Chaque élément est une entité avec un état et des comportements.", ref: "i7" },
+    { q: "Que signifie « Python est multi-paradigme » ?", c: ["Il a plusieurs versions", "On peut y programmer en impératif, en objet et en fonctionnel, et les mélanger", "Il est compilé et interprété", "Il fonctionne sur plusieurs systèmes"], a: 1, e: "Le BO insiste : un même langage, un même programme peuvent mêler les paradigmes.", ref: "i7" },
+    { q: "Que renvoie <code>t.sort()</code> ?", c: ["La liste triée", "None, car elle trie t sur place", "Une copie triée", "Un booléen"], a: 1, e: "Méthode impérative ; sorted(t) est sa version fonctionnelle.", ref: "i2" }
+  ],
+  cartes: [
+    { r: "Paradigme de programmation", v: "Façon de concevoir et structurer un programme : impératif, fonctionnel, objet (et déclaratif / logique, hors programme)." },
+    { r: "Paradigme impératif", v: "Séquence d’instructions qui modifient un état : affectations, boucles, tests. Proche de la machine. C, Fortran." },
+    { r: "Paradigme fonctionnel", v: "Composition de fonctions pures, données immuables, récursivité, fonctions comme valeurs. Haskell, OCaml, LISP." },
+    { r: "Paradigme objet", v: "Objets regroupant attributs (état) et méthodes, instances de classes ; encapsulation. Simula, Smalltalk, Java." },
+    { r: "Effet de bord", v: "Modification de quelque chose hors des variables locales : variable globale, liste reçue, fichier, affichage." },
+    { r: "Fonction pure", v: "Son résultat ne dépend que de ses paramètres et elle n’a aucun effet de bord." },
+    { r: "Fonction d’ordre supérieur", v: "Fonction qui prend une fonction en paramètre ou en renvoie une : map, filter, sorted(…, key=…)." },
+    { r: "map / filter / reduce", v: "map(f, t) : f appliquée à chaque élément ; filter(p, t) : éléments qui vérifient p ; reduce(f, t, init) : combine les éléments dans un accumulateur." },
+    { r: "lambda", v: "Petite fonction anonyme : lambda x: x * x. Le mot vient du lambda-calcul de Church (1936)." },
+    { r: "t.sort() / sorted(t)", v: "t.sort() trie sur place et renvoie None (impératif) ; sorted(t) renvoie une nouvelle liste (fonctionnel)." },
+    { r: "Choisir un paradigme", v: "Matériel, performance → impératif ; entités avec état (interfaces, jeux) → objet ; transformation de données, parallélisme → fonctionnel." },
+    { r: "Multi-paradigme", v: "Langage qui permet plusieurs paradigmes, mélangeables dans un même programme : Python, JavaScript, OCaml." },
+    { r: "Dates des paradigmes", v: "Fortran 1957, LISP 1958, Simula 1967, C 1972, Smalltalk 1972, Prolog 1972, Haskell 1990, Java 1995, OCaml 1996." }
+  ]
+});
+
 /* ===================== Chapitre 6 — Bases de données ===================== */
 /* Base d'exemple : une petite bibliothèque. Les tables affichées et le script SQL sont produits à partir des mêmes données. */
 var BIB = {
@@ -6607,6 +7242,8 @@ var ARCH_CSS = [
   ".ar .scene svg .pt{font-size:10.5px;fill:var(--encre2)}",
   ".ar .scene svg .gd{font-size:13px;font-weight:700}",
   ".ar-large .scene svg{min-width:540px}",
+  ".ar:not(.ar-large) .scene svg{max-width:540px}",
+  ".ar-tab th:first-child{width:1%}",
   ".ar .bl rect{fill:var(--bg2);stroke:var(--ligne2);stroke-width:1.4}",
   ".ar .bl.on rect{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.6}",
   ".ar .bl.ok rect{fill:var(--vert-f);stroke:var(--vert);stroke-width:2}",
@@ -7561,6 +8198,554 @@ CH.push({
     { r: "kill", v: "kill PID : SIGTERM ; kill -9 PID : SIGKILL (non interceptable)." },
     { r: "Interblocage (deadlock)", v: "Processus bloqués en cycle, chacun détenant une ressource voulue par un autre." },
     { r: "Prévenir l’interblocage", v: "Faire demander les ressources dans le même ordre par tous (pas d’attente circulaire)." }
+  ]
+});
+
+/* ===================== Réseaux — protocoles de routage (RIP, OSPF) ===================== */
+/* Réseau d'exemple commun au cours, au code Python et aux deux animations (débits en Mbit/s) */
+var ROUT_RES = {
+  pos: { A: [40, 120], B: [200, 34], C: [130, 206], D: [282, 206], E: [228, 128], F: [382, 120] },
+  liens: [["A", "B", 10], ["B", "F", 10], ["A", "C", 100], ["C", "D", 100], ["D", "F", 50], ["C", "E", 20], ["E", "F", 100]]
+};
+
+C("rout-table", String.raw`
+import ipaddress
+
+# Table de routage du routeur R1 : (réseau de destination, passerelle, interface)
+TABLE_R1 = [
+    ("192.168.1.0/24", "direct",   "eth0"),   # réseau local de R1
+    ("10.0.0.0/30",    "direct",   "eth1"),   # liaison vers R2 (R2 = 10.0.0.2)
+    ("10.0.1.0/30",    "direct",   "eth2"),   # liaison vers R3 (R3 = 10.0.1.2)
+    ("192.168.2.0/24", "10.0.0.2", "eth1"),   # réseau local de R2
+    ("192.168.3.0/24", "10.0.1.2", "eth2"),   # réseau local de R3
+    ("0.0.0.0/0",      "10.0.1.2", "eth2"),   # route par défaut : tout le reste
+]
+
+def prochain_saut(table, ip):
+    """Renvoie (passerelle, interface) de la route la plus précise qui contient ip."""
+    adresse = ipaddress.ip_address(ip)
+    meilleure = None
+    for reseau, passerelle, interface in table:
+        r = ipaddress.ip_network(reseau)
+        if adresse in r and (meilleure is None or r.prefixlen > meilleure[0].prefixlen):
+            meilleure = (r, passerelle, interface)
+    return meilleure[1], meilleure[2]
+
+print(prochain_saut(TABLE_R1, "192.168.2.17"))
+print(prochain_saut(TABLE_R1, "192.168.1.5"))
+print(prochain_saut(TABLE_R1, "8.8.8.8"))`, { fichier: "table_routage.py", out: "('10.0.0.2', 'eth1')\n('direct', 'eth0')\n('10.0.1.2', 'eth2')" });
+
+C("rout-reseau", String.raw`
+# Le réseau de l'animation : liaisons et débits (Mbit/s)
+LIENS = {("A", "B"): 10, ("B", "F"): 10, ("A", "C"): 100, ("C", "D"): 100,
+         ("D", "F"): 50, ("C", "E"): 20, ("E", "F"): 100}
+
+def voisins(liens):
+    """Dictionnaire {routeur: liste triée de ses voisins directs}."""
+    v = {}
+    for a, b in liens:
+        v.setdefault(a, []).append(b)
+        v.setdefault(b, []).append(a)
+    return {r: sorted(v[r]) for r in sorted(v)}
+
+print(voisins(LIENS))`, { fichier: "reseau.py", out: "{'A': ['B', 'C'], 'B': ['A', 'F'], 'C': ['A', 'D', 'E'], 'D': ['C', 'F'], 'E': ['C', 'F'], 'F': ['B', 'D', 'E']}" });
+
+C("rout-rip", String.raw`
+INFINI = 16          # pour RIP, 16 sauts veut dire « inaccessible »
+
+def tour_rip(tables, vois):
+    """Un tour : chaque routeur reçoit les tables de ses voisins (telles qu'au début du tour).
+    tables[r] = {destination: (distance en sauts, passerelle)}. Renvoie True si une table a changé."""
+    annonces = {r: dict(tables[r]) for r in tables}
+    change = False
+    for r in sorted(tables):
+        for v in vois[r]:
+            for dest, (d, passerelle) in annonces[v].items():
+                if passerelle == r:              # v ne renvoie pas à r une route apprise de r
+                    continue
+                nd = min(d + 1, INFINI)          # un saut de plus pour passer par v
+                if dest not in tables[r]:
+                    if nd < INFINI:
+                        tables[r][dest] = (nd, v)
+                        change = True
+                elif tables[r][dest][1] == v:    # v est déjà ma passerelle : je crois sa nouvelle distance
+                    if tables[r][dest][0] != nd:
+                        tables[r][dest] = (nd, v)
+                        change = True
+                elif nd < tables[r][dest][0]:    # route strictement plus courte : on l'adopte
+                    tables[r][dest] = (nd, v)
+                    change = True
+    return change
+
+vois = voisins(LIENS)
+tables = {r: {r: (0, None)} for r in vois}      # au départ, chacun ne connaît que lui-même
+tour = 0
+while tour_rip(tables, vois):
+    tour = tour + 1
+    print("après le tour", tour, ":", tables["A"])
+print("table de A :", sorted(tables["A"].items()))`, { deps: ["rout-reseau"], fichier: "rip.py", out: "après le tour 1 : {'A': (0, None), 'B': (1, 'B'), 'C': (1, 'C')}\naprès le tour 2 : {'A': (0, None), 'B': (1, 'B'), 'C': (1, 'C'), 'F': (2, 'B'), 'D': (2, 'C'), 'E': (2, 'C')}\ntable de A : [('A', (0, None)), ('B', (1, 'B')), ('C', (1, 'C')), ('D', (2, 'C')), ('E', (2, 'C')), ('F', (2, 'B'))]" });
+
+C("rout-route", String.raw`
+def route(tables, depart, arrivee):
+    """Suit les passerelles de proche en proche, comme le paquet lui-même."""
+    chemin = [depart]
+    r = depart
+    while r != arrivee:
+        d, passerelle = tables[r][arrivee]
+        assert d < INFINI, "destination inaccessible"
+        r = passerelle
+        chemin.append(r)
+    return chemin
+
+print(route(tables, "A", "F"), route(tables, "E", "B"))`, { deps: ["rout-reseau", "rout-rip"], out: "['A', 'B', 'F'] ['E', 'F', 'B']" });
+
+C("rout-panne", String.raw`
+del LIENS[("B", "F")]                          # la liaison B-F tombe
+vois = voisins(LIENS)
+for r, perdu in (("B", "F"), ("F", "B")):      # B et F marquent inaccessibles les routes
+    for dest, (d, passerelle) in tables[r].items():   # qui passaient par la liaison
+        if passerelle == perdu:
+            tables[r][dest] = (INFINI, perdu)
+tour = 0
+while tour_rip(tables, vois):
+    tour = tour + 1
+print("stable après", tour, "tours ;", route(tables, "A", "F"), route(tables, "B", "F"))`, { deps: ["rout-reseau", "rout-rip", "rout-route"], out: "stable après 3 tours ; ['A', 'C', 'D', 'F'] ['B', 'A', 'C', 'D', 'F']" });
+
+C("rout-cout", String.raw`
+def cout_ospf(debit):
+    """Coût d'une liaison : 10**8 / débit (débit en bit/s)."""
+    return 10 ** 8 / debit
+
+for nom, debit in [("10 Mbit/s", 10e6), ("100 Mbit/s", 100e6), ("1 Gbit/s", 1e9)]:
+    print(nom, "->", cout_ospf(debit))`, { out: "10 Mbit/s -> 10.0\n100 Mbit/s -> 1.0\n1 Gbit/s -> 0.1" });
+
+C("rout-dijkstra", String.raw`
+def graphe_ospf(liens):
+    """{routeur: {voisin: coût}}, avec coût = 100 / débit en Mbit/s (soit 10**8 / débit en bit/s)."""
+    g = {}
+    for (a, b), debit in liens.items():
+        c = 100 // debit
+        g.setdefault(a, {})[b] = c
+        g.setdefault(b, {})[a] = c
+    return {s: g[s] for s in sorted(g)}      # routeurs rangés par ordre alphabétique
+
+def dijkstra(g, depart):
+    dist = {s: float("inf") for s in g}
+    prec = {s: None for s in g}
+    dist[depart] = 0
+    a_traiter = sorted(g)                      # sommets dont la distance n'est pas définitive
+    while a_traiter:
+        s = min(a_traiter, key=lambda x: dist[x])   # le plus proche (à égalité : ordre alphabétique)
+        a_traiter.remove(s)                    # sa distance est maintenant définitive
+        for v, c in g[s].items():
+            if dist[s] + c < dist[v]:          # passer par s est plus court
+                dist[v] = dist[s] + c
+                prec[v] = s
+    return dist, prec
+
+def chemin(prec, arrivee):
+    ch = [arrivee]
+    while prec[ch[0]] is not None:
+        ch.insert(0, prec[ch[0]])
+    return ch
+
+LIENS_OSPF = {("A", "B"): 10, ("B", "F"): 10, ("A", "C"): 100, ("C", "D"): 100,
+              ("D", "F"): 50, ("C", "E"): 20, ("E", "F"): 100}
+g = graphe_ospf(LIENS_OSPF)
+dist, prec = dijkstra(g, "A")
+print(dist)
+print(chemin(prec, "F"), chemin(prec, "E"), chemin(prec, "B"))`, { fichier: "ospf.py", out: "{'A': 0, 'B': 10, 'C': 1, 'D': 2, 'E': 5, 'F': 4}\n['A', 'C', 'D', 'F'] ['A', 'C', 'D', 'F', 'E'] ['A', 'B']" });
+
+/* prédis la sortie */
+C("rout-x1", String.raw`
+print(prochain_saut(TABLE_R1, "192.168.3.200"))
+print(prochain_saut(TABLE_R1, "10.0.0.2"))
+print(prochain_saut(TABLE_R1, "192.168.4.1"))`, { deps: ["rout-table"], out: "('10.0.1.2', 'eth2')\n('direct', 'eth1')\n('10.0.1.2', 'eth2')" });
+
+C("rout-x2", String.raw`
+g = {"X": {"Y": 4, "Z": 1}, "Y": {"X": 4, "Z": 2, "T": 1}, "Z": {"X": 1, "Y": 2, "T": 6}, "T": {"Y": 1, "Z": 6}}
+dist, prec = dijkstra(g, "X")
+print(dist["T"], chemin(prec, "T"))`, { deps: ["rout-dijkstra"], out: "4 ['X', 'Z', 'Y', 'T']" });
+
+C("rout-x3", String.raw`
+ligne = {("R1", "R2"): 1, ("R2", "R3"): 1, ("R3", "R4"): 1, ("R4", "R5"): 1}
+vois = voisins(ligne)
+tables = {r: {r: (0, None)} for r in vois}
+tour = 0
+while tour_rip(tables, vois):
+    tour = tour + 1
+print(tour, tables["R1"]["R5"])`, { deps: ["rout-reseau", "rout-rip"], out: "4 (4, 'R2')" });
+
+C("rout-x4", String.raw`
+print(graphe_ospf({("P", "Q"): 10, ("Q", "R"): 100, ("P", "R"): 20}))`, { deps: ["rout-dijkstra"], out: "{'P': {'Q': 10, 'R': 5}, 'Q': {'P': 10, 'R': 1}, 'R': {'Q': 1, 'P': 5}}" });
+
+/* épreuve pratique */
+C("rout-ep-fourni", String.raw`
+# Tables de routage déjà calculées : TABLES[routeur][destination] = passerelle
+TABLES = {
+    "R1": {"R2": "R2", "R3": "R3", "R4": "R2"},
+    "R2": {"R1": "R1", "R3": "R1", "R4": "R4"},
+    "R3": {"R1": "R1", "R2": "R1", "R4": "R1"},
+    "R4": {"R1": "R2", "R2": "R2", "R3": "R2"},
+}
+
+def route(tables, depart, arrivee):
+    """Renvoie la liste des routeurs traversés par un paquet de depart à arrivee."""
+    ...`, { fichier: "chemin.py", run: false, trous: [10] });
+
+C("rout-ep-corr", String.raw`
+TABLES = {
+    "R1": {"R2": "R2", "R3": "R3", "R4": "R2"},
+    "R2": {"R1": "R1", "R3": "R1", "R4": "R4"},
+    "R3": {"R1": "R1", "R2": "R1", "R4": "R1"},
+    "R4": {"R1": "R2", "R2": "R2", "R3": "R2"},
+}
+
+def route(tables, depart, arrivee):
+    """Renvoie la liste des routeurs traversés ; lève une erreur en cas de boucle."""
+    chemin = [depart]
+    r = depart
+    while r != arrivee:
+        assert arrivee in tables[r], "pas de route de " + r + " vers " + arrivee
+        r = tables[r][arrivee]
+        assert r not in chemin, "boucle de routage : " + " -> ".join(chemin + [r])
+        chemin.append(r)
+    return chemin
+
+def test_route():
+    assert route(TABLES, "R1", "R1") == ["R1"]
+    assert route(TABLES, "R3", "R4") == ["R3", "R1", "R2", "R4"]
+    assert route(TABLES, "R4", "R3") == ["R4", "R2", "R1", "R3"]
+    faux = {"R1": {"R4": "R2"}, "R2": {"R4": "R1"}}
+    try:
+        route(faux, "R1", "R4")
+        assert False, "la boucle aurait dû être détectée"
+    except AssertionError as e:
+        assert str(e).startswith("boucle")
+
+test_route()
+print(route(TABLES, "R3", "R4"))`, { fichier: "chemin.py", out: "['R3', 'R1', 'R2', 'R4']" });
+
+C("rout-ep-boucle", String.raw`
+def route_naive(tables, depart, arrivee):
+    chemin = [depart]
+    r = depart
+    while r != arrivee and len(chemin) < 10:     # garde-fou pour la démonstration
+        r = tables[r][arrivee]
+        chemin.append(r)
+    return chemin
+
+faux = {"R1": {"R4": "R2"}, "R2": {"R4": "R1"}}
+print(route_naive(faux, "R1", "R4"))`, { out: "['R1', 'R2', 'R1', 'R2', 'R1', 'R2', 'R1', 'R2', 'R1', 'R2']" });
+
+/* épreuve écrite : vérification des réponses */
+C("rout-ecrit-verif", String.raw`
+LIENS_E = {("R1", "R2"): 10, ("R2", "R6"): 10, ("R1", "R3"): 100, ("R3", "R4"): 100,
+           ("R4", "R5"): 50, ("R5", "R6"): 100, ("R2", "R4"): 20}
+vois = voisins(LIENS_E)
+tables = {r: {r: (0, None)} for r in vois}
+while tour_rip(tables, vois):
+    pass
+print("RIP :", {d: tables["R1"][d][0] for d in sorted(tables["R1"])}, route(tables, "R1", "R6"))
+dist, prec = dijkstra(graphe_ospf(LIENS_E), "R1")
+print("OSPF :", dist["R6"], chemin(prec, "R6"))
+del LIENS_E[("R4", "R5")]
+dist, prec = dijkstra(graphe_ospf(LIENS_E), "R1")
+print("OSPF sans R4-R5 :", dist["R6"], chemin(prec, "R6"))`, { deps: ["rout-reseau", "rout-rip", "rout-route", "rout-dijkstra"], out: "RIP : {'R1': 0, 'R2': 1, 'R3': 1, 'R4': 2, 'R5': 3, 'R6': 2} ['R1', 'R2', 'R6']\nOSPF : 5 ['R1', 'R3', 'R4', 'R5', 'R6']\nOSPF sans R4-R5 : 17 ['R1', 'R3', 'R4', 'R2', 'R6']" });
+
+/* ---------- dessin commun du réseau ---------- */
+function routSVG(o) {
+  /* o : { etiq(a, b, debit) -> texte, lien(a, b) -> classe, noeud(r) -> classe, jetons: [[a, b, cl]], h } */
+  var P = ROUT_RES.pos, s = '<svg viewBox="0 0 422 ' + (o.h || 240) + '" role="img" aria-label="' + (o.aria || "Réseau de six routeurs") + '">';
+  ROUT_RES.liens.forEach(function (l) {
+    var a = P[l[0]], b = P[l[1]], cl = o.lien ? o.lien(l[0], l[1]) : "";
+    s += '<line class="fil ' + cl + '" x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '"/>';
+  });
+  ROUT_RES.liens.forEach(function (l) {
+    var a = P[l[0]], b = P[l[1]], t = o.etiq ? o.etiq(l[0], l[1], l[2]) : "";
+    if (!t) return;
+    var mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, w = t.length * 6.6 + 8;
+    s += '<rect class="cout-f" x="' + (mx - w / 2) + '" y="' + (my - 9) + '" width="' + w + '" height="17" rx="4"/><text class="cout" x="' + mx + '" y="' + (my + 4) + '" text-anchor="middle">' + t + "</text>";
+  });
+  (o.jetons || []).forEach(function (j, k) { var a = P[j[0]], b = P[j[1]]; s += archJeton("M" + a[0] + " " + a[1] + " L" + b[0] + " " + b[1], j[2] || "b", 1, 0); });
+  Object.keys(P).forEach(function (r) {
+    var p = P[r], cl = o.noeud ? o.noeud(r) : "";
+    s += '<g class="nd ' + cl + '"><circle cx="' + p[0] + '" cy="' + p[1] + '" r="17"/><text x="' + p[0] + '" y="' + (p[1] + 5) + '" text-anchor="middle">' + r + "</text></g>";
+  });
+  return s + (o.fin || "") + "</svg>";
+}
+
+/* ---------- animation : convergence de RIP ---------- */
+WIDGETS_EXT["arch-rip"] = function (z, opt, O) {
+  archStyle();
+  var R = ["A", "B", "C", "D", "E", "F"], INF = 16;
+  function vois(liens) { var v = {}; R.forEach(function (r) { v[r] = []; }); liens.forEach(function (l) { v[l[0]].push(l[1]); v[l[1]].push(l[0]); }); R.forEach(function (r) { v[r].sort(); }); return v; }
+  function copie(T) { var c = {}; R.forEach(function (r) { c[r] = {}; Object.keys(T[r]).forEach(function (d) { c[r][d] = T[r][d].slice(); }); }); return c; }
+  function tour(T, V) {
+    var ann = copie(T), chg = [];
+    R.forEach(function (r) {
+      V[r].forEach(function (v) {
+        Object.keys(ann[v]).sort().forEach(function (dest) {
+          var d = ann[v][dest][0], nh = ann[v][dest][1];
+          if (nh === r) return;
+          var nd = Math.min(d + 1, INF), cur = T[r][dest];
+          if (!cur) { if (nd < INF) { T[r][dest] = [nd, v]; chg.push(r + dest); } }
+          else if (cur[1] === v) { if (cur[0] !== nd) { T[r][dest] = [nd, v]; chg.push(r + dest); } }
+          else if (nd < cur[0]) { T[r][dest] = [nd, v]; chg.push(r + dest); }
+        });
+      });
+    });
+    return chg;
+  }
+  function chemin(T, a, b) { var c = [a], r = a; while (r !== b && c.length < 8) { r = T[r][b][1]; c.push(r); } return c; }
+  function etapes(k) {
+    var liens = ROUT_RES.liens.map(function (l) { return l; }), V = vois(liens), T = {}, E = [], n = 0, chg;
+    R.forEach(function (r) { T[r] = {}; T[r][r] = [0, null]; });
+    if (k === "rip") E.push({ T: copie(T), chg: [], liens: liens, msg: "Au départ, chaque routeur ne connaît que <b>lui-même</b> (distance 0). Les débits sont indiqués sur les liaisons : RIP ne s’en sert <b>pas</b>, il ne compte que les <b>sauts</b>. Ligne de A dans le tableau : la table de routage de A." });
+    while ((chg = tour(T, V)).length) {
+      n++;
+      if (k === "rip") E.push({ T: copie(T), chg: chg, liens: liens, jetons: true, msg: "<b>Tour " + n + "</b> : chaque routeur envoie sa table à ses voisins (jetons). Il garde une route annoncée par un voisin si elle est <b>nouvelle</b> ou <b>plus courte</b>, en ajoutant 1 saut et en notant ce voisin comme passerelle. " + chg.length + " entrées changent (en orange)." + (n === 1 ? " Chacun apprend ses voisins directs." : n === 2 ? " Les routes à 2 sauts apparaissent : par exemple A apprend F par B." : "") });
+    }
+    if (k === "rip") {
+      E.push({ T: copie(T), chg: [], liens: liens, jetons: true, msg: "<b>Tour " + (n + 1) + "</b> : les annonces n’apportent plus rien. Les tables ont <b>convergé</b> en " + n + " tours. (Un vrai routeur RIP envoie sa table toutes les 30 secondes.)" });
+      var c = chemin(T, "A", "F");
+      E.push({ T: copie(T), chg: [], liens: liens, route: c, msg: "Un paquet de A vers F suit les passerelles : A l’envoie à B (table de A : « F, 2 sauts, par B »), B l’envoie à F. Route <b>" + c.join(" → ") + "</b> : 2 sauts, mais par deux liaisons lentes à 10 Mbit/s. RIP ne voit pas les débits." });
+      return E;
+    }
+    /* panne de la liaison B-F, à partir des tables convergées */
+    E.push({ T: copie(T), chg: [], liens: liens, route: chemin(T, "A", "F"), msg: "Les tables ont convergé (animation précédente) : un paquet de A vers F passe par <b>A → B → F</b>." });
+    liens = liens.filter(function (l) { return !(l[0] === "B" && l[1] === "F"); }); V = vois(liens);
+    var perte = [];
+    [["B", "F"], ["F", "B"]].forEach(function (x) { Object.keys(T[x[0]]).forEach(function (d) { if (T[x[0]][d][1] === x[1]) { T[x[0]][d] = [INF, x[1]]; perte.push(x[0] + d); } }); });
+    E.push({ T: copie(T), chg: perte, liens: liens, panne: true, msg: "<b>Panne</b> : la liaison B–F est coupée. B et F le détectent et marquent <b>inaccessibles</b> (distance 16, notée ∞) les routes qui l’empruntaient. Les autres routeurs ne savent encore rien : la table de A indique toujours « F par B »." });
+    n = 0;
+    while ((chg = tour(T, V)).length) {
+      n++;
+      E.push({ T: copie(T), chg: chg, liens: liens, panne: true, jetons: true, msg: "<b>Tour " + n + " après la panne</b> : " + (n === 1 ? "A reçoit de B « F : ∞ » ; comme B est sa passerelle pour F, il le croit… mais C lui annonce « F à 2 sauts » : A adopte F à 3 sauts par C. B apprend D et E par A." : n === 2 ? "B apprend F à 4 sauts par A ; D et E retrouvent B par C." : "F retrouve B (4 sauts, par D).") + " " + chg.length + (chg.length > 1 ? " entrées changent." : " entrée change.") });
+    }
+    var c2 = chemin(T, "A", "F");
+    E.push({ T: copie(T), chg: [], liens: liens, panne: true, route: c2, msg: "Stable après " + n + " tours. Le paquet de A vers F passe maintenant par <b>" + c2.join(" → ") + "</b> (3 sauts). Pendant la reconvergence, certains paquets ont pu être perdus : avec RIP, elle prend plusieurs échanges de 30 s." });
+    return E;
+  }
+  function dessine(scene, e, i, E, saut) {
+    var enRoute = function (a, b) { if (!e.route) return false; for (var k = 0; k < e.route.length - 1; k++) if ((e.route[k] === a && e.route[k + 1] === b) || (e.route[k] === b && e.route[k + 1] === a)) return true; return false; };
+    var present = function (a, b) { return e.liens.some(function (l) { return l[0] === a && l[1] === b; }); };
+    var jetons = [];
+    if (e.jetons && !saut) e.liens.forEach(function (l) { jetons.push([l[0], l[1], "b"]); jetons.push([l[1], l[0], "v"]); });
+    var svg = routSVG({ aria: "Réseau de six routeurs échangeant leurs tables RIP", etiq: function (a, b, d) { return present(a, b) ? d + " Mb/s" : "coupée"; },
+      lien: function (a, b) { return !present(a, b) ? "ko" : enRoute(a, b) ? "on" : ""; },
+      noeud: function (r) { return e.route && e.route.indexOf(r) >= 0 ? "on" : ""; }, jetons: jetons });
+    var t = '<div class="ar-tab"><table><caption>tables de routage : distance en sauts · passerelle</caption><tr><th>routeur</th>' + R.map(function (d) { return "<th>→ " + d + "</th>"; }).join("") + "</tr>";
+    R.forEach(function (r) {
+      t += "<tr><th>" + r + "</th>" + R.map(function (d) {
+        var x = e.T[r][d], cl = e.chg.indexOf(r + d) >= 0 && !saut ? "chg" : (e.chg.indexOf(r + d) >= 0 ? "chg" : "");
+        var txt = !x ? "·" : x[0] === 0 ? "0" : x[0] >= INF ? "∞" : x[0] + "·" + x[1];
+        return '<td class="' + cl + '">' + txt + "</td>";
+      }).join("") + "</tr>";
+    });
+    scene.innerHTML = svg + t + "</table></div>";
+  }
+  O.lecteur(z, { titre: "RIP : les tables convergent tour par tour", sous: "vecteur de distance", choix: [{ k: "rip", t: "construction des tables" }, { k: "panne", t: "panne de la liaison B–F" }],
+    etapes: etapes, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar"); }, dessine: dessine, vitesse: 3000 });
+};
+
+/* ---------- animation : Dijkstra pour OSPF ---------- */
+WIDGETS_EXT["arch-dijkstra"] = function (z, opt, O) {
+  archStyle();
+  var R = ["A", "B", "C", "D", "E", "F"];
+  function cout(d) { return 100 / d; }
+  function etapes() {
+    var g = {}; R.forEach(function (r) { g[r] = {}; });
+    ROUT_RES.liens.forEach(function (l) { g[l[0]][l[1]] = cout(l[2]); g[l[1]][l[0]] = cout(l[2]); });
+    var dist = {}, prec = {}, fait = [], E = [];
+    R.forEach(function (r) { dist[r] = Infinity; prec[r] = null; }); dist.A = 0;
+    function snap(o) { o.dist = Object.assign({}, dist); o.prec = Object.assign({}, prec); o.fait = fait.slice(); return o; }
+    E.push(snap({ msg: "OSPF : chaque routeur connaît <b>toute la carte</b> du réseau et le <b>coût</b> de chaque liaison : coût = 10⁸ / débit en bit/s (10 Mbit/s → 10, 20 → 5, 50 → 2, 100 → 1). A calcule ses meilleures routes avec l’algorithme de <b>Dijkstra</b>. Au départ : A à 0, les autres à ∞." }));
+    var rest = R.slice();
+    while (rest.length) {
+      var s = rest.reduce(function (m, x) { return dist[x] < dist[m] ? x : m; }, rest[0]);
+      rest.splice(rest.indexOf(s), 1); fait.push(s);
+      var maj = [], ignore = [];
+      Object.keys(g[s]).sort().forEach(function (v) {
+        if (fait.indexOf(v) >= 0) return;
+        var nd = dist[s] + g[s][v];
+        if (nd < dist[v]) { maj.push(v + " : " + dist[s] + " + " + g[s][v] + " = " + nd + (dist[v] === Infinity ? "" : " &lt; " + dist[v]) + " → <b>" + v + " = " + nd + "</b> par " + s); dist[v] = nd; prec[v] = s; }
+        else ignore.push(v + " : " + dist[s] + " + " + g[s][v] + " = " + nd + " ≥ " + dist[v] + ", inchangé");
+      });
+      E.push(snap({ s: s, maj: maj.map(function (m) { return m.charAt(0); }), msg: "On choisit le routeur non traité <b>le plus proche</b> : <b>" + s + "</b> (" + dist[s] + "). Sa distance est définitive. " + (maj.length || ignore.length ? "On examine ses voisins non traités : " + maj.concat(ignore).join(" ; ") + "." : "Tous ses voisins sont déjà traités.") }));
+    }
+    function ch(b) { var c = [b]; while (prec[c[0]]) c.unshift(prec[c[0]]); return c; }
+    E.push(snap({ arbre: true, route: ch("F"), msg: "Terminé. Les liaisons vertes forment l’<b>arbre des plus courts chemins</b> depuis A. Vers F : <b>" + ch("F").join(" → ") + "</b>, coût " + dist.F + " (1 + 1 + 2), alors que RIP choisissait A → B → F (coût 20, deux liaisons à 10 Mbit/s). Vers E : " + ch("E").join(" → ") + " (5), moins cher que A → C → E (6)." }));
+    return E;
+  }
+  function dessine(scene, e, i, E, saut) {
+    var arbre = function (a, b) { return (e.prec[b] === a && e.fait.indexOf(b) >= 0) || (e.prec[a] === b && e.fait.indexOf(a) >= 0); };
+    var surRoute = function (a, b) { if (!e.route) return false; for (var k = 0; k < e.route.length - 1; k++) if ((e.route[k] === a && e.route[k + 1] === b) || (e.route[k] === b && e.route[k + 1] === a)) return true; return false; };
+    var svg = routSVG({ aria: "Réseau OSPF et algorithme de Dijkstra depuis A", etiq: function (a, b, d) { return String(100 / d); },
+      lien: function (a, b) { return surRoute(a, b) ? "on" : arbre(a, b) ? "ok" : (e.s && (a === e.s || b === e.s) ? "on" : ""); },
+      noeud: function (r) { return r === e.s ? "on" : e.fait.indexOf(r) >= 0 ? "ok" : ""; },
+      fin: R.map(function (r) { var p = ROUT_RES.pos[r], d = e.dist[r]; return '<text class="pt" x="' + (p[0] + (r === "F" ? -2 : 0)) + '" y="' + (p[1] + (p[1] > 150 ? 32 : -24)) + '" text-anchor="middle">' + (d === Infinity ? "∞" : d) + "</text>"; }).join("") });
+    var t = '<div class="ar-tab"><table><caption>distance depuis A · prédécesseur (vert : définitif)</caption><tr>' + R.map(function (r) { return "<th>" + r + "</th>"; }).join("") + "</tr><tr>" + R.map(function (r) {
+      var d = e.dist[r], cl = e.fait.indexOf(r) >= 0 ? "fixe" : (e.maj && e.maj.indexOf(r) >= 0 ? "chg" : "");
+      return '<td class="' + cl + '">' + (d === Infinity ? "∞" : d) + (e.prec[r] ? " · " + e.prec[r] : "") + "</td>";
+    }).join("") + "</tr></table></div>";
+    scene.innerHTML = svg + t;
+  }
+  O.lecteur(z, { titre: "OSPF : Dijkstra s’étend depuis A", sous: "état de liens", etapes: etapes, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar"); }, dessine: dessine, vitesse: 3200 });
+};
+
+CH.push({
+  id: "rout", n: 17, court: "routage", fichier: "routage.py",
+  titre: "Protocoles de routage",
+  rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : protocoles de routage",
+  accroche: "Comment un paquet traverse Internet de routeur en routeur : tables de routage, RIP (nombre de sauts, Bellman-Ford) et OSPF (coût selon le débit, Dijkstra), et ce qui se passe quand une liaison tombe.",
+  essentiel: [
+    "Un <b>routeur</b> relie plusieurs réseaux ; pour chaque paquet, il consulte sa <b>table de routage</b> : réseau de destination → <b>passerelle</b> (prochain routeur) et interface de sortie.",
+    "Les tables sont remplies automatiquement par un <b>protocole de routage</b> : les routeurs échangent des informations et calculent les meilleures routes.",
+    "<b>RIP</b> : chaque routeur envoie sa table à ses voisins ; la métrique est le <b>nombre de sauts</b> (au plus 15 ; 16 = inaccessible). Algorithme de Bellman-Ford distribué.",
+    "<b>OSPF</b> : chaque routeur connaît toute la carte du réseau ; la métrique est un <b>coût</b> lié au débit (coût = 10⁸ / débit en bit/s) ; chaque routeur calcule ses routes avec l’algorithme de <b>Dijkstra</b>.",
+    "Les deux protocoles peuvent choisir des routes <b>différentes</b> : RIP ignore les débits, OSPF préfère plusieurs liaisons rapides à une liaison lente."
+  ],
+  attendus: [
+    "Identifier, suivant le protocole de routage utilisé, la route empruntée par un paquet.",
+    "Le programme précise : « en mode débranché, les tables de routage étant données, on se réfère au nombre de sauts (protocole RIP) ou au coût des routes (protocole OSPF) » ; « le lien avec les algorithmes de recherche de chemin sur un graphe est mis en évidence »."
+  ],
+  intro: `<div class="boite ex"><div class="lab"># un grand classique de l’écrit</div><p>Presque chaque session propose un exercice de routage : un schéma de réseau, des tables à compléter pour RIP, des coûts à calculer pour OSPF, la route d’un paquet, puis « la liaison X tombe : que devient la route ? ». Méthode et modèle dans l’onglet exercices.</p></div>`,
+  idees: [
+    { id: "i1", t: "Rappels : paquets, adresses, routeurs", h: `
+<p>En Première, tu as vu qu’un message est découpé en <b>paquets</b> ; chaque paquet IP porte l’adresse IP de son expéditeur et celle de son destinataire. Une adresse comme <code>192.168.2.17/24</code> se lit en deux parties : les 24 premiers bits désignent le <b>réseau</b> (<code>192.168.2.0/24</code>), le reste désigne la <b>machine</b> dans ce réseau.</p>
+<p>À l’intérieur d’un réseau local, les machines communiquent directement (par le commutateur). Pour sortir du réseau, un paquet passe par un <b>routeur</b> : un équipement relié à plusieurs réseaux, qui décide vers quel voisin faire suivre chaque paquet. Sur Internet, un paquet traverse en général une dizaine de routeurs ou plus ; chacun ne connaît que le <b>prochain saut</b>, pas le trajet complet.</p>
+<div class="code"><div class="tete"><span class="f">terminal (exemple de sortie, adresses anonymisées)</span></div><pre><code><span class="l" data-n="1">$ traceroute exemple.org</span><span class="l" data-n="2"> 1  box.maison (192.168.1.254)   2.1 ms</span><span class="l" data-n="3"> 2  10.75.12.1                   8.4 ms</span><span class="l" data-n="4"> 3  …                           11.0 ms</span><span class="l" data-n="5"> …</span></code></pre></div>
+<p>La commande <code>traceroute</code> (<code>tracert</code> sous Windows) affiche les routeurs successifs traversés vers une destination, avec le temps d’aller-retour : chaque ligne est un <b>saut</b>.</p>` },
+
+    { id: "i2", t: "La table de routage", h: `
+<div class="boite def"><div class="lab">"""définition"""</div><p>La <b>table de routage</b> d’un routeur associe à chaque <b>réseau de destination</b> : la <b>passerelle</b> (adresse du prochain routeur, ou « direct » si le réseau est relié au routeur), l’<b>interface</b> de sortie, et souvent une <b>métrique</b> (distance ou coût de la route).</p></div>
+<p>Exemple : le routeur R1 est relié à son réseau local <code>192.168.1.0/24</code> (interface <code>eth0</code>), à R2 par <code>eth1</code> et à R3 par <code>eth2</code>. Une <b>route par défaut</b> (<code>0.0.0.0/0</code>) dit où envoyer tout ce qui ne correspond à aucune autre ligne (vers Internet).</p>
+[[rout-table]]
+<p>Quand plusieurs lignes conviennent (la route par défaut convient toujours), le routeur prend la plus <b>précise</b> : celle dont le masque est le plus long. Les tables peuvent être écrites à la main par l’administrateur (<b>routage statique</b>), ce qui ne s’adapte pas aux pannes ; sur un grand réseau, elles sont calculées par un <b>protocole de routage</b> (<b>routage dynamique</b>).</p>
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>La règle de la route la plus précise (« plus long préfixe ») n’est pas exigible. À l’écrit, les tables données ont une ligne par réseau de destination ; il suffit de lire la passerelle.</p></div>` },
+
+    { id: "i3", t: "RIP : compter les sauts", h: `
+<p><b>RIP</b> (<i>Routing Information Protocol</i>) est un protocole à <b>vecteur de distance</b> :</p>
+<ul><li>la <b>métrique</b> est le <b>nombre de sauts</b> : le nombre de routeurs à traverser (un réseau directement relié est à distance 1 dans les tables RIP réelles ; dans les exercices, on compte souvent les liaisons entre routeurs : <b>lis la convention de l’énoncé</b>) ;</li>
+<li>chaque routeur envoie régulièrement (toutes les 30 secondes) sa table à ses <b>voisins directs</b>, et seulement à eux ;</li>
+<li>à la réception, il ajoute 1 à chaque distance annoncée ; il adopte la route si la destination est <b>nouvelle</b> ou si la distance est <b>strictement plus petite</b>, avec ce voisin comme passerelle ;</li>
+<li>une distance de <b>16</b> signifie « inaccessible » : RIP est limité aux réseaux de diamètre 15 au plus.</li></ul>
+<p>Chaque routeur applique ainsi, de proche en proche, l’<b>algorithme de Bellman-Ford</b> : après k tours, il connaît les meilleures routes de k sauts au plus. Sur le réseau ci-dessous, les tables convergent en 2 tours.</p>
+[[w-arch-rip]]
+<p>En Python, avec une table <code>{destination: (distance, passerelle)}</code> par routeur :</p>
+[[rout-reseau]]
+[[rout-rip]]
+<p>Un paquet suit ensuite les passerelles, routeur après routeur :</p>
+[[rout-route]]
+<div class="boite hp"><div class="lab"># pour aller plus loin : le comptage à l’infini</div><p>Le code n’annonce pas une route au voisin qui en est la passerelle (« horizon partagé », <i>split horizon</i>). Sans cette règle, après une panne, deux routeurs peuvent se renvoyer une route morte en augmentant sa distance d’un saut à chaque échange, jusqu’à 16 : c’est le « comptage à l’infini », qui explique le choix d’une limite aussi basse que 16.</p></div>` },
+
+    { id: "i4", t: "RIP face à une panne", h: `
+<p>Quand une liaison tombe, les deux routeurs qui la bordent marquent inaccessibles (distance 16) les routes qui l’empruntaient et l’annoncent. Les voisins qui utilisaient ces routes les abandonnent et adoptent la meilleure alternative annoncée par un autre voisin. Au bout de quelques tours, les tables ont <b>reconvergé</b>. Rejoue l’animation ci-dessus avec « panne de la liaison B–F ».</p>
+[[rout-panne]]
+<p>Avec des échanges toutes les 30 secondes, la reconvergence de RIP peut prendre plusieurs minutes sur un grand réseau, pendant lesquelles des paquets sont perdus ou tournent en boucle. C’est une des raisons pour lesquelles les opérateurs lui préfèrent OSPF.</p>` },
+
+    { id: "i5", t: "OSPF : le coût des liaisons et Dijkstra", h: `
+<p><b>OSPF</b> (<i>Open Shortest Path First</i>) est un protocole à <b>état de liens</b> :</p>
+<ul><li>chaque routeur décrit ses liaisons (voisins et état) dans de petits messages diffusés à <b>tous</b> les routeurs de la zone ; chacun reconstitue ainsi la <b>carte complète</b> du réseau, un <b>graphe pondéré</b> ;</li>
+<li>le <b>poids</b> d’une liaison est son <b>coût</b>, d’autant plus faible que le débit est grand ; la formule utilisée dans les sujets est <b>coût = 10⁸ / débit</b> (débit en bit/s) ;</li>
+<li>chaque routeur calcule lui-même les plus courts chemins vers toutes les destinations avec l’<b>algorithme de Dijkstra</b>, et en déduit sa table.</li></ul>
+[[rout-cout]]
+<div class="tab-wrap"><table><tr><th>débit</th><th>10 Mbit/s</th><th>20 Mbit/s</th><th>50 Mbit/s</th><th>100 Mbit/s</th><th>1 Gbit/s</th></tr><tr><td>coût</td><td>10</td><td>5</td><td>2</td><td>1</td><td>0,1</td></tr></table></div>
+<p>Le <b>coût d’une route</b> est la somme des coûts de ses liaisons. <b>Dijkstra</b> part du routeur source (distance 0), et répète : choisir le routeur non traité de plus petite distance (elle est alors définitive), puis mettre à jour ses voisins si passer par lui est moins cher.</p>
+[[w-arch-dijkstra]]
+[[rout-dijkstra]]
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>Dans les routeurs réels, le débit de référence (10⁸ bit/s par défaut chez la plupart des constructeurs) se règle, et un coût ne descend pas sous 1 : sans réglage, une liaison à 1 Gbit/s et une à 100 Mbit/s auraient le même coût. Les grands réseaux OSPF sont découpés en <b>zones</b>.</p></div>` },
+
+    { id: "i6", t: "Comparer RIP et OSPF", h: `
+<p>Sur le même réseau, pour aller de A à F :</p>
+<ul><li><b>RIP</b> choisit <b>A → B → F</b> : 2 sauts, le minimum. Mais ces deux liaisons sont à 10 Mbit/s.</li>
+<li><b>OSPF</b> choisit <b>A → C → D → F</b> : 3 sauts, mais un coût de 1 + 1 + 2 = 4, contre 10 + 10 = 20 par B.</li></ul>
+<div class="tab-wrap"><table><tr><th></th><th>RIP</th><th>OSPF</th></tr>
+<tr><td>type</td><td>vecteur de distance</td><td>état de liens</td></tr>
+<tr><td>ce que sait un routeur</td><td>les distances annoncées par ses voisins</td><td>la carte complète du réseau</td></tr>
+<tr><td>métrique</td><td>nombre de sauts (max 15)</td><td>coût = 10⁸ / débit, additionné</td></tr>
+<tr><td>algorithme</td><td>Bellman-Ford, distribué</td><td>Dijkstra, sur chaque routeur</td></tr>
+<tr><td>après une panne</td><td>reconvergence lente (échanges toutes les 30 s)</td><td>rapide : l’état de la liaison est diffusé, chacun recalcule</td></tr>
+<tr><td>usage</td><td>petits réseaux</td><td>réseaux d’entreprise et d’opérateurs</td></tr></table></div>
+<p>Dans les deux cas, le routage revient à chercher un <b>plus court chemin dans un graphe</b> : routeurs = sommets, liaisons = arêtes, pondérées par 1 (RIP) ou par le coût (OSPF). C’est le lien avec la rubrique « Algorithmique » que demande le programme.</p>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1956-1959 <b>·</b></span> Lester Ford (1956) et Richard Bellman (1958) publient l’algorithme qui porte leurs noms ; Edsger Dijkstra publie le sien en 1959. <span class="commit">1969 <b>·</b></span> ARPANET, l’ancêtre d’Internet, relie ses premiers nœuds. <span class="commit">1988 <b>·</b></span> RIP est décrit dans la RFC 1058. <span class="commit">1989 <b>·</b></span> première spécification d’OSPF (RFC 1131) ; la version 2, utilisée aujourd’hui pour IPv4, est décrite dans la RFC 2328 (1998).</p></div>
+<div class="boite hp"><div class="lab"># et entre opérateurs ?</div><p>RIP et OSPF fonctionnent à l’intérieur d’un même domaine (le réseau d’une entreprise ou d’un opérateur). Entre domaines, Internet utilise un autre protocole, BGP, qui choisit les routes selon des accords entre opérateurs. Hors programme.</p></div>` }
+  ],
+  pieges: [
+    { t: "Compter les routeurs au lieu des liaisons (ou l’inverse)", h: `<p>Selon les sujets, la distance RIP vers un réseau directement relié vaut 0 ou 1. Lis la convention et applique-la à <b>toutes</b> les lignes ; la route choisie, elle, ne change pas.</p>` },
+    { t: "Additionner des débits", h: `<p>On n’additionne pas les débits : on additionne les <b>coûts</b> (10⁸ / débit). Une route de deux liaisons à 100 Mbit/s coûte 1 + 1 = 2, moins qu’une liaison à 10 Mbit/s (coût 10).</p>` },
+    { t: "Oublier qu’une table ne donne que le prochain saut", h: `<p>Pour trouver la route complète d’un paquet, on lit la table du routeur de départ, puis celle de la passerelle, et ainsi de suite jusqu’à la destination.</p>` },
+    { t: "Dans Dijkstra, figer une distance trop tôt", h: `<p>Une distance n’est définitive que lorsque le routeur est choisi comme le plus proche des non traités. Avant, elle peut encore baisser (E passe de 6 à 5 dans l’exemple).</p>` },
+    { t: "Croire que RIP connaît les débits", h: `<p>RIP ne regarde que le nombre de sauts. S’il existe deux routes de même nombre de sauts, il garde la première apprise, même si l’autre est bien plus rapide.</p>` }
+  ],
+  retenir: `
+<h2>Table de routage</h2>
+<p>Destination (réseau) → passerelle (prochain routeur ou « direct »), interface, métrique. Route par défaut <code>0.0.0.0/0</code>. Un routeur ne connaît que le <b>prochain saut</b>.</p>
+<h2>RIP</h2>
+<ul><li>Vecteur de distance : chacun envoie sa table à ses <b>voisins</b> (toutes les 30 s).</li><li>Métrique : <b>nombre de sauts</b> ; 16 = inaccessible (max 15).</li><li>On garde une route nouvelle ou <b>strictement</b> plus courte (distance annoncée + 1, passerelle = le voisin).</li><li>Bellman-Ford distribué ; reconvergence lente après une panne.</li></ul>
+<h2>OSPF</h2>
+<ul><li>État de liens : chacun connaît la <b>carte complète</b>.</li><li>Coût d’une liaison = <b>10⁸ / débit</b> (bit/s) : 10 Mbit/s → 10 ; 100 Mbit/s → 1 ; 1 Gbit/s → 0,1. Coût d’une route = somme.</li><li>Plus courts chemins par <b>Dijkstra</b> : choisir le non-traité le plus proche, mettre à jour ses voisins.</li></ul>
+<h2>Méthode d’exercice</h2>
+<ol><li>Dessine le graphe (routeurs, liaisons, débits ou coûts).</li><li>RIP : compte les sauts de chaque route possible, garde la plus courte.</li><li>OSPF : calcule les coûts, fais Dijkstra (ou compare toutes les routes si le réseau est petit).</li><li>Panne : retire la liaison et recommence.</li></ol>`,
+  predis: [
+    { code: "rout-x1", niv: "facile", rep: "<code>192.168.3.200</code> est dans <code>192.168.3.0/24</code> : passerelle R3. <code>10.0.0.2</code> est dans le réseau de liaison <code>10.0.0.0/30</code>, directement relié par eth1. <code>192.168.4.1</code> ne correspond qu’à la route par défaut : R3, par eth2." },
+    { code: "rout-x2", niv: "moyen", rep: "Dijkstra depuis X : Z (1), puis Y par Z (1 + 2 = 3 &lt; 4), puis T par Y (3 + 1 = 4 &lt; 1 + 6 = 7). Le chemin direct X–Y (4) n’est pas le meilleur." },
+    { code: "rout-x3", niv: "moyen", rep: "Sur une ligne de 5 routeurs, R1 apprend R2 au tour 1, R3 au tour 2… R5 au tour 4. Un tour de plus ne change rien : la boucle s’arrête avec <code>tour</code> = 4. R5 est à 4 sauts, par R2." },
+    { code: "rout-x4", niv: "facile", rep: "Coûts 100 / débit en Mbit/s : 10 → 10, 100 → 1, 20 → 5. Le dictionnaire de R est rempli dans l’ordre où ses liaisons apparaissent : d’abord Q, puis P." }
+  ],
+  ep: [
+    { titre: "Suivre un paquet de table en table", enonce: `<p>On connaît les tables de routage de quatre routeurs (destination → passerelle). On veut la liste des routeurs traversés par un paquet.</p>[[rout-ep-fourni]]`,
+      questions: [
+        { q: "Écrire <code>route(tables, depart, arrivee)</code>.", c: `<p>Partir de <code>depart</code> et, tant qu’on n’est pas arrivé, lire <code>tables[r][arrivee]</code> pour passer au routeur suivant, en l’ajoutant à la liste.</p>` },
+        { q: "Des tables mal configurées peuvent créer une <b>boucle de routage</b>. Que fait une version naïve sur l’exemple ci-dessous ?", code: "[[rout-ep-boucle|nosortie]]", c: `[[rout-ep-boucle]]<p>R1 envoie à R2, qui renvoie à R1 : le paquet tourne indéfiniment (la version naïve ne s’arrête que grâce au garde-fou). Dans un vrai réseau, le champ <b>TTL</b> du paquet IP, diminué de 1 à chaque routeur, finit par le détruire.</p>` },
+        { q: "Ajouter deux assertions : pas de route connue, et boucle détectée (un routeur déjà visité). Écrire un jeu de tests.", c: `[[rout-ep-corr]]` },
+        { q: "À l’oral : ces tables sont-elles celles de RIP ? Comment le vérifier ?", c: `<p>R3 → R4 passe par R1 et R2 : 3 sauts. Il faudrait connaître les liaisons. Si R3 était relié directement à R4, RIP choisirait la route directe (1 saut) : les tables ne seraient pas celles de RIP.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "Routage dans un réseau de six routeurs", points: "≈ 8 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite. On compte la distance RIP en nombre de liaisons entre routeurs.",
+    enonce: `<p>Six routeurs R1 à R6 sont reliés par les liaisons suivantes : R1–R2 (10 Mbit/s), R2–R6 (10 Mbit/s), R1–R3 (100 Mbit/s), R3–R4 (100 Mbit/s), R4–R5 (50 Mbit/s), R5–R6 (100 Mbit/s), R2–R4 (20 Mbit/s). Un ordinateur du réseau de R1 envoie un paquet à un serveur du réseau de R6.</p>`,
+    questions: [
+      { q: "Dessiner le graphe du réseau.", pts: "0,5 pt", c: `<p>Six sommets ; sept arêtes étiquetées par les débits. Repère la « diagonale » R2–R4 qui relie les deux chemins.</p>` },
+      { q: "Le réseau utilise RIP. Donner la distance de R1 à chacun des autres routeurs, puis la route du paquet.", pts: "2 pts", c: `<p>R2 : 1 ; R3 : 1 ; R4 : 2 (par R3 ou par R2, égalité) ; R5 : 3 ; R6 : 2 (par R2). Route : <b>R1 → R2 → R6</b>, 2 sauts.</p>` },
+      { q: "Le réseau utilise OSPF, avec coût = 10⁸ / débit (bit/s). Calculer le coût de chaque liaison.", pts: "1 pt", c: `<p>10 Mbit/s → 10 ; 20 Mbit/s → 5 ; 50 Mbit/s → 2 ; 100 Mbit/s → 1. Donc R1–R2 : 10, R2–R6 : 10, R1–R3 : 1, R3–R4 : 1, R4–R5 : 2, R5–R6 : 1, R2–R4 : 5.</p>` },
+      { q: "Déterminer la route choisie par OSPF et son coût.", pts: "2 pts", c: `<p>R1 → R2 → R6 coûte 20 ; R1 → R3 → R4 → R5 → R6 coûte 1 + 1 + 2 + 1 = <b>5</b> ; R1 → R3 → R4 → R2 → R6 : 17 ; R1 → R2 → R4 → R5 → R6 : 18. OSPF choisit <b>R1 → R3 → R4 → R5 → R6</b>, coût 5.</p>` },
+      { q: "La liaison R4–R5 tombe en panne. Quelle route OSPF prend-il ? Et RIP ?", pts: "1,5 pt", c: `<p>OSPF : R1 → R3 → R4 → R2 → R6 coûte 17, R1 → R2 → R6 coûte 20 : <b>R1 → R3 → R4 → R2 → R6</b>. RIP : la route R1 → R2 → R6 ne passait pas par R4–R5, elle ne change pas.</p>[[rout-ecrit-verif]]` },
+      { q: "Pourquoi OSPF réagit-il plus vite à cette panne que RIP en général ?", pts: "1 pt", c: `<p>Avec OSPF, R4 et R5 diffusent aussitôt le nouvel état de leurs liaisons à tous les routeurs, qui recalculent leurs routes avec Dijkstra. Avec RIP, l’information ne progresse que de voisin en voisin, au rythme des échanges périodiques (30 s).</p>` }
+    ],
+    methode: `<p>Écris toujours le <b>détail des sommes</b> de coûts pour chaque route candidate : le correcteur note le raisonnement. Pour un réseau de plus de cinq ou six routeurs, applique Dijkstra en tableau (une ligne par étape) plutôt que d’énumérer les routes.</p>` },
+  qcm: [
+    { q: "Que contient une ligne de table de routage ?", c: ["L’adresse MAC de chaque machine", "Un réseau de destination et la passerelle (prochain saut) pour l’atteindre", "Le trajet complet jusqu’à la destination", "Le contenu des paquets"], a: 1, e: "Le routeur ne connaît que le prochain saut, avec l’interface et la métrique.", ref: "i2" },
+    { q: "À quoi sert la route <code>0.0.0.0/0</code> ?", c: ["À bloquer les paquets", "C’est la route par défaut, pour toutes les destinations non listées", "À joindre le routeur lui-même", "À rien"], a: 1, e: "Elle convient à toute adresse ; on la prend quand aucune route plus précise ne convient.", ref: "i2" },
+    { q: "Quelle est la métrique de RIP ?", c: ["Le débit", "Le nombre de sauts", "Le temps de réponse", "Le coût 10⁸ / débit"], a: 1, e: "RIP compte les routeurs traversés et ignore les débits.", ref: "i3" },
+    { q: "Pour RIP, une distance de 16 signifie…", c: ["16 routeurs traversés", "destination inaccessible", "liaison à 16 Mbit/s", "priorité maximale"], a: 1, e: "La distance maximale utilisable est 15.", ref: "i3" },
+    { q: "Un routeur RIP envoie sa table…", c: ["à tous les routeurs du réseau", "à ses voisins directs", "à un serveur central", "seulement en cas de panne"], a: 1, e: "Vecteur de distance : échanges de voisin à voisin, toutes les 30 secondes.", ref: "i3" },
+    { q: "Le routeur X a une route vers N à 4 sauts. Son voisin Y lui annonce N à 2 sauts. X adopte…", c: ["N à 2 sauts par Y", "N à 3 sauts par Y", "N à 5 sauts", "rien : il garde 4"], a: 1, e: "2 + 1 = 3 &lt; 4 : nouvelle route, passerelle Y.", ref: "i3" },
+    { q: "Quel algorithme RIP met-il en œuvre de façon distribuée ?", c: ["Dijkstra", "Bellman-Ford", "Boyer-Moore", "Le tri fusion"], a: 1, e: "Chaque échange améliore les distances d’un saut de plus.", ref: "i3" },
+    { q: "Après une panne, pourquoi RIP met-il du temps à reconverger ?", c: ["Il recalcule tout avec Dijkstra", "L’information ne circule que de voisin en voisin, au rythme des échanges périodiques", "Il attend l’administrateur", "Il ne reconverge jamais"], a: 1, e: "Chaque tour d’échange fait progresser l’information d’un saut.", ref: "i4" },
+    { q: "Avec la formule coût = 10⁸ / débit, quel est le coût d’une liaison à 100 Mbit/s ?", c: ["100", "10", "1", "0,1"], a: 2, e: "10⁸ / 10⁸ = 1.", ref: "i5" },
+    { q: "Deux liaisons à 100 Mbit/s en série coûtent, pour OSPF…", c: ["2, moins qu’une liaison à 10 Mbit/s (10)", "200", "50", "autant qu’une liaison à 10 Mbit/s"], a: 0, e: "On additionne les coûts : 1 + 1 = 2.", ref: "i5" },
+    { q: "Quel algorithme chaque routeur OSPF exécute-t-il ?", c: ["Bellman-Ford", "Dijkstra", "Le tri par insertion", "Aucun : il recopie la table de ses voisins"], a: 1, e: "Plus courts chemins sur la carte complète du réseau.", ref: "i5" },
+    { q: "Dans Dijkstra, quand la distance d’un sommet devient-elle définitive ?", c: ["Dès qu’elle est calculée une première fois", "Quand il est choisi comme le non-traité le plus proche", "À la fin seulement", "Jamais"], a: 1, e: "Avant, elle peut encore diminuer.", ref: "i5" },
+    { q: "Route A–B–F (deux liaisons à 10 Mbit/s) ou A–C–D–F (100, 100, 50 Mbit/s) : que choisissent RIP et OSPF ?", c: ["Tous deux A–B–F", "RIP : A–B–F ; OSPF : A–C–D–F", "RIP : A–C–D–F ; OSPF : A–B–F", "Tous deux A–C–D–F"], a: 1, e: "RIP minimise les sauts (2 contre 3) ; OSPF les coûts (4 contre 20).", ref: "i6" },
+    { q: "Quel type de protocole est OSPF ?", c: ["À vecteur de distance", "À état de liens", "De chiffrement", "De transport"], a: 1, e: "Chaque routeur diffuse l’état de ses liaisons et reconstitue la carte complète.", ref: "i6" }
+  ],
+  cartes: [
+    { r: "Routeur", v: "Équipement relié à plusieurs réseaux, qui transmet chaque paquet vers le prochain saut." },
+    { r: "Table de routage", v: "Destination (réseau) → passerelle, interface, métrique." },
+    { r: "Passerelle", v: "Adresse du prochain routeur vers la destination (ou « direct »)." },
+    { r: "Route par défaut", v: "0.0.0.0/0 : pour toutes les destinations non listées." },
+    { r: "Routage statique / dynamique", v: "Tables écrites à la main / calculées par un protocole de routage." },
+    { r: "RIP", v: "Vecteur de distance ; métrique = nombre de sauts ; tables envoyées aux voisins toutes les 30 s." },
+    { r: "Règle de mise à jour RIP", v: "Distance annoncée + 1 ; on adopte si destination nouvelle ou distance strictement plus petite." },
+    { r: "16 pour RIP", v: "Distance « infinie » : destination inaccessible (max 15 sauts)." },
+    { r: "Bellman-Ford", v: "Algorithme de plus courts chemins par améliorations successives ; distribué dans RIP." },
+    { r: "OSPF", v: "État de liens ; chaque routeur connaît la carte ; métrique = coût ; Dijkstra." },
+    { r: "Coût OSPF", v: "10⁸ / débit (bit/s) : 10 Mbit/s → 10, 100 Mbit/s → 1, 1 Gbit/s → 0,1." },
+    { r: "Dijkstra", v: "Choisir le non-traité le plus proche (définitif), mettre à jour ses voisins, recommencer." },
+    { r: "RIP ou OSPF après une panne", v: "RIP : lent, de voisin en voisin. OSPF : diffusion de l’état de la liaison, recalcul immédiat." },
+    { r: "traceroute", v: "Commande qui affiche les routeurs successifs traversés vers une destination." },
+    { r: "Repères", v: "Bellman-Ford (1956-1958), Dijkstra (1959), ARPANET (1969), RIP (RFC 1058, 1988), OSPF (RFC 1131, 1989)." }
   ]
 });
 
@@ -8922,7 +10107,7 @@ var PROG = [
         capacites: ["Décrire la création d’un processus, l’ordonnancement de plusieurs processus par le système.", "Mettre en évidence le risque de l’interblocage (<i>deadlock</i>)."],
         comm: "Observer les processus actifs ou en attente avec des outils standard (par exemple <code>ps</code>, <code>top</code>). L’interblocage peut être présenté en mode débranché.",
         avant: "Les commandes de base du système (Première) ; les files (ch. 3) pour l’ordonnancement." },
-      { id: "routage", t: "Protocoles de routage",
+      { ch: "rout", id: "routage", t: "Protocoles de routage",
         contenus: "Tables de routage ; protocoles RIP et OSPF.",
         capacites: ["Identifier, suivant le protocole de routage utilisé, la route empruntée par un paquet."],
         comm: "En mode débranché, avec les tables de routage données : RIP compte le nombre de sauts, OSPF le coût des routes. Lien avec les algorithmes de recherche de chemin dans un graphe.",
@@ -9114,6 +10299,8 @@ var PAGE_RESSOURCES = {
 </ul>`
 };
 
+var TRACES = {"c4-trace": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "bilan()", "v": {"eleves": "{'Ada': [15, 17], 'Alan': []}"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {}}, {"f": "bilan()", "v": {"eleves": "{'Ada': [15, 17], 'Alan': []}", "nom": "'Ada'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "bilan()", "v": {"eleves": "{'Ada': [15, 17], 'Alan': []}", "nom": "'Ada'"}}, {"f": "moyenne()", "v": {"notes": "[15, 17]"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "bilan()", "v": {"eleves": "{'Ada': [15, 17], 'Alan': []}", "nom": "'Ada'"}}, {"f": "moyenne()", "v": {"notes": "[15, 17]"}}], "o": "", "r": "16.0", "f": "moyenne"}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "bilan()", "v": {"eleves": "{'Ada': [15, 17], 'Alan': []}", "nom": "'Ada'"}}], "o": "Ada 16.0\n"}, {"l": 6, "p": [{"f": "programme principal", "v": {}}, {"f": "bilan()", "v": {"eleves": "{'Ada': [15, 17], 'Alan': []}", "nom": "'Alan'"}}], "o": "Ada 16.0\n"}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "bilan()", "v": {"eleves": "{'Ada': [15, 17], 'Alan': []}", "nom": "'Alan'"}}, {"f": "moyenne()", "v": {"notes": "[]"}}], "o": "Ada 16.0\n"}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "bilan()", "v": {"eleves": "{'Ada': [15, 17], 'Alan': []}", "nom": "'Alan'"}}, {"f": "moyenne()", "v": {"notes": "[]"}}], "o": "Ada 16.0\n", "r": "None", "f": "moyenne"}, {"l": 6, "p": [{"f": "programme principal", "v": {}}, {"f": "bilan()", "v": {"eleves": "{'Ada': [15, 17], 'Alan': []}", "nom": "'Alan'"}}], "o": "Ada 16.0\n", "r": "None", "f": "bilan"}], "err": "ZeroDivisionError: division by zero", "o": "Ada 16.0\n"}, "c4-tr-bug": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 13, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 11, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 11, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": "", "r": "-1", "f": "recherche"}], "err": null, "o": "-1\n"}, "c4-tr-ok": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 13, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 8, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "0", "d": "2", "m": "1"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "1"}}], "o": ""}, {"l": 5, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "2"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "2"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {}}, {"f": "recherche()", "v": {"t": "[1, 3, 5]", "x": "5", "g": "2", "d": "2", "m": "2"}}], "o": "", "r": "2", "f": "recherche"}], "err": null, "o": "2\n"}, "c4-tr-index": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "0"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "0"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "1"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "1"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "2"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "2"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"t": "[3, 1, 4]", "i": "3"}}], "o": ""}], "err": "IndexError: list index out of range", "o": ""}, "c5-tr-occ": {"etapes": [{"l": 1, "p": [{"f": "programme principal", "v": {}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{}"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{}", "c": "'a'"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"compte": "{}", "c": "'a'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1}", "c": "'a'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1}", "c": "'b'"}}], "o": ""}, {"l": 6, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1}", "c": "'b'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 1}", "c": "'b'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 1}", "c": "'b'"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 1}", "c": "'b'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 2}", "c": "'b'"}}], "o": ""}, {"l": 3, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 2}", "c": "'a'"}}], "o": ""}, {"l": 4, "p": [{"f": "programme principal", "v": {"compte": "{'a': 1, 'b': 2}", "c": "'a'"}}], "o": ""}, {"l": 2, "p": [{"f": "programme principal", "v": {"compte": "{'a': 2, 'b': 2}", "c": "'a'"}}], "o": ""}, {"l": 7, "p": [{"f": "programme principal", "v": {"compte": "{'a': 2, 'b': 2}", "c": "'a'"}}], "o": ""}], "err": null, "o": "{'a': 2, 'b': 2}\n"}};
+
 </script>
 <script>
 /* import bac — moteur du site (routeur, surligneur Python, QCM, cartes, recherche, schémas interactifs). */
@@ -9240,7 +10427,7 @@ var PAGE_RESSOURCES = {
     return t;
   }
   function fill(html) {
-    return String(html).replace(/\[\[([\w-]+)(?:\|(\w+))?\]\]/g, function (_, id, mode) {
+    return String(html).replace(/\[\[([\w-]+)(?:\|([\w,-]+))?\]\]/g, function (_, id, mode) {
       if (id.indexOf("w-") === 0) return '<div data-w="' + id.slice(2) + '"' + (mode ? ' data-opt="' + mode + '"' : "") + "></div>";
       return codeHTML(id, mode);
     });
@@ -9294,6 +10481,25 @@ var PAGE_RESSOURCES = {
     return '<div class="invite"><span class="u">eleve@terminale</span>:<span class="d">~/' + esc(dir) + '</span>$ <span class="c tape">' + esc(cmd) + '</span><span class="curseur"></span></div>';
   }
 
+  var dernierOnglet = null;
+  function placerIndicateur(page, c) {
+    var nav = $(".onglets", page), on = nav && $(".onglets a.on", nav);
+    if (!on) { dernierOnglet = null; return; }
+    var ind = document.createElement("span");
+    ind.className = "ind-onglet"; nav.appendChild(ind);
+    var cible = { l: on.offsetLeft, w: on.offsetWidth };
+    if (MO() && dernierOnglet && dernierOnglet.ch === c.id) {
+      ind.style.transition = "none"; ind.style.left = dernierOnglet.l + "px"; ind.style.width = dernierOnglet.w + "px";
+      void ind.offsetWidth; ind.style.transition = "";
+    }
+    ind.style.left = cible.l + "px"; ind.style.width = cible.w + "px";
+    dernierOnglet = { ch: c.id, l: cible.l, w: cible.w };
+  }
+  function majLecture() {
+    var h = document.documentElement, max = h.scrollHeight - innerHeight, pc = max > 0 ? Math.min(100, Math.round(100 * scrollY / max)) : 100;
+    var b = $(".lecture-p i"); if (b) b.style.width = pc + "%";
+    var s = $("#st-pc"); if (s) s.textContent = "lecture " + pc + " %";
+  }
   function render() {
     var r = routeCourante();
     var page = $("#page");
@@ -9311,6 +10517,8 @@ var PAGE_RESSOURCES = {
     $$(".lat a").forEach(function (a) { a.classList.toggle("actif", a.getAttribute("data-r") === r.page); });
     document.title = (c ? c.titre + " — " : r.page !== "accueil" && r.page ? nomFichier(r).replace(/\..*$/, "") + " — " : "") + "import bac · NSI Terminale";
     initPage(page, r);
+    if (c) placerIndicateur(page, c); else dernierOnglet = null;
+    var st = $("#st-fic"); if (st) st.textContent = nomFichier(r);
     var idee = c && /^i\d+$/.test(r.sous) ? r.sous : (c && /^i\d+$/.test(r.plus) ? r.plus : "");
     var item = r.page === "programme" && r.sous ? r.sous : "";
     if (idee) {
@@ -9320,6 +10528,7 @@ var PAGE_RESSOURCES = {
       var d = document.getElementById("prog-" + item);
       if (d) { d.open = true; d.scrollIntoView({ block: "start" }); }
     } else window.scrollTo(0, 0);
+    majLecture();
     if (MO()) { page.classList.remove("entree"); void page.offsetWidth; page.classList.add("entree"); }
   }
 
@@ -9341,11 +10550,15 @@ var PAGE_RESSOURCES = {
       '<a class="btn" href="#entrainement">' + ic("cible") + "S’entraîner</a></div></div>" +
       '<div class="terminal" aria-label="Exemple de session Python"><div class="tete"><i></i><i></i><i></i><span>bac — python3</span></div><pre>' + term + "</pre></div></div>";
     h += '<div class="chiffres"><div><b>' + CH.length + '</b><span>chapitres rédigés</span></div><div><b>' + nbQ + '</b><span>questions de QCM</span></div><div><b>' + nbC + '</b><span>cartes mémoire</span></div><div><b>' + Object.keys(CODE).filter(function (k) { return CODE[k].run !== false; }).length + '</b><span>extraits de code exécutés et vérifiés</span></div></div>';
-    h += "<h2>Chapitres rédigés</h2><p class=\"muet\">L’ordre suit les progressions les plus courantes en début d’année ; ton professeur peut en suivre un autre, chaque chapitre se lit seul.</p><div class=\"grille\">";
-    CH.forEach(function (c) {
-      h += '<a class="carte-ch" href="#' + c.id + '"><span class="fic">' + c.fichier + '</span><span class="nom">' + c.n + ". " + esc(c.titre) + '</span><span class="desc">' + esc(c.accroche) + '</span><span class="pied">' + c.idees.length + " notions · " + c.qcm.length + " QCM · " + c.cartes.length + " cartes</span></a>";
+    h += "<h2>Les chapitres</h2><p class=\"muet\">Rangés par rubrique du programme. Chaque chapitre se lit seul : suis l’ordre de ton professeur.</p>";
+    groupes().forEach(function (g) {
+      h += '<div class="dossier-acc mono"><span class="n">' + g.n + '</span> ' + g.dossier + '/ <span class="muet">— ' + esc(g.titre) + "</span></div><div class=\"grille\">";
+      g.ch.forEach(function (c) {
+        h += '<a class="carte-ch" href="#' + c.id + '"><span class="fic">' + c.fichier + '</span><span class="nom">' + c.n + ". " + esc(c.titre) + '</span><span class="desc">' + esc(c.accroche) + '</span><span class="pied">' + c.idees.length + " notions · " + c.qcm.length + " QCM · " + c.cartes.length + " cartes</span></a>";
+      });
+      h += "</div>";
     });
-    h += "</div><h2>Carte du programme</h2><p class=\"muet\">Les six rubriques officielles du programme de Terminale. Ce qui n’est pas encore rédigé est marqué « bientôt », avec ce que le programme demande.</p>";
+    h += "<h2>Carte du programme</h2><p class=\"muet\">Les six rubriques officielles du programme de Terminale. Ce qui n’est pas encore rédigé est marqué « bientôt », avec ce que le programme demande.</p>";
     PROG.forEach(function (r) {
       h += '<div class="rubrique"><div class="tete"><span class="n">' + r.n + "</span>" + esc(r.t) + "</div>";
       r.items.forEach(function (it) {
@@ -9436,7 +10649,7 @@ var PAGE_RESSOURCES = {
     function maj() {
       var n = 0, ok = 0;
       Object.keys(st.rep).forEach(function (k) { n++; if (st.rep[k] === liste[k].a) ok++; });
-      $(".sc", zone).textContent = ok + " / " + n + " juste" + (ok > 1 ? "s" : "") + " · " + liste.length + " q.";
+      $(".sc", zone).innerHTML = '<span class="ok">' + ok + " passed</span>, " + '<span class="ko">' + (n - ok) + " failed</span>, " + (liste.length - n) + " à faire";
       $(".barre-p i", zone).style.width = (100 * n / liste.length) + "%";
     }
     function montre(qel, k, j, anim) {
@@ -9444,7 +10657,7 @@ var PAGE_RESSOURCES = {
       $$(".choix button", qel).forEach(function (b, i) { b.disabled = true; if (i === q.a) b.classList.add("bon"); else if (i === j) b.classList.add("faux"); });
       var ref = q.ref ? q.ref.split(":") : null;
       var lien = ref ? '<a class="lien-revoir" href="#' + ref[0] + "/" + ref[1] + '">' + ic("retour") + "Revoir le paragraphe</a>" : "";
-      $(".slot", qel).innerHTML = '<div class="expl"><span class="v ' + (bon ? "ok" : "ko") + '">' + (bon ? "✔ Exact. " : "✘ Non : la bonne réponse est " + "ABCDE"[q.a] + ". ") + "</span>" + q.e + "<br>" + lien + "</div>";
+      $(".slot", qel).innerHTML = '<div class="expl"><span class="v ' + (bon ? "ok" : "ko") + '">' + (bon ? "PASSED ✔ " : "FAILED ✘ attendu : " + "ABCDE"[q.a] + " · ") + "</span>" + q.e + "<br>" + lien + "</div>";
       qel.classList.add("repondu", bon ? "ok" : "ko");
       if (anim === false) qel.classList.remove("ok", "ko");
     }
@@ -9561,7 +10774,7 @@ var PAGE_RESSOURCES = {
 
   /* ---------- recherche plein écran ---------- */
   var INDEX = null;
-  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|\w+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim(); }
+  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|[\w,-]+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim(); }
   function construireIndex() {
     INDEX = [];
     CH.forEach(function (c) {
@@ -9627,6 +10840,16 @@ var PAGE_RESSOURCES = {
   function fermerMenu(depuisHistorique) { if (!menuOuvert) return; menuOuvert = false; $(".lat").classList.remove("ouvert"); $(".voile").classList.remove("on"); if (!depuisHistorique) history.back(); }
 
   /* ---------- démarrage ---------- */
+  /* Ordre des chapitres : ch1, ch2… (numéros cités dans les textes) puis les autres dans l'ordre du programme. */
+  (function () {
+    var fixes = CH.filter(function (c) { return /^ch\d+$/.test(c.id); }).sort(function (a, b) { return a.n - b.n; });
+    var autres = [];
+    groupes().forEach(function (g) { g.ch.forEach(function (c) { if (fixes.indexOf(c) < 0 && autres.indexOf(c) < 0) autres.push(c); }); });
+    CH.forEach(function (c) { if (fixes.indexOf(c) < 0 && autres.indexOf(c) < 0) autres.push(c); });
+    var tous = fixes.concat(autres);
+    CH.length = 0;
+    tous.forEach(function (c, i) { c.n = i + 1; CH.push(c); });
+  })();
   /* Les bonnes réponses sont réparties sur toutes les lettres par une rotation fixe des propositions. */
   CH.forEach(function (c) {
     c.qcm.forEach(function (q, k) {
@@ -9672,6 +10895,9 @@ var PAGE_RESSOURCES = {
       if (navApres) { var h = navApres; navApres = null; if (location.hash === h) render(); else location.hash = h; }
     });
     window.addEventListener("hashchange", render);
+    var attente = false;
+    window.addEventListener("scroll", function () { if (attente) return; attente = true; requestAnimationFrame(function () { attente = false; majLecture(); }); }, { passive: true });
+    var nbv = $("#st-code"); if (nbv) nbv.textContent = "✔ " + Object.keys(CODE).filter(function (k) { return CODE[k].run !== false; }).length + " extraits vérifiés";
     render();
   }
 
@@ -10058,6 +11284,53 @@ var PAGE_RESSOURCES = {
     charger(cle);
     return { charger: charger };
   }
+  /* ---- exécution pas à pas d'un extrait (trace réelle calculée par traces.py à la construction) ----
+     [[w-trace|id1,id2]] : un bouton par extrait (champ « titreTrace » de l'extrait). */
+  WIDGETS.trace = function (z, opt) {
+    var ids = String(opt || "").split(",").filter(function (k) { return window.TRACES && TRACES[k]; });
+    if (!ids.length) return;
+    function lignesSrc(id) { return CODE[id].src.replace(/^\n+|\s+$/g, "").split("\n"); }
+    function etapes(id) {
+      var T = TRACES[id], src = lignesSrc(id), E = [], avant = null;
+      T.etapes.forEach(function (e) {
+        var msg;
+        if (e.r !== undefined) msg = "<b>" + esc(e.f) + "()</b> se termine et renvoie <b>" + esc(e.r) + "</b> ; son cadre est dépilé.";
+        else {
+          var ch = [];
+          if (avant) {
+            var h = e.p[e.p.length - 1], ha = avant.p[avant.p.length - 1];
+            if (e.p.length > avant.p.length) ch.push("appel de <b>" + esc(h.f) + "</b> : nouveau cadre");
+            else Object.keys(h.v).forEach(function (k) { if (!ha || ha.f !== h.f || ha.v[k] !== h.v[k]) ch.push("<code>" + esc(k) + "</code> vaut " + esc(h.v[k])); });
+          }
+          msg = "Ligne " + e.l + " : <code>" + esc(src[e.l - 1].trim()) + "</code>" + (ch.length ? " · " + ch.join(", ") : "") + ".";
+        }
+        E.push({ l: e.l, p: e.p, o: e.o, msg: msg });
+        avant = e;
+      });
+      var d = E[E.length - 1] || { l: 0, p: [], o: "" };
+      E.push({ l: T.err ? d.l : 0, p: T.err ? d.p : [], o: T.o, err: T.err, msg: T.err ? "Le programme s’arrête sur une erreur : <b>" + esc(T.err) + "</b>." : "Fin du programme." });
+      return E;
+    }
+    lecteur(z, {
+      titre: "exécution pas à pas", sous: "trace réelle (Python)", vitesse: 1100,
+      choix: ids.length > 1 ? ids.map(function (k) { return { k: k, t: CODE[k].titreTrace || CODE[k].fichier || k }; }) : null,
+      etapes: function (k) { return etapes(k || ids[0]); },
+      prepare: function (sc, k) {
+        var id = k || ids[0];
+        sc.innerHTML = '<div class="trace"><div class="code zebre"><div class="tete"><span class="f">' + esc(CODE[id].fichier || "programme.py") + '</span></div><pre><code>' + lignes(hlPy(CODE[id].src.replace(/^\n+|\s+$/g, ""))) + '</code></pre></div><div class="tr-cote"><div class="titre-pile">variables (pile d’appels, le plus récent en haut)</div><div class="tr-pile"></div><div class="titre-pile">sortie</div><pre class="tr-sortie"></pre></div></div>';
+      },
+      dessine: function (sc, e) {
+        $$(".trace .l", sc).forEach(function (l, i) { l.classList.toggle("vise", i + 1 === e.l); });
+        var v = $(".trace .l.vise", sc); if (v && v.scrollIntoView && sc.offsetParent) { var pre = v.closest("pre"); pre.scrollTop = v.offsetTop - pre.clientHeight / 2; }
+        $(".tr-pile", sc).innerHTML = e.p.length ? e.p.slice().reverse().map(function (c, i) {
+          var ks = Object.keys(c.v);
+          return '<div class="cadre-pile' + (i === 0 ? " actif" : "") + '"><div class="nm">' + esc(c.f) + '</div><div class="vr">' + (ks.length ? ks.map(function (k) { return esc(k) + " = " + esc(c.v[k]); }).join("<br>") : "(aucune variable)") + "</div></div>";
+        }).join("") : '<span class="repere">—</span>';
+        $(".tr-sortie", sc).innerHTML = esc(e.o || "") + (e.err ? '<span class="err-t">' + esc(e.err) + "</span>" : "");
+      }
+    });
+  };
+
   var OUTILS = { $: $, $$: $$, esc: esc, ic: ic, MO: MO, hlPy: hlPy, hlSql: hlSql, lignes: lignes, lecteur: lecteur, codeHTML: codeHTML };
   window.NSI_OUTILS = OUTILS;
 

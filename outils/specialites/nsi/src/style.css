@@ -46,7 +46,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;background:var(--bg);background-image:var(--scan);color:var(--encre);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
+body{margin:0;background:var(--bg);background-image:var(--scan);color:var(--encre);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden;font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
 a{color:var(--bleu);text-underline-offset:3px}
 button{font:inherit;color:inherit}
 code,kbd,pre,.mono{font-family:var(--mono);font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
@@ -269,7 +269,7 @@ html.mo .qcm-score .barre-p i{transition:width .35s}
 .q .lien-revoir svg{width:16px;height:16px;flex:none}
 .qcm-score .sc{white-space:nowrap}
 .qcm-score .btn{flex:none;padding:0 10px}
-@media (max-width:420px){.qcm-score{gap:8px;padding:6px 10px;font-size:.78rem}}
+@media (max-width:420px){.qcm-score{gap:8px;padding:6px 10px;font-size:.74rem}.qcm-score .barre-p{display:none}.qcm-score .sc{margin-right:auto}}
 html.mo .q.repondu.ok{animation:pouls .45s}
 html.mo .q.repondu.ko{animation:secoue .35s}
 @keyframes pouls{50%{box-shadow:0 0 0 6px var(--vert-f)}}
@@ -509,3 +509,42 @@ html.mo .nd-a.neuf,html.mo .nd-a.actif{animation:pop .4s cubic-bezier(.2,.9,.3,1
 .graphe-svg .ar.arb{stroke:var(--vert);stroke-width:4}
 .graphe-svg .ar.ch{stroke:var(--ambre);stroke-width:6;stroke-linecap:round}
 html.mo .graphe-svg .ar{transition:stroke .3s,stroke-width .3s}
+/* exécution pas à pas */
+.trace{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:760px){.trace{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}}
+.trace .code{margin:0}
+.trace pre{max-height:340px;overflow:auto}
+.tr-pile{display:flex;flex-direction:column;gap:6px}
+.tr-sortie{margin:0;min-height:2.4em;font-size:.82rem;background:var(--code-bg);border:1px solid var(--ligne);border-radius:8px;padding:6px 8px;white-space:pre-wrap}
+/* barre d'état (ordinateur), barre de lecture (téléphone) */
+.lecture-p{position:sticky;top:56px;z-index:39;height:3px;background:transparent;margin-bottom:-3px}
+.lecture-p i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--vert),var(--ambre))}
+.statut{display:none}
+@media (min-width:1000px){
+  .lecture-p{display:none}
+  .statut{display:flex;position:fixed;left:var(--side);right:0;bottom:0;z-index:35;height:26px;align-items:center;gap:18px;padding:0 14px;font-family:var(--mono);font-size:.72rem;color:var(--sur-accent);background:var(--accent);opacity:.96}
+  .statut .st-mil{margin-right:auto;opacity:.85}
+  main{padding-bottom:26px}
+}
+@media print{.statut,.lecture-p{display:none!important}}
+/* indicateur d'onglet qui glisse */
+.onglets{position:sticky}
+.ind-onglet{position:absolute;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--ambre);pointer-events:none}
+html.mo .ind-onglet{transition:left .32s cubic-bezier(.2,.8,.2,1),width .32s cubic-bezier(.2,.8,.2,1)}
+.onglets a.on{box-shadow:none}
+/* titres de page soulignés d'un trait qui se trace */
+.page>h1::after{content:"";display:block;width:72px;height:4px;margin-top:10px;border-radius:2px;background:linear-gradient(90deg,var(--ambre),var(--vert))}
+html.mo .page.entree>h1::after{animation:trait .7s .15s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes trait{from{transform:scaleX(0);transform-origin:left}}
+/* explorateur : fichier ouvert marqué d'un point */
+.lat a.actif::after{content:"●";margin-left:auto;font-size:.7rem;color:var(--ambre)}
+/* accueil : dossiers de chapitres */
+.dossier-acc{margin:18px 0 4px;font-size:.86rem;color:var(--ambre)}
+.dossier-acc .n{display:inline-block;border:1px solid var(--ambre);border-radius:5px;padding:0 5px;margin-right:4px}
+.carte-ch .fic::before{content:"▸ ";opacity:0}
+html.mo .carte-ch .fic::before{transition:opacity .2s}
+.carte-ch:hover .fic::before{opacity:1}
+/* QCM : lanceur de tests */
+.qcm-score .sc{font-family:var(--mono)}
+.qcm-score .ok{color:var(--vert);font-weight:700}
+.qcm-score .ko{color:var(--rouge);font-weight:700}

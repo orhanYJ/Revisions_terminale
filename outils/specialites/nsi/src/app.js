@@ -122,7 +122,7 @@
     return t;
   }
   function fill(html) {
-    return String(html).replace(/\[\[([\w-]+)(?:\|(\w+))?\]\]/g, function (_, id, mode) {
+    return String(html).replace(/\[\[([\w-]+)(?:\|([\w,-]+))?\]\]/g, function (_, id, mode) {
       if (id.indexOf("w-") === 0) return '<div data-w="' + id.slice(2) + '"' + (mode ? ' data-opt="' + mode + '"' : "") + "></div>";
       return codeHTML(id, mode);
     });
@@ -176,6 +176,25 @@
     return '<div class="invite"><span class="u">eleve@terminale</span>:<span class="d">~/' + esc(dir) + '</span>$ <span class="c tape">' + esc(cmd) + '</span><span class="curseur"></span></div>';
   }
 
+  var dernierOnglet = null;
+  function placerIndicateur(page, c) {
+    var nav = $(".onglets", page), on = nav && $(".onglets a.on", nav);
+    if (!on) { dernierOnglet = null; return; }
+    var ind = document.createElement("span");
+    ind.className = "ind-onglet"; nav.appendChild(ind);
+    var cible = { l: on.offsetLeft, w: on.offsetWidth };
+    if (MO() && dernierOnglet && dernierOnglet.ch === c.id) {
+      ind.style.transition = "none"; ind.style.left = dernierOnglet.l + "px"; ind.style.width = dernierOnglet.w + "px";
+      void ind.offsetWidth; ind.style.transition = "";
+    }
+    ind.style.left = cible.l + "px"; ind.style.width = cible.w + "px";
+    dernierOnglet = { ch: c.id, l: cible.l, w: cible.w };
+  }
+  function majLecture() {
+    var h = document.documentElement, max = h.scrollHeight - innerHeight, pc = max > 0 ? Math.min(100, Math.round(100 * scrollY / max)) : 100;
+    var b = $(".lecture-p i"); if (b) b.style.width = pc + "%";
+    var s = $("#st-pc"); if (s) s.textContent = "lecture " + pc + " %";
+  }
   function render() {
     var r = routeCourante();
     var page = $("#page");
@@ -193,6 +212,8 @@
     $$(".lat a").forEach(function (a) { a.classList.toggle("actif", a.getAttribute("data-r") === r.page); });
     document.title = (c ? c.titre + " — " : r.page !== "accueil" && r.page ? nomFichier(r).replace(/\..*$/, "") + " — " : "") + "import bac · NSI Terminale";
     initPage(page, r);
+    if (c) placerIndicateur(page, c); else dernierOnglet = null;
+    var st = $("#st-fic"); if (st) st.textContent = nomFichier(r);
     var idee = c && /^i\d+$/.test(r.sous) ? r.sous : (c && /^i\d+$/.test(r.plus) ? r.plus : "");
     var item = r.page === "programme" && r.sous ? r.sous : "";
     if (idee) {
@@ -202,6 +223,7 @@
       var d = document.getElementById("prog-" + item);
       if (d) { d.open = true; d.scrollIntoView({ block: "start" }); }
     } else window.scrollTo(0, 0);
+    majLecture();
     if (MO()) { page.classList.remove("entree"); void page.offsetWidth; page.classList.add("entree"); }
   }
 
@@ -223,11 +245,15 @@
       '<a class="btn" href="#entrainement">' + ic("cible") + "S’entraîner</a></div></div>" +
       '<div class="terminal" aria-label="Exemple de session Python"><div class="tete"><i></i><i></i><i></i><span>bac — python3</span></div><pre>' + term + "</pre></div></div>";
     h += '<div class="chiffres"><div><b>' + CH.length + '</b><span>chapitres rédigés</span></div><div><b>' + nbQ + '</b><span>questions de QCM</span></div><div><b>' + nbC + '</b><span>cartes mémoire</span></div><div><b>' + Object.keys(CODE).filter(function (k) { return CODE[k].run !== false; }).length + '</b><span>extraits de code exécutés et vérifiés</span></div></div>';
-    h += "<h2>Chapitres rédigés</h2><p class=\"muet\">L’ordre suit les progressions les plus courantes en début d’année ; ton professeur peut en suivre un autre, chaque chapitre se lit seul.</p><div class=\"grille\">";
-    CH.forEach(function (c) {
-      h += '<a class="carte-ch" href="#' + c.id + '"><span class="fic">' + c.fichier + '</span><span class="nom">' + c.n + ". " + esc(c.titre) + '</span><span class="desc">' + esc(c.accroche) + '</span><span class="pied">' + c.idees.length + " notions · " + c.qcm.length + " QCM · " + c.cartes.length + " cartes</span></a>";
+    h += "<h2>Les chapitres</h2><p class=\"muet\">Rangés par rubrique du programme. Chaque chapitre se lit seul : suis l’ordre de ton professeur.</p>";
+    groupes().forEach(function (g) {
+      h += '<div class="dossier-acc mono"><span class="n">' + g.n + '</span> ' + g.dossier + '/ <span class="muet">— ' + esc(g.titre) + "</span></div><div class=\"grille\">";
+      g.ch.forEach(function (c) {
+        h += '<a class="carte-ch" href="#' + c.id + '"><span class="fic">' + c.fichier + '</span><span class="nom">' + c.n + ". " + esc(c.titre) + '</span><span class="desc">' + esc(c.accroche) + '</span><span class="pied">' + c.idees.length + " notions · " + c.qcm.length + " QCM · " + c.cartes.length + " cartes</span></a>";
+      });
+      h += "</div>";
     });
-    h += "</div><h2>Carte du programme</h2><p class=\"muet\">Les six rubriques officielles du programme de Terminale. Ce qui n’est pas encore rédigé est marqué « bientôt », avec ce que le programme demande.</p>";
+    h += "<h2>Carte du programme</h2><p class=\"muet\">Les six rubriques officielles du programme de Terminale. Ce qui n’est pas encore rédigé est marqué « bientôt », avec ce que le programme demande.</p>";
     PROG.forEach(function (r) {
       h += '<div class="rubrique"><div class="tete"><span class="n">' + r.n + "</span>" + esc(r.t) + "</div>";
       r.items.forEach(function (it) {
@@ -318,7 +344,7 @@
     function maj() {
       var n = 0, ok = 0;
       Object.keys(st.rep).forEach(function (k) { n++; if (st.rep[k] === liste[k].a) ok++; });
-      $(".sc", zone).textContent = ok + " / " + n + " juste" + (ok > 1 ? "s" : "") + " · " + liste.length + " q.";
+      $(".sc", zone).innerHTML = '<span class="ok">' + ok + " passed</span>, " + '<span class="ko">' + (n - ok) + " failed</span>, " + (liste.length - n) + " à faire";
       $(".barre-p i", zone).style.width = (100 * n / liste.length) + "%";
     }
     function montre(qel, k, j, anim) {
@@ -326,7 +352,7 @@
       $$(".choix button", qel).forEach(function (b, i) { b.disabled = true; if (i === q.a) b.classList.add("bon"); else if (i === j) b.classList.add("faux"); });
       var ref = q.ref ? q.ref.split(":") : null;
       var lien = ref ? '<a class="lien-revoir" href="#' + ref[0] + "/" + ref[1] + '">' + ic("retour") + "Revoir le paragraphe</a>" : "";
-      $(".slot", qel).innerHTML = '<div class="expl"><span class="v ' + (bon ? "ok" : "ko") + '">' + (bon ? "✔ Exact. " : "✘ Non : la bonne réponse est " + "ABCDE"[q.a] + ". ") + "</span>" + q.e + "<br>" + lien + "</div>";
+      $(".slot", qel).innerHTML = '<div class="expl"><span class="v ' + (bon ? "ok" : "ko") + '">' + (bon ? "PASSED ✔ " : "FAILED ✘ attendu : " + "ABCDE"[q.a] + " · ") + "</span>" + q.e + "<br>" + lien + "</div>";
       qel.classList.add("repondu", bon ? "ok" : "ko");
       if (anim === false) qel.classList.remove("ok", "ko");
     }
@@ -443,7 +469,7 @@
 
   /* ---------- recherche plein écran ---------- */
   var INDEX = null;
-  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|\w+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim(); }
+  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|[\w,-]+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim(); }
   function construireIndex() {
     INDEX = [];
     CH.forEach(function (c) {
@@ -509,6 +535,16 @@
   function fermerMenu(depuisHistorique) { if (!menuOuvert) return; menuOuvert = false; $(".lat").classList.remove("ouvert"); $(".voile").classList.remove("on"); if (!depuisHistorique) history.back(); }
 
   /* ---------- démarrage ---------- */
+  /* Ordre des chapitres : ch1, ch2… (numéros cités dans les textes) puis les autres dans l'ordre du programme. */
+  (function () {
+    var fixes = CH.filter(function (c) { return /^ch\d+$/.test(c.id); }).sort(function (a, b) { return a.n - b.n; });
+    var autres = [];
+    groupes().forEach(function (g) { g.ch.forEach(function (c) { if (fixes.indexOf(c) < 0 && autres.indexOf(c) < 0) autres.push(c); }); });
+    CH.forEach(function (c) { if (fixes.indexOf(c) < 0 && autres.indexOf(c) < 0) autres.push(c); });
+    var tous = fixes.concat(autres);
+    CH.length = 0;
+    tous.forEach(function (c, i) { c.n = i + 1; CH.push(c); });
+  })();
   /* Les bonnes réponses sont réparties sur toutes les lettres par une rotation fixe des propositions. */
   CH.forEach(function (c) {
     c.qcm.forEach(function (q, k) {
@@ -554,6 +590,9 @@
       if (navApres) { var h = navApres; navApres = null; if (location.hash === h) render(); else location.hash = h; }
     });
     window.addEventListener("hashchange", render);
+    var attente = false;
+    window.addEventListener("scroll", function () { if (attente) return; attente = true; requestAnimationFrame(function () { attente = false; majLecture(); }); }, { passive: true });
+    var nbv = $("#st-code"); if (nbv) nbv.textContent = "✔ " + Object.keys(CODE).filter(function (k) { return CODE[k].run !== false; }).length + " extraits vérifiés";
     render();
   }
 
@@ -940,6 +979,53 @@
     charger(cle);
     return { charger: charger };
   }
+  /* ---- exécution pas à pas d'un extrait (trace réelle calculée par traces.py à la construction) ----
+     [[w-trace|id1,id2]] : un bouton par extrait (champ « titreTrace » de l'extrait). */
+  WIDGETS.trace = function (z, opt) {
+    var ids = String(opt || "").split(",").filter(function (k) { return window.TRACES && TRACES[k]; });
+    if (!ids.length) return;
+    function lignesSrc(id) { return CODE[id].src.replace(/^\n+|\s+$/g, "").split("\n"); }
+    function etapes(id) {
+      var T = TRACES[id], src = lignesSrc(id), E = [], avant = null;
+      T.etapes.forEach(function (e) {
+        var msg;
+        if (e.r !== undefined) msg = "<b>" + esc(e.f) + "()</b> se termine et renvoie <b>" + esc(e.r) + "</b> ; son cadre est dépilé.";
+        else {
+          var ch = [];
+          if (avant) {
+            var h = e.p[e.p.length - 1], ha = avant.p[avant.p.length - 1];
+            if (e.p.length > avant.p.length) ch.push("appel de <b>" + esc(h.f) + "</b> : nouveau cadre");
+            else Object.keys(h.v).forEach(function (k) { if (!ha || ha.f !== h.f || ha.v[k] !== h.v[k]) ch.push("<code>" + esc(k) + "</code> vaut " + esc(h.v[k])); });
+          }
+          msg = "Ligne " + e.l + " : <code>" + esc(src[e.l - 1].trim()) + "</code>" + (ch.length ? " · " + ch.join(", ") : "") + ".";
+        }
+        E.push({ l: e.l, p: e.p, o: e.o, msg: msg });
+        avant = e;
+      });
+      var d = E[E.length - 1] || { l: 0, p: [], o: "" };
+      E.push({ l: T.err ? d.l : 0, p: T.err ? d.p : [], o: T.o, err: T.err, msg: T.err ? "Le programme s’arrête sur une erreur : <b>" + esc(T.err) + "</b>." : "Fin du programme." });
+      return E;
+    }
+    lecteur(z, {
+      titre: "exécution pas à pas", sous: "trace réelle (Python)", vitesse: 1100,
+      choix: ids.length > 1 ? ids.map(function (k) { return { k: k, t: CODE[k].titreTrace || CODE[k].fichier || k }; }) : null,
+      etapes: function (k) { return etapes(k || ids[0]); },
+      prepare: function (sc, k) {
+        var id = k || ids[0];
+        sc.innerHTML = '<div class="trace"><div class="code zebre"><div class="tete"><span class="f">' + esc(CODE[id].fichier || "programme.py") + '</span></div><pre><code>' + lignes(hlPy(CODE[id].src.replace(/^\n+|\s+$/g, ""))) + '</code></pre></div><div class="tr-cote"><div class="titre-pile">variables (pile d’appels, le plus récent en haut)</div><div class="tr-pile"></div><div class="titre-pile">sortie</div><pre class="tr-sortie"></pre></div></div>';
+      },
+      dessine: function (sc, e) {
+        $$(".trace .l", sc).forEach(function (l, i) { l.classList.toggle("vise", i + 1 === e.l); });
+        var v = $(".trace .l.vise", sc); if (v && v.scrollIntoView && sc.offsetParent) { var pre = v.closest("pre"); pre.scrollTop = v.offsetTop - pre.clientHeight / 2; }
+        $(".tr-pile", sc).innerHTML = e.p.length ? e.p.slice().reverse().map(function (c, i) {
+          var ks = Object.keys(c.v);
+          return '<div class="cadre-pile' + (i === 0 ? " actif" : "") + '"><div class="nm">' + esc(c.f) + '</div><div class="vr">' + (ks.length ? ks.map(function (k) { return esc(k) + " = " + esc(c.v[k]); }).join("<br>") : "(aucune variable)") + "</div></div>";
+        }).join("") : '<span class="repere">—</span>';
+        $(".tr-sortie", sc).innerHTML = esc(e.o || "") + (e.err ? '<span class="err-t">' + esc(e.err) + "</span>" : "");
+      }
+    });
+  };
+
   var OUTILS = { $: $, $$: $$, esc: esc, ic: ic, MO: MO, hlPy: hlPy, hlSql: hlSql, lignes: lignes, lecteur: lecteur, codeHTML: codeHTML };
   window.NSI_OUTILS = OUTILS;
 

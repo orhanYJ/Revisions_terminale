@@ -61,6 +61,15 @@ occ = occurrences("abracadabra")
 print(occ)
 print(plus_frequent(occ), occ[plus_frequent(occ)])`, { out: "{'a': 5, 'b': 2, 'r': 2, 'c': 1, 'd': 1}\na 5" });
 
+C("c5-tr-occ", String.raw`
+compte = {}
+for c in "abba":
+    if c in compte:
+        compte[c] = compte[c] + 1
+    else:
+        compte[c] = 1
+print(compte)`, { fichier: "comptage.py", trace: true, out: "{'a': 2, 'b': 2}" });
+
 C("c5-cout", String.raw`
 def recherche_liste(couples, cle):
     """couples : liste de (clé, valeur). Renvoie (valeur, nombre de comparaisons)."""
@@ -390,6 +399,8 @@ CH.push({
     { id: "i3", t: "Un algorithme à connaître : compter des occurrences", h: `
 <p>Compter combien de fois apparaît chaque élément d’une séquence est l’usage le plus fréquent des dictionnaires (à l’écrit comme en pratique). On parcourt une fois la séquence ; pour chaque élément, on crée la clé à la première rencontre puis on incrémente.</p>
 [[c5-occurrences]]
+<p>Pas à pas, sur un mot de quatre lettres : regarde le dictionnaire se remplir.</p>
+[[w-trace|c5-tr-occ]]
 <p>Le même schéma sert à compter des mots dans un texte, des votes, des notes, des visites par page… Un seul parcours : coût linéaire en la longueur du texte.</p>` },
 
     { id: "i4", t: "Chercher dans une liste ou dans un dictionnaire", h: `
