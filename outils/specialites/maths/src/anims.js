@@ -376,3 +376,63 @@ ANIMS.arbre = {
     }
   }
 };
+
+/* Chapitre 2 : les quatre comportements de q^n */
+ANIMS.geometrique = {
+  titre: "Quatre raisons, quatre destins pour $q^n$",
+  vb: [360, 250],
+  etapes: [
+    { d: 4, l: R`$q=1{,}2$ : chaque terme est $20\,\%$ plus grand que le précédent. Les termes dépassent tout seuil : $1{,}2^n\to+\infty$.` },
+    { d: 4, l: R`$q=0{,}8$ : chaque terme perd $20\,\%$. Les termes fondent vers $0$ sans jamais l'atteindre : $0{,}8^n\to0$.` },
+    { d: 4, l: R`$q=-0{,}8$ : le signe alterne à chaque pas, mais la taille fond : les termes zigzaguent vers $0$. $(-0{,}8)^n\to0$.` },
+    { d: 4, l: R`$q=-1{,}2$ : le signe alterne et la taille grandit : les termes sautent de plus en plus loin, d'un côté puis de l'autre. Pas de limite.` },
+    { d: 3.5, l: R`Bilan : seule la <b>taille</b> $|q|$ compte pour la convergence vers $0$ ($|q|<1$) ; si $q>1$, limite $+\infty$ ; si $q\leq-1$, pas de limite.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, Q = [1.2, 0.8, -0.8, -1.2], cols = ["g-pt2", "g-pt", "g-pt", "g-pt2"];
+    S.rep(0, 15, -6, 6, { px: 5, py: 2 });
+    S.seg(0, 0, 15, 0, "g-axe");
+    var lst = k < 4 ? [k] : [0, 1, 2, 3];
+    lst.forEach(function (i) {
+      var q = Q[i], nb = k < 4 ? Math.floor(E(t) * 15.99) : 15, pts = [];
+      for (var n = 0; n <= nb; n++) { var v = Math.pow(q, n); pts.push([n, Math.max(-7, Math.min(7, v))]); }
+      S.poly(pts, k < 4 ? "a-craie" : "a-craie", false, { opacity: k < 4 ? 1 : 0.5 });
+      pts.forEach(function (p) { S.pt(p[0], p[1], cols[i], 3.4, { opacity: k < 4 ? 1 : 0.7 }); });
+      if (k === 4) { var last = pts[pts.length - 1]; S.txt(14.8, Math.max(-5.6, Math.min(5.6, last[1])) + [0.3, 0.5, -1.1, 0.3][i], "q = " + ANIM.nf(q, 1), cols[i] === "g-pt2" ? "r" : "b", "end"); }
+    });
+    if (k < 4) S.txt(0.3, 5.3, "q = " + ANIM.nf(Q[k], 1) + "   q^n pour n = 0…15", k === 0 || k === 3 ? "r" : "b");
+  }
+};
+
+/* Chapitre 5 : le triangle de Pascal se construit */
+ANIMS.pascalAnim = {
+  titre: "Chaque case est la somme des deux cases au-dessus",
+  vb: [360, 230],
+  etapes: [
+    { d: 3, l: R`Ligne $0$ : $\binom00=1$. Chaque ligne commence et finit par $1$ : $\binom n0=\binom nn=1$.` },
+    { d: 6, l: R`Pour remplir une case intérieure, on additionne les deux cases juste au-dessus : $\binom{n-1}{k-1}+\binom{n-1}{k}=\binom nk$. On descend ligne par ligne.` },
+    { d: 4, l: R`Pourquoi ? Pour choisir $k$ éléments parmi $n$, soit on prend un élément fixé $a$ (il reste $k-1$ à choisir parmi $n-1$), soit on ne le prend pas ($k$ parmi $n-1$).` },
+    { d: 4, l: R`La somme d'une ligne double à chaque fois : $1, 2, 4, 8, 16\dots$ C'est $\sum_{k=0}^n\binom nk=2^n$, le nombre de parties d'un ensemble à $n$ éléments.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, L = 7, W = 360, dx = 36, dy = 28;
+    function C(n, j) { var r = 1; for (var i = 1; i <= j; i++) r = r * (n - j + i) / i; return Math.round(r); }
+    var total = (L + 1) * (L + 2) / 2, vis = k === 0 ? 1 : k === 1 ? Math.max(1, Math.floor(E(t) * total)) : total, c = 0, cible = null;
+    for (var n = 0; n <= L; n++) for (var j = 0; j <= n; j++) {
+      c++; if (c > vis) continue;
+      var x = W / 2 + (j - n / 2) * dx - 24, y = 20 + n * dy, frais = c === vis && k === 1;
+      if (frais && j > 0 && j < n) cible = [n, j];
+      S.px.rect(x - 16, y - 11, 32, 22, frais ? "a-case on" : "a-case", { rx: 6 });
+      S.px.txt(x, y + 5, String(C(n, j)), frais ? "r" : "", "middle", { "font-size": C(n, j) > 9 ? 12 : 13 });
+    }
+    if (cible) {
+      var n2 = cible[0], j2 = cible[1];
+      [j2 - 1, j2].forEach(function (jj) { var x = W / 2 + (jj - (n2 - 1) / 2) * dx - 24, y = 20 + (n2 - 1) * dy; S.px.fleche(x, y + 11, W / 2 + (j2 - n2 / 2) * dx - 24 + (jj < j2 ? -6 : 6), 20 + n2 * dy - 12, "g-c2", { "stroke-width": 1.6 }); });
+    }
+    if (k === 2) {
+      S.px.txt(W - 8, 30, "avec a : C(n−1, k−1)", "r", "end", { opacity: E(t * 2) });
+      S.px.txt(W - 8, 50, "sans a : C(n−1, k)", "b", "end", { opacity: E(t * 2 - 0.3) });
+    }
+    if (k === 3) for (var m = 0; m <= L; m++) S.px.txt(W - 6, 25 + m * dy, "= " + Math.pow(2, m), "r", "end", { opacity: E(t * 3 - m * 0.25) });
+  }
+};

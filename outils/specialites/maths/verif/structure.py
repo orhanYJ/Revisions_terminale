@@ -30,7 +30,7 @@ for c in d["ch"]:
         if not (0 <= q["r"] < len(q["c"])):
             pb.append("réponse hors bornes : " + q["q"][:40])
     html = json.dumps(c)
-    for a in re.findall(r'data-anim=\\"([a-z0-9_-]+)\\"', html):
+    for a in re.findall(r'data-anim=\\"([A-Za-z0-9_-]+)\\"', html):
         if a not in d["anims"]:
             pb.append("animation inconnue : " + a)
     n_anim = len(re.findall(r'data-anim=', html))

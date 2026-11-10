@@ -70,6 +70,7 @@ $$u_n=\frac{(n+1)-n}{\sqrt{n+1}+\sqrt n}=\frac{1}{\sqrt{n+1}+\sqrt n}\quad\text{
     { id: "geometrique", titre: "Suites géométriques", html: R`
 [thm|Limite de $q^n$]Soit $q$ un réel.
 <ul><li>Si $q>1$ : $\lim q^n=+\infty$.</li><li>Si $q=1$ : $q^n=1$ pour tout $n$, limite $1$.</li><li>Si $-1<q<1$ : $\lim q^n=0$.</li><li>Si $q\leq-1$ : $(q^n)$ n'a pas de limite.</li></ul>[/]
+<div data-anim="geometrique"></div>
 <p>Le cas $q>1$ est une <b>démonstration exigible</b>, qui utilise l'inégalité de Bernoulli du chapitre 1 : en écrivant $q=1+a$ avec $a>0$, on a $q^n\geq1+na$, qui tend vers $+\infty$. Exemple : $1{,}02^n\geq1+0{,}02n$, donc $1{,}02^n\geq100$ au plus tard dès $n=4950$ (en fait dès $n=233$ : Bernoulli minore beaucoup).</p>
 [ex|Une suite arithmético-géométrique]$a_n=15-10\times0{,}8^n$ (chapitre 1) : $0<0{,}8<1$ donc $0{,}8^n\to0$ et $a_n\to15$.[/]
 [prop|Somme des termes]Si $-1<q<1$ : $\lim\left(1+q+\dots+q^n\right)=\lim\frac{1-q^{n+1}}{1-q}=\frac1{1-q}$.[/]
