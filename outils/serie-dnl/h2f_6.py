@@ -368,8 +368,8 @@ SCENES = [
     dict(id="grille", chap="Remplir la grille : les enjeux internationaux", fond="aube", humeur="calme",
          retenir="Expansion : Italie → l'empire de Rome, la Libye, l'Éthiopie · Allemagne → le Lebensraum à l'Est · Japon → la Mandchourie, la Chine. Sentiment de supériorité : la gloire de Rome · la race des seigneurs · la race asiatique « supérieure ».",
          beats=[
-        "Tu te souviens de la grille de synthèse du cours, vue dans l'épisode trois ? Son bloc Enjeux internationaux a deux lignes, encore vides. "
-        "Avec cette partie, tu peux les remplir. {gr}{gr.1}Première ligne : la volonté d'expansion. Pour l'Italie, un empire au nom de Rome : la Libye, puis l'Éthiopie. "
+        "{gr}Tu te souviens de la grille de synthèse du cours, vue dans l'épisode trois ? Son bloc Enjeux internationaux a deux lignes, encore vides. "
+        "Avec cette partie, tu peux les remplir. {gr.1}Première ligne : la volonté d'expansion. Pour l'Italie, un empire au nom de Rome : la Libye, puis l'Éthiopie. "
         "{gr.2}Pour l'Allemagne, le Lebensraum : la conquête de l'Est, annoncée dans Mein Kampf. "
         "{gr.3}Deuxième ligne : le sentiment de supériorité. L'Italie se voit en héritière de Rome. L'Allemagne, en race de seigneurs face aux Slaves.",
         "{gr.4}Et la colonne soviétique ? Cette partie du cours ne dit rien de l'expansion soviétique. Garde-la pour l'épisode sept, "
