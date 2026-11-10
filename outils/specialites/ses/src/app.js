@@ -315,6 +315,11 @@
       d.className = "graph";
       var W = Math.round(Math.max(320, Math.min(720, (d.clientWidth || 340) - 26)));
       d.innerHTML = graphe(g, W);
+      /* mouvement : le graphique se construit quand il entre à l'écran ; sans observateur, tout de suite */
+      if (mouvement() && "IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { d.classList.add("vu"); io.disconnect(); } }, { rootMargin: "0px 0px -12% 0px" });
+        io.observe(d);
+      } else d.classList.add("vu");
       $$(".leg button", d).forEach(function (b) { var c = $("i", b); c.style.color = getComputedStyle(c).fill || ""; });
       var svg = $("svg", d), bulle = $(".bulle", d), zone = $(".zone", d), u = g.unite || "", dec = g.dec === undefined ? 1 : g.dec;
       var cach = {};
@@ -585,7 +590,7 @@
   function enteteChap(q, ch, sous) {
     var h = sous ? '<header class="tete court"><span class="kick">' + esc(q.champ) + " · " + esc(q.code) + '</span><h1>' + esc(q.titre) + "</h1>" :
       '<header class="couv"><div class="couv-band"><span>Faits &amp; Courbes</span><span>Dossier N° ' + NUMQ[q.id] + "</span><span>" + esc(q.champ) + '</span></div><div class="couv-corps"><span class="couv-num" aria-hidden="true">' + NUMQ[q.id] + "</span>" + (ICQ[q.id] ? '<span class="couv-ic">' + ic(ICQ[q.id]) + "</span>" : "") +
-      '<span class="kick">Le dossier · ' + esc(q.court) + '</span><h1>' + esc(q.titre) + "</h1>" + (ch.chapo ? '<p class="chapo">' + ch.chapo + "</p>" : "");
+      '<span class="kick">Le dossier · ' + esc(q.court) + '</span><h1' + (/\S{17,}/.test(q.titre) ? ' class="long"' : "") + '>' + esc(q.titre) + "</h1>" + (ch.chapo ? '<p class="chapo">' + ch.chapo + "</p>" : "");
     h +=
       (sous ? "" : '<div class="meta">' + (q.ecrit ? '<span class="pastille ok">Évaluable à l\'écrit</span>' : '<span class="pastille non">Non évalué à l\'écrit en 2027</span>') + '<span class="pastille">' + ch.quiz.length + " questions</span><span class=\"pastille\">" + ch.cartes.length + " cartes</span><span class=\"pastille\">" + ch.bac.length + " exercices corrigés</span>" + ($$anims(ch) ? '<span class="pastille ani">' + $$anims(ch) + " animation" + ($$anims(ch) > 1 ? "s" : "") + "</span>" : "") + "</div></div>") + "</header>";
     h += '<nav class="onglets" aria-label="Parties du chapitre">' + ONGLETS.map(function (o) {
@@ -793,7 +798,23 @@
   }
 
   /* ---------- démarrage ---------- */
+  /* ---------- typographie française à l'affichage : espace insécable avant ? ! : ; » % et après « ---------- */
+  function typoTexte(v) { return v.replace(/ ([?!:;»%])/g, "\u00a0$1").replace(/« /g, "«\u00a0"); }
+  function typo(racine) {
+    if (!racine) return;
+    if (racine.nodeType === 3) { var t = typoTexte(racine.nodeValue); if (t !== racine.nodeValue) racine.nodeValue = t; return; }
+    if (racine.nodeType !== 1 || /^(SCRIPT|STYLE|TEXTAREA|INPUT)$/.test(racine.tagName)) return;
+    var w = document.createTreeWalker(racine, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) { var v = typoTexte(n.nodeValue); if (v !== n.nodeValue) n.nodeValue = v; }
+  }
   function demarrer() {
+    typo(document.body);
+    if ("MutationObserver" in window) new MutationObserver(function (recs) {
+      recs.forEach(function (r) {
+        if (r.target.closest && r.target.closest("svg")) return;
+        Array.prototype.forEach.call(r.addedNodes, typo);
+      });
+    }).observe(document.body, { childList: true, subtree: true });
     app = $("#app");
     $("#lat").innerHTML = navHTML();
     $("#b-menu").innerHTML = ic("menu"); $("#b-q").innerHTML = ic("loupe"); $("#b-th").innerHTML = ic("theme"); $("#b-th2").innerHTML = ic("theme");

@@ -329,6 +329,7 @@ tr:last-child td{border-bottom:0}
 #srch.on{display:block}
 #srch .sbox{max-width:720px;margin:0 auto;padding:12px 16px 80px}
 #srch .sl{display:flex;gap:8px;align-items:center;position:sticky;top:0;padding:8px 0;background:transparent}
+#sq::-webkit-search-cancel-button{display:none}
 #sq{flex:1;min-width:0;height:52px;border-radius:14px;border:2px solid var(--canard);background:var(--carte);color:var(--encre);font:18px var(--texte);padding:0 14px}
 #sq:focus{outline:none;box-shadow:0 0 0 4px var(--canard-c)}
 .sres a{display:block;text-decoration:none;color:var(--encre);background:var(--carte);border:1px solid var(--ligne);border-radius:12px;padding:10px 14px;margin:8px 0}
@@ -359,7 +360,7 @@ tr:last-child td{border-bottom:0}
 .piege .f{color:var(--corail-t);font-weight:650}
 .piege .f::before{content:"✕ ";font-weight:800}
 .piege .v::before{content:"✓ ";font-weight:800;color:var(--vert)}
-.pied{margin-top:50px;padding-top:14px;border-top:3px double var(--ligne);font-size:13px;color:var(--encre2)}
+.pied{margin-top:50px;padding:14px 0 76px;border-top:3px double var(--ligne);font-size:13px;color:var(--encre2)}
 
 @media print{
   .haut,.lat,.voile,.outils-h,.onglets,.btns,.asr-btn,.asr-pan,.asr-voile,#srch,.noprint,.pied{display:none!important}
@@ -380,10 +381,23 @@ tr:last-child td{border-bottom:0}
   html.mo .lat{transition:transform .28s cubic-bezier(.2,.7,.2,1),visibility .28s}
   html.mo .chaine .et.vient{animation:mo-pop .5s cubic-bezier(.2,.9,.3,1.25) both;transform-box:fill-box;transform-origin:50% 0}
   html.mo .chaine .fl.vient{stroke-dasharray:80;animation:mo-trace .5s ease-out both}
-  html.mo .graph .bar{animation:mo-pousse .7s cubic-bezier(.2,.7,.2,1) both;transform-box:fill-box;transform-origin:50% 100%}
+  /* les graphiques se construisent quand ils arrivent à l'écran (classe posée par l'observateur, jamais cachés avant) */
+  html.mo .graph.vu .bar{animation:mo-pousse .7s cubic-bezier(.2,.7,.2,1) both;transform-box:fill-box;transform-origin:50% 100%}
   html.mo .graph .bar.neg{transform-origin:50% 0}
-  html.mo .graph .hb{animation:mo-glisse .7s cubic-bezier(.2,.7,.2,1) both;transform-box:fill-box;transform-origin:0 50%}
-  html.mo .graph .ligne{stroke-dasharray:2000;animation:mo-trace2 1.4s ease-out both}
+  html.mo .graph.vu .hb{animation:mo-glisse .7s cubic-bezier(.2,.7,.2,1) both;transform-box:fill-box;transform-origin:0 50%}
+  html.mo .graph.vu .ligne{stroke-dasharray:2000;animation:mo-trace2 1.4s ease-out both}
+  html.mo .graph.vu .lbv{animation:mo-chiffre .5s ease-out .45s both}
+  html.mo .graph .bulle{animation:mo-fondu .18s ease-out}
+  /* panneaux repliables, recherche, menu, score */
+  html.mo details[open]>:not(summary){animation:mo-deplie .35s cubic-bezier(.2,.7,.2,1)}
+  html.mo details.pli>summary::before{transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+  html.mo details.pli[open]>summary::before{transform:rotate(180deg)}
+  html.mo #srch.on{animation:mo-fondu .22s ease-out}
+  html.mo #srch.on .sbox{animation:mo-entre .35s cubic-bezier(.2,.7,.2,1)}
+  html.mo .voile.on{animation:mo-fondu .25s ease-out}
+  html.mo .score{animation:mo-pop .55s cubic-bezier(.2,.9,.3,1.3)}
+  html.mo .q-carte ul li{animation:mo-entre .4s cubic-bezier(.2,.7,.2,1) both}
+  html.mo .tbl.empile tr{animation:mo-entre .4s cubic-bezier(.2,.7,.2,1) both}
   html.mo .chiffre b{animation:mo-chiffre .6s cubic-bezier(.2,.7,.2,1) both}
   html.mo .fc{transition:transform .5s}
   html.mo .fc.tourne-anim{animation:mo-flip .45s ease-in-out}
@@ -396,6 +410,8 @@ tr:last-child td{border-bottom:0}
   html.mo .qc:hover{transform:translateY(-2px)}
 }
 @keyframes mo-entre{from{opacity:.001;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes mo-deplie{from{opacity:.001;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes mo-fondu{from{opacity:.001}to{opacity:1}}
 @keyframes mo-pop{from{opacity:.001;transform:scale(.92)}to{opacity:1;transform:none}}
 @keyframes mo-trace{from{stroke-dashoffset:80}to{stroke-dashoffset:0}}
 @keyframes mo-trace2{from{stroke-dashoffset:2000}to{stroke-dashoffset:0}}
@@ -451,7 +467,8 @@ tr:last-child td{border-bottom:0}
 .couv-num{position:absolute!important;right:10px;top:-14px;font:900 clamp(110px,30vw,190px)/1 var(--titre);font-stretch:condensed;color:transparent;-webkit-text-stroke:2px color-mix(in srgb,var(--corail) 55%,transparent);letter-spacing:-.04em;pointer-events:none;user-select:none}
 .couv-ic{display:flex;width:54px;height:54px;border-radius:14px;background:var(--corail-t);color:var(--sur-corail);align-items:center;justify-content:center;margin-bottom:12px;box-shadow:0 6px 16px color-mix(in srgb,var(--corail) 35%,transparent)}
 .couv-ic svg{width:32px;height:32px}
-.couv h1{font-size:clamp(32px,8.8vw,52px);font-weight:900;margin:6px 0 12px;line-height:1.04;max-width:16ch}
+.couv h1{font-size:clamp(32px,8.8vw,52px);font-weight:900;margin:6px 0 12px;line-height:1.04;max-width:16ch;overflow-wrap:break-word;hyphens:auto}
+.couv h1.long{font-size:clamp(26px,7.4vw,48px);max-width:18ch}
 .couv .chapo{font:19px/1.5 var(--serif);margin:0 0 4px;max-width:62ch}
 .couv .chapo::first-letter{float:left;font:900 3.3em/.82 var(--titre);color:var(--corail);margin:6px 8px 0 0}
 .pastille.ani{background:var(--corail-t);color:var(--sur-corail);border-color:transparent}
