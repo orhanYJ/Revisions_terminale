@@ -74,7 +74,7 @@ var PROG = [
         "Comprendre comment l’évolution de la structure socioprofessionnelle, les niveaux de formation et les ressources et configurations familiales contribuent à expliquer la mobilité sociale."],
       notions: ["mobilité intergénérationnelle", "mobilité intragénérationnelle (professionnelle)", "mobilité géographique", "table de mobilité", "table de destinée", "table de recrutement", "mobilité observée", "mobilité structurelle", "fluidité sociale", "mobilité ascendante", "mobilité descendante", "reproduction sociale", "déclassement", "ressources et configurations familiales"],
       liens: "L’évolution de la structure socioprofessionnelle (<a href=\"#s1:s1-3\">S1</a>) explique la mobilité structurelle ; l’École et le capital culturel (<a href=\"#s2\">S2</a>) expliquent une partie de la reproduction. Sujet 2026 (jour 2, partie 1) : présenter les intérêts des tables de mobilité." },
-    { id: "s4", code: "S4", court: "Travail et emploi", statut: "bt", ecrit: true,
+    { id: "s4", code: "S4", court: "Travail et emploi", statut: "red", ecrit: true,
       titre: "Quelles mutations du travail et de l’emploi ?",
       objectifs: [
         "Savoir distinguer les notions de travail, activité, statut d’emploi (salarié, non-salarié), chômage ; comprendre que les évolutions des formes d’emploi rendent plus incertaines les frontières entre emploi, chômage et inactivité.",
@@ -104,7 +104,7 @@ var PROG = [
         "Comprendre que l’action des pouvoirs publics en matière de justice sociale (fiscalité, protection sociale, services collectifs, mesures de lutte contre les discriminations) s’exerce sous contrainte de financement et fait l’objet de débats en termes d’efficacité (réduction des inégalités), de légitimité (notamment consentement à l’impôt) et de risque d’effets pervers (désincitations)."],
       notions: ["inégalités économiques et sociales", "caractère multiforme et cumulatif des inégalités", "rapport inter-quantiles", "courbe de Lorenz", "coefficient de Gini", "top 1 %", "corrélation des revenus parents-enfants", "égalité des droits", "égalité des chances", "égalité des situations", "utilitarisme", "libertarisme", "égalitarisme libéral", "égalitarisme strict", "fiscalité", "protection sociale", "services collectifs", "discriminations", "consentement à l’impôt", "désincitations"],
       liens: "Les outils de mesure (déciles, D9/D1, Gini) sont déjà dans la page <a href=\"#outils\">Savoir-faire</a> ; le niveau de vie et ses écarts dans <a href=\"#s1:s1-1\">S1</a>." },
-    { id: "r2", code: "R2", court: "Environnement", statut: "bt", ecrit: true,
+    { id: "r2", code: "R2", court: "Environnement", statut: "red", ecrit: true,
       titre: "Quelle action publique pour l’environnement ?",
       objectifs: [
         "Savoir identifier les différents acteurs (pouvoirs publics, ONG, entreprises, experts, partis, mouvements citoyens) qui participent à la construction des questions environnementales comme problème public et à leur mise à l’agenda politique ; comprendre que ces acteurs entretiennent des relations de coopération et de conflit.",
