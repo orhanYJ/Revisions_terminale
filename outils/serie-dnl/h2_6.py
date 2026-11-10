@@ -10,7 +10,7 @@ chronologique de la carte).
 Contenu : partie III.1 du chapitre dans le site (dnl/index.html, CHAPTERS.H2, neuf idées), la carte du cours
 « Authoritarian expansion in the 1930s » (h2expansion : Rhénanie 1936, Anschluss 1938, Sudètes 1938, guerre d'Espagne,
 Éthiopie 1935-36), le DBQ 1 (H2_DBQ.h2dbq1 : « The Doctrine of Fascism », question a) « How useful », corrigé du site
-résumé ; pas de question b) dans le cours), la grille de synthèse du cours (bloc « International issues », laissé vide
+résumé ; pas de question b) dans le cours), la grille de synthèse de M. Ros (bloc « International issues », laissé vide
 sur le site : proposé ici à partir de la partie III.1), le key issue du chapitre (premier argument, en paragraphe d'essay).
 Ce qui n'est pas dans le cours est dit « outside the course » : le calendrier précis des sanctions de la SDN
 (sanctions votées en octobre 1935, appliquées le 18 novembre ; c'est l'embargo pétrolier qui est débattu jusqu'au
@@ -372,7 +372,7 @@ SCENES = [
                      etape="In Asia, the war had already begun · chapter 3", x=170, y=200, w=940),
     }),
 
-    # ================================================================ XII. la grille du cours
+    # ================================================================ XII. la grille de M. Ros
     dict(id="grille", chap="Filling the grid: international issues", fond="aube", humeur="calme",
          retenir="Will of expansion: Italy → Rome's empire, Libya, Ethiopia · Germany → Lebensraum in the East · Japan → Manchuria, China. Feeling of superiority: the glory of Rome · the master race · the “superior” Asian race.",
          beats=[

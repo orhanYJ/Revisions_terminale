@@ -11,7 +11,7 @@ l'ordre chronologique de la carte).
 Contenu : l'introduction du chapitre dans le site (dnl/index.html, CHAPTERS.H3, section « Intro », tableau des divisions),
 reliée aux chapitres 1 et 2 et aux exemples des parties I à III (chiffres du cours) ; ce qui n'est pas dans le cours est
 dit « outside the course ».
-Retour du responsable du projet sur la première version (8 min) : « rajoute plus de détails, trop résumé » → version longue.
+Retour de Cengiz sur la première version (8 min) : « rajoute plus de détails, trop résumé » → version longue.
 Plan de la série H3 : 1 A world war · 2 The fall of France · 3 Britain alone · 4 Barbarossa · 5 Towards the genocide ·
 6 WWII at the exam (essay and DBQ) · 7 Recap.
 """

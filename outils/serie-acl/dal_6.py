@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 6 : Gerry Evans (PDF de travail, p. 25-37).
 
-Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés, mouvements) :
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
 le résumé est joué sur le plateau (visuel jeu : cuisine et jardin vus ensemble, la scène partagée de Friel), en suivant les
 didascalies pas à pas ; les répliques courtes s'affichent en bulles et sont lues par les voix des personnages.
 L'enfant, « derrière ce buisson » (p. 31), n'est jamais vu : emplacement en pointillé ; Michael adulte n'est pas en scène.

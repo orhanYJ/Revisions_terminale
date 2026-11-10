@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 12 : « The last afternoon » (PDF de travail, p. 64-74).
 
-Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés, mouvements) :
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
 le résumé est joué sur le plateau (visuel jeu), en suivant les didascalies pas à pas ; les répliques courtes s'affichent en
 bulles et sont lues (voix des sœurs, voix d'homme pour Jack et Gerry). Gerry, perché dans le sycomore, est « Off » : on ne le
 voit pas, ses répliques sont en bandeau. Quatre tableaux : le sycomore et le « système » de Jack (p. 64-66) ; « Anything Goes »

@@ -1,6 +1,6 @@
 # Édition française des séries vidéo d'histoire (cahier des charges, 06/11/2026)
 
-Demande du responsable du projet : « une édition en français ; pareil qu'en anglais, la langue change ; tu ne mentionnes plus la DNL
+Demande de Cengiz : « une édition en français ; pareil qu'en anglais, la langue change ; tu ne mentionnes plus la DNL
 mais l'histoire-géo classique ». Une série française par chapitre (H1, H2, H3), à côté de la série anglaise.
 
 ## Fichiers

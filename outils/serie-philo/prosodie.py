@@ -1,4 +1,4 @@
-"""Mesure de l'intonation d'un passage de voix (contrôle du « robotisme », demande du responsable du projet du 06/11/2026).
+"""Mesure de l'intonation d'un passage de voix (contrôle du « robotisme », demande de Cengiz du 06/11/2026).
 
 Trois indicateurs, calculés sur l'audio :
 - relief : écart-type de la hauteur (F0) en demi-tons sur les trames voisées — une voix plate, monocorde, est sous ~2 ;

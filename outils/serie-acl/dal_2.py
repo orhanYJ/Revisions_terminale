@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 2 : un après-midi d'août (PDF de travail, p. 2-9).
 
-Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés sur le plateau) :
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés sur le plateau) :
 l'après-midi est joué pas à pas d'après les didascalies (visuel jeu) : les tâches en silence, le miroir, les chansons
 (« Abyssinia », « De Valera »), les trois secondes des « British Grenadiers » sur Marconi, le secret de Rose
 (Danny Bradley, le charme et la médaille), le tango de Maggie, puis la convention de l'enfant invisible (p. 6 : le garçon

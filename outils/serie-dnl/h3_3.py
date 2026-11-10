@@ -8,7 +8,7 @@ Cartes animées (sc = numéros de scènes dans l'ordre chronologique de la carte
        25 Barbarossa · 26 avance allemande · 30 arrêt devant Moscou · 31 Pearl Harbor · 33 la guerre devient mondiale
   H1 : 26 Neutrality Acts · 32 cash and carry, l'arsenal de la démocratie
 Contenu : les sept idées de la partie I.2 dans le site (dnl/index.html, CHAPTERS.H3), la Worksheet 2 (H3WS2 : documents,
-tableau qui / quand / à qui / pour quoi, bilan — réponse proposée par le site, pas un corrigé officiel), la frise et les
+tableau qui / quand / à qui / pour quoi, bilan — réponse proposée par le site, pas un corrigé de M. Ros), la frise et les
 chiffres du chapitre, le point « 43 000 civils » de H3Check ; rappels du chapitre 1 (Neutrality Acts, cash and carry).
 Hors cours, dit comme tel : Lend-Lease (mars 1941), opération Sea Lion, bataille d'Angleterre.
 La question de DBQ et sa copie modèle sont écrites pour la vidéo et dites comme telles.

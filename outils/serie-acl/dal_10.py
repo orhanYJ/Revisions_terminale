@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 10 : « Rose goes missing » (PDF de travail, p. 58-62).
 
-Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés, mouvements) :
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
 le résumé est joué sur le plateau (visuel jeu), en suivant les didascalies pas à pas ; les répliques courtes s'affichent en
 bulles et sont lues par la voix des sœurs. Le retour de Rose suit la grande didascalie de la p. 60 (Chris et Kate à la
 fenêtre, Maggie et Agnes à la porte, Rose qui traverse lentement le jardin, s'arrête près des bidons) ; ce que le moteur ne

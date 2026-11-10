@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 1 : le monologue d'ouverture (PDF de travail, p. 1-2).
 
-Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés sur le plateau) :
+Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés sur le plateau) :
 la didascalie d'ouverture est jouée pas à pas (visuel jeu : Michael seul dans un cercle de lumière, puis le tableau figé,
 chacun à la place que donne le texte : Maggie à la fenêtre, Chris à la porte, Kate à l'extrême droite du plateau, Rose et
 Gerry sur le banc du jardin, Jack à côté de Rose, Agnes au fond à gauche) ; Jack porte l'uniforme blanc d'aumônier

@@ -1,7 +1,7 @@
 """Voix de la série par clonage local (Qwen3-TTS, modèle Base, licence Apache 2.0, gratuit et sans limite).
 
 Chaque voix part d'un court enregistrement de référence (voix_ref/*.wav, voix de synthèse créées pour la série,
-choisies par le responsable du projet le 30/10/2026) : le timbre reste exactement le même d'un passage et d'un épisode à l'autre.
+choisies par Cengiz le 30/10/2026) : le timbre reste exactement le même d'un passage et d'un épisode à l'autre.
 Le modèle ne donne pas l'instant des mots : la reconnaissance vocale (faster-whisper) les retrouve, puis on les
 recale sur le texte lu. Un passage mal dit (transcription trop éloignée du texte) est refait avec une autre graine.
 
@@ -109,7 +109,7 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
     m = _charger()
     p = _prompt(voix)
     # Chaque prise est jugée sur deux plans : la justesse (reconnaissance vocale) et l'intonation (prosodie.py :
-    # une prise monocorde est refaite, demande du responsable du projet du 06/11/2026 : « une voix naturelle, des intonations,
+    # une prise monocorde est refaite, demande de Cengiz du 06/11/2026 : « une voix naturelle, des intonations,
     # moins de robotisme »). On garde la prise juste la plus vivante ; au plus quatre prises.
     import prosodie
     meilleur = None

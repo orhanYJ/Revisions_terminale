@@ -6,7 +6,7 @@ Carte animée H1 (dnl/cartes/H1.html), numéros de scènes dans l'ordre chronolo
   26 Neutrality Acts et Panay · 27 Éthiopie · 28 Migrant Mother · 29 Rhénanie · 30 Anschluss et Munich · 31 Prague puis Pologne
 Contenu : le format des épreuves (écrit coeff. 10, 4 h, sujet A ou B ; oral : Key Issue et Key Term tirés en croisant
 histoire et géographie), les sujets du chapitre dans le site (champ `exam` de H1 : causes du krach, Smoot-Hawley, les deux
-Key Issues ; `H1_ESSAY_CARDS`), la structure de la question a) du DBQ imposée par le responsable du projet (jugement dès la première ligne,
+Key Issues ; `H1_ESSAY_CARDS`), la structure de la question a) du DBQ imposée par Cengiz (jugement dès la première ligne,
 document en une phrase, paragraphe d'atouts, paragraphe de limites), les documents du cours (Worksheet 3 : source 2,
 graphique du chômage allemand, et source 5, mémoires de Melita Maschmann, 1963 ; Migrant Mother de Lange, 1936 ;
 « The Doormat » de David Low, 1933, décrit et non montré), les deux Key Terms. La question « Explain » et les copies

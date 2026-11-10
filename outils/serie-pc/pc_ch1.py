@@ -24,7 +24,7 @@ def fr(a, b):
 
 
 # ---------------------------------------------------------------- données
-# TP 1 (mesures d'un élève, site) : x = −log c, y = pH mesuré ; quotients |écart| / 0,1 = 5,3 · 4,0 · 2,6 · 0,4 · 1,6 · 6,6
+# TP 1 (mesures d'Orhan, site) : x = −log c, y = pH mesuré ; quotients |écart| / 0,1 = 5,3 · 4,0 · 2,6 · 0,4 · 1,6 · 6,6
 TP1 = [(0, 0.53), (1, 1.40), (2, 2.26), (3, 3.04), (4, 4.16), (5, 5.66)]
 
 H3O = "H_3O^{+}"
