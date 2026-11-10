@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>L’Heure bleue — HLP Terminale</title>
+<title>Ex libris — HLP Terminale</title>
 <meta name="description" content="Réviser la spécialité Humanités, littérature et philosophie en Terminale : cours, textes clés, sujets type bac corrigés, méthode de l’épreuve.">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#11172a">
+<meta name="theme-color" content="#f1e7d0">
+<link rel="preload" href="polices/ebg.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="polices/titrage.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
@@ -375,6 +377,251 @@ table.t th{font-family:var(--ui);font-size:.74rem;letter-spacing:.08em;text-tran
   html.mo .fc .face{transition:transform .5s cubic-bezier(.3,.7,.3,1)}
 }
 
+/* ===== Identité « Ex libris » : livre ancien, papier vergé, encre ferro-gallique, rubrication ===== */
+@font-face{font-family:"Exlibris Texte";src:url(polices/ebg.woff2) format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Exlibris Texte";src:url(polices/ebg-it.woff2) format("woff2");font-weight:400 700;font-style:italic;font-display:swap}
+@font-face{font-family:"Exlibris Titrage";src:url(polices/titrage.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+:root{
+  --fond:#f1e7d0; --surface:#f7efdd; --surface2:#e9dcbd; --encre:#2b1c11; --encre2:#6a5440;
+  --cuivre:#9c2a1b; --cuivre2:#b8432e; --rose:#8a4a2b; --brume:#34496a; --or:#a57627; --filet:#d6c39b; --filet2:#b99e6c;
+  --voile:rgba(43,28,17,.45); --ombre:0 1px 0 rgba(255,250,235,.7) inset,0 1px 2px rgba(70,45,15,.08),0 6px 18px rgba(70,45,15,.08);
+  --t-m1:rgba(52,73,106,.16); --t-m2:rgba(156,42,27,.14); --t-m3:rgba(165,118,39,.2);
+  --serif:"Exlibris Texte","EB Garamond",Garamond,"Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --titre:"Exlibris Titrage","IM Fell English","Exlibris Texte",Garamond,Georgia,serif;
+  --ui:"Exlibris Texte","EB Garamond",Garamond,Georgia,serif;
+  --papier:repeating-linear-gradient(0deg,rgba(95,62,22,.032) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(95,62,22,.045) 0 1px,transparent 1px 36px);
+  --lueur:radial-gradient(120% 70% at 50% 0%,rgba(255,251,240,.55),transparent 70%),radial-gradient(90% 60% at 50% 120%,rgba(120,78,25,.13),transparent 70%);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --fond:#17110b; --surface:#21180f; --surface2:#2c2015; --encre:#eadabb; --encre2:#b9a383;
+    --cuivre:#e28666; --cuivre2:#efa285; --rose:#d9a37a; --brume:#a7b8d3; --or:#d8aa55; --filet:rgba(234,218,187,.13); --filet2:rgba(234,218,187,.26);
+    --voile:rgba(6,4,2,.66); --ombre:0 1px 2px rgba(0,0,0,.35),0 10px 26px rgba(0,0,0,.32);
+    --t-m1:rgba(167,184,211,.16); --t-m2:rgba(226,134,102,.16); --t-m3:rgba(216,170,85,.2);
+    --papier:repeating-linear-gradient(0deg,rgba(255,220,160,.016) 0 1px,transparent 1px 3px);
+    --lueur:radial-gradient(70% 55% at 50% -8%,rgba(255,176,92,.16),transparent 70%),radial-gradient(60% 50% at 50% 115%,rgba(255,150,70,.05),transparent 70%);
+  }
+}
+:root[data-theme="dark"]{
+  --fond:#17110b; --surface:#21180f; --surface2:#2c2015; --encre:#eadabb; --encre2:#b9a383;
+  --cuivre:#e28666; --cuivre2:#efa285; --rose:#d9a37a; --brume:#a7b8d3; --or:#d8aa55; --filet:rgba(234,218,187,.13); --filet2:rgba(234,218,187,.26);
+  --voile:rgba(6,4,2,.66); --ombre:0 1px 2px rgba(0,0,0,.35),0 10px 26px rgba(0,0,0,.32);
+  --t-m1:rgba(167,184,211,.16); --t-m2:rgba(226,134,102,.16); --t-m3:rgba(216,170,85,.2);
+  --papier:repeating-linear-gradient(0deg,rgba(255,220,160,.016) 0 1px,transparent 1px 3px);
+  --lueur:radial-gradient(70% 55% at 50% -8%,rgba(255,176,92,.16),transparent 70%),radial-gradient(60% 50% at 50% 115%,rgba(255,150,70,.05),transparent 70%);
+}
+body{font-size:19px;line-height:1.58;background-color:var(--fond);background-image:var(--lueur),var(--papier);background-attachment:scroll;font-feature-settings:"kern","liga","onum";hyphens:auto;-webkit-hyphens:auto}
+h1,h2,h3{font-family:var(--titre);font-weight:400;letter-spacing:.005em}
+h2{font-size:1.75rem} h3{font-size:1.32rem}
+h4{font-family:var(--serif)}
+.pc,.surtitre,.menu h6,.tag,.onglets a,.btn,.puce-f,table.t th,.ex b.l,.cle b.l,.attention b.l,.plus b.l,.texte .corps h4,.note-a h4,.sujet .q b,.sujet .en-tete-bac,.marque small,.menu .m-tete small{
+  font-family:var(--serif);font-variant:small-caps;text-transform:lowercase;letter-spacing:.09em;font-weight:500}
+.surtitre{color:var(--cuivre);font-size:.92rem}
+a{color:var(--cuivre)}
+::selection{background:var(--t-m2)}
+.sch-txt,.sch-txt2{font-family:var(--serif)}
+
+/* ---------- en-tête et menu : table des matières ---------- */
+.tete{background:color-mix(in srgb,var(--fond) 90%,transparent);border-bottom:0;box-shadow:0 1px 0 var(--filet2),0 4px 0 -1px var(--fond),0 4px 0 0 var(--filet2)}
+.marque b{font-family:var(--titre);font-size:1.45rem;letter-spacing:.01em}
+.marque small{font-size:.78rem;letter-spacing:.12em}
+.menu{background:var(--surface);background-image:var(--papier);border-right:0;box-shadow:inset -1px 0 0 var(--filet2),inset -5px 0 0 var(--surface),inset -6px 0 0 var(--filet2)}
+.menu .m-tete{border-bottom:3px double var(--filet2)}
+.menu .m-tete b{font-family:var(--titre);font-size:1.6rem}
+.menu h6{color:var(--cuivre);font-size:.84rem;margin-top:20px}
+.menu a{font-size:1.02rem;border-radius:2px}
+.menu a .num{font-family:var(--titre);color:var(--cuivre)}
+.menu a.actif{background:transparent;box-shadow:none;color:var(--cuivre)}
+.menu a .bientot{hyphens:none;-webkit-hyphens:none;white-space:nowrap;font-family:var(--serif);font-variant:small-caps;text-transform:lowercase;font-size:.78rem;border-radius:2px}
+
+/* ---------- titres de page : rubrique, paraphe ---------- */
+.page-entete{padding:30px 0 10px;text-align:center;border-bottom:0}
+.page-entete h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.08}
+.page-entete .chapo{margin:0 auto;max-width:38rem;font-size:1.12rem}
+.paraphe{display:block;width:min(320px,80%);height:34px;margin:2px auto 10px;color:var(--cuivre);overflow:visible}
+.paraphe path{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
+.paraphe .plume{fill:var(--encre);stroke:none;opacity:0}
+.orn{color:var(--cuivre);margin:26px auto}
+.orn::before,.orn::after{height:3px;background:none;border-top:1px solid var(--filet2);border-bottom:1px solid var(--filet2);opacity:.9}
+.orn svg{width:86px;height:22px}
+.cul{display:block;width:120px;height:46px;margin:34px auto 6px;color:var(--cuivre);opacity:.85}
+
+/* lettrine enluminée */
+.lettrine::first-letter{all:unset}
+.lettre{float:left;font-family:var(--titre);font-size:3.6em;line-height:.9;color:var(--cuivre);margin:.06em .14em -.05em 0;padding:.1em .12em .04em;
+  border:1px solid var(--or);outline:1px solid var(--or);outline-offset:2px;
+  background:radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--or) 22%,transparent),transparent 60%),repeating-linear-gradient(45deg,color-mix(in srgb,var(--or) 14%,transparent) 0 1px,transparent 1px 5px)}
+
+/* ---------- onglets : signets ---------- */
+.onglets{background:color-mix(in srgb,var(--fond) 94%,transparent);border-bottom:3px double var(--filet2)}
+.onglets a{font-size:1rem;color:var(--encre2)}
+.onglets a.actif{color:var(--cuivre);border-bottom:2px solid var(--cuivre)}
+
+/* ---------- encadrés : gloses, notes en marge, nota bene ---------- */
+.essentiel{border-radius:0;background:var(--surface);border:1px solid var(--filet2);box-shadow:inset 0 0 0 4px var(--surface),inset 0 0 0 5px var(--filet)}
+.essentiel h2{font-family:var(--titre);font-style:normal;color:var(--cuivre);text-align:center;font-size:1.3rem}
+.essentiel li::marker{color:var(--cuivre);font-family:var(--titre)}
+.cadre-prog{border:1px solid var(--filet2);border-radius:0;box-shadow:inset 0 0 0 3px var(--fond),inset 0 0 0 4px var(--filet)}
+.cadre-prog h3{font-family:var(--titre);font-weight:400;font-size:1.15rem;color:var(--cuivre)}
+.idee>h3 .n{font-family:var(--titre);color:var(--cuivre)}
+.idee>h3{font-size:1.38rem}
+.ex{border-left:0;background:transparent;border-radius:0;padding:4px 0 4px 34px;position:relative;font-size:.95em}
+.ex::before{content:"";position:absolute;left:0;top:6px;width:26px;height:16px;background:currentColor;color:var(--cuivre);
+  -webkit-mask:var(--manicule) no-repeat center/contain;mask:var(--manicule) no-repeat center/contain}
+:root{--manicule:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 32'%3E%3Cpath d='M2 12h22c2 0 3-3 0-3H16c-2 0-1-5 2-5h9c5 0 8 3 10 6l6 1c4 0 7 3 7 7s-3 7-7 7h-4c-2 3-5 4-9 4h-6c-3 0-3-3 0-3h-3c-3 0-3-3 0-3h-2c-3 0-3-3 0-3h3c-3 0-3-3 0-3H2c-2 0-2-5 0-5z'/%3E%3C/svg%3E")}
+.ex b.l{color:var(--cuivre)}
+.cle{border-left:0;background:transparent;border-radius:0;padding:10px 16px;border-top:1px solid var(--filet2);border-bottom:1px solid var(--filet2);box-shadow:0 3px 0 -2px var(--filet2),0 -3px 0 -2px var(--filet2)}
+.cle b.l{color:var(--brume)}
+.attention{border:1px solid var(--cuivre);border-radius:0;background:color-mix(in srgb,var(--cuivre) 5%,transparent)}
+.attention b.l{color:var(--cuivre)}
+.plus{border:1px dashed var(--filet2);border-radius:0;background:transparent}
+.plus b.l{color:var(--or)}
+.carte,.qcm,.qui-c,.notion,.texte,.sujet,.schema,.anim,.entree-c,details.pli,.acces a,.evt{border-radius:2px}
+.carte,.qcm,.qui-c,.texte,.sujet{box-shadow:inset 0 0 0 4px var(--surface),inset 0 0 0 5px var(--filet),var(--ombre)}
+blockquote{border-left:0;padding-left:1.4em;position:relative}
+blockquote::before{content:"";position:absolute;left:0;top:.2em;bottom:.2em;width:4px;border-left:1px solid var(--cuivre);border-right:1px solid var(--cuivre)}
+.texte .extrait{background:transparent;font-size:1.06rem;border-bottom:1px solid var(--filet)}
+.texte header h3{font-family:var(--titre)}
+.ref{font-family:var(--serif);font-style:italic;font-size:.9rem}
+details.pli>summary{font-family:var(--serif);font-weight:600}
+details.pli>summary::after{border-color:var(--cuivre)}
+.btn{border-radius:2px;font-size:1.02rem;border-color:var(--filet2)}
+.btn.plein{background:var(--cuivre);border-color:var(--cuivre);color:var(--surface)}
+.btn.plein:hover{background:var(--encre);border-color:var(--encre);color:var(--fond)}
+.puce-f{border-radius:2px;font-size:.98rem}
+.puce-f[aria-pressed="true"]{background:var(--cuivre);border-color:var(--cuivre);color:var(--surface)}
+.champ{border-radius:2px;font-family:var(--serif);font-size:17px}
+table.t{background:transparent}
+table.t th{background:transparent;border-bottom:3px double var(--filet2);color:var(--cuivre)}
+.tag{border-radius:2px;font-size:.82rem;hyphens:none;-webkit-hyphens:none}
+.tag.e1{color:var(--brume);border-color:var(--brume)} .tag.e2{color:var(--cuivre);border-color:var(--cuivre)} .tag.e3{color:var(--or);border-color:var(--or)}
+.qcm .question,.qui-c blockquote{font-family:var(--titre)}
+.qcm .choix button,.qui-c .choix button{border-radius:2px;font-family:var(--serif);font-size:1.05rem;background:var(--surface)}
+.qcm .barre i,.anim-prog i{background:var(--cuivre)}
+.score{font-family:var(--titre)}
+.fc .face{border-radius:3px;border:1px solid var(--filet2);box-shadow:inset 0 0 0 5px var(--surface),inset 0 0 0 6px var(--filet),var(--ombre);font-size:1.18rem}
+.fc .verso{box-shadow:inset 0 0 0 5px var(--surface2),inset 0 0 0 6px var(--filet),var(--ombre)}
+.fc .face small{color:var(--cuivre)}
+
+/* ---------- frontispice (accueil) ---------- */
+.ciel{display:none}
+.frontispice{position:relative;margin:22px auto 6px;max-width:640px;padding:30px 22px 26px;text-align:center;border:2px solid var(--encre);outline:1px solid var(--encre);outline-offset:-8px;background:var(--surface);background-image:var(--papier)}
+.frontispice .coin{position:absolute;width:30px;height:30px;color:var(--cuivre)}
+.frontispice .coin.a{top:10px;left:10px}.frontispice .coin.b{top:10px;right:10px;transform:scaleX(-1)}.frontispice .coin.c{bottom:10px;left:10px;transform:scaleY(-1)}.frontispice .coin.d{bottom:10px;right:10px;transform:scale(-1)}
+.frontispice .f-haut{font-variant:small-caps;text-transform:lowercase;letter-spacing:.2em;color:var(--cuivre);font-size:.98rem;margin:6px 0 2px}
+.frontispice h1{font-family:var(--titre);font-size:clamp(3rem,15vw,5rem);line-height:.95;margin:.08em 0 .05em;letter-spacing:.02em}
+.frontispice .f-sous{font-style:italic;font-size:1.12rem;color:var(--encre2);margin:.2em auto .6em;max-width:28rem}
+.frontispice .embleme{display:block;width:150px;height:126px;margin:8px auto 4px;color:var(--encre)}
+.frontispice .f-imp{border-top:1px solid var(--encre);border-bottom:1px solid var(--encre);display:inline-block;padding:3px 14px;letter-spacing:.16em;font-variant:small-caps;text-transform:lowercase;font-size:.95rem;margin:8px 0 14px}
+.frontispice .rang{justify-content:center}
+.flamme{transform-origin:50% 100%}
+
+/* ---------- cartes d'entrées ---------- */
+.entree-c{background:var(--surface);box-shadow:inset 0 0 0 4px var(--surface),inset 0 0 0 5px var(--filet),var(--ombre)}
+.entree-c h3{font-family:var(--titre)}
+.entree-c.bientot{box-shadow:none;background:transparent}
+.acces a{box-shadow:inset 0 0 0 3px var(--surface),inset 0 0 0 4px var(--filet)}
+.acces a b{font-family:var(--titre)}
+.semestre>h2{justify-content:center;text-align:center;flex-direction:column;align-items:center;gap:2px}
+
+/* ---------- folio et réclame ---------- */
+.folio{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:40px 0 0;padding-top:10px;border-top:1px solid var(--filet2)}
+.folio .num-p{font-family:var(--titre);color:var(--encre2);letter-spacing:.1em}
+.folio .reclame{font-style:italic;text-align:right;text-decoration:none;max-width:70%}
+.folio .reclame::after{content:" →"}
+.pied{font-family:var(--serif);font-size:.86rem;text-align:center;border-top:3px double var(--filet2)}
+
+/* ---------- notes en marge (grand écran) ---------- */
+@media(min-width:1380px){
+  main{max-width:1180px}
+  .idee .ex,.idee .plus{float:right;clear:right;width:15.5rem;margin:.2em -18rem .8em 1.2rem;font-size:.86rem;line-height:1.45;padding:6px 0 6px 0;border-top:1px solid var(--filet2)}
+  .idee .ex::before{position:static;display:block;margin-bottom:4px}
+  .idee .plus{border:0;border-top:1px dashed var(--filet2)}
+  .lecture{max-width:42rem}
+  .idee::after{content:"";display:block;clear:both}
+}
+
+/* ---------- animations explicatives ---------- */
+.anim{margin:22px 0;background:var(--surface);border:1px solid var(--filet2);box-shadow:inset 0 0 0 4px var(--surface),inset 0 0 0 5px var(--filet),var(--ombre);padding:14px 14px 12px}
+.anim-tete{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-bottom:8px}
+.anim-tete b{font-family:var(--titre);font-weight:400;font-size:1.2rem}
+.anim-tag{font-variant:small-caps;text-transform:lowercase;letter-spacing:.1em;color:var(--fond);background:var(--cuivre);padding:0 8px;font-size:.88rem}
+.anim-scene{overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:1px solid var(--filet);border-bottom:1px solid var(--filet);padding:8px 0}
+.anim-texte .anim-scene,.anim-texte{max-height:none}
+.anim.anim-texte .anim-scene{max-height:420px;overflow-y:auto}
+.anim-texte{font-size:1.06rem;line-height:1.9;padding:4px 6px}
+.a-seg{border-radius:2px;transition:background .5s,color .5s,opacity .5s}
+.a-seg.vu[data-m="1"]{background:var(--t-m1)} .a-seg.vu[data-m="2"]{background:var(--t-m2)} .a-seg.vu[data-m="3"]{background:var(--t-m3)}
+.a-seg.neuf{box-shadow:0 2px 0 var(--cuivre);color:var(--encre)}
+.anim.en-cours .a-seg.avenir{opacity:.38}
+.a-seg.a-plain.vu,.a-seg.a-plain.neuf{background:none!important;box-shadow:none!important}
+.a-svg{display:block;width:100%;height:auto;margin:0 auto}
+.a-noeud rect{fill:var(--surface);stroke:var(--filet2);stroke-width:1.2}
+.a-noeud text{font-family:var(--serif);font-size:14.5px;fill:var(--encre)}
+.a-noeud .a-nt{font-weight:600}
+.a-noeud.these rect{stroke:var(--cuivre);stroke-width:1.6;fill:color-mix(in srgb,var(--cuivre) 7%,var(--surface))}
+.a-noeud.obj rect{stroke:var(--brume);stroke-dasharray:5 3}
+.a-noeud.ex rect{fill:color-mix(in srgb,var(--or) 10%,var(--surface));stroke:var(--or)}
+.a-noeud.ex text{font-style:italic}
+.a-noeud.concl rect{fill:color-mix(in srgb,var(--cuivre) 14%,var(--surface));stroke:var(--cuivre);stroke-width:2}
+.a-lien .a-trait{fill:none;stroke:var(--encre2);stroke-width:1.4}
+.a-lien.contre .a-trait{stroke:var(--brume);stroke-dasharray:6 4}
+.a-pointe{fill:var(--encre2)}
+.a-lt{font-family:var(--serif);font-style:italic;font-size:13px;fill:var(--cuivre)}
+.a-el.neuf rect{stroke:var(--cuivre);stroke-width:2.4}
+.anim.en-cours .a-el.avenir{opacity:0}
+.a-el{transition:opacity .6s}
+.a-axe{stroke:var(--encre);stroke-width:1.6}
+.a-grad line{stroke:var(--encre2)} .a-grad text{font-family:var(--serif);font-size:13px;fill:var(--encre2)}
+.a-per rect{stroke:none} .a-per text{font-family:var(--titre);font-size:15px;fill:var(--encre)}
+.a-per.p0 rect{fill:var(--t-m1)} .a-per.p1 rect{fill:var(--t-m2)} .a-per.p2 rect{fill:var(--t-m3)} .a-per.p3 rect{fill:color-mix(in srgb,var(--encre) 10%,transparent)}
+.a-evt line{stroke:var(--filet2)} .a-evt circle{fill:var(--cuivre)} .a-evt text{font-family:var(--serif);font-size:13px;fill:var(--encre)}
+.a-el.neuf.a-evt text{fill:var(--cuivre);font-weight:600}
+.a-curseur line{stroke:var(--cuivre);stroke-width:1.5;stroke-dasharray:3 3} .a-curseur path{fill:var(--cuivre)}
+.anim-legende{display:flex;gap:10px;align-items:baseline;min-height:4.6em;padding:10px 4px 4px}
+.anim-legende p{margin:0;font-size:1rem}
+.anim-legende p b{color:var(--cuivre);font-weight:600}
+.anim-n{flex:none;font-variant:small-caps;text-transform:lowercase;letter-spacing:.08em;color:var(--encre2);font-size:.9rem;min-width:5.6em}
+.anim-cmd{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:6px}
+.anim-cmd button{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--filet2);background:var(--fond);color:var(--encre);cursor:pointer;border-radius:2px;font-family:var(--serif);font-size:1rem}
+.anim-cmd button svg{width:16px;height:16px}
+.anim-cmd .anim-lire{background:var(--cuivre);border-color:var(--cuivre);color:var(--surface);padding:0 16px}
+.anim-prog{flex:1;min-width:60px;height:3px;background:var(--filet)}
+.anim-prog i{display:block;height:100%;width:0;transition:width .4s}
+
+/* ---------- impression ---------- */
+@media print{
+  body{background:#fff!important;background-image:none!important;font-size:11.5pt}
+  .lettre{border-color:#999;outline-color:#999;background:none}
+  .paraphe,.cul,.folio,.anim-cmd{display:none!important}
+}
+
+/* ---------- mouvement : page qui se tourne, encre, enluminure, plume ---------- */
+@media (prefers-reduced-motion:no-preference){
+  html.mo main.tourne{animation:tourne .7s cubic-bezier(.25,.75,.3,1) both;transform-origin:0 50%}
+  @keyframes tourne{from{transform:perspective(1600px) rotateY(10deg);opacity:.15}to{transform:none;opacity:1}}
+  html.mo main.tourne::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;background:linear-gradient(90deg,transparent 0%,rgba(80,50,20,.16) 48%,transparent 56%);animation:ombre-page .7s ease-out both}
+  @keyframes ombre-page{from{transform:translateX(-60%);opacity:1}to{transform:translateX(70%);opacity:0}}
+  html.mo .entre>*{animation:encre .55s ease both}
+  @keyframes encre{from{opacity:0;filter:blur(2.2px);transform:translateY(5px)}to{opacity:1;filter:none;transform:none}}
+  html.mo .lettre{animation:enlumine 1.6s ease .25s both}
+  @keyframes enlumine{0%{color:var(--encre);border-color:transparent;outline-color:transparent;background-size:0 0}60%{color:var(--cuivre)}100%{color:var(--cuivre)}}
+  html.mo .paraphe .trait{stroke-dasharray:420;animation:plume-trace 1.6s cubic-bezier(.5,.1,.3,1) .2s both}
+  @keyframes plume-trace{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
+  html.mo .paraphe .plume{offset-path:path("M8 22 C 60 2, 90 34, 140 18 S 230 4, 270 20 S 300 26, 312 14");offset-rotate:0deg;animation:plume-va 1.6s cubic-bezier(.5,.1,.3,1) .2s both}
+  @keyframes plume-va{0%{offset-distance:0%;opacity:1}88%{opacity:1}100%{offset-distance:100%;opacity:0}}
+  html.mo .flamme{animation:vacille 2.6s ease-in-out infinite}
+  @keyframes vacille{0%,100%{transform:scale(1,1) rotate(0)}30%{transform:scale(.94,1.06) rotate(-3deg)}60%{transform:scale(1.04,.96) rotate(2deg)}}
+  html.mo .frontispice .embleme .grave{stroke-dasharray:600;animation:plume-trace 2.4s ease .1s both}
+  html.mo .a-el.neuf{animation:encre .7s ease both}
+  html.mo .a-el.neuf .a-trait{stroke-dasharray:600;animation:plume-trace 1s ease both}
+  html.mo .a-seg.neuf{animation:surgit .6s ease both}
+  @keyframes surgit{from{background-size:0 100%;box-shadow:0 2px 0 transparent}to{box-shadow:0 2px 0 var(--cuivre)}}
+  html.mo .a-curseur{transition:transform .9s cubic-bezier(.4,.1,.2,1)}
+  html.mo .anim-cmd button:active{transform:translateY(1px)}
+  html.mo .fc:hover .face{box-shadow:inset 0 0 0 5px var(--surface),inset 0 0 0 6px var(--filet2),0 12px 28px rgba(60,35,10,.16)}
+}
+
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
 <script src="assistant.js?v=9" defer></script>
@@ -383,7 +630,7 @@ table.t th{font-family:var(--ui);font-size:.74rem;letter-spacing:.08em;text-tran
 <body>
 <header class="tete">
   <button class="ico ouvre-menu" id="btn-menu" aria-label="Menu" aria-expanded="false" aria-controls="menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h11M4 17h16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
-  <a class="marque" href="#accueil"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#1c2550"/><circle cx="20" cy="20" r="19" fill="none" stroke="#c98d5e" stroke-width="1"/><path d="M25.5 9.5a8.5 8.5 0 1 0 5.2 12.2a7 7 0 0 1-5.2-12.2z" fill="#f2dcc4"/><circle cx="12" cy="11" r="1" fill="#f2dcc4"/><circle cx="31" cy="12" r=".7" fill="#f2dcc4"/><path d="M9 29.5c3.6-1.6 7.4-1.6 11 0c3.6-1.6 7.4-1.6 11 0M20 29.5v-4" fill="none" stroke="#d69c6b" stroke-width="1.3" stroke-linecap="round"/></svg><span class="m-txt"><b>L’Heure bleue</b><small>HLP · Terminale</small></span></a>
+  <a class="marque" href="#accueil"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="2" fill="#f4ead3" stroke="#9c2a1b" stroke-width="1.5"/><rect x="5.5" y="5.5" width="29" height="29" fill="none" stroke="#9c2a1b" stroke-width=".7"/><path d="M9 25.5c3.8-1.9 7.4-1.9 11 0c3.6-1.9 7.2-1.9 11 0v5.5c-3.8-1.9-7.4-1.9-11 0c-3.6-1.9-7.2-1.9-11 0z" fill="none" stroke="#2b1c11" stroke-width="1.2" stroke-linejoin="round"/><path d="M20 25.5v5.5" stroke="#2b1c11" stroke-width="1"/><path d="M28.5 8.5c-4.2 3-6.6 8-7.2 14.5c2.3-4.2 5.6-8.4 7.2-14.5z" fill="#2b1c11"/><path d="M21.3 23l-1 2.2" stroke="#2b1c11" stroke-width="1"/><circle cx="12" cy="11" r="1.1" fill="#9c2a1b"/><circle cx="15" cy="15" r=".8" fill="#9c2a1b"/></svg><span class="m-txt"><b>Ex libris</b><small>HLP · Terminale</small></span></a>
   <button class="ico" id="btn-cherche" aria-label="Rechercher (Ctrl+K)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
   <button class="ico" id="btn-theme" aria-label="Basculer clair ou sombre"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></button>
 </header>
@@ -410,18 +657,28 @@ window.HLP = { ENTREES: [] };
     eclipse: '<circle cx="12" cy="12" r="8"' + s + '/><path d="M12 4a8 8 0 0 1 0 16a5.5 5.5 0 0 0 0-16z" fill="currentColor" opacity=".35"/>',
     imprimer: '<path d="M7 9V3.5h10V9M7 17H4.5v-7.5h15V17H17M7 14h10v6.5H7z"' + s + '/>'
   };
-  H.LOGO = '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#1c2550"/><circle cx="20" cy="20" r="19" fill="none" stroke="#c98d5e" stroke-width="1"/>' +
-    '<path d="M25.5 9.5a8.5 8.5 0 1 0 5.2 12.2a7 7 0 0 1-5.2-12.2z" fill="#f2dcc4"/><circle cx="12" cy="11" r="1" fill="#f2dcc4"/><circle cx="31" cy="12" r=".7" fill="#f2dcc4"/>' +
-    '<path d="M9 29.5c3.6-1.6 7.4-1.6 11 0c3.6-1.6 7.4-1.6 11 0M20 29.5v-4" fill="none" stroke="#d69c6b" stroke-width="1.3" stroke-linecap="round"/></svg>';
-  H.CIEL = '<svg class="decor" viewBox="0 0 800 340" preserveAspectRatio="xMaxYMin slice" aria-hidden="true">' +
-    '<defs><radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3dc" stop-opacity=".55"/><stop offset="1" stop-color="#fff3dc" stop-opacity="0"/></radialGradient></defs>' +
-    '<g fill="#fff6e4"><circle class="etoile" cx="80" cy="60" r="1.3"/><circle class="etoile" style="animation-delay:1.2s" cx="160" cy="120" r=".9"/><circle class="etoile" style="animation-delay:2.1s" cx="250" cy="40" r="1.1"/>' +
-    '<circle class="etoile" style="animation-delay:.6s" cx="380" cy="90" r=".8"/><circle class="etoile" style="animation-delay:2.8s" cx="470" cy="30" r="1.2"/><circle class="etoile" style="animation-delay:1.7s" cx="720" cy="150" r=".9"/>' +
-    '<circle class="etoile" style="animation-delay:3.2s" cx="560" cy="110" r=".8"/><circle class="etoile" style="animation-delay:.3s" cx="760" cy="40" r="1"/><circle class="etoile" style="animation-delay:2.4s" cx="330" cy="160" r=".7"/></g>' +
-    '<g class="lune"><circle class="halo" cx="640" cy="92" r="88" fill="url(#halo)"/><path d="M652 52a42 42 0 1 0 26 60a34 34 0 0 1-26-60z" fill="#f6ead2"/></g>' +
-    '<path d="M0 300 C120 270 220 286 330 276 C450 264 560 290 680 272 C740 264 780 270 800 268 V340 H0Z" fill="#141a33" opacity=".55"/>' +
-    '<path d="M0 322 C160 300 300 318 430 306 C560 296 680 318 800 304 V340 H0Z" fill="#0d1226" opacity=".7"/>' +
-    '<g fill="none" stroke="#f3e2c8" stroke-opacity=".35" stroke-width="1"><path d="M560 340 V214 A90 90 0 0 1 740 214 V340"/><path d="M650 124 V340 M560 250 H740"/></g></svg>';
+  H.LOGO = '<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="2" fill="#f4ead3" stroke="#9c2a1b" stroke-width="1.5"/>' +
+    '<rect x="5.5" y="5.5" width="29" height="29" fill="none" stroke="#9c2a1b" stroke-width=".7"/>' +
+    '<path d="M9 25.5c3.8-1.9 7.4-1.9 11 0c3.6-1.9 7.2-1.9 11 0v5.5c-3.8-1.9-7.4-1.9-11 0c-3.6-1.9-7.2-1.9-11 0z" fill="none" stroke="#2b1c11" stroke-width="1.2" stroke-linejoin="round"/>' +
+    '<path d="M20 25.5v5.5" stroke="#2b1c11" stroke-width="1"/><path d="M28.5 8.5c-4.2 3-6.6 8-7.2 14.5c2.3-4.2 5.6-8.4 7.2-14.5z" fill="#2b1c11"/><path d="M21.3 23l-1 2.2" stroke="#2b1c11" stroke-width="1"/>' +
+    '<circle cx="12" cy="11" r="1.1" fill="#9c2a1b"/><circle cx="15" cy="15" r=".8" fill="#9c2a1b"/></svg>';
+  /* Ornements gravés : fleuron (séparateur), cul-de-lampe (fin de page), coin de cadre, paraphe à la plume, emblème du frontispice. */
+  var g = ' fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"';
+  H.FLEURON = '<svg viewBox="0 0 86 22" aria-hidden="true"><g' + g + '><path d="M43 3.5c3.2 3 3.2 12 0 15c-3.2-3-3.2-12 0-15z" fill="currentColor"/>' +
+    '<path d="M37.5 11c-6-7.5-14.5-7.5-18.5-2c-2.8 4 1.2 8 5 6c3-1.8 1.2-5-1-4.2M48.5 11c6-7.5 14.5-7.5 18.5-2c2.8 4-1.2 8-5 6c-3-1.8-1.2-5 1-4.2"/>' +
+    '<path d="M37.5 11c-4 4-9 6-14.5 5M48.5 11c4 4 9 6 14.5 5M19 9.5H5M67 9.5h14"/></g><circle cx="3" cy="9.5" r="1.5" fill="currentColor"/><circle cx="83" cy="9.5" r="1.5" fill="currentColor"/></svg>';
+  H.CUL = '<svg class="cul" viewBox="0 0 120 46"><g' + g + '><path d="M8 4h104M20 10h80M33 16h54"/><path d="M60 18c-10 4-12 12-6 16c4 3 9-1 6-5M60 18c10 4 12 12 6 16c-4 3-9-1-6-5"/>' +
+    '<path d="M60 34v7M45 16c-6 4-12 3-14 0M75 16c6 4 12 3 14 0"/></g><circle cx="60" cy="43" r="1.8" fill="currentColor"/><path d="M57 25l3-5 3 5-3 4z" fill="currentColor"/></svg>';
+  H.COIN = '<g' + g + '><path d="M2 28V2h26"/><path d="M5 25V5h20" stroke-width=".7"/><path d="M5 5c7 0 11 4 11 11c0 3-2 5-4 5s-3-2-2-3.5"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/></g>';
+  H.PARAPHE = '<svg class="paraphe" viewBox="0 0 320 34" aria-hidden="true"><path class="trait" d="M8 22 C 60 2, 90 34, 140 18 S 230 4, 270 20 S 300 26, 312 14"/>' +
+    '<path class="trait" d="M128 27c10 5 26 5 36 0"/><path class="plume" d="M0 0l16-15c3-3 7-1 5 3L5 3z"/></svg>';
+  H.EMBLEME = '<svg class="embleme" viewBox="0 0 150 126" aria-hidden="true"><g' + g + '>' +
+    '<path class="grave" d="M18 96c19-9 38-9 57 0c19-9 38-9 57 0v18c-19-9-38-9-57 0c-19-9-38-9-57 0z"/><path class="grave" d="M75 96v18M26 100c14-5 30-5 42 0M26 106c14-5 30-5 42 0M82 100c14-5 30-5 42 0M82 106c14-5 30-5 42 0" stroke-width=".7"/>' +
+    '<path class="grave" d="M98 94L127 24"/><path class="grave" d="M127 24c-14 7-22 26-25 48c11-13 20-29 25-48z"/><path d="M109 46l8-4M106 56l9-4M104 66l8-4" stroke-width=".6"/>' +
+    '<path class="grave" d="M36 92V56h13v36"/><path d="M33 92h19" /><path d="M42.5 56v-4" stroke-width=".8"/>' +
+    '<path d="M78 12a11 11 0 1 0 11 15a9 9 0 0 1-11-15z" fill="currentColor" stroke="none" opacity=".85"/>' +
+    '<path d="M28 40l-5-4M57 40l5-4M42.5 30v-6" stroke-width=".6"/></g>' +
+    '<path class="flamme" d="M42.5 34c5.5 6.5 5.5 13 0 17c-5.5-4-5.5-10.5 0-17z" fill="var(--or)"/><path class="flamme" d="M42.5 41c2.3 3 2.3 6 0 8c-2.3-2-2.3-5 0-8z" fill="var(--cuivre)"/></svg>';
   function chiffre(n) {
     return '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="24" cy="24" r="18.5" fill="none" stroke="currentColor" stroke-width=".8" stroke-dasharray="1 2.6"/>' +
       '<text x="24" y="30.5" text-anchor="middle" font-size="' + (n.length > 2 ? 15 : 18) + '" fill="currentColor" style="font-family:var(--titre)">' + n + '</text></svg>';
@@ -429,7 +686,7 @@ window.HLP = { ENTREES: [] };
   H.CHIFFRES = { I: chiffre("I"), II: chiffre("II"), III: chiffre("III") };
   H.ACCUEIL_INTRO = "La spécialité HLP fait travailler ensemble un professeur de lettres et un professeur de philosophie sur les mêmes questions. En Terminale, le premier semestre s’intitule « La recherche de soi » et couvre la période qui va du romantisme au XX<sup>e</sup> siècle ; le second, « L’Humanité en question », porte sur le monde contemporain. Ce site rédige à fond les trois entrées du premier semestre : pour chacune, un cours, des textes clés du domaine public analysés, un sujet type bac corrigé, un QCM, des cartes mémoire et une fiche à imprimer.";
   H.ACCUEIL_BAS = '<div class="carte lecture" style="margin-top:26px"><p class="surtitre">À savoir pour 2027</p><p style="margin:.2em 0">Une nouvelle note de service (11 septembre 2026) définit l’épreuve à partir de la session 2027 : 4 heures, un texte, une question d’<b>interprétation</b> et un <b>essai</b>, notés chacun sur 10, sur deux copies séparées. Comme depuis 2024, tout le programme de Terminale peut tomber : prépare les six entrées. <a href="#epreuve">Tout savoir sur l’épreuve →</a></p></div>';
-  H.PIED = "L’Heure bleue · HLP Terminale · Contenu original rédigé à partir du programme officiel (BO spécial n° 8 du 25 juillet 2019) et de la note de service du 11 septembre 2026. Extraits d’œuvres du domaine public d’après Wikisource ; œuvres protégées seulement résumées ou citées brièvement. Fonctionne hors connexion.";
+  H.PIED = "Ex libris · HLP Terminale · Contenu original rédigé à partir du programme officiel (BO spécial n° 8 du 25 juillet 2019) et de la note de service du 11 septembre 2026. Extraits d’œuvres du domaine public d’après Wikisource ; œuvres protégées seulement résumées ou citées brièvement. Fonctionne hors connexion.";
   H.TITRES = { accueil: "Accueil", s2: "Semestre 2", epreuve: "L’épreuve", atelier: "Atelier de lecture", qui: "Qui a écrit ?", frise: "Frise", notions: "Tableau des notions", entrainement: "Entraînement", ressources: "Ressources" };
   H.PAGES_IDX = [
     { t: "Format de l’épreuve écrite (session 2027)", c: "L’épreuve", h: "#epreuve", g: "ep-format", x: "4 heures coefficient 16 deux questions interprétation essai 10 points copies séparées note de service 2026 programme limitatif" },
@@ -634,7 +891,8 @@ HLP.ENTREES.push({
 <p>L’<i>Émile</i> s’ouvre sur un paradoxe : « Tout est bien sortant des mains de l’Auteur des choses : tout dégénère entre les mains de l’homme. » L’homme « mutile », « défigure », veut tout « dresser » à sa mode. Pourtant Rousseau ajoute aussitôt : « Sans cela, tout irait plus mal encore ». Un enfant abandonné à lui-même dans la société serait « le plus défiguré de tous ». L’éducation est donc à la fois <b>un danger</b> (le conformisme) et <b>une nécessité</b> (protéger la nature de la société).</p>
 <p>Kant radicalise la nécessité : « L’homme ne peut devenir homme que par l’éducation. Il n’est que ce qu’elle le fait » (<i>Traité de pédagogie</i>, publié en 1803, trad. Barni). Il distingue la <b>discipline</b>, qui arrache l’homme à la sauvagerie, et l’<b>instruction</b>, qui le cultive. Et il ajoute qu’on ne peut être éduqué que par d’autres hommes, eux-mêmes éduqués : toute éducation est une <b>transmission</b>.</p>
 <div class="ex"><b class="l">Exemple</b>Rousseau compare l’enfant à un « arbrisseau que le hasard fait naître au milieu d’un chemin, et que les passants font bientôt périr » : l’éducation est une enceinte protectrice, pas un moule.</div>
-<div class="plus"><b class="l">Pour aller plus loin</b>Rousseau parle ailleurs de la <i>perfectibilité</i> (<i>Discours sur l’origine de l’inégalité</i>, 1755) : l’homme se distingue de l’animal par sa capacité à se transformer, en bien comme en mal.</div>` },
+<div class="plus"><b class="l">Pour aller plus loin</b>Rousseau parle ailleurs de la <i>perfectibilité</i> (<i>Discours sur l’origine de l’inégalité</i>, 1755) : l’homme se distingue de l’animal par sa capacité à se transformer, en bien comme en mal.</div>
+<div data-anim="e1-paradoxe"></div>` },
     { id: "e1-4", titre: "Condorcet : instruire pour rendre les citoyens libres", html: `
 <p>Pendant la Révolution, la question devient politique. Dans ses <i>Cinq mémoires sur l’instruction publique</i> (1791), Condorcet pose que « l’instruction publique est un devoir de la société à l’égard des citoyens ». Pourquoi ? Parce que l’égalité des droits resterait vaine si « l’inégalité dans les facultés morales » empêchait le plus grand nombre d’en jouir. Un homme qui dépend d’un autre faute de savoir lire ou compter n’est pas « véritablement libre ».</p>
 <p>Condorcet en tire une exigence d’<b>esprit critique</b> : « Le but de l’instruction n’est pas de faire admirer aux hommes une législation toute faite, mais de les rendre capables de l’apprécier et de la corriger. » L’école ne doit pas fabriquer une « religion politique ». Il distingue l’<b>instruction</b> (transmettre des vérités et leurs preuves), qui revient à la puissance publique, et l’<b>éducation</b> morale et religieuse, qui revient aux familles.</p>
@@ -647,7 +905,9 @@ HLP.ENTREES.push({
     { id: "e1-6", titre: "Kant : sortir de la minorité", html: `
 <p>Dans <i>Réponse à la question : Qu’est-ce que les Lumières ?</i> (1784), Kant définit l’émancipation comme une sortie : « Les lumières sont ce qui fait sortir l’homme de la minorité qu’il doit s’imputer à lui-même. » La <b>minorité</b> est « l’incapacité où il est de se servir de son intelligence sans être dirigé par autrui ». Elle n’est pas un défaut d’intelligence mais un défaut de <b>courage</b>. D’où la devise : « <i>Sapere aude</i>, aie le courage de te servir de ta propre intelligence ! » (trad. Barni, 1853).</p>
 <p>Pourquoi reste-t-on mineur ? Par « paresse » et « lâcheté » : « Il est si commode d’être mineur ! J’ai un livre qui a de l’esprit pour moi, un directeur qui a de la conscience pour moi, un médecin qui juge pour moi du régime qui me convient ». Les « tuteurs » profitent de ce confort. Kant ajoute qu’un individu seul s’en sort difficilement, mais qu’un <b>public</b> peut s’éclairer lui-même s’il a la liberté de faire un « usage public » de sa raison.</p>
-<div class="ex"><b class="l">Exemple</b>Kant distingue l’usage <i>privé</i> de la raison (l’officier qui reçoit un ordre doit obéir dans son service) et son usage <i>public</i> (le même homme, comme savant, peut écrire pour critiquer l’organisation de l’armée). L’émancipation passe par la liberté d’écrire et de publier.</div>` },
+<div class="ex"><b class="l">Exemple</b>Kant distingue l’usage <i>privé</i> de la raison (l’officier qui reçoit un ordre doit obéir dans son service) et son usage <i>public</i> (le même homme, comme savant, peut écrire pour critiquer l’organisation de l’armée). L’émancipation passe par la liberté d’écrire et de publier.</div>
+<div data-anim="e1-minorite"></div>
+<div data-anim="e1-kant-lecture"></div>` },
     { id: "e1-7", titre: "Raconter son éducation : le récit d’enfance et la rupture", html: `
 <p>Le programme le souligne : le rôle nouveau de l’école se marque par la place des <b>souvenirs d’écoliers</b> dans les récits du XIX<sup>e</sup> siècle. Ces récits cherchent à comprendre ce qu’un individu est devenu à partir de ce qu’il a reçu, mais aussi de ce avec quoi il a rompu.</p>
 <p>Jules Vallès en donne l’exemple le plus violent. <i>L’Enfant</i> (1878), premier volet de la trilogie de Jacques Vingtras (avec <i>Le Bachelier</i>, 1881, et <i>L’Insurgé</i>, 1886), raconte une enfance battue et un collège ennuyeux, vus à hauteur d’enfant et avec une ironie mordante. La trilogie mène de l’enfant humilié à l’insurgé de la Commune de 1871 : la révolte politique prolonge la révolte contre l’éducation reçue.</p>
@@ -881,7 +1141,8 @@ HLP.ENTREES.push({
 <p>Le <b>lyrisme</b> est l’expression des sentiments personnels d’un « je » (le mot vient de la lyre d’Orphée). Le romantisme français s’ouvre en poésie avec les <i>Méditations poétiques</i> de Lamartine (1820). Dans « Le Lac », le poète revient seul au bord d’un lac où il a aimé une femme, et la nature devient <b>témoin</b> et <b>mémoire</b> du bonheur perdu.</p>
 <p>Le célèbre vers « Ô temps ! suspends ton vol » est placé dans la bouche de la femme aimée, ce qui crée une polyphonie : le poème cite une voix absente. À la fin, le poète demande à la nature de garder le souvenir : « Tout dise : Ils ont aimé ! » Hugo théorise ce lyrisme dans la préface des <i>Contemplations</i> (1856), « les Mémoires d’une âme » : « Hélas ! quand je vous parle de moi, je vous parle de vous ».</p>
 <div class="ex"><b class="l">Exemple</b>Musset, « La Nuit de mai » (1835), fait dire à la Muse : « Les plus désespérés sont les chants les plus beaux, / Et j’en sais d’immortels qui sont de purs sanglots. » La douleur devient la source de la beauté.</div>
-<div class="attention"><b class="l">Attention</b>Dans l’édition originale de 1820, la strophe commence par « Ô temps ! suspends ton vol ; et vous, heures propices ». Beaucoup d’éditions modernes ponctuent autrement : cite sans inventer de ponctuation.</div>` },
+<div class="attention"><b class="l">Attention</b>Dans l’édition originale de 1820, la strophe commence par « Ô temps ! suspends ton vol ; et vous, heures propices ». Beaucoup d’éditions modernes ponctuent autrement : cite sans inventer de ponctuation.</div>
+<div data-anim="e2-lac-lecture"></div>` },
     { id: "e2-4", titre: "Le « mal du siècle »", html: `
 <p>Le <b>mal du siècle</b> désigne la mélancolie d’une génération née avec la Révolution et l’Empire : ennui, sentiment d’inutilité, désirs sans objet. Chateaubriand en fixe la figure avec <i>René</i> (1802) : un jeune homme qui erre et appelle la tempête pour être emporté. « Levez-vous vite, orages désirés qui devez emporter René dans les espaces d’une autre vie ! »</p>
 <p>Musset en donne l’analyse historique dans <i>La Confession d’un enfant du siècle</i> (1836) : « Toute la maladie du siècle présent vient de deux causes ; le peuple qui a passé par 93 et par 1814 porte au cœur deux blessures. Tout ce qui était n’est plus ; tout ce qui sera n’est pas encore. » La sensibilité individuelle est donc aussi un <b>symptôme historique</b>.</p>
@@ -898,7 +1159,8 @@ HLP.ENTREES.push({
 <p>Dans <i>Du côté de chez Swann</i> (1913), un morceau de madeleine trempé dans le thé provoque chez le narrateur une joie inexplicable : « cette essence n’était pas en moi, elle était moi ». Puis « tout d’un coup le souvenir m’est apparu » : Combray, la tante Léonie. C’est la <b>mémoire involontaire</b> : une sensation présente fait revivre un passé que la mémoire volontaire ne retrouvait pas.</p>
 <p>Dans <i>Le Temps retrouvé</i> (1927), Proust en tire une théorie de l’art : le style « est une question non de technique, mais de vision ». Seul l’art peut nous faire partager une sensibilité singulière : « Par l’art seulement, nous pouvons sortir de nous, savoir ce que voit un autre de cet univers qui n’est pas le même que le nôtre ».</p>
 <div class="ex"><b class="l">Exemple</b>Proust répond ainsi à la question du programme sur le langage commun : les mots de tous, travaillés par un style, peuvent transmettre ce qui resterait sinon « le secret éternel de chacun ».</div>
-<div class="attention"><b class="l">Attention</b>La phrase qu’on cite souvent (« La vraie vie […] c’est la littérature ») n’a pas la même forme selon les éditions du <i>Temps retrouvé</i>. Préfère les passages cités ici, vérifiés sur l’édition de 1927.</div>` },
+<div class="attention"><b class="l">Attention</b>La phrase qu’on cite souvent (« La vraie vie […] c’est la littérature ») n’a pas la même forme selon les éditions du <i>Temps retrouvé</i>. Préfère les passages cités ici, vérifiés sur l’édition de 1927.</div>
+<div data-anim="e2-madeleine"></div>` },
     { id: "e2-8", titre: "Penser la sensibilité : goût, sublime, durée", html: `
 <p>Les philosophes s’emparent de l’expérience esthétique. Kant, dans la <i>Critique de la faculté de juger</i> (1790), distingue l’<b>agréable</b> (ce qui plaît aux sens, chacun son goût) et le <b>beau</b>, qui plaît « sans concept » mais avec une prétention à l’accord de tous. Il distingue aussi le beau, harmonieux, et le <b>sublime</b>, qui naît devant ce qui nous dépasse (l’océan déchaîné, les montagnes). Burke avait déjà opposé le beau et le sublime en 1757.</p>
 <p>Bergson, dans l’<i>Essai sur les données immédiates de la conscience</i> (1889), décrit la <b>durée</b> vécue : « La durée toute pure est la forme que prend la succession de nos états de conscience quand notre moi se laisse vivre ». Nos états intérieurs se fondent les uns dans les autres, comme les notes d’une mélodie, au lieu de se juxtaposer comme des objets dans l’espace.</p>
@@ -906,7 +1168,8 @@ HLP.ENTREES.push({
     { id: "e2-9", titre: "Dire l’intime avec les mots de tous", html: `
 <p>Le programme pose une question décisive : « lorsque nous communiquons les uns avec les autres, comment faisons-nous pour donner le même sens aux mots que nous employons ? » Bergson montre le danger : « le mot aux contours bien arrêtés, le mot brutal, qui emmagasine ce qu’il y a de stable, de commun et par conséquent d’impersonnel dans les impressions de l’humanité, écrase ou tout au moins recouvre les impressions délicates et fugitives de notre conscience individuelle ».</p>
 <p>Trois réponses sont possibles. 1) Le <b>silence</b> ou l’ineffable : certaines expériences ne se disent pas. 2) Le <b>travail du style</b> : l’écrivain invente des images et des rythmes pour suggérer ce que le mot ordinaire écrase (Baudelaire, Proust). 3) La réponse de Wittgenstein (<i>Recherches philosophiques</i>, 1953) : la signification d’un mot dépend de son <b>usage public</b> ; un langage strictement privé, que personne d’autre ne pourrait comprendre, est impossible. Nos sentiments ne sont donc pas enfermés : nous apprenons à les nommer avec les autres.</p>
-<div class="ex"><b class="l">Exemple</b>Bergson donne l’exemple d’un mets « réputé exquis » : son nom, « gros de l’approbation qu’on lui donne », s’interpose entre la sensation et la conscience, au point qu’on croit aimer une saveur qu’on n’aime pas.</div>` }
+<div class="ex"><b class="l">Exemple</b>Bergson donne l’exemple d’un mets « réputé exquis » : son nom, « gros de l’approbation qu’on lui donne », s’interpose entre la sensation et la conscience, au point qu’on croit aimer une saveur qu’on n’aime pas.</div>
+<div data-anim="e2-dire"></div>` }
   ],
   notions: [
     ["Sensibilité", "Capacité de recevoir des sensations, de s’émouvoir, de juger du beau, de compatir. Le mot a des sens physique, affectif, esthétique et moral."],
@@ -1135,12 +1398,14 @@ HLP.ENTREES.push({
     { id: "e3-6", titre: "« Je est un autre » : Rimbaud", html: `
 <p>Rimbaud a seize ans quand il écrit les deux lettres dites « du voyant ». Le 13 mai 1871, à son professeur Georges Izambard : « C’est faux de dire : Je pense. On devrait dire : On me pense. […] JE est un autre. » Le 15 mai, à Paul Demeny : « Car Je est un autre. Si le cuivre s’éveille clairon, il n’y a rien de sa faute. »</p>
 <p>Le moi n’est plus l’auteur souverain de ses pensées : il est l’<b>instrument</b> où quelque chose se joue (le cuivre devient clairon, « le bois […] se trouve violon »). Le poète doit donc se connaître, puis se travailler : « La première étude de l’homme qui veut être poète est sa propre connaissance, entière. » Il se fait « voyant » par un « long, immense et raisonné dérèglement de tous les sens ». Rimbaud critique au passage le lyrisme romantique, qui n’aurait trouvé « du Moi que la signification fausse ».</p>
-<div class="ex"><b class="l">Exemple</b>La faute de grammaire volontaire (« Je est » au lieu de « je suis ») fait du « je » un objet dont on parle à la troisième personne : la langue même montre le dédoublement.</div>` },
+<div class="ex"><b class="l">Exemple</b>La faute de grammaire volontaire (« Je est » au lieu de « je suis ») fait du « je » un objet dont on parle à la troisième personne : la langue même montre le dédoublement.</div>
+<div data-anim="e3-rimbaud-lecture"></div>` },
     { id: "e3-7", titre: "Le soupçon : Nietzsche, Freud, Bergson", html: `
 <p>Nietzsche conteste l’évidence du « je pense » : une pensée vient quand elle veut, non quand « je » veux ; le « je » serait une habitude de la grammaire (<i>Par-delà bien et mal</i>, 1886, § 17). Il fait pourtant du devenir soi une tâche : « Tu dois devenir celui que tu es » (<i>Le Gai Savoir</i>, § 270, 1882, trad. H. Albert).</p>
 <p>Freud, dans <i>L’Interprétation du rêve</i> (1900), fait du rêve un accès privilégié à l’<b>inconscient</b> : le rêve réalise de façon déguisée un désir refoulé. Il décrit plus tard trois instances : le <b>ça</b> (les pulsions), le <b>surmoi</b> (les interdits intériorisés) et le <b>moi</b>, qui tente de concilier les deux avec la réalité (<i>Le Moi et le Ça</i>, 1923). Il parle de trois « blessures » infligées au narcissisme humain : Copernic, Darwin, puis la psychanalyse, qui montre que le moi « n’est pas maître dans sa propre maison » (« Une difficulté de la psychanalyse », 1917).</p>
 <p>Bergson distingue enfin un <b>moi superficiel</b>, social, découpé par le langage, et un <b>moi profond</b>, durée vivante. Pour lui, « nous sommes libres quand nos actes émanent de notre personnalité entière, quand ils l’expriment » (<i>Essai sur les données immédiates de la conscience</i>, 1889).</p>
-<div class="ex"><b class="l">Exemple</b>Le lapsus et l’acte manqué (<i>Psychopathologie de la vie quotidienne</i>, 1901) : oublier un nom ou se tromper de mot trahit, selon Freud, un désir que la conscience refuse.</div>` },
+<div class="ex"><b class="l">Exemple</b>Le lapsus et l’acte manqué (<i>Psychopathologie de la vie quotidienne</i>, 1901) : oublier un nom ou se tromper de mot trahit, selon Freud, un désir que la conscience refuse.</div>
+<div data-anim="e3-soupcon"></div>` },
     { id: "e3-8", titre: "Le XX<sup>e</sup> siècle : moi successifs, rôles et regard d’autrui", html: `
 <p>Proust montre que nous changeons au point de ne plus être la même personne : l’amour, le deuil, l’habitude remplacent nos « moi » successifs. Pirandello, dans <i>Un, personne et cent mille</i> (1926), fait découvrir à son héros, à partir d’une remarque de sa femme sur son nez, qu’il est un autre pour chacun de ceux qui le regardent. Kafka, dans <i>La Métamorphose</i> (1915), montre un homme devenu insecte dont la famille ne voit plus que la charge qu’il représente.</p>
 <p>Sartre (protégé : on résume) refuse l’idée d’une nature humaine fixée d’avance : chacun se fait par ses actes. Dans <i>L’Être et le Néant</i> (1943), la <b>mauvaise foi</b> consiste à se mentir sur sa liberté, comme le garçon de café qui « joue » à être garçon de café. Dans <i>Huis clos</i> (1944), la réplique « l’enfer, c’est les autres » exprime notre dépendance au regard d’autrui pour savoir qui nous sommes.</p>
@@ -1423,6 +1688,188 @@ HLP.ATELIER = [
     bilan: "<p>La lettre déplace la question du moi : le poète n’exprime pas un moi déjà là (critique du lyrisme romantique), il découvre en lui un autre et doit se transformer pour l’entendre. À rapprocher de Montaigne (le moi en mouvement), de Nietzsche (devenir ce que l’on est) et de Freud (le moi n’est pas maître chez lui).</p>" }
 ];
 
+/* Animations explicatives (moteur : animations.js). Types :
+   - texte  : { atelier: n } ou { segs: [...] } (même format que l'atelier) ; chaque segment annoté est une étape ;
+   - graphe : { w, h, noeuds: [{ id, x, y, w, h, t: "ligne|ligne", s: these|arg|obj|ex|concl }], liens: [{ de, a, t, s: "contre", courbe }],
+              etapes: [{ montre: [ids], legende }] } ;
+   - frise  : { debut, fin, pas, periodes: [{ id, de, a, nom, rang }], evts: [{ id, an, t, h, g }], etapes: [{ an, montre, legende }] }.
+   Une entrée les appelle par son champ anims: ["id", …] ; une page par <div data-anim="id"></div>. */
+HLP.ANIMS = {
+  "e1-paradoxe": { type: "graphe", titre: "Le paradoxe de l’Émile : éduquer sans dénaturer", w: 640, h: 420,
+    intro: "Rousseau ouvre son traité par une accusation contre l’homme… puis la retourne. Suis l’argument étape par étape.",
+    noeuds: [
+      { id: "a", x: 20, y: 16, w: 280, h: 58, s: "these", t: "« Tout est bien sortant des mains|de l’Auteur des choses »" },
+      { id: "b", x: 340, y: 16, w: 280, h: 58, s: "obj", t: "« tout dégénère|entre les mains de l’homme »" },
+      { id: "c", x: 340, y: 110, w: 280, h: 58, s: "ex", t: "il mutile, défigure, veut « dresser »|l’homme « comme un cheval de manège »" },
+      { id: "d", x: 20, y: 110, w: 280, h: 58, s: "arg", t: "Retournement : « Sans cela,|tout irait plus mal encore »" },
+      { id: "e", x: 20, y: 204, w: 280, h: 58, s: "ex", t: "préjugés, autorité, exemple|« étoufferaient en lui la nature »" },
+      { id: "f", x: 340, y: 204, w: 280, h: 58, s: "ex", t: "l’arbrisseau né au milieu du chemin,|que « les passants font bientôt périr »" },
+      { id: "g", x: 120, y: 300, w: 400, h: 54, s: "concl", t: "Conclusion : éduquer, c’est cultiver,|pas dresser (« On façonne les plantes par la culture »)" },
+      { id: "h", x: 170, y: 372, w: 300, h: 40, s: "arg", t: "Livre II : l’éducation « négative »" }
+    ],
+    liens: [{ de: "a", a: "b", t: "mais" }, { de: "b", a: "c", t: "exemples" }, { de: "c", a: "d", t: "pourtant", s: "contre" }, { de: "d", a: "e", t: "car" }, { de: "e", a: "f", t: "image" }, { de: "f", a: "g", t: "donc" }, { de: "g", a: "h" }],
+    etapes: [
+      { montre: ["a"], legende: "<b>La thèse de départ.</b> Ce qui vient de la nature est bon : c’est le présupposé de tout le livre." },
+      { montre: ["b"], legende: "<b>L’accusation.</b> L’homme gâte ce qu’il touche. L’éducation ordinaire en fait partie." },
+      { montre: ["c"], legende: "<b>Les exemples</b> vont de la terre à l’animal, puis à l’esclave et à l’enfant : on « dresse » l’homme pour soi." },
+      { montre: ["d"], legende: "<b>Le retournement.</b> Refuser d’éduquer serait pire : dans la société telle qu’elle est, l’enfant serait livré à tout." },
+      { montre: ["e"], legende: "<b>La raison :</b> sans éducation, ce sont les préjugés et l’exemple qui forment l’enfant, au hasard." },
+      { montre: ["f"], legende: "<b>L’image</b> condense l’argument : sans enceinte, la jeune plante est piétinée. L’éducation protège." },
+      { montre: ["g"], legende: "<b>La conclusion :</b> il ne s’agit pas de choisir entre nature et éducation, mais de trouver une éducation qui cultive la nature." },
+      { montre: ["h"], legende: "<b>Ce que Rousseau en tire :</b> une première éducation « négative », qui protège du vice et de l’erreur au lieu d’imposer des leçons." }
+    ] },
+  "e1-minorite": { type: "graphe", titre: "Sortir de la minorité : le raisonnement de Kant (1784)", w: 640, h: 400,
+    intro: "Pourquoi tant d’hommes restent-ils « mineurs » toute leur vie, et comment en sortir ?",
+    noeuds: [
+      { id: "m", x: 200, y: 14, w: 240, h: 54, s: "these", t: "Minorité :|penser sous la direction d’autrui" },
+      { id: "p", x: 20, y: 110, w: 180, h: 54, s: "arg", t: "Paresse|« Il est si commode… »" },
+      { id: "l", x: 230, y: 110, w: 180, h: 54, s: "arg", t: "Lâcheté|peur de penser seul" },
+      { id: "t", x: 440, y: 110, w: 180, h: 54, s: "obj", t: "Les tuteurs|en profitent" },
+      { id: "s", x: 120, y: 214, w: 400, h: 54, s: "ex", t: "« Sapere aude, aie le courage de te servir|de ta propre intelligence ! »" },
+      { id: "u", x: 120, y: 304, w: 180, h: 66, s: "arg", t: "Liberté de l’usage|public de la raison|(écrire, publier)" },
+      { id: "c", x: 340, y: 304, w: 180, h: 66, s: "concl", t: "Un public qui|s’éclaire lui-même :|les Lumières" }
+    ],
+    liens: [{ de: "p", a: "m", t: "cause" }, { de: "l", a: "m", t: "cause" }, { de: "t", a: "m", t: "entretiennent" }, { de: "m", a: "s", t: "remède", courbe: 0 }, { de: "s", a: "u", t: "condition" }, { de: "u", a: "c" }],
+    etapes: [
+      { montre: ["m"], legende: "<b>Définition.</b> La minorité n’est pas un âge : c’est l’incapacité de penser sans être dirigé." },
+      { montre: ["p"], legende: "<b>Première cause : la paresse.</b> Un livre, un directeur, un médecin pensent à ma place." },
+      { montre: ["l"], legende: "<b>Deuxième cause : la lâcheté.</b> Penser seul expose à se tromper et à déplaire." },
+      { montre: ["t"], legende: "<b>Les tuteurs</b> tirent leur pouvoir de cette minorité et l’entretiennent." },
+      { montre: ["s"], legende: "<b>Le remède est moral :</b> du courage. D’où la devise, à l’impératif." },
+      { montre: ["u"], legende: "<b>Il a une condition politique :</b> la liberté de faire un usage public de sa raison." },
+      { montre: ["c"], legende: "<b>Conclusion :</b> un individu seul en sort difficilement, mais un public libre s’éclaire peu à peu." }
+    ] },
+  "e1-kant-lecture": { type: "texte", atelier: 2, titre: "Lecture animée : Kant, « Qu’est-ce que les Lumières ? »", intro: "Les mouvements du texte (définition, devise, causes) s’allument au fil de la lecture." },
+  "e2-madeleine": { type: "graphe", titre: "La mémoire involontaire : comment revient le souvenir (Proust, 1913)", w: 640, h: 450,
+    intro: "Le phénomène, pas à pas : une sensation présente fait revivre un passé que l’effort de mémoire ne retrouvait pas.",
+    noeuds: [
+      { id: "a", x: 20, y: 14, w: 260, h: 54, s: "arg", t: "Un jour d’hiver,|du thé et une madeleine" },
+      { id: "b", x: 360, y: 14, w: 260, h: 54, s: "ex", t: "« Un plaisir délicieux m’avait envahi,|isolé, sans la notion de sa cause »" },
+      { id: "c", x: 360, y: 108, w: 260, h: 54, s: "ex", t: "« cette essence n’était pas en moi,|elle était moi »" },
+      { id: "d", x: 20, y: 108, w: 260, h: 54, s: "obj", t: "Deuxième, troisième gorgée :|l’effet diminue" },
+      { id: "e", x: 20, y: 202, w: 260, h: 54, s: "these", t: "« la vérité que je cherche|n’est pas en lui, mais en moi »" },
+      { id: "f", x: 360, y: 202, w: 260, h: 54, s: "arg", t: "Le narrateur se tourne vers son esprit :|le souvenir résiste, remonte" },
+      { id: "g", x: 190, y: 296, w: 260, h: 54, s: "concl", t: "« Et tout d’un coup|le souvenir m’est apparu »" },
+      { id: "h", x: 120, y: 380, w: 400, h: 54, s: "ex", t: "Combray, le dimanche matin, la tante Léonie|et sa madeleine trempée dans le tilleul" }
+    ],
+    liens: [{ de: "a", a: "b", t: "sensation" }, { de: "b", a: "c", t: "joie" }, { de: "c", a: "d", t: "répéter ?" }, { de: "d", a: "e", t: "donc" }, { de: "e", a: "f", t: "chercher" }, { de: "f", a: "g" }, { de: "g", a: "h", t: "tout revient" }],
+    etapes: [
+      { montre: ["a"], legende: "<b>Le déclencheur</b> est banal : le goût d’une boisson et d’un gâteau, un jour ordinaire." },
+      { montre: ["b"], legende: "<b>Une joie sans cause apparente.</b> La sensation précède la compréhension." },
+      { montre: ["c"], legende: "<b>Le moi se sent autre :</b> « J’avais cessé de me sentir médiocre, contingent, mortel »." },
+      { montre: ["d"], legende: "<b>L’échec de la répétition.</b> Boire encore ne sert à rien : la vertu du breuvage diminue." },
+      { montre: ["e"], legende: "<b>Le déplacement décisif :</b> la vérité n’est pas dans l’objet mais dans la mémoire du sujet." },
+      { montre: ["f"], legende: "<b>Un travail intérieur.</b> Le souvenir remonte lentement, sans qu’on sache encore lequel." },
+      { montre: ["g"], legende: "<b>La révélation</b> est soudaine : c’est le propre de la mémoire involontaire." },
+      { montre: ["h"], legende: "<b>Tout un monde renaît :</b> c’est le point de départ de Combray, et de toute la Recherche." }
+    ] },
+  "e2-lac-lecture": { type: "texte", atelier: 0, titre: "Lecture animée : Lamartine, « Le Lac »", intro: "Les trois mouvements du poème et ses procédés s’allument vers après vers." },
+  "e2-dire": { type: "graphe", titre: "Peut-on dire ce qu’on ressent ? Un schéma d’argumentation", w: 640, h: 430,
+    intro: "Comment construire une réponse à la question du programme sur le langage commun et l’expérience singulière.",
+    noeuds: [
+      { id: "q", x: 150, y: 12, w: 340, h: 50, s: "these", t: "Problème : l’expérience est singulière,|les mots sont communs" },
+      { id: "a", x: 20, y: 100, w: 280, h: 58, s: "obj", t: "Bergson : « le mot brutal »|écrase les impressions fugitives" },
+      { id: "b", x: 340, y: 100, w: 280, h: 58, s: "ex", t: "Le mets « réputé exquis » : le nom|s’interpose entre sensation et conscience" },
+      { id: "c", x: 20, y: 196, w: 280, h: 58, s: "arg", t: "Wittgenstein : un langage privé|est impossible ; les mots s’apprennent" },
+      { id: "d", x: 340, y: 196, w: 280, h: 58, s: "arg", t: "Proust : le style, « question|non de technique, mais de vision »" },
+      { id: "e", x: 340, y: 286, w: 280, h: 52, s: "ex", t: "Baudelaire : les synesthésies|inventent des manières de sentir" },
+      { id: "f", x: 90, y: 362, w: 460, h: 56, s: "concl", t: "On ne dit pas l’intime malgré les mots communs,|mais en les travaillant : c’est le rôle de l’art" }
+    ],
+    liens: [{ de: "q", a: "a", t: "objection" }, { de: "a", a: "b", t: "exemple" }, { de: "q", a: "c", t: "réponse" }, { de: "c", a: "d", t: "et" }, { de: "d", a: "e", t: "exemple" }, { de: "c", a: "f" }, { de: "e", a: "f" }],
+    etapes: [
+      { montre: ["q"], legende: "<b>Poser le problème.</b> Ce que je ressens n’appartient qu’à moi ; les mots appartiennent à tous." },
+      { montre: ["a"], legende: "<b>L’objection forte :</b> le langage fixe et généralise ce qui est mouvant et singulier." },
+      { montre: ["b"], legende: "<b>L’exemple de Bergson</b> : on croit aimer une saveur parce que son nom est flatteur." },
+      { montre: ["c"], legende: "<b>Premier dépassement :</b> nos sentiments ne sont pas enfermés ; nous apprenons à les nommer avec les autres." },
+      { montre: ["d"], legende: "<b>Deuxième dépassement :</b> l’écrivain travaille les mots communs pour faire voir sa vision." },
+      { montre: ["e"], legende: "<b>Un exemple littéraire</b> : « Les parfums, les couleurs et les sons se répondent »." },
+      { montre: ["f"], legende: "<b>La réponse :</b> dire l’intime est difficile mais possible ; c’est même ce que fait la littérature." }
+    ] },
+  "e3-soupcon": { type: "graphe", titre: "Le moi, de la certitude au soupçon", w: 640, h: 470,
+    intro: "Quatre siècles de réponses à la question « qui suis-je ? », chacune répondant à la précédente.",
+    noeuds: [
+      { id: "m", x: 20, y: 12, w: 280, h: 58, s: "arg", t: "Montaigne (1588) :|« Je peins le passage »" },
+      { id: "d", x: 340, y: 12, w: 280, h: 58, s: "these", t: "Descartes (1637-1641) :|« une chose qui pense »" },
+      { id: "h", x: 340, y: 106, w: 280, h: 58, s: "obj", t: "Hume (1739) : je ne trouve|que des perceptions, pas un « moi »" },
+      { id: "r", x: 20, y: 106, w: 280, h: 58, s: "ex", t: "Rousseau (1782) : « Si je ne vaux pas|mieux, au moins je suis autre »" },
+      { id: "j", x: 20, y: 200, w: 280, h: 58, s: "obj", t: "Rimbaud (1871) :|« Je est un autre »" },
+      { id: "n", x: 340, y: 200, w: 280, h: 58, s: "obj", t: "Nietzsche (1886) : le « je »|est une habitude de la grammaire" },
+      { id: "f", x: 340, y: 294, w: 280, h: 58, s: "obj", t: "Freud (1917) : le moi n’est pas|maître dans sa propre maison" },
+      { id: "b", x: 20, y: 294, w: 280, h: 58, s: "arg", t: "Bergson (1889) : moi profond,|moi superficiel" },
+      { id: "c", x: 100, y: 394, w: 440, h: 60, s: "concl", t: "Se connaître n’est pas un constat|mais une tâche : interpréter, écrire, devenir" }
+    ],
+    liens: [{ de: "m", a: "d", t: "contre l’instable" }, { de: "d", a: "h", t: "objection", s: "contre" }, { de: "h", a: "r" }, { de: "r", a: "j", t: "critique du Moi" }, { de: "j", a: "n" }, { de: "n", a: "f", t: "soupçon" }, { de: "f", a: "b" }, { de: "b", a: "c" }],
+    etapes: [
+      { montre: ["m"], legende: "<b>Montaigne</b> observe un moi qui change « de jour en jour, de minute en minute »." },
+      { montre: ["d"], legende: "<b>Descartes</b> cherche un point fixe : je suis certain d’exister tant que je pense." },
+      { montre: ["h"], legende: "<b>Hume objecte :</b> en regardant en moi, je ne vois que des perceptions qui se succèdent." },
+      { montre: ["r"], legende: "<b>Rousseau</b> fonde l’autobiographie sur la singularité et la sincérité." },
+      { montre: ["j"], legende: "<b>Rimbaud</b> renverse le lyrisme : le moi n’est pas l’auteur de ses pensées (« On me pense »)." },
+      { montre: ["n"], legende: "<b>Nietzsche</b> : une pensée vient quand elle veut, pas quand « je » veux." },
+      { montre: ["f"], legende: "<b>Freud</b> : l’inconscient agit sans que le moi le sache (rêves, lapsus, symptômes)." },
+      { montre: ["b"], legende: "<b>Bergson</b> distingue le moi social, découpé par le langage, et le moi profond, durée vivante." },
+      { montre: ["c"], legende: "<b>Bilan pour la copie :</b> le moi n’est pas donné ; on y accède par des récits, des interprétations, une œuvre." }
+    ] },
+  "e3-rimbaud-lecture": { type: "texte", atelier: 3, titre: "Lecture animée : Rimbaud, lettre du voyant", intro: "La grammaire, les images et la ponctuation qui disent un moi dédoublé, une à une." },
+  "frise-mouvements": { type: "frise", titre: "La frise qui se déroule : des Lumières au surréalisme", debut: 1750, fin: 1960, pas: 25, h: 290, min: 820,
+    intro: "Les grands mouvements apparaissent dans l’ordre, avec une œuvre repère pour chacun. Dates indicatives : un mouvement n’a ni naissance ni mort précises.",
+    periodes: [
+      { id: "lum", de: 1750, a: 1789, nom: "Lumières", rang: 0, c: 0 },
+      { id: "rom", de: 1820, a: 1850, nom: "Romantisme", rang: 0, c: 1 },
+      { id: "rea", de: 1850, a: 1890, nom: "Réalisme et naturalisme", rang: 1, c: 2 },
+      { id: "par", de: 1866, a: 1886, nom: "Parnasse", rang: 0, c: 3 },
+      { id: "sym", de: 1886, a: 1905, nom: "Symbolisme", rang: 0, c: 0 },
+      { id: "avg", de: 1909, a: 1924, nom: "Avant-gardes", rang: 1, c: 1 },
+      { id: "sur", de: 1924, a: 1945, nom: "Surréalisme", rang: 0, c: 2 },
+      { id: "exi", de: 1943, a: 1960, nom: "Existentialisme", rang: 1, c: 3 }
+    ],
+    evts: [
+      { id: "a", an: 1762, t: "Émile", h: 30 }, { id: "b", an: 1782, t: "Confessions", h: 58 },
+      { id: "c", an: 1820, t: "Méditations poétiques", h: 30 }, { id: "d", an: 1830, t: "Hernani", h: 58 },
+      { id: "e", an: 1857, t: "Fleurs du mal, Bovary", h: 30 }, { id: "f", an: 1871, t: "Lettres du voyant", h: 58 },
+      { id: "g", an: 1886, t: "Manifeste du symbolisme", h: 30 }, { id: "h", an: 1909, t: "Manifeste du futurisme", h: 58 },
+      { id: "i", an: 1913, t: "Swann, Alcools", h: 30 }, { id: "j", an: 1924, t: "Manifeste du surréalisme", h: 58, g: false },
+      { id: "k", an: 1943, t: "L’Être et le Néant", h: 30 }
+    ],
+    etapes: [
+      { an: 1762, montre: ["lum", "a"], legende: "<b>Les Lumières</b> : raison critique, mais aussi « droits de la sensibilité ». Rousseau publie l’<i>Émile</i> (1762)." },
+      { an: 1782, montre: ["b"], legende: "<b>1782</b> : les <i>Confessions</i> paraissent après la mort de Rousseau. Le moi devient un sujet littéraire." },
+      { an: 1820, montre: ["rom", "c"], legende: "<b>Le romantisme</b> : lyrisme, nature-miroir, mal du siècle. Lamartine, <i>Méditations poétiques</i> (1820)." },
+      { an: 1830, montre: ["d"], legende: "<b>1830</b> : la bataille d’<i>Hernani</i> ; le drame romantique s’impose au théâtre." },
+      { an: 1857, montre: ["rea", "e"], legende: "<b>Réalisme</b> : regarder le réel. 1857 : <i>Madame Bovary</i> et <i>Les Fleurs du mal</i>, deux procès." },
+      { an: 1866, montre: ["par"], legende: "<b>Le Parnasse</b> (recueils du <i>Parnasse contemporain</i> à partir de 1866) : la forme parfaite, contre l’épanchement." },
+      { an: 1871, montre: ["f"], legende: "<b>1871</b> : Rimbaud, « Je est un autre ». La poésie se veut voyance." },
+      { an: 1886, montre: ["sym", "g"], legende: "<b>Le symbolisme</b> : suggérer plutôt que décrire. Manifeste de Moréas dans <i>Le Figaro</i> (1886)." },
+      { an: 1909, montre: ["avg", "h"], legende: "<b>Les avant-gardes</b> : futurisme (1909), Dada (1916). On veut rompre avec tout le passé." },
+      { an: 1913, montre: ["i"], legende: "<b>1913</b> : Proust, <i>Du côté de chez Swann</i> ; Apollinaire, <i>Alcools</i>. Modernité et mémoire." },
+      { an: 1924, montre: ["sur", "j"], legende: "<b>Le surréalisme</b> : le rêve et l’inconscient en littérature. Breton, <i>Manifeste</i> (1924)." },
+      { an: 1943, montre: ["exi", "k"], legende: "<b>L’existentialisme</b> : l’homme se fait par ses actes. Sartre, <i>L’Être et le Néant</i> (1943)." }
+    ] },
+  "ep-essai": { type: "graphe", titre: "Construire un essai : du sujet au plan", w: 640, h: 450,
+    intro: "Sur l’exemple « Peut-on être heureux sans penser ? » (corrigé de l’entrée II).",
+    noeuds: [
+      { id: "s", x: 170, y: 10, w: 300, h: 44, s: "these", t: "Sujet : « Peut-on être heureux sans penser ? »" },
+      { id: "t", x: 20, y: 86, w: 290, h: 62, s: "arg", t: "Analyser les termes : bonheur ≠ plaisir ;|penser = réfléchir, comparer, prévoir" },
+      { id: "x", x: 330, y: 86, w: 290, h: 62, s: "ex", t: "Partir du texte : Rousseau sent|son existence « sans […] penser »" },
+      { id: "p", x: 120, y: 180, w: 400, h: 58, s: "these", t: "Problème : la pensée est-elle l’obstacle|ou la condition du bonheur ?" },
+      { id: "i", x: 20, y: 274, w: 190, h: 70, s: "arg", t: "I. La pensée|trouble le bonheur|(Pascal, Musset)" },
+      { id: "ii", x: 225, y: 274, w: 190, h: 70, s: "obj", t: "II. Un bonheur|sans conscience n’est|pas humain (Kant)" },
+      { id: "iii", x: 430, y: 274, w: 190, h: 70, s: "arg", t: "III. Penser autrement :|Épicure, Bergson,|l’écriture" },
+      { id: "c", x: 120, y: 378, w: 400, h: 56, s: "concl", t: "Conclusion : réponse nette, qui reprend|les termes du sujet" }
+    ],
+    liens: [{ de: "s", a: "t" }, { de: "s", a: "x" }, { de: "t", a: "p" }, { de: "x", a: "p" }, { de: "p", a: "i" }, { de: "i", a: "ii", t: "mais" }, { de: "ii", a: "iii", t: "donc" }, { de: "iii", a: "c" }],
+    etapes: [
+      { montre: ["s"], legende: "<b>Lire le sujet</b> en entier, mot à mot. C’est une question soulevée par le texte." },
+      { montre: ["t"], legende: "<b>Définir les termes</b> : chaque mot important a plusieurs sens, à distinguer." },
+      { montre: ["x"], legende: "<b>Repartir du texte</b> : l’essai doit répondre « au regard du texte étudié » (barème officiel)." },
+      { montre: ["p"], legende: "<b>Formuler le problème</b> : une tension entre deux réponses défendables." },
+      { montre: ["i"], legende: "<b>Partie I</b> : la réponse la plus évidente, appuyée sur des références précises." },
+      { montre: ["ii"], legende: "<b>Partie II</b> : ses limites, avec d’autres références." },
+      { montre: ["iii"], legende: "<b>Partie III</b> : une réponse plus juste, qui tient compte des deux premières." },
+      { montre: ["c"], legende: "<b>Conclure</b> : répondre clairement à la question posée, sans formule creuse." }
+    ] }
+};
+
 HLP.EPREUVE = `<header class="page-entete"><p class="surtitre">Méthode</p><h1>L’épreuve écrite de HLP</h1><p class="chapo">Quatre heures, un texte, deux questions, deux correcteurs. Voici le format officiel en vigueur pour la session 2027, la méthode de chaque exercice et une copie commentée sur un vrai sujet.</p></header>
 <div class="lecture entre">
 <section id="ep-format"><h2>Le format officiel (session 2027)</h2>
@@ -1479,6 +1926,7 @@ HLP.EPREUVE = `<header class="page-entete"><p class="surtitre">Méthode</p><h1>L
 <tr><th>Exemple attendu</th><td>« Dans <i>L’Enfant</i> (1878), Vallès fait raconter le collège par un enfant… »</td><td>« Kant distingue l’usage privé et l’usage public de la raison… »</td></tr>
 <tr><th>Le « je »</th><td colspan="2">Un « je » qui argumente, jamais un récit de ta vie. Les exemples de la vie courante sont permis s’ils servent un argument.</td></tr>
 </tbody></table></div>
+<div data-anim="ep-essai"></div>
 <div class="cle"><b class="l">Gérer les 4 heures</b>Lis le sujet entier d’abord, puis 1 h 55 environ par question, 10 minutes de relecture. Commence par la question qui t’inspire le plus, mais garde du temps pour l’autre : deux copies équilibrées valent mieux qu’une excellente et une bâclée.</div>
 </section>
 
@@ -1607,6 +2055,143 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
 
 </script>
 <script>
+/* Animations explicatives : lecteur commun (lecture, pause, étape précédente / suivante, recommencer).
+   Données : HLP.ANIMS[id] = { titre, intro, type: "texte" | "graphe" | "frise", ... } ; dans une page,
+   <div data-anim="id"></div> monte l'animation. Sans lecture, la figure est affichée en entier :
+   rien n'est caché tant que l'élève n'a pas lancé l'animation. */
+(function () {
+  "use strict";
+  var D = window.HLP, NS = "http://www.w3.org/2000/svg";
+  var reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var IC = {
+    debut: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 5l-10 7 10 7z" fill="currentColor"/></svg>',
+    prec: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5l-9 7 9 7z" fill="currentColor"/></svg>',
+    lire: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5l13 7.5-13 7.5z" fill="currentColor"/></svg>',
+    pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z" fill="currentColor"/></svg>',
+    suiv: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l9 7-9 7z" fill="currentColor"/></svg>'
+  };
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  /* ---------- rendu des scènes ---------- */
+  function sceneTexte(a) {
+    var segs = a.segs || (D.ATELIER[a.atelier] || {}).segs || [], h = '<div class="anim-texte' + (a.vers ? " vers" : "") + '">', etapes = [];
+    segs.forEach(function (s) {
+      /* le texte non annoté se dépose avec le segment annoté qui le précède */
+      if (typeof s === "string") { h += '<span class="a-seg a-plain" data-k="' + Math.max(0, etapes.length - 1) + '">' + esc(s).replace(/\n/g, "<br>") + "</span>"; return; }
+      var k = etapes.length; etapes.push({ legende: "<b>" + (s.m ? "Mouvement " + s.m + " · " : "") + s.titre + "</b> " + s.n });
+      h += '<span class="a-seg" data-k="' + k + '" data-m="' + (s.m || "") + '">' + esc(s.t).replace(/\n/g, "<br>") + "</span>";
+    });
+    return { html: h + "</div>", etapes: etapes };
+  }
+  function bord(n, x, y) { /* point du bord du rectangle n sur la droite qui va du centre vers (x, y) */
+    var cx = n.x + n.w / 2, cy = n.y + n.h / 2, dx = x - cx, dy = y - cy;
+    if (!dx && !dy) return [cx, cy];
+    var t = Math.min(dx ? (n.w / 2) / Math.abs(dx) : 1e9, dy ? (n.h / 2) / Math.abs(dy) : 1e9);
+    return [cx + dx * t, cy + dy * t];
+  }
+  function sceneGraphe(a) {
+    var pos = {}; a.noeuds.forEach(function (n) { pos[n.id] = n; });
+    var quand = {}; a.etapes.forEach(function (e, k) { (e.montre || []).forEach(function (id) { if (!(id in quand)) quand[id] = k; }); });
+    var h = '<svg class="a-svg" viewBox="0 0 ' + a.w + " " + a.h + '" role="img" aria-label="' + esc(a.titre) + '" style="min-width:' + (a.min || 560) + 'px">' +
+      '<defs><marker id="fl-' + a.id + '" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="a-pointe"/></marker></defs>';
+    (a.liens || []).forEach(function (l, i) {
+      var A = pos[l.de], B = pos[l.a], p1 = bord(A, B.x + B.w / 2, B.y + B.h / 2), p2 = bord(B, A.x + A.w / 2, A.y + A.h / 2);
+      var id = l.id || ("l" + i), k = id in quand ? quand[id] : (Math.max(quand[l.de] || 0, quand[l.a] || 0));
+      var mx = (p1[0] + p2[0]) / 2, my = (p1[1] + p2[1]) / 2, c = l.courbe || 0;
+      var d = c ? "M" + p1[0] + " " + p1[1] + " Q" + (mx + c) + " " + (my - c) + " " + p2[0] + " " + p2[1] : "M" + p1[0] + " " + p1[1] + " L" + p2[0] + " " + p2[1];
+      h += '<g class="a-el a-lien' + (l.s ? " " + l.s : "") + '" data-k="' + k + '"><path class="a-trait" d="' + d + '" marker-end="url(#fl-' + a.id + ')"/>' +
+        (l.t ? '<text class="a-lt" x="' + (mx + c / 2) + '" y="' + (my - c / 2 - 6) + '" text-anchor="middle">' + esc(l.t) + "</text>" : "") + "</g>";
+    });
+    a.noeuds.forEach(function (n) {
+      var lignes = String(n.t).split("|"), k = n.id in quand ? quand[n.id] : 0, y0 = n.y + n.h / 2 - (lignes.length - 1) * 8.5 + 5;
+      h += '<g class="a-el a-noeud ' + (n.s || "arg") + '" data-k="' + k + '"><rect x="' + n.x + '" y="' + n.y + '" width="' + n.w + '" height="' + n.h + '" rx="3"/>' +
+        lignes.map(function (t, j) { return '<text x="' + (n.x + n.w / 2) + '" y="' + (y0 + j * 17) + '" text-anchor="middle"' + (j === 0 && n.titre ? ' class="a-nt"' : "") + ">" + esc(t) + "</text>"; }).join("") + "</g>";
+    });
+    return { html: h + "</svg>", etapes: a.etapes };
+  }
+  function sceneFrise(a) {
+    var W = 1000, H = a.h || 270, x = function (an) { return 40 + (an - a.debut) / (a.fin - a.debut) * (W - 80); };
+    var quand = {}; a.etapes.forEach(function (e, k) { (e.montre || []).forEach(function (id) { if (!(id in quand)) quand[id] = k; }); });
+    var h = '<svg class="a-svg a-frise" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(a.titre) + '" style="min-width:' + (a.min || 760) + 'px">';
+    h += '<line class="a-axe" x1="30" y1="' + (H - 40) + '" x2="' + (W - 30) + '" y2="' + (H - 40) + '"/>';
+    for (var an = Math.ceil(a.debut / a.pas) * a.pas; an <= a.fin; an += a.pas) h += '<g class="a-grad"><line x1="' + x(an) + '" y1="' + (H - 45) + '" x2="' + x(an) + '" y2="' + (H - 35) + '"/><text x="' + x(an) + '" y="' + (H - 18) + '" text-anchor="middle">' + an + "</text></g>";
+    (a.periodes || []).forEach(function (p, i) {
+      var y = 24 + (p.rang || 0) * 44;
+      h += '<g class="a-el a-per p' + ((p.c || i) % 4) + '" data-k="' + (quand[p.id] || 0) + '"><rect x="' + x(p.de) + '" y="' + y + '" width="' + Math.max(8, x(p.a) - x(p.de)) + '" height="34" rx="3"/>' +
+        '<text x="' + (x(p.de) + 7) + '" y="' + (y + 22) + '">' + esc(p.nom) + "</text></g>";
+    });
+    (a.evts || []).forEach(function (e) {
+      var X = x(e.an), y = H - 48 - (e.h || 30);
+      h += '<g class="a-el a-evt" data-k="' + (quand[e.id] || 0) + '"><line x1="' + X + '" y1="' + (H - 40) + '" x2="' + X + '" y2="' + y + '"/><circle cx="' + X + '" cy="' + (H - 40) + '" r="4"/>' +
+        '<text x="' + (X + (e.g ? -5 : 5)) + '" y="' + (y + 4) + '"' + (e.g ? ' text-anchor="end"' : "") + ">" + esc(e.t) + "</text></g>";
+    });
+    h += '<g class="a-curseur"><line x1="0" y1="14" x2="0" y2="' + (H - 32) + '"/><path d="M-6 8h12l-6 8z"/></g></svg>';
+    return { html: h, etapes: a.etapes, x: x };
+  }
+
+  /* ---------- lecteur ---------- */
+  function monterUn(el) {
+    var id = el.getAttribute("data-anim"), a = D.ANIMS && D.ANIMS[id];
+    if (!a || el.getAttribute("data-monte")) return;
+    el.setAttribute("data-monte", "1"); a.id = id;
+    var sc = a.type === "texte" ? sceneTexte(a) : a.type === "frise" ? sceneFrise(a) : sceneGraphe(a);
+    var N = sc.etapes.length;
+    el.className = "anim anim-" + a.type;
+    el.innerHTML = '<div class="anim-tete"><span class="anim-tag">Animation</span><b>' + a.titre + "</b></div>" +
+      '<div class="anim-scene">' + sc.html + "</div>" +
+      '<div class="anim-legende" aria-live="polite"><span class="anim-n"></span><p></p></div>' +
+      '<div class="anim-cmd" role="group" aria-label="Commandes de l’animation">' +
+      '<button type="button" data-a="debut" aria-label="Recommencer">' + IC.debut + '</button><button type="button" data-a="prec" aria-label="Étape précédente">' + IC.prec + "</button>" +
+      '<button type="button" class="anim-lire" data-a="lire" aria-label="Lecture">' + IC.lire + '<span>Lecture</span></button><button type="button" data-a="suiv" aria-label="Étape suivante">' + IC.suiv + '</button><span class="anim-prog"><i></i></span></div>';
+    var scene = el.querySelector(".anim-scene"), leg = el.querySelector(".anim-legende p"), num = el.querySelector(".anim-n"),
+      btn = el.querySelector(".anim-lire"), prog = el.querySelector(".anim-prog i"), i = -1, minuteur = null, cur = el.querySelector(".a-curseur");
+    function appliquer() {
+      el.classList.toggle("en-cours", i >= 0);
+      Array.prototype.forEach.call(el.querySelectorAll("[data-k]"), function (x) {
+        var k = +x.getAttribute("data-k");
+        x.classList.toggle("vu", i < 0 || k <= i);
+        x.classList.toggle("neuf", i >= 0 && k === i);
+        x.classList.toggle("avenir", i >= 0 && k > i);
+      });
+      if (i < 0) { num.textContent = N + " étapes"; leg.innerHTML = a.intro || "Appuie sur lecture pour suivre l’explication pas à pas."; }
+      else { num.textContent = "Étape " + (i + 1) + " / " + N; leg.innerHTML = sc.etapes[i].legende; }
+      prog.style.width = (i < 0 ? 0 : (i + 1) / N * 100) + "%";
+      if (cur && sc.x) {
+        var an = i < 0 ? a.fin : sc.etapes[i].an;
+        cur.setAttribute("transform", "translate(" + sc.x(an) + " 0)");
+        if (i >= 0) { var r = scene.getBoundingClientRect(), svg = scene.querySelector("svg"), px = sc.x(an) / 1000 * svg.getBoundingClientRect().width; scene.scrollTo({ left: Math.max(0, px - r.width / 2), behavior: reduit ? "auto" : "smooth" }); }
+      }
+      var el2 = scene.querySelector(".a-el.neuf");
+      if (el2 && a.type === "graphe" && scene.scrollWidth > scene.clientWidth + 4) {
+        var rs2 = scene.getBoundingClientRect(), re2 = el2.getBoundingClientRect();
+        scene.scrollTo({ left: Math.max(0, scene.scrollLeft + re2.left + re2.width / 2 - rs2.left - rs2.width / 2), behavior: reduit ? "auto" : "smooth" });
+      }
+      var actif = scene.querySelector(".a-seg.neuf:not(.a-plain)");
+      if (actif && a.type === "texte") { var rs = scene.getBoundingClientRect(), ra = actif.getBoundingClientRect(); if (ra.top < rs.top || ra.bottom > rs.bottom) scene.scrollTop += ra.top - rs.top - 40; }
+    }
+    function arreter() { clearTimeout(minuteur); minuteur = null; btn.innerHTML = IC.lire + "<span>Lecture</span>"; btn.setAttribute("aria-label", "Lecture"); el.classList.remove("joue-anim"); }
+    function planifier() {
+      clearTimeout(minuteur);
+      var d = (sc.etapes[i] && sc.etapes[i].d) || Math.min(9000, 2600 + String(sc.etapes[i] ? sc.etapes[i].legende : "").replace(/<[^>]+>/g, "").length * 38);
+      minuteur = setTimeout(function () { if (i < N - 1) { i++; appliquer(); planifier(); } else arreter(); }, d);
+    }
+    el.querySelector(".anim-cmd").addEventListener("click", function (ev) {
+      var b = ev.target.closest("button"); if (!b) return;
+      var x = b.getAttribute("data-a");
+      if (x === "lire") {
+        if (minuteur) { arreter(); return; }
+        if (i >= N - 1 || i < 0) i = 0; appliquer();
+        btn.innerHTML = IC.pause + "<span>Pause</span>"; btn.setAttribute("aria-label", "Pause"); el.classList.add("joue-anim"); planifier(); return;
+      }
+      if (x === "debut") { arreter(); i = -1; appliquer(); return; }
+      if (x === "prec") { i = Math.max(0, i - 1); } else if (x === "suiv") { i = Math.min(N - 1, i + 1); }
+      appliquer(); if (minuteur) planifier();
+    });
+    appliquer();
+  }
+  window.HLPANIM = { monter: function (racine) { Array.prototype.forEach.call((racine || document).querySelectorAll("[data-anim]"), monterUn); } };
+})();
+
 (function () {
   "use strict";
   var D = window.HLP;
@@ -1625,7 +2210,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function melange(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function ico(n) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (D.ICONES[n] || "") + "</svg>"; }
-  var ORN = '<div class="orn" aria-hidden="true"><svg viewBox="0 0 46 14"><path d="M23 2a5 5 0 1 0 4 8 4 4 0 1 1-4-8z" fill="currentColor"/><circle cx="9" cy="7" r="1.3" fill="currentColor"/><circle cx="37" cy="7" r="1.3" fill="currentColor"/></svg></div>';
+  var ORN = '<div class="orn" aria-hidden="true">' + D.FLEURON + "</div>";
 
   function entree(id) { for (var i = 0; i < D.ENTREES.length; i++) if (D.ENTREES[i].id === id) return D.ENTREES[i]; return null; }
   /* Semestre d'une entrée : champ sem (1 par défaut, 2 pour « L'Humanité en question »). */
@@ -1637,7 +2222,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   /* ---------- menu ---------- */
   var menu = $("#menu"), voileM = $("#voile-menu");
   function construireMenu() {
-    var h = '<div class="m-tete">' + D.LOGO + '<div><b>L’Heure bleue</b><small>HLP · Terminale</small></div></div>';
+    var h = '<div class="m-tete">' + D.LOGO + '<div><b>Ex libris</b><small>HLP · Terminale</small></div></div>';
     h += '<a href="#accueil" data-r="accueil">' + ico("lune") + "Accueil</a>";
     h += "<h6>Semestre 1 · La recherche de soi</h6>";
     ordre().forEach(function (e) { if (sem(e) === 1) h += '<a href="#' + e.id + '" data-r="' + e.id + '"><span class="num">' + e.num + "</span>" + e.titre + "</a>"; });
@@ -1666,15 +2251,17 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   $("#btn-theme").addEventListener("click", function () {
     var r = document.documentElement, sombre = r.getAttribute("data-theme") ? r.getAttribute("data-theme") === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     r.setAttribute("data-theme", sombre ? "light" : "dark");
-    var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sombre ? "#f4eedf" : "#11172a");
+    var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sombre ? "#f1e7d0" : "#17110b");
   });
 
   /* ---------- pages ---------- */
   var PAGES = {};
   PAGES.accueil = function () {
-    var h = '<section class="ciel">' + D.CIEL + '<div class="txt"><p class="sous">Humanités, littérature et philosophie · Terminale</p><h1>L’Heure bleue</h1>' +
-      '<p class="acc">Le cabinet de lecture du soir, pour réviser la spécialité HLP : des textes, des idées, et la méthode pour en faire une copie.</p>' +
-      '<div class="rang"><a class="btn plein" href="#e1">Commencer le semestre 1</a><a class="btn" href="#epreuve">L’épreuve</a></div></div></section>';
+    var coin = function (c) { return '<svg class="coin ' + c + '" viewBox="0 0 30 30" aria-hidden="true">' + D.COIN + "</svg>"; };
+    var h = '<section class="frontispice">' + coin("a") + coin("b") + coin("c") + coin("d") +
+      '<p class="f-haut">Humanités · Littérature · Philosophie</p><h1>Ex libris</h1>' +
+      '<p class="f-sous">ou l’art de se chercher dans les livres. Cours complet de la spécialité, classe de Terminale.</p>' + D.EMBLEME +
+      '<div class="f-imp">Session MMXXVII</div><div class="rang"><a class="btn plein" href="#e1">Ouvrir le premier livre</a><a class="btn" href="#epreuve">L’épreuve</a></div></section>';
     h += '<div class="lecture"><p class="lettrine" style="margin-top:22px">' + D.ACCUEIL_INTRO + "</p></div>";
     h += '<section class="semestre"><h2>Semestre 1 — La recherche de soi <small>du romantisme au XX<sup>e</sup> siècle</small></h2><div class="grille g3">';
     ordre().forEach(function (e) {
@@ -1717,6 +2304,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     h += '<section class="cadre-prog"><h3>Ce que le programme attend</h3><ul class="puces">' + e.attendus.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul></section>";
     h += "<h2>Les problématiques</h2><ul class='puces'>" + e.problematiques.map(function (l) { return "<li><i>" + l + "</i></li>"; }).join("") + "</ul>";
     h += e.schema ? '<figure class="schema" data-schema>' + e.schema + "</figure>" : "";
+    (e.anims || []).forEach(function (id) { h += '<div data-anim="' + id + '"></div>'; });
     h += ORN + "<h2>Le cours</h2>";
     e.cours.forEach(function (c, i) {
       h += '<section class="idee" id="' + c.id + '"><h3><span class="n">' + (i + 1) + ".</span><span>" + c.titre + "</span></h3>" + c.html + "</section>";
@@ -1780,6 +2368,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   PAGES.frise = function () {
     var h = '<header class="page-entete"><p class="surtitre">Repères</p><h1>La frise, des Lumières à 1950</h1><p class="chapo">La période de référence du semestre 1 va « du romantisme au XX<sup>e</sup> siècle ». Ces repères permettent de situer un texte inconnu le jour de l’épreuve.</p></header>';
     h += '<div class="rang" role="group" aria-label="Filtrer"><button class="puce-f" data-ff="" aria-pressed="true">Tout</button><button class="puce-f" data-ff="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-ff="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-ff="e3" aria-pressed="false">Moi</button><button class="puce-f" data-ff="hist" aria-pressed="false">Histoire</button></div>';
+    h += '<div data-anim="frise-mouvements"></div>';
     h += '<div class="frise lecture" id="frise">';
     D.FRISE.forEach(function (p) {
       h += '<div class="periode">' + p.nom + "<small>" + p.dates + " — " + p.def + "</small></div>";
@@ -1996,16 +2585,48 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   window.addEventListener("popstate", function (e) { if (srchOuvert && !(e.state && e.state.srch)) fermerRecherche(true); });
 
   /* ---------- routeur ---------- */
-  var allerA = null;
+  var allerA = null, premier = true;
+  /* Suite des pages, pour le folio (numéro de page) et la réclame (le titre de la page suivante, en bas). */
+  function suite() {
+    var l = [["accueil", "Frontispice"]];
+    ordre().forEach(function (e) { l.push([e.id, e.titre]); });
+    if (D.S2.some(function (p) { return !ecrite2(p.num); })) l.push(["s2", "Semestre 2"]);
+    [["epreuve", "L’épreuve"], ["atelier", "Atelier de lecture"], ["qui", "Qui a écrit ?"], ["frise", "La frise"], ["notions", "Tableau des notions"], ["entrainement", "Entraînement"], ["ressources", "Ressources"]].forEach(function (x) { l.push(x); });
+    return l;
+  }
+  function folio(r) {
+    var l = suite(), i = 0; l.forEach(function (x, k) { if (x[0] === r) i = k; });
+    var n = l[(i + 1) % l.length];
+    return '<nav class="folio non-imp" aria-label="Page suivante"><span class="num-p">— ' + (i + 1) + ' —</span><a class="reclame" href="#' + n[0] + '">' + n[1] + "</a></nav>";
+  }
+  function orner() {
+    var en = $(".page-entete h1", main);
+    if (en) en.insertAdjacentHTML("afterend", D.PARAPHE);
+    $$(".lettrine", main).forEach(function (p) {
+      var w = document.createTreeWalker(p, NodeFilter.SHOW_TEXT), t;
+      while ((t = w.nextNode())) {
+        var m = /^(\s*)([A-Za-zÀ-ÖØ-öø-ÿŒœ])/.exec(t.nodeValue); if (!m) continue;
+        var sp = document.createElement("span"); sp.className = "lettre"; sp.setAttribute("aria-hidden", "true"); sp.textContent = m[2];
+        var reste = document.createTextNode(t.nodeValue.slice(m[0].length));
+        var sr = document.createElement("span"); sr.className = "sr"; sr.textContent = m[2];
+        t.parentNode.insertBefore(sp, t); t.parentNode.insertBefore(sr, t); t.parentNode.replaceChild(reste, t);
+        p.classList.add("lettrine-ok"); break;
+      }
+    });
+  }
   function router() {
     var h = (location.hash || "#accueil").slice(1), parts = h.split("/"), r = parts[0] || "accueil", sous = parts[1] || "";
     var e = entree(r), html;
     if (e) html = pageEntree(e, ONGLETS.some(function (o) { return o[0] === sous; }) ? sous : "");
     else if (PAGES[r]) html = PAGES[r]();
     else { r = "accueil"; html = PAGES.accueil(); }
-    main.innerHTML = ty(html) + '<footer class="pied">' + D.PIED + "</footer>";
+    main.innerHTML = ty(html) + '<div aria-hidden="true">' + D.CUL + "</div>" + folio(e ? e.id : r) + '<footer class="pied">' + D.PIED + "</footer>";
+    orner();
+    if (window.HLPANIM) window.HLPANIM.monter(main);
+    if (!premier && !reduit) { main.classList.toggle("tourne", false); void main.offsetWidth; main.classList.add("tourne"); }
+    premier = false;
     $$("#menu a").forEach(function (a) { var x = a.getAttribute("data-r"); a.classList.toggle("actif", x === r && r !== "s2"); if (x === r) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
-    document.title = (e ? e.titre : (D.TITRES[r] || "Accueil")) + " · L’Heure bleue — HLP Terminale";
+    document.title = (e ? e.titre : (D.TITRES[r] || "Accueil")) + " · Ex libris — HLP Terminale";
     if (e && sous === "qcm") lancerQCM($("#qcm-zone"), melange(e.qcm));
     if (e && sous === "cartes") lancerCartes($("#fc-zone"), e.cartes);
     if (r === "entrainement") {

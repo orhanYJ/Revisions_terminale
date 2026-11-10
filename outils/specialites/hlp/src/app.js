@@ -16,7 +16,7 @@
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function melange(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function ico(n) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (D.ICONES[n] || "") + "</svg>"; }
-  var ORN = '<div class="orn" aria-hidden="true"><svg viewBox="0 0 46 14"><path d="M23 2a5 5 0 1 0 4 8 4 4 0 1 1-4-8z" fill="currentColor"/><circle cx="9" cy="7" r="1.3" fill="currentColor"/><circle cx="37" cy="7" r="1.3" fill="currentColor"/></svg></div>';
+  var ORN = '<div class="orn" aria-hidden="true">' + D.FLEURON + "</div>";
 
   function entree(id) { for (var i = 0; i < D.ENTREES.length; i++) if (D.ENTREES[i].id === id) return D.ENTREES[i]; return null; }
   /* Semestre d'une entrée : champ sem (1 par défaut, 2 pour « L'Humanité en question »). */
@@ -28,7 +28,7 @@
   /* ---------- menu ---------- */
   var menu = $("#menu"), voileM = $("#voile-menu");
   function construireMenu() {
-    var h = '<div class="m-tete">' + D.LOGO + '<div><b>L’Heure bleue</b><small>HLP · Terminale</small></div></div>';
+    var h = '<div class="m-tete">' + D.LOGO + '<div><b>Ex libris</b><small>HLP · Terminale</small></div></div>';
     h += '<a href="#accueil" data-r="accueil">' + ico("lune") + "Accueil</a>";
     h += "<h6>Semestre 1 · La recherche de soi</h6>";
     ordre().forEach(function (e) { if (sem(e) === 1) h += '<a href="#' + e.id + '" data-r="' + e.id + '"><span class="num">' + e.num + "</span>" + e.titre + "</a>"; });
@@ -57,15 +57,17 @@
   $("#btn-theme").addEventListener("click", function () {
     var r = document.documentElement, sombre = r.getAttribute("data-theme") ? r.getAttribute("data-theme") === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     r.setAttribute("data-theme", sombre ? "light" : "dark");
-    var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sombre ? "#f4eedf" : "#11172a");
+    var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sombre ? "#f1e7d0" : "#17110b");
   });
 
   /* ---------- pages ---------- */
   var PAGES = {};
   PAGES.accueil = function () {
-    var h = '<section class="ciel">' + D.CIEL + '<div class="txt"><p class="sous">Humanités, littérature et philosophie · Terminale</p><h1>L’Heure bleue</h1>' +
-      '<p class="acc">Le cabinet de lecture du soir, pour réviser la spécialité HLP : des textes, des idées, et la méthode pour en faire une copie.</p>' +
-      '<div class="rang"><a class="btn plein" href="#e1">Commencer le semestre 1</a><a class="btn" href="#epreuve">L’épreuve</a></div></div></section>';
+    var coin = function (c) { return '<svg class="coin ' + c + '" viewBox="0 0 30 30" aria-hidden="true">' + D.COIN + "</svg>"; };
+    var h = '<section class="frontispice">' + coin("a") + coin("b") + coin("c") + coin("d") +
+      '<p class="f-haut">Humanités · Littérature · Philosophie</p><h1>Ex libris</h1>' +
+      '<p class="f-sous">ou l’art de se chercher dans les livres. Cours complet de la spécialité, classe de Terminale.</p>' + D.EMBLEME +
+      '<div class="f-imp">Session MMXXVII</div><div class="rang"><a class="btn plein" href="#e1">Ouvrir le premier livre</a><a class="btn" href="#epreuve">L’épreuve</a></div></section>';
     h += '<div class="lecture"><p class="lettrine" style="margin-top:22px">' + D.ACCUEIL_INTRO + "</p></div>";
     h += '<section class="semestre"><h2>Semestre 1 — La recherche de soi <small>du romantisme au XX<sup>e</sup> siècle</small></h2><div class="grille g3">';
     ordre().forEach(function (e) {
@@ -108,6 +110,7 @@
     h += '<section class="cadre-prog"><h3>Ce que le programme attend</h3><ul class="puces">' + e.attendus.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul></section>";
     h += "<h2>Les problématiques</h2><ul class='puces'>" + e.problematiques.map(function (l) { return "<li><i>" + l + "</i></li>"; }).join("") + "</ul>";
     h += e.schema ? '<figure class="schema" data-schema>' + e.schema + "</figure>" : "";
+    (e.anims || []).forEach(function (id) { h += '<div data-anim="' + id + '"></div>'; });
     h += ORN + "<h2>Le cours</h2>";
     e.cours.forEach(function (c, i) {
       h += '<section class="idee" id="' + c.id + '"><h3><span class="n">' + (i + 1) + ".</span><span>" + c.titre + "</span></h3>" + c.html + "</section>";
@@ -171,6 +174,7 @@
   PAGES.frise = function () {
     var h = '<header class="page-entete"><p class="surtitre">Repères</p><h1>La frise, des Lumières à 1950</h1><p class="chapo">La période de référence du semestre 1 va « du romantisme au XX<sup>e</sup> siècle ». Ces repères permettent de situer un texte inconnu le jour de l’épreuve.</p></header>';
     h += '<div class="rang" role="group" aria-label="Filtrer"><button class="puce-f" data-ff="" aria-pressed="true">Tout</button><button class="puce-f" data-ff="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-ff="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-ff="e3" aria-pressed="false">Moi</button><button class="puce-f" data-ff="hist" aria-pressed="false">Histoire</button></div>';
+    h += '<div data-anim="frise-mouvements"></div>';
     h += '<div class="frise lecture" id="frise">';
     D.FRISE.forEach(function (p) {
       h += '<div class="periode">' + p.nom + "<small>" + p.dates + " — " + p.def + "</small></div>";
@@ -387,16 +391,48 @@
   window.addEventListener("popstate", function (e) { if (srchOuvert && !(e.state && e.state.srch)) fermerRecherche(true); });
 
   /* ---------- routeur ---------- */
-  var allerA = null;
+  var allerA = null, premier = true;
+  /* Suite des pages, pour le folio (numéro de page) et la réclame (le titre de la page suivante, en bas). */
+  function suite() {
+    var l = [["accueil", "Frontispice"]];
+    ordre().forEach(function (e) { l.push([e.id, e.titre]); });
+    if (D.S2.some(function (p) { return !ecrite2(p.num); })) l.push(["s2", "Semestre 2"]);
+    [["epreuve", "L’épreuve"], ["atelier", "Atelier de lecture"], ["qui", "Qui a écrit ?"], ["frise", "La frise"], ["notions", "Tableau des notions"], ["entrainement", "Entraînement"], ["ressources", "Ressources"]].forEach(function (x) { l.push(x); });
+    return l;
+  }
+  function folio(r) {
+    var l = suite(), i = 0; l.forEach(function (x, k) { if (x[0] === r) i = k; });
+    var n = l[(i + 1) % l.length];
+    return '<nav class="folio non-imp" aria-label="Page suivante"><span class="num-p">— ' + (i + 1) + ' —</span><a class="reclame" href="#' + n[0] + '">' + n[1] + "</a></nav>";
+  }
+  function orner() {
+    var en = $(".page-entete h1", main);
+    if (en) en.insertAdjacentHTML("afterend", D.PARAPHE);
+    $$(".lettrine", main).forEach(function (p) {
+      var w = document.createTreeWalker(p, NodeFilter.SHOW_TEXT), t;
+      while ((t = w.nextNode())) {
+        var m = /^(\s*)([A-Za-zÀ-ÖØ-öø-ÿŒœ])/.exec(t.nodeValue); if (!m) continue;
+        var sp = document.createElement("span"); sp.className = "lettre"; sp.setAttribute("aria-hidden", "true"); sp.textContent = m[2];
+        var reste = document.createTextNode(t.nodeValue.slice(m[0].length));
+        var sr = document.createElement("span"); sr.className = "sr"; sr.textContent = m[2];
+        t.parentNode.insertBefore(sp, t); t.parentNode.insertBefore(sr, t); t.parentNode.replaceChild(reste, t);
+        p.classList.add("lettrine-ok"); break;
+      }
+    });
+  }
   function router() {
     var h = (location.hash || "#accueil").slice(1), parts = h.split("/"), r = parts[0] || "accueil", sous = parts[1] || "";
     var e = entree(r), html;
     if (e) html = pageEntree(e, ONGLETS.some(function (o) { return o[0] === sous; }) ? sous : "");
     else if (PAGES[r]) html = PAGES[r]();
     else { r = "accueil"; html = PAGES.accueil(); }
-    main.innerHTML = ty(html) + '<footer class="pied">' + D.PIED + "</footer>";
+    main.innerHTML = ty(html) + '<div aria-hidden="true">' + D.CUL + "</div>" + folio(e ? e.id : r) + '<footer class="pied">' + D.PIED + "</footer>";
+    orner();
+    if (window.HLPANIM) window.HLPANIM.monter(main);
+    if (!premier && !reduit) { main.classList.toggle("tourne", false); void main.offsetWidth; main.classList.add("tourne"); }
+    premier = false;
     $$("#menu a").forEach(function (a) { var x = a.getAttribute("data-r"); a.classList.toggle("actif", x === r && r !== "s2"); if (x === r) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
-    document.title = (e ? e.titre : (D.TITRES[r] || "Accueil")) + " · L’Heure bleue — HLP Terminale";
+    document.title = (e ? e.titre : (D.TITRES[r] || "Accueil")) + " · Ex libris — HLP Terminale";
     if (e && sous === "qcm") lancerQCM($("#qcm-zone"), melange(e.qcm));
     if (e && sous === "cartes") lancerCartes($("#fc-zone"), e.cartes);
     if (r === "entrainement") {
