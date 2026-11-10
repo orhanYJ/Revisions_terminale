@@ -519,6 +519,10 @@ html.mo .nd-a.neuf,html.mo .nd-a.actif{animation:pop .4s cubic-bezier(.2,.9,.3,1
 .mini-pile,.mini-file{display:flex;gap:5px;flex-wrap:wrap;min-height:34px;align-items:center}
 .mini-pile{flex-direction:column;align-items:flex-start}
 .sortie-p{font-size:1rem;font-weight:700;color:var(--vert);letter-spacing:.08em;padding:4px 0}
+.graphe-svg{display:block;width:100%;height:auto;max-width:620px;margin:0 auto}
+.graphe-svg .ar.arb{stroke:var(--vert);stroke-width:4}
+.graphe-svg .ar.ch{stroke:var(--ambre);stroke-width:6;stroke-linecap:round}
+html.mo .graphe-svg .ar{transition:stroke .3s,stroke-width .3s}
 
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -5579,6 +5583,508 @@ CH.push({
   ]
 });
 
+/* ===================== Calculabilité, décidabilité ===================== */
+C("calc-exec", String.raw`
+programme = "def carre(x):\n    return x * x\n\nprint(carre(7))"
+print(type(programme), len(programme))     # un programme... est une chaîne de caractères
+print(programme.count("x"))                # qu'on peut analyser comme n'importe quel texte
+exec(programme)                            # et qu'on peut faire exécuter`, { out: "<class 'str'> 47\n3\n49" });
+
+C("calc-genere", String.raw`
+lignes = []
+for k in range(1, 4):
+    lignes.append("print(" + str(k) + ", 'x 7 =', " + str(k) + " * 7)")
+code = "\n".join(lignes)                   # un programme fabriqué par un programme
+print(code)
+print("--- exécution ---")
+exec(code)`, { out: String.raw`
+print(1, 'x 7 =', 1 * 7)
+print(2, 'x 7 =', 2 * 7)
+print(3, 'x 7 =', 3 * 7)
+--- exécution ---
+1 x 7 = 7
+2 x 7 = 14
+3 x 7 = 21` });
+
+C("calc-fichier", String.raw`
+import subprocess, sys
+
+source = 'nom = "Turing"\nprint("Bonjour", nom, len(nom))\n'
+with open("bonjour.py", "w", encoding="utf-8") as f:     # écrire un programme dans un fichier
+    f.write(source)
+
+resultat = subprocess.run([sys.executable, "bonjour.py"], capture_output=True, text=True)
+print("l'interpréteur a reçu le fichier bonjour.py et a affiché :", resultat.stdout.strip())`, { out: "l'interpréteur a reçu le fichier bonjour.py et a affiché : Bonjour Turing 6" });
+
+C("calc-analyse", String.raw`
+source = '''def syracuse(n):
+    while n != 1:
+        n = n // 2 if n % 2 == 0 else 3 * n + 1
+    return n
+
+def boucle():
+    while True:
+        pass
+'''
+fonctions = [l[4:l.index("(")] for l in source.splitlines() if l.startswith("def ")]
+print(fonctions)
+print([l.strip() for l in source.splitlines() if "while" in l])`, { out: "['syracuse', 'boucle']\n['while n != 1:', 'while True:']" });
+
+C("calc-fonction", String.raw`
+def appliquer(f, x):
+    return f(x)                      # f est une donnée : une fonction reçue en paramètre
+
+def double(n):
+    return 2 * n
+
+print(appliquer(double, 21), appliquer(len, "Turing"), appliquer(str.upper, "nsi"))`, { out: "42 6 NSI" });
+
+C("calc-quine", String.raw`
+s = 's = %r\nprint(s %% s)'
+print(s % s)`, { out: String.raw`
+s = 's = %r\nprint(s %% s)'
+print(s % s)` });
+
+C("calc-turing", String.raw`
+def executer(machine, mot, etat="debut", trace=False):
+    """Simule une machine de Turing. machine : dictionnaire
+    (état, symbole lu) -> (symbole à écrire, déplacement G/D/-, nouvel état).
+    Le ruban est infini : une case jamais écrite contient le blanc "_"."""
+    ruban = dict(enumerate(mot))
+    pos, pas = 0, 0
+    while etat != "fin":
+        if trace:
+            vue = "".join(ruban.get(k, "_") for k in range(-1, len(mot) + 1))
+            print(vue, " " * 2, etat, "tête en", pos)
+        lu = ruban.get(pos, "_")
+        ecrit, dep, etat = machine[(etat, lu)]
+        ruban[pos] = ecrit
+        pos = pos + {"G": -1, "D": 1, "-": 0}[dep]
+        pas = pas + 1
+    cases = range(min(ruban), max(ruban) + 1)
+    return "".join(ruban.get(k, "_") for k in cases).strip("_"), pas
+
+PLUS_UN = {                                  # ajoute 1 à un nombre écrit en binaire
+    ("debut", "0"): ("0", "D", "debut"),     # aller tout à droite...
+    ("debut", "1"): ("1", "D", "debut"),
+    ("debut", "_"): ("_", "G", "retenue"),   # ... puis revenir sur le dernier chiffre
+    ("retenue", "1"): ("0", "G", "retenue"), # 1 + 1 = 10 : on pose 0, on retient 1
+    ("retenue", "0"): ("1", "-", "fin"),     # 0 + 1 = 1 : terminé
+    ("retenue", "_"): ("1", "-", "fin"),     # on déborde à gauche : nouveau chiffre 1
+}
+
+for mot in ["1011", "111", "0"]:
+    print(mot, "->", executer(PLUS_UN, mot))`, { out: "1011 -> ('1100', 8)\n111 -> ('1000', 8)\n0 -> ('1', 3)" });
+
+C("calc-turing-trace", String.raw`
+executer(PLUS_UN, "1011", trace=True)`, { deps: ["calc-turing"], out: String.raw`
+_1011_    debut tête en 0
+_1011_    debut tête en 1
+_1011_    debut tête en 2
+_1011_    debut tête en 3
+_1011_    debut tête en 4
+_1011_    retenue tête en 3
+_1010_    retenue tête en 2
+_1000_    retenue tête en 1` });
+
+C("calc-syracuse", String.raw`
+def s_arrete_avant(n, limite):
+    """Calcule la suite de Syracuse de n pendant au plus limite étapes."""
+    for etape in range(limite):
+        if n == 1:
+            return "s'arrête après " + str(etape) + " étapes"
+        n = n // 2 if n % 2 == 0 else 3 * n + 1
+    return "je ne sais pas (limite atteinte)"
+
+print(s_arrete_avant(6, 100))
+print(s_arrete_avant(27, 100))       # pourtant elle s'arrête... après 111 étapes
+print(s_arrete_avant(27, 1000))`, { out: "s'arrête après 8 étapes\nje ne sais pas (limite atteinte)\ns'arrête après 111 étapes" });
+
+C("calc-arret", String.raw`
+def arret(programme, donnee):
+    """SUPPOSONS que cette fonction existe : elle renvoie True si
+    programme(donnee) s'arrête, False s'il tourne indéfiniment,
+    et elle répond toujours, en un temps fini."""
+    ...
+
+def paradoxe(programme):
+    if arret(programme, programme):  # si programme(programme) s'arrête...
+        while True:                  # ... alors je boucle indéfiniment
+            pass
+    else:                            # s'il ne s'arrête pas...
+        return "fini"                # ... alors je m'arrête
+
+paradoxe(paradoxe)                   # s'arrête-t-il ?`, { run: false });
+
+C("calc-candidats", String.raw`
+def construire_paradoxe(arret):
+    """Fabrique le programme « paradoxe » associé à un candidat arret.
+    Au lieu de boucler vraiment, il annonce ce qu'il ferait."""
+    def paradoxe(programme):
+        if arret(programme, programme):
+            return "boucle indéfiniment"
+        return "s'arrête"
+    return paradoxe
+
+candidats = {
+    "toujours oui": lambda p, d: True,
+    "toujours non": lambda p, d: False,
+    "nom court":    lambda p, d: len(p.__name__) < 10,
+}
+for nom, arret in candidats.items():
+    paradoxe = construire_paradoxe(arret)
+    prediction = "s'arrête" if arret(paradoxe, paradoxe) else "boucle indéfiniment"
+    print(nom, ": arret prédit", prediction, "/ en réalité,", paradoxe(paradoxe))`, { out: String.raw`
+toujours oui : arret prédit s'arrête / en réalité, boucle indéfiniment
+toujours non : arret prédit boucle indéfiniment / en réalité, s'arrête
+nom court : arret prédit s'arrête / en réalité, boucle indéfiniment` });
+
+/* pièges */
+C("calc-p-exec", String.raw`
+programme = "print(10 / 0)"
+print("le texte du programme est correct :", programme)
+exec(programme)`, { out: "le texte du programme est correct : print(10 / 0)", err: "ZeroDivisionError: division by zero" });
+
+/* prédis la sortie */
+C("calc-x1", String.raw`
+code = "x = 5\nx = x * 2\nprint(x)"
+print(len(code.split("\n")))
+exec(code)
+exec(code.replace("2", "3"))`, { out: "3\n10\n15" });
+
+C("calc-x2", String.raw`
+def compose(f, g):
+    def h(x):
+        return f(g(x))
+    return h
+
+plus_un = lambda x: x + 1
+carre = lambda x: x * x
+print(compose(carre, plus_un)(3), compose(plus_un, carre)(3))`, { out: "16 10" });
+
+C("calc-x3", String.raw`
+EFFACE = {
+    ("debut", "1"): ("0", "D", "debut"),
+    ("debut", "0"): ("0", "D", "debut"),
+    ("debut", "_"): ("_", "-", "fin"),
+}
+print(executer(EFFACE, "1101"))`, { deps: ["calc-turing"], out: "('0000', 5)" });
+
+C("calc-x4", String.raw`
+def f(n):
+    while n != 0:
+        n = n - 2
+    return "fini"
+
+print(f(10))
+print(f(7) if False else "f(7) : jamais affiché ?")`, { out: "fini\nf(7) : jamais affiché ?" });
+
+/* épreuve pratique 1 */
+C("calc-ep1-fourni", String.raw`
+def executer(machine, mot, max_pas=1000):
+    """Simule la machine sur le mot. Renvoie (contenu du ruban, nombre de pas),
+    ou None si la machine n'a pas atteint l'état "fin" en max_pas pas."""
+    ruban = dict(enumerate(mot))
+    etat, pos, pas = "debut", 0, 0
+    while etat != "fin":
+        if pas == max_pas:
+            ...
+        lu = ruban.get(pos, "_")
+        ecrit, dep, etat = ...
+        ruban[pos] = ecrit
+        pos = ...
+        pas = pas + 1
+    cases = range(min(ruban), max(ruban) + 1)
+    return "".join(ruban.get(k, "_") for k in cases).strip("_"), pas
+
+INVERSE = {}       # à écrire : remplace chaque 0 par 1 et chaque 1 par 0`, { fichier: "turing.py", run: false, trous: [9, 11, 13, 17] });
+
+C("calc-ep1-corr", String.raw`
+def executer(machine, mot, max_pas=1000):
+    ruban = dict(enumerate(mot))
+    etat, pos, pas = "debut", 0, 0
+    while etat != "fin":
+        if pas == max_pas:
+            return None
+        lu = ruban.get(pos, "_")
+        ecrit, dep, etat = machine[(etat, lu)]
+        ruban[pos] = ecrit
+        pos = pos + {"G": -1, "D": 1, "-": 0}[dep]
+        pas = pas + 1
+    cases = range(min(ruban), max(ruban) + 1)
+    return "".join(ruban.get(k, "_") for k in cases).strip("_"), pas
+
+INVERSE = {
+    ("debut", "0"): ("1", "D", "debut"),
+    ("debut", "1"): ("0", "D", "debut"),
+    ("debut", "_"): ("_", "-", "fin"),
+}
+
+PAIR = {                                     # écrit V si le nombre binaire est pair, F sinon
+    ("debut", "0"): ("0", "D", "debut"),
+    ("debut", "1"): ("1", "D", "debut"),
+    ("debut", "_"): ("_", "G", "test"),
+    ("test", "0"): ("V", "-", "fin"),
+    ("test", "1"): ("F", "-", "fin"),
+}
+
+FOU = {("debut", "_"): ("_", "D", "debut")}  # avance vers la droite sans jamais s'arrêter
+
+def test():
+    assert executer(INVERSE, "1100") == ("0011", 5)
+    assert executer(INVERSE, "") == ("", 1)
+    assert executer(PAIR, "110")[0] == "11V"
+    assert executer(PAIR, "111")[0] == "11F"
+    assert executer(FOU, "") is None
+    assert executer(FOU, "", max_pas=10**5) is None
+
+test()
+print("tous les tests passent")`, { fichier: "turing.py", out: "tous les tests passent" });
+
+/* épreuve pratique 2 */
+C("calc-ep2-fourni", String.raw`
+def fonctions_definies(source):
+    """Liste des noms des fonctions définies (lignes commençant par def) dans source."""
+    ...
+
+def appels(source, nom):
+    """Nombre de fois où nom( apparaît dans source, en dehors de la ligne def."""
+    ...
+
+def est_recursive(source, nom):
+    """True si la fonction nom s'appelle elle-même (on suppose qu'elle est la seule
+    fonction du texte source)."""
+    ...`, { fichier: "analyse.py", run: false });
+
+C("calc-ep2-corr", String.raw`
+def fonctions_definies(source):
+    noms = []
+    for ligne in source.split("\n"):
+        if ligne.startswith("def "):
+            noms.append(ligne[4:ligne.index("(")])
+    return noms
+
+def appels(source, nom):
+    n = 0
+    for ligne in source.split("\n"):
+        if not ligne.strip().startswith("def "):
+            n = n + ligne.count(nom + "(")
+    return n
+
+def est_recursive(source, nom):
+    return appels(source, nom) > 0
+
+FACT = "def fact(n):\n    if n == 0:\n        return 1\n    return n * fact(n - 1)\n"
+FIB = "def fib(n):\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\n"
+CARRE = "def carre(x):\n    return x * x\n"
+
+def test():
+    assert fonctions_definies(FACT + CARRE) == ["fact", "carre"]
+    assert appels(FIB, "fib") == 2
+    assert est_recursive(FACT, "fact") and not est_recursive(CARRE, "carre")
+    with open(__file__, encoding="utf-8") as f:     # le programme s'analyse lui-même
+        moi = f.read()
+    assert "test" in fonctions_definies(moi)
+
+test()
+print("tous les tests passent")`, { fichier: "analyse.py", out: "tous les tests passent" });
+
+/* épreuve écrite */
+C("calc-ecrit-corr", String.raw`
+MACHINE = {
+    ("debut", "a"): ("a", "D", "debut"),
+    ("debut", "b"): ("a", "D", "vu_b"),
+    ("debut", "_"): ("a", "-", "fin"),
+    ("vu_b", "a"): ("b", "D", "debut"),
+    ("vu_b", "b"): ("b", "D", "vu_b"),
+    ("vu_b", "_"): ("b", "-", "fin"),
+}
+for mot in ["ab", "bab", "abba"]:
+    print(mot, executer(MACHINE, mot))`, { deps: ["calc-turing"], out: "ab ('aab', 3)\nbab ('abab', 4)\nabba ('aabba', 5)" });
+
+C("calc-retenir", String.raw`
+# Démonstration par l'absurde : supposons que arret(p, d) existe.
+def paradoxe(p):
+    if arret(p, p):
+        while True:
+            pass
+    return "fini"
+# paradoxe(paradoxe) s'arrête   ⇒ arret répond True  ⇒ paradoxe boucle : contradiction
+# paradoxe(paradoxe) boucle     ⇒ arret répond False ⇒ paradoxe s'arrête : contradiction
+# Donc arret ne peut pas exister : le problème de l'arrêt est indécidable.`, { run: false });
+
+CH.push({
+  id: "calc", n: 16, court: "calculabilite", fichier: "calculabilite.py",
+  titre: "Calculabilité, décidabilité",
+  rubrique: "Rubrique « Langages et programmation » : notion de programme en tant que donnée, calculabilité, décidabilité",
+  accroche: "Un programme est aussi une donnée ; machine de Turing ; ce qu’un ordinateur peut calculer ne dépend pas du langage ; le problème de l’arrêt est indécidable.",
+  essentiel: [
+    "Un <b>programme est aussi une donnée</b> : un texte que d’autres programmes lisent, analysent, transforment ou exécutent (interpréteur, compilateur, système d’exploitation, téléchargement).",
+    "Une <b>machine de Turing</b> (1936) : un ruban infini, une tête de lecture, un nombre fini d’états et une table de transitions. Elle modélise tout ce qu’un algorithme peut faire.",
+    "La <b>calculabilité ne dépend pas du langage</b> : Python, C, JavaScript ou une machine de Turing calculent exactement les mêmes fonctions (thèse de Church-Turing).",
+    "Un problème de décision est <b>décidable</b> s’il existe un algorithme qui répond oui ou non, correctement et en temps fini, pour <b>chaque</b> entrée.",
+    "Le <b>problème de l’arrêt</b> (savoir si un programme s’arrête sur une donnée) est <b>indécidable</b> : on le montre par l’absurde avec un programme qui contredit toute prédiction sur lui-même."
+  ],
+  attendus: [
+    "Comprendre que tout programme est aussi une donnée (BO) ; le programme cite les interpréteurs, les compilateurs, le téléchargement de logiciels et les systèmes d’exploitation.",
+    "Comprendre que la calculabilité ne dépend pas du langage de programmation utilisé.",
+    "Montrer, <b>sans formalisme théorique</b>, que le problème de l’arrêt est indécidable.",
+    "Le programme ne demande <b>pas</b> d’étudier les machines de Turing en détail : elles servent ici à comprendre ce qu’est « calculer ». Les dérouler sur un exemple est un bon exercice."
+  ],
+  idees: [
+    { id: "i1", t: "Un programme est aussi une donnée", h: `
+<p>Un fichier <code>.py</code> n’est qu’un <b>texte</b>. Ce texte est une donnée pour un autre programme, l’<b>interpréteur</b> Python, qui le lit et l’exécute. En Python même, on peut manipuler un programme comme une chaîne de caractères, l’analyser, puis le faire exécuter par <code>exec</code> :</p>
+[[calc-exec]]
+<p>On peut aussi écrire un programme dans un fichier et le confier à l’interpréteur, exactement comme quand tu cliques sur « Exécuter » :</p>
+[[calc-fichier]]
+<div class="tab-wrap"><table><tr><th>programme</th><th>sa donnée</th><th>ce qu’il en fait</th></tr>
+<tr><td>interpréteur (Python)</td><td>un programme source</td><td>l’exécute instruction par instruction</td></tr>
+<tr><td>compilateur (C, Java)</td><td>un programme source</td><td>le traduit en un autre programme (code machine, bytecode)</td></tr>
+<tr><td>système d’exploitation</td><td>un fichier exécutable</td><td>le charge en mémoire et lance un processus</td></tr>
+<tr><td>magasin d’applications, navigateur</td><td>un logiciel, un script JavaScript</td><td>le télécharge comme n’importe quel fichier, puis l’installe ou l’exécute</td></tr>
+<tr><td>antivirus, correcteur, éditeur</td><td>un programme</td><td>le lit, le colore, y cherche des erreurs ou des signatures</td></tr></table></div>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1945 <b>·</b></span> Dans le rapport sur l’EDVAC, John von Neumann décrit une machine où <b>le programme est rangé dans la même mémoire que les données</b> : c’est l’architecture de presque tous les ordinateurs depuis.<br><span class="commit">1952 <b>·</b></span> Grace Hopper écrit l’un des premiers compilateurs (A-0) : un programme qui fabrique des programmes.</p></div>` },
+
+    { id: "i2", t: "Des programmes qui fabriquent et analysent des programmes", h: `
+<p>Puisqu’un programme est un texte, un programme peut en <b>écrire</b> un autre :</p>
+[[calc-genere]]
+<p>Ou en <b>analyser</b> un autre sans l’exécuter, comme le fait un éditeur qui signale les erreurs :</p>
+[[calc-analyse]]
+<p>Plus simplement encore, en Python une <b>fonction</b> est une valeur comme une autre : on peut la passer en paramètre, la ranger dans une liste, la renvoyer.</p>
+[[calc-fonction]]
+<div class="boite hp"><div class="lab"># pour aller plus loin : un programme qui s’écrit lui-même</div><p>Un <b>quine</b> est un programme qui affiche son propre code source. Celui-ci tient en deux lignes : <code>%r</code> insère la représentation de la chaîne, guillemets compris, et <code>%%</code> donne un <code>%</code>.</p>[[calc-quine]]</div>` },
+
+    { id: "i3", t: "La machine de Turing", h: `
+<p>En 1936, pour définir précisément ce qu’est « un calcul », le mathématicien britannique Alan <b>Turing</b> imagine une machine très simple :</p>
+<ul><li>un <b>ruban</b> infini découpé en cases, chacune contenant un symbole (ou un blanc, noté _) ;</li>
+<li>une <b>tête</b> de lecture et d’écriture, placée sur une case ;</li>
+<li>un <b>état</b> courant, pris dans une liste finie ;</li>
+<li>une <b>table de transitions</b> : selon l’état et le symbole lu, la machine écrit un symbole, déplace la tête d’une case (à gauche, à droite ou pas) et change d’état. Elle s’arrête dans l’état final.</li></ul>
+<p>Voici une machine qui ajoute 1 à un nombre écrit en binaire, et un simulateur de quelques lignes : la table de transitions est un dictionnaire.</p>
+[[calc-turing]]
+[[w-algo-turing]]
+<p>Le simulateur affiche le ruban à chaque pas pour 1011 (11 en décimal) : la tête va tout à droite, puis revient en propageant la retenue. Résultat 1100 (12).</p>
+[[calc-turing-trace]]
+<div class="boite ex"><div class="lab"># la machine universelle</div><p>Turing montre surtout qu’on peut construire une machine <b>universelle</b> : elle lit sur son ruban la <b>description</b> (la table) d’une autre machine et sa donnée, puis la simule. C’est exactement ce que fait notre fonction <code>executer</code>, et ce que fait un ordinateur avec un programme : le programme est une donnée de la machine universelle.</p></div>` },
+
+    { id: "i4", t: "La calculabilité ne dépend pas du langage", h: `
+<p>Une fonction est <b>calculable</b> s’il existe un algorithme (une machine de Turing, un programme) qui, pour chaque entrée, s’arrête en donnant le résultat.</p>
+<p>En 1936 aussi, l’Américain Alonzo <b>Church</b> propose une autre définition, avec son <b>lambda-calcul</b>, un langage fait uniquement de fonctions. Turing montre que les deux définitions donnent <b>exactement les mêmes</b> fonctions calculables. Depuis, tous les modèles raisonnables (langages de programmation, circuits, automates cellulaires…) se sont révélés équivalents.</p>
+<div class="boite def"><div class="lab">"""thèse de Church-Turing"""</div><p>Tout ce qui est calculable par un algorithme est calculable par une machine de Turing. Ce n’est pas un théorème (« algorithme » n’a pas de définition mathématique indépendante) mais une thèse, jamais mise en défaut.</p></div>
+<p>Conséquence pour toi : <b>ce qu’on peut calculer ne dépend pas du langage</b>. Un programme Python peut simuler une machine de Turing (nous venons de le faire) ; une machine de Turing peut simuler l’interpréteur Python. Un langage capable de cela est dit <b>Turing-complet</b> : Python, C, Java, JavaScript le sont. Les langages diffèrent par leur commodité, leur vitesse, leur sûreté, <b>pas</b> par ce qu’ils peuvent calculer. SQL sans récursion, ou HTML, ne sont pas des langages Turing-complets.</p>` },
+
+    { id: "i5", t: "Problèmes décidables et indécidables", h: `
+<div class="boite def"><div class="lab">"""définitions"""</div><p>Un <b>problème de décision</b> est une question dont la réponse est oui ou non, posée pour une infinité d’entrées possibles : « l’entier <i>n</i> est-il premier ? ». Il est <b>décidable</b> s’il existe un algorithme qui, pour <b>toute</b> entrée, s’arrête et donne la bonne réponse. Sinon, il est <b>indécidable</b>.</p></div>
+<ul><li>« <i>n</i> est-il premier ? » : décidable (essayer les diviseurs jusqu’à √<i>n</i>).</li>
+<li>« Ce mot est-il dans le dictionnaire ? », « ce graphe a-t-il un cycle ? » : décidables.</li>
+<li>« Ce programme s’arrête-t-il sur cette donnée ? » : <b>indécidable</b> (idée suivante).</li></ul>
+<p>Attention : indécidable ne veut pas dire « difficile » ni « long à calculer », mais « <b>aucun</b> algorithme ne peut répondre correctement dans tous les cas », quelle que soit la puissance de la machine. Pour un cas particulier, on peut souvent répondre ; c’est la méthode générale qui n’existe pas.</p>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1928 <b>·</b></span> David <b>Hilbert</b> et Wilhelm Ackermann posent l’<i>Entscheidungsproblem</i> (« problème de la décision ») : existe-t-il une méthode mécanique pour décider si un énoncé logique est démontrable ?<br><span class="commit">1931 <b>·</b></span> Kurt <b>Gödel</b> publie ses théorèmes d’incomplétude.<br><span class="commit">1936 <b>·</b></span> Church, puis Turing (« On Computable Numbers, with an Application to the Entscheidungsproblem ») répondent <b>non</b>.</p></div>` },
+
+    { id: "i6", t: "Le problème de l’arrêt est indécidable", h: `
+<p>Peut-on écrire une fonction <code>arret(programme, donnee)</code> qui dit, <b>sans se tromper et toujours en temps fini</b>, si <code>programme(donnee)</code> s’arrête ? Exécuter le programme ne suffit pas : s’il ne s’est pas arrêté au bout d’une heure, s’arrêtera-t-il dans deux ?</p>
+[[calc-syracuse]]
+<p>Turing a prouvé qu’une telle fonction ne peut pas exister. Raisonnons <b>par l’absurde</b> : supposons qu’elle existe, et écrivons ce programme :</p>
+[[calc-arret]]
+<p>Que se passe-t-il pour <code>paradoxe(paradoxe)</code> ? (Un programme est une donnée : on peut le donner à lui-même.)</p>
+<ul><li>Si <code>paradoxe(paradoxe)</code> <b>s’arrête</b>, alors <code>arret(paradoxe, paradoxe)</code> renvoie <code>True</code>… donc <code>paradoxe</code> entre dans la boucle infinie et <b>ne s’arrête pas</b>. Contradiction.</li>
+<li>Si <code>paradoxe(paradoxe)</code> <b>ne s’arrête pas</b>, alors <code>arret</code> renvoie <code>False</code>… donc <code>paradoxe</code> renvoie « fini » et <b>s’arrête</b>. Contradiction.</li></ul>
+<p>Les deux cas sont impossibles : l’hypothèse était fausse. <b>Aucune fonction <code>arret</code> correcte ne peut exister</b>, dans aucun langage. On peut le constater sur des candidats : chacun se trompe sur le <code>paradoxe</code> construit contre lui.</p>
+[[calc-candidats]]
+<div class="boite retenir-b"><div class="lab"># les trois ingrédients de la preuve</div><ol><li>un programme est une donnée (on peut le passer à <code>arret</code>, et à lui-même) ;</li><li>on suppose qu’<code>arret</code> existe et répond toujours ;</li><li><code>paradoxe</code> fait <b>le contraire</b> de ce qu’<code>arret</code> prédit sur lui.</li></ol></div>` },
+
+    { id: "i7", t: "Ce que cela change en pratique", h: `
+<p>L’indécidabilité de l’arrêt a des conséquences très concrètes :</p>
+<ul><li>aucun outil ne peut détecter <b>toutes</b> les boucles infinies de <b>tous</b> les programmes ;</li>
+<li>aucun antivirus ne peut décider, pour <b>tout</b> programme, s’il finira par faire une action malveillante : les antivirus utilisent des signatures et des heuristiques, qui se trompent parfois ;</li>
+<li>on ne peut pas écrire un correcteur automatique qui décide si n’importe quel programme respecte sa spécification.</li></ul>
+<p>Les outils réels contournent la difficulté : ils répondent « oui », « non » ou « je ne sais pas », ou se limitent à des programmes particuliers, ou fixent une limite de temps. C’est aussi pour cela qu’on <b>teste</b> et qu’on écrit des <b>variants de boucle</b> (chapitre Mise au point) : on prouve la terminaison de <b>nos</b> programmes, au cas par cas.</p>
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>Le <b>théorème de Rice</b> (1953) généralise : toute propriété non triviale du <b>comportement</b> d’un programme est indécidable. Autre problème célèbre : en 1970, Iouri Matiiassevitch prouve qu’aucun algorithme ne peut décider si une équation polynomiale à coefficients entiers a des solutions entières (dixième problème de Hilbert, posé en 1900). Quant à la conjecture de Syracuse, elle n’est pas « indécidable » : c’est un problème ouvert, que personne n’a encore résolu.</p></div>` }
+  ],
+  pieges: [
+    { t: "Confondre « indécidable » et « très long à calculer »", h: `<p>Un problème difficile (comme trouver le meilleur trajet entre 50 villes) est décidable : un algorithme répond, même s’il prend des années. Indécidable signifie qu’<b>aucun</b> algorithme ne répond juste pour <b>toutes</b> les entrées, quel que soit le temps accordé.</p>` },
+    { t: "Croire qu’on ne peut jamais savoir si un programme s’arrête", h: `<p>Pour beaucoup de programmes, on le sait très bien (une boucle <code>for</code> sur une liste finie, une fonction récursive avec un variant). L’indécidabilité dit seulement qu’il n’existe pas de <b>méthode générale</b> qui marche pour tous.</p>` },
+    { t: "Mal conclure la démonstration", h: `<p>La démonstration ne prouve pas que <code>paradoxe</code> boucle, ni qu’il s’arrête : elle prouve que la fonction <code>arret</code> <b>ne peut pas exister</b>. Il faut écrire les deux cas, constater une contradiction dans chacun, et conclure sur l’<b>hypothèse</b>.</p>` },
+    { t: "Penser que le texte d’un programme correct s’exécute sans erreur", h: `[[calc-p-exec]]<p>Le texte est une donnée valide (une chaîne bien formée, même syntaxiquement correcte) ; son exécution peut quand même échouer. Analyser un programme et l’exécuter sont deux choses différentes.</p>` },
+    { t: "Croire qu’un langage plus récent calcule plus de choses", h: `<p>Python, C et une machine de Turing calculent les mêmes fonctions. Un langage récent est plus commode, plus sûr ou plus expressif, pas plus « puissant » au sens de la calculabilité.</p>` }
+  ],
+  retenir: `
+<h2>Un programme est une donnée</h2>
+<ul><li>Interpréteur : exécute un programme source. Compilateur : le traduit. Système d’exploitation : charge un exécutable. Téléchargement : un logiciel est un fichier.</li><li>En Python : <code>exec(chaine)</code>, une fonction passée en paramètre.</li></ul>
+<h2>Machine de Turing (1936)</h2>
+<p>Ruban infini, tête, états en nombre fini, table (état, symbole lu) → (symbole écrit, déplacement, nouvel état). Une machine <b>universelle</b> simule toute autre machine dont on lui donne la description.</p>
+<h2>Calculabilité</h2>
+<ul><li>Thèse de Church-Turing : tout ce qui est calculable par un algorithme l’est par une machine de Turing.</li><li>Tous les langages Turing-complets calculent les mêmes fonctions.</li></ul>
+<h2>Le problème de l’arrêt</h2>
+[[calc-retenir]]
+<h2>Repères</h2>
+<ul><li>1928 : Hilbert et Ackermann, <i>Entscheidungsproblem</i>. 1931 : Gödel. 1936 : Church (lambda-calcul) et Turing (machine, indécidabilité).</li><li>1945 : programme enregistré dans la mémoire (von Neumann).</li></ul>`,
+  predis: [
+    { code: "calc-x1", niv: "facile", rep: "La chaîne contient deux \\n, donc 3 lignes. Exécutée, elle affiche 5 × 2 = 10. Après remplacement du caractère 2 par 3, le programme devient x = 5, x = x * 3 : 15. On a modifié un programme comme un texte." },
+    { code: "calc-x2", niv: "moyen", rep: "<code>compose(f, g)</code> renvoie la fonction x ↦ f(g(x)). carre(plus_un(3)) = 4² = 16 ; plus_un(carre(3)) = 9 + 1 = 10. Des fonctions reçues et renvoyées comme des données." },
+    { code: "calc-x3", niv: "moyen", rep: "La machine avance vers la droite en écrivant 0 sur chaque case, puis s’arrête sur le premier blanc : 4 pas pour les chiffres + 1 pas sur le blanc = 5 pas, ruban 0000." },
+    { code: "calc-x4", niv: "difficile", rep: "f(10) : 10, 8, …, 0, la boucle s’arrête. Mais f(7) passerait par 1, −1, −3… sans jamais valoir 0 : boucle infinie. Ici l’appel f(7) n’est jamais évalué, car l’expression conditionnelle choisit l’autre branche (la condition vaut False). Repérer qu’un programme <b>pourrait</b> ne pas s’arrêter demande de raisonner, pas d’exécuter." }
+  ],
+  ep: [
+    { titre: "Un simulateur de machine de Turing", enonce: `<p>On représente une machine de Turing par un dictionnaire : à chaque couple (état, symbole lu) on associe le triplet (symbole à écrire, déplacement « G », « D » ou « - », nouvel état). L’état initial est « debut », l’état final « fin », le blanc « _ ».</p>[[calc-ep1-fourni]]`,
+      questions: [
+        { q: "Compléter les lignes 9, 11 et 13. Pourquoi a-t-on besoin du paramètre <code>max_pas</code> ?", c: `<p>Ligne 9 : <code>return None</code>. Ligne 11 : <code>machine[(etat, lu)]</code>. Ligne 13 : <code>pos + {"G": -1, "D": 1, "-": 0}[dep]</code>. Sans limite, une machine qui ne s’arrête pas ferait tourner le simulateur indéfiniment ; et on ne peut pas savoir à l’avance si elle s’arrêtera (problème de l’arrêt). La limite permet de répondre « je ne sais pas » (<code>None</code>).</p>` },
+        { q: "Écrire la machine <code>INVERSE</code> (ligne 17) qui remplace chaque 0 par 1 et chaque 1 par 0, puis s’arrête.", c: `<p>Trois transitions depuis l’état « debut » : 0 → écrire 1, D ; 1 → écrire 0, D ; _ → rien, s’arrêter.</p>` },
+        { q: "Écrire une machine <code>PAIR</code> qui remplace le dernier chiffre d’un nombre binaire par V s’il est pair, F sinon. Écrire des tests, dont un pour une machine qui ne s’arrête jamais.", c: `[[calc-ep1-corr]]` },
+        { q: "À l’oral : si <code>executer</code> renvoie <code>None</code>, peut-on conclure que la machine ne s’arrête pas ?", c: `<p>Non : on sait seulement qu’elle ne s’est pas arrêtée en <code>max_pas</code> pas. Elle pourrait s’arrêter plus tard (comme la suite de Syracuse de 27, qui demande 111 étapes). Aucun choix de limite ne permet de conclure dans tous les cas.</p>` }
+      ] },
+    { titre: "Un programme qui analyse des programmes", enonce: `<p>On veut écrire quelques outils d’analyse de code Python, qui reçoivent le texte d’un programme sous forme de chaîne.</p>[[calc-ep2-fourni]]`,
+      questions: [
+        { q: "Écrire <code>fonctions_definies(source)</code>.", c: `<p>Parcourir les lignes ; pour celles qui commencent par <code>def </code>, garder ce qui est entre <code>def </code> et la parenthèse ouvrante.</p>` },
+        { q: "Écrire <code>appels(source, nom)</code> et <code>est_recursive(source, nom)</code>, puis des tests sur la factorielle, Fibonacci et une fonction non récursive. Faire analyser au programme son propre fichier.", c: `[[calc-ep2-corr]]` },
+        { q: "Un camarade propose d’ajouter <code>boucle_infinie(source)</code> qui renverrait <code>True</code> si et seulement si le programme peut tourner indéfiniment. Est-ce possible en général ? Que peut-on faire à la place ?", c: `<p>Non : ce serait résoudre le problème de l’arrêt, indécidable. On peut seulement signaler des cas suspects (un <code>while True</code> sans <code>break</code> ni <code>return</code>), avec des faux positifs et des oublis, ou exécuter avec une limite de temps et répondre « je ne sais pas ».</p>` },
+        { q: "À l’oral : en quoi cet exercice illustre-t-il qu’un programme est une donnée ?", c: `<p>Le programme analysé est une simple chaîne de caractères, lue et découpée par un autre programme, sans être exécutée. C’est ce que font les éditeurs de code, les correcteurs de style (comme Pylint) et les compilateurs.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "Machine de Turing et problème de l’arrêt", points: "≈ 6 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite.",
+    enonce: `<p>On considère la machine de Turing suivante, sur l’alphabet {a, b} avec le blanc « _ ». Elle démarre dans l’état « debut », la tête sur la première lettre du mot.</p>
+<div class="tab-wrap"><table><tr><th>état</th><th>lu</th><th>écrit</th><th>déplacement</th><th>nouvel état</th></tr>
+<tr><td>debut</td><td>a</td><td>a</td><td>D</td><td>debut</td></tr><tr><td>debut</td><td>b</td><td>a</td><td>D</td><td>vu_b</td></tr><tr><td>debut</td><td>_</td><td>a</td><td>-</td><td>fin</td></tr>
+<tr><td>vu_b</td><td>a</td><td>b</td><td>D</td><td>debut</td></tr><tr><td>vu_b</td><td>b</td><td>b</td><td>D</td><td>vu_b</td></tr><tr><td>vu_b</td><td>_</td><td>b</td><td>-</td><td>fin</td></tr></table></div>`,
+    questions: [
+      { q: "Dérouler la machine sur le mot « ab » : donner le ruban, la position de la tête et l’état à chaque pas.", pts: "1,5 pt", c: `<p>Pas 1 : debut lit a, écrit a, va à droite. Pas 2 : debut lit b, écrit a, va à droite, état vu_b. Pas 3 : vu_b lit _, écrit b, s’arrête. Ruban final <b>aab</b>, en 3 pas.</p>` },
+      { q: "Que devient « bab » ? « abba » ? Décrire en une phrase ce que fait la machine.", pts: "1,5 pt", c: `<p>« bab » → « abab » ; « abba » → « aabba ». La machine <b>insère un a au début du mot</b> en décalant tout le mot d’une case vers la droite. Son état sert de mémoire d’une lettre : dans « debut », la lettre qu’elle vient d’effacer était un a (ou elle n’a encore rien lu) ; dans « vu_b », c’était un b. À chaque case, elle écrit la lettre mémorisée et retient celle qu’elle lit.</p>[[calc-ecrit-corr]]` },
+      { q: "Cette machine s’arrête-t-elle sur tout mot ? Justifier.", pts: "1 pt", c: `<p>Oui : la tête avance d’une case vers la droite à chaque pas, sauf au dernier. Le mot étant fini, elle atteint un blanc après (longueur du mot) pas, et toute transition sur un blanc mène à l’état fin : longueur + 1 pas en tout. Ici on sait prouver la terminaison, car cette machine est particulière.</p>` },
+      { q: "Rappeler l’énoncé du problème de l’arrêt et démontrer qu’il est indécidable, en écrivant le programme utilisé en Python.", pts: "2 pts", c: `<p>Énoncé : il n’existe pas de programme <code>arret(p, d)</code> qui, pour tout programme <code>p</code> et toute donnée <code>d</code>, s’arrête et renvoie <code>True</code> si <code>p(d)</code> s’arrête, <code>False</code> sinon. Preuve : voir l’idée 6 (supposer qu’il existe, construire <code>paradoxe</code>, étudier les deux cas pour <code>paradoxe(paradoxe)</code>, conclure par l’absurde).</p>` }
+    ],
+    methode: `<p>La démonstration de l’indécidabilité de l’arrêt est un « classique à savoir refaire ». Elle tient en dix lignes : l’hypothèse (« supposons qu’il existe… »), le programme <code>paradoxe</code>, les <b>deux</b> cas, la conclusion sur l’hypothèse. Le vocabulaire est noté : « décidable », « indécidable », « par l’absurde », « un programme est une donnée ».</p>` },
+  qcm: [
+    { q: "Pourquoi dit-on qu’un programme est aussi une donnée ?", c: ["Parce qu’il contient des variables", "Parce que son texte peut être lu, transformé ou exécuté par un autre programme", "Parce qu’il est stocké dans un tableur", "Parce qu’il renvoie toujours une valeur"], a: 1, e: "Interpréteurs, compilateurs, systèmes d’exploitation traitent des programmes comme données.", ref: "i1" },
+    { q: "Que fait un compilateur ?", c: ["Il exécute un programme ligne par ligne", "Il traduit un programme source en un autre programme (code machine, bytecode)", "Il supprime les bugs", "Il télécharge des bibliothèques"], a: 1, e: "Il prend un programme en donnée et produit un programme.", ref: "i1" },
+    { q: "Que fait <code>exec(\"print(2 + 3)\")</code> ?", c: ["Affiche print(2 + 3)", "Affiche 5", "Renvoie la chaîne \"5\"", "Provoque une erreur"], a: 1, e: "exec exécute le texte reçu comme un programme Python.", ref: "i2" },
+    { q: "Quels éléments composent une machine de Turing ?", c: ["Un processeur, une mémoire vive et un disque", "Un ruban infini, une tête de lecture/écriture, un ensemble fini d’états, une table de transitions", "Un clavier et un écran", "Une pile et une file"], a: 1, e: "Modèle théorique décrit par Turing en 1936.", ref: "i3" },
+    { q: "Qu’est-ce qu’une machine de Turing universelle ?", c: ["Une machine qui résout tous les problèmes", "Une machine qui simule n’importe quelle autre machine dont on lui donne la description", "Une machine sans état final", "Une machine qui ne s’arrête jamais"], a: 1, e: "C’est l’idée de l’ordinateur à programme enregistré.", ref: "i3" },
+    { q: "En quelle année Turing décrit-il sa machine ?", c: ["1843", "1936", "1948", "1969"], a: 1, e: "Article « On Computable Numbers, with an Application to the Entscheidungsproblem ».", ref: "i3" },
+    { q: "Que signifie « la calculabilité ne dépend pas du langage » ?", c: ["Tous les langages ont la même vitesse", "Les langages Turing-complets calculent exactement les mêmes fonctions", "On peut écrire un programme dans n’importe quelle langue", "Les compilateurs sont inutiles"], a: 1, e: "Ils diffèrent par leur commodité, pas par ce qu’ils peuvent calculer.", ref: "i4" },
+    { q: "Que dit la thèse de Church-Turing ?", c: ["Tout problème est décidable", "Tout ce qui est calculable par un algorithme est calculable par une machine de Turing", "Les machines de Turing sont plus rapides que les ordinateurs", "Le lambda-calcul est plus puissant que les machines de Turing"], a: 1, e: "C’est une thèse (non démontrable), jamais mise en défaut.", ref: "i4" },
+    { q: "Un problème de décision est décidable si…", c: ["on connaît la réponse pour un cas", "il existe un algorithme qui répond correctement, en temps fini, pour toute entrée", "il se résout en moins d’une seconde", "il a une réponse unique"], a: 1, e: "Pour toute entrée, et toujours en temps fini.", ref: "i5" },
+    { q: "Lequel de ces problèmes est indécidable ?", c: ["Savoir si un entier est premier", "Savoir si un programme quelconque s’arrête sur une donnée quelconque", "Trier une liste", "Savoir si un mot est un palindrome"], a: 1, e: "C’est le problème de l’arrêt.", ref: "i6" },
+    { q: "Dans la démonstration, que fait <code>paradoxe(p)</code> quand <code>arret(p, p)</code> vaut True ?", c: ["Il s’arrête", "Il entre dans une boucle infinie", "Il appelle arret encore", "Il renvoie True"], a: 1, e: "Il fait le contraire de ce que prédit arret.", ref: "i6" },
+    { q: "Que prouve exactement la démonstration par l’absurde ?", c: ["Que paradoxe boucle", "Que paradoxe s’arrête", "Qu’aucune fonction arret correcte et toujours terminante ne peut exister", "Que Python ne peut pas exécuter paradoxe"], a: 2, e: "Les deux cas mènent à une contradiction : c’est l’hypothèse qui est fausse.", ref: "i6" },
+    { q: "Pourquoi un antivirus ne peut-il pas être parfait ?", c: ["Faute de puissance de calcul", "Parce que décider le comportement futur de tout programme est indécidable", "Parce que les virus sont chiffrés", "Parce qu’il est écrit en Python"], a: 1, e: "Conséquence de l’indécidabilité (théorème de Rice, hors programme).", ref: "i7" }
+  ],
+  cartes: [
+    { r: "Un programme est une donnée", v: "Son texte peut être lu, analysé, transformé, téléchargé ou exécuté par un autre programme (interpréteur, compilateur, OS)." },
+    { r: "Interpréteur / compilateur", v: "Interpréteur : exécute le programme source. Compilateur : le traduit en un autre programme (code machine, bytecode)." },
+    { r: "exec en Python", v: "exec(chaine) exécute le texte d’un programme Python contenu dans une chaîne." },
+    { r: "Machine de Turing", v: "Ruban infini, tête de lecture/écriture, états en nombre fini, table (état, symbole lu) → (symbole écrit, déplacement, nouvel état). Turing, 1936." },
+    { r: "Machine universelle", v: "Machine qui simule toute autre machine dont la description est écrite sur son ruban : l’idée du programme enregistré." },
+    { r: "Fonction calculable", v: "Il existe un algorithme (une machine de Turing) qui la calcule en s’arrêtant pour chaque entrée." },
+    { r: "Thèse de Church-Turing", v: "Tout ce qui est calculable par un algorithme est calculable par une machine de Turing. Lambda-calcul (Church) et machines (Turing) : mêmes fonctions." },
+    { r: "Turing-complet", v: "Langage capable de simuler une machine de Turing : Python, C, Java, JavaScript. Ils calculent tous les mêmes fonctions." },
+    { r: "Problème décidable", v: "Problème oui/non pour lequel un algorithme répond correctement et en temps fini pour toute entrée." },
+    { r: "Problème de l’arrêt", v: "Décider si un programme quelconque s’arrête sur une donnée quelconque. Indécidable (Turing, 1936)." },
+    { r: "Preuve de l’indécidabilité de l’arrêt", v: "Supposer arret(p, d) ; paradoxe(p) boucle si arret(p, p), s’arrête sinon ; paradoxe(paradoxe) contredit les deux cas." },
+    { r: "Repères 1928-1936", v: "1928 Entscheidungsproblem (Hilbert, Ackermann) ; 1931 Gödel ; 1936 Church et Turing." },
+    { r: "Indécidable ≠ difficile", v: "Indécidable : aucun algorithme ne répond juste pour toutes les entrées, quel que soit le temps donné." }
+  ]
+});
+
 /* ===================== Chapitre 6 — Bases de données ===================== */
 /* Base d'exemple : une petite bibliothèque. Les tables affichées et le script SQL sont produits à partir des mêmes données. */
 var BIB = {
@@ -6484,6 +6990,580 @@ Entre deux puces d’une carte mère, il faut plusieurs cycles pour faire l’al
   ]
 });
 
+/* ===================== Systèmes d'exploitation — processus, ordonnancement, interblocage ===================== */
+C("proc-fork", String.raw`
+import os, sys
+
+parent = os.getpid()                 # PID du processus qui exécute ce programme
+print("avant fork : un seul processus")
+sys.stdout.flush()                   # vider le tampon d'affichage avant la copie
+pid = os.fork()                      # le système DUPLIQUE le processus courant
+if pid == 0:                         # dans la copie (l'enfant), fork renvoie 0
+    print("enfant : mon parent est le processus de départ :", os.getppid() == parent)
+    sys.stdout.flush()
+    os._exit(0)                      # l'enfant se termine
+else:                                # dans le parent, fork renvoie le PID de l'enfant
+    os.waitpid(pid, 0)               # le parent attend la fin de l'enfant
+    print("parent : mon enfant avait un autre PID que moi :", pid != parent)`, { fichier: "fork.py", cmd: "python3 fork.py   # Linux ou macOS", out: "avant fork : un seul processus\nenfant : mon parent est le processus de départ : True\nparent : mon enfant avait un autre PID que moi : True" });
+
+C("proc-donnees", String.raw`
+# (nom, instant d'arrivée, durée d'exécution nécessaire)
+PROCESSUS = [("P1", 0, 5), ("P2", 1, 3), ("P3", 2, 1), ("P4", 4, 2)]
+
+def chronogramme(gantt):
+    """gantt : liste de tranches (nom, début, fin), dans l'ordre du temps.
+    Renvoie une case par unité de temps ; '--' quand le processeur est libre."""
+    cases = []
+    for nom, debut, fin in gantt:
+        cases = cases + ["--"] * (debut - len(cases)) + [nom] * (fin - debut)
+    return " ".join(cases)`, { fichier: "ordonnancement.py", out: "" });
+
+C("proc-fifo", String.raw`
+def fifo(procs):
+    """Premier arrivé, premier servi : chaque processus va jusqu'au bout."""
+    t, gantt = 0, []
+    for nom, arrivee, duree in sorted(procs, key=lambda p: p[1]):
+        t = max(t, arrivee)              # le processeur attend si personne n'est prêt
+        gantt.append((nom, t, t + duree))
+        t = t + duree
+    return gantt
+
+print(chronogramme(fifo(PROCESSUS)))`, { deps: ["proc-donnees"], out: "P1 P1 P1 P1 P1 P2 P2 P2 P3 P4 P4" });
+
+C("proc-rr", String.raw`
+from collections import deque
+
+def tourniquet(procs, quantum):
+    """Chaque processus reçoit au plus quantum unités de temps, puis repasse en fin de file."""
+    a_venir = deque(sorted(procs, key=lambda p: p[1]))
+    reste = {nom: duree for nom, _, duree in procs}
+    file = deque()                         # la file des processus prêts
+    t, gantt = 0, []
+    while a_venir or file:
+        while a_venir and a_venir[0][1] <= t:
+            file.append(a_venir.popleft()[0])
+        if not file:                       # personne n'est prêt : on avance le temps
+            t = a_venir[0][1]
+            continue
+        nom = file.popleft()               # l'ordonnanceur élit la tête de file
+        tranche = min(quantum, reste[nom])
+        gantt.append((nom, t, t + tranche))
+        t = t + tranche
+        reste[nom] = reste[nom] - tranche
+        while a_venir and a_venir[0][1] <= t:   # arrivés pendant la tranche :
+            file.append(a_venir.popleft()[0])   # ils passent AVANT le processus interrompu
+        if reste[nom] > 0:
+            file.append(nom)               # pas fini : retour en fin de file
+    return gantt
+
+print(chronogramme(tourniquet(PROCESSUS, 2)))
+print(chronogramme(tourniquet(PROCESSUS, 1)))`, { deps: ["proc-donnees"], out: "P1 P1 P2 P2 P3 P1 P1 P4 P4 P2 P1\nP1 P2 P1 P3 P2 P1 P4 P2 P1 P4 P1" });
+
+C("proc-prio", String.raw`
+PRIORITE = {"P1": 2, "P2": 1, "P3": 3, "P4": 1}      # 1 = le plus prioritaire
+
+def priorites(procs):
+    """À chaque unité de temps, le processus prêt le plus prioritaire est élu
+    (à priorité égale, le premier arrivé) : un nouveau venu plus prioritaire interrompt l'élu."""
+    reste = {nom: duree for nom, _, duree in procs}
+    t, gantt = 0, []
+    while any(reste.values()):
+        prets = [p for p in procs if p[1] <= t and reste[p[0]] > 0]
+        if prets:
+            nom = min(prets, key=lambda p: (PRIORITE[p[0]], p[1]))[0]
+            if gantt and gantt[-1][0] == nom and gantt[-1][2] == t:
+                gantt[-1] = (nom, gantt[-1][1], t + 1)      # on prolonge la tranche
+            else:
+                gantt.append((nom, t, t + 1))
+            reste[nom] = reste[nom] - 1
+        t = t + 1
+    return gantt
+
+print(chronogramme(priorites(PROCESSUS)))`, { deps: ["proc-donnees", "proc-rr"], out: "P1 P2 P2 P2 P4 P4 P1 P1 P1 P1 P3" });
+
+C("proc-temps", String.raw`
+def bilan(procs, gantt):
+    fin = {}
+    for nom, debut, f in gantt:
+        fin[nom] = f                       # la dernière tranche donne l'instant de fin
+    total = 0
+    for nom, arrivee, duree in procs:
+        sejour = fin[nom] - arrivee        # temps passé dans le système
+        total = total + sejour
+        print(nom, "séjour :", sejour, "attente :", sejour - duree)
+    print("séjour moyen :", total / len(procs))
+
+bilan(PROCESSUS, fifo(PROCESSUS))
+bilan(PROCESSUS, tourniquet(PROCESSUS, 2))`, { deps: ["proc-donnees", "proc-fifo", "proc-rr"], out: "P1 séjour : 5 attente : 0\nP2 séjour : 7 attente : 4\nP3 séjour : 7 attente : 6\nP4 séjour : 7 attente : 5\nséjour moyen : 6.5\nP1 séjour : 11 attente : 6\nP2 séjour : 9 attente : 6\nP3 séjour : 3 attente : 2\nP4 séjour : 5 attente : 3\nséjour moyen : 7.0" });
+
+C("proc-interblocage", String.raw`
+import threading
+
+imprimante, scanner = threading.Lock(), threading.Lock()   # deux ressources exclusives
+rdv = threading.Barrier(2)                                 # pour synchroniser la démonstration
+bilan = {}
+
+def tache(nom, premiere, seconde):
+    with premiere:                           # obtient sa première ressource
+        rdv.wait()                           # ... pendant que l'autre obtient la sienne
+        ok = seconde.acquire(timeout=0.5)    # attend la seconde (au plus 0,5 s ici)
+        bilan[nom] = "a tout obtenu" if ok else "bloqué"
+        if ok:
+            seconde.release()
+        rdv.wait()                           # personne ne libère avant la fin des deux attentes
+
+p1 = threading.Thread(target=tache, args=("P1", imprimante, scanner))
+p2 = threading.Thread(target=tache, args=("P2", scanner, imprimante))
+p1.start(); p2.start(); p1.join(); p2.join()
+print("P1", bilan["P1"], "| P2", bilan["P2"])`, { fichier: "interblocage.py", out: "P1 bloqué | P2 bloqué" });
+
+C("proc-ordre", String.raw`
+import threading
+
+imprimante, scanner = threading.Lock(), threading.Lock()
+bilan = {}
+
+def tache(nom):
+    with imprimante:                         # TOUS demandent d'abord l'imprimante...
+        ok = scanner.acquire(timeout=0.5)    # ... puis le scanner
+        bilan[nom] = "a tout obtenu" if ok else "bloqué"
+        if ok:
+            scanner.release()
+
+p1 = threading.Thread(target=tache, args=("P1",))
+p2 = threading.Thread(target=tache, args=("P2",))
+p1.start(); p2.start(); p1.join(); p2.join()
+print("P1", bilan["P1"], "| P2", bilan["P2"])`, { fichier: "ordre.py", out: "P1 a tout obtenu | P2 a tout obtenu" });
+
+C("proc-cycle", String.raw`
+def interblocage(attend):
+    """attend : {processus: processus qui détient la ressource qu'il attend, ou None}.
+    Renvoie True s'il existe un cycle d'attente (donc un interblocage)."""
+    for depart in attend:
+        p, vus = depart, []
+        while p is not None and p not in vus:
+            vus.append(p)
+            p = attend[p]                  # on suit les flèches « attend »
+        if p is not None:                  # on est retombé sur un processus déjà vu
+            return True
+    return False
+
+print(interblocage({"P1": "P2", "P2": None}))
+print(interblocage({"P1": "P2", "P2": "P3", "P3": "P1"}))
+print(interblocage({"P1": "P2", "P2": "P3", "P3": None, "P4": "P1"}))`, { out: "False\nTrue\nFalse" });
+
+/* prédis la sortie */
+C("proc-x1", String.raw`
+print(chronogramme(fifo([("A", 0, 2), ("B", 5, 1), ("C", 1, 2)])))`, { deps: ["proc-donnees", "proc-fifo"], out: "A A C C -- B" });
+
+C("proc-x2", String.raw`
+print(chronogramme(tourniquet([("A", 0, 3), ("B", 0, 3)], 2)))`, { deps: ["proc-donnees", "proc-rr"], out: "A A B B A B" });
+
+C("proc-x3", String.raw`
+print(chronogramme(tourniquet([("A", 0, 4), ("B", 0, 1), ("C", 0, 2)], 10)))
+print(chronogramme(fifo([("A", 0, 4), ("B", 0, 1), ("C", 0, 2)])))`, { deps: ["proc-donnees", "proc-fifo", "proc-rr"], out: "A A A A B C C\nA A A A B C C" });
+
+C("proc-x4", String.raw`
+print(interblocage({"P1": "P2", "P2": "P1", "P3": None}))
+print(interblocage({"P1": None, "P2": "P1", "P3": "P2"}))`, { deps: ["proc-cycle"], out: "True\nFalse" });
+
+/* épreuve pratique */
+C("proc-ep-fourni", String.raw`
+class Processus:
+    def __init__(self, pid, duree):
+        self.pid = pid
+        self.reste = duree            # unités de temps encore nécessaires
+
+class Ordonnanceur:
+    """Ordonnanceur à tourniquet : file des prêts gérée comme une liste Python."""
+    def __init__(self, quantum):
+        self.quantum = quantum
+        self.file = []                # la tête de file est self.file[0]
+
+    def ajouter(self, p):
+        self.file.append(p)
+
+    def tranche(self):
+        """Élit la tête de file, l'exécute au plus quantum unités, la remet en fin
+        de file si elle n'a pas fini. Renvoie (pid, durée exécutée), ou None si la file est vide."""
+        ...
+
+    def executer(self):
+        """Exécute tout ; renvoie la liste des PID dans l'ordre où ils ont fini."""
+        termines = []
+        while self.file != []:
+            pid, d = self.tranche()
+            ...
+        return termines`, { fichier: "tourniquet.py", run: false, trous: [18, 24] });
+
+C("proc-ep-corr", String.raw`
+class Processus:
+    def __init__(self, pid, duree):
+        self.pid = pid
+        self.reste = duree
+
+class Ordonnanceur:
+    def __init__(self, quantum):
+        assert quantum > 0, "le quantum doit être positif"
+        self.quantum = quantum
+        self.file = []
+
+    def ajouter(self, p):
+        self.file.append(p)
+
+    def tranche(self):
+        if self.file == []:
+            return None
+        p = self.file.pop(0)                  # tête de file
+        d = min(self.quantum, p.reste)
+        p.reste = p.reste - d
+        if p.reste > 0:
+            self.file.append(p)               # pas fini : en fin de file
+        return (p.pid, d)
+
+    def executer(self):
+        termines = []
+        while self.file != []:
+            pid, d = self.tranche()
+            if pid not in [p.pid for p in self.file]:   # il n'est pas revenu dans la file : fini
+                termines.append(pid)
+        return termines
+
+def test_ordonnanceur():
+    o = Ordonnanceur(2)
+    assert o.tranche() is None                       # file vide
+    for pid, duree in [(10, 5), (11, 3), (12, 1)]:
+        o.ajouter(Processus(pid, duree))
+    assert o.tranche() == (10, 2)
+    assert [p.pid for p in o.file] == [11, 12, 10]   # 10 repasse en fin de file
+    o2 = Ordonnanceur(2)
+    for pid, duree in [(10, 5), (11, 3), (12, 1)]:
+        o2.ajouter(Processus(pid, duree))
+    assert o2.executer() == [12, 11, 10]
+
+test_ordonnanceur()
+print("tous les tests passent")`, { fichier: "tourniquet.py", out: "tous les tests passent" });
+
+C("proc-ep-cout", String.raw`
+file = list(range(100_000))
+import time
+debut = time.perf_counter()
+while file:
+    file.pop(0)                 # chaque pop(0) décale tous les éléments suivants
+lent = time.perf_counter() - debut
+
+from collections import deque
+file = deque(range(100_000))
+debut = time.perf_counter()
+while file:
+    file.popleft()              # retrait en tête en temps constant
+rapide = time.perf_counter() - debut
+print(lent > rapide)`, { out: "True" });
+
+/* épreuve écrite */
+C("proc-ecrit-q", String.raw`
+E = [("A", 0, 3), ("B", 1, 4), ("C", 2, 2), ("D", 3, 1)]
+print(chronogramme(fifo(E)))
+print(chronogramme(tourniquet(E, 2)))`, { deps: ["proc-donnees", "proc-fifo", "proc-rr"], out: "A A A B B B B C C D\nA A B B C C A D B B" });
+
+/* ---------- animation : diagramme de Gantt ---------- */
+WIDGETS_EXT["arch-gantt"] = function (z, opt, O) {
+  archStyle();
+  var P = [["P1", 0, 5, 2], ["P2", 1, 3, 1], ["P3", 2, 1, 3], ["P4", 4, 2, 1]];
+  var COUL = { P1: "var(--bleu)", P2: "var(--vert)", P3: "var(--ambre)", P4: "var(--violet)" };
+  var NOMS = { fifo: "FIFO", rr: "tourniquet, quantum 2", prio: "priorités" };
+  function simule(algo) {
+    var reste = {}, t = 0, cur = null, used = 0, file = [], S = [], debut = {};
+    P.forEach(function (p) { reste[p[0]] = p[2]; });
+    function fini() { return P.every(function (p) { return reste[p[0]] === 0; }); }
+    while (!fini() && t < 40) {
+      var arr = P.filter(function (p) { return p[1] === t; }).map(function (p) { return p[0]; });
+      var ev = [], q = algo === "rr" ? 2 : Infinity;
+      if (algo === "prio") {
+        var prets = P.filter(function (p) { return p[1] <= t && reste[p[0]] > 0; });
+        prets.sort(function (a, b) { return a[3] - b[3] || a[1] - b[1]; });
+        var elu = prets.length ? prets[0][0] : null;
+        if (cur && elu !== cur && reste[cur] > 0) ev.push("<b>" + elu + "</b> (priorité " + prets[0][3] + ") est plus prioritaire que " + cur + " : <b>" + cur + " est interrompu</b> et retourne dans les prêts.");
+        cur = elu; file = prets.slice(1).map(function (p) { return p[0]; });
+      } else {
+        arr.forEach(function (n) { file.push(n); });
+        if (cur && used === q) { file.push(cur); ev.push("Quantum épuisé : <b>" + cur + "</b> est interrompu et repasse en <b>fin de file</b>" + (arr.length ? ", après " + arr.join(", ") + " qui vient d’arriver" : "") + "."); cur = null; }
+        if (!cur && file.length) { cur = file.shift(); used = 0; }
+      }
+      if (arr.length) ev.unshift(arr.join(", ") + " arrive" + (arr.length > 1 ? "nt" : "") + " : état <b>prêt</b>" + (algo === "prio" ? " (priorité " + arr.map(function (n) { return P.filter(function (p) { return p[0] === n; })[0][3]; }).join(", ") + ")" : ", en fin de file") + ".");
+      if (cur && debut[cur] === undefined) { debut[cur] = t; ev.push("L’ordonnanceur élit <b>" + cur + "</b> pour la première fois."); }
+      else if (cur && (!S.length || S[S.length - 1].cur !== cur)) ev.push("L’ordonnanceur élit <b>" + cur + "</b> (il lui reste " + reste[cur] + " unité" + (reste[cur] > 1 ? "s" : "") + ").");
+      S.push({ t: t, cur: cur, file: file.slice(), ev: ev });
+      if (cur) { reste[cur]--; used++; if (reste[cur] === 0) { S[S.length - 1].fin = cur; cur = null; } }
+      t++;
+    }
+    return S;
+  }
+  function etapes(k) {
+    var S = simule(k), E = [{ t: -1, S: S, msg: "Quatre processus arrivent à des instants différents (▼). Durées : P1 5, P2 3, P3 1, P4 2 unités" + (k === "prio" ? " ; priorités : P2 et P4 = 1 (la plus forte), P1 = 2, P3 = 3" : "") + ". Algorithme : <b>" + NOMS[k] + "</b>." + (k === "rr" ? " Règle : un processus qui arrive au moment où un autre est interrompu entre dans la file <b>avant</b> lui." : "") }];
+    S.forEach(function (s, i) {
+      var m = s.ev.join(" "), prev = i > 0 ? S[i - 1].cur : null;
+      if (s.cur && prev === s.cur) m += (m ? " " : "") + "<b>" + s.cur + "</b> continue son exécution.";
+      else if (!m) m = s.cur ? "<b>" + s.cur + "</b> s’exécute." : "Processeur inoccupé.";
+      if (s.fin) m += " <b>" + s.fin + " a terminé</b> à l’instant " + (s.t + 1) + ".";
+      E.push({ t: i, S: S, msg: "<span class=\"mono\">t = " + s.t + " → " + (s.t + 1) + "</span> · " + m });
+    });
+    var fin = {}; S.forEach(function (s) { if (s.fin) fin[s.fin] = s.t + 1; });
+    var tot = 0, att = 0, det = P.map(function (p) { var sj = fin[p[0]] - p[1]; tot += sj; att += sj - p[2]; return p[0] + " " + sj + " (attente " + (sj - p[2]) + ")"; });
+    E.push({ t: S.length, S: S, msg: "Bilan, temps de séjour (fin − arrivée) : " + det.join(" · ") + ". Moyenne : séjour " + String(tot / 4).replace(".", ",") + ", attente " + String(att / 4).replace(".", ",") + "." + (k === "prio" ? " P3, le moins prioritaire, a attendu le plus : avec beaucoup de processus prioritaires, il pourrait attendre indéfiniment (<b>famine</b>)." : k === "rr" ? " Le séjour moyen est plus long qu’en FIFO, mais P3, très court, a fini dès l’instant 5 : le tourniquet donne vite la main à chacun." : " P3, qui ne demandait qu’une unité, a attendu 6 unités derrière P1 et P2.") });
+    return E;
+  }
+  function dessine(scene, e, i, E, saut) {
+    var S = e.S, W = 30, X0 = 44, H = 30, Y0 = 16, n = S.length, larg = X0 + n * W + 12;
+    var s = '<svg viewBox="0 0 ' + larg + " " + (Y0 + 4 * H + 104) + '" role="img" aria-label="Diagramme de Gantt de l’ordonnancement">';
+    for (var u = 0; u <= n; u++) s += '<line x1="' + (X0 + u * W) + '" y1="' + (Y0 - 4) + '" x2="' + (X0 + u * W) + '" y2="' + (Y0 + 4 * H) + '" stroke="var(--ligne)" stroke-width="1"/><text class="pt" x="' + (X0 + u * W) + '" y="' + (Y0 + 4 * H + 14) + '" text-anchor="middle">' + u + "</text>";
+    P.forEach(function (p, r) {
+      var y = Y0 + r * H;
+      s += '<text x="6" y="' + (y + 19) + '" style="font-weight:700;fill:' + COUL[p[0]] + '">' + p[0] + "</text>";
+      s += '<path d="M' + (X0 + p[1] * W - 5) + " " + (y + 1) + " l10 0 l-5 7z" + '" style="fill:' + COUL[p[0]] + '"/>';
+      S.forEach(function (st, k) {
+        if (k > e.t || st.cur !== p[0]) return;
+        var neuf = k === e.t && !saut;
+        s += '<rect' + (neuf ? ' class="neuf"' : "") + ' x="' + (X0 + k * W + 1) + '" y="' + (y + 8) + '" width="' + (W - 2) + '" height="' + (H - 12) + '" rx="3" style="fill:' + COUL[p[0]] + ';opacity:.85"/>';
+        if (st.fin === p[0]) s += '<text class="pt" x="' + (X0 + (k + 1) * W + 3) + '" y="' + (y + 21) + '">✓</text>';
+      });
+    });
+    if (e.t >= 0 && e.t < n) s += '<rect x="' + (X0 + e.t * W) + '" y="' + (Y0 - 6) + '" width="' + W + '" height="' + (4 * H + 8) + '" fill="none" stroke="var(--ambre)" stroke-width="2.5" rx="3"/>';
+    var y2 = Y0 + 4 * H + 34, st = e.t >= 0 && e.t < n ? S[e.t] : null;
+    s += '<text class="pt" x="6" y="' + (y2 + 4) + '">processeur</text><text class="pt" x="6" y="' + (y2 + 50) + '">file des prêts</text>';
+    s += '<rect x="96" y="' + (y2 - 14) + '" width="56" height="28" rx="6" style="fill:' + (st && st.cur ? COUL[st.cur] : "var(--bg2)") + ';stroke:var(--ligne2)"/><text x="124" y="' + (y2 + 5) + '" text-anchor="middle" style="font-weight:700;fill:' + (st && st.cur ? "var(--bg)" : "var(--encre3)") + '">' + (st ? st.cur || "libre" : "—") + "</text>";
+    var f = st ? st.file : [];
+    if (!f.length) s += '<text class="pt" x="100" y="' + (y2 + 50) + '">' + (st ? "vide" : "—") + "</text>";
+    f.forEach(function (nm, j) { s += '<g' + (!saut ? ' class="neuf"' : "") + '><rect x="' + (96 + j * 50) + '" y="' + (y2 + 32) + '" width="44" height="28" rx="6" style="fill:var(--bg2);stroke:' + COUL[nm] + ';stroke-width:2"/><text x="' + (118 + j * 50) + '" y="' + (y2 + 51) + '" text-anchor="middle" style="font-weight:700;fill:' + COUL[nm] + '">' + nm + "</text></g>"; });
+    if (f.length) s += '<text class="pt" x="' + (96 + f.length * 50) + '" y="' + (y2 + 51) + '">← tête à gauche</text>';
+    scene.innerHTML = s + "</svg>";
+  }
+  O.lecteur(z, { titre: "l’ordonnanceur au travail", sous: "diagramme de Gantt", choix: [{ k: opt || "fifo", t: NOMS[opt || "fifo"] }].concat(["fifo", "rr", "prio"].filter(function (k) { return k !== (opt || "fifo"); }).map(function (k) { return { k: k, t: NOMS[k] }; })),
+    etapes: etapes, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar"); }, dessine: dessine, vitesse: 1500 });
+};
+
+/* ---------- animation : interblocage ---------- */
+WIDGETS_EXT["arch-interblocage"] = function (z, opt, O) {
+  archStyle();
+  var POS = { P1: [50, 112], P2: [350, 112], R1: [200, 34], R2: [200, 190] };
+  var NOM = { R1: "imprimante", R2: "scanner" };
+  var SC = {
+    blocage: [
+      { tient: [], att: [], et: { P1: "prêt", P2: "prêt" }, msg: "Deux processus doivent chacun imprimer un document scanné : il leur faut <b>les deux</b> ressources, qui ne peuvent servir qu’à un processus à la fois (accès <b>exclusif</b>). Flèche pleine : « la ressource est détenue par » ; flèche pointillée : « le processus attend »." },
+      { tient: [["R1", "P1"]], att: [], et: { P1: "élu", P2: "prêt" }, msg: "P1 demande l’<b>imprimante</b> : elle est libre, le système la lui attribue." },
+      { tient: [["R1", "P1"], ["R2", "P2"]], att: [], et: { P1: "prêt", P2: "élu" }, msg: "L’ordonnanceur passe la main à P2, qui demande le <b>scanner</b> : libre, il l’obtient." },
+      { tient: [["R1", "P1"], ["R2", "P2"]], att: [["P1", "R2"]], et: { P1: "bloqué", P2: "prêt" }, msg: "P1 reprend et demande le scanner : <b>détenu par P2</b>. P1 passe à l’état <b>bloqué</b>, sans lâcher l’imprimante." },
+      { tient: [["R1", "P1"], ["R2", "P2"]], att: [["P1", "R2"], ["P2", "R1"]], et: { P1: "bloqué", P2: "bloqué" }, cycle: true, msg: "P2 demande l’imprimante : <b>détenue par P1</b>. P2 est bloqué à son tour. P1 attend P2 qui attend P1 : c’est un <b>cycle d’attente</b>, un <b>interblocage</b> (<i>deadlock</i>). Aucun ne libérera jamais rien." },
+      { tient: [["R1", "P1"], ["R2", "P2"]], att: [["P1", "R2"], ["P2", "R1"]], et: { P1: "bloqué", P2: "bloqué" }, cycle: true, msg: "Quatre conditions étaient réunies : ressources <b>exclusives</b>, processus qui <b>gardent</b> une ressource en en attendant une autre, ressources <b>non retirables</b> de force, <b>attente circulaire</b>. Il suffit d’en empêcher une : par exemple, imposer à tous le même <b>ordre</b> de demande." }
+    ],
+    ordre: [
+      { tient: [], att: [], et: { P1: "prêt", P2: "prêt" }, msg: "Même situation, avec une règle : <b>tout le monde demande l’imprimante avant le scanner</b>." },
+      { tient: [["R1", "P1"]], att: [], et: { P1: "élu", P2: "prêt" }, msg: "P1 demande l’imprimante et l’obtient." },
+      { tient: [["R1", "P1"]], att: [["P2", "R1"]], et: { P1: "prêt", P2: "bloqué" }, msg: "P2 demande lui aussi l’imprimante en premier : elle est prise, P2 est bloqué… mais il <b>ne détient rien</b>." },
+      { tient: [["R1", "P1"], ["R2", "P1"]], att: [["P2", "R1"]], et: { P1: "élu", P2: "bloqué" }, msg: "P1 demande le scanner : libre, il l’obtient. Il a tout ce qu’il lui faut et travaille." },
+      { tient: [], att: [], et: { P1: "terminé", P2: "prêt" }, msg: "P1 termine et <b>libère</b> les deux ressources. P2, réveillé, repasse à l’état prêt." },
+      { tient: [["R1", "P2"], ["R2", "P2"]], att: [], et: { P1: "terminé", P2: "élu" }, msg: "P2 obtient l’imprimante puis le scanner. Pas de cycle possible : celui qui a l’imprimante n’attend jamais un processus qui attendrait l’imprimante." }
+    ]
+  };
+  function fleche(a, b, cl, saut) {
+    var A = POS[a], B = POS[b], dx = B[0] - A[0], dy = B[1] - A[1], L = Math.sqrt(dx * dx + dy * dy), ra = a[0] === "P" ? 32 : 46, rb = b[0] === "P" ? 36 : 50;
+    var x1 = A[0] + dx / L * ra, y1 = A[1] + dy / L * ra, x2 = B[0] - dx / L * rb, y2 = B[1] - dy / L * rb;
+    var ux = dx / L, uy = dy / L;
+    return '<path class="fil ' + cl + (saut ? "" : cl === "tient" ? " trace" : " neuf") + '" style="--l:' + Math.round(L) + '" d="M' + x1.toFixed(1) + " " + y1.toFixed(1) + " L" + x2.toFixed(1) + " " + y2.toFixed(1) + '"/><path class="tete-f ' + (cl === "tient" ? "ok" : "ko") + '" d="M' + (x2 + ux * 4).toFixed(1) + " " + (y2 + uy * 4).toFixed(1) + " L" + (x2 - ux * 9 - uy * 6).toFixed(1) + " " + (y2 - uy * 9 + ux * 6).toFixed(1) + " L" + (x2 - ux * 9 + uy * 6).toFixed(1) + " " + (y2 - uy * 9 - ux * 6).toFixed(1) + 'z"/>';
+  }
+  function dessine(scene, e, i, E, saut) {
+    var s = '<svg viewBox="0 0 400 226" role="img" aria-label="Graphe d’allocation des ressources entre deux processus">';
+    e.tient.forEach(function (f) { s += fleche(f[0], f[1], "tient", saut); });
+    e.att.forEach(function (f) { s += fleche(f[0], f[1], "att", saut); });
+    ["R1", "R2"].forEach(function (r) {
+      var p = POS[r], libre = !e.tient.some(function (f) { return f[0] === r; });
+      s += '<g class="bl' + (libre ? "" : " ok") + '"><rect x="' + (p[0] - 50) + '" y="' + (p[1] - 20) + '" width="100" height="40" rx="5"/><text x="' + p[0] + '" y="' + (p[1] - 2) + '" text-anchor="middle" class="gd">' + NOM[r] + '</text><text class="pt" x="' + p[0] + '" y="' + (p[1] + 13) + '" text-anchor="middle">' + (libre ? "libre" : "détenue") + "</text></g>";
+    });
+    ["P1", "P2"].forEach(function (k) {
+      var p = POS[k], et = e.et[k], cl = et === "bloqué" ? " ko" : et === "élu" ? " on" : et === "terminé" ? " off" : "";
+      s += '<g class="bl' + cl + '"><rect x="' + (p[0] - 34) + '" y="' + (p[1] - 30) + '" width="68" height="60" rx="30"/><text class="gd" x="' + p[0] + '" y="' + (p[1] - 2) + '" text-anchor="middle">' + k + '</text><text class="pt" x="' + p[0] + '" y="' + (p[1] + 15) + '" text-anchor="middle">' + et + "</text></g>";
+    });
+    if (e.cycle) s += '<text x="200" y="118" text-anchor="middle" class="gd" style="fill:var(--rouge)">cycle d’attente</text>';
+    scene.innerHTML = s + "</svg>";
+  }
+  O.lecteur(z, { titre: "l’interblocage, pas à pas", sous: "graphe d’allocation", choix: [{ k: "blocage", t: "chacun sa première ressource" }, { k: "ordre", t: "même ordre pour tous" }],
+    etapes: function (k) { return SC[k]; }, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar"); }, dessine: dessine, vitesse: 2400 });
+};
+
+CH.push({
+  id: "proc", n: 16, court: "processus", fichier: "processus.py",
+  titre: "Processus et ordonnancement",
+  rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : gestion des processus et des ressources par un système d’exploitation",
+  accroche: "Ce qu’est un processus, comment le système le crée, le fait passer d’un état à l’autre et partage le processeur entre tous (FIFO, tourniquet, priorités) ; les commandes ps, top, kill ; le risque d’interblocage.",
+  essentiel: [
+    "Un <b>processus</b> est un programme <b>en cours d’exécution</b>, avec sa mémoire, ses fichiers ouverts et son identifiant (<b>PID</b>) ; il est créé par un autre processus, son parent (<b>PPID</b>).",
+    "Un processus passe par les états <b>prêt</b> (attend le processeur), <b>élu</b> (s’exécute), <b>bloqué</b> (attend une ressource ou une entrée-sortie), puis <b>terminé</b>.",
+    "L’<b>ordonnanceur</b> du système choisit à chaque instant quel processus prêt est élu : <b>FIFO</b> (premier arrivé, premier servi), <b>tourniquet</b> (quantum de temps, retour en fin de file), <b>priorités</b>.",
+    "On observe les processus avec <code>ps</code> (liste) et <code>top</code> (en direct), on en arrête un avec <code>kill PID</code>.",
+    "Un <b>interblocage</b> se produit quand des processus s’attendent en cycle, chacun gardant une ressource dont l’autre a besoin : aucun ne peut plus avancer."
+  ],
+  attendus: [
+    "Décrire la création d’un processus, l’ordonnancement de plusieurs processus par le système.",
+    "Mettre en évidence le risque de l’interblocage (<i>deadlock</i>).",
+    "Le programme précise : « à l’aide d’outils standard, il s’agit d’observer les processus actifs ou en attente sur une machine » ; « une présentation débranchée de l’interblocage peut être proposée »."
+  ],
+  intro: `<div class="boite ex"><div class="lab"># à l’écrit</div><p>Questions fréquentes : compléter un <b>diagramme de Gantt</b> pour un algorithme donné, calculer des temps d’attente, lire une sortie de <code>ps</code> (qui est le parent de qui ? quelle commande pour arrêter tel processus ?), repérer un <b>interblocage</b> dans un scénario et proposer une parade. Parfois, compléter le code Python d’un ordonnanceur.</p></div>`,
+  idees: [
+    { id: "i1", t: "Le système d’exploitation et la notion de processus", h: `
+<p>Le <b>système d’exploitation</b> (Linux, Windows, macOS, Android…) est le logiciel qui gère la machine pour les autres programmes. Le programme de NSI lui donne pour fonctions de charger les programmes depuis la mémoire de masse et de lancer leur exécution en leur <b>créant des processus</b>, de gérer les ressources, de traiter les interruptions et les entrées-sorties, et d’assurer la sécurité du système.</p>
+<div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>processus</b> est une instance d’un programme <b>en cours d’exécution</b>. Le <b>programme</b> est un fichier inerte sur le disque ; le <b>processus</b> est ce fichier chargé en mémoire et exécuté, avec : son code, ses données et sa pile, la valeur de ses registres (dont le compteur ordinal), ses fichiers ouverts, son état et son identifiant, le <b>PID</b> (<i>process identifier</i>).</p></div>
+<p><b>Exemple</b> : ouvre deux fenêtres de terminal, et lance <code>python3</code> dans chacune. Le programme <code>python3</code> est le même fichier, mais il y a <b>deux processus</b> distincts, avec deux PID différents et des variables séparées : une variable définie dans l’un n’existe pas dans l’autre.</p>
+<p>Le système range les informations de chaque processus dans un <b>bloc de contrôle</b> (PCB, <i>process control block</i>) : PID, état, registres sauvegardés, mémoire allouée, fichiers ouverts, priorité.</p>` },
+
+    { id: "i2", t: "La création d’un processus", h: `
+<p>Un processus est toujours créé par un autre processus, son <b>parent</b>. Au démarrage, le noyau lance un premier processus (sous Linux, <code>init</code> ou <code>systemd</code>, de PID 1) ; tous les autres en descendent : ils forment un <b>arbre</b>. Chaque processus connaît le PID de son parent, le <b>PPID</b>.</p>
+<p>Sous Unix (Linux, macOS), la création se fait en deux temps :</p>
+<ol><li><b><code>fork</code></b> : le système crée une <b>copie</b> du processus appelant (même code, copie des données), avec un nouveau PID ;</li>
+<li><b><code>exec</code></b> : la copie remplace son code par celui d’un autre programme.</li></ol>
+<p>C’est ce que fait le terminal quand tu tapes <code>python3 jeu.py</code> : le processus du terminal (le <i>shell</i>) se duplique, et la copie exécute <code>python3</code>. Le module <code>os</code> de Python donne accès à <code>fork</code> :</p>
+[[proc-fork]]
+<p>Après <code>fork</code>, il y a deux processus qui exécutent la suite du même code ; seule la valeur renvoyée par <code>fork</code> les distingue (0 dans l’enfant, le PID de l’enfant dans le parent).</p>
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>Sous Windows, il n’y a pas de <code>fork</code> : la fonction <code>CreateProcess</code> crée directement un processus qui exécute un autre programme. Un processus terminé dont le parent n’a pas encore lu le résultat reste un moment dans la table des processus : c’est un <b>zombie</b> (lettre <code>Z</code> dans <code>ps</code>).</p></div>` },
+
+    { id: "i3", t: "Les états d’un processus", h: `
+<p>Sur un processeur à un cœur, un seul processus s’exécute à un instant donné ; pourtant, des dizaines de processus semblent tourner en même temps. Le système les fait <b>alterner</b> très vite (toutes les quelques millisecondes) : c’est le <b>multitâche</b>. Chaque processus est dans l’un de ces états :</p>
+<div class="tab-wrap"><table><tr><th>état</th><th>signification</th><th>exemple</th></tr>
+<tr><td><b>nouveau</b></td><td>en cours de création</td><td>juste après <code>fork</code></td></tr>
+<tr><td><b>prêt</b></td><td>pourrait s’exécuter, attend le processeur</td><td>un calcul interrompu à la fin de son quantum</td></tr>
+<tr><td><b>élu</b> (en exécution)</td><td>s’exécute sur le processeur</td><td>un seul par cœur à la fois</td></tr>
+<tr><td><b>bloqué</b> (en attente)</td><td>attend un événement : une lecture sur le disque, une touche, une ressource occupée</td><td>un programme qui attend que tu tapes au clavier</td></tr>
+<tr><td><b>terminé</b></td><td>a fini, ses ressources sont libérées</td><td>après <code>exit</code></td></tr></table></div>
+<p>Les transitions possibles :</p>
+<ul><li><b>prêt → élu</b> : l’ordonnanceur le choisit ;</li>
+<li><b>élu → prêt</b> : il est interrompu (fin de son quantum, ou arrivée d’un processus plus prioritaire) ;</li>
+<li><b>élu → bloqué</b> : il demande une entrée-sortie ou une ressource indisponible ;</li>
+<li><b>bloqué → prêt</b> : l’événement attendu se produit (jamais directement bloqué → élu) ;</li>
+<li><b>élu → terminé</b>.</li></ul>
+<p>Quand le processeur passe d’un processus à un autre, le système sauvegarde les registres du premier dans son bloc de contrôle et recharge ceux du second : c’est la <b>commutation de contexte</b>. Elle a un coût, d’où un quantum qui ne peut pas être trop court.</p>` },
+
+    { id: "i4", t: "L’ordonnancement : trois algorithmes", h: `
+<p>L’<b>ordonnanceur</b> (<i>scheduler</i>) est la partie du système qui choisit quel processus prêt devient élu. On compare les algorithmes sur un <b>diagramme de Gantt</b> : une ligne par processus, le temps en abscisse, une case colorée quand le processus s’exécute.</p>
+<ul><li><b>FIFO</b> (premier arrivé, premier servi) : les processus prêts forment une file ; chacun s’exécute jusqu’au bout. Simple, mais un processus court attend derrière un long.</li>
+<li><b>Tourniquet</b> (<i>round robin</i>) : chacun reçoit au plus un <b>quantum</b> de temps, puis repasse en fin de file s’il n’a pas fini. C’est la base du multitâche : chaque processus reçoit vite la main.</li>
+<li><b>Priorités</b> : chaque processus a une priorité ; le plus prioritaire des prêts est élu, et l’arrivée d’un processus plus prioritaire interrompt l’élu. Risque : la <b>famine</b> d’un processus peu prioritaire qui n’est jamais élu.</li></ul>
+<p>On mesure : le <b>temps de séjour</b> = instant de fin − instant d’arrivée, et le <b>temps d’attente</b> = temps de séjour − durée d’exécution. Exemple avec quatre processus : P1 (arrivée 0, durée 5), P2 (1, 3), P3 (2, 1), P4 (4, 2).</p>
+[[w-arch-gantt]]
+<p>En Python, la file des prêts est une <b>file</b> du chapitre 3 (<code>deque</code>) :</p>
+[[proc-donnees]]
+[[proc-fifo]]
+[[proc-rr]]
+<details class="repli"><summary>Ordonnancement par priorités (préemptif) en Python</summary><div class="corps">[[proc-prio]]<p>À l’instant 1, P2 (priorité 1) interrompt P1 (priorité 2). À l’instant 4, P4 (priorité 1) passe devant P1. P3 (priorité 3) ne s’exécute qu’à la fin.</p></div></details>
+[[proc-temps]]
+<div class="boite attention"><div class="lab">⚠ les conventions changent d’un sujet à l’autre</div><p>Quand un processus arrive au moment même où un autre est interrompu, qui passe d’abord dans la file ? Ici, le nouveau venu. Un sujet de bac précise toujours sa règle : <b>lis-la</b> et applique-la à la lettre.</p></div>
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>Les systèmes réels combinent ces idées : Linux utilise depuis la version 6.6 (2023) l’ordonnanceur EEVDF, qui répartit le temps de processeur selon une « part équitable » pondérée par la priorité de chaque processus (la valeur <code>nice</code>).</p></div>` },
+
+    { id: "i5", t: "Observer les processus : ps, top, kill", h: `
+<p>Sur Linux ou macOS, dans un terminal :</p>
+<div class="code"><div class="tete"><span class="f">terminal (exemple de sortie : les numéros changent d’une machine à l’autre)</span></div><pre><code><span class="l" data-n="1">$ ps -ef</span><span class="l" data-n="2">UID    PID  PPID  C STIME TTY      TIME     CMD</span><span class="l" data-n="3">root     1     0  0 08:02 ?        00:00:03 /sbin/init</span><span class="l" data-n="4">eleve 1520     1  0 08:05 ?        00:00:01 /usr/lib/systemd/systemd --user</span><span class="l" data-n="5">eleve 2311  1520  0 08:06 pts/0    00:00:00 bash</span><span class="l" data-n="6">eleve 2675  2311 98 08:09 pts/0    00:01:12 python3 calcul.py</span><span class="l" data-n="7">eleve 2702  2311  0 08:10 pts/0    00:00:00 ps -ef</span></code></pre></div>
+<ul><li><b><code>ps</code></b> (<i>process status</i>) affiche la liste des processus à un instant donné. Avec <code>-e</code> : tous les processus ; <code>-f</code> : format complet, avec le <b>PPID</b>. Ici, <code>bash</code> (PID 2311) est le parent de <code>python3 calcul.py</code> et de <code>ps -ef</code> lui-même. La colonne <code>C</code> donne l’usage du processeur (98 : le calcul l’occupe presque entièrement).</li>
+<li><code>ps aux</code> ajoute <code>%CPU</code>, <code>%MEM</code> et la colonne <code>STAT</code> : <code>R</code> en exécution ou prêt, <code>S</code> endormi (bloqué, en attente d’un événement), <code>T</code> arrêté, <code>Z</code> zombie.</li>
+<li><b><code>top</code></b> affiche les processus <b>en direct</b>, triés par usage du processeur, rafraîchis toutes les quelques secondes (<code>q</code> pour quitter). <code>htop</code> en est une version plus lisible.</li>
+<li><b><code>kill PID</code></b> envoie un signal au processus : par défaut <code>SIGTERM</code> (« termine-toi proprement ») ; <code>kill -9 PID</code> envoie <code>SIGKILL</code>, qui le tue sans qu’il puisse réagir. Ici, <code>kill 2675</code> arrête le calcul.</li>
+<li><code>pstree</code> dessine l’arbre des processus.</li></ul>
+<p>Sous Windows, le <b>Gestionnaire des tâches</b> joue le rôle de <code>top</code>, et la commande <code>tasklist</code> celui de <code>ps</code>.</p>` },
+
+    { id: "i6", t: "Ressources partagées et interblocage", h: `
+<p>Les processus se partagent des <b>ressources</b> : processeur, mémoire, fichiers, imprimante, connexion à une base de données. Certaines sont à <b>accès exclusif</b> : une seule utilisation à la fois (deux processus qui écrivent en même temps dans un fichier le corromprait). Le système les protège par des <b>verrous</b> : un processus qui demande une ressource déjà prise est <b>bloqué</b> jusqu’à sa libération.</p>
+<div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>interblocage</b> (<i>deadlock</i>) est une situation où plusieurs processus sont bloqués <b>indéfiniment</b>, chacun attendant une ressource détenue par un autre. Exemple : P1 tient l’imprimante et attend le scanner, P2 tient le scanner et attend l’imprimante.</p></div>
+[[w-arch-interblocage]]
+<p>On le reproduit en Python avec deux verrous (<code>threading.Lock</code>). Pour que la démonstration s’arrête, chaque attente est limitée à 0,5 s ; dans un vrai interblocage, l’attente durerait toujours :</p>
+[[proc-interblocage]]
+<p>Les quatre conditions (dites de Coffman, 1971) nécessaires à un interblocage : <b>exclusion mutuelle</b> (ressources non partageables), <b>détention et attente</b> (on garde ce qu’on a en demandant autre chose), <b>pas de réquisition</b> (on ne retire pas une ressource de force), <b>attente circulaire</b>. Pour <b>prévenir</b> l’interblocage, on empêche l’une d’elles, le plus souvent l’attente circulaire : tous les processus demandent les ressources dans le <b>même ordre</b>.</p>
+[[proc-ordre]]
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1965 <b>·</b></span> Edsger Dijkstra propose à ses étudiants un exercice sur des ordinateurs qui se disputent des lecteurs de bandes ; Tony Hoare le reformule en « dîner des philosophes » : cinq philosophes autour d’une table, une fourchette entre deux voisins, il en faut deux pour manger. Si chacun prend sa fourchette de gauche en même temps, tous attendent celle de droite pour toujours. C’est l’exemple classique d’interblocage.</p></div>` },
+
+    { id: "i7", t: "Détecter un interblocage : un cycle dans un graphe", h: `
+<p>On représente la situation par un <b>graphe d’attente</b> : un sommet par processus, un arc de P vers Q quand P attend une ressource détenue par Q. Il y a interblocage <b>si et seulement si</b> ce graphe contient un <b>cycle</b> (dans le cas où chaque ressource existe en un seul exemplaire). C’est un problème de graphe, comme dans la rubrique « Algorithmique » : chercher un cycle.</p>
+[[proc-cycle]]
+<p>Dans le troisième exemple, P4 attend P1 qui attend P2 qui attend P3, mais P3 n’attend personne : quand il aura fini, tout se débloquera. Pas de cycle, pas d’interblocage.</p>
+<div class="boite hp"><div class="lab"># que fait un vrai système ?</div><p>La plupart des systèmes d’exploitation grand public ne détectent pas les interblocages entre programmes : c’est aux programmeurs de les éviter (ordre des verrous). Les systèmes de gestion de bases de données, eux, les détectent et annulent l’une des transactions en cause.</p></div>` }
+  ],
+  pieges: [
+    { t: "Confondre programme et processus", h: `<p>Un programme est un fichier ; un processus est une exécution de ce fichier. Un même programme peut donner plusieurs processus simultanés, chacun avec son PID.</p>` },
+    { t: "Faire passer un processus de bloqué à élu", h: `<p>Un processus débloqué repasse d’abord à l’état <b>prêt</b> ; c’est l’ordonnanceur qui décidera de l’élire.</p>` },
+    { t: "Oublier qu’un processeur multicœur élit plusieurs processus", h: `<p>Avec 4 cœurs, jusqu’à 4 processus sont élus en même temps. Les exercices d’ordonnancement supposent en général un seul cœur : vérifie l’énoncé.</p>` },
+    { t: "Temps d’attente mal calculé", h: `<p>Temps de séjour = fin − <b>arrivée</b> (pas fin − début). Temps d’attente = séjour − durée d’exécution. Vérifie sur le diagramme : l’attente compte toutes les cases où le processus est arrivé mais ne s’exécute pas.</p>` },
+    { t: "Croire que kill tue toujours", h: `<p><code>kill PID</code> envoie <code>SIGTERM</code> : le processus peut l’intercepter (pour sauvegarder) ; <code>kill -9</code> (<code>SIGKILL</code>) ne peut pas être ignoré. On ne peut tuer que ses propres processus, sauf en administrateur.</p>` },
+    { t: "Confondre interblocage et famine", h: `<p>Interblocage : plusieurs processus s’attendent en cycle, <b>aucun</b> n’avance. Famine : un processus n’est jamais élu parce que d’autres passent toujours devant, mais le système, lui, avance.</p>` }
+  ],
+  retenir: `
+<h2>Processus</h2>
+<ul><li>Programme <b>en cours d’exécution</b> : code, données, pile, registres, fichiers ouverts, <b>PID</b>, parent (<b>PPID</b>).</li><li>Création sous Unix : <code>fork</code> (copie du parent) puis <code>exec</code> (autre programme). Arbre des processus, racine PID 1.</li></ul>
+<h2>États</h2>
+<p>nouveau → <b>prêt</b> ⇄ <b>élu</b> → terminé ; élu → <b>bloqué</b> (attente d’E/S ou de ressource) → prêt.</p>
+<h2>Ordonnancement</h2>
+<div class="tab-wrap"><table><tr><th>algorithme</th><th>principe</th><th>défaut</th></tr><tr><td>FIFO</td><td>premier arrivé, jusqu’au bout</td><td>un court attend derrière un long</td></tr><tr><td>tourniquet</td><td>quantum, puis fin de file</td><td>commutations fréquentes</td></tr><tr><td>priorités</td><td>le plus prioritaire des prêts</td><td>famine</td></tr></table></div>
+<p>Séjour = fin − arrivée · attente = séjour − durée.</p>
+<h2>Commandes</h2>
+<p><code>ps -ef</code> (tous, avec PPID) · <code>ps aux</code> (%CPU, %MEM, STAT) · <code>top</code> (en direct) · <code>kill PID</code> (SIGTERM) · <code>kill -9 PID</code> (SIGKILL) · <code>pstree</code>.</p>
+<h2>Interblocage</h2>
+<ul><li>Processus bloqués en <b>cycle d’attente</b>, chacun détenant une ressource voulue par un autre.</li><li>Conditions : exclusion mutuelle, détention et attente, pas de réquisition, attente circulaire.</li><li>Prévention : même ordre de demande pour tous. Détection : cycle dans le graphe d’attente.</li></ul>`,
+  predis: [
+    { code: "proc-x1", niv: "facile", rep: "A (0 à 2), puis C arrivé à 1 (2 à 4). B n’arrive qu’à 5 : le processeur est libre de 4 à 5 (<code>--</code>), puis B s’exécute. <code>fifo</code> trie par instant d’arrivée." },
+    { code: "proc-x2", niv: "moyen", rep: "Quantum 2 : A s’exécute 2 unités, repasse derrière B ; B 2 unités ; A finit (1 unité) ; B finit (1 unité)." },
+    { code: "proc-x3", niv: "moyen", rep: "Avec un quantum de 10, plus long que toutes les durées, aucun processus n’est jamais interrompu : le tourniquet se comporte exactement comme FIFO." },
+    { code: "proc-x4", niv: "facile", rep: "Premier cas : P1 attend P2 qui attend P1, cycle, donc interblocage. Second cas : la chaîne P3 → P2 → P1 s’arrête sur P1, qui n’attend rien." }
+  ],
+  ep: [
+    { titre: "Un ordonnanceur à tourniquet en POO", enonce: `<p>On modélise un ordonnanceur à tourniquet avec deux classes. La file des processus prêts est une liste Python dont la tête est l’élément d’indice 0.</p>[[proc-ep-fourni]]`,
+      questions: [
+        { q: "Compléter la méthode <code>tranche</code>.", c: `<p>Si la file est vide, renvoyer <code>None</code>. Sinon : retirer la tête (<code>self.file.pop(0)</code>), calculer <code>d = min(self.quantum, p.reste)</code>, diminuer <code>p.reste</code>, remettre <code>p</code> en fin de file s’il reste du travail, renvoyer <code>(p.pid, d)</code>.</p>` },
+        { q: "Compléter <code>executer</code> : un processus est terminé quand il n’est pas revenu dans la file après sa tranche.", c: `[[proc-ep-corr]]` },
+        { q: "Pour 3 processus de durées 5, 3, 1 (PID 10, 11, 12) et un quantum de 2, dans quel ordre finissent-ils ? Vérifier par un test.", c: `<p>12, puis 11, puis 10 : le chronogramme est 10 10 11 11 12 10 10 11 10. Le test <code>assert o2.executer() == [12, 11, 10]</code> le confirme.</p>` },
+        { q: "À l’oral : <code>self.file.pop(0)</code> est-il efficace ? Que proposer ?", c: `<p>Non : retirer l’élément d’indice 0 d’une liste Python décale tous les autres, coût proportionnel à la longueur. Une <code>collections.deque</code> retire en tête en temps constant (<code>popleft</code>), comme la file du chapitre 3.</p>[[proc-ep-cout]]` }
+      ] }
+  ],
+  ecrit: { titre: "Ordonnancement, commandes et interblocage", points: "≈ 8 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite (on suppose un processeur à un seul cœur).",
+    enonce: `<p>Quatre processus arrivent dans le système : A (instant 0, durée 3), B (instant 1, durée 4), C (instant 2, durée 2), D (instant 3, durée 1).</p>`,
+    questions: [
+      { q: "Rappeler les trois états principaux d’un processus et dire dans quel état est un processus qui attend la fin d’une lecture sur le disque.", pts: "1 pt", c: `<p>Prêt, élu, bloqué. Un processus qui attend une entrée-sortie est <b>bloqué</b> ; il redeviendra prêt quand la lecture sera finie.</p>` },
+      { q: "Donner le chronogramme (une case par unité de temps) avec l’algorithme FIFO, puis avec un tourniquet de quantum 2 (un processus qui arrive pendant une tranche entre dans la file avant le processus interrompu).", pts: "2 pts", code: "[[proc-ecrit-q|nosortie]]", c: `<p>FIFO : <code>A A A B B B B C C D</code>. Tourniquet : <code>A A B B C C A D B B</code> (à t = 2, B est élu et il reste C, A dans la file ; à t = 4, C est élu et il reste A, D, B).</p>[[proc-ecrit-q]]` },
+      { q: "Calculer le temps de séjour moyen dans chaque cas. Quel algorithme favorise les processus courts ?", pts: "1,5 pt", c: `<p>FIFO : séjours A 3, B 6, C 7, D 7 ; moyenne 23 / 4 = 5,75. Tourniquet : A 7, B 9, C 4, D 5 ; moyenne 25 / 4 = 6,25. Le tourniquet fait finir plus tôt C et D, les plus courts (C : 4 au lieu de 7 ; D : 5 au lieu de 7), au prix d’un séjour moyen un peu plus long ici.</p>` },
+      { q: "Un élève lance <code>ps -ef</code> et lit, entre autres, la ligne <code>eleve 3104 2990 99 10:12 pts/1 00:04:51 python3 boucle.py</code>. Que signifient 3104 et 2990 ? Quelle commande arrête ce programme ?", pts: "1,5 pt", c: `<p>3104 est le PID du processus, 2990 le PID de son parent (PPID), sans doute le shell <code>bash</code> du terminal. <code>kill 3104</code> lui envoie <code>SIGTERM</code> ; s’il ne s’arrête pas, <code>kill -9 3104</code>. La colonne 99 indique qu’il occupe presque tout le processeur (une boucle infinie ?).</p>` },
+      { q: "Deux processus doivent écrire dans deux fichiers F1 et F2 protégés par des verrous. P1 verrouille F1 puis F2 ; P2 verrouille F2 puis F1. Décrire un déroulement qui mène à un interblocage, puis proposer une correction.", pts: "2 pts", c: `<p>P1 verrouille F1 ; P2 verrouille F2 ; P1 demande F2 (détenu par P2) : bloqué ; P2 demande F1 (détenu par P1) : bloqué. Cycle P1 → P2 → P1 : interblocage. Correction : imposer le même ordre, F1 puis F2, aux deux processus ; celui qui obtient F1 n’attend jamais un processus qui détient F1.</p>` }
+    ],
+    methode: `<p>Pour un tourniquet, écris la <b>file des prêts</b> à chaque fin de tranche (tête à gauche) : c’est elle qui décide du suivant. Pour un interblocage, dessine le graphe « qui attend qui » et cherche un cycle.</p>` },
+  qcm: [
+    { q: "Qu’est-ce qu’un processus ?", c: ["Un fichier exécutable sur le disque", "Un programme en cours d’exécution, avec sa mémoire et son PID", "Un cœur du processeur", "Une ligne de code"], a: 1, e: "Le programme est un fichier ; le processus en est une exécution.", ref: "i1" },
+    { q: "Que désigne le PPID d’un processus ?", c: ["Sa priorité", "Le PID de son processus parent", "Son temps d’exécution", "Son numéro de cœur"], a: 1, e: "Parent PID : chaque processus est créé par un autre.", ref: "i2" },
+    { q: "Sous Unix, que fait <code>fork</code> ?", c: ["Arrête un processus", "Crée une copie du processus appelant", "Change la priorité", "Liste les processus"], a: 1, e: "Puis <code>exec</code> remplace éventuellement le code de la copie.", ref: "i2" },
+    { q: "Un processus attend la fin d’une lecture sur le disque. Il est…", c: ["élu", "prêt", "bloqué", "terminé"], a: 2, e: "Il attend un événement extérieur ; il n’a pas besoin du processeur pour l’instant.", ref: "i3" },
+    { q: "Quelle transition est impossible ?", c: ["prêt → élu", "élu → bloqué", "bloqué → élu", "élu → prêt"], a: 2, e: "Un processus débloqué repasse par l’état prêt.", ref: "i3" },
+    { q: "Dans l’algorithme du tourniquet, un processus dont le quantum est épuisé…", c: ["est terminé", "repasse en fin de file des prêts", "devient prioritaire", "est bloqué"], a: 1, e: "S’il n’a pas fini, il repasse en fin de file.", ref: "i4" },
+    { q: "Avec FIFO, A (arrivée 0, durée 4) et B (arrivée 1, durée 1) : à quel instant B finit-il ?", c: ["1", "2", "5", "4"], a: 2, e: "A s’exécute de 0 à 4, puis B de 4 à 5.", ref: "i4" },
+    { q: "Temps de séjour d’un processus arrivé à 2, terminé à 9, de durée 4 ?", c: ["4", "5", "7", "9"], a: 2, e: "Séjour = fin − arrivée = 7 ; son attente vaut 7 − 4 = 3.", ref: "i4" },
+    { q: "Quel risque présente l’ordonnancement par priorités ?", c: ["L’interblocage", "La famine des processus peu prioritaires", "La perte de données", "Aucun"], a: 1, e: "S’il arrive sans cesse des processus plus prioritaires, un processus peu prioritaire n’est jamais élu.", ref: "i4" },
+    { q: "Quelle commande affiche les processus en direct, triés par usage du processeur ?", c: ["ps", "top", "kill", "ls"], a: 1, e: "<code>ps</code> donne une photographie à un instant ; <code>top</code> se rafraîchit.", ref: "i5" },
+    { q: "Que fait <code>kill 2675</code> ?", c: ["Affiche le processus 2675", "Envoie au processus 2675 le signal de terminaison SIGTERM", "Redémarre la machine", "Crée un processus"], a: 1, e: "<code>kill -9</code> enverrait SIGKILL, impossible à ignorer.", ref: "i5" },
+    { q: "Dans <code>ps -ef</code>, quelle colonne permet de reconstituer l’arbre des processus ?", c: ["TIME", "PPID", "TTY", "C"], a: 1, e: "Chaque processus pointe vers son parent par le PPID.", ref: "i5" },
+    { q: "P1 détient R1 et attend R2 ; P2 détient R2 et attend R1. C’est…", c: ["une famine", "un interblocage", "une commutation de contexte", "un fonctionnement normal"], a: 1, e: "Cycle d’attente : aucun des deux n’avancera.", ref: "i6" },
+    { q: "Quelle mesure empêche cet interblocage ?", c: ["Augmenter le quantum", "Faire demander R1 puis R2 par tous les processus", "Donner plus de mémoire", "Utiliser FIFO"], a: 1, e: "Un ordre commun de demande supprime l’attente circulaire.", ref: "i6" },
+    { q: "Sur un graphe d’attente (P → Q si P attend Q), un interblocage correspond à…", c: ["un sommet isolé", "un cycle", "un arbre", "un chemin de longueur 1"], a: 1, e: "Recherche de cycle dans un graphe.", ref: "i7" }
+  ],
+  cartes: [
+    { r: "Processus", v: "Programme en cours d’exécution : code, données, pile, registres, fichiers ouverts, PID." },
+    { r: "PID / PPID", v: "Identifiant du processus / identifiant de son parent." },
+    { r: "fork / exec", v: "fork : copie du processus appelant. exec : remplace son code par un autre programme." },
+    { r: "Les états", v: "nouveau, prêt, élu, bloqué, terminé." },
+    { r: "Bloqué", v: "Attend un événement (entrée-sortie, ressource) ; redevient prêt quand il se produit." },
+    { r: "Ordonnanceur", v: "Partie du système qui choisit quel processus prêt est élu." },
+    { r: "FIFO", v: "Premier arrivé, premier servi, chacun jusqu’au bout." },
+    { r: "Tourniquet (round robin)", v: "Quantum de temps, puis retour en fin de file s’il n’a pas fini." },
+    { r: "Priorités", v: "Le plus prioritaire des prêts est élu ; risque de famine." },
+    { r: "Temps de séjour / d’attente", v: "Séjour = fin − arrivée ; attente = séjour − durée d’exécution." },
+    { r: "Commutation de contexte", v: "Sauvegarde des registres de l’élu, chargement de ceux du suivant." },
+    { r: "ps / top", v: "ps : liste à un instant (ps -ef : avec PPID). top : en direct." },
+    { r: "kill", v: "kill PID : SIGTERM ; kill -9 PID : SIGKILL (non interceptable)." },
+    { r: "Interblocage (deadlock)", v: "Processus bloqués en cycle, chacun détenant une ressource voulue par un autre." },
+    { r: "Prévenir l’interblocage", v: "Faire demander les ressources dans le même ordre par tous (pas d’attente circulaire)." }
+  ]
+});
+
 /* ===================== Chapitre 7 — Arbres binaires et arbres binaires de recherche ===================== */
 C("c7-noeud", String.raw`
 class Noeud:
@@ -7161,6 +8241,650 @@ CH.push({
   ]
 });
 
+/* ===================== Chapitre 8 — Graphes : structures et algorithmes ===================== */
+C("c8-dict", String.raw`
+#   B ─── D ─── F ─── G
+#   │     │     │
+#   A ─── C ─── E          (A-B, A-C, B-D, C-D, C-E, D-F, E-F, F-G)
+graphe = {
+    "A": ["B", "C"],
+    "B": ["A", "D"],
+    "C": ["A", "D", "E"],
+    "D": ["B", "C", "F"],
+    "E": ["C", "F"],
+    "F": ["D", "E", "G"],
+    "G": ["F"],
+}
+print(graphe["C"], len(graphe["F"]))                # voisins de C, degré de F
+print("E" in graphe["D"])                          # D et E sont-ils voisins ?
+nb_aretes = sum(len(v) for v in graphe.values()) // 2   # chaque arête est vue deux fois
+print(len(graphe), "sommets,", nb_aretes, "arêtes")`, { fichier: "graphe.py", out: "['A', 'D', 'E'] 3\nFalse\n7 sommets, 8 arêtes" });
+
+C("c8-matrice", String.raw`
+sommets = ["A", "B", "C", "D", "E", "F", "G"]
+#       A  B  C  D  E  F  G
+M = [[0, 1, 1, 0, 0, 0, 0],   # A
+     [1, 0, 0, 1, 0, 0, 0],   # B
+     [1, 0, 0, 1, 1, 0, 0],   # C
+     [0, 1, 1, 0, 0, 1, 0],   # D
+     [0, 0, 1, 0, 0, 1, 0],   # E
+     [0, 0, 0, 1, 1, 0, 1],   # F
+     [0, 0, 0, 0, 0, 1, 0]]   # G
+
+i, j = sommets.index("C"), sommets.index("E")
+print(M[i][j], M[j][i])                       # non orienté : matrice symétrique
+print("degré de F :", sum(M[sommets.index("F")]))`, { fichier: "matrice.py", out: "1 1\ndegré de F : 3" });
+
+C("c8-conversions", String.raw`
+def matrice_vers_dict(M, sommets):
+    g = {}
+    for i in range(len(sommets)):
+        g[sommets[i]] = [sommets[j] for j in range(len(sommets)) if M[i][j] != 0]
+    return g
+
+def dict_vers_matrice(g):
+    sommets = list(g)
+    n = len(sommets)
+    M = [[0] * n for _ in range(n)]         # pas [[0] * n] * n : lignes partagées !
+    for s in g:
+        for v in g[s]:
+            M[sommets.index(s)][sommets.index(v)] = 1
+    return M, sommets
+
+print(matrice_vers_dict(M, sommets) == graphe)
+M2, s2 = dict_vers_matrice(graphe)
+print(M2 == M, s2 == sommets)`, { deps: ["c8-dict", "c8-matrice"], out: "True\nTrue True" });
+
+C("c8-oriente", String.raw`
+# Graphe ORIENTÉ : qui suit qui sur un réseau social (l'arc a -> b : a suit b)
+suit = {"ada": ["alan", "grace"], "alan": ["grace"], "grace": ["ada"], "linus": ["ada"]}
+
+def predecesseurs(g, s):
+    """Liste des sommets qui ont un arc vers s."""
+    return [x for x in g if s in g[x]]
+
+print(suit["alan"], predecesseurs(suit, "ada"))          # successeurs / prédécesseurs
+print(len(suit["ada"]), len(predecesseurs(suit, "ada")))  # degré sortant / entrant`, { out: "['grace'] ['grace', 'linus']\n2 2" });
+
+C("c8-pondere", String.raw`
+# Graphe PONDÉRÉ (distances fictives, en km) : sommet -> {voisin: poids}
+routes = {"A": {"B": 7, "C": 3}, "B": {"A": 7, "C": 2}, "C": {"A": 3, "B": 2}}
+print(routes["A"]["C"] + routes["C"]["B"], "km par C, au lieu de", routes["A"]["B"])`, { out: "5 km par C, au lieu de 7" });
+
+C("c8-classe", String.raw`
+class Graphe:
+    """Graphe non orienté, représenté par des listes de voisins."""
+    def __init__(self):
+        self.adj = {}
+
+    def ajouter_sommet(self, s):
+        if s not in self.adj:
+            self.adj[s] = []
+
+    def ajouter_arete(self, a, b):
+        self.ajouter_sommet(a)
+        self.ajouter_sommet(b)
+        self.adj[a].append(b)              # dans les DEUX sens : non orienté
+        self.adj[b].append(a)
+
+    def voisins(self, s):
+        return self.adj[s]
+
+    def sommets(self):
+        return list(self.adj)
+
+g = Graphe()
+for a, b in [("A", "B"), ("A", "C"), ("B", "D"), ("C", "D")]:
+    g.ajouter_arete(a, b)
+print(g.sommets(), g.voisins("D"))`, { out: "['A', 'B', 'C', 'D'] ['B', 'C']" });
+
+C("c8-largeur", String.raw`
+def parcours_largeur(g, depart):
+    """Ordre de visite et distance (en nombre d'arêtes) de chaque sommet atteint."""
+    distance = {depart: 0}           # sert aussi à marquer les sommets découverts
+    file = [depart]
+    ordre = []
+    while file:
+        s = file.pop(0)              # défiler
+        ordre.append(s)
+        for v in g[s]:
+            if v not in distance:    # pas encore découvert
+                distance[v] = distance[s] + 1
+                file.append(v)       # enfiler
+    return ordre, distance
+
+ordre, dist = parcours_largeur(graphe, "A")
+print(ordre)
+print(dist)`, { deps: ["c8-dict"], out: "['A', 'B', 'C', 'D', 'E', 'F', 'G']\n{'A': 0, 'B': 1, 'C': 1, 'D': 2, 'E': 2, 'F': 3, 'G': 4}" });
+
+C("c8-profondeur", String.raw`
+def profondeur_rec(g, s, vus=None):
+    """Parcours en profondeur récursif : renvoie la liste des sommets visités."""
+    if vus is None:
+        vus = []
+    vus.append(s)                    # marquer
+    for v in g[s]:
+        if v not in vus:
+            profondeur_rec(g, v, vus)   # aller le plus loin possible
+    return vus
+
+def profondeur_pile(g, depart):
+    """Même idée avec une PILE explicite à la place de la pile d'appels."""
+    vus = []
+    pile = [depart]
+    while pile:
+        s = pile.pop()               # dépiler
+        if s not in vus:
+            vus.append(s)
+            for v in g[s]:
+                if v not in vus:
+                    pile.append(v)   # empiler
+    return vus
+
+print(profondeur_rec(graphe, "A"))
+print(profondeur_pile(graphe, "A"))`, { deps: ["c8-dict"], out: "['A', 'B', 'D', 'C', 'E', 'F', 'G']\n['A', 'C', 'E', 'F', 'G', 'D', 'B']" });
+
+C("c8-chemin", String.raw`
+def chemin(g, depart, arrivee):
+    """Un plus court chemin (en nombre d'arêtes) de depart à arrivee, ou None."""
+    parent = {depart: None}
+    file = [depart]
+    while file:
+        s = file.pop(0)
+        if s == arrivee:
+            break
+        for v in g[s]:
+            if v not in parent:
+                parent[v] = s            # on retient d'où l'on vient
+                file.append(v)
+    if arrivee not in parent:
+        return None
+    ch = []
+    s = arrivee
+    while s is not None:                 # on remonte les parents
+        ch.append(s)
+        s = parent[s]
+    ch.reverse()
+    return ch
+
+print(chemin(graphe, "A", "G"))
+print(chemin(graphe, "G", "C"))
+print(chemin({"X": ["Y"], "Y": ["X"], "Z": []}, "X", "Z"))`, { deps: ["c8-dict"], out: "['A', 'B', 'D', 'F', 'G']\n['G', 'F', 'D', 'C']\nNone" });
+
+C("c8-connexe", String.raw`
+def est_connexe(g):
+    """Non orienté : connexe si un parcours depuis un sommet atteint tous les autres."""
+    if len(g) == 0:
+        return True
+    depart = list(g)[0]
+    return len(profondeur_rec(g, depart)) == len(g)
+
+print(est_connexe(graphe), est_connexe({"X": ["Y"], "Y": ["X"], "Z": []}))`, { deps: ["c8-dict", "c8-profondeur"], out: "True False" });
+
+C("c8-cycle", String.raw`
+def a_un_cycle(g):
+    """Graphe NON orienté : un cycle existe si le parcours retombe sur un sommet
+    déjà vu qui n'est pas celui d'où l'on vient (son parent)."""
+    vus = set()
+    def explorer(s, parent):
+        vus.add(s)
+        for v in g[s]:
+            if v not in vus:
+                if explorer(v, s):
+                    return True
+            elif v != parent:
+                return True              # arête qui revient en arrière : cycle
+        return False
+    for s in g:                          # pour les graphes non connexes
+        if s not in vus and explorer(s, None):
+            return True
+    return False
+
+arbre = {"A": ["B", "C"], "B": ["A"], "C": ["A", "D"], "D": ["C"]}
+print(a_un_cycle(graphe), a_un_cycle(arbre))`, { deps: ["c8-dict"], out: "True False" });
+
+C("c8-cycle-oriente", String.raw`
+def a_un_cycle_oriente(g):
+    """Graphe ORIENTÉ : trois états. Un arc vers un sommet « en cours »
+    (encore dans la pile d'appels) referme un cycle."""
+    etat = {s: "blanc" for s in g}        # blanc : jamais vu ; gris : en cours ; noir : fini
+    def explorer(s):
+        etat[s] = "gris"
+        for v in g[s]:
+            if etat[v] == "gris":
+                return True
+            if etat[v] == "blanc" and explorer(v):
+                return True
+        etat[s] = "noir"
+        return False
+    return any(etat[s] == "blanc" and explorer(s) for s in g)
+
+prerequis = {"bases": ["algo"], "algo": ["graphes"], "graphes": [], "web": ["bases"]}
+boucle = {"a": ["b"], "b": ["c"], "c": ["a"]}
+print(a_un_cycle_oriente(prerequis), a_un_cycle_oriente(boucle))`, { out: "False True" });
+
+C("c8-p-matrice", String.raw`
+M = [[0] * 3] * 3          # trois fois LA MÊME ligne
+M[0][1] = 1
+print(M)`, { out: "[[0, 1, 0], [0, 1, 0], [0, 1, 0]]" });
+
+C("c8-p-marquage", String.raw`
+def largeur_sans_marquage(g, depart, limite=20):
+    file, ordre = [depart], []
+    while file and len(ordre) < limite:      # sans limite, la boucle ne finirait pas
+        s = file.pop(0)
+        ordre.append(s)
+        for v in g[s]:
+            file.append(v)                   # on ré-enfile même les sommets déjà vus
+    return ordre
+
+print(largeur_sans_marquage({"A": ["B"], "B": ["A"]}, "A", limite=6))`, { out: "['A', 'B', 'A', 'B', 'A', 'B']" });
+
+/* prédis la sortie */
+C("c8-x1", String.raw`
+M = [[0, 1, 1, 0],
+     [1, 0, 1, 1],
+     [1, 1, 0, 0],
+     [0, 1, 0, 0]]
+print([sum(ligne) for ligne in M], M[3][1] == M[1][3])`, { out: "[2, 3, 2, 1] True" });
+
+C("c8-x2", String.raw`
+g = {1: [2, 3], 2: [4], 3: [4], 4: []}
+print(len(g), sum(len(v) for v in g.values()), [s for s in g if 4 in g[s]])`, { out: "4 4 [2, 3]" });
+
+C("c8-x3", String.raw`
+g = {"S": ["T", "U"], "T": ["S", "V"], "U": ["S", "V"], "V": ["T", "U", "W"], "W": ["V"]}
+print(parcours_largeur(g, "W")[0])`, { deps: ["c8-largeur"], out: "['W', 'V', 'T', 'U', 'S']" });
+
+C("c8-x4", String.raw`
+g = {"S": ["T", "U"], "T": ["S", "V"], "U": ["S", "V"], "V": ["T", "U", "W"], "W": ["V"]}
+print(profondeur_rec(g, "S"))`, { deps: ["c8-profondeur"], out: "['S', 'T', 'V', 'U', 'W']" });
+
+/* épreuve pratique 1 */
+C("c8-ep1-fourni", String.raw`
+def ajouter_lien(reseau, a, b):
+    """Ajoute l'amitié (réciproque) entre a et b dans le dictionnaire reseau."""
+    for p in (a, b):
+        if p not in reseau:
+            reseau[p] = []
+    reseau[a].append(b)
+
+def amis_communs(reseau, a, b):
+    """Liste des amis communs de a et b, dans l'ordre des amis de a."""
+    ...
+
+reseau = {}
+for a, b in [("Ada", "Alan"), ("Ada", "Grace"), ("Alan", "Grace"), ("Grace", "Linus")]:
+    ajouter_lien(reseau, a, b)
+print(reseau["Grace"])`, { fichier: "reseau.py", run: false, trous: [10] });
+
+C("c8-ep1-corr", String.raw`
+def ajouter_lien(reseau, a, b):
+    for p in (a, b):
+        if p not in reseau:
+            reseau[p] = []
+    reseau[a].append(b)
+    reseau[b].append(a)                  # l'amitié est réciproque : graphe non orienté
+
+def amis_communs(reseau, a, b):
+    return [x for x in reseau[a] if x in reseau[b]]
+
+def suggestions(reseau, a):
+    """Amis d'amis de a qui ne sont pas déjà ses amis (sommets à distance 2)."""
+    res = []
+    for ami in reseau[a]:
+        for x in reseau[ami]:
+            if x != a and x not in reseau[a] and x not in res:
+                res.append(x)
+    return res
+
+reseau = {}
+for a, b in [("Ada", "Alan"), ("Ada", "Grace"), ("Alan", "Grace"), ("Grace", "Linus")]:
+    ajouter_lien(reseau, a, b)
+
+def test():
+    assert reseau["Grace"] == ["Ada", "Alan", "Linus"]
+    assert all(x in reseau[y] for x in reseau for y in reseau[x])   # symétrie
+    assert amis_communs(reseau, "Ada", "Alan") == ["Grace"]
+    assert amis_communs(reseau, "Linus", "Alan") == ["Grace"]
+    assert suggestions(reseau, "Ada") == ["Linus"]
+    assert suggestions(reseau, "Grace") == []
+
+test()
+print("tous les tests passent")`, { fichier: "reseau.py", out: "tous les tests passent" });
+
+/* épreuve pratique 2 */
+C("c8-ep2-fourni", String.raw`
+LABY = ["S..#",
+        "##.#",
+        "...E",
+        ".###"]
+
+def voisins(grille, l, c):
+    """Cases libres voisines (haut, bas, gauche, droite) de la case (l, c)."""
+    res = []
+    for dl, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+        a, b = l + dl, c + dc
+        if a < len(grille) and b < len(grille[0]) and grille[a][b] != "#":
+            res.append((a, b))
+    return res
+
+def plus_court(grille):
+    """Nombre minimal de pas de S à E (parcours en largeur), ou -1."""
+    for l in range(len(grille)):
+        if "S" in grille[l]:
+            depart = (l, grille[l].index("S"))
+    dist = {depart: 0}
+    file = [depart]
+    while file:
+        l, c = file.pop(0)
+        if grille[l][c] == "E":
+            return dist[(l, c)]
+        for v in voisins(grille, l, c):
+            if v not in dist:
+                dist[v] = dist[(l, c)] + 1
+                file.append(v)
+    return -1
+
+print(plus_court(LABY))`, { fichier: "labyrinthe.py", out: "3" });
+
+C("c8-ep2-corr", String.raw`
+def voisins(grille, l, c):
+    res = []
+    for dl, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+        a, b = l + dl, c + dc
+        if 0 <= a < len(grille) and 0 <= b < len(grille[0]) and grille[a][b] != "#":
+            res.append((a, b))
+    return res
+
+def plus_court(grille):
+    for l in range(len(grille)):
+        if "S" in grille[l]:
+            depart = (l, grille[l].index("S"))
+    dist = {depart: 0}
+    file = [depart]
+    while file:
+        l, c = file.pop(0)
+        if grille[l][c] == "E":
+            return dist[(l, c)]
+        for v in voisins(grille, l, c):
+            if v not in dist:
+                dist[v] = dist[(l, c)] + 1
+                file.append(v)
+    return -1
+
+def test():
+    assert plus_court(["S..#", "##.#", "...E", ".###"]) == 5
+    assert plus_court(["SE"]) == 1
+    assert plus_court(["S#E"]) == -1                       # pas de chemin
+    assert plus_court(["S...", "###.", "E..."]) == 8
+    assert voisins(["S..#", "##.#", "...E", ".###"], 0, 0) == [(0, 1)]
+
+test()
+print("tous les tests passent")`, { fichier: "labyrinthe.py", out: "tous les tests passent" });
+
+/* épreuve écrite */
+C("c8-ecrit-corr", String.raw`
+refuges = {"Lac": ["Col", "Pic"], "Col": ["Lac", "Pic", "Gîte"], "Pic": ["Lac", "Col"],
+           "Gîte": ["Col", "Source"], "Source": ["Gîte"]}
+
+def degre_max(g):
+    return max(len(g[s]) for s in g)
+
+def accessibles(g, depart, n):
+    """Sommets à au plus n étapes de depart (parcours en largeur)."""
+    dist = {depart: 0}
+    file = [depart]
+    while file:
+        s = file.pop(0)
+        for v in g[s]:
+            if v not in dist:
+                dist[v] = dist[s] + 1
+                file.append(v)
+    return [s for s in dist if dist[s] <= n]
+
+print(degre_max(refuges), accessibles(refuges, "Lac", 2))
+print(parcours_largeur(refuges, "Source")[1])
+print(a_un_cycle(refuges), a_un_cycle({"Gîte": ["Source"], "Source": ["Gîte"]}))`, { deps: ["c8-largeur", "c8-cycle"], out: "3 ['Lac', 'Col', 'Pic', 'Gîte']\n{'Source': 0, 'Gîte': 1, 'Col': 2, 'Lac': 3, 'Pic': 3}\nTrue False" });
+
+C("c8-retenir", String.raw`
+def parcours(g, depart):
+    vus = {depart}                 # marquer dès la découverte
+    a_traiter = [depart]           # FILE -> largeur ; PILE -> profondeur
+    while a_traiter:
+        s = a_traiter.pop(0)       # pop(0) : file ; pop() : pile
+        ...                        # traiter s
+        for v in g[s]:
+            if v not in vus:
+                vus.add(v)
+                a_traiter.append(v)`, { run: false });
+
+/* ---------- animation : parcours de graphe ---------- */
+WIDGETS_EXT["parcours-graphe"] = function (z, opt, O) {
+  var G = { A: ["B", "C"], B: ["A", "D"], C: ["A", "D", "E"], D: ["B", "C", "F"], E: ["C", "F"], F: ["D", "E", "G"], G: ["F"] };
+  var P = { A: [40, 120], B: [130, 40], C: [130, 200], D: [225, 120], E: [255, 210], F: [335, 120], G: [420, 120] };
+  var AR = [["A", "B"], ["A", "C"], ["B", "D"], ["C", "D"], ["C", "E"], ["D", "F"], ["E", "F"], ["F", "G"]];
+  function cle(a, b) { return a < b ? a + b : b + a; }
+  function etapes(k) {
+    var E = [], et = {}, arbre = {}, dist = {}, ordre = [], chemin = {};
+    function snap(msg, struct, actif) { E.push({ et: JSON.parse(JSON.stringify(et)), arbre: JSON.parse(JSON.stringify(arbre)), dist: JSON.parse(JSON.stringify(dist)), ordre: ordre.slice(), struct: struct ? struct.slice() : [], actif: actif, chemin: JSON.parse(JSON.stringify(chemin)), msg: msg }); }
+    if (k === "largeur" || k === "chemin") {
+      var file = ["A"], parent = { A: null }; dist.A = 0; et.A = "attente";
+      snap("Départ en <b>A</b> : on le marque (distance 0) et on l’enfile. La <b>file</b> garantit qu’on traite les sommets par distance croissante.", file);
+      while (file.length) {
+        var s = file.shift(); et[s] = "traite"; ordre.push(s);
+        var nv = [];
+        G[s].forEach(function (v) { if (!(v in dist)) { dist[v] = dist[s] + 1; parent[v] = s; et[v] = "attente"; arbre[cle(s, v)] = 1; file.push(v); nv.push(v); } });
+        snap("On défile <b>" + s + "</b>. " + (nv.length ? "Voisins pas encore découverts : <b>" + nv.join(", ") + "</b> → distance " + (dist[s] + 1) + ", enfilés." : "Tous ses voisins sont déjà découverts : rien à enfiler."), file, s);
+        if (k === "chemin" && s === "G") break;
+      }
+      if (k === "chemin") {
+        var x = "G", ch = [];
+        while (x) { ch.unshift(x); chemin[x] = 1; if (parent[x]) chemin[cle(x, parent[x])] = 1; x = parent[x]; }
+        snap("G est atteint. On remonte les <b>parents</b> mémorisés : G ← F ← D ← B ← A. Plus court chemin : <b>" + ch.join(" → ") + "</b>, " + (ch.length - 1) + " arêtes (il en existe un autre de même longueur par C et E).", [], null);
+      } else snap("File vide : tous les sommets atteignables sont visités. Ordre <b>" + ordre.join(" ") + "</b> ; les traits épais forment l’arbre du parcours, les nombres sont les distances depuis A.", [], null);
+      return E;
+    }
+    var pile = ["A"]; et.A = "attente";
+    snap("Parcours en profondeur avec une <b>pile</b> : on empile A. On dépile toujours le <b>dernier</b> sommet empilé, donc on s’enfonce avant de revenir.", pile);
+    var vient = {};
+    while (pile.length) {
+      var t = pile.pop();
+      if (et[t] === "traite") { snap("On dépile <b>" + t + "</b>, déjà visité : on l’ignore.", pile, null); continue; }
+      et[t] = "traite"; ordre.push(t); if (vient[t]) arbre[cle(t, vient[t])] = 1;
+      var em = [];
+      G[t].forEach(function (v) { if (et[v] !== "traite") { pile.push(v); vient[v] = t; et[v] = "attente"; em.push(v); } });
+      snap("On dépile et on visite <b>" + t + "</b>. " + (em.length ? "On empile ses voisins non visités : " + em.join(", ") + " (le dernier empilé sera le prochain visité)." : "Aucun voisin non visité."), pile, t);
+    }
+    snap("Pile vide. Ordre en profondeur : <b>" + ordre.join(" ") + "</b>. La version récursive donne A B D C E F G : c’est aussi un parcours en profondeur, l’ordre dépend de l’ordre des voisins.", [], null);
+    return E;
+  }
+  function dessine(sc, e) {
+    var s = '<svg class="graphe-svg" viewBox="0 0 460 240" role="img" aria-label="Graphe de 7 sommets">';
+    AR.forEach(function (a) { var k = cle(a[0], a[1]), p = P[a[0]], q = P[a[1]]; s += '<line class="ar' + (e.chemin[k] ? " ch" : e.arbre[k] ? " arb" : "") + '" x1="' + p[0] + '" y1="' + p[1] + '" x2="' + q[0] + '" y2="' + q[1] + '"/>'; });
+    Object.keys(P).forEach(function (v) {
+      var p = P[v], c = e.chemin[v] ? "neuf" : v === e.actif ? "actif" : e.et[v] || "";
+      s += '<g class="nd-a ' + c + '"><circle cx="' + p[0] + '" cy="' + p[1] + '" r="18"/><text x="' + p[0] + '" y="' + (p[1] + 5) + '" text-anchor="middle">' + v + "</text>" + (v in e.dist ? '<text class="rang" x="' + (p[0] + 16) + '" y="' + (p[1] - 15) + '">' + e.dist[v] + "</text>" : "") + "</g>";
+    });
+    s += "</svg>";
+    sc.innerHTML = '<div class="parc">' + s + '<div class="parc-cote"><div class="titre-pile">' + (("A" in e.dist) ? "file (tête à gauche)" : "pile (sommet à droite)") + '</div><div class="mini-file">' + (e.struct.length ? e.struct.map(function (v) { return '<span class="puce">' + v + "</span>"; }).join("") : '<span class="repere">vide</span>') + '</div><div class="titre-pile">ordre de visite</div><div class="sortie-p mono">' + (e.ordre.join(" ") || "…") + "</div></div></div>";
+  }
+  O.lecteur(z, { titre: "parcours d’un graphe", choix: [{ k: "largeur", t: "en largeur (file)" }, { k: "profondeur", t: "en profondeur (pile)" }, { k: "chemin", t: "plus court chemin A → G" }], etapes: etapes, dessine: dessine, vitesse: 1500 });
+};
+
+CH.push({
+  id: "ch8", n: 8, court: "graphes", fichier: "ch8_graphes.py",
+  titre: "Graphes : structures et algorithmes",
+  rubrique: "Rubriques « Structures de données » (graphes : structures relationnelles) et « Algorithmique » (algorithmes sur les graphes)",
+  accroche: "Modéliser par un graphe, matrice d’adjacence et listes de voisins, parcours en largeur et en profondeur, chemins et cycles.",
+  essentiel: [
+    "Un <b>graphe</b> est formé de <b>sommets</b> reliés par des <b>arêtes</b> (non orienté) ou des <b>arcs</b> (orienté), éventuellement <b>pondérés</b>.",
+    "Deux représentations : la <b>matrice d’adjacence</b> (tableau <i>n</i> × <i>n</i>) et les <b>listes de successeurs</b> (dictionnaire sommet → liste de voisins).",
+    "Le <b>parcours en largeur</b> utilise une <b>file</b> : il visite les sommets par distance croissante et donne les plus courts chemins en nombre d’arêtes.",
+    "Le <b>parcours en profondeur</b> utilise une <b>pile</b> (ou la récursivité) : il s’enfonce le plus loin possible avant de revenir ; il sert à repérer des cycles.",
+    "On <b>marque</b> les sommets déjà découverts pour ne pas tourner en rond ; pour retrouver un chemin, on mémorise le <b>parent</b> de chaque sommet."
+  ],
+  attendus: [
+    "Modéliser des situations sous forme de graphes (réseau routier, électrique, Internet, réseaux sociaux).",
+    "Écrire les implémentations d’un graphe : matrice d’adjacence, liste de successeurs / de prédécesseurs ; passer d’une représentation à une autre.",
+    "Parcourir un graphe en profondeur d’abord, en largeur d’abord.",
+    "Repérer la présence d’un cycle dans un graphe ; chercher un chemin dans un graphe.",
+    "Faire le lien avec le routage (chapitre réseaux) et utiliser les classes pour représenter un graphe."
+  ],
+  idees: [
+    { id: "i1", t: "Modéliser par un graphe", h: `
+<p>Un graphe décrit des <b>relations</b> entre des objets, sans hiérarchie (contrairement aux arbres). Exemples :</p>
+<ul><li>réseau routier : sommets = villes, arêtes = routes (pondérées par la distance) ;</li>
+<li>Internet : sommets = routeurs, arêtes = liaisons ; le routage cherche des chemins (chapitre réseaux) ;</li>
+<li>réseau social : amitiés (non orienté) ou abonnements (orienté : je peux suivre quelqu’un qui ne me suit pas) ;</li>
+<li>labyrinthe : sommets = cases libres, arêtes = passages entre cases voisines ;</li>
+<li>dépendances : un cours qui en exige un autre, une tâche qui doit attendre une autre (orienté).</li></ul>
+<div class="boite def"><div class="lab">"""vocabulaire"""</div><p>Deux sommets reliés sont <b>adjacents</b> (voisins). Le <b>degré</b> d’un sommet est son nombre de voisins. Un <b>chemin</b> est une suite de sommets dont chacun est adjacent au suivant ; un <b>cycle</b> est un chemin qui revient à son point de départ sans réutiliser d’arête. Un graphe non orienté est <b>connexe</b> si deux sommets quelconques sont toujours reliés par un chemin. Un arbre est un graphe connexe sans cycle.</p></div>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1736 <b>·</b></span> Leonhard Euler montre qu’on ne peut pas traverser les sept ponts de Königsberg une seule fois chacun en revenant au départ : c’est l’acte de naissance de la théorie des graphes.</p></div>` },
+
+    { id: "i2", t: "Orienté, non orienté, pondéré", h: `
+<p>Dans un graphe <b>non orienté</b>, une arête relie deux sommets dans les deux sens. Dans un graphe <b>orienté</b>, un arc va d’un sommet vers un autre : on distingue les <b>successeurs</b> d’un sommet (où mènent ses arcs) et ses <b>prédécesseurs</b> (d’où viennent les arcs qui arrivent sur lui), et donc un degré sortant et un degré entrant.</p>
+[[c8-oriente]]
+<p>Un graphe est <b>pondéré</b> quand chaque arête porte un nombre (distance, durée, coût). Le plus court chemin n’est alors plus celui qui a le moins d’arêtes :</p>
+[[c8-pondere]]` },
+
+    { id: "i3", t: "La matrice d’adjacence", h: `
+<p>On numérote les sommets de 0 à <i>n</i> − 1. La <b>matrice d’adjacence</b> est un tableau <i>n</i> × <i>n</i> : la case (<i>i</i>, <i>j</i>) vaut 1 s’il y a une arête (ou un arc) de <i>i</i> vers <i>j</i>, 0 sinon (ou le poids, pour un graphe pondéré). Pour un graphe non orienté, elle est <b>symétrique</b>. Exemple, le graphe de ce chapitre :</p>
+[[c8-matrice]]
+<p>Le degré d’un sommet est la somme de sa ligne. Tester si deux sommets sont voisins coûte un seul accès <code>M[i][j]</code>. Mais la matrice occupe <i>n</i>² cases, même si le graphe a peu d’arêtes : un million de sommets donnerait mille milliards de cases.</p>` },
+
+    { id: "i4", t: "Les listes de successeurs (dictionnaire)", h: `
+<p>On associe à chaque sommet la liste de ses voisins (ou successeurs), dans un dictionnaire (chapitre 5). C’est la représentation la plus utilisée en Python :</p>
+[[c8-dict]]
+<p>Elle n’occupe que la place nécessaire (de l’ordre de <i>n</i> + <i>m</i> pour <i>m</i> arêtes) et donne directement les voisins d’un sommet, ce dont les parcours ont besoin. Tester si deux sommets sont voisins demande en revanche de parcourir une liste.</p>
+<p>Le programme demande de savoir <b>passer d’une représentation à l’autre</b> :</p>
+[[c8-conversions]]` },
+
+    { id: "i5", t: "Un graphe comme objet", h: `
+<p>Le programme cite les graphes comme exemple d’utilisation des classes. Une classe <code>Graphe</code> cache la représentation (ici un dictionnaire) derrière une interface : ajouter un sommet, ajouter une arête, obtenir les voisins.</p>
+[[c8-classe]]
+<p>Si l’on décidait de passer à une matrice, seul le code de la classe changerait, pas celui qui l’utilise (interface et implémentation, chapitre 3).</p>` },
+
+    { id: "i6", t: "Le parcours en largeur (avec une file)", h: `
+<p>Depuis un sommet de départ, on visite d’abord ses voisins (distance 1), puis leurs voisins non encore vus (distance 2), et ainsi de suite. On utilise une <b>file</b> et on <b>marque</b> chaque sommet dès qu’il est découvert, pour ne jamais l’enfiler deux fois. C’est le parcours en largeur des arbres (chapitre 7), avec le marquage en plus, car un graphe peut contenir des cycles.</p>
+[[c8-largeur]]
+[[w-parcours-graphe]]
+<p>Chaque sommet est enfilé et défilé une fois, chaque liste de voisins lue une fois : le coût est de l’ordre de <i>n</i> + <i>m</i> (avec une vraie file en temps constant ; ici <code>pop(0)</code> est linéaire, <code>collections.deque</code> ferait mieux).</p>` },
+
+    { id: "i7", t: "Le parcours en profondeur (pile ou récursivité)", h: `
+<p>Le parcours en <b>profondeur</b> part d’un sommet, va vers un voisin non visité, puis vers un voisin de celui-ci… le plus loin possible ; bloqué, il revient au dernier sommet qui a encore un voisin non visité. C’est la méthode du fil d’Ariane dans un labyrinthe. On l’écrit récursivement (la pile d’exécution fait le travail, chapitre 2) ou avec une <b>pile</b> explicite :</p>
+[[c8-profondeur]]
+<p>Les deux ordres diffèrent (la pile ressort les voisins dans l’ordre inverse), mais ce sont tous deux des parcours en profondeur. Seule la structure change entre largeur et profondeur : <b>file</b> d’un côté, <b>pile</b> de l’autre. Choisis « en profondeur » dans l’animation ci-dessus pour le voir.</p>
+<p>Application immédiate : un graphe non orienté est <b>connexe</b> si un parcours depuis n’importe quel sommet les atteint tous.</p>
+[[c8-connexe]]` },
+
+    { id: "i8", t: "Chercher un chemin", h: `
+<p>Pour trouver un chemin de <code>depart</code> à <code>arrivee</code>, on fait un parcours en mémorisant pour chaque sommet découvert le sommet d’où l’on vient (son <b>parent</b>). Une fois l’arrivée atteinte, on remonte les parents jusqu’au départ. Avec un parcours <b>en largeur</b>, le chemin obtenu est un <b>plus court</b> chemin en nombre d’arêtes.</p>
+[[c8-chemin]]
+<div class="boite hp"><div class="lab"># pour aller plus loin : graphes pondérés</div><p>Quand les arêtes ont des longueurs différentes, le parcours en largeur ne suffit plus. L’algorithme de Dijkstra (1959) généralise l’idée avec une file de priorité ; c’est le principe du protocole de routage OSPF (chapitre réseaux) et des GPS. Il n’est pas exigible en tant que tel.</p></div>` },
+
+    { id: "i9", t: "Repérer un cycle", h: `
+<p>Dans un graphe <b>non orienté</b>, un parcours en profondeur rencontre un cycle quand il trouve un voisin <b>déjà visité</b> qui n’est pas le sommet d’où il vient (son parent) : il existe alors deux chemins différents vers ce sommet.</p>
+[[c8-cycle]]
+<p>Dans un graphe <b>orienté</b>, on distingue trois états : jamais vu, <b>en cours</b> (encore dans la pile d’appels), terminé. Un arc vers un sommet « en cours » referme un cycle. Exemple utile : des prérequis circulaires (A exige B, qui exige A) rendent un planning impossible.</p>
+[[c8-cycle-oriente]]` }
+  ],
+  pieges: [
+    { t: "Oublier de marquer les sommets visités", h: `[[c8-p-marquage]]<p>Dès qu’il y a un cycle (ici A-B-A), le parcours tourne indéfiniment. On marque un sommet <b>dès qu’on le découvre</b> (avant de l’enfiler) et on n’enfile que des sommets non marqués.</p>` },
+    { t: "Créer une matrice avec [[0] * n] * n", h: `[[c8-p-matrice]]<p>Les <i>n</i> lignes sont le même objet (alias, chapitre 1). Écrire <code>[[0] * n for _ in range(n)]</code>.</p>` },
+    { t: "Oublier l’arête retour d’un graphe non orienté", h: `<p>Ajouter <code>b</code> aux voisins de <code>a</code> sans ajouter <code>a</code> aux voisins de <code>b</code> crée un graphe orienté sans le vouloir : les parcours depuis <code>b</code> ne voient plus <code>a</code>.</p>` },
+    { t: "Confondre file et pile", h: `<p>Largeur ↔ <b>file</b> (<code>pop(0)</code>), profondeur ↔ <b>pile</b> (<code>pop()</code>). Changer l’un pour l’autre change complètement l’ordre de visite, et seul le parcours en largeur donne des plus courts chemins.</p>` },
+    { t: "Croire qu’un graphe est connexe", h: `<p>Un parcours depuis un sommet n’atteint que sa « composante ». Pour traiter tous les sommets (détection de cycle, par exemple), on relance un parcours depuis chaque sommet non encore visité.</p>` },
+    { t: "Sortir des limites d’une grille", h: `<p>Pour un labyrinthe en grille, l’indice −1 est accepté par Python (il désigne la dernière ligne !) : il faut tester <code>0 &lt;= l &lt; nb_lignes</code>, pas seulement <code>l &lt; nb_lignes</code>. Voir l’exercice pratique 2.</p>` }
+  ],
+  retenir: `
+<h2>Vocabulaire</h2>
+<div class="tab-wrap"><table><tr><th>mot</th><th>sens</th></tr>
+<tr><td>sommet, arête, arc</td><td>élément ; lien non orienté ; lien orienté</td></tr>
+<tr><td>degré</td><td>nombre de voisins (orienté : entrant / sortant)</td></tr>
+<tr><td>chemin, cycle</td><td>suite de sommets adjacents ; chemin qui revient au départ</td></tr>
+<tr><td>connexe</td><td>chaque sommet est relié à chaque autre par un chemin</td></tr>
+<tr><td>pondéré</td><td>chaque arête porte un poids (distance, coût)</td></tr></table></div>
+<h2>Représentations</h2>
+<div class="tab-wrap"><table><tr><th></th><th>matrice d’adjacence</th><th>listes de successeurs</th></tr>
+<tr><td>en Python</td><td><code>M[i][j]</code> vaut 1 (ou le poids)</td><td><code>g = {"A": ["B", "C"], …}</code></td></tr>
+<tr><td>place</td><td><i>n</i>²</td><td><i>n</i> + <i>m</i></td></tr>
+<tr><td>voisins ?</td><td>un accès</td><td>parcourir une liste</td></tr>
+<tr><td>non orienté</td><td>symétrique</td><td>chaque arête dans les deux listes</td></tr></table></div>
+<h2>Le parcours générique</h2>
+[[c8-retenir]]
+<ul><li>Largeur (file) : distances croissantes, plus courts chemins en nombre d’arêtes.</li><li>Profondeur (pile ou récursivité) : connexité, cycles, labyrinthes.</li><li>Chemin : mémoriser le parent, remonter depuis l’arrivée.</li><li>Cycle (non orienté) : voisin déjà vu qui n’est pas le parent.</li><li>Coût d’un parcours (listes de voisins) : de l’ordre de <i>n</i> + <i>m</i>.</li></ul>`,
+  predis: [
+    { code: "c8-x1", niv: "facile", rep: "La somme de chaque ligne est le degré du sommet : 2, 3, 2, 1. La matrice est symétrique (graphe non orienté) : <code>M[3][1] == M[1][3]</code>." },
+    { code: "c8-x2", niv: "moyen", rep: "4 sommets, 4 arcs (1→2, 1→3, 2→4, 3→4) : c’est un graphe orienté. Les prédécesseurs de 4 sont 2 et 3." },
+    { code: "c8-x3", niv: "moyen", rep: "Depuis W : V (distance 1), puis les voisins de V non vus, T et U (distance 2), puis S (distance 3)." },
+    { code: "c8-x4", niv: "difficile", rep: "S → T (premier voisin) → V (voisin de T non vu) → U (premier voisin non vu de V) ; U n’a plus de voisin non vu, retour à V → W." }
+  ],
+  ep: [
+    { titre: "Un réseau d’amis", enonce: `<p>Un réseau social est un graphe non orienté représenté par un dictionnaire : chaque personne est associée à la liste de ses amis.</p>[[c8-ep1-fourni]]`,
+      questions: [
+        { q: "Le programme affiche <code>['Linus']</code> pour les amis de Grace, alors qu’elle est aussi amie avec Ada et Alan. Expliquer et corriger <code>ajouter_lien</code>.", c: `<p>Seul <code>b</code> est ajouté aux amis de <code>a</code> : le graphe devient orienté. L’amitié étant réciproque, il faut aussi <code>reseau[b].append(a)</code>.</p>` },
+        { q: "Compléter <code>amis_communs</code>.", c: `<p><code>return [x for x in reseau[a] if x in reseau[b]]</code>.</p>` },
+        { q: "Écrire <code>suggestions(reseau, a)</code> : les amis d’amis de <code>a</code> qui ne sont ni <code>a</code> ni déjà ses amis, sans doublon. Écrire des tests.", c: `[[c8-ep1-corr]]` },
+        { q: "À l’oral : à quelle distance de <code>a</code> sont les sommets suggérés ? Comment trouver tous ceux à distance 3 ?", c: `<p>À distance 2 exactement. Pour une distance quelconque, on fait un parcours en largeur depuis <code>a</code> et on garde les sommets dont la distance vaut 3.</p>` }
+      ] },
+    { titre: "Sortir du labyrinthe", enonce: `<p>Un labyrinthe est une grille : <code>#</code> est un mur, <code>S</code> le départ, <code>E</code> la sortie. On cherche le nombre minimal de pas (haut, bas, gauche, droite) avec un parcours en largeur.</p>[[c8-ep2-fourni]]`,
+      questions: [
+        { q: "Compter à la main le nombre minimal de pas pour <code>LABY</code>. Le programme affiche 3 : où est l’erreur ? Corriger.", c: `<p>Il faut 5 pas : (0,0) → (0,1) → (0,2) → (1,2) → (2,2) → (2,3). La fonction <code>voisins</code> accepte les indices <b>négatifs</b> : depuis S, la case (−1, 0) est acceptée, et Python la lit comme la dernière ligne. Le parcours « traverse » le bord de la grille. Il faut tester <code>0 &lt;= a</code> et <code>0 &lt;= b</code> : c’est un débordement de tableau (chapitre 4).</p>` },
+        { q: "Pourquoi un parcours en largeur, et pas en profondeur, pour le nombre <b>minimal</b> de pas ?", c: `<p>Le parcours en largeur découvre les cases par distance croissante : la première fois qu’il atteint E, c’est par un plus court chemin. Un parcours en profondeur trouve un chemin, pas forcément le plus court.</p>` },
+        { q: "Écrire des tests : labyrinthe sans issue, sortie voisine du départ, labyrinthe « en serpent ».", c: `[[c8-ep2-corr]]` },
+        { q: "À l’oral : que représentent les sommets et les arêtes du graphe ici ? Pourquoi le dictionnaire <code>dist</code> sert-il aussi de marquage ?", c: `<p>Sommets : les cases libres ; arêtes : deux cases libres voisines. Une case reçoit une distance dès qu’elle est découverte : tester <code>v not in dist</code> évite de l’enfiler deux fois.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "Un réseau de refuges de montagne", points: "≈ 6 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite. Les noms de refuges sont fictifs.",
+    enonce: `<p>Des sentiers relient cinq refuges : Lac–Col, Lac–Pic, Col–Pic, Col–Gîte, Gîte–Source. Les sentiers se parcourent dans les deux sens. On numérote les refuges dans l’ordre Lac (0), Col (1), Pic (2), Gîte (3), Source (4).</p>`,
+    questions: [
+      { q: "Ce graphe est-il orienté ? Donner sa matrice d’adjacence.", pts: "1 pt", c: `<p>Non orienté (sentiers dans les deux sens) : la matrice est symétrique.</p><pre class="mono petit">      Lac Col Pic Gîte Source
+Lac  [ 0,  1,  1,  0,   0 ]
+Col  [ 1,  0,  1,  1,   0 ]
+Pic  [ 1,  1,  0,  0,   0 ]
+Gîte [ 0,  1,  0,  0,   1 ]
+Source[0,  0,  0,  1,   0 ]</pre>` },
+      { q: "Donner sa représentation par un dictionnaire de listes de voisins.", pts: "0,5 pt", c: `<p class="mono petit">{"Lac": ["Col", "Pic"], "Col": ["Lac", "Pic", "Gîte"], "Pic": ["Lac", "Col"], "Gîte": ["Col", "Source"], "Source": ["Gîte"]}</p>` },
+      { q: "Écrire une fonction <code>degre_max(g)</code> qui renvoie le plus grand degré du graphe <code>g</code> (dictionnaire).", pts: "0,75 pt", c: `<p><code>return max(len(g[s]) for s in g)</code> : 3, pour le Col.</p>` },
+      { q: "Donner l’ordre de visite d’un parcours en largeur depuis Source, et la distance (en sentiers) de chaque refuge à Source.", pts: "1 pt", c: `<p>Source (0), Gîte (1), Col (2), puis Lac et Pic (3). Ordre : Source, Gîte, Col, Lac, Pic.</p>` },
+      { q: "Écrire une fonction <code>accessibles(g, depart, n)</code> qui renvoie la liste des refuges à au plus <code>n</code> sentiers de <code>depart</code>.", pts: "1,5 pt", c: `<p>Parcours en largeur avec un dictionnaire des distances, puis on garde les sommets de distance ≤ <code>n</code>.</p>[[c8-ecrit-corr]]` },
+      { q: "Le graphe contient-il un cycle ? Si l’on supprime le sentier Lac–Pic, en contient-il encore ? Justifier.", pts: "1,25 pt", c: `<p>Oui : Lac–Col–Pic–Lac. Sans le sentier Lac–Pic, il reste 4 sentiers pour 5 refuges, tous reliés : c’est un arbre, donc il n’y a plus de cycle (un graphe connexe à <i>n</i> sommets et <i>n</i> − 1 arêtes est un arbre).</p>` }
+    ],
+    methode: `<p>Pour un exercice de graphes : dessine le graphe, écris les deux représentations proprement (en-têtes de lignes et de colonnes pour la matrice), et pour un parcours, fais un tableau de l’état de la file (ou de la pile) et des sommets marqués à chaque étape.</p>` },
+  qcm: [
+    { q: "Dans un graphe non orienté, le degré d’un sommet est…", c: ["sa distance au départ", "son nombre de voisins", "son numéro", "le nombre de cycles qui le contiennent"], a: 1, e: "Nombre d’arêtes qui le touchent.", ref: "i1" },
+    { q: "Un réseau d’abonnements (je suis quelqu’un qui ne me suit pas forcément) se modélise par…", c: ["un graphe non orienté", "un graphe orienté", "un arbre binaire", "une file"], a: 1, e: "La relation n’est pas symétrique : arcs orientés.", ref: "i2" },
+    { q: "La matrice d’adjacence d’un graphe non orienté est toujours…", c: ["triangulaire", "symétrique", "remplie de 1", "de taille 2 × 2"], a: 1, e: "S’il y a une arête de i à j, il y en a une de j à i.", ref: "i3" },
+    { q: "Combien de cases a la matrice d’adjacence d’un graphe à 100 sommets ?", c: ["100", "200", "1 000", "10 000"], a: 3, e: "n² = 100 × 100.", ref: "i3" },
+    { q: "Dans <code>g = {\"A\": [\"B\", \"C\"], \"B\": [\"A\"], \"C\": [\"A\"]}</code>, quel est le degré de A ?", c: ["1", "2", "3", "0"], a: 1, e: "Longueur de la liste des voisins de A.", ref: "i4" },
+    { q: "Pourquoi <code>[[0] * n] * n</code> est-il une mauvaise façon de créer une matrice ?", c: ["Elle est trop grande", "Les n lignes sont le même objet : modifier une case modifie toute la colonne", "Elle contient des None", "Elle n’est pas carrée"], a: 1, e: "Alias : utiliser une compréhension de liste.", ref: "i4" },
+    { q: "Quelle structure le parcours en largeur utilise-t-il ?", c: ["Une pile", "Une file", "Un ABR", "Une matrice"], a: 1, e: "On traite les sommets dans l’ordre de leur découverte : FIFO.", ref: "i6" },
+    { q: "Quel parcours donne les plus courts chemins en nombre d’arêtes ?", c: ["En profondeur", "En largeur", "Les deux", "Aucun"], a: 1, e: "Il visite les sommets par distance croissante.", ref: "i6" },
+    { q: "Pourquoi marquer les sommets déjà découverts ?", c: ["Pour trier le résultat", "Pour ne pas les traiter plusieurs fois, ni boucler sur un cycle", "Pour calculer le degré", "Ce n’est utile que pour les arbres"], a: 1, e: "Sans marquage, un cycle fait tourner le parcours indéfiniment.", ref: "i6" },
+    { q: "Une version récursive du parcours en profondeur utilise implicitement…", c: ["une file", "la pile d’exécution", "un dictionnaire trié", "une matrice"], a: 1, e: "Chaque appel en attente est un cadre de la pile d’appels.", ref: "i7" },
+    { q: "Pour reconstruire un chemin trouvé par un parcours, on mémorise…", c: ["le degré de chaque sommet", "le parent (le sommet d’où l’on vient) de chaque sommet découvert", "la matrice", "le nombre de cycles"], a: 1, e: "On remonte ensuite les parents depuis l’arrivée.", ref: "i8" },
+    { q: "Dans un graphe non orienté, un parcours en profondeur révèle un cycle quand…", c: ["un sommet a un degré pair", "il trouve un voisin déjà visité qui n’est pas son parent", "la pile est vide", "le graphe est connexe"], a: 1, e: "Il existe alors deux chemins différents vers ce voisin.", ref: "i9" },
+    { q: "Un graphe connexe à 10 sommets et 9 arêtes…", c: ["contient forcément un cycle", "est un arbre (pas de cycle)", "est orienté", "n’existe pas"], a: 1, e: "Connexe avec n − 1 arêtes : c’est un arbre.", ref: "i9" }
+  ],
+  cartes: [
+    { r: "Graphe", v: "Sommets reliés par des arêtes (non orienté) ou des arcs (orienté), éventuellement pondérés." },
+    { r: "Degré", v: "Nombre de voisins d’un sommet ; orienté : degré entrant et degré sortant." },
+    { r: "Chemin / cycle", v: "Suite de sommets adjacents / chemin qui revient à son départ." },
+    { r: "Connexe", v: "Tout sommet est relié à tout autre par un chemin (non orienté)." },
+    { r: "Matrice d’adjacence", v: "M[i][j] = 1 (ou le poids) s’il y a une arête de i vers j. Symétrique si non orienté. n² cases." },
+    { r: "Listes de successeurs", v: "Dictionnaire sommet → liste de voisins. Place ≈ n + m." },
+    { r: "Prédécesseurs", v: "Dans un graphe orienté, les sommets qui ont un arc vers s." },
+    { r: "Parcours en largeur", v: "File ; marquer à la découverte ; distances croissantes ; plus courts chemins (en arêtes)." },
+    { r: "Parcours en profondeur", v: "Pile ou récursivité ; s’enfoncer le plus loin possible puis revenir." },
+    { r: "Chercher un chemin", v: "Parcours en mémorisant le parent de chaque sommet ; remonter depuis l’arrivée." },
+    { r: "Cycle (non orienté)", v: "Voisin déjà visité qui n’est pas le parent." },
+    { r: "Cycle (orienté)", v: "Arc vers un sommet « en cours » (encore dans la pile d’appels)." },
+    { r: "Coût d’un parcours", v: "De l’ordre de n + m avec des listes de voisins et une vraie file." },
+    { r: "Euler, 1736", v: "Les sept ponts de Königsberg : début de la théorie des graphes." }
+  ]
+});
+
 /* Carte du programme de Terminale (arrêté du 19/07/2019, BO spécial n° 8 du 25/07/2019), reformulé. */
 var PROG = [
   { n: "01", t: "Histoire de l’informatique", intro: "Rubrique transversale : les repères historiques se construisent dans chacune des cinq autres rubriques. Sur ce site, ils sont dans les encadrés <code># git log --histoire</code> des chapitres.",
@@ -7178,11 +8902,7 @@ var PROG = [
       { ch: "ch3", t: "Listes, piles, files : structures linéaires" },
       { ch: "ch5", t: "Dictionnaires, index et clé" },
       { ch: "ch7", t: "Arbres : structures hiérarchiques ; arbres binaires" },
-      { id: "graphes", t: "Graphes : structures relationnelles",
-        contenus: "Sommets, arcs, arêtes, graphes orientés ou non orientés.",
-        capacites: ["Modéliser des situations sous forme de graphes.", "Écrire les implémentations correspondantes d’un graphe : matrice d’adjacence, liste de successeurs / de prédécesseurs.", "Passer d’une représentation à une autre."],
-        comm: "Exemples : réseau routier, réseau électrique, Internet, réseaux sociaux. Le choix de la représentation dépend du traitement à effectuer.",
-        avant: "Listes de listes (matrices), dictionnaires de listes, piles et files (ch. 3) pour les parcours." }
+      { ch: "ch8", t: "Graphes : structures relationnelles" }
     ] },
   { n: "03", t: "Bases de données",
     items: [
@@ -7197,7 +8917,7 @@ var PROG = [
         capacites: ["Identifier les principaux composants sur un schéma de circuit et les avantages de leur intégration en termes de vitesse et de consommation."],
         comm: "Le circuit d’un téléphone peut servir d’exemple.",
         avant: "Le modèle de von Neumann et les circuits logiques de Première." },
-      { id: "processus", t: "Gestion des processus et des ressources par un système d’exploitation",
+      { ch: "proc", id: "processus", t: "Gestion des processus et des ressources par un système d’exploitation",
         contenus: "Création d’un processus, ordonnancement, interblocage.",
         capacites: ["Décrire la création d’un processus, l’ordonnancement de plusieurs processus par le système.", "Mettre en évidence le risque de l’interblocage (<i>deadlock</i>)."],
         comm: "Observer les processus actifs ou en attente avec des outils standard (par exemple <code>ps</code>, <code>top</code>). L’interblocage peut être présenté en mode débranché.",
@@ -7231,11 +8951,7 @@ var PROG = [
   { n: "06", t: "Algorithmique",
     items: [
       { ch: "ch7", t: "Algorithmes sur les arbres binaires et les arbres binaires de recherche" },
-      { id: "algo-graphes", t: "Algorithmes sur les graphes",
-        contenus: "Parcours en profondeur et en largeur ; cycles ; chemins.",
-        capacites: ["Parcourir un graphe en profondeur d’abord, en largeur d’abord.", "Repérer la présence d’un cycle dans un graphe.", "Chercher un chemin dans un graphe."],
-        comm: "Le parcours d’un labyrinthe et le routage dans Internet sont des exemples. Les graphes illustrent aussi l’utilisation des classes.",
-        avant: "Pile (profondeur) et file (largeur) du ch. 3, récursivité du ch. 2." },
+      { ch: "ch8", t: "Algorithmes sur les graphes" },
       { id: "dpr", t: "Méthode « diviser pour régner »",
         contenus: "Diviser un problème en sous-problèmes indépendants, les résoudre, combiner.",
         capacites: ["Écrire un algorithme utilisant la méthode « diviser pour régner »."],

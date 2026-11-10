@@ -15,11 +15,7 @@ var PROG = [
       { ch: "ch3", t: "Listes, piles, files : structures linéaires" },
       { ch: "ch5", t: "Dictionnaires, index et clé" },
       { ch: "ch7", t: "Arbres : structures hiérarchiques ; arbres binaires" },
-      { id: "graphes", t: "Graphes : structures relationnelles",
-        contenus: "Sommets, arcs, arêtes, graphes orientés ou non orientés.",
-        capacites: ["Modéliser des situations sous forme de graphes.", "Écrire les implémentations correspondantes d’un graphe : matrice d’adjacence, liste de successeurs / de prédécesseurs.", "Passer d’une représentation à une autre."],
-        comm: "Exemples : réseau routier, réseau électrique, Internet, réseaux sociaux. Le choix de la représentation dépend du traitement à effectuer.",
-        avant: "Listes de listes (matrices), dictionnaires de listes, piles et files (ch. 3) pour les parcours." }
+      { ch: "ch8", t: "Graphes : structures relationnelles" }
     ] },
   { n: "03", t: "Bases de données",
     items: [
@@ -34,7 +30,7 @@ var PROG = [
         capacites: ["Identifier les principaux composants sur un schéma de circuit et les avantages de leur intégration en termes de vitesse et de consommation."],
         comm: "Le circuit d’un téléphone peut servir d’exemple.",
         avant: "Le modèle de von Neumann et les circuits logiques de Première." },
-      { id: "processus", t: "Gestion des processus et des ressources par un système d’exploitation",
+      { ch: "proc", id: "processus", t: "Gestion des processus et des ressources par un système d’exploitation",
         contenus: "Création d’un processus, ordonnancement, interblocage.",
         capacites: ["Décrire la création d’un processus, l’ordonnancement de plusieurs processus par le système.", "Mettre en évidence le risque de l’interblocage (<i>deadlock</i>)."],
         comm: "Observer les processus actifs ou en attente avec des outils standard (par exemple <code>ps</code>, <code>top</code>). L’interblocage peut être présenté en mode débranché.",
@@ -68,11 +64,7 @@ var PROG = [
   { n: "06", t: "Algorithmique",
     items: [
       { ch: "ch7", t: "Algorithmes sur les arbres binaires et les arbres binaires de recherche" },
-      { id: "algo-graphes", t: "Algorithmes sur les graphes",
-        contenus: "Parcours en profondeur et en largeur ; cycles ; chemins.",
-        capacites: ["Parcourir un graphe en profondeur d’abord, en largeur d’abord.", "Repérer la présence d’un cycle dans un graphe.", "Chercher un chemin dans un graphe."],
-        comm: "Le parcours d’un labyrinthe et le routage dans Internet sont des exemples. Les graphes illustrent aussi l’utilisation des classes.",
-        avant: "Pile (profondeur) et file (largeur) du ch. 3, récursivité du ch. 2." },
+      { ch: "ch8", t: "Algorithmes sur les graphes" },
       { id: "dpr", t: "Méthode « diviser pour régner »",
         contenus: "Diviser un problème en sous-problèmes indépendants, les résoudre, combiner.",
         capacites: ["Écrire un algorithme utilisant la méthode « diviser pour régner »."],

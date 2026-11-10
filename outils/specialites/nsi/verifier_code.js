@@ -45,7 +45,9 @@ for (const id of Object.keys(CODE)) {
   const c = CODE[id];
   if (c.run === false) { saut++; continue; }
   const dir = fs.mkdtempSync(path.join(tmp, "x"));
-  const deps = (c.deps || []).map(d => { if (!CODE[d]) throw new Error("dep inconnue " + d + " dans " + id); return CODE[d].src; }).join("\n\n");
+  const liste = [];
+  (function ajoute(ds) { (ds || []).forEach(d => { if (!CODE[d]) throw new Error("dep inconnue " + d + " dans " + id); ajoute(CODE[d].deps); if (!liste.includes(d)) liste.push(d); }); })(c.deps);
+  const deps = liste.map(d => CODE[d].src).join("\n\n");
   for (const [nom, ref] of Object.entries(c.files || {})) fs.writeFileSync(path.join(dir, nom), CODE[ref] ? CODE[ref].src : ref);
   let res, attendu, obtenu, bon;
   if (c.sql) {

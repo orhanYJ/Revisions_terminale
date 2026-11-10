@@ -505,3 +505,7 @@ html.mo .nd-a.neuf,html.mo .nd-a.actif{animation:pop .4s cubic-bezier(.2,.9,.3,1
 .mini-pile,.mini-file{display:flex;gap:5px;flex-wrap:wrap;min-height:34px;align-items:center}
 .mini-pile{flex-direction:column;align-items:flex-start}
 .sortie-p{font-size:1rem;font-weight:700;color:var(--vert);letter-spacing:.08em;padding:4px 0}
+.graphe-svg{display:block;width:100%;height:auto;max-width:620px;margin:0 auto}
+.graphe-svg .ar.arb{stroke:var(--vert);stroke-width:4}
+.graphe-svg .ar.ch{stroke:var(--ambre);stroke-width:6;stroke-linecap:round}
+html.mo .graphe-svg .ar{transition:stroke .3s,stroke-width .3s}

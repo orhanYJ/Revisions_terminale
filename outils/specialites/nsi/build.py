@@ -8,7 +8,7 @@ import pathlib
 ICI = pathlib.Path(__file__).resolve().parent
 SRC = ICI / "src"
 SORTIE = ICI.parent.parent.parent / "nsi" / "index.html"
-DONNEES = ["base.js", "ch1_poo.js", "ch2_recursivite.js", "ch3_lineaires.js", "ch4_mise_au_point.js", "ch5_dictionnaires.js", "ch_dpr.js", "ch_dyn.js", "ch_texte.js", "ch6_bases_de_donnees.js", "ch_soc.js", "ch7_arbres.js", "programme.js", "pages.js"]
+DONNEES = ["base.js", "ch1_poo.js", "ch2_recursivite.js", "ch3_lineaires.js", "ch4_mise_au_point.js", "ch5_dictionnaires.js", "ch_dpr.js", "ch_dyn.js", "ch_texte.js", "ch_calc.js", "ch6_bases_de_donnees.js", "ch_soc.js", "ch_proc.js", "ch7_arbres.js", "ch8_graphes.js", "programme.js", "pages.js"]
 
 
 def lire(nom):
