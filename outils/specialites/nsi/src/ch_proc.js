@@ -160,6 +160,21 @@ print(interblocage({"P1": "P2", "P2": None}))
 print(interblocage({"P1": "P2", "P2": "P3", "P3": "P1"}))
 print(interblocage({"P1": "P2", "P2": "P3", "P3": None, "P4": "P1"}))`, { out: "False\nTrue\nFalse" });
 
+C("proc-tr-rr", String.raw`
+from collections import deque
+
+file = deque([("A", 3), ("B", 2)])     # (nom, durée restante), tous prêts à t = 0
+quantum = 2
+t = 0
+while file:
+    nom, reste = file.popleft()          # l'ordonnanceur élit la tête de file
+    tranche = min(quantum, reste)
+    t = t + tranche
+    if reste > tranche:
+        file.append((nom, reste - tranche))   # pas fini : fin de file
+    else:
+        print(nom, "termine à", t)`, { fichier: "tourniquet_pas_a_pas.py", trace: true, titreTrace: "tourniquet, quantum 2", out: "B termine à 4\nA termine à 5" });
+
 /* prédis la sortie */
 C("proc-x1", String.raw`
 print(chronogramme(fifo([("A", 0, 2), ("B", 5, 1), ("C", 1, 2)])))`, { deps: ["proc-donnees", "proc-fifo"], out: "A A C C -- B" });
@@ -456,10 +471,12 @@ CH.push({
 <li><b>Priorités</b> : chaque processus a une priorité ; le plus prioritaire des prêts est élu, et l’arrivée d’un processus plus prioritaire interrompt l’élu. Risque : la <b>famine</b> d’un processus peu prioritaire qui n’est jamais élu.</li></ul>
 <p>On mesure : le <b>temps de séjour</b> = instant de fin − instant d’arrivée, et le <b>temps d’attente</b> = temps de séjour − durée d’exécution. Exemple avec quatre processus : P1 (arrivée 0, durée 5), P2 (1, 3), P3 (2, 1), P4 (4, 2).</p>
 [[w-arch-gantt]]
-<p>En Python, la file des prêts est une <b>file</b> du chapitre 3 (<code>deque</code>) :</p>
+<p>En Python, la file des prêts est une <b>file</b> du chapitre « Listes, piles, files » (<code>deque</code>) :</p>
 [[proc-donnees]]
 [[proc-fifo]]
 [[proc-rr]]
+<p>La même idée réduite à l’essentiel, à exécuter pas à pas (observe la file se vider et se remplir) :</p>
+[[w-trace|proc-tr-rr]]
 <details class="repli"><summary>Ordonnancement par priorités (préemptif) en Python</summary><div class="corps">[[proc-prio]]<p>À l’instant 1, P2 (priorité 1) interrompt P1 (priorité 2). À l’instant 4, P4 (priorité 1) passe devant P1. P3 (priorité 3) ne s’exécute qu’à la fin.</p></div></details>
 [[proc-temps]]
 <div class="boite attention"><div class="lab">⚠ les conventions changent d’un sujet à l’autre</div><p>Quand un processus arrive au moment même où un autre est interrompu, qui passe d’abord dans la file ? Ici, le nouveau venu. Un sujet de bac précise toujours sa règle : <b>lis-la</b> et applique-la à la lettre.</p></div>
@@ -523,7 +540,7 @@ CH.push({
         { q: "Compléter la méthode <code>tranche</code>.", c: `<p>Si la file est vide, renvoyer <code>None</code>. Sinon : retirer la tête (<code>self.file.pop(0)</code>), calculer <code>d = min(self.quantum, p.reste)</code>, diminuer <code>p.reste</code>, remettre <code>p</code> en fin de file s’il reste du travail, renvoyer <code>(p.pid, d)</code>.</p>` },
         { q: "Compléter <code>executer</code> : un processus est terminé quand il n’est pas revenu dans la file après sa tranche.", c: `[[proc-ep-corr]]` },
         { q: "Pour 3 processus de durées 5, 3, 1 (PID 10, 11, 12) et un quantum de 2, dans quel ordre finissent-ils ? Vérifier par un test.", c: `<p>12, puis 11, puis 10 : le chronogramme est 10 10 11 11 12 10 10 11 10. Le test <code>assert o2.executer() == [12, 11, 10]</code> le confirme.</p>` },
-        { q: "À l’oral : <code>self.file.pop(0)</code> est-il efficace ? Que proposer ?", c: `<p>Non : retirer l’élément d’indice 0 d’une liste Python décale tous les autres, coût proportionnel à la longueur. Une <code>collections.deque</code> retire en tête en temps constant (<code>popleft</code>), comme la file du chapitre 3.</p>[[proc-ep-cout]]` }
+        { q: "À l’oral : <code>self.file.pop(0)</code> est-il efficace ? Que proposer ?", c: `<p>Non : retirer l’élément d’indice 0 d’une liste Python décale tous les autres, coût proportionnel à la longueur. Une <code>collections.deque</code> retire en tête en temps constant (<code>popleft</code>), comme la file du chapitre « Listes, piles, files ».</p>[[proc-ep-cout]]` }
       ] }
   ],
   ecrit: { titre: "Ordonnancement, commandes et interblocage", points: "≈ 8 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite (on suppose un processeur à un seul cœur).",

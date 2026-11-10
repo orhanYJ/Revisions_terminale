@@ -153,6 +153,19 @@ dist, prec = dijkstra(g, "A")
 print(dist)
 print(chemin(prec, "F"), chemin(prec, "E"), chemin(prec, "B"))`, { fichier: "ospf.py", out: "{'A': 0, 'B': 10, 'C': 1, 'D': 2, 'E': 5, 'F': 4}\n['A', 'C', 'D', 'F'] ['A', 'C', 'D', 'F', 'E'] ['A', 'B']" });
 
+C("rout-tr-route", String.raw`
+TABLES = {"A": {"F": "B"}, "B": {"F": "F"}, "F": {"F": None}}   # passerelle vers F
+
+def route(depart, arrivee):
+    chemin = [depart]
+    r = depart
+    while r != arrivee:
+        r = TABLES[r][arrivee]       # le routeur r transmet à sa passerelle
+        chemin.append(r)
+    return chemin
+
+print(route("A", "F"))`, { fichier: "route_pas_a_pas.py", trace: true, titreTrace: "route(\"A\", \"F\")", out: "['A', 'B', 'F']" });
+
 /* prédis la sortie */
 C("rout-x1", String.raw`
 print(prochain_saut(TABLE_R1, "192.168.3.200"))
@@ -435,6 +448,7 @@ CH.push({
 [[rout-rip]]
 <p>Un paquet suit ensuite les passerelles, routeur après routeur :</p>
 [[rout-route]]
+[[w-trace|rout-tr-route]]
 <div class="boite hp"><div class="lab"># pour aller plus loin : le comptage à l’infini</div><p>Le code n’annonce pas une route au voisin qui en est la passerelle (« horizon partagé », <i>split horizon</i>). Sans cette règle, après une panne, deux routeurs peuvent se renvoyer une route morte en augmentant sa distance d’un saut à chaque échange, jusqu’à 16 : c’est le « comptage à l’infini », qui explique le choix d’une limite aussi basse que 16.</p></div>` },
 
     { id: "i4", t: "RIP face à une panne", h: `
