@@ -127,10 +127,150 @@ def reel(duree):
     return out[:int(duree * SR)]
 
 
+# ---------------------------------------------------------------------------------------------
+# Musique des vidéos d'histoire (DNL, 11/2026, choisie par Cengiz : « combine les trois, elles vont bien ensemble ») :
+# trois couleurs en ré mineur, composées ici, qui se relaient selon l'humeur de la scène.
+#   salon    : piano feutré, contrebasse pincée, balais, craquement de 78 tours (l'entre-deux-guerres)
+#   archives : violoncelle et alto tenus, notes de piano, tic-tac d'horloge (le ton du documentaire)
+#   marche   : caisse claire étouffée, cuivres doux, timbales (la guerre, la terreur)
+from scipy.signal import lfilter as _lfilter
+
+
+def _lp(x, a):
+    return _lfilter([a], [1, a - 1], x)
+
+
+def _piano_feutre(f, dur, amp):
+    n = int(dur * SR); t = np.arange(n) / SR
+    env = np.exp(-t * 2.2) * np.minimum(1, t / 0.008)
+    s = np.sin(2 * np.pi * f * t) + .22 * np.sin(4 * np.pi * f * t) * np.exp(-t * 5) + .06 * np.sin(6 * np.pi * f * t) * np.exp(-t * 8)
+    return amp * env * s
+
+
+def _pizz(f, dur, amp):
+    n = int(dur * SR); t = np.arange(n) / SR
+    s = np.sin(2 * np.pi * f * t) + .5 * np.sin(4 * np.pi * f * t) * np.exp(-t * 9) + .2 * np.sin(6 * np.pi * f * t) * np.exp(-t * 14)
+    return amp * s * np.exp(-t * 6) * np.minimum(1, t / 0.003)
+
+
+def _balai(dur, amp, rng):
+    n = int(dur * SR); t = np.arange(n) / SR
+    return amp * np.diff(rng.standard_normal(n), prepend=0) * np.sin(np.pi * np.minimum(1, t / dur)) ** 2
+
+
+def _archet(f, dur, amp, vib=5.0):
+    n = int(dur * SR); t = np.arange(n) / SR
+    v = 1 + 0.003 * np.sin(2 * np.pi * vib * t) * np.minimum(1, t / .8)
+    ph = 2 * np.pi * f * np.cumsum(v) / SR
+    s = sum(np.sin(k * ph) / k ** 1.3 for k in range(1, 9))
+    return amp * np.minimum(1, t / .7) * np.clip((dur - t) / .9, 0, 1) * s
+
+
+def _cuivre(freqs, dur, amp):
+    n = int(dur * SR); t = np.arange(n) / SR
+    s = np.zeros(n)
+    for f in freqs:
+        s += sum(np.sin(k * 2 * np.pi * f * t) / k for k in range(1, 7))
+    return amp * np.minimum(1, t / .35) * np.clip((dur - t) / .6, 0, 1) * _lp(s, .08) / len(freqs)
+
+
+def _tictac(amp, aigu=True):
+    n = int(.03 * SR); t = np.arange(n) / SR
+    return amp * np.sin(2 * np.pi * (2400 if aigu else 1800) * t) * np.exp(-t * 260)
+
+
+def _caisse(amp, rng, dur=.16):
+    n = int(dur * SR); t = np.arange(n) / SR
+    return amp * (_lp(rng.standard_normal(n), .35) * np.exp(-t * 26) + .4 * np.sin(2 * np.pi * 190 * t) * np.exp(-t * 30))
+
+
+def _timbale(f, amp):
+    n = int(1.2 * SR); t = np.arange(n) / SR
+    return amp * np.sin(2 * np.pi * f * t * (1 - .03 * t)) * np.exp(-t * 3.5) * np.minimum(1, t / .004)
+
+
+def _craquements(dur, rng):
+    n = int(dur * SR); x = np.zeros(n)
+    idx = rng.integers(0, n, int(dur * 9))
+    x[idx] = rng.standard_normal(len(idx)) * .5
+    return _lp(x, .5) + .004 * _lp(rng.standard_normal(n), .05)
+
+
+_SALON = [(38, [53, 57, 60, 64]), (43, [53, 58, 62, 65]), (45, [52, 55, 61, 64]), (38, [50, 53, 57, 60])]   # ré m9, sol m6, la 7, ré m7
+_ARCH = [(38, [50, 53, 57]), (34, [50, 53, 58]), (31, [50, 55, 58]), (33, [49, 52, 57])]                    # ré m, si bémol, sol m, la
+_MARCHE = [(38, [62, 65, 69]), (34, [62, 65, 70]), (36, [60, 64, 67]), (33, [61, 64, 69])]                  # ré m, si bémol, do, la
+
+
+def salon(duree):
+    rng = np.random.default_rng(5); B = 60 / 72
+    out = np.zeros(int(duree * SR) + SR); t, k = 0.0, 0
+    while t < duree:
+        b, acc = _SALON[k % 4]
+        for j, m in enumerate(acc):
+            _ajoute(out, _piano_feutre(hz(m), 3.0, .07), int((t + j * .06) * SR))
+        for j, m in enumerate([acc[3] + 12, acc[2] + 12, acc[1] + 12, acc[2] + 12]):
+            if (k + j) % 3:
+                _ajoute(out, _piano_feutre(hz(m), 1.4, .045), int((t + (1 + j * .75) * B) * SR))
+        for j in range(4):
+            _ajoute(out, _pizz(hz([b, b + 7, b + 12, b + 7][j]), .9, .2), int((t + j * B) * SR))
+            if j % 2:
+                _ajoute(out, _balai(.22, .012, rng), int((t + j * B) * SR))
+        t += 4 * B; k += 1
+    out = _reverb(out, 1.8, .28)[:int(duree * SR)]
+    return out + _craquements(duree, rng)[:len(out)] * .25
+
+
+def archives(duree):
+    B = 60 / 64
+    out = np.zeros(int(duree * SR) + SR); t, k = 0.0, 0
+    while t < duree:
+        b, acc = _ARCH[k % 4]; d = 8 * B
+        _ajoute(out, _archet(hz(b + 12), d + .6, .11), int(t * SR))
+        _ajoute(out, _archet(hz(acc[1]), d + .6, .045, 4.6), int(t * SR))
+        for j, m in enumerate([acc[0] + 12, acc[2] + 12, acc[1] + 12]):
+            _ajoute(out, _piano_feutre(hz(m), 3.5, .05), int((t + (1 + j * 2.5) * B) * SR))
+        for j in range(8):
+            _ajoute(out, _tictac(.03, j % 2 == 0), int((t + j * B) * SR))
+        t += d; k += 1
+    return _reverb(out, 2.6, .36)[:int(duree * SR)]
+
+
+def marche(duree):
+    rng = np.random.default_rng(13); B = 60 / 84
+    out = np.zeros(int(duree * SR) + SR); t, k = 0.0, 0
+    motif = [1, 0, .5, .5, 1, 0, .5, 1]
+    while t < duree:
+        b, acc = _MARCHE[k % 4]; d = 4 * B
+        _ajoute(out, _cuivre([hz(m - 12) for m in acc], d + .3, .18), int(t * SR))
+        _ajoute(out, _timbale(hz(b + 12), .22), int(t * SR))
+        _ajoute(out, _timbale(hz(b + 7), .12), int((t + 2 * B) * SR))
+        for j, a in enumerate(motif):
+            if a:
+                _ajoute(out, _caisse(.05 * a, rng), int((t + j * B / 2) * SR))
+        _ajoute(out, _archet(hz(b + 24), d + .4, .04), int(t * SR))
+        t += d; k += 1
+    return _reverb(out, 2.0, .3)[:int(duree * SR)]
+
+
+# humeurs des scripts → musique d'histoire (generer.py et remixer.py l'appliquent aux vidéos DNL) :
+# « lumière » → salon ; « calme » et « mystère » → archives ; « tension » → marche sur un fond de guerre ou dans le
+# chapitre sur la Seconde Guerre mondiale (h3), salon sinon (la crise, la montée des régimes, l'entre-deux-guerres)
+def humeur_dnl(humeur, fond, code):
+    if humeur == "lumiere":
+        return "salon"
+    if humeur in ("calme", "mystere"):
+        return "archives"
+    if humeur == "tension":
+        return "marche" if fond == "guerre" or code.startswith("h3") else "salon"
+    return humeur
+
+
 def boucle(duree, humeur="lumiere"):
     """Musique brute (sans dosage) de la durée demandée, dans l'humeur choisie."""
     if humeur == "reel":
         return reel(duree)
+    if humeur in ("salon", "archives", "marche"):
+        return {"salon": salon, "archives": archives, "marche": marche}[humeur](duree)
     if humeur.startswith("pc-"):       # vidéos de physique-chimie : musique « labo »
         return labo(duree, humeur[3:])
     H = HUMEURS[humeur]

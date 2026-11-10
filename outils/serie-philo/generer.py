@@ -73,7 +73,7 @@ CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
-V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 5, "acl-lughnasa": 2, "dnl": 3, "svt": 6}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
+V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 5, "acl-lughnasa": 2, "dnl": 4, "svt": 6}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
 TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729", "svt": "#0b120e"}
 PAGE = """<!DOCTYPE html>
 <html lang="{langue}">
@@ -305,7 +305,10 @@ def generer(nom_module):
     bruitages.append((1.6, "cloche"))
     for sc in ep.SCENES:
         t0 = t
-        humeurs.append((t0 if humeurs else 0.0, sc.get("humeur", HUMEUR_DEFAUT)))
+        hu = sc.get("humeur", HUMEUR_DEFAUT)
+        if site == "dnl":       # vidéos d'histoire : leur propre musique (salon, archives, marche)
+            hu = musique.humeur_dnl(hu, sc.get("fond", "nuit"), ep.CODE)
+        humeurs.append((t0 if humeurs else 0.0, hu))
         mots_sc = []          # (instant, mot) dits par le narrateur dans la scène
         carton = sc.get("carton", True)
         if carton:
