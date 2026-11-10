@@ -8,6 +8,7 @@
   function sansAccent(s) { return String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
   function melange(t) { t = t.slice(); for (var i = t.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var x = t[i]; t[i] = t[j]; t[j] = x; } return t; }
   function chap(id) { for (var i = 0; i < CH.length; i++) if (CH[i].id === id) return CH[i]; return null; }
+  function toutRedige() { return PROG.every(function (r) { return r.items.every(function (it) { return !!it.ch; }); }); }
   /* Ordre des propositions des QCM : dans les données, la bonne réponse est souvent la deuxième. On les range une fois
      pour toutes, de façon déterministe (même ordre à chaque visite) : réponses numériques par ordre croissant,
      sinon permutation tirée de l'énoncé. Seul l'indice de la bonne réponse (a) est recalculé. */
@@ -303,7 +304,7 @@
       });
       h += "</div>";
     });
-    h += "<h2>Carte du programme</h2><p class=\"muet\">Les six rubriques officielles du programme de Terminale. Ce qui n’est pas encore rédigé est marqué « bientôt », avec ce que le programme demande.</p>";
+    h += "<h2>Carte du programme</h2><p class=\"muet\">Les six rubriques officielles du programme de Terminale" + (toutRedige() ? ", toutes rédigées sur le site." : ". Ce qui n’est pas encore rédigé est marqué « bientôt », avec ce que le programme demande.") + "</p>";
     PROG.forEach(function (r) {
       h += '<div class="rubrique"><div class="tete"><span class="n">' + r.n + "</span>" + esc(r.t) + "</div>";
       r.items.forEach(function (it) {
@@ -458,7 +459,8 @@
   /* ---------- programme ---------- */
   function pageProgramme(r) {
     var h = invite("", "less programme.txt") + "<h1>Carte du programme</h1><p class=\"soustitre\">Programme de Terminale (arrêté du 19/07/2019, BO spécial n° 8 du 25/07/2019), en six rubriques. Le BO précise qu’il « ne constitue pas un plan de cours » : chaque professeur choisit sa progression.</p>";
-    h += '<div class="boite def"><div class="lab"># légende</div><p><span class="etiq v">rédigé</span> chapitre complet sur le site · <span class="etiq">bientôt</span> pas encore rédigé : tu trouves déjà ce que le programme demande (contenus, capacités, commentaires officiels reformulés) et ce qu’il faut avoir revu avant.</p></div>';
+    if (toutRedige()) h += '<div class="boite def"><div class="lab"># légende</div><p><span class="etiq v">rédigé</span> chaque point du programme renvoie à son chapitre complet sur le site.</p></div>';
+    else h += '<div class="boite def"><div class="lab"># légende</div><p><span class="etiq v">rédigé</span> chapitre complet sur le site · <span class="etiq">bientôt</span> pas encore rédigé : tu trouves déjà ce que le programme demande (contenus, capacités, commentaires officiels reformulés) et ce qu’il faut avoir revu avant.</p></div>';
     PROG.forEach(function (rb) {
       h += '<div class="rubrique"><div class="tete"><span class="n">' + rb.n + "</span>" + esc(rb.t) + "</div>";
       if (rb.intro) h += '<div style="padding:8px 14px" class="petit muet">' + rb.intro + "</div>";
