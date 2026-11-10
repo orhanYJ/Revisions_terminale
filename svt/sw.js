@@ -4,7 +4,7 @@
    Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. Même chose pour les
    vidéos des chapitres (serie/*.html) ; leurs MP3 passent par le réseau. */
-const CACHE = "svt-v33";
+const CACHE = "svt-v34";
 const ANIMS = ["mitose", "replication", "expression", "enzyme", "globe", "tectonique",
   "ecosysteme", "immunite", "anticorps", "clonal", "meiose", "nondisj", "coinegal", "globines",
   "thg", "insuline", "endosymbiose"];
