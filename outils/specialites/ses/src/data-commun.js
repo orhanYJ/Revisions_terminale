@@ -95,7 +95,7 @@ var PROG = [
       liens: "Le diplôme et la PCS structurent l’espace social (<a href=\"#s1\">S1</a>) et aussi la participation politique. Sujet 2026 (jour 1, partie 2) : un tableau sur le vote systématique selon l’âge et le diplôme." }
   ] },
   { id: "rc", nom: "Regards croisés", qs: [
-    { id: "r1", code: "R1", court: "Justice sociale", statut: "bt", ecrit: false,
+    { id: "r1", code: "R1", court: "Justice sociale", statut: "red", ecrit: false, spark: "r1-ineg",
       titre: "Quelles inégalités sont compatibles avec les différentes conceptions de la justice sociale ?",
       objectifs: [
         "Connaître les grandes tendances d’évolution des inégalités économiques depuis le début du XXe siècle et comprendre que les inégalités économiques et sociales présentent un caractère multiforme et cumulatif.",
