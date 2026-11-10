@@ -128,7 +128,7 @@ def coplanaires(A, B, C, D):
     return None   # A, B, C alignés
 
 print(coplanaires((1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 1)))
-print(coplanaires((0, 0, 0), (1, 0, 0), (0, 1, 0), (2, 3, 0)))`, sortie: `(False, Fraction(0, 1), Fraction(1, 1))
+print(coplanaires((0, 0, 0), (1, 0, 0), (0, 1, 0), (2, 3, 0)))`, sortie: `(False, Fraction(1, 1), Fraction(-1, 1))
 (True, Fraction(2, 1), Fraction(3, 1))`,
       apres: R`<p>Les coordonnées sont celles du cube dans le repère $(A;\vec{AB},\vec{AD},\vec{AE})$ : $B$, $D$, $E$, $G$ ne sont pas coplanaires (tétraèdre régulier), tandis que $A$, $B$, $D$ et le point $(2;3;0)$ sont dans le plan du bas. On résout deux équations (méthode de Cramer, <span class="tag hp">hors programme</span>), puis la troisième tranche : c'est la méthode de la partie 4, automatisée. Le module <code>fractions</code> évite les arrondis.</p>` },
     { bo: false, t: "Coordonnées d'un point défini par une combinaison", code: `def combinaison(O, coefs, vecteurs):
@@ -141,7 +141,7 @@ print(coplanaires((0, 0, 0), (1, 0, 0), (0, 1, 0), (2, 3, 0)))`, sortie: `(False
 A = (0, 0, 0)
 AB, AD, AE = (1, 0, 0), (0, 1, 0), (0, 0, 1)
 print(combinaison(A, [1, 0.5, 1], [AB, AD, AE]))     # I milieu de [FG]
-print(combinaison(A, [0.5, 0.5, 0.5], [AB, AD, AE])) # centre du cube`, sortie: `[1, 0.5, 1]
+print(combinaison(A, [0.5, 0.5, 0.5], [AB, AD, AE])) # centre du cube`, sortie: `[1.0, 0.5, 1.0]
 [0.5, 0.5, 0.5]` }
   ],
   methodes: [
