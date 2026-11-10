@@ -1,8 +1,8 @@
-"""SVT, chapitre 2 : « La complexification des génomes » — le cours en vidéo (thème 1.A).
+"""SVT, chapitre 2 : « La complexification des génomes » — la vidéo du chapitre (thème 1.A).
 
 Même chaîne que les vidéos de physique-chimie (outils/serie-pc/pc_ch5.py) : generer.py svt_ch2, sortie dans svt/serie/.
 Contenu : les pages t2 (transferts horizontaux de gènes) et t2b (endosymbioses) du site, rien au-delà ; ce que le site
-marque « hors programme » ou « source extérieure » est dit comme tel à l'oral.
+marque « hors programme » est dit comme tel à l'oral. Que du contenu : aucune mention scolaire ni personnelle.
 Plan : la carte mentale du thème (svt/carte-mentale.js) : c2a Transferts horizontaux (★ schéma à savoir refaire),
 c2b Endosymbioses (★ chloroplastes / mitochondries).
 Animations du site rejouées : svt/anim/thg.html (62 s), insuline.html (50 s), endosymbiose.html (62 s).
@@ -29,7 +29,7 @@ PRONONCIATION = {
 SCENES = [
     # ================================================================ ouverture : la carte du thème, puis le chapitre 2
     dict(id="ouverture", chap="Ouverture", fond="foret", humeur="mystere", carton=False, beats=[
-        "{carte}Voici la carte mentale du thème génétique et évolution, celle de ton cours. Quatre chapitres. "
+        "{carte}Voici la carte mentale du thème un, partie A : génétique et évolution. Quatre chapitres. "
         "Le premier, que tu connais déjà, parlait des transferts verticaux : les gènes passent des parents aux enfants, "
         "par la reproduction, et la méiose et la fécondation les brassent à chaque génération.",
         "{carte.1}Aujourd'hui, chapitre deux : la complexification des génomes. Et la question change de direction. "
@@ -37,7 +37,7 @@ SCENES = [
         "La réponse est oui, et c'est partout dans le vivant. Une bactérie qui donne à sa voisine un gène de résistance aux antibiotiques. "
         "Un virus dont un gène est devenu, chez nous, indispensable à la formation du placenta. "
         "Et même des bactéries entières, avalées il y a très longtemps, qui sont devenues les mitochondries et les chloroplastes de nos cellules.",
-        "{-carte}{plan}{plan.1}Sur la carte du cours, le chapitre a deux branches. La première : les transferts horizontaux de gènes. "
+        "{-carte}{plan}{plan.1}Sur la carte, le chapitre a deux branches. La première : les transferts horizontaux de gènes. "
         "Transformation, conjugaison, transgenèse, transferts viraux, et la transduction. Elle porte une étoile : il y a un schéma à savoir refaire. "
         "{plan.2}La seconde : les endosymbioses, avec les chloroplastes et les mitochondries, et une étoile elle aussi. "
         "{plan.3}À la fin, on fera ensemble le point sur ce qu'il faut savoir rédiger pour le bac.",
@@ -50,7 +50,7 @@ SCENES = [
             "Les endosymbioses : chloroplastes et mitochondries ★",
             "Pour le bac : ce qu'il faut savoir rédiger et dessiner"], x=150, y=190, w=980),
         "titre": dict(type="titre", sur="SVT · Thème 1 · Chapitre 2", t="La complexification des génomes",
-                      sous="Le cours complet, avec tous les exemples du cours"),
+                      sous="Transferts horizontaux et endosymbioses, avec leurs exemples"),
     }),
 
     # ================================================================ A. le problème : vertical / horizontal
@@ -173,14 +173,14 @@ SCENES = [
         "{-meca}{mp}L'acquisition d'une résistance se fait donc de deux façons, très inégales. {mp.1}Par mutation du chromosome : c'est un transfert vertical, "
         "transmis aux descendantes. {mp.2}Par acquisition d'un plasmide : c'est un transfert horizontal, reçu d'une autre bactérie.",
         "{mp.3}La mutation est rare : environ une bactérie sur un milliard. Le plasmide est fréquent : environ une sur cent. "
-        "{mp.4}Résultat : environ quatre-vingts pour cent des résistances acquises le sont par plasmide. Ce sont les chiffres du manuel projeté en cours.",
+        "{mp.4}Résultat : environ quatre-vingts pour cent des résistances acquises le sont par plasmide.",
         "{-mp}{an2}{pt2}{pt2.1}{an2.1}L'animation montre ce qui se passe ensuite. Un antibiotique arrive. Les bactéries qui portent le plasmide de résistance survivent. "
         "Celle qui ne l'a pas est éliminée.",
         "{pt2.2}Attention, c'est le raisonnement de Première, toujours valable : l'antibiotique ne crée pas la résistance. "
         "Il sélectionne les bactéries qui la possèdent déjà, par mutation ou par plasmide. N'écris jamais qu'une bactérie s'adapte, ou mute pour survivre.",
         "{pt2.3}Ce qui change avec ce chapitre, c'est la vitesse. Grâce au transfert horizontal, une bactérie n'attend pas une mutation rare : "
         "elle reçoit d'une voisine un gène déjà fonctionnel.",
-        "{-pt2}{-an2}{part}Et ces échanges ont lieu partout. {part.1}Une étude de deux mille vingt, présentée en cours par un article de Futura-Sciences, "
+        "{-pt2}{-an2}{part}Et ces échanges ont lieu partout. {part.1}Une étude de deux mille vingt "
         "a montré que dans la poussière de nos maisons, les bactéries s'échangent leurs plasmides, et donc leurs résistances. "
         "{part.2}Et des bactéries comme Klebsiella pneumoniae circulent entre l'environnement, les animaux d'élevage et les humains : "
         "par contact, par l'alimentation, par les rejets d'élevage et les eaux usées. À chaque étape, un gène de résistance peut passer d'une bactérie à une autre, "
@@ -220,7 +220,7 @@ SCENES = [
          beats=[
         "{def_tg}Un mot nouveau : la transgenèse. {def_tg.1}C'est l'insertion d'un gène d'un organisme dans le génome d'un autre organisme. "
         "Elle peut être naturelle, ou réalisée par l'humain.",
-        "{-def_tg}{tab_ga}L'exemple naturel du cours : Agrobacterium tumefaciens, une bactérie du sol. Regarde ces boules sur les branches de cet orme : "
+        "{-def_tg}{tab_ga}Un exemple naturel : Agrobacterium tumefaciens, une bactérie du sol. Regarde ces boules sur les branches de cet orme : "
         "ce sont des galles, des tumeurs végétales. Elles sont dues à cette bactérie.",
         "{-tab_ga}{an3}{pt3}{pt3.1}{an3.1}Agrobacterium se fixe sur une cellule végétale et y injecte un fragment de son plasmide, le plasmide pTi. "
         "Ce fragment s'appelle l'ADN-T, pour ADN transféré.",
@@ -248,7 +248,7 @@ SCENES = [
          retenir="Gène d'intérêt → plasmide ouvert → plasmide recombinant (vecteur) → bactérie transformée → divisions → protéine humaine. Possible car le code génétique est universel.",
          beats=[
         "{pb2}La question de cette partie : en quoi les connaissances sur les transferts horizontaux ont-elles permis des applications biotechnologiques ?",
-        "{-pb2}{an4}{pt4}{pt4.1}{an4.1}L'humain utilise les plasmides bactériens comme vecteurs d'un gène d'intérêt. L'exemple du cours : faire produire "
+        "{-pb2}{an4}{pt4}{pt4.1}{an4.1}L'humain utilise les plasmides bactériens comme vecteurs d'un gène d'intérêt. Exemple : faire produire "
         "de l'insuline humaine par des bactéries. Première étape : on identifie le gène d'intérêt, le gène de l'insuline, l'hormone qui manque aux personnes diabétiques de type un.",
         "{pt4.2}{an4.2}Deuxième étape : on ouvre un plasmide bactérien, on coupe la boucle en un point précis.",
         "{pt4.3}{an4.3}Troisième étape : on y insère le gène humain. ADN du plasmide plus ADN humain : c'est un plasmide recombinant. "
@@ -258,12 +258,11 @@ SCENES = [
         "{pt4.5}{an4.5}Cinquième étape : la bactérie se multiplie. À chaque division, le plasmide est copié et transmis aux deux cellules filles.",
         "{pt4.6}{an4.6}Et des milliards de bactéries transformées fabriquent de grandes quantités d'insuline humaine.",
         "{-pt4}{pa_in}Deuxième schéma de la branche étoilée. Refais-le, avec ses cinq étapes et ses mots clés.",
-        "{pa_in.stop}{-pa_in}{-an4}{mitose}Un piège, signalé sur le site. La diapositive parle de mitoses successives des bactéries. "
+        "{pa_in.stop}{-pa_in}{-an4}{mitose}Un point de vocabulaire. On lit parfois que les bactéries se multiplient par mitoses successives. "
         "Rigoureusement, la mitose est la division du noyau des cellules eucaryotes. Une bactérie n'a pas de noyau : elle se divise par division binaire. "
         "Elle réplique son ADN, puis se coupe en deux. Écris « divisions », pas « mitoses ».",
         "{-mitose}{ogm}La transgenèse sert aussi à créer des OGM, des organismes génétiquement modifiés. {ogm.1}Pour les plantes, on se sert justement d'Agrobacterium : "
-        "on remplace, dans l'ADN-T, les gènes de la tumeur par le gène que l'on veut introduire, et la bactérie se charge de l'insérer. "
-        "Ce détail technique vient d'une source extérieure au diaporama de ta prof.",
+        "on remplace, dans l'ADN-T, les gènes de la tumeur par le gène que l'on veut introduire, et la bactérie se charge de l'insérer.",
         "{-ogm}{bil_a}Faisons le bilan des bactéries. {bil_a.1}Les gènes circulent entre organismes non apparentés par transformation, de l'ADN libre, "
         "et par conjugaison, des plasmides par un pont cytoplasmique. {bil_a.2}Ils peuvent même passer dans un organisme pluricellulaire : "
         "c'est la transgenèse naturelle par Agrobacterium. {bil_a.3}Ces échanges expliquent la diffusion rapide des résistances aux antibiotiques. "
@@ -283,7 +282,7 @@ SCENES = [
                        x=150, y=210, w=980),
         "ogm": dict(type="def", terme="OGM", cles=["Agrobacterium"],
                     t="Organisme génétiquement modifié par transgenèse.",
-                    etape="Plantes : on remplace dans l'ADN-T les gènes de la tumeur par le gène voulu (source extérieure au diaporama).",
+                    etape="Plantes : on remplace dans l'ADN-T les gènes de la tumeur par le gène voulu.",
                     x=150, y=200, w=980),
         "bil_a": dict(type="liste", titre="Le bilan · les bactéries", items=[
             "Transformation (ADN libre) et conjugaison (plasmides, pont cytoplasmique)",
@@ -337,26 +336,26 @@ SCENES = [
         "{-syn}{-tab_pl}{env}Or certains rétrovirus, comme le virus MSRV, savent faire fusionner leur enveloppe avec la membrane des cellules qu'ils infectent. "
         "{env.1}Ils le font grâce à des protéines de fusion, les protéines ENV, codées par un gène du virus. "
         "Les protéines ENV du virus et les syncytines des primates ont donc la même fonction : faire fusionner des membranes. Coïncidence ?",
-        "{-env}{crit}Voici le critère du TP. Quand un gène est transmis verticalement, les mutations s'accumulent au fil du temps : deux espèces éloignées "
+        "{-env}{crit}Voici le critère utilisé. Quand un gène est transmis verticalement, les mutations s'accumulent au fil du temps : deux espèces éloignées "
         "devraient donc avoir des protéines très différentes. {crit.1}Si les protéines de deux organismes éloignés se ressemblent à plus de quatre-vingts pour cent, "
         "cela trahit un transfert horizontal récent.",
-        "{-crit}{bar}{bar.s}Les résultats, d'après la correction du TP. Le seuil de quatre-vingts pour cent. "
+        "{-crit}{bar}{bar.s}Les résultats de la comparaison. Le seuil de quatre-vingts pour cent. "
         "{bar.1}Syncytine un humaine contre protéine du virus MSRV : quatre-vingt-sept pour cent. Au-delà du seuil, entre un virus et un primate : c'est un indice fort. "
         "{bar.2}Syncytine deux contre MSRV : vingt pour cent seulement. Une ressemblance faible, loin sous le seuil : on y reviendra.",
         "{-bar}{args}Le raisonnement, en trois arguments. {args.1}Un argument moléculaire : quatre-vingt-sept pour cent de similitude entre la syncytine un et la protéine ENV. "
         "Un virus et un primate sont extrêmement éloignés : par transfert vertical, leurs protéines n'auraient aucune raison de se ressembler autant. "
         "Cette ressemblance signe une parenté entre les deux gènes.",
-        "{args.2}Un argument fonctionnel : les deux protéines font fusionner des membranes. Ta prof parle de similitude fonctionnelle. "
+        "{args.2}Un argument fonctionnel : les deux protéines font fusionner des membranes. On parle de similitude fonctionnelle. "
         "C'est un argument de plus, mais qui ne suffirait pas seul.",
         "{args.3}Un argument de parenté entre primates : l'arbre construit avec la syncytine un du gorille, du chimpanzé, de l'humain, de l'orang-outan, "
         "du gibbon et du babouin, et avec la séquence du virus, place la séquence virale tout près des syncytines des grands singes et de l'humain.",
         "{args.4}Conclusion : le gène de la syncytine un est issu d'un transfert horizontal de gène viral.",
-        "{-args}{piege1}Deux pièges. {piege1.1}Une diapositive parle d'analogie de structure. Le mot juste est homologie de séquence : "
+        "{-args}{piege1}Deux pièges. {piege1.1}On ne parle pas d'analogie de structure, mais d'homologie de séquence : "
         "des séquences qui se ressemblent au point de signer une origine commune. Seule la ressemblance des séquences prouve la parenté : "
         "deux protéines peuvent avoir la même fonction sans être apparentées.",
         "{-piege1}{piege2}Et la syncytine deux ? Vingt pour cent montrent seulement qu'elle ne provient pas de ce virus-là. "
-        "Cela ne prouve pas qu'elle vienne d'un transfert vertical, et la correction de ta prof ne conclut rien sur elle. "
-        "On sait d'ailleurs, mais c'est une source extérieure au cours, qu'elle vient elle aussi d'un rétrovirus, d'un autre. "
+        "Cela ne prouve pas qu'elle vienne d'un transfert vertical. "
+        "On sait d'ailleurs qu'elle vient elle aussi d'un rétrovirus, mais d'un autre. "
         "Conclure « transfert vertical » est une erreur de raisonnement.",
         "{-piege2}",
     ], vis={
@@ -368,7 +367,7 @@ SCENES = [
                     x=150, y=150, w=980),
         "env": dict(type="cols", g="Syncytines des primates", gq="font fusionner les cellules de l'embryon et de la mère (placenta)",
                     d="Protéines ENV du virus MSRV", dq="font fusionner l'enveloppe du virus avec la cellule infectée", vs="="),
-        "crit": dict(type="def", terme="Le critère du TP", cles=["80", "horizontal"],
+        "crit": dict(type="def", terme="Le critère des 80 %", cles=["80", "horizontal"],
                      t="Par transfert vertical, les mutations éloignent les protéines de deux espèces éloignées.",
                      etape="Plus de 80 % de ressemblance entre organismes éloignés : indice d'un transfert horizontal récent.", x=150, y=200, w=980),
         "bar": dict(type="illu", nom="barres", x=90, y=160, w=1100, h=400, bh=64, fs=27, max=100, seuil=80, unite=" %", lseuil="seuil : 80 %", x0=380, items=[
@@ -388,10 +387,10 @@ SCENES = [
     }),
 
     # ================================================================ D2 bis. le TP syncytine façon bac
-    dict(id="ece", chap="Le TP syncytine, façon bac", fond="foret", humeur="calme",
+    dict(id="ece", chap="La syncytine, façon ECE", fond="foret", humeur="calme",
          retenir="Une conclusion d'ECE est complète, organisée et distanciée : une phrase sur les limites de la démarche, ou une expérience qui la compléterait.",
          beats=[
-        "{etapes}{etapes.1}Ce TP est un vrai TP type bac. Reprenons sa correction, étape par étape. La stratégie : comparer avec Geniegen2 les séquences en acides aminés "
+        "{etapes}{etapes.1}Cette comparaison est un sujet classique d'ECE. Reprenons-la, étape par étape. La stratégie : comparer avec Geniegen2 les séquences en acides aminés "
         "des syncytines humaines et de primates avec celles des protéines virales MSRV. On s'attend à démontrer un transfert viral si la similitude dépasse quatre-vingts pour cent.",
         "{etapes.2}Communiquer : un tableau titré, « Tableau de comparaison des protéines syncytines humaines et MSRV », avec deux lignes seulement : "
         "syncytine un, quatre-vingt-sept pour cent ; syncytine deux, vingt pour cent. Seulement l'essentiel.",
@@ -399,24 +398,24 @@ SCENES = [
         "{etapes.4}La ressource complémentaire apporte la similitude fonctionnelle et l'arbre des primates. "
         "{etapes.5}Et la conclusion : le gène ENW1 des gorilles, chimpanzés, orangs-outans et gibbons provient d'un gène d'origine rétrovirale "
         "intégré dans le génome de leur ancêtre commun.",
-        "{-etapes}{note_ece}Comment ta prof note une ECE. {note_ece.1}La communication, sur cinq : techniquement correcte, bien renseignée, avec titre et unités, et pertinente. "
-        "{note_ece.2}La conclusion, sur trois : complète, organisée, et distanciée.",
+        "{-etapes}{note_ece}Ce qui est évalué. {note_ece.1}La communication : techniquement correcte, bien renseignée, avec titre et unités, et pertinente. "
+        "{note_ece.2}La conclusion : complète, organisée, et distanciée.",
         "{note_ece.3}Le critère le plus souvent oublié, c'est le dernier. Pour être distancié, critique la démarche. "
-        "Ta prof propose : on pourrait améliorer la preuve en insérant directement le gène ENW1 dans des cellules, pour voir s'il déclenche leur fusion. Une phrase suffit.",
-        "{-note_ece}{pa_ece}Entraîne-toi : rédige la conclusion complète de ce TP, en terminant par une phrase distanciée.",
+        "Par exemple : on pourrait améliorer la preuve en insérant directement le gène ENW1 dans des cellules, pour voir s'il déclenche leur fusion. Une phrase suffit.",
+        "{-note_ece}{pa_ece}Entraîne-toi : rédige la conclusion complète de cette comparaison, en terminant par une phrase distanciée.",
         "{pa_ece.stop}{-pa_ece}",
     ], vis={
-        "etapes": dict(type="liste", titre="Le TP, de la stratégie à la conclusion", items=[
+        "etapes": dict(type="liste", titre="L'ECE, de la stratégie à la conclusion", items=[
             "Stratégie : comparer les séquences (Geniegen2) ; transfert viral attendu si plus de 80 %",
             "Communiquer : un tableau titré, deux lignes, 87 % et 20 %",
             "Exploiter : 87 % > 80 %, compatible avec une origine virale",
             "Ressource : similitude fonctionnelle et arbre des primates",
             "Conclure : gène rétroviral intégré chez l'ancêtre commun des grands singes"], x=130, y=120, w=1020),
-        "note_ece": dict(type="liste", titre="La grille de notation de l'ECE", items=[
-            "Communication (/5) : techniquement correcte, bien renseignée, pertinente",
-            "Conclusion (/3) : complète, organisée, distanciée",
-            "Distanciée : par exemple, insérer ENW1 dans des cellules et observer leur fusion"], marques=["5", "3", "!"], x=150, y=180, w=980),
-        "pa_ece": dict(type="pause", t="Rédige la conclusion du TP syncytine, en finissant par une phrase distanciée."),
+        "note_ece": dict(type="liste", titre="Ce qui est évalué", items=[
+            "Communication : techniquement correcte, bien renseignée, pertinente",
+            "Conclusion : complète, organisée, distanciée",
+            "Distanciée : par exemple, insérer ENW1 dans des cellules et observer leur fusion"], marques=["1", "2", "!"], x=150, y=180, w=980),
+        "pa_ece": dict(type="pause", t="Rédige la conclusion de la comparaison des syncytines, en finissant par une phrase distanciée."),
     }),
 
     # ================================================================ D3. horizontal puis vertical
@@ -447,34 +446,34 @@ SCENES = [
          retenir="Les transferts horizontaux touchent tous les grands groupes du vivant, donneurs ou receveurs ; les gènes reçus s'expriment et apportent de nouvelles fonctions.",
          beats=[
         "{idee}La syncytine n'est pas un cas isolé. {idee.1}Les transferts horizontaux concernent tous les grands groupes du vivant, comme donneurs ou comme receveurs. "
-        "Les gènes reçus s'expriment, apportent de nouvelles fonctions, et participent à l'évolution des espèces. Ta prof a montré trois documents de manuels.",
-        "{-idee}{docs}{docs.1}Un : un diagramme circulaire, du manuel Nathan. Il relie l'origine des gènes, protistes, plantes, champignons, bactéries, archées, virus, "
-        "aux receveurs : l'humain, le nématode, un ver rond microscopique, et la drosophile. Pour l'humain, l'exemple est celui des syncytines un et deux.",
-        "{docs.2}Deux, du manuel Bordas : on a compté les gènes d'origine étrangère qui s'expriment dans vingt-six espèces. Quarante chez les drosophiles, "
+        "Les gènes reçus s'expriment, apportent de nouvelles fonctions, et participent à l'évolution des espèces. Trois exemples.",
+        "{-idee}{docs}{docs.1}Un : l'origine des gènes reçus. Protistes, plantes, champignons, bactéries, archées et virus en donnent "
+        "à des receveurs : l'humain, le nématode, un ver rond microscopique, et la drosophile. Pour l'humain, l'exemple est celui des syncytines un et deux.",
+        "{docs.2}Deux : on a compté les gènes d'origine étrangère qui s'expriment dans vingt-six espèces. Quarante chez les drosophiles, "
         "cent soixante-treize chez les nématodes, cent neuf chez les primates, dont l'humain. Surtout venus de bactéries et de protistes. Et sans compter les gènes viraux.",
         "{docs.3}Trois, la lignée verte : un arbre du vivant où des flèches horizontales montrent les gènes reçus par les végétaux, avec leur fonction. "
         "La genèse des chloroplastes, le métabolisme de l'amidon, la réparation de l'ADN, la résistance au stress, les vaisseaux conducteurs, la germination du pollen et des graines.",
-        "{-docs}{ncbi}En activité, tu as cherché des gènes humains d'origine virale sur le site du NCBI, où le génome humain est en libre accès. "
-        "Une réponse possible, proposée par le site et pas corrigée par ta prof : le gène de la syncytine un, sur le chromosome sept, et celui de la syncytine deux, sur le chromosome six. "
+        "{-docs}{ncbi}Ces gènes sont accessibles à tous : le génome humain est en libre accès dans la base du NCBI. "
+        "On y trouve le gène de la syncytine un, sur le chromosome sept, et celui de la syncytine deux, sur le chromosome six. "
         "Dans la base, ils s'appellent ERVW-1 et ERVFRD-1 : E R V, pour rétrovirus endogène.",
         "{-ncbi}{trans}Dernier mécanisme de la branche : la transduction. {trans.1}C'est un transfert d'ADN bactérien par un virus de bactérie, un bactériophage. "
         "En se multipliant dans une bactérie, le virus emporte par erreur un fragment d'ADN bactérien, qu'il injecte ensuite dans la bactérie suivante. "
-        "{trans.2}Ton cours le précise : sache que ce mécanisme existe. On ne te demandera ni de l'expliquer, ni d'en connaître le schéma.",
+        "{trans.2}Retiens simplement que ce mécanisme existe : le mot et le principe suffisent.",
         "{-trans}",
     ], vis={
         "idee": dict(type="def", terme="L'idée", cles=["tous", "fonctions"],
                      t="Les transferts horizontaux concernent tous les grands groupes du vivant, comme donneurs ou comme receveurs.",
                      etape="Les gènes reçus s'expriment, apportent de nouvelles fonctions et participent à l'évolution.", x=150, y=200, w=980),
-        "docs": dict(type="liste", titre="Trois documents de manuels", items=[
-            "Nathan : des protistes, plantes, champignons, bactéries, archées et virus vers l'humain, le nématode, la drosophile",
-            "Bordas : gènes étrangers actifs, 40 chez les drosophiles, 173 chez les nématodes, 109 chez les primates",
-            "Nathan : la lignée verte, chloroplastes, amidon, réparation de l'ADN, stress, vaisseaux, pollen et graines"], x=130, y=150, w=1020),
-        "ncbi": dict(type="note", titre="Activité NCBI · réponse proposée", cles=["syncytine"],
-                     t="Syncytine 1 (chromosome 7) et syncytine 2 (chromosome 6), ERVW-1 et ERVFRD-1 dans la base : noms venus du NCBI, pas du cours.",
+        "docs": dict(type="liste", titre="Trois exemples", items=[
+            "Des protistes, plantes, champignons, bactéries, archées et virus vers l'humain, le nématode, la drosophile",
+            "Gènes étrangers actifs, 40 chez les drosophiles, 173 chez les nématodes, 109 chez les primates",
+            "La lignée verte, chloroplastes, amidon, réparation de l'ADN, stress, vaisseaux, pollen et graines"], x=130, y=150, w=1020),
+        "ncbi": dict(type="note", titre="Dans la base du NCBI", cles=["syncytine"],
+                     t="Syncytine 1 (chromosome 7) : ERVW-1 ; syncytine 2 (chromosome 6) : ERVFRD-1. ERV : rétrovirus endogène.",
                      x=150, y=210, w=980),
         "trans": dict(type="def", terme="Transduction", cles=["bactériophage"],
                       t="Transfert d'ADN bactérien d'une bactérie à une autre par un virus de bactérie, le bactériophage.",
-                      etape="À savoir seulement : ni explication ni schéma demandés.", x=150, y=200, w=980),
+                      etape="À connaître : le mot et le principe.", x=150, y=200, w=980),
     }),
 
     # ================================================================ E. autotrophes / hétérotrophes
@@ -546,10 +545,10 @@ SCENES = [
         "{dm.2}La membrane interne correspond à la membrane de la bactérie. {dm.3}La membrane externe, à la membrane de la vésicule formée par la cellule hôte.",
         "{-dm}{pa_en}C'est le schéma étoilé de cette branche : l'endosymbiose, avec la double membrane légendée. Refais-le.",
         "{pa_en.stop}{-pa_en}{-an6}{tab_ch}Au microscope électronique, un chloroplaste. On voit son enveloppe, et ses empilements de membranes à l'intérieur. "
-        "Ta professeure commente un schéma de l'endosymbiose : on se rend compte que la membrane interne du chloroplaste est, à l'origine, la membrane de la cyanobactérie. "
+        "Sur un schéma de l'endosymbiose, on voit que la membrane interne du chloroplaste est, à l'origine, la membrane de la cyanobactérie. "
         "Cela explique les ressemblances de structure entre l'une et l'autre. L'endosymbiose de cyanobactéries a ainsi donné naissance à la lignée verte.",
         "{-tab_ch}{tab_mi}Et voici deux mitochondries, dans une cellule de poumon de mammifère. Même enveloppe double.",
-        "{-tab_mi}{nuance}Une nuance, hors programme. Le modèle du cours, une membrane bactérienne plus une membrane de vésicule, est celui qu'on attend au bac. "
+        "{-tab_mi}{nuance}Une nuance, hors programme. Le modèle classique, une membrane bactérienne plus une membrane de vésicule, est celui qu'on attend au bac. "
         "Les recherches récentes le nuancent : les cyanobactéries possèdent déjà deux membranes, et beaucoup de chercheurs pensent que les deux membranes de l'organite "
         "viennent de la bactérie. Cela ne change pas la conclusion : la double membrane témoigne d'une bactérie englobée dans une cellule.",
         "{-nuance}",
@@ -590,7 +589,7 @@ SCENES = [
         "{-arbre}{tab_cy}Question de bac : de quel type de bactérie provient le chloroplaste ? Ici, des colonies de Nostoc, une cyanobactérie.",
         "{-tab_cy}{rep_cy}Réponse : d'une cyanobactérie. {rep_cy.1}Comme le chloroplaste, elle réalise la photosynthèse. {rep_cy.2}Elle possède la même enzyme clé, la RubisCo. "
         "{rep_cy.3}Son ARN ribosomique seize S est le plus proche de celui du chloroplaste. {rep_cy.4}Et elle a la même taille et se divise de la même façon.",
-        "{-rep_cy}{melange}Ne mélange pas les deux organites. Le tableau de la diapositive écrit que la cyanobactérie devient un chloroplaste qui produit de l'énergie par mitochondries. "
+        "{-rep_cy}{melange}Ne mélange pas les deux organites. La cyanobactérie ne devient pas un chloroplaste qui produirait de l'énergie par des mitochondries. "
         "Il faut séparer : la cyanobactérie est l'ancêtre du chloroplaste, la photosynthèse ; une alpha-protéobactérie est l'ancêtre de la mitochondrie, la respiration. "
         "Ce sont deux endosymbioses distinctes.",
         "{-melange}",
@@ -617,7 +616,7 @@ SCENES = [
     dict(id="objections", chap="Deux objections qui se retournent", fond="cellule", humeur="tension",
          retenir="Peu de gènes dans les organites (67, 87) : transfert de gènes vers le noyau, prise de relais par le noyau, protéines importées. Un transfert horizontal qui complexifie le génome de l'hôte.",
          beats=[
-        "{pc2}{pc2.1}La correction faite en classe : le tableau des arguments, pour et contre. "
+        "{pc2}{pc2.1}Faisons le tableau des arguments, pour et contre. "
         "En faveur : la similitude des ARN ribosomiques ; la RubisCo commune ; la membrane interne de composition bactérienne ; l'ADN circulaire ; "
         "la même fonction ; la taille et la division ; l'arbre phylogénétique.",
         "{pc2.2}Contre ? Deux membranes chez les organites, une seule chez la bactérie. Réponse : cette double membrane est justement la preuve de l'ingestion d'une bactérie.",
@@ -625,7 +624,7 @@ SCENES = [
         "{pc2.hl}À retenir : les deux arguments contre se retournent. Bien expliqués, ils deviennent des arguments pour.",
         "{-pc2}{gn}Développons le second. {gn.1}Le plus proche parent bactérien libre de la mitochondrie a environ mille six cents gènes. {gn.2}La mitochondrie, soixante-sept. "
         "{gn.3}Une cyanobactérie en a de mille cinq cents à dix mille. {gn.4}Le chloroplaste, quatre-vingt-sept.",
-        "{-gn}{an7}{pt7}{pt7.1}{an7.1}L'explication, d'après la correction de ta prof. Un : le transfert de gènes vers le noyau. "
+        "{-gn}{an7}{pt7}{pt7.1}{an7.1}L'explication. Un : le transfert de gènes vers le noyau. "
         "Au cours de l'évolution, une grande partie des gènes de la bactérie ancestrale a été transférée vers le noyau de la cellule hôte. "
         "Pour le chloroplaste, environ mille quatre cents gènes transférés ; quatre-vingt-sept seulement conservés dans l'organite.",
         "{pt7.2}{an7.2}Deux : la prise de relais par le noyau. Ce sont désormais les gènes du noyau qui codent la plupart des protéines de l'organite.",
@@ -667,20 +666,19 @@ SCENES = [
         "pour maintenir et exprimer un génome immense.",
         "{pt8.3}{an8.2}Le chloroplaste descend d'une cyanobactérie ; la mitochondrie, par la même histoire, d'une alpha-protéobactérie. "
         "Et en héritant de gènes bactériens, le génome de la cellule hôte s'est complexifié.",
-        "{-pt8}{-an8}{bilan}{bilan.1}Voici le bilan à écrire, celui de la diapositive de ta prof. Les procaryotes sont fortement intégrés au sein de la cellule hôte : "
+        "{-pt8}{-an8}{bilan}{bilan.1}Voici le bilan à écrire. Les procaryotes sont fortement intégrés au sein de la cellule hôte : "
         "chacun retire de cette association des bénéfices mutuels. C'est l'endosymbiose, à l'origine de l'apparition des métabolismes chez les eucaryotes. "
         "{bilan.2}Autotrophes, qui synthétisent leur matière organique à partir de matière minérale grâce à la photosynthèse ; {bilan.3}et hétérotrophes, "
         "qui produisent de l'énergie à partir de matière organique préexistante grâce à la respiration.",
-        "{-bilan}{mit2}Un dernier piège. Le bilan de la diapositive dit que les organites se divisent par mitoses. Non : comme les bactéries dont ils descendent, "
+        "{-bilan}{mit2}Un dernier piège. Les organites ne se divisent pas par mitose : comme les bactéries dont ils descendent, "
         "ils se divisent par étranglement médian, indépendamment de la cellule. C'est même l'un des arguments de leur origine bactérienne.",
-        "{-mit2}{tp}{tp.1}Le TP ECE sur l'origine des chloroplastes. Sa stratégie est imposée : comparer, avec Geniegen2, les ARN ribosomiques seize S de bactéries, "
+        "{-mit2}{tp}{tp.1}Une autre ECE classique : l'origine des chloroplastes. Sa stratégie est imposée : comparer, avec Geniegen2, les ARN ribosomiques seize S de bactéries, "
         "de chloroplastes et de plantes vertes ; {tp.2}et la séquence de la RubisCo chez des bactéries et des plantes. "
         "{tp.3}On s'attend à ce que l'ARN du chloroplaste ressemble davantage à celui des bactéries, et surtout d'une cyanobactérie, qu'à l'ARN dix-huit S du noyau de la plante ; "
         "et que sa RubisCo soit très proche de celle des cyanobactéries.",
-        "{-tp}{err}{err.1}La feuille de TP contient trois erreurs, signalées sur le site. Elle présente Nostoc et Chlorobium comme des plantes vertes : "
+        "{-tp}{err}{err.1}Deux précisions utiles. Nostoc et Chlorobium ne sont pas des plantes : "
         "ce sont des bactéries photosynthétiques. Nostoc est une cyanobactérie, Chlorobium une bactérie sulfureuse verte. "
-        "{err.2}Elle dit qu'un ribosome est une protéine : c'est un assemblage d'ARN ribosomiques et de protéines. "
-        "{err.3}Et son titre parle des mitochondries, alors que tout le TP porte sur les chloroplastes.",
+        "{err.2}Et un ribosome n'est pas une protéine : c'est un assemblage d'ARN ribosomiques et de protéines.",
         "{-err}",
     ], vis={
         "an8": dict(type="anim", nom="endosymbiose", x=40, y=72, h=624, seg=[[48, 56], [56, 62]]),
@@ -694,25 +692,24 @@ SCENES = [
             "Hétérotrophes : énergie à partir de matière organique préexistante, respiration"], x=150, y=180, w=980),
         "mit2": dict(type="note", titre="Les organites ne font pas de mitose", cles=["étranglement"],
                      t="Ils se divisent par étranglement médian, comme les bactéries, indépendamment de la cellule.", x=150, y=220, w=980),
-        "tp": dict(type="liste", titre="TP ECE · l'origine des chloroplastes", items=[
+        "tp": dict(type="liste", titre="ECE · l'origine des chloroplastes", items=[
             "Comparer les ARN ribosomiques 16S : bactéries, chloroplastes, plantes vertes",
             "Comparer la RubisCo : bactéries et plantes vertes",
             "Attendu : chloroplaste ≈ cyanobactérie, loin de l'ARN 18S du noyau"], x=150, y=170, w=980),
-        "err": dict(type="liste", titre="Trois erreurs dans la fiche", items=[
+        "err": dict(type="liste", titre="Deux précisions", items=[
             "Nostoc et Chlorobium ne sont pas des plantes : ce sont des bactéries",
-            "Un ribosome n'est pas une protéine : ARN ribosomiques + protéines",
-            "Le titre dit « mitochondries » : le TP porte sur les chloroplastes"], marques=["✗", "✗", "✗"], x=150, y=170, w=980),
+            "Un ribosome n'est pas une protéine : ARN ribosomiques + protéines"], marques=["!", "!"], x=150, y=170, w=980),
     }),
 
     # ================================================================ exercice de synthèse (type bac)
     dict(id="exo", chap="Exercice type bac", fond="aube", humeur="tension",
          retenir="Plan de synthèse : I. les bactéries (transformation, conjugaison, transgenèse) ; II. les virus (rétrovirus, syncytine) ; III. les endosymbioses (organites, gènes vers le noyau).",
          beats=[
-        "{ex}Pour finir, un sujet de synthèse, type question de cours du bac. Ce sujet est inventé pour la vidéo, mais il couvre tout le chapitre. "
+        "{ex}Pour finir, un sujet de synthèse, type question de synthèse du bac. Ce sujet est inventé pour la vidéo, mais il couvre tout le chapitre. "
         "Montrer que les transferts horizontaux de gènes contribuent à la complexification des génomes. Tu rédigeras une introduction, "
         "un développement structuré, illustré d'exemples précis, et une conclusion. Un schéma est valorisé.",
         "{-ex}{pa_ex}Prends vingt minutes. Fais d'abord ton plan au brouillon, avec un exemple précis par idée.",
-        "{pa_ex.stop}{-pa_ex}La correction. {exc}{exc.q1}{intro}L'introduction. {intro.1}Partir du transfert vertical, des parents aux descendants, "
+        "{pa_ex.stop}{-pa_ex}Une réponse possible. {exc}{exc.q1}{intro}L'introduction. {intro.1}Partir du transfert vertical, des parents aux descendants, "
         "et dire que ses brassages ne suffisent pas à expliquer toute la diversité génétique. {intro.2}Définir le transfert horizontal, et dire ce qui le rend possible : "
         "l'universalité de l'ADN et du code génétique. {intro.3}Poser la question : comment ces transferts enrichissent-ils les génomes ?",
         "{-intro}{exc.q2}{plan_ex}{plan_ex.1}Le développement, en trois parties, des gènes isolés à la cellule entière. "
@@ -752,10 +749,10 @@ SCENES = [
     dict(id="bac", chap="Pour le bac", fond="aube", humeur="calme",
          retenir="Les mots exacts : non apparenté, plasmide, pont cytoplasmique, vecteur, transcription inverse, cellule germinale, homologie de séquence, double membrane, étranglement.",
          beats=[
-        "{sujets}{sujets.1}Ce qu'il faut savoir rédiger, sans regarder le cours. L'introduction du chapitre : le transfert vertical, ses limites, l'universalité de l'ADN, "
+        "{sujets}{sujets.1}Ce qu'il faut savoir rédiger, sans aide. L'introduction du chapitre : le transfert vertical, ses limites, l'universalité de l'ADN, "
         "la définition du transfert horizontal, et la problématique. {sujets.2}L'interprétation de l'expérience de Griffith, lot par lot.",
         "{sujets.3}La diffusion des résistances aux antibiotiques : mutation rare contre plasmide fréquent, conjugaison, sélection, sans jamais de formulation finaliste. "
-        "{sujets.4}La production d'insuline par transgenèse, schéma à l'appui. {sujets.5}La conclusion du TP syncytine, avec ses trois arguments et sa phrase distanciée. "
+        "{sujets.4}La production d'insuline par transgenèse, schéma à l'appui. {sujets.5}La conclusion de la comparaison des syncytines, avec ses trois arguments et sa phrase distanciée. "
         "{sujets.6}Et l'argumentation de l'origine endosymbiotique des chloroplastes : les caractères bactériens, la cyanobactérie, le génome réduit.",
         "{-sujets}{schemas}{schemas.1}Les schémas à savoir refaire, les étoiles de la carte. La conjugaison bactérienne. {schemas.2}La transgenèse de l'insuline. "
         "{schemas.3}Le cycle du rétrovirus. {schemas.4}Et l'endosymbiose, avec la double membrane légendée.",
@@ -767,7 +764,7 @@ SCENES = [
         "sujets": dict(type="liste", titre="Six rédactions à maîtriser", items=[
             "L'introduction du chapitre", "Interpréter l'expérience de Griffith",
             "La diffusion des résistances aux antibiotiques", "La production d'insuline par transgenèse (schéma)",
-            "La conclusion du TP syncytine", "L'origine endosymbiotique des chloroplastes"], x=150, y=110, w=980),
+            "La conclusion sur la syncytine", "L'origine endosymbiotique des chloroplastes"], x=150, y=110, w=980),
         "schemas": dict(type="liste", titre="★ Les schémas à refaire", items=[
             "La conjugaison bactérienne", "La transgenèse : l'insuline", "Le cycle d'un rétrovirus",
             "L'endosymbiose et la double membrane"], marques=["★", "★", "★", "★"], x=150, y=170, w=980),
@@ -825,5 +822,5 @@ CREDITS = [
     "galles du collet sur un orme, Rosser1954 (CC BY-SA 4.0) ; particules de VIH-1, NIAID (CC BY 2.0) ; placenta humain, Asturnut (CC BY-SA 3.0) ; "
     "cellules d'élodée, Kelvinsong (CC BY-SA 3.0) ; Lynn Margulis en 2005, Javier Pedreira (CC BY 2.0) ; Amoeba proteus, SmallRex (CC BY-SA 4.0) ; "
     "chloroplaste d'anémone, National Cancer Institute (domaine public) ; mitochondries, Louisa Howard (domaine public) ; Nostoc, Christian Fischer (CC BY-SA 3.0).",
-    "Animations, carte mentale et schémas : faits pour le site, d'après le cours et les corrections faites en classe.",
+    "Animations, schémas et carte mentale du thème : faits pour la vidéo. Exercice de synthèse inventé pour la vidéo.",
 ]
