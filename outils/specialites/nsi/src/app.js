@@ -289,7 +289,7 @@
       ['<span class="pr">&gt;&gt;&gt;</span> bac.nsi.epreuve', 4],
       ['<span class="ok">écrit 3 h 30 + pratique 1 h · coef. 16</span>', 5],
       ['<span class="pr">&gt;&gt;&gt;</span> <span class="curseur"></span>', 6]
-    ].map(function (l) { return '<span class="ligne" style="animation-delay:' + (0.25 + l[1] * 0.42).toFixed(2) + 's">' + l[0] + "</span>"; }).join("\n");
+    ].map(function (l) { return '<span class="ligne" style="animation-delay:' + (0.2 + l[1] * 0.3).toFixed(2) + 's">' + l[0] + "</span>"; }).join("\n");
     var h = '<div class="heros"><div>' + invite("", "python3 -m bac --nsi") + '<h1><span class="kw">import</span> <span class="bac">bac</span></h1>' +
       '<p class="acc">Le terminal de révision de la spécialité <b>NSI en Terminale</b> : cours rédigés à fond, code Python testé ligne à ligne, schémas qui s’animent, QCM, cartes mémoire et exercices type bac.</p>' +
       '<div class="rangee"><a class="btn prim" href="#' + CH[0].id + '">' + ic("lecture") + "Commencer le chapitre 1</a>" +
@@ -511,7 +511,23 @@
     var imp = $("[data-imprimer]", page);
     if (imp) imp.addEventListener("click", function () { window.print(); });
     $$("[data-w]", page).forEach(function (z) { var k = z.getAttribute("data-w"), f = WIDGETS[k] || (window.WIDGETS_EXT || {})[k]; if (f) f(z, z.getAttribute("data-opt"), OUTILS); });
+    marquerDefilement(page);
   }
+  /* Blocs de code plus larges que l'écran : un fondu à droite signale qu'on peut faire glisser le code. */
+  function marquerDefilement(racine) {
+    $$(".code > pre", racine).forEach(function (pre) {
+      var c = pre.parentNode, f = $(":scope > .fondu-d", c);
+      var deborde = pre.scrollWidth > pre.clientWidth + 2;
+      if (!deborde) { if (f) c.removeChild(f); return; }
+      if (!f) {
+        f = document.createElement("span"); f.className = "fondu-d"; f.setAttribute("aria-hidden", "true"); c.appendChild(f);
+        pre.addEventListener("scroll", function () { f.classList.toggle("fin", pre.scrollLeft + pre.clientWidth >= pre.scrollWidth - 4); }, { passive: true });
+      }
+      f.style.top = pre.offsetTop + "px"; f.style.height = pre.offsetHeight + "px";
+    });
+  }
+  var attenteTaille = null;
+  window.addEventListener("resize", function () { clearTimeout(attenteTaille); attenteTaille = setTimeout(function () { marquerDefilement($("#page")); }, 200); });
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-copie]");
     if (!b) return;
@@ -522,7 +538,7 @@
 
   /* ---------- recherche plein écran ---------- */
   var INDEX = null;
-  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|[\w,-]+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim(); }
+  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|[\w,-]+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").replace(/\( /g, "(").replace(/ ([),.])/g, "$1").trim(); }
   function construireIndex() {
     INDEX = [];
     CH.forEach(function (c) {
@@ -771,8 +787,10 @@
         });
         $(".arbre", z).innerHTML = '<div class="titre-pile" style="margin-top:10px">arbre des appels</div><div class="arbre-appels">' + svg + "</svg></div>";
       } else $(".arbre", z).innerHTML = "";
-      $(".msg", z).innerHTML = s.msg;
+      var m = $(".msg", z); m.innerHTML = s.msg;
+      if (!neuf && MO()) { m.classList.remove("neuf"); void m.offsetWidth; m.classList.add("neuf"); }
       $(".cpt", z).textContent = "étape " + (i + 1) + " / " + T.S.length;
+      $('[data-c="suiv"]', z).disabled = i >= T.S.length - 1; $('[data-c="prec"]', z).disabled = i === 0; $('[data-c="debut"]', z).disabled = i === 0;
     }
     function stop() { if (jeu) { clearInterval(jeu); jeu = null; } var b = $('[data-c="jeu"]', z); if (b) b.innerHTML = ic("lecture") + "<span>lecture</span>"; }
     $$(".choix-w button", z).forEach(function (b) { b.addEventListener("click", function () { charger(b.getAttribute("data-t")); }); });
@@ -1003,7 +1021,8 @@
     function dessine(saut) {
       var e = etapes[i], n = etapes.length, plein = Math.round(10 * (i + 1) / n);
       o.dessine(scene, e, i, etapes, saut || !MO());
-      $(".msg", z).innerHTML = e.msg || "";
+      var m = $(".msg", z); m.innerHTML = e.msg || "";
+      if (!saut && MO()) { m.classList.remove("neuf"); void m.offsetWidth; m.classList.add("neuf"); }
       $(".cpt", z).textContent = "[" + "#".repeat(plein) + ".".repeat(10 - plein) + "] " + (i + 1) + "/" + n;
       $('[data-c="prec"]', z).disabled = i === 0; $('[data-c="debut"]', z).disabled = i === 0;
       $('[data-c="suiv"]', z).disabled = i === n - 1;

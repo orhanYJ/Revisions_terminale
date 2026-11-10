@@ -23,13 +23,13 @@
   /* clair : listing papier, encre bleue */
   --bg: #F8F6EC; --bg2: #FFFEF8; --bg3: #EFEDE0; --zebre: #E7F0DF;
   --ligne: #D9D5C3; --ligne2: #C7C2AC;
-  --encre: #1D2346; --encre2: #565B73; --encre3: #7C8094;
+  --encre: #1D2346; --encre2: #565B73; --encre3: #63677B;
   --vert: #17733F; --vert-f: #E1F0E2; --ambre: #9A5800; --ambre-f: #FBEBCF;
   --rouge: #B3261E; --rouge-f: #F9E3DF; --bleu: #1F3A9E; --bleu-f: #E4E9F8;
   --violet: #6B3FA0;
   --accent: var(--bleu); --sur-accent: #FFFFFF;
-  --k-kw: #9A2F12; --k-str: #17733F; --k-num: #6B3FA0; --k-com: #7C8094; --k-fn: #1F3A9E; --k-bi: #0E6E85; --k-self: #9A5800; --k-op: #1D2346;
-  --code-bg: #FFFEF6; --code-enc: #1D2346; --gout: #A39F88;
+  --k-kw: #9A2F12; --k-str: #17733F; --k-num: #6B3FA0; --k-com: #63677B; --k-fn: #1F3A9E; --k-bi: #0E6E85; --k-self: #9A5800; --k-op: #1D2346;
+  --code-bg: #FFFEF6; --code-enc: #1D2346; --gout: #7D7A65;
   --ombre: 0 1px 0 rgba(29,35,70,.05), 0 6px 18px rgba(29,35,70,.07);
   --scan: none;
 }
@@ -37,12 +37,12 @@
   :root:not([data-theme="light"]){
     --bg: #0A1114; --bg2: #0F181C; --bg3: #142127; --zebre: #121E23;
     --ligne: #213239; --ligne2: #2C424A;
-    --encre: #D6E5DC; --encre2: #93AAA3; --encre3: #6D847F;
+    --encre: #D6E5DC; --encre2: #93AAA3; --encre3: #7E948F;
     --vert: #4FE08C; --vert-f: #11291E; --ambre: #FFB547; --ambre-f: #2A2112; --rouge: #FF7A70; --rouge-f: #2C1513;
     --bleu: #7CC4FF; --bleu-f: #10202D; --violet: #C9A8FF;
     --accent: var(--vert); --sur-accent: #06110B;
-    --k-kw: #FFB547; --k-str: #8FE3A8; --k-num: #C9A8FF; --k-com: #6D847F; --k-fn: #7CC4FF; --k-bi: #5FD7E0; --k-self: #FF9E7A; --k-op: #D6E5DC;
-    --code-bg: #0C1518; --code-enc: #D6E5DC; --gout: #3E5A5F;
+    --k-kw: #FFB547; --k-str: #8FE3A8; --k-num: #C9A8FF; --k-com: #7E948F; --k-fn: #7CC4FF; --k-bi: #5FD7E0; --k-self: #FF9E7A; --k-op: #D6E5DC;
+    --code-bg: #0C1518; --code-enc: #D6E5DC; --gout: #628185;
     --ombre: 0 0 0 1px rgba(79,224,140,.04), 0 8px 24px rgba(0,0,0,.35);
     --scan: repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0 1px, transparent 1px 3px);
   }
@@ -50,12 +50,12 @@
 :root[data-theme="dark"]{
   --bg: #0A1114; --bg2: #0F181C; --bg3: #142127; --zebre: #121E23;
   --ligne: #213239; --ligne2: #2C424A;
-  --encre: #D6E5DC; --encre2: #93AAA3; --encre3: #6D847F;
+  --encre: #D6E5DC; --encre2: #93AAA3; --encre3: #7E948F;
   --vert: #4FE08C; --vert-f: #11291E; --ambre: #FFB547; --ambre-f: #2A2112; --rouge: #FF7A70; --rouge-f: #2C1513;
   --bleu: #7CC4FF; --bleu-f: #10202D; --violet: #C9A8FF;
   --accent: var(--vert); --sur-accent: #06110B;
-  --k-kw: #FFB547; --k-str: #8FE3A8; --k-num: #C9A8FF; --k-com: #6D847F; --k-fn: #7CC4FF; --k-bi: #5FD7E0; --k-self: #FF9E7A; --k-op: #D6E5DC;
-  --code-bg: #0C1518; --code-enc: #D6E5DC; --gout: #3E5A5F;
+  --k-kw: #FFB547; --k-str: #8FE3A8; --k-num: #C9A8FF; --k-com: #7E948F; --k-fn: #7CC4FF; --k-bi: #5FD7E0; --k-self: #FF9E7A; --k-op: #D6E5DC;
+  --code-bg: #0C1518; --code-enc: #D6E5DC; --gout: #628185;
   --ombre: 0 0 0 1px rgba(79,224,140,.04), 0 8px 24px rgba(0,0,0,.35);
   --scan: repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0 1px, transparent 1px 3px);
 }
@@ -228,10 +228,10 @@ html.mo .btn:active{transform:translateY(1px) scale(.98)}
 .terminal .tete{display:flex;align-items:center;gap:7px;padding:0 12px;height:32px;background:var(--bg3);border-bottom:1px solid var(--ligne);font-family:var(--mono);font-size:.74rem;color:var(--encre3)}
 .terminal .tete i{width:10px;height:10px;border-radius:50%;background:#E5675C;display:block}.terminal .tete i:nth-child(2){background:#E8B04A}.terminal .tete i:nth-child(3){background:#5DBE6A}
 .terminal .tete span{margin-left:8px}
-.terminal pre{margin:0;padding:12px 14px 14px;font-size:.86rem;line-height:1.7;overflow-x:auto;white-space:pre}
+.terminal pre{margin:0;padding:12px 14px 14px;font-size:.86rem;line-height:1.7;overflow-x:auto;white-space:pre-wrap;overflow-wrap:anywhere}
 .terminal .pr{color:var(--vert);font-weight:700}.terminal .rep{color:var(--encre2)}.terminal .ok{color:var(--ambre)}
-html.mo .terminal .ligne{display:block;opacity:0;animation:apparait .01s linear forwards}
-@keyframes apparait{to{opacity:1}}
+html.mo .terminal .ligne{animation:apparait .2s linear backwards}
+@keyframes apparait{from{opacity:0}}
 .heros h1{font-size:2.05rem;margin:0}
 .heros h1 .kw{color:var(--k-kw)}.heros h1 .bac{color:var(--vert)}
 .heros .acc{font-size:1.06rem;color:var(--encre2);margin:.4em 0 0}
@@ -609,6 +609,89 @@ html.mo .ar td.chg{animation:ar-cell .9s ease-out}
 @keyframes ar-app{from{opacity:.15;transform:scale(.85)}}
 @keyframes ar-trace{to{stroke-dashoffset:0}}
 @keyframes ar-cell{from{background:var(--ambre);color:var(--bg)}}
+/* animation : une exception remonte la pile */
+.cadre-pile.erreur{border-left-color:var(--rouge);background:var(--rouge-f)}
+.exc-p{display:inline-block;font-size:.72rem;font-weight:700;color:var(--rouge);border:1.5px solid var(--rouge);border-radius:999px;padding:0 7px;margin-left:4px;background:var(--bg2)}
+.code pre .l.vise.exc-l{background:var(--rouge-f)!important;box-shadow:inset 3px 0 0 var(--rouge)}
+html.mo .exc-p.neuf{animation:exc-monte .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes exc-monte{from{opacity:.2;transform:translateY(-22px)}}
+/* animation : ordre de traitement d'une requête */
+.req-sql{font-size:.8rem;line-height:1.7;padding:6px 10px;margin-bottom:6px;border:1px solid var(--ligne);border-radius:8px;background:var(--code-bg);overflow-wrap:anywhere}
+.req-sql span{padding:1px 3px;border-radius:4px;color:var(--encre2)}
+.req-sql span.on{background:var(--ambre-f);color:var(--encre);font-weight:700;box-shadow:inset 0 -2px 0 var(--ambre)}
+.requete .table-bd tr.ok td{background:var(--vert-f)}
+.requete .table-bd tr.ko td{color:var(--encre3);text-decoration:line-through}
+.requete .table-bd tr.vise.ok td{background:var(--vert-f);font-weight:700}
+.requete .table-bd tr.vise.ko td{background:var(--rouge-f)}
+/* animation : repérer un cycle */
+.cyc .ar{stroke:var(--encre3);stroke-width:2}
+.cyc .pointe{fill:var(--encre3)}
+.cyc .ar.ex{stroke:var(--ambre);stroke-width:4}.cyc .pointe.ex{fill:var(--ambre)}
+.cyc .ar.cy{stroke:var(--rouge);stroke-width:4.5}.cyc .pointe.cy{fill:var(--rouge)}
+.nd-c circle{fill:var(--bg2);stroke:var(--encre3);stroke-width:2}
+.nd-c.gris circle{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:3}
+.nd-c.noir circle{fill:var(--encre2);stroke:var(--encre2);stroke-width:2}
+.graphe-svg .nd-c.noir text{fill:var(--bg)}
+html.mo .nd-c circle{transition:fill .3s,stroke .3s}
+html.mo .nd-c.neuf{animation:pop .4s cubic-bezier(.2,.9,.3,1.3);transform-box:fill-box;transform-origin:center}
+html.mo .cyc .ar{transition:stroke .3s,stroke-width .3s}
+.legende-c{display:flex;flex-direction:column;gap:4px;font-size:.76rem;color:var(--encre2);margin-top:10px}
+.legende-c i{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-2px;margin-right:6px;border:2px solid var(--encre3);background:var(--bg2)}
+.legende-c i.c-gris{border-color:var(--ambre);background:var(--ambre-f)}
+.legende-c i.c-noir{border-color:var(--encre2);background:var(--encre2)}
+/* animation : preuve de l'indécidabilité de l'arrêt */
+.ap-v{font-family:var(--mono);font-size:.86rem;min-height:2.2em;padding:6px 10px;border:1px solid var(--ligne2);border-radius:8px;background:var(--bg2);margin-bottom:8px}
+.ap-v>span:not(.repere){font-weight:700}
+html.mo .ap-v .neuf{display:inline-block;animation:pop .4s cubic-bezier(.2,.9,.3,1.3)}
+.ap-tour{display:inline-block;color:var(--ambre)}
+html.mo .ap-tour{animation:ap-tourne 1.2s linear infinite}
+@keyframes ap-tourne{to{transform:rotate(360deg)}}
+.ap-contra{display:none;font-family:var(--mono);font-weight:700;color:var(--rouge);border:2px solid var(--rouge);border-radius:8px;padding:6px 10px;text-align:center;background:var(--rouge-f)}
+.ap-contra.on{display:block}
+html.mo .ap-contra.on{animation:ap-tampon .45s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes ap-tampon{from{transform:scale(1.4) rotate(-4deg);opacity:0}}
+/* animation : algorithme d'Euclide par les carrés */
+.eu-zone{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:720px){.eu-zone{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);align-items:start}}
+.eu{display:block;width:100%;max-width:520px;height:auto;margin:0 auto;font-family:var(--mono)}
+.eu-fond{fill:var(--bg2);stroke:var(--encre3);stroke-width:1.5}
+.eu-reste{fill:none;stroke:var(--ambre);stroke-width:2.5;stroke-dasharray:6 4}
+.eu-c rect{stroke:var(--bg);stroke-width:1.2}
+.eu-c text{font-size:12px;font-weight:700;fill:var(--encre);text-anchor:middle;dominant-baseline:central}
+.eu-c.q0 rect{fill:var(--bleu-f);stroke:var(--bleu)}.eu-c.q1 rect{fill:var(--vert-f);stroke:var(--vert)}.eu-c.q2 rect{fill:var(--ambre-f);stroke:var(--ambre)}.eu-c.q3 rect{fill:var(--rouge-f);stroke:var(--rouge)}
+html.mo .eu-c.neuf{animation:pop .45s cubic-bezier(.2,.9,.3,1.3) backwards;transform-box:fill-box;transform-origin:center}
+.eu-cote{font-size:.82rem;display:flex;flex-direction:column;gap:3px}
+.eu-cote>div:not(.titre-pile):not(.eu-ab){padding:2px 8px;border-left:4px solid var(--ligne2);border-radius:4px}
+.eu-cote .q0{border-left-color:var(--bleu)!important}.eu-cote .q1{border-left-color:var(--vert)!important}.eu-cote .q2{border-left-color:var(--ambre)!important}.eu-cote .q3{border-left-color:var(--rouge)!important}
+.eu-ab{margin-top:6px;color:var(--encre2)}
+/* animation : cycle d'une machine de von Neumann */
+.vn{display:block;width:100%;max-width:520px;height:auto;margin:0 auto}
+.vn-bloc{fill:none;stroke:var(--encre3);stroke-width:1.4;stroke-dasharray:5 4}
+.vn-jeton rect{fill:var(--ambre);stroke:var(--bg2);stroke-width:2}
+.ar .scene svg .vn-jeton text{fill:var(--bg);font-weight:700;font-size:11px}
+.requete .table-bd th,.requete .table-bd td{padding:5px 8px}
+/* mouvement d'interface : panneaux, explications de QCM, cartes, recherche, menu, légendes des animations */
+html.mo details[open]>.corps{animation:deplie .32s cubic-bezier(.2,.8,.2,1)}
+@keyframes deplie{from{opacity:.2;transform:translateY(-6px)}}
+html.mo .q .expl{animation:monte .35s cubic-bezier(.2,.8,.2,1)}
+html.mo .q .choix button.bon,html.mo .q .choix button.faux{animation:choisi .4s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes choisi{40%{transform:scale(1.02)}}
+html.mo .fc-zone .fc{animation:fc-arrive .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes fc-arrive{from{opacity:.3;transform:translateX(14px)}}
+html.mo #srch.on .boite-r{animation:monte .25s cubic-bezier(.2,.8,.2,1)}
+html.mo #srch .res a{animation:monte .28s cubic-bezier(.2,.8,.2,1) backwards}
+html.mo #srch .res a:nth-child(2){animation-delay:.03s}html.mo #srch .res a:nth-child(3){animation-delay:.06s}html.mo #srch .res a:nth-child(4){animation-delay:.09s}html.mo #srch .res a:nth-child(n+5){animation-delay:.12s}
+html.mo .voile.on{animation:fondu .25s ease-out}
+@keyframes fondu{from{opacity:0}}
+html.mo .w .msg.neuf{animation:msg-in .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes msg-in{from{opacity:.35;transform:translateY(4px)}}
+/* bloc de code plus large que l'écran : fondu à droite (indice de défilement) */
+.code{position:relative}
+.code>.fondu-d{position:absolute;right:0;width:30px;pointer-events:none;background:linear-gradient(90deg,transparent,var(--code-bg) 85%)}
+.code>.fondu-d::after{content:"›";position:absolute;right:5px;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:1rem;font-weight:700;color:var(--ambre)}
+.code>.fondu-d.fin{opacity:0}
+html.mo .code>.fondu-d{transition:opacity .25s}
+@media print{.fondu-d{display:none}}
 
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -1778,7 +1861,7 @@ Un <b>attribut</b> est une variable attachée à un objet ; une <b>méthode</b> 
 <div class="boite hp"><div class="lab"># hors programme</div>
 <p>L’<b>héritage</b> permet de définir une classe à partir d’une autre (<code>class Chat(Animal)</code>) : elle récupère ses attributs et méthodes et peut en redéfinir. Le <b>polymorphisme</b> : un même appel (<code>x.parler()</code>, ou <code>len(x)</code>) produit un comportement adapté au type de <code>x</code>.</p></div>
 [[c1-heritage]]
-<p>La POO est l’un des trois <b>paradigmes</b> au programme, avec l’impératif et le fonctionnel (chapitre « Paradigmes de programmation », bientôt). Un même programme peut mélanger les paradigmes.</p>` }
+<p>La POO est l’un des trois <b>paradigmes</b> au programme, avec l’impératif et le fonctionnel (chapitre « Paradigmes de programmation »). Un même programme peut mélanger les paradigmes.</p>` }
   ],
   pieges: [
     { t: "Oublier self dans la définition d’une méthode", h: `[[c1-p-self]]<p>Python passe toujours l’objet comme premier argument : la méthode reçoit 2 arguments (l’objet et 5) alors qu’elle n’en attend qu’un.</p>` },
@@ -2389,7 +2472,7 @@ CH.push({
 <p>Le nombre d’appels explose : 2 692 537 appels pour F(30), parce que les mêmes valeurs sont recalculées encore et encore (F(28) est calculé 2 fois, F(27) 3 fois, F(26) 5 fois…). Le coût est <b>exponentiel</b>. Dans le schéma, choisis <code>fibonacci(4)</code> : l’arbre se construit pendant que la pile monte et descend.</p>
 [[w-pile-appels|fib]]
 <p>La profondeur de la pile, elle, ne dépasse pas <i>n</i> : l’arbre est large, pas profond.</p>
-<div class="boite hp"><div class="lab"># pour aller plus loin : mémoïsation</div><p>On mémorise chaque résultat dans un dictionnaire pour ne le calculer qu’une fois. C’est le point de départ de la <b>programmation dynamique</b> (au programme, chapitre à venir).</p>[[c2-memo]]</div>` },
+<div class="boite hp"><div class="lab"># pour aller plus loin : mémoïsation</div><p>On mémorise chaque résultat dans un dictionnaire pour ne le calculer qu’une fois. C’est le point de départ de la <b>programmation dynamique</b> (chapitre « Programmation dynamique »).</p>[[c2-memo]]</div>` },
 
     { id: "i7", t: "Diviser l’exposant par 2 : la puissance rapide", h: `
 <p>Pour calculer a<sup>n</sup>, la méthode naïve (a<sup>n</sup> = a × a<sup>n−1</sup>) fait <i>n</i> + 1 appels. Or a<sup>10</sup> = (a<sup>5</sup>)², a<sup>5</sup> = a × (a<sup>2</sup>)², a<sup>2</sup> = (a<sup>1</sup>)², a<sup>1</sup> = a × (a<sup>0</sup>)² : en <b>divisant l’exposant par 2</b> à chaque appel, on n’en fait que 5.</p>
@@ -2938,7 +3021,7 @@ def josephe(n, k):
     """n personnes numérotées de 1 à n sont en cercle. On compte k personnes ;
     la k-ième sort du cercle ; on recommence à compter avec la suivante.
     Renvoie la liste des numéros dans l'ordre de sortie."""
-    ...`, { fichier: "josephe.py", run: false, trous: [14, 20] });
+    ...`, { fichier: "josephe.py", run: false, trous: [15, 21] });
 
 C("c3-ep2-corr", String.raw`
 class File:
@@ -3109,7 +3192,7 @@ Une <b>implémentation</b> est une façon concrète de réaliser cette interface
 
     { id: "i8", t: "La file (FIFO) et ses implémentations", h: `
 <div class="boite def"><div class="lab">"""définition"""</div><p>Une <b>file</b> (<i>queue</i>) est une structure où l’on ajoute d’un côté (la <b>queue</b>) et retire de l’autre (la <b>tête</b>) : le premier entré est le premier sorti, <b>FIFO</b> (<i>First In, First Out</i>).</p></div>
-<p>Exemples : la file d’attente d’un guichet, la file d’impression, les touches tapées au clavier en attente de traitement, l’ordonnancement de processus, le parcours en largeur d’un arbre ou d’un graphe (chapitres à venir).</p>
+<p>Exemples : la file d’attente d’un guichet, la file d’impression, les touches tapées au clavier en attente de traitement, l’ordonnancement de processus, le parcours en largeur d’un arbre ou d’un graphe (chapitres 7 et 8).</p>
 [[w-pile-file|file]]
 <p><b>Implémentation 1</b>, avec une liste Python : simple, mais <code>pop(0)</code> a un coût linéaire.</p>
 [[c3-file-liste]]
@@ -3127,7 +3210,7 @@ Une <b>implémentation</b> est une façon concrète de réaliser cette interface
 <tr><td>servir des clients, des impressions, des requêtes dans l’ordre d’arrivée</td><td>file</td><td>premier arrivé, premier servi</td></tr>
 <tr><td>accéder souvent à l’élément n° <i>i</i></td><td>tableau (<code>list</code>)</td><td>accès en temps constant</td></tr>
 <tr><td>insérer et supprimer souvent en tête</td><td>liste chaînée</td><td>pas de décalage</td></tr>
-<tr><td>retrouver une valeur à partir d’une clé (nom → numéro)</td><td>dictionnaire</td><td>recherche par clé (chapitre à venir)</td></tr></table></div>
+<tr><td>retrouver une valeur à partir d’une clé (nom → numéro)</td><td>dictionnaire</td><td>recherche par clé (chapitre 5)</td></tr></table></div>
 <p>À l’écrit, une question classique : « Pourquoi utiliser une pile plutôt qu’une file ici ? » La réponse se justifie toujours par l’ordre de sortie voulu (LIFO ou FIFO).</p>` }
   ],
   pieges: [
@@ -3793,6 +3876,73 @@ def test_ma_fonction():                    # cas normaux + cas limites
 if __name__ == "__main__":
     test_ma_fonction()`, { run: false });
 
+/* Animation : une exception remonte la pile d'appels (notes.py, sans puis avec try … except). */
+C("c4-exc-try", String.raw`
+def moyenne(notes):
+    return sum(notes) / len(notes)
+
+def bilan(eleves):
+    for nom in eleves:
+        try:
+            print(nom, moyenne(eleves[nom]))
+        except ZeroDivisionError:
+            print(nom, "pas de note")
+
+bilan({"Ada": [15, 17], "Alan": []})
+print("fin du programme")`, { fichier: "notes_try.py", out: "Ada 16.0\nAlan pas de note\nfin du programme" });
+
+WIDGETS_EXT["exception"] = function (z, opt, O) {
+  var PR = "programme principal", A = '"Ada"', AL = '"Alan"';
+  function cadre(f, v, et) { return { f: f, v: v || "", et: et || "" }; }
+  function etapes(k) {
+    var E = [], t = k === "try";
+    var lM = 2, lB = t ? 7 : 6, lP = t ? 11 : 8;
+    function snap(l, pile, msg, o) { o = o || {}; E.push({ l: l, pile: pile, msg: msg, exc: o.exc === undefined ? -1 : o.exc, out: o.out || "", tb: o.tb || [], fin: !!o.fin, ok: !!o.ok }); }
+    var p0 = cadre(PR, "", "attente");
+    snap(lP, [cadre(PR, "", "actif")], "Ligne " + lP + " : le programme principal appelle <b>bilan</b>. Chaque appel empile un <b>cadre</b> (ses variables, la ligne où il en est).");
+    snap(5, [p0, cadre("bilan()", "nom = " + A, "actif")], "Dans <b>bilan</b>, la boucle prend <code>nom = " + O.esc(A) + "</code>.");
+    snap(lM, [p0, cadre("bilan()", "nom = " + A, "attente"), cadre("moyenne()", "notes = [15, 17]", "actif")], "Ligne " + lB + " : appel de <b>moyenne([15, 17])</b> ; bilan attend sa réponse.");
+    snap(lB, [p0, cadre("bilan()", "nom = " + A, "actif")], "moyenne renvoie 32 / 2 = <b>16.0</b> ; son cadre est dépilé et <code>print</code> affiche la ligne d’Ada.", { out: "Ada 16.0" });
+    snap(5, [p0, cadre("bilan()", "nom = " + AL, "actif")], "Tour suivant : <code>nom = " + O.esc(AL) + "</code>.", { out: "Ada 16.0" });
+    snap(lM, [p0, cadre("bilan()", "nom = " + AL, "attente"), cadre("moyenne()", "notes = []", "actif")], "Appel de <b>moyenne([])</b> : la liste d’Alan est vide.", { out: "Ada 16.0" });
+    var tb1 = ['File "' + (t ? "notes_try" : "notes") + '.py", line 2, in moyenne'];
+    snap(lM, [p0, cadre("bilan()", "nom = " + AL, "attente"), cadre("moyenne()", "notes = []", "erreur")], "<code>sum([])</code> vaut 0 et <code>len([])</code> vaut 0 : la division est impossible. Python <b>lève</b> une exception <b>ZeroDivisionError</b> : l’exécution normale s’interrompt sur cette ligne.", { exc: 2, out: "Ada 16.0", tb: tb1 });
+    var tb2 = ['File "' + (t ? "notes_try" : "notes") + '.py", line ' + lB + ", in bilan"].concat(tb1);
+    if (!t) {
+      snap(lB, [p0, cadre("bilan()", "nom = " + AL, "erreur")], "moyenne n’a pas de <code>try</code> : son cadre est <b>abandonné</b> (dépilé sans rien renvoyer) et l’exception <b>remonte</b> chez l’appelant, ligne 6 de bilan. Une ligne s’ajoute <b>au-dessus</b> de la trace.", { exc: 1, out: "Ada 16.0", tb: tb2 });
+      var tb3 = ['File "notes.py", line 8, in &lt;module&gt;'].concat(tb2);
+      snap(lP, [cadre(PR, "", "erreur")], "bilan ne la rattrape pas non plus : son cadre est abandonné, la boucle ne continue pas. L’exception arrive au programme principal, ligne 8.", { exc: 0, out: "Ada 16.0", tb: tb3 });
+      snap(0, [], "Personne ne l’a rattrapée : le programme <b>s’arrête</b> et affiche la trace. Elle se lit comme la pile, du plus ancien appel (en haut) au plus récent (en bas), puis le type et le message. Le bug n’est pas dans moyenne : ce sont les données (liste vide).", { out: "Ada 16.0", tb: tb3, fin: true });
+    } else {
+      snap(lB, [p0, cadre("bilan()", "nom = " + AL, "erreur")], "moyenne n’a pas de <code>try</code> : son cadre est abandonné et l’exception remonte dans bilan, ligne 7. Or cette ligne est <b>dans un bloc try</b> dont le <code>except</code> attend justement <b>ZeroDivisionError</b>.", { exc: 1, out: "Ada 16.0", tb: tb2 });
+      snap(9, [p0, cadre("bilan()", "nom = " + AL, "actif")], "L’exception est <b>rattrapée</b> : elle disparaît, et l’exécution reprend dans le bloc <code>except</code> (ligne 9).", { out: "Ada 16.0\nAlan pas de note", ok: true });
+      snap(12, [cadre(PR, "", "actif")], "La boucle est finie : bilan se termine normalement et son cadre est dépilé. Le programme <b>continue</b> : rattraper une exception <b>prévue</b>, c’est éviter l’arrêt sans cacher les autres erreurs.", { out: "Ada 16.0\nAlan pas de note\nfin du programme", ok: true });
+    }
+    return E;
+  }
+  function id(k) { return k === "try" ? "c4-exc-try" : "c4-trace"; }
+  O.lecteur(z, {
+    titre: "une exception remonte la pile", sous: "ZeroDivisionError", vitesse: 1700,
+    choix: [{ k: "sans", t: "sans try (arrêt)" }, { k: "try", t: "avec try … except" }],
+    etapes: etapes,
+    prepare: function (sc, k) {
+      var c = CODE[id(k)];
+      sc.innerHTML = '<div class="trace exc"><div class="code zebre"><div class="tete"><span class="f">' + O.esc(c.fichier) + '</span></div><pre><code>' + O.lignes(O.hlPy(c.src.replace(/^\n+|\s+$/g, ""))) + '</code></pre></div><div class="tr-cote"><div class="titre-pile">pile d’appels (le plus récent en haut)</div><div class="tr-pile"></div><div class="titre-pile">sortie</div><pre class="tr-sortie"></pre></div></div>';
+    },
+    dessine: function (sc, e, i, E, saut) {
+      O.$$(".trace .l", sc).forEach(function (l, n) { l.classList.toggle("vise", n + 1 === e.l); l.classList.toggle("exc-l", n + 1 === e.l && e.exc >= 0); });
+      var avant = i > 0 && !saut ? E[i - 1].pile.length : e.pile.length;
+      O.$(".tr-pile", sc).innerHTML = e.pile.length ? e.pile.map(function (c, n) {
+        var cl = c.et === "actif" ? " actif" : c.et === "erreur" ? " erreur" : "";
+        return '<div class="cadre-pile' + cl + (n >= avant ? " neuf" : "") + '"><div class="nm">' + O.esc(c.f) + (n === e.exc ? ' <span class="exc-p' + (saut ? "" : " neuf") + '">ZeroDivisionError</span>' : "") + "</div>" + (c.v ? '<div class="vr">' + O.esc(c.v) + "</div>" : "") + "</div>";
+      }).reverse().join("") : '<span class="repere">' + (e.fin ? "pile vide : programme arrêté" : "—") + "</span>";
+      var s = O.esc(e.out);
+      if (e.tb.length) s += (s ? "\n" : "") + '<span class="err-t">' + (e.fin ? "Traceback (most recent call last):\n" : "trace en construction :\n") + e.tb.map(function (x) { return "  " + x; }).join("\n") + (e.fin ? "\nZeroDivisionError: division by zero" : "") + "</span>";
+      O.$(".tr-sortie", sc).innerHTML = s;
+    }
+  });
+};
+
 CH.push({
   id: "ch4", n: 4, court: "mise_au_point", fichier: "ch4_mise_au_point.py",
   titre: "Modularité et mise au point",
@@ -3877,7 +4027,9 @@ CH.push({
 <p>Ici, le bug n’est pas dans <code>moyenne</code> mais dans les données : la liste d’Alan est vide. Une fonction peut <b>lever</b> elle-même une exception avec <code>raise</code> pour signaler un appel impossible, avec un message utile :</p>
 [[c4-raise]]
 <p>On peut <b>rattraper</b> une exception prévue avec <code>try … except</code> : le programme continue au lieu de s’arrêter.</p>
-[[c4-try]]` },
+[[c4-try]]
+<p>Ce qui se passe dans la pile d’appels quand l’exception est levée, sans puis avec <code>try … except</code> :</p>
+[[w-exception]]` },
 
     { id: "i8", t: "Les causes typiques de bugs (liste du programme)", h: `
 <p>Le programme cite précisément ces causes. Pour chacune : le symptôme et la correction.</p>
@@ -6445,7 +6597,7 @@ def executer(machine, mot, max_pas=1000):
     cases = range(min(ruban), max(ruban) + 1)
     return "".join(ruban.get(k, "_") for k in cases).strip("_"), pas
 
-INVERSE = {}       # à écrire : remplace chaque 0 par 1 et chaque 1 par 0`, { fichier: "turing.py", run: false, trous: [9, 11, 13, 17] });
+INVERSE = {}       # à écrire : remplace chaque 0 par 1 et chaque 1 par 0`, { fichier: "turing.py", run: false, trous: [8, 10, 12, 17] });
 
 C("calc-ep1-corr", String.raw`
 def executer(machine, mot, max_pas=1000):
@@ -6561,6 +6713,39 @@ def paradoxe(p):
 # paradoxe(paradoxe) boucle     ⇒ arret répond False ⇒ paradoxe s'arrête : contradiction
 # Donc arret ne peut pas exister : le problème de l'arrêt est indécidable.`, { run: false });
 
+/* Animation : la preuve par l'absurde de l'indécidabilité de l'arrêt, un cas après l'autre. */
+WIDGETS_EXT["arret"] = function (z, opt, O) {
+  var SRC = 'def paradoxe(prog):\n    if arret(prog, prog):\n        while True:\n            pass\n    else:\n        return "fini"\n\nparadoxe(paradoxe)';
+  function etapes(k) {
+    var s = k === "arrete", H = s ? "s’arrête" : "ne s’arrête pas (boucle)";
+    var E = [];
+    function snap(l, o, msg) { E.push({ l: l, hyp: o.hyp ? H : "", rep: o.rep || "", reel: o.reel || "", boucle: !!o.boucle, contra: !!o.contra, msg: msg }); }
+    snap(8, {}, "On lance <code>paradoxe(paradoxe)</code> : le programme reçoit <b>son propre texte</b> comme donnée. C’est permis : un programme est une donnée.");
+    snap(8, { hyp: 1 }, "Raisonnement par cas. <b>Cas " + (s ? 1 : 2) + "</b> : supposons que <code>paradoxe(paradoxe)</code> " + H + ".");
+    snap(2, { hyp: 1, rep: s ? "True" : "False" }, "Ligne 2 : il interroge <code>arret(paradoxe, paradoxe)</code>. Par hypothèse, <code>arret</code> ne se trompe jamais : elle répond <b>" + (s ? "True" : "False") + "</b> (« " + (s ? "il s’arrête" : "il ne s’arrête pas") + " »).");
+    if (s) snap(3, { hyp: 1, rep: "True", reel: "boucle indéfiniment", boucle: true }, "La condition est vraie : <code>paradoxe</code> entre dans <code>while True</code> et <b>tourne indéfiniment</b>.");
+    else snap(6, { hyp: 1, rep: "False", reel: "s’arrête (renvoie \"fini\")" }, "La condition est fausse : on passe dans le <code>else</code>, <code>paradoxe</code> renvoie \"fini\" et <b>s’arrête</b>.");
+    snap(s ? 3 : 6, { hyp: 1, rep: s ? "True" : "False", reel: s ? "boucle indéfiniment" : "s’arrête (renvoie \"fini\")", boucle: s, contra: true }, "On avait supposé qu’il " + H + ", et il fait <b>le contraire</b> : <b>contradiction</b>, ce cas est impossible. " + (s ? "Passe au cas 2." : "Les deux cas sont impossibles : l’hypothèse de départ est fausse. Aucune fonction <code>arret</code> correcte ne peut exister : le problème de l’arrêt est <b>indécidable</b>."));
+    return E;
+  }
+  O.lecteur(z, {
+    titre: "preuve par l’absurde", sous: "paradoxe(paradoxe)", vitesse: 2200,
+    choix: [{ k: "arrete", t: "cas 1 : il s’arrête" }, { k: "boucle", t: "cas 2 : il boucle" }],
+    etapes: etapes,
+    prepare: function (sc) {
+      sc.innerHTML = '<div class="trace arret-p"><div class="code zebre"><div class="tete"><span class="f">paradoxe.py</span></div><pre><code>' + O.lignes(O.hlPy(SRC)) + '</code></pre></div><div class="tr-cote"><div class="titre-pile">hypothèse</div><div class="ap-v" data-v="hyp"></div><div class="titre-pile">arret(paradoxe, paradoxe) répond</div><div class="ap-v" data-v="rep"></div><div class="titre-pile">ce que fait vraiment paradoxe(paradoxe)</div><div class="ap-v" data-v="reel"></div><div class="ap-contra" aria-hidden="true">✘ contradiction</div></div></div>';
+    },
+    dessine: function (sc, e, i, E, saut) {
+      O.$$(".l", sc).forEach(function (l, n) { l.classList.toggle("vise", n + 1 === e.l); });
+      ["hyp", "rep", "reel"].forEach(function (k) {
+        var el = O.$('[data-v="' + k + '"]', sc), v = e[k], nv = v && (saut || !i || E[i - 1][k] !== v);
+        el.innerHTML = v ? '<span class="' + (nv && !saut ? "neuf" : "") + '">' + O.esc(v) + (k === "reel" && e.boucle ? ' <span class="ap-tour" aria-hidden="true">↻</span>' : "") + "</span>" : '<span class="repere">…</span>';
+      });
+      O.$(".ap-contra", sc).classList.toggle("on", e.contra);
+    }
+  });
+};
+
 CH.push({
   id: "calc", court: "calculabilite", fichier: "calculabilite.py",
   titre: "Calculabilité, décidabilité",
@@ -6637,6 +6822,7 @@ CH.push({
 <p>Que se passe-t-il pour <code>paradoxe(paradoxe)</code> ? (Un programme est une donnée : on peut le donner à lui-même.)</p>
 <ul><li>Si <code>paradoxe(paradoxe)</code> <b>s’arrête</b>, alors <code>arret(paradoxe, paradoxe)</code> renvoie <code>True</code>… donc <code>paradoxe</code> entre dans la boucle infinie et <b>ne s’arrête pas</b>. Contradiction.</li>
 <li>Si <code>paradoxe(paradoxe)</code> <b>ne s’arrête pas</b>, alors <code>arret</code> renvoie <code>False</code>… donc <code>paradoxe</code> renvoie « fini » et <b>s’arrête</b>. Contradiction.</li></ul>
+[[w-arret]]
 <p>Les deux cas sont impossibles : l’hypothèse était fausse. <b>Aucune fonction <code>arret</code> correcte ne peut exister</b>, dans aucun langage. On peut le constater sur des candidats : chacun se trompe sur le <code>paradoxe</code> construit contre lui.</p>
 [[calc-candidats]]
 <div class="boite retenir-b"><div class="lab"># les trois ingrédients de la preuve</div><ol><li>un programme est une donnée (on peut le passer à <code>arret</code>, et à lui-même) ;</li><li>on suppose qu’<code>arret</code> existe et répond toujours ;</li><li><code>paradoxe</code> fait <b>le contraire</b> de ce qu’<code>arret</code> prédit sur lui.</li></ol></div>` },
@@ -6676,7 +6862,7 @@ CH.push({
   ep: [
     { titre: "Un simulateur de machine de Turing", enonce: `<p>On représente une machine de Turing par un dictionnaire : à chaque couple (état, symbole lu) on associe le triplet (symbole à écrire, déplacement « G », « D » ou « - », nouvel état). L’état initial est « debut », l’état final « fin », le blanc « _ ».</p>[[calc-ep1-fourni]]`,
       questions: [
-        { q: "Compléter les lignes 9, 11 et 13. Pourquoi a-t-on besoin du paramètre <code>max_pas</code> ?", c: `<p>Ligne 9 : <code>return None</code>. Ligne 11 : <code>machine[(etat, lu)]</code>. Ligne 13 : <code>pos + {"G": -1, "D": 1, "-": 0}[dep]</code>. Sans limite, une machine qui ne s’arrête pas ferait tourner le simulateur indéfiniment ; et on ne peut pas savoir à l’avance si elle s’arrêtera (problème de l’arrêt). La limite permet de répondre « je ne sais pas » (<code>None</code>).</p>` },
+        { q: "Compléter les lignes 8, 10 et 12. Pourquoi a-t-on besoin du paramètre <code>max_pas</code> ?", c: `<p>Ligne 8 : <code>return None</code>. Ligne 10 : <code>machine[(etat, lu)]</code>. Ligne 12 : <code>pos + {"G": -1, "D": 1, "-": 0}[dep]</code>. Sans limite, une machine qui ne s’arrête pas ferait tourner le simulateur indéfiniment ; et on ne peut pas savoir à l’avance si elle s’arrêtera (problème de l’arrêt). La limite permet de répondre « je ne sais pas » (<code>None</code>).</p>` },
         { q: "Écrire la machine <code>INVERSE</code> (ligne 17) qui remplace chaque 0 par 1 et chaque 1 par 0, puis s’arrête.", c: `<p>Trois transitions depuis l’état « debut » : 0 → écrire 1, D ; 1 → écrire 0, D ; _ → rien, s’arrêter.</p>` },
         { q: "Écrire une machine <code>PAIR</code> qui remplace le dernier chiffre d’un nombre binaire par V s’il est pair, F sinon. Écrire des tests, dont un pour une machine qui ne s’arrête jamais.", c: `[[calc-ep1-corr]]` },
         { q: "À l’oral : si <code>executer</code> renvoie <code>None</code>, peut-on conclure que la machine ne s’arrête pas ?", c: `<p>Non : on sait seulement qu’elle ne s’est pas arrêtée en <code>max_pas</code> pas. Elle pourrait s’arrêter plus tard (comme la suite de Syracuse de 27, qui demande 111 étapes). Aucun choix de limite ne permet de conclure dans tous les cas.</p>` }
@@ -7514,6 +7700,45 @@ C("hist-retenir", String.raw`
 1843   Ada Lovelace              1957  Fortran               1989  Web (proposition)
 1854   Boole                     1958  circuit intégré       1991  Linux, Python, 1er site web`, { run: false });
 
+/* Animation : l'algorithme d'Euclide vu comme un pavage du rectangle a × b par des carrés (mêmes divisions que hist-euclide). */
+WIDGETS_EXT["euclide"] = function (z, opt, O) {
+  var W = 320, HMAX = 190, COUL = ["q0", "q1", "q2", "q3"];
+  function etapes(k) {
+    var a0 = k === "fibo" ? 21 : 1071, b0 = k === "fibo" ? 13 : 462, ech = Math.min(W / a0, HMAX / b0);
+    var E = [], carres = [], lignes = [], a = a0, b = b0, rect = { x: 0, y: 0, w: a0, h: b0 }, n = 0;
+    function snap(msg, neuf) { E.push({ carres: carres.slice(), rect: rect ? { x: rect.x, y: rect.y, w: rect.w, h: rect.h } : null, lignes: lignes.slice(), neuf: neuf || 0, a: a, b: b, ech: ech, a0: a0, b0: b0, msg: msg }); }
+    snap("Euclide raisonne sur des longueurs : <b>pgcd(" + a0 + ", " + b0 + ")</b> est le côté du plus grand carré qui pave <b>exactement</b> un rectangle " + a0 + " × " + b0 + ". Retirons des carrés aussi grands que possible.");
+    while (b !== 0) {
+      var q = Math.floor(a / b), r = a % b, horiz = rect.w >= rect.h, c = COUL[n % 4];
+      for (var j = 0; j < q; j++) carres.push({ x: horiz ? rect.x + j * b : rect.x, y: horiz ? rect.y : rect.y + j * b, s: b, c: c });
+      rect = r ? (horiz ? { x: rect.x + q * b, y: rect.y, w: r, h: b } : { x: rect.x, y: rect.y + q * b, w: b, h: r }) : null;
+      lignes.push(a + " = " + q + " × " + b + " + " + r);
+      var msg = "<code>" + a + " = " + q + " × " + b + " + " + r + "</code> : on retire <b>" + q + " carré" + (q > 1 ? "s" : "") + " de côté " + b + "</b>. ";
+      msg += r ? "Il reste un rectangle " + b + " × " + r + " : un carré pave l’ancien rectangle exactement quand il pave celui-ci, d’où <b>pgcd(" + a + ", " + b + ") = pgcd(" + b + ", " + r + ")</b>. C’est la ligne <code>a, b = b, a % b</code>." : "Le reste est <b>nul</b> : les carrés de côté " + b + " pavent exactement le dernier rectangle, donc aussi tous les précédents et le rectangle de départ.";
+      a = b; b = r; n++;
+      snap(msg, q);
+    }
+    snap("<b>pgcd(" + a0 + ", " + b0 + ") = " + a + "</b>, le dernier diviseur non nul. " + (a === 1 ? "Les nombres sont <b>premiers entre eux</b> : seul le carré de côté 1 pave le rectangle. 21 et 13, deux termes consécutifs de la suite de Fibonacci, sont les plus petits nombres qui demandent autant de divisions (théorème de Lamé, hors programme)." : "Seulement " + n + " divisions : le nombre d’étapes croît au plus proportionnellement au <b>nombre de chiffres</b>, pas aux nombres eux-mêmes (théorème de Lamé, hors programme)."));
+    return E;
+  }
+  O.lecteur(z, {
+    titre: "algorithme d’Euclide", sous: "pgcd par les carrés", vitesse: 1900,
+    choix: [{ k: "grand", t: "pgcd(1071, 462)" }, { k: "fibo", t: "pgcd(21, 13)" }],
+    etapes: etapes,
+    dessine: function (sc, e, i, E, saut) {
+      var f = e.ech, H = e.b0 * f, s = '<svg class="eu" viewBox="-2 -2 ' + (W + 4) + " " + (H + 4) + '" role="img" aria-label="Rectangle ' + e.a0 + " × " + e.b0 + ' pavé par des carrés">';
+      s += '<rect class="eu-fond" x="0" y="0" width="' + (e.a0 * f).toFixed(1) + '" height="' + H.toFixed(1) + '"/>';
+      e.carres.forEach(function (c, j) {
+        var nv = !saut && j >= e.carres.length - e.neuf, d = (j - (e.carres.length - e.neuf)) * 0.12;
+        s += '<g class="eu-c ' + c.c + (nv ? " neuf" : "") + '"' + (nv ? ' style="animation-delay:' + d.toFixed(2) + 's"' : "") + '><rect x="' + (c.x * f).toFixed(1) + '" y="' + (c.y * f).toFixed(1) + '" width="' + (c.s * f).toFixed(1) + '" height="' + (c.s * f).toFixed(1) + '"/>' + (c.s * f >= 26 ? '<text x="' + ((c.x + c.s / 2) * f).toFixed(1) + '" y="' + ((c.y + c.s / 2) * f).toFixed(1) + '">' + c.s + "</text>" : "") + "</g>";
+      });
+      if (e.rect) s += '<rect class="eu-reste" x="' + (e.rect.x * f).toFixed(1) + '" y="' + (e.rect.y * f).toFixed(1) + '" width="' + (e.rect.w * f).toFixed(1) + '" height="' + (e.rect.h * f).toFixed(1) + '"/>';
+      s += "</svg>";
+      sc.innerHTML = '<div class="eu-zone">' + s + '<div class="eu-cote mono"><div class="titre-pile">divisions</div>' + (e.lignes.length ? e.lignes.map(function (l, j) { return '<div class="' + COUL[j % 4] + '">' + l + "</div>"; }).join("") : '<span class="repere">…</span>') + '<div class="eu-ab">a = ' + e.a + " · b = " + e.b + "</div></div></div>";
+    }
+  });
+};
+
 CH.push({
   id: "hist", court: "histoire", fichier: "histoire.md",
   titre: "Histoire de l’informatique",
@@ -7539,6 +7764,7 @@ CH.push({
 <li>vers <b>−300</b>, <b>Euclide</b> décrit dans ses <i>Éléments</i> l’algorithme du plus grand commun diviseur, toujours utilisé (il sert dans le chiffrement RSA) ;</li>
 <li>vers <b>825</b>, le savant persan <b>al-Khwarizmi</b>, à Bagdad, écrit des traités de calcul et d’algèbre ; son nom latinisé a donné le mot « algorithme », et le titre d’un de ses livres le mot « algèbre ».</li></ul>
 [[hist-euclide]]
+[[w-euclide]]
 <p>La méthode de Héron d’Alexandrie (Ier siècle) pour approcher √2 double à peu près le nombre de décimales justes à chaque étape :</p>
 [[hist-heron]]
 [[w-algo-frise]]` },
@@ -7589,7 +7815,7 @@ CH.push({
 <li><b>1991</b> : <b>Linus Torvalds</b> publie le noyau <b>Linux</b>, logiciel libre ; la même année, <b>Guido van Rossum</b> publie la première version de <b>Python</b>. Richard Stallman avait lancé le projet GNU et le mouvement du logiciel libre en 1983-1985.</li></ul>` },
 
     { id: "i7", t: "Les réseaux : d’ARPANET au Web", h: `
-<ul><li><b>1969</b> : <b>ARPANET</b>, réseau financé par l’agence de recherche du ministère américain de la Défense, relie quatre universités. Le premier message, le <b>29 octobre 1969</b>, devait être « login » : la machine réceptrice plante après « lo ». Le programme de NSI retient 1969 comme le début du développement d’Internet.</li>
+<ul><li><b>1969</b> : <b>ARPANET</b>, réseau financé par l’agence de recherche du ministère américain de la Défense, relie quatre sites universitaires et de recherche (UCLA, le SRI, l’université de Californie à Santa Barbara et l’université de l’Utah). Le premier message, le <b>29 octobre 1969</b>, devait être « login » : la machine réceptrice plante après « lo ». Le programme de NSI retient 1969 comme le début du développement d’Internet.</li>
 <li><b>1974</b> : <b>Vint Cerf</b> et <b>Bob Kahn</b> décrivent le protocole <b>TCP</b>, qui permet de relier des réseaux différents ; ARPANET passe à <b>TCP/IP</b> le 1er janvier <b>1983</b>. Le Français Louis Pouzin avait conçu dès 1971-1973 le réseau Cyclades, fondé sur les datagrammes, une idée reprise par TCP/IP.</li>
 <li><b>1976-1977</b> : Diffie et Hellman inventent l’échange de clés, puis Rivest, Shamir et Adleman le chiffrement <b>RSA</b> : le chiffrement asymétrique au programme de Terminale.</li>
 <li><b>1982</b> : en France, le <b>Minitel</b> se diffuse dans les foyers (annuaire, services en ligne), dix ans avant le Web.</li>
@@ -7999,6 +8225,67 @@ INSERT INTO Table1 VALUES (v1, v2, v3);
 UPDATE Table1 SET col = valeur WHERE condition;
 DELETE FROM Table1 WHERE condition;`, { sql: true, run: false });
 
+/* ---------- animation : dans quel ordre le SGBD traite une requête ---------- */
+C("c6-ordre", String.raw`
+SELECT titre, annee
+FROM Livre
+WHERE id_auteur = 1
+ORDER BY annee;`, { sql: true, deps: ["c6-schema"], out: "titre | annee\nNotre-Dame de Paris | 1831\nLes Contemplations | 1856\nLes Misérables | 1862" });
+
+WIDGETS_EXT["requete"] = function (z, opt, O) {
+  var T = BIB.Livre, L = T.lignes, COLS = T.cols;
+  var REQ = {
+    ordre: [["SELECT", "SELECT titre, annee"], ["FROM", "FROM Livre"], ["WHERE", "WHERE id_auteur = 1"], ["ORDER", "ORDER BY annee;"]],
+    agreg: [["SELECT", "SELECT COUNT(*) AS nb_livres, MIN(annee) AS plus_ancien, MAX(annee) AS plus_recent"], ["FROM", "FROM Livre"], ["WHERE", "WHERE id_auteur = 1;"]]
+  };
+  function etapes(k) {
+    var E = [], marks = {}, rows = L.map(function (_, i) { return i; }), cols = [1, 2, 3];
+    function snap(cl, msg, o) { o = o || {}; E.push({ cl: cl, rows: rows.slice(), cols: cols.slice(), marks: JSON.parse(JSON.stringify(marks)), test: o.test === undefined ? -1 : o.test, agg: o.agg || null, msg: msg }); }
+    snap("FROM", "Le SGBD ne lit pas la requête dans l’ordre où on l’écrit. Il commence par <b>FROM</b> : la table Livre, ses " + L.length + " lignes (sa clé primaire id_livre n’est pas affichée ici).");
+    L.forEach(function (l, i) {
+      var ok = l[3] === 1;
+      marks[i] = ok ? "ok" : "ko";
+      snap("WHERE", "<b>WHERE</b> teste chaque ligne : « " + O.esc(l[1]) + " » a <code>id_auteur = " + l[3] + "</code> → " + (ok ? "condition <b>vraie</b>, ligne gardée." : "condition fausse, ligne écartée."), { test: i });
+    });
+    rows = rows.filter(function (i) { return marks[i] === "ok"; });
+    snap("WHERE", "Il reste <b>" + rows.length + " lignes</b> (les livres de Victor Hugo), toujours dans l’ordre de stockage : une table n’a pas d’ordre propre.");
+    if (k === "agreg") {
+      var an = rows.map(function (i) { return L[i][2]; });
+      snap("SELECT", "<b>SELECT</b> avec des fonctions d’agrégation : les " + rows.length + " lignes retenues sont <b>résumées en une seule</b>. COUNT(*) les compte, MIN et MAX cherchent la plus petite et la plus grande année.", { agg: [rows.length, Math.min.apply(null, an), Math.max.apply(null, an)] });
+      return E;
+    }
+    cols = [1, 2];
+    snap("SELECT", "<b>SELECT titre, annee</b> : la <b>projection</b> ne garde que les colonnes demandées.");
+    rows.sort(function (a, b) { return L[a][2] - L[b][2]; });
+    snap("ORDER", "<b>ORDER BY annee</b> vient en dernier : les lignes du résultat sont rangées par année croissante (ASC par défaut). Ordre d’écriture : SELECT, FROM, WHERE, ORDER BY ; ordre de traitement : FROM, WHERE, SELECT, ORDER BY.");
+    return E;
+  }
+  function dessine(sc, e, i, E, saut) {
+    var k = e.agg || E[E.length - 1].agg ? "agreg" : "ordre";
+    var avant = {};
+    if (!saut) O.$$("tr[data-k]", sc).forEach(function (tr) { avant[tr.getAttribute("data-k")] = tr.getBoundingClientRect().top; });
+    var q = '<div class="req-sql mono">' + REQ[k].map(function (c) { return '<span class="' + (c[0] === e.cl ? "on" : "") + '">' + O.esc(c[1]) + "</span>"; }).join(" ") + "</div>";
+    var t;
+    if (e.agg) t = '<div class="tab-wrap table-bd"><table><caption class="mono">résultat</caption><tr><th>nb_livres</th><th>plus_ancien</th><th>plus_recent</th></tr><tr class="neuf"><td>' + e.agg.join("</td><td>") + "</td></tr></table></div>";
+    else t = '<div class="tab-wrap table-bd"><table><caption class="mono">' + (e.cl === "FROM" || e.cl === "WHERE" ? "Livre" : "résultat") + "</caption><tr>" + e.cols.map(function (c) { return "<th>" + (c === 3 ? "#" : "") + COLS[c] + "</th>"; }).join("") + "</tr>" +
+      e.rows.map(function (r) {
+        var m = e.marks[r], cl = r === e.test ? "vise " + m : (e.cl === "WHERE" && m ? m : "");
+        return '<tr data-k="' + r + '" class="' + cl + '">' + e.cols.map(function (c) { return "<td>" + O.esc(L[r][c]) + "</td>"; }).join("") + "</tr>";
+      }).join("") + "</table></div>";
+    sc.innerHTML = '<div class="requete">' + q + t + "</div>";
+    if (!saut) O.$$("tr[data-k]", sc).forEach(function (tr) {
+      var a = avant[tr.getAttribute("data-k")];
+      if (a === undefined) return;
+      var d = a - tr.getBoundingClientRect().top;
+      if (Math.abs(d) < 1) return;
+      tr.style.transform = "translateY(" + d + "px)"; tr.style.transition = "none";
+      void tr.offsetWidth;
+      tr.style.transition = "transform .55s cubic-bezier(.3,.7,.2,1)"; tr.style.transform = "";
+    });
+  }
+  O.lecteur(z, { titre: "ordre de traitement d’une requête", sous: "FROM → WHERE → SELECT → ORDER BY", choix: [{ k: "ordre", t: "WHERE + ORDER BY" }, { k: "agreg", t: "COUNT, MIN, MAX" }], etapes: etapes, dessine: dessine, vitesse: 1300 });
+};
+
 /* ---------- animation : une jointure qui assemble les lignes ---------- */
 WIDGETS_EXT["jointure"] = function (z, opt, O) {
   var L = BIB.Livre.lignes, A = BIB.Auteur.lignes;
@@ -8088,6 +8375,7 @@ CH.push({
     { id: "i6", t: "Interroger : SELECT, FROM, WHERE, ORDER BY", h: `
 <p>Une requête d’interrogation dit <b>quelles colonnes</b> (SELECT), <b>de quelle table</b> (FROM), <b>pour quelles lignes</b> (WHERE) et <b>dans quel ordre</b> (ORDER BY). Le résultat est lui-même une table.</p>
 [[c6-select]]
+[[w-requete]]
 <p><code>SELECT *</code> garde toutes les colonnes ; les conditions se combinent avec <code>AND</code>, <code>OR</code>, <code>NOT</code> ; les chaînes s’écrivent entre apostrophes simples.</p>
 [[c6-etoile]]
 <p><code>DISTINCT</code> supprime les doublons du résultat ; <code>ORDER BY … DESC</code> trie par ordre décroissant.</p>
@@ -8419,6 +8707,57 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
     etapes: function (k) { return SC[k]; }, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar", "ar-large"); }, dessine: dessine, vitesse: 2600 });
 };
 
+/* Animation : le cycle lecture / exécution d'une machine de von Neumann (assembleur simplifié, fictif) et le trafic sur le bus. */
+WIDGETS_EXT["von-neumann"] = function (z, opt, O) {
+  var PROG = ["LOAD R0, @5", "ADD R0, @6", "STORE R0, @7", "HALT"];
+  var MX = 214, MY = 34, MH = 21; /* mémoire : 8 cases d'adresses 0 à 7 */
+  function yCase(a) { return MY + a * MH + MH / 2; }
+  var P = { ri: [104, 78], r0: [104, 186], ual: [104, 136] };
+  function etapes() {
+    var E = [], mem = PROG.concat(["", "12", "30", "0"]), pc = 0, ri = "", r0 = "", ual = "", bus = 0;
+    function snap(msg, o) { o = o || {}; E.push({ mem: mem.slice(), pc: pc, ri: ri, r0: r0, ual: ual, bus: bus, lit: o.lit === undefined ? -1 : o.lit, cible: o.cible || "", jeton: o.jeton || null, phase: o.phase || "", msg: msg }); }
+    snap("Modèle de <b>von Neumann</b> : le <b>programme</b> (adresses 0 à 3) et les <b>données</b> (5 à 7) sont dans la <b>même mémoire</b>. Le processeur ne garde que quelques registres : le compteur de programme PC, le registre d’instruction RI, un registre de calcul R0. Le programme calcule 12 + 30 et range le résultat à l’adresse 7.");
+    var exec = [
+      function () { r0 = mem[5]; bus++; snap("<b>Exécution</b> de LOAD : la case 5 est lue ; la valeur 12 voyage sur le bus jusqu’au registre R0.", { lit: 5, cible: "r0", phase: "exec", jeton: { t: "12", de: [MX, yCase(5)], a: P.r0 } }); },
+      function () { bus++; ual = r0 + " + " + mem[6] + " = " + (+r0 + +mem[6]); r0 = String(+r0 + +mem[6]); snap("<b>Exécution</b> de ADD : la valeur 30 (case 6) arrive par le bus dans l’<b>UAL</b>, qui calcule 12 + 30 = 42 ; le résultat remplace le contenu de R0.", { lit: 6, cible: "ual", phase: "exec", jeton: { t: "30", de: [MX, yCase(6)], a: P.ual } }); },
+      function () { mem[7] = r0; bus++; ual = ""; snap("<b>Exécution</b> de STORE : la valeur de R0 repart par le bus et s’écrit à l’adresse 7. La mémoire contient maintenant le résultat.", { lit: 7, cible: "mem", phase: "exec", jeton: { t: "42", de: P.r0, a: [MX, yCase(7)] } }); },
+      function () { snap("<b>HALT</b> : la machine s’arrête.", { phase: "exec" }); }
+    ];
+    for (var i = 0; i < PROG.length; i++) {
+      ri = PROG[i]; bus++; pc = i + 1;
+      snap("<b>Lecture</b> de l’instruction : l’unité de contrôle envoie l’adresse PC = " + i + " ; l’instruction « " + PROG[i] + " » arrive par le <b>bus</b> dans RI, et PC passe à " + (i + 1) + ".", { lit: i, cible: "ri", phase: "lecture", jeton: { t: PROG[i], de: [MX, yCase(i)], a: P.ri } });
+      exec[i]();
+    }
+    snap("Bilan : <b>" + bus + " passages sur le bus</b> pour trois instructions utiles (quatre lectures d’instructions, trois de données). Instructions et données empruntent le même chemin, un seul transfert à la fois : c’est le « <b>goulot d’étranglement</b> de von Neumann ». Caches et SoC rapprochent la mémoire des cœurs pour l’atténuer.");
+    return E;
+  }
+  O.lecteur(z, {
+    titre: "cycle d’une machine de von Neumann", sous: "assembleur simplifié", vitesse: 2300,
+    etapes: etapes,
+    prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar"); },
+    dessine: function (sc, e, i, E, saut) {
+      var s = '<svg class="vn" viewBox="0 0 340 244" role="img" aria-label="Processeur, bus et mémoire d’une machine de von Neumann">';
+      s += '<rect class="vn-bloc" x="4" y="4" width="160" height="214" rx="8"/><text class="gd" x="84" y="20" text-anchor="middle">processeur</text>';
+      s += '<rect class="vn-bloc" x="208" y="4" width="128" height="214" rx="8"/><text class="gd" x="272" y="20" text-anchor="middle">mémoire</text>';
+      s += '<rect class="noc' + (e.jeton ? " on" : "") + '" x="170" y="28" width="32" height="186" rx="6"/><text class="pt" x="186" y="121" text-anchor="middle" transform="rotate(-90 186 121)">bus</text>';
+      s += '<g class="bl' + (e.phase === "lecture" ? " on" : "") + '"><rect x="12" y="30" width="144" height="62" rx="6"/></g><text class="pt" x="18" y="45">unité de contrôle</text>';
+      s += '<text x="18" y="63">PC = ' + e.pc + '</text><text x="18" y="82">RI = ' + O.esc(e.ri || "—") + "</text>";
+      s += '<g class="bl' + (e.cible === "ual" ? " on" : "") + '"><rect x="12" y="102" width="144" height="54" rx="6"/></g><text class="pt" x="18" y="117">UAL (calcul)</text><text x="18" y="140">' + O.esc(e.ual || "—") + "</text>";
+      s += '<g class="bl' + (e.cible === "r0" || e.cible === "ual" ? " ok" : "") + '"><rect x="12" y="166" width="144" height="44" rx="6"/></g><text class="pt" x="18" y="181">registre</text><text x="18" y="200">R0 = ' + O.esc(e.r0 || "—") + "</text>";
+      e.mem.forEach(function (v, a) {
+        var y = MY + a * MH, cl = a === e.lit ? (e.cible === "mem" ? " ok" : " on") : "";
+        s += '<g class="bl' + cl + '"><rect x="' + MX + '" y="' + y + '" width="116" height="' + (MH - 2) + '" rx="3"/></g><text class="pt" x="' + (MX + 5) + '" y="' + (y + 14) + '">' + a + '</text><text x="' + (MX + 22) + '" y="' + (y + 14) + '"' + (a >= 5 ? ' class="gd"' : "") + ">" + O.esc(v || "—") + "</text>";
+      });
+      if (e.jeton && !saut) {
+        var j = e.jeton, w = Math.max(26, j.t.length * 7 + 12), d = "M" + j.de[0] + " " + j.de[1] + " L" + j.a[0] + " " + j.a[1];
+        s += '<g class="vn-jeton"><rect x="' + (-w / 2) + '" y="-10" width="' + w + '" height="20" rx="10"/><text x="0" y="4" text-anchor="middle">' + O.esc(j.t) + '</text><animateMotion dur="0.8s" fill="freeze" path="' + d + '"/><animate attributeName="opacity" values="1;1;0" keyTimes="0;0.7;1" dur="1.1s" fill="freeze"/></g>';
+      }
+      s += '<text class="pt" x="170" y="236" text-anchor="middle">transferts sur le bus : ' + e.bus + "</text>";
+      sc.innerHTML = s + "</svg>";
+    }
+  });
+};
+
 CH.push({
   id: "soc", court: "soc", fichier: "soc.py",
   titre: "Systèmes sur puce (SoC)",
@@ -8440,6 +8779,7 @@ CH.push({
   idees: [
     { id: "i1", t: "Point de départ : le modèle de von Neumann", h: `
 <p>En Première, tu as vu le modèle de <b>von Neumann</b> (1945) : une <b>unité arithmétique et logique</b> qui calcule, une <b>unité de contrôle</b> qui enchaîne les instructions, une <b>mémoire</b> qui contient à la fois le programme et les données, des <b>entrées-sorties</b>, le tout relié par des <b>bus</b>.</p>
+[[w-von-neumann]]
 <p>Dans un ordinateur de bureau, ces fonctions sont réparties sur des composants <b>séparés</b>, assemblés sur une carte mère : le processeur dans son support, des barrettes de RAM qu’on peut changer, une carte graphique enfichée dans un connecteur PCI Express, un disque, une carte réseau. Chaque composant est une puce (ou plusieurs), et ils communiquent par des pistes de cuivre de plusieurs centimètres.</p>
 <div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>circuit intégré</b> (une « puce ») est un morceau de silicium sur lequel sont gravés des millions ou des milliards de <b>transistors</b>, les interrupteurs électroniques qui réalisent les portes logiques de Première.</p></div>
 <div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1971 <b>·</b></span> Intel commercialise le <b>4004</b>, premier microprocesseur sur une seule puce : environ 2 300 transistors. <span class="commit">1965 <b>·</b></span> Gordon Moore avait observé que le nombre de transistors d’une puce doublait à intervalle régulier (il retiendra en 1975 un doublement tous les deux ans) : c’est la « loi de Moore », une observation et non une loi physique. Cette miniaturisation est ce qui a rendu possible le SoC.</p></div>` },
@@ -8798,7 +9138,7 @@ class Ordonnanceur:
         while self.file != []:
             pid, d = self.tranche()
             ...
-        return termines`, { fichier: "tourniquet.py", run: false, trous: [18, 24] });
+        return termines`, { fichier: "tourniquet.py", run: false, trous: [18, 25] });
 
 C("proc-ep-corr", String.raw`
 class Processus:
@@ -9074,7 +9414,7 @@ CH.push({
 <p>Sous Windows, le <b>Gestionnaire des tâches</b> joue le rôle de <code>top</code>, et la commande <code>tasklist</code> celui de <code>ps</code>.</p>` },
 
     { id: "i6", t: "Ressources partagées et interblocage", h: `
-<p>Les processus se partagent des <b>ressources</b> : processeur, mémoire, fichiers, imprimante, connexion à une base de données. Certaines sont à <b>accès exclusif</b> : une seule utilisation à la fois (deux processus qui écrivent en même temps dans un fichier le corromprait). Le système les protège par des <b>verrous</b> : un processus qui demande une ressource déjà prise est <b>bloqué</b> jusqu’à sa libération.</p>
+<p>Les processus se partagent des <b>ressources</b> : processeur, mémoire, fichiers, imprimante, connexion à une base de données. Certaines sont à <b>accès exclusif</b> : une seule utilisation à la fois (deux processus qui écrivent en même temps dans un fichier le corrompraient). Le système les protège par des <b>verrous</b> : un processus qui demande une ressource déjà prise est <b>bloqué</b> jusqu’à sa libération.</p>
 <div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>interblocage</b> (<i>deadlock</i>) est une situation où plusieurs processus sont bloqués <b>indéfiniment</b>, chacun attendant une ressource détenue par un autre. Exemple : P1 tient l’imprimante et attend le scanner, P2 tient le scanner et attend l’imprimante.</p></div>
 [[w-arch-interblocage]]
 <p>On le reproduit en Python avec deux verrous (<code>threading.Lock</code>). Pour que la démonstration s’arrête, chaque attente est limitée à 0,5 s ; dans un vrai interblocage, l’attente durerait toujours :</p>
@@ -9373,7 +9713,7 @@ TABLES = {
 
 def route(tables, depart, arrivee):
     """Renvoie la liste des routeurs traversés par un paquet de depart à arrivee."""
-    ...`, { fichier: "chemin.py", run: false, trous: [10] });
+    ...`, { fichier: "chemin.py", run: false, trous: [11] });
 
 C("rout-ep-corr", String.raw`
 TABLES = {
@@ -9631,7 +9971,7 @@ CH.push({
     { id: "i5", t: "OSPF : le coût des liaisons et Dijkstra", h: `
 <p><b>OSPF</b> (<i>Open Shortest Path First</i>) est un protocole à <b>état de liens</b> :</p>
 <ul><li>chaque routeur décrit ses liaisons (voisins et état) dans de petits messages diffusés à <b>tous</b> les routeurs de la zone ; chacun reconstitue ainsi la <b>carte complète</b> du réseau, un <b>graphe pondéré</b> ;</li>
-<li>le <b>poids</b> d’une liaison est son <b>coût</b>, d’autant plus faible que le débit est grand ; la formule utilisée dans les sujets est <b>coût = 10⁸ / débit</b> (débit en bit/s) ;</li>
+<li>le <b>poids</b> d’une liaison est son <b>coût</b>, d’autant plus faible que le débit est grand ; la formule la plus courante dans les sujets est <b>coût = 10⁸ / débit</b> (débit en bit/s) ; l’énoncé la rappelle toujours, et certains prennent une autre référence (10⁹ par exemple) ;</li>
 <li>chaque routeur calcule lui-même les plus courts chemins vers toutes les destinations avec l’<b>algorithme de Dijkstra</b>, et en déduit sa table.</li></ul>
 [[rout-cout]]
 <div class="tab-wrap"><table><tr><th>débit</th><th>10 Mbit/s</th><th>20 Mbit/s</th><th>50 Mbit/s</th><th>100 Mbit/s</th><th>1 Gbit/s</th></tr><tr><td>coût</td><td>10</td><td>5</td><td>2</td><td>1</td><td>0,1</td></tr></table></div>
@@ -10120,7 +10460,7 @@ CH.push({
     { code: "cr-x1", niv: "facile", rep: "N + 13 = A, S + 13 = F, I + 13 = V. Avec 26 lettres, décaler deux fois de 13 revient à décaler de 26 : on retrouve le texte (c’est le « ROT13 »)." },
     { code: "cr-x2", niv: "moyen", rep: "101 ⊕ 011 = 110 = 6 ; x ⊕ x = 0 ; x ⊕ 0 = x ; et (5 ⊕ 3) ⊕ 3 = 5 : appliquer la même clé deux fois redonne le message." },
     { code: "cr-x3", niv: "moyen", rep: "8³ = 512 = 9 × 55 + 17, donc c = 17. Avec d = 27 (3 × 27 = 81 = 2 × 40 + 1), 17²⁷ mod 55 redonne 8." },
-    { code: "cr-x4", niv: "difficile", rep: "« A » vaut 65 = 0b1000001. 65 ⊕ 1 = 64, le caractère « @ ». Avec la clé de deux octets, les A de rang impair sont combinés avec 2 : 65 ⊕ 2 = 67, « C ». Avec une clé d’un seul octet, des lettres identiques donnent des octets identiques : l’analyse des fréquences marche encore." }
+    { code: "cr-x4", niv: "difficile", rep: "« A » vaut 65 = 0b1000001. 65 ⊕ 1 = 64, le caractère « @ ». Avec la clé de deux octets, les A d’indice impair (le 2e et le 4e) sont combinés avec 2 : 65 ⊕ 2 = 67, « C ». Avec une clé d’un seul octet, des lettres identiques donnent des octets identiques : l’analyse des fréquences marche encore." }
   ],
   ep: [
     { titre: "Le chiffre de Vigenère", enonce: `<p>Le chiffre de Vigenère (XVIe siècle) améliore César : le décalage change à chaque lettre, selon un mot-clé. Avec la clé « NSI », la 1re lettre est décalée de 13 (N), la 2e de 18 (S), la 3e de 8 (I), la 4e de nouveau de 13, etc.</p>[[cr-ep-fourni]]`,
@@ -10151,7 +10491,7 @@ CH.push({
     { q: "Combien faut-il de clés secrètes pour que 10 personnes puissent chacune communiquer en privé avec chaque autre en symétrique ?", c: ["10", "20", "45", "100"], a: 2, e: "10 × 9 / 2 = 45 : une par paire.", ref: "i3" },
     { q: "Pour envoyer un message confidentiel à Bob en asymétrique, Alice le chiffre avec…", c: ["sa propre clé privée", "la clé publique de Bob", "la clé privée de Bob", "sa propre clé publique"], a: 1, e: "Seul Bob, avec sa clé privée, pourra le déchiffrer.", ref: "i4" },
     { q: "Sur quoi repose la sécurité de RSA ?", c: ["Le secret de l’algorithme", "La difficulté de factoriser un grand nombre n = p × q", "La vitesse du réseau", "La longueur du message"], a: 1, e: "Connaître n ne permet pas, en pratique, de retrouver p et q.", ref: "i4" },
-    { q: "Pourquoi n’utilise-t-on pas RSA pour chiffrer toute une vidéo ?", c: ["Il est trop lent", "Il ne chiffre que du texte", "Il est cassé", "Il demande une clé par image"], a: 0, e: "On l’utilise pour échanger une clé ; les données sont chiffrées en symétrique.", ref: "i5" },
+    { q: "Pourquoi n’utilise-t-on pas RSA pour chiffrer toute une vidéo ?", c: ["Il est trop lent", "Il ne chiffre que du texte", "Il est cassé", "Il demande une clé par image"], a: 0, e: "On l’utilise pour échanger une clé ; les données sont chiffrées en symétrique.", ref: "i4" },
     { q: "Dans le chiffrement hybride, la clé de session est…", c: ["la clé privée du serveur", "une clé symétrique tirée au hasard, transmise chiffrée avec la clé publique du serveur", "le mot de passe de l’utilisateur", "la même pour tous les clients"], a: 1, e: "Elle sert ensuite à chiffrer tout l’échange en symétrique.", ref: "i5" },
     { q: "Que contient un certificat de site web ?", c: ["La clé privée du site", "Le nom de domaine, la clé publique du site, des dates, la signature d’une autorité", "Le mot de passe de l’administrateur", "La liste des visiteurs"], a: 1, e: "La clé privée ne quitte jamais le serveur.", ref: "i6" },
     { q: "Contre quelle attaque le certificat protège-t-il ?", c: ["La force brute", "L’homme du milieu, qui se ferait passer pour le serveur", "L’interblocage", "Le débordement de tableau"], a: 1, e: "Sans certificat, rien ne prouve que la clé publique reçue est celle du vrai serveur.", ref: "i6" },
@@ -11325,6 +11665,86 @@ WIDGETS_EXT["parcours-graphe"] = function (z, opt, O) {
   O.lecteur(z, { titre: "parcours d’un graphe", choix: [{ k: "largeur", t: "en largeur (file)" }, { k: "profondeur", t: "en profondeur (pile)" }, { k: "chemin", t: "plus court chemin A → G" }], etapes: etapes, dessine: dessine, vitesse: 1500 });
 };
 
+/* Animation : repérer un cycle par un parcours en profondeur récursif (mêmes algorithmes que c8-cycle et c8-cycle-oriente). */
+WIDGETS_EXT["cycle"] = function (z, opt, O) {
+  var GR = {
+    sans: { o: true, g: { A: ["B", "C"], B: ["D"], C: ["D", "E"], D: [], E: [] }, p: { A: [40, 110], B: [140, 40], C: [140, 180], D: [250, 110], E: [270, 200] } },
+    avec: { o: true, g: { A: ["B", "C"], B: ["D"], C: ["D", "E"], D: [], E: ["C"] }, p: { A: [40, 110], B: [140, 40], C: [140, 180], D: [250, 110], E: [270, 200] } },
+    non: { o: false, g: { A: ["B", "C"], B: ["A", "D"], C: ["A", "D"], D: ["B", "C"] }, p: { A: [40, 110], B: [150, 40], C: [150, 180], D: [260, 110] } }
+  };
+  function etapes(k) {
+    var D = GR[k], g = D.g, E = [], etat = {}, pile = [], arc = null, cycle = null, fini = false;
+    Object.keys(g).forEach(function (s) { etat[s] = "blanc"; });
+    function snap(msg) { E.push({ etat: JSON.parse(JSON.stringify(etat)), pile: pile.slice(), arc: arc, cycle: cycle, msg: msg }); }
+    if (D.o) {
+      snap("Graphe <b>orienté</b>. Trois états : <b>blanc</b> (jamais vu), <b>gris</b> (en cours : encore dans la pile d’appels), <b>noir</b> (terminé). Un arc vers un sommet <b>gris</b> referme un cycle.");
+      var explorer = function (s) {
+        etat[s] = "gris"; pile.push(s); arc = null;
+        snap("<code>explorer(" + s + ")</code> : " + s + " passe en <b>gris</b> et entre dans la pile d’appels.");
+        for (var i = 0; i < g[s].length; i++) {
+          var v = g[s][i]; arc = [s, v];
+          if (etat[v] === "gris") { cycle = pile.slice(pile.indexOf(v)).concat([v]); snap("Arc " + s + " → " + v + " : " + v + " est <b>gris</b>, donc encore en cours, plus bas dans la pile. On est revenu sur un chemin déjà commencé : <b>cycle " + cycle.join(" → ") + "</b>. La fonction renvoie True."); return true; }
+          if (etat[v] === "blanc") { snap("Arc " + s + " → " + v + " : " + v + " est blanc, on l’explore."); if (explorer(v)) return true; arc = null; }
+          else snap("Arc " + s + " → " + v + " : " + v + " est <b>noir</b> (déjà terminé, tous ses chemins explorés sans revenir ici). <b>Pas de cycle</b> par cet arc : un simple test « déjà vu » se tromperait ici.");
+        }
+        etat[s] = "noir"; pile.pop(); arc = null;
+        snap(s + " n’a plus de successeur à examiner : il devient <b>noir</b> et sort de la pile.");
+        return false;
+      };
+      var trouve = false, ks = Object.keys(g);
+      for (var j = 0; j < ks.length && !trouve; j++) if (etat[ks[j]] === "blanc") trouve = explorer(ks[j]);
+      if (!trouve) { arc = null; snap("Tous les sommets sont noirs et aucun arc n’a mené à un sommet gris : <b>pas de cycle</b>, la fonction renvoie False. Ici, D est atteint par deux chemins (A → B → D et A → C → D) sans former de cycle."); }
+    } else {
+      snap("Graphe <b>non orienté</b> : on mémorise les sommets vus et, pour chacun, le sommet d’où l’on vient (son <b>parent</b>).");
+      var parent = {};
+      var expl = function (s, par) {
+        etat[s] = "gris"; parent[s] = par; pile.push(s); arc = null;
+        snap("<code>explorer(" + s + ", " + (par || "None") + ")</code> : " + s + " est marqué vu" + (par ? ", on y est arrivé depuis " + par : "") + ".");
+        for (var i = 0; i < g[s].length; i++) {
+          var v = g[s][i]; arc = [s, v];
+          if (etat[v] === "blanc") { snap("Arête " + s + " – " + v + " : " + v + " pas encore vu, on l’explore."); if (expl(v, s)) return true; arc = null; }
+          else if (v !== par) { cycle = pile.slice(pile.indexOf(v)).concat([v]); snap("Arête " + s + " – " + v + " : " + v + " est <b>déjà vu</b> et ce n’est pas le parent de " + s + " (" + par + ") : il existe deux chemins différents vers " + v + ". <b>Cycle " + cycle.join(" – ") + "</b>, la fonction renvoie True."); return true; }
+          else snap("Arête " + s + " – " + v + " : " + v + " est déjà vu, mais c’est le <b>parent</b> : on revient par l’arête qu’on vient d’emprunter, ce n’est pas un cycle.");
+        }
+        etat[s] = "noir"; pile.pop(); arc = null;
+        snap(s + " n’a plus de voisin à examiner : fin de son appel.");
+        return false;
+      };
+      expl("A", null);
+    }
+    return E;
+  }
+  function dessine(sc, e, i, E, saut) {
+    var k = sc.getAttribute("data-k"), D = GR[k], P = D.p, R = 17;
+    var s = '<svg class="graphe-svg cyc" viewBox="0 0 310 225" role="img" aria-label="Graphe ' + (D.o ? "orienté" : "non orienté") + ' et parcours en profondeur">';
+    var dans = function (a, b) { if (!e.cycle) return false; for (var j = 0; j + 1 < e.cycle.length; j++) if ((e.cycle[j] === a && e.cycle[j + 1] === b) || (!D.o && e.cycle[j] === b && e.cycle[j + 1] === a)) return true; return false; };
+    var vus = {};
+    Object.keys(D.g).forEach(function (a) {
+      D.g[a].forEach(function (b) {
+        if (!D.o && vus[b + a]) return; vus[a + b] = 1;
+        var p = P[a], q = P[b], dx = q[0] - p[0], dy = q[1] - p[1], L = Math.sqrt(dx * dx + dy * dy), ux = dx / L, uy = dy / L;
+        var dbl = D.o && D.g[b].indexOf(a) >= 0, ox = dbl ? -uy * 7 : 0, oy = dbl ? ux * 7 : 0;
+        var x1 = p[0] + ux * R + ox, y1 = p[1] + uy * R + oy, x2 = q[0] - ux * (R + (D.o ? 2 : 0)) + ox, y2 = q[1] - uy * (R + (D.o ? 2 : 0)) + oy;
+        var cl = dans(a, b) ? " cy" : e.arc && ((e.arc[0] === a && e.arc[1] === b) || (!D.o && e.arc[0] === b && e.arc[1] === a)) ? " ex" : "";
+        s += '<line class="ar' + cl + '" x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '"/>';
+        if (D.o) s += '<path class="pointe' + cl + '" d="M' + x2.toFixed(1) + " " + y2.toFixed(1) + " L" + (x2 - ux * 10 - uy * 5).toFixed(1) + " " + (y2 - uy * 10 + ux * 5).toFixed(1) + " L" + (x2 - ux * 10 + uy * 5).toFixed(1) + " " + (y2 - uy * 10 - ux * 5).toFixed(1) + 'z"/>';
+      });
+    });
+    Object.keys(P).forEach(function (v) {
+      var p = P[v], et = e.etat[v], neuf = !saut && i > 0 && E[i - 1].etat[v] !== et;
+      s += '<g class="nd-c ' + et + (neuf ? " neuf" : "") + '"><circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + R + '"/><text x="' + p[0] + '" y="' + (p[1] + 5) + '" text-anchor="middle">' + v + "</text></g>";
+    });
+    s += "</svg>";
+    var leg = D.o ? '<span><i class="c-blanc"></i>blanc : jamais vu</span><span><i class="c-gris"></i>gris : en cours</span><span><i class="c-noir"></i>noir : terminé</span>' : '<span><i class="c-blanc"></i>pas encore vu</span><span><i class="c-gris"></i>vu, appel en cours</span><span><i class="c-noir"></i>vu, appel fini</span>';
+    sc.innerHTML = '<div class="parc">' + s + '<div class="parc-cote"><div class="titre-pile">pile d’appels (le plus récent en haut)</div><div class="mini-pile cyc-pile">' + (e.pile.length ? e.pile.slice().reverse().map(function (v) { return '<span class="puce">explorer(' + v + ")</span>"; }).join("") : '<span class="repere">vide</span>') + '</div><div class="legende-c mono">' + leg + "</div></div></div>";
+  }
+  O.lecteur(z, {
+    titre: "repérer un cycle", sous: "parcours en profondeur",
+    choix: [{ k: "sans", t: "orienté, sans cycle" }, { k: "avec", t: "orienté, avec cycle" }, { k: "non", t: "non orienté" }],
+    etapes: etapes, prepare: function (sc, k) { sc.setAttribute("data-k", k); }, dessine: dessine, vitesse: 1600
+  });
+};
+
 CH.push({
   id: "ch8", n: 8, court: "graphes", fichier: "ch8_graphes.py",
   titre: "Graphes : structures et algorithmes",
@@ -11400,7 +11820,9 @@ CH.push({
 <p>Dans un graphe <b>non orienté</b>, un parcours en profondeur rencontre un cycle quand il trouve un voisin <b>déjà visité</b> qui n’est pas le sommet d’où il vient (son parent) : il existe alors deux chemins différents vers ce sommet.</p>
 [[c8-cycle]]
 <p>Dans un graphe <b>orienté</b>, on distingue trois états : jamais vu, <b>en cours</b> (encore dans la pile d’appels), terminé. Un arc vers un sommet « en cours » referme un cycle. Exemple utile : des prérequis circulaires (A exige B, qui exige A) rendent un planning impossible.</p>
-[[c8-cycle-oriente]]` }
+[[c8-cycle-oriente]]
+<p>Les deux fonctions pas à pas : regarde la couleur des sommets et la pile d’appels au moment où l’arc (ou l’arête) qui referme le cycle est examiné.</p>
+[[w-cycle]]` }
   ],
   pieges: [
     { t: "Oublier de marquer les sommets visités", h: `[[c8-p-marquage]]<p>Dès qu’il y a un cycle (ici A-B-A), le parcours tourne indéfiniment. On marque un sommet <b>dès qu’on le découvre</b> (avant de l’enfiler) et on n’enfile que des sommets non marqués.</p>` },
@@ -11610,7 +12032,7 @@ var PAGE_EPREUVE = {
 <div class="chiffres"><div><b>3 h 30</b><span>partie écrite, sur 20, coefficient 0,75</span></div><div><b>1 h</b><span>partie pratique sur ordinateur, sur 20, coefficient 0,25</span></div><div><b>16</b><span>coefficient de la spécialité dans le bac</span></div><div><b>2 / 20</b><span>maîtrise de la langue à l’écrit (nouveau en 2027)</span></div></div>
 
 <h2>Le format officiel</h2>
-<p>Texte de référence : <b>note de service du 11 septembre 2026</b> (BO spécial n° 4 du 17 septembre 2026), applicable <b>à partir de la session 2027</b>. Elle remplace la note du 4 juillet 2025 (session 2026), dont elle garde la structure.</p>
+<p>Texte de référence : <b>note de service du 11 septembre 2026</b> (BO spécial n° 4 du 17 septembre 2026), applicable <b>à partir de la session 2027</b>. Elle remplace la note du 4 juillet 2025 (session 2026), dont elle garde la structure. L’organisation de la partie pratique est précisée par une seconde <b>note de service du 21 septembre 2026</b> (BO n° 38 du 8 octobre 2026).</p>
 <div class="tab-wrap"><table>
 <tr><th></th><th>partie écrite</th><th>partie pratique</th></tr>
 <tr><td>durée</td><td>3 h 30</td><td>1 h</td></tr>
@@ -11624,8 +12046,8 @@ var PAGE_EPREUVE = {
 <p>Sur <b>tout le programme de Terminale</b>. Les notions de Première non approfondies en Terminale « doivent être connues et mobilisables », mais elles « ne peuvent cependant pas constituer un ressort essentiel du sujet ».</p>
 <div class="boite ex"><div class="lab"># et les parties exclues ?</div><p>Pour les sessions 2022 et 2023, quand l’écrit avait lieu au printemps, une note de service du 12 juillet 2021 retirait certaines parties du programme de l’évaluation. Ces dispositions ont été <b>abrogées</b>, et les notes de service en vigueur (session 2026 et session 2027) n’excluent <b>aucune</b> partie : tout le programme de Terminale peut tomber à l’écrit. Les sujets récents mélangent d’ailleurs plusieurs rubriques dans un même exercice (par exemple, en 2025 : « graphes et programmation orientée objet », « algorithmique, récursivité et files »).</p></div>
 <h3>La partie pratique en détail</h3>
-<p>Les sujets sont tirés d’une <b>banque nationale</b> publiée au plus tard le 24 mars de chaque session (adresse officielle donnée par la note de service : <code>sujets.examens-concours.gouv.fr/delos/public/bgt/nsi</code>). L’établissement retient une liste de sujets, le jury en attribue un à chaque candidat.</p>
-<p>Depuis la session 2026, un sujet est un petit projet : un document et un fichier Python fournis, puis une série de questions (compléter une fonction, écrire des tests, trouver et corriger une erreur, expliquer un résultat), avec des moments d’échange avec l’examinateur. Pour la session 2026, la banque comptait 23 sujets, publiés le 26 mars 2026, et la grille nationale évaluait quatre compétences : <b>programmation (35 %)</b>, <b>compréhension (25 %)</b>, <b>autonomie (20 %)</b> et <b>oral (20 %)</b>, chacune notée « insuffisant, fragile, suffisant ou maîtrisé » puis convertie en note sur 20 (d’après les documents de formation académiques de la session 2026 ; la grille de 2027 sera confirmée avec la banque).</p>
+<p>Les sujets sont tirés d’une <b>banque nationale</b> publiée au plus tard le 24 mars de chaque session (adresse officielle donnée par la note de service : <code>sujets.examens-concours.gouv.fr/delos/public/bgt/nsi</code>). L’établissement retient une liste de sujets, le jury en attribue un à chaque candidat. L’examinateur remplit une fiche individuelle : une note sur 20 au demi-point et un commentaire.</p>
+<p>Depuis la session 2026, un sujet est un petit projet : un document et un fichier Python fournis, puis une série de questions (compléter une fonction, écrire des tests, trouver et corriger une erreur, expliquer un résultat), avec des moments d’échange avec l’examinateur. Pour la session 2026, la banque comptait 23 sujets, publiés le 26 mars 2026, et la grille nationale évaluait quatre compétences : <b>programmation (35 %)</b>, <b>compréhension (25 %)</b>, <b>autonomie (20 %)</b> et <b>oral (20 %)</b>, chacune notée « insuffisant, fragile, suffisant ou maîtrisé » puis convertie en note sur 20 (d’après les documents académiques de la session 2026, par exemple celui de l’IREM de Lyon, juin 2026 ; la grille de 2027 sera confirmée avec la banque).</p>
 <p class="muet petit">Avant 2026, la pratique comportait deux exercices notés sur 10 : un algorithme du programme à écrire, puis un programme « à trous » à compléter. Beaucoup d’annales en ligne suivent encore ce format : elles restent un bon entraînement.</p>
 <h3>Oral de contrôle (second groupe)</h3>
 <p>20 minutes de préparation, 20 minutes d’oral. L’examinateur propose au moins deux questions portant sur des parties différentes du programme.</p>
@@ -11684,6 +12106,7 @@ var PAGE_RESSOURCES = {
 <li><a href="https://eduscol.education.fr/document/30007/download" target="_blank" rel="noopener">Programme de NSI de Première (PDF, Eduscol)</a> <span class="gratuit">gratuit</span><br><span class="src">les notions à connaître et mobiliser</span></li>
 <li><a href="https://eduscol.education.gouv.fr/2068/programmes-et-ressources-en-numerique-et-sciences-informatiques-voie-g" target="_blank" rel="noopener">Eduscol : programmes et ressources en NSI</a> <span class="gratuit">gratuit</span><br><span class="src">ressources d’accompagnement officielles, sujets zéro</span></li>
 <li><a href="https://www.education.gouv.fr/bo/2026/Special4/MENE2622643N" target="_blank" rel="noopener">Note de service du 11/09/2026 : épreuve de NSI à partir de 2027</a><br><span class="src">BO spécial n° 4 du 17/09/2026</span></li>
+<li><a href="https://www.education.gouv.fr/bo/2026/Hebdo38/MENE2624043N" target="_blank" rel="noopener">Note de service du 21/09/2026 : partie pratique de NSI à partir de 2027</a><br><span class="src">BO n° 38 du 8/10/2026 : banque de sujets, choix des sujets, fiche d’évaluation</span></li>
 <li><a href="https://www.education.gouv.fr/bo/2026/Special4/MENE2622694N" target="_blank" rel="noopener">Note de service du 10/09/2026 : le Grand oral à partir de 2027</a></li>
 <li><a href="https://sujets.examens-concours.gouv.fr/delos/public/bgt/nsi" target="_blank" rel="noopener">Banque nationale des sujets de la partie pratique</a><br><span class="src">adresse donnée par la note de service ; publiée au plus tard le 24 mars de chaque session</span></li>
 </ul>
@@ -11716,7 +12139,7 @@ var PAGE_RESSOURCES = {
 <p>Aucun manuel de NSI de Terminale entièrement consultable gratuitement en ligne n’a été trouvé ; ton établissement peut te donner accès à une version numérique par l’ENT.</p>
 <ul class="liens">
 <li><b>Spécialité NSI Terminale, 24 leçons avec exercices corrigés</b> (Ellipses), T. Balabonski, S. Conchon, J.-C. Filliâtre, K. Nguyen <span class="payant">payant</span><br><span class="src">édition 2024, ISBN 978-2-340-09653-0 ; cours complet et exigeant, écrit par des enseignants-chercheurs</span></li>
-<li><b>Numérique et sciences informatiques, spécialité Terminale</b> (Hachette Éducation) <span class="payant">payant</span><br><span class="src">ISBN 978-2-01-786634-3</span></li>
+<li><b>Numérique et sciences informatiques, spécialité Terminale</b> (Hachette Éducation) <span class="payant">payant</span><br><span class="src">manuel scolaire, souvent disponible en version numérique par l’ENT de l’établissement</span></li>
 </ul>
 <h2>Vidéos</h2>
 <ul class="liens">
@@ -11741,6 +12164,23 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
   function sansAccent(s) { return String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
   function melange(t) { t = t.slice(); for (var i = t.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var x = t[i]; t[i] = t[j]; t[j] = x; } return t; }
   function chap(id) { for (var i = 0; i < CH.length; i++) if (CH[i].id === id) return CH[i]; return null; }
+  function toutRedige() { return PROG.every(function (r) { return r.items.every(function (it) { return !!it.ch; }); }); }
+  /* Ordre des propositions des QCM : dans les données, la bonne réponse est souvent la deuxième. On les range une fois
+     pour toutes, de façon déterministe (même ordre à chaque visite) : réponses numériques par ordre croissant,
+     sinon permutation tirée de l'énoncé. Seul l'indice de la bonne réponse (a) est recalculé. */
+  (function () {
+    function nb(s) { var t = String(s).replace(/<[^>]+>/g, "").replace(/[\s  ]/g, "").replace(",", "."); return /^-?\d+(\.\d+)?$/.test(t) ? parseFloat(t) : NaN; }
+    function graine(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h; }
+    CH.forEach(function (c) {
+      c.qcm.forEach(function (q) {
+        var idx = q.c.map(function (_, i) { return i; });
+        if (q.c.every(function (x) { return !isNaN(nb(x)); })) idx.sort(function (i, j) { return nb(q.c[i]) - nb(q.c[j]); });
+        else { var h = graine(q.q); for (var i = idx.length - 1; i > 0; i--) { h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0; var j = h % (i + 1), x = idx[i]; idx[i] = idx[j]; idx[j] = x; } }
+        q.a = idx.indexOf(q.a);
+        q.c = idx.map(function (i) { return q.c[i]; });
+      });
+    });
+  })();
 
   /* ---------- icônes ---------- */
   var IC = {
@@ -11928,6 +12368,38 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
     var b = $(".lecture-p i"); if (b) b.style.width = pc + "%";
     var s = $("#st-pc"); if (s) s.textContent = "lecture " + pc + " %";
   }
+  /* Typographie française du texte rédigé (jamais dans le code) : espace insécable avant « : » et « » », fine insécable
+     avant « ; ! ? », insécable après « « », et entre les tranches de chiffres (1 000), pour qu’aucune ligne ne commence
+     par un signe isolé sur téléphone. */
+  var SANS_TYPO = { CODE: 1, PRE: 1, KBD: 1, SCRIPT: 1, STYLE: 1, TEXTAREA: 1, svg: 1, SVG: 1 };
+  function horsTypo(p) { return SANS_TYPO[p.nodeName] || (p.classList && (p.classList.contains("code") || p.classList.contains("invite"))); }
+  function typo(racine) {
+    for (var a = racine; a && a.nodeType === 1; a = a.parentNode) if (horsTypo(a)) return;
+    var w =document.createTreeWalker(racine, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {
+      for (var p = n.parentNode; p && p !== racine; p = p.parentNode) if (horsTypo(p)) return NodeFilter.FILTER_REJECT;
+      return /[ :;!?«»\d]/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    } });
+    var l = [], n;
+    while ((n = w.nextNode())) l.push(n);
+    l.forEach(function (t) {
+      var v = t.nodeValue, x = v.replace(/ ([:»])/g, " $1").replace(/ ([;!?])/g, " $1").replace(/« /g, "« ").replace(/(\d) (?=\d{3}(?!\d))/g, "$1 ");
+      if (x !== v) t.nodeValue = x;
+    });
+  }
+  /* Les schémas et le QCM réécrivent leur texte après le rendu : on applique la même typographie à ce qu’ils ajoutent. */
+  var obsTypo = null;
+  function suivreTypo(page) {
+    if (obsTypo || typeof MutationObserver === "undefined") return;
+    obsTypo = new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        Array.prototype.forEach.call(m.addedNodes, function (n) {
+          if (n.nodeType === 1) typo(n);
+          else if (n.nodeType === 3 && n.parentNode) { var p = n.parentNode; if (p.nodeType === 1) typo(p); }
+        });
+      });
+    });
+    obsTypo.observe(page, { childList: true, subtree: true });
+  }
   function render() {
     var r = routeCourante();
     var page = $("#page");
@@ -11941,6 +12413,8 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
     else if (r.page === "entrainement") html = pageEntrainement(r);
     else { html = pageAccueil(); page.className = "page large"; }
     page.innerHTML = html;
+    typo(page);
+    suivreTypo(page);
     $("#fic").textContent = nomFichier(r);
     $$(".lat a").forEach(function (a) { a.classList.toggle("actif", a.getAttribute("data-r") === r.page); });
     document.title = (c ? c.titre + " — " : r.page !== "accueil" && r.page ? nomFichier(r).replace(/\..*$/, "") + " — " : "") + "import bac · NSI Terminale";
@@ -11971,7 +12445,7 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
       ['<span class="pr">&gt;&gt;&gt;</span> bac.nsi.epreuve', 4],
       ['<span class="ok">écrit 3 h 30 + pratique 1 h · coef. 16</span>', 5],
       ['<span class="pr">&gt;&gt;&gt;</span> <span class="curseur"></span>', 6]
-    ].map(function (l) { return '<span class="ligne" style="animation-delay:' + (0.25 + l[1] * 0.42).toFixed(2) + 's">' + l[0] + "</span>"; }).join("\n");
+    ].map(function (l) { return '<span class="ligne" style="animation-delay:' + (0.2 + l[1] * 0.3).toFixed(2) + 's">' + l[0] + "</span>"; }).join("\n");
     var h = '<div class="heros"><div>' + invite("", "python3 -m bac --nsi") + '<h1><span class="kw">import</span> <span class="bac">bac</span></h1>' +
       '<p class="acc">Le terminal de révision de la spécialité <b>NSI en Terminale</b> : cours rédigés à fond, code Python testé ligne à ligne, schémas qui s’animent, QCM, cartes mémoire et exercices type bac.</p>' +
       '<div class="rangee"><a class="btn prim" href="#' + CH[0].id + '">' + ic("lecture") + "Commencer le chapitre 1</a>" +
@@ -11986,7 +12460,7 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
       });
       h += "</div>";
     });
-    h += "<h2>Carte du programme</h2><p class=\"muet\">Les six rubriques officielles du programme de Terminale. Ce qui n’est pas encore rédigé est marqué « bientôt », avec ce que le programme demande.</p>";
+    h += "<h2>Carte du programme</h2><p class=\"muet\">Les six rubriques officielles du programme de Terminale" + (toutRedige() ? ", toutes rédigées sur le site." : ". Ce qui n’est pas encore rédigé est marqué « bientôt », avec ce que le programme demande.") + "</p>";
     PROG.forEach(function (r) {
       h += '<div class="rubrique"><div class="tete"><span class="n">' + r.n + "</span>" + esc(r.t) + "</div>";
       r.items.forEach(function (it) {
@@ -12086,6 +12560,7 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
       var ref = q.ref ? q.ref.split(":") : null;
       var lien = ref ? '<a class="lien-revoir" href="#' + ref[0] + "/" + ref[1] + '">' + ic("retour") + "Revoir le paragraphe</a>" : "";
       $(".slot", qel).innerHTML = '<div class="expl"><span class="v ' + (bon ? "ok" : "ko") + '">' + (bon ? "PASSED ✔ " : "FAILED ✘ attendu : " + "ABCDE"[q.a] + " · ") + "</span>" + q.e + "<br>" + lien + "</div>";
+      typo($(".slot", qel));
       qel.classList.add("repondu", bon ? "ok" : "ko");
       if (anim === false) qel.classList.remove("ok", "ko");
     }
@@ -12140,7 +12615,8 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
   /* ---------- programme ---------- */
   function pageProgramme(r) {
     var h = invite("", "less programme.txt") + "<h1>Carte du programme</h1><p class=\"soustitre\">Programme de Terminale (arrêté du 19/07/2019, BO spécial n° 8 du 25/07/2019), en six rubriques. Le BO précise qu’il « ne constitue pas un plan de cours » : chaque professeur choisit sa progression.</p>";
-    h += '<div class="boite def"><div class="lab"># légende</div><p><span class="etiq v">rédigé</span> chapitre complet sur le site · <span class="etiq">bientôt</span> pas encore rédigé : tu trouves déjà ce que le programme demande (contenus, capacités, commentaires officiels reformulés) et ce qu’il faut avoir revu avant.</p></div>';
+    if (toutRedige()) h += '<div class="boite def"><div class="lab"># légende</div><p><span class="etiq v">rédigé</span> chaque point du programme renvoie à son chapitre complet sur le site.</p></div>';
+    else h += '<div class="boite def"><div class="lab"># légende</div><p><span class="etiq v">rédigé</span> chapitre complet sur le site · <span class="etiq">bientôt</span> pas encore rédigé : tu trouves déjà ce que le programme demande (contenus, capacités, commentaires officiels reformulés) et ce qu’il faut avoir revu avant.</p></div>';
     PROG.forEach(function (rb) {
       h += '<div class="rubrique"><div class="tete"><span class="n">' + rb.n + "</span>" + esc(rb.t) + "</div>";
       if (rb.intro) h += '<div style="padding:8px 14px" class="petit muet">' + rb.intro + "</div>";
@@ -12191,7 +12667,23 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
     var imp = $("[data-imprimer]", page);
     if (imp) imp.addEventListener("click", function () { window.print(); });
     $$("[data-w]", page).forEach(function (z) { var k = z.getAttribute("data-w"), f = WIDGETS[k] || (window.WIDGETS_EXT || {})[k]; if (f) f(z, z.getAttribute("data-opt"), OUTILS); });
+    marquerDefilement(page);
   }
+  /* Blocs de code plus larges que l'écran : un fondu à droite signale qu'on peut faire glisser le code. */
+  function marquerDefilement(racine) {
+    $$(".code > pre", racine).forEach(function (pre) {
+      var c = pre.parentNode, f = $(":scope > .fondu-d", c);
+      var deborde = pre.scrollWidth > pre.clientWidth + 2;
+      if (!deborde) { if (f) c.removeChild(f); return; }
+      if (!f) {
+        f = document.createElement("span"); f.className = "fondu-d"; f.setAttribute("aria-hidden", "true"); c.appendChild(f);
+        pre.addEventListener("scroll", function () { f.classList.toggle("fin", pre.scrollLeft + pre.clientWidth >= pre.scrollWidth - 4); }, { passive: true });
+      }
+      f.style.top = pre.offsetTop + "px"; f.style.height = pre.offsetHeight + "px";
+    });
+  }
+  var attenteTaille = null;
+  window.addEventListener("resize", function () { clearTimeout(attenteTaille); attenteTaille = setTimeout(function () { marquerDefilement($("#page")); }, 200); });
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-copie]");
     if (!b) return;
@@ -12202,7 +12694,7 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
 
   /* ---------- recherche plein écran ---------- */
   var INDEX = null;
-  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|[\w,-]+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").trim(); }
+  function texte(h) { return String(h).replace(/<div class="lab">[\s\S]*?<\/div>/g, " ").replace(/\[\[([\w-]+)(?:\|[\w,-]+)?\]\]/g, function (_, id) { return CODE[id] ? " " + CODE[id].src + " " : " "; }).replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ").replace(/\( /g, "(").replace(/ ([),.])/g, "$1").trim(); }
   function construireIndex() {
     INDEX = [];
     CH.forEach(function (c) {
@@ -12451,8 +12943,10 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
         });
         $(".arbre", z).innerHTML = '<div class="titre-pile" style="margin-top:10px">arbre des appels</div><div class="arbre-appels">' + svg + "</svg></div>";
       } else $(".arbre", z).innerHTML = "";
-      $(".msg", z).innerHTML = s.msg;
+      var m = $(".msg", z); m.innerHTML = s.msg;
+      if (!neuf && MO()) { m.classList.remove("neuf"); void m.offsetWidth; m.classList.add("neuf"); }
       $(".cpt", z).textContent = "étape " + (i + 1) + " / " + T.S.length;
+      $('[data-c="suiv"]', z).disabled = i >= T.S.length - 1; $('[data-c="prec"]', z).disabled = i === 0; $('[data-c="debut"]', z).disabled = i === 0;
     }
     function stop() { if (jeu) { clearInterval(jeu); jeu = null; } var b = $('[data-c="jeu"]', z); if (b) b.innerHTML = ic("lecture") + "<span>lecture</span>"; }
     $$(".choix-w button", z).forEach(function (b) { b.addEventListener("click", function () { charger(b.getAttribute("data-t")); }); });
@@ -12683,7 +13177,8 @@ var TRACES = {"c1-tr-self": {"etapes": [{"l": 1, "p": [{"f": "programme principa
     function dessine(saut) {
       var e = etapes[i], n = etapes.length, plein = Math.round(10 * (i + 1) / n);
       o.dessine(scene, e, i, etapes, saut || !MO());
-      $(".msg", z).innerHTML = e.msg || "";
+      var m = $(".msg", z); m.innerHTML = e.msg || "";
+      if (!saut && MO()) { m.classList.remove("neuf"); void m.offsetWidth; m.classList.add("neuf"); }
       $(".cpt", z).textContent = "[" + "#".repeat(plein) + ".".repeat(10 - plein) + "] " + (i + 1) + "/" + n;
       $('[data-c="prec"]', z).disabled = i === 0; $('[data-c="debut"]', z).disabled = i === 0;
       $('[data-c="suiv"]', z).disabled = i === n - 1;
