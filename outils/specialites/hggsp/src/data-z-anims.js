@@ -112,12 +112,12 @@
     s += k("nego", ligne(14, 232, 186, 232, "var(--encre2)", " stroke-width='3' stroke-dasharray='6 4'") + pointe(194, 232, 0, "var(--encre2)") + t(14, 252, "depuis 2004 : près de vingt ans", "lbl") + t(14, 268, "de discussions", "lbl"));
     s += k("adop", pt(X(2023.47), 215, "pt-b", 6) + t(X(2023.47) + 10, 240, "19 juin 2023 : adopté à l'ONU", "lbl"));
     s += k("sign", pt(X(2023.72), 215, "pt-b", 6) + t(X(2023.72) + 10, 258, "20 sept. 2023 : ouvert à la signature", "lbl"));
-    s += k("signe", t(60, 38, "signer n'est pas ratifier : seule la ratification engage l'État", "lbl-f", null, "font-size:12px"));
+    s += k("signe", t(320, 30, "signer n'est pas ratifier :", "lbl-f", "middle", "font-size:12px") + t(320, 46, "seule la ratification engage l'État", "lbl", "middle"));
     s += k("r1", cases(0, 20)) + k("r2", cases(20, 40)) + k("r3", cases(40, 60) + t(570, 131, "✓ 60", "lbl-f", null, "font-size:13px"));
     s += k("r60", pt(X(2025.72), 215, "pt-a", 7) + t(X(2025.72) - 10, 278, "sept. 2025 : 60e ratification", "lbl", "end"));
     s += k("delai", "<path d='M" + X(2025.72) + ",178Q" + Math.round((X(2025.72) + X(2026.04)) / 2) + ",160 " + X(2026.04) + ",178' fill='none' stroke='var(--rouge)' stroke-width='2'/>" + pointe(X(2026.04), 178, 60) + t(Math.round((X(2025.72) + X(2026.04)) / 2), 156, "+ 120 jours", "lbl-f", "middle", "font-size:12px"));
     s += k("vig", pt(X(2026.04), 215, "pt-a", 9) + t(X(2026.04) - 8, 298, "17 janv. 2026 : en vigueur", "lbl-f", "end", "font-size:12px"));
-    s += k("fin", t(60, 64, "des aires marines protégées en haute mer deviennent possibles,", "lbl") + t(60, 82, "mais le traité n'engage que les États qui l'ont ratifié", "lbl"));
+    s += k("fin", t(320, 70, "aires marines protégées possibles en haute mer,", "lbl", "middle") + t(320, 86, "mais seulement pour les États qui ont ratifié", "lbl", "middle"));
     ANIMS.t1bbnj = {
       titre: "Le traité BBNJ : comment un traité entre en vigueur",
       scene: { w: 640, h: 310, svg: s },
@@ -378,7 +378,7 @@
     s += k("champ", ble + t(200, 270, "plantes et animaux domestiqués", "lbl", "middle") + t(200, 286, "vers 10 000 av. J.-C., Croissant fertile", "lbl", "middle"));
     s += k("defr", "<path d='M250,250V228M262,250V232M274,250V229' stroke='var(--kraft-f)' stroke-width='5'/>" + t(262, 214, "défrichement", "lbl", "middle"));
     s += k("lent", trace("", "M40,312C120,300 200,300 290,312", "var(--ok)", 2.5) + pointe(296, 313, 10, "var(--ok)") + t(40, 330, "Grèce 6500 av. J.-C. → Atlantique : 2 500 ans", "lbl"));
-    s += k("stock", "<ellipse cx='420' cy='300' rx='60' ry='14' fill='var(--encre)' opacity='.85'/><ellipse cx='545' cy='296' rx='42' ry='11' fill='var(--encre)' opacity='.85'/>" + t(480, 334, "stocks fossiles : des millions d'années", "lbl", "middle"));
+    s += k("stock", "<ellipse cx='420' cy='300' rx='60' ry='14' fill='#141414' stroke='var(--encre2)'/><ellipse cx='545' cy='296' rx='42' ry='11' fill='#141414' stroke='var(--encre2)'/>" + t(480, 334, "stocks fossiles : des millions d'années", "lbl", "middle"));
     s += k("watt", rect(430, 200, 70, 50, "var(--acier)") + rect(480, 150, 14, 50, "var(--acier)") + "<circle cx='452' cy='226' r='12' fill='none' stroke='var(--papier)' stroke-width='3'/>" + trace("", "M420,286V256", "var(--rouge)", 3) + t(334, 172, "Watt, 1769", "lbl-f", null, "font-size:12px") + t(334, 188, "charbon, puis pétrole", "lbl"));
     s += k("co2", "<path d='M487,148C478,120 500,110 492,86C486,66 505,58 500,40' fill='none' stroke='var(--encre2)' stroke-width='6' stroke-linecap='round' opacity='.45'/>" +
       rect(560, 50, 22, 180, "var(--papier)", " stroke='var(--encre)' stroke-width='1.5'") + rect(560, 162, 22, 68, "var(--acier)") + rect(560, 66, 22, 96, "var(--rouge)") +
@@ -416,8 +416,9 @@
     s += k("exode", trace("", "M380,206C450,206 520,200 600,206", "var(--rouge)", 3) + pointe(608, 206, 0) + t(600, 196, "vers la Californie", "lbl", "end"));
     var repousse = ""; for (i = 0; i < 26; i += 2) { x = 20 + i * 24; repousse += "<path d='M" + x + ",220l-5,-16M" + x + ",220l0,-20M" + x + ",220l5,-15' stroke='var(--ok)' stroke-width='2.2' fill='none'/>"; }
     s += k("soins", repousse);
-    function cap(id, l1, l2) { return k(id, rect(14, 12, 400, l2 ? 46 : 28, "var(--papier)", " rx='5' stroke='var(--encre)' stroke-width='1'") + t(24, 31, l1, "lbl-f", null, "font-size:12px") + (l2 ? t(24, 49, l2, "lbl") : "")); }
-    s += cap("c1", "Une prairie : les racines tiennent le sol") + cap("c2", "Homestead Act (1862) : le sol est labouré à outrance") + cap("c3", "Années 1930 : la sécheresse") + cap("c4", "Tempêtes de poussière", "« dimanche noir » : 14 avril 1935") + cap("c5", "Des centaines de milliers d'exilés", "Les Raisins de la colère (Steinbeck, 1939)") + cap("c6", "1935 : un service fédéral", "de conservation des sols (New Deal)");
+    /* légende d'étape centrée et étroite : sur téléphone, la scène défile de côté autour de son centre */
+    function cap(id, l1, l2) { return k(id, rect(150, 12, 340, l2 ? 46 : 28, "var(--papier)", " rx='5' stroke='var(--encre)' stroke-width='1'") + t(320, 31, l1, "lbl-f", "middle", "font-size:12px") + (l2 ? t(320, 49, l2, "lbl", "middle") : "")); }
+    s += cap("c1", "Une prairie : les racines tiennent le sol") + cap("c2", "Homestead Act (1862) : labour intensif") + cap("c3", "Années 1930 : la sécheresse") + cap("c4", "Tempêtes de poussière", "« dimanche noir » : 14 avril 1935") + cap("c5", "Des centaines de milliers d'exilés", "Steinbeck, Les Raisins de la colère (1939)") + cap("c6", "1935 : conservation des sols", "un service fédéral du New Deal");
     ANIMS.t5dust = {
       titre: "Le Dust Bowl : comment l'exploitation fabrique une catastrophe",
       scene: { w: 640, h: 330, svg: s },
@@ -426,7 +427,7 @@
         { date: "1862-1920", titre: "Labourer à outrance", texte: "La conquête de l'Ouest et le Homestead Act (1862) mettent les Grandes Plaines en culture : la prairie est retournée, le sol reste à nu.", montre: ["labour", "c2"], cache: ["prairie", "c1"], accent: ["labour"] },
         { date: "Années 1930", titre: "La sécheresse", texte: "Une longue sécheresse dessèche les sols labourés, que plus rien ne retient.", montre: ["seche", "c3"], cache: ["c2"], accent: ["seche"] },
         { date: "14 avril 1935", titre: "Le « dimanche noir »", texte: "Le vent soulève des tempêtes de poussière géantes, qui ruinent les fermes : le 14 avril 1935, une tempête traverse toutes les Grandes Plaines.", montre: ["vent", "c4"], cache: ["c3"], accent: ["vent"] },
-        { date: "Années 1930", titre: "L'exode", texte: "Des centaines de milliers de personnes partent vers la Californie ; John Steinbeck raconte cet exode dans Les Raisins de la colère (1939).", montre: ["exode", "c5"], cache: ["c4"], accent: ["exode"] },
+        { date: "Années 1930", titre: "L'exode", texte: "Des centaines de milliers de personnes partent vers la Californie ; John Steinbeck raconte cet exode dans Les Raisins de la colère (1939).", montre: ["c5", "exode"], cache: ["c4"] },
         { date: "1935", titre: "L'État fédéral intervient", texte: "Le New Deal crée un service de conservation des sols : la catastrophe, produite par l'exploitation, conduit l'État à protéger les sols.", montre: ["soins", "c6"], cache: ["c5", "vent"], accent: ["soins"] }
       ],
       source: "Coupe schématique du site, sans échelle. Faits du cours."
@@ -447,7 +448,7 @@
     s += k("a4", trace("", "M200,246Q170,210 170,164", "var(--encre2)", 2.5) + pointe(170, 162, -90, "var(--encre2)"));
     s += k("a5", trace("", "M184,118Q210,80 240,70", "var(--encre2)", 2.5) + pointe(242, 69, -15, "var(--encre2)"));
     s += k("marques", t(548, 106, "!", "lbl-f", null, "font-size:20px") + t(560, 128, "!", "lbl-f", null, "font-size:20px") + t(552, 182, "!", "lbl-f", null, "font-size:20px"));
-    s += k("ex", t(320, 160, "1900-1927 : de la physique", "lbl", "middle") + t(320, 176, "classique à la physique quantique", "lbl", "middle") + t(320, 194, "(Solvay 1927 : Einstein, Bohr)", "lbl", "middle"));
+    s += k("ex", t(320, 192, "1900-1927 : de la physique", "lbl", "middle") + t(320, 208, "classique à la physique quantique", "lbl", "middle") + t(320, 224, "(Solvay 1927 : Einstein, Bohr)", "lbl", "middle"));
     ANIMS.t6kuhn = {
       titre: "Comment la science change de paradigme (Thomas Kuhn, 1962)",
       scene: { w: 640, h: 330, svg: s },
