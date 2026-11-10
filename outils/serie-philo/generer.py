@@ -453,7 +453,7 @@ def generer(nom_module):
         i = int(inst * SR)
         pv[i:i + len(x)] += x
     crete = np.abs(pv).max()
-    pv *= 0.89 / crete
+    pv *= 0.89 / max(crete, 1e-9)   # brouillon muet : crête nulle
     # musique : une humeur par chapitre, fondu enchaîné de 2,5 s entre deux humeurs
     pistes = {}
     for _, hu in humeurs:
