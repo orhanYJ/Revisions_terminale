@@ -453,13 +453,13 @@ def generer(nom_module):
     mus = np.zeros(n)
     poids_total = np.zeros(n)
     if site == "svt":
-        # SVT (10/11/2026) : musique « carnet de naturaliste », cinq thèmes originaux qui tournent d'une partie à l'autre
-        # (musique.carnet), chacun bouclé sur la durée de sa partie seulement
+        # SVT (10/11/2026) : musique lo-fi, cinq thèmes originaux qui tournent d'une partie à l'autre
+        # (musique.lofi), chacun bouclé sur la durée de sa partie seulement
         boucles = {}
         for k, (deb, hu) in enumerate(humeurs):
-            th = musique.theme_carnet(k, hu)
+            th = musique.theme_lofi(k, hu)
             if th not in boucles:
-                x = musique.carnet(th).astype(np.float64)
+                x = musique.lofi(th).astype(np.float64)
                 boucles[th] = x / (np.abs(x).max() + 1e-9) * 0.42
             fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
             a, b = max(0, int((deb - 1.3) * SR)), min(n, int((fin + 1.3) * SR))
