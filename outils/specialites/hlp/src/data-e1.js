@@ -37,6 +37,18 @@ HLP.ENTREES.push({
 <text class="sch-txt apparait" style="--d:1.9s" x="580" y="210" text-anchor="end">accord des trois</text><text class="sch-txt2 apparait" style="--d:1.9s" x="580" y="232" text-anchor="end">→ un homme « bien élevé »</text>
 <text class="sch-txt2 apparait" style="--d:2.1s" x="320" y="272" text-anchor="middle">Seule l’éducation des hommes dépend vraiment de nous : c’est elle qu’il faut régler sur les deux autres.</text>
 </svg><figcaption>D’après <i>Émile</i>, livre I : « Cette éducation nous vient de la nature, ou des hommes, ou des choses. »</figcaption>`,
+  schemaP: `<svg class="sch-port" viewBox="0 0 320 352" role="img" aria-labelledby="sch1p"><title id="sch1p">Les trois maîtres selon Rousseau et le chemin vers l’autonomie</title>
+<text class="sch-tit" x="160" y="26" text-anchor="middle">Les « trois maîtres » de l’Émile</text><text class="sch-txt2" x="160" y="45" text-anchor="middle">Rousseau, livre I</text>
+<rect class="sch-boite apparait" style="--d:.1s" x="12" y="62" width="196" height="52" rx="10"/><text class="sch-txt" x="110" y="84" text-anchor="middle">La nature</text><text class="sch-txt2" x="110" y="102" text-anchor="middle">développement des organes</text>
+<rect class="sch-boite apparait" style="--d:.3s" x="12" y="124" width="196" height="52" rx="10"/><text class="sch-txt" x="110" y="146" text-anchor="middle">Les hommes</text><text class="sch-txt2" x="110" y="164" text-anchor="middle">l’usage qu’on nous apprend</text>
+<rect class="sch-boite apparait" style="--d:.5s" x="12" y="186" width="196" height="52" rx="10"/><text class="sch-txt" x="110" y="208" text-anchor="middle">Les choses</text><text class="sch-txt2" x="110" y="226" text-anchor="middle">l’expérience des objets</text>
+<path class="sch-fort trace" style="--d:.7s" d="M208 88 C238 88 244 120 252 134"/><path class="sch-fort trace" style="--d:.8s" d="M208 150 L246 150"/><path class="sch-fort trace" style="--d:.9s" d="M208 212 C238 212 244 180 252 166"/>
+<circle class="apparait" style="--d:1.2s" cx="270" cy="150" r="24" fill="var(--cuivre)"/><text class="sch-txt apparait" style="--d:1.2s;fill:var(--fond)" x="270" y="155" text-anchor="middle">élève</text>
+<path class="sch-trait trace" style="--d:1.5s" d="M270 176 L270 244" marker-end="url(#fl1p)"/>
+<defs><marker id="fl1p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--filet2)"/></marker></defs>
+<text class="sch-txt apparait" style="--d:1.9s" x="308" y="266" text-anchor="end">accord des trois</text><text class="sch-txt2 apparait" style="--d:1.9s" x="308" y="285" text-anchor="end">→ un homme « bien élevé »</text>
+<text class="sch-txt2 apparait" style="--d:2.1s" x="160" y="318" text-anchor="middle">Seule l’éducation des hommes dépend vraiment</text><text class="sch-txt2 apparait" style="--d:2.1s" x="160" y="335" text-anchor="middle">de nous : il faut la régler sur les deux autres.</text>
+</svg>`,
   cours: [
     { id: "e1-1", titre: "L’héritage humaniste : « une tête bien faite »", html: `
 <p class="lettrine">L’entrée part d’une rupture, il faut donc savoir avec quoi l’on rompt. Les humanistes de la Renaissance ont déjà critiqué l’école de leur temps. Dans le chapitre « De l’institution des enfants » (<i>Essais</i>, I, 26, 1580), Montaigne souhaite pour l’enfant un précepteur qui ait « plutôt la tête bien faite que bien pleine » : mieux vaut former le <b>jugement</b> que gaver la mémoire. Il veut qu’on fasse « passer » les idées des livres « par l’étamine » (le tamis) du jugement de l’élève.</p>

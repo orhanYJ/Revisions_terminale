@@ -116,14 +116,15 @@
     var h = '<div class="lecture"><section class="essentiel"><h2>L’essentiel en 5 lignes</h2><ol>' + e.essentiel.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ol></section>";
     h += '<section class="cadre-prog"><h3>Ce que le programme attend</h3><ul class="puces">' + e.attendus.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul></section>";
     h += "<h2>Les problématiques</h2><ul class='puces'>" + e.problematiques.map(function (l) { return "<li><i>" + l + "</i></li>"; }).join("") + "</ul>";
-    h += e.schema ? '<figure class="schema" data-schema>' + e.schema + "</figure>" : "";
+    /* schemaP : la même figure en portrait, montrée sur téléphone à la place de la version en largeur */
+    h += e.schema ? '<figure class="schema' + (e.schemaP ? " a-deux" : "") + '" data-schema>' + (e.schemaP ? e.schema.replace("<figcaption>", e.schemaP + "<figcaption>") : e.schema) + "</figure>" : "";
     (e.anims || []).forEach(function (id) { h += '<div data-anim="' + id + '"></div>'; });
     h += ORN + "<h2>Le cours</h2>";
     e.cours.forEach(function (c, i) {
       h += '<section class="idee" id="' + c.id + '"><h3><span class="n">' + (i + 1) + ".</span><span>" + c.titre + "</span></h3>" + c.html + "</section>";
     });
     h += ORN + "<h2>Les notions à manier</h2><dl class='defs'>" + e.notions.map(function (n) { return "<dt>" + n[0] + "</dt><dd>" + n[1] + "</dd>"; }).join("") + "</dl>";
-    h += "<h2>Repères chronologiques</h2><div class='defile'><table class='t'><thead><tr><th>Date</th><th>Repère</th></tr></thead><tbody>" +
+    h += "<h2>Repères chronologiques</h2><div class='defile'><table class='t rep'><thead><tr><th>Date</th><th>Repère</th></tr></thead><tbody>" +
       e.reperes.map(function (r) { return "<tr><td style='white-space:nowrap'><b>" + r[0] + "</b></td><td>" + r[1] + "</td></tr>"; }).join("") + "</tbody></table></div>";
     h += "<h2>Les pièges</h2>" + e.pieges.map(function (p) { return '<div class="attention"><b class="l">Piège</b>' + p + "</div>"; }).join("");
     h += '<div class="rang non-imp"><a class="btn plein" href="#' + e.id + '/textes">Lire les textes clés</a><a class="btn" href="#' + e.id + '/qcm">Faire le QCM</a></div></div>';
@@ -284,7 +285,7 @@
         return;
       }
       var x = q[i], ordre = melange(x.c.map(function (c, k) { return k; }));
-      var h = '<div class="qcm"><div class="prog"><span>Question ' + (i + 1) + " / " + q.length + '</span><span class="barre"><i style="width:' + Math.round(i / q.length * 100) + '%"></i></span><span>' + bons + " ✓</span></div>" +
+      var h = '<div class="qcm"><div class="prog"><span>Question ' + (i + 1) + " / " + q.length + '</span><span class="barre"><i style="width:' + Math.round(i / q.length * 100) + '%"></i></span><span>' + bons + (bons > 1 ? " justes" : " juste") + "</span></div>" +
         '<p class="question">' + x.q + '</p><div class="choix">' + ordre.map(function (k) { return '<button data-k="' + k + '">' + x.c[k] + "</button>"; }).join("") + "</div><div class='zone-e'></div></div>";
       zone.innerHTML = ty(h);
     }
@@ -456,6 +457,12 @@
         p.classList.add("lettrine-ok"); break;
       }
     });
+    /* tableaux de trois colonnes ou plus : sur téléphone, chaque ligne devient une fiche (titre de colonne en petites capitales) */
+    $$("table.t", main).forEach(function (t) {
+      var th = $$("thead th", t); if (th.length < 3) return;
+      t.classList.add("empile");
+      $$("tbody tr", t).forEach(function (tr) { $$("td,th", tr).forEach(function (c, k) { var l = th[k] && th[k].textContent.trim(); if (l) c.setAttribute("data-col", l); }); });
+    });
   }
   function router() {
     var h = (location.hash || "#accueil").slice(1), parts = h.split("/"), r = parts[0] || "accueil", sous = parts[1] || "";
@@ -465,6 +472,8 @@
     else { r = "accueil"; html = PAGES.accueil(); }
     main.innerHTML = ty(html) + '<div aria-hidden="true">' + D.CUL + "</div>" + folio(e ? e.id : r) + '<footer class="pied">' + D.PIED + "</footer>";
     orner();
+    /* sur téléphone, l'onglet actif (QCM, cartes, fiche) est souvent hors de la barre : on l'y ramène */
+    var oa = $(".onglets a.actif", main); if (oa) { var nav = oa.parentNode; nav.scrollLeft = Math.max(0, oa.offsetLeft - (nav.clientWidth - oa.offsetWidth) / 2); }
     if (window.HLPANIM) window.HLPANIM.monter(main);
     if (!premier && !reduit) { main.classList.toggle("tourne", false); void main.offsetWidth; main.classList.add("tourne"); setTimeout(function () { main.classList.toggle("tourne", false); }, 900); }
     premier = false;

@@ -36,6 +36,17 @@ HLP.ENTREES.push({
 <g class="apparait" style="--d:1.5s"><path class="sch-trait" d="M390 205 L470 250"/><rect class="sch-boite" x="430" y="232" width="190" height="44" rx="8"/><text class="sch-txt" x="525" y="251" text-anchor="middle">ça · moi · surmoi</text><text class="sch-txt2" x="525" y="268" text-anchor="middle">Freud, 1923</text></g>
 <g class="apparait" style="--d:1.7s"><rect class="sch-boite" x="225" y="282" width="190" height="40" rx="8"/><text class="sch-txt" x="320" y="300" text-anchor="middle">moi profond / superficiel</text><text class="sch-txt2" x="320" y="315" text-anchor="middle">Bergson, 1889</text></g>
 </svg><figcaption>Le moi unifié de la tradition se fissure : passage, altérité, couches de la vie psychique.</figcaption>`,
+  schemaP: `<svg class="sch-port" viewBox="0 0 320 376" role="img" aria-labelledby="sch3p"><title id="sch3p">Les figures du moi, de Montaigne à Sartre</title>
+<text class="sch-tit" x="160" y="26" text-anchor="middle">Un moi, ou plusieurs ?</text>
+<g class="apparait" style="--d:.9s"><path class="sch-trait" d="M126 154 L90 100"/><rect class="sch-boite" x="4" y="54" width="152" height="46" rx="8"/><text class="sch-txt" x="80" y="74" text-anchor="middle">« une chose qui pense »</text><text class="sch-txt2" x="80" y="91" text-anchor="middle">Descartes, 1641</text></g>
+<g class="apparait" style="--d:1.1s"><path class="sch-trait" d="M194 154 L230 100"/><rect class="sch-boite" x="164" y="54" width="152" height="46" rx="8"/><text class="sch-txt" x="240" y="74" text-anchor="middle">« je peins le passage »</text><text class="sch-txt2" x="240" y="91" text-anchor="middle">Montaigne, 1588</text></g>
+<g class="apparait" style="--d:1.3s"><path class="sch-trait" d="M126 226 L90 272"/><rect class="sch-boite" x="4" y="272" width="152" height="46" rx="8"/><text class="sch-txt" x="80" y="292" text-anchor="middle">« Je est un autre »</text><text class="sch-txt2" x="80" y="309" text-anchor="middle">Rimbaud, 1871</text></g>
+<g class="apparait" style="--d:1.5s"><path class="sch-trait" d="M194 226 L230 272"/><rect class="sch-boite" x="164" y="272" width="152" height="46" rx="8"/><text class="sch-txt" x="240" y="292" text-anchor="middle">ça · moi · surmoi</text><text class="sch-txt2" x="240" y="309" text-anchor="middle">Freud, 1923</text></g>
+<circle class="sch-fort trace" style="--d:.1s" cx="160" cy="190" r="54"/>
+<path class="sch-trait trace" style="--d:.5s" d="M160 136 L160 244"/><path class="sch-trait trace" style="--d:.6s" d="M110 170 Q160 196 210 170"/>
+<text class="sch-tit apparait" style="--d:.3s" x="160" y="200" text-anchor="middle">moi</text>
+<g class="apparait" style="--d:1.7s"><rect class="sch-boite" x="62" y="326" width="196" height="44" rx="8"/><text class="sch-txt" x="160" y="345" text-anchor="middle">moi profond / superficiel</text><text class="sch-txt2" x="160" y="362" text-anchor="middle">Bergson, 1889</text></g>
+</svg>`,
   cours: [
     { id: "e3-1", titre: "Qu’appelle-t-on le « moi » ?", html: `
 <p class="lettrine">Il faut distinguer des mots voisins. Le <b>moi</b> désigne l’ensemble de ce que je suis pour moi-même : mon caractère, mes souvenirs, mes désirs. Le <b>sujet</b> est celui qui pense, perçoit, agit (le « je » de la phrase). La <b>personne</b> est le moi en tant qu’être moral et juridique, responsable. L’<b>individu</b>, enfin, est l’être singulier, indivisible, distinct des autres. Le mot latin <i>persona</i> désignait le masque de l’acteur : la personne a d’abord été un rôle.</p>

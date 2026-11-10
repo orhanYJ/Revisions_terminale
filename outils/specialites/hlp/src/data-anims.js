@@ -33,14 +33,14 @@ Object.assign(HLP.ANIMS, {
     intro: "Pourquoi tant d’hommes restent-ils « mineurs » toute leur vie, et comment en sortir ?",
     noeuds: [
       { id: "m", x: 200, y: 14, w: 240, h: 54, s: "these", t: "Minorité :|penser sous la direction d’autrui" },
-      { id: "p", x: 20, y: 110, w: 180, h: 54, s: "arg", t: "Paresse|« Il est si commode… »" },
-      { id: "l", x: 230, y: 110, w: 180, h: 54, s: "arg", t: "Lâcheté|peur de penser seul" },
-      { id: "t", x: 440, y: 110, w: 180, h: 54, s: "obj", t: "Les tuteurs|en profitent" },
+      { id: "p", x: 14, y: 110, w: 172, h: 54, s: "arg", t: "Paresse|« Il est si commode… »" },
+      { id: "l", x: 234, y: 110, w: 172, h: 54, s: "arg", t: "Lâcheté|peur de penser seul" },
+      { id: "t", x: 454, y: 110, w: 172, h: 54, s: "obj", t: "Les tuteurs|en profitent" },
       { id: "s", x: 120, y: 214, w: 400, h: 54, s: "ex", t: "« Sapere aude, aie le courage de te servir|de ta propre intelligence ! »" },
       { id: "u", x: 120, y: 304, w: 180, h: 66, s: "arg", t: "Liberté de l’usage|public de la raison|(écrire, publier)" },
       { id: "c", x: 340, y: 304, w: 180, h: 66, s: "concl", t: "Un public qui|s’éclaire lui-même :|les Lumières" }
     ],
-    liens: [{ de: "p", a: "m", t: "cause" }, { de: "l", a: "m", t: "cause" }, { de: "t", a: "m", t: "entretiennent" }, { de: "m", a: "s", t: "remède", courbe: 0 }, { de: "s", a: "u", t: "condition" }, { de: "u", a: "c" }],
+    liens: [{ de: "p", a: "m", t: "cause" }, { de: "l", a: "m", t: "cause" }, { de: "t", a: "m", t: "entretiennent", via: [[540, 60], [470, 41]], lx: 506, ly: 52, la: "start" }, { de: "m", a: "s", t: "remède", via: [[430, 96], [440, 200]], lx: 448, ly: 198, la: "start" }, { de: "s", a: "u", t: "condition" }, { de: "u", a: "c" }],
     etapes: [
       { montre: ["m"], legende: "<b>Définition.</b> La minorité n’est pas un âge : c’est l’incapacité de penser sans être dirigé." },
       { montre: ["p"], legende: "<b>Première cause : la paresse.</b> Un livre, un directeur, un médecin pensent à ma place." },
@@ -79,14 +79,14 @@ Object.assign(HLP.ANIMS, {
     intro: "Comment construire une réponse à la question du programme sur le langage commun et l’expérience singulière.",
     noeuds: [
       { id: "q", x: 150, y: 12, w: 340, h: 50, s: "these", t: "Problème : l’expérience est singulière,|les mots sont communs" },
-      { id: "a", x: 20, y: 100, w: 280, h: 58, s: "obj", t: "Bergson : « le mot brutal »|écrase les impressions fugitives" },
-      { id: "b", x: 340, y: 100, w: 280, h: 58, s: "ex", t: "Le mets « réputé exquis » : le nom|s’interpose entre sensation et conscience" },
+      { id: "a", x: 20, y: 100, w: 270, h: 58, s: "obj", t: "Bergson : « le mot brutal »|écrase les impressions fugitives" },
+      { id: "b", x: 360, y: 100, w: 260, h: 58, s: "ex", t: "Le mets « réputé exquis » : le nom|s’interpose entre sensation et conscience" },
       { id: "c", x: 20, y: 196, w: 280, h: 58, s: "arg", t: "Wittgenstein : un langage privé|est impossible ; les mots s’apprennent" },
       { id: "d", x: 340, y: 196, w: 280, h: 58, s: "arg", t: "Proust : le style, « question|non de technique, mais de vision »" },
       { id: "e", x: 340, y: 286, w: 280, h: 52, s: "ex", t: "Baudelaire : les synesthésies|inventent des manières de sentir" },
       { id: "f", x: 90, y: 362, w: 460, h: 56, s: "concl", t: "On ne dit pas l’intime malgré les mots communs,|mais en les travaillant : c’est le rôle de l’art" }
     ],
-    liens: [{ de: "q", a: "a", t: "objection" }, { de: "a", a: "b", t: "exemple" }, { de: "q", a: "c", t: "réponse" }, { de: "c", a: "d", t: "et" }, { de: "d", a: "e", t: "exemple" }, { de: "c", a: "f" }, { de: "e", a: "f" }],
+    liens: [{ de: "q", a: "a", t: "objection" }, { de: "a", a: "b", t: "exemple", lx: 331, ly: 122 }, { de: "q", a: "c", t: "réponse", via: [[298, 120], [305, 190]], lx: 286, ly: 186, la: "end" }, { de: "c", a: "d", t: "et" }, { de: "d", a: "e", t: "exemple" }, { de: "c", a: "f" }, { de: "e", a: "f" }],
     etapes: [
       { montre: ["q"], legende: "<b>Poser le problème.</b> Ce que je ressens n’appartient qu’à moi ; les mots appartiennent à tous." },
       { montre: ["a"], legende: "<b>L’objection forte :</b> le langage fixe et généralise ce qui est mouvant et singulier." },
@@ -122,7 +122,7 @@ Object.assign(HLP.ANIMS, {
       { montre: ["c"], legende: "<b>Bilan pour la copie :</b> le moi n’est pas donné ; on y accède par des récits, des interprétations, une œuvre." }
     ] },
   "e3-rimbaud-lecture": { type: "texte", atelier: 3, titre: "Lecture animée : Rimbaud, lettre du voyant", intro: "La grammaire, les images et la ponctuation qui disent un moi dédoublé, une à une." },
-  "frise-mouvements": { type: "frise", titre: "La frise qui se déroule : des Lumières au surréalisme", debut: 1750, fin: 1960, pas: 25, h: 290, min: 820,
+  "frise-mouvements": { type: "frise", titre: "La frise qui se déroule : des Lumières au surréalisme", debut: 1750, fin: 1960, pas: 25, h: 330, min: 820,
     intro: "Les grands mouvements apparaissent dans l’ordre, avec une œuvre repère pour chacun. Dates indicatives : un mouvement n’a ni naissance ni mort précises.",
     periodes: [
       { id: "lum", de: 1750, a: 1789, nom: "Lumières", rang: 0, c: 0 },
@@ -132,7 +132,7 @@ Object.assign(HLP.ANIMS, {
       { id: "sym", de: 1886, a: 1905, nom: "Symbolisme", rang: 0, c: 0 },
       { id: "avg", de: 1909, a: 1924, nom: "Avant-gardes", rang: 1, c: 1 },
       { id: "sur", de: 1924, a: 1945, nom: "Surréalisme", rang: 0, c: 2 },
-      { id: "exi", de: 1943, a: 1960, nom: "Existentialisme", rang: 1, c: 3 }
+      { id: "exi", de: 1943, a: 1960, nom: "Existentialisme", rang: 2, c: 3 }
     ],
     evts: [
       { id: "a", an: 1762, t: "Émile", h: 30 }, { id: "b", an: 1782, t: "Confessions", h: 58 },
