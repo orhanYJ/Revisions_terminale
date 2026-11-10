@@ -8,6 +8,22 @@
   function sansAccent(s) { return String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase(); }
   function melange(t) { t = t.slice(); for (var i = t.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var x = t[i]; t[i] = t[j]; t[j] = x; } return t; }
   function chap(id) { for (var i = 0; i < CH.length; i++) if (CH[i].id === id) return CH[i]; return null; }
+  /* Ordre des propositions des QCM : dans les données, la bonne réponse est souvent la deuxième. On les range une fois
+     pour toutes, de façon déterministe (même ordre à chaque visite) : réponses numériques par ordre croissant,
+     sinon permutation tirée de l'énoncé. Seul l'indice de la bonne réponse (a) est recalculé. */
+  (function () {
+    function nb(s) { var t = String(s).replace(/<[^>]+>/g, "").replace(/[\s  ]/g, "").replace(",", "."); return /^-?\d+(\.\d+)?$/.test(t) ? parseFloat(t) : NaN; }
+    function graine(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; } return h; }
+    CH.forEach(function (c) {
+      c.qcm.forEach(function (q) {
+        var idx = q.c.map(function (_, i) { return i; });
+        if (q.c.every(function (x) { return !isNaN(nb(x)); })) idx.sort(function (i, j) { return nb(q.c[i]) - nb(q.c[j]); });
+        else { var h = graine(q.q); for (var i = idx.length - 1; i > 0; i--) { h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0; var j = h % (i + 1), x = idx[i]; idx[i] = idx[j]; idx[j] = x; } }
+        q.a = idx.indexOf(q.a);
+        q.c = idx.map(function (i) { return q.c[i]; });
+      });
+    });
+  })();
 
   /* ---------- icônes ---------- */
   var IC = {
@@ -195,6 +211,38 @@
     var b = $(".lecture-p i"); if (b) b.style.width = pc + "%";
     var s = $("#st-pc"); if (s) s.textContent = "lecture " + pc + " %";
   }
+  /* Typographie française du texte rédigé (jamais dans le code) : espace insécable avant « : » et « » », fine insécable
+     avant « ; ! ? », insécable après « « », et entre les tranches de chiffres (1 000), pour qu’aucune ligne ne commence
+     par un signe isolé sur téléphone. */
+  var SANS_TYPO = { CODE: 1, PRE: 1, KBD: 1, SCRIPT: 1, STYLE: 1, TEXTAREA: 1, svg: 1, SVG: 1 };
+  function horsTypo(p) { return SANS_TYPO[p.nodeName] || (p.classList && (p.classList.contains("code") || p.classList.contains("invite"))); }
+  function typo(racine) {
+    for (var a = racine; a && a.nodeType === 1; a = a.parentNode) if (horsTypo(a)) return;
+    var w =document.createTreeWalker(racine, NodeFilter.SHOW_TEXT, { acceptNode: function (n) {
+      for (var p = n.parentNode; p && p !== racine; p = p.parentNode) if (horsTypo(p)) return NodeFilter.FILTER_REJECT;
+      return /[ :;!?«»\d]/.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    } });
+    var l = [], n;
+    while ((n = w.nextNode())) l.push(n);
+    l.forEach(function (t) {
+      var v = t.nodeValue, x = v.replace(/ ([:»])/g, " $1").replace(/ ([;!?])/g, " $1").replace(/« /g, "« ").replace(/(\d) (?=\d{3}(?!\d))/g, "$1 ");
+      if (x !== v) t.nodeValue = x;
+    });
+  }
+  /* Les schémas et le QCM réécrivent leur texte après le rendu : on applique la même typographie à ce qu’ils ajoutent. */
+  var obsTypo = null;
+  function suivreTypo(page) {
+    if (obsTypo || typeof MutationObserver === "undefined") return;
+    obsTypo = new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        Array.prototype.forEach.call(m.addedNodes, function (n) {
+          if (n.nodeType === 1) typo(n);
+          else if (n.nodeType === 3 && n.parentNode) { var p = n.parentNode; if (p.nodeType === 1) typo(p); }
+        });
+      });
+    });
+    obsTypo.observe(page, { childList: true, subtree: true });
+  }
   function render() {
     var r = routeCourante();
     var page = $("#page");
@@ -208,6 +256,8 @@
     else if (r.page === "entrainement") html = pageEntrainement(r);
     else { html = pageAccueil(); page.className = "page large"; }
     page.innerHTML = html;
+    typo(page);
+    suivreTypo(page);
     $("#fic").textContent = nomFichier(r);
     $$(".lat a").forEach(function (a) { a.classList.toggle("actif", a.getAttribute("data-r") === r.page); });
     document.title = (c ? c.titre + " — " : r.page !== "accueil" && r.page ? nomFichier(r).replace(/\..*$/, "") + " — " : "") + "import bac · NSI Terminale";
@@ -353,6 +403,7 @@
       var ref = q.ref ? q.ref.split(":") : null;
       var lien = ref ? '<a class="lien-revoir" href="#' + ref[0] + "/" + ref[1] + '">' + ic("retour") + "Revoir le paragraphe</a>" : "";
       $(".slot", qel).innerHTML = '<div class="expl"><span class="v ' + (bon ? "ok" : "ko") + '">' + (bon ? "PASSED ✔ " : "FAILED ✘ attendu : " + "ABCDE"[q.a] + " · ") + "</span>" + q.e + "<br>" + lien + "</div>";
+      typo($(".slot", qel));
       qel.classList.add("repondu", bon ? "ok" : "ko");
       if (anim === false) qel.classList.remove("ok", "ko");
     }

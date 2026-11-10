@@ -511,7 +511,7 @@ CH.push({
 <p>Le nombre d’appels explose : 2 692 537 appels pour F(30), parce que les mêmes valeurs sont recalculées encore et encore (F(28) est calculé 2 fois, F(27) 3 fois, F(26) 5 fois…). Le coût est <b>exponentiel</b>. Dans le schéma, choisis <code>fibonacci(4)</code> : l’arbre se construit pendant que la pile monte et descend.</p>
 [[w-pile-appels|fib]]
 <p>La profondeur de la pile, elle, ne dépasse pas <i>n</i> : l’arbre est large, pas profond.</p>
-<div class="boite hp"><div class="lab"># pour aller plus loin : mémoïsation</div><p>On mémorise chaque résultat dans un dictionnaire pour ne le calculer qu’une fois. C’est le point de départ de la <b>programmation dynamique</b> (au programme, chapitre à venir).</p>[[c2-memo]]</div>` },
+<div class="boite hp"><div class="lab"># pour aller plus loin : mémoïsation</div><p>On mémorise chaque résultat dans un dictionnaire pour ne le calculer qu’une fois. C’est le point de départ de la <b>programmation dynamique</b> (chapitre « Programmation dynamique »).</p>[[c2-memo]]</div>` },
 
     { id: "i7", t: "Diviser l’exposant par 2 : la puissance rapide", h: `
 <p>Pour calculer a<sup>n</sup>, la méthode naïve (a<sup>n</sup> = a × a<sup>n−1</sup>) fait <i>n</i> + 1 appels. Or a<sup>10</sup> = (a<sup>5</sup>)², a<sup>5</sup> = a × (a<sup>2</sup>)², a<sup>2</sup> = (a<sup>1</sup>)², a<sup>1</sup> = a × (a<sup>0</sup>)² : en <b>divisant l’exposant par 2</b> à chaque appel, on n’en fait que 5.</p>

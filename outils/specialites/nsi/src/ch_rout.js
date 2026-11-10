@@ -459,7 +459,7 @@ CH.push({
     { id: "i5", t: "OSPF : le coût des liaisons et Dijkstra", h: `
 <p><b>OSPF</b> (<i>Open Shortest Path First</i>) est un protocole à <b>état de liens</b> :</p>
 <ul><li>chaque routeur décrit ses liaisons (voisins et état) dans de petits messages diffusés à <b>tous</b> les routeurs de la zone ; chacun reconstitue ainsi la <b>carte complète</b> du réseau, un <b>graphe pondéré</b> ;</li>
-<li>le <b>poids</b> d’une liaison est son <b>coût</b>, d’autant plus faible que le débit est grand ; la formule utilisée dans les sujets est <b>coût = 10⁸ / débit</b> (débit en bit/s) ;</li>
+<li>le <b>poids</b> d’une liaison est son <b>coût</b>, d’autant plus faible que le débit est grand ; la formule la plus courante dans les sujets est <b>coût = 10⁸ / débit</b> (débit en bit/s) ; l’énoncé la rappelle toujours, et certains prennent une autre référence (10⁹ par exemple) ;</li>
 <li>chaque routeur calcule lui-même les plus courts chemins vers toutes les destinations avec l’<b>algorithme de Dijkstra</b>, et en déduit sa table.</li></ul>
 [[rout-cout]]
 <div class="tab-wrap"><table><tr><th>débit</th><th>10 Mbit/s</th><th>20 Mbit/s</th><th>50 Mbit/s</th><th>100 Mbit/s</th><th>1 Gbit/s</th></tr><tr><td>coût</td><td>10</td><td>5</td><td>2</td><td>1</td><td>0,1</td></tr></table></div>

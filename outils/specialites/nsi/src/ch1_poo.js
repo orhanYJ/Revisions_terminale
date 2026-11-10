@@ -665,7 +665,7 @@ Un <b>attribut</b> est une variable attachée à un objet ; une <b>méthode</b> 
 <div class="boite hp"><div class="lab"># hors programme</div>
 <p>L’<b>héritage</b> permet de définir une classe à partir d’une autre (<code>class Chat(Animal)</code>) : elle récupère ses attributs et méthodes et peut en redéfinir. Le <b>polymorphisme</b> : un même appel (<code>x.parler()</code>, ou <code>len(x)</code>) produit un comportement adapté au type de <code>x</code>.</p></div>
 [[c1-heritage]]
-<p>La POO est l’un des trois <b>paradigmes</b> au programme, avec l’impératif et le fonctionnel (chapitre « Paradigmes de programmation », bientôt). Un même programme peut mélanger les paradigmes.</p>` }
+<p>La POO est l’un des trois <b>paradigmes</b> au programme, avec l’impératif et le fonctionnel (chapitre « Paradigmes de programmation »). Un même programme peut mélanger les paradigmes.</p>` }
   ],
   pieges: [
     { t: "Oublier self dans la définition d’une méthode", h: `[[c1-p-self]]<p>Python passe toujours l’objet comme premier argument : la méthode reçoit 2 arguments (l’objet et 5) alors qu’elle n’en attend qu’un.</p>` },
