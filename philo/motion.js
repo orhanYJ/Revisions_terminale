@@ -462,7 +462,7 @@ function debat(d){
   anims.push(choc);
   differer(d, anims);
 }
-/* une distinction de M. Bellon : les deux termes arrivent chacun de leur côté, le « ≠ » tombe entre eux */
+/* une distinction du cours : les deux termes arrivent chacun de leur côté, le « ≠ » tombe entre eux */
 function maillon(m){
   var cotes = $$(".mln-side", m), vs = $(".mln-vs", m), n = $(".mln-n", m), anims = [];
   anims.push(anim(m, [{opacity:0, transform:"translateY(18px)"}, {opacity:1, transform:"none"}], {duration:600, easing:DOUX, fill:"backwards"}));

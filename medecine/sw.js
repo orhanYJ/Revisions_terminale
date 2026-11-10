@@ -1,7 +1,7 @@
 /* Service worker — Protocole Santé
    Réseau d'abord pour la page (mises à jour immédiates), repli cache hors ligne.
    Assets : cache d'abord. */
-const CACHE = "sante-v7";
+const CACHE = "sante-v8";
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {

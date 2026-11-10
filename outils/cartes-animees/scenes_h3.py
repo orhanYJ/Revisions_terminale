@@ -1,5 +1,5 @@
 """Scènes de la carte animée H3 « World War Two » (cours de M. Ros, tout le chapitre : introduction à III.3, jusqu'en octobre 1943).
-Content gate : seulement ce qui a été vu en classe ; ce qui vient d'ailleurs porte la balise [hors].
+Contenu : celui des chapitres du site (la balise [hors], si on la remet, s'affiche « complément »).
 Caméra : [longitude, latitude, zoom] (zoom 1 = globe entier dans la hauteur de la carte).
 st : couleurs cumulatives par pièce, [remplissage, couleur des hachures] (None = rien).
 """
@@ -335,13 +335,13 @@ def scenes():
         arrows=[{"id": "maginot", "ligne": MAGINOT, "col": BLEU, "w": 4, "nohead": True, "dash": True, "dur": 2.2}])
     add("I.1", 12, [27, 61.5, 4.2], L("Hiver 1939-1940", "Winter 1939–1940"),
         L("L'URSS prend sa part à l'est", "The USSR takes its share in the east"),
-        L("Pendant la drôle de guerre, l'URSS attaque la Finlande [hors] et lui prend la Carélie en mars 1940 : la carte du cours la range dans les « terres saisies par la Russie, 1939-40 ».",
-          "During the phoney war the USSR attacked Finland [hors] and took Karelia from it in March 1940: the course map counts it among the “land seized by Russia, 1939–40”."), labels=["l_fin", "l_carelie", "helsinki", "leningrad"], cles=["su", "urss", "neutre"],
+        L("Pendant la drôle de guerre, l'URSS attaque la Finlande et lui prend la Carélie en mars 1940 : elle compte parmi les « terres saisies par la Russie, 1939-40 ».",
+          "During the phoney war the USSR attacked Finland and took Karelia from it in March 1940: it counts among the “land seized by Russia, 1939–40”."), labels=["l_fin", "l_carelie", "helsinki", "leningrad"], cles=["su", "urss", "neutre"],
         arrows=[F((32.0, 62.4), (29.6, 61.3), USSR, 0.15, id="fin1"), F((31.5, 60.5), (29.0, 60.7), USSR, -0.15, id="fin2")])
     add("I.1", 14, [13, 61, 3.0], L("Avril 1940", "April 1940"),
         L("Le Danemark et la Norvège envahis", "Denmark and Norway invaded"),
-        L("L'Allemagne occupe le Danemark et envahit la Norvège : la carte du cours montre la route du fer suédois, exporté vers l'Allemagne par Narvik. Le Royaume-Uni n'empêche pas l'occupation de la Norvège : Chamberlain perd le soutien des Communes.",
-          "Germany occupied Denmark and invaded Norway: the course map shows the route of Swedish iron ore, shipped to Germany through Narvik. Britain failed to prevent the occupation of Norway: Chamberlain lost the support of the House of Commons."), labels=["l_nor", "l_dan", "l_sue", "l_fer", "oslo"], pins=["narvik"], cles=["reich", "occ", "neutre"],
+        L("L'Allemagne occupe le Danemark et envahit la Norvège : la carte montre la route du fer suédois, exporté vers l'Allemagne par Narvik. Le Royaume-Uni n'empêche pas l'occupation de la Norvège : Chamberlain perd le soutien des Communes.",
+          "Germany occupied Denmark and invaded Norway: the map shows the route of Swedish iron ore, shipped to Germany through Narvik. Britain failed to prevent the occupation of Norway: Chamberlain lost the support of the House of Commons."), labels=["l_nor", "l_dan", "l_sue", "l_fer", "oslo"], pins=["narvik"], cles=["reich", "occ", "neutre"],
         arrows=[F((9.9, 54.4), (10.3, 56.6), ROUGE, 0.15, id="dk"), F((10.6, 54.7), (10.6, 59.6), ROUGE, -0.25, id="no1"),
                 F((8.5, 57.6), (16.9, 68.2), ROUGE, 0.25, id="no2"),
                 {"id": "fer", "ligne": [(20.2, 67.85), (18.9, 68.2), (17.43, 68.44), (14.5, 68.2), (12.0, 66.0), (8.0, 63.0), (5.2, 60.0), (5.0, 57.5), (8.0, 54.8)],
@@ -404,23 +404,23 @@ def scenes():
         labels=["l_ru", "l_fra", "l_manche", "londres"], cles=["uk", "occ", "reich", "vichy"])
     add("I.2", 15, [-0.6, 51.5, 9.0], L("7 septembre 1940", "7 September 1940"),
         L("Le Blitz sur Londres", "The Blitz on London"),
-        L("La Luftwaffe commence ses raids du soir sur l'East End de Londres. Pour envahir, il faut d'abord abattre la RAF : bombardiers sur les docks, les usines et surtout les villes, pour briser l'industrie et le moral. Le cours compte 43 000 civils tués à Londres (chiffre d'ordinaire donné pour tout le Royaume-Uni).",
-          "The Luftwaffe began its evening raids on London's East End. An invasion first required defeating the RAF: bombers struck docks, factories and above all cities, to break industry and morale. The course gives 43,000 civilian dead in London (usually the figure for the whole UK)."),
+        L("La Luftwaffe commence ses raids du soir sur l'East End de Londres. Pour envahir, il faut d'abord abattre la RAF : bombardiers sur les docks, les usines et surtout les villes, pour briser l'industrie et le moral. Le Blitz tue environ 43 000 civils dans tout le Royaume-Uni, dont près de la moitié à Londres.",
+          "The Luftwaffe began its evening raids on London's East End. An invasion first required defeating the RAF: bombers struck docks, factories and above all cities, to break industry and morale. The Blitz killed about 43,000 civilians across the UK, nearly half of them in London."),
         labels=["l_manche"], pins=["londres"], cles=["uk", "occ"],
         arrows=[F((2.4, 49.6), (-0.05, 51.45), ROUGE, 0.12, w=2.4, dash=True, id="bl1", dt=0.3), F((4.4, 50.9), (0.05, 51.55), ROUGE, -0.12, w=2.4, dash=True, id="bl2", dt=0.3),
                 F((1.0, 49.2), (-0.3, 51.4), ROUGE, 0.2, w=2.4, dash=True, id="bl3", dt=0.3)])
     add("I.2", 15, [-42, 44, 1.3], L("Décembre 1940 - mars 1941", "December 1940 – March 1941"),
         L("Le Royaume-Uni tient, l'Amérique l'approvisionne", "Britain holds, America supplies it"),
-        L("La Luftwaffe n'obtient pas la maîtrise du ciel : en décembre 1940, l'invasion est reportée sine die, Hitler se tournant vers l'URSS. Les États-Unis, neutres, deviennent « l'arsenal de la démocratie » : le cash and carry, puis la loi prêt-bail de mars 1941 [hors], arment le Royaume-Uni.",
-          "The Luftwaffe never won control of the air: in December 1940 the invasion was postponed indefinitely, as Hitler turned to the USSR. The neutral United States became the “Arsenal of Democracy”: cash and carry, then the Lend-Lease Act of March 1941 [hors], armed Britain."),
+        L("La Luftwaffe n'obtient pas la maîtrise du ciel : en décembre 1940, l'invasion est reportée sine die, Hitler se tournant vers l'URSS. Les États-Unis, neutres, deviennent « l'arsenal de la démocratie » : le cash and carry, puis la loi prêt-bail de mars 1941, arment le Royaume-Uni.",
+          "The Luftwaffe never won control of the air: in December 1940 the invasion was postponed indefinitely, as Hitler turned to the USSR. The neutral United States became the “Arsenal of Democracy”: cash and carry, then the Lend-Lease Act of March 1941, armed Britain."),
         labels=["l_usa", "l_atl", "washington", "londres"], cles=["usa", "uk", "occ"],
         arrows=[F((-73.5, 40.5), (-5.5, 51.0), BLEU, -0.12, w=2.8, dash=True, id="conv1", dur=2.8), F((-66.0, 44.5), (-6.0, 54.6), BLEU, -0.1, w=2.8, dash=True, id="conv2", dur=2.8)])
 
     # ---------------- II.1 : les projets allemands pour l'Est
     add("II.1", 14, [21, 45, 3.4], L("Avril - mai 1941", "April – May 1941"),
         L("Les Balkans conquis, les alliés de l'Allemagne", "The Balkans conquered, Germany's allies"),
-        L("La Yougoslavie et la Grèce sont envahies [hors]. La Hongrie, la Roumanie et la Slovaquie, alliées de l'Allemagne sur la carte du cours, et la Bulgarie [hors] couvrent le flanc sud : à la veille de l'invasion de l'URSS, l'Allemagne domine le continent.",
-          "Yugoslavia and Greece were invaded [hors]. Hungary, Romania and Slovakia, Germany's allies on the course map, and Bulgaria [hors] covered the southern flank: on the eve of the invasion of the USSR, Germany dominated the continent."),
+        L("La Yougoslavie et la Grèce sont envahies. La Hongrie, la Roumanie et la Slovaquie, alliées de l'Allemagne, et la Bulgarie couvrent le flanc sud : à la veille de l'invasion de l'URSS, l'Allemagne domine le continent.",
+          "Yugoslavia and Greece were invaded. Hungary, Romania and Slovakia, Germany's allies, and Bulgaria covered the southern flank: on the eve of the invasion of the USSR, Germany dominated the continent."),
         labels=["l_hon", "l_rou", "l_bul", "l_you", "l_gre", "l_slo"], cles=["reich", "occ", "allie", "ital", "urss"],
         arrows=[F((15.0, 46.6), (19.8, 44.4), ROUGE, -0.2, id="you"), F((22.6, 42.3), (22.8, 39.2), ROUGE, -0.2, id="gre")])
     add("II.1", 16, [31, 51, 2.6], L("1941", "1941"),
@@ -528,8 +528,8 @@ def scenes():
     # ---------------- III : la politique raciale nazie, vers le génocide
     add("III.1", 15, [21, 50.5, 3.3], L("Vers 1933", "Around 1933"),
         L("9,5 millions de Juifs en Europe, surtout à l'Est", "9.5 million Jews in Europe, mostly in the East"),
-        L("La carte du cours compte environ 9,5 millions de Juifs en Europe vers 1933, dont 6,76 millions en Europe de l'Est. Les plus grandes communautés sont en Pologne (3 millions) et en URSS (2,5 millions) ; l'Allemagne n'en compte que 565 000. Conquérir l'Est, c'est faire passer la plupart des Juifs d'Europe sous la domination nazie.",
-          "The course map counts about 9.5 million Jews in Europe around 1933, 6.76 million of them in Eastern Europe. The largest communities were in Poland (3 million) and the USSR (2.5 million); Germany had only 565,000. Conquering the East meant bringing most of Europe's Jews under Nazi rule."),
+        L("On compte environ 9,5 millions de Juifs en Europe vers 1933, dont 6,76 millions en Europe de l'Est. Les plus grandes communautés sont en Pologne (3 millions) et en URSS (2,5 millions) ; l'Allemagne n'en compte que 565 000. Conquérir l'Est, c'est faire passer la plupart des Juifs d'Europe sous la domination nazie.",
+          "There were about 9.5 million Jews in Europe around 1933, 6.76 million of them in Eastern Europe. The largest communities were in Poland (3 million) and the USSR (2.5 million); Germany had only 565,000. Conquering the East meant bringing most of Europe's Jews under Nazi rule."),
         labels=["j_pol", "j_urss", "j_all", "j_rou", "j_fra", "j_hon"], cles=["reich", "urss", "neutre"])
     add("III.1", 15, [20.6, 51.3, 8.5], L("1939-1941", "1939–1941"),
         L("Les Juifs de Pologne enfermés dans des ghettos", "The Jews of Poland locked into ghettos"),
@@ -543,8 +543,8 @@ def scenes():
         pins=["varsovie"], cles=["occ"])
     add("III.2", 16, [28, 53, 3.0], L("Dès juin 1941", "From June 1941"),
         L("Les Einsatzgruppen : la « Shoah par balles »", "The Einsatzgruppen: the “Shoah by bullets”"),
-        L("Derrière l'armée qui envahit l'URSS, quatre unités mobiles de tuerie de la SS et de la police, les Einsatzgruppen A, B, C et D, fusillent les Juifs au bord de fosses, mais aussi des responsables communistes et des Roms. Aidés par des auxiliaires locaux, ils tuent plus d'un million de Juifs soviétiques [hors]. Babi Yar, près de Kiev : 33 771 Juifs fusillés en deux jours, fin septembre 1941 [hors].",
-          "Behind the army invading the USSR, four mobile killing squads of the SS and police, Einsatzgruppen A, B, C and D, shot Jews at the edge of pits, as well as communist officials and Roma. Helped by local auxiliaries, they killed more than a million Soviet Jews [hors]. Babi Yar, near Kiev: 33,771 Jews shot in two days, late September 1941 [hors]."),
+        L("Derrière l'armée qui envahit l'URSS, quatre unités mobiles de tuerie de la SS et de la police, les Einsatzgruppen A, B, C et D, fusillent les Juifs au bord de fosses, mais aussi des responsables communistes et des Roms. Aidés par des auxiliaires locaux, ils tuent plus d'un million de Juifs soviétiques. Babi Yar, près de Kiev : 33 771 Juifs fusillés en deux jours, fin septembre 1941.",
+          "Behind the army invading the USSR, four mobile killing squads of the SS and police, Einsatzgruppen A, B, C and D, shot Jews at the edge of pits, as well as communist officials and Roma. Helped by local auxiliaries, they killed more than a million Soviet Jews. Babi Yar, near Kiev: 33,771 Jews shot in two days, late September 1941."),
         front="F41", labels=["ega", "egb", "egc", "egd", "liepaja"], pins=["babiyar"], cles=["occ", "allie", "urss", "front"],
         arrows=[F((22.4, 55.2), (28.4, 58.4), NOIR, -0.15, w=3.0, dash=True, id="egA", dur=2.4), F((24.0, 53.3), (32.0, 54.5), NOIR, -0.1, w=3.0, dash=True, id="egB", dur=2.6),
                 F((24.6, 50.6), (32.4, 50.0), NOIR, 0.08, w=3.0, dash=True, id="egC", dur=2.6), F((28.4, 47.2), (34.4, 45.1), NOIR, 0.12, w=3.0, dash=True, id="egD", dur=2.6)])
@@ -571,7 +571,7 @@ def scenes():
         pins=["treblinka"], cles=["occ"])
     add("Bilan", 18, [17, 50, 3.0], L("Bilan", "Toll"),
         L("Le génocide : 6 millions de Juifs assassinés", "The genocide: 6 million Jews murdered"),
-        L("6 millions de Juifs sont assassinés, les deux tiers des Juifs d'Europe : gazés, fusillés, ou tués par le travail et les conditions de vie. La part des victimes varie selon les pays (carte du cours) : 90 % en Pologne, 97 % en Lituanie, 71 % aux Pays-Bas, 28 % en France, 16 % en Italie. Le Nouvel Ordre européen se voulait une « entité raciale ».",
-          "6 million Jews were murdered, two thirds of the Jews of Europe: gassed, shot, or killed by work and living conditions. The share of victims varied by country (course map): 90% in Poland, 97% in Lithuania, 71% in the Netherlands, 28% in France, 16% in Italy. The New European Order was meant to be a “racial entity”."),
+        L("6 millions de Juifs sont assassinés, les deux tiers des Juifs d'Europe : gazés, fusillés, ou tués par le travail et les conditions de vie. La part des victimes varie selon les pays : 90 % en Pologne, 97 % en Lituanie, 71 % aux Pays-Bas, 28 % en France, 16 % en Italie. Le Nouvel Ordre européen se voulait une « entité raciale ».",
+          "6 million Jews were murdered, two thirds of the Jews of Europe: gassed, shot, or killed by work and living conditions. The share of victims varied by country: 90% in Poland, 97% in Lithuania, 71% in the Netherlands, 28% in France, 16% in Italy. The New European Order was meant to be a “racial entity”."),
         labels=["k_pol", "k_lit", "k_urss", "k_hon", "k_pb", "k_fra", "k_ita"], cles=["reich", "occ", "allie", "ital", "urss"])
     return appliquer(S, HL, TRI, DATES)

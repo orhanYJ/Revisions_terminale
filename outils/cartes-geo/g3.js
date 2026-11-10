@@ -110,7 +110,7 @@ const C = { zee: "#2b8bc0", base: "#8E2F2A", ext: "#B8924F", port: "#17233F", pe
         [(x, y) => '<path d="M' + (x - 9) + "," + y + "H" + (x + 9) + '" stroke="' + ROUTE + '" stroke-width="5"/><path d="M' + (x - 9) + "," + y + "H" + (x + 9) + '" stroke="#fff" stroke-width="2"/>', FR ? "Route maritime mondiale (et détour par le Cap)" : "World shipping route (and the Cape detour)"],
         [sym.ligne(AXE, 1.6), FR ? "Axes entre les territoires français" : "Routes between French territories"],
         [(x, y) => '<rect x="' + (x - 9) + '" y="' + (y - 6) + '" width="18" height="12" fill="url(#g3h-appro-' + lang + ')" stroke="' + ROUGE + '" stroke-opacity=".5"/>', FR ? "Zones d'approvisionnement en matières premières" : "Main raw material supply areas"],
-        [sym.ligne("#b5652a", 1.4, "4 3"), FR ? "Enjeux du cours : piraterie, gaz" : "Stakes in the course: piracy, gas"]]],
+        [sym.ligne("#b5652a", 1.4, "4 3"), FR ? "Autres enjeux : piraterie, gaz" : "Other stakes: piracy, gas"]]],
       [FR ? "3. S'approprier les mers et les océans" : "3. Appropriating the seas and oceans", [
         [sym.zone("#f0a93b", .55), FR ? "ZEE française (cercles de 200 milles)" : "French EEZ (200-nautical-mile circles)"],
         [sym.rien(), FR ? "10,7 millions de km², 62 % dans le Pacifique" : "10.7 million km², 62% in the Pacific"],
