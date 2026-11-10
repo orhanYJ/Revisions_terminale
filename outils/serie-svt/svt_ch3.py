@@ -16,6 +16,7 @@ SITE = "svt"
 CODE = "svt-ch3"
 NOTION = "L'évolution du génome au sein des populations"
 NUM = 3
+RYTHME = "vivant"
 TITRE = "L'évolution du génome au sein des populations"
 SUIVANT = "Chapitre 4 · La diversité non génétique du vivant"
 PRONONCIATION = {"p": "pé", "q": "ku", "m": "ème", "Hardy": "Hardi", "Weinberg": "Vaïnbergue", "Buri": "Bouri",
@@ -86,15 +87,16 @@ def gr_freq(titre, courbes, y=110, x=300, w=680, h=520, gens=10, note=None):
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Ouverture", fond="foret", humeur="mystere", carton=False, beats=[
-        "{ouv_m}Voici la carte mentale du thème un, partie A : génétique et évolution. "
-        "Quatre chapitres. Le premier expliquait comment chaque individu reçoit un génotype unique. Le deuxième, comment les génomes se complexifient.",
-        "{ouv_m.1}Ce chapitre-ci, le troisième, change d'échelle. On ne regarde plus un individu, ni une cellule, "
-        "mais une population entière, et ce que deviennent ses allèles au fil des générations.",
-        "{ouv_m.2}D'abord, un modèle : l'équilibre de Hardy-Weinberg. Il prédit ce qui se passerait dans une population idéale, sans évolution. "
-        "{ouv_m.3}Ensuite, les écarts à cet équilibre : la dérive génétique, l'effet fondateur, la sélection naturelle, "
-        "avec les drosophiles de Buri, les Amish, le groupe sanguin O des Amérindiens et les moustiques du Languedoc. "
-        "{ouv_m.4}Et pour finir, une question plus délicate qu'elle n'en a l'air : qu'est-ce qu'une espèce ?",
-        "{ouv_m.5}Les calculs de Hardy-Weinberg tombent souvent au bac. Tu les feras avec moi, pas à pas, puis seul, sur trois exercices corrigés.",
+        "{ouv_m}Voici la carte mentale du thème un, partie A : génétique et évolution. Quatre chapitres.",
+        "Le premier : comment chaque individu reçoit un génotype unique. Le deuxième : comment les génomes se complexifient.",
+        "{ouv_m.1}Ici, on change d'échelle. Oublie l'individu, oublie la cellule. "
+        "On regarde une population entière. Et une question : que deviennent ses allèles, génération après génération ?",
+        ("P", 0.6),
+        "{ouv_m.2}D'abord, un modèle : l'équilibre de Hardy-Weinberg. Une population idéale, où rien ne bouge.",
+        "{ouv_m.3}Ensuite, tout ce qui fait bouger les choses : la dérive, l'effet fondateur, la sélection. "
+        "Avec des cas réels : les drosophiles de Buri, les Amish, le groupe O des Amérindiens, les moustiques du Languedoc.",
+        "{ouv_m.4}Et pour finir, une question qui a l'air simple. Elle ne l'est pas. Qu'est-ce qu'une espèce ?",
+        "{ouv_m.5}Les calculs de Hardy-Weinberg tombent souvent au bac. On les fait ensemble, pas à pas. Puis tu les fais seul, sur trois exercices.",
         "{-ouv_m}{titre}",
         ("P", 3.2),
     ], vis={
@@ -107,22 +109,23 @@ SCENES = [
     dict(id="enigme", chap="L'énigme de la diversité", fond="foret", humeur="mystere",
          retenir="L'hérédité par mélange est fausse : les allèles se transmettent intacts. D'où la persistance des variants.",
          beats=[
-        "{m_a}{m_a.1}Première branche de la carte : l'équilibre de Hardy-Weinberg. Et pour comprendre pourquoi on en a eu besoin, il faut remonter vers mille huit cents.",
-        "{-m_a}{mel}À cette époque, on ne connaît pas la méiose. Et la théorie admise, c'est l'{!hérédité par mélange} : "
-        "le descendant de deux parents aurait un phénotype intermédiaire, un mélange des deux. "
-        "{mel.1}Exemple : une souris noire croisée avec une souris blanche donnerait une souris grise.",
-        "{mel.2}Si c'était vrai, chaque variant serait dilué un peu plus à chaque génération. Au bout de quelques générations, tout le monde serait gris : "
-        "tous les individus se ressembleraient.",
-        "Or on observe l'inverse. Les variants persistent. Regarde une population humaine : une immense diversité de phénotypes, "
-        "génération après génération. C'est l'énigme de la persistance des variants génétiques.",
-        "{mel.3}La solution, tu la connais depuis le chapitre un. Les allèles se transmettent intacts, par la méiose et la fécondation. "
-        "Un hétérozygote peut avoir un phénotype intermédiaire, mais ses deux allèles restent distincts. "
-        "{mel.4}Et ils peuvent se retrouver séparés dans ses gamètes. Mendel l'avait montré dès les années mille huit cent soixante.",
-        "{-mel}{hw}Reste à comprendre comment les fréquences des allèles se comportent dans une population entière. "
-        "En mille neuf cent huit, deux scientifiques répondent, chacun de son côté : le mathématicien britannique Godfrey Harold Hardy, "
-        "et le médecin allemand Wilhelm Weinberg.",
-        "{-hw}{pb}D'où la question à laquelle tout le chapitre répond : {pb.1}comment les fréquences des allèles évoluent-elles dans une population, "
-        "au fil des générations, et pourquoi s'écartent-elles de l'équilibre prévu par le modèle de Hardy-Weinberg ?",
+        "{m_a}{m_a.1}Première branche : l'équilibre de Hardy-Weinberg. Pourquoi a-t-on eu besoin d'un tel modèle ? Pour le comprendre, remontons vers mille huit cents.",
+        "{-m_a}{mel}À l'époque, personne ne connaît la méiose. Et l'idée admise, c'est l'{!hérédité par mélange}. "
+        "Le descendant serait un mélange de ses deux parents. "
+        "{mel.1}Exemple : une souris noire, une souris blanche. Leur petit ? Une souris grise.",
+        "{mel.2}Mais alors, chaque variant se diluerait un peu plus à chaque génération. Gris, puis gris, puis gris. "
+        "Au bout de quelques générations, tout le monde se ressemblerait.",
+        "Or c'est l'inverse qu'on observe. Regarde une population humaine : une diversité immense, qui se maintient génération après génération. "
+        "Voilà l'énigme : pourquoi les variants persistent-ils ?",
+        "{mel.3}La réponse, tu l'as vue au chapitre un. Les allèles se transmettent intacts, par la méiose et la fécondation. "
+        "Un hétérozygote peut avoir un phénotype intermédiaire. Mais ses deux allèles, eux, ne se mélangent pas. "
+        "{mel.4}Ils peuvent se séparer à nouveau dans ses gamètes. Mendel l'avait montré dès les années mille huit cent soixante.",
+        "{-mel}{hw}Reste une question : que font les fréquences des allèles à l'échelle d'une population entière ? "
+        "En mille neuf cent huit, deux hommes répondent, chacun de son côté. Le mathématicien britannique Godfrey Harold Hardy. "
+        "Et le médecin allemand Wilhelm Weinberg.",
+        ("P", 0.7),
+        "{-hw}{pb}Voici donc la question de tout le chapitre. {pb.1}Comment les fréquences des allèles évoluent-elles dans une population, "
+        "au fil des générations ? Et pourquoi s'écartent-elles de l'équilibre prévu par Hardy et Weinberg ?",
         "{-pb}",
     ], vis={
         "m_a": dict(type="mental", vers=["c3", "c3a"]),
@@ -138,27 +141,28 @@ SCENES = [
     dict(id="frequences", chap="Population et fréquences alléliques", fond="foret", humeur="calme",
          retenir="f(A) = (2 × nombre de A//A + nombre de A//m) / 2N. Et f(m) = 1 − f(A).",
          beats=[
-        "{defs}Trois définitions, à savoir par cœur. {defs.1}Une population, c'est un groupe d'individus de la même espèce, "
-        "vivant dans une même zone, pouvant se reproduire entre eux et engendrer une descendance fertile.",
-        "{defs.2}Son patrimoine génétique, c'est l'ensemble des allèles présents dans la population. "
-        "{defs.3}Et chaque allèle a une fréquence allélique : sa proportion parmi tous les exemplaires du gène présents dans la population.",
-        "{-defs}{pop}{pop.1}Comptons ensemble. Voici une petite population de vingt-cinq individus, pour un gène à deux allèles, A et m. "
-        "Chaque individu est diploïde : il porte deux exemplaires du gène, un par moitié de disque.",
-        "{pop.2}Les neuf homozygotes A A apportent chacun deux allèles A : dix-huit. "
-        "{pop.3}Les douze hétérozygotes A m en apportent un chacun : douze. Les homozygotes m m n'en apportent aucun.",
-        "{pop.4}Vingt-cinq individus diploïdes, cela fait cinquante exemplaires du gène. Trente allèles A sur cinquante : "
-        "la fréquence de A vaut zéro virgule six. Et celle de m, un moins zéro virgule six : zéro virgule quatre.",
-        "{-pop}{f_fa}D'où la formule générale. {f_fa.1}Pour N individus, il y a deux N exemplaires du gène. "
-        "{f_fa.2}La fréquence de A égale deux fois le nombre de A A, plus le nombre de A m, le tout divisé par deux N. "
-        "{f_fa.3}Et la fréquence de m égale un moins la fréquence de A.",
-        "{-f_fa}{pa_f}À toi. Une population de mille individus compte trois cent soixante A A, quatre cent quatre-vingts A m et cent soixante m m. "
-        "Calcule la fréquence de A, et les trois fréquences génotypiques.",
-        "{pa_f.stop}{-pa_f}{f_ex}Solution. {f_ex.1}Mille individus, donc deux mille exemplaires du gène. "
-        "{f_ex.2}Allèles A : deux fois trois cent soixante, plus quatre cent quatre-vingts : mille deux cents. "
-        "{f_ex.3}La fréquence de A vaut mille deux cents sur deux mille : zéro virgule six. Celle de m, zéro virgule quatre.",
-        "{f_ex.4}Les fréquences génotypiques, elles, sont les proportions de chaque génotype : "
+        "{defs}Trois définitions. À savoir par cœur. {defs.1}Une population : des individus de la même espèce, "
+        "dans une même zone, qui peuvent se reproduire entre eux et avoir une descendance fertile.",
+        ("{defs.2}Son patrimoine génétique : tous les allèles présents dans cette population. "
+         "{defs.3}Et la fréquence d'un allèle : sa proportion parmi tous les exemplaires du gène.", {"rate": "-4%"}),
+        "{-defs}{pop}{pop.1}Comptons ensemble. Vingt-cinq individus, un gène, deux allèles : A et m. "
+        "Chaque individu est diploïde. Il porte donc deux exemplaires du gène : une moitié de disque chacun.",
+        "{pop.2}Les neuf homozygotes A A apportent deux allèles A chacun. Ça fait dix-huit. "
+        "{pop.3}Les douze hétérozygotes A m en apportent un. Douze de plus. Les m m ? Aucun.",
+        "{pop.4}Vingt-cinq individus, deux exemplaires chacun : cinquante en tout. Trente allèles A sur cinquante. "
+        "La fréquence de A vaut zéro virgule six. Et celle de m ? Un moins zéro virgule six : zéro virgule quatre.",
+        "{-pop}{f_fa}On généralise. {f_fa.1}N individus, c'est deux N exemplaires du gène. "
+        "{f_fa.2}La fréquence de A : deux fois le nombre de A A, plus le nombre de A m, le tout sur deux N. "
+        "{f_fa.3}Et la fréquence de m : un moins celle de A.",
+        ("P", 0.6),
+        "{-f_fa}{pa_f}À toi. Mille individus : trois cent soixante A A, quatre cent quatre-vingts A m, cent soixante m m. "
+        "Calcule la fréquence de A. Puis les trois fréquences génotypiques.",
+        "{pa_f.stop}{-pa_f}{f_ex}Solution. {f_ex.1}Mille individus : deux mille exemplaires du gène. "
+        "{f_ex.2}Les allèles A : deux fois trois cent soixante, plus quatre cent quatre-vingts. Mille deux cents. "
+        "{f_ex.3}Mille deux cents sur deux mille : la fréquence de A vaut zéro virgule six. Celle de m, zéro virgule quatre.",
+        "{f_ex.4}Les fréquences génotypiques, maintenant. C'est la part de chaque génotype : "
         "zéro virgule trente-six pour A A, zéro virgule quarante-huit pour A m, zéro virgule seize pour m m. "
-        "Ne confonds jamais les deux : fréquence d'un allèle, fréquence d'un génotype.",
+        "Attention à ne jamais confondre : la fréquence d'un allèle, et celle d'un génotype.",
         "{-f_ex}",
     ], vis={
         "defs": dict(type="liste", titre="Trois définitions", items=[
@@ -183,21 +187,22 @@ SCENES = [
     dict(id="loi", chap="La loi de Hardy-Weinberg", fond="foret", humeur="lumiere",
          retenir="p + q = 1. À l'équilibre : f(A//A) = p², f(A//m) = 2pq, f(m//m) = q², et p² + 2pq + q² = 1.",
          beats=[
-        "{f_pq}{f_pq.1}On note p la fréquence de l'allèle A, et q celle de l'allèle m. "
-        "{f_pq.2}Comme il n'y a que deux allèles : p plus q égale un.",
-        "{-f_pq}{cr}{cr.1}Imaginons maintenant que les gamètes se rencontrent au hasard. Un gamète, mâle ou femelle, porte l'allèle A avec la probabilité p, "
-        "et l'allèle m avec la probabilité q. On construit le tableau de croisement, comme un carré de côté un.",
-        "{cr.2}Un gamète A rencontre un gamète A : probabilité p fois p, p au carré. C'est la fréquence des homozygotes A A.",
-        "{cr.3}A rencontre m : p fois q. Mais il y a deux cases ! A peut venir du père et m de la mère, ou l'inverse. "
-        "Les hétérozygotes ont donc la fréquence deux p q.",
-        "{cr.4}Et m rencontre m : q au carré, la fréquence des homozygotes m m.",
-        "{cr.5}Les quatre cases remplissent tout le carré : p au carré, plus deux p q, plus q au carré, égale un. "
-        "C'est simplement p plus q, au carré : un au carré, un.",
-        "{-cr}{f_hw}Voilà la loi de Hardy-Weinberg. {f_hw.1}{f_hw.2}{f_hw.3}"
-        "Fréquence des A A : p au carré. Fréquence des A m : deux p q. Fréquence des m m : q au carré. "
-        "{f_hw.4}Et p au carré plus deux p q plus q au carré égale un.",
-        "{-f_hw}{piege_hw}Deux pièges d'écriture. {piege_hw.1}On voit souvent « p deux plus deux p q plus q deux », sans le « égale un » : "
-        "écris-le toujours. Et l'hétérozygote compte deux fois. Si tu écris p q au lieu de deux p q, la somme ne fait plus un.",
+        "{f_pq}{f_pq.1}Deux lettres à retenir. p, la fréquence de l'allèle A. q, celle de l'allèle m. "
+        "{f_pq.2}Il n'y a que deux allèles. Donc p plus q égale un.",
+        "{-f_pq}{cr}{cr.1}Maintenant, laissons les gamètes se rencontrer au hasard. Un gamète porte A avec la probabilité p. "
+        "Et m avec la probabilité q. Le tableau de croisement devient un carré de côté un.",
+        "{cr.2}A rencontre A : p fois p. p au carré. Voilà la fréquence des homozygotes A A.",
+        "{cr.3}A rencontre m : p fois q. Mais regarde bien : il y a deux cases ! A peut venir du père, ou de la mère. "
+        "Les hétérozygotes valent donc deux p q.",
+        "{cr.4}Et m rencontre m : q au carré. Les homozygotes m m.",
+        "{cr.5}Les quatre cases remplissent tout le carré. p au carré, plus deux p q, plus q au carré : un. "
+        "Normal : c'est p plus q, au carré. Un au carré, un.",
+        "{-cr}{f_hw}Et voilà la loi de Hardy-Weinberg. {f_hw.1}{f_hw.2}{f_hw.3}",
+        ("Les A A : p au carré. Les A m : deux p q. Les m m : q au carré. "
+         "{f_hw.4}Et le tout, p au carré plus deux p q plus q au carré, égale un.", {"rate": "-4%"}),
+        ("P", 0.8),
+        "{-f_hw}{piege_hw}Deux pièges. {piege_hw.1}On écrit souvent « p deux plus deux p q plus q deux », et on oublie le « égale un ». "
+        "Écris-le toujours. Et l'hétérozygote compte double : avec p q au lieu de deux p q, la somme ne fait plus un.",
         "{-piege_hw}",
     ], vis={
         "f_pq": dict(type="formule", titre="Deux allèles, deux fréquences", x=230, y=210, w=820, lignes=[
@@ -217,15 +222,16 @@ SCENES = [
     dict(id="equilibre", chap="Un équilibre : pas d'évolution", fond="foret", humeur="calme",
          retenir="Dans le modèle, les fréquences alléliques et génotypiques restent constantes : il n'y a pas d'évolution.",
          beats=[
-        "{demo}{demo.1}Que devient la fréquence de A à la génération suivante ? Faisons le calcul. "
-        "Les allèles A des descendants viennent de deux sources : tous ceux des homozygotes A A, "
-        "et la moitié de ceux des hétérozygotes. {demo.2}Donc la nouvelle fréquence de A vaut p au carré, plus la moitié de deux p q : p au carré plus p q.",
-        "{demo.3}On factorise par p : p fois, p plus q. {demo.4}Et p plus q vaut un. Il reste p. Exactement la même fréquence qu'au départ.",
-        "{-demo}{gr_eq}{gr_eq.1}Sur un graphique, la fréquence de A reste une droite horizontale, génération après génération. "
-        "{gr_eq.2}{gr_eq.3}{gr_eq.4}Et comme les fréquences des génotypes se calculent à partir de p et q, elles restent constantes elles aussi : "
-        "trente-six, quarante-huit et seize pour cent, indéfiniment.",
-        "{-gr_eq}{mot}La conclusion, à retenir mot pour mot : {mot.1}il n'y a donc pas d'évolution dans ce cadre de modélisation théorique.",
-        "C'est la solution de l'énigme du début : la reproduction sexuée, à elle seule, ne fait disparaître aucun allèle. "
+        "{demo}{demo.1}Et à la génération suivante ? Que devient la fréquence de A ? Faisons le calcul. "
+        "Les allèles A des enfants viennent de deux sources. Tous ceux des homozygotes A A. "
+        "Et la moitié de ceux des hétérozygotes. {demo.2}La nouvelle fréquence de A vaut donc p au carré, plus la moitié de deux p q. Soit p au carré plus p q.",
+        "{demo.3}On met p en facteur : p fois, p plus q. {demo.4}Or p plus q vaut un. Il reste p. La même fréquence qu'au départ !",
+        "{-demo}{gr_eq}{gr_eq.1}Sur un graphique, ça donne une droite bien horizontale. Génération après génération. "
+        "{gr_eq.2}{gr_eq.3}{gr_eq.4}Et les génotypes ? Ils se calculent à partir de p et q. Donc eux non plus ne bougent pas : "
+        "trente-six, quarante-huit et seize pour cent. Pour toujours.",
+        ("P", 0.7),
+        "{-gr_eq}{mot}La conclusion, à retenir mot pour mot. {mot.1}Il n'y a donc pas d'évolution dans ce cadre de modélisation théorique.",
+        "Et voilà la réponse à l'énigme du début. La reproduction sexuée, à elle seule, ne fait disparaître aucun allèle. "
         "Les variants persistent. La souris grise n'arrive jamais.",
         "{-mot}",
     ], vis={
@@ -250,21 +256,22 @@ SCENES = [
     dict(id="verifier", chap="Vérifier qu'une population est à l'équilibre", fond="foret", humeur="lumiere",
          retenir="Méthode : p et q d'après les effectifs observés ; effectifs attendus p²N, 2pqN, q²N ; comparer.",
          beats=[
-        "{meth}Voici la méthode qui tombe au bac, en trois étapes. {meth.1}Un : calculer p et q à partir des effectifs observés. "
-        "{meth.2}Deux : calculer les effectifs attendus à l'équilibre : p au carré fois N, deux p q fois N, q au carré fois N. "
-        "{meth.3}Trois : comparer les effectifs observés et attendus.",
-        "{-meth}{b1}{b1.1}Reprenons la population de tout à l'heure : trois cent soixante, quatre cent quatre-vingts, cent soixante. "
-        "Voici les effectifs observés. {b1.2}Avec p égal zéro virgule six, on attend zéro virgule trente-six fois mille, trois cent soixante ; "
-        "zéro virgule quarante-huit fois mille, quatre cent quatre-vingts ; et cent soixante. "
-        "{b1.3}Observé et attendu coïncident : la population est à l'équilibre.",
-        "{-b1}{b2}{b2.1}Une deuxième population : cinq cents A A, deux cents A m, trois cents m m. "
-        "Calcule p : mille plus deux cents, sur deux mille. Encore zéro virgule six ! Même fréquence allélique.",
-        "{b2.2}Donc on attend les mêmes effectifs : trois cent soixante, quatre cent quatre-vingts, cent soixante. "
-        "{b2.3}Mais on observe beaucoup trop d'homozygotes, et pas assez d'hétérozygotes. Cette population s'écarte de l'équilibre.",
-        "Une des conditions du modèle n'est pas respectée. Par exemple, des accouplements qui ne se font pas au hasard, entre individus apparentés : "
-        "ils produisent plus d'homozygotes.",
-        "{-b2}{lecon}La leçon : {lecon.1}une fréquence allélique ne suffit pas. Deux populations peuvent avoir le même p. "
-        "C'est la comparaison des fréquences génotypiques, observées et attendues, qui révèle l'écart.",
+        "{meth}La méthode qui tombe au bac tient en trois étapes. {meth.1}Un : calculer p et q, à partir des effectifs observés. "
+        "{meth.2}Deux : calculer les effectifs attendus à l'équilibre. p au carré fois N, deux p q fois N, q au carré fois N. "
+        "{meth.3}Trois : comparer. Observé contre attendu.",
+        "{-meth}{b1}{b1.1}On reprend notre population : trois cent soixante, quatre cent quatre-vingts, cent soixante. "
+        "Ce sont les effectifs observés. {b1.2}Avec p égal zéro virgule six, on attend : zéro virgule trente-six fois mille, trois cent soixante. "
+        "Zéro virgule quarante-huit fois mille, quatre cent quatre-vingts. Et cent soixante. "
+        "{b1.3}Les barres se superposent. La population est à l'équilibre.",
+        "{-b1}{b2}{b2.1}Une autre population, maintenant. Cinq cents A A, deux cents A m, trois cents m m. "
+        "Calcule p : mille plus deux cents, sur deux mille. Encore zéro virgule six ! La même fréquence allélique.",
+        "{b2.2}On attend donc les mêmes effectifs. Trois cent soixante, quatre cent quatre-vingts, cent soixante. "
+        "{b2.3}Mais regarde : beaucoup trop d'homozygotes. Pas assez d'hétérozygotes. Cette population s'écarte de l'équilibre.",
+        "Quelque chose cloche dans les conditions du modèle. Par exemple, des accouplements entre individus apparentés. "
+        "Ils fabriquent des homozygotes.",
+        ("P", 0.6),
+        "{-b2}{lecon}La leçon ? {lecon.1}Une fréquence allélique ne suffit pas. Deux populations peuvent avoir le même p. "
+        "Ce qui révèle l'écart, c'est la comparaison des génotypes : observés contre attendus.",
         "{-lecon}",
     ], vis={
         "meth": dict(type="liste", titre="Tester l'équilibre de Hardy-Weinberg", items=[
@@ -284,20 +291,21 @@ SCENES = [
     dict(id="conditions", chap="Les conditions du modèle", fond="foret", humeur="calme",
          retenir="Le modèle n'est valable que pour une population très grande, panmictique, isolée, sans sélection ni mutation : c'est une référence.",
          beats=[
-        "{cond}Le modèle prévoit la stabilité des fréquences. {cond.1}Mais seulement sous certaines conditions. "
-        "Une population de taille infinie, en pratique très grande. "
+        "{cond}Le modèle promet des fréquences stables. {cond.1}Mais à une condition : une population idéale. "
+        "Une taille infinie. En pratique, très grande. "
         "{cond.2}Une espèce diploïde, à reproduction sexuée. "
-        "{cond.3}La panmixie : les croisements se font au hasard. "
-        "{cond.4}Une population isolée : aucune migration, donc aucun flux de gènes. "
+        "{cond.3}La panmixie : des croisements au hasard. "
+        "{cond.4}Une population isolée. Pas de migration, pas de flux de gènes. "
         "{cond.5}Pas de sélection naturelle. {cond.6}Pas de mutation. "
-        "{cond.7}Et pas de croisements entre générations : elles ne se chevauchent pas.",
-        "{-cond}{panm}Arrêtons-nous sur un mot savant : {panm.1}la panmixie. Elle recouvre trois idées. "
-        "L'équiprobabilité des gamètes, qu'on appelle la pangamie ; des accouplements aléatoires, sans préférence entre partenaires ; "
-        "et une ségrégation aléatoire des allèles dans les gamètes, lors de la méiose.",
-        "{-panm}{ref}{ref.1}Tu le vois : aucune population réelle ne remplit toutes ces conditions. "
-        "Il est pour ainsi dire presque impossible qu'une population réelle soit à l'équilibre.",
-        "{ref.2}Alors à quoi sert le modèle ? C'est une {!référence}. Quand une population s'en écarte, c'est qu'une force agit sur elle. "
-        "Et l'écart permet de la rechercher. Comme un thermomètre : on ne s'intéresse pas au trente-sept degrés, mais à la fièvre.",
+        "{cond.7}Et des générations qui ne se chevauchent pas.",
+        "{-cond}{panm}Un mot savant mérite qu'on s'y arrête : {panm.1}la panmixie. Trois idées dedans. "
+        "Des gamètes équiprobables : c'est la pangamie. Des accouplements au hasard, sans préférence. "
+        "Et des allèles répartis au hasard dans les gamètes, à la méiose.",
+        ("P", 0.6),
+        "{-panm}{ref}{ref.1}Tu vois le problème ? Aucune population réelle ne coche toutes ces cases. "
+        "Une population réelle à l'équilibre, c'est presque impossible.",
+        "{ref.2}Alors, à quoi bon ce modèle ? C'est une {!référence}. Si une population s'en écarte, c'est qu'une force agit sur elle. "
+        "Et l'écart permet de la traquer. Comme un thermomètre : ce qui compte, ce n'est pas le trente-sept degrés. C'est la fièvre.",
         "{-ref}",
     ], vis={
         "cond": dict(type="liste", titre="Les conditions du modèle", items=[
@@ -317,18 +325,19 @@ SCENES = [
     dict(id="ecarts", chap="Pourquoi les populations réelles s'écartent", fond="foret", humeur="tension",
          retenir="Chaque condition non respectée donne une cause d'écart : ce sont les forces évolutives.",
          beats=[
-        "{cau}La question devient : à partir des conditions du modèle, qu'est-ce qui peut expliquer un écart dans la réalité ? "
-        "{cau.1}Chaque condition non respectée donne une cause.",
-        "Pas de mutation ? Dans la réalité, des mutations apparaissent et créent de nouveaux allèles. Tu l'as vu en Première : "
-        "les mutations sont la source de la variabilité.",
-        "{cau.2}Population isolée ? Il y a des migrations, des flux de gènes : de nouvelles variations arrivent, ou une partie de la population part et s'isole. "
-        "Des barrières naturelles peuvent aussi séparer une partie de la population du reste.",
-        "{cau.3}Pas de sélection ? Un changement de climat ou d'environnement modifie les conditions de survie, donc la sélection naturelle. "
-        "L'arrivée d'une nouvelle espèce, en compétition pour les mêmes ressources, joue le même rôle.",
-        "{cau.4}Accouplements au hasard ? Il existe des préférences sexuelles : la reproduction ne se fait pas au hasard.",
-        "{cau.5}Population infinie ? La population peut être toute petite. Et alors, le hasard de la reproduction pèse énormément.",
-        "{-cau}{fe}Ces causes d'écart ont un nom : {fe.1}les {!forces évolutives}. Elles sont l'objet de la deuxième branche de la carte. "
-        "Mais avant, entraîne-toi : deux exercices sur Hardy-Weinberg.",
+        "{cau}Retournons la question. Dans la réalité, qu'est-ce qui peut faire dévier une population ? "
+        "{cau.1}Simple : chaque condition non respectée devient une cause.",
+        "Pas de mutation ? En réalité, des mutations apparaissent. Elles créent de nouveaux allèles. "
+        "C'est la source de la variabilité, vue en Première.",
+        "{cau.2}Population isolée ? En réalité, des individus migrent. De nouvelles variations arrivent. Ou un groupe part et s'isole. "
+        "Une barrière naturelle peut aussi couper la population en deux.",
+        "{cau.3}Pas de sélection ? Un changement de climat, un nouvel environnement, et les chances de survie changent. "
+        "Une nouvelle espèce qui convoite les mêmes ressources ? Même effet.",
+        "{cau.4}Accouplements au hasard ? Il existe des préférences sexuelles. La reproduction n'est pas un tirage au sort.",
+        "{cau.5}Population infinie ? Elle peut être minuscule. Et là, le hasard de la reproduction pèse très lourd.",
+        ("P", 0.6),
+        "{-cau}{fe}Ces causes d'écart ont un nom. {fe.1}Les {!forces évolutives}. C'est la deuxième branche de la carte. "
+        "Mais d'abord, à toi de jouer : deux exercices sur Hardy-Weinberg.",
         "{-fe}",
     ], vis={
         "cau": dict(type="liste", titre="Condition non respectée → ce qui se passe", items=[
@@ -346,18 +355,18 @@ SCENES = [
     # 250 papillons : 160 A//A, 80 A//m, 10 m//m → 2N = 500 ; A = 320 + 80 = 400 ; p = 0,8 ; q = 0,2
     # attendus : 0,64 × 250 = 160 ; 0,32 × 250 = 80 ; 0,04 × 250 = 10 → à l'équilibre
     dict(id="exo1", chap="Exercice 1 · pour démarrer", fond="foret", humeur="calme", beats=[
-        "{ex1}Premier exercice. Une population de deux cent cinquante papillons compte cent soixante individus A A, quatre-vingts A m, et dix m m. "
-        "Trois questions : la fréquence des deux allèles ; les effectifs attendus à l'équilibre ; et la conclusion.",
-        "{-ex1}{pa1}Prends une feuille. Mets la vidéo sur pause, et applique la méthode en trois étapes.",
+        "{ex1}Premier exercice. Deux cent cinquante papillons : cent soixante A A, quatre-vingts A m, et dix m m. "
+        "Trois questions. Les fréquences des deux allèles. Les effectifs attendus à l'équilibre. Et la conclusion.",
+        "{-ex1}{pa1}Prends une feuille. Mets sur pause. Et déroule la méthode en trois étapes.",
         "{pa1.stop}{-pa1}{ex1c}{ex1c.q1}Solution. {s11}{s11.1}Deux cent cinquante individus : cinq cents exemplaires du gène. "
-        "{s11.2}Allèles A : deux fois cent soixante, plus quatre-vingts : quatre cents. "
-        "{s11.3}p égale quatre cents sur cinq cents, zéro virgule huit. Et q, zéro virgule deux.",
-        "{-s11}{ex1c.q2}{s12}{s12.1}Effectifs attendus. A A : p au carré, zéro virgule soixante-quatre, fois deux cent cinquante : cent soixante. "
-        "{s12.2}A m : deux p q, zéro virgule trente-deux, fois deux cent cinquante : quatre-vingts. "
-        "{s12.3}m m : q au carré, zéro virgule zéro quatre, fois deux cent cinquante : dix. "
-        "{s12.4}Vérification : zéro virgule soixante-quatre, plus zéro virgule trente-deux, plus zéro virgule zéro quatre : un.",
-        "{-s12}{ex1c.q3}{s13}{s13.1}Conclusion : les effectifs observés, cent soixante, quatre-vingts et dix, sont égaux aux effectifs attendus. "
-        "{s13.2}La population est à l'équilibre de Hardy-Weinberg. Ses fréquences devraient rester constantes, tant que les conditions du modèle sont respectées.",
+        "{s11.2}Les allèles A : deux fois cent soixante, plus quatre-vingts. Quatre cents. "
+        "{s11.3}p vaut quatre cents sur cinq cents : zéro virgule huit. Et q, zéro virgule deux.",
+        "{-s11}{ex1c.q2}{s12}{s12.1}Les effectifs attendus. A A : p au carré, zéro virgule soixante-quatre, fois deux cent cinquante. Cent soixante. "
+        "{s12.2}A m : deux p q, zéro virgule trente-deux, fois deux cent cinquante. Quatre-vingts. "
+        "{s12.3}m m : q au carré, zéro virgule zéro quatre, fois deux cent cinquante. Dix. "
+        "{s12.4}Petite vérification : zéro virgule soixante-quatre, plus zéro virgule trente-deux, plus zéro virgule zéro quatre. Un. Parfait.",
+        "{-s12}{ex1c.q3}{s13}{s13.1}La conclusion. Observés : cent soixante, quatre-vingts, dix. Attendus : exactement les mêmes. "
+        "{s13.2}La population est à l'équilibre de Hardy-Weinberg. Ses fréquences devraient rester stables, tant que les conditions du modèle tiennent.",
         "{-s13}{-ex1c}",
     ], vis={
         "ex1": dict(type="exo", niveau="simple", titre="Des papillons à l'équilibre ?", src="Exercice inventé pour la vidéo",
@@ -383,19 +392,19 @@ SCENES = [
     # 400 escargots : 160 A//A, 80 A//m, 160 m//m → A = 320 + 80 = 400 / 800 → p = q = 0,5
     # attendus : 0,25 × 400 = 100 ; 0,5 × 400 = 200 ; 100 → 240 hétérozygotes attendus en plus de ceux observés : 120 manquent
     dict(id="exo2", chap="Exercice 2 · plus difficile", fond="foret", humeur="tension", beats=[
-        "{ex2}Deuxième exercice, plus difficile. Dans une population de quatre cents escargots, on compte cent soixante A A, quatre-vingts A m, et cent soixante m m. "
-        "On demande : p et q ; les effectifs attendus à l'équilibre ; si la population est à l'équilibre ; "
-        "et enfin, quelle condition du modèle n'est sans doute pas respectée, et pourquoi.",
-        "{-ex2}{pa2}La dernière question demande de raisonner, pas seulement de calculer. Mets sur pause.",
+        "{ex2}Deuxième exercice. Plus corsé. Quatre cents escargots : cent soixante A A, quatre-vingts A m, et cent soixante m m. "
+        "On demande p et q. Les effectifs attendus. Si la population est à l'équilibre. "
+        "Et pour finir : quelle condition du modèle n'est sans doute pas respectée, et pourquoi ?",
+        "{-ex2}{pa2}Cette dernière question, il faut la raisonner, pas seulement la calculer. Pause !",
         "{pa2.stop}{-pa2}{ex2c}{ex2c.q1}Solution. {s21}{s21.1}Huit cents exemplaires du gène. "
-        "{s21.2}Allèles A : trois cent vingt plus quatre-vingts, quatre cents. {s21.3}p vaut zéro virgule cinq, et q aussi.",
-        "{-s21}{ex2c.q2}{s22}{s22.1}Attendus : p au carré, zéro virgule vingt-cinq, fois quatre cents : cent A A. "
+        "{s21.2}Les allèles A : trois cent vingt plus quatre-vingts. Quatre cents. {s21.3}p vaut zéro virgule cinq. Et q aussi.",
+        "{-s21}{ex2c.q2}{s22}{s22.1}Les attendus. p au carré, zéro virgule vingt-cinq, fois quatre cents : cent A A. "
         "{s22.2}Deux p q, zéro virgule cinq, fois quatre cents : deux cents A m. {s22.3}Et cent m m.",
-        "{-s22}{ex2c.q3}{b3}{b3.1}{b3.2}{b3.3}On compare : on attendait deux cents hétérozygotes, on n'en observe que quatre-vingts. "
-        "Et soixante homozygotes de trop, de chaque côté. La population n'est pas à l'équilibre.",
-        "{-b3}{ex2c.q4}{s24}{s24.1}Quelle condition ? Le déficit d'hétérozygotes et l'excès d'homozygotes, c'est la signature d'une reproduction non aléatoire. "
-        "{s24.2}Par exemple, des accouplements entre individus semblables, ou entre individus apparentés : la panmixie n'est pas respectée. "
-        "{s24.3}Attention à la rédaction : on propose une hypothèse. Le calcul montre un écart ; il ne prouve pas, à lui seul, sa cause.",
+        "{-s22}{ex2c.q3}{b3}{b3.1}{b3.2}{b3.3}On compare. On attendait deux cents hétérozygotes. On n'en voit que quatre-vingts ! "
+        "Et soixante homozygotes de trop, de chaque côté. Pas d'équilibre.",
+        "{-b3}{ex2c.q4}{s24}{s24.1}Alors, quelle condition ? Trop d'homozygotes, pas assez d'hétérozygotes : c'est la signature d'une reproduction non aléatoire. "
+        "{s24.2}Des accouplements entre individus semblables, ou apparentés. La panmixie n'est pas respectée. "
+        "{s24.3}Et attention à la rédaction. On propose une hypothèse. Le calcul montre l'écart ; à lui seul, il n'en prouve pas la cause.",
         "{-s24}{-ex2c}",
     ], vis={
         "ex2": dict(type="exo", niveau="difficile", titre="Des escargots trop homozygotes", src="Exercice inventé pour la vidéo",
@@ -423,17 +432,17 @@ SCENES = [
     dict(id="forces", chap="Modéliser les forces évolutives", fond="cellule", humeur="mystere",
          retenir="Modélisation : un logiciel fait se reproduire une population ; on change un paramètre à la fois et on suit les fréquences.",
          beats=[
-        "{m_b}{m_b.1}Deuxième branche de la carte : les écarts à l'équilibre. La dérive génétique, l'effet fondateur, la sélection naturelle. "
-        "Et n'oublie pas les deux autres forces : les mutations et les migrations.",
-        "{-m_b}{q2}La question de la partie deux : {q2.1}comment les forces évolutives sont-elles à l'origine d'un écart des fréquences alléliques, "
-        "par rapport à l'équilibre théorique de Hardy-Weinberg ?",
-        "{-q2}{act}Pour y répondre, on utilise un logiciel de modélisation. {act.1}Il simule une population, et la fait se reproduire génération après génération. "
-        "{act.2}On change un seul paramètre à la fois : la taille de la population, des mutations, des accouplements non aléatoires, "
-        "ou un caractère plus avantageux. {act.3}Et on suit les fréquences sur une dizaine de générations, parce que les écarts s'observent dans le temps.",
-        "{-act}{gr_s1}{gr_s1.1}Les courbes qui suivent sont des simulations : on lance le modèle, et on regarde ce qu'il donne. "
-        "Scénario un, le témoin : mille individus, deux allèles à cinquante pour cent, pas de mutation, rencontres au hasard. "
-        "La fréquence reste très proche de zéro virgule cinq, avec de toutes petites fluctuations. Aucun allèle ne disparaît.",
-        "Dans une grande population, les conditions du modèle sont presque réunies : les fréquences restent à peu près constantes. Gardons ce témoin en tête.",
+        "{m_b}{m_b.1}Deuxième branche : les écarts à l'équilibre. La dérive génétique, l'effet fondateur, la sélection naturelle. "
+        "Sans oublier deux autres forces : les mutations et les migrations.",
+        "{-m_b}{q2}Toute cette partie répond à une question. {q2.1}Comment les forces évolutives font-elles s'écarter les fréquences alléliques "
+        "de l'équilibre de Hardy-Weinberg ?",
+        "{-q2}{act}Pour le voir, on va simuler. {act.1}Un logiciel crée une population, et la fait se reproduire, génération après génération. "
+        "{act.2}On ne touche qu'à un réglage à la fois : la taille, les mutations, le hasard des accouplements, "
+        "ou l'avantage d'un caractère. {act.3}Et on suit les fréquences sur une dizaine de générations. Les écarts, ça se voit dans la durée.",
+        "{-act}{gr_s1}{gr_s1.1}Toutes les courbes qui suivent sont simulées. On lance le modèle, et on regarde. "
+        "Scénario un, le témoin. Mille individus, deux allèles à cinquante pour cent, pas de mutation, rencontres au hasard. "
+        "La courbe tremble à peine autour de zéro virgule cinq. Aucun allèle ne disparaît.",
+        "Une grande population, c'est presque la population idéale du modèle. Les fréquences tiennent. Garde ce témoin en tête.",
         "{-gr_s1}",
     ], vis={
         "m_b": dict(type="mental", vers=["c3", "c3b"]),
@@ -451,26 +460,27 @@ SCENES = [
     dict(id="derive", chap="La dérive génétique", fond="cellule", humeur="tension",
          retenir="Dérive génétique : évolution aléatoire des fréquences, due au hasard de la reproduction, d'autant plus forte que la population est petite.",
          beats=[
-        "{gr_s2}Scénario deux : seulement neuf individus, deux allèles à cinquante pour cent, onze générations. {gr_s2.1}Et on lance le logiciel deux fois. "
-        "Premier lancement : la fréquence fait des bonds, et l'allèle finit fixé, à un. L'autre a disparu.",
-        "{gr_s2.2}Deuxième lancement, exactement les mêmes conditions : cette fois, l'allèle disparaît. "
-        "Deux résultats opposés, avec le même point de départ. Rien n'a favorisé un allèle plutôt que l'autre : c'est le hasard.",
-        "{-gr_s2}{d_der}C'est la {!dérive génétique}. {d_der.1}Un phénomène d'évolution aléatoire, dû au hasard de la reproduction et de la descendance. "
-        "Et elle est beaucoup plus forte sur une petite population.",
-        "{-d_der}{d9}{d9.1}Un schéma le montre. Une population de neuf individus. "
-        "{d9.2}À la première génération, seuls cinq individus se reproduisent, et ils n'ont pas le même nombre de descendants : deux, un, un, un et trois. "
-        "Quatre individus ne laissent aucun descendant : leurs allèles sont perdus pour la génération suivante.",
-        "{d9.3}La deuxième génération ne compte plus que huit individus, et les couleurs ne sont plus dans les mêmes proportions. "
-        "{d9.4}La troisième en compte dix. {d9.5}Au bout de dix générations, la composition allélique est impossible à prévoir.",
-        "{-d9}{expl}Pourquoi ? Voici l'explication. "
-        "{expl.1}Dans une petite population, les allèles n'ont pas tous la même probabilité de se transmettre. "
-        "{expl.2}Pour qu'un individu transmette à coup sûr tous ses allèles, il faudrait que son nombre de descendants tende vers l'infini. "
-        "{expl.3}Il est donc statistiquement inévitable que certains allèles ne soient transmis à aucun enfant. "
-        "{expl.4}Le nombre des allèles fluctue énormément : certains se retrouvent sur-représentés, d'autres sous-représentés.",
-        "{-expl}{fix}D'où deux idées à retenir. {fix.1}La dérive est d'autant plus forte que la population est petite. "
-        "{fix.2}Et elle peut aller jusqu'à la {!fixation} d'un allèle, fréquence un, et la disparition de l'autre. "
-        "{fix.3}Conséquence : la dérive peut appauvrir la diversité génétique, et même faire disparaître une population. "
-        "À l'inverse, elle peut contribuer à l'apparition d'une nouvelle espèce. On y reviendra.",
+        "{gr_s2}Scénario deux. Cette fois, neuf individus seulement. Deux allèles à cinquante pour cent, onze générations. {gr_s2.1}Et on lance la simulation deux fois. "
+        "Premier lancement : la fréquence fait des bonds… et l'allèle finit fixé, à un. L'autre a disparu.",
+        "{gr_s2.2}Deuxième lancement. Mêmes conditions, exactement. Et cette fois, l'allèle disparaît ! "
+        "Même départ, deux destins opposés. Personne n'a favorisé un allèle. C'est le hasard.",
+        ("P", 0.6),
+        "{-gr_s2}{d_der}Ce hasard porte un nom : la {!dérive génétique}. {d_der.1}Une évolution aléatoire, due au hasard de la reproduction et de la descendance. "
+        "Et plus la population est petite, plus elle frappe fort.",
+        "{-d_der}{d9}{d9.1}Regarde ce qui se passe, génération par génération. Neuf individus au départ. "
+        "{d9.2}Seuls cinq se reproduisent. Et pas autant les uns que les autres : deux descendants, un, un, un, et trois. "
+        "Quatre individus n'ont aucun descendant. Leurs allèles sont perdus.",
+        "{d9.3}Deuxième génération : huit individus. Et les couleurs n'ont plus les mêmes proportions. "
+        "{d9.4}Troisième génération : dix. {d9.5}Et dans dix générations ? Impossible de prévoir la composition.",
+        "{-d9}{expl}Mais pourquoi le hasard pèse-t-il autant ? "
+        "{expl.1}Dans une petite population, les allèles n'ont pas tous la même chance d'être transmis. "
+        "{expl.2}Pour transmettre à coup sûr tous ses allèles, un individu devrait avoir une infinité de descendants. "
+        "{expl.3}Donc, statistiquement, certains allèles ne passent à aucun enfant. C'est inévitable. "
+        "{expl.4}Les effectifs des allèles font le yoyo : certains se retrouvent sur-représentés, d'autres sous-représentés.",
+        "{-expl}{fix}Deux idées à retenir. {fix.1}Plus la population est petite, plus la dérive est forte. "
+        "{fix.2}Et elle peut aller jusqu'au bout : la {!fixation} d'un allèle, à la fréquence un, et la disparition de l'autre. "
+        "{fix.3}Conséquence : la dérive peut appauvrir la diversité génétique, et même condamner une population. "
+        "Mais elle peut aussi aider à faire naître une nouvelle espèce. On y reviendra.",
         "{-fix}",
     ], vis={
         "gr_s2": gr_freq("Scénario 2 · la dérive : 9 individus, deux lancements (simulation)",
@@ -494,23 +504,24 @@ SCENES = [
     dict(id="buri", chap="Les drosophiles de Buri", fond="cellule", humeur="mystere",
          retenir="Buri, 1956 : 107 populations de 16 drosophiles, toutes à 0,5 au départ ; après 19 générations, bw75 fixé ou perdu dans beaucoup d'entre elles. C'est la dérive.",
          beats=[
-        "{tab_dro}Un cas réel, célèbre : la drosophile, la petite mouche du vinaigre des laboratoires de génétique. "
-        "{buri_p}En mille neuf cent cinquante-six, le chercheur Peter Buri met en place cent sept populations, selon le même protocole. "
-        "{buri_p.1}Chaque population compte au départ seize mouches, toutes hétérozygotes pour la mutation brown eye : génotype bw75 sur bw. "
-        "Huit mâles, huit femelles. {buri_p.2}La fréquence de l'allèle bw75 vaut donc zéro virgule cinq dans toutes les populations.",
-        "{buri_p.3}À chaque génération, huit mâles et huit femelles sont pris au hasard parmi les descendants pour former la génération suivante. "
-        "{buri_p.4}Et l'expérience dure dix-neuf générations.",
-        "{-buri_p}{-tab_dro}{hb}Voici ce que cela donne. L'histogramme compte les populations selon leur fréquence de bw75. "
-        "Je l'ai reproduit par simulation, avec le protocole de Buri : ce ne sont pas ses chiffres exacts, mais le phénomène est le même. "
-        "{hb.1}Au départ, les cent sept populations sont toutes au même endroit, à zéro virgule cinq.",
-        "Génération après génération, les fréquences s'étalent. Certaines populations montent, d'autres descendent. "
-        "Et bientôt, des populations atteignent les bords : zéro, ou un. Une fois au bord, elles n'en bougent plus : il n'y a plus qu'un seul allèle.",
-        "{hb.2}À la fin de l'expérience, l'histogramme a la forme d'un U. {hb.3}De nombreuses populations ont fixé l'allèle bw75, et de nombreuses autres l'ont perdu, "
-        "à peu près autant dans un sens que dans l'autre.",
-        "{-hb}{exb}L'explication. {exb.1}Les cent sept populations ont été traitées exactement de la même façon. "
-        "{exb.2}Et la couleur des yeux ne change pas la survie des mouches en élevage : il n'y a pas de sélection. "
-        "{exb.3}Si les fréquences ont divergé, c'est par le seul hasard du tirage des reproducteurs, dans de très petites populations de seize individus : c'est la dérive génétique. "
-        "{exb.4}Son résultat est imprévisible pour une population donnée, mais il conduit souvent à la fixation ou à la perte d'un allèle.",
+        "{tab_dro}Passons au réel. Une expérience célèbre, sur la drosophile : la petite mouche du vinaigre des labos de génétique. "
+        "{buri_p}En mille neuf cent cinquante-six, Peter Buri lance cent sept populations. Toutes selon le même protocole. "
+        "{buri_p.1}Au départ, seize mouches par population. Toutes hétérozygotes pour la mutation brown eye : bw75 sur bw. "
+        "Huit mâles, huit femelles. {buri_p.2}Partout, la fréquence de bw75 vaut donc zéro virgule cinq.",
+        "{buri_p.3}À chaque génération, on tire au hasard huit mâles et huit femelles parmi les descendants. Ce sont eux qui feront la suite. "
+        "{buri_p.4}Et ça dure dix-neuf générations.",
+        "{-buri_p}{-tab_dro}{hb}Voici le résultat. L'histogramme range les populations selon leur fréquence de bw75. "
+        "Il est reproduit ici par simulation, avec le protocole de Buri. Les chiffres ne sont pas les siens, mais le phénomène est le même. "
+        "{hb.1}Au départ, les cent sept populations sont toutes au même endroit : zéro virgule cinq.",
+        "Puis, génération après génération, elles s'étalent. Certaines montent, d'autres descendent. "
+        "Et bientôt, des populations touchent les bords : zéro, ou un. Là, elles ne bougent plus. Il ne reste qu'un seul allèle.",
+        "{hb.2}À la fin, l'histogramme dessine un U. {hb.3}Beaucoup de populations ont fixé bw75. Beaucoup d'autres l'ont perdu. "
+        "À peu près autant d'un côté que de l'autre.",
+        ("P", 0.6),
+        "{-hb}{exb}Comment l'expliquer ? {exb.1}Les cent sept populations ont été traitées exactement de la même façon. "
+        "{exb.2}La couleur des yeux ne change rien à la survie en élevage. Donc pas de sélection. "
+        "{exb.3}Ce qui a fait diverger les fréquences, c'est le seul hasard du tirage, dans de toutes petites populations de seize. La dérive génétique. "
+        "{exb.4}Imprévisible pour une population donnée. Mais elle mène souvent à la fixation, ou à la perte, d'un allèle.",
         "{-exb}",
     ], vis={
         "tab_dro": dict(type="tableau", img="ch3-drosophile", fond=True, sombre=True, de=[1.0, .55, .45], a=[1.25, .5, .45],
@@ -531,18 +542,18 @@ SCENES = [
     dict(id="fondateur", chap="L'effet fondateur", fond="cellule", humeur="lumiere",
          retenir="Effet fondateur : une petite population fondatrice n'emporte qu'un échantillon non représentatif des allèles ; la dérive s'y ajoute.",
          beats=[
-        "{gr_s3}Retour à la modélisation, scénario trois : neuf individus encore, {gr_s3.1}mais des fréquences de départ inégales, vingt pour cent pour le premier allèle. "
-        "Le plus souvent, l'allèle rare est perdu en quelques générations. {gr_s3.2}Mais par hasard, il peut aussi augmenter.",
-        "{-gr_s3}{d_fond}Ce scénario modélise l'{!effet fondateur}. {d_fond.1}Une petite sous-population se sépare de la population initiale, par exemple lors d'une migration. "
-        "Elle n'emporte qu'un échantillon non représentatif, tiré au hasard, des allèles de la population mère. "
-        "{d_fond.2}Ses fréquences alléliques peuvent donc être très différentes.",
-        "{-d_fond}{ifo}Regarde. {ifo.1}Une grande population, avec trois allèles. "
-        "{ifo.2}Huit individus partent coloniser un nouveau milieu. Par hasard, ils ne portent aucun allèle violet.",
-        "{ifo.3}Compare les fréquences : la population fondatrice n'a pas du tout la composition de départ. Un allèle a disparu d'un coup, sans aucune sélection. "
-        "{ifo.4}Puis la colonie s'accroît. Elle reste petite, et la dérive génétique continue d'agir, d'autant plus fort que la population est petite.",
-        "{-ifo}{cause}La cause de l'écart : {cause.1}la population fondatrice ne représente qu'un échantillon non représentatif des allèles de départ : "
-        "ils n'y sont pas en proportions équiprobables. {cause.2}Et le plus souvent, s'y ajoute une reproduction non aléatoire : "
-        "les membres d'une petite communauté isolée se reproduisent entre eux.",
+        "{gr_s3}Retour à la simulation. Scénario trois : toujours neuf individus, {gr_s3.1}mais un départ déséquilibré. Vingt pour cent seulement pour le premier allèle. "
+        "Le plus souvent, cet allèle rare disparaît en quelques générations. {gr_s3.2}Mais parfois, par hasard, il grimpe.",
+        "{-gr_s3}{d_fond}Ce scénario imite l'{!effet fondateur}. {d_fond.1}Un petit groupe quitte la population de départ. Lors d'une migration, par exemple. "
+        "Il n'emporte qu'un échantillon des allèles, tiré au hasard. Un échantillon non représentatif. "
+        "{d_fond.2}Ses fréquences peuvent donc être très différentes.",
+        "{-d_fond}{ifo}Regarde bien. {ifo.1}Une grande population, trois allèles. "
+        "{ifo.2}Huit individus partent coloniser un nouveau milieu. Et par hasard, aucun ne porte l'allèle violet.",
+        "{ifo.3}Compare : la colonie n'a plus du tout la composition de départ. Un allèle a disparu d'un coup. Sans aucune sélection. "
+        "{ifo.4}Puis la colonie grandit. Mais elle reste petite. Et la dérive continue son travail.",
+        "{-ifo}{cause}Pourquoi un tel écart ? {cause.1}Parce que les fondateurs ne sont qu'un échantillon non représentatif des allèles de départ. "
+        "Ils n'y sont pas dans les bonnes proportions. {cause.2}Et souvent, s'y ajoute une reproduction non aléatoire. "
+        "Dans une petite communauté isolée, on se reproduit entre soi.",
         "{-cause}",
     ], vis={
         "gr_s3": gr_freq("Scénario 3 · effet fondateur : 9 individus, 20 % au départ (simulation)",
@@ -561,20 +572,20 @@ SCENES = [
     dict(id="amish", chap="Les Amish et les Huttérites", fond="cellule", humeur="calme",
          retenir="Amish : syndrome d'Ellis-van Creveld, q = 0,07, toutes les familles descendent d'un même couple d'immigrants. C'est l'effet fondateur.",
          beats=[
-        "{tab_am}Premier cas humain : les Amish de Pennsylvanie, une communauté d'origine européenne installée en Amérique du Nord, qui vit à l'écart et se marie en son sein. "
-        "{evc}Chez eux, un syndrome est relativement fréquent : {evc.1}le syndrome d'Ellis-van Creveld, une forme de nanisme accompagnée de doigts surnuméraires.",
-        "{evc.2}La fréquence de l'allèle en cause atteint q égal zéro virgule zéro sept, alors que la maladie est exceptionnelle dans le reste du monde. "
-        "{evc.3}Dans toutes les familles amish étudiées, la mutation est la même. Et on a pu démontrer que toutes ces familles descendaient d'un même couple d'immigrants.",
-        "{-evc}{-tab_am}{ham}Un tableau, d'après McLellan et ses collaborateurs, en mille neuf cent quatre-vingt-sept, "
-        "{ham.1}compare trois groupes : les Européens et Américains, les Huttérites, autre communauté d'origine européenne, et les Amish. "
-        "Groupe sanguin A : vingt-cinq à trente-deux pour cent en Europe ; trente-cinq chez les Huttérites ; soixante-six chez les Amish !",
-        "{ham.2}L'allèle H L A A onze, un marqueur des groupes tissulaires : quatre virgule cinq à sept virgule quatre pour cent en Europe ; zéro chez les Huttérites, il a disparu ; "
-        "quatorze chez les Amish. {ham.3}Et le groupe Kell : trois à cinq pour cent en Europe ; quatorze chez les Huttérites ; zéro virgule deux chez les Amish.",
-        "{-ham}{exa}Ce qu'on observe : {exa.1}les deux communautés s'écartent fortement de la population européenne dont elles sont issues, et elles diffèrent aussi entre elles. "
-        "Un allèle peut y être absent, ou bien plus fréquent qu'ailleurs.",
-        "{exa.2}L'explication : chaque communauté a été fondée par un petit nombre d'immigrants, qui n'emportaient qu'un échantillon non représentatif des allèles européens. "
-        "C'est l'effet fondateur. {exa.3}Ensuite, ces communautés vivent isolées et se marient entre elles : une reproduction non aléatoire. "
-        "Et leur petite taille renforce la dérive génétique. Trois mécanismes, qui s'additionnent.",
+        "{tab_am}Chez l'humain, maintenant. Les Amish de Pennsylvanie. Une communauté d'origine européenne, installée en Amérique du Nord. Elle vit à l'écart, et on s'y marie entre soi. "
+        "{evc}Et chez eux, un syndrome rare ailleurs est fréquent. {evc.1}Le syndrome d'Ellis-van Creveld : une forme de nanisme, avec des doigts surnuméraires.",
+        "{evc.2}L'allèle en cause atteint q égal zéro virgule zéro sept. Dans le reste du monde, la maladie est exceptionnelle. "
+        "{evc.3}Mieux : toutes les familles amish étudiées portent la même mutation. Et toutes descendent d'un même couple d'immigrants.",
+        "{-evc}{-tab_am}{ham}{ham.1}Allons plus loin, avec un tableau publié par McLellan et ses collègues en mille neuf cent quatre-vingt-sept. "
+        "Trois groupes : les Européens et Américains, les Huttérites, une autre communauté d'origine européenne, et les Amish. "
+        "Groupe sanguin A : vingt-cinq à trente-deux pour cent en Europe. Trente-cinq chez les Huttérites. Et soixante-six chez les Amish !",
+        "{ham.2}L'allèle H L A A onze, un marqueur tissulaire : quatre virgule cinq à sept virgule quatre pour cent en Europe. Zéro chez les Huttérites : il a disparu. "
+        "Quatorze chez les Amish. {ham.3}Et le groupe Kell : trois à cinq pour cent en Europe. Quatorze chez les Huttérites. Zéro virgule deux chez les Amish.",
+        "{-ham}{exa}Que voit-on ? {exa.1}Les deux communautés s'écartent nettement de l'Europe d'où elles viennent. Et elles ne se ressemblent pas entre elles. "
+        "Ici, un allèle a disparu. Là, il est bien plus fréquent qu'ailleurs.",
+        "{exa.2}L'explication : chaque communauté est née d'une poignée d'immigrants. Ils n'emportaient qu'un échantillon non représentatif des allèles européens. "
+        "L'effet fondateur. {exa.3}Ensuite, ces communautés vivent isolées, et on s'y marie entre soi : une reproduction non aléatoire. "
+        "Et leur petite taille renforce la dérive. Trois mécanismes, qui s'additionnent.",
         "{-exa}",
     ], vis={
         "tab_am": dict(type="tableau", img="ch3-amish", fond=True, sombre=True, de=[1.0, .7, .5], a=[1.2, .68, .5],
@@ -594,15 +605,15 @@ SCENES = [
     dict(id="groupeo", chap="Le groupe O des Amérindiens", fond="cellule", humeur="mystere",
          retenir="Groupe O : 90 à 100 % chez les Amérindiens. Hypothèse : un effet fondateur à l'échelle d'un continent, puis la dérive.",
          beats=[
-        "{obs_o}{obs_o.1}Deuxième cas : une carte de la proportion de personnes de groupe sanguin O dans les populations autochtones du monde. "
-        "Elle est élevée presque partout : souvent cinquante à soixante-dix pour cent. "
-        "{obs_o.2}Mais chez les populations amérindiennes, elle atteint quatre-vingt-dix à cent pour cent. En Amérique, presque tout le monde est de groupe O.",
-        "{-obs_o}{ber}{ber.1}Voici l'hypothèse la plus couramment avancée. "
+        "{obs_o}{obs_o.1}Deuxième cas, à l'échelle du monde. La part des personnes de groupe sanguin O, dans les populations autochtones. "
+        "Presque partout, elle est élevée : souvent cinquante à soixante-dix pour cent. "
+        "{obs_o.2}Mais chez les Amérindiens ? Quatre-vingt-dix à cent pour cent ! En Amérique, presque tout le monde est de groupe O.",
+        "{-obs_o}{ber}{ber.1}Comment l'expliquer ? Voici l'hypothèse la plus souvent avancée. "
         "En Asie, les trois allèles A, B et O sont présents. "
-        "{ber.2}L'Amérique a été peuplée par un petit nombre d'individus venus d'Asie, par la Béringie. "
-        "Ce groupe fondateur portait, par hasard, une proportion très élevée de l'allèle O.",
-        "{ber.3}Puis la dérive génétique a pu faire disparaître les allèles A et B dans plusieurs populations. "
-        "C'est un effet fondateur à l'échelle d'un continent.",
+        "{ber.2}L'Amérique a été peuplée par un petit groupe venu d'Asie, à travers la Béringie. "
+        "Et ce groupe portait, par hasard, énormément d'allèles O.",
+        "{ber.3}Ensuite, la dérive a pu effacer les allèles A et B dans plusieurs populations. "
+        "Un effet fondateur… à l'échelle d'un continent.",
         "{-ber}",
     ], vis={
         "obs_o": dict(type="liste", titre="Groupe sanguin O", items=[
@@ -615,19 +626,20 @@ SCENES = [
     dict(id="selection", chap="La sélection naturelle", fond="foret", humeur="lumiere",
          retenir="Sélection naturelle : les génotypes au meilleur succès reproducteur dans un milieu donné voient leurs allèles augmenter. Valeur sélective : 1 au maximum.",
          beats=[
-        "{d_sel}Troisième force : la {!sélection naturelle}. {d_sel.1}Elle favorise les individus dont le génotype confère, dans un milieu donné, "
-        "un meilleur taux de survie et de reproduction. Ils laissent plus de descendants, et la fréquence de leurs allèles augmente, génération après génération.",
-        "{-d_sel}{vs}On la mesure par la valeur sélective. {vs.1}C'est la probabilité qu'un génotype se transmette à la descendance. "
-        "{vs.2}Elle vaut un pour le génotype au succès reproducteur maximal. "
-        "{vs.3}Et si tous les génotypes ont la même valeur sélective, la population n'est pas soumise à la sélection naturelle.",
-        "{-vs}{tab_ph}Exemple classique : la phalène du bouleau. Sur des troncs noircis, la forme noire est moins visible. "
-        "Elle est moins chassée par ses prédateurs, et elle laisse plus de descendants.",
-        "{-tab_ph}{gr_s4}Scénario quatre de la modélisation : "
-        "{gr_s4.1}le génotype A A a une valeur sélective de un ; A B et B B, zéro virgule huit. "
-        "La fréquence de A augmente régulièrement. Elle tend vers la fixation. "
-        "{gr_s4.2}Et quand on relance, on obtient presque la même courbe.",
-        "Voilà la grande différence avec la dérive : le résultat se répète d'un lancement à l'autre. "
-        "La sélection fait évoluer les fréquences dans une direction donnée : celle de l'allèle favorable dans ce milieu.",
+        ("{d_sel}Troisième force : la {!sélection naturelle}. {d_sel.1}Elle favorise les individus dont le génotype donne, dans un milieu donné, "
+         "une meilleure survie et une meilleure reproduction.", {"rate": "-4%"}),
+        "Ces individus laissent plus de descendants. Et la fréquence de leurs allèles grimpe, génération après génération.",
+        "{-d_sel}{vs}Pour la mesurer : la valeur sélective. {vs.1}C'est la probabilité qu'un génotype passe à la descendance. "
+        "{vs.2}Elle vaut un pour le génotype qui se reproduit le mieux. "
+        "{vs.3}Et si tous les génotypes ont la même valeur ? Alors, pas de sélection naturelle.",
+        "{-vs}{tab_ph}Un exemple classique : la phalène du bouleau. Sur des troncs noircis par la suie, la forme noire passe inaperçue. "
+        "Les oiseaux la repèrent moins. Elle survit, et laisse plus de descendants.",
+        "{-tab_ph}{gr_s4}Retour à la simulation. Scénario quatre : "
+        "{gr_s4.1}le génotype A A a une valeur sélective de un. A B et B B, zéro virgule huit. "
+        "La fréquence de A monte, régulièrement. Elle file vers la fixation. "
+        "{gr_s4.2}Et si on relance ? Presque la même courbe.",
+        "Et c'est là toute la différence avec la dérive. Le résultat se répète, d'un lancement à l'autre. "
+        "La sélection pousse les fréquences dans une direction : celle de l'allèle favorable, dans ce milieu.",
         "{-gr_s4}",
     ], vis={
         "d_sel": dict(type="def", terme="Sélection naturelle", cles=["survie", "reproduction", "augmente"],
@@ -646,22 +658,22 @@ SCENES = [
     dict(id="culex", chap="Culex pipiens et les insecticides", fond="foret", humeur="tension",
          retenir="Culex pipiens : l'insecticide trie les larves ; AceR augmente tant que le milieu le favorise. L'allèle préexistait : pas de finalisme.",
          beats=[
-        "{tab_cu}Un cas réel : les moustiques Culex pipiens du Languedoc-Roussillon. "
-        "{ctx}{ctx.1}Depuis mille neuf cent soixante-huit, on les contrôle en épandant des insecticides sur les étendues d'eau où se développent les larves. "
-        "Ce sont surtout des organophosphorés, qui tuent les larves en perturbant certaines synapses.",
-        "{ctx.2}Le gène Ace existe sous deux allèles. AceR confère une résistance aux organophosphorés, mais il ralentit aussi le développement des moustiques. "
-        "AceS ne protège pas. {ctx.3}Dans les années quatre-vingt-dix, les quantités épandues ont été fortement réduites, et un autre insecticide a été employé, le téméphos.",
-        "{-ctx}{-tab_cu}{gr_cu}{gr_cu.1}Le graphique des données publiées, redessiné ici dans son allure, pour une population. "
-        "La fréquence de AceR reste proche de zéro jusqu'au début des années quatre-vingt. "
-        "Puis elle augmente rapidement, jusqu'à environ zéro virgule six au milieu des années quatre-vingt-dix. Ensuite, elle se stabilise.",
-        "{-gr_cu}{itr}Le mécanisme. {itr.1}Dans l'eau, les larves porteuses de AceR sont rares. "
-        "{itr.2}On épand l'insecticide. {itr.3}Les larves sensibles meurent ; les résistantes survivent. "
-        "{itr.4}Elles seules se reproduisent : à la génération suivante, AceR est bien plus fréquent. L'insecticide exerce une {!pression de sélection}.",
-        "{-itr}{cout}Mais pourquoi la courbe s'arrête-t-elle vers zéro virgule six ? {cout.1}Parce que l'allèle a un coût : un développement plus lent. "
-        "Sans insecticide, il désavantage ses porteurs. {cout.2}Son avantage dépend donc du milieu. Quand l'usage d'insecticide diminue, sa progression s'arrête.",
-        "{-cout}{fin_c}Et un piège de rédaction, très important. {fin_c.1}Jamais de finalisme. "
-        "Un moustique ne devient pas résistant « pour » survivre. L'allèle AceR existait déjà, apparu par mutation. L'insecticide a trié les porteurs. "
-        "{fin_c.2}C'est le même raisonnement que pour les bactéries résistantes aux antibiotiques, vues en Première : l'antibiotique ne crée pas la résistance, il élimine les sensibles.",
+        "{tab_cu}Un cas réel, tout près de chez nous : les moustiques Culex pipiens, dans le Languedoc-Roussillon. "
+        "{ctx}{ctx.1}Depuis mille neuf cent soixante-huit, on les combat en épandant des insecticides sur les eaux où vivent les larves. "
+        "Surtout des organophosphorés. Ils tuent les larves en perturbant certaines synapses.",
+        "{ctx.2}Le gène Ace existe sous deux allèles. AceR résiste aux organophosphorés. Mais il ralentit le développement du moustique. "
+        "AceS, lui, ne protège pas. {ctx.3}Dans les années quatre-vingt-dix, on épand beaucoup moins. Et on change de produit : le téméphos.",
+        "{-ctx}{-tab_cu}{gr_cu}{gr_cu.1}Voici l'allure des données publiées, pour une population. "
+        "Jusqu'au début des années quatre-vingt, AceR est presque absent. "
+        "Puis il décolle. Il atteint environ zéro virgule six vers le milieu des années quatre-vingt-dix. Et là, il plafonne.",
+        "{-gr_cu}{itr}Que s'est-il passé ? {itr.1}Dans l'eau, les larves porteuses de AceR sont rares. "
+        "{itr.2}On épand l'insecticide. {itr.3}Les larves sensibles meurent. Les résistantes survivent. "
+        "{itr.4}Elles seules se reproduisent. À la génération suivante, AceR est bien plus fréquent. L'insecticide exerce une {!pression de sélection}.",
+        "{-itr}{cout}Mais alors, pourquoi la courbe plafonne-t-elle vers zéro virgule six ? {cout.1}Parce que l'allèle a un prix : un développement plus lent. "
+        "Sans insecticide, il pénalise ses porteurs. {cout.2}Son avantage dépend donc du milieu. Moins d'insecticide, et sa progression s'arrête.",
+        "{-cout}{fin_c}Et maintenant, un piège de rédaction. Très important. {fin_c.1}Jamais de finalisme. "
+        "Un moustique ne devient pas résistant « pour » survivre. L'allèle AceR existait déjà, apparu par mutation. L'insecticide a simplement trié les porteurs. "
+        "{fin_c.2}Même raisonnement que pour les bactéries et les antibiotiques, vu en Première. L'antibiotique ne crée pas la résistance. Il élimine les sensibles.",
         "{-fin_c}",
     ], vis={
         "tab_cu": dict(type="tableau", img="ch3-culex", fond=True, de=[1.0, .4, .56], a=[1.35, .42, .58],
@@ -685,15 +697,16 @@ SCENES = [
     dict(id="comparer", chap="Dérive ou sélection ?", fond="foret", humeur="calme",
          retenir="Dérive : hasard, imprévisible, petites populations. Sélection : orientée par le milieu, reproductible, quelle que soit la taille.",
          beats=[
-        "{dvs}{dvs.g}Un tableau à savoir refaire, parce qu'on te demandera souvent de reconnaître la force en jeu. "
-        "À gauche, la dérive génétique, et l'effet fondateur qui lui est lié. Sa cause : le hasard de la reproduction. "
-        "Sa direction : aléatoire, imprévisible. Deux populations identiques évoluent différemment. Elle est forte dans les petites populations. "
+        "{dvs}{dvs.g}Dérive ou sélection ? C'est la question qu'on te posera le plus souvent. Voici le tableau à savoir refaire. "
+        "À gauche, la dérive génétique, avec l'effet fondateur. Sa cause : le hasard de la reproduction. "
+        "Sa direction : aucune. Elle est imprévisible : deux populations identiques évoluent différemment. Et elle frappe fort dans les petites populations. "
         "Exemples : les drosophiles de Buri, les Amish, le groupe O des Amérindiens.",
-        "{dvs.1}À droite, la sélection naturelle. Sa cause : un avantage de survie ou de reproduction dans un milieu donné. "
-        "Sa direction : orientée. L'allèle favorable augmente, et l'expérience est reproductible. Elle agit quelle que soit la taille de la population. "
+        "{dvs.1}À droite, la sélection naturelle. Sa cause : un avantage de survie ou de reproduction, dans un milieu donné. "
+        "Sa direction : orientée. L'allèle favorable augmente, et on retrouve le même résultat à chaque fois. Quelle que soit la taille de la population. "
         "Exemples : Culex pipiens et les insecticides, la phalène du bouleau.",
-        "{-dvs}{reflexe}Le réflexe pour un document : {reflexe.1}si des populations identiques divergent dans tous les sens, sans rapport avec le milieu, c'est la dérive. "
-        "{reflexe.2}Si un allèle progresse là où il est avantageux, et seulement là, c'est la sélection.",
+        ("P", 0.6),
+        "{-dvs}{reflexe}Devant un document, un réflexe. {reflexe.1}Des populations identiques qui divergent dans tous les sens, sans lien avec le milieu ? La dérive. "
+        "{reflexe.2}Un allèle qui progresse là où il est avantageux, et seulement là ? La sélection.",
         "{-reflexe}",
     ], vis={
         "dvs": dict(type="cols", g="Dérive génétique", gq="hasard · imprévisible · forte si petite population · Buri, Amish, groupe O",
@@ -708,27 +721,28 @@ SCENES = [
     dict(id="espece", chap="Qu'est-ce qu'une espèce ?", fond="aube", humeur="calme",
          retenir="De Linné (espèces fixes) à Darwin (espèces apparentées qui se transforment). Critères phénotypique, biologique, moléculaire : aucun ne suffit seul.",
          beats=[
-        "{m_c}{m_c.1}Troisième branche de la carte : la notion d'espèce. C'est le bilan du chapitre : "
-        "si les fréquences des allèles changent sans cesse, qu'est-ce qu'une espèce ?",
-        "{-m_c}{p_lin}Pour les naturalistes d'avant la théorie de l'évolution, comme Linné au dix-huitième siècle, l'inventeur du nom scientifique en deux mots, genre et espèce, "
-        "une espèce est un ensemble d'individus semblables, qui engendrent des individus semblables à eux. Elle est fixe, créée telle quelle.",
-        "{-p_lin}{p_dar}Au dix-neuvième siècle, Darwin introduit une relation de parenté entre les espèces. "
-        "La variabilité des individus, triée par la sélection naturelle, fait que les espèces se transforment au cours du temps, "
-        "et qu'elles dérivent d'ancêtres communs.",
-        "Et tout ce chapitre te donne les mécanismes de cette transformation, que Darwin ne connaissait pas : la dérive, l'effet fondateur, la sélection, "
-        "qui changent les fréquences des allèles.",
+        "{m_c}{m_c.1}Troisième branche : la notion d'espèce. Et une vraie question. "
+        "Si les fréquences des allèles changent sans cesse, qu'est-ce qu'une espèce ?",
+        "{-m_c}{p_lin}Au dix-huitième siècle, Linné invente le nom scientifique en deux mots : le genre, puis l'espèce. "
+        "Pour lui, une espèce, ce sont des individus semblables, qui donnent des individus semblables. Elle est fixe. Créée telle quelle.",
+        "{-p_lin}{p_dar}Au dix-neuvième siècle, Darwin renverse tout. Les espèces sont parentes. "
+        "La variabilité des individus, triée par la sélection naturelle, les transforme au cours du temps. "
+        "Et elles descendent d'ancêtres communs.",
+        "Ce chapitre te donne justement les mécanismes que Darwin ignorait. La dérive, l'effet fondateur, la sélection : "
+        "tout ce qui change les fréquences des allèles.",
         "{-p_dar}",
-        "{crit}Comment décider que deux individus appartiennent à la même espèce ? {crit.1}Trois critères, et chacun a ses limites. "
-        "Le critère phénotypique, la ressemblance. C'est le plus simple, mais il trompe. "
-        "Deux papillons d'aspect très différent peuvent être le mâle et la femelle d'une même espèce : c'est le dimorphisme sexuel.",
-        "Exemple : l'aurore, un papillon blanc de nos prairies. Seul le mâle a le bout des ailes orange ; la femelle n'en a pas.",
-        "{crit.2}Le critère biologique, l'interfécondité : une espèce est un ensemble de populations dont les individus peuvent se reproduire entre eux, "
-        "et engendrer une descendance fertile. C'est la définition de référence. Mais elle ne s'applique ni aux fossiles, "
-        "ni aux organismes qui ne se reproduisent pas sexuellement. Et certaines espèces distinctes s'hybrident : par exemple deux espèces de canards fuligules.",
+        "{crit}Alors, comment savoir si deux individus sont de la même espèce ? {crit.1}Trois critères. Et chacun a ses failles. "
+        "Le critère phénotypique : la ressemblance. Le plus simple. Mais il trompe. "
+        "Un mâle et une femelle de la même espèce peuvent sembler n'avoir rien à voir : c'est le dimorphisme sexuel.",
+        "Exemple : l'aurore, un papillon blanc de nos prairies. Seul le mâle a le bout des ailes orange.",
+        "{crit.2}Le critère biologique : l'interfécondité. Une espèce, ce sont des populations dont les individus peuvent se reproduire entre eux, "
+        "avec une descendance fertile. C'est la définition de référence. Mais impossible de l'appliquer aux fossiles. "
+        "Ni aux organismes sans reproduction sexuée. Et des espèces distinctes s'hybrident parfois : deux espèces de canards fuligules, par exemple.",
         "{crit.3}Le critère moléculaire : on compare les séquences d'ADN. Exemple : jusqu'en mille neuf cent quatre-vingt-seize, "
-        "deux fourmis des bois, Formica lugubris et Formica paralugubris, étaient considérées comme une seule espèce. "
-        "Les études moléculaires ont montré que ce sont deux espèces distinctes.",
-        "{-crit}{aucun}Conclusion : {aucun.1}aucun critère ne suffit seul. C'est la première raison pour laquelle la notion d'espèce est délicate.",
+        "deux fourmis des bois, Formica lugubris et Formica paralugubris, passaient pour une seule espèce. "
+        "L'ADN a tranché : ce sont deux espèces.",
+        ("P", 0.6),
+        "{-crit}{aucun}Bilan : {aucun.1}aucun critère ne suffit seul. Voilà une première raison pour laquelle l'espèce est si difficile à définir.",
         "{-aucun}",
     ], vis={
         "m_c": dict(type="mental", vers=["c3", "c3c"]),
@@ -749,17 +763,17 @@ SCENES = [
     dict(id="reseau", chap="Arbre des espèces, arbre des molécules, réseau du vivant", fond="aube", humeur="mystere",
          retenir="Arbre des espèces ≠ arbre des molécules (duplications, pertes, transferts). Doolittle : un réseau du vivant plutôt qu'un arbre.",
          beats=[
-        "{arb}Deux sortes d'arbres. {arb.1}Un arbre des espèces représente l'histoire évolutive d'un groupe d'espèces. "
-        "{arb.2}Un arbre des molécules représente l'histoire d'une famille de molécules : des gènes, des protéines.",
-        "{arb.3}Les deux ne sont pas toujours identiques. Une famille de molécules peut contenir plusieurs copies d'un même gène dans une espèce : des duplications. "
-        "Un gène peut avoir été perdu dans une lignée. Et des molécules peuvent avoir été transférées horizontalement, d'une espèce à une autre. "
-        "Tu reconnais le chapitre deux.",
-        "{-arb}{ires}Ces transferts compliquent beaucoup la classification. {ires.1}Un arbre suppose que les branches ne se croisent jamais. "
-        "{ires.2}Or, dans les années mille neuf cent quatre-vingt-dix, le séquençage des génomes de bactéries a révélé qu'elles avaient échangé un très grand nombre de gènes. "
-        "La comparaison de ces gènes n'indique plus alors la parenté entre les espèces, mais la période où chaque gène a été transféré.",
-        "{cit_d}Le chercheur canadien William Ford Doolittle en tire une conclusion {-ires}radicale.",
+        "{arb}Deux sortes d'arbres. {arb.1}L'arbre des espèces raconte l'histoire évolutive d'un groupe d'espèces. "
+        "{arb.2}L'arbre des molécules raconte l'histoire d'une famille de gènes, ou de protéines.",
+        "{arb.3}Et les deux ne coïncident pas toujours. Un gène peut avoir été copié plusieurs fois dans une espèce : des duplications. "
+        "Il peut avoir été perdu dans une lignée. Ou passé d'une espèce à une autre, par transfert horizontal. "
+        "Le chapitre deux, tu te souviens ?",
+        "{-arb}{ires}Ces transferts sèment le trouble dans la classification. {ires.1}Un arbre suppose des branches qui ne se croisent jamais. "
+        "{ires.2}Or, dans les années mille neuf cent quatre-vingt-dix, on séquence des génomes de bactéries. Et surprise : elles ont échangé énormément de gènes. "
+        "Comparer ces gènes ne dit plus qui est parent de qui. Ça dit seulement quand chaque gène a été transféré.",
+        "{cit_d}Le microbiologiste canadien William Ford Doolittle en tire une conclusion {-ires}radicale.",
         ("C", "Vouloir construire un arbre du vivant n'a pas de sens.", "cit_d"),
-        "{-cit_d}{ires2}{ires2.1}{ires2.2}{ires2.3}Il propose un réseau du vivant, où les espèces sont reliées en plusieurs points, à chaque transfert de gènes.",
+        "{-cit_d}{ires2}{ires2.1}{ires2.2}{ires2.3}À la place, il propose un réseau du vivant. Les espèces y sont reliées en plusieurs points, à chaque transfert de gènes.",
         "{-ires2}",
     ], vis={
         "arb": dict(type="liste", titre="Deux arbres", items=[
@@ -776,21 +790,22 @@ SCENES = [
     dict(id="denisova", chap="Denisova : une espèce identifiée par son ADN", fond="roche", humeur="mystere",
          retenir="Denisova : une phalange et une molaire ; leur ADN révèle une forme humaine distincte des sapiens et des Néandertaliens.",
          beats=[
-        "{meth_d}{meth_d.1}Aujourd'hui, on peut rattacher un spécimen à une espèce grâce à son ADN. On place la séquence d'un gène indicateur dans un arbre phylogénétique, "
-        "construit avec les séquences de ce même gène chez les espèces connues, stockées dans des bases de données librement accessibles. "
-        "{meth_d.2}On montre ainsi que le spécimen appartient à une espèce connue, ou bien qu'il s'agit d'une espèce nouvelle pour la science.",
-        "{-meth_d}{tab_den}Cette technique a précisé l'histoire du genre Homo. On dispose du génome complet de plusieurs Néandertaliens, et d'un très grand nombre de sapiens. "
-        "Et de l'ADN extrait d'une phalange et d'une molaire, trouvées dans la grotte de Denisova, en Sibérie.",
+        "{meth_d}{meth_d.1}Aujourd'hui, l'ADN suffit pour rattacher un spécimen à une espèce. On place la séquence d'un gène indicateur dans un arbre. "
+        "Un arbre construit avec ce même gène, chez toutes les espèces connues. Les séquences sont dans des bases de données ouvertes à tous. "
+        "{meth_d.2}Verdict : une espèce connue… ou une espèce nouvelle pour la science.",
+        "{-meth_d}{tab_den}Cette technique a éclairé l'histoire du genre Homo. On a le génome complet de plusieurs Néandertaliens. Celui d'un très grand nombre de sapiens. "
+        "Et l'ADN d'une phalange et d'une molaire, trouvées dans une grotte de Sibérie : la grotte de Denisova.",
         "{-tab_den}{iden}Voici l'arbre obtenu. {iden.1}D'un côté, les sapiens actuels : San, Yoruba, Français, Han, Papous. "
         "{iden.2}De l'autre, les Néandertaliens de Mezmaiskaya et de Vindija. "
-        "{iden.3}Et Denisova se place à côté des Néandertaliens, à l'écart des sapiens.",
-        "Les données moléculaires confortent l'idée que Néandertaliens et humains modernes forment deux espèces différentes. "
-        "Et elles révèlent une autre forme humaine, les Dénisoviens, dont l'ADN est distinct à la fois de celui des sapiens et de celui des Néandertaliens. "
-        "Alors qu'on ne connaît presque rien de sa morphologie : une phalange, une molaire.",
-        "{-iden}{hp_d}Conclusion : cet ADN n'a pas fini de remettre en question la notion d'espèces distinctes. "
-        "{hp_d.1}Voici pourquoi. Ce qui suit est hors programme. Sapiens, Néandertaliens et Dénisoviens se sont reproduits entre eux. "
-        "Les humains actuels hors d'Afrique portent un à quatre pour cent d'ADN néandertalien, et certaines populations d'Océanie jusqu'à cinq pour cent d'ADN dénisovien. "
-        "Selon le critère d'interfécondité, ce ne seraient donc pas des espèces totalement séparées.",
+        "{iden.3}Et Denisova ? Il se range près des Néandertaliens. Loin des sapiens.",
+        "L'ADN confirme donc que Néandertaliens et humains modernes sont deux espèces différentes. "
+        "Et il révèle une autre forme humaine : les Dénisoviens. Leur ADN ne ressemble ni à celui des sapiens, ni à celui des Néandertaliens. "
+        "Et pourtant, de leur corps, on ne connaît presque rien. Une phalange. Une molaire.",
+        ("P", 0.6),
+        "{-iden}{hp_d}Et cet ADN n'a pas fini de bousculer l'idée d'espèces bien séparées. "
+        "{hp_d.1}Ce qui suit est hors programme. Sapiens, Néandertaliens et Dénisoviens se sont reproduits entre eux. "
+        "Hors d'Afrique, les humains actuels portent un à quatre pour cent d'ADN néandertalien. Certaines populations d'Océanie, jusqu'à cinq pour cent d'ADN dénisovien. "
+        "Avec le critère d'interfécondité, ce ne seraient donc pas des espèces totalement séparées.",
         "{-hp_d}",
     ], vis={
         "meth_d": dict(type="liste", titre="Identifier un spécimen par son ADN", items=[
@@ -808,15 +823,16 @@ SCENES = [
     dict(id="devenir", chap="Une espèce en devenir", fond="aube", humeur="lumiere",
          retenir="Une population suffisamment isolée génétiquement est une espèce en devenir. Les espèces sont des ensembles hétérogènes de populations, évoluant distinctement dans le temps.",
          beats=[
-        "{isp}{isp.1}Le bilan relie tout le chapitre. L'environnement est, par définition, instable. "
-        "{isp.2}Imagine une population coupée en deux par une barrière.",
-        "{isp.3}De chaque côté, la sélection et la dérive agissent, chacune à sa façon. Elles mènent à une différenciation génétique des populations au cours du temps.",
-        "{isp.4}Conséquence possible : les populations ne peuvent plus échanger de gènes. Il n'y a plus de reproduction entre elles, "
-        "car elles sont devenues trop différentes génétiquement.",
-        "{-isp}{d_dev}On assiste alors à une {!espèce en devenir} : {d_dev.1}une population suffisamment isolée génétiquement des autres populations.",
-        "{-d_dev}{bil}{bil.1}D'où la conclusion du chapitre. La notion d'espèce est délicate à définir. "
-        "{bil.2}Les espèces sont des ensembles hétérogènes de populations, évoluant distinctement dans le temps. "
-        "Retiens cette phrase telle quelle : c'est la conclusion du chapitre.",
+        "{isp}{isp.1}Et maintenant, on relie tout le chapitre. L'environnement, par définition, change sans cesse. "
+        "{isp.2}Imagine une population coupée en deux. Un fleuve, une montagne.",
+        "{isp.3}De chaque côté, la sélection et la dérive travaillent. Chacune à sa façon. Peu à peu, les deux moitiés se différencient génétiquement.",
+        "{isp.4}Et un jour, elles ne peuvent plus échanger de gènes. Plus de reproduction entre elles : "
+        "elles sont devenues trop différentes.",
+        "{-isp}{d_dev}C'est une {!espèce en devenir}. {d_dev.1}Une population suffisamment isolée génétiquement des autres populations.",
+        ("P", 0.7),
+        "{-d_dev}{bil}{bil.1}D'où la conclusion. La notion d'espèce est délicate à définir.",
+        ("{bil.2}Les espèces sont des ensembles hétérogènes de populations, évoluant distinctement dans le temps.", {"rate": "-4%"}),
+        "Cette phrase-là, retiens-la telle quelle.",
         "{-bil}",
     ], vis={
         "isp": dict(type="illu", nom="speciation", x=110, y=96, w=1060, h=560),
@@ -832,30 +848,30 @@ SCENES = [
     # 1 naissance sur 2 500 malade (m//m) : q² = 4 × 10^-4 → q = 0,02 ; p = 0,98 ; 2pq = 0,0392 ≈ 1/25,5 (≈ 1 sur 25)
     # communauté isolée : q = 0,07 → q² = 0,0049 ≈ 1 sur 204, 12 fois plus que 4 × 10^-4
     dict(id="exo3", chap="Exercice 3 · type bac", fond="aube", humeur="tension", beats=[
-        "{ex3}Dernier exercice, au format du bac. Une maladie génétique est due à un allèle récessif m : seuls les homozygotes m m sont malades. "
-        "Dans une grande population, on supposera l'équilibre de Hardy-Weinberg. Une naissance sur deux mille cinq cents est atteinte.",
-        "{-ex3}{ex3b}Cinq questions. Un : calculer q, puis p. Deux : calculer la proportion de porteurs sains, les hétérozygotes. "
-        "Trois : pourquoi a-t-on besoin du modèle pour l'estimer ? "
-        "Quatre : dans une petite communauté isolée, fondée par quelques couples, la fréquence de m atteint zéro virgule zéro sept. "
-        "Calculer la proportion de malades attendue, et expliquer l'écart avec la grande population. "
-        "Cinq : on y observe en réalité encore plus de malades que prévu. Proposer une explication.",
-        "{-ex3b}{pa3}Vingt minutes, comme au bac. Mets sur pause, et rédige.",
-        "{pa3.stop}{-pa3}{ex3c}{ex3c.q1}Solution. {s31}{s31.1}Les malades sont les m m : leur fréquence est q au carré. "
-        "{s31.2}q au carré égale un sur deux mille cinq cents, quatre fois dix puissance moins quatre. "
-        "{s31.3}Donc q égale la racine carrée : zéro virgule zéro deux. Et p égale zéro virgule quatre-vingt-dix-huit.",
-        "{-s31}{ex3c.q2}{s32}{s32.1}Porteurs sains : deux p q, deux fois zéro virgule quatre-vingt-dix-huit fois zéro virgule zéro deux. "
-        "{s32.2}Zéro virgule zéro trente-neuf : environ quatre pour cent, une personne sur vingt-cinq ! "
-        "Cent fois plus que les malades : l'allèle se cache surtout chez des porteurs en bonne santé.",
-        "{-s32}{ex3c.q3}{s33}{s33.1}Pourquoi le modèle ? Parce que les hétérozygotes ne sont pas malades : on ne peut pas les compter sur leur phénotype. "
-        "{s33.2}On ne connaît que les malades, donc q au carré. Seule la loi de Hardy-Weinberg permet d'en déduire q, puis deux p q.",
-        "{-s33}{ex3c.q4}{s34}{s34.1}Dans la communauté : q au carré égale zéro virgule zéro sept au carré, zéro virgule zéro zéro quarante-neuf. "
-        "{s34.2}Environ un malade sur deux cents : douze fois plus que dans la grande population. "
-        "{s34.3}Explication : un effet fondateur. Les quelques couples fondateurs portaient, par hasard, l'allèle m à une fréquence élevée. "
-        "Puis la petite taille de la communauté a laissé agir la dérive. C'est exactement le cas des Amish et du syndrome d'Ellis-van Creveld.",
-        "{-s34}{ex3c.q5}{s35}{s35.1}Encore plus de malades que q au carré ne le prévoit ? C'est un excès d'homozygotes. "
-        "{s35.2}Dans une petite communauté isolée, on se marie entre apparentés : la reproduction n'est pas aléatoire, la panmixie n'est pas respectée. "
-        "{s35.3}Les conditions du modèle ne sont pas réunies, donc la loi de Hardy-Weinberg ne s'applique pas exactement. "
-        "Regard critique : le calcul de la question quatre n'était qu'une estimation.",
+        "{ex3}Dernier exercice. Format bac. Une maladie génétique est due à un allèle récessif m. Seuls les homozygotes m m sont malades. "
+        "Dans une grande population, supposée à l'équilibre de Hardy-Weinberg, une naissance sur deux mille cinq cents est atteinte.",
+        "{-ex3}{ex3b}Cinq questions. Un : calculer q, puis p. Deux : la proportion de porteurs sains, les hétérozygotes. "
+        "Trois : pourquoi faut-il le modèle pour l'estimer ? "
+        "Quatre : une petite communauté isolée, fondée par quelques couples. La fréquence de m y atteint zéro virgule zéro sept. "
+        "Quelle proportion de malades attendre ? Et pourquoi un tel écart avec la grande population ? "
+        "Cinq : on y observe encore plus de malades que prévu. Propose une explication.",
+        "{-ex3b}{pa3}Vingt minutes, comme au bac. Pause, et rédige.",
+        "{pa3.stop}{-pa3}{ex3c}{ex3c.q1}Solution. {s31}{s31.1}Les malades sont les m m. Leur fréquence, c'est q au carré. "
+        "{s31.2}q au carré vaut un sur deux mille cinq cents. Quatre fois dix puissance moins quatre. "
+        "{s31.3}On prend la racine : q égale zéro virgule zéro deux. Et p, zéro virgule quatre-vingt-dix-huit.",
+        "{-s31}{ex3c.q2}{s32}{s32.1}Les porteurs sains : deux p q. Deux fois zéro virgule quatre-vingt-dix-huit, fois zéro virgule zéro deux. "
+        "{s32.2}Zéro virgule zéro trente-neuf. Environ quatre pour cent : une personne sur vingt-cinq ! "
+        "Cent fois plus que les malades. L'allèle se cache surtout chez des gens en parfaite santé.",
+        "{-s32}{ex3c.q3}{s33}{s33.1}Pourquoi le modèle ? Parce que les hétérozygotes ne sont pas malades. Impossible de les repérer à leur phénotype. "
+        "{s33.2}On ne connaît que les malades, donc q au carré. Seule la loi de Hardy-Weinberg permet de remonter à q, puis à deux p q.",
+        "{-s33}{ex3c.q4}{s34}{s34.1}Dans la communauté : q au carré, c'est zéro virgule zéro sept au carré. Zéro virgule zéro zéro quarante-neuf. "
+        "{s34.2}Environ un malade sur deux cents. Douze fois plus que dans la grande population ! "
+        "{s34.3}Pourquoi ? Un effet fondateur. Les quelques couples fondateurs portaient, par hasard, beaucoup d'allèles m. "
+        "Puis la petite taille de la communauté a laissé jouer la dérive. Exactement comme les Amish et le syndrome d'Ellis-van Creveld.",
+        "{-s34}{ex3c.q5}{s35}{s35.1}Et encore plus de malades que prévu ? C'est un excès d'homozygotes. "
+        "{s35.2}Dans une petite communauté isolée, on se marie entre apparentés. La reproduction n'est pas aléatoire : pas de panmixie. "
+        "{s35.3}Les conditions du modèle ne sont pas réunies. La loi de Hardy-Weinberg ne s'applique donc pas exactement. "
+        "Et le calcul de la question quatre n'était qu'une estimation. C'est le regard critique qu'on attend.",
         "{-s35}{-ex3c}",
     ], vis={
         "ex3": dict(type="exo", niveau="bac", titre="Une maladie récessive, deux populations", src="Exercice inventé pour la vidéo, au format du bac",
@@ -893,19 +909,20 @@ SCENES = [
 
     # ================================================================ récapitulatif
     dict(id="recap", chap="Ce qu'il faut savoir pour le bac", fond="aube", humeur="lumiere", beats=[
-        "{bac}{bac.1}Voici ce que le bac peut te demander sur ce chapitre, à cocher. "
+        "{bac}{bac.1}Et maintenant, la liste à cocher. Ce que le bac peut te demander. "
         "Définir une population, son patrimoine génétique, une fréquence allélique. "
         "{bac.2}Calculer des fréquences alléliques et génotypiques à partir d'effectifs. "
-        "{bac.3}Établir et utiliser p au carré plus deux p q plus q au carré égale un, et tester l'équilibre en comparant observé et attendu. "
-        "{bac.4}Énoncer les conditions du modèle, et en déduire les causes d'écart : les forces évolutives.",
-        "{bac.5}Expliquer la dérive génétique et son lien avec la taille de la population, avec Buri. "
-        "{bac.6}Expliquer l'effet fondateur, avec les Amish et le groupe O. "
-        "{bac.7}Expliquer la sélection naturelle, avec Culex pipiens, sans finalisme. "
+        "{bac.3}Établir et utiliser p au carré plus deux p q plus q au carré égale un. Et tester l'équilibre : observé contre attendu. "
+        "{bac.4}Donner les conditions du modèle, et en tirer les causes d'écart : les forces évolutives.",
+        "{bac.5}Expliquer la dérive, et son lien avec la taille de la population. Avec Buri. "
+        "{bac.6}Expliquer l'effet fondateur. Avec les Amish et le groupe O. "
+        "{bac.7}Expliquer la sélection naturelle. Avec Culex pipiens, et sans finalisme. "
         "{bac.8}Et discuter les critères de l'espèce, jusqu'à l'espèce en devenir.",
-        "{-bac}{fin_m}Revenons à la carte. {fin_m.1}Le chapitre trois tient en trois branches : {fin_m.2}un modèle sans évolution, "
-        "{fin_m.3}les forces qui en écartent les populations réelles, {fin_m.4}et des espèces qui ne sont jamais figées. "
-        "{fin_m.5}Le chapitre suivant ira plus loin encore : il montrera que le phénotype peut aussi se diversifier sans que le génome change.",
-        "Pour t'entraîner, refais les trois exercices de tête, sans regarder les solutions.",
+        ("P", 0.6),
+        "{-bac}{fin_m}Retour à la carte. {fin_m.1}Le chapitre trois, c'est trois branches. {fin_m.2}Un modèle où rien n'évolue. "
+        "{fin_m.3}Les forces qui en écartent les vraies populations. {fin_m.4}Et des espèces qui ne sont jamais figées. "
+        "{fin_m.5}Le chapitre suivant va encore plus loin. Le phénotype peut se diversifier… sans que le génome change.",
+        "Pour t'entraîner : refais les trois exercices de tête, sans regarder les solutions.",
         "{-fin_m}",
     ], vis={
         "bac": dict(type="liste", titre="Pour le bac · à cocher", petit=True, items=[
