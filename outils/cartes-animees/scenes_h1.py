@@ -1,5 +1,5 @@
 """Scènes de la carte animée H1 « The Wall Street Crash and its Impact » (cours de M. Ros, parties I et II).
-Même format que scenes_h3.py ; ce qui vient d'ailleurs que le cours porte la balise [hors].
+Même format que scenes_h3.py.
 """
 import scenes_h3 as base
 from scenes_h3 import appliquer, ALLIE, L, F, G33, G38, IT, USSR, DEMO, NEUTRE, UK, JAP, USA, ROUGE, BLEU, NOIR
@@ -216,8 +216,8 @@ def scenes():
         labels=["l_bresil", "l_chili"], cles=["matieres"])
     add("I.2", 14, [100, 5, 1.0], L("Années 1930", "The 1930s"),
         L("Une crise durable dans tout le monde dominé", "A lasting crisis across the dependent world"),
-        L("Selon le cours, la crise touche durablement l'Amérique latine, le Canada, l'Inde, la Nouvelle-Zélande et l'Australie. La France, moins endettée envers les États-Unis, n'est touchée qu'en 1932, quand les réparations allemandes cessent d'arriver.",
-          "According to the course, the crisis lastingly affected Latin America, Canada, India, New Zealand and Australia. France, less indebted to the United States, was hit only in 1932, as German reparations stopped arriving."),
+        L("La crise touche durablement l'Amérique latine, le Canada, l'Inde, la Nouvelle-Zélande et l'Australie. La France, moins endettée envers les États-Unis, n'est touchée qu'en 1932, quand les réparations allemandes cessent d'arriver.",
+          "The crisis lastingly affected Latin America, Canada, India, New Zealand and Australia. France, less indebted to the United States, was hit only in 1932, as German reparations stopped arriving."),
         labels=["l_ind", "l_aus", "l_nz"], cles=["crise", "matieres"])
 
     # ---------------- I.3 le traumatisme
@@ -278,8 +278,8 @@ def scenes():
           "Roosevelt, elected in 1932, launched the New Deal: the “hundred days” created the Civilian Conservation Corps, the Tennessee Valley Authority and deposit insurance; in 1935 came the Social Security Act (pensions, unemployment insurance). The Golden Gate Bridge went up from 1933. Like Germany, the state spent — but on bridges and rights, not an army."), pins=["tva"], labels=["goldengate", "washington"], cles=["usa"])
     add("II.2", 15, [2.4, 47.5, 6.5], L("1934-1936", "1934–1936"),
         L("La France : le Front populaire", "France: the Front populaire"),
-        L("Le 6 février 1934, les ligues d'extrême droite manifestent à Paris : le cours parle d'un coup d'État manqué. Contre le fascisme, socialistes, communistes et radicaux forment le Front populaire, vainqueur en 1936 avec Léon Blum : 40 heures, deux semaines de congés payés, SNCF, hausse des salaires (accords de Matignon). Mais pas d'argent pour l'armée, et l'apaisement à l'extérieur.",
-          "On 6 February 1934 far-right leagues rioted in Paris, a failed coup in the course's words. Against fascism, Socialists, Communists and Radicals formed the Front populaire, which won in 1936 under Léon Blum: the 40-hour week, two weeks' paid holiday, the SNCF, wage rises (Matignon Agreements). But no money for the army, and appeasement abroad."),
+        L("Le 6 février 1934, les ligues d'extrême droite manifestent à Paris : on parle souvent d'un coup d'État manqué. Contre le fascisme, socialistes, communistes et radicaux forment le Front populaire, vainqueur en 1936 avec Léon Blum : 40 heures, deux semaines de congés payés, SNCF, hausse des salaires (accords de Matignon). Mais pas d'argent pour l'armée, et l'apaisement à l'extérieur.",
+          "On 6 February 1934 far-right leagues rioted in Paris, in what is often called a failed coup. Against fascism, Socialists, Communists and Radicals formed the Front populaire, which won in 1936 under Léon Blum: the 40-hour week, two weeks' paid holiday, the SNCF, wage rises (Matignon Agreements). But no money for the army, and appeasement abroad."),
         pins=["paris"], labels=["l_fra"], cles=["demo19"])
     add("II.2", 15, [60, 40, 1.0], L("Années 1930", "The 1930s"),
         L("Le militarisme gagne trois régimes", "Militarism spreads to three regimes"),

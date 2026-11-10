@@ -846,6 +846,6 @@ QUIZ = [
 CREDITS = [
     "Portraits : Søren Sørensen dans son laboratoire, photographie anonyme (domaine public) ; Johannes Brønsted, photographie de Peter Elfelt (domaine public).",
     "Photos : citron entier et coupé, Ivar Leidus, CC BY-SA 4.0 ; pH-mètre Mettler Toledo FiveEasy, OER CampLev, CC BY-SA 4.0.",
-    "Images trouvées sur Wikimedia Commons. Animation, schémas et graphique : faits pour le site. Mesures du TP 1 : celles d'Orhan. "
+    "Images trouvées sur Wikimedia Commons. Animation, schémas et graphique : faits pour le site. Mesures du TP 1 : celles d'un élève. "
     "Les trois exercices sont inventés pour la vidéo.",
 ]

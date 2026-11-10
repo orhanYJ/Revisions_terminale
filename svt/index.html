@@ -1176,7 +1176,7 @@ html[data-theme="dark"] .cm{--cm-etoile:#F08DB8}
 .video-c iframe{display:block;width:100%;height:62vw;border:0}
 </style>
 <!-- carte-mentale:debut — carte du thème 1.A, partagée avec les vidéos (svt/serie/) -->
-<script src="carte-mentale.js?v=6"></script>
+<script src="carte-mentale.js?v=7"></script>
 <!-- carte-mentale:fin -->
 <!-- mouvement:debut — couche maintenue à part (motion.css, motion.js) ; à conserver lors des mises à jour -->
 <link rel="stylesheet" href="motion.css?v=1">
@@ -1500,7 +1500,7 @@ html[data-theme="dark"] .cm{--cm-etoile:#F08DB8}
   <div class="srch-panel" role="dialog" aria-modal="true" aria-label="Recherche dans le site">
     <div class="srch-bar">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8" stroke-linecap="round"/></svg>
-      <input id="sq" type="search" placeholder="Chercher une notion, un mot du cours…" autocomplete="off" enterkeyhint="search" aria-label="Rechercher">
+      <input id="sq" type="search" placeholder="Chercher une notion, un mot clé…" autocomplete="off" enterkeyhint="search" aria-label="Rechercher">
       <button class="srch-x" id="srchx" type="button">Fermer</button>
     </div>
     <div class="srch-res" id="srchres" aria-live="polite"></div>
@@ -1816,7 +1816,7 @@ const GLOSSAIRE = {"cycle-cellulaire": {"mot": "Cycle cellulaire", "mots": ["cyc
 , "translocation": {"mot": "Translocation", "mots": ["translocation", "translocations"], "definition": "Fixation d'un segment de chromosome cassé sur un chromosome non homologue, appartenant à une autre paire.", "place": "Souvent sans effet chez le porteur, puisqu'aucun gène n'est perdu, mais elle peut produire des gamètes déséquilibrés : trisomie ou monosomie dans la descendance.", "piege": "Entre chromosomes homologues, c'est un crossing-over (normal) ; entre chromosomes de paires différentes, c'est une translocation (accident).", "voir": ["trisomie", "crossing-over"]}
 , "crossing-over-inegal": {"mot": "Crossing-over inégal", "mots": ["crossing-over inégal", "crossing-over inégaux", "crossing over inégal", "crossing over inégaux"], "definition": "Crossing-over entre homologues appariés de façon décalée, au cours duquel les portions échangées n'ont pas la même longueur.", "place": "Il produit un gamète porteur d'une duplication de gène et un autre porteur d'une délétion. La duplication est le point de départ des familles multigéniques.", "voir": ["duplication", "famille-multigenique", "crossing-over"]}
 , "duplication": {"mot": "Duplication génique", "mots": ["duplication", "duplications", "dupliqué", "dupliquée", "dupliqués"], "definition": "Présence d'un gène en deux exemplaires ou plus dans un même génome, à la suite d'un crossing-over inégal.", "place": "La copie supplémentaire peut muter sans priver l'organisme de la fonction d'origine : c'est une matière première de l'évolution.", "voir": ["crossing-over-inegal", "famille-multigenique"]}
-, "famille-multigenique": {"mot": "Famille multigénique", "mots": ["famille multigénique", "familles multigéniques"], "definition": "Ensemble de gènes d'un même génome présentant plus de 20 % de similitudes de séquence, issus d'un gène ancestral par duplications, mutations et parfois transpositions.", "place": "Les protéines codées sont homologues : structure et fonction voisines. Exemples du cours : les opsines de la rétine, les globines.", "piege": "Ce ne sont pas des allèles : les gènes d'une famille multigénique sont à des locus différents.", "voir": ["duplication", "homologie", "allele"]}
+, "famille-multigenique": {"mot": "Famille multigénique", "mots": ["famille multigénique", "familles multigéniques"], "definition": "Ensemble de gènes d'un même génome présentant plus de 20 % de similitudes de séquence, issus d'un gène ancestral par duplications, mutations et parfois transpositions.", "place": "Les protéines codées sont homologues : structure et fonction voisines. Exemples : les opsines de la rétine, les globines.", "piege": "Ce ne sont pas des allèles : les gènes d'une famille multigénique sont à des locus différents.", "voir": ["duplication", "homologie", "allele"]}
 , "homologie": {"mot": "Homologie de séquence", "mots": ["gènes homologues", "protéines homologues", "homologie", "homologies"], "definition": "Ressemblance entre deux séquences (plus de 20 % de similitudes) trop forte pour être due au hasard, qui traduit une origine commune.", "place": "Entre deux protéines sans lien, le hasard ne fait coïncider qu'environ 5 % des acides aminés. C'est le critère qui définit les familles multigéniques.", "piege": "Ne pas confondre avec les chromosomes homologues, qui sont les deux chromosomes d'une même paire.", "voir": ["famille-multigenique", "homologues"]}
 , "transposition": {"mot": "Transposition", "mots": ["transposition", "transposée", "transposé"], "definition": "Déplacement d'une copie de gène vers un autre endroit du génome, souvent sur un autre chromosome.", "place": "Elle explique que les gènes d'une même famille multigénique soient parfois portés par des chromosomes différents : globines α sur le 16, β sur le 11.", "voir": ["duplication", "famille-multigenique"]}
 , "remaniement": {"mot": "Remaniement chromosomique", "mots": ["remaniement chromosomique", "remaniements chromosomiques", "remaniements"], "definition": "Modification de la structure des chromosomes : fusion, inversion, translocation, addition ou perte d'un segment.", "place": "Accumulés dans une population, ils rendent la méiose des hybrides anormale et peuvent isoler génétiquement des populations, jusqu'à la spéciation.", "voir": ["speciation", "translocation"]}
@@ -2662,7 +2662,7 @@ const TERMINALE = [
 <p>D'où la possibilité de cultiver en laboratoire, à partir d'un fragment de peau du patient, un clone de cellules d'épiderme que l'on greffe ensuite sur ses brûlures. Le système immunitaire ne réagit pas : il ne voit que du « soi ». C'est précisément ce que l'on ne peut pas faire avec la peau d'un donneur, qui serait rejetée.</p>
 
 <details class="tp">
-<summary><span class="lab">Séance 1</span>Le tableau comparatif, en détail</summary>
+<summary><span class="lab">Activité</span>Le tableau comparatif, en détail</summary>
 <div class="tpin">
 <p>Cinq documents, cinq situations très différentes, à mettre en regard des cinq fonctions ci-dessus.</p>
 <div class="tablewrap"><table>
@@ -2903,7 +2903,7 @@ const TERMINALE = [
 <p>C'est la réapparition qui est le coup décisif. Un caractère qui disparaît puis revient intact n'a pas été dilué : il a été <b>transmis sans s'exprimer</b>. Il existe donc, dans l'hybride, deux éléments distincts qui ne se mélangent pas — ce que nous appelons aujourd'hui des allèles.</p>
 
 <h3>4. Les trois lois</h3>
-<div class="box def"><h4>Dans l'ordre du cours</h4>
+<div class="box def"><h4>Les trois lois, dans l'ordre</h4>
 <ol>
   <li><b>Loi de pureté des gamètes</b> — aussi appelée loi de ségrégation, ou loi de disjonction des allèles. Lors de la formation des gamètes, les deux allèles d'un même gène, portés par les deux chromosomes d'une même paire, se séparent obligatoirement : chaque gamète ne reçoit <b>qu'un seul</b> des deux allèles.</li>
   <li><b>Loi de dominance</b> — chez un individu hétérozygote, un allèle (<b>dominant</b>) l'emporte sur l'autre (<b>récessif</b>) et masque son expression dans le phénotype. Conséquence : tous les descendants hybrides d'un croisement entre deux lignées pures contrastées présentent uniquement le caractère dominant, d'où l'<b>uniformité de la F1</b>.</li>
@@ -2911,7 +2911,7 @@ const TERMINALE = [
 </ol></div>
 
 <div class="box piege"><h4>⚠ Deux numérotations circulent</h4>
-<p>La fiche d'activité numérote les lois autrement (uniformité, puis ségrégation, puis indépendance). Retiens celle du diaporama, ci-dessus : c'est elle qui sera utilisée en cours — et notamment quand l'hérédité liée au sexe viendra les contredire.</p></div>
+<p>On trouve aussi les lois numérotées autrement (uniformité, puis ségrégation, puis indépendance). Ce site garde l'ordre ci-dessus ; l'essentiel est de savoir énoncer chaque loi — notamment quand l'hérédité liée au sexe viendra les contredire.</p></div>
 
 <div class="box plus"><h4>Approfondir — d'où vient ce que tu apprends <span class="hp">hors programme</span></h4>
 <p>Mendel publie en 1866. Personne ne comprend. Son mémoire est cité une poignée de fois en trente-cinq ans, et il meurt en 1884 sans savoir ce qu'il avait trouvé.</p>
@@ -3062,7 +3062,7 @@ const TERMINALE = [
   <li>P2 souche mutée, [corps sombre ; ailes courtes] : (eb//eb ; vg//vg)</li>
 </ul>
 <p><b>La F1</b> est uniforme à 100 % [ailes longues ; corps clair], de génotype (eb+//eb ; vg+//vg). On en déduit que <b>vg+ et eb+ sont dominants</b>.</p>
-<p><b>Le test-cross</b> croise cette F1 avec P2. Résultats de la correction, sur 54 drosophiles :</p>
+<p><b>Le test-cross</b> croise cette F1 avec P2. Résultats, sur 54 drosophiles :</p>
 <div class="tablewrap"><table>
 <tr><th>Phénotype de la F2</th><th>Effectif</th><th>Proportion</th><th>Attendu</th></tr>
 <tr><td>[ailes longues ; corps sombre]</td><td>17 / 54</td><td>≈ 31 %</td><td>25 %</td></tr>
@@ -3136,7 +3136,7 @@ const TERMINALE = [
 <p>La réponse est double, et c'est tout l'intérêt de cette partie. La plupart de ces accidents sont <b>néfastes</b> : fausses couches, syndromes, maladies. Mais certains, très rares, enrichissent le génome de gènes nouveaux et ont joué un rôle majeur dans l'évolution. Le plan suit trois temps : les anomalies du <b>nombre</b> de chromosomes, puis les échanges de <b>portions</b> de chromosomes, enfin le rôle de ces accidents dans l'<b>évolution</b>.</p>
 
 <div class="box piege"><h4>⚠ Où se range cette partie</h4>
-<p>Sur la fiche de TP « Étude d'une famille multigénique », l'en-tête indique : <b>Thème 1A1 — Chapitre 1, unité 2 : conséquences génétiques de la reproduction sexuée</b>. Les accidents génétiques ne forment donc pas un nouveau chapitre : ils terminent l'unité 2, juste après les brassages. Le chapitre 2 commence ensuite avec les transferts horizontaux.</p></div>
+<p>Les accidents génétiques ne forment pas un nouveau chapitre : ils terminent l'unité 2, <b>conséquences génétiques de la reproduction sexuée</b>, juste après les brassages. Le chapitre 2 commence ensuite avec les transferts horizontaux.</p></div>
 
 <h2>B. Les anomalies du nombre de chromosomes</h2>
 
@@ -3160,7 +3160,7 @@ const TERMINALE = [
 </ul>
 
 <div class="box piege"><h4>⚠ Le vocabulaire exact</h4>
-<p>Le cours parle de « mauvaise disjonction » ou de « migrations anormales » des chromosomes : les deux expressions désignent la même chose. Le terme technique, que tu rencontreras dans les manuels, est <b>non-disjonction</b>. Et on nomme toujours l'anomalie d'après le <b>chromosome concerné</b> : trois chromosomes 21, c'est une trisomie 21 ; un seul chromosome X sans Y, c'est une monosomie X.</p></div>
+<p>On parle aussi de « mauvaise disjonction » ou de « migrations anormales » des chromosomes : les deux expressions désignent la même chose. Le terme technique, que tu rencontreras dans les manuels, est <b>non-disjonction</b>. Et on nomme toujours l'anomalie d'après le <b>chromosome concerné</b> : trois chromosomes 21, c'est une trisomie 21 ; un seul chromosome X sans Y, c'est une monosomie X.</p></div>
 
 <h3>2. Viables ou non viables</h3>
 <p>Une anomalie du nombre ne change aucun gène : elle change la <b>quantité</b> de gènes. Or toutes les protéines d'une cellule sont produites en proportions équilibrées ; un chromosome en trop, avec ses centaines de gènes, dérègle cet équilibre. La conséquence dépend donc de la taille du chromosome et du nombre de gènes qu'il porte.</p>
@@ -3178,7 +3178,7 @@ const TERMINALE = [
 <tr><td>Syndrome de Turner</td><td>45, X0</td><td>Viable dans une minorité de cas</td><td>Environ 1 fille sur 2 500</td></tr>
 <tr><td>Monosomie d'un autosome</td><td>45 chromosomes, un autosome manquant</td><td>Jamais viable</td><td>Fausse couche</td></tr>
 </table></div>
-<p style="font-size:13.5px;color:var(--ink-3)">Les exemples (trisomie 14, XXY) sont ceux du cours ; les fréquences du tableau viennent de sources médicales extérieures au cours, le support d'origine n'en donnant pas.</p>
+<p style="font-size:13.5px;color:var(--ink-3)">Les fréquences du tableau sont des ordres de grandeur tirés de sources médicales.</p>
 
 <h3>3. Un exemple viable : la trisomie 21</h3>
 <p>Le caryotype présente <b>trois chromosomes 21</b> au lieu de deux : 47 chromosomes. Le plus souvent, l'erreur s'est produite pendant la méiose d'un des deux parents, en anaphase I ou en anaphase II, et le gamète n + 1 a été fécondé.</p>
@@ -3191,7 +3191,7 @@ const TERMINALE = [
 
 <div class="box plus"><h4>Approfondir — pourquoi le risque augmente avec l'âge de la mère <span class="hp">hors programme</span></h4>
 <p>Dans la grande majorité des cas, le chromosome 21 surnuméraire vient de l'ovocyte, et l'erreur s'est produite en méiose I. La raison tient au calendrier très particulier de l'ovogenèse : chez la femme, la méiose I commence avant la naissance, puis s'arrête en prophase I. Elle ne reprend qu'au moment de l'ovulation, parfois quarante ans plus tard. Pendant tout ce temps, les homologues restent appariés, et les protéines qui les maintiennent ensemble s'usent. Plus l'attente est longue, plus le risque qu'une paire se sépare mal est élevé.</p>
-<p>C'est pourquoi le dépistage proposé pendant la grossesse tient compte de l'âge maternel. (Source extérieure au cours.)</p></div>
+<p>C'est pourquoi le dépistage proposé pendant la grossesse tient compte de l'âge maternel.</p></div>
 
 <h3>4. Une monosomie viable : le syndrome de Turner</h3>
 <p>Il touche uniquement les <b>filles</b> : leur caryotype ne compte qu'<b>un seul chromosome X</b>, sans second chromosome sexuel. On écrit 45, X0. Il provient d'une mauvaise migration des chromosomes sexuels lors de la méiose de l'un des parents : le gamète fécondant ne contenait aucun chromosome sexuel.</p>
@@ -3226,7 +3226,7 @@ const TERMINALE = [
 
 <h3>2. Une translocation peut mener à une trisomie dans la descendance</h3>
 <p>Une translocation est le plus souvent <b>équilibrée</b> : aucun gène n'est perdu, il a seulement changé de place. Le porteur est alors en bonne santé et ignore souvent son anomalie. Le problème apparaît dans sa <b>descendance</b>, lorsqu'il forme ses gamètes.</p>
-<p>Exemple, celui du cours : une translocation robertsonienne a fixé un chromosome 21 sur un chromosome 14. Le porteur possède un chromosome 14 normal, un chromosome 21 normal, et un chromosome « 14-21 » fusionné : il n'a que 45 chromosomes, mais tous ses gènes, en double exemplaire. Lors de sa méiose, ces trois chromosomes se répartissent entre les gamètes :</p>
+<p>Exemple : une translocation robertsonienne a fixé un chromosome 21 sur un chromosome 14. Le porteur possède un chromosome 14 normal, un chromosome 21 normal, et un chromosome « 14-21 » fusionné : il n'a que 45 chromosomes, mais tous ses gènes, en double exemplaire. Lors de sa méiose, ces trois chromosomes se répartissent entre les gamètes :</p>
 <div class="tablewrap"><table>
 <tr><th>Le gamète reçoit</th><th>Après fécondation par un gamète normal</th></tr>
 <tr><td>le 14 normal + le 21 normal</td><td>Enfant au caryotype normal</td></tr>
@@ -3236,12 +3236,12 @@ const TERMINALE = [
 <tr><td>le chromosome 14-21 + le 14 normal</td><td>Trisomie 14 : non viable</td></tr>
 <tr><td>le 21 normal seul, sans aucun 14</td><td>Monosomie 14 : non viable</td></tr>
 </table></div>
-<p>Retiens le principe : une translocation a rarement des conséquences sur l'individu qui la porte, mais elle peut produire des gamètes déséquilibrés et donc une <b>trisomie ou une monosomie</b> dans sa descendance. On parle de trisomie 21 « par translocation » ; elle représente quelques pour cent des cas de trisomie 21 (source extérieure au cours), les autres étant dus à une mauvaise disjonction.</p>
+<p>Retiens le principe : une translocation a rarement des conséquences sur l'individu qui la porte, mais elle peut produire des gamètes déséquilibrés et donc une <b>trisomie ou une monosomie</b> dans sa descendance. On parle de trisomie 21 « par translocation » ; elle représente quelques pour cent des cas de trisomie 21, les autres étant dus à une mauvaise disjonction.</p>
 
 <div class="box plus"><h4>Approfondir — quand une translocation provoque un cancer <span class="hp">hors programme</span></h4>
 <p>Une translocation peut aussi survenir dans une cellule somatique, hors de toute méiose. L'exemple le plus connu est la <b>leucémie myéloïde chronique</b>. Dans une cellule souche de la moelle osseuse, le chromosome 9 et le chromosome 22 échangent un segment : c'est une translocation réciproque. Le chromosome 22 raccourci qui en résulte s'appelle le <b>chromosome Philadelphie</b>.</p>
 <p>À la jonction, deux gènes se trouvent soudés en un gène hybride, nommé BCR-ABL. Il code une protéine qui stimule la division cellulaire en permanence, sans jamais s'arrêter. La cellule se multiplie sans contrôle et fonde un sous-clone de globules blancs : c'est exactement le schéma de l'évolution clonale vu dans l'unité 1, mais déclenché par un remaniement de chromosomes et non par une mutation ponctuelle.</p>
-<p>Attention à une formule qu'on rencontre parfois : « mutation dans le chromosome 22 ». Il s'agit en réalité d'une <b>translocation</b> entre les chromosomes 9 et 22. (Détails BCR-ABL : source extérieure au cours.)</p></div>
+<p>Attention à une formule qu'on rencontre parfois : « mutation dans le chromosome 22 ». Il s'agit en réalité d'une <b>translocation</b> entre les chromosomes 9 et 22.</p></div>
 
 <h3>3. Les crossing-over inégaux</h3>
 <div class="box def"><h4>Définition</h4>
@@ -3266,15 +3266,15 @@ const TERMINALE = [
 <p>Une duplication crée deux copies identiques d'un même gène, au même endroit. Que deviennent-elles ensuite ? Au fil des générations, chaque copie accumule des <b>mutations différentes</b>, indépendamment de l'autre. Leurs séquences restent proches, puisqu'elles partent du même gène, mais elles divergent peu à peu, et les protéines qu'elles codent peuvent acquérir des fonctions <b>différentes ou complémentaires</b>.</p>
 <p>Une copie peut aussi être déplacée sur un autre chromosome : c'est une <b>transposition</b>. Ce mécanisme de duplication, transposition et mutation crée de nouveaux gènes et enrichit le génome : c'est un mécanisme essentiel de sa complexification.</p>
 
-<div class="box def"><h4>À noter : la famille multigénique</h4>
+<div class="box def"><h4>Définition : la famille multigénique</h4>
 <p>Une <span class="kw">famille multigénique</span> est un ensemble de gènes, au sein d'un même génome, qui présentent des homologies de séquence : <b>plus de 20 % de similitudes</b> dans leur séquence nucléotidique.</p>
 <p>Ces gènes sont issus d'un <b>gène ancestral</b> qui a subi une <b>duplication</b> par crossing-over inégal, puis des <b>mutations différentes</b> sur chaque copie, et parfois une <b>transposition</b>. Par conséquent, les gènes d'une famille multigénique sont le plus souvent localisés sur un même chromosome, ou sur deux chromosomes s'il y a eu transposition.</p>
 <p>Les protéines produites par ces gènes sont donc elles aussi <b>homologues</b> : plus de 20 % de similitudes dans leur séquence d'acides aminés. Elles ont alors une structure tridimensionnelle proche et globalement les mêmes fonctions.</p></div>
 
 <div class="box piege"><h4>⚠ Pourquoi 20 % ?</h4>
-<p>Il existe 20 acides aminés. Si l'on compare deux séquences de protéines qui n'ont <b>aucun lien de parenté</b>, le hasard seul fera coïncider environ 5 % des positions (1 chance sur 20). Au-delà de 20 % de ressemblance, le hasard ne suffit plus à l'expliquer : les deux séquences dérivent d'un ancêtre commun. C'est ce seuil qui permet de parler d'<b>homologie</b>, donc de parenté. Le cours applique le même seuil aux séquences nucléotidiques.</p></div>
+<p>Il existe 20 acides aminés. Si l'on compare deux séquences de protéines qui n'ont <b>aucun lien de parenté</b>, le hasard seul fera coïncider environ 5 % des positions (1 chance sur 20). Au-delà de 20 % de ressemblance, le hasard ne suffit plus à l'expliquer : les deux séquences dérivent d'un ancêtre commun. C'est ce seuil qui permet de parler d'<b>homologie</b>, donc de parenté. On applique le même seuil aux séquences nucléotidiques.</p></div>
 
-<p><b>Premier exemple, celui du cours : les opsines.</b> Les opsines sont les protéines qui captent la lumière dans les cellules photosensibles de la rétine. Chez l'humain, trois opsines permettent de distinguer les couleurs : l'une absorbe surtout le bleu (opsine S, pour « short », gène sur le chromosome 7), les deux autres le vert et le rouge (opsines M et L, gènes côte à côte sur le chromosome X). Elles présentent plus de 40 % de similitudes entre elles : ce sont des protéines homologues, codées par une famille multigénique.</p>
+<p><b>Premier exemple : les opsines.</b> Les opsines sont les protéines qui captent la lumière dans les cellules photosensibles de la rétine. Chez l'humain, trois opsines permettent de distinguer les couleurs : l'une absorbe surtout le bleu (opsine S, pour « short », gène sur le chromosome 7), les deux autres le vert et le rouge (opsines M et L, gènes côte à côte sur le chromosome X). Elles présentent plus de 40 % de similitudes entre elles : ce sont des protéines homologues, codées par une famille multigénique.</p>
 <p>Leur histoire est celle d'un gène ancestral unique, qui a été dupliqué ; une copie a été transposée sur un autre chromosome (gène S), puis, beaucoup plus tard, un nouveau crossing-over inégal a dédoublé le gène resté sur le X, d'où deux gènes voisins qui ont divergé (M et L). Résultat : là où un seul pigment existait, trois pigments absorbent des longueurs d'onde différentes, ce qui améliore la perception des couleurs. Un accident génétique est ainsi à l'origine de notre vision trichromatique.</p>
 
 <div class="box piege"><h4>⚠ M, pas N</h4>
@@ -3291,7 +3291,7 @@ const TERMINALE = [
 
 <p><b>Les documents.</b></p>
 <ul>
-  <li><b>Expression au cours de la vie</b> : chez l'embryon, les globines ζ (zêta) et ε (epsilon) ; chez le fœtus, l'hémoglobine F, faite de deux chaînes α et deux chaînes γ (gamma) ; après la naissance, l'hémoglobine A, faite de deux chaînes α et deux chaînes β, très largement majoritaire (97 %), accompagnée d'une hémoglobine à chaînes δ (delta, 2 %, notée D sur la fiche) et d'un reste d'hémoglobine F (environ 1 %).</li>
+  <li><b>Expression au cours de la vie</b> : chez l'embryon, les globines ζ (zêta) et ε (epsilon) ; chez le fœtus, l'hémoglobine F, faite de deux chaînes α et deux chaînes γ (gamma) ; après la naissance, l'hémoglobine A, faite de deux chaînes α et deux chaînes β, très largement majoritaire (97 %), accompagnée d'une hémoglobine à chaînes δ (delta, 2 %) et d'un reste d'hémoglobine F (environ 1 %).</li>
   <li><b>Localisation des gènes</b> : groupe alpha sur le chromosome 16 (ζ, α1, α2) ; groupe bêta sur le chromosome 11 (ε, Gγ, Aγ, δ, β). Les gènes de chaque groupe sont rangés côte à côte, dans l'ordre de leur expression au cours de la vie.</li>
   <li><b>Structure 3D</b> : les chaînes α, β et γ ont des structures tridimensionnelles presque superposables.</li>
   <li><b>Données théoriques</b> : seuil de 20 % de similitudes pour conclure à une parenté.</li>
@@ -3301,7 +3301,7 @@ const TERMINALE = [
 <div class="box piege"><h4>⚠ « et », pas « ou »</h4>
 <p>Il faut comparer les <b>deux</b> types de séquences : la définition de la famille multigénique porte sur les gènes (séquences nucléotidiques) et ses conséquences sur les protéines (séquences d'acides aminés). Comparer seulement l'un des deux laisse la démonstration à moitié faite.</p></div>
 
-<p><b>Étape 3 — communiquer les résultats.</b> Le logiciel produit un tableau qui compare toutes les séquences deux à deux. Le recopier tel quel n'est <b>pas</b> une bonne communication : la correction le dit : « il faut faire une communication ne retenant que l'essentiel ». Le modèle de la correction est un tableau titré, qui garde seulement les comparaisons utiles, avec les deux types de séquences côte à côte :</p>
+<p><b>Étape 3 — communiquer les résultats.</b> Le logiciel produit un tableau qui compare toutes les séquences deux à deux. Le recopier tel quel n'est <b>pas</b> une bonne communication : il faut une communication qui ne retient que l'essentiel. Le modèle attendu est un tableau titré, qui garde seulement les comparaisons utiles, avec les deux types de séquences côte à côte :</p>
 <div class="tablewrap"><table>
 <tr><th colspan="3">Tableau des similitudes des séquences nucléotidiques et protéiques des globines entre elles</th></tr>
 <tr><th>Séquences comparées</th><th>Similitude nucléotidique</th><th>Similitude protéique</th></tr>
@@ -3312,11 +3312,11 @@ const TERMINALE = [
 <tr><td>Globine epsilon / autres globines</td><td>… %</td><td>… %</td></tr>
 <tr><td>Myoglobine / globines</td><td>… %</td><td>… %</td></tr>
 </table></div>
-<p>Les valeurs sont à compléter avec Geniegen2. D'après une copie d'élève : environ 57 % entre α et β, 93 % entre β et δ, 78 à 84 % entre ε et les autres globines du groupe bêta, 41 à 46 % entre la myoglobine et les globines (séquences nucléotidiques) ; toutes les similitudes protéiques dépassent 22 %. Les deux tableaux de cette copie ne concordent pas exactement pour le minimum (40,8 % ou 41,4 %) : à revérifier.</p>
+<p>Les valeurs sont à compléter avec Geniegen2. Ordres de grandeur attendus : environ 57 % entre α et β, 93 % entre β et δ, 78 à 84 % entre ε et les autres globines du groupe bêta, 41 à 46 % entre la myoglobine et les globines (séquences nucléotidiques) ; toutes les similitudes protéiques dépassent 22 %. Le minimum nucléotidique (environ 41 %) est à vérifier dans le logiciel.</p>
 
 <p><b>Étape 4 — exploiter.</b> Toutes les similitudes sont supérieures à 20 % : environ 41 % au minimum pour les séquences nucléotidiques, 22 % au minimum pour les séquences d'acides aminés. Conformément au document 4, ces ressemblances ne peuvent pas être dues au hasard : elles indiquent une origine commune.</p>
 
-<p><b>Étape 5 — l'arbre de parenté.</b> L'arbre de la correction, construit à partir des séquences nucléotidiques :</p>
+<p><b>Étape 5 — l'arbre de parenté.</b> L'arbre attendu, construit à partir des séquences nucléotidiques :</p>
 <p style="text-align:center;font-family:var(--mono);font-size:14px">(((( γ , ε ) , ( δ , β )) , α ) , myoglobine)</p>
 <ul>
   <li>le premier nœud, qui sépare la <b>myoglobine</b> de toutes les globines, porte <b>duplication + transposition</b> ;</li>
@@ -3325,10 +3325,10 @@ const TERMINALE = [
   <li>des <b>mutations</b> sont notées sur chaque branche, après chaque nœud.</li>
 </ul>
 <div class="box piege"><h4>⚠ Ce que signifie chaque nœud</h4>
-<p>La fiche le dit : <b>un nœud de l'arbre correspond à une duplication génique</b>, accompagnée ou non d'un changement de chromosome. Après chaque nœud, les deux copies évoluent indépendamment, car elles ne subissent pas les mêmes mutations. Chaque nœud porte donc une duplication ; un nœud ne porte jamais « transposition » seule, erreur fréquente sur le nœud α / bêta.</p>
-<p>Un détail à vérifier : la correction place la myoglobine sur le <b>chromosome 20</b>. Les bases de données de génétique humaine indiquent le <b>chromosome 22</b> (gène MB). Cela ne change rien au raisonnement (un autre chromosome, donc duplication + transposition) ; au bac, c'est la donnée du sujet qui fait foi.</p></div>
+<p>Retiens-le : <b>un nœud de l'arbre correspond à une duplication génique</b>, accompagnée ou non d'un changement de chromosome. Après chaque nœud, les deux copies évoluent indépendamment, car elles ne subissent pas les mêmes mutations. Chaque nœud porte donc une duplication ; un nœud ne porte jamais « transposition » seule, erreur fréquente sur le nœud α / bêta.</p>
+<p>Un détail : on lit parfois que la myoglobine est sur le chromosome 20 ; les bases de données de génétique humaine indiquent le <b>chromosome 22</b> (gène MB). Cela ne change rien au raisonnement (un autre chromosome, donc duplication + transposition) ; au bac, c'est la donnée du sujet qui fait foi.</p></div>
 
-<p><b>Étape 6 — conclusion (d'après la correction du TP).</b> Elle rassemble <b>quatre</b> types d'arguments, et c'est ce qui la rend complète :</p>
+<p><b>Étape 6 — conclusion.</b> Elle rassemble <b>quatre</b> types d'arguments, et c'est ce qui la rend complète :</p>
 <ol>
   <li><b>Les séquences</b> : plus de 20 % de similitudes entre les séquences nucléotidiques et protéiques, donc une homologie de structure et une origine commune.</li>
   <li><b>La structure 3D</b> (document 3) : les différentes chaînes de globines ont une structure tridimensionnelle similaire.</li>
@@ -3338,7 +3338,7 @@ const TERMINALE = [
 <p>L'arbre montre enfin que toutes les globines proviennent d'une même globine ancestrale : des duplications successives de ce gène, suivies de l'accumulation de mutations et parfois de transpositions, ont conduit à la diversification des gènes des globines, qui codent aujourd'hui des protéines de structure proche, de fonction similaire, mais dont l'expression varie au cours du développement. Les globines appartiennent bien à une famille multigénique.</p>
 
 <div class="box plus"><h4>Approfondir — les gènes ψ du document 2 <span class="hp">hors programme</span></h4>
-<p>Sur la carte des chromosomes 11 et 16 figurent des gènes notés ψζ, ψα1 ou ψβ. La lettre grecque psi signale un <b>pseudogène</b> : une copie issue d'une duplication qui a accumulé des mutations la rendant incapable de produire une protéine fonctionnelle. Toutes les duplications ne donnent donc pas un gène nouveau ; beaucoup de copies deviennent des fossiles moléculaires, témoins d'une duplication ancienne. (Source extérieure au cours.)</p></div>
+<p>Sur la carte des chromosomes 11 et 16 figurent des gènes notés ψζ, ψα1 ou ψβ. La lettre grecque psi signale un <b>pseudogène</b> : une copie issue d'une duplication qui a accumulé des mutations la rendant incapable de produire une protéine fonctionnelle. Toutes les duplications ne donnent donc pas un gène nouveau ; beaucoup de copies deviennent des fossiles moléculaires, témoins d'une duplication ancienne.</p></div>
 </div>
 </details>
 
@@ -3346,7 +3346,7 @@ const TERMINALE = [
 <p>L'<b>amylase salivaire</b> est une enzyme qui commence la digestion de l'amidon dès la bouche. Sa quantité dans la salive est très variable d'un individu à l'autre, comme le montre l'analyse de la salive de 50 personnes.</p>
 <p>L'interrogation des banques de données sur le génome humain détecte <b>trois gènes de l'amylase salivaire</b> (AMY1). Leurs séquences codantes sont identiques et leur organisation en exons et introns aussi : ce sont trois copies d'un même gène, issues de duplications, qui appartiennent à la même famille multigénique. Et chez les individus étudiés, le nombre de copies du gène AMY1 n'est pas le même : <b>plus un individu possède de copies, plus il produit d'amylase</b>.</p>
 
-<p>Ce lien a une portée évolutive. Les populations dont l'alimentation est traditionnellement riche en amidon (céréales, tubercules) possèdent en moyenne plus de copies du gène que les populations qui en consomment peu (source extérieure au cours : comparaison de populations publiée en 2007). Le raisonnement est celui de la sélection naturelle :</p>
+<p>Ce lien a une portée évolutive. Les populations dont l'alimentation est traditionnellement riche en amidon (céréales, tubercules) possèdent en moyenne plus de copies du gène que les populations qui en consomment peu (comparaison de populations publiée en 2007). Le raisonnement est celui de la sélection naturelle :</p>
 <ol>
   <li>les duplications du gène AMY1 sont survenues <b>au hasard</b>, par accident génétique ; le nombre de copies varie donc entre individus ;</li>
   <li>dans un milieu où l'on mange beaucoup d'amidon, les individus qui ont plus de copies digèrent mieux cet aliment ; ils en tirent plus d'énergie, ce qui leur confère un <b>avantage sélectif</b> ;</li>
@@ -3380,7 +3380,7 @@ const TERMINALE = [
 <p>Ne pas écrire que les humains se sont formés « par des remaniements de leur génome par rapport aux chimpanzés ». Le chimpanzé est une espèce actuelle, aussi « évoluée » que la nôtre. L'humain et le chimpanzé descendent d'un <b>ancêtre commun</b>, il y a environ 6 à 7 millions d'années ; depuis, chacune des deux lignées a accumulé ses propres remaniements. Comparer leurs caryotypes permet de retrouver ces remaniements, pas de dire que l'un vient de l'autre.</p></div>
 
 <div class="box plus"><h4>Approfondir — les traces de la fusion du chromosome 2 <span class="hp">hors programme</span></h4>
-<p>Les extrémités d'un chromosome portent des séquences répétées particulières, les télomères, et chaque chromosome possède un seul centromère. Or, au milieu du chromosome 2 humain, on trouve des séquences de télomères placées bout à bout, tête-bêche, et un peu plus loin les restes d'un second centromère devenu inactif. C'est exactement ce que laisserait la soudure de deux chromosomes par leurs extrémités. La fusion n'est donc pas seulement déduite de la comparaison des caryotypes : elle a laissé sa cicatrice dans la séquence de l'ADN. (Source extérieure au cours.)</p></div>
+<p>Les extrémités d'un chromosome portent des séquences répétées particulières, les télomères, et chaque chromosome possède un seul centromère. Or, au milieu du chromosome 2 humain, on trouve des séquences de télomères placées bout à bout, tête-bêche, et un peu plus loin les restes d'un second centromère devenu inactif. C'est exactement ce que laisserait la soudure de deux chromosomes par leurs extrémités. La fusion n'est donc pas seulement déduite de la comparaison des caryotypes : elle a laissé sa cicatrice dans la séquence de l'ADN.</p></div>
 
 <div class="box retenir"><h4>À retenir</h4>
 <ul>
@@ -3406,7 +3406,7 @@ const TERMINALE = [
           "Connaître les grandes lignes du cadre légal français"],
         rappels:[["p10","Patrimoine génétique et santé"],["p5","Mutations et variabilité"]],
         html:`<div class="box piege"><h4>Une unité courte</h4>
-<p>Cette unité s'appuie sur un débat (activité 5, « Nouvelles techniques de séquençage de l'ADN : progrès et risques éthiques ») : un groupe défend le pour, l'autre le contre. Elle compte peu au bac et n'y tombera pas seule : il suffit de savoir donner, avec un exemple, deux ou trois arguments de chaque côté.</p></div>
+<p>Cette unité se travaille souvent sous forme de débat (« Nouvelles techniques de séquençage de l'ADN : progrès et risques éthiques ») : un camp défend le pour, l'autre le contre. Elle compte peu au bac et n'y tombera pas seule : il suffit de savoir donner, avec un exemple, deux ou trois arguments de chaque côté.</p></div>
 
 <h2>A. Le problème</h2>
 <p>Les unités 1 et 2 ont montré comment se construit le génotype d'un individu : des mitoses qui le conservent, une méiose et une fécondation qui le brassent, des accidents qui le modifient. Aujourd'hui, ce génotype se <b>lit</b>. Le séquençage de l'ADN et la <b>bio-informatique</b> donnent directement accès au génotype d'une personne, à celui de ses descendants et de ses ascendants.</p>
@@ -3430,12 +3430,12 @@ const TERMINALE = [
 <p>La <b>mucoviscidose</b> est la maladie génétique la plus fréquente en Europe ; elle touche surtout les voies respiratoires (mucus épais). Elle est due à des mutations du gène de la protéine <b>CFTR</b>. Deux millions de Français sont porteurs sains d'un allèle muté.</p>
 <ul>
   <li>Des milliers de séquençages ont permis de lister les mutations en cause : la plus fréquente, <b>ΔF508</b>, représente 66 % des allèles mutés.</li>
-  <li>Dans l'arbre de la fiche, deux parents sains ont un garçon malade : l'allèle est récessif et chaque parent est hétérozygote. En séquençant le gène CFTR de chacun, on sait quel allèle chacun porte, et l'on peut annoncer au couple un risque de 1 sur 4 pour chaque nouvel enfant.</li>
+  <li>Dans un arbre généalogique typique, deux parents sains ont un garçon malade : l'allèle est récessif et chaque parent est hétérozygote. En séquençant le gène CFTR de chacun, on sait quel allèle chacun porte, et l'on peut annoncer au couple un risque de 1 sur 4 pour chaque nouvel enfant.</li>
 </ul>
 <p>L'analyse génétique est donc une avancée médicale <b>et</b> une analyse <b>prédictive</b>.</p>
 
 <h3>3. Dépister et prévenir</h3>
-<p>En mai 2013, l'actrice Angelina Jolie annonce dans le <i>New York Times</i> une ablation préventive des deux seins à la suite d'un test génétique (une mutation du gène <b>BRCA1</b> — précision qui n'est pas dans la fiche —, qui augmente fortement le risque de cancer du sein). Un simple prélèvement de sang ou de salive suffit à connaître certains risques transmis par les parents.</p>
+<p>En mai 2013, l'actrice Angelina Jolie annonce dans le <i>New York Times</i> une ablation préventive des deux seins à la suite d'un test génétique (une mutation du gène <b>BRCA1</b>, qui augmente fortement le risque de cancer du sein). Un simple prélèvement de sang ou de salive suffit à connaître certains risques transmis par les parents.</p>
 
 <h3>4. Le diagnostic avant la naissance</h3>
 <ul>
@@ -3508,8 +3508,8 @@ const TERMINALE = [
 <div class="box def"><h4>La question à laquelle le chapitre répond</h4>
 <p>Comment des gènes peuvent-ils passer d'un organisme à un autre sans reproduction, et en quoi ces échanges contribuent-ils à la complexification des génomes ?</p></div>
 
-<div class="box piege"><h4>⚠ Le plan du diaporama</h4>
-<p>La numérotation des diapositives n'est pas régulière (I, puis 1-2-3, puis un nouveau « 1) Transferts viraux », puis « 4) Transduction », et les endosymbioses notées tantôt II, tantôt III). Le plan retenu ici est : <b>I. Les transferts horizontaux chez les bactéries</b> (définition, transformation, conjugaison, transgenèse) ; <b>II. Les transferts viraux</b> (rétrovirus, syncytine) ; <b>III. Les endosymbioses</b>, qui font l'objet de la page suivante.</p></div>
+<div class="box def"><h4>Le plan du chapitre</h4>
+<p>Le chapitre suit trois temps : <b>I. Les transferts horizontaux chez les bactéries</b> (définition, transformation, conjugaison, transgenèse) ; <b>II. Les transferts viraux</b> (rétrovirus, syncytine) ; <b>III. Les endosymbioses</b>, qui font l'objet de la page suivante.</p></div>
 
 <h2>B. Les transferts horizontaux : définition et mise en évidence</h2>
 
@@ -3548,7 +3548,7 @@ const TERMINALE = [
 </details>
 
 <div class="box plus"><h4>Approfondir — qui a identifié le facteur transformant ? <span class="hp">hors programme</span></h4>
-<p>En 1944, Oswald Avery et ses collègues reprennent l'expérience in vitro. Ils purifient séparément les différentes molécules des pneumocoques S tués et testent chacune sur des R vivants. Seul l'extrait d'ADN transforme les R en S, et il perd ce pouvoir si on le détruit par une enzyme qui dégrade l'ADN. C'est l'une des premières preuves que l'ADN est le support de l'information génétique. (Source extérieure au cours.)</p></div>
+<p>En 1944, Oswald Avery et ses collègues reprennent l'expérience in vitro. Ils purifient séparément les différentes molécules des pneumocoques S tués et testent chacune sur des R vivants. Seul l'extrait d'ADN transforme les R en S, et il perd ce pouvoir si on le détruit par une enzyme qui dégrade l'ADN. C'est l'une des premières preuves que l'ADN est le support de l'information génétique.</p></div>
 
 <h2>C. Les transferts horizontaux chez les bactéries</h2>
 <p>Les bactéries échangent des gènes de trois façons, que l'animation ci-dessous montre avec le cas des virus, étudié dans la partie D.</p>
@@ -3596,7 +3596,7 @@ const TERMINALE = [
 <h3>5. La transgenèse maîtrisée par l'humain</h3>
 <div class="box def"><h4>La problématique de cette partie</h4>
 <p>En quoi les connaissances sur les transferts horizontaux de matériel génétique ont-elles permis des applications biotechnologiques ?</p></div>
-<p>L'humain utilise les propriétés des plasmides bactériens comme <span class="kw">vecteurs</span> d'un gène d'intérêt. L'exemple du cours est la production d'<b>insuline humaine</b> par des bactéries :</p>
+<p>L'humain utilise les propriétés des plasmides bactériens comme <span class="kw">vecteurs</span> d'un gène d'intérêt. L'exemple classique est la production d'<b>insuline humaine</b> par des bactéries :</p>
 
 <div data-anim="insuline"></div>
 
@@ -3609,9 +3609,9 @@ const TERMINALE = [
 </ol>
 
 <div class="box piege"><h4>⚠ Les bactéries ne font pas de mitose</h4>
-<p>La diapositive parle de « mitoses successives » des bactéries. Rigoureusement, la mitose est la division du <b>noyau</b> des cellules eucaryotes ; une bactérie n'a pas de noyau. Elle se divise par <b>division binaire</b> (scissiparité) : elle réplique son ADN puis se coupe en deux. Le résultat est le même pour le raisonnement, des clones qui portent tous le plasmide, mais le mot exact est « divisions ».</p></div>
+<p>On lit parfois « mitoses successives » à propos des bactéries. Rigoureusement, la mitose est la division du <b>noyau</b> des cellules eucaryotes ; une bactérie n'a pas de noyau. Elle se divise par <b>division binaire</b> (scissiparité) : elle réplique son ADN puis se coupe en deux. Le résultat est le même pour le raisonnement, des clones qui portent tous le plasmide, mais le mot exact est « divisions ».</p></div>
 
-<p>La transgenèse est aussi très utilisée pour créer des <span class="kw">OGM</span>, organismes génétiquement modifiés. Pour les plantes, on se sert justement d'Agrobacterium : on remplace dans l'ADN-T les gènes responsables de la tumeur par le gène que l'on veut introduire, et la bactérie se charge de l'insérer dans le génome de la plante. (Le détail de cette technique vient d'une source extérieure au diaporama ; le support du cours sur les OGM n'est pas reproduit ici.)</p>
+<p>La transgenèse est aussi très utilisée pour créer des <span class="kw">OGM</span>, organismes génétiquement modifiés. Pour les plantes, on se sert justement d'Agrobacterium : on remplace dans l'ADN-T les gènes responsables de la tumeur par le gène que l'on veut introduire, et la bactérie se charge de l'insérer dans le génome de la plante.</p>
 
 <div class="box retenir"><h4>Le bilan de cette partie</h4>
 <p>Chez les bactéries, les gènes circulent entre organismes non apparentés par <b>transformation</b> (ADN libre), par <b>conjugaison</b> (plasmides, par un pont cytoplasmique) et peuvent même passer dans un organisme pluricellulaire (<b>transgenèse</b> naturelle par Agrobacterium). Ces échanges expliquent la diffusion rapide des résistances aux antibiotiques. L'humain les a détournés à son profit : la transgenèse dirigée, avec un plasmide comme vecteur, permet de faire produire une protéine humaine par une bactérie.</p></div>
@@ -3641,7 +3641,7 @@ const TERMINALE = [
 <div class="box def"><h4>Le critère du TP</h4>
 <p>La ressemblance entre les protéines de deux <b>espèces éloignées</b> est le principal indice d'un transfert horizontal. Lorsqu'un gène est transmis de manière classique (transfert vertical, des parents aux descendants), les mutations s'accumulent au fil du temps : deux espèces éloignées dans l'arbre du vivant devraient donc avoir des gènes, et des protéines, très différents. Si leurs protéines se ressemblent de manière frappante (<b>plus de 80 %</b> de ressemblance), cela trahit un <b>transfert horizontal récent</b>.</p></div>
 
-<p>Les résultats du TP, d'après la correction :</p>
+<p>Les résultats du TP :</p>
 <div class="tablewrap"><table>
 <tr><th>Protéines comparées</th><th>Similitude</th><th>Ce qu'on en tire</th></tr>
 <tr><td>Syncytine humaine 1 / protéine virale MSRV</td><td><b>87 %</b></td><td>Au-delà de 80 % entre un virus et un primate : indice fort d'un transfert horizontal récent</td></tr>
@@ -3651,28 +3651,28 @@ const TERMINALE = [
 <p>Le raisonnement, en trois arguments :</p>
 <ul>
   <li><b>Un argument moléculaire</b> : la syncytine 1 humaine et la protéine ENV du rétrovirus MSRV sont similaires à 87 %. Un virus et un primate sont des organismes extrêmement éloignés : par transfert vertical, leurs protéines n'auraient aucune raison de se ressembler autant. Cette ressemblance signe un <b>lien de parenté</b> entre les deux gènes.</li>
-  <li><b>Un argument fonctionnel</b> : la syncytine et la protéine ENV du virus font toutes deux fusionner des membranes. Le cours parle de <b>similitude fonctionnelle</b> (la diapositive disait « analogie de fonction ») : c'est un argument supplémentaire, mais qui ne suffirait pas seul.</li>
+  <li><b>Un argument fonctionnel</b> : la syncytine et la protéine ENV du virus font toutes deux fusionner des membranes. On parle de <b>similitude fonctionnelle</b> (ou d'« analogie de fonction ») : c'est un argument supplémentaire, mais qui ne suffirait pas seul.</li>
   <li><b>Un argument de parenté entre primates</b> : l'arbre construit avec la syncytine 1 du gorille, du chimpanzé, de l'humain, de l'orang-outan, du gibbon et du babouin, et avec la séquence MSRV, place la séquence virale tout près des syncytines des grands singes et de l'humain. Ces espèces partagent un ancêtre commun : le gène ENW1 vient d'un gène rétroviral intégré dans le génome de cet ancêtre, puis transmis à toutes les espèces qui en descendent.</li>
 </ul>
 <p><b>Conclusion</b> : le gène codant la syncytine 1 est issu d'un <b>transfert horizontal de gène viral</b>.</p>
 
 <div class="box piege"><h4>⚠ Analogie ou homologie ?</h4>
-<p>Une diapositive parle d'« analogie de structure ». Le mot juste est <b>homologie</b> de séquence : des séquences qui se ressemblent au point de signer une origine commune. Pour la fonction, le cours emploie « analogie de fonction » ou « similitude fonctionnelle ». Le point à retenir : seule la ressemblance des <b>séquences</b> prouve la parenté. Deux protéines peuvent avoir la même fonction sans être apparentées.</p></div>
+<p>On lit parfois « analogie de structure ». Le mot juste est <b>homologie</b> de séquence : des séquences qui se ressemblent au point de signer une origine commune. Pour la fonction, on emploie « analogie de fonction » ou « similitude fonctionnelle ». Le point à retenir : seule la ressemblance des <b>séquences</b> prouve la parenté. Deux protéines peuvent avoir la même fonction sans être apparentées.</p></div>
 
 <div class="box piege"><h4>⚠ Et la syncytine 2 ?</h4>
-<p>Les 20 % de ressemblance entre la syncytine 2 et la protéine du virus MSRV montrent seulement que la syncytine 2 <b>ne provient pas de ce virus-là</b>. Cela ne prouve <b>pas</b> qu'elle soit issue d'un transfert vertical : une faible ressemblance avec un virus donné ne dit rien de l'origine du gène. La correction du TP ne conclut d'ailleurs rien sur la syncytine 2. On sait par ailleurs qu'elle provient elle aussi d'un rétrovirus, mais d'un autre (source extérieure au cours). Conclure « ce gène n'est pas issu d'un transfert, probablement d'un transfert vertical » est donc une erreur de raisonnement.</p></div>
+<p>Les 20 % de ressemblance entre la syncytine 2 et la protéine du virus MSRV montrent seulement que la syncytine 2 <b>ne provient pas de ce virus-là</b>. Cela ne prouve <b>pas</b> qu'elle soit issue d'un transfert vertical : une faible ressemblance avec un virus donné ne dit rien de l'origine du gène. Le TP ne permet d'ailleurs rien conclure sur la syncytine 2. On sait par ailleurs qu'elle provient elle aussi d'un rétrovirus, mais d'un autre. Conclure « ce gène n'est pas issu d'un transfert, probablement d'un transfert vertical » est donc une erreur de raisonnement.</p></div>
 
 <details class="tp">
 <summary><span class="lab">TP type bac</span>Les syncytines sont-elles issues d'un transfert horizontal de gènes viraux ? (corrigé)</summary>
 <div class="tpin">
 <p><b>Le contexte.</b> L'ADN est une molécule universelle, ce qui autorise des échanges de gènes entre organismes très différents. Chez plusieurs types d'animaux existent des gènes appelés syncytines, qui pourraient provenir d'un rétrovirus appelé MSRV. On cherche à montrer que l'apparition des syncytines chez les primates est le résultat d'un transfert horizontal de gènes viraux.</p>
 
-<p><b>Étape 1 — la stratégie (d'après la correction, mise en forme).</b> Comparer les séquences en acides aminés des syncytines humaines et de primates avec celles des protéines virales MSRV, avec Geniegen2 : aligner les séquences, puis utiliser le tableau de comparaison pour déterminer les pourcentages de similitude. On s'attend à pouvoir démontrer un transfert viral si l'on observe plus de 80 % de similitude entre les séquences protéiques.</p>
+<p><b>Étape 1 — la stratégie.</b> Comparer les séquences en acides aminés des syncytines humaines et de primates avec celles des protéines virales MSRV, avec Geniegen2 : aligner les séquences, puis utiliser le tableau de comparaison pour déterminer les pourcentages de similitude. On s'attend à pouvoir démontrer un transfert viral si l'on observe plus de 80 % de similitude entre les séquences protéiques.</p>
 <p><b>Étape 2 — le protocole.</b> Dans Geniegen2, ouvrir la banque de séquences, chercher le mot clé « syncytines », charger « syncytines humaines et virales » ; sélectionner les syncytines humaines et les protéines virales MSRV, les aligner, afficher le tableau de comparaison et relever les pourcentages.</p>
 <p><b>Étape 3 — communiquer.</b> Un tableau titré « Tableau de comparaison des protéines syncytines humaines et MSRV », avec deux lignes seulement : syncytine 1 / MSRV, 87 % ; syncytine 2 / MSRV, 20 %. Ne garder que l'essentiel, comme dans le TP sur les globines.</p>
 <p><b>Étape 4 — exploiter.</b> La syncytine 1 humaine est similaire à 87 % à la protéine MSRV. Au-delà de 80 %, c'est un indice fort d'un transfert horizontal récent : les résultats sont compatibles avec une origine virale du gène.</p>
 <p><b>Étape 5 — la ressource complémentaire.</b> Deux arguments : la similitude fonctionnelle (les syncytines, codées par les gènes ENW1 et exprimées au début de la formation du placenta, font fusionner les membranes, comme les protéines ENV du virus) et l'arbre de parenté de la syncytine 1 chez les primates, où la séquence MSRV se range près des syncytines des grands singes et de l'humain.</p>
-<p><b>Étape 6 — conclusion.</b> L'ensemble des arguments moléculaires et fonctionnels est compatible avec l'hypothèse d'une origine virale des syncytines humaines. Le gène ENW1 des gorilles, chimpanzés, orangs-outans et gibbons provient d'un gène d'origine rétrovirale intégré dans le génome de leur ancêtre commun. Pour être <b>distancié</b>, la correction propose de critiquer la démarche : on pourrait améliorer la preuve en insérant directement le gène ENW1 dans des cellules, pour voir s'il déclenche leur fusion.</p>
+<p><b>Étape 6 — conclusion.</b> L'ensemble des arguments moléculaires et fonctionnels est compatible avec l'hypothèse d'une origine virale des syncytines humaines. Le gène ENW1 des gorilles, chimpanzés, orangs-outans et gibbons provient d'un gène d'origine rétrovirale intégré dans le génome de leur ancêtre commun. Pour être <b>distancié</b>, on critique la démarche : on pourrait améliorer la preuve en insérant directement le gène ENW1 dans des cellules, pour voir s'il déclenche leur fusion.</p>
 
 <div class="box def"><h4>Comment une ECE est notée</h4>
 <p><b>Communication et interprétation (sur 5).</b> La production doit être <b>techniquement correcte</b> (soignée, lisible, appropriée), <b>bien renseignée</b> (informations complètes et exactes : titre, unités) et <b>pertinente</b> (elle montre clairement comment les résultats répondent au problème posé). 3 critères : 5 points ; 2 : 3 points ; 1 : 1 point.</p>
@@ -3696,10 +3696,10 @@ const TERMINALE = [
   <li><b>Exemple 3, la lignée verte (manuel Nathan).</b> Un arbre du vivant simplifié montre, par des flèches horizontales, les gènes reçus par les végétaux au cours de leur histoire, avec la fonction qu'ils ont apportée : genèse des chloroplastes, métabolisme de l'amidon, réparation de l'ADN, résistance au stress, développement des vaisseaux conducteurs, germination du pollen et des graines, photosynthèse en C4…</li>
 </ul>
 <details class="tp">
-<summary>Activité (diapositive 21) : retrouver des gènes d'origine virale dans le génome humain</summary>
+<summary>Activité : retrouver des gènes d'origine virale dans le génome humain</summary>
 <div class="tpin">
 <p><b>La consigne.</b> Sur le site du NCBI, où le génome humain est en libre accès (<i>ncbi.nlm.nih.gov/genome/guide/human</i>), taper « viral », puis citer deux exemples de gènes humains d'origine virale et le chromosome qui les porte.</p>
-<p><b>Une réponse possible</b> (proposée par le site, pas une correction officielle) : le gène de la <b>syncytine 1</b>, sur le <b>chromosome 7</b>, et celui de la <b>syncytine 2</b>, sur le <b>chromosome 6</b>. Dans la base de données, ils portent les noms officiels <i>ERVW-1</i> (que la diapositive appelle « ENW1 ») et <i>ERVFRD-1</i> ; les lettres « ERV » signifient « rétrovirus endogène ». Ces noms viennent de la base du NCBI, pas du cours.</p>
+<p><b>Une réponse possible</b> : le gène de la <b>syncytine 1</b>, sur le <b>chromosome 7</b>, et celui de la <b>syncytine 2</b>, sur le <b>chromosome 6</b>. Dans la base de données, ils portent les noms officiels <i>ERVW-1</i> (appelé « ENW1 » plus haut) et <i>ERVFRD-1</i> ; les lettres « ERV » signifient « rétrovirus endogène ». Ces noms sont ceux de la base du NCBI.</p>
 </div></details>
 
 <h3>5. La transduction</h3>
@@ -3740,7 +3740,7 @@ const TERMINALE = [
 </table></div>
 
 <div class="box piege"><h4>⚠ Les plantes ont aussi des mitochondries</h4>
-<p>La diapositive range « plantes vertes + animaux » du côté de la respiration. C'est juste, mais cela surprend : une plante verte est <b>autotrophe</b> (elle fabrique sa matière organique par photosynthèse), et pourtant toutes ses cellules <b>respirent</b>, la nuit comme le jour, pour utiliser cette matière organique. Une cellule végétale chlorophyllienne possède donc des chloroplastes <b>et</b> des mitochondries ; une cellule animale, seulement des mitochondries.</p></div>
+<p>On range « plantes vertes + animaux » du côté de la respiration. C'est juste, mais cela surprend : une plante verte est <b>autotrophe</b> (elle fabrique sa matière organique par photosynthèse), et pourtant toutes ses cellules <b>respirent</b>, la nuit comme le jour, pour utiliser cette matière organique. Une cellule végétale chlorophyllienne possède donc des chloroplastes <b>et</b> des mitochondries ; une cellule animale, seulement des mitochondries.</p></div>
 
 <p>D'où viennent ces deux organites ? Ils présentent d'étranges ressemblances avec des bactéries.</p>
 <div class="box def"><h4>La question à laquelle cette partie répond</h4>
@@ -3761,10 +3761,10 @@ const TERMINALE = [
 
 <h3>1. L'argument essentiel : la double membrane</h3>
 <p>Mitochondries et chloroplastes sont entourés de <b>deux membranes</b>, exactement comme une bactérie phagocytée par une cellule : la membrane interne correspond à la membrane de la bactérie, la membrane externe à la membrane de la vésicule formée par la cellule hôte au moment de la phagocytose.</p>
-<div class="box retenir"><h4>Le commentaire du cours (diapositive 30)</h4>
-<p>Sur un schéma de l'endosymbiose, « on se rend compte que la membrane interne du chloroplaste est en fait, à l'origine, la membrane de la cyanobactérie : cela explique les ressemblances de structure entre l'une et l'autre ». L'endosymbiose de cyanobactéries par des cellules eucaryotes aurait ainsi donné naissance à la <b>lignée verte</b>.</p></div>
+<div class="box retenir"><h4>La membrane interne du chloroplaste</h4>
+<p>Sur un schéma de l'endosymbiose, on se rend compte que la membrane interne du chloroplaste est en fait, à l'origine, la membrane de la cyanobactérie : cela explique les ressemblances de structure entre l'une et l'autre. L'endosymbiose de cyanobactéries par des cellules eucaryotes aurait ainsi donné naissance à la <b>lignée verte</b>.</p></div>
 <div class="box plus"><h4>Approfondir — et la membrane externe ? <span class="hp">hors programme</span></h4>
-<p>Le modèle du cours (une membrane bactérienne + une membrane de vésicule) est celui qu'on attend au bac. Les recherches récentes le nuancent : les cyanobactéries et les α-protéobactéries possèdent déjà <b>deux</b> membranes, et la membrane externe des chloroplastes et des mitochondries contient des protéines d'origine bactérienne. Beaucoup de chercheurs pensent donc que les deux membranes de l'organite viennent de la bactérie, la membrane de la vésicule ayant disparu. Cela ne change pas la conclusion : la double membrane témoigne d'une bactérie englobée dans une cellule.</p></div>
+<p>Le modèle classique (une membrane bactérienne + une membrane de vésicule) est celui qu'on attend au bac. Les recherches récentes le nuancent : les cyanobactéries et les α-protéobactéries possèdent déjà <b>deux</b> membranes, et la membrane externe des chloroplastes et des mitochondries contient des protéines d'origine bactérienne. Beaucoup de chercheurs pensent donc que les deux membranes de l'organite viennent de la bactérie, la membrane de la vésicule ayant disparu. Cela ne change pas la conclusion : la double membrane témoigne d'une bactérie englobée dans une cellule.</p></div>
 
 <h3>2. Les autres points communs</h3>
 <div class="tablewrap"><table>
@@ -3781,10 +3781,10 @@ const TERMINALE = [
 <p>D'une <b>cyanobactérie</b>. Justification : comme le chloroplaste, la cyanobactérie réalise la photosynthèse ; elle possède la même enzyme clé de la photosynthèse, la RubisCo ; son ARN ribosomique 16S est le plus proche de celui du chloroplaste ; elle a la même taille et se divise de la même façon.</p></div>
 
 <div class="box piege"><h4>⚠ Ne pas mélanger les deux organites</h4>
-<p>Le tableau de la diapositive écrit que la cyanobactérie devient un chloroplaste « qui possède les mêmes fonctions (production d'énergie par mitochondries) ». Il faut séparer : la <b>cyanobactérie</b> est l'ancêtre du <b>chloroplaste</b> (photosynthèse) ; une <b>α-protéobactérie</b> est l'ancêtre de la <b>mitochondrie</b> (respiration). Ce sont deux endosymbioses distinctes.</p></div>
+<p>On lit parfois que la cyanobactérie devient un chloroplaste « qui possède les mêmes fonctions (production d'énergie par mitochondries) ». Il faut séparer : la <b>cyanobactérie</b> est l'ancêtre du <b>chloroplaste</b> (photosynthèse) ; une <b>α-protéobactérie</b> est l'ancêtre de la <b>mitochondrie</b> (respiration). Ce sont deux endosymbioses distinctes.</p></div>
 
 <h2>D. Les objections : deux membranes, et beaucoup moins de gènes</h2>
-<div class="box retenir"><h4>La correction du cours : le tableau des arguments (diapositives 28 et 29)</h4>
+<div class="box retenir"><h4>Le tableau des arguments</h4>
 <div class="tablewrap"><table>
 <tr><th>Arguments en faveur</th><th>Arguments contre ?</th></tr>
 <tr><td>Similitude des ARN ribosomiques entre chloroplastes et cyanobactéries, et entre mitochondries et bactéries</td><td rowspan="2">Deux membranes chez les organites, une seule chez la bactérie. <i>Réponse : cette double membrane est justement la preuve de l'ingestion d'une bactérie par une cellule hôte.</i></td></tr>
@@ -3801,7 +3801,7 @@ const TERMINALE = [
 <tr><td>Chloroplaste</td><td>1 500 à 10 000 gènes</td><td>87 gènes</td></tr>
 </table></div>
 <p>Cette différence ne contredit pas la théorie : elle s'explique par l'histoire de l'endosymbiose.</p>
-<div class="box def"><h4>Pourquoi le génome des organites est si petit (correction du cours, diapositive 31)</h4>
+<div class="box def"><h4>Pourquoi le génome des organites est si petit</h4>
 <ol>
   <li><b>Transfert de gènes vers le noyau</b> : au cours de l'évolution, une grande partie des gènes de la bactérie ancestrale (le symbiote) a été transférée vers le <b>noyau</b> de la cellule hôte. Pour le chloroplaste, environ 1 400 gènes ont été transférés, et 87 seulement ont été conservés dans l'organite.</li>
   <li><b>Prise de relais par le noyau</b> : ce sont désormais les gènes du noyau qui codent la plupart des protéines de l'organite.</li>
@@ -3816,19 +3816,19 @@ const TERMINALE = [
   <li>l'<b>organite</b> gagne un environnement stable, et dépense moins d'énergie pour maintenir et exprimer un génome autonome immense.</li>
 </ul>
 
-<div class="box retenir"><h4>Bilan à écrire (diapositive du cours)</h4>
+<div class="box retenir"><h4>Bilan à écrire</h4>
 <p>Les procaryotes sont donc fortement intégrés au sein de la cellule hôte : chacun retire de cette association des bénéfices mutuels. On parle d'<b>endosymbiose</b>, à l'origine de l'apparition des métabolismes chez les eucaryotes : <b>autotrophes</b> (capables de synthétiser leur propre matière organique à partir de matière minérale grâce à la photosynthèse) et <b>hétérotrophes</b> (produisant de l'énergie à partir de matière organique préexistante grâce à la respiration).</p></div>
 
 <div class="box retenir"><h4>Bilan final</h4>
 <p>Les endosymbioses jouent un rôle important dans l'évolution. Le génome de la cellule intégrée dans une cellule hôte régresse au cours des générations, certains de ses gènes étant transférés dans le noyau de la cellule hôte. Il y a donc <b>complexification du génome de la cellule hôte</b>, qui hérite de gènes bactériens par transfert horizontal, rendu possible ici par l'endosymbiose. L'endosymbiose est à l'origine des mitochondries et des chloroplastes, organites contenant de l'ADN et se transmettant de génération en génération en se divisant.</p></div>
 
 <div class="box piege"><h4>⚠ Les organites ne font pas de mitose</h4>
-<p>Le bilan de la diapositive dit que les organites se divisent « par mitoses ». Comme les bactéries dont ils descendent, ils se divisent par <b>étranglement médian</b> (division binaire), indépendamment de la cellule : c'est d'ailleurs l'un des arguments de leur origine bactérienne (ressource complémentaire 1). La mitose est la division du noyau des cellules eucaryotes.</p></div>
+<p>On lit parfois que les organites se divisent « par mitoses ». Comme les bactéries dont ils descendent, ils se divisent par <b>étranglement médian</b> (division binaire), indépendamment de la cellule : c'est d'ailleurs l'un des arguments de leur origine bactérienne (ressource complémentaire 1). La mitose est la division du noyau des cellules eucaryotes.</p></div>
 
 <details class="tp">
 <summary><span class="lab">TP ECE</span>L'origine endosymbiotique des chloroplastes</summary>
 <div class="tpin">
-<p><b>Statut : les réponses ci-dessous sont proposées par le site, pas une correction officielle de la feuille de TP.</b> Le tableau des points communs entre organites et bactéries, qui sert à la partie B, est corrigé dans le cours (voir la section C). C'est un TP « type 2 » : la stratégie est donnée, il n'y a pas à l'élaborer. Les étapes se rédigent sur une feuille de TP, avec la méthode de rédaction habituelle.</p>
+<p><b>Statut : réponses proposées.</b> Le tableau des points communs entre organites et bactéries, qui sert à la partie B, est corrigé plus haut (section C). C'est un TP « type 2 » : la stratégie est donnée, il n'y a pas à l'élaborer. Les étapes se rédigent sur une feuille de TP, avec la méthode de rédaction habituelle.</p>
 <p><b>Le contexte.</b> On cherche à argumenter l'origine endosymbiotique des chloroplastes proposée par Lynn Margulis : les chloroplastes seraient issus de la phagocytose incomplète de cyanobactéries par des cellules eucaryotes, l'association donnant des avantages aux deux partenaires.</p>
 <p><b>Partie A (30 min) — la stratégie imposée.</b> Comparer, avec Geniegen2 (fichier « endosymbiose chloroplastique ») :</p>
 <ul>
@@ -3840,11 +3840,10 @@ const TERMINALE = [
 <p><b>Partie B (30 min) — communication et conclusion.</b> Présenter les résultats (deux productions acceptées), puis exploiter la ressource complémentaire 1 (points communs des organites et des bactéries : section C ci-dessus) et la ressource complémentaire 2 (génomes comparés : section D). Conclure sur les arguments démontrant que le chloroplaste est issu de la phagocytose incomplète d'une cyanobactérie, avec transfert de gènes donnant des avantages aux deux partenaires.</p>
 <p>Pour la notation de la communication et de la conclusion (techniquement correcte, bien renseignée, pertinente ; complète, organisée, distanciée), voir l'encadré du TP syncytine, page « Les transferts horizontaux de gènes ».</p>
 
-<div class="box piege"><h4>⚠ Trois erreurs dans la fiche du TP</h4>
+<div class="box piege"><h4>⚠ Deux erreurs fréquentes</h4>
 <ul>
-  <li>La fiche présente <i>Chlorobium</i> et <i>Nostoc</i> comme des « organismes eucaryotes photosynthétiques, autrement dit des plantes vertes ». Ce sont en réalité des <b>bactéries</b> photosynthétiques : <i>Nostoc</i> est une <b>cyanobactérie</b>, <i>Chlorobium</i> une bactérie sulfureuse verte, qui n'en est pas une. C'est justement ce qui rend la comparaison intéressante : le chloroplaste doit se révéler plus proche de la cyanobactérie que de l'autre bactérie photosynthétique. (Source extérieure au cours.)</li>
-  <li>Elle dit que « les ribosomes sont des protéines formées d'ARN ribosomaux ». Un ribosome est un assemblage d'<b>ARN ribosomiques et de protéines</b>, pas une protéine.</li>
-  <li>Son titre parle des mitochondries, alors que tout le TP porte sur les <b>chloroplastes</b>.</li>
+  <li>On présente parfois <i>Chlorobium</i> et <i>Nostoc</i> comme des « organismes eucaryotes photosynthétiques, autrement dit des plantes vertes ». Ce sont en réalité des <b>bactéries</b> photosynthétiques : <i>Nostoc</i> est une <b>cyanobactérie</b>, <i>Chlorobium</i> une bactérie sulfureuse verte, qui n'en est pas une. C'est justement ce qui rend la comparaison intéressante : le chloroplaste doit se révéler plus proche de la cyanobactérie que de l'autre bactérie photosynthétique.</li>
+  <li>On lit aussi que « les ribosomes sont des protéines formées d'ARN ribosomaux ». Un ribosome est un assemblage d'<b>ARN ribosomiques et de protéines</b>, pas une protéine.</li>
 </ul></div>
 </div>
 </details>
@@ -3874,16 +3873,16 @@ const TERMINALE = [
           "Identifier les causes d'un écart à l'équilibre : les forces évolutives"],
         rappels:[["p5","Mutations et variabilité"],["p12","Pression de sélection"],["p6","Sélection récente chez l'humain"]],
         html:`<h2>A. Le problème : pourquoi la diversité génétique ne disparaît-elle pas ?</h2>
-<p>Vers 1800, on ne connaît pas encore les mécanismes de la méiose, et l'évolution génétique des populations est une grande énigme. La théorie de l'<span class="kw">hérédité par mélange</span> est alors largement admise : la descendance de deux parents présenterait un phénotype intermédiaire, un mélange des deux parents. Exemple de la diapositive : une souris noire croisée avec une souris blanche donnerait une souris grise.</p>
-<p>Si cette théorie était juste, tout variant génétique serait dilué un peu plus à chaque génération, jusqu'à disparaître : au bout de quelques générations, tous les individus se ressembleraient. Or on observe l'inverse : les variants persistent, et une population humaine présente toujours une grande diversité de phénotypes (la diapositive montre une série de portraits aux teintes de peau très variées). C'est l'énigme de la <b>persistance des variants génétiques</b>.</p>
+<p>Vers 1800, on ne connaît pas encore les mécanismes de la méiose, et l'évolution génétique des populations est une grande énigme. La théorie de l'<span class="kw">hérédité par mélange</span> est alors largement admise : la descendance de deux parents présenterait un phénotype intermédiaire, un mélange des deux parents. Exemple : une souris noire croisée avec une souris blanche donnerait une souris grise.</p>
+<p>Si cette théorie était juste, tout variant génétique serait dilué un peu plus à chaque génération, jusqu'à disparaître : au bout de quelques générations, tous les individus se ressembleraient. Or on observe l'inverse : les variants persistent, et une population humaine présente toujours une grande diversité de phénotypes (il suffit de penser à la variété des teintes de peau). C'est l'énigme de la <b>persistance des variants génétiques</b>.</p>
 <div class="box def"><h4>La question à laquelle le chapitre répond</h4>
 <p>Comment les fréquences des allèles évoluent-elles dans une population au fil des générations, et pourquoi s'écartent-elles de l'équilibre prévu par le modèle de Hardy-Weinberg ?</p></div>
 <div class="box piege"><h4>⚠ L'hérédité ne mélange pas les allèles</h4>
-<p>L'hérédité par mélange est fausse. Les allèles se transmettent <b>intacts</b>, d'une génération à l'autre, par la méiose et la fécondation (chapitre 1). Un hétérozygote peut avoir un phénotype intermédiaire, mais ses deux allèles restent distincts et peuvent se retrouver séparés dans ses gamètes. C'est ce que Mendel avait montré dès les années 1860 ; la vidéo de la diapositive 3 le rappelle.</p></div>
+<p>L'hérédité par mélange est fausse. Les allèles se transmettent <b>intacts</b>, d'une génération à l'autre, par la méiose et la fécondation (chapitre 1). Un hétérozygote peut avoir un phénotype intermédiaire, mais ses deux allèles restent distincts et peuvent se retrouver séparés dans ses gamètes. C'est ce que Mendel avait montré dès les années 1860.</p></div>
 <p>Deux scientifiques résolvent l'énigme en 1908 : le mathématicien britannique <b>Godfrey Harold Hardy</b> et le médecin allemand <b>Wilhelm Weinberg</b>, chacun de son côté.</p>
 
 <h2>B. Une population et ses fréquences alléliques</h2>
-<div class="box def"><h4>Définitions (diapositives 4 et 5)</h4>
+<div class="box def"><h4>Définitions</h4>
 <p>Une <span class="kw">population</span> est un groupe d'individus appartenant à la même espèce, vivant dans une même zone, pouvant se reproduire entre eux et engendrer une descendance fertile.</p>
 <p>On peut aussi décrire une population par sa composition génétique : c'est son <span class="kw">patrimoine génétique</span>, l'ensemble des allèles présents dans la population.</p>
 <p>Dans une population, chaque allèle se caractérise par sa <span class="kw">fréquence allélique</span> : sa proportion parmi tous les exemplaires du gène présents dans la population.</p></div>
@@ -3895,14 +3894,14 @@ const TERMINALE = [
   <li>un homozygote (m//m) apporte deux allèles m.</li>
 </ul>
 <p>D'où : <b>f(A) = (2 × nombre de A//A + nombre de A//m) / 2N</b>, et f(m) = 1 − f(A).</p>
-<div class="box plus"><h4>Exemple d'application (exemple créé pour s'entraîner, pas une donnée du cours)</h4>
+<div class="box plus"><h4>Exemple d'application (exemple créé pour s'entraîner)</h4>
 <p>Une population de 1 000 individus compte 360 A//A, 480 A//m et 160 m//m. Elle porte 2 000 exemplaires du gène, dont 2 × 360 + 480 = 1 200 allèles A. Donc f(A) = 1 200 / 2 000 = <b>0,6</b> et f(m) = 0,4.</p>
 <p>Les fréquences <b>génotypiques</b> sont, elles, les proportions de chaque génotype : 0,36 pour A//A, 0,48 pour A//m et 0,16 pour m//m.</p></div>
 
 <h2>C. La loi de Hardy-Weinberg</h2>
 <h3>1. Le tableau de croisement</h3>
 <p>On note <b>p</b> et <b>q</b> les fréquences des deux allèles d'un gène : f(A) = p et f(m) = q. Comme il n'y a que deux allèles, <b>p + q = 1</b>.</p>
-<p>Dans une population où les gamètes se rencontrent au hasard, un gamète porte l'allèle A avec la probabilité p et l'allèle m avec la probabilité q, qu'il soit mâle ou femelle. On en déduit les fréquences des génotypes chez les descendants (correction de la diapositive 9) :</p>
+<p>Dans une population où les gamètes se rencontrent au hasard, un gamète porte l'allèle A avec la probabilité p et l'allèle m avec la probabilité q, qu'il soit mâle ou femelle. On en déduit les fréquences des génotypes chez les descendants :</p>
 <div class="tablewrap"><table>
 <tr><th>Gamète femelle / gamète mâle</th><th>A (fréquence p)</th><th>m (fréquence q)</th></tr>
 <tr><th>A (fréquence p)</th><td>(A//A) : p × p = p<sup>2</sup></td><td>(A//m) : p × q = pq</td></tr>
@@ -3912,11 +3911,11 @@ const TERMINALE = [
 <p>Fréquences des génotypes : <b>f(A//A) = p<sup>2</sup></b> ; <b>f(A//m) = 2pq</b> ; <b>f(m//m) = q<sup>2</sup></b>.</p>
 <p>Et leur somme vaut 1 : <b>p<sup>2</sup> + 2pq + q<sup>2</sup> = 1</b>, ce qui revient à écrire (p + q)<sup>2</sup> = 1.</p></div>
 <div class="box piege"><h4>⚠ Deux pièges d'écriture</h4>
-<p>La diapositive 9 écrit « P2 + 2PQ + Q2 » sans le « = 1 » : il faut toujours l'écrire. Et l'hétérozygote compte <b>deux fois</b> (2pq), parce qu'on peut l'obtenir de deux façons : A venant du père et m de la mère, ou l'inverse.</p></div>
+<p>On voit parfois écrit « P2 + 2PQ + Q2 » sans le « = 1 » : il faut toujours l'écrire. Et l'hétérozygote compte <b>deux fois</b> (2pq), parce qu'on peut l'obtenir de deux façons : A venant du père et m de la mère, ou l'inverse.</p></div>
 <h3>2. Ce que prédit la loi : un équilibre</h3>
 <p>La loi de Hardy-Weinberg prédit un <span class="kw">équilibre</span> théorique : les fréquences alléliques restent <b>constantes</b> de génération en génération. Les fréquences génotypiques se déduisent directement des fréquences alléliques (p<sup>2</sup>, 2pq, q<sup>2</sup>) : elles restent donc constantes, elles aussi.</p>
 <p>Pourquoi ? Dans la génération suivante, la fréquence de l'allèle A est celle des homozygotes A//A, plus la moitié de celle des hétérozygotes : p<sup>2</sup> + pq = p(p + q) = p. On retrouve exactement p : la fréquence n'a pas bougé.</p>
-<div class="box retenir"><h4>À retenir mot pour mot (diapositive 10)</h4>
+<div class="box retenir"><h4>À retenir mot pour mot</h4>
 <p>Il n'y a donc <b>pas d'évolution</b> dans ce cadre de modélisation théorique.</p>
 <p>C'est la solution de l'énigme : la reproduction sexuée, à elle seule, ne fait disparaître aucun allèle. Les variants persistent.</p></div>
 <h3>3. Vérifier si une population est à l'équilibre</h3>
@@ -3927,7 +3926,7 @@ const TERMINALE = [
 <p>Leçon : une fréquence allélique ne suffit pas. C'est la comparaison des fréquences génotypiques observées et attendues qui révèle l'écart.</p></div>
 
 <h2>D. Les conditions du modèle</h2>
-<p>En 1908, Hardy et Weinberg proposent un modèle théorique qui prévoit « la stabilité des fréquences relatives des allèles dans les populations eucaryotes à reproduction sexuée ». Mais cette stabilité n'est valable que sous certaines conditions (diapositives 11 et 12) :</p>
+<p>En 1908, Hardy et Weinberg proposent un modèle théorique qui prévoit « la stabilité des fréquences relatives des allèles dans les populations eucaryotes à reproduction sexuée ». Mais cette stabilité n'est valable que sous certaines conditions :</p>
 <ul>
   <li>une population de taille <b>infinie</b> (en pratique, très grande), pour que la reproduction se fasse vraiment au hasard ;</li>
   <li>une espèce <b>diploïde</b>, à <b>reproduction sexuée</b> ;</li>
@@ -3941,9 +3940,9 @@ const TERMINALE = [
 <p>Il est pour ainsi dire presque impossible qu'une population réelle soit à l'équilibre. Le modèle de Hardy-Weinberg sert donc de <b>référence</b> : quand une population s'en écarte, c'est qu'une force agit sur elle, et l'écart permet de la rechercher.</p></div>
 
 <h2>E. Pourquoi les populations réelles s'écartent de l'équilibre</h2>
-<p>La diapositive 13 demande de chercher, à partir des conditions du modèle, les raisons qui peuvent expliquer un écart dans la réalité. Chaque condition non respectée donne une cause (correction de la diapositive 14) :</p>
+<p>À partir des conditions du modèle, on peut chercher les raisons qui expliquent un écart dans la réalité. Chaque condition non respectée donne une cause :</p>
 <div class="tablewrap"><table>
-<tr><th>Condition du modèle non respectée</th><th>Ce qui se passe dans la réalité (diapositive 14)</th></tr>
+<tr><th>Condition du modèle non respectée</th><th>Ce qui se passe dans la réalité</th></tr>
 <tr><td>Absence de mutations</td><td>Des <b>mutations</b> apparaissent et créent de nouveaux allèles.</td></tr>
 <tr><td>Population isolée</td><td><b>Migrations</b>, c'est-à-dire des flux de gènes : arrivée de nouvelles variations génétiques, ou départ et isolement d'une partie de la population. Des <b>barrières naturelles</b> peuvent aussi séparer une partie de la population du reste.</td></tr>
 <tr><td>Absence de sélection</td><td>Un changement de <b>climat</b> ou d'<b>environnement</b> modifie les conditions de survie des individus, donc la <b>sélection naturelle</b>. L'apparition d'une nouvelle espèce en compétition pour les mêmes ressources joue le même rôle.</td></tr>
@@ -3982,7 +3981,7 @@ const TERMINALE = [
 <details class="tp">
 <summary>Activité 1 : modéliser l'impact des forces évolutives sur les fréquences alléliques</summary>
 <div class="tpin">
-<p><b>Statut.</b> Activité d'entraînement. Les diapositives 17 à 24 sont des cadres à compléter (« insérer la courbe de résultat ») : les résultats attendus ci-dessous sont une proposition. Les explications du cours pour la dérive et l'effet fondateur (diapositives 46 à 48) sont dans le cours, parties B et C.</p>
+<p><b>Statut.</b> Activité d'entraînement : les résultats attendus ci-dessous sont une proposition. Les explications de la dérive et de l'effet fondateur sont dans les parties B et C.</p>
 <p><b>Problématique.</b> Comment les forces évolutives sont-elles à l'origine d'un écart des fréquences alléliques par rapport à l'équilibre théorique de Hardy-Weinberg ? Savoir-faire visé : comprendre et identifier les facteurs qui éloignent de l'équilibre, notamment l'appariement non aléatoire, la sélection et la population finie (dérive).</p>
 <p><b>Le principe.</b> Un logiciel simule une population et la fait se reproduire génération après génération. On peut changer la taille de la population de départ, introduire des mutations, ne pas garantir la présence des deux sexes (accouplement non aléatoire), ou donner une plus forte probabilité de transmission à un caractère avantageux. Le travail se fait sur 10 générations, car les écarts à l'équilibre s'observent dans le temps.</p>
 <div class="tablewrap"><table>
@@ -3992,21 +3991,19 @@ const TERMINALE = [
 <tr><td><b>3. Effet fondateur</b></td><td>9 individus, fréquences de départ inégales (20 % pour le premier allèle), 11 générations</td><td>L'allèle rare (20 %) est le plus souvent perdu en quelques générations ; par hasard, il peut aussi augmenter.</td><td>Une petite population fondatrice n'emporte qu'un échantillon non représentatif des allèles de la population de départ ; la dérive s'ajoute ensuite et agit d'autant plus fort que la population est petite.</td></tr>
 <tr><td><b>4. Sélection naturelle</b> (autre logiciel, académie de Nice)</td><td>Valeurs sélectives : A//A = 1 ; A//B = 0,8 ; B//B = 0,8</td><td>La fréquence de A augmente régulièrement, celle de B diminue ; A tend vers la fixation. Contrairement à la dérive, le résultat se répète d'un lancement à l'autre.</td><td>Le génotype A//A laisse plus de descendants : la sélection fait évoluer les fréquences dans une <b>direction</b> donnée, celle de l'allèle favorable dans ce milieu.</td></tr>
 </table></div>
-<p><b>Les définitions de la fiche d'activité.</b></p>
+<p><b>Les définitions de l'activité.</b></p>
 <ul>
   <li><span class="kw">Dérive génétique</span> : évolution de la fréquence des allèles (ou des génotypes) d'un gène dans une population, causée par des phénomènes aléatoires et impossibles à prévoir, indépendamment des mutations, de la sélection naturelle et des migrations. Sa force est inversement proportionnelle à la taille de la population. Elle peut appauvrir la diversité génétique et faire disparaître une population, voire une espèce ; inversement, elle peut contribuer à l'apparition d'une nouvelle espèce.</li>
   <li><span class="kw">Effet fondateur</span> : quand une petite partie d'une population se sépare de la population initiale (lors d'une migration pour coloniser un nouveau milieu, par exemple), cette population fondatrice ne représente qu'un échantillon non représentatif, tiré au hasard, des allèles de la population mère. Ses fréquences alléliques peuvent donc être très différentes de celles de la population de départ.</li>
-  <li><span class="kw">Valeur sélective</span> : probabilité qu'un génotype se transmette à la descendance. Elle vaut 1 pour le génotype au succès reproducteur maximal. Si tous les génotypes ont la même valeur sélective, la population n'est pas soumise à la sélection naturelle. Exemple de la fiche : la phalène du bouleau noire, moins visible sur les troncs noircis, est moins chassée par ses prédateurs et laisse plus de descendants.</li>
+  <li><span class="kw">Valeur sélective</span> : probabilité qu'un génotype se transmette à la descendance. Elle vaut 1 pour le génotype au succès reproducteur maximal. Si tous les génotypes ont la même valeur sélective, la population n'est pas soumise à la sélection naturelle. Exemple : la phalène du bouleau noire, moins visible sur les troncs noircis, est moins chassée par ses prédateurs et laisse plus de descendants.</li>
 </ul>
-<div class="box piege"><h4>⚠ Deux maladresses dans la fiche d'activité</h4>
-<p>Le scénario 3 annonce « 2 allèles à proportions égales au départ », puis « les fréquences de départ sont inégales : 20 % pour le premier allèle ». C'est la seconde phrase qui compte : l'effet fondateur se modélise avec des fréquences de départ différentes de 50 %. Et le tableau du scénario 1 est intitulé « fréquences alléliques et phénotypiques », alors qu'il ne contient que des fréquences alléliques (p et q).</p></div>
 </div></details>
 
 <h2>B. La dérive génétique</h2>
-<div class="box def"><h4>Définition (diapositive 20)</h4>
+<div class="box def"><h4>Définition</h4>
 <p>La <span class="kw">dérive génétique</span> est un phénomène d'évolution <b>aléatoire</b>, dû au hasard de la reproduction et de la descendance. Elle est <b>beaucoup plus forte sur une petite population</b>.</p></div>
-<p>Le schéma de la diapositive le montre sur une population de 9 individus : à la première génération, seuls 5 individus se reproduisent, et ils laissent un nombre différent de descendants (2, 1, 1, 1 et 3). La deuxième génération ne compte plus que 8 individus, dont les couleurs ne sont plus dans les mêmes proportions ; la troisième en compte 10. Au bout de dix générations, la composition allélique de la population est <b>impossible à prévoir</b>.</p>
-<div class="box retenir"><h4>L'explication de l'écart (correction du cours, diapositive 46)</h4>
+<p>Un schéma classique le montre sur une population de 9 individus : à la première génération, seuls 5 individus se reproduisent, et ils laissent un nombre différent de descendants (2, 1, 1, 1 et 3). La deuxième génération ne compte plus que 8 individus, dont les couleurs ne sont plus dans les mêmes proportions ; la troisième en compte 10. Au bout de dix générations, la composition allélique de la population est <b>impossible à prévoir</b>.</p>
+<div class="box retenir"><h4>L'explication de l'écart</h4>
 <p>Dans une petite population, les allèles n'ont pas tous la même probabilité de se transmettre. Pour qu'un individu transmette à coup sûr tous ses allèles à la descendance, il faudrait que son nombre de descendants tende vers l'infini. En conséquence, il est <b>statistiquement inévitable</b> que certains allèles ne soient transmis à aucun enfant. Le nombre des allèles fluctue énormément : certains se retrouvent sur-représentés, d'autres sous-représentés.</p>
 <p>La dérive génétique est donc d'autant plus forte que la <b>taille de la population est petite</b>. Elle peut aller jusqu'à la <b>fixation</b> d'un allèle (fréquence 1) et à la disparition de l'autre.</p></div>
 <h3>Étude de cas : les drosophiles de Buri</h3>
@@ -4016,13 +4013,13 @@ const TERMINALE = [
 <p>Les 107 populations ont été traitées exactement de la même façon, et la couleur des yeux ne change pas la survie des mouches en élevage : il n'y a pas de sélection. Si les fréquences ont divergé, c'est par le seul hasard du tirage des reproducteurs dans de très petites populations (16 individus) : c'est la <b>dérive génétique</b>. Son résultat est imprévisible pour une population donnée, mais il conduit souvent à la fixation ou à la perte d'un allèle.</p></div>
 
 <h2>C. L'effet fondateur</h2>
-<div class="box def"><h4>Définition (correction de la diapositive 47)</h4>
+<div class="box def"><h4>Définition</h4>
 <p>Une petite <b>sous-population</b> se sépare d'une population initiale, par exemple lors d'une migration. Elle n'emporte qu'un <b>échantillon non représentatif</b>, tiré au hasard, des allèles disponibles dans la population mère. Ses fréquences alléliques peuvent donc être fort différentes de celles de la population initiale : c'est l'<span class="kw">effet fondateur</span>. L'écart est d'autant plus grand que la population fondatrice est petite, et la dérive génétique s'y ajoute ensuite.</p></div>
-<div class="box retenir"><h4>La cause de l'écart (diapositive 48)</h4>
+<div class="box retenir"><h4>La cause de l'écart</h4>
 <p>La population fondatrice ne représente qu'un échantillon non représentatif des allèles de la population de départ : les allèles n'y sont pas en proportions équiprobables. À cela s'ajoute, le plus souvent, une <b>reproduction non aléatoire</b> : les membres d'une petite communauté isolée se reproduisent entre eux.</p></div>
 <h3>Étude de cas 1 : les Amish et les Huttérites</h3>
-<p>Dans la population amish de Pennsylvanie, le syndrome d'Ellis-van Creveld (une forme de nanisme accompagnée de doigts surnuméraires ; précision qui ne vient pas du diaporama) est relativement fréquent : la fréquence de l'allèle en cause atteint <b>q = 0,07</b>, alors que la maladie est exceptionnelle dans le reste du monde. Dans toutes les familles amish étudiées, la mutation est la même, et il a pu être démontré que toutes ces familles descendaient d'un <b>même couple d'immigrants</b>.</p>
-<p>Le tableau de la diapositive 29 (d'après McLellan et collaborateurs, 1987) compare les fréquences de quelques allèles des groupes tissulaires HLA et des groupes sanguins chez les Européens et Américains, chez les Huttérites et chez les Amish, deux communautés d'origine européenne installées en Amérique du Nord. Quelques exemples :</p>
+<p>Dans la population amish de Pennsylvanie, le syndrome d'Ellis-van Creveld (une forme de nanisme accompagnée de doigts surnuméraires) est relativement fréquent : la fréquence de l'allèle en cause atteint <b>q = 0,07</b>, alors que la maladie est exceptionnelle dans le reste du monde. Dans toutes les familles amish étudiées, la mutation est la même, et il a pu être démontré que toutes ces familles descendaient d'un <b>même couple d'immigrants</b>.</p>
+<p>Un tableau (d'après McLellan et collaborateurs, 1987) compare les fréquences de quelques allèles des groupes tissulaires HLA et des groupes sanguins chez les Européens et Américains, chez les Huttérites et chez les Amish, deux communautés d'origine européenne installées en Amérique du Nord. Quelques exemples :</p>
 <div class="tablewrap"><table>
 <tr><th>Fréquence (%)</th><th>Europe, États-Unis</th><th>Huttérites</th><th>Amish</th></tr>
 <tr><td>Groupe sanguin A</td><td>25 à 32</td><td>35</td><td>66</td></tr>
@@ -4032,15 +4029,15 @@ const TERMINALE = [
 <p><b>Ce qu'on observe</b> : les fréquences des deux communautés s'écartent fortement de celles de la population européenne dont elles sont issues, et elles diffèrent aussi entre elles. Un allèle peut y être absent (HLA A11 chez les Huttérites) ou bien plus fréquent qu'ailleurs (groupe A chez les Amish).</p>
 <p><b>L'explication</b> : chaque communauté a été fondée par un petit nombre d'immigrants, qui n'emportaient qu'un échantillon non représentatif des allèles européens (effet fondateur). Ces communautés vivent ensuite isolées et se marient entre elles (reproduction non aléatoire), et leur petite taille renforce la dérive génétique.</p>
 <h3>Étude de cas 2 : le groupe sanguin O chez les Amérindiens</h3>
-<p>La carte de la diapositive 31 montre la proportion de personnes de groupe sanguin O dans les populations autochtones du monde. Elle est élevée presque partout (souvent 50 à 70 %), mais elle atteint <b>90 à 100 %</b> chez les populations amérindiennes : en Amérique, presque tout le monde est de groupe O.</p>
-<p><b>Une explication possible</b> (proposée ici : la diapositive laisse cette case à remplir) : l'Amérique a été peuplée par un petit nombre d'individus venus d'Asie. Ce groupe fondateur portait, par hasard, une proportion très élevée de l'allèle O, et la dérive génétique a pu faire disparaître les allèles A et B dans plusieurs populations. C'est un effet fondateur à l'échelle d'un continent.</p>
+<p>La carte mondiale des groupes sanguins montre la proportion de personnes de groupe sanguin O dans les populations autochtones du monde. Elle est élevée presque partout (souvent 50 à 70 %), mais elle atteint <b>90 à 100 %</b> chez les populations amérindiennes : en Amérique, presque tout le monde est de groupe O.</p>
+<p><b>Une explication possible</b> (proposée ici) : l'Amérique a été peuplée par un petit nombre d'individus venus d'Asie. Ce groupe fondateur portait, par hasard, une proportion très élevée de l'allèle O, et la dérive génétique a pu faire disparaître les allèles A et B dans plusieurs populations. C'est un effet fondateur à l'échelle d'un continent.</p>
 
 <h2>D. La sélection naturelle</h2>
 <div class="box def"><h4>Définition</h4>
-<p>La <span class="kw">sélection naturelle</span> favorise les individus dont le génotype confère, dans un milieu donné, un meilleur taux de survie et de reproduction : ils laissent plus de descendants, et la fréquence de leurs allèles augmente de génération en génération. On le mesure par la <b>valeur sélective</b> de chaque génotype (activité 1). Exemple de la fiche d'activité : la phalène du bouleau de couleur noire, moins visible sur les troncs noircis, est moins chassée par ses prédateurs et laisse plus de descendants.</p></div>
+<p>La <span class="kw">sélection naturelle</span> favorise les individus dont le génotype confère, dans un milieu donné, un meilleur taux de survie et de reproduction : ils laissent plus de descendants, et la fréquence de leurs allèles augmente de génération en génération. On le mesure par la <b>valeur sélective</b> de chaque génotype (activité 1). Exemple : la phalène du bouleau de couleur noire, moins visible sur les troncs noircis, est moins chassée par ses prédateurs et laisse plus de descendants.</p></div>
 <h3>Étude de cas : les moustiques <i>Culex pipiens</i> du Languedoc-Roussillon</h3>
 <p>Depuis 1968, la population de moustiques <i>Culex pipiens</i> est contrôlée dans le Languedoc-Roussillon par l'épandage d'insecticides sur les étendues d'eau où se développent les larves. Ce sont surtout des organophosphorés, qui tuent les larves en perturbant le fonctionnement de certaines synapses. Le gène <i>Ace</i> existe sous deux allèles : <b>Ace<sup>R</sup></b> confère une résistance aux organophosphorés, mais il ralentit aussi le développement des moustiques ; <b>Ace<sup>S</sup></b> ne protège pas. Dans les années 1990, les quantités d'insecticides épandues chaque année ont été fortement réduites, et un autre insecticide, le téméphos, a été employé.</p>
-<p><b>Ce qu'on observe</b> (graphique du manuel Belin, population 1 seulement, comme le demande la diapositive) : la fréquence de l'allèle Ace<sup>R</sup> reste proche de 0 jusqu'au début des années 1980, puis augmente rapidement jusqu'à environ 0,6 au milieu des années 1990 ; ensuite elle se stabilise.</p>
+<p><b>Ce qu'on observe</b> (graphique du manuel Belin, population 1 seulement) : la fréquence de l'allèle Ace<sup>R</sup> reste proche de 0 jusqu'au début des années 1980, puis augmente rapidement jusqu'à environ 0,6 au milieu des années 1990 ; ensuite elle se stabilise.</p>
 <div class="box retenir"><h4>L'explication</h4>
 <p>L'insecticide exerce une <b>pression de sélection</b> : dans les eaux traitées, les larves porteuses de l'allèle Ace<sup>R</sup> survivent, alors que les autres meurent. Elles laissent plus de descendants, et la fréquence de Ace<sup>R</sup> augmente. Mais l'allèle a un coût, un développement plus lent : sans insecticide, il désavantage ses porteurs. Son avantage dépend donc du <b>milieu</b> ; quand l'usage d'insecticide diminue, sa progression s'arrête. Contrairement à la dérive, la sélection oriente l'évolution dans une direction prévisible, liée à l'environnement.</p></div>
 <div class="box piege"><h4>⚠ Dérive ou sélection ?</h4>
@@ -4049,7 +4046,7 @@ const TERMINALE = [
 <tr><td>Cause</td><td>Le hasard de la reproduction</td><td>Un avantage de survie ou de reproduction dans un milieu donné</td></tr>
 <tr><td>Direction</td><td>Aléatoire, imprévisible : deux populations identiques évoluent différemment</td><td>Orientée : l'allèle favorable augmente, l'expérience est reproductible</td></tr>
 <tr><td>Taille de population</td><td>Forte dans les petites populations</td><td>Agit quelle que soit la taille</td></tr>
-<tr><td>Exemples du cours</td><td>Drosophiles de Buri, Amish, groupe O des Amérindiens</td><td><i>Culex pipiens</i> et les insecticides, phalène du bouleau</td></tr>
+<tr><td>Exemples</td><td>Drosophiles de Buri, Amish, groupe O des Amérindiens</td><td><i>Culex pipiens</i> et les insecticides, phalène du bouleau</td></tr>
 </table></div>
 <p>Et jamais de finalisme : un moustique ne devient pas résistant « pour » survivre ; l'allèle Ace<sup>R</sup> existait par mutation, et l'insecticide a trié les porteurs.</p></div>
 
@@ -4067,16 +4064,13 @@ const TERMINALE = [
 <p>Ces transferts compliquent beaucoup la classification. Dans les années 1990, le séquençage des génomes de bactéries d'espèces distinctes a révélé qu'elles avaient échangé un très grand nombre de gènes au cours de leur évolution. La comparaison de ces gènes n'indique pas alors le lien de parenté entre les espèces, mais la période où chaque gène a été transféré. Pour le chercheur canadien <b>William Ford Doolittle</b>, « vouloir construire un arbre du vivant n'a pas de sens » : un arbre suppose que les branches ne se croisent jamais. Il propose un <b>réseau du vivant</b>, où les espèces sont reliées en plusieurs points, à chaque transfert de gènes.</p>
 <h3>4. Identifier une espèce par son ADN : l'exemple de Denisova</h3>
 <p>On peut rattacher un spécimen à une espèce en plaçant la séquence d'un gène indicateur dans un arbre phylogénétique construit avec les séquences de ce même gène chez les espèces connues, stockées dans des bases de données librement accessibles. On montre ainsi que le spécimen appartient à une espèce connue, ou bien qu'il s'agit d'une espèce nouvelle pour la science.</p>
-<p>Cette technique a précisé l'histoire du genre <i>Homo</i>. On dispose du génome complet de plusieurs Néandertaliens et d'un très grand nombre de <i>sapiens</i>, ainsi que de l'ADN extrait d'une phalange et d'une molaire trouvées dans la grotte de <b>Denisova</b>, en Sibérie. Les données moléculaires confortent l'idée que Néandertaliens et humains modernes forment deux espèces différentes, et elles révèlent une autre forme humaine, les <b>Dénisoviens</b>, dont l'ADN est distinct à la fois de celui des <i>sapiens</i> et de celui des Néandertaliens, alors qu'on ne connaît presque rien de sa morphologie. L'arbre de la diapositive 44 place Denisova à côté des Néandertaliens (Mezmaiskaya, Vindija), à l'écart des <i>sapiens</i> actuels (San, Yoruba, Français, Han, Papous).</p>
+<p>Cette technique a précisé l'histoire du genre <i>Homo</i>. On dispose du génome complet de plusieurs Néandertaliens et d'un très grand nombre de <i>sapiens</i>, ainsi que de l'ADN extrait d'une phalange et d'une molaire trouvées dans la grotte de <b>Denisova</b>, en Sibérie. Les données moléculaires confortent l'idée que Néandertaliens et humains modernes forment deux espèces différentes, et elles révèlent une autre forme humaine, les <b>Dénisoviens</b>, dont l'ADN est distinct à la fois de celui des <i>sapiens</i> et de celui des Néandertaliens, alors qu'on ne connaît presque rien de sa morphologie. L'arbre construit à partir de ces génomes place Denisova à côté des Néandertaliens (Mezmaiskaya, Vindija), à l'écart des <i>sapiens</i> actuels (San, Yoruba, Français, Han, Papous).</p>
 <div class="box plus"><h4>Approfondir — des espèces qui se sont croisées <span class="hp">hors programme</span></h4>
-<p>La diapositive conclut que cet ADN « n'a pas fini de remettre en question la notion d'espèces distinctes ». La raison : <i>sapiens</i>, Néandertaliens et Dénisoviens se sont reproduits entre eux. Les humains actuels hors d'Afrique portent 1 à 4 % d'ADN néandertalien, et certaines populations d'Océanie jusqu'à 5 % d'ADN dénisovien (fiche de Première sur l'histoire humaine). Selon le critère d'interfécondité, ce ne seraient donc pas des espèces totalement séparées.</p></div>
+<p>Cet ADN n'a pas fini de remettre en question la notion d'espèces distinctes. La raison : <i>sapiens</i>, Néandertaliens et Dénisoviens se sont reproduits entre eux. Les humains actuels hors d'Afrique portent 1 à 4 % d'ADN néandertalien, et certaines populations d'Océanie jusqu'à 5 % d'ADN dénisovien (fiche de Première sur l'histoire humaine). Selon le critère d'interfécondité, ce ne seraient donc pas des espèces totalement séparées.</p></div>
 <h3>5. Une espèce en devenir</h3>
-<div class="box retenir"><h4>Bilan (diapositive 45)</h4>
+<div class="box retenir"><h4>Bilan</h4>
 <p>L'environnement est par définition instable. La sélection et la dérive mènent à une <b>différenciation génétique</b> des populations au cours du temps. Conséquence possible : des populations ne peuvent plus échanger de gènes ; il n'y a plus de reproduction entre elles, car elles sont devenues trop différentes génétiquement. On assiste alors à une <b>espèce en devenir</b> : une population suffisamment isolée génétiquement des autres populations.</p>
 <p>La notion d'espèce est donc délicate à définir. Les espèces sont des <b>ensembles hétérogènes de populations, évoluant distinctement dans le temps</b>.</p></div>
-
-<div class="box piege"><h4>⚠ Coquilles dans le diaporama</h4>
-<p>La diapositive 29 écrit « les Hammish » : ce sont les <b>Amish</b>. Et les diapositives 21 et 23 appellent « scénario 1 » et « scénario 2 » les deux lancements de la dérive : dans la fiche d'activité, la dérive est le scénario 2, joué deux fois.</p></div>
 
 <div class="box retenir"><h4>À retenir</h4>
 <ul>
@@ -4101,14 +4095,14 @@ const TERMINALE = [
         rappels:[["p9","Écosystèmes : symbiose et parasitisme"],["p3","Du génotype au phénotype"],["p13","L'immunité innée"]],
         html:`<h2>A. Le problème : le phénotype dépend-il seulement des gènes ?</h2>
 <p>La diversification des phénotypes est essentiellement associée à des mécanismes <b>génétiques</b> : les brassages qui se produisent au cours de la reproduction sexuée (formation des gamètes et fécondation, chapitre 1) ou les transferts de gènes (chapitre 2). En dehors de ces processus génétiques, <b>d'autres mécanismes participent à diversifier le phénotype des individus</b>.</p>
-<div class="box def"><h4>Le but du chapitre (diapositive 1)</h4>
+<div class="box def"><h4>Le but du chapitre</h4>
 <p>Reconsidérer la place centrale des gènes dans l'explication de la construction, de la diversification et de l'évolution du vivant. Le chapitre fait aussi écho à l'idée d'<span class="kw">hérédité non génétique</span> : une transmission, de génération en génération, d'informations qui ne sont pas codées dans l'ADN.</p></div>
 
 <h2>B. La diversification par associations entre êtres vivants</h2>
 <h3>1. Les associations mutualistes</h3>
-<p><b>Exemple 1 : le ver de Roscoff.</b> <i>Symsagittifera roscoffensis</i> est un minuscule ver plat marin, de 1 à 5 mm, vert pomme à vert foncé : sa couleur vient des milliers de micro-algues vertes logées sous son épiderme. Jeune, le ver est translucide et ingère une seule fois des micro-algues. Au fil de sa croissance, son tube digestif régresse puis disparaît complètement chez l'adulte : il devient autotrophe, car les algues réalisent la photosynthèse à la lumière du soleil et partagent avec lui les nutriments produits. (Ces détails sont « à lire mais à ne pas noter ».)</p>
+<p><b>Exemple 1 : le ver de Roscoff.</b> <i>Symsagittifera roscoffensis</i> est un minuscule ver plat marin, de 1 à 5 mm, vert pomme à vert foncé : sa couleur vient des milliers de micro-algues vertes logées sous son épiderme. Jeune, le ver est translucide et ingère une seule fois des micro-algues. Au fil de sa croissance, son tube digestif régresse puis disparaît complètement chez l'adulte : il devient autotrophe, car les algues réalisent la photosynthèse à la lumière du soleil et partagent avec lui les nutriments produits.</p>
 <div class="tablewrap"><table>
-<tr><th>Partenaire</th><th>Ce qu'il gagne (à noter)</th></tr>
+<tr><th>Partenaire</th><th>Ce qu'il gagne</th></tr>
 <tr><td>Les micro-algues</td><td>Un habitat ; une stabilité de leur environnement</td></tr>
 <tr><td>Le ver</td><td>La capacité photosynthétique des algues : il devient totalement <b>autonome</b> pour la fabrication de sa matière carbonée, sans avoir besoin de consommer de matière organique venue de l'extérieur</td></tr>
 </table></div>
@@ -4121,10 +4115,10 @@ const TERMINALE = [
 <tr><td>L'être humain</td><td>La possibilité de digérer des aliments qui seraient sinon indigestes (le microbiote est aussi relié à l'obésité) ; une protection, par la stimulation du système immunitaire</td></tr>
 </table></div>
 <h3>2. Les associations parasitaires</h3>
-<div class="box def"><h4>Définition (à noter)</h4>
+<div class="box def"><h4>Définition</h4>
 <p>Dans une association <span class="kw">parasitaire</span>, un seul des deux partenaires tire bénéfice de l'association ; pour l'autre, elle est néfaste. On parle de <b>parasitisme</b>.</p></div>
-<p><b>Exemple : les gammares parasités</b> (« à lire »). Les gammares sont de petits crustacés d'eau douce, proies des oiseaux. Certains sont infestés par des parasites qui s'enkystent dans leur corps. Les crustacés changent alors de comportement : ils sont attirés par la lumière, remontent à la surface et tournoient frénétiquement, et deviennent des proies faciles pour les oiseaux. Le cycle du parasite passe ainsi d'un hôte à l'autre : il se multiplie de façon asexuée chez un premier hôte intermédiaire, vit sous forme de larves chez le crustacé (second hôte intermédiaire), et atteint l'état adulte dans l'intestin de l'oiseau (hôte définitif), où il se reproduit sexuellement. Le parasite exploite les ressources de son partenaire, à son détriment : l'hôte lui offre un habitat, de la nourriture, et même un moyen efficace de dispersion. Une vidéo du cours (de 3 min 20 à 6 min 30) présente l'exemple.</p>
-<div class="box retenir"><h4>Bilan (à noter)</h4>
+<p><b>Exemple : les gammares parasités.</b> Les gammares sont de petits crustacés d'eau douce, proies des oiseaux. Certains sont infestés par des parasites qui s'enkystent dans leur corps. Les crustacés changent alors de comportement : ils sont attirés par la lumière, remontent à la surface et tournoient frénétiquement, et deviennent des proies faciles pour les oiseaux. Le cycle du parasite passe ainsi d'un hôte à l'autre : il se multiplie de façon asexuée chez un premier hôte intermédiaire, vit sous forme de larves chez le crustacé (second hôte intermédiaire), et atteint l'état adulte dans l'intestin de l'oiseau (hôte définitif), où il se reproduit sexuellement. Le parasite exploite les ressources de son partenaire, à son détriment : l'hôte lui offre un habitat, de la nourriture, et même un moyen efficace de dispersion.</p>
+<div class="box retenir"><h4>Bilan</h4>
 <p>La <b>symbiose</b> désigne une association biologique étroite, intime et durable entre deux ou plusieurs organismes d'espèces différentes. On distingue :</p>
 <ul>
   <li>le <b>mutualisme</b> : une interaction où les deux partenaires tirent un avantage réciproque (par exemple, les bactéries du microbiote et l'être humain) ;</li>
@@ -4132,58 +4126,56 @@ const TERMINALE = [
 </ul>
 <p>Les associations symbiotiques de toutes sortes (nodosités, microbiote, parasitisme…) contribuent à diversifier les métabolismes de certains êtres vivants, leurs comportements et donc leur survie. Dans ces différentes situations, les caractéristiques de l'hôte sont modifiées <b>sans que son génome ait changé</b>. La symbiose contribue donc bien à diversifier le phénotype des individus.</p></div>
 <div class="box piege"><h4>⚠ Deux sens du mot « symbiose »</h4>
-<p>Le cours emploie le mot dans deux sens. Au chapitre 2 (endosymbioses) et sur la diapositive du ver de Roscoff, la symbiose est une association durable <b>à bénéfices réciproques</b>, où les partenaires sont devenus interdépendants. Dans le bilan de ce chapitre, c'est toute association étroite et durable entre espèces différentes, <b>parasitisme compris</b>. Les deux usages existent chez les scientifiques. En devoir, dis dans quel sens tu l'emploies, ou parle de « mutualisme » et de « parasitisme », sans ambiguïté.</p></div>
+<p>Le mot s'emploie dans deux sens. Au chapitre 2 (endosymbioses) et pour le ver de Roscoff, la symbiose est une association durable <b>à bénéfices réciproques</b>, où les partenaires sont devenus interdépendants. Dans le bilan de ce chapitre, c'est toute association étroite et durable entre espèces différentes, <b>parasitisme compris</b>. Les deux usages existent chez les scientifiques. En devoir, dis dans quel sens tu l'emploies, ou parle de « mutualisme » et de « parasitisme », sans ambiguïté.</p></div>
 <div class="box plus"><h4>Approfondir — les formes d'hérédité non génétique <span class="hp">hors programme</span></h4>
-<p>Le cours présente ce texte « pour votre culture générale, mais à ne pas retenir ». Les chercheurs distinguent plusieurs hérédités : l'<b>hérédité d'associations symbiotiques</b>, quand les symbiotes sont transmis à la descendance (organites, bactéries vaginales de la mère transmises à l'enfant) ; l'<b>hérédité épigénétique</b>, quand une variation de l'expression des gènes, liée à l'environnement, est transmise ; l'<b>hérédité écologique</b>, quand les descendants héritent de l'habitat de leurs parents ; l'hérédité par <b>effets parentaux</b>, quand l'action des parents influe sur le phénotype des descendants ; l'<b>hérédité culturelle</b>, par la transmission sociale de comportements appris.</p>
+<p>Pour ta culture générale : les chercheurs distinguent plusieurs hérédités : l'<b>hérédité d'associations symbiotiques</b>, quand les symbiotes sont transmis à la descendance (organites, bactéries vaginales de la mère transmises à l'enfant) ; l'<b>hérédité épigénétique</b>, quand une variation de l'expression des gènes, liée à l'environnement, est transmise ; l'<b>hérédité écologique</b>, quand les descendants héritent de l'habitat de leurs parents ; l'hérédité par <b>effets parentaux</b>, quand l'action des parents influe sur le phénotype des descendants ; l'<b>hérédité culturelle</b>, par la transmission sociale de comportements appris.</p>
 <p>Certains chercheurs (Pigliucci et Müller, 2010) proposent d'étendre la théorie de l'évolution pour reconnaître dans ces processus non génétiques un rôle moteur de l'évolution, et non de simples conséquences de mécanismes génétiques. Ce point de vue est loin d'être partagé par toute la communauté scientifique : il fait l'objet de vifs débats.</p></div>
 
 <h2>C. La notion de phénotype étendu</h2>
 <p>Quatre exemples, présentés en vidéo et en images :</p>
 <ul>
   <li><b>Le fourreau de la larve de phrygane.</b> Cette larve d'insecte aquatique se construit un fourreau de soie, à partir des sécrétions de ses glandes, puis le recouvre d'éléments récoltés au fond de l'eau (graviers, débris). Quand le fourreau devient trop petit, elle l'abandonne.</li>
-  <li><b>Le nid du jardinier satiné</b>, un oiseau d'Australie dont le mâle construit et décore une sorte de tonnelle pour attirer les femelles (vidéo du cours ; la précision vient d'ailleurs).</li>
+  <li><b>Le nid du jardinier satiné</b>, un oiseau d'Australie dont le mâle construit et décore une sorte de tonnelle pour attirer les femelles.</li>
   <li><b>La toile et le cocon de l'araignée.</b></li>
   <li><b>Le port de Marseille</b>, construit par l'espèce humaine.</li>
 </ul>
-<p><b>Exemple à lire : des mésanges adeptes de l'aromathérapie.</b> Chez les mésanges bleues, la femelle ajoute, chaque jour depuis la fin de la construction du nid jusqu'à l'envol des jeunes, des fragments frais de plantes aromatiques entre les matériaux du nid. Cinq espèces se retrouvent dans plus d'un quart des nids suivis : l'achillée de Ligurie, la lavande papillon, l'immortelle d'Italie, la menthe à feuilles rondes et la pulicaire odorante. Ces plantes sont riches en <b>terpènes</b>, des molécules qui agissent comme insecticides, bactéricides et fongicides (la lavande dégage du bêta-pinène, un puissant répulsif des insectes). Au Portugal, les mésanges ajoutent des aiguilles de pin parasol, riches en limonène, un composé connu pour réduire les puces et les poux. Le nid protège ainsi les oisillons des parasites.</p>
-<div class="box def"><h4>Définition (à noter)</h4>
+<p><b>Exemple : des mésanges adeptes de l'aromathérapie.</b> Chez les mésanges bleues, la femelle ajoute, chaque jour depuis la fin de la construction du nid jusqu'à l'envol des jeunes, des fragments frais de plantes aromatiques entre les matériaux du nid. Cinq espèces se retrouvent dans plus d'un quart des nids suivis : l'achillée de Ligurie, la lavande papillon, l'immortelle d'Italie, la menthe à feuilles rondes et la pulicaire odorante. Ces plantes sont riches en <b>terpènes</b>, des molécules qui agissent comme insecticides, bactéricides et fongicides (la lavande dégage du bêta-pinène, un puissant répulsif des insectes). Au Portugal, les mésanges ajoutent des aiguilles de pin parasol, riches en limonène, un composé connu pour réduire les puces et les poux. Le nid protège ainsi les oisillons des parasites.</p>
+<div class="box def"><h4>Définition</h4>
 <p>Le <span class="kw">phénotype étendu</span> désigne tous les caractères d'un organisme qui se situent <b>hors de son corps</b>. Il s'agit principalement de son <b>comportement</b> et de l'<b>environnement qu'il construit</b> (nid, terrier, relations sociales, etc.).</p>
 <p>De nombreux animaux recrutent ainsi dans leur milieu des éléments non vivants, et modulent leur phénotype : nids d'oiseaux, toiles d'araignées, ruches ; dans l'espèce humaine, les exemples sont innombrables. La prise de contrôle d'autres organismes (comme le parasite qui modifie le comportement du gammare) élargit aussi le phénotype de certaines espèces. Cet élargissement peut servir l'habitat, la survie ou l'attrait du partenaire sexuel : c'est un moteur évolutif non génétique.</p></div>
 <div class="box plus"><h4>Approfondir — l'origine de l'expression <span class="hp">hors programme</span></h4>
-<p>L'expression « phénotype étendu » vient du biologiste britannique Richard Dawkins, qui en a fait le titre d'un livre en 1982 (précision qui ne vient pas du diaporama).</p></div>
+<p>L'expression « phénotype étendu » vient du biologiste britannique Richard Dawkins, qui en a fait le titre d'un livre en 1982.</p></div>
 
 <h2>D. Une diversification du comportement des individus</h2>
 <p>La diversification des individus peut aussi reposer sur des caractéristiques <b>comportementales</b>, et pas seulement morphologiques : on retrouve le concept de phénotype étendu.</p>
 <h3>1. Des phénotypes comportementaux qui dépendent des ressources du milieu</h3>
 <p>Le comportement des individus dépend des <b>ressources dont ils disposent dans leur environnement</b>. C'est le cas de la construction des nids d'oiseaux, des termitières, des fourreaux des phryganes, ou du comportement reproducteur de certains oiseaux comme le jardinier satiné.</p>
 <h3>2. Des comportements non héréditaires transmis au sein d'une espèce</h3>
-<div class="box def"><h4>L'idée (à noter)</h4>
+<div class="box def"><h4>L'idée</h4>
 <p>Certains comportements « phénotypiques » sont transmis, <b>par voie non héréditaire</b>, entre individus d'une même espèce. Cela conforte l'idée que <b>le phénotype ne repose pas que sur des bases génétiques</b>.</p></div>
 <p><b>Exemple 1 : le chimpanzé et la casse des noix.</b> Le chimpanzé place une noix sur un support qui sert d'enclume, en bois ou en pierre, puis la frappe à l'aide d'un percuteur. Des percuteurs ont été retrouvés enfouis dans le sol : le savoir-faire se transmet depuis plus de deux cents générations, et les chercheurs parlent d'une véritable <b>culture</b> vieille de plus de 4 300 ans.</p>
 <details class="tp">
-<summary>Exercice du cours : l'acquisition de comportements chez le jeune chimpanzé</summary>
+<summary>Exercice : l'acquisition de comportements chez le jeune chimpanzé</summary>
 <div class="tpin">
 <p><b>Le document.</b> Un graphique donne le taux de succès du jeune chimpanzé en fonction de son âge (en mois), pour deux tâches : une tâche facile, manger les fruits tendres de <i>Parinari excelsa</i>, et une tâche compliquée, casser avec un outil les noix très nourrissantes mais très dures de <i>Coula edulis</i>.</p>
 <p><b>1) Décrire le graphique.</b> Pour les fruits de <i>Parinari</i>, le taux de succès augmente dès l'âge de 10 à 15 mois et atteint un plateau d'environ 0,6 vers 30 mois. Pour les noix de <i>Coula</i>, le taux de succès reste nul jusque vers 45 à 50 mois, puis augmente brusquement jusqu'à un plateau d'environ 0,55 vers 60 mois.</p>
 <p><b>2) Comparer.</b> Les deux comportements finissent par être maîtrisés à un niveau proche, mais la casse des noix, plus complexe et qui demande un outil, s'acquiert beaucoup plus tard (environ trois ans plus tard) : il faut un long apprentissage.</p>
-<p><b>3) Les jeunes élevés en isolement.</b> La diapositive indique que des jeunes chimpanzés ayant grandi sans congénères présentent un taux de succès de 0,2 « lors de la casse de noix entre 0 et 11 mois » ; l'énoncé de la question est incomplet. Ce qu'on attend : sans congénères à observer, le jeune chimpanzé n'atteint pas le niveau de ceux qui ont grandi dans le groupe. Le comportement n'est donc pas inné : il s'acquiert par <b>observation et imitation</b> des adultes. C'est une transmission <b>culturelle</b>, non génétique. (Réponse proposée par le site, pas une correction officielle.)</p>
+<p><b>3) Les jeunes élevés en isolement.</b> Des jeunes chimpanzés ayant grandi sans congénères présentent un taux de succès de 0,2 lors de la casse de noix entre 0 et 11 mois. Ce qu'on attend : sans congénères à observer, le jeune chimpanzé n'atteint pas le niveau de ceux qui ont grandi dans le groupe. Le comportement n'est donc pas inné : il s'acquiert par <b>observation et imitation</b> des adultes. C'est une transmission <b>culturelle</b>, non génétique. (Réponse proposée.)</p>
 </div></details>
-<div class="box plus"><h4>À lire : la culture animale</h4>
+<div class="box plus"><h4>Pour aller plus loin : la culture animale</h4>
 <p>Longtemps, la culture a été considérée comme propre à l'humanité. Depuis les années 1990, les spécialistes du comportement animal ont montré qu'une « culture animale » existe aussi : apprentissage par imitation du langage, de techniques comme l'utilisation d'outils, élaboration de codes sociaux, transmission entre congénères avec des variantes selon les régions. La culture concerne l'ensemble des animaux ayant une organisation sociale : c'est l'ensemble des savoirs et des pratiques qui se partagent et se transmettent socialement au sein d'un groupe. Cette transmission n'est pas un héritage génétique.</p></div>
 <p><b>Exemple 2 : le chant des oiseaux.</b> Un oisillon isolé de tous ses congénères ne peut pas apprendre, et présente un chant très éloigné de celui de son espèce.</p>
-<div class="box retenir"><h4>Bilan (à noter)</h4>
+<div class="box retenir"><h4>Bilan</h4>
 <p>Ce comportement montre une démarche d'<b>apprentissage</b>. L'oisillon finit par maîtriser le chant de son espèce par entraînement et par apprentissage. Il s'agit d'une <b>transmission non génétique</b> d'un comportement, c'est-à-dire qu'il n'est pas inné.</p></div>
 <p><b>Exemple 3 : le chant des baleines à bosse du Pacifique.</b> Chez les baleines à bosse, seuls les mâles chantent, notamment pour séduire les femelles lors des migrations de la saison des amours. Un chant est composé de 4 à 7 thèmes différents, repris dans un ordre précis pendant 8 à 30 minutes ; un thème est fait d'unités sonores organisées en phrases répétées. Le chant diffère selon la population et le moment de l'année, et des variations s'y accumulent. Le tableau du manuel suit, de 1998 à 2008, le type de chant de six populations, de l'Australie à la Polynésie française : un nouveau chant apparaît d'abord chez les baleines d'Australie, puis se retrouve, un ou deux ans plus tard, chez les populations situées plus à l'est (Nouvelle-Calédonie, Tonga, Samoa américaines, îles Cook, Polynésie). Le chant se transmet donc <b>d'une population à l'autre</b>, par apprentissage, et non par les gènes.</p>
-<div class="box retenir"><h4>Bilan du chapitre (à noter)</h4>
+<div class="box retenir"><h4>Bilan du chapitre</h4>
 <p>Certains comportements (chant et alimentation des oiseaux, alimentation des macaques) se transmettent de manière non génétique entre congénères, par <b>observation et apprentissage</b>.</p>
 <p>Lorsqu'on isole des individus de leurs proches, on constate que le langage adulte ne se met pas en place ou qu'il est incomplet : il n'est donc pas inné.</p>
 <p>Cela contribue à la diversification des individus, car les sources des apprentissages varient, notamment dans les sociétés humaines, où les échanges entre populations se sont accentués. De plus, selon leurs conséquences, ces comportements ont pu se maintenir ou non dans les populations : ils ont ainsi contribué à l'évolution technique et culturelle des espèces.</p>
 <p><b>La transmission culturelle et comportementale est donc aussi un moteur évolutif.</b></p></div>
-<div class="box plus"><h4>Les macaques du bilan <span class="hp">exemple extérieur au diaporama</span></h4>
-<p>Le bilan cite « l'alimentation des macaques » sans document. L'exemple classique est celui des macaques japonais de l'île de Koshima : dans les années 1950, une jeune femelle s'est mise à laver dans l'eau les patates douces que lui donnaient les chercheurs ; le comportement s'est ensuite répandu dans le groupe, d'abord chez les jeunes, puis de génération en génération. Cet exemple vient des manuels et de la littérature scientifique, pas du diaporama.</p></div>
+<div class="box plus"><h4>Les macaques du bilan <span class="hp">complément</span></h4>
+<p>Le bilan cite l'alimentation des macaques. L'exemple classique est celui des macaques japonais de l'île de Koshima : dans les années 1950, une jeune femelle s'est mise à laver dans l'eau les patates douces que lui donnaient les chercheurs ; le comportement s'est ensuite répandu dans le groupe, d'abord chez les jeunes, puis de génération en génération.</p></div>
 
-<div class="box piege"><h4>⚠ Coquilles et numérotation du diaporama</h4>
-<p>La diapositive du fourreau écrit « larve de pyrane » : c'est la larve de <b>phrygane</b>, comme l'écrit plus loin la diapositive 13. Le diaporama numérote deux parties « II » (« La notion de phénotype étendu » puis « Une diversification du comportement des individus ») : ce site les présente comme les parties C et D. Enfin, le bilan écrit « lorsque l'on isole des individus de leur roche » : il faut lire « de leurs proches ».</p></div>
 
 <div class="box retenir"><h4>À retenir</h4>
 <ul>
@@ -4641,7 +4633,7 @@ t1u2: [
      "Tous les gamètes d'un individu sont génétiquement identiques",
      "Les allèles de deux gènes différents se transmettent indépendamment"],
   b:0,
-  e:"C'est la première loi dans la numérotation du cours, aussi appelée loi de ségrégation ou de disjonction des allèles."},
+  e:"C'est la première loi dans la numérotation retenue ici, aussi appelée loi de ségrégation ou de disjonction des allèles."},
 
  {t:"cours", q:"Quelle loi de Mendel explique que toute la F1 soit violette et non rose ?",
   o:["La loi de dominance",
@@ -4952,7 +4944,7 @@ t1u2b: [
      "Seulement les structures 3D",
      "Seulement le moment d'expression des gènes au cours de la vie"],
   b:0,
-  e:"La définition porte sur les gènes, et ses conséquences sur les protéines : on compare les deux, c'était la correction apportée à la stratégie."},
+  e:"La définition porte sur les gènes, et ses conséquences sur les protéines : on compare les deux : c'est le point clé de la stratégie."},
 
  {t:"tp", q:"Le logiciel donne un tableau comparant toutes les séquences deux à deux. Quelle est la meilleure communication ?",
   o:["Un tableau réduit retenant, pour chaque gène, la plus petite similitude obtenue",
@@ -4960,7 +4952,7 @@ t1u2b: [
      "Une phrase sans aucun chiffre",
      "Une capture de l'écran du logiciel"],
   b:0,
-  e:"La question porte sur un seuil (20 %) : la valeur décisive est le minimum. La correction écarte le tableau complet : « il faut une communication ne retenant que l'essentiel »."},
+  e:"La question porte sur un seuil (20 %) : la valeur décisive est le minimum. Le tableau complet est à écarter : une bonne communication ne retient que l'essentiel."},
 
  {t:"tp", q:"Sur l'arbre de parenté des globines, que représente chaque nœud ?",
   o:["Une duplication génique, accompagnée ou non d'un changement de chromosome",
@@ -5359,15 +5351,15 @@ t2b: [
   b:0,
   e:"Hétérotrophe : incapable de produire sa matière organique, il utilise une matière organique préexistante, qu'il oxyde par la respiration."},
 
- {t:"cours", q:"Les organites ont deux membranes alors qu'une bactérie n'en a qu'une (diapositive du cours). Est-ce un argument contre l'endosymbiose ?",
+ {t:"cours", q:"Les organites ont deux membranes alors qu'une bactérie n'en a qu'une. Est-ce un argument contre l'endosymbiose ?",
   o:["Non : la double membrane est justement la preuve qu'une bactérie a été ingérée par une cellule hôte",
      "Oui : cela prouve que les organites ne viennent pas de bactéries",
      "Non, car les bactéries ont en réalité trois membranes",
      "Oui, car la cellule hôte n'a pas de membrane"],
   b:0,
-  e:"Dans la correction du cours, les deux arguments « contre » (double membrane, gènes moins nombreux) se retournent en arguments pour : ingestion de la bactérie, puis transfert de ses gènes vers le noyau."},
+  e:"Dans le tableau des arguments, les deux arguments « contre » (double membrane, gènes moins nombreux) se retournent en arguments pour : ingestion de la bactérie, puis transfert de ses gènes vers le noyau."},
 
- {t:"cours", q:"D'après le commentaire du cours, à quoi correspond la membrane interne du chloroplaste ?",
+ {t:"cours", q:"À quoi correspond la membrane interne du chloroplaste ?",
   o:["À la membrane de la cyanobactérie ancestrale",
      "À la membrane du noyau de la cellule hôte",
      "À la membrane de la vésicule de phagocytose",
@@ -5386,11 +5378,11 @@ t2b: [
 
  {t:"tp", q:"Nostoc et Chlorobium, présents dans le fichier du TP, sont :",
   o:["Des bactéries photosynthétiques (Nostoc est une cyanobactérie)",
-     "Des plantes vertes eucaryotes, comme l'écrit la fiche",
+     "Des plantes vertes eucaryotes",
      "Des virus",
      "Des champignons"],
   b:0,
-  e:"La fiche du TP se trompe sur ce point. Le chloroplaste doit se révéler plus proche de la cyanobactérie Nostoc que de l'autre bactérie photosynthétique."},
+  e:"On les présente parfois comme des plantes vertes : c'est faux. Le chloroplaste doit se révéler plus proche de la cyanobactérie Nostoc que de l'autre bactérie photosynthétique."},
 
  {t:"tp", q:"Pour la conclusion d'une ECE, quels sont les trois critères de la grille de notation ?",
   o:["Complète, organisée, distanciée",
@@ -5429,7 +5421,7 @@ t3: [
   b:0,
   e:"Avec le mélange, tous les individus finiraient par se ressembler. Or les variants persistent : les allèles se transmettent intacts."},
 
- {t:"cours", q:"Qu'est-ce qu'une population, selon le cours ?",
+ {t:"cours", q:"Qu'est-ce qu'une population ?",
   o:["Un groupe d'individus de la même espèce, vivant dans une même zone, pouvant se reproduire et donner une descendance fertile",
      "L'ensemble des individus d'une même espèce sur toute la planète",
      "Un groupe d'individus d'espèces différentes vivant au même endroit",
@@ -5691,7 +5683,7 @@ t4: [
      "Aucun partenaire n'en tire bénéfice",
      "Les deux partenaires appartiennent à la même espèce"],
   b:0,
-  e:"Exemple du cours : le parasite du gammare, qui modifie le comportement du crustacé pour passer dans un oiseau."},
+  e:"Exemple : le parasite du gammare, qui modifie le comportement du crustacé pour passer dans un oiseau."},
 
  {t:"cours", q:"Pourquoi dit-on que la symbiose diversifie le phénotype sans modifier le génome ?",
   o:["Parce que l'association modifie le métabolisme, le comportement ou la survie de l'hôte, alors que ses gènes restent les mêmes",
@@ -5984,7 +5976,7 @@ const VOCAB = {
  },
  "2": {
   titre: "Chapitre 2 — La complexification des génomes",
-  nomListe: "Les définitions des diapositives du cours",
+  nomListe: "Les définitions du chapitre",
   unites: ["t2", "t2b"],
   mots: [
    {m:"Transfert horizontal de gènes", prof:true, u:"t2",
@@ -6047,7 +6039,7 @@ const VOCAB = {
  },
  "3": {
   titre: "Chapitre 3 — L'évolution du génome au sein des populations",
-  nomListe: "Les définitions des diapositives et de la fiche d'activité",
+  nomListe: "Les définitions du chapitre",
   unites: ["t3", "t3b"],
   mots: [
    {m:"Hérédité par mélange", prof:true, u:"t3",
@@ -6096,7 +6088,7 @@ const VOCAB = {
  },
  "4": {
   titre: "Chapitre 4 — Mécanismes de diversité non génétique du vivant",
-  nomListe: "Les définitions du diaporama du cours",
+  nomListe: "Les définitions du chapitre",
   unites: ["t4"],
   mots: [
    {m:"Hérédité non génétique", prof:true, u:"t4",
@@ -6133,7 +6125,7 @@ const METHODE_REDAC = `
 <div class="codecol">
   <span class="c1">ce que j'observe dans le document</span>
   <span class="c2">ce que j'extrais comme information</span>
-  <span class="c3">les connaissances du cours que j'ajoute</span>
+  <span class="c3">les connaissances que j'ajoute</span>
   <span class="c4">ce que je déduis EN METTANT EN RELATION</span>
 </div>
 <p>Les <b>phrases de transition</b>, avec des connecteurs logiques, marquent le passage d'un paragraphe à l'autre : ce sont elles qui permettent d'évaluer ta démarche.</p></div>`;
@@ -6143,7 +6135,7 @@ const REDAC = {
 t1u1: [
  {id:"intro1", titre:"Rédiger l'introduction de l'unité", duree:"10 min",
   consigne:"Sans regarder le cours, rédige l'introduction de l'unité 1 en 5 à 8 lignes : contexte, définitions, problématique.",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p>Tout organisme pluricellulaire est issu d'une cellule unique, la cellule-œuf, qui se multiplie par mitoses successives. La mitose étant une reproduction conforme, toutes les cellules issues de cette multiplication forment un <b>clone</b> : un ensemble de cellules génétiquement identiques à la cellule de départ. Au sein d'une espèce, le patrimoine génétique est ainsi maintenu stable et se conserve au cours des générations.</p>
 <p>Pourtant, un même organe issu de cellules clonales, comme la peau du chat, peut présenter des phénotypes différents. C'est que la réplication de l'ADN ne se fait pas toujours à l'identique : des <b>mutations</b>, modifications de la séquence de l'ADN, peuvent survenir au cours des mitoses.</p>
 <p>Nous nous demanderons donc : <b>quelles sont les conséquences des modifications génétiques pouvant survenir au cours de la multiplication d'un clone cellulaire ?</b></p>`,
@@ -6160,7 +6152,7 @@ t1u1: [
 
  {id:"parag1", titre:"Le paragraphe argumenté de l'activité 2", duree:"30 min",
   consigne:"Problématique : <b>quelles sont les causes et les conséquences des modifications génétiques pouvant survenir au cours de la multiplication d'un clone cellulaire ?</b> Réponds par une introduction, un paragraphe argumenté et une conclusion, en t'appuyant sur les documents de l'activité 2 : colonies de levures ade2, modélisation d'une tumeur, rôle de p53, embryons de souris, séquences du gène TERT.",
-  source:"Correction du cours, remise en ordre et légèrement mise en forme",
+  source:"Proposition de correction",
   corrige:`<p class="pintit">Introduction</p>
 <p>La réplication de l'ADN et la mitose sont deux processus qui permettent le plus souvent la reproduction à l'identique d'une cellule-mère de départ et aboutissent à la formation de clones cellulaires. Cependant, cette réplication ne se fait pas toujours à l'identique : des modifications génétiques peuvent avoir lieu, ce sont les mutations, des altérations de la séquence d'ADN. Nous nous demanderons alors quelles sont les conséquences de ces mutations lors des mitoses successives des clones cellulaires.</p>
 <p class="pintit">Paragraphe argumenté</p>
@@ -6193,7 +6185,7 @@ t1u1: [
 t1u2: [
  {id:"intro2", titre:"Rédiger l'introduction de l'unité", duree:"10 min",
   consigne:"Sans regarder le cours, rédige l'introduction de l'unité 2 en 5 à 8 lignes : contexte, définitions, problématique.",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p>Chez l'espèce humaine, le caryotype (2n = 46) est stable d'une génération à l'autre. Cette stabilité repose sur deux phénomènes complémentaires : la <b>méiose</b>, qui produit des gamètes haploïdes (n = 23) ne possédant qu'un exemplaire de chaque paire de chromosomes, et la <b>fécondation</b>, qui réunit deux gamètes et rétablit la diploïdie dans la cellule-œuf.</p>
 <p>Pourtant, les enfants issus des mêmes parents sont tous génétiquement différents. C'est que, contrairement à la mitose qui produit des clones, la méiose ne transmet que la moitié de l'information génétique de la cellule de départ, et s'accompagne d'un <b>brassage</b> des allèles d'origine paternelle et maternelle.</p>
 <p>Nous nous demanderons donc : <b>comment expliquer la diversité génétique des individus lors de la reproduction sexuée ?</b></p>`,
@@ -6209,7 +6201,7 @@ t1u2: [
 
  {id:"meiose", titre:"Montrer que la méiose est source de diversité", duree:"25 min",
   consigne:"<b>Montrer comment la méiose permet la formation de gamètes génétiquement différents.</b> Réponds par une introduction, un développement structuré et une conclusion. Un schéma est valorisé.",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p class="pintit">Introduction</p>
 <p>La méiose est la succession de deux divisions cellulaires qui, à partir d'une cellule diploïde, produit quatre cellules haploïdes : les gamètes. Elle ne se contente pas de diviser le nombre de chromosomes par deux : les gamètes obtenus sont génétiquement tous différents. Nous nous demanderons comment la méiose produit cette diversité.</p>
 <p class="pintit">Le brassage interchromosomique</p>
@@ -6237,7 +6229,7 @@ t1u2: [
 
  {id:"testcross", titre:"Interpréter un test-cross", duree:"20 min",
   consigne:"Chez la drosophile, on croise une F1 double hétérozygote [ailes normales ; corps gris] avec un double homozygote récessif [ailes courtes ; corps noir]. On obtient : 40 % [ailes normales ; corps gris], 42,5 % [ailes courtes ; corps noir], 7,5 % [ailes courtes ; corps gris] et 10 % [ailes normales ; corps noir]. <b>Les deux gènes sont-ils indépendants ou liés ? Justifie, et explique l'origine de chaque phénotype.</b>",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p>Le test-cross croise la F1 double hétérozygote avec un double homozygote récessif. Celui-ci ne transmet que des allèles récessifs et ne masque donc rien : les phénotypes obtenus reflètent <b>directement les gamètes produits par la F1</b>.</p>
 <p>On obtient quatre phénotypes, mais <b>pas en proportions égales</b>. Deux sont majoritaires : [ailes normales ; corps gris] (40 %) et [ailes courtes ; corps noir] (42,5 %). Ils sont identiques à ceux de la génération parentale : ce sont les <b>phénotypes parentaux</b>. Deux sont minoritaires : [ailes courtes ; corps gris] (7,5 %) et [ailes normales ; corps noir] (10 %). Ils présentent une combinaison nouvelle : ce sont des <b>phénotypes recombinés</b>.</p>
 <p>Si les gènes étaient indépendants, le brassage interchromosomique aurait produit quatre types de gamètes équiprobables, donc quatre phénotypes à 25 % chacun. Ce n'est pas le cas : les deux gènes sont <b>partiellement liés</b>, c'est-à-dire situés sur la même paire de chromosomes.</p>
@@ -6258,7 +6250,7 @@ t1u2: [
 t1u2b: [
  {id:"intro3", titre:"Rédiger l'introduction de la partie", duree:"10 min",
   consigne:"Sans regarder le cours, rédige l'introduction de la partie sur les accidents génétiques de la méiose, en 5 à 8 lignes : contexte, définitions, problématique.",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p>Lors de la reproduction sexuée, la <b>méiose</b> produit des gamètes haploïdes possédant chacun un chromosome de chaque paire. Grâce aux brassages inter et intrachromosomiques, ces gamètes sont génétiquement tous différents, mais tous équilibrés.</p>
 <p>Ce mécanisme n'est cependant pas infaillible : des <b>accidents génétiques</b>, rares et aléatoires, peuvent survenir pendant la méiose. Des chromosomes peuvent migrer anormalement, se casser, échanger des portions ou s'apparier de façon décalée, et produire des gamètes anormaux.</p>
 <p>Nous nous demanderons donc : <b>quels sont les différents accidents génétiques pouvant survenir lors de la méiose, et quelles en sont les conséquences phénotypiques et évolutives ?</b></p>`,
@@ -6273,7 +6265,7 @@ t1u2b: [
 
  {id:"trisomie", titre:"Expliquer l'origine d'une trisomie 21", duree:"20 min",
   consigne:"<b>Expliquer, à l'aide d'un ou de plusieurs schémas, comment une anomalie de la méiose peut aboutir à la naissance d'un enfant atteint de trisomie 21.</b> Envisage les deux moments possibles de l'erreur.",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p>La trisomie 21 est une anomalie du nombre de chromosomes : le caryotype de l'enfant compte 47 chromosomes, avec trois chromosomes 21 au lieu de deux. Elle résulte le plus souvent d'une mauvaise répartition des chromosomes lors de la méiose de l'un des parents.</p>
 <p><b>Premier cas : erreur en anaphase I.</b> Normalement, les deux chromosomes homologues de la paire 21 se séparent et migrent vers des pôles opposés. Si la paire ne se sépare pas, les deux homologues partent vers le même pôle. L'une des cellules filles possède alors deux chromosomes 21, l'autre aucun. Après la méiose II, on obtient deux gamètes à n + 1 (24 chromosomes, dont deux 21) et deux gamètes à n − 1 (22 chromosomes, sans 21) : les quatre gamètes sont anormaux.</p>
 <p><b>Second cas : erreur en anaphase II.</b> La méiose I se déroule normalement. Mais dans l'une des deux cellules, les deux chromatides du chromosome 21 ne se séparent pas. On obtient un gamète à n + 1, un gamète à n − 1 et deux gamètes normaux.</p>
@@ -6294,7 +6286,7 @@ t1u2b: [
 
  {id:"evolution", titre:"Montrer le rôle des accidents génétiques dans l'évolution", duree:"30 min",
   consigne:"<b>Montrer que des accidents génétiques survenant lors de la méiose peuvent être à l'origine d'une diversification des génomes et participer à l'évolution des espèces.</b> Réponds par une introduction, un développement structuré et une conclusion, en t'appuyant sur des exemples précis.",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p class="pintit">Introduction</p>
 <p>La méiose produit des gamètes génétiquement différents grâce aux brassages, mais elle peut aussi être le siège d'accidents génétiques, rares et aléatoires. Si la plupart sont néfastes, certains modifient durablement le génome. Nous nous demanderons comment ces accidents peuvent enrichir les génomes et participer à l'évolution des espèces.</p>
 <p class="pintit">La duplication de gènes par crossing-over inégal</p>
@@ -6326,7 +6318,7 @@ t1u2b: [
 
  {id:"globines", titre:"Conclure le TP sur les globines", duree:"15 min",
   consigne:"À partir de tes résultats du TP (similitudes toutes supérieures à 20 %, minima d'environ 41 % pour les séquences nucléotidiques et 22 % pour les séquences d'acides aminés ; arbre de parenté), <b>rédige la conclusion de l'étape 6 : les gènes des globines appartiennent-ils à une famille multigénique ? Comment s'est-elle formée ?</b>",
-  source:"Proposition de correction, construite à partir du cours et des résultats du TP",
+  source:"Proposition de correction, appuyée sur les résultats du TP",
   corrige:`<p>On cherchait à montrer que les gènes des globines appartiennent à une famille multigénique.</p>
 <p>La comparaison des séquences avec Geniegen2 montre que toutes les similitudes, deux à deux, sont supérieures à 20 % : au minimum environ 41 % pour les séquences nucléotidiques et 22 % pour les séquences d'acides aminés. Une telle ressemblance ne peut pas être due au hasard, qui ne donnerait qu'environ 5 % de similitude entre deux protéines sans lien. Les gènes des globines α, β, γ, δ, ε et de la myoglobine sont donc homologues : ils forment une <b>famille multigénique</b>, issue d'un même gène ancestral.</p>
 <p>L'arbre de parenté, construit à partir des similitudes, retrace sa formation. Chaque nœud correspond à une duplication du gène ancestral, suivie de mutations différentes sur chaque copie. Certaines duplications se sont accompagnées d'un changement de chromosome : c'est ce qui explique que les gènes du groupe alpha soient sur le chromosome 16 et ceux du groupe bêta sur le chromosome 11. Les gènes les plus semblables, β et δ (environ 93 %), sont issus de la duplication la plus récente.</p>
@@ -6348,7 +6340,7 @@ t1u2b: [
 t2: [
  {id:"intro4", titre:"Rédiger l'introduction du chapitre", duree:"10 min",
   consigne:"Sans regarder le cours, rédige l'introduction du chapitre 2 en 5 à 8 lignes : contexte, définitions, problématique.",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p>Lors de la reproduction sexuée, les gènes sont transmis des parents à leurs descendants : c'est le <b>transfert vertical</b>. Les brassages et les accidents génétiques de la méiose y créent de la diversité génétique.</p>
 <p>Pourtant, ces mécanismes ne suffisent pas à expliquer toute la diversité du vivant. L'ADN étant une molécule universelle, lue partout avec le même code génétique, des gènes peuvent passer d'un organisme à un autre organisme <b>non apparenté</b> : c'est le <b>transfert horizontal</b> de gènes.</p>
 <p>Nous nous demanderons donc : <b>comment des gènes peuvent-ils être échangés entre organismes non apparentés, et en quoi ces échanges contribuent-ils à la complexification des génomes ?</b></p>`,
@@ -6364,7 +6356,7 @@ t2: [
 
  {id:"resistance", titre:"Expliquer la diffusion des résistances aux antibiotiques", duree:"20 min",
   consigne:"<b>Expliquer comment une bactérie peut devenir résistante à un antibiotique sans subir de mutation, et pourquoi les résistances se répandent si rapidement.</b> Un schéma est valorisé.",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p>Une bactérie résiste à un antibiotique lorsqu'elle possède un gène qui code, par exemple, une enzyme qui dégrade l'antibiotique ou des pompes membranaires qui l'expulsent. Ce gène peut apparaître par mutation du chromosome bactérien, mais c'est un événement rare, de l'ordre d'une bactérie sur un milliard.</p>
 <p>Une bactérie peut aussi <b>recevoir</b> un gène de résistance déjà fonctionnel d'une autre bactérie, sans aucune mutation : c'est un <b>transfert horizontal</b>. Les gènes de résistance sont souvent portés par des <b>plasmides</b>, petites molécules d'ADN circulaire qui se répliquent indépendamment du chromosome. Lors de la <b>conjugaison</b>, deux bactéries se relient par un pont cytoplasmique et le plasmide, copié, est transmis à la bactérie receveuse, qui devient résistante à son tour. Une bactérie peut aussi intégrer de l'ADN libre du milieu, issu de bactéries détruites : c'est la transformation.</p>
 <p>Ces transferts sont fréquents (environ une bactérie sur cent) et peuvent se faire entre espèces différentes : ils représentent environ 80 % des résistances acquises. Ils ont lieu partout, jusque dans la poussière de nos maisons, et entre les bactéries de l'environnement, des animaux d'élevage et des humains.</p>
@@ -6385,7 +6377,7 @@ t2: [
 
  {id:"transgenese", titre:"Expliquer la production d'insuline par transgenèse", duree:"20 min",
   consigne:"<b>Expliquer, à l'aide d'un schéma, comment on fait produire de l'insuline humaine par des bactéries, et montrer que cette technique repose sur les propriétés des transferts horizontaux.</b>",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p>L'insuline est une protéine humaine, codée par un gène humain. Pour la produire en grande quantité, on la fait fabriquer par des bactéries grâce à une <b>transgenèse</b> : l'insertion d'un gène d'un organisme dans le génome d'un autre.</p>
 <p>On identifie d'abord le <b>gène d'intérêt</b>, ici le gène humain de l'insuline. On ouvre ensuite un <b>plasmide</b> bactérien, et on y insère ce gène : l'ADN du plasmide et l'ADN humain forment un <b>plasmide recombinant</b>. Le plasmide sert de <b>vecteur</b> : il transporte le gène. On fait alors entrer le plasmide recombinant dans une bactérie, qui devient une bactérie transformée.</p>
 <p>Parce que le code génétique est <b>universel</b>, la bactérie lit le gène humain comme ses propres gènes : elle le transcrit puis le traduit, et fabrique de l'insuline humaine. En se divisant, elle transmet le plasmide à toutes ses descendantes : on obtient des milliards de bactéries productrices.</p>
@@ -6405,7 +6397,7 @@ t2: [
 
  {id:"griffith", titre:"Interpréter l'expérience de Griffith", duree:"15 min",
   consigne:"On injecte à des souris : (1) des pneumocoques S vivants : elles meurent ; (2) des pneumocoques R vivants : elles survivent ; (3) des pneumocoques S tués par la chaleur : elles survivent ; (4) un mélange de S tués et de R vivants : elles meurent, et l'on retrouve dans leur sang des pneumocoques S vivants. <b>Interpréter ces résultats.</b>",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p>Les pneumocoques S, entourés d'une capsule, sont virulents : ils tuent la souris (lot 1). Les pneumocoques R, sans capsule, ne le sont pas (lot 2). Tués par la chaleur, les S ne sont plus virulents (lot 3).</p>
 <p>Pourtant, le mélange de S tués et de R vivants tue la souris (lot 4). Aucun des deux ingrédients n'étant mortel seul, d'après les lots 2 et 3, quelque chose s'est produit entre eux. De plus, on retrouve des S <b>vivants</b> dans le sang : ce ne peuvent pas être les S tués, qui ne peuvent pas revivre. Ce sont donc des R qui ont <b>acquis</b> la capacité de fabriquer une capsule, et qui la transmettent à leurs descendants.</p>
 <p>On en déduit qu'un élément, le « <b>facteur transformant</b> », est passé des S morts aux R vivants et leur a transmis le caractère « virulent ». On sait aujourd'hui que ce facteur est l'<b>ADN</b> : des fragments d'ADN libérés par les S morts ont été absorbés par les R et intégrés à leur ADN. C'est une <b>transformation</b>, un transfert horizontal de gènes entre bactéries.</p>`,
@@ -6421,7 +6413,7 @@ t2: [
 
  {id:"syncytine", titre:"Conclure le TP sur la syncytine", duree:"15 min",
   consigne:"Résultats : syncytine 1 humaine / protéine virale MSRV, 87 % de similitude ; syncytine 2 / MSRV, 20 %. Les syncytines font fusionner les membranes des cellules de l'embryon et de la mère, comme les protéines ENV du virus font fusionner l'enveloppe virale avec la cellule infectée. L'arbre de la syncytine 1 place la séquence MSRV près de celles du gorille, du chimpanzé, de l'humain, de l'orang-outan et du gibbon. <b>Rédige la conclusion finale (étape 6), en respectant les trois critères : complète, organisée, distanciée.</b>",
-  source:"D'après la correction du TP, complétée et mise en forme",
+  source:"Proposition de correction",
   corrige:`<p>On cherchait à montrer que l'apparition des syncytines chez les primates est le résultat d'un transfert horizontal de gènes viraux.</p>
 <p>La comparaison des séquences protéiques montre que la syncytine 1 humaine est similaire à <b>87 %</b> à la protéine virale MSRV. Au-delà de 80 % de ressemblance entre deux organismes aussi éloignés qu'un virus et un primate, seul un <b>transfert horizontal récent</b> peut l'expliquer : par transfert vertical, les mutations accumulées auraient rendu ces protéines très différentes. À l'inverse, la syncytine 2 ne ressemble qu'à 20 % à la protéine MSRV : elle ne provient pas de ce virus.</p>
 <p>Cet argument moléculaire est renforcé par une <b>similitude fonctionnelle</b> : les syncytines, exprimées au début de la formation du placenta, font fusionner les membranes des cellules de l'embryon et de la mère, comme les protéines ENV du virus font fusionner l'enveloppe virale avec la membrane de la cellule infectée. Enfin, l'arbre de parenté montre que le gène ENW1 du gorille, du chimpanzé, de l'humain, de l'orang-outan et du gibbon provient d'un gène d'origine rétrovirale intégré dans le génome de leur ancêtre commun, puis transmis à ses descendants.</p>
@@ -6442,7 +6434,7 @@ t2: [
 t2b: [
  {id:"endoarg", titre:"Argumenter l'origine endosymbiotique des chloroplastes", duree:"30 min",
   consigne:"<b>Présenter les arguments qui montrent que les chloroplastes sont issus de l'endosymbiose d'une cyanobactérie, et expliquer pourquoi leur génome est si réduit.</b> Réponds par une introduction, un développement structuré et une conclusion. Un schéma est valorisé.",
-  source:"Proposition de correction, construite à partir du cours et de ses ressources",
+  source:"Proposition de correction",
   corrige:`<p class="pintit">Introduction</p>
 <p>Les cellules des végétaux chlorophylliens possèdent des chloroplastes, organites où se réalise la photosynthèse. Dans les années 1960, Lynn Margulis a proposé que ces organites descendent de bactéries phagocytées mais non digérées par des cellules eucaryotes primitives, et devenues des partenaires permanents : c'est une <b>endosymbiose</b>, une association durable à bénéfices réciproques dans laquelle l'un des partenaires vit à l'intérieur des cellules de l'autre. Nous nous demanderons quels arguments soutiennent cette théorie pour le chloroplaste.</p>
 <p class="pintit">Des caractères de bactérie</p>
@@ -6473,7 +6465,7 @@ t2b: [
 
  {id:"genome", titre:"Expliquer la petite taille du génome des organites", duree:"15 min",
   consigne:"La mitochondrie ne possède que 67 gènes, alors que son plus proche parent bactérien libre en possède 1 600 ; le chloroplaste, 87 gènes contre 1 500 à 10 000. <b>Expliquer cette différence, et montrer qu'elle ne contredit pas l'origine bactérienne des organites.</b>",
-  source:"Proposition de correction, construite à partir du cours et de la ressource complémentaire 2",
+  source:"Proposition de correction",
   corrige:`<p>Si les mitochondries et les chloroplastes descendent de bactéries, on s'attendrait à ce que leur génome ait une taille proche de celle d'un génome bactérien. Or la mitochondrie ne possède que 67 gènes contre 1 600 pour son plus proche parent bactérien, et le chloroplaste 87 gènes contre 1 500 à 10 000 pour une cyanobactérie.</p>
 <p>Cette différence s'explique par l'histoire de l'endosymbiose. Une fois la bactérie intégrée dans la cellule hôte, une grande partie de ses gènes a été <b>transférée vers le noyau</b> de cette cellule au fil des générations : pour le chloroplaste, environ 1 400 gènes. Le noyau a alors pris le relais pour coder les protéines de l'organite : elles sont fabriquées dans le cytoplasme, puis <b>importées</b> dans l'organite (environ 2 300 protéines pour le chloroplaste, dont la petite sous-unité de la RubisCo).</p>
 <p>Le génome de l'organite a donc régressé, non parce qu'il ne serait pas d'origine bactérienne, mais parce que ses gènes ont changé de place. Cette réduction est même un argument supplémentaire : elle montre une intégration très poussée du symbiote dans la cellule hôte, qui hérite de gènes bactériens par transfert horizontal. L'organite y gagne aussi : il dépense moins d'énergie pour maintenir et exprimer un génome immense.</p>`,
@@ -6491,7 +6483,7 @@ t2b: [
 t3: [
  {id:"hwcalc", titre:"Tester l'équilibre de Hardy-Weinberg", duree:"20 min",
   consigne:"Dans une population de 400 individus, on dénombre 196 individus de génotype (A//A), 168 de génotype (A//m) et 36 de génotype (m//m). <b>Calculer les fréquences des allèles A et m, puis déterminer si cette population est à l'équilibre de Hardy-Weinberg.</b> Présente tes calculs et conclus. (Données créées pour l'entraînement.)",
-  source:"Proposition de correction, construite à partir du cours",
+  source:"Proposition de correction",
   corrige:`<p class="pintit">Les fréquences alléliques</p>
 <p>La population compte 400 individus diploïdes, donc 800 exemplaires du gène. Les allèles A sont portés deux fois par chaque homozygote (A//A) et une fois par chaque hétérozygote : 2 × 196 + 168 = 560. Donc f(A) = p = 560 / 800 = <b>0,7</b>, et f(m) = q = 1 − 0,7 = <b>0,3</b>.</p>
 <p class="pintit">Les effectifs attendus à l'équilibre</p>
@@ -6512,7 +6504,7 @@ t3: [
 
  {id:"ecarts", titre:"Expliquer pourquoi l'équilibre est rarement observé", duree:"25 min",
   consigne:"<b>Montrer que le modèle de Hardy-Weinberg prévoit l'absence d'évolution, puis expliquer pourquoi les populations réelles s'écartent presque toujours de cet équilibre.</b> Réponds par une introduction, un développement structuré et une conclusion.",
-  source:"Proposition de correction, construite à partir du cours (diapositives 7 à 14)",
+  source:"Proposition de correction",
   corrige:`<p class="pintit">Introduction</p>
 <p>Au début du XIXᵉ siècle, on pensait que l'hérédité mélangeait les caractères des parents, ce qui aurait dû faire disparaître les variants génétiques en quelques générations. En 1908, Hardy et Weinberg proposent un modèle mathématique qui explique la persistance de ces variants. Que prévoit ce modèle, et pourquoi les populations réelles s'en écartent-elles ?</p>
 <p class="pintit">Un modèle sans évolution</p>
@@ -6542,8 +6534,8 @@ t3: [
 
 t3b: [
  {id:"derivesel", titre:"Dérive génétique ou sélection naturelle ?", duree:"30 min",
-  consigne:"<b>À partir des exemples du cours, expliquer comment la dérive génétique et la sélection naturelle modifient les fréquences alléliques d'une population, et montrer ce qui les distingue.</b> Réponds par une introduction, un développement structuré et une conclusion.",
-  source:"Proposition de correction, construite à partir du cours (diapositives 20 à 48)",
+  consigne:"<b>À partir d'exemples précis, expliquer comment la dérive génétique et la sélection naturelle modifient les fréquences alléliques d'une population, et montrer ce qui les distingue.</b> Réponds par une introduction, un développement structuré et une conclusion.",
+  source:"Proposition de correction",
   corrige:`<p class="pintit">Introduction</p>
 <p>Selon le modèle de Hardy-Weinberg, les fréquences des allèles restent constantes de génération en génération dans une population idéale : très grande, panmictique, sans mutation, migration ni sélection. Les populations réelles s'en écartent sous l'effet de forces évolutives. Comment la dérive génétique et la sélection naturelle font-elles varier les fréquences alléliques, et en quoi diffèrent-elles ?</p>
 <p class="pintit">La dérive génétique : le hasard</p>
@@ -6570,8 +6562,8 @@ t3b: [
   ]},
 
  {id:"espece", titre:"Pourquoi la notion d'espèce est-elle délicate à définir ?", duree:"20 min",
-  consigne:"<b>Montrer, à l'aide d'exemples du cours, qu'aucun critère ne suffit à lui seul pour délimiter une espèce, et expliquer comment une nouvelle espèce peut apparaître.</b>",
-  source:"Proposition de correction, construite à partir du bilan du chapitre 3 (diapositives 37 à 45)",
+  consigne:"<b>Montrer, à l'aide d'exemples précis, qu'aucun critère ne suffit à lui seul pour délimiter une espèce, et expliquer comment une nouvelle espèce peut apparaître.</b>",
+  source:"Proposition de correction, construite à partir du bilan du chapitre 3",
   corrige:`<p>Une espèce peut d'abord se définir par la ressemblance (critère phénotypique). Mais l'apparence trompe : chez certains papillons, le mâle et la femelle d'une même espèce sont très différents (dimorphisme sexuel). Le critère biologique, l'interfécondité, définit l'espèce comme un ensemble de populations dont les individus peuvent se reproduire entre eux et donner une descendance fertile ; il ne s'applique ni aux fossiles ni aux organismes sans reproduction sexuée, et des espèces distinctes s'hybrident parfois. Le critère moléculaire compare les séquences d'ADN : il a montré en 1996 que deux fourmis des bois, <i>Formica lugubris</i> et <i>F. paralugubris</i>, longtemps confondues, sont deux espèces. Il a aussi révélé les Dénisoviens, une forme humaine connue presque uniquement par son ADN, distinct de celui des <i>sapiens</i> et des Néandertaliens.</p>
 <p>Même les arbres de parenté posent problème : un arbre des molécules ne coïncide pas toujours avec l'arbre des espèces, et chez les bactéries, les transferts horizontaux de gènes sont si nombreux que W. F. Doolittle propose de remplacer l'arbre du vivant par un réseau.</p>
 <p>Enfin, une espèce n'est pas figée. Dans un environnement instable, la sélection et la dérive différencient génétiquement les populations. Quand deux populations deviennent trop différentes pour échanger des gènes, il n'y a plus de reproduction entre elles : une population suffisamment isolée génétiquement est une espèce en devenir. Les espèces sont donc des ensembles hétérogènes de populations évoluant distinctement dans le temps, ce qui explique qu'aucun critère simple ne suffise.</p>`,
@@ -6590,7 +6582,7 @@ t3b: [
 t4: [
  {id:"nongen", titre:"Une diversité qui ne vient pas des gènes", duree:"30 min",
   consigne:"<b>Montrer, à l'aide d'exemples précis, que le phénotype des êtres vivants peut se diversifier sans modification de leur génome.</b> Réponds par une introduction, un développement structuré et une conclusion.",
-  source:"Proposition de correction, construite à partir du diaporama du chapitre 4",
+  source:"Proposition de correction",
   corrige:`<p class="pintit">Introduction</p>
 <p>La diversité des phénotypes s'explique en grande partie par des mécanismes génétiques : brassages de la reproduction sexuée, mutations, transferts de gènes. Pourtant, d'autres mécanismes diversifient le phénotype des individus sans toucher à leur ADN. Lesquels ?</p>
 <p class="pintit">Les associations entre êtres vivants</p>
@@ -6947,7 +6939,7 @@ function pageAccueil(){
   <ul>
     <li><b>Les rappels de Première</b> sont complets : cours, animations, pièges classiques et encadrés « Vers la Terminale ».</li>
     <li><b>Les chapitres de Terminale</b> suivent un découpage en chapitres, puis en unités. Ceux qui sont rédigés portent la mention « Cours complet » ; les autres affichent leurs objectifs et un bouton <b>Rappels de 1ère</b> vers les fiches utiles.</li>
-    <li><b>La recherche</b> (en haut) balaie tout le contenu : tape une notion, un mot du cours, un nom de molécule.</li>
+    <li><b>La recherche</b> (en haut) balaie tout le contenu : tape une notion, un mot clé, un nom de molécule.</li>
     <li>Le fichier est <b>autonome</b> : aucune connexion nécessaire, il fonctionne depuis un téléphone comme depuis un ordinateur.</li>
   </ul></div>`;
   return h;
