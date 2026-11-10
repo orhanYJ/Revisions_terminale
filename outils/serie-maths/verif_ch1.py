@@ -51,6 +51,7 @@ assert [x[1] >= x[2] for x in tab] == [True, True, True, False, True, True, True
 assert all(2 ** n >= n * n for n in range(4, 300))
 assert all(2 * k * k >= (k + 1) ** 2 for k in range(3, 300)) and 2 * 2 * 2 < 3 ** 2
 assert all(k * k - 2 * k - 1 == (k - 1) ** 2 - 2 for k in range(100))
+assert all((k - 1) ** 2 - 2 >= 7 for k in range(4, 300))   # « il reste au moins sept »
 # encadrer sans croissance de f : u(k+1) = 0,5 u(k) + 1, u(k) ≤ 2 => u(k+1) ≤ 2
 assert 0.5 * 2 + 1 == 2
 # deviner puis prouver : u0 = 0, u(n+1) = u(n) + 2n + 1 => u(n) = n²
@@ -63,6 +64,7 @@ e = [2]
 for n in range(12):
     e.append(e[-1] + 2 * n + 3)
 assert e[:4] == [2, 5, 10, 17] and e == [(n + 1) ** 2 + 1 for n in range(13)] and e[10] == 122
+assert (2 + 2 * 0 + 3, 5 + 2 * 1 + 3, 10 + 2 * 2 + 3) == (5, 10, 17)   # écritures affichées de la question 1
 assert all((k + 1) ** 2 + 1 + 2 * k + 3 == k * k + 4 * k + 5 == (k + 2) ** 2 + 1 for k in range(100))
 # exercice 2 (type bac) : a0 = 5, a(n+1) = 0,8 a(n) + 3 ; a(n) = 15 − 10 × 0,8^n ; seuil 14 au mois 11
 a = [Fr(5)]

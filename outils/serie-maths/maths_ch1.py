@@ -21,7 +21,7 @@ TITRE = "Raisonnement par récurrence"
 SUIVANT = "Chapitre 2 · Limites de suites"
 RYTHME = "vivant"
 PRONONCIATION = {"al-Karaji": "al Karadji", "As-Samaw'al": "As-Samaoual", "Fibonacci": "Fibonatchi", "Maurolico": "Maurolico",
-                 "Peano": "Péano", "Bernoulli": "Bernouilli"}
+                 "Peano": "Péano", "Bernoulli": "Bernouli"}
 
 # ---------------------------------------------------------------- données des graphiques (vérifiées par verif_ch1.py)
 RAC = [[round(x / 20, 3), round(sqrt(x / 20 + 2), 4)] for x in range(0, 49)]          # y = √(x + 2) sur [0 ; 2,4]
@@ -39,7 +39,7 @@ BERN_A = [[n, round(1 + 0.05 * n, 4)] for n in range(21)]                       
 SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Ouverture", fond="ardoise", humeur="mystere", carton=False, beats=[
-        "{tab_dom}{q1}{q1.1}Prends un entier n. Calcule n au carré, plus n, plus quarante et un. "
+        "{tab_dom}{q1}{q1.1}Prends un entier naturel n. Calcule n au carré, plus n, plus quarante et un. "
         "{q1.2}Pour n égale zéro, tu trouves quarante et un : un nombre premier. "
         "{q1.3}Pour n égale un, quarante-trois : premier. {q1.4}Pour deux, quarante-sept : encore premier.",
         "{-q1}{eul}{eul.go}Tu continues. Trois, quatre, cinq… Et ça marche à chaque fois. Dix, vingt, trente… jusqu'à trente-neuf. "
@@ -96,16 +96,16 @@ SCENES = [
         "{-def_her}{thm}{thm.1}Voici donc le principe de récurrence. Soit P de n une propriété, définie pour tout entier n supérieur ou égal à n zéro. "
         "{thm.2}Si P de n zéro est vraie, {thm.3}et si, pour tout k supérieur ou égal à n zéro, P de k entraîne P de k plus un, "
         "{thm.4}alors P de n est vraie pour tout entier n supérieur ou égal à n zéro.",
-        "{-thm}{prop}Pourquoi est-ce que ça marche ? Déroulons. {prop.init}P de zéro est vraie : c'est l'initialisation. "
+        "{-thm}{prop}Pourquoi est-ce que ça marche ? Déroulons, avec n zéro égale zéro. {prop.init}P de zéro est vraie : c'est l'initialisation. "
         "{prop.her}L'hérédité, elle, est une flèche, valable pour n'importe quel k. "
         "{prop.go}Appliquée à k égale zéro, elle donne P de un. Appliquée à k égale un, elle donne P de deux. Puis P de trois, P de quatre…",
         "{prop.fin}N'importe quel entier est atteint, en un nombre fini d'étapes. Deux démonstrations ont suffi pour une infinité de cas.",
         "{-prop}{note_ax}Une précision. Que ce raisonnement soit valable, c'est une propriété fondamentale de l'ensemble des entiers naturels. "
         "On l'admet : en mathématiques, c'est un axiome.",
         "{-note_ax}{usages}Au bac, tu rencontreras la récurrence dans trois situations. "
-        "{usages.1}Établir une formule explicite : u n égale une expression de n. "
+        "{usages.1}Établir une formule explicite : u indice n égale une expression de n. "
         "{usages.2}Encadrer une suite : a inférieur ou égal à u n, inférieur ou égal à b. "
-        "{usages.3}Et montrer qu'une suite est monotone, par exemple u n inférieur ou égal à u n plus un.",
+        "{usages.3}Et montrer qu'une suite est monotone, par exemple u indice n inférieur ou égal à u indice n plus un.",
         "{-usages}",
     ], vis={
         "q_inf": dict(type="formule", titre="Le problème", x=200, y=170, w=880, lignes=[
@@ -148,7 +148,7 @@ SCENES = [
         "{her3.3}Alors deux puissance k plus un, c'est deux fois deux puissance k, donc deux fois trois m, {her3.4}c'est-à-dire trois fois deux m. "
         "Divisible par trois ! L'hérédité est vraie.",
         "{her3.5}Mais l'initialisation ? Deux puissance zéro vaut un. Et un n'est pas divisible par trois. "
-        "{her3.6}En fait, deux puissance n n'est jamais divisible par trois : ce n'est qu'un produit de deux.",
+        "{her3.6}En fait, deux puissance n n'est jamais divisible par trois : il ne s'écrit qu'avec des facteurs deux.",
         "{-her3}{dom_si}Avec les dominos, c'est limpide. {dom_si.her}La règle est en place : si l'un tombait, il ferait tomber le suivant. "
         "{dom_si.init}Mais personne ne pousse le premier. Résultat : rien ne tombe. Jamais.",
         "{-dom_si}{dom_eu}À l'inverse, l'initialisation sans l'hérédité. Tu la connais déjà : c'est notre expression du début, n au carré plus n plus quarante et un. "
@@ -159,11 +159,11 @@ SCENES = [
         "{-dom_eu}{lecon}Retiens la leçon. {lecon.1}Sans initialisation, l'hérédité tourne à vide. "
         "{lecon.2}Sans hérédité, quarante vérifications ne font pas une preuve. "
         "{lecon.3}Et dans l'autre sens : pour montrer qu'une propriété est fausse, un seul contre-exemple suffit. Pas besoin de récurrence.",
-        "{-lecon}{anc}Un mot d'histoire. Ce raisonnement est ancien : on en trouve des anticipations chez {anc.1}al-Karaji, "
-        "{anc.2}As-Samaw'al, {anc.3}Fibonacci, {anc.4}ou Maurolico.",
-        "{-anc}{pascal}{pascal_n}Pascal l'a formalisé.",
+        "{-lecon}{anc}Un mot d'histoire. Ce raisonnement est ancien. On en trouve des anticipations au Moyen Âge : {anc.1}chez al-Karaji, vers l'an mille, "
+        "{anc.2}puis As-Samaw'al au douzième siècle, {anc.3}et Fibonacci au treizième. {anc.4}Et à la Renaissance, chez Maurolico, au seizième siècle.",
+        "{-anc}{pascal}{pascal_n}Au dix-septième siècle, Pascal en fait un principe de démonstration, dans son Traité du triangle arithmétique.",
         "{-pascal}{-pascal_n}{peano}{peano_n}Puis surtout Peano et ses collaborateurs, à la fin du dix-neuvième siècle, "
-        "qui en ont fait l'un des fondements de l'arithmétique.",
+        "qui en font l'un des axiomes des entiers naturels : un fondement de l'arithmétique.",
         "{-peano}{-peano_n}",
     ], vis={
         "q_deux": dict(type="question", t="Et si on oubliait une des deux étapes ?"),
@@ -182,38 +182,39 @@ SCENES = [
         "lecon": dict(type="liste", titre="La leçon", items=[
             "Sans initialisation, l'hérédité tourne à vide", "Sans hérédité, des vérifications ne prouvent rien",
             "Pour réfuter, un seul contre-exemple suffit"], marques=["✗", "✗", "!"], x=170, y=170, w=940),
-        "anc": dict(type="liste", titre="Des anticipations", items=["al-Karaji", "As-Samaw'al", "Fibonacci", "Maurolico"],
-                    marques=["·", "·", "·", "·"], x=380, y=160, w=520),
+        "anc": dict(type="liste", titre="Des anticipations", items=["al-Karaji, vers l'an mille", "As-Samaw'al, XIIᵉ siècle",
+                                                           "Fibonacci, XIIIᵉ siècle", "Maurolico, XVIᵉ siècle"],
+                    marques=["·", "·", "·", "·"], x=330, y=160, w=620),
         "pascal": dict(type="portrait", nom="Blaise Pascal", img="pascal", dates="1623 – 1662",
-                       legende="formalise le raisonnement par récurrence"),
-        "pascal_n": dict(type="tag", style="repere", t="Pascal : la récurrence formalisée", x=660, y=330, w=560),
+                       legende="énonce le principe dans le Traité du triangle arithmétique"),
+        "pascal_n": dict(type="tag", style="repere", t="XVIIᵉ siècle : un principe de démonstration", x=660, y=330, w=580),
         "peano": dict(type="portrait", nom="Giuseppe Peano", img="peano", dates="1858 – 1932",
-                      legende="la récurrence, fondement de l'arithmétique"),
-        "peano_n": dict(type="tag", style="repere", t="Fin du XIXᵉ siècle : un fondement de l'arithmétique", x=660, y=330, w=580),
+                      legende="la récurrence, axiome des entiers naturels"),
+        "peano_n": dict(type="tag", style="repere", t="Fin du XIXᵉ siècle : un axiome des entiers naturels", x=660, y=330, w=580),
     }),
 
     # ================================================================ III. rédiger : le modèle
     dict(id="rediger", chap="Rédiger une récurrence : le modèle", fond="ardoise", humeur="calme",
          retenir="Propriété, initialisation, hérédité, conclusion. Dans l'hérédité : on suppose $P(k)$ pour un $k$ fixé, on écrit le but $P(k+1)$, on utilise l'hypothèse.",
          beats=[
-        "{suite}Passons à la pratique, avec la suite définie par u zéro égale un, et u n plus un égale deux u n plus trois. "
+        "{suite}Passons à la pratique, avec la suite définie par u zéro égale un, et u indice n plus un égale deux fois u n, plus trois. "
         "Calculons quelques termes. {suite.1}u un : deux fois un, plus trois, cinq. {suite.2}u deux : deux fois cinq, plus trois, treize. "
         "{suite.3}Puis vingt-neuf, {suite.4}soixante et un, {suite.5}cent vingt-cinq.",
         "{suite.c}Tu remarques quelque chose ? Ajoute trois à chaque terme : quatre, huit, seize, trente-deux… des puissances de deux ! "
-        "{suite.ok}On conjecture que u n égale deux puissance n plus deux, moins trois.",
+        "{suite.ok}On conjecture que u n égale deux puissance n plus deux, moins trois. L'exposant, c'est n plus deux ; et on retire trois à la fin.",
         "{-suite}{py}On peut le vérifier avec Python. Ce programme calcule les premiers termes, puis les valeurs de la formule. "
         "{py.s}Les deux listes coïncident.",
         "Mais attention : sept valeurs, ce n'est pas une preuve. On vient de voir ce que valent quarante vérifications ! "
         "Il faut une démonstration. Et c'est le travail de la récurrence.",
         "{-py}{copie}Voici la rédaction modèle. Le correcteur cherche quatre étapes : retiens-les, dans cet ordre. "
-        "{copie.1}Un, la propriété. On l'écrit en toutes lettres : pour tout entier n, on note P de n : « u n égale deux puissance n plus deux, moins trois ».",
+        "{copie.1}Un, la propriété. On l'écrit en toutes lettres : pour tout entier naturel n, on note P de n : « u n égale deux puissance n plus deux, moins trois ».",
         "{copie.2}Deux, l'initialisation. Pour n égale zéro, on calcule séparément les deux membres. D'un côté, u zéro égale un. "
         "De l'autre, deux puissance deux, moins trois : quatre moins trois, un. Ils sont égaux : P de zéro est vraie.",
         "{copie.3}Trois, l'hérédité. On écrit : soit k un entier naturel. On suppose que P de k est vraie, "
         "c'est-à-dire u k égale deux puissance k plus deux, moins trois. {copie.m3}C'est l'hypothèse de récurrence.",
-        "{copie.4}Et tout de suite, on écrit le but : montrons P de k plus un, c'est-à-dire u k plus un égale deux puissance k plus trois, moins trois. "
+        "{copie.4}Et tout de suite, on écrit le but : montrons P de k plus un, c'est-à-dire u indice k plus un égale deux puissance k plus trois, moins trois. "
         "{copie.m4}Écrire le but, c'est savoir où on va.",
-        "{-copie}{calc}Maintenant, le calcul. {calc.1}On part de u k plus un. Par définition de la suite, c'est deux u k plus trois. "
+        "{-copie}{calc}Maintenant, le calcul. {calc.1}On part de u indice k plus un. Par définition de la suite, c'est deux fois u k, plus trois. "
         "{calc.2}Et là, on utilise l'hypothèse de récurrence : on remplace u k par deux puissance k plus deux, moins trois. "
         "{calc.3}On développe : deux fois deux puissance k plus deux, c'est deux puissance k plus trois. Puis moins six, plus trois. "
         "{calc.4}Il reste deux puissance k plus trois, moins trois. C'est exactement le but. {calc.5}P de k plus un est vraie.",
@@ -221,7 +222,7 @@ SCENES = [
         "{concl.2}Donc, par récurrence, pour tout entier naturel n, u n égale deux puissance n plus deux, moins trois.",
         "{-concl}{reflexes}Résumons en quatre réflexes. {reflexes.1}Écrire P de n en toutes lettres, entre guillemets. "
         "{reflexes.2}Pour l'initialisation, calculer séparément les deux membres. "
-        "{reflexes.3}Pour l'hérédité : soit k, supposons P de k, puis écrire le but. Partir de u k plus un, utiliser la définition de la suite, puis l'hypothèse. "
+        "{reflexes.3}Pour l'hérédité : soit k, supposons P de k, puis écrire le but. Partir de u indice k plus un, utiliser la définition de la suite, puis l'hypothèse. "
         "{reflexes.4}Et conclure, en citant l'initialisation, l'hérédité et le principe de récurrence.",
         "{-reflexes}{piege_n}Un piège de rédaction, très fréquent. Tu peux écrire n au lieu de k dans l'hérédité, à condition de dire que n est fixé. "
         "Mais écrire « supposons P de n vraie pour tout n », c'est supposer exactement ce qu'on veut démontrer. "
@@ -261,7 +262,7 @@ SCENES = [
 
     # ================================================================ IV. récurrence et sommes
     dict(id="sommes", chap="Récurrence et sommes", fond="carnet", humeur="lumiere",
-         retenir="$1+3+5+\\cdots+(2n-1)=n^2$. Pour une somme, passer du rang $k$ au rang $k+1$, c'est ajouter le terme suivant.",
+         retenir="Pour tout $n\\geq1$, $1+3+5+\\cdots+(2n-1)=n^2$. Pour une somme, passer du rang $k$ au rang $k+1$, c'est ajouter le terme suivant.",
          beats=[
         "{carres}Deuxième usage : les sommes. Additionne les premiers nombres impairs. {carres.1}Un. {carres.2}Un plus trois : quatre. "
         "{carres.3}Un plus trois plus cinq : neuf. {carres.4}Plus sept : seize. {carres.5}Plus neuf : vingt-cinq.",
@@ -272,14 +273,14 @@ SCENES = [
         "et ainsi de suite jusqu'à deux n moins un, égale n au carré ».",
         "{som.2}Initialisation, pour n égale un : la somme se réduit à un, et un au carré vaut un.",
         "{som.3}Hérédité : soit k supérieur ou égal à un, tel que la somme jusqu'à deux k moins un vaut k au carré. "
-        "{som.4}Au rang k plus un, on ajoute un terme, un seul : l'impair suivant, deux fois k plus un, moins un, c'est-à-dire deux k plus un. "
+        "{som.4}Au rang k plus un, on ajoute un terme, un seul : l'impair suivant, le double de k plus un, moins un, c'est-à-dire deux k plus un. "
         "{som.5}La somme vaut donc k au carré plus deux k plus un, c'est-à-dire k plus un, au carré. C'est P de k plus un.",
         "{som.6}Conclusion : par récurrence, la formule est vraie pour tout n supérieur ou égal à un.",
         "{-som}{astuce_som}Le réflexe à retenir pour les sommes : passer du rang k au rang k plus un, c'est ajouter le terme suivant. "
         "Écris-le à part avant de calculer : c'est là que se cachent les erreurs.",
         "{-astuce_som}{sigma}{sigma.1}Cette somme s'écrit aussi avec le symbole sigma : somme, pour k allant de un à n, de deux k moins un. "
         "Le programme permet ce symbole pour abréger. Mais en cas de doute, écris la somme avec des pointillés : c'est plus sûr.",
-        "{sigma.2}Une autre formule du même genre : la somme des carrés. Un au carré, plus deux au carré, jusqu'à n au carré, "
+        "{sigma.2}Une autre formule du même genre : la somme des carrés. Pour tout n supérieur ou égal à un : un au carré, plus deux au carré, jusqu'à n au carré, "
         "égale n, fois n plus un, fois deux n plus un, le tout sur six. Elle se démontre exactement de la même façon. "
         "{sigma.3}Vérifie pour n égale trois : un plus quatre plus neuf, quatorze. Et trois fois quatre fois sept, sur six : quatorze aussi.",
         "{-sigma}",
@@ -296,42 +297,42 @@ SCENES = [
                            t="Du rang $k$ au rang $k+1$, on ajoute le terme suivant. Écris-le à part avant de calculer.", x=170, y=200, w=940),
         "sigma": dict(type="formule", titre="D'autres écritures, d'autres sommes", x=130, y=110, w=1020, lignes=[
             dict(f="$1+3+\\cdots+(2n-1)=\\sum_{k=1}^{n}(2k-1)=n^2$", n="le symbole $\\sum$ abrège ; en cas de doute, écris les pointillés"),
-            dict(f="$1^2+2^2+\\cdots+n^2=\\dfrac{n(n+1)(2n+1)}{6}$", cadre=True),
+            dict(f="$1^2+2^2+\\cdots+n^2=\\dfrac{n(n+1)(2n+1)}{6}$", cadre=True, n="pour tout $n\\geq1$"),
             dict(f="pour $n=3$ : $1+4+9=14$ et $\\dfrac{3\\times4\\times7}{6}=14$", ok=True)]),
     }),
 
     # ================================================================ V. récurrence et inégalités
     dict(id="inegalites", chap="Récurrence et inégalités", fond="ardoise", humeur="calme",
-         retenir="Une fonction croissante conserve l'ordre : si $a\\leq b$, alors $f(a)\\leq f(b)$. C'est l'outil des encadrements par récurrence.",
+         retenir="Si $f$ est croissante sur un intervalle $I$, et si $a\\leq b$ sont dans $I$, alors $f(a)\\leq f(b)$. C'est l'outil des encadrements par récurrence.",
          beats=[
-        "{q5}Troisième usage, le plus fréquent au bac : les inégalités. La suite est définie par u n plus un égale f de u n, "
-        "{q5.2}et on te demande de montrer, par exemple, que zéro est inférieur ou égal à u n, inférieur ou égal à u n plus un, inférieur ou égal à deux.",
-        "{-q5}{gr_f}L'outil clé, c'est la croissance de f. {gr_f.1}Une fonction croissante conserve l'ordre : "
+        "{q5}Troisième usage, le plus fréquent au bac : les inégalités. La suite est définie par u indice n plus un égale f de u n, "
+        "{q5.2}et on te demande de montrer, par exemple, que zéro est inférieur ou égal à u n, inférieur ou égal à u indice n plus un, inférieur ou égal à deux.",
+        "{-q5}{gr_f}L'outil clé, c'est la croissance de f. {gr_f.1}Une fonction croissante sur un intervalle conserve l'ordre : pour a et b dans cet intervalle, "
         "{gr_f.2}{gr_f.3}{gr_f.5}{gr_f.6}si a est inférieur ou égal à b, {gr_f.4}{gr_f.7}{gr_f.8}alors f de a est inférieur ou égal à f de b. "
         "On applique f à l'inégalité, sans changer son sens.",
-        "{-gr_f}{ex5}{ex5.1}Exemple. u zéro égale un, et u n plus un égale racine de u n plus deux. "
-        "{ex5.2}On veut montrer que, pour tout n, zéro inférieur ou égal à u n, inférieur ou égal à u n plus un, inférieur ou égal à deux. "
-        "{ex5.3}On note f de x égale racine de x plus deux. Elle est croissante sur moins deux, plus l'infini : "
+        "{-gr_f}{ex5}{ex5.1}Exemple. u zéro égale un, et u indice n plus un égale la racine carrée de u n plus deux, tout sous la racine. "
+        "{ex5.2}On veut montrer que, pour tout n, zéro inférieur ou égal à u n, inférieur ou égal à u indice n plus un, inférieur ou égal à deux. "
+        "{ex5.3}On note f de x égale la racine carrée de x plus deux, tout sous la racine. Elle est croissante sur l'intervalle de moins deux à plus l'infini : "
         "c'est la composée de deux fonctions croissantes, x donne x plus deux, puis la racine carrée.",
         "{-ex5}{toile}Avant de démontrer, regardons. {toile.1}La courbe de f, {toile.2}et la droite y égale x. "
         "{toile.3}On part de u zéro égale un. On monte jusqu'à la courbe : c'est u un. On revient sur la droite, on remonte : u deux. Puis u trois…",
         "Les termes grimpent, en escalier, et ils se tassent sous deux. {toile.4}Sans jamais le dépasser. C'est précisément ce qu'on va démontrer.",
         "{-toile}{rec5}{rec5.1}Initialisation. u zéro égale un, et u un égale racine de trois, environ un virgule soixante-treize. "
         "On a bien zéro, inférieur à un, inférieur à racine de trois, inférieur à deux.",
-        "{rec5.2}Hérédité. Soit k un entier tel que zéro inférieur ou égal à u k, inférieur ou égal à u k plus un, inférieur ou égal à deux. "
-        "{rec5.3}Comme f est croissante sur l'intervalle zéro, deux, on applique f à toute la chaîne, sans changer le sens.",
-        "{rec5.4}Or f de u k, c'est u k plus un. Et f de u k plus un, c'est u k plus deux. "
+        "{rec5.2}Hérédité. Soit k un entier naturel tel que zéro inférieur ou égal à u k, inférieur ou égal à u indice k plus un, inférieur ou égal à deux. "
+        "{rec5.3}Ces nombres sont tous dans l'intervalle de zéro à deux, où f est croissante : on applique f à toute la chaîne, sans changer le sens.",
+        "{rec5.4}Or f de u k, c'est u indice k plus un. Et f de u indice k plus un, c'est u indice k plus deux. "
         "{rec5.m4}Et aux deux bouts : f de zéro vaut racine de deux, et f de deux vaut racine de quatre, c'est-à-dire deux.",
-        "{rec5.5}Comme zéro est inférieur à racine de deux, on obtient : zéro inférieur ou égal à u k plus un, inférieur ou égal à u k plus deux, "
+        "{rec5.5}Comme zéro est inférieur à racine de deux, on obtient : zéro inférieur ou égal à u indice k plus un, inférieur ou égal à u indice k plus deux, "
         "inférieur ou égal à deux. C'est P de k plus un.",
-        "{rec5.6}Conclusion : la suite est croissante, et majorée par deux. Au chapitre suivant, tu verras qu'une telle suite converge. Ici, vers deux.",
+        "{rec5.6}Conclusion, par récurrence : pour tout n, zéro inférieur ou égal à u n, inférieur ou égal à u indice n plus un, inférieur ou égal à deux. La suite est croissante, et majorée par deux. Au chapitre suivant, tu verras qu'une telle suite converge. Ici, vers deux.",
         "{-rec5}{meth5}La méthode, en trois réflexes. {meth5.1}De a inférieur ou égal à u k inférieur ou égal à b, "
-        "on tire f de a inférieur ou égal à u k plus un, inférieur ou égal à f de b. {meth5.2}Puis on compare f de a avec a, et f de b avec b. "
+        "on tire f de a inférieur ou égal à u indice k plus un, inférieur ou égal à f de b. {meth5.2}Puis on compare f de a avec a, et f de b avec b. "
         "{meth5.3}Et on vérifie la croissance de f sur le bon intervalle : celui où se trouvent les termes.",
-        "{-meth5}{affine}Et si f n'est pas monotone ? Tu peux aussi travailler directement sur l'expression. "
-        "{affine.1}Par exemple, avec u k plus un égale zéro virgule cinq u k, plus un, et l'hypothèse u k inférieur ou égal à deux. "
-        "{affine.2}On multiplie par zéro virgule cinq, qui est positif : zéro virgule cinq u k, inférieur ou égal à un. "
-        "{affine.3}Puis on ajoute un : u k plus un, inférieur ou égal à deux.",
+        "{-meth5}{affine}Autre méthode, sans passer par f : travailler directement sur l'expression, étape par étape. C'est souvent le plus simple quand f est affine. "
+        "{affine.1}Par exemple, avec u indice k plus un égale zéro virgule cinq fois u k, plus un, et l'hypothèse u k inférieur ou égal à deux. "
+        "{affine.2}On multiplie par zéro virgule cinq, qui est positif : zéro virgule cinq fois u k, inférieur ou égal à un. "
+        "{affine.3}Puis on ajoute un : u indice k plus un, inférieur ou égal à deux.",
         "{-affine}{piege_neg}Et attention au sens des inégalités. {piege_neg.1}Multiplier par un nombre négatif renverse l'inégalité. "
         "{piege_neg.2}Appliquer une fonction décroissante aussi. "
         "{piege_neg.3}C'est pour ça qu'avec une fonction décroissante, comme un plus un sur x, la suite n'est en général pas monotone : "
@@ -373,7 +374,7 @@ SCENES = [
             "De $a\\leq u_k\\leq b$, tirer $f(a)\\leq u_{k+1}\\leq f(b)$",
             "Comparer $f(a)$ à $a$, et $f(b)$ à $b$",
             "Vérifier la croissance de $f$ sur le bon intervalle"], x=170, y=170, w=940),
-        "affine": dict(type="formule", titre="Sans la croissance de $f$ : travailler sur l'expression", x=150, y=150, w=980, lignes=[
+        "affine": dict(type="formule", titre="Autre méthode : travailler sur l'expression", x=150, y=150, w=980, lignes=[
             dict(f="$u_{k+1}=0{,}5\\,u_k+1$ et $u_k\\leq2$", txt=True),
             dict(f="$0{,}5\\,u_k\\leq0{,}5\\times2=1$", m="$0{,}5>0$ : même sens"),
             dict(f="$u_{k+1}=0{,}5\\,u_k+1\\leq2$", cadre=True, m="on ajoute $1$")]),
@@ -385,29 +386,29 @@ SCENES = [
 
     # ================================================================ VI. l'inégalité de Bernoulli (démonstration exigible)
     dict(id="bernoulli", chap="L'inégalité de Bernoulli", fond="carnet", humeur="mystere",
-         retenir="Pour tout réel $a\\geq0$ et tout entier $n$ : $(1+a)^n\\geq1+na$. Le point clé : multiplier par $1+a>0$, puis $ka^2\\geq0$.",
+         retenir="Pour tout réel $a\\geq0$ et tout entier $n\\in\\N$ : $(1+a)^n\\geq1+na$. Le point clé : multiplier par $1+a>0$, puis $ka^2\\geq0$.",
          beats=[
         "{tag_bo}{bern}Maintenant, une démonstration que tu dois savoir refaire seul, le jour du bac : elle est exigible. L'inégalité de Bernoulli. "
-        "{bern.1}Pour tout réel a positif ou nul, et pour tout entier naturel n, un plus a, puissance n, est supérieur ou égal à un plus n a.",
+        "{bern.1}Pour tout réel a positif ou nul, et pour tout entier naturel n, un plus a, le tout à la puissance n, est supérieur ou égal à un plus n fois a.",
         "{-bern}{-tag_bo}{gr_b}Qu'est-ce qu'elle raconte ? Prends a égale zéro virgule zéro cinq : une hausse de cinq pour cent, répétée. "
-        "{gr_b.1}En jaune, un virgule zéro cinq, puissance n. {gr_b.2}En bleu, un plus n fois zéro virgule zéro cinq : on ajoute toujours la même chose.",
-        "{gr_b.3}{gr_b.4}Les points jaunes restent au-dessus. Pour n égale vingt, un plus vingt fois zéro virgule zéro cinq, ça fait deux. "
-        "Et un virgule zéro cinq, puissance vingt ? Environ deux virgule soixante-cinq.",
-        "En clair : un plus a, puissance n, grandit au moins aussi vite qu'une suite arithmétique. "
+        "{gr_b.1}En jaune, un virgule zéro cinq, à la puissance n. {gr_b.2}En bleu, un plus n fois zéro virgule zéro cinq : on ajoute toujours la même chose.",
+        "{gr_b.3}{gr_b.4}Les points jaunes ne passent jamais en dessous. Pour n égale vingt, un plus vingt fois zéro virgule zéro cinq, ça fait deux. "
+        "Et un virgule zéro cinq, à la puissance vingt ? Environ deux virgule soixante-cinq.",
+        "En clair : un plus a, le tout à la puissance n, grandit au moins aussi vite qu'une suite arithmétique. "
         "Au chapitre suivant, c'est la clé de la limite de q puissance n, quand q est plus grand que un.",
-        "{-gr_b}{dem}Démontrons-la. {dem.1}Soit a un réel positif. Pour n entier naturel, on note P de n : "
-        "« un plus a, puissance n, supérieur ou égal à un plus n a ».",
-        "{dem.2}Initialisation : un plus a, puissance zéro, vaut un. Et un plus zéro fois a, vaut un aussi. "
+        "{-gr_b}{dem}Démontrons-la. {dem.1}Soit a un réel positif ou nul. Pour n entier naturel, on note P de n : "
+        "« un plus a, le tout à la puissance n, supérieur ou égal à un plus n fois a ».",
+        "{dem.2}Initialisation : un plus a, le tout à la puissance zéro, vaut un. Et un plus zéro fois a, vaut un aussi. "
         "Un est bien supérieur ou égal à un : P de zéro est vraie.",
-        "{dem.3}Hérédité. Soit k un entier tel que un plus a, puissance k, est supérieur ou égal à un plus k a.",
+        "{dem.3}Hérédité. Soit k un entier naturel tel que un plus a, le tout à la puissance k, est supérieur ou égal à un plus k fois a.",
         "{dem.4}Et voici le point délicat : on multiplie les deux membres par un plus a. "
-        "On obtient : un plus a, puissance k plus un, supérieur ou égal à un plus k a, fois un plus a. "
-        "{dem.m4}On a le droit de le faire sans changer le sens, parce que un plus a est strictement positif. "
+        "On obtient : un plus a, à la puissance k plus un, supérieur ou égal au produit de un plus k a, par un plus a. "
+        "{dem.m4}On a le droit de le faire sans changer le sens, parce que un plus a est strictement positif : a est positif, donc un plus a vaut au moins un. "
         "C'est exactement cette justification que le correcteur attend.",
-        "{dem.5}On développe le membre de droite : un, plus a, plus k a, plus k a carré. C'est-à-dire un, plus k plus un fois a, plus k a carré.",
-        "{dem.6}Or k a carré est positif ou nul. Donc cette quantité est supérieure ou égale à un, plus k plus un fois a. "
-        "{dem.7}Finalement, un plus a, puissance k plus un, est supérieur ou égal à un, plus k plus un fois a. C'est P de k plus un.",
-        "{dem.8}Conclusion : par récurrence, pour tout entier naturel n, un plus a, puissance n, est supérieur ou égal à un plus n a.",
+        "{dem.5}On développe ce produit : un, plus a, plus k a, plus k fois a au carré. C'est-à-dire un, plus le produit de k plus un par a, plus k fois a au carré.",
+        "{dem.6}Or k fois a au carré est positif ou nul : k est un entier naturel, et un carré est positif. Donc ce produit est supérieur ou égal à un, plus k plus un fois a. "
+        "{dem.7}Finalement, un plus a, à la puissance k plus un, est supérieur ou égal à un, plus k plus un fois a. C'est P de k plus un.",
+        "{dem.8}Conclusion : par récurrence, pour tout entier naturel n, un plus a, le tout à la puissance n, est supérieur ou égal à un plus n fois a.",
         "{-dem}{plus_b}Pour aller plus loin, hors programme : la même preuve marche dès que a est supérieur ou égal à moins un, "
         "car alors un plus a reste positif ou nul.",
         "{-plus_b}",
@@ -443,8 +444,8 @@ SCENES = [
         "on l'a vu, on suppose P de k pour un k fixé, pas pour tout n.",
         "{pieges.2}Une hérédité qui n'utilise jamais l'hypothèse de récurrence. Si ton calcul de P de k plus un se passe de P de k, "
         "ce n'est pas une récurrence : soit une preuve directe était possible, soit il y a une erreur.",
-        "{pieges.3}Oublier l'initialisation. Elle est souvent facile, mais elle rapporte des points. Et sans elle, on démontre des choses fausses. Écris-la toujours.",
-        "{pieges.4}Confondre le terme d'indice k plus un, u k plus un, avec le terme u k auquel on ajoute un. Ce n'est pas du tout la même chose.",
+        "{pieges.3}Oublier l'initialisation. Elle est souvent facile, mais elle rapporte des points. Et sans elle, on peut « démontrer » des choses fausses. Écris-la toujours.",
+        "{pieges.4}Confondre u indice k plus un, le terme de rang k plus un, avec u k, plus un : le terme de rang k, augmenté de un. Ce n'est pas du tout la même chose.",
         "{pieges.5}Et enfin, le mauvais rang de départ. Celui-là mérite un exemple.",
         "{-pieges}{tab2n}Compare deux puissance n et n au carré. {tab2n.1}Pour n égale zéro, un et deux, deux puissance n gagne, ou fait égalité. "
         "{tab2n.2}Pour n égale trois : huit contre neuf. Raté ! "
@@ -452,29 +453,31 @@ SCENES = [
         "Deux puissance n repart devant, et ne se fait plus rattraper.",
         "{-tab2n}{rang}Donc on démontre : pour tout n supérieur ou égal à quatre, deux puissance n est supérieur ou égal à n au carré. "
         "{rang.1}Et on initialise à n zéro égale quatre : seize, supérieur ou égal à seize. {rang.m1}Surtout pas à zéro !",
-        "{rang.2}Hérédité : si deux puissance k est supérieur ou égal à k au carré, alors deux puissance k plus un, c'est deux fois deux puissance k, "
-        "donc c'est supérieur ou égal à deux k au carré. "
-        "{rang.3}Il reste à montrer que deux k au carré est supérieur ou égal à k plus un, au carré. "
+        "{rang.2}Hérédité : soit k supérieur ou égal à quatre, tel que deux puissance k est supérieur ou égal à k au carré. Alors deux à la puissance k plus un, c'est deux fois deux puissance k, "
+        "donc c'est supérieur ou égal à deux fois k au carré. "
+        "{rang.3}Il reste à montrer que deux fois k au carré est supérieur ou égal à k plus un, le tout au carré. "
         "C'est-à-dire que k au carré, moins deux k, moins un, est positif.",
-        "{rang.4}Or c'est k moins un, au carré, moins deux. Et pour k supérieur ou égal à quatre, k moins un, au carré, vaut au moins neuf. "
-        "{rang.5}On enchaîne : deux puissance k plus un, supérieur ou égal à deux k au carré, supérieur ou égal à k plus un, au carré. "
-        "Une chaîne d'inégalités : c'est le schéma standard.",
+        "{rang.4}Or c'est k moins un, le tout au carré, moins deux. Et pour k supérieur ou égal à quatre, k moins un, au carré, vaut au moins neuf : il reste au moins sept, c'est positif. "
+        "{rang.5}On enchaîne : deux à la puissance k plus un, supérieur ou égal à deux fois k au carré, supérieur ou égal à k plus un, au carré. "
+        "Une chaîne d'inégalités : c'est le schéma standard. "
+        "{rang.6}Conclusion : par récurrence, pour tout n supérieur ou égal à quatre, deux puissance n est supérieur ou égal à n au carré.",
         "{-rang}",
     ], vis={
         "pieges": dict(type="liste", titre="Les pièges classiques", items=[
             "Supposer « $P(n)$ pour tout $n$ »", "Une hérédité qui n'utilise pas l'hypothèse",
             "Oublier l'initialisation", "Confondre $u_{k+1}$ et $u_k+1$", "Initialiser au mauvais rang"],
             marques=["!", "!", "!", "!", "!"], x=170, y=110, w=940),
-        "tab2n": dict(type="formule", titre="Deux puissance n contre n au carré", x=130, y=150, w=1020, lignes=[
+        "tab2n": dict(type="formule", titre="$2^n$ contre $n^2$", x=130, y=150, w=1020, lignes=[
             dict(f="$2^0=1\\geq0^2$, $\\quad2^1=2\\geq1^2$, $\\quad2^2=4\\geq2^2$", ok=True, taille=40),
             dict(f="$2^3=8<9=3^2$", ko=True, taille=40),
             dict(f="$2^4=16\\geq4^2$, $\\quad2^5=32\\geq5^2$, $\\quad2^6=64\\geq6^2$", ok=True, taille=40)]),
         "rang": dict(type="formule", copie=True, titre="Pour tout $n\\geq4$ : $2^n\\geq n^2$", x=100, y=110, w=1080, lignes=[
             dict(lab="Initialisation", f="à $n_0=4$ : $2^4=16\\geq16=4^2$.", m="pas à $0$ !", taille=31),
-            dict(lab="Hérédité.", f="Si $2^k\\geq k^2$ avec $k\\geq4$ : $2^{k+1}=2\\times2^k\\geq2k^2$.", taille=31),
+            dict(lab="Hérédité.", f="Soit $k\\geq4$ tel que $2^k\\geq k^2$ : $2^{k+1}=2\\times2^k\\geq2k^2$.", taille=31),
             dict(f="Reste : $2k^2\\geq(k+1)^2\\iff k^2-2k-1\\geq0$", ind=True, taille=31),
             dict(f="$k^2-2k-1=(k-1)^2-2\\geq9-2>0$ car $k\\geq4$", ind=True, taille=31),
-            dict(f="$2^{k+1}\\geq2k^2\\geq(k+1)^2$", ind=True, cadre=True, m="la chaîne d'inégalités", taille=31)]),
+            dict(f="$2^{k+1}\\geq2k^2\\geq(k+1)^2$", ind=True, cadre=True, m="la chaîne d'inégalités", taille=31),
+            dict(lab="Conclusion.", f="par récurrence, pour tout $n\\geq4$, $2^n\\geq n^2$.", taille=31)]),
     }),
 
     # ================================================================ VIII. ce que la récurrence ne fait pas
@@ -485,12 +488,12 @@ SCENES = [
         "avec un tableur ou Python, ou qu'elle soit donnée par l'énoncé. La récurrence sert à la prouver.",
         "{nefait.2}Elle ne s'applique qu'à des propriétés indexées par des entiers. Pour un réel x, on utilise d'autres outils, comme l'étude de fonction. "
         "{nefait.3}Et pour montrer qu'une propriété est fausse, un seul contre-exemple suffit.",
-        "{-nefait}{devine}Un exemple de « deviner, puis prouver ». u zéro égale zéro, et u n plus un égale u n, plus deux n plus un. "
+        "{-nefait}{devine}Un exemple de « deviner, puis prouver ». u zéro égale zéro, et u indice n plus un égale u n, plus deux n, plus un. "
         "{devine.1}u un vaut zéro plus un : un. {devine.2}u deux : un plus trois, quatre. {devine.3}Puis neuf, {devine.4}seize.",
         "{devine.c}Des carrés ! {devine.ok}On conjecture que u n égale n au carré.",
         "{-devine}{prouve}Et on le prouve. {prouve.1}Initialisation : u zéro égale zéro, qui est bien zéro au carré. "
-        "{prouve.2}Hérédité : si u k égale k au carré, alors u k plus un égale k au carré plus deux k plus un, c'est-à-dire k plus un, au carré. "
-        "{prouve.3}Démontré.",
+        "{prouve.2}Hérédité : si u k égale k au carré, alors u indice k plus un égale k au carré plus deux k plus un, c'est-à-dire k plus un, le tout au carré. "
+        "{prouve.3}Conclusion, par récurrence : pour tout n, u n égale n au carré.",
         "{-prouve}{fort}Pour aller plus loin, et hors programme : il existe des variantes, comme la récurrence forte, "
         "où l'on suppose toutes les propriétés de P de n zéro jusqu'à P de k pour prouver P de k plus un. Elles ne sont pas exigibles.",
         "{-fort}",
@@ -513,19 +516,19 @@ SCENES = [
     # ================================================================ IX. exercice 1
     dict(id="exo1", chap="Exercice 1 · une formule à démontrer", fond="ardoise", humeur="tension", beats=[
         "{ex1}Place à l'entraînement. Premier exercice, pour démarrer. La suite u est définie par u zéro égale deux, "
-        "et, pour tout n, u n plus un égale u n plus deux n plus trois.",
-        "Trois questions. Un : calcule u un, u deux et u trois. Deux : démontre par récurrence que pour tout n, u n égale n plus un, au carré, plus un. "
+        "et, pour tout n, u indice n plus un égale u n, plus deux n, plus trois.",
+        "Trois questions. Un : calcule u un, u deux et u trois. Deux : démontre par récurrence que pour tout n, u n égale n plus un, le tout au carré, plus un. "
         "Trois : déduis-en u dix.",
         "{-ex1}{pa1}À toi. Mets la vidéo sur pause, et rédige comme sur une copie, avec les quatre étapes.",
-        "{pa1.stop}{-pa1}{ex1c}{ex1c.q1}Correction. {s11}{s11.1}Question un. u un égale deux, plus zéro, plus trois : cinq. "
-        "{s11.2}u deux égale cinq, plus deux, plus trois : dix. {s11.3}u trois égale dix, plus quatre, plus trois : dix-sept.",
-        "{-s11}{ex1c.q2}{s12}Question deux. {s12.1}On note P de n : « u n égale n plus un, au carré, plus un ». "
+        "{pa1.stop}{-pa1}{ex1c}{ex1c.q1}Correction. {s11}{s11.1}Question un. u un égale deux, plus deux fois zéro, plus trois : cinq. "
+        "{s11.2}u deux égale cinq, plus deux fois un, plus trois : dix. {s11.3}u trois égale dix, plus deux fois deux, plus trois : dix-sept.",
+        "{-s11}{ex1c.q2}{s12}Question deux. {s12.1}On note P de n : « u n égale n plus un, le tout au carré, plus un ». "
         "{s12.2}Initialisation : zéro plus un, au carré, plus un, ça fait deux. C'est bien u zéro.",
-        "{s12.3}Hérédité : soit k tel que u k égale k plus un, au carré, plus un. "
-        "{s12.4}Alors u k plus un égale u k, plus deux k plus trois. On remplace u k par l'hypothèse. "
+        "{s12.3}Hérédité : soit k un entier naturel tel que u k égale k plus un, le tout au carré, plus un. "
+        "{s12.4}Alors u indice k plus un égale u k, plus deux k, plus trois. On remplace u k par l'hypothèse. "
         "{s12.5}On développe : k au carré, plus quatre k, plus cinq. "
-        "{s12.6}Et k plus deux, au carré, plus un, c'est aussi k au carré plus quatre k plus cinq. C'est P de k plus un. "
-        "{s12.7}Conclusion, par récurrence.",
+        "{s12.6}Et k plus deux, le tout au carré, plus un, c'est aussi k au carré plus quatre k plus cinq. C'est P de k plus un. "
+        "{s12.7}Conclusion : par récurrence, pour tout entier naturel n, u n égale n plus un, le tout au carré, plus un.",
         "{-s12}{ex1c.q3}{s13}{s13.1}Question trois : u dix égale onze au carré, plus un. {s13.2}Cent vingt-deux. Sans calculer les dix termes !",
         "{-s13}{-ex1c}",
     ], vis={
@@ -538,7 +541,8 @@ SCENES = [
                      donnees=["$u_0=2$", "$u_{n+1}=u_n+2n+3$"],
                      questions=["$u_1$, $u_2$, $u_3$ ?", "$u_n=(n+1)^2+1$ ?", "$u_{10}$ ?"]),
         "s11": dict(type="formule", titre="1 · Les premiers termes", x=550, y=170, w=690, lignes=[
-            dict(f="$u_1=2+0+3=5$", taille=42), dict(f="$u_2=5+2+3=10$", taille=42), dict(f="$u_3=10+4+3=17$", taille=42)]),
+            dict(f="$u_1=2+2\\times0+3=5$", taille=42), dict(f="$u_2=5+2\\times1+3=10$", taille=42),
+            dict(f="$u_3=10+2\\times2+3=17$", taille=42)]),
         "s12": dict(type="formule", copie=True, titre="2 · La récurrence", x=530, y=76, w=720, lignes=[
             dict(lab="Propriété.", f="$P(n)$ : « $u_n=(n+1)^2+1$ ».", taille=27),
             dict(lab="Initialisation.", f="$(0+1)^2+1=2=u_0$.", taille=27),
@@ -555,29 +559,30 @@ SCENES = [
     dict(id="exo2", chap="Exercice 2 · type bac", fond="carnet", humeur="tension", beats=[
         "{ex2}Deuxième exercice, au format du bac. Une chaîne de vidéos compte cinq mille abonnés au départ. "
         "Chaque mois, elle perd vingt pour cent de ses abonnés, mais en gagne trois mille nouveaux.",
-        "On note a n le nombre d'abonnés, en milliers, après n mois. Donc a zéro égale cinq, et a n plus un égale zéro virgule huit a n, plus trois.",
+        "On note a n le nombre d'abonnés, en milliers, après n mois. Donc a zéro égale cinq, et a indice n plus un égale zéro virgule huit fois a n, plus trois.",
         "{-ex2}{ex2b}Quatre questions. {ex2b.1}Un : calcule a un et a deux. "
-        "{ex2b.2}Deux : démontre par récurrence que pour tout n, cinq inférieur ou égal à a n, inférieur ou égal à a n plus un, inférieur ou égal à quinze. "
-        "{ex2b.3}Trois : on pose v n égale a n moins quinze. Montre que v est géométrique, puis que a n égale quinze moins dix fois zéro virgule huit puissance n. "
+        "{ex2b.2}Deux : démontre par récurrence que pour tout n, cinq inférieur ou égal à a n, inférieur ou égal à a indice n plus un, inférieur ou égal à quinze. "
+        "{ex2b.3}Trois : on pose v n égale a n moins quinze. Montre que la suite v est géométrique, puis que a n égale quinze, moins dix fois zéro virgule huit puissance n. "
         "{ex2b.4}Quatre : complète une fonction Python, pour trouver le premier mois où la chaîne dépasse quatorze mille abonnés.",
         "{-ex2b}{pa2}C'est un vrai sujet de bac. Prends le temps : mets sur pause, et rédige tout.",
         "{pa2.stop}{-pa2}{ex2c}{ex2c.q1}Correction. {s21}{s21.1}Question un. a un égale zéro virgule huit fois cinq, plus trois : sept. "
         "{s21.2}a deux égale zéro virgule huit fois sept, plus trois : huit virgule six.",
         "{-s21}{ex2c.q2}{s22}Question deux, la récurrence. {s22.1}On pose f de x égale zéro virgule huit x, plus trois. "
-        "Elle est croissante sur R, car son coefficient, zéro virgule huit, est positif. "
+        "C'est une fonction affine, croissante sur R, car son coefficient directeur, zéro virgule huit, est positif. "
         "{s22.2}Initialisation : a zéro égale cinq, a un égale sept, et cinq inférieur ou égal à cinq, inférieur ou égal à sept, inférieur ou égal à quinze. Vrai.",
-        "{s22.3}Hérédité : supposons cinq inférieur ou égal à a k, inférieur ou égal à a k plus un, inférieur ou égal à quinze. "
+        "{s22.3}Hérédité : soit k un entier naturel tel que cinq inférieur ou égal à a k, inférieur ou égal à a indice k plus un, inférieur ou égal à quinze. "
         "{s22.4}f est croissante, donc on peut lui appliquer toute la chaîne. "
-        "{s22.5}Or f de cinq vaut sept, et f de quinze vaut quinze. On obtient : sept inférieur ou égal à a k plus un, inférieur ou égal à a k plus deux, "
-        "inférieur ou égal à quinze. {s22.6}Et comme cinq est inférieur à sept, c'est P de k plus un. Conclusion par récurrence.",
+        "{s22.5}Or f de cinq vaut sept, et f de quinze vaut quinze. On obtient : sept inférieur ou égal à a indice k plus un, inférieur ou égal à a indice k plus deux, "
+        "inférieur ou égal à quinze. {s22.6}Et comme cinq est inférieur à sept, c'est P de k plus un. "
+        "{s22.7}Conclusion : par récurrence, l'encadrement est vrai pour tout entier naturel n.",
         "{-s22}{toile2}{toile2.1}{toile2.2}Regarde la toile d'araignée. {toile2.3}En escalier, les termes montent vers quinze… "
         "{toile2.4}sans jamais le dépasser. C'est exactement l'encadrement qu'on vient de démontrer.",
         "{-toile2}{ex2c.q3}{s23}Question trois : la technique de Première, la suite auxiliaire. "
-        "{s23.1}v n plus un égale a n plus un, moins quinze. "
-        "{s23.2}C'est-à-dire zéro virgule huit a n, plus trois, moins quinze : zéro virgule huit a n, moins douze. "
-        "{s23.3}On factorise par zéro virgule huit : zéro virgule huit fois, a n moins quinze. C'est zéro virgule huit v n.",
-        "{s23.4}Donc v est géométrique, de raison zéro virgule huit, et de premier terme v zéro égale cinq moins quinze, moins dix. "
-        "{s23.5}Ainsi v n égale moins dix fois zéro virgule huit puissance n, et a n égale quinze, moins dix fois zéro virgule huit puissance n.",
+        "{s23.1}v indice n plus un égale a indice n plus un, moins quinze. "
+        "{s23.2}C'est-à-dire zéro virgule huit fois a n, plus trois, moins quinze : zéro virgule huit fois a n, moins douze. "
+        "{s23.3}On factorise par zéro virgule huit : zéro virgule huit fois, a n moins quinze. C'est zéro virgule huit fois v n.",
+        "{s23.4}Donc la suite v est géométrique, de raison zéro virgule huit, et de premier terme v zéro égale cinq moins quinze : moins dix. "
+        "{s23.5}Ainsi v n égale moins dix, fois zéro virgule huit puissance n. Et comme a n égale v n plus quinze, a n égale quinze, moins dix fois zéro virgule huit puissance n.",
         "{-s23}{ex2c.q4}{py2}Question quatre. Voici la fonction. {py2.l4}On veut le premier mois où a dépasse quatorze. "
         "Donc on continue tant que a est inférieur ou égal à quatorze : {py2.r1}la condition, c'est a inférieur ou égal à quatorze. "
         "{py2.l5}Et à chaque tour, on passe au mois suivant : {py2.r2}a prend la valeur zéro virgule huit fois a, plus trois.",
@@ -603,11 +608,12 @@ SCENES = [
             dict(f="$a_1=0{,}8\\times5+3=7$", taille=42), dict(f="$a_2=0{,}8\\times7+3=8{,}6$", taille=42)]),
         "s22": dict(type="formule", copie=True, titre="2 · L'encadrement", x=530, y=80, w=720, lignes=[
             dict(f="$f(x)=0{,}8x+3$ est croissante sur $\\R$ car $0{,}8>0$.", taille=27),
-            dict(lab="Init.", f="$a_0=5$, $a_1=7$ : $5\\leq5\\leq7\\leq15$.", taille=27),
-            dict(lab="Hérédité.", f="Si $5\\leq a_k\\leq a_{k+1}\\leq15$ :", taille=27),
+            dict(lab="Initialisation.", f="$a_0=5$, $a_1=7$ : $5\\leq5\\leq7\\leq15$.", taille=27),
+            dict(lab="Hérédité.", f="Soit $k\\in\\N$ tel que $5\\leq a_k\\leq a_{k+1}\\leq15$.", taille=27),
             dict(f="$f(5)\\leq f(a_k)\\leq f(a_{k+1})\\leq f(15)$", ind=True, taille=27),
             dict(f="$f(5)=7$, $f(15)=15$ : $7\\leq a_{k+1}\\leq a_{k+2}\\leq15$", ind=True, taille=26),
-            dict(f="donc $5\\leq a_{k+1}\\leq a_{k+2}\\leq15$ : $P(k+1)$.", ind=True, cadre=True, taille=27)]),
+            dict(f="donc $5\\leq a_{k+1}\\leq a_{k+2}\\leq15$ : $P(k+1)$.", ind=True, cadre=True, taille=27),
+            dict(lab="Conclusion.", f="par récurrence, pour tout $n\\in\\N$, $5\\leq a_n\\leq a_{n+1}\\leq15$.", taille=27)]),
         "toile2": dict(type="graphe", titre="La toile d'araignée de $a_{n+1}=0{,}8\\,a_n+3$", x=570, y=120, w=650, h=520,
                        ax=dict(x=[0, 17], y=[0, 17], gx=[5, 10, 15], gy=[5, 10, 15], lx="$x$", ly="$y$"),
                        el=[dict(type="droite", pts=[[0, 3], [17, 16.6]], c="te", ep=3.2, lbl="$y=0{,}8x+3$", lp=[3.6, 8.2]),
@@ -641,7 +647,7 @@ SCENES = [
         "{bac.4}Encadrer une suite, ou montrer qu'elle est monotone, avec la croissance de f. "
         "{bac.5}Refaire seul la démonstration de l'inégalité de Bernoulli. {bac.6}Et compléter un algorithme de seuil en Python.",
         "Si tu sais faire ces six choses, ce chapitre est à toi. Les fiches, les QCM et les animations du chapitre t'attendent sur le site : "
-        "le lien est dans la description. Et pour vérifier tout de suite, le quiz t'attend juste après.",
+        "le lien est dans la description. Et pour vérifier tout de suite, un quiz sur cette vidéo t'y attend aussi.",
         "{-bac}",
     ], vis={
         "carte": dict(type="carte", centre="RÉCURRENCE · initialisation + hérédité", branches=[
