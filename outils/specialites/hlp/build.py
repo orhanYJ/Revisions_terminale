@@ -11,7 +11,8 @@ shell = lire("shell.html")
 # Données : le tronc commun d'abord, puis toutes les entrées (data-e*.js, dans l'ordre des noms),
 # puis l'atelier, les animations et les pages transversales. Un nouveau fichier data-e<N>.js est pris d'office.
 ENTREES = sorted(n for n in os.listdir(SRC) if n.startswith("data-e") and n.endswith(".js"))
-ORDRE = ["data-commun.js"] + ENTREES + ["data-sujets.js", "data-atelier.js", "data-anims.js", "data-pages.js"]
+ANIMS = sorted(n for n in os.listdir(SRC) if n.startswith("data-anims-") and n.endswith(".js"))
+ORDRE = ["data-commun.js"] + ENTREES + ["data-sujets.js", "data-atelier.js", "data-anims.js"] + ANIMS + ["data-pages.js"]
 ORDRE = [n for n in ORDRE if os.path.exists(os.path.join(SRC, n))]
 donnees = "\n".join(lire(n) for n in ORDRE)
 STYLE = lire("style.css") + ("\n" + lire("theme-ancien.css") if os.path.exists(os.path.join(SRC, "theme-ancien.css")) else "")

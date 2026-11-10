@@ -1,4 +1,4 @@
-window.HLP = { ENTREES: [] };
+window.HLP = { ENTREES: [], ANIMS: {} };
 (function (H) {
   var s = ' fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
   H.ICONES = {

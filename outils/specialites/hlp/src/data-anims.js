@@ -4,7 +4,8 @@
               etapes: [{ montre: [ids], legende }] } ;
    - frise  : { debut, fin, pas, periodes: [{ id, de, a, nom, rang }], evts: [{ id, an, t, h, g }], etapes: [{ an, montre, legende }] }.
    Une entrée les appelle par son champ anims: ["id", …] ; une page par <div data-anim="id"></div>. */
-HLP.ANIMS = {
+HLP.ANIMS = HLP.ANIMS || {};
+Object.assign(HLP.ANIMS, {
   "e1-paradoxe": { type: "graphe", titre: "Le paradoxe de l’Émile : éduquer sans dénaturer", w: 640, h: 420,
     intro: "Rousseau ouvre son traité par une accusation contre l’homme… puis la retourne. Suis l’argument étape par étape.",
     noeuds: [
@@ -178,7 +179,7 @@ HLP.ANIMS = {
       { montre: ["iii"], legende: "<b>Partie III</b> : une réponse plus juste, qui tient compte des deux premières." },
       { montre: ["c"], legende: "<b>Conclure</b> : répondre clairement à la question posée, sans formule creuse." }
     ] }
-};
+});
 Object.assign(HLP.ANIMS, {
   "e4-frise": { type: "frise", titre: "Les ruptures se suivent : de la modernité aux avant-gardes", debut: 1860, fin: 1965, pas: 15, h: 300, min: 860,
     intro: "Chaque rupture répond à la précédente. Dates indicatives pour les mouvements, exactes pour les œuvres.",
