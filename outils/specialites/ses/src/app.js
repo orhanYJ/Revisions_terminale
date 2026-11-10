@@ -258,7 +258,7 @@
       });
       tk2.forEach(function (t) { s += '<line class="ax' + (t === 0 ? "0" : "") + '" x1="' + ml + '" x2="' + (W - mr) + '" y1="' + Y(t) + '" y2="' + Y(t) + '"/><text class="lb" x="' + (ml - 6) + '" y="' + (Y(t) + 4) + '" text-anchor="end">' + fr(t, 0) + u + "</text>"; });
       var pas = g.pasX || Math.ceil(n / 8);
-      xs.forEach(function (x, i) { if (i % pas === 0 || (i === n - 1 && (n - 1) % pas >= pas / 2)) s += '<text class="lb" x="' + Xc(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + x + "</text>"; });
+      xs.forEach(function (x, i) { if (i % pas === 0 || (i === n - 1 && !g.sansDernier && (n - 1) % pas >= pas / 2)) s += '<text class="lb" x="' + Xc(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + x + "</text>"; });
       if (g.type === "barres") {
         g.y.forEach(function (v, i) {
           var y1 = Y(Math.max(0, v)), y2 = Y(Math.min(0, v));

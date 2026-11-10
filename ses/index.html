@@ -2983,7 +2983,7 @@ GRAPHES["e5-bce"] = {
   type: "lignes", t: "Le taux de la facilité de dépôt de la BCE, 2021-2026",
   s: "Taux en vigueur à la fin de chaque trimestre, en % (repères : premier trimestre de chaque année). Touche le graphique pour lire un trimestre.",
   src: "Source : Banque centrale européenne, taux directeurs (dates d’effet des décisions). Dernière valeur : 2,50 % depuis le 16 septembre 2026 (taux inchangé le 29 octobre 2026).",
-  unite: " %", pasX: 4, h: 260, min: -1, max: 5, dec: 2,
+  unite: " %", pasX: 4, h: 260, min: -1, max: 5, dec: 2, sansDernier: true,
   x: ["2021","2021 T2","2021 T3","2021 T4","2022","2022 T2","2022 T3","2022 T4","2023","2023 T2","2023 T3","2023 T4","2024","2024 T2","2024 T3","2024 T4","2025","2025 T2","2025 T3","2025 T4","2026","2026 T2","2026 T3","2026 T4"],
   series: [{ n: "Facilité de dépôt", c: 1, v: [-0.5,-0.5,-0.5,-0.5,-0.5,-0.5,0.75,2,3,3.5,4,4,4,3.75,3.5,3,2.5,2,2,2,2,2.25,2.5,2.5] }]
 };
@@ -3130,8 +3130,8 @@ CH.e5 = {
       '<tr><td>1957</td><td>Traité de Rome : Communauté économique européenne (six pays)</td></tr>' +
       '<tr><td>1968</td><td>Union douanière : plus de droits de douane entre membres, un tarif extérieur commun</td></tr>' +
       '<tr><td>1986</td><td>Acte unique européen : programme d’achèvement du marché intérieur</td></tr>' +
-      '<tr><td>1er janvier 1993</td><td><b>Marché unique</b> : libre circulation des biens, des services, des capitaux et des personnes</td></tr>' +
       '<tr><td>1992</td><td>Traité de Maastricht : Union européenne, projet de monnaie unique, critères de convergence</td></tr>' +
+      '<tr><td>1er janvier 1993</td><td><b>Marché unique</b> : libre circulation des biens, des services, des capitaux et des personnes</td></tr>' +
       '<tr><td>1er janvier 1999</td><td><b>Euro</b> pour 11 pays (pièces et billets le 1er janvier 2002)</td></tr>' +
       '<tr><td>1er janvier 2026</td><td>La Bulgarie devient le 21e pays de la zone euro (l’Union compte 27 membres)</td></tr>' +
       '</tbody></table></div>' +
@@ -3777,7 +3777,7 @@ AUTEURS.push(
       });
       tk2.forEach(function (t) { s += '<line class="ax' + (t === 0 ? "0" : "") + '" x1="' + ml + '" x2="' + (W - mr) + '" y1="' + Y(t) + '" y2="' + Y(t) + '"/><text class="lb" x="' + (ml - 6) + '" y="' + (Y(t) + 4) + '" text-anchor="end">' + fr(t, 0) + u + "</text>"; });
       var pas = g.pasX || Math.ceil(n / 8);
-      xs.forEach(function (x, i) { if (i % pas === 0 || (i === n - 1 && (n - 1) % pas >= pas / 2)) s += '<text class="lb" x="' + Xc(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + x + "</text>"; });
+      xs.forEach(function (x, i) { if (i % pas === 0 || (i === n - 1 && !g.sansDernier && (n - 1) % pas >= pas / 2)) s += '<text class="lb" x="' + Xc(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + x + "</text>"; });
       if (g.type === "barres") {
         g.y.forEach(function (v, i) {
           var y1 = Y(Math.max(0, v)), y2 = Y(Math.min(0, v));
