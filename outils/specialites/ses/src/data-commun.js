@@ -84,7 +84,7 @@ var PROG = [
         "Comprendre que le travail est source d’intégration sociale et que certaines évolutions de l’emploi (précarisation, taux persistant de chômage élevé, polarisation de la qualité des emplois) peuvent affaiblir ce pouvoir intégrateur."],
       notions: ["travail", "emploi", "activité", "statut d’emploi (salarié, non-salarié)", "inactivité", "qualité de l’emploi", "taylorisme", "division horizontale et verticale du travail", "post-taylorisme", "flexibilité", "management participatif", "télétravail", "polarisation des emplois", "intégration sociale", "précarisation"],
       liens: "La salarisation (86,7 % des emplois en 2024) est étudiée en <a href=\"#s1:s1-3\">S1</a> ; la polarisation des emplois par le progrès technique en <a href=\"#e1:e1-5\">É1</a>." },
-    { id: "s5", code: "S5", court: "Engagement politique", statut: "bt", ecrit: true,
+    { id: "s5", code: "S5", court: "Engagement politique", statut: "red", ecrit: true, spark: "s5-tend",
       titre: "Comment expliquer l’engagement politique dans les sociétés démocratiques ?",
       objectifs: [
         "Comprendre que l’engagement politique prend des formes variées (vote, militantisme, engagement associatif, consommation engagée).",
@@ -192,6 +192,11 @@ var RESSOURCES = [
     { n: "OMC : statistiques du commerce", u: "https://www.wto.org/french/res_f/statis_f/statis_f.htm", b: "données", d: "Valeur du commerce mondial de marchandises et de services commerciaux, principaux exportateurs." },
     { n: "Douane : résultats du commerce extérieur de la France en 2025", u: "https://www.douane.gouv.fr/actualites/resultats-du-commerce-exterieur-de-la-france-pour-le-mois-de-decembre-et-pour-lannee", d: "Solde commercial des biens, exportations, importations." },
     { n: "Citepa : inventaire des émissions de gaz à effet de serre", u: "https://www.citepa.org/", d: "Émissions françaises de 1990 à 2025 (rapport Secten 2026)." },
+    { n: "Insee : évolution du chômage (Emploi, chômage, revenus du travail, 2026)", u: "https://www.insee.fr/fr/statistiques/8733053", b: "données", d: "Taux de chômage au sens du BIT de 1975 à 2025, par sexe, âge, durée depuis la fin des études." },
+    { n: "Insee : halo autour du chômage et sous-emploi", u: "https://www.insee.fr/fr/statistiques/8733067", b: "données", d: "1,9 million de personnes dans le halo en 2025 ; 4,4 % des personnes en emploi en sous-emploi." },
+    { n: "Banque centrale européenne : taux directeurs", u: "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.fr.html", b: "données", d: "Historique des taux de la facilité de dépôt, des opérations principales de refinancement et de la facilité de prêt marginal." },
+    { n: "Insee : comptes des administrations publiques en 2025", u: "https://www.insee.fr/fr/statistiques/8956575", b: "données", d: "Déficit public de 5,1 % du PIB et dette de 115,6 % du PIB en 2025 (première estimation, mars 2026)." },
+    { n: "Service-public.fr : montant du SMIC", u: "https://www.service-public.fr/particuliers/vosdroits/F2300", d: "Montants horaire, mensuel et annuel du salaire minimum en vigueur." },
     { n: "CEPII", u: "https://www.cepii.fr/", d: "Centre français de recherche en économie internationale : analyses et bases de données sur le commerce mondial." }
   ] },
   { t: "Manuels", l: [
