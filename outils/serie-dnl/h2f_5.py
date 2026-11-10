@@ -44,7 +44,7 @@ SCENES = [
         "Ils avouent des crimes qu'ils n'ont jamais commis. "
         "À la fin de mille neuf cent trente-huit, la Grande Purge aura fait six cent quatre-vingt mille exécutions.",
         "{q1}Pourquoi un régime terroriserait-il son propre peuple ? Et pourquoi finirait-il par frapper ses propres hommes ?",
-        "{-q1}{-g0}{plan}Aujourd'hui, la partie deux, point trois du chapitre : la terreur de masse. {plan.1}On commence par les événements, sur la carte. "
+        "{-q1}{-g0}Aujourd'hui, la partie deux, point trois du chapitre : la terreur de masse. {plan}{plan.1}On commence par les événements, sur la carte. "
         "{plan.2}Puis le cours, idée par idée : la police, les procès, les camps, les purges. "
         "{plan.3}Puis le dossier documentaire sur la terreur. Qu'ont en commun les trois terreurs ? Et qu'est-ce qui les distingue ? "
         "{plan.4}Ensuite, tout le tableau des totalitarismes, en synthèse des parties un et deux. "
@@ -176,7 +176,7 @@ SCENES = [
         ("C", "le principal organisateur de l'assassinat de Kirov", "c_zi"),
         "{-c_zi}Et Kamenev dit avoir été",
         ("C", "mû par une haine sans bornes et par la soif du pouvoir", "c_ka"),
-        "{-c_ka}{photo}Regarde maintenant une photographie, prise en mille neuf cent vingt-cinq. {photo.1}Staline pose avec Zinoviev, Kamenev, et Alexeï Rykov. "
+        "{-c_ka}Regarde maintenant une photographie, prise en mille neuf cent vingt-cinq. {photo}{photo.1}Staline pose avec Zinoviev, Kamenev, et Alexeï Rykov. "
         "{photo.2}Staline a fait fusiller ces trois hommes. {photo.3}Zinoviev et Kamenev en mille neuf cent trente-six. Rykov en mille neuf cent trente-huit.",
         "{-photo}{photo2}{purge}Vient ensuite la Grande Purge, en mille neuf cent trente-sept et trente-huit. "
         "{!680 000}Le dossier compte six cent quatre-vingt mille exécutions. "
@@ -213,9 +213,9 @@ SCENES = [
         "C'est le premier grand chantier soviétique réalisé par les détenus du Goulag.",
         "{-photo3}{gul}Le graphique du dossier donne l'échelle. {gul.1}{gul.2}{gul.3}Au début des années mille neuf cent cinquante, "
         "les camps comptent plus d'{!un million et demi}un million et demi de détenus.",
-        "{-gul}{tri}L'Allemagne ouvre Dachau en mille neuf cent trente-trois. Le camp est destiné à tous ceux qu'on juge incompatibles avec la société. "
+        "{-gul}L'Allemagne ouvre Dachau en mille neuf cent trente-trois. Le camp est destiné à tous ceux qu'on juge incompatibles avec la société. "
         "À l'intérieur, les détenus sont classés par triangles de couleur. "
-        "{tri.1}Rouge pour les détenus politiques. {tri.2}Vert pour les criminels. {tri.3}Rose pour les homosexuels. "
+        "{tri}{tri.1}Rouge pour les détenus politiques. {tri.2}Vert pour les criminels. {tri.3}Rose pour les homosexuels. "
         "{tri.4}Noir pour ceux qu'on appelle les asociaux. {tri.5}Violet pour les Témoins de Jéhovah. {tri.6}Et un triangle jaune est ajouté pour les Juifs.",
         "{-tri}{phr}Retiens cette phrase du cours. Les nazis n'ont pas inventé le camp. {phr.1}Ce qu'ils ont ajouté, c'est la chambre à gaz.",
     ], vis={
@@ -333,8 +333,8 @@ SCENES = [
          beats=[
         "{g9}{g9.1}Huitième idée : la logique commune des trois terreurs. Toutes trois utilisent une police secrète pour menacer la population. "
         "Toutes trois réduisent au silence ou tuent leurs opposants. Et surtout, toutes trois {!désignent un ennemi de la nation}désignent un ennemi de la nation.",
-        "{-g9}{en}Une fois l'ennemi désigné, la violence contre lui paraît justifiée au reste de la population. "
-        "{en.1}En Union soviétique, l'ennemi, ce sont les koulaks, comme dans le dossier documentaire sur les koulaks. "
+        "{-g9}Une fois l'ennemi désigné, la violence contre lui paraît justifiée au reste de la population. "
+        "{en}{en.1}En Union soviétique, l'ennemi, ce sont les koulaks, comme dans le dossier documentaire sur les koulaks. "
         "{en.2}En Allemagne : les Juifs, les Roms, les prostituées, les homosexuels, et les handicapés. Quatre cent mille personnes sont stérilisées de force. "
         "{en.3}En Italie : les ennemis de l'État, jugés par le Tribunal spécial.",
         "{-en}{cons}En Allemagne, tout cela repose sur une théorie du complot. La nation serait minée par {!des ennemis de l'intérieur}des ennemis de l'intérieur. "
@@ -452,17 +452,17 @@ SCENES = [
         "{t5.3}Les symboles : le faisceau romain, la croix gammée, la faucille et le marteau. "
         "{t5.4}Et les slogans. Il Duce ha sempre ragione : le Duce a toujours raison. Heil Hitler. "
         "Et : Merci, camarade Staline, pour notre enfance heureuse.",
-        "{-t5}{t6}Ensuite, les soutiens. Ces régimes ne reposaient pas sur la seule terreur. "
-        "{t6.1}En Italie : les propriétaires terriens, les commerçants, les anciens combattants, la monarchie, et l'Église. "
+        "{-t5}Ensuite, les soutiens. Ces régimes ne reposaient pas sur la seule terreur. "
+        "{t6}{t6.1}En Italie : les propriétaires terriens, les commerçants, les anciens combattants, la monarchie, et l'Église. "
         "{t6.2}En Allemagne : les classes moyennes, les élites conservatrices, les industriels, et l'armée. "
         "{t6.3}En Union soviétique : l'appareil du parti, la bureaucratie, et une partie de la classe ouvrière.",
-        "{-t6}{t7}Quatrième bloc, le terrorisme d'État : la leçon d'aujourd'hui. {t7.1}La police politique. "
+        "{-t6}Quatrième bloc, le terrorisme d'État : la leçon d'aujourd'hui. {t7}{t7.1}La police politique. "
         "En Italie, l'OVRA et le Tribunal spécial. En Allemagne, la Gestapo et la SS, toutes deux sous Himmler. "
         "En Union soviétique, l'OGPU, puis le NKVD, et le Goulag. "
         "{t7.2}Les opposants. En Italie : les socialistes et les communistes, comme Matteotti. Et les Juifs, à partir de mille neuf cent trente-huit. "
         "{t7.3}En Allemagne : les communistes, les socialistes, les Juifs, les Roms, les homosexuels, les handicapés, et les Témoins de Jéhovah. "
         "{t7.4}En Union soviétique : les koulaks, les ennemis de classe, les vieux bolcheviks, et les officiers de l'armée.",
-        "{-t7}{t8}Cinquième bloc : une société contrôlée, vue dans l'épisode quatre. {t8.1}La jeunesse : les Balilla, les Jeunesses hitlériennes de dix à dix-huit ans, et le Komsomol. "
+        "{-t7}Cinquième bloc : une société contrôlée, vue dans l'épisode quatre. {t8}{t8.1}La jeunesse : les Balilla, les Jeunesses hitlériennes de dix à dix-huit ans, et le Komsomol. "
         "{t8.2}La pensée et la culture. En Italie, la presse d'opposition est supprimée. "
         "En Allemagne, l'enseignement racial est obligatoire à partir de mille neuf cent trente-trois. "
         "En Union soviétique, le réalisme socialiste, et les photographies retouchées. "

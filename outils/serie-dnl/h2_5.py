@@ -53,7 +53,7 @@ SCENES = [
         "They confess to crimes they never committed. "
         "By the end of nineteen thirty-eight, the Great Purge has carried out six hundred and eighty thousand executions.",
         "{q1}Why would a regime terrorise its own people? And why would it end up striking its own men?",
-        "{-q1}{-g0}{plan}Today: part two point three of the chapter. Mass terror. {plan.1}We start with the events, on the map. "
+        "{-q1}{-g0}Today: part two point three of the chapter. Mass terror. {plan}{plan.1}We start with the events, on the map. "
         "{plan.2}Then the course, idea by idea. The police, the trials, the camps, the purges. "
         "{plan.3}Then Worksheet four. What do the three terrors have in common? And what sets them apart? "
         "{plan.4}After that, the whole totalitarianism table, as a synthesis of parts one and two. "
@@ -185,7 +185,7 @@ SCENES = [
         ("C", "the principal organiser of Kirov's assassination", "c_zi"),
         "{-c_zi}And Kamenev said he had been",
         ("C", "actuated by boundless hatred and by lust of power", "c_ka"),
-        "{-c_ka}{photo}Now look at one photograph, taken in nineteen twenty-five. {photo.1}Stalin stands with Zinoviev, Kamenev, and Alexei Rykov. "
+        "{-c_ka}Now look at one photograph, taken in nineteen twenty-five. {photo}{photo.1}Stalin stands with Zinoviev, Kamenev, and Alexei Rykov. "
         "{photo.2}Stalin had all three of those men shot. {photo.3}Zinoviev and Kamenev in nineteen thirty-six. Rykov in nineteen thirty-eight.",
         "{-photo}{photo2}{purge}Then came the Great Purge, in nineteen thirty-seven and thirty-eight. "
         "{!680,000}The worksheet counts six hundred and eighty thousand executions. "
@@ -222,9 +222,9 @@ SCENES = [
         "It was the first great Soviet project built by Gulag prisoners.",
         "{-photo3}{gul}The worksheet's graph gives the scale. {gul.1}{gul.2}{gul.3}By the early nineteen-fifties, "
         "the camps hold more than {!one and a half million}one and a half million prisoners.",
-        "{-gul}{tri}Germany opened Dachau in nineteen thirty-three. It was meant for everyone judged incompatible with society. "
+        "{-gul}Germany opened Dachau in nineteen thirty-three. It was meant for everyone judged incompatible with society. "
         "Inside, prisoners were sorted by coloured triangles. "
-        "{tri.1}Red for political prisoners. {tri.2}Green for criminals. {tri.3}Pink for homosexuals. "
+        "{tri}{tri.1}Red for political prisoners. {tri.2}Green for criminals. {tri.3}Pink for homosexuals. "
         "{tri.4}Black for those called anti-social. {tri.5}Purple for Jehovah's Witnesses. {tri.6}And a yellow triangle was added for Jews.",
         "{-tri}{phr}Keep this sentence of the course. The Nazis did not invent the camp. {phr.1}What they added was the gas chamber.",
     ], vis={
@@ -342,8 +342,8 @@ SCENES = [
          beats=[
         "{g9}{g9.1}Idea eight: the common logic of the three terrors. All three used a secret police to threaten the population. "
         "All three silenced or killed their opponents. And above all, all three {!chose an enemy of the nation}chose an enemy of the nation.",
-        "{-g9}{en}Once an enemy is chosen, violence against it seems justified to the rest of the population. "
-        "{en.1}In the Soviet Union, the enemy was the kulaks, as in Worksheet two. "
+        "{-g9}Once an enemy is chosen, violence against it seems justified to the rest of the population. "
+        "{en}{en.1}In the Soviet Union, the enemy was the kulaks, as in Worksheet two. "
         "{en.2}In Germany: Jews, Roma, prostitutes, homosexuals, and disabled people. Four hundred thousand people were forcibly sterilised. "
         "{en.3}In Italy: the enemies of the State, tried by the Special Court.",
         "{-en}{cons}In Germany, all this rested on a conspiracy theory. The nation was supposedly undermined by {!enemies from within}enemies from within. "
@@ -407,7 +407,7 @@ SCENES = [
         "{tb}Let's put everything together in the totalitarianism table of the course, filled in as far as the course has gone. "
         "It has five blocks. {tb.1}Seizure of power. {tb.2}Ideology. {tb.3}Dictatorship. {tb.4}State terrorism. {tb.5}A controlled society. "
         "It is a synthesis of parts one and two. If you can fill it in from memory, you are ready.",
-        "{-tb}{t1}Block one: the seizure of power. First, the date. {t1.1}Italy: October nineteen twenty-two. "
+        "{-tb}Block one: the seizure of power. First, the date. {t1}{t1.1}Italy: October nineteen twenty-two. "
         "After the March on Rome, Mussolini is appointed prime minister. The state becomes totalitarian from nineteen twenty-five. "
         "{t1.2}Germany: the thirtieth of January, nineteen thirty-three. Hitler becomes chancellor. He gets full powers in March. "
         "{t1.3}The Soviet Union: it starts in nineteen twenty-four, with the death of Lenin. "
@@ -461,17 +461,17 @@ SCENES = [
         "{t5.3}The symbols: the Roman fasces, the swastika, the hammer and sickle. "
         "{t5.4}And the slogans. Il Duce ha sempre ragione: the Duce is always right. Heil Hitler. "
         "And: Thank you, Comrade Stalin, for our happy childhood.",
-        "{-t5}{t6}Next, the supports. These regimes did not rest on terror alone. "
-        "{t6.1}In Italy: landowners, shopkeepers, veterans, the monarchy, and the Church. "
+        "{-t5}Next, the supports. These regimes did not rest on terror alone. "
+        "{t6}{t6.1}In Italy: landowners, shopkeepers, veterans, the monarchy, and the Church. "
         "{t6.2}In Germany: the middle classes, the conservative elites, the industrialists, and the army. "
         "{t6.3}In the Soviet Union: the party apparatus, the bureaucracy, and part of the working class.",
-        "{-t6}{t7}Block four, state terrorism: today's lesson. {t7.1}The political police. "
+        "{-t6}Block four, state terrorism: today's lesson. {t7}{t7.1}The political police. "
         "In Italy, the OVRA and the Special Court. In Germany, the Gestapo and the S.S., both under Himmler. "
         "In the Soviet Union, the OGPU, then the NKVD, and the Gulag. "
         "{t7.2}The opponents. In Italy: socialists and communists, like Matteotti. And Jews, from nineteen thirty-eight. "
         "{t7.3}In Germany: communists, socialists, Jews, Roma, homosexuals, the disabled, and Jehovah's Witnesses. "
         "{t7.4}In the Soviet Union: kulaks, class enemies, old Bolsheviks, and army officers.",
-        "{-t7}{t8}Block five: a controlled society, from episode four. {t8.1}Youth: the Balilla, the Hitler Youth from ten to eighteen, and the Komsomol. "
+        "{-t7}Block five: a controlled society, from episode four. {t8}{t8.1}Youth: the Balilla, the Hitler Youth from ten to eighteen, and the Komsomol. "
         "{t8.2}Thought and culture. In Italy, the opposition press is suppressed. "
         "In Germany, racial instruction is compulsory from nineteen thirty-three. "
         "In the Soviet Union, socialist realism, and retouched photographs. "
