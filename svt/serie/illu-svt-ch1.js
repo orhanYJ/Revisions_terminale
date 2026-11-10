@@ -347,7 +347,7 @@
       op(ti, E(P(st.tl, 0, .6))); op(leg, E(P(st.tl, .4, .6)));
       IND.forEach(function (I_, i) {
         var k = et(v, String(i + 1), .6 + i * 1.2); op(I_.g, E(P(t, k, .6)));
-        I_.b.setAttribute("width", (I_.n * 46 * EIO(P(t, k + .4, 1))).toFixed(1));
+        I_.b.setAttribute("width", (I_.n * 30 * EIO(P(t, k + .4, 1))).toFixed(1));
       });
       op(co, E(P(t, et(v, "4", 5), .7)));
     };
