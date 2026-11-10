@@ -565,7 +565,7 @@
   function vueAuteurs() {
     var h = '<header class="tete"><span class="kick">Boîte à outils</span><h1>Les auteurs du programme</h1><p class="chapo">Qui a dit quoi : les attributions exactes, à citer dans tes copies. Entraîne-toi ensuite à les relier à leurs idées.</p></header>';
     h += '<div class="btns"><a class="btn p" href="#entrainement/relier">Jouer : relie l\'auteur à sa théorie</a></div>';
-    ["e1", "e2", "s1", "s2"].forEach(function (id) {
+    Object.keys(QS).filter(function (id) { return AUTEURS.some(function (a) { return a.ch === id; }); }).forEach(function (id) {
       var q = QS[id];
       h += '<h2 class="sec"><span class="n">' + esc(q.code) + "</span>" + esc(q.court) + '</h2><div class="auts">' + AUTEURS.filter(function (a) { return a.ch === id; }).map(function (a) {
         var ini = a.n.split(/[\s-]+/).filter(function (x) { return /^[A-ZÉ]/.test(x); }).map(function (x) { return x.charAt(0); }).slice(-2).join("");
@@ -579,10 +579,10 @@
     var h = '<header class="tete"><span class="kick">Boîte à outils</span><h1>Entraînement</h1><p class="chapo">Se tester est la meilleure façon de retenir. Mélange les chapitres pour forcer ta mémoire à chercher.</p></header>' +
       '<nav class="onglets">' + tabs.map(function (t) { return '<a href="#entrainement' + (t[0] ? "/" + t[0] : "") + '"' + (sous === t[0] ? ' class="act"' : "") + ">" + t[1] + "</a>"; }).join("") + "</nav>";
     if (sous === "relier") h += '<div class="q-carte" data-relier></div>';
-    else h += '<div class="seg" id="choix">' + ["e1", "e2", "s1", "s2"].filter(function (id) { return CH[id]; }).map(function (id) { return '<button class="act" data-c="' + id + '">' + esc(QS[id].court) + "</button>"; }).join("") + '</div><div id="ze"></div>';
+    else h += '<div class="seg" id="choix">' + Object.keys(QS).filter(function (id) { return CH[id] && QS[id].statut === "red"; }).map(function (id) { return '<button class="act" data-c="' + id + '">' + esc(QS[id].court) + "</button>"; }).join("") + '</div><div id="ze"></div>';
     return { titre: "Entraînement", html: h, apres: function (r) {
       if (sous === "relier") return;
-      var choisis = {}; Object.keys(CH).forEach(function (k) { choisis[k] = 1; });
+      var choisis = {}; Object.keys(CH).forEach(function (k) { if (QS[k] && QS[k].statut === "red") choisis[k] = 1; });
       function lancer() {
         var ids = Object.keys(choisis).filter(function (k) { return choisis[k]; });
         if (!ids.length) { $("#ze", r).innerHTML = "<p>Choisis au moins un chapitre.</p>"; return; }

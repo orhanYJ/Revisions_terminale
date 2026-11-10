@@ -675,7 +675,7 @@ var PROG = [
         "Comprendre l’internationalisation de la chaîne de valeur et savoir l’illustrer.",
         "Comprendre les effets induits par le commerce international : gains moyens en termes de baisse de prix, réduction des inégalités entre pays, accroissement des inégalités de revenus au sein de chaque pays ; comprendre les termes du débat entre libre-échange et protectionnisme."],
       notions: [] },
-    { id: "e3", code: "É3", court: "Chômage", statut: "bt", ecrit: true,
+    { id: "e3", code: "É3", court: "Chômage", statut: "red", ecrit: true,
       titre: "Comment lutter contre le chômage ?",
       objectifs: [
         "Savoir définir le chômage et le sous-emploi et connaître les indicateurs de taux de chômage et de taux d’emploi.",
@@ -685,7 +685,7 @@ var PROG = [
         "Connaître les principales politiques mises en œuvre pour lutter contre le chômage : politiques macroéconomiques de soutien de la demande globale, politiques d’allégement du coût du travail, politiques de formation et politiques de flexibilisation pour lutter contre les rigidités du marché du travail."],
       notions: ["chômage (au sens du BIT)", "sous-emploi", "taux de chômage", "taux d’emploi", "appariement", "frictions", "inadéquations spatiales et de qualifications", "asymétries d’information", "salaire d’efficience", "chômage structurel", "salaire minimum", "règles de protection de l’emploi", "chômage conjoncturel", "fluctuations de l’activité", "demande globale", "coût du travail", "politiques de formation", "flexibilisation", "rigidités du marché du travail"],
       liens: "La destruction créatrice et le progrès technique biaisé (<a href=\"#e1\">É1 Croissance</a>) expliquent une partie du chômage des moins qualifiés ; la concurrence internationale aussi (<a href=\"#e2\">É2 Commerce</a>)." },
-    { id: "e4", code: "É4", court: "Crises financières", statut: "bt", ecrit: false,
+    { id: "e4", code: "É4", court: "Crises financières", statut: "red", ecrit: false,
       titre: "Comment expliquer les crises financières et réguler le système financier ?",
       objectifs: [
         "Connaître les principales caractéristiques de la crise financière des années 1930 et de celle de 2008 (effondrement boursier, faillites en chaîne, chute du PIB et accroissement du chômage).",
@@ -695,7 +695,7 @@ var PROG = [
         "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l’aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité."],
       notions: ["crise financière", "krach boursier", "bulle spéculative", "comportements mimétiques", "prophétie autoréalisatrice", "panique bancaire", "faillites bancaires en chaîne", "effet de richesse négatif", "collatéral", "ventes forcées", "contraction du crédit", "aléa moral", "supervision bancaire", "ratio de solvabilité"],
       liens: "La chute du PIB de 2009 (−2,8 % en volume) est visible sur le graphique de la croissance française du chapitre <a href=\"#e1:e1-1\">É1</a>." },
-    { id: "e5", code: "É5", court: "Politiques européennes", statut: "bt", ecrit: true,
+    { id: "e5", code: "É5", court: "Politiques européennes", statut: "red", ecrit: true,
       titre: "Quelles politiques économiques dans le cadre européen ?",
       objectifs: [
         "Connaître les grandes caractéristiques de l’intégration européenne (marché unique et zone euro) ; comprendre les effets du marché unique sur la croissance.",
@@ -719,7 +719,7 @@ var PROG = [
         "Comprendre que, dans les sociétés démocratiques, l’École transmet des savoirs et vise à favoriser l’égalité des chances ; comprendre l’évolution, depuis les années 1950, des principaux indicateurs mesurant l’accès à l’école et à l’enseignement supérieur (taux de scolarisation, taux d’accès à un diplôme ou à un type de formation) en distinguant les processus de massification et de démocratisation.",
         "Comprendre la multiplicité des facteurs d’inégalités de réussite scolaire (notamment, rôle de l’École, rôle du capital culturel et des investissements familiaux, socialisation selon le genre, effets des stratégies des ménages) dans la construction des trajectoires individuelles de formation."],
       notions: [] },
-    { id: "s3", code: "S3", court: "Mobilité sociale", statut: "bt", ecrit: true,
+    { id: "s3", code: "S3", court: "Mobilité sociale", statut: "red", ecrit: true, spark: "s3-mob",
       titre: "Quels sont les caractéristiques contemporaines et les facteurs de la mobilité sociale ?",
       objectifs: [
         "Savoir distinguer la mobilité sociale intergénérationnelle des autres formes de mobilité (géographique, professionnelle).",
@@ -2174,6 +2174,887 @@ ANIMS["s2-mass"] = {
   }
 };
 
+GRAPHES["e3-chomage"] = {
+  type: "lignes", t: "Le taux de chômage en France, 1975-2025", spark: 0,
+  s: "Taux de chômage au sens du BIT, en % de la population active. Touche le graphique pour lire une année.",
+  src: "Source : Insee, enquête Emploi 2025, séries longues sur le marché du travail (juillet 2026). Champ : France, personnes vivant dans un logement ordinaire, actives.",
+  unite: " %", pasX: 10, h: 300, min: 0, max: 12,
+  x: [1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+  series: [
+    { n: "Ensemble", c: 2, v: [3.6,4.0,4.5,4.7,5.3,5.6,6.6,7.1,7.4,8.7,9.1,9.1,9.2,8.9,8.2,8.0,8.2,9.0,10.0,10.6,10.0,10.5,10.6,10.2,9.9,8.5,7.8,7.9,8.5,8.9,8.9,8.9,8.0,7.4,9.1,9.3,9.2,9.8,10.3,10.3,10.4,10.1,9.4,9.1,8.5,8.1,7.9,7.3,7.4,7.4,7.7] },
+    { n: "Femmes", c: 3, v: [5.0,5.8,6.4,6.6,7.4,8.2,9.1,9.5,9.7,10.8,11.1,11.0,11.4,11.1,10.6,10.1,10.2,11.0,11.5,12.0,11.5,11.8,11.8,11.5,11.1,9.8,9.0,8.7,9.3,9.7,9.6,9.5,8.4,7.8,9.2,9.5,9.5,9.7,10.2,10.0,9.9,9.9,9.4,9.1,8.4,8.0,7.8,7.2,7.3,7.3,7.6] },
+    { n: "Hommes", c: 1, v: [2.7,2.8,3.2,3.4,3.8,3.8,4.8,5.4,5.8,7.0,7.7,7.7,7.5,7.1,6.4,6.3,6.5,7.5,8.8,9.4,8.7,9.3,9.6,9.1,8.9,7.4,6.7,7.2,7.8,8.2,8.2,8.3,7.6,7.1,9.0,9.1,8.9,9.8,10.4,10.6,10.8,10.3,9.5,9.0,8.5,8.1,8.0,7.5,7.5,7.6,7.8] }
+  ]
+};
+GRAPHES["e3-diplome"] = {
+  type: "hbarres", t: "Qui est le plus exposé au chômage ? (2025)",
+  s: "Taux de chômage au sens du BIT selon le diplôme et la catégorie socioprofessionnelle du dernier emploi, en %.",
+  src: "Source : Insee, enquête Emploi 2025 (Emploi, chômage, revenus du travail, juillet 2026).",
+  unite: " %", lab: 170,
+  cats: ["Aucun diplôme ou brevet", "CAP, BEP ou équivalent", "Baccalauréat", "Bac + 2 ou plus", "Ouvriers peu qualifiés", "Employés peu qualifiés", "Cadres"],
+  series: [{ n: "Taux de chômage", v: [14.7, 7.6, 9.1, 5.3, 17.1, 11.4, 4.0], c: 2 }]
+};
+
+CHAINES["e3-frictions"] = { t: "D’où vient le chômage structurel d’appariement ?", e: [
+  { t: "Des emplois sont vacants pendant que des personnes cherchent un emploi", k: "cause" },
+  { f: [{ t: "Frictions : il faut du temps pour se trouver (information, candidatures, entretiens)" }, { t: "Inadéquations : les emplois ne sont pas là où sont les chômeurs, ou demandent d’autres qualifications" }], a: "car" },
+  { t: "Offres et demandes de travail ne se rencontrent pas, même quand l’activité est bonne", a: "donc" },
+  { t: "Chômage structurel, qui persiste indépendamment de la conjoncture", k: "effet", a: "donc" }
+] };
+CHAINES["e3-efficience"] = { t: "Le salaire d’efficience", e: [
+  { t: "L’employeur ne peut pas observer parfaitement l’effort de ses salariés (asymétrie d’information)", k: "cause" },
+  { t: "Il verse un salaire supérieur au salaire d’équilibre pour motiver, fidéliser et attirer les meilleurs", a: "donc" },
+  { t: "Perdre son emploi coûte plus cher au salarié : il fournit plus d’effort", a: "donc" },
+  { t: "Mais à ce salaire, les entreprises embauchent moins que ce que souhaitent offrir les travailleurs", k: "frein", a: "or" },
+  { t: "Un chômage involontaire durable apparaît, sans que le salaire baisse", k: "effet", a: "donc" }
+] };
+CHAINES["e3-smic"] = { t: "Les deux effets possibles d’un salaire minimum", e: [
+  { t: "Hausse du salaire minimum", k: "cause" },
+  { f: [{ t: "Coût du travail peu qualifié en hausse : s’il dépasse sa productivité, moins d’embauches", k: "frein" }, { t: "Pouvoir d’achat et incitation à travailler en hausse ; salariés plus stables et plus productifs", k: "effet" }], a: "deux effets" },
+  { t: "L’effet net sur le chômage dépend du niveau du salaire minimum par rapport au salaire médian et à la productivité", a: "donc" }
+] };
+CHAINES["e3-protection"] = { t: "Règles de protection de l’emploi : un effet ambigu", e: [
+  { t: "Licencier devient plus long et plus coûteux", k: "cause" },
+  { f: [{ t: "En récession, les entreprises licencient moins : le chômage monte moins vite", k: "effet" }, { t: "En reprise, elles hésitent à embaucher en CDI : le chômage baisse moins vite", k: "frein" }], a: "donc" },
+  { t: "Effet global incertain sur le niveau du chômage, mais des chômeurs qui restent plus longtemps sans emploi", a: "donc" },
+  { t: "Dualisme : salariés en CDI protégés, jeunes et peu qualifiés en contrats courts", k: "frein", a: "et" }
+] };
+CHAINES["e3-conj"] = { t: "La spirale du chômage conjoncturel", e: [
+  { t: "Choc : la demande baisse (crise financière, hausse des prix de l’énergie, incertitude)", k: "cause" },
+  { t: "Les entreprises produisent moins et réduisent les heures, l’intérim, puis les emplois", a: "donc" },
+  { t: "Le chômage augmente", a: "donc" },
+  { t: "Les revenus et la confiance baissent : les ménages consomment moins, les entreprises investissent moins", a: "donc" },
+  { t: "La demande baisse encore : le chômage conjoncturel s’auto-entretient", k: "effet", a: "donc" }
+] };
+CHAINES["e3-relance"] = { t: "La relance de la demande globale", e: [
+  { f: [{ t: "Politique budgétaire : dépenses publiques en hausse ou impôts en baisse", k: "cause" }, { t: "Politique monétaire : baisse des taux d’intérêt directeurs", k: "cause" }] },
+  { t: "Consommation et investissement augmentent", a: "donc" },
+  { t: "Les entreprises anticipent plus de ventes et produisent davantage", a: "donc" },
+  { t: "Elles embauchent : le chômage conjoncturel recule ; les revenus distribués relancent encore la demande (multiplicateur)", k: "effet", a: "donc" }
+] };
+
+ANIMS["e3-spirale"] = {
+  t: "Le cercle vicieux du chômage conjoncturel… et la relance",
+  h: 330,
+  src: "Schéma de principe (mécanisme keynésien de la demande effective). La jauge est illustrative ; repère réel : en France, 7,4 % de chômage en 2008, 9,1 % en 2009 (Insee).",
+  etapes: [
+    { l: "Un choc frappe l’économie : la demande de biens et de services baisse (en 2009, crise financière mondiale).", d: 3 },
+    { l: "Les entreprises vendent moins : elles produisent moins, réduisent l’intérim et les heures, puis l’emploi.", d: 3 },
+    { l: "Le chômage augmente : des ménages perdent leurs revenus, les autres s’inquiètent et épargnent par précaution.", d: 3 },
+    { l: "La consommation recule encore, donc la demande baisse de nouveau : le cercle vicieux s’auto-entretient.", d: 3.5 },
+    { l: "La relance : l’État dépense plus ou baisse les impôts, la banque centrale baisse ses taux. La demande repart.", d: 3.5 },
+    { l: "Le cercle tourne dans l’autre sens : production, embauches, revenus et consommation se renforcent. Le chômage conjoncturel recule.", d: 4 }
+  ],
+  rendu: function (A, i, p) {
+    var cx = 180, cy = 150, R = 100, RX = 128, s = "";
+    var noeuds = [{ a: -90, t: "Demande" }, { a: 0, t: "Production" }, { a: 90, t: "Emploi" }, { a: 180, t: "Revenus et consommation" }];
+    var sens = i >= 4 ? 1 : -1, actif = i <= 3 ? i : (i === 4 ? 0 : 3);
+    function pos(a) { return [cx + RX * Math.cos(a * Math.PI / 180), cy + R * Math.sin(a * Math.PI / 180)]; }
+    for (var k = 0; k < 4; k++) {
+      var a1 = noeuds[k].a + (k % 2 ? 28 : 34), a2 = noeuds[(k + 1) % 4].a - (k % 2 ? 34 : 28), pts = [];
+      for (var t = 0; t <= 1.0001; t += 0.04) { var aa = (a1 + (a2 - a1) * t) * Math.PI / 180; pts.push([cx + RX * Math.cos(aa), cy + R * Math.sin(aa)]); }
+      var montre = i >= 3 ? 1 : (k < i ? 1 : (k === i ? A.s(p, 0.3, 1) : 0));
+      var coul = i >= 4 ? "vert" : "corail";
+      if (i === 5) montre = 1;
+      if (montre > 0) {
+        s += A.pl(pts, i === 4 ? A.s(p, 0.3, 1) : montre, { c: i === 4 ? "gris" : coul, sw: 2.4, tir: i === 4 });
+        var fin = pts[pts.length - 1], av = pts[pts.length - 3];
+        if ((i === 4 ? A.s(p, 0.3, 1) : montre) >= 1) s += A.fl(av[0], av[1], fin[0], fin[1], { c: i === 4 ? "gris" : coul, sw: 0.1 });
+      }
+    }
+    noeuds.forEach(function (n, k) {
+      var q = pos(n.a), act = (i <= 3 && k <= i) || i >= 4;
+      s += A.boite(q[0] - 50, q[1] - 19, 100, 38, n.t + (act ? (sens < 0 ? " ↓" : (i === 5 || k === 0 ? " ↑" : "")) : ""), { k: act ? (sens < 0 ? "effet" : "cause") : "neutre", t: 12.5, g: true });
+    });
+    var ch = i <= 1 ? 7.4 : i === 2 ? A.l(7.4, 9.1, A.s(p, 0, 1)) : i === 3 ? A.l(9.1, 9.8, A.s(p, 0, 1)) : i === 4 ? 9.8 : A.l(9.8, 8.4, A.s(p, 0, 1));
+    s += A.jauge(110, 300, 140, ch, 12, { c: i >= 5 ? "vert" : "corail", l: "chômage (illustratif)", val: A.fr(ch, 1) + " %" });
+    if (i === 0) s += A.t(cx, cy - 4, "choc de demande", { t: 12.5, g: true, a: "middle", c: "corail", op: A.s(p, 0, 0.5), w: 90 });
+    if (i === 3) s += A.t(cx, cy - 4, "cercle vicieux", { t: 13, g: true, a: "middle", c: "corail", op: A.s(p, 0.3, 0.8), w: 90 });
+    if (i >= 4) {
+      s += A.t(cx, cy - 4, "relance", { t: 14, g: true, a: "middle", c: "vert", op: i === 4 ? A.s(p, 0, 0.4) : 1 });
+      s += A.t(cx, cy + 13, "budgétaire et monétaire", { t: 10.5, a: "middle", c: "gris", op: i === 4 ? A.s(p, 0.2, 0.6) : 1, w: 90 });
+      if (i === 4) s += A.fl(cx, 10, cx, cy - R - 22, { c: "vert", sw: 3, p: A.s(p, 0, 0.5) });
+    }
+    return s;
+  }
+};
+
+ANIMS["e3-appariement"] = {
+  t: "Des chômeurs et des emplois vacants en même temps",
+  h: 310,
+  src: "Schéma de principe. Repère : en 2025, 14,7 % de chômage pour les actifs sans diplôme ou avec le brevet, 5,3 % pour les diplômés du supérieur (Insee).",
+  etapes: [
+    { l: "Sur le marché du travail, des personnes cherchent un emploi (à gauche) et des entreprises ont des postes vacants (à droite).", d: 3 },
+    { l: "Une partie se rencontre vite : ces postes sont pourvus.", d: 3 },
+    { l: "Frictions : d’autres mettent du temps à se trouver (recherche, candidatures, entretiens). C’est le chômage frictionnel.", d: 3.5 },
+    { l: "Inadéquation de qualification : un poste de technicien informatique ne convient pas à un ancien ouvrier du textile sans formation.", d: 3.5 },
+    { l: "Inadéquation spatiale : l’emploi est à Lyon, le chômeur à 400 km et ne peut pas déménager facilement (logement, conjoint).", d: 3.5 },
+    { l: "Résultat : chômeurs et emplois vacants coexistent durablement. C’est du chômage structurel ; la formation et la mobilité peuvent le réduire.", d: 3.5 }
+  ],
+  rendu: function (A, i, p) {
+    var s = A.t(70, 22, "Demandeurs d’emploi", { t: 13, g: true, a: "middle", f: true }) + A.t(290, 22, "Postes vacants", { t: 13, g: true, a: "middle", f: true });
+    var cand = [["vendeur", "", 0], ["comptable", "", 0], ["cariste", "", 0], ["infirmière", "", 1], ["ouvrier textile", "qualif", 2], ["soudeur (Lille)", "lieu", 3]];
+    var postes = [["vendeur", 0], ["comptable", 0], ["cariste", 0], ["infirmière", 1], ["technicien informatique", 2], ["soudeur (Lyon)", 3]];
+    cand.forEach(function (c, k) {
+      var y = 40 + k * 40, x = 12, op = 1;
+      var apparie = (k < 3 && i >= 1) || (k === 3 && i >= 2);
+      var tx = 0;
+      if (k < 3 && i === 1) tx = A.s(p, 0.1 + k * 0.15, 0.6 + k * 0.15);
+      else if (k < 3 && i > 1) tx = 1;
+      if (k === 3 && i === 2) tx = A.s(p, 0.4, 1);
+      else if (k === 3 && i > 2) tx = 1;
+      var x2 = A.l(x, 234, tx);
+      if (apparie && tx >= 1) op = 0.35;
+      s += A.boite(x2, y, 116, 30, c[0], { k: tx >= 1 ? "cause" : "neutre", op: op, t: 12 });
+    });
+    postes.forEach(function (c, k) {
+      var y = 40 + k * 40, pris = (k < 3 && i >= 1 && (i > 1 || A.s(p, 0.1 + k * 0.15, 0.6 + k * 0.15) >= 1)) || (k === 3 && (i > 2 || (i === 2 && A.s(p, 0.4, 1) >= 1)));
+      s += A.boite(234, y, 116, 30, c[0], { k: pris ? "cause" : "meca", t: 12, op: pris ? 0.35 : 1 });
+    });
+    if (i === 2) s += A.t(180, 296, "frictions : le temps de se trouver", { t: 12, a: "middle", c: "moutarde", g: true, op: A.s(p, 0, 0.4), h: true });
+    if (i >= 3) {
+      var q = i === 3 ? A.s(p, 0, 0.6) : 1;
+      s += A.fl(130, 215, 230, 215, { c: "corail", sw: 2, p: q, tir: true }) + A.t(180, 208, "qualification ≠", { t: 11.5, a: "middle", c: "corail", g: true, op: q, h: true });
+      s += A.t(180, 232, "✕", { t: 16, a: "middle", c: "corail", g: true, op: q });
+    }
+    if (i >= 4) {
+      var q2 = i === 4 ? A.s(p, 0, 0.6) : 1;
+      s += A.fl(130, 255, 230, 255, { c: "corail", sw: 2, p: q2, tir: true }) + A.t(180, 248, "distance ≠", { t: 11.5, a: "middle", c: "corail", g: true, op: q2, h: true });
+      s += A.t(180, 272, "✕", { t: 16, a: "middle", c: "corail", g: true, op: q2 });
+    }
+    if (i === 5) s += A.r(6, 196, 348, 88, { f: "none", s: "moutarde", sw: 2.5, op: A.s(p, 0, 0.5), r: 10 }) + A.t(180, 302, "chômage structurel", { t: 12.5, g: true, a: "middle", c: "moutarde", op: A.s(p, 0.3, 0.8), h: true });
+    return s;
+  }
+};
+
+CH.e3 = {
+  chapo: "En 2025, 2,5 millions de personnes sont au chômage en France, et presque autant tournent autour. Pourtant, des entreprises peinent à recruter. Ce chapitre explique comment on mesure le chômage, pourquoi une partie persiste même quand l’activité va bien, et ce que valent les politiques pour le combattre.",
+  essentiel: [
+    "Un <b>chômeur au sens du BIT</b> est sans emploi, disponible et en recherche active. En 2025, le <b>taux de chômage</b> est de 7,7 % ; le <b>taux d’emploi</b> des 15-64 ans de 69,3 % (Insee). Le <b>sous-emploi</b> et le <b>halo</b> du chômage complètent le tableau.",
+    "Le <b>chômage structurel</b> persiste quelle que soit la conjoncture : problèmes d’<b>appariement</b> (frictions, inadéquations spatiales et de qualifications) et <b>asymétries d’information</b> (salaire d’efficience).",
+    "Les <b>institutions</b> du marché du travail ont des effets ambigus : le <b>salaire minimum</b> et les <b>règles de protection de l’emploi</b> peuvent réduire ou accroître le chômage structurel selon leur niveau et leur forme.",
+    "Le <b>chômage conjoncturel</b> vient d’une demande insuffisante : quand l’activité ralentit, les entreprises produisent et embauchent moins (Keynes).",
+    "Quatre familles de politiques : <b>soutien de la demande globale</b>, <b>allègement du coût du travail</b>, <b>formation</b>, <b>flexibilisation</b>. Chacune vise un type de chômage et a ses limites."
+  ],
+  chiffres: [
+    { n: "7,7 %", l: "de chômage au sens du BIT en 2025, soit 2,5 millions de personnes, en hausse de 0,3 point en un an.", s: "Insee, enquête Emploi 2025" },
+    { n: "19,8 %", l: "de chômage chez les 15-24 ans actifs en 2025, contre 5,0 % chez les 50 ans ou plus.", s: "Insee, enquête Emploi 2025" },
+    { n: "1,9 M", l: "de personnes dans le « halo » du chômage en 2025 : sans emploi, elles souhaitent travailler mais ne remplissent pas tous les critères du BIT.", s: "Insee, enquête Emploi 2025" }
+  ],
+  objectifs: [
+    { bo: "Savoir définir le chômage et le sous-emploi et connaître les indicateurs de taux de chômage et de taux d’emploi.", clair: "Définir chômeur BIT, sous-emploi, halo ; calculer et lire taux de chômage et taux d’emploi.", voir: "e3-1" },
+    { bo: "Comprendre que les problèmes d’appariements (frictions, inadéquations spatiales et de qualifications) et les asymétries d’information (salaire d’efficience) sont des sources de chômage structurel.", clair: "Expliquer pourquoi des chômeurs et des emplois vacants coexistent, et pourquoi un salaire élevé peut être voulu par l’employeur.", voir: "e3-2" },
+    { bo: "Comprendre les effets (positifs ou négatifs) des institutions sur le chômage structurel (notamment salaire minimum et règles de protection de l’emploi).", clair: "Présenter les deux effets possibles du salaire minimum et des règles de protection de l’emploi.", voir: "e3-3" },
+    { bo: "Comprendre les effets des fluctuations de l’activité économique sur le chômage conjoncturel.", clair: "Montrer comment un ralentissement de la demande crée du chômage, et comment il s’auto-entretient.", voir: "e3-4" },
+    { bo: "Connaître les principales politiques mises en œuvre pour lutter contre le chômage : politiques macroéconomiques de soutien de la demande globale, politiques d’allégement du coût du travail, politiques de formation et politiques de flexibilisation pour lutter contre les rigidités du marché du travail.", clair: "Présenter les quatre familles de politiques, ce qu’elles visent, un exemple et une limite chacune.", voir: "e3-5" }
+  ],
+  notions: ["chômage (au sens du BIT)", "population active", "taux de chômage", "taux d’emploi", "sous-emploi", "halo du chômage", "chômage structurel", "chômage conjoncturel", "appariement", "chômage frictionnel", "inadéquations spatiales et de qualifications", "asymétrie d’information", "salaire d’efficience", "salaire minimum", "règles de protection de l’emploi", "demande globale", "coût du travail", "formation", "flexibilisation", "rigidités du marché du travail"],
+  sections: [
+    { id: "e3-1", t: "Définir et mesurer le chômage", h:
+      '<div class="def"><b>Chômeur au sens du BIT</b> — personne de 15 ans ou plus qui remplit trois conditions à la fois : être <b>sans emploi</b> pendant une semaine donnée (pas même une heure de travail) ; être <b>disponible</b> pour travailler dans les deux semaines ; avoir <b>cherché activement</b> un emploi dans les quatre dernières semaines (ou en avoir trouvé un qui commence dans moins de trois mois).</div>' +
+      '<p>L’Insee le mesure chaque trimestre par l’<b>enquête Emploi</b>, selon cette définition internationale du Bureau international du travail. Il ne faut pas le confondre avec le nombre d’inscrits à France Travail (ex-Pôle emploi, devenu France Travail le 1er janvier 2024), qui repose sur des règles administratives.</p>' +
+      '<div class="tbl"><table><thead><tr><th>Indicateur</th><th>Calcul</th><th class="n">2025</th></tr></thead><tbody>' +
+      '<tr><td><b>Taux de chômage</b></td><td>chômeurs ÷ population active (personnes en emploi + chômeurs) × 100</td><td class="n">7,7 %</td></tr>' +
+      '<tr><td><b>Taux d’emploi</b> (15-64 ans)</td><td>personnes en emploi ÷ population du même âge × 100</td><td class="n">69,3 %</td></tr>' +
+      '</tbody></table></div><p class="src-l">Source : Insee, enquête Emploi 2025. Le taux d’emploi atteint son plus haut niveau depuis que l’Insee le mesure (1975).</p>' +
+      '<div class="ex"><p>En 2025, 2 451 000 chômeurs et 29 383 000 personnes en emploi : 2 451 ÷ (29 383 + 2 451) × 100 ≈ 7,7 %. Le taux de chômage des 15-24 ans atteint 19,8 %, mais comme beaucoup de jeunes sont étudiants (inactifs), la <b>part</b> de chômeurs dans toute leur classe d’âge n’est que de 8,5 %.</p></div>' +
+      '<div data-graph="e3-chomage"></div>' +
+      '<p>Le chômage français a fortement augmenté après les chocs pétroliers (3,6 % en 1975, 10,6 % en 1994), puis il a fluctué au gré de la conjoncture : 7,4 % en 2008, 10,4 % en 2015, 7,3 % en 2022, 7,7 % en 2025. Les hommes, longtemps moins touchés que les femmes, ont désormais un taux proche du leur.</p>' +
+      '<h3>Aux frontières du chômage</h3>' +
+      '<div class="def"><b>Sous-emploi</b> — situation de personnes en emploi qui travaillent moins qu’elles ne le souhaitent : temps partiel subi (souhait de travailler plus et disponibilité) ou chômage partiel ou technique. En 2025, 4,4 % des personnes en emploi (Insee).</div>' +
+      '<div class="def"><b>Halo autour du chômage</b> — personnes sans emploi, classées inactives par le BIT, mais proches du chômage : elles souhaitent travailler mais n’ont pas cherché, ou ne sont pas disponibles tout de suite. En 2025, 1,9 million de personnes (Insee).</div>' +
+      '<div class="ex"><p>En 2020, pendant les confinements, de nombreux chômeurs n’ont pas pu chercher d’emploi : ils sont sortis du chômage BIT vers le halo, et le chômage partiel a concerné 4,3 % des personnes en emploi. Le taux de chômage a donc paradoxalement baissé (8,1 % contre 8,5 % en 2019) alors que l’activité s’effondrait.</p></div>' },
+
+    { id: "e3-2", t: "Le chômage structurel : appariement et salaire d’efficience", h:
+      '<div class="def"><b>Chômage structurel</b> — part du chômage qui ne dépend pas de la conjoncture : il persiste même quand l’activité est soutenue, à cause du fonctionnement du marché du travail et de ses institutions. Le <b>chômage conjoncturel</b>, lui, vient d’un ralentissement de l’activité.</div>' +
+      '<h3>1. Les problèmes d’appariement</h3>' +
+      '<p>L’<b>appariement</b> est la rencontre entre une offre d’emploi et un demandeur. Elle n’est ni immédiate ni automatique.</p>' +
+      '<ul><li><b>Frictions</b> : chercher un emploi, comparer, postuler, passer des entretiens prend du temps, même quand il existe un poste qui convient. C’est le <b>chômage frictionnel</b>, inévitable dans une économie où les gens changent d’emploi.</li><li><b>Inadéquation de qualifications</b> : les emplois disponibles demandent des compétences que les chômeurs n’ont pas (et inversement), notamment quand la destruction créatrice déplace les emplois d’un secteur à l’autre.</li><li><b>Inadéquation spatiale</b> : les emplois ne sont pas là où vivent les chômeurs ; déménager coûte cher (logement, emploi du conjoint).</li></ul>' +
+      '<div data-anim="e3-appariement"></div>' +
+      '<div data-chain="e3-frictions"></div>' +
+      '<div class="ex"><p>Le risque de chômage dépend fortement de la qualification : en 2025, 14,7 % des actifs sans diplôme ou avec le seul brevet sont au chômage, contre 5,3 % des diplômés du supérieur (Bac + 2 ou plus) ; 17,1 % des ouvriers peu qualifiés contre 4,0 % des cadres (Insee). Le progrès technique biaisé (<a href="#e1:e1-5">É1</a>) renforce ces écarts.</p></div>' +
+      '<div data-graph="e3-diplome"></div>' +
+      '<div class="plus"><p>La <b>courbe de Beveridge</b> relie le taux d’emplois vacants et le taux de chômage : si les deux augmentent ensemble, c’est le signe d’un appariement moins efficace. Peter Diamond, Dale Mortensen et Christopher Pissarides ont reçu le prix Nobel 2010 pour leurs travaux sur les marchés avec frictions de recherche.</p></div>' +
+      '<h3>2. Les asymétries d’information : le salaire d’efficience</h3>' +
+      '<p>Une <b>asymétrie d’information</b> existe quand une partie à un contrat en sait plus que l’autre. L’employeur ne connaît pas parfaitement l’effort ni la motivation de ses salariés. Selon la théorie du <b>salaire d’efficience</b>, il a alors intérêt à payer <b>plus</b> que le salaire du marché : cela motive (perdre cet emploi coûterait cher), réduit le départ des salariés formés et attire les meilleurs candidats.</p>' +
+      '<div data-chain="e3-efficience"></div>' +
+      '<div class="ex src"><p>En janvier 1914, Henry Ford double le salaire journalier de ses ouvriers en instaurant le « Five Dollar Day » (5 dollars par jour). Le travail à la chaîne était si pénible que les départs étaient massifs ; avec ce salaire, les démissions et l’absentéisme ont chuté et la productivité a augmenté. Exemple classique d’histoire économique, hors des documents du programme.</p></div>' +
+      '<div class="aut"><span class="mono">SS</span><span class="an">Carl Shapiro et Joseph Stiglitz<small>1984</small></span><span class="ad">Leur modèle montre qu’avec un salaire d’efficience, le chômage est <b>involontaire</b> et durable : il sert même de « discipline » qui incite les salariés à l’effort. Stiglitz a reçu le prix Nobel 2001 (avec Akerlof et Spence) pour ses travaux sur les asymétries d’information.</span></div>' },
+
+    { id: "e3-3", t: "Les institutions : salaire minimum et protection de l’emploi", h:
+      '<p class="lede">Les <b>institutions du marché du travail</b> sont les règles qui l’encadrent : salaire minimum, contrats de travail, règles de licenciement, assurance chômage, négociation collective. Leurs effets sur le chômage structurel peuvent être positifs ou négatifs.</p>' +
+      '<h3>1. Le salaire minimum</h3>' +
+      '<div class="def"><b>SMIC</b> (salaire minimum interprofessionnel de croissance) — salaire horaire en dessous duquel aucun salarié ne peut être payé en France. Il est revalorisé chaque 1er janvier et automatiquement en cours d’année si l’inflation dépasse 2 % : 12,31 € brut de l’heure, soit 1 867,02 € brut par mois à temps plein (montant en vigueur en novembre 2026, service-public.fr).</div>' +
+      '<div data-chain="e3-smic"></div>' +
+      '<ul><li><b>Effet négatif possible</b> : si le salaire minimum dépasse la productivité de certains travailleurs (jeunes, peu qualifiés), les employeurs ne les embauchent pas.</li><li><b>Effets positifs possibles</b> : il soutient le pouvoir d’achat, donc la demande ; il rend le travail plus attractif que l’inactivité ; il fonctionne comme un salaire d’efficience (moins de départs, plus de motivation).</li></ul>' +
+      '<div class="aut"><span class="mono">CK</span><span class="an">David Card et Alan Krueger<small>1994</small></span><span class="ad">En comparant les fast-foods du New Jersey, où le salaire minimum a augmenté en 1992, à ceux de la Pennsylvanie voisine, ils ne trouvent pas de baisse de l’emploi. Cette « expérience naturelle » a relancé le débat ; Card a reçu le prix Nobel 2021.</span></div>' +
+      '<p>Pour limiter l’effet négatif sur l’emploi peu qualifié sans baisser le salaire du salarié, la France allège les cotisations sociales patronales au niveau du SMIC (voir plus bas).</p>' +
+      '<h3>2. Les règles de protection de l’emploi</h3>' +
+      '<div class="def"><b>Règles de protection de l’emploi</b> — ensemble des règles qui encadrent les licenciements et le recours aux contrats temporaires : préavis, motifs, indemnités, procédures, limites aux CDD et à l’intérim.</div>' +
+      '<div data-chain="e3-protection"></div>' +
+      '<p>Elles protègent les salariés contre les licenciements abusifs et stabilisent l’emploi en récession. Mais elles peuvent freiner les embauches en CDI et créer un <b>dualisme</b> du marché du travail : des salariés « insiders » protégés et des « outsiders » (jeunes, peu qualifiés) qui enchaînent contrats courts et chômage. Assar Lindbeck et Dennis Snower ont formalisé cette opposition (1988).</p>' +
+      '<div class="ex"><p>En 2025, le chômage de longue durée (plus d’un an) touche 1,8 % des actifs, soit 23,1 % des chômeurs ; il concerne 39,1 % des chômeurs de 50 ans ou plus (Insee). Les règles qui protègent l’emploi en place peuvent rendre plus difficile le retour à l’emploi des chômeurs âgés.</p></div>' },
+
+    { id: "e3-4", t: "Le chômage conjoncturel", h:
+      '<div class="def"><b>Chômage conjoncturel</b> — chômage dû à un ralentissement de l’activité économique : la demande de biens et services baisse, les entreprises produisent moins et ont besoin de moins de travail.</div>' +
+      '<div class="aut"><span class="mono">JK</span><span class="an">John Maynard Keynes<small>1883-1946</small></span><span class="ad"><i>Théorie générale de l’emploi, de l’intérêt et de la monnaie</i> (1936) : le niveau de l’emploi dépend de la <b>demande effective</b>, c’est-à-dire de la demande que les entreprises anticipent. Si elle est insuffisante, le chômage peut durer : c’est un chômage involontaire, que la baisse des salaires ne résout pas (elle réduirait encore la demande).</span></div>' +
+      '<div data-anim="e3-spirale"></div>' +
+      '<div data-chain="e3-conj"></div>' +
+      '<div class="ex"><p>La crise de 2008-2009 : le PIB français recule de 2,8 % en 2009 (Insee) ; le taux de chômage passe de 7,4 % en 2008 à 9,1 % en 2009, puis continue de monter jusqu’à 10,4 % en 2015, car la reprise est lente et la zone euro connaît une seconde crise en 2011-2012.</p></div>' +
+      '<p>L’emploi réagit avec retard : les entreprises commencent par réduire les heures supplémentaires et l’intérim, puis ne remplacent pas les départs, avant de licencier. À l’inverse, en reprise, elles attendent d’être sûres que l’activité repart avant d’embaucher. Les jeunes et les salariés en contrats courts sont les premiers touchés.</p>' +
+      '<div class="attn"><p>Structurel et conjoncturel s’entremêlent : un chômage conjoncturel qui dure peut devenir structurel (les compétences des chômeurs de longue durée s’érodent, les employeurs s’en méfient). C’est l’effet d’<b>hystérèse</b>.</p></div>' },
+
+    { id: "e3-5", t: "Quelles politiques contre le chômage ?", h:
+      '<div class="tbl"><table><thead><tr><th>Politique</th><th>Chômage visé</th><th>Exemple en France</th><th>Limite</th></tr></thead><tbody>' +
+      '<tr><td><b>Soutien de la demande globale</b> (budgétaire, monétaire)</td><td>Conjoncturel</td><td>Plan de relance de 2020 ; prise en charge massive du chômage partiel pendant la crise sanitaire.</td><td>Hausse de la dette publique ; une partie de la demande part en importations ; inefficace contre le chômage structurel.</td></tr>' +
+      '<tr><td><b>Allègement du coût du travail</b></td><td>Structurel (peu qualifiés)</td><td>Réduction générale des cotisations patronales sur les bas salaires (depuis 2003) ; CICE (2013), transformé en baisse de cotisations en 2019.</td><td>Coût élevé pour les finances publiques ; effets d’aubaine ; risque de « trappe à bas salaires ».</td></tr>' +
+      '<tr><td><b>Formation</b></td><td>Structurel (inadéquation des qualifications)</td><td>Compte personnel de formation (2015) ; apprentissage ; Plan d’investissement dans les compétences (2018).</td><td>Effets lents ; les formations profitent plus souvent aux plus qualifiés.</td></tr>' +
+      '<tr><td><b>Flexibilisation</b></td><td>Structurel (rigidités)</td><td>Rupture conventionnelle (2008) ; ordonnances de septembre 2017 (barème des indemnités prud’homales).</td><td>Précarisation ; effet incertain sur le niveau de l’emploi ; les ajustements sont plus rapides dans les deux sens.</td></tr>' +
+      '</tbody></table></div>' +
+      '<h3>1. Soutenir la demande globale</h3><p>Contre le chômage conjoncturel, l’État peut augmenter ses dépenses ou baisser les impôts (politique <b>budgétaire</b>), la banque centrale baisser ses taux (politique <b>monétaire</b>). L’effet est amplifié par le <b>multiplicateur</b> : les revenus distribués sont en partie dépensés, ce qui crée d’autres revenus. Dans la zone euro, la politique monétaire est commune et les budgets nationaux sont encadrés (<a href="#e5">É5</a>).</p>' +
+      '<div data-chain="e3-relance"></div>' +
+      '<h3>2. Alléger le coût du travail</h3><p>Baisser les cotisations sociales patronales sur les bas salaires réduit le coût du travail peu qualifié <b>sans baisser le salaire net</b> : cela vise les emplois dont la productivité est proche du SMIC. Les évaluations trouvent des effets positifs sur l’emploi surtout pour les allègements ciblés au voisinage du SMIC.</p>' +
+      '<h3>3. Former</h3><p>La formation améliore l’appariement en rapprochant les compétences des chômeurs de celles que demandent les entreprises. Elle agit sur la cause du chômage structurel, mais lentement.</p>' +
+      '<h3>4. Flexibiliser</h3><p>Assouplir les règles d’embauche et de licenciement doit inciter les entreprises à embaucher. La <b>flexicurité</b> danoise combine licenciements faciles, indemnisation généreuse et politiques actives de retour à l’emploi : flexibilité pour l’entreprise, sécurité pour la personne plutôt que pour le poste.</p>' +
+      '<div class="cle"><p><b>À retenir :</b> on choisit la politique selon le diagnostic. Contre un chômage conjoncturel, la relance de la demande ; contre un chômage structurel, des politiques de l’offre (coût du travail, formation, flexibilité). En pratique, les gouvernements combinent les deux.</p></div>' }
+  ],
+  pieges: [
+    { f: "« Chômeur = inscrit à France Travail. »", v: "Le chômeur au sens du BIT répond à trois critères mesurés par l’enquête Emploi ; les inscriptions à France Travail suivent d’autres règles. Les deux chiffres diffèrent." },
+    { f: "« Le taux de chômage des jeunes est de 19,8 %, donc un jeune sur cinq est chômeur. »", v: "Non : 19,8 % des jeunes <b>actifs</b>. Rapporté à tous les 15-24 ans (beaucoup sont étudiants), la part de chômeurs est de 8,5 %." },
+    { f: "« Si le taux de chômage baisse, l’emploi augmente forcément. »", v: "Le chômage peut baisser parce que des chômeurs deviennent inactifs (découragement, halo) : en 2020, il a baissé alors que l’activité s’effondrait." },
+    { f: "Confondre chômage structurel et chômage de longue durée.", v: "Le chômage structurel désigne une <b>cause</b> (fonctionnement du marché du travail) ; le chômage de longue durée, une <b>durée</b> (plus d’un an)." },
+    { f: "« Le salaire minimum crée toujours du chômage. »", v: "Son effet dépend de son niveau par rapport à la productivité ; il peut aussi soutenir la demande et jouer comme un salaire d’efficience (Card et Krueger)." },
+    { f: "« La relance budgétaire fait baisser tout chômage. »", v: "Elle agit sur le chômage conjoncturel ; elle ne résout pas les inadéquations de qualifications ou les frictions." }
+  ],
+  retenir:
+    '<h3>Définitions</h3><ul>' +
+    '<li><b>Chômeur BIT</b> : sans emploi, disponible sous 15 jours, en recherche active (4 dernières semaines). <b>Taux de chômage</b> = chômeurs ÷ actifs. <b>Taux d’emploi</b> = emploi ÷ population de la classe d’âge.</li>' +
+    '<li><b>Sous-emploi</b> : temps partiel subi, chômage partiel (4,4 % de l’emploi en 2025). <b>Halo</b> : inactifs proches du chômage (1,9 million en 2025).</li>' +
+    '<li><b>Chômage structurel</b> : appariement (frictions ; inadéquations spatiales et de qualifications) ; asymétries d’information et <b>salaire d’efficience</b> (Shapiro et Stiglitz, 1984 ; Ford, 1914).</li>' +
+    '<li><b>Institutions</b> : salaire minimum (effet coût / effet demande et efficience ; Card et Krueger, 1994) ; protection de l’emploi (moins de licenciements en crise, moins d’embauches en reprise, dualisme insiders / outsiders).</li>' +
+    '<li><b>Chômage conjoncturel</b> : demande effective insuffisante (Keynes, 1936) ; cercle vicieux ; hystérèse.</li>' +
+    '<li><b>Politiques</b> : relance de la demande ; allègements de cotisations ; formation ; flexibilisation (flexicurité).</li></ul>' +
+    '<h3>Chiffres à citer (Insee, 2025)</h3><ul><li>Chômage 7,7 % (2,5 millions) ; 15-24 ans 19,8 % ; sans diplôme 14,7 % contre 5,3 % pour Bac + 2 ou plus.</li><li>Taux d’emploi des 15-64 ans 69,3 %, record depuis 1975 ; chômage 2008 7,4 % → 2009 9,1 % → 2015 10,4 %.</li><li>SMIC : 12,31 € brut de l’heure (novembre 2026).</li></ul>',
+  chainesFiche: ["e3-frictions", "e3-efficience", "e3-smic", "e3-protection", "e3-conj", "e3-relance"],
+  quiz: [
+    { q: "Pour être chômeur au sens du BIT, il faut notamment…", c: ["être sans emploi, disponible et en recherche active d’emploi", "être inscrit à France Travail", "toucher une allocation chômage", "avoir perdu son emploi depuis plus d’un an"], r: 0, e: "Trois critères cumulés ; l’inscription et l’indemnisation n’en font pas partie.", s: "e3-1" },
+    { q: "Le taux de chômage se calcule en rapportant le nombre de chômeurs…", c: ["à la population active", "à la population totale", "à la population en âge de travailler", "au nombre de personnes en emploi"], r: 0, e: "Population active = personnes en emploi + chômeurs.", s: "e3-1" },
+    { q: "En 2025, le taux de chômage en France est d’environ…", c: ["7,7 %", "3,6 %", "12 %", "19,8 %"], r: 0, e: "7,7 % selon l’Insee ; 19,8 % est le taux des 15-24 ans actifs.", s: "e3-1" },
+    { q: "Une personne à temps partiel qui souhaite travailler plus et est disponible est…", c: ["en sous-emploi", "au chômage", "dans le halo du chômage", "inactive"], r: 0, e: "Elle a un emploi, donc elle n’est pas chômeuse ; elle est en sous-emploi.", s: "e3-1" },
+    { q: "Le halo autour du chômage regroupe des personnes…", c: ["sans emploi, classées inactives, mais proches du chômage", "en emploi à temps partiel", "au chômage depuis plus d’un an", "inscrites à France Travail"], r: 0, e: "Elles souhaitent travailler mais n’ont pas cherché ou ne sont pas disponibles tout de suite.", s: "e3-1" },
+    { q: "Le chômage frictionnel s’explique par…", c: ["le temps nécessaire pour qu’offres et demandes d’emploi se rencontrent", "une baisse de la demande globale", "un salaire minimum trop élevé", "la concurrence internationale"], r: 0, e: "C’est un problème d’appariement, une composante du chômage structurel.", s: "e3-2" },
+    { q: "Selon la théorie du salaire d’efficience, l’employeur paie plus que le salaire du marché pour…", c: ["motiver, fidéliser et attirer les meilleurs salariés", "respecter le SMIC", "baisser ses coûts", "réduire ses impôts"], r: 0, e: "Il ne peut pas observer parfaitement l’effort (asymétrie d’information) ; un salaire élevé rend la perte d’emploi coûteuse.", s: "e3-2" },
+    { q: "Un emploi vacant à Lyon et un chômeur qualifié pour ce poste à Lille illustrent…", c: ["une inadéquation spatiale", "un chômage conjoncturel", "un salaire d’efficience", "du sous-emploi"], r: 0, e: "L’emploi et la personne ne sont pas au même endroit.", s: "e3-2" },
+    { q: "Quel effet POSITIF un salaire minimum peut-il avoir sur l’emploi ?", c: ["Soutenir le pouvoir d’achat et donc la demande", "Réduire le coût du travail", "Faciliter les licenciements", "Supprimer les frictions"], r: 0, e: "Il peut aussi rendre le travail plus attractif et jouer comme un salaire d’efficience.", s: "e3-3" },
+    { q: "Card et Krueger (1994) ont montré qu’une hausse du salaire minimum au New Jersey…", c: ["n’avait pas entraîné de baisse de l’emploi dans les fast-foods", "avait fait doubler le chômage", "avait fait fermer tous les fast-foods", "avait fait baisser les prix"], r: 0, e: "Comparaison avec la Pennsylvanie voisine : une expérience naturelle.", s: "e3-3" },
+    { q: "Des règles de protection de l’emploi fortes ont tendance à…", c: ["réduire les licenciements en récession mais freiner les embauches en reprise", "faire baisser fortement le chômage dans tous les cas", "supprimer le chômage de longue durée", "augmenter la demande globale"], r: 0, e: "D’où un effet ambigu sur le niveau du chômage et un risque de dualisme.", s: "e3-3" },
+    { q: "Le chômage conjoncturel est lié à…", c: ["un ralentissement de l’activité économique", "l’inadéquation des qualifications", "les asymétries d’information", "le salaire minimum"], r: 0, e: "Moins de demande, moins de production, moins d’emplois (Keynes).", s: "e3-4" },
+    { q: "Entre 2008 et 2009, le taux de chômage en France est passé de…", c: ["7,4 % à 9,1 %", "3,6 % à 5,0 %", "9,1 % à 7,4 %", "10,4 % à 12 %"], r: 0, e: "La récession de 2009 (PIB −2,8 %) a fait monter le chômage conjoncturel.", s: "e3-4" },
+    { q: "Pour lutter contre un chômage d’inadéquation des qualifications, la politique la plus adaptée est…", c: ["la formation", "la baisse des taux d’intérêt", "la hausse des dépenses publiques", "la hausse du salaire minimum"], r: 0, e: "La formation rapproche les compétences des besoins des entreprises.", s: "e3-5" },
+    { q: "Les allègements de cotisations patronales sur les bas salaires visent à…", c: ["baisser le coût du travail peu qualifié sans baisser le salaire net", "baisser le SMIC", "augmenter les recettes de l’État", "relancer la demande globale"], r: 0, e: "Ils ciblent les emplois proches du SMIC.", s: "e3-5" }
+  ],
+  cartes: [
+    { r: "Chômeur au sens du BIT", v: "Sans emploi (pas même une heure), disponible dans les 15 jours, en recherche active dans les 4 dernières semaines." },
+    { r: "Population active", v: "Personnes en emploi + chômeurs." },
+    { r: "Taux de chômage", v: "Chômeurs ÷ population active × 100 (7,7 % en 2025)." },
+    { r: "Taux d’emploi", v: "Personnes en emploi ÷ population de la classe d’âge × 100 (69,3 % des 15-64 ans en 2025)." },
+    { r: "Sous-emploi", v: "Personnes en emploi qui travaillent moins qu’elles le souhaitent (temps partiel subi) ou en chômage partiel." },
+    { r: "Halo autour du chômage", v: "Inactifs proches du chômage : souhaitent travailler mais ne cherchent pas ou ne sont pas disponibles (1,9 million en 2025)." },
+    { r: "Chômage structurel", v: "Chômage indépendant de la conjoncture, dû au fonctionnement du marché du travail et à ses institutions." },
+    { r: "Chômage conjoncturel", v: "Chômage dû à un ralentissement de l’activité et de la demande." },
+    { r: "Appariement", v: "Rencontre entre une offre d’emploi et un demandeur ; elle peut être freinée par des frictions et des inadéquations." },
+    { r: "Inadéquations spatiales et de qualifications", v: "Les emplois vacants ne sont pas là où sont les chômeurs, ou demandent d’autres compétences." },
+    { r: "Asymétrie d’information", v: "Situation où une partie à un échange en sait plus que l’autre (ex. : l’employeur ignore l’effort réel du salarié)." },
+    { r: "Salaire d’efficience", v: "Salaire supérieur au salaire du marché, versé pour motiver et fidéliser ; il peut créer un chômage involontaire (Shapiro et Stiglitz)." },
+    { r: "Règles de protection de l’emploi", v: "Règles qui encadrent licenciements et contrats temporaires ; effets ambigus sur le chômage, risque de dualisme." },
+    { r: "Demande effective", v: "Demande anticipée par les entreprises, qui détermine la production et l’emploi (Keynes, 1936)." },
+    { r: "Flexicurité", v: "Modèle danois : licenciements faciles, indemnisation généreuse, accompagnement actif vers l’emploi." },
+    { r: "Hystérèse du chômage", v: "Un chômage conjoncturel qui dure devient structurel (perte de compétences, méfiance des employeurs)." }
+  ],
+  bac: [
+    { type: "Savoir-faire", origine: "Exercice du site, données Insee", t: "Calculer un taux de chômage", enonce: '<p>En 2025, en France, l’Insee compte 2 451 000 chômeurs au sens du BIT et 29 383 000 personnes en emploi.</p><ol><li>Calcule la population active, puis le taux de chômage.</li><li>Les 15-24 ans ont un taux de chômage de 19,8 % mais une « part de chômage » de 8,5 %. Explique la différence.</li></ol>',
+      corrige: '<ol><li>Population active = 29 383 000 + 2 451 000 = 31 834 000. Taux de chômage = 2 451 ÷ 31 834 × 100 ≈ 7,7 %.</li><li>Le taux de chômage rapporte les chômeurs aux <b>actifs</b> ; la part de chômage les rapporte à <b>toute</b> la classe d’âge. Beaucoup de 15-24 ans étudient et sont inactifs : le dénominateur est bien plus grand, la part est donc plus faible.</li></ol>' },
+    { type: "Partie 1 · Mobilisation des connaissances", origine: "Sujet inventé pour le site", t: "Montrez que les problèmes d’appariement peuvent être à l’origine d’un chômage structurel.", enonce: "<p>3,5 points, sans document.</p>",
+      corrige: '<div class="copie"><p>Le chômage structurel est la part du chômage qui ne dépend pas de la conjoncture. L’appariement est la rencontre entre une offre d’emploi et un demandeur d’emploi ; lorsqu’elle se fait mal, chômeurs et emplois vacants coexistent.</p><p>D’abord, les frictions : même lorsqu’un poste correspond à un chômeur, il faut du temps pour que l’information circule, que les candidatures soient examinées et que l’embauche se fasse. Pendant ce temps, la personne est au chômage : c’est le chômage frictionnel, qui existe même en période de forte activité.</p><p>Ensuite, les inadéquations. Inadéquation de qualifications : avec la destruction créatrice, les emplois créés demandent souvent des compétences que n’ont pas les personnes dont l’emploi a disparu ; en 2025, selon l’Insee, 14,7 % des actifs sans diplôme ou avec le brevet sont au chômage, contre 5,3 % des diplômés du supérieur. Inadéquation spatiale : les emplois sont concentrés dans certaines métropoles alors que des chômeurs vivent dans des territoires en déclin et ne peuvent pas déménager facilement. Dans ces deux cas, le chômage persiste même si la demande globale est soutenue : il est structurel.</p></div>' },
+    { type: "Partie 2 · Étude d’un document", origine: "Exercice du site, document Insee", t: "Le chômage selon le diplôme", enonce: '<p>Document : le graphique « Qui est le plus exposé au chômage ? (2025) » dans <a href="#e3:e3-2">le cours</a>.</p><ol><li>Comparez le taux de chômage des actifs sans diplôme (ou avec le brevet) et celui des diplômés de Bac + 2 ou plus.</li><li>À l’aide du document et de vos connaissances, montrez que le chômage touche inégalement les actifs.</li></ol>',
+      corrige: '<ol><li>Selon l’Insee, en 2025 en France, le taux de chômage des actifs sans diplôme ou avec le brevet est de 14,7 %, contre 5,3 % pour les diplômés de Bac + 2 ou plus : il est environ 2,8 fois plus élevé (9,4 points d’écart).</li><li>Le document montre une forte inégalité selon le diplôme et la qualification : 17,1 % de chômage pour les ouvriers peu qualifiés contre 4,0 % pour les cadres. Deux mécanismes l’expliquent. L’inadéquation des qualifications : le progrès technique biaisé et la tertiarisation augmentent la demande de travail qualifié et réduisent celle de travail peu qualifié et routinier. Le coût du travail : quand la productivité d’un emploi est proche du salaire minimum, l’employeur hésite à embaucher, d’où les allègements de cotisations ciblés sur les bas salaires. On peut ajouter que les jeunes (19,8 % de chômage) sont exposés car ils sont en phase d’insertion et occupent plus souvent des contrats courts, premiers supprimés quand l’activité ralentit.</li></ol>' },
+    { type: "Partie 3 · Raisonnement sur dossier", origine: "Sujet inventé pour le site", t: "À l’aide du dossier, montrez que le chômage peut avoir des causes conjoncturelles.", enonce: '<p><b>Document 1</b> : le graphique « Le taux de chômage en France, 1975-2025 » (Insee). <b>Document 2</b> : le PIB en volume recule de 2,8 % en 2009 (Insee). <b>Document 3</b> (texte factuel) : en 2009, les entreprises réduisent l’intérim et les heures supplémentaires avant de supprimer des emplois.</p>',
+      corrige: '<p><b>Introduction.</b> Le chômage conjoncturel est la part du chômage due à un ralentissement de l’activité. On montrera qu’un choc de demande réduit la production et l’emploi, puis que ce chômage peut s’auto-entretenir.</p><p><b>I. Un ralentissement de la demande réduit la production et l’emploi.</b> Demande effective (Keynes) : les entreprises produisent selon les ventes anticipées. Document 2 : récession de 2009. Document 3 : ajustement par l’intérim et les heures, puis l’emploi. Document 1 : 7,4 % en 2008, 9,1 % en 2009.</p><p><b>II. Le chômage conjoncturel s’auto-entretient.</b> Moins d’emplois → moins de revenus, épargne de précaution → moins de consommation et d’investissement → nouvelle baisse de la demande. Document 1 : la hausse continue jusqu’à 10,4 % en 2015 avec la crise de la zone euro. Risque d’hystérèse.</p><p><b>Conclusion.</b> Les fluctuations de l’activité expliquent une partie des variations du chômage, d’où les politiques de relance de la demande globale.</p>' },
+    { type: "Dissertation · plan détaillé", origine: "Sujet inventé pour le site", t: "Les politiques de l’offre sont-elles suffisantes pour lutter contre le chômage ?", enonce: "<p>Construis la problématique et le plan, puis compare.</p>",
+      corrige: '<p><b>Problématique.</b> Les politiques de l’offre (coût du travail, formation, flexibilité) visent le chômage structurel. Peuvent-elles à elles seules faire baisser durablement le chômage, alors qu’une partie de celui-ci dépend de la demande ?</p><p><b>I. Les politiques de l’offre agissent sur le chômage structurel</b><br>A. Alléger le coût du travail peu qualifié (cotisations ; CICE devenu baisse de cotisations en 2019).<br>B. Former pour réduire les inadéquations (CPF, apprentissage).<br>C. Flexibiliser pour lever les rigidités (rupture conventionnelle, ordonnances de 2017 ; flexicurité).</p><p><b>II. Mais elles ont des limites</b><br>A. Effets d’aubaine, coût budgétaire, trappes à bas salaires.<br>B. Précarisation, dualisme du marché du travail.<br>C. Elles sont impuissantes face au chômage conjoncturel : 2009, PIB −2,8 %, chômage 7,4 % → 9,1 %.</p><p><b>III. Elles doivent être combinées à des politiques de la demande</b><br>A. Relance budgétaire et monétaire en récession (multiplicateur ; chômage partiel en 2020).<br>B. Éviter l’hystérèse : un chômage conjoncturel durable devient structurel.<br>C. Coordination européenne de la demande (<a href="#e5">É5</a>).</p>' }
+  ]
+};
+
+AUTEURS.push(
+  { ch: "e3", n: "John Maynard Keynes", d: "1883-1946", th: "Chômage involontaire dû à une demande effective insuffisante", l: "<i>Théorie générale de l’emploi, de l’intérêt et de la monnaie</i> (1936) : l’emploi dépend de la <b>demande effective</b> anticipée par les entreprises ; un chômage involontaire peut durer, d’où les politiques de relance." },
+  { ch: "e3", n: "Carl Shapiro et Joseph Stiglitz", d: "1984 · Nobel 2001 pour Stiglitz", th: "Le salaire d’efficience crée un chômage involontaire qui discipline les salariés", l: "Modèle du <b>salaire d’efficience</b> : l’employeur, qui observe mal l’effort, paie au-dessus du marché ; le chômage involontaire qui en résulte incite à l’effort." },
+  { ch: "e3", n: "David Card et Alan Krueger", d: "1994 · Nobel 2021 pour Card", th: "Une hausse du salaire minimum sans baisse de l’emploi (New Jersey)", l: "Expérience naturelle des fast-foods du New Jersey et de la Pennsylvanie : la hausse du <b>salaire minimum</b> de 1992 n’a pas réduit l’emploi." },
+  { ch: "e3", n: "Assar Lindbeck et Dennis Snower", d: "1988", th: "Insiders protégés contre outsiders exclus", l: "Théorie <b>insiders / outsiders</b> : les salariés en place, protégés, obtiennent des salaires élevés au détriment des chômeurs et des précaires." },
+  { ch: "e3", n: "Diamond, Mortensen et Pissarides", d: "Nobel 2010", th: "Les frictions de recherche expliquent la coexistence de chômeurs et d’emplois vacants", l: "Analyse des marchés avec <b>frictions de recherche</b> : trouver un emploi ou un salarié prend du temps, d’où un chômage d’appariement." }
+);
+
+GRAPHES["e4-pib"] = {
+  type: "barres", t: "La France dans la crise de 2008-2009",
+  s: "Taux de croissance du PIB en volume, en %.",
+  src: "Source : Insee, comptes nationaux annuels, base 2020 (mai 2026).",
+  unite: " %", x: [2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013],
+  y: [2.9, 1.9, 2.7, 2.5, 0.4, -2.8, 2.0, 2.4, 0.2, 0.8], pasX: 1, h: 240, min: -4, max: 4,
+  notes: [{ x: 2009, y: -2.8, t: "−2,8 %" }]
+};
+
+CHAINES["e4-bulle"] = { t: "Formation et éclatement d’une bulle spéculative", e: [
+  { t: "Le prix d’un actif monte (bonne nouvelle, crédit abondant)", k: "cause" },
+  { t: "Des acheteurs achètent parce que le prix monte et que les autres achètent : mimétisme", a: "donc" },
+  { t: "Chacun anticipant la hausse, la demande la provoque : prophétie autoréalisatrice", a: "donc" },
+  { t: "Le prix s’écarte de la valeur fondamentale : c’est la bulle", a: "donc" },
+  { t: "Un signal fait vendre les premiers ; tous veulent vendre en même temps", k: "frein", a: "puis" },
+  { t: "Le prix s’effondre : le krach", k: "effet", a: "donc" }
+] };
+CHAINES["e4-panique"] = { t: "La panique bancaire", e: [
+  { t: "Une banque prête à long terme l’argent déposé à vue (transformation des échéances)", k: "cause" },
+  { t: "Une rumeur fait craindre pour sa solidité", a: "or" },
+  { t: "Chaque déposant a intérêt à retirer son argent avant les autres", a: "donc" },
+  { t: "Retraits massifs : la banque doit vendre ses actifs à perte ou ne peut plus rembourser", a: "donc" },
+  { t: "Faillite, même si la banque était solvable au départ : la crainte s’est autoréalisée", k: "effet", a: "donc" }
+] };
+CHAINES["e4-chaine"] = { t: "Les faillites bancaires en chaîne", e: [
+  { t: "Une banque fait faillite", k: "cause" },
+  { t: "Elle ne rembourse plus ce qu’elle doit aux autres banques (prêts interbancaires)", a: "donc" },
+  { t: "Ses créanciers subissent des pertes et leurs fonds propres baissent", a: "donc" },
+  { t: "La méfiance gagne : les banques cessent de se prêter, les déposants se ruent aux guichets", a: "donc" },
+  { t: "D’autres faillites suivent : la crise devient systémique", k: "effet", a: "donc" }
+] };
+CHAINES["e4-reel"] = { t: "De la crise financière à l’économie réelle", e: [
+  { t: "Krach boursier ou immobilier, faillites bancaires", k: "cause" },
+  { f: [{ t: "Effet de richesse négatif : patrimoine en baisse, ménages qui consomment moins" }, { t: "Baisse du prix du collatéral : les emprunteurs vendent leurs actifs en urgence, ce qui fait encore baisser les prix" }, { t: "Contraction du crédit : les banques fragilisées prêtent moins" }], a: "trois canaux" },
+  { t: "Consommation et investissement reculent", a: "donc" },
+  { t: "Le PIB baisse et le chômage augmente", k: "effet", a: "donc" }
+] };
+CHAINES["e4-alea"] = { t: "L’aléa moral des banques", e: [
+  { t: "Les banques savent qu’en cas de difficulté, l’État ou la banque centrale les sauvera (« trop grosses pour faire faillite »)", k: "cause" },
+  { t: "Elles prennent plus de risques : leurs gains sont privés, leurs pertes en partie publiques", a: "donc" },
+  { t: "Le risque de crise augmente", k: "frein", a: "donc" },
+  { t: "Réponse : supervision par la banque centrale et ratio de solvabilité (plus de fonds propres pour absorber les pertes)", k: "effet", a: "d’où" }
+] };
+
+ANIMS["e4-bulle"] = {
+  t: "Une bulle se forme, puis éclate",
+  h: 312,
+  src: "Schéma de principe (valeurs illustratives). Exemples réels : bulle des tulipes (Provinces-Unies, 1637) ; bulle internet (indice Nasdaq, sommet le 10 mars 2000) ; immobilier américain (sommet des prix en 2006).",
+  etapes: [
+    { l: "Un actif (une action, un logement) a une valeur fondamentale : ce que rapportent ses revenus futurs (dividendes, loyers). Au départ, son prix en est proche.", d: 3.5 },
+    { l: "Une bonne nouvelle fait monter le prix. D’autres achètent parce que le prix monte et que tout le monde achète : c’est le comportement mimétique.", d: 3.5 },
+    { l: "Prophétie autoréalisatrice : chacun anticipe la hausse, achète, et la hausse se produit. Le prix s’envole loin de la valeur fondamentale : c’est la bulle.", d: 4 },
+    { l: "Un signal (hausse des taux, mauvaise nouvelle, défauts de paiement) pousse les premiers à vendre pour encaisser leurs gains.", d: 3 },
+    { l: "Le mimétisme joue à la baisse : tout le monde vend en même temps. Le prix s’effondre, souvent sous la valeur fondamentale : c’est le krach.", d: 3.5 }
+  ],
+  rendu: function (A, i, p) {
+    var x0 = 40, y0 = 250, s = A.axes(x0, y0, 300, 220, { lx: "temps", ly: "prix de l’actif" });
+    var fond = 70, pts = [];
+    function prix(t) {
+      if (t < 0.18) return fond + 6 * Math.sin(t * 30);
+      if (t < 0.38) return fond + (t - 0.18) / 0.2 * 30;
+      if (t < 0.62) return fond + 30 + Math.pow((t - 0.38) / 0.24, 2.2) * 125;
+      if (t < 0.70) return 225 - (t - 0.62) / 0.08 * 20;
+      return Math.max(38, 205 - Math.pow((t - 0.70) / 0.12, 1.4) * 170);
+    }
+    var bornes = [[0, 0.18], [0.18, 0.38], [0.38, 0.62], [0.62, 0.70], [0.70, 0.86]];
+    var tmax = bornes[i][0] + (bornes[i][1] - bornes[i][0]) * p;
+    var X = function (t) { return x0 + t * 340; }, Y = function (v) { return y0 - v; };
+    s += '<line x1="' + x0 + '" x2="' + (x0 + 300) + '" y1="' + Y(fond) + '" y2="' + Y(fond) + '" style="stroke:var(--canard);stroke-width:2;stroke-dasharray:6 4"/>';
+    s += A.t(x0 + 300, Y(fond) + 16, "valeur fondamentale", { t: 11, a: "end", c: "canard", g: true });
+    for (var t = 0; t <= tmax + 1e-9; t += 0.005) pts.push([X(t), Y(prix(t))]);
+    if (pts.length > 1) {
+      if (i >= 2) {
+        var zone = pts.filter(function (q, k) { var tt = k * 0.005; return tt >= 0.38 && tt <= Math.min(tmax, 0.70); });
+        if (zone.length > 1) s += '<path d="M' + zone.map(function (q) { return q[0].toFixed(1) + " " + q[1].toFixed(1); }).join("L") + "L" + zone[zone.length - 1][0].toFixed(1) + " " + Y(fond) + "L" + zone[0][0].toFixed(1) + " " + Y(fond) + 'z" style="fill:var(--corail);opacity:.15"/>';
+      }
+      s += A.pl(pts, 1, { c: "corail", sw: 3 });
+      var der = pts[pts.length - 1];
+      s += A.cercle(der[0], der[1], 5, { f: "corail", s: "carte", sw: 2 });
+    }
+    var acheteurs = i === 0 ? 1 : i === 1 ? 1 + Math.round(4 * p) : i === 2 ? 5 + Math.round(9 * p) : i === 3 ? 14 - Math.round(4 * p) : 0;
+    var vendeurs = i === 3 ? Math.round(4 * p) : i === 4 ? 4 + Math.round(12 * p) : 0;
+    for (var k = 0; k < acheteurs; k++) s += A.cercle(118 + (k % 7) * 11, 282 + Math.floor(k / 7) * 11, 4.2, { f: "vert" });
+    for (var m = 0; m < vendeurs; m++) s += A.cercle(270 + (m % 8) * 11, 282 + Math.floor(m / 8) * 11, 4.2, { f: "corail" });
+    s += A.t(110, 286, "acheteurs", { t: 11, c: "vert", g: true, a: "end", op: acheteurs ? 1 : 0.35 });
+    s += A.t(262, 286, "vendeurs", { t: 11, c: "corail", g: true, a: "end", op: vendeurs ? 1 : 0.35 });
+    if (i === 2) s += A.t(X(0.52), Y(115), "bulle", { t: 16, g: true, a: "middle", c: "corail", op: A.s(p, 0.5, 1), f: true, h: true });
+    if (i === 4) s += A.t(X(0.80), Y(150), "krach", { t: 18, g: true, a: "middle", c: "corail", op: A.s(p, 0.4, 0.9), f: true, h: true });
+    return s;
+  }
+};
+
+ANIMS["e4-contagion"] = {
+  t: "Comment une faillite bancaire devient une crise",
+  h: 320,
+  src: "Schéma de principe. Repères : environ 9 000 faillites bancaires aux États-Unis de 1930 à mars 1933 ; faillite de Lehman Brothers le 15 septembre 2008 ; panique sur Silicon Valley Bank le 9 mars 2023.",
+  etapes: [
+    { l: "Les banques se prêtent entre elles sur le marché interbancaire : chacune détient des créances sur les autres.", d: 3 },
+    { l: "La banque A subit de lourdes pertes (crédits immobiliers non remboursés) : ses fonds propres fondent.", d: 3 },
+    { l: "A fait faillite et ne rembourse pas ses dettes : les banques B et C, qui lui avaient prêté, perdent à leur tour.", d: 3.5 },
+    { l: "Les déposants de B, inquiets, viennent tous retirer leur argent : panique bancaire. Une banque prête à long terme : elle ne peut pas rembourser tout le monde d’un coup.", d: 4 },
+    { l: "La méfiance devient générale : les banques cessent de se prêter, le crédit se tarit, d’autres faillites suivent. La crise est systémique.", d: 3.5 },
+    { l: "Pour arrêter la contagion : la banque centrale prête en dernier ressort, la garantie des dépôts rassure ; en amont, supervision et fonds propres limitent les risques.", d: 4 }
+  ],
+  rendu: function (A, i, p) {
+    var B = { A: [70, 70], B: [180, 46], C: [290, 70], D: [70, 190], E: [180, 214], F: [290, 190] };
+    var liens = [["A", "B"], ["A", "C"], ["B", "C"], ["A", "D"], ["B", "E"], ["C", "F"], ["D", "E"], ["E", "F"], ["B", "D"]];
+    var s = "";
+    var touche = { A: i >= 1, B: i >= 2, C: i >= 2, E: i >= 4, F: i >= 4, D: false };
+    var faillite = { A: i >= 2, B: i >= 3 && i < 5, E: i === 4, F: false, C: false, D: false };
+    if (i === 5) touche = { A: true, B: true, C: true };
+    liens.forEach(function (l) {
+      var a = B[l[0]], b = B[l[1]], coupe = i === 4;
+      var q = i === 0 ? A.s(p, 0, 0.8) : 1;
+      s += A.fl(a[0], a[1], a[0] + (b[0] - a[0]) * q, a[1] + (b[1] - a[1]) * q, { c: coupe ? "corail" : (i === 5 ? "vert" : "gris"), sw: 1.6, tete: false, tir: coupe, op: coupe ? 0.6 : (i === 3 ? 0.25 : 1) });
+    });
+    if (i === 2) [["A", "B"], ["A", "C"]].forEach(function (l) {
+      var a = B[l[0]], b = B[l[1]], q = A.s(p, 0.1, 0.8);
+      s += A.cercle(a[0] + (b[0] - a[0]) * q, a[1] + (b[1] - a[1]) * q, 6, { f: "corail" });
+    });
+    Object.keys(B).forEach(function (k) {
+      var c = B[k], f = faillite[k] ? "corail" : touche[k] ? "moutarde" : "canard";
+      if (i === 5) f = k === "A" ? "gris" : "canard";
+      var r = 24;
+      if (k === "A" && i === 1) r = 24 - 4 * A.s(p, 0, 1);
+      s += A.cercle(c[0], c[1], r, { f: f, s: "carte", sw: 3 });
+      s += A.t(c[0], c[1] + 6, k, { t: 17, g: true, a: "middle", c: "carte", f: true });
+      if (faillite[k]) s += A.t(c[0], c[1] + 40, "faillite", { t: 11, g: true, a: "middle", c: "corail", h: true });
+    });
+    if (i === 1) s += A.jauge(20, 120, 100, 10 * (1 - A.s(p, 0, 1)) + 1, 11, { c: "corail", l: "fonds propres de A" });
+    if (i === 3) {
+      for (var k = 0; k < 12; k++) {
+        var q = A.s(p, k * 0.05, 0.4 + k * 0.05), gauche = k < 6, j = k % 6;
+        var dx = gauche ? 22 : 338, dy = 110 + j * 26;
+        s += A.cercle(dx, dy, 6, { f: "moutarde" });
+        s += A.fl(dx + (gauche ? 8 : -8), dy, 180 + (gauche ? -20 : 20), 58, { c: "moutarde", sw: 1.4, p: q, op: 0.8 });
+      }
+      s += A.t(180, 296, "déposants qui retirent leur argent", { t: 12, g: true, a: "middle", c: "moutarde", op: A.s(p, 0.2, 0.6), h: true });
+    }
+    if (i === 4) s += A.t(180, 290, "plus personne ne prête : crise systémique", { t: 13, g: true, a: "middle", c: "corail", op: A.s(p, 0.3, 0.8), h: true });
+    if (i === 5) {
+      s += A.boite(20, 250, 150, 54, "banque centrale : prêteur en dernier ressort", { k: "cause", t: 11.5, op: A.s(p, 0, 0.4) });
+      s += A.boite(190, 250, 150, 54, "garantie des dépôts : 100 000 € par client", { k: "cause", t: 11.5, op: A.s(p, 0.3, 0.7) });
+    }
+    return s;
+  }
+};
+
+CH.e4 = {
+  chapo: "Un jeudi d’octobre 1929, un lundi de septembre 2008 : en quelques jours, la finance s’effondre et entraîne l’économie entière. Ce chapitre explique comment naissent les bulles, pourquoi les banques tombent en chaîne, comment la crise contamine l’emploi, et comment on régule les banques pour éviter la suivante.",
+  essentiel: [
+    "Les crises de <b>1929</b> et de <b>2008</b> partagent les mêmes étapes : effondrement boursier, faillites bancaires en chaîne, chute du PIB et hausse du chômage.",
+    "Une <b>bulle spéculative</b> se forme quand le prix d’un actif s’écarte durablement de sa valeur fondamentale, sous l’effet de <b>comportements mimétiques</b> et de <b>prophéties autoréalisatrices</b> ; elle finit par éclater (krach).",
+    "Les banques prêtent à long terme l’argent déposé à court terme : une rumeur peut provoquer une <b>panique bancaire</b> ; leurs prêts mutuels propagent les <b>faillites en chaîne</b>.",
+    "La crise passe à l’<b>économie réelle</b> par trois canaux : <b>effet de richesse négatif</b>, <b>baisse du prix du collatéral et ventes forcées</b>, <b>contraction du crédit</b>.",
+    "Pour réduire l’<b>aléa moral</b> des banques, on les <b>supervise</b> (banque centrale) et on leur impose un <b>ratio de solvabilité</b> (fonds propres suffisants)."
+  ],
+  chiffres: [
+    { n: "−89 %", l: "la chute de l’indice Dow Jones entre son sommet du 3 septembre 1929 et son point bas du 8 juillet 1932.", s: "Données historiques de l’indice Dow Jones" },
+    { n: "≈ 9 000", l: "faillites bancaires aux États-Unis entre 1930 et mars 1933.", s: "Ordre de grandeur couramment retenu par les historiens" },
+    { n: "−2,8 %", l: "le recul du PIB français en 2009, la plus forte récession depuis 1950 avant celle de 2020.", s: "Insee, comptes nationaux" }
+  ],
+  objectifs: [
+    { bo: "Connaître les principales caractéristiques de la crise financière des années 1930 et de celle de 2008 (effondrement boursier, faillites en chaîne, chute du PIB et accroissement du chômage).", clair: "Savoir raconter les deux crises avec leurs dates et leurs chiffres clés.", voir: "e4-1" },
+    { bo: "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties autoréalisatrices).", clair: "Expliquer pas à pas comment une bulle gonfle et éclate, avec un exemple.", voir: "e4-2" },
+    { bo: "Comprendre les phénomènes de panique bancaire et de faillites bancaires en chaîne.", clair: "Expliquer pourquoi une banque saine peut tomber et comment une faillite en entraîne d’autres.", voir: "e4-3" },
+    { bo: "Connaître les principaux canaux de transmission d’une crise financière à l’économie réelle : effets de richesse négatif, baisse du prix du collatéral et ventes forcées, contraction du crédit.", clair: "Présenter les trois canaux par lesquels la crise financière fait baisser production et emploi.", voir: "e4-4" },
+    { bo: "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l’aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité.", clair: "Définir l’aléa moral et expliquer comment supervision et ratio de solvabilité le limitent.", voir: "e4-5" }
+  ],
+  notions: ["crise financière", "krach boursier", "bulle spéculative", "valeur fondamentale", "comportement mimétique", "prophétie autoréalisatrice", "panique bancaire", "transformation des échéances", "faillites bancaires en chaîne", "risque systémique", "effet de richesse négatif", "collatéral", "ventes forcées", "contraction du crédit", "aléa moral", "prêteur en dernier ressort", "supervision bancaire", "ratio de solvabilité", "fonds propres"],
+  sections: [
+    { id: "e4-1", t: "Deux grandes crises : 1929 et 2008", h:
+      '<div class="def"><b>Crise financière</b> — perturbation grave des marchés financiers et du système bancaire : chute brutale du prix des actifs (krach), faillites d’établissements financiers, blocage du crédit.</div>' +
+      '<div class="tbl"><table><thead><tr><th></th><th>Crise des années 1930</th><th>Crise de 2008</th></tr></thead><tbody>' +
+      '<tr><td><b>Bulle</b></td><td>Actions à Wall Street, achetées à crédit dans les années 1920</td><td>Immobilier américain, financé par des crédits risqués (<i>subprimes</i>) revendus sous forme de titres</td></tr>' +
+      '<tr><td><b>Effondrement boursier</b></td><td>« Jeudi noir » du 24 octobre 1929 et « mardi noir » du 29 ; le Dow Jones perd 89 % entre septembre 1929 et juillet 1932</td><td>Prix immobiliers en baisse à partir de 2006 ; chute des Bourses mondiales à l’automne 2008</td></tr>' +
+      '<tr><td><b>Faillites en chaîne</b></td><td>Environ 9 000 banques américaines de 1930 à 1933 ; faillite du Creditanstalt de Vienne en mai 1931 ; « vacances bancaires » décrétées par Roosevelt en mars 1933</td><td>Gel de trois fonds de BNP Paribas (9 août 2007) ; panique sur Northern Rock (septembre 2007) ; faillite de Lehman Brothers le 15 septembre 2008 ; sauvetage d’AIG, de Dexia</td></tr>' +
+      '<tr><td><b>Chute du PIB</b></td><td>États-Unis : PIB réel en baisse d’environ un quart de 1929 à 1933</td><td>France : −2,8 % en 2009 (Insee)</td></tr>' +
+      '<tr><td><b>Chômage</b></td><td>États-Unis : environ 25 % de la population active en 1933</td><td>États-Unis : 10 % en octobre 2009 ; France : de 7,4 % en 2008 à 9,1 % en 2009 (Insee)</td></tr>' +
+      '</tbody></table></div>' +
+      '<div data-graph="e4-pib"></div>' +
+      '<p>Les deux crises n’ont pas eu la même ampleur : en 2008, les banques centrales et les États sont intervenus massivement (baisses de taux, prêts aux banques, plans de relance), alors qu’au début des années 1930 ils avaient laissé les banques tomber et resserré leurs budgets. L’ancien président de la Réserve fédérale Ben Bernanke, spécialiste de la Grande Dépression, a reçu le prix Nobel 2022 pour avoir montré le rôle des faillites bancaires dans l’aggravation de la crise des années 1930.</p>' },
+
+    { id: "e4-2", t: "La formation et l’éclatement d’une bulle spéculative", h:
+      '<div class="def"><b>Bulle spéculative</b> — hausse durable du prix d’un actif (actions, immobilier, matières premières) très au-dessus de sa <b>valeur fondamentale</b>, c’est-à-dire de la valeur actualisée des revenus qu’il rapportera (dividendes, loyers).</div>' +
+      '<div data-anim="e4-bulle"></div>' +
+      '<p>Deux mécanismes alimentent la bulle :</p>' +
+      '<ul><li><b>Le comportement mimétique</b> : faute d’information sûre, chacun imite les autres ; si tout le monde achète, c’est sans doute qu’il faut acheter. Keynes comparait la Bourse à un concours de beauté où il faut deviner, non le plus beau visage, mais celui que les autres vont choisir.</li><li><b>La prophétie autoréalisatrice</b> : une croyance provoque elle-même sa réalisation. Si tout le monde pense que le prix va monter et achète, le prix monte. La notion vient du sociologue Robert K. Merton (1948).</li></ul>' +
+      '<div data-chain="e4-bulle"></div>' +
+      '<p>Le crédit joue souvent un rôle clé : on achète en empruntant, en espérant revendre plus cher. Quand les prix baissent, les emprunteurs doivent vendre pour rembourser, ce qui accélère le krach.</p>' +
+      '<div class="ex"><p>La bulle internet : l’indice Nasdaq, riche en valeurs technologiques, atteint son sommet le 10 mars 2000, porté par des entreprises sans bénéfices dont on attendait des profits futurs considérables ; il perd environ 78 % jusqu’en octobre 2002.</p></div>' +
+      '<div class="ex src"><p>La « tulipomanie » : dans les Provinces-Unies (actuels Pays-Bas), des bulbes de tulipes rares s’échangent à des prix extravagants, avant un effondrement en février 1637. Exemple classique, dont l’ampleur réelle est discutée par les historiens.</p></div>' },
+
+    { id: "e4-3", t: "Paniques bancaires et faillites en chaîne", h:
+      '<p class="lede">Une banque collecte des dépôts que les clients peuvent retirer à tout moment, et prête cet argent à long terme (crédits immobiliers, prêts aux entreprises). C’est la <b>transformation des échéances</b> : utile à l’économie, mais fragile.</p>' +
+      '<div class="def"><b>Panique bancaire</b> (ruée bancaire) — retraits massifs et simultanés des déposants qui craignent de ne plus pouvoir récupérer leur argent. Comme la banque n’a pas toutes ses ressources disponibles, la crainte peut provoquer la faillite qu’elle redoutait.</div>' +
+      '<div data-chain="e4-panique"></div>' +
+      '<div class="aut"><span class="mono">DD</span><span class="an">Douglas Diamond et Philip Dybvig<small>1983 · Nobel 2022 avec Ben Bernanke</small></span><span class="ad">Leur modèle montre qu’une panique bancaire peut toucher une banque saine : si chacun croit que les autres vont retirer leurs dépôts, il est rationnel de se précipiter aussi. D’où l’utilité d’une garantie des dépôts.</span></div>' +
+      '<div class="ex"><p>Le 9 mars 2023, les clients de Silicon Valley Bank, en Californie, demandent à retirer environ 42 milliards de dollars en une seule journée, alertés par des messages sur les réseaux sociaux. La banque est fermée par les autorités le lendemain, 10 mars 2023.</p></div>' +
+      '<div class="def"><b>Faillites en chaîne</b> — les banques se prêtent entre elles et détiennent les mêmes types de titres : la faillite de l’une fait subir des pertes aux autres et répand la méfiance. On parle de <b>risque systémique</b>.</div>' +
+      '<div data-anim="e4-contagion"></div>' +
+      '<div data-chain="e4-chaine"></div>' +
+      '<div class="ex"><p>Après la faillite de Lehman Brothers, le 15 septembre 2008, les banques ne savent plus lesquelles détiennent des titres toxiques : elles cessent de se prêter. Les banques centrales doivent fournir elles-mêmes les liquidités, et les États recapitalisent ou nationalisent des banques.</p></div>' },
+
+    { id: "e4-4", t: "De la crise financière à l’économie réelle", h:
+      '<p class="lede">L’<b>économie réelle</b> désigne la production de biens et de services, l’emploi et les revenus. Une crise financière la contamine par trois canaux.</p>' +
+      '<h3>1. L’effet de richesse négatif</h3><p>La valeur des actions et des logements des ménages baisse : ils se sentent moins riches et consomment moins, surtout s’ils sont endettés. Les entreprises dont le cours s’effondre investissent moins.</p>' +
+      '<h3>2. La baisse du prix du collatéral et les ventes forcées</h3><p>Le <b>collatéral</b> est un bien donné en garantie d’un prêt (le logement pour un crédit immobilier, des titres pour un prêt financier). Quand son prix baisse, la garantie ne couvre plus la dette : le prêteur exige un remboursement ou plus de garanties, et l’emprunteur doit <b>vendre en urgence</b>, ce qui fait encore baisser les prix. L’économiste Irving Fisher a décrit en 1933 cette spirale de la « déflation par la dette ».</p>' +
+      '<h3>3. La contraction du crédit</h3><p>Les banques, qui ont subi des pertes et se méfient, réduisent leurs prêts et durcissent leurs conditions (<i>credit crunch</i>). Les entreprises ne peuvent plus financer leurs investissements ni même leur trésorerie ; les ménages n’obtiennent plus de crédits.</p>' +
+      '<div data-chain="e4-reel"></div>' +
+      '<div class="ex"><p>2008-2009 : avec la chute du commerce mondial et du crédit, le PIB de la France recule de 2,8 % en 2009 et son taux de chômage passe de 7,4 % à 9,1 % (Insee). La crise financière est devenue une crise économique et sociale.</p></div>' },
+
+    { id: "e4-5", t: "Réguler le système bancaire et financier", h:
+      '<div class="def"><b>Aléa moral</b> — situation où un agent, protégé contre les conséquences de ses actes, prend davantage de risques. Une banque qui sait qu’elle sera sauvée (« trop grosse pour faire faillite ») est incitée à prendre trop de risques.</div>' +
+      '<div data-chain="e4-alea"></div>' +
+      '<p>Le sauvetage des banques en 2008 a évité l’effondrement, mais il a renforcé cet aléa moral. D’où deux instruments, au programme :</p>' +
+      '<h3>1. La supervision des banques par la banque centrale</h3><p>Une autorité contrôle la situation des banques : leurs risques, leurs fonds propres, leur organisation, et peut imposer des mesures. Dans la zone euro, la Banque centrale européenne supervise directement les grandes banques depuis le 4 novembre 2014 (mécanisme de surveillance unique), avec les autorités nationales comme l’ACPR en France. Des « tests de résistance » simulent des crises pour vérifier que les banques tiendraient.</p>' +
+      '<h3>2. Le ratio de solvabilité</h3><div class="def"><b>Ratio de solvabilité</b> — rapport entre les <b>fonds propres</b> d’une banque (l’argent de ses actionnaires, qui absorbe les pertes) et ses actifs pondérés par leur risque. Plus il est élevé, plus la banque peut encaisser de pertes sans faire faillite.</div>' +
+      '<p>Les accords de Bâle III (2010), négociés après la crise, exigent au minimum 4,5 % de fonds propres « durs » et 8 % de fonds propres au total, plus un coussin de conservation de 2,5 %. Plus de fonds propres, c’est aussi plus de « peau dans le jeu » pour les actionnaires : ils perdent leur mise si la banque prend trop de risques, ce qui réduit l’aléa moral.</p>' +
+      '<div class="ex"><p>Après la crise de 1929, les États-Unis créent en 1933 une assurance fédérale des dépôts et séparent banques de dépôt et banques d’investissement (loi Glass-Steagall, abrogée en 1999). Aujourd’hui, dans l’Union européenne, les dépôts sont garantis jusqu’à 100 000 € par client et par banque.</p></div>' +
+      '<div class="plus"><p>La <b>banque centrale prêteur en dernier ressort</b> fournit des liquidités aux banques solvables en difficulté passagère, pour éviter la contagion. Mais si elle sauve tout le monde, elle nourrit l’aléa moral : c’est pourquoi la supervision et les fonds propres viennent en amont.</p></div>' }
+  ],
+  pieges: [
+    { f: "« Une bulle, c’est quand le prix monte beaucoup. »", v: "C’est quand le prix s’écarte durablement de la <b>valeur fondamentale</b> de l’actif, alimenté par le mimétisme et les anticipations." },
+    { f: "« Une banque qui subit une panique était forcément mal gérée. »", v: "Une banque solvable peut tomber par manque de liquidités : elle a prêté à long terme ce qu’on peut lui réclamer à vue (Diamond et Dybvig)." },
+    { f: "Confondre liquidité et solvabilité.", v: "Problème de liquidité : pas assez d’argent disponible tout de suite. Problème de solvabilité : les dettes dépassent ce que vaut ce qu’on possède." },
+    { f: "« La crise financière ne touche que les riches qui ont des actions. »", v: "Elle passe à l’économie réelle par le crédit, la consommation et l’investissement : baisse du PIB et hausse du chômage." },
+    { f: "« L’aléa moral, c’est quand une banque fraude. »", v: "C’est une incitation à prendre trop de risques parce qu’on est protégé des conséquences, sans qu’il y ait fraude." },
+    { f: "« Cette question peut tomber à l’écrit. »", v: "Non en 2027 : elle n’est pas dans la liste des questions évaluables. Elle reste au programme et utile pour comprendre la conjoncture et les politiques économiques." }
+  ],
+  retenir:
+    '<h3>Définitions</h3><ul>' +
+    '<li><b>Bulle spéculative</b> : prix très au-dessus de la valeur fondamentale ; <b>mimétisme</b> ; <b>prophétie autoréalisatrice</b> (Merton, 1948) ; krach.</li>' +
+    '<li><b>Panique bancaire</b> : retraits massifs ; transformation des échéances (Diamond et Dybvig, 1983). <b>Faillites en chaîne</b> : prêts interbancaires, risque systémique.</li>' +
+    '<li><b>Transmission à l’économie réelle</b> : effet de richesse négatif ; baisse du collatéral et ventes forcées (Fisher, 1933) ; contraction du crédit.</li>' +
+    '<li><b>Aléa moral</b> : prise de risque excessive d’un agent protégé. <b>Supervision</b> (BCE depuis le 4 novembre 2014) ; <b>ratio de solvabilité</b> = fonds propres ÷ actifs pondérés par les risques (Bâle III : 4,5 % de fonds propres durs, 8 % au total, + 2,5 % de coussin).</li></ul>' +
+    '<h3>Dates et chiffres</h3><ul><li>1929 : jeudi noir 24 octobre ; Dow Jones −89 % (sept. 1929 → juil. 1932) ; environ 9 000 faillites bancaires (1930-1933) ; chômage américain autour de 25 % en 1933.</li><li>2008 : Lehman Brothers, 15 septembre ; France 2009 : PIB −2,8 %, chômage 7,4 % → 9,1 %.</li><li>2023 : panique sur Silicon Valley Bank (9-10 mars).</li></ul>',
+  chainesFiche: ["e4-bulle", "e4-panique", "e4-chaine", "e4-reel", "e4-alea"],
+  quiz: [
+    { q: "Le « jeudi noir » de Wall Street a eu lieu le…", c: ["24 octobre 1929", "15 septembre 2008", "29 octobre 1933", "10 mars 2000"], r: 0, e: "Suivi du « mardi noir » du 29 octobre 1929.", s: "e4-1" },
+    { q: "La faillite de Lehman Brothers, symbole de la crise de 2008, date du…", c: ["15 septembre 2008", "9 août 2007", "24 octobre 2008", "1er janvier 2009"], r: 0, e: "Le 9 août 2007 correspond au gel de trois fonds de BNP Paribas, premier signal de la crise.", s: "e4-1" },
+    { q: "En 2009, le PIB de la France a…", c: ["reculé de 2,8 %", "progressé de 2,8 %", "reculé de 26 %", "stagné"], r: 0, e: "Insee : −2,8 % en volume, la plus forte récession depuis 1950 avant 2020.", s: "e4-1" },
+    { q: "Une bulle spéculative se définit comme…", c: ["un prix très supérieur à la valeur fondamentale de l’actif", "toute hausse rapide d’un prix", "une baisse brutale des cours", "un excès de crédit aux entreprises"], r: 0, e: "La valeur fondamentale dépend des revenus futurs de l’actif.", s: "e4-2" },
+    { q: "Acheter parce que les autres achètent est un comportement…", c: ["mimétique", "rationnel au sens de la valeur fondamentale", "d’aléa moral", "de collatéral"], r: 0, e: "Le mimétisme alimente la bulle à la hausse, puis le krach à la baisse.", s: "e4-2" },
+    { q: "Une prophétie autoréalisatrice est…", c: ["une croyance qui provoque elle-même sa réalisation", "une prévision exacte d’un économiste", "une rumeur fausse", "une règle de la banque centrale"], r: 0, e: "Notion de Robert K. Merton (1948) : si tous anticipent la hausse et achètent, le prix monte.", s: "e4-2" },
+    { q: "Pourquoi une banque saine peut-elle faire faillite lors d’une panique ?", c: ["Elle a prêté à long terme l’argent qu’on peut lui réclamer à tout moment", "Elle n’a pas de clients", "Elle fraude", "La banque centrale lui interdit de prêter"], r: 0, e: "C’est un problème de liquidité, pas forcément de solvabilité.", s: "e4-3" },
+    { q: "Le risque systémique désigne…", c: ["le risque que la défaillance d’un établissement entraîne celle de tout le système", "le risque qu’une entreprise fasse faillite", "le risque de hausse des taux", "le risque de change"], r: 0, e: "Les banques sont liées par leurs prêts mutuels et leurs titres communs.", s: "e4-3" },
+    { q: "L’effet de richesse négatif signifie que…", c: ["la baisse de la valeur du patrimoine réduit la consommation", "les riches deviennent pauvres", "les banques prêtent davantage", "les salaires augmentent"], r: 0, e: "Moins riches, les ménages consomment moins : la demande baisse.", s: "e4-4" },
+    { q: "Les ventes forcées s’expliquent par…", c: ["la baisse du prix du collatéral, qui oblige à vendre pour rembourser", "la hausse des salaires", "la garantie des dépôts", "la hausse du PIB"], r: 0, e: "Les ventes en urgence font encore baisser les prix (déflation par la dette, Fisher, 1933).", s: "e4-4" },
+    { q: "La contraction du crédit (credit crunch) touche l’économie réelle car…", c: ["entreprises et ménages ne peuvent plus financer investissements et achats", "les prix augmentent", "les impôts baissent", "le chômage diminue"], r: 0, e: "Les banques fragilisées prêtent moins et plus cher.", s: "e4-4" },
+    { q: "L’aléa moral des banques vient de ce que…", c: ["elles comptent sur un sauvetage public et prennent donc plus de risques", "les déposants retirent leur argent", "les prix des actifs montent", "la banque centrale augmente les taux"], r: 0, e: "« Trop grosses pour faire faillite » : gains privés, pertes en partie publiques.", s: "e4-5" },
+    { q: "Le ratio de solvabilité rapporte…", c: ["les fonds propres aux actifs pondérés par les risques", "les dépôts aux crédits", "les profits au chiffre d’affaires", "la dette publique au PIB"], r: 0, e: "Plus de fonds propres = plus de capacité à absorber les pertes.", s: "e4-5" },
+    { q: "Dans la zone euro, la BCE supervise directement les grandes banques depuis…", c: ["novembre 2014", "1999", "2008", "1957"], r: 0, e: "Mécanisme de surveillance unique, entré en fonction le 4 novembre 2014.", s: "e4-5" }
+  ],
+  cartes: [
+    { r: "Crise financière", v: "Perturbation grave des marchés financiers et des banques : krach, faillites, blocage du crédit." },
+    { r: "Valeur fondamentale", v: "Valeur actualisée des revenus futurs d’un actif (dividendes, loyers)." },
+    { r: "Bulle spéculative", v: "Hausse durable du prix d’un actif très au-dessus de sa valeur fondamentale." },
+    { r: "Krach", v: "Effondrement brutal des cours (ex. : jeudi noir, 24 octobre 1929)." },
+    { r: "Comportement mimétique", v: "Imiter les autres faute d’information sûre (acheter parce que tout le monde achète)." },
+    { r: "Prophétie autoréalisatrice", v: "Croyance qui provoque sa propre réalisation (Merton, 1948)." },
+    { r: "Transformation des échéances", v: "La banque prête à long terme des ressources disponibles à court terme (dépôts à vue)." },
+    { r: "Panique bancaire", v: "Retraits massifs et simultanés des déposants, qui peuvent faire tomber même une banque saine." },
+    { r: "Faillites en chaîne", v: "La faillite d’une banque cause des pertes et de la méfiance chez les autres : risque systémique." },
+    { r: "Effet de richesse négatif", v: "Baisse du patrimoine qui réduit la consommation." },
+    { r: "Collatéral", v: "Bien donné en garantie d’un prêt ; si son prix baisse, l’emprunteur doit souvent vendre en urgence." },
+    { r: "Contraction du crédit", v: "Les banques réduisent leurs prêts et durcissent leurs conditions (credit crunch)." },
+    { r: "Aléa moral", v: "Prise de risque excessive d’un agent protégé des conséquences (banques « trop grosses pour faire faillite »)." },
+    { r: "Ratio de solvabilité", v: "Fonds propres ÷ actifs pondérés par les risques ; Bâle III : 8 % minimum au total." },
+    { r: "Prêteur en dernier ressort", v: "Rôle de la banque centrale qui prête aux banques en manque de liquidités pour éviter la contagion." }
+  ],
+  bac: [
+    { type: "Savoir-faire", origine: "Exercice du site", t: "Lire un krach en pourcentages", enonce: '<p>Le Dow Jones vaut 381,17 points le 3 septembre 1929 et 41,22 points le 8 juillet 1932.</p><ol><li>Calcule le taux de variation.</li><li>Quelle hausse faudrait-il ensuite pour revenir au sommet ?</li></ol>',
+      corrige: '<ol><li>(41,22 − 381,17) ÷ 381,17 × 100 ≈ −89,2 %.</li><li>381,17 ÷ 41,22 ≈ 9,25 : il faudrait que l’indice soit multiplié par 9,25, soit une hausse de 825 %. Une baisse de 89 % ne se compense pas par une hausse de 89 % : les deux taux ne s’appliquent pas à la même base.</li></ol>' },
+    { type: "Partie 1 · Mobilisation des connaissances", origine: "Sujet inventé pour le site", t: "Montrez qu’une crise financière peut se transmettre à l’économie réelle.", enonce: "<p>3,5 points, sans document. Rappel : question non évaluée à l’écrit en 2027 ; l’exercice entraîne la méthode.</p>",
+      corrige: '<div class="copie"><p>Une crise financière est une perturbation grave des marchés financiers et des banques ; l’économie réelle désigne la production, l’emploi et les revenus. La crise se transmet par trois canaux.</p><p>D’abord, l’effet de richesse négatif : la chute des cours boursiers et immobiliers réduit le patrimoine des ménages, qui consomment moins pour reconstituer leur épargne ou rembourser leurs dettes.</p><p>Ensuite, la baisse du prix du collatéral : les biens donnés en garantie des prêts perdent de la valeur, les emprunteurs doivent vendre en urgence, ce qui accentue la baisse des prix et les pertes (déflation par la dette décrite par Fisher en 1933).</p><p>Enfin, la contraction du crédit : les banques fragilisées prêtent moins, si bien que les entreprises réduisent leurs investissements. La demande baisse, la production recule et le chômage augmente : en France, le PIB a reculé de 2,8 % en 2009 et le chômage est passé de 7,4 % à 9,1 % (Insee).</p></div>' },
+    { type: "Dissertation · plan détaillé", origine: "Sujet inventé pour le site", t: "Comment expliquer les crises financières ?", enonce: "<p>« Comment expliquer » : plan explicatif.</p>",
+      corrige: '<p><b>Problématique.</b> Les crises financières semblent surgir brutalement. Elles résultent pourtant de mécanismes identifiables : des comportements qui alimentent les bulles, une fragilité propre aux banques, et une régulation parfois défaillante.</p><p><b>I. Des bulles alimentées par le mimétisme et les anticipations</b><br>A. Valeur fondamentale et bulle ; exemples (1929, internet 2000, immobilier américain 2006).<br>B. Mimétisme et prophéties autoréalisatrices.<br>C. Le rôle du crédit dans le gonflement puis l’éclatement.</p><p><b>II. Un système bancaire fragile qui propage la crise</b><br>A. Transformation des échéances et paniques (Diamond et Dybvig ; Silicon Valley Bank 2023).<br>B. Faillites en chaîne et risque systémique (1930-1933 ; Lehman 2008).<br>C. Transmission à l’économie réelle : richesse, collatéral, crédit.</p><p><b>III. Des crises favorisées par une régulation insuffisante</b><br>A. L’aléa moral des banques « trop grosses pour faire faillite ».<br>B. Une supervision en retard sur l’innovation financière (titrisation des subprimes).<br>C. Les réponses : supervision par la BCE (2014), ratios de solvabilité de Bâle III, garantie des dépôts.</p>' }
+  ]
+};
+
+AUTEURS.push(
+  { ch: "e4", n: "Robert K. Merton", d: "1910-2003", th: "La prophétie autoréalisatrice", l: "Sociologue américain qui définit en 1948 la <b>prophétie autoréalisatrice</b> : une croyance, même fausse au départ, provoque des comportements qui la rendent vraie (exemple : la panique bancaire)." },
+  { ch: "e4", n: "Irving Fisher", d: "1867-1947", th: "La déflation par la dette", l: "En 1933, il décrit la <b>déflation par la dette</b> : les emprunteurs vendent en urgence pour rembourser, ce qui fait baisser les prix et alourdit encore leurs dettes." },
+  { ch: "e4", n: "Douglas Diamond et Philip Dybvig", d: "1983 · Nobel 2022", th: "Une panique peut faire tomber une banque saine", l: "Modèle des <b>paniques bancaires</b> : une banque qui transforme des dépôts à vue en prêts à long terme peut tomber si tous les déposants retirent leur argent en même temps." },
+  { ch: "e4", n: "Ben Bernanke", d: "Nobel 2022", th: "Les faillites bancaires ont aggravé la Grande Dépression", l: "Il montre que les <b>faillites bancaires</b> des années 1930, en détruisant le crédit, ont transformé une récession en dépression. Président de la Réserve fédérale pendant la crise de 2008." }
+);
+
+GRAPHES["e5-bce"] = {
+  type: "lignes", t: "Le taux de la facilité de dépôt de la BCE, 2021-2026",
+  s: "Taux en vigueur à la fin de chaque trimestre, en %. Touche le graphique pour lire un trimestre.",
+  src: "Source : Banque centrale européenne, taux directeurs (dates d’effet des décisions). Dernière valeur : 2,50 % depuis le 16 septembre 2026 (taux inchangé le 29 octobre 2026).",
+  unite: " %", pasX: 4, h: 260, min: -1, max: 5, dec: 2,
+  x: ["2021 T1","T2","T3","T4","2022 T1","T2","T3","T4","2023 T1","T2","T3","T4","2024 T1","T2","T3","T4","2025 T1","T2","T3","T4","2026 T1","T2","T3","T4"],
+  series: [{ n: "Facilité de dépôt", c: 1, v: [-0.5,-0.5,-0.5,-0.5,-0.5,-0.5,0.75,2,3,3.5,4,4,4,3.75,3.5,3,2.5,2,2,2,2,2.25,2.5,2.5] }]
+};
+GRAPHES["e5-budget"] = {
+  type: "hbarres", t: "Les finances publiques françaises face aux règles européennes",
+  s: "En % du PIB, 2025, comparé aux valeurs de référence des traités.",
+  src: "Sources : Insee, comptes des administrations publiques (première estimation, mars 2026) : déficit 5,1 %, dette 115,6 % du PIB ; valeurs de référence du traité de Maastricht (1992) : 3 % et 60 %.",
+  unite: " %", lab: 120,
+  cats: ["Déficit public", "Dette publique"],
+  series: [{ n: "France 2025", v: [5.1, 115.6], c: 2 }, { n: "Référence européenne", v: [3, 60], c: 1 }]
+};
+
+CHAINES["e5-marche"] = { t: "Les effets du marché unique sur la croissance", e: [
+  { t: "Suppression des obstacles aux échanges : libre circulation des biens, des services, des capitaux et des personnes", k: "cause" },
+  { f: [{ t: "Marché plus vaste : économies d’échelle, spécialisation" }, { t: "Concurrence accrue : baisse des prix, incitation à innover" }], a: "donc" },
+  { t: "Gains de productivité, plus d’échanges et d’investissements entre pays membres", a: "donc" },
+  { t: "Croissance plus forte, mais gains inégalement répartis entre régions et secteurs", k: "effet", a: "donc" }
+] };
+CHAINES["e5-monetaire"] = { t: "Comment la politique monétaire agit sur la conjoncture", e: [
+  { t: "La banque centrale relève ses taux directeurs", k: "cause" },
+  { t: "Les banques se refinancent plus cher et relèvent leurs taux de crédit", a: "donc" },
+  { t: "Ménages et entreprises empruntent moins : immobilier, investissement et consommation ralentissent", a: "donc" },
+  { t: "La demande ralentit : les prix augmentent moins vite, mais la croissance et l’emploi peuvent ralentir aussi", k: "effet", a: "donc" }
+] };
+CHAINES["e5-budgetaire"] = { t: "Comment la politique budgétaire agit sur la conjoncture", e: [
+  { f: [{ t: "L’État augmente ses dépenses (investissement, prestations)", k: "cause" }, { t: "ou baisse les impôts", k: "cause" }] },
+  { t: "La demande augmente directement, ou via le revenu disponible des ménages", a: "donc" },
+  { t: "Les entreprises produisent et embauchent : de nouveaux revenus sont dépensés (multiplicateur)", a: "donc" },
+  { t: "Croissance et emploi soutenus, mais déficit et dette publics en hausse", k: "effet", a: "donc" }
+] };
+CHAINES["e5-choc"] = { t: "Le problème du choc asymétrique dans la zone euro", e: [
+  { t: "Un choc frappe un seul pays (éclatement d’une bulle, perte d’un secteur clé)", k: "cause" },
+  { t: "Il aurait besoin de taux plus bas ou d’une dévaluation", a: "or" },
+  { t: "La BCE fixe un taux unique adapté à la moyenne de la zone ; la monnaie nationale n’existe plus", k: "frein", a: "mais" },
+  { t: "Il ne reste que le budget national, encadré par les règles européennes", k: "frein", a: "et" },
+  { t: "Récession et chômage plus longs dans ce pays : divergences dans la zone", k: "effet", a: "donc" }
+] };
+
+ANIMS["e5-transmission"] = {
+  t: "Comment la BCE a combattu l’inflation de 2022",
+  h: 320,
+  src: "Sources : BCE (taux de la facilité de dépôt : −0,50 % jusqu’en juillet 2022, 4,00 % de septembre 2023 à juin 2024) ; Eurostat (inflation de la zone euro : 10,6 % en octobre 2022, 2,4 % en moyenne en 2024). Délais de transmission : plusieurs trimestres.",
+  etapes: [
+    { l: "Automne 2022 : l’inflation de la zone euro atteint 10,6 % (octobre), loin de l’objectif de 2 % de la BCE.", d: 3 },
+    { l: "La BCE relève ses taux directeurs : le taux de la facilité de dépôt passe de −0,50 % (juillet 2022) à 4 % (septembre 2023).", d: 4 },
+    { l: "Les banques se refinancent plus cher : elles relèvent les taux de leurs crédits aux ménages et aux entreprises.", d: 3 },
+    { l: "On emprunte moins : achats de logements, investissement des entreprises et consommation à crédit ralentissent.", d: 3.5 },
+    { l: "La demande ralentit, les prix augmentent moins vite : l’inflation retombe à 2,4 % en moyenne en 2024. Le prix à payer : une croissance plus faible.", d: 4 },
+    { l: "À l’inverse, quand l’inflation est maîtrisée et l’activité faible, la BCE baisse ses taux pour relancer le crédit : de juin 2024 à juin 2025, de 4 % à 2 %.", d: 4 }
+  ],
+  rendu: function (A, i, p) {
+    var s = "", et = [["Taux directeur de la BCE", 30], ["Taux des crédits bancaires", 98], ["Crédit, investissement, consommation", 166], ["Inflation", 234]];
+    et.forEach(function (e, k) {
+      var actif = i >= 5 ? true : (k === 0 ? i >= 1 : k === 3 ? i === 0 || i >= 4 : i >= k + 1);
+      s += A.boite(12, e[1], 168, 46, e[0], { k: actif ? (k === 3 ? "effet" : "cause") : "neutre", t: 12.5, g: true });
+      if (k < 3) {
+        var q = i >= 5 ? 1 : (i > k + 1 ? 1 : (i === k + 1 ? A.s(p, 0.5, 1) : 0));
+        s += A.fl(96, e[1] + 48, 96, e[1] + 66, { c: i >= 5 ? "vert" : "corail", sw: 2.4, p: q });
+      }
+    });
+    var taux = i === 0 ? -0.5 : i === 1 ? A.l(-0.5, 4, A.s(p, 0, 0.9)) : i < 5 ? 4 : A.l(4, 2, A.s(p, 0, 0.9));
+    s += A.jauge(196, 50, 150, taux + 1, 6, { c: "canard", l: "facilité de dépôt", val: (taux > 0 ? "+" : "") + A.fr(taux, 2) + " %" });
+    var cred = i < 2 ? 0.3 : i === 2 ? A.l(0.3, 0.8, A.s(p, 0, 1)) : i < 5 ? 0.8 : A.l(0.8, 0.5, A.s(p, 0, 1));
+    s += A.jauge(196, 118, 150, cred, 1, { c: "canard", l: "coût du crédit" });
+    var dem = i < 3 ? 0.85 : i === 3 ? A.l(0.85, 0.45, A.s(p, 0, 1)) : i < 5 ? 0.45 : A.l(0.45, 0.65, A.s(p, 0, 1));
+    s += A.jauge(196, 186, 150, dem, 1, { c: "moutarde", l: "demande" });
+    var inf = i < 4 ? 10.6 : i === 4 ? A.l(10.6, 2.4, A.s(p, 0, 1)) : 2.4;
+    s += A.jauge(196, 254, 150, inf, 12, { c: "corail", l: "inflation", val: A.fr(inf, 1) + " %" });
+    s += '<line x1="' + (196 + 150 * 2 / 12) + '" x2="' + (196 + 150 * 2 / 12) + '" y1="248" y2="270" style="stroke:var(--encre);stroke-width:2"/>' + A.t(196 + 150 * 2 / 12, 284, "objectif 2 %", { t: 10.5, a: "middle", c: "gris" });
+    if (i === 5) s += A.t(180, 312, "le même mécanisme joue dans l’autre sens", { t: 12, g: true, a: "middle", c: "vert", op: A.s(p, 0.5, 1) });
+    return s;
+  }
+};
+
+ANIMS["e5-choc"] = {
+  t: "Un choc asymétrique dans une union monétaire",
+  h: 330,
+  src: "Schéma de principe (valeurs illustratives). Repère réel : en 2013, taux de chômage de 26,1 % en Espagne et de 5,2 % en Allemagne (Eurostat), avec le même taux directeur de la BCE.",
+  etapes: [
+    { l: "Dans la zone euro, 21 pays depuis le 1er janvier 2026, une seule politique monétaire : la BCE fixe le même taux pour tous.", d: 3 },
+    { l: "Un choc asymétrique frappe le pays A seulement (par exemple l’éclatement d’une bulle immobilière) : son activité chute, son chômage monte.", d: 3.5 },
+    { l: "Au même moment, le pays B est en surchauffe : son économie tourne à plein régime et ses prix accélèrent.", d: 3 },
+    { l: "A aurait besoin d’une baisse des taux, B d’une hausse. La BCE fixe un taux adapté à la moyenne de la zone : il ne convient vraiment à aucun des deux.", d: 4 },
+    { l: "A ne peut pas dévaluer : il n’a plus de monnaie nationale. Il peut augmenter ses dépenses publiques, mais les règles européennes encadrent son déficit.", d: 4 },
+    { l: "Résultat : des écarts qui durent. Remèdes discutés : coordonner les budgets, faciliter la mobilité des travailleurs, financer des plans communs comme NextGenerationEU (2020).", d: 4 }
+  ],
+  rendu: function (A, i, p) {
+    var s = "";
+    var bce = i === 0 ? A.s(p, 0, 0.6) : 1;
+    s += A.boite(120, 8, 120, 40, "BCE : un taux unique", { k: "cause", t: 12.5, g: true, op: bce });
+    s += A.fl(160, 50, 90, 86, { c: "gris", p: bce }) + A.fl(200, 50, 270, 86, { c: "gris", p: bce });
+    [["Pays A", 20], ["Pays B", 196]].forEach(function (P, j) {
+      var x = P[1];
+      s += A.r(x, 88, 144, 170, { f: "carte", s: j === 0 && i >= 1 ? "corail" : (j === 1 && i >= 2 ? "moutarde" : "ligne"), r: 12, sw: 2 });
+      s += A.t(x + 72, 110, P[0], { t: 15, g: true, a: "middle", f: true });
+      var act = 0.6, cho = 0.35, inf = 0.3;
+      if (j === 0 && i >= 1) { var q = i === 1 ? A.s(p, 0, 1) : 1; act = A.l(0.6, 0.2, q); cho = A.l(0.35, 0.8, q); inf = A.l(0.3, 0.12, q); }
+      if (j === 1 && i >= 2) { var q2 = i === 2 ? A.s(p, 0, 1) : 1; act = A.l(0.6, 0.92, q2); cho = A.l(0.35, 0.2, q2); inf = A.l(0.3, 0.8, q2); }
+      s += A.jauge(x + 12, 140, 120, act, 1, { c: "canard", l: "activité" });
+      s += A.jauge(x + 12, 180, 120, cho, 1, { c: "corail", l: "chômage" });
+      s += A.jauge(x + 12, 220, 120, inf, 1, { c: "moutarde", l: "inflation" });
+      if (i >= 3) {
+        var q3 = i === 3 ? A.s(p, 0, 0.6) : 1;
+        s += A.t(x + 72, 248, j === 0 ? "besoin : taux ↓" : "besoin : taux ↑", { t: 11.5, g: true, a: "middle", c: j === 0 ? "corail" : "moutarde", op: q3 });
+      }
+    });
+    if (i === 3) s += A.t(180, 74, "taux moyen : trop haut pour A, trop bas pour B", { t: 11.5, g: true, a: "middle", c: "encre", op: A.s(p, 0.4, 1), h: true });
+    if (i >= 4) {
+      var q4 = i === 4 ? A.s(p, 0, 0.7) : 1;
+      s += A.r(20, 268, 144, 18, { f: "carte2", r: 5, op: q4 }) + A.r(20, 268, 144 * 0.6 * q4, 18, { f: "corail", r: 5 }) + A.t(92, 300, "budget de A : relance encadrée", { t: 11, a: "middle", c: "gris", op: q4 });
+      s += '<line x1="' + (20 + 144 * 0.6) + '" x2="' + (20 + 144 * 0.6) + '" y1="262" y2="292" style="stroke:var(--encre);stroke-width:2;opacity:' + q4 + '"/>';
+      s += A.t(268, 282, "pas de dévaluation possible", { t: 11.5, g: true, a: "middle", c: "corail", op: q4 });
+    }
+    if (i === 5) s += A.t(180, 322, "divergences durables entre pays", { t: 13, g: true, a: "middle", c: "encre", op: A.s(p, 0.3, 0.8) });
+    return s;
+  }
+};
+
+CH.e5 = {
+  chapo: "Une monnaie pour 21 pays, une Banque centrale indépendante, mais 21 budgets nationaux tenus par des règles communes : la zone euro est une construction unique au monde. Ce chapitre explique ce que le marché unique a changé, comment Bruxelles surveille la concurrence, et pourquoi piloter la conjoncture à plusieurs est si difficile.",
+  essentiel: [
+    "L’<b>intégration européenne</b> repose sur le <b>marché unique</b> (1993 : libre circulation des biens, services, capitaux et personnes) et sur la <b>zone euro</b> (1999 ; 21 pays depuis 2026). Le marché unique stimule la croissance par la concurrence, les économies d’échelle et les échanges.",
+    "La <b>politique européenne de la concurrence</b> sanctionne les ententes et les abus de position dominante, contrôle les fusions et les aides d’État, au profit des consommateurs ; elle est critiquée pour freiner l’émergence de « champions » européens.",
+    "La <b>politique monétaire</b> (taux directeurs) et la <b>politique budgétaire</b> (dépenses, impôts) agissent sur la <b>conjoncture</b> en modifiant la demande globale.",
+    "Dans la zone euro, la politique monétaire est <b>unique</b> et conduite par une <b>BCE indépendante</b> ; la politique budgétaire reste <b>nationale</b> mais <b>encadrée par les traités</b> (3 % de déficit, 60 % de dette).",
+    "D’où deux difficultés : le <b>défaut de coordination</b> entre budgets nationaux et les <b>chocs asymétriques</b>, qui ne frappent qu’une partie de la zone alors que le taux est le même pour tous."
+  ],
+  chiffres: [
+    { n: "21", l: "pays membres de la zone euro depuis l’entrée de la Bulgarie le 1er janvier 2026.", s: "Banque de France ; Commission européenne" },
+    { n: "10,6 %", l: "d’inflation dans la zone euro en octobre 2022 ; la BCE a relevé son taux de dépôt de −0,50 % à 4 % en un an.", s: "Eurostat ; BCE" },
+    { n: "5,1 %", l: "du PIB : le déficit public de la France en 2025, pour une dette de 115,6 % du PIB.", s: "Insee, mars 2026" }
+  ],
+  objectifs: [
+    { bo: "Connaître les grandes caractéristiques de l’intégration européenne (marché unique et zone euro) ; comprendre les effets du marché unique sur la croissance.", clair: "Retracer les étapes du marché unique et de l’euro ; expliquer comment le marché unique favorise la croissance.", voir: "e5-1" },
+    { bo: "Comprendre les objectifs, les modalités et les limites de la politique européenne de la concurrence.", clair: "Dire pourquoi l’Union protège la concurrence, avec quels outils, et ce qu’on lui reproche.", voir: "e5-2" },
+    { bo: "Comprendre comment la politique monétaire et la politique budgétaire agissent sur la conjoncture.", clair: "Dérouler les mécanismes d’une hausse de taux et d’une relance budgétaire.", voir: "e5-3" },
+    { bo: "Savoir que la politique monétaire dans la zone euro, conduite de façon indépendante par la Banque centrale européenne, est unique alors que la politique budgétaire est du ressort de chaque pays membre mais contrainte par les traités européens ; comprendre les difficultés soulevées par cette situation (défaut de coordination, chocs asymétriques).", clair: "Expliquer la répartition des rôles dans la zone euro et pourquoi elle pose des problèmes de coordination et face aux chocs asymétriques.", voir: "e5-4" }
+  ],
+  notions: ["intégration européenne", "marché unique", "union douanière", "zone euro", "politique de la concurrence", "entente", "abus de position dominante", "contrôle des concentrations", "aides d’État", "politique monétaire", "taux directeur", "inflation", "politique budgétaire", "multiplicateur", "stabilisateurs automatiques", "déficit public", "dette publique", "conjoncture", "Banque centrale européenne", "indépendance de la banque centrale", "Pacte de stabilité et de croissance", "coordination des politiques", "choc asymétrique"],
+  sections: [
+    { id: "e5-1", t: "L’intégration européenne : marché unique et zone euro", h:
+      '<div class="def"><b>Intégration économique</b> — processus par lequel des pays suppriment progressivement les obstacles à leurs échanges, jusqu’à mettre en commun des politiques. Bela Balassa (1961) en distinguait les étapes : zone de libre-échange, union douanière, marché commun, union économique et monétaire.</div>' +
+      '<div class="tbl"><table><thead><tr><th>Date</th><th>Étape</th></tr></thead><tbody>' +
+      '<tr><td>1957</td><td>Traité de Rome : Communauté économique européenne (six pays)</td></tr>' +
+      '<tr><td>1968</td><td>Union douanière : plus de droits de douane entre membres, un tarif extérieur commun</td></tr>' +
+      '<tr><td>1986</td><td>Acte unique européen : programme d’achèvement du marché intérieur</td></tr>' +
+      '<tr><td>1er janvier 1993</td><td><b>Marché unique</b> : libre circulation des biens, des services, des capitaux et des personnes</td></tr>' +
+      '<tr><td>1992</td><td>Traité de Maastricht : Union européenne, projet de monnaie unique, critères de convergence</td></tr>' +
+      '<tr><td>1er janvier 1999</td><td><b>Euro</b> pour 11 pays (pièces et billets le 1er janvier 2002)</td></tr>' +
+      '<tr><td>1er janvier 2026</td><td>La Bulgarie devient le 21e pays de la zone euro (l’Union compte 27 membres)</td></tr>' +
+      '</tbody></table></div>' +
+      '<div class="def"><b>Marché unique</b> — espace sans frontières intérieures où circulent librement les biens, les services, les capitaux et les personnes, avec des règles communes (normes, concurrence).</div>' +
+      '<div data-chain="e5-marche"></div>' +
+      '<p>Le marché unique favorise la croissance par les mécanismes du commerce entre pays comparables (<a href="#e2:e2-3">É2</a>) : un marché de plus de 400 millions de consommateurs permet des économies d’échelle ; la concurrence pousse à baisser les prix et à innover ; les entreprises s’implantent dans les autres pays membres. La libre circulation des capitaux facilite le financement des investissements.</p>' +
+      '<div class="ex"><p>Avant 1993, un camion qui traversait l’Europe s’arrêtait à chaque frontière pour des contrôles et des formalités douanières. Avec le marché unique, ces contrôles disparaissent, et une norme technique reconnue dans un pays permet de vendre dans tous les autres.</p></div>' +
+      '<div class="attn"><p>Les gains sont réels mais inégalement répartis : certaines régions et certains secteurs exposés à la concurrence ont perdu des emplois, et le marché des services reste moins intégré que celui des biens.</p></div>' },
+
+    { id: "e5-2", t: "La politique européenne de la concurrence", h:
+      '<p class="lede">La Commission européenne veille à ce que la concurrence ne soit pas faussée dans le marché unique. Objectif : des prix plus bas, plus de choix et plus d’innovation pour les consommateurs, et des règles du jeu égales pour toutes les entreprises.</p>' +
+      '<div class="tbl"><table><thead><tr><th>Outil</th><th>Ce qui est interdit ou contrôlé</th><th>Exemple</th></tr></thead><tbody>' +
+      '<tr><td><b>Ententes</b></td><td>Accords entre concurrents pour fixer les prix ou se partager les marchés</td><td>En 2016, amende de 2,93 milliards d’euros contre un cartel de constructeurs de camions qui s’étaient entendus sur les prix.</td></tr>' +
+      '<tr><td><b>Abus de position dominante</b></td><td>Une entreprise dominante qui évince ses concurrents</td><td>Google sanctionné de 2,42 milliards d’euros en 2017 pour avoir favorisé son comparateur de prix ; amende confirmée par la Cour de justice de l’Union le 10 septembre 2024.</td></tr>' +
+      '<tr><td><b>Contrôle des concentrations</b></td><td>Fusions qui réduiraient trop la concurrence</td><td>Fusion Siemens-Alstom (trains à grande vitesse, signalisation) interdite le 6 février 2019.</td></tr>' +
+      '<tr><td><b>Aides d’État</b></td><td>Aides publiques qui avantagent certaines entreprises</td><td>Avantages fiscaux accordés par l’Irlande à Apple : récupération de 13 milliards d’euros, confirmée par la Cour de justice le 10 septembre 2024.</td></tr>' +
+      '</tbody></table></div>' +
+      '<h3>Les limites</h3>' +
+      '<ul><li><b>Les « champions européens »</b> : en interdisant certaines fusions, l’Union empêcherait l’émergence de grandes entreprises capables de rivaliser avec les géants américains et chinois. Le refus de la fusion Siemens-Alstom a relancé ce débat ; le rapport de Mario Draghi sur la compétitivité européenne (septembre 2024) appelle à mieux tenir compte de l’innovation et de la taille mondiale.</li><li><b>La lenteur</b> : les procédures durent des années, alors que les marchés numériques évoluent très vite ; d’où le règlement sur les marchés numériques (DMA, 2022), qui fixe des obligations à l’avance aux très grandes plateformes.</li><li><b>Les aides d’État encadrées</b> limitent les politiques industrielles nationales, alors que les États-Unis et la Chine subventionnent massivement leurs industries.</li></ul>' +
+      '<div class="ex"><p>Le sujet de dissertation du bac 2026 (jour 2) portait exactement sur ce point : « Dans quelle mesure la politique européenne de la concurrence atteint-elle ses objectifs ? ». Voir l’onglet <a href="#e5/bac">Sujets bac</a>.</p></div>' },
+
+    { id: "e5-3", t: "Politique monétaire et politique budgétaire face à la conjoncture", h:
+      '<div class="def"><b>Conjoncture</b> — situation économique à court terme : croissance, emploi, inflation. Les politiques conjoncturelles cherchent à la stabiliser : soutenir l’activité en récession, freiner l’inflation en surchauffe.</div>' +
+      '<h3>1. La politique monétaire</h3>' +
+      '<p>La banque centrale fixe ses <b>taux directeurs</b>, les taux auxquels les banques se refinancent auprès d’elle ou y déposent leurs liquidités. Ils se transmettent aux taux des crédits, donc à la demande.</p>' +
+      '<div data-anim="e5-transmission"></div>' +
+      '<div data-chain="e5-monetaire"></div>' +
+      '<div data-graph="e5-bce"></div>' +
+      '<p>Après la hausse de 2022-2023 puis les baisses de 2024-2025, la BCE a de nouveau relevé ses taux en juin et en septembre 2026 face au regain d’inflation : le taux de la facilité de dépôt est de 2,50 % depuis le 16 septembre 2026.</p>' +
+      '<h3>2. La politique budgétaire</h3>' +
+      '<p>L’État agit sur la demande par ses <b>dépenses</b> (investissements, prestations, salaires des fonctionnaires) et ses <b>recettes</b> (impôts, cotisations). Un <b>déficit public</b> apparaît quand les dépenses dépassent les recettes ; il s’ajoute à la <b>dette publique</b>.</p>' +
+      '<div data-chain="e5-budgetaire"></div>' +
+      '<p>L’effet est amplifié par le <b>multiplicateur keynésien</b> : un euro de dépense publique devient un revenu qui sera en partie dépensé, créant d’autres revenus. Il est réduit si une partie de la demande part en importations ou si les ménages épargnent par crainte des impôts futurs. Les <b>stabilisateurs automatiques</b> jouent sans décision nouvelle : en récession, les recettes fiscales baissent et les allocations chômage augmentent, ce qui soutient la demande.</p>' +
+      '<div class="ex"><p>Pendant la crise sanitaire, la France a pris en charge le chômage partiel et lancé le plan France Relance (100 milliards d’euros, 2020) ; la BCE a lancé un programme d’achats d’urgence. En 2021, le PIB rebondit de 6,9 % (Insee).</p></div>' },
+
+    { id: "e5-4", t: "Une monnaie, vingt et un budgets : les difficultés de la zone euro", h:
+      '<h3>Une politique monétaire unique et indépendante</h3>' +
+      '<p>La <b>Banque centrale européenne</b> (BCE), à Francfort, conduit la politique monétaire de toute la zone euro. Son mandat principal est la <b>stabilité des prix</b> : une inflation de 2 % à moyen terme. Elle est <b>indépendante</b> : ni les gouvernements ni les institutions européennes ne peuvent lui donner d’instructions. L’idée est de la protéger de la tentation de financer les États ou de stimuler l’économie avant une élection au prix de l’inflation.</p>' +
+      '<h3>Des politiques budgétaires nationales mais encadrées</h3>' +
+      '<p>Chaque État décide de son budget, mais les traités l’encadrent : le traité de Maastricht (1992) fixe des valeurs de référence de 3 % du PIB pour le déficit public et de 60 % pour la dette ; le Pacte de stabilité et de croissance (1997), réformé en 2024, organise la surveillance et peut aboutir à une procédure pour déficit excessif, ouverte contre la France en juillet 2024.</p>' +
+      '<div data-graph="e5-budget"></div>' +
+      '<p>Pourquoi ces règles ? Dans une union monétaire, un État trop endetté peut provoquer une crise qui touche tous les autres (comme la Grèce en 2010) et pousser la BCE à le secourir : les règles budgétaires évitent ce comportement de <b>passager clandestin</b>.</p>' +
+      '<h3>Deux difficultés</h3>' +
+      '<p><b>1. Le défaut de coordination.</b> Chaque État fixe son budget en fonction de sa situation, sans tenir compte des effets sur ses voisins (une relance allemande profite aussi aux exportations françaises). Le <b>policy mix</b> (combinaison des politiques monétaire et budgétaire) de la zone n’est donc le résultat d’aucune décision d’ensemble ; le budget de l’Union reste petit (environ 1 % de son revenu national).</p>' +
+      '<p><b>2. Les chocs asymétriques.</b></p>' +
+      '<div class="def"><b>Choc asymétrique</b> — événement qui touche un pays ou un groupe de pays de la zone, et pas les autres (ou pas de la même façon).</div>' +
+      '<div data-anim="e5-choc"></div>' +
+      '<div data-chain="e5-choc"></div>' +
+      '<div class="aut"><span class="mono">RM</span><span class="an">Robert Mundell<small>1932-2021 · Nobel 1999</small></span><span class="ad">Sa théorie des <b>zones monétaires optimales</b> (1961) montre qu’une monnaie commune fonctionne bien si les pays subissent des chocs semblables, ou s’ils peuvent s’ajuster autrement : mobilité des travailleurs, flexibilité des salaires, transferts budgétaires.</span></div>' +
+      '<div class="ex"><p>Après l’éclatement de la bulle immobilière espagnole en 2008, le taux de chômage atteint 26,1 % en Espagne en 2013, contre 5,2 % en Allemagne (Eurostat), avec le même taux directeur pour les deux. En 2020, face à la crise sanitaire, l’Union lance un plan commun, <b>NextGenerationEU</b> (750 milliards d’euros, aux prix de 2018), financé par un emprunt européen : une forme nouvelle de solidarité budgétaire.</p></div>' +
+      '<div class="ex"><p>La partie 1 de l’épreuve composée du bac 2026 (jour 1) demandait d’expliquer une difficulté soulevée par les chocs asymétriques dans la zone euro. Corrigé dans l’onglet <a href="#e5/bac">Sujets bac</a>.</p></div>' }
+  ],
+  pieges: [
+    { f: "« Marché unique et zone euro, c’est la même chose. »", v: "Le marché unique concerne les 27 pays de l’Union (et quelques autres) ; la zone euro, les 21 pays qui ont adopté l’euro. La Suède ou la Pologne sont dans le marché unique sans être dans la zone euro." },
+    { f: "« La BCE fixe les budgets des États. »", v: "Elle conduit la politique monétaire ; les budgets sont nationaux, encadrés par les règles européennes que surveillent la Commission et le Conseil." },
+    { f: "« Une hausse des taux fait baisser les prix immédiatement. »", v: "La transmission prend plusieurs trimestres : crédit, puis demande, puis prix." },
+    { f: "« La politique de la concurrence protège les entreprises européennes. »", v: "Elle protège la concurrence et les consommateurs, parfois contre des entreprises européennes (Siemens-Alstom)." },
+    { f: "« Un choc asymétrique est un choc très fort. »", v: "C’est un choc qui ne touche pas tous les pays de la même façon, quelle que soit son intensité." },
+    { f: "« Les critères de 3 % et 60 % portent sur la croissance. »", v: "Ils portent sur le déficit public et la dette publique, en pourcentage du PIB." }
+  ],
+  retenir:
+    '<h3>Repères</h3><ul><li>1957 traité de Rome ; 1968 union douanière ; 1986 Acte unique ; 1993 marché unique ; 1992 Maastricht ; 1999 euro (2002 pièces et billets) ; 2026 : 21 pays dans la zone euro.</li></ul>' +
+    '<h3>Définitions</h3><ul>' +
+    '<li><b>Marché unique</b> : libre circulation des biens, services, capitaux, personnes ; effets sur la croissance : économies d’échelle, concurrence, échanges.</li>' +
+    '<li><b>Politique de la concurrence</b> : ententes, abus de position dominante, concentrations, aides d’État ; limites : champions européens, lenteur, politique industrielle.</li>' +
+    '<li><b>Politique monétaire</b> : taux directeurs → crédit → demande → inflation. <b>Politique budgétaire</b> : dépenses et impôts → demande ; multiplicateur ; stabilisateurs automatiques.</li>' +
+    '<li><b>BCE</b> indépendante, mandat de stabilité des prix (2 %). <b>Règles budgétaires</b> : 3 % de déficit, 60 % de dette ; Pacte de stabilité (1997, réformé en 2024).</li>' +
+    '<li><b>Difficultés</b> : défaut de coordination ; <b>chocs asymétriques</b> (Mundell, zones monétaires optimales, 1961) ; réponse : NextGenerationEU (2020).</li></ul>' +
+    '<h3>Chiffres à citer</h3><ul><li>Inflation zone euro 10,6 % (octobre 2022) ; taux de dépôt −0,50 % → 4 % (2022-2023) → 2 % (juin 2025) → 2,50 % (septembre 2026).</li><li>France 2025 : déficit 5,1 % du PIB, dette 115,6 % (Insee).</li></ul>',
+  chainesFiche: ["e5-marche", "e5-monetaire", "e5-budgetaire", "e5-choc"],
+  quiz: [
+    { q: "Le marché unique européen est entré en vigueur le…", c: ["1er janvier 1993", "1er janvier 1999", "25 mars 1957", "1er janvier 2002"], r: 0, e: "1999 : euro (monnaie scripturale) ; 2002 : pièces et billets ; 1957 : traité de Rome.", s: "e5-1" },
+    { q: "Combien de pays utilisent l’euro depuis le 1er janvier 2026 ?", c: ["21", "27", "19", "11"], r: 0, e: "La Bulgarie est devenue le 21e membre ; l’Union compte 27 pays.", s: "e5-1" },
+    { q: "Le marché unique favorise la croissance notamment par…", c: ["les économies d’échelle et la concurrence", "la hausse des droits de douane", "la création de monopoles nationaux", "la baisse des salaires"], r: 0, e: "Un marché plus vaste et plus concurrentiel pousse à produire moins cher et à innover.", s: "e5-1" },
+    { q: "Un accord secret entre concurrents pour fixer leurs prix est…", c: ["une entente", "un abus de position dominante", "une aide d’État", "une concentration"], r: 0, e: "Exemple : le cartel des camions sanctionné en 2016.", s: "e5-2" },
+    { q: "En 2019, la Commission européenne a interdit…", c: ["la fusion Siemens-Alstom", "l’entrée de la Bulgarie dans l’euro", "les aides du plan de relance", "le rachat de BNP Paribas"], r: 0, e: "Elle jugeait que la fusion réduisait trop la concurrence dans le ferroviaire.", s: "e5-2" },
+    { q: "Une critique adressée à la politique européenne de la concurrence est qu’elle…", c: ["freine l’émergence de champions européens de taille mondiale", "fait monter les prix", "favorise les ententes", "supprime le marché unique"], r: 0, e: "Débat relancé par Siemens-Alstom et le rapport Draghi (2024).", s: "e5-2" },
+    { q: "Quand la BCE relève ses taux directeurs, elle cherche en principe à…", c: ["ralentir la demande pour freiner l’inflation", "relancer la consommation", "augmenter le déficit public", "dévaluer l’euro"], r: 0, e: "Crédit plus cher → moins d’emprunts → demande et inflation en recul.", s: "e5-3" },
+    { q: "Entre juillet 2022 et septembre 2023, le taux de la facilité de dépôt de la BCE est passé de…", c: ["−0,50 % à 4 %", "4 % à −0,50 %", "0 % à 10,6 %", "2 % à 3 %"], r: 0, e: "Pour combattre une inflation qui a atteint 10,6 % en octobre 2022.", s: "e5-3" },
+    { q: "Le multiplicateur budgétaire signifie que…", c: ["une dépense publique crée des revenus qui sont en partie dépensés à leur tour", "la dette double tous les ans", "les impôts augmentent automatiquement", "les prix montent avec la dépense"], r: 0, e: "D’où un effet sur le PIB supérieur à la dépense initiale, réduit par les importations et l’épargne.", s: "e5-3" },
+    { q: "Les stabilisateurs automatiques…", c: ["soutiennent la demande en récession sans nouvelle décision", "sont des taux fixés par la BCE", "obligent les États à réduire leur dette", "sont des taxes européennes"], r: 0, e: "En récession, les impôts rentrent moins et les allocations augmentent.", s: "e5-3" },
+    { q: "Le mandat principal de la BCE est…", c: ["la stabilité des prix", "le plein emploi", "l’équilibre budgétaire des États", "la croissance la plus forte possible"], r: 0, e: "Une inflation de 2 % à moyen terme.", s: "e5-4" },
+    { q: "Les valeurs de référence du traité de Maastricht sont…", c: ["3 % du PIB pour le déficit public et 60 % pour la dette", "2 % d’inflation et 5 % de chômage", "3 % de croissance et 60 % d’épargne", "1 % de déficit et 100 % de dette"], r: 0, e: "La France est à 5,1 % et 115,6 % en 2025 (Insee).", s: "e5-4" },
+    { q: "Un choc asymétrique est un choc qui…", c: ["ne touche pas tous les pays de la zone de la même façon", "est très violent", "touche toute la zone en même temps", "vient de l’extérieur de l’Europe"], r: 0, e: "Le taux unique de la BCE ne peut alors convenir à tous.", s: "e5-4" },
+    { q: "Selon Mundell, une union monétaire supporte mieux les chocs asymétriques si…", c: ["les travailleurs sont mobiles et des transferts budgétaires existent", "chaque pays garde sa monnaie", "les taux d’intérêt diffèrent selon les pays", "les budgets sont interdits"], r: 0, e: "Ce sont les critères d’une zone monétaire optimale.", s: "e5-4" }
+  ],
+  cartes: [
+    { r: "Marché unique", v: "Libre circulation des biens, services, capitaux et personnes dans l’Union, depuis le 1er janvier 1993." },
+    { r: "Zone euro", v: "Pays qui ont adopté l’euro (1999 ; pièces et billets en 2002) : 21 depuis le 1er janvier 2026." },
+    { r: "Politique de la concurrence", v: "Action de la Commission contre les ententes, les abus de position dominante, les concentrations excessives et les aides d’État." },
+    { r: "Abus de position dominante", v: "Une entreprise dominante utilise sa puissance pour évincer ses concurrents (ex. : Google, 2017)." },
+    { r: "Aide d’État", v: "Avantage accordé par un État à certaines entreprises, interdit s’il fausse la concurrence (ex. : Apple en Irlande)." },
+    { r: "Politique monétaire", v: "Action de la banque centrale sur les taux et la quantité de monnaie pour stabiliser les prix et la conjoncture." },
+    { r: "Taux directeur", v: "Taux auquel les banques se refinancent auprès de la banque centrale ou y déposent leurs liquidités." },
+    { r: "Politique budgétaire", v: "Utilisation des dépenses et des recettes publiques pour agir sur la conjoncture." },
+    { r: "Multiplicateur keynésien", v: "Une dépense supplémentaire crée des revenus dépensés à leur tour : effet sur le PIB supérieur à la dépense initiale." },
+    { r: "Stabilisateurs automatiques", v: "Recettes et dépenses publiques qui varient d’elles-mêmes avec la conjoncture et l’amortissent." },
+    { r: "Indépendance de la BCE", v: "Elle ne reçoit d’instructions ni des gouvernements ni des institutions européennes ; mandat : stabilité des prix (2 %)." },
+    { r: "Pacte de stabilité et de croissance", v: "Règles budgétaires européennes (1997, réformées en 2024) : référence de 3 % de déficit et 60 % de dette." },
+    { r: "Policy mix", v: "Combinaison des politiques monétaire et budgétaire ; dans la zone euro, faute de coordination, il n’est voulu par personne." },
+    { r: "Choc asymétrique", v: "Choc qui touche certains pays de la zone et pas les autres ; le taux unique ne convient pas à tous." },
+    { r: "Zone monétaire optimale", v: "Zone où une monnaie commune est avantageuse : chocs semblables ou mécanismes d’ajustement (mobilité, transferts) (Mundell, 1961)." }
+  ],
+  bac: [
+    { type: "Savoir-faire", origine: "Exercice du site, données BCE et Insee", t: "Points de pourcentage et ratios", enonce: '<p>Le taux de dépôt de la BCE passe de −0,50 % à 4,00 % entre juillet 2022 et septembre 2023. En 2025, le déficit public français est de 5,1 % du PIB et la dette de 115,6 % (Insee).</p><ol><li>De combien de points le taux a-t-il augmenté ? Pourquoi ne peut-on pas calculer de taux de variation ?</li><li>De combien de points le déficit dépasse-t-il la valeur de référence ? Et la dette ?</li></ol>',
+      corrige: '<ol><li>4,00 − (−0,50) = +4,5 points. On ne calcule pas de taux de variation à partir d’une valeur négative ou nulle : il n’aurait pas de sens. Pour des taux, on raisonne en points.</li><li>Déficit : 5,1 − 3 = 2,1 points au-dessus de 3 %. Dette : 115,6 − 60 = 55,6 points au-dessus de 60 % ; elle représente près du double de la référence (115,6 ÷ 60 ≈ 1,93).</li></ol>' },
+    { type: "Partie 1 · Mobilisation des connaissances", origine: "Sujet officiel : bac 2026, jour 1 (France), partie 1 · corrigé du site", officiel: true, t: "Expliquez une difficulté soulevée par les chocs asymétriques dans la zone euro.", enonce: "<p>3,5 points, sans document.</p>",
+      methode: "<p>Une seule difficulté, mais complètement expliquée : définir choc asymétrique et zone euro, dérouler le mécanisme, illustrer.</p>",
+      corrige: '<div class="copie"><p>La zone euro regroupe 21 pays qui partagent une même monnaie et donc une même politique monétaire, conduite par la Banque centrale européenne. Un choc asymétrique est un événement qui touche un ou plusieurs pays de la zone, mais pas les autres.</p><p>La difficulté principale est que la politique monétaire unique ne peut pas répondre à un tel choc. Si un pays entre en récession alors que les autres sont en croissance, il aurait besoin d’une baisse des taux d’intérêt pour relancer le crédit, l’investissement et la consommation. Mais la BCE fixe un taux unique en fonction de la situation moyenne de la zone, qui ne correspond pas à la sienne. Il ne peut pas non plus dévaluer sa monnaie pour regagner en compétitivité, puisqu’il n’en a plus. Il ne lui reste que sa politique budgétaire, elle-même encadrée par les règles européennes (valeur de référence de 3 % du PIB pour le déficit). La récession et le chômage risquent donc d’y être plus longs.</p><p>Ainsi, après l’éclatement de sa bulle immobilière en 2008, l’Espagne a connu un taux de chômage de 26,1 % en 2013, contre 5,2 % en Allemagne (Eurostat), alors que les deux pays avaient le même taux directeur.</p></div>' },
+    { type: "Partie 2 · Étude d’un document", origine: "Exercice du site, données BCE", t: "Les taux de la BCE depuis 2021", enonce: '<p>Document : le graphique « Le taux de la facilité de dépôt de la BCE, 2021-2026 » dans <a href="#e5:e5-3">le cours</a>.</p><ol><li>Décrivez l’évolution du taux entre 2022 et 2025.</li><li>À l’aide du document et de vos connaissances, montrez comment la politique monétaire agit sur la conjoncture.</li></ol>',
+      corrige: '<ol><li>Selon la BCE, le taux de la facilité de dépôt, négatif (−0,50 %) jusqu’au deuxième trimestre 2022, monte rapidement à partir de juillet 2022 pour atteindre 4 % au troisième trimestre 2023 (+4,5 points). Il reste à ce niveau jusqu’au printemps 2024, puis baisse par étapes jusqu’à 2 % au deuxième trimestre 2025.</li><li>En relevant ses taux, la BCE renchérit le refinancement des banques, qui augmentent les taux de leurs crédits. Ménages et entreprises empruntent moins : l’immobilier, l’investissement et la consommation ralentissent, la demande globale aussi, et les prix augmentent moins vite. C’est ce qui était recherché en 2022, quand l’inflation de la zone euro atteignait 10,6 % ; elle est revenue à 2,4 % en moyenne en 2024. Une fois l’inflation maîtrisée, la BCE a baissé ses taux à partir de juin 2024 pour soutenir une activité faible : le mécanisme joue alors dans l’autre sens. Les effets ne sont pas immédiats : il faut plusieurs trimestres pour qu’une décision se transmette aux prix.</li></ol>' },
+    { type: "Dissertation · plan détaillé", origine: "Sujet officiel : bac 2026, jour 2 (France), dissertation · plan du site", officiel: true, t: "Dans quelle mesure la politique européenne de la concurrence atteint-elle ses objectifs ?", enonce: "<p>Les documents du sujet officiel ne sont pas reproduits ici. Construis la problématique et le plan, puis compare.</p>",
+      corrige: '<p><b>Problématique.</b> La politique européenne de la concurrence veut protéger les consommateurs (prix bas, choix, innovation) et garantir des règles égales dans le marché unique. Y parvient-elle, alors qu’on lui reproche d’affaiblir l’industrie européenne face aux géants américains et chinois ?</p><p><b>I. Une politique qui atteint largement ses objectifs</b><br>A. Elle sanctionne les ententes qui font monter les prix (cartel des camions, 2,93 milliards d’euros en 2016).<br>B. Elle limite les abus des entreprises dominantes, y compris étrangères (Google, 2017, confirmé en 2024).<br>C. Elle empêche les aides d’État qui faussent la concurrence entre pays membres (Apple en Irlande, 13 milliards, 2024) et contribue aux gains du marché unique.</p><p><b>II. Mais ses résultats sont limités</b><br>A. Des procédures lentes face aux marchés numériques, d’où le DMA (2022).<br>B. Elle peut empêcher l’émergence de champions européens (Siemens-Alstom, 2019 ; rapport Draghi, 2024).<br>C. Elle encadre les aides publiques quand les autres puissances subventionnent massivement leurs industries.</p><p><b>III. Des objectifs qu’il faut articuler avec d’autres politiques</b><br>A. Concilier concurrence et politique industrielle (assouplissement des aides pour la transition écologique).<br>B. Intégrer l’innovation et la dimension mondiale dans l’analyse des fusions.<br>C. Coordonner avec la politique commerciale (défense contre les subventions étrangères).</p>' }
+  ]
+};
+
+AUTEURS.push(
+  { ch: "e5", n: "Robert Mundell", d: "1932-2021 · Nobel 1999", th: "Les zones monétaires optimales", l: "Théorie des <b>zones monétaires optimales</b> (1961) : une monnaie commune convient à des pays qui subissent des chocs semblables ou peuvent s’ajuster par la mobilité du travail et des transferts." },
+  { ch: "e5", n: "Bela Balassa", d: "1928-1991", th: "Les étapes de l’intégration économique", l: "Il décrit en 1961 les étapes de l’<b>intégration économique</b> : zone de libre-échange, union douanière, marché commun, union économique, intégration totale." }
+);
+
 </script>
 <script>
 (function () {
@@ -2743,7 +3624,7 @@ ANIMS["s2-mass"] = {
   function vueAuteurs() {
     var h = '<header class="tete"><span class="kick">Boîte à outils</span><h1>Les auteurs du programme</h1><p class="chapo">Qui a dit quoi : les attributions exactes, à citer dans tes copies. Entraîne-toi ensuite à les relier à leurs idées.</p></header>';
     h += '<div class="btns"><a class="btn p" href="#entrainement/relier">Jouer : relie l\'auteur à sa théorie</a></div>';
-    ["e1", "e2", "s1", "s2"].forEach(function (id) {
+    Object.keys(QS).filter(function (id) { return AUTEURS.some(function (a) { return a.ch === id; }); }).forEach(function (id) {
       var q = QS[id];
       h += '<h2 class="sec"><span class="n">' + esc(q.code) + "</span>" + esc(q.court) + '</h2><div class="auts">' + AUTEURS.filter(function (a) { return a.ch === id; }).map(function (a) {
         var ini = a.n.split(/[\s-]+/).filter(function (x) { return /^[A-ZÉ]/.test(x); }).map(function (x) { return x.charAt(0); }).slice(-2).join("");
@@ -2757,10 +3638,10 @@ ANIMS["s2-mass"] = {
     var h = '<header class="tete"><span class="kick">Boîte à outils</span><h1>Entraînement</h1><p class="chapo">Se tester est la meilleure façon de retenir. Mélange les chapitres pour forcer ta mémoire à chercher.</p></header>' +
       '<nav class="onglets">' + tabs.map(function (t) { return '<a href="#entrainement' + (t[0] ? "/" + t[0] : "") + '"' + (sous === t[0] ? ' class="act"' : "") + ">" + t[1] + "</a>"; }).join("") + "</nav>";
     if (sous === "relier") h += '<div class="q-carte" data-relier></div>';
-    else h += '<div class="seg" id="choix">' + ["e1", "e2", "s1", "s2"].filter(function (id) { return CH[id]; }).map(function (id) { return '<button class="act" data-c="' + id + '">' + esc(QS[id].court) + "</button>"; }).join("") + '</div><div id="ze"></div>';
+    else h += '<div class="seg" id="choix">' + Object.keys(QS).filter(function (id) { return CH[id] && QS[id].statut === "red"; }).map(function (id) { return '<button class="act" data-c="' + id + '">' + esc(QS[id].court) + "</button>"; }).join("") + '</div><div id="ze"></div>';
     return { titre: "Entraînement", html: h, apres: function (r) {
       if (sous === "relier") return;
-      var choisis = {}; Object.keys(CH).forEach(function (k) { choisis[k] = 1; });
+      var choisis = {}; Object.keys(CH).forEach(function (k) { if (QS[k] && QS[k].statut === "red") choisis[k] = 1; });
       function lancer() {
         var ids = Object.keys(choisis).filter(function (k) { return choisis[k]; });
         if (!ids.length) { $("#ze", r).innerHTML = "<p>Choisis au moins un chapitre.</p>"; return; }

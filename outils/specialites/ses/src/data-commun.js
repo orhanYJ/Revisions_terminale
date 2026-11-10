@@ -20,7 +20,7 @@ var PROG = [
         "Comprendre l’internationalisation de la chaîne de valeur et savoir l’illustrer.",
         "Comprendre les effets induits par le commerce international : gains moyens en termes de baisse de prix, réduction des inégalités entre pays, accroissement des inégalités de revenus au sein de chaque pays ; comprendre les termes du débat entre libre-échange et protectionnisme."],
       notions: [] },
-    { id: "e3", code: "É3", court: "Chômage", statut: "bt", ecrit: true,
+    { id: "e3", code: "É3", court: "Chômage", statut: "red", ecrit: true,
       titre: "Comment lutter contre le chômage ?",
       objectifs: [
         "Savoir définir le chômage et le sous-emploi et connaître les indicateurs de taux de chômage et de taux d’emploi.",
@@ -30,7 +30,7 @@ var PROG = [
         "Connaître les principales politiques mises en œuvre pour lutter contre le chômage : politiques macroéconomiques de soutien de la demande globale, politiques d’allégement du coût du travail, politiques de formation et politiques de flexibilisation pour lutter contre les rigidités du marché du travail."],
       notions: ["chômage (au sens du BIT)", "sous-emploi", "taux de chômage", "taux d’emploi", "appariement", "frictions", "inadéquations spatiales et de qualifications", "asymétries d’information", "salaire d’efficience", "chômage structurel", "salaire minimum", "règles de protection de l’emploi", "chômage conjoncturel", "fluctuations de l’activité", "demande globale", "coût du travail", "politiques de formation", "flexibilisation", "rigidités du marché du travail"],
       liens: "La destruction créatrice et le progrès technique biaisé (<a href=\"#e1\">É1 Croissance</a>) expliquent une partie du chômage des moins qualifiés ; la concurrence internationale aussi (<a href=\"#e2\">É2 Commerce</a>)." },
-    { id: "e4", code: "É4", court: "Crises financières", statut: "bt", ecrit: false,
+    { id: "e4", code: "É4", court: "Crises financières", statut: "red", ecrit: false,
       titre: "Comment expliquer les crises financières et réguler le système financier ?",
       objectifs: [
         "Connaître les principales caractéristiques de la crise financière des années 1930 et de celle de 2008 (effondrement boursier, faillites en chaîne, chute du PIB et accroissement du chômage).",
@@ -40,7 +40,7 @@ var PROG = [
         "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l’aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité."],
       notions: ["crise financière", "krach boursier", "bulle spéculative", "comportements mimétiques", "prophétie autoréalisatrice", "panique bancaire", "faillites bancaires en chaîne", "effet de richesse négatif", "collatéral", "ventes forcées", "contraction du crédit", "aléa moral", "supervision bancaire", "ratio de solvabilité"],
       liens: "La chute du PIB de 2009 (−2,8 % en volume) est visible sur le graphique de la croissance française du chapitre <a href=\"#e1:e1-1\">É1</a>." },
-    { id: "e5", code: "É5", court: "Politiques européennes", statut: "bt", ecrit: true,
+    { id: "e5", code: "É5", court: "Politiques européennes", statut: "red", ecrit: true,
       titre: "Quelles politiques économiques dans le cadre européen ?",
       objectifs: [
         "Connaître les grandes caractéristiques de l’intégration européenne (marché unique et zone euro) ; comprendre les effets du marché unique sur la croissance.",
