@@ -1,9 +1,9 @@
 GRAPHES["e5-bce"] = {
   type: "lignes", t: "Le taux de la facilité de dépôt de la BCE, 2021-2026",
-  s: "Taux en vigueur à la fin de chaque trimestre, en % (repères : premier trimestre de chaque année). Touche le graphique pour lire un trimestre.",
+  s: "Taux en vigueur à la fin de chaque trimestre (dernier point : novembre 2026, trimestre en cours), en % (repères : premier trimestre de chaque année). Touche le graphique pour lire un trimestre.",
   src: "Source : Banque centrale européenne, taux directeurs (dates d’effet des décisions). Dernière valeur : 2,50 % depuis le 16 septembre 2026 (taux inchangé le 29 octobre 2026).",
   unite: " %", pasX: 4, h: 260, min: -1, max: 5, dec: 2, sansDernier: true,
-  x: ["2021","2021 T2","2021 T3","2021 T4","2022","2022 T2","2022 T3","2022 T4","2023","2023 T2","2023 T3","2023 T4","2024","2024 T2","2024 T3","2024 T4","2025","2025 T2","2025 T3","2025 T4","2026","2026 T2","2026 T3","2026 T4"],
+  x: ["2021","2021 T2","2021 T3","2021 T4","2022","2022 T2","2022 T3","2022 T4","2023","2023 T2","2023 T3","2023 T4","2024","2024 T2","2024 T3","2024 T4","2025","2025 T2","2025 T3","2025 T4","2026","2026 T2","2026 T3","nov. 2026"],
   series: [{ n: "Facilité de dépôt", c: 1, v: [-0.5,-0.5,-0.5,-0.5,-0.5,-0.5,0.75,2,3,3.5,4,4,4,3.75,3.5,3,2.5,2,2,2,2,2.25,2.5,2.5] }]
 };
 GRAPHES["e5-budget"] = {
@@ -51,7 +51,7 @@ ANIMS["e5-transmission"] = {
     { l: "Les banques se refinancent plus cher : elles relèvent les taux de leurs crédits aux ménages et aux entreprises.", d: 3 },
     { l: "On emprunte moins : achats de logements, investissement des entreprises et consommation à crédit ralentissent.", d: 3.5 },
     { l: "La demande ralentit, les prix augmentent moins vite : l’inflation retombe à 2,4 % en moyenne en 2024. Le prix à payer : une croissance plus faible.", d: 4 },
-    { l: "À l’inverse, quand l’inflation est maîtrisée et l’activité faible, la BCE baisse ses taux pour relancer le crédit : de juin 2024 à juin 2025, de 4 % à 2 %.", d: 4 }
+    { l: "À l’inverse, quand l’inflation est maîtrisée et l’activité faible, la BCE baisse ses taux pour relancer le crédit : de juin 2024 à juin 2025, de 4 % à 2 % (puis deux hausses en 2026 : 2,50 % depuis septembre).", d: 4 }
   ],
   rendu: function (A, i, p) {
     var s = "", et = [["Taux directeur de la BCE", 30], ["Taux des crédits bancaires", 98], ["Crédit, investissement, consommation", 166], ["Inflation", 234]];
