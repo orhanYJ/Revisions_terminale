@@ -1,7 +1,7 @@
 /* Cartes du site HGGSP (hggsp/) : fonds Natural Earth 1:50m (pays actuels), d3-geo local
    (dnl/cartes/d3-geo.min.js), simplification Douglas-Peucker, chemins M/L/Z.
-   Usage : node outils/specialites/hggsp/cartes.js ne_50m_admin_0_countries.geojson sortie.json
-   La sortie (fonds + cartes) est collée dans hggsp/index.html (constante CARTES).
+   Usage : appelé par build.py (node cartes.js ne_50m_admin_0_countries.geojson src/cartes.json).
+   La sortie (fonds + cartes + calques d'animation) est collée dans hggsp/index.html (constante CARTES).
    Chaque carte : { w, h, fond (« monde » ou chemin propre), deco (SVG fixe), pts : points cliquables
    { c : couche, x, y, n : étiquette courte, a : ancre de l'étiquette, t : titre, d : texte } }. */
 const fs = require("fs"), vm = require("vm"), path = require("path");
@@ -250,6 +250,23 @@ for (const c of ["terro", "onu"]) {
   x0 = Math.max(0, x0); y0 = Math.max(0, y0); x1 = Math.min(WM, x1); y1 = Math.min(HM, y1);
   OUT.cartes[c].vb = [x0, y0, x1 - x0, y1 - y0].map(Math.round);
 }
+/* légendes des cartes (couleur et libellé de chaque couche de points, symboles fixes) */
+const META = {
+  mer: { t: "Les océans, espaces de puissance : dissuasion et projection", c: { snle: ["Bases de sous-marins nucléaires lanceurs d'engins (SNLE)", "#B3241B"], us: ["Grandes bases et flottes américaines", "#2D5675"], fr: ["Points d'appui français", "#B07A1E"] }, leg: [["choke", "Détroits stratégiques (Ormuz, Bab el-Mandeb, Suez, Malacca, Panama, Gibraltar)"]] },
+  espace: { t: "Les puissances spatiales et leurs bases de lancement", c: { us: ["États-Unis", "#2D5675"], ru: ["Russie", "var(--encre2)"], eu: ["Europe (Kourou)", "#2F7F8C"], cn: ["Chine", "#B3241B"], in: ["Inde", "#B07A1E"], jp: ["Japon", "#7A4A8C"], autres: ["Autres États et entreprises", "#2F6B3B"] } },
+  terro: { t: "Le terrorisme transnational, d'Al-Qaïda à Daech", c: { aq: ["Al-Qaïda et groupes liés : attentats, lieux clés", "#2D5675"], ei: ["Daech : territoire, attentats", "#B3241B"] }, leg: [["zone", "Territoire du « califat » à son apogée (2014-2015), tracé approximatif"]] },
+  onu: { t: "L'ONU sous Kofi Annan (1997-2006) : opérations et échecs", c: { omp: ["Opérations de paix créées ou renforcées sous Annan", "#2D5675"], crise: ["Échecs hérités et contournements de l'ONU", "#B3241B"] } },
+  chine: { t: "La Chine à la conquête des mers (et de l'espace)", c: { ilots: ["Îlots et récifs disputés, occupés par la Chine", "#B3241B"], bases: ["Bases navales chinoises", "var(--encre)"], ports: ["Ports des routes de la soie maritimes", "#B07A1E"], espace: ["Bases de lancement", "#2D5675"] }, leg: [["neuf", "« Ligne en neuf traits » (revendications chinoises, tracé approximatif)"], ["chaine", "« Première chaîne d'îles » (représentation stratégique chinoise)"], ["route", "Route maritime vers l'Europe"]] },
+  mo: { t: "Le Moyen-Orient : conflits et tentatives de paix", c: { ip: ["Conflit israélo-arabe et israélo-palestinien", "#B3241B"], golfe: ["Guerres du Golfe et prolongements", "#2D5675"] }, leg: [["il", "Israël (frontières de Natural Earth)"], ["ps", "Territoires palestiniens (Cisjordanie, Gaza)"], ["nfz", "Zones d'exclusion aérienne en Irak (1991-2003)"]] }
+};
+for (const k in META) OUT.cartes[k].meta = META[k];
+
+/* modules complémentaires : chaque fichier cartes-*.js du dossier exporte une fonction (ctx) qui ajoute
+   ses cartes (ctx.OUT.cartes.nom = { w, h, fond, deco, pts, meta }) et ses calques d'animation
+   (ctx.OUT.anims.nom = { w, h, fond, calques: { id: svg } }) ; voir RENFORTS.md */
+OUT.anims = OUT.anims || {};
+const CTX = { d3, cadre, simplifier, esc, M, WM, HM, OUT, FEAT };
+for (const f of fs.readdirSync(__dirname).filter(f => /^cartes-.+\.js$/.test(f)).sort()) require(path.join(__dirname, f))(CTX);
 fs.writeFileSync(process.argv[3], JSON.stringify(OUT));
 const taille = s => Math.round(JSON.stringify(s).length / 1024) + " Ko";
 console.log("monde", taille(OUT.monde), Object.keys(OUT.cartes).map(k => k + " " + taille(OUT.cartes[k])).join(", "));
