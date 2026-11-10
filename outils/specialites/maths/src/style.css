@@ -441,3 +441,4 @@ html.mo .ch-carte:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(
 .hero .formule{display:none}
 .hero .compas{right:-40px;top:-46px;bottom:auto;width:200px;height:200px;opacity:.6}
 .hero>*:not(.compas){position:relative}
+.a-champ{stroke:var(--encre3);stroke-width:1.3;stroke-linecap:round;opacity:.75}

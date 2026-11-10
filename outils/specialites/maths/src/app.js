@@ -131,7 +131,7 @@
   }
   function pageAccueil() {
     var h = '<div class="hero"><div class="formule" aria-hidden="true">' + TeX.math("\\lim_{n\\to+\\infty}\\left(1+\\frac{1}{n}\\right)^n=\\e") + '</div>' + COMPAS + '<h1><span>CQFD</span></h1><span class="devise">ce qu\'il fallait démontrer</span><p style="font-family:var(--serif);font-size:1.15rem;color:var(--encre);margin:.3em 0">Le carnet de maths de Terminale, spécialité.</p><p>Cours rédigés à fond, démonstrations exigibles, programmes Python, méthodes, exercices corrigés en trois niveaux, vrais sujets du bac, QCM et flashcards. Hors ligne, gratuit, sans compte.</p><div class="actions"><a class="btn plein" href="#' + REDIGES[0].id + '">Commencer : ' + esc(REDIGES[0].court) + '</a><a class="btn" href="#entrainement">' + ic("cible") + ' S\'entraîner</a><a class="btn" href="#epreuve">' + ic("copie") + " L'épreuve</a></div></div>";
-    h += '<h2>Où en est le site</h2><p>' + REDIGES.length + " chapitres de début d'année sont rédigés. Les autres apparaissent avec le contenu exact du programme officiel, en attendant leur rédaction.</p>";
+    h += REDIGES.length === CH.length ? '<h2>Tout le programme</h2><p>Les ' + CH.length + " chapitres du programme officiel de Terminale sont rédigés, chacun avec son animation explicative.</p>" : '<h2>Où en est le site</h2><p>' + REDIGES.length + " chapitres sur " + CH.length + " sont rédigés. Les autres apparaissent avec le contenu exact du programme officiel, en attendant leur rédaction.</p>";
     var parties = [];
     CH.forEach(function (c) { if (parties.indexOf(c.partie) < 0) parties.push(c.partie); });
     parties.forEach(function (p) {
