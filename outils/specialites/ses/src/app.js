@@ -258,7 +258,7 @@
       });
       tk2.forEach(function (t) { s += '<line class="ax' + (t === 0 ? "0" : "") + '" x1="' + ml + '" x2="' + (W - mr) + '" y1="' + Y(t) + '" y2="' + Y(t) + '"/><text class="lb" x="' + (ml - 6) + '" y="' + (Y(t) + 4) + '" text-anchor="end">' + fr(t, 0) + u + "</text>"; });
       var pas = g.pasX || Math.ceil(n / 8);
-      xs.forEach(function (x, i) { if (i % pas === 0 || i === n - 1) s += '<text class="lb" x="' + Xc(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + x + "</text>"; });
+      xs.forEach(function (x, i) { if (i % pas === 0 || (i === n - 1 && (n - 1) % pas >= pas / 2)) s += '<text class="lb" x="' + Xc(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + x + "</text>"; });
       if (g.type === "barres") {
         g.y.forEach(function (v, i) {
           var y1 = Y(Math.max(0, v)), y2 = Y(Math.min(0, v));
@@ -402,7 +402,7 @@
 
   /* ---------- relier l'auteur à sa théorie ---------- */
   function monterRelier(el) {
-    var lot = melange(AUTEURS).slice(0, 5), gauche = melange(lot), droite = melange(lot), sel = null, trouves = 0, essais = 0;
+    var vus = {}, lot = melange(AUTEURS).filter(function (a) { if (vus[a.n]) return false; vus[a.n] = 1; return true; }).slice(0, 5), gauche = melange(lot), droite = melange(lot), sel = null, trouves = 0, essais = 0;
     el.innerHTML = '<p>Touche un auteur, puis l\'idée qui lui correspond. ' + '<span class="cpt"></span></p><div class="rel"><div class="col">' +
       gauche.map(function (a) { return '<button type="button" data-g="' + esc(a.n) + '"><span class="an">' + esc(a.n) + "</span></button>"; }).join("") +
       '</div><div class="col">' + droite.map(function (a) { return '<button type="button" data-d="' + esc(a.n) + '">' + esc(a.th) + "</button>"; }).join("") +

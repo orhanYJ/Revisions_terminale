@@ -1,9 +1,9 @@
 GRAPHES["e5-bce"] = {
   type: "lignes", t: "Le taux de la facilité de dépôt de la BCE, 2021-2026",
-  s: "Taux en vigueur à la fin de chaque trimestre, en %. Touche le graphique pour lire un trimestre.",
+  s: "Taux en vigueur à la fin de chaque trimestre, en % (repères : premier trimestre de chaque année). Touche le graphique pour lire un trimestre.",
   src: "Source : Banque centrale européenne, taux directeurs (dates d’effet des décisions). Dernière valeur : 2,50 % depuis le 16 septembre 2026 (taux inchangé le 29 octobre 2026).",
   unite: " %", pasX: 4, h: 260, min: -1, max: 5, dec: 2,
-  x: ["2021 T1","T2","T3","T4","2022 T1","T2","T3","T4","2023 T1","T2","T3","T4","2024 T1","T2","T3","T4","2025 T1","T2","T3","T4","2026 T1","T2","T3","T4"],
+  x: ["2021","2021 T2","2021 T3","2021 T4","2022","2022 T2","2022 T3","2022 T4","2023","2023 T2","2023 T3","2023 T4","2024","2024 T2","2024 T3","2024 T4","2025","2025 T2","2025 T3","2025 T4","2026","2026 T2","2026 T3","2026 T4"],
   series: [{ n: "Facilité de dépôt", c: 1, v: [-0.5,-0.5,-0.5,-0.5,-0.5,-0.5,0.75,2,3,3.5,4,4,4,3.75,3.5,3,2.5,2,2,2,2,2.25,2.5,2.5] }]
 };
 GRAPHES["e5-budget"] = {
