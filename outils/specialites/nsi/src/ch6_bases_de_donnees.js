@@ -345,7 +345,7 @@ CH.push({
   idees: [
     { id: "i1", t: "Pourquoi une base de données ?", h: `
 <p>En Première, tu as manipulé des données en table : un fichier CSV lu en Python. Cela devient insuffisant dès que les données sont <b>nombreuses</b> (des millions de lignes), <b>partagées</b> (plusieurs programmes ou utilisateurs en même temps), <b>liées</b> entre elles (un livre et son auteur), et qu’elles doivent rester <b>cohérentes</b> et <b>durables</b> malgré les pannes.</p>
-<p>Une <b>base de données</b> est un ensemble organisé de données ; un <b>système de gestion de bases de données</b> (SGBD) est le logiciel qui la stocke et répond aux requêtes. Exemples de SGBD relationnels : SQLite (inclus dans Python et dans chaque téléphone), PostgreSQL, MySQL, Oracle. Les plus grands systèmes gèrent des volumes de l’ordre du pétaoctet (10<sup>15</sup> octets).</p>
+<p>Une <b>base de données</b> est un ensemble organisé de données ; un <b>système de gestion de bases de données</b> (SGBD) est le logiciel qui la stocke et répond aux requêtes. Exemples de SGBD relationnels : SQLite (inclus dans Python, dans Android et dans iOS), PostgreSQL, MySQL, Oracle. Les plus grands systèmes gèrent des volumes de l’ordre du pétaoctet (10<sup>15</sup> octets).</p>
 <div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1970 <b>·</b></span> Edgar F. Codd, chercheur chez IBM, publie <i>A Relational Model of Data for Large Shared Data Banks</i> : le modèle relationnel.<br><span class="commit">années 1970 <b>·</b></span> IBM développe le langage SEQUEL, qui deviendra <b>SQL</b>.</p></div>` },
 
     { id: "i2", t: "Le modèle relationnel : relation, attribut, domaine", h: `
