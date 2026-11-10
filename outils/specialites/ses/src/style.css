@@ -109,6 +109,7 @@ li{margin:4px 0}
 .aut .an{font:800 18px/1.2 var(--titre);font-stretch:condensed}
 .aut .an small{font:500 12.5px var(--texte);color:var(--encre2);margin-left:6px}
 .aut .ad{grid-column:2;font-size:15px}
+.aut .aut-voir{display:block;margin-top:4px;font-size:12.5px;color:var(--encre2)}
 .plus{border:1.5px dashed var(--canard);background:transparent}
 .plus::before{content:"Pour aller plus loin";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--canard);margin-bottom:6px}
 .plus.hp::before{content:"Hors programme"}

@@ -37,7 +37,7 @@ CHAINES["r2-passager"] = { t: "Le passager clandestin dans les négociations cli
 ANIMS["r2-quotas"] = {
   t: "Le marché de quotas : moins cher pour le même résultat",
   h: 330,
-  src: "Exemple simplifié (coûts de réduction constants par tonne, chiffres illustratifs). Réalité : système d’échange de quotas d’émission de l’Union européenne (SEQE), depuis 2005 ; prix supérieur à 100 € la tonne en février 2023.",
+  src: "Exemple simplifié (coûts de réduction constants par tonne, chiffres illustratifs). Réalité : système d’échange de quotas d’émission de l’Union européenne (SEQE), depuis 2005 ; prix qui dépasse pour la première fois 100 € la tonne le 21 février 2023.",
   etapes: [
     { l: "Deux usines émettent chacune 60 tonnes de CO₂. Le régulateur fixe un plafond de 100 tonnes et distribue 50 quotas (droits d’émettre une tonne) à chacune.", d: 4 },
     { l: "Sans échange, chacune doit réduire de 10 tonnes. Réduire une tonne coûte 20 € à A et 60 € à B : A paie 200 €, B paie 600 €. Coût total : 800 €.", d: 4.5 },

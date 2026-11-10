@@ -609,7 +609,8 @@
       var q = QS[id];
       h += '<h2 class="sec"><span class="n">' + esc(q.code) + "</span>" + esc(q.court) + '</h2><div class="auts">' + AUTEURS.filter(function (a) { return a.ch === id; }).map(function (a) {
         var ini = a.n.split(/[\s-]+/).filter(function (x) { return /^[A-ZÉ]/.test(x); }).map(function (x) { return x.charAt(0); }).slice(-2).join("");
-        return '<div class="aut"><span class="mono">' + esc(ini) + '</span><span class="an">' + esc(a.n) + "<small>" + esc(a.d) + '</small></span><span class="ad">' + a.l + "</span></div>";
+        var voir = a.aussi ? ' <small class="aut-voir">Chapitres : ' + [a.ch].concat(a.aussi).map(function (c) { return '<a href="#' + c + '">' + esc(QS[c].code) + " " + esc(QS[c].court) + "</a>"; }).join(" · ") + "</small>" : "";
+        return '<div class="aut"><span class="mono">' + esc(ini) + '</span><span class="an">' + esc(a.n) + "<small>" + esc(a.d) + '</small></span><span class="ad">' + a.l + voir + "</span></div>";
       }).join("") + "</div>";
     });
     return { titre: "Auteurs", html: h };
@@ -695,7 +696,7 @@
       aj("À retenir : " + q.court, q.court + " · fiche", "#" + id + "/fiche", texteDe(ch.retenir));
     });
     PROG.forEach(function (c) { c.qs.forEach(function (q) { if (q.statut !== "red") aj(q.titre, "Bientôt · " + c.nom, "#" + q.id, q.objectifs.join(" ") + " " + q.notions.join(" ")); }); });
-    AUTEURS.forEach(function (a) { aj(a.n, "Auteur · " + QS[a.ch].court, "#auteurs", texteDe(a.l)); });
+    AUTEURS.forEach(function (a) { aj(a.n, "Auteur · " + [a.ch].concat(a.aussi || []).map(function (c) { return QS[c].court; }).join(" · "), "#auteurs", texteDe(a.l)); });
     var tmp = document.createElement("div");
     [["#epreuve", "L'épreuve", EPREUVE], ["#outils", "Savoir-faire", OUTILS]].forEach(function (p) {
       tmp.innerHTML = p[2];
