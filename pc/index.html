@@ -567,7 +567,7 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
     <ul class="chap-list">
       <li class="actif"><a class="chap-link" href="#" onclick="go('ch4');return false;"><span class="sym" aria-hidden="true">Ph</span><span class="no">4</span><span class="ti">La lumière, un flux de photons</span><span class="st st-actif">En cours</span></a></li>
       <li class="actif"><a class="chap-link" href="#" onclick="go('ch5');return false;"><span class="sym" aria-hidden="true">Lu</span><span class="no">5</span><span class="ti">La lunette astronomique</span><span class="st st-actif">En cours</span></a></li>
-      <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Di</span><span class="no" aria-hidden="true"></span><span class="ti">Diffraction</span><span class="st st-verrou">À venir</span></a></li>
+      <li class="actif"><a class="chap-link" href="#" onclick="go('ch6');return false;"><span class="sym" aria-hidden="true">Di</span><span class="no">6</span><span class="ti">La diffraction</span><span class="st st-actif">En cours</span></a></li>
       <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">In</span><span class="no" aria-hidden="true"></span><span class="ti">Interférences</span><span class="st st-verrou">À venir</span></a></li>
       <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">Do</span><span class="no" aria-hidden="true"></span><span class="ti">Atténuation des ondes et effet Doppler</span><span class="st st-verrou">À venir</span></a></li>
       <li class="verrou"><a class="chap-link"><span class="sym" aria-hidden="true">RC</span><span class="no" aria-hidden="true"></span><span class="ti">Dynamique du dipôle RC</span><span class="st st-verrou">À venir</span></a></li>
@@ -7674,6 +7674,809 @@ function maj(){
 </div>
 </section>
 </div>
+<!-- ================= CHAPITRE 6 ================= -->
+<div class="page" id="page-ch6">
+  <div class="chap-hero">
+    <svg class="wm" style="right:-4px;top:-6px;width:200px" viewBox="0 0 200 170" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
+        <path d="M14 30v110M30 30v110M46 30v110"/>
+        <path d="M62 20v58M62 92v58"/>
+        <path d="M84 70a16 16 0 0 1 0 30M104 52a40 40 0 0 1 0 66M126 36a66 66 0 0 1 0 98M150 24a90 90 0 0 1 0 122"/>
+      </g>
+      <circle cx="186" cy="85" r="5" fill="currentColor"/>
+    </svg>
+    <div class="sur">Thème 2 · Ondes et signaux</div>
+    <h1>Chapitre 6 — La diffraction</h1>
+    <div class="grand-eq">θ = λ / a &nbsp;&nbsp;·&nbsp;&nbsp; L = 2λD / a</div>
+  </div>
+  <nav class="pills">
+    <a href="#c6-rappels">Rappels lycée</a>
+    <a href="#c6-cours">Cours complet</a>
+    <a href="#c6-formules">Toutes les formules</a>
+    <a href="#c6-exos">Exercices</a>
+    <a href="#c6-qcm">QCM express</a>
+    <a href="#c6-fiche">Fiche mémo</a>
+  </nav>
+<section class="part" id="c6-rappels">
+<h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>Rappels lycée<small>Ce que le chapitre suppose connu</small></h2>
+<div class="prose">
+<p>La diffraction est un comportement propre aux <strong>ondes</strong>. Tout le chapitre repose sur deux notions de Première : ce qu'est une onde progressive périodique, et sa <strong>longueur d'onde</strong> λ. S'y ajoute un outil de maths, l'approximation des petits angles, déjà rencontrée au chapitre sur la lunette.</p>
+
+<details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c2.5-5 5-5 7.5 0s5 5 7.5 0 3.5-3 5-2"/></svg><span>Onde progressive périodique, longueur d'onde</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p>Une <strong>onde progressive</strong> est la propagation d'une perturbation, de proche en proche, <strong>sans transport de matière</strong> mais avec transport d'énergie. Une onde <strong>mécanique</strong> a besoin d'un milieu matériel (son, vagues, onde le long d'une corde) ; une onde <strong>électromagnétique</strong>, comme la lumière, se propage aussi dans le vide.</p>
+<ul><li>La <strong>célérité</strong> v est la vitesse de propagation de la perturbation (m·s<sup>−1</sup>). Elle dépend du milieu, pas de l'amplitude.</li>
+<li>Une onde <strong>périodique</strong> se répète dans le temps avec la période T (en s) ; sa <strong>fréquence</strong> est f = 1/T (en Hz). La fréquence est imposée par la source.</li>
+<li>Elle se répète aussi dans l'espace : la <strong>longueur d'onde</strong> λ est la plus petite distance entre deux points du milieu qui vibrent en phase, par exemple entre deux crêtes successives d'une vague. C'est aussi la distance parcourue par l'onde pendant une période.</li></ul>
+<div class="formule"><div class="t">Double périodicité</div><div class="eqc">λ = v × T = <span class="frac"><span>v</span><span>f</span></span></div><div class="fr">λ en m · v en m·s<sup>−1</sup> · T en s · f en Hz</div></div>
+<div class="exemple"><div class="t">Trois ordres de grandeur à garder en tête</div><strong>Son</strong> dans l'air (v ≈ 340 m·s<sup>−1</sup>) : de 1,7 cm (20 kHz) à 17 m (20 Hz) ; une voix vers 340 Hz a une longueur d'onde de 1 m. <strong>Vagues</strong> et houle : du centimètre (cuve à ondes) à une centaine de mètres. <strong>Lumière visible</strong> : de 400 à 800 nm, soit environ un demi-micromètre.</div>
+<div class="piege"><div class="t">Ce qui change, ce qui ne change pas</div>Quand une onde change de milieu, sa <strong>fréquence</strong> reste celle de la source ; c'est sa célérité, donc sa longueur d'onde, qui change. Lors de la diffraction, rien de tout cela ne change : ni f, ni v, ni λ. Seule la <strong>direction</strong> de propagation est modifiée.</div>
+</div></details>
+
+<details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg><span>La lumière, une onde électromagnétique</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p>Dans le vide (et presque exactement dans l'air), la lumière se propage à la célérité <strong>c = 3,00 × 10<sup>8</sup> m·s<sup>−1</sup></strong>. Les radiations visibles ont des longueurs d'onde comprises entre <strong>400 nm (violet) et 800 nm (rouge)</strong> environ ; à chaque longueur d'onde correspond une couleur.</p>
+<ul><li>Une lumière <strong>monochromatique</strong> ne contient qu'une seule radiation : c'est presque le cas d'un laser (rouge à 650 nm, vert à 532 nm, violet à 405 nm…).</li>
+<li>La lumière <strong>blanche</strong> est polychromatique : elle contient toutes les radiations visibles.</li>
+<li>Un laser émet un faisceau très fin et très directif, idéal pour observer la diffraction. <strong>Ne jamais regarder le faisceau, ni sa réflexion sur une surface brillante.</strong></li></ul>
+<div class="formule"><div class="t">Les unités du chapitre</div><div class="eqc">1 nm = 10<sup>−9</sup> m &nbsp;·&nbsp; 1 µm = 10<sup>−6</sup> m &nbsp;·&nbsp; 1 mm = 10<sup>−3</sup> m</div><div class="fr">ex. 650 nm = 6,50 × 10<sup>−7</sup> m · 80 µm = 8,0 × 10<sup>−5</sup> m</div></div>
+<div class="piege"><div class="t">L'erreur la plus fréquente du chapitre</div>λ en nanomètres, a en micromètres, D en mètres et L en centimètres dans le même exercice : <strong>tout convertir en mètres</strong> avant le moindre calcul.</div>
+</div></details>
+
+<details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18L3 6z"/><path d="M8 20a5 5 0 0 0-1.6-3.6"/></svg><span>Outil de maths : angles en radians et petits angles</span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p>En physique, un angle se mesure de préférence en <strong>radians</strong> : 180° = π rad, donc 1 rad ≈ 57,3° et 1° ≈ 1,75 × 10<sup>−2</sup> rad.</p>
+<p>Dans un triangle rectangle, tan θ = côté opposé / côté adjacent. Pour un <strong>petit angle exprimé en radians</strong>, la tangente et l'angle sont presque égaux :</p>
+<div class="formule"><div class="t">Approximation des petits angles</div><div class="eqc">tan θ ≈ sin θ ≈ θ</div><div class="fr">θ en radians, valable si θ ≪ 1 rad (moins d'une dizaine de degrés)</div></div>
+<div class="tb-wrap"><table class="tb"><tr><th>θ (rad)</th><th>θ (degrés)</th><th>tan θ</th><th>écart</th></tr>
+<tr><td>0,001</td><td>0,057°</td><td>0,001 000</td><td>moins de 0,001 %</td></tr>
+<tr><td>0,01</td><td>0,57°</td><td>0,010 000</td><td>0,003 %</td></tr>
+<tr><td>0,10</td><td>5,7°</td><td>0,100 3</td><td>0,3 %</td></tr>
+<tr><td>0,30</td><td>17°</td><td>0,309</td><td>3 %</td></tr></table></div>
+<div class="exemple"><div class="t">Pourquoi c'est parfait ici</div>Pour la lumière, l'angle de diffraction vaut quelques <strong>milliradians</strong> (θ = 650 nm / 100 µm = 6,5 × 10<sup>−3</sup> rad, soit 0,37°). L'approximation est alors exacte à mieux qu'un millième près.</div>
+<div class="piege"><div class="t">La calculatrice</div>Si tu calcules une tangente, mets la calculatrice en mode <strong>radian</strong>. Le plus souvent, on n'en a même pas besoin : on écrit directement tan θ ≈ θ.</div>
+</div></details>
+</div>
+</section>
+
+<section class="part" id="c6-cours">
+<h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5Z"/><path d="M8 7.5h7M8 11h5"/></svg>Cours<small>Six fiches : du phénomène à la mesure d'un cheveu</small></h2>
+<div class="prose">
+<p>Une onde qui rencontre une ouverture ou un obstacle ne continue pas toujours tout droit : elle peut s'<strong>étaler</strong> derrière. C'est la <strong>diffraction</strong>. Le chapitre tient en trois idées : le phénomène est d'autant plus marqué que l'ouverture est <strong>petite devant la longueur d'onde</strong> ; il se mesure par un angle, <strong>θ = λ / a</strong> ; et sur un écran, cet angle se lit à travers la largeur de la tache centrale, <strong>L = 2λD / a</strong>, ce qui permet de mesurer λ ou a.</p>
+<div class="def"><div class="t">Le manuel</div>Manuel Lelivrescolaire en ligne, Physique-Chimie Terminale spécialité, chapitre 18 « Interférences et diffraction » (la partie diffraction) : activités 3 et 5 p. 492 et 494-495, cours p. 496-499 (parties « Phénomène de diffraction » et « Pouvoir de résolution »), bilan p. 500, QCM p. 501, exercices p. 502 à 511. Les interférences, l'autre moitié du chapitre 18, font l'objet d'un chapitre à part.</div>
+
+<details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4v16M7 4v16"/><path d="M11 4v6M11 14v6"/><path d="M15 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></svg>1 · Le phénomène de diffraction<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p>À la surface d'une <strong>cuve à ondes</strong>, un vibreur produit des ondes planes : des crêtes rectilignes, parallèles, régulièrement espacées de λ. On place sur leur trajet une paroi percée d'une ouverture de largeur a.</p>
+<ul><li>Si l'ouverture est <strong>large</strong> devant λ, l'onde la traverse presque en ligne droite : derrière la paroi, on retrouve un faisceau de la largeur de l'ouverture.</li>
+<li>Si l'ouverture est <strong>étroite</strong>, de l'ordre de λ, l'onde <strong>s'étale</strong> derrière la paroi en ondes presque circulaires, comme si l'ouverture était une nouvelle source.</li></ul>
+<div class="def"><div class="t">Définition</div>La <strong>diffraction</strong> est la modification de la direction de propagation d'une onde qui rencontre une <strong>ouverture</strong> ou un <strong>obstacle</strong> : l'onde s'étale au-delà de ce que prévoit une propagation en ligne droite. L'onde diffractée a la <strong>même fréquence</strong>, la <strong>même célérité</strong> et donc la <strong>même longueur d'onde</strong> que l'onde incidente.</div>
+<div data-anim="diffraction"></div>
+<ul><li>La diffraction concerne <strong>toutes les ondes</strong> : mécaniques (son, vagues, ondes sismiques) et électromagnétiques (lumière, ondes radio, rayons X). Observer de la diffraction, c'est la signature d'un comportement ondulatoire.</li>
+<li>Un <strong>obstacle</strong> diffracte comme une ouverture de même taille : une vague contourne un piquet, un son contourne un pilier, la lumière s'étale derrière un fil fin.</li></ul>
+<div class="exemple"><div class="t">On l'entend tous les jours</div>Une personne parle dans le couloir, derrière une porte ouverte : on l'<strong>entend</strong> sans la <strong>voir</strong>. Le son, de longueur d'onde voisine du mètre, est fortement diffracté par l'encadrement de la porte (environ 1 m de large) ; la lumière, de longueur d'onde un million de fois plus petite, ne l'est pas visiblement.</div>
+<div class="piege"><div class="t">Ne pas confondre avec la réfraction</div>La <strong>réfraction</strong> est un changement de direction au passage d'un milieu à un autre (air → eau), avec changement de célérité. La <strong>diffraction</strong> se produit sans changement de milieu, à cause de la taille limitée de l'ouverture ou de l'obstacle.</div>
+</div></details>
+
+<details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h6M14 6h6M4 18h6M14 18h6"/><path d="M12 3v18"/></svg>2 · Les conditions d'observation<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p>Ce qui compte, ce n'est pas la taille de l'ouverture seule, mais sa taille <strong>comparée à la longueur d'onde</strong>.</p>
+<div class="def"><div class="t">À retenir</div><ul><li>La diffraction est d'autant plus marquée que la dimension a de l'ouverture (ou de l'obstacle) est <strong>petite devant λ</strong>.</li>
+<li>Elle est <strong>importante</strong> quand a est de l'ordre de λ ou plus petite ; elle reste <strong>observable</strong> tant que a n'est pas trop grande devant λ.</li>
+<li>Si a est <strong>très grande devant λ</strong>, l'étalement est négligeable : on retrouve la propagation rectiligne (c'est le domaine de l'optique géométrique, celui des rayons lumineux).</li></ul></div>
+<p><strong>« Pas trop grande », c'est combien ?</strong> Cela dépend de ce qu'on sait détecter. Avec un laser et un écran à deux mètres, on observe très bien la diffraction par une fente de 0,1 mm, soit environ <strong>150 λ</strong> : la tache centrale mesure encore quelques centimètres. On retient souvent, comme ordre de grandeur, que la diffraction de la lumière s'observe facilement pour <strong>a jusqu'à une centaine de λ</strong> environ ; au-delà, l'étalement existe toujours mais devient difficile à voir.</p>
+<div class="isch" id="isch-cuve">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">La cuve à ondes : règle l'ouverture et la longueur d'onde</div>
+  <div class="isch-s">Une onde plane arrive par la gauche sur une paroi percée d'une ouverture de largeur a. Change a et λ, et regarde comment l'onde s'étale derrière la paroi.</div>
+  <svg class="isch-svg" viewBox="0 0 340 200" role="img" aria-label="Cuve à ondes vue de dessus : ondes planes, paroi percée d'une ouverture de largeur réglable, onde diffractée et angle caractéristique θ">
+    <g id="isch-cuve-g"></g>
+  </svg>
+  <div class="isch-b"><button type="button" class="isch-btn" id="isch-cuve-anim" aria-pressed="false">▶ Faire avancer l'onde</button></div>
+  <div class="isch-c">
+    <label class="isch-r"><span><span>Largeur de l'ouverture a</span> <b id="isch-cuve-av">4,0 cm</b></span><input type="range" id="isch-cuve-a" min="0.5" max="8" step="0.1" value="4" aria-label="Largeur de l'ouverture, en centimètres"></label>
+    <label class="isch-r"><span><span>Longueur d'onde λ</span> <b id="isch-cuve-lv">1,0 cm</b></span><input type="range" id="isch-cuve-l" min="0.5" max="3" step="0.1" value="1" aria-label="Longueur d'onde, en centimètres"></label>
+  </div>
+  <div class="isch-o">
+    <span>a / λ = <b id="isch-cuve-r">4,0</b></span>
+    <span>θ = λ / a = <b id="isch-cuve-th">0,25 rad</b></span>
+    <span>soit <b id="isch-cuve-deg">14°</b></span>
+  </div>
+  <p class="isch-n" id="isch-cuve-msg"></p>
+  <p class="isch-p">Échelle du dessin : 1 cm ↔ 10 unités. Derrière la paroi, l'amplitude de chaque crête dépend de la direction (elle suit la loi de la diffraction par une fente) ; les traits pointillés marquent la première direction où l'onde s'annule. La relation θ = λ/a est l'approximation des petits angles : au-delà de 0,5 rad environ, elle n'est plus qu'un ordre de grandeur.</p>
+  <ol class="isch-defis">
+    <li>Avec λ = 1,5 cm, quelle largeur a donne θ = 0,50 rad ? <details><summary>Réponse</summary>a = λ/θ = 1,5/0,50 = <strong>3,0 cm</strong>. Règle a à 3,0 cm : les pointillés s'écartent d'environ 30° de part et d'autre de l'axe.</details></li>
+    <li>Double à la fois a et λ. Que devient θ ? <details><summary>Réponse</summary>Il ne change pas : θ ne dépend que du <strong>rapport</strong> λ/a. C'est pourquoi on compare toujours la taille de l'ouverture à la longueur d'onde, jamais à une longueur fixe.</details></li>
+    <li>Ouverture de 8 cm : à partir de quelle longueur d'onde l'étalement atteint-il θ = 0,25 rad ? <details><summary>Réponse</summary>λ = θ × a = 0,25 × 8 = <strong>2,0 cm</strong>. Plus λ est grande, plus l'onde s'étale : c'est pour cela que le son (grande λ) contourne les obstacles bien plus que la lumière.</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var g = document.getElementById('isch-cuve-g'); if(!g) return;
+  var ra = document.getElementById('isch-cuve-a'), rl = document.getElementById('isch-cuve-l'), bt = document.getElementById('isch-cuve-anim');
+  var XB = 110, YC = 100, S = 10, X0 = 4, X1 = 336, Y0 = 6, Y1 = 194, EAU = '#3d8fd6', OR = 'var(--orange)';
+  var phase = 0, joue = false, dernier = 0;
+  function v(x, n){ return x.toFixed(n).replace('.', ','); }
+  function F(x){ return x.toFixed(1); }
+  function amp(phi, a, l){ var u = Math.PI*a*Math.sin(phi)/l; return Math.abs(u) < 1e-6 ? 1 : Math.abs(Math.sin(u)/u); }
+  function dans(x, y){ return x > X0 + 1 && x < X1 - 1 && y > Y0 + 1 && y < Y1 - 1; }
+  function maj(){
+    var a = parseFloat(ra.value), l = parseFloat(rl.value), A = a*S, L = l*S, s = ((phase % L) + L) % L;
+    document.getElementById('isch-cuve-av').textContent = v(a, 1) + ' cm';
+    document.getElementById('isch-cuve-lv').textContent = v(l, 1) + ' cm';
+    var h = '<rect x="' + X0 + '" y="' + Y0 + '" width="' + (X1 - X0) + '" height="' + (Y1 - Y0) + '" rx="8" fill="' + EAU + '" fill-opacity=".1"/>';
+    /* crêtes incidentes */
+    for(var x = XB - L + s; x > X0 + 2; x -= L) h += '<line x1="' + F(x) + '" y1="' + (Y0 + 3) + '" x2="' + F(x) + '" y2="' + (Y1 - 3) + '" stroke="' + EAU + '" stroke-width="1.8"/>';
+    /* crêtes diffractées */
+    var N = 20;
+    for(var r = s; r < 330; r += L){
+      if(r < 1) continue;
+      if(XB + r < X1 - 1) h += '<line x1="' + F(XB + r) + '" y1="' + F(Math.max(YC - A/2, Y0 + 2)) + '" x2="' + F(XB + r) + '" y2="' + F(Math.min(YC + A/2, Y1 - 2)) + '" stroke="' + EAU + '" stroke-width="1.8"/>';
+      [-1, 1].forEach(function(sg){
+        var yb = YC + sg*A/2;
+        for(var i = 0; i < N; i++){
+          var p0 = Math.PI/2*i/N, p1 = Math.PI/2*(i + 1)/N, w = amp((p0 + p1)/2, a, l);
+          if(w < .05) continue;
+          var xa = XB + r*Math.cos(p0), ya = yb + sg*r*Math.sin(p0), xb = XB + r*Math.cos(p1), yb2 = yb + sg*r*Math.sin(p1);
+          if(!dans((xa + xb)/2, (ya + yb2)/2)) continue;
+          h += '<line x1="' + F(xa) + '" y1="' + F(ya) + '" x2="' + F(xb) + '" y2="' + F(yb2) + '" stroke="' + EAU + '" stroke-width="1.8" stroke-linecap="round" stroke-opacity="' + Math.min(1, w*1.15).toFixed(2) + '"/>';
+        }
+      });
+    }
+    /* paroi */
+    h += '<g fill="currentColor" opacity=".7"><rect x="' + (XB - 2.5) + '" y="' + Y0 + '" width="5" height="' + F(Math.max(0, YC - A/2 - Y0)) + '"/><rect x="' + (XB - 2.5) + '" y="' + F(YC + A/2) + '" width="5" height="' + F(Math.max(0, Y1 - YC - A/2)) + '"/></g>';
+    /* angle caractéristique */
+    var th = l/a, thv = Math.asin(Math.min(1, l/a));
+    var Lg = Math.min(240, (YC - Y0 - 4)/Math.max(Math.sin(thv), .01), (X1 - XB - 4)/Math.max(Math.cos(thv), .01));
+    h += '<line x1="' + XB + '" y1="' + YC + '" x2="' + (X1 - 4) + '" y2="' + YC + '" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 4" opacity=".5"/>';
+    [-1, 1].forEach(function(sg){ h += '<line x1="' + XB + '" y1="' + YC + '" x2="' + F(XB + Lg*Math.cos(thv)) + '" y2="' + F(YC + sg*Lg*Math.sin(thv)) + '" stroke="' + OR + '" stroke-width="1.4" stroke-dasharray="5 4"/>'; });
+    var ra2 = 44;
+    h += '<path d="M' + F(XB + ra2) + ' ' + YC + ' A' + ra2 + ' ' + ra2 + ' 0 0 0 ' + F(XB + ra2*Math.cos(thv)) + ' ' + F(YC - ra2*Math.sin(thv)) + '" fill="none" stroke="' + OR + '" stroke-width="1.5"/>';
+    h += '<text x="' + F(XB + (ra2 + 9)*Math.cos(thv/2)) + '" y="' + F(YC - (ra2 + 9)*Math.sin(thv/2) + 4) + '" font-size="12" font-weight="700" fill="' + OR + '">θ</text>';
+    /* cote a */
+    var ya1 = Math.max(YC - A/2, Y0 + 2), ya2 = Math.min(YC + A/2, Y1 - 2);
+    h += '<g stroke="' + OR + '" stroke-width="1.3" fill="none"><line x1="' + (XB - 12) + '" y1="' + F(ya1) + '" x2="' + (XB - 12) + '" y2="' + F(ya2) + '"/><path d="M' + (XB - 15) + ' ' + F(ya1 + 5) + ' L' + (XB - 12) + ' ' + F(ya1) + ' L' + (XB - 9) + ' ' + F(ya1 + 5) + ' M' + (XB - 15) + ' ' + F(ya2 - 5) + ' L' + (XB - 12) + ' ' + F(ya2) + ' L' + (XB - 9) + ' ' + F(ya2 - 5) + '"/></g>';
+    h += '<text x="' + (XB - 18) + '" y="' + (YC + 4) + '" font-size="12" font-weight="700" fill="' + OR + '" text-anchor="end">a</text>';
+    /* cote λ */
+    var xc = XB - L + s - L; if(xc < X0 + 4) xc += L;
+    h += '<g stroke="' + EAU + '" stroke-width="1.3" fill="none"><line x1="' + F(xc) + '" y1="16" x2="' + F(xc + L) + '" y2="16"/></g><text x="' + F(xc + L/2) + '" y="13" font-size="11" font-weight="700" fill="' + EAU + '" text-anchor="middle">λ</text>';
+    g.innerHTML = h;
+    document.getElementById('isch-cuve-r').textContent = v(a/l, 1);
+    document.getElementById('isch-cuve-th').textContent = th > 1 ? '> 1 rad' : v(th, 2) + ' rad';
+    document.getElementById('isch-cuve-deg').textContent = th > 1 ? 'onde étalée partout' : Math.round(th*180/Math.PI) + '°';
+    var m;
+    if(a/l >= 6) m = 'L\'ouverture est <strong>grande devant λ</strong> (a/λ = ' + v(a/l, 1) + ') : l\'onde passe presque en ligne droite, en gardant la largeur de l\'ouverture. La diffraction existe, mais elle est faible : θ ne vaut que ' + v(th, 2) + ' rad.';
+    else if(a/l > 1.6) m = 'a n\'est que ' + v(a/l, 1) + ' fois plus grand que λ : l\'onde <strong>s\'étale nettement</strong> derrière la paroi. L\'essentiel de l\'énergie reste dans le cône d\'angle θ = λ/a = ' + v(th, 2) + ' rad ; au-delà, de petites ondes secondaires, beaucoup plus faibles.';
+    else m = 'a est <strong>de l\'ordre de λ</strong> ou plus petit : derrière la paroi, l\'onde devient presque <strong>circulaire</strong>, comme si l\'ouverture était une nouvelle source ponctuelle. La diffraction est maximale. (Ici λ/a ≈ ' + v(l/a, 1) + ' : la formule θ = λ/a, prévue pour de petits angles, ne s\'applique plus que qualitativement.)';
+    document.getElementById('isch-cuve-msg').innerHTML = m;
+  }
+  function boucle(ts){
+    if(!joue) return;
+    if(dernier) phase += Math.min(.1, (ts - dernier)/1000)*parseFloat(rl.value)*S*.9;
+    dernier = ts; maj(); requestAnimationFrame(boucle);
+  }
+  bt.addEventListener('click', function(){
+    joue = !joue; bt.classList.toggle('on', joue); bt.setAttribute('aria-pressed', joue ? 'true' : 'false');
+    bt.textContent = joue ? '❚❚ Arrêter l\'onde' : '▶ Faire avancer l\'onde';
+    if(joue){ dernier = 0; requestAnimationFrame(boucle); }
+  });
+  ra.addEventListener('input', maj); rl.addEventListener('input', maj);
+  maj();
+})();
+</script>
+<div class="tb-wrap"><table class="tb"><tr><th>Onde</th><th>λ (ordre de grandeur)</th><th>Ouverture ou obstacle</th><th>Diffraction</th></tr>
+<tr><td>Son (voix)</td><td>≈ 1 m</td><td>porte (≈ 1 m), pilier</td><td><strong>forte</strong> : on entend derrière</td></tr>
+<tr><td>Son aigu (5 kHz)</td><td>≈ 7 cm</td><td>porte (≈ 1 m)</td><td>plus faible : les aigus « passent moins » derrière un obstacle</td></tr>
+<tr><td>Houle</td><td>10 à 100 m</td><td>entrée d'un port (≈ 100 m)</td><td><strong>forte</strong> : la houle s'étale dans le port</td></tr>
+<tr><td>Lumière visible</td><td>≈ 0,5 µm</td><td>porte, fenêtre</td><td>invisible : on ne voit pas derrière un mur</td></tr>
+<tr><td>Lumière d'un laser</td><td>0,65 µm</td><td>fente de 20 à 200 µm, cheveu</td><td><strong>bien visible</strong> sur un écran</td></tr>
+<tr><td>Ondes radio (grandes ondes)</td><td>≈ 1 km</td><td>collines, immeubles</td><td><strong>forte</strong> : elles contournent le relief</td></tr></table></div>
+<div class="piege"><div class="t">L'erreur de raisonnement classique</div>« L'ouverture est petite, donc il y a diffraction » : non, il faut toujours <strong>comparer a à λ</strong>. Une fente de 1 mm est minuscule pour un son de 1 m (diffraction totale) mais énorme pour un rayon X de 0,1 nm (aucune diffraction visible).</div>
+</div></details>
+
+<details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18"/><path d="M3 12 20 5"/><path d="M11 12a8 8 0 0 0-.7-3.3"/></svg>3 · L'angle caractéristique de diffraction<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p>Derrière une fente, l'onde diffractée n'est pas répartie uniformément : l'essentiel de l'énergie part dans un cône autour de la direction incidente, limité par deux directions où l'onde <strong>s'annule</strong>. Au-delà, il ne reste que des ondes secondaires beaucoup plus faibles.</p>
+<div class="def"><div class="t">Angle caractéristique de diffraction</div>L'<strong>angle caractéristique</strong> θ est l'écart angulaire entre la direction de propagation de l'onde incidente (le milieu de la tache centrale) et la direction de la <strong>première extinction</strong>. C'est un <strong>demi-angle</strong> : la tache centrale s'étend de −θ à +θ.</div>
+<div class="formule"><div class="t">Diffraction par une fente de largeur a</div><div class="eqc">θ = <span class="frac"><span>λ</span><span>a</span></span></div><div class="fr">θ en radians (rad) · λ et a dans la même unité, en général le mètre</div></div>
+<ul><li>θ <strong>augmente</strong> quand λ augmente : à fente égale, le rouge est plus diffracté que le bleu, les sons graves plus que les aigus.</li>
+<li>θ <strong>augmente</strong> quand a diminue : plus la fente est fine, plus l'onde s'étale.</li>
+<li>θ ne dépend que du <strong>rapport λ/a</strong> : c'est ce rapport qui fixe l'importance de la diffraction (fiche 2).</li></ul>
+<div class="exemple"><div class="t">Ordres de grandeur</div>Laser rouge (λ = 650 nm) et fente de 100 µm : θ = 650 × 10<sup>−9</sup> / 100 × 10<sup>−6</sup> = <span class="ch">6,5 × 10<sup>−3</sup> rad</span>, soit 0,37°. Voix (λ = 1,0 m) qui passe une porte de 1,2 m : λ/a ≈ 0,8 ; l'angle est grand, le son s'étale dans presque toutes les directions (la formule, établie pour de petits angles, ne donne alors qu'un ordre de grandeur).</div>
+<p><strong>Dans quelle direction la figure s'étale-t-elle ?</strong> L'onde s'étale dans la direction où l'ouverture est <strong>étroite</strong>. Une fente verticale, fine et haute, donne une figure étalée à l'<strong>horizontale</strong> ; une fente horizontale, une figure verticale.</p>
+<div class="piege"><div class="t">Trois pièges sur θ</div><ul><li>θ est un <strong>demi-angle</strong> : l'angle total du cône central vaut 2θ.</li><li>θ = λ/a donne des <strong>radians</strong>, jamais des degrés.</li><li>a est la largeur de la <strong>fente</strong> (ou le diamètre du fil), pas la largeur de la tache sur l'écran.</li></ul></div>
+<details class="corr"><summary>Pour aller plus loin — ouverture circulaire (hors programme)</summary><div class="in prose"><p>Pour un <strong>trou circulaire</strong> de diamètre d, la figure de diffraction est faite d'anneaux concentriques autour d'une tache centrale (la <strong>tache d'Airy</strong>), et le premier anneau sombre est vu sous l'angle θ = 1,22 λ/d. Cette formule n'est pas exigible ; quand un sujet en a besoin, il la donne. Elle explique pourquoi un télescope de grand diamètre distingue des détails plus fins (Asie 2023, « Autour de Saturne »).</p></div></details>
+</div></details>
+
+<details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="10" width="5" height="4" rx="1"/><path d="M7 12h5M12 6v4M12 14v4M12 12l9-5M12 12l9 5M21 4v16"/></svg>4 · Diffraction de la lumière : laser, fente, écran<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p><strong>Le montage.</strong> Un laser éclaire une fente fine de largeur a (une diapositive avec des fentes calibrées de 20 à 500 µm). Un écran est placé perpendiculairement au faisceau, à la distance D de la fente, de l'ordre du mètre ou plus.</p>
+<p><strong>Ce qu'on observe.</strong> Sur l'écran apparaît une <strong>figure de diffraction</strong> :</p>
+<ul><li>une <strong>tache centrale</strong> très lumineuse, de largeur L, centrée sur la direction du faisceau ;</li>
+<li>de part et d'autre, des <strong>taches secondaires</strong> beaucoup moins lumineuses, deux fois moins larges que la tache centrale ;</li>
+<li>entre les taches, des <strong>extinctions</strong> : des zones sans lumière.</li></ul>
+<div class="fig"><svg viewBox="0 0 440 210" role="img" aria-label="Montage vu de côté : la fente et l'écran à la distance D ; le demi-angle θ est sous-tendu par la moitié L/2 de la tache centrale ; à droite, la courbe d'intensité lumineuse sur l'écran"><g font-size="12" fill="currentColor">
+<line x1="20" y1="95" x2="330" y2="95" stroke="currentColor" stroke-width="1" stroke-dasharray="6 4" opacity=".5"/>
+<rect x="8" y="86" width="34" height="18" rx="3" fill="currentColor" opacity=".7"/><text x="25" y="122" text-anchor="middle" font-size="11" opacity=".75">laser</text>
+<line x1="42" y1="95" x2="90" y2="95" stroke="#E5371E" stroke-width="2.4"/>
+<g fill="currentColor" opacity=".6"><rect x="88" y="20" width="4" height="70"/><rect x="88" y="100" width="4" height="70"/></g>
+<text x="76" y="16" font-size="11" opacity=".8">fente (a)</text>
+<path d="M90 92 L330 63 L330 127 L90 98 Z" fill="#E5371E" fill-opacity=".22"/>
+<line x1="90" y1="95" x2="330" y2="63" stroke="var(--orange)" stroke-width="1.6" stroke-dasharray="5 4"/>
+<path d="M170 95 A80 80 0 0 0 169.3 84.6" fill="none" stroke="var(--orange)" stroke-width="1.6"/>
+<text x="176" y="88" font-weight="700" fill="var(--orange)">θ</text>
+<line x1="330" y1="12" x2="330" y2="178" stroke="currentColor" stroke-width="2.4"/><text x="330" y="8" text-anchor="middle" font-size="11" opacity=".75">écran</text>
+<g stroke="var(--orange)" stroke-width="1.4"><line x1="318" y1="63" x2="318" y2="95"/><path d="M315 69 L318 63 L321 69 M315 89 L318 95 L321 89" fill="none"/></g><text x="300" y="82" font-weight="700" fill="var(--orange)" font-size="11">L/2</text>
+<g stroke="currentColor" stroke-width="1.2" opacity=".8"><line x1="90" y1="192" x2="330" y2="192"/><path d="M96 188 L90 192 L96 196 M324 188 L330 192 L324 196" fill="none"/></g><text x="210" y="187" text-anchor="middle">D</text>
+<path d="M332 12 L333.2 12 L333.2 13 L333.3 14 L333.4 15 L333.4 16 L333.4 17 L333.3 18 L333.3 19 L333.2 20 L333.1 21 L333.0 22 L332.8 23 L332.7 24 L332.5 25 L332.4 26 L332.3 27 L332.2 28 L332.1 29 L332.0 30 L332.0 31 L332.0 32 L332.1 33 L332.2 34 L332.4 35 L332.6 36 L332.8 37 L333.1 38 L333.4 39 L333.7 40 L334.1 41 L334.4 42 L334.8 43 L335.1 44 L335.4 45 L335.6 46 L335.8 47 L335.9 48 L336.0 49 L335.9 50 L335.8 51 L335.7 52 L335.4 53 L335.1 54 L334.7 55 L334.3 56 L333.9 57 L333.4 58 L333.0 59 L332.6 60 L332.3 61 L332.1 62 L332.0 63 L332.1 64 L332.4 65 L332.9 66 L333.6 67 L334.7 68 L336.0 69 L337.6 70 L339.6 71 L341.8 72 L344.4 73 L347.4 74 L350.6 75 L354.1 76 L357.9 77 L361.9 78 L366.0 79 L370.4 80 L374.8 81 L379.2 82 L383.7 83 L388.0 84 L392.3 85 L396.3 86 L400.1 87 L403.6 88 L406.7 89 L409.5 90 L411.8 91 L413.6 92 L414.9 93 L415.7 94 L416.0 95 L415.7 96 L414.9 97 L413.6 98 L411.8 99 L409.5 100 L406.7 101 L403.6 102 L400.1 103 L396.3 104 L392.3 105 L388.0 106 L383.7 107 L379.2 108 L374.8 109 L370.4 110 L366.0 111 L361.9 112 L357.9 113 L354.1 114 L350.6 115 L347.4 116 L344.4 117 L341.8 118 L339.6 119 L337.6 120 L336.0 121 L334.7 122 L333.6 123 L332.9 124 L332.4 125 L332.1 126 L332.0 127 L332.1 128 L332.3 129 L332.6 130 L333.0 131 L333.4 132 L333.9 133 L334.3 134 L334.7 135 L335.1 136 L335.4 137 L335.7 138 L335.8 139 L335.9 140 L336.0 141 L335.9 142 L335.8 143 L335.6 144 L335.4 145 L335.1 146 L334.8 147 L334.4 148 L334.1 149 L333.7 150 L333.4 151 L333.1 152 L332.8 153 L332.6 154 L332.4 155 L332.2 156 L332.1 157 L332.0 158 L332.0 159 L332.0 160 L332.1 161 L332.2 162 L332.3 163 L332.4 164 L332.5 165 L332.7 166 L332.8 167 L333.0 168 L333.1 169 L333.2 170 L333.3 171 L333.3 172 L333.4 173 L333.4 174 L333.4 175 L333.3 176 L333.2 177 L333.2 178 L332 178 Z" fill="#E5371E" fill-opacity=".45" stroke="#E5371E" stroke-width="1"/>
+<text x="378" y="44" font-size="10.5" opacity=".75">intensité</text>
+<g stroke="currentColor" stroke-width="1" opacity=".7"><line x1="425" y1="63" x2="425" y2="127"/><path d="M422 68 L425 63 L428 68 M422 122 L425 127 L428 122" fill="none"/></g><text x="430" y="99" font-size="11" font-weight="700">L</text>
+</g></svg><div class="cap">Vue de côté, dimensions verticales très agrandies. La courbe d'intensité, contre l'écran, s'annule aux extinctions ; la tache centrale va d'une première extinction à l'autre.</div></div>
+<p><strong>Relier θ à ce qu'on mesure.</strong> C'est la démonstration demandée dans presque tous les sujets de bac.</p>
+<div class="methode"><div class="t">Démontrer L = 2λD / a</div><ol>
+<li>On considère le triangle rectangle formé par la fente, le milieu de la tache centrale et sa première extinction : le côté adjacent à θ vaut D, le côté opposé vaut <strong>L/2</strong>.</li>
+<li>Donc <strong>tan θ = (L/2) / D = L / (2D)</strong>.</li>
+<li>θ est très petit et exprimé en radians : <strong>tan θ ≈ θ</strong>, d'où <strong>θ = L / (2D)</strong>.</li>
+<li>Pour une fente, θ = λ/a. En égalant : L / (2D) = λ / a, soit <strong>L = 2λD / a</strong>.</li></ol></div>
+<div class="formule"><div class="t">Largeur de la tache centrale</div><div class="eqc">θ = <span class="frac"><span>L</span><span>2D</span></span> = <span class="frac"><span>λ</span><span>a</span></span> &nbsp;&nbsp;donc&nbsp;&nbsp; L = <span class="frac"><span>2 λ D</span><span>a</span></span></div><div class="fr">L, λ, D et a en mètres · θ en radians</div></div>
+<div class="exemple"><div class="t">Un calcul complet</div>λ = 650 nm, a = 100 µm, D = 2,00 m : <span class="ch">L</span> = <span class="ch">2 × 6,50 × 10<sup>−7</sup> × 2,00 / 1,00 × 10<sup>−4</sup></span> = <span class="ch">2,60 × 10<sup>−2</sup> m</span> = <span class="ch">2,6 cm</span>. Avec une fente de 50 µm, la tache double (5,2 cm) ; avec un laser vert à 532 nm et la fente de 100 µm, elle rétrécit (2,1 cm).</div>
+<div class="isch" id="isch-fente">
+  <span class="isch-tag">Schéma interactif</span>
+  <div class="isch-t">Laser, fente, écran : mesure la tache centrale</div>
+  <div class="isch-s">Règle la couleur du laser, la largeur de la fente (ou le diamètre du fil) et la distance de l'écran. La figure de diffraction se forme sur l'écran, avec une règle graduée en centimètres pour lire L.</div>
+  <svg class="isch-svg" viewBox="0 0 340 236" role="img" aria-label="Montage de diffraction vu de côté (laser, fente, écran à la distance D, angle θ), puis la figure de diffraction vue de face avec une règle graduée">
+    <defs><linearGradient id="isch-fente-grad" x1="0" x2="1"></linearGradient></defs>
+    <g id="isch-fente-g"></g>
+  </svg>
+  <div class="isch-b" id="isch-fente-type">
+    <button type="button" class="isch-btn on" data-k="fente">Fente de largeur a</button>
+    <button type="button" class="isch-btn" data-k="fil">Fil de diamètre a</button>
+  </div>
+  <div class="isch-c">
+    <label class="isch-r"><span><span>Longueur d'onde λ</span> <b id="isch-fente-lv">650 nm</b></span><input type="range" id="isch-fente-l" min="400" max="750" step="5" value="650" aria-label="Longueur d'onde du laser, en nanomètres"></label>
+    <label class="isch-r"><span><span>Largeur a</span> <b id="isch-fente-av">100 µm</b></span><input type="range" id="isch-fente-a" min="20" max="200" step="1" value="100" aria-label="Largeur de la fente ou diamètre du fil, en micromètres"></label>
+    <label class="isch-r"><span><span>Distance fente-écran D</span> <b id="isch-fente-dv">2,00 m</b></span><input type="range" id="isch-fente-d" min="0.5" max="3" step="0.05" value="2" aria-label="Distance entre la fente et l'écran, en mètres"></label>
+  </div>
+  <div class="isch-o">
+    <span>θ = λ / a = <b id="isch-fente-th">6,5 × 10⁻³ rad</b></span>
+    <span>L = 2λD / a = <b id="isch-fente-L">2,6 cm</b></span>
+  </div>
+  <p class="isch-n" id="isch-fente-msg"></p>
+  <p class="isch-p">Vue de côté : les distances perpendiculaires à l'axe sont très agrandies (θ ne vaut que quelques milliradians). Vue de face : à l'échelle de la règle. La couleur affichée est approchée ; au-delà de 700 nm, la lumière est à peine visible.</p>
+  <ol class="isch-defis">
+    <li>Laser rouge à 650 nm, écran à 2,00 m : quelle fente donne une tache centrale de 2,6 cm ? <details><summary>Réponse</summary>a = 2λD/L = 2 × 650 × 10<sup>−9</sup> × 2,00 / 2,6 × 10<sup>−2</sup> = 1,0 × 10<sup>−4</sup> m = <strong>100 µm</strong>.</details></li>
+    <li>Un cheveu remplace la fente. Avec 650 nm et D = 2,00 m, on mesure L = 3,3 cm. Quel est son diamètre ? Vérifie avec le curseur. <details><summary>Réponse</summary>Un fil donne la même figure qu'une fente de même largeur : a = 2λD/L = 2 × 650 × 10<sup>−9</sup> × 2,00 / 3,3 × 10<sup>−2</sup> ≈ 7,9 × 10<sup>−5</sup> m ≈ <strong>79 µm</strong> (un cheveu mesure de 50 à 100 µm).</details></li>
+    <li>Trouve deux façons différentes de doubler L sans changer de laser. <details><summary>Réponse</summary>L = 2λD/a : <strong>doubler D</strong> (écran deux fois plus loin) ou <strong>diviser a par deux</strong> (fente deux fois plus fine). Doubler D ne change pas θ ; diviser a par deux double θ.</details></li>
+    <li>Passe du rouge (650 nm) au violet (405 nm) sans toucher au reste. Pourquoi la tache rétrécit-elle ? <details><summary>Réponse</summary>θ = λ/a : à fente égale, une longueur d'onde plus courte est moins diffractée. L passe de 2,6 cm à 2 × 405 × 10<sup>−9</sup> × 2,00 / 1,00 × 10<sup>−4</sup> ≈ <strong>1,6 cm</strong>.</details></li>
+  </ol>
+</div>
+<script>
+(function(){
+  var g = document.getElementById('isch-fente-g'); if(!g) return;
+  var grad = document.getElementById('isch-fente-grad');
+  var rl = document.getElementById('isch-fente-l'), ra = document.getElementById('isch-fente-a'), rd = document.getElementById('isch-fente-d');
+  var type = 'fente', OR = 'var(--orange)';
+  function v(x, n){ return x.toFixed(n).replace('.', ','); }
+  function F(x){ return x.toFixed(1); }
+  function couleur(l){
+    var r = 0, gg = 0, b = 0;
+    if(l < 440){ r = -(l - 440)/60; b = 1; } else if(l < 490){ gg = (l - 440)/50; b = 1; } else if(l < 510){ gg = 1; b = -(l - 510)/20; }
+    else if(l < 580){ r = (l - 510)/70; gg = 1; } else if(l < 645){ r = 1; gg = -(l - 645)/65; } else { r = 1; }
+    var att = l > 700 ? Math.max(.35, 1 - (l - 700)/80) : (l < 420 ? .6 + .4*(l - 400)/20 : 1);
+    function h(x){ return ('0' + Math.round(255*Math.max(0, Math.min(1, x*att))).toString(16)).slice(-2); }
+    return '#' + h(r) + h(gg) + h(b);
+  }
+  function sinc2(u){ return Math.abs(u) < 1e-6 ? 1 : Math.pow(Math.sin(u)/u, 2); }
+  Array.prototype.forEach.call(document.querySelectorAll('#isch-fente-type .isch-btn'), function(b){
+    b.addEventListener('click', function(){
+      type = b.getAttribute('data-k');
+      Array.prototype.forEach.call(document.querySelectorAll('#isch-fente-type .isch-btn'), function(c){ c.classList.toggle('on', c === b); });
+      maj();
+    });
+  });
+  function maj(){
+    var l = parseFloat(rl.value), a = parseFloat(ra.value), D = parseFloat(rd.value);
+    var th = l*1e-9/(a*1e-6), L = 2*th*D*100, col = couleur(l);   /* L en cm */
+    document.getElementById('isch-fente-lv').textContent = Math.round(l) + ' nm';
+    document.getElementById('isch-fente-av').textContent = Math.round(a) + ' µm';
+    document.getElementById('isch-fente-dv').textContent = v(D, 2) + ' m';
+    /* ---- vue de côté ---- */
+    var YL = 64, XS = 64, XE = 64 + D*80, h = "";
+    var LpS = Math.min(110, L*10);                  /* demi-étalement dessiné, très agrandi */
+    var ha = 2 + a/40;
+    h += '<rect x="4" y="' + (YL - 8) + '" width="30" height="16" rx="3" fill="currentColor" opacity=".75"/><text x="19" y="' + (YL + 20) + '" font-size="9" text-anchor="middle" fill="currentColor" opacity=".7">laser</text>';
+    h += '<line x1="34" y1="' + YL + '" x2="' + XS + '" y2="' + YL + '" stroke="' + col + '" stroke-width="2.2"/>';
+    if(type === 'fente') h += '<g fill="currentColor" opacity=".6"><rect x="' + (XS - 2) + '" y="10" width="4" height="' + F(YL - ha - 10) + '"/><rect x="' + (XS - 2) + '" y="' + F(YL + ha) + '" width="4" height="' + F(118 - YL - ha) + '"/></g>';
+    else h += '<rect x="' + (XS - 1.5) + '" y="' + F(YL - ha) + '" width="3" height="' + F(2*ha) + '" rx="1.5" fill="#c99a5b"/>';
+    var dy = Math.min(LpS/2, 52), dy2 = Math.min(LpS, 58);
+    h += '<path d="M' + XS + ' ' + F(YL - ha) + ' L' + F(XE) + ' ' + F(YL - dy) + ' L' + F(XE) + ' ' + F(YL + dy) + ' L' + XS + ' ' + F(YL + ha) + ' Z" fill="' + col + '" fill-opacity=".3"/>';
+    h += '<line x1="' + F(XE) + '" y1="6" x2="' + F(XE) + '" y2="122" stroke="currentColor" stroke-width="2"/>';
+    h += '<line x1="' + XS + '" y1="' + YL + '" x2="' + F(XE) + '" y2="' + YL + '" stroke="currentColor" stroke-width=".8" stroke-dasharray="3 4" opacity=".5"/>';
+    h += '<line x1="' + XS + '" y1="' + YL + '" x2="' + F(XE) + '" y2="' + F(YL - dy) + '" stroke="' + OR + '" stroke-width="1.3" stroke-dasharray="4 3"/>';
+    var tv = Math.atan2(dy, XE - XS), rr = Math.min(40, (XE - XS)*.5);
+    h += '<path d="M' + F(XS + rr) + ' ' + YL + ' A' + rr + ' ' + rr + ' 0 0 0 ' + F(XS + rr*Math.cos(tv)) + ' ' + F(YL - rr*Math.sin(tv)) + '" fill="none" stroke="' + OR + '" stroke-width="1.4"/>';
+    h += '<text x="' + F(XS + rr + 6) + '" y="' + F(YL - rr*Math.sin(tv/2)) + '" font-size="11" font-weight="700" fill="' + OR + '">θ</text>';
+    /* profil d'intensité contre l'écran */
+    var p = 'M' + F(XE + 2) + ' 8';
+    for(var y = 8; y <= 120; y += 1) p += ' L' + F(XE + 2 + 22*sinc2(Math.PI*(y - YL)/Math.max(dy, 1))) + ' ' + y;
+    h += '<path d="' + p + ' L' + F(XE + 2) + ' 120 Z" fill="' + col + '" fill-opacity=".45" stroke="' + col + '" stroke-width="1"/>';
+    /* cote D */
+    h += '<g stroke="currentColor" stroke-width="1" fill="none" opacity=".75"><line x1="' + XS + '" y1="128" x2="' + F(XE) + '" y2="128"/><path d="M' + (XS + 5) + ' 125 L' + XS + ' 128 L' + (XS + 5) + ' 131 M' + F(XE - 5) + ' 125 L' + F(XE) + ' 128 L' + F(XE - 5) + ' 131"/></g><text x="' + F((XS + XE)/2) + '" y="140" font-size="10" text-anchor="middle" fill="currentColor">D = ' + v(D, 2) + ' m</text>';
+    /* ---- vue de face, à l'échelle : 1 cm ↔ 20 unités ---- */
+    var Y = 156, H = 34, XC = 170, PXcm = 20, x0 = 10, x1 = 330, st = '';
+    for(var i = 0; i <= 120; i++){
+      var x = x0 + (x1 - x0)*i/120, I = sinc2(Math.PI*(x - XC)/(L/2*PXcm));
+      st += '<stop offset="' + F(100*i/120) + '%" stop-color="' + col + '" stop-opacity="' + Math.min(1, Math.pow(I, .55)*1.05).toFixed(2) + '"/>';
+    }
+    grad.innerHTML = st;
+    h += '<rect x="' + x0 + '" y="' + Y + '" width="' + (x1 - x0) + '" height="' + H + '" rx="5" fill="#050608"/><rect x="' + x0 + '" y="' + Y + '" width="' + (x1 - x0) + '" height="' + H + '" rx="5" fill="url(#isch-fente-grad)"/>';
+    /* règle graduée */
+    var yr = Y + H + 4;
+    h += '<line x1="' + x0 + '" y1="' + yr + '" x2="' + x1 + '" y2="' + yr + '" stroke="currentColor" stroke-width="1"/>';
+    for(var c = -8; c <= 8; c += .5){
+      var xx = XC + c*PXcm; if(xx < x0 || xx > x1) continue;
+      var ent = Math.abs(c - Math.round(c)) < 1e-6;
+      h += '<line x1="' + F(xx) + '" y1="' + yr + '" x2="' + F(xx) + '" y2="' + (yr + (ent ? 7 : 4)) + '" stroke="currentColor" stroke-width="' + (ent ? 1 : .7) + '"/>';
+      if(ent) h += '<text x="' + F(xx) + '" y="' + (yr + 17) + '" font-size="8.5" text-anchor="middle" fill="currentColor" opacity=".8">' + (c < 0 ? '−' : '') + Math.abs(c) + '</text>';
+    }
+    h += '<text x="' + x1 + '" y="' + (yr + 28) + '" font-size="8.5" text-anchor="end" fill="currentColor" opacity=".7">cm</text>';
+    var Lp = L*PXcm/2;
+    if(Lp < 150){
+      h += '<g stroke="' + OR + '" stroke-width="1.3"><line x1="' + F(XC - Lp) + '" y1="' + (Y - 5) + '" x2="' + F(XC + Lp) + '" y2="' + (Y - 5) + '"/><line x1="' + F(XC - Lp) + '" y1="' + (Y - 9) + '" x2="' + F(XC - Lp) + '" y2="' + (Y + H) + '" stroke-dasharray="2 2"/><line x1="' + F(XC + Lp) + '" y1="' + (Y - 9) + '" x2="' + F(XC + Lp) + '" y2="' + (Y + H) + '" stroke-dasharray="2 2"/></g>';
+      h += '<text x="' + XC + '" y="' + (Y - 9) + '" font-size="10" font-weight="700" text-anchor="middle" fill="' + OR + '">L</text>';
+    }
+    g.innerHTML = h;
+    document.getElementById('isch-fente-th').textContent = v(th*1000, 1) + ' × 10⁻³ rad';
+    document.getElementById('isch-fente-L').textContent = v(L, L < 10 ? 1 : 0) + ' cm';
+    var m = (type === 'fil' ? 'Un <strong>fil</strong> de diamètre a donne la <strong>même figure</strong> qu\'une fente de largeur a : la relation L = 2λD/a sert à mesurer des diamètres (cheveu, fil de suture, fil de pêche). ' : '') +
+      'Tache centrale : L = 2 × ' + Math.round(l) + ' × 10⁻⁹ × ' + v(D, 2) + ' / (' + Math.round(a) + ' × 10⁻⁶) = <strong>' + v(L, L < 10 ? 1 : 0) + ' cm</strong>. ';
+    if(a <= 40) m += 'Fente très fine : la tache est large, mais <strong>peu lumineuse</strong> (peu de lumière passe).';
+    else if(a >= 160) m += 'Fente plus large : la tache se resserre ; pour une fente de quelques millimètres, elle serait réduite à la trace du faisceau.';
+    else m += 'L est proportionnelle à λ et à D, et inversement proportionnelle à a.';
+    document.getElementById('isch-fente-msg').innerHTML = m;
+  }
+  rl.addEventListener('input', maj); ra.addEventListener('input', maj); rd.addEventListener('input', maj);
+  maj();
+})();
+</script>
+<div class="def"><div class="t">Fente ou fil : la même figure</div>Un <strong>fil</strong> (ou un cheveu) de diamètre a, éclairé par le laser, donne la <strong>même figure de diffraction</strong> qu'une fente de largeur a. On utilise donc L = 2λD/a pour <strong>mesurer des diamètres</strong> : a = 2λD / L. (Ce résultat, le théorème de Babinet, n'est pas à démontrer.)</div>
+<div class="exemple"><div class="t">Mesurer un cheveu avec une règle</div>Avec λ = 650 nm et D = 2,00 m, la tache centrale due à un cheveu mesure 3,3 cm : a = 2 × 6,50 × 10<sup>−7</sup> × 2,00 / 3,3 × 10<sup>−2</sup> ≈ <span class="ch">7,9 × 10<sup>−5</sup> m ≈ 79 µm</span>. Une mesure au millimètre sur l'écran donne un diamètre au micromètre près : la diffraction joue le rôle d'un amplificateur.</div>
+<p><strong>En lumière blanche</strong>, chaque radiation se diffracte avec son propre angle θ = λ/a. Les taches centrales des différentes couleurs se superposent au centre, qui reste <strong>blanc</strong>, mais la tache du rouge (λ grande) est plus large que celle du bleu : les bords de la tache centrale tirent sur le rouge et les taches secondaires sont <strong>irisées</strong>.</p>
+<div class="piege"><div class="t">Lire L correctement</div><ul><li>L est la largeur de la <strong>tache centrale</strong>, d'une extinction à l'autre, pas la largeur totale de la figure ni celle d'une tache secondaire.</li><li>Sur un profil d'intensité, on la mesure entre les deux <strong>premiers minima nuls</strong> encadrant le maximum central.</li><li>Sur une photographie, on passe par l'<strong>échelle</strong> (proportionnalité).</li><li>Pour gagner en précision : mesurer L sur l'écran le plus loin possible (L grandit avec D) et avec une règle graduée en millimètres.</li></ul></div>
+</div></details>
+
+<details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M5 19 19 6"/><circle cx="9" cy="15" r="1.2" fill="currentColor"/><circle cx="13" cy="11.3" r="1.2" fill="currentColor"/><circle cx="16.5" cy="8.4" r="1.2" fill="currentColor"/></svg>5 · Exploiter des mesures : droite, étalonnage, incertitude<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p>Au bac, on mesure rarement une seule tache : on mesure L pour une série de fentes calibrées, on trace un graphique, puis on s'en sert. Trois méthodes reviennent.</p>
+<p><strong>1. Vérifier la loi par une droite.</strong> L = 2λD/a s'écrit <strong>L = k × (1/a)</strong>, avec <strong>k = 2λD</strong>. Si l'on trace L en fonction de <strong>1/a</strong> (et non de a), on doit obtenir une <strong>droite passant par l'origine</strong>.</p>
+<div class="tb-wrap"><table class="tb"><tr><th>On trace…</th><th>Forme attendue</th><th>La pente vaut…</th></tr>
+<tr><td>L = f(1/a)</td><td>droite passant par l'origine</td><td>k = <strong>2λD</strong> (en m<sup>2</sup>)</td></tr>
+<tr><td>θ = f(1/a), avec θ = L/(2D)</td><td>droite passant par l'origine</td><td><strong>λ</strong> (en m)</td></tr>
+<tr><td>L = f(a)</td><td>courbe décroissante (hyperbole)</td><td>pas de pente : graphique inexploitable directement</td></tr></table></div>
+<div class="exemple"><div class="t">D'après bac, Centres étrangers 2024</div>Avec D = 1 800 mm et sept fentes de 30 à 200 µm, on obtient L de 77 mm à 12 mm. Le programme Python trace θ = L/(2D) en fonction de 1/a et affiche une pente de 6,41 × 10<sup>−7</sup> m : c'est directement <strong>λ = 641 nm</strong>.</div>
+<p><strong>2. Étalonner, puis mesurer un inconnu.</strong> Quand λ ou D ne sont pas connus précisément, on n'utilise pas la formule : on lit la pente k de la droite d'étalonnage, puis pour l'objet inconnu, <strong>a = k / L</strong>.</p>
+<div class="methode"><div class="t">Lire la pente d'une droite d'étalonnage</div><ol><li>Choisir un point <strong>de la droite</strong> (pas un point de mesure), loin de l'origine, facile à lire.</li><li>k = L / (1/a) = L × a au point choisi, en respectant les unités des axes (attention aux « × 10<sup>3</sup> » sur l'axe 1/a).</li><li>Vérifier l'ordre de grandeur : pour λ ≈ 650 nm et D ≈ 2 m, k = 2λD ≈ 2,6 × 10<sup>−6</sup> m<sup>2</sup>.</li></ol></div>
+<p><strong>3. Évaluer l'incertitude, puis comparer à une référence.</strong> Le sujet fournit en général la formule d'incertitude composée, par exemple :</p>
+<div class="formule"><div class="t">Incertitude-type composée (formule donnée par les sujets)</div><div class="eqc">u(a) = a × √[ (u(L)/L)<sup>2</sup> + (u(k)/k)<sup>2</sup> ]</div><div class="fr">ou avec u(λ)/λ et u(D)/D si l'on utilise a = 2λD/L</div></div>
+<p>On arrondit u(a) <strong>par excès</strong> avec un ou deux chiffres significatifs, on écrit a avec le même nombre de décimales, puis on compare à la valeur de référence par le quotient <strong>z = |a − a<sub>réf</sub>| / u(a)</strong> : la mesure est jugée <strong>compatible</strong> si z ≤ 2.</p>
+<div class="exemple"><div class="t">D'après bac, Polynésie septembre 2024 (brin de brosse à dents)</div>k = 1,96 × 10<sup>−6</sup> m<sup>2</sup> (u = 0,03 × 10<sup>−6</sup>), L = 1,89 cm (u = 1,0 mm). a = k/L = 1,04 × 10<sup>−4</sup> m = 104 µm ; u(a) = 104 × √[(0,03/1,96)<sup>2</sup> + (0,10/1,89)<sup>2</sup>] ≈ 6 µm ; référence 100 µm : z = 4/6 ≈ 0,7 ≤ 2, la mesure est compatible.</div>
+<details class="corr"><summary>Le traitement en Python, tel qu'il apparaît dans les sujets</summary><div class="in prose"><p>Les sujets montrent souvent un programme qui calcule 1/a, trace le graphique et modélise par une droite. Il faut savoir dire ce que fait chaque ligne, pas l'écrire de mémoire.</p>
+<pre class="py">import numpy as np
+import matplotlib.pyplot as plt
+a = np.array([30, 40, 60, 80, 100, 150, 200])*1e-6   # largeurs des fentes (m)
+L = np.array([77, 59, 40, 30, 24, 16, 12])*1e-3      # largeurs des taches (m)
+D = 1.800                                            # distance fente-écran (m)
+inv_a = 1/a                                          # abscisses : 1/a (m⁻¹)
+theta = L/(2*D)                                      # ordonnées : θ = L/(2D) (rad)
+pente = np.polyfit(inv_a, theta, 1)[0]               # modélisation affine
+print("pente =", pente, "m")                         # la pente est λ
+plt.plot(inv_a, theta, '+')
+plt.xlabel("1/a (m⁻¹)"); plt.ylabel("θ (rad)")
+plt.show()</pre>
+<p>Avec ces mesures (celles du sujet Centres étrangers 2024), la pente vaut environ 6,4 × 10<sup>−7</sup> m, soit λ ≈ 640 nm. Le programme de Terminale prévoit aussi l'exploitation d'une photographie de la figure par un <strong>logiciel de traitement d'image</strong> : on trace le profil d'intensité le long de la figure et on mesure L entre les deux premiers minima.</p></div></details>
+</div></details>
+
+<details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18"/><path d="M6 18V8h4v10M14 18v-6h4v6"/><path d="M8 4a5 5 0 0 1 8 0"/></svg>6 · Des conséquences concrètes<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p>Le programme demande de <strong>citer des conséquences concrètes</strong> de la diffraction. Chacune se justifie par la même phrase : θ = λ/a, donc l'onde s'étale d'autant plus que λ est grande devant la taille de l'ouverture ou de l'obstacle.</p>
+<ul>
+<li><strong>Entendre sans voir.</strong> Le son (λ de 1,7 cm à 17 m) contourne les portes, les piliers, les angles de mur ; la lumière (0,5 µm) ne le fait pas. Derrière un pilier, on entend encore les <strong>graves</strong> (grande λ, très diffractés) mais moins bien les <strong>aigus</strong> (D'après bac, Polynésie 2022 : à 200 Hz, λ = 1,70 m ; à 1,00 kHz, λ = 0,340 m, pour un pilier de 70 cm).</li>
+<li><strong>Les enceintes.</strong> Un haut-parleur de petit diamètre (tweeter) diffuse les aigus dans un large cône ; un gros haut-parleur est très directif pour les aigus. C'est la même loi, appliquée à la membrane qui émet.</li>
+<li><strong>La houle dans un port.</strong> Une houle de plusieurs dizaines de mètres de longueur d'onde s'étale après l'entrée du port et agite les bassins situés de côté : la forme des digues en tient compte.</li>
+<li><strong>Les ondes radio.</strong> Les grandes ondes (λ ≈ 1 km) contournent les collines et se captent derrière un relief ; les ondes de la FM (λ ≈ 3 m) ou de la téléphonie (λ de l'ordre de 10 cm) beaucoup moins, d'où la nécessité de nombreux relais.</li>
+<li><strong>La limite des instruments d'optique.</strong> L'image d'un point par un objectif de diamètre limité n'est jamais un point, mais une petite tache de diffraction. Deux détails trop proches donnent des taches qui se confondent : c'est la diffraction qui fixe le plus petit détail qu'un télescope, un microscope ou l'œil peut distinguer. Un grand diamètre d'objectif réduit cette tache (D'après bac, Asie 2023).</li>
+<li><strong>Lire un disque optique.</strong> Le spot du laser de lecture ne peut pas être plus petit que ce que permet la diffraction, qui croît avec λ : en passant de l'infrarouge du CD (780 nm) au violet du Blu-ray (405 nm), on grave des motifs plus petits, donc plus de données sur la même surface.</li>
+<li><strong>Mesurer de très petites dimensions.</strong> Diamètre d'un cheveu, d'un fil de suture, d'un fil de pêche, épaisseur d'un interstice, taille de grains de poudre : on mesure L au millimètre et on obtient a au micromètre (fiches 4 et 5).</li></ul>
+<div class="def"><div class="t">Une réponse type, sur trois lignes</div>« Le phénomène est la diffraction. Il est d'autant plus marqué que la dimension a de l'obstacle est petite devant la longueur d'onde λ (θ = λ/a). Ici λ ≈ … et a ≈ …, du même ordre de grandeur : la diffraction est importante, donc… »</div>
+<div class="piege"><div class="t">Ce qui n'est pas de la diffraction</div>Les couleurs d'une bulle de savon ou d'un film d'huile, les reflets colorés d'un CD : ce sont des phénomènes d'<strong>interférences</strong> (chapitre suivant). L'arc-en-ciel et la décomposition par un prisme relèvent de la <strong>dispersion</strong>, liée à la réfraction.</div>
+</div></details>
+</div>
+</section>
+
+<section class="part" id="c6-formules">
+<h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14M5 12h9M5 19h14"/><path d="M17 9v6M14 12h6"/></svg>Toutes les formules<small>Ce qui sert dans les exercices</small></h2>
+<div class="prose">
+<div class="tb-wrap"><table class="tb"><tr><th>Relation</th><th>Grandeurs et unités</th><th>Ce que ça dit</th><th>Statut</th></tr>
+<tr><td><span class="m">λ = v × T = v / f</span></td><td>λ en m · v en m·s<sup>−1</sup> · T en s · f en Hz</td><td>Longueur d'onde d'une onde périodique (son : v ≈ 340 m·s<sup>−1</sup> ; lumière : c = 3,00 × 10<sup>8</sup> m·s<sup>−1</sup>).</td><td>Rappel 1ère</td></tr>
+<tr><td><span class="m">θ = λ / a</span></td><td>θ en <strong>rad</strong> · λ et a en m</td><td>Angle caractéristique de diffraction par une fente (ou un fil) de largeur a.</td><td>Cours · exigible</td></tr>
+<tr><td><span class="m">tan θ = L / (2D) ≈ θ</span></td><td>L, D en m · θ petit, en rad</td><td>Lien entre l'angle et la tache centrale sur l'écran (triangle de côtés D et L/2).</td><td>À savoir établir</td></tr>
+<tr><td><span class="m">L = 2λD / a</span></td><td>L, λ, D, a en m</td><td>Largeur de la tache centrale. Se retourne en a = 2λD/L ou λ = aL/(2D).</td><td>À savoir établir</td></tr>
+<tr><td><span class="m">L = k × (1/a), k = 2λD</span></td><td>k en m<sup>2</sup> · 1/a en m<sup>−1</sup></td><td>L = f(1/a) : droite passant par l'origine, de pente 2λD. Étalonnage : a = k / L.</td><td>Exploitation de mesures</td></tr>
+<tr><td><span class="m">θ = λ × (1/a)</span></td><td>—</td><td>θ = f(1/a) : droite de pente λ.</td><td>Exploitation de mesures</td></tr>
+<tr><td><span class="m">u(a)/a = √[(u(L)/L)<sup>2</sup> + (u(k)/k)<sup>2</sup>]</span></td><td>sans unité (incertitudes relatives)</td><td>Incertitude composée ; formule donnée par les sujets (variante avec λ et D).</td><td>Mesure et incertitudes</td></tr>
+<tr><td><span class="m">z = |x − x<sub>réf</sub>| / u(x)</span></td><td>sans unité</td><td>Mesure compatible avec la référence si z ≤ 2.</td><td>Mesure et incertitudes</td></tr>
+<tr><td><span class="m">θ = 1,22 λ / d</span></td><td>d : diamètre du trou</td><td>Trou circulaire (tache d'Airy). Donnée par le sujet quand elle sert.</td><td>Hors programme</td></tr>
+</table></div>
+<div class="piege"><div class="t">Quatre réflexes avant de calculer</div><ul><li>Tout en <strong>mètres</strong> : nm → × 10<sup>−9</sup>, µm → × 10<sup>−6</sup>, mm → × 10<sup>−3</sup>, cm → × 10<sup>−2</sup>.</li><li>θ = λ/a et θ = L/(2D) donnent des <strong>radians</strong>.</li><li>Le <strong>facteur 2</strong> : θ correspond à la <strong>moitié</strong> de la tache centrale.</li><li>Vérifier l'ordre de grandeur : pour la lumière, θ vaut quelques milliradians et L quelques centimètres.</li></ul></div>
+</div>
+</section>
+<section class="part" id="c6-exos">
+<h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>Exercices<small>Manuel, exercices maison, problèmes d'après bac et exercice bilan</small></h2>
+<div class="prose">
+<p>Chaque exercice est présenté avec son énoncé, puis sa correction cachée derrière un bouton : lis, cherche, et n'ouvre la correction qu'après. Les énoncés du manuel et des sujets de bac sont reformulés — mêmes données, mêmes questions. Quand l'exercice s'appuie sur une figure, elle est décrite en mots, avec les valeurs utiles, pour qu'il soit faisable sans le document.</p>
+<div class="methode"><div class="t">Les exercices du manuel sur la diffraction (chapitre 18)</div><p><span class="lvl d2">Revoir les bases</span> le QCM p. 501 · 7 · 8 · 10 · 19</p><p><span class="lvl d1">Essentiels</span> 17 · 18 · 22 · l'exercice corrigé p. 505 · 33</p><p><span class="lvl d3">Aller plus loin</span> 36 · 38 · l'exercice numérique A</p><p>Les autres exercices du chapitre 18 portent sur les <strong>interférences</strong>, traitées dans un chapitre à part.</p></div>
+<h3 style="margin-top:24px">Les six savoir-faire, et où on les travaille</h3>
+<div class="tb-wrap"><table class="tb"><tr><th>Savoir-faire</th><th>Exercices</th></tr>
+<tr><td><strong>S1</strong> — Caractériser le phénomène de diffraction et en citer des conséquences concrètes</td><td>QCM · 18 · 19 · 38 · M3 · P2</td></tr>
+<tr><td><strong>S2</strong> — Énoncer les conditions d'observation (comparer a et λ)</td><td>7 · 19 · M1 · P5 · B1</td></tr>
+<tr><td><strong>S3</strong> — Exploiter θ = λ/a</td><td>8 · 10 · 17 · 18 · M1 · P2</td></tr>
+<tr><td><strong>S4</strong> — Établir et exploiter L = 2λD/a (fente ou fil)</td><td>17 · 22 · 36 · M2 · P1 · P5 · P6 · B1</td></tr>
+<tr><td><strong>S5</strong> — Exploiter une série de mesures : droite, pente, étalonnage</td><td>p. 505 · P1 · P2 · P3 · P4 · B1</td></tr>
+<tr><td><strong>S6</strong> — Incertitudes et compatibilité avec une référence</td><td>33 · P1 · P3 · P4 · P5 · B1</td></tr></table></div>
+<div class="piege"><div class="t">Ce que le tableau dit de l'évaluation</div>Les sujets de bac de 2021 à 2026 suivent presque tous le même chemin : <strong>démontrer L = 2λD/a</strong> (S4), puis <strong>exploiter une droite d'étalonnage</strong> (S5), puis <strong>conclure avec une incertitude</strong> (S6). La démonstration se récite (fiche 4) ; la pente se lit sur la droite, pas sur un point de mesure ; le z-score se compare à 2. Ce sont trois automatismes à installer en priorité.</div>
+<h3 style="margin-top:26px">Les exercices du manuel</h3>
+
+<details class="rap"><summary><span class="lvl d2">Base</span>QCM · Le QCM du manuel, p. 501 (exercice 3)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S1</strong> · <strong>S2</strong> · <strong>S3</strong></p>
+<div class="enonce"><p>1. L'angle caractéristique de diffraction θ dépend : de la longueur d'onde ; de l'amplitude de l'onde ; de la célérité de l'onde. 2. Le phénomène de diffraction est observable : uniquement avec des ondes lumineuses ; avec toutes les ondes périodiques ; uniquement à la surface de l'eau. 3. Pour une ouverture de largeur a et une longueur d'onde λ, θ vaut : λ × a ; λ × a<sup>2</sup> ; λ/a. 4. Un phénomène de diffraction est plus marqué lorsque la fente est : fine ; large ; longue.</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p>1. <strong>De la longueur d'onde</strong> (et de la largeur de l'ouverture), pas de l'amplitude. 2. <strong>Avec toutes les ondes périodiques</strong>. 3. <strong>θ = λ/a</strong> (vérification par l'unité : λ/a est sans dimension, comme un angle en radians). 4. <strong>Fine</strong> : θ augmente quand a diminue. « Longue » ne joue pas : c'est la largeur, la dimension étroite, qui compte.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d2">Base</span>7 et 10 · Conditions de diffraction · Rouge ou bleu ?<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S2</strong> · <strong>S3</strong></p>
+<div class="enonce"><p><strong>7.</strong> Une onde rencontre un obstacle de petite dimension a. Préciser la ou les condition(s) pour que l'onde soit diffractée.</p><p><strong>10.</strong> Pour une fente fine de largeur quelconque, préciser en justifiant quelle radiation monochromatique est la plus diffractée : une rouge ou une bleue.</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>7.</strong> La diffraction est importante quand la dimension a de l'obstacle est <strong>du même ordre de grandeur que la longueur d'onde λ, ou plus petite</strong>. Elle reste observable tant que a n'est pas très grande devant λ ; si a ≫ λ, l'onde se propage pratiquement en ligne droite.</p>
+<p><strong>10.</strong> θ = λ/a : à largeur de fente égale, θ est proportionnel à λ. Comme λ<sub>rouge</sub> &gt; λ<sub>bleu</sub>, la radiation <strong>rouge</strong> est la plus diffractée : sa tache centrale est la plus large.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d2">Base</span>8 · Diffraction des ondes sonores<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S3</strong></p>
+<div class="enonce">Une onde sonore de longueur d'onde λ = 30 cm rencontre une ouverture de largeur a = 4,0 m. Calculer l'angle caractéristique de diffraction θ, en radians puis en degrés.</div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><span class="ch">θ = λ/a = 0,30 / 4,0 = 0,075 rad</span>, soit 0,075 × 180/π ≈ <strong>4,3°</strong>. Les deux longueurs sont converties dans la même unité (le mètre) ; θ sort directement en radians.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d2">Base</span>19 · Diffraction à la surface de l'eau<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S1</strong> · <strong>S2</strong></p>
+<div class="enonce"><p>Une photographie de cuve à ondes montre des ondes progressives périodiques qui se propagent vers la droite. À gauche de la paroi, les crêtes sont des droites parallèles ; la paroi est percée d'une ouverture dont la largeur est voisine de l'écart entre deux crêtes ; à droite, les crêtes sont des arcs de cercle centrés sur l'ouverture, toujours aussi espacés.</p><p>1. Expliquer ce que cette expérience illustre. 2. Comparer la dimension de l'ouverture et la longueur d'onde. 3. Préciser comment évolue la longueur d'onde avant et après le passage par l'ouverture.</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> Après l'ouverture, l'onde ne se propage plus seulement vers la droite : elle s'étale dans toutes les directions (crêtes circulaires). C'est le phénomène de <strong>diffraction</strong>.</p>
+<p><strong>2.</strong> L'ouverture et la longueur d'onde sont <strong>du même ordre de grandeur</strong> : c'est la condition d'une diffraction importante.</p>
+<p><strong>3.</strong> La longueur d'onde est <strong>la même</strong> avant et après l'ouverture (les crêtes restent espacées de λ), tout comme la fréquence et la célérité.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d1">Essentiel</span>17 · Angle caractéristique de diffraction<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S3</strong> · <strong>S4</strong></p>
+<div class="enonce">On réalise la figure de diffraction d'un fil calibré d'épaisseur 60 µm avec un laser de longueur d'onde dans le vide λ = 550 nm. 1. Déterminer la couleur du laser. 2. Faire un schéma de la situation en faisant apparaître l'angle caractéristique de diffraction θ. 3. Calculer θ. 4. La tache centrale mesure 2,0 cm de large. Déterminer la distance D entre le fil et l'écran.</div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> 550 nm : <strong>vert</strong>.</p>
+<p><strong>2.</strong> Laser → fil → écran à la distance D. Sur l'écran, la tache centrale de largeur L ; θ est l'angle, au niveau du fil, entre la direction du faisceau (milieu de la tache) et la direction de la première extinction (bord de la tache).</p>
+<p><strong>3.</strong> Un fil diffracte comme une fente de même largeur : <span class="ch">θ</span> = <span class="ch">λ/a</span> = <span class="ch">550 × 10<sup>−9</sup> / 60 × 10<sup>−6</sup></span> = <span class="ch">9,2 × 10<sup>−3</sup> rad</span>, soit 0,53°.</p>
+<div class="piege"><div class="t">Une réponse du manuel à corriger</div>La correction du manuel en ligne écrit θ = 9,2 × 10<sup>−2</sup> rad. C'est une coquille de puissance de 10 : 550 × 10<sup>−9</sup> / 60 × 10<sup>−6</sup> = 9,2 × 10<sup>−3</sup> rad (ce qui correspond bien aux 0,52° qu'elle donne ensuite).</div>
+<p><strong>4.</strong> tan θ = L/(2D) ≈ θ = λ/a, donc <span class="ch">D</span> = <span class="ch">L × a / (2λ)</span> = <span class="ch">2,0 × 10<sup>−2</sup> × 60 × 10<sup>−6</sup> / (2 × 550 × 10<sup>−9</sup>)</span> = <span class="ch">1,1 m</span>.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d1">Essentiel</span>18 · Restitution d'un son<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S1</strong> · <strong>S3</strong></p>
+<div class="enonce">Une enceinte est un caisson dans lequel est placé un haut-parleur ; le son sort par une ouverture de diamètre d = 18 cm. Vitesse du son dans l'air à 20 °C : 340 m·s<sup>−1</sup>. 1. Calculer les longueurs d'onde des sons de fréquences 200 Hz, 2,0 kHz et 20 kHz. 2. Préciser quel son sera le mieux diffracté à la sortie du haut-parleur. 3. Une personne placée sur le côté de l'enceinte entendra-t-elle davantage les graves ou les aigus ? 4. Une enceinte comporte au moins deux haut-parleurs, le woofer (graves) et le tweeter (aigus). Expliquer pourquoi leurs diamètres sont différents.</div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> λ = v/f : <span class="ch">1,7 m</span> à 200 Hz, <span class="ch">0,17 m</span> à 2,0 kHz, <span class="ch">1,7 × 10<sup>−2</sup> m</span> à 20 kHz.</p>
+<p><strong>2.</strong> θ = λ/d : le son le plus diffracté est celui de plus grande longueur d'onde devant l'ouverture, soit le <strong>son grave de 200 Hz</strong> (λ = 1,7 m, près de dix fois d : il s'étale dans toutes les directions). Le son de 20 kHz (λ = 1,7 cm, dix fois plus petit que d) sort au contraire en faisceau assez étroit.</p>
+<p><strong>3.</strong> Sur le côté, on entend surtout les <strong>graves</strong> : ils sont diffractés dans toutes les directions, alors que les aigus restent concentrés devant l'enceinte.</p>
+<div class="piege"><div class="t">Deux réponses du manuel à corriger</div>Pour les questions 2 et 3, la correction du manuel en ligne annonce que le son le plus diffracté est celui de 20 kHz et qu'on entend mieux les aigus sur le côté. C'est l'inverse : la diffraction est d'autant plus marquée que λ est <strong>grande</strong> devant l'ouverture (θ = λ/d). C'est ce qu'attendent les sujets de bac (Polynésie 2022 : derrière un pilier, on entend mieux les graves).</div>
+<p><strong>4.</strong> Pour que tous les sons arrivent à l'auditeur, où qu'il soit, chaque haut-parleur doit diffuser largement sa gamme de fréquences. Les aigus ont une petite longueur d'onde : pour qu'ils soient diffractés, il faut une membrane et une ouverture <strong>petites</strong> (tweeter de 2 à 3 cm). Les graves, de grande longueur d'onde, se diffractent de toute façon ; le woofer peut donc être <strong>grand</strong>, ce qui lui permet de déplacer assez d'air.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d1">Essentiel</span>22 · Profil de la figure de diffraction<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S4</strong></p>
+<div class="enonce"><p>Une fente verticale de largeur a = 35 µm est éclairée par un laser rouge. Le profil d'intensité de la figure est enregistré à 1,10 m de la fente : l'intensité est maximale en x = 0 et s'annule en x = ±2,0 cm, ±4,0 cm, ±6,0 cm, avec des maxima secondaires de plus en plus faibles entre ces annulations.</p><p>1. Déterminer précisément la largeur L de la tache centrale. En déduire la longueur d'onde du laser. 2. Calculer la largeur de la tache centrale avec un laser de 532 nm. 3. Représenter l'allure du profil d'intensité obtenu avec ce laser.</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> La tache centrale va de la première annulation à gauche (−2,0 cm) à la première à droite (+2,0 cm) : <span class="ch">L = 4,0 cm</span>. Pour plus de précision, on lit l'écart entre les annulations extrêmes : de −6,0 à +6,0 cm, il y a 12,0 cm = 3 L. Alors λ = L × a / (2D) = <span class="ch">4,0 × 10<sup>−2</sup> × 35 × 10<sup>−6</sup> / (2 × 1,10)</span> = <span class="ch">6,4 × 10<sup>−7</sup> m</span> = <span class="ch">640 nm</span> : rouge, comme annoncé.</p>
+<p><strong>2.</strong> <span class="ch">L</span> = <span class="ch">2λD/a</span> = <span class="ch">2 × 532 × 10<sup>−9</sup> × 1,10 / 35 × 10<sup>−6</sup></span> = <span class="ch">3,3 × 10<sup>−2</sup> m</span> = <span class="ch">3,3 cm</span>.</p>
+<p><strong>3.</strong> Même allure, resserrée : maximum central en x = 0, annulations en ±1,7 cm, ±3,3 cm, ±5,0 cm, maxima secondaires faibles entre elles.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d1">Essentiel</span>p. 505 · Déterminer la longueur d'onde d'un laser (exercice corrigé)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S4</strong> · <strong>S5</strong></p>
+<div class="enonce"><p>Pour déterminer la longueur d'onde d'un laser, on place successivement des fils calibrés d'épaisseurs a différentes à quelques centimètres du laser, et on mesure la largeur L de la tache centrale sur un écran situé à D = 1,80 m du fil.</p>
+<div class="tb-wrap"><table class="tb"><tr><th>a (µm)</th><td>20,0</td><td>40,0</td><td>80,0</td><td>100</td><td>140</td></tr><tr><th>L (cm)</th><td>10,0</td><td>5,1</td><td>2,5</td><td>2,1</td><td>1,4</td></tr></table></div>
+<p>1. Établir la relation entre θ, L et D (tan θ ≈ θ), avec les unités. 2. Calculer θ pour chaque mesure. 3. Rappeler la relation entre θ, λ et a. 4. Tracer et modéliser θ = f(1/a). 5. En déduire la longueur d'onde du laser ; commenter.</p></div>
+<details class="corr"><summary>Le protocole de réponse</summary><div class="in prose">1. Exprimer tan θ dans le triangle du montage, puis petits angles. 2. Tout en mètres. 3. Relation θ = λ/a. 4. Tableur ou calculatrice : droite modélisée. 5. Relier la pente à λ, puis vérifier que λ est dans le visible et donner la couleur.</div></details>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> <span class="ch">θ ≈ tan θ = L / (2D)</span>, θ en rad, L et D en m.</p>
+<p><strong>2.</strong> θ (rad) : 2,78 × 10<sup>−2</sup> ; 1,42 × 10<sup>−2</sup> ; 6,94 × 10<sup>−3</sup> ; 5,83 × 10<sup>−3</sup> ; 3,89 × 10<sup>−3</sup>.</p>
+<p><strong>3.</strong> θ = λ/a (fil et fente de même largeur donnent la même figure).</p>
+<p><strong>4.</strong> 1/a (m<sup>−1</sup>) : 5,00 × 10<sup>4</sup> ; 2,50 × 10<sup>4</sup> ; 1,25 × 10<sup>4</sup> ; 1,00 × 10<sup>4</sup> ; 7,14 × 10<sup>3</sup>. Les points sont alignés sur une droite passant (presque) par l'origine : θ est proportionnel à 1/a.</p>
+<p><strong>5.</strong> θ = λ × (1/a) : la pente de la droite est λ. La modélisation donne <span class="ch">λ ≈ 5,6 × 10<sup>−7</sup> m = 560 nm</span>, dans le visible : une radiation <strong>verte</strong>.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d1">Essentiel</span>33 · Incertitudes de mesure (Objectif bac)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S4</strong> · <strong>S6</strong></p>
+<div class="enonce">Une expérience de diffraction est menée avec un laser de longueur d'onde inconnue : a = (0,200 ± 0,005) mm ; D = (1,80 ± 0,01) m ; L = (13,1 ± 0,1) mm. 1. En considérant θ petit, calculer θ. 2. En déduire λ. 3. Calculer u(λ) avec u(λ)/λ = √[(u(a)/a)<sup>2</sup> + (u(D)/D)<sup>2</sup> + (u(L)/L)<sup>2</sup>]. 4. Écrire λ sous la forme λ ± u(λ).</div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> <span class="ch">θ</span> = <span class="ch">L/(2D)</span> = <span class="ch">13,1 × 10<sup>−3</sup> / (2 × 1,80)</span> = <span class="ch">3,64 × 10<sup>−3</sup> rad</span>.</p>
+<p><strong>2.</strong> <span class="ch">λ</span> = <span class="ch">a × θ</span> = <span class="ch">0,200 × 10<sup>−3</sup> × 3,64 × 10<sup>−3</sup></span> = <span class="ch">7,28 × 10<sup>−7</sup> m</span> = <span class="ch">728 nm</span>.</p>
+<p><strong>3.</strong> u(λ)/λ = √[(0,005/0,200)<sup>2</sup> + (0,01/1,80)<sup>2</sup> + (0,1/13,1)<sup>2</sup>] = √[6,25 × 10<sup>−4</sup> + 3,1 × 10<sup>−5</sup> + 5,8 × 10<sup>−5</sup>] ≈ 0,027, donc <span class="ch">u(λ)</span> ≈ <span class="ch">1,9 × 10<sup>−8</sup> m, arrondie à 2 × 10<sup>−8</sup> m</span>.</p>
+<p><strong>4.</strong> <strong>λ = (730 ± 20) nm</strong>. Le terme dominant est celui de la fente (2,5 %) : c'est lui qu'il faudrait améliorer, pas la mesure de D.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d3">Aller plus loin</span>36 · Profil en intensité<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S1</strong> · <strong>S4</strong></p>
+<div class="enonce"><p>Un tableau donne l'intensité relative I/I<sub>0</sub> sur un écran en fonction de l'abscisse x. Valeurs utiles : maximum 0,500 en x = 0 ; 0,100 en x = ±0,020 m ; intensité nulle en x = ±0,031 m, ±0,063 m, ±0,094 m et −0,127 m ; maxima secondaires faibles entre ces annulations (0,018 en ±0,040 m ; 0,007 6 en ±0,080 m).</p><p>1. Tracer l'allure de I = f(x). 2. S'agit-il de diffraction ou d'interférences ? 3. λ = 520 nm et l'écran est à D = 1,80 m. Déterminer la largeur L de la tache centrale. 4. En déduire la largeur de la fente.</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1-2.</strong> Un pic central très intense, encadré de pics secondaires beaucoup plus faibles ; les annulations sont régulièrement espacées de 3,2 cm, sauf autour du centre où la tache fait le double. C'est la signature d'une <strong>diffraction</strong> par une fente : la tache centrale est deux fois plus large que les secondaires, et l'intensité chute très vite. (Une figure d'interférences de deux sources donnerait des franges de même largeur et d'intensités voisines.)</p>
+<p><strong>3.</strong> L va de −0,031 à +0,031 m, soit environ 6,2 cm. Pour plus de précision, on mesure l'écart entre deux annulations symétriques éloignées : les troisièmes sont à ±3L/2, donc de −0,094 à +0,094 m il y a 0,188 m = 3 L, et <span class="ch">L ≈ 6,3 × 10<sup>−2</sup> m</span>.</p>
+<p><strong>4.</strong> <span class="ch">a</span> = <span class="ch">2λD/L</span> = <span class="ch">2 × 520 × 10<sup>−9</sup> × 1,80 / 6,3 × 10<sup>−2</sup></span> ≈ <span class="ch">3,0 × 10<sup>−5</sup> m</span> = <span class="ch">30 µm</span>.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d3">Aller plus loin</span>38 · La forme des étoiles (retour sur la problématique)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S1</strong> · <strong>S3</strong></p>
+<div class="enonce">Le cristallin de l'œil est formé de fibres qui se rejoignent selon des lignes appelées sutures, en forme d'étoile à trois branches, à l'avant et à l'arrière du cristallin (en position inversée). Longueur des sutures : 10<sup>−2</sup> m ; épaisseur : 10<sup>−5</sup> m. 1. Justifier que les sutures peuvent diffracter la lumière. 2. Quelles longueurs d'onde du visible sont les plus diffractées ? 3. Représenter schématiquement l'image d'une étoile perçue par l'œil.</div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> L'épaisseur des sutures, 10 µm, n'est qu'une vingtaine de fois la longueur d'onde de la lumière visible (0,5 µm) : θ = λ/a ≈ 0,5 × 10<sup>−6</sup> / 10<sup>−5</sup> = 0,05 rad, une diffraction bien visible.</p>
+<p><strong>2.</strong> θ = λ/a : les plus grandes longueurs d'onde, le <strong>rouge</strong>, sont les plus diffractées.</p>
+<p><strong>3.</strong> Chaque branche de suture étale la lumière dans la direction <strong>perpendiculaire</strong> à elle-même. Deux étoiles à trois branches inversées l'une par rapport à l'autre donnent une image à <strong>six branches</strong> autour du point lumineux : c'est pour cela que les astres nous paraissent « étoilés ». (De même, les bras qui tiennent le miroir secondaire d'un télescope ajoutent des aigrettes aux étoiles photographiées.)</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl d3">Aller plus loin</span>A · Pouvoir de résolution (exercice numérique)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S1</strong> · <strong>S3</strong> — ordres de grandeur, critère hors programme</p>
+<div class="enonce"><p>Le diamètre limité d'un instrument d'optique fait de l'image d'un point une petite tache, ce qui limite sa résolution. 1. Nommer le phénomène. 2. Donner l'expression de l'écart angulaire θ en fonction de λ et du diamètre a de l'instrument (pour une ouverture circulaire, il faudrait un facteur 1,22 : on l'ignore, on cherche des ordres de grandeur). D'après le critère de Rayleigh, deux points sont distingués si l'angle α sous lequel on les voit est au moins égal à θ. 3. Relier θ et α à la limite. 4. a. Distance minimale entre deux objets distingués par un microscope. b. Même question pour deux objets sur la Lune, avec un télescope grand public, puis avec Hubble. 5. Pourquoi les microscopes électroniques ont-ils révolutionné l'imagerie ?</p><p>Données : objectif de microscope de 1 cm de diamètre, à 1 cm de la lame ; télescope grand public de 20 cm ; Hubble de 2,4 m, à 600 km d'altitude ; distance Terre-Lune 385 × 10<sup>3</sup> km ; λ = 555 nm (maximum de sensibilité de l'œil) ; longueur d'onde associée aux électrons : 0,01 nm.</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> La diffraction. <strong>2.</strong> θ = λ/a. <strong>3.</strong> À la limite, α = θ.</p>
+<p><strong>4. a.</strong> d<sub>min</sub> = distance × θ = 1 × 10<sup>−2</sup> × 555 × 10<sup>−9</sup> / 1 × 10<sup>−2</sup> ≈ <span class="ch">5 × 10<sup>−7</sup> m ≈ 0,5 µm</span> : un microscope optique ne distingue pas deux détails plus proches qu'un demi-micromètre. <strong>b.</strong> Télescope de 20 cm : d<sub>min</sub> = 3,85 × 10<sup>8</sup> × 555 × 10<sup>−9</sup> / 0,20 ≈ <span class="ch">1 km</span> ; Hubble : 3,85 × 10<sup>8</sup> × 555 × 10<sup>−9</sup> / 2,4 ≈ <span class="ch">90 m</span>. On ne verra donc jamais, depuis la Terre, les objets laissés sur la Lune par les missions Apollo.</p>
+<p><strong>5.</strong> La longueur d'onde associée aux électrons (0,01 nm) est des dizaines de milliers de fois plus petite que celle de la lumière : θ, donc la plus petite distance distinguée, l'est d'autant.</p>
+</div></details>
+</div></details>
+
+<h3 style="margin-top:30px">Exercices maison</h3>
+<div class="def"><div class="t">Exercices écrits pour ce site</div>Ils ne viennent ni du manuel ni d'un sujet de bac : ils reprennent les situations des fiches de cours avec d'autres valeurs, pour s'entraîner.</div>
+
+<details class="rap"><summary><span class="lvl dmaison">Maison</span>M1 · Trois ondes, trois ouvertures<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S2</strong> · <strong>S3</strong></p>
+<div class="enonce"><p>Pour chaque situation, calculer λ (si besoin), puis le rapport λ/a, et dire si la diffraction est importante, faible ou invisible.</p><p>a) Une houle de période 8,0 s se propage à 12 m·s<sup>−1</sup> et arrive sur l'entrée d'un port large de 120 m. b) Un son de 1 360 Hz (v = 340 m·s<sup>−1</sup>) passe une porte de 0,85 m. c) La lumière d'une lampe (λ ≈ 550 nm) passe la même porte. d) Un laser vert (532 nm) traverse une fente de 0,10 mm.</p></div>
+<details class="corr"><summary>Un indice</summary><div class="in prose">λ = v × T pour la houle, λ = v/f pour le son. Puis θ = λ/a : grand (de l'ordre de 0,1 rad ou plus) → diffraction importante ; minuscule (10<sup>−6</sup> rad) → invisible.</div></details>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>a)</strong> λ = 12 × 8,0 = 96 m ; λ/a = 96/120 = 0,80 : <strong>diffraction très importante</strong>, la houle s'étale dans tout le port.</p>
+<p><strong>b)</strong> λ = 340/1 360 = 0,25 m ; λ/a = 0,25/0,85 ≈ 0,29 rad : <strong>diffraction importante</strong>, on entend bien sur le côté de la porte.</p>
+<p><strong>c)</strong> λ/a = 550 × 10<sup>−9</sup> / 0,85 ≈ 6 × 10<sup>−7</sup> rad : <strong>invisible</strong>. À 3 m, l'étalement serait de l'ordre du micromètre.</p>
+<p><strong>d)</strong> θ = 532 × 10<sup>−9</sup> / 1,0 × 10<sup>−4</sup> = 5,3 × 10<sup>−3</sup> rad : <strong>faible mais bien observable</strong> sur un écran éloigné (tache de 2,1 cm à 2 m).</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl dmaison">Maison</span>M2 · La fente sans étiquette<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S4</strong></p>
+<div class="enonce"><p>Une diapositive porte une fente dont l'étiquette est effacée. On l'éclaire avec un laser rouge (λ = 650 nm) et on place l'écran à D = 1,60 m. Sur l'écran, on mesure à la règle la distance entre les deuxièmes extinctions situées de part et d'autre du centre : 8,3 cm.</p><p>1. Exprimer cette distance en fonction de L. En déduire L. 2. Calculer la largeur de la fente. 3. On recule l'écran à 3,20 m. Que deviennent θ et L ? 4. Avec un laser violet (405 nm), la tache serait-elle plus large ou plus étroite ? Calculer L pour D = 1,60 m.</p></div>
+<details class="corr"><summary>Un indice</summary><div class="in prose">La tache centrale fait L, chaque tache secondaire L/2. Les deuxièmes extinctions sont à L/2 + L/2 = L de part et d'autre du centre.</div></details>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> Les premières extinctions sont à ±L/2 du centre, les deuxièmes à ±(L/2 + L/2) = ±L. La distance mesurée vaut donc <strong>2L</strong> : <span class="ch">L = 8,3/2 ≈ 4,2 cm</span>. Mesurer une distance plus grande, puis diviser, réduit l'incertitude relative.</p>
+<p><strong>2.</strong> <span class="ch">a</span> = <span class="ch">2λD/L</span> = <span class="ch">2 × 650 × 10<sup>−9</sup> × 1,60 / 4,15 × 10<sup>−2</sup></span> ≈ <span class="ch">5,0 × 10<sup>−5</sup> m</span> = <span class="ch">50 µm</span>.</p>
+<p><strong>3.</strong> θ = λ/a ne dépend pas de D : il <strong>ne change pas</strong> (1,3 × 10<sup>−2</sup> rad). L = 2θD <strong>double</strong> : 8,3 cm.</p>
+<p><strong>4.</strong> Plus étroite (λ plus petite) : L = 2 × 405 × 10<sup>−9</sup> × 1,60 / 5,0 × 10<sup>−5</sup> ≈ <span class="ch">2,6 cm</span>.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl dmaison">Maison</span>M3 · Le studio de répétition<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S1</strong> · <strong>S3</strong></p>
+<div class="enonce"><p>Un groupe répète dans un studio dont la porte (largeur 0,90 m) donne sur un couloir. Un ami attend dans le couloir, contre le mur, hors de la vue des musiciens. Vitesse du son : 340 m·s<sup>−1</sup>.</p><p>1. Calculer la longueur d'onde de la note grave de la basse (82 Hz) et celle d'une cymbale (8,0 kHz). 2. Pour chacune, calculer λ/a et dire si le son est fortement diffracté par la porte. 3. Expliquer pourquoi, dans le couloir, la musique paraît « étouffée », avec surtout des graves. 4. Pourquoi l'ami entend-il les musiciens sans les voir ?</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> <span class="ch">λ<sub>basse</sub> = 340/82 ≈ 4,1 m</span> ; <span class="ch">λ<sub>cymbale</sub> = 340/8 000 ≈ 4,3 cm</span>.</p>
+<p><strong>2.</strong> Basse : λ/a ≈ 4,6, la longueur d'onde dépasse la largeur de la porte : <strong>diffraction très forte</strong>, le son s'étale dans tout le couloir. Cymbale : λ/a ≈ 0,047 rad (2,7°) : <strong>diffraction faible</strong>, le son reste dans l'axe de la porte.</p>
+<p><strong>3.</strong> Hors de l'axe de la porte, n'arrivent par diffraction que les sons de grande longueur d'onde : les graves. Les aigus, peu diffractés, manquent : le son paraît étouffé.</p>
+<p><strong>4.</strong> La lumière (λ ≈ 0,5 µm) n'est pas visiblement diffractée par une porte de 0,90 m : elle continue en ligne droite et n'atteint pas l'ami. Le son, lui, contourne l'encadrement.</p>
+</div></details>
+</div></details>
+
+<h3 style="margin-top:30px">Problèmes d'après bac</h3>
+<div class="def"><div class="t">Des sujets réels, reformulés</div>Ces problèmes reprennent les données et les questions d'exercices du bac de spécialité (2022 à 2026). Les figures sont décrites en mots, avec la valeur que le corrigé en tire.</div>
+
+<details class="rap"><summary><span class="lvl dmaison">Bac 2022</span>P1 · Contrôle de la largeur d'un fil de suture (Métropole, septembre 2022)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S4</strong> · <strong>S5</strong> · <strong>S6</strong></p>
+<div class="enonce"><p>Les industriels contrôlent le diamètre des fils fins par diffraction laser. On étalonne le montage avec sept fils calibrés, puis on mesure un fil de suture en polyamide, vendu comme « USP 5/0 ». Laser : λ = 532 nm ; tan θ ≈ θ.</p><p>Norme USP (diamètres) : 2/0 de 0,300 à 0,349 mm ; 3/0 de 0,200 à 0,299 mm ; 4/0 de 0,150 à 0,199 mm ; 5/0 de 0,100 à 0,149 mm.</p><p>Étalonnage : le graphique L = f(1/a) montre des points alignés sur une droite passant par l'origine ; un point de cette droite a pour coordonnées 1/a = 30 000 m<sup>−1</sup> et L = 0,05 m. Fil de suture : sur la photographie de l'écran, la tache centrale mesure 2,5 cm, et le segment d'échelle de 1,0 cm réel y mesure 1,9 cm. Incertitude : u(a) = a × u(L)/L avec u(L) = 1 × 10<sup>−3</sup> m.</p><p>1. Comment évolue θ quand a diminue ? 2. Exprimer θ en fonction de D et L. 3. Établir l'expression de L en fonction de λ, D et a. 4. La figure d'étalonnage est-elle cohérente avec cette expression ? 5. Montrer que L = 1,6 × 10<sup>−6</sup> × (1/a) (unités SI) modélise les mesures. 6. Déterminer le diamètre du fil de suture. 7. Le résultat est-il conforme à l'étiquette ?</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> θ = λ/a : θ <strong>augmente</strong> quand a diminue.</p>
+<p><strong>2.</strong> tan θ = (L/2)/D ≈ θ, donc <strong>θ = L/(2D)</strong>. <strong>3.</strong> L/(2D) = λ/a, donc <strong>L = 2λD/a</strong>.</p>
+<p><strong>4.</strong> L = (2λD) × (1/a) est une fonction linéaire de 1/a : sa représentation est une <strong>droite passant par l'origine</strong>, comme sur la figure.</p>
+<p><strong>5.</strong> Pente : k = L/(1/a) = 0,05/30 000 ≈ 1,7 × 10<sup>−6</sup> m<sup>2</sup>, en accord avec 1,6 × 10<sup>−6</sup> m<sup>2</sup> compte tenu de la précision de lecture.</p>
+<p><strong>6.</strong> Échelle : L = 2,5 × 1,0/1,9 ≈ 1,3 cm. <span class="ch">a</span> = <span class="ch">k/L</span> = <span class="ch">1,6 × 10<sup>−6</sup> / 1,3 × 10<sup>−2</sup></span> ≈ <span class="ch">1,2 × 10<sup>−4</sup> m</span>.</p>
+<p><strong>7.</strong> u(a) = 1,2 × 10<sup>−4</sup> × 1 × 10<sup>−3</sup> / 1,3 × 10<sup>−2</sup> ≈ 1 × 10<sup>−5</sup> m : a = (1,2 ± 0,1) × 10<sup>−4</sup> m, soit de 0,11 à 0,13 mm, <strong>dans la plage 5/0</strong> (0,100 à 0,149 mm). L'étiquette est conforme.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl dmaison">Bac 2022</span>P2 · Acoustique d'une salle (Polynésie 2022)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S1</strong> · <strong>S3</strong> · <strong>S5</strong></p>
+<div class="enonce"><p>Un spectateur placé derrière un pilier entend mal certains sons. On étudie d'abord la diffraction de la lumière, puis celle du son.</p><p><strong>Lumière.</strong> Un laser de longueur d'onde inconnue éclaire une fente de largeur a réglable ; l'écran est à D = 2,00 m ; θ = λ/a et tan θ ≈ θ. 1. Montrer que L = 2λD/a. 2. Le graphique L = f(1/a) est une droite passant par l'origine ; un de ses points a pour coordonnées 1/a = 0,027 × 10<sup>6</sup> m<sup>−1</sup> et L = 0,070 m. Montrer que L = k × (1/a). 3. Exprimer k en fonction de λ et D. 4. Montrer que λ = 6,5 × 10<sup>−7</sup> m. 5. Pour a<sub>1</sub> = 38 µm, θ<sub>1</sub> = 1,7 × 10<sup>−2</sup> rad. Calculer θ<sub>2</sub> pour a<sub>2</sub> = 150 µm. 6. Quelle fente diffracte le plus ?</p><p><strong>Son.</strong> v = 340 m·s<sup>−1</sup> ; un son grave de 200 Hz et un son aigu de 1,00 kHz ; le pilier a une largeur voisine de 70 cm. Trois places : A, devant le pilier sans obstacle ; B, sur le côté ; C, juste derrière le pilier. 7. Exprimer λ en fonction de v et f. 8. Montrer que λ<sub>1</sub> = 1,70 m et λ<sub>2</sub> = 0,340 m. 9. Un élève placé à l'une des trois places entend nettement mieux les graves que les aigus. Où est-il ?</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> tan θ = L/(2D) ≈ θ = λ/a, donc L = 2λD/a. <strong>2.</strong> Droite passant par l'origine : L est proportionnelle à 1/a. <strong>3.</strong> k = 2λD.</p>
+<p><strong>4.</strong> k = 0,070/0,027 × 10<sup>6</sup> ≈ 2,6 × 10<sup>−6</sup> m<sup>2</sup>, donc <span class="ch">λ</span> = <span class="ch">k/(2D)</span> = <span class="ch">2,6 × 10<sup>−6</sup> / 4,00</span> = <span class="ch">6,5 × 10<sup>−7</sup> m</span>.</p>
+<p><strong>5.</strong> <span class="ch">θ<sub>2</sub></span> = <span class="ch">6,5 × 10<sup>−7</sup> / 150 × 10<sup>−6</sup></span> = <span class="ch">4,3 × 10<sup>−3</sup> rad</span>. <strong>6.</strong> θ<sub>1</sub> &gt; θ<sub>2</sub> : la fente la plus <strong>étroite</strong> diffracte le plus.</p>
+<p><strong>7-8.</strong> λ = v/f : 340/200 = 1,70 m ; 340/1 000 = 0,340 m.</p>
+<p><strong>9.</strong> Le pilier (≈ 0,70 m) diffracte beaucoup plus le grave (λ = 1,70 m &gt; a) que l'aigu (λ = 0,34 m &lt; a). Juste derrière le pilier, n'arrive par diffraction que le grave : l'élève est en <strong>C</strong>. En A, rien ne fait obstacle ; en B, les deux sons arrivent directement.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl dmaison">Bac 2024</span>P3 · Un laser comme instrument de mesure (Centres étrangers 2024)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S4</strong> · <strong>S5</strong> · <strong>S6</strong></p>
+<div class="enonce"><p>Avant d'utiliser un laser pour mesurer les mailles d'un voile, on vérifie sa longueur d'onde par diffraction. Écran à D = (1 800 ± 2) mm.</p>
+<div class="tb-wrap"><table class="tb"><tr><th>a (µm)</th><td>30</td><td>40</td><td>60</td><td>80</td><td>100</td><td>150</td><td>200</td></tr><tr><th>L (mm)</th><td>77</td><td>59</td><td>40</td><td>30</td><td>24</td><td>16</td><td>12</td></tr></table></div>
+<p>Un programme Python calcule 1/a et θ, trace θ = f(1/a), modélise par une droite et affiche : pente = 6,41 × 10<sup>−7</sup> m ; incertitude-type sur la pente : 5,7 × 10<sup>−9</sup> m.</p><p>1. Exprimer θ en fonction de L et D. 2. Donner la valeur de λ en justifiant. 3. Le laser est vendu pour λ<sub>réf</sub> = 650 nm. La mesure est-elle en accord ?</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> θ ≈ tan θ = <strong>L/(2D)</strong> (par exemple, pour a = 30 µm : θ = 77/3 600 = 2,14 × 10<sup>−2</sup> rad).</p>
+<p><strong>2.</strong> θ = λ × (1/a) : la représentation de θ en fonction de 1/a est une droite passant par l'origine dont la <strong>pente est λ</strong>. Donc <span class="ch">λ = 6,41 × 10<sup>−7</sup> m = 641 nm</span>.</p>
+<p><strong>3.</strong> z = |641 − 650| / 5,7 ≈ 1,6 ≤ 2 : la mesure est <strong>compatible</strong> avec la valeur annoncée.</p>
+<div class="piege"><div class="t">Le piège de ce sujet</div>Ici, l'ordonnée est θ, pas L : la pente vaut directement λ. Si l'on avait tracé L = f(1/a), la pente aurait été 2λD, et il aurait fallu diviser par 2D.</div>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl dmaison">Bac 2026</span>P4 · La harpe électrique contre les frelons (Centres étrangers 2026)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S4</strong> · <strong>S5</strong> · <strong>S6</strong></p>
+<div class="enonce"><p>Une « harpe électrique » protège les ruches des frelons asiatiques ; ses fils d'inox ne doivent pas dépasser 0,5 mm de diamètre. On vérifie par diffraction le diamètre affiché (0,45 mm) d'une bobine. tan θ ≈ θ ; θ = λ/a. Étalonnage :</p>
+<div class="tb-wrap"><table class="tb"><tr><th>a (µm)</th><td>40</td><td>50</td><td>100</td><td>120</td><td>280</td><td>400</td></tr><tr><th>L (cm)</th><td>9,50</td><td>7,40</td><td>3,95</td><td>3,20</td><td>1,35</td><td>1,00</td></tr></table></div>
+<p>1. Nommer le phénomène. 2. Exprimer θ en fonction de L et D. 3. Exprimer L en fonction de λ, a et D ; montrer que L est proportionnelle à 1/a. 4. Le graphique L = f(1/a) est-il compatible avec L = k/a ? 5. Proposer une méthode pour déterminer k. La modélisation donne k = 3,85 × 10<sup>−6</sup> m<sup>2</sup>, avec u(k) = 0,05 × 10<sup>−6</sup> m<sup>2</sup>. Pour le fil testé, L = 8,0 mm, u(L) = 0,5 mm. 6. Calculer a. 7. Calculer u(a) = a × √[(u(k)/k)<sup>2</sup> + (u(L)/L)<sup>2</sup>]. 8. Le résultat est-il compatible avec 0,45 mm ? Le fil convient-il ?</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> Diffraction. <strong>2.</strong> θ = L/(2D). <strong>3.</strong> L = 2λD/a = k × (1/a), avec k = 2λD constant.</p>
+<p><strong>4.</strong> Les points sont alignés sur une droite passant par l'origine : compatible. <strong>5.</strong> Lire les coordonnées d'un point <strong>de la droite</strong>, loin de l'origine, et calculer k = L × a (par exemple 1/a = 16 × 10<sup>3</sup> m<sup>−1</sup>, L = 6,1 × 10<sup>−2</sup> m → k ≈ 3,8 × 10<sup>−6</sup> m<sup>2</sup>).</p>
+<p><strong>6.</strong> <span class="ch">a</span> = <span class="ch">k/L</span> = <span class="ch">3,85 × 10<sup>−6</sup> / 8,0 × 10<sup>−3</sup></span> ≈ <span class="ch">4,8 × 10<sup>−4</sup> m</span> = <span class="ch">0,48 mm</span>.</p>
+<p><strong>7.</strong> u(a) = 0,48 × √[(0,05/3,85)<sup>2</sup> + (0,5/8,0)<sup>2</sup>] ≈ 0,48 × 0,064 ≈ <span class="ch">0,03 mm</span>.</p>
+<p><strong>8.</strong> a = (0,48 ± 0,03) mm ; z = |0,48 − 0,45| / 0,03 = 1 ≤ 2 : <strong>compatible</strong>. Le diamètre reste inférieur à 0,5 mm : le fil convient.</p>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl dmaison">Bac 2025</span>P5 · Un vitrage-moustiquaire (Amérique du Nord 2025)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S2</strong> · <strong>S4</strong> · <strong>S6</strong></p>
+<div class="enonce"><p>Un vitrage en polycarbonate est percé de fentes fines qui laissent passer l'air mais pas les moustiques. On mesure la largeur <strong>l</strong> d'une fente par diffraction. <strong>Attention aux lettres de ce sujet</strong> : l est la largeur de la fente, d la largeur de la tache centrale.</p><p>D = 3,00 m, u(D) = 0,01 m ; λ = 650 nm ; d = 6,0 mm, u(d) = 0,5 mm ; u(l) = l × √[(u(d)/d)<sup>2</sup> + (u(D)/D)<sup>2</sup>] ; valeur de référence : l = 0,55 mm.</p><p>1. Donner une condition nécessaire à l'observation de la diffraction. 2. Relier θ, λ et l. 3. Établir θ = d/(2D), puis λ/l = d/(2D). 4. Calculer l. 5. Calculer u(l) et conclure sur la compatibilité avec la référence.</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> La largeur de la fente ne doit pas être trop grande devant la longueur d'onde (ordre de grandeur : jusqu'à une centaine de λ pour la lumière, voire plus avec un écran éloigné).</p>
+<p><strong>2.</strong> θ = λ/l. <strong>3.</strong> tan θ = (d/2)/D ≈ θ, donc θ = d/(2D) et λ/l = d/(2D).</p>
+<p><strong>4.</strong> <span class="ch">l</span> = <span class="ch">2λD/d</span> = <span class="ch">2 × 650 × 10<sup>−9</sup> × 3,00 / 6,0 × 10<sup>−3</sup></span> = <span class="ch">6,5 × 10<sup>−4</sup> m</span> = <span class="ch">0,65 mm</span>.</p>
+<p><strong>5.</strong> u(l) = 0,65 × √[(0,5/6,0)<sup>2</sup> + (0,01/3,00)<sup>2</sup>] ≈ 0,054 mm, arrondie à 0,06 mm. z = (0,65 − 0,55)/0,06 ≈ 1,7 ≤ 2 : <strong>compatible</strong>.</p>
+<div class="piege"><div class="t">Ce que montre ce sujet</div>Ici l ≈ 1 000 λ, et la diffraction s'observe quand même, parce que l'écran est loin (3 m) : la tache ne mesure que 6 mm. La « limite de 100 λ » est un ordre de grandeur, pas une frontière.</div>
+</div></details>
+</div></details>
+
+<details class="rap"><summary><span class="lvl dmaison">Bac 2024</span>P6 · La goutte qui flotte (caléfaction) (Polynésie 2024)<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Savoir-faire : <strong>S2</strong> · <strong>S4</strong></p>
+<div class="enonce"><p>Au-dessus de 180 °C environ, une goutte d'eau posée sur une plaque chaude flotte sur un coussin de vapeur. Pour mesurer l'épaisseur a de ce coussin, on fait passer un laser entre la goutte et la plaque : l'interstice joue le rôle d'une fente. D = 2,00 m ; λ = 532 nm ; θ ≈ tan θ ; θ = λ/a.</p><p>Sur la photographie de la figure, la tache centrale mesure 1,3 cm, et le segment d'échelle de 0,25 m y mesure 10,4 cm.</p><p>1. Nommer le phénomène. 2. Quelle condition sur a permet de l'observer facilement ? 3. Montrer que θ = L/(2D). 4. Exprimer a en fonction de D, L et λ. 5. Déterminer L, puis a.</p></div>
+<details class="corr"><summary>Voir la correction</summary><div class="in prose">
+<p><strong>1.</strong> Diffraction. <strong>2.</strong> a du même ordre de grandeur que λ, ou pas trop grande devant λ (jusqu'à une centaine de λ environ).</p>
+<p><strong>3.</strong> tan θ = (L/2)/D ≈ θ. <strong>4.</strong> λ/a = L/(2D), donc <strong>a = 2λD/L</strong>.</p>
+<p><strong>5.</strong> Échelle : L = 1,3 × 0,25/10,4 ≈ 3,1 × 10<sup>−2</sup> m. <span class="ch">a</span> = <span class="ch">2 × 532 × 10<sup>−9</sup> × 2,00 / 3,1 × 10<sup>−2</sup></span> ≈ <span class="ch">6,8 × 10<sup>−5</sup> m</span> = <span class="ch">68 µm</span> : la goutte flotte à moins d'un dixième de millimètre de la plaque.</p>
+</div></details>
+</div></details>
+
+<h3 style="margin-top:30px">Exercice bilan</h3>
+<div class="def"><div class="t">Toutes les notions, en un sujet</div>Environ 45 minutes. Il mobilise <strong>les six savoir-faire</strong> du chapitre, sur le modèle des sujets de bac. Il a été écrit pour ce site.</div>
+<div class="tb-wrap"><table class="tb"><tr><th>Notion exigible</th><th>Questions</th></tr><tr><td>Phénomène et conditions (S1, S2)</td><td>A1, A2, A3</td></tr><tr><td>θ = λ/a (S3)</td><td>A3, B2</td></tr><tr><td>Démonstration de L = 2λD/a (S4)</td><td>B1</td></tr><tr><td>Droite et pente (S5)</td><td>B2, B3</td></tr><tr><td>Incertitude, compatibilité (S6)</td><td>C2, C3</td></tr><tr><td>Conséquences concrètes (S1)</td><td>D1, D2</td></tr></table></div>
+<details class="rap"><summary><span class="lvl dmaison">Bilan · 45 min</span>B1 · Du laser au cheveu<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<p class="exo-comp">Couvre <strong>S1</strong> à <strong>S6</strong></p>
+<div class="enonce"><p><strong>Partie A — Dans la cuve à ondes.</strong> Un vibreur de fréquence 20 Hz crée des ondes planes ; les crêtes sont espacées de 1,2 cm. 1. Calculer la célérité des ondes. 2. On place une paroi percée d'une ouverture de 1,5 cm, puis de 12 cm. Décrire et comparer ce qu'on observe derrière la paroi dans les deux cas. 3. Pour l'ouverture de 1,5 cm, la longueur d'onde après l'ouverture est-elle modifiée ? Calculer λ/a et commenter.</p>
+<p><strong>Partie B — Un laser vert.</strong> On éclaire des fentes calibrées avec un laser ; écran à D = 1,50 m.</p>
+<div class="tb-wrap"><table class="tb"><tr><th>a (µm)</th><td>40</td><td>60</td><td>80</td><td>100</td><td>120</td></tr><tr><th>L (cm)</th><td>4,0</td><td>2,7</td><td>2,0</td><td>1,6</td><td>1,3</td></tr></table></div>
+<p>1. Faire un schéma légendé du montage (θ, D, L) et démontrer que θ = L/(2D), puis L = 2λD/a. 2. Calculer θ et 1/a pour chaque fente. Quelle courbe faut-il tracer pour obtenir une droite ? 3. Le logiciel donne une pente de 5,34 × 10<sup>−7</sup> m, d'incertitude-type 0,08 × 10<sup>−7</sup> m. En déduire λ et vérifier la compatibilité avec la valeur du fabricant, 532 nm.</p>
+<p><strong>Partie C — Le cheveu.</strong> On remplace la fente par un cheveu. La tache centrale mesure L = (2,1 ± 0,1) cm ; u(D) = 0,005 m. 1. Pourquoi peut-on utiliser la même relation qu'avec une fente ? Calculer le diamètre a du cheveu avec la valeur de λ trouvée en B. 2. Calculer u(a) = a × √[(u(λ)/λ)<sup>2</sup> + (u(L)/L)<sup>2</sup> + (u(D)/D)<sup>2</sup>] et écrire le résultat. 3. Un micromètre donne 80 µm pour le même cheveu. Les deux mesures sont-elles compatibles ?</p>
+<p><strong>Partie D — Ailleurs.</strong> 1. On éclaire le cheveu en lumière blanche : décrire la figure. 2. On entend la musique d'une pièce voisine par la porte entrouverte (fente de 10 cm), mais on ne voit pas les musiciens. Expliquer avec un calcul d'ordre de grandeur (son de 440 Hz, v = 340 m·s<sup>−1</sup>).</p></div>
+<details class="corr"><summary>Voir la correction — partie A</summary><div class="in prose">
+<p><strong>1.</strong> <span class="ch">v = λ × f = 1,2 × 10<sup>−2</sup> × 20 = 0,24 m·s<sup>−1</sup></span>.</p>
+<p><strong>2.</strong> Ouverture de 1,5 cm (≈ λ) : les crêtes deviennent des <strong>arcs de cercle</strong>, l'onde s'étale dans toutes les directions : <strong>diffraction importante</strong>. Ouverture de 12 cm (10 λ) : l'onde continue presque en ligne droite, en faisceau de 12 cm de large ; seuls les bords s'arrondissent : diffraction faible.</p>
+<p><strong>3.</strong> Non : λ = 1,2 cm avant et après (même fréquence, même célérité). λ/a = 1,2/1,5 = 0,8 : l'ouverture est de l'ordre de λ, d'où l'étalement quasi circulaire (θ = λ/a, prévue pour de petits angles, n'est ici qu'un ordre de grandeur).</p>
+</div></details>
+<details class="corr"><summary>Voir la correction — partie B</summary><div class="in prose">
+<p><strong>1.</strong> Schéma de la fiche 4. Triangle rectangle de côtés D et L/2 : tan θ = L/(2D) ≈ θ (θ petit, en rad). Avec θ = λ/a : <strong>L = 2λD/a</strong>.</p>
+<p><strong>2.</strong> θ = L/(2D), en rad : 1,33 × 10<sup>−2</sup> ; 9,0 × 10<sup>−3</sup> ; 6,7 × 10<sup>−3</sup> ; 5,3 × 10<sup>−3</sup> ; 4,3 × 10<sup>−3</sup>. 1/a, en m<sup>−1</sup> : 2,50 × 10<sup>4</sup> ; 1,67 × 10<sup>4</sup> ; 1,25 × 10<sup>4</sup> ; 1,00 × 10<sup>4</sup> ; 8,3 × 10<sup>3</sup>. Il faut tracer <strong>θ = f(1/a)</strong> : θ = λ × (1/a) est une droite passant par l'origine (L = f(a) donnerait une hyperbole).</p>
+<p><strong>3.</strong> La pente est λ : <span class="ch">λ = 5,34 × 10<sup>−7</sup> m = 534 nm</span>. z = |534 − 532| / 8 ≈ 0,3 ≤ 2 : <strong>compatible</strong>.</p>
+</div></details>
+<details class="corr"><summary>Voir la correction — parties C et D</summary><div class="in prose">
+<p><strong>C1.</strong> Un fil de diamètre a donne la même figure qu'une fente de largeur a. <span class="ch">a</span> = <span class="ch">2λD/L</span> = <span class="ch">2 × 5,34 × 10<sup>−7</sup> × 1,50 / 2,1 × 10<sup>−2</sup></span> ≈ <span class="ch">7,6 × 10<sup>−5</sup> m</span> = <span class="ch">76 µm</span>.</p>
+<p><strong>C2.</strong> u(a)/a = √[(0,08/5,34)<sup>2</sup> + (0,1/2,1)<sup>2</sup> + (0,005/1,50)<sup>2</sup>] ≈ √(2,2 × 10<sup>−4</sup> + 2,3 × 10<sup>−3</sup> + 1 × 10<sup>−5</sup>) ≈ 0,050, donc u(a) ≈ 3,8 µm, arrondie à 4 µm : <strong>a = (76 ± 4) µm</strong>. Le terme dominant est la lecture de L.</p>
+<p><strong>C3.</strong> z = |76 − 80| / 4 = 1 ≤ 2 : <strong>compatibles</strong>.</p>
+<p><strong>D1.</strong> Centre blanc (toutes les couleurs s'y superposent) ; chaque couleur a sa propre tache, plus large pour le rouge que pour le bleu : bords de la tache centrale rougeâtres, taches secondaires irisées.</p>
+<p><strong>D2.</strong> Son : λ = 340/440 ≈ 0,77 m, plus grand que la fente de 0,10 m : λ/a ≈ 8, <strong>diffraction très forte</strong>, le son s'étale dans toute la pièce. Lumière : λ/a ≈ 5 × 10<sup>−7</sup>/0,10 = 5 × 10<sup>−6</sup> rad, <strong>aucun étalement visible</strong> : on ne voit que ce qui est dans l'axe de l'ouverture.</p>
+</div></details>
+</div></details>
+</div>
+</section>
+
+<section class="part" id="c6-qcm">
+<h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.2A2.6 2.6 0 0 1 14.6 10c0 1.7-2.6 2.1-2.6 3.8"/><circle cx="12" cy="17.3" r=".9" fill="currentColor"/></svg>QCM express<small>Trois séries de sept questions — cinq minutes chacune</small></h2>
+<div class="prose">
+<p>Une seule tentative par question : la bonne réponse s'affiche en vert, la tienne en rouge si elle était fausse, et l'explication apparaît dessous. Le bouton <em>Recommencer</em> remet la série à zéro.</p>
+<h3 style="margin-top:22px">Série 1 · Ondes et longueur d'onde (rappels de Première)</h3>
+<div class="qcm-serie">
+<div class="exo"><div class="q">1. Un son de fréquence 680 Hz se propage dans l'air à 340 m·s<sup>−1</sup>. Sa longueur d'onde vaut…</div><button class="qcm-opt" data-r="0">2,0 m</button><button class="qcm-opt" data-r="1">0,50 m</button><button class="qcm-opt" data-r="0">2,3 × 10<sup>5</sup> m</button><button class="qcm-opt" data-r="0">0,50 cm</button><div class="qcm-exp">λ = v/f = 340/680 = 0,50 m. Un son de la voix a une longueur d'onde de l'ordre du mètre : c'est pour cela qu'il se diffracte si facilement.</div></div>
+<div class="exo"><div class="q">2. La longueur d'onde est…</div><button class="qcm-opt" data-r="0">la durée d'une oscillation</button><button class="qcm-opt" data-r="1">la distance parcourue par l'onde pendant une période</button><button class="qcm-opt" data-r="0">la hauteur d'une crête</button><button class="qcm-opt" data-r="0">la distance entre la source et l'obstacle</button><div class="qcm-exp">λ = v × T : c'est aussi la plus petite distance entre deux points qui vibrent en phase, par exemple deux crêtes successives.</div></div>
+<div class="exo"><div class="q">3. Le domaine visible s'étend environ de…</div><button class="qcm-opt" data-r="0">400 µm à 800 µm</button><button class="qcm-opt" data-r="1">400 nm à 800 nm</button><button class="qcm-opt" data-r="0">4 mm à 8 mm</button><button class="qcm-opt" data-r="0">400 pm à 800 pm</button><div class="qcm-exp">Du violet (≈ 400 nm) au rouge (≈ 800 nm) : environ un demi-micromètre.</div></div>
+<div class="exo"><div class="q">4. 650 nm s'écrit, en mètres…</div><button class="qcm-opt" data-r="0">6,50 × 10<sup>−6</sup> m</button><button class="qcm-opt" data-r="1">6,50 × 10<sup>−7</sup> m</button><button class="qcm-opt" data-r="0">6,50 × 10<sup>−9</sup> m</button><button class="qcm-opt" data-r="0">6,50 × 10<sup>−4</sup> m</button><div class="qcm-exp">1 nm = 10<sup>−9</sup> m, donc 650 nm = 650 × 10<sup>−9</sup> m = 6,50 × 10<sup>−7</sup> m.</div></div>
+<div class="exo"><div class="q">5. Une onde passe d'un milieu à un autre. Ce qui ne change pas, c'est…</div><button class="qcm-opt" data-r="0">sa célérité</button><button class="qcm-opt" data-r="0">sa longueur d'onde</button><button class="qcm-opt" data-r="1">sa fréquence</button><button class="qcm-opt" data-r="0">sa direction</button><div class="qcm-exp">La fréquence est imposée par la source. Lors de la diffraction, il n'y a pas de changement de milieu : ni la fréquence, ni la célérité, ni λ ne changent.</div></div>
+<div class="exo"><div class="q">6. Pour θ = 5,0 × 10<sup>−3</sup> rad, tan θ vaut…</div><button class="qcm-opt" data-r="1">5,0 × 10<sup>−3</sup> (à 0,001 % près)</button><button class="qcm-opt" data-r="0">8,7 × 10<sup>−5</sup></button><button class="qcm-opt" data-r="0">0,29</button><button class="qcm-opt" data-r="0">1</button><div class="qcm-exp">Pour un petit angle exprimé en radians, tan θ ≈ θ. C'est l'approximation utilisée dans toute démonstration de L = 2λD/a.</div></div>
+<div class="exo"><div class="q">7. Une onde progressive transporte…</div><button class="qcm-opt" data-r="0">de la matière et de l'énergie</button><button class="qcm-opt" data-r="1">de l'énergie, sans transport de matière</button><button class="qcm-opt" data-r="0">de la matière, sans énergie</button><button class="qcm-opt" data-r="0">ni matière ni énergie</button><div class="qcm-exp">Un bouchon sur l'eau monte et descend au passage d'une vague, mais n'avance pas avec elle : la perturbation se propage, pas la matière.</div></div>
+<div class="qcm-bar"><span class="qcm-score"></span><button class="btn-reset" onclick="qcmReset(this)">Recommencer la série</button></div>
+</div>
+<h3 style="margin-top:26px">Série 2 · Le phénomène et ses conditions</h3>
+<div class="qcm-serie">
+<div class="exo"><div class="q">1. La diffraction d'une onde par une ouverture est d'autant plus marquée que…</div><button class="qcm-opt" data-r="0">l'ouverture est grande devant λ</button><button class="qcm-opt" data-r="1">l'ouverture est petite devant λ</button><button class="qcm-opt" data-r="0">l'onde est intense</button><button class="qcm-opt" data-r="0">la fréquence est élevée</button><div class="qcm-exp">θ = λ/a grandit quand a diminue. Une fréquence élevée donne au contraire une petite λ, donc moins de diffraction.</div></div>
+<div class="exo"><div class="q">2. Après une ouverture, l'onde diffractée a…</div><button class="qcm-opt" data-r="0">une longueur d'onde plus petite</button><button class="qcm-opt" data-r="0">une fréquence plus grande</button><button class="qcm-opt" data-r="1">la même longueur d'onde et la même fréquence</button><button class="qcm-opt" data-r="0">une célérité plus faible</button><div class="qcm-exp">Seule la direction de propagation change. Sur une photo de cuve à ondes, l'écart entre les crêtes est le même avant et après la paroi.</div></div>
+<div class="exo"><div class="q">3. On entend une personne derrière une porte ouverte sans la voir, car…</div><button class="qcm-opt" data-r="0">le son est plus rapide que la lumière</button><button class="qcm-opt" data-r="1">la longueur d'onde du son est proche de la largeur de la porte</button><button class="qcm-opt" data-r="0">la lumière est absorbée par l'air</button><button class="qcm-opt" data-r="0">le son se réfléchit sur la porte</button><div class="qcm-exp">λ<sub>son</sub> ≈ 1 m ≈ a : forte diffraction. λ<sub>lumière</sub> ≈ 0,5 µm ≪ a : aucune diffraction visible. (Les réflexions sur les murs aident aussi, mais la raison attendue, c'est la diffraction.)</div></div>
+<div class="exo"><div class="q">4. L'angle caractéristique θ de diffraction par une fente est l'écart angulaire entre…</div><button class="qcm-opt" data-r="1">le milieu de la tache centrale et la première extinction</button><button class="qcm-opt" data-r="0">les deux premières extinctions</button><button class="qcm-opt" data-r="0">les deux bords de la fente</button><button class="qcm-opt" data-r="0">deux taches secondaires</button><div class="qcm-exp">C'est un demi-angle : la tache centrale est vue sous 2θ.</div></div>
+<div class="exo"><div class="q">5. Une fente verticale est éclairée par un laser. La figure de diffraction est étalée…</div><button class="qcm-opt" data-r="0">verticalement</button><button class="qcm-opt" data-r="1">horizontalement</button><button class="qcm-opt" data-r="0">en anneaux</button><button class="qcm-opt" data-r="0">dans toutes les directions</button><div class="qcm-exp">L'onde s'étale dans la direction où l'ouverture est étroite : ici, la largeur (horizontale) de la fente.</div></div>
+<div class="exo"><div class="q">6. Un pilier de 70 cm cache la scène. Derrière lui, on entend le mieux…</div><button class="qcm-opt" data-r="1">les sons graves (200 Hz)</button><button class="qcm-opt" data-r="0">les sons aigus (1 kHz)</button><button class="qcm-opt" data-r="0">les deux de la même façon</button><button class="qcm-opt" data-r="0">aucun des deux</button><div class="qcm-exp">À 200 Hz, λ = 1,70 m ; à 1 kHz, λ = 0,34 m. Les graves, de plus grande longueur d'onde, sont plus diffractés par le pilier (d'après bac, Polynésie 2022).</div></div>
+<div class="exo"><div class="q">7. En lumière blanche, la figure de diffraction d'une fente a…</div><button class="qcm-opt" data-r="0">un centre noir</button><button class="qcm-opt" data-r="1">un centre blanc et des bords irisés</button><button class="qcm-opt" data-r="0">un centre rouge et des bords bleus</button><button class="qcm-opt" data-r="0">les mêmes taches qu'avec un laser rouge</button><div class="qcm-exp">Toutes les couleurs se superposent au centre (blanc), mais chaque couleur a sa propre largeur de tache : le rouge, de plus grande λ, s'étale plus loin que le bleu.</div></div>
+<div class="qcm-bar"><span class="qcm-score"></span><button class="btn-reset" onclick="qcmReset(this)">Recommencer la série</button></div>
+</div>
+<h3 style="margin-top:26px">Série 3 · Calculs et mesures</h3>
+<div class="qcm-serie">
+<div class="exo"><div class="q">1. λ = 532 nm, a = 0,10 mm. L'angle caractéristique vaut…</div><button class="qcm-opt" data-r="1">5,3 × 10<sup>−3</sup> rad</button><button class="qcm-opt" data-r="0">5,3 rad</button><button class="qcm-opt" data-r="0">0,30°</button><button class="qcm-opt" data-r="0">1,9 × 10<sup>2</sup> rad</button><div class="qcm-exp">θ = λ/a = 532 × 10<sup>−9</sup> / 0,10 × 10<sup>−3</sup> = 5,3 × 10<sup>−3</sup> rad. (5,3 × 10<sup>−3</sup> rad font 0,30°, mais la formule donne des radians.)</div></div>
+<div class="exo"><div class="q">2. Dans le triangle de la démonstration, tan θ vaut…</div><button class="qcm-opt" data-r="0">L / D</button><button class="qcm-opt" data-r="1">L / (2D)</button><button class="qcm-opt" data-r="0">2L / D</button><button class="qcm-opt" data-r="0">D / L</button><div class="qcm-exp">Le côté opposé à θ est la <strong>moitié</strong> de la tache centrale : tan θ = (L/2)/D.</div></div>
+<div class="exo"><div class="q">3. λ = 650 nm, a = 50 µm, D = 1,50 m. La tache centrale mesure…</div><button class="qcm-opt" data-r="0">2,0 cm</button><button class="qcm-opt" data-r="1">3,9 cm</button><button class="qcm-opt" data-r="0">7,8 cm</button><button class="qcm-opt" data-r="0">3,9 mm</button><div class="qcm-exp">L = 2λD/a = 2 × 6,50 × 10<sup>−7</sup> × 1,50 / 5,0 × 10<sup>−5</sup> = 3,9 × 10<sup>−2</sup> m = 3,9 cm.</div></div>
+<div class="exo"><div class="q">4. On recule l'écran de 1,0 m à 2,0 m. La tache centrale…</div><button class="qcm-opt" data-r="1">double de largeur, θ ne change pas</button><button class="qcm-opt" data-r="0">double de largeur, θ double</button><button class="qcm-opt" data-r="0">ne change pas</button><button class="qcm-opt" data-r="0">rétrécit de moitié</button><div class="qcm-exp">θ = λ/a ne dépend pas de D ; L = 2θD est proportionnelle à D. Reculer l'écran agrandit la figure et améliore la précision de la mesure.</div></div>
+<div class="exo"><div class="q">5. Pour vérifier L = 2λD/a, on trace…</div><button class="qcm-opt" data-r="0">L en fonction de a : une droite</button><button class="qcm-opt" data-r="1">L en fonction de 1/a : une droite passant par l'origine</button><button class="qcm-opt" data-r="0">a en fonction de λ</button><button class="qcm-opt" data-r="0">L en fonction de D², une parabole</button><div class="qcm-exp">L = k × (1/a), avec k = 2λD : la courbe L = f(1/a) est une droite passant par l'origine, de pente 2λD.</div></div>
+<div class="exo"><div class="q">6. On trace θ = f(1/a) pour un laser. La pente de la droite obtenue est…</div><button class="qcm-opt" data-r="1">la longueur d'onde λ</button><button class="qcm-opt" data-r="0">2λD</button><button class="qcm-opt" data-r="0">la distance D</button><button class="qcm-opt" data-r="0">1/λ</button><div class="qcm-exp">θ = λ × (1/a) : la pente vaut λ. Avec L = f(1/a), elle vaudrait 2λD. Bien lire ce qui est en ordonnée.</div></div>
+<div class="exo"><div class="q">7. Avec λ = 650 nm et D = 2,00 m, un cheveu donne une tache centrale de 2,6 cm. Son diamètre vaut…</div><button class="qcm-opt" data-r="0">10 µm</button><button class="qcm-opt" data-r="1">100 µm</button><button class="qcm-opt" data-r="0">1,0 mm</button><button class="qcm-opt" data-r="0">50 µm</button><div class="qcm-exp">Un fil diffracte comme une fente : a = 2λD/L = 2 × 6,50 × 10<sup>−7</sup> × 2,00 / 2,6 × 10<sup>−2</sup> = 1,0 × 10<sup>−4</sup> m = 100 µm.</div></div>
+<div class="qcm-bar"><span class="qcm-score"></span><button class="btn-reset" onclick="qcmReset(this)">Recommencer la série</button></div>
+</div>
+</div>
+</section>
+
+<section class="part fiche-imp" id="c6-fiche">
+<h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></svg>Fiche mémo — Chapitre 6<small>A4 recto-verso imprimable — uniquement l'exigible</small></h2>
+<button class="btn-print no-print" onclick="window.print()">Imprimer la fiche</button>
+<div class="fmemo">
+<h3>1 · Rappels : les ondes</h3>
+<ul><li>Onde progressive : propagation d'une perturbation, <strong>sans transport de matière</strong>, avec transport d'énergie.</li></ul>
+<div class="fbloc"><strong>λ = v × T = v / f</strong> (λ en m, v en m·s<sup>−1</sup>, T en s, f en Hz)</div>
+<ul><li>Ordres de grandeur : son 1,7 cm à 17 m (voix ≈ 1 m) ; houle 10 à 100 m ; lumière visible <strong>400 à 800 nm</strong>.</li>
+<li>1 nm = 10<sup>−9</sup> m ; 1 µm = 10<sup>−6</sup> m. <strong>Tout en mètres</strong> avant de calculer.</li></ul>
+<h3>2 · Le phénomène</h3>
+<ul><li><strong>Diffraction</strong> : une onde qui rencontre une <strong>ouverture</strong> ou un <strong>obstacle</strong> change de direction de propagation et s'étale au-delà.</li>
+<li>Même <strong>f</strong>, même <strong>v</strong>, même <strong>λ</strong> après la diffraction ; seule la direction change.</li>
+<li>Concerne <strong>toutes les ondes</strong> (son, vagues, lumière, radio) : c'est une signature ondulatoire.</li>
+<li>Un obstacle (fil, pilier) diffracte comme une ouverture de même taille.</li></ul>
+<h3>3 · Conditions d'observation</h3>
+<ul><li>D'autant plus marquée que <strong>a est petite devant λ</strong>.</li>
+<li><strong>a de l'ordre de λ</strong> (ou plus petite) : diffraction importante, l'onde s'étale presque partout.</li>
+<li><strong>a ≫ λ</strong> : diffraction négligeable, propagation rectiligne. Lumière : observable facilement jusqu'à a ≈ 100 λ environ.</li>
+<li>Toujours <strong>comparer a à λ</strong>, jamais juger a « petite » dans l'absolu.</li></ul>
+<h3>4 · L'angle caractéristique</h3>
+<ul><li>θ : écart angulaire entre le <strong>milieu de la tache centrale</strong> et la <strong>première extinction</strong> (demi-angle).</li></ul>
+<div class="fbloc"><strong>θ = λ / a</strong> (θ en <strong>rad</strong> ; λ et a en m)</div>
+<ul><li>θ ↑ si λ ↑ ; θ ↑ si a ↓. Ne dépend que de λ/a.</li>
+<li>Figure étalée <strong>perpendiculairement</strong> à la fente (fente verticale → taches à l'horizontale).</li></ul>
+<h3>5 · Laser, fente, écran</h3>
+<ul><li>Figure : <strong>tache centrale</strong> (largeur L) très lumineuse, <strong>taches secondaires</strong> deux fois moins larges et moins lumineuses, <strong>extinctions</strong> entre elles.</li></ul>
+<div class="fbloc">tan θ = (L/2)/D ≈ θ ⇒ <strong>θ = L / (2D)</strong><br>avec θ = λ/a : <strong>L = 2λD / a</strong> &nbsp;·&nbsp; <strong>a = 2λD / L</strong> &nbsp;·&nbsp; <strong>λ = aL / (2D)</strong></div>
+<ul><li>À savoir démontrer : triangle rectangle de côtés D et <strong>L/2</strong>, petits angles en radians, puis θ = λ/a.</li>
+<li>Ex. : 650 nm, 100 µm, 2,00 m → θ = 6,5 × 10<sup>−3</sup> rad, <strong>L = 2,6 cm</strong>.</li>
+<li><strong>Fil de diamètre a ≡ fente de largeur a</strong> : on mesure un cheveu (≈ 80 µm), un fil de suture…</li>
+<li>Lumière blanche : centre blanc, bords irisés ; le rouge s'étale plus que le bleu.</li></ul>
+<h3>6 · Exploiter des mesures</h3>
+<ul><li><strong>L = k × (1/a)</strong>, k = 2λD : L = f(1/a) est une <strong>droite passant par l'origine</strong> de pente 2λD.</li>
+<li>θ = f(1/a) : droite de pente <strong>λ</strong>.</li>
+<li>Étalonnage : pente k lue sur un point <strong>de la droite</strong>, puis a<sub>inconnu</sub> = k / L.</li>
+<li>Lire L entre les deux <strong>premiers minima</strong> du profil d'intensité, ou par l'<strong>échelle</strong> d'une photo.</li>
+<li>Incertitude : formule donnée, u(a) = a × √[(u(L)/L)<sup>2</sup> + (u(k)/k)<sup>2</sup>] ; arrondir u par excès.</li>
+<li>Compatibilité : <strong>z = |a − a<sub>réf</sub>| / u(a) ≤ 2</strong>.</li></ul>
+<h3>7 · Conséquences concrètes</h3>
+<ul><li>On <strong>entend sans voir</strong> derrière une porte, un pilier (son λ ≈ 1 m ≈ a ; lumière 0,5 µm ≪ a).</li>
+<li>Derrière un obstacle, les <strong>graves</strong> passent mieux que les aigus.</li>
+<li>La <strong>houle</strong> s'étale dans un port ; les <strong>grandes ondes radio</strong> contournent le relief.</li>
+<li>La diffraction <strong>limite la finesse des détails</strong> visibles avec un instrument d'optique (grand diamètre = meilleure résolution).</li>
+<li>Pièges : diffraction ≠ réfraction (changement de milieu) ≠ interférences (bulles, CD) ≠ dispersion (prisme).</li></ul>
+</div>
+</section>
+</div>
+
 <div class="page" id="page-tpece">
   <div class="chap-hero">
     <svg class="wm" style="right:-6px;top:-6px;width:150px" viewBox="0 0 150 170" aria-hidden="true">
@@ -8759,7 +9562,7 @@ function go(id){
     var prem=page.querySelector('.part');
     onglet(page.dataset.onglet || (prem?prem.id:''), false);
   }
-  var noms={accueil:'', ch1:'Chapitre 1 · Transformations acides-bases', ch2:'Chapitre 2 · Méthodes physiques d\'analyse', ch3:'Chapitre 3 · Méthodes chimiques d\'analyse', ch4:'Chapitre 4 · La lumière, un flux de photons', ch5:'Chapitre 5 · La lunette astronomique', tpece:'TP · ECE — gestes et Latis Pro'};
+  var noms={accueil:'', ch1:'Chapitre 1 · Transformations acides-bases', ch2:'Chapitre 2 · Méthodes physiques d\'analyse', ch3:'Chapitre 3 · Méthodes chimiques d\'analyse', ch4:'Chapitre 4 · La lumière, un flux de photons', ch5:'Chapitre 5 · La lunette astronomique', ch6:'Chapitre 6 · La diffraction', tpece:'TP · ECE — gestes et Latis Pro'};
   document.getElementById('crumb').textContent = noms[id] || '';
   window.scrollTo(0,0);
 }
@@ -9782,7 +10585,7 @@ window.MO_SCENES = {jouer:jouer, SCENES:SCENES};
 <script>
 /* Animations explicatives (anim/*.html, moteur repris de svt/anim) : montees en iframe dans le cours */
 (function(){
-var ANIMS={photon:"Absorber, émettre : les états d'énergie de l'atome", photoelec:"L'effet photoélectrique : un photon, un électron", cellule:"La cellule photovoltaïque : du photon au courant", acidebase:"Acides, bases et pH : le voyage de l'ion H⁺", beerlambert:"La loi de Beer-Lambert : compter les photons absorbés", conductivite:"La conductivité : des ions qui portent le courant", titrage:"Le titrage goutte à goutte : jusqu'à l'équivalence", lunette:"La lunette astronomique : du faisceau parallèle au grossissement"};
+var ANIMS={photon:"Absorber, émettre : les états d'énergie de l'atome", photoelec:"L'effet photoélectrique : un photon, un électron", cellule:"La cellule photovoltaïque : du photon au courant", acidebase:"Acides, bases et pH : le voyage de l'ion H⁺", beerlambert:"La loi de Beer-Lambert : compter les photons absorbés", conductivite:"La conductivité : des ions qui portent le courant", titrage:"Le titrage goutte à goutte : jusqu'à l'équivalence", lunette:"La lunette astronomique : du faisceau parallèle au grossissement", diffraction:"La diffraction : quand une onde s'étale"};
 function theme(){ return document.documentElement.getAttribute('data-theme')==='sombre' ? 'dark' : 'light'; }
 document.querySelectorAll('[data-anim]').forEach(function(slot){
   var id=slot.getAttribute('data-anim'), titre=ANIMS[id]||'';

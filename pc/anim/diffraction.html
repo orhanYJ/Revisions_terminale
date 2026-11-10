@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A120B">
+<title>La diffraction : quand une onde s'étale</title>
+<link rel="stylesheet" href="moteur.css?v=4">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#anim-diffraction">← Retour au cours</a> · Chapitre 6 : conditions d'observation, angle caractéristique θ = λ/a, figure de diffraction, conséquences</p>
+    <h1>La diffraction : quand une onde s'étale</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation : une onde plane traverse une ouverture de plus en plus étroite et s'étale ; angle caractéristique θ = λ/a ; laser, fente et écran avec la tache centrale de largeur L ; fil, lumière blanche, son qui passe une porte">
+        <defs>
+          <radialGradient id="field" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#1E1A2E"/><stop offset=".7" stop-color="#110E1A"/><stop offset="1" stop-color="#08070D"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FF8B3E" stop-opacity=".65"/><stop offset="1" stop-color="#FF8B3E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFE3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <linearGradient id="arcenciel" x1="0" x2="1"><stop offset="0" stop-color="#7A3CFF"/><stop offset=".17" stop-color="#3B6CFF"/><stop offset=".33" stop-color="#22B0C8"/><stop offset=".5" stop-color="#3CC23C"/><stop offset=".67" stop-color="#F2D22B"/><stop offset=".83" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E3261B"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#7FD3FF"></span>crêtes de l'onde (vue de dessus)</li>
+        <li><span class="sw" style="background:#FFD24A"></span>angle caractéristique θ, largeur a</li>
+        <li><span class="sw" style="background:#FF4A00"></span>lumière du laser diffractée</li>
+        <li><span class="sw" style="background:#7CE08A"></span>relation à retenir</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Dessin qualitatif. Dans la cuve, l'onde diffractée est dessinée avec son amplitude réelle selon la direction (sinus cardinal). Pour le laser, les dimensions perpendiculaires à l'axe sont très agrandies : avec a = 100 µm, l'angle θ ne vaut que 6,5 × 10⁻³ rad (0,37°). Les valeurs de L affichées sont calculées avec L = 2λD/a.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=4"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, label} = ANIM.H;
+const BLANC = '#F2F5FA', GRIS = '#9C93AE', OR = '#FFD24A', VERT = '#7CE08A', KO = '#FF6B5B', EAU = '#7FD3FF', ORANGE = '#FF8B3E';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const virg = (x,n=1) => x.toFixed(n).replace('.', ',');
+
+/* couleur approchée d'une longueur d'onde visible (nm) */
+function couleur(l){
+  let r = 0, g = 0, b = 0;
+  if(l < 440){ r = -(l - 440)/60; b = 1; }
+  else if(l < 490){ g = (l - 440)/50; b = 1; }
+  else if(l < 510){ g = 1; b = -(l - 510)/20; }
+  else if(l < 580){ r = (l - 510)/70; g = 1; }
+  else if(l < 645){ r = 1; g = -(l - 645)/65; }
+  else { r = 1; }
+  const h = v => Math.round(255*clamp(v, 0, 1)).toString(16).padStart(2, '0');
+  return '#' + h(r) + h(g) + h(b);
+}
+/* amplitude diffractée dans la direction φ par une ouverture de largeur a (sinus cardinal) */
+function amp(phi, a, lam){
+  const u = Math.PI*a*Math.sin(phi)/lam;
+  return Math.abs(u) < 1e-6 ? 1 : Math.abs(Math.sin(u)/u);
+}
+const sinc2 = u => Math.abs(u) < 1e-6 ? 1 : Math.pow(Math.sin(u)/u, 2);
+
+/* ---------- vue de dessus : ondes planes qui arrivent sur une ouverture de largeur a ----------
+   Avant l'ouverture : crêtes rectilignes. Après : chaque crête est l'ensemble des points situés à la distance r
+   de l'ouverture (segment, puis deux quarts de cercle aux bords), son amplitude suivant la direction
+   (sinus cardinal) : presque rien sur les côtés si a ≫ λ, des demi-cercles si a ≈ λ. */
+function ondes(R, t, o){
+  if(o <= 0) return {fond:'', cr:''};
+  const {XB, YC, a, lam, x0, x1, y0, y1} = R;
+  const s = ((t*R.v) % lam + lam) % lam;
+  let fond = `<rect x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" rx="10" fill="#0D2238" opacity="${op(o)}"/>`;
+  let cr = '';
+  const dans = (x, y) => x >= x0 + 2 && x <= x1 - 2 && y >= y0 + 2 && y <= y1 - 2;
+  /* crêtes incidentes */
+  for(let x = XB - lam + s; x > x0; x -= lam){
+    const fade = clamp((x - x0)/30, 0, 1);
+    cr += `<line x1="${f(x)}" y1="${y0 + 4}" x2="${f(x)}" y2="${y1 - 4}" stroke="${EAU}" stroke-width="2.2" opacity="${op(o*fade)}"/>`;
+  }
+  /* crêtes diffractées */
+  const N = 22;
+  for(let r = s; r < (x1 - XB) + (y1 - y0); r += lam){
+    if(r < 1.5) continue;
+    const fade = clamp(1.15 - r/(x1 - XB + 40), .25, 1);
+    if(XB + r < x1 - 2) cr += `<line x1="${f(XB + r)}" y1="${f(Math.max(YC - a/2, y0 + 3))}" x2="${f(XB + r)}" y2="${f(Math.min(YC + a/2, y1 - 3))}" stroke="${EAU}" stroke-width="2.2" opacity="${op(o*fade)}"/>`;
+    for(const sg of [-1, 1]){
+      const yb = YC + sg*a/2;
+      for(let i = 0; i < N; i++){
+        const p0 = (Math.PI/2)*i/N, p1 = (Math.PI/2)*(i + 1)/N, pm = (p0 + p1)/2;
+        const A = amp(pm, a, lam); if(A < .04) continue;
+        const xa = XB + r*Math.cos(p0), ya = yb + sg*r*Math.sin(p0), xb = XB + r*Math.cos(p1), yb2 = yb + sg*r*Math.sin(p1);
+        if(!dans((xa + xb)/2, (ya + yb2)/2)) continue;
+        cr += `<line x1="${f(xa)}" y1="${f(ya)}" x2="${f(xb)}" y2="${f(yb2)}" stroke="${EAU}" stroke-width="2.2" stroke-linecap="round" opacity="${op(o*fade*Math.min(1, A*1.15))}"/>`;
+      }
+    }
+  }
+  /* paroi percée */
+  fond += `<g opacity="${op(o)}" fill="#C9C2D6"><rect x="${XB - 3}" y="${y0}" width="6" height="${f(Math.max(0, YC - a/2 - y0))}"/><rect x="${XB - 3}" y="${f(YC + a/2)}" width="6" height="${f(Math.max(0, y1 - YC - a/2))}"/></g>`;
+  return {fond, cr};
+}
+function cote(x1, y1, x2, y2, txt, col, o, dx=0, dy=0, taille=10){
+  if(o <= 0) return '';
+  const n = Math.hypot(x2 - x1, y2 - y1) || 1, ux = (x2 - x1)/n, uy = (y2 - y1)/n, px = -uy, py = ux;
+  let s = `<g opacity="${op(o)}" stroke="${col}" stroke-width="1.4" fill="none"><line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/>`;
+  s += `<path d="M${f(x1 + 6*ux + 3.5*px)} ${f(y1 + 6*uy + 3.5*py)} L${f(x1)} ${f(y1)} L${f(x1 + 6*ux - 3.5*px)} ${f(y1 + 6*uy - 3.5*py)} M${f(x2 - 6*ux + 3.5*px)} ${f(y2 - 6*uy + 3.5*py)} L${f(x2)} ${f(y2)} L${f(x2 - 6*ux - 3.5*px)} ${f(y2 - 6*uy - 3.5*py)}"/></g>`;
+  s += `<text x="${f((x1 + x2)/2 + dx)}" y="${f((y1 + y2)/2 + dy)}" font-size="${taille}" font-weight="700" fill="${col}" opacity="${op(o)}" dy=".35em">${txt}</text>`;
+  return s;
+}
+function arc(cx, cy, r, a0, a1, col, o){
+  if(o <= 0) return '';
+  const x0 = cx + r*Math.cos(a0), y0 = cy + r*Math.sin(a0), x1 = cx + r*Math.cos(a1), y1 = cy + r*Math.sin(a1);
+  return `<path d="M${f(x0)} ${f(y0)} A${r} ${r} 0 0 ${a1 > a0 ? 1 : 0} ${f(x1)} ${f(y1)}" fill="none" stroke="${col}" stroke-width="1.6" opacity="${op(o)}"/>`;
+}
+
+/* ---------- réglages au cours du temps ---------- */
+function eau(t){
+  let a = 150, lam = 28;
+  a = lerp(a, 28, kAt(t, 12.5, 17));
+  a = lerp(a, 56, kAt(t, 24.6, 26.2));
+  lam = lerp(lam, 40, kAt(t, 27.2, 29.2));
+  lam = lerp(lam, 18, kAt(t, 30.8, 32.8));
+  return {XB:150, YC:155, a, lam, v:lam*.8, x0:10, x1:390, y0:40, y1:270};
+}
+function laser(t){
+  let am = 100, lnm = 650;
+  am = lerp(am, 50, kAt(t, 61, 63.5));
+  lnm = lerp(lnm, 532, kAt(t, 65, 67.5));
+  am = lerp(am, 80, kAt(t, 70.4, 72));
+  lnm = lerp(lnm, 650, kAt(t, 70.4, 72));
+  const D = 2.0, L = 2*lnm*1e-9*D/(am*1e-6)*100;   /* L en cm */
+  return {am, lnm, D, L};
+}
+
+/* ---------- figure de diffraction vue de face (dégradé horizontal) ---------- */
+function bande(id, x0, x1, xc, demiL, col, o, mode){
+  const n = 90; let st = '';
+  for(let i = 0; i <= n; i++){
+    const x = x0 + (x1 - x0)*i/n, u = Math.PI*(x - xc)/demiL, I = sinc2(u);
+    const v = mode === 'blanc' ? Math.min(1, I*1.4) : Math.min(1, Math.pow(I, .55)*1.05);
+    st += `<stop offset="${f(100*i/n)}%" stop-color="${col}" stop-opacity="${op(v)}"/>`;
+  }
+  return `<defs><linearGradient id="${id}" x1="0" x2="1">${st}</linearGradient></defs>`;
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {};
+  let cells = '', nuc = '', sp = '', chr = '', fx = '', lab = '';
+
+  /* ===== partie A : la cuve à ondes (étapes 1 à 3) ===== */
+  const oA = 1 - k(35.4, 36.2);
+  if(oA > 0){
+    const R = eau(t);
+    const W = ondes(R, t, oA);
+    cells += W.fond; chr += W.cr;
+    const {XB, YC, a, lam} = R;
+    lab += `<text x="20" y="32" font-size="9" fill="${GRIS}" text-anchor="start" opacity="${op(oA)}">cuve à ondes vue de dessus</text>`;
+    /* largeur a de l'ouverture */
+    lab += cote(XB - 16, YC - a/2, XB - 16, YC + a/2, 'a', OR, oA*k(3, 4), -10, 0, 11);
+    /* longueur d'onde avant et après */
+    const s = ((t*R.v) % lam + lam) % lam;
+    const xc = XB - lam + s - 2*lam;
+    lab += cote(xc, 52, xc + lam, 52, 'λ', EAU, oA*k(1.5, 2.5)*(xc > 14 ? 1 : 0), 0, -9, 11);
+    const xr = XB + s + 2*lam;
+    if(xr + lam < 386) lab += cote(xr, YC, xr + lam, YC, 'λ', EAU, oA*k(18, 19)*(1 - k(23.2, 24)), 0, -9, 11);
+    lab += label(282, YC + 28, 'même λ après l\'ouverture', EAU, 8.6, oA*k(18.4, 19.2)*(1 - k(23.2, 24)));
+    /* textes */
+    const r = a/lam;
+    lab += label(200, 300, `a ≈ ${virg(r, 1)} λ`, OR, 11, oA*k(3.4, 4.2)*(1 - k(24, 24.6)));
+    lab += label(200, 330, 'a ≫ λ : l\'onde passe presque sans s\'étaler', BLANC, 9, k(5, 5.8)*(1 - k(12, 12.6)));
+    lab += label(200, 358, 'seuls les bords du faisceau s\'arrondissent', GRIS, 8.6, k(7, 7.8)*(1 - k(12, 12.6)));
+    lab += label(200, 330, 'a ≈ λ : l\'onde s\'étale dans toutes les directions', BLANC, 9, k(17.2, 18)*(1 - k(23.4, 24)));
+    lab += label(200, 358, 'c\'est la diffraction', VERT, 10.5, k(18.4, 19.2)*(1 - k(23.4, 24)));
+    lab += label(200, 386, 'la fréquence, la célérité et λ ne changent pas', GRIS, 8.6, k(20, 20.8)*(1 - k(23.4, 24)));
+    /* étape 3 : l'angle caractéristique */
+    const o3 = k(26.4, 27.2)*oA;
+    if(o3 > 0){
+      const x = Math.min(1, lam/a), th = Math.asin(x), Lg = Math.min(230, (YC - R.y0 - 6)/Math.max(Math.sin(th), .01), (R.x1 - XB - 6)/Math.max(Math.cos(th), .01));
+      for(const sg of [-1, 1]) sp += `<line x1="${XB}" y1="${YC}" x2="${f(XB + Lg*Math.cos(th))}" y2="${f(YC + sg*Lg*Math.sin(th))}" stroke="${OR}" stroke-width="1.5" stroke-dasharray="5 4" opacity="${op(o3)}"/>`;
+      sp += `<line x1="${XB}" y1="${YC}" x2="${XB + 230}" y2="${YC}" stroke="${GRIS}" stroke-width="1" stroke-dasharray="3 4" opacity="${op(o3*.8)}"/>`;
+      sp += arc(XB, YC, 58, -th, 0, OR, o3);
+      lab += `<text x="${f(XB + 66*Math.cos(th/2))}" y="${f(YC - 66*Math.sin(th/2))}" font-size="12" font-weight="700" fill="${OR}" dy=".35em" opacity="${op(o3)}">θ</text>`;
+      lab += label(200, 300, `λ / a = ${virg(lam/a, 2)}  →  θ ≈ ${virg(lam/a, 2)} rad`, OR, 10, o3);
+      lab += label(200, 332, 'θ = λ / a', VERT, 13, o3*k(27.4, 28.2));
+      lab += label(200, 362, 'λ plus grande : θ plus grand, l\'onde s\'étale plus', BLANC, 8.6, k(29.2, 30)*(1 - k(30.6, 31)));
+      lab += label(200, 362, 'λ plus petite : θ plus petit', BLANC, 8.6, k(32.8, 33.6)*(1 - k(35, 35.4)));
+      lab += label(200, 390, 'θ : écart angulaire entre le milieu et la 1ʳᵉ extinction', GRIS, 8.2, o3*k(28, 28.8));
+    }
+  }
+
+  /* ===== partie B : laser, fente, écran (étapes 4 à 7) ===== */
+  const oB = k(36, 37)*(1 - k(80.2, 81));
+  if(oB > 0){
+    const P = laser(t), YL = 150, XS = 116, XE = 330, DPX = XE - XS, ECH = 15;   /* 15 px pour 1 cm sur l'écran */
+    const Lp = P.L*ECH, col = couleur(P.lnm), ha = 7*P.am/100;
+    const blanc = t >= 75.4;
+    const oLas = k(36.6, 37.6);
+    /* laser */
+    cells += `<g opacity="${op(oB)}"><rect x="12" y="${YL - 11}" width="46" height="22" rx="4" fill="#2A2733" stroke="${GRIS}" stroke-width="1.2"/><circle cx="58" cy="${YL}" r="3" fill="${col}"/></g>`;
+    lab += `<text x="35" y="${YL + 26}" font-size="9" fill="${GRIS}" opacity="${op(oB)}">${blanc ? 'lumière blanche' : 'laser'}</text>`;
+    /* faisceau incident */
+    const pB = kAt(t, 37.4, 38.6);
+    const colF = blanc ? '#FFFFFF' : col;
+    if(pB > 0) chr += `<line x1="60" y1="${YL}" x2="${f(lerp(60, XS, pB))}" y2="${YL}" stroke="${colF}" stroke-width="2.6" opacity="${op(oB)}"/>`;
+    /* fente ou fil */
+    const oPl = oB*(1 - k(70, 70.6)), oFil = oB*k(70.4, 71.2);
+    if(oPl > 0) cells += `<g opacity="${op(oPl)}" fill="#C9C2D6"><rect x="${XS - 3}" y="44" width="6" height="${f(YL - ha - 44)}"/><rect x="${XS - 3}" y="${f(YL + ha)}" width="6" height="${f(256 - YL - ha)}"/></g>`;
+    if(oFil > 0) cells += `<g opacity="${op(oFil)}"><rect x="${XS - 2}" y="${f(YL - ha)}" width="4" height="${f(2*ha)}" rx="2" fill="#E8C9A0"/></g>`;
+    /* lumière diffractée : lobe central et premiers lobes secondaires */
+    const pD = kAt(t, 38.4, 40);
+    if(pD > 0){
+      const xe = lerp(XS, XE, pD), y1 = YL - Lp/2*(xe - XS)/DPX, y2 = YL + Lp/2*(xe - XS)/DPX;
+      const fill = blanc ? '#FFFFFF' : col;
+      fx += `<path d="M${XS} ${f(YL - ha)} L${f(xe)} ${f(y1)} L${f(xe)} ${f(y2)} L${XS} ${f(YL + ha)} Z" fill="${fill}" opacity="${op(oB*.32)}"/>`;
+      for(const sg of [-1, 1]) fx += `<path d="M${XS} ${YL} L${f(xe)} ${f(YL + sg*Lp/2*(xe - XS)/DPX)} L${f(xe)} ${f(YL + sg*Lp*(xe - XS)/DPX)} Z" fill="${fill}" opacity="${op(oB*.09)}"/>`;
+    }
+    /* écran et profil d'intensité */
+    nuc += `<line x1="${XE}" y1="40" x2="${XE}" y2="262" stroke="${BLANC}" stroke-width="2.4" opacity="${op(oB)}"/>`;
+    lab += `<text x="${XE}" y="34" font-size="9" fill="${GRIS}" opacity="${op(oB)}">écran</text>`;
+    const oP = k(39.6, 40.6)*oB;
+    if(oP > 0){
+      let d = `M${XE + 2} 42`;
+      for(let y = 42; y <= 260; y += 1.5) d += ` L${f(XE + 2 + 52*sinc2(Math.PI*(y - YL)/(Lp/2)))} ${f(y)}`;
+      d += ` L${XE + 2} 260 Z`;
+      fx += `<path d="${d}" fill="${blanc ? '#FFFFFF' : col}" fill-opacity=".55" stroke="${blanc ? '#FFFFFF' : col}" stroke-width="1.2" opacity="${op(oP)}"/>`;
+      lab += `<text x="${XE + 34}" y="${YL - Lp/2 - 30}" font-size="8.4" fill="${GRIS}" opacity="${op(oP*k(41.5, 42.3)*(1 - k(47.6, 48)))}">intensité</text>`;
+    }
+    /* figure vue de face */
+    const oF = k(40.4, 41.4)*oB;
+    if(oF > 0){
+      const xc = 200, y = 282, h = 26;
+      cells += `<rect x="24" y="${y}" width="352" height="${h}" rx="6" fill="#050608" opacity="${op(oF)}"/>`;
+      if(!blanc){
+        cells += bande('gmono', 24, 376, xc, Lp/2, col, oF, 'mono') + `<rect x="24" y="${y}" width="352" height="${h}" rx="6" fill="url(#gmono)" opacity="${op(oF)}"/>`;
+      } else {
+        const ob = k(75.4, 76.4)*oF; let s = '';
+        [430, 470, 510, 550, 590, 630, 670].forEach((l, i) => {
+          s += bande('gw' + i, 24, 376, xc, Lp/2*l/650, couleur(l), ob, 'blanc') + `<rect x="24" y="${y}" width="352" height="${h}" rx="6" fill="url(#gw${i})" style="mix-blend-mode:screen" opacity="${op(ob*.62)}"/>`;
+        });
+        cells += s;
+      }
+      lab += `<text x="200" y="${y - 7}" font-size="8.4" fill="${GRIS}" opacity="${op(oF*(1 - k(47.6, 48.2)))}">ce qu'on voit sur l'écran (fente verticale : taches étalées à l'horizontale)</text>`;
+      /* largeur L de la tache centrale sur la vue de face */
+      lab += cote(xc - Lp/2, y + h + 9, xc + Lp/2, y + h + 9, 'L', OR, oF*k(44, 44.8), 0, 10, 11);
+    }
+    /* textes de l'étape 4 */
+    lab += label(200, 372, 'tache centrale deux fois plus large que les autres', BLANC, 8.8, k(42.4, 43.2)*(1 - k(47.6, 48.2)));
+    lab += label(200, 398, 'entre les taches : des extinctions (aucune lumière)', GRIS, 8.6, k(44.6, 45.4)*(1 - k(47.6, 48.2)));
+    /* étape 5 : θ, D, L */
+    const o5 = k(48.2, 49)*oB;
+    if(o5 > 0){
+      lab += cote(XS, 270, XE, 270, 'D', BLANC, o5, 0, -8, 11);
+      lab += cote(XE + 12, YL - Lp/2, XE + 12, YL + Lp/2, 'L', OR, o5, 9, 0, 11);
+      sp += `<line x1="${XS}" y1="${YL}" x2="${XE}" y2="${YL}" stroke="${GRIS}" stroke-width="1" stroke-dasharray="3 4" opacity="${op(o5)}"/>`;
+      sp += `<line x1="${XS}" y1="${YL}" x2="${XE}" y2="${f(YL - Lp/2)}" stroke="${OR}" stroke-width="1.4" stroke-dasharray="5 4" opacity="${op(o5)}"/>`;
+      const th = Math.atan2(Lp/2, DPX);
+      sp += arc(XS, YL, 110, -th, 0, OR, o5);
+      lab += `<text x="${XS + 122}" y="${f(YL - 110*Math.sin(th/2) - 2)}" font-size="12" font-weight="700" fill="${OR}" dy=".35em" opacity="${op(o5)}">θ</text>`;
+      const o5t = o5*(1 - k(60.2, 60.8));
+      lab += label(200, 348, 'triangle rectangle : tan θ = (L / 2) / D', OR, 9.4, o5t*k(49.6, 50.4));
+      lab += label(200, 374, 'petits angles, en radians : tan θ ≈ θ  donc  θ = L / (2D)', BLANC, 8.4, o5t*k(51.6, 52.4));
+      lab += label(200, 400, 'avec θ = λ / a :  L = 2 λ D / a', VERT, 12, o5t*k(53.6, 54.4));
+    }
+    /* valeurs, de l'étape 5 à la fin */
+    const oV = k(56, 56.8)*oB;
+    if(oV > 0){
+      const am = Math.round(P.am), ln = Math.round(P.lnm);
+      lab += label(200, 348, `λ = ${ln} nm · a = ${am} µm · D = 2,00 m`, BLANC, 9, oV*k(60.6, 61.2)*(1 - k(80, 80.4)));
+      lab += label(200, 374, `L = 2λD / a = ${virg(P.L, 1)} cm   (θ = ${virg(P.lnm/P.am, 1)} × 10⁻³ rad)`, OR, 9.4, oV*k(60.6, 61.2)*(1 - k(74.8, 75.4)));
+      lab += label(200, 374, `exemple : 650 nm, 100 µm, 2,00 m → L = 2,6 cm`, OR, 9.4, oV*(1 - k(60.2, 60.8)));
+    }
+    lab += label(200, 400, 'fente deux fois plus fine : tache deux fois plus large', BLANC, 8.6, k(62.6, 63.4)*(1 - k(64.6, 65)));
+    lab += label(200, 400, 'λ plus courte (vert) : tache plus étroite', BLANC, 8.6, k(66.4, 67.2)*(1 - k(69.6, 70.2)));
+    lab += label(200, 400, 'un fil de diamètre a : la même figure qu\'une fente de largeur a', VERT, 8.4, k(71.6, 72.4)*(1 - k(75, 75.4)));
+    lab += label(200, 374, 'lumière blanche : centre blanc, bords irisés', BLANC, 9, k(76.4, 77.2)*(1 - k(80, 80.4)));
+    lab += label(200, 400, 'le rouge (λ grande) s\'étale plus que le bleu', KO, 8.8, k(77.6, 78.4)*(1 - k(80, 80.4)));
+  }
+
+  /* ===== partie C : le son passe la porte (étape 8) ===== */
+  const oC = k(81, 82);
+  if(oC > 0){
+    const R = {XB:180, YC:170, a:44, lam:46, v:30, x0:10, x1:390, y0:40, y1:270};
+    const W = ondes(R, t, oC);
+    cells += W.fond; chr += W.cr;
+    /* haut-parleur et auditeur */
+    cells += `<g opacity="${op(oC)}"><rect x="22" y="${R.YC - 12}" width="12" height="24" fill="#2A2733" stroke="${GRIS}"/><path d="M34 ${R.YC - 12} L48 ${R.YC - 24} L48 ${R.YC + 24} L34 ${R.YC + 12} Z" fill="#2A2733" stroke="${GRIS}"/></g>`;
+    nuc += `<g opacity="${op(oC*k(83.5, 84.3))}"><circle cx="312" cy="84" r="12" fill="#E8C9A0"/><circle cx="312" cy="84" r="16" fill="none" stroke="${VERT}" stroke-width="1.6"/></g>`;
+    lab += `<text x="312" y="112" font-size="9" fill="${VERT}" opacity="${op(oC*k(83.5, 84.3))}">il entend</text>`;
+    sp += `<path d="M180 ${R.YC - 22} L390 ${R.YC - 22} M180 ${R.YC + 22} L390 ${R.YC + 22}" stroke="${GRIS}" stroke-width="1" stroke-dasharray="3 4" opacity="${op(oC*k(83, 83.8))}"/>`;
+    lab += label(300, R.YC, 'sans diffraction, le son resterait ici', GRIS, 7.6, oC*k(83, 83.8));
+    lab += `<text x="20" y="32" font-size="9" fill="${GRIS}" text-anchor="start" opacity="${op(oC)}">un mur et une porte ouverte, vus de dessus</text>`;
+    lab += label(200, 300, 'son : λ ≈ 1 m, porte ≈ 1 m → forte diffraction', EAU, 9, oC*k(84.6, 85.4));
+    lab += label(200, 328, 'houle : λ ≈ 50 m, entrée de port ≈ 100 m → elle s\'étale dans le port', EAU, 8.2, oC*k(86.2, 87));
+    lab += label(200, 356, 'lumière : λ ≈ 0,5 µm ≪ 1 m → aucun étalement visible', OR, 8.6, oC*k(87.8, 88.6));
+    lab += label(200, 390, 'on entend derrière un mur, on n\'y voit pas', VERT, 10, oC*k(89.4, 90.2));
+  }
+  return {cells, nuc, sp, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:12, title:"1. Une onde arrive sur une large ouverture",
+  text:"Vue de dessus d'une <strong>cuve à ondes</strong> : une onde plane, de longueur d'onde λ, arrive sur une paroi percée d'une ouverture de largeur <strong>a</strong>. Ici a vaut plus de cinq fois λ : l'onde passe presque en ligne droite, avec un faisceau de même largeur que l'ouverture ; seuls ses bords s'arrondissent un peu.",
+  state:"a ≫ λ : propagation presque rectiligne"},
+ {t:12, e:24, title:"2. On rétrécit l'ouverture : la diffraction",
+  text:"Quand a devient de l'ordre de λ, l'onde ne reste plus dans le faisceau : elle <strong>s'étale</strong> derrière l'ouverture, en ondes presque circulaires. C'est la <strong>diffraction</strong>. L'onde diffractée a la <strong>même longueur d'onde</strong>, la même fréquence et la même célérité que l'onde incidente : seule sa direction de propagation change.",
+  state:"a ≈ λ : l'onde s'étale (diffraction)"},
+ {t:24, e:36, title:"3. L'angle caractéristique θ = λ / a",
+  text:"L'étalement se mesure par l'<strong>angle caractéristique de diffraction</strong> θ, l'écart angulaire entre la direction de l'onde incidente et la première direction où l'onde s'annule. Pour une fente, <strong>θ = λ / a</strong> (θ en radians, λ et a dans la même unité). θ augmente quand λ augmente ou quand a diminue.",
+  state:"θ = λ / a (rad)"},
+ {t:36, e:48, title:"4. La lumière aussi : laser, fente, écran",
+  text:"Un laser éclaire une fente fine (quelques dizaines de micromètres). Sur l'écran, on n'observe pas un trait de la largeur de la fente, mais une <strong>tache centrale</strong> très lumineuse, encadrée de taches plus petites et moins intenses, séparées par des <strong>extinctions</strong>. La tache centrale est deux fois plus large que les autres. La figure s'étale <strong>perpendiculairement</strong> à la fente.",
+  state:"Figure de diffraction : tache centrale + taches secondaires"},
+ {t:48, e:60, title:"5. Relier θ à ce qu'on mesure sur l'écran",
+  text:"Le milieu de la tache centrale et sa première extinction sont vus depuis la fente sous l'angle θ. Dans le triangle rectangle de côtés D (fente-écran) et L/2 : <strong>tan θ = L / (2D)</strong>. L'angle est très petit, donc tan θ ≈ θ en radians : <strong>θ = L / (2D)</strong>. Avec θ = λ/a, on obtient <strong>L = 2λD / a</strong>.",
+  state:"θ = L/(2D) = λ/a"},
+ {t:60, e:70, title:"6. Fente plus fine, couleur différente",
+  text:"Avec λ = 650 nm, a = 100 µm et D = 2,00 m, la tache centrale mesure 2,6 cm. Divise la largeur de la fente par deux : la tache est <strong>deux fois plus large</strong> (L proportionnelle à 1/a). Passe à un laser vert (532 nm) : elle rétrécit (L proportionnelle à λ). Tracer L, ou θ, en fonction de 1/a donne une <strong>droite</strong> passant par l'origine.",
+  state:"L ∝ λ et L ∝ 1/a"},
+ {t:70, e:81, title:"7. Un fil, puis la lumière blanche",
+  text:"Remplace la fente par un <strong>fil</strong> de diamètre a : la figure est la même qu'avec une fente de même largeur. On peut donc mesurer le diamètre d'un cheveu avec un laser, une règle et la relation a = 2λD/L. En <strong>lumière blanche</strong>, chaque couleur se diffracte avec son propre angle : le centre reste blanc, les bords sont irisés, et le rouge s'étale plus que le bleu.",
+  state:"Fil ≡ fente · lumière blanche : bords irisés"},
+ {t:81, e:92, title:"8. Partout où il y a des ondes",
+  text:"La diffraction concerne <strong>toutes les ondes</strong>. Le son (λ de quelques centimètres à quelques mètres) se diffracte fortement par une porte : on entend quelqu'un dans le couloir sans le voir. La houle s'étale en passant l'entrée d'un port. La lumière, de λ ≈ 0,5 µm, ne se diffracte visiblement que par des ouvertures très fines : c'est elle qui limite la finesse des détails qu'un instrument d'optique peut séparer.",
+  state:"Diffraction notable si a n'est pas très grand devant λ"}
+];
+
+const CALL = [
+  {a:2.2, b:8.2, text:"paroi percée d'une ouverture", lab:[260,66], anc:()=>[[150, 60]]},
+  {a:38.8, b:45, text:"fente fine", lab:[90,90], anc:()=>[[116, 142]], col:OR},
+  {a:71, b:75, text:"fil (ou cheveu)", lab:[90,90], anc:()=>[[116, 146]], col:OR}
+];
+
+const CUES = [[.2,'step'],[12.2,'step'],[15,'whoosh'],[18.6,'good'],[24.2,'step'],[27.6,'pop'],[36.2,'step'],[38.4,'spark'],[48.2,'step'],[53.8,'good'],[60.2,'step'],[62,'whoosh'],[66,'whoosh'],[70.2,'step'],[75.6,'spark'],[81.2,'step'],[89.6,'final']];
+
+const QUIZ = [
+ {q:"Dans quelle situation la diffraction est-elle la plus marquée ?",
+  o:["Une ouverture très grande devant la longueur d'onde","Une ouverture de l'ordre de la longueur d'onde (ou plus petite)","Une onde de très haute fréquence quelle que soit l'ouverture"], a:1,
+  ex:"θ = λ/a : l'étalement est d'autant plus grand que a est petit devant λ. Si a ≫ λ, θ est minuscule et l'onde se propage presque en ligne droite."},
+ {q:"Après la diffraction, la longueur d'onde de l'onde…",
+  o:["diminue","ne change pas","augmente"], a:1,
+  ex:"La diffraction change la direction de propagation, pas la fréquence ni la célérité : λ = v/f reste la même."},
+ {q:"λ = 650 nm, a = 0,10 mm, D = 2,0 m. La largeur de la tache centrale vaut…",
+  o:["1,3 cm","2,6 cm","26 cm"], a:1,
+  ex:"L = 2λD/a = 2 × 650 × 10⁻⁹ × 2,0 / (0,10 × 10⁻³) = 2,6 × 10⁻² m = 2,6 cm. Penser au facteur 2 et aux puissances de 10."},
+ {q:"On remplace la fente par une fente deux fois plus fine. La tache centrale…",
+  o:["est deux fois plus large","est deux fois plus étroite","ne change pas"], a:0,
+  ex:"L = 2λD/a : L est inversement proportionnelle à a. Diviser a par 2 multiplie L par 2."}
+];
+
+ANIM.lancer({id:'diffraction', END:92, SCENES, CALL, CUES, QUIZ, draw, graine:5});
+})();
+</script>
+</body>
+</html>
