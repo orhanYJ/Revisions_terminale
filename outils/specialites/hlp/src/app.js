@@ -23,6 +23,12 @@
   function sem(e) { return e.sem === 2 ? 2 : 1; }
   function ecrite2(num) { for (var i = 0; i < D.ENTREES.length; i++) if (sem(D.ENTREES[i]) === 2 && D.ENTREES[i].num === num) return D.ENTREES[i]; return null; }
   function ordre() { return D.ENTREES.slice().sort(function (a, b) { return sem(a) - sem(b) || ["I", "II", "III"].indexOf(a.num) - ["I", "II", "III"].indexOf(b.num); }); }
+  var COURT = { e1: "Éducation", e2: "Sensibilité", e3: "Moi", e4: "Création" };
+  function court(id) { if (COURT[id]) return COURT[id]; var x = entree(id); return x ? (x.court || x.titre) : id; }
+  function boutonsS2() {
+    return ordre().filter(function (x) { return sem(x) === 2 && D.NOTIONS.some(function (n) { return n.e.indexOf(x.id) >= 0; }); })
+      .map(function (x) { return '<button class="puce-f" data-fn="' + x.id + '" aria-pressed="false">' + court(x.id) + "</button>"; }).join("");
+  }
   var NOM_SEM = { 1: "Semestre 1 · La recherche de soi", 2: "Semestre 2 · L’Humanité en question" };
 
   /* ---------- menu ---------- */
@@ -148,6 +154,10 @@
       h += "<h3>Plan détaillé</h3><ol class='plan-l'>" + c.plan.map(function (p) { return "<li><b>" + p[0] + "</b>" + p[1] + "</li>"; }).join("") + "</ol>";
       h += "<h3>Conclusion rédigée</h3><div class='redige'>" + c.concl + "</div>";
     });
+    if (e.annales && e.annales.length) h += ORN + "<h2>Déjà tombé au bac</h2><p class='mute petit'>Sujets officiels de métropole liés à cette entrée, relevés sur les sujets publiés.</p><ul class='puces'>" +
+      e.annales.map(function (a) { return "<li><b>" + a[0] + "</b> — " + a[1] + "<br><i>" + a[2] + "</i></li>"; }).join("") + "</ul>";
+    if (e.entrainement && e.entrainement.length) h += "<h2>Autres sujets d’essai, avec des pistes</h2>" +
+      e.entrainement.map(function (x) { return '<details class="pli"><summary>' + x[0] + '</summary><div class="dedans">' + x[1] + "</div></details>"; }).join("");
     return h + "</div>";
   }
   function ficheHTML(e) {
@@ -187,7 +197,7 @@
   PAGES.notions = function () {
     var h = '<header class="page-entete"><p class="surtitre">Outils</p><h1>Tableau des notions</h1><p class="chapo">Les mots qu’un correcteur attend, avec leur définition et la distinction qui les rend utiles dans une copie.</p></header>';
     h += '<div class="lecture"><label class="sr" for="filtre-n">Filtrer les notions</label><input id="filtre-n" class="champ" type="search" placeholder="Filtrer (ex. sincérité, sublime…)" autocomplete="off">' +
-      '<div class="rang" role="group" aria-label="Entrée"><button class="puce-f" data-fn="" aria-pressed="true">Toutes</button><button class="puce-f" data-fn="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-fn="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-fn="e3" aria-pressed="false">Moi</button></div><div class="notion-l" id="liste-n"></div></div>';
+      '<div class="rang" role="group" aria-label="Entrée"><button class="puce-f" data-fn="" aria-pressed="true">Toutes</button><button class="puce-f" data-fn="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-fn="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-fn="e3" aria-pressed="false">Moi</button>' + boutonsS2() + '</div><div class="notion-l" id="liste-n"></div></div>';
     return h;
   };
   function remplirNotions() {
@@ -197,7 +207,7 @@
     D.NOTIONS.forEach(function (n) {
       if (f && n.e.indexOf(f) < 0) return;
       if (q && norm(n.n + " " + n.d + " " + n.dist + " " + n.a).indexOf(q) < 0) return;
-      h += '<div class="notion"><h3>' + n.n + " " + n.e.map(function (x) { return '<span class="tag ' + x + '">' + (x === "e1" ? "Éducation" : x === "e2" ? "Sensibilité" : "Moi") + "</span>"; }).join("") +
+      h += '<div class="notion"><h3>' + n.n + " " + n.e.map(function (x) { return '<span class="tag ' + x + '">' + court(x) + "</span>"; }).join("") +
         "</h3><p style='margin:.2em 0'>" + n.d + '</p><p class="dist">' + n.dist + '</p><p class="ref">' + n.a + "</p></div>";
     });
     l.innerHTML = ty(h || "<p class='mute'>Aucune notion ne correspond.</p>");

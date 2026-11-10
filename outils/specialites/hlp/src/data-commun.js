@@ -156,6 +156,11 @@ window.HLP = { ENTREES: [] };
     { n: "Aliénation", e: ["e3"], d: "Fait de devenir étranger à soi-même.", dist: "Du latin <i>alienus</i>, « qui appartient à un autre ».", a: "Marx, Maupassant (<i>Le Horla</i>)" },
     { n: "Double", e: ["e3"], d: "Figure d’un autre soi-même.", dist: "Double fantastique (Maupassant), moral (Stevenson), poétique (Nerval).", a: "Stevenson, Maupassant, Nerval" },
     { n: "Autobiographie / mémoires / journal", e: ["e3"], d: "Récit rétrospectif d’une vie / vie mêlée à l’histoire / notes au jour le jour.", dist: "Pacte autobiographique : auteur = narrateur = personnage (Lejeune).", a: "Rousseau, Chateaubriand, Amiel" },
+    { n: "Avant-garde / manifeste", e: ["e4"], d: "Mouvement qui se veut en avance sur son temps / texte public qui annonce son programme.", dist: "Les manifestes du XX<sup>e</sup> siècle sont esthétiques et politiques (futurisme, 1909).", a: "Marinetti, Breton" },
+    { n: "Nouveau / progrès", e: ["e4"], d: "Ce qui surprend / ce qui améliore en s’accumulant.", dist: "« le nouveau existe bien, sans être en progrès » (Apollinaire, 1918).", a: "Apollinaire, Bergson" },
+    { n: "Originalité / exemplarité", e: ["e4"], d: "Être nouveau / pouvoir servir de modèle.", dist: "Le génie réunit les deux ; l’absurde aussi peut être original.", a: "Kant (1790)" },
+    { n: "Tradition / rupture", e: ["e4", "e1"], d: "Ce qui est transmis / ce qui s’en sépare brutalement.", dist: "Une rupture se définit par ce qu’elle rejette ; la « tradition du nouveau » (Rosenberg, 1959).", a: "Perrault, Eliot, Rosenberg" },
+    { n: "Réécriture", e: ["e4"], d: "Reprise transformée d’une œuvre ou d’un mythe.", dist: "≠ plagiat : la reprise est affichée et signifie quelque chose de neuf.", a: "Anouilh, Cocteau, Giraudoux" },
     { n: "Égotisme / égoïsme", e: ["e3"], d: "Analyse et culte de soi / préférence pour son intérêt.", dist: "Stendhal revendique l’égotisme, pas l’égoïsme.", a: "Stendhal" }
   ];
 

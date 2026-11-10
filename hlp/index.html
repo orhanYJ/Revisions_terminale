@@ -800,6 +800,11 @@ window.HLP = { ENTREES: [] };
     { n: "Aliénation", e: ["e3"], d: "Fait de devenir étranger à soi-même.", dist: "Du latin <i>alienus</i>, « qui appartient à un autre ».", a: "Marx, Maupassant (<i>Le Horla</i>)" },
     { n: "Double", e: ["e3"], d: "Figure d’un autre soi-même.", dist: "Double fantastique (Maupassant), moral (Stevenson), poétique (Nerval).", a: "Stevenson, Maupassant, Nerval" },
     { n: "Autobiographie / mémoires / journal", e: ["e3"], d: "Récit rétrospectif d’une vie / vie mêlée à l’histoire / notes au jour le jour.", dist: "Pacte autobiographique : auteur = narrateur = personnage (Lejeune).", a: "Rousseau, Chateaubriand, Amiel" },
+    { n: "Avant-garde / manifeste", e: ["e4"], d: "Mouvement qui se veut en avance sur son temps / texte public qui annonce son programme.", dist: "Les manifestes du XX<sup>e</sup> siècle sont esthétiques et politiques (futurisme, 1909).", a: "Marinetti, Breton" },
+    { n: "Nouveau / progrès", e: ["e4"], d: "Ce qui surprend / ce qui améliore en s’accumulant.", dist: "« le nouveau existe bien, sans être en progrès » (Apollinaire, 1918).", a: "Apollinaire, Bergson" },
+    { n: "Originalité / exemplarité", e: ["e4"], d: "Être nouveau / pouvoir servir de modèle.", dist: "Le génie réunit les deux ; l’absurde aussi peut être original.", a: "Kant (1790)" },
+    { n: "Tradition / rupture", e: ["e4", "e1"], d: "Ce qui est transmis / ce qui s’en sépare brutalement.", dist: "Une rupture se définit par ce qu’elle rejette ; la « tradition du nouveau » (Rosenberg, 1959).", a: "Perrault, Eliot, Rosenberg" },
+    { n: "Réécriture", e: ["e4"], d: "Reprise transformée d’une œuvre ou d’un mythe.", dist: "≠ plagiat : la reprise est affichée et signifie quelque chose de neuf.", a: "Anouilh, Cocteau, Giraudoux" },
     { n: "Égotisme / égoïsme", e: ["e3"], d: "Analyse et culte de soi / préférence pour son intérêt.", dist: "Stendhal revendique l’égotisme, pas l’égoïsme.", a: "Stendhal" }
   ];
 
@@ -1831,6 +1836,102 @@ HLP.ENTREES.push({
   ];
 })();
 
+/* Annales liées à chaque entrée et sujets d'essai supplémentaires (avec pistes). Rattachés par identifiant d'entrée. */
+(function (H) {
+  function e(id) { for (var i = 0; i < H.ENTREES.length; i++) if (H.ENTREES[i].id === id) return H.ENTREES[i]; return null; }
+  function poser(id, champ, val) { var x = e(id); if (x) x[champ] = val; }
+  function p(probleme, i, ii, iii) {
+    return "<p><b>Problème.</b> " + probleme + "</p><ol class='puces'><li>" + i + "</li><li>" + ii + "</li><li>" + iii + "</li></ol>";
+  }
+
+  poser("e1", "annales", [
+    ["Bac 2025, métropole, jour 1", "Condorcet, <i>Cinq mémoires sur l’instruction publique</i> (1791) : interprétation philosophique « Pourquoi, d’après ce texte, faut-il “exercer l’âme des enfants” à la pitié ? » ; essai littéraire « La littérature a-t-elle pour vocation d’éduquer à la sensibilité ? »", "Copie modèle commentée dans la page L’épreuve."]
+  ]);
+  poser("e1", "entrainement", [
+    ["Peut-on apprendre à être libre ? (essai philosophique)", p("La liberté semble ne pas pouvoir s’enseigner (on ne force pas quelqu’un à penser par lui-même), mais personne ne naît capable de juger seul.",
+      "La liberté ne s’apprend pas comme un savoir : c’est un acte (Kant, « Sapere aude ») ; un maître qui commande la liberté se contredit.",
+      "Pourtant, elle a des conditions qui s’enseignent : la discipline et l’instruction (Kant, 1803), l’instruction qui rend « capable d’apprécier et de corriger » la loi (Condorcet, 1791).",
+      "On n’apprend pas la liberté, on apprend à s’en servir : l’éducation donne les moyens du jugement, l’élève fait le reste (Rousseau, l’éducation « négative » qui laisse faire l’expérience).")],
+    ["L’école libère-t-elle ? (essai philosophique)", p("L’école promet l’émancipation, mais elle impose aussi des règles, des savoirs, une socialisation.",
+      "Oui : Condorcet et les lois Ferry font de l’instruction une condition de l’égalité réelle et de la citoyenneté.",
+      "Mais elle conforme : Durkheim parle de « socialisation méthodique » ; Vallès raconte l’ennui et l’humiliation ; la sociologie montre la reproduction des inégalités (pour aller plus loin : <i>Les Héritiers</i>, 1964).",
+      "Elle libère quand elle transmet de quoi juger, y compris de quoi la juger elle-même (Arendt : transmettre un monde ancien pour protéger le nouveau).")],
+    ["Les récits d’enfance disent-ils la vérité sur l’éducation reçue ? (essai littéraire)", p("Le récit d’enfance prétend témoigner, mais il est écrit par un adulte qui reconstruit.",
+      "Ils dénoncent avec force des violences réelles : la dédicace de <i>L’Enfant</i> (1878).",
+      "Mais ce sont des récits construits : point de vue de l’enfant, ironie de l’adulte, roman autobiographique (Jacques Vingtras), mémoire qui comble des « vides » (Rousseau, <i>Confessions</i>).",
+      "Leur vérité est d’un autre ordre : ils montrent ce que l’éducation a fait d’un être, ce qu’aucun document ne dit.")],
+    ["Faut-il obéir pour apprendre ? (essai philosophique)", p("Apprendre suppose de faire confiance à un maître, mais penser par soi-même suppose de ne pas tout recevoir sur parole.",
+      "L’apprentissage commence par la discipline (Kant) et l’autorité du maître (Arendt).",
+      "Mais Montaigne veut qu’on fasse tout passer « par l’étamine » du jugement ; Rousseau préfère l’expérience aux leçons ; Kant critique la paresse d’être mineur.",
+      "On obéit pour apprendre, puis on apprend à ne plus obéir sans raison : l’autorité légitime vise sa propre disparition.")]
+  ]);
+
+  poser("e2", "annales", [
+    ["Bac 2023, métropole, jour 1", "Octave Mirbeau, <i>Le Journal d’une femme de chambre</i>, ch. VII (1900) : interprétation littéraire « Dans cet extrait, comment la poésie permet-elle à l’héroïne de “redevenir un être nouveau” ? » ; essai philosophique « Le savoir nuit-il à la sensibilité ? »", ""],
+    ["Bac 2024, métropole, jour 2", "Hugo, <i>Ruy Blas</i>, III, 3 (1838) : interprétation littéraire « Comment se manifeste le sentiment amoureux dans cette scène de théâtre ? » ; essai philosophique « Que gagne l’amour à être déclaré ? »", ""],
+    ["Bac 2025, métropole, jour 1", "Condorcet, <i>Cinq mémoires sur l’instruction publique</i> (1791) : essai littéraire « La littérature a-t-elle pour vocation d’éduquer à la sensibilité ? »", "Copie modèle commentée dans la page L’épreuve."]
+  ]);
+  poser("e2", "entrainement", [
+    ["Le savoir nuit-il à la sensibilité ? (essai philosophique, sujet 2023)", p("Savoir semble refroidir l’émotion (analyser, c’est mettre à distance), mais la connaissance peut aussi affiner ce que l’on sent.",
+      "Le savoir peut tuer la fraîcheur du sentir : Rousseau trouve le bonheur « sans prendre la peine de penser » ; Bergson montre que le mot « brutal » recouvre l’impression.",
+      "Mais sans savoir, la sensibilité reste confuse : on apprend à voir un tableau, à entendre une musique ; Proust a besoin d’un effort de l’esprit pour retrouver Combray.",
+      "Le savoir ne nuit qu’à la sensibilité qu’il remplace ; il enrichit celle qu’il éclaire (Baudelaire, critique d’art et poète).")],
+    ["Peut-on partager ce que l’on ressent ? (essai philosophique)", p("Mes sensations sont à moi, mais nous parlons de nos émotions, pleurons ensemble au théâtre, compatissons.",
+      "L’expérience vécue semble incommunicable (Bergson et le « mot brutal »).",
+      "Pourtant la pitié nous fait souffrir de la souffrance d’autrui (Rousseau, Condorcet), et nous apprenons à nommer nos émotions avec les autres (Wittgenstein).",
+      "L’art est le lieu de ce partage : « Par l’art seulement, nous pouvons sortir de nous » (Proust).")],
+    ["La littérature apprend-elle à sentir ? (essai littéraire)", p("Les livres semblent former la sensibilité, mais ils peuvent aussi la fausser.",
+      "Oui : les lecteurs de <i>La Nouvelle Héloïse</i> et de <i>Werther</i> découvrent un langage du cœur ; Lamartine donne des mots au deuil.",
+      "Mais Emma Bovary a une sensibilité façonnée par les romans du couvent : Flaubert montre les clichés du sentiment.",
+      "La littérature apprend à sentir quand elle invente des manières de sentir (Baudelaire, Proust) et rend lucide sur les émotions convenues (Flaubert).")],
+    ["La nature n’est-elle qu’un miroir de nos états d’âme ? (essai littéraire)", p("Les romantiques projettent leurs sentiments sur les paysages ; mais la nature résiste et parfois parle d’elle-même.",
+      "Le paysage état d’âme : <i>René</i>, « Le Lac », le spleen baudelairien.",
+      "Mais la nature est aussi ce qui nous dépasse (le sublime chez Kant) et ce qui nous apaise sans nous ressembler (Rousseau sur le lac de Bienne).",
+      "Chez Baudelaire, elle devient un « temple » de symboles à déchiffrer : ni miroir ni décor, une langue.")]
+  ]);
+
+  poser("e3", "annales", [
+    ["Bac 2022, métropole, jour 1 (sujet 1)", "Pierre Albert-Birot, « L’affaire Narcisse », <i>Poésies</i> (1926) : essai philosophique « Se connaître soi-même, est-ce se découvrir “pièce unique” ? »", ""],
+    ["Bac 2022, métropole, jour 2 (sujet 1)", "Rousseau, <i>Lettres morales</i>, VI (1758) : interprétation philosophique « Dans quelle mesure pouvons-nous redevenir nous-mêmes ? » ; essai littéraire « Lire permet-il d’accéder à une meilleure connaissance de soi ? »", ""],
+    ["Bac 2023, métropole, jour 2", "Nietzsche, <i>Aurore</i> (1881) : interprétation philosophique « D’après ce texte pourquoi sommes-nous tous autre chose que ce que nous paraissons être ? » ; essai littéraire « La littérature permet-elle de déchiffrer “l’alphabet […] de notre moi” ? »", ""],
+    ["Bac 2026, métropole, jour 2", "Raymond Aron, <i>Introduction à la philosophie de l’histoire</i> : interprétation philosophique « Dans quelle mesure peut-on, selon ce texte, se connaître authentiquement ? » ; essai littéraire « La littérature permet-elle “de discerner les sentiments que l’on éprouve et ceux que l’on se figure éprouver” ? »", ""],
+    ["Sujet zéro n° 2 (Éduscol, 2020)", "Jacques Rivière, lettre à Antonin Artaud (8 juin 1924) : « En quoi la réflexion de Jacques Rivière expose-t-elle les déchirements du Moi ? » ; « Parvient-on jamais à être soi-même ? »", ""]
+  ]);
+  poser("e3", "entrainement", [
+    ["Se connaître soi-même, est-ce se découvrir « pièce unique » ? (essai philosophique, sujet 2022)", p("Se connaître semble révéler une singularité, mais la connaissance de soi découvre aussi ce que j’ai de commun avec les autres.",
+      "Oui : Rousseau, « Je ne suis fait comme aucun de ceux que j’ai vus » ; l’autobiographie fonde sa valeur sur l’unicité.",
+      "Mais Montaigne trouve en lui « la forme entière de l’humaine condition » ; Hugo : « quand je vous parle de moi, je vous parle de vous ».",
+      "Et la « pièce » n’est pas un bloc : Montaigne peint « le passage », Rimbaud découvre un autre en lui. On se découvre unique, mais pas un.")],
+    ["Lire permet-il de mieux se connaître ? (essai littéraire, sujet 2022)", p("Lire, c’est sortir de soi ; comment cela ferait-il mieux connaître ce qu’on est ?",
+      "La lecture comme miroir : « Prenez donc ce miroir, et regardez-vous-y » (Hugo) ; Proust : chaque lecteur lit en lui-même.",
+      "Mais elle peut égarer : Emma Bovary se rêve en héroïne ; on se prend pour un personnage.",
+      "Lire fait connaître parce qu’il fait voir « ce que voit un autre » (Proust) : on se connaît par différence, pas par simple reflet.")],
+    ["Sommes-nous ce que les autres voient de nous ? (essai philosophique)", p("Le regard d’autrui semble superficiel, mais je ne me vois jamais sans lui.",
+      "Non : le moi intime échappe aux apparences (Bergson, moi profond ; Rousseau, « Je sens mon cœur »).",
+      "Pourtant, le regard des autres façonne : Lorenzo devenu son masque ; Pirandello, <i>Un, personne et cent mille</i> ; Sartre, <i>Huis clos</i>.",
+      "Nous ne sommes ni ce qu’on voit ni un secret caché : nous sommes ce que nous faisons de ces regards (Sartre, la mauvaise foi consiste justement à se figer dans un rôle).")],
+    ["Est-on toujours maître de soi ? (essai philosophique)", p("Je crois décider de mes actes et de mes pensées ; mais j’ai des rêves, des lapsus, des passions.",
+      "Descartes : la pensée m’appartient, c’est même la seule certitude.",
+      "Mais Rimbaud (« On me pense »), Nietzsche, Freud (« pas maître dans sa propre maison »), Maupassant (<i>Le Horla</i>) montrent un moi dépossédé.",
+      "La maîtrise de soi n’est pas un fait mais une tâche : Bergson, la liberté quand nos actes « émanent de notre personnalité entière » ; Nietzsche, « deviens celui que tu es ».")]
+  ]);
+
+  poser("e4", "entrainement", [
+    ["La nouveauté est-elle une valeur ? (essai philosophique)", p("Nous valorisons l’originalité, mais ce qui est nouveau n’est pas pour autant meilleur.",
+      "Oui : sans nouveauté, l’art se répète ; les avant-gardes, Rimbaud (« absolument moderne »).",
+      "Mais nouveau ≠ progrès (Apollinaire) ; Kant exige que l’œuvre originale soit aussi exemplaire ; la mode est nouvelle et vite usée.",
+      "La nouveauté n’est une valeur que si elle renouvelle notre regard sur ce qui existait déjà (Eliot, Picasso et Velázquez).")],
+    ["Une œuvre doit-elle choquer ? (essai littéraire)", p("Les grandes ruptures ont fait scandale, mais choquer n’est pas créer.",
+      "Le scandale accompagne la nouveauté : <i>Hernani</i> (1830), les procès de 1857, <i>Le Sacre du printemps</i> (1913), <i>Fontaine</i> (1917).",
+      "Mais la provocation s’use et devient une convention (la « tradition du nouveau ») ; beaucoup de chefs-d’œuvre ne choquent pas.",
+      "Une œuvre doit surprendre plutôt que choquer : déranger nos habitudes de voir et de lire (Apollinaire, « la surprise »).")],
+    ["Réécrire, est-ce créer ? (essai littéraire)", p("Reprendre un mythe ou une œuvre semble manquer d’originalité ; pourtant la littérature n’a cessé de réécrire.",
+      "La réécriture peut n’être qu’imitation.",
+      "Mais Anouilh fait d’<i>Antigone</i> (1944) une pièce sur la résistance et le compromis ; Picasso transforme <i>Les Ménines</i> en 58 variations.",
+      "Créer, c’est toujours reprendre : la langue, les genres, les mythes ; l’original est une manière neuve de reprendre.")]
+  ]);
+})(HLP);
+
 HLP.ATELIER = [
   { court: "Lamartine, « Le Lac »", titre: "Lamartine, « Le Lac » (strophes 1-2 et 6-7)", ref: "Méditations poétiques, 1820, texte de l’édition originale, orthographe modernisée",
     mouvements: ["1. La condition humaine : un temps sans escale", "2. Le retour au lac, sans elle", "3. La voix de l’aimée : prière au temps"],
@@ -2534,6 +2635,12 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   function sem(e) { return e.sem === 2 ? 2 : 1; }
   function ecrite2(num) { for (var i = 0; i < D.ENTREES.length; i++) if (sem(D.ENTREES[i]) === 2 && D.ENTREES[i].num === num) return D.ENTREES[i]; return null; }
   function ordre() { return D.ENTREES.slice().sort(function (a, b) { return sem(a) - sem(b) || ["I", "II", "III"].indexOf(a.num) - ["I", "II", "III"].indexOf(b.num); }); }
+  var COURT = { e1: "Éducation", e2: "Sensibilité", e3: "Moi", e4: "Création" };
+  function court(id) { if (COURT[id]) return COURT[id]; var x = entree(id); return x ? (x.court || x.titre) : id; }
+  function boutonsS2() {
+    return ordre().filter(function (x) { return sem(x) === 2 && D.NOTIONS.some(function (n) { return n.e.indexOf(x.id) >= 0; }); })
+      .map(function (x) { return '<button class="puce-f" data-fn="' + x.id + '" aria-pressed="false">' + court(x.id) + "</button>"; }).join("");
+  }
   var NOM_SEM = { 1: "Semestre 1 · La recherche de soi", 2: "Semestre 2 · L’Humanité en question" };
 
   /* ---------- menu ---------- */
@@ -2659,6 +2766,10 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
       h += "<h3>Plan détaillé</h3><ol class='plan-l'>" + c.plan.map(function (p) { return "<li><b>" + p[0] + "</b>" + p[1] + "</li>"; }).join("") + "</ol>";
       h += "<h3>Conclusion rédigée</h3><div class='redige'>" + c.concl + "</div>";
     });
+    if (e.annales && e.annales.length) h += ORN + "<h2>Déjà tombé au bac</h2><p class='mute petit'>Sujets officiels de métropole liés à cette entrée, relevés sur les sujets publiés.</p><ul class='puces'>" +
+      e.annales.map(function (a) { return "<li><b>" + a[0] + "</b> — " + a[1] + "<br><i>" + a[2] + "</i></li>"; }).join("") + "</ul>";
+    if (e.entrainement && e.entrainement.length) h += "<h2>Autres sujets d’essai, avec des pistes</h2>" +
+      e.entrainement.map(function (x) { return '<details class="pli"><summary>' + x[0] + '</summary><div class="dedans">' + x[1] + "</div></details>"; }).join("");
     return h + "</div>";
   }
   function ficheHTML(e) {
@@ -2698,7 +2809,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
   PAGES.notions = function () {
     var h = '<header class="page-entete"><p class="surtitre">Outils</p><h1>Tableau des notions</h1><p class="chapo">Les mots qu’un correcteur attend, avec leur définition et la distinction qui les rend utiles dans une copie.</p></header>';
     h += '<div class="lecture"><label class="sr" for="filtre-n">Filtrer les notions</label><input id="filtre-n" class="champ" type="search" placeholder="Filtrer (ex. sincérité, sublime…)" autocomplete="off">' +
-      '<div class="rang" role="group" aria-label="Entrée"><button class="puce-f" data-fn="" aria-pressed="true">Toutes</button><button class="puce-f" data-fn="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-fn="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-fn="e3" aria-pressed="false">Moi</button></div><div class="notion-l" id="liste-n"></div></div>';
+      '<div class="rang" role="group" aria-label="Entrée"><button class="puce-f" data-fn="" aria-pressed="true">Toutes</button><button class="puce-f" data-fn="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-fn="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-fn="e3" aria-pressed="false">Moi</button>' + boutonsS2() + '</div><div class="notion-l" id="liste-n"></div></div>';
     return h;
   };
   function remplirNotions() {
@@ -2708,7 +2819,7 @@ HLP.RESSOURCES = `<header class="page-entete"><p class="surtitre">Pour aller che
     D.NOTIONS.forEach(function (n) {
       if (f && n.e.indexOf(f) < 0) return;
       if (q && norm(n.n + " " + n.d + " " + n.dist + " " + n.a).indexOf(q) < 0) return;
-      h += '<div class="notion"><h3>' + n.n + " " + n.e.map(function (x) { return '<span class="tag ' + x + '">' + (x === "e1" ? "Éducation" : x === "e2" ? "Sensibilité" : "Moi") + "</span>"; }).join("") +
+      h += '<div class="notion"><h3>' + n.n + " " + n.e.map(function (x) { return '<span class="tag ' + x + '">' + court(x) + "</span>"; }).join("") +
         "</h3><p style='margin:.2em 0'>" + n.d + '</p><p class="dist">' + n.dist + '</p><p class="ref">' + n.a + "</p></div>";
     });
     l.innerHTML = ty(h || "<p class='mute'>Aucune notion ne correspond.</p>");
