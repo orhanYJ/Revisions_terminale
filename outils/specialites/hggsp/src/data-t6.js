@@ -533,7 +533,7 @@ DOSSIERS.t6 = {
       bilan: "Perte à court terme, la mobilité peut devenir un atout si le pays d'origine offre des débouchés et garde le lien avec sa diaspora." },
     { q: "Le cyberespace peut-il être régulé ?",
       pour: ["Des textes existent : convention de Budapest (2001), RGPD (2018), NIS 2 (2022), convention de l'ONU contre la cybercriminalité (2024).", "L'UE sanctionne des auteurs d'attaques (depuis 2020) ; l'Appel de Paris (2018) associe États et entreprises.", "Les États se dotent d'agences (ANSSI) qui protègent et coopèrent."],
-      contre: ["Les grandes puissances défendent des modèles opposés (Internet ouvert ou souverain).", "L'attribution des attaques est difficile, les acteurs privés et criminels nombreux.", "Les attaques continuent sous le seuil de la guerre (NotPetya 2017, câbles coupés en 2024) ; la France transpose NIS 2 avec deux ans de retard."],
+      contre: ["Les grandes puissances défendent des modèles opposés (Internet ouvert ou souverain).", "L'attribution des attaques est difficile, les acteurs privés et criminels nombreux.", "Les attaques continuent sous le seuil de la guerre (NotPetya 2017, câbles coupés en 2024) ; la France n'a toujours pas transposé NIS 2 en novembre 2026, deux ans après la date limite."],
       bilan: "Le cyberespace est régulé par morceaux (crime, données, sécurité des entreprises), mais pas encore dans ses usages militaires et géopolitiques." }
   ],
   dissert: {

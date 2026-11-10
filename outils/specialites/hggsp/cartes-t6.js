@@ -237,7 +237,7 @@ module.exports = function (ctx) {
       PL("ny", L.ny, "New York : les Rosenberg", { a: "start", dy: 10 }),
       PL("berlin", L.berlin, "Berlin : le tunnel", { a: "start", dy: 10, cl: "pt-b" }),
       PL("peshawar", L.peshawar, "Peshawar", { a: "end", dy: 8, cl: "pt-b" }),
-      PL("sverd", L.sverd, "Sverdlovsk : U-2 abattu", { a: "start", dy: -8 }),
+      PL("sverd", L.sverd, "Sverdlovsk : U-2 abattu", { a: "end", dy: -26 }),
       PL("havane", L.havane, "Cuba : les missiles", { a: "start", dy: 8 }),
       T.lb("penk", L.moscou, "Penkovski arrêté", { a: "start", dy: 8 }),
       PL("paris", L.paris, "Paris : la DST", { a: "end", dy: 10, cl: "pt-b" }),
@@ -279,12 +279,12 @@ module.exports = function (ctx) {
       T.lb("p_urssL", L.moscou, "URSS", { a: "start", dy: -8 }),
       T.lb("p_rfaL", L.bonn, "RFA", { a: "start", dy: 14 }),
       T.lb("p_usaL", L.usa, "← États-Unis", { a: "start", dy: -10 }),
-      T.lb("p_ukL", L.londres, "Royaume-Uni", { a: "end", dy: -8 }),
+      T.lb("p_ukL", L.londres, "Royaume-Uni", { a: "start", dy: -8 }),
       T.lb("nucL", L.ottawa, "← Canada : réacteur CIRUS", { a: "start", dy: -10 }),
       PL("pokhran", L.pokhran, "Pokhran 1974", { a: "end", dy: -6 }),
       T.lb("nsg", [25, 10], "embargo nucléaire (1975)", { a: "middle", cl: "lbl-f" }),
       T.lb("aryat", L.kapus, "lanceur soviétique", { a: "end", dy: -10 }),
-      T.lb("fuitet", [-8, 22], "← fuite des cerveaux vers l'Amérique", { a: "start", cl: "lbl-f", dy: 34 }),
+      T.lb("fuitet", [-8, 22], "← fuite des cerveaux", { a: "start", cl: "lbl-f", dy: 34 }),
       T.lb("tit", L.dallas, "← Texas Instruments (Dallas)", { a: "start", dy: 18 }),
       T.cartouche("envois", vb[0] + 8, vb[1] + vb[3] - 52, ["2024 : 129 Md$ envoyés", "par les Indiens de l'étranger"], { titre: true }),
       PL("vienne", L.vienne, "Vienne 2008", { a: "end", dy: -8, cl: "pt-b" }),
@@ -314,7 +314,7 @@ module.exports = function (ctx) {
       T.fleche("snow", L.ftmeade, L.hk, { c: -0.22, b: true, tir: "0.03 0.02" }),
       T.fleche("notpetya1", L.kiev, [-75, 40], { c: 0.2, tir: "0.03 0.02" }),
       T.fleche("notpetya2", L.kiev, [105, 30], { c: -0.2, tir: "0.03 0.02" }),
-      T.cartouche("cabt", 330, 380, ["Environ 570 câbles en service", "≈ 99 % des communications", "intercontinentales"], { titre: true }),
+      T.cartouche("cabt", vbDe(M, [-128, -40], [150, 72], WM, HM)[0] + 10, vbDe(M, [-128, -40], [150, 72], WM, HM)[1] + vbDe(M, [-128, -40], [150, 72], WM, HM)[3] - 76, ["Environ 570 câbles en service", "≈ 99 % des communications", "intercontinentales"], { titre: true }),
       PL("arpa", L.la, "ARPANET 1969", { a: "start", dy: 8, cl: "pt-b" }),
       PL("cern", L.geneve, "CERN : le Web", { a: "end", dy: 14, cl: "pt-b" }),
       PL("tallinn", L.tallinn, "Estonie 2007", { a: "start", dy: -8 }),
@@ -326,11 +326,11 @@ module.exports = function (ctx) {
       PL("paris", L.paris, "Paris : TV5Monde", { a: "end", dy: -8 }),
       PL("kiev", L.kiev, "Ukraine", { a: "start", dy: 6 }),
       PL("londres", L.londres, "Londres : WannaCry", { a: "end", dy: -10 }),
-      T.lb("notpt", [70, 52], "NotPetya se répand", { a: "middle", cl: "lbl-f" }),
+      T.lb("notpt", [84, 58], "NotPetya se répand", { a: "middle", cl: "lbl-f" }),
       T.lb("viasat", L.kiev, "Viasat, Starlink", { a: "start", dy: 24, cl: "lbl-f" }),
       PL("balt", L.gotland, "Baltique", { a: "end", dy: -10 }),
       PL("mrouge", L.merrouge, "mer Rouge", { a: "end", dy: 14 }),
-      T.lb("anssi", L.paris, "ANSSI, COMCYBER, Viginum", { a: "end", dy: 16, cl: "lbl-f" })
+      T.lb("anssi", L.paris, "ANSSI, COMCYBER, Viginum", { a: "end", dy: 34, cl: "lbl-f" })
     ].join("");
     OUT.anims.t6cyber = { w: WM, h: HM, vb: vbDe(M, [-128, -40], [150, 72], WM, HM), fond: "monde", calques: T.defs + s };
   }
@@ -340,7 +340,7 @@ module.exports = function (ctx) {
   /* retouches d'étiquettes (ancre, décalage vertical) et recadrage sur les points */
   const RET = {
     t6savoir: { "Silicon Valley": ["start", -10], "Los Alamos": ["start", 10], Boston: ["start", -2], Londres: ["end", -6], Paris: ["end", 8], "Genève": ["start", 10], Vienne: ["start", 0], Stockholm: ["start", -4], Moscou: ["start", -4] },
-    t6cyber: { "Fort Meade": ["end", -8], "Virginia Beach": ["end", 12], "Virginie du Nord": ["start", 0], "Los Angeles": ["start", 14], Baltique: ["end", -6], ANSSI: ["end", 10], Bruxelles: ["start", -8], Marseille: ["start", 8], Tallinn: ["start", -4] }
+    t6cyber: { "Fort Meade": ["end", -8], "Virginia Beach": ["end", 12], "Virginie du Nord": ["start", 0], "Los Angeles": ["start", 14], Baltique: ["end", -6], ANSSI: ["end", 15], Bruxelles: ["start", -8], Marseille: ["start", 8], Tallinn: ["start", -4] }
   };
   const finir = (nom, sw, ne) => {
     const c = OUT.cartes[nom];
@@ -348,7 +348,7 @@ module.exports = function (ctx) {
     c.vb = vbDe(M, sw, ne, WM, HM);
   };
   OUT.cartes.t6savoir = {
-    w: WM, h: HM, fond: "monde", deco: M.txt([-100, 40], "ÉTATS-UNIS", { a: "middle" }) + M.txt([103, 33], "CHINE", { a: "middle" }) + M.txt([79, 22], "INDE", { a: "middle" }),
+    w: WM, h: HM, fond: "monde", deco: M.txt([-98, 46.5], "ÉTATS-UNIS", { a: "middle" }) + M.txt([103, 33], "CHINE", { a: "middle" }) + M.txt([79, 22], "INDE", { a: "middle" }),
     pts: [
       P("sci", [2.35, 48.86], "Paris", "end", "Paris : Académie des sciences, Institut du radium, UNESCO", "Académie royale des sciences (1666), Journal des sçavans (1665), laboratoire des Curie puis Institut du radium (1914). Siège de l'UNESCO depuis 1958 (organisation créée le 16 novembre 1945)."),
       P("sci", [-0.13, 51.51], "Londres", "end", "Londres : la Royal Society", "Fondée en 1660, elle publie les Philosophical Transactions depuis 1665, la plus ancienne revue scientifique encore publiée. Nature y paraît depuis 1869."),
@@ -368,7 +368,7 @@ module.exports = function (ctx) {
     meta: { t: "Les lieux de la connaissance : produire, partager, contrôler", c: { sci: ["Communauté savante et coopération internationale", "#2D5675"], pole: ["Pôles de la société de la connaissance", "#B07A1E"], ctrl: ["Secret, censure et contrôle du savoir", "#B3241B"] } }
   };
   OUT.cartes.t6cyber = {
-    w: WM, h: HM, fond: "monde", deco: M.txt([-100, 40], "ÉTATS-UNIS", { a: "middle" }) + M.txt([95, 63], "RUSSIE", { a: "middle" }) + M.txt([103, 33], "CHINE", { a: "middle" }),
+    w: WM, h: HM, fond: "monde", deco: M.txt([-103, 47.5], "ÉTATS-UNIS", { a: "middle" }) + M.txt([95, 58], "RUSSIE", { a: "middle" }) + M.txt([103, 33], "CHINE", { a: "middle" }),
     pts: [
       P("infra", [-75.98, 36.85], "Virginia Beach", "end", "Virginia Beach (États-Unis)", "Point d'atterrissage de MAREA (Microsoft, Meta, Telxius, 2018, vers Bilbao) et de Dunant (Google, 2021, vers la Vendée) : les géants du numérique possèdent désormais leurs propres câbles."),
       P("infra", [5.37, 43.3], "Marseille", "start", "Marseille (France)", "Grand carrefour méditerranéen des câbles vers l'Afrique, le Moyen-Orient et l'Asie, et pôle de centres de données."),
@@ -387,6 +387,6 @@ module.exports = function (ctx) {
     ],
     meta: { t: "Le cyberespace : infrastructures, attaques et souveraineté", c: { infra: ["Infrastructures (câbles, données)", "#2D5675"], att: ["Cyberattaques majeures", "#B3241B"], souv: ["Surveillance, contrôle et régulation", "#B07A1E"] } }
   };
-  finir("t6savoir", [-128, -5], [128, 66]);
+  finir("t6savoir", [-128, -5], [140, 66]);
   finir("t6cyber", [-128, -5], [128, 66]);
 };

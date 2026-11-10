@@ -469,6 +469,86 @@ WIDGETS_EXT["parcours-graphe"] = function (z, opt, O) {
   O.lecteur(z, { titre: "parcours d’un graphe", choix: [{ k: "largeur", t: "en largeur (file)" }, { k: "profondeur", t: "en profondeur (pile)" }, { k: "chemin", t: "plus court chemin A → G" }], etapes: etapes, dessine: dessine, vitesse: 1500 });
 };
 
+/* Animation : repérer un cycle par un parcours en profondeur récursif (mêmes algorithmes que c8-cycle et c8-cycle-oriente). */
+WIDGETS_EXT["cycle"] = function (z, opt, O) {
+  var GR = {
+    sans: { o: true, g: { A: ["B", "C"], B: ["D"], C: ["D", "E"], D: [], E: [] }, p: { A: [40, 110], B: [140, 40], C: [140, 180], D: [250, 110], E: [270, 200] } },
+    avec: { o: true, g: { A: ["B", "C"], B: ["D"], C: ["D", "E"], D: [], E: ["C"] }, p: { A: [40, 110], B: [140, 40], C: [140, 180], D: [250, 110], E: [270, 200] } },
+    non: { o: false, g: { A: ["B", "C"], B: ["A", "D"], C: ["A", "D"], D: ["B", "C"] }, p: { A: [40, 110], B: [150, 40], C: [150, 180], D: [260, 110] } }
+  };
+  function etapes(k) {
+    var D = GR[k], g = D.g, E = [], etat = {}, pile = [], arc = null, cycle = null, fini = false;
+    Object.keys(g).forEach(function (s) { etat[s] = "blanc"; });
+    function snap(msg) { E.push({ etat: JSON.parse(JSON.stringify(etat)), pile: pile.slice(), arc: arc, cycle: cycle, msg: msg }); }
+    if (D.o) {
+      snap("Graphe <b>orienté</b>. Trois états : <b>blanc</b> (jamais vu), <b>gris</b> (en cours : encore dans la pile d’appels), <b>noir</b> (terminé). Un arc vers un sommet <b>gris</b> referme un cycle.");
+      var explorer = function (s) {
+        etat[s] = "gris"; pile.push(s); arc = null;
+        snap("<code>explorer(" + s + ")</code> : " + s + " passe en <b>gris</b> et entre dans la pile d’appels.");
+        for (var i = 0; i < g[s].length; i++) {
+          var v = g[s][i]; arc = [s, v];
+          if (etat[v] === "gris") { cycle = pile.slice(pile.indexOf(v)).concat([v]); snap("Arc " + s + " → " + v + " : " + v + " est <b>gris</b>, donc encore en cours, plus bas dans la pile. On est revenu sur un chemin déjà commencé : <b>cycle " + cycle.join(" → ") + "</b>. La fonction renvoie True."); return true; }
+          if (etat[v] === "blanc") { snap("Arc " + s + " → " + v + " : " + v + " est blanc, on l’explore."); if (explorer(v)) return true; arc = null; }
+          else snap("Arc " + s + " → " + v + " : " + v + " est <b>noir</b> (déjà terminé, tous ses chemins explorés sans revenir ici). <b>Pas de cycle</b> par cet arc : un simple test « déjà vu » se tromperait ici.");
+        }
+        etat[s] = "noir"; pile.pop(); arc = null;
+        snap(s + " n’a plus de successeur à examiner : il devient <b>noir</b> et sort de la pile.");
+        return false;
+      };
+      var trouve = false, ks = Object.keys(g);
+      for (var j = 0; j < ks.length && !trouve; j++) if (etat[ks[j]] === "blanc") trouve = explorer(ks[j]);
+      if (!trouve) { arc = null; snap("Tous les sommets sont noirs et aucun arc n’a mené à un sommet gris : <b>pas de cycle</b>, la fonction renvoie False. Ici, D est atteint par deux chemins (A → B → D et A → C → D) sans former de cycle."); }
+    } else {
+      snap("Graphe <b>non orienté</b> : on mémorise les sommets vus et, pour chacun, le sommet d’où l’on vient (son <b>parent</b>).");
+      var parent = {};
+      var expl = function (s, par) {
+        etat[s] = "gris"; parent[s] = par; pile.push(s); arc = null;
+        snap("<code>explorer(" + s + ", " + (par || "None") + ")</code> : " + s + " est marqué vu" + (par ? ", on y est arrivé depuis " + par : "") + ".");
+        for (var i = 0; i < g[s].length; i++) {
+          var v = g[s][i]; arc = [s, v];
+          if (etat[v] === "blanc") { snap("Arête " + s + " – " + v + " : " + v + " pas encore vu, on l’explore."); if (expl(v, s)) return true; arc = null; }
+          else if (v !== par) { cycle = pile.slice(pile.indexOf(v)).concat([v]); snap("Arête " + s + " – " + v + " : " + v + " est <b>déjà vu</b> et ce n’est pas le parent de " + s + " (" + par + ") : il existe deux chemins différents vers " + v + ". <b>Cycle " + cycle.join(" – ") + "</b>, la fonction renvoie True."); return true; }
+          else snap("Arête " + s + " – " + v + " : " + v + " est déjà vu, mais c’est le <b>parent</b> : on revient par l’arête qu’on vient d’emprunter, ce n’est pas un cycle.");
+        }
+        etat[s] = "noir"; pile.pop(); arc = null;
+        snap(s + " n’a plus de voisin à examiner : fin de son appel.");
+        return false;
+      };
+      expl("A", null);
+    }
+    return E;
+  }
+  function dessine(sc, e, i, E, saut) {
+    var k = sc.getAttribute("data-k"), D = GR[k], P = D.p, R = 17;
+    var s = '<svg class="graphe-svg cyc" viewBox="0 0 310 225" role="img" aria-label="Graphe ' + (D.o ? "orienté" : "non orienté") + ' et parcours en profondeur">';
+    var dans = function (a, b) { if (!e.cycle) return false; for (var j = 0; j + 1 < e.cycle.length; j++) if ((e.cycle[j] === a && e.cycle[j + 1] === b) || (!D.o && e.cycle[j] === b && e.cycle[j + 1] === a)) return true; return false; };
+    var vus = {};
+    Object.keys(D.g).forEach(function (a) {
+      D.g[a].forEach(function (b) {
+        if (!D.o && vus[b + a]) return; vus[a + b] = 1;
+        var p = P[a], q = P[b], dx = q[0] - p[0], dy = q[1] - p[1], L = Math.sqrt(dx * dx + dy * dy), ux = dx / L, uy = dy / L;
+        var dbl = D.o && D.g[b].indexOf(a) >= 0, ox = dbl ? -uy * 7 : 0, oy = dbl ? ux * 7 : 0;
+        var x1 = p[0] + ux * R + ox, y1 = p[1] + uy * R + oy, x2 = q[0] - ux * (R + (D.o ? 2 : 0)) + ox, y2 = q[1] - uy * (R + (D.o ? 2 : 0)) + oy;
+        var cl = dans(a, b) ? " cy" : e.arc && ((e.arc[0] === a && e.arc[1] === b) || (!D.o && e.arc[0] === b && e.arc[1] === a)) ? " ex" : "";
+        s += '<line class="ar' + cl + '" x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '"/>';
+        if (D.o) s += '<path class="pointe' + cl + '" d="M' + x2.toFixed(1) + " " + y2.toFixed(1) + " L" + (x2 - ux * 10 - uy * 5).toFixed(1) + " " + (y2 - uy * 10 + ux * 5).toFixed(1) + " L" + (x2 - ux * 10 + uy * 5).toFixed(1) + " " + (y2 - uy * 10 - ux * 5).toFixed(1) + 'z"/>';
+      });
+    });
+    Object.keys(P).forEach(function (v) {
+      var p = P[v], et = e.etat[v], neuf = !saut && i > 0 && E[i - 1].etat[v] !== et;
+      s += '<g class="nd-c ' + et + (neuf ? " neuf" : "") + '"><circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + R + '"/><text x="' + p[0] + '" y="' + (p[1] + 5) + '" text-anchor="middle">' + v + "</text></g>";
+    });
+    s += "</svg>";
+    var leg = D.o ? '<span><i class="c-blanc"></i>blanc : jamais vu</span><span><i class="c-gris"></i>gris : en cours</span><span><i class="c-noir"></i>noir : terminé</span>' : '<span><i class="c-blanc"></i>pas encore vu</span><span><i class="c-gris"></i>vu, appel en cours</span><span><i class="c-noir"></i>vu, appel fini</span>';
+    sc.innerHTML = '<div class="parc">' + s + '<div class="parc-cote"><div class="titre-pile">pile d’appels (le plus récent en haut)</div><div class="mini-pile cyc-pile">' + (e.pile.length ? e.pile.slice().reverse().map(function (v) { return '<span class="puce">explorer(' + v + ")</span>"; }).join("") : '<span class="repere">vide</span>') + '</div><div class="legende-c mono">' + leg + "</div></div></div>";
+  }
+  O.lecteur(z, {
+    titre: "repérer un cycle", sous: "parcours en profondeur",
+    choix: [{ k: "sans", t: "orienté, sans cycle" }, { k: "avec", t: "orienté, avec cycle" }, { k: "non", t: "non orienté" }],
+    etapes: etapes, prepare: function (sc, k) { sc.setAttribute("data-k", k); }, dessine: dessine, vitesse: 1600
+  });
+};
+
 CH.push({
   id: "ch8", n: 8, court: "graphes", fichier: "ch8_graphes.py",
   titre: "Graphes : structures et algorithmes",
@@ -544,7 +624,9 @@ CH.push({
 <p>Dans un graphe <b>non orienté</b>, un parcours en profondeur rencontre un cycle quand il trouve un voisin <b>déjà visité</b> qui n’est pas le sommet d’où il vient (son parent) : il existe alors deux chemins différents vers ce sommet.</p>
 [[c8-cycle]]
 <p>Dans un graphe <b>orienté</b>, on distingue trois états : jamais vu, <b>en cours</b> (encore dans la pile d’appels), terminé. Un arc vers un sommet « en cours » referme un cycle. Exemple utile : des prérequis circulaires (A exige B, qui exige A) rendent un planning impossible.</p>
-[[c8-cycle-oriente]]` }
+[[c8-cycle-oriente]]
+<p>Les deux fonctions pas à pas : regarde la couleur des sommets et la pile d’appels au moment où l’arc (ou l’arête) qui referme le cycle est examiné.</p>
+[[w-cycle]]` }
   ],
   pieges: [
     { t: "Oublier de marquer les sommets visités", h: `[[c8-p-marquage]]<p>Dès qu’il y a un cycle (ici A-B-A), le parcours tourne indéfiniment. On marque un sommet <b>dès qu’on le découvre</b> (avant de l’enfiler) et on n’enfile que des sommets non marqués.</p>` },

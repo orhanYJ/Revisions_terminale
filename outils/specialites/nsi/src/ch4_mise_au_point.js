@@ -564,6 +564,73 @@ def test_ma_fonction():                    # cas normaux + cas limites
 if __name__ == "__main__":
     test_ma_fonction()`, { run: false });
 
+/* Animation : une exception remonte la pile d'appels (notes.py, sans puis avec try … except). */
+C("c4-exc-try", String.raw`
+def moyenne(notes):
+    return sum(notes) / len(notes)
+
+def bilan(eleves):
+    for nom in eleves:
+        try:
+            print(nom, moyenne(eleves[nom]))
+        except ZeroDivisionError:
+            print(nom, "pas de note")
+
+bilan({"Ada": [15, 17], "Alan": []})
+print("fin du programme")`, { fichier: "notes_try.py", out: "Ada 16.0\nAlan pas de note\nfin du programme" });
+
+WIDGETS_EXT["exception"] = function (z, opt, O) {
+  var PR = "programme principal", A = '"Ada"', AL = '"Alan"';
+  function cadre(f, v, et) { return { f: f, v: v || "", et: et || "" }; }
+  function etapes(k) {
+    var E = [], t = k === "try";
+    var lM = 2, lB = t ? 7 : 6, lP = t ? 11 : 8;
+    function snap(l, pile, msg, o) { o = o || {}; E.push({ l: l, pile: pile, msg: msg, exc: o.exc === undefined ? -1 : o.exc, out: o.out || "", tb: o.tb || [], fin: !!o.fin, ok: !!o.ok }); }
+    var p0 = cadre(PR, "", "attente");
+    snap(lP, [cadre(PR, "", "actif")], "Ligne " + lP + " : le programme principal appelle <b>bilan</b>. Chaque appel empile un <b>cadre</b> (ses variables, la ligne où il en est).");
+    snap(5, [p0, cadre("bilan()", "nom = " + A, "actif")], "Dans <b>bilan</b>, la boucle prend <code>nom = " + O.esc(A) + "</code>.");
+    snap(lM, [p0, cadre("bilan()", "nom = " + A, "attente"), cadre("moyenne()", "notes = [15, 17]", "actif")], "Ligne " + lB + " : appel de <b>moyenne([15, 17])</b> ; bilan attend sa réponse.");
+    snap(lB, [p0, cadre("bilan()", "nom = " + A, "actif")], "moyenne renvoie 32 / 2 = <b>16.0</b> ; son cadre est dépilé et <code>print</code> affiche la ligne d’Ada.", { out: "Ada 16.0" });
+    snap(5, [p0, cadre("bilan()", "nom = " + AL, "actif")], "Tour suivant : <code>nom = " + O.esc(AL) + "</code>.", { out: "Ada 16.0" });
+    snap(lM, [p0, cadre("bilan()", "nom = " + AL, "attente"), cadre("moyenne()", "notes = []", "actif")], "Appel de <b>moyenne([])</b> : la liste d’Alan est vide.", { out: "Ada 16.0" });
+    var tb1 = ['File "' + (t ? "notes_try" : "notes") + '.py", line 2, in moyenne'];
+    snap(lM, [p0, cadre("bilan()", "nom = " + AL, "attente"), cadre("moyenne()", "notes = []", "erreur")], "<code>sum([])</code> vaut 0 et <code>len([])</code> vaut 0 : la division est impossible. Python <b>lève</b> une exception <b>ZeroDivisionError</b> : l’exécution normale s’interrompt sur cette ligne.", { exc: 2, out: "Ada 16.0", tb: tb1 });
+    var tb2 = ['File "' + (t ? "notes_try" : "notes") + '.py", line ' + lB + ", in bilan"].concat(tb1);
+    if (!t) {
+      snap(lB, [p0, cadre("bilan()", "nom = " + AL, "erreur")], "moyenne n’a pas de <code>try</code> : son cadre est <b>abandonné</b> (dépilé sans rien renvoyer) et l’exception <b>remonte</b> chez l’appelant, ligne 6 de bilan. Une ligne s’ajoute <b>au-dessus</b> de la trace.", { exc: 1, out: "Ada 16.0", tb: tb2 });
+      var tb3 = ['File "notes.py", line 8, in &lt;module&gt;'].concat(tb2);
+      snap(lP, [cadre(PR, "", "erreur")], "bilan ne la rattrape pas non plus : son cadre est abandonné, la boucle ne continue pas. L’exception arrive au programme principal, ligne 8.", { exc: 0, out: "Ada 16.0", tb: tb3 });
+      snap(0, [], "Personne ne l’a rattrapée : le programme <b>s’arrête</b> et affiche la trace. Elle se lit comme la pile, du plus ancien appel (en haut) au plus récent (en bas), puis le type et le message. Le bug n’est pas dans moyenne : ce sont les données (liste vide).", { out: "Ada 16.0", tb: tb3, fin: true });
+    } else {
+      snap(lB, [p0, cadre("bilan()", "nom = " + AL, "erreur")], "moyenne n’a pas de <code>try</code> : son cadre est abandonné et l’exception remonte dans bilan, ligne 7. Or cette ligne est <b>dans un bloc try</b> dont le <code>except</code> attend justement <b>ZeroDivisionError</b>.", { exc: 1, out: "Ada 16.0", tb: tb2 });
+      snap(9, [p0, cadre("bilan()", "nom = " + AL, "actif")], "L’exception est <b>rattrapée</b> : elle disparaît, et l’exécution reprend dans le bloc <code>except</code> (ligne 9).", { out: "Ada 16.0\nAlan pas de note", ok: true });
+      snap(12, [cadre(PR, "", "actif")], "La boucle est finie : bilan se termine normalement et son cadre est dépilé. Le programme <b>continue</b> : rattraper une exception <b>prévue</b>, c’est éviter l’arrêt sans cacher les autres erreurs.", { out: "Ada 16.0\nAlan pas de note\nfin du programme", ok: true });
+    }
+    return E;
+  }
+  function id(k) { return k === "try" ? "c4-exc-try" : "c4-trace"; }
+  O.lecteur(z, {
+    titre: "une exception remonte la pile", sous: "ZeroDivisionError", vitesse: 1700,
+    choix: [{ k: "sans", t: "sans try (arrêt)" }, { k: "try", t: "avec try … except" }],
+    etapes: etapes,
+    prepare: function (sc, k) {
+      var c = CODE[id(k)];
+      sc.innerHTML = '<div class="trace exc"><div class="code zebre"><div class="tete"><span class="f">' + O.esc(c.fichier) + '</span></div><pre><code>' + O.lignes(O.hlPy(c.src.replace(/^\n+|\s+$/g, ""))) + '</code></pre></div><div class="tr-cote"><div class="titre-pile">pile d’appels (le plus récent en haut)</div><div class="tr-pile"></div><div class="titre-pile">sortie</div><pre class="tr-sortie"></pre></div></div>';
+    },
+    dessine: function (sc, e, i, E, saut) {
+      O.$$(".trace .l", sc).forEach(function (l, n) { l.classList.toggle("vise", n + 1 === e.l); l.classList.toggle("exc-l", n + 1 === e.l && e.exc >= 0); });
+      var avant = i > 0 && !saut ? E[i - 1].pile.length : e.pile.length;
+      O.$(".tr-pile", sc).innerHTML = e.pile.length ? e.pile.map(function (c, n) {
+        var cl = c.et === "actif" ? " actif" : c.et === "erreur" ? " erreur" : "";
+        return '<div class="cadre-pile' + cl + (n >= avant ? " neuf" : "") + '"><div class="nm">' + O.esc(c.f) + (n === e.exc ? ' <span class="exc-p' + (saut ? "" : " neuf") + '">ZeroDivisionError</span>' : "") + "</div>" + (c.v ? '<div class="vr">' + O.esc(c.v) + "</div>" : "") + "</div>";
+      }).reverse().join("") : '<span class="repere">' + (e.fin ? "pile vide : programme arrêté" : "—") + "</span>";
+      var s = O.esc(e.out);
+      if (e.tb.length) s += (s ? "\n" : "") + '<span class="err-t">' + (e.fin ? "Traceback (most recent call last):\n" : "trace en construction :\n") + e.tb.map(function (x) { return "  " + x; }).join("\n") + (e.fin ? "\nZeroDivisionError: division by zero" : "") + "</span>";
+      O.$(".tr-sortie", sc).innerHTML = s;
+    }
+  });
+};
+
 CH.push({
   id: "ch4", n: 4, court: "mise_au_point", fichier: "ch4_mise_au_point.py",
   titre: "Modularité et mise au point",
@@ -648,7 +715,9 @@ CH.push({
 <p>Ici, le bug n’est pas dans <code>moyenne</code> mais dans les données : la liste d’Alan est vide. Une fonction peut <b>lever</b> elle-même une exception avec <code>raise</code> pour signaler un appel impossible, avec un message utile :</p>
 [[c4-raise]]
 <p>On peut <b>rattraper</b> une exception prévue avec <code>try … except</code> : le programme continue au lieu de s’arrêter.</p>
-[[c4-try]]` },
+[[c4-try]]
+<p>Ce qui se passe dans la pile d’appels quand l’exception est levée, sans puis avec <code>try … except</code> :</p>
+[[w-exception]]` },
 
     { id: "i8", t: "Les causes typiques de bugs (liste du programme)", h: `
 <p>Le programme cite précisément ces causes. Pour chacune : le symptôme et la correction.</p>

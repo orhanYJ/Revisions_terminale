@@ -24,6 +24,7 @@ module.exports = function (ctx) {
   const pe = d3.geoConicConformal().rotate([-14, 0]).parallels([38, 58]).fitExtent([[10, 10], [WE - 10, HE - 10]], { type: "MultiPoint", coordinates: [[-9, 34], [40, 61], [36, 30]] });
   const E = cadre(pe, WE, HE, 0.8, 4);
   const fondE = '<rect width="' + WE + '" height="' + HE + '" class="k-mer-f"/><path d="' + simplifier(E.gp(d3.geoGraticule().step([10, 10])()), 0.5, 0) + '" class="k-grat"/><path d="' + E.pays() + '" class="k-terre"/>';
+  ctx.EUROPEE = { E, fondE, WE, HE };   /* réutilisé par cartes-z.js (même fond, stocké une seule fois) */
 
   /* ---------- fond de l'Europe centrale, plus serré, pour les scènes animées (réutilisé par cartes-t4.js) ---------- */
   const WC = 900, HC = 620;
@@ -118,7 +119,7 @@ module.exports = function (ctx) {
       pt("local", [35.21, 31.77], "Jérusalem", "start", "Jérusalem : le procès Eichmann (1961)", "Adolf Eichmann, organisateur des déportations, enlevé en Argentine en mai 1960, est jugé à partir du 11 avril 1961, condamné à mort le 15 décembre 1961 et exécuté en 1962. Le procès fait entendre plus d'une centaine de témoins."),
       pt("crime", [19.3, 44.1], "Srebrenica", "start", "Srebrenica (Bosnie-Herzégovine), juillet 1995", "Environ 8 000 hommes et garçons bosniaques musulmans sont tués par les forces serbes de Bosnie. Le TPIY qualifie ces crimes de génocide (Krstić, 2001 et 2004) ; la Cour internationale de justice le confirme le 26 février 2007. Non loin, Sarajevo subit le plus long siège d'une capitale dans l'histoire contemporaine (5 avril 1992-29 février 1996)."),
       pt("crime", [29.74, -2.6], "Butare", "end", "Rwanda, avril-juillet 1994", "Le génocide des Tutsis fait environ 800 000 morts selon l'ONU (plus d'un million selon le recensement des autorités rwandaises) en une centaine de jours, à partir du 7 avril 1994."),
-      pt("crime", [-3.0, 16.77], "Tombouctou", "end", "Tombouctou (Mali), 2012", "La destruction de mausolées classés au patrimoine mondial est jugée comme crime de guerre par la CPI (affaire Al Mahdi, 27 septembre 2016) : voir le thème 4.")
+      pt("crime", [-3.0, 16.77], "Tombouctou", "start", "Tombouctou (Mali), 2012", "La destruction de mausolées classés au patrimoine mondial est jugée comme crime de guerre par la CPI (affaire Al Mahdi, 27 septembre 2016) : voir le thème 4.")
     ];
     const meta = { t: "Juger les crimes de masse : tribunaux et lieux", c: { inter: ["Juridictions internationales ou mixtes", "#B3241B"], local: ["Justice nationale ou locale", "#2D5675"], crime: ["Lieux de crimes de masse jugés", "#B07A1E"] } };
     const R = { "La Haye": ["end", -6], Nuremberg: ["start", -6], Lyon: ["start", 10], Bordeaux: ["end", 4], Srebrenica: ["start", 12], Butare: ["end", 8], Kigali: ["start", -6] };

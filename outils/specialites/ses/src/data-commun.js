@@ -34,7 +34,7 @@ var PROG = [
       titre: "Comment expliquer les crises financières et réguler le système financier ?",
       objectifs: [
         "Connaître les principales caractéristiques de la crise financière des années 1930 et de celle de 2008 (effondrement boursier, faillites en chaîne, chute du PIB et accroissement du chômage).",
-        "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties autoréalisatrices).",
+        "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties auto réalisatrices).",
         "Comprendre les phénomènes de panique bancaire et de faillites bancaires en chaîne.",
         "Connaître les principaux canaux de transmission d’une crise financière à l’économie réelle : effets de richesse négatif, baisse du prix du collatéral et ventes forcées, contraction du crédit.",
         "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l’aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité."],
@@ -99,7 +99,7 @@ var PROG = [
       titre: "Quelles inégalités sont compatibles avec les différentes conceptions de la justice sociale ?",
       objectifs: [
         "Connaître les grandes tendances d’évolution des inégalités économiques depuis le début du XXe siècle et comprendre que les inégalités économiques et sociales présentent un caractère multiforme et cumulatif.",
-        "Savoir interpréter les principaux outils de mesure des inégalités, statique (rapport inter-quantiles, courbe de Lorenz et coefficient de Gini, top 1 %) et dynamique (corrélation de revenu parents-enfants).",
+        "Savoir interpréter les principaux outils de mesure des inégalités, statique (rapport inter-quantiles, courbe de Lorenz et coefficient de Gini, top 1%) et dynamique (corrélation de revenu parents-enfants).",
         "Comprendre que les différentes formes d’égalité (égalité des droits, des chances ou des situations) permettent de définir ce qui est considéré comme juste selon différentes conceptions de la justice sociale (notamment l’utilitarisme, le libertarisme, l’égalitarisme libéral, l’égalitarisme strict).",
         "Comprendre que l’action des pouvoirs publics en matière de justice sociale (fiscalité, protection sociale, services collectifs, mesures de lutte contre les discriminations) s’exerce sous contrainte de financement et fait l’objet de débats en termes d’efficacité (réduction des inégalités), de légitimité (notamment consentement à l’impôt) et de risque d’effets pervers (désincitations)."],
       notions: ["inégalités économiques et sociales", "caractère multiforme et cumulatif des inégalités", "rapport inter-quantiles", "courbe de Lorenz", "coefficient de Gini", "top 1 %", "corrélation des revenus parents-enfants", "égalité des droits", "égalité des chances", "égalité des situations", "utilitarisme", "libertarisme", "égalitarisme libéral", "égalitarisme strict", "fiscalité", "protection sociale", "services collectifs", "discriminations", "consentement à l’impôt", "désincitations"],

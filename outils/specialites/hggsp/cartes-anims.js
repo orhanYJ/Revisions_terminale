@@ -49,7 +49,7 @@ module.exports = function (ctx) {
     const s = [
       T.point("baik", [63.3, 45.9], "Baïkonour (URSS)", { a: "start" }),
       T.point("canav", [-80.6, 28.5], "Cap Canaveral (États-Unis)", { a: "start", cl: "pt-b" }),
-      T.point("hamm", [-3.1, 30.9], "Hammaguir (France, Algérie)", { a: "end" }),
+      T.point("hamm", [-3.1, 30.9], "Hammaguir (France, Algérie)", { a: "start", dy: 20 }),
       T.point("uchi", [131.1, 31.3], "Uchinoura (Japon)", { a: "start" }),
       T.point("jiuq", [100.3, 41.0], "Jiuquan (Chine)", { a: "end" }),
       T.point("woom", [136.5, -31.1], "Woomera (R.-U., Australie)", { a: "end" }),
@@ -58,13 +58,13 @@ module.exports = function (ctx) {
       T.point("palm", [34.7, 31.9], "Palmachim (Israël)", { a: "end", dy: 6 }),
       T.point("semn", [53.9, 35.2], "Semnan (Iran)", { a: "start", dy: -4 }),
       T.point("sohae", [124.7, 39.7], "Sohae (Corée du Nord)", { a: "start", dy: -6 }),
-      T.point("starb", [-97.2, 26.0], "Starbase (SpaceX)", { a: "end", cl: "pt-b" }),
+      T.point("starb", [-97.2, 26.0], "Starbase (SpaceX)", { a: "middle", dy: 15, cl: "pt-b" }),
       T.point("mahia", [177.9, -39.3], "Mahia (Rocket Lab)", { a: "end", cl: "pt-b" }),
       T.point("wench", [111.0, 19.6], "Wenchang (Chine)", { a: "start" }),
-      T.fleche("lune1", [-80.6, 28.5], [-40, 60], { b: true, c: -0.25 }),
-      T.etiq("lune1t", [-40, 64], "Apollo 11 → la Lune", { cl: "lbl-f" }),
-      T.fleche("lune2", [-80.6, 28.5], [-45, 58], { c: -0.3 }),
-      T.etiq("lune2t", [-45, 62], "Artemis II autour de la Lune", { cl: "lbl-f" })
+      T.fleche("lune1", [-80.6, 28.5], [-42, 52], { b: true, c: -0.25 }),
+      T.etiq("lune1t", [-42, 55.5], "Apollo 11 → la Lune", { cl: "lbl-f" }),
+      T.fleche("lune2", [-80.6, 28.5], [-44, 51], { c: -0.3 }),
+      T.etiq("lune2t", [-44, 54.5], "Artemis II autour de la Lune", { cl: "lbl-f" })
     ].join("");
     OUT.anims.espace = { w: WM, h: HM, vb: vbDe(M, [-125, -46], [180, 66], WM, HM), fond: "monde", calques: T.defs + s };
   }
@@ -86,7 +86,7 @@ module.exports = function (ctx) {
       P("civ", [-5.5, 7.5], "Côte d'Ivoire 2004", "start", null, 4),
       P("haiti", [-72.3, 18.9], "Haïti 2004", "start"),
       P("burundi", [29.9, -3.4], "Burundi 2004", "start", null, 8),
-      P("soudan", [31.6, 9.5], "Soudan 2005", "end"),
+      P("soudan", [31.6, 9.5], "Soudan 2005", "start"),
       P("liban", [35.5, 33.3], "Liban 2006", "end", null, -2),
       P("ny", [-74.0, 40.7], "Siège de l'ONU (New York)", "start", "pt-a")
     ].join("");
@@ -111,7 +111,7 @@ module.exports = function (ctx) {
       P("antal", [30.7, 36.9], "Antalya 2026", "start", 6, "pt-a"),
       P("wash", [-77.0, 38.9], "Washington : retraits 2020 et 2026", "start", 0, "pt-a")
     ].join("");
-    OUT.anims.cop = { w: WM, h: HM, vb: vbDe(M, [-95, -32], [150, 64], WM, HM), fond: "monde", calques: T.defs + s };
+    OUT.anims.cop = { w: WM, h: HM, vb: vbDe(M, [-95, -32], [150, 67], WM, HM), fond: "monde", calques: T.defs + s };
   }
 
   /* ================= 4. Mer de Chine méridionale ================= */
@@ -130,10 +130,10 @@ module.exports = function (ctx) {
       T.point("subi", [114.08, 10.92], "Subi", { a: "start", dy: -4 }),
       T.point("sanya", [109.6, 18.2], "Sanya", { a: "end", cl: "pt-b" }),
       T.point("woody", [112.33, 16.83], "", { r: 9, cl: "pt-b" }),
-      T.etiq("sansha", [112.0, 17.8], "« ville de Sansha » (2012)", { cl: "lbl", a: "end" }),
+      T.etiq("sansha", [112.6, 18.5], "« ville de Sansha » (2012)", { cl: "lbl", a: "start" }),
       T.zone("iles", [[112.5, 9.2], [116.0, 9.2], [116.0, 11.3], [112.5, 11.3], [112.5, 9.2]], "zone"),
       T.etiq("ilest", [114.3, 8.6], "îles artificielles", { cl: "lbl-f" }),
-      T.etiq("pca", [120.8, 11.0], "sentence de 2016 : « droits historiques » rejetés", { cl: "lbl", a: "start" }),
+      T.etiq("pca", [112.3, 6.4], "sentence de 2016 : « droits historiques » rejetés", { cl: "lbl", a: "middle" }),
       T.etiq("vn", [106.5, 14.5], "VIÊT NAM", { cl: "lbl", a: "middle" }),
       T.etiq("ph", [122.5, 13.3], "PHILIPPINES", { cl: "lbl", a: "middle" }),
       T.etiq("cn", [112.0, 22.8], "CHINE", { cl: "lbl", a: "middle" })
@@ -145,7 +145,7 @@ module.exports = function (ctx) {
   {
     const { C, fond } = regional([35.5, 31.6], [48.2, 38.0], 900, 520, 0.3);
     const T = outils(C, "daech");
-    const V = [["raqqa", [39.01, 35.95], "Raqqa", "end"], ["fallu", [43.78, 33.35], "Falloujah", "start"], ["mos", [43.13, 36.34], "Mossoul", "start"], ["tik", [43.68, 34.6], "Tikrit", "start"],
+    const V = [["raqqa", [39.01, 35.95], "Raqqa", "end"], ["fallu", [43.78, 33.35], "Falloujah", "middle"], ["mos", [43.13, 36.34], "Mossoul", "start"], ["tik", [43.68, 34.6], "Tikrit", "start"],
       ["sinj", [41.87, 36.32], "Sinjar", "end"], ["ram", [43.3, 33.42], "Ramadi", "end"], ["palm", [38.27, 34.56], "Palmyre", "end"]];
     let s = "";
     V.forEach(([k, ll, n, a]) => { s += T.point(k + "_r", ll, n, { a, cl: "pt-a", r: 8 }) + T.point(k + "_b", ll, n, { a, cl: "pt-b", r: 8 }); });
@@ -222,7 +222,7 @@ module.exports = function (ctx) {
     OUT.anims.usa = { w: W, h: H, fond: fondUS, calques: T.defs + s };
     /* carte interactive à points */
     const pt = (c, ll, n, a, t, d) => { const [x, y] = C.P(ll); return { c, x, y, n, a, t, d }; };
-    OUT.cartes.usa = { w: W, h: H, fond: fondUS, deco: C.txt([-98, 39], "ÉTATS-UNIS", { a: "middle" }) + C.txt([-105, 54], "CANADA", { a: "middle" }) + C.txt([-102, 26], "MEXIQUE", { a: "middle" }) + C.txt([-150, 64.5], "ALASKA", { a: "middle" }),
+    OUT.cartes.usa = { w: W, h: H, fond: fondUS, deco: C.txt([-98, 39], "ÉTATS-UNIS", { a: "middle" }) + C.txt([-105, 54], "CANADA", { a: "middle" }) + C.txt([-102, 26], "MEXIQUE", { a: "middle" }) + C.txt([-156, 59.6], "ALASKA", { a: "middle" }),
       meta: { t: "Les États-Unis : protéger et exploiter", c: { prot: ["Protection de la nature et lois", "#2D5675"], expl: ["Exploitation et catastrophes", "#B3241B"] } },
       pts: [
         pt("prot", [-110.6, 44.6], "Yellowstone", "start", "Yellowstone (Wyoming)", "Premier parc national du monde, créé le 1er mars 1872 ; les Amérindiens qui fréquentaient ces terres en sont écartés."),

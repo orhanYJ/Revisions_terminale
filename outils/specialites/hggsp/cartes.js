@@ -74,7 +74,7 @@ const pt = (c, ll, n, a, t, d) => { const [x, y] = M.P(ll); return { c, x, y, n,
   let deco = "";
   chokes.forEach(([ll, n]) => { const [x, y] = M.P(ll); deco += '<g class="k-choke"><path d="M' + (x - 4) + "," + (y - 4) + "L" + (x + 4) + "," + (y + 4) + "M" + (x + 4) + "," + (y - 4) + "L" + (x - 4) + "," + (y + 4) + '"/></g>'; });
   deco += M.txt([-100, 40], "ÉTATS-UNIS", { a: "middle" }) + M.txt([100, 62], "RUSSIE", { a: "middle" }) + M.txt([103, 33], "CHINE", { a: "middle" }) + M.txt([77, 26], "INDE", { a: "middle" }) +
-    M.txt([-35, 30], "OCÉAN ATLANTIQUE", { cl: "k-mer", a: "middle" }) + M.txt([-150, 5], "OCÉAN PACIFIQUE", { cl: "k-mer", a: "middle" }) + M.txt([78, -25], "OCÉAN INDIEN", { cl: "k-mer", a: "middle" });
+    M.txt([-35, 30], "OCÉAN ATLANTIQUE", { cl: "k-mer", a: "middle" }) + M.txt([-150, 5], "OCÉAN PACIFIQUE", { cl: "k-mer", a: "middle" }) + M.txt([82, -34], "OCÉAN INDIEN", { cl: "k-mer", a: "middle" });
   const pts = [
     pt("snle", [-4.5, 48.3], "Île Longue", "end", "Île Longue (France)", "Base des 4 sous-marins nucléaires lanceurs d'engins (SNLE) français, en rade de Brest. Au moins un SNLE est en patrouille en permanence depuis 1972."),
     pt("snle", [-4.8, 56.1], "Faslane", "end", "Faslane (Royaume-Uni)", "Base écossaise des 4 SNLE britanniques de la classe Vanguard, armés de missiles Trident d'origine américaine."),
@@ -240,7 +240,7 @@ const RETOUCHES = {
   mer: { Toulon: ["start", -6], Naples: ["start", 7], "Bahreïn": ["end", -7], "Abu Dhabi": ["end", 10], Djibouti: ["end", 9] },
   espace: { "Cap Canaveral": ["start", 2], Starbase: ["end", 4], Naro: ["start", 4], Taiyuan: ["start", 0, ""], Sohae: ["start", -6] },
   terro: { Londres: ["end", -4], Bruxelles: ["start", -5], Paris: ["start", 6], Nice: ["start", 7], Raqqa: ["end", -6], Baghouz: ["end", 8], Mossoul: ["start", -3] },
-  onu: { "Sierra Leone": ["end", -5], Liberia: ["end", 7], Rwanda: ["end", -5], Burundi: ["start", 6], RDC: ["end", 4], "Timor oriental": ["end", 0], Srebrenica: ["end", -2], Kosovo: ["start", 2] },
+  onu: { Soudan: ["start", 2], "Sierra Leone": ["end", -5], Liberia: ["end", 7], Rwanda: ["end", -5], Burundi: ["start", 6], RDC: ["end", 4], "Timor oriental": ["end", 0], Srebrenica: ["end", -2], Kosovo: ["start", 2] },
   chine: { Paracels: ["start", 4], Wenchang: ["start", -5] },
   mo: { "Jérusalem": ["end", -5], Gaza: ["end", 9] }
 };

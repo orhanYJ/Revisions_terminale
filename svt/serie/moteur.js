@@ -1,4 +1,4 @@
-/* Vidéos de cours SVT — moteur du lecteur, copie du moteur PC (pc/serie/moteur.js) aux couleurs du site SVT.
+/* Vidéos SVT — moteur du lecteur, copie du moteur PC (pc/serie/moteur.js) aux couleurs du site SVT.
    Ajouts : type mental (carte mentale du thème 1.A, svt/carte-mentale.js, zooms calés sur la voix) ; illustrations
    propres à un chapitre dans svt/serie/illu-<code>.js (window.SERIE_ILLU, outils dans window.SERIE_OUTILS).
    Repris du moteur PC :
@@ -15,6 +15,8 @@
   var NS = "http://www.w3.org/2000/svg";
   var C = { iv: "#e7f2da", iv2: "#b4cb9c", sa: "#b7d94c", sa2: "#2f9d62", ca: "#ff6b5b", te: "#5cc8d6", eau: "#74b9d8", nuit: "#0a1710",
     el: "#7fe3ff", uv: "#b48cff", rouge: "#ff4a3d", vert: "#7ce08a", or: "#ffd24a" };
+  // encres du carnet (textes posés sur le papier) ; C reste la palette des schémas, dessinés sur leurs tirages sombres
+  var K = { iv: "#1b2a20", iv2: "#7d8a7e", sa: "#2f7d52", ci: "#b7d94c", ro: "#a5462b" };
 
   /* ---------- outils ---------- */
   function h(tag, cls, parent, html) {
@@ -107,10 +109,16 @@
   function allume(lst, t) {
     lst.forEach(function (c) {
       var p = P(t, c.t, .35), f = P(t, c.t + .35, 1.4);
-      if (p <= 0) { c.sp.style.color = ""; c.sp.style.textShadow = ""; c.sp.style.backgroundSize = "0% 3px"; return; }
-      c.sp.style.color = C.sa;
-      c.sp.style.textShadow = "0 0 " + (18 * (1 - f)).toFixed(1) + "px rgba(183,217,76," + (0.7 * (1 - f)).toFixed(2) + ")";
-      c.sp.style.backgroundSize = (100 * E(p)).toFixed(0) + "% 3px";
+      var pl = c.sp.closest && c.sp.closest(".plaque");   // sur un tirage sombre : l'ancien soulignement lumineux
+      if (p <= 0) { c.sp.style.color = ""; c.sp.style.textShadow = ""; c.sp.style.backgroundSize = pl ? "0% 3px" : "0% 55%"; return; }
+      if (pl) {
+        c.sp.style.color = C.sa;
+        c.sp.style.textShadow = "0 0 " + (18 * (1 - f)).toFixed(1) + "px rgba(183,217,76," + (0.7 * (1 - f)).toFixed(2) + ")";
+        c.sp.style.backgroundSize = (100 * E(p)).toFixed(0) + "% 3px";
+      } else {   // carnet : coup de surligneur citron, le mot reste à l'encre
+        c.sp.style.color = K.iv;
+        c.sp.style.backgroundSize = (100 * E(p)).toFixed(0) + "% 55%";
+      }
     });
   }
 
@@ -458,7 +466,7 @@
       its.forEach(function (d, i) {
         var t0 = et(v, String(i + 1), .3 + i * .45), p = E(P(t, t0, .6));
         d.style.opacity = p;
-        d.style.color = t >= t0 && t < t0 + 1.2 ? C.sa : C.iv;
+        d.style.color = t >= t0 && t < t0 + 1.2 ? K.sa : K.iv;
         d.style.transform = "translate(-50%,-50%) translate(" + (Math.sin(t * .6 + i * 2) * 8).toFixed(1) + "px," + (Math.cos(t * .5 + i) * 6 + (1 - p) * 20).toFixed(1) + "px) scale(" + (0.85 + 0.15 * EB(P(t, t0, .6))) + ")";
       });
     };
@@ -510,7 +518,7 @@
       sp.forEach(function (s, i) {
         var p = E(P(t, tm[i] - .05, .3)), f = P(t, tm[i] + .35, .8);
         s.style.opacity = 0.2 + 0.8 * p;
-        s.style.color = p > 0 && f < 1 ? "rgb(" + Math.round(232 + 11 * f) + "," + Math.round(178 + 61 * f) + "," + Math.round(90 + 138 * f) + ")" : (p > 0 ? C.iv : C.iv2);
+        s.style.color = p > 0 && f < 1 ? "rgb(" + Math.round(165 - 138 * f) + "," + Math.round(70 - 28 * f) + "," + Math.round(43 - 11 * f) + ")" : (p > 0 ? K.iv : K.iv2);
         s.style.transform = "translateY(" + (-3 * p * (1 - f)).toFixed(2) + "px)";
       });
       op(au, E(P(st.tl, .7, .7)));
@@ -591,8 +599,8 @@
         c.ic.forEach(function (pa, j) { trace(pa, P(t, tk[i] + .2 + j * .15, .8)); });
         var actif = (t >= tk[i] && (i === cs.length - 1 || t < tk[i + 1]) && v.et && v.et[String(i + 1)] != null) || (hl != null && t >= hl);
         var pul = hl != null && t >= hl ? 0.5 + 0.5 * Math.sin((t - hl) * 4 + i) : 1;
-        c.c.style.borderColor = actif ? "rgba(183,217,76," + (0.5 + 0.4 * pul) + ")" : "rgba(231,242,218,.14)";
-        c.c.style.boxShadow = actif ? "0 0 " + (30 + 20 * pul) + "px rgba(183,217,76,.25)" : "none";
+        c.c.style.borderColor = actif ? "rgba(47,125,82," + (0.6 + 0.4 * pul) + ")" : "";
+        c.c.style.boxShadow = actif ? "0 0 0 " + (3 + 2 * pul).toFixed(1) + "px rgba(183,217,76,.75),0 14px 30px rgba(60,48,20,.18)" : "";
       });
     };
   };
@@ -709,7 +717,7 @@
     var halo = h("div", "g-halo", e), haut = h("div", "g-haut", e, "SVT · Terminale");
     var l1 = h("div", "g-ligne", e), tt = h("div", "g-titre", e), sp = lettres(tt, v.serie);
     tt.style.fontSize = Math.min(120, Math.floor(2300 / Math.max(12, String(v.serie).length))) + "px"; tt.style.textAlign = "center";
-    var l2 = h("div", "g-ligne", e), bas = h("div", "g-bas", e, "Le cours en vidéo · chapitre " + v.num);
+    var l2 = h("div", "g-ligne", e), bas = h("div", "g-bas", e, "Chapitre " + v.num);
     var balai = h("div", "g-balai", e);
     return function (t, st) {
       var tl = st.tl;
@@ -803,7 +811,8 @@
   };
 
   TYPES.illu = function (o, v) {
-    var e = o.el; e.classList.add("v-illu"); o.entree = "aucune";
+    var e = o.el; e.classList.add("v-illu", "plaque"); o.entree = "aucune";
+    h("div", "scotch g", e); h("div", "scotch d", e);
     e.style.left = v.x + "px"; e.style.top = v.y + "px"; e.style.width = v.w + "px"; e.style.height = v.h + "px";
     var s = sv("svg", { viewBox: "0 0 " + v.w + " " + v.h }, e);
     if (v.plus) h("div", "badge", e, "Pour aller plus loin").style.top = "-10px";
@@ -912,7 +921,8 @@
   // animation du site (pc/anim/<nom>.html) pilotée par le temps de la vidéo : segments [début, fin] de l'animation,
   // le segment k démarre au repère {id.k} et s'arrête sur sa dernière image jusqu'au repère suivant
   TYPES.anim = function (o, v) {
-    var e = o.el; e.classList.add("v-anim");
+    var e = o.el; e.classList.add("v-anim", "plaque");
+    h("div", "scotch g", e); h("div", "scotch d", e);
     var hh = v.h || 600, ww = Math.round(hh * 400 / 430);
     e.style.left = (v.x != null ? v.x : 50) + "px"; e.style.top = (v.y != null ? v.y : 84) + "px";
     e.style.width = ww + "px"; e.style.height = hh + "px";
@@ -969,7 +979,7 @@
         x.d.style.filter = p < 1 ? "blur(" + ((1 - p) * 5).toFixed(1) + "px)" : "none";
         if (x.l.cadre) {
           var q = P(t, t1 + .45, .9), g = Math.max(0, Math.sin((t - t1) * 2.2)) * (t > t1 + 1.3 ? .25 : 0);
-          x.d.style.boxShadow = "0 0 0 2px rgba(183,217,76," + (.85 * E(q)).toFixed(2) + "),0 0 " + (34 * (1 - q) + 14 + 10 * g).toFixed(0) + "px rgba(183,217,76," + (.32 * E(q) + .1 * g).toFixed(2) + ")";
+          x.d.style.boxShadow = "0 0 0 " + (2 + 3 * g).toFixed(1) + "px rgba(47,125,82," + (.75 * E(q)).toFixed(2) + ")";
         }
         if (x.n) op(x.n, E(P(t, t1 + .45, .6)));
       });
@@ -978,7 +988,8 @@
 
   // graphique : axes, puis éléments (courbe, droite, point, texte, rect, balaye) au repère {id.k}
   TYPES.graphe = function (o, v) {
-    var e = o.el; e.classList.add("v-graphe");
+    var e = o.el; e.classList.add("v-graphe", "plaque");
+    h("div", "scotch g", e); h("div", "scotch d", e);
     var Wd = v.w || 600, Hd = v.h || 480;
     e.style.left = (v.x != null ? v.x : 640) + "px"; e.style.top = (v.y != null ? v.y : 110) + "px"; e.style.width = Wd + "px"; e.style.height = Hd + "px";
     var m = v.marges || [86, 26, 44, 70], pw = Wd - m[0] - m[1], ph = Hd - m[2] - m[3], ax = v.ax;
@@ -1100,7 +1111,7 @@
     var c = h("div", "pa-carte", e), ic = h("div", "pa-ic", c, '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>');
     var an = h("div", "pa-anneau", ic);
     var te = h("div", "pa-te", c, "À toi"), tx = h("div", "pa-tx", c, esc(v.t));
-    var so = h("div", "pa-so", c, esc(v.sous || "Mets la vidéo sur pause, cherche sur une feuille, puis reprends pour la correction."));
+    var so = h("div", "pa-so", c, esc(v.sous || "Mets la vidéo sur pause, cherche sur une feuille, puis reprends pour la solution."));
     return function (t, st) {
       var tl = st.tl, a = E(P(tl, 0, .6));
       op(c, a); tr(c, "translateY(" + (24 * (1 - a)) + "px) scale(" + (0.95 + 0.05 * EB(P(tl, 0, .7))) + ")");
@@ -1121,22 +1132,54 @@
     roche: { base: "linear-gradient(160deg,#14100b 0%,#2a2117 55%,#16110c 100%)", lueurs: ["rgba(224,154,116,.22)", "rgba(198,232,106,.10)", "rgba(127,190,203,.10)"] }
   };
 
+  // carnet de naturaliste : couleurs des lavis d'aquarelle selon le fond demandé par la scène
+  var LAVIS = {
+    foret: ["183,217,76", "47,125,82"], cellule: ["127,192,203", "183,217,76"], roche: ["201,122,82", "214,180,90"],
+    nuit: ["47,125,82", "214,190,90"], aube: ["240,170,110", "183,217,76"], cosmos: ["138,106,158", "127,192,203"]
+  };
   function Scene(EP, racine) {
     var sc = h("div", "scene", racine);
+    // la page du carnet, posée sur la table : quadrillage, marge, grain du papier, anneaux de la spirale
+    var cn = h("div", "carnet", sc), page = h("div", "cn-page", cn);
+    h("div", "cn-marge", page);
+    var lavisCouche = h("div", "", page); lavisCouche.style.cssText = "position:absolute;inset:0";
+    h("div", "cn-grain", page);
+    var an = sv("svg", { "class": "cn-anneaux", viewBox: "0 0 1280 60" }, cn);
+    for (var ka = 0; ka < 25; ka++) {
+      var xa = 74 + ka * 47;
+      sv("circle", { cx: xa, cy: 36, r: 5.5, fill: "#33402f" }, an);
+      sv("path", { d: "M" + (xa - 4) + ",37 C" + (xa - 6) + ",14 " + (xa + 10) + ",8 " + (xa + 8) + ",30", fill: "none", stroke: "#c9ccc4", "stroke-width": 3.4, "stroke-linecap": "round" }, an);
+    }
+    // par partie : deux lavis qui respirent, et des vrilles qui poussent dans les marges
+    var vie = sv("svg", { "class": "cn-vie", viewBox: "0 0 1280 720" }, cn);
     var fonds = EP.scenes.map(function (s, i) {
-      var f = h("div", "fond", sc), def = FONDS[s.fond] || FONDS.nuit;
-      f.style.background = def.base;
-      var lu = def.lueurs.map(function (c, j) {
-        var l = h("div", "lueur", f); var r = 520 + j * 140;
-        l.style.width = l.style.height = r + "px"; l.style.background = "radial-gradient(circle," + c + ",transparent 65%)";
-        l.style.left = (j === 0 ? 700 : j === 1 ? -100 : 300) + "px"; l.style.top = (j === 0 ? -150 : j === 1 ? 300 : 380) + "px";
-        return l;
+      var cols = LAVIS[s.fond] || LAVIS.foret;
+      var lv = cols.map(function (c, j) {
+        var d = h("div", "cn-lavis", lavisCouche), w = 430 + alea(i * 7 + j) * 280, hh = w * (.55 + alea(i * 3 + j) * .3);
+        var x = j ? 600 + alea(i + 11) * 460 : 60 + alea(i + 5) * 380, y = j ? 300 + alea(i + 13) * 250 : 30 + alea(i + 17) * 170;
+        d.style.left = (x - w / 2) + "px"; d.style.top = (y - hh / 2) + "px"; d.style.width = w + "px"; d.style.height = hh + "px";
+        var a = j ? .12 : .24;
+        d.style.background = "radial-gradient(closest-side,rgba(" + c + "," + a + ") 0%,rgba(" + c + "," + a + ") 68%,rgba(" + c + "," + (a * 1.7).toFixed(2) + ") 86%,rgba(" + c + ",0) 100%)";
+        d.style.display = "none";
+        return d;
       });
-      return { el: f, lu: lu, s: s, i: i };
+      var g = sv("g", { opacity: 0 }, vie), tiges = [], feuilles = [];
+      var bas = "M" + (30 + alea(i) * 30) + ",712 C" + (140 + alea(i + 1) * 60) + "," + (660 + alea(i + 2) * 30) + " " + (230 + alea(i + 3) * 80) + "," + (700 - alea(i + 4) * 20) + " " + (330 + alea(i + 5) * 90) + "," + (668 + alea(i + 6) * 24);
+      var droite = "M1262," + (700 - alea(i + 7) * 30) + " C" + (1214 + alea(i + 8) * 20) + "," + (600 - alea(i + 9) * 40) + " " + (1258 - alea(i + 10) * 10) + "," + (510 - alea(i + 11) * 40) + " " + (1230 + alea(i + 12) * 18) + "," + (400 - alea(i + 13) * 60);
+      [bas, droite].forEach(function (d, j) {
+        var pa = sv("path", { d: d, fill: "none", stroke: "#2f7d52", "stroke-width": 3, "stroke-linecap": "round", opacity: .8 }, g);
+        tiges.push(pa);
+        for (var k = 1; k <= 5; k++) {
+          var f = sv("path", { d: "M0,0 C8,-14 26,-14 30,0 C26,10 8,10 0,0Z", fill: k % 2 ? "#7fae3e" : "#5f9e2f", stroke: "#2e5d18", "stroke-width": 1, opacity: .9 }, g);
+          feuilles.push({ e: f, pa: pa, u: k / 6, a: (k % 2 ? -50 : 200) + (j ? 90 : 0) + alea(i * 9 + k) * 30, j: j });
+        }
+      });
+      return { lv: lv, g: g, tiges: tiges, feuilles: feuilles, s: s, i: i };
     });
+    // de petites algues qui dérivent sur la page (le vivant) : ovales verts et leurs deux flagelles
     var cv = h("canvas", "poussiere", sc); cv.width = W; cv.height = H;
     var cx = cv.getContext("2d");
-    var parts = []; for (var i = 0; i < 70; i++) parts.push({ x: alea(i) * W, y: alea(i + 100) * H, vx: (alea(i + 200) - .5) * 14, vy: 6 + alea(i + 300) * 16, r: .8 + alea(i + 400) * 2, ph: alea(i + 500) * 6.28 });
+    var parts = []; for (var i = 0; i < 14; i++) parts.push({ x: alea(i) * W, y: 80 + alea(i + 100) * (H - 140), vx: (alea(i + 200) - .5) * 10, vy: (alea(i + 300) - .5) * 6, r: 5 + alea(i + 400) * 4, ph: alea(i + 500) * 6.28, dia: i % 4 === 3 });
     var couche = h("div", "", sc); couche.style.cssText = "position:absolute;inset:0";
     h("div", "voile", sc);
     var ent = h("div", "entete", sc), fil = h("div", "fil", sc), st = h("div", "st", sc), stS = h("span", "", st);
@@ -1151,24 +1194,47 @@
     var sousOn = false, dernierSous = -1;
 
     function rendu(t) {
-      // fonds
+      // carnet : pour chaque partie, lavis qui respirent et vrilles qui poussent (fondu d'une partie à l'autre)
       fonds.forEach(function (f, i) {
         var s = f.s, a = i === 0 ? 1 : E(P(t, s.t0 - .6, 1.2)), b = i === fonds.length - 1 ? 0 : E(P(t, s.t1 - .6, 1.2));
         var w = a * (1 - b);
-        if (w <= 0.001) { if (f.on) { f.el.style.display = "none"; f.on = false; } return; }
-        if (!f.on) { f.el.style.display = "block"; f.on = true; }
-        f.el.style.opacity = w;
-        f.lu.forEach(function (l, j) {
-          l.style.transform = "translate(" + (Math.sin(t * .07 + j * 2.1) * 120).toFixed(1) + "px," + (Math.cos(t * .05 + j * 1.3) * 80).toFixed(1) + "px) scale(" + (1 + .12 * Math.sin(t * .09 + j)).toFixed(3) + ")";
+        if (w <= 0.001) { if (f.on) { f.lv.forEach(function (d) { d.style.display = "none"; }); f.g.setAttribute("opacity", 0); f.on = false; } return; }
+        if (!f.on) { f.lv.forEach(function (d) { d.style.display = "block"; }); f.on = true; }
+        f.lv.forEach(function (d, j) {
+          var q = t * (.23 + j * .07) + i * 1.7 + j;
+          d.style.opacity = w;
+          d.style.borderRadius = (46 + 9 * Math.sin(q)).toFixed(1) + "% " + (54 + 8 * Math.cos(q * 1.3)).toFixed(1) + "% " + (48 + 9 * Math.sin(q * .8 + 1)).toFixed(1) + "% " + (52 + 7 * Math.cos(q * 1.1 + 2)).toFixed(1) + "% / " +
+            (50 + 8 * Math.cos(q * .9)).toFixed(1) + "% " + (46 + 9 * Math.sin(q * 1.2 + 1)).toFixed(1) + "% " + (54 + 7 * Math.cos(q + 2)).toFixed(1) + "% " + (48 + 8 * Math.sin(q * .7)).toFixed(1) + "%";
+          d.style.transform = "translate(" + (Math.sin(q * .6) * 18).toFixed(1) + "px," + (Math.cos(q * .5) * 12).toFixed(1) + "px) scale(" + (1 + .05 * Math.sin(q * 1.1)).toFixed(3) + ")";
+        });
+        f.g.setAttribute("opacity", (w * .9).toFixed(3));
+        var t0 = s.t0 + .4;
+        f.tiges.forEach(function (pa, j) { trace(pa, E(P(t, t0 + j * .5, 3.2))); });
+        f.feuilles.forEach(function (fe) {
+          if (!fe.pa._L) trace(fe.pa, 0);
+          var pt = fe.pa.getPointAtLength(fe.pa._L * fe.u), g = EB(P(t, t0 + fe.j * .5 + fe.u * 3.2, .6)), oscil = Math.sin(t * 1.4 + fe.u * 7) * 7;
+          fe.e.setAttribute("transform", "translate(" + pt.x.toFixed(1) + " " + pt.y.toFixed(1) + ") rotate(" + (fe.a + oscil).toFixed(1) + ") scale(" + (g * .95).toFixed(3) + ")");
         });
       });
-      // poussière lumineuse
+      // petites algues à la dérive
       cx.clearRect(0, 0, W, H);
       parts.forEach(function (p) {
-        var x = ((p.x + p.vx * t) % W + W) % W, y = ((p.y - p.vy * t) % H + H) % H;
-        var a = .25 + .25 * Math.sin(t * 1.3 + p.ph);
-        cx.fillStyle = "rgba(214,255,170," + a.toFixed(3) + ")";
-        cx.beginPath(); cx.arc(x, y, p.r, 0, 6.283); cx.fill();
+        var x = ((p.x + p.vx * t + Math.sin(t * .4 + p.ph) * 20) % (W - 60) + (W - 60)) % (W - 60) + 30, y = ((p.y + p.vy * t + Math.cos(t * .3 + p.ph) * 14) % (H - 120) + (H - 120)) % (H - 120) + 60;
+        var ang = Math.atan2(p.vy + Math.sin(t * .3 + p.ph) * 4, p.vx + Math.cos(t * .4 + p.ph) * 8);
+        cx.save(); cx.translate(x, y); cx.rotate(ang); cx.globalAlpha = .38;
+        if (p.dia) {   // diatomée : petite navette ocre
+          cx.fillStyle = "rgba(190,160,80,.55)"; cx.strokeStyle = "rgba(120,90,30,.8)"; cx.lineWidth = 1;
+          cx.beginPath(); cx.ellipse(0, 0, p.r * 2.2, p.r * .7, 0, 0, 6.283); cx.fill(); cx.stroke();
+          cx.beginPath(); cx.moveTo(-p.r * 1.8, 0); cx.lineTo(p.r * 1.8, 0); cx.stroke();
+        } else {
+          cx.fillStyle = "rgba(95,158,47,.75)"; cx.strokeStyle = "rgba(46,93,24,.9)"; cx.lineWidth = 1.1;
+          cx.beginPath(); cx.ellipse(0, 0, p.r * 1.3, p.r * .85, 0, 0, 6.283); cx.fill(); cx.stroke();
+          cx.fillStyle = "rgba(168,208,90,.8)"; cx.beginPath(); cx.ellipse(-p.r * .3, -p.r * .1, p.r * .55, p.r * .35, 0, 0, 6.283); cx.fill();
+          var bt = Math.sin(t * 9 + p.ph) * p.r * .6;
+          cx.beginPath(); cx.moveTo(p.r * 1.25, -1.5); cx.quadraticCurveTo(p.r * 2.1, -p.r * .5 + bt, p.r * 2.9, -p.r * .2 - bt * .6);
+          cx.moveTo(p.r * 1.25, 1.5); cx.quadraticCurveTo(p.r * 2.1, p.r * .5 - bt, p.r * 2.9, p.r * .2 + bt * .6); cx.stroke();
+        }
+        cx.restore();
       });
       // visuels
       var plein = false;
@@ -1217,7 +1283,7 @@
   };
 
   function lancer(EP) {
-    document.title = "Chapitre " + EP.num + " — " + EP.titre + " · le cours en vidéo";
+    document.title = "Chapitre " + EP.num + " — " + EP.titre + " · SVT Terminale";
     if (EMBED) document.body.classList.add("embed");
     var racine = document.getElementById("serie");
 
@@ -1231,7 +1297,7 @@
       window.RENDU = function (t) { S0.rendu(t); };
       window.DUREE = EP.dur;
       var imgs = Array.from(document.images);
-      window.PRET = Promise.all([document.fonts.ready].concat(S0.attentes(), imgs.map(function (im) { return im.complete ? 1 : new Promise(function (r) { im.addEventListener("load", r); im.addEventListener("error", r); }); })));
+      window.PRET = Promise.all([document.fonts.ready, document.fonts.load("500 30px Caveat"), document.fonts.load("700 30px Caveat")].concat(S0.attentes(), imgs.map(function (im) { return im.complete ? 1 : new Promise(function (r) { im.addEventListener("load", r); im.addEventListener("error", r); }); })));
       S0.rendu(0);
       return;
     }
@@ -1239,7 +1305,7 @@
     var L = h("div", "lecteur", racine);
     if (!EMBED) {
       var tete = h("div", "l-tete", L);
-      h("span", "k", tete, "SVT · chapitre " + EP.num + " · le cours en vidéo");
+      h("span", "k", tete, "SVT Terminale · chapitre " + EP.num);
       h("h1", "", tete, esc(EP.titre));
     }
     var boite = h("div", "boite", L), cadre = h("div", "cadre", boite);
@@ -1255,7 +1321,7 @@
     h("span", "espace", barre);
     var bVit = h("button", "btn", barre, '<span class="mono">1×</span>'), bMus = h("button", "btn on", barre, ICO.musique),
       bCC = h("button", "btn", barre, ICO.cc), bPA = h("button", "btn on", barre, ICO.apause), bFS = h("button", "btn", barre, ICO.plein);
-    bPA.title = "Arrêt automatique avant chaque correction d'exercice";
+    bPA.title = "Arrêt automatique avant chaque solution d'exercice";
     bPlay.title = "Lecture / pause (espace)"; bM.title = "Reculer de 10 s"; bP.title = "Avancer de 10 s"; bVit.title = "Vitesse";
     bMus.title = "Musique de fond"; bCC.title = "Sous-titres"; bFS.title = "Plein écran";
 
@@ -1302,7 +1368,7 @@
     // arrêts « À toi » : la vidéo s'arrête d'elle-même avant chaque correction (option, active par défaut)
     var arrets = EP.vis.filter(function (v) { return v.type === "pause"; }).map(function (v) { return v.et && v.et.stop != null ? v.et.stop : v.t0 + 2.5; });
     var autoPause = true, arretSur = null;
-    var bandeau = h("div", "arret", cadre, '<span class="ic">' + ICO.pause + '</span><span><b>À toi.</b> La vidéo attend ta réponse : cherche, puis touche l\'image pour la correction.</span>');
+    var bandeau = h("div", "arret", cadre, '<span class="ic">' + ICO.pause + '</span><span><b>À toi.</b> La vidéo attend ta réponse : cherche, puis touche l\'image pour la solution.</span>');
     var T = 0, lecture = false, vitesse = 1, sonOK = true, dernier = 0, fini = false, enAttente = null;
     audio.addEventListener("loadedmetadata", function () { if (enAttente != null) { try { audio.currentTime = enAttente; } catch (e) {} enAttente = null; } });
     audio.addEventListener("error", function () { sonOK = false; });
@@ -1437,7 +1503,7 @@
 
     if ("mediaSession" in navigator) {
       try {
-        navigator.mediaSession.metadata = new MediaMetadata({ title: "Ch. " + EP.num + " · " + EP.titre, artist: "SVT · le cours en vidéo", album: "Terminale spécialité" });
+        navigator.mediaSession.metadata = new MediaMetadata({ title: "Ch. " + EP.num + " · " + EP.titre, artist: "SVT Terminale", album: "Terminale spécialité" });
         navigator.mediaSession.setActionHandler("play", jouer); navigator.mediaSession.setActionHandler("pause", pause);
         navigator.mediaSession.setActionHandler("seekbackward", function () { aller(T - 10); });
         navigator.mediaSession.setActionHandler("seekforward", function () { aller(T + 10); });

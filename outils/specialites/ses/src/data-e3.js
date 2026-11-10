@@ -88,7 +88,7 @@ ANIMS["e3-spirale"] = {
     }
     noeuds.forEach(function (n, k) {
       var q = pos(n.a), act = (i <= 3 && k <= i) || i >= 4;
-      s += A.boite(q[0] - 50, q[1] - 19, 100, 38, n.t + (act ? (sens < 0 ? " ↓" : (i === 5 || k === 0 ? " ↑" : "")) : ""), { k: act ? (sens < 0 ? "effet" : "cause") : "neutre", t: 12.5, g: true });
+      var lg = k === 3; s += A.boite(lg ? 0 : q[0] - 50, q[1] - (lg ? 22 : 19), lg ? 110 : 100, lg ? 44 : 38, n.t + (act ? (sens < 0 ? " ↓" : (i === 5 || k === 0 ? " ↑" : "")) : ""), { k: act ? (sens < 0 ? "effet" : "cause") : "neutre", t: lg ? 11.5 : 12.5, g: true });
     });
     var ch = i <= 1 ? 7.4 : i === 2 ? A.l(7.4, 9.1, A.s(p, 0, 1)) : i === 3 ? A.l(9.1, 9.8, A.s(p, 0, 1)) : i === 4 ? 9.8 : A.l(9.8, 8.4, A.s(p, 0, 1));
     s += A.jauge(110, 300, 140, ch, 12, { c: i >= 5 ? "vert" : "corail", l: "chômage (illustratif)", val: A.fr(ch, 1) + " %" });

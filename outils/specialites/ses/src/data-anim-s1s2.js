@@ -3,9 +3,9 @@ function ANIM_SERIES(A, x0, y0, w, h, xs, series, ymax, jusqua, opts) {
   opts = opts || {};
   var n = xs.length, X = function (k) { return x0 + w * k / (n - 1); }, Y = function (v) { return y0 - h * v / ymax; };
   var s = "";
-  (opts.ticks || []).forEach(function (t) { s += '<line x1="' + x0 + '" x2="' + (x0 + w) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--ligne);stroke-width:1"/>' + A.t(x0 - 4, Y(t) + 4, t + (opts.u || ""), { t: 9.5, a: "end", c: "gris" }); });
-  (opts.annees || []).forEach(function (yr) { var k = xs.indexOf(yr); if (k >= 0) s += A.t(X(k), y0 + 16, String(yr), { t: 9.5, a: "middle", c: "gris" }); });
-  var kmax = Math.floor(jusqua), fr = jusqua - kmax;
+  (opts.ticks || []).forEach(function (t) { s += '<line x1="' + x0 + '" x2="' + (x0 + w) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--ligne);stroke-width:1"/>' + A.t(x0 - 4, Y(t) + 4, t + (opts.u || ""), { t: 10.5, a: "end", c: "gris" }); });
+  (opts.annees || []).forEach(function (yr) { var k = xs.indexOf(yr); if (k >= 0) s += A.t(X(k), y0 + 16, String(yr), { t: 10.5, a: "middle", c: "gris" }); });
+  var kmax = Math.floor(jusqua), fr = jusqua - kmax, labs = [];
   series.forEach(function (sr) {
     var pts = [];
     for (var k = 0; k <= Math.min(kmax, n - 1); k++) pts.push([X(k), Y(sr.v[k])]);
@@ -14,8 +14,12 @@ function ANIM_SERIES(A, x0, y0, w, h, xs, series, ymax, jusqua, opts) {
     s += A.pl(pts, 1, { c: sr.c, sw: sr.sw || 2.4, op: sr.op });
     var der = pts[pts.length - 1], kv = Math.min(kmax, n - 1), val = kmax < n - 1 ? sr.v[kmax] + (sr.v[kmax + 1] - sr.v[kmax]) * fr : sr.v[n - 1];
     s += A.cercle(der[0], der[1], 3.6, { f: sr.c });
-    if (sr.lab !== false) s += A.t(der[0] + 6, der[1] + 4 + (sr.dy || 0), (sr.court ? sr.court + " " : "") + A.fr(val, 1) + (opts.u || ""), { t: 10.5, g: true, c: sr.c });
+    if (sr.lab !== false) labs.push({ x: der[0] + 6, y: der[1] + 4 + (sr.dy || 0), t: (sr.court ? sr.court + " " : "") + A.fr(val, 1) + (opts.u || ""), c: sr.c });
   });
+  /* étiquettes de fin de courbe : écartées d’au moins 12 px pour ne jamais se chevaucher */
+  labs.sort(function (a, b) { return a.y - b.y; });
+  for (var m = 1; m < labs.length; m++) if (labs[m].y - labs[m - 1].y < 12) labs[m].y = labs[m - 1].y + 12;
+  labs.forEach(function (l) { s += A.t(l.x, l.y, l.t, { t: 10.5, g: true, c: l.c }); });
   return s;
 }
 
@@ -57,7 +61,7 @@ ANIMS["s2-mass"] = {
     var fin = i < 4 ? this.etapes[i].a : 2025, debut = i === 0 ? 1970 : (i < 4 ? this.etapes[i - 1].a : 2025);
     var jusqua = (debut - 1970) + (fin - debut) * (i < 4 ? p : 1);
     var opC = i === 4 ? 1 - 0.75 * A.s(p, 0, 0.4) : 1;
-    s += A.g(opC, ANIM_SERIES(A, 34, 270, 280, 240, xs, [{ v: g.series[0].v, c: "corail", sw: 3 }], 100, jusqua, { ticks: [0, 20, 40, 60, 80, 100], u: " %", annees: [1970, 1985, 1995, 2009, 2025] }));
+    s += A.g(opC, ANIM_SERIES(A, 38, 270, 276, 240, xs, [{ v: g.series[0].v, c: "corail", sw: 3 }], 100, jusqua, { ticks: [0, 20, 40, 60, 80, 100], u: " %", annees: [1970, 1985, 1995, 2009, 2025] }));
     var jalons = [[1975, "collège unique"], [1985, "objectif 80 %, bac pro"], [2009, "bac pro en 3 ans"]];
     jalons.forEach(function (j) {
       var k = j[0] - 1970; if (k > jusqua) return;
@@ -66,11 +70,11 @@ ANIMS["s2-mass"] = {
     });
     if (i === 4) {
       var q = A.s(p, 0.25, 0.75);
-      s += A.r(20, 60, 320, 170, { f: "carte", s: "ligne", r: 12, op: A.s(p, 0.15, 0.4) });
+      s += A.r(20, 60, 320, 182, { f: "carte", s: "ligne", r: 12, op: A.s(p, 0.15, 0.4) });
       s += A.t(180, 86, "Élèves de classes préparatoires (2023-2024)", { t: 13, g: true, a: "middle", op: A.s(p, 0.2, 0.45) });
       s += A.t(36, 124, "enfants de cadres", { t: 12, c: "gris", op: q }) + A.r(36, 130, 260 * 0.537 * q, 22, { f: "canard" }) + A.t(42 + 260 * 0.537 * q, 146, A.fr(53.7 * q, 1) + " %", { t: 13, g: true, op: q });
       s += A.t(36, 178, "enfants d’ouvriers", { t: 12, c: "gris", op: q }) + A.r(36, 184, 260 * 0.064 * q, 22, { f: "corail" }) + A.t(42 + 260 * 0.064 * q, 200, A.fr(6.4 * q, 1) + " %", { t: 13, g: true, op: q });
-      s += A.t(180, 222, "pour 23,0 % de cadres et 18,0 % d’ouvriers dans l’emploi (2024)", { t: 10.5, a: "middle", c: "gris", op: A.s(p, 0.7, 1) });
+      s += A.t(180, 222, "pour 23,0 % de cadres et 18,0 % d’ouvriers dans l’emploi (2024)", { t: 10.5, a: "middle", c: "gris", op: A.s(p, 0.7, 1), w: 270, v: true });
     }
     return s;
   }
@@ -137,7 +141,7 @@ ANIMS["s1-marx-weber"] = {
     if (opM > 0.02) {
       var m = A.boite(110, 20, 140, 40, "Bourgeoisie : propriétaires", { k: "cause", t: 12, g: true }) ;
       for (var k = 0; k < 3; k++) m += pers(150 + k * 30, 84, "canard");
-      m += '<line x1="20" x2="340" y1="112" y2="112" style="stroke:var(--encre);stroke-width:3"/>' + A.t(20, 106, "propriété des moyens de production", { t: 10.5, c: "gris" });
+      m += '<line x1="20" x2="340" y1="112" y2="112" style="stroke:var(--encre);stroke-width:3"/>' + A.t(20, 101, "propriété des moyens de production", { t: 10.5, c: "gris", w: 118, v: true });
       var conscience = i >= 2 ? (i === 2 ? A.s(p, 0.2, 0.8) : 1) : 0;
       for (var j = 0; j < 12; j++) {
         var x0 = 30 + j * 26, y0 = 160 + (j % 2) * 26, xf = 120 + (j % 6) * 24, yf = 158 + Math.floor(j / 6) * 26;
