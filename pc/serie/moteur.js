@@ -17,6 +17,12 @@
   var REMAP = { "#5aa9ff": "#2f6fd1", "#7ce08a": "#2e9d57", "#4fd1c5": "#0e8a8c", "#ffd24a": "#e09a00", "#7fe3ff": "#1f7fc4", "#ff8b3e": "#e0761b",
     "#ff6b5b": "#d64545", "#b48cff": "#7a4fd6", "#f2e7da": "#17323d", "#cbb49c": "#4f6873" };
   function coul(c) { return c ? (REMAP[String(c).toLowerCase()] || c) : c; }
+  // couleur d'une étiquette : une couleur translucide (zone colorée) devient sa version opaque et assombrie, lisible sur fond clair
+  function encre(c) {
+    var m = /^rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)$/.exec(String(c || "").replace(/ /g, ""));
+    if (!m || +m[4] >= .6) return c;
+    return "rgb(" + [m[1], m[2], m[3]].map(function (x) { return Math.round(+x * .62); }).join(",") + ")";
+  }
 
   /* ---------- outils ---------- */
   function h(tag, cls, parent, html) {
@@ -1009,7 +1015,7 @@
       if (d.type === "courbe" || d.type === "droite") {
         x.p = sv("path", { d: chemin(d.pts), stroke: col, "stroke-width": d.ep || 3.6, fill: "none", "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
         if (d.tir) x.p.setAttribute("stroke-dasharray", "8 7");
-        if (d.lbl) x.l = txt(X(d.lp[0]), Y(d.lp[1]), esc(d.lbl), "lb"), x.l.style.color = col;
+        if (d.lbl) x.l = txt(X(d.lp[0]), Y(d.lp[1]), esc(d.lbl), "lb"), x.l.style.color = encre(col);
       } else if (d.type === "point" || d.type === "points") {
         x.c = (d.type === "point" ? [[d.x, d.y]] : d.pts).map(function (p) {
           return sv("circle", { cx: X(p[0]), cy: Y(p[1]), r: d.r || 6.5, fill: col, stroke: "#ffffff", "stroke-width": 2 }, g);
@@ -1017,13 +1023,13 @@
         if (d.proj) {
           x.pj = sv("path", { d: "M" + X(d.x) + " " + Y(d.y) + " V" + Y(y0) + " M" + X(d.x) + " " + Y(d.y) + " H" + X(x0), stroke: col, "stroke-width": 1.6, "stroke-dasharray": "5 5", fill: "none", opacity: .8 }, g);
         }
-        if (d.lbl) x.l = txt(X(d.lp ? d.lp[0] : d.x), Y(d.lp ? d.lp[1] : d.y) - 26, esc(d.lbl), "lb"), x.l.style.color = col;
+        if (d.lbl) x.l = txt(X(d.lp ? d.lp[0] : d.x), Y(d.lp ? d.lp[1] : d.y) - 26, esc(d.lbl), "lb"), x.l.style.color = encre(col);
       } else if (d.type === "texte") {
-        x.l = txt(X(d.x), Y(d.y), esc(d.t), "lb " + (d.cls || "")); x.l.style.color = col;
+        x.l = txt(X(d.x), Y(d.y), esc(d.t), "lb " + (d.cls || "")); x.l.style.color = encre(col);
       } else if (d.type === "rect" || d.type === "balaye") {
         x.r = sv("rect", { x: X(x0), y: Y(0), width: 0, height: 0, fill: col, "fill-opacity": .22, stroke: col, "stroke-width": 2 }, g);
         x.pt = sv("circle", { r: 8, fill: col, stroke: "#ffffff", "stroke-width": 2 }, g);
-        x.l = txt(0, 0, "", "lb"); x.l.style.color = col;
+        x.l = txt(0, 0, "", "lb"); x.l.style.color = encre(col);
       }
       if (x.l) x.l.style.opacity = 0;
       return x;
