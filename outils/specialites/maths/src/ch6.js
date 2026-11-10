@@ -29,7 +29,7 @@ var CH6 = {
 [ex|Lire la définition]$\ln(\e^{3})=3$ ; $\e^{\ln 7}=7$ ; $\e^x=5\iff x=\ln5\approx1{,}609$. Et $\ln(-2)$ n'existe pas : aucune puissance de $\e$ n'est négative.[/]
 <p>Dans un repère orthonormé, les courbes de $\exp$ et de $\ln$ sont <b>symétriques par rapport à la droite $y=x$</b> : le point $(a;\e^a)$ de l'une correspond au point $(\e^a;a)$ de l'autre.</p>
 <div data-anim="reciproque"></div>
-[hist|Napier et Briggs]Le programme le rappelle : les tables de logarithmes (Napier, puis Briggs au début du XVII<sup>e</sup> siècle) ont été construites pour transformer les multiplications longues des astronomes en additions. Le « népérien » vient de Napier.[/]` },
+[hist|Napier et Briggs]Les premières tables de logarithmes (Napier en 1614, puis Briggs quelques années plus tard) ont servi à transformer les multiplications longues des astronomes et des navigateurs en additions. « Népérien » vient de Neper, l'autre graphie du nom de Napier. Le programme cite la méthode de Briggs, qui est dans l'onglet Python.[/]` },
     { id: "algebre", titre: "Propriétés algébriques", html: R`
 [thm|Relation fonctionnelle]Pour tous réels $a>0$ et $b>0$ : $\ln(ab)=\ln a+\ln b$.[/]
 <p><b>Preuve.</b> $\e^{\ln a+\ln b}=\e^{\ln a}\times\e^{\ln b}=ab=\e^{\ln(ab)}$. L'exponentielle étant strictement croissante, deux réels qui ont la même exponentielle sont égaux : $\ln a+\ln b=\ln(ab)$.</p>
