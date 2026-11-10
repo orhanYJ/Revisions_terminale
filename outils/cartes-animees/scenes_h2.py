@@ -1,5 +1,5 @@
 """Scènes de la carte animée H2 « Totalitarian Regimes » (cours de M. Ros, introduction à III.3, jusqu'au 3 septembre 1939).
-Même format que scenes_h3.py ; ce qui vient d'ailleurs que le cours porte la balise [hors].
+Même format que scenes_h3.py.
 """
 import scenes_h3 as base
 import scenes_h1 as h1
@@ -232,8 +232,8 @@ def scenes():
           "Like Mussolini, Hitler came to power legally: President Hindenburg, an old general of the Empire, appointed him chancellor; the conservatives thought they could control him. On 21 March at Potsdam, Hitler bowed to Hindenburg: Nazism presented itself as heir to old Prussia."), pins=["berlin_p"], labels=["potsdam"], cles=["nazi"])
     add("I.2", 14, [13.4, 52.52, 11], L("27 février 1933", "27 February 1933"),
         L("L'incendie du Reichstag", "The Reichstag fire"),
-        L("Un mois plus tard, le Reichstag brûle. Les nazis accusent aussitôt les communistes ; le lendemain, un décret suspend les libertés de la presse, de réunion et d'opinion [hors], et des milliers de communistes sont arrêtés. Qui a mis le feu reste débattu ; l'essentiel est l'usage qu'en fait le régime.",
-          "A month later the Reichstag burned. The Nazis immediately blamed the communists; the next day a decree suspended freedom of the press, of assembly and of opinion [hors], and thousands of communists were arrested. Who started the fire is still debated; what matters is how the regime used it."),
+        L("Un mois plus tard, le Reichstag brûle. Les nazis accusent aussitôt les communistes ; le lendemain, un décret suspend les libertés de la presse, de réunion et d'opinion, et des milliers de communistes sont arrêtés. Qui a mis le feu reste débattu ; l'essentiel est l'usage qu'en fait le régime.",
+          "A month later the Reichstag burned. The Nazis immediately blamed the communists; the next day a decree suspended freedom of the press, of assembly and of opinion, and thousands of communists were arrested. Who started the fire is still debated; what matters is how the regime used it."),
         pins=["berlin_p"], cles=["nazi"])
 
     # ---------------- I.3 spécificités
@@ -254,14 +254,14 @@ def scenes():
         labels=["l_urss", "moscou"], cles=["stal"])
     add("I.3", 15, [55, 52, 1.6], L("1929-1932", "1929–1932"),
         L("Les koulaks, ennemis de classe", "The kulaks, class enemies"),
-        L("Sur le papier, un koulak possède plus de 8 acres ; en pratique, l'étiquette frappe tout paysan qui refuse la collectivisation. Terres et bêtes confisquées, beaucoup sont déportés (vers la Sibérie et le Kazakhstan [hors]). La collectivisation ruine l'agriculture : à Novossibirsk, en 1932, les vaches des kolkhozes donnent 1 à 3 litres de lait au lieu de 5 à 7, « les gens meurent de faim ».",
-          "On paper a kulak owned more than 8 acres; in practice the label struck any peasant who refused collectivisation. Land and animals were confiscated and many were deported (to Siberia and Kazakhstan [hors]). Collectivisation ruined farming: in Novosibirsk in 1932, kolkhoz cows gave 1 to 3 litres of milk instead of 5 to 7 — “people are starving”."),
+        L("Sur le papier, un koulak possède plus de 8 acres ; en pratique, l'étiquette frappe tout paysan qui refuse la collectivisation. Terres et bêtes confisquées, beaucoup sont déportés (vers la Sibérie et le Kazakhstan). La collectivisation ruine l'agriculture : à Novossibirsk, en 1932, les vaches des kolkhozes donnent 1 à 3 litres de lait au lieu de 5 à 7, « les gens meurent de faim ».",
+          "On paper a kulak owned more than 8 acres; in practice the label struck any peasant who refused collectivisation. Land and animals were confiscated and many were deported (to Siberia and Kazakhstan). Collectivisation ruined farming: in Novosibirsk in 1932, kolkhoz cows gave 1 to 3 litres of milk instead of 5 to 7 — “people are starving”."),
         labels=["l_siberie", "l_kaz", "l_ukr32"], pins=["novosibirsk"], cles=["stal"],
         arrows=[F((33.0, 49.5), (62.0, 58.0), NOIR, -0.12, w=2.8, dash=True, id="kul1", dur=2.6), F((35.0, 48.5), (66.0, 48.5), NOIR, 0.08, w=2.8, dash=True, id="kul2", dur=2.6)])
     add("I.3", 16, [32, 48.8, 4.6], L("1932-1933", "1932–1933"),
         L("L'Holodomor : la famine organisée en Ukraine", "The Holodomor: man-made famine in Ukraine"),
-        L("Le grain est réquisitionné quelle que soit la récolte ; les paysans le cachent, des brigades appuyées par l'OGPU viennent le « prendre ». Les villages « rebelles » sont privés de tout ravitaillement. En octobre 1932, seuls 22 % de l'objectif sont atteints. La famine tue environ quatre millions de personnes en Ukraine [hors].",
-          "Grain was requisitioned whatever the harvest; peasants hid it, and brigades backed by the OGPU came to “take the grain”. “Rebellious” villages were cut off from all supplies. By October 1932 only 22% of the target had been reached. The famine killed about four million people in Ukraine [hors]."), labels=["l_ukr32", "kiev"], cles=["holodomor"])
+        L("Le grain est réquisitionné quelle que soit la récolte ; les paysans le cachent, des brigades appuyées par l'OGPU viennent le « prendre ». Les villages « rebelles » sont privés de tout ravitaillement. En octobre 1932, seuls 22 % de l'objectif sont atteints. La famine tue environ quatre millions de personnes en Ukraine.",
+          "Grain was requisitioned whatever the harvest; peasants hid it, and brigades backed by the OGPU came to “take the grain”. “Rebellious” villages were cut off from all supplies. By October 1932 only 22% of the target had been reached. The famine killed about four million people in Ukraine."), labels=["l_ukr32", "kiev"], cles=["holodomor"])
     add("I.3", 15, [11, 50.5, 5.0], L("1933-1939", "1933–1939"),
         L("Nazisme : la lutte des races", "Nazism: the struggle of races"),
         L("Pour les nazis, l'histoire est une guerre entre races hiérarchisées ; les Juifs sont décrits comme des « bactéries » à éliminer. Enseignement racial obligatoire dans les écoles (septembre 1933) ; lois de Nuremberg (15 septembre 1935) ; programme T4 (1939) : environ 70 000 Allemands handicapés assassinés.",
@@ -270,8 +270,8 @@ def scenes():
     # ---------------- II.1 le culte du chef
     add("II.1", 15, [37, 55, 2.9], L("1924-1925", "1924–1925"),
         L("Le culte du chef : des villes rebaptisées", "The cult of the leader: renamed cities"),
-        L("La propagande fabrique un être supérieur, le Guide : « il Duce », « der Führer », « le petit père des peuples ». Petrograd devient Leningrad en 1924 ; une ville est rebaptisée Stalingrad en 1925. Géorgien, Staline impose pourtant le russe à toute l'Union (obligatoire dans les écoles en 1938 [hors]).",
-          "Propaganda manufactured a superior being, the Guide: “il Duce”, “der Führer”, “the little father of the peoples”. Petrograd became Leningrad in 1924; a city was renamed Stalingrad in 1925. Though Georgian himself, Stalin imposed Russian on the whole Union (compulsory in schools in 1938 [hors])."),
+        L("La propagande fabrique un être supérieur, le Guide : « il Duce », « der Führer », « le petit père des peuples ». Petrograd devient Leningrad en 1924 ; une ville est rebaptisée Stalingrad en 1925. Géorgien, Staline impose pourtant le russe à toute l'Union (obligatoire dans les écoles en 1938).",
+          "Propaganda manufactured a superior being, the Guide: “il Duce”, “der Führer”, “the little father of the peoples”. Petrograd became Leningrad in 1924; a city was renamed Stalingrad in 1925. Though Georgian himself, Stalin imposed Russian on the whole Union (compulsory in schools in 1938)."),
         pins=["leningrad24", "stalingrad25"], labels=["moscou"], cles=["stal"])
     add("II.1", 15, [8, 49.5, 4.6], L("1934-1937", "1934–1937"),
         L("Rassemblements, médias, arts au service du régime", "Rallies, media and arts in the regime's service"),
@@ -294,8 +294,8 @@ def scenes():
     # ---------------- II.3 la terreur
     add("II.3", 15, [16, 50, 3.0], L("1927-1936", "1927–1936"),
         L("Des polices politiques au-dessus des lois ; les camps", "Political police above the law; the camps"),
-        L("OVRA en Italie (1927), Gestapo (1933) et SS dirigées toutes deux par Himmler (1936), NKVD (1934) en URSS. Dachau ouvre en 1933 ; les détenus y sont classés par triangles de couleur. Comme le dit le cours, les nazis n'ont pas inventé le camp : ils y ont ajouté la chambre à gaz.",
-          "The OVRA in Italy (1927), the Gestapo (1933) and the SS, both headed by Himmler (1936), the NKVD (1934) in the USSR. Dachau opened in 1933; prisoners were sorted by coloured triangles. As the course puts it, the Nazis did not invent the camp: what they added was the gas chamber."),
+        L("OVRA en Italie (1927), Gestapo (1933) et SS dirigées toutes deux par Himmler (1936), NKVD (1934) en URSS. Dachau ouvre en 1933 ; les détenus y sont classés par triangles de couleur. Les nazis n'ont pas inventé le camp : ils y ont ajouté la chambre à gaz.",
+          "The OVRA in Italy (1927), the Gestapo (1933) and the SS, both headed by Himmler (1936), the NKVD (1934) in the USSR. Dachau opened in 1933; prisoners were sorted by coloured triangles. The Nazis did not invent the camp: what they added was the gas chamber."),
         pins=["dachau"], labels=["rome", "berlin", "moscou"], cles=["fasc", "nazi", "stal"])
     add("II.3", 14, [34.8, 63.6, 6.5], L("1931-1933", "1931–1933"),
         L("Le Goulag : le canal de la mer Blanche", "The Gulag: the White Sea Canal"),
@@ -352,8 +352,8 @@ def scenes():
     # ---------------- III.3 la marche à la guerre
     add("III.3", 16, [3, 45, 3.6], L("1936", "1936"),
         L("L'Axe Rome-Berlin ; la guerre d'Espagne", "The Rome–Berlin Axis; the Spanish Civil War"),
-        L("Malgré leur méfiance, Hitler et Mussolini s'allient : l'Axe Rome-Berlin est proclamé le 25 octobre 1936 (pacte d'Acier en 1939, Japon en 1940). En Espagne, l'Allemagne et l'Italie soutiennent Franco, et l'aviation allemande s'y entraîne (Guernica, avril 1937 [hors]) ; la France et le Royaume-Uni n'interviennent pas.",
-          "Despite their mistrust, Hitler and Mussolini allied: the Rome–Berlin Axis was declared on 25 October 1936 (Pact of Steel in 1939, Japan in 1940). In Spain, Germany and Italy supported Franco, and the German air force trained there (Guernica, April 1937 [hors]); France and Britain did not intervene."), labels=["l_axe", "l_esp2"], pins=["guernica"], cles=["espagne", "fasc", "nazi"],
+        L("Malgré leur méfiance, Hitler et Mussolini s'allient : l'Axe Rome-Berlin est proclamé le 25 octobre 1936 (pacte d'Acier en 1939, Japon en 1940). En Espagne, l'Allemagne et l'Italie soutiennent Franco, et l'aviation allemande s'y entraîne (Guernica, avril 1937) ; la France et le Royaume-Uni n'interviennent pas.",
+          "Despite their mistrust, Hitler and Mussolini allied: the Rome–Berlin Axis was declared on 25 October 1936 (Pact of Steel in 1939, Japan in 1940). In Spain, Germany and Italy supported Franco, and the German air force trained there (Guernica, April 1937); France and Britain did not intervene."), labels=["l_axe", "l_esp2"], pins=["guernica"], cles=["espagne", "fasc", "nazi"],
         arrows=[{"id": "axe", "ligne": [(12.5, 41.9), (12.2, 44.5), (11.8, 47.5), (12.6, 50.0), (13.4, 52.5)], "col": NOIR, "w": 3, "nohead": True, "dash": True, "dur": 2.2},
                 F((12.0, 42.0), (-1.0, 40.0), IT, 0.15, w=2.6, dash=True, id="esp1"), F((11.0, 50.0), (-2.5, 42.6), G33, 0.15, w=2.6, dash=True, id="esp2")])
     add("III.3", 15, [7.5, 50.3, 6.2], L("7 mars 1936", "7 March 1936"),
@@ -377,8 +377,8 @@ def scenes():
           "On 15 March 1939 Germany occupied Prague: no longer uniting Germans, but occupying a foreign people. France and Britain changed course and guaranteed Poland (31 March), Romania and Greece."), pins=["prague"], labels=["varsovie"], cles=["nazi", "allie", "demo", "auto"])
     add("III.3", 15, [27, 54, 2.6], L("23 août 1939", "23 August 1939"),
         L("Le pacte germano-soviétique", "The Nazi-Soviet pact"),
-        L("Deux ennemis idéologiques signent un pacte de non-agression dont les clauses secrètes partagent la Pologne. Hitler évite une guerre sur deux fronts ; Staline, dont l'armée sort des purges, gagne du temps et des territoires. « Je ne suis pas prêt pour la guerre ! », lui fait dire la caricature du cours.",
-          "Two ideological enemies signed a non-aggression pact whose secret terms divided Poland. Hitler avoided a war on two fronts; Stalin, whose army had just been gutted by the purges, gained time and territory. “I am not ready for war!”, says the course's cartoon."),
+        L("Deux ennemis idéologiques signent un pacte de non-agression dont les clauses secrètes partagent la Pologne. Hitler évite une guerre sur deux fronts ; Staline, dont l'armée sort des purges, gagne du temps et des territoires. « Je ne suis pas prêt pour la guerre ! », lui fait dire une caricature de l'époque.",
+          "Two ideological enemies signed a non-aggression pact whose secret terms divided Poland. Hitler avoided a war on two fronts; Stalin, whose army had just been gutted by the purges, gained time and territory. “I am not ready for war!”, says a cartoon of the time."),
         pins=["moscou_p", "berlin_p"], cles=["nazi", "stal"])
     add("III.3", 16, [19.5, 52, 4.4], L("1er - 3 septembre 1939", "1–3 September 1939"),
         L("L'attaque de la Pologne : la guerre", "The attack on Poland: war"),

@@ -13,10 +13,10 @@
   var UI = {
     fr: { lancer: "Lancer la carte animée", lire: "Lecture", pause: "Pause", prec: "Date précédente", suiv: "Date suivante",
           arret: "Pause à chaque date", voix: "Voix", plein: "Plein écran", quitter: "Quitter le plein écran", partie: "Partie",
-          sansVoix: "La voix n'est pas disponible sur cet appareil.", hors: "hors cours", ouvrir: "Ouvrir en grand" },
+          sansVoix: "La voix n'est pas disponible sur cet appareil.", hors: "complément", ouvrir: "Ouvrir en grand" },
     en: { lancer: "Play the animated map", lire: "Play", pause: "Pause", prec: "Previous date", suiv: "Next date",
           arret: "Pause at each date", voix: "Voice", plein: "Full screen", quitter: "Exit full screen", partie: "Part",
-          sansVoix: "Voice is not available on this device.", hors: "outside the course", ouvrir: "Open full size" }
+          sansVoix: "Voice is not available on this device.", hors: "extra", ouvrir: "Open full size" }
   };
   var SEA = "#D9E5EB", LAND = "#EFE8D8", EDGE = "#B9AB89", INK = "#17233F", PAPER = "#F7F3EA";
 
