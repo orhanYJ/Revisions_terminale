@@ -798,7 +798,7 @@ var PROG = [
         "Comprendre que le travail est source d’intégration sociale et que certaines évolutions de l’emploi (précarisation, taux persistant de chômage élevé, polarisation de la qualité des emplois) peuvent affaiblir ce pouvoir intégrateur."],
       notions: ["travail", "emploi", "activité", "statut d’emploi (salarié, non-salarié)", "inactivité", "qualité de l’emploi", "taylorisme", "division horizontale et verticale du travail", "post-taylorisme", "flexibilité", "management participatif", "télétravail", "polarisation des emplois", "intégration sociale", "précarisation"],
       liens: "La salarisation (86,7 % des emplois en 2024) est étudiée en <a href=\"#s1:s1-3\">S1</a> ; la polarisation des emplois par le progrès technique en <a href=\"#e1:e1-5\">É1</a>." },
-    { id: "s5", code: "S5", court: "Engagement politique", statut: "bt", ecrit: true,
+    { id: "s5", code: "S5", court: "Engagement politique", statut: "red", ecrit: true, spark: "s5-tend",
       titre: "Comment expliquer l’engagement politique dans les sociétés démocratiques ?",
       objectifs: [
         "Comprendre que l’engagement politique prend des formes variées (vote, militantisme, engagement associatif, consommation engagée).",
@@ -1154,6 +1154,7 @@ CH.e1 = {
       '<div class="aut"><span class="mono">RS</span><span class="an">Robert Solow<small>1924-2023 · Nobel 1987</small></span><span class="ad">Dans son modèle (1956), l’accumulation du capital seule s’essouffle : chaque machine supplémentaire rapporte moins que la précédente (rendements décroissants). Seul le progrès technique permet une croissance durable. En 1957, il mesure qu’aux États-Unis, de 1909 à 1949, environ 87,5 % de la hausse de la production par heure de travail vient du progrès technique et non du capital. Ce « <b>résidu</b> » est la PGF.</span></div>' +
       '<div data-anim="e1-solow"></div>' +
       '<p>Le lien avec le <b>progrès technique</b> est direct : le progrès technique désigne l’ensemble des innovations qui améliorent les produits, les procédés et l’organisation. Il fait augmenter la PGF, donc permet de produire plus avec autant de facteurs. Les gains de productivité se transforment ensuite en croissance par la demande :</p>' +
+      '<div data-anim="e1-gains"></div>' +
       '<div data-chain="e1-pgf"></div>' +
       '<details class="pli"><summary>Activité : décomposer une croissance (exemple chiffré inventé)</summary><div><p>Une économie imaginaire croît de 2,0 % par an. Les économistes estiment que la hausse du travail contribue pour 0,4 point et celle du capital pour 0,6 point. La contribution de la PGF est le reste : 2,0 − 0,4 − 0,6 = <b>1,0 point</b>, soit la moitié de la croissance. C’est exactement la démarche de Solow : la PGF se mesure « en creux », comme un résidu. Ce résidu mesure aussi, en partie, notre ignorance : qualité du travail, organisation, institutions s’y mélangent.</p></div></details>' },
 
@@ -2043,6 +2044,44 @@ ANIMS["e1-pib"] = {
       var kk = dernier - 1950, val = ys[kk];
       s += A.t(x0 + (kk + 0.5) * bw, val >= 0 ? Y(val) - 6 : Y(val) + 14, String(dernier) + " : " + (val > 0 ? "+" : "") + A.fr(val, 1) + " %", { t: 11, g: true, a: kk > 60 ? "end" : kk < 6 ? "start" : "middle", c: val < 0 ? "corail" : "encre", h: true });
     }
+    return s;
+  }
+};
+
+ANIMS["e1-gains"] = {
+  t: "Où vont les gains de productivité ?",
+  h: 320,
+  src: "Schéma de principe (chiffres illustratifs).",
+  etapes: [
+    { l: "Une usine produit 100 objets par jour avec 10 salariés : 10 objets par salarié et par jour.", d: 3 },
+    { l: "Une nouvelle machine (progrès technique) : les mêmes 10 salariés produisent 125 objets. La productivité du travail augmente de 25 %.", d: 3.5 },
+    { l: "Chaque objet coûte moins cher à produire : l’entreprise dispose d’un surplus à partager.", d: 3 },
+    { l: "Ce surplus peut aller aux consommateurs (prix plus bas), aux salariés (salaires plus élevés) et à l’entreprise (profits pour investir).", d: 4 },
+    { l: "Chacun dépense ou investit davantage : la demande augmente, il faut produire plus et embaucher. Les gains de productivité nourrissent la croissance.", d: 4 }
+  ],
+  rendu: function (A, i, p) {
+    var s = "";
+    function salarie(x, y, op, c) { return A.cercle(x, y - 9, 5, { f: c || "canard", op: op }) + A.r(x - 6, y - 3, 12, 13, { f: c || "canard", r: 4, op: op }); }
+    s += A.t(20, 24, "Salariés", { t: 12, g: true, c: "gris" });
+    var nb = 10 + (i === 4 ? Math.round(3 * A.s(p, 0.4, 1)) : 0);
+    for (var k = 0; k < nb; k++) s += salarie(30 + k * 24, 54, 1, k >= 10 ? "vert" : "canard");
+    s += A.t(20, 96, "Production par jour", { t: 12, g: true, c: "gris" });
+    var prod = i === 0 ? 100 : i === 1 ? A.l(100, 125, A.s(p, 0.1, 0.8)) : (i === 4 ? A.l(125, 160, A.s(p, 0.3, 1)) : 125);
+    s += A.r(20, 104, prod * 1.65, 26, { f: "canard", r: 4 }) + A.t(26 + prod * 1.65, 122, A.fr(prod, 0) + " objets", { t: 12.5, g: true });
+    if (i >= 1) s += A.t(20, 148, "productivité : " + A.fr(prod / nb, 1) + " objets par salarié", { t: 12, c: "canard", g: true, op: i === 1 ? A.s(p, 0.5, 1) : 1 });
+    if (i >= 2) {
+      var q = i === 2 ? A.s(p, 0, 0.6) : 1;
+      s += A.boite(120, 164, 120, 38, "surplus à partager", { k: "frein", t: 12.5, g: true, op: q });
+    }
+    if (i >= 3) {
+      var parts = [["Consommateurs : prix ↓", 20], ["Salariés : salaires ↑", 130], ["Entreprise : profits ↑", 240]];
+      parts.forEach(function (pt, k) {
+        var q2 = i === 3 ? A.s(p, k * 0.2, 0.5 + k * 0.2) : 1;
+        s += A.fl(180, 204, pt[1] + 50, 236, { c: "corail", sw: 2, p: q2 });
+        s += A.boite(pt[1], 240, 100, 40, pt[0], { k: "effet", t: 11.5, op: q2 });
+      });
+    }
+    if (i === 4) s += A.t(180, 304, "plus de demande → plus de production → embauches", { t: 12.5, g: true, a: "middle", c: "vert", op: A.s(p, 0.2, 0.7) });
     return s;
   }
 };

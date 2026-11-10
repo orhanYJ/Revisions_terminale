@@ -93,3 +93,41 @@ ANIMS["e1-pib"] = {
     return s;
   }
 };
+
+ANIMS["e1-gains"] = {
+  t: "Où vont les gains de productivité ?",
+  h: 320,
+  src: "Schéma de principe (chiffres illustratifs).",
+  etapes: [
+    { l: "Une usine produit 100 objets par jour avec 10 salariés : 10 objets par salarié et par jour.", d: 3 },
+    { l: "Une nouvelle machine (progrès technique) : les mêmes 10 salariés produisent 125 objets. La productivité du travail augmente de 25 %.", d: 3.5 },
+    { l: "Chaque objet coûte moins cher à produire : l’entreprise dispose d’un surplus à partager.", d: 3 },
+    { l: "Ce surplus peut aller aux consommateurs (prix plus bas), aux salariés (salaires plus élevés) et à l’entreprise (profits pour investir).", d: 4 },
+    { l: "Chacun dépense ou investit davantage : la demande augmente, il faut produire plus et embaucher. Les gains de productivité nourrissent la croissance.", d: 4 }
+  ],
+  rendu: function (A, i, p) {
+    var s = "";
+    function salarie(x, y, op, c) { return A.cercle(x, y - 9, 5, { f: c || "canard", op: op }) + A.r(x - 6, y - 3, 12, 13, { f: c || "canard", r: 4, op: op }); }
+    s += A.t(20, 24, "Salariés", { t: 12, g: true, c: "gris" });
+    var nb = 10 + (i === 4 ? Math.round(3 * A.s(p, 0.4, 1)) : 0);
+    for (var k = 0; k < nb; k++) s += salarie(30 + k * 24, 54, 1, k >= 10 ? "vert" : "canard");
+    s += A.t(20, 96, "Production par jour", { t: 12, g: true, c: "gris" });
+    var prod = i === 0 ? 100 : i === 1 ? A.l(100, 125, A.s(p, 0.1, 0.8)) : (i === 4 ? A.l(125, 160, A.s(p, 0.3, 1)) : 125);
+    s += A.r(20, 104, prod * 1.65, 26, { f: "canard", r: 4 }) + A.t(26 + prod * 1.65, 122, A.fr(prod, 0) + " objets", { t: 12.5, g: true });
+    if (i >= 1) s += A.t(20, 148, "productivité : " + A.fr(prod / nb, 1) + " objets par salarié", { t: 12, c: "canard", g: true, op: i === 1 ? A.s(p, 0.5, 1) : 1 });
+    if (i >= 2) {
+      var q = i === 2 ? A.s(p, 0, 0.6) : 1;
+      s += A.boite(120, 164, 120, 38, "surplus à partager", { k: "frein", t: 12.5, g: true, op: q });
+    }
+    if (i >= 3) {
+      var parts = [["Consommateurs : prix ↓", 20], ["Salariés : salaires ↑", 130], ["Entreprise : profits ↑", 240]];
+      parts.forEach(function (pt, k) {
+        var q2 = i === 3 ? A.s(p, k * 0.2, 0.5 + k * 0.2) : 1;
+        s += A.fl(180, 204, pt[1] + 50, 236, { c: "corail", sw: 2, p: q2 });
+        s += A.boite(pt[1], 240, 100, 40, pt[0], { k: "effet", t: 11.5, op: q2 });
+      });
+    }
+    if (i === 4) s += A.t(180, 304, "plus de demande → plus de production → embauches", { t: 12.5, g: true, a: "middle", c: "vert", op: A.s(p, 0.2, 0.7) });
+    return s;
+  }
+};
