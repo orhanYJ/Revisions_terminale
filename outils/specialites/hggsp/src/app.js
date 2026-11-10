@@ -93,7 +93,7 @@
   /* ---------------- accueil ---------------- */
   function pageAccueil() {
     var h = '<div class="page large">';
-    h += '<section class="une"><svg class="radar" viewBox="0 0 260 260" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="130" cy="130" r="40"/><circle cx="130" cy="130" r="80"/><circle cx="130" cy="130" r="120"/><path d="M130 0V260M0 130H260"/></g><g class="balai"><path d="M130 130L130 10A120 120 0 0 1 233 70Z" fill="currentColor" opacity=".35"/></g><circle cx="178" cy="88" r="5" fill="#FF5B49"/></svg>';
+    h += '<section class="une"><svg class="radar" viewBox="0 0 260 260" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="130" cy="130" r="40"/><circle cx="130" cy="130" r="80"/><circle cx="130" cy="130" r="120"/><path d="M130 0V260M0 130H260"/></g><g class="balai"><path d="M130 130L130 10A120 120 0 0 1 233 70Z" fill="currentColor" opacity=".35"/></g>' + [[178, 88], [92, 70], [206, 168], [64, 150], [150, 214], [110, 116]].map(function (p, i) { return '<circle class="blip" style="animation-delay:' + (i * 1) + 's" cx="' + p[0] + '" cy="' + p[1] + '" r="5" fill="#FF5B49"/>'; }).join("") + '</svg>';
     h += '<span class="classif">DOSSIER CLASSÉ · HGGSP · TERMINALE</span><h1>Ligne <i>rouge</i></h1>';
     h += '<p>' + typo("Histoire-géographie, géopolitique et sciences politiques : le programme de spécialité de Terminale, thème par thème, avec des cours rédigés, des frises et des cartes interactives, des sujets corrigés et de quoi t'entraîner.") + '</p></section>';
     h += '<div class="raccourcis"><a href="#t2">' + ic("th2") + 'Thème 2 (écrit 2027)</a><a href="#t1">' + ic("th1") + 'Thème 1</a><a href="#epreuve">' + ic("stylo") + 'L\'épreuve</a><a href="#entrainement">' + ic("cible") + 'S\'entraîner</a><a href="#ressources">' + ic("livre") + 'Ressources</a></div>';
@@ -466,7 +466,10 @@
         var e = D.frise[+b.getAttribute("data-i")];
         $$(".ev").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
         b.classList.add("vu");
-        info.innerHTML = '<b style="color:' + couleur(D, e[2]) + '">' + typo(e[1]) + '</b><br><b>' + typo(e[3]) + '</b> — ' + typo(e[4]);
+        info.innerHTML = '<b class="tt" style="color:' + couleur(D, e[2]) + '"></b><br><b>' + typo(e[3]) + '</b> — ' + typo(e[4]);
+        var tt = $(".tt", info), d = sans(e[1]), n = 0;
+        if (!MO()) tt.textContent = d;
+        else { tt.textContent = ""; clearInterval(info._t); info._t = setInterval(function () { n++; tt.textContent = d.slice(0, n) + (n < d.length ? "▌" : ""); if (n >= d.length) clearInterval(info._t); }, 40); }
       });
     });
     $$(".frise-filtres button[data-c]").forEach(function (b) {

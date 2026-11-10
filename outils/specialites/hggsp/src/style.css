@@ -378,6 +378,7 @@ dl.gloss dd{margin:2px 0 0;font:15.5px/1.5 var(--serif);color:var(--encre)}
   html.mo .ligne-rouge,html.mo .logo .trait{animation:mo-trait .7s .2s cubic-bezier(.6,0,.2,1) both}
   html.mo .tampon{animation:mo-tampon .45s .35s cubic-bezier(.3,1.6,.5,1) both}
   html.mo .une .radar .balai{transform-origin:130px 130px;animation:mo-tour 6s linear infinite}
+  html.mo .une .radar .blip{animation:mo-blip 6s linear infinite}
   html.mo .idee.surligne{animation:mo-flash 1.8s ease-out}
   html.mo .qcm .opt.faux{animation:mo-secoue .35s}
   html.mo .qcm .opt.bon{animation:mo-pouls .4s}
@@ -402,6 +403,7 @@ dl.gloss dd{margin:2px 0 0;font:15.5px/1.5 var(--serif);color:var(--encre)}
 @keyframes mo-trait{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes mo-tampon{0%{transform:rotate(-5deg) scale(1.4);opacity:0}100%{transform:rotate(-5deg) scale(1);opacity:.9}}
 @keyframes mo-tour{to{transform:rotate(360deg)}}
+@keyframes mo-blip{0%,100%{opacity:.25}8%{opacity:1}40%{opacity:.25}}
 @keyframes mo-flash{0%{background-color:var(--rouge-pale)}100%{background-color:transparent}}
 @keyframes mo-secoue{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 @keyframes mo-pouls{50%{transform:scale(1.03)}}
