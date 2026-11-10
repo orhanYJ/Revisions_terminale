@@ -64,7 +64,7 @@ var PROG = [
         "Comprendre que, dans les sociétés démocratiques, l’École transmet des savoirs et vise à favoriser l’égalité des chances ; comprendre l’évolution, depuis les années 1950, des principaux indicateurs mesurant l’accès à l’école et à l’enseignement supérieur (taux de scolarisation, taux d’accès à un diplôme ou à un type de formation) en distinguant les processus de massification et de démocratisation.",
         "Comprendre la multiplicité des facteurs d’inégalités de réussite scolaire (notamment, rôle de l’École, rôle du capital culturel et des investissements familiaux, socialisation selon le genre, effets des stratégies des ménages) dans la construction des trajectoires individuelles de formation."],
       notions: [] },
-    { id: "s3", code: "S3", court: "Mobilité sociale", statut: "bt", ecrit: true,
+    { id: "s3", code: "S3", court: "Mobilité sociale", statut: "red", ecrit: true, spark: "s3-mob",
       titre: "Quels sont les caractéristiques contemporaines et les facteurs de la mobilité sociale ?",
       objectifs: [
         "Savoir distinguer la mobilité sociale intergénérationnelle des autres formes de mobilité (géographique, professionnelle).",
