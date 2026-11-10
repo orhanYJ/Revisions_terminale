@@ -1,4 +1,4 @@
-var CACHE = 'hggsp-v5';
+var CACHE = 'hggsp-v6';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=9'];
 
 self.addEventListener('install', function (e) {
@@ -18,19 +18,25 @@ self.addEventListener('activate', function (e) {
 });
 
 self.addEventListener('fetch', function (e) {
+  if (e.request.method !== 'GET') return;
   var url = new URL(e.request.url);
+  /* Vidéos des chapitres (serie/) : le son est lu par plages, le service worker le laisse passer */
+  if (url.pathname.endsWith('.mp3')) return;
   var isPage = e.request.mode === 'navigate' ||
-    url.pathname.endsWith('/') || url.pathname.endsWith('index.html');
+    url.pathname.endsWith('/') || url.pathname.endsWith('.html');
 
   if (isPage) {
-    /* Réseau d'abord, cache en secours (hors ligne) */
+    /* Réseau d'abord, cache en secours (hors ligne). La page d'accueil sous 'index.html' ; une vidéo (serie/*.html,
+       montée en iframe : c'est une navigation) sous sa propre adresse, jamais sous celle de l'accueil */
+    var accueil = url.pathname.endsWith('/') || url.pathname.endsWith('/index.html');
+    var cle = accueil ? 'index.html' : url.origin + url.pathname;
     e.respondWith(
-      fetch(e.request, { cache: "no-cache" }).then(function (r) {
+      fetch(e.request.url, { cache: "no-cache", credentials: "same-origin" }).then(function (r) {
         var copia = r.clone();
-        caches.open(CACHE).then(function (c) { c.put(e.request, copia); });
+        caches.open(CACHE).then(function (c) { c.put(cle, copia); });
         return r;
       }).catch(function () {
-        return caches.match(e.request).then(function (m) {
+        return caches.match(cle, { ignoreSearch: true }).then(function (m) {
           return m || caches.match('index.html');
         });
       })

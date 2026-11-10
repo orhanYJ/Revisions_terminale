@@ -8,6 +8,7 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 PRINCIPAUX = {"portrait", "def", "note", "cols", "cartes", "liste", "cit", "mot", "question", "dialogue", "carte", "nuage", "titre", "illu", "frise",
               "anim", "formule", "graphe", "exo", "pause", "globe", "mental"}
+PRINCIPAUX |= {"scene", "chrono", "document"}                               # HGGSP
 
 
 def donnees(code):
@@ -42,6 +43,10 @@ def boite(v):
     if v["type"] == "formule":
         x = v.get("x", 150)
         return (x, x + v.get("w", 980))
+    if v["type"] == "document" and v.get("mode") == "coin":
+        return (40, 560)        # HGGSP : la pièce rangée à gauche pendant la correction
+    if v["type"] == "scene" and "x" not in v:
+        return (60, 1220)
     if "x" in v and "w" in v:
         return (v["x"], v["x"] + v["w"])
     return (100, 1180)          # centré : occupe la largeur

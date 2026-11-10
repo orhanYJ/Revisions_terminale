@@ -80,6 +80,18 @@ META = {
         tags=["raisonnement par récurrence", "récurrence", "initialisation hérédité", "démonstration par récurrence",
               "inégalité de Bernoulli", "suites", "toile d'araignée", "algorithme de seuil", "maths terminale",
               "spécialité maths", "bac maths", "exercices corrigés"]),
+    "hggsp-t1-intro": dict(
+        sous="mer · espace · dernières frontières", img="t1-rice.jpg", gros="Océans et espace",
+        accroche="Le 2 août 2007, un drapeau russe est planté au fond de l'océan, sous le pôle Nord. Il n'a aucune valeur "
+                 "juridique : pourquoi ? Océan et espace, deux espaces de conquête aux règles opposées.",
+        pill2="+ dissertation et étude critique",
+        exos_txt="une dissertation (« Les océans et l'espace sont-ils encore des dernières frontières ? ») et une étude critique "
+                 "(le discours de Kennedy à l'université Rice, 1962), corrigées pas à pas",
+        exos=["Dissertation : « Les océans et l'espace sont-ils encore des dernières frontières ? » (problématique et plan détaillé).",
+              "Étude critique : le discours de J. F. Kennedy à l'université Rice, 12 septembre 1962 (présenter, analyser, critiquer)."],
+        tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "nouveaux espaces de conquête", "océan et espace",
+              "Montego Bay", "ZEE", "haute mer", "traité de l'espace 1967", "dernières frontières", "New Space",
+              "syndrome de Kessler", "orbites", "mer de Chine méridionale", "dissertation HGGSP", "étude critique"]),
 }
 
 # matière : libellés et couleurs de la miniature
@@ -90,6 +102,8 @@ MATIERE = {
                 acc="#B7D94C", pill="#B7D94C", pill_c="#0b120e", txt="#F1EFE3", txt2="#b8c9a8", ombre="0,0,0"),
     "maths": dict(nom="Maths", court="Maths", desc="maths", fond="#1b2422", fond_rgb="27,36,34",
                   acc="#F4D35E", pill="#F4D35E", pill_c="#1b2422", txt="#ECEBE4", txt2="#BFC4BB", ombre="0,0,0"),
+    "hggsp": dict(nom="HGGSP", court="HGGSP", desc="HGGSP", fond="#07090b", fond_rgb="7,9,11",
+                  acc="#FF5B49", pill="#B3241B", pill_c="#FFF8F0", txt="#DCE3E8", txt2="#93A3AF", ombre="0,0,0"),
 }
 
 
