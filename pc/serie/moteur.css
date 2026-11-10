@@ -505,3 +505,35 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 .scene .gq-bas{font-weight:500;font-size:26px;color:var(--ivoire2)}
 .scene .bandeau{left:28px;bottom:28px;width:500px;padding:16px 20px 12px;border-radius:16px;background:rgba(248,251,252,.92);box-shadow:var(--ombre)}
 .scene .gq-pc,.scene .gq-chip{text-transform:uppercase}
+/* --- corrections après relecture visuelle (11/2026) --- */
+/* pas de capitales forcées : elles changeaient λ en Λ, σ en Σ, ν en N, η en Η, mL en ML */
+.scene .entete,.scene .carte .te,.scene .fo-te,.scene .v-liste .ti,.scene .gr-ti,.scene .v-titre .sur,.scene .nt-t{text-transform:none;letter-spacing:.02em}
+.scene .carte .te,.scene .fo-carte:not(.nu) .fo-te{font-size:20px}
+.scene .v-liste .ti,.scene .fo-carte.nu .fo-te{font-size:21px}
+.scene .gr-ti{font-size:18px}
+.scene .v-liste.petit .ti{font-size:17px}
+/* en-tête lisible même sur une photo */
+.scene .entete{left:34px;top:24px;padding:6px 12px;border-radius:10px;background:rgba(248,251,252,.88);font-size:16px}
+/* la pastille « Pour aller plus loin » n'est plus rognée par la carte */
+.scene .carte,.scene .fo-carte{overflow:visible}
+.scene .carte .te{border-radius:16px 16px 0 0}
+.scene .fo-carte:not(.nu) .fo-te{border-radius:16px 16px 0 0}
+.scene .badge{top:-19px;z-index:2;background:#fff}
+/* chiffres romains des cartons : à empattements (un « I » sans empattement ressemblait à un rectangle vide) */
+.scene .v-chapitre .num{font-family:var(--fm);font-weight:600}
+/* photos : moins voilées, on doit les reconnaître */
+.scene .v-tableau.fond-t .ombre{background:rgba(238,244,248,.55)}
+.scene .v-tableau.fond-t.sombre .ombre{background:rgba(238,244,248,.74)}
+.scene .v-tableau.fond-t .lg{color:#17323d;text-shadow:0 0 6px #fff,0 0 12px #fff}
+.scene .v-question .tt{text-shadow:0 0 18px rgba(255,255,255,.95),0 0 4px #fff}
+/* pas de mot ou d'unité seul en fin de carte */
+.scene .fo-l,.scene .carte .tx,.scene .carte .et,.scene .v-liste .tx,.scene .ex-p,.scene .ex-q,.scene .ex-don,.scene .fl-tx,.scene .pa-tx,.scene .fo-n{text-wrap:pretty}
+/* petits textes plus lisibles sur téléphone */
+.scene .fo-n{font-size:23px}
+.scene .ex-src{font-size:19px;opacity:1;color:var(--ivoire2)}
+.scene .v-exo.coin .ex-don{font-size:18.5px}
+.scene .v-exo.coin .ex-q{font-size:19px}
+.scene .mf-z{font-size:12.5px}
+.scene .cm-it{font-size:21px;color:#3d5560}
+.al{text-decoration:overline;text-decoration-thickness:.06em}
+.scene .fo-carte:not(.nu) .fo-te,.scene .carte .te{letter-spacing:.03em}

@@ -354,7 +354,7 @@ SCENES = [
         "{-sens}",
     ], vis={
         "tab_ph": dict(type="tableau", img="c3-phmetre", fond=True, sombre=True, de=[1.0, .5, .4], a=[1.3, .5, .35],
-                       legende="pH-mètre de laboratoire, photo OER_CampLev, CC BY-SA 4.0"),
+                       legende="pH-mètre de laboratoire, photo OER＿CampLev, CC BY-SA 4.0"),
         "gr_ph": dict(type="graphe", titre="Deux acides à 1,0 × 10^-2 mol/L titrés par la soude", x=330, y=110, w=640, h=520,
                       ax=dict(x=[0, 20], y=[0, 14], gx=[5, 10, 15, 20], gy=[2, 4, 6, 8, 10, 12, 14], lx="V_B (mL)", ly="pH"),
                       el=[dict(type="courbe", pts=[list(p) for p in PH_HCL if p[0] <= 9.9], c="el", dur=2.4, lbl="acide chlorhydrique", lp=[2.5, 1.1]),
@@ -530,7 +530,7 @@ SCENES = [
             dict(f="CH₃COOH + HO⁻ → CH₃COO⁻ + H₂O : mole à mole", taille=32),
             dict(f="c_{S1} = " + fr("c_B × V_E", "V_A") + " = " + fr("0,10 × 11,9", "20,0") + " = 5,95 × 10^-2 mol·L^-1", taille=34),
             dict(f="c_{vinaigre} = 20 × 5,95 × 10^-2 = 1,19 mol·L^-1", cadre=True, taille=36),
-            dict(f="écart = " + fr("|1,19 − 1,18|", "1,18") + " ≈ 1 % : l'étiquette est vérifiée", ok=True, taille=32)]),
+            dict(f="écart = " + fr("∣1,19 − 1,18∣", "1,18") + " ≈ 1 % : l'étiquette est vérifiée", ok=True, taille=32)]),
         "recop": dict(type="note", titre="L'erreur de recopie", cles=["relire"],
                       t="11,3 mL au lieu de 11,9 mL : 1,13 mol/L et 4 % d'écart, une conclusion fausse. Relire V_E sur la courbe.", x=170, y=210, w=940),
         "ece": dict(type="liste", titre="Ce que vaut ce TP pour l'épreuve pratique", items=[

@@ -85,7 +85,7 @@ SCENES = [
             "Le foyer image F′ : là où convergent les rayons parallèles à l'axe", "Le foyer objet F : symétrique de F′ par rapport à O"],
                       marques=["1", "2", "3", "4"], x=150, y=150, w=980),
         "f_C": dict(type="formule", titre="Distance focale et vergence", x=150, y=130, w=980, lignes=[
-            dict(f="f′ = OF′  ·  C = " + fr("1", "f′"), cadre=True, n="f′ en mètres · C en dioptries (δ), 1 δ = 1 m^-1"),
+            dict(f="f′ = ‾{OF′}   ;   C = " + fr("1", "f′"), cadre=True, n="f′ en mètres · C en dioptries (δ), 1 δ = 1 m^-1"),
             dict(f="f′ = 5,0 cm = 0,050 m  ⇒  C = " + fr("1", "0,050") + " = 20 δ  (et non 0,2 δ)", taille=36),
             dict(f="TP 7 : objectif +2,0 δ → f′_1 = 50 cm · oculaire +20 δ → f′_2 = 5,0 cm", taille=32)]),
         "constr": dict(type="illu", nom="lentille", x=90, y=110, w=1100, h=520, oa=-2.5, f=130),
@@ -93,7 +93,7 @@ SCENES = [
 
     # ================================================================ II. conjugaison
     dict(id="conjugaison", chap="La relation de conjugaison", fond="nuit", humeur="calme",
-         retenir="1/OA′ − 1/OA = 1/f′ ; γ = OA′/OA. Objet à l'infini → image dans le plan focal image. Objet en F → image à l'infini.",
+         retenir="1/‾{OA′} − 1/‾{OA} = 1/f′ ; γ = ‾{OA′}/‾{OA}. Objet à l'infini → image dans le plan focal image. Objet en F → image à l'infini.",
          beats=[
         "{alg}Pour calculer au lieu de dessiner, on oriente l'axe dans le sens de la lumière, de gauche à droite. "
         "{alg.1}Une mesure algébrique, O A barre, est positive si A est à droite de O, négative s'il est à gauche. "
@@ -114,24 +114,24 @@ SCENES = [
         "{-limites}",
     ], vis={
         "alg": dict(type="def", terme="Mesure algébrique", cles=["positive", "négative"],
-                    t="Sur l'axe orienté dans le sens de la lumière, OA est positive si A est à droite de O, négative s'il est à gauche.",
-                    etape="Un objet réel, placé avant la lentille, a toujours OA < 0.", x=170, y=180, w=940),
+                    t="Sur l'axe orienté dans le sens de la lumière, ‾{OA} est positive si A est à droite de O, négative s'il est à gauche.",
+                    etape="Un objet réel, placé avant la lentille, a toujours ‾{OA} < 0.", x=170, y=180, w=940),
         "f_conj": dict(type="formule", titre="Conjugaison et grandissement", x=150, y=150, w=980, lignes=[
-            dict(f=fr("1", "OA′") + " − " + fr("1", "OA") + " = " + fr("1", "f′") + " = C", cadre=True, taille=50,
+            dict(f=fr("1", "‾{OA′}") + " − " + fr("1", "‾{OA}") + " = " + fr("1", "f′") + " = C", cadre=True, taille=50,
                  n="mesures algébriques, toutes dans la même unité"),
-            dict(f="γ = " + fr("A′B′", "AB") + " = " + fr("OA′", "OA"), cadre=True, taille=46,
+            dict(f="γ = " + fr("‾{A′B′}", "‾{AB}") + " = " + fr("‾{OA′}", "‾{OA}"), cadre=True, taille=46,
                  n="γ < 0 : image renversée · |γ| > 1 : image agrandie")]),
         "ex_conj": dict(type="formule", titre="Exemple · objet à 30 cm d'une lentille de 10 cm", x=150, y=120, w=980, lignes=[
-            dict(f="OA = −30 cm  ·  f′ = 10 cm"),
-            dict(f=fr("1", "OA′") + " = " + fr("1", "10") + " + " + fr("1", "−30") + " = " + fr("2", "30")),
-            dict(f="OA′ = +15 cm : image réelle, après la lentille", cadre=True),
+            dict(f="‾{OA} = −30 cm  ·  f′ = 10 cm"),
+            dict(f=fr("1", "‾{OA′}") + " = " + fr("1", "10") + " + " + fr("1", "−30") + " = " + fr("2", "30")),
+            dict(f="‾{OA′} = +15 cm : image réelle, après la lentille", cadre=True),
             dict(f="γ = " + fr("15", "−30") + " = −0,5 : renversée, deux fois plus petite")]),
         "piege_signe": dict(type="note", titre="Le signe moins qu'on oublie", cles=["signe", "impossible"],
-                            t="OA = +30 cm donnerait OA′ = +7,5 cm, plus près que F′ : impossible pour un objet réel. Vérifie le signe.",
+                            t="‾{OA} = +30 cm donnerait ‾{OA′} = +7,5 cm, plus près que F′ : impossible pour un objet réel. Vérifie le signe.",
                             x=170, y=210, w=940),
         "limites": dict(type="liste", titre="Les deux cas limites", items=[
-            "Objet à l'infini : OA′ = f′, image dans le plan focal image",
-            "Objet au foyer objet (OA = −f′) : image à l'infini, rayons parallèles"], marques=["∞", "F"], x=150, y=190, w=980),
+            "Objet à l'infini : ‾{OA′} = f′, image dans le plan focal image",
+            "Objet au foyer objet (‾{OA} = −f′) : image à l'infini, rayons parallèles"], marques=["∞", "F"], x=150, y=190, w=980),
     }),
 
     # ================================================================ III. l'œil et les petits angles
@@ -606,7 +606,7 @@ SCENES = [
         "{-bac}",
     ], vis={
         "carte": dict(type="carte", centre="LUNETTE AFOCALE · F′₁ = F₂", branches=[
-            dict(t="Les lentilles", items=["3 rayons particuliers", "C = 1/f′ (f′ en m)", "1/OA′ − 1/OA = 1/f′"]),
+            dict(t="Les lentilles", items=["3 rayons particuliers", "C = 1/f′ (f′ en m)", "1/‾{OA′} − 1/‾{OA} = 1/f′"]),
             dict(t="L'objectif", items=["grande focale", "A₁B₁ dans le plan focal image", "réelle, renversée, ≈ f′₁ × α"]),
             dict(t="L'oculaire", items=["petite focale", "image à l'infini", "œil au repos, sans fatigue"]),
             dict(t="Le grossissement", items=["G = α′/α (rad)", "G = f′₁/f′₂", "« 70/700 » : D puis f′₁"])]),
@@ -623,7 +623,7 @@ QUIZ = [
          ex="C = 1/f′ avec f′ en mètres : 1/0,050 = 20 δ.", voir="f_C"),
     dict(q="Un objet est placé au foyer objet d'une lentille convergente. Son image est…",
          r=["dans le plan focal image", "à l'infini : les rayons ressortent parallèles", "confondue avec l'objet"], ok=1,
-         ex="Avec OA = −f′, la relation de conjugaison donne 1/OA′ = 0 : l'image est à l'infini.", voir="limites"),
+         ex="Avec ‾{OA} = −f′, la relation de conjugaison donne 1/‾{OA′} = 0 : l'image est à l'infini.", voir="limites"),
     dict(q="Où se forme l'image intermédiaire d'un astre donnée par l'objectif ?",
          r=["Dans le plan focal image de l'objectif", "Au foyer objet de l'objectif", "Sur l'oculaire"], ok=0,
          ex="Un objet à l'infini donne une image dans le plan focal image : A₁B₁ est en F′₁.", voir="pts1"),
