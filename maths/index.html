@@ -24,7 +24,7 @@
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Helvetica Neue",Arial,sans-serif;
   --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,"DejaVu Sans Mono","Liberation Mono",monospace;
   --math:"Carnet Math","STIX Two Math","Cambria Math","Latin Modern Math",math;
-  --code-bg:#F3EFE2;--code-fg:#1B2A5E;--kw:#A3302A;--str:#23774F;--num:#2343A8;--com:#6E6A58;
+  --sur-c:#fff;--code-bg:#F3EFE2;--code-fg:#1B2A5E;--kw:#A3302A;--str:#23774F;--num:#2343A8;--com:#6E6A58;
   color-scheme:light;
 }
 :root[data-theme="sombre"]{
@@ -33,7 +33,7 @@
   --bleu:#9CC3F0;--bleu-p:rgba(156,195,240,.10);--rouge:#FF907E;--rouge-p:rgba(255,144,126,.09);
   --surligne:rgba(244,211,94,.22);--surligne2:#F4D35E;--vert:#8FD6A8;--vert-p:rgba(143,214,168,.10);
   --ombre:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.25);
-  --code-bg:#18201E;--code-fg:#E7E6DE;--kw:#FF907E;--str:#8FD6A8;--num:#9CC3F0;--com:#8D958C;
+  --sur-c:#16201E;--code-bg:#18201E;--code-fg:#E7E6DE;--kw:#FF907E;--str:#8FD6A8;--num:#9CC3F0;--com:#8D958C;
   color-scheme:dark;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="clair"]){
@@ -42,7 +42,7 @@
   --bleu:#9CC3F0;--bleu-p:rgba(156,195,240,.10);--rouge:#FF907E;--rouge-p:rgba(255,144,126,.09);
   --surligne:rgba(244,211,94,.22);--surligne2:#F4D35E;--vert:#8FD6A8;--vert-p:rgba(143,214,168,.10);
   --ombre:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.25);
-  --code-bg:#18201E;--code-fg:#E7E6DE;--kw:#FF907E;--str:#8FD6A8;--num:#9CC3F0;--com:#8D958C;
+  --sur-c:#16201E;--code-bg:#18201E;--code-fg:#E7E6DE;--kw:#FF907E;--str:#8FD6A8;--num:#9CC3F0;--com:#8D958C;
   color-scheme:dark;}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:110px}
@@ -181,7 +181,7 @@ code{font:.9em var(--mono);background:var(--code-bg);padding:1px 5px;border-radi
 .wid .btns{display:flex;flex-wrap:wrap;gap:8px;padding:6px 14px 4px}
 .btn{min-height:44px;padding:0 16px;border-radius:11px;border:1px solid var(--ligne2);background:var(--papier);cursor:pointer;font-weight:600;font-size:.92rem;display:inline-flex;align-items:center;gap:6px;color:var(--encre);text-decoration:none}
 .btn.plein{background:var(--encre);color:var(--papier);border-color:var(--encre)}
-.btn.rouge{background:var(--rouge);color:#fff;border-color:var(--rouge)}
+.btn.rouge{background:var(--rouge);color:var(--sur-c);border-color:var(--rouge)}
 .btn:disabled{opacity:.45;cursor:default}
 .wid .note{padding:6px 14px 12px;font-size:.92rem;color:var(--encre2);min-height:2.6em}
 .wid .note b{color:var(--encre)}
@@ -234,9 +234,9 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 .qcm .opt{display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;min-height:48px;padding:10px 12px;border-radius:11px;border:1.5px solid var(--ligne2);background:var(--papier);cursor:pointer;line-height:1.45}
 .qcm .opt .l{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--encre3);display:inline-flex;align-items:center;justify-content:center;font:600 .82rem var(--serif)}
 .qcm .opt.ok{border-color:var(--vert);background:var(--vert-p)}
-.qcm .opt.ok .l{background:var(--vert);border-color:var(--vert);color:#fff}
+.qcm .opt.ok .l{background:var(--vert);border-color:var(--vert);color:var(--sur-c)}
 .qcm .opt.ko{border-color:var(--rouge);background:var(--rouge-p)}
-.qcm .opt.ko .l{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.qcm .opt.ko .l{background:var(--rouge);border-color:var(--rouge);color:var(--sur-c)}
 .qcm .opt:disabled{cursor:default}
 .qcm .expl{margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--bleu-p);font-size:.95rem}
 .qcm .expl .v{font-weight:700}
@@ -332,7 +332,7 @@ html.mo .trace{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:tr
 .anim .scene{padding:6px 6px 0}
 .anim .scene svg{display:block;width:100%;height:auto;max-height:62vh}
 .anim .cap{margin:4px 12px 0;padding:8px 12px;min-height:3.2em;border-radius:10px;background:var(--papier);border:1px solid var(--ligne);font-size:.93rem;line-height:1.5}
-.anim .cap b:first-child{display:inline-block;font:700 .75rem/1.6 var(--sans);color:#fff;background:var(--rouge);border-radius:999px;padding:0 8px;margin-right:4px;vertical-align:1px}
+.anim .cap b:first-child{display:inline-block;font:700 .75rem/1.6 var(--sans);color:var(--sur-c);background:var(--rouge);border-radius:999px;padding:0 8px;margin-right:4px;vertical-align:1px}
 html.mo .anim .cap.neuf{animation:capin .45s ease-out}
 @keyframes capin{from{transform:translateY(5px);background:var(--surligne)}to{transform:none}}
 .anim .ctl{display:flex;align-items:center;gap:6px;padding:10px 12px}
@@ -479,6 +479,19 @@ html.mo .cinq li:nth-child(3){animation-delay:.12s}
 html.mo .cinq li:nth-child(4){animation-delay:.18s}
 html.mo .cinq li:nth-child(5){animation-delay:.24s}
 td math,th math{math-style:normal}
+/* mouvement d'interface complémentaire (contrôle visuel du 10/11/2026) */
+@keyframes voile{from{opacity:0}to{opacity:1}}
+html.mo .voile.ouvert{animation:voile .25s ease-out}
+html.mo .menu.ouvert a{animation:monte .3s ease-out both}
+html.mo .menu.ouvert a:nth-of-type(4n+2){animation-delay:.03s}
+html.mo .menu.ouvert a:nth-of-type(4n+3){animation-delay:.06s}
+html.mo .menu.ouvert a:nth-of-type(4n){animation-delay:.09s}
+html.mo .filtres button{transition:background .2s,color .2s,transform .12s}
+html.mo .filtres button:active{transform:scale(.95)}
+html.mo .filtres button.on{animation:tampon .3s cubic-bezier(.3,1.5,.5,1)}
+html.mo .flash .nav .btn:not(:disabled){transition:opacity .25s,transform .12s}
+html.mo .qcm .score{animation:tampon .5s cubic-bezier(.3,1.6,.5,1)}
+html.mo details.demo[open]>*:not(summary),html.mo .exo details[open]>*:not(summary){animation:deplie .3s ease-out}
 
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -810,13 +823,19 @@ var WIDGETS = (function () {
     R.clipY = function (y) { return Math.max(-3000, Math.min(3000, R.Y(y))); };
     var g = N("g", {}, svg);
     var px = opt.px || 1, py = opt.py || 1, k;
+    /* grandes graduations en puissances de 10 (« 3·10⁵ ») : elles tiennent dans la marge */
+    function grand(v) {
+      if (Math.abs(v) < 1e4) return nf(v, 2);
+      var e = Math.floor(Math.log10(Math.abs(v)) + 1e-9), q = Math.round(v / Math.pow(10, e) * 10) / 10, SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹";
+      return (q === 1 ? "" : nf(q, 1) + "·") + "10" + String(e).split("").map(function (c) { return SUP[+c]; }).join("");
+    }
     for (k = Math.ceil(x0 / px) * px; k <= x1 + 1e-9; k += px) {
       N("line", { x1: R.X(k), x2: R.X(k), y1: m.t, y2: H - m.b, "class": "g-grille" }, g);
       if (Math.abs(k) > 1e-9 || !opt.sansZeroX) { var t = N("text", { x: R.X(k), y: H - m.b + 15, "text-anchor": "middle", "class": "g-txt" }, g); t.textContent = nf(k, 2); }
     }
     for (k = Math.ceil(y0 / py) * py; k <= y1 + 1e-9; k += py) {
       N("line", { x1: m.l, x2: W - m.r, y1: R.Y(k), y2: R.Y(k), "class": "g-grille" }, g);
-      var t2 = N("text", { x: m.l - 5, y: R.Y(k) + 4, "text-anchor": "end", "class": "g-txt" }, g); t2.textContent = nf(k, 2);
+      var t2 = N("text", { x: m.l - 5, y: R.Y(k) + 4, "text-anchor": "end", "class": "g-txt" }, g); t2.textContent = grand(k);
     }
     if (y0 <= 0 && y1 >= 0) N("line", { x1: m.l, x2: W - m.r, y1: R.Y(0), y2: R.Y(0), "class": "g-axe" }, g);
     if (x0 <= 0 && x1 >= 0) N("line", { x1: R.X(0), x2: R.X(0), y1: m.t, y2: H - m.b, "class": "g-axe" }, g);
@@ -1005,7 +1024,8 @@ var WIDGETS = (function () {
       var y = s.f(x);
       xs.parentNode.querySelector("b").textContent = nf(x, 2);
       R.pt(x, y, "g-pt2", 5);
-      R.txt(x + 0.2, Math.min(y, s.y[1] - 0.3) + 0.3, "f(" + nf(x, 2) + ") ≈ " + nf(y, 3), "r");
+      var droite = x > s.x[0] + 0.6 * (s.x[1] - s.x[0]);
+      R.txt(x + (droite ? -0.2 : 0.2), Math.min(y, s.y[1] - 0.3) + 0.3, "f(" + nf(x, 2) + ") ≈ " + nf(y, 3), "r", droite ? "end" : "start");
       c.note.innerHTML = F("$" + s.n + "$. " + s.txt + (s.ah !== undefined ? " Écart avec l'asymptote horizontale : $" + nf(Math.abs(y - s.ah), 4) + "$." : ""));
     }
     choix.onchange = maj; xs.addEventListener("input", maj); maj();
@@ -1023,7 +1043,7 @@ var WIDGETS = (function () {
       R.pt(k, M, "g-pt2", 4.5);
       R.txt(k + X * 0.02, M * 1.12, "max en x = " + k, "r");
       var x1 = dernierCroisement(k);
-      c.note.innerHTML = F("Courbe de $x\\mapsto\\frac{x^{" + k + "}}{\\e^x}$ : elle monte jusqu'à $x=" + k + "$ (maximum $\\left(\\frac{" + k + "}{\\e}\\right)^{" + k + "}\\approx" + nf(M, 3) + "$), puis retombe vers $0$. Donc $\\lim_{x\\to+\\infty}\\frac{x^{" + k + "}}{\\e^x}=0$. " + (k > 2 ? "Et $\\e^x$ dépasse définitivement $x^{" + k + "}$ dès $x\\approx" + nf(x1, 2) + "$." : "Et ici $\\e^x>x^{" + k + "}$ pour tout $x\\geq0$ ; plus la puissance est grande, plus l'exponentielle met de temps à gagner : essaie $n=10$."));
+      c.note.innerHTML = F("Courbe de $x\\mapsto\\frac{x^{" + k + "}}{\\e^x}$ : elle monte jusqu'à $x=" + k + "$ (maximum $\\left(\\frac{" + k + "}{\\e}\\right)^{" + k + "}\\approx" + nf(M, M > 1000 ? 0 : 3) + "$), puis retombe vers $0$. Donc $\\lim_{x\\to+\\infty}\\frac{x^{" + k + "}}{\\e^x}=0$. " + (k > 2 ? "Et $\\e^x$ dépasse définitivement $x^{" + k + "}$ dès $x\\approx" + nf(x1, 2) + "$." : "Et ici $\\e^x>x^{" + k + "}$ pour tout $x\\geq0$ ; plus la puissance est grande, plus l'exponentielle met de temps à gagner : essaie $n=10$."));
     }
     n.addEventListener("input", maj); maj();
   };
@@ -1468,7 +1488,7 @@ ANIMS.arbre = {
     { d: 3.5, l: R`Donc le nombre de trios (sans ordre) est $\frac{24}{6}=4=\binom43$. C'est la formule $\binom nk=\frac{n(n-1)\dots(n-k+1)}{k!}$.` }
   ],
   rendu: function (S, k, t) {
-    var E = ANIM.e, L = ["A", "B", "C", "D"], cols = { ABC: "#2343A8", ABD: "#C2372B", ACD: "#23774F", BCD: "#B8860B" };
+    var E = ANIM.e, L = ["A", "B", "C", "D"], cols = { ABC: "var(--bleu)", ABD: "var(--rouge)", ACD: "var(--vert)", BCD: "#B07F0A" };
     var feuilles = [];
     L.forEach(function (a) { L.forEach(function (b) { if (b === a) return; L.forEach(function (c) { if (c === a || c === b) return; feuilles.push(a + b + c); }); }); });
     var y = [22, 70, 130, 200], W = 360;
@@ -1488,8 +1508,8 @@ ANIMS.arbre = {
           else {
             var ty = y[3] + 2 + (k >= 3 ? 0 : 0);
             S.px.txt(x, ty, lab[0], col ? "" : "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
-            S.px.txt(x, ty + 10, lab[1], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
-            S.px.txt(x, ty + 20, lab[2], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
+            S.px.txt(x, ty + 11.5, lab[1], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
+            S.px.txt(x, ty + 23, lab[2], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
           }
         }
       }
@@ -1498,7 +1518,7 @@ ANIMS.arbre = {
     S.px.txt(8, 250, k === 4 ? "24 ÷ 3! = 4 trios" : tot + " branches", k === 4 ? "r" : "b", "start", k === 4 ? { "font-size": 14 } : null);
     if (k >= 3) {
       var a2 = k === 3 ? E(t) : 1;
-      Object.keys(cols).forEach(function (c, i) { S.px.txt(196 + i * 41, 250, c, "", "middle", { fill: cols[c], "font-weight": 700, opacity: a2, "font-size": 12 }); });
+      Object.keys(cols).forEach(function (c, i) { S.px.txt(196 + i * 41, 250, c, "", "middle", { style: "fill:" + cols[c] + ";font-weight:700", opacity: a2, "font-size": 12 }); });
     }
   }
 };
@@ -2941,7 +2961,7 @@ ANIMS.reciproque = {
     var E = ANIM.e, ex = Math.exp, ln = Math.log;
     S.rep(-3, 5, -3, 5, { px: 1, py: 1, marges: { l: 26, r: 8, t: 8, b: 22 } });
     S.seg(-3, -3, 5, 5, "g-as");
-    S.txt(4.6, 4.95, "y = x", "r", "end");
+    S.txt(4.6, 4.7, "y = x", "r", "end");
     S.courbe(ex, -3, ln(5), "g-c", 160);
     S.txt(1.22, 4.6, "exp", "b", "end");
     var aMax = k === 0 ? -3 : k === 1 ? ANIM.l(-3, ln(5) - 0.01, E(t)) : ln(5) - 0.01;
@@ -3249,7 +3269,7 @@ ANIMS.trigEq = {
     { d: 5, l: R`Avec le sinus, la droite est horizontale. $\sin x\geq\frac12$ : les points <b>au-dessus</b> de la droite d'ordonnée $\frac12$. Sur $[0;2\pi]$ : $x\in\left[\frac\pi6;\frac{5\pi}6\right]$.` }
   ],
   rendu: function (S, k, t) {
-    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, cx = 104, cy = 118, r = 88, PI = Math.PI;
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, cx = 110, cy = 118, r = 88, PI = Math.PI;
     function pt(a) { return [cx + r * Math.cos(a), cy - r * Math.sin(a)]; }
     function arc(a1, a2, cls, at) { var n = Math.max(2, Math.ceil(Math.abs(a2 - a1) * 24)), d = ""; for (var i = 0; i <= n; i++) { var q = pt(a1 + (a2 - a1) * i / n); d += (i ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1); } return S.px.path(d, cls, ajoute({ fill: "none" }, at)); }
     function ajoute(a, b) { for (var c in b || {}) a[c] = b[c]; return a; }
@@ -4723,7 +4743,7 @@ ANIMS.droitePlan = {
   rendu: function (S, k, t) {
     var E = ANIM.e, nf = ANIM.nf, P = CAV.vue({ ox: 150, oy: 196, s: 50, k: 0.5, a: 40, repere: true });
     var O = [0, 0, 0];
-    [[[4, 0, 0], "x"], [[0, 4.1, 0], "y"], [[0, 0, 4.2], "z"]].forEach(function (a) { CAV.trait(S, P, O, a[0], "g-axe", {}); CAV.txt(S, P, a[0], a[1], "", "middle", 0, a[1] === "z" ? -6 : 14); });
+    [[[4, 0, 0], "x"], [[0, 4.1, 0], "y"], [[0, 0, 3.5], "z"]].forEach(function (a) { CAV.trait(S, P, O, a[0], "g-axe", {}); CAV.txt(S, P, a[0], a[1], "", "middle", 0, a[1] === "z" ? -6 : 14); });
     CAV.txt(S, P, O, "O", "", "end", -5, 12);
     var T1 = [3, 0, 0], T2 = [0, 3, 0], T3 = [0, 0, 3];
     CAV.poly(S, P, [T1, T2, T3], "a-plein");
@@ -5461,8 +5481,8 @@ ANIMS.sommeDes = {
     var E = ANIM.e, c = 21, gx = 118, gy = 22, base = 284, cw = 26, ch = 13;
     var cols = ["#8E9AAF", "#5B7DB1", "#2343A8", "#23774F", "#B8860B", "#C2372B"];
     function teinte(s) { return cols[Math.min(5, 6 - Math.abs(7 - s) - 1 + 0)] || cols[0]; }
-    if (k <= 2) { S.px.txt(gx + 3 * c, gy - 6, "dé 2 →", "", "middle", { "font-size": 10, style: "fill:var(--encre3)" }); S.px.txt(gx - 18, gy + 3 * c, "dé 1", "", "end", { "font-size": 10, style: "fill:var(--encre3)" }); }
-    var oLab = k <= 2 ? 1 : 0;
+    var oLab = k < 2 ? 1 : k === 2 ? 1 - E(ANIM.p(t, 0, 0.35)) : 0;
+    if (oLab > 0.01) { S.px.txt(gx + 3 * c, gy - 6, "dé 2 →", "", "middle", { "font-size": 10, style: "fill:var(--encre3)", opacity: oLab }); S.px.txt(gx - 18, gy + 3 * c, "dé 1", "", "end", { "font-size": 10, style: "fill:var(--encre3)", opacity: oLab }); }
     for (var j = 0; j < 6; j++) { S.px.txt(gx + j * c + c / 2, gy + 6 * c + 12, String(j + 1), "", "middle", { "font-size": 9, style: "fill:var(--encre3)", opacity: oLab }); S.px.txt(gx - 6, gy + j * c + c / 2 + 4, String(j + 1), "", "end", { "font-size": 9, style: "fill:var(--encre3)", opacity: oLab }); }
     var pile = {};
     for (var a = 1; a <= 6; a++) for (var b = 1; b <= 6; b++) {

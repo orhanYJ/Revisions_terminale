@@ -347,7 +347,7 @@ ANIMS.arbre = {
     { d: 3.5, l: R`Donc le nombre de trios (sans ordre) est $\frac{24}{6}=4=\binom43$. C'est la formule $\binom nk=\frac{n(n-1)\dots(n-k+1)}{k!}$.` }
   ],
   rendu: function (S, k, t) {
-    var E = ANIM.e, L = ["A", "B", "C", "D"], cols = { ABC: "#2343A8", ABD: "#C2372B", ACD: "#23774F", BCD: "#B8860B" };
+    var E = ANIM.e, L = ["A", "B", "C", "D"], cols = { ABC: "var(--bleu)", ABD: "var(--rouge)", ACD: "var(--vert)", BCD: "#B07F0A" };
     var feuilles = [];
     L.forEach(function (a) { L.forEach(function (b) { if (b === a) return; L.forEach(function (c) { if (c === a || c === b) return; feuilles.push(a + b + c); }); }); });
     var y = [22, 70, 130, 200], W = 360;
@@ -367,8 +367,8 @@ ANIMS.arbre = {
           else {
             var ty = y[3] + 2 + (k >= 3 ? 0 : 0);
             S.px.txt(x, ty, lab[0], col ? "" : "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
-            S.px.txt(x, ty + 10, lab[1], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
-            S.px.txt(x, ty + 20, lab[2], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
+            S.px.txt(x, ty + 11.5, lab[1], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
+            S.px.txt(x, ty + 23, lab[2], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
           }
         }
       }
@@ -377,7 +377,7 @@ ANIMS.arbre = {
     S.px.txt(8, 250, k === 4 ? "24 ÷ 3! = 4 trios" : tot + " branches", k === 4 ? "r" : "b", "start", k === 4 ? { "font-size": 14 } : null);
     if (k >= 3) {
       var a2 = k === 3 ? E(t) : 1;
-      Object.keys(cols).forEach(function (c, i) { S.px.txt(196 + i * 41, 250, c, "", "middle", { fill: cols[c], "font-weight": 700, opacity: a2, "font-size": 12 }); });
+      Object.keys(cols).forEach(function (c, i) { S.px.txt(196 + i * 41, 250, c, "", "middle", { style: "fill:" + cols[c] + ";font-weight:700", opacity: a2, "font-size": 12 }); });
     }
   }
 };

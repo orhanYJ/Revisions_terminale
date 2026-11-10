@@ -225,7 +225,7 @@ ANIMS.droitePlan = {
   rendu: function (S, k, t) {
     var E = ANIM.e, nf = ANIM.nf, P = CAV.vue({ ox: 150, oy: 196, s: 50, k: 0.5, a: 40, repere: true });
     var O = [0, 0, 0];
-    [[[4, 0, 0], "x"], [[0, 4.1, 0], "y"], [[0, 0, 4.2], "z"]].forEach(function (a) { CAV.trait(S, P, O, a[0], "g-axe", {}); CAV.txt(S, P, a[0], a[1], "", "middle", 0, a[1] === "z" ? -6 : 14); });
+    [[[4, 0, 0], "x"], [[0, 4.1, 0], "y"], [[0, 0, 3.5], "z"]].forEach(function (a) { CAV.trait(S, P, O, a[0], "g-axe", {}); CAV.txt(S, P, a[0], a[1], "", "middle", 0, a[1] === "z" ? -6 : 14); });
     CAV.txt(S, P, O, "O", "", "end", -5, 12);
     var T1 = [3, 0, 0], T2 = [0, 3, 0], T3 = [0, 0, 3];
     CAV.poly(S, P, [T1, T2, T3], "a-plein");

@@ -212,7 +212,7 @@ ANIMS.trigEq = {
     { d: 5, l: R`Avec le sinus, la droite est horizontale. $\sin x\geq\frac12$ : les points <b>au-dessus</b> de la droite d'ordonnée $\frac12$. Sur $[0;2\pi]$ : $x\in\left[\frac\pi6;\frac{5\pi}6\right]$.` }
   ],
   rendu: function (S, k, t) {
-    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, cx = 104, cy = 118, r = 88, PI = Math.PI;
+    var E = ANIM.e, p = ANIM.p, nf = ANIM.nf, cx = 110, cy = 118, r = 88, PI = Math.PI;
     function pt(a) { return [cx + r * Math.cos(a), cy - r * Math.sin(a)]; }
     function arc(a1, a2, cls, at) { var n = Math.max(2, Math.ceil(Math.abs(a2 - a1) * 24)), d = ""; for (var i = 0; i <= n; i++) { var q = pt(a1 + (a2 - a1) * i / n); d += (i ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1); } return S.px.path(d, cls, ajoute({ fill: "none" }, at)); }
     function ajoute(a, b) { for (var c in b || {}) a[c] = b[c]; return a; }

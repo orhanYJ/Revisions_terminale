@@ -188,7 +188,7 @@ ANIMS.reciproque = {
     var E = ANIM.e, ex = Math.exp, ln = Math.log;
     S.rep(-3, 5, -3, 5, { px: 1, py: 1, marges: { l: 26, r: 8, t: 8, b: 22 } });
     S.seg(-3, -3, 5, 5, "g-as");
-    S.txt(4.6, 4.95, "y = x", "r", "end");
+    S.txt(4.6, 4.7, "y = x", "r", "end");
     S.courbe(ex, -3, ln(5), "g-c", 160);
     S.txt(1.22, 4.6, "exp", "b", "end");
     var aMax = k === 0 ? -3 : k === 1 ? ANIM.l(-3, ln(5) - 0.01, E(t)) : ln(5) - 0.01;
