@@ -38,10 +38,20 @@
     imprimer: '<path d="M7 9V3h10v6"/><rect x="4" y="9" width="16" height="8" rx="2"/><path d="M7 14h10v7H7z"/>',
     croix: '<path d="M6 6l12 12M18 6 6 18"/>',
     cible: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/>',
-    horloge: '<circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/>'
+    horloge: '<circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/>',
+    chomage: '<rect x="3.5" y="8" width="17" height="11" rx="2"/><path d="M9 8V6.2c0-.7.5-1.2 1.2-1.2h3.6c.7 0 1.2.5 1.2 1.2V8"/><path d="M9 13.5h6"/>',
+    banque: '<path d="M3 9.5 12 4l9 5.5"/><path d="M5.5 10v8M9.5 10v8M14.5 10v8M18.5 10v8M3 20h18"/><path d="m12.4 10.5-1.6 3.4 2.2.9-1.4 3.4" stroke="currentColor"/>',
+    euro: '<path d="M17.5 6.6A7 7 0 1 0 17.5 17.4"/><path d="M4.5 10.2h9M4.5 13.8h9"/>',
+    echelle: '<path d="M7 3v18M17 3v18M7 7.5h10M7 12h10M7 16.5h10"/>',
+    rouage: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/>',
+    porte_voix: '<path d="M3 10v4h4l7 5V5l-7 5z"/><path d="M17 9.3a4 4 0 0 1 0 5.4M19.6 6.7a8 8 0 0 1 0 10.6"/>',
+    balance: '<path d="M12 4v16M7 20h10M4.5 7.5h15"/><path d="m4.5 7.5-2.5 6h5zM19.5 7.5l-2.5 6h5z"/>',
+    feuille: '<path d="M5 19.5C5 11 10.5 5 20 4.5c-.5 9.5-6.5 15-15 15z"/><path d="M5 19.5 13.5 11"/>'
   };
   function ic(n, cl) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"' + (cl ? ' class="' + cl + '"' : "") + ">" + IC[n] + "</svg>"; }
-  var ICQ = { e1: "croiss", e2: "globe", s1: "strates", s2: "ecole" };
+  var ICQ = { e1: "croiss", e2: "globe", e3: "chomage", e4: "banque", e5: "euro", s1: "strates", s2: "ecole", s3: "echelle", s4: "rouage", s5: "porte_voix", r1: "balance", r2: "feuille" };
+  var NUMQ = {}, NB = 0;
+  PROG.forEach(function (c) { c.qs.forEach(function (q) { NB++; NUMQ[q.id] = NB < 10 ? "0" + NB : String(NB); }); });
 
   /* ---------- programme ---------- */
   var QS = {};
@@ -467,6 +477,30 @@
     $$("[data-relier]", racine).forEach(function (d) { monterRelier(d); });
   }
 
+  function $$anims(ch) { var n = 0; ch.sections.forEach(function (s) { n += (s.h.match(/data-anim=/g) || []).length; }); return n; }
+  function compteurs(racine) {
+    if (!mouvement() || !("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x) {
+        if (!x.isIntersecting) return;
+        io.unobserve(x.target);
+        var el = x.target, fin = el.textContent, m = fin.match(/\d[\d\u202f\u00a0 ]*(,\d+)?/);
+        if (!m) return;
+        var brut = m[0], dec = m[1] ? m[1].length - 1 : 0, val = parseFloat(brut.replace(/[\u202f\u00a0 ]/g, "").replace(",", "."));
+        if (!isFinite(val) || val === 0) return;
+        var avant = fin.slice(0, m.index), apres = fin.slice(m.index + brut.length), t0 = null;
+        function pas(t) {
+          if (!t0) t0 = t;
+          var q = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - q, 3);
+          el.textContent = q >= 1 ? fin : avant + fr(val * e, dec).replace("\u2212", "") + apres;
+          if (q < 1) requestAnimationFrame(pas);
+        }
+        requestAnimationFrame(pas);
+      });
+    }, { threshold: 0.6 });
+    $$(".chiffre b", racine).forEach(function (b) { io.observe(b); });
+  }
+
   /* ---------- vues ---------- */
   function sparkline(id) {
     var g = GRAPHES[id]; if (!g) return "";
@@ -476,17 +510,20 @@
     return '<svg class="spark" viewBox="0 0 64 22" aria-hidden="true"><path d="' + d + '" fill="none" stroke="var(--corail)" stroke-width="1.8"/></svg>';
   }
   function vueAccueil() {
-    var h = '<div class="une"><p class="mast">Faits <i>&amp;</i> Courbes</p><div class="reg"><span>SES · spécialité Terminale</span><span>Programme 2019 · bac 2027</span></div>' +
-      '<p class="chapo">Le programme de SES décrypté comme un magazine de données : des chiffres vérifiés, des mécanismes qui se construisent sous tes yeux, et tout ce qu\'il faut pour la copie.</p></div>';
+    var h = '<div class="une"><div class="reg reg-h"><span>Le magazine de révision de SES</span><span>N° spécial · Terminale 2026-2027</span></div><p class="mast">Faits <i>&amp;</i> Courbes</p><div class="reg"><span>Spécialité SES</span><span>Programme 2019 · bac 2027</span></div>' +
+      '<p class="chapo">Le programme de SES décrypté comme un magazine de données : des chiffres vérifiés, des mécanismes qui se déroulent sous tes yeux, et tout ce qu\'il faut pour la copie.</p></div>';
+    var flash = [];
+    Object.keys(QS).forEach(function (id) { if (CH[id] && CH[id].chiffres && QS[id].statut === "red") CH[id].chiffres.forEach(function (c) { flash.push('<a class="tk" href="#' + id + '"><b>' + c.n + "</b> " + esc(texteDe(c.l)) + "</a>"); }); });
+    if (flash.length) h += '<div class="ticker" aria-label="En chiffres"><span class="tk-t">En chiffres</span><div class="tk-fen"><div class="tk-piste">' + flash.join("") + '<span class="tk-dup" aria-hidden="true">' + flash.join("") + "</span></div></div></div>";
     h += '<div class="chiffres">' + ACCUEIL.chiffres.map(function (c) { return '<div class="chiffre"><b>' + c.n + "</b><span>" + c.l + "</span><small>" + c.s + "</small></div>"; }).join("") + "</div>";
     h += '<div class="acces"><a href="#entrainement">' + ic("cible") + 'Entraînement<small>QCM mélangé, cartes, auteurs</small></a><a href="#epreuve">' + ic("epreuve") + 'L\'épreuve<small>Format 2027 et méthode</small></a><a href="#outils">' + ic("calc") + 'Calculatrice<small>Taux, coefficient, indice</small></a></div>';
-    h += '<h2 class="sec"><span class="n">Carte</span>Le programme de Terminale</h2><p>Douze questions dans trois champs. Les chapitres rédigés sont ceux qu\'on traite en début d\'année ; les autres affichent déjà les objectifs officiels et les notions à connaître.</p>';
+    h += '<h2 class="sec"><span class="n">Sommaire</span>Les douze dossiers du programme</h2><p>Douze questions dans trois champs, chacune traitée comme un dossier de magazine : l\'essentiel, le cours, des mécanismes animés, des chiffres sourcés, un quiz, des cartes et des sujets corrigés.</p>';
     PROG.forEach(function (c) {
       h += '<section class="champ"><h3>' + esc(c.nom) + "</h3><div class=\"qs\">";
       c.qs.forEach(function (q) {
         var red = q.statut === "red";
-        h += '<a class="qc' + (red ? " red" : " bt") + '" href="#' + q.id + '">' + (red && q.spark ? sparkline(q.spark) : "") +
-          '<span class="pastille' + (red ? " ok" : " bt") + '">' + (red ? "Rédigé" : "Bientôt") + "</span> " + (q.ecrit ? "" : '<span class="pastille non">Hors écrit</span>') +
+        h += '<a class="qc' + (red ? " red" : " bt") + '" href="#' + q.id + '"><span class="qc-n" aria-hidden="true">' + NUMQ[q.id] + "</span>" + (ICQ[q.id] ? ic(ICQ[q.id], "qc-ic") : "") +
+          '<span class="pastille' + (red ? " ok" : " bt") + '">' + (red ? "Dossier complet" : "Bientôt") + "</span> " + (q.ecrit ? "" : '<span class="pastille non">Hors écrit</span>') +
           '<span class="qt">' + esc(q.titre) + '</span><span class="qd">' + q.objectifs.length + " objectifs d'apprentissage" + (red ? " · cours, quiz, cartes, sujets corrigés" : " · notions listées") + "</span></a>";
       });
       h += "</div></section>";
@@ -497,8 +534,11 @@
 
   var ONGLETS = [["", "Cours"], ["fiche", "À retenir"], ["quiz", "Quiz"], ["cartes", "Cartes"], ["bac", "Sujets bac"]];
   function enteteChap(q, ch, sous) {
-    var h = '<header class="tete' + (sous ? " court" : "") + '"><span class="kick">' + esc(q.champ) + " · " + esc(q.code) + '</span><h1>' + esc(q.titre) + "</h1>" + (ch.chapo && !sous ? '<p class="chapo">' + ch.chapo + "</p>" : "") +
-      (sous ? "" : '<div class="meta">' + (q.ecrit ? '<span class="pastille ok">Évaluable à l\'écrit</span>' : '<span class="pastille non">Non évalué à l\'écrit en 2027</span>') + '<span class="pastille">' + ch.quiz.length + " questions</span><span class=\"pastille\">" + ch.cartes.length + " cartes</span><span class=\"pastille\">" + ch.bac.length + " exercices corrigés</span></div>") + "</header>";
+    var h = sous ? '<header class="tete court"><span class="kick">' + esc(q.champ) + " · " + esc(q.code) + '</span><h1>' + esc(q.titre) + "</h1>" :
+      '<header class="couv"><div class="couv-band"><span>Faits &amp; Courbes</span><span>Dossier N° ' + NUMQ[q.id] + "</span><span>" + esc(q.champ) + '</span></div><div class="couv-corps"><span class="couv-num" aria-hidden="true">' + NUMQ[q.id] + "</span>" + (ICQ[q.id] ? '<span class="couv-ic">' + ic(ICQ[q.id]) + "</span>" : "") +
+      '<span class="kick">Le dossier · ' + esc(q.court) + '</span><h1>' + esc(q.titre) + "</h1>" + (ch.chapo ? '<p class="chapo">' + ch.chapo + "</p>" : "");
+    h +=
+      (sous ? "" : '<div class="meta">' + (q.ecrit ? '<span class="pastille ok">Évaluable à l\'écrit</span>' : '<span class="pastille non">Non évalué à l\'écrit en 2027</span>') + '<span class="pastille">' + ch.quiz.length + " questions</span><span class=\"pastille\">" + ch.cartes.length + " cartes</span><span class=\"pastille\">" + ch.bac.length + " exercices corrigés</span>" + ($$anims(ch) ? '<span class="pastille ani">' + $$anims(ch) + " animation" + ($$anims(ch) > 1 ? "s" : "") + "</span>" : "") + "</div></div>") + "</header>";
     h += '<nav class="onglets" aria-label="Parties du chapitre">' + ONGLETS.map(function (o) {
       return '<a href="#' + q.id + (o[0] ? "/" + o[0] : "") + '"' + (sous === o[0] ? ' class="act" aria-current="page"' : "") + ">" + o[1] + "</a>";
     }).join("") + "</nav>";
@@ -507,7 +547,7 @@
   function vueChapitre(q, sous) {
     var ch = CH[q.id], h = enteteChap(q, ch, sous);
     if (sous === "") {
-      if (!q.ecrit) h += '<div class="attn"><p>La note de service du 11 septembre 2026 ne retient pas cette question parmi celles qui peuvent faire l\'objet d\'un sujet écrit (ni de l\'oral de contrôle). Elle reste au programme et ton professeur la traite : elle est indispensable pour comprendre la mobilité sociale (question évaluable), elle nourrit les copies sur la structure sociale et peut servir au Grand oral. Les exercices de ce chapitre entraînent la méthode du bac.</p></div>';
+      if (!q.ecrit) h += '<div class="attn"><p>La note de service du 11 septembre 2026 ne retient pas cette question parmi celles qui peuvent faire l\'objet d\'un sujet écrit (ni de l\'oral de contrôle). Elle reste au programme et ton professeur la traite' + (ch.horsEcrit ? " : " + ch.horsEcrit : " ; elle éclaire d\'autres chapitres et peut servir au Grand oral") + '. Les exercices de ce chapitre entraînent la méthode du bac.</p></div>';
       h += '<section class="essentiel"><span class="kick">L\'essentiel en 5 lignes</span><ol>' + ch.essentiel.map(function (l) { return "<li><span>" + l + "</span></li>"; }).join("") + "</ol></section>";
       if (ch.chiffres) h += '<div class="chiffres">' + ch.chiffres.map(function (c) { return '<div class="chiffre"><b>' + c.n + "</b><span>" + c.l + "</span><small>" + c.s + "</small></div>"; }).join("") + "</div>";
       h += '<h2 class="sec"><span class="n">BO</span>Ce que le programme attend</h2><ol class="objs">' + ch.objectifs.map(function (o) {
@@ -621,6 +661,11 @@
     app.innerHTML = '<div class="vue">' + v.html + '<footer class="pied">Faits &amp; Courbes · site de révision indépendant, contenu original rédigé d\'après le programme officiel. Les chiffres sont datés et sourcés ; vérifie toujours avec ton cours. Les sujets marqués « inventé pour le site » ne sont pas des annales.</footer></div>';
     monter(app);
     if (v.apres) v.apres(app);
+    if (mouvement()) {
+      var vue = app.firstChild; vue.classList.add("cascade");
+      Array.prototype.slice.call(vue.children, 0, 12).forEach(function (el, k) { el.style.animationDelay = (k * 55) + "ms"; });
+    }
+    compteurs(app);
     document.title = (v.titre === "Accueil" ? "" : v.titre + " · ") + "Faits & Courbes · SES Terminale";
     $$("#lat .nav a").forEach(function (a) { a.classList.toggle("act", a.getAttribute("data-r") === r.page); if (a.getAttribute("data-r") === r.page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
     if (r.ancre) {

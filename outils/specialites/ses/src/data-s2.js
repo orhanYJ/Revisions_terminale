@@ -49,6 +49,7 @@ CHAINES["s2-genre"] = { t: "Socialisation de genre et parcours scolaires", e: [
 ] };
 
 CH.s2 = {
+  horsEcrit: "elle est indispensable pour comprendre la mobilité sociale (question évaluable), elle nourrit les copies sur la structure sociale et peut servir au Grand oral",
   chapo: "En 1970, un jeune sur cinq obtenait le bac ; en 2025, quatre sur cinq. L’École s’est ouverte à tous. Mais les enfants de cadres restent plus de huit fois plus nombreux que les enfants d’ouvriers en classes préparatoires. Ce chapitre explique ce que fait l’École, ce qui a changé, et pourquoi la réussite reste inégale.",
   essentiel: [
     "Dans une société démocratique, l’École <b>transmet des savoirs</b>, socialise et vise à favoriser l’<b>égalité des chances</b> : la position sociale doit dépendre du mérite et non de l’origine.",

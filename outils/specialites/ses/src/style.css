@@ -412,3 +412,62 @@ tr:last-child td{border-bottom:0}
 }
 @keyframes mo-legende{from{opacity:.001;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes mo-respire{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--corail) 45%,transparent)}50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--corail) 0%,transparent)}}
+
+/* ---------- identité « magazine » : unes, bandeaux, lettrines ---------- */
+.couv{position:relative;margin:14px 0 18px;border:1px solid var(--ligne);border-radius:18px;overflow:hidden;background:var(--carte);box-shadow:var(--ombre)}
+.couv-band{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:space-between;padding:8px 16px;background:var(--ess-f);color:var(--ess-t);font:800 11px/1.3 var(--texte);letter-spacing:.14em;text-transform:uppercase}
+.couv-band span:nth-child(2){color:var(--moutarde)}
+.couv-corps{position:relative;padding:18px 16px 16px;background-image:radial-gradient(circle at 100% 0,color-mix(in srgb,var(--canard) 22%,transparent) 1.4px,transparent 1.6px);background-size:11px 11px;background-position:right top}
+.couv-corps::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,var(--carte) 52%,color-mix(in srgb,var(--carte) 30%,transparent) 100%);pointer-events:none}
+.couv-corps>*{position:relative}
+.couv-num{position:absolute!important;right:10px;top:-14px;font:900 clamp(110px,30vw,190px)/1 var(--titre);font-stretch:condensed;color:transparent;-webkit-text-stroke:2px color-mix(in srgb,var(--corail) 55%,transparent);letter-spacing:-.04em;pointer-events:none;user-select:none}
+.couv-ic{display:flex;width:54px;height:54px;border-radius:14px;background:var(--corail);color:#fff;align-items:center;justify-content:center;margin-bottom:12px;box-shadow:0 6px 16px color-mix(in srgb,var(--corail) 35%,transparent)}
+.couv-ic svg{width:32px;height:32px}
+.couv h1{font-size:clamp(32px,8.8vw,52px);font-weight:900;margin:6px 0 12px;line-height:1.04;max-width:16ch}
+.couv .chapo{font:19px/1.5 var(--serif);margin:0 0 4px;max-width:62ch}
+.couv .chapo::first-letter{float:left;font:900 3.3em/.82 var(--titre);color:var(--corail);margin:6px 8px 0 0}
+.pastille.ani{background:var(--corail);color:#fff;border-color:transparent}
+.reg-h{border-top:0!important;border-bottom:3px solid var(--encre)!important;margin:0 0 8px!important;color:var(--corail)}
+h2.sec{position:relative}
+h2.sec::after{content:"";position:absolute;left:0;top:-3px;width:72px;height:3px;background:var(--corail)}
+.idee>.lede:first-of-type::first-letter{float:left;font:900 3.1em/.82 var(--titre);color:var(--canard);margin:6px 8px 0 0}
+.qc{padding-top:16px}
+.qc-n{position:absolute;right:12px;bottom:-12px;font:900 64px/1 var(--titre);font-stretch:condensed;color:transparent;-webkit-text-stroke:1.5px var(--ligne);pointer-events:none}
+.qc.red .qc-n{-webkit-text-stroke-color:color-mix(in srgb,var(--corail) 45%,transparent)}
+.qc-ic{position:absolute;right:14px;top:14px;width:26px;height:26px;color:var(--corail)}
+.qc.bt .qc-ic{color:var(--encre2)}
+.qc .qt{padding-right:30px}
+.ticker{display:flex;align-items:stretch;margin:4px 0 18px;border-top:2px solid var(--encre);border-bottom:2px solid var(--encre);background:var(--carte)}
+.tk-t{flex:none;display:flex;align-items:center;padding:0 12px;background:var(--corail);color:#fff;font:800 11px/1.2 var(--texte);letter-spacing:.14em;text-transform:uppercase}
+.tk-fen{flex:1;min-width:0;overflow:hidden}
+.tk-piste{display:flex;flex-wrap:wrap;gap:0}
+.tk{display:inline-flex;align-items:baseline;gap:6px;padding:9px 14px;border-right:1px solid var(--ligne);text-decoration:none;color:var(--encre);font-size:13.5px;white-space:nowrap}
+.tk b{font:900 18px/1 var(--titre);color:var(--corail)}
+.tk-dup{display:none}
+@media (prefers-reduced-motion:no-preference){
+  html.mo .tk-piste{flex-wrap:nowrap;width:max-content;animation:mo-ticker 90s linear infinite}
+  html.mo .tk-dup{display:flex}
+  html.mo .ticker:hover .tk-piste,html.mo .ticker:focus-within .tk-piste{animation-play-state:paused}
+  html.mo .vue.cascade{animation:none}
+  html.mo .vue.cascade>*{animation:mo-entre .55s cubic-bezier(.2,.7,.2,1) both}
+  html.mo .couv h1{animation:mo-titre .9s cubic-bezier(.2,.7,.2,1) .1s both}
+  html.mo .couv-num{animation:mo-num 1.1s cubic-bezier(.2,.7,.2,1) both}
+  html.mo .couv-ic{animation:mo-pop .6s cubic-bezier(.2,.9,.3,1.3) .25s both}
+  html.mo .onglets a{transition:background .25s,color .25s,border-color .25s,transform .2s}
+  html.mo .onglets a:active{transform:scale(.96)}
+  html.mo .q-ch button{animation:mo-entre .4s cubic-bezier(.2,.7,.2,1) both}
+  html.mo .q-ch button:nth-child(2){animation-delay:60ms} html.mo .q-ch button:nth-child(3){animation-delay:120ms} html.mo .q-ch button:nth-child(4){animation-delay:180ms}
+  html.mo .q-q{animation:mo-entre .4s cubic-bezier(.2,.7,.2,1) both}
+  html.mo .lat.ouv .nav a{animation:mo-glisse-g .4s cubic-bezier(.2,.7,.2,1) both}
+  html.mo .btn,html.mo .an-b,html.mo .qc,html.mo .acces a{transition:transform .18s,box-shadow .2s,border-color .2s}
+  html.mo .btn:active,html.mo .an-b:active{transform:scale(.95)}
+  html.mo .acces a:hover{transform:translateY(-2px);box-shadow:var(--ombre)}
+  html.mo .chiffre{transition:transform .25s}
+  html.mo .chiffre:hover{transform:translateY(-3px)}
+  html.mo h2.sec::after{animation:mo-barre .8s cubic-bezier(.2,.7,.2,1) both;transform-origin:0 50%}
+}
+@keyframes mo-ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes mo-titre{from{clip-path:inset(0 100% 0 0);transform:translateY(6px)}to{clip-path:inset(0 0 0 0);transform:none}}
+@keyframes mo-num{from{opacity:.001;transform:translateY(24px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes mo-glisse-g{from{opacity:.001;transform:translateX(-14px)}to{opacity:1;transform:none}}
+@keyframes mo-barre{from{transform:scaleX(0)}to{transform:none}}

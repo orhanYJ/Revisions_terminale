@@ -147,6 +147,7 @@ ANIMS["e4-contagion"] = {
 };
 
 CH.e4 = {
+  horsEcrit: "elle éclaire la conjoncture, le chômage conjoncturel (É3) et la politique monétaire (É5), et peut servir au Grand oral",
   chapo: "Un jeudi d’octobre 1929, un lundi de septembre 2008 : en quelques jours, la finance s’effondre et entraîne l’économie entière. Ce chapitre explique comment naissent les bulles, pourquoi les banques tombent en chaîne, comment la crise contamine l’emploi, et comment on régule les banques pour éviter la suivante.",
   essentiel: [
     "Les crises de <b>1929</b> et de <b>2008</b> partagent les mêmes étapes : effondrement boursier, faillites bancaires en chaîne, chute du PIB et hausse du chômage.",
