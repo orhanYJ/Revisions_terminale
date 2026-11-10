@@ -1,6 +1,6 @@
 {
-  "name": "CQFD — Maths de Terminale (spécialité)",
-  "short_name": "CQFD Maths",
+  "name": "CQFD — Maths Terminale",
+  "short_name": "Maths",
   "description": "Le carnet de maths de Terminale, spécialité : cours, démonstrations, Python, exercices corrigés, annales, QCM et flashcards.",
   "lang": "fr",
   "start_url": "./",

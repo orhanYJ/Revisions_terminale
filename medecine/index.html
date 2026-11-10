@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Protocole Santé</title>
+<title>Protocole Santé — Méthodes de travail</title>
+<meta name="apple-mobile-web-app-title" content="Santé">
 <meta name="description" content="Initiation à la licence portail santé : cinq méthodes de travail testées sur trois matières, mesurées par des QCM de type concours.">
 <meta name="theme-color" content="#F4F3EE" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121A20" media="(prefers-color-scheme: dark)">
@@ -3903,7 +3904,7 @@ function semaine(m) {
 
 function vueAccueil() {
   var m = blocCourant(), t = auj(), out = "";
-  out += '<section class="hero"><p class="sur">' + h(joli(t)) + '</p><h1>Bonjour Orhan</h1><p class="lead">Cinq méthodes de travail, testées l\'une après l\'autre, pour trouver celle qui te rend le plus efficace avant la licence portail santé.</p></section>';
+  out += '<section class="hero"><p class="sur">' + h(joli(t)) + '</p><h1>Trouve ta méthode</h1><p class="lead">Cinq méthodes de travail, testées l\'une après l\'autre, pour trouver celle qui te rend le plus efficace avant la licence portail santé.</p></section>';
   out += frise();
   METHODES.forEach(function (x) {
     var b = bloc(x.id);
@@ -3964,13 +3965,13 @@ function vueMethodes() {
 
 function vueProtocole() {
   return '<p class="sur">Le protocole</p><h1>Pourquoi on travaille ainsi</h1>' +
-  '<div class="carte"><h3>Le but</h3><p>Trouver la méthode de travail qui rend Orhan le plus efficace avant d\'attaquer la licence portail santé (première année unique qui remplace PASS et LAS à la rentrée 2027). La sélection reste un classement : la méthode compte autant que le volume.</p></div>' +
+  '<div class="carte"><h3>Le but</h3><p>Trouver la méthode de travail qui te rend le plus efficace avant d\'attaquer la licence portail santé (première année unique qui remplace PASS et LAS à la rentrée 2027). La sélection reste un classement : la méthode compte autant que le volume.</p></div>' +
   '<div class="carte"><h3>Mesurer la méthode, pas la matière</h3><p>Si une méthode n\'était testée qu\'en anatomie, on mesurerait surtout l\'aisance en anatomie. Chaque méthode est donc appliquée aux <strong>trois mêmes matières</strong>, sur des chapitres différents. L\'effet de la matière se répartit entre toutes les méthodes.</p>' +
   '<div class="defile"><table><tr><th></th>' + Object.keys(MATIERES).map(function (k) { return "<th>" + MATIERES[k].court + "</th>"; }).join("") + "</tr>" +
   METHODES.map(function (m) { return '<tr><td><b style="color:' + m.c + '">' + m.id + "</b> " + h(m.nom) + "</td>" + Object.keys(MATIERES).map(function (k) { var c = PLAN[m.id][k]; return '<td><a href="#c/' + c + '">' + h(CHAPITRES[c].titre) + "</a></td>"; }).join("") + "</tr>"; }).join("") + "</table></div></div>" +
   '<div class="carte"><h3>Les mêmes conditions pour toutes</h3><ul><li>Sept séances en deux semaines : J0, J2, J3 (apprentissage, 60 min), J4, J7, J9, J11 (consolidation, 40 min). Avec J0 un mercredi : mercredi, vendredi, samedi, dimanche, mercredi, vendredi, week-end. Les cours sont fournis sous forme de fiches complètes : aucune méthode ne demande de fiche à refaire.</li><li>QCM de clôture à J14, puis QCM de rappel tardif à J28 (questions différentes), pour mesurer ce qui reste.</li><li>Même barème, celui des concours de première année : 5 propositions, de 1 à 5 justes ; 0 erreur = 1 point, 1 erreur = 0,5, 2 erreurs = 0,2, 3 et plus = 0.</li></ul></div>' +
   '<div class="carte"><h3>Les règles du jeu</h3><ol><li><strong>Une méthode à la fois</strong>, terminée (QCM de clôture passé) avant de commencer la suivante.</li><li>Ne pas travailler ces chapitres <strong>en dehors des séances</strong>.</li><li>Respecter les durées : la séance guidée les chronomètre étape par étape. Plus de temps rendrait la comparaison injuste.</li><li>Une séance oubliée se marque « non faite » : on ne la rattrape pas en douce.</li><li>Pour chaque réponse de QCM, dire si on est sûr, hésitant ou si on a répondu au hasard : savoir ce qu\'on sait fait partie de l\'efficacité.</li><li>Enregistrer le journal après chaque séance.</li></ol></div>' +
-  '<div class="carte"><h3>Ce que le bilan mesure</h3><ul><li>le score au QCM de clôture (ce qui est appris) ;</li><li>le score au rappel tardif (ce qui reste) ;</li><li>les points obtenus par heure de travail ;</li><li>la fiabilité du « sûr » (quand Orhan est sûr, a-t-il raison ?) ;</li><li>le ressenti : agréable ? tenable toute une année ?</li></ul></div>' +
+  '<div class="carte"><h3>Ce que le bilan mesure</h3><ul><li>le score au QCM de clôture (ce qui est appris) ;</li><li>le score au rappel tardif (ce qui reste) ;</li><li>les points obtenus par heure de travail ;</li><li>la fiabilité du « sûr » (quand tu es sûr, as-tu raison ?) ;</li><li>le ressenti : agréable ? tenable toute une année ?</li></ul></div>' +
   '<div class="carte"><h3>Les limites, honnêtement</h3><p>Les méthodes passent l\'une après l\'autre : la dernière profite de l\'habitude prise et d\'un vocabulaire plus riche. L\'ordre a été choisi pour limiter ce biais : la méthode habituelle d\'abord (elle serait faussée si on la testait après les autres), la plus complète à la fin. Avec 27 questions par méthode, un écart de moins de 10 à 15 points peut venir du hasard : le bilan le signale.</p></div>' +
   '<div class="carte"><h3>Le contenu</h3><p>Les fiches suivent le périmètre des programmes de PASS publiés par les facultés : biochimie (acides aminés et protéines, enzymologie, glucides, lipides), biologie cellulaire (membrane, cytosquelette et jonctions, système endomembranaire, organites), anatomie et physiologie (bases, ostéo-arthrologie, cœur, respiration, rein). Elles sont rédigées pour ce site, au niveau d\'un début de première année, et vérifiées sur les ouvrages de référence ; elles ne reproduisent aucun cours de faculté.</p></div>' +
   '<p class="note">Les coefficients officiels de la future licence portail santé ne sont pas encore publiés (textes adoptés en juillet 2026, en attente de parution au Journal officiel). Les matières retenues sont celles qui pesaient le plus en PASS et figurent dans le bloc santé annoncé (anatomie, physiologie, biologie, chimie).</p>';
@@ -4238,7 +4239,7 @@ function stats(id) {
   return o;
 }
 function vueResultats() {
-  var out = '<p class="sur">Le bilan</p><h1>Quelle méthode marche pour Orhan ?</h1>';
+  var out = '<p class="sur">Le bilan</p><h1>Quelle méthode marche pour toi ?</h1>';
   var faites = METHODES.filter(function (m) { return clotureFaite(m.id); });
   if (!faites.length) return out + '<div class="placeholder"><p>Les résultats apparaissent après le premier QCM de clôture.</p><p class="note">Pense à importer ton journal si tu viens d\'ouvrir le site.</p></div>';
   function barres(titre, f, unite, max, dec) {

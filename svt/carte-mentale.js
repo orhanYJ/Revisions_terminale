@@ -1,4 +1,4 @@
-/* Carte mentale du thème 1.A (Génétique et évolution), d'après celle de Mme Philip.
+/* Carte mentale du thème 1.A (Génétique et évolution), d'après celle du cours.
    Module partagé : le site (svt/index.html, page du thème et haut de chaque page du 1.A) et les vidéos des
    chapitres (svt/serie/, type « mental », piloté par le temps de la vidéo).
    Couleurs et polices par variables CSS : --cm-paper, --cm-panel, --cm-ink, --cm-ink-2, --cm-leaf, --cm-water,
@@ -9,8 +9,8 @@
   "use strict";
 
   /* ---------- Données ----------
-     Carte de Mme Philip (deux pages), recopiée avec ses mots ; s:"cours" = complété d'après le cours du site ;
-     et:true = « schéma à savoir refaire » (étoile de la prof) ; page = page du site qui traite la branche. */
+     Carte du cours (deux pages), recopiée avec ses mots ; s:"cours" = complété d'après le contenu du site ;
+     et:true = « schéma à savoir refaire » (étoile de la carte d'origine) ; page = page du site qui traite la branche. */
   var CARTE = {
     id: "t1a", sur: "Thème 1 · Partie A", titre: ["Génétique", "et évolution"],
     kids: [
@@ -270,7 +270,7 @@
     div.innerHTML = '<div class="cm-chips" role="toolbar" aria-label="Zoom sur la carte"></div>' +
       '<div class="cm-scene"><svg role="img" aria-label="Carte mentale du thème 1.A"></svg></div>' +
       '<div class="cm-pied"><div class="cm-fil" aria-live="polite"></div><div class="cm-act"></div></div>' +
-      '<div class="cm-leg"><span><i class="cm-pt"></i>carte de Mme Philip</span><span><i class="cm-pt vide"></i>complété d\'après le cours</span>' +
+      '<div class="cm-leg"><span><i class="cm-pt"></i>carte du cours</span><span><i class="cm-pt vide"></i>complété</span>' +
       '<span><b>★</b> schéma à savoir refaire</span></div>';
     var svg = div.querySelector("svg"), api = creer(svg, { interactif: true, ratio: opt.ratio });
     var chips = div.querySelector(".cm-chips"), fil = div.querySelector(".cm-fil"), act = div.querySelector(".cm-act");

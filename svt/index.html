@@ -11,7 +11,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="SVT">
-<title>SVT Spé — Terminale</title>
+<title>Le Vif du sujet — SVT Terminale</title>
 <style>
 /* =====================================================================
    IDENTITÉ VISUELLE — végétale, organique, douce
@@ -108,7 +108,7 @@ html[data-theme="dark"] body::after{opacity:.22}
   font-family:var(--sans);font-size:13px;font-weight:700;
   background:color-mix(in srgb,var(--leaf) 14%,transparent);color:var(--leaf-2);
 }
-/* --- code couleur de Mme Philip --- */
+/* --- code couleur de la méthode de rédaction --- */
 .codecol{display:flex;flex-direction:column;gap:6px;margin:4px 0 14px}
 .codecol span{padding:6px 11px;border-radius:8px;font-size:13.5px;font-weight:600;border-left:4px solid}
 .codecol .c1{color:var(--violet);border-color:var(--violet);background:var(--violet-soft)}
@@ -316,7 +316,7 @@ details.tp[open]>summary{border-bottom:1px solid var(--line);border-radius:var(-
 .tpin>*:last-child{margin-bottom:0}
 @media (prefers-reduced-motion:reduce){details.tp>summary::after{transition:none}}
 
-/* --- regroupement par chapitre (decoupage de la classe) --- */
+/* --- regroupement par chapitre (decoupage du cours) --- */
 #side .chaplab{
   font:600 11.5px/1.4 var(--sans);
   color:var(--ink-2);
@@ -1176,7 +1176,7 @@ html[data-theme="dark"] .cm{--cm-etoile:#F08DB8}
 .video-c iframe{display:block;width:100%;height:62vw;border:0}
 </style>
 <!-- carte-mentale:debut — carte du thème 1.A, partagée avec les vidéos (svt/serie/) -->
-<script src="carte-mentale.js?v=5"></script>
+<script src="carte-mentale.js?v=6"></script>
 <!-- carte-mentale:fin -->
 <!-- mouvement:debut — couche maintenue à part (motion.css, motion.js) ; à conserver lors des mises à jour -->
 <link rel="stylesheet" href="motion.css?v=1">
@@ -1455,8 +1455,8 @@ html[data-theme="dark"] .cm{--cm-etoile:#F08DB8}
         <path d="M22 24.6c2.2-2.6 5-4.6 8.2-6M17.4 28.4c1-2.6 2.4-5 4.2-7" stroke="var(--leaf-soft)" stroke-width="1.6" stroke-linecap="round" opacity=".75"/>
       </svg>
       <div>
-        <b>SVT&nbsp;·&nbsp;Spécialité</b>
-        <span>Terminale</span>
+        <b>Le Vif du sujet</b>
+        <span>SVT · Terminale</span>
       </div>
     </div>
     <div class="searchwrap">
@@ -2911,7 +2911,7 @@ const TERMINALE = [
 </ol></div>
 
 <div class="box piege"><h4>⚠ Deux numérotations circulent</h4>
-<p>La fiche d'activité distribuée en classe numérote les lois autrement (uniformité, puis ségrégation, puis indépendance). Retiens celle du diaporama, ci-dessus : c'est elle qui sera utilisée en cours — et notamment quand l'hérédité liée au sexe viendra les contredire.</p></div>
+<p>La fiche d'activité numérote les lois autrement (uniformité, puis ségrégation, puis indépendance). Retiens celle du diaporama, ci-dessus : c'est elle qui sera utilisée en cours — et notamment quand l'hérédité liée au sexe viendra les contredire.</p></div>
 
 <div class="box plus"><h4>Approfondir — d'où vient ce que tu apprends <span class="hp">hors programme</span></h4>
 <p>Mendel publie en 1866. Personne ne comprend. Son mémoire est cité une poignée de fois en trente-cinq ans, et il meurt en 1884 sans savoir ce qu'il avait trouvé.</p>
@@ -3133,10 +3133,10 @@ const TERMINALE = [
 <div class="box def"><h4>La question à laquelle cette partie répond</h4>
 <p>Quels sont les différents accidents génétiques pouvant survenir lors de la méiose, et quelles en sont les conséquences, à la fois <b>phénotypiques</b> (sur l'individu) et <b>évolutives</b> (sur l'histoire des espèces) ?</p></div>
 
-<p>La réponse est double, et c'est tout l'intérêt de cette partie. La plupart de ces accidents sont <b>néfastes</b> : fausses couches, syndromes, maladies. Mais certains, très rares, enrichissent le génome de gènes nouveaux et ont joué un rôle majeur dans l'évolution. Le plan suit celui de l'exposé de la classe : les anomalies du <b>nombre</b> de chromosomes, puis les échanges de <b>portions</b> de chromosomes, enfin le rôle de ces accidents dans l'<b>évolution</b>.</p>
+<p>La réponse est double, et c'est tout l'intérêt de cette partie. La plupart de ces accidents sont <b>néfastes</b> : fausses couches, syndromes, maladies. Mais certains, très rares, enrichissent le génome de gènes nouveaux et ont joué un rôle majeur dans l'évolution. Le plan suit trois temps : les anomalies du <b>nombre</b> de chromosomes, puis les échanges de <b>portions</b> de chromosomes, enfin le rôle de ces accidents dans l'<b>évolution</b>.</p>
 
 <div class="box piege"><h4>⚠ Où se range cette partie</h4>
-<p>Sur la fiche de TP « Étude d'une famille multigénique », Mme Philip indique : <b>Thème 1A1 — Chapitre 1, unité 2 : conséquences génétiques de la reproduction sexuée</b>. Les accidents génétiques ne forment donc pas un nouveau chapitre : ils terminent l'unité 2, juste après les brassages. Le chapitre 2 commence ensuite avec les transferts horizontaux.</p></div>
+<p>Sur la fiche de TP « Étude d'une famille multigénique », l'en-tête indique : <b>Thème 1A1 — Chapitre 1, unité 2 : conséquences génétiques de la reproduction sexuée</b>. Les accidents génétiques ne forment donc pas un nouveau chapitre : ils terminent l'unité 2, juste après les brassages. Le chapitre 2 commence ensuite avec les transferts horizontaux.</p></div>
 
 <h2>B. Les anomalies du nombre de chromosomes</h2>
 
@@ -3160,7 +3160,7 @@ const TERMINALE = [
 </ul>
 
 <div class="box piege"><h4>⚠ Le vocabulaire exact</h4>
-<p>La prof parle de « mauvaise disjonction » ou de « migrations anormales » des chromosomes : les deux expressions désignent la même chose. Le terme technique, que tu rencontreras dans les manuels, est <b>non-disjonction</b>. Et on nomme toujours l'anomalie d'après le <b>chromosome concerné</b> : trois chromosomes 21, c'est une trisomie 21 ; un seul chromosome X sans Y, c'est une monosomie X.</p></div>
+<p>Le cours parle de « mauvaise disjonction » ou de « migrations anormales » des chromosomes : les deux expressions désignent la même chose. Le terme technique, que tu rencontreras dans les manuels, est <b>non-disjonction</b>. Et on nomme toujours l'anomalie d'après le <b>chromosome concerné</b> : trois chromosomes 21, c'est une trisomie 21 ; un seul chromosome X sans Y, c'est une monosomie X.</p></div>
 
 <h3>2. Viables ou non viables</h3>
 <p>Une anomalie du nombre ne change aucun gène : elle change la <b>quantité</b> de gènes. Or toutes les protéines d'une cellule sont produites en proportions équilibrées ; un chromosome en trop, avec ses centaines de gènes, dérègle cet équilibre. La conséquence dépend donc de la taille du chromosome et du nombre de gènes qu'il porte.</p>
@@ -3178,7 +3178,7 @@ const TERMINALE = [
 <tr><td>Syndrome de Turner</td><td>45, X0</td><td>Viable dans une minorité de cas</td><td>Environ 1 fille sur 2 500</td></tr>
 <tr><td>Monosomie d'un autosome</td><td>45 chromosomes, un autosome manquant</td><td>Jamais viable</td><td>Fausse couche</td></tr>
 </table></div>
-<p style="font-size:13.5px;color:var(--ink-3)">Les exemples (trisomie 14, XXY) sont ceux du cours ; les fréquences du tableau viennent de sources médicales extérieures au cours, le document 1 de l'exposé étant resté vide.</p>
+<p style="font-size:13.5px;color:var(--ink-3)">Les exemples (trisomie 14, XXY) sont ceux du cours ; les fréquences du tableau viennent de sources médicales extérieures au cours, le support d'origine n'en donnant pas.</p>
 
 <h3>3. Un exemple viable : la trisomie 21</h3>
 <p>Le caryotype présente <b>trois chromosomes 21</b> au lieu de deux : 47 chromosomes. Le plus souvent, l'erreur s'est produite pendant la méiose d'un des deux parents, en anaphase I ou en anaphase II, et le gamète n + 1 a été fécondé.</p>
@@ -3204,7 +3204,7 @@ const TERMINALE = [
 </ul></div>
 
 <div class="box piege"><h4>⚠ Une erreur à ne pas recopier</h4>
-<p>La diapositive de l'exposé sur le syndrome de Turner mentionne une « hyperthyroïdie ». Le trouble fréquemment associé au syndrome est l'inverse : l'<b>hypothyroïdie</b>, c'est-à-dire une thyroïde qui ne fonctionne pas assez.</p></div>
+<p>On lit parfois, à propos du syndrome de Turner, « hyperthyroïdie ». Le trouble fréquemment associé au syndrome est l'inverse : l'<b>hypothyroïdie</b>, c'est-à-dire une thyroïde qui ne fonctionne pas assez.</p></div>
 
 <div class="box retenir"><h4>Le bilan de cette partie</h4>
 <p>Une mauvaise disjonction d'une paire d'homologues en méiose I, ou des chromatides d'un chromosome en méiose II, aboutit à des gamètes anormaux, à n + 1 ou n − 1 chromosomes. Après fécondation, on obtient une trisomie (47) ou une monosomie (45). La plupart sont non viables ; quelques-unes sont viables, avec des symptômes : trisomie 21, syndrome de Turner, syndrome de Klinefelter.</p></div>
@@ -3241,7 +3241,7 @@ const TERMINALE = [
 <div class="box plus"><h4>Approfondir — quand une translocation provoque un cancer <span class="hp">hors programme</span></h4>
 <p>Une translocation peut aussi survenir dans une cellule somatique, hors de toute méiose. L'exemple le plus connu est la <b>leucémie myéloïde chronique</b>. Dans une cellule souche de la moelle osseuse, le chromosome 9 et le chromosome 22 échangent un segment : c'est une translocation réciproque. Le chromosome 22 raccourci qui en résulte s'appelle le <b>chromosome Philadelphie</b>.</p>
 <p>À la jonction, deux gènes se trouvent soudés en un gène hybride, nommé BCR-ABL. Il code une protéine qui stimule la division cellulaire en permanence, sans jamais s'arrêter. La cellule se multiplie sans contrôle et fonde un sous-clone de globules blancs : c'est exactement le schéma de l'évolution clonale vu dans l'unité 1, mais déclenché par un remaniement de chromosomes et non par une mutation ponctuelle.</p>
-<p>Attention à la diapositive de l'exposé : elle parle d'une « mutation dans le chromosome 22 ». Il s'agit en réalité d'une <b>translocation</b> entre les chromosomes 9 et 22. (Détails BCR-ABL : source extérieure au cours.)</p></div>
+<p>Attention à une formule qu'on rencontre parfois : « mutation dans le chromosome 22 ». Il s'agit en réalité d'une <b>translocation</b> entre les chromosomes 9 et 22. (Détails BCR-ABL : source extérieure au cours.)</p></div>
 
 <h3>3. Les crossing-over inégaux</h3>
 <div class="box def"><h4>Définition</h4>
@@ -3272,7 +3272,7 @@ const TERMINALE = [
 <p>Les protéines produites par ces gènes sont donc elles aussi <b>homologues</b> : plus de 20 % de similitudes dans leur séquence d'acides aminés. Elles ont alors une structure tridimensionnelle proche et globalement les mêmes fonctions.</p></div>
 
 <div class="box piege"><h4>⚠ Pourquoi 20 % ?</h4>
-<p>Il existe 20 acides aminés. Si l'on compare deux séquences de protéines qui n'ont <b>aucun lien de parenté</b>, le hasard seul fera coïncider environ 5 % des positions (1 chance sur 20). Au-delà de 20 % de ressemblance, le hasard ne suffit plus à l'expliquer : les deux séquences dérivent d'un ancêtre commun. C'est ce seuil qui permet de parler d'<b>homologie</b>, donc de parenté. Mme Philip applique le même seuil aux séquences nucléotidiques.</p></div>
+<p>Il existe 20 acides aminés. Si l'on compare deux séquences de protéines qui n'ont <b>aucun lien de parenté</b>, le hasard seul fera coïncider environ 5 % des positions (1 chance sur 20). Au-delà de 20 % de ressemblance, le hasard ne suffit plus à l'expliquer : les deux séquences dérivent d'un ancêtre commun. C'est ce seuil qui permet de parler d'<b>homologie</b>, donc de parenté. Le cours applique le même seuil aux séquences nucléotidiques.</p></div>
 
 <p><b>Premier exemple, celui du cours : les opsines.</b> Les opsines sont les protéines qui captent la lumière dans les cellules photosensibles de la rétine. Chez l'humain, trois opsines permettent de distinguer les couleurs : l'une absorbe surtout le bleu (opsine S, pour « short », gène sur le chromosome 7), les deux autres le vert et le rouge (opsines M et L, gènes côte à côte sur le chromosome X). Elles présentent plus de 40 % de similitudes entre elles : ce sont des protéines homologues, codées par une famille multigénique.</p>
 <p>Leur histoire est celle d'un gène ancestral unique, qui a été dupliqué ; une copie a été transposée sur un autre chromosome (gène S), puis, beaucoup plus tard, un nouveau crossing-over inégal a dédoublé le gène resté sur le X, d'où deux gènes voisins qui ont divergé (M et L). Résultat : là où un seul pigment existait, trois pigments absorbent des longueurs d'onde différentes, ce qui améliore la perception des couleurs. Un accident génétique est ainsi à l'origine de notre vision trichromatique.</p>
@@ -3301,7 +3301,7 @@ const TERMINALE = [
 <div class="box piege"><h4>⚠ « et », pas « ou »</h4>
 <p>Il faut comparer les <b>deux</b> types de séquences : la définition de la famille multigénique porte sur les gènes (séquences nucléotidiques) et ses conséquences sur les protéines (séquences d'acides aminés). Comparer seulement l'un des deux laisse la démonstration à moitié faite.</p></div>
 
-<p><b>Étape 3 — communiquer les résultats.</b> Le logiciel produit un tableau qui compare toutes les séquences deux à deux. Le recopier tel quel n'est <b>pas</b> une bonne communication : Mme Philip a corrigé ce choix par « il faut faire une communication ne retenant que l'essentiel ». Le modèle de sa correction est un tableau titré, qui garde seulement les comparaisons utiles, avec les deux types de séquences côte à côte :</p>
+<p><b>Étape 3 — communiquer les résultats.</b> Le logiciel produit un tableau qui compare toutes les séquences deux à deux. Le recopier tel quel n'est <b>pas</b> une bonne communication : la correction le dit : « il faut faire une communication ne retenant que l'essentiel ». Le modèle de la correction est un tableau titré, qui garde seulement les comparaisons utiles, avec les deux types de séquences côte à côte :</p>
 <div class="tablewrap"><table>
 <tr><th colspan="3">Tableau des similitudes des séquences nucléotidiques et protéiques des globines entre elles</th></tr>
 <tr><th>Séquences comparées</th><th>Similitude nucléotidique</th><th>Similitude protéique</th></tr>
@@ -3312,7 +3312,7 @@ const TERMINALE = [
 <tr><td>Globine epsilon / autres globines</td><td>… %</td><td>… %</td></tr>
 <tr><td>Myoglobine / globines</td><td>… %</td><td>… %</td></tr>
 </table></div>
-<p>Les valeurs sont à compléter avec Geniegen2. D'après la copie d'Orhan : environ 57 % entre α et β, 93 % entre β et δ, 78 à 84 % entre ε et les autres globines du groupe bêta, 41 à 46 % entre la myoglobine et les globines (séquences nucléotidiques) ; toutes les similitudes protéiques dépassent 22 %. Les deux tableaux de sa copie ne concordent pas exactement pour le minimum (40,8 % ou 41,4 %) : à revérifier.</p>
+<p>Les valeurs sont à compléter avec Geniegen2. D'après une copie d'élève : environ 57 % entre α et β, 93 % entre β et δ, 78 à 84 % entre ε et les autres globines du groupe bêta, 41 à 46 % entre la myoglobine et les globines (séquences nucléotidiques) ; toutes les similitudes protéiques dépassent 22 %. Les deux tableaux de cette copie ne concordent pas exactement pour le minimum (40,8 % ou 41,4 %) : à revérifier.</p>
 
 <p><b>Étape 4 — exploiter.</b> Toutes les similitudes sont supérieures à 20 % : environ 41 % au minimum pour les séquences nucléotidiques, 22 % au minimum pour les séquences d'acides aminés. Conformément au document 4, ces ressemblances ne peuvent pas être dues au hasard : elles indiquent une origine commune.</p>
 
@@ -3325,10 +3325,10 @@ const TERMINALE = [
   <li>des <b>mutations</b> sont notées sur chaque branche, après chaque nœud.</li>
 </ul>
 <div class="box piege"><h4>⚠ Ce que signifie chaque nœud</h4>
-<p>La fiche le dit : <b>un nœud de l'arbre correspond à une duplication génique</b>, accompagnée ou non d'un changement de chromosome. Après chaque nœud, les deux copies évoluent indépendamment, car elles ne subissent pas les mêmes mutations. Chaque nœud porte donc une duplication ; un nœud ne porte jamais « transposition » seule, comme sur la copie d'Orhan pour le nœud α / bêta.</p>
+<p>La fiche le dit : <b>un nœud de l'arbre correspond à une duplication génique</b>, accompagnée ou non d'un changement de chromosome. Après chaque nœud, les deux copies évoluent indépendamment, car elles ne subissent pas les mêmes mutations. Chaque nœud porte donc une duplication ; un nœud ne porte jamais « transposition » seule, erreur fréquente sur le nœud α / bêta.</p>
 <p>Un détail à vérifier : la correction place la myoglobine sur le <b>chromosome 20</b>. Les bases de données de génétique humaine indiquent le <b>chromosome 22</b> (gène MB). Cela ne change rien au raisonnement (un autre chromosome, donc duplication + transposition) ; au bac, c'est la donnée du sujet qui fait foi.</p></div>
 
-<p><b>Étape 6 — conclusion (d'après la correction de la prof).</b> Elle rassemble <b>quatre</b> types d'arguments, et c'est ce qui la rend complète :</p>
+<p><b>Étape 6 — conclusion (d'après la correction du TP).</b> Elle rassemble <b>quatre</b> types d'arguments, et c'est ce qui la rend complète :</p>
 <ol>
   <li><b>Les séquences</b> : plus de 20 % de similitudes entre les séquences nucléotidiques et protéiques, donc une homologie de structure et une origine commune.</li>
   <li><b>La structure 3D</b> (document 3) : les différentes chaînes de globines ont une structure tridimensionnelle similaire.</li>
@@ -3406,7 +3406,7 @@ const TERMINALE = [
           "Connaître les grandes lignes du cadre légal français"],
         rappels:[["p10","Patrimoine génétique et santé"],["p5","Mutations et variabilité"]],
         html:`<div class="box piege"><h4>Une unité courte</h4>
-<p>Cette unité vient d'un débat en classe (activité 5, « Nouvelles techniques de séquençage de l'ADN : progrès et risques éthiques »), une moitié de la classe pour, l'autre contre. Elle compte peu au bac et n'y tombera pas seule : il suffit de savoir donner, avec un exemple, deux ou trois arguments de chaque côté.</p></div>
+<p>Cette unité s'appuie sur un débat (activité 5, « Nouvelles techniques de séquençage de l'ADN : progrès et risques éthiques ») : un groupe défend le pour, l'autre le contre. Elle compte peu au bac et n'y tombera pas seule : il suffit de savoir donner, avec un exemple, deux ou trois arguments de chaque côté.</p></div>
 
 <h2>A. Le problème</h2>
 <p>Les unités 1 et 2 ont montré comment se construit le génotype d'un individu : des mitoses qui le conservent, une méiose et une fécondation qui le brassent, des accidents qui le modifient. Aujourd'hui, ce génotype se <b>lit</b>. Le séquençage de l'ADN et la <b>bio-informatique</b> donnent directement accès au génotype d'une personne, à celui de ses descendants et de ses ascendants.</p>
@@ -3509,7 +3509,7 @@ const TERMINALE = [
 <p>Comment des gènes peuvent-ils passer d'un organisme à un autre sans reproduction, et en quoi ces échanges contribuent-ils à la complexification des génomes ?</p></div>
 
 <div class="box piege"><h4>⚠ Le plan du diaporama</h4>
-<p>La numérotation des diapositives n'est pas régulière (I, puis 1-2-3, puis un nouveau « 1) Transferts viraux », puis « 4) Transduction », et les endosymbioses notées tantôt II, tantôt III). Le plan retenu ici est : <b>I. Les transferts horizontaux chez les bactéries</b> (définition, transformation, conjugaison, transgenèse) ; <b>II. Les transferts viraux</b> (rétrovirus, syncytine) ; <b>III. Les endosymbioses</b>, qui n'ont pas encore été traitées en classe et feront l'objet de la page suivante.</p></div>
+<p>La numérotation des diapositives n'est pas régulière (I, puis 1-2-3, puis un nouveau « 1) Transferts viraux », puis « 4) Transduction », et les endosymbioses notées tantôt II, tantôt III). Le plan retenu ici est : <b>I. Les transferts horizontaux chez les bactéries</b> (définition, transformation, conjugaison, transgenèse) ; <b>II. Les transferts viraux</b> (rétrovirus, syncytine) ; <b>III. Les endosymbioses</b>, qui font l'objet de la page suivante.</p></div>
 
 <h2>B. Les transferts horizontaux : définition et mise en évidence</h2>
 
@@ -3611,7 +3611,7 @@ const TERMINALE = [
 <div class="box piege"><h4>⚠ Les bactéries ne font pas de mitose</h4>
 <p>La diapositive parle de « mitoses successives » des bactéries. Rigoureusement, la mitose est la division du <b>noyau</b> des cellules eucaryotes ; une bactérie n'a pas de noyau. Elle se divise par <b>division binaire</b> (scissiparité) : elle réplique son ADN puis se coupe en deux. Le résultat est le même pour le raisonnement, des clones qui portent tous le plasmide, mais le mot exact est « divisions ».</p></div>
 
-<p>La transgenèse est aussi très utilisée pour créer des <span class="kw">OGM</span>, organismes génétiquement modifiés. Pour les plantes, on se sert justement d'Agrobacterium : on remplace dans l'ADN-T les gènes responsables de la tumeur par le gène que l'on veut introduire, et la bactérie se charge de l'insérer dans le génome de la plante. (Le détail de cette technique vient d'une source extérieure au diaporama ; le Genially de la prof sur les OGM n'est pas reproduit ici.)</p>
+<p>La transgenèse est aussi très utilisée pour créer des <span class="kw">OGM</span>, organismes génétiquement modifiés. Pour les plantes, on se sert justement d'Agrobacterium : on remplace dans l'ADN-T les gènes responsables de la tumeur par le gène que l'on veut introduire, et la bactérie se charge de l'insérer dans le génome de la plante. (Le détail de cette technique vient d'une source extérieure au diaporama ; le support du cours sur les OGM n'est pas reproduit ici.)</p>
 
 <div class="box retenir"><h4>Le bilan de cette partie</h4>
 <p>Chez les bactéries, les gènes circulent entre organismes non apparentés par <b>transformation</b> (ADN libre), par <b>conjugaison</b> (plasmides, par un pont cytoplasmique) et peuvent même passer dans un organisme pluricellulaire (<b>transgenèse</b> naturelle par Agrobacterium). Ces échanges expliquent la diffusion rapide des résistances aux antibiotiques. L'humain les a détournés à son profit : la transgenèse dirigée, avec un plasmide comme vecteur, permet de faire produire une protéine humaine par une bactérie.</p></div>
@@ -3641,7 +3641,7 @@ const TERMINALE = [
 <div class="box def"><h4>Le critère du TP</h4>
 <p>La ressemblance entre les protéines de deux <b>espèces éloignées</b> est le principal indice d'un transfert horizontal. Lorsqu'un gène est transmis de manière classique (transfert vertical, des parents aux descendants), les mutations s'accumulent au fil du temps : deux espèces éloignées dans l'arbre du vivant devraient donc avoir des gènes, et des protéines, très différents. Si leurs protéines se ressemblent de manière frappante (<b>plus de 80 %</b> de ressemblance), cela trahit un <b>transfert horizontal récent</b>.</p></div>
 
-<p>Les résultats du TP, d'après la correction de Mme Philip :</p>
+<p>Les résultats du TP, d'après la correction :</p>
 <div class="tablewrap"><table>
 <tr><th>Protéines comparées</th><th>Similitude</th><th>Ce qu'on en tire</th></tr>
 <tr><td>Syncytine humaine 1 / protéine virale MSRV</td><td><b>87 %</b></td><td>Au-delà de 80 % entre un virus et un primate : indice fort d'un transfert horizontal récent</td></tr>
@@ -3651,30 +3651,30 @@ const TERMINALE = [
 <p>Le raisonnement, en trois arguments :</p>
 <ul>
   <li><b>Un argument moléculaire</b> : la syncytine 1 humaine et la protéine ENV du rétrovirus MSRV sont similaires à 87 %. Un virus et un primate sont des organismes extrêmement éloignés : par transfert vertical, leurs protéines n'auraient aucune raison de se ressembler autant. Cette ressemblance signe un <b>lien de parenté</b> entre les deux gènes.</li>
-  <li><b>Un argument fonctionnel</b> : la syncytine et la protéine ENV du virus font toutes deux fusionner des membranes. La prof parle de <b>similitude fonctionnelle</b> (la diapositive disait « analogie de fonction ») : c'est un argument supplémentaire, mais qui ne suffirait pas seul.</li>
+  <li><b>Un argument fonctionnel</b> : la syncytine et la protéine ENV du virus font toutes deux fusionner des membranes. Le cours parle de <b>similitude fonctionnelle</b> (la diapositive disait « analogie de fonction ») : c'est un argument supplémentaire, mais qui ne suffirait pas seul.</li>
   <li><b>Un argument de parenté entre primates</b> : l'arbre construit avec la syncytine 1 du gorille, du chimpanzé, de l'humain, de l'orang-outan, du gibbon et du babouin, et avec la séquence MSRV, place la séquence virale tout près des syncytines des grands singes et de l'humain. Ces espèces partagent un ancêtre commun : le gène ENW1 vient d'un gène rétroviral intégré dans le génome de cet ancêtre, puis transmis à toutes les espèces qui en descendent.</li>
 </ul>
 <p><b>Conclusion</b> : le gène codant la syncytine 1 est issu d'un <b>transfert horizontal de gène viral</b>.</p>
 
 <div class="box piege"><h4>⚠ Analogie ou homologie ?</h4>
-<p>Une diapositive parle d'« analogie de structure ». Le mot juste est <b>homologie</b> de séquence : des séquences qui se ressemblent au point de signer une origine commune. Pour la fonction, la prof emploie « analogie de fonction » ou « similitude fonctionnelle ». Le point à retenir : seule la ressemblance des <b>séquences</b> prouve la parenté. Deux protéines peuvent avoir la même fonction sans être apparentées.</p></div>
+<p>Une diapositive parle d'« analogie de structure ». Le mot juste est <b>homologie</b> de séquence : des séquences qui se ressemblent au point de signer une origine commune. Pour la fonction, le cours emploie « analogie de fonction » ou « similitude fonctionnelle ». Le point à retenir : seule la ressemblance des <b>séquences</b> prouve la parenté. Deux protéines peuvent avoir la même fonction sans être apparentées.</p></div>
 
 <div class="box piege"><h4>⚠ Et la syncytine 2 ?</h4>
-<p>Les 20 % de ressemblance entre la syncytine 2 et la protéine du virus MSRV montrent seulement que la syncytine 2 <b>ne provient pas de ce virus-là</b>. Cela ne prouve <b>pas</b> qu'elle soit issue d'un transfert vertical : une faible ressemblance avec un virus donné ne dit rien de l'origine du gène. La correction de la prof ne conclut d'ailleurs rien sur la syncytine 2. On sait par ailleurs qu'elle provient elle aussi d'un rétrovirus, mais d'un autre (source extérieure au cours). Conclure « ce gène n'est pas issu d'un transfert, probablement d'un transfert vertical » est donc une erreur de raisonnement.</p></div>
+<p>Les 20 % de ressemblance entre la syncytine 2 et la protéine du virus MSRV montrent seulement que la syncytine 2 <b>ne provient pas de ce virus-là</b>. Cela ne prouve <b>pas</b> qu'elle soit issue d'un transfert vertical : une faible ressemblance avec un virus donné ne dit rien de l'origine du gène. La correction du TP ne conclut d'ailleurs rien sur la syncytine 2. On sait par ailleurs qu'elle provient elle aussi d'un rétrovirus, mais d'un autre (source extérieure au cours). Conclure « ce gène n'est pas issu d'un transfert, probablement d'un transfert vertical » est donc une erreur de raisonnement.</p></div>
 
 <details class="tp">
 <summary><span class="lab">TP type bac</span>Les syncytines sont-elles issues d'un transfert horizontal de gènes viraux ? (corrigé)</summary>
 <div class="tpin">
 <p><b>Le contexte.</b> L'ADN est une molécule universelle, ce qui autorise des échanges de gènes entre organismes très différents. Chez plusieurs types d'animaux existent des gènes appelés syncytines, qui pourraient provenir d'un rétrovirus appelé MSRV. On cherche à montrer que l'apparition des syncytines chez les primates est le résultat d'un transfert horizontal de gènes viraux.</p>
 
-<p><b>Étape 1 — la stratégie (correction de la prof, mise en forme).</b> Comparer les séquences en acides aminés des syncytines humaines et de primates avec celles des protéines virales MSRV, avec Geniegen2 : aligner les séquences, puis utiliser le tableau de comparaison pour déterminer les pourcentages de similitude. On s'attend à pouvoir démontrer un transfert viral si l'on observe plus de 80 % de similitude entre les séquences protéiques.</p>
+<p><b>Étape 1 — la stratégie (d'après la correction, mise en forme).</b> Comparer les séquences en acides aminés des syncytines humaines et de primates avec celles des protéines virales MSRV, avec Geniegen2 : aligner les séquences, puis utiliser le tableau de comparaison pour déterminer les pourcentages de similitude. On s'attend à pouvoir démontrer un transfert viral si l'on observe plus de 80 % de similitude entre les séquences protéiques.</p>
 <p><b>Étape 2 — le protocole.</b> Dans Geniegen2, ouvrir la banque de séquences, chercher le mot clé « syncytines », charger « syncytines humaines et virales » ; sélectionner les syncytines humaines et les protéines virales MSRV, les aligner, afficher le tableau de comparaison et relever les pourcentages.</p>
 <p><b>Étape 3 — communiquer.</b> Un tableau titré « Tableau de comparaison des protéines syncytines humaines et MSRV », avec deux lignes seulement : syncytine 1 / MSRV, 87 % ; syncytine 2 / MSRV, 20 %. Ne garder que l'essentiel, comme dans le TP sur les globines.</p>
 <p><b>Étape 4 — exploiter.</b> La syncytine 1 humaine est similaire à 87 % à la protéine MSRV. Au-delà de 80 %, c'est un indice fort d'un transfert horizontal récent : les résultats sont compatibles avec une origine virale du gène.</p>
 <p><b>Étape 5 — la ressource complémentaire.</b> Deux arguments : la similitude fonctionnelle (les syncytines, codées par les gènes ENW1 et exprimées au début de la formation du placenta, font fusionner les membranes, comme les protéines ENV du virus) et l'arbre de parenté de la syncytine 1 chez les primates, où la séquence MSRV se range près des syncytines des grands singes et de l'humain.</p>
-<p><b>Étape 6 — conclusion.</b> L'ensemble des arguments moléculaires et fonctionnels est compatible avec l'hypothèse d'une origine virale des syncytines humaines. Le gène ENW1 des gorilles, chimpanzés, orangs-outans et gibbons provient d'un gène d'origine rétrovirale intégré dans le génome de leur ancêtre commun. Pour être <b>distancié</b>, la prof propose de critiquer la démarche : on pourrait améliorer la preuve en insérant directement le gène ENW1 dans des cellules, pour voir s'il déclenche leur fusion.</p>
+<p><b>Étape 6 — conclusion.</b> L'ensemble des arguments moléculaires et fonctionnels est compatible avec l'hypothèse d'une origine virale des syncytines humaines. Le gène ENW1 des gorilles, chimpanzés, orangs-outans et gibbons provient d'un gène d'origine rétrovirale intégré dans le génome de leur ancêtre commun. Pour être <b>distancié</b>, la correction propose de critiquer la démarche : on pourrait améliorer la preuve en insérant directement le gène ENW1 dans des cellules, pour voir s'il déclenche leur fusion.</p>
 
-<div class="box def"><h4>Comment Mme Philip note une ECE</h4>
+<div class="box def"><h4>Comment une ECE est notée</h4>
 <p><b>Communication et interprétation (sur 5).</b> La production doit être <b>techniquement correcte</b> (soignée, lisible, appropriée), <b>bien renseignée</b> (informations complètes et exactes : titre, unités) et <b>pertinente</b> (elle montre clairement comment les résultats répondent au problème posé). 3 critères : 5 points ; 2 : 3 points ; 1 : 1 point.</p>
 <p><b>Conclusion finale (sur 3).</b> Elle doit être <b>complète</b> (elle utilise toutes les informations : activité réalisée, ressources, différentes étapes), <b>organisée</b> (elle relie logiquement ces informations) et <b>distanciée</b> (elle interroge la démarche suivie et la qualité des données recueillies). 3 critères : 3 points ; 2 : 2 points ; 1 : 1 point.</p>
 <p>Le critère le plus souvent oublié est le troisième : une phrase sur les limites de la démarche, ou sur une expérience qui la compléterait, suffit à le valider.</p></div>
@@ -3687,7 +3687,7 @@ const TERMINALE = [
 <p>Bien que l'infection par un virus ait généralement un effet néfaste, la découverte de gènes viraux intégrés depuis des millions d'années et remplissant des fonctions physiologiques essentielles montre que ces éléments peuvent jouer un rôle fondamental dans la biologie de leur hôte et dans l'évolution des espèces.</p>
 
 <h3>4. L'étendue des transferts horizontaux dans le vivant</h3>
-<p>La syncytine n'est pas un cas isolé. Les transferts horizontaux de gènes se rencontrent dans tout le monde vivant, entre des organismes qui ne sont pas apparentés : des virus vers l'humain, des bactéries vers les nématodes (vers ronds microscopiques), des champignons ou des protistes vers les insectes, etc. Mme Philip a montré trois documents de manuels pour le constater.</p>
+<p>La syncytine n'est pas un cas isolé. Les transferts horizontaux de gènes se rencontrent dans tout le monde vivant, entre des organismes qui ne sont pas apparentés : des virus vers l'humain, des bactéries vers les nématodes (vers ronds microscopiques), des champignons ou des protistes vers les insectes, etc. Trois documents de manuels permettent de le constater.</p>
 <div class="box def"><h4>L'idée</h4>
 <p>Les transferts horizontaux sont <b>fréquents</b> et concernent <b>tous les grands groupes</b> du vivant, comme donneurs ou comme receveurs. Les gènes reçus s'expriment et apportent de <b>nouvelles fonctions</b> : ils participent à l'évolution des espèces.</p></div>
 <ul>
@@ -3699,12 +3699,12 @@ const TERMINALE = [
 <summary>Activité (diapositive 21) : retrouver des gènes d'origine virale dans le génome humain</summary>
 <div class="tpin">
 <p><b>La consigne.</b> Sur le site du NCBI, où le génome humain est en libre accès (<i>ncbi.nlm.nih.gov/genome/guide/human</i>), taper « viral », puis citer deux exemples de gènes humains d'origine virale et le chromosome qui les porte.</p>
-<p><b>Une réponse possible</b> (proposée ici, pas une correction de Mme Philip) : le gène de la <b>syncytine 1</b>, sur le <b>chromosome 7</b>, et celui de la <b>syncytine 2</b>, sur le <b>chromosome 6</b>. Dans la base de données, ils portent les noms officiels <i>ERVW-1</i> (que la diapositive appelle « ENW1 ») et <i>ERVFRD-1</i> ; les lettres « ERV » signifient « rétrovirus endogène ». Ces noms viennent de la base du NCBI, pas du cours.</p>
+<p><b>Une réponse possible</b> (proposée par le site, pas une correction officielle) : le gène de la <b>syncytine 1</b>, sur le <b>chromosome 7</b>, et celui de la <b>syncytine 2</b>, sur le <b>chromosome 6</b>. Dans la base de données, ils portent les noms officiels <i>ERVW-1</i> (que la diapositive appelle « ENW1 ») et <i>ERVFRD-1</i> ; les lettres « ERV » signifient « rétrovirus endogène ». Ces noms viennent de la base du NCBI, pas du cours.</p>
 </div></details>
 
 <h3>5. La transduction</h3>
 <div class="box def"><h4>À savoir seulement</h4>
-<p>La <span class="kw">transduction</span> est un transfert horizontal d'ADN bactérien par l'intermédiaire d'un virus de bactérie, appelé <b>bactériophage</b>. En se multipliant dans une bactérie, le virus emporte par erreur un fragment de l'ADN bactérien, qu'il injecte ensuite dans la bactérie suivante. Mme Philip le précise : il faut savoir que ce mécanisme existe, mais on ne demandera pas de l'expliquer ni d'en connaître le schéma.</p></div>
+<p>La <span class="kw">transduction</span> est un transfert horizontal d'ADN bactérien par l'intermédiaire d'un virus de bactérie, appelé <b>bactériophage</b>. En se multipliant dans une bactérie, le virus emporte par erreur un fragment de l'ADN bactérien, qu'il injecte ensuite dans la bactérie suivante. Il faut savoir que ce mécanisme existe, mais le programme ne demande pas de l'expliquer ni d'en connaître le schéma.</p></div>
 
 <div class="box retenir"><h4>À retenir</h4>
 <ul>
@@ -3761,7 +3761,7 @@ const TERMINALE = [
 
 <h3>1. L'argument essentiel : la double membrane</h3>
 <p>Mitochondries et chloroplastes sont entourés de <b>deux membranes</b>, exactement comme une bactérie phagocytée par une cellule : la membrane interne correspond à la membrane de la bactérie, la membrane externe à la membrane de la vésicule formée par la cellule hôte au moment de la phagocytose.</p>
-<div class="box retenir"><h4>Le commentaire de Mme Philip (diapositive 30)</h4>
+<div class="box retenir"><h4>Le commentaire du cours (diapositive 30)</h4>
 <p>Sur un schéma de l'endosymbiose, « on se rend compte que la membrane interne du chloroplaste est en fait, à l'origine, la membrane de la cyanobactérie : cela explique les ressemblances de structure entre l'une et l'autre ». L'endosymbiose de cyanobactéries par des cellules eucaryotes aurait ainsi donné naissance à la <b>lignée verte</b>.</p></div>
 <div class="box plus"><h4>Approfondir — et la membrane externe ? <span class="hp">hors programme</span></h4>
 <p>Le modèle du cours (une membrane bactérienne + une membrane de vésicule) est celui qu'on attend au bac. Les recherches récentes le nuancent : les cyanobactéries et les α-protéobactéries possèdent déjà <b>deux</b> membranes, et la membrane externe des chloroplastes et des mitochondries contient des protéines d'origine bactérienne. Beaucoup de chercheurs pensent donc que les deux membranes de l'organite viennent de la bactérie, la membrane de la vésicule ayant disparu. Cela ne change pas la conclusion : la double membrane témoigne d'une bactérie englobée dans une cellule.</p></div>
@@ -3784,7 +3784,7 @@ const TERMINALE = [
 <p>Le tableau de la diapositive écrit que la cyanobactérie devient un chloroplaste « qui possède les mêmes fonctions (production d'énergie par mitochondries) ». Il faut séparer : la <b>cyanobactérie</b> est l'ancêtre du <b>chloroplaste</b> (photosynthèse) ; une <b>α-protéobactérie</b> est l'ancêtre de la <b>mitochondrie</b> (respiration). Ce sont deux endosymbioses distinctes.</p></div>
 
 <h2>D. Les objections : deux membranes, et beaucoup moins de gènes</h2>
-<div class="box retenir"><h4>La correction de Mme Philip : le tableau des arguments (diapositives 28 et 29, cours du 12 octobre)</h4>
+<div class="box retenir"><h4>La correction du cours : le tableau des arguments (diapositives 28 et 29)</h4>
 <div class="tablewrap"><table>
 <tr><th>Arguments en faveur</th><th>Arguments contre ?</th></tr>
 <tr><td>Similitude des ARN ribosomiques entre chloroplastes et cyanobactéries, et entre mitochondries et bactéries</td><td rowspan="2">Deux membranes chez les organites, une seule chez la bactérie. <i>Réponse : cette double membrane est justement la preuve de l'ingestion d'une bactérie par une cellule hôte.</i></td></tr>
@@ -3801,7 +3801,7 @@ const TERMINALE = [
 <tr><td>Chloroplaste</td><td>1 500 à 10 000 gènes</td><td>87 gènes</td></tr>
 </table></div>
 <p>Cette différence ne contredit pas la théorie : elle s'explique par l'histoire de l'endosymbiose.</p>
-<div class="box def"><h4>Pourquoi le génome des organites est si petit (correction de Mme Philip, diapositive 31)</h4>
+<div class="box def"><h4>Pourquoi le génome des organites est si petit (correction du cours, diapositive 31)</h4>
 <ol>
   <li><b>Transfert de gènes vers le noyau</b> : au cours de l'évolution, une grande partie des gènes de la bactérie ancestrale (le symbiote) a été transférée vers le <b>noyau</b> de la cellule hôte. Pour le chloroplaste, environ 1 400 gènes ont été transférés, et 87 seulement ont été conservés dans l'organite.</li>
   <li><b>Prise de relais par le noyau</b> : ce sont désormais les gènes du noyau qui codent la plupart des protéines de l'organite.</li>
@@ -3816,7 +3816,7 @@ const TERMINALE = [
   <li>l'<b>organite</b> gagne un environnement stable, et dépense moins d'énergie pour maintenir et exprimer un génome autonome immense.</li>
 </ul>
 
-<div class="box retenir"><h4>Bilan à écrire (diapositive de la prof)</h4>
+<div class="box retenir"><h4>Bilan à écrire (diapositive du cours)</h4>
 <p>Les procaryotes sont donc fortement intégrés au sein de la cellule hôte : chacun retire de cette association des bénéfices mutuels. On parle d'<b>endosymbiose</b>, à l'origine de l'apparition des métabolismes chez les eucaryotes : <b>autotrophes</b> (capables de synthétiser leur propre matière organique à partir de matière minérale grâce à la photosynthèse) et <b>hétérotrophes</b> (produisant de l'énergie à partir de matière organique préexistante grâce à la respiration).</p></div>
 
 <div class="box retenir"><h4>Bilan final</h4>
@@ -3828,7 +3828,7 @@ const TERMINALE = [
 <details class="tp">
 <summary><span class="lab">TP ECE</span>L'origine endosymbiotique des chloroplastes</summary>
 <div class="tpin">
-<p><b>Statut : la feuille de TP elle-même n'est pas corrigée.</b> Mme Philip a corrigé en cours, le 12 octobre, le tableau des points communs entre organites et bactéries, qui sert à la partie B (voir la section C). C'est un TP « type 2 » : la stratégie est donnée, il n'y a pas à l'élaborer. Les étapes se rédigent sur une feuille de TP, avec la méthode vue en classe.</p>
+<p><b>Statut : les réponses ci-dessous sont proposées par le site, pas une correction officielle de la feuille de TP.</b> Le tableau des points communs entre organites et bactéries, qui sert à la partie B, est corrigé dans le cours (voir la section C). C'est un TP « type 2 » : la stratégie est donnée, il n'y a pas à l'élaborer. Les étapes se rédigent sur une feuille de TP, avec la méthode de rédaction habituelle.</p>
 <p><b>Le contexte.</b> On cherche à argumenter l'origine endosymbiotique des chloroplastes proposée par Lynn Margulis : les chloroplastes seraient issus de la phagocytose incomplète de cyanobactéries par des cellules eucaryotes, l'association donnant des avantages aux deux partenaires.</p>
 <p><b>Partie A (30 min) — la stratégie imposée.</b> Comparer, avec Geniegen2 (fichier « endosymbiose chloroplastique ») :</p>
 <ul>
@@ -3982,7 +3982,7 @@ const TERMINALE = [
 <details class="tp">
 <summary>Activité 1 : modéliser l'impact des forces évolutives sur les fréquences alléliques</summary>
 <div class="tpin">
-<p><b>Statut.</b> Activité faite en distanciel, à ne pas rendre. Les diapositives 17 à 24 sont des cadres à compléter (« insérer la courbe de résultat ») : les résultats attendus ci-dessous sont une proposition. Les explications de Mme Philip pour la dérive et l'effet fondateur (diapositives 46 à 48) sont dans le cours, parties B et C.</p>
+<p><b>Statut.</b> Activité d'entraînement. Les diapositives 17 à 24 sont des cadres à compléter (« insérer la courbe de résultat ») : les résultats attendus ci-dessous sont une proposition. Les explications du cours pour la dérive et l'effet fondateur (diapositives 46 à 48) sont dans le cours, parties B et C.</p>
 <p><b>Problématique.</b> Comment les forces évolutives sont-elles à l'origine d'un écart des fréquences alléliques par rapport à l'équilibre théorique de Hardy-Weinberg ? Savoir-faire visé : comprendre et identifier les facteurs qui éloignent de l'équilibre, notamment l'appariement non aléatoire, la sélection et la population finie (dérive).</p>
 <p><b>Le principe.</b> Un logiciel simule une population et la fait se reproduire génération après génération. On peut changer la taille de la population de départ, introduire des mutations, ne pas garantir la présence des deux sexes (accouplement non aléatoire), ou donner une plus forte probabilité de transmission à un caractère avantageux. Le travail se fait sur 10 générations, car les écarts à l'équilibre s'observent dans le temps.</p>
 <div class="tablewrap"><table>
@@ -4006,7 +4006,7 @@ const TERMINALE = [
 <div class="box def"><h4>Définition (diapositive 20)</h4>
 <p>La <span class="kw">dérive génétique</span> est un phénomène d'évolution <b>aléatoire</b>, dû au hasard de la reproduction et de la descendance. Elle est <b>beaucoup plus forte sur une petite population</b>.</p></div>
 <p>Le schéma de la diapositive le montre sur une population de 9 individus : à la première génération, seuls 5 individus se reproduisent, et ils laissent un nombre différent de descendants (2, 1, 1, 1 et 3). La deuxième génération ne compte plus que 8 individus, dont les couleurs ne sont plus dans les mêmes proportions ; la troisième en compte 10. Au bout de dix générations, la composition allélique de la population est <b>impossible à prévoir</b>.</p>
-<div class="box retenir"><h4>L'explication de l'écart (correction de Mme Philip, diapositive 46)</h4>
+<div class="box retenir"><h4>L'explication de l'écart (correction du cours, diapositive 46)</h4>
 <p>Dans une petite population, les allèles n'ont pas tous la même probabilité de se transmettre. Pour qu'un individu transmette à coup sûr tous ses allèles à la descendance, il faudrait que son nombre de descendants tende vers l'infini. En conséquence, il est <b>statistiquement inévitable</b> que certains allèles ne soient transmis à aucun enfant. Le nombre des allèles fluctue énormément : certains se retrouvent sur-représentés, d'autres sous-représentés.</p>
 <p>La dérive génétique est donc d'autant plus forte que la <b>taille de la population est petite</b>. Elle peut aller jusqu'à la <b>fixation</b> d'un allèle (fréquence 1) et à la disparition de l'autre.</p></div>
 <h3>Étude de cas : les drosophiles de Buri</h3>
@@ -4134,7 +4134,7 @@ const TERMINALE = [
 <div class="box piege"><h4>⚠ Deux sens du mot « symbiose »</h4>
 <p>Le cours emploie le mot dans deux sens. Au chapitre 2 (endosymbioses) et sur la diapositive du ver de Roscoff, la symbiose est une association durable <b>à bénéfices réciproques</b>, où les partenaires sont devenus interdépendants. Dans le bilan de ce chapitre, c'est toute association étroite et durable entre espèces différentes, <b>parasitisme compris</b>. Les deux usages existent chez les scientifiques. En devoir, dis dans quel sens tu l'emploies, ou parle de « mutualisme » et de « parasitisme », sans ambiguïté.</p></div>
 <div class="box plus"><h4>Approfondir — les formes d'hérédité non génétique <span class="hp">hors programme</span></h4>
-<p>Mme Philip présente ce texte « pour votre culture générale, mais à ne pas retenir ». Les chercheurs distinguent plusieurs hérédités : l'<b>hérédité d'associations symbiotiques</b>, quand les symbiotes sont transmis à la descendance (organites, bactéries vaginales de la mère transmises à l'enfant) ; l'<b>hérédité épigénétique</b>, quand une variation de l'expression des gènes, liée à l'environnement, est transmise ; l'<b>hérédité écologique</b>, quand les descendants héritent de l'habitat de leurs parents ; l'hérédité par <b>effets parentaux</b>, quand l'action des parents influe sur le phénotype des descendants ; l'<b>hérédité culturelle</b>, par la transmission sociale de comportements appris.</p>
+<p>Le cours présente ce texte « pour votre culture générale, mais à ne pas retenir ». Les chercheurs distinguent plusieurs hérédités : l'<b>hérédité d'associations symbiotiques</b>, quand les symbiotes sont transmis à la descendance (organites, bactéries vaginales de la mère transmises à l'enfant) ; l'<b>hérédité épigénétique</b>, quand une variation de l'expression des gènes, liée à l'environnement, est transmise ; l'<b>hérédité écologique</b>, quand les descendants héritent de l'habitat de leurs parents ; l'hérédité par <b>effets parentaux</b>, quand l'action des parents influe sur le phénotype des descendants ; l'<b>hérédité culturelle</b>, par la transmission sociale de comportements appris.</p>
 <p>Certains chercheurs (Pigliucci et Müller, 2010) proposent d'étendre la théorie de l'évolution pour reconnaître dans ces processus non génétiques un rôle moteur de l'évolution, et non de simples conséquences de mécanismes génétiques. Ce point de vue est loin d'être partagé par toute la communauté scientifique : il fait l'objet de vifs débats.</p></div>
 
 <h2>C. La notion de phénotype étendu</h2>
@@ -4166,7 +4166,7 @@ const TERMINALE = [
 <p><b>Le document.</b> Un graphique donne le taux de succès du jeune chimpanzé en fonction de son âge (en mois), pour deux tâches : une tâche facile, manger les fruits tendres de <i>Parinari excelsa</i>, et une tâche compliquée, casser avec un outil les noix très nourrissantes mais très dures de <i>Coula edulis</i>.</p>
 <p><b>1) Décrire le graphique.</b> Pour les fruits de <i>Parinari</i>, le taux de succès augmente dès l'âge de 10 à 15 mois et atteint un plateau d'environ 0,6 vers 30 mois. Pour les noix de <i>Coula</i>, le taux de succès reste nul jusque vers 45 à 50 mois, puis augmente brusquement jusqu'à un plateau d'environ 0,55 vers 60 mois.</p>
 <p><b>2) Comparer.</b> Les deux comportements finissent par être maîtrisés à un niveau proche, mais la casse des noix, plus complexe et qui demande un outil, s'acquiert beaucoup plus tard (environ trois ans plus tard) : il faut un long apprentissage.</p>
-<p><b>3) Les jeunes élevés en isolement.</b> La diapositive indique que des jeunes chimpanzés ayant grandi sans congénères présentent un taux de succès de 0,2 « lors de la casse de noix entre 0 et 11 mois » ; l'énoncé de la question est incomplet. Ce qu'on attend : sans congénères à observer, le jeune chimpanzé n'atteint pas le niveau de ceux qui ont grandi dans le groupe. Le comportement n'est donc pas inné : il s'acquiert par <b>observation et imitation</b> des adultes. C'est une transmission <b>culturelle</b>, non génétique. (Réponse proposée : aucune correction de Mme Philip n'a été reçue.)</p>
+<p><b>3) Les jeunes élevés en isolement.</b> La diapositive indique que des jeunes chimpanzés ayant grandi sans congénères présentent un taux de succès de 0,2 « lors de la casse de noix entre 0 et 11 mois » ; l'énoncé de la question est incomplet. Ce qu'on attend : sans congénères à observer, le jeune chimpanzé n'atteint pas le niveau de ceux qui ont grandi dans le groupe. Le comportement n'est donc pas inné : il s'acquiert par <b>observation et imitation</b> des adultes. C'est une transmission <b>culturelle</b>, non génétique. (Réponse proposée par le site, pas une correction officielle.)</p>
 </div></details>
 <div class="box plus"><h4>À lire : la culture animale</h4>
 <p>Longtemps, la culture a été considérée comme propre à l'humanité. Depuis les années 1990, les spécialistes du comportement animal ont montré qu'une « culture animale » existe aussi : apprentissage par imitation du langage, de techniques comme l'utilisation d'outils, élaboration de codes sociaux, transmission entre congénères avec des variantes selon les régions. La culture concerne l'ensemble des animaux ayant une organisation sociale : c'est l'ensemble des savoirs et des pratiques qui se partagent et se transmettent socialement au sein d'un groupe. Cette transmission n'est pas un héritage génétique.</p></div>
@@ -4960,7 +4960,7 @@ t1u2b: [
      "Une phrase sans aucun chiffre",
      "Une capture de l'écran du logiciel"],
   b:0,
-  e:"La question porte sur un seuil (20 %) : la valeur décisive est le minimum. La prof a corrigé le tableau complet par « il faut une communication ne retenant que l'essentiel »."},
+  e:"La question porte sur un seuil (20 %) : la valeur décisive est le minimum. La correction écarte le tableau complet : « il faut une communication ne retenant que l'essentiel »."},
 
  {t:"tp", q:"Sur l'arbre de parenté des globines, que représente chaque nœud ?",
   o:["Une duplication génique, accompagnée ou non d'un changement de chromosome",
@@ -5207,7 +5207,7 @@ t2: [
      "Le transfert d'un plasmide par un pont cytoplasmique",
      "La copie de l'ARN d'un rétrovirus en ADN"],
   b:0,
-  e:"Il suffit de savoir que ce mécanisme existe : Mme Philip ne demandera pas de l'expliquer. Les trois autres réponses décrivent la transformation, la conjugaison et la transcription inverse."},
+  e:"Il suffit de savoir que ce mécanisme existe : le programme ne demande pas de l'expliquer. Les trois autres réponses décrivent la transformation, la conjugaison et la transcription inverse."},
 
  /* ---- TP et activités ---- */
  {t:"tp", q:"Dans le TP syncytine, la syncytine 1 humaine est similaire à 87 % à la protéine du virus MSRV. Qu'en conclut-on ?",
@@ -5359,15 +5359,15 @@ t2b: [
   b:0,
   e:"Hétérotrophe : incapable de produire sa matière organique, il utilise une matière organique préexistante, qu'il oxyde par la respiration."},
 
- {t:"cours", q:"Les organites ont deux membranes alors qu'une bactérie n'en a qu'une (diapositive de Mme Philip). Est-ce un argument contre l'endosymbiose ?",
+ {t:"cours", q:"Les organites ont deux membranes alors qu'une bactérie n'en a qu'une (diapositive du cours). Est-ce un argument contre l'endosymbiose ?",
   o:["Non : la double membrane est justement la preuve qu'une bactérie a été ingérée par une cellule hôte",
      "Oui : cela prouve que les organites ne viennent pas de bactéries",
      "Non, car les bactéries ont en réalité trois membranes",
      "Oui, car la cellule hôte n'a pas de membrane"],
   b:0,
-  e:"Dans la correction de Mme Philip, les deux arguments « contre » (double membrane, gènes moins nombreux) se retournent en arguments pour : ingestion de la bactérie, puis transfert de ses gènes vers le noyau."},
+  e:"Dans la correction du cours, les deux arguments « contre » (double membrane, gènes moins nombreux) se retournent en arguments pour : ingestion de la bactérie, puis transfert de ses gènes vers le noyau."},
 
- {t:"cours", q:"D'après le commentaire de Mme Philip, à quoi correspond la membrane interne du chloroplaste ?",
+ {t:"cours", q:"D'après le commentaire du cours, à quoi correspond la membrane interne du chloroplaste ?",
   o:["À la membrane de la cyanobactérie ancestrale",
      "À la membrane du noyau de la cellule hôte",
      "À la membrane de la vésicule de phagocytose",
@@ -5392,7 +5392,7 @@ t2b: [
   b:0,
   e:"La fiche du TP se trompe sur ce point. Le chloroplaste doit se révéler plus proche de la cyanobactérie Nostoc que de l'autre bactérie photosynthétique."},
 
- {t:"tp", q:"Pour la conclusion d'une ECE, quels sont les trois critères de Mme Philip ?",
+ {t:"tp", q:"Pour la conclusion d'une ECE, quels sont les trois critères de la grille de notation ?",
   o:["Complète, organisée, distanciée",
      "Courte, précise, illustrée",
      "Chiffrée, titrée, encadrée",
@@ -5905,7 +5905,7 @@ function pageQcm(id){
 </script>
 <script>
 /* ================================================================
-   RÉVISION ACTIVE — consigne de Mme Philip :
+   RÉVISION ACTIVE — principe :
    « apprendre le vocabulaire + ne pas seulement lire, mais
      s'entraîner à rédiger seul et comparer à la correction »
    Deux outils : cartes de vocabulaire (VOCAB), rédaction (REDAC).
@@ -5984,7 +5984,7 @@ const VOCAB = {
  },
  "2": {
   titre: "Chapitre 2 — La complexification des génomes",
-  nomListe: "Les définitions des diapositives de Mme Philip",
+  nomListe: "Les définitions des diapositives du cours",
   unites: ["t2", "t2b"],
   mots: [
    {m:"Transfert horizontal de gènes", prof:true, u:"t2",
@@ -6047,7 +6047,7 @@ const VOCAB = {
  },
  "3": {
   titre: "Chapitre 3 — L'évolution du génome au sein des populations",
-  nomListe: "Les définitions des diapositives et de la fiche d'activité de Mme Philip",
+  nomListe: "Les définitions des diapositives et de la fiche d'activité",
   unites: ["t3", "t3b"],
   mots: [
    {m:"Hérédité par mélange", prof:true, u:"t3",
@@ -6096,7 +6096,7 @@ const VOCAB = {
  },
  "4": {
   titre: "Chapitre 4 — Mécanismes de diversité non génétique du vivant",
-  nomListe: "Les définitions du diaporama de Mme Philip",
+  nomListe: "Les définitions du diaporama du cours",
   unites: ["t4"],
   mots: [
    {m:"Hérédité non génétique", prof:true, u:"t4",
@@ -6120,8 +6120,8 @@ const VOCAB = {
 };
 
 /* ---------------- entraînement à la rédaction, par unité ---------------- */
-const METHODE_PHILIP = `
-<div class="box def"><h4>La méthode de Mme Philip</h4>
+const METHODE_REDAC = `
+<div class="box def"><h4>La méthode de rédaction</h4>
 <p><b>L'introduction, « type 2 », en trois temps :</b></p>
 <ol>
   <li>une <b>phrase d'amorce</b> qui pose le contexte en restituant des connaissances ;</li>
@@ -6160,7 +6160,7 @@ t1u1: [
 
  {id:"parag1", titre:"Le paragraphe argumenté de l'activité 2", duree:"30 min",
   consigne:"Problématique : <b>quelles sont les causes et les conséquences des modifications génétiques pouvant survenir au cours de la multiplication d'un clone cellulaire ?</b> Réponds par une introduction, un paragraphe argumenté et une conclusion, en t'appuyant sur les documents de l'activité 2 : colonies de levures ade2, modélisation d'une tumeur, rôle de p53, embryons de souris, séquences du gène TERT.",
-  source:"Correction de Mme Philip, remise en ordre et légèrement mise en forme",
+  source:"Correction du cours, remise en ordre et légèrement mise en forme",
   corrige:`<p class="pintit">Introduction</p>
 <p>La réplication de l'ADN et la mitose sont deux processus qui permettent le plus souvent la reproduction à l'identique d'une cellule-mère de départ et aboutissent à la formation de clones cellulaires. Cependant, cette réplication ne se fait pas toujours à l'identique : des modifications génétiques peuvent avoir lieu, ce sont les mutations, des altérations de la séquence d'ADN. Nous nous demanderons alors quelles sont les conséquences de ces mutations lors des mitoses successives des clones cellulaires.</p>
 <p class="pintit">Paragraphe argumenté</p>
@@ -6421,7 +6421,7 @@ t2: [
 
  {id:"syncytine", titre:"Conclure le TP sur la syncytine", duree:"15 min",
   consigne:"Résultats : syncytine 1 humaine / protéine virale MSRV, 87 % de similitude ; syncytine 2 / MSRV, 20 %. Les syncytines font fusionner les membranes des cellules de l'embryon et de la mère, comme les protéines ENV du virus font fusionner l'enveloppe virale avec la cellule infectée. L'arbre de la syncytine 1 place la séquence MSRV près de celles du gorille, du chimpanzé, de l'humain, de l'orang-outan et du gibbon. <b>Rédige la conclusion finale (étape 6), en respectant les trois critères : complète, organisée, distanciée.</b>",
-  source:"D'après la correction de Mme Philip, complétée et mise en forme",
+  source:"D'après la correction du TP, complétée et mise en forme",
   corrige:`<p>On cherchait à montrer que l'apparition des syncytines chez les primates est le résultat d'un transfert horizontal de gènes viraux.</p>
 <p>La comparaison des séquences protéiques montre que la syncytine 1 humaine est similaire à <b>87 %</b> à la protéine virale MSRV. Au-delà de 80 % de ressemblance entre deux organismes aussi éloignés qu'un virus et un primate, seul un <b>transfert horizontal récent</b> peut l'expliquer : par transfert vertical, les mutations accumulées auraient rendu ces protéines très différentes. À l'inverse, la syncytine 2 ne ressemble qu'à 20 % à la protéine MSRV : elle ne provient pas de ce virus.</p>
 <p>Cet argument moléculaire est renforcé par une <b>similitude fonctionnelle</b> : les syncytines, exprimées au début de la formation du placenta, font fusionner les membranes des cellules de l'embryon et de la mère, comme les protéines ENV du virus font fusionner l'enveloppe virale avec la membrane de la cellule infectée. Enfin, l'arbre de parenté montre que le gène ENW1 du gorille, du chimpanzé, de l'humain, de l'orang-outan et du gibbon provient d'un gène d'origine rétrovirale intégré dans le génome de leur ancêtre commun, puis transmis à ses descendants.</p>
@@ -6442,7 +6442,7 @@ t2: [
 t2b: [
  {id:"endoarg", titre:"Argumenter l'origine endosymbiotique des chloroplastes", duree:"30 min",
   consigne:"<b>Présenter les arguments qui montrent que les chloroplastes sont issus de l'endosymbiose d'une cyanobactérie, et expliquer pourquoi leur génome est si réduit.</b> Réponds par une introduction, un développement structuré et une conclusion. Un schéma est valorisé.",
-  source:"Proposition de correction, construite à partir du cours et des ressources de Mme Philip",
+  source:"Proposition de correction, construite à partir du cours et de ses ressources",
   corrige:`<p class="pintit">Introduction</p>
 <p>Les cellules des végétaux chlorophylliens possèdent des chloroplastes, organites où se réalise la photosynthèse. Dans les années 1960, Lynn Margulis a proposé que ces organites descendent de bactéries phagocytées mais non digérées par des cellules eucaryotes primitives, et devenues des partenaires permanents : c'est une <b>endosymbiose</b>, une association durable à bénéfices réciproques dans laquelle l'un des partenaires vit à l'intérieur des cellules de l'autre. Nous nous demanderons quels arguments soutiennent cette théorie pour le chloroplaste.</p>
 <p class="pintit">Des caractères de bactérie</p>
@@ -6645,11 +6645,11 @@ function vocAccueil(num){
   const nP = v.mots.filter(x => x.prof).length;
   const liste = v.mots.filter(x => x.prof).map(x => x.m).join(", ");
   z.innerHTML = `
-    <div class="box retenir"><h4>${v.nomListe || "La liste de Mme Philip"}</h4><p>${liste}.</p></div>
+    <div class="box retenir"><h4>${v.nomListe || "La liste de vocabulaire"}</h4><p>${liste}.</p></div>
     <div class="qmodes">
-      <button class="qmode" onclick="vocInit('${num}','prof','mot')"><b>La liste de la prof</b><span class="fl">→</span><span>${nP} mots — je vois le mot, je donne la définition</span></button>
+      <button class="qmode" onclick="vocInit('${num}','prof','mot')"><b>La liste de vocabulaire</b><span class="fl">→</span><span>${nP} mots — je vois le mot, je donne la définition</span></button>
       <button class="qmode" onclick="vocInit('${num}','prof','def')"><b>La liste, dans l'autre sens</b><span class="fl">→</span><span>${nP} définitions — je dois retrouver le mot exact</span></button>
-      <button class="qmode" onclick="vocInit('${num}','tout','mot')"><b>Tout le vocabulaire du chapitre</b><span class="fl">→</span><span>${v.mots.length} mots, la liste de la prof et les autres notions clés</span></button>
+      <button class="qmode" onclick="vocInit('${num}','tout','mot')"><b>Tout le vocabulaire du chapitre</b><span class="fl">→</span><span>${v.mots.length} mots, la liste de vocabulaire et les autres notions clés</span></button>
     </div>`;
 }
 
@@ -6673,7 +6673,7 @@ function vocRendre(){
   z.innerHTML = `<div class="qprog"><span>Carte ${VS.pos + 1} / ${VS.liste.length}</span>
       <span class="bar"><i style="width:${pct}%"></i></span><span>${VS.su.length} sue${VS.su.length > 1 ? "s" : ""}</span></div>
     <div class="vcard">
-      ${x.prof ? '<span class="qtag rap">Liste de la prof</span>' : '<span class="qtag cou">Notion du chapitre</span>'}
+      ${x.prof ? '<span class="qtag rap">Liste de vocabulaire</span>' : '<span class="qtag cou">Notion du chapitre</span>'}
       ${recto}
       <p class="vconsigne">${q}</p>
       <div id="vverso">
@@ -6736,7 +6736,7 @@ function pageRedac(id){
       <h1 class="page">S'entraîner à rédiger</h1>
       <p class="lede">Écris d'abord, seul et sans le cours. Ensuite seulement, compare avec la correction et coche ce que tu avais.</p>
     </div>
-    <details class="tp"><summary><span class="lab">Méthode</span>Comment rédiger, d'après Mme Philip</summary><div class="tpin">${METHODE_PHILIP}</div></details>`;
+    <details class="tp"><summary><span class="lab">Méthode</span>Comment rédiger : la méthode</summary><div class="tpin">${METHODE_REDAC}</div></details>`;
   L.forEach((ex, k) => {
     h += `<section class="redex" id="ex-${ex.id}">
       <div class="redhead"><span class="rednum">${k + 1}</span><div><h2 class="redtit">${ex.titre}</h2><span class="redduree">${ex.duree} environ</span></div></div>
@@ -6913,7 +6913,7 @@ function pageAccueil(){
       <path d="M56 62c8-10 18-18 30-24M40 78c4-10 10-19 17-27" stroke="rgba(255,255,255,.25)" stroke-width="2" stroke-linecap="round"/>
     </svg>
     <h1>Réviser la SVT,<br><em>chapitre après chapitre</em></h1>
-    <p>Le cours de Terminale se remplit unité par unité, au rythme de la classe. Les <b>rappels de Première</b> sont déjà rédigés en entier, et chaque unité renvoie vers les bases dont elle a besoin.</p>
+    <p>Le cours de Terminale se remplit unité par unité, au fil du programme. Les <b>rappels de Première</b> sont déjà rédigés en entier, et chaque unité renvoie vers les bases dont elle a besoin.</p>
     <div class="chips"><span class="chip">${nT} chapitres de Terminale</span><span class="chip">${nP} fiches de rappel</span><span class="chip">${Object.keys(ANIMS).length} animations</span><span class="chip">Hors ligne</span></div>
   </div>`;
   h += '<h2 class="sec">'+SPRIG+'Programme de Terminale</h2><div class="grid">';
@@ -6946,7 +6946,7 @@ function pageAccueil(){
   `<div class="box def"><h4>Mode d'emploi</h4>
   <ul>
     <li><b>Les rappels de Première</b> sont complets : cours, animations, pièges classiques et encadrés « Vers la Terminale ».</li>
-    <li><b>Les chapitres de Terminale</b> suivent le découpage de la classe : chapitre, puis unités. Ceux qui sont rédigés portent la mention « Cours complet » ; les autres affichent leurs objectifs et un bouton <b>Rappels de 1ère</b> vers les fiches utiles.</li>
+    <li><b>Les chapitres de Terminale</b> suivent un découpage en chapitres, puis en unités. Ceux qui sont rédigés portent la mention « Cours complet » ; les autres affichent leurs objectifs et un bouton <b>Rappels de 1ère</b> vers les fiches utiles.</li>
     <li><b>La recherche</b> (en haut) balaie tout le contenu : tape une notion, un mot du cours, un nom de molécule.</li>
     <li>Le fichier est <b>autonome</b> : aucune connexion nécessaire, il fonctionne depuis un téléphone comme depuis un ordinateur.</li>
   </ul></div>`;
@@ -6962,7 +6962,7 @@ function pageListe(kind, seul){
   const sous = seul
     ? seul.parts.map(p=>p.title.replace(/^[A-C]\. /,"")).join(" · ")
     : (kind==="t"
-      ? "Le découpage suit celui de la classe : chapitre, puis unités. Le cours arrive unité par unité ; partout ailleurs, les objectifs et les rappels de Première sont déjà en place."
+      ? "Le découpage va du chapitre aux unités. Le cours arrive unité par unité ; partout ailleurs, les objectifs et les rappels de Première sont déjà en place."
       : "Quinze fiches complètes couvrant tout le programme de spécialité de Première.");
   let h = `<div class="pagehead" style="--c:${tree[0].color}">${bot(tree[0].motif,"pagebot")}
     ${seul ? `<div class="crumb"><a href="#${racine}">${nomRacine}</a> › <span>${seul.n}</span></div>` : ""}
@@ -7063,7 +7063,7 @@ function pageChapitre(c){
           <p class="revsous">Dans cet ordre : apprendre les mots, puis rédiger sans le cours, puis se tester.</p>`;
         if(vc) h += `<button class="qcta" onclick="go('voc-${c.chap.num}')"><span class="revn">1</span><div>
             <b>Le vocabulaire</b>
-            <span>${vc.nomListe ? vc.nomListe + ", en cartes" : "La liste de Mme Philip en cartes"} : ${vc.mots.filter(x=>x.prof).map(x=>x.m.toLowerCase()).join(", ")}.</span>
+            <span>${vc.nomListe ? vc.nomListe + ", en cartes" : "La liste de vocabulaire en cartes"} : ${vc.mots.filter(x=>x.prof).map(x=>x.m.toLowerCase()).join(", ")}.</span>
           </div><span class="fl">→</span></button>`;
         if(REDAC[c.id]) h += `<button class="qcta" onclick="go('red-${c.id}')"><span class="revn">2</span><div>
             <b>S'entraîner à rédiger</b>

@@ -1,6 +1,6 @@
 {
   "name": "Ligne rouge — HGGSP Terminale",
-  "short_name": "Ligne rouge",
+  "short_name": "HGGSP",
   "description": "Réviser la spécialité HGGSP de Terminale : cours, frises, cartes, QCM et sujets corrigés",
   "start_url": "./",
   "scope": "./",

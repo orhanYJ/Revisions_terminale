@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spé Physique-Chimie — Terminale</title>
+<title>Électron libre — Physique-Chimie Terminale</title>
+<meta name="apple-mobile-web-app-title" content="PC">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#E45C10">
 <link rel="icon" href="icon-192.png">
@@ -36,6 +37,8 @@ header{
 }
 .brand{font-weight:800;font-size:.95rem;letter-spacing:-.01em;cursor:pointer;user-select:none}
 .brand b{color:var(--orange)}
+.brand .brand-s{font-weight:600;color:var(--muted);font-size:.8rem}
+@media (max-width:520px){.brand .brand-s{display:none}}
 .crumb{font-size:.82rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
 .btn-theme{
   margin-left:auto;flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);
@@ -503,7 +506,7 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
 </head>
 <body>
 <header>
-  <div class="brand" onclick="go('accueil')">Spé <b>Φχ</b> — Tle</div>
+  <div class="brand" onclick="go('accueil')">Électron <b>libre</b><span class="brand-s"> · Physique-Chimie</span></div>
   <div class="crumb" id="crumb"></div>
   <button class="btn-theme" id="btnTheme" onclick="basculeTheme()">Sombre</button>
 </header>
@@ -523,7 +526,7 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
     </svg>
     <h1>Physique-Chimie<br>de spécialité, <span>comprise</span>.</h1>
     <div class="eq">HCl<sub>(g)</sub> + H<sub>2</sub>O<sub>(l)</sub> → Cl<sup>−</sup><sub>(aq)</sub> + H<sub>3</sub>O<sup>+</sup><sub>(aq)</sub></div>
-    <p>Un chapitre débloqué à chaque fois qu'il est entamé en classe, construit à partir des plans de travail et des TP du prof. L'objectif n'est pas de réciter : c'est de comprendre pourquoi chaque formule dit ce qu'elle dit.</p>
+    <p>Le programme de spécialité de Terminale, chapitre par chapitre : cours, TP, exercices corrigés et fiches mémo. L'objectif n'est pas de réciter : c'est de comprendre pourquoi chaque formule dit ce qu'elle dit.</p>
   </div>
 
   <a class="tile-tp" href="#" onclick="go('tpece');return false;">
@@ -974,7 +977,7 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
         <tr><td>Acide-base</td><td>un ou plusieurs <strong>protons</strong></td><td><span class="ch">H<sup>+</sup></span> seul, jamais d'électron</td></tr>
       </table></div>
       <div class="piege"><div class="t">Le critère de tri</div>Ce qui distingue les deux familles, c'est <strong>l'électron, jamais le proton</strong>. Une demi-équation d'oxydoréduction peut contenir des ions H<sup>+</sup> — <span class="ch">HgO(s) + 2 H<sup>+</sup> + 2 e<sup>−</sup> ⇌ Hg(l) + H<sub>2</sub>O(l)</span> en est l'exemple type. Dès qu'un e<sup>−</sup> est nécessaire pour équilibrer, ce n'est plus de l'acide-base.</div>
-      <p>Deux exemples vus en classe. Le sulfure d'hydrogène est un acide, car il peut libérer un proton : <span class="ch">H<sub>2</sub>S → H<sup>+</sup> + HS<sup>−</sup></span>. L'ammoniac est une base, car son azote peut en capter un grâce à son doublet non liant : <span class="ch">NH<sub>3</sub> + H<sup>+</sup> → NH<sub>4</sub><sup>+</sup></span>.</p>
+      <p>Deux exemples classiques. Le sulfure d'hydrogène est un acide, car il peut libérer un proton : <span class="ch">H<sub>2</sub>S → H<sup>+</sup> + HS<sup>−</sup></span>. L'ammoniac est une base, car son azote peut en capter un grâce à son doublet non liant : <span class="ch">NH<sub>3</sub> + H<sup>+</sup> → NH<sub>4</sub><sup>+</sup></span>.</p>
       </div></details>
 
       <details class="rap"><summary><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16"/><path d="M7 9l5-5 5 5"/><path d="M7 15l5 5 5-5"/></svg>5 · Les espèces amphotères<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
@@ -1281,7 +1284,7 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
             <text x="72" y="190">S₀</text><text x="140" y="164">S₁</text><text x="208" y="138">S₂</text><text x="256" y="106">S₃</text><text x="344" y="81">S₄</text><text x="382" y="34">S₅</text>
           </g>
         </svg>
-        <div class="cap">Les six mesures d'Orhan, comparées à la droite théorique. L'accord est excellent au milieu, il se dégrade aux deux extrémités.</div>
+        <div class="cap">Six mesures d'élève, comparées à la droite théorique. L'accord est excellent au milieu, il se dégrade aux deux extrémités.</div>
       </div>
       <div class="tb-wrap"><table class="tb">
         <tr><th>Solution</th><th>S₀</th><th>S₁</th><th>S₂</th><th>S₃</th><th>S₄</th><th>S₅</th></tr>
@@ -1968,7 +1971,7 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
 
 
       <h3 style="margin-top:30px">Compléments du manuel</h3>
-      <div class="def"><div class="t">Pourquoi ceux-là en plus</div>Ces quatre exercices sont dans le chapitre du manuel mais <strong>pas dans le plan de travail</strong> du prof. Je les ajoute parce qu'ils sont les seuls à faire travailler quatre notions exigibles au bac : reconnaître une famille par sa terminaison, la charge dans un schéma de Lewis, les <em>poly</em>bases, et la méthode qui décide si une réaction est totale.</div>
+      <div class="def"><div class="t">Pourquoi ceux-là en plus</div>Ces quatre exercices sont dans le chapitre du manuel mais <strong>pas dans le plan de travail</strong>. Ils sont ajoutés parce qu'ils sont les seuls à faire travailler quatre notions exigibles au bac : reconnaître une famille par sa terminaison, la charge dans un schéma de Lewis, les <em>poly</em>bases, et la méthode qui décide si une réaction est totale.</div>
 
       <details class="rap"><summary><span class="lvl dmaison">Hors plan</span>7 · Groupe caractéristique<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
       <p class="exo-comp">Savoir-faire : <strong>C1</strong> · familles et terminaisons</p>
@@ -2035,7 +2038,7 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
       </div></details>
 
       <h3 style="margin-top:30px">Exercices maison</h3>
-      <div class="def"><div class="t">D'où viennent ces exercices</div>Ceux-ci ne sont dans aucun manuel : je les ai <strong>écrits pour ce site</strong>, calibrés sur les sept savoir-faire du chapitre et sur les erreurs qui reviennent. Chacun propose <strong>un indice</strong> avant la correction — ouvre-le si tu bloques, il oriente sans donner la réponse.</div>
+      <div class="def"><div class="t">D'où viennent ces exercices</div>Ceux-ci ne sont dans aucun manuel : ils ont été <strong>écrits pour ce site</strong>, calibrés sur les sept savoir-faire du chapitre et sur les erreurs qui reviennent. Chacun propose <strong>un indice</strong> avant la correction — ouvre-le si tu bloques, il oriente sans donner la réponse.</div>
 
       <details class="rap"><summary><span class="lvl dmaison">Maison</span>M1 · L'acide des fourmis<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
       <p class="exo-comp">Savoir-faire : <strong>C1</strong> · <strong>C2</strong> · <strong>C3</strong> — exercice écrit pour ce site</p>
@@ -3820,7 +3823,7 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
 
 
       <h3 style="margin-top:30px">Compléments du manuel</h3>
-      <div class="def"><div class="t">Pourquoi ceux-là en plus</div>Ces cinq exercices sont dans le chapitre du manuel mais <strong>pas dans le plan de travail</strong>. Je les ajoute parce qu'ils sont les seuls à faire travailler quatre choses exigibles au bac : la chaîne complète de la conductimétrie, le calcul d'une incertitude d'appareil, la stœchiométrie dans Kohlrausch, et la lecture d'un spectre infrarouge d'amide.</div>
+      <div class="def"><div class="t">Pourquoi ceux-là en plus</div>Ces cinq exercices sont dans le chapitre du manuel mais <strong>pas dans le plan de travail</strong>. Ils sont ajoutés parce qu'ils sont les seuls à faire travailler quatre choses exigibles au bac : la chaîne complète de la conductimétrie, le calcul d'une incertitude d'appareil, la stœchiométrie dans Kohlrausch, et la lecture d'un spectre infrarouge d'amide.</div>
 
       <details class="rap"><summary><span class="lvl dmaison">Hors plan</span>14 · Cellule de conductimétrie<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
       <p class="exo-comp">Savoir-faire : <em>prérequis</em> · chaîne complète G → σ</p>
@@ -4051,7 +4054,7 @@ html.anim-plein-on,html.anim-plein-on body{overflow:hidden}
 
 
       <h3 style="margin-top:30px">Exercices bilan</h3>
-      <div class="def"><div class="t">Ce que ces deux-là ont de particulier</div>Ils sont longs — comptez une heure chacun — et c'est voulu : à eux deux, ils mobilisent <strong>toutes les notions exigibles du chapitre</strong>, sans exception. Chaque partie enchaîne sur la précédente comme dans un vrai sujet de bac, et aucune question n'est là pour faire du remplissage. Je les ai écrits pour ce site.</div>
+      <div class="def"><div class="t">Ce que ces deux-là ont de particulier</div>Ils sont longs — comptez une heure chacun — et c'est voulu : à eux deux, ils mobilisent <strong>toutes les notions exigibles du chapitre</strong>, sans exception. Chaque partie enchaîne sur la précédente comme dans un vrai sujet de bac, et aucune question n'est là pour faire du remplissage. Ils ont été écrits pour ce site.</div>
       <div class="tb-wrap"><table class="tb">
         <tr><th>Notion exigible</th><th>Bilan 1</th><th>Bilan 2</th></tr>
         <tr><td>Définition de l'absorbance, A = log(I₀/I)</td><td>—</td><td>✓</td></tr>
@@ -5319,13 +5322,13 @@ r.addEventListener("input",maj); maj();
 <p><strong>b.</strong> Sur ta courbe, le pH à l'équivalence vaut environ <strong>8,4</strong> — supérieur à 7, puisque la solution contient alors des ions CH<sub>3</sub>COO<sup>−</sup>, une base. Il se trouve au voisinage du passage bleu → bleu-vert, une des zones de virage du jus de chou rouge : <strong>l'indicateur est adapté</strong>, et le passage rapide au vert observé à 12 mL en est la trace.</p>
 <p><strong>c.</strong> Le titrage colorimétrique donne V<sub>E</sub> ≈ 12 mL, le pH-métrique 11,9 mL : ici les deux concordent. Mais la <strong>pH-métrie est plus précise</strong> : elle repose sur une mesure, exploitée par deux méthodes indépendantes, alors que le colorimétrique dépend d'une couleur jugée à l'œil, avec des ajouts de 1 mL.</p></div></details></div>
 <div class="def"><div class="t">Ce que vaut ce TP pour l'ECE</div>Il contient les trois actes de l'épreuve : <strong>proposer</strong> une dilution adaptée au volume de la burette, <strong>mettre en œuvre</strong> un titrage en deux temps — rapide puis précis — et <strong>exploiter</strong> une courbe par deux méthodes, puis conclure en comparant à une valeur de référence. La conclusion, qui répond au problème posé, rapporte autant que tout le reste.</div><h3 style="margin-top:28px">TP 5 — Titrage avec suivi conductimétrique</h3>
-<div class="placeholder"><b>À venir.</b> Envoie-moi la feuille du TP 5 et ses réponses quand il aura été fait en classe : je le traite sur le même modèle, avec la justification des pentes par les conductivités molaires ioniques.</div>
+<div class="placeholder"><b>À venir.</b> Le TP 5 sera traité sur le même modèle, avec la justification des pentes par les conductivités molaires ioniques.</div>
 </div>
 </section>
 <section class="part" id="c3-exos">
 <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>Exercices<small>Plan de travail, compléments, exercices maison, type bac et bilans</small></h2>
 <div class="prose">
-<p>Chaque exercice est présenté avec son énoncé, puis sa correction cachée derrière un bouton : lis, cherche, et n'ouvre la correction qu'après. Les énoncés sont reformulés — mêmes données, mêmes questions que dans le manuel. Quand l'exercice s'appuie sur une courbe, j'ai relevé ses points sur le graphique du manuel et je les donne dans l'énoncé, pour qu'il soit faisable sans le livre.</p>
+<p>Chaque exercice est présenté avec son énoncé, puis sa correction cachée derrière un bouton : lis, cherche, et n'ouvre la correction qu'après. Les énoncés sont reformulés — mêmes données, mêmes questions que dans le manuel. Quand l'exercice s'appuie sur une courbe, ses points sont relevés sur le graphique du manuel et donnés dans l'énoncé, pour qu'il soit faisable sans le livre.</p>
 <div class="methode"><div class="t">Le plan de travail du chapitre</div><p><span class="lvl d1">Obligatoires</span> 10 · 12 · 13 · 14 · 16 · 18 · 24</p><p><span class="lvl d2">Revoir les bases</span> 5 · 8 · 9 · 11 · et le QCM interactif</p><p><span class="lvl d3">Aller plus loin</span> 29 · 37</p><p><span class="lvl">Pratique expérimentale</span> TP 4 — suivi pH-métrique · TP 5 — suivi conductimétrique</p></div><h3 style="margin-top:24px">Les six savoir-faire, et où on les travaille</h3>
 <div class="tb-wrap"><table class="tb"><tr><th>Savoir-faire</th><th>Exercices</th></tr><tr><td><strong>C1</strong> — Établir la composition du système après ajout de titrant ; exploiter un titrage pour déterminer une quantité de matière, une concentration ou une masse</td><td>8 · 12 · 13 · 18 · 29 · 37</td></tr><tr><td><strong>C2</strong> — Justifier qualitativement l'évolution de la pente d'une courbe de titrage conductimétrique</td><td>14 · 24</td></tr><tr><td><strong>C3</strong> — Calculer une concentration à partir d'un titre massique et d'une densité</td><td>5 · 9 · 10 · 11</td></tr><tr><td><strong>C4</strong> — Représenter avec un langage de programmation l'évolution des quantités de matière</td><td>16 · 29</td></tr><tr><td><strong>C5</strong> — Mettre en œuvre le suivi pH-métrique d'un titrage acide-base</td><td>TP 4</td></tr><tr><td><strong>C6</strong> — Mettre en œuvre le suivi conductimétrique d'un titrage</td><td>TP 5</td></tr></table></div><div class="piege"><div class="t">Ce que le tableau dit de l'évaluation</div>C1 domine : six exercices sur treize. Le cœur du chapitre est la <strong>relation à l'équivalence</strong>, appliquée dans des contextes variés. C2 n'en a que deux, mais c'est une justification rédigée — le genre de question où l'on perd le plus de points faute de méthode.</div><h3 style="margin-top:26px">Les exercices</h3>
 <details class="rap"><summary><span class="lvl d2">Base</span>5 · Acide chlorhydrique concentré<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
@@ -5471,7 +5474,7 @@ for i in range(0, 41):
 </div></details>
 </div></details>
 <h3 style="margin-top:30px">Exercices maison</h3>
-<div class="def"><div class="t">D'où viennent ces exercices</div>Je les ai <strong>écrits pour ce site</strong>, calibrés sur les savoir-faire du chapitre et sur les erreurs qui reviennent. Chacun propose <strong>un indice</strong> avant la correction.</div><details class="rap"><summary><span class="lvl dmaison">Maison</span>M1 · Que contient le bécher ?<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<div class="def"><div class="t">D'où viennent ces exercices</div>Ils ont été <strong>écrits pour ce site</strong>, calibrés sur les savoir-faire du chapitre et sur les erreurs qui reviennent. Chacun propose <strong>un indice</strong> avant la correction.</div><details class="rap"><summary><span class="lvl dmaison">Maison</span>M1 · Que contient le bécher ?<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
 <p class="exo-comp">Savoir-faire : <strong>C1</strong> — exercice écrit pour ce site</p>
 <div class="enonce">On titre V<sub>A</sub> = 10,0 mL d'acide nitrique (H<sub>3</sub>O<sup>+</sup> ; NO<sub>3</sub><sup>−</sup>) à c<sub>A</sub> = 2,0 × 10<sup>−2</sup> mol·L<sup>−1</sup> par la soude à c<sub>B</sub> = 1,0 × 10<sup>−2</sup> mol·L<sup>−1</sup>.<br><strong>1.</strong> Calculer V<sub>E</sub>. <strong>2.</strong> Donner les quantités de chaque ion pour V<sub>B</sub> = 8,0 mL, 20,0 mL et 26,0 mL. <strong>3.</strong> En déduire le pH à 8,0 mL et à 26,0 mL.</div>
 <details class="corr"><summary>Un indice</summary><div class="in prose">Avant l'équivalence, le titrant est limitant ; après, c'est le titré. Les ions spectateurs ne font que s'accumuler.</div></details><details class="corr"><summary>Voir la correction</summary><div class="in prose">
@@ -5550,7 +5553,7 @@ print("VE =", round(VE*1e3, 1), "mL")   # affiche 10.0 mL</pre><p>Le programme t
 </div></details>
 </div></details>
 <h3 style="margin-top:30px">Exercices bilan</h3>
-<div class="def"><div class="t">Toutes les notions, en deux sujets</div>Longs — une heure chacun — et c'est voulu : à eux deux, ils mobilisent <strong>toutes les notions exigibles du chapitre</strong>. Je les ai écrits pour ce site.</div><div class="tb-wrap"><table class="tb"><tr><th>Notion exigible</th><th>B1</th><th>B2</th></tr><tr><td>Titre massique, densité, préparation par dilution</td><td>✓</td><td>—</td></tr><tr><td>Réaction support et relation à l'équivalence</td><td>✓</td><td>✓</td></tr><tr><td>Composition du système avant, à, après l'équivalence</td><td>✓</td><td>✓</td></tr><tr><td>Suivi pH-métrique : saut, tangentes, dérivée</td><td>✓</td><td>—</td></tr><tr><td>pH à l'équivalence et choix d'un indicateur</td><td>✓</td><td>—</td></tr><tr><td>Suivi conductimétrique : calcul de σ et justification des pentes</td><td>—</td><td>✓</td></tr><tr><td>Programmation de l'évolution des quantités</td><td>—</td><td>✓</td></tr><tr><td>Choix d'une méthode de suivi, limites, incertitude</td><td>✓</td><td>✓</td></tr></table></div><details class="rap"><summary><span class="lvl dmaison">Bilan · 1 h</span>B1 · Un vinaigre ménager tient-il ses promesses ?<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<div class="def"><div class="t">Toutes les notions, en deux sujets</div>Longs — une heure chacun — et c'est voulu : à eux deux, ils mobilisent <strong>toutes les notions exigibles du chapitre</strong>. Ils ont été écrits pour ce site.</div><div class="tb-wrap"><table class="tb"><tr><th>Notion exigible</th><th>B1</th><th>B2</th></tr><tr><td>Titre massique, densité, préparation par dilution</td><td>✓</td><td>—</td></tr><tr><td>Réaction support et relation à l'équivalence</td><td>✓</td><td>✓</td></tr><tr><td>Composition du système avant, à, après l'équivalence</td><td>✓</td><td>✓</td></tr><tr><td>Suivi pH-métrique : saut, tangentes, dérivée</td><td>✓</td><td>—</td></tr><tr><td>pH à l'équivalence et choix d'un indicateur</td><td>✓</td><td>—</td></tr><tr><td>Suivi conductimétrique : calcul de σ et justification des pentes</td><td>—</td><td>✓</td></tr><tr><td>Programmation de l'évolution des quantités</td><td>—</td><td>✓</td></tr><tr><td>Choix d'une méthode de suivi, limites, incertitude</td><td>✓</td><td>✓</td></tr></table></div><details class="rap"><summary><span class="lvl dmaison">Bilan · 1 h</span>B1 · Un vinaigre ménager tient-il ses promesses ?<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
 <p class="exo-comp">Couvre <strong>C1</strong> · <strong>C3</strong> · <strong>C5</strong></p>
 <div class="enonce"><p>Un vinaigre ménager annonce <strong>14 % d'acide éthanoïque</strong> en masse, densité 1,02. M(CH<sub>3</sub>COOH) = 60,1 g·mol<sup>−1</sup>. On dispose de soude à c<sub>B</sub> = 0,10 mol·L<sup>−1</sup>, d'une burette de 25 mL, de pipettes jaugées de 5,0, 10,0 et 20,0 mL, et de fioles jaugées de 100,0 mL.</p><p><strong>Partie A — L'étiquette.</strong> <strong>A1.</strong> Calculer la concentration annoncée. <strong>A2.</strong> On veut titrer 10,0 mL de vinaigre dilué avec un V<sub>E</sub> proche de 12 mL. Montrer qu'une dilution d'un facteur 20 convient, et décrire le protocole.</p><p><strong>Partie B — Le titrage.</strong> pH relevé :</p><div class="tb-wrap"><table class="tb"><tr><th>V<sub>B</sub> (mL)</th><th>0</th><th>2</th><th>4</th><th>6</th><th>8</th><th>10</th><th>11</th><th>11,4</th><th>11,6</th><th>11,8</th><th>12</th><th>13</th><th>15</th></tr><tr><td>pH</td><td>2,9</td><td>3,9</td><td>4,3</td><td>4,6</td><td>4,9</td><td>5,4</td><td>5,8</td><td>6,3</td><td>8,7</td><td>10,6</td><td>11,0</td><td>11,5</td><td>11,9</td></tr></table></div><p><strong>B1.</strong> Écrire l'équation. <strong>B2.</strong> Déterminer V<sub>E</sub> et le pH à l'équivalence. <strong>B3.</strong> Expliquer pourquoi ce pH est supérieur à 7. <strong>B4.</strong> Donner la composition du bécher à 5,0 mL et à 15,0 mL. <strong>B5.</strong> Quel indicateur aurait permis un titrage colorimétrique : bleu de bromothymol (6,0 – 7,6) ou phénolphtaléine (8,2 – 10,0) ?</p><p><strong>Partie C — Conclure.</strong> <strong>C1.</strong> Calculer la concentration du vinaigre, puis son titre massique réel. <strong>C2.</strong> La burette est lue à ± 0,1 mL près. Estimer l'incertitude relative sur la concentration. <strong>C3.</strong> L'étiquette est-elle vérifiée ?</p></div>
 <details class="corr"><summary>Voir la correction</summary><div class="in prose">
@@ -6156,7 +6159,7 @@ function maj(){
 <section class="part" id="c4-tp">
 <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v7L4 19a2 2 0 0 0 1.8 3h12.4A2 2 0 0 0 20 19l-5-9V3"/><path d="M8 3h8"/></svg>TP 6<small>Rendement d'une cellule photovoltaïque</small></h2>
 <div class="prose">
-<p>Le TP 6 a deux moitiés. La première est <strong>expérimentale</strong> : mesurer une puissance reçue et une puissance fournie, et en tirer un rendement. La seconde est une <strong>analyse de documents</strong> : comprendre, grâce au modèle du photon, comment la cellule fabrique un courant. Les mesures sont celles du tableur fourni par le professeur. Il n'y a pas encore de réponses d'Orhan à vérifier : chaque question a donc une correction expliquée.</p>
+<p>Le TP 6 a deux moitiés. La première est <strong>expérimentale</strong> : mesurer une puissance reçue et une puissance fournie, et en tirer un rendement. La seconde est une <strong>analyse de documents</strong> : comprendre, grâce au modèle du photon, comment la cellule fabrique un courant. Les mesures sont celles d'un tableur de TP. Chaque question a une correction expliquée.</p>
 <div class="def"><div class="t">La situation</div>Lorsqu'elle est éclairée, une cellule photovoltaïque génère un courant électrique I, et une tension U apparaît à ses bornes. On mesure l'éclairement au <strong>solarimètre</strong> (en W·m<sup>−2</sup>), puis on relève des couples (U ; I) en faisant varier une résistance R branchée aux bornes de la cellule, avec un ampèremètre en série et un voltmètre en dérivation (document 2). <em>Données du tableur : cellule de 10 cm × 10 cm ; E = 400 W·m<sup>−2</sup>.</em></div>
 <div class="piege"><div class="t">Une coquille dans le document 3</div>La seconde ligne du document 3 s'intitule « Puissance électrique : P<sub>lum</sub> = E × S ». Il s'agit de la puissance <strong>lumineuse</strong> reçue par la cellule, et non d'une puissance électrique : c'est elle qui figure au dénominateur du rendement.</div>
 <h3 style="margin-top:20px">Partie I — Pratique expérimentale</h3>
@@ -6212,7 +6215,7 @@ function maj(){
 <section class="part" id="c4-exos">
 <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>Exercices<small>Plan de travail, compléments, exercices maison, type bac et bilans</small></h2>
 <div class="prose">
-<p>Chaque exercice est présenté avec son énoncé, puis sa correction cachée derrière un bouton : lis, cherche, et n'ouvre la correction qu'après. Les énoncés du manuel sont reformulés — mêmes données, mêmes questions. Quand l'exercice s'appuie sur un graphique, je le décris en mots et je donne les valeurs lues, pour qu'il soit faisable sans le livre.</p>
+<p>Chaque exercice est présenté avec son énoncé, puis sa correction cachée derrière un bouton : lis, cherche, et n'ouvre la correction qu'après. Les énoncés du manuel sont reformulés — mêmes données, mêmes questions. Quand l'exercice s'appuie sur un graphique, il est décrit en mots, avec les valeurs lues, pour qu'il soit faisable sans le livre.</p>
 <div class="def"><div class="t">Le manuel</div>Manuel Lelivrescolaire en ligne, Physique-Chimie Terminale spécialité, chapitre 20 « Effet photoélectrique et enjeux énergétiques » : cours p. 535-536, bilan p. 537, QCM p. 538, exercices p. 539 à 544.</div>
 <div class="methode"><div class="t">Le plan de travail du chapitre</div><p><span class="lvl d1">Obligatoires</span> 15 · 18 · 19 · 21 · 23 · 24 · 25</p><p><span class="lvl d2">Revoir les bases</span> 5 · 7 · 8 · 9 · 10 · et le QCM p. 538</p><p><span class="lvl d3">Aller plus loin</span> 26 · 27</p><p><span class="lvl">Pratique expérimentale</span> TP 6 — Rendement d'une cellule photovoltaïque</p></div>
 <h3 style="margin-top:24px">Les neuf savoir-faire, et où on les travaille</h3>
@@ -6426,7 +6429,7 @@ function maj(){
 </div></details>
 
 <h3 style="margin-top:30px">Exercices maison</h3>
-<div class="def"><div class="t">D'où viennent ces exercices</div>Je les ai <strong>écrits pour ce site</strong>, calibrés sur les savoir-faire du chapitre et sur les erreurs qui reviennent. Chacun propose <strong>un indice</strong> avant la correction.</div>
+<div class="def"><div class="t">D'où viennent ces exercices</div>Ils ont été <strong>écrits pour ce site</strong>, calibrés sur les savoir-faire du chapitre et sur les erreurs qui reviennent. Chacun propose <strong>un indice</strong> avant la correction.</div>
 <details class="rap"><summary><span class="lvl dmaison">Maison</span>M1 · Trois photons à classer<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
 <p class="exo-comp">Savoir-faire : <strong>C1</strong> · <strong>C2</strong> — exercice écrit pour ce site</p>
 <div class="enonce">Trois photons : le photon A a une fréquence de 5,0 × 10<sup>14</sup> Hz ; le photon B a une longueur d'onde de 1,5 µm ; le photon C a une énergie de 4,0 eV. <strong>1.</strong> Calculer, pour chacun, la longueur d'onde (en nm) et l'énergie (en eV). <strong>2.</strong> Situer chacun dans le spectre. <strong>3.</strong> Lequel peut arracher un électron à une plaque de zinc (Φ = 4,3 eV) ? à une cathode de potassium (Φ = 2,3 eV) ?</div>
@@ -6468,7 +6471,7 @@ function maj(){
 <div class="def"><div class="t">Avec Python</div>après <span class="ch">import numpy as np</span>, la ligne <span class="ch">a, b = np.polyfit(nu, Ec, 1)</span> donne directement la pente a (≈ h en eV·s) et l'ordonnée à l'origine b (≈ −Φ).</div>
 </div></details>
 </div></details>
-<details class="rap"><summary><span class="lvl dmaison">Maison</span>M5 · Une journée de panneau solaire à Martigues<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
+<details class="rap"><summary><span class="lvl dmaison">Maison</span>M5 · Une journée de panneau solaire en Provence<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
 <p class="exo-comp">Savoir-faire : <strong>C9</strong> · <strong>C7</strong> — exercice écrit pour ce site, ordres de grandeur arrondis</p>
 <div class="enonce">Un panneau de 1,7 m² a un rendement de 20 %. Un jour d'été dégagé, l'irradiance qu'il reçoit vaut en moyenne 600 W·m<sup>−2</sup> pendant 10 h. <strong>1.</strong> Calculer la puissance électrique moyenne fournie. <strong>2.</strong> Calculer l'énergie électrique produite dans la journée, en kW·h. <strong>3.</strong> Un réfrigérateur consomme environ 0,5 kW·h par jour. Combien de réfrigérateurs ce panneau alimente-t-il, et pourquoi faut-il une batterie pour le faire vraiment ?</div>
 <details class="corr"><summary>Un indice</summary><div class="in prose">E = P × Δt : avec P en kW et Δt en h, on obtient directement des kW·h.</div></details>
@@ -6518,7 +6521,7 @@ function maj(){
 </div></details>
 <details class="rap"><summary><span class="lvl dmaison">Bac · résolution de problème</span>P3 · Combien de panneaux sur le toit ?<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
 <p class="exo-comp">Savoir-faire : <strong>C9</strong> — durée conseillée : 25 min</p>
-<div class="enonce"><p>Une famille de Martigues consomme 4 500 kW·h d'électricité par an (hors chauffage). Elle veut produire en un an autant qu'elle consomme, avec des panneaux de 1,7 m² et de rendement 20 %.</p><p><em>Données (ordres de grandeur arrondis, d'après l'outil PVGIS de la Commission européenne)</em> : un mètre carré de toit bien orienté reçoit à Martigues environ <strong>1 700 kW·h</strong> d'énergie lumineuse par an. Les câbles et l'onduleur perdent environ 15 % de l'énergie électrique produite.</p><p><strong>Combien de panneaux faut-il, et quelle surface de toit cela représente-t-il ?</strong> La démarche sera détaillée et le résultat commenté.</p></div>
+<div class="enonce"><p>Une famille de Provence consomme 4 500 kW·h d'électricité par an (hors chauffage). Elle veut produire en un an autant qu'elle consomme, avec des panneaux de 1,7 m² et de rendement 20 %.</p><p><em>Données (ordres de grandeur arrondis, d'après l'outil PVGIS de la Commission européenne)</em> : un mètre carré de toit bien orienté reçoit en Provence environ <strong>1 700 kW·h</strong> d'énergie lumineuse par an. Les câbles et l'onduleur perdent environ 15 % de l'énergie électrique produite.</p><p><strong>Combien de panneaux faut-il, et quelle surface de toit cela représente-t-il ?</strong> La démarche sera détaillée et le résultat commenté.</p></div>
 <details class="corr"><summary>Un indice</summary><div class="in prose">Raisonne sur 1 m² : quelle énergie électrique utile produit-il en un an ? Puis divise.</div></details>
 <details class="corr"><summary>Voir la correction</summary><div class="in prose">
 <p><strong>Énergie utile par m² et par an</strong> : 1 700 × 0,20 = 340 kW·h produits, dont il reste 340 × 0,85 = 289 kW·h après les pertes.</p>
@@ -6530,7 +6533,7 @@ function maj(){
 </div></details>
 
 <h3 style="margin-top:30px">Exercices bilan</h3>
-<div class="def"><div class="t">Toutes les notions, en deux sujets</div>Longs — une heure chacun — et c'est voulu : à eux deux, ils mobilisent <strong>toutes les notions exigibles du chapitre</strong>. Je les ai écrits pour ce site.</div>
+<div class="def"><div class="t">Toutes les notions, en deux sujets</div>Longs — une heure chacun — et c'est voulu : à eux deux, ils mobilisent <strong>toutes les notions exigibles du chapitre</strong>. Ils ont été écrits pour ce site.</div>
 <div class="tb-wrap"><table class="tb"><tr><th>Notion exigible</th><th>B1</th><th>B2</th></tr><tr><td>λ = c/ν ; énergie d'un photon (C1, C2)</td><td>✓</td><td>✓</td></tr><tr><td>Diagramme de niveaux d'énergie (C3)</td><td>✓</td><td>—</td></tr><tr><td>Effet photoélectrique : faits et histoire (C4)</td><td>✓</td><td>—</td></tr><tr><td>Interprétation par le modèle particulaire (C5)</td><td>✓</td><td>✓</td></tr><tr><td>Bilan d'énergie E<sub>c</sub> = hν − Φ (C6)</td><td>✓</td><td>—</td></tr><tr><td>Applications de l'interaction photon-matière (C7)</td><td>—</td><td>✓</td></tr><tr><td>Fonctionnement d'une cellule (C8)</td><td>✓</td><td>✓</td></tr><tr><td>Rendement d'une cellule photovoltaïque (C9)</td><td>—</td><td>✓</td></tr></table></div>
 <details class="rap"><summary><span class="lvl dmaison">Bilan · 1 h</span>B1 · De la lampe à hydrogène à la cellule au potassium<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
 <p class="exo-comp">Couvre <strong>C1</strong> à <strong>C6</strong> et <strong>C8</strong></p>
@@ -7158,7 +7161,7 @@ function maj(){
 <section class="part" id="c5-tp">
 <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v7L4 19a2 2 0 0 0 1.8 3h12.4A2 2 0 0 0 20 19l-5-9V3"/><path d="M8 3h8"/></svg>TP 7<small>La lunette astronomique sur le banc optique</small></h2>
 <div class="prose">
-<p>Le TP 7 a trois parties : comprendre pourquoi l'objectif doit avoir une grande focale (partie I), construire une lunette sur le banc optique et mesurer son grossissement (partie II), puis étudier la lunette du laboratoire et son cercle oculaire (partie III). Il n'y a pas encore de réponses d'Orhan à vérifier : chaque question a une correction expliquée. Les mesures (Q5, Q12) dépendent du matériel ; je donne les valeurs <strong>attendues</strong> par le calcul, que la mesure doit retrouver à quelques pourcents près.</p>
+<p>Le TP 7 a trois parties : comprendre pourquoi l'objectif doit avoir une grande focale (partie I), construire une lunette sur le banc optique et mesurer son grossissement (partie II), puis étudier la lunette du laboratoire et son cercle oculaire (partie III). Chaque question a une correction expliquée. Les mesures (Q5, Q12) dépendent du matériel ; le site donne les valeurs <strong>attendues</strong> par le calcul, que la mesure doit retrouver à quelques pourcents près.</p>
 <div class="def"><div class="t">Les capsules et la relation du TP</div>Le TP renvoie à quatre capsules de révision (lentilles minces convergentes, construction d'une image, mesures algébriques, relation de conjugaison) : ce sont les quatre premiers rappels de cette page. La relation de conjugaison est donnée sur la fiche : 1/<span class="al">OA′</span> − 1/<span class="al">OA</span> = C = 1/<span class="al">OF′</span>.</div>
 
 <h3 style="margin-top:20px">Partie I — Présentation de la lunette</h3>
@@ -7236,7 +7239,7 @@ function maj(){
 <div class="exo"><div class="q"><span class="lvl">Q12</span> Noter les distances focales de l'objectif et de l'oculaire indiquées sur la lunette. <span class="lvl">Q13</span> En déduire les grossissements possibles</div><details class="corr"><summary>Méthode, et un exemple</summary><div class="in prose">
 <p><strong>Où lire.</strong> Sur le tube ou près de l'objectif, une inscription du type « D = 60 mm, F = 700 mm » ou « 60/700 » : le second nombre est la <strong>focale de l'objectif</strong>. Sur chaque oculaire est gravée sa focale : « 20 mm », « H12.5mm », « SR4mm » (les lettres désignent le type d'oculaire).</p>
 <p><strong>Le calcul.</strong> Un grossissement par oculaire : G = f′<sub>1</sub> / f′<sub>2</sub>, focales dans la même unité. Par exemple, pour f′<sub>1</sub> = 700 mm et des oculaires de 20 mm, 12,5 mm et 4 mm : G = 35, 56 et 175. On peut ajouter une remarque critique : le dernier dépasse le grossissement maximal utile d'une lunette de 60 mm (environ 120, hors programme), l'image y serait floue et sombre.</p>
-<p style="font-size:.9rem;color:var(--muted)">Ces valeurs sont un exemple : je n'ai pas les caractéristiques de la lunette du laboratoire. Donne-moi celles qu'Orhan a relevées, et je mettrai cette correction à jour.</p>
+<p style="font-size:.9rem;color:var(--muted)">Ces valeurs sont un exemple : refais le calcul avec les caractéristiques de la lunette de ton laboratoire.</p>
 </div></details></div>
 <div class="def"><div class="t">Ce que le TP évalue</div>Le tableau du plan de travail rattache le TP 7 à trois savoir-faire : <strong>C2</strong>, identifier l'objectif et l'oculaire (Q1 : grande focale pour l'objectif) ; <strong>C6</strong>, réaliser une maquette et en déterminer le grossissement (Q6 à Q9) ; <strong>C7</strong>, vérifier la position de l'image intermédiaire sur un écran (Q4, Q5). Les questions « À préparer » (Q1 à Q3) se font avant la séance : elles conditionnent le montage.</div>
 </div>
@@ -7244,7 +7247,7 @@ function maj(){
 <section class="part" id="c5-exos">
 <h2><svg class="ico2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>Exercices<small>Plan de travail, compléments, exercices maison, type bac et bilan</small></h2>
 <div class="prose">
-<p>Chaque exercice est présenté avec son énoncé, puis sa correction cachée derrière un bouton : lis, cherche, et n'ouvre la correction qu'après. Les énoncés du manuel sont reformulés — mêmes données, mêmes questions. Quand l'exercice s'appuie sur un schéma, je le décris en mots et je donne les mesures utiles, pour qu'il soit faisable sans le livre.</p>
+<p>Chaque exercice est présenté avec son énoncé, puis sa correction cachée derrière un bouton : lis, cherche, et n'ouvre la correction qu'après. Les énoncés du manuel sont reformulés — mêmes données, mêmes questions. Quand l'exercice s'appuie sur un schéma, il est décrit en mots, avec les mesures utiles, pour qu'il soit faisable sans le livre.</p>
 <div class="methode"><div class="t">Le plan de travail du chapitre</div><p><span class="lvl d1">Obligatoires</span> 12 · « Lune » (exercice corrigé p. 524) · 18 · 21 · 22 · 24 · 26</p><p><span class="lvl d2">Revoir les bases</span> le QCM p. 521 · 5 · 6 · 9 · 10 · 14</p><p><span class="lvl d3">Aller plus loin</span> 25 · 27</p><p><span class="lvl">Pratique expérimentale</span> TP 7 — La lunette astronomique</p></div>
 <h3 style="margin-top:24px">Les sept savoir-faire, et où on les travaille</h3>
 <div class="tb-wrap"><table class="tb"><tr><th>Savoir-faire</th><th>Exercices</th></tr>
@@ -7460,7 +7463,7 @@ function maj(){
 </div></details>
 
 <h3 style="margin-top:30px">Exercices maison</h3>
-<div class="def"><div class="t">D'où viennent ces exercices</div>Je les ai <strong>écrits pour ce site</strong>, calibrés sur les savoir-faire du chapitre et sur les erreurs qui reviennent. Chacun propose <strong>un indice</strong> avant la correction.</div>
+<div class="def"><div class="t">D'où viennent ces exercices</div>Ils ont été <strong>écrits pour ce site</strong>, calibrés sur les savoir-faire du chapitre et sur les erreurs qui reviennent. Chacun propose <strong>un indice</strong> avant la correction.</div>
 <details class="rap"><summary><span class="lvl dmaison">Maison</span>M1 · Lire une fiche technique<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
 <p class="exo-comp">Savoir-faire : <strong>C2</strong> · <strong>C5</strong> — exercice écrit pour ce site, données astronomiques arrondies (NASA)</p>
 <div class="enonce"><p>Une lunette est vendue sous la référence « 90/900 », avec trois oculaires de 25 mm, 10 mm et 6 mm. On veut observer Jupiter, de diamètre 1,43 × 10<sup>5</sup> km, à 6,3 × 10<sup>8</sup> km de la Terre.</p><p><strong>1.</strong> Que signifient les deux nombres de la référence ? <strong>2.</strong> Calculer les trois grossissements possibles. <strong>3.</strong> Calculer le diamètre apparent de Jupiter à l'œil nu. Peut-on voir son disque à l'œil nu (pouvoir séparateur : 3 × 10<sup>−4</sup> rad) ? <strong>4.</strong> Calculer α′ avec l'oculaire de 25 mm. <strong>5.</strong> Quelle est la longueur minimale du tube ?</p></div>
@@ -7546,7 +7549,7 @@ function maj(){
 </div></details>
 
 <h3 style="margin-top:30px">Exercice bilan</h3>
-<div class="def"><div class="t">Toutes les notions, en un sujet</div>Long — une heure — et c'est voulu : il mobilise <strong>les sept savoir-faire du chapitre</strong> et les rappels de Première. Je l'ai écrit pour ce site.</div>
+<div class="def"><div class="t">Toutes les notions, en un sujet</div>Long — une heure — et c'est voulu : il mobilise <strong>les sept savoir-faire du chapitre</strong> et les rappels de Première. Il a été écrit pour ce site.</div>
 <div class="tb-wrap"><table class="tb"><tr><th>Notion exigible</th><th>Questions</th></tr><tr><td>Schéma de la lunette afocale (C1)</td><td>A2, A3</td></tr><tr><td>Objectif et oculaire (C2)</td><td>A1</td></tr><tr><td>Faisceau émergent (C3)</td><td>A3, A4</td></tr><tr><td>Expression du grossissement (C4)</td><td>B1</td></tr><tr><td>Lunette commerciale, angles (C5)</td><td>B2, B3, B4</td></tr><tr><td>Maquette, grossissement mesuré (C6)</td><td>C2, C3</td></tr><tr><td>Image intermédiaire sur un écran (C7)</td><td>C1</td></tr></table></div>
 <details class="rap"><summary><span class="lvl dmaison">Bilan · 1 h</span>B1 · Une lunette pour le club d'astronomie<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></summary><div class="rin prose">
 <p class="exo-comp">Couvre <strong>C1</strong> à <strong>C7</strong></p>
@@ -8659,7 +8662,7 @@ function maj(){
 </div>
 
 </main>
-<footer>Spé Physique-Chimie Terminale · construit sur les plans de travail, les TP et tes notes de cours · le réglage clair/sombre n'est pas mémorisé entre deux ouvertures (fichier autonome, sans stockage local).</footer>
+<footer>Électron libre · Physique-Chimie de spécialité, Terminale · le réglage clair/sombre n'est pas mémorisé entre deux ouvertures (fichier autonome, sans stockage local).</footer>
 <script>
 document.documentElement.classList.add('js');
 
