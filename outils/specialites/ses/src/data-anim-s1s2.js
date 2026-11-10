@@ -75,3 +75,46 @@ ANIMS["s2-mass"] = {
     return s;
   }
 };
+
+ANIMS["s2-boudon"] = {
+  t: "À notes égales, des choix différents",
+  h: 320,
+  src: "Source du chiffre : ministère de l’Éducation nationale, DEPP, note sur l’orientation en fin de troisième (élèves ayant entre 10 et 12 de moyenne). Mécanisme : R. Boudon, <i>L’Inégalité des chances</i>, 1973.",
+  etapes: [
+    { l: "Deux élèves ont la même moyenne en fin de troisième, entre 10 et 12.", d: 3 },
+    { l: "L’un est enfant de cadre, l’autre enfant d’ouvrier non qualifié. Pour la première famille, une seconde générale coûte peu et ouvre beaucoup ; pour l’autre, le coût et le risque d’échec pèsent plus lourd.", d: 4.5 },
+    { l: "Résultat observé : 91 % des enfants de cadres demandent une seconde générale et technologique, contre 59 % des enfants d’ouvriers non qualifiés.", d: 4 },
+    { l: "Le même calcul se répète à chaque palier (seconde, bac, études supérieures) : les écarts s’additionnent.", d: 3.5 },
+    { l: "C’est l’effet d’agrégation décrit par Raymond Boudon : des choix individuels raisonnables produisent des inégalités collectives que personne n’a voulues.", d: 4 }
+  ],
+  rendu: function (A, i, p) {
+    var s = "", E = [{ n: "Enfant de cadre", x: 20, c: "canard", v: 91 }, { n: "Enfant d’ouvrier non qualifié", x: 190, c: "corail", v: 59 }];
+    E.forEach(function (e, k) {
+      s += A.cercle(e.x + 75, 34, 13, { f: e.c }) + A.r(e.x + 62, 50, 26, 30, { f: e.c, r: 8 });
+      s += A.t(e.x + 75, 98, e.n, { t: 12, g: true, a: "middle", w: 150 });
+      s += A.jauge(e.x + 10, 132, 130, 11, 20, { c: "moutarde", l: "moyenne en 3e", val: "10 à 12" });
+      if (i >= 1) {
+        var q = i === 1 ? A.s(p, 0.1 + k * 0.2, 0.6 + k * 0.2) : 1, pente = k === 0 ? -8 : 8;
+        s += A.g(q, '<line x1="' + (e.x + 25) + '" x2="' + (e.x + 125) + '" y1="' + (176 - pente) + '" y2="' + (176 + pente) + '" style="stroke:var(--encre);stroke-width:2.5"/>' +
+          A.t(e.x + 25, 162 - pente, "gains", { t: 11, a: "middle", c: "vert", g: true }) + A.t(e.x + 125, 162 + pente, "coûts", { t: 11, a: "middle", c: "corail", g: true }) +
+          '<path d="M' + (e.x + 70) + ' 196L' + (e.x + 80) + ' 196L' + (e.x + 75) + ' 178z" style="fill:var(--encre2)"/>');
+      }
+      if (i >= 2) {
+        var q2 = i === 2 ? A.s(p, 0.1, 0.8) : 1;
+        s += A.t(e.x + 10, 222, "2de générale demandée", { t: 11, c: "gris" });
+        s += A.r(e.x + 10, 228, 110, 14, { f: "carte2", r: 6 }) + A.r(e.x + 10, 228, 110 * e.v / 100 * q2, 14, { f: e.c, r: 6 });
+        s += A.t(e.x + 125, 240, A.fr(e.v * q2, 0) + " %", { t: 12.5, g: true });
+      }
+    });
+    if (i >= 3) {
+      var q3 = i === 3 ? A.s(p, 0, 0.8) : 1;
+      ["3e → 2de", "2de → bac", "bac → supérieur"].forEach(function (pal, k) {
+        var x = 30 + k * 108;
+        s += A.boite(x, 262, 96, 28, pal, { k: "neutre", t: 11, op: A.s(q3, k * 0.25, k * 0.25 + 0.4) });
+        if (k < 2) s += A.fl(x + 98, 276, x + 106, 276, { c: "gris", p: A.s(q3, k * 0.25 + 0.2, k * 0.25 + 0.5) });
+      });
+    }
+    if (i === 4) s += A.t(180, 310, "des choix individuels → une inégalité collective", { t: 12.5, g: true, a: "middle", c: "corail", op: A.s(p, 0.3, 0.8) });
+    return s;
+  }
+};
