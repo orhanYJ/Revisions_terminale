@@ -36,6 +36,8 @@ Règles complémentaires :
 - **Hors programme** : la structure interne d'un cours est libre (du plus large au plus précis, expliquer le pourquoi et les mécanismes), mais ce qui dépasse le programme est marqué « hors programme ».
 - **QCM** : majoritairement sur les idées du cours et les rappels de Première associés (avec renvoi vers la fiche) ; quelques questions de TP en série séparée.
 - **Ne jamais stocker un jeton ou un identifiant** dans un fichier du dépôt, la mémoire ou un document.
+- **Aucune information personnelle dans les sites** (décision de Cengiz, 10/11/2026 : « un site axé sur le contenu, la révision, le pragmatisme, pour pouvoir le partager à d'autres élèves de Terminale » ; tous les sites sauf `cdm/` et `fenuareo/`) : ni le prénom d'Orhan, ni Cengiz, ni les noms des professeurs, ni l'établissement, ni Claude comme auteur, ni notes à la première personne de l'assistant (« je », « envoie-moi »). Formulations neutres : « le cours », « le diaporama du cours », « la correction du TP », « une copie d'élève », « le correcteur ». Les mentions de professeurs qui figurent encore plus bas dans ce fichier décrivent l'origine du contenu, pas ce que le site affiche.
+- **Noms d'application** (10/11/2026) : chaque site a un nom de marque ; `manifest.json` `name` = `<title>` = « Marque — Matière Terminale », `short_name` = `apple-mobile-web-app-title` = la matière en court (SVT, PC, Philo, DNL, Lughnasa…), ce qui s'affiche sous l'icône.
 
 **Publication (consigne de Cengiz, 12/10/2026)** : ne pas attendre qu'il demande « mets à jour le site ». Une fois une livraison validée (`node --check`, test du rendu), ouvrir la PR vers `main` et la fusionner aussitôt, pour que le site en ligne soit toujours à jour.
 
@@ -47,8 +49,8 @@ Préférence de travail de Cengiz : **conseiller de changer de modèle ou de niv
 
 | Dossier | Contenu | Poids `index.html` | Pile |
 |---|---|---|---|
-| `svt/` | Spé SVT Terminale (Mme Philip) | ~790 Ko (+ `anim/`, `serie/`) | JS natif, données en constantes |
-| `pc/` | Spé Physique-Chimie | ~990 Ko (+ `anim/`, `serie/`) | JS natif |
+| `svt/` | « Le Vif du sujet », spé SVT Terminale (Mme Philip) | ~790 Ko (+ `anim/`, `serie/`) | JS natif, données en constantes |
+| `pc/` | « Électron libre », spé Physique-Chimie | ~990 Ko (+ `anim/`, `serie/`) | JS natif |
 | `dnl/` | DNL Histoire-Géo (M. Ros) — « Revision Atlas » | **~4,0 Mo** | React 18.2 UMD (cdnjs) |
 | `philo/` | « L'Index raisonné » (M. Bellon) | ~2,3 Mo (+ `serie/`) | React 18.2 UMD précompilé inline |
 | `acl-ecrit/` | Hub ACL écrit : épreuve, méthode, atelier, boîte à outils, Twelfth Night | ~152 Ko | JS natif |
@@ -67,7 +69,6 @@ Préférence de travail de Cengiz : **conseiller de changer de modèle ou de niv
 | `hlp/` | « L'Heure bleue », spé HLP, site public | ~298 Ko | JS natif, généré par `outils/specialites/hlp/build.py` |
 | `nsi/` | « import bac », spé NSI, site public | ~309 Ko | JS natif, généré par `outils/specialites/nsi/build.py` |
 | `fenuareo/` | **Projet distinct** (apprentissage du reo tahiti), pas un site de révision d'Orhan | ~1,2 Mo | — |
-| `test.html` | Reliquat d'un test de publication | — | à supprimer avec l'accord de Cengiz |
 
 Chaque dossier de site contient la même structure : `index.html`, `manifest.json`, `sw.js`, `icon-192.png`, `icon-512.png`. Certains ajoutent `motion.css` et `motion.js` (voir §5) ; tous les sites de révision (sauf `fenuareo/`) ajoutent `assistant.js`, le bouton « Demander à ChatGPT » (voir §5 bis).
 
@@ -236,7 +237,7 @@ Décision de Cengiz (11/10/2026) : pas d'IA hébergée par le projet (une IA gra
 2. **Livré mais pas publié, d'après la mémoire de projet** (à vérifier dans le dépôt avant de refaire) :
    - (réglé le 09/10/2026) L'animation méiose / crossing-over de référence est publiée dans `svt/anim/meiose.html`.
 3. **Le pipeline DNL d'origine n'est pas dans le dépôt.** Il vivait dans un conteneur éphémère (`compiled.js`, `shell_before.html`, `shell_after.html`, un dossier `geo/` avec les scripts de cartes, l'injecteur d'enrichissement, le script d'audit). Dans le dépôt, **`dnl/index.html` est la seule source** : l'éditer par injections ancrées. Si Cengiz a conservé les anciens scripts de cartes, les rapatrier.
-4. **`test.html`** à la racine est un reliquat.
+4. (réglé le 10/11/2026) `test.html` supprimé.
 5. **Poids** : DNL (4,0 Mo depuis la suppression des cartes provisoires de géographie, 09/11/2026) et Philo (2,2 Mo) sont les deux sites à surveiller. Pistes déjà évoquées : scinder SVT en `svt/` (Terminale) et `svt-premiere/` (rappels) s'il dépasse environ 2 Mo ; **ne pas** scinder DNL.
 
 ---

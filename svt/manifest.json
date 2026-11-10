@@ -1,7 +1,7 @@
 {
-  "name": "SVT Spé — Terminale",
+  "name": "Le Vif du sujet — SVT Terminale",
   "short_name": "SVT",
-  "description": "Fiches de révision SVT spécialité Terminale",
+  "description": "Le Vif du sujet — réviser la SVT de spécialité en Terminale : cours, animations, vocabulaire, QCM et rédaction corrigée.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

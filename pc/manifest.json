@@ -1,7 +1,7 @@
 {
-  "name": "Physique-Chimie — Terminale",
+  "name": "Électron libre — Physique-Chimie Terminale",
   "short_name": "PC",
-  "description": "Site de révision de spécialité Physique-Chimie — Terminale",
+  "description": "Électron libre — réviser la physique-chimie de spécialité en Terminale : cours, animations, TP, exercices corrigés et fiches mémo.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
