@@ -522,7 +522,7 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 .cm-centre{background:#fcf8ec;color:var(--safran);border-color:var(--safran)}
 .cm-noeud{background:#fcf8ec;border-color:rgba(47,125,82,.75)}
 
-.plaque .gr-ti{color:#2f7d52;top:-46px;font-weight:600}
+.plaque .gr-ti{top:auto;bottom:-60px;color:#1b2a20;font-family:'Caveat','Segoe Print',cursive;font-size:31px;font-weight:700;letter-spacing:0;text-transform:none;line-height:1.1}
 .plaque .badge{color:#2f7d52}
 .fr-fond,.fl-fond{inset:auto;left:16px;top:22px;right:16px;bottom:14px;border-radius:10px}
 .v-portrait.grand .pf:after{background:linear-gradient(180deg,rgba(242,234,214,0) 48%,rgba(242,234,214,.92) 80%,#f2ead6 100%)}
