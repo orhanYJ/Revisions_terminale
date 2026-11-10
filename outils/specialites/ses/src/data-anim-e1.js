@@ -7,7 +7,7 @@ ANIMS["e1-solow"] = {
     { l: "Mais les rendements sont décroissants : chaque nouvelle machine rapporte moins que la précédente.", d: 4.5 },
     { l: "Accumuler du capital seul mène à un plafond : la production par travailleur augmente de moins en moins (modèle de Solow, 1956).", d: 4 },
     { l: "Le progrès technique déplace toute la courbe vers le haut : avec le même capital, on produit plus. C’est la hausse de la productivité globale des facteurs.", d: 4 },
-    { l: "Ce supplément qui ne vient pas des facteurs, Solow l’appelle le « résidu » : environ 87,5 % de la hausse de la production par heure aux États-Unis de 1909 à 1949.", d: 3.5 }
+    { l: "Ce supplément qui ne vient pas des facteurs, on l’appelle le « résidu » de Solow : environ 87,5 % de la hausse de la production par heure aux États-Unis de 1909 à 1949.", d: 3.5 }
   ],
   rendu: function (A, i, p) {
     var x0 = 46, y0 = 262, X = function (k) { return x0 + k * 29; }, Y = function (v) { return y0 - v * 60; };

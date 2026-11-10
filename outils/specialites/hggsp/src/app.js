@@ -46,6 +46,26 @@
   function ouvrirNav() { $("#nav").classList.add("ouvert"); $("#voile-nav").classList.add("on"); }
   function fermerNav() { $("#nav").classList.remove("ouvert"); $("#voile-nav").classList.remove("on"); }
 
+  /* ---------------- vidéo du chapitre (hggsp/serie/<code>.html) ---------------- */
+  function activerVideo() {
+    var b = $(".video-btn"); if (!b) return;
+    var boite = $(".video-c");
+    b.addEventListener("click", function () {
+      var ouvre = b.getAttribute("aria-expanded") !== "true";
+      b.setAttribute("aria-expanded", ouvre ? "true" : "false");
+      boite.hidden = !ouvre;
+      if (ouvre && !boite.firstChild) boite.innerHTML = '<iframe src="serie/' + b.getAttribute("data-code") + '.html?embed=1" title="Vidéo du chapitre" allow="fullscreen; autoplay" allowfullscreen data-serie="' + b.getAttribute("data-code") + '"></iframe>';
+      else if (!ouvre) { var fr = $("iframe", boite); try { fr.contentWindow.postMessage({ type: "serie-pause" }, "*"); } catch (e) {} }
+    });
+  }
+  window.addEventListener("message", function (e) {
+    var d = e.data || {};
+    if (d.type === "serie-h" && d.h) $$("iframe[data-serie]").forEach(function (fr) { if (fr.contentWindow === e.source) fr.style.height = Math.ceil(d.h) + "px"; });
+  });
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) $$("iframe[data-serie]").forEach(function (fr) { try { fr.contentWindow.postMessage({ type: "serie-pause" }, "*"); } catch (e) {} });
+  });
+
   /* ---------------- routeur ---------------- */
   function route() {
     var h = decodeURIComponent(location.hash.slice(1)) || "accueil";
@@ -156,6 +176,10 @@
     h += '<h1 class="titre">' + typo(c.t) + '<span class="ligne-rouge"></span></h1>';
     h += '<div class="rangee no-print" style="margin:4px 0 10px"><span class="tampon">Rédigé</span><span class="tampon ' + (t.ecrit27 ? "" : "gris") + '">' + (t.ecrit27 ? "Écrit 2027" : "Hors écrit 2027") + '</span></div>';
     h += '<div class="carte-p onglet essentiel note-s" data-onglet="Note de synthèse"><dl class="memo"><dt>Objet</dt><dd>' + typo(c.t) + '</dd><dt>Réf.</dt><dd>' + c.code + '</dd><dt>Classement</dt><dd><b>L\'essentiel en 5 lignes</b></dd></dl><ol>' + c.ess.map(function (e) { return '<li>' + typo(e) + '</li>'; }).join("") + '</ol></div>';
+    var vid = typeof VIDEOS !== "undefined" && VIDEOS[id];
+    if (vid && (vid.dispo || /[?&]video\b/.test(location.search))) {
+      h += '<div class="video-b no-print"><button class="video-btn" aria-expanded="false" data-code="' + vid.code + '"><span class="vb-ic">' + ic("lire") + '</span><span class="vb-t"><b>Vidéo du chapitre</b><small>Le chapitre en ' + vid.min + ' min · cartes animées, dissertation et étude critique corrigées</small></span></button><div class="video-c" hidden></div></div>';
+    }
     h += '<details class="pli attendu no-print"><summary>Ce que le programme attend</summary><div class="corps"><ul>' + c.att.map(function (e) { return '<li>' + typo(e) + '</li>'; }).join("") + '</ul></div></details>';
     h += '<nav class="sommaire no-print" aria-label="Sommaire">' + c.secs.map(function (s, k) { return '<a href="#' + id + '@s' + (k + 1) + '">' + (k + 1) + '. ' + typo(s.t) + '</a>'; }).join("") + '<a href="#' + id + '@qcm">QCM</a><a href="#' + id + '@fiche">À retenir</a></nav>';
     c.secs.forEach(function (s, k) {
@@ -176,6 +200,7 @@
     h += '</div>';
     APP.innerHTML = h;
     activerViz();
+    activerVideo();
     $("#imprimer").addEventListener("click", function () { document.documentElement.classList.add("impr"); window.print(); });
     var bc = $("#caviarder"), tab = $(".retenir table");
     bc.addEventListener("click", function () {

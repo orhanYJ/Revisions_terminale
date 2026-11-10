@@ -1,5 +1,11 @@
 var CH = {}, CHAINES = {}, GRAPHES = {}, ANIMS = {};
 
+/* Vidéos des chapitres (ses/serie/<code>.html, faites par outils/serie-philo/generer.py depuis outils/serie-ses/) :
+   l'onglet « ▶ Vidéo » et le bandeau du cours n'apparaissent que si dispo vaut true (vidéo publiée, voix enregistrée). */
+var VIDEOS = {
+  e1: { code: "ses-e1", dispo: false, min: 34 }
+};
+
 var PROG = [
   { id: "eco", nom: "Science économique", qs: [
     { id: "e1", code: "É1", court: "Croissance", statut: "red", ecrit: true, spark: "e1-pib",
