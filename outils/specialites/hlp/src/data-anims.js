@@ -179,3 +179,78 @@ HLP.ANIMS = {
       { montre: ["c"], legende: "<b>Conclure</b> : répondre clairement à la question posée, sans formule creuse." }
     ] }
 };
+Object.assign(HLP.ANIMS, {
+  "e4-frise": { type: "frise", titre: "Les ruptures se suivent : de la modernité aux avant-gardes", debut: 1860, fin: 1965, pas: 15, h: 300, min: 860,
+    intro: "Chaque rupture répond à la précédente. Dates indicatives pour les mouvements, exactes pour les œuvres.",
+    periodes: [
+      { id: "imp", de: 1874, a: 1886, nom: "Impressionnisme", rang: 0, c: 0 },
+      { id: "sym", de: 1886, a: 1905, nom: "Symbolisme", rang: 1, c: 1 },
+      { id: "cub", de: 1907, a: 1920, nom: "Cubisme", rang: 0, c: 2 },
+      { id: "fut", de: 1909, a: 1920, nom: "Futurisme", rang: 1, c: 3 },
+      { id: "dad", de: 1916, a: 1924, nom: "Dada", rang: 2, c: 1 },
+      { id: "sur", de: 1924, a: 1945, nom: "Surréalisme", rang: 0, c: 0 },
+      { id: "abs", de: 1950, a: 1965, nom: "Absurde, Nouveau Roman, Oulipo", rang: 1, c: 2 }
+    ],
+    evts: [
+      { id: "a", an: 1863, t: "La modernité", h: 30 }, { id: "b", an: 1873, t: "« absolument moderne »", h: 62 },
+      { id: "c", an: 1895, t: "Cinématographe", h: 30 }, { id: "d", an: 1909, t: "Manifeste futuriste", h: 62 },
+      { id: "e", an: 1913, t: "« Zone »", h: 30 }, { id: "f", an: 1917, t: "Fontaine", h: 62 },
+      { id: "g", an: 1924, t: "Manifeste surréaliste", h: 30 }, { id: "h", an: 1950, t: "Cantatrice chauve", h: 62 },
+      { id: "i", an: 1961, t: "Cent mille milliards", h: 30, g: true }
+    ],
+    etapes: [
+      { an: 1863, montre: ["a"], legende: "<b>1863 :</b> Baudelaire définit la modernité, « le transitoire, le fugitif, le contingent »." },
+      { an: 1873, montre: ["b"], legende: "<b>1873 :</b> Rimbaud, « Il faut être absolument moderne »." },
+      { an: 1874, montre: ["imp"], legende: "<b>1874 :</b> les impressionnistes exposent hors du Salon officiel ; l’injure devient un nom." },
+      { an: 1886, montre: ["sym"], legende: "<b>1886 :</b> le symbolisme veut suggérer plutôt que décrire." },
+      { an: 1895, montre: ["c"], legende: "<b>1895 :</b> le cinématographe Lumière ; un art nouveau naît d’une technique." },
+      { an: 1907, montre: ["cub"], legende: "<b>1907 :</b> Picasso, <i>Les Demoiselles d’Avignon</i> : la perspective héritée de la Renaissance éclate." },
+      { an: 1909, montre: ["fut", "d"], legende: "<b>1909 :</b> le futurisme veut « démolir les musées » et chante la vitesse." },
+      { an: 1913, montre: ["e"], legende: "<b>1913 :</b> « Zone » : « À la fin tu es las de ce monde ancien ». Mais le poème garde l’image du berger." },
+      { an: 1916, montre: ["dad", "f"], legende: "<b>1916-1917 :</b> Dada à Zurich ; Duchamp expose un urinoir. L’art lui-même est contesté." },
+      { an: 1924, montre: ["sur", "g"], legende: "<b>1924 :</b> le surréalisme cherche dans le rêve et l’inconscient une autre logique." },
+      { an: 1950, montre: ["abs", "h"], legende: "<b>Après 1945 :</b> le théâtre de l’absurde défait le dialogue, le Nouveau Roman le personnage." },
+      { an: 1961, montre: ["i"], legende: "<b>1961 :</b> Queneau fait de la contrainte une machine à créer. Rompre est devenu une tradition." }
+    ] },
+  "e4-zone-lecture": { type: "texte", vers: true, titre: "Lecture animée : Apollinaire, « Zone » (v. 1-8)", intro: "Comment le poème dit la rupture avec le « monde ancien » en gardant les mots de la tradition.",
+    segs: [
+      { t: "À la fin tu es las de ce monde ancien", m: 1, titre: "Un tutoiement de soi", n: "Le poète se parle à lui-même : le « tu » dédouble le sujet. « À la fin » donne l’impression d’une décision longtemps mûrie : rompre." },
+      "\n",
+      { t: "Bergère ô tour Eiffel le troupeau des ponts bêle ce matin", m: 1, titre: "Une métaphore pastorale", n: "La tour Eiffel devient une bergère, les ponts un troupeau qui bêle : la ville moderne est dite avec l’image la plus ancienne de la poésie, celle des bergers antiques." },
+      "\n",
+      { t: "Tu en as assez de vivre dans l’antiquité grecque et romaine", m: 1, titre: "Le rejet explicite", n: "Registre familier (« en as assez ») pour congédier l’héritage gréco-romain : le ton lui-même rompt avec la solennité." },
+      "\n",
+      { t: "Ici même les automobiles ont l’air d’être anciennes", m: 2, titre: "Un paradoxe", n: "Même la machine, symbole futuriste, paraît déjà vieille : le nouveau s’use vite. La rupture n’a pas de fin." },
+      "\n",
+      { t: "La religion seule est restée toute neuve la religion", m: 2, titre: "Un renversement", n: "Le plus ancien (la religion) est déclaré le plus neuf. La répétition du mot, sans ponctuation, crée un effet d’insistance orale." },
+      "\n",
+      { t: "Est restée simple comme les hangars de Port-Aviation", m: 2, titre: "Une comparaison moderne", n: "Le religieux est comparé aux hangars d’un aérodrome : l’ancien et le moderne s’échangent leurs images." },
+      "\n",
+      { t: "Seul en Europe tu n’es pas antique ô Christianisme", m: 3, titre: "Apostrophe", n: "L’apostrophe solennelle (« ô ») revient, mais adressée au christianisme présenté comme moderne." },
+      "\n",
+      { t: "L’Européen le plus moderne c’est vous Pape Pie X", m: 3, titre: "Une pointe", n: "Le pape régnant (Pie X) devient « l’Européen le plus moderne » : un trait d’humour qui achève de brouiller l’opposition entre ancien et nouveau." }
+    ] },
+  "e4-rupture": { type: "graphe", titre: "Y a-t-il des ruptures radicales ? Un schéma d’argumentation", w: 640, h: 440,
+    intro: "Trois réponses possibles à la question du programme, chacune appuyée sur des exemples.",
+    noeuds: [
+      { id: "q", x: 140, y: 12, w: 360, h: 50, s: "these", t: "Question : y a-t-il des ruptures radicales|en art, en littérature, en pensée ?" },
+      { id: "a", x: 20, y: 100, w: 280, h: 58, s: "arg", t: "Oui : table rase des avant-gardes|(futurisme 1909, Dada 1916)" },
+      { id: "ae", x: 340, y: 100, w: 280, h: 58, s: "ex", t: "« démolir les musées » ;|un urinoir exposé (Duchamp, 1917)" },
+      { id: "b", x: 20, y: 194, w: 280, h: 58, s: "obj", t: "Mais : une rupture dépend|de ce qu’elle rejette" },
+      { id: "be", x: 340, y: 194, w: 280, h: 58, s: "ex", t: "la Victoire de Samothrace nommée ;|la querelle de 1687, déjà" },
+      { id: "c", x: 20, y: 288, w: 280, h: 58, s: "arg", t: "Créer, c’est transformer l’héritage|(Apollinaire, Eliot)" },
+      { id: "ce", x: 340, y: 288, w: 280, h: 58, s: "ex", t: "Picasso et Les Ménines (1957) ;|Anouilh, Antigone (1944)" },
+      { id: "z", x: 110, y: 374, w: 420, h: 56, s: "concl", t: "Les ruptures sont réelles mais jamais absolues :|la rupture est devenue une « tradition du nouveau »" }
+    ],
+    liens: [{ de: "q", a: "a" }, { de: "a", a: "ae", t: "exemples" }, { de: "a", a: "b", t: "objection", s: "contre" }, { de: "b", a: "be", t: "exemples" }, { de: "b", a: "c", t: "donc" }, { de: "c", a: "ce", t: "exemples" }, { de: "c", a: "z" }],
+    etapes: [
+      { montre: ["q"], legende: "<b>La question</b> vient du programme : elle appelle une réponse nuancée, pas un oui ou un non." },
+      { montre: ["a"], legende: "<b>Première réponse :</b> les avant-gardes ont voulu tout recommencer." },
+      { montre: ["ae"], legende: "<b>Exemples</b> : le manifeste futuriste, le ready-made." },
+      { montre: ["b"], legende: "<b>Objection :</b> rompre, c’est encore se définir par rapport à ce qu’on rejette." },
+      { montre: ["be"], legende: "<b>Exemples</b> : le futurisme cite la statue qu’il veut détrôner ; la querelle des Anciens et des Modernes date de 1687." },
+      { montre: ["c"], legende: "<b>Dépassement :</b> la création réorganise l’héritage au lieu de l’abolir." },
+      { montre: ["ce"], legende: "<b>Exemples</b> : les variations de Picasso, les mythes réécrits au théâtre." },
+      { montre: ["z"], legende: "<b>Conclusion :</b> la rupture est un geste réel, mais elle appartient elle-même à une histoire." }
+    ] }
+});
