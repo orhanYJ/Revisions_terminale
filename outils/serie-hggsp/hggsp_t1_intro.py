@@ -28,7 +28,9 @@ PRONONCIATION = {"Kármán": "Karmane", "Starlink": "Star-linque", "SpaceX": "Sp
                  "Houston": "Houstonne", "CNUCED": "Cnucède", "BBNJ": "B B N J", "FAO": "F A O", "Iridium": "Iridiomme",
                  "Kosmos": "Kosmosse", "Kessler": "Kesslère", "Montego": "Montégo", "Bay": "Bèï", "Jackson": "Djackson",
                  "Frederick": "Frédérik", "New Space": "Niou Spèïce", "Grotius": "Grotiusse", "V2": "V deux",
-                 "Trieste": "Triestte", "Cameron": "Caméronne", "Kingston": "Kinngstonne"}
+                 "Trieste": "Triestte", "Cameron": "Caméronne", "Kingston": "Kinngstonne",
+                 "James": "Djèïmse", "John F. Kennedy": "Djonne Èf Kennedy", "URSS": "U R S S", "ZEE": "Z E E",
+                 "GPS": "G P S"}
 
 # ---------------------------------------------------------------- étapes de cartes propres à la vidéo
 ARCT_DRAPEAU = [dict(date="2 août 2007", titre="Un drapeau sous le pôle Nord", montre=["drapeau", "drapeaut", "pole"], accent=["drapeau"])]
@@ -76,7 +78,7 @@ SCENES = [
         "{arct.1}À plus de quatre mille mètres de profondeur, à la verticale exacte du pôle Nord, un bras articulé plante "
         "dans la vase un petit drapeau russe. En titane.",
         ("P", 0.6),
-        "{-arct}{q1}Un drapeau… au fond de la mer. Personne ne le verra jamais. Alors, pourquoi faire ça ?",
+        "{-arct}{q1}Un drapeau… au fond de la mer. Presque personne ne le verra jamais. Alors, pourquoi faire ça ?",
         "{-q1}{q2}Parce que planter un drapeau, c'est dire : cet endroit compte. Et il est à moi.",
         "{-q2}{f0}Sauf que ça ne marche pas comme ça. Ce drapeau n'a {!aucune valeur}aucune valeur juridique.",
         ("P", 0.5),
@@ -129,7 +131,7 @@ SCENES = [
         "chif": dict(type="chiffres", items=[dict(v=71, apres=" %", t="de la surface du globe est couverte par l'océan", jauge=.71)], y=180),
         "alt": dict(type="scene", anim="t1alt", pas=[0, 1, 2, 3], cam={"0": [0, 150, 640, 230]}, fs=21),
         "tab_tri": dict(type="tableau", img="t1-trieste", de=[1.0, .5, .45], a=[1.18, .45, .4],
-                        legende="Le bathyscaphe Trieste, photographie d'archives (domaine public, Wikimedia Commons)"),
+                        legende="Le bathyscaphe Trieste hissé hors de l'eau, photographie de l'US Navy (domaine public, Wikimedia Commons)"),
         "cmp": dict(type="cols", g="3", gq="personnes au fond de Challenger Deep (jusqu'en 2019)", d="12",
                     dq="hommes sur la Lune (1969-1972)", vs="≠"),
         "esp": dict(type="liste", titre="L'espace, un milieu hostile", items=["Le vide", "Des rayonnements dangereux",
@@ -235,7 +237,7 @@ SCENES = [
          beats=[
         "{m3}Passons au droit. Et là, océan et espace s'opposent complètement.",
         "{-m3}{his}Commençons par la mer. Pendant longtemps, la question était simple : à qui appartient-elle ? "
-        "{his.1}Au dix-septième siècle, le juriste hollandais Grotius défend la liberté des mers : la mer n'appartient à personne. "
+        "{his.1}En 1609, le juriste hollandais Grotius défend la liberté des mers : la mer n'appartient à personne. "
         "C'est hors programme, mais c'est une excellente accroche d'introduction.",
         "{his.2}Peu à peu, une étroite bande côtière revient à l'État riverain : trois milles marins, la portée supposée d'un boulet de canon.",
         "{his.3}Puis, au vingtième siècle, tout s'accélère. En 1945, les États-Unis revendiquent les ressources de leur plateau continental. "
@@ -252,7 +254,7 @@ SCENES = [
         "La navigation, elle, reste libre.",
         "{zon.4}Le plateau continental peut aller jusqu'à trois cent cinquante milles, sur dossier, quand le plateau géologique se prolonge.",
         "{zon.5}Et au-delà ? La haute mer. Libre pour tous : navigation, pêche, survol, pose de câbles. "
-        "Elle couvre près des deux tiers de la surface des océans. Ses fonds, eux, s'appellent « la Zone ». "
+        "Elle couvre près des deux tiers de la surface des océans. Et les grands fonds, au-delà des plateaux continentaux des États, s'appellent « la Zone ». "
         "Ils sont déclarés {!patrimoine commun}patrimoine commun de l'humanité. Leurs ressources minérales sont gérées par l'Autorité "
         "internationale des fonds marins, installée à Kingston, en Jamaïque.",
         "{zon.6}Pendant des décennies, aucun texte ne permettait de protéger la haute mer. C'est l'objet du traité BBNJ, "
@@ -281,14 +283,14 @@ SCENES = [
         "{-gf}{def67}Alors, c'est d'abord un traité de limitation des rivalités. Pas d'abord un traité de coopération. "
         "Une nuance que le correcteur appréciera.",
     ], vis={
-        "m67": dict(type="mot", t="1967", g="Traité de l'espace : signé le 27 janvier, en vigueur le 10 octobre", taille=150, y=210),
+        "m67": dict(type="mot", t="1967", g="Traité de l'espace : ouvert à la signature le 27 janvier, en vigueur le 10 octobre", taille=150, y=210),
         "l67": dict(type="liste", titre="Traité de l'espace · 27 janvier 1967", items=[
             "Liberté d'exploration et d'utilisation pour tous les États",
             "Article II : aucune appropriation nationale, ni de la Lune, ni des corps célestes",
             "Article IV : pas d'armes nucléaires en orbite",
             "Article VI : les États répondent des activités de leurs entreprises"], x=150, y=130, w=980),
         "gf": dict(type="cols", g="États-Unis", gq="Et si l'URSS s'emparait de la Lune ?", d="URSS",
-                   dq="Et si les États-Unis y installaient des armes ?", vs="1967"),
+                   dq="Et si les États-Unis s'emparaient de la Lune ?", vs="1967"),
         "def67": dict(type="def", terme="Le traité de 1967", t="D'abord un traité de limitation des rivalités, négocié en pleine guerre froide.", y=230),
     }),
 
@@ -302,7 +304,7 @@ SCENES = [
         "{zg.3}Et en mer, les revendications se chevauchent ; certains États refusent les décisions de justice.",
         "{-zg}{lux}Un exemple très concret. {lux.1}En 1967, le traité interdit toute appropriation. "
         "{lux.2}Mais le 25 novembre 2015, une loi américaine autorise les entreprises américaines à posséder les ressources "
-        "qu'elles extraient d'un astéroïde. {lux.3}En 2017, le Luxembourg adopte une loi semblable.",
+        "qu'elles extraient d'un astéroïde, ou de la Lune. {lux.3}En 2017, le Luxembourg adopte une loi semblable.",
         "Ces lois ne violent pas ouvertement l'article deux. Elles en contournent l'esprit.",
         "{-lux}{f2}Le droit existe, oui. Mais il dépend de la {!volonté des États}volonté des États de le respecter.",
     ], vis={
@@ -313,7 +315,7 @@ SCENES = [
             "En mer : des revendications qui se chevauchent, des décisions de justice refusées"], marques=["?", "?", "?"], x=150, y=150, w=980),
         "lux": dict(type="chrono", titre="Les ressources de l'espace", items=[
             dict(d="1967", t="Traité de l'espace : aucune appropriation (art. II)", c="droit"),
-            dict(d="25 nov. 2015", t="Loi américaine : les ressources extraites d'un astéroïde", c="espace"),
+            dict(d="25 nov. 2015", t="Loi américaine : les ressources extraites d'un astéroïde ou de la Lune", c="espace"),
             dict(d="2017", t="Le Luxembourg adopte une loi semblable", c="espace")], x=150, w=980, y=150, h=420),
         "f2": dict(type="note", titre="À retenir", t="Le droit existe, mais il dépend de la volonté des États de le respecter.", y=230),
     }),
@@ -325,7 +327,7 @@ SCENES = [
         "c'est autre chose. {fr.1}C'est un front pionnier qui avance. L'idée vient de l'historien Frederick Jackson Turner, en 1893.",
         "{fr.2}En 1960, le président Kennedy la reprend : c'est la « Nouvelle Frontière », et l'espace y occupe une grande place. "
         "{fr.3}Le 12 septembre 1962, à l'université Rice, à Houston, {-fr}{tab_rice}il lance :",
-        ("C", "Nous choisissons d'aller sur la Lune… non parce que c'est facile, mais parce que c'est difficile.", "cit62"),
+        ("C", "Nous choisissons d'aller sur la Lune au cours de cette décennie, et de faire les autres choses, non parce qu'elles sont faciles, mais parce qu'elles sont difficiles.", "cit62"),
         "{-cit62}{-tab_rice}{dfr}Parler de « dernières frontières », c'est donc suggérer que l'océan et l'espace sont les derniers espaces "
         "à conquérir, après les terres émergées.",
     ], vis={
@@ -401,7 +403,7 @@ SCENES = [
             dict(d="30 mai 2020", t="Crew Dragon : la première mission habitée privée vers la station", c="prive")], x=290, w=700, y=150, h=420),
         "monde": dict(type="scene", anim="frontieres", etapes=MONDE, fs=19,
                       cam={"0": [0, 20, 1000, 420], "1": [600, 100, 400, 172], "2": [80, 60, 400, 172], "3": [100, 90, 400, 172],
-                           "4": [380, 0, 400, 172], "5": [110, 10, 480, 207], "6": [600, 110, 400, 172], "7": [0, 20, 1000, 420]}),
+                           "4": [380, 0, 400, 172], "5": [110, 0, 500, 215], "6": [600, 110, 400, 172], "7": [0, 20, 1000, 420]}),
     }),
 
     # ================================================================ XIII. des milieux fragiles
@@ -628,4 +630,6 @@ CREDITS = [
     "Cartes : fond Natural Earth (domaine public), projections d3-geo (licence ISC) ; banquise de l'Arctique et ligne en neuf traits : tracés schématiques.",
     "Document : discours de John F. Kennedy à l'université Rice, 12 septembre 1962 (discours officiel, domaine public), extraits traduits.",
     "Chiffres : Seabed 2030, CNUCED, Space Foundation, FAO ; sujet de dissertation et étude critique inventés pour l'entraînement.",
+    "Photographies : le bathyscaphe Trieste, US Navy (domaine public) ; J. F. Kennedy à l'université Rice, NASA (domaine public) ; "
+    "premier étage de Falcon 9 revenu se poser, décembre 2015, SpaceX (CC0) ; via Wikimedia Commons.",
 ]

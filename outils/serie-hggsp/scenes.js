@@ -119,12 +119,12 @@ const CARTES_VIDEO = {
     pm.translate([pm.translate()[0], pm.translate()[1] - yN + 6]);
     const C = cadre(d3, FEAT, pm, WM, D.CARTES.monde.h, 0.55, 2.5);
     const s = [
-      C.etiq("", [-35, 30], "OCÉAN ATLANTIQUE", { cl: "k-mer" }), C.etiq("", [-150, 5], "OCÉAN PACIFIQUE", { cl: "k-mer" }), C.etiq("", [80, -30], "OCÉAN INDIEN", { cl: "k-mer" }),
-      C.point("mariannes", [142.2, 11.35], "Challenger Deep (1960)", { a: "middle", dy: 26, cl: "pt-b" }),
-      C.point("jamaique", [-77.3, 18.2], "Montego Bay (1982)", { a: "start", dy: 16 }),
+      C.etiq("", [-40, 22], "OCÉAN ATLANTIQUE", { cl: "k-mer" }), C.etiq("", [-150, 5], "OCÉAN PACIFIQUE", { cl: "k-mer" }), C.etiq("", [80, -30], "OCÉAN INDIEN", { cl: "k-mer" }),
+      C.point("mariannes", [142.59, 11.37], "Challenger Deep (1960)", { a: "middle", dy: 26, cl: "pt-b" }),
+      C.point("jamaique", [-77.92, 18.47], "Montego Bay (1982)", { a: "start", dy: 8 }),
       C.point("houston", [-95.4, 29.8], "Houston : « la Lune » (1962)", { a: "end", dy: -8, cl: "pt-b" }),
       C.point("canaveral", [-80.6, 28.5], "Cap Canaveral : SpaceX (2015, 2020)", { a: "start", dy: -12 }),
-      C.point("arctique", [40, 78], "vers le pôle Nord : drapeau russe (2007)", { a: "middle", dy: 26 }),
+      C.point("arctique", [40, 78], "vers le pôle Nord : drapeau russe (2007)", { a: "end", dy: 20 }),
       C.point("scs", [114, 12.5], "mer de Chine (2016)", { a: "end", dy: -6 }),
       C.point("lux", [6.1, 49.6], "Luxembourg : loi de 2017", { a: "end", dy: -6, cl: "pt-b" }),
       C.etiq("hm", [-140, -25], "HAUTE MER", { cl: "lbl-f" })
