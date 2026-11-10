@@ -27,7 +27,7 @@ def table_decalage(motif):
     return d
 
 print(table_decalage("ANANAS"))
-print(table_decalage("GCAGAGAG"))`, { out: "{'A': 1, 'N': 2}\n{'G': 2, 'C': 6, 'A': 1}" });
+print(table_decalage("GCAGAGAG"))`, { trace: true, titreTrace: "table_decalage", out: "{'A': 1, 'N': 2}\n{'G': 2, 'C': 6, 'A': 1}" });
 
 C("txt-horspool", String.raw`
 def horspool(texte, motif):
@@ -365,6 +365,7 @@ CH.push({
 <ul><li>si <i>c</i> apparaît dans le motif <b>ailleurs qu’en dernière position</b>, saut = distance entre sa <b>dernière</b> occurrence (hors dernière case) et la fin du motif, soit <i>m</i> − 1 − <i>i</i> ;</li>
 <li>sinon (caractère absent, ou présent seulement en dernière case), saut = <i>m</i>.</li></ul>
 [[txt-table]]
+[[w-trace|txt-table]]
 <p>Pour « ANANAS » (<i>m</i> = 6) : le A d’indice 0 donne 5, puis le N d’indice 1 donne 4, le A d’indice 2 donne 3 (et <b>remplace</b> 5), le N d’indice 3 donne 2, le A d’indice 4 donne 1. Le S final n’est pas pris en compte : tous les autres caractères, S compris, donnent un saut de 6.</p>
 <div class="tab-wrap"><table><tr><th>caractère</th><th>A</th><th>N</th><th>tout autre (S, E, espace…)</th></tr><tr><td>saut</td><td>1</td><td>2</td><td>6</td></tr></table></div>
 <p>Le dernier caractère est exclu pour une raison précise : il donnerait un saut de 0, et la fenêtre ne bougerait plus. Ce prétraitement coûte <i>m</i> opérations et un petit dictionnaire ; il est fait <b>une seule fois</b>, puis amorti sur tout le texte. Si l’on cherche le même motif dans mille fichiers, on ne le refait pas.</p>` },

@@ -55,7 +55,7 @@ def fib_table(n):
     return f
 
 print(fib_table(10))
-print(fib_table(100)[100])`, { out: "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]\n354224848179261915075" });
+print(fib_table(100)[100])`, { trace: true, titreTrace: "fib_table", out: "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]\n354224848179261915075" });
 
 C("dyn-asc2", String.raw`
 def fib_deux(n):
@@ -466,6 +466,7 @@ CH.push({
     { id: "i3", t: "Méthode ascendante : remplir un tableau", h: `
 <p>On peut aussi partir des plus petits sous-problèmes et remonter : on remplit un tableau <code>f</code> de la case 0 à la case <i>n</i>. Quand on calcule <code>f[k]</code>, les cases dont il dépend sont <b>déjà remplies</b>.</p>
 [[dyn-asc]]
+[[w-trace|dyn-asc]]
 <p>Plus de récursion, donc plus de limite de pile. Et en regardant les dépendances, on s’aperçoit que seules les <b>deux dernières</b> valeurs servent : on peut réduire la mémoire à deux variables.</p>
 [[dyn-asc2]]
 <div class="tab-wrap"><table><tr><th>version</th><th>temps</th><th>mémoire</th></tr>

@@ -71,7 +71,7 @@ def somme(a, b):                     # PURE : le résultat ne dépend que des pa
     return a + b
 
 print(ajoute(5), ajoute(5), ajoute(5))   # même appel, résultats différents
-print(somme(5, 5), somme(5, 5))          # même appel, même résultat`, { out: "5 10 15\n10 10" });
+print(somme(5, 5), somme(5, 5))          # même appel, même résultat`, { trace: true, titreTrace: "impure et pure", out: "5 10 15\n10 10" });
 
 C("para-effet", String.raw`
 def ajoute_bonus(notes):             # effet de bord : modifie la liste reçue
@@ -416,6 +416,8 @@ CH.push({
     { id: "i3", t: "Fonctions pures et effets de bord", h: `
 <div class="boite def"><div class="lab">"""définitions"""</div><ul><li>Une fonction a un <b>effet de bord</b> si elle modifie quelque chose en dehors de ses variables locales : une variable globale, une liste reçue en paramètre, un fichier, l’écran.</li><li>Une fonction est <b>pure</b> si son résultat ne dépend <b>que de ses paramètres</b> et si elle n’a <b>aucun effet de bord</b>. Appelée deux fois avec les mêmes arguments, elle donne deux fois le même résultat.</li></ul></div>
 [[para-pure]]
+<p>Pas à pas, regarde la variable globale <code>total</code> dans le cadre du programme principal : chaque appel à <code>ajoute</code> la modifie.</p>
+[[w-trace|para-pure]]
 <p>L’effet de bord le plus piégeux en Python : modifier une liste reçue en paramètre. L’appelant voit sa liste changer, souvent sans s’y attendre.</p>
 [[para-effet]]
 <p>Une fonction pure se teste facilement (aucun contexte à préparer), se comprend seule, et peut être exécutée en parallèle sans risque. Le chapitre Mise au point classe les « effets de bord non désirés » parmi les causes typiques de bugs.</p>` },
