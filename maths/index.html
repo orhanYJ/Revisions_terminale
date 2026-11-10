@@ -355,6 +355,107 @@ html.mo .anim .cap.neuf{animation:capin .45s ease-out}
 .g-c3{fill:none}
 .a-math{font:600 15px var(--serif);color:var(--bleu);text-align:center;line-height:1.3;display:flex;align-items:center;justify-content:center;height:100%}
 
+/* =================== Identité « carnet de mathématicien » (phase 2) =================== */
+:root{--main:"Segoe Print","Bradley Hand","Chalkboard SE","Marker Felt","Comic Neue","Patrick Hand",cursive;
+  --spirale:#B9B2A0;--onglet-a:#2343A8;--onglet-g:#23774F;--onglet-p:#C2372B}
+:root[data-theme="sombre"]{--spirale:#5C6A64}
+@media (prefers-color-scheme:dark){:root:not([data-theme="clair"]){--spirale:#5C6A64}}
+.stylo{font-family:var(--main);font-style:normal;font-size:1.02em;letter-spacing:.01em}
+.main-ecrite{font-family:var(--main)}
+
+/* reliure à spirale en haut de la feuille */
+.page{position:relative;padding-top:20px}
+.page::after{content:"";position:absolute;left:0;right:0;top:-6px;height:16px;pointer-events:none;
+  background:radial-gradient(circle at 50% 70%,var(--papier) 0 3.2px,var(--spirale) 3.6px 5.4px,transparent 5.8px) 6px 0/22px 16px repeat-x;opacity:.9}
+
+/* titres de section : numéro entouré au compas, soulignement à la main */
+section.bloc>h2{position:relative;padding-left:2.4rem}
+section.bloc>h2 .no{position:absolute;left:0;top:-.08em;width:1.9rem;height:1.9rem;display:inline-flex;align-items:center;justify-content:center;font:700 1rem var(--main);color:var(--rouge)}
+section.bloc>h2 .no svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+section.bloc>h2 .no circle{fill:none;stroke:var(--rouge);stroke-width:1.6;stroke-linecap:round}
+section.bloc>h2::after{content:"";display:block;height:7px;margin-top:4px;max-width:12rem;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 7'%3E%3Cpath d='M1 4.5C20 2 40 6 60 3.5S100 2 119 4' fill='none' stroke='%23C2372B' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") left/100% 100% no-repeat;opacity:.75}
+html.mo section.bloc>h2 .no circle{stroke-dasharray:120;stroke-dashoffset:0;animation:compas .9s ease-out both}
+@keyframes compas{from{stroke-dashoffset:120}to{stroke-dashoffset:0}}
+
+/* onglets du chapitre : intercalaires de classeur */
+.onglets{gap:2px;padding:12px 2px 0;border-bottom:2px solid var(--encre);margin-bottom:14px;align-items:flex-end}
+.onglets a{border-radius:10px 10px 0 0;border:1.5px solid var(--ligne2);border-bottom:0;min-height:40px;padding:0 13px;background:var(--papier);position:relative;top:0;transition:none}
+.onglets a.on{background:var(--encre);color:var(--papier);border-color:var(--encre);min-height:46px;font-weight:600}
+html.mo .onglets a{transition:min-height .2s,background .2s}
+html.mo .onglets a:hover{min-height:44px}
+
+/* encadrés */
+.boite>.lab{font-family:var(--sans)}
+.boite.def{background-image:linear-gradient(var(--papier2),var(--papier2)),repeating-linear-gradient(transparent 0 25.5px,var(--bleu-p) 25.5px 26.5px);background-clip:padding-box;border-left-width:4px;padding-top:30px}
+.boite.def{background:repeating-linear-gradient(var(--papier2) 0 25.5px,var(--bleu-p) 25.5px 26.5px)}
+.boite.def>.lab{position:absolute;top:0;left:0;right:0;padding:5px 12px;background:var(--bleu);color:var(--papier);border-radius:0 11px 0 0}
+.boite.prop,.boite.thm{border:2px solid var(--encre);border-left:2px solid var(--encre);border-radius:3px 14px 4px 12px;box-shadow:3px 3px 0 var(--surligne2)}
+.boite.thm{border-width:2px;outline:1px solid var(--encre);outline-offset:3px}
+.boite.prop>.lab,.boite.thm>.lab{background:var(--surligne2);color:#1B2A5E;padding:3px 8px;border-radius:3px;transform:rotate(-1.2deg)}
+.boite.piege{background-image:linear-gradient(var(--rouge-p),var(--rouge-p))}
+.boite.piege>.lab,.boite.meth>.lab,.boite.ex>.lab{font:700 1rem var(--main);text-transform:none;letter-spacing:0}
+.boite.piege>.lab::before{content:"✗ "}
+.boite.meth>.lab::before{content:"✎ "}
+
+.boite.ex>.lab{color:var(--bleu)}
+.boite.hist{border-left-style:double;border-left-width:5px}
+.boite.hist>.lab::before{content:"❦ "}
+
+/* rature du stylo rouge (ce qu'il ne faut pas écrire) */
+.rature{position:relative;white-space:nowrap;color:var(--encre2)}
+.rature::after{content:"";position:absolute;left:-3px;right:-3px;top:50%;height:10px;margin-top:-5px;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M1 7C25 3 50 8 99 2M3 3C30 8 60 2 97 7' fill='none' stroke='%23C2372B' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.juste{font-family:var(--main);color:var(--vert);font-weight:700}
+
+/* annotation dans la marge (ordinateur) / sous le texte (téléphone) */
+.marge{display:block;font:1rem/1.35 var(--main);color:var(--rouge);margin:.2em 0 .6em;transform:rotate(-1deg)}
+@media (min-width:1200px){.marge{position:absolute;right:-13.5rem;width:11.5rem;margin-top:-2.2em;transform:rotate(-3deg)}}
+section.bloc{position:relative}
+
+/* entrée de page : la feuille tourne */
+html.mo .page.entre{animation:feuille .5s cubic-bezier(.2,.7,.25,1);transform-origin:0 50%}
+@keyframes feuille{from{transform:perspective(1400px) rotateY(-11deg) translateX(-6px);opacity:.5;box-shadow:-30px 0 40px -30px rgba(0,0,0,.25)}to{transform:none;opacity:1;box-shadow:none}}
+html.mo .page.entre .cinq,html.mo .page.entre section.bloc:first-of-type,html.mo .page.entre .ch-carte,html.mo .page.entre .exo,html.mo .page.entre details.demo{animation:monte .5s ease-out both}
+html.mo .page.entre .ch-carte:nth-child(2n){animation-delay:.04s}
+html.mo .page.entre .ch-carte:nth-child(3n){animation-delay:.08s}
+@keyframes monte{from{transform:translateY(10px)}to{transform:none}}
+
+/* QCM : coche et rature à la main */
+.qcm .opt.ok .l,.qcm .opt.ko .l{font-family:var(--main)}
+.qcm .opt.ok::after{content:"✓";margin-left:auto;font:700 1.4rem/1 var(--main);color:var(--vert)}
+.qcm .opt.ko>span:last-child{text-decoration:line-through;text-decoration-color:var(--rouge);text-decoration-thickness:2px}
+html.mo .qcm .opt.ok::after{animation:coche .4s cubic-bezier(.3,1.6,.5,1)}
+@keyframes coche{from{transform:scale(.2) rotate(-25deg)}to{transform:none}}
+.qcm .score{font-family:var(--main)}
+
+/* sommaire du menu : pointillés de table des matières */
+.menu a .num{font-family:var(--main);font-weight:700}
+.menu h6{font-family:var(--main);font-size:.92rem;letter-spacing:.02em;text-transform:none;color:var(--rouge)}
+
+/* accueil : construction au compas */
+.hero{background-image:radial-gradient(circle at 100% 0,var(--bleu-p),transparent 55%)}
+.hero .compas{position:absolute;right:-30px;bottom:-40px;width:210px;height:210px;pointer-events:none;opacity:.55}
+.hero .compas *{fill:none;stroke:var(--encre3);stroke-width:1.1;stroke-linecap:round}
+.hero .compas .r{stroke:var(--rouge)}
+html.mo .hero .compas .trace{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:trace 1.6s .2s ease-out forwards}
+.hero h1{font-family:var(--serif);font-size:2.6rem}
+.hero .devise{font:1.05rem var(--main);color:var(--rouge);transform:rotate(-2deg);display:inline-block;margin-top:4px}
+.ch-carte{border-radius:3px 12px 12px 3px;border-left:4px solid var(--onglet-a)}
+.ch-carte.alg{border-left-color:var(--onglet-g)}
+.ch-carte.pro{border-left-color:var(--onglet-p)}
+.ch-carte .num{font-family:var(--main)}
+html.mo .ch-carte{transition:transform .18s,box-shadow .18s}
+html.mo .ch-carte:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--ligne2)}
+
+/* titre du chapitre : grand numéro au stylo */
+.titre-ch .gros{font-family:var(--main);font-size:3.2rem}
+
+@media print{.page::after{display:none}.marge{position:static;transform:none}}
+.hero .formule{display:none}
+.hero .compas{right:-40px;top:-46px;bottom:auto;width:200px;height:200px;opacity:.6}
+.hero>*:not(.compas){position:relative}
+
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
 <script src="assistant.js?v=9" defer></script>
@@ -2672,10 +2773,10 @@ def seuil():
     h += '<details class="no-print"><summary><span class="st">Ce que le programme attend (BO)</span></summary><div class="dd"><ul>' + c.attendus.map(function (l) { return "<li>" + F(l) + "</li>"; }).join("") + '</ul><p style="font-size:.85rem;color:var(--encre3)">Capacités reformulées d\'après le programme officiel de spécialité (BO spécial n° 8 du 25 juillet 2019).</p></div></details>';
     if (c.premiere) h += '<details><summary><span class="st">Rappels de Première</span><span class="tag p1">1re</span></summary><div class="dd">' + riche(c.premiere) + "</div></details>";
     c.cours.forEach(function (s, i) {
-      h += '<section class="bloc" id="' + c.id + "-" + s.id + '"><h2>' + (i + 1) + ". " + F(s.titre) + "</h2>" + riche(s.html) + "</section>";
+      h += '<section class="bloc" id="' + c.id + "-" + s.id + '"><h2><span class="no" aria-hidden="true"><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" transform="rotate(' + (i * 47 % 360) + ' 15 15)"/></svg>' + (i + 1) + '</span><span class="sr">' + (i + 1) + '. </span>' + F(s.titre) + "</h2>" + riche(s.html) + "</section>";
     });
     if (c.pieges && c.pieges.length) {
-      h += '<section class="bloc" id="' + c.id + '-pieges"><h2>Les pièges du chapitre</h2>';
+      h += '<section class="bloc" id="' + c.id + '-pieges"><h2><span class="no" aria-hidden="true"><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="13"/></svg>✗</span>Les pièges du chapitre</h2>';
       c.pieges.forEach(function (p) { h += boite("piege", "Piège · " + p.t, p.h); });
       h += "</section>";
     }
@@ -2734,10 +2835,10 @@ def seuil():
 
   function carteCh(c) {
     var ok = c.statut === "ok";
-    return '<a class="ch-carte' + (ok ? "" : " bientot") + '" href="#' + c.id + '"><span class="num">' + c.num + '</span><span><b>' + esc(c.titre) + "</b><small>" + F(c.resume || c.sous || "") + '</small></span><span class="etat ' + (ok ? "ok" : "bt") + '">' + (ok ? "Rédigé" : "Bientôt") + "</span></a>";
+    return '<a class="ch-carte' + (ok ? "" : " bientot") + (c.partie === "Probabilités" ? " pro" : c.partie === "Analyse" ? "" : " alg") + '" href="#' + c.id + '"><span class="num">' + c.num + '</span><span><b>' + esc(c.titre) + "</b><small>" + F(c.resume || c.sous || "") + '</small></span><span class="etat ' + (ok ? "ok" : "bt") + '">' + (ok ? "Rédigé" : "Bientôt") + "</span></a>";
   }
   function pageAccueil() {
-    var h = '<div class="hero"><div class="formule" aria-hidden="true">' + TeX.math("\\lim_{n\\to+\\infty}\\left(1+\\frac{1}{n}\\right)^n=\\e") + '</div><h1><span>CQFD</span></h1><p style="font-family:var(--serif);font-size:1.15rem;color:var(--encre);margin:.3em 0">Le carnet de maths de Terminale, spécialité.</p><p>Cours rédigés à fond, démonstrations exigibles, programmes Python, méthodes, exercices corrigés en trois niveaux, vrais sujets du bac, QCM et flashcards. Hors ligne, gratuit, sans compte.</p><div class="actions"><a class="btn plein" href="#' + REDIGES[0].id + '">Commencer : ' + esc(REDIGES[0].court) + '</a><a class="btn" href="#entrainement">' + ic("cible") + ' S\'entraîner</a><a class="btn" href="#epreuve">' + ic("copie") + " L'épreuve</a></div></div>";
+    var h = '<div class="hero"><div class="formule" aria-hidden="true">' + TeX.math("\\lim_{n\\to+\\infty}\\left(1+\\frac{1}{n}\\right)^n=\\e") + '</div>' + COMPAS + '<h1><span>CQFD</span></h1><span class="devise">ce qu\'il fallait démontrer</span><p style="font-family:var(--serif);font-size:1.15rem;color:var(--encre);margin:.3em 0">Le carnet de maths de Terminale, spécialité.</p><p>Cours rédigés à fond, démonstrations exigibles, programmes Python, méthodes, exercices corrigés en trois niveaux, vrais sujets du bac, QCM et flashcards. Hors ligne, gratuit, sans compte.</p><div class="actions"><a class="btn plein" href="#' + REDIGES[0].id + '">Commencer : ' + esc(REDIGES[0].court) + '</a><a class="btn" href="#entrainement">' + ic("cible") + ' S\'entraîner</a><a class="btn" href="#epreuve">' + ic("copie") + " L'épreuve</a></div></div>";
     h += '<h2>Où en est le site</h2><p>' + REDIGES.length + " chapitres de début d'année sont rédigés. Les autres apparaissent avec le contenu exact du programme officiel, en attendant leur rédaction.</p>";
     var parties = [];
     CH.forEach(function (c) { if (parties.indexOf(c.partie) < 0) parties.push(c.partie); });
@@ -2748,6 +2849,8 @@ def seuil():
     return h;
   }
 
+  /* construction au compas : cercle, tangente en un point, rayon (décor de l'accueil) */
+  var COMPAS = '<svg class="compas" viewBox="0 0 210 210" aria-hidden="true"><circle class="trace" style="--l:540" cx="105" cy="105" r="85"/><path class="trace" style="--l:240" d="M67.7 -37.3 L251.5 117.1"/><path class="r trace" style="--l:90" d="M105 105 L159.6 39.9"/><circle cx="105" cy="105" r="2.5" style="fill:var(--encre3)"/><path d="M153.2 47.6 l7.7 6.4 l6.4 -7.7" class="r"/></svg>';
   var PARTIE_IC = { "Analyse": "courbe", "Algèbre et géométrie": "cube", "Probabilités": "de" };
 
   function pageEntrainement(sous) {
