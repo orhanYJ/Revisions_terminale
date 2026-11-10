@@ -252,7 +252,7 @@ var CAV = (function () {
 /* Animation : décomposer AG en suivant les arêtes du cube */
 ANIMS.cubeChasles = {
   titre: R`Décomposer $\vec{AG}$ dans le cube`,
-  vb: [360, 260],
+  vb: [360, 286],
   etapes: [
     { d: 3.5, l: R`Le cube $ABCDEFGH$ et trois vecteurs issus de $A$ : $\vec{AB}$ (bleu), $\vec{AD}$ (vert), $\vec{AE}$ (rouge). Ils ne sont pas dans un même plan : ils forment une <b>base</b>.` },
     { d: 3, l: R`Pour aller de $A$ à $G$, on suit un chemin d'arêtes. Premier pas : $\vec{AB}$.` },
@@ -288,7 +288,7 @@ ANIMS.cubeChasles = {
         var M = P(0.5, 0.5, 0.5);
         S.px.cercle(M[0], M[1], 4, "g-pt2");
         S.px.txt(M[0] - 8, M[1] + 16, "Ω", "r", "middle");
-        S.px.math(196, 224, 162, 34, R`$\vec{AG}=\vec{AB}+\vec{AD}+\vec{AE}$`, { opacity: E(ANIM.p(t, 0.55, 0.9)) });
+        S.px.math(110, 248, 246, 36, R`$\vec{AG}=\vec{AB}+\vec{AD}+\vec{AE}$`, { opacity: E(ANIM.p(t, 0.55, 0.9)) });
       }
     }
   }

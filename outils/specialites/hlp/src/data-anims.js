@@ -61,7 +61,7 @@ Object.assign(HLP.ANIMS, {
       { id: "e", x: 20, y: 202, w: 260, h: 54, s: "these", t: "« la vérité que je cherche|n’est pas en lui, mais en moi »" },
       { id: "f", x: 360, y: 202, w: 260, h: 54, s: "arg", t: "Le narrateur se tourne vers son esprit :|le souvenir résiste, remonte" },
       { id: "g", x: 190, y: 296, w: 260, h: 54, s: "concl", t: "« Et tout d’un coup|le souvenir m’est apparu »" },
-      { id: "h", x: 120, y: 380, w: 400, h: 54, s: "ex", t: "Combray, le dimanche matin, la tante Léonie|et sa madeleine trempée dans le tilleul" }
+      { id: "h", x: 120, y: 380, w: 400, h: 54, s: "ex", t: "Combray, le dimanche matin : la madeleine|trempée dans le thé ou le tilleul de la tante Léonie" }
     ],
     liens: [{ de: "a", a: "b", t: "sensation" }, { de: "b", a: "c", t: "joie" }, { de: "c", a: "d", t: "répéter ?" }, { de: "d", a: "e", t: "donc" }, { de: "e", a: "f", t: "chercher" }, { de: "f", a: "g" }, { de: "g", a: "h", t: "tout revient" }],
     etapes: [

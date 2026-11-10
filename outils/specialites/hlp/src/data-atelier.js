@@ -1,5 +1,5 @@
 HLP.ATELIER = [
-  { court: "Lamartine, « Le Lac »", titre: "Lamartine, « Le Lac » (strophes 1-2 et 6-7)", ref: "Méditations poétiques, 1820, texte de l’édition originale, orthographe modernisée",
+  { court: "Lamartine, « Le Lac »", titre: "Lamartine, « Le Lac » (strophes 1-2, 6 et 8)", ref: "Méditations poétiques, 1820, texte de l’édition originale (où le poème s’intitule « Le Lac de B*** »), orthographe modernisée",
     mouvements: ["1. La condition humaine : un temps sans escale", "2. Le retour au lac, sans elle", "3. La voix de l’aimée : prière au temps"],
     aide: "Touche un passage surligné pour lire la note. Commence par le premier vers.",
     segs: [
@@ -22,7 +22,7 @@ HLP.ATELIER = [
       { t: "et vous, heures propices\n« Suspendez votre cours :", m: 3, p: 1, titre: "Insistance", n: "Le verbe est repris sous une autre forme (« suspends » / « Suspendez ») : la prière insiste. Le vers bref de six syllabes semble lui-même suspendu." },
       "\n",
       { t: "« Laissez-nous savourer les rapides délices\n« Des plus beaux de nos jours !", m: 3, p: 1, titre: "Un oxymore discret", n: "« Savourer » fait du bonheur une sensation. « Rapides délices » associe le plaisir et sa fuite : le bonheur est menacé par sa vitesse même." },
-      "\n\n",
+      "\n[…]\n",
       { t: "« Mais je demande en vain quelques moments encore,", m: 3, titre: "Le retour du réel", n: "« Mais » et « en vain » avouent l’échec de la prière, dans la bouche même de celle qui la formule." },
       "\n",
       { t: "« Le temps m’échappe et fuit ;", m: 3, p: 1, titre: "Accélération", n: "Deux verbes de fuite dans un vers bref : le rythme imite ce qu’il dit." },
@@ -92,7 +92,7 @@ HLP.ATELIER = [
       " Dès qu’il la sait, il doit la cultiver […].\n",
       { t: "Je dis qu’il faut être voyant, se faire VOYANT.", m: 3, p: 1, titre: "Une correction", n: "« Être » est corrigé en « se faire » : le voyant n’est pas né, il se fabrique. Les majuscules donnent au mot la force d’un manifeste." },
       "\n",
-      { t: "Le poète se fait voyant par un long, immense et raisonné dérèglement de tous les sens.", m: 3, p: 1, titre: "Un oxymore de méthode", n: "« Raisonné dérèglement » : le désordre des sens est une méthode, voulue et conduite. Les trois adjectifs (« long, immense et raisonné ») donnent l’ampleur de l’entreprise." }
+      { t: "Le Poète se fait voyant par un long, immense et raisonné dérèglement de tous les sens.", m: 3, p: 1, titre: "Un oxymore de méthode", n: "« Raisonné dérèglement » : le désordre des sens est une méthode, voulue et conduite. Les trois adjectifs (« long, immense et raisonné ») donnent l’ampleur de l’entreprise." }
     ],
     bilan: "<p>La lettre déplace la question du moi : le poète n’exprime pas un moi déjà là (critique du lyrisme romantique), il découvre en lui un autre et doit se transformer pour l’entendre. À rapprocher de Montaigne (le moi en mouvement), de Nietzsche (devenir ce que l’on est) et de Freud (le moi n’est pas maître chez lui).</p>" }
 ];

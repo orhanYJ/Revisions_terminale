@@ -43,7 +43,7 @@ var TeX = (function () {
       var a = this.atome();
       if (a === null) continue;
       if (out.length && /^<mrow><mi mathvariant="normal">(ln|exp|cos|sin|tan|max|min|log)</.test(a) && !/^<mo/.test(out[out.length - 1])) out.push('<mspace width="0.17em"></mspace>');
-      if ((a === "<mo>+</mo>" || a === "<mo>−</mo>") && (!out.length || /^<mo[^>]*>(?!\)|\]|\||′)/.test(out[out.length - 1]))) a = a.replace("<mo>", '<mo form="prefix" rspace="0.05em">');
+      if ((a === "<mo>+</mo>" || a === "<mo>−</mo>") && (!out.length || /^<mo(?:\s[^>]*)?>(?!\)|\]|\||′)/.test(out[out.length - 1]))) a = a.replace("<mo>", '<mo form="prefix" rspace="0.05em">');
       out.push(this.scripts(a));
     }
     return out;
@@ -171,12 +171,15 @@ var TeX = (function () {
     var p = new Parser(src.replace(/\{,\}/g, ",")), r = [];
     try { r = p.liste(null); } catch (e) { r = [el("mtext", esc(src))]; }
     var out;
+    if (r.length === 1 && /^<mo>[^<]*<\/mo>$/.test(r[0])) r[0] = r[0].replace("<mo>", '<mo lspace="0" rspace="0">');
     if (r.length < 4) out = '<math' + (bloc ? ' display="block"' : "") + '>' + (r.length > 1 ? el("mrow", r.join("")) : r.join("")) + "</math>";
     else {
       /* coupures possibles avant chaque relation (et après un \quad) : la formule passe à la ligne sur téléphone */
       var REL = /^<mo>(=|⇔|⇒|⩽|⩾|&lt;|&gt;|≠|≈|∈|≡)<\/mo>$/, ESP = /^<mspace width="[12]em"><\/mspace>$/, morceaux = [[]];
+      var prof = 0;
       r.forEach(function (x, k) {
-        if (REL.test(x) && k > 0 && morceaux[morceaux.length - 1].length) { morceaux.push([]); x = x.replace("<mo>", '<mo lspace="0.278em" rspace="0.278em">'); }
+        if (/^<mo[^>]*>\(<\/mo>$/.test(x)) prof++; else if (/^(?:<msup>|<msub>|<msubsup>)?<mo[^>]*>\)<\/mo>/.test(x)) prof--;
+        if (REL.test(x) && prof <= 0 && k > 0 && morceaux[morceaux.length - 1].length) { morceaux.push([]); x = x.replace("<mo>", '<mo lspace="0.278em" rspace="0.278em">'); }
         morceaux[morceaux.length - 1].push(x);
         if (bloc && ESP.test(x) && k < r.length - 1) morceaux.push([]);
       });
@@ -216,7 +219,7 @@ var TeX = (function () {
   /* version texte brut (recherche) */
   function plat(txt) {
     return String(txt || "").replace(/\[(def|prop|thm|ex|meth|piege|hist)(?:\|([^\]]*))?\]/g, " $2 : ").replace(/\[\/\]|\[\/?py\]/g, " ").replace(/\$\$?([^$]+)\$\$?/g, function (_, m) {
-      return m.replace(/\\(frac|dfrac|sqrt|binom|text|mathbb|mathrm|abs|overline|vec|red|hl|blue|left|right|begin|end)\b/g, " ")
+      return m.replace(/\\[,;:!]|\\q?quad/g, " ").replace(/\\(int|sum|prod|lim)(?![a-zA-Z])/g, function (_, n) { return { int: " ∫", sum: " Σ", prod: " Π", lim: " lim" }[n]; }).replace(/\\(frac|dfrac|sqrt|binom|text|mathbb|mathrm|abs|overline|vec|red|hl|blue|left|right|begin|end)\b/g, " ")
         .replace(/\\([a-zA-Z]+)/g, function (_, n) { return n === "infty" ? "∞" : GREC[n] || OPS[n] || ENS[n] || n; }).replace(/[{}^_\\]/g, " ");
     }).replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ").replace(/\s+/g, " ").trim();
   }
