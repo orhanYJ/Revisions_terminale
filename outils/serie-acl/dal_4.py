@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 4 : Jack entre en scène (PDF de travail, p. 15-22).
 
-Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés, mouvements) :
 le résumé est joué sur le plateau (visuel jeu : cuisine, jardin), en suivant les didascalies pas à pas ;
 les répliques courtes s'affichent en bulles et sont lues par les voix des personnages ; l'enfant n'est jamais vu
 (emplacement en pointillé près des cerfs-volants), Michael adulte dit ses répliques depuis le bord du plateau.

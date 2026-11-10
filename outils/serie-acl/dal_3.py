@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 3 : la fête des moissons (PDF de travail, p. 9-15).
 
-Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés sur le plateau) :
+Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés sur le plateau) :
 la scène est jouée pas à pas d'après les didascalies (visuel jeu) : Kate entre par la gauche du plateau (à droite vu de la
 salle), chargée de sacs, va au garçon (invisible : Michael adulte dit ses répliques), regarde les visages des cerfs-volants
 que le public ne voit pas (cerfs-volants montrés sans visage), rentre dans la cuisine ; Michael sort ; Austin Morgan,

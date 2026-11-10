@@ -40,7 +40,7 @@ PRONONCIATION = {"Reichstag": "Rikes-tahg", "Hindenburg": "Hin-den-burg", "Leben
                  "Corfu": "Kor-foo", "kulaks": "koo-lacks", "Gulag": "Goo-lag", "Stakhanov": "Sta-ka-noff",
                  "Sujet": "Soo-zhay", "fascistissime": "fa-shis-tee-see-may"}
 
-# vote NSDAP (graphique de M. Ros) : mai 1928, sept. 1930, juillet 1932, nov. 1932
+# vote NSDAP (graphique du cours) : mai 1928, sept. 1930, juillet 1932, nov. 1932
 VOTE = [[1928.4, 2.6], [1930.7, 18.3], [1932.55, 37.4], [1932.85, 33.1]]
 
 SCENES = [

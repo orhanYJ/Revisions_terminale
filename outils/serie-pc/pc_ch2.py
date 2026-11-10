@@ -40,7 +40,7 @@ SUSP = [[l, round(gauss(l, 630, 32, 0.025) + 0.001, 4)] for l in LAMS]
 CUSO4 = [[l, round(gauss(l, 830, 95, 0.20) + 0.003, 4)] for l in LAMS]
 # TP 2 : A = 0,13 × C (C en mg/L, cuve de 1,0 cm) ; suspecte A = 0,025 → C = 0,025 / 0,13 = 0,192 ≈ 0,19 mg/L
 TP2 = [[c, round(0.13 * c, 4)] for c in (0.04, 0.10, 0.20, 0.40, 0.50, 1.00, 2.00)]
-# TP 3 (mesures d'Orhan) : σ en mS/cm ; k ≈ 82 mS·cm⁻¹ par mol/L ; Saint-Marc /10 : σ = 2,10 → C = 2,10/82 = 0,0256 ≈ 2,6e-2
+# TP 3 (mesures d'un élève) : σ en mS/cm ; k ≈ 82 mS·cm⁻¹ par mol/L ; Saint-Marc /10 : σ = 2,10 → C = 2,10/82 = 0,0256 ≈ 2,6e-2
 TP3 = [[0.010, 0.76], [0.020, 1.64], [0.050, 4.14], [0.10, 7.43]]
 
 

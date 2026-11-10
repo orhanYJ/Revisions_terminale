@@ -11,7 +11,7 @@ chronologique de la carte).
 Contenu : CHAPTERS.H2 du site (dnl/index.html), section I.3 (15 idées : fascisme 1 à 7, stalinisme 8 à 12, nazisme 13
 à 15), idée 4 de l'introduction (définition de l'idéologie), schémas h2collect (Worksheet 2 : le processus de
 collectivisation, foyers collectivisés 7 % → 15 % → 57 % → 90 %, 1928-1936), h2ideo (trois idéologies comparées),
-h2grid (bloc « Ideology » du tableau de synthèse de M. Ros) et h2check (points à confirmer : Matteotti 1924 et non 1925,
+h2grid (bloc « Ideology » du tableau de synthèse du cours) et h2check (points à confirmer : Matteotti 1924 et non 1925,
 collectivisation « dès 1928 », T4 70 000 en 1939-1941, exemples pris hors du cours). Dits « outside the course » :
 le bilan d'environ quatre millions de morts de l'Holodomor, la relégation à Lipari, la déportation des koulaks vers la
 Sibérie et le Kazakhstan (carte), le « grand tournant » de 1929.
@@ -485,7 +485,7 @@ SCENES = [
                      vs="≠", repere="The key sentence of the comparison"),
     }),
 
-    # ================================================================ la grille de M. Ros et les points à confirmer
+    # ================================================================ la grille du cours et les points à confirmer
     dict(id="grille", chap="The synthesis grid of the course", fond="aube", humeur="calme",
          retenir="The grid, “Ideology” block: similarities (rejects liberal democracy; a supreme goal; total control for a New Man) · specificities: absolute State / race struggle / class struggle.",
          beats=[

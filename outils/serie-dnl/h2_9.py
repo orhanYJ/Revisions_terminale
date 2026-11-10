@@ -3,7 +3,7 @@
 Même chaîne que les épisodes de H3 (voir outils/serie-dnl/h3_1.py) : outils/serie-philo/generer.py h2_9 ; sortie dans
 dnl/serie/ ; modèle : h3_7.py (récapitulatif de H3).
 Contenu : la synthèse du chapitre dans le site (dnl/index.html, CHAPTERS.H2 : objective, big picture, timeline, key figures,
-idées des parties Intro, I.1 à I.3, II.1 à II.3, III.1 à III.3, key issue, key terms ; grille de synthèse de M. Ros H2_GRID et
+idées des parties Intro, I.1 à I.3, II.1 à II.3, III.1 à III.3, key issue, key terms ; grille de synthèse du cours H2_GRID et
 tableau comparatif H2_TABLE ; QCM H2_QCM). Rien n'est ajouté au cours ; seul le décret de 1938 sur l'enseignement du russe
 n'est pas repris (sa date vient d'ailleurs dans le site).
 Révision « pour l'oreille » du 06/11/2026 : phrases courtes, nombres et dates écrits comme ils se disent.

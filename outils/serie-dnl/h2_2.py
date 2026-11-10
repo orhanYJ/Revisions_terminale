@@ -10,7 +10,7 @@ chronologique de la carte).
        13 deux crises en 1929 · 16 la crise fait des nazis le premier parti · 20 Hitler chancelier · 21 incendie du Reichstag
 Contenu : CHAPTERS.H2 du site (dnl/index.html), sections I.1 (7 idées) et I.2 (7 idées), schémas h2legacy (H2Legacy :
 trois blessures de la guerre), h2parties (H2Parties : deux mouvements, mêmes composantes), h2weimar (H2Weimar :
-chômage et vote NSDAP ; valeurs du chômage lues sur le graphique de M. Ros, arrondies) et h2seizure (H2Seizure : deux
+chômage et vote NSDAP ; valeurs du chômage lues sur le graphique du cours, arrondies) et h2seizure (H2Seizure : deux
 chemins vers le pouvoir) ; points de H2Check repris : « Red Scare » / Terreur rouge, dates et effectifs de la marche
 sur Rome (27-31 octobre d'ordinaire, 25 000 à 30 000 selon d'autres estimations ; chiffres du cours conservés),
 croix gammée expliquée par Hitler dans Mein Kampf. Ce qui n'est pas dans le cours est dit « outside the course »
@@ -38,7 +38,7 @@ PRONONCIATION = {"Reichstag": "Rikes-tahg", "Hindenburg": "Hin-den-boorg", "Weim
                  "Petrograd": "Peh-tro-grad", "Trotsky": "Trot-skee", "Matteotti": "Mat-teh-ot-tee",
                  "fascistissime": "fa-shis-tee-see-meh", "Hanover": "Han-o-ver", "Spartacist": "Spar-ta-sist"}
 
-# chômage en Allemagne (millions), lu sur le graphique de M. Ros (H2Weimar), arrondi
+# chômage en Allemagne (millions), lu sur le graphique du cours (H2Weimar), arrondi
 CHOMAGE = [[1921, .35], [1922, .2], [1923, .75], [1924, 1.0], [1925, .65], [1926, 2.0], [1927, 1.35], [1928, 1.4],
            [1929, 1.9], [1930, 3.1], [1931, 4.5], [1932, 5.6]]
 # vote NSDAP aux élections au Reichstag (mai 1928, sept. 1930, juillet 1932, nov. 1932), placé en année décimale

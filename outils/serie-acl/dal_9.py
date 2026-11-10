@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 9 : le retour de Gerry (PDF de travail, p. 52-58).
 
-Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés, mouvements) :
 le résumé est joué sur le plateau (visuel jeu), en suivant les didascalies pas à pas ; les répliques courtes s'affichent en
 bulles et sont lues par la voix des sœurs (F) ou la voix d'homme (Gerry). Dans le sycomore, Gerry n'est qu'une voix :
 « (Now she sees him. The audience does not see him.) » (p. 56) ; il est placé hors cadre au-dessus de l'arbre, ses bulles

@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 13 : le tableau final (PDF de travail, p. 74-75).
 
-Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés, mouvements) :
 le tableau final est joué sur le plateau (visuel jeu) en suivant la didascalie de la p. 74 point par point : Maggie rentre dans
 la cuisine, Michael entre ; positions « similar to their positions at the beginning of the play — with some changes » :
 Agnes et Gerry sur le banc du jardin, Jack au garde-à-vous au coude d'Agnes, un cerf-volant (visage tourné vers la salle) entre

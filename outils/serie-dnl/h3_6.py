@@ -1,7 +1,7 @@
 """DNL History · H3 « World War Two » — série vidéo, épisode 6 : « WWII at the exam: essay and DBQ ».
 
 Même chaîne que l'épisode 1 (voir h3_1.py). Contenu : le format officiel de l'écrit BFI tel que le site le présente
-(TRAIN_QCM, « Réflexes d'épreuve », guide élève de l'ASIBA), la structure de la question a) du DBQ imposée par Cengiz
+(TRAIN_QCM, « Réflexes d'épreuve », guide élève de l'ASIBA), la structure de la question a) du DBQ imposée par le responsable du projet
 (jugement dès la première ligne, document en une phrase, paragraphe d'atouts, paragraphe de limites), les documents du
 cours (ordre de sévérité de Reichenau, 10 octobre 1941 ; discours de Staline, 6 novembre 1941 ; Worksheet 3), les points
 à vérifier du chapitre (H3Check). Les sujets et les copies modèles sont écrits pour la vidéo et dits comme tels.

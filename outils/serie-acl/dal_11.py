@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 11 : « What happened next », la seconde prolepse (PDF de travail, p. 62-64).
 
-Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés, mouvements) :
 le résumé est joué sur le plateau (visuel jeu). Rose sort, Michael entre (p. 62) ; pendant son long récit (p. 63-64),
 Michael est seul dans la lumière, au bord du plateau, les sœurs immobiles : tout ce qu'il raconte (l'usine, Londres, Jack,
 Gerry, le pays de Galles) est dit, jamais joué (bandeaux « told, not shown »). Puis les sœurs « resume their tasks » et

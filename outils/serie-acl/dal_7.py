@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 7 : « Cracks », la fin de l'acte I (PDF de travail, p. 37-44).
 
-Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés, mouvements) :
 le résumé est joué sur le plateau (visuel jeu), en suivant les didascalies pas à pas ; les répliques courtes s'affichent en
 bulles et sont lues par les voix des personnages ; l'enfant n'est jamais vu (emplacement en pointillé près des
 cerfs-volants), Michael adulte, entré à gauche p. 38, dit ses répliques depuis le bord du plateau. La prolepse finale de

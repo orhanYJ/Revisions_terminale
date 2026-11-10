@@ -12,7 +12,7 @@ chronologique de la carte).
 Contenu : section « Intro » du chapitre dans le site (dnl/index.html, CHAPTERS.H2) : 1929 et les deux crises, le débat
 des historiens (Taylor, Hehn, Winter), la définition en trois parties et la roue des sept traits (H2Wheel), l'idéologie
 et le discours de Staline du 7 janvier 1933, Arendt et la confiance des masses, trois régimes et une trajectoire,
-l'Europe des régimes vers 1938 (H2EuropeMap), la bibliographie de M. Ros (H2Reads) ; chiffres du vote nazi tirés de I.2.
+l'Europe des régimes vers 1938 (H2EuropeMap), la bibliographie du cours (H2Reads) ; chiffres du vote nazi tirés de I.2.
 Ce qui n'est pas dans le cours est dit « outside the course » (nuance sur « all ended in failure », chute de l'URSS en 1991).
 Erreur du cours corrigée : la roue des traits est attribuée à « MacDougal Littell » ; l'éditeur s'appelle McDougal Littell.
 Plan : ouverture (questions sur le globe, plan des neuf épisodes, titre) → la chronologie 1914-1939 sur la carte →
@@ -36,7 +36,7 @@ PRONONCIATION = {"Arendt": "Ah-rent", "Hehn": "Hayn", "Duce": "Doo-chay", "Führ
                  "Benigni": "Ben-een-yee", "Gansel": "Gahn-zel", "Costelle": "Coss-tell", "Cohen-Scali": "Co-en Scah-lee",
                  "Riefenstahl": "Reef-en-shtahl", "DBQ": "D B Q"}
 
-# vote nazi (cours, I.2, graphiques de M. Ros) : mai 1928, septembre 1930, juillet 1932, novembre 1932
+# vote nazi (cours, I.2, graphiques du cours) : mai 1928, septembre 1930, juillet 1932, novembre 1932
 VOTE = [[1928.4, 2.6], [1930.7, 18.3], [1932.55, 37.4], [1932.85, 33.1]]
 
 SCENES = [

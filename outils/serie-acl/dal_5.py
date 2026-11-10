@@ -1,6 +1,6 @@
 """Dancing at Lughnasa — résumé-analyse en vidéo, partie 5 : la danse (PDF de travail, p. 22-25).
 
-Version « jouée » (05/11/2026, demande d'Orhan : « comme Parable of the Sower », personnages représentés, mouvements) :
+Version « jouée » (05/11/2026, demande de l'élève : « comme Parable of the Sower », personnages représentés, mouvements) :
 le résumé est joué sur le plateau (visuel jeu : cuisine, jardin, Marconi), en suivant les didascalies pas à pas ;
 les répliques courtes s'affichent en bulles et sont lues par la voix des sœurs ; la danse se fait sur un reel original
 (humeur « reel », coupure nette au repère coupe). Puis trois didascalies expliquées et l'analyse.
