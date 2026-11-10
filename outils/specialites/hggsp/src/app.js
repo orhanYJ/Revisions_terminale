@@ -344,14 +344,21 @@
     $$(".anim").forEach(activerAnim);
   }
 
+  /* fond d'une carte ou d'une scène : « monde » (fond mondial commun), « @n » (fond régional partagé, CARTES.fonds[n],
+     dédoublonné par build.py) ou le SVG du fond lui-même */
+  function fondSVG(f) {
+    if (f === "monde") return '<rect width="' + CARTES.monde.w + '" height="' + CARTES.monde.h + '" class="k-mer-f"/><path class="k-grat" d="' + CARTES.monde.grat + '"/><path class="k-terre" d="' + CARTES.monde.terre + '"/>';
+    if (f && f.charAt(0) === "@") return CARTES.fonds[+f.slice(1)];
+    return f || "";
+  }
+
   /* ---------------- animations explicatives pas à pas (ANIMS) ---------------- */
   function animHTML(nom, uid) {
     var A = ANIMS[nom];
     if (!A) return "";
     var sc = typeof A.scene === "string" ? CARTES.anims[A.scene.slice(6)] : A.scene;
     var vb = sc.vb || [0, 0, sc.w, sc.h], fond = "";
-    if (sc.fond === "monde") fond = '<rect width="' + CARTES.monde.w + '" height="' + CARTES.monde.h + '" class="k-mer-f"/><path class="k-grat" d="' + CARTES.monde.grat + '"/><path class="k-terre" d="' + CARTES.monde.terre + '"/>';
-    else if (sc.fond) fond = sc.fond;
+    fond = fondSVG(sc.fond);
     var pts = A.etapes.map(function (e, i) { return '<button class="a-pt" data-i="' + i + '" aria-label="Étape ' + (i + 1) + ' : ' + esc(sans(e.titre)) + '"><span>' + (i + 1) + '</span></button>'; }).join("");
     return '<figure class="anim" data-anim="' + nom + '" id="' + uid + '"><div class="a-tete"><span class="etiq">Animation · ' + A.etapes.length + ' étapes</span><h3>' + typo(A.titre) + '</h3></div>' +
       '<div class="a-cadre"><svg viewBox="' + vb.join(" ") + '" role="img" aria-label="' + esc(sans(A.titre)) + '">' + fond + (sc.calques || sc.svg || "") + '</svg><div class="a-date" aria-hidden="true"></div></div>' +
@@ -417,7 +424,7 @@
   function carteHTML(nom, uid) {
     var m = CARTES.cartes[nom], meta = m.meta, W = m.w, H = m.h, vb = m.vb || [0, 0, W, H];
     var s = '<svg viewBox="' + vb.join(" ") + '" role="img" aria-label="' + esc(meta.t) + '">';
-    s += m.fond === "monde" ? '<rect width="' + W + '" height="' + H + '" class="k-mer-f"/><path class="k-grat" d="' + CARTES.monde.grat + '"/><path class="k-terre" d="' + CARTES.monde.terre + '"/>' : m.fond;
+    s += fondSVG(m.fond);
     s += m.deco;
     m.pts.forEach(function (p, i) {
       var col = meta.c[p.c][1], dx = p.a === "end" ? -8 : 8;
