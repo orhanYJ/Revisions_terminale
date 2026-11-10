@@ -1,4 +1,4 @@
-var CACHE = 'nsi-v2';
+var CACHE = 'nsi-v3';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=9'];
 
 self.addEventListener('install', function (e) {

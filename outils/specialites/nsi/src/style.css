@@ -650,7 +650,7 @@ html.mo .eu-c.neuf{animation:pop .45s cubic-bezier(.2,.9,.3,1.3) backwards;trans
 .eu-cote .q0{border-left-color:var(--bleu)!important}.eu-cote .q1{border-left-color:var(--vert)!important}.eu-cote .q2{border-left-color:var(--ambre)!important}.eu-cote .q3{border-left-color:var(--rouge)!important}
 .eu-ab{margin-top:6px;color:var(--encre2)}
 /* animation : cycle d'une machine de von Neumann */
-.vn{display:block;width:100%;max-width:520px;height:auto;margin:0 auto}
+.vn{display:block;width:100%;max-width:430px;height:auto;margin:0 auto}
 .vn-bloc{fill:none;stroke:var(--encre3);stroke-width:1.4;stroke-dasharray:5 4}
 .vn-jeton rect{fill:var(--ambre);stroke:var(--bg2);stroke-width:2}
 .ar .scene svg .vn-jeton text{fill:var(--bg);font-weight:700;font-size:11px}
@@ -680,3 +680,7 @@ html.mo .code>.fondu-d{transition:opacity .25s}
 @media print{.code pre{overflow:visible;white-space:pre-wrap;word-break:break-word}.code pre .l{min-width:0;padding-left:3.9em;text-indent:-3.9em}.tab-wrap{overflow:visible}}
 @media (max-width:480px){.jointure .table-bd td:nth-child(2),.requete .table-bd td:first-child{white-space:normal;min-width:7.5em}.jointure .table-bd table,.requete .table-bd table{font-size:.76rem}.jointure .table-bd th,.jointure .table-bd td,.requete .table-bd th,.requete .table-bd td{padding:5px 6px}}
 @media (max-width:380px){.requete .table-bd table{font-size:.72rem}.ar-tab th,.ar-tab td{padding:4px 4px}.w .aa table td,.w .aa table th{padding:4px 5px}.w .aa .tab-wrap th{white-space:normal}.requete .table-bd th,.requete .table-bd td{padding:5px 4px}}
+/* programme : sur téléphone, le nom du fichier passe sous l'intitulé au lieu de l'écraser */
+.item-prog>a{flex-wrap:wrap;row-gap:2px}
+.item-prog>a .ti{flex:1 1 13em;min-width:0}
+.item-prog>a>.mono{margin-left:auto}
