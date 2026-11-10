@@ -43,7 +43,7 @@ SCENES = [
         "Tout le chapitre sort de ce simple {!transfert}transfert.",
         "{-tab_cit}{plan}Dans cette vidéo, on part de zéro. {plan.1}D'abord les rappels indispensables, et l'origine de l'acidité : la liaison polarisée. "
         "{plan.2}Puis les définitions de Brønsted, les couples et les réactions acide-base. "
-        "{plan.3}Ensuite le pH, le logarithme et la dilution, avec le TP un. "
+        "{plan.3}Ensuite le pH, le logarithme et la dilution, avec une expérience classique. "
         "{plan.4}Puis la question qui tombe au bac : la réaction avec l'eau est-elle totale, ou limitée ? "
         "{plan.5}Et pour finir, trois exercices corrigés : un simple, un plus difficile, et un type bac.",
         "{-plan}{titre}",
@@ -56,7 +56,7 @@ SCENES = [
         "q3": dict(type="question", t="Même concentration : pH 2,0 d'un côté, pH 2,8 de l'autre."),
         "plan": dict(type="liste", titre="Le chemin", items=[
             "Les rappels, et l'origine de l'acidité", "Brønsted : acides, bases, couples, réactions",
-            "Le pH, le logarithme, la dilution et le TP 1", "Réaction totale ou limitée ?",
+            "Le pH, le logarithme, la dilution et une expérience", "Réaction totale ou limitée ?",
             "Trois exercices corrigés : simple, difficile, type bac"], x=170, y=130, w=940),
         "titre": dict(type="titre", sur="Physique-chimie · Chapitre 1", t="Transformations acides-bases",
                       sous="Le cours complet, de zéro au bac"),
@@ -85,7 +85,7 @@ SCENES = [
         "{f_dil.1}La quantité de soluté ne change pas, d'où la relation : C mère fois V mère égale C fille fois V fille. "
         "{f_dil.2}Le facteur de dilution F, c'est C mère sur C fille, ou encore V fille sur V mère. "
         "{f_dil.3}Pour diluer dix fois, on prélève par exemple dix millilitres de solution mère à la pipette jaugée, "
-        "et on complète à cent millilitres dans une fiole jaugée. C'est exactement le geste du TP un.",
+        "et on complète à cent millilitres dans une fiole jaugée. C'est le geste de base au laboratoire.",
         "{-f_dil}",
     ], vis={
         "echelle": dict(type="liste", titre="L'échelle de pH à 25 °C", items=[
@@ -182,7 +182,7 @@ SCENES = [
         "L'ammoniac est une base.",
         "{br_pts.2}{an_br.2}Et remarque ce qu'a fait l'eau. Face au chlorure d'hydrogène, elle captait un H plus : elle était une base. "
         "Face à l'ammoniac, elle en cède un : elle est un acide. Une espèce qui possède les deux caractères est dite {!amphotère}amphotère.",
-        "{-an_br}{-br_pts}{ex_br}Deux exemples vus en classe. {ex_br.1}Le sulfure d'hydrogène est un acide, car il peut libérer un proton : "
+        "{-an_br}{-br_pts}{ex_br}Deux exemples classiques. {ex_br.1}Le sulfure d'hydrogène est un acide, car il peut libérer un proton : "
         "H deux S donne H plus et H S moins. "
         "{ex_br.2}L'ammoniac est une base : N H trois, plus H plus, donne N H quatre plus.",
         "{-ex_br}{redox}Attention au piège classique : ne confonds pas acide-base et oxydoréduction. "
@@ -209,7 +209,7 @@ SCENES = [
         "br_pts": dict(type="liste", petit=True, titre="Ce que montre l'animation", x=680, y=150, w=560, items=[
             "Le doublet de l'azote capte H^{+} : NH_3 + H_2O ⇌ NH_4^{+} + " + HO,
             "L'eau : base face à HCl, acide face à NH_3 · elle est amphotère"]),
-        "ex_br": dict(type="formule", titre="Deux exemples vus en classe", x=150, y=170, w=980, lignes=[
+        "ex_br": dict(type="formule", titre="Deux exemples classiques", x=150, y=170, w=980, lignes=[
             dict(f="H_2S → H^{+} + HS^{−}", n="le sulfure d'hydrogène cède un proton : un acide"),
             dict(f="NH_3 + H^{+} → NH_4^{+}", n="l'ammoniac capte un proton : une base")]),
         "redox": dict(type="formule", titre="Acide-base ou oxydoréduction ?", x=150, y=130, w=980, lignes=[
@@ -277,7 +277,7 @@ SCENES = [
         "{reperer.3}Quand on dissout de l'aspirine, par exemple, les couples sont l'aspirine et sa base conjuguée, et H trois O plus sur H deux O : "
         "l'eau joue le rôle de base.",
         "{-reperer}{note_tot}Une précision : savoir si la réaction est totale, avec une flèche simple, ou limitée, avec une double flèche, ne se devine pas. "
-        "Cela se décide par une mesure de pH. On le verra à la fin du cours.",
+        "Cela se décide par une mesure de pH. On le verra à la fin du chapitre.",
         "{-note_tot}",
     ], vis={
         "an_re": dict(type="anim", nom="acidebase", x=40, y=72, h=624, seg=[[39.8, 48.5]]),
@@ -442,14 +442,14 @@ SCENES = [
         "{-an_dil}{-dil_pts}{f_dil2}{f_dil2.1}C'est la propriété du logarithme : diviser la concentration par un facteur F ne divise pas le pH. Elle l'augmente de log F. "
         "{f_dil2.2}Diluer dix fois fait monter le pH d'exactement une unité. "
         "{f_dil2.3}Doubler la concentration le fait baisser de log deux, soit zéro virgule trente.",
-        "{-f_dil2}{ex_no3}Un exemple, tiré des exercices du chapitre. On prépare cinquante millilitres de solution avec un gramme d'acide nitrique, "
+        "{-f_dil2}{ex_no3}Un exemple classique d'exercice. On prépare cinquante millilitres de solution avec un gramme d'acide nitrique, "
         "qui réagit totalement avec l'eau. "
         "{ex_no3.1}Sa masse molaire vaut soixante-trois grammes par mole. n égale m sur M : un virgule six fois dix puissance moins deux mole. "
         "{ex_no3.2}c égale n sur V : zéro virgule trente-deux mole par litre. "
         "{ex_no3.3}Un monoacide, une réaction totale : la concentration en ions oxonium égale c. Le pH vaut moins log de zéro virgule trente-deux : zéro virgule cinquante. "
         "Un pH très bas, mais normal pour un acide fort aussi concentré. "
         "{ex_no3.4}Et si on doublait la quantité d'acide, le pH baisserait de zéro virgule trente : zéro virgule vingt.",
-        "{-ex_no3}{poh}Une échelle miroir, vue en exercice : {poh.1}le p O H, moins log de la concentration en ions hydroxyde. "
+        "{-ex_no3}{poh}Une échelle miroir, utile en exercice : {poh.1}le p O H, moins log de la concentration en ions hydroxyde. "
         "{poh.2}Le produit des concentrations en ions oxonium et hydroxyde vaut dix puissance moins quatorze à vingt-cinq degrés : c'est le produit ionique de l'eau. "
         "{poh.3}Passé au logarithme, il devient : pH plus p O H égale quatorze. C'est commode quand l'espèce apportée est une base.",
         "{-poh}",
@@ -467,23 +467,23 @@ SCENES = [
             dict(f="c = " + fr("n", "V") + " = " + fr("1,6 × 10^-2", "50,0 × 10^-3") + " = 0,32 mol·L^-1", taille=38),
             dict(f="totale, monoacide : [" + H3O + "] = c ; pH = −log(0,317) = 0,50", cadre=True, taille=36),
             dict(f="quantité doublée : pH = 0,50 − 0,30 = 0,20", taille=36)]),
-        "poh": dict(type="formule", titre="Vu en exercice · le pOH", x=150, y=150, w=980, lignes=[
+        "poh": dict(type="formule", titre="Utile en exercice · le pOH", x=150, y=150, w=980, lignes=[
             dict(f="pOH = − log ( [" + HO + "] / c° )"),
             dict(f="[" + H3O + "] × [" + HO + "] / (c°)^{2} = K_e = 10^-14", n="produit ionique de l'eau, à 25 °C"),
             dict(f="pH + pOH = 14", cadre=True)]),
     }),
 
     # ================================================================ X. TP 1
-    dict(id="tp1", chap="Le TP 1 : tester la relation", fond="nuit", humeur="tension",
+    dict(id="tp1", chap="Expérience : tester la relation", fond="nuit", humeur="tension",
          retenir="Critère : |pH_mes − pH_théo| / u(pH) ≤ 2, avec u(pH) = 0,1. Seules S₃ et S₄ passent : un modèle a un domaine de validité.",
          beats=[
-        "{tab_phm}Au TP un, on a testé cette relation. {tp_prot}{tp_prot.1}Six solutions d'acide chlorhydrique, de une mole par litre à dix puissance moins cinq, "
+        "{tab_phm}Au laboratoire, on peut tester cette relation. {tp_prot}{tp_prot.1}Six solutions d'acide chlorhydrique, de une mole par litre à dix puissance moins cinq, "
         "obtenues par dilutions successives d'un facteur dix. "
         "{tp_prot.2}Le matériel : une pipette jaugée de dix millilitres, et une fiole jaugée de cent millilitres. Une pipette jaugée, pas graduée : "
         "sur cinq dilutions enchaînées, les erreurs s'accumulent. "
         "{tp_prot.3}Le pH-mètre est d'abord étalonné, avec un tampon de pH sept, puis de pH quatre. "
         "{tp_prot.4}On rince l'électrode entre chaque solution, et on mesure de la plus diluée à la plus concentrée.",
-        "{-tp_prot}{-tab_phm}{gr_tp}Voici les mesures, tracées en fonction de moins log c. "
+        "{-tp_prot}{-tab_phm}{gr_tp}Voici une série de mesures réalisées au laboratoire, tracées en fonction de moins log c. "
         "{gr_tp.1}Si la relation était parfaite, les points seraient sur cette droite de pente un. "
         "{gr_tp.2}Les mesures : zéro virgule cinquante-trois, un virgule quarante, deux virgule vingt-six, trois virgule zéro quatre, quatre virgule seize, cinq virgule soixante-six. "
         "L'accord est excellent au milieu, et se dégrade aux deux extrémités.",
@@ -493,7 +493,7 @@ SCENES = [
         "l'étalonnage, la dérive de l'électrode et l'agitation dominent. "
         "{f_crit.3}Les quotients valent cinq virgule trois, quatre, deux virgule six, zéro virgule quatre, un virgule six, et six virgule six. "
         "{f_crit.4}Seules S trois et S quatre passent le test.",
-        "{-f_crit}{causes}Ce n'est pas une erreur de manipulation : c'est le point le plus intéressant du TP. "
+        "{-f_crit}{causes}Ce n'est pas une erreur de manipulation : c'est le point le plus intéressant de l'expérience. "
         "{causes.1}Côté concentré, les ions sont si nombreux qu'ils interagissent : leur concentration efficace est plus faible que prévu, et le pH mesuré est trop élevé. "
         "{causes.2}Côté dilué, l'eau elle-même et surtout le dioxyde de carbone de l'air, dissous dans l'eau distillée, apportent des ions oxonium. "
         "{causes.3}Et cinq dilutions en cascade accumulent les erreurs de pipetage.",
@@ -504,12 +504,12 @@ SCENES = [
     ], vis={
         "tab_phm": dict(type="tableau", img="c1-phmetre", fond=True, sombre=True, de=[1.0, .5, .72], a=[1.3, .5, .78],
                         legende="pH-mètre de laboratoire, photo OER CampLev, CC BY-SA 4.0"),
-        "tp_prot": dict(type="liste", titre="TP 1 · le protocole", items=[
+        "tp_prot": dict(type="liste", titre="Expérience · le protocole", items=[
             "Six solutions de HCl, de 1,0 à 10^-5 mol·L^-1, diluées de 10 en 10",
             "Pipette jaugée de 10,0 mL + fiole jaugée de 100,0 mL (jamais graduée)",
             "Étalonnage : tampon pH 7, puis tampon pH 4",
             "Rincer l'électrode · mesurer de la plus diluée à la plus concentrée"], marques=["1", "2", "3", "4"], x=150, y=150, w=980),
-        "gr_tp": dict(type="graphe", titre="TP 1 · pH mesuré en fonction de −log c", x=330, y=100, w=640, h=540,
+        "gr_tp": dict(type="graphe", titre="Expérience · pH mesuré en fonction de −log c", x=330, y=100, w=640, h=540,
                       ax=dict(x=[0, 6], y=[0, 6], gx=[1, 2, 3, 4, 5], gy=[1, 2, 3, 4, 5], lx="−log c", ly="pH"),
                       el=[dict(type="droite", pts=[[0, 0], [5.8, 5.8]], c="el", tir=True, lbl="théorie : pH = −log c", lp=[0.4, 5.4]),
                           dict(type="points", pts=[list(p) for p in TP1], c="sa", pas=.35)]),
@@ -531,7 +531,7 @@ SCENES = [
     dict(id="totale", chap="Réaction totale ou limitée ?", fond="aube", humeur="tension",
          retenir="pH mesuré = pH théorique : réaction totale (→). pH mesuré > pH théorique : réaction limitée (⇌). Plus petit : impossible, erreur de calcul.",
          beats=[
-        "{q_tot}Dernière notion du cours, et la plus fréquente au bac. Le chlorure d'hydrogène réagit totalement avec l'eau : on écrit une flèche simple. "
+        "{q_tot}Dernière notion du chapitre, et la plus fréquente au bac. Le chlorure d'hydrogène réagit totalement avec l'eau : on écrit une flèche simple. "
         "L'acide éthanoïque ne réagit que partiellement : double flèche. Comment le sait-on ?",
         "{-q_tot}{meth}En comparant le pH mesuré au pH qu'on aurait si tout avait réagi. La méthode, en cinq étapes. "
         "{meth.1}Un : écrire l'équation de la réaction de l'acide avec l'eau. "
@@ -554,7 +554,7 @@ SCENES = [
         "{concl2.2}Si le pH mesuré est plus grand, il manque des ions oxonium : réaction limitée, double flèche. "
         "{concl2.3}Un pH mesuré plus petit que le pH théorique est impossible : on ne peut pas produire plus d'ions oxonium que l'acide n'en contient. "
         "Si tu trouves ça, cherche l'erreur de calcul.",
-        "{-concl2}{rq_tab}Deux remarques. La valeur de deux virgule huit est celle de l'exemple du cours ; les tables de données donnent plutôt trois virgule quatre "
+        "{-concl2}{rq_tab}Deux remarques. La valeur de deux virgule huit est celle de cet exemple ; les tables de données donnent plutôt trois virgule quatre "
         "à cette concentration, mais la conclusion est la même. "
         "Et cette distinction sera quantifiée au chapitre suivant, avec le taux d'avancement et la constante d'acidité. "
         "Pour l'instant, il suffit de savoir trancher à partir d'un pH mesuré.",
@@ -581,7 +581,7 @@ SCENES = [
             "pH_{mes} > pH_{théo} : réaction limitée, double flèche ⇌",
             "pH_{mes} < pH_{théo} : impossible, cherche l'erreur"], marques=["→", "⇌", "✗"], x=150, y=170, w=980),
         "rq_tab": dict(type="note", titre="Deux remarques", cles=["tables", "chapitre suivant"],
-                       t="2,8 est la valeur de l'exemple du cours ; les tables donnent plutôt 3,4 à cette concentration (même conclusion). Taux d'avancement et constante d'acidité : au chapitre suivant.",
+                       t="2,8 est la valeur de cet exemple ; les tables donnent plutôt 3,4 à cette concentration (même conclusion). Taux d'avancement et constante d'acidité : au chapitre suivant.",
                        x=170, y=200, w=940),
     }),
 
@@ -603,7 +603,7 @@ SCENES = [
         "{-s12}{ex1c.q3}{s13}{s13.1}Question trois : la relation réciproque. Crochet H trois O plus égale c zéro fois dix puissance moins pH. "
         "{s13.2}Dix puissance moins trois virgule vingt : {s13.3}six virgule trois fois dix puissance moins quatre mole par litre. "
         "Deux décimales sur le pH, deux chiffres significatifs sur la concentration.",
-        "{-s13}{ex1c.q4}{s14}{s14.1}Question quatre : la méthode du cours. Si la réaction était totale, la concentration en ions oxonium serait égale à c, "
+        "{-s13}{ex1c.q4}{s14}{s14.1}Question quatre : la méthode en cinq étapes. Si la réaction était totale, la concentration en ions oxonium serait égale à c, "
         "trois virgule cinq fois dix puissance moins trois mole par litre. "
         "{s14.2}Le pH théorique vaudrait deux virgule quarante-six. "
         "{s14.3}On mesure trois virgule vingt : c'est plus grand. Il manque des ions oxonium : la réaction est limitée, on écrit une double flèche. "
@@ -668,7 +668,7 @@ SCENES = [
         "{-s24}{ex2c.q5}{s25}{s25.1}Question cinq : non. La relation pH plus log F suppose que la concentration en ions oxonium égale c, "
         "c'est-à-dire une réaction totale. "
         "{s25.2}Pour une réaction limitée, diluer favorise la réaction avec l'eau : une plus grande proportion de molécules réagit, ce qui compense en partie la dilution. "
-        "{s25.3}Le pH de B augmente donc de moins de un virgule trente. C'est ce qu'on a vu avec l'acide éthanoïque : dilué dix fois, son pH ne monte que de zéro virgule six environ.",
+        "{s25.3}Le pH de B augmente donc de moins de un virgule trente. C'est le cas de l'acide éthanoïque : dilué dix fois, son pH ne monte que de zéro virgule six environ.",
         "{-s25}{-ex2c}",
     ], vis={
         "ex2": dict(type="exo", niveau="difficile", y=50, titre="Deux flacons sans étiquette", src="Exercice inventé pour la vidéo",
@@ -701,7 +701,7 @@ SCENES = [
         "s25": dict(type="formule", titre="5 · Et si on diluait B ?", x=540, y=130, w=700, lignes=[
             dict(f="pH + log F suppose [" + H3O + "] = c : réaction totale", txt=True),
             dict(f="limitée : diluer fait réagir une plus grande proportion", txt=True),
-            dict(f="le pH de B monte de moins de 1,30", cadre=True, taille=34, n="cours : acide éthanoïque dilué 10 fois, + 0,6 seulement")]),
+            dict(f="le pH de B monte de moins de 1,30", cadre=True, taille=34, n="exemple : acide éthanoïque dilué 10 fois, + 0,6 seulement")]),
     }),
 
     # ================================================================ XIV. exercice 3 (type bac)
@@ -797,9 +797,9 @@ SCENES = [
         "{bac.3}Représenter le schéma de Lewis d'un acide carboxylique, d'un ion carboxylate, d'une amine et d'un ion ammonium. "
         "{bac.4}Identifier une espèce amphotère. "
         "{bac.5}Passer du pH à la concentration en ions oxonium, et inversement. "
-        "{bac.6}Mesurer des pH pour tester la relation, comme au TP un. "
+        "{bac.6}Mesurer des pH pour tester la relation, au laboratoire. "
         "{bac.7}Et manier le logarithme décimal et sa réciproque.",
-        "Si tu sais faire ces sept choses, tu as tout le bagage du chapitre. Le site t'attend avec les exercices corrigés, le TP un et la fiche mémo. "
+        "Si tu sais faire ces sept choses, tu as tout le bagage du chapitre. Pour t'en assurer, entraîne-toi sur d'autres exercices corrigés, jusqu'à les réussir sans aide. "
         "Et maintenant, les questions du quiz, juste sous la vidéo.",
         "{-bac}",
     ], vis={
@@ -811,7 +811,7 @@ SCENES = [
         "bac": dict(type="liste", titre="Pour le bac · à cocher", items=[
             "Identifier un transfert de H^{+}, les couples, écrire l'équation", "Connaître les couples exigibles",
             "Lewis : acide carboxylique, carboxylate, amine, ammonium", "Identifier une espèce amphotère",
-            "Passer du pH à [" + H3O + "], et inversement", "Mesurer des pH pour tester la relation (TP 1)",
+            "Passer du pH à [" + H3O + "], et inversement", "Mesurer des pH pour tester la relation",
             "Manier log et 10^{x}"], marques=["✓"] * 7, x=170, y=80, w=940, petit=True),
     }),
 ]
@@ -846,6 +846,6 @@ QUIZ = [
 CREDITS = [
     "Portraits : Søren Sørensen dans son laboratoire, photographie anonyme (domaine public) ; Johannes Brønsted, photographie de Peter Elfelt (domaine public).",
     "Photos : citron entier et coupé, Ivar Leidus, CC BY-SA 4.0 ; pH-mètre Mettler Toledo FiveEasy, OER CampLev, CC BY-SA 4.0.",
-    "Images trouvées sur Wikimedia Commons. Animation, schémas et graphique : faits pour le site. Mesures du TP 1 : celles d'un élève. "
+    "Images trouvées sur Wikimedia Commons. Animation, schémas et graphique : faits pour la vidéo. Mesures : une série réalisée au laboratoire. "
     "Les trois exercices sont inventés pour la vidéo.",
 ]

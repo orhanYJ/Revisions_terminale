@@ -58,6 +58,18 @@ def _charger():
     return _modele
 
 
+_registres = {}
+
+
+def registre(voix):
+    """Hauteur médiane (Hz) de la voix de référence : sert à repérer une prise partie dans l'aigu."""
+    if voix not in _registres:
+        import librosa, prosodie
+        y, sr = librosa.load(REF[voix][0], sr=16000, mono=True)
+        _registres[voix] = prosodie.profil(y, sr)[1]
+    return _registres[voix]
+
+
 def _prompt(voix):
     if voix not in _prompts:
         wav, txt = REF[voix]
@@ -97,9 +109,28 @@ def _caler(lu, mots_w, duree):
     return [[round(x[0], 3), round(max(0.05, x[1]), 3), w] for x, (_, w) in zip(t, mt)]
 
 
+def _en_lettres(texte):
+    """Les nombres écrits en chiffres par la reconnaissance (« 633 », « 6,63 ») passent en lettres, comme le texte lu :
+    sans cela, un passage chiffré paraît mal dit alors que la voix est juste."""
+    try:
+        from num2words import num2words
+    except ImportError:
+        return texte
+    def un(m):
+        x = m.group(0).replace("\u202f", "").replace(" ", "")
+        try:
+            if "," in x or "." in x:
+                e, d = re.split(r"[,.]", x, 1)
+                return num2words(int(e), lang="fr") + " virgule " + " ".join([num2words(int(d), lang="fr")] if not d.startswith("0") else [num2words(int(c), lang="fr") for c in d])
+            return num2words(int(x), lang="fr")
+        except Exception:
+            return m.group(0)
+    return re.sub(r"\d[\d\u202f ]*(?:[,.]\d+)?", un, texte)
+
+
 def _score(lu, texte_reconnu):
     """Ressemblance lettre à lettre (la découpe en mots de la reconnaissance diffère parfois : « l' » + « intelligence »)."""
-    return difflib.SequenceMatcher(None, _norm(lu), _norm(texte_reconnu), autojunk=False).ratio()
+    return difflib.SequenceMatcher(None, _norm(lu), _norm(_en_lettres(texte_reconnu)), autojunk=False).ratio()
 
 
 def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
@@ -112,8 +143,9 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
     # une prise monocorde est refaite, demande de Cengiz du 06/11/2026 : « une voix naturelle, des intonations,
     # moins de robotisme »). On garde la prise juste la plus vivante ; au plus quatre prises.
     import prosodie
+    reg = registre(voix)
     meilleur = None
-    for essai in range(4):
+    for essai in range(6):
         torch.manual_seed(1234 + 17 * essai + len(texte))
         w, sr = m.generate_voice_clone(text=texte, language=LANGUES[langue], voice_clone_prompt=p)
         a = w[0].astype(np.float32)
@@ -126,15 +158,22 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
         except Exception:
             pm = {"relief": 3.0, "elan": 2.0}
         vie = pm["relief"] + pm["elan"]
-        # rang : d'abord la justesse (au-dessus de 0,88 toutes les prises se valent), puis l'intonation
-        rang = (min(sc, 0.88), vie)
+        try:
+            an = prosodie.anomalies(y, 16000, reg)     # voix partie dans l'aigu, vrille, glissements (10/11/2026)
+        except Exception:
+            an = []
+        # rang : d'abord une prise sans dérapage, puis la justesse (au-dessus de 0,88 toutes les prises se valent),
+        # puis l'intonation
+        rang = (0 if an else 1, min(sc, 0.88), vie)
         if meilleur is None or rang > meilleur[0]:
-            meilleur = (rang, sc, a, sr, mots, pm)
-        if sc >= 0.9 and not prosodie.plat(pm):
+            meilleur = (rang, sc, a, sr, mots, pm, an)
+        if not an and sc >= 0.9 and not prosodie.plat(pm):
             break
-        if essai >= 1 and meilleur[1] >= 0.9 and not prosodie.plat(meilleur[5]):
+        if essai >= 3 and not meilleur[6] and meilleur[1] >= 0.88:
             break
-    _, sc, a, sr, mots, pm = meilleur
+    _, sc, a, sr, mots, pm, an = meilleur
+    if an:
+        print(f"    dérapage restant ({', '.join(an)}) : {texte[:60]}", flush=True)
     if prosodie.plat(pm):
         print(f"    intonation plate (relief {pm['relief']}, élan {pm['elan']}) : {texte[:60]}", flush=True)
     tmp = chemin + ".wav.part"

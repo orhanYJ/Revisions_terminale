@@ -98,9 +98,9 @@ SCENES = [
         "chaque réactif diminue de son coefficient fois x, et chaque produit augmente de la même façon. "
         "{av.2}La réaction s'arrête au premier réactif épuisé : c'est le {!limitant}réactif limitant.",
         "{av.3}Retiens ce réflexe, il va servir tout le chapitre : avant l'équivalence d'un titrage, c'est le réactif versé qui est limitant. Après, c'est le réactif du bécher.",
-        "{-av}{outils}Enfin, les deux chapitres précédents. {outils.1}Du chapitre un : les couples acide-base. Un acide cède un ion H plus, une base le capte. "
+        "{-av}{outils}Enfin, quelques outils de terminale. {outils.1}Côté acides et bases : les couples acide-base. Un acide cède un ion H plus, une base le capte. "
         "{outils.2}Et le pH, moins le logarithme de la concentration en ions H trois O plus. Une grandeur logarithmique : gardons ce mot en tête. "
-        "{outils.3}Du chapitre deux : la loi de Kohlrausch. La conductivité sigma est la somme des contributions de chaque ion, lambda fois sa concentration. "
+        "{outils.3}Côté conductimétrie : la loi de Kohlrausch. La conductivité sigma est la somme des contributions de chaque ion, lambda fois sa concentration. "
         "{outils.4}Et de seconde : la dilution, c mère fois V mère égale c fille fois V fille.",
         "En première, tu as déjà fait un titrage : on versait une solution violette de permanganate, et l'équivalence se repérait quand la couleur persistait. "
         "Ce chapitre garde exactement ce principe, et ajoute deux façons plus précises de repérer l'équivalence.",
@@ -116,9 +116,9 @@ SCENES = [
             "La réaction s'arrête au premier réactif épuisé : le réactif limitant",
             "Titrage : avant l'équivalence, le réactif versé est limitant ; après, celui du bécher"],
                    marques=["1", "2", "3"], x=150, y=160, w=980),
-        "outils": dict(type="liste", titre="Ce que les chapitres précédents apportent", items=[
-            "Couples acide-base : acide ⇌ base + H⁺ (ch. 1)", "pH = −log [H₃O⁺] : une grandeur logarithmique (ch. 1)",
-            "Kohlrausch : σ = Σ λ_i [X_i] (ch. 2)", "Dilution : c_{mère} × V_{mère} = c_{fille} × V_{fille} (2nde)"],
+        "outils": dict(type="liste", titre="Les autres outils de départ", items=[
+            "Couples acide-base : acide ⇌ base + H⁺", "pH = −log [H₃O⁺] : une grandeur logarithmique",
+            "Kohlrausch : σ = Σ λ_i [X_i]", "Dilution : c_{mère} × V_{mère} = c_{fille} × V_{fille} (2nde)"],
                        marques=["1", "2", "3", "4"], x=150, y=150, w=980),
     }),
 
@@ -133,11 +133,11 @@ SCENES = [
         "{montage.3}Un agitateur magnétique homogénéise après chaque ajout. {montage.4}Et une sonde suit une grandeur : le pH, ou la conductivité.",
         "{-montage}{exig}La réaction entre le titré et le titrant s'appelle la réaction support. Elle doit remplir trois conditions. "
         "{exig.1}Elle doit être totale : chaque goutte versée doit réagir entièrement, sinon la quantité versée ne dirait plus la quantité consommée. "
-        "{exig.2}Rapide : finie le temps d'agiter, sinon on lirait une mesure en cours d'évolution. "
+        "{exig.2}Rapide : finie le temps d'agiter, sinon on lirait une mesure encore en train d'évoluer. "
         "{exig.3}Et unique : si le titrant réagissait aussi avec autre chose, une partie de ce qu'on verse serait perdue, et le résultat serait faux.",
         "{-exig}{destr}Un titrage est une méthode destructive : l'espèce dosée est consommée, on ne la récupère pas. "
         "C'est le prix à payer pour une méthode très précise, qui ne demande ni droite d'étalonnage, ni appareil coûteux.",
-        "{-destr}{dos}Un mot de vocabulaire, souvent demandé. {dos.1}Un dosage, c'est toute méthode qui détermine une quantité. L'étalonnage du chapitre deux en est un. "
+        "{-destr}{dos}Un mot de vocabulaire, souvent demandé. {dos.1}Un dosage, c'est toute méthode qui détermine une quantité. Un dosage par étalonnage en est un. "
         "{dos.2}Un titrage est un dosage particulier, fondé sur une réaction chimique. Tout titrage est un dosage, mais l'inverse est faux.",
         "{-dos}",
     ], vis={
@@ -151,7 +151,7 @@ SCENES = [
             "Unique : le titrant ne réagit avec rien d'autre"], marques=["1", "2", "3"], x=150, y=170, w=980),
         "destr": dict(type="note", titre="Une méthode destructive", cles=["destructive", "précise"],
                       t="L'espèce titrée est consommée. En échange : une méthode très précise, sans droite d'étalonnage.", x=170, y=210, w=940),
-        "dos": dict(type="cols", g="Dosage", gq="toute méthode qui détermine une quantité · ex. l'étalonnage du chapitre 2",
+        "dos": dict(type="cols", g="Dosage", gq="toute méthode qui détermine une quantité · ex. le dosage par étalonnage",
                     d="Titrage", dq="un dosage fondé sur une réaction chimique", vs="⊃",
                     repere="Tout titrage est un dosage ; l'inverse est faux"),
     }),
@@ -286,7 +286,7 @@ SCENES = [
         "{-conv}{f_t}{f_t.1}D'où les deux formules : c m égale t fois d fois rhô eau, en grammes par litre. "
         "{f_t.2}Et c égale t fois d fois rhô eau, divisé par M, en moles par litre. "
         "{f_t.3}Attention : t s'écrit sans unité, sept pour cent donne zéro virgule zéro sept. Et rhô eau vaut mille grammes par litre.",
-        "{-f_t}{ex_vin}Appliquons au vinaigre du TP quatre. {ex_vin.1}t vaut zéro virgule zéro sept, d vaut un virgule zéro un, et la masse molaire de l'acide éthanoïque vaut soixante virgule un grammes par mole. "
+        "{-f_t}{ex_vin}Appliquons à notre vinaigre. {ex_vin.1}t vaut zéro virgule zéro sept, d vaut un virgule zéro un, et la masse molaire de l'acide éthanoïque vaut soixante virgule un grammes par mole. "
         "{ex_vin.2}c m égale zéro virgule zéro sept, fois un virgule zéro un, fois mille : soixante-dix virgule sept grammes par litre. "
         "{ex_vin.3}Et c égale soixante-dix virgule sept sur soixante virgule un : un virgule dix-huit mole par litre. "
         "Voilà ce que promet l'étiquette. Reste à le vérifier.",
@@ -310,7 +310,7 @@ SCENES = [
             dict(f="c_m = t × d × ρ_{eau}", cadre=True, n="en g·L^-1"),
             dict(f="c = " + fr("t × d × ρ_{eau}", "M"), cadre=True, n="en mol·L^-1 · M en g·mol^-1"),
             dict(f="t sans unité (7 % = 0,07) · ρ_{eau} = 1,00 × 10^3 g·L^-1", txt=True)]),
-        "ex_vin": dict(type="formule", titre="Le vinaigre du TP 4", x=150, y=140, w=980, lignes=[
+        "ex_vin": dict(type="formule", titre="Le vinaigre « à 7 % »", x=150, y=140, w=980, lignes=[
             dict(f="t = 0,07 · d = 1,01 · M = 60,1 g·mol^-1", taille=36),
             dict(f="c_m = 0,07 × 1,01 × 1,00 × 10^3 = 70,7 g·L^-1", taille=38),
             dict(f="c = " + fr("70,7", "60,1") + " = 1,18 mol·L^-1", cadre=True, taille=40)]),
@@ -325,7 +325,7 @@ SCENES = [
     dict(id="phmetrie", chap="Le suivi pH-métrique", fond="nuit", humeur="tension",
          retenir="pH = f(V_B) : montée lente, saut, palier. V_E au milieu du saut : tangentes parallèles ou maximum de dpH/dV. pH_E = 7 seulement pour fort/fort.",
          beats=[
-        "{tab_ph}Première façon de repérer l'équivalence, la plus utilisée au lycée : le suivi pH-métrique. "
+        "{tab_ph}Première façon de repérer l'équivalence, la plus utilisée : le suivi pH-métrique. "
         "On mesure le pH après chaque ajout, et on trace pH en fonction du volume versé.",
         "{-tab_ph}{gr_ph}{gr_ph.1}Voici la courbe de notre acide chlorhydrique. Elle monte lentement, de deux à moins de quatre, pendant presque dix millilitres. "
         "{gr_ph.2}Puis, autour de dix millilitres, un saut brutal de plusieurs unités. Puis elle se stabilise vers douze. L'équivalence est au milieu du saut.",
@@ -338,16 +338,16 @@ SCENES = [
         "{-gr_ph}{phE}Le pH à l'équivalence n'est donc pas toujours sept. {phE.1}Acide fort par base forte : à l'équivalence, le bécher ne contient que de l'eau, "
         "des ions sodium et des ions chlorure. Le pH vaut sept. "
         "{phE.2}Acide éthanoïque par la soude : le bécher contient aussi des ions éthanoate, la base conjuguée formée par la réaction. Ils rendent la solution légèrement basique : pH supérieur à sept. "
-        "{phE.3}Et si on titre une base faible, comme l'ammoniaque, par un acide, le pH à l'équivalence est inférieur à sept. C'est le chapitre un qui explique le chapitre trois.",
+        "{phE.3}Et si on titre une base faible, comme l'ammoniaque, par un acide, le pH à l'équivalence est inférieur à sept. Ce sont les couples acide-base qui l'expliquent.",
         "{-phE}{an_tg}{tg_pts}{tg_pts.1}{an_tg.1}Comment lire V E précisément ? Première méthode : les tangentes parallèles. "
         "On trace deux tangentes à la courbe, parallèles entre elles, de part et d'autre du saut. "
         "{tg_pts.2}Puis la droite parallèle et à égale distance des deux. Elle coupe la courbe au point d'équivalence. Son abscisse, c'est V E.",
-        "{-an_tg}{-tg_pts}{gr_tg}Faisons-le sur le vinaigre dilué du TP quatre. {gr_tg.1}Voici sa courbe. "
+        "{-an_tg}{-tg_pts}{gr_tg}Faisons-le sur le titrage d'un vinaigre dilué vingt fois. {gr_tg.1}Voici sa courbe. "
         "{gr_tg.2}Une première tangente, avant le saut. {gr_tg.3}Une seconde, parallèle, après le saut. "
         "{gr_tg.4}La droite à égale distance. {gr_tg.5}Elle coupe la courbe en E : V E vaut onze virgule neuf millilitres, et le pH à l'équivalence vaut environ huit virgule quatre.",
         "{-gr_tg}{deriv}{deriv.1}Deuxième méthode : la dérivée. On fait tracer par le logiciel d pH sur d V. Elle présente un pic très net, et V E est l'abscisse de son maximum. "
         "C'est logique : l'équivalence est l'endroit où le pH varie le plus vite. "
-        "{deriv.2}Au TP quatre, les deux méthodes ont donné onze virgule quatre-vingt-sept et onze virgule quatre-vingt-dix-huit millilitres : un accord à zéro virgule un millilitre près.",
+        "{deriv.2}Sur ce vinaigre, les deux méthodes ont donné onze virgule quatre-vingt-sept et onze virgule quatre-vingt-dix-huit millilitres : un accord à zéro virgule un millilitre près.",
         "{deriv.3}Quand le logiciel fournit la dérivée, on la privilégie : la courbe du vinaigre n'est pas symétrique autour de l'équivalence, et la méthode des tangentes suppose une certaine symétrie.",
         "{-deriv}{sens}Dernier réflexe : avant de lire V E, regarde le sens du saut. Si on titre une base par un acide, la courbe descend. "
         "Les méthodes restent les mêmes, mais la dérivée présente un creux au lieu d'un pic.",
@@ -369,7 +369,7 @@ SCENES = [
         "tg_pts": dict(type="liste", petit=True, titre="La méthode des tangentes", x=680, y=170, w=560, items=[
             "Deux tangentes parallèles, de part et d'autre du saut",
             "La parallèle à égale distance coupe la courbe en E : son abscisse est V_E"]),
-        "gr_tg": dict(type="graphe", titre="TP 4 · vinaigre dilué 20 fois, soude à 0,10 mol/L", x=330, y=110, w=640, h=520,
+        "gr_tg": dict(type="graphe", titre="Vinaigre dilué 20 fois, soude à 0,10 mol/L", x=330, y=110, w=640, h=520,
                       ax=dict(x=[0, 25], y=[0, 14], gx=[5, 10, 15, 20, 25], gy=[2, 4, 6, 8, 10, 12, 14], lx="V_B (mL)", ly="pH"),
                       el=[dict(type="courbe", pts=[list(p) for p in PH_VIN], c="el", dur=2.4),
                           dict(type="droite", pts=[[0.5, 3.893 + TG * 0.5], [13.5, 3.893 + TG * 13.5]], c="iv", ep=2.4),
@@ -378,7 +378,7 @@ SCENES = [
                           dict(type="point", x=11.9, y=8.39, c="vert", proj=True, lbl="E : V_E = 11,9 mL", lp=[13.4, 6.4])]),
         "deriv": dict(type="liste", titre="La méthode de la dérivée", items=[
             "Le logiciel trace dpH/dV : V_E est l'abscisse de son maximum",
-            "TP 4 : tangentes 11,87 mL · dérivée 11,98 mL → V_E ≈ 11,9 mL",
+            "Vinaigre : tangentes 11,87 mL · dérivée 11,98 mL → V_E ≈ 11,9 mL",
             "Courbe non symétrique : on privilégie la dérivée"], marques=["1", "2", "3"], x=150, y=170, w=980),
         "sens": dict(type="note", titre="Regarder le sens du saut", cles=["descend", "creux"],
                      t="Base titrée par un acide : la courbe descend, la dérivée présente un creux. Les méthodes ne changent pas.", x=170, y=220, w=940),
@@ -399,7 +399,7 @@ SCENES = [
         "{gr_ind.3}Pour l'acide chlorhydrique, le saut traverse les deux bandes : les deux conviennent. "
         "{gr_ind.4}Pour l'acide éthanoïque, le pH à l'équivalence, huit virgule trois, est dans la bande rose : c'est la phénolphtaléine qu'il faut. "
         "Le bleu de bromothymol virerait trop tôt, vers neuf virgule cinq millilitres.",
-        "{-gr_ind}{tab_chou}Au TP quatre, l'indicateur était naturel : le jus de chou rouge. Il a plusieurs zones de virage : "
+        "{-gr_ind}{tab_chou}Pour le vinaigre, on peut aussi utiliser un indicateur naturel : le jus de chou rouge. Il a plusieurs zones de virage : "
         "rouge, rose, violet, bleu, vert, puis jaune, du plus acide au plus basique. Pendant le titrage du vinaigre, il est passé du violet au bleu, "
         "puis a basculé vers le vert au moment du saut, vers douze millilitres.",
         "{-tab_chou}{lim}La limite de cette méthode : on repère un changement de couleur jugé à l'œil, pas l'équivalence elle-même. "
@@ -445,8 +445,8 @@ SCENES = [
         "{f_co.2}Après l'équivalence, chaque ajout apporte un ion sodium et un ion H O moins : cinq plus dix-neuf virgule huit, environ vingt-cinq. "
         "Sigma remonte, un peu moins vite qu'elle n'était descendue. {gr_co.2}{gr_co.3}C'est le V dissymétrique de la courbe. "
         "{gr_co.4}Les deux droites se coupent à dix millilitres.",
-        "{f_co.3}Pourquoi des lambda si grands pour H trois O plus et H O moins ? On l'a vu au chapitre deux : ils se déplacent par relais de proton entre les molécules d'eau.",
-        "{-gr_co}{-f_co}{ag}Un autre exemple, celui de ta capsule : des ions argent titrés par des ions chlorure. "
+        "{f_co.3}Pourquoi des lambda si grands pour H trois O plus et H O moins ? Rappel : ils se déplacent par relais de proton entre les molécules d'eau.",
+        "{-gr_co}{-f_co}{ag}Un autre exemple classique : des ions argent titrés par des ions chlorure. "
         "{ag.1}La réaction support est une précipitation : Ag plus et Cl moins donnent un solide, le chlorure d'argent. "
         "{ag.2}Avant l'équivalence, chaque ion argent qui précipite est remplacé dans la solution par un ion sodium versé. "
         "Le lambda de l'argent est plus grand que celui du sodium : la solution perd un ion qui conduit bien et gagne un ion qui conduit moins. Sigma diminue. "
@@ -478,7 +478,7 @@ SCENES = [
         "f_co": dict(type="formule", titre="Pourquoi ce V dissymétrique", x=690, y=130, w=560, lignes=[
             dict(f="avant : H₃O⁺ (35,0) remplacé par Na⁺ (5,01) : −30", taille=28, n="λ en mS·m²·mol^-1 · σ chute fortement"),
             dict(f="après : Na⁺ + HO⁻ s'ajoutent : 5,01 + 19,8 ≈ +25", taille=28, n="σ remonte, moins vite"),
-            dict(f="H₃O⁺ et HO⁻ : relais de proton entre molécules d'eau (ch. 2)", txt=True, taille=24)]),
+            dict(f="H₃O⁺ et HO⁻ : relais de proton entre molécules d'eau", txt=True, taille=24)]),
         "ag": dict(type="formule", titre="Une précipitation suivie par conductimétrie", x=150, y=130, w=980, lignes=[
             dict(f="Ag⁺(aq) + Cl⁻(aq) → AgCl(s)", cadre=True, taille=40),
             dict(f="avant : Ag⁺ remplacé par Na⁺ ; λ(Ag⁺) > λ(Na⁺) → σ diminue", taille=32),
@@ -495,10 +495,10 @@ SCENES = [
     # ================================================================ IX. retour au vinaigre : TP 4
     # cS1 = 0,10 × 11,9 / 20,0 = 5,95e-2 mol/L ; × 20 = 1,19 mol/L ; écart |1,19 − 1,18| / 1,18 ≈ 0,8 % ≈ 1 %
     # sans dilution : VE = 1,18 × 20,0 / 0,10 = 236 mL ; avec 11,3 mL : 5,65e-2 et 1,13 mol/L (écart 4 %)
-    dict(id="tp4", chap="Retour au vinaigre : le TP 4", fond="aube", humeur="lumiere",
+    dict(id="tp4", chap="Retour au vinaigre : le titrage au laboratoire", fond="aube", humeur="lumiere",
          retenir="Diluer pour que V_E tombe dans la burette ; titrage rapide puis précis ; c_S1 = c_B V_E / V_A, puis × facteur de dilution ; conclure par un écart relatif.",
          beats=[
-        "{tp_dil}Revenons à notre question de départ : le vinaigre est-il vraiment à sept pour cent ? Le TP quatre y répond. "
+        "{tp_dil}Revenons à notre question de départ : le vinaigre est-il vraiment à sept pour cent ? Un titrage au laboratoire y répond. "
         "{tp_dil.1}D'abord, une dilution. À un virgule dix-huit mole par litre, titrer vingt millilitres de vinaigre pur demanderait deux cent trente-six millilitres de soude : dix burettes ! "
         "{tp_dil.2}On dilue donc vingt fois : pipette jaugée de cinq millilitres, fiole jaugée de cent millilitres. Le volume équivalent tombe vers douze millilitres, au milieu de la burette.",
         "{tp_dil.3}On choisit la dilution pour que V E tombe dans la burette, pas au hasard.",
@@ -511,10 +511,10 @@ SCENES = [
         "Cinq virgule quatre-vingt-quinze fois dix puissance moins deux mole par litre. "
         "{tp_calc.3}On n'oublie pas la dilution : fois vingt. Un virgule dix-neuf mole par litre.",
         "{tp_calc.4}L'étiquette promettait un virgule dix-huit. L'écart relatif vaut environ un pour cent : l'indication « sept pour cent » est vérifiée.",
-        "{-tp_calc}{recop}Une erreur réelle, à ne pas refaire : recopier une mauvaise valeur de V E. Avec onze virgule trois au lieu de onze virgule neuf, "
+        "{-tp_calc}{recop}Une erreur fréquente, à ne pas faire : recopier une mauvaise valeur de V E. Avec onze virgule trois au lieu de onze virgule neuf, "
         "on trouve un virgule treize mole par litre, un écart de quatre pour cent, et on croirait le vinaigre trop faible. "
         "Le réflexe : relire V E sur la courbe au moment de l'écrire dans la formule.",
-        "{-recop}{ece}Ce TP contient les trois actes de l'épreuve pratique : proposer une dilution adaptée à la burette, titrer en deux temps, rapide puis précis, "
+        "{-recop}{ece}Cette manipulation contient les trois actes de l'épreuve pratique : proposer une dilution adaptée à la burette, titrer en deux temps, rapide puis précis, "
         "et exploiter une courbe par deux méthodes. Puis conclure, en comparant à une valeur de référence. La conclusion rapporte autant que tout le reste.",
         "{-ece}",
     ], vis={
@@ -533,7 +533,7 @@ SCENES = [
             dict(f="écart = " + fr("∣1,19 − 1,18∣", "1,18") + " ≈ 1 % : l'étiquette est vérifiée", ok=True, taille=32)]),
         "recop": dict(type="note", titre="L'erreur de recopie", cles=["relire"],
                       t="11,3 mL au lieu de 11,9 mL : 1,13 mol/L et 4 % d'écart, une conclusion fausse. Relire V_E sur la courbe.", x=170, y=210, w=940),
-        "ece": dict(type="liste", titre="Ce que vaut ce TP pour l'épreuve pratique", items=[
+        "ece": dict(type="liste", titre="Ce que vaut ce titrage pour l'épreuve pratique", items=[
             "Proposer une dilution adaptée au volume de la burette", "Titrer en deux temps : rapide, puis précis",
             "Exploiter la courbe par deux méthodes", "Conclure en comparant à la valeur de référence"],
                     marques=["1", "2", "3", "4"], x=150, y=150, w=980),
@@ -602,7 +602,7 @@ SCENES = [
         "On dilue cent fois cette solution, puis on titre dix millilitres de la solution diluée par de la soude à zéro virgule cent mole par litre, avec un suivi pH-métrique. "
         "La méthode des tangentes donne un volume équivalent de neuf virgule cinq millilitres.",
         "Cinq questions. La concentration promise par l'étiquette. Pourquoi diluer. La relation à l'équivalence. "
-        "La concentration mesurée, et la conclusion. Et enfin : quel résultat obtiendrait un élève qui oublie les coefficients, et quel indicateur coloré conviendrait ?",
+        "La concentration mesurée, et la conclusion. Et enfin : quel résultat obtiendrait-on en oubliant les coefficients, et quel indicateur coloré conviendrait ?",
         "{-ex2}{pa2}Celui-là demande du temps. Mets sur pause, et fais-le en entier avant de regarder la correction.",
         "{pa2.stop}{-pa2}{ex2c}{ex2c.q1}Correction. {s21}{s21.1}Question un : on suit un litre de solution. c égale t fois d fois rhô eau, divisé par la masse molaire. "
         "{s21.2}Zéro virgule trente-sept, fois un virgule vingt-huit, fois mille, divisé par quatre-vingt-dix-huit virgule un. "
@@ -616,8 +616,8 @@ SCENES = [
         "{s24.2}Zéro virgule cent fois neuf virgule cinq, sur deux fois dix : quatre virgule soixante-quinze fois dix puissance moins deux mole par litre. "
         "{s24.3}Fois cent pour la dilution : quatre virgule soixante-quinze moles par litre. "
         "{s24.4}L'écart relatif avec quatre virgule quatre-vingt-trois vaut environ un virgule six pour cent : l'étiquette est cohérente avec la mesure.",
-        "{-s24}{ex2c.q5}{s25}{s25.1}Question cinq : sans le facteur deux, l'élève trouverait neuf virgule cinq moles par litre, exactement le double. "
-        "Et il conclurait, à tort, que l'étiquette est fausse. "
+        "{-s24}{ex2c.q5}{s25}{s25.1}Question cinq : sans le facteur deux, on trouverait neuf virgule cinq moles par litre, exactement le double. "
+        "Et on conclurait, à tort, que l'étiquette est fausse. "
         "{s25.2}Pour l'indicateur : un acide fort titré par une base forte, le pH à l'équivalence vaut sept. Le bleu de bromothymol, de six à sept virgule six, convient.",
         "{-s25}{-ex2c}",
     ], vis={
@@ -743,7 +743,7 @@ SCENES = [
         "{bac.5}Représenter avec un programme l'évolution des quantités de matière. "
         "{bac.6}Mettre en œuvre un suivi pH-métrique. "
         "{bac.7}Et un suivi conductimétrique.",
-        "Si tu sais faire ces sept choses, tu as tout le bagage du chapitre. Le site t'attend avec d'autres exercices, le TP quatre corrigé et la fiche mémo. "
+        "Si tu sais faire ces sept choses, tu as tout le bagage du chapitre. Pour les fixer, entraîne-toi sur d'autres exercices. "
         "Et maintenant, les questions du quiz, juste sous la vidéo.",
         "{-bac}",
     ], vis={
@@ -788,7 +788,7 @@ QUIZ = [
          ex="La solution perd un ion très conducteur et gagne un ion peu conducteur.", voir="f_co"),
     dict(q="Une précipitation Ag⁺ + Cl⁻ → AgCl ne fait pas varier le pH. Quel suivi choisir ?",
          r=["pH-métrique", "conductimétrique", "aucun suivi n'est possible"], ok=1,
-         ex="Les λ des ions changent au cours du titrage : la rupture de pente de σ donne V_E.", voir="choix"),
+         ex="Les λ des ions changent pendant le titrage : la rupture de pente de σ donne V_E.", voir="choix"),
     dict(q="Pourquoi ajoute-t-on environ 200 mL d'eau avant un titrage conductimétrique ?",
          r=["Pour augmenter la quantité d'acide", "Pour que les ajouts de titrant diluent peu : les portions restent droites", "Pour faire baisser le pH"],
          ok=1, ex="L'eau ne change pas la quantité titrée ; elle rend la dilution par les ajouts négligeable.", voir="eau"),
@@ -797,6 +797,6 @@ QUIZ = [
 CREDITS = [
     "Images : titrage à la burette, gravure de l'ouvrage d'Alessandri, 1895 (domaine public) ; pH-mètre de laboratoire, OER_CampLev, CC BY-SA 4.0 ; "
     "jus de chou rouge, brittgow, CC BY 2.0. Images trouvées sur Wikimedia Commons.",
-    "Animations, schémas et graphiques : faits pour le site ; courbes de pH et de conductivité calculées. Valeurs du TP 4 : mesures d'un élève. "
+    "Animations, schémas et graphiques : faits pour la vidéo ; courbes de pH et de conductivité calculées. Valeurs du titrage du vinaigre : mesures réalisées au laboratoire. "
     "Les trois exercices sont inventés pour la vidéo.",
 ]

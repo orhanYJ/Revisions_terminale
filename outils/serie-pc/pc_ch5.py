@@ -33,7 +33,7 @@ SCENES = [
         "{-q3}{-tab_lune}{plan}Voici le chemin. {plan.1}D'abord les rappels indispensables : la lentille convergente, la construction d'une image, "
         "la relation de conjugaison, l'œil et les petits angles. {plan.2}Puis le cœur du chapitre : l'objectif, l'image intermédiaire, l'oculaire, "
         "et le réglage afocal. {plan.3}Ensuite le grossissement, sa démonstration, et les lunettes du commerce. "
-        "{plan.4}Puis la lunette du TP sept sur le banc optique, et les limites du modèle. "
+        "{plan.4}Puis la lunette montée sur un banc optique, et les limites du modèle. "
         "{plan.5}Et pour finir, trois exercices corrigés : un simple, un plus difficile, et un type bac.",
         "{-plan}{titre}",
         ("P", 3.4),
@@ -47,7 +47,7 @@ SCENES = [
             "Les rappels : lentille, image, conjugaison, œil, petits angles",
             "L'objectif, l'image intermédiaire, l'oculaire, le réglage afocal",
             "Le grossissement, sa démonstration, les lunettes du commerce",
-            "Le TP 7 sur le banc optique, les limites du modèle",
+            "La lunette sur le banc optique, les limites du modèle",
             "Trois exercices corrigés : simple, difficile, type bac"], x=170, y=130, w=940),
         "titre": dict(type="titre", sur="Physique-chimie · Chapitre 5", t="La lunette astronomique",
                       sous="Le cours complet, de zéro au bac"),
@@ -66,7 +66,7 @@ SCENES = [
         "{-vocab}{f_C}{f_C.1}La distance focale f prime, c'est la distance de O à F prime. Et sa vergence C vaut un sur f prime. "
         "{f_C.2}Attention : la vergence s'exprime en dioptries, seulement si f prime est en mètres. "
         "Une focale de cinq centimètres donne une vergence de un sur zéro virgule zéro cinq : vingt dioptries. Pas zéro virgule deux.",
-        "{f_C.3}Au TP sept, l'objectif a une vergence de deux dioptries, donc une focale de cinquante centimètres. "
+        "{f_C.3}Sur une lunette de banc optique classique, l'objectif a une vergence de deux dioptries, donc une focale de cinquante centimètres. "
         "L'oculaire a vingt dioptries : cinq centimètres. Plus la vergence est grande, plus la focale est courte.",
         "{-f_C}{constr}Pour construire l'image d'un objet, on utilise trois rayons particuliers, issus du point B. "
         "{constr.1}Un rayon qui arrive parallèle à l'axe ressort en passant par le foyer image F prime. "
@@ -87,7 +87,7 @@ SCENES = [
         "f_C": dict(type="formule", titre="Distance focale et vergence", x=150, y=130, w=980, lignes=[
             dict(f="f′ = ‾{OF′}   ;   C = " + fr("1", "f′"), cadre=True, n="f′ en mètres · C en dioptries (δ), 1 δ = 1 m^-1"),
             dict(f="f′ = 5,0 cm = 0,050 m  ⇒  C = " + fr("1", "0,050") + " = 20 δ  (et non 0,2 δ)", taille=36),
-            dict(f="TP 7 : objectif +2,0 δ → f′_1 = 50 cm · oculaire +20 δ → f′_2 = 5,0 cm", taille=32)]),
+            dict(f="Banc optique : objectif +2,0 δ → f′_1 = 50 cm · oculaire +20 δ → f′_2 = 5,0 cm", taille=32)]),
         "constr": dict(type="illu", nom="lentille", x=90, y=110, w=1100, h=520, oa=-2.5, f=130),
     }),
 
@@ -187,7 +187,7 @@ SCENES = [
         "{f_taille.3}Pour la Lune et un objectif de sept cents millimètres : sept cents fois neuf fois dix puissance moins trois, environ six virgule trois millimètres. "
         "Avec un objectif de deux mille millimètres, elle mesurerait dix-huit millimètres.",
         "{f_taille.4}D'où la première règle de la lunette : plus la focale de l'objectif est longue, plus l'image intermédiaire est grande. "
-        "C'est exactement la question un du TP sept.",
+        "C'est exactement ce qu'on vérifie sur un banc optique, en changeant d'objectif.",
         "{-f_taille}{-an1}",
     ], vis={
         "an1": dict(type="anim", nom="lunette", x=40, y=72, h=624, seg=[[1.2, 11], [11, 22]]),
@@ -214,7 +214,7 @@ SCENES = [
         "{-pts2}{def_af}{def_af.1}On dit que la lunette est afocale : d'un objet à l'infini, elle donne une image à l'infini. "
         "Des rayons parallèles à l'entrée ressortent parallèles.",
         "{-def_af}{f_long}{f_long.1}La condition : F prime un égale F deux. {f_long.2}Et la longueur de la lunette : O un O deux égale f prime un plus f prime deux.",
-        "{f_long.3}Au TP sept : cinquante plus cinq, l'oculaire se place à cinquante-cinq centimètres de l'objectif.",
+        "{f_long.3}Sur le banc optique : cinquante plus cinq, l'oculaire se place à cinquante-cinq centimètres de l'objectif.",
         "{-f_long}{piege_f}Attention au piège classique du QCM : ce sont le foyer IMAGE de l'objectif et le foyer OBJET de l'oculaire qui coïncident. "
         "Écrire F un égale F prime deux, ou F prime un égale F prime deux, est faux.",
         "{-piege_f}{-an2}{gal}{tab_ye}Un mot d'histoire, hors programme. Galilée tourne sa lunette vers le ciel en mille six cent neuf. "
@@ -234,7 +234,7 @@ SCENES = [
         "f_long": dict(type="formule", titre="Lunette afocale", x=680, y=140, w=560, lignes=[
             dict(f="F′_1 = F_2", cadre=True, taille=46),
             dict(f="O_1O_2 = f′_1 + f′_2", cadre=True, taille=42),
-            dict(f="TP 7 : 50 + 5,0 = 55 cm", taille=34)]),
+            dict(f="Banc optique : 50 + 5,0 = 55 cm", taille=34)]),
         "piege_f": dict(type="note", titre="Ne pas confondre les foyers", cles=["image", "objet"],
                         t="F′₁ = F₂ : foyer image de l'objectif, foyer objet de l'oculaire. Ni F₁ = F′₂, ni F′₁ = F′₂.", x=680, y=200, w=560),
         "gal": dict(type="portrait", annee=1610, img="galilee", nom="Galilée", dates="1564 – 1642",
@@ -297,7 +297,7 @@ SCENES = [
         "{-demo}{-an4}{f_G2}{f_G2.1}Le résultat, à encadrer : G égale f prime un sur f prime deux. "
         "{f_G2.2}Pour grossir, il faut que l'objectif ait la plus grande focale. Et pour grossir davantage, on prend un objectif plus long, "
         "ou un oculaire plus court. Le diamètre des lentilles n'intervient pas.",
-        "{f_G2.3}La lunette du TP sept : cinquante sur cinq, G vaut dix. La Lune, vue à l'œil nu sous neuf fois dix puissance moins trois radian, "
+        "{f_G2.3}La lunette du banc optique : cinquante sur cinq, G vaut dix. La Lune, vue à l'œil nu sous neuf fois dix puissance moins trois radian, "
         "est vue dans la lunette sous neuf fois dix puissance moins deux radian, environ cinq degrés. "
         "C'est l'angle sous lequel on verrait une Lune dix fois plus proche.",
         "{-f_G2}{piege_G}Un dernier piège. Sur les schémas des exercices, les angles sont exagérés, huit ou dix degrés. "
@@ -319,7 +319,7 @@ SCENES = [
         "f_G2": dict(type="formule", titre="Grossissement d'une lunette afocale", x=150, y=130, w=980, lignes=[
             dict(f="G = " + fr("α′", "α") + " = " + fr("f′_1", "f′_2"), cadre=True, taille=56, n="les deux focales dans la même unité"),
             dict(f="objectif long, oculaire court → G grand · le diamètre n'intervient pas", txt=True, pt=True),
-            dict(f="TP 7 : G = " + fr("50", "5,0") + " = 10 · Lune : α′ = 10 × 9,0 × 10^-3 = 9,0 × 10^-2 rad ≈ 5°", taille=30)]),
+            dict(f="Banc optique : G = " + fr("50", "5,0") + " = 10 · Lune : α′ = 10 × 9,0 × 10^-3 = 9,0 × 10^-2 rad ≈ 5°", taille=30)]),
         "piege_G": dict(type="note", titre="Angles de dessin", cles=["exagérés", "écart"],
                         t="Pour 8° ou 10°, tan α′ = G × tan α : α′ est un peu plus petit que G × α. Un petit écart au rapporteur est normal.",
                         x=170, y=210, w=940),
@@ -373,9 +373,9 @@ SCENES = [
 
     # ================================================================ IX. TP, réglage, limites
     dict(id="banc", chap="Sur le banc optique, et les limites", fond="nuit", humeur="calme",
-         retenir="TP 7 : objet au foyer de L₀ (à l'infini), image intermédiaire sur un écran à f′₁, oculaire à O₁O₂ = f′₁ + f′₂. Limites : diffraction, aberrations.",
+         retenir="Banc optique : objet au foyer de L₀ (à l'infini), image intermédiaire sur un écran à f′₁, oculaire à O₁O₂ = f′₁ + f′₂. Limites : diffraction, aberrations.",
          beats=[
-        "{tp}Au TP sept, on fabrique une lunette sur un banc optique, et c'est au programme. {tp.1}D'abord, simuler un objet à l'infini : "
+        "{tp}Au laboratoire, on fabrique une lunette sur un banc optique, et c'est au programme. {tp.1}D'abord, simuler un objet à l'infini : "
         "on place une diapositive éclairée au foyer objet d'une lentille L zéro, de trois dioptries, donc à trente-trois virgule trois centimètres avant elle. "
         "Les rayons ressortent parallèles, comme ceux d'un astre.",
         "{tp.2}Ensuite, visualiser l'image intermédiaire : on place l'objectif, puis un écran. L'image nette se forme à f prime un après l'objectif, "
@@ -385,7 +385,7 @@ SCENES = [
         "{-tp}{an6}{pts6}{pts6.1}{an6.1}Et si l'oculaire est mal placé ? S'il est trop loin, l'image intermédiaire est au-delà de son foyer objet : "
         "les rayons ressortent convergents. S'il est trop près, ils ressortent divergents. Dans les deux cas, l'œil au repos voit flou. "
         "{pts6.2}On règle la lunette en déplaçant l'oculaire, jusqu'à ce que les rayons ressortent parallèles.",
-        "{-pts6}{-an6}{hp_c}Au TP, on rencontre aussi le cercle oculaire, hors programme : c'est l'image du bord de l'objectif par l'oculaire. "
+        "{-pts6}{-an6}{hp_c}Sur le banc, on rencontre aussi le cercle oculaire, hors programme : c'est l'image du bord de l'objectif par l'oculaire. "
         "Toute la lumière sortie de la lunette passe par ce petit disque, juste après F prime deux. C'est là qu'on place la pupille.",
         "{-hp_c}{lim}Pour finir, le modèle des deux lentilles minces a ses limites, que le programme demande de connaître. "
         "{lim.1}Il n'explique pas pourquoi deux points très proches restent confondus même avec un grand grossissement : c'est la diffraction par l'objectif. "
@@ -394,7 +394,7 @@ SCENES = [
         "Les grands télescopes remplacent d'ailleurs l'objectif par un miroir, qui ne disperse pas les couleurs. Hors programme, là encore.",
         "{-lim}",
     ], vis={
-        "tp": dict(type="liste", titre="La lunette du TP 7", items=[
+        "tp": dict(type="liste", titre="La lunette sur le banc optique", items=[
             "Objet au foyer de L_0 (+3,00 δ, à 33,3 cm) : un objet « à l'infini »",
             "Écran : l'image intermédiaire nette à f′_1 après l'objectif",
             "Oculaire à f′_2 après l'image : O_1O_2 = f′_1 + f′_2",
@@ -416,7 +416,7 @@ SCENES = [
     # C1 = 1,25 δ → f′1 = 0,800 m ; f′2 = 20 mm ; O1O2 = 820 mm ; G = 800/20 = 40
     # Jupiter : 1,40e5 km / 6,3e8 km = 2,22e-4 rad < 3e-4 ; α′ = 40 × 2,22e-4 = 8,9e-3 rad (comme la Lune à l'œil nu)
     dict(id="exo1", chap="Exercice 1 · pour démarrer", fond="nuit", humeur="calme", beats=[
-        "{ex1}Place aux exercices. Le premier, pour démarrer. Le club d'astronomie du lycée possède une lunette dont l'objectif a une vergence "
+        "{ex1}Place aux exercices. Le premier, pour démarrer. Un club d'astronomie possède une lunette dont l'objectif a une vergence "
         "de un virgule vingt-cinq dioptrie, et un oculaire de vingt millimètres de focale.",
         "Quatre questions : la focale de l'objectif ; la longueur de la lunette réglée en afocal ; son grossissement ; "
         "et enfin, Jupiter, vue à l'œil nu comme un simple point, apparaît-elle comme un disque dans cette lunette ?",
@@ -536,7 +536,7 @@ SCENES = [
         "{s31.3}Alors O un O deux égale neuf cents plus vingt-cinq : neuf cent vingt-cinq millimètres.",
         "{-s31}{ex3c.q2}{s32}{s32.1}Question deux. Avec l'oculaire de vingt-cinq millimètres : neuf cents sur vingt-cinq, G vaut trente-six. "
         "{s32.2}Avec celui de neuf millimètres : cent.",
-        "{-s32}{ex3c.q3}{s33}Question trois : c'est la démonstration du cours, à rédiger en entier. {s33.1}Dans le triangle O un F prime un B un, tangente de alpha égale A un B un sur f prime un. "
+        "{-s32}{ex3c.q3}{s33}Question trois : c'est la démonstration du grossissement, à rédiger en entier. {s33.1}Dans le triangle O un F prime un B un, tangente de alpha égale A un B un sur f prime un. "
         "{s33.2}Dans le triangle O deux F deux B un, tangente de alpha prime égale A un B un sur f prime deux. "
         "{s33.3}Les angles sont petits et en radians. {s33.4}Donc G égale alpha prime sur alpha, égale f prime un sur f prime deux.",
         "{-s33}{ex3c.q4}{s34}{s34.1}Question quatre. À l'œil nu, alpha vaut quatre-vingt-treize sur trois cent quatre-vingt-quatre mille quatre cents : "
@@ -601,7 +601,7 @@ SCENES = [
         "{bac.3}Tracer le faisceau émergent issu d'un point à l'infini. {bac.4}Établir l'expression du grossissement. "
         "{bac.5}Exploiter les données d'une lunette commerciale. {bac.6}Déterminer le grossissement d'une maquette ou d'une vraie lunette. "
         "{bac.7}Et vérifier la position de l'image intermédiaire sur un écran.",
-        "Si tu sais faire ces sept choses, tu as tout le bagage du chapitre. Le site t'attend avec d'autres exercices, le TP sept corrigé et la fiche mémo. "
+        "Si tu sais faire ces sept choses, tu as tout le bagage du chapitre. Il ne te reste qu'à t'entraîner sur d'autres exercices. "
         "Et maintenant, les questions du quiz, juste sous la vidéo.",
         "{-bac}",
     ], vis={
@@ -613,7 +613,7 @@ SCENES = [
         "bac": dict(type="liste", titre="Pour le bac · à cocher", items=[
             "Représenter le schéma d'une lunette afocale", "Identifier l'objectif et l'oculaire",
             "Tracer le faisceau émergent d'un point à l'infini", "Établir G = f′_1 / f′_2",
-            "Exploiter les données d'une lunette commerciale", "Déterminer le grossissement d'une lunette (TP)",
+            "Exploiter les données d'une lunette commerciale", "Déterminer le grossissement d'une lunette (expérience)",
             "Vérifier la position de l'image intermédiaire sur un écran"], marques=["✓"] * 7, x=170, y=80, w=940, petit=True),
     }),
 ]
@@ -647,6 +647,6 @@ QUIZ = [
 CREDITS = [
     "Photos : la pleine Lune vue depuis l'espace, NASA (domaine public) ; Saturne vue par Cassini, 2004, NASA/JPL/Space Science Institute "
     "(domaine public) ; la lunette de 40 pouces de l'observatoire Yerkes, 1897 (domaine public) ; Galilée par Justus Sustermans (Offices, domaine public).",
-    "Images trouvées sur Wikimedia Commons. Animations, schémas et graphiques : faits pour le site. Données astronomiques arrondies. "
+    "Images trouvées sur Wikimedia Commons. Animations, schémas et graphiques : faits pour la vidéo. Données astronomiques arrondies. "
     "Les trois exercices sont inventés pour la vidéo.",
 ]
