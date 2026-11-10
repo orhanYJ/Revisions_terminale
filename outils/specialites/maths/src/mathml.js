@@ -132,6 +132,8 @@ var TeX = (function () {
     if (n === "sum") return el("mo", "∑", 'data-dessous largeop="true" movablelimits="false"');
     if (n === "prod") return el("mo", "∏", 'data-dessous largeop="true" movablelimits="false"');
     if (n === "infty") return el("mi", "∞");
+    if (n === "widehat" || n === "hat") return el("mover", this.groupe() + mo("^", 'stretchy="' + (n === "widehat") + '"'), 'accent="true"');
+    if (/^(big|Big|bigg|Bigg)[lr]?$/.test(n)) return null;
     if (n === "int") return el("mo", "∫", 'largeop="true" movablelimits="false" rspace="0.1em"');
     if (OPS[n]) return mo(OPS[n]);
     if (n === "quad") return '<mspace width="1em"></mspace>';

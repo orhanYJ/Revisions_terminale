@@ -112,7 +112,7 @@ var ANIM = (function () {
     var cap = el.querySelector(".cap"), barre = el.querySelector(".barre"), bplay = el.querySelector('[data-a="play"]');
     var segs = A.etapes.map(function (s, i) {
       var b = document.createElement("button"); b.type = "button"; b.className = "sg"; b.style.flexGrow = s.d; b.setAttribute("aria-label", "Étape " + (i + 1));
-      b.innerHTML = "<i></i>"; b.onclick = function () { aller(debuts[i] + (reduit ? s.d : 0)); if (!joue) dessiner(); }; barre.appendChild(b); return b;
+      b.innerHTML = "<i></i>"; b.onclick = function () { aller(debuts[i] + (reduit ? s.d - 1e-6 : 0)); if (!joue) dessiner(); }; barre.appendChild(b); return b;
     });
     var T = total, joue = false, raf = 0, dernier = 0, kc = -1, attente = 0;
     function etat(T) { var k = n - 1; for (var i = 0; i < n; i++) if (T < debuts[i] + A.etapes[i].d) { k = i; break; } return { k: k, t: clamp((T - debuts[k]) / A.etapes[k].d) }; }
@@ -134,7 +134,7 @@ var ANIM = (function () {
       if (reduit) {
         attente += dt;
         var st = etat(T);
-        if (attente > Math.max(2.5, A.etapes[st.k].d)) { attente = 0; if (st.k >= n - 1) { pause(); return; } aller(debuts[st.k + 1] + A.etapes[st.k + 1].d); dessiner(); }
+        if (attente > Math.max(2.5, A.etapes[st.k].d)) { attente = 0; if (st.k >= n - 1) { pause(); return; } aller(debuts[st.k + 1] + A.etapes[st.k + 1].d - 1e-6); dessiner(); }
       } else {
         T += dt;
         if (T >= total) { T = total; dessiner(); pause(); return; }
@@ -145,7 +145,7 @@ var ANIM = (function () {
     function jouer() {
       if (enCours && enCours !== pause) enCours();
       enCours = pause;
-      if (T >= total - 1e-6) aller(reduit ? A.etapes[0].d : 0);
+      if (T >= total - 1e-5) aller(reduit ? A.etapes[0].d - 1e-6 : 0);
       joue = true; attente = 0; dernier = performance.now(); el.classList.add("joue");
       bplay.innerHTML = ICO.pause; bplay.setAttribute("aria-label", "Pause");
       dessiner(); raf = requestAnimationFrame(boucle);

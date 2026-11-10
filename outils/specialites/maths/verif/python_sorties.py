@@ -19,7 +19,7 @@ for i, algos in zip(NUMS, data):
         if a["sortie"].startswith("(une"):
             etat = "aléatoire (" + ("OK" if r.returncode == 0 else "ERREUR") + ")"
         else:
-            etat = "OK" if out == a["sortie"].strip() else "DIFFÉRENT"
+            etat = "OK" if out == a["sortie"].strip() and r.returncode == 0 else "DIFFÉRENT"
         if etat not in ("OK", "aléatoire (OK)"):
             ok = False
             print("---", out, "--- attendu ---", a["sortie"], r.stderr[-300:])

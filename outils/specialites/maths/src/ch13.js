@@ -144,7 +144,7 @@ print(sum(echantillon), "succès sur 20")`, sortie: `[1, 0, 1, 0, 1, 1, 0, 1, 1,
     { t: "Justifier qu'une variable suit une loi binomiale", h: R`
 <ol><li>Décris l'épreuve élémentaire et ses deux issues ; nomme le succès et donne $p$.</li><li>Dis que l'épreuve est répétée $n$ fois de façon <b>identique et indépendante</b> (tirage avec remise, ou assimilé).</li><li>Dis que $X$ compte le nombre de succès. Conclus : $X\sim\mathcal B(n;p)$.</li></ol>` },
     { t: "Utiliser la calculatrice", h: R`
-<ul><li>$P(X=k)$ : <i>binomFdp</i> (TI : binompdf ; Casio : BinomialPD ; NumWorks : loi binomiale, $P(X=k)$).</li><li>$P(X\leq k)$ : <i>binomFRép</i> (TI : binomcdf ; Casio : BinomialCD).</li><li>Pour $P(X\geq k)$, passe par $1-P(X\leq k-1)$ si la calculatrice n'offre que le cumul à gauche.</li></ul>
+<ul><li>$P(X=k)$ : <i>binomFdp</i> (TI : binompdf ; Casio : BinomialPD ; NumWorks : application Probabilités, loi binomiale).</li><li>$P(X\leq k)$ : <i>binomFRép</i> (TI : binomcdf ; Casio : BinomialCD).</li><li>Pour $P(X\geq k)$, passe par $1-P(X\leq k-1)$ si la calculatrice n'offre que le cumul à gauche.</li></ul>
 <p>Écris toujours la probabilité cherchée avant le résultat : « $P(X\geq5)=1-P(X\leq4)\approx0{,}078$ ».</p>` },
     { t: "Résoudre un problème de seuil", h: R`
 <p>Traduis la condition en inéquation sur $n$ (souvent $1-(1-p)^n\geq s$, soit $(1-p)^n\leq1-s$). Résous avec le tableau de valeurs de la calculatrice, ou avec le logarithme (chapitre 6, attention au changement de sens : $\ln(1-p)<0$). Vérifie la réponse : la valeur trouvée convient, la précédente non.</p>` },
