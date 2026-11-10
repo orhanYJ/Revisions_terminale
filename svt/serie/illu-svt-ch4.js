@@ -338,7 +338,7 @@
 
   /* 9 · Le chant appris : sonogrammes schématiques de l'adulte {id.1}, du jeune élevé avec des adultes {id.2}, du jeune isolé {id.3} */
   SERIE_ILLU.c4_chant = function (s, v) {
-    var W = v.w, H = v.h, g = sv("g", {}, s), x0 = 330, x1 = W - 30, hh = 110;
+    var W = v.w, H = v.h, g = sv("g", {}, s), x0 = 400, x1 = W - 30, hh = 110;
     var lig = [["Chant de l'espèce", "un adulte", C.sa], ["Jeune élevé avec ses congénères", "après entraînement", C.vert], ["Jeune élevé isolé", "très éloigné du chant de l'espèce", C.ca]];
     // motif de notes de l'espèce : (début, durée, fréquence haute, fréquence basse) en fractions
     var motif = [[.02, .07, .8, .45], [.12, .05, .9, .7], [.2, .05, .9, .7], [.28, .05, .9, .7], [.38, .12, .55, .3], [.55, .04, .85, .4], [.62, .04, .85, .4], [.7, .14, .65, .6], [.88, .08, .5, .2]];
