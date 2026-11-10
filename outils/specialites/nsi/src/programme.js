@@ -27,23 +27,13 @@ var PROG = [
     ] },
   { n: "03", t: "Bases de données",
     items: [
-      { id: "relationnel", t: "Modèle relationnel et base de données relationnelle",
-        contenus: "Relation, attribut, domaine, clé primaire, clé étrangère, schéma relationnel ; structure et contenu d’une base.",
-        capacites: ["Identifier les concepts définissant le modèle relationnel.", "Savoir distinguer la structure d’une base de données de son contenu.", "Repérer des anomalies dans le schéma d’une base de données."],
-        comm: "Contraintes d’intégrité : de domaine, de relation (clé primaire), de référence (clé étrangère). Anomalies : redondances, anomalies d’insertion, de suppression, de mise à jour.",
-        avant: "Les données en table de Première (fichiers CSV, recherche, tri, fusion de tables)." },
-      { id: "sgbd", t: "Système de gestion de bases de données relationnelles (SGBD)",
-        contenus: "Services rendus par un SGBD.",
-        capacites: ["Identifier les services rendus par un SGBD : persistance des données, gestion des accès concurrents, efficacité de traitement des requêtes, sécurisation des accès."],
-        comm: "Comprendre le rôle et les enjeux de ces services, sans détailler leur fonctionnement." },
-      { id: "sql", t: "Langage SQL : requêtes d’interrogation et de mise à jour",
-        contenus: "Composants d’une requête ; clauses SELECT, FROM, WHERE, JOIN ; UPDATE, INSERT, DELETE.",
-        capacites: ["Identifier les composants d’une requête.", "Construire des requêtes d’interrogation avec SELECT, FROM, WHERE, JOIN.", "Construire des requêtes d’insertion et de mise à jour avec UPDATE, INSERT, DELETE."],
-        comm: "DISTINCT, ORDER BY et les fonctions d’agrégation (COUNT, SUM, AVG, MIN, MAX) sont utilisables, mais <b>sans</b> GROUP BY ni HAVING." }
+      { ch: "ch6", t: "Modèle relationnel et base de données relationnelle" },
+      { ch: "ch6", t: "Système de gestion de bases de données relationnelles (SGBD)" },
+      { ch: "ch6", t: "Langage SQL : requêtes d’interrogation et de mise à jour" }
     ] },
   { n: "04", t: "Architectures matérielles, systèmes d’exploitation et réseaux",
     items: [
-      { id: "soc", t: "Composants intégrés d’un système sur puce (SoC)",
+      { ch: "soc", id: "soc", t: "Composants intégrés d’un système sur puce (SoC)",
         contenus: "Microprocesseurs, mémoires locales, interfaces radio et filaires, gestion d’énergie, contrôleurs vidéo, accélérateur graphique, réseaux sur puce.",
         capacites: ["Identifier les principaux composants sur un schéma de circuit et les avantages de leur intégration en termes de vitesse et de consommation."],
         comm: "Le circuit d’un téléphone peut servir d’exemple.",

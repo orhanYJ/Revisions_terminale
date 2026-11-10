@@ -63,7 +63,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;background:var(--bg);background-image:var(--scan);color:var(--encre);font-family:var(--sans);font-size:17px;line-height:1.6;overflow-x:hidden}
 a{color:var(--bleu);text-underline-offset:3px}
 button{font:inherit;color:inherit}
-code,kbd,pre,.mono{font-family:var(--mono)}
+code,kbd,pre,.mono{font-family:var(--mono);font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
 :not(pre)>code{font-size:.88em;background:var(--bg3);border:1px solid var(--ligne);border-radius:5px;padding:.05em .35em;overflow-wrap:anywhere}
 kbd{font-size:.8em;border:1px solid var(--ligne2);border-bottom-width:2px;border-radius:5px;padding:0 .4em;background:var(--bg2)}
 h1,h2,h3,h4{font-family:var(--mono);line-height:1.25;letter-spacing:-.01em}
@@ -469,7 +469,8 @@ html.mo .essentiel li:nth-child(2){animation-delay:.05s}html.mo .essentiel li:nt
 .w>.tete .sous{margin-left:auto;color:var(--encre3);font-size:.76rem}
 .w .cmd .cpt.mono{font-family:var(--mono);white-space:nowrap}
 .res-sql{margin:0;border:0;border-radius:0}
-.res-sql table{font-family:var(--mono);font-size:.82rem}
+.res-sql table{font-family:var(--mono);font-size:.82rem;width:auto;min-width:50%}
+.res-sql th,.res-sql td{padding:5px 12px}
 /* animation : table de hachage */
 .hash-calc{font-size:.8rem;color:var(--ambre);background:var(--ambre-f);border-radius:8px;padding:6px 10px;margin-bottom:8px;overflow-wrap:anywhere}
 .hash-table{display:grid;gap:4px}
@@ -485,6 +486,22 @@ html.mo .essentiel li:nth-child(2){animation-delay:.05s}html.mo .essentiel li:nt
 .puce.neuf{border-color:var(--vert)}
 html.mo .puce.neuf,html.mo .puce.vu,html.mo .puce.trouve{animation:pop .35s cubic-bezier(.2,.9,.3,1.3)}
 .hash-liste{display:flex;flex-wrap:wrap;gap:6px}
+/* tables de base de données */
+.table-bd{display:inline-block;vertical-align:top;margin:6px 8px 6px 0;max-width:100%}
+.table-bd table{width:auto;font-size:.82rem}
+.table-bd th,.table-bd td{padding:5px 10px}
+.table-bd caption{caption-side:top;text-align:left;font-weight:700;color:var(--ambre);padding:6px 10px 2px}
+.table-bd th.pk{text-decoration:underline;text-underline-offset:3px;color:var(--encre)}
+.table-bd th.fk{color:var(--bleu)}
+.table-bd td{white-space:nowrap}
+.table-bd tr.vise td{background:var(--ambre-f)}
+.table-bd tr.trouve td{background:var(--vert-f)}
+.table-bd tr.neuf td{background:var(--vert-f);font-weight:700}
+html.mo .table-bd tr.neuf td,html.mo .table-bd tr.trouve td,html.mo .table-bd tr.vise td{animation:flashc .5s ease-out}
+@keyframes flashc{from{background:transparent}}
+.jointure .j-sources{display:flex;flex-wrap:wrap;gap:4px}
+.jointure .j-res{border-top:1px dashed var(--ligne2);margin-top:6px;padding-top:4px}
+.jointure .rejet{color:var(--rouge);font-size:.8rem;padding:4px 2px}
 
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -3856,6 +3873,1507 @@ CH.push({
   ]
 });
 
+/* ===================== Diviser pour régner ===================== */
+C("dpr-max", String.raw`
+def maximum(t, g, d):
+    """Plus grand élément de t entre les indices g et d inclus (g <= d)."""
+    if g == d:                       # un seul élément : c'est lui
+        return t[g]
+    m = (g + d) // 2                 # 1. diviser en deux moitiés
+    a = maximum(t, g, m)             # 2. régner : résoudre chaque moitié
+    b = maximum(t, m + 1, d)
+    if a > b:                        # 3. combiner les deux réponses
+        return a
+    return b
+
+t = [3, 41, 7, 26, 15, 9]
+print(maximum(t, 0, len(t) - 1))`, { out: "41" });
+
+C("dpr-dicho", String.raw`
+appels = 0
+
+def dicho(t, x, g, d):
+    """Indice de x dans le tableau trié t entre g et d inclus, ou -1."""
+    global appels
+    appels = appels + 1
+    if g > d:                        # plus rien à chercher
+        return -1
+    m = (g + d) // 2                 # diviser : on regarde le milieu
+    if t[m] == x:
+        return m
+    if t[m] < x:
+        return dicho(t, x, m + 1, d) # régner : UNE seule moitié peut contenir x
+    return dicho(t, x, g, m - 1)
+
+t = list(range(0, 2000000, 2))       # un million de nombres pairs, triés
+for x in [1000, 1999998, 7]:
+    appels = 0
+    print(x, dicho(t, x, 0, len(t) - 1), appels)`, { out: "1000 500 19\n1999998 999999 20\n7 -1 21" });
+
+C("dpr-fusion", String.raw`
+def fusion(a, b):
+    """Fusionne deux listes triées a et b en une seule liste triée."""
+    res = []
+    i, j = 0, 0
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:             # on prend le plus petit des deux "en tête"
+            res.append(a[i])
+            i = i + 1
+        else:
+            res.append(b[j])
+            j = j + 1
+    return res + a[i:] + b[j:]       # l'une des deux listes est épuisée : on recopie l'autre
+
+print(fusion([3, 27, 38, 43], [9, 10, 82]))`, { out: "[3, 9, 10, 27, 38, 43, 82]" });
+
+C("dpr-tri", String.raw`
+def tri_fusion(t):
+    """Renvoie une nouvelle liste contenant les éléments de t triés."""
+    if len(t) <= 1:                  # cas de base : déjà trié
+        return t
+    m = len(t) // 2
+    gauche = tri_fusion(t[:m])       # trier la première moitié
+    droite = tri_fusion(t[m:])       # trier la seconde moitié
+    return fusion(gauche, droite)    # fusionner les deux moitiés triées
+
+print(tri_fusion([38, 27, 43, 3, 9, 82, 10]))
+print(tri_fusion([]), tri_fusion([5]), tri_fusion([2, 1, 2, 1]))`, { deps: ["dpr-fusion"], out: "[3, 9, 10, 27, 38, 43, 82]\n[] [5] [1, 1, 2, 2]" });
+
+C("dpr-trace", String.raw`
+def tri_fusion(t, prof=0):
+    marge = "    " * prof
+    print(marge + "trier", t)
+    if len(t) <= 1:
+        return t
+    m = len(t) // 2
+    r = fusion(tri_fusion(t[:m], prof + 1), tri_fusion(t[m:], prof + 1))
+    print(marge + "fusion ->", r)
+    return r
+
+tri_fusion([38, 27, 43, 3])`, { deps: ["dpr-fusion"], out: String.raw`
+trier [38, 27, 43, 3]
+    trier [38, 27]
+        trier [38]
+        trier [27]
+    fusion -> [27, 38]
+    trier [43, 3]
+        trier [43]
+        trier [3]
+    fusion -> [3, 43]
+fusion -> [3, 27, 38, 43]` });
+
+C("dpr-cout", String.raw`
+from math import log2
+
+comparaisons = 0
+
+def fusion_c(a, b):
+    global comparaisons
+    res, i, j = [], 0, 0
+    while i < len(a) and j < len(b):
+        comparaisons = comparaisons + 1
+        if a[i] <= b[j]:
+            res.append(a[i]); i = i + 1
+        else:
+            res.append(b[j]); j = j + 1
+    return res + a[i:] + b[j:]
+
+def tri_fusion_c(t):
+    if len(t) <= 1:
+        return t
+    m = len(t) // 2
+    return fusion_c(tri_fusion_c(t[:m]), tri_fusion_c(t[m:]))
+
+for n in [8, 1024, 1048576]:
+    comparaisons = 0
+    tri_fusion_c(list(range(n, 0, -1)))       # liste rangée à l'envers
+    print(n, comparaisons, int(n * log2(n)), n * (n - 1) // 2)`, { out: "8 12 24 28\n1024 5120 10240 523776\n1048576 10485760 20971520 549755289600" });
+
+C("dpr-rot-copie", String.raw`
+def rotation_copie(img):
+    """Quart de tour dans le sens horaire, en fabriquant une NOUVELLE image."""
+    n = len(img)
+    return [[img[n - 1 - j][i] for j in range(n)] for i in range(n)]
+
+img = [list("ABCD"), list("EFGH"), list("IJKL"), list("MNOP")]
+for ligne in rotation_copie(img):
+    print("".join(ligne))`, { out: "MIEA\nNJFB\nOKGC\nPLHD" });
+
+C("dpr-rotation", String.raw`
+def rotation(img, x, y, n):
+    """Tourne d'un quart de tour (sens horaire), SUR PLACE, le carré de côté n
+    dont le coin en haut à gauche est img[y][x]. n est une puissance de 2."""
+    if n == 1:                                   # un pixel : rien à faire
+        return
+    h = n // 2
+    rotation(img, x, y, h)                       # 1. tourner chacun des 4 quarts
+    rotation(img, x + h, y, h)
+    rotation(img, x, y + h, h)
+    rotation(img, x + h, y + h, h)
+    for i in range(h):                           # 2. faire tourner les quarts
+        for j in range(h):                       #    pixel par pixel, 4 à la fois
+            hg = img[y + i][x + j]
+            img[y + i][x + j] = img[y + h + i][x + j]              # bas gauche -> haut gauche
+            img[y + h + i][x + j] = img[y + h + i][x + h + j]      # bas droit -> bas gauche
+            img[y + h + i][x + h + j] = img[y + i][x + h + j]      # haut droit -> bas droit
+            img[y + i][x + h + j] = hg                             # haut gauche -> haut droit
+
+img = [list("ABCD"), list("EFGH"), list("IJKL"), list("MNOP")]
+rotation(img, 0, 0, 4)
+for ligne in img:
+    print("".join(ligne))`, { out: "MIEA\nNJFB\nOKGC\nPLHD" });
+
+C("dpr-rot-dessin", String.raw`
+dessin = ["..##....",
+          "..##....",
+          "..##....",
+          "..##....",
+          "..##....",
+          "..######",
+          "..######",
+          "........"]
+img = [list(ligne) for ligne in dessin]
+rotation(img, 0, 0, 8)
+for ligne in img:
+    print("".join(ligne))
+
+grande = [[64 * i + j for j in range(64)] for i in range(64)]
+attendu = [[grande[63 - j][i] for j in range(64)] for i in range(64)]
+rotation(grande, 0, 0, 64)
+print(grande == attendu)`, { deps: ["dpr-rotation"], out: String.raw`
+........
+........
+.#######
+.#######
+.##.....
+.##.....
+.##.....
+.##.....
+True` });
+
+/* pièges */
+C("dpr-p-reste", String.raw`
+def fusion(a, b):
+    res, i, j = [], 0, 0
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:
+            res.append(a[i]); i = i + 1
+        else:
+            res.append(b[j]); j = j + 1
+    return res                       # on a oublié ce qui reste dans a ou b
+
+print(fusion([1, 5, 9], [2, 3]))`, { out: "[1, 2, 3]" });
+
+C("dpr-p-base", String.raw`
+def tri_fusion(t):
+    m = len(t) // 2                   # pas de cas de base...
+    return fusion(tri_fusion(t[:m]), tri_fusion(t[m:]))
+
+tri_fusion([3, 1])`, { deps: ["dpr-fusion"], err: "RecursionError: maximum recursion depth exceeded" });
+
+C("dpr-p-place", String.raw`
+t = [5, 2, 4, 1]
+tri_fusion(t)                         # le résultat est renvoyé... et perdu
+print(t)
+t = tri_fusion(t)                     # il faut le récupérer
+print(t)`, { deps: ["dpr-fusion", "dpr-tri"], out: "[5, 2, 4, 1]\n[1, 2, 4, 5]" });
+
+/* prédis la sortie */
+C("dpr-x1", String.raw`
+def f(t):
+    if len(t) == 1:
+        return t[0]
+    m = len(t) // 2
+    return f(t[:m]) + f(t[m:])
+
+print(f([5, 1, 4, 2, 3]))`, { out: "15" });
+
+C("dpr-x2", String.raw`
+def mystere(t, g, d):
+    if g == d:
+        return (t[g], t[g])
+    m = (g + d) // 2
+    a, b = mystere(t, g, m)
+    c, e = mystere(t, m + 1, d)
+    return (min(a, c), max(b, e))
+
+print(mystere([7, 2, 9, 4, 1, 8], 0, 5))`, { out: "(1, 9)" });
+
+C("dpr-x3", String.raw`
+appels = 0
+
+def tri(t):
+    global appels
+    appels = appels + 1
+    if len(t) <= 1:
+        return t
+    m = len(t) // 2
+    return fusion(tri(t[:m]), tri(t[m:]))
+
+print(tri([4, 1, 3, 5, 2]), appels)`, { deps: ["dpr-fusion"], out: "[1, 2, 3, 4, 5] 9" });
+
+C("dpr-x4", String.raw`
+def g(n):
+    if n <= 1:
+        return 0
+    return 1 + g(n // 2)
+
+print(g(8), g(1000), g(1000000))`, { out: "3 9 19" });
+
+/* épreuve pratique 1 */
+C("dpr-ep1-fourni", String.raw`
+def fusion(a, b):
+    """a et b sont deux listes triées dans l'ordre croissant.
+    Renvoie une nouvelle liste triée contenant les éléments de a et de b."""
+    res = []
+    i, j = 0, 0
+    while ... :
+        if a[i] <= b[j]:
+            res.append(a[i])
+            i = i + 1
+        else:
+            ...
+            ...
+    while i < len(a):
+        res.append(a[i])
+        i = i + 1
+    ...
+    return res
+
+def tri_fusion(t):
+    """Renvoie une nouvelle liste contenant les éléments de t triés."""
+    ...`, { fichier: "tri_fusion.py", run: false, trous: [6, 11, 12, 16, 21] });
+
+C("dpr-ep1-corr", String.raw`
+def fusion(a, b):
+    res = []
+    i, j = 0, 0
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:
+            res.append(a[i])
+            i = i + 1
+        else:
+            res.append(b[j])
+            j = j + 1
+    while i < len(a):
+        res.append(a[i])
+        i = i + 1
+    while j < len(b):
+        res.append(b[j])
+        j = j + 1
+    return res
+
+def tri_fusion(t):
+    if len(t) <= 1:
+        return t[:]                   # une copie : on ne renvoie jamais t lui-même
+    m = len(t) // 2
+    return fusion(tri_fusion(t[:m]), tri_fusion(t[m:]))
+
+def test():
+    assert fusion([1, 4, 9], [2, 3, 10, 11]) == [1, 2, 3, 4, 9, 10, 11]
+    assert fusion([], [1, 2]) == [1, 2]
+    assert fusion([5], []) == [5]
+    assert tri_fusion([]) == []
+    assert tri_fusion([7]) == [7]
+    assert tri_fusion([3, 1, 2, 3, 1]) == [1, 1, 2, 3, 3]          # doublons
+    assert tri_fusion(list(range(50, 0, -1))) == list(range(1, 51))
+    t = [4, 2, 8]
+    assert tri_fusion(t) == [2, 4, 8] and t == [4, 2, 8]           # t n'est pas modifiée
+
+test()
+print("tous les tests passent")`, { fichier: "tri_fusion.py", out: "tous les tests passent" });
+
+C("dpr-ep1-bug", String.raw`
+def tri_fusion_bug(t):
+    if len(t) <= 1:
+        return t
+    m = len(t) // 2
+    return fusion(tri_fusion_bug(t[:m + 1]), tri_fusion_bug(t[m + 1:]))
+
+print(tri_fusion_bug([4, 1, 3]))`, { fichier: "version_bugguee.py", deps: ["dpr-fusion"], err: "RecursionError: maximum recursion depth exceeded" });
+
+/* épreuve pratique 2 */
+C("dpr-ep2-fourni", String.raw`
+def creer_image(n):
+    """Image carrée n x n dont le pixel (ligne i, colonne j) vaut n * i + j."""
+    return [[n * i + j for j in range(n)] for i in range(n)]
+
+def afficher(img):
+    for ligne in img:
+        print(" ".join(str(p).rjust(2) for p in ligne))
+
+def rotation(img, x, y, n):
+    """Quart de tour dans le sens horaire, sur place, du carré de côté n
+    dont le coin en haut à gauche est img[y][x]."""
+    if n == 1:
+        return
+    h = n // 2
+    rotation(img, x, y, h)
+    rotation(img, x + h, y, h)
+    rotation(img, x, y + h, h)
+    rotation(img, x + h, y + h, h)
+    for i in range(h):
+        for j in range(h):
+            ...                       # échange circulaire de 4 pixels
+
+img = creer_image(4)
+rotation(img, 0, 0, 4)
+afficher(img)`, { fichier: "rotation.py", run: false, trous: [21] });
+
+C("dpr-ep2-corr", String.raw`
+def creer_image(n):
+    return [[n * i + j for j in range(n)] for i in range(n)]
+
+def rotation(img, x, y, n):
+    if n == 1:
+        return
+    h = n // 2
+    rotation(img, x, y, h)
+    rotation(img, x + h, y, h)
+    rotation(img, x, y + h, h)
+    rotation(img, x + h, y + h, h)
+    for i in range(h):
+        for j in range(h):
+            hg = img[y + i][x + j]
+            img[y + i][x + j] = img[y + h + i][x + j]
+            img[y + h + i][x + j] = img[y + h + i][x + h + j]
+            img[y + h + i][x + h + j] = img[y + i][x + h + j]
+            img[y + i][x + h + j] = hg
+
+def rotation_copie(img):
+    n = len(img)
+    return [[img[n - 1 - j][i] for j in range(n)] for i in range(n)]
+
+def est_puissance_de_2(n):
+    while n % 2 == 0:
+        n = n // 2
+    return n == 1
+
+def test():
+    for n in [1, 2, 4, 8, 32]:
+        img = creer_image(n)
+        attendu = rotation_copie(img)
+        rotation(img, 0, 0, n)
+        assert img == attendu
+    img = creer_image(8)
+    for _ in range(4):
+        rotation(img, 0, 0, 8)          # quatre quarts de tour : retour au départ
+    assert img == creer_image(8)
+    assert est_puissance_de_2(64) and not est_puissance_de_2(48)
+
+test()
+print("tous les tests passent")`, { fichier: "rotation.py", out: "tous les tests passent" });
+
+/* épreuve écrite */
+C("dpr-ecrit-corr", String.raw`
+def fusion_rec(a, b):
+    """Version récursive de la fusion (a et b triées)."""
+    if a == []:
+        return b
+    if b == []:
+        return a
+    if a[0] <= b[0]:
+        return [a[0]] + fusion_rec(a[1:], b)
+    return [b[0]] + fusion_rec(a, b[1:])
+
+def tri_inv(t):
+    """Renvoie (liste triée, nombre d'inversions de t)."""
+    if len(t) <= 1:
+        return t, 0
+    m = len(t) // 2
+    g, ig = tri_inv(t[:m])
+    d, id_ = tri_inv(t[m:])
+    res, i, j, inv = [], 0, 0, ig + id_
+    while i < len(g) and j < len(d):
+        if g[i] <= d[j]:
+            res.append(g[i]); i = i + 1
+        else:
+            res.append(d[j]); j = j + 1
+            inv = inv + len(g) - i      # d[j] est plus petit que TOUS les restants de g
+    return res + g[i:] + d[j:], inv
+
+print(fusion_rec([2, 7, 9], [1, 8]))
+print(tri_inv([3, 1, 4, 2]))
+print(tri_inv([5, 4, 3, 2, 1]))`, { out: "[1, 2, 7, 8, 9]\n([1, 2, 3, 4], 3)\n([1, 2, 3, 4, 5], 10)" });
+
+C("dpr-retenir", String.raw`
+def resoudre(probleme):
+    if probleme est assez petit:              # cas de base
+        return solution directe
+    parties = diviser(probleme)               # 1. DIVISER
+    sols = [resoudre(p) for p in parties]     # 2. RÉGNER (appels récursifs)
+    return combiner(sols)                     # 3. COMBINER`, { run: false });
+
+CH.push({
+  id: "dpr", n: 13, court: "diviser_regner", fichier: "diviser_regner.py",
+  titre: "Diviser pour régner",
+  rubrique: "Rubrique « Algorithmique » : méthode « diviser pour régner » (tri fusion, rotation d’image, recherche dichotomique)",
+  accroche: "Couper un problème en sous-problèmes indépendants, les résoudre, combiner : tri fusion en n log n, dichotomie, rotation d’image sur place.",
+  essentiel: [
+    "<b>Diviser pour régner</b> : <b>diviser</b> le problème en sous-problèmes du même type, plus petits et <b>indépendants</b> ; les <b>résoudre</b> (récursivement) ; <b>combiner</b> leurs solutions.",
+    "La <b>recherche dichotomique</b> ne garde qu’une moitié à chaque étape : environ log₂ <i>n</i> étapes (20 pour un million d’éléments).",
+    "Le <b>tri fusion</b> coupe la liste en deux, trie chaque moitié, puis <b>fusionne</b> deux listes triées en un seul passage.",
+    "Son coût est de l’ordre de <b><i>n</i> log₂ <i>n</i></b> comparaisons, même dans le pire des cas, contre <i>n</i>² pour les tris par insertion ou par sélection.",
+    "La <b>rotation d’une image</b> d’un quart de tour se fait <b>sur place</b> : on tourne les quatre quarts, puis on les permute ; aucune copie de l’image."
+  ],
+  attendus: [
+    "Écrire un algorithme utilisant la méthode « diviser pour régner » (c’est la seule capacité listée par le BO, mais elle se travaille sur les trois exemples ci-dessous).",
+    "Connaître les exemples cités par le programme : la rotation d’une image bitmap d’un quart de tour avec un coût en mémoire constant, et le tri fusion, dont le coût en <i>n</i> log₂ <i>n</i> est à faire constater.",
+    "Reconnaître la recherche dichotomique et la puissance rapide (chapitre Récursivité) comme des cas de « diviser pour régner ».",
+    "Comparer le coût de deux algorithmes : <i>n</i>² contre <i>n</i> log₂ <i>n</i>, <i>n</i> contre log₂ <i>n</i>."
+  ],
+  idees: [
+    { id: "i1", t: "Le principe : diviser, régner, combiner", h: `
+<div class="boite def"><div class="lab">"""définition"""</div><p>La méthode <b>diviser pour régner</b> résout un problème en trois temps :</p><ol><li><b>diviser</b> le problème en sous-problèmes <b>du même type</b>, de taille plus petite, <b>indépendants</b> les uns des autres ;</li><li><b>régner</b> : résoudre chaque sous-problème, en général par un appel récursif (et directement quand il est assez petit) ;</li><li><b>combiner</b> les solutions des sous-problèmes pour obtenir celle du problème de départ.</li></ol></div>
+<p>Exemple minimal : le maximum d’un tableau. On le coupe en deux moitiés, on cherche le maximum de chacune, et le maximum du tout est le plus grand des deux.</p>
+[[dpr-max]]
+<p>Ici, la méthode ne gagne rien sur un simple parcours (il faut de toute façon regarder les <i>n</i> cases), mais elle montre la structure. Le gain vient quand la combinaison est <b>bon marché</b> par rapport au travail évité, ou quand on peut <b>jeter</b> une partie du problème.</p>
+<div class="boite ex"><div class="lab"># différence avec la programmation dynamique</div><p>« Indépendants » est le mot clé : les deux moitiés d’un tableau ne partagent rien. Quand les sous-problèmes <b>se chevauchent</b> (comme F(<i>n</i> − 1) et F(<i>n</i> − 2) pour Fibonacci, qui ont besoin tous les deux de F(<i>n</i> − 3)), on passe à la <b>programmation dynamique</b> (chapitre suivant).</p></div>` },
+
+    { id: "i2", t: "La recherche dichotomique : on ne garde qu’une moitié", h: `
+<p>Pour chercher <code>x</code> dans un tableau <b>trié</b>, on regarde l’élément du milieu. S’il vaut <code>x</code>, c’est fini ; s’il est plus petit, <code>x</code> ne peut être que dans la moitié droite ; sinon, dans la moitié gauche. On <b>divise</b> (le milieu), on <b>règne</b> sur une seule moitié, et il n’y a <b>rien à combiner</b> : la réponse de la moitié est la réponse.</p>
+[[dpr-dicho]]
+<p>Sur un million d’éléments, au plus 21 appels (le dernier constate que la zone est vide), contre un million de comparaisons pour une recherche séquentielle. Le nombre d’appels est de l’ordre de log₂ <i>n</i> : 2²⁰ = 1 048 576. Ce coût <b>logarithmique</b> n’est possible que parce que le tableau est trié.</p>
+<p>La <b>puissance rapide</b> du chapitre Récursivité suit le même schéma : a<sup>n</sup> se déduit de a<sup>n//2</sup>, un seul sous-problème deux fois plus petit.</p>` },
+
+    { id: "i3", t: "Fusionner deux listes triées", h: `
+<p>Le cœur du tri fusion est une opération simple : <b>fusionner</b> deux listes déjà triées en une seule liste triée. On compare les deux éléments « en tête », on prend le plus petit, on avance dans la liste d’où il vient, et on recommence. Quand une liste est épuisée, on recopie le reste de l’autre.</p>
+[[dpr-fusion]]
+<p>Chaque comparaison place un élément définitivement : fusionner deux listes de longueurs <i>p</i> et <i>q</i> demande <b>au plus <i>p</i> + <i>q</i> − 1 comparaisons</b>. La fusion est donc de coût <b>linéaire</b>. Le test <code>a[i] &lt;= b[j]</code> (et non <code>&lt;</code>) garde dans l’ordre d’origine deux éléments égaux : le tri est dit <b>stable</b>.</p>
+<p>Dans l’animation, choisis « une fusion pas à pas » : les deux têtes sont comparées, la plus petite descend dans le résultat.</p>
+[[w-algo-tri-fusion|fusion]]` },
+
+    { id: "i4", t: "Le tri fusion", h: `
+<p>Trier une liste revient à : la couper en deux moitiés (<b>diviser</b>), trier chaque moitié par un appel récursif (<b>régner</b>), fusionner les deux moitiés triées (<b>combiner</b>). Une liste de 0 ou 1 élément est déjà triée : c’est le cas de base.</p>
+[[dpr-tri]]
+<p>On voit les deux phases en affichant les appels : la <b>descente</b> découpe jusqu’aux listes d’un élément, la <b>remontée</b> fusionne.</p>
+[[dpr-trace]]
+[[w-algo-tri-fusion|tout]]
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1945 <b>·</b></span> John von Neumann écrit un programme de tri par fusion pour l’EDVAC, l’un des tout premiers programmes de tri pour ordinateur (d’après Donald Knuth, <i>The Art of Computer Programming</i>, vol. 3).</p></div>` },
+
+    { id: "i5", t: "Le coût du tri fusion : n log₂ n", h: `
+<p>Dessinons l’arbre des appels pour <i>n</i> = 8 : au niveau 0, une liste de 8 ; au niveau 1, deux listes de 4 ; au niveau 2, quatre listes de 2 ; au niveau 3, huit listes de 1. Il y a <b>log₂ <i>n</i></b> niveaux de fusion (ici 3).</p>
+<ul><li>À chaque niveau, les fusions portent en tout sur les <i>n</i> éléments : <b>au plus <i>n</i> comparaisons par niveau</b>.</li>
+<li>Avec log₂ <i>n</i> niveaux : <b>au plus <i>n</i> log₂ <i>n</i> comparaisons</b>, quel que soit l’ordre de départ.</li></ul>
+<p>Mesurons sur une liste rangée à l’envers (le pire cas des tris par insertion), en comparant à <i>n</i> log₂ <i>n</i> et aux <i>n</i>(<i>n</i> − 1)/2 comparaisons du tri par insertion :</p>
+[[dpr-cout]]
+<div class="tab-wrap"><table><tr><th>n</th><th>tri fusion (mesuré)</th><th>n log₂ n</th><th>tri par insertion, liste à l’envers</th></tr>
+<tr><td>8</td><td>12</td><td>24</td><td>28</td></tr><tr><td>1 024</td><td>5 120</td><td>10 240</td><td>523 776</td></tr><tr><td>1 048 576</td><td>10 485 760</td><td>20 971 520</td><td>environ 550 milliards</td></tr></table></div>
+<p>Pour un million d’éléments, l’écart est d’un facteur 50 000 : à un milliard de comparaisons par seconde, le tri fusion prend une centième de seconde, le tri par insertion plus de 9 minutes. Le prix à payer : le tri fusion (dans cette version) <b>crée de nouvelles listes</b>, donc utilise de la mémoire supplémentaire proportionnelle à <i>n</i>.</p>
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>Aucun tri par comparaisons ne peut faire mieux que de l’ordre de <i>n</i> log₂ <i>n</i> comparaisons dans le pire cas : le tri fusion est optimal de ce point de vue. Le tri de Python (<code>sorted</code>, <code>list.sort</code>), appelé Timsort (Tim Peters, 2002), est un tri fusion amélioré qui profite des morceaux déjà triés.</p></div>` },
+
+    { id: "i6", t: "Faire tourner une image d’un quart de tour", h: `
+<p>Une image bitmap est un tableau de pixels. Pour la tourner d’un quart de tour dans le sens des aiguilles d’une montre, le pixel de la ligne <i>i</i>, colonne <i>j</i> de la nouvelle image est celui de la ligne <i>n</i> − 1 − <i>j</i>, colonne <i>i</i> de l’ancienne. La méthode directe fabrique une <b>deuxième image</b> : sa mémoire est proportionnelle au nombre de pixels.</p>
+[[dpr-rot-copie]]
+<p>Le programme demande une rotation avec un <b>coût en mémoire constant</b> : on modifie l’image <b>sur place</b>. Pour une image carrée de côté <i>n</i> (une puissance de 2) :</p>
+<ol><li><b>diviser</b> l’image en quatre quarts de côté <i>n</i>/2 ;</li><li><b>régner</b> : tourner chaque quart sur lui-même d’un quart de tour (appel récursif) ;</li><li><b>combiner</b> : déplacer les quarts d’un cran dans le sens horaire (haut gauche → haut droit → bas droit → bas gauche → haut gauche), en échangeant les pixels quatre par quatre avec une seule variable auxiliaire.</li></ol>
+[[dpr-rotation]]
+[[w-algo-rotation]]
+<p>La vérification sur une image de 64 × 64 compare le résultat avec la formule directe :</p>
+[[dpr-rot-dessin]]
+<p>Mémoire : une variable <code>hg</code> pour les échanges, plus la pile d’appels, qui ne dépasse pas log₂ <i>n</i> + 1 cadres (7 pour 64 × 64). C’est négligeable devant les <i>n</i>² pixels : on parle de coût en mémoire constant (ou presque). En temps, chaque pixel est déplacé une fois par niveau : de l’ordre de <i>n</i>² log₂ <i>n</i> opérations.</p>
+<div class="boite ex"><div class="lab"># avec un module d’images</div><p>Avec la bibliothèque PIL (Pillow), on lit les pixels par <code>img.getpixel((x, y))</code> et on les écrit par <code>img.putpixel((x, y), couleur)</code> : la fonction se recopie en remplaçant <code>img[y][x]</code> par ces appels. Attention, PIL désigne un pixel par (colonne, ligne).</p></div>` },
+
+    { id: "i7", t: "Reconnaître et écrire un « diviser pour régner »", h: `
+<div class="boite retenir-b"><div class="lab"># méthode</div>
+<ol><li>Quel est le <b>cas de base</b> (liste vide ou d’un élément, image d’un pixel, zone vide) ?</li>
+<li>Comment <b>couper</b> la donnée (milieu d’une liste, quatre quarts d’une image) ? Les morceaux doivent être <b>indépendants</b>.</li>
+<li>Combien de morceaux faut-il <b>vraiment</b> traiter (un seul pour la dichotomie, deux pour le tri fusion, quatre pour l’image) ?</li>
+<li>Comment <b>combiner</b> (rien, une fusion, une permutation) et combien cela coûte-t-il ?</li></ol></div>
+<div class="tab-wrap"><table><tr><th>algorithme</th><th>diviser</th><th>régner</th><th>combiner</th><th>coût</th></tr>
+<tr><td>dichotomie</td><td>milieu</td><td>1 moitié</td><td>rien</td><td>log₂ n</td></tr>
+<tr><td>puissance rapide</td><td>n // 2</td><td>1 appel</td><td>1 ou 2 multiplications</td><td>log₂ n</td></tr>
+<tr><td>tri fusion</td><td>milieu</td><td>2 moitiés</td><td>fusion (linéaire)</td><td>n log₂ n</td></tr>
+<tr><td>rotation d’image</td><td>4 quarts</td><td>4 quarts</td><td>permutation des quarts</td><td>n² log₂ n, mémoire constante</td></tr></table></div>
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>Autres « diviser pour régner » célèbres : le <b>tri rapide</b> (<i>quicksort</i>, Tony Hoare, 1959-1961), qui partage la liste autour d’un pivot ; la multiplication rapide de grands entiers de <b>Karatsuba</b> (1960) ; la transformée de Fourier rapide (Cooley et Tukey, 1965), au cœur de la compression du son et des images.</p></div>` }
+  ],
+  pieges: [
+    { t: "Oublier de recopier le reste dans la fusion", h: `[[dpr-p-reste]]<p>La boucle s’arrête dès qu’<b>une</b> liste est épuisée : 5 et 9 sont perdus. Il faut ajouter <code>a[i:]</code> et <code>b[j:]</code> (l’un des deux est vide).</p>` },
+    { t: "Oublier le cas de base", h: `[[dpr-p-base]]<p>Sur une liste d’un élément, <code>t[:0]</code> est vide et <code>t[0:]</code> est la liste elle-même : le même appel recommence à l’infini. Le cas de base <code>len(t) &lt;= 1</code> est obligatoire.</p>` },
+    { t: "Croire que tri_fusion trie la liste sur place", h: `[[dpr-p-place]]<p>Cette version <b>renvoie une nouvelle liste</b> (comme <code>sorted</code>) ; elle ne modifie pas <code>t</code> (contrairement à <code>t.sort()</code>). Il faut affecter le résultat.</p>` },
+    { t: "Confondre « diviser pour régner » et « couper en deux »", h: `<p>La rotation d’image coupe en <b>quatre</b> ; la dichotomie ne traite qu’<b>une</b> moitié. Ce qui compte : des sous-problèmes du même type, plus petits, indépendants, et une combinaison des réponses. Inversement, couper en deux ne suffit pas à gagner du temps : le maximum par « diviser pour régner » coûte autant qu’un parcours.</p>` },
+    { t: "Indices décalés : t[:m + 1] et t[m + 1:]", h: `<p>Avec <code>m = len(t) // 2</code>, pour une liste de 2 éléments, <code>m + 1</code> vaut 2 : la « moitié » gauche est la liste entière, et l’appel ne rétrécit pas (RecursionError). Les deux moitiés doivent être <b>strictement plus petites</b> : <code>t[:m]</code> et <code>t[m:]</code> avec <code>m ≥ 1</code>.</p>` }
+  ],
+  retenir: `
+<h2>Le squelette</h2>
+[[dpr-retenir]]
+<h2>Les trois exemples du programme</h2>
+<div class="tab-wrap"><table><tr><th>algorithme</th><th>diviser</th><th>régner</th><th>combiner</th><th>coût</th></tr>
+<tr><td>recherche dichotomique</td><td>élément du milieu</td><td>une seule moitié</td><td>rien</td><td>≈ log₂ n</td></tr>
+<tr><td>tri fusion</td><td>deux moitiés</td><td>trier chaque moitié</td><td>fusion de deux listes triées (≤ n − 1 comparaisons)</td><td>≈ n log₂ n (pire cas compris)</td></tr>
+<tr><td>rotation d’image n × n</td><td>quatre quarts</td><td>tourner chaque quart</td><td>permuter les quarts, 4 pixels à la fois</td><td>mémoire constante</td></tr></table></div>
+<h2>Ordres de grandeur pour n = 1 000 000</h2>
+<div class="tab-wrap"><table><tr><th>coût</th><th>opérations</th></tr><tr><td>log₂ n</td><td>20</td></tr><tr><td>n</td><td>10⁶</td></tr><tr><td>n log₂ n</td><td>2 × 10⁷</td></tr><tr><td>n²</td><td>10¹²</td></tr></table></div>
+<h2>Les réflexes</h2>
+<ul><li>Cas de base en premier ; sous-problèmes <b>strictement plus petits</b>.</li><li>Fusion : comparer les têtes, prendre la plus petite, recopier le reste à la fin.</li><li>Rotation horaire : nouveau[i][j] = ancien[n − 1 − j][i].</li><li>Sous-problèmes qui se chevauchent → programmation dynamique, pas « diviser pour régner ».</li></ul>`,
+  predis: [
+    { code: "dpr-x1", niv: "facile", rep: "La fonction coupe la liste en deux et additionne les résultats des deux moitiés ; une liste d’un élément renvoie cet élément. C’est la somme : 5 + 1 + 4 + 2 + 3 = 15." },
+    { code: "dpr-x2", niv: "moyen", rep: "Chaque appel renvoie le couple (minimum, maximum) de sa zone ; la combinaison prend le plus petit des minimums et le plus grand des maximums : (1, 9)." },
+    { code: "dpr-x3", niv: "moyen", rep: "Liste de 5 → 2 et 3 ; 2 → 1 et 1 ; 3 → 1 et 2 ; 2 → 1 et 1. On compte 1 + 2 + 4 + 2 = 9 appels. En général, 2<i>n</i> − 1 appels pour <i>n</i> ≥ 1 (chaque appel qui n’est pas une feuille en crée deux, et il y a <i>n</i> feuilles)." },
+    { code: "dpr-x4", niv: "difficile", rep: "<code>g(n)</code> compte combien de fois on peut diviser <i>n</i> par 2 avant d’atteindre 1 : c’est ⌊log₂ <i>n</i>⌋. 8 = 2³ donne 3 ; 2⁹ = 512 ≤ 1 000 &lt; 1 024 donne 9 ; 2¹⁹ = 524 288 ≤ 10⁶ &lt; 2²⁰ donne 19." }
+  ],
+  ep: [
+    { titre: "Le tri fusion à compléter", enonce: `<p>On veut un tri fusion qui ne modifie pas la liste de départ. Le fichier fourni est incomplet.</p>[[dpr-ep1-fourni]]`,
+      questions: [
+        { q: "Compléter la condition de la ligne 6 et les lignes 11 et 12.", c: `<p>Ligne 6 : <code>while i &lt; len(a) and j &lt; len(b):</code>. Lignes 11-12 : <code>res.append(b[j])</code> puis <code>j = j + 1</code>.</p>` },
+        { q: "La ligne 16 doit recopier ce qui reste de <code>b</code>. L’écrire. Pourquoi n’a-t-on jamais à exécuter les deux boucles de recopie avec un reste non vide ?", c: `<p>Une boucle <code>while j &lt; len(b):</code> symétrique de celle sur <code>a</code>. La première boucle ne s’arrête que lorsqu’<b>une</b> des deux listes est épuisée : au plus une des deux boucles de recopie a du travail.</p>` },
+        { q: "Écrire <code>tri_fusion(t)</code> (ligne 21) et une fonction <code>test()</code> avec des cas limites : liste vide, un élément, doublons, liste à l’envers, et vérification que <code>t</code> n’est pas modifiée.", c: `[[dpr-ep1-corr]]` },
+        { q: "Un camarade propose la version ci-dessous. Exécuter et expliquer l’erreur obtenue.", code: "[[dpr-ep1-bug]]", c: `<p>Pour <code>[4, 1, 3]</code>, m = 1 : les « moitiés » sont <code>[4, 1]</code> et <code>[3]</code>. Puis, pour <code>[4, 1]</code>, m = 1 et <code>t[:2]</code> est la liste <b>entière</b> : l’appel se répète à l’identique jusqu’à la <code>RecursionError</code>. Il faut couper en <code>t[:m]</code> et <code>t[m:]</code>, deux listes strictement plus courtes dès que la liste a au moins 2 éléments.</p>` },
+        { q: "À l’oral : combien de comparaisons au plus pour trier 1 024 éléments ? Et avec un tri par insertion ?", c: `<p>10 niveaux de fusion (2¹⁰ = 1 024), au plus 1 024 comparaisons par niveau : au plus 10 240 (on en a mesuré 5 120 sur une liste à l’envers). Le tri par insertion en fait jusqu’à 1 024 × 1 023 / 2 = 523 776.</p>` }
+      ] },
+    { titre: "Rotation d’une image sur place", enonce: `<p>Une image est représentée par une liste de listes carrée de côté <i>n</i>, puissance de 2. On veut la faire tourner d’un quart de tour dans le sens horaire <b>sans créer de seconde image</b>.</p>[[dpr-ep2-fourni]]`,
+      questions: [
+        { q: "Quelle est la valeur attendue du pixel en haut à gauche après rotation de <code>creer_image(4)</code> ? Justifier avec la formule.", c: `<p>nouveau[0][0] = ancien[<i>n</i> − 1 − 0][0] = ancien[3][0] = 4 × 3 + 0 = <b>12</b> : c’est le coin bas gauche qui monte en haut à gauche.</p>` },
+        { q: "Compléter la ligne 21 : les quatre affectations de l’échange circulaire, avec une seule variable auxiliaire.", c: `<p>On sauve le haut gauche, puis on remonte le bas gauche, on décale le bas droit vers la gauche, on descend le haut droit, et on place l’ancien haut gauche en haut à droite (voir le corrigé complet).</p>` },
+        { q: "Écrire une fonction <code>rotation_copie(img)</code> qui renvoie une nouvelle image tournée, puis une fonction de test qui compare les deux méthodes pour plusieurs tailles, et vérifie que quatre quarts de tour ramènent l’image de départ.", c: `[[dpr-ep2-corr]]` },
+        { q: "À l’oral : pourquoi dit-on que <code>rotation</code> a un coût en mémoire constant, alors qu’elle est récursive ?", c: `<p>Elle n’alloue aucune autre image : seulement la variable <code>hg</code> et les compteurs. La pile d’appels contient au plus log₂ <i>n</i> + 1 cadres (11 pour une image de 1 024 × 1 024 pixels), ce qui est négligeable devant le million de pixels. <code>rotation_copie</code>, elle, crée <i>n</i>² nouvelles cases.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "Fusion récursive et inversions", points: "≈ 6 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite.",
+    enonce: `<p>Dans une liste <code>t</code>, une <b>inversion</b> est un couple d’indices (<i>i</i>, <i>j</i>) avec <i>i</i> &lt; <i>j</i> et <code>t[i] &gt; t[j]</code>. Le nombre d’inversions mesure le « désordre » d’une liste (il sert par exemple à comparer deux classements). On utilise la fonction <code>fusion</code> et le tri fusion du cours.</p>`,
+    questions: [
+      { q: "Donner les inversions de <code>[3, 1, 4, 2]</code>. Combien une liste de <i>n</i> éléments distincts rangés dans l’ordre décroissant en compte-t-elle ?", pts: "1 pt", c: `<p>(3, 1), (3, 2), (4, 2) : <b>3 inversions</b> (on cite les valeurs). Dans l’ordre décroissant, tous les couples sont inversés : <i>n</i>(<i>n</i> − 1)/2 (10 pour <i>n</i> = 5).</p>` },
+      { q: "Écrire une version <b>récursive</b> <code>fusion_rec(a, b)</code> de la fusion de deux listes triées (sans boucle).", pts: "1,5 pt", c: `<p>Cas de base : si une liste est vide, renvoyer l’autre. Sinon, le plus petit des deux premiers éléments vient en tête, suivi de la fusion du reste : <code>[a[0]] + fusion_rec(a[1:], b)</code> ou <code>[b[0]] + fusion_rec(a, b[1:])</code>.</p>` },
+      { q: "Quel inconvénient a <code>fusion_rec</code> pour des listes de 2 000 éléments chacune ?", pts: "0,5 pt", c: `<p>Chaque élément placé coûte un appel : jusqu’à 3 999 appels imbriqués, au-delà de la limite de 1 000 de Python (<code>RecursionError</code>). Les découpages <code>a[1:]</code> font en plus une copie à chaque appel. La version itérative n’a aucun de ces défauts.</p>` },
+      { q: "Pendant la fusion de deux moitiés triées <code>g</code> et <code>d</code>, on prend <code>d[j]</code> alors qu’il reste <code>len(g) − i</code> éléments dans <code>g</code>. Combien d’inversions « entre les deux moitiés » cela révèle-t-il ? Pourquoi ?", pts: "1,5 pt", c: `<p><b>len(g) − i</b> : <code>d[j] &lt; g[i]</code>, et <code>g</code> est triée, donc <code>d[j]</code> est plus petit que <b>tous</b> les éléments restants de <code>g</code>, qui étaient placés avant lui dans la liste de départ.</p>` },
+      { q: "En déduire une fonction <code>tri_inv(t)</code> qui renvoie le couple (liste triée, nombre d’inversions), selon la méthode diviser pour régner. Quel est son coût ?", pts: "1,5 pt", c: `<p>Inversions = inversions de la moitié gauche + inversions de la moitié droite + inversions entre les deux, comptées pendant la fusion. Même coût que le tri fusion : <i>n</i> log₂ <i>n</i>, au lieu de <i>n</i>² pour la double boucle qui teste tous les couples.</p>[[dpr-ecrit-corr]]` }
+    ],
+    methode: `<p>À l’écrit, « diviser pour régner » se reconnaît aux mots « couper en deux », « moitié », « sous-tableau ». On attend presque toujours : un cas de base explicite, un découpage qui rétrécit, la combinaison, et une phrase sur le coût (<i>n</i> log₂ <i>n</i> pour le tri fusion, log₂ <i>n</i> pour la dichotomie). Nomme les trois étapes dans ta copie : c’est ce que le correcteur cherche.</p>` },
+  qcm: [
+    { q: "Quelles sont les trois étapes de la méthode « diviser pour régner » ?", c: ["Trier, chercher, afficher", "Diviser, résoudre les sous-problèmes, combiner", "Initialiser, boucler, renvoyer", "Mémoriser, réutiliser, compléter"], a: 1, e: "Diviser en sous-problèmes indépendants, les résoudre (récursivement), combiner leurs solutions.", ref: "i1" },
+    { q: "Quelle condition doivent remplir les sous-problèmes ?", c: ["Être tous de taille 1", "Être du même type, plus petits et indépendants", "Se chevaucher le plus possible", "Être résolus par une boucle while"], a: 1, e: "S’ils se chevauchent, on utilise plutôt la programmation dynamique.", ref: "i1" },
+    { q: "Combien d’appels, au plus, fait la recherche dichotomique récursive dans un tableau trié d’un million d’éléments ?", c: ["Environ 20", "Environ 1 000", "500 000", "1 000 000"], a: 0, e: "On divise la zone par 2 à chaque appel : environ log₂(10⁶) ≈ 20 (21 avec l’appel qui trouve la zone vide).", ref: "i2" },
+    { q: "Dans la recherche dichotomique, que fait l’étape « combiner » ?", c: ["Elle fusionne les deux moitiés", "Rien : la réponse de la moitié explorée est la réponse", "Elle additionne les indices", "Elle trie le tableau"], a: 1, e: "Une seule moitié peut contenir x ; sa réponse est directement renvoyée.", ref: "i2" },
+    { q: "Que renvoie <code>fusion([2, 8], [1, 5, 9])</code> ?", c: ["[2, 8, 1, 5, 9]", "[1, 2, 5, 8, 9]", "[1, 5, 9, 2, 8]", "[1, 2, 5]"], a: 1, e: "On prend à chaque fois la plus petite des deux têtes, puis on recopie le reste.", ref: "i3" },
+    { q: "Combien de comparaisons au plus pour fusionner deux listes triées de 4 et 3 éléments ?", c: ["3", "6", "7", "12"], a: 1, e: "Au plus p + q − 1 = 6 : chaque comparaison place un élément, le dernier est placé sans comparaison.", ref: "i3" },
+    { q: "Quel est le cas de base du tri fusion ?", c: ["Une liste de 0 ou 1 élément, déjà triée", "Une liste de 2 éléments", "Une liste triée", "Il n’y en a pas"], a: 0, e: "Sans lui, une liste d’un élément se redécoupe indéfiniment.", ref: "i4" },
+    { q: "Combien d’appels à <code>tri_fusion</code> pour une liste de 8 éléments ?", c: ["8", "15", "16", "24"], a: 1, e: "1 + 2 + 4 + 8 = 15 = 2n − 1.", ref: "i4" },
+    { q: "Quel est le coût du tri fusion dans le pire des cas ?", c: ["De l’ordre de n", "De l’ordre de n log₂ n", "De l’ordre de n²", "De l’ordre de 2ⁿ"], a: 1, e: "log₂ n niveaux, au plus n comparaisons par niveau.", ref: "i5" },
+    { q: "Combien de niveaux de fusion pour trier 1 024 éléments ?", c: ["2", "10", "512", "1 024"], a: 1, e: "2¹⁰ = 1 024 : on divise par deux 10 fois avant d’atteindre des listes d’un élément.", ref: "i5" },
+    { q: "Quel est l’inconvénient de la version du cours du tri fusion par rapport au tri par insertion ?", c: ["Il est plus lent sur les grandes listes", "Il utilise de la mémoire supplémentaire (nouvelles listes)", "Il ne marche pas avec des doublons", "Il ne trie que des entiers"], a: 1, e: "Les découpages et les fusions créent de nouvelles listes, de taille totale proportionnelle à n.", ref: "i5" },
+    { q: "Après un quart de tour horaire d’une image n × n, que vaut le pixel nouveau[i][j] ?", c: ["ancien[j][i]", "ancien[n − 1 − j][i]", "ancien[i][n − 1 − j]", "ancien[n − 1 − i][n − 1 − j]"], a: 1, e: "La colonne de gauche, lue de bas en haut, devient la ligne du haut.", ref: "i6" },
+    { q: "Pourquoi la rotation d’image du cours a-t-elle un coût en mémoire (quasi) constant ?", c: ["Elle utilise une seconde image plus petite", "Elle échange les pixels sur place, avec une seule variable auxiliaire", "Elle ne traite qu’un quart de l’image", "Elle compresse l’image"], a: 1, e: "Seule la pile d’appels grandit, de log₂ n + 1 cadres au plus.", ref: "i6" },
+    { q: "Lequel de ces algorithmes n’est PAS un « diviser pour régner » ?", c: ["Le tri fusion", "La recherche dichotomique", "Le tri par sélection", "La puissance rapide"], a: 2, e: "Le tri par sélection cherche le minimum et le place, n fois : aucune division en sous-problèmes indépendants.", ref: "i7" }
+  ],
+  cartes: [
+    { r: "Diviser pour régner", v: "Diviser en sous-problèmes du même type, plus petits et indépendants ; les résoudre (récursivement) ; combiner leurs solutions." },
+    { r: "Diviser pour régner ou programmation dynamique ?", v: "Sous-problèmes indépendants → diviser pour régner. Sous-problèmes qui se chevauchent → programmation dynamique." },
+    { r: "Recherche dichotomique", v: "Tableau trié : on compare au milieu et on ne garde qu’une moitié. Environ log₂ n étapes (20 pour un million)." },
+    { r: "Fusion de deux listes triées", v: "Comparer les têtes, prendre la plus petite, avancer ; recopier le reste à la fin. Au plus p + q − 1 comparaisons." },
+    { r: "Tri fusion", v: "Liste de 0 ou 1 élément : déjà triée. Sinon : trier t[:m] et t[m:] (m = len(t) // 2), puis fusionner." },
+    { r: "Coût du tri fusion", v: "n log₂ n comparaisons au plus, même dans le pire cas (log₂ n niveaux de fusion × n par niveau)." },
+    { r: "Coût des tris par insertion et par sélection", v: "De l’ordre de n² (n(n − 1)/2 comparaisons pour la sélection)." },
+    { r: "Nombre d’appels du tri fusion sur n éléments", v: "2n − 1 (n feuilles, n − 1 nœuds qui fusionnent)." },
+    { r: "Rotation d’un quart de tour (horaire)", v: "nouveau[i][j] = ancien[n − 1 − j][i]." },
+    { r: "Rotation d’image sur place", v: "Tourner les 4 quarts récursivement, puis les permuter (HG → HD → BD → BG → HG), 4 pixels à la fois. Mémoire constante." },
+    { r: "Ordres de grandeur pour n = 10⁶", v: "log₂ n ≈ 20 ; n log₂ n ≈ 2 × 10⁷ ; n² = 10¹²." },
+    { r: "Tri stable", v: "Deux éléments égaux restent dans leur ordre de départ. Le tri fusion l’est avec le test a[i] <= b[j]." },
+    { r: "Von Neumann, 1945", v: "Écrit un programme de tri par fusion pour l’EDVAC (d’après Knuth)." }
+  ]
+});
+
+/* ===================== Chapitre 6 — Bases de données ===================== */
+/* Base d'exemple : une petite bibliothèque. Les tables affichées et le script SQL sont produits à partir des mêmes données. */
+var BIB = {
+  Auteur: { cols: ["id_auteur", "nom", "prenom", "naissance"], cle: "id_auteur", lignes: [
+    [1, "Hugo", "Victor", 1802], [2, "Sand", "George", 1804], [3, "Verne", "Jules", 1828], [4, "Zola", "Émile", 1840], [5, "Colette", "Sidonie-Gabrielle", 1873]] },
+  Livre: { cols: ["id_livre", "titre", "annee", "id_auteur"], cle: "id_livre", etr: { id_auteur: "Auteur" }, lignes: [
+    [1, "Les Misérables", 1862, 1], [2, "Notre-Dame de Paris", 1831, 1], [3, "Les Contemplations", 1856, 1], [4, "Indiana", 1832, 2],
+    [5, "La Mare au diable", 1846, 2], [6, "De la Terre à la Lune", 1865, 3], [7, "Germinal", 1885, 4], [8, "L'Assommoir", 1877, 4]] },
+  Emprunt: { cols: ["id_emprunt", "id_livre", "adherent", "date_emprunt"], cle: "id_emprunt", etr: { id_livre: "Livre" }, lignes: [
+    [1, 7, "Ada", "2026-10-02"], [2, 1, "Alan", "2026-10-05"], [3, 7, "Grace", "2026-10-20"], [4, 6, "Ada", "2026-11-03"]] }
+};
+function bibSql() {
+  var types = { id_auteur: "INTEGER", nom: "TEXT", prenom: "TEXT", naissance: "INTEGER", id_livre: "INTEGER", titre: "TEXT", annee: "INTEGER", id_emprunt: "INTEGER", adherent: "TEXT", date_emprunt: "TEXT" };
+  var s = [];
+  Object.keys(BIB).forEach(function (t) {
+    var T = BIB[t], def = T.cols.map(function (c) { return "    " + c + " " + types[c] + (c === T.cle ? " PRIMARY KEY" : "") + (T.etr && T.etr[c] ? " REFERENCES " + T.etr[c] + "(" + c + ")" : ""); });
+    s.push("CREATE TABLE " + t + " (\n" + def.join(",\n") + "\n);");
+  });
+  Object.keys(BIB).forEach(function (t) {
+    BIB[t].lignes.forEach(function (l) { s.push("INSERT INTO " + t + " VALUES (" + l.map(function (v) { return typeof v === "number" ? v : "'" + String(v).replace(/'/g, "''") + "'"; }).join(", ") + ");"); });
+  });
+  return s.join("\n");
+}
+function bibTable(t, opts) {
+  opts = opts || {};
+  var T = BIB[t];
+  return '<div class="tab-wrap table-bd"><table><caption class="mono">' + t + '</caption><tr>' + T.cols.map(function (c) { return "<th" + (c === T.cle ? ' class="pk"' : T.etr && T.etr[c] ? ' class="fk"' : "") + ">" + (T.etr && T.etr[c] ? "#" : "") + c + "</th>"; }).join("") + "</tr>" +
+    T.lignes.map(function (l) { return "<tr>" + l.map(function (v) { return "<td>" + String(v).replace(/&/g, "&amp;").replace(/</g, "&lt;") + "</td>"; }).join("") + "</tr>"; }).join("") + "</table></div>";
+}
+
+C("c6-schema", bibSql(), { sql: true, fichier: "bibliotheque.sql", out: "" });
+
+C("c6-select", String.raw`
+SELECT titre, annee
+FROM Livre
+WHERE annee < 1850
+ORDER BY annee;`, { sql: true, deps: ["c6-schema"], out: "titre | annee\nNotre-Dame de Paris | 1831\nIndiana | 1832\nLa Mare au diable | 1846" });
+
+C("c6-etoile", String.raw`
+SELECT * FROM Auteur WHERE naissance >= 1828 AND naissance < 1870;`, { sql: true, deps: ["c6-schema"], out: "id_auteur | nom | prenom | naissance\n3 | Verne | Jules | 1828\n4 | Zola | Émile | 1840" });
+
+C("c6-distinct", String.raw`
+SELECT DISTINCT id_auteur FROM Livre ORDER BY id_auteur DESC;`, { sql: true, deps: ["c6-schema"], out: "id_auteur\n4\n3\n2\n1" });
+
+C("c6-agregats", String.raw`
+SELECT COUNT(*) AS nb_livres,
+       MIN(annee) AS plus_ancien,
+       MAX(annee) AS plus_recent
+FROM Livre
+WHERE id_auteur = 1;`, { sql: true, deps: ["c6-schema"], out: "nb_livres | plus_ancien | plus_recent\n3 | 1831 | 1862" });
+
+C("c6-avg", String.raw`
+SELECT AVG(naissance) AS moyenne, SUM(naissance) AS somme FROM Auteur WHERE id_auteur <= 2;`, { sql: true, deps: ["c6-schema"], out: "moyenne | somme\n1803.0 | 3606" });
+
+C("c6-jointure", String.raw`
+SELECT Livre.titre, Auteur.nom
+FROM Livre
+JOIN Auteur ON Livre.id_auteur = Auteur.id_auteur
+WHERE Auteur.naissance > 1820
+ORDER BY Livre.annee;`, { sql: true, deps: ["c6-schema"], out: "titre | nom\nDe la Terre à la Lune | Verne\nL'Assommoir | Zola\nGerminal | Zola" });
+
+C("c6-jointure3", String.raw`
+SELECT Emprunt.adherent, Livre.titre, Auteur.nom
+FROM Emprunt
+JOIN Livre ON Emprunt.id_livre = Livre.id_livre
+JOIN Auteur ON Livre.id_auteur = Auteur.id_auteur
+ORDER BY Emprunt.date_emprunt;`, { sql: true, deps: ["c6-schema"], out: "adherent | titre | nom\nAda | Germinal | Zola\nAlan | Les Misérables | Hugo\nGrace | Germinal | Zola\nAda | De la Terre à la Lune | Verne" });
+
+C("c6-colette", String.raw`
+SELECT COUNT(*) AS nb FROM Livre JOIN Auteur ON Livre.id_auteur = Auteur.id_auteur WHERE Auteur.nom = 'Colette';`, { sql: true, deps: ["c6-schema"], out: "nb\n0" });
+
+C("c6-produit", String.raw`
+SELECT COUNT(*) AS nb_lignes FROM Livre JOIN Auteur;   -- condition ON oubliée`, { sql: true, deps: ["c6-schema"], out: "nb_lignes\n40" });
+
+C("c6-insert", String.raw`
+INSERT INTO Livre VALUES (9, 'Le Blé en herbe', 1923, 5);
+INSERT INTO Livre (id_livre, titre, annee, id_auteur) VALUES (10, 'Vingt mille lieues sous les mers', 1870, 3);
+SELECT COUNT(*) AS nb FROM Livre;`, { sql: true, deps: ["c6-schema"], out: "nb\n10" });
+
+C("c6-update", String.raw`
+UPDATE Emprunt SET adherent = 'Linus' WHERE id_emprunt = 4;
+SELECT * FROM Emprunt WHERE adherent = 'Linus';`, { sql: true, deps: ["c6-schema"], out: "id_emprunt | id_livre | adherent | date_emprunt\n4 | 6 | Linus | 2026-11-03" });
+
+C("c6-delete", String.raw`
+DELETE FROM Emprunt WHERE date_emprunt < '2026-10-10';
+SELECT id_emprunt, adherent FROM Emprunt;`, { sql: true, deps: ["c6-schema"], out: "id_emprunt | adherent\n3 | Grace\n4 | Ada" });
+
+C("c6-err-pk", String.raw`
+INSERT INTO Auteur VALUES (3, 'Dumas', 'Alexandre', 1802);   -- 3 est déjà pris`, { sql: true, deps: ["c6-schema"], err: "UNIQUE constraint failed: Auteur.id_auteur" });
+
+C("c6-err-fk", String.raw`
+INSERT INTO Livre VALUES (11, 'Le Comte de Monte-Cristo', 1844, 6);  -- aucun auteur n° 6`, { sql: true, deps: ["c6-schema"], err: "FOREIGN KEY constraint failed" });
+
+C("c6-err-suppr", String.raw`
+DELETE FROM Auteur WHERE nom = 'Zola';   -- des livres le référencent encore`, { sql: true, deps: ["c6-schema"], err: "FOREIGN KEY constraint failed" });
+
+C("c6-redondance", String.raw`
+-- Une seule grande table : l'auteur est répété à chaque livre
+CREATE TABLE LivreTout (titre TEXT, annee INTEGER, nom TEXT, prenom TEXT, naissance INTEGER);
+INSERT INTO LivreTout VALUES ('Les Misérables', 1862, 'Hugo', 'Victor', 1802);
+INSERT INTO LivreTout VALUES ('Notre-Dame de Paris', 1831, 'Hugo', 'Victor', 1802);
+INSERT INTO LivreTout VALUES ('Les Contemplations', 1856, 'Hugo', 'Victor', 1820);   -- erreur de saisie
+SELECT DISTINCT nom, naissance FROM LivreTout;`, { sql: true, out: "nom | naissance\nHugo | 1802\nHugo | 1820" });
+
+C("c6-python", String.raw`
+import sqlite3
+
+base = sqlite3.connect(":memory:")       # une base en mémoire (ou un fichier .db)
+base.executescript(SCRIPT)               # SCRIPT : le script de la bibliothèque
+
+def livres_de(nom):
+    """Titres des livres d'un auteur, du plus ancien au plus récent."""
+    requete = """SELECT Livre.titre FROM Livre
+                 JOIN Auteur ON Livre.id_auteur = Auteur.id_auteur
+                 WHERE Auteur.nom = ? ORDER BY Livre.annee"""
+    return [ligne[0] for ligne in base.execute(requete, (nom,))]   # ? reçoit nom
+
+print(livres_de("Hugo"))
+print(livres_de("Colette"))`, { deps: ["c6-python-script"], out: "['Notre-Dame de Paris', 'Les Contemplations', 'Les Misérables']\n[]" });
+C("c6-python-script", "SCRIPT = " + JSON.stringify(bibSql()), { run: false });
+
+/* prédis la sortie */
+C("c6-x1", String.raw`
+SELECT titre FROM Livre
+WHERE id_auteur = 1 AND annee > 1840
+ORDER BY annee;`, { sql: true, deps: ["c6-schema"], out: "titre\nLes Contemplations\nLes Misérables" });
+
+C("c6-x2", String.raw`
+SELECT COUNT(*) AS nb, MIN(annee) AS premier
+FROM Livre
+WHERE id_auteur = 4;`, { sql: true, deps: ["c6-schema"], out: "nb | premier\n2 | 1877" });
+
+C("c6-x3", String.raw`
+SELECT DISTINCT adherent FROM Emprunt ORDER BY adherent;`, { sql: true, deps: ["c6-schema"], out: "adherent\nAda\nAlan\nGrace" });
+
+C("c6-x4", String.raw`
+SELECT Auteur.nom, Livre.titre
+FROM Emprunt
+JOIN Livre ON Emprunt.id_livre = Livre.id_livre
+JOIN Auteur ON Livre.id_auteur = Auteur.id_auteur
+WHERE Emprunt.adherent = 'Ada'
+ORDER BY Emprunt.date_emprunt;`, { sql: true, deps: ["c6-schema"], out: "nom | titre\nZola | Germinal\nVerne | De la Terre à la Lune" });
+
+/* épreuve pratique 1 */
+C("c6-ep1-fourni", String.raw`
+import sqlite3
+
+base = sqlite3.connect(":memory:")
+base.executescript(SCRIPT)
+
+def titres_apres(annee):
+    """Titres des livres parus strictement après annee, triés par titre."""
+    requete = ...
+    return [l[0] for l in base.execute(requete, (annee,))]
+
+def livres_et_auteurs():
+    """Couples (titre, nom de l'auteur), un par livre."""
+    requete = "SELECT Livre.titre, Auteur.nom FROM Livre, Auteur"
+    return base.execute(requete).fetchall()
+
+print(len(livres_et_auteurs()))`, { fichier: "bibliotheque.py", run: false, trous: [8] });
+
+C("c6-ep1-bug", String.raw`
+import sqlite3
+base = sqlite3.connect(":memory:")
+base.executescript(SCRIPT)
+requete = "SELECT Livre.titre, Auteur.nom FROM Livre, Auteur"
+print(len(base.execute(requete).fetchall()))`, { deps: ["c6-python-script"], fichier: "essai.py", out: "40" });
+
+C("c6-ep1-corr", String.raw`
+import sqlite3
+
+base = sqlite3.connect(":memory:")
+base.executescript(SCRIPT)
+
+def titres_apres(annee):
+    requete = "SELECT titre FROM Livre WHERE annee > ? ORDER BY titre"
+    return [l[0] for l in base.execute(requete, (annee,))]
+
+def livres_et_auteurs():
+    requete = """SELECT Livre.titre, Auteur.nom FROM Livre
+                 JOIN Auteur ON Livre.id_auteur = Auteur.id_auteur"""
+    return base.execute(requete).fetchall()
+
+def nb_emprunts(titre):
+    requete = """SELECT COUNT(*) FROM Emprunt
+                 JOIN Livre ON Emprunt.id_livre = Livre.id_livre
+                 WHERE Livre.titre = ?"""
+    return base.execute(requete, (titre,)).fetchone()[0]
+
+def test():
+    assert titres_apres(1870) == ["Germinal", "L'Assommoir"]
+    assert titres_apres(1900) == []
+    assert len(livres_et_auteurs()) == 8                 # un couple par livre
+    assert ("Indiana", "Sand") in livres_et_auteurs()
+    assert nb_emprunts("Germinal") == 2
+    assert nb_emprunts("Indiana") == 0
+
+test()
+print("tous les tests passent")`, { deps: ["c6-python-script"], fichier: "bibliotheque.py", out: "tous les tests passent" });
+
+/* épreuve pratique 2 */
+C("c6-ep2-fourni", String.raw`
+livres = [{"titre": "Germinal", "id_auteur": 4}, {"titre": "Indiana", "id_auteur": 2},
+          {"titre": "Les Misérables", "id_auteur": 1}]
+auteurs = [{"id_auteur": 1, "nom": "Hugo"}, {"id_auteur": 2, "nom": "Sand"},
+           {"id_auteur": 4, "nom": "Zola"}]
+
+def jointure(livres, auteurs):
+    """Liste des couples (titre, nom de l'auteur), dans l'ordre de livres."""
+    res = []
+    for l in livres:
+        for a in auteurs:
+            ...
+    return res`, { fichier: "jointure.py", run: false, trous: [11] });
+
+C("c6-ep2-corr", String.raw`
+livres = [{"titre": "Germinal", "id_auteur": 4}, {"titre": "Indiana", "id_auteur": 2},
+          {"titre": "Les Misérables", "id_auteur": 1}]
+auteurs = [{"id_auteur": 1, "nom": "Hugo"}, {"id_auteur": 2, "nom": "Sand"},
+           {"id_auteur": 4, "nom": "Zola"}]
+
+def jointure(livres, auteurs):
+    """Version naïve : deux boucles imbriquées, len(livres) x len(auteurs) comparaisons."""
+    res = []
+    for l in livres:
+        for a in auteurs:
+            if l["id_auteur"] == a["id_auteur"]:
+                res.append((l["titre"], a["nom"]))
+    return res
+
+def jointure_index(livres, auteurs):
+    """Version avec un dictionnaire id -> nom : un seul parcours de chaque table."""
+    index = {a["id_auteur"]: a["nom"] for a in auteurs}
+    return [(l["titre"], index[l["id_auteur"]]) for l in livres if l["id_auteur"] in index]
+
+def test():
+    attendu = [("Germinal", "Zola"), ("Indiana", "Sand"), ("Les Misérables", "Hugo")]
+    assert jointure(livres, auteurs) == attendu
+    assert jointure_index(livres, auteurs) == attendu
+    assert jointure([], auteurs) == []
+    assert jointure([{"titre": "X", "id_auteur": 9}], auteurs) == []    # pas d'auteur 9
+
+test()
+print("tous les tests passent")`, { fichier: "jointure.py", out: "tous les tests passent" });
+
+/* épreuve écrite */
+var CINE = String.raw`
+CREATE TABLE Realisateur (id_real INTEGER PRIMARY KEY, nom TEXT, pays TEXT);
+CREATE TABLE Film (id_film INTEGER PRIMARY KEY, titre TEXT, annee INTEGER,
+                   id_real INTEGER REFERENCES Realisateur(id_real));
+CREATE TABLE Seance (id_seance INTEGER PRIMARY KEY, id_film INTEGER REFERENCES Film(id_film),
+                     salle INTEGER, jour TEXT);
+INSERT INTO Realisateur VALUES (1, 'Méliès', 'France'), (2, 'Lang', 'Allemagne'),
+                               (3, 'Chaplin', 'Royaume-Uni'), (4, 'Renoir', 'France');
+INSERT INTO Film VALUES (1, 'Le Voyage dans la Lune', 1902, 1), (2, 'Metropolis', 1927, 2),
+                        (3, 'M le maudit', 1931, 2), (4, 'Les Temps modernes', 1936, 3),
+                        (5, 'La Grande Illusion', 1937, 4), (6, 'Le Dictateur', 1940, 3);
+INSERT INTO Seance VALUES (1, 2, 1, 'vendredi'), (2, 4, 2, 'samedi'), (3, 5, 2, 'samedi'),
+                          (4, 3, 3, 'samedi'), (5, 4, 1, 'dimanche'), (6, 6, 2, 'dimanche');`;
+C("c6-cine", CINE, { sql: true, fichier: "cinema.sql", out: "" });
+C("c6-e1", String.raw`
+SELECT titre, annee FROM Film
+WHERE annee >= 1930 AND annee <= 1939
+ORDER BY annee;`, { sql: true, deps: ["c6-cine"], out: "titre | annee\nM le maudit | 1931\nLes Temps modernes | 1936\nLa Grande Illusion | 1937" });
+C("c6-e2", String.raw`
+SELECT COUNT(*) AS nb FROM Seance WHERE salle = 2;`, { sql: true, deps: ["c6-cine"], out: "nb\n3" });
+C("c6-e3", String.raw`
+SELECT DISTINCT Film.titre, Realisateur.nom
+FROM Seance
+JOIN Film ON Seance.id_film = Film.id_film
+JOIN Realisateur ON Film.id_real = Realisateur.id_real
+WHERE Seance.jour = 'samedi'
+ORDER BY Film.titre;`, { sql: true, deps: ["c6-cine"], out: "titre | nom\nLa Grande Illusion | Renoir\nLes Temps modernes | Chaplin\nM le maudit | Lang" });
+C("c6-e4", String.raw`
+INSERT INTO Seance VALUES (7, 9, 1, 'lundi');`, { sql: true, deps: ["c6-cine"], err: "FOREIGN KEY constraint failed" });
+C("c6-e5", String.raw`
+UPDATE Seance SET salle = 1 WHERE salle = 3;
+SELECT id_seance, salle FROM Seance WHERE id_seance = 4;`, { sql: true, deps: ["c6-cine"], out: "id_seance | salle\n4 | 1" });
+C("c6-e6", String.raw`
+DELETE FROM Seance WHERE id_film IN (SELECT id_film FROM Film WHERE id_real = 3);
+DELETE FROM Film WHERE id_real = 3;
+DELETE FROM Realisateur WHERE id_real = 3;
+SELECT COUNT(*) AS films_restants FROM Film;`, { sql: true, deps: ["c6-cine"], out: "films_restants\n4" });
+
+C("c6-retenir", String.raw`
+SELECT col1, col2             -- colonnes voulues (* pour toutes), DISTINCT pour sans doublon
+FROM Table1
+JOIN Table2 ON Table1.cle = Table2.cle   -- jointure sur clé étrangère = clé primaire
+WHERE condition               -- AND, OR, NOT, =, <>, <, <=, >, >=
+ORDER BY col1 DESC;           -- tri (ASC par défaut)
+
+INSERT INTO Table1 VALUES (v1, v2, v3);
+UPDATE Table1 SET col = valeur WHERE condition;
+DELETE FROM Table1 WHERE condition;`, { sql: true, run: false });
+
+/* ---------- animation : une jointure qui assemble les lignes ---------- */
+WIDGETS_EXT["jointure"] = function (z, opt, O) {
+  var L = BIB.Livre.lignes, A = BIB.Auteur.lignes;
+  function etapes(k) {
+    var E = [], res = [], filtre = k === "where";
+    E.push({ res: [], msg: "<code>FROM Livre JOIN Auteur ON Livre.id_auteur = Auteur.id_auteur</code> : pour chaque ligne de <b>Livre</b>, on cherche dans <b>Auteur</b> la ligne dont la clé primaire vaut la clé étrangère du livre." + (filtre ? " Puis <code>WHERE naissance &gt; 1820</code> ne garde que certaines lignes." : "") });
+    L.forEach(function (l, i) {
+      var j = -1; A.forEach(function (a, k2) { if (a[0] === l[3]) j = k2; });
+      E.push({ res: res.slice(), li: i, ai: j, msg: "Livre n° " + l[0] + " « " + l[1] + " » : <code>id_auteur = " + l[3] + "</code>. Dans Auteur, la ligne de clé " + l[3] + " est <b>" + A[j][1] + "</b>." });
+      var garde = !filtre || A[j][3] > 1820;
+      if (garde) res.push([l[1], A[j][1]]);
+      E.push({ res: res.slice(), li: i, ai: j, neuf: garde, rejet: !garde, msg: garde ? "Les deux lignes sont <b>assemblées</b> ; la projection <code>SELECT titre, nom</code> n’en garde que deux colonnes." : A[j][1] + " est né en " + A[j][3] + " : la condition <code>naissance &gt; 1820</code> est fausse, la ligne assemblée est <b>écartée</b>." });
+    });
+    E.push({ res: res.slice(), msg: "Résultat : <b>" + res.length + " lignes</b>. " + (filtre ? "" : "Colette (n° 5) n’apparaît pas : aucun livre ne la référence, et la jointure ne garde que les lignes qui se correspondent.") + " Un SGBD n’essaie pas toutes les paires : un <b>index</b> sur la clé primaire lui donne directement la bonne ligne, comme un dictionnaire." });
+    return E;
+  }
+  function tab(nom, cols, lignes, vise, cl) {
+    return '<div class="tab-wrap table-bd"><table><caption class="mono">' + nom + "</caption><tr>" + cols.map(function (c) { return "<th>" + c + "</th>"; }).join("") + "</tr>" +
+      lignes.map(function (l, i) { return '<tr class="' + (i === vise ? cl : "") + '">' + l.map(function (v) { return "<td>" + O.esc(v) + "</td>"; }).join("") + "</tr>"; }).join("") + "</table></div>";
+  }
+  function dessine(sc, e) {
+    var res = e.res.map(function (r) { return r; });
+    sc.innerHTML = '<div class="jointure"><div class="j-sources">' + tab("Livre", ["id_livre", "titre", "#id_auteur"], L.map(function (l) { return [l[0], l[1], l[3]]; }), e.li, "vise") + tab("Auteur", ["id_auteur", "nom", "naissance"], A.map(function (a) { return [a[0], a[1], a[3]]; }), e.ai, "trouve") + '</div><div class="j-res">' +
+      tab("résultat", ["titre", "nom"], res, e.neuf ? res.length - 1 : -1, "neuf") + (e.rejet ? '<div class="rejet mono">✘ ligne écartée par WHERE</div>' : "") + "</div></div>";
+  }
+  O.lecteur(z, { titre: "jointure SQL pas à pas", sous: "SELECT titre, nom", choix: [{ k: "join", t: "JOIN … ON" }, { k: "where", t: "JOIN + WHERE naissance > 1820" }], etapes: etapes, dessine: dessine, vitesse: 1500 });
+};
+
+CH.push({
+  id: "ch6", n: 6, court: "bases_de_donnees", fichier: "ch6_bases_de_donnees.py",
+  titre: "Bases de données",
+  rubrique: "Rubrique « Bases de données » : modèle relationnel, base de données relationnelle, SGBD, langage SQL",
+  accroche: "Relations, clés primaires et étrangères, contraintes d’intégrité, requêtes SQL (SELECT, JOIN, INSERT, UPDATE, DELETE) et rôle d’un SGBD.",
+  essentiel: [
+    "Une <b>base de données relationnelle</b> range les données dans des <b>relations</b> (tables) dont les lignes sont des enregistrements et les colonnes des <b>attributs</b>, chacun d’un <b>domaine</b>.",
+    "La <b>clé primaire</b> identifie chaque ligne de façon unique ; une <b>clé étrangère</b> fait référence à la clé primaire d’une autre table.",
+    "Le <b>schéma relationnel</b> (la structure) est distinct du <b>contenu</b> ; un bon schéma évite les redondances et les anomalies.",
+    "<b>SQL</b> interroge (<code>SELECT … FROM … JOIN … ON … WHERE … ORDER BY</code>) et met à jour (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>).",
+    "Un <b>SGBD</b> assure la persistance, gère les accès concurrents, traite efficacement les requêtes et sécurise les accès."
+  ],
+  attendus: [
+    "Identifier les concepts du modèle relationnel : relation, attribut, domaine, clé primaire, clé étrangère, schéma relationnel.",
+    "Distinguer la structure d’une base de son contenu ; repérer des anomalies dans un schéma (redondances, anomalies d’insertion, de suppression, de mise à jour).",
+    "Identifier les services rendus par un SGBD : persistance, accès concurrents, efficacité, sécurité.",
+    "Construire des requêtes d’interrogation avec SELECT, FROM, WHERE, JOIN ; de mise à jour avec INSERT, UPDATE, DELETE.",
+    "Limite du programme : DISTINCT, ORDER BY et les fonctions d’agrégation sont utilisables, mais <b>pas</b> GROUP BY ni HAVING."
+  ],
+  intro: `<div class="boite ex"><div class="lab"># la base d’exemple de tout le chapitre</div><p>Une petite bibliothèque, en trois tables. Les clés primaires sont soulignées, les clés étrangères précédées de <code>#</code>. Tous les résultats affichés ont été obtenus en exécutant les requêtes avec SQLite.</p>` + bibTable("Auteur") + bibTable("Livre") + bibTable("Emprunt") + `<details class="repli"><summary>Le script SQL qui crée cette base</summary><div class="corps">[[c6-schema]]</div></details></div>`,
+  idees: [
+    { id: "i1", t: "Pourquoi une base de données ?", h: `
+<p>En Première, tu as manipulé des données en table : un fichier CSV lu en Python. Cela devient insuffisant dès que les données sont <b>nombreuses</b> (des millions de lignes), <b>partagées</b> (plusieurs programmes ou utilisateurs en même temps), <b>liées</b> entre elles (un livre et son auteur), et qu’elles doivent rester <b>cohérentes</b> et <b>durables</b> malgré les pannes.</p>
+<p>Une <b>base de données</b> est un ensemble organisé de données ; un <b>système de gestion de bases de données</b> (SGBD) est le logiciel qui la stocke et répond aux requêtes. Exemples de SGBD relationnels : SQLite (inclus dans Python et dans chaque téléphone), PostgreSQL, MySQL, Oracle. Les plus grands systèmes gèrent des volumes de l’ordre du pétaoctet (10<sup>15</sup> octets).</p>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1970 <b>·</b></span> Edgar F. Codd, chercheur chez IBM, publie <i>A Relational Model of Data for Large Shared Data Banks</i> : le modèle relationnel.<br><span class="commit">années 1970 <b>·</b></span> IBM développe le langage SEQUEL, qui deviendra <b>SQL</b>.</p></div>` },
+
+    { id: "i2", t: "Le modèle relationnel : relation, attribut, domaine", h: `
+<div class="boite def"><div class="lab">"""définitions"""</div>
+<p>Une <b>relation</b> (une table) est un ensemble de <b>n-uplets</b> (les lignes, ou enregistrements). Chaque colonne est un <b>attribut</b>, qui prend ses valeurs dans un <b>domaine</b> (entier, texte, date…). Le <b>schéma d’une relation</b> donne son nom et ses attributs avec leurs domaines : <code>Auteur(id_auteur : INT, nom : TEXT, prenom : TEXT, naissance : INT)</code>.</p></div>
+<p>Dans la table Auteur ci-dessus, la ligne <code>(3, 'Verne', 'Jules', 1828)</code> est un n-uplet ; <code>naissance</code> est un attribut de domaine « entier ». Une relation est un <b>ensemble</b> : l’ordre des lignes n’a pas de sens et deux lignes ne peuvent pas être identiques.</p>` },
+
+    { id: "i3", t: "Clé primaire, clé étrangère, schéma relationnel", h: `
+<div class="boite def"><div class="lab">"""définitions"""</div>
+<p>Une <b>clé primaire</b> est un attribut (ou un groupe d’attributs) dont la valeur identifie <b>une seule</b> ligne de la table : <code>id_auteur</code> pour Auteur. Une <b>clé étrangère</b> est un attribut qui contient la clé primaire d’une ligne d’une autre table : <code>Livre.id_auteur</code> fait référence à <code>Auteur.id_auteur</code>.</p></div>
+<p>Le <b>schéma relationnel</b> d’une base est l’ensemble des schémas de ses relations. Notation courante à l’écrit (clé primaire soulignée, clé étrangère précédée de #) :</p>
+<p class="mono petit">Auteur(<u>id_auteur</u>, nom, prenom, naissance)<br>Livre(<u>id_livre</u>, titre, annee, #id_auteur)<br>Emprunt(<u>id_emprunt</u>, #id_livre, adherent, date_emprunt)</p>
+<p>Pourquoi un identifiant numérique plutôt que le nom ? Deux auteurs peuvent porter le même nom, et un nom peut changer : la clé primaire doit être unique et stable. Grâce aux clés étrangères, l’auteur n’est écrit qu’<b>une fois</b> et chaque livre y renvoie.</p>` },
+
+    { id: "i4", t: "Les contraintes d’intégrité", h: `
+<p>Le SGBD refuse toute modification qui rendrait la base incohérente. Trois contraintes sont au programme :</p>
+<ul><li><b>Contrainte de domaine</b> : chaque valeur appartient au domaine de son attribut.</li>
+<li><b>Contrainte de relation</b> (ou d’entité) : la clé primaire est unique (et non vide).</li>
+[[c6-err-pk]]
+<li><b>Contrainte de référence</b> : une clé étrangère doit désigner une ligne qui existe.</li></ul>
+[[c6-err-fk]]
+<p>Elle joue aussi à la suppression : on ne peut pas supprimer un auteur dont des livres dépendent encore. Il faut d’abord supprimer (ou modifier) les lignes qui y font référence.</p>
+[[c6-err-suppr]]
+<div class="boite hp"><div class="lab"># remarque technique</div><p>SQLite ne vérifie les clés étrangères que si l’on active <code>PRAGMA foreign_keys = ON</code> (c’est le cas pour les exemples de cette page). Les autres SGBD les vérifient par défaut. SQLite est aussi souple sur les domaines : il accepte parfois un texte dans une colonne entière.</p></div>` },
+
+    { id: "i5", t: "Structure, contenu et anomalies de conception", h: `
+<p>La <b>structure</b> d’une base est son schéma (les tables, leurs attributs, leurs clés) ; son <b>contenu</b> est l’ensemble des lignes à un instant donné. La structure change rarement ; le contenu, tout le temps.</p>
+<p>Un mauvais schéma provoque des <b>redondances</b> : la même information est écrite plusieurs fois. Exemple : tout mettre dans une seule table.</p>
+[[c6-redondance]]
+<ul><li><b>Anomalie de mise à jour</b> : l’année de naissance de Hugo est écrite trois fois ; une faute dans une seule copie rend la base contradictoire (1802 ou 1820 ?).</li>
+<li><b>Anomalie d’insertion</b> : impossible d’ajouter un auteur qui n’a pas encore de livre dans la base sans laisser des cases vides.</li>
+<li><b>Anomalie de suppression</b> : supprimer le dernier livre d’un auteur efface aussi tout ce qu’on savait de l’auteur.</li></ul>
+<p>Le remède : <b>découper</b> en plusieurs tables reliées par des clés (Auteur et Livre), pour que chaque information soit écrite une seule fois.</p>` },
+
+    { id: "i6", t: "Interroger : SELECT, FROM, WHERE, ORDER BY", h: `
+<p>Une requête d’interrogation dit <b>quelles colonnes</b> (SELECT), <b>de quelle table</b> (FROM), <b>pour quelles lignes</b> (WHERE) et <b>dans quel ordre</b> (ORDER BY). Le résultat est lui-même une table.</p>
+[[c6-select]]
+<p><code>SELECT *</code> garde toutes les colonnes ; les conditions se combinent avec <code>AND</code>, <code>OR</code>, <code>NOT</code> ; les chaînes s’écrivent entre apostrophes simples.</p>
+[[c6-etoile]]
+<p><code>DISTINCT</code> supprime les doublons du résultat ; <code>ORDER BY … DESC</code> trie par ordre décroissant.</p>
+[[c6-distinct]]
+<p>Les <b>fonctions d’agrégation</b> résument toutes les lignes sélectionnées en une seule : <code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>. <code>AS</code> renomme une colonne du résultat.</p>
+[[c6-agregats]]
+[[c6-avg]]
+<div class="boite attention"><div class="lab">⚠ limite du programme</div><p>Pas de <code>GROUP BY</code> ni de <code>HAVING</code> au bac : une agrégation porte sur toutes les lignes retenues par le WHERE.</p></div>` },
+
+    { id: "i7", t: "Croiser les tables : la jointure", h: `
+<p>Pour afficher le titre d’un livre <b>et</b> le nom de son auteur, il faut réunir les deux tables : c’est une <b>jointure</b>. <code>JOIN … ON</code> assemble chaque ligne de la première table avec la ligne de la seconde qui vérifie la condition, presque toujours « clé étrangère = clé primaire ».</p>
+[[c6-jointure]]
+[[w-jointure]]
+<p>On peut enchaîner plusieurs jointures. Préfixer les attributs par le nom de leur table (<code>Livre.titre</code>) lève toute ambiguïté quand deux tables ont un attribut de même nom.</p>
+[[c6-jointure3]]
+<p>Une jointure ne garde que les lignes qui se correspondent : Colette n’a aucun livre, elle n’apparaît dans aucun résultat de jointure avec Livre.</p>
+[[c6-colette]]` },
+
+    { id: "i8", t: "Mettre à jour : INSERT, UPDATE, DELETE", h: `
+<p><code>INSERT INTO</code> ajoute des lignes, en donnant les valeurs dans l’ordre des colonnes, ou en nommant les colonnes :</p>
+[[c6-insert]]
+<p><code>UPDATE … SET … WHERE</code> modifie les lignes qui vérifient la condition :</p>
+[[c6-update]]
+<p><code>DELETE FROM … WHERE</code> supprime les lignes qui vérifient la condition (les dates au format AAAA-MM-JJ se comparent comme des chaînes) :</p>
+[[c6-delete]]
+<div class="boite attention"><div class="lab">⚠ le WHERE oublié</div><p>Sans WHERE, <code>UPDATE</code> modifie <b>toutes</b> les lignes et <code>DELETE FROM Emprunt</code> vide toute la table. Toujours écrire (et relire) la condition.</p></div>` },
+
+    { id: "i9", t: "Le rôle du SGBD, et SQL depuis Python", h: `
+<p>Le programme demande d’identifier les services d’un SGBD, sans détailler leur fonctionnement :</p>
+<div class="tab-wrap"><table><tr><th>service</th><th>ce que ça veut dire</th><th>exemple</th></tr>
+<tr><td>persistance</td><td>les données survivent à l’arrêt du programme et aux pannes</td><td>après une coupure de courant, les emprunts enregistrés sont toujours là</td></tr>
+<tr><td>accès concurrents</td><td>plusieurs utilisateurs modifient la base en même temps sans la corrompre</td><td>deux bibliothécaires ne peuvent pas prêter le même exemplaire au même instant</td></tr>
+<tr><td>efficacité</td><td>le SGBD choisit comment exécuter la requête et utilise des index</td><td>trouver un livre parmi des millions sans tout parcourir</td></tr>
+<tr><td>sécurisation des accès</td><td>comptes, mots de passe, droits de lecture ou d’écriture par table</td><td>un adhérent consulte le catalogue mais ne modifie pas les emprunts</td></tr></table></div>
+<p>Les traitements combinent souvent SQL et un langage de programmation. En Python, le module standard <code>sqlite3</code> envoie des requêtes à une base SQLite ; les valeurs se passent par des <code>?</code>, jamais en collant du texte dans la requête.</p>
+[[c6-python]]
+<div class="boite hp"><div class="lab"># pour aller plus loin : injection SQL et transactions</div><p>Construire une requête en concaténant ce qu’a tapé un utilisateur permet à un attaquant d’y glisser du code SQL (injection SQL) : les <code>?</code> l’empêchent. Une <b>transaction</b> regroupe plusieurs modifications qui réussissent toutes ou échouent toutes (un virement débite un compte et en crédite un autre).</p></div>` }
+  ],
+  pieges: [
+    { t: "Oublier la condition de jointure", h: `[[c6-produit]]<p>Sans <code>ON</code>, chaque livre est associé à <b>chaque</b> auteur : 8 × 5 = 40 lignes (produit cartésien). La condition est presque toujours « clé étrangère = clé primaire ».</p>` },
+    { t: "Oublier le WHERE d’un UPDATE ou d’un DELETE", h: `<p>Toute la table est modifiée ou vidée. Pour vérifier, écrire d’abord le <code>SELECT</code> avec le même WHERE et regarder quelles lignes il renvoie.</p>` },
+    { t: "Confondre clé primaire et clé étrangère", h: `<p>La clé primaire est <b>dans sa propre table</b> et identifie la ligne (unique). La clé étrangère est <b>dans une autre table</b> et pointe vers une clé primaire (elle peut se répéter : Hugo a trois livres).</p>` },
+    { t: "Supprimer dans le mauvais ordre", h: `<p>On supprime d’abord les lignes qui font référence (Emprunt, puis Livre), et en dernier la ligne référencée (Auteur). Sinon : contrainte de référence violée.</p>` },
+    { t: "Mettre des guillemets doubles autour d’un texte", h: `<p>En SQL standard, une chaîne s’écrit entre apostrophes simples : <code>WHERE nom = 'Zola'</code>. Une apostrophe dans le texte se double : <code>'L''Assommoir'</code>.</p>` },
+    { t: "Utiliser GROUP BY", h: `<p>Hors programme : au bac, les agrégations portent sur toutes les lignes sélectionnées. Pour un total par auteur, on fait une requête par auteur (ou on le traite en Python).</p>` }
+  ],
+  retenir: `
+<h2>Vocabulaire</h2>
+<div class="tab-wrap"><table><tr><th>mot</th><th>sens</th></tr>
+<tr><td>relation (table)</td><td>ensemble de n-uplets (lignes)</td></tr><tr><td>attribut</td><td>colonne, avec un domaine (type)</td></tr>
+<tr><td>clé primaire</td><td>identifie une ligne de façon unique</td></tr><tr><td>clé étrangère</td><td>référence la clé primaire d’une autre table</td></tr>
+<tr><td>schéma relationnel</td><td>structure : tables, attributs, clés. Notation <code>Livre(<u>id_livre</u>, titre, #id_auteur)</code></td></tr>
+<tr><td>contraintes d’intégrité</td><td>de domaine, de relation (clé primaire unique), de référence (clé étrangère existante)</td></tr>
+<tr><td>anomalies</td><td>redondance, anomalies d’insertion, de suppression, de mise à jour</td></tr>
+<tr><td>SGBD</td><td>persistance, accès concurrents, efficacité, sécurisation</td></tr></table></div>
+<h2>SQL au programme</h2>
+[[c6-retenir]]
+<p>Agrégations : <code>COUNT(*)</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>. Pas de GROUP BY ni de HAVING.</p>
+<h2>Les réflexes</h2>
+<ul><li>Jointure : toujours une condition <code>ON clé_étrangère = clé_primaire</code>.</li><li>Préfixer les attributs ambigus : <code>Table.attribut</code>.</li><li>UPDATE / DELETE : vérifier le WHERE avec un SELECT avant.</li><li>Supprimer d’abord les lignes qui référencent.</li><li>Chaînes entre apostrophes simples.</li></ul>`,
+  predis: [
+    { code: "c6-x1", niv: "facile", q: "Quelle table cette requête renvoie-t-elle ?", rep: "Livres de Hugo (id_auteur = 1) parus après 1840 : Les Misérables (1862) et Les Contemplations (1856), triés par année croissante. Notre-Dame de Paris (1831) est écartée." },
+    { code: "c6-x2", niv: "facile", q: "Quelle table cette requête renvoie-t-elle ?", rep: "Zola (id 4) a deux livres : Germinal (1885) et L’Assommoir (1877). COUNT donne 2, MIN donne 1877. Une agrégation renvoie une seule ligne." },
+    { code: "c6-x3", niv: "facile", q: "Quelle table cette requête renvoie-t-elle ?", rep: "Ada a emprunté deux fois, mais DISTINCT supprime le doublon : trois adhérents, triés par ordre alphabétique." },
+    { code: "c6-x4", niv: "moyen", q: "Quelle table cette requête renvoie-t-elle ?", rep: "Les emprunts d’Ada sont le n° 1 (livre 7, Germinal, de Zola, le 2 octobre) et le n° 4 (livre 6, De la Terre à la Lune, de Verne, le 3 novembre). La double jointure va d’Emprunt à Livre puis à Auteur." }
+  ],
+  ep: [
+    { titre: "Requêtes depuis Python", note: "Le module sqlite3 fait partie de la bibliothèque standard ; <code>SCRIPT</code> contient le script de création de la bibliothèque (donné en tête de chapitre).", enonce: `[[c6-ep1-fourni]]`,
+      questions: [
+        { q: "Compléter la requête de <code>titres_apres</code> (ligne 8), en utilisant un paramètre <code>?</code>.", c: `<p><code>"SELECT titre FROM Livre WHERE annee &gt; ? ORDER BY titre"</code>. Le <code>?</code> reçoit la valeur du tuple <code>(annee,)</code>.</p>` },
+        { q: "Le programme affiche 40 alors qu’il y a 8 livres. Expliquer et corriger <code>livres_et_auteurs</code>.", code: "[[c6-ep1-bug]]", c: `<p>La requête ne contient aucune condition de jointure : chaque livre est associé à chacun des 5 auteurs (8 × 5 = 40, produit cartésien). Correction : <code>FROM Livre JOIN Auteur ON Livre.id_auteur = Auteur.id_auteur</code>.</p>` },
+        { q: "Écrire <code>nb_emprunts(titre)</code>, qui renvoie le nombre d’emprunts d’un livre, puis des tests.", c: `[[c6-ep1-corr]]` },
+        { q: "À l’oral : pourquoi passer les valeurs par <code>?</code> plutôt que de construire la chaîne avec <code>+</code> ?", c: `<p>Le SGBD traite la valeur comme une donnée et non comme du code SQL : pas d’injection SQL possible, pas de problème d’apostrophes (<code>L'Assommoir</code>), et le bon type est conservé.</p>` }
+      ] },
+    { titre: "Programmer une jointure", enonce: `<p>Sans SGBD, deux tables peuvent être représentées par des listes de dictionnaires (comme les fichiers CSV de Première). On veut programmer soi-même la jointure.</p>[[c6-ep2-fourni]]`,
+      questions: [
+        { q: "Compléter la fonction <code>jointure</code> (ligne 11).", c: `<p><code>if l["id_auteur"] == a["id_auteur"]: res.append((l["titre"], a["nom"]))</code>.</p>` },
+        { q: "Combien de comparaisons fait cette fonction pour <i>n</i> livres et <i>m</i> auteurs ?", c: `<p><i>n</i> × <i>m</i> : chaque livre est comparé à chaque auteur. Pour 100 000 livres et 10 000 auteurs, un milliard de comparaisons.</p>` },
+        { q: "Écrire <code>jointure_index</code>, qui construit d’abord un dictionnaire <code>id_auteur → nom</code>, et des tests.", c: `<p>Un parcours des auteurs pour construire l’index, puis un parcours des livres avec un accès en temps constant (moyen) : de l’ordre de <i>n</i> + <i>m</i> opérations. C’est ce que fait un SGBD avec un index.</p>[[c6-ep2-corr]]` },
+        { q: "À l’oral : que se passe-t-il pour un livre dont l’auteur n’est pas dans la table ?", c: `<p>Il n’apparaît pas dans le résultat (comme avec <code>JOIN</code> en SQL). Dans une vraie base, la contrainte de référence empêche d’ailleurs ce cas.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "La base d’un ciné-club", points: "≈ 6 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite. Tous les résultats ont été vérifiés avec SQLite.",
+    enonce: `<p>Un ciné-club gère sa programmation avec trois relations :</p><p class="mono petit">Realisateur(<u>id_real</u>, nom, pays)<br>Film(<u>id_film</u>, titre, annee, #id_real)<br>Seance(<u>id_seance</u>, #id_film, salle, jour)</p><details class="repli"><summary>Le contenu de la base</summary><div class="corps">[[c6-cine]]</div></details>`,
+    questions: [
+      { q: "Donner la clé primaire et la ou les clés étrangères de la relation Seance. À quoi sert <code>id_film</code> ?", pts: "0,5 pt", c: `<p>Clé primaire : <code>id_seance</code>. Clé étrangère : <code>id_film</code>, qui fait référence à <code>Film.id_film</code> : elle indique quel film est projeté.</p>` },
+      { q: "Écrire une requête qui donne le titre et l’année des films sortis de 1930 à 1939, du plus ancien au plus récent.", pts: "1 pt", c: `[[c6-e1]]` },
+      { q: "Écrire une requête qui donne le nombre de séances prévues en salle 2.", pts: "0,75 pt", c: `[[c6-e2]]` },
+      { q: "Écrire une requête qui donne, sans doublon, le titre et le nom du réalisateur des films projetés le samedi.", pts: "1,5 pt", c: `<p>Deux jointures : Seance → Film → Realisateur.</p>[[c6-e3]]` },
+      { q: "On exécute <code>INSERT INTO Seance VALUES (7, 9, 1, 'lundi')</code>. La base refuse. Pourquoi ?", pts: "0,5 pt", c: `[[c6-e4]]<p>Aucun film n’a la clé 9 : la contrainte de référence (clé étrangère) est violée.</p>` },
+      { q: "La salle 3 ferme pour travaux. Écrire la requête qui déplace toutes ses séances en salle 1.", pts: "0,75 pt", c: `[[c6-e5]]` },
+      { q: "On veut supprimer le réalisateur Chaplin (id_real = 3). Pourquoi <code>DELETE FROM Realisateur WHERE id_real = 3</code> échoue-t-il ? Écrire, dans l’ordre, les requêtes qui permettent de le supprimer avec ses films et leurs séances.", pts: "1 pt", c: `<p>Ses films y font référence (et leurs séances font référence aux films) : il faut supprimer dans l’ordre inverse des références. La première requête utilise une sous-requête ; on peut aussi écrire <code>DELETE FROM Seance WHERE id_film = 4 OR id_film = 6</code>.</p>[[c6-e6]]` }
+    ],
+    methode: `<p>Pour écrire une requête : 1) quelles colonnes en sortie (SELECT) ; 2) quelles tables les contiennent (FROM + JOIN, en suivant les clés étrangères) ; 3) quelles lignes (WHERE) ; 4) quel ordre (ORDER BY), sans doublon (DISTINCT) ? Préfixe les attributs par leur table dès qu’il y a une jointure.</p>` },
+  qcm: [
+    { q: "Dans le modèle relationnel, une relation est…", c: ["un lien entre deux tables", "une table : un ensemble de n-uplets", "une requête SQL", "une clé étrangère"], a: 1, e: "Relation = table ; ses lignes sont des n-uplets (enregistrements).", ref: "i2" },
+    { q: "Qu’est-ce qu’un domaine ?", c: ["Le nom de la base", "L’ensemble des valeurs que peut prendre un attribut", "Une ligne de la table", "Un serveur"], a: 1, e: "Par exemple entier, texte, date.", ref: "i2" },
+    { q: "Une clé primaire…", c: ["peut prendre deux fois la même valeur", "identifie de façon unique chaque ligne de sa table", "fait référence à une autre table", "est toujours un texte"], a: 1, e: "Contrainte de relation : unique et non vide.", ref: "i3" },
+    { q: "Dans <code>Livre(id_livre, titre, annee, #id_auteur)</code>, que désigne <code>#id_auteur</code> ?", c: ["La clé primaire de Livre", "Une clé étrangère vers Auteur", "Un commentaire", "Un attribut calculé"], a: 1, e: "Elle contient la clé primaire d’une ligne d’Auteur.", ref: "i3" },
+    { q: "Insérer un livre avec un <code>id_auteur</code> qui n’existe pas viole…", c: ["la contrainte de domaine", "la contrainte de relation", "la contrainte de référence", "aucune contrainte"], a: 2, e: "La clé étrangère doit désigner une ligne existante.", ref: "i4" },
+    { q: "Une table qui répète l’année de naissance de l’auteur pour chacun de ses livres présente…", c: ["une redondance, source d’anomalies de mise à jour", "une jointure", "une clé étrangère", "aucun défaut"], a: 0, e: "Une modification oubliée dans une copie rend la base contradictoire.", ref: "i5" },
+    { q: "Quelle clause filtre les lignes ?", c: ["SELECT", "FROM", "WHERE", "ORDER BY"], a: 2, e: "SELECT choisit les colonnes, WHERE les lignes.", ref: "i6" },
+    { q: "Que renvoie <code>SELECT COUNT(*) FROM Livre WHERE id_auteur = 2</code> sur la base du chapitre ?", c: ["1", "2", "3", "4"], a: 1, e: "Sand a deux livres : Indiana et La Mare au diable.", ref: "i6" },
+    { q: "Quel mot-clé supprime les doublons d’un résultat ?", c: ["UNIQUE", "DISTINCT", "SINGLE", "ORDER BY"], a: 1, e: "<code>SELECT DISTINCT …</code>.", ref: "i6" },
+    { q: "Quelle est la bonne condition de jointure entre Livre et Auteur ?", c: ["<code>ON Livre.id_livre = Auteur.id_auteur</code>", "<code>ON Livre.id_auteur = Auteur.id_auteur</code>", "<code>ON Livre.titre = Auteur.nom</code>", "Aucune condition n’est nécessaire"], a: 1, e: "Clé étrangère de Livre = clé primaire d’Auteur.", ref: "i7" },
+    { q: "Sans condition ON, une jointure entre 8 livres et 5 auteurs donne…", c: ["8 lignes", "5 lignes", "13 lignes", "40 lignes"], a: 3, e: "Chaque ligne est associée à chaque ligne : produit cartésien.", ref: "i7" },
+    { q: "Que fait <code>DELETE FROM Emprunt</code> sans WHERE ?", c: ["Rien", "Supprime la table et sa structure", "Supprime toutes les lignes de la table", "Provoque une erreur"], a: 2, e: "La table reste (sa structure), mais elle est vidée.", ref: "i8" },
+    { q: "Lequel n’est pas un service rendu par un SGBD ?", c: ["La persistance des données", "La gestion des accès concurrents", "La sécurisation des accès", "La compilation des programmes Python"], a: 3, e: "Les quatre services au programme : persistance, concurrence, efficacité, sécurité.", ref: "i9" }
+  ],
+  cartes: [
+    { r: "Relation", v: "Table : ensemble de n-uplets (lignes) décrits par des attributs (colonnes)." },
+    { r: "Attribut / domaine", v: "Colonne d’une relation / ensemble des valeurs permises (entier, texte, date…)." },
+    { r: "Clé primaire", v: "Attribut(s) qui identifient de façon unique chaque ligne. Unique, non vide." },
+    { r: "Clé étrangère", v: "Attribut qui contient la clé primaire d’une ligne d’une autre table. Notée # dans un schéma." },
+    { r: "Schéma relationnel", v: "Structure de la base : relations, attributs, domaines, clés. Ex. <code>Livre(<u>id_livre</u>, titre, #id_auteur)</code>." },
+    { r: "Les 3 contraintes d’intégrité", v: "Domaine (bon type), relation (clé primaire unique), référence (clé étrangère existante)." },
+    { r: "Anomalies de conception", v: "Redondance ; anomalies d’insertion, de suppression, de mise à jour. Remède : découper en tables reliées par des clés." },
+    { r: "Ordre d’une requête", v: "<code>SELECT … FROM … JOIN … ON … WHERE … ORDER BY …</code>" },
+    { r: "Fonctions d’agrégation", v: "COUNT, SUM, AVG, MIN, MAX. Sans GROUP BY (hors programme)." },
+    { r: "Jointure", v: "<code>FROM A JOIN B ON A.cle_etrangere = B.cle_primaire</code> : assemble les lignes qui se correspondent." },
+    { r: "Produit cartésien", v: "Jointure sans condition : chaque ligne avec chaque ligne (n × m lignes)." },
+    { r: "INSERT / UPDATE / DELETE", v: "<code>INSERT INTO T VALUES (…)</code> ; <code>UPDATE T SET a = v WHERE …</code> ; <code>DELETE FROM T WHERE …</code>." },
+    { r: "SGBD : 4 services", v: "Persistance, gestion des accès concurrents, efficacité des requêtes, sécurisation des accès." },
+    { r: "SQL depuis Python", v: "<code>import sqlite3</code> ; <code>base.execute(requete, (valeur,))</code> avec des <code>?</code>." },
+    { r: "Edgar F. Codd, 1970", v: "Chercheur d’IBM, auteur du modèle relationnel." }
+  ]
+});
+
+/* ===================== Architectures matérielles — Système sur puce (SoC) ===================== */
+/* Feuille de style commune aux animations des chapitres « architectures, systèmes d'exploitation et réseaux »
+   (soc, proc, rout, crypto) : injectée une seule fois, au premier affichage d'une de ces animations. */
+var ARCH_CSS = [
+  ".ar svg{font-family:var(--mono)}",
+  ".ar svg text{font-size:12px;fill:var(--encre)}",
+  ".ar svg .pt{font-size:10.5px;fill:var(--encre2)}",
+  ".ar svg .gd{font-size:13px;font-weight:700}",
+  ".ar-large svg{min-width:540px}",
+  ".ar .bl rect{fill:var(--bg2);stroke:var(--ligne2);stroke-width:1.4}",
+  ".ar .bl.on rect{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.6}",
+  ".ar .bl.ok rect{fill:var(--vert-f);stroke:var(--vert);stroke-width:2}",
+  ".ar .bl.off{opacity:.35}",
+  ".ar .bl.ko rect{fill:var(--rouge-f);stroke:var(--rouge);stroke-width:2.4}",
+  ".ar .puce{fill:none;stroke:var(--encre3);stroke-width:2;stroke-dasharray:7 4}",
+  ".ar .noc{fill:var(--bleu-f);stroke:var(--bleu);stroke-width:1.4}",
+  ".ar .noc.on{stroke-width:2.6}",
+  ".ar .fil{stroke:var(--ligne2);stroke-width:2;fill:none}",
+  ".ar .fil.on{stroke:var(--ambre);stroke-width:3.2}",
+  ".ar .fil.ok{stroke:var(--vert);stroke-width:3.4}",
+  ".ar .fil.ko{stroke:var(--rouge);stroke-width:2.4;stroke-dasharray:6 5}",
+  ".ar .fil.att{stroke:var(--rouge);stroke-width:2.2;stroke-dasharray:6 5}",
+  ".ar .fil.tient{stroke:var(--vert);stroke-width:2.6}",
+  ".ar .jeton{fill:var(--ambre);stroke:var(--bg2);stroke-width:2}",
+  ".ar .jeton.b{fill:var(--bleu)}.ar .jeton.v{fill:var(--vert)}",
+  ".ar .tete-f{fill:var(--encre3)}.ar .tete-f.on{fill:var(--ambre)}.ar .tete-f.ok{fill:var(--vert)}.ar .tete-f.ko{fill:var(--rouge)}",
+  ".ar .nd circle{fill:var(--bg2);stroke:var(--encre3);stroke-width:1.6}",
+  ".ar .nd.on circle{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.8}",
+  ".ar .nd.ok circle{fill:var(--vert-f);stroke:var(--vert);stroke-width:2.4}",
+  ".ar .nd text{font-weight:700;font-size:14px}",
+  ".ar .cout{font-size:11px;fill:var(--encre2)}",
+  ".ar .cout-f{fill:var(--bg);stroke:none}",
+  ".ar-tab{overflow-x:auto;margin-top:10px;-webkit-overflow-scrolling:touch}",
+  ".ar-tab table{border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:0 auto;min-width:100%}",
+  ".ar-tab th,.ar-tab td{border:1px solid var(--ligne);padding:4px 6px;text-align:center;white-space:nowrap}",
+  ".ar-tab th{background:var(--bg3);color:var(--encre2);font-weight:700}",
+  ".ar-tab td.chg{background:var(--ambre-f);color:var(--encre);font-weight:700}",
+  ".ar-tab td.fixe{background:var(--vert-f)}",
+  ".ar-tab caption{caption-side:top;text-align:left;font-size:.78rem;color:var(--encre2);padding:2px 0 6px}",
+  "html.mo .ar .neuf{animation:ar-app .5s cubic-bezier(.2,.8,.2,1) both;transform-box:fill-box;transform-origin:center}",
+  "html.mo .ar .trace{stroke-dasharray:var(--l,400);stroke-dashoffset:var(--l,400);animation:ar-trace .7s ease-out forwards}",
+  "html.mo .ar td.chg{animation:ar-cell .9s ease-out}",
+  "@keyframes ar-app{from{opacity:.15;transform:scale(.85)}}",
+  "@keyframes ar-trace{to{stroke-dashoffset:0}}",
+  "@keyframes ar-cell{from{background:var(--ambre);color:var(--bg)}}"
+].join("\n");
+function archStyle() {
+  if (document.getElementById("ar-style")) return;
+  var s = document.createElement("style"); s.id = "ar-style"; s.textContent = ARCH_CSS; document.head.appendChild(s);
+}
+/* jeton qui parcourt un chemin SVG (seulement quand l'étape s'anime) */
+function archJeton(d, cl, dur, delai) {
+  return '<circle class="jeton ' + (cl || "") + '" r="6.5" cx="0" cy="0"><animateMotion dur="' + (dur || 0.9) + 's" begin="' + (delai || 0) + 's" fill="freeze" path="' + d + '"/></circle>';
+}
+
+C("soc-cycle", String.raw`
+c = 299_792_458          # vitesse de la lumière dans le vide (m/s)
+f = 3e9                  # fréquence d'horloge : 3 GHz
+periode = 1 / f          # durée d'un cycle (s)
+print(round(periode * 1e9, 3), "ns par cycle")
+print(round(c * periode * 100, 1), "cm au plus parcourus par un signal pendant un cycle")`, { out: "0.333 ns par cycle\n10.0 cm au plus parcourus par un signal pendant un cycle" });
+
+C("soc-puissance", String.raw`
+def puissance_dynamique(c, v, f):
+    """Puissance (W) dissipée en commutant : P = C * V**2 * f
+    c : capacité commutée (F), v : tension (V), f : fréquence (Hz)."""
+    return c * v ** 2 * f
+
+normal = puissance_dynamique(1e-9, 1.0, 3e9)     # valeurs d'ordre de grandeur
+econome = puissance_dynamique(1e-9, 0.8, 2e9)    # tension ET fréquence baissées
+print(round(normal, 2), "W ->", round(econome, 2), "W")
+print("économie :", round(100 * (1 - econome / normal)), "%")`, { out: "3.0 W -> 1.28 W\néconomie : 57 %" });
+
+C("soc-x1", String.raw`
+f = 2_000_000_000            # 2 GHz
+instructions = 6_000_000_000
+ipc = 3                      # instructions exécutées par cycle, en moyenne
+print(instructions / (ipc * f), "s")`, { out: "1.0 s" });
+
+C("soc-x2", String.raw`
+coeurs = {"performant": (3.0, 2.0), "econome": (1.0, 0.25)}   # (GHz, W), valeurs fictives
+travail = 6.0                                                 # milliards de cycles
+for nom, (ghz, watts) in coeurs.items():
+    duree = travail / ghz
+    print(nom, duree, "s", duree * watts, "J")`, { out: "performant 2.0 s 4.0 J\neconome 6.0 s 1.5 J" });
+
+C("soc-x3", String.raw`
+transistors, annee = 2300, 1971        # Intel 4004
+while transistors < 19_000_000_000:    # ordre de grandeur d'un SoC de 2023
+    transistors = transistors * 2
+    annee = annee + 2
+print(annee, transistors)`, { out: "2017 19293798400" });
+
+C("soc-x4", String.raw`
+debit_puce = 100e9      # octets par seconde entre deux blocs de la puce (ordre de grandeur)
+debit_carte = 10e9      # octets par seconde entre deux puces d'une carte (ordre de grandeur)
+image = 12e6 * 3        # photo de 12 mégapixels, 3 octets par pixel
+print(round(image / debit_puce * 1000, 2), "ms", round(image / debit_carte * 1000, 2), "ms")`, { out: "0.36 ms 3.6 ms" });
+
+C("soc-ep-fourni", String.raw`
+# Puissance consommée par chaque bloc d'un SoC quand il est actif (mW, valeurs fictives)
+BLOCS = {"cpu_perf": 2000, "cpu_eco": 300, "gpu": 1500, "npu": 800,
+         "isp": 600, "modem": 900, "affichage": 400}
+
+def puissance(actifs):
+    """Renvoie la puissance totale (en mW) des blocs de la liste actifs."""
+    ...
+
+def autonomie(energie_wh, actifs):
+    """Renvoie l'autonomie en heures d'une batterie de energie_wh wattheures
+    quand seuls les blocs actifs fonctionnent."""
+    return energie_wh / puissance(actifs)
+
+jeu = ["cpu_perf", "gpu", "affichage", "modem"]
+musique = ["cpu_eco", "modem"]`, { fichier: "energie.py", run: false, trous: [7] });
+
+C("soc-ep-bug", String.raw`
+def puissance(actifs):
+    total = 0
+    for b in actifs:
+        total = total + BLOCS[b]
+    return total
+
+def autonomie(energie_wh, actifs):
+    return energie_wh / puissance(actifs)
+
+print(puissance(jeu), autonomie(15, jeu))`, { deps: ["soc-ep-fourni"], fichier: "essai.py", out: "4800 0.003125" });
+
+C("soc-ep-corr", String.raw`
+BLOCS = {"cpu_perf": 2000, "cpu_eco": 300, "gpu": 1500, "npu": 800,
+         "isp": 600, "modem": 900, "affichage": 400}
+
+def puissance(actifs):
+    """Renvoie la puissance totale (en mW) des blocs de la liste actifs."""
+    total = 0
+    for b in actifs:
+        assert b in BLOCS, "bloc inconnu : " + b
+        total = total + BLOCS[b]
+    return total
+
+def autonomie(energie_wh, actifs):
+    """Autonomie en heures : énergie (Wh) divisée par la puissance (W)."""
+    assert len(actifs) > 0, "aucun bloc actif"
+    return energie_wh / (puissance(actifs) / 1000)       # mW -> W
+
+def bloc_le_plus_gourmand(actifs):
+    """Renvoie le nom du bloc actif qui consomme le plus."""
+    meilleur = actifs[0]
+    for b in actifs:
+        if BLOCS[b] > BLOCS[meilleur]:
+            meilleur = b
+    return meilleur
+
+jeu = ["cpu_perf", "gpu", "affichage", "modem"]
+musique = ["cpu_eco", "modem"]
+assert puissance(jeu) == 4800 and puissance([]) == 0
+assert autonomie(15, jeu) == 3.125
+assert round(autonomie(15, musique), 1) == 12.5
+assert bloc_le_plus_gourmand(jeu) == "cpu_perf"
+print(puissance(jeu), "mW ;", autonomie(15, jeu), "h de jeu ;", round(autonomie(15, musique), 1), "h de musique")`, { fichier: "energie.py", out: "4800 mW ; 3.125 h de jeu ; 12.5 h de musique" });
+
+C("soc-ecrit-calc", String.raw`
+f = 1.5e9                 # fréquence du processeur (Hz)
+cycles_acces_ram = 150    # cycles perdus à chaque accès à la RAM externe
+cycles_acces_cache = 4    # cycles perdus à chaque accès au cache intégré
+acces = 10_000_000
+print(acces * cycles_acces_ram / f * 1000, "ms")
+print(round(acces * cycles_acces_cache / f * 1000, 2), "ms")`, { out: "1000.0 ms\n26.67 ms" });
+
+WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
+  archStyle();
+  /* blocs : [x, y, largeur, hauteur, libellé (lignes séparées par |)] */
+  var B = {
+    cpu: [122, 76, 120, 46, "CPU|2 perf. + 4 éco."], gpu: [250, 76, 72, 46, "GPU"], npu: [330, 76, 70, 46, "NPU|(IA)"], sram: [408, 76, 72, 46, "cache|SRAM"],
+    isp: [122, 170, 70, 46, "ISP|(image)"], aff: [200, 170, 92, 46, "contrôleur|vidéo"], radio: [300, 170, 86, 46, "modem|radio"], mem: [394, 170, 86, 46, "contrôleur|mémoire"],
+    ener: [122, 228, 150, 34, "gestion d’énergie"], es: [280, 228, 200, 34, "interfaces : USB, stockage"],
+    capt: [6, 172, 96, 42, "capteur|photo"], ram: [504, 168, 90, 46, "RAM|LPDDR"], flash: [504, 226, 90, 38, "mémoire|flash"],
+    ecran: [226, 300, 100, 30, "écran"], ant: [306, 8, 100, 30, "antenne"], batt: [6, 226, 96, 38, "batterie"]
+  };
+  var YN = 140; /* axe du réseau sur puce */
+  var STUB = { capt: "M102 193 L122 193", ram: "M480 193 L504 193", flash: "M480 245 L504 245", ecran: "M276 274 L276 300", ant: "M356 38 L356 52", batt: "M102 245 L122 245" };
+  function cx(k) { return B[k][0] + B[k][2] / 2; }
+  function bord(k) { var b = B[k]; return b[1] > YN ? b[1] : b[1] + b[3]; }
+  function chemin(a, b) { return "M" + cx(a) + " " + bord(a) + " L" + cx(a) + " " + YN + " L" + cx(b) + " " + YN + " L" + cx(b) + " " + bord(b); }
+  var SC = {
+    photo: [
+      { on: [], ext: [], msg: "Le <b>SoC</b> (cadre en pointillés) réunit sur une seule puce de silicium ce qui occupait autrefois toute une carte : processeur (CPU), processeur graphique (GPU), accélérateur d’IA (NPU), processeur d’image (ISP), modem, contrôleurs… Ils communiquent par un <b>réseau sur puce</b> (bande bleue). Autour : ce qui reste en dehors de la puce. Suivons une photo." },
+      { on: ["isp"], ext: ["capt"], va: [["capt", "isp"]], msg: "Le <b>capteur</b> envoie des mesures brutes de lumière au <b>processeur d’image (ISP)</b> : un circuit spécialisé qui reconstitue les couleurs et réduit le bruit, bien plus vite et en consommant bien moins qu’un programme sur le CPU." },
+      { on: ["isp", "mem"], ext: ["ram"], va: [["isp", "mem"]], msg: "L’image traverse le <b>réseau sur puce</b> jusqu’au <b>contrôleur mémoire</b>, qui l’écrit dans la <b>RAM</b>. Sur un téléphone, la RAM est souvent soudée juste au-dessus du SoC (boîtier empilé) : le trajet hors de la puce reste de quelques millimètres." },
+      { on: ["npu", "mem"], va: [["mem", "npu"]], msg: "L’<b>accélérateur d’IA (NPU)</b> relit l’image et repère la scène (un visage, un paysage) pour régler la mise au point et les couleurs. Le CPU n’a rien eu à calculer : chaque tâche va au bloc le plus efficace pour elle." },
+      { on: ["gpu", "aff"], ext: ["ecran"], va: [["mem", "gpu"], ["gpu", "aff"]], msg: "Le <b>GPU</b> compose l’aperçu (l’image et les boutons de l’appareil photo) ; le <b>contrôleur vidéo</b> l’envoie à l’<b>écran</b> 60 à 120 fois par seconde." },
+      { on: ["cpu", "es"], ext: ["flash"], va: [["mem", "cpu"], ["cpu", "es"]], msg: "Le <b>CPU</b> (un cœur performant) fait compresser la photo puis la confie aux <b>interfaces de stockage</b>, qui l’écrivent dans la <b>mémoire flash</b> : elle est conservée même téléphone éteint." },
+      { on: ["radio", "cpu"], ext: ["ant"], va: [["cpu", "radio"]], msg: "Pour l’envoyer, le CPU passe les données au <b>modem radio</b> (4G / 5G, Wi-Fi, Bluetooth), relié à l’<b>antenne</b>. Sur certains téléphones, le modem est une puce voisine plutôt qu’un bloc du SoC." },
+      { on: ["cpu", "gpu", "npu", "sram", "isp", "aff", "radio", "mem", "ener", "es"], ext: [], msg: "Bilan : presque tout le trajet a eu lieu <b>dans</b> la puce, sur des distances de quelques millimètres. Moins de distance, c’est un signal plus <b>rapide</b> et moins d’<b>énergie</b> pour charger les fils : c’est tout l’intérêt de l’intégration." }
+    ],
+    energie: [
+      { on: ["cpu", "gpu", "aff", "radio", "mem", "ener"], ext: ["ecran", "batt", "ram", "ant"], msg: "<b>Jeu en ligne</b> : cœurs performants, GPU, contrôleur vidéo et modem tournent à pleine fréquence. Le bloc de <b>gestion d’énergie</b> (avec un circuit voisin relié à la batterie) fournit à chaque bloc sa tension et son horloge." },
+      { on: ["cpu", "radio", "mem", "ener"], off: ["gpu", "npu", "isp", "aff"], ext: ["batt", "ant", "ram"], msg: "<b>Musique écran éteint</b> : le GPU, l’ISP, le NPU et le contrôleur vidéo sont <b>coupés</b> (plus aucune alimentation). Seuls les <b>cœurs économes</b> du CPU décodent le son : ils sont plus lents mais consomment beaucoup moins pour une tâche légère." },
+      { on: ["ener", "cpu"], off: ["gpu", "npu", "isp", "aff"], ext: ["batt"], msg: "La gestion d’énergie abaisse aussi la <b>tension</b> et la <b>fréquence</b> des cœurs encore actifs. La puissance consommée en commutant suit à peu près P ≈ C·V²·f : baisser la tension de 20 % et la fréquence d’un tiers divise cette puissance par plus de deux." },
+      { on: ["ener", "radio"], off: ["cpu", "gpu", "npu", "isp", "aff", "sram", "es"], ext: ["batt", "ant"], msg: "<b>Veille</b> : presque toute la puce est éteinte. Le modem se réveille régulièrement pour écouter le réseau (appels, notifications). Ce découpage fin de l’alimentation n’est possible que parce que tous les blocs sont sur la même puce, pilotés par le même gestionnaire." }
+    ]
+  };
+  function dessine(scene, e, i, etapes, saut) {
+    var s = '<svg viewBox="0 0 600 336" role="img" aria-label="Schéma d’un système sur puce de téléphone et de ses composants voisins">';
+    s += '<rect class="puce" x="110" y="52" width="382" height="222" rx="14"/><text class="gd" x="118" y="68">SoC (une seule puce)</text>';
+    Object.keys(STUB).forEach(function (k) { var on = e.ext && e.ext.indexOf(k) >= 0; s += '<path class="fil' + (on ? " on" : "") + '" d="' + STUB[k] + '"/>'; });
+    var nocOn = e.va && e.va.length;
+    s += '<rect class="noc' + (nocOn ? " on" : "") + '" x="122" y="' + (YN - 9) + '" width="358" height="18" rx="9"/><text class="pt" x="300" y="' + (YN + 4) + '" text-anchor="middle">réseau sur puce</text>';
+    (e.va || []).forEach(function (v) { if (B[v[0]][0] > 110 && B[v[0]][0] < 490 && B[v[1]][0] > 110 && B[v[1]][0] < 490) s += '<path class="fil on' + (saut ? "" : " trace") + '" style="--l:500" d="' + chemin(v[0], v[1]) + '"/>'; });
+    Object.keys(B).forEach(function (k) {
+      var b = B[k], dedans = b[0] > 110 && b[0] < 490 && b[1] > 52 && b[1] < 274;
+      var cl = (e.on.indexOf(k) >= 0 || (e.ext || []).indexOf(k) >= 0) ? " on" : (e.off && e.off.indexOf(k) >= 0 ? " off" : "");
+      var l = b[4].split("|");
+      s += '<g class="bl' + cl + (cl === " on" && !saut ? " neuf" : "") + '"><rect x="' + b[0] + '" y="' + b[1] + '" width="' + b[2] + '" height="' + b[3] + '" rx="' + (dedans ? 7 : 4) + '"' + (dedans ? "" : ' stroke-dasharray="3 3"') + "/>";
+      l.forEach(function (t, j) { s += '<text x="' + (b[0] + b[2] / 2) + '" y="' + (b[1] + b[3] / 2 + 4 + (j - (l.length - 1) / 2) * 14) + '" text-anchor="middle"' + (j ? ' class="pt"' : "") + ">" + t + "</text>"; });
+      s += "</g>";
+    });
+    if (!saut) (e.va || []).forEach(function (v, j) {
+      var a = v[0], b = v[1], d;
+      if (STUB[a] && !(B[a][0] > 110 && B[a][0] < 490)) d = STUB[a].split(" M")[0];
+      else d = chemin(a, b);
+      s += archJeton(d, "", 0.9, j * 0.9);
+    });
+    scene.innerHTML = s + "</svg>";
+  }
+  O.lecteur(z, { titre: "dans la puce d’un téléphone", sous: "animation", choix: [{ k: "photo", t: "une photo, du capteur au réseau" }, { k: "energie", t: "la gestion d’énergie" }],
+    etapes: function (k) { return SC[k]; }, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar", "ar-large"); }, dessine: dessine, vitesse: 2600 });
+};
+
+CH.push({
+  id: "soc", n: 15, court: "soc", fichier: "soc.py",
+  titre: "Systèmes sur puce (SoC)",
+  rubrique: "Rubrique « Architectures matérielles, systèmes d’exploitation et réseaux » : composants intégrés d’un système sur puce",
+  accroche: "Du modèle de von Neumann au SoC d’un téléphone : ce qu’il contient, pourquoi tout regrouper sur une puce accélère et économise l’énergie, et ce qu’on y perd.",
+  essentiel: [
+    "Un <b>système sur puce</b> (SoC, <i>System on Chip</i>) rassemble sur un seul circuit intégré ce qui occupait autrefois une carte entière : processeur, processeur graphique, mémoires locales, contrôleurs, interfaces.",
+    "Composants à reconnaître : <b>CPU</b> multicœur, <b>GPU</b> (accélérateur graphique), <b>mémoires locales</b> (caches), <b>contrôleur mémoire</b>, <b>contrôleur vidéo</b>, <b>interfaces radio</b> (modem, Wi-Fi, Bluetooth) et <b>filaires</b> (USB…), <b>gestion d’énergie</b>, <b>réseau sur puce</b> qui relie les blocs.",
+    "Avantage <b>vitesse</b> : les blocs sont à quelques millimètres les uns des autres ; les échanges sont plus courts et plus larges qu’entre puces séparées.",
+    "Avantage <b>consommation</b> : des fils courts consomment moins, chaque bloc peut être ralenti ou coupé à la demande, et chaque tâche va au circuit spécialisé le plus économe.",
+    "Contreparties : rien ne se change ni ne s’ajoute (RAM, processeur), conception très coûteuse, chaleur concentrée sur une petite surface."
+  ],
+  attendus: [
+    "Identifier les principaux composants sur un schéma de circuit et les avantages de leur intégration en termes de vitesse et de consommation (capacité du programme, mot pour mot).",
+    "Le programme prend le circuit d’un téléphone comme exemple : microprocesseurs, mémoires locales, interfaces radio et filaires, gestion d’énergie, contrôleurs vidéo, accélérateur graphique, réseaux sur puce.",
+    "Faire le lien avec le modèle d’architecture de von Neumann vu en Première."
+  ],
+  intro: `<div class="boite ex"><div class="lab"># ce chapitre à l’écrit</div><p>Les questions portent sur un <b>schéma</b> (de téléphone, de nano-ordinateur, de console) : nommer les blocs, dire à quoi ils servent, expliquer pourquoi leur intégration rend le système plus rapide et plus économe. On attend des arguments précis (distance, énergie, coupure des blocs), pas un slogan.</p></div>`,
+  idees: [
+    { id: "i1", t: "Point de départ : le modèle de von Neumann", h: `
+<p>En Première, tu as vu le modèle de <b>von Neumann</b> (1945) : une <b>unité arithmétique et logique</b> qui calcule, une <b>unité de contrôle</b> qui enchaîne les instructions, une <b>mémoire</b> qui contient à la fois le programme et les données, des <b>entrées-sorties</b>, le tout relié par des <b>bus</b>.</p>
+<p>Dans un ordinateur de bureau, ces fonctions sont réparties sur des composants <b>séparés</b>, assemblés sur une carte mère : le processeur dans son support, des barrettes de RAM qu’on peut changer, une carte graphique enfichée dans un connecteur PCI Express, un disque, une carte réseau. Chaque composant est une puce (ou plusieurs), et ils communiquent par des pistes de cuivre de plusieurs centimètres.</p>
+<div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>circuit intégré</b> (une « puce ») est un morceau de silicium sur lequel sont gravés des millions ou des milliards de <b>transistors</b>, les interrupteurs électroniques qui réalisent les portes logiques de Première.</p></div>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1971 <b>·</b></span> Intel commercialise le <b>4004</b>, premier microprocesseur sur une seule puce : environ 2 300 transistors. <span class="commit">1965 <b>·</b></span> Gordon Moore avait observé que le nombre de transistors d’une puce doublait à intervalle régulier (il retiendra en 1975 un doublement tous les deux ans) : c’est la « loi de Moore », une observation et non une loi physique. Cette miniaturisation est ce qui a rendu possible le SoC.</p></div>` },
+
+    { id: "i2", t: "Qu’est-ce qu’un système sur puce ?", h: `
+<div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>système sur puce</b> (SoC, <i>System on Chip</i>) est un circuit intégré unique qui regroupe <b>tous les composants d’un ordinateur</b> ou presque : un ou plusieurs processeurs, un processeur graphique, des mémoires, des contrôleurs et des interfaces. Le programme le dit ainsi : il regroupe « dans un seul circuit nombre de fonctions autrefois effectuées par des circuits séparés assemblés sur une carte électronique ».</p></div>
+<p><b>Exemples</b> (fiches techniques des fabricants) :</p>
+<ul><li>l’<b>Apple A17 Pro</b> (2023, iPhone 15 Pro) : gravure en 3 nm, environ 19 milliards de transistors, un CPU de 6 cœurs (2 performants, 4 économes), un GPU de 6 cœurs, un accélérateur d’IA de 16 cœurs ;</li>
+<li>le <b>Broadcom BCM2711</b> du Raspberry Pi 4 (2019) : 4 cœurs ARM Cortex-A72 à 1,5 GHz, un GPU, des contrôleurs vidéo, USB, Ethernet ; tout le nano-ordinateur tient autour de cette puce ;</li>
+<li>l’<b>Apple M1</b> (2020), SoC d’ordinateurs portables : environ 16 milliards de transistors, avec une mémoire « unifiée » partagée par le CPU et le GPU.</li></ul>
+<p>Le programme ajoute une remarque : un SoC est <b>conçu de façon logicielle</b> (on décrit ses circuits dans des langages de description de matériel, on les simule avant de les graver) et ses blocs sont accessibles aux programmes par des <b>API</b>, comme une bibliothèque.</p>
+<div class="boite hp"><div class="lab"># microcontrôleur ou SoC ?</div><p>Un <b>microcontrôleur</b> est un petit système sur puce pour les objets simples : la carte micro:bit (version 2) utilise un nRF52833, avec un cœur ARM Cortex-M4 à 64 MHz, 512 Ko de mémoire flash et 128 Ko de RAM, et une radio Bluetooth, tout sur la même puce. Même idée qu’un SoC de téléphone, à une échelle mille fois plus petite.</p></div>` },
+
+    { id: "i3", t: "Les composants d’un SoC de téléphone", h: `
+<p>Voici les blocs que cite le programme, avec leur rôle. C’est la liste à savoir reconnaître sur un schéma.</p>
+<div class="tab-wrap"><table><tr><th>composant</th><th>rôle</th><th>exemple</th></tr>
+<tr><td><b>microprocesseur</b> (CPU), souvent multicœur</td><td>exécute les programmes (système, applications)</td><td>cœurs performants pour les tâches lourdes, cœurs économes pour les tâches légères</td></tr>
+<tr><td><b>mémoires locales</b> (caches, SRAM)</td><td>gardent près des cœurs les données et instructions utilisées</td><td>un accès au cache coûte quelques cycles, un accès à la RAM externe plus d’une centaine</td></tr>
+<tr><td><b>contrôleur mémoire</b></td><td>fait le lien avec la RAM, à l’extérieur de la puce</td><td>RAM LPDDR souvent soudée sur le SoC</td></tr>
+<tr><td><b>accélérateur graphique</b> (GPU)</td><td>calcule les images (jeux, interface), en parallèle sur des centaines d’unités simples</td><td>affichage fluide d’un jeu en 3D</td></tr>
+<tr><td><b>contrôleurs vidéo</b></td><td>envoient l’image à l’écran ; décodent ou encodent les vidéos</td><td>lire une vidéo sans faire travailler le CPU</td></tr>
+<tr><td><b>interfaces radio</b></td><td>modem 4G / 5G, Wi-Fi, Bluetooth, GPS</td><td>passer un appel, recevoir une notification</td></tr>
+<tr><td><b>interfaces filaires</b></td><td>USB, lien vers la mémoire flash, l’appareil photo, l’écran</td><td>brancher le téléphone à un ordinateur</td></tr>
+<tr><td><b>gestion d’énergie</b></td><td>règle tension et fréquence de chaque bloc, coupe les blocs inutiles</td><td>écran éteint : GPU coupé</td></tr>
+<tr><td><b>réseau sur puce</b> (NoC)</td><td>relie tous les blocs entre eux, comme un petit réseau interne</td><td>l’image va de l’ISP à la RAM puis au GPU</td></tr></table></div>
+<p>S’y ajoutent souvent des circuits spécialisés : processeur d’image (<b>ISP</b>) pour l’appareil photo, accélérateur d’intelligence artificielle (<b>NPU</b>), processeur de signal (<b>DSP</b>) pour le son, bloc de sécurité qui garde les clés de chiffrement.</p>
+<p>Ce qui reste <b>hors</b> de la puce : la batterie, l’écran, les capteurs, l’antenne, la mémoire flash de stockage, souvent la RAM (soudée juste au-dessus du SoC, dans le même empilement), et une puce de gestion d’alimentation qui fournit les tensions à partir de la batterie.</p>
+[[w-arch-soc]]` },
+
+    { id: "i4", t: "Avantage 1 : la vitesse", h: `
+<p>Pourquoi est-ce plus rapide quand tout est sur la même puce ? Trois raisons.</p>
+<ol><li><b>Les distances sont courtes.</b> Un signal électrique ne va pas plus vite que la lumière. À 3 GHz, un cycle d’horloge dure un tiers de nanoseconde : pendant ce temps, même la lumière ne parcourt que 10 cm.
+[[soc-cycle]]
+Entre deux puces d’une carte mère, il faut plusieurs cycles pour faire l’aller-retour ; entre deux blocs d’un SoC séparés de quelques millimètres, beaucoup moins.</li>
+<li><b>Les liaisons sont plus nombreuses et plus larges.</b> Sur une carte, chaque fil entre deux puces passe par une broche, et le nombre de broches est limité. Dans la puce, on peut tirer des milliers de connexions entre deux blocs : plus de données passent à chaque cycle.</li>
+<li><b>Des circuits spécialisés</b> font mieux qu’un programme : décoder une vidéo, corriger une photo ou chiffrer des données avec un bloc dédié est beaucoup plus rapide qu’avec des instructions générales sur le CPU.</li></ol>
+<p>Le CPU passe une grande partie de son temps à <b>attendre la mémoire</b>. Les mémoires locales (caches) intégrées à côté des cœurs réduisent ces attentes : l’exercice écrit de ce chapitre le chiffre.</p>` },
+
+    { id: "i5", t: "Avantage 2 : la consommation", h: `
+<p>Sur un téléphone, l’énergie est la contrainte principale (batterie, chaleur). L’intégration aide de plusieurs façons.</p>
+<ul><li><b>Des fils courts consomment moins</b> : à chaque changement de 0 à 1, il faut charger électriquement le fil ; un fil de quelques millimètres dans la puce demande bien moins d’énergie qu’une piste de carte mère et les circuits d’entrée-sortie qui la pilotent.</li>
+<li><b>Couper ce qui ne sert pas</b> : le bloc de gestion d’énergie coupe l’alimentation du GPU quand l’écran est éteint, ou ralentit l’horloge d’un cœur peu occupé. Musique écran éteint : seuls quelques blocs restent alimentés.</li>
+<li><b>Le bon cœur pour la bonne tâche</b> : l’architecture « big.LITTLE » (annoncée par ARM en 2011) associe des cœurs performants et des cœurs économes. Un cœur économe met plus de temps, mais dépense moins d’énergie pour une tâche légère : voir l’exercice « prédis » n° 2.</li>
+<li><b>Baisser tension et fréquence</b> (DVFS) : la puissance dépensée à commuter les transistors suit approximativement P ≈ C·V²·f (C : capacité commutée, V : tension, f : fréquence). La tension compte au carré.</li></ul>
+[[soc-puissance]]
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>La formule P ≈ C·V²·f n’est pas au programme ; elle explique pourquoi on ne monte plus guère la fréquence des processeurs depuis le milieu des années 2000 (chaleur trop forte) et pourquoi on multiplie plutôt les cœurs et les blocs spécialisés.</p></div>` },
+
+    { id: "i6", t: "Les contreparties de l’intégration", h: `
+<p>Tout regrouper a un prix, qu’on te demande parfois à l’écrit :</p>
+<ul><li><b>Aucune évolution possible</b> : on ne change pas la RAM ni le processeur d’un téléphone ; une panne d’un bloc rend souvent toute la carte irréparable.</li>
+<li><b>Coût de conception très élevé</b> : concevoir et graver une puce de plusieurs milliards de transistors coûte des centaines de millions d’euros ; ce n’est rentable que vendu en très grande série.</li>
+<li><b>Chaleur concentrée</b> : toute la puissance est dissipée sur quelques centimètres carrés ; quand la puce chauffe trop, elle baisse sa fréquence (le téléphone ralentit pendant un jeu).</li>
+<li><b>Moins de souplesse</b> : un PC de bureau peut recevoir une carte graphique plus puissante ; un SoC est figé à sa fabrication.</li></ul>
+<div class="boite ex"><div class="lab"># exemple : où trouve-t-on des SoC ?</div><p>Téléphones et tablettes, montres connectées, consoles portables, nano-ordinateurs (Raspberry Pi), boîtiers TV, voitures, et désormais certains ordinateurs portables (Apple M1 et suivants). Les ordinateurs de bureau et les serveurs gardent souvent des composants séparés, pour la puissance et l’évolutivité.</p></div>` },
+
+    { id: "i7", t: "Lire un schéma de circuit : méthode", h: `
+<p>À l’écrit, on te donne un schéma (blocs reliés par des traits) ou une photo annotée de carte. Pour répondre :</p>
+<ol><li><b>Repère la limite de la puce</b> : ce qui est dedans est intégré, ce qui est dehors est relié par des broches.</li>
+<li><b>Nomme chaque bloc par sa fonction</b> : « calculer » (CPU), « dessiner » (GPU), « stocker temporairement » (cache, RAM), « stocker durablement » (flash), « communiquer sans fil » (modem, Wi-Fi), « communiquer par câble » (USB, Ethernet), « alimenter » (gestion d’énergie), « relier les blocs » (bus, réseau sur puce).</li>
+<li><b>Justifie un avantage par un mécanisme</b> : « les blocs sont proches, donc les échanges sont plus rapides » ; « on peut couper l’alimentation des blocs inutilisés, donc on consomme moins ».</li></ol>
+<p>Exemple sur le Raspberry Pi 4 : la puce centrale est le SoC (CPU 4 cœurs, GPU, contrôleurs) ; la RAM est une puce à côté ; les ports USB, Ethernet et HDMI sont reliés au SoC (directement ou par une puce contrôleur) ; la carte microSD sert de mémoire de stockage.</p>` }
+  ],
+  pieges: [
+    { t: "Confondre RAM et mémoire de stockage", h: `<p>La <b>RAM</b> est volatile (effacée à l’extinction) et rapide : elle contient les programmes en cours. La <b>mémoire flash</b> (« 128 Go » d’un téléphone) conserve les fichiers. Les <b>caches</b> sont de petites mémoires très rapides <b>dans</b> la puce.</p>` },
+    { t: "Dire « c’est plus rapide parce que c’est plus petit » sans mécanisme", h: `<p>Il faut l’argument : distances plus courtes, donc temps de transfert plus courts ; liaisons plus nombreuses, donc plus de données par cycle ; circuits spécialisés plus efficaces que le CPU.</p>` },
+    { t: "Croire qu’un SoC n’a qu’un seul processeur", h: `<p>Un SoC contient plusieurs <b>cœurs</b> de CPU, souvent de deux types (performants et économes), plus un GPU et d’autres processeurs spécialisés (NPU, ISP, DSP).</p>` },
+    { t: "Oublier les inconvénients", h: `<p>Une question « avantages et inconvénients » attend aussi : pas d’évolution ni de réparation, coût de conception, chaleur concentrée.</p>` }
+  ],
+  retenir: `
+<h2>Définition</h2>
+<p><b>SoC</b> (système sur puce) : un seul circuit intégré qui regroupe CPU, GPU, mémoires locales, contrôleurs et interfaces, autrefois répartis sur une carte.</p>
+<h2>Les composants (liste du programme)</h2>
+<div class="tab-wrap"><table><tr><th>composant</th><th>rôle</th></tr>
+<tr><td>microprocesseur (CPU) multicœur</td><td>exécute les programmes</td></tr><tr><td>mémoires locales (caches)</td><td>données proches des cœurs</td></tr><tr><td>accélérateur graphique (GPU)</td><td>calcul des images</td></tr><tr><td>contrôleurs vidéo</td><td>affichage, décodage vidéo</td></tr><tr><td>interfaces radio</td><td>modem 4G / 5G, Wi-Fi, Bluetooth</td></tr><tr><td>interfaces filaires</td><td>USB, stockage, écran, caméra</td></tr><tr><td>gestion d’énergie</td><td>tension, fréquence, coupure des blocs</td></tr><tr><td>réseau sur puce</td><td>relie les blocs</td></tr></table></div>
+<h2>Avantages de l’intégration</h2>
+<ul><li><b>Vitesse</b> : distances de quelques mm, liaisons larges, circuits spécialisés.</li><li><b>Consommation</b> : fils courts, blocs coupés ou ralentis à la demande, cœurs économes (big.LITTLE).</li><li>Encombrement et coût en grande série.</li></ul>
+<h2>Inconvénients</h2>
+<ul><li>Pas d’évolution ni de réparation, conception très coûteuse, chaleur concentrée.</li></ul>
+<h2>Repères</h2>
+<p>Von Neumann (1945) · Intel 4004 (1971, ≈ 2 300 transistors) · loi de Moore (1965, révisée en 1975) · Apple A17 Pro (2023, ≈ 19 milliards de transistors).</p>`,
+  predis: [
+    { code: "soc-x1", niv: "facile", rep: "6 milliards d’instructions à 3 par cycle font 2 milliards de cycles ; à 2 milliards de cycles par seconde : 1 seconde. La division <code>/</code> donne un flottant : <code>1.0</code>." },
+    { code: "soc-x2", niv: "moyen", rep: "Le cœur performant finit en 6 / 3 = 2 s mais dépense 2 × 2 = 4 J ; le cœur économe met 6 s mais ne dépense que 6 × 0,25 = 1,5 J. Plus lent, mais plus économe : c’est l’idée de big.LITTLE pour les tâches qui ne sont pas pressées." },
+    { code: "soc-x3", niv: "moyen", rep: "Il faut 23 doublements (2 300 × 2²³ ≈ 1,9 × 10¹⁰) : 1971 + 46 = 2017. La puce réelle de 19 milliards de transistors date de 2023 : la loi de Moore a ralenti." },
+    { code: "soc-x4", niv: "facile", rep: "La photo fait 36 millions d’octets. À 100 Go/s : 0,36 ms ; à 10 Go/s : 3,6 ms. Ces débits sont des ordres de grandeur choisis pour l’exercice : l’idée est qu’un débit dix fois plus grand dans la puce divise le temps par dix." }
+  ],
+  ep: [
+    { titre: "Bilan énergétique d’un téléphone", enonce: `<p>On modélise la consommation des blocs d’un SoC (valeurs fictives, en milliwatts) pour estimer l’autonomie d’une batterie de 15 Wh.</p>[[soc-ep-fourni]]`,
+      questions: [
+        { q: "Compléter <code>puissance(actifs)</code> avec une boucle.", c: `<p>On additionne <code>BLOCS[b]</code> pour chaque bloc <code>b</code> de la liste ; une liste vide donne 0.</p>` },
+        { q: "Un élève exécute le code ci-dessous et trouve une autonomie de 0,003 h en jeu. Expliquer et corriger.", code: "[[soc-ep-bug]]", c: `<p>Les puissances sont en <b>milliwatts</b> et l’énergie en <b>wattheures</b> : 15 / 4800 mélange les unités. Il faut convertir : 4800 mW = 4,8 W, et 15 / 4,8 = 3,125 h. C’est un bug d’unités, comme celui de la sonde Mars Climate Orbiter (chapitre mise au point).</p>` },
+        { q: "Écrire <code>bloc_le_plus_gourmand(actifs)</code> et un jeu de tests ; ajouter une assertion qui refuse un bloc inconnu.", c: `[[soc-ep-corr]]` },
+        { q: "À l’oral : pourquoi l’autonomie est-elle quatre fois plus grande en écoutant de la musique ?", c: `<p>Écran éteint, le GPU et le contrôleur vidéo sont coupés et le CPU utilise ses cœurs économes : 1 200 mW au lieu de 4 800 mW. Cette coupure fine est possible parce que la gestion d’énergie du SoC pilote chaque bloc séparément.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "Le SoC d’une console portable", points: "≈ 6 points · 40 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite.",
+    enonce: `<p>Une console portable est construite autour d’un SoC. Sa fiche technique indique : « CPU 8 cœurs (4 performants, 4 économes) ; GPU ; 6 Mo de cache ; contrôleur LPDDR5 ; décodeur vidéo ; contrôleurs USB-C, Wi-Fi et Bluetooth ; gestion d’énergie intégrée. Hors de la puce : 12 Go de RAM, 256 Go de stockage flash, écran, batterie. »</p>`,
+    questions: [
+      { q: "Associer à chaque fonction le composant de la fiche qui la réalise : a) afficher un jeu en 3D ; b) lire un film sans solliciter le CPU ; c) jouer en ligne sans câble ; d) garder près des cœurs les données souvent utilisées ; e) conserver les sauvegardes console éteinte.", pts: "1,5 pt", c: `<p>a) le GPU ; b) le décodeur vidéo ; c) le contrôleur Wi-Fi ; d) le cache (mémoire locale) ; e) le stockage flash, hors de la puce.</p>` },
+      { q: "Citer deux composants extérieurs au SoC et dire pourquoi l’un d’eux n’est pas intégré.", pts: "1 pt", c: `<p>La RAM, le stockage flash, l’écran, la batterie. Le stockage flash demande une fabrication différente et une grande surface ; l’écran et la batterie sont des objets physiques de grande taille. (La RAM est souvent placée juste au-dessus du SoC, mais reste une puce distincte.)</p>` },
+      { q: "On exécute le programme ci-dessous, qui compare le temps perdu pour 10 millions d’accès selon que la donnée est en RAM ou dans le cache. Qu’affiche-t-il ? Que montre-t-il ?", pts: "1,5 pt", code: "[[soc-ecrit-calc|nosortie]]", c: `<p><code>1000.0 ms</code> puis <code>26.67 ms</code>. 10⁷ × 150 cycles = 1,5 × 10⁹ cycles, soit une seconde à 1,5 GHz ; avec le cache, 4 × 10⁷ cycles ≈ 26,67 ms. Les mémoires locales intégrées à côté des cœurs évitent l’essentiel des attentes : c’est un avantage de vitesse de l’intégration.</p>` },
+      { q: "Expliquer deux raisons pour lesquelles l’intégration réduit la consommation de la console.", pts: "1 pt", c: `<p>Les liaisons entre blocs sont très courtes, et charger un fil court demande moins d’énergie qu’une piste de carte. La gestion d’énergie intégrée coupe ou ralentit les blocs inutilisés (cœurs performants en veille, GPU coupé dans les menus) et confie les tâches légères aux cœurs économes.</p>` },
+      { q: "Donner un inconvénient de ce choix pour le joueur.", pts: "1 pt", c: `<p>Impossible d’ajouter de la RAM ou de changer le processeur : la console ne peut pas évoluer, et la panne d’un bloc oblige à changer toute la carte.</p>` }
+    ],
+    methode: `<p>Pour chaque avantage, donne la <b>cause</b> (distance, coupure de l’alimentation, circuit spécialisé) et la <b>conséquence</b> (temps, énergie). Pour reconnaître un bloc, pars de sa <b>fonction</b>.</p>` },
+  qcm: [
+    { q: "Qu’est-ce qu’un SoC ?", c: ["Un logiciel qui gère le système", "Un circuit intégré unique qui regroupe processeur, mémoires locales, contrôleurs et interfaces", "Une carte mère d’ordinateur de bureau", "Un type de mémoire de stockage"], a: 1, e: "System on Chip : tout un système sur une seule puce.", ref: "i2" },
+    { q: "Lequel de ces éléments est le plus souvent <b>hors</b> du SoC d’un téléphone ?", c: ["Le GPU", "Les caches", "La batterie", "Le contrôleur mémoire"], a: 2, e: "Batterie, écran, antenne, stockage flash et souvent la RAM sont à l’extérieur.", ref: "i3" },
+    { q: "Quel bloc calcule les images d’un jeu en 3D ?", c: ["Le modem", "Le GPU (accélérateur graphique)", "Le contrôleur mémoire", "La gestion d’énergie"], a: 1, e: "Le GPU fait de nombreux calculs simples en parallèle.", ref: "i3" },
+    { q: "À quoi sert le réseau sur puce ?", c: ["À se connecter à Internet", "À relier entre eux les blocs du SoC", "À recharger la batterie", "À stocker les fichiers"], a: 1, e: "C’est le réseau interne (bus, routeurs) qui fait circuler les données entre CPU, GPU, mémoire…", ref: "i3" },
+    { q: "Pourquoi l’intégration accélère-t-elle les échanges ?", c: ["Parce que le silicium est plus rapide que le cuivre", "Parce que les blocs sont proches et reliés par des liaisons nombreuses", "Parce que le SoC n’a pas d’horloge", "Parce que la RAM devient inutile"], a: 1, e: "Distances de quelques millimètres et milliers de connexions entre blocs.", ref: "i4" },
+    { q: "À 3 GHz, pendant un cycle d’horloge, un signal parcourt au plus environ…", c: ["10 m", "1 m", "10 cm", "1 mm"], a: 2, e: "Un tiers de nanoseconde à la vitesse de la lumière : 10 cm. D’où l’intérêt des courtes distances.", ref: "i4" },
+    { q: "Comment un SoC économise-t-il l’énergie écran éteint ?", c: ["Il augmente la fréquence", "Il coupe l’alimentation des blocs inutiles (GPU, contrôleur vidéo)", "Il éteint la RAM définitivement", "Il ne peut pas économiser"], a: 1, e: "La gestion d’énergie coupe ou ralentit chaque bloc séparément.", ref: "i5" },
+    { q: "Dans une architecture big.LITTLE, un cœur économe…", c: ["est plus rapide et consomme plus", "est plus lent mais dépense moins d’énergie pour une tâche légère", "ne sert qu’au démarrage", "remplace le GPU"], a: 1, e: "Les tâches légères ou non pressées vont aux cœurs économes.", ref: "i5" },
+    { q: "D’après P ≈ C·V²·f, baisser la tension de moitié (à fréquence égale) divise la puissance par…", c: ["2", "4", "8", "Elle ne change pas"], a: 1, e: "La tension compte au carré : (1/2)² = 1/4.", ref: "i5" },
+    { q: "Quel est un inconvénient d’un SoC ?", c: ["Il consomme plus qu’une carte", "On ne peut ni changer ni ajouter un composant intégré", "Il est plus encombrant", "Il ne peut pas avoir plusieurs cœurs"], a: 1, e: "Pas d’évolution ni de réparation d’un bloc.", ref: "i6" },
+    { q: "Le modèle de von Neumann place dans la même mémoire…", c: ["le programme et les données", "le processeur et le GPU", "le cache et le disque", "les seules instructions"], a: 0, e: "C’est sa caractéristique principale (Première).", ref: "i1" },
+    { q: "Le premier microprocesseur sur une seule puce, l’Intel 4004 (1971), comptait environ…", c: ["23 transistors", "2 300 transistors", "2,3 millions de transistors", "2,3 milliards de transistors"], a: 1, e: "Environ 2 300 ; un SoC de téléphone de 2023 en compte de l’ordre de 19 milliards.", ref: "i1" },
+    { q: "Sur un schéma, un bloc relié à l’antenne qui gère la 5G est…", c: ["le contrôleur vidéo", "une interface radio (modem)", "la mémoire cache", "l’ISP"], a: 1, e: "Les interfaces radio : modem cellulaire, Wi-Fi, Bluetooth.", ref: "i7" }
+  ],
+  cartes: [
+    { r: "SoC", v: "System on Chip : un seul circuit intégré qui regroupe CPU, GPU, mémoires locales, contrôleurs, interfaces." },
+    { r: "Circuit intégré", v: "Puce de silicium portant des millions ou milliards de transistors." },
+    { r: "CPU multicœur", v: "Plusieurs processeurs (cœurs) sur la puce ; souvent performants + économes (big.LITTLE)." },
+    { r: "GPU", v: "Accélérateur graphique : calcul des images, très parallèle." },
+    { r: "Mémoires locales (caches)", v: "Petites mémoires très rapides près des cœurs ; évitent d’attendre la RAM." },
+    { r: "Contrôleur mémoire", v: "Fait le lien entre le SoC et la RAM extérieure." },
+    { r: "Interfaces radio / filaires", v: "Radio : modem 4G / 5G, Wi-Fi, Bluetooth. Filaires : USB, stockage, écran, caméra." },
+    { r: "Gestion d’énergie", v: "Règle tension et fréquence de chaque bloc, coupe les blocs inutiles." },
+    { r: "Réseau sur puce (NoC)", v: "Réseau interne qui relie les blocs du SoC." },
+    { r: "Avantage vitesse", v: "Distances de quelques mm, liaisons nombreuses, circuits spécialisés." },
+    { r: "Avantage consommation", v: "Fils courts, blocs coupés ou ralentis, cœurs économes." },
+    { r: "Inconvénients du SoC", v: "Pas d’évolution ni de réparation, conception coûteuse, chaleur concentrée." },
+    { r: "P ≈ C·V²·f (pour aller plus loin)", v: "Puissance de commutation : la tension compte au carré." },
+    { r: "Intel 4004 (1971)", v: "Premier microprocesseur sur une puce, ≈ 2 300 transistors." },
+    { r: "Loi de Moore", v: "1965 (révisée en 1975) : doublement du nombre de transistors d’une puce environ tous les deux ans." }
+  ]
+});
+
 /* Carte du programme de Terminale (arrêté du 19/07/2019, BO spécial n° 8 du 25/07/2019), reformulé. */
 var PROG = [
   { n: "01", t: "Histoire de l’informatique", intro: "Rubrique transversale : les repères historiques se construisent dans chacune des cinq autres rubriques. Sur ce site, ils sont dans les encadrés <code># git log --histoire</code> des chapitres.",
@@ -3885,23 +5403,13 @@ var PROG = [
     ] },
   { n: "03", t: "Bases de données",
     items: [
-      { id: "relationnel", t: "Modèle relationnel et base de données relationnelle",
-        contenus: "Relation, attribut, domaine, clé primaire, clé étrangère, schéma relationnel ; structure et contenu d’une base.",
-        capacites: ["Identifier les concepts définissant le modèle relationnel.", "Savoir distinguer la structure d’une base de données de son contenu.", "Repérer des anomalies dans le schéma d’une base de données."],
-        comm: "Contraintes d’intégrité : de domaine, de relation (clé primaire), de référence (clé étrangère). Anomalies : redondances, anomalies d’insertion, de suppression, de mise à jour.",
-        avant: "Les données en table de Première (fichiers CSV, recherche, tri, fusion de tables)." },
-      { id: "sgbd", t: "Système de gestion de bases de données relationnelles (SGBD)",
-        contenus: "Services rendus par un SGBD.",
-        capacites: ["Identifier les services rendus par un SGBD : persistance des données, gestion des accès concurrents, efficacité de traitement des requêtes, sécurisation des accès."],
-        comm: "Comprendre le rôle et les enjeux de ces services, sans détailler leur fonctionnement." },
-      { id: "sql", t: "Langage SQL : requêtes d’interrogation et de mise à jour",
-        contenus: "Composants d’une requête ; clauses SELECT, FROM, WHERE, JOIN ; UPDATE, INSERT, DELETE.",
-        capacites: ["Identifier les composants d’une requête.", "Construire des requêtes d’interrogation avec SELECT, FROM, WHERE, JOIN.", "Construire des requêtes d’insertion et de mise à jour avec UPDATE, INSERT, DELETE."],
-        comm: "DISTINCT, ORDER BY et les fonctions d’agrégation (COUNT, SUM, AVG, MIN, MAX) sont utilisables, mais <b>sans</b> GROUP BY ni HAVING." }
+      { ch: "ch6", t: "Modèle relationnel et base de données relationnelle" },
+      { ch: "ch6", t: "Système de gestion de bases de données relationnelles (SGBD)" },
+      { ch: "ch6", t: "Langage SQL : requêtes d’interrogation et de mise à jour" }
     ] },
   { n: "04", t: "Architectures matérielles, systèmes d’exploitation et réseaux",
     items: [
-      { id: "soc", t: "Composants intégrés d’un système sur puce (SoC)",
+      { ch: "soc", id: "soc", t: "Composants intégrés d’un système sur puce (SoC)",
         contenus: "Microprocesseurs, mémoires locales, interfaces radio et filaires, gestion d’énergie, contrôleurs vidéo, accélérateur graphique, réseaux sur puce.",
         capacites: ["Identifier les principaux composants sur un schéma de circuit et les avantages de leur intégration en termes de vitesse et de consommation."],
         comm: "Le circuit d’un téléphone peut servir d’exemple.",
