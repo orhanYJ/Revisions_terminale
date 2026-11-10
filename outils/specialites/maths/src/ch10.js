@@ -26,7 +26,7 @@ var CH10 = {
   cours: [
     { id: "vecteurs", titre: "Vecteurs de l'espace et translations", html: R`
 <p>Tout ce que tu sais des vecteurs du plan reste vrai dans l'espace : on travaille simplement dans un monde à trois dimensions. Le support du chapitre : le <b>cube</b> $ABCDEFGH$, base $ABCD$ en bas, $EFGH$ au-dessus, $E$ au-dessus de $A$, $F$ au-dessus de $B$, etc.</p>
-<div data-w="cubeVecteurs"></div>
+<div data-anim="cubeChasles"></div>
 [def|Vecteur, translation]À tout couple de points $(A;B)$ on associe le vecteur $\vec{AB}$ : la <b>translation</b> de vecteur $\vec{AB}$ transforme $A$ en $B$. Deux vecteurs sont égaux s'ils ont même direction, même sens et même longueur : $\vec{AB}=\vec{DC}$ si et seulement si $ABCD$ est un parallélogramme (éventuellement aplati). Le vecteur nul $\vec 0=\vec{AA}$.[/]
 [ex|Dans le cube]Les faces sont des carrés, donc des parallélogrammes : $\vec{AB}=\vec{DC}=\vec{EF}=\vec{HG}$, et $\vec{AE}=\vec{BF}=\vec{CG}=\vec{DH}$. Le quadrilatère $ACGE$ est un rectangle (une « tranche diagonale » du cube) : $\vec{AC}=\vec{EG}$.[/]
 [prop|Relation de Chasles]Pour tous points $A$, $B$, $C$ de l'espace : $\vec{AB}+\vec{BC}=\vec{AC}$. En particulier $\vec{AB}+\vec{BA}=\vec 0$, donc $\vec{BA}=-\vec{AB}$.[/]
@@ -67,7 +67,7 @@ $$\vec{AG}=\vec{AD}+\frac23\vec{DI}=\vec{AD}+\frac23\left(\vec{AI}-\vec{AD}\righ
 <tr><td><b>non coplanaires</b> : ni parallèles, ni sécantes</td><td>vide</td></tr>
 <tr><td>Une droite et un plan</td><td>sécants ; ou parallèles (droite strictement parallèle, ou incluse)</td><td>un point ; vide ; la droite</td></tr>
 <tr><td>Deux plans</td><td>sécants ; ou parallèles (strictement ou confondus)</td><td>une droite ; vide ; le plan</td></tr></table></div>
-<div data-w="positions3d"></div>
+<div data-anim="positions3d"></div>
 [ex|Dans le cube]$(AB)$ et $(CG)$ ne sont ni parallèles ni sécantes : elles sont <b>non coplanaires</b>. $(EG)$ et $(AC)$ sont parallèles ($\vec{EG}=\vec{AC}$). $(AG)$ coupe le plan $(EFG)$ en $G$. Les plans $(ABC)$ et $(EFG)$ sont parallèles ; les plans $(ABC)$ et $(BCG)$ sont sécants selon la droite $(BC)$.[/]
 [prop|Parallélisme d'une droite et d'un plan]Une droite est parallèle à un plan si et seulement si elle est parallèle à une droite de ce plan (son vecteur directeur est dans la direction du plan).[/]
 [prop|Plans parallèles]<ul><li>Si deux droites <b>sécantes</b> d'un plan $\mathcal P$ sont parallèles à un plan $\mathcal Q$, alors $\mathcal P$ et $\mathcal Q$ sont parallèles.</li><li>Si deux plans sont parallèles, tout plan qui coupe l'un coupe l'autre, et les deux droites d'intersection sont <b>parallèles</b>.</li></ul>[/]
@@ -217,4 +217,137 @@ print(combinaison(A, [0.5, 0.5, 0.5], [AB, AD, AE])) # centre du cube`, sortie: 
     [R`$\vec{AG}$ dans le cube`, R`$\vec{AB}+\vec{AD}+\vec{AE}$`],
     [R`Section d'un cube : faces parallèles`, R`Les segments de section sur deux faces parallèles sont parallèles.`]
   ]
+};
+
+/* ---------- Figures de l'espace en perspective cavalière (outils partagés par les chapitres 10 à 12) ----------
+   CAV.vue({ox, oy, s, k, a, repere}) renvoie une projection P(x, y, z) → [X, Y] en pixels de la scène.
+   Sans « repere » : x vers la droite, y fuyant (profondeur), z vers le haut (dessin du cube ABCDEFGH).
+   Avec « repere: true » : x fuyant vers l'observateur (en bas à gauche), y vers la droite, z vers le haut. */
+var CAV = (function () {
+  "use strict";
+  function vue(o) {
+    var k = o.k || 0.5, a = (o.a || 40) * Math.PI / 180, c = Math.cos(a) * k, s = Math.sin(a) * k;
+    return o.repere ? function (x, y, z) { return [o.ox + o.s * (y - c * x), o.oy - o.s * (z - s * x)]; }
+      : function (x, y, z) { return [o.ox + o.s * (x + c * y), o.oy - o.s * (z + s * y)]; };
+  }
+  function ajoute(a, b) { var r = {}, k; for (k in a) r[k] = a[k]; for (k in b || {}) r[k] = b[k]; return r; }
+  var TRAIT = "stroke:var(--encre);stroke-width:1.5;fill:none", CACHE = "stroke:var(--encre2);stroke-width:1.2;stroke-dasharray:4 3;fill:none";
+  function seg(S, P, A, B, cache, at) { var a = P(A[0], A[1], A[2]), b = P(B[0], B[1], B[2]); return S.px.seg(a[0], a[1], b[0], b[1], "a-branche", ajoute({ style: cache ? CACHE : TRAIT }, at)); }
+  function trait(S, P, A, B, cls, at) { var a = P(A[0], A[1], A[2]), b = P(B[0], B[1], B[2]); return S.px.seg(a[0], a[1], b[0], b[1], cls, at); }
+  function fleche(S, P, A, B, f, cls, at) {
+    f = f === undefined ? 1 : f; if (f <= 0.01) return null;
+    var Bf = [A[0] + f * (B[0] - A[0]), A[1] + f * (B[1] - A[1]), A[2] + f * (B[2] - A[2])];
+    var a = P(A[0], A[1], A[2]), b = P(Bf[0], Bf[1], Bf[2]);
+    return S.px.fleche(a[0], a[1], b[0], b[1], cls || "g-c", ajoute({ "stroke-width": 2.6 }, at));
+  }
+  function poly(S, P, pts, cls, at) { return S.px.path(pts.map(function (q, i) { var p = P(q[0], q[1], q[2]); return (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join("") + "Z", cls || "a-plein", at); }
+  function pt(S, P, A, cls, r, at) { var p = P(A[0], A[1], A[2]); return S.px.cercle(p[0], p[1], r || 3.5, cls || "g-pt", at); }
+  function txt(S, P, A, s, cls, anc, dx, dy, at) { var p = P(A[0], A[1], A[2]); return S.px.txt(p[0] + (dx || 0), p[1] + (dy || 0), s, cls, anc || "middle", at); }
+  function lerp3(A, B, t) { return [A[0] + t * (B[0] - A[0]), A[1] + t * (B[1] - A[1]), A[2] + t * (B[2] - A[2])]; }
+  /* angle droit en H, entre les directions u et v (unitaires, longueur r en unités de l'espace) */
+  function droit(S, P, H, u, v, r) { var a = [H[0] + r * u[0], H[1] + r * u[1], H[2] + r * u[2]], b = [a[0] + r * v[0], a[1] + r * v[1], a[2] + r * v[2]], c = [H[0] + r * v[0], H[1] + r * v[1], H[2] + r * v[2]]; poly(S, P, [H, a, b, c], "a-craie", { style: "fill:none" }); }
+  return { vue: vue, seg: seg, trait: trait, fleche: fleche, poly: poly, pt: pt, txt: txt, lerp3: lerp3, droit: droit };
+})();
+
+/* Animation : décomposer AG en suivant les arêtes du cube */
+ANIMS.cubeChasles = {
+  titre: R`Décomposer $\vec{AG}$ dans le cube`,
+  vb: [360, 260],
+  etapes: [
+    { d: 3.5, l: R`Le cube $ABCDEFGH$ et trois vecteurs issus de $A$ : $\vec{AB}$ (bleu), $\vec{AD}$ (vert), $\vec{AE}$ (rouge). Ils ne sont pas dans un même plan : ils forment une <b>base</b>.` },
+    { d: 3, l: R`Pour aller de $A$ à $G$, on suit un chemin d'arêtes. Premier pas : $\vec{AB}$.` },
+    { d: 4, l: R`Deuxième pas : $\vec{BC}$. La face $ABCD$ est un carré, donc $\vec{BC}=\vec{AD}$ : c'est le vecteur vert, <b>translaté</b> de $A$ en $B$.` },
+    { d: 4, l: R`Troisième pas : $\vec{CG}=\vec{AE}$, le vecteur rouge translaté de $A$ en $C$.` },
+    { d: 4.5, l: R`Relation de Chasles : $\vec{AG}=\vec{AB}+\vec{BC}+\vec{CG}=\vec{AB}+\vec{AD}+\vec{AE}$. Dans le repère $(A;\vec{AB},\vec{AD},\vec{AE})$, $G$ a pour coordonnées $(1;1;1)$, et le centre du cube, milieu de $[AG]$, $\left(\frac12;\frac12;\frac12\right)$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, P = CAV.vue({ ox: 52, oy: 212, s: 140, k: 0.5, a: 40 });
+    var A = [0, 0, 0], B = [1, 0, 0], C = [1, 1, 0], D = [0, 1, 0], Ee = [0, 0, 1], F = [1, 0, 1], G = [1, 1, 1], H = [0, 1, 1];
+    [[A, B], [B, C], [B, F], [Ee, F], [F, G], [G, H], [H, Ee], [A, Ee], [C, G]].forEach(function (s) { CAV.seg(S, P, s[0], s[1], false, { opacity: 0.55 }); });
+    [[A, D], [D, C], [D, H]].forEach(function (s) { CAV.seg(S, P, s[0], s[1], true, { opacity: 0.55 }); });
+    var lab = { A: [A, -8, 14], B: [B, 8, 14], C: [C, 12, 6], D: [D, -10, -4], E: [Ee, -10, -2], F: [F, 10, 14], G: [G, 10, -4], H: [H, -6, -8] };
+    Object.keys(lab).forEach(function (n) { CAV.txt(S, P, lab[n][0], n, "", "middle", lab[n][1], lab[n][2]); });
+    var f0 = k === 0 ? E(t) : 1, faible = k >= 1 ? 0.28 : 1;
+    CAV.fleche(S, P, A, B, f0, "g-c", { opacity: k >= 1 ? 1 : 1 });
+    CAV.fleche(S, P, A, D, f0, "g-c3", { opacity: faible });
+    CAV.fleche(S, P, A, Ee, f0, "g-c2", { opacity: faible });
+    if (k === 1) CAV.fleche(S, P, A, B, 1, "g-c", { "stroke-width": 4 });
+    if (k >= 2) {
+      var s2 = k === 2 ? E(ANIM.p(t, 0, 0.75)) : 1, o2 = CAV.lerp3(A, B, s2);
+      CAV.fleche(S, P, o2, [o2[0], o2[1] + 1, o2[2]], 1, "g-c3", { "stroke-width": 3.2 });
+      if (k > 2 || t > 0.8) CAV.txt(S, P, [1, 0.5, 0], "BC = AD", "b", "start", 14, 20);
+    }
+    if (k >= 3) {
+      var s3 = k === 3 ? E(ANIM.p(t, 0, 0.75)) : 1, o3 = CAV.lerp3(A, C, s3);
+      CAV.fleche(S, P, o3, [o3[0], o3[1], o3[2] + 1], 1, "g-c2", { "stroke-width": 3.2 });
+      if (k > 3 || t > 0.8) CAV.txt(S, P, [1, 1, 0.5], "CG = AE", "r", "start", 10, 0);
+    }
+    if (k === 4) {
+      CAV.fleche(S, P, A, G, E(ANIM.p(t, 0, 0.6)), "g-c", { "stroke-width": 3.6, style: "stroke:var(--encre)" });
+      if (t > 0.55) {
+        var M = P(0.5, 0.5, 0.5);
+        S.px.cercle(M[0], M[1], 4, "g-pt2");
+        S.px.txt(M[0] - 8, M[1] + 16, "Ω", "r", "middle");
+        S.px.math(196, 224, 162, 34, R`$\vec{AG}=\vec{AB}+\vec{AD}+\vec{AE}$`, { opacity: E(ANIM.p(t, 0.55, 0.9)) });
+      }
+    }
+  }
+};
+
+/* Animation : une droite qui pivote, un plan qui pivote autour d'une droite */
+ANIMS.positions3d = {
+  titre: "Droite et plan, plan et plan : toutes les positions",
+  vb: [360, 260],
+  etapes: [
+    { d: 3.5, l: R`Un plan horizontal $\mathcal P$ et une droite $(d)$ qui le traverse : ils sont <b>sécants</b> en un point $I$. Sous le plan, la droite est cachée (pointillés).` },
+    { d: 5, l: R`La droite pivote et devient de moins en moins inclinée : le point $I$ s'éloigne, puis sort de la partie dessinée du plan… il existe toujours tant que la droite n'est pas horizontale.` },
+    { d: 3.5, l: R`Horizontale, la droite ne rencontre plus $\mathcal P$ : elle est <b>strictement parallèle</b> au plan (son vecteur directeur est dans la direction de $\mathcal P$).` },
+    { d: 3.5, l: R`On la fait descendre : elle se pose dans $\mathcal P$. Elle est <b>incluse</b> dans le plan, ce qui est aussi un cas de parallélisme.` },
+    { d: 5, l: R`Un second plan $\mathcal Q$ pivote autour d'une droite horizontale. Tant qu'il est incliné, il coupe $\mathcal P$ selon une <b>droite</b> $\Delta$ (en rouge), parallèle à l'axe de rotation : deux plans sécants se coupent toujours selon une droite.` },
+    { d: 4.5, l: R`Quand $\mathcal Q$ devient horizontal, $\Delta$ part à l'infini : les plans sont <b>parallèles</b>. Pour deux plans, il n'y a que ces deux cas (sécants ou parallèles).` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, P = CAV.vue({ ox: 180, oy: 182, s: 58, k: 0.55, a: 38 });
+    var coins = [[-2.2, -1.5, 0], [2.2, -1.5, 0], [2.2, 1.5, 0], [-2.2, 1.5, 0]];
+    function dansP(X) { return Math.abs(X[0]) <= 2.2 && Math.abs(X[1]) <= 1.5; }
+    var a = 0, tg = 0, z0 = 0.6, y0 = -1.5, y1 = 1.25, yD = null;
+    if (k >= 4) {
+      a = k === 4 ? 33 : ANIM.l(33, 0, E(t)); tg = Math.tan(a * Math.PI / 180);
+      if (a > 0.5) yD = -z0 / tg;
+      var Q = function (ya, yb) { return [[-1.9, ya, z0 + ya * tg], [1.9, ya, z0 + ya * tg], [1.9, yb, z0 + yb * tg], [-1.9, yb, z0 + yb * tg]]; };
+      var op = k === 4 ? E(ANIM.p(t, 0, 0.3)) : 1;
+      if (yD !== null && yD > y0) CAV.poly(S, P, Q(y0, yD), "a-plein2", { opacity: 0.45 * op, "stroke-dasharray": "4 3" });
+    }
+    CAV.poly(S, P, coins, "a-plein");
+    CAV.txt(S, P, [-2.2, -1.5, 0], "𝒫", "b", "start", 6, -6, { "font-size": 16 });
+    if (k <= 3) {
+      var C0 = [-0.4, 0, 1.25], phi, h = 1.25;
+      if (k === 0) phi = 52; else if (k === 1) phi = ANIM.l(52, 6, E(t)); else phi = 0;
+      if (k === 3) h = ANIM.l(1.25, 0, E(t));
+      var r = phi * Math.PI / 180, u = [Math.cos(r), 0.28, -Math.sin(r)];
+      var c = [C0[0], C0[1], h];
+      var A1 = [c[0] - 2 * u[0], c[1] - 2 * u[1], c[2] - 2 * u[2]];
+      var A2 = [c[0] + 2.6 * u[0], c[1] + 2.6 * u[1], c[2] + 2.6 * u[2]];
+      if (phi > 0) {
+        var ti = h / Math.sin(r), I = [c[0] + ti * u[0], c[1] + ti * u[1], 0];
+        CAV.trait(S, P, A1, ti < 2.6 ? I : A2, "g-c2", { "stroke-width": 2.6 });
+        if (ti < 2.6) CAV.trait(S, P, I, A2, "g-c2", { "stroke-width": 2, "stroke-dasharray": "5 4", opacity: 0.8 });
+        if (dansP(I)) { CAV.pt(S, P, I, "g-pt2", 4.5); CAV.txt(S, P, I, "I", "r", "start", 7, -6); }
+        else CAV.txt(S, P, [2.2, 1.5, 0], "I est plus loin…", "r", "end", 0, -10);
+        CAV.txt(S, P, A1, "(d)", "r", "end", -5, 4);
+      } else {
+        CAV.trait(S, P, [-2.5, 0.2, h], [2.5, 0.2, h], "g-c2", { "stroke-width": 2.6 });
+        CAV.txt(S, P, [2.5, 0.2, h], k === 2 ? "(d) ∥ 𝒫" : t > 0.9 ? "(d) ⊂ 𝒫" : "(d)", "r", "end", 0, -9);
+      }
+    } else {
+      var haut = yD !== null && yD > y0 ? yD : y0;
+      CAV.poly(S, P, Q(haut, y1), "a-plein2", { opacity: k === 4 ? E(ANIM.p(t, 0, 0.3)) : 1 });
+      CAV.trait(S, P, [-2.1, 0, z0], [2.1, 0, z0], "a-craie");
+      CAV.txt(S, P, [1.9, y1, z0 + y1 * tg], "𝒬", "r", "start", 6, 0, { "font-size": 16 });
+      if (yD !== null) {
+        if (yD >= -1.5) { CAV.trait(S, P, [-2.2, yD, 0], [2.2, yD, 0], "g-c2", { "stroke-width": 3 }); CAV.txt(S, P, [2.2, yD, 0], "Δ", "r", "start", 6, 4); }
+        else CAV.txt(S, P, [2.2, -1.5, 0], "Δ est plus loin…", "r", "end", 0, 16);
+      } else CAV.txt(S, P, [-1.9, y1, z0], "𝒬 ∥ 𝒫", "r", "start", 0, -12);
+    }
+  }
 };

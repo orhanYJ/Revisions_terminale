@@ -57,7 +57,7 @@ $$AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}.$$[/]
 [ex|Le plan médiateur d'une diagonale]Dans le cube, le centre $\Omega$ est le milieu de la grande diagonale $[DF]$. Le milieu $I\left(\frac12;0;0\right)$ de $[AB]$ vérifie $ID^2=\frac14+1+0=\frac54$ et $IF^2=\frac14+0+1=\frac54$ : il est équidistant de $D$ et $F$. Il en va de même des milieux de $[BC]$, $[CG]$, $[GH]$, $[HE]$, $[EA]$ : les six sommets de l'hexagone de la partie 4 du chapitre 10 sont dans le plan médiateur de $[DF]$, qui passe par $\Omega$ et est normal à $\vec{DF}(1;-1;1)$.[/]` },
     { id: "projete", titre: "Projeté orthogonal et distances", html: R`
 [def|Projeté orthogonal]Le <b>projeté orthogonal</b> d'un point $M$ sur un plan $\mathcal P$ est le point d'intersection $H$ de $\mathcal P$ et de la droite passant par $M$ orthogonale à $\mathcal P$. Sur une droite $(d)$ : c'est le point $H$ de $(d)$ tel que $(MH)⊥(d)$ (ou $H=M$ si $M\in(d)$).[/]
-<div data-w="projete3d"></div>
+<div data-anim="projete3d"></div>
 [thm|Le point le plus proche]Le projeté orthogonal $H$ de $M$ sur $\mathcal P$ est le point de $\mathcal P$ le plus proche de $M$ : pour tout point $A$ de $\mathcal P$, $MA\geq MH$, avec égalité seulement si $A=H$. La <b>distance de $M$ au plan</b> est $MH$. Même chose pour une droite.[/]
 [meth|Calculer le projeté sur une droite $(A;\vec u)$]$H=A+t\vec u$ avec $\vec{HM}\cdot\vec u=0$, ce qui donne $t=\dfrac{\vec{AM}\cdot\vec u}{\|\vec u\|^2}$.[/]
 [ex|Distance d'un sommet à une diagonale]Cube d'arête $1$ : projeté de $B$ sur $(AG)$. $t=\frac{\vec{AB}\cdot\vec{AG}}{AG^2}=\frac13$, donc $H\left(\frac13;\frac13;\frac13\right)$ et $BH=\sqrt{\left(\frac23\right)^2+\left(\frac13\right)^2+\left(\frac13\right)^2}=\frac{\sqrt6}3\approx0{,}816$.[/]
@@ -212,4 +212,47 @@ False`,
     [R`Volume d'un tétraèdre`, R`$\frac13\times\mathcal B\times h$`],
     [R`Angle entre deux grandes diagonales du cube`, R`$\cos\theta=\frac13$, $\theta\approx70{,}5°$`]
   ]
+};
+
+/* Animation : le projeté orthogonal est le point le plus proche (démonstration du BO) */
+ANIMS.projete3d = {
+  titre: "Le projeté orthogonal, point le plus proche",
+  vb: [360, 260],
+  etapes: [
+    { d: 3.5, l: R`Un plan $\mathcal P$, un point $M$ hors du plan et un point $A$ du plan. Quelle est la plus petite distance entre $M$ et un point de $\mathcal P$ ?` },
+    { d: 4, l: R`On « laisse tomber » $M$ verticalement, c'est-à-dire orthogonalement au plan : il atteint $\mathcal P$ en $H$, le <b>projeté orthogonal</b> de $M$. Ici $MH=2$.` },
+    { d: 6, l: R`Le point $A$ se déplace dans $\mathcal P$, sur un cercle de centre $H$. Le triangle $MHA$ reste rectangle en $H$ : $MA^2=MH^2+HA^2$, donc $MA>MH$ dès que $A\neq H$.` },
+    { d: 4.5, l: R`$A$ se rapproche de $H$ : $HA$ diminue et $MA$ descend vers $MH$, sans jamais passer en dessous.` },
+    { d: 4, l: R`$MA=MH$ seulement quand $A=H$ : $H$ est le point de $\mathcal P$ le plus proche de $M$, et la <b>distance de $M$ au plan</b> est $MH$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, P = CAV.vue({ ox: 190, oy: 200, s: 56, k: 0.55, a: 38 });
+    CAV.poly(S, P, [[-2, -1.6, 0], [2.1, -1.6, 0], [2.1, 1.6, 0], [-2, 1.6, 0]], "a-plein");
+    CAV.txt(S, P, [-2, -1.6, 0], "𝒫", "b", "start", 10, -6, { "font-size": 16 });
+    var H = [0, 0, 0], M = [0, 0, 2], r0 = 1.5;
+    var r = r0, th = -0.5;
+    if (k === 2) th = -0.5 + 2 * Math.PI * E(t);
+    if (k === 3) r = ANIM.l(r0, 0, E(t));
+    if (k === 4) r = 0;
+    var A = [r * Math.cos(th), r * Math.sin(th), 0];
+    if (k >= 2) { var pts = []; for (var i = 0; i <= 48; i++) { var a = 2 * Math.PI * i / 48; pts.push(P(r0 * Math.cos(a), r0 * Math.sin(a), 0)); } S.px.path("M" + pts.map(function (p) { return p[0].toFixed(1) + " " + p[1].toFixed(1); }).join("L"), "a-craie"); }
+    var desc = k === 1 ? E(ANIM.p(t, 0, 0.7)) : k >= 2 ? 1 : 0;
+    if (k >= 1) {
+      var bas = CAV.lerp3(M, H, desc);
+      CAV.trait(S, P, M, bas, "g-c", { "stroke-width": 2.6 });
+      if (desc > 0.98) { CAV.droit(S, P, H, [1, 0, 0], [0, 0, 1], 0.22); CAV.pt(S, P, H, "g-pt", 4.5); CAV.txt(S, P, H, "H", "b", "end", -8, 14); }
+      else CAV.pt(S, P, bas, "g-pt", 3);
+    }
+    if (r > 0.02) {
+      CAV.trait(S, P, M, A, "g-c2", { "stroke-width": 2.4 });
+      if (k >= 2) CAV.trait(S, P, H, A, "g-c3", { "stroke-width": 2.2 });
+      CAV.pt(S, P, A, "g-pt2", 4.5); CAV.txt(S, P, A, "A", "r", "start", 8, 12);
+    }
+    CAV.pt(S, P, M, "g-pt2", 4.5); CAV.txt(S, P, M, "M", "r", "start", 8, -2);
+    var MA = Math.sqrt(4 + r * r), nf = ANIM.nf;
+    var l1 = k === 0 ? "MA = " + nf(MA, 2) : "MH = 2  ·  HA = " + nf(r, 2), l2 = k === 0 ? "" : "MA = √(MH² + HA²) = " + nf(MA, 2);
+    S.px.txt(8, 24, l1, "b", "start", { "font-size": 13 });
+    if (l2) S.px.txt(8, 44, l2, "r", "start", { "font-size": 13 });
+    if (k >= 4) S.px.math(4, 52, 144, 34, R`$d(M;\mathcal P)=MH$`, { opacity: E(t) });
+  }
 };

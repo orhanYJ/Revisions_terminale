@@ -48,7 +48,7 @@ C'est la traduction en coordonnées de $\vec{AM}=t\vec u$.[/]
 [ex|Deux plans]$\mathcal P:2x-y+z-1=0$ et $\mathcal Q:-4x+2y-2z+7=0$ : $\vec n'(-4;2;-2)=-2\vec n$, normaux colinéaires ; les plans sont parallèles. Ils ne sont pas confondus : $(0;0;1)\in\mathcal P$ mais $-2+7\neq0$. Avec $\mathcal R:x+y-z=0$ : $\vec n\cdot\vec n''=2-1-1=0$, donc $\mathcal P$ et $\mathcal R$ sont perpendiculaires.[/]
 [ex|Une droite et un plan]$(d):\begin{cases}x=1+2t\\y=-2+t\\z=3-t\end{cases}$ et $\mathcal P:x-y+z-6=0$. $\vec u(2;1;-1)$, $\vec n(1;-1;1)$ : $\vec u\cdot\vec n=2-1-1=0$, donc $(d)$ est parallèle à $\mathcal P$. Le point $A(1;-2;3)$ vérifie $1+2+3-6=0$ : il est dans $\mathcal P$, donc $(d)$ est <b>incluse</b> dans $\mathcal P$.[/]` },
     { id: "intersections", titre: "Intersections : droite et plan, deux droites", html: R`
-<div data-w="param3d"></div>
+<div data-anim="droitePlan"></div>
 [meth|Intersection d'une droite et d'un plan]On remplace $x$, $y$, $z$ de la représentation paramétrique dans l'équation du plan : on obtient une équation du premier degré en $t$.
 <ul><li>une unique solution $t_0$ : la droite et le plan sont <b>sécants</b> au point de paramètre $t_0$ ;</li><li>une équation impossible ($0t=5$) : <b>parallèles</b>, sans point commun ;</li><li>une équation toujours vraie ($0t=0$) : la droite est <b>incluse</b> dans le plan.</li></ul>[/]
 [ex|Une droite qui traverse un plan]$\mathcal P:x+y+z-3=0$ et $(d):\begin{cases}x=t\\y=2-t\\z=-1+2t\end{cases}$. On remplace : $t+(2-t)+(-1+2t)-3=0$, soit $2t-2=0$, $t=1$. Point d'intersection : $I(1;1;1)$. Contrôle : $1+1+1-3=0$ ✓.[/]
@@ -208,4 +208,71 @@ print(sur_droite((-3, -4, 5), A, u), sur_droite((3, 0, 2), A, u))`, sortie: `Tru
     [R`Formule de la distance point-plan (hors programme)`, R`$\frac{|ax_M+by_M+cz_M+d|}{\sqrt{a^2+b^2+c^2}}$`],
     [R`Démonstration exigible du chapitre`, R`Équation cartésienne du plan normal à $\vec n$ passant par $A$ : $\vec{AM}\cdot\vec n=0$.`]
   ]
+};
+
+/* Animation : un point parcourt la droite, traverse le plan ; puis un projeté */
+ANIMS.droitePlan = {
+  titre: R`Le paramètre $t$ fait avancer le point jusqu'au plan`,
+  vb: [360, 330],
+  etapes: [
+    { d: 3.5, l: R`Repère orthonormé. Le plan $\mathcal P:x+y+z-3=0$ coupe les axes en $(3;0;0)$, $(0;3;0)$, $(0;0;3)$. Son vecteur normal $\vec n(1;1;1)$ se lit sur l'équation.` },
+    { d: 7, l: R`La droite $(d)$ : $x=t$, $y=2-t$, $z=-1+2t$. Quand $t$ augmente, le point $M(t)$ avance. On suit la quantité $x+y+z-3=2t-2$ : négative derrière le plan (pointillés), positive devant.` },
+    { d: 3.5, l: R`Elle s'annule pour $t=1$ : $M(1)=I(1;1;1)$ est sur le plan. C'est le point d'intersection.` },
+    { d: 4, l: R`Le calcul fait la même chose sans dessin : on remplace $x$, $y$, $z$ dans l'équation, $t+(2-t)+(-1+2t)-3=0$, donc $2t-2=0$ et $t=1$.` },
+    { d: 6, l: R`Même méthode pour un projeté : depuis $S(2;3;2)$, on part dans la direction de $\vec n$. $S+t\vec n$ est sur $\mathcal P$ pour $3t+4=0$, $t=-\frac43$ : $H\left(\frac23;\frac53;\frac23\right)$ et $SH=\frac43\sqrt3\approx2{,}31$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, nf = ANIM.nf, P = CAV.vue({ ox: 150, oy: 196, s: 50, k: 0.5, a: 40, repere: true });
+    var O = [0, 0, 0];
+    [[[4, 0, 0], "x"], [[0, 4.1, 0], "y"], [[0, 0, 4.2], "z"]].forEach(function (a) { CAV.trait(S, P, O, a[0], "g-axe", {}); CAV.txt(S, P, a[0], a[1], "", "middle", 0, a[1] === "z" ? -6 : 14); });
+    CAV.txt(S, P, O, "O", "", "end", -5, 12);
+    var T1 = [3, 0, 0], T2 = [0, 3, 0], T3 = [0, 0, 3];
+    CAV.poly(S, P, [T1, T2, T3], "a-plein");
+    S.px.txt(8, 22, "𝒫 : x + y + z − 3 = 0", "b", "start", { "font-size": 13 });
+    S.px.rect(0, 294, 360, 36, "", { style: "fill:var(--papier);stroke:var(--ligne)" });
+    if (k <= 3) { CAV.fleche(S, P, [1, 1, 1], [1.7, 1.7, 1.7], k === 0 ? E(t) : 1, "g-c", { "stroke-width": 2.2 }); CAV.txt(S, P, [1.7, 1.7, 1.7], "n", "b", "start", 6, 0); }
+    var p2 = [P(3, 0, 0), P(0, 3, 0), P(0, 0, 3)];
+    function dedans(q) {
+      var s = 0; for (var i = 0; i < 3; i++) { var a = p2[i], b = p2[(i + 1) % 3]; s += (b[0] - a[0]) * (q[1] - a[1]) - (b[1] - a[1]) * (q[0] - a[0]) > 0 ? 1 : -1; }
+      return Math.abs(s) === 3;
+    }
+    function D(u) { return [u, 2 - u, -1 + 2 * u]; }
+    function cache(u) { var m = D(u); return m[0] + m[1] + m[2] < 3 && dedans(P(m[0], m[1], m[2])); }
+    /* la droite, en morceaux d'un seul tenant (visibles en trait plein, cachés en pointillés) */
+    function droite(ta, tb) {
+      var n = 80, debut = ta, etat = cache(ta);
+      for (var i = 1; i <= n; i++) {
+        var u = ta + (tb - ta) * i / n, e = i === n ? !etat : cache(u);
+        if (e !== etat) {
+          CAV.trait(S, P, D(debut), D(u), "g-c2", etat ? { "stroke-width": 2, "stroke-dasharray": "5 4", opacity: 0.75 } : { "stroke-width": 2.6 });
+          debut = u; etat = e;
+        }
+      }
+    }
+    var ta = -0.4, tb = 2.2;
+    if (k <= 3) {
+      var tm = k === 1 ? ANIM.l(ta, tb, E(t)) : k === 2 ? ANIM.l(tb, 1, E(ANIM.p(t, 0, 0.6))) : 1;
+      droite(ta, k === 1 ? tm : tb);
+      CAV.txt(S, P, D(tb), "(d)", "r", "start", 6, 2);
+      if (k >= 1) {
+        var Mt = D(tm), v = 2 * tm - 2, ici = k >= 2 && Math.abs(tm - 1) < 0.01;
+        CAV.pt(S, P, Mt, ici ? "g-pt" : "g-pt2", 5);
+        CAV.txt(S, P, Mt, ici ? "I" : "M", ici ? "b" : "r", "start", 8, -6);
+        if (k <= 2) {
+          S.px.txt(8, 309, "t = " + nf(tm, 2) + "    M(" + nf(Mt[0], 2) + " ; " + nf(Mt[1], 2) + " ; " + nf(Mt[2], 2) + ")", "", "start", { "font-size": 12 });
+          S.px.txt(8, 325, "x + y + z − 3 = 2t − 2 = " + nf(v, 2) + (Math.abs(v) < 0.01 ? "  : sur le plan" : v < 0 ? "  : derrière" : "  : devant"), Math.abs(v) < 0.01 ? "b" : "r", "start", { "font-size": 12 });
+        }
+      }
+      if (k === 0) S.px.math(4, 296, 352, 32, R`$(d):x=t,\ y=2-t,\ z=-1+2t$`);
+      if (k === 3) S.px.math(4, 296, 352, 32, R`$t+(2-t)+(-1+2t)-3=0\iff t=1$`, { opacity: E(t) });
+    } else {
+      droite(ta, tb);
+      var Sp = [2, 3, 2], Hp = [2 / 3, 5 / 3, 2 / 3], f = E(ANIM.p(t, 0.1, 0.75)), cur = CAV.lerp3(Sp, Hp, f);
+      CAV.trait(S, P, Sp, cur, "g-c", { "stroke-width": 2.6 });
+      CAV.pt(S, P, Sp, "g-pt2", 4.5); CAV.txt(S, P, Sp, "S", "r", "start", 8, -4);
+      CAV.pt(S, P, cur, f > 0.98 ? "g-pt" : "g-pt2", 4.5);
+      S.px.txt(8, 316, "S + t·n = (2 + t ; 3 + t ; 2 + t)", "", "start", { "font-size": 12 });
+      if (f > 0.98) { CAV.txt(S, P, Hp, "H", "b", "end", -8, 12); S.px.math(186, 296, 172, 32, R`$t=-\frac43$, $SH=\frac{4\sqrt3}3$`); }
+    }
+  }
 };
