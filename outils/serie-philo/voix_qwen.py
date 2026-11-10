@@ -30,6 +30,8 @@ REF = {
     "cit_en_f": (os.path.join(ICI, "voix_ref", "cit_en_f.wav"),
                  "Do you want the whole countryside to be laughing at us? Women of our years, mature women, dancing?"),
 }
+# mots que la reconnaissance juge souvent incertains dans un texte de sciences, alors que la voix est juste
+JARGON = {"prime", "primes", "égal", "égale", "égalent", "sur", "moins", "plus", "fois", "barre", "alpha", "gamma", "delta", "lambda", "sigma", "puissance"}
 LANGUES = {"fr": "French", "en": "English"}
 _modele, _prompts, _whisper = None, {}, None
 
@@ -145,7 +147,7 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
     import prosodie
     reg = registre(voix)
     meilleur = None
-    for essai in range(6):
+    for essai in range(4):
         torch.manual_seed(1234 + 17 * essai + len(texte))
         w, sr = m.generate_voice_clone(text=texte, language=LANGUES[langue], voice_clone_prompt=p)
         a = w[0].astype(np.float32)
@@ -155,7 +157,10 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
         mots = [(x.start, x.end - x.start, x.word.strip()) for x in mots_w]
         sc = _score(texte, " ".join(x[2] for x in mots))
         # mots mal articulés (confiance de la reconnaissance sous 0,6, hors nombres) : voir audit_voix.py
-        flous = [x.word.strip() for x in mots_w if x.probability < 0.6 and len(re.sub(r"[^\w]", "", x.word)) > 2 and not re.search(r"\d", x.word)]
+        flous = [x.word.strip() for x in mots_w if x.probability < 0.6 and len(re.sub(r"[^\w]", "", x.word)) > 2
+                 and not re.search(r"\d", x.word) and _norm(x.word) not in JARGON]
+        if len(flous) < 2:
+            flous = []          # un seul mot incertain : souvent la reconnaissance, pas la voix
         try:
             pm = prosodie.mesure(y, 16000)
         except Exception:

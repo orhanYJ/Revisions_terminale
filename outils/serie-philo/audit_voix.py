@@ -49,8 +49,8 @@ def main(module, supprimer=False):
         # calé le 10/11/2026 sur deux défauts signalés par Cengiz (ch5 2:28 « foyer objet », 11:43 « Comment mesurer… ») :
         # une syllabe mal articulée donne une confiance de 0,5 à 0,6 ; une montée aiguë dure environ 0,5 s à 145 %
         incertains = [w.word.strip() for w in mots if w.probability < SEUIL_MOT and len(re.sub(r"[^\w]", "", w.word)) > 2
-                      and not re.search(r"\d", w.word)]
-        if len(incertains) >= 1:
+                      and not re.search(r"\d", w.word) and voix_qwen._norm(w.word) not in voix_qwen.JARGON]
+        if len(incertains) >= 2:
             motifs.append("mots déformés (%s)" % ", ".join(incertains[:4]))
         etires = [w.word.strip() for w in mots if (w.end - w.start) > 1.3 and len(w.word.strip()) < 12]
         if etires:
