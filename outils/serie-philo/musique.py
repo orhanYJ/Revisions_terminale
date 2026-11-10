@@ -210,33 +210,51 @@ def enveloppe(duree, paroles, haut=1.0, bas=0.11, attaque=0.25, relache=0.9):
 
 
 # ===================================================================================================
-# MUSIQUE « CARNET DE NATURALISTE » (vidéos SVT, 10/11/2026, demande de Cengiz : « changer la musique de fond,
-# c'est tout le temps la même chose, la même que Philo »). Cinq thèmes originaux qui alternent d'une partie à
-# l'autre, autres instruments que la philo (marimba, kalimba, cordes pincées, flûte, shaker, wood-block) et une
-# ambiance de terrain (vent, eau, oiseaux, grillons). Chaque thème est une boucle de 32 mesures (deux phrases de
-# 16, mélodie variée), réverbération circulaire pour un raccord sans couture. Déterministe.
+# MUSIQUE LO-FI (vidéos SVT, 10/11/2026). Demande de Cengiz : « changer la musique de fond, c'est tout le temps la
+# même chose, la même que Philo » ; parmi trois propositions (documentaire, lo-fi, pizzicato), il a choisi la lo-fi.
+# Cinq thèmes originaux qui alternent d'une partie à l'autre : piano électrique (synthèse FM), piano feutré, guitare
+# pincée, kalimba ou vibraphone en solo, accords de septième, basse ronde, batterie feutrée et « swinguée », son
+# étouffé façon cassette, craquements de vinyle et une ambiance légère (pluie, oiseaux, grillons…). Chaque thème est
+# une boucle de 32 mesures (intro sans batterie, couplet, mélodie, pause, reprise), raccord sans couture. Déterministe.
 # ===================================================================================================
-CARNET = {
-    # nom : bpm, grille de 4 accords (basse, notes), instrument principal, motif rythmique (en doubles croches),
-    # gamme de la mélodie, dosages (shaker, bois, nappe, ambiance), ambiance
-    "eclosion": dict(bpm=96, acc=[(38, [62, 66, 69, 74]), (47, [62, 66, 71, 74]), (43, [62, 67, 71, 74]), (45, [61, 64, 69, 73])],
-                     inst="marimba", motif=[0, 3, 6, 8, 10, 12, 14], gamme=[74, 76, 78, 81, 83, 86], shaker=.8, bois=.0, nappe=.10, amb="oiseaux"),
-    "sous_bois": dict(bpm=88, acc=[(40, [64, 67, 71, 74]), (45, [64, 69, 73, 76]), (40, [64, 67, 71, 74]), (38, [62, 66, 69, 74])],
-                      inst="kalimba", motif=[0, 3, 6, 8, 11, 14], gamme=[76, 78, 79, 81, 83, 86], shaker=.35, bois=.9, nappe=.12, amb="vent"),
-    "maree": dict(bpm=72, acc=[(43, [67, 71, 74, 78]), (45, [69, 73, 76, 79]), (40, [64, 67, 71, 74]), (48, [64, 67, 71, 76])],
-                  inst="corde", motif=[0, 4, 8, 12], gamme=[74, 76, 78, 79, 81, 83], shaker=.0, bois=.0, nappe=.20, amb="eau"),
-    "pollen": dict(bpm=104, acc=[(48, [64, 67, 72, 76]), (41, [65, 69, 72, 77]), (45, [64, 69, 72, 76]), (43, [62, 67, 71, 74])],
-                   inst="marimba", motif=[0, 2, 6, 7, 10, 12, 15], gamme=[76, 79, 81, 84, 86, 88], shaker=1.0, bois=.6, nappe=.08, amb="oiseaux"),
-    "crepuscule": dict(bpm=80, acc=[(45, [60, 64, 69, 72]), (41, [60, 65, 69, 72]), (48, [60, 64, 67, 72]), (40, [59, 64, 68, 71])],
-                       inst="kalimba", motif=[0, 4, 6, 10, 12], gamme=[72, 74, 76, 79, 81, 84], shaker=.25, bois=.0, nappe=.18, amb="grillons"),
+LOFI = {
+    # bpm, swing, grille de 4 accords (basse, notes), instrument des accords, instrument de la mélodie, gamme de la
+    # mélodie, motif de grosse caisse (en temps), ambiance
+    "etude": dict(bpm=76, swing=.58, acc=[(41, [57, 60, 64, 69]), (40, [55, 59, 62, 67]), (38, [57, 60, 64, 65]), (36, [55, 59, 62, 64])],
+                  clavier="rhodes", solo="rhodes", gamme=[64, 67, 69, 71, 72, 74, 76], kick=[0, 2.5], amb=None),
+    "pluie": dict(bpm=70, swing=.6, acc=[(45, [55, 60, 64, 71]), (41, [57, 60, 64, 67]), (48, [55, 59, 64, 67]), (43, [55, 59, 62, 64])],
+                  clavier="feutre", solo="feutre", gamme=[69, 71, 72, 74, 76, 79, 81], kick=[0, 1.75, 2.5], amb="pluie"),
+    "jardin": dict(bpm=82, swing=.57, acc=[(38, [53, 57, 60, 64]), (43, [53, 59, 64, 65]), (36, [55, 59, 62, 64]), (45, [55, 60, 64, 67])],
+                   clavier="rhodes", solo="guitare", gamme=[62, 64, 65, 67, 69, 72, 74], kick=[0, 2, 2.75], amb="oiseaux"),
+    "nuit": dict(bpm=72, swing=.6, acc=[(39, [55, 58, 62, 67]), (38, [53, 57, 60, 65]), (36, [55, 58, 62, 63]), (34, [53, 57, 62, 65])],
+                 clavier="feutre", solo="kalimba", gamme=[67, 70, 72, 74, 75, 77, 79], kick=[0, 2.5, 3.25], amb="grillons"),
+    "vague": dict(bpm=78, swing=.57, acc=[(43, [59, 62, 66, 69]), (42, [57, 61, 64, 69]), (40, [55, 59, 62, 66]), (38, [57, 61, 64, 66])],
+                  clavier="rhodes", solo="vibra", gamme=[66, 67, 69, 71, 74, 76, 78], kick=[0, 1.5, 2.5], amb="eau"),
 }
-ORDRE_CARNET = ["eclosion", "sous_bois", "pollen", "maree", "crepuscule"]
+ORDRE_LOFI = ["etude", "jardin", "pluie", "vague", "nuit"]
 
 
-def _marimba(f, dur, amp):
+def _rhodes(f, dur, amp):          # piano électrique : synthèse FM, trémolo
     t = np.arange(int(dur * SR)) / SR
-    s = np.sin(2 * np.pi * f * t) + 0.18 * np.sin(2 * np.pi * 3.93 * f * t) * np.exp(-t * 14)
-    return amp * s * np.exp(-t * 5.5) * np.minimum(1, t / 0.002)
+    idx = 1.6 * np.exp(-t * 5) + 0.25
+    s = (np.sin(2 * np.pi * f * t + idx * np.sin(2 * np.pi * f * t))
+         + 0.15 * np.sin(2 * np.pi * 14 * f * t) * np.exp(-t * 30))
+    env = np.minimum(1, t / 0.004) * np.exp(-t * 1.3) * np.clip((dur - t) / 0.08, 0, 1)
+    return amp * s * env * (1 + 0.12 * np.sin(2 * np.pi * 4.5 * t))
+
+
+def _feutre(f, dur, amp):          # piano feutré : peu d'harmoniques, attaque douce
+    t = np.arange(int(dur * SR)) / SR
+    s = sum(np.sin(2 * np.pi * f * k * np.sqrt(1 + 0.0004 * k * k) * t + k) * np.exp(-t * (1.2 + 1.4 * k)) / k ** 1.6
+            for k in range(1, 6))
+    env = np.minimum(1, t / 0.012) * (0.7 * np.exp(-t * 0.9) + 0.3 * np.exp(-t * 4)) * np.clip((dur - t) / 0.1, 0, 1)
+    return amp * 1.3 * s * env
+
+
+def _guitare(f, dur, amp):         # guitare pincée
+    t = np.arange(int(dur * SR)) / SR
+    s = sum(np.sin(2 * np.pi * k * f * t) * np.exp(-t * (2.2 + 1.5 * k)) / k for k in range(1, 8))
+    return amp * 1.2 * s * np.minimum(1, t / 0.003) * np.clip((dur - t) / 0.06, 0, 1)
 
 
 def _kalimba(f, dur, amp):
@@ -246,104 +264,123 @@ def _kalimba(f, dur, amp):
     return amp * s * np.exp(-t * 3.2) * np.minimum(1, t / 0.0015)
 
 
-def _corde(f, dur, amp):   # corde pincée (harmoniques qui s'éteignent d'autant plus vite qu'elles sont aiguës)
+def _vibra(f, dur, amp):           # vibraphone : son pur, trémolo du moteur
     t = np.arange(int(dur * SR)) / SR
-    s = sum(np.sin(2 * np.pi * k * f * t) * np.exp(-t * (1.6 + 1.3 * k)) / k for k in range(1, 7))
-    return amp * s * np.minimum(1, t / 0.003)
-
-
-def _flute(f, dur, amp, rng):
-    t = np.arange(int(dur * SR)) / SR
-    vib = 1 + 0.006 * np.sin(2 * np.pi * 5.2 * t) * np.minimum(1, t / 0.4)
-    ph = 2 * np.pi * f * np.cumsum(vib) / SR
-    souffle = rng.standard_normal(len(t)) * 0.05
-    s = np.sin(ph) + 0.12 * np.sin(2 * ph) + souffle * np.sin(ph) ** 2
-    env = np.minimum(1, t / 0.09) * np.minimum(1, (dur - t) / 0.18).clip(0, 1)
-    return amp * env * s
+    s = np.sin(2 * np.pi * f * t) + 0.2 * np.sin(2 * np.pi * 4 * f * t) * np.exp(-t * 6)
+    return amp * s * np.exp(-t * 1.6) * np.minimum(1, t / 0.002) * (1 + 0.3 * np.sin(2 * np.pi * 5.5 * t))
 
 
 def _basse_ronde(f, dur, amp):
     t = np.arange(int(dur * SR)) / SR
     s = np.sin(2 * np.pi * f * t) + 0.3 * np.sin(4 * np.pi * f * t)
-    return amp * s * np.exp(-t * 1.6) * np.minimum(1, t / 0.01)
+    return amp * s * np.exp(-t * 1.6) * np.minimum(1, t / 0.01) * np.clip((dur - t) / 0.05, 0, 1)
 
 
-def _passe_bas(x, a):
-    # filtre d'ordre 1 vectorisé par blocs (assez précis pour du bruit d'ambiance)
-    from scipy.signal import lfilter
-    return lfilter([a], [1, a - 1], x)
+def _filtre(x, fc, type_="low"):
+    from scipy.signal import butter, lfilter
+    b, a = butter(2, fc / (SR / 2), type_)
+    return lfilter(b, a, x)
+
+
+def _grosse_caisse(amp):
+    t = np.arange(int(0.35 * SR)) / SR
+    f = 48 + 70 * np.exp(-t * 28)
+    return amp * np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 9)
+
+
+def _caisse_claire(amp, rng):
+    t = np.arange(int(0.25 * SR)) / SR
+    br = _filtre(rng.standard_normal(len(t)), 4200) * np.exp(-t * 18)
+    return amp * (0.7 * br + 0.4 * np.sin(2 * np.pi * 190 * t) * np.exp(-t * 25))
+
+
+def _charley(amp, rng):
+    t = np.arange(int(0.05 * SR)) / SR
+    return amp * _filtre(rng.standard_normal(len(t)), 7000, "high") * np.exp(-t * 70)
 
 
 def _ambiance(n, genre, rng):
     t = np.arange(n) / SR
     out = np.zeros(n)
-    if genre in ("vent", "eau"):
-        b = _passe_bas(rng.standard_normal(n), 0.02 if genre == "vent" else 0.06)
-        lfo = 0.6 + 0.4 * np.sin(2 * np.pi * t / (11 if genre == "vent" else 5.3)) * np.sin(2 * np.pi * t / 17)
-        out += b / (np.abs(b).max() + 1e-9) * lfo * (0.10 if genre == "vent" else 0.075)
-    if genre in ("oiseaux", "vent"):
+    if genre in ("pluie", "eau"):
+        b = _filtre(rng.standard_normal(n), 2200 if genre == "pluie" else 700)
+        if genre == "pluie":
+            b = _filtre(b, 400, "high")
+        lfo = 0.75 + 0.25 * np.sin(2 * np.pi * t / (13 if genre == "pluie" else 5.3))
+        out += b / (np.abs(b).max() + 1e-9) * lfo * (0.05 if genre == "pluie" else 0.06)
+    if genre == "oiseaux":
         k = 0.0
         while k < n / SR:
-            k += 4.5 + rng.random() * 7
+            k += 5 + rng.random() * 8
             for j in range(1 + int(rng.random() * 3)):      # deux ou trois notes de chant
                 L = int(SR * (0.07 + rng.random() * 0.06)); tt = np.arange(L) / SR
                 f0 = 2600 + rng.random() * 1800
                 ch = np.sin(2 * np.pi * (f0 * tt + (700 + rng.random() * 900) * tt ** 2 / (2 * tt[-1] + 1e-9)))
-                _ajoute(out, 0.035 * ch * np.sin(np.pi * tt / tt[-1]) ** 2, int((k + j * 0.11) * SR))
+                _ajoute(out, 0.025 * ch * np.sin(np.pi * tt / tt[-1]) ** 2, int((k + j * 0.11) * SR))
     if genre == "grillons":
         pulse = (np.sin(2 * np.pi * 28 * t) > 0.3) * (np.sin(2 * np.pi * 0.45 * t) > -0.2)
-        out += 0.012 * np.sin(2 * np.pi * 4300 * t) * pulse
+        out += 0.009 * np.sin(2 * np.pi * 4300 * t) * pulse
     return out
 
 
-def carnet(theme, mesures=32):
-    """Boucle de `mesures` mesures du thème (sans dosage), raccord sans couture (réverbération circulaire)."""
-    H = CARNET[theme]
-    beat = 60.0 / H["bpm"]
-    dc = beat / 4                                        # double croche
-    n = int(round(mesures * 4 * beat * SR))
-    out = np.zeros(n + SR)
-    rng = np.random.default_rng(sum(map(ord, theme)) + 17)
-    inst = {"marimba": _marimba, "kalimba": _kalimba, "corde": _corde}[H["inst"]]
+def lofi(theme, mesures=32):
+    """Boucle de `mesures` mesures du thème lo-fi, raccord sans couture. Plan sur 32 mesures : intro sans batterie (0-3),
+    couplet (4-7), mélodie (8-15), pause sans grosse caisse ni basse (16-19), reprise (20-23), mélodie variée (24-31)."""
+    H = LOFI[theme]
+    b = 60.0 / H["bpm"]
+    n = int(round(mesures * 4 * b * SR))
+    out = np.zeros(n + 3 * SR)
+    rng = np.random.default_rng(sum(map(ord, theme)) + 31)
+    clavier = {"rhodes": _rhodes, "feutre": _feutre}[H["clavier"]]
+    solo = {"rhodes": _rhodes, "feutre": _feutre, "guitare": _guitare, "kalimba": _kalimba, "vibra": _vibra}[H["solo"]]
+    rythmes = [[(0, 1.5), (1.5, 1), (2.5, 1.5)], [(0.5, 1.5), (2, 2)], [(0, 1), (1, 0.5), (1.5, 1), (3, 1)],
+               [(1, 1), (2.5, 1.5)], [(0, 2), (2.5, 0.5), (3, 1)]]
     for m in range(mesures):
-        basse, notes = H["acc"][(m // 2) % 4]
-        t0 = m * 4 * beat
-        if m % 2 == 0:
-            _ajoute(out, _nappe([hz(x) for x in notes[:3]], 8 * beat + 1.0, H["nappe"]), int(t0 * SR))
-        _ajoute(out, _basse_ronde(hz(basse), 2.2 * beat, 0.22), int(t0 * SR))
-        _ajoute(out, _basse_ronde(hz(basse + (7 if m % 2 else 12)), 1.6 * beat, 0.12), int((t0 + 2 * beat) * SR))
-        for i, p in enumerate(H["motif"]):                  # motif de l'instrument principal
-            note = notes[(i + m) % len(notes)] + (12 if H["inst"] != "corde" else 0)
-            amp = (0.10 if p % 4 == 0 else 0.075) * (0.85 + 0.3 * rng.random())
-            _ajoute(out, inst(hz(note), 1.4, amp), int((t0 + p * dc) * SR))
-        for s in range(16):                                  # shaker : doubles croches, accent sur les contretemps
-            if H["shaker"] <= 0:
-                break
-            L = int(0.045 * SR); br = np.diff(rng.standard_normal(L), prepend=0) * np.exp(-np.arange(L) / SR * 70)
-            _ajoute(out, H["shaker"] * (0.016 if s % 4 == 2 else 0.007) * br, int((t0 + s * dc) * SR))
-        if H["bois"] > 0:                                     # wood-block sur les temps 2 et 4
-            for b in (1, 3):
-                L = int(0.06 * SR); tt = np.arange(L) / SR
-                _ajoute(out, H["bois"] * 0.05 * np.sin(2 * np.pi * 1150 * tt) * np.exp(-tt * 60), int((t0 + b * beat) * SR))
-    # mélodie de flûte : deux phrases dans la seconde moitié de chaque bloc de 16 mesures
-    for bloc in range(mesures // 16):
-        for phrase in range(2):
-            debut = (bloc * 16 + 8 + phrase * 4) * 4 * beat
-            pas = [0, 2, 3, 1, 4, 2, 5, 3] if (bloc + phrase) % 2 == 0 else [5, 4, 2, 3, 1, 2, 0, 1]
-            for j, g in enumerate(pas[:6 if phrase else 8]):
-                d = 2 * beat if j % 3 == 2 else beat
-                _ajoute(out, _flute(hz(H["gamme"][g]), d * 0.95, 0.055, rng), int((debut + sum(2 * beat if q % 3 == 2 else beat for q in range(j))) * SR))
+        basse, notes = H["acc"][m % 4]
+        t0 = m * 4 * b
+        intro, pause = m < 4, 16 <= m < 20
+        # accords : posés sur le 1 et sur le « et » du 3, égrenés de quelques millisecondes
+        for d, L in ((0, 2.3), (2.5, 1.4)):
+            for k, x in enumerate(notes):
+                _ajoute(out, clavier(hz(x), L * b, 0.07 * (0.9 + 0.2 * rng.random())), int((t0 + d * b + 0.025 * k) * SR))
+        if not (intro or pause):
+            _ajoute(out, _basse_ronde(hz(basse), 1.8 * b, 0.22), int(t0 * SR))
+            _ajoute(out, _basse_ronde(hz(basse + (7 if m % 2 else 12)), 1.0 * b, 0.15), int((t0 + 2.5 * b) * SR))
+        # batterie
+        if not intro:
+            for be in range(4):
+                for c, a in ((0, 0.05), (H["swing"], 0.03)):
+                    _ajoute(out, _charley(a * (0.8 + 0.4 * rng.random()), rng), int((t0 + (be + c) * b) * SR))
+            if not pause:
+                for p in H["kick"]:
+                    _ajoute(out, _grosse_caisse(0.32 if p == 0 else 0.24), int((t0 + p * b) * SR))
+                for be in (1, 3):
+                    _ajoute(out, _caisse_claire(0.17, rng), int((t0 + be * b + 0.015) * SR))
+        # mélodie : notes de la gamme proches de l'accord, rythmes tirés au sort mais fixés par le thème
+        if 8 <= m < 16 or 24 <= m < 32:
+            ry = rythmes[int(rng.integers(len(rythmes)))]
+            for d, L in ry:
+                x = H["gamme"][int(rng.integers(len(H["gamme"])))] + 12
+                _ajoute(out, solo(hz(x), L * b + 0.4, 0.055), int((t0 + d * b) * SR))
     out = out[:n] + np.concatenate([out[n:], np.zeros(n - len(out[n:]))])[:n]   # la queue revient au début : boucle continue
-    # réverbération circulaire (convolution par FFT sur la longueur exacte de la boucle)
-    rr = np.random.default_rng(7); L = int(2.0 * SR)
-    ir = rr.standard_normal(L) * np.exp(-np.arange(L) / SR * 3.4); ir /= np.sqrt((ir ** 2).sum())
+    # son « cassette » (étouffé) et réverbération circulaire courte
+    out = _filtre(np.concatenate([out[-SR:], out]), 3600)[SR:]
+    rr = np.random.default_rng(7); L = int(1.4 * SR)
+    ir = rr.standard_normal(L) * np.exp(-np.arange(L) / SR * 4); ir /= np.sqrt((ir ** 2).sum())
     irp = np.zeros(n); irp[:L] = ir
-    rev = np.fft.irfft(np.fft.rfft(out) * np.fft.rfft(irp), n)
-    out = 0.7 * out + 0.3 * rev * 0.9
-    out += _ambiance(n, H["amb"], np.random.default_rng(29))
+    out = 0.82 * out + 0.18 * np.fft.irfft(np.fft.rfft(out) * np.fft.rfft(irp), n)
+    # craquements de vinyle et souffle
+    vin = np.zeros(n + SR)
+    for i in rng.integers(0, n, int(n / SR * 8)):
+        L = int(0.08 * SR); tt = np.arange(L) / SR
+        _ajoute(vin, 0.035 * rng.random() * _filtre(rng.standard_normal(L), 1800, "high") * np.exp(-tt * 60), int(i))
+    vin = vin[:n] + 0.004 * _filtre(rng.standard_normal(n), 2500)
+    out = out + vin
+    if H["amb"]:
+        out += _ambiance(n, H["amb"], np.random.default_rng(29))
     return out.astype(np.float32)
 
 
-def theme_carnet(k, humeur=None):
+def theme_lofi(k, humeur=None):
     """Thème de la k-ième partie de la vidéo : les cinq thèmes tournent, jamais deux fois de suite le même."""
-    return ORDRE_CARNET[k % len(ORDRE_CARNET)]
+    return ORDRE_LOFI[k % len(ORDRE_LOFI)]
