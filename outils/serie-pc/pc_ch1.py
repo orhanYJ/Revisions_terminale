@@ -465,7 +465,7 @@ SCENES = [
         "ex_no3": dict(type="formule", titre="Exemple · 1,0 g d'acide nitrique dans 50,0 mL", x=150, y=110, w=980, lignes=[
             dict(f="n = " + fr("m", "M") + " = " + fr("1,0", "63,0") + " = 1,6 × 10^-2 mol", taille=38),
             dict(f="c = " + fr("n", "V") + " = " + fr("1,6 × 10^-2", "50,0 × 10^-3") + " = 0,32 mol·L^-1", taille=38),
-            dict(f="totale, monoacide : [" + H3O + "] = c · pH = −log(0,32) = 0,50", cadre=True, taille=36),
+            dict(f="totale, monoacide : [" + H3O + "] = c ; pH = −log(0,317) = 0,50", cadre=True, taille=36),
             dict(f="quantité doublée : pH = 0,50 − 0,30 = 0,20", taille=36)]),
         "poh": dict(type="formule", titre="Vu en exercice · le pOH", x=150, y=150, w=980, lignes=[
             dict(f="pOH = − log ( [" + HO + "] / c° )"),
