@@ -39,7 +39,7 @@
     s += "<g data-k='zee'><rect x='140' y='60' width='220' height='70' fill='#8DB7CC' fill-opacity='.9'/>" + t(250, 100, "ZEE (200 milles)", "lbl-f", "middle") + "</g>";
     s += "<g data-k='pc'><path d='M330 172Q420 182 470 222' fill='none' stroke='var(--kraft-f)' stroke-width='7'/>" + t(470, 205, "jusqu'à 350 milles", "lbl") + "</g>";
     s += "<g data-k='zone'>" + t(570, 262, "« LA ZONE »", "lbl-f", "middle") + t(500, 100, "HAUTE MER", "lbl-f", "middle") + "</g>";
-    s += "<g data-k='amp'><circle cx='540' cy='95' r='26' fill='var(--ok)' fill-opacity='.35' stroke='var(--ok)' stroke-width='2'/>" + t(540, 140, "aire marine protégée", "lbl", "middle") + "</g>";
+    s += "<g data-k='amp'><circle cx='578' cy='95' r='26' fill='var(--ok)' fill-opacity='.35' stroke='var(--ok)' stroke-width='2'/>" + t(572, 140, "aire marine protégée", "lbl", "middle") + "</g>";
     s += t(320, 292, "schéma sans échelle", "sch-pt", "middle");
     ANIMS.mer = { titre: "Des 3 milles aux 200 milles : comment les États se sont approprié la mer", scene: { w: 640, h: 300, svg: s },
       etapes: [
@@ -72,12 +72,13 @@
     for (var i = 0; i < 40; i++) s += "<circle cx='" + ((i * 157) % 640) + "' cy='" + ((i * 83) % 300) + "' r='" + (i % 3 ? 0.8 : 1.4) + "' fill='#dfe8ef' opacity='.6'/>";
     s += "<path d='M0 300Q320 230 640 300Z' fill='#2D5675' opacity='.8'/>";
     function mod(k, x, y, w, h, c, lab, ly) { return "<g data-k='" + k + "'><rect x='" + x + "' y='" + y + "' width='" + w + "' height='" + h + "' rx='6' fill='" + c + "' stroke='#fff' stroke-width='1.5'/>" + "<text x='" + (x + w / 2) + "' y='" + (ly || (y - 8)) + "' text-anchor='middle' class='lbl' style='fill:#fff;stroke:#0b1620'>" + lab + "</text></g>"; }
+    s += "<g data-k='panneaux'><rect x='290' y='40' width='16' height='70' fill='#4a6a8a' stroke='#fff'/><rect x='290' y='160' width='16' height='70' fill='#4a6a8a' stroke='#fff'/><rect x='470' y='40' width='16' height='70' fill='#4a6a8a' stroke='#fff'/><rect x='470' y='160' width='16' height='70' fill='#4a6a8a' stroke='#fff'/><path d='M298 110V120M298 150V160M478 110V160M436 135H478' stroke='#fff' stroke-width='3'/></g>"; /* avant les modules : leurs étiquettes passent par-dessus */
     s += mod("zarya", 250, 120, 80, 30, "#B07A1E", "Zarya (Russie)");
     s += mod("unity", 330, 122, 36, 26, "#82B2D8", "Unity", 174);
     s += mod("zvezda", 170, 120, 80, 30, "#C0841F", "Zvezda");
     s += "<g data-k='equip'><circle cx='210' cy='135' r='5' fill='#FF5B49'/><circle cx='224' cy='135' r='5' fill='#FF5B49'/><circle cx='238' cy='135' r='5' fill='#FF5B49'/></g>";
-    s += mod("destiny", 366, 120, 70, 30, "#82B2D8", "Destiny (États-Unis)");
-    s += "<g data-k='panneaux'><rect x='290' y='40' width='16' height='70' fill='#4a6a8a' stroke='#fff'/><rect x='290' y='160' width='16' height='70' fill='#4a6a8a' stroke='#fff'/><rect x='470' y='40' width='16' height='70' fill='#4a6a8a' stroke='#fff'/><rect x='470' y='160' width='16' height='70' fill='#4a6a8a' stroke='#fff'/><path d='M298 110V120M298 150V160M478 110V160M436 135H478' stroke='#fff' stroke-width='3'/></g>";
+    /* étiquette de Destiny sous le module, reliée par un trait (au-dessus, Kibo la masquait) */
+    s += mod("destiny", 366, 120, 70, 30, "#82B2D8", "Destiny (États-Unis)", 214).replace("</g>", "<path d='M401 151V202' stroke='#fff' stroke-width='1' stroke-dasharray='2 2'/></g>");
     s += mod("columbus", 436, 150, 60, 26, "#2F8F9C", "Columbus (Europe)", 194);
     s += mod("kibo", 436, 94, 70, 26, "#e9e9e9", "Kibo (Japon)", 86);
     s += "<g data-k='dragon'><path d='M150 135l-24-10v20z' fill='#ddd'/><text x='120' y='160' class='lbl' style='fill:#fff;stroke:#0b1620'>Crew Dragon</text></g>";
@@ -178,8 +179,8 @@
     s += segment("mesure", [[1985, 14.1], [2022, 17.1], [2024, 17.5]], G, { c: "var(--ok)", w: 4.5 });
     s += repere("p1830", 1830, 9, "vers 1830 : ~9 (minimum)", "start", G, 22) + repere("p1985", 1985, 14.1, "1985 : 14,1", "end", G, -12) + repere("p2024", 2024, 17.5, "2024 : 17,5 (32 %)", "end", G, -14);
     function evt(k, an, lab, y, a) { return "<g data-k='" + k + "'><path d='M" + G.X(an) + "," + G.Y(0) + "V" + G.Y(y) + "' stroke='var(--rouge)' stroke-width='1.5' stroke-dasharray='3 3'/>" + t(G.X(an) + (a === "end" ? -4 : 4), G.Y(y) - 4, lab, "lbl", a) + "</g>"; }
-    s += evt("colbert", 1669, "1669 : Colbert", 15) + evt("code", 1827, "1827 : Code forestier", 4) + evt("landes", 1857, "1857 : Landes", 13) + evt("rtm", 1882, "1860-1882 : montagnes", 15.8) + evt("ffn", 1946, "1946 : Fonds forestier", 6) + evt("crises", 1999, "1999 tempêtes, 2022 incendies", 11, "end");
-    s += "<g data-k='leg'>" + t(G.X(1700), G.Y(18.5), "pointillés : estimations ; trait plein : inventaires de l'IGN", "sch-pt") + "</g>";
+    s += evt("colbert", 1669, "1669 : Colbert", 15) + evt("code", 1827, "1827 : Code forestier", 4) + evt("landes", 1857, "1857 : Landes", 13) + evt("rtm", 1882, "1860-1882 : montagnes", 15.8) + evt("ffn", 1946, "1946 : Fonds forestier", 6) + evt("crises", 1999, "1999 tempêtes, 2022 incendies", 2.5, "end");
+    s += "<g data-k='leg'>" + t(G.X(1700), G.Y(18.5), "pointillés : estimations ; trait plein : IGN", "sch-pt") + "</g>";
     ANIMS.foret = { titre: "La forêt française : défrichement, puis reconquête", scene: { w: 640, h: 320, svg: s },
       etapes: [
         { date: "1669", titre: "Préserver pour la marine", texte: "Colbert fait adopter l'ordonnance sur les eaux et forêts : on règle les coupes, on réserve de grands arbres pour les navires du roi. On ne connaît pas précisément la surface boisée de l'époque.", montre: ["colbert", "leg"], accent: ["colbert"] },

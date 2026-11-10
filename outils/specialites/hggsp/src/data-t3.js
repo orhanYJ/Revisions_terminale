@@ -254,7 +254,7 @@ CHAPS["t3-a1"] = { th: "t3", code: "T3 · AXE 1", t: "Histoire et mémoires des 
       g("a62", 1962, 300, "pt-a", "Indépendance (5 juillet 1962)", "« un million et demi de martyrs »", "start") +
       g("a82", 1982, 250, "pt-a", "Maqam Echahid (1982)", "mémoire officielle du FLN", "start") +
       g("f91", 1991, 110, "pt-b", "Stora, La Gangrène et l'Oubli", "", "end") +
-      g("f99", 1999, 60, "pt-b", "Loi du 18 octobre 1999 :", "« guerre d'Algérie »", "end") +
+      g("f99", 1999, 30, "pt-b", "Loi du 18 octobre 1999 :", "« guerre d'Algérie »", "end") +
       g("f00", 2000, 150, "pt-b", "Débat sur la torture", "(2000-2001)", "start") +
       g("f12", 2012, 60, "pt-b", "Hollande : 17 octobre 1961", "« sanglante répression »", "end") +
       g("f18", 2018, 110, "pt-b", "Audin (2018), Stora (2021)", "harkis (loi de 2022)", "end") +

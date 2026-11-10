@@ -91,7 +91,7 @@ module.exports = function (ctx) {
     s += "<g data-k='peril16'>" + anneau(P, S.djenne, 14, "var(--rouge)") + etiq(C, S.djenne, "en péril (2016)", { a: "end", dx: -18, dy: 16 }) + "</g>";
     s += "<g data-k='peril23'>" + anneau(P, S.band, 14, "var(--rouge)") + etiq(C, S.band, "en péril (2023)", { a: "start", dx: 18, dy: 20 }) + "</g>";
     s += "<g data-k='retour'>" + fleche(P, S.bamako, S.tomb, { courbe: 0.3, coul: "var(--ok)" }) + etiq(C, S.bamako, "retour des manuscrits (août 2025)", { a: "start", dx: -20, dy: 24 }) + "</g>";
-    const deco = etiq(C, [-5.5, 21.5], "MALI", { cl: "k-pays", a: "middle" }) + etiq(C, [-10.5, 21.5], "MAURITANIE", { cl: "k-pays", a: "middle" }) + etiq(C, [2.5, 23.6], "ALGÉRIE", { cl: "k-pays", a: "middle" }) +
+    const deco = etiq(C, [-5.5, 21.5], "MALI", { cl: "k-pays", a: "middle" }) + etiq(C, [-10.5, 21.5], "MAURITANIE", { cl: "k-pays", a: "middle" }) + etiq(C, [3.5, 21.4], "ALGÉRIE", { cl: "k-pays", a: "middle" }) +
       etiq(C, [2.8, 13.6], "NIGER", { cl: "k-pays", a: "middle" }) + etiq(C, [-1.6, 12.2], "BURKINA FASO", { cl: "k-pays", a: "middle" });
     OUT.anims.t4mali = { w: W, h: H, vb: [40, 120, 720, 470], fond, calques: deco + s };
   }

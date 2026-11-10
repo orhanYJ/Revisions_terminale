@@ -21,6 +21,8 @@
   function ic(n, cl) { return '<svg class="ic ' + (cl || "") + '" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; }
   function melange(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   var MO = function () { return document.documentElement.classList.contains("mo"); };
+  /* relance l'animation d'arrivée d'un bloc dont le contenu change (légende d'animation, fiche d'un lieu, d'une date) */
+  function rejouer(el) { if (!el || !MO()) return; el.classList.remove("maj"); void el.offsetWidth; el.classList.add("maj"); }
 
   /* ---------------- navigation latérale ---------------- */
   function construireNav() {
@@ -359,15 +361,18 @@
     var sc = typeof A.scene === "string" ? CARTES.anims[A.scene.slice(6)] : A.scene;
     var vb = sc.vb || [0, 0, sc.w, sc.h], fond = "";
     fond = fondSVG(sc.fond);
+    /* la date de l'étape est tamponnée dans une bande au-dessus de la scène : elle ne masque plus le dessin */
+    var dates = A.etapes.some(function (e) { return e.date; });
     var pts = A.etapes.map(function (e, i) { return '<button class="a-pt" data-i="' + i + '" aria-label="Étape ' + (i + 1) + ' : ' + esc(sans(e.titre)) + '"><span>' + (i + 1) + '</span></button>'; }).join("");
     return '<figure class="anim" data-anim="' + nom + '" id="' + uid + '"><div class="a-tete"><span class="etiq">Animation · ' + A.etapes.length + ' étapes</span><h3>' + typo(A.titre) + '</h3></div>' +
-      '<div class="a-cadre"><svg viewBox="' + vb.join(" ") + '" role="img" aria-label="' + esc(sans(A.titre)) + '">' + fond + (sc.calques || sc.svg || "") + '</svg><div class="a-date" aria-hidden="true"></div></div>' +
+      (dates ? '<div class="a-bande" aria-hidden="true"><span class="a-date"></span></div>' : "") +
+      '<div class="a-cadre"><svg viewBox="' + vb.join(" ") + '" role="img" aria-label="' + esc(sans(A.titre)) + '" style="--mw:' + (sc.mw || Math.min(900, Math.max(560, Math.round(vb[2] * 0.86)))) + 'px">' + fond + (sc.calques || sc.svg || "") + '</svg></div>' +
       '<div class="a-cmd"><button class="a-b" data-a="prec" aria-label="Étape précédente"><svg class="ic"><use href="#i-prec"/></svg></button><button class="a-b a-lire" data-a="lire" aria-label="Lecture"><svg class="ic"><use href="#i-lire"/></svg></button><button class="a-b" data-a="suiv" aria-label="Étape suivante"><svg class="ic"><use href="#i-suiv"/></svg></button><div class="a-pts">' + pts + '</div></div>' +
       '<div class="a-legende" aria-live="polite"></div>' + (A.source ? '<div class="src">' + typo(A.source) + '</div>' : "") + '</figure>';
   }
   function activerAnim(f) {
     var A = ANIMS[f.getAttribute("data-anim")], k = -1, minuteur = null, lecture = false;
-    var els = $$("[data-k]", f), leg = $(".a-legende", f), dateEl = $(".a-date", f), bLire = $('[data-a="lire"]', f);
+    var els = $$("[data-k]", f), leg = $(".a-legende", f), dateEl = $(".a-date", f) || document.createElement("span"), bLire = $('[data-a="lire"]', f);
     function etat(n) {
       var vis = {};
       for (var i = 0; i <= n; i++) { (A.etapes[i].montre || []).forEach(function (x) { vis[x] = 1; }); (A.etapes[i].cache || []).forEach(function (x) { delete vis[x]; }); }
@@ -397,6 +402,7 @@
         cadreA.scrollTo({ left: Math.max(0, cadreA.scrollLeft + r.left + r.width / 2 - rc.left - rc.width / 2), behavior: MO() && k >= 0 && auto !== undefined ? "smooth" : "auto" });
       }
       teletype(dateEl, e.date || "");
+      rejouer(leg);
       leg.innerHTML = '<div class="a-num">ÉTAPE ' + (n + 1) + ' / ' + A.etapes.length + (e.date ? ' · ' + esc(e.date) : "") + '</div><b>' + typo(e.titre) + '</b>' + typo(e.texte || "");
       $$(".a-pt", f).forEach(function (b, i) { b.classList.toggle("fait", i < n); b.setAttribute("aria-current", i === n ? "step" : "false"); });
       $('[data-a="prec"]', f).disabled = n === 0;
@@ -423,7 +429,8 @@
   }
   function carteHTML(nom, uid) {
     var m = CARTES.cartes[nom], meta = m.meta, W = m.w, H = m.h, vb = m.vb || [0, 0, W, H];
-    var s = '<svg viewBox="' + vb.join(" ") + '" role="img" aria-label="' + esc(meta.t) + '">';
+    /* sur téléphone, largeur minimale proportionnelle au cadrage : les étiquettes gardent environ 9,5 px à l'écran */
+    var s = '<svg viewBox="' + vb.join(" ") + '" role="img" aria-label="' + esc(meta.t) + '" style="--mw:' + Math.min(1000, Math.max(680, Math.round(vb[2] * 0.9))) + 'px">';
     s += fondSVG(m.fond);
     s += m.deco;
     m.pts.forEach(function (p, i) {
@@ -440,10 +447,20 @@
     return '<figure class="carto" data-carte="' + nom + '" id="' + uid + '"><figcaption><span class="etiq">Carte interactive</span><h3>' + typo(meta.t) + '</h3></figcaption><div class="leg">' + leg + '</div><div class="carto-cadre">' + s + '</div><div class="carto-info" aria-live="polite">' + typo("Touche un point pour afficher la fiche du lieu ; touche une catégorie de la légende pour l'afficher ou la masquer.") + '</div><details class="pli"><summary>Tous les lieux de la carte</summary><div class="corps"><ul style="margin:0;padding-left:16px">' + liste + '</ul></div></details><div class="src">Fond : Natural Earth 1:50m (domaine public), pays actuels ; positions approximatives à cette échelle. Carte réalisée pour le site.</div></figure>';
   }
   function activerCarte(f) {
-    var m = CARTES.cartes[f.getAttribute("data-carte")];
+    var m = CARTES.cartes[f.getAttribute("data-carte")], cadreC = $(".carto-cadre", f);
+    /* sur téléphone, la carte défile de côté : la centrer sur les points au départ, puis sur le point choisi */
+    function centrer(x, doux) {
+      if (cadreC.scrollWidth <= cadreC.clientWidth + 2) return;
+      var vb = m.vb || [0, 0, m.w, m.h], k = cadreC.scrollWidth / vb[2];
+      cadreC.scrollTo({ left: Math.max(0, (x - vb[0]) * k - cadreC.clientWidth / 2), behavior: doux && MO() ? "smooth" : "auto" });
+    }
+    var xs = m.pts.map(function (p) { return p.x; }).sort(function (a, b) { return a - b; });
+    if (xs.length) centrer((xs[0] + xs[xs.length - 1]) / 2);
     function choisir(i) {
       var p = m.pts[i];
+      centrer(p.x, true);
       $$(".pt", f).forEach(function (g) { g.classList.toggle("sel", +g.getAttribute("data-i") === i); });
+      rejouer($(".carto-info", f));
       $(".carto-info", f).innerHTML = '<b>' + typo(esc(p.t)) + '</b>' + typo(p.d);
     }
     $$(".pt", f).forEach(function (g) {
@@ -479,7 +496,8 @@
         var e = D.frise[+b.getAttribute("data-i")];
         $$(".ev").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
         b.classList.add("vu");
-        info.innerHTML = '<b class="tt" style="color:' + couleur(D, e[2]) + '"></b><br><b>' + typo(e[3]) + '</b> — ' + typo(e[4]);
+        rejouer(info);
+        info.innerHTML = '<b class="tt" style="--c:' + couleur(D, e[2]) + '"></b><br><b>' + typo(e[3]) + '</b> — ' + typo(e[4]);
         var tt = $(".tt", info), d = sans(e[1]), n = 0;
         if (!MO()) tt.textContent = d;
         else { tt.textContent = ""; clearInterval(info._t); info._t = setInterval(function () { n++; tt.textContent = d.slice(0, n) + (n < d.length ? "▌" : ""); if (n >= d.length) clearInterval(info._t); }, 40); }
