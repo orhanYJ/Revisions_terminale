@@ -42,6 +42,7 @@ var TeX = (function () {
       if (c === "\\" && /^\\(right|end)\b/.test(this.s.slice(this.i))) break;
       var a = this.atome();
       if (a === null) continue;
+      if (out.length && /^<mrow><mi mathvariant="normal">(ln|exp|cos|sin|tan|max|min|log)</.test(a) && !/^<mo/.test(out[out.length - 1])) out.push('<mspace width="0.17em"></mspace>');
       if ((a === "<mo>+</mo>" || a === "<mo>−</mo>") && (!out.length || /^<mo[^>]*>(?!\)|\]|\||′)/.test(out[out.length - 1]))) a = a.replace("<mo>", '<mo form="prefix" rspace="0.05em">');
       out.push(this.scripts(a));
     }
@@ -126,7 +127,7 @@ var TeX = (function () {
     if (n === "e") return el("mi", "e", 'mathvariant="normal"');
     if (n === "i") return el("mi", "i", 'mathvariant="normal"');
     if (GREC[n]) return el("mi", GREC[n], /^[A-Z]/.test(n) ? 'mathvariant="normal"' : "");
-    if (FONCS[n]) { this.blanc(); var par = this.peek() === "(" || /^\\left|^\^|^_/.test(this.s.slice(this.i)); return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="' + (par ? "0" : "0.17em") + '">&#x2061;</mo>'); }
+    if (FONCS[n]) { this.blanc(); var par = this.peek() === "(" || this.peek() === "'" || /^\\left|^\^|^_/.test(this.s.slice(this.i)); return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="' + (par ? "0" : "0.17em") + '">&#x2061;</mo>'); }
     if (n === "lim") return el("mo", "lim", 'data-dessous movablelimits="false" lspace="0" rspace="0.17em"');
     if (n === "sum") return el("mo", "∑", 'data-dessous largeop="true" movablelimits="false"');
     if (n === "prod") return el("mo", "∏", 'data-dessous largeop="true" movablelimits="false"');

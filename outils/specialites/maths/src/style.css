@@ -442,3 +442,23 @@ html.mo .ch-carte:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(
 .hero .compas{right:-40px;top:-46px;bottom:auto;width:200px;height:200px;opacity:.6}
 .hero>*:not(.compas){position:relative}
 .a-champ{stroke:var(--encre3);stroke-width:1.3;stroke-linecap:round;opacity:.75}
+/* mouvement de l'interface (phase 2) */
+html.mo .qcm .opt{animation:monte .35s ease-out both}
+html.mo .qcm .opt:nth-child(2){animation-delay:.05s}
+html.mo .qcm .opt:nth-child(3){animation-delay:.1s}
+html.mo .qcm .opt:nth-child(4){animation-delay:.15s}
+html.mo .qcm .q{animation:monte .3s ease-out both}
+html.mo .qcm .expl{animation:capin .45s ease-out}
+html.mo .onglets a.on{animation:tampon .35s cubic-bezier(.3,1.5,.5,1)}
+@keyframes tampon{from{transform:translateY(6px)}to{transform:none}}
+html.mo .menu a.on{animation:surligne .6s ease-out}
+@keyframes surligne{from{background-size:0 100%}to{background-size:100% 100%}}
+.menu a.on{background-image:linear-gradient(100deg,var(--surligne),var(--surligne));background-repeat:no-repeat;background-size:100% 100%}
+html.mo .flash .carte{animation:monte .35s ease-out}
+html.mo .anim{animation:monte .45s ease-out both}
+html.mo .cinq li{animation:monte .4s ease-out both}
+html.mo .cinq li:nth-child(2){animation-delay:.06s}
+html.mo .cinq li:nth-child(3){animation-delay:.12s}
+html.mo .cinq li:nth-child(4){animation-delay:.18s}
+html.mo .cinq li:nth-child(5){animation-delay:.24s}
+td math,th math{math-style:normal}
