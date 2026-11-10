@@ -290,7 +290,10 @@ def generer(nom_module):
     bruitages.append((1.6, "cloche"))
     for sc in ep.SCENES:
         t0 = t
-        humeurs.append((t0 if humeurs else 0.0, sc.get("humeur", HUMEUR_DEFAUT)))
+        hu = sc.get("humeur", HUMEUR_DEFAUT)
+        if site == "dnl":       # vidéos d'histoire : leur propre musique (salon, archives, marche)
+            hu = musique.humeur_dnl(hu, sc.get("fond", "nuit"), ep.CODE)
+        humeurs.append((t0 if humeurs else 0.0, hu))
         mots_sc = []          # (instant, mot) dits par le narrateur dans la scène
         carton = sc.get("carton", True)
         if carton:

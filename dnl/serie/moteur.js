@@ -1114,8 +1114,8 @@
 
   function Scene(EP, racine) {
     var sc = h("div", "scene", racine);
-    sc.style.setProperty("--grain", grain(220, [52, 30, 12], .26));
-    sc.style.setProperty("--papier", grain(200, [110, 80, 40], .10));
+    sc.style.setProperty("--grain", grain(220, [52, 30, 12], .16));
+    sc.style.setProperty("--papier", grain(200, [110, 80, 40], .07));
     var fonds = EP.scenes.map(function (s, i) {
       var f = h("div", "fond", sc), def = FONDS[s.fond] || FONDS.nuit;
       f.style.background = def.base;
@@ -1129,7 +1129,9 @@
     });
     var cv = h("canvas", "poussiere", sc); cv.width = W; cv.height = H;
     var cx = cv.getContext("2d");
-    var parts = []; for (var i = 0; i < 34; i++) parts.push({ x: alea(i) * W, y: alea(i + 100) * H, vx: (alea(i + 200) - .5) * 6, vy: 2 + alea(i + 300) * 6, r: .8 + alea(i + 400) * 2, ph: alea(i + 500) * 6.28 });
+    // pas de poussière dans le bureau d'archives : elle coûtait 20 % du temps de rendu des MP4
+    var parts = [];
+    cv.style.display = "none";
     var couche = h("div", "", sc); couche.style.cssText = "position:absolute;inset:0";
     h("div", "voile", sc);
     var ent = h("div", "entete", sc), fil = h("div", "fil", sc), st = h("div", "st", sc), stS = h("span", "", st);
@@ -1154,7 +1156,7 @@
         });
       });
       // poussière lumineuse
-      cx.clearRect(0, 0, W, H);
+      if (parts.length) cx.clearRect(0, 0, W, H);
       parts.forEach(function (p) {
         var x = ((p.x + p.vx * t) % W + W) % W, y = ((p.y - p.vy * t) % H + H) % H;
         var a = .10 + .10 * Math.sin(t * 1.3 + p.ph);
