@@ -14,6 +14,8 @@ sys.path.insert(1, os.path.join(os.path.dirname(ICI), "serie-pc"))
 sys.path.insert(2, os.path.join(os.path.dirname(ICI), "serie-acl"))
 sys.path.insert(3, os.path.join(os.path.dirname(ICI), "serie-dnl"))
 sys.path.insert(4, os.path.join(os.path.dirname(ICI), "serie-svt"))
+sys.path += [os.path.join(os.path.dirname(ICI), d) for d in sorted(os.listdir(os.path.dirname(ICI)))   # serie-maths, serie-ses, serie-hggsp…
+             if d.startswith("serie-") and os.path.join(os.path.dirname(ICI), d) not in sys.path]
 MARQUE = re.compile(r"\{([-!#]?)([^{}]+)\}")
 TYPES = {"titre", "chapitre", "mot", "question", "nuage", "def", "note", "tag", "cit", "portrait", "cols", "cartes", "liste",
          "dialogue", "frise", "tableau", "illu", "carte", "frappe", "flash", "generique", "notion",
@@ -39,6 +41,8 @@ def verifier(nom):
     IMG = os.path.join(RACINE, site, "serie", "img")
     err, mots, secondes = [], 0, 0.0
     ill = illus_connues(site)
+    # types propres au moteur du site (TYPES.nom = function dans <site>/serie/moteur.js)
+    types = TYPES | set(re.findall(r"TYPES\.(\w+) = function", open(os.path.join(RACINE, site, "serie", "moteur.js"), encoding="utf-8").read()))
     for attr in ("CODE", "NOTION", "NUM", "TITRE", "SUIVANT", "SCENES", "QUIZ"):
         if not hasattr(ep, attr):
             err.append(f"attribut manquant : {attr}")
@@ -104,7 +108,7 @@ def verifier(nom):
                 if manque or hors:
                     err.append(f"[{sc['id']}] liste {ident} : chaque ligne k s'affiche au repère {{{ident}.k}} (k de 1 à {nb}) ; "
                                f"manquent {manque}, en trop {hors}")
-            if t not in TYPES:
+            if t not in types:
                 err.append(f"[{sc['id']}] type inconnu {t} ({ident})")
             if t == "illu" and spec.get("nom") not in ill:
                 err.append(f"[{sc['id']}] illustration inconnue du moteur : {spec.get('nom')} ({ident})")

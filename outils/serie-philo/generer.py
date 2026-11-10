@@ -37,6 +37,10 @@ sys.path.insert(1, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(
 sys.path.insert(2, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-acl"))
 sys.path.insert(3, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-dnl"))
 sys.path.insert(4, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-svt"))
+# autres dossiers de scripts (serie-maths, serie-ses, serie-hggsp…) : trouvés d'office
+import glob as _glob  # noqa: E402
+sys.path += [d for d in sorted(_glob.glob(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-*")))
+             if os.path.isdir(d) and d not in sys.path]
 import musique  # noqa: E402
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -532,6 +536,7 @@ def generer(nom_module):
     if site == "svt":   # carte mentale du thème (type mental) et illustrations propres au chapitre (illu-<code>.js)
         with open(os.path.join(RACINE, "svt", "carte-mentale.js"), "rb") as f:
             extra += f'<script src="../carte-mentale.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'
+    if site in ("svt", "maths", "ses", "hggsp"):   # illustrations (et scènes de carte, HGGSP) propres à la vidéo, si le fichier existe
         illu = os.path.join(SORTIE, "illu-" + ep.CODE + ".js")
         if os.path.exists(illu):
             with open(illu, "rb") as f:
