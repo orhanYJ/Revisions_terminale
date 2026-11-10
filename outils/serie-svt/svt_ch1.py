@@ -134,7 +134,7 @@ SCENES = [
             "Un seul individu : un système racinaire, des troncs génétiquement identiques",
             "Apparus par drageonnage : des mitoses à partir des racines",
             "Les racines partagent eau et nutriments : la collaboration"]),
-        "tab_cmp": dict(type="liste", titre="Séance 1 · cinq clones, cinq fonctions", x=110, y=110, w=1060, items=[
+        "tab_cmp": dict(type="liste", titre="Cinq clones, cinq fonctions", x=110, y=110, w=1060, items=[
             "Peuplier (Pando) · tissus : oui · partage des nutriments, extension de l'individu",
             "Lymphocytes · cellules séparées · LB mémoire, plasmocytes : défense immunitaire",
             "Intestin grêle · tissu · renouvellement des cellules mortes",
