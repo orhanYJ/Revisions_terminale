@@ -379,7 +379,7 @@ for x in t:
     compteur.ajouter(x)`, { run: false });
 
 CH.push({
-  id: "para", n: 17, court: "paradigmes", fichier: "paradigmes.py",
+  id: "para", court: "paradigmes", fichier: "paradigmes.py",
   titre: "Paradigmes de programmation",
   rubrique: "Rubrique « Langages et programmation » : paradigmes impératif, fonctionnel et objet",
   accroche: "Impératif, fonctionnel, objet : trois façons de penser un programme, souvent mélangées en Python. Effets de bord, fonctions pures, fonctions d’ordre supérieur, et comment choisir.",

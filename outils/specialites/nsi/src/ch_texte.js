@@ -322,7 +322,7 @@ while i <= n - m:                        # 2. RECHERCHE
     i = i + d.get(texte[i + m - 1], m)   # 3. SAUT`, { run: false });
 
 CH.push({
-  id: "texte", n: 15, court: "recherche_textuelle", fichier: "recherche_textuelle.py",
+  id: "texte", court: "recherche_textuelle", fichier: "recherche_textuelle.py",
   titre: "Recherche textuelle",
   rubrique: "Rubrique « Algorithmique » : recherche textuelle (algorithme de Boyer-Moore, prétraitement du motif)",
   accroche: "Trouver un motif dans un texte : algorithme naïf, Boyer-Moore-Horspool, table de décalage, et pourquoi lire le motif à l’envers fait gagner du temps.",
@@ -390,7 +390,7 @@ CH.push({
 <p>Certains sujets présentent Boyer-Moore avec la règle du <b>mauvais caractère</b> : en cas d’échec à l’indice <i>j</i> du motif sur le caractère <i>c</i> du texte, on décale pour aligner <i>c</i> avec sa dernière occurrence dans le motif, et d’au moins une case. Si <i>c</i> n’est pas dans le motif, on place le motif juste après lui.</p>
 [[txt-bm]]
 <p>Les deux versions trouvent exactement les mêmes occurrences ; seuls les sauts diffèrent. Lis bien l’énoncé : il dit toujours quelle règle appliquer et donne en général la table.</p>
-<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>L’algorithme complet de Boyer et Moore ajoute une seconde règle, dite du <b>bon suffixe</b> (réutiliser la partie du motif qui a déjà correspondu), et prend le plus grand des deux sauts. Il garantit un nombre de comparaisons proportionnel à <i>n</i> dans le pire cas pour la recherche de la première occurrence. Les fonctions <code>find</code> et <code>in</code> de CPython utilisent un algorithme optimisé inspiré de Boyer-Moore-Horspool, complété depuis Python 3.10 par l’algorithme « two-way » pour les motifs longs.</p></div>` }
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>L’algorithme complet de Boyer et Moore ajoute une seconde règle, dite du <b>bon suffixe</b> (réutiliser la partie du motif qui a déjà correspondu), et prend le plus grand des deux sauts. Il garantit un nombre de comparaisons proportionnel à <i>n</i> dans le pire cas pour la recherche de la première occurrence. Les fonctions <code>find</code> et <code>in</code> de CPython (l’interpréteur Python usuel) utilisent un mélange de Boyer-Moore et de Horspool ; depuis Python 3.10, pour les longs motifs (au moins 100 caractères) dans de longs textes, elles passent à l’algorithme « two-way » de Crochemore et Perrin (1991). Source : le code de CPython, fichier <code>Objects/stringlib/fastsearch.h</code>.</p></div>` }
   ],
   pieges: [
     { t: "Oublier la dernière position de la fenêtre", h: `[[txt-p-borne]]<p>Il y a <i>n</i> − <i>m</i> + 1 positions : la boucle est <code>range(len(texte) - len(motif) + 1)</code> (ou <code>while i &lt;= n - m</code>). Sinon, on rate une occurrence qui termine le texte, et un motif égal au texte n’est jamais trouvé.</p>` },

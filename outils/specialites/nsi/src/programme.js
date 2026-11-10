@@ -1,6 +1,6 @@
 /* Carte du programme de Terminale (arrêté du 19/07/2019, BO spécial n° 8 du 25/07/2019), reformulé. */
 var PROG = [
-  { n: "01", t: "Histoire de l’informatique", intro: "Rubrique transversale : les repères historiques se construisent dans chacune des cinq autres rubriques. Sur ce site, ils sont dans les encadrés <code># git log --histoire</code> des chapitres.",
+  { n: "01", t: "Histoire de l’informatique", intro: "Rubrique transversale : les repères historiques se construisent dans chacune des cinq autres rubriques. Sur ce site, le chapitre « Histoire de l’informatique » rassemble les repères, et les encadrés <code># git log --histoire</code> les rappellent dans chaque chapitre.",
     items: [
       { ch: "hist", id: "histoire", t: "Événements clés de l’histoire de l’informatique",
         contenus: "Repères qui complètent ceux de Première : machine universelle (1936), premiers ordinateurs (1948), Internet (depuis 1969), diversification des machines.",

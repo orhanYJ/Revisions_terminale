@@ -329,7 +329,7 @@ def paradoxe(p):
 # Donc arret ne peut pas exister : le problème de l'arrêt est indécidable.`, { run: false });
 
 CH.push({
-  id: "calc", n: 16, court: "calculabilite", fichier: "calculabilite.py",
+  id: "calc", court: "calculabilite", fichier: "calculabilite.py",
   titre: "Calculabilité, décidabilité",
   rubrique: "Rubrique « Langages et programmation » : notion de programme en tant que donnée, calculabilité, décidabilité",
   accroche: "Un programme est aussi une donnée ; machine de Turing ; ce qu’un ordinateur peut calculer ne dépend pas du langage ; le problème de l’arrêt est indécidable.",

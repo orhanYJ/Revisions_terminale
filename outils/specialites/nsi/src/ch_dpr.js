@@ -430,7 +430,7 @@ def resoudre(probleme):
     return combiner(sols)                     # 3. COMBINER`, { run: false });
 
 CH.push({
-  id: "dpr", n: 13, court: "diviser_regner", fichier: "diviser_regner.py",
+  id: "dpr", court: "diviser_regner", fichier: "diviser_regner.py",
   titre: "Diviser pour régner",
   rubrique: "Rubrique « Algorithmique » : méthode « diviser pour régner » (tri fusion, rotation d’image, recherche dichotomique)",
   accroche: "Couper un problème en sous-problèmes indépendants, les résoudre, combiner : tri fusion en n log n, dichotomie, rotation d’image sur place.",

@@ -432,7 +432,7 @@ def f(n, memo):                          def f(n):
     return memo[n]`, { run: false });
 
 CH.push({
-  id: "dyn", n: 14, court: "prog_dynamique", fichier: "prog_dynamique.py",
+  id: "dyn", court: "prog_dynamique", fichier: "prog_dynamique.py",
   titre: "Programmation dynamique",
   rubrique: "Rubrique « Algorithmique » : programmation dynamique (rendu de monnaie, alignement de séquences)",
   accroche: "Ne jamais calculer deux fois la même chose : mémoïsation, tableau rempli du plus petit au plus grand, rendu de monnaie, plus longue sous-séquence commune, alignement.",

@@ -235,7 +235,7 @@ C("hist-retenir", String.raw`
 1854   Boole                     1958  circuit intégré       1991  Linux, Python, 1er site web`, { run: false });
 
 CH.push({
-  id: "hist", n: 18, court: "histoire", fichier: "histoire.md",
+  id: "hist", court: "histoire", fichier: "histoire.md",
   titre: "Histoire de l’informatique",
   rubrique: "Rubrique « Histoire de l’informatique » : événements clés, protagonistes, évolution des rôles du logiciel et du matériel",
   accroche: "De l’algorithme d’Euclide au smartphone : les dates, les personnes et les idées à situer, et comment le logiciel a pris le pas sur le matériel.",
