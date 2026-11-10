@@ -541,6 +541,10 @@ def generer(nom_module):
         if os.path.exists(illu):
             with open(illu, "rb") as f:
                 apres += f'<script src="illu-{ep.CODE}.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'   # après le moteur : SERIE_OUTILS existe
+    if site == "ses":   # graphiques et animations du site rejoués dans la vidéo (type sanim), tirés des sources du site
+        import site_ses
+        with open(site_ses.ecrire_js(), "rb") as f:
+            extra += f'<script src="site-ses.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'
     page = PAGE.format(titre=titre, code=ep.CODE, v=v, vm=V_MOTEUR_SITE[site], teinte=TEINTE[site], langue=langue, extra=extra, apres=apres)
     with open(os.path.join(SORTIE, ep.CODE + ".html"), "w", encoding="utf-8") as f:
         f.write(page)

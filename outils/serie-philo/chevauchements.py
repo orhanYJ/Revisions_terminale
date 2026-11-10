@@ -7,7 +7,8 @@ import json, os, sys
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
 PRINCIPAUX = {"portrait", "def", "note", "cols", "cartes", "liste", "cit", "mot", "question", "dialogue", "carte", "nuage", "titre", "illu", "frise",
-              "anim", "formule", "graphe", "exo", "pause", "globe", "mental"}
+              "anim", "formule", "graphe", "exo", "pause", "globe", "mental",
+              "donnees", "chaine", "chiffres", "sanim", "auteur", "compare", "plan"}      # SES
 PRINCIPAUX |= {"scene", "chrono", "document"}                               # HGGSP
 
 

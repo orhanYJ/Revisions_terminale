@@ -92,6 +92,22 @@ META = {
         tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "nouveaux espaces de conquête", "océan et espace",
               "Montego Bay", "ZEE", "haute mer", "traité de l'espace 1967", "dernières frontières", "New Space",
               "syndrome de Kessler", "orbites", "mer de Chine méridionale", "dissertation HGGSP", "étude critique"]),
+    "ses-e1": dict(
+        titre_yt="La croissance économique : sources et défis · Cours complet + sujets corrigés | SES Terminale",
+        sous="PGF · progrès endogène · destruction créatrice · soutenabilité", img="e1-pib.jpg", gros="La croissance",
+        accroche="La France produit 8,6 fois plus qu'en 1950. D'où vient cette croissance, à qui profite-t-elle, "
+                 "et peut-elle durer sur une planète finie ?",
+        pill2="+ 5 sujets corrigés",
+        exos_txt="cinq sujets corrigés pas à pas : un calcul sur le PIB, les trois parties de l'épreuve composée et une dissertation",
+        exos=["Savoir-faire : calculer avec le PIB (coefficients multiplicateurs, taux de croissance, phrase de lecture) — données Insee.",
+              "Partie 1 : « Montrez que les institutions peuvent favoriser la croissance économique » — sujet inventé pour le site.",
+              "Partie 2 : la croissance française depuis 1950, document Insee — exercice du site.",
+              "Partie 3 : « Montrez que l'innovation est une source de croissance économique » — sujet inventé pour le site.",
+              "Dissertation : « Le progrès technique suffit-il à rendre la croissance soutenable ? » — sujet inventé pour le site."],
+        tags=["croissance économique", "SES terminale", "spécialité SES", "bac SES", "productivité globale des facteurs",
+              "résidu de Solow", "croissance endogène", "progrès technique", "destruction créatrice", "Schumpeter",
+              "institutions", "droits de propriété", "inégalités", "croissance soutenable", "effet rebond",
+              "épreuve composée", "dissertation SES"]),
 }
 
 # matière : libellés et couleurs de la miniature
@@ -102,6 +118,8 @@ MATIERE = {
                 acc="#B7D94C", pill="#B7D94C", pill_c="#0b120e", txt="#F1EFE3", txt2="#b8c9a8", ombre="0,0,0"),
     "maths": dict(nom="Maths", court="Maths", desc="maths", fond="#1b2422", fond_rgb="27,36,34",
                   acc="#F4D35E", pill="#F4D35E", pill_c="#1b2422", txt="#ECEBE4", txt2="#BFC4BB", ombre="0,0,0"),
+    "ses": dict(nom="SES", court="SES", desc="SES", fond="#0D181C", fond_rgb="13,24,28",
+                acc="#F0BE4F", pill="#FF7B65", pill_c="#14232A", txt="#ECE6DA", txt2="#A5B0B3", ombre="0,0,0"),
     "hggsp": dict(nom="HGGSP", court="HGGSP", desc="HGGSP", fond="#07090b", fond_rgb="7,9,11",
                   acc="#FF5B49", pill="#B3241B", pill_c="#FFF8F0", txt="#DCE3E8", txt2="#93A3AF", ombre="0,0,0"),
 }
@@ -203,6 +221,7 @@ def kit(code, dossier):
     titre = "%s · Cours complet + exercices corrigés | %s Terminale" % (ep["titre"], mt["nom"])
     if len(titre) > 100:
         titre = "%s · Cours + exercices corrigés | %s Terminale" % (ep["titre"], mt["court"])
+    titre = m.get("titre_yt", titre)          # titre propre à la vidéo quand l'intitulé du chapitre est trop long (SES)
     assert len(titre) <= 100, titre
     duree = round(ep["dur"] / 60)
     desc = [
@@ -218,7 +237,7 @@ def kit(code, dossier):
         "CHAPITRES",
     ] + chapitres(ep) + [
         "",
-        "LES EXERCICES" + ("" if site == "svt" else " (inventés pour la vidéo)"),
+        "LES EXERCICES" + ("" if site in ("svt", "ses") else " (inventés pour la vidéo)"),
     ] + m["exos"] + [
         "",
         "Le quiz de fin est dans le commentaire épinglé.",

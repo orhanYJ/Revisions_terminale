@@ -1,4 +1,4 @@
-var CACHE = 'ses-v5';
+var CACHE = 'ses-v6';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=9'];
 
 self.addEventListener('install', function (e) {
@@ -21,6 +21,21 @@ self.addEventListener('fetch', function (e) {
   if (e.request.method !== 'GET') return;
   var url = new URL(e.request.url);
   if (url.origin !== self.location.origin) return;
+  /* Vidéos du chapitre (serie/) : le son est lu par plages, le service worker le laisse passer */
+  if (url.pathname.endsWith('.mp3')) return;
+  /* Une vidéo (serie/*.html) est une page à part, montée en iframe : réseau d'abord, rangée sous sa propre adresse
+     (une iframe est une navigation : ne jamais la ranger sous la clé de la page d'accueil) */
+  if (url.pathname.indexOf('/serie/') >= 0 && url.pathname.endsWith('.html')) {
+    var cle = url.origin + url.pathname;
+    e.respondWith(
+      fetch(e.request.url, { cache: 'no-cache', credentials: 'same-origin' }).then(function (r) {
+        var copie = r.clone();
+        caches.open(CACHE).then(function (c) { c.put(cle, copie); });
+        return r;
+      }).catch(function () { return caches.match(cle, { ignoreSearch: true }); })
+    );
+    return;
+  }
   var isPage = e.request.mode === 'navigate' ||
     url.pathname.endsWith('/') || url.pathname.endsWith('index.html');
 
