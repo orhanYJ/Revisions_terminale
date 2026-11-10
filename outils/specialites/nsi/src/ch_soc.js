@@ -2,11 +2,11 @@
 /* Feuille de style commune aux animations des chapitres « architectures, systèmes d'exploitation et réseaux »
    (soc, proc, rout, crypto) : injectée une seule fois, au premier affichage d'une de ces animations. */
 var ARCH_CSS = [
-  ".ar svg{font-family:var(--mono)}",
-  ".ar svg text{font-size:12px;fill:var(--encre)}",
-  ".ar svg .pt{font-size:10.5px;fill:var(--encre2)}",
-  ".ar svg .gd{font-size:13px;font-weight:700}",
-  ".ar-large svg{min-width:540px}",
+  ".ar .scene svg{font-family:var(--mono)}",
+  ".ar .scene svg text{font-size:12px;fill:var(--encre)}",
+  ".ar .scene svg .pt{font-size:10.5px;fill:var(--encre2)}",
+  ".ar .scene svg .gd{font-size:13px;font-weight:700}",
+  ".ar-large .scene svg{min-width:540px}",
   ".ar .bl rect{fill:var(--bg2);stroke:var(--ligne2);stroke-width:1.4}",
   ".ar .bl.on rect{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.6}",
   ".ar .bl.ok rect{fill:var(--vert-f);stroke:var(--vert);stroke-width:2}",
@@ -30,6 +30,7 @@ var ARCH_CSS = [
   ".ar .nd text{font-weight:700;font-size:14px}",
   ".ar .cout{font-size:11px;fill:var(--encre2)}",
   ".ar .cout-f{fill:var(--bg);stroke:none}",
+  ".ar .scene .halo{paint-order:stroke;stroke:var(--bleu-f);stroke-width:5px;stroke-linejoin:round}",
   ".ar-tab{overflow-x:auto;margin-top:10px;-webkit-overflow-scrolling:touch}",
   ".ar-tab table{border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:0 auto;min-width:100%}",
   ".ar-tab th,.ar-tab td{border:1px solid var(--ligne);padding:4px 6px;text-align:center;white-space:nowrap}",
@@ -205,8 +206,9 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
     s += '<rect class="puce" x="110" y="52" width="382" height="222" rx="14"/><text class="gd" x="118" y="68">SoC (une seule puce)</text>';
     Object.keys(STUB).forEach(function (k) { var on = e.ext && e.ext.indexOf(k) >= 0; s += '<path class="fil' + (on ? " on" : "") + '" d="' + STUB[k] + '"/>'; });
     var nocOn = e.va && e.va.length;
-    s += '<rect class="noc' + (nocOn ? " on" : "") + '" x="122" y="' + (YN - 9) + '" width="358" height="18" rx="9"/><text class="pt" x="300" y="' + (YN + 4) + '" text-anchor="middle">réseau sur puce</text>';
+    s += '<rect class="noc' + (nocOn ? " on" : "") + '" x="122" y="' + (YN - 9) + '" width="358" height="18" rx="9"/>';
     (e.va || []).forEach(function (v) { if (B[v[0]][0] > 110 && B[v[0]][0] < 490 && B[v[1]][0] > 110 && B[v[1]][0] < 490) s += '<path class="fil on' + (saut ? "" : " trace") + '" style="--l:500" d="' + chemin(v[0], v[1]) + '"/>'; });
+    s += '<text class="pt halo" x="474" y="' + (YN + 4) + '" text-anchor="end">réseau sur puce</text>';
     Object.keys(B).forEach(function (k) {
       var b = B[k], dedans = b[0] > 110 && b[0] < 490 && b[1] > 52 && b[1] < 274;
       var cl = (e.on.indexOf(k) >= 0 || (e.ext || []).indexOf(k) >= 0) ? " on" : (e.off && e.off.indexOf(k) >= 0 ? " off" : "");
@@ -222,6 +224,7 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
       s += archJeton(d, "", 0.9, j * 0.9);
     });
     scene.innerHTML = s + "</svg>";
+    if (saut && i === 0) scene.scrollLeft = (scene.scrollWidth - scene.clientWidth) / 2;
   }
   O.lecteur(z, { titre: "dans la puce d’un téléphone", sous: "animation", choix: [{ k: "photo", t: "une photo, du capteur au réseau" }, { k: "energie", t: "la gestion d’énergie" }],
     etapes: function (k) { return SC[k]; }, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar", "ar-large"); }, dessine: dessine, vitesse: 2600 });
