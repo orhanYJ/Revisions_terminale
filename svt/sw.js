@@ -9,7 +9,7 @@ const ANIMS = ["mitose", "replication", "expression", "enzyme", "globe", "tecton
   "ecosysteme", "immunite", "anticorps", "clonal", "meiose", "nondisj", "coinegal", "globines",
   "thg", "insuline", "endosymbiose"];
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png",
-  "anim/moteur.css?v=7", "anim/moteur.js?v=7", "carte-mentale.js?v=5"].concat(ANIMS.map((a) => "anim/" + a + ".html"));
+  "anim/moteur.css?v=7", "anim/moteur.js?v=7", "carte-mentale.js?v=6"].concat(ANIMS.map((a) => "anim/" + a + ".html"));
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
