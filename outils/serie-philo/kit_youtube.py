@@ -112,8 +112,11 @@ META = {
 
 # matière : libellés et couleurs de la miniature
 MATIERE = {
-    "pc": dict(nom="Physique-chimie", court="PC", desc="physique-chimie", fond="#17100a", fond_rgb="23,16,10",
-               acc="#ff8b3e", pill="#e45c10", pill_c="#fff", txt="#f2e7da", txt2="#cbb49c", ombre="0,0,0"),
+    # identité « paillasse » des vidéos PC (11/2026) : fond clair, bleu-vert de labo, trait rose de phénolphtaléine
+    "pc": dict(nom="Physique-chimie", court="PC", desc="physique-chimie", fond="#eef4f8", fond_rgb="238,244,248",
+               acc="#0e8a8c", pill="#0e8a8c", pill_c="#fff", txt="#17323d", txt2="#4f6873", ombre="255,255,255",
+               police="'Space Grotesk',sans-serif", sous_police="'Space Grotesk',sans-serif", sous_style="normal",
+               pill2="background:#fff;color:#17323d;border:2px solid #d3e0e8", trait="#e0457b"),
     "svt": dict(nom="SVT", court="SVT", desc="SVT", fond="#0b120e", fond_rgb="11,18,14",
                 acc="#B7D94C", pill="#B7D94C", pill_c="#0b120e", txt="#F1EFE3", txt2="#b8c9a8", ombre="0,0,0"),
     "maths": dict(nom="Maths", court="Maths", desc="maths", fond="#1b2422", fond_rgb="27,36,34",
@@ -140,6 +143,7 @@ SUB = str.maketrans("0123456789", "₀₁₂₃₄₅₆₇₈₉")
 
 def plat(t):
     """Texte enrichi du moteur (10^-19, x^{2}, E_c, P_{reçue}, [[a|b]]) → texte simple pour YouTube."""
+    t = re.sub(r"‾\{([^}]*)\}", "\\1", t)   # mesure algébrique : la barre ne passe pas en texte simple
     t = re.sub(r"\[\[(.+?)\|(.+?)\]\]", lambda m: "%s/%s" % tuple(x if re.fullmatch(r"[\w,.]+", x) else "(%s)" % x for x in m.groups()), t)
     def sup(m):
         x = m.group(1) or m.group(2)
@@ -287,27 +291,32 @@ def miniature(site, ep, m):
 html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:%(fond)s}
 .img{position:absolute;right:0;top:0;width:760px;height:720px;background:url(%(base)simg/%(img)s) center/cover}
 .img:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,%(fond)s 0%%,rgba(%(rgb)s,.85) 22%%,rgba(%(rgb)s,.15) 60%%,rgba(%(rgb)s,0) 100%%)}
-.txt{position:absolute;left:70px;top:0;bottom:0;width:780px;display:flex;flex-direction:column;justify-content:center;color:%(txt)s;font-family:Archivo,sans-serif}
+.txt{position:absolute;left:70px;top:0;bottom:0;width:780px;display:flex;flex-direction:column;justify-content:center;color:%(txt)s;font-family:%(police)s}
 .sur{font-weight:700;font-size:34px;letter-spacing:.08em;text-transform:uppercase;color:%(acc)s}
-.gros{overflow:hidden;font-weight:700;font-size:132px;line-height:.95;padding-bottom:.14em;margin:22px 0 8px;letter-spacing:-.02em;text-shadow:0 4px 30px rgba(0,0,0,.6)}
-.sous{font-family:Spectral,serif;font-style:italic;font-size:40px;color:%(txt2)s}
+.gros{overflow:hidden;font-weight:700;font-size:132px;line-height:.95;padding-bottom:.14em;margin:22px 0 8px;letter-spacing:-.02em;text-shadow:0 4px 30px rgba(%(ombre)s,.6)}
+.trait{width:260px;height:9px;border-radius:5px;background:%(trait)s;margin:4px 0 22px}
+.sous{font-family:%(spol)s;font-style:%(sstyle)s;font-size:40px;color:%(txt2)s}
 .bas{display:flex;gap:16px;margin-top:44px}
 .pill{font-weight:700;font-size:30px;padding:12px 24px;border-radius:999px;background:%(pill)s;color:%(pillc)s}
-.pill.c{background:rgba(242,231,218,.12);color:#f2e7da;border:2px solid rgba(242,231,218,.35)}
-.num{position:absolute;right:36px;bottom:24px;font-family:'Archivo',sans-serif;font-weight:700;font-size:30px;color:%(txt)s;background:rgba(%(rgb)s,.75);padding:8px 18px;border-radius:12px}
+.pill.c{%(pill2s)s}
+.num{position:absolute;right:36px;bottom:24px;font-family:%(police)s;font-weight:700;font-size:30px;color:%(txt)s;background:rgba(%(rgb)s,.75);padding:8px 18px;border-radius:12px}
 </style></head><body>
 <div class="img"></div>
 <div class="txt">
   <div class="sur">Terminale · %(mat)s · Ch. %(num)d</div>
   <div class="gros">%(gros)s</div>
-  <div class="sous">%(sous)s</div>
+%(trait_div)s  <div class="sous">%(sous)s</div>
   <div class="bas"><span class="pill">Cours complet</span><span class="pill c">%(pill2)s</span></div>
 </div>
 <div class="num">%(min)d min</div>
 <script>/* titre trop large ou trop haut : on réduit la taille */var g=document.querySelector(".gros"),t=document.querySelector(".txt"),f=120;g.style.fontSize=f+"px";function trop(){var a=t.firstElementChild.getBoundingClientRect(),b=t.lastElementChild.getBoundingClientRect();return g.scrollWidth>g.clientWidth||a.top<40||b.bottom>650}while(trop()&&f>48){f-=4;g.style.fontSize=f+"px"}</script>
 </body></html>""" % dict(base=base, img=m["img"], num=ep["num"], gros=e(m.get("gros", ep["titre"])).replace("-", "\u2011"), sous=e(m["sous"]),
                          min=round(ep["dur"] / 60), fond=mt["fond"], rgb=mt["fond_rgb"], txt=mt["txt"], txt2=mt["txt2"],
-                         acc=mt["acc"], pill=mt["pill"], pillc=mt["pill_c"], mat=mt["nom"], pill2=e(m.get("pill2", "+ 3 exercices corrigés")))
+                         acc=mt["acc"], pill=mt["pill"], pillc=mt["pill_c"], mat=mt["nom"], pill2=e(m.get("pill2", "+ 3 exercices corrigés")),
+                         police=mt.get("police", "Archivo,sans-serif"), spol=mt.get("sous_police", "Spectral,serif"), sstyle=mt.get("sous_style", "italic"),
+                         ombre=mt.get("ombre", "0,0,0"), trait=mt.get("trait", "transparent"),
+                         trait_div='  <div class="trait"></div>\n' if mt.get("trait") else "",
+                         pill2s=mt.get("pill2", "background:rgba(242,231,218,.12);color:#f2e7da;border:2px solid rgba(242,231,218,.35)"))
 
 
 if __name__ == "__main__":

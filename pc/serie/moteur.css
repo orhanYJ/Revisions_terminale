@@ -395,3 +395,145 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 .v-exo.plein .ex-don{font-size:20px}
 .v-anim .an-et{display:none}
 .fo-l.ko .fo-f{text-decoration:none}
+
+/* =====================================================================
+   Identité « paillasse » (11/2026, choisie par Cengiz parmi trois essais) : le labo en plein jour.
+   Seule l'image de la vidéo (.scene) change ; le lecteur du site (barre, chapitres, quiz) garde ses couleurs.
+   Blanc de verrerie, bleu-vert de labo, rose de la phénolphtaléine ; Space Grotesk pour le texte, STIX Two Text pour les formules.
+   ===================================================================== */
+.cadre{background:#eef4f8}
+.scene{--ivoire:#17323d;--ivoire2:#4f6873;--safran:#0b7d80;--safran-c:#0e8a8c;--carmin:#d64545;--sarcelle:#2f6fd1;--rose:#e0457b;
+  --verre:#9fb7c2;--ligne:rgba(23,50,61,.14);--blanc:#ffffff;--bord:#d3e0e8;--ombre:0 18px 44px rgba(23,50,61,.11);
+  --fd:'Space Grotesk','STIX Two Text',system-ui,sans-serif;--fm:'STIX Two Text','GFS Didot',Georgia,serif;
+  color:var(--ivoire);font-family:var(--fd)}
+.scene .voile{background:radial-gradient(ellipse at 50% 45%,transparent 62%,rgba(23,50,61,.07) 100%)}
+.scene .regle-g{position:absolute;left:0;top:0;width:40px;height:720px;pointer-events:none;opacity:.6}
+.scene .entete{font-family:var(--fd);font-weight:700;font-size:15px;letter-spacing:.16em;color:rgba(23,50,61,.5)}
+.scene .entete b{color:var(--safran-c);font-weight:700}
+.scene .fil{background:linear-gradient(90deg,var(--safran-c),var(--rose));opacity:.9;height:4px}
+.scene .serif,.scene .v-titre .tt,.scene .v-chapitre .num,.scene .v-chapitre .tt,.scene .v-mot .tt,.scene .v-question .tt,.scene .v-nuage .it,
+.scene .carte .tx,.scene .v-cit .gu,.scene .v-cit .tx,.scene .v-portrait .pf .mono,.scene .v-portrait .np .n,.scene .v-cols .col .t,.scene .v-cols .vs,
+.scene .v-cartes .ca .t,.scene .v-liste .mq,.scene .v-dialogue .l,.scene .v-frise .rupt,.scene .v-frise .p .md,.scene .v-frise .p .nm,.scene .bd-nom,
+.scene .v-notion .nt-p,.scene .fr-mot,.scene .fl-tx,.scene .cm-centre,.scene .ex-ti,.scene .ex-qn,.scene .pa-tx,.scene .v-illu text,.scene .v-tableau .lg{font-family:var(--fd)}
+.scene .math,.scene .fo-f,.scene .v-illu .ser,.scene .gr-t,.scene .ex-don{font-family:var(--fm)}
+.scene .v-question .tt,.scene .v-cit .tx,.scene .v-dialogue .l,.scene .v-tableau .lg{font-style:normal}
+.scene .v-titre .tt,.scene .v-chapitre .tt,.scene .v-mot .tt,.scene .ex-ti,.scene .v-cols .col .t,.scene .v-cartes .ca .t{font-weight:700;letter-spacing:-.01em}
+.scene .carte .tx,.scene .fl-tx,.scene .pa-tx,.scene .v-question .tt{font-weight:500;letter-spacing:-.005em}
+/* titre et carton de chapitre */
+.scene .v-titre .halo{background:radial-gradient(circle,rgba(14,138,140,.10),rgba(14,138,140,0) 60%)}
+.scene .v-titre .sur{font-family:var(--fd);font-weight:700;font-size:20px;color:var(--safran-c)}
+.scene .v-titre .regle{width:300px;height:7px;border-radius:4px;background:var(--rose)}
+.scene .v-chapitre .num{-webkit-text-stroke:2.5px rgba(14,138,140,.55);font-weight:700}
+.scene .v-chapitre .trait{left:490px;width:300px;height:7px;border-radius:4px;background:var(--rose)}
+.scene .v-mot .gl:before{background:var(--rose);height:5px;border-radius:3px}
+.scene .v-nuage .ce{font-family:var(--fd);font-weight:700;border-color:rgba(14,138,140,.6);background:var(--blanc)}
+/* cartes : blanches, bandeau de couleur en tête comme une étiquette de flacon */
+.scene .carte,.scene .fo-carte,.scene .ex-carte,.scene .v-cols .col,.scene .v-cartes .ca{background:var(--blanc);border:1.5px solid var(--bord);box-shadow:var(--ombre)}
+.scene .carte{border-radius:18px;overflow:hidden}
+.scene .carte .barre-g{display:none}
+.scene .carte .te,.scene .fo-carte:not(.nu) .fo-te{font-family:var(--fd);font-weight:700;letter-spacing:.14em;color:#fff;background:var(--safran-c)}
+.scene .carte .te{margin:-42px -52px 26px -60px;padding:14px 52px 13px 60px;font-size:18px}
+.scene .carte.note .te{background:var(--rose)}
+.scene .carte .et{border-top-color:var(--ligne)}
+.scene .fo-carte{border-radius:18px;overflow:hidden}
+.scene .fo-carte:not(.nu) .fo-te{margin:-30px -40px 22px;padding:13px 40px 12px;font-size:17px}
+.scene .fo-carte.nu .fo-te{font-family:var(--fd);font-weight:700;letter-spacing:.14em;color:var(--safran-c)}
+.scene .badge{background:var(--blanc);color:var(--safran-c);border-color:var(--safran-c);font-family:var(--fd);font-weight:700}
+.scene .v-tag .pill{background:rgba(47,111,209,.09);border-color:rgba(47,111,209,.5)}
+.scene .v-tag .ic{font-family:var(--fd);font-weight:700}
+.scene .v-cit .ap{border-color:var(--ligne)}
+.scene .v-portrait .pf{background:#dfe8ed}
+.scene .v-portrait .pf .mono{background:radial-gradient(circle at 50% 40%,#ffffff,#dfe8ed)}
+.scene .v-portrait .pf:after{box-shadow:inset 0 0 0 2px rgba(14,138,140,.5),inset 0 -80px 60px -40px rgba(0,0,0,.35)}
+.scene .v-cols .vs{background:var(--blanc);border-color:var(--safran-c);color:var(--safran-c);font-weight:700}
+.scene .v-cols .col:before{background:var(--safran-c)}
+.scene .v-cols .d:before{background:var(--rose)}
+.scene .v-cols .rp span{background:rgba(47,111,209,.09);border-color:rgba(47,111,209,.5)}
+.scene .v-liste .ti,.scene .v-cartes .ca .n,.scene .gr-ti,.scene .ex-nv,.scene .ex-don b,.scene .pa-te,.scene .fl-te,.scene .v-notion .nt-t{font-family:var(--fd);font-weight:700}
+.scene .v-liste .mq{background:var(--blanc);font-weight:700}
+.scene .v-liste .mq.ok{border-color:#2e9d57;color:#2e9d57}
+.scene .v-frise .axe{background:linear-gradient(90deg,var(--safran-c),var(--rose))}
+.scene .v-frise .an{color:rgba(23,50,61,.55)}
+.scene .v-frise .p .md{background:var(--blanc)}
+.scene .v-frise .p .tige{background:rgba(14,138,140,.45)}
+/* photos : plein cadre, légende sur dégradé sombre ; en fond, éclaircies sous les visuels */
+.scene .v-tableau.fond-t .ombre{background:rgba(238,244,248,.84)}
+.scene .v-tableau.fond-t.sombre .ombre{background:rgba(238,244,248,.92)}
+.scene .v-tableau.fond-t .lg{color:rgba(23,50,61,.6);text-shadow:none}
+.scene .bd-nom{text-shadow:none}
+.scene .v-portrait.grand .pf:after{background:linear-gradient(180deg,transparent 55%,rgba(238,244,248,.9) 100%)}
+.scene .bd-info{text-shadow:none}
+.scene .mf-axe{background:rgba(23,50,61,.3)}
+.scene .mf-z{color:rgba(23,50,61,.6)}
+/* mot qui frappe, « À retenir » */
+.scene .fr-fond{background:radial-gradient(ellipse at center,rgba(246,250,252,.98),rgba(234,242,247,.95))}
+.scene .fr-mot{font-weight:700;background:linear-gradient(180deg,#17323d,#0e8a8c 62%,#e0457b);-webkit-background-clip:text;background-clip:text;text-shadow:none}
+.scene .fl-fond{background:rgba(238,244,248,.95)}
+.scene .fl-carte{background:var(--blanc);border:2.5px solid var(--rose);box-shadow:var(--ombre)}
+.scene .fl-te{color:var(--rose)}
+/* carte mentale */
+.scene .cm-centre{background:var(--blanc);border:3px solid var(--safran-c);color:var(--safran-c);font-weight:700}
+.scene .cm-noeud{background:var(--blanc);border:2px solid var(--safran-c);box-shadow:0 8px 20px rgba(23,50,61,.08)}
+.scene .v-notion{background:rgba(255,255,255,.9);border-color:rgba(14,138,140,.4);box-shadow:0 8px 24px rgba(23,50,61,.12)}
+.scene .v-notion .nt-p{background:rgba(23,50,61,.05);border-color:var(--ligne)}
+/* animation du site : montée dans un « écran d'appareil » */
+.scene .v-anim .an-cadre{border-radius:20px;box-shadow:0 0 0 7px #23414d,0 22px 50px rgba(23,50,61,.28)}
+/* formules */
+.scene .fo-l.encadre{background:rgba(224,69,123,.06);box-shadow:inset 0 0 0 3px var(--rose)}
+.scene .fo-l.txt .fo-f,.scene .fo-n{font-family:var(--fd)}
+.scene .fo-l.ok .fo-f{color:#2e9d57}
+.scene .fo-l.ko .fo-f{color:var(--carmin)}
+/* graphiques */
+.scene .gr-t.lb{font-family:var(--fd);background:rgba(255,255,255,.92);box-shadow:0 0 0 1.5px var(--bord)}
+/* exercices et « À toi » */
+.scene .ex-p{color:var(--ivoire)}
+.scene .ex-don{background:#eef4f7;color:var(--ivoire)}
+.scene .ex-q.on{background:rgba(14,138,140,.10)}
+.scene .ex-qn{background:var(--blanc);font-weight:700}
+.scene .pa-carte{background:var(--blanc);border:2.5px solid var(--safran-c);box-shadow:var(--ombre)}
+.scene .pa-ic{background:var(--safran-c)}
+.scene .pa-anneau{border-color:var(--rose)}
+/* générique */
+.scene .v-generique{background:linear-gradient(180deg,#f7fafc,#e6eff4);display:block}
+.scene .v-generique svg{position:absolute;inset:0;width:1280px;height:720px}
+.scene .gq-txt{position:absolute;left:110px;top:0;width:640px;height:720px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.scene .gq-pc{font-weight:700;font-size:18px;letter-spacing:.2em;color:var(--safran-c);margin-bottom:22px}
+.scene .gq-chip{font-weight:700;font-size:16px;letter-spacing:.14em;color:#fff;background:var(--safran-c);padding:9px 20px;border-radius:20px;margin-bottom:22px}
+.scene .gq-titre{font-weight:700;line-height:1.06;letter-spacing:-.015em;color:var(--ivoire)}
+.scene .gq-sous{width:100%;height:7px;margin:22px 0 22px;position:relative}
+.scene .gq-sous i{position:absolute;left:2px;top:0;height:7px;width:300px;border-radius:4px;background:var(--rose);transform-origin:0 50%}
+.scene .gq-bas{font-weight:500;font-size:26px;color:var(--ivoire2)}
+.scene .bandeau{left:28px;bottom:28px;width:500px;padding:16px 20px 12px;border-radius:16px;background:rgba(248,251,252,.92);box-shadow:var(--ombre)}
+.scene .gq-pc,.scene .gq-chip{text-transform:uppercase}
+/* --- corrections après relecture visuelle (11/2026) --- */
+/* pas de capitales forcées : elles changeaient λ en Λ, σ en Σ, ν en N, η en Η, mL en ML */
+.scene .entete,.scene .carte .te,.scene .fo-te,.scene .v-liste .ti,.scene .gr-ti,.scene .v-titre .sur,.scene .nt-t{text-transform:none;letter-spacing:.02em}
+.scene .carte .te,.scene .fo-carte:not(.nu) .fo-te{font-size:20px}
+.scene .v-liste .ti,.scene .fo-carte.nu .fo-te{font-size:21px}
+.scene .gr-ti{font-size:18px}
+.scene .v-liste.petit .ti{font-size:17px}
+/* en-tête lisible même sur une photo */
+.scene .entete{left:34px;top:24px;padding:6px 12px;border-radius:10px;background:rgba(248,251,252,.88);font-size:16px}
+/* la pastille « Pour aller plus loin » n'est plus rognée par la carte */
+.scene .carte,.scene .fo-carte{overflow:visible}
+.scene .carte .te{border-radius:16px 16px 0 0}
+.scene .fo-carte:not(.nu) .fo-te{border-radius:16px 16px 0 0}
+.scene .badge{top:-19px;z-index:2;background:#fff}
+/* chiffres romains des cartons : à empattements (un « I » sans empattement ressemblait à un rectangle vide) */
+.scene .v-chapitre .num{font-family:var(--fm);font-weight:600}
+/* photos : moins voilées, on doit les reconnaître */
+.scene .v-tableau.fond-t .ombre{background:rgba(238,244,248,.55)}
+.scene .v-tableau.fond-t.sombre .ombre{background:rgba(238,244,248,.74)}
+.scene .v-tableau.fond-t .lg{color:#17323d;text-shadow:0 0 6px #fff,0 0 12px #fff}
+.scene .v-question .tt{text-shadow:0 0 18px rgba(255,255,255,.95),0 0 4px #fff}
+/* pas de mot ou d'unité seul en fin de carte */
+.scene .fo-l,.scene .carte .tx,.scene .carte .et,.scene .v-liste .tx,.scene .ex-p,.scene .ex-q,.scene .ex-don,.scene .fl-tx,.scene .pa-tx,.scene .fo-n{text-wrap:pretty}
+/* petits textes plus lisibles sur téléphone */
+.scene .fo-n{font-size:23px}
+.scene .ex-src{font-size:19px;opacity:1;color:var(--ivoire2)}
+.scene .v-exo.coin .ex-don{font-size:18.5px}
+.scene .v-exo.coin .ex-q{font-size:19px}
+.scene .mf-z{font-size:12.5px}
+.scene .cm-it{font-size:21px;color:#3d5560}
+.al{text-decoration:overline;text-decoration-thickness:.06em}
+.scene .fo-carte:not(.nu) .fo-te,.scene .carte .te{letter-spacing:.03em}

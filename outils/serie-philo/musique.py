@@ -127,6 +127,144 @@ def reel(duree):
     return out[:int(duree * SR)]
 
 
+# ---------------------------------------------------------------------------------------------
+# Musique des vidéos d'histoire (DNL, 11/2026, choisie par Cengiz : « combine les trois, elles vont bien ensemble ») :
+# trois couleurs en ré mineur, composées ici, qui se relaient selon l'humeur de la scène.
+#   salon    : piano feutré, contrebasse pincée, balais, craquement de 78 tours (l'entre-deux-guerres)
+#   archives : violoncelle et alto tenus, notes de piano, tic-tac d'horloge (le ton du documentaire)
+#   marche   : caisse claire étouffée, cuivres doux, timbales (la guerre, la terreur)
+from scipy.signal import lfilter as _lfilter
+
+
+def _lp(x, a):
+    return _lfilter([a], [1, a - 1], x)
+
+
+def _piano_feutre(f, dur, amp):
+    n = int(dur * SR); t = np.arange(n) / SR
+    env = np.exp(-t * 2.2) * np.minimum(1, t / 0.008)
+    s = np.sin(2 * np.pi * f * t) + .22 * np.sin(4 * np.pi * f * t) * np.exp(-t * 5) + .06 * np.sin(6 * np.pi * f * t) * np.exp(-t * 8)
+    return amp * env * s
+
+
+def _pizz(f, dur, amp):
+    n = int(dur * SR); t = np.arange(n) / SR
+    s = np.sin(2 * np.pi * f * t) + .5 * np.sin(4 * np.pi * f * t) * np.exp(-t * 9) + .2 * np.sin(6 * np.pi * f * t) * np.exp(-t * 14)
+    return amp * s * np.exp(-t * 6) * np.minimum(1, t / 0.003)
+
+
+def _balai(dur, amp, rng):
+    n = int(dur * SR); t = np.arange(n) / SR
+    return amp * np.diff(rng.standard_normal(n), prepend=0) * np.sin(np.pi * np.minimum(1, t / dur)) ** 2
+
+
+def _archet(f, dur, amp, vib=5.0):
+    n = int(dur * SR); t = np.arange(n) / SR
+    v = 1 + 0.003 * np.sin(2 * np.pi * vib * t) * np.minimum(1, t / .8)
+    ph = 2 * np.pi * f * np.cumsum(v) / SR
+    s = sum(np.sin(k * ph) / k ** 1.3 for k in range(1, 9))
+    return amp * np.minimum(1, t / .7) * np.clip((dur - t) / .9, 0, 1) * s
+
+
+def _cuivre(freqs, dur, amp):
+    n = int(dur * SR); t = np.arange(n) / SR
+    s = np.zeros(n)
+    for f in freqs:
+        s += sum(np.sin(k * 2 * np.pi * f * t) / k for k in range(1, 7))
+    return amp * np.minimum(1, t / .35) * np.clip((dur - t) / .6, 0, 1) * _lp(s, .08) / len(freqs)
+
+
+def _tictac(amp, aigu=True):
+    n = int(.03 * SR); t = np.arange(n) / SR
+    return amp * np.sin(2 * np.pi * (2400 if aigu else 1800) * t) * np.exp(-t * 260)
+
+
+def _caisse(amp, rng, dur=.16):
+    n = int(dur * SR); t = np.arange(n) / SR
+    return amp * (_lp(rng.standard_normal(n), .35) * np.exp(-t * 26) + .4 * np.sin(2 * np.pi * 190 * t) * np.exp(-t * 30))
+
+
+def _timbale(f, amp):
+    n = int(1.2 * SR); t = np.arange(n) / SR
+    return amp * np.sin(2 * np.pi * f * t * (1 - .03 * t)) * np.exp(-t * 3.5) * np.minimum(1, t / .004)
+
+
+def _craquements(dur, rng):
+    n = int(dur * SR); x = np.zeros(n)
+    idx = rng.integers(0, n, int(dur * 9))
+    x[idx] = rng.standard_normal(len(idx)) * .5
+    return _lp(x, .5) + .004 * _lp(rng.standard_normal(n), .05)
+
+
+_SALON = [(38, [53, 57, 60, 64]), (43, [53, 58, 62, 65]), (45, [52, 55, 61, 64]), (38, [50, 53, 57, 60])]   # ré m9, sol m6, la 7, ré m7
+_ARCH = [(38, [50, 53, 57]), (34, [50, 53, 58]), (31, [50, 55, 58]), (33, [49, 52, 57])]                    # ré m, si bémol, sol m, la
+_MARCHE = [(38, [62, 65, 69]), (34, [62, 65, 70]), (36, [60, 64, 67]), (33, [61, 64, 69])]                  # ré m, si bémol, do, la
+
+
+def salon(duree):
+    rng = np.random.default_rng(5); B = 60 / 72
+    out = np.zeros(int(duree * SR) + SR); t, k = 0.0, 0
+    while t < duree:
+        b, acc = _SALON[k % 4]
+        for j, m in enumerate(acc):
+            _ajoute(out, _piano_feutre(hz(m), 3.0, .07), int((t + j * .06) * SR))
+        for j, m in enumerate([acc[3] + 12, acc[2] + 12, acc[1] + 12, acc[2] + 12]):
+            if (k + j) % 3:
+                _ajoute(out, _piano_feutre(hz(m), 1.4, .045), int((t + (1 + j * .75) * B) * SR))
+        for j in range(4):
+            _ajoute(out, _pizz(hz([b, b + 7, b + 12, b + 7][j]), .9, .2), int((t + j * B) * SR))
+            if j % 2:
+                _ajoute(out, _balai(.22, .012, rng), int((t + j * B) * SR))
+        t += 4 * B; k += 1
+    out = _reverb(out, 1.8, .28)[:int(duree * SR)]
+    return out + _craquements(duree, rng)[:len(out)] * .25
+
+
+def archives(duree):
+    B = 60 / 64
+    out = np.zeros(int(duree * SR) + SR); t, k = 0.0, 0
+    while t < duree:
+        b, acc = _ARCH[k % 4]; d = 8 * B
+        _ajoute(out, _archet(hz(b + 12), d + .6, .11), int(t * SR))
+        _ajoute(out, _archet(hz(acc[1]), d + .6, .045, 4.6), int(t * SR))
+        for j, m in enumerate([acc[0] + 12, acc[2] + 12, acc[1] + 12]):
+            _ajoute(out, _piano_feutre(hz(m), 3.5, .05), int((t + (1 + j * 2.5) * B) * SR))
+        for j in range(8):
+            _ajoute(out, _tictac(.03, j % 2 == 0), int((t + j * B) * SR))
+        t += d; k += 1
+    return _reverb(out, 2.6, .36)[:int(duree * SR)]
+
+
+def marche(duree):
+    rng = np.random.default_rng(13); B = 60 / 84
+    out = np.zeros(int(duree * SR) + SR); t, k = 0.0, 0
+    motif = [1, 0, .5, .5, 1, 0, .5, 1]
+    while t < duree:
+        b, acc = _MARCHE[k % 4]; d = 4 * B
+        _ajoute(out, _cuivre([hz(m - 12) for m in acc], d + .3, .18), int(t * SR))
+        _ajoute(out, _timbale(hz(b + 12), .22), int(t * SR))
+        _ajoute(out, _timbale(hz(b + 7), .12), int((t + 2 * B) * SR))
+        for j, a in enumerate(motif):
+            if a:
+                _ajoute(out, _caisse(.05 * a, rng), int((t + j * B / 2) * SR))
+        _ajoute(out, _archet(hz(b + 24), d + .4, .04), int(t * SR))
+        t += d; k += 1
+    return _reverb(out, 2.0, .3)[:int(duree * SR)]
+
+
+# humeurs des scripts → musique d'histoire (generer.py et remixer.py l'appliquent aux vidéos DNL) :
+# « lumière » → salon ; « calme » et « mystère » → archives ; « tension » → marche sur un fond de guerre ou dans le
+# chapitre sur la Seconde Guerre mondiale (h3), salon sinon (la crise, la montée des régimes, l'entre-deux-guerres)
+def humeur_dnl(humeur, fond, code):
+    if humeur == "lumiere":
+        return "salon"
+    if humeur in ("calme", "mystere"):
+        return "archives"
+    if humeur == "tension":
+        return "marche" if fond == "guerre" or code.startswith("h3") else "salon"
+    return humeur
+
+
 def boucle(duree, humeur="lumiere", site=None, graine="", style=None):
     """Musique brute (sans dosage) de la durée demandée, dans l'humeur choisie.
 
@@ -135,6 +273,10 @@ def boucle(duree, humeur="lumiere", site=None, graine="", style=None):
         return piste(duree, [(0.0, humeur)], site, graine, style)
     if humeur == "reel":
         return reel(duree)
+    if humeur in ("salon", "archives", "marche"):
+        return {"salon": salon, "archives": archives, "marche": marche}[humeur](duree)
+    if humeur.startswith("pc-"):       # vidéos de physique-chimie : musique « labo »
+        return labo(duree, humeur[3:])
     H = HUMEURS[humeur]
     BEAT = 60.0 / H["bpm"]
     ACCORDS = H["accords"]
@@ -346,7 +488,7 @@ def _bords(x, fin=0.012):
 _FILTRES = {}
 
 
-def _filtre(x, kind, fc, ordre=2):
+def _filtre_id(x, kind, fc, ordre=2):
     from scipy import signal
     cle = (kind, tuple(np.atleast_1d(fc)), ordre)
     if cle not in _FILTRES:
@@ -371,7 +513,7 @@ def _ir(duree, sombre, graine, predelai=0.0):
     t = np.arange(n) / SR
     ir = rng.standard_normal(n) * np.exp(-6.9 * np.maximum(0, t - predelai) / duree)
     ir[t < predelai] = 0
-    ir = _filtre(ir, "lowpass", sombre)
+    ir = _filtre_id(ir, "lowpass", sombre)
     ir /= np.sqrt((ir ** 2).sum())
     return ir
 
@@ -383,7 +525,7 @@ def _salle(x, duree, mix, sombre, graine, predelai=0.0, sec=True):
 
 
 # ---------------------------------------------------------------------------------------------------- instruments
-def _piano_feutre(f, dur, amp, clair=0.5):
+def _piano_feutre_id(f, dur, amp, clair=0.5):
     """Piano feutré : marteau doux, peu d'harmoniques aigus, double décroissance (attaque puis résonance)."""
     n = int((dur + 1.6) * SR)
     t = np.arange(n) / SR
@@ -410,7 +552,7 @@ def _marimba(f, amp):
     return _bords(amp * s * (1 - np.exp(-t / 0.0015)))
 
 
-def _pizz(f, amp):
+def _pizz_id(f, amp):
     n = int(0.9 * SR)
     t = np.arange(n) / SR
     s = np.zeros(n)
@@ -420,7 +562,7 @@ def _pizz(f, amp):
     return _bords(amp * s * (1 - np.exp(-t / 0.002)))
 
 
-def _rhodes(f, dur, amp, vel=0.7):
+def _rhodes_id(f, dur, amp, vel=0.7):
     """Piano électrique en synthèse FM (rapport 1:1, indice qui retombe) avec la petite cloche de l'attaque."""
     n = int((dur + 0.9) * SR)
     t = np.arange(n) / SR
@@ -433,7 +575,7 @@ def _rhodes(f, dur, amp, vel=0.7):
     return _bords(amp * env * s)
 
 
-def _basse_ronde(f, dur, amp):
+def _basse_ronde_id(f, dur, amp):
     n = int((dur + 0.2) * SR)
     t = np.arange(n) / SR
     s = (np.sin(2 * np.pi * f * t) + 0.5 * np.sin(4 * np.pi * f * t) * np.exp(-t * 2)
@@ -442,26 +584,26 @@ def _basse_ronde(f, dur, amp):
     return _bords(amp * s)
 
 
-def _grosse_caisse(amp):
+def _grosse_caisse_id(amp):
     n = int(0.35 * SR)
     t = np.arange(n) / SR
     ph = 2 * np.pi * np.cumsum(62 + 45 * np.exp(-t / 0.03)) / SR
     return _bords(amp * np.sin(ph) * np.exp(-t * 11) * (1 - np.exp(-t / 0.002)))
 
 
-def _balai(amp, rng, long=False):
+def _balai_id(amp, rng, long=False):
     """Caisse claire aux balais : souffle filtré qui glisse, petit choc de peau."""
     n = int((0.38 if long else 0.22) * SR)
     t = np.arange(n) / SR
-    b = _filtre(rng.standard_normal(n), "bandpass", [900, 5500])
+    b = _filtre_id(rng.standard_normal(n), "bandpass", [900, 5500])
     s = b * (1 - np.exp(-t / 0.012)) * np.exp(-t * (7 if long else 14)) + 0.5 * np.sin(2 * np.pi * 190 * t) * np.exp(-t * 28)
     return _bords(amp * s)
 
 
-def _charley(amp, rng, ouvert=False):
+def _charley_id(amp, rng, ouvert=False):
     n = int((0.25 if ouvert else 0.08) * SR)
     t = np.arange(n) / SR
-    s = _filtre(rng.standard_normal(n), "highpass", 7000) * np.exp(-t * (12 if ouvert else 55))
+    s = _filtre_id(rng.standard_normal(n), "highpass", 7000) * np.exp(-t * (12 if ouvert else 55))
     return _bords(amp * s * (1 - np.exp(-t / 0.001)))
 
 
@@ -486,7 +628,7 @@ def _cordes(f, dur, amp, coupure, rng, attaque=0.7, voix=3):
     n = int((dur + 1.3) * SR)
     t = np.arange(n) / SR
     s = sum(_scie(f, n, c, rng, vib_f=4.6 + 0.35 * i) for i, c in enumerate((-8, 1, 7)[:voix])) / voix
-    s = _filtre(s, "lowpass", coupure)
+    s = _filtre_id(s, "lowpass", coupure)
     s *= (1 - np.exp(-t / (attaque / 3))) * np.where(t < dur, 1.0, np.exp(-(t - dur) / 0.45))
     return _bords(amp * s)
 
@@ -495,7 +637,7 @@ def _spiccato(f, amp, rng, coupure=950):
     n = int(0.24 * SR)
     t = np.arange(n) / SR
     s = (_scie(f, n, -4, rng, vib=0) + _scie(f, n, 5, rng, vib=0)) / 2
-    return _bords(amp * _filtre(s, "lowpass", coupure) * (1 - np.exp(-t / 0.006)) * np.exp(-t * 15))
+    return _bords(amp * _filtre_id(s, "lowpass", coupure) * (1 - np.exp(-t / 0.006)) * np.exp(-t * 15))
 
 
 def _cor(f, dur, amp, rng):
@@ -504,20 +646,20 @@ def _cor(f, dur, amp, rng):
     t = np.arange(n) / SR
     fr = f * (1 - 0.012 * np.exp(-t / 0.05))
     s = 0.5 * (_scie(fr, n, -3, rng, vib=0.002, retard=0.5) + _scie(fr, n, 3, rng, vib=0.002, retard=0.5))
-    sombre, clair = _filtre(s, "lowpass", 450), _filtre(s, "lowpass", 2000)
+    sombre, clair = _filtre_id(s, "lowpass", 450), _filtre_id(s, "lowpass", 2000)
     b = np.clip((1 - np.exp(-t / 0.12)) * (0.75 + 0.25 * np.exp(-t * 1.2)), 0, 1)
     y = sombre * (1 - b) + clair * b
     y *= (1 - np.exp(-t / 0.035)) * np.where(t < dur, 1.0, np.exp(-(t - dur) / 0.18))
     return _bords(amp * y)
 
 
-def _timbale(f, amp, rng):
+def _timbale_id(f, amp, rng):
     n = int(2.6 * SR)
     t = np.arange(n) / SR
     ph = 2 * np.pi * np.cumsum(f * (1 + 0.02 * np.exp(-t / 0.04))) / SR
     s = (np.sin(ph) * np.exp(-t * 1.6) + 0.5 * np.sin(1.5 * ph) * np.exp(-t * 2.4)
          + 0.35 * np.sin(1.99 * ph) * np.exp(-t * 3.0) + 0.15 * np.sin(2.44 * ph) * np.exp(-t * 4.0))
-    s += 0.4 * _filtre(rng.standard_normal(n), "lowpass", 600) * np.exp(-t * 60)
+    s += 0.4 * _filtre_id(rng.standard_normal(n), "lowpass", 600) * np.exp(-t * 60)
     return _bords(amp * s * (1 - np.exp(-t / 0.002)))
 
 
@@ -525,7 +667,7 @@ def _grand_tambour(amp, rng):
     n = int(1.6 * SR)
     t = np.arange(n) / SR
     ph = 2 * np.pi * np.cumsum(52 + 22 * np.exp(-t / 0.06)) / SR
-    s = np.sin(ph) * np.exp(-t * 4) + 0.6 * _filtre(rng.standard_normal(n), "lowpass", 260) * np.exp(-t * 8)
+    s = np.sin(ph) * np.exp(-t * 4) + 0.6 * _filtre_id(rng.standard_normal(n), "lowpass", 260) * np.exp(-t * 8)
     return _bords(amp * s * (1 - np.exp(-t / 0.004)))
 
 
@@ -583,12 +725,12 @@ def _mesure_maths(bus, cx, t, j, L, typ, acc, couches, rng):
         rythme = cx["rythme_acc"]
         for deb, d in rythme:
             for k, p in enumerate(v):
-                _place(bus["sec"], _piano_feutre(hz(p), d * beat * (cx["hr"] if len(rythme) == 1 else 1), 0.034 * vel() * (0.8 if deb else 1), clair),
+                _place(bus["sec"], _piano_feutre_id(hz(p), d * beat * (cx["hr"] if len(rythme) == 1 else 1), 0.034 * vel() * (0.8 if deb else 1), clair),
                        t + deb * beat + 0.012 * k + jeu())
     if "basse" in couches and nouvel_acc:
-        _place(bus["sec"], _piano_feutre(hz(acc["basse"]), cx["hr"] * mes * 0.9, 0.065 * vel(), clair * 0.8), t + jeu())
+        _place(bus["sec"], _piano_feutre_id(hz(acc["basse"]), cx["hr"] * mes * 0.9, 0.065 * vel(), clair * 0.8), t + jeu())
         if cx["hr"] == 2 and rng.random() < 0.35:
-            _place(bus["sec"], _piano_feutre(hz(acc["basse"] + 7), mes, 0.05 * vel(), clair * 0.8), t + mes + 2 * beat + jeu())
+            _place(bus["sec"], _piano_feutre_id(hz(acc["basse"] + 7), mes, 0.05 * vel(), clair * 0.8), t + mes + 2 * beat + jeu())
     if "nappe" in couches and nouvel_acc:
         _place(bus["sec"], _nappe([hz(p) for p in v[:3]], cx["hr"] * mes + 1.0, 0.075 if hu in ("mystere", "calme") else 0.06), t)
     if "motif" in couches:
@@ -606,14 +748,14 @@ def _mesure_maths(bus, cx, t, j, L, typ, acc, couches, rng):
             if c in actifs:
                 p = tons[cx["motif"][c] % len(tons)]
                 a = (0.040 if c % 2 == 0 else 0.030) * vel()
-                x = _piano_feutre(hz(p), beat * 0.7, a, clair) if inst == "piano" else _marimba(hz(p), a * 1.1)
+                x = _piano_feutre_id(hz(p), beat * 0.7, a, clair) if inst == "piano" else _marimba(hz(p), a * 1.1)
                 _place(bus["sec"], x, t + c * beat / 2 + jeu())
     if "pouls" in couches:
         bas = sorted({p for p in (acc["basse"] + 12, acc["basse"] + 19, acc["basse"] + 24)})
         for c in cx["pouls"]:
             p = bas[(c * 2 + j) % len(bas)]
             a = 0.030 * vel() * (1.15 if c == 0 else 1)
-            x = _marimba(hz(p), a) if cx["inst_pouls"] == "marimba" else _pizz(hz(p), a * 1.2)
+            x = _marimba(hz(p), a) if cx["inst_pouls"] == "marimba" else _pizz_id(hz(p), a * 1.2)
             _place(bus["sec"], x, t + c * beat / 2 + jeu())
 
 
@@ -679,7 +821,7 @@ def _mesure_ses(bus, cx, t, j, L, typ, acc, couches, rng):
         pat = cx["pat_rhodes"] if j % 4 != 3 else PAT_RHODES[rng.integers(len(PAT_RHODES))]
         for deb, d in pat:
             for k, p in enumerate(v):
-                _place(bus["sec"], _rhodes(hz(p), d * beat / 2, 0.030 * vel(), 0.55 if hu == "calme" else 0.7),
+                _place(bus["sec"], _rhodes_id(hz(p), d * beat / 2, 0.030 * vel(), 0.55 if hu == "calme" else 0.7),
                        t + _croche(deb, beat) + 0.008 * k + jeu())
     if "basse" in couches:
         pat = cx["pat_basse"] if j % 2 == 0 else PAT_BASSE[rng.integers(len(PAT_BASSE))]
@@ -689,24 +831,24 @@ def _mesure_ses(bus, cx, t, j, L, typ, acc, couches, rng):
             p = {"R": r, "5": r + 7, "8": r + 12, "a": suiv + (1 if rng.random() < 0.5 else -1)}[deg]
             if p > 55:
                 p -= 12
-            _place(bus["sec"], _basse_ronde(hz(p), d * beat / 2 * 0.92, 0.085 * vel()), t + _croche(deb, beat) + jeu())
+            _place(bus["sec"], _basse_ronde_id(hz(p), d * beat / 2 * 0.92, 0.085 * vel()), t + _croche(deb, beat) + jeu())
     if "nappe" in couches and j % 2 == 0:
         _place(bus["sec"], _nappe([hz(p) for p in v[:3]], 8 * beat + 1, 0.07), t)
     if "batterie" in couches:
         gc = cx["pat_gc"] if j % 2 == 0 else PAT_GC[cx["gc2"]]
         for c in gc:
-            _place(bus["sec"], _grosse_caisse(0.12 * vel()), t + _croche(c, beat) + jeu())
+            _place(bus["sec"], _grosse_caisse_id(0.12 * vel()), t + _croche(c, beat) + jeu())
         for c in (2, 6):
-            _place(bus["sec"], _balai(0.055 * vel(), rng, long=rng.random() < 0.3), t + _croche(c, beat) + jeu())
+            _place(bus["sec"], _balai_id(0.055 * vel(), rng, long=rng.random() < 0.3), t + _croche(c, beat) + jeu())
         if rng.random() < 0.3 or fin_phrase:
             for c in ((5, 7) if fin_phrase else (7,)):
-                _place(bus["sec"], _balai(0.022 * vel(), rng), t + _croche(c, beat) + jeu())
+                _place(bus["sec"], _balai_id(0.022 * vel(), rng), t + _croche(c, beat) + jeu())
     if "charley" in couches:
         for c in range(8):
             if rng.random() < 0.1:
                 continue
             ouvert = fin_phrase and c == 7
-            _place(bus["sec"], _charley((0.020 if c % 2 == 0 else 0.012) * vel(), rng, ouvert), t + _croche(c, beat) + jeu())
+            _place(bus["sec"], _charley_id((0.020 if c % 2 == 0 else 0.012) * vel(), rng, ouvert), t + _croche(c, beat) + jeu())
     if "melodie" in couches and j % 2 == 0 and (j % 4 == 0 or rng.random() < 0.6):
         # phrase de deux mesures dans la pentatonique, qui finit sur une note de l'accord
         pos = cx["rythmes_mel"][rng.integers(len(cx["rythmes_mel"]))]
@@ -717,7 +859,7 @@ def _mesure_ses(bus, cx, t, j, L, typ, acc, couches, rng):
             if k == len(pos) - 1:
                 p = min((q for q in range(p - 6, p + 7) if (q - acc["r"]) % 12 in [iv % 12 for iv in acc["iv"]]), key=lambda q: abs(q - p))
             d = (pos[k + 1] - c) if k + 1 < len(pos) else 3
-            _place(bus["sec"], _rhodes(hz(p), min(d, 3) * beat / 2, 0.036 * vel(), 0.9), t + _croche(c % 8, beat) + (4 * beat if c >= 8 else 0) + jeu())
+            _place(bus["sec"], _rhodes_id(hz(p), min(d, 3) * beat / 2, 0.036 * vel(), 0.9), t + _croche(c % 8, beat) + (4 * beat if c >= 8 else 0) + jeu())
         cx["mel_i"] = i
 
 
@@ -737,7 +879,7 @@ def _phrase_ses(cx, typ, rng):
 
 def _mix_ses(bus, hu, graine):
     x = _salle(bus["sec"], 0.9, 0.18, 5000, graine)
-    x = _filtre(_filtre(x, "lowpass", 6500), "highpass", 50)                      # le grain doux du lo-fi
+    x = _filtre_id(_filtre_id(x, "lowpass", 6500), "highpass", 50)                      # le grain doux du lo-fi
     return np.tanh(2.0 * x) / 2.0
 
 
@@ -789,13 +931,13 @@ def _mesure_hggsp(bus, cx, t, j, L, typ, acc, couches, rng):
             _place(bus["sec"], _spiccato(hz(notes[d]), a, rng), t + c * beat / 2 + rng.normal(0, 0.004))
     if "tambours" in couches:
         if nouvel_acc:
-            _place(bus["sec"], _timbale(hz(cx["centre"] + (0 if j % 4 == 0 else 7) - (12 if cx["centre"] > 43 else 0)), 0.11 * vel(), rng), t)
+            _place(bus["sec"], _timbale_id(hz(cx["centre"] + (0 if j % 4 == 0 else 7) - (12 if cx["centre"] > 43 else 0)), 0.11 * vel(), rng), t)
         if hu in ("tension", "lumiere") and j % 2 == 1:
             _place(bus["loin"], _grand_tambour(0.30 * vel(), rng), t + 2 * beat)
         if j == L - 1:   # roulement qui monte vers la phrase suivante
             pas = beat / 4
             for k in range(12):
-                _place(bus["sec"], _timbale(hz(cx["centre"] + 7 - (12 if cx["centre"] > 43 else 0)), 0.012 + 0.006 * k, rng), t + mes - 12 * pas + k * pas)
+                _place(bus["sec"], _timbale_id(hz(cx["centre"] + 7 - (12 if cx["centre"] > 43 else 0)), 0.012 + 0.006 * k, rng), t + mes - 12 * pas + k * pas)
     if "violons" in couches:
         # ligne lente : une blanche ou une ronde, par degrés conjoints, note de l'accord sur le temps fort
         ga = cx["gamme_haut"]
@@ -839,7 +981,7 @@ def _phrase_hggsp(cx, typ, rng):
 
 def _mix_hggsp(bus, hu, graine):
     x = _salle(bus["sec"], 3.2, 0.36, 3500, graine)
-    loin = _filtre(bus["loin"], "lowpass", 1500)
+    loin = _filtre_id(bus["loin"], "lowpass", 1500)
     return x + _salle(loin, 4.0, 1.0, 1800, graine + 1, predelai=0.06, sec=False)
 
 
@@ -1061,9 +1203,9 @@ def piste(duree, humeurs, site, graine="", style=None, paroles=None):
         # sous la voix, ce qui la gêne (caisse claire militaire) est fortement retenu et assombri ; intact dans les silences
         libre = enveloppe(n / SR, paroles, haut=1.0, bas=0.0, attaque=0.2, relache=0.8)
         libre = np.pad(libre, (0, max(0, n - len(libre))), constant_values=1.0)[:n]
-        out += gene * libre + _filtre(gene, "lowpass", 700) * 0.3 * (1 - libre)
+        out += gene * libre + _filtre_id(gene, "lowpass", 700) * 0.3 * (1 - libre)
     if S.get("traitement", True):
-        out = _filtre(out, "highpass", 45)       # pas de grondement sous la voix
+        out = _filtre_id(out, "highpass", 45)       # pas de grondement sous la voix
         out = _creux(out, 2600, S.get("creux", -3.0), 0.7)       # place pour la voix entre 1 et 4 kHz
         out = _compresse(out)
     ref = _rms_median(out) or 1.0
@@ -1117,7 +1259,7 @@ def _pluck(f, dur, amp, clair, rng):
     n = int((dur + 0.5) * SR)
     t = np.arange(n) / SR
     s = _scie(f, n, 0, rng, vib=0)
-    a, b = _filtre(s, "lowpass", 380), _filtre(s, "lowpass", clair)
+    a, b = _filtre_id(s, "lowpass", 380), _filtre_id(s, "lowpass", clair)
     y = a + (b - a) * np.exp(-t * 14)
     y *= (1 - np.exp(-t / 0.002)) * np.exp(-t * 3) * np.where(t < dur, 1.0, np.exp(-(t - dur) / 0.08))
     return _bords(amp * y)
@@ -1153,16 +1295,16 @@ def _guitare_etouffee(f, amp, long=0.12):
 def _basse_funk(f, dur, amp, rng):
     n = int((dur + 0.12) * SR)
     t = np.arange(n) / SR
-    s = 0.7 * np.sin(2 * np.pi * f * t) + 0.5 * _filtre(_scie(f, n, 0, rng, vib=0), "lowpass", 900) * np.exp(-t * 6)
+    s = 0.7 * np.sin(2 * np.pi * f * t) + 0.5 * _filtre_id(_scie(f, n, 0, rng, vib=0), "lowpass", 900) * np.exp(-t * 6)
     s *= (1 - np.exp(-t / 0.003)) * np.exp(-t * 2.5) * np.where(t < dur, 1.0, np.exp(-(t - dur) / 0.03))
     return _bords(amp * s)
 
 
-def _caisse(amp, rng, corps=200, timbre=(1500, 8000), decl=18, timbre_decl=None):
+def _caisse_id(amp, rng, corps=200, timbre=(1500, 8000), decl=18, timbre_decl=None):
     """Caisse claire (sèche en funk, militaire avec son timbre qui grésille plus longtemps)."""
     n = int(0.35 * SR)
     t = np.arange(n) / SR
-    s = _filtre(rng.standard_normal(n), "bandpass", list(timbre)) * np.exp(-t * (timbre_decl or decl))
+    s = _filtre_id(rng.standard_normal(n), "bandpass", list(timbre)) * np.exp(-t * (timbre_decl or decl))
     s += 0.6 * np.sin(2 * np.pi * corps * t) * np.exp(-t * 30)
     return _bords(amp * s * (1 - np.exp(-t / 0.0008)))
 
@@ -1178,7 +1320,7 @@ def _vent(dur, amp, rng):
     """Texture documentaire : souffle grave filtré qui gonfle puis retombe."""
     n = int(dur * SR)
     t = np.arange(n) / SR
-    s = _filtre(rng.standard_normal(n), "bandpass", [180, 900])
+    s = _filtre_id(rng.standard_normal(n), "bandpass", [180, 900])
     return _bords(amp * s * np.sin(np.pi * t / dur) ** 2)
 
 
@@ -1188,7 +1330,7 @@ def _echo(x, delai, retour, mix, n=4):
     for k in range(1, n + 1):
         if k * d < len(x):
             y[k * d:] += x[:len(x) - k * d] * retour ** (k - 1)
-    return x + mix * _filtre(y, "lowpass", 3500)
+    return x + mix * _filtre_id(y, "lowpass", 3500)
 
 
 def _vel(rng, sd=0.08):
@@ -1253,9 +1395,9 @@ def _mesure_maths2(bus, cx, t, j, L, typ, acc, couches, rng):
             if i is not None:
                 _place(bus["sec"], _harpe(hz(tons[min(i, len(tons) - 1)]), 0.05 * _vel(rng) * (1.15 if c == 0 else 1)), t + c * beat / 2 + jeu())
     if "pizz" in couches and (j % cx["hr"] == 0 or rng.random() < 0.5):
-        _place(bus["sec"], _pizz(hz(acc["basse"] + 12), 0.10 * _vel(rng)), t + jeu())
+        _place(bus["sec"], _pizz_id(hz(acc["basse"] + 12), 0.10 * _vel(rng)), t + jeu())
         if rng.random() < 0.4:
-            _place(bus["sec"], _pizz(hz(acc["basse"] + 19), 0.06 * _vel(rng)), t + 2 * beat + jeu())
+            _place(bus["sec"], _pizz_id(hz(acc["basse"] + 19), 0.06 * _vel(rng)), t + 2 * beat + jeu())
     if "aigu" in couches and j % cx["hr"] == 0:
         for p in _voix(acc, 74)[:3]:
             _place(bus["sec"], _cordes(hz(p), cx["hr"] * mes + 0.3, 0.012 * _vel(rng), 2400, rng, attaque=1.6, voix=2), t)
@@ -1359,7 +1501,7 @@ def _seize(c, beat, swing=0.53):
 
 def _mix_ses2(bus, hu, graine):
     x = _salle(bus["sec"], 0.7, 0.15, 5500, graine)
-    x = _filtre(_filtre(x, "lowpass", 7000), "highpass", 50)
+    x = _filtre_id(_filtre_id(x, "lowpass", 7000), "highpass", 50)
     return np.tanh(1.8 * x) / 1.8
 
 
@@ -1410,11 +1552,11 @@ def _mesure_ses3(bus, cx, t, j, L, typ, acc, couches, rng):
     v = _voix(acc, 62)
     if "kick" in couches:
         for b in range(4):
-            _place(bus["sec"], _grosse_caisse(0.10 * _vel(rng, 0.05)), t + b * beat)
+            _place(bus["sec"], _grosse_caisse_id(0.10 * _vel(rng, 0.05)), t + b * beat)
             bus["pompe"].append(t + b * beat)
     if "charley" in couches:
         for b in range(4):
-            _place(bus["sec"], _charley(0.012 * _vel(rng), rng, ouvert=True), t + b * beat + beat / 2)
+            _place(bus["sec"], _charley_id(0.012 * _vel(rng), rng, ouvert=True), t + b * beat + beat / 2)
     if "nappe" in couches and j % cx["hr"] == 0:
         for p in v[:4]:
             _place(bus["pad"], _cordes(hz(p), cx["hr"] * mes + 0.3, 0.020 * _vel(rng), 1500, rng, attaque=1.2, voix=3), t)
@@ -1450,7 +1592,7 @@ def _mix_ses3(bus, hu, graine):
         pad = pad * g
     x = bus["sec"] + pad + _echo(bus["echo"], 0.75 * bus["beat"], 0.35, 0.4)
     x = _salle(x, 1.4, 0.22, 5500, graine)
-    return _filtre(x, "highpass", 50)
+    return _filtre_id(x, "highpass", 50)
 
 
 # ------------------------------------------------- HGGSP 2 : tambours militaires lointains, ostinato en doubles croches
@@ -1540,13 +1682,13 @@ def _mesure_hggsp3(bus, cx, t, j, L, typ, acc, couches, rng):
     beat = cx["beat"]
     mes = 4 * beat
     if cx.pop("boom", False):     # un seul coup sourd et lointain au début de la partie
-        _place(bus["loin"], _timbale(hz(cx["centre"] + (12 if cx["centre"] < 41 else 0)), 0.06, rng), t)
+        _place(bus["loin"], _timbale_id(hz(cx["centre"] + (12 if cx["centre"] < 41 else 0)), 0.06, rng), t)
     if "piano_grave" in couches and j % cx["hr"] == 0:
         b = acc["basse"] + (12 if acc["basse"] < 41 else 0)      # grave, mais pas de grondement sous la voix
-        _place(bus["sec"], _piano_feutre(hz(b), cx["hr"] * mes * 0.95, 0.06 * _vel(rng), 0.4), t)
-        _place(bus["sec"], _piano_feutre(hz(b + 12), cx["hr"] * mes * 0.95, 0.045 * _vel(rng), 0.35), t + 0.015)
+        _place(bus["sec"], _piano_feutre_id(hz(b), cx["hr"] * mes * 0.95, 0.06 * _vel(rng), 0.4), t)
+        _place(bus["sec"], _piano_feutre_id(hz(b + 12), cx["hr"] * mes * 0.95, 0.045 * _vel(rng), 0.35), t + 0.015)
         for k, p in enumerate(_voix(acc, 55)[:3]):
-            _place(bus["sec"], _piano_feutre(hz(p), cx["hr"] * mes * 0.9, 0.022 * _vel(rng), 0.4), t + 2 * beat * (cx["hr"] == 2) + 0.02 * k)
+            _place(bus["sec"], _piano_feutre_id(hz(p), cx["hr"] * mes * 0.9, 0.022 * _vel(rng), 0.4), t + 2 * beat * (cx["hr"] == 2) + 0.02 * k)
     if "nappe" in couches and j % cx["hr"] == 0:
         for p in _voix(acc, 57)[:3]:
             _place(bus["sec"], _cordes(hz(p), cx["hr"] * mes + 0.5, 0.016 * _vel(rng), 750, rng, attaque=2.4, voix=2), t)
@@ -1556,12 +1698,12 @@ def _mesure_hggsp3(bus, cx, t, j, L, typ, acc, couches, rng):
         p = min((q for q in ga if q % 12 in acc_pc), key=lambda q: abs(q - cx["mel"]))
         if cx["note_rep"]:
             for c in (0, 1.5, 3):
-                _place(bus["sec"], _piano_feutre(hz(p + 12), beat, 0.030 * _vel(rng), 0.45), t + c * beat)
+                _place(bus["sec"], _piano_feutre_id(hz(p + 12), beat, 0.030 * _vel(rng), 0.45), t + c * beat)
         else:
-            _place(bus["sec"], _piano_feutre(hz(p + 12), 2 * beat, 0.034 * _vel(rng), 0.45), t + rng.normal(0, 0.01))
+            _place(bus["sec"], _piano_feutre_id(hz(p + 12), 2 * beat, 0.034 * _vel(rng), 0.45), t + rng.normal(0, 0.01))
             if rng.random() < 0.6:
                 i = int(np.clip(ga.index(p) + rng.choice([-2, -1, 1]), 0, len(ga) - 1))
-                _place(bus["sec"], _piano_feutre(hz(ga[i] + 12), 2 * beat, 0.028 * _vel(rng), 0.45), t + 2 * beat + rng.normal(0, 0.01))
+                _place(bus["sec"], _piano_feutre_id(hz(ga[i] + 12), 2 * beat, 0.028 * _vel(rng), 0.45), t + 2 * beat + rng.normal(0, 0.01))
                 p = ga[i]
         cx["mel"] = p
     if "violoncelle" in couches and j % 2 == 0:
@@ -1572,7 +1714,7 @@ def _mesure_hggsp3(bus, cx, t, j, L, typ, acc, couches, rng):
 
 def _mix_hggsp3(bus, hu, graine):
     x = _salle(bus["sec"], 2.8, 0.32, 3200, graine)
-    return x + _salle(_filtre(bus["loin"], "lowpass", 900), 4.0, 1.0, 1500, graine + 1, predelai=0.08, sec=False)
+    return x + _salle(_filtre_id(bus["loin"], "lowpass", 900), 4.0, 1.0, 1500, graine + 1, predelai=0.08, sec=False)
 
 
 # ---------------------------------------------- propositions retenues (maths3, ses2, hggsp2) : variantes par partie
@@ -1583,7 +1725,7 @@ def _montee(dur, amp, rng):
     bruit = rng.standard_normal(n)
     s = np.zeros(n)
     for i, b in enumerate(((300, 700), (700, 1500), (1500, 3000), (3000, 6000))):
-        s += _filtre(bruit, "bandpass", list(b)) * np.clip(1 - np.abs(3 * t - i), 0, 1)
+        s += _filtre_id(bruit, "bandpass", list(b)) * np.clip(1 - np.abs(3 * t - i), 0, 1)
     return _bords(amp * s * t ** 2)
 
 
@@ -1648,10 +1790,10 @@ def _mesure_maths3(bus, cx, t, j, L, typ, acc, couches, rng):
             _place(bus["sec"], _sub(hz(acc["basse"] + (12 if acc["basse"] < 41 else 0)), 1.8 * beat, 0.08 * _vel(rng)), t + b * beat)
     if "pouls" in couches:
         for b in cx["v_kick"]:
-            _place(bus["sec"], _grosse_caisse(0.07 * _vel(rng)), t + b * beat)
+            _place(bus["sec"], _grosse_caisse_id(0.07 * _vel(rng)), t + b * beat)
         for c in range(16):
             if c % 2 or rng.random() < 0.5:
-                _place(bus["sec"], _charley(0.007 * (1.4 if c % 4 == 2 else 1), rng), t + c * beat / 4)
+                _place(bus["sec"], _charley_id(0.007 * (1.4 if c % 4 == 2 else 1), rng), t + c * beat / 4)
     if "cloche" in couches and rng.random() < 0.6:
         hauts = [q + 12 for q in tons if q + 12 <= 84] or tons
         _place(bus["sec"], _cloche_fm(hz(int(rng.choice(hauts))), 0.016 * _vel(rng)), t + int(rng.integers(4)) * beat)
@@ -1671,10 +1813,10 @@ def _transition_maths3(sorte, cx, rng, delai):
     if sorte == "roulement":
         nb = int(delai / (beat / 4))
         for k in range(nb):
-            _place(s, _charley(0.004 + 0.014 * k / max(1, nb), rng), delai - (nb - k) * beat / 4)
+            _place(s, _charley_id(0.004 + 0.014 * k / max(1, nb), rng), delai - (nb - k) * beat / 4)
     elif sorte == "montee":
         _place(s, _montee(delai, 0.035, rng), 0)
-    _place(s, _grosse_caisse(0.08), delai)
+    _place(s, _grosse_caisse_id(0.08), delai)
     _place(s, _sub(hz(c + (12 if c < 41 else 0)), 1.5 * beat, 0.07), delai)
     _place(s, _cloche_fm(hz(c + 24 + (12 if c < 41 else 0)), 0.016), delai)
     return _salle(s, 1.6, 0.25, 4500, 5)
@@ -1698,18 +1840,18 @@ def _mesure_ses2(bus, cx, t, j, L, typ, acc, couches, rng):
     if "batterie" in couches:
         gc = cx["gc"] if j % 4 != 3 else GC16[int(rng.integers(len(GC16)))]
         for c in gc:
-            _place(bus["sec"], _grosse_caisse(0.11 * _vel(rng)), t + _seize(c, beat) + jeu())
+            _place(bus["sec"], _grosse_caisse_id(0.11 * _vel(rng)), t + _seize(c, beat) + jeu())
         for c in (4, 12):
-            _place(bus["sec"], _caisse(0.06 * _vel(rng), rng), t + _seize(c, beat) + jeu())
+            _place(bus["sec"], _caisse_id(0.06 * _vel(rng), rng), t + _seize(c, beat) + jeu())
         for c in ((7, 9, 15) if fin_phrase else (7, 15)):
             if rng.random() < 0.5 or fin_phrase:
-                _place(bus["sec"], _caisse(0.014 * _vel(rng), rng), t + _seize(c, beat) + jeu())
+                _place(bus["sec"], _caisse_id(0.014 * _vel(rng), rng), t + _seize(c, beat) + jeu())
     if "charley" in couches:
         for c in range(16):
             if cx["hats8"] and c % 2:
                 continue
             a = (0.016 if c % 4 == 0 else 0.011 if c % 2 == 0 else 0.007) * _vel(rng)
-            _place(bus["sec"], _charley(a, rng, ouvert=fin_phrase and c == 14), t + _seize(c, beat) + jeu())
+            _place(bus["sec"], _charley_id(a, rng, ouvert=fin_phrase and c == 14), t + _seize(c, beat) + jeu())
     if "basse" in couches:
         r, suiv = acc["basse"], cx["suivant"]["basse"]
         for c, deg, d in cx["basse16"]:
@@ -1728,7 +1870,7 @@ def _mesure_ses2(bus, cx, t, j, L, typ, acc, couches, rng):
                 continue
             for k, p in enumerate(v):
                 if lead == "clav":
-                    x = _rhodes(hz(p), beat / 4, 0.026 * _vel(rng), 0.95)
+                    x = _rhodes_id(hz(p), beat / 4, 0.026 * _vel(rng), 0.95)
                 elif lead == "orgue":
                     x = _orgue(hz(p), beat / 4 * 0.8, 0.016 * _vel(rng))
                 else:
@@ -1736,7 +1878,7 @@ def _mesure_ses2(bus, cx, t, j, L, typ, acc, couches, rng):
                 _place(bus["sec"], x, t + _seize(c, beat) + 0.004 * k + jeu())
     if "clavier" in couches and j % cx["hr"] == 0:
         for k, p in enumerate(_voix(acc, 60)):
-            _place(bus["sec"], _rhodes(hz(p), cx["hr"] * 4 * beat * 0.9, 0.020 * _vel(rng), 0.4), t + 0.01 * k)
+            _place(bus["sec"], _rhodes_id(hz(p), cx["hr"] * 4 * beat * 0.9, 0.020 * _vel(rng), 0.4), t + 0.01 * k)
 
 
 def _init_ses2(cx, rng):
@@ -1749,11 +1891,11 @@ def _transition_ses2(sorte, cx, rng, delai):
     if sorte == "roulement":
         nb = int(delai / (beat / 4))
         for k in range(nb):
-            _place(s, _caisse(0.008 + 0.03 * k / max(1, nb), rng), delai - (nb - k) * beat / 4)
+            _place(s, _caisse_id(0.008 + 0.03 * k / max(1, nb), rng), delai - (nb - k) * beat / 4)
     elif sorte == "montee":
         _place(s, _montee(delai, 0.03, rng), 0)
-    _place(s, _grosse_caisse(0.12), delai)
-    _place(s, _charley(0.02, rng, ouvert=True), delai)
+    _place(s, _grosse_caisse_id(0.12), delai)
+    _place(s, _charley_id(0.02, rng, ouvert=True), delai)
     _place(s, _basse_funk(hz(c if c >= 40 else c + 12), beat, 0.10, rng), delai)
     return _salle(s, 0.7, 0.15, 5500, 5)
 
@@ -1805,10 +1947,10 @@ def _mesure_hggsp2(bus, cx, t, j, L, typ, acc, couches, rng):
             _place(bus["sec"], x, t + c * beat / 4)
     if "caisse" in couches:   # caisse claire militaire : piste à part, retenue sous la voix par piste()
         for c, a in cx["mil"]:
-            _place(bus["gene"], _caisse(0.11 * a * _vel(rng), rng, corps=180, timbre=(1200, 5000), decl=14, timbre_decl=9), t + c * beat / 4)
+            _place(bus["gene"], _caisse_id(0.11 * a * _vel(rng), rng, corps=180, timbre=(1200, 5000), decl=14, timbre_decl=9), t + c * beat / 4)
         if fin_phrase and not _parle(cx, t + 2 * beat - 0.2, t + mes + 0.3):   # roulement seulement dans un silence
             for k in range(16):
-                _place(bus["gene"], _caisse((0.02 + 0.0055 * k) * _vel(rng), rng, corps=180, timbre=(1200, 5000), decl=14, timbre_decl=9),
+                _place(bus["gene"], _caisse_id((0.02 + 0.0055 * k) * _vel(rng), rng, corps=180, timbre=(1200, 5000), decl=14, timbre_decl=9),
                        t + 2 * beat + k * beat / 8)
     if "toms" in couches:
         for b in ((0, 2) if cx["hu"] != "calme" else (0,)):
@@ -1836,9 +1978,9 @@ def _mesure_hggsp2(bus, cx, t, j, L, typ, acc, couches, rng):
 
 def _mix_hggsp2(bus, hu, graine):
     x = _salle(bus["sec"], 2.6, 0.30, 3000, graine)
-    loin = _filtre(bus["loin"], "lowpass", 2400)       # lointains : peu d'aigus, beaucoup de salle
+    loin = _filtre_id(bus["loin"], "lowpass", 2400)       # lointains : peu d'aigus, beaucoup de salle
     x = x + 0.25 * loin + _salle(loin, 3.5, 1.0, 2000, graine + 1, predelai=0.05, sec=False)
-    g = _filtre(bus["gene"], "lowpass", 2400)
+    g = _filtre_id(bus["gene"], "lowpass", 2400)
     return x, 0.25 * g + _salle(g, 3.5, 1.0, 2000, graine + 2, predelai=0.05, sec=False)
 
 
@@ -1848,13 +1990,13 @@ def _transition_hggsp2(sorte, cx, rng, delai):
     if sorte == "roulement":
         nb = int(delai / (beat / 8))
         for k in range(nb):
-            _place(s, _caisse(0.015 + 0.06 * k / max(1, nb), rng, corps=180, timbre=(1200, 5000), decl=14, timbre_decl=9),
+            _place(s, _caisse_id(0.015 + 0.06 * k / max(1, nb), rng, corps=180, timbre=(1200, 5000), decl=14, timbre_decl=9),
                    delai - (nb - k) * beat / 8)
     elif sorte == "montee":
         _place(s, _cordes(hz(c + 19), delai, 0.04, 1600, rng, attaque=delai * 2.5), 0)
-    _place(s, _timbale(hz(c + (12 if c < 41 else 0)), 0.12, rng), delai)
+    _place(s, _timbale_id(hz(c + (12 if c < 41 else 0)), 0.12, rng), delai)
     _place(s, _tom(hz(c - 7 if c >= 45 else c + (12 if c < 38 else 0)), 0.2), delai)
-    return _salle(_filtre(s, "lowpass", 3000), 2.8, 0.4, 2400, 5)
+    return _salle(_filtre_id(s, "lowpass", 3000), 2.8, 0.4, 2400, 5)
 
 
 STYLES.update({
@@ -2013,3 +2155,294 @@ STYLES["lughnasa1"] = dict(_CLASSIQUE, special={"reel": _reel_variante})
 # style de chaque site (choix du pilote du 10/11/2026 pour maths, ses, hggsp) ; piste(…, style="ses1") en force un autre
 STYLE = {"maths": "maths3", "ses": "ses2", "hggsp": "hggsp2",
          "philo": "philo1", "pc": "pc1", "svt": "svt1", "dnl": "dnl1", "acl-lughnasa": "lughnasa1"}
+
+# ---------------------------------------------------------------------------------------------------------------
+# Musique « labo » des vidéos de physique-chimie (11/2026, demande de Cengiz : « change de musique de fond, c'est tout
+# le temps la même chose ») : une identité sonore propre à la matière, composée ici. Marimba en modulation de fréquence,
+# basse synthétique, nappe large, pulsation douce (grosse caisse feutrée, charleston léger) et petites bulles qui
+# montent, comme dans une solution. Quatre variantes (les humeurs des scripts), même instrumentation.
+LABO = {
+    # bpm, accords (basse, notes) sur deux mesures, densité du marimba, pulsation, bulles
+    "lumiere": dict(bpm=100, accords=[(41, [53, 57, 60, 64, 67]), (38, [50, 53, 57, 60, 64]),       # Fa maj7(9), Ré m9
+                                      (46, [50, 53, 57, 60, 62]), (48, [52, 55, 60, 62, 67])],      # Si♭ maj7, Do add9
+                    motif=[0, 3, 2, 4, 1, 3, 2, 4], marimba=1.0, pulse=1.0, bulles=0.6),
+    "mystere": dict(bpm=88, accords=[(38, [50, 53, 57, 62, 64]), (46, [50, 53, 57, 58, 65]),       # Ré m(9), Si♭ maj7
+                                     (43, [50, 53, 55, 58, 62]), (45, [49, 52, 55, 57, 62])],      # Sol m7, La7sus
+                    motif=[0, 2, 4, 2, 3, 1, 4, 2], marimba=0.6, pulse=0.5, bulles=1.0),
+    "tension": dict(bpm=108, accords=[(40, [52, 55, 59, 62, 66]), (36, [52, 55, 59, 60, 64]),      # Mi m9, Do maj7
+                                      (45, [52, 55, 57, 60, 64]), (47, [51, 54, 57, 59, 64])],     # La m7, Si7sus
+                    motif=[0, 4, 2, 4, 1, 4, 3, 4], marimba=1.0, pulse=1.25, bulles=0.4),
+    "calme": dict(bpm=84, accords=[(36, [52, 55, 59, 60, 64]), (45, [52, 55, 57, 60, 64]),         # Do maj7, La m7
+                                   (41, [52, 57, 60, 64, 65]), (43, [50, 55, 59, 62, 64])],        # Fa maj7, Sol6
+                  motif=[0, 2, 3, 4, 3, 2, 1, 2], marimba=0.7, pulse=0.45, bulles=0.8),
+}
+
+
+def _marimba_labo(f, dur, amp):
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    ind = 2.2 * np.exp(-t * 18)                           # modulation qui s'éteint vite : attaque boisée
+    s = np.sin(2 * np.pi * f * t + ind * np.sin(2 * np.pi * 4 * f * t)) + 0.18 * np.sin(2 * np.pi * 10 * f * t) * np.exp(-t * 30)
+    env = np.exp(-t * 5.5) * np.minimum(1, t / 0.002)
+    return amp * env * s
+
+
+def _basse_synth(f, dur, amp):
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    s = np.tanh(2.2 * (np.sin(2 * np.pi * f * t) + 0.3 * np.sin(4 * np.pi * f * t)))
+    env = np.minimum(1, t / 0.008) * np.exp(-t * 2.6)
+    return amp * env * s
+
+
+def _nappe_large(freqs, dur, amp):
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    att = np.minimum(1, t / 2.2)
+    rel = np.minimum(1, (dur - t) / 1.6).clip(0, 1)
+    s = np.zeros(n)
+    for i, f in enumerate(freqs):
+        for d, p in ((-1.1, 0.0), (0.0, 1.3), (1.1, 2.1)):
+            s += np.sin(2 * np.pi * (f + d) * t + p + i)
+        s += 0.12 * np.sin(2 * np.pi * 3 * f * t + i) * (0.5 + 0.5 * np.sin(2 * np.pi * 0.11 * t + i))
+    return amp * att * rel * s / (3.2 * len(freqs))
+
+
+def _caisse_labo(amp):
+    n = int(0.32 * SR)
+    t = np.arange(n) / SR
+    f = 46 + 70 * np.exp(-t * 28)
+    return amp * np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 11)
+
+
+def _charleston(rng, amp):
+    L = int(0.045 * SR)
+    b = rng.standard_normal(L)
+    b = np.diff(np.diff(b, prepend=0), prepend=0)         # bruit éclairci (aigus)
+    return amp * b * np.exp(-np.arange(L) / SR * 85)
+
+
+def _bulle(rng, amp):
+    d = 0.05 + 0.05 * rng.random()
+    n = int(d * SR)
+    t = np.arange(n) / SR
+    f0 = 500 + 500 * rng.random()
+    f = f0 * (1 + 1.6 * t / d)                            # la bulle monte
+    return amp * np.sin(2 * np.pi * np.cumsum(f) / SR) * np.sin(np.pi * t / d) ** 2
+
+
+def labo(duree, humeur="lumiere"):
+    """Musique « labo » brute (sans dosage) de la durée demandée, dans l'humeur choisie."""
+    H = LABO.get(humeur, LABO["lumiere"])
+    beat = 60.0 / H["bpm"]
+    n = int(duree * SR) + SR
+    out = np.zeros(n)
+    rng = np.random.default_rng(17)
+    mesure = 4 * beat
+    t, k = 0.0, 0
+    while t < duree:
+        basse, notes = H["accords"][k % 4]
+        d = 2 * mesure
+        i0 = int(t * SR)
+        _ajoute(out, _nappe_large([hz(m) for m in notes[:4]], d + 1.4, 0.16), i0)
+        # basse : sur le temps, puis une croche avant le temps suivant (petit balancement)
+        for b in (0, 1.5, 4, 5.5):
+            _ajoute(out, _basse_synth(hz(basse), 0.9, 0.075), int((t + b * beat) * SR))
+        # marimba : motif en croches, une note sur deux sautée dans les humeurs calmes ; variation toutes les 4 mesures
+        var = 1 if (k // 2) % 2 else 0
+        for c in range(16):
+            if H["marimba"] < 0.8 and c % 2 == 1:
+                continue
+            idx = H["motif"][(c + 3 * var) % 8] % len(notes)
+            m = notes[idx] + 12
+            amp = (0.11 if c % 4 == 0 else 0.08) * H["marimba"]
+            _ajoute(out, _marimba_labo(hz(m), 0.8, amp), int((t + c * beat / 2) * SR))
+        # pulsation feutrée
+        if H["pulse"] > 0:
+            for b in range(8):
+                if b % 2 == 0:
+                    _ajoute(out, _caisse_labo(0.085 * H["pulse"]), int((t + b * beat) * SR))
+                _ajoute(out, _charleston(rng, 0.026 * H["pulse"]), int((t + (b + 0.5) * beat) * SR))
+        # bulles : quelques-unes par mesure, placées au hasard (graine fixe)
+        for _ in range(int(round(3 * H["bulles"]))):
+            _ajoute(out, _bulle(rng, 0.05 * H["bulles"]), int((t + rng.random() * d) * SR))
+        t += d
+        k += 1
+    out = _reverb(out, duree=1.8, mix=0.26)
+    return out[:int(duree * SR)]
+
+# ===================================================================================================
+# MUSIQUE LO-FI (vidéos SVT, 10/11/2026). Demande de Cengiz : « changer la musique de fond, c'est tout le temps la
+# même chose, la même que Philo » ; parmi trois propositions (documentaire, lo-fi, pizzicato), il a choisi la lo-fi.
+# Cinq thèmes originaux qui alternent d'une partie à l'autre : piano électrique (synthèse FM), piano feutré, guitare
+# pincée, kalimba ou vibraphone en solo, accords de septième, basse ronde, batterie feutrée et « swinguée », son
+# étouffé façon cassette, craquements de vinyle et une ambiance légère (pluie, oiseaux, grillons…). Chaque thème est
+# une boucle de 32 mesures (intro sans batterie, couplet, mélodie, pause, reprise), raccord sans couture. Déterministe.
+# ===================================================================================================
+LOFI = {
+    # bpm, swing, grille de 4 accords (basse, notes), instrument des accords, instrument de la mélodie, gamme de la
+    # mélodie, motif de grosse caisse (en temps), ambiance
+    "etude": dict(bpm=76, swing=.58, acc=[(41, [57, 60, 64, 69]), (40, [55, 59, 62, 67]), (38, [57, 60, 64, 65]), (36, [55, 59, 62, 64])],
+                  clavier="rhodes", solo="rhodes", gamme=[64, 67, 69, 71, 72, 74, 76], kick=[0, 2.5], amb=None),
+    "pluie": dict(bpm=70, swing=.6, acc=[(45, [55, 60, 64, 71]), (41, [57, 60, 64, 67]), (48, [55, 59, 64, 67]), (43, [55, 59, 62, 64])],
+                  clavier="feutre", solo="feutre", gamme=[69, 71, 72, 74, 76, 79, 81], kick=[0, 1.75, 2.5], amb="pluie"),
+    "jardin": dict(bpm=82, swing=.57, acc=[(38, [53, 57, 60, 64]), (43, [53, 59, 64, 65]), (36, [55, 59, 62, 64]), (45, [55, 60, 64, 67])],
+                   clavier="rhodes", solo="guitare", gamme=[62, 64, 65, 67, 69, 72, 74], kick=[0, 2, 2.75], amb="oiseaux"),
+    "nuit": dict(bpm=72, swing=.6, acc=[(39, [55, 58, 62, 67]), (38, [53, 57, 60, 65]), (36, [55, 58, 62, 63]), (34, [53, 57, 62, 65])],
+                 clavier="feutre", solo="kalimba", gamme=[67, 70, 72, 74, 75, 77, 79], kick=[0, 2.5, 3.25], amb="grillons"),
+    "vague": dict(bpm=78, swing=.57, acc=[(43, [59, 62, 66, 69]), (42, [57, 61, 64, 69]), (40, [55, 59, 62, 66]), (38, [57, 61, 64, 66])],
+                  clavier="rhodes", solo="vibra", gamme=[66, 67, 69, 71, 74, 76, 78], kick=[0, 1.5, 2.5], amb="eau"),
+}
+ORDRE_LOFI = ["etude", "jardin", "pluie", "vague", "nuit"]
+
+
+def _rhodes(f, dur, amp):          # piano électrique : synthèse FM, trémolo
+    t = np.arange(int(dur * SR)) / SR
+    idx = 1.6 * np.exp(-t * 5) + 0.25
+    s = (np.sin(2 * np.pi * f * t + idx * np.sin(2 * np.pi * f * t))
+         + 0.15 * np.sin(2 * np.pi * 14 * f * t) * np.exp(-t * 30))
+    env = np.minimum(1, t / 0.004) * np.exp(-t * 1.3) * np.clip((dur - t) / 0.08, 0, 1)
+    return amp * s * env * (1 + 0.12 * np.sin(2 * np.pi * 4.5 * t))
+
+
+def _feutre(f, dur, amp):          # piano feutré : peu d'harmoniques, attaque douce
+    t = np.arange(int(dur * SR)) / SR
+    s = sum(np.sin(2 * np.pi * f * k * np.sqrt(1 + 0.0004 * k * k) * t + k) * np.exp(-t * (1.2 + 1.4 * k)) / k ** 1.6
+            for k in range(1, 6))
+    env = np.minimum(1, t / 0.012) * (0.7 * np.exp(-t * 0.9) + 0.3 * np.exp(-t * 4)) * np.clip((dur - t) / 0.1, 0, 1)
+    return amp * 1.3 * s * env
+
+
+def _guitare(f, dur, amp):         # guitare pincée
+    t = np.arange(int(dur * SR)) / SR
+    s = sum(np.sin(2 * np.pi * k * f * t) * np.exp(-t * (2.2 + 1.5 * k)) / k for k in range(1, 8))
+    return amp * 1.2 * s * np.minimum(1, t / 0.003) * np.clip((dur - t) / 0.06, 0, 1)
+
+
+def _kalimba(f, dur, amp):
+    t = np.arange(int(dur * SR)) / SR
+    s = (np.sin(2 * np.pi * f * t) + 0.32 * np.sin(2 * np.pi * 5.4 * f * t) * np.exp(-t * 9)
+         + 0.08 * np.sin(2 * np.pi * 2.01 * f * t) * np.exp(-t * 4))
+    return amp * s * np.exp(-t * 3.2) * np.minimum(1, t / 0.0015)
+
+
+def _vibra(f, dur, amp):           # vibraphone : son pur, trémolo du moteur
+    t = np.arange(int(dur * SR)) / SR
+    s = np.sin(2 * np.pi * f * t) + 0.2 * np.sin(2 * np.pi * 4 * f * t) * np.exp(-t * 6)
+    return amp * s * np.exp(-t * 1.6) * np.minimum(1, t / 0.002) * (1 + 0.3 * np.sin(2 * np.pi * 5.5 * t))
+
+
+def _basse_ronde(f, dur, amp):
+    t = np.arange(int(dur * SR)) / SR
+    s = np.sin(2 * np.pi * f * t) + 0.3 * np.sin(4 * np.pi * f * t)
+    return amp * s * np.exp(-t * 1.6) * np.minimum(1, t / 0.01) * np.clip((dur - t) / 0.05, 0, 1)
+
+
+def _filtre(x, fc, type_="low"):
+    from scipy.signal import butter, lfilter
+    b, a = butter(2, fc / (SR / 2), type_)
+    return lfilter(b, a, x)
+
+
+def _grosse_caisse(amp):
+    t = np.arange(int(0.35 * SR)) / SR
+    f = 48 + 70 * np.exp(-t * 28)
+    return amp * np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 9)
+
+
+def _caisse_claire(amp, rng):
+    t = np.arange(int(0.25 * SR)) / SR
+    br = _filtre(rng.standard_normal(len(t)), 4200) * np.exp(-t * 18)
+    return amp * (0.7 * br + 0.4 * np.sin(2 * np.pi * 190 * t) * np.exp(-t * 25))
+
+
+def _charley(amp, rng):
+    t = np.arange(int(0.05 * SR)) / SR
+    return amp * _filtre(rng.standard_normal(len(t)), 7000, "high") * np.exp(-t * 70)
+
+
+def _ambiance(n, genre, rng):
+    t = np.arange(n) / SR
+    out = np.zeros(n)
+    if genre in ("pluie", "eau"):
+        b = _filtre(rng.standard_normal(n), 2200 if genre == "pluie" else 700)
+        if genre == "pluie":
+            b = _filtre(b, 400, "high")
+        lfo = 0.75 + 0.25 * np.sin(2 * np.pi * t / (13 if genre == "pluie" else 5.3))
+        out += b / (np.abs(b).max() + 1e-9) * lfo * (0.05 if genre == "pluie" else 0.06)
+    if genre == "oiseaux":
+        k = 0.0
+        while k < n / SR:
+            k += 5 + rng.random() * 8
+            for j in range(1 + int(rng.random() * 3)):      # deux ou trois notes de chant
+                L = int(SR * (0.07 + rng.random() * 0.06)); tt = np.arange(L) / SR
+                f0 = 2600 + rng.random() * 1800
+                ch = np.sin(2 * np.pi * (f0 * tt + (700 + rng.random() * 900) * tt ** 2 / (2 * tt[-1] + 1e-9)))
+                _ajoute(out, 0.025 * ch * np.sin(np.pi * tt / tt[-1]) ** 2, int((k + j * 0.11) * SR))
+    if genre == "grillons":
+        pulse = (np.sin(2 * np.pi * 28 * t) > 0.3) * (np.sin(2 * np.pi * 0.45 * t) > -0.2)
+        out += 0.009 * np.sin(2 * np.pi * 4300 * t) * pulse
+    return out
+
+
+def lofi(theme, mesures=32):
+    """Boucle de `mesures` mesures du thème lo-fi, raccord sans couture. Plan sur 32 mesures : intro sans batterie (0-3),
+    couplet (4-7), mélodie (8-15), pause sans grosse caisse ni basse (16-19), reprise (20-23), mélodie variée (24-31)."""
+    H = LOFI[theme]
+    b = 60.0 / H["bpm"]
+    n = int(round(mesures * 4 * b * SR))
+    out = np.zeros(n + 3 * SR)
+    rng = np.random.default_rng(sum(map(ord, theme)) + 31)
+    clavier = {"rhodes": _rhodes, "feutre": _feutre}[H["clavier"]]
+    solo = {"rhodes": _rhodes, "feutre": _feutre, "guitare": _guitare, "kalimba": _kalimba, "vibra": _vibra}[H["solo"]]
+    rythmes = [[(0, 1.5), (1.5, 1), (2.5, 1.5)], [(0.5, 1.5), (2, 2)], [(0, 1), (1, 0.5), (1.5, 1), (3, 1)],
+               [(1, 1), (2.5, 1.5)], [(0, 2), (2.5, 0.5), (3, 1)]]
+    for m in range(mesures):
+        basse, notes = H["acc"][m % 4]
+        t0 = m * 4 * b
+        intro, pause = m < 4, 16 <= m < 20
+        # accords : posés sur le 1 et sur le « et » du 3, égrenés de quelques millisecondes
+        for d, L in ((0, 2.3), (2.5, 1.4)):
+            for k, x in enumerate(notes):
+                _ajoute(out, clavier(hz(x), L * b, 0.07 * (0.9 + 0.2 * rng.random())), int((t0 + d * b + 0.025 * k) * SR))
+        if not (intro or pause):
+            _ajoute(out, _basse_ronde(hz(basse), 1.8 * b, 0.22), int(t0 * SR))
+            _ajoute(out, _basse_ronde(hz(basse + (7 if m % 2 else 12)), 1.0 * b, 0.15), int((t0 + 2.5 * b) * SR))
+        # batterie
+        if not intro:
+            for be in range(4):
+                for c, a in ((0, 0.05), (H["swing"], 0.03)):
+                    _ajoute(out, _charley(a * (0.8 + 0.4 * rng.random()), rng), int((t0 + (be + c) * b) * SR))
+            if not pause:
+                for p in H["kick"]:
+                    _ajoute(out, _grosse_caisse(0.32 if p == 0 else 0.24), int((t0 + p * b) * SR))
+                for be in (1, 3):
+                    _ajoute(out, _caisse_claire(0.17, rng), int((t0 + be * b + 0.015) * SR))
+        # mélodie : notes de la gamme proches de l'accord, rythmes tirés au sort mais fixés par le thème
+        if 8 <= m < 16 or 24 <= m < 32:
+            ry = rythmes[int(rng.integers(len(rythmes)))]
+            for d, L in ry:
+                x = H["gamme"][int(rng.integers(len(H["gamme"])))] + 12
+                _ajoute(out, solo(hz(x), L * b + 0.4, 0.055), int((t0 + d * b) * SR))
+    out = out[:n] + np.concatenate([out[n:], np.zeros(n - len(out[n:]))])[:n]   # la queue revient au début : boucle continue
+    # son « cassette » (étouffé) et réverbération circulaire courte
+    out = _filtre(np.concatenate([out[-SR:], out]), 3600)[SR:]
+    rr = np.random.default_rng(7); L = int(1.4 * SR)
+    ir = rr.standard_normal(L) * np.exp(-np.arange(L) / SR * 4); ir /= np.sqrt((ir ** 2).sum())
+    irp = np.zeros(n); irp[:L] = ir
+    out = 0.82 * out + 0.18 * np.fft.irfft(np.fft.rfft(out) * np.fft.rfft(irp), n)
+    # craquements de vinyle et souffle
+    vin = np.zeros(n + SR)
+    for i in rng.integers(0, n, int(n / SR * 8)):
+        L = int(0.08 * SR); tt = np.arange(L) / SR
+        _ajoute(vin, 0.035 * rng.random() * _filtre(rng.standard_normal(L), 1800, "high") * np.exp(-tt * 60), int(i))
+    vin = vin[:n] + 0.004 * _filtre(rng.standard_normal(n), 2500)
+    out = out + vin
+    if H["amb"]:
+        out += _ambiance(n, H["amb"], np.random.default_rng(29))
+    return out.astype(np.float32)
+
+
+def theme_lofi(k, humeur=None):
+    """Thème de la k-ième partie de la vidéo : les cinq thèmes tournent, jamais deux fois de suite le même."""
+    return ORDRE_LOFI[k % len(ORDRE_LOFI)]
