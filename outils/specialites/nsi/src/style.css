@@ -488,3 +488,20 @@ html.mo .table-bd tr.neuf td,html.mo .table-bd tr.trouve td,html.mo .table-bd tr
 .jointure .j-sources{display:flex;flex-wrap:wrap;gap:4px}
 .jointure .j-res{border-top:1px dashed var(--ligne2);margin-top:6px;padding-top:4px}
 .jointure .rejet{color:var(--rouge);font-size:.8rem;padding:4px 2px}
+/* arbres et graphes animés */
+.arbre-svg{display:block;width:100%;height:auto;margin:0 auto}
+.arbre-svg text,.graphe-svg text{font-family:var(--mono);font-size:14px;fill:var(--encre);font-weight:700}
+.arbre-svg .ar,.graphe-svg .ar{stroke:var(--encre3);stroke-width:2}
+.nd-a circle{fill:var(--bg2);stroke:var(--encre2);stroke-width:2}
+.nd-a.vu circle,.nd-a.actif circle{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:3}
+.nd-a.attente circle{stroke:var(--bleu);stroke-width:3;stroke-dasharray:5 3}
+.nd-a.traite circle,.nd-a.neuf circle{fill:var(--vert-f);stroke:var(--vert);stroke-width:3}
+.nd-a .rang{font-size:11px;fill:var(--vert)}
+html.mo .nd-a circle{transition:fill .3s,stroke .3s}
+html.mo .nd-a.neuf,html.mo .nd-a.actif{animation:pop .4s cubic-bezier(.2,.9,.3,1.3);transform-box:fill-box;transform-origin:center}
+.parc{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:720px){.parc{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:start}}
+.parc-cote .titre-pile{margin-top:6px}
+.mini-pile,.mini-file{display:flex;gap:5px;flex-wrap:wrap;min-height:34px;align-items:center}
+.mini-pile{flex-direction:column;align-items:flex-start}
+.sortie-p{font-size:1rem;font-weight:700;color:var(--vert);letter-spacing:.08em;padding:4px 0}

@@ -502,6 +502,23 @@ html.mo .table-bd tr.neuf td,html.mo .table-bd tr.trouve td,html.mo .table-bd tr
 .jointure .j-sources{display:flex;flex-wrap:wrap;gap:4px}
 .jointure .j-res{border-top:1px dashed var(--ligne2);margin-top:6px;padding-top:4px}
 .jointure .rejet{color:var(--rouge);font-size:.8rem;padding:4px 2px}
+/* arbres et graphes animés */
+.arbre-svg{display:block;width:100%;height:auto;margin:0 auto}
+.arbre-svg text,.graphe-svg text{font-family:var(--mono);font-size:14px;fill:var(--encre);font-weight:700}
+.arbre-svg .ar,.graphe-svg .ar{stroke:var(--encre3);stroke-width:2}
+.nd-a circle{fill:var(--bg2);stroke:var(--encre2);stroke-width:2}
+.nd-a.vu circle,.nd-a.actif circle{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:3}
+.nd-a.attente circle{stroke:var(--bleu);stroke-width:3;stroke-dasharray:5 3}
+.nd-a.traite circle,.nd-a.neuf circle{fill:var(--vert-f);stroke:var(--vert);stroke-width:3}
+.nd-a .rang{font-size:11px;fill:var(--vert)}
+html.mo .nd-a circle{transition:fill .3s,stroke .3s}
+html.mo .nd-a.neuf,html.mo .nd-a.actif{animation:pop .4s cubic-bezier(.2,.9,.3,1.3);transform-box:fill-box;transform-origin:center}
+.parc{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:720px){.parc{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:start}}
+.parc-cote .titre-pile{margin-top:6px}
+.mini-pile,.mini-file{display:flex;gap:5px;flex-wrap:wrap;min-height:34px;align-items:center}
+.mini-pile{flex-direction:column;align-items:flex-start}
+.sortie-p{font-size:1rem;font-weight:700;color:var(--vert);letter-spacing:.08em;padding:4px 0}
 
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
@@ -4472,6 +4489,1096 @@ CH.push({
   ]
 });
 
+/* ===================== Programmation dynamique ===================== */
+C("dyn-fib-naif", String.raw`
+calculs = {}                         # combien de fois chaque fib(k) est calculé
+
+def fib(n):
+    calculs[n] = calculs.get(n, 0) + 1
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+print(fib(10))
+for k in range(10, -1, -1):
+    print("fib(" + str(k) + ") calculé", calculs[k], "fois")`, { out: String.raw`
+55
+fib(10) calculé 1 fois
+fib(9) calculé 1 fois
+fib(8) calculé 2 fois
+fib(7) calculé 3 fois
+fib(6) calculé 5 fois
+fib(5) calculé 8 fois
+fib(4) calculé 13 fois
+fib(3) calculé 21 fois
+fib(2) calculé 34 fois
+fib(1) calculé 55 fois
+fib(0) calculé 34 fois` });
+
+C("dyn-memo", String.raw`
+appels = 0
+
+def fib_memo(n, memo):
+    """memo est un dictionnaire {k: fib(k)} des valeurs déjà calculées."""
+    global appels
+    appels = appels + 1
+    if n in memo:                    # déjà calculé : on le relit
+        return memo[n]
+    if n < 2:
+        resultat = n
+    else:
+        resultat = fib_memo(n - 1, memo) + fib_memo(n - 2, memo)
+    memo[n] = resultat               # on le note avant de le renvoyer
+    return resultat
+
+for n in [10, 30, 90]:
+    appels = 0
+    print(n, fib_memo(n, {}), appels)`, { out: "10 55 19\n30 832040 59\n90 2880067194370816120 179" });
+
+C("dyn-asc", String.raw`
+def fib_table(n):
+    """Méthode ascendante : on remplit le tableau f du plus petit au plus grand."""
+    f = [0] * (n + 1)
+    if n >= 1:
+        f[1] = 1
+    for k in range(2, n + 1):
+        f[k] = f[k - 1] + f[k - 2]   # les deux valeurs sont déjà dans le tableau
+    return f
+
+print(fib_table(10))
+print(fib_table(100)[100])`, { out: "[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]\n354224848179261915075" });
+
+C("dyn-asc2", String.raw`
+def fib_deux(n):
+    a, b = 0, 1                      # a = fib(k), b = fib(k + 1)
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+
+print(fib_deux(10), fib_deux(100) == 354224848179261915075)`, { out: "55 True" });
+
+C("dyn-glouton", String.raw`
+def rendu_glouton(s, pieces):
+    """pieces est triée dans l'ordre DÉCROISSANT. Prend toujours la plus grosse pièce possible."""
+    res = []
+    for p in pieces:
+        while s >= p:
+            res.append(p)
+            s = s - p
+    return res
+
+euros = [200, 100, 50, 20, 10, 5, 2, 1]          # en centimes... ou en euros
+print(rendu_glouton(289, euros))
+print(rendu_glouton(6, [4, 3, 1]))               # 3 pièces, alors que 3 + 3 suffit`, { out: "[200, 50, 20, 10, 5, 2, 2]\n[4, 1, 1]" });
+
+C("dyn-monnaie-rec", String.raw`
+appels = 0
+
+def rendu_rec(s, pieces):
+    """Nombre minimal de pièces pour rendre s (une pièce de 1 est disponible)."""
+    global appels
+    appels = appels + 1
+    if s == 0:
+        return 0
+    meilleur = s                                  # au pire : s pièces de 1
+    for p in pieces:
+        if p <= s:
+            meilleur = min(meilleur, 1 + rendu_rec(s - p, pieces))
+    return meilleur
+
+for s in [6, 20, 30]:
+    appels = 0
+    print(s, rendu_rec(s, [1, 3, 4]), appels)`, { out: "6 2 24\n20 5 20736\n30 8 2550408" });
+
+C("dyn-monnaie-memo", String.raw`
+def rendu_memo(s, pieces, memo):
+    if s == 0:
+        return 0
+    if s not in memo:
+        meilleur = s
+        for p in pieces:
+            if p <= s:
+                meilleur = min(meilleur, 1 + rendu_memo(s - p, pieces, memo))
+        memo[s] = meilleur
+    return memo[s]
+
+print(rendu_memo(30, [1, 3, 4], {}), rendu_memo(900, [1, 3, 4], {}))`, { out: "8 225" });
+
+C("dyn-monnaie", String.raw`
+def rendu_dyn(S, pieces):
+    """nb[s] = nombre minimal de pièces pour rendre s ; choix[s] = une pièce à donner en premier."""
+    nb = [0] + [S + 1] * S           # S + 1 joue le rôle de « l'infini »
+    choix = [0] * (S + 1)
+    for s in range(1, S + 1):        # du plus petit montant au plus grand
+        for p in pieces:
+            if p <= s and nb[s - p] + 1 < nb[s]:
+                nb[s] = nb[s - p] + 1
+                choix[s] = p
+    return nb, choix
+
+def pieces_rendues(S, choix):
+    res = []
+    while S > 0:
+        res.append(choix[S])
+        S = S - choix[S]
+    return res
+
+nb, choix = rendu_dyn(10, [1, 3, 4])
+print(nb)
+print(choix)
+print(pieces_rendues(6, choix), pieces_rendues(10, choix))`, { out: "[0, 1, 2, 1, 1, 2, 2, 2, 2, 3, 3]\n[0, 1, 1, 3, 4, 1, 3, 3, 4, 1, 3]\n[3, 3] [3, 3, 4]" });
+
+C("dyn-lcs", String.raw`
+def plssc(a, b):
+    """Table L : L[i][j] = longueur de la plus longue sous-séquence commune
+    à a[:i] (les i premiers caractères de a) et b[:j]."""
+    n, m = len(a), len(b)
+    L = [[0] * (m + 1) for _ in range(n + 1)]   # ligne 0 et colonne 0 : mot vide
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            if a[i - 1] == b[j - 1]:                 # même dernier caractère
+                L[i][j] = L[i - 1][j - 1] + 1
+            else:                                    # on renonce à l'un des deux
+                L[i][j] = max(L[i - 1][j], L[i][j - 1])
+    return L
+
+def reconstruire(a, b, L):
+    """Remonte la table depuis la case en bas à droite."""
+    i, j, res = len(a), len(b), []
+    while i > 0 and j > 0:
+        if a[i - 1] == b[j - 1]:
+            res.append(a[i - 1])
+            i, j = i - 1, j - 1
+        elif L[i - 1][j] >= L[i][j - 1]:
+            i = i - 1
+        else:
+            j = j - 1
+    return "".join(reversed(res))
+
+L = plssc("PYTHON", "PHOTON")
+for ligne in L:
+    print(ligne)
+print(L[6][6], reconstruire("PYTHON", "PHOTON", L))`, { out: String.raw`
+[0, 0, 0, 0, 0, 0, 0]
+[0, 1, 1, 1, 1, 1, 1]
+[0, 1, 1, 1, 1, 1, 1]
+[0, 1, 1, 1, 2, 2, 2]
+[0, 1, 2, 2, 2, 2, 2]
+[0, 1, 2, 3, 3, 3, 3]
+[0, 1, 2, 3, 3, 3, 4]
+4 PTON` });
+
+C("dyn-adn", String.raw`
+a = "ACCGGTCGAGTGCGCGGAAGCCGGCCGAA"
+b = "GTCGTTCGGAATGCCGTTGCTCTGTAAA"
+L = plssc(a, b)
+s = reconstruire(a, b, L)
+print(len(a), len(b), L[len(a)][len(b)], s)`, { deps: ["dyn-lcs"], out: "29 28 20 GTCGTCGGAAGCCGGCCGAA" });
+
+C("dyn-align", String.raw`
+def alignement(a, b, ident=1, diff=-1, trou=-1):
+    """Score maximal d'un alignement de a et b, et un alignement qui l'atteint."""
+    n, m = len(a), len(b)
+    S = [[0] * (m + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        S[i][0] = i * trou                       # a[:i] aligné face à des trous
+    for j in range(1, m + 1):
+        S[0][j] = j * trou
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            diag = S[i - 1][j - 1] + (ident if a[i - 1] == b[j - 1] else diff)
+            S[i][j] = max(diag, S[i - 1][j] + trou, S[i][j - 1] + trou)
+    i, j, ha, hb = n, m, "", ""                  # reconstruction depuis la fin
+    while i > 0 or j > 0:
+        if i > 0 and j > 0 and S[i][j] == S[i - 1][j - 1] + (ident if a[i - 1] == b[j - 1] else diff):
+            ha, hb = a[i - 1] + ha, b[j - 1] + hb
+            i, j = i - 1, j - 1
+        elif i > 0 and S[i][j] == S[i - 1][j] + trou:
+            ha, hb = a[i - 1] + ha, "-" + hb
+            i = i - 1
+        else:
+            ha, hb = "-" + ha, b[j - 1] + hb
+            j = j - 1
+    return S[n][m], ha, hb
+
+score, ha, hb = alignement("GATTACA", "GCATGCA")
+print(score)
+print(ha)
+print(hb)`, { out: "2\nG-ATTACA\nGCA-TGCA" });
+
+/* pièges */
+C("dyn-p-defaut", String.raw`
+def fib_memo(n, memo={}):            # dictionnaire par défaut : créé UNE SEULE fois
+    if n not in memo:
+        memo[n] = n if n < 2 else fib_memo(n - 1) + fib_memo(n - 2)
+    return memo[n]
+
+print(fib_memo(5))
+print(len(fib_memo.__defaults__[0]))   # le dictionnaire a survécu à l'appel`, { out: "5\n6" });
+
+C("dyn-p-ordre", String.raw`
+def fib_table_faux(n):
+    f = [0] * (n + 1)
+    f[1] = 1
+    for k in range(n, 1, -1):        # du plus grand au plus petit : mauvais sens
+        f[k] = f[k - 1] + f[k - 2]
+    return f[n]
+
+print(fib_table_faux(10))`, { out: "0" });
+
+C("dyn-p-copie", String.raw`
+L = [[0] * 3] * 2                    # deux fois LA MÊME ligne
+L[0][0] = 7
+print(L)
+L = [[0] * 3 for _ in range(2)]      # deux lignes distinctes
+L[0][0] = 7
+print(L)`, { out: "[[7, 0, 0], [7, 0, 0]]\n[[7, 0, 0], [0, 0, 0]]" });
+
+/* prédis la sortie */
+C("dyn-x1", String.raw`
+memo = {}
+
+def f(n):
+    if n <= 2:
+        return 1
+    if n not in memo:
+        memo[n] = f(n - 1) + f(n - 3)
+    return memo[n]
+
+print(f(7), sorted(memo.keys()))`, { out: "9 [3, 4, 5, 6, 7]" });
+
+C("dyn-x2", String.raw`
+t = [1] * 6
+for k in range(2, 6):
+    t[k] = t[k - 1] + 2 * t[k - 2]
+print(t)`, { out: "[1, 1, 3, 5, 11, 21]" });
+
+C("dyn-x3", String.raw`
+def chemins(n, m):
+    c = [[1] * (m + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            c[i][j] = c[i - 1][j] + c[i][j - 1]
+    return c[n][m]
+
+print(chemins(2, 2), chemins(3, 3))`, { out: "6 20" });
+
+C("dyn-x4", String.raw`
+print(rendu_glouton(8, [6, 4, 1]), rendu_dyn(8, [1, 4, 6])[0][8])`, { deps: ["dyn-glouton", "dyn-monnaie"], out: "[6, 1, 1] 2" });
+
+/* épreuve pratique 1 */
+C("dyn-ep1-fourni", String.raw`
+def rendu_dyn(S, pieces):
+    """Renvoie la liste nb où nb[s] est le nombre minimal de pièces
+    pour rendre la somme s, pour s de 0 à S. La pièce 1 est dans pieces."""
+    nb = [0] * (S + 1)
+    for s in range(1, S + 1):
+        nb[s] = ...
+        for p in pieces:
+            if ...:
+                nb[s] = ...
+    return nb
+
+print(rendu_dyn(12, [1, 5, 6, 9]))`, { fichier: "monnaie.py", run: false, trous: [6, 8, 9] });
+
+C("dyn-ep1-corr", String.raw`
+def rendu_dyn(S, pieces):
+    nb = [0] * (S + 1)
+    for s in range(1, S + 1):
+        nb[s] = s                                   # au pire, s pièces de 1
+        for p in pieces:
+            if p <= s and nb[s - p] + 1 < nb[s]:
+                nb[s] = nb[s - p] + 1
+    return nb
+
+def rendu_glouton(s, pieces):
+    res = []
+    for p in sorted(pieces, reverse=True):
+        while s >= p:
+            res.append(p)
+            s = s - p
+    return res
+
+def premier_contre_exemple(pieces, maxi):
+    """Plus petite somme où le glouton n'est pas optimal, ou None."""
+    nb = rendu_dyn(maxi, pieces)
+    for s in range(1, maxi + 1):
+        if len(rendu_glouton(s, pieces)) > nb[s]:
+            return s
+    return None
+
+def test():
+    nb = rendu_dyn(12, [1, 5, 6, 9])
+    assert nb[0] == 0 and nb[1] == 1 and nb[5] == 1
+    assert nb[10] == 2                              # 5 + 5 (le glouton donne 9 + 1 : 2 aussi)
+    assert nb[11] == 2                              # 5 + 6
+    assert nb[12] == 2                              # 6 + 6 (le glouton : 9 + 1 + 1 + 1)
+    assert premier_contre_exemple([1, 5, 6, 9], 50) == 11
+    assert premier_contre_exemple([1, 2, 5, 10, 20, 50, 100, 200], 500) is None
+    assert premier_contre_exemple([1, 3, 4], 20) == 6
+
+test()
+print(rendu_dyn(12, [1, 5, 6, 9]))
+print("tous les tests passent")`, { fichier: "monnaie.py", out: "[0, 1, 2, 3, 4, 1, 1, 2, 3, 1, 2, 2, 2]\ntous les tests passent" });
+
+/* épreuve pratique 2 */
+C("dyn-ep2-fourni", String.raw`
+def plssc_rec(a, b):
+    """Longueur de la plus longue sous-séquence commune à a et b."""
+    if a == "" or b == "":
+        return 0
+    if a[-1] == b[-1]:
+        return 1 + plssc_rec(a[:-1], b[:-1])
+    return max(plssc_rec(a[:-1], b), plssc_rec(a, b[:-1]))
+
+print(plssc_rec("CHIEN", "NICHE"))
+print(plssc_rec("ABCDEFGHIJKLMNOP", "PONMLKJIHGFEDCBA"))   # très long...`, { fichier: "sous_sequence.py", run: false });
+
+C("dyn-ep2-corr", String.raw`
+def plssc_memo(a, b, memo=None):
+    if memo is None:
+        memo = {}
+    if a == "" or b == "":
+        return 0
+    if (a, b) not in memo:
+        if a[-1] == b[-1]:
+            memo[(a, b)] = 1 + plssc_memo(a[:-1], b[:-1], memo)
+        else:
+            memo[(a, b)] = max(plssc_memo(a[:-1], b, memo), plssc_memo(a, b[:-1], memo))
+    return memo[(a, b)]
+
+def table(a, b):
+    L = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]
+    for i in range(1, len(a) + 1):
+        for j in range(1, len(b) + 1):
+            if a[i - 1] == b[j - 1]:
+                L[i][j] = L[i - 1][j - 1] + 1
+            else:
+                L[i][j] = max(L[i - 1][j], L[i][j - 1])
+    return L
+
+def sous_sequence(a, b):
+    L = table(a, b)
+    i, j, res = len(a), len(b), ""
+    while i > 0 and j > 0:
+        if a[i - 1] == b[j - 1]:
+            res = a[i - 1] + res
+            i, j = i - 1, j - 1
+        elif L[i - 1][j] >= L[i][j - 1]:
+            i = i - 1
+        else:
+            j = j - 1
+    return res
+
+def est_sous_sequence(s, mot):
+    k = 0
+    for c in mot:
+        if k < len(s) and c == s[k]:
+            k = k + 1
+    return k == len(s)
+
+def test():
+    assert plssc_memo("CHIEN", "NICHE") == 3
+    assert plssc_memo("ABCDEFGHIJKLMNOP", "PONMLKJIHGFEDCBA") == 1
+    assert plssc_memo("", "ABC") == 0
+    for a, b in [("CHIEN", "NICHE"), ("PYTHON", "PHOTON"), ("ACGTTGCA", "TGCATGCA")]:
+        s = sous_sequence(a, b)
+        assert len(s) == plssc_memo(a, b) == table(a, b)[len(a)][len(b)]
+        assert est_sous_sequence(s, a) and est_sous_sequence(s, b)
+
+test()
+print(sous_sequence("CHIEN", "NICHE"), sous_sequence("ACGTTGCA", "TGCATGCA"))
+print("tous les tests passent")`, { fichier: "sous_sequence.py", out: "CHE ATGCA\ntous les tests passent" });
+
+/* épreuve écrite */
+C("dyn-ecrit-corr", String.raw`
+pyramide = [[3],
+            [7, 4],
+            [2, 4, 6],
+            [8, 5, 9, 3]]
+
+def somme_max_rec(p, i, j):
+    """Meilleure somme d'un chemin qui part de la case (i, j) et descend jusqu'en bas."""
+    if i == len(p) - 1:
+        return p[i][j]
+    return p[i][j] + max(somme_max_rec(p, i + 1, j), somme_max_rec(p, i + 1, j + 1))
+
+def somme_max(p):
+    """Version ascendante : on remonte la pyramide depuis la dernière ligne."""
+    meilleur = p[-1][:]                         # copie de la dernière ligne
+    for i in range(len(p) - 2, -1, -1):
+        meilleur = [p[i][j] + max(meilleur[j], meilleur[j + 1]) for j in range(i + 1)]
+    return meilleur[0]
+
+print(somme_max_rec(pyramide, 0, 0), somme_max(pyramide))`, { out: "23 23" });
+
+C("dyn-retenir", String.raw`
+# descendante (mémoïsation)              # ascendante (tableau)
+def f(n, memo):                          def f(n):
+    if n in memo:                            t = [0] * (n + 1)
+        return memo[n]                       t[0] = ...      # cas de base
+    if cas de base:                          for k in range(1, n + 1):
+        return ...                               t[k] = ...  # à partir de t[k-1], t[k-2]...
+    memo[n] = ... f(...) ...                 return t[n]
+    return memo[n]`, { run: false });
+
+CH.push({
+  id: "dyn", n: 14, court: "prog_dynamique", fichier: "prog_dynamique.py",
+  titre: "Programmation dynamique",
+  rubrique: "Rubrique « Algorithmique » : programmation dynamique (rendu de monnaie, alignement de séquences)",
+  accroche: "Ne jamais calculer deux fois la même chose : mémoïsation, tableau rempli du plus petit au plus grand, rendu de monnaie, plus longue sous-séquence commune, alignement.",
+  essentiel: [
+    "La <b>programmation dynamique</b> s’applique quand un problème se ramène à des sous-problèmes qui <b>se chevauchent</b> : on <b>mémorise</b> chaque résultat pour ne jamais le recalculer.",
+    "Deux façons de faire : <b>descendante</b> (récursion + mémoïsation dans un dictionnaire) ou <b>ascendante</b> (remplir un tableau du plus petit sous-problème au plus grand).",
+    "La clé est la <b>relation de récurrence</b> : exprimer la solution d’un problème avec celles de problèmes plus petits.",
+    "<b>Rendu de monnaie</b> : nb[s] = 1 + min(nb[s − p]) sur les pièces p ≤ s ; l’algorithme glouton, lui, n’est pas toujours optimal (6 avec 1, 3, 4).",
+    "<b>Plus longue sous-séquence commune</b> et <b>alignement de séquences</b> : une table (n + 1) × (m + 1) remplie ligne par ligne, puis une remontée pour retrouver la solution. On échange du <b>temps</b> contre de la <b>mémoire</b>."
+  ],
+  attendus: [
+    "Utiliser la programmation dynamique pour écrire un algorithme (capacité du BO).",
+    "Les exemples du programme : <b>alignement de séquences</b> et <b>rendu de monnaie</b>.",
+    "Le programme invite à <b>discuter le coût en mémoire</b> : un tableau ou un dictionnaire de résultats, parfois réductible à quelques variables.",
+    "Savoir distinguer programmation dynamique, « diviser pour régner » (sous-problèmes indépendants) et algorithme glouton (choix local jamais remis en cause, vu en Première)."
+  ],
+  idees: [
+    { id: "i1", t: "Le problème : des calculs répétés", h: `
+<p>La définition de Fibonacci (F(0) = 0, F(1) = 1, F(<i>n</i>) = F(<i>n</i> − 1) + F(<i>n</i> − 2)) se traduit directement en une fonction récursive. Comptons combien de fois chaque valeur est recalculée pour F(10) :</p>
+[[dyn-fib-naif]]
+<p>F(1) est calculé 55 fois, F(2) 34 fois : ce sont… les nombres de Fibonacci eux-mêmes, qui croissent de façon <b>exponentielle</b> (environ × 1,618 à chaque rang). Le problème n’est pas la récursivité, c’est que les sous-problèmes F(<i>n</i> − 1) et F(<i>n</i> − 2) <b>se chevauchent</b> : tous deux ont besoin de F(<i>n</i> − 3), et ainsi de suite.</p>
+<div class="boite def"><div class="lab">"""définition"""</div><p>La <b>programmation dynamique</b> résout un problème en le décomposant en sous-problèmes qui <b>se chevauchent</b>, en résolvant chaque sous-problème <b>une seule fois</b> et en <b>mémorisant</b> sa solution pour la réutiliser.</p></div>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">années 1950 <b>·</b></span> Le mathématicien américain Richard <b>Bellman</b> invente la méthode et son nom ; son livre <i>Dynamic Programming</i> paraît en 1957. « Programmation » y a le sens de « planification », pas d’écriture de code.</p></div>` },
+
+    { id: "i2", t: "Méthode descendante : la mémoïsation", h: `
+<p>On garde la fonction récursive, mais on <b>note</b> chaque résultat dans un dictionnaire <code>memo</code>. Avant de calculer, on regarde si la réponse y est déjà.</p>
+[[dyn-memo]]
+<p>Pour <i>n</i> = 30 : 59 appels au lieu de 2 692 537. Chaque valeur F(<i>k</i>) n’est calculée qu’une fois, les autres appels la relisent : le coût devient <b>linéaire</b>. En contrepartie, le dictionnaire occupe une case par valeur calculée (mémoire proportionnelle à <i>n</i>), et la pile d’appels monte jusqu’à <i>n</i> niveaux (attention à la limite de 1 000).</p>
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>Le module standard <code>functools</code> fournit le décorateur <code>@functools.cache</code> (Python 3.9 et suivants) qui mémoïse automatiquement une fonction. Pratique, mais à l’écrit on attend que tu saches écrire le dictionnaire toi-même.</p></div>` },
+
+    { id: "i3", t: "Méthode ascendante : remplir un tableau", h: `
+<p>On peut aussi partir des plus petits sous-problèmes et remonter : on remplit un tableau <code>f</code> de la case 0 à la case <i>n</i>. Quand on calcule <code>f[k]</code>, les cases dont il dépend sont <b>déjà remplies</b>.</p>
+[[dyn-asc]]
+<p>Plus de récursion, donc plus de limite de pile. Et en regardant les dépendances, on s’aperçoit que seules les <b>deux dernières</b> valeurs servent : on peut réduire la mémoire à deux variables.</p>
+[[dyn-asc2]]
+<div class="tab-wrap"><table><tr><th>version</th><th>temps</th><th>mémoire</th></tr>
+<tr><td>récursive naïve</td><td>exponentiel (2 692 537 appels pour n = 30)</td><td>pile de n cadres</td></tr>
+<tr><td>mémoïsation (descendante)</td><td>linéaire</td><td>dictionnaire de n valeurs + pile de n cadres</td></tr>
+<tr><td>tableau (ascendante)</td><td>linéaire</td><td>tableau de n + 1 cases</td></tr>
+<tr><td>deux variables</td><td>linéaire</td><td>constante</td></tr></table></div>` },
+
+    { id: "i4", t: "Rendu de monnaie : quand le glouton échoue", h: `
+<p>Problème : rendre une somme <i>s</i> avec le <b>moins de pièces possible</b>, les valeurs des pièces étant données (et en quantité illimitée). En Première, tu as vu l’algorithme <b>glouton</b> : prendre à chaque fois la plus grosse pièce possible.</p>
+[[dyn-glouton]]
+<p>Avec les euros, le glouton est toujours optimal (on dit que le système est <b>canonique</b>). Mais avec des pièces de 1, 3 et 4, il rend 6 avec trois pièces (4 + 1 + 1) alors que deux suffisent (3 + 3) : le premier choix, « le plus gros possible », était mauvais, et le glouton ne revient jamais sur un choix.</p>
+<p>Il faut donc <b>essayer toutes les premières pièces</b>. Si l’on donne d’abord une pièce <i>p</i>, il reste à rendre <i>s</i> − <i>p</i> de façon optimale. D’où la relation de récurrence :</p>
+<div class="boite retenir-b"><div class="lab"># relation de récurrence</div><p>nb(0) = 0 et, pour <i>s</i> &gt; 0 : <b>nb(<i>s</i>) = 1 + min { nb(<i>s</i> − <i>p</i>) : <i>p</i> pièce, <i>p</i> ≤ <i>s</i> }</b>.</p></div>
+[[dyn-monnaie-rec]]
+<p>La traduction récursive directe est juste mais explose : plus de deux millions d’appels pour 30, parce que nb(26), nb(25)… sont recalculés sans cesse. Avec mémoïsation, chaque montant de 0 à <i>s</i> n’est calculé qu’une fois :</p>
+[[dyn-monnaie-memo]]` },
+
+    { id: "i5", t: "Rendu de monnaie : le tableau et la reconstruction", h: `
+<p>Version ascendante : on remplit <code>nb[0]</code>, <code>nb[1]</code>, …, <code>nb[S]</code> dans cet ordre. On garde aussi, dans <code>choix[s]</code>, la pièce qui a donné le minimum : cela permet de <b>reconstruire</b> la liste des pièces, et pas seulement leur nombre.</p>
+[[dyn-monnaie]]
+[[w-algo-table-dyn|monnaie]]
+<p>Pour rendre 10 : <code>choix[10]</code> = 3, il reste 7 ; <code>choix[7]</code> = 3, il reste 4 ; <code>choix[4]</code> = 4, il reste 0. Coût : pour chacun des <i>S</i> montants, on essaie les <i>k</i> pièces, soit de l’ordre de <i>S</i> × <i>k</i> opérations ; mémoire : deux tableaux de <i>S</i> + 1 cases.</p>` },
+
+    { id: "i6", t: "La plus longue sous-séquence commune", h: `
+<p>Une <b>sous-séquence</b> d’un mot s’obtient en effaçant certaines lettres, sans changer l’ordre des autres : « PHON » est une sous-séquence de « PYTHON » (on efface Y et T). La <b>plus longue sous-séquence commune</b> (PLSC) à deux mots mesure leur ressemblance : on l’utilise pour comparer deux versions d’un fichier (la commande <code>diff</code>) ou deux brins d’ADN.</p>
+<p>On note L[<i>i</i>][<i>j</i>] la longueur de la PLSC des <i>i</i> premières lettres de <i>a</i> et des <i>j</i> premières lettres de <i>b</i>. On regarde les <b>dernières</b> lettres :</p>
+<ul><li>si elles sont <b>égales</b>, elles font partie d’une PLSC : L[<i>i</i>][<i>j</i>] = L[<i>i</i> − 1][<i>j</i> − 1] + 1 ;</li>
+<li>sinon, l’une des deux ne sert pas : L[<i>i</i>][<i>j</i>] = max(L[<i>i</i> − 1][<i>j</i>], L[<i>i</i>][<i>j</i> − 1]) ;</li>
+<li>et L[0][<i>j</i>] = L[<i>i</i>][0] = 0 (avec un mot vide, rien en commun).</li></ul>
+[[dyn-lcs]]
+[[w-algo-table-dyn|lcs]]
+<p>On remplit la table ligne par ligne : chaque case dépend de celle du dessus, de celle de gauche et de la diagonale, déjà calculées. Pour <b>retrouver</b> la sous-séquence, on part de la case en bas à droite et on remonte : diagonale quand les lettres sont égales (on note la lettre), sinon vers la plus grande des deux voisines. Coût : <i>n</i> × <i>m</i> cases, chacune en temps constant.</p>
+[[dyn-adn]]
+<div class="boite ex"><div class="lab"># pourquoi pas la force brute ?</div><p>Un mot de 29 lettres a 2²⁹ (plus de 500 millions) sous-séquences. La table, elle, n’a que 30 × 29 = 870 cases.</p></div>` },
+
+    { id: "i7", t: "L’alignement de séquences", h: `
+<p>En biologie, on compare deux séquences d’ADN en les <b>alignant</b> : on les écrit l’une sous l’autre en insérant des <b>trous</b> (notés « - ») pour faire correspondre le plus de lettres possible. On donne un <b>score</b> à chaque colonne, par exemple +1 si les lettres sont identiques, −1 si elles diffèrent, −1 pour un trou ; on cherche l’alignement de <b>score maximal</b>.</p>
+<p>Même raisonnement que pour la PLSC, sur la dernière colonne de l’alignement : soit elle aligne les deux dernières lettres, soit la dernière lettre de <i>a</i> face à un trou, soit un trou face à la dernière lettre de <i>b</i>. D’où :</p>
+<div class="boite retenir-b"><div class="lab"># relation de récurrence</div><p>S[<i>i</i>][<i>j</i>] = max( S[<i>i</i> − 1][<i>j</i> − 1] + (1 ou −1), S[<i>i</i> − 1][<i>j</i>] − 1, S[<i>i</i>][<i>j</i> − 1] − 1 ), avec S[<i>i</i>][0] = −<i>i</i> et S[0][<i>j</i>] = −<i>j</i>.</p></div>
+[[dyn-align]]
+<p>Lecture de l’alignement obtenu, colonne par colonne : G/G, -/C, A/A, T/-, T/T, A/G, C/C, A/A. Cinq colonnes identiques (+5), une différence A/G (−1), deux trous (−2) : score <b>2</b>. Plusieurs alignements peuvent avoir le même score maximal ; la remontée en donne un.</p>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1970 <b>·</b></span> Saul <b>Needleman</b> et Christian <b>Wunsch</b> publient cet algorithme d’alignement de séquences de protéines : c’est l’un des fondements de la bio-informatique.</p></div>
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>Avec un score de 1 pour une égalité et 0 pour une différence ou un trou, le score maximal est exactement la longueur de la PLSC. Et la <b>distance d’édition</b> (de Levenshtein, 1965), qui compte le nombre minimal d’insertions, suppressions et substitutions pour passer d’un mot à l’autre, se calcule avec la même table : c’est ce qu’utilisent les correcteurs orthographiques.</p></div>` },
+
+    { id: "i8", t: "Reconnaître un problème de programmation dynamique", h: `
+<div class="boite retenir-b"><div class="lab"># méthode en quatre étapes</div>
+<ol><li><b>Définir le sous-problème</b> par quelques paramètres : nb[<i>s</i>] pour un montant, L[<i>i</i>][<i>j</i>] pour deux préfixes.</li>
+<li><b>Écrire la relation de récurrence</b> (avec les cas de base) en raisonnant sur un « dernier choix » : la dernière pièce, la dernière lettre, la dernière colonne.</li>
+<li><b>Choisir l’ordre de calcul</b> pour que chaque case ne dépende que de cases déjà remplies (montants croissants, lignes du haut vers le bas).</li>
+<li><b>Reconstruire</b> la solution si on la demande (garder le choix fait, ou remonter la table).</li></ol></div>
+<div class="tab-wrap"><table><tr><th>méthode</th><th>sous-problèmes</th><th>exemple</th></tr>
+<tr><td>diviser pour régner</td><td>indépendants</td><td>tri fusion</td></tr>
+<tr><td>programmation dynamique</td><td>qui se chevauchent, chacun résolu une fois</td><td>rendu de monnaie optimal, PLSC</td></tr>
+<tr><td>glouton</td><td>un seul choix local à chaque étape, jamais remis en cause</td><td>rendu de monnaie en euros</td></tr></table></div>
+<p>Signes qui doivent t’alerter à l’écrit : « nombre minimal / maximal », « meilleur », « nombre de façons », une fonction récursive à <b>plusieurs appels</b> dont les arguments se recoupent, une question « que peut-on reprocher à cette fonction ? ».</p>` }
+  ],
+  pieges: [
+    { t: "Un dictionnaire comme valeur par défaut", h: `[[dyn-p-defaut]]<p>La valeur par défaut <code>memo={}</code> est créée <b>une seule fois</b>, à la définition de la fonction : elle est partagée par tous les appels suivants. Ici c’est sans danger (les valeurs de Fibonacci ne changent pas), mais si la fonction a d’autres paramètres (les pièces !), les résultats d’un appel pollueront le suivant. Écris <code>memo=None</code> puis <code>if memo is None: memo = {}</code>, ou passe le dictionnaire explicitement.</p>` },
+    { t: "Remplir le tableau dans le mauvais ordre", h: `[[dyn-p-ordre]]<p>En partant de <code>k = n</code>, on utilise <code>f[k − 1]</code> et <code>f[k − 2]</code> qui valent encore 0. Dans la méthode ascendante, l’ordre de remplissage est <b>imposé</b> par les dépendances.</p>` },
+    { t: "Créer une table avec [[0] * m] * n", h: `[[dyn-p-copie]]<p>Le <code>* 2</code> recopie la <b>référence</b> à la même liste : modifier une case modifie toute la colonne. Pour une table, utilise toujours une liste en compréhension.</p>` },
+    { t: "Oublier le décalage d’indice entre la table et le mot", h: `<p>La table L a <i>n</i> + 1 lignes : la ligne <i>i</i> correspond aux <i>i</i> premières lettres, dont la dernière est <code>a[i - 1]</code>. Comparer <code>a[i]</code> et <code>b[j]</code> décale tout (et provoque un <code>IndexError</code> à la dernière ligne).</p>` },
+    { t: "Croire que le glouton est toujours optimal", h: `<p>Il l’est pour les euros, pas pour n’importe quel système. Pour prouver qu’un algorithme glouton n’est pas optimal, <b>un seul contre-exemple suffit</b> : 6 avec {1, 3, 4}, 8 avec {1, 4, 6} (6 + 1 + 1 contre 4 + 4).</p>` }
+  ],
+  retenir: `
+<h2>Les deux squelettes</h2>
+[[dyn-retenir]]
+<h2>Les relations à connaître</h2>
+<div class="tab-wrap"><table><tr><th>problème</th><th>sous-problème</th><th>récurrence</th><th>coût</th></tr>
+<tr><td>Fibonacci</td><td>F(k)</td><td>F(k) = F(k − 1) + F(k − 2), F(0) = 0, F(1) = 1</td><td>n</td></tr>
+<tr><td>rendu de monnaie</td><td>nb[s]</td><td>nb[0] = 0 ; nb[s] = 1 + min nb[s − p] (p ≤ s)</td><td>S × nombre de pièces</td></tr>
+<tr><td>PLSC</td><td>L[i][j]</td><td>lettres égales : L[i−1][j−1] + 1 ; sinon max(L[i−1][j], L[i][j−1])</td><td>n × m</td></tr>
+<tr><td>alignement</td><td>S[i][j]</td><td>max(diagonale + identité ou différence, haut + trou, gauche + trou)</td><td>n × m</td></tr></table></div>
+<h2>Vocabulaire</h2>
+<ul><li><b>Sous-problèmes qui se chevauchent</b> : le même sous-problème sert plusieurs fois.</li><li><b>Mémoïsation</b> : mémoriser les résultats déjà calculés (dictionnaire) ; méthode descendante.</li><li><b>Méthode ascendante</b> : remplir un tableau du plus petit sous-problème au plus grand.</li><li><b>Reconstruction</b> : retrouver la solution elle-même (pièces, lettres) en gardant les choix ou en remontant la table.</li><li><b>Glouton</b> : choix local jamais remis en cause ; rapide, pas toujours optimal (6 avec {1, 3, 4}).</li></ul>`,
+  predis: [
+    { code: "dyn-x1", niv: "facile", rep: "Attention, la relation est f(n − 1) + f(n − 3), et f(n) = 1 pour n ≤ 2 (y compris f(0)). f(3) = f(2) + f(0) = 2 ; f(4) = f(3) + f(1) = 3 ; f(5) = f(4) + f(2) = 4 ; f(6) = f(5) + f(3) = 6 ; f(7) = f(6) + f(4) = 9. Les clés mémorisées sont 3 à 7 : les cas n ≤ 2 renvoient 1 sans être stockés." },
+    { code: "dyn-x2", niv: "facile", rep: "t[2] = 1 + 2 × 1 = 3, t[3] = 3 + 2 × 1 = 5, t[4] = 5 + 2 × 3 = 11, t[5] = 11 + 2 × 5 = 21. Chaque case est calculée à partir des deux précédentes, déjà remplies." },
+    { code: "dyn-x3", niv: "moyen", rep: "c[i][j] compte les chemins de (0, 0) à (i, j) en n’allant que vers le bas ou la droite : on arrive par le haut ou par la gauche. chemins(2, 2) = 6 et chemins(3, 3) = 20 (ce sont les coefficients binomiaux C(4, 2) et C(6, 3))." },
+    { code: "dyn-x4", niv: "moyen", rep: "Le glouton prend 6, puis 1 et 1 : trois pièces. La programmation dynamique trouve 4 + 4 : deux pièces. nb[8] vaut 2." }
+  ],
+  ep: [
+    { titre: "Rendu de monnaie optimal", enonce: `<p>On dispose de pièces de 1, 5, 6 et 9 unités, en quantité illimitée.</p>[[dyn-ep1-fourni]]`,
+      questions: [
+        { q: "Combien de pièces l’algorithme glouton rend-il pour 12 ? Est-ce optimal ?", c: `<p>Glouton : 9, puis 1, 1, 1 : <b>4 pièces</b>. Or 6 + 6 en fait 2 : le glouton n’est pas optimal pour ce système.</p>` },
+        { q: "Compléter les lignes 6, 8 et 9 de <code>rendu_dyn</code>.", c: `<p>Ligne 6 : <code>nb[s] = s</code> (au pire <i>s</i> pièces de 1). Ligne 8 : <code>p &lt;= s and nb[s - p] + 1 &lt; nb[s]</code>. Ligne 9 : <code>nb[s - p] + 1</code>.</p>` },
+        { q: "Écrire <code>rendu_glouton(s, pieces)</code> puis <code>premier_contre_exemple(pieces, maxi)</code> qui renvoie la plus petite somme pour laquelle le glouton n’est pas optimal (ou <code>None</code>). Tester sur trois systèmes, dont les euros.", c: `[[dyn-ep1-corr]]<p>Pour {1, 5, 6, 9}, la première somme mal rendue est 11 : le glouton donne 9 + 1 + 1, alors que 5 + 6 suffit.</p>` },
+        { q: "À l’oral : quel est le coût en temps et en mémoire de <code>rendu_dyn(S, pieces)</code> ? Pourquoi est-ce de la programmation dynamique ?", c: `<p>Temps : <i>S</i> × <i>k</i> (pour <i>k</i> pièces). Mémoire : un tableau de <i>S</i> + 1 cases. C’est de la programmation dynamique car nb[<i>s</i>] se déduit de sous-problèmes nb[<i>s</i> − <i>p</i>] qui se chevauchent (nb[3] sert pour nb[4], nb[8], nb[9]…), chacun calculé une seule fois.</p>` }
+      ] },
+    { titre: "Plus longue sous-séquence commune", enonce: `<p>On fournit une fonction récursive qui calcule la longueur de la plus longue sous-séquence commune (PLSC) à deux mots.</p>[[dyn-ep2-fourni]]`,
+      questions: [
+        { q: "Exécuter le programme. Que constate-t-on pour le second appel ? Pourquoi ?", c: `<p>Le premier appel renvoie 3 (« CHE ») presque immédiatement ; le second ne se termine pas en un temps raisonnable. Quand les dernières lettres diffèrent, la fonction fait <b>deux</b> appels, qui recalculent les mêmes couples de préfixes : le nombre d’appels est exponentiel. Ici toutes les dernières lettres diffèrent jusqu’au bout, c’est le pire cas.</p>` },
+        { q: "Écrire <code>plssc_memo(a, b, memo=None)</code> qui mémorise les résultats dans un dictionnaire indexé par le couple <code>(a, b)</code>.", c: `<p>Même code, avec un test <code>if (a, b) not in memo</code> avant le calcul et un stockage dans <code>memo[(a, b)]</code>. Il y a au plus (<i>n</i> + 1)(<i>m</i> + 1) couples de préfixes : 289 pour deux mots de 16 lettres.</p>` },
+        { q: "Écrire une version ascendante <code>table(a, b)</code> et une fonction <code>sous_sequence(a, b)</code> qui renvoie une PLSC. Écrire <code>est_sous_sequence(s, mot)</code> et l’utiliser dans les tests.", c: `[[dyn-ep2-corr]]` },
+        { q: "À l’oral : pourquoi ne peut-on pas énumérer toutes les sous-séquences de <code>a</code> et tester si elles sont dans <code>b</code> ?", c: `<p>Un mot de <i>n</i> lettres a 2<sup>n</sup> sous-séquences (chaque lettre est gardée ou effacée) : plus d’un million pour 20 lettres, plus d’un milliard pour 30. La table, elle, a (<i>n</i> + 1)(<i>m</i> + 1) cases.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "La pyramide de nombres", points: "≈ 6 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite.",
+    enonce: `<p>Une pyramide de nombres est représentée par une liste de listes : la ligne <i>i</i> (numérotée à partir de 0) contient <i>i</i> + 1 nombres. On part du sommet et on descend jusqu’à la dernière ligne ; depuis la case (<i>i</i>, <i>j</i>), on peut aller en (<i>i</i> + 1, <i>j</i>) ou en (<i>i</i> + 1, <i>j</i> + 1). On cherche la plus grande somme possible des nombres rencontrés.</p>
+<pre class="petit">        3
+      7   4
+    2   4   6
+  8   5   9   3</pre>
+<p>Cette pyramide s’écrit <code>pyramide = [[3], [7, 4], [2, 4, 6], [8, 5, 9, 3]]</code>.</p>`,
+    questions: [
+      { q: "Combien de chemins différents y a-t-il dans une pyramide de 4 lignes ? De <i>n</i> lignes ?", pts: "0,5 pt", c: `<p>À chacune des 3 descentes, 2 choix : 2³ = <b>8 chemins</b> ; pour <i>n</i> lignes, 2<sup>n−1</sup>. Pour 100 lignes, 2⁹⁹ ≈ 6 × 10²⁹ chemins : impossible de tous les essayer.</p>` },
+      { q: "Un élève propose de descendre toujours vers le plus grand des deux voisins. Quelle somme obtient-il ? Est-ce la meilleure ?", pts: "1 pt", c: `<p>3 → 7 → 4 → 9 : somme <b>23</b>. Ici c’est optimal, mais ce n’est pas garanti : avec <code>[[1], [2, 1], [1, 1, 50]]</code>, le glouton fait 1 → 2 → 1 = 4, alors que 1 → 1 → 50 = 52. C’est un algorithme glouton.</p>` },
+      { q: "On note M(<i>i</i>, <i>j</i>) la meilleure somme d’un chemin qui part de la case (<i>i</i>, <i>j</i>). Donner M sur la dernière ligne, puis une relation entre M(<i>i</i>, <i>j</i>), M(<i>i</i> + 1, <i>j</i>) et M(<i>i</i> + 1, <i>j</i> + 1).", pts: "1,5 pt", c: `<p>Sur la dernière ligne : M(<i>i</i>, <i>j</i>) = p[<i>i</i>][<i>j</i>]. Sinon : <b>M(<i>i</i>, <i>j</i>) = p[<i>i</i>][<i>j</i>] + max(M(<i>i</i> + 1, <i>j</i>), M(<i>i</i> + 1, <i>j</i> + 1))</b>. La réponse est M(0, 0).</p>` },
+      { q: "Écrire une fonction récursive <code>somme_max_rec(p, i, j)</code>. Expliquer pourquoi elle est inefficace.", pts: "1 pt", c: `<p>Elle traduit la relation. Mais la case (2, 1) est atteinte depuis (1, 0) et depuis (1, 1) : M(2, 1) est calculé deux fois, et les recalculs se multiplient en descendant (sous-problèmes qui se chevauchent). Le nombre d’appels est 2<sup>n</sup> − 1.</p>` },
+      { q: "Écrire une fonction <code>somme_max(p)</code> en programmation dynamique, sans récursion, qui remonte la pyramide depuis la dernière ligne. Donner son coût et sa mémoire.", pts: "2 pts", c: `<p>On garde une liste <code>meilleur</code> des valeurs M de la ligne en dessous et on calcule celle de la ligne courante. Coût : une opération par case, soit <i>n</i>(<i>n</i> + 1)/2 ; mémoire : une ligne de <i>n</i> valeurs. On trouve 23.</p>[[dyn-ecrit-corr]]` }
+    ],
+    methode: `<p>Dans un sujet, la programmation dynamique arrive souvent en trois temps : une version récursive à analyser (« pourquoi est-elle lente ? » → sous-problèmes qui se chevauchent, coût exponentiel), une relation de récurrence à écrire, une version avec mémoïsation ou tableau. Écris toujours les <b>cas de base</b> et précise l’<b>ordre de remplissage</b>.</p>` },
+  qcm: [
+    { q: "Quand utilise-t-on la programmation dynamique ?", c: ["Quand les sous-problèmes sont indépendants", "Quand les sous-problèmes se chevauchent", "Quand il n’y a qu’un seul sous-problème", "Uniquement pour trier"], a: 1, e: "On mémorise alors chaque sous-problème pour ne le résoudre qu’une fois.", ref: "i1" },
+    { q: "Dans le calcul naïf de fib(10), combien de fois fib(1) est-il calculé ?", c: ["1", "10", "55", "89"], a: 2, e: "Le nombre de calculs de fib(1) vaut fib(10) = 55.", ref: "i1" },
+    { q: "Qu’est-ce que la mémoïsation ?", c: ["Apprendre un algorithme par cœur", "Mémoriser les résultats déjà calculés pour ne pas les recalculer", "Vider la mémoire après chaque appel", "Écrire les résultats dans un fichier"], a: 1, e: "Typiquement dans un dictionnaire, consulté avant chaque calcul.", ref: "i2" },
+    { q: "Quel est le coût de fib_memo(n) ?", c: ["Exponentiel", "Linéaire", "Constant", "Quadratique"], a: 1, e: "Chaque valeur de 0 à n n’est calculée qu’une fois.", ref: "i2" },
+    { q: "Dans la méthode ascendante, dans quel ordre remplit-on le tableau ?", c: ["Du plus grand sous-problème au plus petit", "Du plus petit au plus grand, pour que les cases utilisées soient déjà remplies", "Au hasard", "En commençant par le milieu"], a: 1, e: "L’ordre est imposé par les dépendances de la relation de récurrence.", ref: "i3" },
+    { q: "Avec des pièces de 1, 3 et 4, combien de pièces l’algorithme glouton rend-il pour 6 ?", c: ["2", "3", "4", "6"], a: 1, e: "4 + 1 + 1 : 3 pièces, alors que 3 + 3 en demande 2.", ref: "i4" },
+    { q: "Quelle relation donne le nombre minimal de pièces nb(s) ?", c: ["nb(s) = nb(s − 1) + 1", "nb(s) = 1 + min nb(s − p) sur les pièces p ≤ s", "nb(s) = s // plus grande pièce", "nb(s) = max nb(s − p)"], a: 1, e: "On essaie toutes les premières pièces possibles et on garde la meilleure.", ref: "i4" },
+    { q: "À quoi sert le tableau <code>choix</code> dans rendu_dyn ?", c: ["À accélérer le calcul", "À reconstruire les pièces à rendre, pas seulement leur nombre", "À trier les pièces", "À éviter la récursion"], a: 1, e: "choix[s] est une pièce optimale à donner en premier ; on recommence avec s − choix[s].", ref: "i5" },
+    { q: "Quel est le coût de rendu_dyn(S, pieces) avec k pièces ?", c: ["De l’ordre de S × k", "De l’ordre de kˢ", "De l’ordre de k", "De l’ordre de log S"], a: 0, e: "Pour chacun des S montants, on essaie chacune des k pièces.", ref: "i5" },
+    { q: "Quelle est la longueur de la plus longue sous-séquence commune à « PYTHON » et « PHOTON » ?", c: ["2", "3", "4", "6"], a: 2, e: "Par exemple « PTON » (celle que trouve la remontée) ou « PHON ».", ref: "i6" },
+    { q: "Si a[i − 1] == b[j − 1], que vaut L[i][j] ?", c: ["L[i − 1][j − 1] + 1", "max(L[i − 1][j], L[i][j − 1])", "L[i − 1][j] + L[i][j − 1]", "0"], a: 0, e: "Les deux dernières lettres égales prolongent une PLSC des préfixes plus courts.", ref: "i6" },
+    { q: "Combien de cases a la table de la PLSC pour deux mots de 10 et 20 lettres ?", c: ["30", "200", "231", "2³⁰"], a: 2, e: "(10 + 1) × (20 + 1) = 231, en comptant la ligne et la colonne du mot vide.", ref: "i6" },
+    { q: "Dans l’alignement de séquences, que représente le symbole « - » ?", c: ["Une lettre différente", "Un trou (insertion ou suppression)", "La fin de la séquence", "Une lettre inconnue"], a: 1, e: "Un trou face à une lettre de l’autre séquence ; il est pénalisé dans le score.", ref: "i7" },
+    { q: "Quelle méthode ne remet jamais en cause un choix fait ?", c: ["La programmation dynamique", "L’algorithme glouton", "La mémoïsation", "La reconstruction"], a: 1, e: "C’est ce qui le rend rapide… et parfois non optimal.", ref: "i8" }
+  ],
+  cartes: [
+    { r: "Programmation dynamique", v: "Résoudre chaque sous-problème une seule fois et mémoriser sa solution. Pour des sous-problèmes qui se chevauchent." },
+    { r: "Mémoïsation (méthode descendante)", v: "Fonction récursive + dictionnaire des résultats déjà calculés, consulté avant tout calcul." },
+    { r: "Méthode ascendante", v: "Remplir un tableau du plus petit sous-problème au plus grand ; pas de récursion." },
+    { r: "Fibonacci : naïf / mémoïsé / ascendant", v: "Exponentiel (2 692 537 appels pour n = 30) / linéaire (59 appels) / linéaire, et mémoire constante avec deux variables." },
+    { r: "Rendu de monnaie : récurrence", v: "nb(0) = 0 ; nb(s) = 1 + min nb(s − p) pour les pièces p ≤ s." },
+    { r: "Contre-exemple au glouton", v: "Pièces {1, 3, 4}, somme 6 : glouton 4 + 1 + 1 (3 pièces), optimal 3 + 3 (2 pièces)." },
+    { r: "Système canonique", v: "Système de pièces pour lequel le glouton est toujours optimal (les euros)." },
+    { r: "Sous-séquence", v: "Mot obtenu en effaçant des lettres sans changer l’ordre des autres. « PHON » est une sous-séquence de « PYTHON »." },
+    { r: "PLSC : récurrence", v: "L[i][0] = L[0][j] = 0 ; lettres a[i−1] et b[j−1] égales : L[i−1][j−1] + 1 ; sinon max(L[i−1][j], L[i][j−1])." },
+    { r: "Coût de la PLSC ou de l’alignement", v: "n × m cases (table (n + 1) × (m + 1)), chacune en temps constant." },
+    { r: "Alignement de séquences", v: "Insérer des trous « - » pour maximiser un score (ex. +1 identique, −1 différent, −1 trou). Needleman et Wunsch, 1970." },
+    { r: "Reconstruction", v: "Retrouver la solution : garder le choix fait (choix[s]) ou remonter la table depuis la dernière case." },
+    { r: "Richard Bellman", v: "Invente la programmation dynamique dans les années 1950 (livre de 1957)." },
+    { r: "Piège : [[0] * m] * n", v: "Les n lignes sont la même liste. Écrire [[0] * m for _ in range(n)]." }
+  ]
+});
+
+/* ===================== Recherche textuelle ===================== */
+C("txt-naif", String.raw`
+def recherche_naive(texte, motif):
+    """Liste des positions où motif apparaît dans texte."""
+    n, m = len(texte), len(motif)
+    positions = []
+    for i in range(n - m + 1):              # chaque position possible de la fenêtre
+        j = 0
+        while j < m and texte[i + j] == motif[j]:
+            j = j + 1                       # on compare de GAUCHE à DROITE
+        if j == m:                          # tout le motif correspond
+            positions.append(i)
+    return positions
+
+print(recherche_naive("LES BANANES ET LES ANANAS", "ANA"))
+print(recherche_naive("LES BANANES ET LES ANANAS", "ANANAS"))
+print(recherche_naive("AAAA", "AA"))`, { out: "[5, 19, 21]\n[19]\n[0, 1, 2]" });
+
+C("txt-table", String.raw`
+def table_decalage(motif):
+    """Pour chaque caractère du motif SAUF le dernier : distance entre sa
+    dernière occurrence et la fin du motif. Les autres caractères : len(motif)."""
+    m = len(motif)
+    d = {}
+    for i in range(m - 1):                  # le dernier caractère est exclu
+        d[motif[i]] = m - 1 - i             # une occurrence plus à droite écrase la précédente
+    return d
+
+print(table_decalage("ANANAS"))
+print(table_decalage("GCAGAGAG"))`, { out: "{'A': 1, 'N': 2}\n{'G': 2, 'C': 6, 'A': 1}" });
+
+C("txt-horspool", String.raw`
+def horspool(texte, motif):
+    n, m = len(texte), len(motif)
+    d = table_decalage(motif)               # prétraitement du motif, une seule fois
+    positions = []
+    i = 0                                   # position de la fenêtre dans le texte
+    while i <= n - m:
+        j = m - 1
+        while j >= 0 and texte[i + j] == motif[j]:
+            j = j - 1                       # on compare de DROITE à GAUCHE
+        if j < 0:
+            positions.append(i)
+        i = i + d.get(texte[i + m - 1], m)  # saut lu dans la table, selon le caractère
+    return positions                        # du texte sous la DERNIÈRE case du motif
+
+print(horspool("LES BANANES ET LES ANANAS", "ANANAS"))
+print(horspool("LES BANANES ET LES ANANAS", "ANA"))
+print(horspool("CGTGCCTACTTACTTACTTACTTACGCGAA", "CTTACTTAC"))`, { deps: ["txt-table"], out: "[19]\n[5, 19, 21]\n[8, 12, 16]" });
+
+C("txt-trace", String.raw`
+def horspool_trace(texte, motif):
+    n, m = len(texte), len(motif)
+    d = table_decalage(motif)
+    print(texte)
+    i = 0
+    while i <= n - m:
+        j = m - 1
+        while j >= 0 and texte[i + j] == motif[j]:
+            j = j - 1
+        c = texte[i + m - 1]
+        saut = d.get(c, m)
+        etat = "TROUVÉ" if j < 0 else "échec en " + str(i + j)
+        print(" " * i + motif + "  " + etat + ", sous la fin : " + c + ", saut de " + str(saut))
+        i = i + saut
+
+horspool_trace("LES BANANES ET LES ANANAS", "ANANAS")`, { deps: ["txt-table"], out: String.raw`
+LES BANANES ET LES ANANAS
+ANANAS  échec en 5, sous la fin : A, saut de 1
+ ANANAS  échec en 6, sous la fin : N, saut de 2
+   ANANAS  échec en 8, sous la fin : N, saut de 2
+     ANANAS  échec en 9, sous la fin : S, saut de 6
+           ANANAS  échec en 16, sous la fin : E, saut de 6
+                 ANANAS  échec en 22, sous la fin : N, saut de 2
+                   ANANAS  TROUVÉ, sous la fin : S, saut de 6` });
+
+C("txt-compte", String.raw`
+def naive_c(texte, motif):
+    n, m, c = len(texte), len(motif), 0
+    for i in range(n - m + 1):
+        j = 0
+        while j < m:
+            c = c + 1
+            if texte[i + j] != motif[j]:
+                break
+            j = j + 1
+    return c
+
+def horspool_c(texte, motif):
+    n, m, c = len(texte), len(motif), 0
+    d = table_decalage(motif)
+    i = 0
+    while i <= n - m:
+        j = m - 1
+        while j >= 0:
+            c = c + 1
+            if texte[i + j] != motif[j]:
+                break
+            j = j - 1
+        i = i + d.get(texte[i + m - 1], m)
+    return c
+
+texte = "Le Rouge et le Noir est un roman de Stendhal paru en 1830. " * 1000
+for motif in ["roman", "Stendhal paru en 1831"]:
+    print(len(texte), motif, naive_c(texte, motif), horspool_c(texte, motif))`, { deps: ["txt-table"], out: "59000 roman 64996 18000\n59000 Stendhal paru en 1831 78980 4001" });
+
+C("txt-pire", String.raw`
+texte = "A" * 1000
+print(naive_c(texte, "AAAB"), horspool_c(texte, "AAAB"))     # le naïf souffre
+print(naive_c(texte, "BAAA"), horspool_c(texte, "BAAA"))     # Horspool souffre`, { deps: ["txt-table", "txt-compte"], out: "3988 997\n997 3988" });
+
+C("txt-bm", String.raw`
+def boyer_moore_simple(texte, motif):
+    """Règle du « mauvais caractère » : on aligne le caractère du texte qui a
+    provoqué l'échec avec sa dernière occurrence dans le motif."""
+    n, m = len(texte), len(motif)
+    derniere = {}
+    for k in range(m):
+        derniere[motif[k]] = k              # indice de la dernière occurrence
+    positions = []
+    i = 0
+    while i <= n - m:
+        j = m - 1
+        while j >= 0 and texte[i + j] == motif[j]:
+            j = j - 1
+        if j < 0:
+            positions.append(i)
+            i = i + 1
+        else:
+            i = i + max(1, j - derniere.get(texte[i + j], -1))
+    return positions
+
+print(boyer_moore_simple("LES BANANES ET LES ANANAS", "ANANAS"))
+print(boyer_moore_simple("CGTGCCTACTTACTTACTTACTTACGCGAA", "CTTACTTAC"))`, { out: "[19]\n[8, 12, 16]" });
+
+C("txt-python", String.raw`
+>>> "ANANAS" in "LES BANANES ET LES ANANAS"
+True
+>>> "LES BANANES ET LES ANANAS".find("ANA")
+5
+>>> "LES BANANES ET LES ANANAS".find("KIWI")
+-1
+>>> "ANANAS".count("ANA")
+1`, { console: true });
+
+/* pièges */
+C("txt-p-borne", String.raw`
+def recherche_bug(texte, motif):
+    res = []
+    for i in range(len(texte) - len(motif)):      # oublie la dernière position
+        if texte[i:i + len(motif)] == motif:
+            res.append(i)
+    return res
+
+print(recherche_bug("BANANA", "NA"), recherche_bug("ABC", "ABC"))`, { out: "[2] []" });
+
+C("txt-p-dernier", String.raw`
+def table_fausse(motif):
+    d = {}
+    for i in range(len(motif)):                  # inclut le dernier caractère
+        d[motif[i]] = len(motif) - 1 - i
+    return d
+
+print(table_fausse("ANANAS"))                    # 'S' -> 0 : saut nul, boucle infinie`, { out: "{'A': 1, 'N': 2, 'S': 0}" });
+
+/* prédis la sortie */
+C("txt-x1", String.raw`
+d = table_decalage("ABRACADABRA")
+print(sorted(d.items()))`, { deps: ["txt-table"], out: "[('A', 3), ('B', 2), ('C', 6), ('D', 4), ('R', 1)]" });
+
+C("txt-x2", String.raw`
+print(recherche_naive("ABABABA", "ABA"), "ABABABA".count("ABA"))`, { deps: ["txt-naif"], out: "[0, 2, 4] 2" });
+
+C("txt-x3", String.raw`
+texte, motif = "TTGACAGATTGACA", "GACA"
+d = table_decalage(motif)
+i, sauts = 0, []
+while i <= len(texte) - len(motif):
+    s = d.get(texte[i + len(motif) - 1], len(motif))
+    sauts.append(s)
+    i = i + s
+print(d, sauts)`, { deps: ["txt-table"], out: "{'G': 3, 'A': 2, 'C': 1} [2, 2, 2, 4, 2]" });
+
+C("txt-x4", String.raw`
+def premiere(texte, motif):
+    for i in range(len(texte) - len(motif) + 1):
+        if texte[i:i + len(motif)] == motif:
+            return i
+    return -1
+
+print(premiere("informatique", "ma"), premiere("informatique", "que"), premiere("NSI", "NSIS"))`, { out: "5 9 -1" });
+
+/* épreuve pratique 1 */
+C("txt-ep1-fourni", String.raw`
+def est_en_position(texte, motif, i):
+    """Renvoie True si motif apparaît dans texte à partir de l'indice i."""
+    ...
+
+def recherche(texte, motif):
+    """Renvoie la liste des indices où motif apparaît dans texte
+    (occurrences qui se chevauchent comprises)."""
+    ...
+
+print(recherche("ATGCGATGCATGCGT", "ATGC"))`, { fichier: "recherche.py", run: false, trous: [3, 8] });
+
+C("txt-ep1-corr", String.raw`
+def est_en_position(texte, motif, i):
+    if i + len(motif) > len(texte):
+        return False
+    for j in range(len(motif)):
+        if texte[i + j] != motif[j]:
+            return False
+    return True
+
+def recherche(texte, motif):
+    res = []
+    for i in range(len(texte) - len(motif) + 1):
+        if est_en_position(texte, motif, i):
+            res.append(i)
+    return res
+
+def test():
+    assert recherche("ATGCGATGCATGCGT", "ATGC") == [0, 5, 9]
+    assert recherche("AAAA", "AA") == [0, 1, 2]                 # chevauchements
+    assert recherche("ABC", "ABC") == [0]                       # motif = texte
+    assert recherche("AB", "ABC") == []                         # motif trop long
+    assert recherche("", "A") == []
+    assert est_en_position("NSI", "SI", 1) and not est_en_position("NSI", "SI", 2)
+    texte = "BLA" * 300 + "NSI" + "BLA" * 300
+    assert recherche(texte, "NSI") == [900]
+
+test()
+print(recherche("ATGCGATGCATGCGT", "ATGC"))
+print("tous les tests passent")`, { fichier: "recherche.py", out: "[0, 5, 9]\ntous les tests passent" });
+
+/* épreuve pratique 2 */
+C("txt-ep2-fourni", String.raw`
+def table_decalage(motif):
+    m = len(motif)
+    d = {}
+    for i in range(m):
+        d[motif[i]] = m - 1 - i
+    return d
+
+def horspool(texte, motif):
+    n, m = len(texte), len(motif)
+    d = table_decalage(motif)
+    res = []
+    i = 0
+    while i <= n - m:
+        j = m - 1
+        while j >= 0 and texte[i + j] == motif[j]:
+            j = j - 1
+        if j < 0:
+            res.append(i)
+        i = i + d.get(texte[i + m - 1], m)
+    return res
+
+print(horspool("CACAO", "CAO"))
+print(horspool("CHOCOLAT", "LAT"))`, { fichier: "horspool.py", run: false });
+
+C("txt-ep2-corr", String.raw`
+def table_decalage(motif):
+    m = len(motif)
+    d = {}
+    for i in range(m - 1):                 # SANS le dernier caractère
+        d[motif[i]] = m - 1 - i
+    return d
+
+def horspool(texte, motif):
+    n, m = len(texte), len(motif)
+    d = table_decalage(motif)
+    res = []
+    i = 0
+    while i <= n - m:
+        j = m - 1
+        while j >= 0 and texte[i + j] == motif[j]:
+            j = j - 1
+        if j < 0:
+            res.append(i)
+        i = i + d.get(texte[i + m - 1], m)
+    return res
+
+def naive(texte, motif):
+    return [i for i in range(len(texte) - len(motif) + 1) if texte[i:i + len(motif)] == motif]
+
+def test():
+    assert table_decalage("CAO") == {"C": 2, "A": 1}
+    assert horspool("CACAO", "CAO") == [2]
+    assert horspool("CHOCOLAT", "LAT") == [5]
+    assert horspool("AAAA", "AA") == [0, 1, 2]
+    assert horspool("AB", "ABC") == []
+    textes = ["ABRACADABRA", "CGTGCCTACTTACTTACTTACTTACGCGAA", "LES BANANES ET LES ANANAS"]
+    motifs = ["A", "ABRA", "CTTAC", "ANA", "XYZ", "S"]
+    for t in textes:
+        for m in motifs:
+            assert horspool(t, m) == naive(t, m), (t, m)
+
+test()
+print("tous les tests passent")`, { fichier: "horspool.py", out: "tous les tests passent" });
+
+/* épreuve écrite */
+C("txt-ecrit-corr", String.raw`
+texte = "GCATCGCAGAGAGTATACAGTACG"
+motif = "GCAGAGAG"
+d = table_decalage(motif)
+print(d)
+print(horspool(texte, motif))
+print(horspool_c(texte, motif), naive_c(texte, motif))`, { deps: ["txt-table", "txt-horspool", "txt-compte"], out: "{'G': 2, 'C': 6, 'A': 1}\n[5]\n21 30" });
+
+C("txt-retenir", String.raw`
+d = {}                                   # 1. PRÉTRAITEMENT du motif (une fois)
+for i in range(m - 1):
+    d[motif[i]] = m - 1 - i
+i = 0
+while i <= n - m:                        # 2. RECHERCHE
+    j = m - 1
+    while j >= 0 and texte[i + j] == motif[j]:
+        j = j - 1                        #    de droite à gauche
+    if j < 0:
+        trouvé en i
+    i = i + d.get(texte[i + m - 1], m)   # 3. SAUT`, { run: false });
+
+CH.push({
+  id: "texte", n: 15, court: "recherche_textuelle", fichier: "recherche_textuelle.py",
+  titre: "Recherche textuelle",
+  rubrique: "Rubrique « Algorithmique » : recherche textuelle (algorithme de Boyer-Moore, prétraitement du motif)",
+  accroche: "Trouver un motif dans un texte : algorithme naïf, Boyer-Moore-Horspool, table de décalage, et pourquoi lire le motif à l’envers fait gagner du temps.",
+  essentiel: [
+    "Chercher un <b>motif</b> (de longueur <i>m</i>) dans un <b>texte</b> (de longueur <i>n</i>) : on fait glisser une <b>fenêtre</b> sur le texte et on compare.",
+    "L’algorithme <b>naïf</b> essaie toutes les positions et avance de 1 à chaque fois : jusqu’à <i>n</i> × <i>m</i> comparaisons.",
+    "<b>Boyer-Moore</b> (dans sa version de <b>Horspool</b>) compare le motif <b>de droite à gauche</b> et, en cas d’échec, <b>saute</b> plusieurs positions d’un coup.",
+    "Le saut est lu dans une <b>table de décalage</b> calculée une fois pour toutes à partir du motif : c’est le <b>prétraitement</b>. Il dépend du caractère du texte sous la dernière case du motif.",
+    "Un caractère absent du motif fait sauter de <i>m</i> cases : plus le motif est long, plus la recherche est rapide (environ <i>n</i>/<i>m</i> comparaisons dans les cas favorables)."
+  ],
+  attendus: [
+    "Étudier l’algorithme de Boyer-Moore pour la recherche d’un motif dans un texte (capacité du BO).",
+    "Comprendre et mettre en avant l’intérêt du <b>prétraitement</b> du motif (commentaire du BO).",
+    "Dérouler l’algorithme à la main : positions de la fenêtre, comparaisons, sauts ; construire la table de décalage.",
+    "L’étude du coût est difficile et <b>ne peut pas être exigée</b> (BO) ; il faut seulement savoir comparer, sur un exemple, le nombre de comparaisons avec l’algorithme naïf."
+  ],
+  idees: [
+    { id: "i1", t: "Le problème et son vocabulaire", h: `
+<p>Chercher un mot dans une page web (Ctrl + F), un gène dans un génome, une signature de virus dans un fichier : c’est le même problème. On dispose d’un <b>texte</b> de <i>n</i> caractères et d’un <b>motif</b> de <i>m</i> caractères (en général <i>m</i> est bien plus petit que <i>n</i>), et on cherche toutes les <b>positions</b> (indices) où le motif apparaît.</p>
+<div class="boite def"><div class="lab">"""définitions"""</div><ul><li><b>Occurrence</b> : position <i>i</i> telle que <code>texte[i:i+m] == motif</code>. Deux occurrences peuvent <b>se chevaucher</b> (« AA » apparaît en 0, 1 et 2 dans « AAAA »).</li><li><b>Fenêtre</b> : le morceau de texte de longueur <i>m</i> qu’on compare au motif ; on la fait glisser de gauche à droite. Il y a <i>n</i> − <i>m</i> + 1 positions possibles.</li></ul></div>
+[[txt-python]]
+<p>Python sait le faire (<code>in</code>, <code>find</code>, <code>count</code>), mais l’épreuve demande de comprendre <b>comment</b>. Attention : <code>count</code> ne compte pas les occurrences qui se chevauchent.</p>` },
+
+    { id: "i2", t: "L’algorithme naïf", h: `
+<p>On place la fenêtre en position 0, on compare le motif caractère par caractère <b>de gauche à droite</b> ; dès qu’un caractère diffère, on décale la fenêtre <b>d’une case</b> et on recommence.</p>
+[[txt-naif]]
+<p>Pour chacune des <i>n</i> − <i>m</i> + 1 positions, on fait au plus <i>m</i> comparaisons : au pire de l’ordre de <b><i>n</i> × <i>m</i></b> comparaisons, par exemple pour chercher « AAAB » dans « AAAA…A ». Sur un texte ordinaire, les échecs arrivent vite (souvent dès la première lettre) et on fait un peu plus de <i>n</i> comparaisons. Le défaut de fond : l’algorithme <b>oublie</b> ce qu’il vient de lire et n’avance que d’une case.</p>
+[[w-algo-boyer-moore|naif]]` },
+
+    { id: "i3", t: "L’idée de Boyer-Moore : lire le motif à l’envers", h: `
+<p>Robert <b>Boyer</b> et J Strother <b>Moore</b> ont eu deux idées (1977) :</p>
+<ol><li><b>Comparer de droite à gauche</b> : on commence par le <b>dernier</b> caractère du motif.</li>
+<li><b>Utiliser le caractère du texte</b> pour sauter : si la fenêtre se termine sur un « E » et que le motif « ANANAS » ne contient aucun « E », aucune position de la fenêtre qui recouvre ce « E » ne peut convenir. On peut donc sauter <b>toute la longueur du motif</b> d’un coup.</li></ol>
+<p>Si le caractère existe dans le motif, on décale juste assez pour l’aligner avec sa <b>dernière occurrence</b> dans le motif : c’est le seul décalage qui ne risque pas de manquer une occurrence.</p>
+<p>R. Nigel <b>Horspool</b> a proposé en 1980 une version simplifiée, la plus enseignée : le saut ne dépend que du caractère du texte situé sous la <b>dernière case</b> du motif, quel que soit l’endroit de l’échec. C’est la version détaillée ci-dessous.</p>
+<div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1977 <b>·</b></span> Robert S. Boyer et J Strother Moore publient « A fast string searching algorithm » dans la revue <i>Communications of the ACM</i>. La même année paraît l’algorithme de Knuth, Morris et Pratt, qui ne relit jamais un caractère du texte.<br><span class="commit">1980 <b>·</b></span> R. Nigel Horspool publie la version simplifiée qui porte son nom.</p></div>` },
+
+    { id: "i4", t: "Le prétraitement : la table de décalage", h: `
+<p>Avant toute recherche, on calcule à partir du <b>motif seul</b> une table qui dit de combien sauter selon le caractère <i>c</i> du texte lu sous la dernière case de la fenêtre :</p>
+<ul><li>si <i>c</i> apparaît dans le motif <b>ailleurs qu’en dernière position</b>, saut = distance entre sa <b>dernière</b> occurrence (hors dernière case) et la fin du motif, soit <i>m</i> − 1 − <i>i</i> ;</li>
+<li>sinon (caractère absent, ou présent seulement en dernière case), saut = <i>m</i>.</li></ul>
+[[txt-table]]
+<p>Pour « ANANAS » (<i>m</i> = 6) : le A d’indice 0 donne 5, puis le N d’indice 1 donne 4, le A d’indice 2 donne 3 (et <b>remplace</b> 5), le N d’indice 3 donne 2, le A d’indice 4 donne 1. Le S final n’est pas pris en compte : tous les autres caractères, S compris, donnent un saut de 6.</p>
+<div class="tab-wrap"><table><tr><th>caractère</th><th>A</th><th>N</th><th>tout autre (S, E, espace…)</th></tr><tr><td>saut</td><td>1</td><td>2</td><td>6</td></tr></table></div>
+<p>Le dernier caractère est exclu pour une raison précise : il donnerait un saut de 0, et la fenêtre ne bougerait plus. Ce prétraitement coûte <i>m</i> opérations et un petit dictionnaire ; il est fait <b>une seule fois</b>, puis amorti sur tout le texte. Si l’on cherche le même motif dans mille fichiers, on ne le refait pas.</p>` },
+
+    { id: "i5", t: "La recherche, pas à pas", h: `
+<p>La fenêtre commence en position <i>i</i> = 0. À chaque position : on compare de droite à gauche ; si tout correspond, on note l’occurrence ; dans tous les cas, on avance de <code>d.get(texte[i + m - 1], m)</code>.</p>
+[[txt-horspool]]
+<p>Le déroulement complet pour « ANANAS » : chaque ligne est une position de la fenêtre.</p>
+[[txt-trace]]
+<p>7 positions de fenêtre au lieu des 20 de l’algorithme naïf. Les deux sauts de 6 viennent d’un « S » puis d’un « E » sous la dernière case : aucun « E » dans le motif, et le seul « S » est en dernière position, donc exclu de la table.</p>
+[[w-algo-boyer-moore|horspool]]` },
+
+    { id: "i6", t: "Combien de comparaisons ? Un gain qui grandit avec le motif", h: `
+<p>Comptons les comparaisons de caractères sur un texte de 59 000 caractères (une phrase répétée 1 000 fois), pour un motif court qui apparaît et pour un motif plus long qui n’apparaît pas :</p>
+[[txt-compte]]
+<div class="tab-wrap"><table><tr><th>motif</th><th>naïf</th><th>Horspool</th></tr><tr><td>« roman » (5 caractères)</td><td>64 996</td><td>18 000</td></tr><tr><td>« Stendhal paru en 1831 » (21 caractères)</td><td>78 980</td><td>4 001</td></tr></table></div>
+<p>Le naïf fait toujours un peu plus de <i>n</i> comparaisons ; Horspool en fait de l’ordre de <i>n</i> / <i>m</i> quand les sauts sont grands : <b>plus le motif est long, plus il va vite</b>. C’est contre-intuitif et c’est le point à retenir. Mais il existe des cas défavorables, pour les deux algorithmes :</p>
+[[txt-pire]]
+<p>Le programme précise que l’étude du coût ne peut pas être exigée : on retient seulement que le pire cas reste de l’ordre de <i>n</i> × <i>m</i>, mais qu’en pratique (textes, ADN avec des motifs assez longs) Boyer-Moore est bien plus rapide.</p>` },
+
+    { id: "i7", t: "Variante : la règle du « mauvais caractère »", h: `
+<p>Certains sujets présentent Boyer-Moore avec la règle du <b>mauvais caractère</b> : en cas d’échec à l’indice <i>j</i> du motif sur le caractère <i>c</i> du texte, on décale pour aligner <i>c</i> avec sa dernière occurrence dans le motif, et d’au moins une case. Si <i>c</i> n’est pas dans le motif, on place le motif juste après lui.</p>
+[[txt-bm]]
+<p>Les deux versions trouvent exactement les mêmes occurrences ; seuls les sauts diffèrent. Lis bien l’énoncé : il dit toujours quelle règle appliquer et donne en général la table.</p>
+<div class="boite hp"><div class="lab"># pour aller plus loin</div><p>L’algorithme complet de Boyer et Moore ajoute une seconde règle, dite du <b>bon suffixe</b> (réutiliser la partie du motif qui a déjà correspondu), et prend le plus grand des deux sauts. Il garantit un nombre de comparaisons proportionnel à <i>n</i> dans le pire cas pour la recherche de la première occurrence. Les fonctions <code>find</code> et <code>in</code> de CPython utilisent un algorithme optimisé inspiré de Boyer-Moore-Horspool, complété depuis Python 3.10 par l’algorithme « two-way » pour les motifs longs.</p></div>` }
+  ],
+  pieges: [
+    { t: "Oublier la dernière position de la fenêtre", h: `[[txt-p-borne]]<p>Il y a <i>n</i> − <i>m</i> + 1 positions : la boucle est <code>range(len(texte) - len(motif) + 1)</code> (ou <code>while i &lt;= n - m</code>). Sinon, on rate une occurrence qui termine le texte, et un motif égal au texte n’est jamais trouvé.</p>` },
+    { t: "Mettre le dernier caractère dans la table de Horspool", h: `[[txt-p-dernier]]<p>Le dernier caractère donnerait un saut de 0 : dès que la fenêtre se termine sur ce caractère, elle ne bouge plus et la boucle tourne indéfiniment. On boucle sur <code>range(m - 1)</code>.</p>` },
+    { t: "Garder la première occurrence au lieu de la dernière", h: `<p>Pour un caractère répété (le A de « ANANAS »), il faut la <b>plus petite</b> distance à la fin, donc l’occurrence <b>la plus à droite</b> (hors dernière case). Avec la première, on sauterait trop loin et on pourrait <b>manquer</b> une occurrence. En parcourant le motif de gauche à droite, l’écrasement dans le dictionnaire donne automatiquement la bonne valeur.</p>` },
+    { t: "Lire le saut sur le caractère de l’échec (dans Horspool)", h: `<p>Dans la version de Horspool, le saut dépend du caractère du texte <b>sous la dernière case</b> de la fenêtre, <code>texte[i + m - 1]</code>, même si l’échec a eu lieu plus à gauche. C’est la règle du mauvais caractère (idée 7) qui utilise le caractère de l’échec. Ne mélange pas les deux.</p>` },
+    { t: "Croire que Boyer-Moore est toujours plus rapide", h: `<p>Sur « BAAA » dans « AAAA…A », Horspool compare tout le motif à chaque position et n’avance que d’une case : 3 988 comparaisons, quatre fois plus que le naïf. Et pour un motif d’un seul caractère, il n’y a rien à gagner. Le gain est réel sur les textes courants et les motifs longs.</p>` }
+  ],
+  retenir: `
+<h2>Boyer-Moore-Horspool</h2>
+[[txt-retenir]]
+<h2>La table de décalage</h2>
+<ul><li>Pour chaque caractère du motif <b>sauf le dernier</b> : <i>m</i> − 1 − (indice de sa dernière occurrence).</li><li>Tout autre caractère : <i>m</i>.</li><li>Exemple « ANANAS » : A → 1, N → 2, autres → 6. « GCAGAGAG » : A → 1, G → 2, C → 6, autres → 8.</li></ul>
+<h2>Comparaison</h2>
+<div class="tab-wrap"><table><tr><th></th><th>naïf</th><th>Boyer-Moore-Horspool</th></tr>
+<tr><td>sens de comparaison</td><td>gauche → droite</td><td>droite → gauche</td></tr>
+<tr><td>décalage</td><td>toujours 1</td><td>lu dans la table (1 à m)</td></tr>
+<tr><td>prétraitement</td><td>aucun</td><td>table du motif, une fois</td></tr>
+<tr><td>pire cas</td><td>≈ n × m</td><td>≈ n × m</td></tr>
+<tr><td>cas courant</td><td>un peu plus de n</td><td>≈ n / m : plus rapide si le motif est long</td></tr></table></div>
+<h2>Repères</h2><ul><li>Boyer et Moore, 1977 ; Horspool, 1980.</li><li>Le coût n’est pas exigible (BO) ; l’intérêt du <b>prétraitement</b>, si.</li></ul>`,
+  predis: [
+    { code: "txt-x1", niv: "facile", rep: "<i>m</i> = 11 ; on parcourt les indices 0 à 9 (le dernier A est exclu) et chaque caractère garde sa dernière occurrence : A en 7 donne 3, B en 8 donne 2, R en 9 donne 1, C en 4 donne 6, D en 6 donne 4." },
+    { code: "txt-x2", niv: "moyen", rep: "La recherche naïve trouve les occurrences qui se chevauchent : 0, 2 et 4. <code>count</code>, lui, reprend sa recherche <b>après</b> chaque occurrence trouvée : seulement 2." },
+    { code: "txt-x3", niv: "difficile", rep: "Table de « GACA » (<i>m</i> = 4) : G → 3, A → 2 (son occurrence d’indice 1), C → 1, autres → 4. On lit le caractère sous la dernière case : i = 0, texte[3] = A → 2 ; i = 2, texte[5] = A → 2 ; i = 4, texte[7] = A → 2 ; i = 6, texte[9] = T, absent → 4 ; i = 10, texte[13] = A → 2 ; i = 12 &gt; 14 − 4 : fin. Les fenêtres 2 et 10 sont les deux occurrences de GACA." },
+    { code: "txt-x4", niv: "facile", rep: "« informatique » : i(0) n(1) f(2) o(3) r(4) m(5) a(6) : « ma » commence en 5 ; « que » commence en 9 (q(9) u(10) e(11)). Un motif plus long que le texte n’est jamais trouvé : −1." }
+  ],
+  ep: [
+    { titre: "Recherche naïve de toutes les occurrences", enonce: `<p>On cherche un fragment d’ADN dans une séquence.</p>[[txt-ep1-fourni]]`,
+      questions: [
+        { q: "Compléter <code>est_en_position(texte, motif, i)</code> sans utiliser de tranche (<code>texte[i:j]</code>).", c: `<p>Vérifier d’abord que le motif tient dans le texte à partir de <i>i</i>, puis comparer caractère par caractère et renvoyer <code>False</code> au premier écart.</p>` },
+        { q: "Compléter <code>recherche(texte, motif)</code>. Quel est le résultat attendu de l’appel fourni ?", c: `<p>On teste toutes les positions de 0 à <code>len(texte) - len(motif)</code> incluse : <code>[0, 5, 9]</code>.</p>` },
+        { q: "Écrire un jeu de tests comprenant : occurrences qui se chevauchent, motif égal au texte, motif plus long que le texte, texte vide.", c: `[[txt-ep1-corr]]` },
+        { q: "À l’oral : combien de comparaisons de caractères au plus pour un texte de 1 000 caractères et un motif de 10 ? Dans quel cas ce maximum est-il atteint ?", c: `<p>991 positions × 10 comparaisons = 9 910 au plus. C’est le cas quand presque tout le motif correspond à chaque position, par exemple « AAAAAAAAAB » dans « AAAA…A ».</p>` }
+      ] },
+    { titre: "Boyer-Moore-Horspool à corriger", enonce: `<p>Le programme ci-dessous ne termine pas sur le premier appel.</p>[[txt-ep2-fourni]]`,
+      questions: [
+        { q: "Calculer à la main <code>table_decalage(\"CAO\")</code> telle qu’elle est écrite. En déduire pourquoi <code>horspool(\"CACAO\", \"CAO\")</code> ne termine pas.", c: `<p>La boucle va jusqu’à <i>m</i> − 1 inclus : {'C': 2, 'A': 1, 'O': 0}. Quand la fenêtre se termine sur un « O » (position 2), le saut vaut 0 : <code>i</code> ne change plus, boucle infinie.</p>` },
+        { q: "Corriger <code>table_decalage</code>. Que doit-elle renvoyer pour « CAO » ?", c: `<p><code>for i in range(m - 1)</code> : {'C': 2, 'A': 1}. Le « O » prend alors le saut par défaut, 3.</p>` },
+        { q: "Écrire une fonction de test qui compare <code>horspool</code> à une recherche naïve sur plusieurs textes et motifs (dont des motifs absents et des chevauchements).", c: `[[txt-ep2-corr]]` },
+        { q: "À l’oral : expliquer l’intérêt du prétraitement.", c: `<p>La table ne dépend que du motif : elle est calculée une seule fois, en <i>m</i> opérations, avant la recherche. Ensuite, chaque saut se lit en temps constant dans le dictionnaire. Si l’on cherche le même motif dans beaucoup de textes, ou dans un très long texte, ce petit coût initial est largement remboursé par les sauts.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "Un gène dans une séquence d’ADN", points: "≈ 6 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite.",
+    enonce: `<p>On cherche le motif <code>GCAGAGAG</code> dans la séquence <code>GCATCGCAGAGAGTATACAGTACG</code> (24 caractères) avec l’algorithme de Boyer-Moore dans la version de Horspool : comparaison de droite à gauche, puis décalage lu dans une table selon le caractère du texte situé sous la dernière case du motif. On utilise les fonctions <code>table_decalage</code> et <code>horspool</code> du cours.</p>`,
+    questions: [
+      { q: "Construire la table de décalage du motif. Que vaut le décalage pour T ?", pts: "1 pt", c: `<p><i>m</i> = 8. Indices 0 à 6 : G(0) → 7, C(1) → 6, A(2) → 5, G(3) → 4, A(4) → 3, G(5) → 2, A(6) → 1. Dernières valeurs : <b>G → 2, C → 6, A → 1</b>. T n’est pas dans le motif : décalage <b>8</b>.</p>` },
+      { q: "Dérouler l’algorithme : pour chaque position de la fenêtre, indiquer le caractère sous la dernière case, le résultat de la comparaison et le décalage.", pts: "2 pts", c: `<p><i>i</i> = 0 : fenêtre GCATCGCA ; dernière case A ≠ G, échec immédiat ; sous la fin « A » → décalage 1.<br><i>i</i> = 1 : CATCGCAG ; G = G, A = A, puis C ≠ G : échec ; « G » → 2.<br><i>i</i> = 3 : TCGCAGAG ; G, A, G, A correspondent, puis C ≠ G : échec ; « G » → 2.<br><i>i</i> = 5 : GCAGAGAG ; les 8 caractères correspondent : <b>occurrence en 5</b> ; « G » → 2.<br><i>i</i> = 7 : AGAGAGTA ; A ≠ G : échec ; « A » → 1.<br><i>i</i> = 8 : GAGAGTAT ; T ≠ G : échec ; « T » → 8.<br><i>i</i> = 16 : ACAGTACG ; G = G, puis C ≠ A : échec ; « G » → 2.<br><i>i</i> = 18 &gt; 24 − 8 = 16 : fin.</p>` },
+      { q: "Combien de positions de fenêtre et de comparaisons de caractères ? Comparer avec l’algorithme naïf.", pts: "1 pt", c: `<p>7 positions de fenêtre et 1 + 3 + 5 + 8 + 1 + 1 + 2 = <b>21 comparaisons</b>. L’algorithme naïf essaie les 17 positions et fait 30 comparaisons (on le vérifie en exécutant les deux fonctions du cours).</p>[[txt-ecrit-corr]]` },
+      { q: "Pourquoi ne met-on pas le dernier caractère du motif dans la table ?", pts: "1 pt", c: `<p>Sa distance à la fin du motif est 0 : la fenêtre ne bougerait plus quand ce caractère se trouve sous la dernière case (boucle infinie).</p>` },
+      { q: "Expliquer pourquoi l’algorithme est d’autant plus efficace que le motif est long.", pts: "1 pt", c: `<p>Quand le caractère sous la dernière case n’apparaît pas dans le motif, la fenêtre saute de <i>m</i> cases d’un coup : avec un long motif, on examine une petite fraction des caractères du texte (environ <i>n</i>/<i>m</i> dans le meilleur cas). Le naïf, lui, regarde au moins chaque caractère une fois.</p>` }
+    ],
+    methode: `<p>Pour dérouler Boyer-Moore à la main, fais un tableau à quatre colonnes : position <i>i</i> de la fenêtre, caractères comparés (de droite à gauche, en soulignant l’échec), caractère sous la dernière case, décalage. Écris la table de décalage en premier et vérifie à la fin que la dernière fenêtre ne dépasse pas le texte (<i>i</i> ≤ <i>n</i> − <i>m</i>).</p>` },
+  qcm: [
+    { q: "Combien de positions possibles a une fenêtre de longueur m dans un texte de longueur n ?", c: ["n", "n − m", "n − m + 1", "n × m"], a: 2, e: "De 0 à n − m inclus.", ref: "i1" },
+    { q: "Que renvoie la recherche naïve de « AA » dans « AAAA » (toutes les occurrences) ?", c: ["[0]", "[0, 2]", "[0, 1, 2]", "[0, 1, 2, 3]"], a: 2, e: "Les occurrences peuvent se chevaucher.", ref: "i1" },
+    { q: "De combien l’algorithme naïf décale-t-il la fenêtre après un échec ?", c: ["De 1", "De m", "De la valeur lue dans une table", "De n − m"], a: 0, e: "Il n’exploite pas ce qu’il a lu.", ref: "i2" },
+    { q: "Quel est l’ordre de grandeur du nombre de comparaisons de l’algorithme naïf dans le pire cas ?", c: ["n", "n + m", "n × m", "n / m"], a: 2, e: "Jusqu’à m comparaisons pour chacune des n − m + 1 positions.", ref: "i2" },
+    { q: "Dans Boyer-Moore, dans quel sens compare-t-on le motif et la fenêtre ?", c: ["De gauche à droite", "De droite à gauche", "Du milieu vers les bords", "Dans un ordre aléatoire"], a: 1, e: "On commence par la dernière case du motif.", ref: "i3" },
+    { q: "Sous la dernière case de la fenêtre se trouve un caractère absent du motif « ANANAS ». De combien saute-t-on (Horspool) ?", c: ["1", "2", "5", "6"], a: 3, e: "Aucune position qui recouvre ce caractère ne peut convenir : on saute de m = 6.", ref: "i3" },
+    { q: "Qu’appelle-t-on le prétraitement dans Boyer-Moore ?", c: ["Le tri du texte", "Le calcul, à partir du motif seul, de la table de décalage", "La conversion du texte en minuscules", "La recherche naïve faite avant"], a: 1, e: "Fait une seule fois, avant la recherche.", ref: "i4" },
+    { q: "Quelle est la table de décalage de Horspool pour le motif « ANANAS » ?", c: ["A → 1, N → 2", "A → 5, N → 4, S → 0", "A → 1, N → 2, S → 0", "A → 3, N → 2"], a: 0, e: "Dernières occurrences hors dernière case : A en 4 (6 − 1 − 4 = 1), N en 3 (2). Tout le reste : 6.", ref: "i4" },
+    { q: "Pourquoi exclut-on le dernier caractère du motif de la table ?", c: ["Pour gagner de la mémoire", "Il donnerait un décalage nul, donc une boucle infinie", "Il est toujours absent du texte", "Par convention, sans raison"], a: 1, e: "Sa distance à la fin du motif est 0.", ref: "i4" },
+    { q: "Dans Horspool, quel caractère détermine le saut ?", c: ["Le premier caractère du motif", "Le caractère du texte où a eu lieu l’échec", "Le caractère du texte sous la dernière case de la fenêtre", "Le dernier caractère du texte"], a: 2, e: "Toujours texte[i + m − 1], même si l’échec a eu lieu plus à gauche.", ref: "i5" },
+    { q: "Pour quels motifs Boyer-Moore-Horspool est-il le plus avantageux ?", c: ["Les motifs d’un seul caractère", "Les motifs longs", "Les motifs qui contiennent toutes les lettres", "Il est toujours équivalent au naïf"], a: 1, e: "Les sauts peuvent atteindre m : environ n / m comparaisons dans les cas favorables.", ref: "i6" },
+    { q: "Que dit le programme sur l’étude du coût de Boyer-Moore ?", c: ["Elle est au cœur de l’épreuve", "Elle est difficile et ne peut pas être exigée", "Elle doit être démontrée", "Elle n’a aucun intérêt"], a: 1, e: "On met en avant l’intérêt du prétraitement, sans calcul de coût exigible.", ref: "i6" },
+    { q: "Dans la règle du « mauvais caractère », sur quel caractère s’appuie le décalage ?", c: ["Sur le caractère du texte qui a provoqué l’échec", "Sur le dernier caractère du motif", "Sur le premier caractère du texte", "Sur aucun"], a: 0, e: "On l’aligne avec sa dernière occurrence dans le motif (au moins un cran).", ref: "i7" }
+  ],
+  cartes: [
+    { r: "Motif, texte, occurrence", v: "On cherche les positions i telles que texte[i:i+m] == motif. Les occurrences peuvent se chevaucher." },
+    { r: "Algorithme naïf", v: "Toutes les positions, comparaison de gauche à droite, décalage de 1. Pire cas ≈ n × m comparaisons." },
+    { r: "Idée de Boyer-Moore", v: "Comparer de droite à gauche ; utiliser le caractère lu dans le texte pour sauter plusieurs positions d’un coup." },
+    { r: "Table de décalage (Horspool)", v: "Pour chaque caractère du motif sauf le dernier : m − 1 − indice de sa dernière occurrence. Autres caractères : m." },
+    { r: "Table de « ANANAS »", v: "A → 1, N → 2, tout autre caractère → 6." },
+    { r: "Saut de Horspool", v: "i = i + d.get(texte[i + m − 1], m) : selon le caractère du texte sous la DERNIÈRE case de la fenêtre." },
+    { r: "Prétraitement", v: "Calcul de la table à partir du motif seul, une fois, avant la recherche. Coût ≈ m, amorti sur tout le texte." },
+    { r: "Pourquoi le dernier caractère est exclu", v: "Il donnerait un saut de 0 : boucle infinie." },
+    { r: "Efficacité de Boyer-Moore-Horspool", v: "Environ n / m comparaisons dans les cas favorables : plus le motif est long, plus c’est rapide. Pire cas ≈ n × m." },
+    { r: "Règle du mauvais caractère", v: "Échec sur le caractère c du texte : aligner c avec sa dernière occurrence dans le motif (au moins 1 case) ; s’il est absent, placer le motif après lui." },
+    { r: "Coût de Boyer-Moore au bac", v: "Non exigible (BO). On retient l’intérêt du prétraitement et on compare les comparaisons sur un exemple." },
+    { r: "Dates", v: "Boyer et Moore, 1977 (Communications of the ACM). Horspool, 1980. Knuth-Morris-Pratt, 1977." }
+  ]
+});
+
 /* ===================== Chapitre 6 — Bases de données ===================== */
 /* Base d'exemple : une petite bibliothèque. Les tables affichées et le script SQL sont produits à partir des mêmes données. */
 var BIB = {
@@ -4989,11 +6096,11 @@ CH.push({
 /* Feuille de style commune aux animations des chapitres « architectures, systèmes d'exploitation et réseaux »
    (soc, proc, rout, crypto) : injectée une seule fois, au premier affichage d'une de ces animations. */
 var ARCH_CSS = [
-  ".ar svg{font-family:var(--mono)}",
-  ".ar svg text{font-size:12px;fill:var(--encre)}",
-  ".ar svg .pt{font-size:10.5px;fill:var(--encre2)}",
-  ".ar svg .gd{font-size:13px;font-weight:700}",
-  ".ar-large svg{min-width:540px}",
+  ".ar .scene svg{font-family:var(--mono)}",
+  ".ar .scene svg text{font-size:12px;fill:var(--encre)}",
+  ".ar .scene svg .pt{font-size:10.5px;fill:var(--encre2)}",
+  ".ar .scene svg .gd{font-size:13px;font-weight:700}",
+  ".ar-large .scene svg{min-width:540px}",
   ".ar .bl rect{fill:var(--bg2);stroke:var(--ligne2);stroke-width:1.4}",
   ".ar .bl.on rect{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.6}",
   ".ar .bl.ok rect{fill:var(--vert-f);stroke:var(--vert);stroke-width:2}",
@@ -5017,6 +6124,7 @@ var ARCH_CSS = [
   ".ar .nd text{font-weight:700;font-size:14px}",
   ".ar .cout{font-size:11px;fill:var(--encre2)}",
   ".ar .cout-f{fill:var(--bg);stroke:none}",
+  ".ar .scene .halo{paint-order:stroke;stroke:var(--bleu-f);stroke-width:5px;stroke-linejoin:round}",
   ".ar-tab{overflow-x:auto;margin-top:10px;-webkit-overflow-scrolling:touch}",
   ".ar-tab table{border-collapse:collapse;font-family:var(--mono);font-size:.78rem;margin:0 auto;min-width:100%}",
   ".ar-tab th,.ar-tab td{border:1px solid var(--ligne);padding:4px 6px;text-align:center;white-space:nowrap}",
@@ -5192,8 +6300,9 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
     s += '<rect class="puce" x="110" y="52" width="382" height="222" rx="14"/><text class="gd" x="118" y="68">SoC (une seule puce)</text>';
     Object.keys(STUB).forEach(function (k) { var on = e.ext && e.ext.indexOf(k) >= 0; s += '<path class="fil' + (on ? " on" : "") + '" d="' + STUB[k] + '"/>'; });
     var nocOn = e.va && e.va.length;
-    s += '<rect class="noc' + (nocOn ? " on" : "") + '" x="122" y="' + (YN - 9) + '" width="358" height="18" rx="9"/><text class="pt" x="300" y="' + (YN + 4) + '" text-anchor="middle">réseau sur puce</text>';
+    s += '<rect class="noc' + (nocOn ? " on" : "") + '" x="122" y="' + (YN - 9) + '" width="358" height="18" rx="9"/>';
     (e.va || []).forEach(function (v) { if (B[v[0]][0] > 110 && B[v[0]][0] < 490 && B[v[1]][0] > 110 && B[v[1]][0] < 490) s += '<path class="fil on' + (saut ? "" : " trace") + '" style="--l:500" d="' + chemin(v[0], v[1]) + '"/>'; });
+    s += '<text class="pt halo" x="474" y="' + (YN + 4) + '" text-anchor="end">réseau sur puce</text>';
     Object.keys(B).forEach(function (k) {
       var b = B[k], dedans = b[0] > 110 && b[0] < 490 && b[1] > 52 && b[1] < 274;
       var cl = (e.on.indexOf(k) >= 0 || (e.ext || []).indexOf(k) >= 0) ? " on" : (e.off && e.off.indexOf(k) >= 0 ? " off" : "");
@@ -5209,6 +6318,7 @@ WIDGETS_EXT["arch-soc"] = function (z, opt, O) {
       s += archJeton(d, "", 0.9, j * 0.9);
     });
     scene.innerHTML = s + "</svg>";
+    if (saut && i === 0) scene.scrollLeft = (scene.scrollWidth - scene.clientWidth) / 2;
   }
   O.lecteur(z, { titre: "dans la puce d’un téléphone", sous: "animation", choix: [{ k: "photo", t: "une photo, du capteur au réseau" }, { k: "energie", t: "la gestion d’énergie" }],
     etapes: function (k) { return SC[k]; }, prepare: function (scene) { scene.parentNode.parentNode.classList.add("ar", "ar-large"); }, dessine: dessine, vitesse: 2600 });
@@ -5374,6 +6484,683 @@ Entre deux puces d’une carte mère, il faut plusieurs cycles pour faire l’al
   ]
 });
 
+/* ===================== Chapitre 7 — Arbres binaires et arbres binaires de recherche ===================== */
+C("c7-noeud", String.raw`
+class Noeud:
+    """Un nœud d'arbre binaire. L'arbre vide est représenté par None."""
+    def __init__(self, valeur, gauche=None, droit=None):
+        self.valeur = valeur
+        self.gauche = gauche      # sous-arbre gauche (un Noeud ou None)
+        self.droit = droit        # sous-arbre droit  (un Noeud ou None)
+
+#          A
+#        /   \
+#       B     C
+#      / \     \
+#     D   E     F
+#        /
+#       G
+arbre = Noeud("A",
+              Noeud("B", Noeud("D"), Noeud("E", Noeud("G"))),
+              Noeud("C", None, Noeud("F")))
+
+print(arbre.valeur, arbre.gauche.valeur, arbre.gauche.droit.gauche.valeur)
+print(arbre.droit.gauche)`, { fichier: "arbre.py", out: "A B G\nNone" });
+
+C("c7-mesures", String.raw`
+def taille(a):
+    """Nombre de nœuds."""
+    if a is None:
+        return 0
+    return 1 + taille(a.gauche) + taille(a.droit)
+
+def hauteur(a):
+    """Nombre de nœuds de la plus longue branche (arbre vide : 0, un seul nœud : 1)."""
+    if a is None:
+        return 0
+    return 1 + max(hauteur(a.gauche), hauteur(a.droit))
+
+def nb_feuilles(a):
+    if a is None:
+        return 0
+    if a.gauche is None and a.droit is None:     # une feuille
+        return 1
+    return nb_feuilles(a.gauche) + nb_feuilles(a.droit)
+
+print(taille(arbre), hauteur(arbre), nb_feuilles(arbre))`, { deps: ["c7-noeud"], out: "7 4 3" });
+
+C("c7-parcours", String.raw`
+def prefixe(a):            # racine, puis gauche, puis droit
+    if a is None:
+        return []
+    return [a.valeur] + prefixe(a.gauche) + prefixe(a.droit)
+
+def infixe(a):             # gauche, puis racine, puis droit
+    if a is None:
+        return []
+    return infixe(a.gauche) + [a.valeur] + infixe(a.droit)
+
+def suffixe(a):            # gauche, puis droit, puis racine
+    if a is None:
+        return []
+    return suffixe(a.gauche) + suffixe(a.droit) + [a.valeur]
+
+print("préfixe :", " ".join(prefixe(arbre)))
+print("infixe  :", " ".join(infixe(arbre)))
+print("suffixe :", " ".join(suffixe(arbre)))`, { deps: ["c7-noeud"], out: "préfixe : A B D E G C F\ninfixe  : D B G E A C F\nsuffixe : D G E B F C A" });
+
+C("c7-largeur", String.raw`
+def largeur(a):
+    """Parcours en largeur : niveau par niveau, de gauche à droite, avec une FILE."""
+    resultat = []
+    file = []
+    if a is not None:
+        file.append(a)
+    while file:                      # tant que la file n'est pas vide
+        n = file.pop(0)              # défiler (coût linéaire ici ; deque serait mieux)
+        resultat.append(n.valeur)
+        if n.gauche is not None:
+            file.append(n.gauche)    # enfiler les enfants
+        if n.droit is not None:
+            file.append(n.droit)
+    return resultat
+
+print(" ".join(largeur(arbre)))`, { deps: ["c7-noeud"], out: "A B C D E F G" });
+
+C("c7-expression", String.raw`
+#        *
+#      /   \
+#     +     -
+#    / \   / \
+#   3   4 6   1
+expr = Noeud("*", Noeud("+", Noeud(3), Noeud(4)), Noeud("-", Noeud(6), Noeud(1)))
+
+def evaluer(a):
+    if a.gauche is None and a.droit is None:      # une feuille : un nombre
+        return a.valeur
+    g, d = evaluer(a.gauche), evaluer(a.droit)    # on évalue d'abord les deux côtés
+    if a.valeur == "+":
+        return g + d
+    if a.valeur == "-":
+        return g - d
+    return g * d
+
+def infixe_parenthese(a):
+    if a.gauche is None and a.droit is None:
+        return str(a.valeur)
+    return "(" + infixe_parenthese(a.gauche) + " " + a.valeur + " " + infixe_parenthese(a.droit) + ")"
+
+print(infixe_parenthese(expr), "=", evaluer(expr))
+print(" ".join(str(v) for v in suffixe(expr)))     # la notation polonaise inverse !`, { deps: ["c7-noeud", "c7-parcours"], out: "((3 + 4) * (6 - 1)) = 35\n3 4 + 6 1 - *" });
+
+C("c7-abr", String.raw`
+def inserer(a, cle):
+    """Insère cle dans l'ABR a et renvoie l'arbre obtenu (les doublons vont à droite)."""
+    if a is None:
+        return Noeud(cle)                     # place libre trouvée : nouvelle feuille
+    if cle < a.valeur:
+        a.gauche = inserer(a.gauche, cle)
+    else:
+        a.droit = inserer(a.droit, cle)
+    return a
+
+def rechercher(a, cle):
+    """True si cle est dans l'ABR a. On ne descend que d'UN côté à chaque étape."""
+    while a is not None:
+        if cle == a.valeur:
+            return True
+        if cle < a.valeur:
+            a = a.gauche
+        else:
+            a = a.droit
+    return False
+
+abr = None
+for cle in [50, 30, 70, 20, 40, 60, 80, 35]:
+    abr = inserer(abr, cle)
+print(infixe(abr))                      # parcours infixe d'un ABR : les clés triées
+print(rechercher(abr, 35), rechercher(abr, 65), hauteur(abr))`, { deps: ["c7-noeud", "c7-mesures", "c7-parcours"], out: "[20, 30, 35, 40, 50, 60, 70, 80]\nTrue False 4" });
+
+C("c7-minimum", String.raw`
+def minimum(a):
+    """Plus petite clé d'un ABR non vide : on descend toujours à gauche."""
+    while a.gauche is not None:
+        a = a.gauche
+    return a.valeur
+
+print(minimum(abr))`, { deps: ["c7-noeud", "c7-mesures", "c7-parcours", "c7-abr"], out: "20" });
+
+C("c7-degenere", String.raw`
+peigne = None
+for cle in [1, 2, 3, 4, 5, 6, 7]:          # clés insérées dans l'ordre croissant
+    peigne = inserer(peigne, cle)
+equilibre = None
+for cle in [4, 2, 6, 1, 3, 5, 7]:          # mêmes clés, autre ordre
+    equilibre = inserer(equilibre, cle)
+print(hauteur(peigne), hauteur(equilibre))`, { deps: ["c7-noeud", "c7-mesures", "c7-parcours", "c7-abr"], out: "7 3" });
+
+C("c7-encadrement", String.raw`
+from math import log2, ceil
+
+for n in [7, 1000, 1_000_000]:
+    h_min = ceil(log2(n + 1))       # arbre le plus « tassé » possible
+    print(n, "nœuds : hauteur entre", h_min, "et", n)`, { out: "7 nœuds : hauteur entre 3 et 7\n1000 nœuds : hauteur entre 10 et 1000\n1000000 nœuds : hauteur entre 20 et 1000000" });
+
+C("c7-classe", String.raw`
+class ABR:
+    """Un ABR vu comme un objet : l'utilisateur ne manipule pas les nœuds."""
+    def __init__(self):
+        self.racine = None
+        self.nb = 0
+
+    def ajouter(self, cle):
+        self.racine = inserer(self.racine, cle)
+        self.nb = self.nb + 1
+
+    def contient(self, cle):
+        return rechercher(self.racine, cle)
+
+    def trie(self):
+        return infixe(self.racine)
+
+annuaire = ABR()
+for nom in ["Lovelace", "Turing", "Hopper", "Knuth"]:
+    annuaire.ajouter(nom)
+print(annuaire.trie(), annuaire.contient("Hopper"), annuaire.nb)`, { deps: ["c7-noeud", "c7-mesures", "c7-parcours", "c7-abr"], out: "['Hopper', 'Knuth', 'Lovelace', 'Turing'] True 4" });
+
+/* pièges */
+C("c7-p-vide", String.raw`
+def taille_fausse(a):
+    return 1 + taille_fausse(a.gauche) + taille_fausse(a.droit)   # cas None oublié
+
+taille_fausse(Noeud("A"))`, { deps: ["c7-noeud"], err: "AttributeError: 'NoneType' object has no attribute 'gauche'" });
+
+C("c7-p-insertion", String.raw`
+def inserer_faux(a, cle):
+    if a is None:
+        return Noeud(cle)
+    if cle < a.valeur:
+        inserer_faux(a.gauche, cle)       # le nouveau nœud n'est rattaché à rien
+    else:
+        inserer_faux(a.droit, cle)
+    return a
+
+r = Noeud(50)
+inserer_faux(r, 30)
+print(r.gauche)`, { deps: ["c7-noeud"], out: "None" });
+
+/* prédis la sortie */
+C("c7-x1", String.raw`
+t = Noeud(1, Noeud(2, None, Noeud(4)), Noeud(3, Noeud(5), Noeud(6)))
+print(prefixe(t), suffixe(t))`, { deps: ["c7-noeud", "c7-parcours"], out: "[1, 2, 4, 3, 5, 6] [4, 2, 5, 6, 3, 1]" });
+
+C("c7-x2", String.raw`
+t = Noeud(1, Noeud(2, None, Noeud(4)), Noeud(3, Noeud(5), Noeud(6)))
+print(taille(t), hauteur(t), nb_feuilles(t))`, { deps: ["c7-noeud", "c7-mesures"], out: "6 3 3" });
+
+C("c7-x3", String.raw`
+def mystere(a):
+    if a is None:
+        return 0
+    return a.valeur + mystere(a.gauche) + mystere(a.droit)
+
+t = Noeud(1, Noeud(2, None, Noeud(4)), Noeud(3, Noeud(5), Noeud(6)))
+print(mystere(t), mystere(t.gauche))`, { deps: ["c7-noeud"], out: "21 6" });
+
+C("c7-x4", String.raw`
+r = None
+for cle in [8, 3, 10, 1, 6, 14, 4]:
+    r = inserer(r, cle)
+print(infixe(r), r.gauche.droit.valeur, hauteur(r))`, { deps: ["c7-noeud", "c7-mesures", "c7-parcours", "c7-abr"], out: "[1, 3, 4, 6, 8, 10, 14] 6 4" });
+
+/* épreuve pratique 1 */
+C("c7-ep1-fourni", String.raw`
+class Noeud:
+    def __init__(self, valeur, gauche=None, droit=None):
+        self.valeur = valeur
+        self.gauche = gauche
+        self.droit = droit
+
+def taille(a):
+    """Nombre de nœuds de l'arbre a (None pour l'arbre vide)."""
+    ...
+
+def hauteur(a):
+    """Hauteur : 0 pour l'arbre vide, 1 pour un arbre réduit à sa racine."""
+    ...
+
+def nb_feuilles(a):
+    """Nombre de feuilles (nœuds sans enfant)."""
+    if a is None:
+        return 0
+    if a.gauche is None or a.droit is None:
+        return 1
+    return nb_feuilles(a.gauche) + nb_feuilles(a.droit)`, { fichier: "mesures.py", run: false, trous: [9, 13] });
+
+C("c7-ep1-corr", String.raw`
+class Noeud:
+    def __init__(self, valeur, gauche=None, droit=None):
+        self.valeur = valeur
+        self.gauche = gauche
+        self.droit = droit
+
+def taille(a):
+    if a is None:
+        return 0
+    return 1 + taille(a.gauche) + taille(a.droit)
+
+def hauteur(a):
+    if a is None:
+        return 0
+    return 1 + max(hauteur(a.gauche), hauteur(a.droit))
+
+def nb_feuilles(a):
+    if a is None:
+        return 0
+    if a.gauche is None and a.droit is None:     # and, pas or
+        return 1
+    return nb_feuilles(a.gauche) + nb_feuilles(a.droit)
+
+def est_parfait(a):
+    """Tous les niveaux sont remplis : taille = 2**hauteur - 1."""
+    return taille(a) == 2 ** hauteur(a) - 1
+
+def test():
+    peigne = Noeud(1, Noeud(2, Noeud(3)))         # 1 -> 2 -> 3 à gauche
+    t = Noeud(1, Noeud(2, None, Noeud(4)), Noeud(3, Noeud(5), Noeud(6)))
+    assert taille(None) == 0 and hauteur(None) == 0 and nb_feuilles(None) == 0
+    assert taille(Noeud(9)) == 1 and hauteur(Noeud(9)) == 1 and nb_feuilles(Noeud(9)) == 1
+    assert taille(t) == 6 and hauteur(t) == 3 and nb_feuilles(t) == 3
+    assert nb_feuilles(peigne) == 1 and hauteur(peigne) == 3
+    assert nb_feuilles(Noeud(1, Noeud(2, Noeud(3), Noeud(4)))) == 2   # le cas qui piégeait or
+    assert not est_parfait(t) and est_parfait(Noeud(1, Noeud(2), Noeud(3)))
+
+test()
+print("tous les tests passent")`, { fichier: "mesures.py", out: "tous les tests passent" });
+
+/* épreuve pratique 2 */
+C("c7-ep2-fourni", String.raw`
+class Noeud:
+    def __init__(self, valeur, gauche=None, droit=None):
+        self.valeur = valeur
+        self.gauche = gauche
+        self.droit = droit
+
+def inserer(a, cle):
+    """Insère cle dans l'ABR a (sans doublon) et renvoie l'arbre obtenu."""
+    if a is None:
+        Noeud(cle)
+    elif cle < a.valeur:
+        a.gauche = inserer(a.gauche, cle)
+    elif cle > a.valeur:
+        a.droit = inserer(a.droit, cle)
+    return a
+
+def rechercher(a, cle):
+    """True si cle est présente dans l'ABR a."""
+    ...`, { fichier: "abr.py", run: false, trous: [19] });
+
+C("c7-ep2-corr", String.raw`
+class Noeud:
+    def __init__(self, valeur, gauche=None, droit=None):
+        self.valeur = valeur
+        self.gauche = gauche
+        self.droit = droit
+
+def inserer(a, cle):
+    if a is None:
+        return Noeud(cle)                 # le return manquait
+    elif cle < a.valeur:
+        a.gauche = inserer(a.gauche, cle)
+    elif cle > a.valeur:
+        a.droit = inserer(a.droit, cle)
+    return a
+
+def rechercher(a, cle):
+    if a is None:
+        return False
+    if cle == a.valeur:
+        return True
+    if cle < a.valeur:
+        return rechercher(a.gauche, cle)
+    return rechercher(a.droit, cle)
+
+def maximum(a):
+    while a.droit is not None:
+        a = a.droit
+    return a.valeur
+
+def test():
+    r = None
+    assert not rechercher(r, 5)                  # arbre vide
+    for c in [41, 20, 65, 11, 29, 50, 91, 32]:
+        r = inserer(r, c)
+    assert all(rechercher(r, c) for c in [41, 20, 65, 11, 29, 50, 91, 32])
+    assert not rechercher(r, 30) and not rechercher(r, 100)
+    assert maximum(r) == 91
+    r = inserer(r, 29)                           # doublon : rien ne change
+    assert r.gauche.droit.valeur == 29 and r.gauche.droit.gauche is None
+
+test()
+print("tous les tests passent")`, { fichier: "abr.py", out: "tous les tests passent" });
+
+/* épreuve écrite */
+C("c7-ecrit-corr", String.raw`
+def evaluer(a):
+    if a.gauche is None and a.droit is None:
+        return a.valeur
+    g = evaluer(a.gauche)
+    d = evaluer(a.droit)
+    if a.valeur == "+":
+        return g + d
+    elif a.valeur == "-":
+        return g - d
+    elif a.valeur == "*":
+        return g * d
+    return g / d
+
+def nb_operations(a):
+    if a is None or (a.gauche is None and a.droit is None):
+        return 0
+    return 1 + nb_operations(a.gauche) + nb_operations(a.droit)
+
+e = Noeud("-", Noeud("*", Noeud(2), Noeud("+", Noeud(5), Noeud(3))), Noeud(4))
+print(prefixe(e))
+print(suffixe(e))
+print(evaluer(e), nb_operations(e), hauteur(e))`, { deps: ["c7-noeud", "c7-mesures", "c7-parcours"], out: "['-', '*', 2, '+', 5, 3, 4]\n[2, 5, 3, '+', '*', 4, '-']\n12 3 4" });
+
+C("c7-retenir", String.raw`
+def f(a):                       # schéma de presque toutes les fonctions sur les arbres
+    if a is None:               # cas de base : l'arbre vide
+        return ...
+    g = f(a.gauche)             # appel récursif à gauche
+    d = f(a.droit)              # appel récursif à droite
+    return ...                  # combinaison avec a.valeur`, { run: false });
+
+/* ---------- dessin d'arbre commun aux deux animations ---------- */
+function arbreSVG(racine, et, opts) {
+  opts = opts || {};
+  var pos = {}, i = 0, prof = 0, W = 54, H = 58;
+  (function place(n, d) { if (!n) return; place(n.g, d + 1); pos[n.v] = { x: i++, y: d }; prof = Math.max(prof, d); place(n.d, d + 1); })(racine, 0);
+  var larg = Math.max(i * W, 200), haut = (prof + 1) * H + 20;
+  var s = '<svg class="arbre-svg" viewBox="0 0 ' + larg + " " + haut + '" style="max-width:' + Math.max(larg, 260) + 'px" role="img" aria-label="Arbre binaire">';
+  (function aretes(n) {
+    if (!n) return;
+    [n.g, n.d].forEach(function (f) { if (f) { var a = pos[n.v], b = pos[f.v]; s += '<line class="ar" x1="' + (a.x * W + W / 2) + '" y1="' + (a.y * H + 26) + '" x2="' + (b.x * W + W / 2) + '" y2="' + (b.y * H + 26) + '"/>'; } });
+    aretes(n.g); aretes(n.d);
+  })(racine);
+  Object.keys(pos).forEach(function (v) {
+    var p = pos[v], e = et[v] || "", x = p.x * W + W / 2, y = p.y * H + 26;
+    s += '<g class="nd-a ' + e + '"><circle cx="' + x + '" cy="' + y + '" r="18"/><text x="' + x + '" y="' + (y + 5) + '" text-anchor="middle">' + v + "</text>" +
+      (opts.rang && opts.rang[v] ? '<text class="rang" x="' + (x + 16) + '" y="' + (y - 14) + '">' + opts.rang[v] + "</text>" : "") + "</g>";
+  });
+  return s + "</svg>";
+}
+function arbreJS(n) { return n ? { v: n[0], g: arbreJS(n[1]), d: arbreJS(n[2]) } : null; }
+
+/* ---------- animation : les quatre parcours ---------- */
+WIDGETS_EXT["parcours-arbre"] = function (z, opt, O) {
+  var R = arbreJS(["A", ["B", ["D"], ["E", ["G"]]], ["C", null, ["F"]]]);
+  var NOMS = { pre: "préfixe", inf: "infixe", suf: "suffixe", larg: "en largeur" };
+  function etapes(k) {
+    var E = [], et = {}, sortie = [], rang = {};
+    function snap(msg, pile, file) { E.push({ et: JSON.parse(JSON.stringify(et)), sortie: sortie.slice(), rang: JSON.parse(JSON.stringify(rang)), pile: pile ? pile.slice() : null, file: file ? file.slice() : null, msg: msg }); }
+    function traite(n) { sortie.push(n.v); rang[n.v] = sortie.length; et[n.v] = "traite"; }
+    if (k === "larg") {
+      var file = [R];
+      snap("Parcours <b>en largeur</b> : on utilise une <b>file</b>. Au départ, elle contient la racine.", null, file.map(function (n) { return n.v; }));
+      while (file.length) {
+        var n = file.shift();
+        traite(n);
+        var enf = [n.g, n.d].filter(Boolean);
+        enf.forEach(function (f) { file.push(f); et[f.v] = "attente"; });
+        snap("On <b>défile</b> " + n.v + " et on le traite" + (enf.length ? " ; on <b>enfile</b> " + (enf.length > 1 ? "ses enfants " : "son enfant ") + enf.map(function (f) { return f.v; }).join(" et ") + " (à la queue)." : " ; il n’a pas d’enfant."), null, file.map(function (x) { return x.v; }));
+      }
+      snap("File vide : fin. Ordre <b>" + sortie.join(" ") + "</b> : niveau par niveau, de gauche à droite.", null, []);
+      return E;
+    }
+    var pile = [];
+    snap("Parcours en profondeur <b>" + NOMS[k] + "</b>, écrit récursivement : chaque appel est empilé sur la <b>pile d’exécution</b> (chapitre 2). " + (k === "pre" ? "On traite la racine <b>avant</b> ses deux sous-arbres." : k === "inf" ? "On traite la racine <b>entre</b> le sous-arbre gauche et le droit." : "On traite la racine <b>après</b> ses deux sous-arbres."), pile);
+    (function dfs(n) {
+      pile.push(n.v); et[n.v] = et[n.v] === "traite" ? "traite" : "actif";
+      snap("Appel sur le nœud <b>" + n.v + "</b>.", pile);
+      if (k === "pre") { traite(n); snap("Préfixe : on traite <b>" + n.v + "</b> tout de suite.", pile); }
+      if (n.g) { if (et[n.v] !== "traite") et[n.v] = "attente"; dfs(n.g); if (et[n.v] !== "traite") et[n.v] = "actif"; }
+      if (k === "inf") { traite(n); snap("Le sous-arbre gauche de " + n.v + " est fini : infixe, on traite <b>" + n.v + "</b> maintenant.", pile); }
+      if (n.d) { if (et[n.v] !== "traite") et[n.v] = "attente"; dfs(n.d); if (et[n.v] !== "traite") et[n.v] = "actif"; }
+      if (k === "suf") { traite(n); snap("Les deux sous-arbres de " + n.v + " sont finis : suffixe, on traite <b>" + n.v + "</b>.", pile); }
+      pile.pop();
+    })(R);
+    snap("Pile vide : fin. Ordre " + NOMS[k] + " : <b>" + sortie.join(" ") + "</b>.", pile);
+    return E;
+  }
+  function dessine(sc, e) {
+    var h = '<div class="parc">' + arbreSVG(R, e.et, { rang: e.rang }) + '<div class="parc-cote">';
+    if (e.pile) h += '<div class="titre-pile">pile d’appels (sommet en haut)</div><div class="mini-pile">' + (e.pile.length ? e.pile.slice().reverse().map(function (v, i) { return '<span class="puce' + (i === 0 ? " vu" : "") + '">parcours(' + v + ")</span>"; }).join("") : '<span class="repere">vide</span>') + "</div>";
+    if (e.file) h += '<div class="titre-pile">file (tête à gauche)</div><div class="mini-file">' + (e.file.length ? e.file.map(function (v) { return '<span class="puce">' + v + "</span>"; }).join("") : '<span class="repere">vide</span>') + "</div>";
+    h += '<div class="titre-pile">sortie</div><div class="sortie-p mono">' + (e.sortie.join(" ") || "…") + "</div></div></div>";
+    sc.innerHTML = h;
+  }
+  O.lecteur(z, { titre: "parcours d’un arbre binaire", choix: [{ k: "pre", t: "préfixe" }, { k: "inf", t: "infixe" }, { k: "suf", t: "suffixe" }, { k: "larg", t: "en largeur" }], etapes: etapes, dessine: dessine, vitesse: 1300 });
+};
+
+/* ---------- animation : ABR, insertion et recherche ---------- */
+WIDGETS_EXT["abr"] = function (z, opt, O) {
+  function ins(r, k) { if (!r) return { v: k, g: null, d: null }; if (k < r.v) r.g = ins(r.g, k); else r.d = ins(r.d, k); return r; }
+  function clone(r) { return r ? { v: r.v, g: clone(r.g), d: clone(r.d) } : null; }
+  function haut(r) { return r ? 1 + Math.max(haut(r.g), haut(r.d)) : 0; }
+  function etapes(k) {
+    var E = [], r = null, cles;
+    function snap(msg, et) { E.push({ r: clone(r), et: et || {}, msg: msg }); }
+    if (k === "inserer" || k === "peigne") {
+      cles = k === "inserer" ? [50, 30, 70, 20, 40, 60, 80, 35] : [1, 2, 3, 4, 5, 6, 7];
+      snap("On insère, dans cet ordre : <b>" + cles.join(", ") + "</b>. Règle de l’ABR : plus petit à gauche, plus grand (ou égal) à droite.");
+      cles.forEach(function (c) {
+        var n = r, chemin = {};
+        while (n) {
+          chemin[n.v] = "vu";
+          snap("Insérer <b>" + c + "</b> : on compare à " + n.v + " → " + (c < n.v ? c + " &lt; " + n.v + ", on descend à <b>gauche</b>." : c + " ≥ " + n.v + ", on descend à <b>droite</b>."), JSON.parse(JSON.stringify(chemin)));
+          n = c < n.v ? n.g : n.d;
+        }
+        r = ins(r, c); chemin[c] = "neuf";
+        snap("Place vide : <b>" + c + "</b> devient une nouvelle feuille.", chemin);
+      });
+      snap(k === "inserer" ? "8 clés, hauteur <b>" + haut(r) + "</b>. Le parcours infixe donne les clés triées : 20 30 35 40 50 60 70 80." : "Clés insérées dans l’ordre croissant : l’arbre est un « peigne » de hauteur <b>7</b> (autant que de clés). Rechercher 7 coûte 7 comparaisons, comme dans une liste. Avec l’ordre 4, 2, 6, 1, 3, 5, 7, la hauteur serait 3.");
+      return E;
+    }
+    [50, 30, 70, 20, 40, 60, 80, 35].forEach(function (c) { r = ins(r, c); });
+    var cle = k === "chercher" ? 35 : 65, n = r, chemin = {}, nb = 0;
+    snap("On cherche <b>" + cle + "</b>. À chaque nœud, une comparaison suffit pour savoir de quel côté continuer.");
+    while (n) {
+      nb++;
+      if (cle === n.v) { chemin[n.v] = "neuf"; snap("Comparaison " + nb + " : " + cle + " = " + n.v + ". <b>Trouvé</b> en " + nb + " comparaisons (la hauteur de l’arbre est " + haut(r) + ").", chemin); return E; }
+      chemin[n.v] = "vu";
+      snap("Comparaison " + nb + " : " + cle + (cle < n.v ? " &lt; " : " &gt; ") + n.v + " → à " + (cle < n.v ? "gauche" : "droite") + ". Tout l’autre sous-arbre est écarté.", chemin);
+      n = cle < n.v ? n.g : n.d;
+    }
+    snap("On tombe sur un sous-arbre vide : <b>" + cle + " n’est pas dans l’arbre</b>, après " + nb + " comparaisons. Au plus autant de comparaisons que la hauteur.", chemin);
+    return E;
+  }
+  function dessine(sc, e) { sc.innerHTML = e.r ? arbreSVG(e.r, e.et) : '<div class="repere" style="padding:30px">arbre vide (None)</div>'; }
+  O.lecteur(z, { titre: "arbre binaire de recherche", choix: [{ k: "inserer", t: "insérer 8 clés" }, { k: "chercher", t: "chercher 35" }, { k: "absente", t: "chercher 65" }, { k: "peigne", t: "insérer 1…7 dans l’ordre" }], etapes: etapes, dessine: dessine, vitesse: 1200 });
+};
+
+CH.push({
+  id: "ch7", n: 7, court: "arbres", fichier: "ch7_arbres.py",
+  titre: "Arbres binaires et arbres binaires de recherche",
+  rubrique: "Rubriques « Structures de données » (arbres : structures hiérarchiques) et « Algorithmique » (algorithmes sur les arbres binaires et les ABR)",
+  accroche: "Vocabulaire, taille et hauteur, parcours préfixe / infixe / suffixe / en largeur, arbres binaires de recherche : recherche et insertion.",
+  essentiel: [
+    "Un <b>arbre</b> est une structure hiérarchique : une <b>racine</b>, des nœuds reliés à leurs <b>enfants</b>, des <b>feuilles</b> sans enfant.",
+    "Un <b>arbre binaire</b> est vide, ou formé d’un nœud (sa racine) et de deux arbres binaires : ses sous-arbres <b>gauche</b> et <b>droit</b>. La définition est récursive, les algorithmes aussi.",
+    "<b>Taille</b> : nombre de nœuds. <b>Hauteur</b> : nombre de nœuds de la plus longue branche (vérifie la convention de l’énoncé). Pour un arbre binaire : <i>h</i> ≤ <i>n</i> ≤ 2<sup><i>h</i></sup> − 1.",
+    "Parcours en profondeur : <b>préfixe</b> (racine, G, D), <b>infixe</b> (G, racine, D), <b>suffixe</b> (G, D, racine). Parcours <b>en largeur</b> : niveau par niveau, avec une <b>file</b>.",
+    "Dans un <b>ABR</b>, chaque clé est plus grande que celles de son sous-arbre gauche et plus petite que celles du droit : recherche et insertion coûtent au plus la hauteur, soit environ log₂ <i>n</i> si l’arbre est équilibré."
+  ],
+  attendus: [
+    "Identifier des situations nécessitant une structure arborescente ; employer le vocabulaire : nœud, racine, feuille, sous-arbre gauche, sous-arbre droit.",
+    "Évaluer quelques mesures des arbres binaires : taille, hauteur, encadrement de la hauteur.",
+    "Calculer la taille et la hauteur d’un arbre ; parcourir un arbre de différentes façons (préfixe, infixe, suffixe ; en largeur d’abord).",
+    "Rechercher une clé dans un arbre binaire de recherche, insérer une clé. Savoir que la recherche dans un ABR équilibré est de coût logarithmique.",
+    "Utiliser une structure récursive adaptée et la programmation par classe (le BO cite les arbres comme exemple)."
+  ],
+  idees: [
+    { id: "i1", t: "Des données hiérarchiques", h: `
+<p>Les listes, piles et files rangent les données en ligne. Beaucoup de données sont <b>hiérarchiques</b> : un élément « contient » ou « commande » plusieurs autres.</p>
+<ul><li>l’arborescence des fichiers : un dossier contient des fichiers et des sous-dossiers ;</li>
+<li>une page web : la balise <code>&lt;html&gt;</code> contient <code>&lt;head&gt;</code> et <code>&lt;body&gt;</code>, qui contiennent d’autres balises (le DOM) ;</li>
+<li>un tableau de tournoi (quarts, demies, finale), un arbre généalogique ;</li>
+<li>une expression arithmétique : dans (3 + 4) × (6 − 1), la multiplication porte sur deux sous-expressions.</li></ul>
+<div class="boite def"><div class="lab">"""vocabulaire"""</div><p>Un <b>arbre</b> est formé de <b>nœuds</b> reliés par des <b>arêtes</b>. Le nœud du haut est la <b>racine</b>. Chaque nœud (sauf la racine) a un unique <b>parent</b> ; ses <b>enfants</b> sont les nœuds qui lui sont reliés en dessous. Un nœud sans enfant est une <b>feuille</b>. Une <b>branche</b> est un chemin de la racine à une feuille.</p></div>` },
+
+    { id: "i2", t: "L’arbre binaire, une structure récursive", h: `
+<div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>arbre binaire</b> est soit <b>vide</b>, soit formé d’un nœud, la <b>racine</b>, qui porte une valeur, et de deux arbres binaires : le <b>sous-arbre gauche</b> et le <b>sous-arbre droit</b>. Chaque nœud a donc au plus deux enfants, et on distingue gauche et droit.</p></div>
+<p>En Python, on représente un nœud par un objet (chapitre 1) dont deux attributs référencent les sous-arbres, et l’arbre vide par <code>None</code>, exactement comme le maillon d’une liste chaînée (chapitre 3), mais avec deux « suivants ».</p>
+[[c7-noeud]]
+<p>Cet arbre sert d’exemple dans tout le chapitre : racine A ; feuilles D, G et F ; le sous-arbre gauche de A a pour racine B.</p>` },
+
+    { id: "i3", t: "Mesurer un arbre : taille et hauteur", h: `
+<p>La <b>taille</b> est le nombre de nœuds. La <b>hauteur</b> est le nombre de nœuds de la plus longue branche. Les deux se calculent par la même idée récursive : une réponse pour l’arbre vide, puis une combinaison des réponses des deux sous-arbres.</p>
+[[c7-mesures]]
+<div class="boite attention"><div class="lab">⚠ deux conventions pour la hauteur</div><p>Ici : arbre vide → 0, arbre réduit à sa racine → 1 (on compte les nœuds). Certains sujets comptent les <b>arêtes</b> : racine seule → 0 et arbre vide → −1. La différence est toujours de 1. <b>Lis la définition donnée par l’énoncé</b> et applique-la.</p></div>
+<p><b>Encadrement</b> (convention « nœuds ») : un arbre binaire de hauteur <i>h</i> a au moins <i>h</i> nœuds (un « peigne », une seule branche) et au plus 2<sup><i>h</i></sup> − 1 nœuds (tous les niveaux pleins : 1 + 2 + 4 + … + 2<sup><i>h</i>−1</sup>). Inversement, avec <i>n</i> nœuds, la hauteur est comprise entre ⌈log₂(<i>n</i> + 1)⌉ et <i>n</i>.</p>
+[[c7-encadrement]]` },
+
+    { id: "i4", t: "Les trois parcours en profondeur", h: `
+<p>Parcourir un arbre, c’est visiter chaque nœud une fois. En profondeur, on explore entièrement un sous-arbre avant l’autre ; la seule question est de savoir <b>quand</b> on traite la racine :</p>
+<div class="tab-wrap"><table><tr><th>parcours</th><th>ordre</th><th>sur l’arbre exemple</th></tr>
+<tr><td>préfixe</td><td>racine, gauche, droit</td><td><code>A B D E G C F</code></td></tr>
+<tr><td>infixe</td><td>gauche, racine, droit</td><td><code>D B G E A C F</code></td></tr>
+<tr><td>suffixe (ou postfixe)</td><td>gauche, droit, racine</td><td><code>D G E B F C A</code></td></tr></table></div>
+[[c7-parcours]]
+<p>Choisis un parcours et avance pas à pas : les appels s’empilent comme au chapitre 2, et le numéro d’ordre s’affiche sur chaque nœud traité.</p>
+[[w-parcours-arbre]]
+<p>Astuce pour l’écrit : fais le tour de l’arbre en longeant les nœuds par la gauche ; le préfixe note un nœud quand on passe <b>à sa gauche</b>, l’infixe quand on passe <b>dessous</b>, le suffixe quand on passe <b>à sa droite</b>.</p>` },
+
+    { id: "i5", t: "Le parcours en largeur, avec une file", h: `
+<p>Le parcours <b>en largeur</b> visite les nœuds <b>niveau par niveau</b>, de gauche à droite : A, puis B et C, puis D, E et F, puis G. Il n’est pas récursif : il utilise une <b>file</b> (chapitre 3). On enfile la racine ; tant que la file n’est pas vide, on défile un nœud, on le traite et on enfile ses enfants.</p>
+[[c7-largeur]]
+<p>Pourquoi une file ? Les enfants d’un nœud passent <b>après</b> tous les nœuds déjà en attente, donc après le reste du niveau courant. Avec une <b>pile</b> à la place de la file, on obtiendrait un parcours en profondeur. Le même schéma servira pour les graphes (chapitre 8). Dans l’animation ci-dessus, choisis « en largeur » pour voir la file évoluer.</p>` },
+
+    { id: "i6", t: "Un exemple d’utilisation : les arbres d’expressions", h: `
+<p>Une expression arithmétique se représente par un arbre dont les feuilles sont les nombres et les nœuds internes les opérations. Pour l’évaluer, on évalue d’abord les deux sous-arbres, puis on applique l’opération : c’est un parcours <b>suffixe</b>.</p>
+[[c7-expression]]
+<p>Le parcours suffixe écrit l’expression en <b>notation polonaise inverse</b>, celle que l’on évalue avec une pile (chapitre 3). Le parcours infixe, avec des parenthèses, redonne l’écriture habituelle. Les compilateurs et les calculatrices utilisent ce genre d’arbre pour analyser les expressions.</p>` },
+
+    { id: "i7", t: "L’arbre binaire de recherche (ABR)", h: `
+<div class="boite def"><div class="lab">"""définition"""</div><p>Un <b>arbre binaire de recherche</b> est un arbre binaire dont les nœuds portent des <b>clés</b> comparables, tel que, pour chaque nœud, toutes les clés de son sous-arbre gauche sont <b>inférieures</b> à sa clé et toutes celles de son sous-arbre droit sont <b>supérieures</b> (les doublons sont soit interdits, soit placés d’un côté choisi, ici à droite).</p></div>
+<p>Conséquence : le parcours <b>infixe</b> d’un ABR donne ses clés <b>dans l’ordre croissant</b>. Pour <b>rechercher</b> une clé, on la compare à la racine : égale, trouvée ; plus petite, on continue à gauche ; plus grande, à droite. Pour <b>insérer</b>, on descend de la même façon jusqu’à une place vide, où l’on crée une feuille.</p>
+[[c7-abr]]
+[[w-abr]]
+<p>La plus petite clé est tout en bas à gauche :</p>
+[[c7-minimum]]` },
+
+    { id: "i8", t: "Coût : tout dépend de la hauteur", h: `
+<p>Recherche et insertion suivent <b>une seule branche</b> : elles font au plus <i>h</i> comparaisons, où <i>h</i> est la hauteur. Si l’arbre est <b>équilibré</b> (tous les niveaux presque pleins), <i>h</i> vaut environ log₂ <i>n</i> : une vingtaine de comparaisons pour un million de clés, comme la recherche dichotomique. Mais l’arbre dépend de l’<b>ordre d’insertion</b> : des clés insérées déjà triées donnent un « peigne » de hauteur <i>n</i>, et la recherche redevient linéaire.</p>
+[[c7-degenere]]
+<div class="boite hp"><div class="lab"># pour aller plus loin : les arbres équilibrés</div><p>Les arbres AVL (Adelson-Velsky et Landis, 1962) ou rouge-noir se rééquilibrent à chaque insertion par des « rotations », pour garantir une hauteur de l’ordre de log₂ <i>n</i>. Les index des bases de données (chapitre 6) utilisent des arbres équilibrés de la famille des B-arbres.</p></div>` },
+
+    { id: "i9", t: "Programmer par classe : un ABR comme objet", h: `
+<p>Le programme cite les arbres comme exemple de programmation par classe. On peut cacher les nœuds derrière une classe qui offre une interface simple (ajouter, contient, trie) : c’est la séparation interface / implémentation du chapitre 3.</p>
+[[c7-classe]]
+<p>Les chaînes se comparent dans l’ordre alphabétique (plus précisément, l’ordre des codes des caractères) : le parcours infixe les renvoie triées. Un ABR peut ainsi servir de dictionnaire <b>ordonné</b>, ce que le dictionnaire de Python (chapitre 5) ne fait pas.</p>` }
+  ],
+  pieges: [
+    { t: "Oublier le cas de l’arbre vide", h: `[[c7-p-vide]]<p>Toute fonction récursive sur un arbre commence par <code>if a is None:</code>. Les sous-arbres des feuilles sont vides : sans ce cas, on finit toujours par écrire <code>None.gauche</code>.</p>` },
+    { t: "Ne pas rattacher le nœud inséré", h: `[[c7-p-insertion]]<p>La fonction renvoie le sous-arbre modifié : il faut l’affecter, <code>a.gauche = inserer(a.gauche, cle)</code>, et écrire <code>abr = inserer(abr, cle)</code> à l’appel (l’arbre vide devient un nœud).</p>` },
+    { t: "Se tromper de convention pour la hauteur", h: `<p>Nœuds ou arêtes ? Arbre réduit à sa racine : 1 ou 0 ? Relis la définition de l’énoncé ; l’encadrement <i>h</i> ≤ <i>n</i> ≤ 2<sup><i>h</i></sup> − 1 devient <i>h</i> + 1 ≤ <i>n</i> ≤ 2<sup><i>h</i>+1</sup> − 1 si l’on compte les arêtes.</p>` },
+    { t: "Croire que l’infixe donne toujours un ordre trié", h: `<p>Seulement pour un ABR. Sur l’arbre exemple, l’infixe donne D B G E A C F, qui n’est pas trié.</p>` },
+    { t: "Vérifier un ABR seulement localement", h: `<p>Comparer chaque nœud à ses deux enfants ne suffit pas : toute la partie gauche doit être inférieure à la racine. L’arbre 50 → gauche 30 → droit 60 respecte la règle localement mais 60 est à gauche de 50 : ce n’est pas un ABR.</p>` },
+    { t: "Utiliser une pile pour le parcours en largeur", h: `<p>Une pile fait ressortir les derniers nœuds ajoutés : on obtient un parcours en profondeur. Le parcours en largeur exige une file (premier entré, premier sorti).</p>` }
+  ],
+  retenir: `
+<h2>Vocabulaire et mesures</h2>
+<div class="tab-wrap"><table><tr><th>mot</th><th>sens</th></tr>
+<tr><td>racine, nœud, feuille</td><td>nœud sans parent ; élément de l’arbre ; nœud sans enfant</td></tr>
+<tr><td>arbre binaire</td><td>vide, ou racine + sous-arbre gauche + sous-arbre droit</td></tr>
+<tr><td>taille</td><td>nombre de nœuds</td></tr>
+<tr><td>hauteur</td><td>nœuds de la plus longue branche (ou arêtes : lire l’énoncé)</td></tr>
+<tr><td>encadrement</td><td><i>h</i> ≤ <i>n</i> ≤ 2<sup><i>h</i></sup> − 1 ; ⌈log₂(<i>n</i>+1)⌉ ≤ <i>h</i> ≤ <i>n</i></td></tr>
+<tr><td>ABR</td><td>à gauche plus petit, à droite plus grand, pour <b>chaque</b> nœud</td></tr></table></div>
+<h2>Le schéma récursif</h2>
+[[c7-retenir]]
+<h2>Parcours</h2>
+<ul><li>Préfixe : R G D · Infixe : G R D · Suffixe : G D R (récursifs, une pile cachée).</li><li>En largeur : une <b>file</b> ; défiler, traiter, enfiler les enfants.</li><li>Infixe d’un ABR = clés triées. Suffixe d’un arbre d’expression = notation polonaise inverse.</li></ul>
+<h2>Coûts dans un ABR</h2>
+<p>Recherche, insertion : au plus <i>h</i> comparaisons. Équilibré : ≈ log₂ <i>n</i>. Dégénéré (clés insérées triées) : <i>n</i>.</p>`,
+  predis: [
+    { code: "c7-x1", niv: "moyen", q: "Dessine d’abord l’arbre <code>t</code>.", rep: "Racine 1 ; à gauche 2 (qui n’a qu’un enfant droit, 4) ; à droite 3 (enfants 5 et 6). Préfixe : 1, 2, 4, 3, 5, 6. Suffixe : 4, 2, 5, 6, 3, 1." },
+    { code: "c7-x2", niv: "facile", rep: "6 nœuds ; la plus longue branche (1-2-4 ou 1-3-5) a 3 nœuds ; feuilles : 4, 5, 6." },
+    { code: "c7-x3", niv: "facile", rep: "La fonction fait la somme des valeurs : 1 + 2 + 3 + 4 + 5 + 6 = 21 ; pour le sous-arbre gauche, 2 + 4 = 6." },
+    { code: "c7-x4", niv: "difficile", rep: "Arbre : 8 ; à gauche 3 (enfants 1 et 6, et 4 sous 6 à gauche) ; à droite 10 (puis 14 à droite). L’infixe donne les clés triées ; <code>r.gauche.droit</code> est 6 ; la plus longue branche 8-3-6-4 a 4 nœuds." }
+  ],
+  ep: [
+    { titre: "Mesures d’un arbre binaire", enonce: `[[c7-ep1-fourni]]`,
+      questions: [
+        { q: "Compléter <code>taille</code> et <code>hauteur</code> (lignes 9 et 13).", c: `<p>Cas de base <code>if a is None: return 0</code>, puis <code>1 + taille(a.gauche) + taille(a.droit)</code> et <code>1 + max(hauteur(a.gauche), hauteur(a.droit))</code>.</p>` },
+        { q: "Calculer <code>nb_feuilles(Noeud(1, Noeud(2, Noeud(3), Noeud(4))))</code> à la main, puis avec la fonction. Le résultat est-il juste ? Corriger.", c: `<p>L’arbre a deux feuilles (3 et 4), mais la fonction renvoie 1 : la racine n’a pas d’enfant droit, et avec <code>or</code> un nœud qui a <b>un seul</b> enfant est compté comme une feuille, sans explorer son sous-arbre. Une feuille n’a <b>aucun</b> enfant : il faut <code>and</code>.</p>` },
+        { q: "Écrire <code>est_parfait(a)</code>, vraie si tous les niveaux sont remplis, en utilisant l’encadrement de la taille, puis des tests.", c: `[[c7-ep1-corr]]` },
+        { q: "À l’oral : quel est le coût de <code>taille</code> ? Pourquoi la récursivité est-elle naturelle ici ?", c: `<p>Chaque nœud est visité une fois : coût linéaire en la taille. La définition même de l’arbre binaire est récursive (un nœud et deux arbres binaires), donc les fonctions la suivent : cas de l’arbre vide, puis combinaison des deux sous-arbres.</p>` }
+      ] },
+    { titre: "Arbre binaire de recherche", enonce: `[[c7-ep2-fourni]]`,
+      questions: [
+        { q: "On exécute <code>r = inserer(None, 41)</code>. Que vaut <code>r</code> ? Expliquer et corriger.", c: `<p><code>r</code> vaut None : le nœud est créé mais pas renvoyé, puis la fonction atteint <code>return a</code> avec <code>a = None</code>. Correction : <code>return Noeud(cle)</code>. (À un niveau plus bas, le même oubli fait perdre le nœud à rattacher.)</p>` },
+        { q: "Compléter <code>rechercher</code> (récursive ou itérative).", c: `<p>Arbre vide : False ; égalité : True ; sinon on descend d’un seul côté selon la comparaison.</p>` },
+        { q: "Écrire <code>maximum(a)</code> pour un ABR non vide, puis des tests (arbre vide, clés présentes et absentes, doublon).", c: `[[c7-ep2-corr]]` },
+        { q: "À l’oral : combien de comparaisons au plus pour une recherche ? Que se passe-t-il si l’on insère les clés dans l’ordre croissant ?", c: `<p>Au plus la hauteur de l’arbre. Clés insérées triées : chaque nouvelle clé va à droite de la précédente, l’arbre est un peigne de hauteur <i>n</i> et la recherche devient linéaire, comme dans une liste.</p>` }
+      ] }
+  ],
+  ecrit: { titre: "Arbres d’expressions arithmétiques", points: "≈ 6 points · 45 min", note: "Exercice inventé pour le site, au format de l’épreuve écrite. On utilise la classe <code>Noeud</code> du cours.",
+    enonce: `<p>On représente une expression arithmétique par un arbre binaire : les feuilles portent des nombres, les nœuds internes un opérateur parmi <code>+ - * /</code>. On étudie l’expression <b>2 × (5 + 3) − 4</b>.</p>`,
+    questions: [
+      { q: "Dessiner l’arbre de cette expression. Quelle est sa racine ? Combien a-t-il de feuilles ?", pts: "1 pt", c: `<p>La dernière opération effectuée est la soustraction : c’est la racine. Sous-arbre gauche : × (feuille 2, et + avec les feuilles 5 et 3) ; sous-arbre droit : la feuille 4. Quatre feuilles : 2, 5, 3, 4.</p><pre class="mono petit">        −
+      /   \\
+     ×     4
+    / \\
+   2   +
+      / \\
+     5   3</pre>` },
+      { q: "Donner sa taille et sa hauteur (en nombre de nœuds).", pts: "0,5 pt", c: `<p>Taille 7 ; hauteur 4 (branche − → × → + → 5).</p>` },
+      { q: "Écrire le parcours préfixe et le parcours suffixe de cet arbre.", pts: "1 pt", c: `<p>Préfixe : − × 2 + 5 3 4. Suffixe : 2 5 3 + × 4 −.</p>` },
+      { q: "Le parcours suffixe donne l’expression en notation polonaise inverse. Décrire son évaluation à l’aide d’une pile.", pts: "1 pt", c: `<p>On empile 2, 5, 3 ; « + » dépile 3 et 5, empile 8 ; « × » dépile 8 et 2, empile 16 ; on empile 4 ; « − » dépile 4 et 16, empile 12. Résultat : 12.</p>` },
+      { q: "Écrire une fonction récursive <code>evaluer(a)</code> qui renvoie la valeur de l’expression représentée par <code>a</code>.", pts: "1,5 pt", c: `<p>Une feuille renvoie sa valeur ; sinon on évalue les deux sous-arbres puis on applique l’opérateur de la racine.</p>[[c7-ecrit-corr]]` },
+      { q: "Écrire une fonction <code>nb_operations(a)</code> qui compte les opérateurs de l’expression.", pts: "1 pt", c: `<p>Les opérateurs sont exactement les nœuds internes (non feuilles) : 3 ici. Code dans le corrigé ci-dessus.</p>` }
+    ],
+    methode: `<p>Pour un exercice sur les arbres : dessine l’arbre, numérote les nœuds dans l’ordre du parcours demandé, écris toute fonction avec le schéma « cas de l’arbre vide (ou de la feuille), appels sur les deux sous-arbres, combinaison », et vérifie la convention de hauteur de l’énoncé.</p>` },
+  qcm: [
+    { q: "Qu’est-ce qu’une feuille ?", c: ["La racine de l’arbre", "Un nœud sans enfant", "Un nœud avec deux enfants", "Une arête"], a: 1, e: "Les feuilles sont les extrémités des branches.", ref: "i1" },
+    { q: "Un arbre binaire est…", c: ["un arbre dont les valeurs sont 0 ou 1", "vide, ou une racine avec un sous-arbre gauche et un sous-arbre droit", "un arbre de hauteur 2", "un tableau trié"], a: 1, e: "Définition récursive ; chaque nœud a au plus deux enfants.", ref: "i2" },
+    { q: "Quelle est la taille de l’arbre exemple (A, B, C, D, E, F, G) ?", c: ["3", "4", "7", "8"], a: 2, e: "La taille est le nombre de nœuds.", ref: "i3" },
+    { q: "Avec la convention « nombre de nœuds », combien de nœuds au plus a un arbre binaire de hauteur 4 ?", c: ["4", "8", "15", "16"], a: 2, e: "2⁴ − 1 = 15 (1 + 2 + 4 + 8).", ref: "i3" },
+    { q: "Un arbre binaire de 1 000 nœuds a une hauteur (en nœuds) au moins égale à…", c: ["1", "10", "500", "1 000"], a: 1, e: "⌈log₂ 1001⌉ = 10, car 2¹⁰ − 1 = 1 023 ≥ 1 000.", ref: "i3" },
+    { q: "Quel parcours traite la racine entre ses deux sous-arbres ?", c: ["Préfixe", "Infixe", "Suffixe", "En largeur"], a: 1, e: "Infixe : gauche, racine, droit.", ref: "i4" },
+    { q: "Sur l’arbre exemple, quel est le parcours préfixe ?", c: ["A B C D E F G", "A B D E G C F", "D B G E A C F", "D G E B F C A"], a: 1, e: "Racine, puis tout le sous-arbre gauche, puis le droit.", ref: "i4" },
+    { q: "Quelle structure le parcours en largeur utilise-t-il ?", c: ["Une pile", "Une file", "Un dictionnaire", "Un tableau trié"], a: 1, e: "FIFO : les enfants passent après les nœuds déjà en attente.", ref: "i5" },
+    { q: "Quel parcours d’un arbre d’expression donne la notation polonaise inverse ?", c: ["Préfixe", "Infixe", "Suffixe", "En largeur"], a: 2, e: "Les opérandes d’abord, l’opérateur ensuite.", ref: "i6" },
+    { q: "Dans un ABR, où se trouve la plus petite clé ?", c: ["À la racine", "Au bout de la branche la plus à gauche", "Dans une feuille quelconque", "Au bout de la branche la plus à droite"], a: 1, e: "On descend à gauche tant que c’est possible.", ref: "i7" },
+    { q: "Que donne le parcours infixe d’un ABR ?", c: ["Les clés dans l’ordre d’insertion", "Les clés triées par ordre croissant", "La racine en premier", "Les feuilles seulement"], a: 1, e: "Gauche (plus petits), racine, droite (plus grands), récursivement.", ref: "i7" },
+    { q: "Combien de comparaisons au plus pour chercher une clé dans un ABR de hauteur h ?", c: ["1", "h", "2h", "n"], a: 1, e: "On suit une seule branche.", ref: "i8" },
+    { q: "On insère 1, 2, 3, 4, 5 dans cet ordre dans un ABR vide. Quelle est sa hauteur (en nœuds) ?", c: ["3", "4", "5", "1"], a: 2, e: "Chaque clé va à droite de la précédente : un peigne de 5 nœuds.", ref: "i8" }
+  ],
+  cartes: [
+    { r: "Racine / feuille", v: "Nœud sans parent / nœud sans enfant." },
+    { r: "Arbre binaire", v: "Vide, ou une racine et deux arbres binaires : sous-arbre gauche et sous-arbre droit." },
+    { r: "Taille", v: "Nombre de nœuds : 0 si vide, sinon 1 + taille(G) + taille(D)." },
+    { r: "Hauteur (convention nœuds)", v: "0 si vide, sinon 1 + max(hauteur(G), hauteur(D)). Vérifier la convention de l’énoncé." },
+    { r: "Encadrement de la taille", v: "h ≤ n ≤ 2ʰ − 1 (convention nœuds)." },
+    { r: "Préfixe", v: "Racine, sous-arbre gauche, sous-arbre droit." },
+    { r: "Infixe", v: "Sous-arbre gauche, racine, sous-arbre droit." },
+    { r: "Suffixe", v: "Sous-arbre gauche, sous-arbre droit, racine." },
+    { r: "Parcours en largeur", v: "Niveau par niveau avec une file : défiler un nœud, le traiter, enfiler ses enfants." },
+    { r: "ABR", v: "Pour chaque nœud : clés du sous-arbre gauche < clé < clés du sous-arbre droit." },
+    { r: "Recherche dans un ABR", v: "Égal : trouvé ; plus petit : à gauche ; plus grand : à droite ; arbre vide : absent." },
+    { r: "Insertion dans un ABR", v: "Descendre comme pour la recherche jusqu’à une place vide ; y créer une feuille ; rattacher." },
+    { r: "Coût dans un ABR", v: "Au plus la hauteur : ≈ log₂ n si équilibré, n si dégénéré (peigne)." },
+    { r: "Infixe d’un ABR", v: "Les clés dans l’ordre croissant." },
+    { r: "Arbre d’expression", v: "Feuilles = nombres, nœuds = opérateurs ; l’évaluation est un parcours suffixe." }
+  ]
+});
+
 /* Carte du programme de Terminale (arrêté du 19/07/2019, BO spécial n° 8 du 25/07/2019), reformulé. */
 var PROG = [
   { n: "01", t: "Histoire de l’informatique", intro: "Rubrique transversale : les repères historiques se construisent dans chacune des cinq autres rubriques. Sur ce site, ils sont dans les encadrés <code># git log --histoire</code> des chapitres.",
@@ -5390,11 +7177,7 @@ var PROG = [
       { ch: "ch1", t: "Vocabulaire de la programmation objet : classes, attributs, méthodes, objets" },
       { ch: "ch3", t: "Listes, piles, files : structures linéaires" },
       { ch: "ch5", t: "Dictionnaires, index et clé" },
-      { id: "arbres", t: "Arbres : structures hiérarchiques ; arbres binaires",
-        contenus: "Arbres binaires : nœuds, racine, feuilles, sous-arbre gauche, sous-arbre droit.",
-        capacites: ["Identifier des situations nécessitant une structure de données arborescente.", "Évaluer quelques mesures des arbres binaires (taille, encadrement de la hauteur, etc.)."],
-        comm: "Lien avec la rubrique « Algorithmique » (parcours, arbres binaires de recherche). Exemples : arborescence de fichiers, arbre généalogique, expression arithmétique.",
-        avant: "La récursivité (ch. 2) et les classes (ch. 1) : un arbre se définit et se traite récursivement." },
+      { ch: "ch7", t: "Arbres : structures hiérarchiques ; arbres binaires" },
       { id: "graphes", t: "Graphes : structures relationnelles",
         contenus: "Sommets, arcs, arêtes, graphes orientés ou non orientés.",
         capacites: ["Modéliser des situations sous forme de graphes.", "Écrire les implémentations correspondantes d’un graphe : matrice d’adjacence, liste de successeurs / de prédécesseurs.", "Passer d’une représentation à une autre."],
@@ -5447,11 +7230,7 @@ var PROG = [
     ] },
   { n: "06", t: "Algorithmique",
     items: [
-      { id: "algo-arbres", t: "Algorithmes sur les arbres binaires et les arbres binaires de recherche",
-        contenus: "Taille, hauteur, parcours ; recherche et insertion dans un ABR.",
-        capacites: ["Calculer la taille et la hauteur d’un arbre.", "Parcourir un arbre de différentes façons (ordres infixe, préfixe ou suffixe ; ordre en largeur d’abord).", "Rechercher une clé dans un arbre de recherche, insérer une clé."],
-        comm: "Une structure de données récursive adaptée est utilisée ; l’exemple des arbres illustre la programmation par classe. La recherche dans un arbre de recherche équilibré est de coût logarithmique.",
-        avant: "Récursivité (ch. 2), classes (ch. 1), files pour le parcours en largeur (ch. 3)." },
+      { ch: "ch7", t: "Algorithmes sur les arbres binaires et les arbres binaires de recherche" },
       { id: "algo-graphes", t: "Algorithmes sur les graphes",
         contenus: "Parcours en profondeur et en largeur ; cycles ; chemins.",
         capacites: ["Parcourir un graphe en profondeur d’abord, en largeur d’abord.", "Repérer la présence d’un cycle dans un graphe.", "Chercher un chemin dans un graphe."],
