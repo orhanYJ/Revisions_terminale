@@ -70,6 +70,16 @@ META = {
         tags=["hérédité non génétique", "symbiose", "mutualisme", "parasitisme", "phénotype étendu", "microbiote",
               "ver de Roscoff", "gammare", "chant des oiseaux", "baleine à bosse", "culture animale", "comportement inné acquis",
               "SVT terminale", "spécialité SVT", "bac SVT", "génétique et évolution"]),
+    "maths-ch1": dict(
+        sous="initialisation · hérédité · Bernoulli", img="m1-dominos.jpg", gros="La récurrence",
+        accroche="n² + n + 41 est premier quarante fois de suite… puis plus du tout. Comment prouver qu'une propriété est vraie "
+                 "pour tous les entiers, sans les vérifier un par un ?",
+        pill2="+ 2 exercices corrigés", exos_txt="deux exercices corrigés pas à pas : une formule à démontrer et un sujet type bac",
+        exos=["Exercice 1 (pour démarrer) : démontrer une formule explicite, u(n) = (n + 1)² + 1.",
+              "Exercice 2 (type bac) : les abonnés d'une chaîne, encadrement par récurrence, suite auxiliaire et algorithme de seuil en Python."],
+        tags=["raisonnement par récurrence", "récurrence", "initialisation hérédité", "démonstration par récurrence",
+              "inégalité de Bernoulli", "suites", "toile d'araignée", "algorithme de seuil", "maths terminale",
+              "spécialité maths", "bac maths", "exercices corrigés"]),
 }
 
 # matière : libellés et couleurs de la miniature
@@ -78,6 +88,8 @@ MATIERE = {
                acc="#ff8b3e", pill="#e45c10", pill_c="#fff", txt="#f2e7da", txt2="#cbb49c", ombre="0,0,0"),
     "svt": dict(nom="SVT", court="SVT", desc="SVT", fond="#0b120e", fond_rgb="11,18,14",
                 acc="#B7D94C", pill="#B7D94C", pill_c="#0b120e", txt="#F1EFE3", txt2="#b8c9a8", ombre="0,0,0"),
+    "maths": dict(nom="Maths", court="Maths", desc="maths", fond="#1b2422", fond_rgb="27,36,34",
+                  acc="#F4D35E", pill="#F4D35E", pill_c="#1b2422", txt="#ECEBE4", txt2="#BFC4BB", ombre="0,0,0"),
 }
 
 
