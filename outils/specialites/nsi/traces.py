@@ -4,6 +4,7 @@
 Appelé par build.py : les traces sont calculées en exécutant réellement le code avec sys.settrace,
 puis rangées dans la constante TRACES du site (lue par l'animation « trace »).
 """
+import inspect
 import io
 import json
 import pathlib
@@ -20,13 +21,16 @@ const js = fichiers.map(f => fs.readFileSync(f, "utf8")).join("\n");
 const ctx = {};
 new Function("ctx", js + "\nctx.CODE = CODE;")(ctx);
 const res = {};
-for (const [id, c] of Object.entries(ctx.CODE)) if (c.trace) res[id] = c.src.replace(/^\n+|\s+$/g, "");
+for (const [id, c] of Object.entries(ctx.CODE)) if (c.trace === true) res[id] = c.src.replace(/^\n+|\s+$/g, "");
 process.stdout.write(JSON.stringify(res));
 """
 
 
 def court(v):
-    r = repr(v)
+    try:
+        r = repr(v)
+    except Exception:
+        return "(objet en cours de construction)"
     return r if len(r) <= 70 else r[:67] + "..."
 
 
@@ -41,13 +45,19 @@ def tracer(src):
     def pile(f):
         cadres = []
         while f is not None and f.f_code.co_filename == "<prog>":
+            if corps_de_classe(f):
+                f = f.f_back
+                continue
             nom = f.f_code.co_name
             cadres.append({"f": "programme principal" if nom == "<module>" else nom + "()", "v": variables(f)})
             f = f.f_back
         return cadres[::-1]
 
+    def corps_de_classe(f):
+        return not (f.f_code.co_flags & inspect.CO_OPTIMIZED) and f.f_code.co_name != "<module>"
+
     def suivre(frame, evenement, arg):
-        if frame.f_code.co_filename != "<prog>":
+        if frame.f_code.co_filename != "<prog>" or corps_de_classe(frame):
             return None
         if evenement == "line" or (evenement == "return" and frame.f_code.co_name != "<module>"):
             if len(etapes) >= LIMITE:
