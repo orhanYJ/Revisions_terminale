@@ -1675,6 +1675,7 @@ CH.s1 = {
     { id: "s1-4", t: "Les classes sociales : Marx et Weber", h:
       '<div class="def"><b>Classe sociale</b> — grand groupe d’individus qui partagent une position comparable dans la hiérarchie sociale (revenus, patrimoine, pouvoir, prestige) et, selon les approches, des intérêts, un mode de vie et une conscience communs.</div>' +
       '<div class="aut"><span class="mono">KM</span><span class="an">Karl Marx<small>1818-1883</small></span><span class="ad">Les classes se définissent par leur place dans les <b>rapports de production</b> : la <b>bourgeoisie</b> possède les moyens de production, le <b>prolétariat</b> n’a que sa force de travail à vendre. La société capitaliste tend à se <b>bipolariser</b> entre ces deux classes, dont les intérêts sont opposés.</span></div>' +
+      '<div data-anim="s1-marx-weber"></div>' +
       '<div data-chain="s1-marx"></div>' +
       '<p>Pour Marx, une classe n’existe pleinement que si elle est à la fois <b>classe en soi</b> (une position objective commune) et <b>classe pour soi</b> (une conscience de ses intérêts et une mobilisation collective). C’est une approche <b>réaliste</b> : les classes existent réellement et sont en conflit (lutte des classes), moteur de l’histoire (<i>Manifeste du parti communiste</i>, avec Engels, 1848).</p>' +
       '<div class="aut"><span class="mono">MW</span><span class="an">Max Weber<small>1864-1920</small></span><span class="ad">La hiérarchie sociale a <b>trois dimensions</b> indépendantes : l’ordre <b>économique</b> (les <b>classes</b>, définies par les chances d’accès aux biens et aux revenus sur le marché), l’ordre <b>social</b> (les <b>groupes de statut</b>, définis par le prestige et l’honneur social, qui se traduisent par des styles de vie) et l’ordre <b>politique</b> (les <b>partis</b>, qui visent le pouvoir). <i>Économie et société</i>, 1922.</span></div>' +
@@ -2318,6 +2319,54 @@ ANIMS["s2-boudon"] = {
       });
     }
     if (i === 4) s += A.t(180, 310, "des choix individuels → une inégalité collective", { t: 12.5, g: true, a: "middle", c: "corail", op: A.s(p, 0.3, 0.8) });
+    return s;
+  }
+};
+
+ANIMS["s1-marx-weber"] = {
+  t: "Deux façons de découper la société : Marx et Weber",
+  h: 320,
+  src: "Schéma de principe. Positions illustratives sur les échelles de Weber.",
+  etapes: [
+    { l: "Marx : une seule ligne de partage, la propriété des moyens de production. D’un côté la bourgeoisie, peu nombreuse ; de l’autre le prolétariat.", d: 3.5 },
+    { l: "Le prolétaire vend sa force de travail ; le bourgeois s’approprie la plus-value. Leurs intérêts sont opposés.", d: 3.5 },
+    { l: "Classe en soi, puis classe pour soi : quand les ouvriers prennent conscience de leurs intérêts communs, ils se mobilisent. C’est la lutte des classes.", d: 3.5 },
+    { l: "Weber : non pas une mais trois échelles, indépendantes. Ordre économique (classes), ordre social (prestige des groupes de statut), ordre politique (partis).", d: 4 },
+    { l: "Une même personne peut être haut sur une échelle et bas sur une autre : un professeur a plus de prestige que de revenu, un commerçant aisé l’inverse.", d: 4 }
+  ],
+  rendu: function (A, i, p) {
+    var s = "";
+    function pers(x, y, c, op) { return A.cercle(x, y - 8, 4.5, { f: c, op: op }) + A.r(x - 5, y - 3, 10, 11, { f: c, r: 3, op: op }); }
+    var opM = i <= 2 ? 1 : 1 - A.s(p, 0, 0.5);
+    if (opM > 0.02) {
+      var m = A.boite(110, 20, 140, 40, "Bourgeoisie : propriétaires", { k: "cause", t: 12, g: true }) ;
+      for (var k = 0; k < 3; k++) m += pers(150 + k * 30, 84, "canard");
+      m += '<line x1="20" x2="340" y1="112" y2="112" style="stroke:var(--encre);stroke-width:3"/>' + A.t(20, 106, "propriété des moyens de production", { t: 10.5, c: "gris" });
+      var conscience = i >= 2 ? (i === 2 ? A.s(p, 0.2, 0.8) : 1) : 0;
+      for (var j = 0; j < 12; j++) {
+        var x0 = 30 + j * 26, y0 = 160 + (j % 2) * 26, xf = 120 + (j % 6) * 24, yf = 158 + Math.floor(j / 6) * 26;
+        m += pers(A.l(x0, xf, conscience), A.l(y0, yf, conscience), "corail");
+      }
+      m += A.boite(110, 214, 140, 38, "Prolétariat : vend sa force de travail", { k: "effet", t: 11.5, g: true });
+      if (i >= 1) m += A.fl(180, 150, 180, 96, { c: "moutarde", sw: 3, p: i === 1 ? A.s(p, 0.1, 0.7) : 1 }) + A.t(188, 130, "plus-value", { t: 11.5, g: true, c: "moutarde", op: i === 1 ? A.s(p, 0.4, 0.9) : 1, h: true });
+      if (i >= 2) m += A.t(180, 278, "classe pour soi : conscience et lutte", { t: 12.5, g: true, a: "middle", c: "corail", op: conscience });
+      s += A.g(opM, m);
+    }
+    if (i >= 3) {
+      var opW = i === 3 ? A.s(p, 0.3, 0.9) : 1, axes = [["Économique : revenus, patrimoine", 70], ["Social : prestige", 150], ["Politique : pouvoir", 230]];
+      var w = "";
+      axes.forEach(function (ax, k) {
+        w += A.t(20, ax[1] - 14, ax[0], { t: 12, g: true }) + A.fl(20, ax[1], 340, ax[1], { c: "gris", sw: 2 }) + A.t(20, ax[1] + 16, "bas", { t: 10, c: "gris" }) + A.t(340, ax[1] + 16, "haut", { t: 10, c: "gris", a: "end" });
+      });
+      if (i === 4) {
+        var q = A.s(p, 0.1, 0.8), prof = [150, 280, 170], comm = [270, 140, 150];
+        axes.forEach(function (ax, k) {
+          w += A.cercle(A.l(180, prof[k], q), ax[1], 8, { f: "canard", s: "carte", sw: 2 }) + A.cercle(A.l(180, comm[k], q), ax[1], 8, { f: "moutarde", s: "carte", sw: 2 });
+        });
+        w += A.cercle(40, 296, 7, { f: "canard" }) + A.t(52, 300, "professeur", { t: 11.5, g: true }) + A.cercle(170, 296, 7, { f: "moutarde" }) + A.t(182, 300, "commerçant aisé", { t: 11.5, g: true });
+      }
+      s += A.g(opW, w);
+    }
     return s;
   }
 };
