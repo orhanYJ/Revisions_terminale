@@ -35,13 +35,21 @@ def main(module, supprimer=False):
         if voix not in regs:
             regs[voix] = voix_qwen.registre(voix) if voix in voix_qwen.REF else None
         y, _ = librosa.load(chemin, sr=16000, mono=True)
-        segs, _ = wh.transcribe(y, language=langue, word_timestamps=False)
+        segs, _ = wh.transcribe(y, language=langue, word_timestamps=True)
         segs = list(segs)
+        mots = [w for s_ in segs for w in (s_.words or [])]
         sc = voix_qwen._score(lu, " ".join(s.text for s in segs))
         lp = min([s.avg_logprob for s in segs], default=0)
-        an = prosodie.anomalies(y, 16000, regs[voix])
+        an = prosodie.anomalies(y, 16000, regs[voix], seuil=1.45, duree=0.75)
         pm = prosodie.mesure(y, 16000)
         motifs = list(an)
+        # mot par mot : syllabes déformées (reconnaissance très incertaine) ou mot étiré
+        incertains = [w.word.strip() for w in mots if w.probability < 0.25 and len(w.word.strip()) > 2]
+        if len(incertains) >= 2:
+            motifs.append("mots déformés (%s)" % ", ".join(incertains[:4]))
+        etires = [w.word.strip() for w in mots if (w.end - w.start) > 1.3 and len(w.word.strip()) < 12]
+        if etires:
+            motifs.append("mot étiré (%s)" % ", ".join(etires[:3]))
         if sc < SEUIL_SCORE:
             motifs.append("mal dit (reconnaissance %.2f)" % sc)
         if lp < -0.9:

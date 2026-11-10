@@ -79,7 +79,7 @@ def profil(a, sr):
     return np.array(fen), med
 
 
-def anomalies(a, sr, registre=None):
+def anomalies(a, sr, registre=None, seuil=1.65, duree=0.5):
     """Liste des dérapages d'un passage : « aigu » (tout le passage trop haut), « vrille » (une montée brusque dans
     l'aigu sur au moins 0,5 s), « saut » (glissements de plus d'une octave entre fenêtres voisines)."""
     fen, med = profil(a, sr)
@@ -89,12 +89,12 @@ def anomalies(a, sr, registre=None):
         return res
     if med > ref * 1.22:
         res.append("aigu (%.0f Hz pour %.0f)" % (med, ref))
-    haut = np.nan_to_num(fen, nan=0) > max(ref * 1.65, 150)
+    haut = np.nan_to_num(fen, nan=0) > max(ref * seuil, 140)
     run = best = 0
     for h in haut:
         run = run + 1 if h else 0
         best = max(best, run)
-    if best >= 2:
+    if best >= max(2, int(round(duree / 0.25))):
         res.append("vrille (%.2f s dans l'aigu)" % (best * 0.25))
     v = fen[np.isfinite(fen)]
     if len(v) > 3:
