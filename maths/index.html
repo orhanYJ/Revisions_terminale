@@ -321,6 +321,40 @@ html.mo .trace{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:tr
 .btn>svg,.carte-prog h3>svg,h1>svg,h2>svg{width:20px;height:20px;flex:none}
 .carte-prog h3>svg{color:var(--rouge)}
 
+/* ---------- animations explicatives (lecteur) ---------- */
+.anim{margin:20px 0;border:1.5px solid var(--encre);border-radius:4px 16px 16px 16px;background:var(--papier2);box-shadow:4px 4px 0 var(--ligne2);overflow:hidden;position:relative}
+.anim .at{display:flex;align-items:center;gap:8px;padding:9px 14px;font:600 1rem var(--serif);border-bottom:1px dashed var(--ligne2);background:var(--bleu-p)}
+.anim .at svg{width:22px;height:22px;color:var(--rouge);flex:none}
+.anim .at small{margin-left:auto;font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rouge);white-space:nowrap}
+.anim .scene{padding:6px 6px 0}
+.anim .scene svg{display:block;width:100%;height:auto;max-height:62vh}
+.anim .cap{margin:4px 12px 0;padding:8px 12px;min-height:3.2em;border-radius:10px;background:var(--papier);border:1px solid var(--ligne);font-size:.93rem;line-height:1.5}
+.anim .cap b:first-child{display:inline-block;font:700 .75rem/1.6 var(--sans);color:#fff;background:var(--rouge);border-radius:999px;padding:0 8px;margin-right:4px;vertical-align:1px}
+html.mo .anim .cap.neuf{animation:capin .45s ease-out}
+@keyframes capin{from{transform:translateY(5px);background:var(--surligne)}to{transform:none}}
+.anim .ctl{display:flex;align-items:center;gap:6px;padding:10px 12px}
+.anim .ab{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--encre);background:var(--papier);color:var(--encre);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.anim .ab svg{width:20px;height:20px}
+.anim .ab.jouer{width:50px;height:50px;background:var(--encre);color:var(--papier)}
+.anim .barre{flex:1;display:flex;gap:3px;min-width:0;height:44px;align-items:center}
+.anim .sg{flex-basis:0;min-width:6px;height:44px;border:0;padding:0;background:none;cursor:pointer;display:flex;align-items:center}
+.anim .sg i{display:block;height:7px;width:0;border-radius:4px;background:var(--rouge);box-shadow:inset 0 0 0 999px var(--rouge)}
+.anim .sg::before{content:"";position:absolute}
+.anim .sg{position:relative;background:linear-gradient(var(--ligne2),var(--ligne2)) center/100% 7px no-repeat;border-radius:4px}
+.anim .sg.on{background-image:linear-gradient(var(--bleu-p),var(--bleu-p)),linear-gradient(var(--ligne2),var(--ligne2));background-size:100% 100%,100% 7px}
+.anim .deroule{margin:0 12px 12px;background:var(--papier)}
+.anim .deroule ol{margin:6px 0 4px;font-size:.92rem}
+.a-case{fill:var(--papier);stroke:var(--ligne2);stroke-width:1.5}
+.a-case.on{fill:var(--vert-p);stroke:var(--vert);stroke-width:2}
+.a-bulle{fill:var(--papier);stroke:var(--rouge);stroke-width:1.5;stroke-dasharray:5 3}
+.a-branche{stroke:var(--encre3);stroke-width:1.2}
+.a-plein{fill:var(--bleu);fill-opacity:.18;stroke:var(--bleu);stroke-width:1}
+.a-plein2{fill:var(--rouge);fill-opacity:.16;stroke:var(--rouge);stroke-width:1}
+.a-craie{fill:none;stroke:var(--encre2);stroke-width:1.2;stroke-dasharray:2 3}
+.g-lab.c3{fill:var(--vert)}
+.g-c3{fill:none}
+.a-math{font:600 15px var(--serif);color:var(--bleu);text-align:center;line-height:1.3;display:flex;align-items:center;justify-content:center;height:100%}
+
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
 <script src="assistant.js?v=9" defer></script>
@@ -932,6 +966,385 @@ var WIDGETS = (function () {
   return W;
 })();
 
+/* ---------- Animations explicatives : moteur commun ----------
+   Une animation se déclare ainsi (dans n'importe quel fichier de src/, après anims.js) :
+
+   ANIMS.nom = {
+     titre: "Titre affiché",
+     vb: [360, 240],                       // taille de la scène SVG (unités de la viewBox)
+     etapes: [                             // une légende par étape (texte riche : $math$ permis)
+       { d: 3, l: "Ce qui se passe à l'étape 1." },
+       { d: 4, l: "…" }
+     ],
+     rendu: function (S, k, t) { … }       // dessine l'état : étape k (0, 1, …), avancement t de 0 à 1
+   };
+
+   Le rendu est une fonction pure de (k, t) : on redessine tout à chaque image.
+   Dans le cours : <div data-anim="nom"></div>.
+   Outils de S : S.rep(x0, x1, y0, y1, {px, py}) pose un repère gradué ; S.X(x), S.Y(y) ;
+   S.courbe(f, a, b, cls, n) ; S.seg(xa, ya, xb, yb, cls) ; S.fleche(...) ; S.pt(x, y, cls, r) ;
+   S.txt(x, y, texte, cls, ancre) ; S.rect(xa, ya, xb, yb, cls) ; S.poly(points, cls, ferme) ;
+   les mêmes en pixels : S.px.seg, S.px.fleche, S.px.txt, S.px.rect, S.px.cercle, S.px.path ;
+   S.px.math(x, y, w, h, "texte avec $math$") : étiquette en vraie notation (MathML dans un foreignObject).
+   Le dernier argument facultatif de chaque outil est un objet d'attributs SVG ({opacity: .5}…).
+   Aides : ANIM.e(t) (adoucissement), ANIM.l(a, b, t) (interpolation), ANIM.p(t, t0, t1) (sous-avancement).
+   Classes utiles : g-c (bleu), g-c2 (rouge), g-c3 (vert), g-as (pointillés rouges), g-pt, g-pt2, g-bande,
+   g-lab (étiquette), g-lab r / b, a-plein (aplat bleu léger), a-plein2 (aplat rouge léger), a-craie.
+   Sans mouvement (prefers-reduced-motion), la lecture passe d'étape en étape sans interpolation. Au repos,
+   la figure finale et toutes les légendes sont visibles : rien n'est caché en attendant l'animation. */
+var R = String.raw;
+var ANIMS = {};
+var ANIM = (function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg", F = TeX.fmt;
+  function clamp(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function e(t) { t = clamp(t); return t * t * (3 - 2 * t); }
+  function l(a, b, t) { return a + (b - a) * t; }
+  function p(t, t0, t1) { return clamp((t - t0) / (t1 - t0)); }
+  function nf(x, d) { if (!isFinite(x)) return x > 0 ? "+∞" : "−∞"; return (+x.toFixed(d === undefined ? 3 : d)).toString().replace(".", ",").replace("-", "−"); }
+  function N(tag, at, par) { var el = document.createElementNS(NS, tag); for (var k in at) if (at[k] !== undefined && at[k] !== null) el.setAttribute(k, at[k]); if (par) par.appendChild(el); return el; }
+  function ajoute(at, x) { if (x) for (var k in x) at[k] = x[k]; return at; }
+
+  function Scene(svg, W, H) {
+    var S = { W: W, H: H, nf: nf }, g, plot, clipId = "ac" + Math.random().toString(36).slice(2, 8);
+    var defs = N("defs", {}, svg), cp = N("clipPath", { id: clipId }, defs), cr = N("rect", { x: 0, y: 0, width: W, height: H }, cp);
+    var mk = N("marker", { id: clipId + "f", viewBox: "0 0 10 10", refX: 8, refY: 5, markerWidth: 7, markerHeight: 7, orient: "auto-start-reverse" }, defs);
+    N("path", { d: "M0 0L10 5L0 10z", fill: "context-stroke" }, mk);
+    var m = { l: 34, r: 10, t: 10, b: 22 }, x0 = 0, x1 = 1, y0 = 0, y1 = 1;
+    S.vider = function () { if (g) svg.removeChild(g); g = N("g", {}, svg); plot = g; S.g = g; x0 = 0; x1 = 1; y0 = 0; y1 = 1; m = { l: 34, r: 10, t: 10, b: 22 }; cr.setAttribute("width", W); cr.setAttribute("height", H); cr.setAttribute("x", 0); cr.setAttribute("y", 0); };
+    S.X = function (x) { return m.l + (x - x0) / (x1 - x0) * (W - m.l - m.r); };
+    S.Y = function (y) { var v = H - m.b - (y - y0) / (y1 - y0) * (H - m.t - m.b); return v > 4000 ? 4000 : v < -4000 ? -4000 : v; };
+    S.rep = function (a, b, c, d, opt) {
+      opt = opt || {}; x0 = a; x1 = b; y0 = c; y1 = d;
+      if (opt.marges) m = opt.marges;
+      var gg = N("g", { opacity: opt.opacite === undefined ? 1 : opt.opacite }, g), k, px = opt.px || 1, py = opt.py || 1;
+      if (!opt.sansGrille) {
+        for (k = Math.ceil(a / px - 1e-9) * px; k <= b + 1e-9; k += px) {
+          N("line", { x1: S.X(k), x2: S.X(k), y1: m.t, y2: H - m.b, "class": "g-grille" }, gg);
+          if (!opt.sansNombres) { var t = N("text", { x: S.X(k), y: H - m.b + 15, "text-anchor": "middle", "class": "g-txt" }, gg); t.textContent = opt.fx ? opt.fx(k) : nf(k, 2); }
+        }
+        for (k = Math.ceil(c / py - 1e-9) * py; k <= d + 1e-9; k += py) {
+          N("line", { x1: m.l, x2: W - m.r, y1: S.Y(k), y2: S.Y(k), "class": "g-grille" }, gg);
+          if (!opt.sansNombres) { var t2 = N("text", { x: m.l - 5, y: S.Y(k) + 4, "text-anchor": "end", "class": "g-txt" }, gg); t2.textContent = opt.fy ? opt.fy(k) : nf(k, 2); }
+        }
+      }
+      if (c <= 0 && d >= 0) N("line", { x1: m.l, x2: W - m.r, y1: S.Y(0), y2: S.Y(0), "class": "g-axe" }, gg);
+      if (a <= 0 && b >= 0) N("line", { x1: S.X(0), x2: S.X(0), y1: m.t, y2: H - m.b, "class": "g-axe" }, gg);
+      cr.setAttribute("x", m.l - 6); cr.setAttribute("y", m.t - 6); cr.setAttribute("width", W - m.l - m.r + 12); cr.setAttribute("height", H - m.t - m.b + 12);
+      plot = N("g", { "clip-path": "url(#" + clipId + ")" }, g);
+      return S;
+    };
+    S.libre = function () { plot = g; return S; };
+    S.courbe = function (f, a, b, cls, n, x) {
+      n = n || 200; var d = "", lev = true, haut = (y1 - y0) * 6;
+      for (var i = 0; i <= n; i++) {
+        var xx = a + (b - a) * i / n, y = f(xx);
+        if (!isFinite(y) || y > y1 + haut || y < y0 - haut) { lev = true; continue; }
+        d += (lev ? "M" : "L") + S.X(xx).toFixed(1) + " " + S.Y(y).toFixed(1); lev = false;
+      }
+      return N("path", ajoute({ d: d, "class": cls || "g-c" }, x), plot);
+    };
+    S.seg = function (xa, ya, xb, yb, cls, x) { return N("line", ajoute({ x1: S.X(xa), y1: S.Y(ya), x2: S.X(xb), y2: S.Y(yb), "class": cls || "g-c2" }, x), plot); };
+    S.fleche = function (xa, ya, xb, yb, cls, x) { return N("line", ajoute({ x1: S.X(xa), y1: S.Y(ya), x2: S.X(xb), y2: S.Y(yb), "class": cls || "g-c2", "marker-end": "url(#" + clipId + "f)" }, x), plot); };
+    S.pt = function (x, y, cls, r, at) { return N("circle", ajoute({ cx: S.X(x), cy: S.Y(y), r: r || 4, "class": cls || "g-pt" }, at), plot); };
+    S.txt = function (x, y, s, cls, anc, at) { var t = N("text", ajoute({ x: S.X(x), y: S.Y(y), "class": "g-lab " + (cls || ""), "text-anchor": anc || "start" }, at), g); t.textContent = s; return t; };
+    S.rect = function (xa, ya, xb, yb, cls, at) { var X1 = S.X(xa), X2 = S.X(xb), Y1 = S.Y(ya), Y2 = S.Y(yb); return N("rect", ajoute({ x: Math.min(X1, X2), y: Math.min(Y1, Y2), width: Math.abs(X2 - X1), height: Math.abs(Y2 - Y1), "class": cls || "g-bande" }, at), plot); };
+    S.poly = function (pts, cls, ferme, at) { return N(ferme ? "polygon" : "polyline", ajoute({ points: pts.map(function (q) { return S.X(q[0]).toFixed(1) + "," + S.Y(q[1]).toFixed(1); }).join(" "), "class": cls || "g-c" }, at), plot); };
+    S.px = {
+      seg: function (xa, ya, xb, yb, cls, at) { return N("line", ajoute({ x1: xa, y1: ya, x2: xb, y2: yb, "class": cls || "g-c2" }, at), g); },
+      fleche: function (xa, ya, xb, yb, cls, at) { return N("line", ajoute({ x1: xa, y1: ya, x2: xb, y2: yb, "class": cls || "g-c2", "marker-end": "url(#" + clipId + "f)" }, at), g); },
+      txt: function (x, y, s, cls, anc, at) { var t = N("text", ajoute({ x: x, y: y, "class": "g-lab " + (cls || ""), "text-anchor": anc || "start" }, at), g); t.textContent = s; return t; },
+      rect: function (x, y, w, h, cls, at) { return N("rect", ajoute({ x: x, y: y, width: w, height: h, "class": cls || "g-bande" }, at), g); },
+      cercle: function (x, y, r, cls, at) { return N("circle", ajoute({ cx: x, cy: y, r: r, "class": cls || "g-pt" }, at), g); },
+      path: function (d, cls, at) { return N("path", ajoute({ d: d, "class": cls || "g-c" }, at), g); },
+      math: function (x, y, w, h, html, at) { var fo = N("foreignObject", ajoute({ x: x, y: y, width: w, height: h }, at), g); var d = document.createElement("div"); d.className = "a-math"; d.innerHTML = TeX.fmt(html); fo.appendChild(d); return fo; }
+    };
+    S.vider();
+    return S;
+  }
+
+  var enCours = null;
+  function monte(el, nom) {
+    var A = ANIMS[nom];
+    if (!A) return;
+    var reduit = !document.documentElement.classList.contains("mo");
+    var n = A.etapes.length, debuts = [], total = 0;
+    A.etapes.forEach(function (s) { debuts.push(total); total += s.d; });
+    el.className = "anim";
+    el.innerHTML = '<div class="at"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z" fill="currentColor"/></svg><span>' + F(A.titre) + '</span><small>Animation · ' + n + ' étapes</small></div>' +
+      '<div class="scene"></div><div class="cap" aria-live="polite"></div>' +
+      '<div class="ctl"><button type="button" class="ab" data-a="prev" aria-label="Étape précédente">' + ICO.prev + '</button><button type="button" class="ab jouer" data-a="play" aria-label="Lecture">' + ICO.play + '</button><button type="button" class="ab" data-a="next" aria-label="Étape suivante">' + ICO.next + '</button><div class="barre" role="group" aria-label="Étapes"></div></div>' +
+      '<details class="deroule"><summary><span class="st">Le déroulé en ' + n + ' étapes</span></summary><ol>' + A.etapes.map(function (s) { return "<li>" + F(s.l) + "</li>"; }).join("") + "</ol></details>";
+    var svg = N("svg", { viewBox: "0 0 " + A.vb[0] + " " + A.vb[1], role: "img", "aria-label": A.titre.replace(/\$/g, "") }, el.querySelector(".scene"));
+    var S = Scene(svg, A.vb[0], A.vb[1]);
+    var cap = el.querySelector(".cap"), barre = el.querySelector(".barre"), bplay = el.querySelector('[data-a="play"]');
+    var segs = A.etapes.map(function (s, i) {
+      var b = document.createElement("button"); b.type = "button"; b.className = "sg"; b.style.flexGrow = s.d; b.setAttribute("aria-label", "Étape " + (i + 1));
+      b.innerHTML = "<i></i>"; b.onclick = function () { aller(debuts[i] + (reduit ? s.d : 0)); if (!joue) dessiner(); }; barre.appendChild(b); return b;
+    });
+    var T = total, joue = false, raf = 0, dernier = 0, kc = -1, attente = 0;
+    function etat(T) { var k = n - 1; for (var i = 0; i < n; i++) if (T < debuts[i] + A.etapes[i].d) { k = i; break; } return { k: k, t: clamp((T - debuts[k]) / A.etapes[k].d) }; }
+    function dessiner() {
+      var st = etat(T);
+      S.vider();
+      try { A.rendu(S, st.k, st.t); } catch (err) { if (window.console) console.error(err); }
+      segs.forEach(function (b, i) { var f = i < st.k ? 1 : i > st.k ? 0 : st.t; b.firstChild.style.width = (f * 100) + "%"; b.classList.toggle("on", i === st.k); });
+      if (st.k !== kc || !cap.innerHTML) {
+        kc = st.k;
+        cap.innerHTML = '<b>' + (st.k + 1) + "/" + n + "</b> " + F(A.etapes[st.k].l);
+        if (!reduit) { cap.classList.remove("neuf"); void cap.offsetWidth; cap.classList.add("neuf"); }
+      }
+    }
+    function aller(t) { T = Math.max(0, Math.min(total, t)); kc = -1; }
+    function boucle(ts) {
+      if (!joue) return;
+      var dt = Math.min(0.1, Math.max(0, (performance.now() - dernier) / 1000)); dernier = performance.now();
+      if (reduit) {
+        attente += dt;
+        var st = etat(T);
+        if (attente > Math.max(2.5, A.etapes[st.k].d)) { attente = 0; if (st.k >= n - 1) { pause(); return; } aller(debuts[st.k + 1] + A.etapes[st.k + 1].d); dessiner(); }
+      } else {
+        T += dt;
+        if (T >= total) { T = total; dessiner(); pause(); return; }
+        dessiner();
+      }
+      raf = requestAnimationFrame(boucle);
+    }
+    function jouer() {
+      if (enCours && enCours !== pause) enCours();
+      enCours = pause;
+      if (T >= total - 1e-6) aller(reduit ? A.etapes[0].d : 0);
+      joue = true; attente = 0; dernier = performance.now(); el.classList.add("joue");
+      bplay.innerHTML = ICO.pause; bplay.setAttribute("aria-label", "Pause");
+      dessiner(); raf = requestAnimationFrame(boucle);
+    }
+    function pause() {
+      joue = false; cancelAnimationFrame(raf); el.classList.remove("joue");
+      bplay.innerHTML = ICO.play; bplay.setAttribute("aria-label", "Lecture");
+      if (enCours === pause) enCours = null;
+    }
+    bplay.onclick = function () { joue ? pause() : jouer(); };
+    function finEtape(i) { return debuts[i] + A.etapes[i].d - 1e-6; }
+    el.querySelector('[data-a="next"]').onclick = function () {
+      var st = etat(T);
+      if (joue && !reduit) { if (st.k < n - 1) aller(debuts[st.k + 1]); }
+      else if (st.t < 0.999 && !reduit) aller(finEtape(st.k));
+      else if (st.k < n - 1) aller(finEtape(st.k + 1));
+      attente = 0; dessiner();
+    };
+    el.querySelector('[data-a="prev"]').onclick = function () {
+      var st = etat(T);
+      if (joue && !reduit) aller(st.t > 0.25 ? debuts[st.k] : debuts[Math.max(0, st.k - 1)]);
+      else if (st.k > 0) aller(finEtape(st.k - 1));
+      else aller(reduit ? finEtape(0) : 0);
+      attente = 0; dessiner();
+    };
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { es.forEach(function (x) { if (!x.isIntersecting && joue) pause(); }); }).observe(el);
+    dessiner();
+    el.classList.add("repos");
+    bplay.addEventListener("click", function () { el.classList.remove("repos"); }, { once: true });
+  }
+  var ICO = {
+    play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>',
+    pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>',
+    prev: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM19 5.5v13L9.5 12z" fill="currentColor"/></svg>',
+    next: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM5 5.5v13L14.5 12z" fill="currentColor"/></svg>'
+  };
+  return { monte: monte, e: e, l: l, p: p, nf: nf, arreter: function () { if (enCours) enCours(); } };
+})();
+
+/* ---------- Animations des chapitres 1 à 5 ---------- */
+
+/* Chapitre 1 : la récurrence se propage */
+ANIMS.propagation = {
+  titre: "La propriété se propage d'un rang au suivant",
+  vb: [360, 230],
+  etapes: [
+    { d: 3.5, l: R`On veut prouver $P(n)$ : « $u_n=2^{n+2}-3$ » pour la suite $u_0=1$, $u_{n+1}=2u_n+3$. Chaque case est un rang $n$.` },
+    { d: 3.5, l: R`<b>Initialisation</b> : $u_0=1$ et $2^2-3=1$. La case $0$ est validée.` },
+    { d: 4.5, l: R`<b>Hérédité</b>, une fois pour toutes : si $u_k=2^{k+2}-3$, alors $u_{k+1}=2(2^{k+2}-3)+3=2^{k+3}-3$. C'est une flèche « $k\Rightarrow k+1$ » valable pour <b>tout</b> $k$.` },
+    { d: 7, l: R`On enchaîne : la case $0$ valide la $1$, qui valide la $2$, puis la $3$… Chaque flèche est la même hérédité, appliquée à un $k$ différent.` },
+    { d: 3.5, l: R`Aucun rang n'échappe à la chaîne : $P(n)$ est vraie pour tout $n\in\N$. Deux preuves ont suffi pour une infinité de cas.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, n = 8, x0 = 14, dx = 42, y = 120, w = 34, h = 40;
+    var vals = [1, 5, 13, 29, 61, 125, 253, 509];
+    var valide = k < 1 ? -1 : k === 1 ? (t > 0.4 ? 0 : -1) : k === 2 ? 0 : k === 3 ? Math.floor(E(t) * 7.99) : 7;
+    S.px.math(40, 8, 280, 34, R`$P(n)$ : « $u_n=2^{n+2}-3$ »`);
+    for (var i = 0; i < n; i++) {
+      var x = x0 + i * dx, on = i <= valide, frais = i === valide && (k === 1 || k === 3);
+      S.px.rect(x, y - h / 2, w, h, on ? "a-case on" : "a-case", { rx: 6, transform: frais ? "translate(" + (x + w / 2) + " " + y + ") scale(" + (1 + 0.12 * Math.sin(Math.PI * p(k === 1 ? t : (E(t) * 7.99) % 1, 0, 1))) + ") translate(" + (-(x + w / 2)) + " " + (-y) + ")" : null });
+      S.px.txt(x + w / 2, y - 26, "n=" + i, "", "middle", { "font-size": 11 });
+      S.px.txt(x + w / 2, y + 5, on ? String(vals[i]) : "?", on ? "b" : "", "middle", { "font-size": vals[i] > 99 ? 11 : 13 });
+      if (on) S.px.txt(x + w / 2, y + 36, "✓", "c3", "middle", { "font-size": 15 });
+      if (i < n - 1 && (k >= 3 ? i < valide : false)) S.px.fleche(x + w - 2, y - 30, x + dx + 4, y - 30, "g-c3", { "stroke-width": 1.8 });
+    }
+    S.px.txt(x0 + n * dx - 6, y + 5, "…", "", "start", { "font-size": 18 });
+    if (k === 2) {
+      var a = E(p(t, 0, 0.5));
+      S.px.rect(60, 172, 240, 46, "a-bulle", { rx: 10, opacity: a });
+      S.px.txt(180, 191, "si P(k) est vraie,", "", "middle", { opacity: a });
+      S.px.txt(180, 208, "alors P(k+1) est vraie", "r", "middle", { opacity: a });
+    }
+    if (k === 4) { S.px.txt(180, 196, "pour tout n ∈ ℕ", "r", "middle", { "font-size": 17, opacity: E(t * 2) }); }
+  }
+};
+
+/* Chapitre 2 : la bande ε se resserre */
+ANIMS.bande = {
+  titre: "La bande $\\varepsilon$ se resserre, le rang $N$ recule",
+  vb: [360, 240],
+  etapes: [
+    { d: 4, l: R`On place les termes de $u_n=2+\frac{3(-1)^n}{n+1}$ : ils oscillent autour de $2$ en s'en rapprochant.` },
+    { d: 3.5, l: R`On trace une bande de demi-largeur $\varepsilon=1$ autour de $\ell=2$. À partir du rang $N=3$, tous les termes sont dedans.` },
+    { d: 4, l: R`On resserre : $\varepsilon=0{,}5$. Il faut aller plus loin : $N=6$.` },
+    { d: 4, l: R`$\varepsilon=0{,}2$ : $N=15$. La bande est plus étroite, le rang recule… mais il existe toujours.` },
+    { d: 4, l: R`Pour <b>toute</b> largeur $\varepsilon>0$, un tel rang existe : c'est exactement $\lim_{n\to+\infty}u_n=2$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, u = function (n) { return 2 + 3 * Math.pow(-1, n) / (n + 1); };
+    S.rep(0, 30, -1.2, 5.2, { px: 5, py: 1 });
+    function N0(eps) { for (var m = 200; m >= 0; m--) if (Math.abs(u(m) - 2) >= eps) return m + 1; return 0; }
+    var eps = k < 1 ? null : k === 1 ? 1 : k === 2 ? ANIM.l(1, 0.5, E(t)) : k === 3 ? ANIM.l(0.5, 0.2, E(t)) : ANIM.l(0.2, 0.08, E(t));
+    if (eps) { S.rect(0, 2 - eps, 30, 2 + eps, "g-bande", { opacity: k === 1 ? E(t * 2) : 1 }); S.txt(29.5, 2 + eps + 0.15, "2 ± " + ANIM.nf(eps, 2), "r", "end"); }
+    S.seg(0, 2, 30, 2, "g-as");
+    var nb = k === 0 ? Math.floor(E(t) * 30.99) : 30, Nn = eps ? N0(eps) : null;
+    for (var i = 0; i <= nb; i++) S.pt(i, u(i), eps && i >= Nn ? "g-pt" : (eps ? "g-pt2" : "g-pt"), 3.3);
+    if (Nn !== null && Nn <= 30) { S.seg(Nn, -1.2, Nn, 5.2, "g-c2", { "stroke-dasharray": "4 3" }); S.txt(Nn + 0.4, 4.6, "N = " + Nn, "r"); }
+  }
+};
+
+/* Chapitre 3 : l'asymptote, vue de près puis de loin */
+ANIMS.asymptote = {
+  titre: "La courbe colle à son asymptote",
+  vb: [360, 250],
+  etapes: [
+    { d: 4, l: R`$f(x)=\frac{2x+1}{x-1}=2+\frac{3}{x-1}$. Le point $M$ part vers la droite : l'écart entre $f(x)$ et $2$ (en rouge) vaut $\frac{3}{x-1}$.` },
+    { d: 4.5, l: R`On recule la caméra : sur $[0;100]$, la courbe se confond avec la droite $y=2$. L'écart tend vers $0$ : $\lim_{x\to+\infty}f(x)=2$, asymptote horizontale.` },
+    { d: 4, l: R`Retour près de $x=1$. Quand $x\to1^+$, $x-1$ est un petit nombre <b>positif</b> : $\frac{3}{x-1}$ explose, $f(x)\to+\infty$.` },
+    { d: 4, l: R`Quand $x\to1^-$, $x-1$ est petit et <b>négatif</b> : $f(x)\to-\infty$. La droite $x=1$ est asymptote verticale.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, f = function (x) { return 2 + 3 / (x - 1); }, xm, X1 = 10;
+    if (k === 1) X1 = Math.exp(ANIM.l(Math.log(10), Math.log(100), E(t)));
+    if (k >= 2) X1 = 6;
+    var bas = k >= 2 ? -10 : -2, haut = k >= 2 ? 12 : 8;
+    S.rep(k >= 2 ? -4 : 0, X1, bas, haut, { px: X1 > 40 ? 20 : X1 > 12 ? 5 : 1, py: 2 });
+    S.seg(-10, 2, 200, 2, "g-as");
+    if (k >= 2 || X1 < 12) S.seg(1, -40, 1, 40, "g-as");
+    S.courbe(f, 1.0005, X1, "g-c", 500);
+    if (k >= 2) S.courbe(f, -4, 0.9995, "g-c", 300);
+    if (k === 0) xm = ANIM.l(2, 9.5, E(t));
+    else if (k === 1) xm = X1 * 0.92;
+    else if (k === 2) xm = ANIM.l(3, 1.18, E(t));
+    else xm = ANIM.l(-1, 0.82, E(t));
+    var ym = f(xm);
+    if (k <= 1) { S.seg(xm, 2, xm, ym, "g-c2", { "stroke-width": 3 }); S.txt(xm, ym + (k === 1 ? 0.5 : 0.35), "écart " + ANIM.nf(3 / (xm - 1), 3), "r", "end"); }
+    S.pt(xm, Math.max(bas - 1, Math.min(haut + 1, ym)), "g-pt2", 5);
+    if (k >= 2) S.txt(xm + (k === 2 ? 0.25 : -0.25), Math.max(bas + 0.5, Math.min(haut - 0.6, ym)), "f(" + ANIM.nf(xm, 2) + ") ≈ " + ANIM.nf(ym, 1), "r", k === 2 ? "start" : "end");
+  }
+};
+
+/* Chapitre 4 : le théorème des valeurs intermédiaires, puis la dichotomie */
+ANIMS.tvi = {
+  titre: "Pourquoi la courbe doit couper la droite $y=k$",
+  vb: [360, 240],
+  etapes: [
+    { d: 3.5, l: R`$f(x)=x^3+x-1$ sur $[0;1]$ : $f(0)=-1<0$ et $f(1)=1>0$. La valeur $k=0$ est entre les deux.` },
+    { d: 4, l: R`$f$ est continue : on trace sa courbe sans lever le crayon, du point sous l'axe au point au-dessus. Impossible de passer sans <b>couper</b> la droite $y=0$ : c'est le TVI.` },
+    { d: 3.5, l: R`$f$ est strictement croissante ($f'(x)=3x^2+1>0$) : la courbe ne coupe l'axe qu'<b>une</b> fois. Solution unique $\alpha$.` },
+    { d: 6, l: R`Dichotomie : on coupe $[0;1]$ en deux, on garde la moitié où le signe change. $[0{,}5;1]$, puis $[0{,}5;0{,}75]$, puis $[0{,}625;0{,}75]$…` },
+    { d: 3.5, l: R`Après $10$ coupes, l'intervalle mesure $\frac1{1024}$ : $0{,}681<\alpha<0{,}683$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, f = function (x) { return x * x * x + x - 1; };
+    S.rep(-0.1, 1.1, -1.5, 1.5, { px: 0.25, py: 0.5 });
+    var fin = k === 0 ? 0 : k === 1 ? E(t) : 1;
+    S.seg(-0.1, 0, 1.1, 0, "g-c2", { "stroke-width": 2 });
+    S.txt(1.08, 0.08, "y = 0", "r", "end");
+    if (k >= 3) {
+      var a = 0, b = 1, nb = k === 3 ? Math.floor(E(t) * 5.99) : 10;
+      for (var i = 0; i < nb; i++) { var m = (a + b) / 2; if (f(a) * f(m) <= 0) b = m; else a = m; }
+      S.rect(a, -1.5, b, 1.5);
+      S.seg(a, -1.5, a, 1.5, "g-as"); S.seg(b, -1.5, b, 1.5, "g-as");
+      S.txt(0.02, 1.3, "[" + ANIM.nf(a, 4) + " ; " + ANIM.nf(b, 4) + "]", "b");
+    }
+    if (fin > 0) S.courbe(f, 0, fin, "g-c", 120, { "stroke-width": 3 });
+    S.pt(0, -1, "g-pt2", 5); S.pt(1, 1, "g-pt", 5);
+    if (k >= 1 && fin > 0.682) S.pt(0.6823, 0, "g-pt2", 6);
+    if (k === 2) S.txt(0.69, -0.25, "α unique", "r");
+  }
+};
+
+/* Chapitre 4 : la tangente roule sur la courbe */
+ANIMS.tangente = {
+  titre: "La tangente roule : convexe, concave, inflexion",
+  vb: [360, 240],
+  etapes: [
+    { d: 5, l: R`$f(x)=x^3-3x$. Le point de contact glisse de $x=-2$ vers $x=0$ : la tangente est <b>au-dessus</b> de la courbe, sa pente diminue ($f'$ décroît) : $f$ est concave, $f''(x)=6x<0$.` },
+    { d: 3, l: R`En $x=0$, $f''(0)=0$ et $f''$ change de signe : la tangente <b>traverse</b> la courbe. C'est le point d'inflexion.` },
+    { d: 5, l: R`De $0$ à $2$, la tangente passe <b>en dessous</b> de la courbe et sa pente augmente ($f'$ croît) : $f$ est convexe, $f''>0$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, f = function (x) { return x * x * x - 3 * x; }, d = function (x) { return 3 * x * x - 3; };
+    S.rep(-2.5, 2.5, -4, 4, { px: 1, py: 2 });
+    S.courbe(f, -2.5, 2.5, "g-c");
+    var a = k === 0 ? ANIM.l(-2, -0.05, E(t)) : k === 1 ? ANIM.l(-0.05, 0.05, t) : ANIM.l(0.05, 2, E(t));
+    var cls = a < -0.02 ? "g-c2" : a > 0.02 ? "g-c3" : "g-c2";
+    S.seg(-2.5, f(a) + d(a) * (-2.5 - a), 2.5, f(a) + d(a) * (2.5 - a), cls, { "stroke-width": 2.4 });
+    S.pt(a, f(a), "g-pt2", 5.5);
+    S.txt(-2.4, 3.4, "f''(" + ANIM.nf(a, 2) + ") = " + ANIM.nf(6 * a, 2), a < -0.02 ? "r" : "b");
+    S.txt(-2.4, 2.7, a < -0.02 ? "concave" : a > 0.02 ? "convexe" : "inflexion", a < -0.02 ? "r" : "b");
+  }
+};
+
+/* Chapitre 5 : de l'arbre aux combinaisons */
+ANIMS.arbre = {
+  titre: "Pourquoi on divise par $k!$",
+  vb: [360, 260],
+  etapes: [
+    { d: 3, l: R`On choisit $3$ coureurs parmi $4$ (A, B, C, D) <b>dans l'ordre</b> : $4$ choix pour l'or…` },
+    { d: 3, l: R`… puis $3$ pour l'argent : $4\times3=12$ branches…` },
+    { d: 3, l: R`… puis $2$ pour le bronze : $4\times3\times2=24$ podiums ordonnés.` },
+    { d: 4.5, l: R`On colorie chaque podium selon l'<b>ensemble</b> de ses coureurs : ABC, ABD, ACD, BCD. Chaque couleur revient $3!=6$ fois (les $6$ ordres d'un même trio).` },
+    { d: 3.5, l: R`Donc le nombre de trios (sans ordre) est $\frac{24}{6}=4=\binom43$. C'est la formule $\binom nk=\frac{n(n-1)\dots(n-k+1)}{k!}$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, L = ["A", "B", "C", "D"], cols = { ABC: "#2343A8", ABD: "#C2372B", ACD: "#23774F", BCD: "#B8860B" };
+    var feuilles = [];
+    L.forEach(function (a) { L.forEach(function (b) { if (b === a) return; L.forEach(function (c) { if (c === a || c === b) return; feuilles.push(a + b + c); }); }); });
+    var y = [22, 70, 130, 200], W = 360;
+    S.px.cercle(180, y[0], 5, "g-pt");
+    var niv = k === 0 ? 1 : k === 1 ? 2 : 3, prog = k <= 2 ? E(t) : 1;
+    function xn(lvl, idx, nb) { return 12 + (W - 24) * (idx + 0.5) / nb; }
+    for (var lvl = 1; lvl <= niv; lvl++) {
+      var nb = lvl === 1 ? 4 : lvl === 2 ? 12 : 24, a = lvl === niv ? prog : 1;
+      for (var i = 0; i < nb; i++) {
+        var par = lvl === 1 ? 180 : xn(lvl - 1, Math.floor(i / (lvl === 2 ? 3 : 2)), lvl === 2 ? 4 : 12);
+        var x = xn(lvl, i, nb), mot = lvl === 3 ? feuilles[i] : null;
+        var col = k >= 3 && mot ? cols[mot.split("").sort().join("")] : null;
+        S.px.seg(par, y[lvl - 1] + 4, ANIM.l(par, x, a), ANIM.l(y[lvl - 1] + 4, y[lvl] - 8, a), "a-branche", { opacity: lvl === 3 && k >= 3 ? 0.35 : 1 });
+        if (a > 0.95) {
+          var lab = lvl === 3 ? mot : (lvl === 1 ? L[i] : feuilles[i * 2].slice(0, 2));
+          if (lvl < 3) S.px.txt(x, y[lvl] + 4, lab.slice(-1), "", "middle", { "font-size": 12 });
+          else {
+            var ty = y[3] + 2 + (k >= 3 ? 0 : 0);
+            S.px.txt(x, ty, lab[0], col ? "" : "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
+            S.px.txt(x, ty + 10, lab[1], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
+            S.px.txt(x, ty + 20, lab[2], "", "middle", { "font-size": 9, style: col ? "fill:" + col + ";font-weight:700" : null });
+          }
+        }
+      }
+    }
+    var tot = niv === 1 ? 4 : niv === 2 ? 12 : 24;
+    S.px.txt(8, 250, k === 4 ? "24 ÷ 3! = 4 trios" : tot + " branches", k === 4 ? "r" : "b", "start", k === 4 ? { "font-size": 14 } : null);
+    if (k >= 3) {
+      var a2 = k === 3 ? E(t) : 1;
+      Object.keys(cols).forEach(function (c, i) { S.px.txt(196 + i * 41, 250, c, "", "middle", { fill: cols[c], "font-weight": 700, opacity: a2, "font-size": 12 }); });
+    }
+  }
+};
+
 /* ---------- Chapitre 1 : raisonnement par récurrence ---------- */
 var R = String.raw;
 var CH1 = {
@@ -970,6 +1383,7 @@ var CH1 = {
 [thm|Principe de récurrence]Soit $P(n)$ une propriété définie pour tout entier $n\geq n_0$. Si :
 <ul><li><b>Initialisation</b> : $P(n_0)$ est vraie ;</li><li><b>Hérédité</b> : pour tout entier $k\geq n_0$, si $P(k)$ est vraie, alors $P(k+1)$ est vraie ;</li></ul>
 alors $P(n)$ est vraie pour tout entier $n\geq n_0$.[/]
+<div data-anim="propagation"></div>
 <div data-w="dominos"></div>
 <p><b>Pourquoi ça marche ?</b> $P(n_0)$ est vraie ; l'hérédité appliquée à $k=n_0$ donne $P(n_0+1)$ ; appliquée à $k=n_0+1$, elle donne $P(n_0+2)$… On atteint ainsi n'importe quel entier en un nombre fini d'étapes. C'est une propriété fondamentale de l'ensemble $\N$ : on l'admet (en mathématiques, c'est un axiome).</p>
 [ex|Les deux étapes sont indispensables]
@@ -1222,6 +1636,7 @@ var CH2 = {
     { id: "convergence", titre: "Converger vers un réel", html: R`
 [def|Suite convergente]La suite $(u_n)$ <b>converge vers le réel $\ell$</b> si tout intervalle ouvert contenant $\ell$ contient tous les termes $u_n$ à partir d'un certain rang. On note $\lim_{n\to+\infty}u_n=\ell$. Une suite qui ne converge pas est dite <b>divergente</b>.[/]
 <p>En pratique, on prend des intervalles $]\ell-\varepsilon;\ell+\varepsilon[$ : pour tout $\varepsilon>0$, il existe un rang $N$ tel que, pour $n\geq N$, $|u_n-\ell|<\varepsilon$. Joue avec la largeur de la bande :</p>
+<div data-anim="bande"></div>
 <div data-w="suite"></div>
 [prop|Unicité et références]Si une suite converge, sa limite est unique. $\lim\frac1n=\lim\frac1{n^2}=\lim\frac1{\sqrt n}=0$ ; plus généralement $\lim\frac1{n^p}=0$ pour $p\geq1$.[/]
 <p>Une suite divergente peut tendre vers $\pm\infty$… ou n'avoir <b>aucune limite</b> : $u_n=(-1)^n$ vaut $1,-1,1,-1\dots$ ; aucune bande étroite autour d'un réel ne contient tous les termes à partir d'un rang.</p>
@@ -1458,6 +1873,7 @@ var CH3 = {
 <p>Souvent, le comportement diffère selon le côté : on note $x\to a^+$ (ou $x\to a$, $x>a$) et $x\to a^-$ (ou $x\to a$, $x<a$).</p>
 [ex|$\frac1x$ en $0$]$\lim_{x\to0^+}\frac1x=+\infty$ et $\lim_{x\to0^-}\frac1x=-\infty$ ; asymptote verticale $x=0$. En revanche $\lim_{x\to0}\frac1{x^2}=+\infty$ des deux côtés.[/]
 [ex|$f(x)=\frac{2x+1}{x-1}$]Quand $x\to1$, le numérateur tend vers $3$ et le dénominateur vers $0$. Signe du dénominateur : $x-1>0$ si $x>1$. Donc $\lim_{x\to1^+}f(x)=+\infty$ et $\lim_{x\to1^-}f(x)=-\infty$. Numériquement, $f(1{,}001)=3002$ et $f(0{,}999)=-2998$.[/]
+<div data-anim="asymptote"></div>
 <div data-w="asymptotes"></div>
 <p>Il existe aussi des limites <b>finies</b> en un point : $\lim_{x\to2}(x^2+1)=5$. Pour une fonction usuelle définie en $a$, on remplace simplement $x$ par $a$ (c'est la continuité, chapitre 4).</p>` },
     { id: "reference", titre: "Fonctions de référence", html: R`
@@ -1664,6 +2080,7 @@ Chaque formule a été contrôlée numériquement (taux d'accroissement).[/]
 <ul><li>$f$ est convexe sur $I$ ;</li><li>la courbe de $f$ est au-dessus de chacune de ses tangentes ;</li><li>$f'$ est croissante sur $I$ ;</li><li>$f''\geq0$ sur $I$.</li></ul>
 (Et concave ⟺ $f''\leq0$ ⟺ $f'$ décroissante ⟺ courbe en dessous des tangentes.)[/]
 <p>Le sens « $f''\geq0$ ⟹ courbe au-dessus de ses tangentes » est une <b>démonstration exigible</b>.</p>
+<div data-anim="tangente"></div>
 <div data-w="convexe"></div>
 [def|Point d'inflexion]Un point de la courbe où la courbe <b>traverse</b> sa tangente. Si $f$ est deux fois dérivable, c'est un point où $f''$ s'annule <b>en changeant de signe</b> (la convexité change).[/]
 [piege|$f''(a)=0$ ne suffit pas]$f(x)=x^4$ : $f''(x)=12x^2$ s'annule en $0$ sans changer de signe. $f$ est convexe sur $\R$ ; pas de point d'inflexion en $0$.[/]
@@ -1683,6 +2100,7 @@ Chaque formule a été contrôlée numériquement (taux d'accroissement).[/]
 <ul><li>$f$ est continue sur $[0;1]$ (polynôme).</li><li>$f'(x)=3x^2+1>0$ : $f$ est strictement croissante sur $[0;1]$.</li><li>$f(0)=-1<0$ et $f(1)=1>0$ : $0$ est compris entre $f(0)$ et $f(1)$.</li></ul>
 D'après le corollaire du TVI, l'équation $f(x)=0$ admet une unique solution $\alpha\in[0;1]$. Par dichotomie, $0{,}682<\alpha<0{,}683$ ($\alpha\approx0{,}6823$).[/]
 [piege|Les deux hypothèses]Sans continuité, une fonction peut « sauter » par-dessus $k$. Sans stricte monotonie, il peut y avoir plusieurs solutions (le TVI garantit seulement l'existence).[/]
+<div data-anim="tvi"></div>
 <div data-w="dicho"></div>` },
     { id: "dichotomie", titre: "Encadrer une solution : dichotomie et Newton", html: R`
 <p>Le TVI dit qu'une solution existe, pas combien elle vaut. La <b>dichotomie</b> la piège dans un intervalle qu'on coupe en deux à chaque étape :</p>
@@ -1873,6 +2291,7 @@ $$n(n-1)(n-2)\dots(n-k+1)=\frac{n!}{(n-k)!}.$$[/]
 $$\binom nk=\frac{n(n-1)\dots(n-k+1)}{k!}=\frac{n!}{k!\,(n-k)!}.$$
 En particulier $\binom n0=1$, $\binom n1=n$, $\binom n2=\frac{n(n-1)}2$.[/]
 <p><b>Pourquoi diviser par $k!$ ?</b> Chaque partie à $k$ éléments peut être rangée de $k!$ façons : il y a donc $k!$ fois plus de $k$-uplets d'éléments distincts que de parties.</p>
+<div data-anim="arbre"></div>
 [ex|Équipes et poignées de main]Choisir une équipe de $5$ joueurs parmi $12$ : $\binom{12}5=792$. Dans un groupe de $20$ personnes, chacun serre la main de chacun : $\binom{20}2=190$ poignées de main. Mains de $5$ cartes dans un jeu de $52$ : $\binom{52}5=2\,598\,960$.[/]
 [prop|Symétrie et relation de Pascal]$\binom nk=\binom n{n-k}$ (choisir les $k$ éléments qu'on prend revient à choisir les $n-k$ qu'on laisse).<br>Pour $1\leq k\leq n-1$ : $\binom{n-1}{k-1}+\binom{n-1}k=\binom nk$.[/]
 <div data-w="pascal"></div>
@@ -2073,7 +2492,10 @@ var BIENTOT = [
     algos: ["Calculer la probabilité de $(|S_n-pn|>\\sqrt{n})$ pour $S_n$ de loi $\\mathcal{B}(n,p)$ ; comparer avec l'inégalité de Bienaymé-Tchebychev.", "Simulation d'une marche aléatoire.", "Simuler $N$ échantillons de taille $n$ d'une variable aléatoire ; comparer l'écart type des moyennes à $\\frac{\\sigma}{\\sqrt n}$."] }
 ];
 BIENTOT.forEach(function (c) { c.statut = "bientot"; });
-var CHAPITRES = [window.CH1, window.CH2, window.CH3, window.CH4].filter(Boolean).concat(BIENTOT.slice(0, 4), [window.CH5].filter(Boolean), BIENTOT.slice(4));
+/* Un chapitre rédigé (var CHn = {..., id: "chn", statut: "ok"} dans src/chn.js) remplace son entrée « Bientôt ». */
+var CHAPITRES = [1, 2, 3, 4, 6, 7, 8, 9, 5, 10, 11, 12, 13, 14, 15].map(function (n) {
+  return window["CH" + n] || BIENTOT.filter(function (b) { return b.num === n; })[0];
+}).filter(Boolean);
 
 /* ---------- Pages transversales : l'épreuve, les ressources ---------- */
 var PAGES = (function () {
@@ -2406,6 +2828,8 @@ def seuil():
     $$("[data-qcm]", page).forEach(function (el) { monteQCM(el, questions(el.getAttribute("data-qcm"))); });
     $$("[data-cartes]", page).forEach(function (el) { monteCartes(el, cartes(el.getAttribute("data-cartes"))); });
     $$("[data-w]", page).forEach(function (el) { var f = WIDGETS[el.getAttribute("data-w")]; if (f) { try { f(el); } catch (e) { el.textContent = ""; } } });
+    ANIM.arreter();
+    $$("[data-anim]", page).forEach(function (el) { try { ANIM.monte(el, el.getAttribute("data-anim")); } catch (e) { if (window.console) console.error(e); } });
     $$("[data-copie]", page).forEach(function (b) {
       b.onclick = function () {
         var t = b.closest(".code").querySelector("pre").textContent;

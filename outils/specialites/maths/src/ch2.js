@@ -34,6 +34,7 @@ var CH2 = {
     { id: "convergence", titre: "Converger vers un réel", html: R`
 [def|Suite convergente]La suite $(u_n)$ <b>converge vers le réel $\ell$</b> si tout intervalle ouvert contenant $\ell$ contient tous les termes $u_n$ à partir d'un certain rang. On note $\lim_{n\to+\infty}u_n=\ell$. Une suite qui ne converge pas est dite <b>divergente</b>.[/]
 <p>En pratique, on prend des intervalles $]\ell-\varepsilon;\ell+\varepsilon[$ : pour tout $\varepsilon>0$, il existe un rang $N$ tel que, pour $n\geq N$, $|u_n-\ell|<\varepsilon$. Joue avec la largeur de la bande :</p>
+<div data-anim="bande"></div>
 <div data-w="suite"></div>
 [prop|Unicité et références]Si une suite converge, sa limite est unique. $\lim\frac1n=\lim\frac1{n^2}=\lim\frac1{\sqrt n}=0$ ; plus généralement $\lim\frac1{n^p}=0$ pour $p\geq1$.[/]
 <p>Une suite divergente peut tendre vers $\pm\infty$… ou n'avoir <b>aucune limite</b> : $u_n=(-1)^n$ vaut $1,-1,1,-1\dots$ ; aucune bande étroite autour d'un réel ne contient tous les termes à partir d'un rang.</p>

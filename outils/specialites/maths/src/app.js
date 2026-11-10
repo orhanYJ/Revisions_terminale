@@ -221,6 +221,8 @@
     $$("[data-qcm]", page).forEach(function (el) { monteQCM(el, questions(el.getAttribute("data-qcm"))); });
     $$("[data-cartes]", page).forEach(function (el) { monteCartes(el, cartes(el.getAttribute("data-cartes"))); });
     $$("[data-w]", page).forEach(function (el) { var f = WIDGETS[el.getAttribute("data-w")]; if (f) { try { f(el); } catch (e) { el.textContent = ""; } } });
+    ANIM.arreter();
+    $$("[data-anim]", page).forEach(function (el) { try { ANIM.monte(el, el.getAttribute("data-anim")); } catch (e) { if (window.console) console.error(e); } });
     $$("[data-copie]", page).forEach(function (b) {
       b.onclick = function () {
         var t = b.closest(".code").querySelector("pre").textContent;
