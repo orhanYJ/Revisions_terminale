@@ -54,6 +54,7 @@ HLP.EPREUVE = `<header class="page-entete"><p class="surtitre">Méthode</p><h1>L
 <tr><th>Exemple attendu</th><td>« Dans <i>L’Enfant</i> (1878), Vallès fait raconter le collège par un enfant… »</td><td>« Kant distingue l’usage privé et l’usage public de la raison… »</td></tr>
 <tr><th>Le « je »</th><td colspan="2">Un « je » qui argumente, jamais un récit de ta vie. Les exemples de la vie courante sont permis s’ils servent un argument.</td></tr>
 </tbody></table></div>
+<div data-anim="ep-essai"></div>
 <div class="cle"><b class="l">Gérer les 4 heures</b>Lis le sujet entier d’abord, puis 1 h 55 environ par question, 10 minutes de relecture. Commence par la question qui t’inspire le plus, mais garde du temps pour l’autre : deux copies équilibrées valent mieux qu’une excellente et une bâclée.</div>
 </section>
 

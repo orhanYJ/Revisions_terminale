@@ -45,8 +45,10 @@ $$n(n-1)(n-2)\dots(n-k+1)=\frac{n!}{(n-k)!}.$$[/]
 $$\binom nk=\frac{n(n-1)\dots(n-k+1)}{k!}=\frac{n!}{k!\,(n-k)!}.$$
 En particulier $\binom n0=1$, $\binom n1=n$, $\binom n2=\frac{n(n-1)}2$.[/]
 <p><b>Pourquoi diviser par $k!$ ?</b> Chaque partie à $k$ éléments peut être rangée de $k!$ façons : il y a donc $k!$ fois plus de $k$-uplets d'éléments distincts que de parties.</p>
+<div data-anim="arbre"></div>
 [ex|Équipes et poignées de main]Choisir une équipe de $5$ joueurs parmi $12$ : $\binom{12}5=792$. Dans un groupe de $20$ personnes, chacun serre la main de chacun : $\binom{20}2=190$ poignées de main. Mains de $5$ cartes dans un jeu de $52$ : $\binom{52}5=2\,598\,960$.[/]
 [prop|Symétrie et relation de Pascal]$\binom nk=\binom n{n-k}$ (choisir les $k$ éléments qu'on prend revient à choisir les $n-k$ qu'on laisse).<br>Pour $1\leq k\leq n-1$ : $\binom{n-1}{k-1}+\binom{n-1}k=\binom nk$.[/]
+<div data-anim="pascalAnim"></div>
 <div data-w="pascal"></div>
 [prop|Mots et chemins]$\binom nk$ est aussi le nombre de mots de longueur $n$ formés de $k$ lettres $a$ et $n-k$ lettres $b$ (on choisit les positions des $a$), et le nombre de chemins d'un arbre binaire à $n$ niveaux qui comptent exactement $k$ succès.[/]
 [ex|Chemins dans un quadrillage]Pour aller de $(0;0)$ à $(4;3)$ par des pas « droite » ou « haut », on fait $7$ pas dont $3$ vers le haut : $\binom73=35$ chemins.[/]` },

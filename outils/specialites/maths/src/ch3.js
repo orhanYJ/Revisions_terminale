@@ -33,6 +33,7 @@ var CH3 = {
 <p>Souvent, le comportement diffère selon le côté : on note $x\to a^+$ (ou $x\to a$, $x>a$) et $x\to a^-$ (ou $x\to a$, $x<a$).</p>
 [ex|$\frac1x$ en $0$]$\lim_{x\to0^+}\frac1x=+\infty$ et $\lim_{x\to0^-}\frac1x=-\infty$ ; asymptote verticale $x=0$. En revanche $\lim_{x\to0}\frac1{x^2}=+\infty$ des deux côtés.[/]
 [ex|$f(x)=\frac{2x+1}{x-1}$]Quand $x\to1$, le numérateur tend vers $3$ et le dénominateur vers $0$. Signe du dénominateur : $x-1>0$ si $x>1$. Donc $\lim_{x\to1^+}f(x)=+\infty$ et $\lim_{x\to1^-}f(x)=-\infty$. Numériquement, $f(1{,}001)=3002$ et $f(0{,}999)=-2998$.[/]
+<div data-anim="asymptote"></div>
 <div data-w="asymptotes"></div>
 <p>Il existe aussi des limites <b>finies</b> en un point : $\lim_{x\to2}(x^2+1)=5$. Pour une fonction usuelle définie en $a$, on remplace simplement $x$ par $a$ (c'est la continuité, chapitre 4).</p>` },
     { id: "reference", titre: "Fonctions de référence", html: R`

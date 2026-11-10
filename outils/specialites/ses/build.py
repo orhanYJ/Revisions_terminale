@@ -22,7 +22,9 @@ def verifier(js, nom):
         sys.exit(1)
 
 
-donnees = "\n".join(lire(n) for n in DONNEES if os.path.exists(os.path.join(SRC, n)))
+SANS = sys.argv[sys.argv.index("--sans") + 1].split(",") if "--sans" in sys.argv else []
+AUTRES = sorted(f for f in os.listdir(SRC) if f.startswith("data-") and f.endswith(".js") and f not in DONNEES and f not in SANS)
+donnees = "\n".join(lire(n) for n in ["anim-moteur.js"] + DONNEES + AUTRES if os.path.exists(os.path.join(SRC, n)))
 app = lire("app.js")
 verifier(donnees, "données")
 verifier(donnees + "\n" + app, "application")

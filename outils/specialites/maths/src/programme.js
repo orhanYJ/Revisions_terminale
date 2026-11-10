@@ -47,4 +47,7 @@ var BIENTOT = [
     algos: ["Calculer la probabilité de $(|S_n-pn|>\\sqrt{n})$ pour $S_n$ de loi $\\mathcal{B}(n,p)$ ; comparer avec l'inégalité de Bienaymé-Tchebychev.", "Simulation d'une marche aléatoire.", "Simuler $N$ échantillons de taille $n$ d'une variable aléatoire ; comparer l'écart type des moyennes à $\\frac{\\sigma}{\\sqrt n}$."] }
 ];
 BIENTOT.forEach(function (c) { c.statut = "bientot"; });
-var CHAPITRES = [window.CH1, window.CH2, window.CH3, window.CH4].filter(Boolean).concat(BIENTOT.slice(0, 4), [window.CH5].filter(Boolean), BIENTOT.slice(4));
+/* Un chapitre rédigé (var CHn = {..., id: "chn", statut: "ok"} dans src/chn.js) remplace son entrée « Bientôt ». */
+var CHAPITRES = [1, 2, 3, 4, 6, 7, 8, 9, 5, 10, 11, 12, 13, 14, 15].map(function (n) {
+  return window["CH" + n] || BIENTOT.filter(function (b) { return b.num === n; })[0];
+}).filter(Boolean);

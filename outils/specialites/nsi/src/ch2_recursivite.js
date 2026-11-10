@@ -151,6 +151,14 @@ def somme_liste(t, i=0):
 print(longueur("récursif"), est_palindrome("kayak"), est_palindrome("nsi"))
 print(somme_liste([4, 8, 15, 16, 23, 42]))`, { out: "8 True False\n108" });
 
+C("c2-tr-somme", String.raw`
+def somme_liste(t, i):
+    if i == len(t):
+        return 0
+    return t[i] + somme_liste(t, i + 1)
+
+print(somme_liste([4, 8, 15], 0))`, { fichier: "somme_liste.py", trace: true, out: "27" });
+
 C("c2-dicho", String.raw`
 def recherche(t, x, g, d):
     """Indice de x dans le tableau trié t, entre les indices g et d inclus, ou -1."""
@@ -516,6 +524,8 @@ CH.push({
     { id: "i8", t: "Récursivité sur les chaînes et les tableaux", h: `
 <p>Une chaîne ou une liste peut se voir récursivement : « vide », ou « un premier élément suivi du reste ». D’où des fonctions très courtes :</p>
 [[c2-chaines]]
+<p>Pas à pas, avec la vraie pile d’exécution : chaque cadre a son propre <code>i</code>, mais tous partagent la même liste <code>t</code>.</p>
+[[w-trace|c2-tr-somme]]
 <p>Le découpage <code>ch[1:]</code> crée une <b>copie</b> à chaque appel, ce qui coûte du temps. Pour les tableaux, on préfère passer un <b>indice</b> en paramètre (comme <code>somme_liste</code>), ce qui évite toute copie. C’est ainsi qu’on écrit la <b>recherche dichotomique</b> de Première en version récursive :</p>
 [[c2-dicho]]
 <p>Le variant est la taille de la zone <code>d − g + 1</code>, divisée par deux environ à chaque appel : environ 20 appels suffisent pour un tableau d’un million d’éléments.</p>` },

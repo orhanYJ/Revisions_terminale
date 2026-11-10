@@ -36,6 +36,7 @@ var CH1 = {
 [thm|Principe de récurrence]Soit $P(n)$ une propriété définie pour tout entier $n\geq n_0$. Si :
 <ul><li><b>Initialisation</b> : $P(n_0)$ est vraie ;</li><li><b>Hérédité</b> : pour tout entier $k\geq n_0$, si $P(k)$ est vraie, alors $P(k+1)$ est vraie ;</li></ul>
 alors $P(n)$ est vraie pour tout entier $n\geq n_0$.[/]
+<div data-anim="propagation"></div>
 <div data-w="dominos"></div>
 <p><b>Pourquoi ça marche ?</b> $P(n_0)$ est vraie ; l'hérédité appliquée à $k=n_0$ donne $P(n_0+1)$ ; appliquée à $k=n_0+1$, elle donne $P(n_0+2)$… On atteint ainsi n'importe quel entier en un nombre fini d'étapes. C'est une propriété fondamentale de l'ensemble $\N$ : on l'admet (en mathématiques, c'est un axiome).</p>
 [ex|Les deux étapes sont indispensables]

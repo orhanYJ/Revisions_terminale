@@ -16,21 +16,37 @@
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function melange(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function ico(n) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (D.ICONES[n] || "") + "</svg>"; }
-  var ORN = '<div class="orn" aria-hidden="true"><svg viewBox="0 0 46 14"><path d="M23 2a5 5 0 1 0 4 8 4 4 0 1 1-4-8z" fill="currentColor"/><circle cx="9" cy="7" r="1.3" fill="currentColor"/><circle cx="37" cy="7" r="1.3" fill="currentColor"/></svg></div>';
+  var ORN = '<div class="orn" aria-hidden="true">' + D.FLEURON + "</div>";
 
   function entree(id) { for (var i = 0; i < D.ENTREES.length; i++) if (D.ENTREES[i].id === id) return D.ENTREES[i]; return null; }
+  /* Semestre d'une entrée : champ sem (1 par défaut, 2 pour « L'Humanité en question »). */
+  function sem(e) { return e.sem === 2 ? 2 : 1; }
+  function ecrite2(num) { for (var i = 0; i < D.ENTREES.length; i++) if (sem(D.ENTREES[i]) === 2 && D.ENTREES[i].num === num) return D.ENTREES[i]; return null; }
+  function ordre() { return D.ENTREES.slice().sort(function (a, b) { return sem(a) - sem(b) || ["I", "II", "III"].indexOf(a.num) - ["I", "II", "III"].indexOf(b.num); }); }
+  var COURT = { e1: "Éducation", e2: "Sensibilité", e3: "Moi", e4: "Création", e5: "Violence", e6: "Limites" };
+  function court(id) { if (COURT[id]) return COURT[id]; var x = entree(id); return x ? (x.court || x.titre) : id; }
+  function boutonsS2() {
+    var tn = toutesNotions();
+    return ordre().filter(function (x) { return sem(x) === 2 && tn.some(function (n) { return n.e.indexOf(x.id) >= 0; }); })
+      .map(function (x) { return '<button class="puce-f" data-fn="' + x.id + '" aria-pressed="false">' + court(x.id) + "</button>"; }).join("");
+  }
+  var NOM_SEM = { 1: "Semestre 1 · La recherche de soi", 2: "Semestre 2 · L’Humanité en question" };
 
   /* ---------- menu ---------- */
   var menu = $("#menu"), voileM = $("#voile-menu");
   function construireMenu() {
-    var h = '<div class="m-tete">' + D.LOGO + '<div><b>L’Heure bleue</b><small>HLP · Terminale</small></div></div>';
+    var h = '<div class="m-tete">' + D.LOGO + '<div><b>Ex libris</b><small>HLP · Terminale</small></div></div>';
     h += '<a href="#accueil" data-r="accueil">' + ico("lune") + "Accueil</a>";
     h += "<h6>Semestre 1 · La recherche de soi</h6>";
-    D.ENTREES.forEach(function (e) { h += '<a href="#' + e.id + '" data-r="' + e.id + '"><span class="num">' + e.num + "</span>" + e.titre + "</a>"; });
+    ordre().forEach(function (e) { if (sem(e) === 1) h += '<a href="#' + e.id + '" data-r="' + e.id + '"><span class="num">' + e.num + "</span>" + e.titre + "</a>"; });
     h += "<h6>Semestre 2 · L’Humanité en question</h6>";
-    D.S2.forEach(function (e) { h += '<a href="#s2" data-r="s2-' + e.num + '"><span class="num">' + e.num + "</span>" + e.titre + '<span class="bientot">Bientôt</span></a>'; });
+    D.S2.forEach(function (p) {
+      var e = ecrite2(p.num);
+      h += e ? '<a href="#' + e.id + '" data-r="' + e.id + '"><span class="num">' + e.num + "</span>" + e.titre + "</a>"
+        : '<a href="#s2" data-r="s2-' + p.num + '"><span class="num">' + p.num + "</span>" + p.titre + '<span class="bientot">Bientôt</span></a>';
+    });
     h += "<h6>Méthode & outils</h6>";
-    [["epreuve", "plume", "L’épreuve"], ["atelier", "loupe", "Atelier de lecture"], ["qui", "guillemets", "Qui a écrit ?"], ["frise", "sablier", "Frise 1750-1950"],
+    [["epreuve", "plume", "L’épreuve"], ["atelier", "loupe", "Atelier de lecture"], ["qui", "guillemets", "Qui a écrit ?"], ["frise", "sablier", "Frise des repères"],
       ["notions", "constellation", "Tableau des notions"], ["entrainement", "cible", "Entraînement"], ["ressources", "livres", "Ressources"]].forEach(function (x) {
       h += '<a href="#' + x[0] + '" data-r="' + x[0] + '">' + ico(x[1]) + x[2] + "</a>";
     });
@@ -48,27 +64,31 @@
   $("#btn-theme").addEventListener("click", function () {
     var r = document.documentElement, sombre = r.getAttribute("data-theme") ? r.getAttribute("data-theme") === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
     r.setAttribute("data-theme", sombre ? "light" : "dark");
-    var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sombre ? "#f4eedf" : "#11172a");
+    var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sombre ? "#f1e7d0" : "#17110b");
   });
 
   /* ---------- pages ---------- */
   var PAGES = {};
   PAGES.accueil = function () {
-    var h = '<section class="ciel">' + D.CIEL + '<div class="txt"><p class="sous">Humanités, littérature et philosophie · Terminale</p><h1>L’Heure bleue</h1>' +
-      '<p class="acc">Le cabinet de lecture du soir, pour réviser la spécialité HLP : des textes, des idées, et la méthode pour en faire une copie.</p>' +
-      '<div class="rang"><a class="btn plein" href="#e1">Commencer le semestre 1</a><a class="btn" href="#epreuve">L’épreuve</a></div></div></section>';
+    var coin = function (c) { return '<svg class="coin ' + c + '" viewBox="0 0 30 30" aria-hidden="true">' + D.COIN + "</svg>"; };
+    var h = '<section class="frontispice">' + coin("a") + coin("b") + coin("c") + coin("d") +
+      '<p class="f-haut">Humanités · Littérature · Philosophie</p><h1>Ex libris</h1>' +
+      '<p class="f-sous">ou l’art de se chercher dans les livres. Cours complet de la spécialité, classe de Terminale.</p>' + D.EMBLEME +
+      '<div class="f-imp">Session MMXXVII</div><div class="rang"><a class="btn plein" href="#e1">Ouvrir le premier livre</a><a class="btn" href="#epreuve">L’épreuve</a></div></section>';
     h += '<div class="lecture"><p class="lettrine" style="margin-top:22px">' + D.ACCUEIL_INTRO + "</p></div>";
     h += '<section class="semestre"><h2>Semestre 1 — La recherche de soi <small>du romantisme au XX<sup>e</sup> siècle</small></h2><div class="grille g3">';
-    D.ENTREES.forEach(function (e) {
-      h += '<a class="entree-c" href="#' + e.id + '"><span class="chiffre">' + D.CHIFFRES[e.num] + '</span><h3>' + e.titre + "</h3><p>" + e.accroche + '</p><span class="etat tag ' + e.id + '">Rédigé</span></a>';
+    ordre().forEach(function (e) {
+      if (sem(e) === 1) h += '<a class="entree-c" href="#' + e.id + '"><span class="chiffre">' + D.CHIFFRES[e.num] + '</span><h3>' + e.titre + "</h3><p>" + e.accroche + '</p><span class="etat tag ' + e.id + '">Rédigé</span></a>';
     });
     h += '</div></section><section class="semestre"><h2>Semestre 2 — L’Humanité en question <small>période contemporaine (XX<sup>e</sup>-XXI<sup>e</sup> siècles)</small></h2><div class="grille g3">';
-    D.S2.forEach(function (e) {
-      h += '<a class="entree-c bientot" href="#s2"><span class="chiffre">' + D.CHIFFRES[e.num] + '</span><h3>' + e.titre + "</h3><p>" + e.accroche + '</p><span class="etat tag">Bientôt</span></a>';
+    D.S2.forEach(function (p) {
+      var e = ecrite2(p.num);
+      h += e ? '<a class="entree-c" href="#' + e.id + '"><span class="chiffre">' + D.CHIFFRES[e.num] + '</span><h3>' + e.titre + "</h3><p>" + (e.accroche || p.accroche) + '</p><span class="etat tag ' + e.id + '">Rédigé</span></a>'
+        : '<a class="entree-c bientot" href="#s2"><span class="chiffre">' + D.CHIFFRES[p.num] + '</span><h3>' + p.titre + "</h3><p>" + p.accroche + '</p><span class="etat tag">Bientôt</span></a>';
     });
     h += "</div></section>" + ORN + "<h2>Accès rapide</h2><div class='acces'>";
     [["epreuve", "plume", "L’épreuve", "Format 2027, méthode, copie commentée"], ["atelier", "loupe", "Atelier de lecture", "Surligne les procédés d’un texte"],
-      ["qui", "guillemets", "Qui a écrit ?", "Une citation, quatre auteurs"], ["frise", "sablier", "La frise", "Des Lumières à 1950"],
+      ["qui", "guillemets", "Qui a écrit ?", "Une citation, quatre auteurs"], ["frise", "sablier", "La frise", "Des Lumières à nos jours"],
       ["notions", "constellation", "Les notions", "Définitions et distinctions"], ["entrainement", "cible", "Entraînement", "QCM mélangé et cartes"],
       ["ressources", "livres", "Ressources", "Programme, annales, textes"], ["s2", "eclipse", "Semestre 2", "Ce qui t’attend"]].forEach(function (x) {
       h += '<a href="#' + x[0] + '">' + ico(x[1]) + "<b>" + x[2] + "</b><small>" + x[3] + "</small></a>";
@@ -79,14 +99,14 @@
 
   var ONGLETS = [["", "Cours"], ["textes", "Textes clés"], ["sujet", "Sujet type bac"], ["qcm", "QCM"], ["cartes", "Cartes mémoire"], ["fiche", "À retenir"]];
   function pageEntree(e, sous) {
-    var h = '<header class="page-entete"><p class="surtitre">Semestre 1 · La recherche de soi · Entrée ' + e.num + "</p><h1>" + e.titre + '</h1><p class="chapo">' + e.chapo + "</p></header>";
+    var h = '<header class="page-entete"><p class="surtitre">' + NOM_SEM[sem(e)] + ' · <span class="nw">Entrée ' + e.num + "</span></p><h1>" + e.titre + '</h1><p class="chapo">' + e.chapo + "</p></header>";
     h += '<nav class="onglets non-imp" aria-label="Parties de l’entrée">';
     ONGLETS.forEach(function (o) { h += '<a href="#' + e.id + (o[0] ? "/" + o[0] : "") + '"' + (sous === o[0] ? ' class="actif" aria-current="page"' : "") + ">" + o[1] + "</a>"; });
     h += "</nav><div class='entre'>";
     if (!sous) h += coursHTML(e);
     else if (sous === "textes") h += textesHTML(e);
     else if (sous === "sujet") h += sujetHTML(e);
-    else if (sous === "qcm") h += '<p class="lecture">Douze questions sur les idées du cours. Chaque réponse est expliquée, avec un lien pour revoir le paragraphe.</p><div id="qcm-zone"></div>';
+    else if (sous === "qcm") h += '<p class="lecture">' + (["zéro", "Une", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix", "Onze", "Douze", "Treize", "Quatorze", "Quinze", "Seize", "Dix-sept", "Dix-huit", "Dix-neuf", "Vingt"][e.qcm.length] || e.qcm.length) + ' questions sur les idées du cours. Chaque réponse est expliquée, avec un lien pour revoir le paragraphe.</p><div id="qcm-zone"></div>';
     else if (sous === "cartes") h += '<p class="lecture">Touche la carte pour la retourner. Les citations sont exactes, avec leur référence.</p><div id="fc-zone"></div>';
     else if (sous === "fiche") h += ficheHTML(e);
     h += "</div>";
@@ -97,6 +117,7 @@
     h += '<section class="cadre-prog"><h3>Ce que le programme attend</h3><ul class="puces">' + e.attendus.map(function (l) { return "<li>" + l + "</li>"; }).join("") + "</ul></section>";
     h += "<h2>Les problématiques</h2><ul class='puces'>" + e.problematiques.map(function (l) { return "<li><i>" + l + "</i></li>"; }).join("") + "</ul>";
     h += e.schema ? '<figure class="schema" data-schema>' + e.schema + "</figure>" : "";
+    (e.anims || []).forEach(function (id) { h += '<div data-anim="' + id + '"></div>'; });
     h += ORN + "<h2>Le cours</h2>";
     e.cours.forEach(function (c, i) {
       h += '<section class="idee" id="' + c.id + '"><h3><span class="n">' + (i + 1) + ".</span><span>" + c.titre + "</span></h3>" + c.html + "</section>";
@@ -134,16 +155,25 @@
       h += "<h3>Plan détaillé</h3><ol class='plan-l'>" + c.plan.map(function (p) { return "<li><b>" + p[0] + "</b>" + p[1] + "</li>"; }).join("") + "</ol>";
       h += "<h3>Conclusion rédigée</h3><div class='redige'>" + c.concl + "</div>";
     });
+    if (e.annales && e.annales.length) h += ORN + "<h2>Déjà tombé au bac</h2><p class='mute petit'>Sujets officiels de métropole liés à cette entrée, relevés sur les sujets publiés.</p><ul class='puces'>" +
+      e.annales.map(function (a) { return "<li><b>" + a[0] + "</b> — " + a[1] + "<br><i>" + a[2] + "</i></li>"; }).join("") + "</ul>";
+    if (e.entrainement && e.entrainement.length) h += "<h2>Autres sujets d’essai, avec des pistes</h2>" +
+      e.entrainement.map(function (x) { return '<details class="pli"><summary>' + x[0] + '</summary><div class="dedans">' + x[1] + "</div></details>"; }).join("");
     return h + "</div>";
   }
   function ficheHTML(e) {
     return '<div class="lecture fiche carte"><div class="rang non-imp" style="justify-content:flex-end"><button class="btn" data-imprimer>' + ico("imprimer") + "Imprimer la fiche</button></div>" +
-      "<h2>" + e.titre + "</h2><p class='mute petit'>L’Heure bleue · HLP Terminale · Semestre 1, entrée " + e.num + "</p>" + e.retenir + "</div>";
+      "<h2>" + e.titre + "</h2><p class='mute petit'>Ex libris · HLP Terminale · Semestre " + sem(e) + ", entrée " + e.num + "</p>" + e.retenir + "</div>";
   }
 
   PAGES.s2 = function () {
-    var h = '<header class="page-entete"><p class="surtitre">Semestre 2 · Bientôt</p><h1>L’Humanité en question</h1><p class="chapo">' + D.S2_CHAPO + "</p></header><div class='lecture entre'>";
+    var h = '<header class="page-entete"><p class="surtitre">Semestre 2 · Période contemporaine</p><h1>L’Humanité en question</h1><p class="chapo">' + D.S2_CHAPO + "</p></header><div class='lecture entre'>";
+    D.S2.forEach(function (p) {
+      var x = ecrite2(p.num);
+      if (x) h += '<a class="entree-c" href="#' + x.id + '" style="margin:14px 0"><span class="chiffre">' + D.CHIFFRES[x.num] + '</span><h3>' + x.titre + "</h3><p>" + (x.accroche || p.accroche) + '</p><span class="etat tag">Rédigé · ouvrir le cours</span></a>';
+    });
     D.S2.forEach(function (e) {
+      if (ecrite2(e.num)) return;
       h += '<section class="carte"><p class="surtitre">Entrée ' + e.num + " · Bientôt</p><h2 style='margin-top:0'>" + e.titre + "</h2><p>" + e.resume + "</p><h3>Les questions du programme</h3><ul class='puces'>" +
         e.questions.map(function (q) { return "<li><i>" + q + "</i></li>"; }).join("") + "</ul><h3>Œuvres citées par la bibliographie officielle (extraits)</h3><p class='petit'>" + e.oeuvres + "</p>" +
         (e.annales ? "<h3>Déjà tombé au bac</h3><p class='petit'>" + e.annales + "</p>" : "") + "</section>";
@@ -152,11 +182,30 @@
   };
   PAGES.epreuve = function () { return D.EPREUVE; };
   PAGES.ressources = function () { return D.RESSOURCES; };
+  function an(t) { var m = /(\d{4})/.exec(String(t).replace(/<[^>]+>/g, "")); return m ? +m[1] : null; }
+  function friseComplete() {
+    var per = D.FRISE.map(function (p) { var a = String(p.dates).match(/\d{4}/g) || []; return { nom: p.nom, dates: p.dates, def: p.def, de: +a[0], a: +a[a.length - 1], evts: p.evts.slice() }; });
+    var apres = { nom: "Depuis 1950", dates: "1950 à nos jours", def: "témoigner, juger, limiter la puissance", de: 1950, a: 9999, evts: [] };
+    ordre().forEach(function (x) {
+      if (D.FRISE.some(function (p) { return p.evts.some(function (ev) { return ev[2] === x.id; }); })) return;
+      (x.reperes || []).forEach(function (r) {
+        var y = an(r[0]); if (y === null) return;
+        var cible = y >= 1950 ? apres : null;
+        per.forEach(function (p) { if (!cible && y >= p.de && y < p.a) cible = p; });
+        if (!cible) cible = y < per[0].de ? per[0] : per[per.length - 1];
+        cible.evts.push([r[0], r[1], x.id]);
+      });
+    });
+    if (apres.evts.length) per.push(apres);
+    per.forEach(function (p) { p.evts.sort(function (u, v) { return (an(u[0]) || 0) - (an(v[0]) || 0); }); });
+    return per;
+  }
   PAGES.frise = function () {
-    var h = '<header class="page-entete"><p class="surtitre">Repères</p><h1>La frise, des Lumières à 1950</h1><p class="chapo">La période de référence du semestre 1 va « du romantisme au XX<sup>e</sup> siècle ». Ces repères permettent de situer un texte inconnu le jour de l’épreuve.</p></header>';
-    h += '<div class="rang" role="group" aria-label="Filtrer"><button class="puce-f" data-ff="" aria-pressed="true">Tout</button><button class="puce-f" data-ff="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-ff="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-ff="e3" aria-pressed="false">Moi</button><button class="puce-f" data-ff="hist" aria-pressed="false">Histoire</button></div>';
+    var h = '<header class="page-entete"><p class="surtitre">Repères</p><h1>La frise, des Lumières à nos jours</h1><p class="chapo">La période de référence du semestre 1 va « du romantisme au XX<sup>e</sup> siècle », celle du semestre 2 couvre les XX<sup>e</sup> et XXI<sup>e</sup> siècles. Ces repères permettent de situer un texte inconnu le jour de l’épreuve.</p></header>';
+    h += '<div class="rang" role="group" aria-label="Filtrer"><button class="puce-f" data-ff="" aria-pressed="true">Tout</button><button class="puce-f" data-ff="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-ff="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-ff="e3" aria-pressed="false">Moi</button><button class="puce-f" data-ff="e4" aria-pressed="false">Création</button><button class="puce-f" data-ff="e5" aria-pressed="false">Violence</button><button class="puce-f" data-ff="e6" aria-pressed="false">Limites</button><button class="puce-f" data-ff="hist" aria-pressed="false">Histoire</button></div>';
+    h += '<div data-anim="frise-mouvements"></div>';
     h += '<div class="frise lecture" id="frise">';
-    D.FRISE.forEach(function (p) {
+    friseComplete().forEach(function (p) {
       h += '<div class="periode">' + p.nom + "<small>" + p.dates + " — " + p.def + "</small></div>";
       p.evts.forEach(function (ev) {
         h += '<div class="evt' + (ev[2] === "hist" ? " hist" : "") + '" data-f="' + ev[2] + '"><span class="an">' + ev[0] + "</span>" + ev[1] + "</div>";
@@ -167,17 +216,25 @@
   PAGES.notions = function () {
     var h = '<header class="page-entete"><p class="surtitre">Outils</p><h1>Tableau des notions</h1><p class="chapo">Les mots qu’un correcteur attend, avec leur définition et la distinction qui les rend utiles dans une copie.</p></header>';
     h += '<div class="lecture"><label class="sr" for="filtre-n">Filtrer les notions</label><input id="filtre-n" class="champ" type="search" placeholder="Filtrer (ex. sincérité, sublime…)" autocomplete="off">' +
-      '<div class="rang" role="group" aria-label="Entrée"><button class="puce-f" data-fn="" aria-pressed="true">Toutes</button><button class="puce-f" data-fn="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-fn="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-fn="e3" aria-pressed="false">Moi</button></div><div class="notion-l" id="liste-n"></div></div>';
+      '<div class="rang" role="group" aria-label="Entrée"><button class="puce-f" data-fn="" aria-pressed="true">Toutes</button><button class="puce-f" data-fn="e1" aria-pressed="false">Éducation</button><button class="puce-f" data-fn="e2" aria-pressed="false">Sensibilité</button><button class="puce-f" data-fn="e3" aria-pressed="false">Moi</button>' + boutonsS2() + '</div><div class="notion-l" id="liste-n"></div></div>';
     return h;
   };
+  function toutesNotions() {
+    var l = D.NOTIONS.slice();
+    ordre().forEach(function (x) {
+      if (sem(x) !== 2 || D.NOTIONS.some(function (n) { return n.e.indexOf(x.id) >= 0; })) return;
+      (x.notions || []).forEach(function (n) { l.push({ n: n[0], e: [x.id], d: n[1], dist: "", a: x.titre }); });
+    });
+    return l;
+  }
   function remplirNotions() {
     var l = $("#liste-n"); if (!l) return;
     var q = norm($("#filtre-n").value), f = ($(".puce-f[data-fn][aria-pressed='true']") || {}).getAttribute ? $(".puce-f[data-fn][aria-pressed='true']").getAttribute("data-fn") : "";
     var h = "";
-    D.NOTIONS.forEach(function (n) {
+    toutesNotions().forEach(function (n) {
       if (f && n.e.indexOf(f) < 0) return;
       if (q && norm(n.n + " " + n.d + " " + n.dist + " " + n.a).indexOf(q) < 0) return;
-      h += '<div class="notion"><h3>' + n.n + " " + n.e.map(function (x) { return '<span class="tag ' + x + '">' + (x === "e1" ? "Éducation" : x === "e2" ? "Sensibilité" : "Moi") + "</span>"; }).join("") +
+      h += '<div class="notion"><h3>' + n.n + " " + n.e.map(function (x) { return '<span class="tag ' + x + '">' + court(x) + "</span>"; }).join("") +
         "</h3><p style='margin:.2em 0'>" + n.d + '</p><p class="dist">' + n.dist + '</p><p class="ref">' + n.a + "</p></div>";
     });
     l.innerHTML = ty(h || "<p class='mute'>Aucune notion ne correspond.</p>");
@@ -212,7 +269,7 @@
     return '<header class="page-entete"><p class="surtitre">Jeu de mémoire</p><h1>Qui a écrit ?</h1><p class="chapo">Une citation exacte, quatre auteurs. Le jour de l’épreuve, une citation bien attribuée vaut plus qu’une longue paraphrase.</p></header><div class="lecture" id="qui-zone"></div>';
   };
   PAGES.entrainement = function () {
-    return '<header class="page-entete"><p class="surtitre">Révisions</p><h1>Entraînement</h1><p class="chapo">Un QCM tiré au hasard dans les trois entrées du semestre 1, puis toutes les cartes mémoire mélangées.</p></header>' +
+    return '<header class="page-entete"><p class="surtitre">Révisions</p><h1>Entraînement</h1><p class="chapo">Un QCM tiré au hasard dans les six entrées des deux semestres, puis toutes les cartes mémoire mélangées.</p></header>' +
       '<div class="lecture"><h2>QCM mélangé</h2><div id="qcm-zone"></div>' + ORN + '<h2>Cartes mémoire</h2><div class="rang" role="group" aria-label="Type de cartes"><button class="puce-f" data-fct="" aria-pressed="true">Toutes</button><button class="puce-f" data-fct="notion" aria-pressed="false">Notions</button><button class="puce-f" data-fct="citation" aria-pressed="false">Citations</button><button class="puce-f" data-fct="date" aria-pressed="false">Dates & œuvres</button></div><div id="fc-zone"></div></div>';
   };
 
@@ -253,7 +310,7 @@
     var i = 0, l = melange(cartes), su = 0, rev = 0;
     function rendre() {
       var c = l[i];
-      zone.innerHTML = ty('<div class="fc-zone"><button class="fc" aria-label="Retourner la carte"><span class="face recto"><small>' + c.cat + "</small>" + c.r + '</span><span class="face verso"><small>Réponse</small>' + c.v + "</span></button></div>" +
+      zone.innerHTML = ty('<div class="fc-zone"><button class="fc" aria-label="Retourner la carte"><span class="face recto"><small>' + c.cat + '</small><span class="fc-t">' + c.r + '</span></span><span class="face verso"><small>Réponse</small><span class="fc-t">' + c.v + "</span></span></button></div>" +
         '<div class="fc-nav"><button class="btn" data-fc="prec" ' + (i === 0 ? "disabled" : "") + '>←</button><span class="mute ui petit">' + (i + 1) + " / " + l.length + " · " + su + " sues · " + rev + ' à revoir</span><button class="btn" data-fc="suiv">→</button></div>' +
         '<div class="rang" style="justify-content:center"><button class="btn" data-fc="rev">À revoir</button><button class="btn plein" data-fc="su">Je savais</button></div>');
     }
@@ -306,7 +363,7 @@
   function construireIndex() {
     INDEX = [];
     D.ENTREES.forEach(function (e) {
-      INDEX.push({ t: e.titre, c: "Entrée " + e.num, h: "#" + e.id, x: brut(e.chapo + " " + e.essentiel.join(" ")) });
+      INDEX.push({ t: e.titre, c: "Semestre " + sem(e) + " · entrée " + e.num, h: "#" + e.id, x: brut(e.chapo + " " + e.essentiel.join(" ")) });
       e.cours.forEach(function (c) { INDEX.push({ t: c.titre, c: e.titre, h: "#" + e.id, g: c.id, x: brut(c.html) }); });
       e.textes.forEach(function (t) { INDEX.push({ t: t.auteur + ", " + brut(t.oeuvre), c: "Texte clé · " + e.titre, h: "#" + e.id + "/textes", g: t.id, x: brut(t.extrait + " " + t.contexte + " " + t.analyse) }); });
       e.notions.forEach(function (n) { INDEX.push({ t: brut(n[0]), c: "Notion · " + e.titre, h: "#" + e.id, x: brut(n[1]) }); });
@@ -314,7 +371,7 @@
     });
     D.NOTIONS.forEach(function (n) { INDEX.push({ t: brut(n.n), c: "Tableau des notions", h: "#notions", x: brut(n.d + " " + n.dist + " " + n.a) }); });
     D.FRISE.forEach(function (p) { p.evts.forEach(function (ev) { INDEX.push({ t: ev[0] + " — " + brut(ev[1]).slice(0, 80), c: "Frise · " + brut(p.nom), h: "#frise", x: brut(ev[1]) }); }); });
-    D.S2.forEach(function (e) { INDEX.push({ t: e.titre, c: "Semestre 2 · Bientôt", h: "#s2", x: brut(e.resume + " " + e.questions.join(" ")) }); });
+    D.S2.forEach(function (e) { if (!ecrite2(e.num)) INDEX.push({ t: e.titre, c: "Semestre 2 · Bientôt", h: "#s2", x: brut(e.resume + " " + e.questions.join(" ")) }); });
     D.QUI.forEach(function (q) { INDEX.push({ t: "« " + brut(q.c) + " »", c: "Citation · " + q.a, h: "#qui", x: q.a + " " + q.o }); });
     D.PAGES_IDX.forEach(function (p) { INDEX.push(p); });
     INDEX.forEach(function (it) { it.n = norm(it.t + " " + it.c + " " + it.x); it.nt = norm(it.t); });
@@ -371,16 +428,48 @@
   window.addEventListener("popstate", function (e) { if (srchOuvert && !(e.state && e.state.srch)) fermerRecherche(true); });
 
   /* ---------- routeur ---------- */
-  var allerA = null;
+  var allerA = null, premier = true;
+  /* Suite des pages, pour le folio (numéro de page) et la réclame (le titre de la page suivante, en bas). */
+  function suite() {
+    var l = [["accueil", "Frontispice"]];
+    ordre().forEach(function (e) { l.push([e.id, e.titre]); });
+    if (D.S2.some(function (p) { return !ecrite2(p.num); })) l.push(["s2", "Semestre 2"]);
+    [["epreuve", "L’épreuve"], ["atelier", "Atelier de lecture"], ["qui", "Qui a écrit ?"], ["frise", "La frise"], ["notions", "Tableau des notions"], ["entrainement", "Entraînement"], ["ressources", "Ressources"]].forEach(function (x) { l.push(x); });
+    return l;
+  }
+  function folio(r) {
+    var l = suite(), i = 0; l.forEach(function (x, k) { if (x[0] === r) i = k; });
+    var n = l[(i + 1) % l.length];
+    return '<nav class="folio non-imp" aria-label="Page suivante"><span class="num-p">— ' + (i + 1) + ' —</span><a class="reclame" href="#' + n[0] + '">' + n[1] + "</a></nav>";
+  }
+  function orner() {
+    var en = $(".page-entete h1", main);
+    if (en) en.insertAdjacentHTML("afterend", D.PARAPHE);
+    $$(".lettrine", main).forEach(function (p) {
+      var w = document.createTreeWalker(p, NodeFilter.SHOW_TEXT), t;
+      while ((t = w.nextNode())) {
+        var m = /^(\s*)([A-Za-zÀ-ÖØ-öø-ÿŒœ])/.exec(t.nodeValue); if (!m) continue;
+        var sp = document.createElement("span"); sp.className = "lettre"; sp.setAttribute("aria-hidden", "true"); sp.textContent = m[2];
+        var reste = document.createTextNode(t.nodeValue.slice(m[0].length));
+        var sr = document.createElement("span"); sr.className = "sr"; sr.textContent = m[2];
+        t.parentNode.insertBefore(sp, t); t.parentNode.insertBefore(sr, t); t.parentNode.replaceChild(reste, t);
+        p.classList.add("lettrine-ok"); break;
+      }
+    });
+  }
   function router() {
     var h = (location.hash || "#accueil").slice(1), parts = h.split("/"), r = parts[0] || "accueil", sous = parts[1] || "";
     var e = entree(r), html;
     if (e) html = pageEntree(e, ONGLETS.some(function (o) { return o[0] === sous; }) ? sous : "");
     else if (PAGES[r]) html = PAGES[r]();
     else { r = "accueil"; html = PAGES.accueil(); }
-    main.innerHTML = ty(html) + '<footer class="pied">' + D.PIED + "</footer>";
+    main.innerHTML = ty(html) + '<div aria-hidden="true">' + D.CUL + "</div>" + folio(e ? e.id : r) + '<footer class="pied">' + D.PIED + "</footer>";
+    orner();
+    if (window.HLPANIM) window.HLPANIM.monter(main);
+    if (!premier && !reduit) { main.classList.toggle("tourne", false); void main.offsetWidth; main.classList.add("tourne"); setTimeout(function () { main.classList.toggle("tourne", false); }, 900); }
+    premier = false;
     $$("#menu a").forEach(function (a) { var x = a.getAttribute("data-r"); a.classList.toggle("actif", x === r && r !== "s2"); if (x === r) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
-    document.title = (e ? e.titre : (D.TITRES[r] || "Accueil")) + " · L’Heure bleue — HLP Terminale";
+    document.title = (e ? e.titre : (D.TITRES[r] || "Accueil")) + " · Ex libris — HLP Terminale";
     if (e && sous === "qcm") lancerQCM($("#qcm-zone"), melange(e.qcm));
     if (e && sous === "cartes") lancerCartes($("#fc-zone"), e.cartes);
     if (r === "entrainement") {

@@ -1,4 +1,4 @@
-window.HLP = { ENTREES: [] };
+window.HLP = { ENTREES: [], ANIMS: {} };
 (function (H) {
   var s = ' fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
   H.ICONES = {
@@ -13,26 +13,36 @@ window.HLP = { ENTREES: [] };
     eclipse: '<circle cx="12" cy="12" r="8"' + s + '/><path d="M12 4a8 8 0 0 1 0 16a5.5 5.5 0 0 0 0-16z" fill="currentColor" opacity=".35"/>',
     imprimer: '<path d="M7 9V3.5h10V9M7 17H4.5v-7.5h15V17H17M7 14h10v6.5H7z"' + s + '/>'
   };
-  H.LOGO = '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#1c2550"/><circle cx="20" cy="20" r="19" fill="none" stroke="#c98d5e" stroke-width="1"/>' +
-    '<path d="M25.5 9.5a8.5 8.5 0 1 0 5.2 12.2a7 7 0 0 1-5.2-12.2z" fill="#f2dcc4"/><circle cx="12" cy="11" r="1" fill="#f2dcc4"/><circle cx="31" cy="12" r=".7" fill="#f2dcc4"/>' +
-    '<path d="M9 29.5c3.6-1.6 7.4-1.6 11 0c3.6-1.6 7.4-1.6 11 0M20 29.5v-4" fill="none" stroke="#d69c6b" stroke-width="1.3" stroke-linecap="round"/></svg>';
-  H.CIEL = '<svg class="decor" viewBox="0 0 800 340" preserveAspectRatio="xMaxYMin slice" aria-hidden="true">' +
-    '<defs><radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3dc" stop-opacity=".55"/><stop offset="1" stop-color="#fff3dc" stop-opacity="0"/></radialGradient></defs>' +
-    '<g fill="#fff6e4"><circle class="etoile" cx="80" cy="60" r="1.3"/><circle class="etoile" style="animation-delay:1.2s" cx="160" cy="120" r=".9"/><circle class="etoile" style="animation-delay:2.1s" cx="250" cy="40" r="1.1"/>' +
-    '<circle class="etoile" style="animation-delay:.6s" cx="380" cy="90" r=".8"/><circle class="etoile" style="animation-delay:2.8s" cx="470" cy="30" r="1.2"/><circle class="etoile" style="animation-delay:1.7s" cx="720" cy="150" r=".9"/>' +
-    '<circle class="etoile" style="animation-delay:3.2s" cx="560" cy="110" r=".8"/><circle class="etoile" style="animation-delay:.3s" cx="760" cy="40" r="1"/><circle class="etoile" style="animation-delay:2.4s" cx="330" cy="160" r=".7"/></g>' +
-    '<g class="lune"><circle class="halo" cx="640" cy="92" r="88" fill="url(#halo)"/><path d="M652 52a42 42 0 1 0 26 60a34 34 0 0 1-26-60z" fill="#f6ead2"/></g>' +
-    '<path d="M0 300 C120 270 220 286 330 276 C450 264 560 290 680 272 C740 264 780 270 800 268 V340 H0Z" fill="#141a33" opacity=".55"/>' +
-    '<path d="M0 322 C160 300 300 318 430 306 C560 296 680 318 800 304 V340 H0Z" fill="#0d1226" opacity=".7"/>' +
-    '<g fill="none" stroke="#f3e2c8" stroke-opacity=".35" stroke-width="1"><path d="M560 340 V214 A90 90 0 0 1 740 214 V340"/><path d="M650 124 V340 M560 250 H740"/></g></svg>';
+  H.LOGO = '<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="2" fill="#f4ead3" stroke="#9c2a1b" stroke-width="1.5"/>' +
+    '<rect x="5.5" y="5.5" width="29" height="29" fill="none" stroke="#9c2a1b" stroke-width=".7"/>' +
+    '<path d="M9 25.5c3.8-1.9 7.4-1.9 11 0c3.6-1.9 7.2-1.9 11 0v5.5c-3.8-1.9-7.4-1.9-11 0c-3.6-1.9-7.2-1.9-11 0z" fill="none" stroke="#2b1c11" stroke-width="1.2" stroke-linejoin="round"/>' +
+    '<path d="M20 25.5v5.5" stroke="#2b1c11" stroke-width="1"/><path d="M28.5 8.5c-4.2 3-6.6 8-7.2 14.5c2.3-4.2 5.6-8.4 7.2-14.5z" fill="#2b1c11"/><path d="M21.3 23l-1 2.2" stroke="#2b1c11" stroke-width="1"/>' +
+    '<circle cx="12" cy="11" r="1.1" fill="#9c2a1b"/><circle cx="15" cy="15" r=".8" fill="#9c2a1b"/></svg>';
+  /* Ornements gravés : fleuron (séparateur), cul-de-lampe (fin de page), coin de cadre, paraphe à la plume, emblème du frontispice. */
+  var g = ' fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"';
+  H.FLEURON = '<svg viewBox="0 0 86 22" aria-hidden="true"><g' + g + '><path d="M43 3.5c3.2 3 3.2 12 0 15c-3.2-3-3.2-12 0-15z" fill="currentColor"/>' +
+    '<path d="M37.5 11c-6-7.5-14.5-7.5-18.5-2c-2.8 4 1.2 8 5 6c3-1.8 1.2-5-1-4.2M48.5 11c6-7.5 14.5-7.5 18.5-2c2.8 4-1.2 8-5 6c-3-1.8-1.2-5 1-4.2"/>' +
+    '<path d="M37.5 11c-4 4-9 6-14.5 5M48.5 11c4 4 9 6 14.5 5M19 9.5H5M67 9.5h14"/></g><circle cx="3" cy="9.5" r="1.5" fill="currentColor"/><circle cx="83" cy="9.5" r="1.5" fill="currentColor"/></svg>';
+  H.CUL = '<svg class="cul" viewBox="0 0 120 46"><g' + g + '><path d="M8 4h104M20 10h80M33 16h54"/><path d="M60 18c-10 4-12 12-6 16c4 3 9-1 6-5M60 18c10 4 12 12 6 16c-4 3-9-1-6-5"/>' +
+    '<path d="M60 34v7M45 16c-6 4-12 3-14 0M75 16c6 4 12 3 14 0"/></g><circle cx="60" cy="43" r="1.8" fill="currentColor"/><path d="M57 25l3-5 3 5-3 4z" fill="currentColor"/></svg>';
+  H.COIN = '<g' + g + '><path d="M2 28V2h26"/><path d="M5 25V5h20" stroke-width=".7"/><path d="M5 5c7 0 11 4 11 11c0 3-2 5-4 5s-3-2-2-3.5"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/></g>';
+  H.PARAPHE = '<svg class="paraphe" viewBox="0 0 320 34" aria-hidden="true"><path class="trait" d="M8 22 C 60 2, 90 34, 140 18 S 230 4, 270 20 S 300 26, 312 14"/>' +
+    '<path class="trait" d="M128 27c10 5 26 5 36 0"/><path class="plume" d="M0 0l16-15c3-3 7-1 5 3L5 3z"/></svg>';
+  H.EMBLEME = '<svg class="embleme" viewBox="0 0 150 126" aria-hidden="true"><g' + g + '>' +
+    '<path class="grave" d="M18 96c19-9 38-9 57 0c19-9 38-9 57 0v18c-19-9-38-9-57 0c-19-9-38-9-57 0z"/><path class="grave" d="M75 96v18M26 100c14-5 30-5 42 0M26 106c14-5 30-5 42 0M82 100c14-5 30-5 42 0M82 106c14-5 30-5 42 0" stroke-width=".7"/>' +
+    '<path class="grave" d="M98 94L127 24"/><path class="grave" d="M127 24c-14 7-22 26-25 48c11-13 20-29 25-48z"/><path d="M109 46l8-4M106 56l9-4M104 66l8-4" stroke-width=".6"/>' +
+    '<path class="grave" d="M36 92V56h13v36"/><path d="M33 92h19" /><path d="M42.5 56v-4" stroke-width=".8"/>' +
+    '<path d="M78 12a11 11 0 1 0 11 15a9 9 0 0 1-11-15z" fill="currentColor" stroke="none" opacity=".85"/>' +
+    '<path d="M28 40l-5-4M57 40l5-4M42.5 30v-6" stroke-width=".6"/></g>' +
+    '<path class="flamme" d="M42.5 34c5.5 6.5 5.5 13 0 17c-5.5-4-5.5-10.5 0-17z" fill="var(--or)"/><path class="flamme" d="M42.5 41c2.3 3 2.3 6 0 8c-2.3-2-2.3-5 0-8z" fill="var(--cuivre)"/></svg>';
   function chiffre(n) {
     return '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="24" cy="24" r="18.5" fill="none" stroke="currentColor" stroke-width=".8" stroke-dasharray="1 2.6"/>' +
       '<text x="24" y="30.5" text-anchor="middle" font-size="' + (n.length > 2 ? 15 : 18) + '" fill="currentColor" style="font-family:var(--titre)">' + n + '</text></svg>';
   }
   H.CHIFFRES = { I: chiffre("I"), II: chiffre("II"), III: chiffre("III") };
-  H.ACCUEIL_INTRO = "La spécialité HLP fait travailler ensemble un professeur de lettres et un professeur de philosophie sur les mêmes questions. En Terminale, le premier semestre s’intitule « La recherche de soi » et couvre la période qui va du romantisme au XX<sup>e</sup> siècle ; le second, « L’Humanité en question », porte sur le monde contemporain. Ce site rédige à fond les trois entrées du premier semestre : pour chacune, un cours, des textes clés du domaine public analysés, un sujet type bac corrigé, un QCM, des cartes mémoire et une fiche à imprimer.";
+  H.ACCUEIL_INTRO = "La spécialité HLP fait travailler ensemble un professeur de lettres et un professeur de philosophie sur les mêmes questions. En Terminale, le premier semestre s’intitule « La recherche de soi » et couvre la période qui va du romantisme au XX<sup>e</sup> siècle ; le second, « L’Humanité en question », porte sur le monde contemporain. Ce livre en réunit les six entrées : pour chacune, un cours, des textes clés du domaine public analysés, des animations qui montrent un raisonnement ou un texte pas à pas, un sujet type bac corrigé, les annales, un QCM, des cartes mémoire et une fiche à imprimer.";
   H.ACCUEIL_BAS = '<div class="carte lecture" style="margin-top:26px"><p class="surtitre">À savoir pour 2027</p><p style="margin:.2em 0">Une nouvelle note de service (11 septembre 2026) définit l’épreuve à partir de la session 2027 : 4 heures, un texte, une question d’<b>interprétation</b> et un <b>essai</b>, notés chacun sur 10, sur deux copies séparées. Comme depuis 2024, tout le programme de Terminale peut tomber : prépare les six entrées. <a href="#epreuve">Tout savoir sur l’épreuve →</a></p></div>';
-  H.PIED = "L’Heure bleue · HLP Terminale · Contenu original rédigé à partir du programme officiel (BO spécial n° 8 du 25 juillet 2019) et de la note de service du 11 septembre 2026. Extraits d’œuvres du domaine public d’après Wikisource ; œuvres protégées seulement résumées ou citées brièvement. Fonctionne hors connexion.";
+  H.PIED = "Ex libris · HLP Terminale · Contenu original rédigé à partir du programme officiel (BO spécial n° 8 du 25 juillet 2019) et de la note de service du 11 septembre 2026. Extraits d’œuvres du domaine public d’après Wikisource ; œuvres protégées seulement résumées ou citées brièvement. Fonctionne hors connexion.";
   H.TITRES = { accueil: "Accueil", s2: "Semestre 2", epreuve: "L’épreuve", atelier: "Atelier de lecture", qui: "Qui a écrit ?", frise: "Frise", notions: "Tableau des notions", entrainement: "Entraînement", ressources: "Ressources" };
   H.PAGES_IDX = [
     { t: "Format de l’épreuve écrite (session 2027)", c: "L’épreuve", h: "#epreuve", g: "ep-format", x: "4 heures coefficient 16 deux questions interprétation essai 10 points copies séparées note de service 2026 programme limitatif" },
@@ -45,7 +55,7 @@ window.HLP = { ENTREES: [] };
     { t: "Ressources : programme, annales, textes", c: "Ressources", h: "#ressources", x: "eduscol programme wikisource gallica annales youtube manuels" }
   ];
 
-  H.S2_CHAPO = "Le second semestre porte sur la période contemporaine (XX<sup>e</sup>-XXI<sup>e</sup> siècles). Les cours seront rédigés plus tard ; voici dès maintenant les questions que pose le programme officiel, les œuvres qu’il cite et les sujets déjà tombés.";
+  H.S2_CHAPO = "Le second semestre porte sur la période contemporaine (XX<sup>e</sup>-XXI<sup>e</sup> siècles). Pour chaque entrée : le cours complet quand il est rédigé, et sinon les questions que pose le programme officiel, les œuvres qu’il cite et les sujets déjà tombés.";
   H.S2 = [
     { num: "I", titre: "Création, continuités et ruptures", accroche: "Avant-gardes, manifestes, « fin de l’art » : y a-t-il des ruptures radicales ?",
       resume: "Le XX<sup>e</sup> siècle est une ère de ruptures : expressionnisme, futurisme, Dada, surréalisme multiplient les manifestes ; la philosophie parle d’une « crise de la rationalité » ; radio et cinéma transforment la culture. Mais l’ancien subsiste à côté du nouveau, en accord ou en tension.",
@@ -105,7 +115,11 @@ window.HLP = { ENTREES: [] };
       ["1889", "Bergson, <i>Essai sur les données immédiates de la conscience</i>.", "e2"]] },
     { nom: "Les modernités", dates: "1900-1950", def: "l’inconscient, le temps, le soupçon", evts: [
       ["1900", "Freud, <i>L’Interprétation du rêve</i> ; Colette, <i>Claudine à l’école</i>.", "e3"],
+      ["1909", "Marinetti, <i>Manifeste du futurisme</i> (<i>Le Figaro</i>, 20 février) : « démolir les musées ».", "e4"],
       ["1913", "Proust, <i>Du côté de chez Swann</i>.", "e2"],
+      ["1913", "Apollinaire, <i>Alcools</i> (« Zone ») ; <i>Le Sacre du printemps</i> au Théâtre des Champs-Élysées.", "e4"],
+      ["1916-1917", "Dada au Cabaret Voltaire (Zurich) ; Duchamp, <i>Fontaine</i>.", "e4"],
+      ["1919", "Valéry, « La Crise de l’esprit » : « nous sommes mortelles ».", "e4"],
       ["1914-1918", "Première Guerre mondiale.", "hist"],
       ["1915", "Kafka, <i>La Métamorphose</i>.", "e3"],
       ["1923", "Freud, <i>Le Moi et le Ça</i>.", "e3"],
@@ -146,6 +160,11 @@ window.HLP = { ENTREES: [] };
     { n: "Aliénation", e: ["e3"], d: "Fait de devenir étranger à soi-même.", dist: "Du latin <i>alienus</i>, « qui appartient à un autre ».", a: "Marx, Maupassant (<i>Le Horla</i>)" },
     { n: "Double", e: ["e3"], d: "Figure d’un autre soi-même.", dist: "Double fantastique (Maupassant), moral (Stevenson), poétique (Nerval).", a: "Stevenson, Maupassant, Nerval" },
     { n: "Autobiographie / mémoires / journal", e: ["e3"], d: "Récit rétrospectif d’une vie / vie mêlée à l’histoire / notes au jour le jour.", dist: "Pacte autobiographique : auteur = narrateur = personnage (Lejeune).", a: "Rousseau, Chateaubriand, Amiel" },
+    { n: "Avant-garde / manifeste", e: ["e4"], d: "Mouvement qui se veut en avance sur son temps / texte public qui annonce son programme.", dist: "Les manifestes du XX<sup>e</sup> siècle sont esthétiques et politiques (futurisme, 1909).", a: "Marinetti, Breton" },
+    { n: "Nouveau / progrès", e: ["e4"], d: "Ce qui surprend / ce qui améliore en s’accumulant.", dist: "« le nouveau existe bien, sans être en progrès » (Apollinaire, 1918).", a: "Apollinaire, Bergson" },
+    { n: "Originalité / exemplarité", e: ["e4"], d: "Être nouveau / pouvoir servir de modèle.", dist: "Le génie réunit les deux ; l’absurde aussi peut être original.", a: "Kant (1790)" },
+    { n: "Tradition / rupture", e: ["e4", "e1"], d: "Ce qui est transmis / ce qui s’en sépare brutalement.", dist: "Une rupture se définit par ce qu’elle rejette ; la « tradition du nouveau » (Rosenberg, 1959).", a: "Perrault, Eliot, Rosenberg" },
+    { n: "Réécriture", e: ["e4"], d: "Reprise transformée d’une œuvre ou d’un mythe.", dist: "≠ plagiat : la reprise est affichée et signifie quelque chose de neuf.", a: "Anouilh, Cocteau, Giraudoux" },
     { n: "Égotisme / égoïsme", e: ["e3"], d: "Analyse et culte de soi / préférence pour son intérêt.", dist: "Stendhal revendique l’égotisme, pas l’égoïsme.", a: "Stendhal" }
   ];
 
@@ -179,6 +198,12 @@ window.HLP = { ENTREES: [] };
     { c: "La durée toute pure est la forme que prend la succession de nos états de conscience quand notre moi se laisse vivre", a: "Bergson", o: "Essai sur les données immédiates de la conscience", d: "1889", e: "La durée vécue." },
     { c: "On ne naît pas femme : on le devient.", a: "Beauvoir", o: "Le Deuxième Sexe, t. II", d: "1949", e: "L’éducation façonne les rôles." },
     { c: "La modernité, c’est le transitoire, le fugitif, le contingent", a: "Baudelaire", o: "Le Peintre de la vie moderne", d: "1863", e: "Moitié de l’art." },
-    { c: "Le rêve est une seconde vie.", a: "Nerval", o: "Aurélia", d: "1855", e: "Incipit du récit." }
+    { c: "Le rêve est une seconde vie.", a: "Nerval", o: "Aurélia", d: "1855", e: "Incipit du récit." },
+    { c: "Il faut être absolument moderne.", a: "Rimbaud", o: "Une saison en enfer, « Adieu »", d: "1873", e: "La modernité comme devoir." },
+    { c: "Nous voulons démolir les musées, les bibliothèques", a: "Marinetti", o: "Manifeste du futurisme", d: "1909", e: "La table rase des avant-gardes." },
+    { c: "À la fin tu es las de ce monde ancien", a: "Apollinaire", o: "« Zone », Alcools", d: "1913", e: "Premier vers du recueil." },
+    { c: "Mais le nouveau existe bien, sans être en progrès. Il est tout dans la surprise.", a: "Apollinaire", o: "« L’Esprit nouveau et les poètes »", d: "1918", e: "Nouveau ≠ progrès." },
+    { c: "Nous autres, civilisations, nous savons maintenant que nous sommes mortelles.", a: "Valéry", o: "« La Crise de l’esprit »", d: "1919", e: "Après la Grande Guerre." },
+    { c: "La belle antiquité fut toujours vénérable ; / Mais je ne crus jamais qu’elle fût adorable.", a: "Perrault", o: "Le Siècle de Louis le Grand", d: "1687", e: "La querelle des Anciens et des Modernes." }
   ];
 })(window.HLP);

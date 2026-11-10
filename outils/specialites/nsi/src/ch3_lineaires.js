@@ -193,6 +193,21 @@ def evaluer_npi(expression):
 print(evaluer_npi("3 4 + 2 *"))          # (3 + 4) * 2
 print(evaluer_npi("10 2 8 * + 3 -"))     # 10 + 2 * 8 - 3`, { deps: ["c3-pile-liste"], out: "14\n23" });
 
+C("c3-tr-npi", String.raw`
+pile = []
+for jeton in "3 4 + 2 *".split():
+    if jeton == "+":
+        b = pile.pop()
+        a = pile.pop()
+        pile.append(a + b)
+    elif jeton == "*":
+        b = pile.pop()
+        a = pile.pop()
+        pile.append(a * b)
+    else:
+        pile.append(int(jeton))
+print(pile.pop())`, { fichier: "npi.py", trace: true, out: "14" });
+
 C("c3-file-liste", String.raw`
 class FileListe:
     def __init__(self):
@@ -576,6 +591,8 @@ Une <b>implémentation</b> est une façon concrète de réaliser cette interface
     { id: "i7", t: "Une pile pour calculer : la notation polonaise inverse", h: `
 <p>En <b>notation polonaise inverse</b> (NPI), l’opérateur s’écrit <b>après</b> ses deux opérandes : <code>3 4 +</code> signifie 3 + 4, et <code>3 4 + 2 *</code> signifie (3 + 4) × 2. Plus besoin de parenthèses. L’évaluation se fait avec une pile : un nombre est empilé ; un opérateur dépile deux nombres et empile le résultat.</p>
 [[c3-npi]]
+<p>Pas à pas, avec une simple liste Python comme pile : suis la variable <code>pile</code>.</p>
+[[w-trace|c3-tr-npi]]
 <p>Attention à l’ordre : le premier nombre dépilé est le <b>second</b> opérande (pour <code>10 3 -</code>, on dépile 3 puis 10 et on calcule 10 − 3).</p>
 <div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1955 <b>·</b></span> Friedrich L. Bauer et Klaus Samelson (Munich) décrivent l’évaluation des expressions à l’aide d’une pile, le « principe de la cave » (<i>Kellerprinzip</i>).<br><span class="commit">1972 <b>·</b></span> La calculatrice de poche HP-35 de Hewlett-Packard fonctionne en NPI.</p></div>` },
 
