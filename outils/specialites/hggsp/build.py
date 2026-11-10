@@ -38,7 +38,7 @@ def main():
     if "--sans-cartes" not in sys.argv or not os.path.exists(os.path.join(SRC, "cartes.json")):
         cartes()
     fichiers = ["data-commun.js"] + sorted(os.path.basename(f) for f in glob.glob(os.path.join(SRC, "data-*.js")) if not f.endswith("data-commun.js"))
-    for f in fichiers:
+    for f in fichiers + ["app.js"]:
         r = subprocess.run(["node", "--check", os.path.join(SRC, f)], capture_output=True, text=True)
         if r.returncode:
             sys.exit("Erreur de syntaxe dans " + f + "\n" + r.stderr)

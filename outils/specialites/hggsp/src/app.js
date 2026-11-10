@@ -61,11 +61,30 @@
     else if (h === "entrainement") pageEntrainement();
     else { base = "accueil"; pageAccueil(); }
     $$("#nav a").forEach(function (a) { a.classList.toggle("actif", a.getAttribute("data-r") === base); });
+    habiller(base);
     document.title = (base === "accueil" ? "" : (document.querySelector("h1") ? sans(document.querySelector("h1").textContent) + " · " : "")) + "Ligne rouge · HGGSP Terminale";
     if (cible) allerA(base, cible);
     else if (!onglet) window.scrollTo(0, 0);
   }
   var PAGE = "";
+  /* habillage « salle de crise » : bandeau confidentiel, fil d'Ariane tapé au télétype */
+  function habiller(base) {
+    var p = $(".page", APP);
+    if (!p) return;
+    var code = base === "accueil" ? "INDEX" : base.toUpperCase().replace("-", " · ");
+    var b = document.createElement("div");
+    b.className = "conf";
+    b.setAttribute("aria-hidden", "true");
+    var txt = "CONFIDENTIEL ◆ DOSSIER " + code + " ◆ DIFFUSION RESTREINTE : CANDIDATS AU BAC ◆ HGGSP TERMINALE ◆ ";
+    b.innerHTML = "<span>" + txt + txt + txt + "</span>";
+    APP.insertBefore(b, p);
+    var fil = $(".fil", p);
+    if (fil && MO()) {
+      var html = fil.innerHTML, plein = fil.textContent, i = 0;
+      fil.textContent = "";
+      var tic = setInterval(function () { i += 2; fil.textContent = plein.slice(0, i) + "▌"; if (i >= plein.length) { clearInterval(tic); fil.innerHTML = html; } }, 18);
+    }
+  }
   function allerA(base, cible) {
     var el = document.getElementById(base + "-" + cible);
     if (el) { setTimeout(function () { el.scrollIntoView({ behavior: MO() ? "smooth" : "auto", block: "start" }); if (el.classList.contains("idee")) { el.classList.remove("surligne"); void el.offsetWidth; el.classList.add("surligne"); } }, 60); }
@@ -134,7 +153,7 @@
     var h = '<div class="page"><div class="fil"><a href="#accueil">Programme</a> · <a href="#' + t.id + '">Thème ' + t.n + '</a> · ' + c.code.split("· ")[1] + '</div>';
     h += '<h1 class="titre">' + typo(c.t) + '<span class="ligne-rouge"></span></h1>';
     h += '<div class="rangee no-print" style="margin:4px 0 10px"><span class="tampon">Rédigé</span><span class="tampon ' + (t.ecrit27 ? "" : "gris") + '">' + (t.ecrit27 ? "Écrit 2027" : "Hors écrit 2027") + '</span></div>';
-    h += '<div class="carte-p onglet essentiel" data-onglet="L\'essentiel en 5 lignes"><ol>' + c.ess.map(function (e) { return '<li>' + typo(e) + '</li>'; }).join("") + '</ol></div>';
+    h += '<div class="carte-p onglet essentiel note-s" data-onglet="Note de synthèse"><dl class="memo"><dt>Objet</dt><dd>' + typo(c.t) + '</dd><dt>Réf.</dt><dd>' + c.code + '</dd><dt>Classement</dt><dd><b>L\'essentiel en 5 lignes</b></dd></dl><ol>' + c.ess.map(function (e) { return '<li>' + typo(e) + '</li>'; }).join("") + '</ol></div>';
     h += '<details class="pli attendu no-print"><summary>Ce que le programme attend</summary><div class="corps"><ul>' + c.att.map(function (e) { return '<li>' + typo(e) + '</li>'; }).join("") + '</ul></div></details>';
     h += '<nav class="sommaire no-print" aria-label="Sommaire">' + c.secs.map(function (s, k) { return '<a href="#' + id + '@s' + (k + 1) + '">' + (k + 1) + '. ' + typo(s.t) + '</a>'; }).join("") + '<a href="#' + id + '@qcm">QCM</a><a href="#' + id + '@fiche">À retenir</a></nav>';
     c.secs.forEach(function (s, k) {
@@ -149,13 +168,26 @@
     });
     h += '<h2 class="sec"><span class="n">!!</span>Pièges et erreurs fréquentes</h2><div class="carte-p pieges"><ul>' + c.pieges.map(function (p) { return '<li>' + typo(p) + '</li>'; }).join("") + '</ul></div>';
     h += '<div class="retenir-bloc" id="' + id + '-fiche"><h2 class="sec"><span class="n">★</span>À retenir</h2><div class="carte-p onglet retenir" data-onglet="Fiche · ' + c.code + '"><p style="font:700 15px var(--sans);margin:0 0 6px">' + typo(c.t) + '</p><table>' + c.retenir.map(function (r) { return '<tr><th>' + typo(r[0]) + '</th><td>' + typo(r[1]) + '</td></tr>'; }).join("") + '</table></div>';
-    h += '<div class="rangee no-print"><button class="btn" id="imprimer">' + ic("print") + 'Imprimer la fiche</button></div></div>';
+    h += '<div class="rangee no-print"><button class="btn" id="imprimer">' + ic("print") + 'Imprimer la fiche</button><button class="btn" id="caviarder" aria-pressed="false">' + ic("oeil") + '<span>Caviarder pour réviser</span></button></div></div>';
     h += '<h2 class="sec" id="' + id + '-qcm"><span class="n">?</span>S\'entraîner</h2><div class="onglets no-print" role="tablist"><button role="tab" aria-selected="true" data-o="qcm">QCM (' + c.qcm.length + ' questions)</button><button role="tab" aria-selected="false" data-o="fc">Cartes mémoire (' + c.fc.length + ')</button><button role="tab" aria-selected="false" data-o="bac">Sujet type bac</button></div><div class="carte-p no-print" id="zone-ex"></div>';
     h += '<div class="suite no-print">' + (i > 0 ? '<a href="#' + ORDRE[i - 1] + '"><small>← Précédent</small>' + typo(CHAPS[ORDRE[i - 1]].t) + '</a>' : '<a href="#' + t.id + '"><small>← Dossier</small>Thème ' + t.n + '</a>') + (i < ORDRE.length - 1 ? '<a class="d" href="#' + ORDRE[i + 1] + '"><small>Suivant →</small>' + typo(CHAPS[ORDRE[i + 1]].t) + '</a>' : '<a class="d" href="#entrainement"><small>Suivant →</small>Entraînement</a>') + '</div>';
     h += '</div>';
     APP.innerHTML = h;
     activerViz();
     $("#imprimer").addEventListener("click", function () { document.documentElement.classList.add("impr"); window.print(); });
+    var bc = $("#caviarder"), tab = $(".retenir table");
+    bc.addEventListener("click", function () {
+      var on = bc.getAttribute("aria-pressed") !== "true";
+      bc.setAttribute("aria-pressed", on ? "true" : "false");
+      $("span", bc).textContent = on ? "Tout dévoiler" : "Caviarder pour réviser";
+      tab.classList.toggle("caviarde", on);
+      $$("td", tab).forEach(function (td) { td.classList.remove("vu"); if (on) td.setAttribute("tabindex", "0"); else td.removeAttribute("tabindex"); });
+    });
+    $$("td", tab).forEach(function (td) {
+      function voir() { if (tab.classList.contains("caviarde")) td.classList.add("vu"); }
+      td.addEventListener("click", voir);
+      td.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); voir(); } });
+    });
     var zone = $("#zone-ex");
     var qs = c.qcm.map(function (q) { var o = Object.assign({}, q); o.ch = id; return o; });
     function montre(o) {
@@ -447,10 +479,24 @@
     bm.addEventListener("click", function () { var on = bm.getAttribute("aria-pressed") !== "true"; bm.setAttribute("aria-pressed", on ? "true" : "false"); f.classList.toggle("cache", on); $$(".ev").forEach(function (x) { x.classList.remove("vu"); }); });
   }
 
+  /* fiche de renseignement (notions, acteurs) */
+  function ficheR(type, i, titre, txt) {
+    return '<article class="fiche-r"><header><span>FICHE ' + type.toUpperCase() + ' N° ' + String(i + 1).padStart(2, "0") + '</span><span class="classe">IDENTIFIÉ</span></header><h4>' + typo(titre) + '</h4><p>' + typo(txt) + '</p></article>';
+  }
+
   /* ---------------- dossier d'un thème ---------------- */
-  var ONGLETS_T = [["plan", "Plan et notions"], ["frise", "Frise"], ["cartes", "Cartes"], ["debats", "Débats"], ["sujets", "Sujets corrigés"]];
+  var ONGLETS_T = [["plan", "Plan et notions"], ["frise", "Frise"], ["cartes", "Cartes"], ["anims", "Animations"], ["debats", "Débats"], ["sujets", "Sujets corrigés"]];
+  /* animations des chapitres d'un thème, dans l'ordre du programme */
+  function animsDuTheme(t) {
+    var l = [];
+    [t.intro].concat(t.axes, [t.otc]).forEach(function (b) {
+      var c = CHAPS[b.ch];
+      if (c) c.secs.forEach(function (s) { [].concat(s.viz || []).forEach(function (v) { if (v.indexOf("anim:") === 0 && ANIMS[v.slice(5)]) l.push([b.ch, v.slice(5)]); }); });
+    });
+    return l;
+  }
   function pageTheme(id, onglet) {
-    var t = theme(id), D = DOSSIERS[id];
+    var t = theme(id), D = DOSSIERS[id] || { cats: {}, frise: [], notions: [], acteurs: [], cartes: [], debats: [], autres: [] };
     onglet = onglet || "plan";
     var h = '<div class="page"><div class="fil"><a href="#accueil">Programme</a> · Dossier du thème ' + t.n + '</div>';
     h += '<h1 class="titre">' + typo(t.titre) + '<span class="ligne-rouge"></span></h1>';
@@ -464,12 +510,16 @@
       if (o === "plan") {
         x += '<h2 class="sec"><span class="n">01</span>Les chapitres du dossier</h2>' + structureHTML(t, true);
         x += '<p style="font:14px var(--sans);color:var(--encre2)">Intitulés et jalons recopiés du programme officiel (BO spécial n° 8 du 25 juillet 2019).</p>';
-        x += '<h2 class="sec"><span class="n">02</span>Notions clés</h2><div class="carte-p"><dl class="gloss">' + D.notions.map(function (n) { return '<dt>' + typo(n[0]) + '</dt><dd>' + typo(n[1]) + '</dd>'; }).join("") + '</dl></div>';
-        x += '<h2 class="sec"><span class="n">03</span>Les acteurs</h2><div class="carte-p"><dl class="gloss">' + D.acteurs.map(function (n) { return '<dt>' + typo(n[0]) + '</dt><dd>' + typo(n[1]) + '</dd>'; }).join("") + '</dl></div>';
+        x += '<h2 class="sec"><span class="n">02</span>Notions clés</h2><div class="fiches-r">' + D.notions.map(function (n, i) { return ficheR("Notion", i, n[0], n[1]); }).join("") + '</div>';
+        x += '<h2 class="sec"><span class="n">03</span>Les acteurs</h2><div class="fiches-r">' + D.acteurs.map(function (n, i) { return ficheR("Acteurs", i, n[0], n[1]); }).join("") + '</div>';
       } else if (o === "frise") {
         x += '<h2 class="sec"><span class="n">⟶</span>Frise chronologique</h2>' + friseHTML(id);
       } else if (o === "cartes") {
         x += '<h2 class="sec"><span class="n">◎</span>Cartes du thème</h2>' + D.cartes.map(function (c, k) { return carteHTML(c, id + "-c" + k); }).join("");
+      } else if (o === "anims") {
+        var la = animsDuTheme(t);
+        x += '<h2 class="sec"><span class="n">▶</span>Animations du thème</h2><p style="font:15px var(--sans)">' + typo("Chaque animation se joue étape par étape : lecture, pause, étape précédente ou suivante. Les dates s'affichent au télétype, la légende explique ce qui se passe.") + '</p>';
+        x += la.length ? la.map(function (a, k) { return '<p class="etiq" style="margin:22px 0 -8px"><a href="#' + a[0] + '">' + CHAPS[a[0]].code + ' →</a></p>' + animHTML(a[1], id + "-an" + k); }).join("") : '<p>Aucune animation pour ce thème.</p>';
       } else if (o === "debats") {
         x += '<h2 class="sec"><span class="n">⇄</span>Repères de débat</h2><p style="font:15px var(--sans)">' + typo("Des arguments contradictoires, utiles pour une partie dialectique de dissertation ou pour l'échange du Grand oral.") + '</p>';
         D.debats.forEach(function (d) { x += '<div class="carte-p"><h3 style="margin-top:0">' + typo(d.q) + '</h3><div class="debat"><div class="col pour"><h4>Oui, car…</h4><ul>' + d.pour.map(function (a) { return '<li>' + typo(a) + '</li>'; }).join("") + '</ul></div><div class="col contre"><h4>Non, car…</h4><ul>' + d.contre.map(function (a) { return '<li>' + typo(a) + '</li>'; }).join("") + '</ul></div></div><div class="bilan"><b>Pour trancher :</b> ' + typo(d.bilan) + '</div></div>'; });
@@ -491,6 +541,7 @@
       z.innerHTML = x;
       if (o === "frise") activerFrise(id);
       if (o === "cartes") $$(".carto").forEach(activerCarte);
+      if (o === "anims") $$(".anim").forEach(activerAnim);
     }
     $$(".onglets button").forEach(function (b) { b.addEventListener("click", function () { history.replaceState(null, "", "#" + id + ":" + b.getAttribute("data-o")); montre(b.getAttribute("data-o")); }); });
     montre(onglet);

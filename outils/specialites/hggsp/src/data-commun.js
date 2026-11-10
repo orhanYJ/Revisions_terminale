@@ -138,7 +138,11 @@ var RESSOURCES = [
     ["Les clés du Moyen-Orient", "https://www.lesclesdumoyenorient.com/", "Encyclopédie en ligne sur le Moyen-Orient : chronologies, portraits, analyses (objet de travail conclusif du thème 2)."],
     ["Agence spatiale européenne (ESA)", "https://www.esa.int/", "Station spatiale, Ariane, débris spatiaux : données et dossiers à jour."],
     ["Autorité internationale des fonds marins (AIFM)", "https://www.isa.org.jm/", "Contrats d'exploration, négociation du code minier."],
-    ["SHOM", "https://www.shom.fr/", "Service hydrographique de la Marine : espaces maritimes français, limites, cartes."]
+    ["SHOM", "https://www.shom.fr/", "Service hydrographique de la Marine : espaces maritimes français, limites, cartes."],
+    ["Inventaire forestier (IGN)", "https://inventaire-forestier.ign.fr/", "Les chiffres officiels de la forêt française (surface, essences, mortalité) : thème 5."],
+    ["Copernicus, service changement climatique", "https://climate.copernicus.eu/", "Températures mondiales et européennes, bilans annuels (2024 année record) : thème 5."],
+    ["NOAA : courbe de Keeling", "https://gml.noaa.gov/ccgg/trends/", "La concentration de CO₂ mesurée à Mauna Loa, mise à jour chaque mois : thème 5."],
+    ["CCNUCC (convention sur le climat)", "https://unfccc.int/", "Textes des accords, calendrier et décisions des COP : thème 5."]
   ] },
   { t: "Annales et révisions", l: [
     ["Spécialité HGGSP : programme et épreuve (Annabac)", "https://www.annabac.com/page/specialite-hggsp-en-tle-le-programme", "Présentation du programme ; annales sur abonnement pour une partie."],
