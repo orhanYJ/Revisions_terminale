@@ -8,8 +8,16 @@ def lire(n):
     with open(os.path.join(SRC, n), encoding="utf-8") as f:
         return f.read()
 shell = lire("shell.html")
-donnees = "\n".join(lire(n) for n in ["data-commun.js", "data-e1.js", "data-e2.js", "data-e3.js", "data-atelier.js", "data-pages.js"])
-for ancre, contenu in [("/*STYLE*/", lire("style.css")), ("/*DATA*/", donnees), ("/*APP*/", lire("app.js"))]:
+# Données : le tronc commun d'abord, puis toutes les entrées (data-e*.js, dans l'ordre des noms),
+# puis l'atelier, les animations et les pages transversales. Un nouveau fichier data-e<N>.js est pris d'office.
+ENTREES = sorted(n for n in os.listdir(SRC) if n.startswith("data-e") and n.endswith(".js"))
+ANIMS = sorted(n for n in os.listdir(SRC) if n.startswith("data-anims-") and n.endswith(".js"))
+ORDRE = ["data-commun.js"] + ENTREES + ["data-sujets.js", "data-atelier.js", "data-anims.js"] + ANIMS + ["data-pages.js"]
+ORDRE = [n for n in ORDRE if os.path.exists(os.path.join(SRC, n))]
+donnees = "\n".join(lire(n) for n in ORDRE)
+STYLE = lire("style.css") + ("\n" + lire("theme-ancien.css") if os.path.exists(os.path.join(SRC, "theme-ancien.css")) else "")
+APP = (lire("animations.js") + "\n" if os.path.exists(os.path.join(SRC, "animations.js")) else "") + lire("app.js")
+for ancre, contenu in [("/*STYLE*/", STYLE), ("/*DATA*/", donnees), ("/*APP*/", APP)]:
     assert shell.count(ancre) == 1, ancre
     shell = shell.replace(ancre, contenu)
 logo = "<!--LOGO-->"

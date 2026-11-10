@@ -36,6 +36,7 @@ var CH1 = {
 [thm|Principe de récurrence]Soit $P(n)$ une propriété définie pour tout entier $n\geq n_0$. Si :
 <ul><li><b>Initialisation</b> : $P(n_0)$ est vraie ;</li><li><b>Hérédité</b> : pour tout entier $k\geq n_0$, si $P(k)$ est vraie, alors $P(k+1)$ est vraie ;</li></ul>
 alors $P(n)$ est vraie pour tout entier $n\geq n_0$.[/]
+<div data-anim="propagation"></div>
 <div data-w="dominos"></div>
 <p><b>Pourquoi ça marche ?</b> $P(n_0)$ est vraie ; l'hérédité appliquée à $k=n_0$ donne $P(n_0+1)$ ; appliquée à $k=n_0+1$, elle donne $P(n_0+2)$… On atteint ainsi n'importe quel entier en un nombre fini d'étapes. C'est une propriété fondamentale de l'ensemble $\N$ : on l'admet (en mathématiques, c'est un axiome).</p>
 [ex|Les deux étapes sont indispensables]
@@ -64,6 +65,7 @@ Donc $P(k+1)$ est vraie.</p>
 <p><b>Hérédité.</b> Soit $k\geq1$ tel que $1+3+\dots+(2k-1)=k^2$. Au rang $k+1$, on ajoute le terme suivant $2(k+1)-1=2k+1$ :
 $$1+3+\dots+(2k-1)+(2k+1)=k^2+2k+1=(k+1)^2.$$</p>
 <p><b>Conclusion.</b> Par récurrence, la formule est vraie pour tout $n\geq1$.</p>[/]
+<div data-anim="impairs"></div>
 <p>Avec le symbole somme, on écrit $\sum_{k=1}^{n}(2k-1)=n^2$. Le programme permet d'utiliser ce symbole pour abréger, mais sa manipulation pour démontrer des égalités n'est pas un objectif : en cas de doute, écris la somme avec des pointillés.</p>
 [prop|Somme des carrés]Pour tout $n\geq1$ : $1^2+2^2+\dots+n^2=\frac{n(n+1)(2n+1)}{6}$. (Démonstration dans l'onglet Démonstrations.)[/]` },
     { id: "inegalites", titre: "Récurrence et inégalités : encadrer, montrer la monotonie", html: R`
@@ -250,4 +252,55 @@ def seuil():
     [R`Hérédité vraie mais initialisation fausse : exemple`, R`« $2^n$ est divisible par $3$ » : héréditaire, jamais vraie.`],
     [R`Pourquoi écrire le but $P(k+1)$ dans l'hérédité ?`, R`Pour savoir vers quoi orienter le calcul (et que le correcteur le voie).`]
   ]
+};
+
+/* Animation : la somme des impairs remplit un carré (hérédité en image) */
+ANIMS.impairs = {
+  titre: R`Les nombres impairs construisent des carrés`,
+  vb: [360, 230],
+  etapes: [
+    { d: 3, l: R`Pourquoi $1+3+5+\dots+(2n-1)=n^2$ ? Au départ, $1$ carreau : $1=1^2$.` },
+    { d: 3.5, l: R`On ajoute l'impair suivant, $3$, en équerre autour du carreau : on obtient un carré $2\times2$. $1+3=4=2^2$.` },
+    { d: 3.5, l: R`Puis $5$ carreaux : une équerre de $2+2+1$ autour du carré $2\times2$ donne le carré $3\times3$. $1+3+5=9=3^2$.` },
+    { d: 5, l: R`$7$, puis $9$ : chaque nombre impair complète exactement le carré suivant. $1+3+5+7+9=25=5^2$.` },
+    { d: 5, l: R`C'est l'hérédité en image : autour d'un carré $k\times k$, l'équerre compte $k+k+1=2k+1$ carreaux, le terme suivant de la somme, et $k^2+(2k+1)=(k+1)^2$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, c = 26, x0 = 22, y0 = 206;
+    var STY = ["fill:var(--bleu-p);stroke:var(--bleu)", "fill:var(--rouge-p);stroke:var(--rouge)"];
+    function carreau(i, j, m, o) { S.px.rect(x0 + i * c + 1.5, y0 - (j + 1) * c + 1.5, c - 3, c - 3, "", { rx: 3, style: STY[m % 2] + ";stroke-width:1.4", opacity: o }); }
+    function equerre(m, f) {
+      var cel = [], i;
+      for (i = 0; i < m; i++) cel.push([m, i]);
+      cel.push([m, m]);
+      for (i = m - 1; i >= 0; i--) cel.push([i, m]);
+      cel.forEach(function (q, j) { var a = j / cel.length * 0.7, o = f >= 1 ? 1 : E(p(f, a, a + 0.3)); if (o > 0.01) carreau(q[0], q[1], m, o); });
+    }
+    if (k < 4) {
+      var SOM = ["1 = 1²", "1 + 3 = 4 = 2²", "1 + 3 + 5 = 9 = 3²", "1 + 3 + 5 + 7 = 16 = 4²", "1 + 3 + 5 + 7 + 9 = 25 = 5²"];
+      var faites = [1, 2, 3, 5][k];
+      for (var m = 0; m < faites; m++) {
+        var f = 1;
+        if (k === 0) f = p(t, 0, 0.5);
+        if (k === 1 && m === 1) f = p(t, 0, 0.8);
+        if (k === 2 && m === 2) f = p(t, 0, 0.8);
+        if (k === 3 && m === 3) f = p(t, 0, 0.45);
+        if (k === 3 && m === 4) f = p(t, 0.5, 0.95);
+        equerre(m, f);
+        var o = f >= 1 ? 1 : E(p(f, 0.6, 1));
+        if (o > 0.01) S.px.txt(170, 74 + m * 28, SOM[m], m === faites - 1 ? "b" : "", "start", { "font-size": 14, opacity: o });
+      }
+      return;
+    }
+    var n = 4, a = E(p(t, 0, 0.3));
+    S.px.rect(x0 + 1.5, y0 - n * c + 1.5, n * c - 3, n * c - 3, "", { rx: 4, style: STY[0] + ";stroke-width:1.4" });
+    S.px.txt(x0 + n * c / 2, y0 - n * c / 2 + 6, "k × k", "b", "middle", { "font-size": 16 });
+    equerre(n, p(t, 0.1, 0.7));
+    S.px.txt(x0 + (n + 1) * c + 6, y0 - n * c / 2 + 5, "k", "r", "start", { opacity: a, "font-size": 15 });
+    S.px.txt(x0 + n * c / 2, y0 - (n + 1) * c - 7, "k", "r", "middle", { opacity: a, "font-size": 15 });
+    S.px.txt(x0 + (n + 1) * c + 6, y0 - (n + 1) * c + 4, "1", "r", "start", { opacity: a, "font-size": 15 });
+    var b = E(p(t, 0.6, 1));
+    S.px.math(172, 70, 184, 40, R`$k^2+(2k+1)$`, { opacity: b });
+    S.px.math(172, 112, 184, 40, R`$=(k+1)^2$`, { opacity: b });
+  }
 };

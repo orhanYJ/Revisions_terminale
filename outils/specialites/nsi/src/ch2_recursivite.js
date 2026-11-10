@@ -151,6 +151,14 @@ def somme_liste(t, i=0):
 print(longueur("récursif"), est_palindrome("kayak"), est_palindrome("nsi"))
 print(somme_liste([4, 8, 15, 16, 23, 42]))`, { out: "8 True False\n108" });
 
+C("c2-tr-somme", String.raw`
+def somme_liste(t, i):
+    if i == len(t):
+        return 0
+    return t[i] + somme_liste(t, i + 1)
+
+print(somme_liste([4, 8, 15], 0))`, { fichier: "somme_liste.py", trace: true, out: "27" });
+
 C("c2-dicho", String.raw`
 def recherche(t, x, g, d):
     """Indice de x dans le tableau trié t, entre les indices g et d inclus, ou -1."""
@@ -503,7 +511,7 @@ CH.push({
 <p>Le nombre d’appels explose : 2 692 537 appels pour F(30), parce que les mêmes valeurs sont recalculées encore et encore (F(28) est calculé 2 fois, F(27) 3 fois, F(26) 5 fois…). Le coût est <b>exponentiel</b>. Dans le schéma, choisis <code>fibonacci(4)</code> : l’arbre se construit pendant que la pile monte et descend.</p>
 [[w-pile-appels|fib]]
 <p>La profondeur de la pile, elle, ne dépasse pas <i>n</i> : l’arbre est large, pas profond.</p>
-<div class="boite hp"><div class="lab"># pour aller plus loin : mémoïsation</div><p>On mémorise chaque résultat dans un dictionnaire pour ne le calculer qu’une fois. C’est le point de départ de la <b>programmation dynamique</b> (au programme, chapitre à venir).</p>[[c2-memo]]</div>` },
+<div class="boite hp"><div class="lab"># pour aller plus loin : mémoïsation</div><p>On mémorise chaque résultat dans un dictionnaire pour ne le calculer qu’une fois. C’est le point de départ de la <b>programmation dynamique</b> (chapitre « Programmation dynamique »).</p>[[c2-memo]]</div>` },
 
     { id: "i7", t: "Diviser l’exposant par 2 : la puissance rapide", h: `
 <p>Pour calculer a<sup>n</sup>, la méthode naïve (a<sup>n</sup> = a × a<sup>n−1</sup>) fait <i>n</i> + 1 appels. Or a<sup>10</sup> = (a<sup>5</sup>)², a<sup>5</sup> = a × (a<sup>2</sup>)², a<sup>2</sup> = (a<sup>1</sup>)², a<sup>1</sup> = a × (a<sup>0</sup>)² : en <b>divisant l’exposant par 2</b> à chaque appel, on n’en fait que 5.</p>
@@ -516,6 +524,8 @@ CH.push({
     { id: "i8", t: "Récursivité sur les chaînes et les tableaux", h: `
 <p>Une chaîne ou une liste peut se voir récursivement : « vide », ou « un premier élément suivi du reste ». D’où des fonctions très courtes :</p>
 [[c2-chaines]]
+<p>Pas à pas, avec la vraie pile d’exécution : chaque cadre a son propre <code>i</code>, mais tous partagent la même liste <code>t</code>.</p>
+[[w-trace|c2-tr-somme]]
 <p>Le découpage <code>ch[1:]</code> crée une <b>copie</b> à chaque appel, ce qui coûte du temps. Pour les tableaux, on préfère passer un <b>indice</b> en paramètre (comme <code>somme_liste</code>), ce qui évite toute copie. C’est ainsi qu’on écrit la <b>recherche dichotomique</b> de Première en version récursive :</p>
 [[c2-dicho]]
 <p>Le variant est la taille de la zone <code>d − g + 1</code>, divisée par deux environ à chaque appel : environ 20 appels suffisent pour un tableau d’un million d’éléments.</p>` },

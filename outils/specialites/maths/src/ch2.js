@@ -34,6 +34,7 @@ var CH2 = {
     { id: "convergence", titre: "Converger vers un réel", html: R`
 [def|Suite convergente]La suite $(u_n)$ <b>converge vers le réel $\ell$</b> si tout intervalle ouvert contenant $\ell$ contient tous les termes $u_n$ à partir d'un certain rang. On note $\lim_{n\to+\infty}u_n=\ell$. Une suite qui ne converge pas est dite <b>divergente</b>.[/]
 <p>En pratique, on prend des intervalles $]\ell-\varepsilon;\ell+\varepsilon[$ : pour tout $\varepsilon>0$, il existe un rang $N$ tel que, pour $n\geq N$, $|u_n-\ell|<\varepsilon$. Joue avec la largeur de la bande :</p>
+<div data-anim="bande"></div>
 <div data-w="suite"></div>
 [prop|Unicité et références]Si une suite converge, sa limite est unique. $\lim\frac1n=\lim\frac1{n^2}=\lim\frac1{\sqrt n}=0$ ; plus généralement $\lim\frac1{n^p}=0$ pour $p\geq1$.[/]
 <p>Une suite divergente peut tendre vers $\pm\infty$… ou n'avoir <b>aucune limite</b> : $u_n=(-1)^n$ vaut $1,-1,1,-1\dots$ ; aucune bande étroite autour d'un réel ne contient tous les termes à partir d'un rang.</p>
@@ -49,7 +50,7 @@ var CH2 = {
 <tr><td>$\ell$</td><td>$\ell'\neq0$</td><td>$\frac{\ell}{\ell'}$</td></tr>
 <tr><td>$\ell$</td><td>$\pm\infty$</td><td>$0$</td></tr>
 <tr><td>$\ell\neq0$ ou $\pm\infty$</td><td>$0$ (de signe constant)</td><td>$\pm\infty$ (règle des signes)</td></tr>
-<tr><td>$\pm\infty$</td><td>$\ell'$</td><td>$\pm\infty$ (règle des signes)</td></tr>
+<tr><td>$\pm\infty$</td><td>$\ell'\neq0$</td><td>$\pm\infty$ (règle des signes)</td></tr>
 <tr><td>$0$</td><td>$0$</td><td><b>F.I.</b></td></tr>
 <tr><td>$\pm\infty$</td><td>$\pm\infty$</td><td><b>F.I.</b></td></tr></table></div>
 [meth|Lever une indétermination : le terme prépondérant]$u_n=\frac{3n^2-n+1}{2n^2+5}$ est de la forme $\frac{\infty}{\infty}$. On factorise par $n^2$ en haut et en bas :
@@ -69,6 +70,7 @@ $$u_n=\frac{(n+1)-n}{\sqrt{n+1}+\sqrt n}=\frac{1}{\sqrt{n+1}+\sqrt n}\quad\text{
     { id: "geometrique", titre: "Suites géométriques", html: R`
 [thm|Limite de $q^n$]Soit $q$ un réel.
 <ul><li>Si $q>1$ : $\lim q^n=+\infty$.</li><li>Si $q=1$ : $q^n=1$ pour tout $n$, limite $1$.</li><li>Si $-1<q<1$ : $\lim q^n=0$.</li><li>Si $q\leq-1$ : $(q^n)$ n'a pas de limite.</li></ul>[/]
+<div data-anim="geometrique"></div>
 <p>Le cas $q>1$ est une <b>démonstration exigible</b>, qui utilise l'inégalité de Bernoulli du chapitre 1 : en écrivant $q=1+a$ avec $a>0$, on a $q^n\geq1+na$, qui tend vers $+\infty$. Exemple : $1{,}02^n\geq1+0{,}02n$, donc $1{,}02^n\geq100$ au plus tard dès $n=4950$ (en fait dès $n=233$ : Bernoulli minore beaucoup).</p>
 [ex|Une suite arithmético-géométrique]$a_n=15-10\times0{,}8^n$ (chapitre 1) : $0<0{,}8<1$ donc $0{,}8^n\to0$ et $a_n\to15$.[/]
 [prop|Somme des termes]Si $-1<q<1$ : $\lim\left(1+q+\dots+q^n\right)=\lim\frac{1-q^{n+1}}{1-q}=\frac1{1-q}$.[/]

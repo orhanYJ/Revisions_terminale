@@ -55,12 +55,25 @@ VOIX_LANGUE = {
 VOIX = dict(VOIX_LANGUE["fr"])
 PROSODIE = {"H": {"rate": "+0%", "pitch": "+0Hz"}, "C": {"rate": "-6%", "pitch": "+0Hz"}, "F": {"rate": "-6%", "pitch": "+0Hz"}}
 ECART = {"H": 0.38, "C": 0.95, "F": 0.95}       # silence après un passage
+
+
+def _ecart_vivant(v, lu, k):
+    """RYTHME = "vivant" dans un script (SVT, demande de Cengiz du 10/11/2026 : « un rythme vivant ») : le silence après
+    un passage du narrateur dépend de la façon dont la phrase finit, au lieu d'un écart fixe ; légère variation
+    déterministe (k = rang du passage) pour éviter un tempo de métronome."""
+    if v != "H":
+        return ECART[v]
+    fin = lu.rstrip()[-1:] if lu.strip() else "."
+    base = {"?": 0.72, "!": 0.55, ":": 0.26, ",": 0.18, "…": 0.6, ";": 0.3}.get(fin, 0.42)
+    if len(lu) < 40 and fin in ".!":     # phrase courte qui claque : on la laisse respirer
+        base += 0.12
+    return round(base * (0.88 + 0.24 * ((k * 0.6180339) % 1)), 3)
 AVANT_CIT = 0.45                      # silence avant une citation
 CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
-V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 2, "acl-lughnasa": 2, "dnl": 4, "svt": 4}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
+V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 4, "acl-lughnasa": 2, "dnl": 4, "svt": 6}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
 TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729", "svt": "#0b120e"}
 PAGE = """<!DOCTYPE html>
 <html lang="{langue}">
@@ -282,6 +295,8 @@ def generer(nom_module):
     cues = {}                 # id -> instant ; "id.k" -> instant ; "-id" -> instant
     cit_mots = {}
     n_chap = 0
+    n_pass = 0
+    vivant = getattr(ep, "RYTHME", "") == "vivant"   # silences variables après les passages (voir _ecart_vivant)
     n_frappe = 0
     n_notion = 0
     vis.append({"id": "_generique", "type": "generique", "scene": ep.SCENES[0]["id"], "serie": ep.NOTION,
@@ -373,7 +388,8 @@ def generer(nom_module):
                     reste = re.match(r"[^\w«]*", lu[pos + len(w):]).group(0).rstrip()
                     sous.append([round(debut, 3), round(min(fin, t + off - tete + d + 0.6), 3), (s + reste).strip()])
                     morceau, debut = [], None
-            t += dur + ECART[b["v"]]
+            n_pass += 1
+            t += dur + (_ecart_vivant(b["v"], lu, n_pass) if vivant else ECART[b["v"]])
         t_parole = t                  # fin de la voix : « À retenir » s'affiche seul
         if sc.get("retenir"):
             vis.append({"id": "_flash_" + sc["id"], "type": "flash", "scene": sc["id"], "t": sc["retenir"],
@@ -436,19 +452,36 @@ def generer(nom_module):
     crete = np.abs(pv).max()
     pv *= 0.89 / crete
     # musique : une humeur par chapitre, fondu enchaîné de 2,5 s entre deux humeurs
-    pistes = {}
-    for _, hu in humeurs:
-        if hu not in pistes:
-            x = musique.boucle(duree + 1, hu)[:n]
-            pistes[hu] = np.pad(x, (0, max(0, n - len(x))))[:n] / (np.abs(x).max() + 1e-9) * 0.42
     tt = np.arange(n) / SR
     mus = np.zeros(n)
     poids_total = np.zeros(n)
-    for k, (deb, hu) in enumerate(humeurs):
-        fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
-        w = np.clip((tt - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt + 1.25) / 2.5, 0, 1)
-        mus += pistes[hu] * w
-        poids_total += w
+    if site == "svt":
+        # SVT (10/11/2026) : musique lo-fi, cinq thèmes originaux qui tournent d'une partie à l'autre
+        # (musique.lofi), chacun bouclé sur la durée de sa partie seulement
+        boucles = {}
+        for k, (deb, hu) in enumerate(humeurs):
+            th = musique.theme_lofi(k, hu)
+            if th not in boucles:
+                x = musique.lofi(th).astype(np.float64)
+                boucles[th] = x / (np.abs(x).max() + 1e-9) * 0.42
+            fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
+            a, b = max(0, int((deb - 1.3) * SR)), min(n, int((fin + 1.3) * SR))
+            L = boucles[th]
+            seg = np.resize(L, b - a)
+            w = np.clip((tt[a:b] - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt[a:b] + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt[a:b] + 1.25) / 2.5, 0, 1)
+            mus[a:b] += seg * w
+            poids_total[a:b] += w
+    else:
+        pistes = {}
+        for _, hu in humeurs:
+            if hu not in pistes:
+                x = musique.boucle(duree + 1, ("pc-" + hu) if site == "pc" and hu != "reel" else hu)[:n]   # PC : musique « labo »
+                pistes[hu] = np.pad(x, (0, max(0, n - len(x))))[:n] / (np.abs(x).max() + 1e-9) * 0.42
+        for k, (deb, hu) in enumerate(humeurs):
+            fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
+            w = np.clip((tt - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt + 1.25) / 2.5, 0, 1)
+            mus += pistes[hu] * w
+            poids_total += w
     mus /= np.maximum(poids_total, 1e-6)
     g = musique.enveloppe(n / SR, paroles, haut=1.0, bas=0.12)
     g = np.pad(g, (0, max(0, n - len(g))), constant_values=g[-1])[:n]
@@ -508,7 +541,8 @@ def generer(nom_module):
     with open(os.path.join(SORTIE, ep.CODE + ".data.js"), "w", encoding="utf-8") as f:
         f.write(js)
     v = hashlib.sha1(js.encode("utf-8")).hexdigest()[:8]
-    titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site in ("pc", "svt")
+    titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · SVT Terminale" if site == "svt"
+             else f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site == "pc"
              else f"{ep.NOTION} · Episode {ep.NUM} — {ep.TITRE}" if site == "dnl"
              else f"{ep.NOTION} · Part {ep.NUM} — {ep.TITRE}" if langue == "en" else f"{ep.NOTION} · Épisode {ep.NUM} — {ep.TITRE}")
     extra, apres = "", ""

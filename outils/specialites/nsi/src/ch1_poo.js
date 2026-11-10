@@ -61,6 +61,24 @@ c.deposer(5)              # écriture habituelle
 Compte.deposer(c, 5)      # ce que Python fait réellement : self = c
 print(c.solde)`, { deps: ["c1-compte"], out: "20" });
 
+C("c1-tr-self", String.raw`
+class Compte:
+    def __init__(self, titulaire, solde=0):
+        self.titulaire = titulaire
+        self.solde = solde
+
+    def deposer(self, montant):
+        self.solde = self.solde + montant
+
+    def __repr__(self):                  # pour lire l'objet dans la trace
+        return "Compte(" + self.titulaire + ", " + str(self.solde) + ")"
+
+a = Compte("Ada", 100)
+b = Compte("Alan")
+a.deposer(50)
+b.deposer(20)
+print(a, b)`, { fichier: "self.py", trace: true, out: "Compte(Ada, 150) Compte(Alan, 20)" });
+
 C("c1-appel-methode", String.raw`
 class Compte:
     def __init__(self, titulaire, solde=0):
@@ -605,6 +623,8 @@ Un <b>attribut</b> est une variable attachée à un objet ; une <b>méthode</b> 
     { id: "i4", t: "Les méthodes : agir sur l’objet", h: `
 <p>Une méthode est une fonction écrite dans la classe, dont le premier paramètre est <code>self</code>. L’appel <code>c.deposer(5)</code> est un raccourci pour <code>Compte.deposer(c, 5)</code> :</p>
 [[c1-self]]
+<p>Pas à pas : regarde ce que vaut <code>self</code> dans le cadre de <code>deposer</code>. Au premier appel c’est l’objet de <code>a</code>, au second celui de <code>b</code> ; c’est le même code qui travaille sur deux objets différents.</p>
+[[w-trace|c1-tr-self]]
 <p>Une méthode peut <b>modifier</b> l’objet (<code>deposer</code>), <b>renvoyer</b> une valeur calculée à partir des attributs (<code>retirer</code> renvoie un booléen), ou les deux. Elle peut aussi appeler une autre méthode du même objet (<code>self.autre_methode()</code>) ou d’un autre objet reçu en paramètre :</p>
 [[c1-appel-methode]]
 <p>Ici, un attribut <code>historique</code> contient une liste : un objet peut contenir n’importe quelle valeur, y compris d’autres objets.</p>` },
@@ -645,7 +665,7 @@ Un <b>attribut</b> est une variable attachée à un objet ; une <b>méthode</b> 
 <div class="boite hp"><div class="lab"># hors programme</div>
 <p>L’<b>héritage</b> permet de définir une classe à partir d’une autre (<code>class Chat(Animal)</code>) : elle récupère ses attributs et méthodes et peut en redéfinir. Le <b>polymorphisme</b> : un même appel (<code>x.parler()</code>, ou <code>len(x)</code>) produit un comportement adapté au type de <code>x</code>.</p></div>
 [[c1-heritage]]
-<p>La POO est l’un des trois <b>paradigmes</b> au programme, avec l’impératif et le fonctionnel (chapitre « Paradigmes de programmation », bientôt). Un même programme peut mélanger les paradigmes.</p>` }
+<p>La POO est l’un des trois <b>paradigmes</b> au programme, avec l’impératif et le fonctionnel (chapitre « Paradigmes de programmation »). Un même programme peut mélanger les paradigmes.</p>` }
   ],
   pieges: [
     { t: "Oublier self dans la définition d’une méthode", h: `[[c1-p-self]]<p>Python passe toujours l’objet comme premier argument : la méthode reçoit 2 arguments (l’objet et 5) alors qu’elle n’en attend qu’un.</p>` },

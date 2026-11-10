@@ -33,6 +33,7 @@ var CH3 = {
 <p>Souvent, le comportement diffère selon le côté : on note $x\to a^+$ (ou $x\to a$, $x>a$) et $x\to a^-$ (ou $x\to a$, $x<a$).</p>
 [ex|$\frac1x$ en $0$]$\lim_{x\to0^+}\frac1x=+\infty$ et $\lim_{x\to0^-}\frac1x=-\infty$ ; asymptote verticale $x=0$. En revanche $\lim_{x\to0}\frac1{x^2}=+\infty$ des deux côtés.[/]
 [ex|$f(x)=\frac{2x+1}{x-1}$]Quand $x\to1$, le numérateur tend vers $3$ et le dénominateur vers $0$. Signe du dénominateur : $x-1>0$ si $x>1$. Donc $\lim_{x\to1^+}f(x)=+\infty$ et $\lim_{x\to1^-}f(x)=-\infty$. Numériquement, $f(1{,}001)=3002$ et $f(0{,}999)=-2998$.[/]
+<div data-anim="asymptote"></div>
 <div data-w="asymptotes"></div>
 <p>Il existe aussi des limites <b>finies</b> en un point : $\lim_{x\to2}(x^2+1)=5$. Pour une fonction usuelle définie en $a$, on remplace simplement $x$ par $a$ (c'est la continuité, chapitre 4).</p>` },
     { id: "reference", titre: "Fonctions de référence", html: R`
@@ -53,7 +54,8 @@ var CH3 = {
     { id: "comparaison", titre: "Comparaison et gendarmes", html: R`
 [thm|Comparaison]Si $f(x)\geq g(x)$ pour $x$ assez grand et $\lim_{x\to+\infty}g(x)=+\infty$, alors $\lim_{x\to+\infty}f(x)=+\infty$. (Énoncés analogues en $-\infty$, en $a$, et pour $-\infty$.)[/]
 [thm|Gendarmes]Si $g(x)\leq f(x)\leq h(x)$ pour $x$ assez grand, et si $g$ et $h$ ont la même limite finie $\ell$ en $+\infty$, alors $\lim_{x\to+\infty}f(x)=\ell$.[/]
-[ex|Avec un cosinus]$f(x)=\frac{\cos x}{x}$ pour $x>0$ : $-\frac1x\leq f(x)\leq\frac1x$, et $\pm\frac1x\to0$ : par les gendarmes, $\lim_{x\to+\infty}f(x)=0$.<br>$g(x)=x+\cos x\geq x-1\to+\infty$ : par comparaison, $\lim_{x\to+\infty}g(x)=+\infty$.[/]` },
+[ex|Avec un cosinus]$f(x)=\frac{\cos x}{x}$ pour $x>0$ : $-\frac1x\leq f(x)\leq\frac1x$, et $\pm\frac1x\to0$ : par les gendarmes, $\lim_{x\to+\infty}f(x)=0$.<br>$g(x)=x+\cos x\geq x-1\to+\infty$ : par comparaison, $\lim_{x\to+\infty}g(x)=+\infty$.[/]
+<div data-anim="gendarmes"></div>` },
     { id: "croissances", titre: "Croissances comparées", html: R`
 <p>Face à $\frac{\e^x}{x}$ en $+\infty$, on a une forme $\frac\infty\infty$. Qui gagne ? Toujours l'exponentielle.</p>
 [thm|Croissances comparées]Pour tout entier $n\geq1$ :
@@ -69,7 +71,7 @@ $$\lim_{x\to+\infty}\frac{\e^x}{x^n}=+\infty,\qquad\lim_{x\to+\infty}x^n\e^{-x}=
     { t: "« $\\frac{3}{0}=\\infty$ »", h: R`On ne divise pas par zéro : on étudie la limite d'un quotient dont le dénominateur <b>tend</b> vers $0$, avec son signe ($0^+$ ou $0^-$).` },
     { t: "Asymptote et courbe", h: R`Une courbe peut couper son asymptote horizontale (exemple : $\frac{\sin x}{x}$ coupe $y=0$ une infinité de fois). L'asymptote décrit le comportement <b>à l'infini</b>.` },
     { t: "Terme prépondérant en $0$", h: R`En $0$, c'est le terme de <b>plus bas</b> degré qui domine : $x^3+2x\approx2x$ près de $0$. Ne factorise pas par $x^3$.` },
-    { t: "Croissances comparées à l'envers", h: R`$\frac{x^{100}}{\e^x}\to0$ en $+\infty$, même si $x^{100}$ est énorme pour $x=10$. Mais en $-\infty$, $\e^x\to0$ et c'est $x^n\e^x\to0$.` }
+    { t: "Croissances comparées à l'envers", h: R`$\frac{x^{100}}{\e^x}\to0$ en $+\infty$, même si $x^{100}$ est énorme pour $x=10$ : c'est toujours l'exponentielle qui gagne. En $-\infty$ aussi : $\e^x\to0$ l'emporte sur $x^n\to\pm\infty$, donc $x^n\e^x\to0$ (et non $\pm\infty$).` }
   ],
   demos: [
     { bo: true, t: "Limites de l'exponentielle en $+\\infty$ et en $-\\infty$", h: R`
@@ -181,4 +183,39 @@ print(round(b, 4))`, sortie: `35.7715`,
     [R`Forme $\frac00$ en $a$ : réflexe`, R`Factoriser numérateur et dénominateur par $(x-a)$.`],
     [R`Encadrer $\cos x$`, R`$-1\leq\cos x\leq1$`]
   ]
+};
+
+/* Animation : les gendarmes se resserrent, puis la comparaison */
+ANIMS.gendarmes = {
+  titre: R`Deux gendarmes qui se resserrent`,
+  vb: [360, 240],
+  etapes: [
+    { d: 4, l: R`$f(x)=\frac{\cos x}{x}$ pour $x>0$ : la courbe oscille, de moins en moins fort.` },
+    { d: 4, l: R`Comme $-1\leq\cos x\leq1$, on a $-\frac1x\leq f(x)\leq\frac1x$ : la courbe reste coincée entre deux « gendarmes ».` },
+    { d: 5, l: R`On recule jusqu'à $x=100$ : les deux gendarmes tendent vers $0$ et resserrent l'étau. Par le théorème des gendarmes, $\lim_{x\to+\infty}f(x)=0$.` },
+    { d: 5, l: R`Comparaison : $g(x)=x+\cos x\geq x-1$, et $x-1\to+\infty$. La courbe de $g$ reste au-dessus d'une droite qui monte sans fin : $\lim_{x\to+\infty}g(x)=+\infty$.` }
+  ],
+  rendu: function (S, k, t) {
+    var E = ANIM.e, p = ANIM.p, f = function (x) { return Math.cos(x) / x; };
+    if (k <= 2) {
+      var X = k < 2 ? 20 : ANIM.l(20, 100, E(p(t, 0, 0.8)));
+      S.rep(0, X, -1, 1.5, { px: X > 45 ? 20 : 5, py: 0.5 });
+      if (k >= 1) {
+        var o = k === 1 ? E(p(t, 0, 0.6)) : 1, xl = X * 0.16;
+        S.courbe(function (x) { return 1 / x; }, 0.5, X, "g-c2", 300, { opacity: o, "stroke-dasharray": "6 4" });
+        S.courbe(function (x) { return -1 / x; }, 0.5, X, "g-c2", 300, { opacity: o, "stroke-dasharray": "6 4" });
+        S.txt(xl, 1 / xl + 0.14, "y = 1/x", "r", "start", { opacity: o });
+        S.txt(xl, -1 / xl - 0.24, "y = −1/x", "r", "start", { opacity: o });
+      }
+      S.courbe(f, 0.7, k === 0 ? ANIM.l(0.7, 20, E(t)) : X, "g-c", Math.round(80 + X * 8));
+      S.px.txt(350, 24, "f(x) = cos x / x", "b", "end");
+      if (k === 2 && t > 0.8) S.px.txt(350, 44, "en x = 100 : |f(x)| ≤ 0,01", "r", "end", { opacity: E(p(t, 0.8, 1)) });
+      return;
+    }
+    S.rep(0, 12, -2, 13, { px: 2, py: 2 });
+    S.seg(0, -1, 12, 11, "g-as");
+    S.courbe(function (x) { return x + Math.cos(x); }, 0, ANIM.l(0.01, 12, E(p(t, 0, 0.8))), "g-c", 240);
+    S.txt(0.4, 11.3, "g(x) = x + cos x", "b", "start");
+    S.txt(11.6, 6.8, "y = x − 1", "r", "end");
+  }
 };

@@ -797,6 +797,6 @@ QUIZ = [
 CREDITS = [
     "Images : titrage à la burette, gravure de l'ouvrage d'Alessandri, 1895 (domaine public) ; pH-mètre de laboratoire, OER_CampLev, CC BY-SA 4.0 ; "
     "jus de chou rouge, brittgow, CC BY 2.0. Images trouvées sur Wikimedia Commons.",
-    "Animations, schémas et graphiques : faits pour le site ; courbes de pH et de conductivité calculées. Valeurs du TP 4 : mesures d'Orhan. "
+    "Animations, schémas et graphiques : faits pour le site ; courbes de pH et de conductivité calculées. Valeurs du TP 4 : mesures d'un élève. "
     "Les trois exercices sont inventés pour la vidéo.",
 ]

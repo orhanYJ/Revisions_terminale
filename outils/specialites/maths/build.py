@@ -7,7 +7,19 @@ import os
 ICI = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ICI, "src")
 SORTIE = os.path.join(ICI, "..", "..", "..", "maths", "index.html")
-SCRIPTS = ["mathml.js", "widgets.js", "ch1.js", "ch2.js", "ch3.js", "ch4.js", "ch5.js", "programme.js", "pages.js", "app.js"]
+DEBUT = ["mathml.js", "widgets.js", "anims.js"]
+FIN = ["programme.js", "pages.js", "app.js"]
+
+
+def scripts():
+    """Ordre : moteur, autres fichiers d'outils, chapitres ch1.js, ch2.js… (ordre numérique), programme, pages, app.
+
+    Un nouveau chapitre s'enregistre tout seul : fichier src/chN.js qui définit var CHN = {...}, id "chN".
+    """
+    tous = sorted(f for f in os.listdir(SRC) if f.endswith(".js"))
+    chap = sorted((f for f in tous if f[:2] == "ch" and f[2:-3].isdigit()), key=lambda f: int(f[2:-3]))
+    autres = [f for f in tous if f not in DEBUT + FIN + chap]
+    return [f for f in DEBUT if f in tous] + autres + chap + FIN
 
 
 def lire(nom):
@@ -17,7 +29,7 @@ def lire(nom):
 
 def main():
     shell = lire("shell.html")
-    js = "\n".join(lire(n) for n in SCRIPTS if os.path.exists(os.path.join(SRC, n)))
+    js = "\n".join(lire(n) for n in scripts())
     assert "</script" not in js.lower(), "balise </script> dans le JS"
     html = shell.replace("/*STYLE*/", lire("style.css")).replace("/*SCRIPT*/", js)
     with open(SORTIE, "w", encoding="utf-8") as f:

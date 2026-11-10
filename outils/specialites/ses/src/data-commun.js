@@ -1,4 +1,4 @@
-var CH = {}, CHAINES = {}, GRAPHES = {};
+var CH = {}, CHAINES = {}, GRAPHES = {}, ANIMS = {};
 
 var PROG = [
   { id: "eco", nom: "Science économique", qs: [
@@ -20,7 +20,7 @@ var PROG = [
         "Comprendre l’internationalisation de la chaîne de valeur et savoir l’illustrer.",
         "Comprendre les effets induits par le commerce international : gains moyens en termes de baisse de prix, réduction des inégalités entre pays, accroissement des inégalités de revenus au sein de chaque pays ; comprendre les termes du débat entre libre-échange et protectionnisme."],
       notions: [] },
-    { id: "e3", code: "É3", court: "Chômage", statut: "bt", ecrit: true,
+    { id: "e3", code: "É3", court: "Chômage", statut: "red", ecrit: true,
       titre: "Comment lutter contre le chômage ?",
       objectifs: [
         "Savoir définir le chômage et le sous-emploi et connaître les indicateurs de taux de chômage et de taux d’emploi.",
@@ -30,17 +30,17 @@ var PROG = [
         "Connaître les principales politiques mises en œuvre pour lutter contre le chômage : politiques macroéconomiques de soutien de la demande globale, politiques d’allégement du coût du travail, politiques de formation et politiques de flexibilisation pour lutter contre les rigidités du marché du travail."],
       notions: ["chômage (au sens du BIT)", "sous-emploi", "taux de chômage", "taux d’emploi", "appariement", "frictions", "inadéquations spatiales et de qualifications", "asymétries d’information", "salaire d’efficience", "chômage structurel", "salaire minimum", "règles de protection de l’emploi", "chômage conjoncturel", "fluctuations de l’activité", "demande globale", "coût du travail", "politiques de formation", "flexibilisation", "rigidités du marché du travail"],
       liens: "La destruction créatrice et le progrès technique biaisé (<a href=\"#e1\">É1 Croissance</a>) expliquent une partie du chômage des moins qualifiés ; la concurrence internationale aussi (<a href=\"#e2\">É2 Commerce</a>)." },
-    { id: "e4", code: "É4", court: "Crises financières", statut: "bt", ecrit: false,
+    { id: "e4", code: "É4", court: "Crises financières", statut: "red", ecrit: false,
       titre: "Comment expliquer les crises financières et réguler le système financier ?",
       objectifs: [
         "Connaître les principales caractéristiques de la crise financière des années 1930 et de celle de 2008 (effondrement boursier, faillites en chaîne, chute du PIB et accroissement du chômage).",
-        "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties autoréalisatrices).",
+        "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties auto réalisatrices).",
         "Comprendre les phénomènes de panique bancaire et de faillites bancaires en chaîne.",
         "Connaître les principaux canaux de transmission d’une crise financière à l’économie réelle : effets de richesse négatif, baisse du prix du collatéral et ventes forcées, contraction du crédit.",
         "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l’aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité."],
       notions: ["crise financière", "krach boursier", "bulle spéculative", "comportements mimétiques", "prophétie autoréalisatrice", "panique bancaire", "faillites bancaires en chaîne", "effet de richesse négatif", "collatéral", "ventes forcées", "contraction du crédit", "aléa moral", "supervision bancaire", "ratio de solvabilité"],
       liens: "La chute du PIB de 2009 (−2,8 % en volume) est visible sur le graphique de la croissance française du chapitre <a href=\"#e1:e1-1\">É1</a>." },
-    { id: "e5", code: "É5", court: "Politiques européennes", statut: "bt", ecrit: true,
+    { id: "e5", code: "É5", court: "Politiques européennes", statut: "red", ecrit: true,
       titre: "Quelles politiques économiques dans le cadre européen ?",
       objectifs: [
         "Connaître les grandes caractéristiques de l’intégration européenne (marché unique et zone euro) ; comprendre les effets du marché unique sur la croissance.",
@@ -64,7 +64,7 @@ var PROG = [
         "Comprendre que, dans les sociétés démocratiques, l’École transmet des savoirs et vise à favoriser l’égalité des chances ; comprendre l’évolution, depuis les années 1950, des principaux indicateurs mesurant l’accès à l’école et à l’enseignement supérieur (taux de scolarisation, taux d’accès à un diplôme ou à un type de formation) en distinguant les processus de massification et de démocratisation.",
         "Comprendre la multiplicité des facteurs d’inégalités de réussite scolaire (notamment, rôle de l’École, rôle du capital culturel et des investissements familiaux, socialisation selon le genre, effets des stratégies des ménages) dans la construction des trajectoires individuelles de formation."],
       notions: [] },
-    { id: "s3", code: "S3", court: "Mobilité sociale", statut: "bt", ecrit: true,
+    { id: "s3", code: "S3", court: "Mobilité sociale", statut: "red", ecrit: true, spark: "s3-mob",
       titre: "Quels sont les caractéristiques contemporaines et les facteurs de la mobilité sociale ?",
       objectifs: [
         "Savoir distinguer la mobilité sociale intergénérationnelle des autres formes de mobilité (géographique, professionnelle).",
@@ -74,7 +74,7 @@ var PROG = [
         "Comprendre comment l’évolution de la structure socioprofessionnelle, les niveaux de formation et les ressources et configurations familiales contribuent à expliquer la mobilité sociale."],
       notions: ["mobilité intergénérationnelle", "mobilité intragénérationnelle (professionnelle)", "mobilité géographique", "table de mobilité", "table de destinée", "table de recrutement", "mobilité observée", "mobilité structurelle", "fluidité sociale", "mobilité ascendante", "mobilité descendante", "reproduction sociale", "déclassement", "ressources et configurations familiales"],
       liens: "L’évolution de la structure socioprofessionnelle (<a href=\"#s1:s1-3\">S1</a>) explique la mobilité structurelle ; l’École et le capital culturel (<a href=\"#s2\">S2</a>) expliquent une partie de la reproduction. Sujet 2026 (jour 2, partie 1) : présenter les intérêts des tables de mobilité." },
-    { id: "s4", code: "S4", court: "Travail et emploi", statut: "bt", ecrit: true,
+    { id: "s4", code: "S4", court: "Travail et emploi", statut: "red", ecrit: true,
       titre: "Quelles mutations du travail et de l’emploi ?",
       objectifs: [
         "Savoir distinguer les notions de travail, activité, statut d’emploi (salarié, non-salarié), chômage ; comprendre que les évolutions des formes d’emploi rendent plus incertaines les frontières entre emploi, chômage et inactivité.",
@@ -84,7 +84,7 @@ var PROG = [
         "Comprendre que le travail est source d’intégration sociale et que certaines évolutions de l’emploi (précarisation, taux persistant de chômage élevé, polarisation de la qualité des emplois) peuvent affaiblir ce pouvoir intégrateur."],
       notions: ["travail", "emploi", "activité", "statut d’emploi (salarié, non-salarié)", "inactivité", "qualité de l’emploi", "taylorisme", "division horizontale et verticale du travail", "post-taylorisme", "flexibilité", "management participatif", "télétravail", "polarisation des emplois", "intégration sociale", "précarisation"],
       liens: "La salarisation (86,7 % des emplois en 2024) est étudiée en <a href=\"#s1:s1-3\">S1</a> ; la polarisation des emplois par le progrès technique en <a href=\"#e1:e1-5\">É1</a>." },
-    { id: "s5", code: "S5", court: "Engagement politique", statut: "bt", ecrit: true,
+    { id: "s5", code: "S5", court: "Engagement politique", statut: "red", ecrit: true, spark: "s5-tend",
       titre: "Comment expliquer l’engagement politique dans les sociétés démocratiques ?",
       objectifs: [
         "Comprendre que l’engagement politique prend des formes variées (vote, militantisme, engagement associatif, consommation engagée).",
@@ -95,16 +95,16 @@ var PROG = [
       liens: "Le diplôme et la PCS structurent l’espace social (<a href=\"#s1\">S1</a>) et aussi la participation politique. Sujet 2026 (jour 1, partie 2) : un tableau sur le vote systématique selon l’âge et le diplôme." }
   ] },
   { id: "rc", nom: "Regards croisés", qs: [
-    { id: "r1", code: "R1", court: "Justice sociale", statut: "bt", ecrit: false,
+    { id: "r1", code: "R1", court: "Justice sociale", statut: "red", ecrit: false, spark: "r1-ineg",
       titre: "Quelles inégalités sont compatibles avec les différentes conceptions de la justice sociale ?",
       objectifs: [
         "Connaître les grandes tendances d’évolution des inégalités économiques depuis le début du XXe siècle et comprendre que les inégalités économiques et sociales présentent un caractère multiforme et cumulatif.",
-        "Savoir interpréter les principaux outils de mesure des inégalités, statique (rapport inter-quantiles, courbe de Lorenz et coefficient de Gini, top 1 %) et dynamique (corrélation de revenu parents-enfants).",
+        "Savoir interpréter les principaux outils de mesure des inégalités, statique (rapport inter-quantiles, courbe de Lorenz et coefficient de Gini, top 1%) et dynamique (corrélation de revenu parents-enfants).",
         "Comprendre que les différentes formes d’égalité (égalité des droits, des chances ou des situations) permettent de définir ce qui est considéré comme juste selon différentes conceptions de la justice sociale (notamment l’utilitarisme, le libertarisme, l’égalitarisme libéral, l’égalitarisme strict).",
         "Comprendre que l’action des pouvoirs publics en matière de justice sociale (fiscalité, protection sociale, services collectifs, mesures de lutte contre les discriminations) s’exerce sous contrainte de financement et fait l’objet de débats en termes d’efficacité (réduction des inégalités), de légitimité (notamment consentement à l’impôt) et de risque d’effets pervers (désincitations)."],
       notions: ["inégalités économiques et sociales", "caractère multiforme et cumulatif des inégalités", "rapport inter-quantiles", "courbe de Lorenz", "coefficient de Gini", "top 1 %", "corrélation des revenus parents-enfants", "égalité des droits", "égalité des chances", "égalité des situations", "utilitarisme", "libertarisme", "égalitarisme libéral", "égalitarisme strict", "fiscalité", "protection sociale", "services collectifs", "discriminations", "consentement à l’impôt", "désincitations"],
       liens: "Les outils de mesure (déciles, D9/D1, Gini) sont déjà dans la page <a href=\"#outils\">Savoir-faire</a> ; le niveau de vie et ses écarts dans <a href=\"#s1:s1-1\">S1</a>." },
-    { id: "r2", code: "R2", court: "Environnement", statut: "bt", ecrit: true,
+    { id: "r2", code: "R2", court: "Environnement", statut: "red", ecrit: true,
       titre: "Quelle action publique pour l’environnement ?",
       objectifs: [
         "Savoir identifier les différents acteurs (pouvoirs publics, ONG, entreprises, experts, partis, mouvements citoyens) qui participent à la construction des questions environnementales comme problème public et à leur mise à l’agenda politique ; comprendre que ces acteurs entretiennent des relations de coopération et de conflit.",
@@ -152,7 +152,7 @@ var AUTEURS = [
   { ch: "s1", n: "Michel Pinçon et Monique Pinçon-Charlot", d: "1942-2022 ; née en 1946", th: "La grande bourgeoisie, une classe mobilisée « en soi et pour soi »", l: "Enquêtes sur la <b>grande bourgeoisie</b> : patrimoine, réseaux, entre-soi résidentiel (beaux quartiers, cercles). Pour eux, c’est la dernière classe à la fois « en soi » et « pour soi »." },
   { ch: "s1", n: "Kimberlé Crenshaw", d: "née en 1959", th: "Intersectionnalité : les dominations se croisent", l: "Juriste américaine qui propose en 1989 la notion d’<b>intersectionnalité</b> : les rapports de classe, de genre et de race se croisent et produisent des situations spécifiques." },
   { ch: "s1", n: "Ulrich Beck", d: "1944-2015", th: "Individualisation : chacun doit construire sa trajectoire", l: "<i>La Société du risque</i> (1986) : la hausse des revenus et de l’éducation et l’affaiblissement des appartenances collectives conduisent à une <b>individualisation</b> des trajectoires et des risques." },
-  { ch: "s2", n: "Émile Durkheim", d: "1858-1917", th: "L’éducation, socialisation méthodique de la jeune génération", l: "L’éducation est une « <b>socialisation méthodique</b> de la jeune génération » : l’École transmet les valeurs communes qui font tenir la société (<i>Éducation et sociologie</i>, 1922, posthume)." },
+  { ch: "s2", aussi: ["s4"], n: "Émile Durkheim", d: "1858-1917", th: "École, socialisation méthodique ; division du travail, solidarité organique", l: "<b>École (S2)</b> : l’éducation est une « <b>socialisation méthodique</b> de la jeune génération » ; l’École transmet les valeurs communes qui font tenir la société (<i>Éducation et sociologie</i>, 1922, posthume). <b>Travail (S4)</b> : dans <i>De la division du travail social</i> (1893), les individus spécialisés deviennent complémentaires ; la <b>solidarité organique</b> remplace la solidarité mécanique." },
   { ch: "s2", n: "Pierre Bourdieu et Jean-Claude Passeron", d: "1964 et 1970", th: "Capital culturel, héritiers et reproduction scolaire", l: "<i>Les Héritiers</i> (1964) et <i>La Reproduction</i> (1970) : l’École valorise une culture proche de celle des classes favorisées ; le <b>capital culturel</b> hérité se transforme en réussite scolaire, qui paraît due au seul mérite." },
   { ch: "s2", n: "Raymond Boudon", d: "1934-2013", th: "Stratégies : calcul coûts / avantages / risques selon la position sociale", l: "<i>L’Inégalité des chances</i> (1973) : à chaque palier d’orientation, les familles comparent <b>coûts, avantages et risques</b> d’une poursuite d’études ; ce calcul dépend de leur position sociale. Les choix individuels s’agrègent en inégalités (<b>effet d’agrégation</b>)." },
   { ch: "s2", n: "Bernard Lahire", d: "né en 1963", th: "Réussites « paradoxales » en milieu populaire selon les configurations familiales", l: "<i>Tableaux de familles</i> (1995) : la transmission du capital culturel n’est pas automatique ; des <b>configurations familiales</b> (ordre, régularité, autorité, rapport à l’écrit) expliquent des réussites en milieu populaire." },
@@ -192,6 +192,11 @@ var RESSOURCES = [
     { n: "OMC : statistiques du commerce", u: "https://www.wto.org/french/res_f/statis_f/statis_f.htm", b: "données", d: "Valeur du commerce mondial de marchandises et de services commerciaux, principaux exportateurs." },
     { n: "Douane : résultats du commerce extérieur de la France en 2025", u: "https://www.douane.gouv.fr/actualites/resultats-du-commerce-exterieur-de-la-france-pour-le-mois-de-decembre-et-pour-lannee", d: "Solde commercial des biens, exportations, importations." },
     { n: "Citepa : inventaire des émissions de gaz à effet de serre", u: "https://www.citepa.org/", d: "Émissions françaises de 1990 à 2025 (rapport Secten 2026)." },
+    { n: "Insee : évolution du chômage (Emploi, chômage, revenus du travail, 2026)", u: "https://www.insee.fr/fr/statistiques/8733053", b: "données", d: "Taux de chômage au sens du BIT de 1975 à 2025, par sexe, âge, durée depuis la fin des études." },
+    { n: "Insee : halo autour du chômage et sous-emploi", u: "https://www.insee.fr/fr/statistiques/8733067", b: "données", d: "1,9 million de personnes dans le halo en 2025 ; 4,4 % des personnes en emploi en sous-emploi." },
+    { n: "Banque centrale européenne : taux directeurs", u: "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.fr.html", b: "données", d: "Historique des taux de la facilité de dépôt, des opérations principales de refinancement et de la facilité de prêt marginal." },
+    { n: "Insee : comptes des administrations publiques en 2025", u: "https://www.insee.fr/fr/statistiques/8956575", b: "données", d: "Déficit public de 5,1 % du PIB et dette de 115,6 % du PIB en 2025 (première estimation, mars 2026)." },
+    { n: "Service-public.fr : montant du SMIC", u: "https://www.service-public.fr/particuliers/vosdroits/F2300", d: "Montants horaire, mensuel et annuel du salaire minimum en vigueur." },
     { n: "CEPII", u: "https://www.cepii.fr/", d: "Centre français de recherche en économie internationale : analyses et bases de données sur le commerce mondial." }
   ] },
   { t: "Manuels", l: [

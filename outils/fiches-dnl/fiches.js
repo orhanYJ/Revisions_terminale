@@ -1,6 +1,6 @@
-/* Contenu propre aux fiches imprimables (le cours lui-même est lu dans dnl/index.html).
+/* Contenu propre aux fiches imprimables (le contenu des chapitres est lu dans dnl/index.html).
    Pour chaque chapitre : la frise (une dizaine de dates), la légende de la carte récapitulative
-   et un schéma de synthèse. Tout est tiré du cours ; rien ne dépasse le point atteint en classe. */
+   et un schéma de synthèse. Tout est tiré des chapitres du site. */
 module.exports = {
   H1: {
     frise: [
@@ -96,7 +96,7 @@ module.exports = {
         ["hatch-es", "Spain: civil war, 1936–39", "Espagne : guerre civile, 1936-39"]
       ],
       reperes: [
-        ["Saar, Jan. 1935: a plebiscite returns the territory to Germany (outside the course).", "Sarre, janv. 1935 : un plébiscite rend le territoire à l'Allemagne (hors cours)."],
+        ["Saar, Jan. 1935: a plebiscite returns the territory to Germany.", "Sarre, janv. 1935 : un plébiscite rend le territoire à l'Allemagne."],
         ["Rhineland, 7 Mar. 1936: reoccupied; France and Britain do not react.", "Rhénanie, 7 mars 1936 : réoccupée ; la France et le Royaume-Uni ne réagissent pas."],
         ["Vienna, 12 Mar. 1938: Anschluss; a plebiscite gives 99% “yes”, opponents and Jews excluded.", "Vienne, 12 mars 1938 : Anschluss ; plébiscite à 99 % de « oui », opposants et Juifs exclus."],
         ["Sudetenland, Oct. 1938: about 3 million German speakers, ceded to Germany.", "Sudètes, oct. 1938 : environ 3 millions de germanophones, cédés à l'Allemagne."],
@@ -105,7 +105,7 @@ module.exports = {
         ["Poland, 1 Sept. 1939: invaded; France and Britain declare war on 3 Sept.", "Pologne, 1er sept. 1939 : envahie ; la France et le Royaume-Uni déclarent la guerre le 3."],
         ["Eastern Poland, Sept. 1939: occupied by the Red Army under the secret protocol of the pact.", "Est de la Pologne, sept. 1939 : occupé par l'Armée rouge en vertu du protocole secret du pacte."],
         ["Moscow, 23 Aug. 1939: Nazi-Soviet pact.", "Moscou, 23 août 1939 : pacte germano-soviétique."],
-        ["Albania, Apr. 1939: occupied by Italy (outside the course).", "Albanie, avr. 1939 : occupée par l'Italie (hors cours)."],
+        ["Albania, Apr. 1939: occupied by Italy.", "Albanie, avr. 1939 : occupée par l'Italie."],
         ["Spain, 1936–39: Germany and Italy back Franco (dashed arrows); France and Britain stay out.", "Espagne, 1936-39 : l'Allemagne et l'Italie soutiennent Franco (tirets) ; la France et le Royaume-Uni restent à l'écart."],
         ["Munich, 29–30 Sept. 1938: Hitler, Chamberlain, Daladier and Mussolini; the Czechs are not invited.", "Munich, 29-30 sept. 1938 : Hitler, Chamberlain, Daladier et Mussolini ; les Tchèques ne sont pas invités."]
       ],
@@ -163,16 +163,16 @@ module.exports = {
       ],
       reperes: [
         ["Poland, Sept. 1939: invaded, then partitioned with the USSR.", "Pologne, sept. 1939 : envahie, puis partagée avec l'URSS."],
-        ["Denmark, Apr. 1940: occupied (outside the course).", "Danemark, avr. 1940 : occupé (hors cours)."],
+        ["Denmark, Apr. 1940: occupied.", "Danemark, avr. 1940 : occupé."],
         ["Norway, Apr.–June 1940: invaded; Britain fails to prevent it, and Chamberlain falls.", "Norvège, avr.-juin 1940 : envahie ; le Royaume-Uni n'empêche pas l'occupation, et Chamberlain tombe."],
         ["Netherlands, Belgium, Luxembourg, from 10 May 1940: overrun in a few days.", "Pays-Bas, Belgique, Luxembourg, à partir du 10 mai 1940 : submergés en quelques jours."],
         ["France, May–June 1940: defeated in six weeks; armistice of 22 June.", "France, mai-juin 1940 : vaincue en six semaines ; armistice du 22 juin."],
         ["United Kingdom: Churchill prime minister on 10 May 1940; the Blitz (1940–41) fails to win control of the air.", "Royaume-Uni : Churchill Premier ministre le 10 mai 1940 ; le Blitz (1940-41) n'obtient pas la maîtrise du ciel."],
-        ["Baltic states, 1940: annexed by the USSR (course map), then overrun by Germany in 1941.", "Pays baltes, 1940 : annexés par l'URSS (carte du cours), puis envahis par l'Allemagne en 1941."],
-        ["Bessarabia and Northern Bukovina, 1940: taken from Romania by the USSR (course map).", "Bessarabie et Bucovine du Nord, 1940 : prises à la Roumanie par l'URSS (carte du cours)."],
-        ["Yugoslavia, Apr. 1941: invaded and partitioned (outside the course).", "Yougoslavie, avr. 1941 : envahie et dépecée (hors cours)."],
-        ["Greece, Apr.–May 1941: occupied (outside the course).", "Grèce, avr.-mai 1941 : occupée (hors cours)."],
-        ["Finland, Romania, Hungary, Slovakia: German allies against the USSR in 1941 (course map); Bulgaria joins the Axis in 1941 (outside the course).", "Finlande, Roumanie, Hongrie, Slovaquie : alliées de l'Allemagne contre l'URSS en 1941 (carte du cours) ; la Bulgarie rejoint l'Axe en 1941 (hors cours)."],
+        ["Baltic states, 1940: annexed by the USSR, then overrun by Germany in 1941.", "Pays baltes, 1940 : annexés par l'URSS, puis envahis par l'Allemagne en 1941."],
+        ["Bessarabia and Northern Bukovina, 1940: taken from Romania by the USSR.", "Bessarabie et Bucovine du Nord, 1940 : prises à la Roumanie par l'URSS."],
+        ["Yugoslavia, Apr. 1941: invaded and partitioned.", "Yougoslavie, avr. 1941 : envahie et dépecée."],
+        ["Greece, Apr.–May 1941: occupied.", "Grèce, avr.-mai 1941 : occupée."],
+        ["Finland, Romania, Hungary, Slovakia: German allies against the USSR in 1941; Bulgaria joins the Axis in 1941.", "Finlande, Roumanie, Hongrie, Slovaquie : alliées de l'Allemagne contre l'URSS en 1941 ; la Bulgarie rejoint l'Axe en 1941."],
         ["Vichy: Pétain's regime, which chose collaboration.", "Vichy : le régime de Pétain, qui choisit la collaboration."],
         ["Leningrad: besieged, never taken.", "Leningrad : assiégée, jamais prise."],
         ["Moscow, Dec. 1941: the German advance stopped by the Red Army.", "Moscou, déc. 1941 : l'avance allemande arrêtée par l'Armée rouge."],
@@ -286,7 +286,7 @@ module.exports = {
         ["US Navy: 11 aircraft carriers, 66 submarines, 73 destroyers, 340,000 active personnel.", "US Navy : 11 porte-avions, 66 sous-marins, 73 destroyers, 340 000 militaires d'active."],
         ["Navies by tonnage: USA 3.4 million t, far ahead of Russia, China, Japan, the UK and France.", "Marines par tonnage : États-Unis 3,4 millions de t, loin devant la Russie, la Chine, le Japon, le Royaume-Uni et la France."]
       ],
-      note: ["Bases from the course's map; Natural Earth base map.", "Bases d'après la carte du cours ; fond Natural Earth."]
+      note: ["Main naval bases; Natural Earth base map.", "Principales bases navales ; fond Natural Earth."]
     }, {
       fichier: "monde", label: ["Map", "Carte"],
       titre: ["France, a great maritime power", "La France, une grande puissance maritime"],
@@ -296,7 +296,7 @@ module.exports = {
         ["Bases on every ocean and abroad (Djibouti, Abu Dhabi); a nuclear aircraft carrier, 4 SSBNs, 5 SSNs.", "Des bases sur tous les océans et à l'étranger (Djibouti, Abou Dhabi) ; un porte-avions nucléaire, 4 SNLE, 5 SNA."],
         ["EXTRAPLAC: requests to extend the continental shelf; Atalanta against piracy; Total's gas off Mozambique.", "EXTRAPLAC : demandes d'extension du plateau continental ; Atalanta contre la piraterie ; le gaz de Total au large du Mozambique."]
       ],
-      note: ["After the course's map (French Navy and Ministry for the Overseas, 2019); EEZ approximated by 200-nautical-mile circles.", "D'après la carte du cours (Marine nationale et ministère des Outre-mer, 2019) ; ZEE approchée par des cercles de 200 milles."]
+      note: ["After a map by the French Navy and the Ministry for the Overseas (2019); EEZ approximated by 200-nautical-mile circles.", "D'après une carte de la Marine nationale et du ministère des Outre-mer (2019) ; ZEE approchée par des cercles de 200 milles."]
     }, {
       fichier: "metro", label: ["Zoom", "Zoom"], cote: true,
       titre: ["Ports, naval bases and shipyards of mainland France", "Ports, arsenaux et chantiers de la France métropolitaine"],
@@ -305,16 +305,16 @@ module.exports = {
         ["66 ports; Marseille-Fos (Fos 4XL) and Le Havre are only 53rd and 68th in the world; far from the Northern Range.", "66 ports ; Marseille-Fos (Fos 4XL) et Le Havre ne sont que 53e et 68e mondiaux ; loin de la Northern Range."],
         ["Toulon, the most active arsenal (carrier, SSNs); Brest, Cherbourg; Chantiers de l'Atlantique at Saint-Nazaire.", "Toulon, l'arsenal le plus actif (porte-avions, SNA) ; Brest, Cherbourg ; Chantiers de l'Atlantique à Saint-Nazaire."]
       ],
-      note: ["Natural Earth base map; fishing ports from the course's map.", "Fond Natural Earth ; ports de pêche d'après la carte du cours."]
+      note: ["Natural Earth base map; main fishing ports.", "Fond Natural Earth ; principaux ports de pêche."]
     }, {
       fichier: "synth", label: ["Summary of the theme", "Synthèse du thème"],
       titre: ["Maritime areas in globalisation", "Les espaces maritimes dans la mondialisation"],
       cles: [],
       reperes: [
         ["A ready-made essay plan: 1) a space of circulation, 2) economic stakes, 3) strategic stakes.", "Un plan de dissertation tout fait : 1) un espace de circulation, 2) des enjeux économiques, 3) des enjeux stratégiques."],
-        ["On the course's map, the top three maritime domains: the United States, the United Kingdom, France.", "Sur la carte du cours, les trois premiers domaines maritimes : États-Unis, Royaume-Uni, France."]
+        ["On the summary map, the top three maritime domains: the United States, the United Kingdom, France.", "Sur la carte de synthèse, les trois premiers domaines maritimes : États-Unis, Royaume-Uni, France."]
       ],
-      note: ["After the course's summary map; Arctic routes cut by the edge of the map.", "D'après la carte de synthèse du cours ; routes arctiques coupées par le bord de la carte."]
+      note: ["Summary map of the theme; Arctic routes cut by the edge of the map.", "Carte de synthèse du thème ; routes arctiques coupées par le bord de la carte."]
     }],
     schemas: [{
       type: "chaine",

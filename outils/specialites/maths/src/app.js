@@ -34,7 +34,7 @@
 
   /* ---------- blocs de contenu ---------- */
   function boite(type, lab, html) {
-    return '<div class="boite ' + type + '"><span class="lab">' + lab + '</span><div class="corps">' + F(html) + "</div></div>";
+    return '<div class="boite ' + type + '"><span class="lab">' + F(lab) + '</span><div class="corps">' + F(html) + "</div></div>";
   }
   /* Le cours est écrit en HTML enrichi : [def|Titre] … [/], [prop|…], [thm|…], [ex|…], [meth|…], [piege|…], [hist|…] */
   var LABS = { def: "Définition", prop: "Propriété", thm: "Théorème", ex: "Exemple", meth: "Méthode", piege: "Piège", hist: "Histoire" };
@@ -65,10 +65,10 @@
     h += '<details class="no-print"><summary><span class="st">Ce que le programme attend (BO)</span></summary><div class="dd"><ul>' + c.attendus.map(function (l) { return "<li>" + F(l) + "</li>"; }).join("") + '</ul><p style="font-size:.85rem;color:var(--encre3)">Capacités reformulées d\'après le programme officiel de spécialité (BO spécial n° 8 du 25 juillet 2019).</p></div></details>';
     if (c.premiere) h += '<details><summary><span class="st">Rappels de Première</span><span class="tag p1">1re</span></summary><div class="dd">' + riche(c.premiere) + "</div></details>";
     c.cours.forEach(function (s, i) {
-      h += '<section class="bloc" id="' + c.id + "-" + s.id + '"><h2>' + (i + 1) + ". " + F(s.titre) + "</h2>" + riche(s.html) + "</section>";
+      h += '<section class="bloc" id="' + c.id + "-" + s.id + '"><h2><span class="no" aria-hidden="true"><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="13" transform="rotate(' + (i * 47 % 360) + ' 15 15)"/></svg>' + (i + 1) + '</span><span class="sr">' + (i + 1) + '. </span>' + F(s.titre) + "</h2>" + riche(s.html) + "</section>";
     });
     if (c.pieges && c.pieges.length) {
-      h += '<section class="bloc" id="' + c.id + '-pieges"><h2>Les pièges du chapitre</h2>';
+      h += '<section class="bloc" id="' + c.id + '-pieges"><h2><span class="no" aria-hidden="true"><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="13"/></svg>✗</span>Les pièges du chapitre</h2>';
       c.pieges.forEach(function (p) { h += boite("piege", "Piège · " + p.t, p.h); });
       h += "</section>";
     }
@@ -127,11 +127,11 @@
 
   function carteCh(c) {
     var ok = c.statut === "ok";
-    return '<a class="ch-carte' + (ok ? "" : " bientot") + '" href="#' + c.id + '"><span class="num">' + c.num + '</span><span><b>' + esc(c.titre) + "</b><small>" + F(c.resume || c.sous || "") + '</small></span><span class="etat ' + (ok ? "ok" : "bt") + '">' + (ok ? "Rédigé" : "Bientôt") + "</span></a>";
+    return '<a class="ch-carte' + (ok ? "" : " bientot") + (c.partie === "Probabilités" ? " pro" : c.partie === "Analyse" ? "" : " alg") + '" href="#' + c.id + '"><span class="num">' + c.num + '</span><span><b>' + esc(c.titre) + "</b><small>" + F(c.resume || c.sous || "") + '</small></span><span class="etat ' + (ok ? "ok" : "bt") + '">' + (ok ? "Rédigé" : "Bientôt") + "</span></a>";
   }
   function pageAccueil() {
-    var h = '<div class="hero"><div class="formule" aria-hidden="true">' + TeX.math("\\lim_{n\\to+\\infty}\\left(1+\\frac{1}{n}\\right)^n=\\e") + '</div><h1><span>CQFD</span></h1><p style="font-family:var(--serif);font-size:1.15rem;color:var(--encre);margin:.3em 0">Le carnet de maths de Terminale, spécialité.</p><p>Cours rédigés à fond, démonstrations exigibles, programmes Python, méthodes, exercices corrigés en trois niveaux, vrais sujets du bac, QCM et flashcards. Hors ligne, gratuit, sans compte.</p><div class="actions"><a class="btn plein" href="#' + REDIGES[0].id + '">Commencer : ' + esc(REDIGES[0].court) + '</a><a class="btn" href="#entrainement">' + ic("cible") + ' S\'entraîner</a><a class="btn" href="#epreuve">' + ic("copie") + " L'épreuve</a></div></div>";
-    h += '<h2>Où en est le site</h2><p>' + REDIGES.length + " chapitres de début d'année sont rédigés. Les autres apparaissent avec le contenu exact du programme officiel, en attendant leur rédaction.</p>";
+    var h = '<div class="hero"><div class="formule" aria-hidden="true">' + TeX.math("\\lim_{n\\to+\\infty}\\left(1+\\frac{1}{n}\\right)^n=\\e") + '</div>' + COMPAS + '<h1><span>CQFD</span></h1><span class="devise">ce qu\'il fallait démontrer</span><p style="font-family:var(--serif);font-size:1.15rem;color:var(--encre);margin:.3em 0">Le carnet de maths de Terminale, spécialité.</p><p>Cours rédigés à fond, démonstrations exigibles, programmes Python, méthodes, exercices corrigés en trois niveaux, vrais sujets du bac, QCM et flashcards. Hors ligne, gratuit, sans compte.</p><div class="actions"><a class="btn plein" href="#' + REDIGES[0].id + '">Commencer : ' + esc(REDIGES[0].court) + '</a><a class="btn" href="#entrainement">' + ic("cible") + ' S\'entraîner</a><a class="btn" href="#epreuve">' + ic("copie") + " L'épreuve</a></div></div>";
+    h += REDIGES.length === CH.length ? '<h2>Tout le programme</h2><p>Les ' + CH.length + " chapitres du programme officiel de Terminale sont rédigés, chacun avec son animation explicative.</p>" : '<h2>Où en est le site</h2><p>' + REDIGES.length + " chapitres sur " + CH.length + " sont rédigés. Les autres apparaissent avec le contenu exact du programme officiel, en attendant leur rédaction.</p>";
     var parties = [];
     CH.forEach(function (c) { if (parties.indexOf(c.partie) < 0) parties.push(c.partie); });
     parties.forEach(function (p) {
@@ -141,6 +141,8 @@
     return h;
   }
 
+  /* construction au compas : cercle, tangente en un point, rayon (décor de l'accueil) */
+  var COMPAS = '<svg class="compas" viewBox="0 0 210 210" aria-hidden="true"><circle class="trace" style="--l:540" cx="105" cy="105" r="85"/><path class="trace" style="--l:240" d="M67.7 -37.3 L251.5 117.1"/><path class="r trace" style="--l:90" d="M105 105 L159.6 39.9"/><circle cx="105" cy="105" r="2.5" style="fill:var(--encre3)"/><path d="M153.2 47.6 l7.7 6.4 l6.4 -7.7" class="r"/></svg>';
   var PARTIE_IC = { "Analyse": "courbe", "Algèbre et géométrie": "cube", "Probabilités": "de" };
 
   function pageEntrainement(sous) {
@@ -221,6 +223,8 @@
     $$("[data-qcm]", page).forEach(function (el) { monteQCM(el, questions(el.getAttribute("data-qcm"))); });
     $$("[data-cartes]", page).forEach(function (el) { monteCartes(el, cartes(el.getAttribute("data-cartes"))); });
     $$("[data-w]", page).forEach(function (el) { var f = WIDGETS[el.getAttribute("data-w")]; if (f) { try { f(el); } catch (e) { el.textContent = ""; } } });
+    ANIM.arreter();
+    $$("[data-anim]", page).forEach(function (el) { try { ANIM.monte(el, el.getAttribute("data-anim")); } catch (e) { if (window.console) console.error(e); } });
     $$("[data-copie]", page).forEach(function (b) {
       b.onclick = function () {
         var t = b.closest(".code").querySelector("pre").textContent;
@@ -242,6 +246,32 @@
 
   /* ---------- routeur ---------- */
   var main = $("#page"), menu = $("#menu");
+
+  /* Formules trop larges (petits téléphones) : une formule en ligne ne passe pas à la ligne au milieu d'une racine
+     ou d'une fraction ; si elle dépasse son bloc, on réduit sa taille (jusqu'à 70 %) au lieu de la laisser
+     déborder. Toutes les mesures d'abord, puis toutes les écritures. */
+  var attente = 0;
+  function ajusteMaths() {
+    attente = 0;
+    var mesures = [];
+    $$("math[data-ajuste]", main).forEach(function (m) { m.style.fontSize = ""; m.removeAttribute("data-ajuste"); });
+    $$("math", main).forEach(function (m) {
+      if (m.closest("svg, td, th, pre, .face")) return;
+      if (m.getAttribute("display") === "block") { if (m.scrollWidth > m.clientWidth + 1) mesures.push([m, m.clientWidth / m.scrollWidth]); return; }
+      var w = m.getBoundingClientRect().width; if (!w) return;
+      var b = m.parentElement; while (b && /^inline/.test(getComputedStyle(b).display)) b = b.parentElement;
+      if (!b) return;
+      var cs = getComputedStyle(b), dispo = b.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      if (w > dispo + 1) mesures.push([m, (dispo - 2) / w]);
+    });
+    mesures.forEach(function (x) { x[0].style.fontSize = (1.08 * Math.max(0.7, x[1])).toFixed(3) + "em"; x[0].setAttribute("data-ajuste", ""); });
+  }
+  function planifieAjuste() { if (!attente) attente = requestAnimationFrame(ajusteMaths); }
+  if ("MutationObserver" in window) new MutationObserver(function (ms) {
+    for (var i = 0; i < ms.length; i++) { var c = ms[i].target; if (!(c.closest && c.closest("svg"))) { planifieAjuste(); return; } }
+  }).observe(main, { childList: true, subtree: true });
+  window.addEventListener("resize", planifieAjuste);
+  D.addEventListener("toggle", planifieAjuste, true);
   function route() {
     var h = decodeURIComponent(location.hash.replace(/^#/, "")) || "accueil";
     var p = h.split("/"), html = "", actif = p[0], cible = null, titre = "CQFD";

@@ -193,6 +193,21 @@ def evaluer_npi(expression):
 print(evaluer_npi("3 4 + 2 *"))          # (3 + 4) * 2
 print(evaluer_npi("10 2 8 * + 3 -"))     # 10 + 2 * 8 - 3`, { deps: ["c3-pile-liste"], out: "14\n23" });
 
+C("c3-tr-npi", String.raw`
+pile = []
+for jeton in "3 4 + 2 *".split():
+    if jeton == "+":
+        b = pile.pop()
+        a = pile.pop()
+        pile.append(a + b)
+    elif jeton == "*":
+        b = pile.pop()
+        a = pile.pop()
+        pile.append(a * b)
+    else:
+        pile.append(int(jeton))
+print(pile.pop())`, { fichier: "npi.py", trace: true, out: "14" });
+
 C("c3-file-liste", String.raw`
 class FileListe:
     def __init__(self):
@@ -412,7 +427,7 @@ def josephe(n, k):
     """n personnes numérotées de 1 à n sont en cercle. On compte k personnes ;
     la k-ième sort du cercle ; on recommence à compter avec la suivante.
     Renvoie la liste des numéros dans l'ordre de sortie."""
-    ...`, { fichier: "josephe.py", run: false, trous: [14, 20] });
+    ...`, { fichier: "josephe.py", run: false, trous: [15, 21] });
 
 C("c3-ep2-corr", String.raw`
 class File:
@@ -576,12 +591,14 @@ Une <b>implémentation</b> est une façon concrète de réaliser cette interface
     { id: "i7", t: "Une pile pour calculer : la notation polonaise inverse", h: `
 <p>En <b>notation polonaise inverse</b> (NPI), l’opérateur s’écrit <b>après</b> ses deux opérandes : <code>3 4 +</code> signifie 3 + 4, et <code>3 4 + 2 *</code> signifie (3 + 4) × 2. Plus besoin de parenthèses. L’évaluation se fait avec une pile : un nombre est empilé ; un opérateur dépile deux nombres et empile le résultat.</p>
 [[c3-npi]]
+<p>Pas à pas, avec une simple liste Python comme pile : suis la variable <code>pile</code>.</p>
+[[w-trace|c3-tr-npi]]
 <p>Attention à l’ordre : le premier nombre dépilé est le <b>second</b> opérande (pour <code>10 3 -</code>, on dépile 3 puis 10 et on calcule 10 − 3).</p>
 <div class="boite histoire"><div class="lab"># git log --histoire</div><p><span class="commit">1955 <b>·</b></span> Friedrich L. Bauer et Klaus Samelson (Munich) décrivent l’évaluation des expressions à l’aide d’une pile, le « principe de la cave » (<i>Kellerprinzip</i>).<br><span class="commit">1972 <b>·</b></span> La calculatrice de poche HP-35 de Hewlett-Packard fonctionne en NPI.</p></div>` },
 
     { id: "i8", t: "La file (FIFO) et ses implémentations", h: `
 <div class="boite def"><div class="lab">"""définition"""</div><p>Une <b>file</b> (<i>queue</i>) est une structure où l’on ajoute d’un côté (la <b>queue</b>) et retire de l’autre (la <b>tête</b>) : le premier entré est le premier sorti, <b>FIFO</b> (<i>First In, First Out</i>).</p></div>
-<p>Exemples : la file d’attente d’un guichet, la file d’impression, les touches tapées au clavier en attente de traitement, l’ordonnancement de processus, le parcours en largeur d’un arbre ou d’un graphe (chapitres à venir).</p>
+<p>Exemples : la file d’attente d’un guichet, la file d’impression, les touches tapées au clavier en attente de traitement, l’ordonnancement de processus, le parcours en largeur d’un arbre ou d’un graphe (chapitres 7 et 8).</p>
 [[w-pile-file|file]]
 <p><b>Implémentation 1</b>, avec une liste Python : simple, mais <code>pop(0)</code> a un coût linéaire.</p>
 [[c3-file-liste]]
@@ -599,7 +616,7 @@ Une <b>implémentation</b> est une façon concrète de réaliser cette interface
 <tr><td>servir des clients, des impressions, des requêtes dans l’ordre d’arrivée</td><td>file</td><td>premier arrivé, premier servi</td></tr>
 <tr><td>accéder souvent à l’élément n° <i>i</i></td><td>tableau (<code>list</code>)</td><td>accès en temps constant</td></tr>
 <tr><td>insérer et supprimer souvent en tête</td><td>liste chaînée</td><td>pas de décalage</td></tr>
-<tr><td>retrouver une valeur à partir d’une clé (nom → numéro)</td><td>dictionnaire</td><td>recherche par clé (chapitre à venir)</td></tr></table></div>
+<tr><td>retrouver une valeur à partir d’une clé (nom → numéro)</td><td>dictionnaire</td><td>recherche par clé (chapitre 5)</td></tr></table></div>
 <p>À l’écrit, une question classique : « Pourquoi utiliser une pile plutôt qu’une file ici ? » La réponse se justifie toujours par l’ordre de sortie voulu (LIFO ou FIFO).</p>` }
   ],
   pieges: [

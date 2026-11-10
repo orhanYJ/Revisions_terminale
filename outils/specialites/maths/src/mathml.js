@@ -2,7 +2,7 @@
 var TeX = (function () {
   "use strict";
   var GREC = { alpha: "α", beta: "β", gamma: "γ", delta: "δ", epsilon: "ϵ", varepsilon: "ε", theta: "θ", lambda: "λ", mu: "μ", pi: "π", sigma: "σ", phi: "φ", varphi: "φ", omega: "ω", Delta: "Δ", Omega: "Ω", Sigma: "Σ", ell: "ℓ" };
-  var OPS = { leq: "⩽", le: "⩽", geq: "⩾", ge: "⩾", neq: "≠", ne: "≠", times: "×", cdot: "·", pm: "±", mp: "∓", to: "→", rightarrow: "→", Rightarrow: "⇒", Leftarrow: "⇐", iff: "⇔", Leftrightarrow: "⇔", "in": "∈", notin: "∉", subset: "⊂", cup: "∪", cap: "∩", forall: "∀", exists: "∃", approx: "≈", circ: "∘", ldots: "…", dots: "…", cdots: "⋯", mapsto: "↦", lt: "<", gt: ">", colon: ":", setminus: "∖", prime: "′", sim: "∼", "|": "‖", emptyset: "∅", ast: "∗", mid: "∣" };
+  var OPS = { leq: "⩽", le: "⩽", geq: "⩾", ge: "⩾", neq: "≠", ne: "≠", times: "×", cdot: "·", pm: "±", mp: "∓", to: "→", rightarrow: "→", Rightarrow: "⇒", Leftarrow: "⇐", iff: "⇔", Leftrightarrow: "⇔", "in": "∈", notin: "∉", subset: "⊂", cup: "∪", cap: "∩", forall: "∀", exists: "∃", approx: "≈", circ: "∘", ldots: "…", dots: "…", cdots: "⋯", mapsto: "↦", lt: "<", gt: ">", colon: ":", setminus: "∖", prime: "′", sim: "∼", "|": "‖", equiv: "≡", leftarrow: "←", perp: "⊥", parallel: "∥", emptyset: "∅", ast: "∗", mid: "∣" };
   var ENS = { R: "ℝ", N: "ℕ", Z: "ℤ", Q: "ℚ", C: "ℂ" };
   var FONCS = { ln: 1, exp: 1, cos: 1, sin: 1, tan: 1, max: 1, min: 1, log: 1 };
 
@@ -42,7 +42,8 @@ var TeX = (function () {
       if (c === "\\" && /^\\(right|end)\b/.test(this.s.slice(this.i))) break;
       var a = this.atome();
       if (a === null) continue;
-      if ((a === "<mo>+</mo>" || a === "<mo>−</mo>") && (!out.length || /^<mo[^>]*>(?!\)|\]|\||′)/.test(out[out.length - 1]))) a = a.replace("<mo>", '<mo form="prefix" rspace="0.05em">');
+      if (out.length && /^<mrow><mi mathvariant="normal">(ln|exp|cos|sin|tan|max|min|log)</.test(a) && !/^<mo/.test(out[out.length - 1])) out.push('<mspace width="0.17em"></mspace>');
+      if ((a === "<mo>+</mo>" || a === "<mo>−</mo>") && (!out.length || /^<mo(?:\s[^>]*)?>(?!\)|\]|\||′)/.test(out[out.length - 1]))) a = a.replace("<mo>", '<mo form="prefix" rspace="0.05em">');
       out.push(this.scripts(a));
     }
     return out;
@@ -126,11 +127,14 @@ var TeX = (function () {
     if (n === "e") return el("mi", "e", 'mathvariant="normal"');
     if (n === "i") return el("mi", "i", 'mathvariant="normal"');
     if (GREC[n]) return el("mi", GREC[n], /^[A-Z]/.test(n) ? 'mathvariant="normal"' : "");
-    if (FONCS[n]) return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="0">&#x2061;</mo>');
+    if (FONCS[n]) { this.blanc(); var par = this.peek() === "(" || this.peek() === "'" || /^(?:\\left|\\right|\^|_|[.,;:)\]}]|$)/.test(this.s.slice(this.i)); return el("mrow", el("mi", n, 'mathvariant="normal"') + '<mo lspace="0" rspace="' + (par ? "0" : "0.17em") + '">&#x2061;</mo>'); }
     if (n === "lim") return el("mo", "lim", 'data-dessous movablelimits="false" lspace="0" rspace="0.17em"');
     if (n === "sum") return el("mo", "∑", 'data-dessous largeop="true" movablelimits="false"');
     if (n === "prod") return el("mo", "∏", 'data-dessous largeop="true" movablelimits="false"');
     if (n === "infty") return el("mi", "∞");
+    if (n === "widehat" || n === "hat") return el("mover", this.groupe() + mo("^", 'stretchy="' + (n === "widehat") + '"'), 'accent="true"');
+    if (/^(big|Big|bigg|Bigg)[lr]?$/.test(n)) return null;
+    if (n === "int") return el("mo", "∫", 'largeop="true" movablelimits="false" rspace="0.1em"');
     if (OPS[n]) return mo(OPS[n]);
     if (n === "quad") return '<mspace width="1em"></mspace>';
     if (n === "qquad") return '<mspace width="2em"></mspace>';
@@ -167,12 +171,15 @@ var TeX = (function () {
     var p = new Parser(src.replace(/\{,\}/g, ",")), r = [];
     try { r = p.liste(null); } catch (e) { r = [el("mtext", esc(src))]; }
     var out;
+    if (r.length === 1 && /^<mo>[^<]*<\/mo>$/.test(r[0])) r[0] = r[0].replace("<mo>", '<mo lspace="0" rspace="0">');
     if (r.length < 4) out = '<math' + (bloc ? ' display="block"' : "") + '>' + (r.length > 1 ? el("mrow", r.join("")) : r.join("")) + "</math>";
     else {
       /* coupures possibles avant chaque relation (et après un \quad) : la formule passe à la ligne sur téléphone */
       var REL = /^<mo>(=|⇔|⇒|⩽|⩾|&lt;|&gt;|≠|≈|∈|≡)<\/mo>$/, ESP = /^<mspace width="[12]em"><\/mspace>$/, morceaux = [[]];
+      var prof = 0;
       r.forEach(function (x, k) {
-        if (REL.test(x) && k > 0 && morceaux[morceaux.length - 1].length) { morceaux.push([]); x = x.replace("<mo>", '<mo lspace="0.278em" rspace="0.278em">'); }
+        if (/^<mo[^>]*>\(<\/mo>$/.test(x)) prof++; else if (/^(?:<msup>|<msub>|<msubsup>)?<mo[^>]*>\)<\/mo>/.test(x)) prof--;
+        if (REL.test(x) && prof <= 0 && k > 0 && morceaux[morceaux.length - 1].length) { morceaux.push([]); x = x.replace("<mo>", '<mo lspace="0.278em" rspace="0.278em">'); }
         morceaux[morceaux.length - 1].push(x);
         if (bloc && ESP.test(x) && k < r.length - 1) morceaux.push([]);
       });
@@ -186,12 +193,33 @@ var TeX = (function () {
   /* texte riche : $$…$$ (bloc), $…$ (en ligne) ; le reste est du HTML laissé tel quel */
   function fmt(txt) {
     if (txt == null) return "";
-    return String(txt).replace(/\$\$([\s\S]+?)\$\$|\$([^$]+?)\$/g, function (_, b, i) { return b != null ? math(b, true) : math(i, false); });
+    /* Typographie : espace insécable avant « : ; ! ? » et après « (le texte seulement, jamais le code ni les balises),
+       et une formule en ligne reste collée à la ponctuation qui la suit (pas de virgule en début de ligne). */
+    var t = String(txt).split(/(<pre[\s\S]*?<\/pre>|<code[\s\S]*?<\/code>|<math[\s\S]*?<\/math>|\$\$[\s\S]+?\$\$|\$[^$]+?\$|<[^>]*>)/), out = "";
+    for (var k = 0; k < t.length; k++) {
+      var s = t[k];
+      if (k % 2 === 0) { out += s.replace(/ ([;!?])/g, " $1").replace(/ ([:»])/g, " $1").replace(/« /g, "« "); continue; }
+      if (s.slice(0, 2) === "$$") { out += math(s.slice(2, -2), true); continue; }
+      if (s[0] !== "$") { out += s; continue; }
+      var suite = k + 1 < t.length ? t[k + 1].replace(/ ([;!?])/g, " $1").replace(/ ([:»])/g, " $1") : "", m = /^[  ]?[,.;:!?)»…]+/.exec(suite);
+      var av = /[(\[«]\u00A0?$/.exec(out), ap = m ? m[0] : "", bouts = math(s.slice(1, -1), false).split("<wbr>");
+      if (m) t[k + 1] = suite.slice(ap.length);
+      if (av) out = out.slice(0, out.length - av[0].length);
+      if (av || ap) {
+        if (bouts.length === 1) bouts[0] = '<span class="nw">' + (av ? av[0] : "") + bouts[0] + ap + "</span>";
+        else {
+          if (av) bouts[0] = '<span class="nw">' + av[0] + bouts[0] + "</span>";
+          if (ap) bouts[bouts.length - 1] = '<span class="nw">' + bouts[bouts.length - 1] + ap + "</span>";
+        }
+      }
+      out += bouts.join("<wbr>");
+    }
+    return out;
   }
   /* version texte brut (recherche) */
   function plat(txt) {
     return String(txt || "").replace(/\[(def|prop|thm|ex|meth|piege|hist)(?:\|([^\]]*))?\]/g, " $2 : ").replace(/\[\/\]|\[\/?py\]/g, " ").replace(/\$\$?([^$]+)\$\$?/g, function (_, m) {
-      return m.replace(/\\(frac|dfrac|sqrt|binom|text|mathbb|mathrm|abs|overline|vec|red|hl|blue|left|right|begin|end)\b/g, " ")
+      return m.replace(/\\[,;:!]|\\q?quad/g, " ").replace(/\\(int|sum|prod|lim)(?![a-zA-Z])/g, function (_, n) { return { int: " ∫", sum: " Σ", prod: " Π", lim: " lim" }[n]; }).replace(/\\(frac|dfrac|sqrt|binom|text|mathbb|mathrm|abs|overline|vec|red|hl|blue|left|right|begin|end)\b/g, " ")
         .replace(/\\([a-zA-Z]+)/g, function (_, n) { return n === "infty" ? "∞" : GREC[n] || OPS[n] || ENS[n] || n; }).replace(/[{}^_\\]/g, " ");
     }).replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ").replace(/\s+/g, " ").trim();
   }

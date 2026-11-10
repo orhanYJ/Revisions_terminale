@@ -1,4 +1,4 @@
-var CACHE = 'maths-v1';
+var CACHE = 'maths-v4';
 var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=9', 'carnet-math.woff2'];
 
 self.addEventListener('install', function (e) {

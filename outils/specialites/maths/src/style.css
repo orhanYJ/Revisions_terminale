@@ -1,7 +1,7 @@
 @font-face{font-family:"Carnet Math";src:local("STIX Two Math"),url(carnet-math.woff2) format("woff2");font-display:swap}
 :root{
   --papier:#FBF8EF;--papier2:#FFFDF7;--carreau:rgba(38,72,150,.075);--marge:rgba(201,58,46,.32);
-  --encre:#1B2A5E;--encre2:#4D5779;--encre3:#7A82A0;--ligne:#E3DCC8;--ligne2:#D2C9AF;
+  --encre:#1B2A5E;--encre2:#4D5779;--encre3:#5E6685;--ligne:#E3DCC8;--ligne2:#D2C9AF;
   --bleu:#2343A8;--bleu-p:rgba(35,67,168,.08);--rouge:#C2372B;--rouge-p:rgba(194,55,43,.07);
   --surligne:rgba(255,226,74,.55);--surligne2:#FFE24A;--vert:#23774F;--vert-p:rgba(35,119,79,.09);
   --ombre:0 1px 2px rgba(27,42,94,.06),0 6px 18px rgba(27,42,94,.07);
@@ -9,25 +9,25 @@
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans","Helvetica Neue",Arial,sans-serif;
   --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,"DejaVu Sans Mono","Liberation Mono",monospace;
   --math:"Carnet Math","STIX Two Math","Cambria Math","Latin Modern Math",math;
-  --code-bg:#F3EFE2;--code-fg:#1B2A5E;--kw:#A3302A;--str:#23774F;--num:#2343A8;--com:#8A8572;
+  --sur-c:#fff;--code-bg:#F3EFE2;--code-fg:#1B2A5E;--kw:#A3302A;--str:#23774F;--num:#2343A8;--com:#6E6A58;
   color-scheme:light;
 }
 :root[data-theme="sombre"]{
   --papier:#1E2725;--papier2:#25302D;--carreau:rgba(236,235,228,.045);--marge:rgba(255,140,120,.22);
-  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#8D958C;--ligne:#3A4743;--ligne2:#4A5853;
+  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#9AA299;--ligne:#3A4743;--ligne2:#4A5853;
   --bleu:#9CC3F0;--bleu-p:rgba(156,195,240,.10);--rouge:#FF907E;--rouge-p:rgba(255,144,126,.09);
   --surligne:rgba(244,211,94,.22);--surligne2:#F4D35E;--vert:#8FD6A8;--vert-p:rgba(143,214,168,.10);
   --ombre:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.25);
-  --code-bg:#18201E;--code-fg:#E7E6DE;--kw:#FF907E;--str:#8FD6A8;--num:#9CC3F0;--com:#8D958C;
+  --sur-c:#16201E;--code-bg:#18201E;--code-fg:#E7E6DE;--kw:#FF907E;--str:#8FD6A8;--num:#9CC3F0;--com:#8D958C;
   color-scheme:dark;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="clair"]){
   --papier:#1E2725;--papier2:#25302D;--carreau:rgba(236,235,228,.045);--marge:rgba(255,140,120,.22);
-  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#8D958C;--ligne:#3A4743;--ligne2:#4A5853;
+  --encre:#ECEBE4;--encre2:#BFC4BB;--encre3:#9AA299;--ligne:#3A4743;--ligne2:#4A5853;
   --bleu:#9CC3F0;--bleu-p:rgba(156,195,240,.10);--rouge:#FF907E;--rouge-p:rgba(255,144,126,.09);
   --surligne:rgba(244,211,94,.22);--surligne2:#F4D35E;--vert:#8FD6A8;--vert-p:rgba(143,214,168,.10);
   --ombre:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.25);
-  --code-bg:#18201E;--code-fg:#E7E6DE;--kw:#FF907E;--str:#8FD6A8;--num:#9CC3F0;--com:#8D958C;
+  --sur-c:#16201E;--code-bg:#18201E;--code-fg:#E7E6DE;--kw:#FF907E;--str:#8FD6A8;--num:#9CC3F0;--com:#8D958C;
   color-scheme:dark;}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:110px}
@@ -49,6 +49,7 @@ h4{font-size:1.02rem;margin:1em 0 .3em}
 p{margin:.55em 0}
 ul,ol{padding-left:1.3em;margin:.5em 0}
 li{margin:.2em 0}
+.nw{white-space:nowrap}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:2.5px solid var(--bleu);outline-offset:2px;border-radius:4px}
 
@@ -165,7 +166,7 @@ code{font:.9em var(--mono);background:var(--code-bg);padding:1px 5px;border-radi
 .wid .btns{display:flex;flex-wrap:wrap;gap:8px;padding:6px 14px 4px}
 .btn{min-height:44px;padding:0 16px;border-radius:11px;border:1px solid var(--ligne2);background:var(--papier);cursor:pointer;font-weight:600;font-size:.92rem;display:inline-flex;align-items:center;gap:6px;color:var(--encre);text-decoration:none}
 .btn.plein{background:var(--encre);color:var(--papier);border-color:var(--encre)}
-.btn.rouge{background:var(--rouge);color:#fff;border-color:var(--rouge)}
+.btn.rouge{background:var(--rouge);color:var(--sur-c);border-color:var(--rouge)}
 .btn:disabled{opacity:.45;cursor:default}
 .wid .note{padding:6px 14px 12px;font-size:.92rem;color:var(--encre2);min-height:2.6em}
 .wid .note b{color:var(--encre)}
@@ -183,7 +184,7 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 .g-as{fill:none;stroke:var(--rouge);stroke-width:1.5;stroke-dasharray:6 5}
 .g-pt{fill:var(--bleu)} .g-pt2{fill:var(--rouge)}
 .g-bande{fill:var(--surligne)}
-.g-lab{font:600 13px var(--serif);fill:var(--encre)}
+.g-lab{font:600 13px var(--serif);fill:var(--encre);paint-order:stroke;stroke:var(--papier2);stroke-width:3px;stroke-linejoin:round}
 .g-lab.r{fill:var(--rouge)} .g-lab.b{fill:var(--bleu)}
 
 /* ---------- accueil ---------- */
@@ -218,9 +219,9 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 .qcm .opt{display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;min-height:48px;padding:10px 12px;border-radius:11px;border:1.5px solid var(--ligne2);background:var(--papier);cursor:pointer;line-height:1.45}
 .qcm .opt .l{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--encre3);display:inline-flex;align-items:center;justify-content:center;font:600 .82rem var(--serif)}
 .qcm .opt.ok{border-color:var(--vert);background:var(--vert-p)}
-.qcm .opt.ok .l{background:var(--vert);border-color:var(--vert);color:#fff}
+.qcm .opt.ok .l{background:var(--vert);border-color:var(--vert);color:var(--sur-c)}
 .qcm .opt.ko{border-color:var(--rouge);background:var(--rouge-p)}
-.qcm .opt.ko .l{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.qcm .opt.ko .l{background:var(--rouge);border-color:var(--rouge);color:var(--sur-c)}
 .qcm .opt:disabled{cursor:default}
 .qcm .expl{margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--bleu-p);font-size:.95rem}
 .qcm .expl .v{font-weight:700}
@@ -306,3 +307,173 @@ html.mo .trace{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:tr
 
 .btn>svg,.carte-prog h3>svg,h1>svg,h2>svg{width:20px;height:20px;flex:none}
 .carte-prog h3>svg{color:var(--rouge)}
+
+/* ---------- animations explicatives (lecteur) ---------- */
+.anim{margin:20px 0;border:1.5px solid var(--encre);border-radius:4px 16px 16px 16px;background:var(--papier2);box-shadow:4px 4px 0 var(--ligne2);overflow:hidden;position:relative}
+.anim .at{display:flex;align-items:center;gap:8px;padding:9px 14px;font:600 1rem var(--serif);border-bottom:1px dashed var(--ligne2);background:var(--bleu-p)}
+.anim .at svg{width:22px;height:22px;color:var(--rouge);flex:none}
+@media (max-width:560px){.anim .at{flex-wrap:wrap;row-gap:0}.anim .at span{flex:1 1 0;min-width:0}.anim .at small{flex-basis:100%;margin-left:30px}}
+.anim .at small{margin-left:auto;font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--rouge);white-space:nowrap}
+.anim .scene{padding:6px 6px 0}
+.anim .scene svg{display:block;width:100%;height:auto;max-height:62vh}
+.anim .cap{margin:4px 12px 0;padding:8px 12px;min-height:3.2em;border-radius:10px;background:var(--papier);border:1px solid var(--ligne);font-size:.93rem;line-height:1.5}
+.anim .cap b:first-child{display:inline-block;font:700 .75rem/1.6 var(--sans);color:var(--sur-c);background:var(--rouge);border-radius:999px;padding:0 8px;margin-right:4px;vertical-align:1px}
+html.mo .anim .cap.neuf{animation:capin .45s ease-out}
+@keyframes capin{from{transform:translateY(5px);background:var(--surligne)}to{transform:none}}
+.anim .ctl{display:flex;align-items:center;gap:6px;padding:10px 12px}
+.anim .ab{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--encre);background:var(--papier);color:var(--encre);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.anim .ab svg{width:20px;height:20px}
+.anim .ab.jouer{width:50px;height:50px;background:var(--encre);color:var(--papier)}
+.anim .barre{flex:1;display:flex;gap:3px;min-width:0;height:44px;align-items:center}
+.anim .sg{flex-basis:0;min-width:6px;height:44px;border:0;padding:0;background:none;cursor:pointer;display:flex;align-items:center}
+.anim .sg i{display:block;height:7px;width:0;border-radius:4px;background:var(--rouge);box-shadow:inset 0 0 0 999px var(--rouge)}
+.anim .sg::before{content:"";position:absolute}
+.anim .sg{position:relative;background:linear-gradient(var(--ligne2),var(--ligne2)) center/100% 7px no-repeat;border-radius:4px}
+.anim .sg.on{background-image:linear-gradient(var(--bleu-p),var(--bleu-p)),linear-gradient(var(--ligne2),var(--ligne2));background-size:100% 100%,100% 7px}
+.anim .deroule{margin:0 12px 12px;background:var(--papier)}
+.anim .deroule ol{margin:6px 0 4px;font-size:.92rem}
+.a-case{fill:var(--papier);stroke:var(--ligne2);stroke-width:1.5}
+.a-case.on{fill:var(--vert-p);stroke:var(--vert);stroke-width:2}
+.a-bulle{fill:var(--papier);stroke:var(--rouge);stroke-width:1.5;stroke-dasharray:5 3}
+.a-branche{stroke:var(--encre3);stroke-width:1.2}
+.a-plein{fill:var(--bleu);fill-opacity:.18;stroke:var(--bleu);stroke-width:1}
+.a-plein2{fill:var(--rouge);fill-opacity:.16;stroke:var(--rouge);stroke-width:1}
+.a-craie{fill:none;stroke:var(--encre2);stroke-width:1.2;stroke-dasharray:2 3}
+.g-lab.c3{fill:var(--vert)}
+.g-c3{fill:none}
+.a-math{font:600 15px var(--serif);color:var(--bleu);text-align:center;line-height:1.3;display:flex;align-items:center;justify-content:center;height:100%}
+
+/* =================== Identité « carnet de mathématicien » (phase 2) =================== */
+:root{--main:"Segoe Print","Bradley Hand","Chalkboard SE","Marker Felt","Comic Neue","Patrick Hand",cursive;
+  --spirale:#B9B2A0;--onglet-a:#2343A8;--onglet-g:#23774F;--onglet-p:#C2372B}
+:root[data-theme="sombre"]{--spirale:#5C6A64}
+@media (prefers-color-scheme:dark){:root:not([data-theme="clair"]){--spirale:#5C6A64}}
+.stylo{font-family:var(--main);font-style:normal;font-size:1.02em;letter-spacing:.01em}
+.main-ecrite{font-family:var(--main)}
+
+/* reliure à spirale en haut de la feuille */
+.page{position:relative;padding-top:20px}
+.page::after{content:"";position:absolute;left:0;right:0;top:-6px;height:16px;pointer-events:none;
+  background:radial-gradient(circle at 50% 70%,var(--papier) 0 3.2px,var(--spirale) 3.6px 5.4px,transparent 5.8px) 6px 0/22px 16px repeat-x;opacity:.9}
+
+/* titres de section : numéro entouré au compas, soulignement à la main */
+section.bloc>h2{position:relative;padding-left:2.4rem}
+section.bloc>h2 .no{position:absolute;left:0;top:-.08em;width:1.9rem;height:1.9rem;display:inline-flex;align-items:center;justify-content:center;font:700 1rem var(--main);color:var(--rouge)}
+section.bloc>h2 .no svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+section.bloc>h2 .no circle{fill:none;stroke:var(--rouge);stroke-width:1.6;stroke-linecap:round}
+section.bloc>h2::after{content:"";display:block;height:7px;margin-top:4px;max-width:12rem;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 7'%3E%3Cpath d='M1 4.5C20 2 40 6 60 3.5S100 2 119 4' fill='none' stroke='%23C2372B' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") left/100% 100% no-repeat;opacity:.75}
+html.mo section.bloc>h2 .no circle{stroke-dasharray:120;stroke-dashoffset:0;animation:compas .9s ease-out both}
+@keyframes compas{from{stroke-dashoffset:120}to{stroke-dashoffset:0}}
+
+/* onglets du chapitre : intercalaires de classeur */
+.onglets{gap:2px;padding:12px 2px 0;border-bottom:2px solid var(--encre);margin-bottom:14px;align-items:flex-end}
+.onglets a{border-radius:10px 10px 0 0;border:1.5px solid var(--ligne2);border-bottom:0;min-height:40px;padding:0 13px;background:var(--papier);position:relative;top:0;transition:none}
+.onglets a.on{background:var(--encre);color:var(--papier);border-color:var(--encre);min-height:46px;font-weight:600}
+html.mo .onglets a{transition:min-height .2s,background .2s}
+html.mo .onglets a:hover{min-height:44px}
+
+/* encadrés */
+.boite>.lab{font-family:var(--sans)}
+.boite.def{background-image:linear-gradient(var(--papier2),var(--papier2)),repeating-linear-gradient(transparent 0 25.5px,var(--bleu-p) 25.5px 26.5px);background-clip:padding-box;border-left-width:4px;padding-top:30px}
+.boite.def{background:repeating-linear-gradient(var(--papier2) 0 25.5px,var(--bleu-p) 25.5px 26.5px)}
+.boite.def>.lab{position:absolute;top:0;left:0;right:0;padding:5px 12px;background:var(--bleu);color:var(--papier);border-radius:0 11px 0 0}
+.boite.prop,.boite.thm{border:2px solid var(--encre);border-left:2px solid var(--encre);border-radius:3px 14px 4px 12px;box-shadow:3px 3px 0 var(--surligne2)}
+.boite.thm{border-width:2px;outline:1px solid var(--encre);outline-offset:3px}
+.boite.prop>.lab,.boite.thm>.lab{background:var(--surligne2);color:#1B2A5E;padding:3px 8px;border-radius:3px;transform:rotate(-1.2deg)}
+.boite.piege{background-image:linear-gradient(var(--rouge-p),var(--rouge-p))}
+.boite.piege>.lab,.boite.meth>.lab,.boite.ex>.lab{font:700 1rem var(--main);text-transform:none;letter-spacing:0}
+.boite.piege>.lab::before{content:"✗ "}
+.boite.meth>.lab::before{content:"✎ "}
+
+.boite.ex>.lab{color:var(--bleu)}
+.boite.hist{border-left-style:double;border-left-width:5px}
+.boite.hist>.lab::before{content:"❦ "}
+
+/* rature du stylo rouge (ce qu'il ne faut pas écrire) */
+.rature{position:relative;white-space:nowrap;color:var(--encre2)}
+.rature::after{content:"";position:absolute;left:-3px;right:-3px;top:50%;height:10px;margin-top:-5px;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M1 7C25 3 50 8 99 2M3 3C30 8 60 2 97 7' fill='none' stroke='%23C2372B' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.juste{font-family:var(--main);color:var(--vert);font-weight:700}
+
+/* annotation dans la marge (ordinateur) / sous le texte (téléphone) */
+.marge{display:block;font:1rem/1.35 var(--main);color:var(--rouge);margin:.2em 0 .6em;transform:rotate(-1deg)}
+@media (min-width:1200px){.marge{position:absolute;right:-13.5rem;width:11.5rem;margin-top:-2.2em;transform:rotate(-3deg)}}
+section.bloc{position:relative}
+
+/* entrée de page : la feuille tourne */
+html.mo .page.entre{animation:feuille .5s cubic-bezier(.2,.7,.25,1);transform-origin:0 50%}
+@keyframes feuille{from{transform:perspective(1400px) rotateY(-11deg) translateX(-6px);opacity:.5;box-shadow:-30px 0 40px -30px rgba(0,0,0,.25)}to{transform:none;opacity:1;box-shadow:none}}
+html.mo .page.entre .cinq,html.mo .page.entre section.bloc:first-of-type,html.mo .page.entre .ch-carte,html.mo .page.entre .exo,html.mo .page.entre details.demo{animation:monte .5s ease-out both}
+html.mo .page.entre .ch-carte:nth-child(2n){animation-delay:.04s}
+html.mo .page.entre .ch-carte:nth-child(3n){animation-delay:.08s}
+@keyframes monte{from{transform:translateY(10px)}to{transform:none}}
+
+/* QCM : coche et rature à la main */
+.qcm .opt.ok .l,.qcm .opt.ko .l{font-family:var(--main)}
+.qcm .opt.ok::after{content:"✓";margin-left:auto;font:700 1.4rem/1 var(--main);color:var(--vert)}
+.qcm .opt.ko>span:last-child{text-decoration:line-through;text-decoration-color:var(--rouge);text-decoration-thickness:2px}
+html.mo .qcm .opt.ok::after{animation:coche .4s cubic-bezier(.3,1.6,.5,1)}
+@keyframes coche{from{transform:scale(.2) rotate(-25deg)}to{transform:none}}
+.qcm .score{font-family:var(--main)}
+
+/* sommaire du menu : pointillés de table des matières */
+.menu a .num{font-family:var(--main);font-weight:700}
+.menu h6{font-family:var(--main);font-size:.92rem;letter-spacing:.02em;text-transform:none;color:var(--rouge)}
+
+/* accueil : construction au compas */
+.hero{background-image:radial-gradient(circle at 100% 0,var(--bleu-p),transparent 55%)}
+.hero .compas{position:absolute;right:-30px;bottom:-40px;width:210px;height:210px;pointer-events:none;opacity:.55}
+.hero .compas *{fill:none;stroke:var(--encre3);stroke-width:1.1;stroke-linecap:round}
+.hero .compas .r{stroke:var(--rouge)}
+html.mo .hero .compas .trace{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:trace 1.6s .2s ease-out forwards}
+.hero h1{font-family:var(--serif);font-size:2.6rem}
+.hero .devise{font:1.05rem var(--main);color:var(--rouge);transform:rotate(-2deg);display:inline-block;margin-top:4px}
+.ch-carte{border-radius:3px 12px 12px 3px;border-left:4px solid var(--onglet-a)}
+.ch-carte.alg{border-left-color:var(--onglet-g)}
+.ch-carte.pro{border-left-color:var(--onglet-p)}
+.ch-carte .num{font-family:var(--main)}
+html.mo .ch-carte{transition:transform .18s,box-shadow .18s}
+html.mo .ch-carte:hover{transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--ligne2)}
+
+/* titre du chapitre : grand numéro au stylo */
+.titre-ch .gros{font-family:var(--main);font-size:3.2rem}
+
+@media print{.page::after{display:none}.marge{position:static;transform:none}}
+.hero .formule{display:none}
+.hero .compas{right:-40px;top:-46px;bottom:auto;width:200px;height:200px;opacity:.6}
+.hero>*:not(.compas){position:relative}
+.a-champ{stroke:var(--encre3);stroke-width:1.3;stroke-linecap:round;opacity:.75}
+/* mouvement de l'interface (phase 2) */
+html.mo .qcm .opt{animation:monte .35s ease-out both}
+html.mo .qcm .opt:nth-child(2){animation-delay:.05s}
+html.mo .qcm .opt:nth-child(3){animation-delay:.1s}
+html.mo .qcm .opt:nth-child(4){animation-delay:.15s}
+html.mo .qcm .q{animation:monte .3s ease-out both}
+html.mo .qcm .expl{animation:capin .45s ease-out}
+html.mo .onglets a.on{animation:tampon .35s cubic-bezier(.3,1.5,.5,1)}
+@keyframes tampon{from{transform:translateY(6px)}to{transform:none}}
+html.mo .menu a.on{animation:surligne .6s ease-out}
+@keyframes surligne{from{background-size:0 100%}to{background-size:100% 100%}}
+.menu a.on{background-image:linear-gradient(100deg,var(--surligne),var(--surligne));background-repeat:no-repeat;background-size:100% 100%}
+html.mo .flash .carte{animation:monte .35s ease-out}
+html.mo .anim{animation:monte .45s ease-out both}
+html.mo .cinq li{animation:monte .4s ease-out both}
+html.mo .cinq li:nth-child(2){animation-delay:.06s}
+html.mo .cinq li:nth-child(3){animation-delay:.12s}
+html.mo .cinq li:nth-child(4){animation-delay:.18s}
+html.mo .cinq li:nth-child(5){animation-delay:.24s}
+td math,th math{math-style:normal}
+/* mouvement d'interface complémentaire (contrôle visuel du 10/11/2026) */
+@keyframes voile{from{opacity:0}to{opacity:1}}
+html.mo .voile.ouvert{animation:voile .25s ease-out}
+html.mo .menu.ouvert a{animation:monte .3s ease-out both}
+html.mo .menu.ouvert a:nth-of-type(4n+2){animation-delay:.03s}
+html.mo .menu.ouvert a:nth-of-type(4n+3){animation-delay:.06s}
+html.mo .menu.ouvert a:nth-of-type(4n){animation-delay:.09s}
+html.mo .filtres button{transition:background .2s,color .2s,transform .12s}
+html.mo .filtres button:active{transform:scale(.95)}
+html.mo .filtres button.on{animation:tampon .3s cubic-bezier(.3,1.5,.5,1)}
+html.mo .flash .nav .btn:not(:disabled){transition:opacity .25s,transform .12s}
+html.mo .qcm .score{animation:tampon .5s cubic-bezier(.3,1.6,.5,1)}
+html.mo details.demo[open]>*:not(summary),html.mo .exo details[open]>*:not(summary){animation:deplie .3s ease-out}

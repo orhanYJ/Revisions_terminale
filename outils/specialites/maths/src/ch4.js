@@ -54,6 +54,7 @@ Chaque formule a été contrôlée numériquement (taux d'accroissement).[/]
 <ul><li>$f$ est convexe sur $I$ ;</li><li>la courbe de $f$ est au-dessus de chacune de ses tangentes ;</li><li>$f'$ est croissante sur $I$ ;</li><li>$f''\geq0$ sur $I$.</li></ul>
 (Et concave ⟺ $f''\leq0$ ⟺ $f'$ décroissante ⟺ courbe en dessous des tangentes.)[/]
 <p>Le sens « $f''\geq0$ ⟹ courbe au-dessus de ses tangentes » est une <b>démonstration exigible</b>.</p>
+<div data-anim="tangente"></div>
 <div data-w="convexe"></div>
 [def|Point d'inflexion]Un point de la courbe où la courbe <b>traverse</b> sa tangente. Si $f$ est deux fois dérivable, c'est un point où $f''$ s'annule <b>en changeant de signe</b> (la convexité change).[/]
 [piege|$f''(a)=0$ ne suffit pas]$f(x)=x^4$ : $f''(x)=12x^2$ s'annule en $0$ sans changer de signe. $f$ est convexe sur $\R$ ; pas de point d'inflexion en $0$.[/]
@@ -73,6 +74,7 @@ Chaque formule a été contrôlée numériquement (taux d'accroissement).[/]
 <ul><li>$f$ est continue sur $[0;1]$ (polynôme).</li><li>$f'(x)=3x^2+1>0$ : $f$ est strictement croissante sur $[0;1]$.</li><li>$f(0)=-1<0$ et $f(1)=1>0$ : $0$ est compris entre $f(0)$ et $f(1)$.</li></ul>
 D'après le corollaire du TVI, l'équation $f(x)=0$ admet une unique solution $\alpha\in[0;1]$. Par dichotomie, $0{,}682<\alpha<0{,}683$ ($\alpha\approx0{,}6823$).[/]
 [piege|Les deux hypothèses]Sans continuité, une fonction peut « sauter » par-dessus $k$. Sans stricte monotonie, il peut y avoir plusieurs solutions (le TVI garantit seulement l'existence).[/]
+<div data-anim="tvi"></div>
 <div data-w="dicho"></div>` },
     { id: "dichotomie", titre: "Encadrer une solution : dichotomie et Newton", html: R`
 <p>Le TVI dit qu'une solution existe, pas combien elle vaut. La <b>dichotomie</b> la piège dans un intervalle qu'on coupe en deux à chaque étape :</p>

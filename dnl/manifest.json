@@ -1,6 +1,6 @@
 {
-  "name": "Revision Atlas — History & Geography (DNL, Terminale BFI)",
-  "short_name": "Atlas H-G",
+  "name": "Revision Atlas — History & Geography, Terminale BFI",
+  "short_name": "DNL",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

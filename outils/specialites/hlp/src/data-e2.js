@@ -25,20 +25,34 @@ HLP.ENTREES.push({
     "Ressentir, est-ce subir ?",
     "La sensibilité nous rapproche-t-elle des autres ou nous enferme-t-elle en nous-mêmes ?"
   ],
-  schema: `<svg viewBox="0 0 640 320" role="img" aria-labelledby="sch2t"><title id="sch2t">Les correspondances : les sens se répondent</title>
+  schema: `<svg viewBox="0 0 640 336" role="img" aria-labelledby="sch2t"><title id="sch2t">Les correspondances : les sens se répondent</title>
 <text class="sch-tit" x="320" y="26" text-anchor="middle">« Les parfums, les couleurs et les sons se répondent »</text>
 <g class="sch-fort">
 <path class="trace" style="--d:.5s" d="M190 110 Q320 60 450 110"/><path class="trace" style="--d:.65s" d="M450 110 Q520 200 400 262"/><path class="trace" style="--d:.8s" d="M400 262 Q320 300 240 262"/>
 <path class="trace" style="--d:.95s" d="M240 262 Q120 200 190 110"/><path class="trace" style="--d:1.1s" d="M190 110 L400 262"/><path class="trace" style="--d:1.2s" d="M450 110 L240 262"/>
 </g>
-<circle class="apparait" style="--d:0s" cx="190" cy="110" r="34" fill="var(--t-m1)" stroke="var(--brume)"/><text class="sch-txt" x="190" y="115" text-anchor="middle">couleurs</text>
-<circle class="apparait" style="--d:.1s" cx="450" cy="110" r="34" fill="var(--t-m2)" stroke="var(--rose)"/><text class="sch-txt" x="450" y="115" text-anchor="middle">sons</text>
-<circle class="apparait" style="--d:.2s" cx="400" cy="262" r="34" fill="var(--t-m3)" stroke="var(--cuivre)"/><text class="sch-txt" x="400" y="267" text-anchor="middle">parfums</text>
-<circle class="apparait" style="--d:.3s" cx="240" cy="262" r="34" fill="var(--t-m1)" stroke="var(--brume)"/><text class="sch-txt" x="240" y="267" text-anchor="middle">toucher</text>
-<text class="sch-txt2 apparait" style="--d:1.5s" x="320" y="176" text-anchor="middle">« ténébreuse et profonde unité »</text>
-<text class="sch-txt2 apparait" style="--d:1.7s" x="40" y="300">« frais comme des chairs d’enfants » : odorat → toucher</text>
-<text class="sch-txt2 apparait" style="--d:1.8s" x="600" y="300" text-anchor="end">« doux comme les hautbois » : odorat → ouïe</text>
+<circle class="apparait" style="--d:0s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="190" cy="110" r="34" stroke="var(--brume)"/><text class="sch-txt" x="190" y="115" text-anchor="middle">couleurs</text>
+<circle class="apparait" style="--d:.1s;fill:color-mix(in srgb,var(--rose) 22%,var(--surface))" cx="450" cy="110" r="34" stroke="var(--rose)"/><text class="sch-txt" x="450" y="115" text-anchor="middle">sons</text>
+<circle class="apparait" style="--d:.2s;fill:color-mix(in srgb,var(--cuivre) 22%,var(--surface))" cx="400" cy="262" r="34" stroke="var(--cuivre)"/><text class="sch-txt" x="400" y="267" text-anchor="middle">parfums</text>
+<circle class="apparait" style="--d:.3s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="240" cy="262" r="34" stroke="var(--brume)"/><text class="sch-txt" x="240" y="267" text-anchor="middle">toucher</text>
+<rect class="apparait" style="--d:1.5s" x="228" y="162" width="184" height="20" rx="3" fill="var(--surface)"/><text class="sch-txt2 apparait" style="--d:1.5s" x="320" y="176" text-anchor="middle">« ténébreuse et profonde unité »</text>
+<text class="sch-txt2 apparait" style="--d:1.7s" x="40" y="324">« frais comme des chairs d’enfants » : odorat → toucher</text>
+<text class="sch-txt2 apparait" style="--d:1.8s" x="600" y="324" text-anchor="end">« doux comme les hautbois » : odorat → ouïe</text>
 </svg><figcaption>Baudelaire, « Correspondances » (<i>Les Fleurs du mal</i>, 1857) : les synesthésies relient les sens entre eux, et le monde sensible à un sens caché.</figcaption>`,
+  schemaP: `<svg class="sch-port" viewBox="0 0 320 356" role="img" aria-labelledby="sch2p"><title id="sch2p">Les correspondances : les sens se répondent</title>
+<text class="sch-tit" x="160" y="24" text-anchor="middle">« Les parfums, les couleurs</text><text class="sch-tit" x="160" y="45" text-anchor="middle">et les sons se répondent »</text>
+<g class="sch-fort">
+<path class="trace" style="--d:.5s" d="M80 100 Q160 58 240 100"/><path class="trace" style="--d:.65s" d="M240 100 Q296 172 212 228"/><path class="trace" style="--d:.8s" d="M212 228 Q160 256 108 228"/>
+<path class="trace" style="--d:.95s" d="M108 228 Q24 172 80 100"/><path class="trace" style="--d:1.1s" d="M80 100 L212 228"/><path class="trace" style="--d:1.2s" d="M240 100 L108 228"/>
+</g>
+<circle class="apparait" style="--d:0s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="80" cy="100" r="32" stroke="var(--brume)"/><text class="sch-txt" x="80" y="105" text-anchor="middle">couleurs</text>
+<circle class="apparait" style="--d:.1s;fill:color-mix(in srgb,var(--rose) 22%,var(--surface))" cx="240" cy="100" r="32" stroke="var(--rose)"/><text class="sch-txt" x="240" y="105" text-anchor="middle">sons</text>
+<circle class="apparait" style="--d:.2s;fill:color-mix(in srgb,var(--cuivre) 22%,var(--surface))" cx="212" cy="228" r="32" stroke="var(--cuivre)"/><text class="sch-txt" x="212" y="233" text-anchor="middle">parfums</text>
+<circle class="apparait" style="--d:.3s;fill:color-mix(in srgb,var(--brume) 22%,var(--surface))" cx="108" cy="228" r="32" stroke="var(--brume)"/><text class="sch-txt" x="108" y="233" text-anchor="middle">toucher</text>
+<rect class="apparait" style="--d:1.5s" x="72" y="152" width="176" height="20" rx="3" fill="var(--surface)"/><text class="sch-txt2 apparait" style="--d:1.5s" x="160" y="166" text-anchor="middle">« ténébreuse et profonde unité »</text>
+<text class="sch-txt2 apparait" style="--d:1.7s" x="160" y="290" text-anchor="middle">« frais comme des chairs d’enfants »</text><text class="sch-txt2 apparait" style="--d:1.7s" x="160" y="306" text-anchor="middle">odorat → toucher</text>
+<text class="sch-txt2 apparait" style="--d:1.8s" x="160" y="330" text-anchor="middle">« doux comme les hautbois »</text><text class="sch-txt2 apparait" style="--d:1.8s" x="160" y="346" text-anchor="middle">odorat → ouïe</text>
+</svg>`,
   cours: [
     { id: "e2-1", titre: "Les « droits de la sensibilité » au XVIII<sup>e</sup> siècle", html: `
 <p class="lettrine">Le mot <b>sensibilité</b> a plusieurs sens qu’il faut savoir distinguer : la capacité de recevoir des sensations (sens physique), de s’émouvoir (sens affectif), de juger du beau (sens esthétique) et de compatir à la souffrance d’autrui (sens moral). Au XVIII<sup>e</sup> siècle, ces sens se rejoignent : le cœur devient un organe de connaissance et de moralité.</p>
@@ -53,7 +67,8 @@ HLP.ENTREES.push({
 <p>Le <b>lyrisme</b> est l’expression des sentiments personnels d’un « je » (le mot vient de la lyre d’Orphée). Le romantisme français s’ouvre en poésie avec les <i>Méditations poétiques</i> de Lamartine (1820). Dans « Le Lac », le poète revient seul au bord d’un lac où il a aimé une femme, et la nature devient <b>témoin</b> et <b>mémoire</b> du bonheur perdu.</p>
 <p>Le célèbre vers « Ô temps ! suspends ton vol » est placé dans la bouche de la femme aimée, ce qui crée une polyphonie : le poème cite une voix absente. À la fin, le poète demande à la nature de garder le souvenir : « Tout dise : Ils ont aimé ! » Hugo théorise ce lyrisme dans la préface des <i>Contemplations</i> (1856), « les Mémoires d’une âme » : « Hélas ! quand je vous parle de moi, je vous parle de vous ».</p>
 <div class="ex"><b class="l">Exemple</b>Musset, « La Nuit de mai » (1835), fait dire à la Muse : « Les plus désespérés sont les chants les plus beaux, / Et j’en sais d’immortels qui sont de purs sanglots. » La douleur devient la source de la beauté.</div>
-<div class="attention"><b class="l">Attention</b>Dans l’édition originale de 1820, la strophe commence par « Ô temps ! suspends ton vol ; et vous, heures propices ». Beaucoup d’éditions modernes ponctuent autrement : cite sans inventer de ponctuation.</div>` },
+<div class="attention"><b class="l">Attention</b>Dans l’édition originale de 1820, la strophe commence par « Ô temps ! suspends ton vol ; et vous, heures propices ». Beaucoup d’éditions modernes ponctuent autrement : cite sans inventer de ponctuation.</div>
+<div data-anim="e2-lac-lecture"></div>` },
     { id: "e2-4", titre: "Le « mal du siècle »", html: `
 <p>Le <b>mal du siècle</b> désigne la mélancolie d’une génération née avec la Révolution et l’Empire : ennui, sentiment d’inutilité, désirs sans objet. Chateaubriand en fixe la figure avec <i>René</i> (1802) : un jeune homme qui erre et appelle la tempête pour être emporté. « Levez-vous vite, orages désirés qui devez emporter René dans les espaces d’une autre vie ! »</p>
 <p>Musset en donne l’analyse historique dans <i>La Confession d’un enfant du siècle</i> (1836) : « Toute la maladie du siècle présent vient de deux causes ; le peuple qui a passé par 93 et par 1814 porte au cœur deux blessures. Tout ce qui était n’est plus ; tout ce qui sera n’est pas encore. » La sensibilité individuelle est donc aussi un <b>symptôme historique</b>.</p>
@@ -61,7 +76,7 @@ HLP.ENTREES.push({
     { id: "e2-5", titre: "Baudelaire : correspondances, spleen et modernité", html: `
 <p>Avec <i>Les Fleurs du mal</i> (1857, condamné la même année pour six poèmes), Baudelaire transforme la sensibilité romantique. Dans « Correspondances », « La Nature est un temple » où l’homme passe « à travers des forêts de symboles » ; « Les parfums, les couleurs et les sons se répondent ». Ces <b>synesthésies</b> (« doux comme les hautbois, verts comme les prairies ») relient les sens entre eux et le visible à l’invisible.</p>
 <p>Baudelaire invente aussi une sensibilité de la <b>ville</b> et du présent. Dans <i>Le Peintre de la vie moderne</i> (1863), il définit la modernité : « La modernité, c’est le transitoire, le fugitif, le contingent, la moitié de l’art, dont l’autre moitié est l’éternel et l’immuable. » Le <b>spleen</b>, enfin, est un ennui oppressant, qui succède au mal du siècle.</p>
-<div class="ex"><b class="l">Exemple</b>Rimbaud pousse plus loin : « Le poète se fait voyant par un long, immense et raisonné dérèglement de tous les sens » (lettre à Paul Demeny, 15 mai 1871). Le dérèglement est « raisonné » : c’est une méthode, pas un abandon.</div>` },
+<div class="ex"><b class="l">Exemple</b>Rimbaud pousse plus loin : « Le Poète se fait voyant par un long, immense et raisonné dérèglement de tous les sens » (lettre à Paul Demeny, 15 mai 1871). Le dérèglement est « raisonné » : c’est une méthode, pas un abandon.</div>` },
     { id: "e2-6", titre: "Le roman et la vie intérieure : de Flaubert au flux de conscience", html: `
 <p>Le roman du XIX<sup>e</sup> siècle cherche à rendre la vie intérieure des personnages. Flaubert perfectionne le <b>discours indirect libre</b> : les pensées d’un personnage passent dans la voix du narrateur sans « il pensait que ». Dans <i>Madame Bovary</i> (1857), on suit Emma de l’intérieur, et l’on voit que sa sensibilité a été <b>façonnée par ses lectures</b> romanesques au couvent : elle cherche dans la vie les émotions des livres.</p>
 <p>Dans <i>L’Éducation sentimentale</i> (1869), la première vision de Mme Arnoux est donnée par une phrase isolée : « Ce fut comme une apparition : ». La comparaison et les deux-points mettent le lecteur dans l’éblouissement de Frédéric. Plus tard, le <b>monologue intérieur</b> et le « flux de conscience » (Édouard Dujardin, <i>Les Lauriers sont coupés</i>, 1887 ; Virginia Woolf, <i>Les Vagues</i>, 1931) tentent de saisir les pensées « telles qu’elles surviennent ».</p>
@@ -70,7 +85,8 @@ HLP.ENTREES.push({
 <p>Dans <i>Du côté de chez Swann</i> (1913), un morceau de madeleine trempé dans le thé provoque chez le narrateur une joie inexplicable : « cette essence n’était pas en moi, elle était moi ». Puis « tout d’un coup le souvenir m’est apparu » : Combray, la tante Léonie. C’est la <b>mémoire involontaire</b> : une sensation présente fait revivre un passé que la mémoire volontaire ne retrouvait pas.</p>
 <p>Dans <i>Le Temps retrouvé</i> (1927), Proust en tire une théorie de l’art : le style « est une question non de technique, mais de vision ». Seul l’art peut nous faire partager une sensibilité singulière : « Par l’art seulement, nous pouvons sortir de nous, savoir ce que voit un autre de cet univers qui n’est pas le même que le nôtre ».</p>
 <div class="ex"><b class="l">Exemple</b>Proust répond ainsi à la question du programme sur le langage commun : les mots de tous, travaillés par un style, peuvent transmettre ce qui resterait sinon « le secret éternel de chacun ».</div>
-<div class="attention"><b class="l">Attention</b>La phrase qu’on cite souvent (« La vraie vie […] c’est la littérature ») n’a pas la même forme selon les éditions du <i>Temps retrouvé</i>. Préfère les passages cités ici, vérifiés sur l’édition de 1927.</div>` },
+<div class="attention"><b class="l">Attention</b>La phrase qu’on cite souvent (« La vraie vie […] c’est la littérature ») n’a pas la même forme selon les éditions du <i>Temps retrouvé</i>. Préfère les passages cités ici, vérifiés sur l’édition de 1927.</div>
+<div data-anim="e2-madeleine"></div>` },
     { id: "e2-8", titre: "Penser la sensibilité : goût, sublime, durée", html: `
 <p>Les philosophes s’emparent de l’expérience esthétique. Kant, dans la <i>Critique de la faculté de juger</i> (1790), distingue l’<b>agréable</b> (ce qui plaît aux sens, chacun son goût) et le <b>beau</b>, qui plaît « sans concept » mais avec une prétention à l’accord de tous. Il distingue aussi le beau, harmonieux, et le <b>sublime</b>, qui naît devant ce qui nous dépasse (l’océan déchaîné, les montagnes). Burke avait déjà opposé le beau et le sublime en 1757.</p>
 <p>Bergson, dans l’<i>Essai sur les données immédiates de la conscience</i> (1889), décrit la <b>durée</b> vécue : « La durée toute pure est la forme que prend la succession de nos états de conscience quand notre moi se laisse vivre ». Nos états intérieurs se fondent les uns dans les autres, comme les notes d’une mélodie, au lieu de se juxtaposer comme des objets dans l’espace.</p>
@@ -78,7 +94,8 @@ HLP.ENTREES.push({
     { id: "e2-9", titre: "Dire l’intime avec les mots de tous", html: `
 <p>Le programme pose une question décisive : « lorsque nous communiquons les uns avec les autres, comment faisons-nous pour donner le même sens aux mots que nous employons ? » Bergson montre le danger : « le mot aux contours bien arrêtés, le mot brutal, qui emmagasine ce qu’il y a de stable, de commun et par conséquent d’impersonnel dans les impressions de l’humanité, écrase ou tout au moins recouvre les impressions délicates et fugitives de notre conscience individuelle ».</p>
 <p>Trois réponses sont possibles. 1) Le <b>silence</b> ou l’ineffable : certaines expériences ne se disent pas. 2) Le <b>travail du style</b> : l’écrivain invente des images et des rythmes pour suggérer ce que le mot ordinaire écrase (Baudelaire, Proust). 3) La réponse de Wittgenstein (<i>Recherches philosophiques</i>, 1953) : la signification d’un mot dépend de son <b>usage public</b> ; un langage strictement privé, que personne d’autre ne pourrait comprendre, est impossible. Nos sentiments ne sont donc pas enfermés : nous apprenons à les nommer avec les autres.</p>
-<div class="ex"><b class="l">Exemple</b>Bergson donne l’exemple d’un mets « réputé exquis » : son nom, « gros de l’approbation qu’on lui donne », s’interpose entre la sensation et la conscience, au point qu’on croit aimer une saveur qu’on n’aime pas.</div>` }
+<div class="ex"><b class="l">Exemple</b>Bergson donne l’exemple d’un mets « réputé exquis » : son nom, « gros de l’approbation qu’on lui donne », s’interpose entre la sensation et la conscience, au point qu’on croit aimer une saveur qu’on n’aime pas.</div>
+<div data-anim="e2-dire"></div>` }
   ],
   notions: [
     ["Sensibilité", "Capacité de recevoir des sensations, de s’émouvoir, de juger du beau, de compatir. Le mot a des sens physique, affectif, esthétique et moral."],
