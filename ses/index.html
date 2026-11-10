@@ -16,6 +16,7 @@
   --papier:#F6F3EC; --carte:#FFFDF8; --carte2:#EFEAE0; --encre:#14232B; --encre2:#56636B; --ligne:#DDD5C7;
   --canard:#0B5563; --canard-f:#073E49; --canard-c:#DCEBEC;
   --corail:#E5533F; --corail-c:#FBE3DE; --moutarde:#D99A1E; --moutarde-c:#F7EBCB;
+  --corail-t:#B9381F; --moutarde-t:#946408; --sur-corail:#fff;
   --vert:#2E7D4F; --ombre:0 1px 2px rgba(20,35,43,.06),0 6px 18px rgba(20,35,43,.07); --ess-f:#14232B; --ess-t:#F6F3EC;
   --titre:"Avenir Next Condensed","Roboto Condensed","sans-serif-condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
   --texte:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -27,6 +28,7 @@
     --papier:#0D181C; --carte:#14232A; --carte2:#1B2E36; --encre:#ECE6DA; --encre2:#A5B0B3; --ligne:#2A3F47;
     --canard:#5BB8C4; --canard-f:#8BD0D8; --canard-c:#173A42;
     --corail:#FF7B65; --corail-c:#3D2420; --moutarde:#F0BE4F; --moutarde-c:#3A311B;
+    --corail-t:#FF7B65; --moutarde-t:#F0BE4F; --sur-corail:#14232A;
     --vert:#6CC18E; --ombre:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.28); --ess-f:#1D3741; --ess-t:#ECE6DA;
     color-scheme:dark;
   }
@@ -35,11 +37,13 @@
   --papier:#0D181C; --carte:#14232A; --carte2:#1B2E36; --encre:#ECE6DA; --encre2:#A5B0B3; --ligne:#2A3F47;
   --canard:#5BB8C4; --canard-f:#8BD0D8; --canard-c:#173A42;
   --corail:#FF7B65; --corail-c:#3D2420; --moutarde:#F0BE4F; --moutarde-c:#3A311B;
-  --vert:#6CC18E; --ombre:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.28); --ess-f:#1D3741; --ess-t:#ECE6DA;
+  --corail-t:#FF7B65; --moutarde-t:#F0BE4F; --sur-corail:#14232A;
+    --vert:#6CC18E; --ombre:0 1px 2px rgba(0,0,0,.3),0 8px 22px rgba(0,0,0,.28); --ess-f:#1D3741; --ess-t:#ECE6DA;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:72px}
+html:has(.onglets){scroll-padding-top:128px}
 body{margin:0;background:var(--papier);color:var(--encre);font:16px/1.62 var(--texte);overflow-x:hidden}
 a{color:var(--canard)}
 button{font:inherit;color:inherit}
@@ -88,8 +92,8 @@ h1,h2,h3,h4{font-family:var(--titre);font-stretch:condensed;letter-spacing:-.01e
 /* ---------- contenu ---------- */
 main{padding:0 16px 120px;max-width:780px;margin:0 auto}
 @media (min-width:1000px){main{padding:0 32px 120px}}
-.kick{display:inline-block;font:700 12px/1.3 var(--texte);letter-spacing:.13em;text-transform:uppercase;color:var(--corail)}
-.kick.c{color:var(--canard)} .kick.m{color:var(--moutarde)}
+.kick{display:inline-block;font:700 12px/1.3 var(--texte);letter-spacing:.13em;text-transform:uppercase;color:var(--corail-t)}
+.kick.c{color:var(--canard)} .kick.m{color:var(--moutarde-t)}
 .tete{padding:22px 0 14px;border-bottom:1px solid var(--ligne);margin-bottom:18px}
 .tete h1{font-size:clamp(30px,8.4vw,48px);font-weight:800;margin:6px 0 10px;color:var(--encre)}
 .tete.court{padding-bottom:6px;margin-bottom:6px;border:0}
@@ -98,10 +102,10 @@ main{padding:0 16px 120px;max-width:780px;margin:0 auto}
 .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .pastille{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;border-radius:99px;padding:3px 10px;background:var(--carte2);color:var(--encre2);border:1px solid var(--ligne)}
 .pastille.ok{background:var(--canard-c);color:var(--canard-f);border-color:transparent}
-.pastille.non{background:var(--corail-c);color:var(--corail);border-color:transparent}
+.pastille.non{background:var(--corail-c);color:var(--corail-t);border-color:transparent}
 .pastille.bt{background:var(--moutarde-c);color:var(--encre);border-color:transparent}
 h2.sec{font-size:clamp(25px,6.4vw,32px);font-weight:800;margin:34px 0 10px;padding-top:12px;border-top:3px solid var(--encre);display:flex;gap:10px;align-items:baseline}
-h2.sec .n{font:800 15px/1 var(--titre);color:var(--carte);background:var(--corail);border-radius:6px;padding:5px 7px;flex:none;transform:translateY(-3px)}
+h2.sec .n{font:800 15px/1 var(--titre);color:var(--sur-corail);background:var(--corail-t);border-radius:6px;padding:5px 7px;flex:none;transform:translateY(-3px)}
 h3{font-size:22px;font-weight:750;margin:26px 0 8px}
 h4{font-size:18px;font-weight:700;margin:18px 0 6px}
 p{margin:0 0 12px}
@@ -116,7 +120,7 @@ li{margin:4px 0}
 .def{background:var(--carte);border:1px solid var(--ligne);border-left:5px solid var(--canard)}
 .def b:first-child{color:var(--canard-f);font-family:var(--titre);font-size:18px;font-stretch:condensed;letter-spacing:.01em}
 .ex{background:var(--moutarde-c);border:0}
-.ex::before{content:"Exemple";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--moutarde);margin-bottom:6px;filter:brightness(.8)}
+.ex::before{content:"Exemple";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--moutarde-t);margin-bottom:6px}
 .ex.src::before{content:"Exemple · hors cours, source citée"}
 .aut{background:var(--carte);border:1px solid var(--ligne);display:grid;grid-template-columns:46px 1fr;gap:4px 12px}
 .aut .mono{grid-row:span 2;width:46px;height:46px;border-radius:50%;background:var(--canard);color:var(--carte);display:flex;align-items:center;justify-content:center;font:800 17px/1 var(--titre)}
@@ -128,7 +132,7 @@ li{margin:4px 0}
 .plus::before{content:"Pour aller plus loin";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--canard);margin-bottom:6px}
 .plus.hp::before{content:"Hors programme"}
 .attn{background:var(--corail-c)}
-.attn::before{content:"Attention";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--corail);margin-bottom:6px}
+.attn::before{content:"Attention";display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--corail-t);margin-bottom:6px}
 .cle{background:var(--canard);color:#fff}
 .cle a{color:#fff}
 :root[data-theme="dark"] .cle{color:var(--papier)}
@@ -142,6 +146,19 @@ details.pli>summary::before{content:"+";flex:none;width:24px;height:24px;border-
 details.pli[open]>summary::before{content:"–"}
 details.pli>div{padding:0 14px 12px}
 .tbl{overflow-x:auto;margin:12px 0;border:1px solid var(--ligne);border-radius:10px;background:var(--carte)}
+/* tableau plus large que l'écran : ombres qui signalent la suite, première colonne figée */
+.tbl.defile{background:linear-gradient(90deg,var(--carte) 30%,color-mix(in srgb,var(--carte) 0%,transparent)) left/36px 100% no-repeat local,linear-gradient(270deg,var(--carte) 30%,color-mix(in srgb,var(--carte) 0%,transparent)) right/36px 100% no-repeat local,radial-gradient(farthest-side at 100% 50%,rgba(0,0,0,.2),transparent) right/14px 100% no-repeat scroll,var(--carte)}
+.tbl.defile tr>:first-child{position:sticky;left:0;z-index:1;background:var(--carte);box-shadow:inset -1px 0 0 var(--ligne)}
+.tbl.defile thead tr>:first-child{background:var(--carte2)}
+@media (max-width:599px){
+  .tbl.empile{overflow:visible;border:0;background:none;border-radius:0}
+  .tbl.empile table,.tbl.empile tbody{display:block}
+  .tbl.empile thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .tbl.empile tr{display:block;background:var(--carte);border:1px solid var(--ligne);border-radius:12px;margin:0 0 10px;padding:4px 0 6px}
+  .tbl.empile td,.tbl.empile tbody th{display:block;border:0;padding:5px 14px;text-align:left;white-space:normal}
+  .tbl.empile tr>:first-child{font:800 16.5px/1.25 var(--titre);font-stretch:condensed;color:var(--encre);border-bottom:1px solid var(--ligne);padding:8px 14px;margin-bottom:2px;text-transform:none;letter-spacing:0;background:none}
+  .tbl.empile [data-l]::before{content:attr(data-l);display:block;font:700 11px/1.3 var(--texte);letter-spacing:.08em;text-transform:uppercase;color:var(--encre2);margin-bottom:1px}
+}
 table{border-collapse:collapse;width:100%;font-size:14.5px}
 th,td{padding:8px 10px;border-bottom:1px solid var(--ligne);text-align:left;vertical-align:top}
 th{font-family:var(--texte);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--encre2);background:var(--carte2)}
@@ -154,7 +171,7 @@ tr:last-child td{border-bottom:0}
 .chiffre{background:var(--carte);border:1px solid var(--ligne);border-top:4px solid var(--corail);border-radius:4px 4px 12px 12px;padding:12px 14px}
 .chiffre b{display:block;font:800 44px/1 var(--titre);font-stretch:condensed;color:var(--corail);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .chiffre:nth-child(3n+2){border-top-color:var(--canard)} .chiffre:nth-child(3n+2) b{color:var(--canard)}
-.chiffre:nth-child(3n+3){border-top-color:var(--moutarde)} .chiffre:nth-child(3n+3) b{color:var(--moutarde)}
+.chiffre:nth-child(3n+3){border-top-color:var(--moutarde)} .chiffre:nth-child(3n+3) b{color:var(--moutarde-t)}
 .chiffre span{display:block;font-size:14.5px;margin-top:6px;line-height:1.4}
 .chiffre small{display:block;font-size:12px;color:var(--encre2);margin-top:6px}
 
@@ -178,6 +195,9 @@ tr:last-child td{border-bottom:0}
 .onglets::-webkit-scrollbar{display:none}
 .onglets a{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:99px;text-decoration:none;color:var(--encre);font-weight:600;font-size:14.5px;border:1px solid var(--ligne);background:var(--carte)}
 .onglets a.act{background:var(--encre);color:var(--papier);border-color:var(--encre)}
+@media (max-width:520px){.onglets{gap:3px;padding:8px 12px}.onglets a{padding:0 9px;font-size:14px}}
+.onglets::after{content:"";flex:none;position:sticky;right:-16px;width:26px;margin-left:-26px;pointer-events:none;background:linear-gradient(90deg,color-mix(in srgb,var(--papier) 0%,transparent),var(--papier) 80%)}
+.onglets.plein::after,.onglets.fin::after{display:none}
 
 /* boutons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--ligne);background:var(--carte);color:var(--encre);cursor:pointer;font-weight:600;text-decoration:none;font-size:15px}
@@ -185,7 +205,7 @@ tr:last-child td{border-bottom:0}
 .btn.p{background:var(--canard);color:#fff;border-color:var(--canard)}
 :root[data-theme="dark"] .btn.p{color:var(--papier)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.p{color:var(--papier)}}
-.btn.c{background:var(--corail);border-color:var(--corail);color:#fff}
+.btn.c{background:var(--corail-t);border-color:var(--corail-t);color:var(--sur-corail)}
 .btn[disabled]{opacity:.45;cursor:default}
 .btns{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
 
@@ -221,11 +241,17 @@ tr:last-child td{border-bottom:0}
 .graph .ax0{stroke:var(--encre2);stroke-width:1}
 .graph .lb{font:11px var(--texte);fill:var(--encre2)}
 .graph .lbv{font:700 11.5px var(--texte);fill:var(--encre)}
+.graph .lbh{font-size:12px;fill:var(--encre);paint-order:stroke;stroke:var(--carte);stroke-width:4px;stroke-linejoin:round}
+.graph .bulle{white-space:normal!important;max-width:min(250px,86vw);width:max-content}
 .graph .bulle{position:absolute;pointer-events:none;background:var(--encre);color:var(--papier);font-size:13px;line-height:1.35;padding:6px 9px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-110%);display:none;z-index:3}
 .graph .bulle b{font-family:var(--titre);font-size:15px}
+.graph .hit{fill:transparent;cursor:crosshair}
+.graph rect.vu{stroke:var(--encre);stroke-width:1.5px}
+.graph svg:has(rect.vu) rect.hb:not(.vu),.graph svg:has(rect.vu) rect.bar:not(.vu){opacity:.45}
 .leg{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
 .leg button{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 10px;border-radius:99px;border:1px solid var(--ligne);background:var(--carte);font-size:13px;cursor:pointer}
-.leg button i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.leg button i{width:12px;height:12px;border-radius:3px;display:inline-block;flex:none}
+.leg button{text-align:left;line-height:1.25;padding-top:4px;padding-bottom:4px}
 .leg button.off{opacity:.4}
 .c1{fill:var(--canard);stroke:var(--canard)} .c2{fill:var(--corail);stroke:var(--corail)} .c3{fill:var(--moutarde);stroke:var(--moutarde)}
 .c4{fill:var(--vert);stroke:var(--vert)} .c5{fill:#7B5EA7;stroke:#7B5EA7} .c6{fill:var(--encre2);stroke:var(--encre2)}
@@ -242,7 +268,7 @@ tr:last-child td{border-bottom:0}
 .q-ch button.faux{border-color:var(--corail);background:var(--corail-c)}
 .q-ch button[disabled]{cursor:default;color:var(--encre);opacity:1}
 .q-exp{margin-top:12px;padding:12px 14px;border-radius:10px;background:var(--carte2);font-size:15px}
-.q-exp b.v{color:var(--vert)} .q-exp b.f{color:var(--corail)}
+.q-exp b.v{color:var(--vert)} .q-exp b.f{color:var(--corail-t)}
 .score{font:800 64px/1 var(--titre);color:var(--corail)}
 .fc-zone{perspective:1200px;margin:12px 0}
 .fc{position:relative;min-height:230px;cursor:pointer;border:0;padding:0;width:100%;background:none;display:block;text-align:left}
@@ -293,13 +319,14 @@ tr:last-child td{border-bottom:0}
 .qc:hover{border-color:var(--canard)}
 .qc.red{border-left:6px solid var(--corail)}
 .qc .qt{font:750 19px/1.2 var(--titre);font-stretch:condensed;margin:6px 0 8px;display:block}
-.qc .qd{font-size:13.5px;color:var(--encre2);display:block}
+.qc .qd{font-size:13.5px;color:var(--encre2);display:block;padding-right:62px}
 .qc .spark{position:absolute;right:10px;top:10px;width:64px;height:22px;opacity:.9}
 .qc.bt{background:transparent;border-style:dashed}
 .acces{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0}
 .acces a{display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--encre);background:var(--carte);border:1px solid var(--ligne);border-radius:14px;padding:12px;min-height:84px;font-weight:650}
 .acces a svg{width:26px;height:26px;color:var(--corail)}
 .acces a small{font-weight:400;color:var(--encre2);font-size:12.5px}
+@media (max-width:520px){.acces a:last-child:nth-child(odd){grid-column:1/-1}}
 
 /* ressources, auteurs */
 .res-l{list-style:none;padding:0}
@@ -336,14 +363,14 @@ tr:last-child td{border-bottom:0}
 .exo h3{margin:4px 0 8px;font-size:21px}
 .exo .enon{font:17px/1.5 var(--serif);margin-bottom:10px}
 .corr{border-top:1px dashed var(--ligne);margin-top:10px}
-.corr>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--corail);list-style:none}
+.corr>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--corail-t);list-style:none}
 .corr>summary::-webkit-details-marker{display:none}
 .corr>summary::after{content:"▾";margin-left:6px}
 .marge{border-left:3px solid var(--moutarde);padding:2px 0 2px 10px;margin:8px 0;font-size:14.5px;color:var(--encre2)}
 .marge b{color:var(--encre)}
 .copie{font:16.5px/1.6 var(--serif);background:var(--papier);border:1px solid var(--ligne);border-radius:10px;padding:12px 14px;margin:8px 0}
 .piege{display:grid;gap:4px;background:var(--carte);border:1px solid var(--ligne);border-radius:12px;padding:12px 14px;margin:10px 0}
-.piege .f{color:var(--corail);font-weight:650}
+.piege .f{color:var(--corail-t);font-weight:650}
 .piege .f::before{content:"✕ ";font-weight:800}
 .piege .v::before{content:"✓ ";font-weight:800;color:var(--vert)}
 .pied{margin-top:50px;padding-top:14px;border-top:3px double var(--ligne);font-size:13px;color:var(--encre2)}
@@ -396,13 +423,13 @@ tr:last-child td{border-bottom:0}
 /* ---------- animations explicatives ---------- */
 .anim{background:var(--carte);border:1px solid var(--ligne);border-radius:16px;margin:20px 0;overflow:hidden;box-shadow:var(--ombre)}
 .an-tete{display:flex;gap:10px;align-items:center;padding:10px 14px;background:var(--ess-f);color:var(--ess-t)}
-.an-k{flex:none;font:800 10.5px/1 var(--texte);letter-spacing:.16em;text-transform:uppercase;background:var(--corail);color:#fff;padding:5px 7px;border-radius:4px}
+.an-k{flex:none;font:800 10.5px/1 var(--texte);letter-spacing:.16em;text-transform:uppercase;background:var(--corail-t);color:var(--sur-corail);padding:5px 7px;border-radius:4px}
 .an-t{font:800 17px/1.2 var(--titre);font-stretch:condensed}
 .an-scene{padding:10px 8px 2px;background-image:radial-gradient(var(--ligne) 1px,transparent 1.2px);background-size:14px 14px}
 .an-scene svg{display:block;width:100%;max-width:580px;margin:0 auto;height:auto;overflow:visible}
 .an-scene text{font-family:var(--texte)}
 .an-leg{padding:10px 16px 6px;min-height:78px;border-top:1px solid var(--ligne)}
-.an-n{display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--corail);margin-bottom:5px}
+.an-n{display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--corail-t);margin-bottom:5px}
 .an-l{display:block;font:17px/1.45 var(--serif)}
 .an-barre{display:flex;gap:4px;padding:2px 16px}
 .an-barre button{flex:1;height:24px;border:0;background:none;padding:0;cursor:pointer;display:flex;align-items:center}
@@ -414,7 +441,7 @@ tr:last-child td{border-bottom:0}
 .an-cmd{display:flex;justify-content:center;align-items:center;gap:12px;padding:4px 10px 10px}
 .an-b{width:44px;height:44px;border-radius:50%;border:1px solid var(--ligne);background:var(--papier);color:var(--encre);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
 .an-b svg{width:20px;height:20px}
-.an-b.an-jouer{width:56px;height:56px;background:var(--corail);border-color:var(--corail);color:#fff}
+.an-b.an-jouer{width:56px;height:56px;background:var(--corail-t);border-color:var(--corail-t);color:var(--sur-corail)}
 .an-b.an-jouer svg{width:26px;height:26px}
 .an-txt{margin:0 14px 10px;font-size:14px}
 .an-txt summary{cursor:pointer;color:var(--encre2);min-height:36px;display:flex;align-items:center}
@@ -436,13 +463,13 @@ tr:last-child td{border-bottom:0}
 .couv-corps::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,var(--carte) 52%,color-mix(in srgb,var(--carte) 30%,transparent) 100%);pointer-events:none}
 .couv-corps>*{position:relative}
 .couv-num{position:absolute!important;right:10px;top:-14px;font:900 clamp(110px,30vw,190px)/1 var(--titre);font-stretch:condensed;color:transparent;-webkit-text-stroke:2px color-mix(in srgb,var(--corail) 55%,transparent);letter-spacing:-.04em;pointer-events:none;user-select:none}
-.couv-ic{display:flex;width:54px;height:54px;border-radius:14px;background:var(--corail);color:#fff;align-items:center;justify-content:center;margin-bottom:12px;box-shadow:0 6px 16px color-mix(in srgb,var(--corail) 35%,transparent)}
+.couv-ic{display:flex;width:54px;height:54px;border-radius:14px;background:var(--corail-t);color:var(--sur-corail);align-items:center;justify-content:center;margin-bottom:12px;box-shadow:0 6px 16px color-mix(in srgb,var(--corail) 35%,transparent)}
 .couv-ic svg{width:32px;height:32px}
 .couv h1{font-size:clamp(32px,8.8vw,52px);font-weight:900;margin:6px 0 12px;line-height:1.04;max-width:16ch}
 .couv .chapo{font:19px/1.5 var(--serif);margin:0 0 4px;max-width:62ch}
 .couv .chapo::first-letter{float:left;font:900 3.3em/.82 var(--titre);color:var(--corail);margin:6px 8px 0 0}
-.pastille.ani{background:var(--corail);color:#fff;border-color:transparent}
-.reg-h{border-top:0!important;border-bottom:3px solid var(--encre)!important;margin:0 0 8px!important;color:var(--corail)}
+.pastille.ani{background:var(--corail-t);color:var(--sur-corail);border-color:transparent}
+.reg-h{border-top:0!important;border-bottom:3px solid var(--encre)!important;margin:0 0 8px!important;color:var(--corail-t)}
 h2.sec{position:relative}
 h2.sec::after{content:"";position:absolute;left:0;top:-3px;width:72px;height:3px;background:var(--corail)}
 .idee>.lede:first-of-type::first-letter{float:left;font:900 3.1em/.82 var(--titre);color:var(--canard);margin:6px 8px 0 0}
@@ -453,11 +480,11 @@ h2.sec::after{content:"";position:absolute;left:0;top:-3px;width:72px;height:3px
 .qc.bt .qc-ic{color:var(--encre2)}
 .qc .qt{padding-right:30px}
 .ticker{display:flex;align-items:stretch;margin:4px 0 18px;border-top:2px solid var(--encre);border-bottom:2px solid var(--encre);background:var(--carte)}
-.tk-t{flex:none;display:flex;align-items:center;padding:0 12px;background:var(--corail);color:#fff;font:800 11px/1.2 var(--texte);letter-spacing:.14em;text-transform:uppercase}
+.tk-t{flex:none;display:flex;align-items:center;padding:0 12px;background:var(--corail-t);color:var(--sur-corail);font:800 11px/1.2 var(--texte);letter-spacing:.14em;text-transform:uppercase}
 .tk-fen{flex:1;min-width:0;overflow:hidden}
 .tk-piste{display:flex;flex-wrap:wrap;gap:0}
 .tk{display:inline-flex;align-items:baseline;gap:6px;padding:9px 14px;border-right:1px solid var(--ligne);text-decoration:none;color:var(--encre);font-size:13.5px;white-space:nowrap}
-.tk b{font:900 18px/1 var(--titre);color:var(--corail)}
+.tk b{font:900 18px/1 var(--titre);color:var(--corail-t)}
 .tk-dup{display:none}
 @media (prefers-reduced-motion:no-preference){
   html.mo .tk-piste{flex-wrap:nowrap;width:max-content;animation:mo-ticker 90s linear infinite}
@@ -750,7 +777,7 @@ var PROG = [
       titre: "Comment expliquer les crises financières et réguler le système financier ?",
       objectifs: [
         "Connaître les principales caractéristiques de la crise financière des années 1930 et de celle de 2008 (effondrement boursier, faillites en chaîne, chute du PIB et accroissement du chômage).",
-        "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties autoréalisatrices).",
+        "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties auto réalisatrices).",
         "Comprendre les phénomènes de panique bancaire et de faillites bancaires en chaîne.",
         "Connaître les principaux canaux de transmission d’une crise financière à l’économie réelle : effets de richesse négatif, baisse du prix du collatéral et ventes forcées, contraction du crédit.",
         "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l’aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité."],
@@ -815,7 +842,7 @@ var PROG = [
       titre: "Quelles inégalités sont compatibles avec les différentes conceptions de la justice sociale ?",
       objectifs: [
         "Connaître les grandes tendances d’évolution des inégalités économiques depuis le début du XXe siècle et comprendre que les inégalités économiques et sociales présentent un caractère multiforme et cumulatif.",
-        "Savoir interpréter les principaux outils de mesure des inégalités, statique (rapport inter-quantiles, courbe de Lorenz et coefficient de Gini, top 1 %) et dynamique (corrélation de revenu parents-enfants).",
+        "Savoir interpréter les principaux outils de mesure des inégalités, statique (rapport inter-quantiles, courbe de Lorenz et coefficient de Gini, top 1%) et dynamique (corrélation de revenu parents-enfants).",
         "Comprendre que les différentes formes d’égalité (égalité des droits, des chances ou des situations) permettent de définir ce qui est considéré comme juste selon différentes conceptions de la justice sociale (notamment l’utilitarisme, le libertarisme, l’égalitarisme libéral, l’égalitarisme strict).",
         "Comprendre que l’action des pouvoirs publics en matière de justice sociale (fiscalité, protection sociale, services collectifs, mesures de lutte contre les discriminations) s’exerce sous contrainte de financement et fait l’objet de débats en termes d’efficacité (réduction des inégalités), de légitimité (notamment consentement à l’impôt) et de risque d’effets pervers (désincitations)."],
       notions: ["inégalités économiques et sociales", "caractère multiforme et cumulatif des inégalités", "rapport inter-quantiles", "courbe de Lorenz", "coefficient de Gini", "top 1 %", "corrélation des revenus parents-enfants", "égalité des droits", "égalité des chances", "égalité des situations", "utilitarisme", "libertarisme", "égalitarisme libéral", "égalitarisme strict", "fiscalité", "protection sociale", "services collectifs", "discriminations", "consentement à l’impôt", "désincitations"],
@@ -2857,7 +2884,7 @@ CH.e4 = {
   ],
   objectifs: [
     { bo: "Connaître les principales caractéristiques de la crise financière des années 1930 et de celle de 2008 (effondrement boursier, faillites en chaîne, chute du PIB et accroissement du chômage).", clair: "Savoir raconter les deux crises avec leurs dates et leurs chiffres clés.", voir: "e4-1" },
-    { bo: "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties autoréalisatrices).", clair: "Expliquer pas à pas comment une bulle gonfle et éclate, avec un exemple.", voir: "e4-2" },
+    { bo: "Comprendre et savoir illustrer la formation et l’éclatement d’une bulle spéculative (comportements mimétiques et prophéties auto réalisatrices).", clair: "Expliquer pas à pas comment une bulle gonfle et éclate, avec un exemple.", voir: "e4-2" },
     { bo: "Comprendre les phénomènes de panique bancaire et de faillites bancaires en chaîne.", clair: "Expliquer pourquoi une banque saine peut tomber et comment une faillite en entraîne d’autres.", voir: "e4-3" },
     { bo: "Connaître les principaux canaux de transmission d’une crise financière à l’économie réelle : effets de richesse négatif, baisse du prix du collatéral et ventes forcées, contraction du crédit.", clair: "Présenter les trois canaux par lesquels la crise financière fait baisser production et emploi.", voir: "e4-4" },
     { bo: "Connaître les principaux instruments de régulation du système bancaire et financier qui permettent de réduire l’aléa moral des banques : supervision des banques par la banque centrale, ratio de solvabilité.", clair: "Définir l’aléa moral et expliquer comment supervision et ratio de solvabilité le limitent.", voir: "e4-5" }
@@ -3115,7 +3142,7 @@ CH.e5 = {
   ],
   chiffres: [
     { n: "21", l: "pays membres de la zone euro depuis l’entrée de la Bulgarie le 1er janvier 2026.", s: "Banque de France ; Commission européenne" },
-    { n: "10,6 %", l: "d’inflation dans la zone euro en octobre 2022 ; la BCE a relevé son taux de dépôt de −0,50 % à 4 % en un an.", s: "Eurostat ; BCE" },
+    { n: "10,6 %", l: "d’inflation dans la zone euro en octobre 2022 ; la BCE a relevé son taux de dépôt de −0,50 % à 4 % en quatorze mois (juillet 2022-septembre 2023).", s: "Eurostat ; BCE" },
     { n: "5,1 %", l: "du PIB : le déficit public de la France en 2025, pour une dette de 115,6 % du PIB.", s: "Insee, mars 2026" }
   ],
   objectifs: [
@@ -3127,7 +3154,7 @@ CH.e5 = {
   notions: ["intégration européenne", "marché unique", "union douanière", "zone euro", "politique de la concurrence", "entente", "abus de position dominante", "contrôle des concentrations", "aides d’État", "politique monétaire", "taux directeur", "inflation", "politique budgétaire", "multiplicateur", "stabilisateurs automatiques", "déficit public", "dette publique", "conjoncture", "Banque centrale européenne", "indépendance de la banque centrale", "Pacte de stabilité et de croissance", "coordination des politiques", "choc asymétrique"],
   sections: [
     { id: "e5-1", t: "L’intégration européenne : marché unique et zone euro", h:
-      '<div class="def"><b>Intégration économique</b> — processus par lequel des pays suppriment progressivement les obstacles à leurs échanges, jusqu’à mettre en commun des politiques. Bela Balassa (1961) en distinguait les étapes : zone de libre-échange, union douanière, marché commun, union économique et monétaire.</div>' +
+      '<div class="def"><b>Intégration économique</b> — processus par lequel des pays suppriment progressivement les obstacles à leurs échanges, jusqu’à mettre en commun des politiques. Bela Balassa (1961) en distinguait les étapes : zone de libre-échange, union douanière, marché commun, union économique, intégration économique totale.</div>' +
       '<div class="tbl"><table><thead><tr><th>Date</th><th>Étape</th></tr></thead><tbody>' +
       '<tr><td>1957</td><td>Traité de Rome : Communauté économique européenne (six pays)</td></tr>' +
       '<tr><td>1968</td><td>Union douanière : plus de droits de douane entre membres, un tarif extérieur commun</td></tr>' +
@@ -3258,7 +3285,7 @@ AUTEURS.push(
 GRAPHES["r1-ineg"] = {
   type: "lignes", t: "Les inégalités de niveau de vie en France, 1996-2024", spark: 1,
   s: "Deux rapports, après impôts et prestations sociales. Touche le graphique pour lire une année ; touche la légende pour masquer une courbe.",
-  src: "Source : Insee-DGFiP-Cnaf-Cnav-CCMSA, enquêtes Revenus fiscaux et sociaux (Insee Première n° 2117, juillet 2026). Champ : France métropolitaine, personnes vivant dans un logement ordinaire. Ruptures de série en 2010, 2012 et 2020 ; données de 2020 fragiles.",
+  src: "Source : Insee-DGFiP-Cnaf-Cnav-CCMSA, enquêtes Revenus fiscaux et sociaux (Insee Première n° 2117, juillet 2026). Champ : France métropolitaine, personnes vivant dans un logement ordinaire. Séries rétropolées par l’Insee de 1996 à 2020 pour corriger les ruptures de 2010, 2012 et 2020 ; point 2020 fragile.",
   unite: "", dec: 2, pasX: 7, h: 280, min: 2, max: 6,
   x: [1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],
   series: [
@@ -3836,7 +3863,7 @@ GRAPHES["s3-dest"] = {
 GRAPHES["s3-or"] = {
   type: "barres", t: "La fluidité sociale progresse : le rapport des chances relatives, 1977-2015",
   s: "Rapport des chances relatives (odds ratio) d’être cadre plutôt qu’employé ou ouvrier non qualifié, entre fils de cadres et fils d’employés ou d’ouvriers non qualifiés. 1 = parfaite fluidité.",
-  src: "Source : Marc Collet et Émilie Pénicaud, « La mobilité sociale des femmes et des hommes : évolutions entre 1977 et 2015 », Insee, Économie et Statistique n° 510-511-512, 2019 (figure 7). Champ : hommes de 35 à 59 ans comparés à leur père.",
+  src: "Source : Marc Collet et Émilie Pénicaud, « La mobilité sociale des femmes et des hommes : évolutions entre 1977 et 2015 », Insee, France, portrait social, édition 2019, coll. Insee Références (figure 7c). Champ : hommes de 35 à 59 ans comparés à leur père.",
   unite: "", dec: 1, h: 260, pasX: 1,
   x: [1977, 1985, 1993, 2003, 2015], y: [165.0, 92.3, 65.3, 29.3, 34.7], etiquette: "fois"
 };
@@ -3897,7 +3924,7 @@ CH.s3 = {
       '<div class="def"><b>Mobilité intragénérationnelle (ou professionnelle)</b> — changement de position au cours de la vie active d’un même individu : promotion, changement de métier, passage du salariat à l’indépendance, chômage.</div>' +
       '<div class="ex"><p>Un technicien promu ingénieur après une formation continue passe de profession intermédiaire à cadre : mobilité professionnelle ascendante, sans rien dire de ses parents.</p></div>' +
       '<div class="def"><b>Mobilité géographique</b> — changement de lieu de résidence (d’une commune, d’une région ou d’un pays à l’autre).</div>' +
-      '<p>Les trois se combinent souvent : quitter une région peu dynamique pour une métropole facilite l’accès à un emploi qualifié. Une étude de l’Institut des politiques publiques (Kenedi et Sirugue, note n° 95, 2023) montre que les enfants des familles les plus modestes qui partent vers un département à hauts revenus atteignent en moyenne le même revenu que les enfants de familles aisées restés dans leur département.</p>' +
+      '<p>Les trois se combinent souvent : quitter une région peu dynamique pour une métropole facilite l’accès à un emploi qualifié. Une étude de l’Institut des politiques publiques (Kenedi et Sirugue, note n° 95, 2023) montre que les enfants des familles les plus modestes qui partent vers un département à hauts revenus atteignent en moyenne à peu près le même rang dans l’échelle des revenus que les enfants dont les parents se situaient au 75<sup>e</sup> centile (à l’entrée du quart le plus aisé) et qui sont restés dans leur département.</p>' +
       '<h3>Le sens de la mobilité</h3><ul><li><b>Verticale ascendante</b> : position plus élevée que celle du parent (fils d’employé devenu cadre).</li><li><b>Verticale descendante</b> : position moins élevée (fille de cadre devenue employée) ; on parle de <b>déclassement</b>.</li><li><b>Horizontale</b> ou « non verticale » : changement de groupe sans hiérarchie nette, par exemple d’agriculteur à ouvrier qualifié, ou d’artisan à profession intermédiaire. L’Insee distingue ici une mobilité « de statut » (salarié / indépendant).</li><li><b>Immobilité</b> ou <b>reproduction sociale</b> : même groupe que le parent.</li></ul>' +
       '<div class="attn"><p>Une mobilité géographique ou professionnelle n’est pas une mobilité sociale intergénérationnelle. Dans une copie, nomme précisément la mobilité dont tu parles et l’<b>étalon</b> de comparaison (le père ? la mère ? le premier emploi ?).</p></div>' },
 
@@ -4575,7 +4602,7 @@ CH.s5 = {
   chiffres: [
     { n: "15,8 %", l: "des inscrits n’ont voté à aucun tour de la présidentielle et des législatives de 2022 (12,2 % en 2002).", s: "Insee Première n° 1929" },
     { n: "× 3,2", l: "l’abstention systématique est 3,2 fois plus fréquente chez les inscrits sans diplôme (30,4 %) que chez les diplômés du supérieur (9,5 %) en 2022.", s: "Insee Première n° 1929" },
-    { n: "21 %", l: "des Français de métropole font du bénévolat dans une association en 2025, soit environ 12 millions de personnes.", s: "Baromètre France Bénévolat / Ifop 2025" }
+    { n: "21 %", l: "des Français de 15 ans ou plus font du bénévolat dans une association en 2025, soit environ 12 millions de personnes.", s: "Baromètre France Bénévolat / Ifop 2025" }
   ],
   objectifs: [
     { bo: "Comprendre que l’engagement politique prend des formes variées (vote, militantisme, engagement associatif, consommation engagée).", clair: "Définir et illustrer les quatre formes d’engagement citées par le programme.", voir: "s5-1" },
@@ -4591,7 +4618,7 @@ CH.s5 = {
       '<div data-graph="s5-tend"></div>' +
       '<p>Lecture : selon l’Insee, en 2022, 37,0 % des inscrits ont voté à tous les tours de la présidentielle et des législatives, 47,2 % à certains tours seulement et 15,8 % à aucun. Depuis 2017, le <b>vote intermittent</b> dépasse le vote systématique : beaucoup votent pour l’élection qui leur paraît décisive (la présidentielle) et s’abstiennent aux autres. L’abstention n’est donc pas toujours un retrait : elle peut être un choix ponctuel.</p>' +
       '<h3>2. Le militantisme</h3><div class="def"><b>Militantisme</b> — engagement durable et actif au service d’une organisation ou d’une cause : coller des affiches, tracter, organiser des réunions, représenter ses collègues.</div><p>Il se fait dans les <b>partis politiques</b>, qui visent la conquête du pouvoir, et dans les <b>syndicats</b>, qui défendent les intérêts des salariés. Environ un salarié sur dix est syndiqué en France (environ 10 % en 2019, Dares, 2023), beaucoup plus dans la fonction publique que dans le privé.</p>' +
-      '<h3>3. L’engagement associatif</h3><p>Les associations (loi du 1<sup>er</sup> juillet 1901) défendent des causes (environnement, droits humains, solidarité) ou rendent des services. En 2025, 21 % des Français de métropole font du bénévolat dans une association, soit environ 12 millions de personnes (baromètre France Bénévolat / Ifop). Toutes les associations ne sont pas politiques, mais beaucoup interpellent les pouvoirs publics (Restos du cœur, Greenpeace, Ligue des droits de l’homme).</p>' +
+      '<h3>3. L’engagement associatif</h3><p>Les associations (loi du 1<sup>er</sup> juillet 1901) défendent des causes (environnement, droits humains, solidarité) ou rendent des services. En 2025, 21 % des Français de 15 ans ou plus font du bénévolat dans une association, soit environ 12 millions de personnes (baromètre France Bénévolat / Ifop). Toutes les associations ne sont pas politiques, mais beaucoup interpellent les pouvoirs publics (Restos du cœur, Greenpeace, Ligue des droits de l’homme).</p>' +
       '<h3>4. La consommation engagée</h3><div class="def"><b>Consommation engagée</b> — usage politique de ses achats : <b>boycott</b> (refuser d’acheter les produits d’une entreprise) ou <b>buycott</b> (acheter de préférence des produits jugés responsables : commerce équitable, produits locaux).</div><div class="ex"><p>Le label de commerce équitable Max Havelaar est créé en 1988 aux Pays-Bas. En 2001, un appel au boycott des produits Danone répond à l’annonce de fermetures d’usines de biscuits LU. La sociologue Sophie Dubuisson-Quellier (<i>La Consommation engagée</i>, 2009) montre que ces gestes individuels sont souvent organisés par des collectifs.</p></div>' +
       '<div class="plus"><p>On peut ajouter d’autres formes : signer une pétition (en ligne ou non), manifester, faire grève, s’exprimer sur les réseaux sociaux, participer à une consultation publique. Les mêmes personnes cumulent souvent plusieurs formes d’engagement.</p></div>' },
 
@@ -4925,8 +4952,9 @@ ANIMS["s5-olson"] = {
           });
         });
         if (el.a) {
-          var lx = cur.length === 1 && prev.length === 1 ? cur[0].cx + 10 : W / 2 + 10;
-          grp += '<text class="fl-t" x="' + lx + '" y="' + (y - GAP / 2 + 4) + '">' + esc(el.a) + "</text>";
+          /* une seule flèche : le mot à droite de la flèche ; plusieurs : centré entre les flèches qui s'écartent ou se rejoignent */
+          var seul = cur.length === 1 && prev.length === 1, lx = seul ? cur[0].cx + 10 : W / 2;
+          grp += '<text class="fl-t" x="' + lx + '" y="' + (y - GAP / 2 + 4) + '"' + (seul ? "" : ' text-anchor="middle"') + ">" + esc(el.a) + "</text>";
         }
       }
       grp += "</g>";
@@ -4986,25 +5014,39 @@ ANIMS["s5-olson"] = {
     var H = Math.round((g.h || 300) * (W < 500 ? 0.95 : 1)), ml = 40, mr = 12, mt = 14, mb = 30, s = "";
     if (g.type === "hbarres") {
       var nc = g.cats.length, ns = g.series.length, bh = ns > 1 ? 14 : 20, gh0 = bh * ns + 16;
-      var lab = Math.min(g.lab || 190, Math.round(W * 0.42)); ml = lab;
-      var policeLb = "12px " + getComputedStyle(document.body).fontFamily;
-      var lignesC = g.cats.map(function (c) { return couper(c, ml - 14, policeLb); });
-      var hC = lignesC.map(function (l) { return Math.max(gh0, l.length * 14 + 12); });
-      var yC = [], cumul = mt; hC.forEach(function (h) { yC.push(cumul); cumul += h; });
-      H = cumul + 26;
       var vals = []; g.series.forEach(function (sr) { vals = vals.concat(sr.v); });
       var mn = Math.min(0, Math.min.apply(null, vals)), mx = Math.max.apply(null, vals);
+      /* place réservée aux étiquettes de valeur (à gauche des barres négatives, à droite des positives) */
+      var fam = getComputedStyle(document.body).fontFamily, policeV = "700 11.5px " + fam, policeT = "11px " + fam;
+      var padG = mn < 0 ? largeurTexte(fr(mn, dec) + u, policeV) + 8 : 0, padD = mx > 0 ? largeurTexte(fr(mx, dec) + u, policeV) + 8 : 6;
+      /* écran étroit : si les barres n'ont plus la place à côté des libellés, les libellés passent au-dessus */
+      var lab = Math.min(g.lab || 190, Math.round(W * 0.42));
+      var haut = W - lab - mr - padG - padD < 150; ml = haut ? 14 : lab;
+      var policeLb = "12px " + fam;
+      var lignesC = g.cats.map(function (c) { return couper(c, haut ? W - 6 : ml - 14, policeLb); });
+      var hC = lignesC.map(function (l) { return haut ? l.length * 14 + 10 + bh * ns : Math.max(gh0, l.length * 14 + 12); });
+      var yC = [], cumul = mt; hC.forEach(function (h) { yC.push(cumul); cumul += h; });
+      H = cumul + 26;
+      var pw = W - ml - mr - padG - padD;
       var tk = echelle(mn, mx, 4), a = tk[0], b = tk[tk.length - 1];
-      var X = function (v) { return ml + (v - a) / (b - a) * (W - ml - mr - 30); };
-      tk.forEach(function (t) { s += '<line class="ax' + (t === 0 ? "0" : "") + '" x1="' + X(t) + '" x2="' + X(t) + '" y1="' + mt + '" y2="' + (H - 22) + '"/><text class="lb" x="' + X(t) + '" y="' + (H - 6) + '" text-anchor="middle">' + fr(t, 0) + u + "</text>"; });
+      var X = function (v) { return ml + padG + (v - a) / (b - a) * pw; };
+      /* graduations : une étiquette sur k si elles se chevaucheraient */
+      var lT = Math.max.apply(null, tk.map(function (t) { return largeurTexte(fr(t, 0) + u, policeT); }));
+      var kT = Math.max(1, Math.ceil((lT + 8) / (pw / (tk.length - 1))));
+      var j0 = Math.max(0, tk.indexOf(0));
+      tk.forEach(function (t, j) { s += '<line class="ax' + (t === 0 ? "0" : "") + '" x1="' + X(t) + '" x2="' + X(t) + '" y1="' + mt + '" y2="' + (H - 22) + '"/>' + ((j - j0) % kT === 0 ?'<text class="lb" x="' + X(t) + '" y="' + (H - 6) + '" text-anchor="middle">' + fr(t, 0) + u + "</text>" : ""); });
       g.cats.forEach(function (c, i) {
-        var gh = hC[i], y0 = yC[i], lignes = lignesC[i], yb = y0 + (gh - bh * ns) / 2;
-        lignes.forEach(function (l, j) { s += '<text class="lb" x="' + (ml - 8) + '" y="' + (y0 + gh / 2 + 4 - (lignes.length - 1) * 7 + j * 14) + '" text-anchor="end" style="font-size:12px;fill:var(--encre)">' + esc(l) + "</text>"; });
+        var gh = hC[i], y0 = yC[i], lignes = lignesC[i], yb = haut ? y0 + lignes.length * 14 + 4 : y0 + (gh - bh * ns) / 2;
+        lignes.forEach(function (l, j) {
+          if (haut) s += '<text class="lb lbh" x="0" y="' + (y0 + 11 + j * 14) + '">' + esc(l) + "</text>";
+          else s += '<text class="lb" x="' + (ml - 8) + '" y="' + (y0 + gh / 2 + 4 - (lignes.length - 1) * 7 + j * 14) + '" text-anchor="end" style="font-size:12px;fill:var(--encre)">' + esc(l) + "</text>";
+        });
         g.series.forEach(function (sr, k) {
           var v = sr.v[i], x1 = X(Math.min(0, v)), x2 = X(Math.max(0, v)), y = yb + k * bh;
           s += '<rect class="hb c' + (sr.c || k + 1) + '" style="animation-delay:' + (i * 50) + 'ms" x="' + x1 + '" y="' + y + '" width="' + Math.max(1, x2 - x1) + '" height="' + (bh - 3) + '" rx="3" data-tip="' + esc((ns > 1 ? sr.n + " · " : "") + c) + '" data-v="' + v + '"><title>' + esc(c + " : " + fr(v, dec) + u) + "</title></rect>";
           s += '<text class="lbv" x="' + (v < 0 ? x1 - 4 : x2 + 4) + '" y="' + (y + bh - 6) + '" text-anchor="' + (v < 0 ? "end" : "start") + '">' + fr(v, dec) + u + "</text>";
         });
+        s += '<rect class="hit" x="0" y="' + y0 + '" width="' + W + '" height="' + gh + '" data-i="' + i + '"/>';
       });
     } else {
       var xs = g.x, n = xs.length, all = [];
@@ -5012,6 +5054,8 @@ ANIMS["s5-olson"] = {
       series.forEach(function (sr) { all = all.concat(sr.v.filter(function (v) { return v !== null; })); });
       var mn2 = g.min !== undefined ? g.min : Math.min(0, Math.min.apply(null, all)), mx2 = g.max !== undefined ? g.max : Math.max.apply(null, all);
       var tk2 = echelle(mn2, mx2, 5), a2 = tk2[0], b2 = tk2[tk2.length - 1];
+      var fam2 = getComputedStyle(document.body).fontFamily, policeT2 = "11px " + fam2;
+      ml = Math.max(34, Math.ceil(Math.max.apply(null, tk2.map(function (t) { return largeurTexte(fr(t, 0) + u, policeT2); }))) + 12);
       var step = (W - ml - mr) / n;
       var Xc = function (i) { return ml + step * (i + 0.5); };
       var Y = function (v) { return mt + (b2 - v) / (b2 - a2) * (H - mt - mb); };
@@ -5022,8 +5066,11 @@ ANIMS["s5-olson"] = {
         s += '<text class="lb" x="' + (Xc(i1) - step / 2 + 4) + '" y="' + (mt + 12) + '" style="font-weight:700;fill:var(--encre)">' + esc(bd.l) + "</text>";
       });
       tk2.forEach(function (t) { s += '<line class="ax' + (t === 0 ? "0" : "") + '" x1="' + ml + '" x2="' + (W - mr) + '" y1="' + Y(t) + '" y2="' + Y(t) + '"/><text class="lb" x="' + (ml - 6) + '" y="' + (Y(t) + 4) + '" text-anchor="end">' + fr(t, 0) + u + "</text>"; });
-      var pas = g.pasX || Math.ceil(n / 8);
-      xs.forEach(function (x, i) { if (i % pas === 0 || (i === n - 1 && !g.sansDernier && (n - 1) % pas >= pas / 2)) s += '<text class="lb" x="' + Xc(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + x + "</text>"; });
+      var p0 = g.pasX || Math.ceil(n / 8);
+      var lX = Math.max.apply(null, xs.map(function (x, i) { return i % p0 === 0 || i === n - 1 ? largeurTexte(String(x), policeT2) : 0; }));
+      var pas = p0 * Math.max(1, Math.ceil((lX + 6) / (step * p0)));
+      var dernier = Math.floor((n - 1) / pas) * pas;
+      xs.forEach(function (x, i) { if (i % pas === 0 || (i === n - 1 && !g.sansDernier && (n - 1 - dernier) * step >= lX + 6)) s +='<text class="lb" x="' + Xc(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + x + "</text>"; });
       if (g.type === "barres") {
         g.y.forEach(function (v, i) {
           var y1 = Y(Math.max(0, v)), y2 = Y(Math.min(0, v));
@@ -5051,7 +5098,7 @@ ANIMS["s5-olson"] = {
       }).join("") + "</div>";
     }
     return '<p class="gt">' + esc(g.t) + "</p>" + (g.s ? '<p class="gs">' + esc(g.s) + "</p>" : "") + leg +
-      '<div class="zone"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(g.t) + '">' + s + '</svg><div class="bulle"></div></div>' +
+      '<div class="zone"><svg viewBox="0 0 ' + W + " " + H + '" data-ml="' + ml + '" role="img" aria-label="' + esc(g.t) + '">' + s + '</svg><div class="bulle"></div></div>' +
       '<p class="src-l">' + g.src + "</p>";
   }
   function monterGraphes(racine) {
@@ -5080,18 +5127,29 @@ ANIMS["s5-olson"] = {
         var x = e.clientX - r.left + zone.scrollLeft, y = e.clientY - r.top;
         var bw = bulle.offsetWidth / 2;
         x = Math.max(bw + 2, Math.min(zone.clientWidth - bw - 2, x));
-        bulle.style.left = x + "px"; bulle.style.top = Math.max(y, 50) + "px";
+        /* au-dessus du doigt ou du pointeur s'il y a la place, sinon en dessous : jamais coupée par le cadre */
+        var hb = bulle.offsetHeight, haut = y - hb - 14;
+        if (haut < 2) haut = Math.min(y + 22, zone.clientHeight - hb - 2);
+        bulle.style.left = x + "px"; bulle.style.top = Math.max(2, haut) + "px"; bulle.style.transform = "translateX(-50%)";
       }
-      function cacher() { bulle.style.display = "none"; var c = $(".curseur", svg); if (c) c.style.display = "none"; }
-      svg.addEventListener("pointerleave", cacher);
-      svg.addEventListener("pointermove", function (e) {
+      function cacher() { bulle.style.display = "none"; var c = $(".curseur", svg); if (c) c.style.display = "none"; $$("rect.vu", svg).forEach(function (r) { r.classList.remove("vu"); }); }
+      svg.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") cacher(); });
+      document.addEventListener("pointerdown", function ailleurs(e) {
+        if (!svg.isConnected) { document.removeEventListener("pointerdown", ailleurs); return; }
+        if (bulle.style.display === "block" && !svg.contains(e.target)) cacher();
+      }, { passive: true });
+      svg.addEventListener("pointerdown", lire);
+      svg.addEventListener("pointermove", lire);
+      function lire(e) {
         if (g.type === "hbarres") {
-          var t = e.target.closest("rect.hb");
+          var t = e.target.closest("rect.hit");
           if (!t) { cacher(); return; }
-          placer(e, esc(t.getAttribute("data-tip")) + "<br><b>" + fr(+t.getAttribute("data-v"), dec) + u + "</b>");
+          var i = +t.getAttribute("data-i");
+          $$("rect.hb", svg).forEach(function (r) { r.classList.toggle("vu", Math.floor($$("rect.hb", svg).indexOf(r) / g.series.length) === i); });
+          placer(e, "<b>" + esc(g.cats[i]) + "</b>" + g.series.map(function (sr) { return "<br>" + (g.series.length > 1 ? esc(sr.n) + " : " : "") + fr(sr.v[i], dec) + u; }).join(""));
           return;
         }
-        var p = point(e), ml = 40, mr = 12, n = g.x.length, step = (W - ml - mr) / n;
+        var p = point(e), ml = +svg.getAttribute("data-ml"), mr = 12, n = g.x.length, step = (W - ml - mr) / n;
         var i = Math.floor((p.x - ml) / step);
         if (i < 0 || i >= n) { cacher(); return; }
         var h = "<b>" + esc(g.x[i]) + "</b>";
@@ -5099,8 +5157,9 @@ ANIMS["s5-olson"] = {
         else g.series.forEach(function (sr, k) { if (!cach[k] && sr.v[i] !== null) h += "<br>" + esc(sr.n) + " : " + fr(sr.v[i], dec) + u; });
         var c = $(".curseur", svg);
         if (c) { var cx = ml + step * (i + 0.5); c.setAttribute("x1", cx); c.setAttribute("x2", cx); c.style.display = ""; }
+        if (g.type === "barres") $$("rect.bar", svg).forEach(function (r, j) { r.classList.toggle("vu", j === i); });
         placer(e, h);
-      });
+      }
     });
   }
 
@@ -5240,6 +5299,23 @@ ANIMS["s5-olson"] = {
     if (window.ANIM_MOTEUR) ANIM_MOTEUR.monter(racine);
     $$("[data-calc]", racine).forEach(function (d) { d.className = "calc"; monterCalc(d); });
     $$("[data-relier]", racine).forEach(function (d) { monterRelier(d); });
+    monterTableaux(racine);
+  }
+
+  /* ---------- tableaux : en fiches sur téléphone (texte), colonne figée et ombre de défilement (chiffres) ---------- */
+  function monterTableaux(racine) {
+    $$(".tbl", racine).forEach(function (bloc) {
+      var t = $("table", bloc); if (!t || !t.tHead) return;
+      var tetes = Array.prototype.map.call(t.tHead.rows[0].cells, function (c) { return c.textContent.trim(); });
+      var cellules = $$("tbody td, tbody th", t), nums = cellules.filter(function (c) { return c.classList.contains("n"); }).length;
+      if (tetes.length >= 3 && nums < cellules.length / 2) {
+        bloc.classList.add("empile");
+        Array.prototype.forEach.call(t.tBodies[0].rows, function (r) {
+          Array.prototype.forEach.call(r.cells, function (c, k) { if (k && tetes[k]) c.setAttribute("data-l", tetes[k]); });
+        });
+      }
+      if (bloc.scrollWidth > bloc.clientWidth + 2) bloc.classList.add("defile");
+    });
   }
 
   function $$anims(ch) { var n = 0; ch.sections.forEach(function (s) { n += (s.h.match(/data-anim=/g) || []).length; }); return n; }
@@ -5432,6 +5508,12 @@ ANIMS["s5-olson"] = {
       Array.prototype.slice.call(vue.children, 0, 12).forEach(function (el, k) { el.style.animationDelay = (k * 55) + "ms"; });
     }
     compteurs(app);
+    $$(".onglets", app).forEach(function (nav) {
+      nav.classList.toggle("plein", nav.scrollWidth <= nav.clientWidth + 1);
+      var act = $("a.act", nav); if (act && nav.scrollWidth > nav.clientWidth) nav.scrollLeft = act.offsetLeft - (nav.clientWidth - act.offsetWidth) / 2;
+      function fin() { nav.classList.toggle("fin", nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 2); }
+      nav.addEventListener("scroll", fin, { passive: true }); fin();
+    });
     document.title = (v.titre === "Accueil" ? "" : v.titre + " · ") + "Faits & Courbes · SES Terminale";
     $$("#lat .nav a").forEach(function (a) { a.classList.toggle("act", a.getAttribute("data-r") === r.page); if (a.getAttribute("data-r") === r.page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
     if (r.ancre) {
