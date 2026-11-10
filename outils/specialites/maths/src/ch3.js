@@ -70,7 +70,7 @@ $$\lim_{x\to+\infty}\frac{\e^x}{x^n}=+\infty,\qquad\lim_{x\to+\infty}x^n\e^{-x}=
     { t: "« $\\frac{3}{0}=\\infty$ »", h: R`On ne divise pas par zéro : on étudie la limite d'un quotient dont le dénominateur <b>tend</b> vers $0$, avec son signe ($0^+$ ou $0^-$).` },
     { t: "Asymptote et courbe", h: R`Une courbe peut couper son asymptote horizontale (exemple : $\frac{\sin x}{x}$ coupe $y=0$ une infinité de fois). L'asymptote décrit le comportement <b>à l'infini</b>.` },
     { t: "Terme prépondérant en $0$", h: R`En $0$, c'est le terme de <b>plus bas</b> degré qui domine : $x^3+2x\approx2x$ près de $0$. Ne factorise pas par $x^3$.` },
-    { t: "Croissances comparées à l'envers", h: R`$\frac{x^{100}}{\e^x}\to0$ en $+\infty$, même si $x^{100}$ est énorme pour $x=10$. Mais en $-\infty$, $\e^x\to0$ et c'est $x^n\e^x\to0$.` }
+    { t: "Croissances comparées à l'envers", h: R`$\frac{x^{100}}{\e^x}\to0$ en $+\infty$, même si $x^{100}$ est énorme pour $x=10$ : c'est toujours l'exponentielle qui gagne. En $-\infty$ aussi : $\e^x\to0$ l'emporte sur $x^n\to\pm\infty$, donc $x^n\e^x\to0$ (et non $\pm\infty$).` }
   ],
   demos: [
     { bo: true, t: "Limites de l'exponentielle en $+\\infty$ et en $-\\infty$", h: R`

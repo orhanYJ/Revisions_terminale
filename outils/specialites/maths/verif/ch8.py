@@ -47,3 +47,7 @@ f=lambda x:3-2*exp(-2*x); print("résidu", round(d(f,0.4)-(-2*f(0.4)+6),7), f(0)
 print("doublement",log(2)/0.7, "N(5)",100*exp(3.5))
 # y' = 2y - 5 ; h = -3/2 e^{2x}+5/2 ; h(0)=1 (Polynésie 2026 aff 4)
 hh=lambda x:-1.5*exp(2*x)+2.5; print("h(0)",hh(0),"résidu",round(d(hh,0.3)-(2*hh(0.3)-5),7))
+# Café, question 4 (corrigé) : seuil en minutes et secondes, T(19)
+import math as _m
+_t = 10 * _m.log(7)
+print("café : t =", round(_t, 2), "min =", int(_t), "min", round((_t - int(_t)) * 60), "s ; T(19) =", round(20 + 70 * _m.exp(-1.9), 1))
