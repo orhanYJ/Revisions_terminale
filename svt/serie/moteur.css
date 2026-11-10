@@ -527,3 +527,4 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 .fr-fond,.fl-fond{inset:auto;left:16px;top:22px;right:16px;bottom:14px;border-radius:10px}
 .v-portrait.grand .pf:after{background:linear-gradient(180deg,rgba(242,234,214,0) 48%,rgba(242,234,214,.92) 80%,#f2ead6 100%)}
 .bd-nom{color:#1b2a20}
+.v-portrait.grand .pf{left:16px;top:22px;bottom:14px;border-radius:10px 0 0 10px}
