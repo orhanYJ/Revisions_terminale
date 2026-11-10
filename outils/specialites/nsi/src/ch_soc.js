@@ -7,6 +7,8 @@ var ARCH_CSS = [
   ".ar .scene svg .pt{font-size:10.5px;fill:var(--encre2)}",
   ".ar .scene svg .gd{font-size:13px;font-weight:700}",
   ".ar-large .scene svg{min-width:540px}",
+  ".ar:not(.ar-large) .scene svg{max-width:540px}",
+  ".ar-tab th:first-child{width:1%}",
   ".ar .bl rect{fill:var(--bg2);stroke:var(--ligne2);stroke-width:1.4}",
   ".ar .bl.on rect{fill:var(--ambre-f);stroke:var(--ambre);stroke-width:2.6}",
   ".ar .bl.ok rect{fill:var(--vert-f);stroke:var(--vert);stroke-width:2}",
