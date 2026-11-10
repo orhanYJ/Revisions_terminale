@@ -453,7 +453,7 @@
     var D = DOSSIERS[id];
     var h = '<div class="frise-bloc"><div class="frise-filtres" role="group" aria-label="Filtrer la frise">';
     Object.keys(D.cats).forEach(function (k) { h += '<button aria-pressed="true" data-c="' + k + '"><i style="background:' + couleur(D, k) + '"></i>' + (Array.isArray(D.cats[k]) ? D.cats[k][0] : D.cats[k]) + '</button>'; });
-    h += '<button aria-pressed="false" data-mode="cache" style="margin-left:auto">' + ic("oeil") + 'Masquer les dates</button></div>';
+    h += '<button aria-pressed="false" data-mode="lire" style="margin-left:auto">' + ic("lire") + '<span>Dérouler la frise</span></button><button aria-pressed="false" data-mode="cache">' + ic("oeil") + 'Masquer les dates</button></div>';
     h += '<div class="frise-cadre"><div class="frise">';
     D.frise.forEach(function (e, i) { h += '<button class="ev" data-c="' + e[2] + '" data-i="' + i + '" aria-pressed="false" style="--c:' + couleur(D, e[2]) + '"><span class="an">' + e[0] + '</span><span class="dt">' + typo(e[1]) + '</span><b>' + typo(e[3]) + '</b></button>'; });
     h += '</div></div><div class="frise-info" aria-live="polite">' + typo("Touche un événement pour lire son explication. Mode révision : masque les dates et essaie de les retrouver avant de toucher.") + '</div></div>';
@@ -478,7 +478,26 @@
         $$('.ev[data-c="' + b.getAttribute("data-c") + '"]').forEach(function (x) { x.style.display = on ? "" : "none"; });
       });
     });
-    var bm = $('.frise-filtres button[data-mode]');
+    /* lecture automatique : la frise se déroule d'événement en événement */
+    var bl = $('.frise-filtres button[data-mode="lire"]'), cadreF = $(".frise-cadre"), minut = null;
+    function arreter() { clearInterval(minut); minut = null; bl.setAttribute("aria-pressed", "false"); $("span", bl).textContent = "Dérouler la frise"; }
+    function montrer(b) {
+      b.click();
+      var x = b.offsetLeft - cadreF.clientWidth / 2 + b.offsetWidth / 2;
+      cadreF.scrollTo({ left: Math.max(0, x), behavior: MO() ? "smooth" : "auto" });
+    }
+    bl.addEventListener("click", function () {
+      if (minut) { arreter(); return; }
+      var evs = $$(".ev").filter(function (x) { return x.style.display !== "none"; });
+      if (!evs.length) return;
+      var cur = evs.map(function (x) { return x.getAttribute("aria-pressed"); }).indexOf("true"), k = cur >= 0 && cur < evs.length - 1 ? cur + 1 : 0;
+      bl.setAttribute("aria-pressed", "true"); $("span", bl).textContent = "Pause";
+      montrer(evs[k]);
+      minut = setInterval(function () { if (!document.body.contains(bl)) { clearInterval(minut); return; } k++; if (k >= evs.length) { arreter(); return; } montrer(evs[k]); }, 3200);
+    });
+    $$(".ev").forEach(function (b) { b.addEventListener("pointerdown", function () { if (minut) arreter(); }); });
+    window.addEventListener("hashchange", arreter, { once: true });
+    var bm = $('.frise-filtres button[data-mode="cache"]');
     bm.addEventListener("click", function () { var on = bm.getAttribute("aria-pressed") !== "true"; bm.setAttribute("aria-pressed", on ? "true" : "false"); f.classList.toggle("cache", on); $$(".ev").forEach(function (x) { x.classList.remove("vu"); }); });
   }
 
