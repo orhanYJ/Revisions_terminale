@@ -453,7 +453,7 @@ SCENES = [
             "Un logiciel simule une population qui se reproduit, génération après génération",
             "On change un seul paramètre : taille, mutations, accouplements, avantage d'un caractère",
             "On suit les fréquences sur une dizaine de générations"], marques=["1", "2", "3"], x=150, y=170, w=980),
-        "gr_s1": gr_freq("Scénario 1 · le témoin : 1 000 individus (simulation)", [(S1, "sa", "1 000 individus", [5.2, .62])]),
+        "gr_s1": gr_freq("Scénario 1 · témoin, 1 000 individus (simulé)", [(S1, "sa", "1 000 individus", [5.2, .62])]),
     }),
 
     # ================================================================ la dérive génétique
@@ -483,7 +483,7 @@ SCENES = [
         "Mais elle peut aussi aider à faire naître une nouvelle espèce. On y reviendra.",
         "{-fix}",
     ], vis={
-        "gr_s2": gr_freq("Scénario 2 · la dérive : 9 individus, deux lancements (simulation)",
+        "gr_s2": gr_freq("Scénario 2 · dérive, 9 individus (simulé)",
                          [(S2a, "sa", "lancement 1 : fixé", [7.2, .93]), (S2b, "or", "lancement 2 : perdu", [7.2, .1])], gens=11),
         "d_der": dict(type="def", terme="Dérive génétique", cles=["aléatoire", "petite"],
                       t="Un phénomène d'évolution aléatoire, dû au hasard de la reproduction et de la descendance. Elle est beaucoup plus forte sur une petite population.",
@@ -556,7 +556,7 @@ SCENES = [
         "Dans une petite communauté isolée, on se reproduit entre soi.",
         "{-cause}",
     ], vis={
-        "gr_s3": gr_freq("Scénario 3 · effet fondateur : 9 individus, 20 % au départ (simulation)",
+        "gr_s3": gr_freq("Scénario 3 · fondateur, 20 % au départ (simulé)",
                          [(S3a, "or", "lancement 1 : perdu", [5.5, .1]), (S3b, "sa", "lancement 2 : par hasard, il monte", [6.3, 1.0])], gens=11),
         "d_fond": dict(type="def", terme="Effet fondateur", cles=["échantillon", "non", "représentatif"],
                        t="Une petite sous-population se sépare de la population initiale. Elle n'emporte qu'un échantillon non représentatif, tiré au hasard, des allèles de la population mère.",
@@ -650,7 +650,7 @@ SCENES = [
             "Même valeur sélective pour tous : pas de sélection naturelle"], marques=["1", "2", "3"], x=150, y=180, w=980),
         "tab_ph": dict(type="tableau", img="ch3-phalenes", de=[1.0, .5, .5], a=[1.12, .5, .5],
                        legende="Phalène du bouleau, forme claire et forme noire (carbonaria), photos Olaf Leillinger, CC BY-SA 2.5"),
-        "gr_s4": gr_freq("Scénario 4 · sélection : A//A = 1 ; A//B = B//B = 0,8 (simulation)",
+        "gr_s4": gr_freq("Scénario 4 · sélection, A//A = 1, autres 0,8 (simulé)",
                          [(S4a, "sa", "lancement 1", [6.4, .8]), (S4b, "te", "lancement 2", [8.4, .66])]),
     }),
 
@@ -682,7 +682,7 @@ SCENES = [
             "Depuis 1968 : insecticides organophosphorés sur les eaux où vivent les larves",
             "Gène Ace : AceR résiste mais ralentit le développement ; AceS ne protège pas",
             "Années 1990 : bien moins d'insecticide, et un autre produit, le téméphos"], marques=["1", "2", "3"], x=130, y=150, w=1020),
-        "gr_cu": dict(type="graphe", titre="Fréquence de AceR dans une population (allure des données, redessinée)", x=280, y=110, w=720, h=520,
+        "gr_cu": dict(type="graphe", titre="Fréquence de AceR (allure des données)", x=280, y=110, w=720, h=520,
                       ax=dict(x=[1965, 2002], y=[0, 1], gx=[1970, 1980, 1990, 2000], gy=[.25, .5, .75, 1], lx="années", ly="f(AceR)"),
                       el=[dict(type="courbe", pts=[list(p) for p in CULEX], c="or", lbl="AceR", lp=[1995, .7], dur=3.2)]),
         "itr": dict(type="illu", nom="tri", x=110, y=96, w=1060, h=560),
