@@ -25,7 +25,7 @@ HLP.ENTREES.push({
     "Écrire sur soi, est-ce se découvrir ou s’inventer ?",
     "Est-on toujours maître de soi ?"
   ],
-  schema: `<svg viewBox="0 0 640 330" role="img" aria-labelledby="sch3t"><title id="sch3t">Les figures du moi, de Montaigne à Sartre</title>
+  schema: `<svg viewBox="0 0 640 330" role="img" aria-labelledby="sch3t"><title id="sch3t">Les figures du moi, de Montaigne à Freud</title>
 <text class="sch-tit" x="320" y="24" text-anchor="middle">Un moi, ou plusieurs ?</text>
 <circle class="sch-fort trace" style="--d:.1s" cx="320" cy="180" r="70"/>
 <path class="sch-trait trace" style="--d:.5s" d="M320 110 L320 250"/><path class="sch-trait trace" style="--d:.6s" d="M255 155 Q320 185 385 155"/>
@@ -36,7 +36,7 @@ HLP.ENTREES.push({
 <g class="apparait" style="--d:1.5s"><path class="sch-trait" d="M390 205 L470 250"/><rect class="sch-boite" x="430" y="232" width="190" height="44" rx="8"/><text class="sch-txt" x="525" y="251" text-anchor="middle">ça · moi · surmoi</text><text class="sch-txt2" x="525" y="268" text-anchor="middle">Freud, 1923</text></g>
 <g class="apparait" style="--d:1.7s"><rect class="sch-boite" x="225" y="282" width="190" height="40" rx="8"/><text class="sch-txt" x="320" y="300" text-anchor="middle">moi profond / superficiel</text><text class="sch-txt2" x="320" y="315" text-anchor="middle">Bergson, 1889</text></g>
 </svg><figcaption>Le moi unifié de la tradition se fissure : passage, altérité, couches de la vie psychique.</figcaption>`,
-  schemaP: `<svg class="sch-port" viewBox="0 0 320 376" role="img" aria-labelledby="sch3p"><title id="sch3p">Les figures du moi, de Montaigne à Sartre</title>
+  schemaP: `<svg class="sch-port" viewBox="0 0 320 376" role="img" aria-labelledby="sch3p"><title id="sch3p">Les figures du moi, de Montaigne à Freud</title>
 <text class="sch-tit" x="160" y="26" text-anchor="middle">Un moi, ou plusieurs ?</text>
 <g class="apparait" style="--d:.9s"><path class="sch-trait" d="M126 154 L90 100"/><rect class="sch-boite" x="4" y="54" width="152" height="46" rx="8"/><text class="sch-txt" x="80" y="74" text-anchor="middle">« une chose qui pense »</text><text class="sch-txt2" x="80" y="91" text-anchor="middle">Descartes, 1641</text></g>
 <g class="apparait" style="--d:1.1s"><path class="sch-trait" d="M194 154 L230 100"/><rect class="sch-boite" x="164" y="54" width="152" height="46" rx="8"/><text class="sch-txt" x="240" y="74" text-anchor="middle">« je peins le passage »</text><text class="sch-txt2" x="240" y="91" text-anchor="middle">Montaigne, 1588</text></g>
