@@ -449,19 +449,36 @@ def generer(nom_module):
     crete = np.abs(pv).max()
     pv *= 0.89 / crete
     # musique : une humeur par chapitre, fondu enchaîné de 2,5 s entre deux humeurs
-    pistes = {}
-    for _, hu in humeurs:
-        if hu not in pistes:
-            x = musique.boucle(duree + 1, hu)[:n]
-            pistes[hu] = np.pad(x, (0, max(0, n - len(x))))[:n] / (np.abs(x).max() + 1e-9) * 0.42
     tt = np.arange(n) / SR
     mus = np.zeros(n)
     poids_total = np.zeros(n)
-    for k, (deb, hu) in enumerate(humeurs):
-        fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
-        w = np.clip((tt - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt + 1.25) / 2.5, 0, 1)
-        mus += pistes[hu] * w
-        poids_total += w
+    if site == "svt":
+        # SVT (10/11/2026) : musique « carnet de naturaliste », cinq thèmes originaux qui tournent d'une partie à l'autre
+        # (musique.carnet), chacun bouclé sur la durée de sa partie seulement
+        boucles = {}
+        for k, (deb, hu) in enumerate(humeurs):
+            th = musique.theme_carnet(k, hu)
+            if th not in boucles:
+                x = musique.carnet(th).astype(np.float64)
+                boucles[th] = x / (np.abs(x).max() + 1e-9) * 0.42
+            fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
+            a, b = max(0, int((deb - 1.3) * SR)), min(n, int((fin + 1.3) * SR))
+            L = boucles[th]
+            seg = np.resize(L, b - a)
+            w = np.clip((tt[a:b] - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt[a:b] + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt[a:b] + 1.25) / 2.5, 0, 1)
+            mus[a:b] += seg * w
+            poids_total[a:b] += w
+    else:
+        pistes = {}
+        for _, hu in humeurs:
+            if hu not in pistes:
+                x = musique.boucle(duree + 1, hu)[:n]
+                pistes[hu] = np.pad(x, (0, max(0, n - len(x))))[:n] / (np.abs(x).max() + 1e-9) * 0.42
+        for k, (deb, hu) in enumerate(humeurs):
+            fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
+            w = np.clip((tt - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt + 1.25) / 2.5, 0, 1)
+            mus += pistes[hu] * w
+            poids_total += w
     mus /= np.maximum(poids_total, 1e-6)
     g = musique.enveloppe(n / SR, paroles, haut=1.0, bas=0.12)
     g = np.pad(g, (0, max(0, n - len(g))), constant_values=g[-1])[:n]
