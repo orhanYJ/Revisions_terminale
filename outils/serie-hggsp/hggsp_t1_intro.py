@@ -201,7 +201,7 @@ SCENES = [
         "parfait pour les télécommunications et la météo.",
         "Et l'orbite basse se remplit à toute vitesse. {-orb}{star}{star.1}La constellation Starlink, de l'entreprise SpaceX, "
         "compte à elle seule plus de dix mille satellites en orbite en mars 2026. "
-        "C'est bien plus que tous les satellites lancés par les États pendant la guerre froide.",
+        "Une seule entreprise, des milliers d'engins : c'est du jamais vu.",
     ], vis={
         "orb": dict(type="illu", nom="orbites", x=150, y=86, w=980, h=560),
         "star": dict(type="chiffres", items=[dict(v=10000, avant="plus de ", t="satellites Starlink en orbite en mars 2026",
