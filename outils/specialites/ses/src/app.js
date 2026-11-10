@@ -462,6 +462,7 @@
   /* ---------- montage commun ---------- */
   function monter(racine) {
     monterChaines(racine); monterGraphes(racine);
+    if (window.ANIM_MOTEUR) ANIM_MOTEUR.monter(racine);
     $$("[data-calc]", racine).forEach(function (d) { d.className = "calc"; monterCalc(d); });
     $$("[data-relier]", racine).forEach(function (d) { monterRelier(d); });
   }

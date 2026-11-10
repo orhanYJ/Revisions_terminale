@@ -101,6 +101,7 @@ CH.s1 = {
       '<div class="attn"><p>Les PCS ne sont pas des classes sociales. Elles sont construites pour la statistique, sans hypothèse sur la conscience ou les conflits de groupes. Mais elles servent à vérifier si des classes existent : les écarts de revenu, de diplôme ou de pratiques entre PCS sont-ils grands et durables ?</p></div>' },
 
     { id: "s1-3", t: "Les grandes évolutions depuis 1950", h:
+      '<div data-anim="s1-pcs"></div>' +
       '<div data-graph="s1-pcs"></div>' +
       '<p>Le graphique résume quarante ans de transformations : les ouvriers passent de 29,9 % à 18,0 % de l’emploi, les agriculteurs de 7,5 % à 1,3 %, tandis que les cadres passent de 8,0 % à 23,0 %. En 2024, pour la première fois depuis 1982, les professions intermédiaires dépassent les employés (Insee). Quatre évolutions sont au programme.</p>' +
       '<h3>1. La salarisation</h3><p>La part des salariés dans l’emploi a fortement augmenté depuis les années 1950 avec le recul des agriculteurs exploitants et des petits commerçants et artisans. En 2024, 86,7 % des personnes en emploi sont salariées, dont 72,9 % en CDI ou fonctionnaires. On observe toutefois un léger regain des indépendants (13,3 %, plus haut niveau depuis 1999), porté par les micro-entrepreneurs (3,6 % de l’emploi) : plateformes de livraison, VTC, services.</p>' +

@@ -391,6 +391,41 @@ tr:last-child td{border-bottom:0}
 @keyframes mo-non{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 @keyframes mo-mast{from{letter-spacing:.08em;opacity:.001}to{letter-spacing:-.01em;opacity:1}}
 
+/* ---------- animations explicatives ---------- */
+.anim{background:var(--carte);border:1px solid var(--ligne);border-radius:16px;margin:20px 0;overflow:hidden;box-shadow:var(--ombre)}
+.an-tete{display:flex;gap:10px;align-items:center;padding:10px 14px;background:var(--ess-f);color:var(--ess-t)}
+.an-k{flex:none;font:800 10.5px/1 var(--texte);letter-spacing:.16em;text-transform:uppercase;background:var(--corail);color:#fff;padding:5px 7px;border-radius:4px}
+.an-t{font:800 17px/1.2 var(--titre);font-stretch:condensed}
+.an-scene{padding:10px 8px 2px;background-image:radial-gradient(var(--ligne) 1px,transparent 1.2px);background-size:14px 14px}
+.an-scene svg{display:block;width:100%;max-width:580px;margin:0 auto;height:auto;overflow:visible}
+.an-scene text{font-family:var(--texte)}
+.an-leg{padding:10px 16px 6px;min-height:78px;border-top:1px solid var(--ligne)}
+.an-n{display:block;font:800 11px/1 var(--texte);letter-spacing:.14em;text-transform:uppercase;color:var(--corail);margin-bottom:5px}
+.an-l{display:block;font:17px/1.45 var(--serif)}
+.an-barre{display:flex;gap:4px;padding:2px 16px}
+.an-barre button{flex:1;height:24px;border:0;background:none;padding:0;cursor:pointer;display:flex;align-items:center}
+.an-barre button::before{content:"";position:absolute}
+.an-barre i{display:block;height:5px;border-radius:3px;background:var(--corail);box-shadow:0 0 0 0 transparent}
+.an-barre button{position:relative}
+.an-barre button::after{content:"";position:absolute;left:0;right:0;top:50%;height:5px;margin-top:-2.5px;border-radius:3px;background:var(--carte2);z-index:0}
+.an-barre i{position:relative;z-index:1}
+.an-cmd{display:flex;justify-content:center;align-items:center;gap:12px;padding:4px 10px 10px}
+.an-b{width:44px;height:44px;border-radius:50%;border:1px solid var(--ligne);background:var(--papier);color:var(--encre);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.an-b svg{width:20px;height:20px}
+.an-b.an-jouer{width:56px;height:56px;background:var(--corail);border-color:var(--corail);color:#fff}
+.an-b.an-jouer svg{width:26px;height:26px}
+.an-txt{margin:0 14px 10px;font-size:14px}
+.an-txt summary{cursor:pointer;color:var(--encre2);min-height:36px;display:flex;align-items:center}
+.an-txt ol{margin:4px 0 6px}
+.anim .src-l{padding:0 16px 12px;margin:0}
+@media print{.an-cmd,.an-barre{display:none!important}.an-txt{display:block}}
+@media (prefers-reduced-motion:no-preference){
+  html.mo .an-l.vient{animation:mo-legende .45s cubic-bezier(.2,.7,.2,1)}
+  html.mo .anim.joue .an-jouer{animation:mo-respire 2.4s ease-in-out infinite}
+}
+@keyframes mo-legende{from{opacity:.001;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes mo-respire{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--corail) 45%,transparent)}50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--corail) 0%,transparent)}}
+
 </style>
 <!-- assistant:debut — bouton « Demander à ChatGPT » maintenu à part (assistant.js) ; à conserver lors des mises à jour -->
 <script src="assistant.js?v=9" defer></script>
@@ -406,7 +441,219 @@ tr:last-child td{border-bottom:0}
 </div>
 <div id="srch" role="dialog" aria-modal="true" aria-label="Recherche"><div class="sbox"><div class="sl"><input id="sq" type="search" placeholder="Rechercher dans tout le site" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="search" aria-label="Rechercher"><button class="ib" id="s-fermer" aria-label="Fermer la recherche"></button></div><div class="sres" id="sres" aria-live="polite"></div></div></div>
 <script>
-var CH = {}, CHAINES = {}, GRAPHES = {};
+/* Moteur des animations explicatives.
+   Une animation se déclare dans un fichier de données :
+     ANIMS["id"] = {
+       t: "Titre",                       // affiché au-dessus de la scène
+       h: 300,                           // hauteur de la scène (largeur fixe : 360)
+       src: "Source : …",                // facultatif, sous la scène
+       etapes: [{ l: "légende de l'étape", d: 4 }, …],   // d = durée en secondes (3,5 par défaut)
+       rendu: function (A, i, p) { return "<svg…>" }      // i = étape (0…n−1), p = avancement 0…1 de l'étape
+     };
+   et se place dans le cours par <div data-anim="id"></div>.
+   rendu est une fonction pure : elle dessine tout l'état à l'instant (i, p). Les étapes antérieures sont
+   considérées comme terminées (p = 1). Outils A : voir plus bas (A.s, A.t, A.boite, A.fl, A.pl, A.axes…).
+   Sans mouvement (prefers-reduced-motion), chaque étape s'affiche directement terminée. */
+var ANIM_MOTEUR = (function () {
+  "use strict";
+  var W = 360;
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function fr(n, d) {
+    if (!isFinite(n)) return "—";
+    var s = Math.abs(n).toFixed(d === undefined ? 1 : d), p = s.split(".");
+    p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return (n < 0 && +s !== 0 ? "−" : "") + p.join(",");
+  }
+  var ctx = null, famille = "";
+  function larg(t, taille, gras) {
+    if (!ctx) { ctx = document.createElement("canvas").getContext("2d"); famille = getComputedStyle(document.body).fontFamily; }
+    ctx.font = (gras ? "700 " : "") + taille + "px " + famille; return ctx.measureText(t).width;
+  }
+  function couper(t, w, taille, gras) {
+    var out = [], cur = "";
+    String(t).split(" ").forEach(function (m) {
+      var e = cur ? cur + " " + m : m;
+      if (larg(e, taille, gras) > w && cur) { out.push(cur); cur = m; } else cur = e;
+    });
+    if (cur) out.push(cur);
+    return out;
+  }
+  function borne(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function ease(p) { p = borne(p); return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
+  var COUL = { canard: "var(--canard)", corail: "var(--corail)", moutarde: "var(--moutarde)", encre: "var(--encre)", gris: "var(--encre2)", vert: "var(--vert)", ligne: "var(--ligne)", carte: "var(--carte)", papier: "var(--papier)", canardc: "var(--canard-c)", corailc: "var(--corail-c)", moutardec: "var(--moutarde-c)", carte2: "var(--carte2)" };
+  function c(n) { return COUL[n] || n; }
+
+  var A = {
+    W: W, fr: fr, esc: esc,
+    /* avancement d'un sous-intervalle [a, b] de p, adouci */
+    s: function (p, a, b) { return ease((p - a) / ((b === undefined ? 1 : b) - a)); },
+    l: function (a, b, t) { return a + (b - a) * t; },
+    /* texte : o = { t: taille, g: gras, c: couleur, a: "start|middle|end", op: opacité, it: italique, w: largeur max (retour à la ligne) } */
+    t: function (x, y, txt, o) {
+      o = o || {}; var t = o.t || 13, lignes = o.w ? couper(txt, o.w, t, o.g) : [String(txt)];
+      var dy = o.v ? -(lignes.length - 1) * t * 0.6 : 0;
+      return '<text x="' + x + '" y="' + (y + dy) + '" text-anchor="' + (o.a || "start") + '" style="font-size:' + t + "px;" + (o.g ? "font-weight:700;" : "") + (o.it ? "font-style:italic;" : "") + "fill:" + c(o.c || "encre") + ";opacity:" + (o.op === undefined ? 1 : o.op) + (o.f ? ";font-family:var(--titre);font-stretch:condensed" : "") + (o.h ? ";paint-order:stroke;stroke:var(--carte);stroke-width:4px;stroke-linejoin:round" : "") + '">' +
+        lignes.map(function (l, k) { return '<tspan x="' + x + '" dy="' + (k ? t * 1.2 : 0) + '">' + esc(l) + "</tspan>"; }).join("") + "</text>";
+    },
+    /* rectangle : o = { f: remplissage, s: trait, r: arrondi, op, sw } */
+    r: function (x, y, w, h, o) {
+      o = o || {};
+      return '<rect x="' + x + '" y="' + y + '" width="' + Math.max(0, w) + '" height="' + Math.max(0, h) + '" rx="' + (o.r === undefined ? 4 : o.r) + '" style="fill:' + c(o.f || "carte") + ";stroke:" + (o.s ? c(o.s) : "none") + ";stroke-width:" + (o.sw || 1.5) + ";opacity:" + (o.op === undefined ? 1 : o.op) + '"/>';
+    },
+    cercle: function (x, y, r, o) {
+      o = o || {};
+      return '<circle cx="' + x + '" cy="' + y + '" r="' + Math.max(0, r) + '" style="fill:' + c(o.f || "canard") + ";stroke:" + (o.s ? c(o.s) : "none") + ";stroke-width:" + (o.sw || 1.5) + ";opacity:" + (o.op === undefined ? 1 : o.op) + '"/>';
+    },
+    /* boîte avec texte centré : o = { k: "cause|meca|effet|frein|neutre", t: taille, op } */
+    boite: function (x, y, w, h, txt, o) {
+      o = o || {};
+      var k = o.k || "meca", t = o.t || 12.5;
+      var st = { cause: ["canard", "canard", "carte"], meca: ["carte", "canard", "encre"], effet: ["corailc", "corail", "encre"], frein: ["moutardec", "moutarde", "encre"], neutre: ["carte2", "ligne", "encre"] }[k];
+      var lignes = couper(txt, w - 12, t, o.g), lh = t * 1.22, y0 = y + h / 2 - (lignes.length - 1) * lh / 2 + t * 0.36;
+      return '<g style="opacity:' + (o.op === undefined ? 1 : o.op) + '">' + A.r(x, y, w, h, { f: st[0], s: st[1], r: 8 }) +
+        lignes.map(function (l, j) { return '<text x="' + (x + w / 2) + '" y="' + (y0 + j * lh) + '" text-anchor="middle" style="font-size:' + t + "px;fill:" + c(st[2]) + (o.g ? ";font-weight:700" : "") + '">' + esc(l) + "</text>"; }).join("") + "</g>";
+    },
+    /* flèche de (x1, y1) à (x2, y2), tracée jusqu'à la fraction o.p ; o = { c, sw, p, op, tete } */
+    fl: function (x1, y1, x2, y2, o) {
+      o = o || {}; var p = o.p === undefined ? 1 : borne(o.p);
+      if (p <= 0) return "";
+      var x = x1 + (x2 - x1) * p, y = y1 + (y2 - y1) * p, a = Math.atan2(y2 - y1, x2 - x1), L = 7;
+      var col = c(o.c || "gris");
+      var s = '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x + '" y2="' + y + '" style="stroke:' + col + ";stroke-width:" + (o.sw || 1.8) + ";opacity:" + (o.op === undefined ? 1 : o.op) + (o.tir ? ";stroke-dasharray:4 3" : "") + '"/>';
+      if (o.tete !== false) s += '<path d="M' + x + " " + y + "L" + (x - L * Math.cos(a - 0.45)) + " " + (y - L * Math.sin(a - 0.45)) + "L" + (x - L * Math.cos(a + 0.45)) + " " + (y - L * Math.sin(a + 0.45)) + 'z" style="fill:' + col + ";opacity:" + (o.op === undefined ? 1 : o.op) + '"/>';
+      return s;
+    },
+    /* ligne brisée tracée jusqu'à la fraction p de sa longueur ; o = { c, sw, op, aire: y du bas pour remplir } */
+    pl: function (pts, p, o) {
+      o = o || {}; p = p === undefined ? 1 : borne(p);
+      if (pts.length < 2 || p <= 0) return "";
+      var long = 0, seg = [];
+      for (var i = 1; i < pts.length; i++) { var d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); seg.push(d); long += d; }
+      var reste = long * p, out = [pts[0]];
+      for (var j = 1; j < pts.length && reste > 0; j++) {
+        if (seg[j - 1] <= reste) { out.push(pts[j]); reste -= seg[j - 1]; }
+        else { var f = reste / seg[j - 1]; out.push([pts[j - 1][0] + (pts[j][0] - pts[j - 1][0]) * f, pts[j - 1][1] + (pts[j][1] - pts[j - 1][1]) * f]); reste = 0; }
+      }
+      var d2 = out.map(function (q, k) { return (k ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1); }).join("");
+      var s = "";
+      if (o.aire !== undefined) s += '<path d="' + d2 + "L" + out[out.length - 1][0].toFixed(1) + " " + o.aire + "L" + out[0][0].toFixed(1) + " " + o.aire + 'z" style="fill:' + c(o.c || "canard") + ';opacity:.13"/>';
+      s += '<path d="' + d2 + '" style="fill:none;stroke:' + c(o.c || "canard") + ";stroke-width:" + (o.sw || 2.6) + ";stroke-linejoin:round;stroke-linecap:round;opacity:" + (o.op === undefined ? 1 : o.op) + (o.tir ? ";stroke-dasharray:5 4" : "") + '"/>';
+      return s;
+    },
+    /* axes : origine (x0, y0), largeur w, hauteur h ; o = { lx, ly : libellés } */
+    axes: function (x0, y0, w, h, o) {
+      o = o || {};
+      var s = A.fl(x0, y0, x0 + w, y0, { c: "gris", sw: 1.3 }) + A.fl(x0, y0, x0, y0 - h, { c: "gris", sw: 1.3 });
+      if (o.lx) s += A.t(x0 + w, y0 + 16, o.lx, { t: 11, a: "end", c: "gris" });
+      if (o.ly) s += A.t(x0 + 6, y0 - h + 4, o.ly, { t: 11, c: "gris" });
+      return s;
+    },
+    g: function (op, contenu, tr) { return '<g style="opacity:' + borne(op) + '"' + (tr ? ' transform="' + tr + '"' : "") + ">" + contenu + "</g>"; },
+    /* pastille numérotée */
+    puce: function (x, y, n, o) { o = o || {}; return A.cercle(x, y, 10, { f: o.f || "corail", op: o.op }) + A.t(x, y + 4, n, { t: 11, g: true, a: "middle", c: "carte", op: o.op }); },
+    /* jauge horizontale de valeur v entre 0 et max */
+    jauge: function (x, y, w, v, max, o) {
+      o = o || {};
+      return A.r(x, y, w, 10, { f: "carte2", r: 5 }) + A.r(x, y, w * borne(v / max), 10, { f: o.c || "corail", r: 5 }) +
+        (o.l ? A.t(x, y - 5, o.l, { t: 11, c: "gris" }) : "") + (o.val ? A.t(x + w, y - 5, o.val, { t: 11, g: true, a: "end" }) : "");
+    }
+  };
+
+  function mouvement() {
+    return document.documentElement.classList.contains("mo") && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+  var IC_LECT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>';
+  var IC_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>';
+  var IC_PREC = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h2v14H6zM20 5v14L9 12z" fill="currentColor"/></svg>';
+  var IC_SUIV = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 5h2v14h-2zM4 5v14l11-7z" fill="currentColor"/></svg>';
+  var IC_ZERO = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg>';
+
+  var actives = [];
+  function monterUne(d) {
+    var id = d.getAttribute("data-anim"), an = ANIMS[id];
+    if (!an) return;
+    var n = an.etapes.length, H = an.h || 300;
+    d.className = "anim";
+    d.innerHTML = '<div class="an-tete"><span class="an-k">Animation</span><span class="an-t">' + esc(an.t) + "</span></div>" +
+      '<div class="an-scene"><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(an.t) + '"></svg></div>' +
+      '<div class="an-leg" aria-live="polite"><span class="an-n"></span><span class="an-l"></span></div>' +
+      '<div class="an-barre" role="group" aria-label="Étapes">' + an.etapes.map(function (e, k) { return '<button type="button" data-k="' + k + '" aria-label="Étape ' + (k + 1) + '"><i></i></button>'; }).join("") + "</div>" +
+      '<div class="an-cmd"><button type="button" class="an-b" data-a="prec" aria-label="Étape précédente">' + IC_PREC + '</button><button type="button" class="an-b an-jouer" data-a="jouer" aria-label="Lecture">' + IC_LECT + '</button><button type="button" class="an-b" data-a="suiv" aria-label="Étape suivante">' + IC_SUIV + '</button><button type="button" class="an-b" data-a="zero" aria-label="Recommencer">' + IC_ZERO + "</button></div>" +
+      '<details class="an-txt"><summary>Le déroulé en texte</summary><ol>' + an.etapes.map(function (e) { return "<li>" + esc(e.l) + "</li>"; }).join("") + "</ol></details>" +
+      (an.src ? '<p class="src-l">' + an.src + "</p>" : "");
+    var svg = d.querySelector("svg"), leg = d.querySelector(".an-l"), num = d.querySelector(".an-n"), bJ = d.querySelector(".an-jouer");
+    var segs = Array.prototype.slice.call(d.querySelectorAll(".an-barre button"));
+    var etat = { i: 0, p: mouvement() ? 0 : 1, joue: false, attente: 0, dernier: 0, vu: false };
+    function duree(k) { return (an.etapes[k].d || 3.5) * 1000; }
+    function dessiner() {
+      var s;
+      try { s = an.rendu(A, etat.i, etat.p); } catch (e) { s = ""; }
+      svg.innerHTML = s;
+      segs.forEach(function (b, k) { b.querySelector("i").style.width = (k < etat.i ? 100 : k === etat.i ? etat.p * 100 : 0) + "%"; b.classList.toggle("act", k === etat.i); });
+    }
+    function legende(anim) {
+      num.textContent = "Étape " + (etat.i + 1) + " / " + n;
+      leg.textContent = an.etapes[etat.i].l;
+      if (anim && mouvement()) { leg.classList.remove("vient"); void leg.offsetWidth; leg.classList.add("vient"); }
+    }
+    function majBouton() { bJ.innerHTML = etat.joue ? IC_PAUSE : IC_LECT; bJ.setAttribute("aria-label", etat.joue ? "Pause" : "Lecture"); d.classList.toggle("joue", etat.joue); }
+    function aller(k, depart) {
+      etat.i = Math.max(0, Math.min(n - 1, k));
+      etat.p = depart && mouvement() ? 0 : 1; etat.attente = 0;
+      legende(true); dessiner();
+    }
+    function boucle(t) {
+      if (!etat.joue) return;
+      var dt = Math.min(100, Math.max(0, t - (etat.dernier || t))); etat.dernier = t;
+      if (etat.p < 1) { etat.p = Math.min(1, etat.p + dt / duree(etat.i)); dessiner(); }
+      else {
+        etat.attente += dt;
+        if (etat.attente > 1500) {
+          if (etat.i < n - 1) { aller(etat.i + 1, true); }
+          else { etat.joue = false; majBouton(); return; }
+        }
+      }
+      requestAnimationFrame(boucle);
+    }
+    function jouer() {
+      if (!mouvement()) { if (etat.i < n - 1) aller(etat.i + 1, false); return; }
+      if (etat.i === n - 1 && etat.p >= 1) aller(0, true);
+      etat.joue = true; etat.dernier = 0; majBouton(); requestAnimationFrame(boucle);
+    }
+    function pause() { etat.joue = false; majBouton(); }
+    d.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      var a = b.getAttribute("data-a");
+      if (b.hasAttribute("data-k")) { pause(); aller(+b.getAttribute("data-k"), false); return; }
+      if (a === "jouer") { if (etat.joue) pause(); else jouer(); }
+      else if (a === "suiv") { aller(etat.i + 1, etat.joue); }
+      else if (a === "prec") { pause(); aller(etat.i - 1, false); }
+      else if (a === "zero") { pause(); aller(0, true); if (mouvement()) jouer(); }
+    });
+    legende(false); dessiner(); majBouton();
+    var obj = { d: d, demarrer: function () { if (!etat.vu && mouvement()) { etat.vu = true; jouer(); } }, pause: pause, joue: function () { return etat.joue; } };
+    actives.push(obj);
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (en) {
+        en.forEach(function (x) {
+          if (x.isIntersecting && x.intersectionRatio > 0.45) obj.demarrer();
+          else if (!x.isIntersecting && etat.joue) pause();
+        });
+      }, { threshold: [0, 0.45, 0.8] });
+      io.observe(d);
+    }
+  }
+  return {
+    A: A,
+    monter: function (racine) {
+      actives.forEach(function (o) { o.pause(); });
+      actives = [];
+      Array.prototype.slice.call((racine || document).querySelectorAll("[data-anim]")).forEach(monterUne);
+    }
+  };
+})();
+
+var CH = {}, CHAINES = {}, GRAPHES = {}, ANIMS = {};
 
 var PROG = [
   { id: "eco", nom: "Science économique", qs: [
@@ -834,6 +1081,7 @@ CH.e1 = {
       '<p>Rappel de Première : un PIB qui augmente <b>en valeur</b> peut stagner en volume si seuls les prix montent. C’est donc toujours le PIB en volume qui mesure la croissance.</p>' +
       '<div data-graph="e1-pib"></div>' +
       '<p>Le graphique montre trois âges de la croissance française. Pendant les « Trente Glorieuses », la croissance est forte et régulière (5,2 % par an en moyenne de 1950 à 1973). Après les chocs pétroliers (1975 : −0,9 %), elle ralentit nettement. Depuis 2008, elle dépasse rarement 2 %, avec deux récessions : 2009 (−2,8 %, crise financière) et 2020 (−7,4 %, Covid), suivie d’un rattrapage en 2021 (+6,9 %).</p>' +
+      '<div data-anim="e1-pib"></div>' +
       '<div data-graph="e1-periodes"></div>' +
       '<div class="ex"><p>Le PIB en volume passe de 309,1 milliards d’euros 2020 en 1950 à 2 646,7 milliards en 2025 : il est multiplié par 8,6 (Insee). En 2025, il augmente de 0,8 %, après +1,5 % en 2024.</p></div>' +
       '<p>Croissance n’est pas <b>développement</b> : le développement est l’amélioration durable du bien-être (santé, éducation, niveau de vie). La croissance en fournit les moyens, sans le garantir. On distingue aussi la croissance <b>effective</b> (observée) de la croissance <b>potentielle</b> (celle que permettraient tous les facteurs pleinement employés), qui dépend des sources étudiées ci-dessous.</p>' },
@@ -845,6 +1093,7 @@ CH.e1 = {
       '<p>Il faut distinguer deux mesures de la productivité :</p>' +
       '<ul><li>la <b>productivité (apparente) du travail</b> = production ÷ quantité de travail (par emploi ou par heure). Elle augmente aussi quand chaque travailleur dispose de plus de capital ;</li><li>la <b>productivité globale des facteurs (PGF)</b> mesure l’efficacité de la <b>combinaison</b> du travail et du capital. C’est la part de la croissance que l’augmentation des quantités de facteurs n’explique pas.</li></ul>' +
       '<div class="aut"><span class="mono">RS</span><span class="an">Robert Solow<small>1924-2023 · Nobel 1987</small></span><span class="ad">Dans son modèle (1956), l’accumulation du capital seule s’essouffle : chaque machine supplémentaire rapporte moins que la précédente (rendements décroissants). Seul le progrès technique permet une croissance durable. En 1957, il mesure qu’aux États-Unis, de 1909 à 1949, environ 87,5 % de la hausse de la production par heure de travail vient du progrès technique et non du capital. Ce « <b>résidu</b> » est la PGF.</span></div>' +
+      '<div data-anim="e1-solow"></div>' +
       '<p>Le lien avec le <b>progrès technique</b> est direct : le progrès technique désigne l’ensemble des innovations qui améliorent les produits, les procédés et l’organisation. Il fait augmenter la PGF, donc permet de produire plus avec autant de facteurs. Les gains de productivité se transforment ensuite en croissance par la demande :</p>' +
       '<div data-chain="e1-pgf"></div>' +
       '<details class="pli"><summary>Activité : décomposer une croissance (exemple chiffré inventé)</summary><div><p>Une économie imaginaire croît de 2,0 % par an. Les économistes estiment que la hausse du travail contribue pour 0,4 point et celle du capital pour 0,6 point. La contribution de la PGF est le reste : 2,0 − 0,4 − 0,6 = <b>1,0 point</b>, soit la moitié de la croissance. C’est exactement la démarche de Solow : la PGF se mesure « en creux », comme un résidu. Ce résidu mesure aussi, en partie, notre ignorance : qualité du travail, organisation, institutions s’y mélangent.</p></div></details>' },
@@ -1104,6 +1353,7 @@ CH.e2 = {
       '<tr><td>Portugal</td><td class="n">90 h</td><td class="n">80 h</td><td>90 ÷ 80 = 1,125 unité de vin</td></tr></tbody></table></div>' +
       '<p>Le Portugal est plus productif dans les deux biens (avantage absolu partout). Mais produire du drap coûte relativement moins cher en Angleterre (0,83 unité de vin « sacrifiée », contre 1,125 au Portugal) : l’Angleterre a un avantage comparatif en drap, le Portugal en vin.</p>' +
       '<details class="pli"><summary>Le calcul du gain à l’échange</summary><div><p>Sans échange, chaque pays produit une unité de chaque bien : 2 draps et 2 unités de vin, avec 220 heures en Angleterre et 170 au Portugal. Si l’Angleterre consacre ses 220 heures au drap, elle en produit 2,2 ; si le Portugal consacre ses 170 heures au vin, il en produit 2,125. Avec les mêmes heures, le monde dispose de 0,2 drap et de 0,125 unité de vin en plus : c’est le gain de la spécialisation, à partager par l’échange.</p></div></details>' +
+      '<div data-anim="e2-ricardo"></div>' +
       '<div data-chain="e2-ricardo"></div>' +
       '<div class="def"><b>Dotations factorielles</b> — quantités de facteurs de production (travail plus ou moins qualifié, capital, terres, ressources naturelles) dont dispose un pays.</div>' +
       '<div class="aut"><span class="mono">HOS</span><span class="an">Heckscher, Ohlin et Samuelson<small>1919, 1933, années 1940</small></span><span class="ad">Le modèle <b>HOS</b> explique les avantages comparatifs par les dotations : un pays se spécialise dans les biens qui utilisent intensément le facteur dont il est <b>relativement abondant</b>, donc relativement bon marché.</span></div>' +
@@ -1137,6 +1387,7 @@ CH.e2 = {
       '<div class="def"><b>Firme multinationale (FMN)</b> — entreprise qui possède au moins une filiale de production à l’étranger, créée ou rachetée par un <b>investissement direct à l’étranger</b> (IDE), c’est-à-dire une prise de contrôle durable (au moins 10 % du capital par convention).</div>' +
       '<div data-chain="e2-cvm"></div>' +
       '<p>On parle de <b>décomposition internationale des processus productifs</b>. Les firmes y recourent pour réduire leurs coûts (main-d’œuvre, impôts), accéder à des compétences, se rapprocher de leurs marchés ou contourner des barrières douanières. Selon l’OCDE, environ <b>70 % du commerce international</b> fait intervenir des chaînes de valeur mondiales : services, matières premières, pièces et composants franchissent plusieurs frontières.</p>' +
+      '<div data-anim="e2-iphone"></div>' +
       '<div data-graph="e2-iphone"></div>' +
       '<div class="ex"><p>En 2009, un iPhone 3G coûte environ 178,96 dollars à fabriquer. L’assemblage en Chine ne représente que 6,50 dollars, soit 3,6 % ; les composants viennent surtout de fournisseurs japonais, allemands, sud-coréens et américains ; la conception et la marque sont américaines. Pourtant, toute la valeur de l’appareil expédié vers les États-Unis est comptée comme une importation en provenance de Chine (Xing et Detert, 2010).</p></div>' +
       '<div class="ex"><p>L’Airbus A320 : des éléments produits en France, en Allemagne, en Espagne et au Royaume-Uni (où sont fabriquées les ailes) ; des lignes d’assemblage final à Toulouse, à Hambourg, à Tianjin en Chine et à Mobile aux États-Unis.</p></div>' +
@@ -1344,6 +1595,7 @@ CH.s1 = {
       '<div class="attn"><p>Les PCS ne sont pas des classes sociales. Elles sont construites pour la statistique, sans hypothèse sur la conscience ou les conflits de groupes. Mais elles servent à vérifier si des classes existent : les écarts de revenu, de diplôme ou de pratiques entre PCS sont-ils grands et durables ?</p></div>' },
 
     { id: "s1-3", t: "Les grandes évolutions depuis 1950", h:
+      '<div data-anim="s1-pcs"></div>' +
       '<div data-graph="s1-pcs"></div>' +
       '<p>Le graphique résume quarante ans de transformations : les ouvriers passent de 29,9 % à 18,0 % de l’emploi, les agriculteurs de 7,5 % à 1,3 %, tandis que les cadres passent de 8,0 % à 23,0 %. En 2024, pour la première fois depuis 1982, les professions intermédiaires dépassent les employés (Insee). Quatre évolutions sont au programme.</p>' +
       '<h3>1. La salarisation</h3><p>La part des salariés dans l’emploi a fortement augmenté depuis les années 1950 avec le recul des agriculteurs exploitants et des petits commerçants et artisans. En 2024, 86,7 % des personnes en emploi sont salariées, dont 72,9 % en CDI ou fonctionnaires. On observe toutefois un léger regain des indépendants (13,3 %, plus haut niveau depuis 1999), porté par les micro-entrepreneurs (3,6 % de l’emploi) : plateformes de livraison, VTC, services.</p>' +
@@ -1543,6 +1795,7 @@ CH.s2 = {
       '<div class="def"><b>Démocratisation scolaire</b> — réduction des inégalités d’accès aux diplômes et aux filières selon l’origine sociale. Antoine Prost distingue démocratisation <b>quantitative</b> (tout le monde accède plus loin : c’est la massification) et <b>qualitative</b> (les chances d’accès se rapprochent entre milieux sociaux).</div>' +
       '<p>Les inégalités d’accès au bac se sont réduites : selon la DEPP (2020), l’écart d’accès au bac entre enfants de cadres et enfants d’ouvriers non qualifiés passe de 28 points pour les élèves entrés en sixième en 1995 à 15 points pour ceux entrés en 2007. Mais les écarts se sont <b>déplacés</b> vers les filières.</p>' +
       '<div class="aut"><span class="mono">PM</span><span class="an">Pierre Merle<small>sociologue</small></span><span class="ad">Distingue la démocratisation <b>égalisatrice</b> (les écarts se réduisent), <b>uniforme</b> (tous progressent, écarts stables) et <b>ségrégative</b> (l’accès s’ouvre, mais les enfants des milieux populaires sont orientés vers les filières les moins valorisées).</span></div>' +
+      '<div data-anim="s2-mass"></div>' +
       '<div data-graph="s2-filieres"></div>' +
       '<p>En 2023-2024, les enfants de cadres représentent 53,7 % des élèves de classes préparatoires et 64,9 % des élèves des écoles normales supérieures, alors que les cadres représentent 23,0 % des personnes en emploi en 2024. Les enfants d’ouvriers sont 6,4 % en classes préparatoires, mais 21,6 % en sections de technicien supérieur. À l’université, la part des enfants de cadres (34,9 %) est la même qu’en 2009 (Observatoire des inégalités). Le bac s’est ouvert, mais les filières restent hiérarchisées socialement : c’est une démocratisation <b>ségrégative</b>.</p>' +
       '<div class="attn"><p>Comparer la part des enfants de cadres en CPGE à la part des cadres dans l’emploi donne un <b>ordre de grandeur</b> de la surreprésentation, pas une mesure exacte : la population de référence (les parents de jeunes de 20 ans) n’est pas exactement celle des personnes en emploi.</p></div>' },
@@ -1636,6 +1889,289 @@ CH.s2 = {
     { type: "Dissertation · plan détaillé", origine: "Sujet inventé pour le site", t: "Comment expliquer les inégalités de réussite scolaire selon le milieu social ?", enonce: "<p>« Comment expliquer » appelle un plan explicatif (pas un oui / non).</p>",
       corrige: '<p><b>Problématique.</b> Malgré la massification, la réussite scolaire reste fortement liée à l’origine sociale. Ces inégalités tiennent-elles d’abord à ce que les familles transmettent, aux choix qu’elles font, ou au fonctionnement de l’École elle-même ?</p><p><b>I. Des inégalités héritées : le capital culturel et les investissements familiaux</b><br>A. Le capital culturel et la reproduction (Bourdieu et Passeron) ; PISA 2022.<br>B. Les investissements familiaux (temps, argent, information).<br>C. Des transmissions non mécaniques : configurations familiales (Lahire).</p><p><b>II. Des inégalités construites par les choix des familles</b><br>A. Le calcul coûts / avantages / risques et l’effet d’agrégation (Boudon) ; vœux en fin de troisième (DEPP).<br>B. Les stratégies d’établissement et d’options (van Zanten).<br>C. Le résultat : une démocratisation ségrégative (Merle) ; CPGE.</p><p><b>III. Des inégalités renforcées par l’École et croisées avec le genre</b><br>A. Ségrégation scolaire, attentes des enseignants (effet Pygmalion), orientation.<br>B. Les codes implicites valorisés par l’institution.<br>C. Le genre croise l’origine sociale : filles meilleures au bac, moins présentes en sciences (Baudelot et Establet).</p>' }
   ]
+};
+
+ANIMS["e1-solow"] = {
+  t: "Pourquoi le progrès technique est indispensable",
+  h: 300,
+  src: "Schéma de principe (fonction de production à rendements décroissants, valeurs illustratives). Résidu : R. Solow, 1957, données des États-Unis 1909-1949.",
+  etapes: [
+    { l: "Avec plus de capital par travailleur (machines, outils, logiciels), chacun produit davantage : c’est la fonction de production.", d: 3.5 },
+    { l: "Mais les rendements sont décroissants : chaque nouvelle machine rapporte moins que la précédente.", d: 4.5 },
+    { l: "Accumuler du capital seul mène à un plafond : la production par travailleur augmente de moins en moins (modèle de Solow, 1956).", d: 4 },
+    { l: "Le progrès technique déplace toute la courbe vers le haut : avec le même capital, on produit plus. C’est la hausse de la productivité globale des facteurs.", d: 4 },
+    { l: "Ce supplément qui ne vient pas des facteurs, Solow l’appelle le « résidu » : environ 87,5 % de la hausse de la production par heure aux États-Unis de 1909 à 1949.", d: 3.5 }
+  ],
+  rendu: function (A, i, p) {
+    var x0 = 46, y0 = 262, X = function (k) { return x0 + k * 29; }, Y = function (v) { return y0 - v * 60; };
+    function f(k, a) { return a * Math.pow(k, 0.4); }
+    function courbe(a) { var pts = []; for (var k = 0; k <= 10.001; k += 0.25) pts.push([X(k), Y(f(k, a))]); return pts; }
+    var s = A.axes(x0, y0, 300, 236, { lx: "capital par travailleur", ly: "production par travailleur" });
+    var pa = i === 0 ? p : 1;
+    s += A.pl(courbe(1), pa, { c: i >= 3 ? "gris" : "canard", tir: i >= 3, sw: i >= 3 ? 1.8 : 2.8 });
+    if (i === 0) s += A.t(X(9.4), Y(f(9.4, 1)) - 10, "fonction de production", { t: 11.5, a: "end", c: "canard", op: A.s(p, 0.6, 1) });
+    if (i >= 1) {
+      var marches = [[1, 3], [3, 5], [5, 7], [7, 9]];
+      marches.forEach(function (m, j) {
+        var q = i === 1 ? A.s(p, j * 0.22, j * 0.22 + 0.3) : 1;
+        if (q <= 0) return;
+        var ya = Y(f(m[0], 1)), yb = Y(f(m[1], 1)), op = i >= 3 ? 0.35 : 1;
+        s += A.g(op, A.fl(X(m[0]), ya, X(m[0]) + (X(m[1]) - X(m[0])) * q, ya, { c: "gris", sw: 1.2, tete: false }) +
+          (q > 0.5 ? A.r(X(m[1]) - 3, yb, 6, (ya - yb) * A.s(q, 0.5, 1), { f: "corail", r: 2 }) : "") +
+          A.t(X(m[1]) + 6, (ya + yb) / 2 + 4, "+" + A.fr(f(m[1], 1) - f(m[0], 1), 2), { t: 10.5, g: true, c: "corail", op: A.s(q, 0.7, 1) }));
+      });
+      if (i === 1) s += A.t(X(3.2), Y(0.75), "même ajout de capital, gain de production qui diminue", { t: 11, c: "corail", op: A.s(p, 0.85, 1), w: 190, h: true });
+    }
+    if (i === 2) {
+      var k = A.l(2, 9, A.s(p, 0, 0.9));
+      s += A.cercle(X(k), Y(f(k, 1)), 7, { f: "corail", s: "carte", sw: 2 });
+      s += A.t(X(5.5), Y(0.45), "la croissance s’essouffle", { t: 13, g: true, a: "middle", c: "corail", op: A.s(p, 0.6, 1) });
+    }
+    if (i >= 3) {
+      var a = i === 3 ? A.l(1, 1.35, A.s(p, 0, 0.8)) : 1.35;
+      s += A.pl(courbe(a), 1, { c: "canard", sw: 2.8 });
+      var yh = Y(f(9, a));
+      s += A.cercle(X(9), yh, 7, { f: "corail", s: "carte", sw: 2 });
+      s += A.t(X(0.6), Y(2.75), "après progrès technique", { t: 11.5, c: "canard", g: true, op: i === 3 ? A.s(p, 0.6, 1) : 1, h: true });
+      s += A.fl(X(4), Y(f(4, 1)) - 4, X(4), Y(f(4, a)) + 6, { c: "canard", sw: 2, op: i === 3 ? A.s(p, 0.3, 0.7) : 1 });
+    }
+    if (i === 4) {
+      var ya1 = Y(f(9, 1)), ya2 = Y(f(9, 1.35)), q = A.s(p, 0, 0.6);
+      s += A.r(X(9) - 22, ya2, 44, (ya1 - ya2) * q, { f: "moutarde", op: 0.35, r: 3 });
+      s += A.t(X(5.6), Y(0.9), "PGF : le « résidu »", { t: 13, g: true, a: "middle", c: "encre", op: A.s(p, 0.4, 1), h: true });
+      s += A.fl(X(6.6), Y(0.98), X(9) - 22, (ya1 + ya2) / 2 + 6, { c: "moutarde", sw: 2, p: A.s(p, 0.5, 1) });
+    }
+    return s;
+  }
+};
+
+ANIMS["e1-pib"] = {
+  t: "75 ans de croissance française, année par année",
+  h: 290,
+  src: "Source : Insee, comptes nationaux annuels, base 2020 (mai 2026). Taux de croissance du PIB en volume ; moyennes calculées à partir des niveaux.",
+  etapes: [
+    { l: "1950-1973, les « Trente Glorieuses » : la France rattrape son retard, la croissance dépasse souvent 5 % (5,2 % par an en moyenne).", d: 5, de: 1950, a: 1973 },
+    { l: "Les chocs pétroliers : en 1975, le PIB recule (−0,9 %). La croissance ne retrouvera plus ce rythme.", d: 2.5, de: 1974, a: 1975 },
+    { l: "1976-2007 : une croissance ralentie et heurtée (2,4 % par an en moyenne de 1973 à 2007), avec une récession en 1993 (−0,4 %).", d: 5, de: 1976, a: 2007 },
+    { l: "La crise financière : −2,8 % en 2009, la plus forte récession depuis 1950 jusque-là.", d: 2.5, de: 2008, a: 2009 },
+    { l: "Les années 2010 : une croissance faible, 1,4 % par an en moyenne de 2010 à 2019.", d: 4, de: 2010, a: 2019 },
+    { l: "Covid : −7,4 % en 2020, rebond de +6,9 % en 2021, puis +1,6 %, +1,5 % et +0,8 % de 2023 à 2025.", d: 4, de: 2020, a: 2025 }
+  ],
+  rendu: function (A, i, p) {
+    var g = GRAPHES["e1-pib"], xs = g.x, ys = g.y, n = xs.length;
+    var x0 = 34, w = 316, yz = 158, sc = 12, bw = w / n;
+    var Y = function (v) { return yz - v * sc; };
+    var s = "";
+    [-8, -4, 0, 4, 8].forEach(function (t) { s += '<line x1="' + x0 + '" x2="' + (x0 + w) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--' + (t === 0 ? "encre2" : "ligne") + ');stroke-width:1"/>' + A.t(x0 - 5, Y(t) + 4, (t > 0 ? "+" : "") + t + " %", { t: 9.5, a: "end", c: "gris" }); });
+    [1950, 1970, 1990, 2010, 2025].forEach(function (yr) { s += A.t(x0 + (yr - 1950 + 0.5) * bw, 282, String(yr), { t: 9.5, a: "middle", c: "gris" }); });
+    var etapes = this.etapes;
+    var et = etapes[i], fin = et.a, debut = et.de, nb = fin - debut + 1;
+    var courant = debut + (nb) * p;
+    if (i >= 0) {
+      var bande = etapes[i];
+      s += A.r(x0 + (bande.de - 1950) * bw, 10, (bande.a - bande.de + 1) * bw, 255, { f: "moutardec", op: 0.6, r: 0 });
+    }
+    for (var k = 0; k < n; k++) {
+      var yr = xs[k], q;
+      if (yr < debut) q = 1; else if (yr > fin) q = 0; else q = Math.max(0, Math.min(1, courant - yr));
+      if (q <= 0) continue;
+      var v = ys[k] * A.s(q, 0, 1), y1 = Y(Math.max(0, v)), y2 = Y(Math.min(0, v));
+      s += A.r(x0 + k * bw + 0.5, y1, bw - 1, Math.max(0.6, y2 - y1), { f: ys[k] < 0 ? "corail" : "canard", r: 1 });
+    }
+    var dernier = Math.min(fin, Math.floor(courant));
+    if (dernier >= debut) {
+      var kk = dernier - 1950, val = ys[kk];
+      s += A.t(x0 + (kk + 0.5) * bw, val >= 0 ? Y(val) - 6 : Y(val) + 14, String(dernier) + " : " + (val > 0 ? "+" : "") + A.fr(val, 1) + " %", { t: 11, g: true, a: kk > 60 ? "end" : kk < 6 ? "start" : "middle", c: val < 0 ? "corail" : "encre", h: true });
+    }
+    return s;
+  }
+};
+
+ANIMS["e2-ricardo"] = {
+  t: "L’avantage comparatif se construit",
+  h: 345,
+  src: "Exemple de David Ricardo, <i>Des principes de l’économie politique et de l’impôt</i>, 1817 (heures de travail pour une unité de chaque bien).",
+  etapes: [
+    { l: "Heures de travail pour produire une unité : en Angleterre, 100 h pour le drap et 120 h pour le vin ; au Portugal, 90 h et 80 h.", d: 3.5 },
+    { l: "Le Portugal est plus productif dans les deux biens : il a un avantage absolu partout. L’échange serait-il inutile ?", d: 3 },
+    { l: "Comparons les coûts relatifs. En Angleterre, un drap coûte 100/120 = 0,83 vin ; au Portugal, 90/80 = 1,125 vin. L’Angleterre a un avantage comparatif en drap, le Portugal en vin.", d: 4.5 },
+    { l: "Sans échange, chaque pays produit une unité de chaque bien : le monde dispose de 2 draps et de 2 vins.", d: 3 },
+    { l: "Chacun se spécialise : l’Angleterre met ses 220 h dans le drap (2,2 draps), le Portugal ses 170 h dans le vin (2,125 vins).", d: 4 },
+    { l: "Avec le même travail, le monde produit 0,2 drap et 0,125 vin de plus. L’échange partage ce gain : les deux pays y gagnent.", d: 4 }
+  ],
+  rendu: function (A, i, p) {
+    var s = "", pays = [{ n: "Angleterre", x: 12, h: [100, 120], aut: [1, 1], spe: [2.2, 0] }, { n: "Portugal", x: 186, h: [90, 80], aut: [1, 1], spe: [0, 2.125] }];
+    var biens = [{ n: "drap", c: "canard" }, { n: "vin", c: "corail" }];
+    pays.forEach(function (P, j) {
+      s += A.t(P.x + 81, 20, P.n, { t: 15, g: true, a: "middle", f: true });
+      s += '<line x1="' + P.x + '" x2="' + (P.x + 162) + '" y1="28" y2="28" style="stroke:var(--encre);stroke-width:2"/>';
+      biens.forEach(function (b, k) {
+        var y = 44 + k * 30, q = i === 0 ? A.s(p, k * 0.3 + j * 0.15, k * 0.3 + j * 0.15 + 0.5) : 1;
+        var hl = (i === 1 && j === 1) ? 1 : 0;
+        s += A.t(P.x, y + 13, b.n, { t: 11.5, c: "gris" });
+        s += A.r(P.x + 34, y, P.h[k] * 0.8 * q, 18, { f: b.c, op: i === 1 && j === 0 ? 0.45 : 1, s: hl ? "moutarde" : null, sw: 3 });
+        s += A.t(P.x + 40 + P.h[k] * 0.8 * q, y + 13, A.fr(P.h[k] * q, 0) + " h", { t: 11.5, g: true, op: q });
+      });
+      if (i === 1 && j === 1) s += A.t(P.x + 81, 120, "avantage absolu dans les deux biens", { t: 11.5, g: true, a: "middle", c: "moutarde", op: A.s(p, 0.3, 0.8) });
+      if (i >= 2) {
+        var ratio = P.h[0] / P.h[1], q2 = i === 2 ? A.s(p, j * 0.3, j * 0.3 + 0.5) : 1;
+        s += A.t(P.x + 81, 120, "1 drap = " + A.fr(ratio, ratio === 1.125 ? 3 : 2) + " vin", { t: 13, g: true, a: "middle", op: q2 });
+        s += A.t(P.x + 81, 138, j === 0 ? "avantage comparatif : drap" : "avantage comparatif : vin", { t: 11.5, a: "middle", c: j === 0 ? "canard" : "corail", g: true, op: i === 2 ? A.s(p, 0.6 + j * 0.15, 0.95) : 1 });
+      }
+      if (i >= 3) {
+        var q3 = i === 3 ? A.s(p, 0, 0.6) : 1, t4 = i === 4 ? A.s(p, 0.1, 0.8) : (i > 4 ? 1 : 0);
+        s += A.g(q3, A.t(P.x, 172, "Production", { t: 11, c: "gris", g: true }));
+        biens.forEach(function (b, k) {
+          var qte = A.l(P.aut[k], P.spe[k], t4), y = 180 + k * 28;
+          s += A.g(q3, A.t(P.x, y + 13, b.n, { t: 11.5, c: "gris" }) + A.r(P.x + 34, y, qte * 46, 18, { f: b.c }) + (qte > 0.02 ? A.t(P.x + 40 + qte * 46, y + 13, A.fr(qte, Math.abs(qte - 2.125) < 1e-9 ? 3 : (Math.abs(qte * 10 - Math.round(qte * 10)) < 1e-9 ? (qte % 1 ? 1 : 0) : 2)), { t: 11.5, g: true }) : ""));
+        });
+      }
+    });
+    if (i >= 3) {
+      var t4b = i === 4 ? A.s(p, 0.1, 0.8) : (i > 4 ? 1 : 0), q3b = i === 3 ? A.s(p, 0.4, 1) : 1;
+      var dr = A.l(2, 2.2, t4b), vi = A.l(2, 2.125, t4b);
+      s += A.g(q3b, A.r(12, 244, 336, 34, { f: "carte2", r: 8 }) + A.t(180, 266, "Monde : " + A.fr(dr, dr === 2 ? 0 : (dr > 2.19 ? 1 : 2)) + " draps et " + A.fr(vi, vi === 2 ? 0 : 3) + " vins", { t: 14, g: true, a: "middle" }));
+    }
+    if (i === 5) {
+      s += A.fl(70, 296, 290, 296, { c: "canard", sw: 2.4, p: A.s(p, 0, 0.4) }) + A.t(180, 291, "drap anglais", { t: 11, a: "middle", c: "canard", g: true, op: A.s(p, 0.2, 0.4), h: true });
+      s += A.fl(290, 312, 70, 312, { c: "corail", sw: 2.4, p: A.s(p, 0.2, 0.6) }) + A.t(180, 325, "vin portugais", { t: 11, a: "middle", c: "corail", g: true, op: A.s(p, 0.4, 0.6), h: true });
+      s += A.t(180, 342, "gain : +0,2 drap et +0,125 vin, à partager par l’échange", { t: 12.5, g: true, a: "middle", c: "encre", op: A.s(p, 0.6, 1) });
+    }
+    return s;
+  }
+};
+
+ANIMS["e2-iphone"] = {
+  t: "Le voyage d’un iPhone 3G (2009)",
+  h: 300,
+  src: "Source : Y. Xing et N. Detert, ADBI Working Paper n° 257, décembre 2010, d’après des estimations d’iSuppli (2009). Coût de fabrication : 178,96 $, dont 6,50 $ d’assemblage en Chine.",
+  etapes: [
+    { l: "Apple conçoit l’iPhone aux États-Unis. Ses composants viennent de fournisseurs de plusieurs pays : Japon, Allemagne, Corée du Sud, États-Unis…", d: 3 },
+    { l: "Les composants, 172,46 $ par appareil, sont expédiés vers l’usine d’assemblage en Chine.", d: 3.5 },
+    { l: "En Chine, l’usine assemble le téléphone : 6,50 $ de valeur ajoutée, soit 3,6 % du coût de fabrication.", d: 3.5 },
+    { l: "L’iPhone part vers les États-Unis : la statistique douanière enregistre une importation de 178,96 $ en provenance de Chine.", d: 3.5 },
+    { l: "En valeur ajoutée, la Chine n’a produit que 6,50 $ sur 178,96 $. Le commerce mesuré en valeur brute exagère son rôle : d’où le commerce en valeur ajoutée.", d: 4 }
+  ],
+  rendu: function (A, i, p) {
+    var s = "", four = ["Japon", "Allemagne", "Corée du Sud", "États-Unis"];
+    four.forEach(function (n, k) {
+      var q = i === 0 ? A.s(p, k * 0.18, k * 0.18 + 0.4) : 1;
+      s += A.boite(6, 18 + k * 46, 96, 36, n, { k: "neutre", op: q, t: 12 });
+    });
+    s += A.t(54, 205, "fournisseurs", { t: 10.5, a: "middle", c: "gris", op: i === 0 ? A.s(p, 0.7, 1) : 1 });
+    var chine = i >= 1 ? (i === 1 ? A.s(p, 0, 0.3) : 1) : 0;
+    s += A.boite(146, 80, 84, 52, "Chine : assemblage", { k: i >= 2 ? "effet" : "meca", op: chine, t: 12.5, g: true });
+    var us = i >= 3 ? (i === 3 ? A.s(p, 0, 0.3) : 1) : 0;
+    s += A.boite(270, 80, 84, 52, "États-Unis : vente", { k: "cause", op: us, t: 12.5, g: true });
+    if (i >= 1) {
+      four.forEach(function (n, k) {
+        var y = 36 + k * 46, q = i === 1 ? A.s(p, 0.15 + k * 0.1, 0.65 + k * 0.1) : 1;
+        s += A.fl(104, y, 144, 106, { c: "gris", p: q, sw: 1.4 });
+        if (i === 1 && q > 0 && q < 1) s += A.r(104 + 40 * q - 5, y + (106 - y) * q - 5, 10, 10, { f: "canard", r: 2 });
+      });
+    }
+    if (i >= 3) {
+      var q3 = i === 3 ? A.s(p, 0.2, 0.8) : 1;
+      s += A.fl(232, 106, 268, 106, { c: "corail", sw: 2.4, p: q3 });
+      if (i === 3) s += A.t(352, 160, "importation : 178,96 $", { t: 12, g: true, a: "end", c: "corail", op: A.s(p, 0.6, 1), h: true });
+    }
+    var x0 = 20, L = 320, sc = L / 178.96, yb = 238;
+    if (i >= 1) {
+      var qc = i === 1 ? A.s(p, 0.4, 1) : 1;
+      s += A.t(x0, yb - 8, "Coût de fabrication d’un appareil", { t: 11, c: "gris", g: true });
+      s += A.r(x0, yb, 172.46 * sc * qc, 26, { f: "canard", r: 3 });
+      if (qc > 0.6) s += A.t(x0 + 8, yb + 17, "composants 172,46 $", { t: 12, g: true, c: "carte" });
+    }
+    if (i >= 2) {
+      var qa = i === 2 ? A.s(p, 0.3, 0.8) : 1;
+      s += A.r(x0 + 172.46 * sc, yb, 6.5 * sc * qa, 26, { f: "corail", r: 2 });
+      s += A.t(x0 + L, yb + 44, "assemblage chinois : 6,50 $ (3,6 %)", { t: 12, g: true, a: "end", c: "corail", op: i === 2 ? A.s(p, 0.6, 1) : 1 });
+    }
+    if (i === 4) {
+      s += A.r(x0 - 3, yb - 3, L + 6, 32, { f: "none", s: "moutarde", sw: 2.5, op: A.s(p, 0, 0.4) });
+      s += A.t(352, 160, "valeur ajoutée chinoise : 3,6 %", { t: 13.5, g: true, a: "end", c: "corail", op: A.s(p, 0.2, 0.7), h: true });
+      s += A.t(352, 178, "valeur brute comptée : 100 %", { t: 12, a: "end", c: "gris", op: A.s(p, 0.4, 0.9), h: true });
+    }
+    return s;
+  }
+};
+
+/* Courbes qui se tracent année par année (utilitaire commun aux animations de séries) */
+function ANIM_SERIES(A, x0, y0, w, h, xs, series, ymax, jusqua, opts) {
+  opts = opts || {};
+  var n = xs.length, X = function (k) { return x0 + w * k / (n - 1); }, Y = function (v) { return y0 - h * v / ymax; };
+  var s = "";
+  (opts.ticks || []).forEach(function (t) { s += '<line x1="' + x0 + '" x2="' + (x0 + w) + '" y1="' + Y(t) + '" y2="' + Y(t) + '" style="stroke:var(--ligne);stroke-width:1"/>' + A.t(x0 - 4, Y(t) + 4, t + (opts.u || ""), { t: 9.5, a: "end", c: "gris" }); });
+  (opts.annees || []).forEach(function (yr) { var k = xs.indexOf(yr); if (k >= 0) s += A.t(X(k), y0 + 16, String(yr), { t: 9.5, a: "middle", c: "gris" }); });
+  var kmax = Math.floor(jusqua), fr = jusqua - kmax;
+  series.forEach(function (sr) {
+    var pts = [];
+    for (var k = 0; k <= Math.min(kmax, n - 1); k++) pts.push([X(k), Y(sr.v[k])]);
+    if (kmax < n - 1 && fr > 0) pts.push([X(kmax) + (X(kmax + 1) - X(kmax)) * fr, Y(sr.v[kmax] + (sr.v[kmax + 1] - sr.v[kmax]) * fr)]);
+    if (pts.length < 2) pts.push(pts[0]);
+    s += A.pl(pts, 1, { c: sr.c, sw: sr.sw || 2.4, op: sr.op });
+    var der = pts[pts.length - 1], kv = Math.min(kmax, n - 1), val = kmax < n - 1 ? sr.v[kmax] + (sr.v[kmax + 1] - sr.v[kmax]) * fr : sr.v[n - 1];
+    s += A.cercle(der[0], der[1], 3.6, { f: sr.c });
+    if (sr.lab !== false) s += A.t(der[0] + 6, der[1] + 4 + (sr.dy || 0), (sr.court ? sr.court + " " : "") + A.fr(val, 1) + (opts.u || ""), { t: 10.5, g: true, c: sr.c });
+  });
+  return s;
+}
+
+ANIMS["s1-pcs"] = {
+  t: "Quarante ans de transformations de l’emploi",
+  h: 300,
+  src: "Source : Insee, enquête Emploi 2024, séries longues (part de chaque catégorie dans l’emploi, en %). Ruptures de série liées aux changements de l’enquête.",
+  etapes: [
+    { l: "1982 : les ouvriers sont le premier groupe (29,9 % des personnes en emploi) ; les cadres ne sont que 8,0 %, les agriculteurs encore 7,5 %.", d: 3.5, a: 1990 },
+    { l: "Années 1990 : la tertiarisation fait grimper les employés (près de 30 % de l’emploi) pendant que les ouvriers et les agriculteurs reculent.", d: 4, a: 2002 },
+    { l: "Années 2000 : la montée des qualifications s’accélère. Les cadres passent de 14,7 % à 18,3 % de 2002 à 2012, les ouvriers tombent à 20,6 %.", d: 4, a: 2012 },
+    { l: "2024 : 23,0 % de cadres et 18,0 % d’ouvriers. Pour la première fois depuis 1982, les professions intermédiaires (25,2 %) dépassent les employés (24,8 %).", d: 4.5, a: 2024 }
+  ],
+  rendu: function (A, i, p) {
+    var g = GRAPHES["s1-pcs"], xs = g.x, debut = i === 0 ? 1982 : this.etapes[i - 1].a, fin = this.etapes[i].a;
+    var jusqua = (debut - 1982) + (fin - debut) * (i === 0 ? A.s(p, 0, 1) : p);
+    var noms = ["Agri.", "Artisans", "Cadres", "Prof. int.", "Employés", "Ouvriers"], dys = [6, -2, 0, -6, -6, 4];
+    var ser = g.series.map(function (sr, k) { return { v: sr.v, c: ["vert", "gris", "corail", "moutarde", "#7B5EA7", "canard"][k], court: noms[k], dy: dys[k], sw: k === 2 || k === 5 ? 3 : 2 }; });
+    var s = ANIM_SERIES(A, 34, 270, 232, 250, xs, ser, 32, jusqua, { ticks: [0, 10, 20, 30], u: " %", annees: [1982, 1990, 2000, 2010, 2024] });
+    var an = Math.round(1982 + jusqua);
+    s += A.t(300, 26, String(an), { t: 26, g: true, a: "middle", c: "encre", f: true, op: 0.85 });
+    return s;
+  }
+};
+
+ANIMS["s2-mass"] = {
+  t: "Massification… et démocratisation ?",
+  h: 300,
+  src: "Sources : DEPP, proportion de bacheliers dans une génération (France hors DROM jusqu’en 2000, puis hors Mayotte) ; Observatoire des inégalités d’après le ministère, origine sociale des élèves de CPGE en 2023-2024.",
+  etapes: [
+    { l: "1970 : 20,1 % d’une génération obtient le bac. Le collège unique (1975) ouvre le secondaire à tous, la hausse reste lente.", d: 4, a: 1985 },
+    { l: "1985 : objectif de 80 % d’une génération au niveau du bac et création du bac professionnel. En dix ans, la proportion passe de 29,4 % à 62,7 %.", d: 3.5, a: 1995 },
+    { l: "1995-2008 : un palier autour de 62 %.", d: 3, a: 2008 },
+    { l: "Réforme du bac professionnel en trois ans (2009) : nouvelle hausse, jusqu’à 80,1 % en 2025. C’est la massification.", d: 4, a: 2025 },
+    { l: "Mais qui va où ? En classes préparatoires, 53,7 % des élèves sont enfants de cadres et 6,4 % enfants d’ouvriers : la démocratisation reste ségrégative.", d: 4.5 }
+  ],
+  rendu: function (A, i, p) {
+    var g = GRAPHES["s2-bac"], xs = g.x, s = "";
+    var fin = i < 4 ? this.etapes[i].a : 2025, debut = i === 0 ? 1970 : (i < 4 ? this.etapes[i - 1].a : 2025);
+    var jusqua = (debut - 1970) + (fin - debut) * (i < 4 ? p : 1);
+    var opC = i === 4 ? 1 - 0.75 * A.s(p, 0, 0.4) : 1;
+    s += A.g(opC, ANIM_SERIES(A, 34, 270, 280, 240, xs, [{ v: g.series[0].v, c: "corail", sw: 3 }], 100, jusqua, { ticks: [0, 20, 40, 60, 80, 100], u: " %", annees: [1970, 1985, 1995, 2009, 2025] }));
+    var jalons = [[1975, "collège unique"], [1985, "objectif 80 %, bac pro"], [2009, "bac pro en 3 ans"]];
+    jalons.forEach(function (j) {
+      var k = j[0] - 1970; if (k > jusqua) return;
+      var x = 34 + 280 * k / (xs.length - 1);
+      s += A.g(opC, '<line x1="' + x + '" x2="' + x + '" y1="40" y2="270" style="stroke:var(--moutarde);stroke-width:1.5;stroke-dasharray:3 3"/>' + A.t(x + 4, 48 + (j[0] === 1985 ? 16 : 0), j[1], { t: 10.5, g: true, c: "moutarde" }));
+    });
+    if (i === 4) {
+      var q = A.s(p, 0.25, 0.75);
+      s += A.r(20, 60, 320, 170, { f: "carte", s: "ligne", r: 12, op: A.s(p, 0.15, 0.4) });
+      s += A.t(180, 86, "Élèves de classes préparatoires (2023-2024)", { t: 13, g: true, a: "middle", op: A.s(p, 0.2, 0.45) });
+      s += A.t(36, 124, "enfants de cadres", { t: 12, c: "gris", op: q }) + A.r(36, 130, 260 * 0.537 * q, 22, { f: "canard" }) + A.t(42 + 260 * 0.537 * q, 146, A.fr(53.7 * q, 1) + " %", { t: 13, g: true, op: q });
+      s += A.t(36, 178, "enfants d’ouvriers", { t: 12, c: "gris", op: q }) + A.r(36, 184, 260 * 0.064 * q, 22, { f: "corail" }) + A.t(42 + 260 * 0.064 * q, 200, A.fr(6.4 * q, 1) + " %", { t: 13, g: true, op: q });
+      s += A.t(180, 222, "pour 23,0 % de cadres et 18,0 % d’ouvriers dans l’emploi (2024)", { t: 10.5, a: "middle", c: "gris", op: A.s(p, 0.7, 1) });
+    }
+    return s;
+  }
 };
 
 </script>
@@ -2104,6 +2640,7 @@ CH.s2 = {
   /* ---------- montage commun ---------- */
   function monter(racine) {
     monterChaines(racine); monterGraphes(racine);
+    if (window.ANIM_MOTEUR) ANIM_MOTEUR.monter(racine);
     $$("[data-calc]", racine).forEach(function (d) { d.className = "calc"; monterCalc(d); });
     $$("[data-relier]", racine).forEach(function (d) { monterRelier(d); });
   }

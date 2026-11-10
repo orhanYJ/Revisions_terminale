@@ -1,4 +1,4 @@
-var CH = {}, CHAINES = {}, GRAPHES = {};
+var CH = {}, CHAINES = {}, GRAPHES = {}, ANIMS = {};
 
 var PROG = [
   { id: "eco", nom: "Science économique", qs: [
