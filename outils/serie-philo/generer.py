@@ -78,7 +78,7 @@ DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
 V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 5, "acl-lughnasa": 2, "dnl": 4, "svt": 8,
-                 "maths": 2, "ses": 2, "hggsp": 2}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
+                 "maths": 3, "ses": 2, "hggsp": 2}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
 TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729", "svt": "#0b120e",
           "maths": "#1b2422", "ses": "#0d1f24", "hggsp": "#141414"}
 PAGE = """<!DOCTYPE html>
@@ -113,7 +113,11 @@ PRONONCIATION = {"Leute": "Loïte", "liberi": "libéri"}
 
 def prononce(lu):
     for mot, dit in PRONONCIATION.items():
-        lu = re.sub(r"(?<![\w-])" + re.escape(mot) + r"(?![\w-])", dit, lu)
+        if mot.startswith("§"):
+            # « §n » : une lettre isolée (variable d'une formule), jamais un morceau de mot ni une élision (« n'est »)
+            lu = re.sub(r"(?<![\w'’-])" + re.escape(mot[1:]) + r"(?![\w'’-])", dit, lu)
+        else:
+            lu = re.sub(r"(?<![\w-])" + re.escape(mot) + r"(?![\w-])", dit, lu)
     return lu
 
 

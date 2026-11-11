@@ -23,7 +23,12 @@ RYTHME = "vivant"
 PRONONCIATION = {"al-Karaji": "al Karadji", "As-Samaw'al": "As-Samaoual", "Fibonacci": "Fibonatchi", "Maurolico": "Maurolico",
                  "Peano": "Péano", "Bernoulli": "Bernouli",
                  # « u n » dit trop vite sonnait « un » (contrôle de la voix du 11/11/2026)
-                 "conjecture que u n égale": "conjecture que u indice n égale"}
+                 "conjecture que u n égale": "conjecture que u indice n égale",
+                 # lettres des formules dites en toutes lettres (11/11/2026, pilote : « la voix prononce mal les nombres
+                 # et les calculs » ; la voix lisait « n » comme une consonne : « n'égale », « pour toon ») ; « a » et
+                 # « u » restent tels quels (« a » est aussi le verbe, « u » est bien dit)
+                 "§n": "ène", "§k": "ka", "§P": "pé", "§f": "effe", "§x": "ixe", "§b": "bé", "§v": "vé",
+                 "§m": "ème", "§q": "ku", "§R": "erre"}
 
 # ---------------------------------------------------------------- données des graphiques (vérifiées par verif_ch1.py)
 RAC = [[round(x / 20, 3), round(sqrt(x / 20 + 2), 4)] for x in range(0, 49)]          # y = √(x + 2) sur [0 ; 2,4]
@@ -200,7 +205,7 @@ SCENES = [
          retenir="Propriété, initialisation, hérédité, conclusion. Dans l'hérédité : on suppose $P(k)$ pour un $k$ fixé, on écrit le but $P(k+1)$, on utilise l'hypothèse.",
          beats=[
         "{suite}Passons à la pratique, avec la suite définie par u zéro égale un, et u indice n plus un égale deux fois u n, plus trois. "
-        "Calculons quelques termes. {suite.1}u un : deux fois un, plus trois, cinq. {suite.2}u deux : deux fois cinq, plus trois, treize. "
+        "Calculons quelques termes. {suite.1}u un : deux fois un, plus trois, ça fait cinq. {suite.2}u deux : deux fois cinq, plus trois, ça fait treize. "
         "{suite.3}Puis vingt-neuf, {suite.4}soixante et un, {suite.5}cent vingt-cinq.",
         "{suite.c}Tu remarques quelque chose ? Ajoute trois à chaque terme : quatre, huit, seize, trente-deux… des puissances de deux ! "
         "{suite.ok}On conjecture que u n égale deux puissance n plus deux, moins trois. L'exposant, c'est n plus deux ; et on retire trois à la fin.",
@@ -211,7 +216,7 @@ SCENES = [
         "{-py}{copie}Voici la rédaction modèle. Le correcteur cherche quatre étapes : retiens-les, dans cet ordre. "
         "{copie.1}Un, la propriété. On l'écrit en toutes lettres : pour tout entier naturel n, on note P de n : « u n égale deux puissance n plus deux, moins trois ».",
         "{copie.2}Deux, l'initialisation. Pour n égale zéro, on calcule séparément les deux membres. D'un côté, u zéro égale un. "
-        "De l'autre, deux puissance deux, moins trois : quatre moins trois, un. Ils sont égaux : P de zéro est vraie.",
+        "De l'autre, deux puissance deux, moins trois : quatre moins trois, ça fait un. Ils sont égaux : P de zéro est vraie.",
         "{copie.3}Trois, l'hérédité. On écrit : soit k un entier naturel. On suppose que P de k est vraie, "
         "c'est-à-dire u k égale deux puissance k plus deux, moins trois. {copie.m3}C'est l'hypothèse de récurrence.",
         "{copie.4}Et tout de suite, on écrit le but : montrons P de k plus un, c'est-à-dire u indice k plus un égale deux puissance k plus trois, moins trois. "
@@ -284,7 +289,7 @@ SCENES = [
         "Le programme permet ce symbole pour abréger. Mais en cas de doute, écris la somme avec des pointillés : c'est plus sûr.",
         "{sigma.2}Une autre formule du même genre : la somme des carrés. Pour tout n supérieur ou égal à un : un au carré, plus deux au carré, jusqu'à n au carré, "
         "égale n, fois n plus un, fois deux n plus un, le tout sur six. Elle se démontre exactement de la même façon. "
-        "{sigma.3}Vérifie pour n égale trois : un plus quatre plus neuf, quatorze. Et trois fois quatre fois sept, sur six : quatorze aussi.",
+        "{sigma.3}Vérifie pour n égale trois : un plus quatre plus neuf, ça fait quatorze. Et trois fois quatre fois sept, sur six : quatorze aussi.",
         "{-sigma}",
     ], vis={
         "carres": dict(type="illu", nom="carres", x=110, y=110, w=1080, h=560, c=64),
@@ -424,7 +429,7 @@ SCENES = [
                      el=[dict(type="points", pts=BERN_P, c="sa", pas=.09, r=6),
                          dict(type="points", pts=BERN_A, c="te", pas=.09, r=6),
                          dict(type="texte", x=14.6, y=2.62, t="$1{,}05^{20}\\approx2{,}65$", c="sa"),
-                         dict(type="texte", x=15.6, y=1.68, t="$1+20\\times0{,}05=2$", c="te")]),
+                         dict(type="texte", x=16.2, y=1.45, t="$1+20\\times0{,}05=2$", c="te")]),
         "dem": dict(type="formule", copie=True, titre="Démonstration exigible : l'inégalité de Bernoulli", x=90, y=58, w=1100, lignes=[
             dict(lab="Propriété.", f="Soit $a\\geq0$. Pour $n\\in\\N$, $P(n)$ : « $(1+a)^n\\geq1+na$ ».", taille=31),
             dict(lab="Initialisation.", f="$(1+a)^0=1$ et $1+0\\times a=1$ : $1\\geq1$, $P(0)$ est vraie.", taille=31),

@@ -312,6 +312,7 @@ b{font-weight:700}
 .fo-carte .cr-h{font-size:42px;margin-bottom:18px}
 .fo-l{display:flex;align-items:center;gap:30px;font-size:50px;line-height:1.22;margin:0 0 8px;padding:1px 0}
 .fo-l.encadre{display:inline-flex;padding:6px 22px;margin:8px 0 12px 12px}
+.fo-l.encadre{gap:52px}   /* la note de marge reste hors du cadre tracé à la craie (qui déborde) */
 .fo-c{flex:0 1 auto;min-width:0}
 .fo-l.ok .fo-c,.fo-l.ko .fo-c{margin-right:40px}
 .fo-f{white-space:normal}
