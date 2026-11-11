@@ -32,6 +32,10 @@ REF = {
 }
 LANGUES = {"fr": "French", "en": "English"}
 _modele, _prompts, _whisper = None, {}, None
+SANS_CHIFFRES = []
+# règles de liaison contrôlées sur chaque prise (liaisons.py) : None (pas de contrôle), "fr" (liaisons obligatoires),
+# "maths" (en plus : jamais de liaison devant une lettre ou un nombre d'une formule) ; réglé par generer.py (LIAISONS)
+LIAISONS = "fr"
 
 
 def _charger():
@@ -55,6 +59,10 @@ def _charger():
                 time.sleep(60 * (essai + 1))
         local = os.path.isdir(os.path.expanduser("~/.cache/huggingface/hub/models--Systran--faster-whisper-small"))
         _whisper = WhisperModel("small", device="cpu", compute_type="int8", local_files_only=local)
+        # nombres écrits en lettres par la transcription (11/11/2026) : sans cela « quarante et un » devient « 41 »,
+        # le mot du texte n'est pas retrouvé et son instant est deviné (sous-titres, contrôle des liaisons)
+        tk = _whisper.hf_tokenizer
+        SANS_CHIFFRES[:] = [-1] + [i for i in range(tk.get_vocab_size()) if any(c.isdigit() for c in (tk.id_to_token(i) or ""))]
     return _modele
 
 
@@ -129,7 +137,7 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
         w, sr = m.generate_voice_clone(text=texte, language=LANGUES[langue], voice_clone_prompt=p)
         a = w[0].astype(np.float32)
         y = np.interp(np.arange(0, len(a), sr / 16000), np.arange(len(a)), a).astype(np.float32)
-        segs, _ = _whisper.transcribe(y, language=langue, word_timestamps=True)
+        segs, _ = _whisper.transcribe(y, language=langue, word_timestamps=True, suppress_tokens=SANS_CHIFFRES or [-1])
         mots = [(x.start, x.end - x.start, x.word.strip()) for s in segs for x in (s.words or [])]
         sc = _score(texte, " ".join(x[2] for x in mots))
         try:
@@ -141,6 +149,13 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
             df = prosodie.suspect(prosodie.defauts(y, 16000, ref, mots, len(texte)))
         except Exception:
             df = []
+        if LIAISONS and langue == "fr":
+            try:
+                import liaisons
+                lf = liaisons.fautes(texte, _caler(texte, mots, len(a) / sr), y, 16000, maths=LIAISONS == "maths")
+                df += ["liaison %s : %s %s" % (k, m1, m2) for m1, m2, k, _ in lf]
+            except Exception as err:
+                print("    (contrôle des liaisons impossible :", err, ")", flush=True)
         # rang : d'abord une prise sans défaut, puis la justesse (au-dessus de 0,88 toutes les prises se valent), puis l'intonation
         rang = (not df, min(sc, 0.88), vie)
         if meilleur is None or rang > meilleur[0]:

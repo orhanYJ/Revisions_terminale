@@ -265,6 +265,7 @@ def generer(nom_module):
                     open(chemin + ".vu", "w").close()
     if a_faire and MOTEUR == "qwen":
         import voix_qwen
+        voix_qwen.LIAISONS = getattr(ep, "LIAISONS", "fr")
         print(f"enregistrement de {len(a_faire)} passages (clonage local)…", flush=True)
         for i, (lu, voix, rate, pitch, chemin) in enumerate(a_faire, 1):
             tempo = 1 + float(rate.rstrip("%")) / 100      # le débit seul est repris ; la hauteur suit la voix
