@@ -350,7 +350,7 @@ html.mo details.rap summary .chev{transition:transform .38s cubic-bezier(.3,1.35
 html.mo details.rap.mo-ferme summary .chev{transform:none}
 
 /* — faisceau de lecture, sous la barre d'onglets — */
-#mo-faisceau{position:fixed;left:0;right:0;top:0;height:2px;z-index:45;pointer-events:none;opacity:0;transition:opacity .25s}
+#mo-faisceau{position:fixed;left:0;width:100%;top:0;height:2px;z-index:45;pointer-events:none;opacity:0;transition:opacity .25s}
 #mo-faisceau.on{opacity:1}
 #mo-faisceau .f-trait{position:absolute;inset:0;transform-origin:0 50%;transform:scaleX(var(--p,0));
   background:linear-gradient(90deg,transparent,var(--orange) 35%,var(--orange))}
@@ -9949,16 +9949,19 @@ function faisceauMaj(){
   if(!nav || !page.querySelector(".part.vu")){ fx.classList.remove("on"); return; }
   var h = document.documentElement.scrollHeight - innerHeight;
   if(h < 240){ fx.classList.remove("on"); return; }
-  var b = Math.round(nav.getBoundingClientRect().bottom);
+  var r = nav.getBoundingClientRect(), b = Math.round(r.bottom);
   var p = Math.max(0, Math.min(1, scrollY / h));
+  /* trait et tête calés sur la barre d'onglets (même largeur, même départ), barre latérale ou non */
   fx.style.top = b + "px";
+  fx.style.left = r.left.toFixed(1) + "px";
+  fx.style.width = r.width.toFixed(1) + "px";
   fx.style.setProperty("--p", p.toFixed(4));
-  fx.style.setProperty("--x", (p * innerWidth).toFixed(1) + "px");
+  fx.style.setProperty("--x", (p * r.width).toFixed(1) + "px");
   fx.classList.add("on");
   if(!finLue && p > .995 && h > 700){
     finLue = true;
     fx.classList.remove("fin"); void fx.offsetWidth; fx.classList.add("fin");
-    emission(innerWidth - 10, b, 10, .7);
+    emission(r.right - 10, b, 10, .7);
     son.fin();
   }
 }
