@@ -10,6 +10,8 @@ Usage : python3 outils/serie-philo/verifier.py pc_ch4 ; puis generer.py pc_ch4 ;
 """
 
 SITE = "pc"
+VOIX_VIVANTE = True   # voix dite phrase par phrase, prise la plus expressive (generer.py, voix_qwen.py)
+RYTHME = "vivant"     # silences variables selon la fin de phrase (generer.py, _ecart_vivant)
 CODE = "ch4"
 NOTION = "La lumière, un flux de photons"
 NUM = 4

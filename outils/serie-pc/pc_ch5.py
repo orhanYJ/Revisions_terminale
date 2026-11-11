@@ -8,6 +8,8 @@ Les trois exercices sont inventés pour la vidéo (valeurs recalculées ci-desso
 """
 
 SITE = "pc"
+VOIX_VIVANTE = True   # voix dite phrase par phrase, prise la plus expressive (generer.py, voix_qwen.py)
+RYTHME = "vivant"     # silences variables selon la fin de phrase (generer.py, _ecart_vivant)
 CODE = "ch5"
 NOTION = "La lunette astronomique"
 NUM = 5

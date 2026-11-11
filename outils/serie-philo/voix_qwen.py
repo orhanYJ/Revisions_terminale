@@ -135,8 +135,97 @@ def _score(lu, texte_reconnu):
     return difflib.SequenceMatcher(None, _norm(lu), _norm(_en_lettres(texte_reconnu)), autojunk=False).ratio()
 
 
-def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
+def _decouper(texte, maxi=170):
+    """Phrases du passage ; une phrase trop longue est coupée à un point-virgule ou à deux-points."""
+    res = []
+    for ph in re.split(r"(?<=[.?!…])\s+", texte.strip()):
+        ph = ph.strip()
+        if not ph:
+            continue
+        if len(ph) > maxi:
+            bouts = [b.strip() for b in re.split(r"(?<=[;:])\s+", ph) if b.strip()]
+            acc = ""
+            for b in bouts:
+                if acc and len(acc) + len(b) > maxi:
+                    res.append(acc); acc = b
+                else:
+                    acc = (acc + " " + b).strip()
+            if acc:
+                res.append(acc)
+        else:
+            res.append(ph)
+    return res
+
+
+SILENCE_FIN = {"?": 0.5, "!": 0.45, "…": 0.5, ":": 0.26, ";": 0.26}   # après une phrase, dans un passage (sinon 0,38 s)
+
+
+def _rogner(a, sr, seuil=0.006, marge=0.04):
+    idx = np.where(np.abs(a) > seuil)[0]
+    if not len(idx):
+        return a
+    d = max(0, idx[0] - int(marge * sr)); f = min(len(a), idx[-1] + int(marge * 1.5 * sr))
+    return a[d:f]
+
+
+def _dire_phrases(texte, voix, langue):
+    """Voix « vivante » (11/11/2026, Cengiz : « rends-la plus vivante, avec plus d'intonations ») : la voix clonée
+    dérape surtout dans les longs passages (un mot isolé part dans l'aigu, à 135-176 % du registre) ; dite phrase par
+    phrase, elle reste juste. Trois prises par phrase en un seul appel (lot : environ 1,4 fois le temps d'une prise),
+    une deuxième série si aucune n'est propre ; on garde, parmi les prises sans dérapage, la plus expressive
+    (relief + élan de prosodie.py). Renvoie (audio, sr, mots [(début, durée, mot)], score, défauts)."""
+    import torch, prosodie
+    m = _charger(); p = _prompt(voix); reg = registre(voix)
+    morceaux, mots, t, defauts, sr = [], [], 0.0, [], 24000
+    for i, ph in enumerate(_decouper(texte)):
+        meilleur = None
+        for serie in range(2):
+            torch.manual_seed(4321 + 31 * serie + 7 * i + len(ph))
+            ws, sr = m.generate_voice_clone(text=[ph] * 3, language=[LANGUES[langue]] * 3, voice_clone_prompt=p)
+            for w in ws:
+                a = _rogner(w.astype(np.float32), sr)
+                y = np.interp(np.arange(0, len(a), sr / 16000), np.arange(len(a)), a).astype(np.float32)
+                segs, _ = _whisper.transcribe(y, language=langue, word_timestamps=True)
+                mw = [x for s in segs for x in (s.words or [])]
+                sc = _score(ph, " ".join(x.word for x in mw))
+                an = []
+                try:
+                    an += prosodie.anomalies(y, 16000, reg, seuil=1.35, duree=0.5)
+                    an += ["mot aigu %s %d %%" % x for x in prosodie.mots_aigus(y, 16000, [(x.start, x.end, x.word.strip()) for x in mw], reg)]
+                    pm = prosodie.mesure(y, 16000)
+                except Exception:
+                    pm = {"relief": 2.5, "elan": 2.0}
+                flous = [x.word.strip() for x in mw if x.probability < 0.6 and len(re.sub(r"[^\w]", "", x.word)) > 2
+                         and not re.search(r"\d", x.word) and _norm(x.word) not in JARGON]
+                if len(flous) >= 2:
+                    an.append("mots flous (%s)" % ", ".join(flous[:3]))
+                if sc < 0.85:
+                    an.append("score %.2f" % sc)
+                rang = (0 if an else 1, min(sc, 0.9), pm["relief"] + pm["elan"])
+                if meilleur is None or rang > meilleur[0]:
+                    meilleur = (rang, a, [(x.start, x.end - x.start, x.word.strip()) for x in mw], sc, an)
+            if not meilleur[4]:
+                break
+        _, a, mw, sc, an = meilleur
+        if an:
+            defauts.append(f"« {ph[:40]} » : {', '.join(an)}")
+        mots += [(t + o, d, w) for o, d, w in mw]
+        pause = SILENCE_FIN.get(ph[-1:], 0.38)
+        morceaux += [a, np.zeros(int(pause * sr), dtype=np.float32)]
+        t += (len(a) + int(pause * sr)) / sr
+    a = np.concatenate(morceaux[:-1]) if len(morceaux) > 1 else morceaux[0]
+    sc = _score(texte, " ".join(w for _, _, w in mots))
+    return a, sr, mots, sc, defauts
+
+
+def dire(texte, voix, chemin, tempo=1.0, langue="fr", phrases=False):
     """Enregistre un passage ; renvoie le score de reconnaissance obtenu."""
+    if phrases:
+        import soundfile as sf
+        a, sr, mots, sc, defauts = _dire_phrases(texte, voix, langue)
+        for d in defauts:
+            print(f"    dérapage restant {d}", flush=True)
+        return _ecrire(texte, chemin, tempo, a, sr, mots, sc)
     import torch
     import soundfile as sf
     m = _charger()
@@ -192,6 +281,11 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
         print(f"    dérapage restant ({', '.join(an)}) : {texte[:60]}", flush=True)
     if prosodie.plat(pm):
         print(f"    intonation plate (relief {pm['relief']}, élan {pm['elan']}) : {texte[:60]}", flush=True)
+    return _ecrire(texte, chemin, tempo, a, sr, mots, sc)
+
+
+def _ecrire(texte, chemin, tempo, a, sr, mots, sc):
+    import soundfile as sf
     tmp = chemin + ".wav.part"
     sf.write(tmp, a, sr, format="WAV")
     filtre = ["-af", f"atempo={tempo}"] if abs(tempo - 1) > 1e-3 else []

@@ -221,6 +221,10 @@ def generer(nom_module):
     os.makedirs(os.path.join(SORTIE, "voix"), exist_ok=True)
 
     # 1. enregistrer tous les passages manquants
+    # VOIX_VIVANTE = True dans un script (physique-chimie, 11/11/2026, Cengiz : « rends-la plus vivante, avec plus
+    # d'intonations ») : la voix clonée dit le passage phrase par phrase, trois prises par phrase, et garde la plus
+    # expressive parmi les prises sans mot parti dans l'aigu (voix_qwen.dire, phrases=True). Clé de cache distincte.
+    vivante = bool(getattr(ep, "VOIX_VIVANTE", False))
     a_faire, passages = [], []
     for sc in ep.SCENES:
         sc["_b"] = list(_beats(sc))
@@ -233,7 +237,8 @@ def generer(nom_module):
             if not lu.strip():
                 continue
             pros = dict(PROSODIE[b["v"]], **b["pros"])
-            cle = hashlib.sha1(json.dumps([MOTEUR, VOIX[b["v"]], pros, lu], ensure_ascii=False).encode()).hexdigest()[:14]
+            moteur_cle = MOTEUR + ("-phrases" if vivante and MOTEUR == "qwen" else "")
+            cle = hashlib.sha1(json.dumps([moteur_cle, VOIX[b["v"]], pros, lu], ensure_ascii=False).encode()).hexdigest()[:14]
             chemin = os.path.join(CACHE, cle + ".mp3")
             b["fichier"] = chemin
             passages.append(b)
@@ -258,7 +263,7 @@ def generer(nom_module):
         print(f"enregistrement de {len(a_faire)} passages (clonage local)…", flush=True)
         for i, (lu, voix, rate, pitch, chemin) in enumerate(a_faire, 1):
             tempo = 1 + float(rate.rstrip("%")) / 100      # le débit seul est repris ; la hauteur suit la voix
-            sc = voix_qwen.dire(lu, voix, chemin, tempo=tempo, langue=langue)
+            sc = voix_qwen.dire(lu, voix, chemin, tempo=tempo, langue=langue, phrases=vivante)
             print(f"  {i}/{len(a_faire)} {voix} score {sc:.2f}" + ("  À VÉRIFIER" if sc < 0.85 else "") + f"  {lu[:60]}", flush=True)
         a_faire = []
     if a_faire and MOTEUR == "muet":

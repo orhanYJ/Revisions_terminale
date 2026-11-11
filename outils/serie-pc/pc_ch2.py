@@ -9,6 +9,8 @@ Usage : python3 outils/serie-philo/verifier.py pc_ch2 ; puis generer.py pc_ch2 ;
 """
 
 SITE = "pc"
+VOIX_VIVANTE = True   # voix dite phrase par phrase, prise la plus expressive (generer.py, voix_qwen.py)
+RYTHME = "vivant"     # silences variables selon la fin de phrase (generer.py, _ecart_vivant)
 CODE = "ch2"
 NOTION = "Méthodes physiques d'analyse"
 NUM = 2
