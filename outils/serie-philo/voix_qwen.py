@@ -168,45 +168,60 @@ def _rogner(a, sr, seuil=0.006, marge=0.04):
     return a[d:f]
 
 
+def prise_phrase(ph, voix, langue, i=0, series=None, graine=None):
+    """Meilleure prise d'une phrase : trois prises par série (un seul appel en lot), au plus `series` séries ; parmi
+    les prises sans dérapage, la plus expressive. Renvoie (audio, sr, mots [(début, durée, mot)], score, défauts,
+    gravité) ; gravité = hauteur du mot le plus aigu rapportée au registre (2 pour une vrille, 0 sans défaut de hauteur)."""
+    import torch, prosodie
+    m = _charger(); p = _prompt(voix); reg = registre(voix)
+    series = int(os.environ.get("SERIE_SERIES", "2")) if series is None else series
+    graine = int(os.environ.get("SERIE_GRAINE", "0")) if graine is None else graine
+    meilleur = None
+    for serie in range(series):
+        torch.manual_seed(4321 + 31 * serie + 7 * i + len(ph) + graine)
+        ws, sr = m.generate_voice_clone(text=[ph] * 3, language=[LANGUES[langue]] * 3, voice_clone_prompt=p)
+        for w in ws:
+            a = _rogner(w.astype(np.float32), sr)
+            y = np.interp(np.arange(0, len(a), sr / 16000), np.arange(len(a)), a).astype(np.float32)
+            segs, _ = _whisper.transcribe(y, language=langue, word_timestamps=True)
+            mw = [x for s in segs for x in (s.words or [])]
+            sc = _score(ph, " ".join(x.word for x in mw))
+            an, grav = [], 0.0
+            try:
+                v = prosodie.anomalies(y, 16000, reg, seuil=1.35, duree=0.5)
+                if v:
+                    grav = 2.0
+                ag = prosodie.mots_aigus(y, 16000, [(x.start, x.end, x.word.strip()) for x in mw], reg)
+                grav = max([grav] + [r / 100 for _, r in ag])
+                an += v + ["mot aigu %s %d %%" % x for x in ag]
+                pm = prosodie.mesure(y, 16000)
+            except Exception:
+                pm = {"relief": 2.5, "elan": 2.0}
+            flous = [x.word.strip() for x in mw if x.probability < 0.6 and len(re.sub(r"[^\w]", "", x.word)) > 2
+                     and not re.search(r"\d", x.word) and _norm(x.word) not in JARGON]
+            if len(flous) >= 2:
+                an.append("mots flous (%s)" % ", ".join(flous[:3]))
+            if sc < 0.85:
+                an.append("score %.2f" % sc)
+            # rang : sans défaut d'abord, puis le moins aigu, la justesse, et enfin l'intonation la plus vivante
+            rang = (0 if an else 1, -grav, min(sc, 0.9), pm["relief"] + pm["elan"])
+            if meilleur is None or rang > meilleur[0]:
+                meilleur = (rang, a, sr, [(x.start, x.end - x.start, x.word.strip()) for x in mw], sc, an, grav)
+        if not meilleur[5]:
+            break
+    return meilleur[1:]
+
+
 def _dire_phrases(texte, voix, langue):
     """Voix « vivante » (11/11/2026, Cengiz : « rends-la plus vivante, avec plus d'intonations ») : la voix clonée
     dérape surtout dans les longs passages (un mot isolé part dans l'aigu, à 135-176 % du registre) ; dite phrase par
     phrase, elle reste juste. Trois prises par phrase en un seul appel (lot : environ 1,4 fois le temps d'une prise),
     une deuxième série si aucune n'est propre ; on garde, parmi les prises sans dérapage, la plus expressive
-    (relief + élan de prosodie.py). Renvoie (audio, sr, mots [(début, durée, mot)], score, défauts)."""
-    import torch, prosodie
-    m = _charger(); p = _prompt(voix); reg = registre(voix)
+    (relief + élan de prosodie.py). Les phrases restées fautives se refont ensuite avec retoucher.py.
+    Renvoie (audio, sr, mots [(début, durée, mot)], score, défauts)."""
     morceaux, mots, t, defauts, sr = [], [], 0.0, [], 24000
     for i, ph in enumerate(_decouper(texte)):
-        meilleur = None
-        for serie in range(2):
-            torch.manual_seed(4321 + 31 * serie + 7 * i + len(ph))
-            ws, sr = m.generate_voice_clone(text=[ph] * 3, language=[LANGUES[langue]] * 3, voice_clone_prompt=p)
-            for w in ws:
-                a = _rogner(w.astype(np.float32), sr)
-                y = np.interp(np.arange(0, len(a), sr / 16000), np.arange(len(a)), a).astype(np.float32)
-                segs, _ = _whisper.transcribe(y, language=langue, word_timestamps=True)
-                mw = [x for s in segs for x in (s.words or [])]
-                sc = _score(ph, " ".join(x.word for x in mw))
-                an = []
-                try:
-                    an += prosodie.anomalies(y, 16000, reg, seuil=1.35, duree=0.5)
-                    an += ["mot aigu %s %d %%" % x for x in prosodie.mots_aigus(y, 16000, [(x.start, x.end, x.word.strip()) for x in mw], reg)]
-                    pm = prosodie.mesure(y, 16000)
-                except Exception:
-                    pm = {"relief": 2.5, "elan": 2.0}
-                flous = [x.word.strip() for x in mw if x.probability < 0.6 and len(re.sub(r"[^\w]", "", x.word)) > 2
-                         and not re.search(r"\d", x.word) and _norm(x.word) not in JARGON]
-                if len(flous) >= 2:
-                    an.append("mots flous (%s)" % ", ".join(flous[:3]))
-                if sc < 0.85:
-                    an.append("score %.2f" % sc)
-                rang = (0 if an else 1, min(sc, 0.9), pm["relief"] + pm["elan"])
-                if meilleur is None or rang > meilleur[0]:
-                    meilleur = (rang, a, [(x.start, x.end - x.start, x.word.strip()) for x in mw], sc, an)
-            if not meilleur[4]:
-                break
-        _, a, mw, sc, an = meilleur
+        a, sr, mw, sc, an, _ = prise_phrase(ph, voix, langue, i)
         if an:
             defauts.append(f"« {ph[:40]} » : {', '.join(an)}")
         mots += [(t + o, d, w) for o, d, w in mw]
