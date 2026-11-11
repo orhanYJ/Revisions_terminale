@@ -2249,7 +2249,9 @@
     var glisse = false, reprise = false;
     prog.addEventListener("pointerdown", function (ev) { glisse = true; reprise = lecture; if (lecture) pause(); prog.setPointerCapture(ev.pointerId); prog.classList.add("glisse"); aller(tDe(ev)); });
     prog.addEventListener("pointermove", function (ev) {
-      var t = tDe(ev); bulle.style.left = (100 * t / EP.dur) + "%"; bulle.textContent = fmt(t) + " · " + nomChap(t);
+      var t = tDe(ev); bulle.textContent = fmt(t) + " · " + nomChap(t);
+      var lg = prog.getBoundingClientRect().width, bw = bulle.offsetWidth;   // la bulle reste entière au-dessus de la barre
+      bulle.style.left = cl(lg * t / EP.dur, bw / 2, Math.max(bw / 2, lg - bw / 2)) + "px";
       if (glisse) aller(t);
     });
     prog.addEventListener("pointerup", function () { glisse = false; prog.classList.remove("glisse"); affiche.classList.add("off"); if (reprise) jouer(); });
