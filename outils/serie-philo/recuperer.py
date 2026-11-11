@@ -38,7 +38,8 @@ def passages(ep):
             if not lu.strip():
                 continue
             pros = dict(G.PROSODIE[b["v"]], **b["pros"])
-            cle = hashlib.sha1(json.dumps([G.MOTEUR, G.VOIX[b["v"]], pros, lu], ensure_ascii=False).encode()).hexdigest()[:14]
+            moteur_cle = G.MOTEUR + ("-phrases" if getattr(ep, "VOIX_VIVANTE", False) and G.MOTEUR == "qwen" else "")
+            cle = hashlib.sha1(json.dumps([moteur_cle, G.VOIX[b["v"]], pros, lu], ensure_ascii=False).encode()).hexdigest()[:14]
             res.append((cle, lu, b["v"], orig))
     return res
 
