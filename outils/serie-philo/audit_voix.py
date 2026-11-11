@@ -52,6 +52,10 @@ def main(module, supprimer=False):
                       and not re.search(r"\d", w.word) and voix_qwen._norm(w.word) not in voix_qwen.JARGON]
         if len(incertains) >= 2:
             motifs.append("mots déformés (%s)" % ", ".join(incertains[:4]))
+        if regs[voix]:
+            aigus = prosodie.mots_aigus(y, 16000, [(w.start, w.end, w.word.strip()) for w in mots], regs[voix])
+            if aigus:
+                motifs.append("mot qui saute dans l'aigu (%s)" % ", ".join("%s %d %%" % m for m in aigus[:3]))
         etires = [w.word.strip() for w in mots if (w.end - w.start) > 1.3 and len(w.word.strip()) < 12]
         if etires:
             motifs.append("mot étiré (%s)" % ", ".join(etires[:3]))

@@ -172,6 +172,12 @@ def dire(texte, voix, chemin, tempo=1.0, langue="fr"):
             an = []
         if flous:
             an = an + ["mots flous (%s)" % ", ".join(flous[:3])]
+        try:
+            aigus = prosodie.mots_aigus(y, 16000, [(x.start, x.end, x.word.strip()) for x in mots_w], reg)
+        except Exception:
+            aigus = []
+        if aigus:
+            an = an + ["mot qui saute dans l'aigu (%s)" % ", ".join("%s %d %%" % m for m in aigus[:3])]
         # rang : d'abord une prise sans dérapage, puis la justesse (au-dessus de 0,88 toutes les prises se valent),
         # puis l'intonation
         rang = (0 if an else 1, min(sc, 0.88), vie)
