@@ -80,6 +80,7 @@ def _en_lettres(texte):
     texte = re.sub(r"(\d+)(er|re)\b", lambda m: " premier " if m.group(1) == "1" else " " + num2words(int(m.group(1)), lang="fr", to="ordinal") + " ", texte)
     texte = re.sub(r"(\d+)(e|ème)\b", lambda m: " " + num2words(int(m.group(1)), lang="fr", to="ordinal") + " ", texte)
     texte = re.sub(r"(\d+)\s(\d{3})\b", r"\1\2", texte)   # 1 681 -> 1681
+    texte = texte.replace("%", " pour cent ")
     return re.sub(r"(\d+)([,.](\d+))?", dec, texte)
 
 
