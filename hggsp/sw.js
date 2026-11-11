@@ -1,5 +1,5 @@
-var CACHE = 'hggsp-v6';
-var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=9'];
+var CACHE = 'hggsp-v7';
+var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=10'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(

@@ -1,5 +1,5 @@
-var CACHE = 'maths-v5';
-var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=9', 'carnet-math.woff2'];
+var CACHE = 'maths-v6';
+var ASSETS = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'assistant.js?v=10', 'carnet-math.woff2'];
 
 self.addEventListener('install', function (e) {
   e.waitUntil(
