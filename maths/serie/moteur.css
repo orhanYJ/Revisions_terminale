@@ -47,7 +47,8 @@ body.embed .lecteur{padding:0}
 .prog .pouce{position:absolute;top:4px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--ivoire);box-shadow:0 0 0 4px rgba(224,181,58,.35)}
 .prog .bulle{position:absolute;bottom:22px;transform:translateX(-50%);background:#000c;padding:4px 8px;border-radius:6px;font-size:12px;white-space:nowrap;
   pointer-events:none;opacity:0;transition:opacity .15s}
-.prog:hover .bulle,.prog.glisse .bulle{opacity:1}
+.prog.glisse .bulle{opacity:1}
+@media (hover:hover){.prog:hover .bulle{opacity:1}}   /* sur téléphone, le survol reste « collé » après un toucher : la bulle restait sur l'image */
 .espace{flex:1}
 
 .chapitres{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:14px}
