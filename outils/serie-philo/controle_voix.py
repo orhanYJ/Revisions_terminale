@@ -31,6 +31,8 @@ os.environ.setdefault("SERIE_MOTEUR", "qwen")
 import generer as G  # noqa: E402
 import prosodie  # noqa: E402
 import voix_qwen as VQ  # noqa: E402
+import liaisons  # noqa: E402
+SANS_CH, MODE = [], "fr"
 
 SEUIL_SCORE = 0.86   # sous ce score lettre à lettre, on regarde les mots (les nombres écrits en chiffres font baisser le score)
 
@@ -141,6 +143,8 @@ def passages(module):
     ep = importlib.import_module(module)
     G.PRONONCIATION.update(getattr(ep, "PRONONCIATION", {}))
     langue = getattr(ep, "LANGUE", "fr")
+    global MODE
+    MODE = getattr(ep, "LIAISONS", "fr")
     G.VOIX.clear(); G.VOIX.update(G.VOIX_LANGUE[langue])
     for sc in ep.SCENES:
         for b in G._beats(sc):
@@ -228,6 +232,15 @@ def controler(module, rejeter=False, tout=False, choix=()):
                 else:
                     raisons = [x for x in raisons if x[0] != 4] + [x for x in r2 if x[0] == 4]
                     entendu = entendu2
+        # liaisons (liaisons.py) : instants des mots repris d'une transcription sans chiffres
+        if langue == "fr" and liaisons.contextes(re.findall(r"[\wÀ-ÿœæ'’-]+", lu), MODE == "maths"):
+            if not SANS_CH:
+                tk = w.hf_tokenizer
+                SANS_CH[:] = [-1] + [i for i in range(tk.get_vocab_size()) if any(c.isdigit() for c in (tk.id_to_token(i) or ""))]
+            sg, _ = w.transcribe(y, language=langue, word_timestamps=True, suppress_tokens=SANS_CH)
+            mw = [(x.start, x.end - x.start, x.word.strip()) for s_ in sg for x in (s_.words or [])]
+            for m1, m2, k, ent in liaisons.fautes(lu, VQ._caler(lu, mw, len(y) / 16000), y, 16000, maths=MODE == "maths"):
+                raisons.append((5, f"liaison {k} : « {m1} {m2} » (entendu : {ent})"))
         res.append((sum(p for p, _ in raisons), lu, f, raisons, d, pm, sc, entendu))
         if tout or raisons:
             print(("SUSPECT " if raisons else "ok      ") + lu[:70], flush=True)

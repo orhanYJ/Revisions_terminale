@@ -27,8 +27,15 @@ PRONONCIATION = {"al-Karaji": "al Karadji", "As-Samaw'al": "As-Samaoual", "Fibon
                  # lettres des formules dites en toutes lettres (11/11/2026, pilote : « la voix prononce mal les nombres
                  # et les calculs » ; la voix lisait « n » comme une consonne : « n'égale », « pour toon ») ; « a » et
                  # « u » restent tels quels (« a » est aussi le verbe, « u » est bien dit)
-                 "§n": "ène", "§k": "ka", "§P": "pé", "§f": "effe", "§x": "ixe", "§b": "bé", "§v": "vé",
-                 "§m": "ème", "§q": "ku", "§R": "erre"}
+                 # (« ène », « ixe »… écrits en toutes lettres provoquaient des liaisons fautives : « tout-t-ène »,
+                 # « deux-z-ène » ; la majuscule est dite comme une lettre, sans liaison, essais du 11/11/2026)
+                 "§n": "N", "§k": "K", "§f": "F", "§x": "X", "§b": "B", "§v": "V", "§m": "M", "§q": "Q"}
+# devant une lettre ou un nombre qui commence par une voyelle, « plus » se dit [plys] et « moins » [mwɛ̃], sans
+# liaison : la graphie donnée à la voix l'impose (« plusse un », « moin A ») ; liaisons.py contrôle chaque prise
+for _tok in ("un", "une", "huit", "onze", "a", "u", "N", "F", "X", "M", "R", "A", "U"):
+    PRONONCIATION["plus " + _tok] = "plusse " + _tok
+    PRONONCIATION["moins " + _tok] = "moin " + _tok
+LIAISONS = "maths"
 
 # ---------------------------------------------------------------- données des graphiques (vérifiées par verif_ch1.py)
 RAC = [[round(x / 20, 3), round(sqrt(x / 20 + 2), 4)] for x in range(0, 49)]          # y = √(x + 2) sur [0 ; 2,4]
