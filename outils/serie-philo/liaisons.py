@@ -31,6 +31,8 @@ H_MUET = {"homme", "hommes", "histoire", "histoires", "heure", "heures", "habita
           "hôpitaux", "humain", "humains", "humanité", "hydrocarbures", "hydrocarbure", "habitude", "habitudes"}
 # mots après lesquels la liaison n'est pas obligatoire (on ne la réclame pas) même devant voyelle
 PAS_APRES = {"et"}
+PAS_AVANT = {"et", "ou", "onze", "oui", "un", "une", "huit"}   # « deux et trois », « deux ou trois » (facultative), nombres
+NOMBRES_Z = {"deux", "trois", "six", "dix"}
 # en maths : lettres et nombres d'une formule, devant lesquels on ne lie jamais
 MATHS = {"n", "k", "p", "f", "x", "b", "v", "m", "q", "r", "a", "u", "un", "une", "huit", "onze", "ène", "ka", "pé",
          "effe", "ixe", "bé", "vé", "ème", "ku", "erre", "plusse"}
@@ -99,8 +101,10 @@ def contextes(mots, maths=False, coupe=None):
         if maths and a in LIANTS_MATHS and b in MATHS and (b not in ("un", "une") or a in OPERATEURS):
             out.append((i, "-", mots[i], mots[i + 1]))
             continue
-        if not _commence_voyelle(b) or a in PAS_APRES or (maths and b in MATHS):
+        if not _commence_voyelle(b) or a in PAS_APRES or b in PAS_AVANT or (maths and b in MATHS):
             continue
+        if maths and a in NOMBRES_Z:
+            continue   # dans une formule, « u deux égale », « deux à la puissance » : liaison facultative, pas réclamée
         if a in EN_Z and not (a in ("mieux", "moins") and b != "en"):
             out.append((i, "z", mots[i], mots[i + 1]))
         elif a in EN_N:
