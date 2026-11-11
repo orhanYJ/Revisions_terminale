@@ -21,7 +21,9 @@ TITRE = "Raisonnement par récurrence"
 SUIVANT = "Chapitre 2 · Limites de suites"
 RYTHME = "vivant"
 PRONONCIATION = {"al-Karaji": "al Karadji", "As-Samaw'al": "As-Samaoual", "Fibonacci": "Fibonatchi", "Maurolico": "Maurolico",
-                 "Peano": "Péano", "Bernoulli": "Bernouli"}
+                 "Peano": "Péano", "Bernoulli": "Bernouli",
+                 # « u n » dit trop vite sonnait « un » (contrôle de la voix du 11/11/2026)
+                 "conjecture que u n égale": "conjecture que u indice n égale"}
 
 # ---------------------------------------------------------------- données des graphiques (vérifiées par verif_ch1.py)
 RAC = [[round(x / 20, 3), round(sqrt(x / 20 + 2), 4)] for x in range(0, 49)]          # y = √(x + 2) sur [0 ; 2,4]
