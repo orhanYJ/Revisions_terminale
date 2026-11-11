@@ -34,8 +34,8 @@ PAS_APRES = {"et"}
 # en maths : lettres et nombres d'une formule, devant lesquels on ne lie jamais
 MATHS = {"n", "k", "p", "f", "x", "b", "v", "m", "q", "r", "a", "u", "un", "une", "huit", "onze", "ène", "ka", "pé",
          "effe", "ixe", "bé", "vé", "ème", "ku", "erre", "plusse"}
-LIANTS_MATHS = {"plus", "moins", "deux", "trois", "six", "dix", "fois", "tout", "vingt", "cent", "les", "des", "sous",
-                "dans", "est", "sont", "sans", "quand", "pas", "mais", "aux", "plusse"}
+LIANTS_MATHS = {"plus", "plusse", "moins", "fois", "tout", "deux", "trois", "six", "dix", "vingt", "cent"}
+OPERATEURS = {"plus", "plusse", "moins", "fois"}   # seuls à précéder « un », « une » dans une formule
 
 
 def _charger():
@@ -80,13 +80,23 @@ def _commence_voyelle(w):
     return w in H_MUET
 
 
-def contextes(mots, maths=False):
+def coupures(texte):
+    """Pour chaque mot du texte (même découpe que voix_qwen._mots_du_texte), vrai si une ponctuation le sépare du
+    suivant : pas de liaison à travers une virgule, un point, deux-points, des guillemets…"""
+    ms = list(re.finditer(r"[\wÀ-ÿœæ'’-]+", texte))
+    return [bool(re.search(r"[.,;:!?«»()…—\"]", texte[m.end():ms[k + 1].start()])) if k + 1 < len(ms) else True
+            for k, m in enumerate(ms)]
+
+
+def contextes(mots, maths=False, coupe=None):
     """Paires de mots à contrôler : [(i, attendu, mot1, mot2)] ; attendu = 'z', 'n', 't' (liaison obligatoire) ou
-    '-' (liaison interdite)."""
+    '-' (liaison interdite). coupe : voir coupures()."""
     out = []
     for i in range(len(mots) - 1):
         a, b = _cle(mots[i]), _cle(mots[i + 1])
-        if maths and a in LIANTS_MATHS and b in MATHS:
+        if coupe and i < len(coupe) and coupe[i]:
+            continue
+        if maths and a in LIANTS_MATHS and b in MATHS and (b not in ("un", "une") or a in OPERATEURS):
             out.append((i, "-", mots[i], mots[i + 1]))
             continue
         if not _commence_voyelle(b) or a in PAS_APRES or (maths and b in MATHS):
@@ -110,7 +120,7 @@ def fautes(texte, temps, a, sr, maths=False, ph=None):
     Les instants de la transcription et ceux des phonèmes ne coïncident pas exactement (≈ 0,1 s) : on regarde une
     fenêtre autour du début du second mot."""
     mots = [m[2] for m in temps]
-    ctx = contextes(mots, maths)
+    ctx = contextes(mots, maths, coupures(texte))
     if not ctx:
         return []
     ph = ph if ph is not None else phonemes(a, sr)

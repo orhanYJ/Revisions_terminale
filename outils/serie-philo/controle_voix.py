@@ -233,7 +233,7 @@ def controler(module, rejeter=False, tout=False, choix=()):
                     raisons = [x for x in raisons if x[0] != 4] + [x for x in r2 if x[0] == 4]
                     entendu = entendu2
         # liaisons (liaisons.py) : instants des mots repris d'une transcription sans chiffres
-        if langue == "fr" and liaisons.contextes(re.findall(r"[\wÀ-ÿœæ'’-]+", lu), MODE == "maths"):
+        if langue == "fr" and liaisons.contextes(re.findall(r"[\wÀ-ÿœæ'’-]+", lu), MODE == "maths", liaisons.coupures(lu)):
             if not SANS_CH:
                 tk = w.hf_tokenizer
                 SANS_CH[:] = [-1] + [i for i in range(tk.get_vocab_size()) if any(c.isdigit() for c in (tk.id_to_token(i) or ""))]
