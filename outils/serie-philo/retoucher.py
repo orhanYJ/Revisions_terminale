@@ -7,7 +7,8 @@ l'aigu »). Ce script les retrouve dans le cache de l'épisode, refait seulement
 graines : voix_qwen.prise_phrase) et les recolle à leur place, silences compris ; le reste du passage ne bouge pas.
 Une phrase n'est remplacée que si la nouvelle prise est moins aiguë que l'ancienne.
 
-Usage : python3 retoucher.py <module> [--seuil 1.38] [--series 3] [--essai]
+Usage : python3 retoucher.py <module> [--seuil 1.38] [--series 3] [--graine 1000] [--essai]
+  --graine : à changer pour un second passage (sinon les mêmes prises reviennent) ;
   --seuil : hauteur d'un mot (rapportée au registre du narrateur) à partir de laquelle la phrase est refaite ;
   --essai : liste les phrases fautives sans rien refaire.
 Puis relancer generer.py <module> (tout est en cache : il ne fait que remonter la piste).
@@ -69,7 +70,7 @@ def _gravite(y16, mots, reg):
     return g, ag
 
 
-def main(module, seuil=1.38, series=3, essai=False):
+def main(module, seuil=1.38, series=3, essai=False, graine=1000):
     import importlib, librosa
     ep = importlib.import_module(module)
     langue = getattr(ep, "LANGUE", "fr")
@@ -105,7 +106,7 @@ def main(module, seuil=1.38, series=3, essai=False):
             print(f"✗ {g:.2f} {', '.join('%s %d %%' % x for x in ag if x[1] >= 100 * seuil) or 'vrille'} · {ph[:70]}", flush=True)
             if essai:
                 continue
-            b, sr, _, sc, an, gn = voix_qwen.prise_phrase(ph, voix, langue, i=k, series=series, graine=1000)
+            b, sr, _, sc, an, gn = voix_qwen.prise_phrase(ph, voix, langue, i=k, series=series, graine=graine)
             if sr != SR:
                 b = librosa.resample(b, orig_sr=sr, target_sr=SR)
             b = _tempo(b, SR, tempo)
@@ -140,4 +141,5 @@ if __name__ == "__main__":
     args = sys.argv[1:]
     def opt(nom, defaut):
         return type(defaut)(args[args.index(nom) + 1]) if nom in args else defaut
-    main(args[0], seuil=opt("--seuil", 1.38), series=opt("--series", 3), essai="--essai" in args)
+    main(args[0], seuil=opt("--seuil", 1.38), series=opt("--series", 3), essai="--essai" in args,
+         graine=opt("--graine", 1000))
