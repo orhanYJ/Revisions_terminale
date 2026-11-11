@@ -431,7 +431,11 @@
         d.push(wob(-6, y + R() * 2, w + 8, y - 1 - R() * 2, 1.6, R));
         if (g === "souligne2") d.push(wob(6, y + 9, w - 2, y + 8 + (R() - .5) * 2, 1.6, R));
       } else if (g === "boite") d.push(ptsBoite(-m, -m * .7, w + 2 * m, hh + 1.4 * m, R));
-      else if (g === "ellipse") d.push(ptsEllipse(w / 2, hh / 2, w / 2 + m * 1.6, hh / 2 + m * 1.1, R, 1.08));
+      else if (g === "ellipse") {
+        // texte long : l'ellipse doit contenir les coins du texte, pas seulement ses bords (sinon les lettres débordent)
+        var lg = w > hh * 3;
+        d.push(ptsEllipse(w / 2, hh / 2, (lg ? w * .64 : w / 2) + m * 1.6, (lg ? hh * .74 : hh / 2) + m * 1.1, R, 1.08));
+      }
       else if (g === "coche") { var k = hh * .5; d.push([[w + 10, hh * .55], [w + 10 + k * .35, hh * .55 + k * .45], [w + 10 + k * 1.05, hh * .55 - k * .75]]); }
       else if (g === "barre") d.push(wob(-4, hh * .55, w + 4, hh * .47, 1.5, R));
       else if (g === "croix") { var q = hh * .32, cx = w + 12 + q, cy = hh * .5; d.push([[cx - q, cy - q], [cx + q, cy + q]]); d.push([[cx + q, cy - q], [cx - q, cy + q]]); }
@@ -1687,6 +1691,19 @@
     var NET = EP.scenes.slice(1).map(function (s) { return { t0: s.t0 - .12, t1: s.t0 + .8 }; });
     // ce qui est encore au tableau à la fin d'une partie y reste jusqu'au passage de l'éponge
     objs.forEach(function (o) { NET.forEach(function (w) { if (o.v.t1 >= w.t0 - 1.5 && o.v.t1 <= w.t1 && !/^(tableau|notion|generique)$/.test(o.v.type)) o.efface = w.t1; }); });
+    // passage de relais (11/11/2026, pilote : « gros problèmes de chevauchements ») : quand un visuel commence pendant
+    // que le précédent est encore au tableau, le précédent s'efface juste avant (fondu fini au début du suivant), sinon
+    // la craie écrit le nouveau texte par-dessus l'ancien ; le minutage du nouveau, calé sur la voix, ne bouge pas
+    var SANS_RELAIS = /^(tableau|notion|generique|frappe|flash)$/;
+    var FONDU = .42;
+    objs.forEach(function (w) {
+      w.fin = w.v.t1;
+      if (SANS_RELAIS.test(w.v.type) || w.efface) return;
+      objs.forEach(function (o) {
+        if (o === w || SANS_RELAIS.test(o.v.type)) return;
+        if (w.v.t0 < o.v.t0 - 1 && w.v.t1 > o.v.t0 - FONDU && w.v.t1 < o.v.t0 + 3) w.fin = Math.min(w.fin, o.v.t0 - FONDU - .04);
+      });
+    });
     var MOUILLE = null;   // trace humide de tout le passage (calculée une fois)
     function mouille() {
       if (MOUILLE) return MOUILLE;
@@ -1748,10 +1765,10 @@
       var plein = false;
       objs.forEach(function (o) {
         var v = o.v;
-        if (t < v.t0 || t > (o.efface ? o.efface + .03 : v.t1 + (v.type === "tableau" ? 1 : .6))) { if (o.vis) { o.el.style.display = "none"; o.vis = false; } return; }
+        if (t < v.t0 || t > (o.efface ? o.efface + .03 : o.fin < v.t1 ? o.fin + FONDU + .03 : v.t1 + (v.type === "tableau" ? 1 : .6))) { if (o.vis) { o.el.style.display = "none"; o.vis = false; } return; }
         if (!o.vis) { o.el.style.display = o.disp; o.vis = true; }
-        if (v.type === "titre" || v.type === "chapitre" || v.type === "generique") plein = true;
-        var a = E(P(t, v.t0, .7)), out = o.efface ? 0 : EIO(P(t, v.t1, .42));
+        if (v.type === "titre" || v.type === "chapitre" || v.type === "generique" || v.type === "portrait") plein = true;   // le portrait monte jusqu'en haut : pas d'en-tête dessus
+        var a = E(P(t, v.t0, .7)), out = o.efface ? 0 : EIO(P(t, o.fin, FONDU));
         if (v.type !== "tableau") o.el.style.opacity = (o.entree === "aucune" ? 1 : a) * (1 - out);
         if (o.entree === "monte") o.el.style.transform = "translateY(" + (20 * (1 - a)).toFixed(2) + "px)";
         o.upd(t, { tl: t - v.t0, a: a, o: out });
