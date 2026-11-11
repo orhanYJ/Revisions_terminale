@@ -1,7 +1,7 @@
 /* Service worker — CDM Terminale
    Stratégie : réseau d'abord pour la page (mises à jour immédiates),
    repli cache hors ligne. Assets : cache d'abord. */
-const CACHE = "cdm-v3";
+const CACHE = "cdm-v4";
 const ASSETS = ["./", "index.html", "manifest.json", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", (e) => {

@@ -409,7 +409,7 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 .v-cols .col{background:rgba(18,25,44,.92)}
 
 /* =====================================================================
-   Identité « dossier d'archives » (11/2026, choisie par Cengiz parmi six essais) :
+   Identité « dossier d'archives » (11/2026, choisie parmi six essais) :
    le bureau d'un archiviste sous une lampe ; chemises kraft, papier jauni, textes tapés à la machine,
    encre noire et tampons rouges. Seule l'image de la vidéo (.scene) change ; le lecteur du site garde ses couleurs.
    Special Elite (titres) et Courier Prime (texte) sont locales (fonts.css). Textures : --grain (kraft) et --papier, posées par moteur.js.
