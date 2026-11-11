@@ -22,7 +22,7 @@ NUM = 1
 TITRE = "Océans et espace : quelles spécificités ?"
 SUIVANT = "Thème 1 · Axe 1 · Conquêtes, affirmations de puissance et rivalités"
 RYTHME = "vivant"
-PRONONCIATION = {"Kármán": "Karmane", "Starlink": "Star-linque", "SpaceX": "Spèïce X", "Seabed": "Sibède",
+PRONONCIATION = {"milles marins": "mil marins", "milles": "mil marins", "Kármán": "Karmane", "Starlink": "Star-linque", "SpaceX": "Spèïce X", "Seabed": "Sibède",
                  "Challenger": "Tchalèndjeur", "Deep": "Dipe", "Galileo": "Galiléo", "Beidou": "Béï-dou",
                  "Falcon": "Falkone", "Crew": "Crou", "Dragon": "Dragonne", "Turner": "Teurneur", "Rice": "Raïsse",
                  "Houston": "Houstonne", "CNUCED": "Cnucède", "BBNJ": "B B N J", "FAO": "F A O", "Iridium": "Iridiomme",
