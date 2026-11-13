@@ -15,7 +15,7 @@ window.PLAN = S => S.plans([
   // q2 « Deux. Les bactéries mutent pour résister aux antibiotiques. Vrai… ou faux ? »
   { a: ['q2', 0], av: .15, type: 'vraifaux', n: '2 / 5', t: 'Les bactéries mutent|pour résister|aux antibiotiques', chrono: ['q2', 'vrai'], rep: ['r2', 0], v: false, expl: 'Le hasard d’abord, le tri ensuite', ch: 2 },
   // r2 « Faux ! Les mutations arrivent au hasard, avant. L'antibiotique sélectionne celles qui résistaient déjà. »
-  { a: ['r2', 'mutations'], type: 'bacteries' },
+  { a: ['r2', 'mutations'], av: -.44, type: 'bacteries' },
   { a: ['r2', "l'antibiotique"], type: 'bacteries', etape: 2, choc: true },
   { a: ['r2', 'résistaient'], av: .15, type: 'portrait', img: 'antibio', t: 'DÉJÀ RÉSISTANTES', sous: 'pas de halo : la souche résiste' },
   // q3 « Trois. Une population peut évoluer par pur hasard. Vrai… ou faux ? »
@@ -31,14 +31,14 @@ window.PLAN = S => S.plans([
   // q4 « Quatre. Deux animaux qui se ressemblent sont forcément de la même espèce. Vrai… ou faux ? »
   { a: ['q4', 0], av: .15, type: 'vraifaux', n: '4 / 5', t: 'Deux animaux|qui se ressemblent|sont forcément|de la même espèce', chrono: ['q4', 'vrai'], rep: ['r4', 0], v: false, expl: 'La ressemblance peut tromper', ch: 3 },
   // r4 « Faux ! Deux fourmis des bois ont longtemps été confondues. En 1996, leur ADN a révélé deux espèces. »
-  { a: ['r4', 'deux'], type: 'fourmis', etape: 0 },
+  { a: ['r4', 'deux'], av: -.5, type: 'fourmis', etape: 0 },
   { a: ['r4', 'longtemps'], type: 'fourmis', etape: 1 },
   { a: ['r4', 'en'], type: 'date', t: '1996', de: 1950, sous: 'LE CRITÈRE MOLÉCULAIRE' },
   { a: ['r4', 'leur'], type: 'fourmis', etape: 2, choc: true },
   // q5 « Cinq. Une bactérie peut donner un gène à une bactérie d'une autre espèce. Vrai… ou faux ? »
   { a: ['q5', 0], av: .15, type: 'vraifaux', n: '5 / 5', t: 'Une bactérie peut donner|un gène à une bactérie|d’une autre espèce', chrono: ['q5', 'vrai'], rep: ['r5', 0], v: true, expl: 'C’est un transfert horizontal' },
   // r5 « Vrai ! Un pont se forme, une copie d'ADN passe. C'est ainsi que voyagent les résistances. »
-  { a: ['r5', 'un'], type: 'conjugaison', etape: 1 },
+  { a: ['r5', 'un'], av: -.45, type: 'conjugaison', etape: 1 },
   { a: ['r5', 'une'], type: 'conjugaison', etape: 2 },
   { a: ['r5', "c'est"], type: 'resist' },
   // fin « Alors, combien tu en as justes ? Dis ton score en commentaire. »

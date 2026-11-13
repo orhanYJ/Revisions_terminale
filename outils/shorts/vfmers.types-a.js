@@ -1,6 +1,6 @@
 // Plans propres au short « Vrai ou faux : les océans », dans le style du modèle A (noir, crème, or, rouge).
 // O = outils du modèle (carte, multi, tampon, barreRouge, petitTitre, fondImg, C = couleurs). Les plans vraifaux sont communs (formats-a.js).
-window.SANS_ST_A = ['chrono', 'part', 'eiffel', 'suez', 'cable', 'saisons', 'brise', 'zee', 'km2', 'commentaire'];
+window.SANS_ST_A = ['archive', 'chrono', 'part', 'eiffel', 'suez', 'cable', 'saisons', 'brise', 'zee', 'km2', 'commentaire'];
 window.PROPRES_A = ['archive', 'chrono', 'part', 'eiffel', 'suez', 'cable', 'saisons', 'brise', 'zee', 'km2', 'commentaire'];
 window.TYPES_A = O => {
   const { g, W, H, cl, lerp, pr, eo, back, rnd } = S;
