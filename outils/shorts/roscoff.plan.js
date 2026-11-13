@@ -27,7 +27,7 @@ window.PLAN = S => S.plans([
   // s9 « Les algues font la photosynthèse, et partagent avec toi ce qu'elles fabriquent. »
   { a: ['s9', 0], type: 'photo', t: 'LES ALGUES FONT|LA PHOTOSYNTHÈSE' },
   { a: ['s9', 'partagent'], type: 'photo', partage: ['s9', 'partagent'], t: 'ELLES PARTAGENT|AVEC TOI' },
-  // s10 « À marée basse, tu remontes à la surface du sable, au soleil. Avec des millions d'autres. »
+  // s10 « À marée basse, tu remontes à la surface, au soleil. Avec des millions d'autres. »
   { a: ['s10', 0], type: 'plage', maree: 'basse', t: 'À MARÉE BASSE…', ch: 3 },
   { a: ['s10', 'tu'], type: 'plage', maree: 'basse', monte: true, t: 'TU REMONTES|AU SOLEIL' },
   { a: ['s10', 'avec'], type: 'plage', maree: 'basse', foule: true, t: 'AVEC DES MILLIONS|D’AUTRES' },
