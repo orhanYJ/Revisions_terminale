@@ -9,6 +9,8 @@ Usage : python3 outils/serie-philo/verifier.py pc_ch2 ; puis generer.py pc_ch2 ;
 """
 
 SITE = "pc"
+VOIX_VIVANTE = True   # voix dite phrase par phrase, prise la plus expressive (generer.py, voix_qwen.py)
+RYTHME = "vivant"     # silences variables selon la fin de phrase (generer.py, _ecart_vivant)
 CODE = "ch2"
 NOTION = "Méthodes physiques d'analyse"
 NUM = 2
@@ -111,7 +113,7 @@ SCENES = [
         "{-outils}{id_dos}{id_dos.g}Et une distinction que l'énoncé attend toujours. Identifier, c'est répondre à la question : quelle espèce ? "
         "On compare la forme d'un spectre à une référence. "
         "{id_dos.d}Doser, c'est répondre à la question : combien ? On mesure une intensité, et on la convertit en concentration par un étalonnage.",
-        "Les deux travaux pratiques du chapitre font les deux, l'un après l'autre : identifier d'abord, doser ensuite, et discuter enfin la validité du résultat.",
+        "Les deux expériences de ce chapitre font les deux, l'une après l'autre : identifier d'abord, doser ensuite, et discuter enfin la validité du résultat.",
         "{-id_dos}",
     ], vis={
         "tab_spec": dict(type="tableau", img="c2-spectro", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .6, .55],
@@ -129,7 +131,7 @@ SCENES = [
             "Identifier un groupe caractéristique : spectroscopie infrarouge"], x=140, y=140, w=1000),
         "id_dos": dict(type="cols", g="Identifier", gq="« quelle espèce ? » · on compare la forme d'un spectre à une référence",
                        d="Doser", dq="« combien ? » · on mesure une intensité, on la convertit par étalonnage", vs="≠",
-                       repere="Les TP : identifier, puis doser, puis discuter"),
+                       repere="Les expériences : identifier, puis doser, puis discuter"),
     }),
 
     # ================================================================ II. la couleur
@@ -148,7 +150,7 @@ SCENES = [
         "C'est l'inverse. Elle laisse passer le bleu, et absorbe l'orange. "
         "La couleur qu'on voit n'est jamais celle qu'on mesure.",
         "{-piege_c}{rap_k}Deuxième rappel de Première : pour une espèce colorée en solution diluée, la lumière absorbée augmente avec la concentration. "
-        "{rap_k.1}On avait écrit A égale k fois c. {rap_k.2}Ce chapitre va expliquer ce que contient ce coefficient k, "
+        "{rap_k.1}On l'écrit : A égale k fois c. {rap_k.2}Ce chapitre va expliquer ce que contient ce coefficient k, "
         "et étendre la méthode à une deuxième grandeur, la conductivité.",
         "{-rap_k}",
     ], vis={
@@ -268,7 +270,7 @@ SCENES = [
         "Sur un flanc raide, la même erreur fausserait tout.",
         "{lmax.3}La raison est mathématique : au sommet d'une courbe, la pente est nulle. Une erreur de deux nanomètres est sans conséquence à lambda max, "
         "et catastrophique trente nanomètres plus loin.",
-        "{-lmax}{gr_sp}Le spectre sert aussi à identifier. Regarde les documents du TP deux. Un bain de bouche, coloré par le bleu patenté, le E cent trente et un. "
+        "{-lmax}{gr_sp}Le spectre sert aussi à identifier. Prenons une expérience classique. Un bain de bouche, coloré par le bleu patenté, le E cent trente et un. "
         "{gr_sp.1}Voici le spectre du E cent trente et un de référence : un maximum vers six cent trente nanomètres. "
         "{gr_sp.2}Voici celui du sulfate de cuivre, l'autre suspect : il n'absorbe presque pas vers six cent trente, et culmine au-delà de huit cents. "
         "{gr_sp.3}Et voici la solution du flacon suspect : même maximum, même allure que le E cent trente et un. Seulement plus bas.",
@@ -288,7 +290,7 @@ SCENES = [
             "La sensibilité est maximale : petite variation de c → grande variation de A",
             "La courbe est plate : une petite erreur sur λ ne change presque rien",
             "Au sommet, la pente est nulle : 2 nm d'écart, sans conséquence"], marques=["1", "2", "∴"], x=150, y=160, w=980),
-        "gr_sp": dict(type="graphe", titre="TP 2 · spectres d'absorption", x=300, y=100, w=700, h=540,
+        "gr_sp": dict(type="graphe", titre="Expérience · spectres d'absorption", x=300, y=100, w=700, h=540,
                       ax=dict(x=[400, 900], y=[0, 0.3], gx=[500, 600, 700, 800, 900], gy=[0.1, 0.2, 0.3], lx="λ (nm)", ly="A"),
                       el=[dict(type="courbe", pts=E131, c="#5aa9ff", lbl="E131 · 2,00 mg/L", lp=[680, 0.27]),
                           dict(type="courbe", pts=CUSO4, c="#4fd1c5", lbl="sulfate de cuivre", lp=[770, 0.225]),
@@ -305,7 +307,7 @@ SCENES = [
     dict(id="etalonnage", chap="Le dosage par étalonnage", fond="aube", humeur="calme",
          retenir="Gamme d'étalons qui encadre l'inconnue, blanc, mêmes conditions, droite par l'origine, lecture inverse c = A/k. Jamais d'extrapolation ; remonter la dilution.",
          beats=[
-        "{tab_gam}Voici le cœur pratique du chapitre, la méthode commune aux deux TP : le dosage par étalonnage.",
+        "{tab_gam}Voici le cœur pratique du chapitre, la méthode commune aux deux expériences : le dosage par étalonnage.",
         "{-tab_gam}{an_et}{et_pts}{et_pts.1}{an_et.1}Le principe. On prépare des solutions étalons, de concentrations connues. On mesure sur chacune la même grandeur. "
         "Les points s'alignent sur une droite qui passe par l'origine. Puis on mesure l'échantillon, et on fait la lecture inverse : "
         "on entre par l'axe vertical avec la grandeur mesurée, on ressort par l'axe horizontal avec la concentration.",
@@ -328,7 +330,7 @@ SCENES = [
         "{regles.2}La droite doit passer par l'origine : concentration nulle, signal nul. Sinon, c'est un problème : blanc mal fait, cuve sale, ou autre espèce qui contribue. "
         "{regles.3}Dans la lecture inverse, on divise : c égale A sur k. On ne multiplie jamais. "
         "{regles.4}Et si l'échantillon a été dilué avant la mesure, on n'oublie pas de remonter la dilution à la fin.",
-        "{-regles}{gr_tp2}Appliquons tout cela au flacon suspect du TP deux. {gr_tp2.1}Voici les étalons de E cent trente et un, mesurés à six cent trente nanomètres, en cuve d'un centimètre. "
+        "{-regles}{gr_tp2}Appliquons tout cela au flacon suspect du bain de bouche. {gr_tp2.1}Voici les étalons de E cent trente et un, mesurés à six cent trente nanomètres, en cuve d'un centimètre. "
         "{gr_tp2.2}Ils sont alignés sur une droite passant par l'origine : la loi de Beer-Lambert est vérifiée. "
         "Sa pente vaut zéro virgule vingt-six divisé par deux : zéro virgule treize litre par milligramme. "
         "{gr_tp2.3}Le flacon suspect donne une absorbance de zéro virgule zéro vingt-cinq.",
@@ -358,12 +360,12 @@ SCENES = [
         "regles": dict(type="liste", titre="Quatre règles", items=[
             "Aucune extrapolation hors du domaine étalonné", "La droite passe par l'origine",
             "Lecture inverse : c = A / k, on divise", "Remonter la dilution à la fin"], marques=["1", "2", "3", "4"], x=150, y=160, w=980),
-        "gr_tp2": dict(type="graphe", titre="TP 2 · droite d'étalonnage du E131 (630 nm, cuve de 1,0 cm)", x=330, y=110, w=640, h=520,
+        "gr_tp2": dict(type="graphe", titre="Expérience · droite d'étalonnage du E131 (630 nm, cuve de 1,0 cm)", x=330, y=110, w=640, h=520,
                        ax=dict(x=[0, 2.2], y=[0, 0.3], gx=[0.5, 1.0, 1.5, 2.0], gy=[0.1, 0.2, 0.3], lx="C (mg·L^-1)", ly="A"),
                        el=[dict(type="points", pts=TP2, c="#5aa9ff", pas=.15),
                            dict(type="droite", pts=[[0, 0], [2.2, 0.286]], c="#5aa9ff", lbl="A = 0,13 × C", lp=[1.35, 0.24], ep=2.6),
                            dict(type="point", x=0.19, y=0.025, c="sa", proj=True, lbl="flacon : A = 0,025", lp=[0.62, 0.06])]),
-        "ex_tp2": dict(type="formule", titre="TP 2 · la concentration du flacon suspect", x=150, y=110, w=980, lignes=[
+        "ex_tp2": dict(type="formule", titre="Expérience · la concentration du flacon suspect", x=150, y=110, w=980, lignes=[
             dict(f="C = " + fr("A", "k")),
             dict(f="C = " + fr("0,025", "0,13") + " = 0,19 mg·L^-1", cadre=True),
             dict(f="dans le domaine étalonné (0 à 2,00 mg·L^-1) : pas d'extrapolation", ok=True, taille=32),
@@ -404,7 +406,7 @@ SCENES = [
         "Même géométrie, même raisonnement. La résistivité est à la résistance ce que la conductivité est à la conductance. "
         "La conductimétrie n'invente rien : elle applique à une solution ce qu'on sait d'un fil.",
         "{-rho}{aff}Un dernier piège, pratique. {aff.1}Selon le mode, le conductimètre affiche une conductance, en millisiemens ou microsiemens, "
-        "ou une conductivité, en millisiemens par centimètre. Relève l'unité avant de noter la valeur : c'est une consigne explicite du TP trois.",
+        "ou une conductivité, en millisiemens par centimètre. Relève l'unité avant de noter la valeur : c'est une consigne classique au laboratoire.",
         "{-aff}",
     ], vis={
         "tab_cond": dict(type="tableau", img="c2-conductimetre", fond=True, sombre=True, de=[1.0, .5, .5], a=[1.3, .55, .45],
@@ -469,7 +471,7 @@ SCENES = [
         "{ex_soude.2}Sigma égale deux cents, fois la somme des lambda, vingt-quatre virgule huit fois dix puissance moins trois. "
         "{ex_soude.3}On trouve quatre virgule quatre-vingt-seize siemens par mètre.",
         "{ex_soude.4}Sans la conversion, on trouverait mille fois moins : la valeur d'une eau presque pure. C'est de loin l'erreur la plus fréquente du chapitre.",
-        "{-ex_soude}{gr_tp3}Et le dosage, dans le TP trois. Une lessive aux cristaux de soude, de l'hydrogénocarbonate de sodium, diluée dix fois. "
+        "{-ex_soude}{gr_tp3}Et un dosage, dans une expérience classique. Une lessive aux cristaux de soude, de l'hydrogénocarbonate de sodium, diluée dix fois. "
         "La notice demande vingt grammes par litre pour un sol intérieur. {gr_tp3.1}Voici les quatre étalons. "
         "{gr_tp3.2}La droite passe par l'origine, mais le point le plus concentré s'écarte vers le bas : c'est exactement la limite de Kohlrausch. "
         "On retient la pente sur la partie fiable : quatre-vingt-deux millisiemens par centimètre, par mole par litre. "
@@ -477,7 +479,7 @@ SCENES = [
         "{-gr_tp3}{ex_tp3}{ex_tp3.1}On divise : c égale sigma sur k, deux virgule dix sur quatre-vingt-deux : deux virgule six fois dix puissance moins deux mole par litre. "
         "{ex_tp3.2}On remonte la dilution : fois dix, zéro virgule vingt-six mole par litre. "
         "{ex_tp3.3}En masse, avec une masse molaire de quatre-vingt-quatre grammes par mole : environ vingt-deux grammes par litre.",
-        "{ex_tp3.4}Très proche des vingt grammes par litre recommandés : la solution convenait au sol de la cantine. "
+        "{ex_tp3.4}Très proche des vingt grammes par litre recommandés : la solution convenait pour un sol intérieur. "
         "Oublier le facteur dix, c'est répondre deux virgule deux grammes par litre, et se tromper de conclusion.",
         "{-ex_tp3}",
     ], vis={
@@ -507,12 +509,12 @@ SCENES = [
             dict(f="σ = 2,00 × 10^2 × (5,01 + 19,8) × 10^-3", n="λ(Na⁺) = 5,01 × 10⁻³ · λ(HO⁻) = 19,8 × 10⁻³ S·m²·mol⁻¹"),
             dict(f="σ = 4,96 S·m^-1", cadre=True),
             dict(f="sans conversion : 4,96 × 10^-3 S·m^-1, mille fois trop petit", ko=True, taille=32)]),
-        "gr_tp3": dict(type="graphe", titre="TP 3 · étalonnage conductimétrique (NaHCO₃)", x=330, y=110, w=640, h=520,
+        "gr_tp3": dict(type="graphe", titre="Expérience · étalonnage conductimétrique (NaHCO₃)", x=330, y=110, w=640, h=520,
                        ax=dict(x=[0, 0.11], y=[0, 9], gx=[0.02, 0.04, 0.06, 0.08, 0.10], gy=[2, 4, 6, 8], lx="C (mol·L^-1)", ly="σ (mS·cm^-1)"),
                        el=[dict(type="points", pts=TP3, c="#5aa9ff", pas=.2),
                            dict(type="droite", pts=[[0, 0], [0.11, 9.02]], c="#5aa9ff", tir=True, ep=2.4, lbl="pente k ≈ 82", lp=[0.062, 6.6]),
                            dict(type="point", x=0.0256, y=2.10, c="sa", proj=True, lbl="Saint-Marc /10 : 2,10", lp=[0.036, 2.3])]),
-        "ex_tp3": dict(type="formule", titre="TP 3 · la lessive diluée dix fois", x=150, y=110, w=980, lignes=[
+        "ex_tp3": dict(type="formule", titre="Expérience · la lessive diluée dix fois", x=150, y=110, w=980, lignes=[
             dict(f="C = " + fr("σ", "k") + " = " + fr("2,10", "82") + " = 2,6 × 10^-2 mol·L^-1"),
             dict(f="C_0 = 10 × 2,6 × 10^-2 = 0,26 mol·L^-1", n="on remonte la dilution"),
             dict(f="c_m = C_0 × M = 0,26 × 84,0 ≈ 22 g·L^-1", cadre=True),
@@ -600,7 +602,7 @@ SCENES = [
         "{-lire}{groupes}Et une précision qui compte dans la rédaction. {groupes.1}L'infrarouge identifie des groupes, pas des molécules. "
         "Deux molécules de la même famille ont des spectres très semblables ; ce qui les distingue est la zone sous mille cinq cents, l'empreinte digitale, trop complexe à lire à la main. "
         "On conclut donc : ce spectre présente un groupe hydroxyle. Pas : c'est du propan-un-ol. Sauf si l'énoncé donne une liste fermée de candidats.",
-        "{-groupes}{houle}Pour finir le cours, une question : pourquoi le visible renseigne-t-il sur les électrons, et l'infrarouge sur les liaisons ? "
+        "{-groupes}{houle}Pour finir cette partie, une question : pourquoi le visible renseigne-t-il sur les électrons, et l'infrarouge sur les liaisons ? "
         "Parce qu'une onde ne perturbe efficacement qu'une entité de taille comparable à sa longueur d'onde. "
         "Comme la houle : des vaguelettes passent sous un chalutier sans le déranger, une houle immense le soulève en bloc, et ce sont les vagues de sa taille qui le secouent.",
         "{-houle}{entite}{entite.1}Les rayons gamma agissent sur les noyaux. {entite.2}L'ultraviolet et le visible, sur les électrons des molécules : ce sont les transitions électroniques, et la couleur. "
@@ -851,14 +853,14 @@ SCENES = [
         "{carte.2}Le spectre : on mesure à lambda max, et la couleur perçue est la complémentaire de la couleur absorbée. "
         "{carte.3}La conductivité : sigma égale K fois G, et la loi de Kohlrausch, en moles par mètre cube. "
         "{carte.4}Et l'infrarouge : le nombre d'onde, et les bandes O H et C double liaison O.",
-        "{-carte}{bac}Et voici les savoir-faire du plan de travail, à cocher. "
+        "{-carte}{bac}Et voici les savoir-faire à maîtriser pour le bac, à cocher. "
         "{bac.1}Exploiter la loi de Beer-Lambert pour déterminer une concentration. "
         "{bac.2}Exploiter la loi de Kohlrausch pour déterminer une concentration. "
         "{bac.3}Exploiter un spectre infrarouge pour identifier un groupe caractéristique. "
         "{bac.4}Exploiter un spectre ultraviolet-visible pour identifier une espèce. "
         "{bac.5}Mesurer une conductance et tracer une courbe d'étalonnage. "
         "{bac.6}Et maîtriser les conversions d'unités.",
-        "Si tu sais faire ces six choses, tu as tout le bagage du chapitre. Le site t'attend avec les exercices du plan de travail, les deux TP corrigés et la fiche mémo. "
+        "Si tu sais faire ces six choses, tu as tout le bagage du chapitre. Pour t'en assurer, entraîne-toi sur des exercices. "
         "Et maintenant, les questions du quiz, juste sous la vidéo.",
         "{-bac}",
     ], vis={
@@ -868,9 +870,9 @@ SCENES = [
             dict(t="La conductivité", items=["G = I/U · σ = K × G", "σ = Σ λ_i [X_i]", "[X] en mol·m^-3"]),
             dict(t="L'infrarouge", items=["σ = 1/λ en cm^-1", "O—H large · C=O fine", "des groupes, pas des molécules"])]),
         "bac": dict(type="liste", titre="Pour le bac · à cocher", items=[
-            "C1 · Beer-Lambert : déterminer une concentration", "C2 · Kohlrausch : déterminer une concentration",
-            "C3 · Spectre IR : identifier un groupe caractéristique", "C4 · Spectre UV-visible : identifier une espèce",
-            "C5 · Mesurer une conductance, tracer un étalonnage", "Conversions d'unités : mol·m⁻³, cm², mS·cm⁻¹"],
+            "Beer-Lambert : déterminer une concentration", "Kohlrausch : déterminer une concentration",
+            "Spectre IR : identifier un groupe caractéristique", "Spectre UV-visible : identifier une espèce",
+            "Mesurer une conductance, tracer un étalonnage", "Conversions d'unités : mol·m⁻³, cm², mS·cm⁻¹"],
                     marques=["✓"] * 6, x=170, y=100, w=940),
     }),
 ]
@@ -909,6 +911,6 @@ QUIZ = [
 CREDITS = [
     "Photos : gamme de solutions en fioles jaugées, Alina Popova, CC BY 4.0 ; cuves de spectrophotomètre, Retama, CC BY-SA 4.0 ; "
     "spectrophotomètre de laboratoire, TimVickers (domaine public) ; conductimètre, Nuno Nogueira, CC BY-SA 2.5.",
-    "Images trouvées sur Wikimedia Commons. Animations, schémas et graphiques : faits pour le site ; spectres infrarouges schématisés "
-    "d'après la table des bandes du cours. Valeurs des TP 2 et 3 : énoncés et mesures de la classe. Les trois exercices sont inventés pour la vidéo.",
+    "Images trouvées sur Wikimedia Commons. Animations, schémas et graphiques : faits pour la vidéo ; spectres infrarouges schématisés "
+    "d'après les tables de bandes usuelles. Valeurs des expériences : mesures réalisées au laboratoire. Les trois exercices sont inventés pour la vidéo.",
 ]

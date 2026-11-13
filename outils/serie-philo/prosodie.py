@@ -58,6 +58,73 @@ if __name__ == "__main__":
         print(f"{len(res)} passages : relief médian {np.median(r):.2f} (p10 {np.percentile(r, 10):.2f}), élan médian {np.median(e):.2f} (p10 {np.percentile(e, 10):.2f}), plats {sum(plat(m) for _, m in res)}")
 
 
+# ---------------------------------------------------------------------------------------------------------------
+# Dérapages de la voix clonée (10/11/2026, Cengiz : « souvent elle vrille, elle prononce mal, elle fait des trucs haut
+# et robotique ») : le modèle part parfois dans l'aigu, ou glisse brutalement. On mesure la hauteur par fenêtres de
+# 0,25 s et on compare au registre du narrateur (médiane de toute la vidéo, ou du passage à défaut).
+def profil(a, sr):
+    """Hauteurs médianes (Hz) par fenêtre de 0,25 s, et médiane du passage."""
+    import librosa
+    if sr != 16000:
+        a = librosa.resample(np.asarray(a, dtype=np.float32), orig_sr=sr, target_sr=16000)
+        sr = 16000
+    f0, voix, _ = librosa.pyin(a, fmin=55, fmax=420, sr=sr, frame_length=1024, hop_length=256)
+    ok = voix & np.isfinite(f0)
+    t = np.arange(len(f0)) * 256 / sr
+    fen = []
+    for d in np.arange(0, t[-1] if len(t) else 0, 0.25):
+        m = (t >= d) & (t < d + 0.25) & ok
+        fen.append(float(np.median(f0[m])) if m.sum() >= 4 else np.nan)
+    med = float(np.median(f0[ok])) if ok.sum() > 10 else float("nan")
+    return np.array(fen), med
+
+
+def anomalies(a, sr, registre=None, seuil=1.65, duree=0.5):
+    """Liste des dérapages d'un passage : « aigu » (tout le passage trop haut), « vrille » (une montée brusque dans
+    l'aigu sur au moins 0,5 s), « saut » (glissements de plus d'une octave entre fenêtres voisines)."""
+    fen, med = profil(a, sr)
+    ref = registre or med
+    res = []
+    if not np.isfinite(med) or not ref:
+        return res
+    if med > ref * 1.22:
+        res.append("aigu (%.0f Hz pour %.0f)" % (med, ref))
+    haut = np.nan_to_num(fen, nan=0) > max(ref * seuil, 140)
+    run = best = 0
+    for h in haut:
+        run = run + 1 if h else 0
+        best = max(best, run)
+    if best >= max(2, int(round(duree / 0.25))):
+        res.append("vrille (%.2f s dans l'aigu)" % (best * 0.25))
+    v = fen[np.isfinite(fen)]
+    if len(v) > 3:
+        sauts = np.abs(np.diff(12 * np.log2(v)))
+        if (sauts > 12).sum() >= 2:
+            res.append("saut (%d glissements > 1 octave)" % int((sauts > 12).sum()))
+    return res
+
+
+def mots_aigus(a, sr, mots, registre, seuil=1.3):
+    """Mots qui sautent dans l'aigu (11/11/2026, défaut signalé par Cengiz au ch. 5 : « passe », « foyer » à 150 %
+    au milieu d'une phrase, « Comment » à 145 %) : hauteur médiane du mot au-delà de 130 % du registre du narrateur.
+    mots : [(début, fin, mot)] en secondes. Renvoie [(mot, pourcentage)]."""
+    import librosa
+    if sr != 16000:
+        a = librosa.resample(np.asarray(a, dtype=np.float32), orig_sr=sr, target_sr=16000)
+        sr = 16000
+    f0, voix, _ = librosa.pyin(a, fmin=55, fmax=420, sr=sr, frame_length=1024, hop_length=160)
+    t = np.arange(len(f0)) * 160 / sr
+    ok = voix & np.isfinite(f0)
+    res = []
+    for d, f, w in mots:
+        m = (t >= d) & (t < f) & ok
+        if f - d >= 0.12 and m.sum() >= 4:
+            r = float(np.median(f0[m])) / registre
+            if r > seuil:
+                res.append((w, round(100 * r)))
+    return res
+
+
 # --- Défauts de voix (demande de Cengiz du 10/11/2026 : « souvent elle vrille, elle prononce mal, elle fait des trucs
 # haut et robotique ») : mesures complémentaires, comparées à la voix de référence du passage.
 _REF_HZ = {}

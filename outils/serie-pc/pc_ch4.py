@@ -10,6 +10,8 @@ Usage : python3 outils/serie-philo/verifier.py pc_ch4 ; puis generer.py pc_ch4 ;
 """
 
 SITE = "pc"
+VOIX_VIVANTE = True   # voix dite phrase par phrase, prise la plus expressive (generer.py, voix_qwen.py)
+RYTHME = "vivant"     # silences variables selon la fin de phrase (generer.py, _ecart_vivant)
 CODE = "ch4"
 NOTION = "La lumière, un flux de photons"
 NUM = 4
@@ -136,7 +138,7 @@ SCENES = [
         "divisé par six cent trente-trois fois dix puissance moins neuf. "
         "{ex_E.3}On obtient trois virgule quatorze fois dix puissance moins dix-neuf joule. "
         "{ex_E.4}On divise par un virgule soixante fois dix puissance moins dix-neuf : un virgule quatre-vingt-seize électronvolt.",
-        "{-ex_E}{astuce}Une astuce pour vérifier tes calculs, sans la présenter comme une formule du cours : "
+        "{-ex_E}{astuce}Une astuce pour vérifier tes calculs, sans la présenter comme une formule officielle : "
         "l'énergie en électronvolts vaut à peu près mille deux cent quarante divisé par la longueur d'onde en nanomètres. "
         "Mille deux cent quarante sur six cent trente-trois : environ un virgule quatre-vingt-seize. Ça colle.",
         "Et un repère à garder en tête : le visible va d'environ un virgule six électronvolt, pour le rouge, à trois virgule un électronvolt, pour le violet.",
@@ -474,13 +476,13 @@ SCENES = [
     dict(id="rendement", chap="Le rendement d'une cellule", fond="nuit", humeur="calme",
          retenir="η = P_él,max / P_reçue, avec P_reçue = E × S et P_él = U × I. Le maximum de U × I se lit sur la courbe P = f(U).",
          beats=[
-        "{tab_pan}Dernière notion du cours, très présente au bac : le rendement d'une cellule photovoltaïque. "
+        "{tab_pan}Dernière notion du chapitre, très présente au bac : le rendement d'une cellule photovoltaïque. "
         "{f_eta}{f_eta.1}Le rendement, noté êta, compare ce que la cellule fournit à ce qu'elle reçoit : la puissance électrique maximale, divisée par la puissance lumineuse reçue.",
         "{f_eta.2}La puissance reçue, c'est l'éclairement fois la surface. L'éclairement se mesure au solarimètre, en watts par mètre carré. "
         "{f_eta.3}La puissance électrique, c'est U fois I.",
         "{f_eta.4}Attention : dans ce chapitre, la lettre E désigne deux choses. L'énergie d'un photon, en joules, et l'éclairement, en watts par mètre carré. "
         "C'est l'unité qui dit de quoi on parle.",
-        "{-f_eta}{-tab_pan}{gr_iu}Pourquoi la puissance maximale ? Regarde la caractéristique de la cellule du TP six : l'intensité en fonction de la tension. "
+        "{-f_eta}{-tab_pan}{gr_iu}Pourquoi la puissance maximale ? Regarde la caractéristique d'une cellule, mesurée au laboratoire : l'intensité en fonction de la tension. "
         "{gr_iu.1}On l'obtient en branchant une résistance variable, et en mesurant U et I. "
         "Tant que la tension reste faible, le courant est presque constant. Puis il s'effondre.",
         "{gr_iu.2}La puissance, U fois I, c'est l'aire de ce rectangle. En court-circuit, U est nulle : aucune puissance. "
@@ -490,7 +492,7 @@ SCENES = [
         "{-gr_p}{ex_tp}Calculons le rendement. {ex_tp.1}La cellule mesure dix centimètres sur dix : zéro virgule dix fois zéro virgule dix, "
         "un centième de mètre carré. {ex_tp.2}Sous quatre cents watts par mètre carré, elle reçoit quatre watts. "
         "{ex_tp.3}Êta égale zéro virgule quarante-six sur quatre : environ douze pour cent.",
-        "{-ex_tp}{piege_ma}Le piège classique : le tableur donne I en milliampères. Quatre virgule trois fois cent sept, ça fait quatre cent soixante… "
+        "{-ex_tp}{piege_ma}Le piège classique : les mesures donnent I en milliampères. Quatre virgule trois fois cent sept, ça fait quatre cent soixante… "
         "milliwatts. Dans le rendement, il faut zéro virgule quarante-six watt.",
         "{-piege_ma}{chaine}{chaine.2}La chaîne énergétique le montre : sur toute l'énergie lumineuse reçue, environ quinze pour cent seulement devient électrique. "
         "{chaine.3}Le reste est perdu, surtout sous forme thermique. {chaine.4}",
@@ -511,16 +513,16 @@ SCENES = [
             dict(f="P_{reçue} = E × S", n="E : éclairement en W·m^-2 · S : surface en m^2"),
             dict(f="P_{él} = U × I", n="U en V · I en A (attention aux mA)"),
             dict(f="E : énergie d'un photon (J) ou éclairement (W·m^-2) : regarde l'unité", txt=True)]),
-        "gr_iu": dict(type="graphe", titre="TP 6 · caractéristique I = f(U)", x=330, y=110, w=640, h=520,
+        "gr_iu": dict(type="graphe", titre="Caractéristique I = f(U) d'une cellule", x=330, y=110, w=640, h=520,
                       ax=dict(x=[0, 6], y=[0, 140], gx=[1, 2, 3, 4, 5, 6], gy=[40, 80, 120], lx="U (V)", ly="I (mA)"),
                       el=[dict(type="courbe", pts=[list(p) for p in TP6], c="el", dur=2.2),
                           dict(type="balaye", pts=[list(p) for p in TP6], de=.6, a=5.6, dur=6, c="sa", fmt="P = {p} mW"),
                           dict(type="rect", x=4.3, y=107, c="vert", fmt="P_max ≈ {p} mW", dur=.6)]),
-        "gr_p": dict(type="graphe", titre="TP 6 · puissance P = f(U)", x=330, y=110, w=640, h=520,
+        "gr_p": dict(type="graphe", titre="Puissance P = f(U) d'une cellule", x=330, y=110, w=640, h=520,
                      ax=dict(x=[0, 6], y=[0, 0.5], gx=[1, 2, 3, 4, 5, 6], gy=[0.1, 0.2, 0.3, 0.4, 0.5], lx="U (V)", ly="P (W)"),
                      el=[dict(type="courbe", pts=[list(p) for p in TP6_P], c="sa", dur=2.2),
                          dict(type="point", x=4.3, y=0.46, c="vert", proj=True, lbl="P_max ≈ 0,46 W", lp=[4.0, 0.49])]),
-        "ex_tp": dict(type="formule", titre="Le rendement de la cellule du TP 6", x=150, y=150, w=980, lignes=[
+        "ex_tp": dict(type="formule", titre="Le rendement de la cellule mesurée", x=150, y=150, w=980, lignes=[
             dict(f="S = 0,10 × 0,10 = 1,0 × 10^-2 m^2"),
             dict(f="P_{reçue} = E × S = 400 × 1,0 × 10^-2 = 4,0 W"),
             dict(f="η = " + fr("0,46", "4,0") + " ≈ 0,12 = 12 %", cadre=True)]),
@@ -656,7 +658,7 @@ SCENES = [
         "Trois : détermine la puissance maximale et le rendement. Quatre : donne deux raisons, liées au modèle du photon, pour lesquelles le rendement est loin de cent pour cent. "
         "Cinq : six heures de plein soleil suffisent-elles pour éclairer toute la nuit ?",
         "{-ex3b}{pa3}C'est un vrai sujet de bac : prends vingt minutes. Mets sur pause, et rédige.",
-        "{pa3.stop}{-pa3}{ex3c}{ex3c.q1}Correction. {s31}Question un, une question de cours rédigée. "
+        "{pa3.stop}{-pa3}{ex3c}{ex3c.q1}Correction. {s31}Question un, une question de connaissances rédigée. "
         "{s31.1}Un photon assez énergétique est absorbé par le silicium et libère un électron. "
         "{s31.2}Le champ électrique interne, créé à la jonction entre la couche n et la couche p, sépare cet électron de son trou et le pousse vers la grille. "
         "{s31.3}L'électron parcourt le circuit extérieur : c'est le courant. Plus il y a de photons absorbés, plus le courant est intense.",
@@ -734,7 +736,7 @@ SCENES = [
         "{bac.5}Établir le bilan d'énergie d'Einstein. "
         "{bac.6}Citer des applications, expliquer une cellule. "
         "{bac.7}Et déterminer un rendement.",
-        "Si tu sais faire ces sept choses, tu as tout le bagage du chapitre. Le site t'attend avec d'autres exercices, le TP six corrigé et la fiche mémo. "
+        "Si tu sais faire ces sept choses, tu as tout le bagage du chapitre. Pour t'entraîner, refais les trois exercices sans regarder la correction. "
         "Et maintenant, les questions du quiz, juste sous la vidéo.",
         "{-bac}",
     ], vis={
@@ -788,6 +790,6 @@ CREDITS = [
     "Heinrich Hertz par Robert Krewaldt (domaine public) ; Robert Millikan, Fondation Nobel (domaine public) ; James Clerk Maxwell, gravure de G. J. Stodart, 1890 (domaine public).",
     "Photos : calculatrice solaire, Evan-Amos (domaine public) ; le Soleil, NASA/SDO (domaine public) ; nébuleuse d'Orion, NASA, ESA, M. Robberto, Hubble (domaine public) ; "
     "spectre à travers un prisme, Pittigrilli, CC BY-SA 4.0 ; capteur CCD, Aquilaa1, CC BY-SA 4.0 ; centrale photovoltaïque de Nüziders, Asurnipal, CC BY-SA 4.0.",
-    "Images trouvées sur Wikimedia Commons. Animations, schémas et graphiques : faits pour le site. Valeurs du TP 6 : tableur du professeur. "
+    "Images trouvées sur Wikimedia Commons. Animations, schémas et graphiques : faits pour la vidéo. Caractéristique de la cellule : mesures réalisées au laboratoire. "
     "Les trois exercices sont inventés pour la vidéo.",
 ]
