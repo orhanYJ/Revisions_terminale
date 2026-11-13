@@ -43,11 +43,11 @@ window.TYPES_A = O => {
   // p.etape : 'hook' | 'transmet' | 'rencontre' | 'enfant' | 'meme' | 'couple'
   function arbre(p, t) {
     const e = p.etape, anim = e === 'hook' || e === 'transmet', lt = t - p.a;
-    const z = e === 'couple' ? lerp(1, 1.7, eo(pr(t, p.a, .7))) : 1;
-    g.save(); g.translate(RACINE[0], RACINE[1] + 60); g.scale(z, z); g.translate(-RACINE[0], -RACINE[1] - 60);
+    g.save();
     const lueur = e === 'hook' || e === 'couple' ? .6 + .4 * Math.sin(t * 5) : e === 'meme' ? .5 : 0;
     couple(anim ? eo(pr(lt, 0, .3)) : 1, lueur);
-    // générations
+    // générations (estompées quand on revient au couple)
+    if (e === 'couple') g.globalAlpha = lerp(1, .4, eo(pr(t, p.a, .5)));
     G.forEach((row, gi) => row.forEach(([x, y, par, port, homme], i) => {
       const k = anim ? pr(lt, .25 + gi * .3 + i * .04, .3) : 1;
       const [px, py] = par < 0 ? RACINE : G[gi - 1][par];
@@ -83,8 +83,9 @@ window.TYPES_A = O => {
         const n2 = Math.max(2, Math.ceil(pts.length * ko)); pts.slice(0, n2).forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); g.stroke(); g.restore();
       });
     }
-    if (e === 'couple') { const k = pr(t, p.a + .3, .4); g.save(); g.strokeStyle = OR; g.lineWidth = 6; g.globalAlpha = k;
-      g.beginPath(); g.ellipse(RACINE[0], RACINE[1], 190, 90, 0, 0, 7 * k); g.stroke(); g.restore(); }
+    if (e === 'couple') { g.globalAlpha = 1; couple(1, 1); const k = pr(t, p.a + .2, .4); g.save(); g.strokeStyle = OR; g.lineWidth = 8; g.shadowColor = OR; g.shadowBlur = 25;
+      g.beginPath(); g.ellipse(RACINE[0], RACINE[1], 190 + 8 * Math.sin(t * 6), 90, 0, -Math.PI / 2, -Math.PI / 2 + 6.3 * k); g.stroke(); g.restore();
+      pop(pr(t, p.a + .5, .3), RACINE[0], RACINE[1] - 130, () => S.texte('LE COUPLE FONDATEUR', 0, 0, { taille: 44, coul: OR, esp: 4, contour: NOIR, contourL: 8 })); }
     g.restore();
     if (p.t) deux(p.t, 1480, 104);
   }
@@ -95,7 +96,7 @@ window.TYPES_A = O => {
     g.fillStyle = SOMBRE; g.strokeStyle = o.coul || CREME; g.lineWidth = 6;
     g.beginPath(); g.arc(0, -150, 42, 0, 7); g.fill(); g.stroke();
     g.beginPath(); g.moveTo(-55, 0); g.lineTo(-48, -80); g.quadraticCurveTo(0, -112, 48, -80); g.lineTo(55, 0); g.closePath(); g.fill(); g.stroke();
-    if (o.porteur) { g.shadowColor = ROUGE; g.shadowBlur = 30; rond(0, -50, 14 * o.porteur, ROUGE); g.shadowBlur = 0; }
+    if (o.porteur) { g.shadowColor = ROUGE; g.shadowBlur = 40; rond(0, -50, 24 * o.porteur, ROUGE); g.shadowBlur = 0; rond(0, -50, 24 * o.porteur + 14 + 10 * Math.sin((o.t || 0) * 6), null, ROUGE, 4); }
     g.restore();
   }
   // la communauté : p.mode 'fonde' (les immigrants arrivent) | 'cercle' (un groupe fermé) ; p.porteur : repère
@@ -110,7 +111,7 @@ window.TYPES_A = O => {
       let x, y, s = .95;
       if (p.mode === 'fonde') { const k = eo(pr(t, p.a + i * .1, .7)); x = lerp(-150, 140 + i * 115, k); y = 1170 + (i % 2) * 30; }
       else { const a = Math.PI / 2 + (i / n) * 2 * Math.PI; x = 540 + Math.cos(a) * 330; y = 1000 + Math.sin(a) * 200 + 100; s = .8 + .2 * (Math.sin(a) + 1) / 2; }
-      perso(x, y, s, { porteur: i === 0 && kp ? back(kp) : 0 });
+      perso(x, y, s, { porteur: i === 0 && kp ? back(kp) : 0, t });
     }
     if (p.mode === 'cercle') {
       const k = eo(pr(t, p.a + .1, .6)); g.save(); g.strokeStyle = OR; g.lineWidth = 7; g.setLineDash([26, 18]); g.lineDashOffset = -t * 30;
@@ -137,9 +138,9 @@ window.TYPES_A = O => {
     g.beginPath(); g.moveTo(1080, 450); g.bezierCurveTo(930, 520, 980, 640, 900, 720); g.bezierCurveTo(860, 800, 950, 900, 880, 1000); g.lineTo(1080, 1100); g.closePath(); g.fill(); g.stroke();
     g.beginPath(); g.moveTo(0, 420); g.bezierCurveTo(150, 520, 90, 650, 170, 760); g.bezierCurveTo(220, 840, 120, 960, 180, 1080); g.lineTo(0, 1120); g.closePath(); g.fill(); g.stroke();
     g.restore();
-    S.texte('EUROPE', 990, 790, { taille: 42, coul: OR, esp: 6 });
-    S.texte('AMÉRIQUE', 95, 600, { taille: 38, coul: OR, esp: 4 });
-    S.texte('Pennsylvanie', 110, 900, { taille: 36, police: 'Spectral', it: true, poids: 400, coul: CREME });
+    S.texte('EUROPE', 950, 790, { taille: 42, coul: OR, esp: 6 });
+    S.texte('AMÉRIQUE', 150, 600, { taille: 38, coul: OR, esp: 4 });
+    S.texte('Pennsylvanie', 150, 900, { taille: 36, police: 'Spectral', it: true, poids: 400, coul: CREME });
     // vagues
     g.strokeStyle = 'rgba(239,230,210,.18)'; g.lineWidth = 3;
     for (let r = 0; r < 6; r++) { g.beginPath(); for (let x = 220; x <= 860; x += 10) g.lineTo(x, 560 + r * 90 + Math.sin(x * .03 + t * 2 + r) * 8); g.stroke(); }
@@ -251,7 +252,7 @@ window.TYPES_A = O => {
     const x0 = 140, x1 = 980, y0 = 1180, y1 = 560, k = eo(pr(t, p.a + .1, 1.2));
     g.strokeStyle = CREME; g.lineWidth = 5; g.beginPath(); g.moveTo(x0, y1 - 30); g.lineTo(x0, y0); g.lineTo(x1 + 20, y0); g.stroke();
     S.texte('fréquence', x0 + 10, y1 - 60, { taille: 38, police: 'Spectral', it: true, poids: 400, coul: CREME, align: 'left' });
-    S.texte('générations →', x1, y0 + 50, { taille: 38, police: 'Spectral', it: true, poids: 400, coul: CREME, align: 'right' });
+    S.texte('générations', x1, y0 + 50, { taille: 38, police: 'Spectral', it: true, poids: 400, coul: CREME, align: 'right' });
     [[.3, ROUGE, 1], [.3, OR, 2], [.3, '#8d8371', 3]].forEach(([f0, c, s]) => {
       let f = f0; g.strokeStyle = c; g.lineWidth = c === ROUGE ? 8 : 5; g.beginPath(); g.moveTo(x0, lerp(y0, y1, f));
       const n = 30; for (let i = 1; i <= n * k; i++) { f = cl(f + (rnd(i * 7 + s * 13) - .5) * .22 + (s === 1 ? .025 : s === 3 ? -.02 : 0)); g.lineTo(lerp(x0, x1, i / n), lerp(y0, y1, f)); }

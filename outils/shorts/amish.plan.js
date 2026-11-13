@@ -9,13 +9,13 @@ window.PLAN = S => S.plans([
   // s3 « XVIIIe siècle. Tu es amish, en couple, et tu quittes l'Europe pour la Pennsylvanie. »
   { a: ['s3', 0], type: 'mot', t: 'XVIIIᵉ|SIÈCLE', ch: 1 },
   { a: ['s3', 'tu'], type: 'mot', img: 'amish', t: 'TU ES AMISH,|EN COUPLE' },
-  { a: ['s3', 'quittes'], type: 'traversee', t: 'L’EUROPE →|LA PENNSYLVANIE' },
-  // s4 « Quelques immigrants fondent une communauté. On vit à l'écart, on se marie au sein du groupe. »
+  { a: ['s3', 'quittes'], type: 'traversee', t: 'DE L’EUROPE|À LA PENNSYLVANIE' },
+  // s4 « Quelques immigrants fondent une communauté à l'écart. On se marie au sein du groupe. »
   { a: ['s4', 0], type: 'village', mode: 'fonde', t: 'QUELQUES|IMMIGRANTS' },
   { a: ['s4', 'on'], type: 'village', mode: 'cercle', t: 'ON SE MARIE|AU SEIN DU GROUPE' },
-  // s5 « Mais l'un de vous deux porte un secret : un allèle muté, très rare. »
+  // s5 « Mais l'un de vous deux porte un secret : un allèle muté rare. »
   { a: ['s5', 0], type: 'village', mode: 'cercle', porteur: ['s5', 'secret'], t: 'L’UN DE VOUS DEUX|PORTE UN SECRET', ch: 2 },
-  { a: ['s5', 'allèle'], type: 'chromo', copies: 1, t: 'UN ALLÈLE MUTÉ|TRÈS RARE' },
+  { a: ['s5', 'allèle'], type: 'chromo', copies: 1, t: 'UN ALLÈLE|MUTÉ, RARE' },
   // s6 « Un seul exemplaire : aucun symptôme. »
   { a: ['s6', 0], type: 'chromo', copies: 1, t: 'UN SEUL EXEMPLAIRE|AUCUN SYMPTÔME' },
   // s7 « Il passe à vos enfants, à vos petits-enfants… en silence. »

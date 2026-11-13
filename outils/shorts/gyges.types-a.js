@@ -157,8 +157,8 @@ window.TYPES_A = O => {
   function cheval(p, t) {
     const lt = t - p.a, s = 1.35, cx = W / 2 + 10, cy = 880;
     const gl = g.createRadialGradient(cx, cy, 50, cx, cy, 650); gl.addColorStop(0, 'rgba(217,180,90,.22)'); gl.addColorStop(1, 'rgba(217,180,90,0)'); g.fillStyle = gl; g.fillRect(0, 330, W, 920);
-    const z = p.ouvre ? lerp(1, 1.9, eo(pr(t, p.a, 1.3))) : 1 + lt * .02, px = cx - 5 * s, py = cy - 30 * s;
-    g.save(); g.translate(px, py); g.scale(z, z); g.translate(-px, -py);
+    const z = p.ouvre ? lerp(1, 1.5, eo(pr(t, p.a, 1.3))) : 1 + lt * .02, px = cx - 5 * s, py = cy - 30 * s;
+    g.save(); g.beginPath(); g.rect(0, 300, W, 960); g.clip(); g.translate(px, py); g.scale(z, z); g.translate(-px, -py);
     g.save(); g.translate(cx, cy); g.scale(s, s);
     const br = g.createLinearGradient(0, -330, 0, 232); br.addColorStop(0, '#b08a4e'); br.addColorStop(1, '#4e381c');
     g.fillStyle = br; g.strokeStyle = OR; g.lineWidth = 5; g.lineJoin = 'round';
@@ -343,8 +343,8 @@ window.TYPES_A = O => {
     S.texte('Platon · livres I à X', W / 2, 1030, { taille: 40, police: 'Spectral', it: true, poids: 400, coul: GRIS });
     for (let i = 0; i < 3; i++) { g.fillStyle = 'rgba(0,0,0,.12)'; g.fillRect(W / 2 - 300, 1075 + i * 18, 600 - i * 120, 5); }
     g.restore();
-    deux(p.t, 1340, 110);
-    if (p.sous) sous(p.sous, 1480);
+    deux(p.t, 1320, 110);
+    if (p.sous) sous(p.sous, 1505);
   }
 
   return { oeil, berger, tableau, orage, faille, cheval, geant, anneau, chaton, bergers, essais, palais, cour, justes, rouleau };

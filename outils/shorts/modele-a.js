@@ -172,7 +172,7 @@
       const k = eo(pr(t, p.a, .35));
       carte(p.img, W / 2 + lerp(300, 0, k), 760, 600, 800, lerp(.15, -.035, k), 1.05 + l * .03, .5, .35, { lum: .95 });
       multi([[p.t, OR]], 1330, 190);
-      S.texte(p.sous, W / 2, 1460, { taille: 62, police: 'Spectral', it: true, poids: 400, coul: CREME });
+      S.texte(p.sous, W / 2, 1460, { taille: 62, police: 'Spectral', it: true, poids: 400, coul: CREME, max: 960 });
     },
     pierre(p, t) {
       const lt = t - p.a;

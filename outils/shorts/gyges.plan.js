@@ -29,7 +29,7 @@ window.PLAN = S => S.plans([
   { a: ['s9', 0], type: 'bergers', parle: true, t: 'ILS PARLENT|DE TOI…' },
   { a: ['s9', 'comme'], type: 'bergers', parle: true, invisible: true, t: 'COMME SI|TU ÉTAIS PARTI' },
   // s10 « Invisible. Tu le retournes : tu réapparais. Ça marche à chaque fois. »
-  { a: ['s10', 0], type: 'tampon', t: 'INVISIBLE', choc: true },
+  { a: ['s10', 0], type: 'mot', t: 'INVISIBLE.', choc: true },
   { a: ['s10', 'retournes'], type: 'essais', compte: ['s10', 'ça'], t: 'TU|RÉAPPARAIS', tbis: 'ÇA MARCHE|À CHAQUE FOIS' },
   // s11 « Alors tu files au palais. Tu séduis la reine. Avec elle, tu tues le roi. Tu prends le pouvoir. »
   { a: ['s11', 0], type: 'palais', t: 'TU FILES|AU PALAIS', ch: 3 },
@@ -37,7 +37,7 @@ window.PLAN = S => S.plans([
   { a: ['s11', 'avec'], type: 'cour', etape: 'roi', choc: true, t: 'TU TUES|LE ROI' },
   { a: ['s11', 'prends'], type: 'cour', etape: 'trone', t: 'TU PRENDS|LE POUVOIR' },
   // s12 « C'est l'anneau de Gygès. »
-  { a: ['s12', 0], type: 'tableau', img: 'gyges', z: 2.2, fx: .12, fy: .82, w: 860, h: 900, t: 'L’ANNEAU|DE GYGÈS', leg: 'L’Anneau de Gygès, Ferrare, XVIᵉ s. (détail)' },
+  { a: ['s12', 0], type: 'tableau', img: 'gyges', z: 2.2, fx: .12, fy: .82, w: 860, h: 800, t: 'L’ANNEAU|DE GYGÈS', leg: 'L’Anneau de Gygès, Ferrare, XVIᵉ s. (détail)' },
   // s13 « Glaucon, le frère de Platon, conclut : donne cet anneau au plus juste des hommes… il fera pareil. »
   { a: ['s13', 0], type: 'perso', t: 'GLAUCON', sous: 'le frère de Platon', ch: 4 },
   { a: ['s13', 'donne'], type: 'justes', t: 'AU PLUS JUSTE|DES HOMMES' },

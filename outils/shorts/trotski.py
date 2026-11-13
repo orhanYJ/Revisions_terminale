@@ -31,7 +31,7 @@ TEMPO = 1.0
 VOIX = "energique"   # voix des shorts choisie par Cengiz le 08/11/2026 (voix C)
 CIBLE = 75           # durée visée en secondes (accélération calculée, au plus 15 %)
 PRONONCIATION = {"Mercader": "Mèrcadère", "Ramón": "Ramone", "Mornard": "Mornar",
-                 "NKVD": "ènne ka vé dé", "Coyoacán": "Coyoacane",
+                 "NKVD": "ènne-ka-vé-dé", "URSS": "u-erre-èsse-èsse", "Coyoacán": "Coyoacane",
                  "1917": "mille neuf cent dix-sept", "1929": "mille neuf cent vingt-neuf",
                  "1940": "mille neuf cent quarante", "20": "vingt"}
 PASSAGES = [
