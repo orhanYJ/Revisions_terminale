@@ -67,7 +67,7 @@
   const R = {
     mot(p, t, l) {
       if (p.img) { const k = eo(pr(t, p.a, .5)); carte(p.img, W / 2, 760, 640, 860, -.03, 1.15 + l * .02, .5, .35, { lum: .8 }); }
-      const y = p.img ? 1300 : 900, k = back(pr(t, p.a, .28));
+      const y = p.img ? (p.t.includes('|') ? 1400 : 1300) : 900, k = back(pr(t, p.a, .28));
       g.save(); g.translate(W / 2, y); g.scale(lerp(1.5, 1, k), lerp(1.5, 1, k)); g.translate(-W / 2, -y);
       const t2 = p.t2 && t >= S.T(...p.a2) - .05;
       const coul = p.sombre ? ROUGE : p.bruit ? CREME : CREME;
