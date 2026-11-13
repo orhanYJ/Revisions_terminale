@@ -80,7 +80,7 @@ window.TYPES_A = O => {
 
   // sans algues : 20 jours au plus
   function compte(p, t) {
-    const lt = t - p.a, j = Math.min(20, 1 + Math.floor(lt / .09));
+    const lt = t - p.a, j = Math.min(20, 1 + Math.floor(lt / .055));
     ver(540, 760, 460, -.05, t, { alpha: lerp(1, .25, cl(j / 20)) });
     const k = back(pr(t, p.a, .3)); g.save(); g.translate(W / 2, 1180); g.scale(lerp(1.5, 1, k), lerp(1.5, 1, k));
     S.texte(String(j), 0, 0, { taille: 260, police: 'Spectral', poids: 600, coul: j >= 20 ? ROUGE : CREME, contour: NOIR, contourL: 14 }); g.restore();
