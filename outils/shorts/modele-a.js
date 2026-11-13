@@ -53,12 +53,14 @@
   function tampon(txt, cx, cy, k, rot = -.14, taille = 150, coul = ROUGE) {
     const s = lerp(2.6, 1, back(k)); g.save(); g.translate(cx, cy); g.rotate(rot); g.scale(s, s); g.globalAlpha = cl(k * 3);
     const w = S.largeur(txt, { taille }) + 80;
+    // usure du tampon : des trous découpés dans le dessin du tampon seulement (le fond reste visible à travers)
+    const zone = new Path2D(); zone.rect(-w, -taille * 2, w * 2, taille * 4);
+    for (let i = 0; i < 70; i++) { const x = (rnd(i) - .5) * w, y = (rnd(i + 50) - .5) * taille * 1.4, r = (3 + rnd(i + 9) * 9) * taille / 150;
+      zone.moveTo(x + r, y); zone.arc(x, y, r, 0, Math.PI * 2, true); }
+    g.clip(zone);
     g.strokeStyle = coul; g.lineWidth = 14; g.strokeRect(-w / 2, -taille * .75, w, taille * 1.5);
     g.lineWidth = 4; g.strokeRect(-w / 2 + 16, -taille * .75 + 16, w - 32, taille * 1.5 - 32);
     S.texte(txt, 0, 6, { taille, coul });
-    // usure du tampon
-    g.globalCompositeOperation = 'destination-out';
-    for (let i = 0; i < 70; i++) { g.beginPath(); g.arc((rnd(i) - .5) * w, (rnd(i + 50) - .5) * taille * 1.4, 3 + rnd(i + 9) * 9, 0, 7); g.fill(); }
     g.restore();
   }
   function petitTitre(s, y, coul = OR) { S.texte(s, W / 2, y, { taille: 40, coul, esp: 10, poids: 600, max: 960 }); }
