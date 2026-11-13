@@ -37,6 +37,10 @@ sys.path.insert(1, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(
 sys.path.insert(2, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-acl"))
 sys.path.insert(3, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-dnl"))
 sys.path.insert(4, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-svt"))
+# autres dossiers de scripts (serie-maths, serie-ses, serie-hggsp…) : trouvés d'office
+import glob as _glob  # noqa: E402
+sys.path += [d for d in sorted(_glob.glob(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "serie-*")))
+             if os.path.isdir(d) and d not in sys.path]
 import musique  # noqa: E402
 
 ICI = os.path.dirname(os.path.abspath(__file__))
@@ -73,8 +77,10 @@ CARTON = 2.9                          # durée d'un carton de chapitre
 DEBUT = 1.6                           # musique seule avant la première phrase
 ROMAINS = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV"]
 V_MOTEUR = 12                          # à incrémenter quand moteur.js ou moteur.css change (et le cache de philo/sw.js)
-V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 5, "acl-lughnasa": 2, "dnl": 3, "svt": 6}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
-TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729", "svt": "#0b120e"}
+V_MOTEUR_SITE = {"philo": V_MOTEUR, "pc": 5, "acl-lughnasa": 2, "dnl": 4, "svt": 8,
+                 "maths": 4, "ses": 3, "hggsp": 3}   # pc/serie/moteur.* (et le cache de pc/sw.js) ; acl-lughnasa/serie/moteur.*
+TEINTE = {"philo": "#0b111e", "pc": "#120c07", "acl-lughnasa": "#0e1729", "dnl": "#0e1729", "svt": "#0b120e",
+          "maths": "#1b2422", "ses": "#0d1f24", "hggsp": "#141414"}
 PAGE = """<!DOCTYPE html>
 <html lang="{langue}">
 <head>
@@ -107,7 +113,11 @@ PRONONCIATION = {"Leute": "Loïte", "liberi": "libéri"}
 
 def prononce(lu):
     for mot, dit in PRONONCIATION.items():
-        lu = re.sub(r"(?<![\w-])" + re.escape(mot) + r"(?![\w-])", dit, lu)
+        if mot.startswith("§"):
+            # « §n » : une lettre isolée (variable d'une formule), jamais un morceau de mot ni une élision (« n'est »)
+            lu = re.sub(r"(?<![\w'’-])" + re.escape(mot[1:]) + r"(?![\w'’-])", dit, lu)
+        else:
+            lu = re.sub(r"(?<![\w-])" + re.escape(mot) + r"(?![\w-])", dit, lu)
     return lu
 
 
@@ -260,6 +270,7 @@ def generer(nom_module):
                     open(chemin + ".vu", "w").close()
     if a_faire and MOTEUR == "qwen":
         import voix_qwen
+        voix_qwen.LIAISONS = getattr(ep, "LIAISONS", "fr")
         print(f"enregistrement de {len(a_faire)} passages (clonage local)…", flush=True)
         for i, (lu, voix, rate, pitch, chemin) in enumerate(a_faire, 1):
             tempo = 1 + float(rate.rstrip("%")) / 100      # le débit seul est repris ; la hauteur suit la voix
@@ -310,7 +321,10 @@ def generer(nom_module):
     bruitages.append((1.6, "cloche"))
     for sc in ep.SCENES:
         t0 = t
-        humeurs.append((t0 if humeurs else 0.0, sc.get("humeur", HUMEUR_DEFAUT)))
+        hu = sc.get("humeur", HUMEUR_DEFAUT)
+        if site == "dnl":       # vidéos d'histoire : leur propre musique (salon, archives, marche)
+            hu = musique.humeur_dnl(hu, sc.get("fond", "nuit"), ep.CODE)
+        humeurs.append((t0 if humeurs else 0.0, hu))
         mots_sc = []          # (instant, mot) dits par le narrateur dans la scène
         carton = sc.get("carton", True)
         if carton:
@@ -452,39 +466,46 @@ def generer(nom_module):
         i = int(inst * SR)
         pv[i:i + len(x)] += x
     crete = np.abs(pv).max()
-    pv *= 0.89 / crete
-    # musique : une humeur par chapitre, fondu enchaîné de 2,5 s entre deux humeurs
+    pv *= 0.89 / max(crete, 1e-9)   # brouillon muet : crête nulle
     tt = np.arange(n) / SR
-    mus = np.zeros(n)
-    poids_total = np.zeros(n)
-    if site == "svt":
-        # SVT (10/11/2026) : musique lo-fi, cinq thèmes originaux qui tournent d'une partie à l'autre
-        # (musique.lofi), chacun bouclé sur la durée de sa partie seulement
-        boucles = {}
-        for k, (deb, hu) in enumerate(humeurs):
-            th = musique.theme_lofi(k, hu)
-            if th not in boucles:
-                x = musique.lofi(th).astype(np.float64)
-                boucles[th] = x / (np.abs(x).max() + 1e-9) * 0.42
-            fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
-            a, b = max(0, int((deb - 1.3) * SR)), min(n, int((fin + 1.3) * SR))
-            L = boucles[th]
-            seg = np.resize(L, b - a)
-            w = np.clip((tt[a:b] - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt[a:b] + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt[a:b] + 1.25) / 2.5, 0, 1)
-            mus[a:b] += seg * w
-            poids_total[a:b] += w
+    if site in ("pc", "svt", "dnl"):
+        # musiques propres à ces sites, choisies avec Cengiz dans leurs sessions (PC « labo », SVT lo-fi en cinq
+        # thèmes qui tournent, DNL salon / archives / marche) : une humeur par chapitre, fondu enchaîné de 2,5 s
+        mus = np.zeros(n)
+        poids_total = np.zeros(n)
+        if site == "svt":
+            # SVT (10/11/2026) : musique lo-fi, cinq thèmes originaux qui tournent d'une partie à l'autre
+            # (musique.lofi), chacun bouclé sur la durée de sa partie seulement
+            boucles = {}
+            for k, (deb, hu) in enumerate(humeurs):
+                th = musique.theme_lofi(k, hu)
+                if th not in boucles:
+                    x = musique.lofi(th).astype(np.float64)
+                    boucles[th] = x / (np.abs(x).max() + 1e-9) * 0.42
+                fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
+                a, b = max(0, int((deb - 1.3) * SR)), min(n, int((fin + 1.3) * SR))
+                L = boucles[th]
+                seg = np.resize(L, b - a)
+                w = np.clip((tt[a:b] - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt[a:b] + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt[a:b] + 1.25) / 2.5, 0, 1)
+                mus[a:b] += seg * w
+                poids_total[a:b] += w
+        else:
+            pistes = {}
+            for _, hu in humeurs:
+                if hu not in pistes:
+                    x = musique.boucle(duree + 1, ("pc-" + hu) if site == "pc" and hu != "reel" else hu)[:n]   # PC : musique « labo »
+                    pistes[hu] = np.pad(x, (0, max(0, n - len(x))))[:n] / (np.abs(x).max() + 1e-9) * 0.42
+            for k, (deb, hu) in enumerate(humeurs):
+                fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
+                w = np.clip((tt - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt + 1.25) / 2.5, 0, 1)
+                mus += pistes[hu] * w
+                poids_total += w
+        mus /= np.maximum(poids_total, 1e-6)
     else:
-        pistes = {}
-        for _, hu in humeurs:
-            if hu not in pistes:
-                x = musique.boucle(duree + 1, ("pc-" + hu) if site == "pc" and hu != "reel" else hu)[:n]   # PC : musique « labo »
-                pistes[hu] = np.pad(x, (0, max(0, n - len(x))))[:n] / (np.abs(x).max() + 1e-9) * 0.42
-        for k, (deb, hu) in enumerate(humeurs):
-            fin = humeurs[k + 1][0] if k + 1 < len(humeurs) else n / SR + 5
-            w = np.clip((tt - deb + 1.25) / 2.5, 0, 1) * np.clip((fin - tt + 1.25) / 2.5, 0, 1) if k else np.clip((fin - tt + 1.25) / 2.5, 0, 1)
-            mus += pistes[hu] * w
-            poids_total += w
-    mus /= np.maximum(poids_total, 1e-6)
+        # maths, SES, HGGSP, philo, Lughnasa : musique composée partie par partie dans le style du site (musique.STYLE :
+        # identité sonore, une humeur par chapitre, variantes d'une partie à l'autre ; graine = code + scène) ; les
+        # paroles servent à retenir sous la voix ce qui la gêne et à placer les roulements dans les silences
+        mus = musique.piste(n / SR, humeurs, site, graine=ep.CODE, paroles=paroles)
     g = musique.enveloppe(n / SR, paroles, haut=1.0, bas=0.12)
     g = np.pad(g, (0, max(0, n - len(g))), constant_values=g[-1])[:n]
     for a, b in plein:       # images plein écran : la musique remonte un peu sous la voix
@@ -544,6 +565,7 @@ def generer(nom_module):
         f.write(js)
     v = hashlib.sha1(js.encode("utf-8")).hexdigest()[:8]
     titre = (f"Chapitre {ep.NUM} — {ep.TITRE} · SVT Terminale" if site == "svt"
+             else f"Chapitre {ep.NUM} — {ep.TITRE} · " + {"maths": "Maths", "ses": "SES", "hggsp": "HGGSP"}[site] + " Terminale" if site in ("maths", "ses", "hggsp")
              else f"Chapitre {ep.NUM} — {ep.TITRE} · le cours en vidéo" if site == "pc"
              else f"{ep.NOTION} · Episode {ep.NUM} — {ep.TITRE}" if site == "dnl"
              else f"{ep.NOTION} · Part {ep.NUM} — {ep.TITRE}" if langue == "en" else f"{ep.NOTION} · Épisode {ep.NUM} — {ep.TITRE}")
@@ -551,10 +573,15 @@ def generer(nom_module):
     if site == "svt":   # carte mentale du thème (type mental) et illustrations propres au chapitre (illu-<code>.js)
         with open(os.path.join(RACINE, "svt", "carte-mentale.js"), "rb") as f:
             extra += f'<script src="../carte-mentale.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'
+    if site in ("svt", "maths", "ses", "hggsp"):   # illustrations (et scènes de carte, HGGSP) propres à la vidéo, si le fichier existe
         illu = os.path.join(SORTIE, "illu-" + ep.CODE + ".js")
         if os.path.exists(illu):
             with open(illu, "rb") as f:
                 apres += f'<script src="illu-{ep.CODE}.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'   # après le moteur : SERIE_OUTILS existe
+    if site == "ses":   # graphiques et animations du site rejoués dans la vidéo (type sanim), tirés des sources du site
+        import site_ses
+        with open(site_ses.ecrire_js(), "rb") as f:
+            extra += f'<script src="site-ses.js?v={hashlib.sha1(f.read()).hexdigest()[:8]}"></script>\n'
     page = PAGE.format(titre=titre, code=ep.CODE, v=v, vm=V_MOTEUR_SITE[site], teinte=TEINTE[site], langue=langue, extra=extra, apres=apres)
     with open(os.path.join(SORTIE, ep.CODE + ".html"), "w", encoding="utf-8") as f:
         f.write(page)

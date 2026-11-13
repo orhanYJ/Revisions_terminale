@@ -593,7 +593,8 @@
       '<span class="kick">Le dossier · ' + esc(q.court) + '</span><h1' + (/\S{17,}/.test(q.titre) ? ' class="long"' : "") + '>' + esc(q.titre) + "</h1>" + (ch.chapo ? '<p class="chapo">' + ch.chapo + "</p>" : "");
     h +=
       (sous ? "" : '<div class="meta">' + (q.ecrit ? '<span class="pastille ok">Évaluable à l\'écrit</span>' : '<span class="pastille non">Non évalué à l\'écrit en 2027</span>') + '<span class="pastille">' + ch.quiz.length + " questions</span><span class=\"pastille\">" + ch.cartes.length + " cartes</span><span class=\"pastille\">" + ch.bac.length + " exercices corrigés</span>" + ($$anims(ch) ? '<span class="pastille ani">' + $$anims(ch) + " animation" + ($$anims(ch) > 1 ? "s" : "") + "</span>" : "") + "</div></div>") + "</header>";
-    h += '<nav class="onglets" aria-label="Parties du chapitre">' + ONGLETS.map(function (o) {
+    var vid = VIDEOS[q.id] && VIDEOS[q.id].dispo ? VIDEOS[q.id] : null;
+    h += '<nav class="onglets" aria-label="Parties du chapitre">' + ONGLETS.concat(vid ? [["video", "▶ Vidéo"]] : []).map(function (o) {
       return '<a href="#' + q.id + (o[0] ? "/" + o[0] : "") + '"' + (sous === o[0] ? ' class="act" aria-current="page"' : "") + ">" + o[1] + "</a>";
     }).join("") + "</nav>";
     return h;
@@ -602,6 +603,8 @@
     var ch = CH[q.id], h = enteteChap(q, ch, sous);
     if (sous === "") {
       if (!q.ecrit) h += '<div class="attn"><p>La note de service du 11 septembre 2026 ne retient pas cette question parmi celles qui peuvent faire l\'objet d\'un sujet écrit (ni de l\'oral de contrôle). Elle reste au programme et ton professeur la traite' + (ch.horsEcrit ? " : " + ch.horsEcrit : " ; elle éclaire d\'autres chapitres et peut servir au Grand oral") + '. Les exercices de ce chapitre entraînent la méthode du bac.</p></div>';
+      var vi = VIDEOS[q.id] && VIDEOS[q.id].dispo ? VIDEOS[q.id] : null;
+      if (vi) h += '<a class="video-ban" href="#' + q.id + '/video"><span class="vb-ic" aria-hidden="true">▶</span><span><b>Le chapitre en vidéo</b><small>Tout le cours, les mécanismes, les graphiques et des sujets corrigés · ' + vi.min + ' min</small></span></a>';
       h += '<section class="essentiel"><span class="kick">L\'essentiel en 5 lignes</span><ol>' + ch.essentiel.map(function (l) { return "<li><span>" + l + "</span></li>"; }).join("") + "</ol></section>";
       if (ch.chiffres) h += '<div class="chiffres">' + ch.chiffres.map(function (c) { return '<div class="chiffre"><b>' + c.n + "</b><span>" + c.l + "</span><small>" + c.s + "</small></div>"; }).join("") + "</div>";
       h += '<h2 class="sec"><span class="n">BO</span>Ce que le programme attend</h2><ol class="objs">' + ch.objectifs.map(function (o) {
@@ -617,6 +620,9 @@
       h += '<div class="btns noprint"><button class="btn p" data-a="imprimer">' + ic("imprimer").replace("<svg", '<svg width="18" height="18"') + "Imprimer la fiche</button></div>";
       h += '<article class="fiche"><span class="kick">Fiche · ' + esc(q.champ) + '</span><h2>' + esc(q.titre) + "</h2>" + ch.retenir +
         "<h3>Mécanismes à savoir dérouler</h3>" + ch.chainesFiche.map(function (id) { return '<div class="fchaine"><b>' + esc(CHAINES[id].t) + " :</b> " + esc(texteChaine(CHAINES[id])) + "</div>"; }).join("") + "</article>";
+    } else if (sous === "video" && VIDEOS[q.id] && VIDEOS[q.id].dispo) {
+      h += '<div class="video-c"><iframe src="serie/' + VIDEOS[q.id].code + '.html?embed=1" title="' + esc(q.code + " — " + q.titre) + ' : le chapitre en vidéo" allow="fullscreen; autoplay" allowfullscreen loading="lazy" data-serie="' + VIDEOS[q.id].code + '"></iframe></div>' +
+        '<p class="src-l">Les fiches, le quiz et les cartes du chapitre sont dans les autres onglets.</p>';
     } else if (sous === "quiz") {
       h += '<div id="zq"></div>';
     } else if (sous === "cartes") {
@@ -837,7 +843,16 @@
       var tag = (e.target.tagName || "").toLowerCase();
       if ((e.key === "k" && (e.ctrlKey || e.metaKey)) || (e.key === "/" && tag !== "input" && tag !== "textarea")) { e.preventDefault(); if (!couche) ouvrirRech(); }
     });
-    window.addEventListener("hashchange", rendre);
+    window.addEventListener("hashchange", function () {
+      /* vidéo du chapitre : on la met en pause avant de quitter l'onglet */
+      $$("iframe[data-serie]").forEach(function (fr) { try { fr.contentWindow.postMessage({ type: "serie-pause" }, "*"); } catch (e) {} });
+      rendre();
+    });
+    /* vidéo du chapitre : hauteur du lecteur et du quiz transmise par la page de la vidéo */
+    window.addEventListener("message", function (e) {
+      var d = e.data || {};
+      if (d.type === "serie-h" && d.h) $$("iframe[data-serie]").forEach(function (fr) { if (fr.contentWindow === e.source) fr.style.height = Math.ceil(d.h) + "px"; });
+    });
     rendre();
     if ("serviceWorker" in navigator && location.protocol !== "file:") {
       window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () { }); });

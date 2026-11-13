@@ -520,3 +520,14 @@ h1.titre{position:relative}
 @keyframes mo-abat{0%{transform:rotate(-14deg) scale(2.1);opacity:0}60%{transform:rotate(-5deg) scale(.94);opacity:1}100%{transform:rotate(-5deg) scale(1);opacity:.9}}
 @keyframes mo-punaise{from{transform:translateY(-14px) scale(1.4);opacity:0}to{transform:none;opacity:1}}
 @media print{.conf,.retenir.carte-p::after{display:none!important}.retenir table.caviarde td{color:#000!important;background:none!important}.retenir table.caviarde td::after{content:none!important}}
+
+/* ---------- vidéo du chapitre (bandeau, lecteur hggsp/serie/<code>.html en iframe) ---------- */
+.video-b{margin:6px 0 16px}
+.video-btn{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 16px;border:0;border-radius:8px;cursor:pointer;text-align:left;
+  background:#0A0F13;color:#DCE3E8;box-shadow:inset 0 -3px 0 var(--rouge),var(--ombre)}
+.video-btn .vb-ic{flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#B3241B;color:#FFF8F0}
+.video-btn .vb-t b{display:block;font:800 17px/1.2 var(--titre);text-transform:uppercase;letter-spacing:.06em}
+.video-btn .vb-t small{display:block;font:500 12.5px/1.35 var(--mono);letter-spacing:.04em;color:#93A3AF;margin-top:3px}
+.video-btn[aria-expanded="true"] .vb-ic{background:#FF5B49}
+.video-c{margin-top:10px;border-radius:8px;overflow:hidden;background:#07090b}
+.video-c iframe{display:block;width:100%;height:760px;border:0;background:#07090b;color-scheme:dark}

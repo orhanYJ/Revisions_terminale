@@ -1,9 +1,13 @@
-/* Demander à ChatGPT — bouton rond en bas à gauche et petit panneau de saisie.
+/* Demander à une IA — bouton rond en bas d'écran et petit panneau de saisie.
    Maintenu à part du contenu, comme la couche de mouvement : le même fichier est
    copié dans chaque site ; seul le bloc CONFIG change d'un site à l'autre.
-   La question, précédée d'une consigne de niveau Terminale, s'ouvre dans ChatGPT en
-   discussion temporaire (temporary-chat=true) : elle n'est pas gardée dans
-   l'historique de ChatGPT. Le site ne conserve rien : ni stockage dans le navigateur, ni envoi ailleurs ;
+   L'élève choisit l'IA (ChatGPT, Gemini, Le Chat de Mistral, Claude) ; la question,
+   précédée d'une consigne de niveau Terminale, s'ouvre dans un nouvel onglet.
+   ChatGPT s'ouvre en discussion temporaire (temporary-chat=true). ChatGPT, Claude et
+   Le Chat reçoivent la question dans l'adresse (?q=) ; Gemini ne sait pas la recevoir :
+   elle est copiée dans le presse-papiers, à coller. Pour toutes, la question est aussi
+   copiée, au cas où le pré-remplissage échouerait.
+   Le site ne conserve rien : ni stockage dans le navigateur, ni envoi ailleurs ;
    le champ est vidé dès que l'IA est ouverte.
    Mouvement : tout ce qui bouge est rangé sous html.mo (classe posée par la couche de
    mouvement du site) et coupé si l'appareil demande moins d'animations. */
@@ -23,32 +27,49 @@
   var EVITER = "nav.bas";   /* élément fixé en bas d'écran à ne pas recouvrir */
   /* ---------- fin CONFIG ---------- */
 
-  var CHATGPT = "https://chatgpt.com/?temporary-chat=true&q=";
+  /* IA proposées : url + question encodée (q:true), ou page seule et question à coller (q:false). */
+  var IAS = [
+    { id: "chatgpt", nom: "ChatGPT", url: "https://chatgpt.com/?temporary-chat=true&q=", q: true,
+      fr: "S'ouvre en discussion temporaire : rien n'est gardé dans l'historique de ChatGPT.",
+      en: "Opens as a temporary chat: nothing is saved in ChatGPT's history." },
+    { id: "gemini", nom: "Gemini", url: "https://gemini.google.com/app", q: false,
+      fr: "Gemini ne reçoit pas la question tout seul : elle est copiée, il suffit de la coller (appui long dans la zone de saisie, puis « Coller »). Pour ne rien garder, ouvre une discussion temporaire.",
+      en: "Gemini cannot receive the question by itself: it is copied, just paste it (long-press in the input box, then Paste). To keep nothing, start a temporary chat." },
+    { id: "mistral", nom: "Le Chat", url: "https://chat.mistral.ai/chat?q=", q: true,
+      fr: "Le Chat de Mistral, l'IA française. La question est pré-remplie ; si tu es connecté, la discussion reste dans ton historique.",
+      en: "Le Chat by Mistral, the French AI. The question is prefilled; if you are signed in, the chat stays in your history." },
+    { id: "claude", nom: "Claude", url: "https://claude.ai/new?q=", q: true,
+      fr: "La question est pré-remplie. Pour ne rien garder, active la discussion incognito (icône fantôme). Claude est réservé aux 18 ans et plus.",
+      en: "The question is prefilled. To keep nothing, switch on incognito chat (ghost icon). Claude is for users aged 18 and over." }
+  ];
+  var ia = IAS[0];   /* choix gardé en mémoire le temps de la page seulement */
   var EN = LANGUE === "en";
   var COTE_CSS = COTE === "droite" ? "right" : "left";
   var TEXTES = EN ? {
-    titre: "Ask ChatGPT · " + NOM,
-    sous: "Temporary chat: nothing is kept",
-    temporaire: "Opens as a temporary chat: not saved in ChatGPT's history.",
+    titre: "Ask an AI · " + NOM,
+    sous: "Choose the AI, write your question",
+    choix: "Which AI?",
     note: "The AI can be wrong: check dates and figures in your course. Do not write anything personal.",
     champ: "Your question (in English or in French)…",
-    bouton: "Open in ChatGPT",
+    bouton: "Open in ",
     fermer: "Close",
     vide: "Write your question first.",
-    horsligne: "ChatGPT needs an internet connection."
+    horsligne: "The AI needs an internet connection.",
+    copie: "Question copied: if it does not appear, paste it."
   } : {
-    titre: "Demander à ChatGPT · " + NOM,
-    sous: "Discussion temporaire : rien n'est gardé",
-    temporaire: "S'ouvre en discussion temporaire : rien n'est gardé dans l'historique de ChatGPT.",
+    titre: "Demander à une IA · " + NOM,
+    sous: "Choisis l'IA, écris ta question",
+    choix: "Quelle IA ?",
     note: "L'IA peut se tromper : vérifie avec ton cours. N'écris rien de personnel.",
     champ: "Ta question de cours…",
-    bouton: "Ouvrir dans ChatGPT",
+    bouton: "Ouvrir dans ",
     fermer: "Fermer",
     vide: "Écris d'abord ta question.",
-    horsligne: "ChatGPT a besoin d'internet."
+    horsligne: "L'IA a besoin d'internet.",
+    copie: "Question copiée : si elle n'apparaît pas, colle-la."
   };
 
-  var bouton, panneau, voile, champ, info, envoyer, sortie = null;
+  var bouton, panneau, voile, champ, info, envoyer, libelle, noteIA, choix = [], sortie = null;
 
   // Le mouvement n'est joué que si le site l'a autorisé (html.mo) et que l'appareil ne demande pas moins d'animations.
   function mouvement() {
@@ -86,6 +107,12 @@
     ".asr-env svg{width:18px;height:18px}" +
     ".asr-ic:focus-visible,.asr-env:focus-visible{outline:2px solid " + c.encre + ";outline-offset:2px}" +
     ".asr-info{margin:0;font-size:13px;color:" + c.encre2 + "}" +
+    ".asr-ias{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0;padding:0;border:0}" +
+    ".asr-ias legend{padding:0;margin:0 0 6px;font-size:13px;font-weight:700;color:" + c.encre2 + "}" +
+    ".asr-ia{margin:0;min-width:0;height:38px;padding:0 4px;border:1px solid " + c.ligne + ";border-radius:9px;background:" + c.fond2 + ";color:" + c.encre + ";" +
+    "font:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;-webkit-tap-highlight-color:transparent}" +
+    ".asr-ia[aria-pressed=true]{background:" + c.accent + ";border-color:" + c.accent + ";color:" + c.surAccent + "}" +
+    ".asr-ia:focus-visible{outline:2px solid " + c.encre + ";outline-offset:2px}" +
     ".asr-info:empty{display:none}" +
     "@media print{.asr-btn,.asr-pan,.asr-voile{display:none!important}}" +
     /* ---------- mouvement (html.mo, sans réduction demandée) ---------- */
@@ -112,6 +139,8 @@
       "html.mo .asr-champ:focus{box-shadow:0 0 0 5px rgba(0,0,0,.06)}" +
       "html.mo .asr-champ.asr-secoue{animation:asr-secoue .45s cubic-bezier(.36,.07,.19,.97) both}" +
       // bouton d'envoi : reflet qui balaie quand une question est prête, envol de la flèche au départ
+      "html.mo .asr-ia{transition:background-color .2s,color .2s,border-color .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}" +
+      "html.mo .asr-ia:active{transform:scale(.94)}" +
       "html.mo .asr-env{transition:transform .25s cubic-bezier(.34,1.56,.64,1)}" +
       "html.mo .asr-env:active{transform:scale(.97)}" +
       "html.mo .asr-env::after{content:'';position:absolute;top:0;bottom:0;left:0;width:45%;pointer-events:none;" +
@@ -180,13 +209,26 @@
     envoyer.type = "submit";
     envoyer.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
       '<path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
-    envoyer.appendChild(document.createTextNode(TEXTES.bouton));
+    libelle = document.createTextNode("");
+    envoyer.appendChild(libelle);
+
+    var groupe = el("fieldset", "asr-ias");
+    groupe.appendChild(el("legend", "", TEXTES.choix));
+    IAS.forEach(function (x) {
+      var b = el("button", "asr-ia", x.nom);
+      b.type = "button";
+      b.addEventListener("click", function () { choisir(x); });
+      choix.push(b);
+      groupe.appendChild(b);
+    });
+    noteIA = el("p", "asr-note");
 
     info = el("p", "asr-info");
     info.setAttribute("aria-live", "polite");
 
     panneau.appendChild(tete);
-    panneau.appendChild(el("p", "asr-note", TEXTES.temporaire));
+    panneau.appendChild(groupe);
+    panneau.appendChild(noteIA);
     panneau.appendChild(champ);
     panneau.appendChild(envoyer);
     panneau.appendChild(info);
@@ -200,6 +242,7 @@
       if (e.key === "Enter" && !e.shiftKey && !tactile) { e.preventDefault(); demander(); }
     });
 
+    choisir(ia);
     document.body.appendChild(bouton);
     document.body.appendChild(voile);
     document.body.appendChild(panneau);
@@ -235,6 +278,26 @@
     panneau.style.width = vv.width + "px";
     panneau.style.bottom = Math.max(0, window.innerHeight - vv.offsetTop - vv.height) + "px";
     panneau.style.maxHeight = Math.round(vv.height * 0.9) + "px";
+  }
+
+  function choisir(x) {
+    ia = x;
+    choix.forEach(function (b, i) { b.setAttribute("aria-pressed", IAS[i] === x ? "true" : "false"); });
+    noteIA.textContent = EN ? x.en : x.fr;
+    libelle.nodeValue = TEXTES.bouton + x.nom;
+    if (info) info.textContent = "";
+  }
+
+  // Copie la question (Gemini ne la reçoit pas par l'adresse ; pour les autres, secours si le pré-remplissage échoue).
+  function copier(texte) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(texte).catch(function () {}); return; }
+    } catch (e) { /* on passe au secours */ }
+    try {
+      var t = document.createElement("textarea");
+      t.value = texte; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select(); document.execCommand("copy"); document.body.removeChild(t);
+    } catch (e) { /* rien */ }
   }
 
   function ouvrir() {
@@ -279,7 +342,8 @@
     }
     if (navigator.onLine === false) { info.textContent = TEXTES.horsligne; return; }
     var invite = CONSIGNE + "\n\n" + (EN ? "My question: " : "Ma question : ") + q;
-    var adresse = CHATGPT + encodeURIComponent(invite);
+    copier(invite);
+    var adresse = ia.q ? ia.url + encodeURIComponent(invite) : ia.url;
     var onglet = window.open(adresse, "_blank");
     if (onglet) {
       try { onglet.opener = null; } catch (e) { /* rien */ }

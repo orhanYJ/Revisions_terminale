@@ -20,6 +20,9 @@ def fermer(module):
         P = os.path.join(os.path.dirname(ICI), "serie-dnl", module + ".py")
     if not os.path.exists(P):            # vidéos de cours SVT : outils/serie-svt/
         P = os.path.join(os.path.dirname(ICI), "serie-svt", module + ".py")
+    for d in sorted(os.listdir(os.path.dirname(ICI))):   # serie-maths, serie-ses, serie-hggsp…
+        if not os.path.exists(P) and d.startswith("serie-"):
+            P = os.path.join(os.path.dirname(ICI), d, module + ".py")
     code = re.search(r'^CODE = "([^"]+)"', open(P, encoding="utf-8").read(), re.M).group(1)
     s = open(P, encoding="utf-8").read()
     n = 0

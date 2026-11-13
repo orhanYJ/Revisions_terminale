@@ -477,3 +477,11 @@ html.mo .filtres button.on{animation:tampon .3s cubic-bezier(.3,1.5,.5,1)}
 html.mo .flash .nav .btn:not(:disabled){transition:opacity .25s,transform .12s}
 html.mo .qcm .score{animation:tampon .5s cubic-bezier(.3,1.6,.5,1)}
 html.mo details.demo[open]>*:not(summary),html.mo .exo details[open]>*:not(summary){animation:deplie .3s ease-out}
+
+/* vidéo du chapitre (lecteur serie/*.html en iframe, src/videos.js) */
+.video-c{margin:12px 0 18px}
+.video-c iframe{display:block;width:100%;height:560px;border:0;border-radius:14px;background:#1b2422}
+.bandeau-video{display:flex;align-items:center;gap:12px;min-height:48px;margin:4px 0 14px;padding:10px 16px;border-radius:12px;text-decoration:none;color:var(--encre);background:var(--bleu-p);border:1px solid var(--ligne)}
+.bandeau-video:hover{border-color:var(--bleu)}
+.bv-ic{flex:none;width:34px;height:34px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--bleu);color:var(--papier);font-size:.9rem}
+@media print{.video-c,.bandeau-video{display:none}}

@@ -407,3 +407,155 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 .v-liste.bande{background:rgba(9,13,24,.95);backdrop-filter:blur(3px);padding:22px 28px 10px;border-radius:20px;box-shadow:0 14px 40px rgba(0,0,0,.35)}
 .carte{background:linear-gradient(135deg,rgba(22,30,52,.93),rgba(14,20,36,.93))}
 .v-cols .col{background:rgba(18,25,44,.92)}
+
+/* =====================================================================
+   Identité « dossier d'archives » (11/2026, choisie parmi six essais) :
+   le bureau d'un archiviste sous une lampe ; chemises kraft, papier jauni, textes tapés à la machine,
+   encre noire et tampons rouges. Seule l'image de la vidéo (.scene) change ; le lecteur du site garde ses couleurs.
+   Special Elite (titres) et Courier Prime (texte) sont locales (fonts.css). Textures : --grain (kraft) et --papier, posées par moteur.js.
+   ===================================================================== */
+.cadre{background:#9c7045}
+.scene{--ivoire:#271c11;--ivoire2:#5a4935;--safran:#8a1f15;--safran-c:#a3271c;--carmin:#a3271c;--sarcelle:#1f4f8f;
+  --kraft:#a87d4e;--pap:#f1e7cc;--pap2:#e9dcb8;--trait:#c9b88f;--ombre:0 3px 0 rgba(40,22,6,.12),0 14px 30px rgba(40,22,6,.32);
+  --fe:'Special Elite','Courier Prime',monospace;--fc:'Courier Prime','Courier New',monospace;
+  color:var(--ivoire);font-family:var(--fc)}
+.scene .voile{background:radial-gradient(ellipse 78% 74% at 42% 40%,transparent 50%,rgba(30,14,2,.5) 100%)}
+.scene .poussiere{mix-blend-mode:screen}
+.scene .entete{font-family:var(--fc);font-weight:700;font-size:15px;letter-spacing:.14em;color:rgba(39,28,17,.62);text-shadow:none}
+.scene .entete b{color:#7d1d14;font-weight:700}
+.scene .fil{background:#a3271c;opacity:.85;height:3px}
+/* toutes les polices de la vidéo : machine à écrire */
+.scene .serif,.scene .v-titre .tt,.scene .v-chapitre .num,.scene .v-chapitre .tt,.scene .v-mot .tt,.scene .v-question .tt,.scene .v-nuage .it,
+.scene .carte .tx,.scene .v-cit .gu,.scene .v-cit .tx,.scene .v-portrait .np .n,.scene .v-cols .col .t,.scene .v-cols .vs,.scene .v-cartes .ca .t,
+.scene .v-dialogue .l,.scene .v-frise .rupt,.scene .v-frise .p .nm,.scene .bd-nom,.scene .v-notion .nt-p,.scene .fr-mot,.scene .fl-tx,.scene .cm-centre,
+.scene .ex-ti,.scene .pa-tx,.scene .g-titre,.scene .v-tableau .lg,.scene .ex-qn{font-family:var(--fe);font-style:normal;font-weight:400}
+.scene .carte .te,.scene .v-liste .ti,.scene .v-titre .sur,.scene .g-haut,.scene .g-bas,.scene .v-cartes .ca .n,.scene .gr-ti,.scene .ex-nv,.scene .ex-don b,
+.scene .pa-te,.scene .fl-te,.scene .v-notion .nt-t,.scene .v-nuage .ce,.scene .v-frise .an,.scene .v-frise .p .dt,.scene .v-portrait .np .d,.scene .mf-z,.scene .mf-an,
+.scene .v-cit .ap,.scene .v-tag .ic,.scene .badge{font-family:var(--fc);font-weight:700}
+.scene .v-liste .tx,.scene .carte .et,.scene .v-cols .col .q,.scene .v-cartes .ca .q,.scene .ex-p,.scene .ex-q,.scene .ex-don,.scene .pa-so,.scene .v-tag .pill,
+.scene .v-cit .au,.scene .v-mot .gl,.scene .v-titre .ss,.scene .cm-noeud,.scene .cm-it,.scene .gr-t,.scene .bd-info,.scene .v-dialogue .src,.scene .v-frise .p .q{font-family:var(--fc)}
+/* papier : cartes, colonnes, listes, exercices */
+.scene .carte,.scene .v-cols .col,.scene .v-cartes .ca,.scene .ex-carte,.scene .fo-carte,.scene .pa-carte,.scene .v-liste.bande,.scene .v-question.bande .tt{
+  background:var(--papier),linear-gradient(170deg,#f5ecd3,#ecdfbd);border:1px solid var(--trait);border-radius:3px;box-shadow:var(--ombre);color:var(--ivoire);backdrop-filter:none}
+.scene .carte{rotate:-.5deg}
+.scene .v:nth-child(2n) .carte{rotate:.45deg}
+.scene .carte .barre-g{display:none}
+.scene .carte .te,.scene .v-liste .ti{color:#8a1f15;letter-spacing:.16em;border-bottom:2px solid rgba(163,39,28,.55);padding-bottom:10px;display:block}
+.scene .carte .et{border-top:1px dashed rgba(90,73,53,.45);color:var(--ivoire2)}
+.scene .carte.note .te{color:#1f4f8f;border-bottom-color:rgba(31,79,143,.5)}
+.scene .badge{background:#f5ecd3;color:#a3271c;border:2px solid #a3271c;border-radius:3px;rotate:-3deg}
+/* listes : numéros entourés à l'encre rouge */
+.scene .v-liste:not(.bande){background:var(--papier),linear-gradient(170deg,#f5ecd3,#ecdfbd);border:1px solid var(--trait);border-radius:3px;box-shadow:var(--ombre);padding:30px 38px 12px;rotate:-.4deg}
+.scene .v-liste .mq{border:2px solid #a3271c;color:#a3271c;background:transparent;font-family:var(--fc);font-weight:700}
+.scene .v-liste .mq.ok{border-color:#2e7d4f;color:#2e7d4f}
+.scene .v-liste .tx{color:var(--ivoire)}
+/* titre : étiquette collée sur la chemise */
+.scene .v-titre:before,.scene .v-generique:before{content:"";position:absolute;left:50%;top:50%;width:1000px;height:470px;margin:-235px 0 0 -500px;
+  background:var(--papier),linear-gradient(170deg,#f5ecd3,#eadcb6);border:1px solid var(--trait);box-shadow:var(--ombre);rotate:-.8deg}
+.scene .v-titre:after,.scene .v-generique:after{content:"";position:absolute;left:50%;top:50%;width:964px;height:434px;margin:-217px 0 0 -482px;border:1.5px solid rgba(90,73,53,.55);rotate:-.8deg}
+.scene .v-titre > *,.scene .v-generique > *{position:relative;z-index:1}
+.scene .v-titre .halo,.scene .g-halo,.scene .g-balai{display:none}
+.scene .v-titre .sur{color:#8a1f15;letter-spacing:.2em}
+.scene .v-titre .tt{font-size:80px;color:var(--ivoire);max-width:900px}
+.scene .v-titre .regle,.scene .g-ligne{background:#a3271c;height:2px;width:260px}
+.scene .v-titre .ss{color:var(--ivoire2)}
+.scene .v-generique{background:var(--grain),linear-gradient(160deg,#a87d4e,#8f6440)}
+.scene .g-haut{color:#8a1f15;letter-spacing:.2em}
+.scene .g-titre{color:var(--ivoire)}
+.scene .g-bas{color:var(--ivoire2);letter-spacing:.14em}
+/* carton de chapitre : numéro au tampon rouge, titre tapé sur une bande de papier */
+.scene .v-chapitre:before{content:"";position:absolute;left:170px;width:940px;top:350px;height:150px;background:var(--papier),linear-gradient(170deg,#f5ecd3,#ecdfbd);
+  border:1px solid var(--trait);box-shadow:var(--ombre);rotate:-.6deg}
+.scene .v-chapitre .num{color:transparent;-webkit-text-stroke:3px rgba(163,39,28,.8);font-family:'Courier Prime',monospace;font-weight:700;font-size:200px;top:110px;rotate:-4deg}
+.scene .v-chapitre .tt{top:388px;font-size:58px;color:var(--ivoire);z-index:1}
+.scene .v-chapitre .trait{display:none}
+/* mot, question, dialogue, citation : encre sur le kraft, ou sur papier quand ils sont posés sur la carte */
+.scene .v-mot .tt{color:#271c11}
+.scene .v-mot .gl:before{background:#a3271c}
+.scene .v-question .gu,.scene .v-dialogue .l:nth-child(2),.scene .v-cit .gu{color:#8a1f15}
+.scene .v-question .tt{font-size:56px}
+.scene .v-cit .ap{background:#f5ecd3;border-color:#a3271c;color:#a3271c}
+.scene .v-nuage .ce{background:#f5ecd3;border-color:#a3271c;color:#8a1f15}
+/* colonnes et cartes */
+.scene .v-cols .col{border-radius:3px;rotate:-.6deg}
+.scene .v-cols .d{rotate:.5deg}
+.scene .v-cols .col:before{background:#a3271c;height:3px}
+.scene .v-cols .d:before{background:#1f4f8f}
+.scene .v-cols .vs{background:#f5ecd3;border:2.5px solid #a3271c;color:#a3271c;font-family:var(--fc);font-weight:700}
+.scene .v-cols .rp span{background:#f5ecd3;border:1px solid var(--trait);border-radius:3px;box-shadow:var(--ombre)}
+.scene .v-cartes .ca{border-radius:3px}
+.scene .v-cartes .ca:nth-child(2n){rotate:.6deg}.scene .v-cartes .ca:nth-child(2n+1){rotate:-.5deg}
+.scene .v-cartes .ca .n{color:#a3271c}
+.scene .v-tag .pill{background:#f5ecd3;border:1px solid var(--trait);border-radius:3px;box-shadow:var(--ombre);color:var(--ivoire)}
+.scene .v-tag.copie .pill{border-color:#a3271c}.scene .v-tag.lien .pill{border-color:#1f4f8f}
+/* frise : ligne d'encre rouge, étiquettes sur papier */
+.scene .v-frise .axe{background:#7d1d14;height:3px}
+.scene .v-frise .an{color:rgba(39,28,17,.75)}
+.scene .v-frise .p .md{background:#f5ecd3;border:2px solid #a3271c;color:#a3271c}
+.scene .v-frise .p .tige{background:rgba(125,29,20,.6)}
+.scene .v-frise .p .nm,.scene .v-frise .p .dt,.scene .v-frise .p .q{background:rgba(245,236,211,.94);border-radius:2px}
+.scene .v-frise .p .dt{color:#a3271c}
+.scene .v-frise .rupt{color:#8a1f15}
+/* photographies : tirage jauni ; en fond, un voile de papier pour lire l'encre posée dessus */
+.scene .v-tableau img{filter:sepia(.32) contrast(1.04)}
+.scene .v-tableau .ombre{background:linear-gradient(180deg,rgba(30,16,4,.25) 0%,transparent 25%,transparent 62%,rgba(30,16,4,.7) 100%)}
+.scene .v-tableau.fond-t .ombre{background:var(--papier),rgba(236,224,193,.74)}
+.scene .v-tableau.fond-t.sombre .ombre{background:var(--papier),rgba(236,224,193,.86)}
+.scene .v-tableau .lg{font-family:var(--fc);font-style:italic;color:rgba(255,246,228,.92)}
+.scene .v-tableau.fond-t .lg{color:rgba(39,28,17,.62);text-shadow:none}
+.scene .v-portrait .pf{border-radius:2px;background:#d8c9a6;box-shadow:0 0 0 10px #f5ecd3,var(--ombre)}
+.scene .v-portrait .pf:after{border-radius:2px;box-shadow:inset 0 0 0 1px rgba(90,73,53,.4)}
+.scene .v-portrait .pf img{filter:sepia(.3)}
+.scene .v-portrait.grand .pf{box-shadow:none}
+.scene .v-portrait.grand .pf:after{background:linear-gradient(180deg,transparent 50%,rgba(236,224,193,.94) 100%)}
+.scene .bd-nom,.scene .bd-info{text-shadow:none}
+.scene .bd-trait,.scene .mf-pt{background:#a3271c}
+.scene .mf-axe{background:rgba(39,28,17,.35)}.scene .mf-z{color:rgba(39,28,17,.65)}.scene .mf-an{color:#a3271c}
+/* mot qui frappe : tampon rouge sur papier */
+.scene .fr-fond{background:var(--papier),radial-gradient(ellipse at center,rgba(245,236,211,.97),rgba(233,220,184,.95))}
+.scene .fr-mot{font-family:'Courier Prime',monospace;font-weight:700;color:#a3271c;background:none;-webkit-text-fill-color:#a3271c;text-shadow:none;
+  border:6px solid #a3271c;padding:6px 28px 0;border-radius:6px;rotate:-4deg;opacity:.92}
+/* « À retenir » : fiche bristol */
+.scene .fl-fond{background:rgba(40,22,6,.45)}
+.scene .fl-carte{background:linear-gradient(180deg,#fbfaf2,#f6f3e6);
+  border:none;border-radius:2px;box-shadow:0 18px 40px rgba(30,14,2,.45);padding:40px 52px 34px;rotate:-.5deg;text-align:left}
+.scene .fl-te{color:#b0281c;border-bottom:2px solid rgba(217,83,79,.8);padding-bottom:10px}
+.scene .fl-tx{color:#1f1b15}
+/* carte mentale */
+.scene .cm-centre{background:#f5ecd3;border:3px solid #a3271c;color:#8a1f15;border-radius:3px;box-shadow:var(--ombre)}
+.scene .cm-noeud{background:#f5ecd3;border:1.5px solid var(--trait);border-radius:3px;box-shadow:var(--ombre);color:var(--ivoire)}
+.scene .cm-it{color:var(--ivoire)}
+.scene .v-notion{background:#f5ecd3;border:1px solid var(--trait);border-radius:3px;box-shadow:var(--ombre)}
+.scene .v-notion .nt-t{color:#a3271c}
+.scene .v-notion .nt-p{background:transparent;border:1px solid rgba(90,73,53,.4);border-radius:3px;color:var(--ivoire)}
+.scene .v-notion .nt-p.prin{background:#a3271c;border-color:#a3271c;color:#f5ecd3}
+/* exercices et « À toi » */
+.scene .ex-nv{border-radius:3px}
+.scene .ex-don{background:rgba(90,73,53,.08);border-left:3px solid rgba(163,39,28,.6);border-radius:0}
+.scene .ex-don b{color:#a3271c}
+.scene .ex-qn{border-color:#a3271c;color:#a3271c}
+.scene .ex-q.on{background:rgba(163,39,28,.09)}
+.scene .pa-carte{border:2.5px solid #a3271c}
+.scene .pa-ic{background:#a3271c}
+.scene .pa-anneau{border-color:#a3271c}
+.scene .pa-te{color:#a3271c}
+/* graphiques */
+.scene .gr-t{color:var(--ivoire2)}
+.scene .gr-t.lb{background:#f5ecd3;box-shadow:0 0 0 1px var(--trait);color:var(--ivoire)}
+/* la carte animée : une carte imprimée posée sur le bureau */
+.scene .v-globe .gl-cadre{background:#efe5c8;rotate:-.35deg;scale:.955;box-shadow:0 0 0 9px #f3ead2,0 0 0 10px rgba(120,95,60,.4),0 22px 50px rgba(30,14,2,.5)}
+.scene .v-globe .gl-cadre.encadre{border-radius:2px}
+.scene .v-globe iframe{filter:sepia(.32) saturate(.9) contrast(1.02)}
+/* les polices de machine à écrire sont plus larges : tailles ramenées pour que les textes tiennent dans leurs cartes */
+.scene .v-titre .tt{font-size:66px;line-height:1.12}
+.scene .carte .tx{font-size:38px}.scene .carte.note .tx{font-size:33px}.scene .carte .et{font-size:23px}
+.scene .fl-tx{font-size:34px}
+.scene .v-question .tt{font-size:50px}.scene .v-dialogue .l{font-size:48px}
+.scene .v-liste .tx{font-size:28px}.scene .v-liste.petit .tx{font-size:21px}
+.scene .v-cols .col .t{font-size:37px}.scene .v-cols .col .q{font-size:24px}
+.scene .v-cartes .ca .t{font-size:33px}.scene .v-cartes .ca .q{font-size:21px}
+.scene .ex-ti{font-size:34px}.scene .ex-p{font-size:22px}.scene .ex-q{font-size:22px}.scene .v-exo.coin .ex-q{font-size:16px}.scene .v-exo.coin .ex-ti{font-size:23px}
+.scene .pa-tx{font-size:32px}
+.scene .v-chapitre .tt{font-size:52px}
+.scene .v-frise .p .nm{font-size:19px}
+.scene .ex-nv{color:#a3271c!important;border-color:#a3271c!important;background:transparent!important}

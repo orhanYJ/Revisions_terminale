@@ -49,19 +49,28 @@
   /* ---------- pages ---------- */
   var ONGLETS = [["cours", "Cours"], ["demos", "Démonstrations"], ["python", "Python"], ["methodes", "Méthodes"], ["exercices", "Exercices"], ["retenir", "À retenir"], ["qcm", "QCM"], ["cartes", "Flashcards"]];
 
+  /* vidéo du chapitre (VIDEOS, src/videos.js) : onglet en tête, seulement une fois publiée */
+  function video(c) { var v = typeof VIDEOS !== "undefined" && VIDEOS[c.id]; return v && v.dispo ? v : null; }
+  function onglets(c) { return (video(c) ? [["video", "▶ Vidéo"]] : []).concat(ONGLETS); }
+  function pageVideo(c) {
+    var v = video(c);
+    return '<p class="no-print">Tout le chapitre en vidéo' + (v.min ? " (environ " + v.min + " min)" : "") + ' : le cours, les démonstrations, les pièges et des exercices corrigés, avec un arrêt « À toi » avant chaque correction. Le quiz est sous la vidéo.</p>' +
+      '<div class="video-c"><iframe src="serie/' + v.code + '.html?embed=1" title="Chapitre ' + c.num + " — " + esc(c.titre) + ' : le cours en vidéo" allow="fullscreen; autoplay" allowfullscreen loading="lazy" data-serie="' + v.code + '"></iframe></div>';
+  }
   function enteteCh(c, onglet) {
     var h = '<div class="fil"><a href="#accueil">Accueil</a> › ' + esc(c.partie) + "</div>";
     h += '<div class="titre-ch"><span class="gros">' + c.num + '</span><div><h1>' + esc(c.titre) + "</h1><p>" + F(c.sous || "") + "</p></div></div>";
     if (c.statut === "ok") {
       h += '<nav class="onglets" aria-label="Parties du chapitre">';
-      ONGLETS.forEach(function (o) { h += '<a href="#' + c.id + "/" + o[0] + '"' + (o[0] === onglet ? ' class="on" aria-current="page"' : "") + ">" + o[1] + "</a>"; });
+      onglets(c).forEach(function (o) { h += '<a href="#' + c.id + "/" + o[0] + '"' + (o[0] === onglet ? ' class="on" aria-current="page"' : "") + ">" + o[1] + "</a>"; });
       h += "</nav>";
     }
     return h;
   }
 
   function pageCours(c) {
-    var h = '<div class="cinq"><h3>L\'essentiel en 5 lignes</h3><ol>' + c.essentiel.map(function (l) { return "<li>" + F(l) + "</li>"; }).join("") + "</ol></div>";
+    var h = video(c) ? '<a class="bandeau-video no-print" href="#' + c.id + '/video"><span class="bv-ic" aria-hidden="true">▶</span><span><b>Le chapitre ' + c.num + ' en vidéo</b>' + (video(c).min ? " · " + video(c).min + " min" : "") + "</span></a>" : "";
+    h += '<div class="cinq"><h3>L\'essentiel en 5 lignes</h3><ol>' + c.essentiel.map(function (l) { return "<li>" + F(l) + "</li>"; }).join("") + "</ol></div>";
     h += '<details class="no-print"><summary><span class="st">Ce que le programme attend (BO)</span></summary><div class="dd"><ul>' + c.attendus.map(function (l) { return "<li>" + F(l) + "</li>"; }).join("") + '</ul><p style="font-size:.85rem;color:var(--encre3)">Capacités reformulées d\'après le programme officiel de spécialité (BO spécial n° 8 du 25 juillet 2019).</p></div></details>';
     if (c.premiere) h += '<details><summary><span class="st">Rappels de Première</span><span class="tag p1">1re</span></summary><div class="dd">' + riche(c.premiere) + "</div></details>";
     c.cours.forEach(function (s, i) {
@@ -271,6 +280,12 @@
     for (var i = 0; i < ms.length; i++) { var c = ms[i].target; if (!(c.closest && c.closest("svg"))) { planifieAjuste(); return; } }
   }).observe(main, { childList: true, subtree: true });
   window.addEventListener("resize", planifieAjuste);
+  /* lecteur vidéo (serie/*.html) : il donne sa hauteur (lecteur + quiz) */
+  window.addEventListener("message", function (e) {
+    var d = e.data || {};
+    if (d.type !== "serie-h" || !d.h) return;
+    $$("iframe[data-serie]", main).forEach(function (fr) { if (fr.contentWindow === e.source) fr.style.height = Math.ceil(d.h) + "px"; });
+  });
   D.addEventListener("toggle", planifieAjuste, true);
   function route() {
     var h = decodeURIComponent(location.hash.replace(/^#/, "")) || "accueil";
@@ -278,8 +293,8 @@
     var c = PARCH[p[0]];
     if (c && c.statut === "ok") {
       var o = p[1] || "cours";
-      if (!ONGLETS.some(function (x) { return x[0] === o; })) o = "cours";
-      var corps = { cours: pageCours, demos: pageDemos, python: pagePython, methodes: pageMethodes, exercices: pageExos, retenir: pageRetenir, qcm: pageQCM, cartes: pageCartes }[o](c);
+      if (!onglets(c).some(function (x) { return x[0] === o; })) o = "cours";
+      var corps = { video: pageVideo, cours: pageCours, demos: pageDemos, python: pagePython, methodes: pageMethodes, exercices: pageExos, retenir: pageRetenir, qcm: pageQCM, cartes: pageCartes }[o](c);
       html = enteteCh(c, o) + corps;
       var i = REDIGES.indexOf(c);
       html += '<div class="suivant no-print">' + (i > 0 ? '<a class="btn" href="#' + REDIGES[i - 1].id + '">← ' + esc(REDIGES[i - 1].court) + "</a>" : "") + (i < REDIGES.length - 1 ? '<a class="btn" style="justify-content:flex-end" href="#' + REDIGES[i + 1].id + '">' + esc(REDIGES[i + 1].court) + " →</a>" : "") + "</div>";
@@ -291,6 +306,7 @@
     else if (p[0] === "entrainement") { html = pageEntrainement(p[1]); titre = "Entraînement · CQFD"; }
     else { html = pageAccueil(); actif = "accueil"; }
     html += '<div class="pied">CQFD — carnet de maths de Terminale, spécialité. Contenu original rédigé d\'après le programme officiel (BO spécial n° 8 du 25 juillet 2019) et la définition de l\'épreuve (BO spécial n° 4 du 17 septembre 2026). Vérifie toujours avec ton professeur.</div>';
+    $$("iframe[data-serie]", main).forEach(function (fr) { try { fr.contentWindow.postMessage({ type: "serie-pause" }, "*"); } catch (e) {} });
     main.innerHTML = html;
     main.classList.remove("entre"); void main.offsetWidth; main.classList.add("entre");
     D.title = titre;

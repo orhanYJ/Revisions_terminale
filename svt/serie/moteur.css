@@ -405,7 +405,7 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 .v-mental .cm-g{transition:none}
 
 /* ===================================================================================================
-   CARNET DE NATURALISTE VIVANT (10/11/2026, choix de Cengiz : « un mélange entre le A et le C »)
+   CARNET DE NATURALISTE VIVANT (10/11/2026, mélange des essais A et C)
    La scène est une page de carnet à spirale posée sur une table : papier quadrillé, lavis d'aquarelle qui
    respirent, vrilles qui poussent à chaque partie, petites algues qui dérivent. Les textes sont à l'encre ;
    les schémas, graphiques et animations (dessinés pour un fond sombre) deviennent des tirages photo à bord
@@ -448,8 +448,8 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 .v-tableau .lg{right:26px;bottom:22px;max-width:640px;padding:6px 14px 4px;background:#fdf9ee;color:#1b2a20;text-shadow:none;
   font-family:'Caveat','Segoe Print',cursive;font-style:normal;font-size:27px;line-height:1.15;transform:rotate(-1.2deg);box-shadow:0 3px 10px rgba(0,0,0,.18)}
 .v-tableau.fond-t{transform:scale(.885) rotate(-.7deg)}
-.v-tableau.fond-t .ombre{background:rgba(242,234,214,.70)}
-.v-tableau.fond-t.sombre .ombre{background:rgba(242,234,214,.9)}
+.v-tableau.fond-t .ombre{background:rgba(242,234,214,.42)}
+.v-tableau.fond-t.sombre .ombre{background:rgba(242,234,214,.68)}
 .v-tableau.fond-t .lg{font-size:22px;color:#55655a;background:transparent;box-shadow:none}
 
 /* cartes de texte : étiquettes de spécimen */
@@ -522,9 +522,11 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 .cm-centre{background:#fcf8ec;color:var(--safran);border-color:var(--safran)}
 .cm-noeud{background:#fcf8ec;border-color:rgba(47,125,82,.75)}
 
-.plaque .gr-ti{color:#2f7d52;top:-46px;font-weight:600}
+.plaque .gr-ti{top:auto;bottom:-60px;color:#1b2a20;font-family:'Caveat','Segoe Print',cursive;font-size:31px;font-weight:700;letter-spacing:0;text-transform:none;line-height:1.1}
 .plaque .badge{color:#2f7d52}
 .fr-fond,.fl-fond{inset:auto;left:16px;top:22px;right:16px;bottom:14px;border-radius:10px}
 .v-portrait.grand .pf:after{background:linear-gradient(180deg,rgba(242,234,214,0) 48%,rgba(242,234,214,.92) 80%,#f2ead6 100%)}
 .bd-nom{color:#1b2a20}
 .v-portrait.grand .pf{left:16px;top:22px;bottom:14px;border-radius:10px 0 0 10px}
+/* photos en fond (voile allégé) : halo de papier autour des textes posés directement dessus, pour qu'ils restent lisibles */
+.v-liste .tx,.v-liste .ti,.v-question .tt{text-shadow:0 0 2px #f6f0e1,0 0 6px #f6f0e1,0 0 14px rgba(246,240,225,.95),0 0 26px rgba(246,240,225,.8)}

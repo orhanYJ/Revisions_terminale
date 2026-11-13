@@ -70,6 +70,44 @@ META = {
         tags=["hérédité non génétique", "symbiose", "mutualisme", "parasitisme", "phénotype étendu", "microbiote",
               "ver de Roscoff", "gammare", "chant des oiseaux", "baleine à bosse", "culture animale", "comportement inné acquis",
               "SVT terminale", "spécialité SVT", "bac SVT", "génétique et évolution"]),
+    "maths-ch1": dict(
+        sous="initialisation · hérédité · Bernoulli", img="m1-dominos.jpg", gros="La récurrence",
+        accroche="n² + n + 41 est premier quarante fois de suite… puis plus du tout. Comment prouver qu'une propriété est vraie "
+                 "pour tous les entiers, sans les vérifier un par un ?",
+        pill2="+ 2 exercices corrigés", exos_txt="deux exercices corrigés pas à pas : une formule à démontrer et un sujet type bac",
+        exos=["Exercice 1 (pour démarrer) : démontrer une formule explicite, u(n) = (n + 1)² + 1.",
+              "Exercice 2 (type bac) : les abonnés d'une chaîne, encadrement par récurrence, suite auxiliaire et algorithme de seuil en Python."],
+        tags=["raisonnement par récurrence", "récurrence", "initialisation hérédité", "démonstration par récurrence",
+              "inégalité de Bernoulli", "suites", "toile d'araignée", "algorithme de seuil", "maths terminale",
+              "spécialité maths", "bac maths", "exercices corrigés"]),
+    "hggsp-t1-intro": dict(
+        sous="mer · espace · dernières frontières", img="t1-rice.jpg", gros="Océans et espace",
+        accroche="Le 2 août 2007, un drapeau russe est planté au fond de l'océan, sous le pôle Nord. Il n'a aucune valeur "
+                 "juridique : pourquoi ? Océan et espace, deux espaces de conquête aux règles opposées.",
+        pill2="+ dissertation et étude critique",
+        exos_txt="une dissertation (« Les océans et l'espace sont-ils encore des dernières frontières ? ») et une étude critique "
+                 "(le discours de Kennedy à l'université Rice, 1962), corrigées pas à pas",
+        exos=["Dissertation : « Les océans et l'espace sont-ils encore des dernières frontières ? » (problématique et plan détaillé).",
+              "Étude critique : le discours de J. F. Kennedy à l'université Rice, 12 septembre 1962 (présenter, analyser, critiquer)."],
+        tags=["HGGSP", "HGGSP terminale", "spécialité HGGSP", "bac HGGSP", "nouveaux espaces de conquête", "océan et espace",
+              "Montego Bay", "ZEE", "haute mer", "traité de l'espace 1967", "dernières frontières", "New Space",
+              "syndrome de Kessler", "orbites", "mer de Chine méridionale", "dissertation HGGSP", "étude critique"]),
+    "ses-e1": dict(
+        titre_yt="La croissance économique : sources et défis · Cours complet + sujets corrigés | SES Terminale",
+        sous="PGF · progrès endogène · destruction créatrice · soutenabilité", img="e1-pib.jpg", gros="La croissance",
+        accroche="La France produit 8,6 fois plus qu'en 1950. D'où vient cette croissance, à qui profite-t-elle, "
+                 "et peut-elle durer sur une planète finie ?",
+        pill2="+ 5 sujets corrigés",
+        exos_txt="cinq sujets corrigés pas à pas : un calcul sur le PIB, les trois parties de l'épreuve composée et une dissertation",
+        exos=["Savoir-faire : calculer avec le PIB (coefficients multiplicateurs, taux de croissance, phrase de lecture) — données Insee.",
+              "Partie 1 : « Montrez que les institutions peuvent favoriser la croissance économique » — sujet inventé pour le site.",
+              "Partie 2 : la croissance française depuis 1950, document Insee — exercice du site.",
+              "Partie 3 : « Montrez que l'innovation est une source de croissance économique » — sujet inventé pour le site.",
+              "Dissertation : « Le progrès technique suffit-il à rendre la croissance soutenable ? » — sujet inventé pour le site."],
+        tags=["croissance économique", "SES terminale", "spécialité SES", "bac SES", "productivité globale des facteurs",
+              "résidu de Solow", "croissance endogène", "progrès technique", "destruction créatrice", "Schumpeter",
+              "institutions", "droits de propriété", "inégalités", "croissance soutenable", "effet rebond",
+              "épreuve composée", "dissertation SES"]),
 }
 
 # matière : libellés et couleurs de la miniature
@@ -81,11 +119,17 @@ MATIERE = {
                pill2="background:#fff;color:#17323d;border:2px solid #d3e0e8", trait="#e0457b"),
     "svt": dict(nom="SVT", court="SVT", desc="SVT", fond="#0b120e", fond_rgb="11,18,14",
                 acc="#B7D94C", pill="#B7D94C", pill_c="#0b120e", txt="#F1EFE3", txt2="#b8c9a8", ombre="0,0,0"),
+    "maths": dict(nom="Maths", court="Maths", desc="maths", fond="#1b2422", fond_rgb="27,36,34",
+                  acc="#F4D35E", pill="#F4D35E", pill_c="#1b2422", txt="#ECEBE4", txt2="#BFC4BB", ombre="0,0,0"),
+    "ses": dict(nom="SES", court="SES", desc="SES", fond="#0D181C", fond_rgb="13,24,28",
+                acc="#F0BE4F", pill="#FF7B65", pill_c="#14232A", txt="#ECE6DA", txt2="#A5B0B3", ombre="0,0,0"),
+    "hggsp": dict(nom="HGGSP", court="HGGSP", desc="HGGSP", fond="#07090b", fond_rgb="7,9,11",
+                  acc="#FF5B49", pill="#B3241B", pill_c="#FFF8F0", txt="#DCE3E8", txt2="#93A3AF", ombre="0,0,0"),
 }
 
 
 def episode(code):
-    for site in ("pc", "svt", "philo"):
+    for site in ("pc", "svt", "philo", "maths", "ses", "hggsp"):
         f = os.path.join(RACINE, site, "serie", code + ".data.js")
         if os.path.exists(f):
             d = open(f, encoding="utf-8").read()
@@ -181,6 +225,7 @@ def kit(code, dossier):
     titre = "%s · Cours complet + exercices corrigés | %s Terminale" % (ep["titre"], mt["nom"])
     if len(titre) > 100:
         titre = "%s · Cours + exercices corrigés | %s Terminale" % (ep["titre"], mt["court"])
+    titre = m.get("titre_yt", titre)          # titre propre à la vidéo quand l'intitulé du chapitre est trop long (SES)
     assert len(titre) <= 100, titre
     duree = round(ep["dur"] / 60)
     desc = [
@@ -196,7 +241,7 @@ def kit(code, dossier):
         "CHAPITRES",
     ] + chapitres(ep) + [
         "",
-        "LES EXERCICES" + ("" if site == "svt" else " (inventés pour la vidéo)"),
+        "LES EXERCICES" + ("" if site in ("svt", "ses") else " (inventés pour la vidéo)"),
     ] + m["exos"] + [
         "",
         "Le quiz de fin est dans le commentaire épinglé.",
