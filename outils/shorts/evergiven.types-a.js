@@ -209,10 +209,10 @@ window.TYPES_A = O => {
     for (let i = 0; i < nb; i++) { const c = i % 6, r = Math.floor(i / 6); g.fillStyle = COUL[Math.floor(rnd(i * 3.3) * COUL.length)];
       g.fillRect(150 + c * 132, 1250 - r * 62, 124, 54); g.strokeStyle = NOIR; g.lineWidth = 3; for (let s = 1; s < 6; s++) { g.beginPath(); g.moveTo(150 + c * 132 + s * 20, 1254 - r * 62); g.lineTo(150 + c * 132 + s * 20, 1300 - r * 62); g.stroke(); } }
     g.fillStyle = 'rgba(13,11,9,.55)'; g.fillRect(0, 560, W, 330);
-    const v = (k * 10).toFixed(k < 1 ? 1 : 0).replace('.', ',');
+    const v = k * 10 > 9.94 ? '10' : (k * 10).toFixed(1).replace('.', ',');
     S.texte('PRÈS DE', W / 2, 600, { taille: 50, coul: CREME, esp: 6 });
-    S.texte(v + ' MILLIARDS $', W / 2, 720, { taille: 130, police: 'Spectral', poids: 600, coul: OR, contour: NOIR, contourL: 12, max: 1000 });
-    S.texte('de marchandises bloquées', W / 2, 840, { taille: 58, police: 'Spectral', it: true, poids: 400, coul: CREME });
+    S.texte(v + ' MILLIARDS $', W / 2, 720, { taille: 120, police: 'Spectral', poids: 600, coul: OR, contour: NOIR, contourL: 12, max: 980 });
+    S.texte('de marchandises bloquées', W / 2, 860, { taille: 58, police: 'Spectral', it: true, poids: 400, coul: CREME });
     S.texte('estimation de la presse maritime', W / 2, 1400, { taille: 32, coul: GRIS, esp: 3 });
   }
 
