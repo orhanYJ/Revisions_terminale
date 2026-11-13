@@ -1346,7 +1346,10 @@
     var s = sv("svg", { viewBox: "0 0 " + v.w + " " + v.h }, e);
     var bad = v.plus ? h("div", "badge", e, "Pour aller plus loin") : null;
     if (bad) bad.style.top = "-10px";
-    var f = ILLU[v.nom] ? ILLU[v.nom](s, v) : function () {};
+    // illustrations propres à une vidéo (maths/serie/illu-<code>.js, chargé après le moteur) :
+    // SERIE_ILLU.nom = function (svg, v) { … return function (t, st) { … }; }, outils dans window.SERIE_OUTILS
+    var fi = ILLU[v.nom] || (window.SERIE_ILLU || {})[v.nom];
+    var f = fi ? fi(s, v) : function () {};
     // les étiquettes posées sur l'illustration s'écrivent à la craie dès qu'elles apparaissent
     // (fonction pure du temps : la part écrite suit l'opacité que l'illustration donne à l'étiquette)
     var labs = Array.prototype.slice.call(e.querySelectorAll(".il-lab")).map(function (d) { return { d: d, ec: Ecrit(d, { v: 34 }) }; });
@@ -2050,4 +2053,5 @@
   }
 
   window.SERIE = { lancer: lancer };
+  window.SERIE_OUTILS = { sv: sv, h: h, lbl: lbl, etiquette: etiquette, ptsBoite: ptsBoite, dPts: dPts, rng: rng, Trait: Trait, Ecrit: Ecrit, C: C, E: E, EIO: EIO, EB: EB, P: P, cl: cl, op: op, tr: tr, et: et, esc: esc, trace: trace, wob: wob, cvs: cvs };
 })();

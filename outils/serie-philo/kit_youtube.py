@@ -241,7 +241,7 @@ def kit(code, dossier):
         "CHAPITRES",
     ] + chapitres(ep) + [
         "",
-        "LES EXERCICES" + ("" if site in ("svt", "ses") else " (inventés pour la vidéo)"),
+        "LES EXERCICES" + ("" if site in ("svt", "ses", "maths", "hggsp") else " (inventés pour la vidéo)"),   # spécialités : exercices du site
     ] + m["exos"] + [
         "",
         "Le quiz de fin est dans le commentaire épinglé.",
