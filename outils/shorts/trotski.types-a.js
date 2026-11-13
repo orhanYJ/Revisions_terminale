@@ -118,7 +118,7 @@ window.TYPES_A = O => {
   // la maison de Coyoacán ; etat : 'nuit', 'balles', 'murs', 'tours', 'forteresse'
   function maison(p, t) {
     const e = p.etat || 'nuit', lt = t - p.a;
-    g.fillStyle = NUIT; g.fillRect(0, 300, W, 1100);
+    g.fillStyle = NUIT; g.fillRect(0, 300, W, 1070);
     g.fillStyle = '#e9e0c8'; g.beginPath(); g.arc(860, 470, 60, 0, 7); g.fill(); g.fillStyle = NUIT; g.beginPath(); g.arc(835, 455, 55, 0, 7); g.fill();
     // maison
     g.fillStyle = '#2a241d'; g.strokeStyle = CREME; g.lineWidth = 6;
@@ -138,8 +138,8 @@ window.TYPES_A = O => {
     // murs d'enceinte et miradors
     const hm = e === 'murs' ? eo(pr(t, p.a + .1, .9)) : (e === 'tours' || e === 'forteresse') ? 1 : .25;
     const yM = 1160 - 200 * hm - 80;
-    g.fillStyle = MUR; g.strokeStyle = CREME; g.lineWidth = 6; g.fillRect(0, yM, W, 1400 - yM); g.strokeRect(-10, yM, W + 20, 1400 - yM);
-    g.strokeStyle = 'rgba(239,230,210,.18)'; g.lineWidth = 3; for (let y = yM + 40; y < 1400; y += 40) { g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
+    g.fillStyle = MUR; g.strokeStyle = CREME; g.lineWidth = 6; g.fillRect(0, yM, W, 1370 - yM); g.strokeRect(-10, yM, W + 20, 1370 - yM);
+    g.strokeStyle = 'rgba(239,230,210,.18)'; g.lineWidth = 3; for (let y = yM + 40; y < 1370; y += 40) { g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
     if (e === 'tours' || e === 'forteresse') {
       const ht = e === 'tours' ? eo(pr(t, p.a + .1, .8)) : 1;
       [130, 950].forEach((x, i) => {
@@ -150,12 +150,12 @@ window.TYPES_A = O => {
           g.lineTo(x + Math.cos(a - .12) * 900, top - 10 + Math.sin(a - .12) * 900); g.lineTo(x + Math.cos(a + .12) * 900, top - 10 + Math.sin(a + .12) * 900); g.closePath(); g.fill(); g.restore(); }
       });
     }
-    if (p.t) deux(p.t, 1500, p.taille || 105);
+    if (p.t) deux(p.t, 1470, p.taille || 95);
   }
 
   // la porte de la forteresse ; p.ouvre : repère d'ouverture ; p.visiteur : une silhouette entre ; p.gardes : les gardes saluent
   function porte(p, t) {
-    g.fillStyle = NUIT; g.fillRect(0, 300, W, 1100);
+    g.fillStyle = NUIT; g.fillRect(0, 300, W, 1070);
     g.fillStyle = MUR; g.strokeStyle = CREME; g.lineWidth = 6; g.fillRect(0, 560, W, 760); g.strokeRect(-10, 560, W + 20, 760);
     g.strokeStyle = 'rgba(239,230,210,.18)'; g.lineWidth = 3; for (let y = 600; y < 1320; y += 40) { g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
     const ko = p.ouvre ? eo(pr(t, tps(p.ouvre), .8)) : 0;
@@ -168,7 +168,7 @@ window.TYPES_A = O => {
     if (ko < .2) { g.fillStyle = OR; g.fillRect(500, 1000, 80, 30); }
     if (p.gardes) [200, 880].forEach((x, i) => { silhouette(x, 1320, 380, { fond: '#2b2a22' }); const a = Math.sin((t - p.a) * 6 + i) * .5;
       g.save(); g.translate(x + (i ? -40 : 40), 1050); g.rotate(i ? -1.6 - a : 1.6 + a); g.fillStyle = '#2b2a22'; g.strokeStyle = CREME; g.lineWidth = 4; g.fillRect(-10, 0, 20, 110); g.strokeRect(-10, 0, 20, 110); g.restore(); });
-    if (p.t) deux(p.t, 1500, p.taille || 105);
+    if (p.t) deux(p.t, 1470, p.taille || 95);
   }
 
   // le jeune homme, fiche « Jacques Mornard » ; p.coeur : un cœur avec une militante
@@ -206,7 +206,7 @@ window.TYPES_A = O => {
     silhouette(lerp(200, 460, eo(pr(t, p.a, .8))), 1300, 720, { chapeau: true, imper: true });
     if (p.soleil && t >= tps(p.soleil)) { const kc = pr(t, tps(p.soleil), .45); g.strokeStyle = ROUGE; g.lineWidth = 10;
       const x = lerp(200, 460, 1) + 70; g.beginPath(); g.ellipse(x, 1000, 120, 220, .1, -1.5, -1.5 + kc * 6.6); g.stroke(); }
-    if (p.t) deux(p.t, 1480, p.taille || 100);
+    if (p.t) deux(p.t, 1470, p.taille || 95);
   }
 
   // le bureau : lampe, papier, Trotski penché, le visiteur debout ; p.penche : il se penche
@@ -223,12 +223,13 @@ window.TYPES_A = O => {
     g.fillStyle = '#e9dfc8'; g.fillRect(470, 1000, 200, 22);
     // Trotski assis, penché
     const kp = p.penche ? eo(pr(t, p.a + .1, .9)) : 0;
-    g.save(); g.translate(560, 1000); g.rotate(kp * .35); tete(0, -280, .75, { dir: 1 });
-    g.fillStyle = '#1b1712'; g.strokeStyle = CREME; g.lineWidth = 6; g.beginPath(); g.moveTo(-90, -190); g.lineTo(90, -190); g.lineTo(80, 0); g.lineTo(-80, 0); g.closePath(); g.fill(); g.stroke();
+    g.save(); g.translate(560, 1000);
+    g.fillStyle = '#1b1712'; g.strokeStyle = CREME; g.lineWidth = 6; g.beginPath(); g.moveTo(-90, -170); g.lineTo(90, -170); g.lineTo(80, 0); g.lineTo(-80, 0); g.closePath(); g.fill(); g.stroke();
+    g.translate(0, -170); g.rotate(kp * .35); tete(0, -120, .7, { dir: 1 });
     g.restore();
     // le visiteur, debout derrière, dans l'ombre
     silhouette(250, 1330, 760, { fond: '#0f0d0a', trait: 'rgba(239,230,210,.55)', chapeau: false, imper: true });
-    if (p.t) deux(p.t, 1500, p.taille || 100);
+    if (p.t) deux(p.t, 1470, p.taille || 95);
   }
 
   // l'imperméable, puis le piolet qui apparaît ; flash rouge, puis noir
@@ -248,8 +249,8 @@ window.TYPES_A = O => {
       g.fillStyle = '#b8b2a6'; g.beginPath(); g.moveTo(-170, -60); g.lineTo(150, -70); g.lineTo(190, -40); g.lineTo(20, -20); g.lineTo(-20, -20); g.lineTo(-170, -40); g.closePath(); g.fill(); g.stroke();
       g.restore();
       const kf = pr(t, tps(p.revele), .15); if (kf < 1) { g.fillStyle = `rgba(200,55,45,${.5 * (1 - kf)})`; g.fillRect(0, 0, W, H); }
-      deux('UN|PIOLET', 1470, 140);
-    } else if (p.t) deux(p.t, 1470, p.taille || 100);
+      deux('UN|PIOLET', 1450, 130);
+    } else if (p.t) deux(p.t, 1460, p.taille || 95);
   }
 
   // date de la mort, sobre

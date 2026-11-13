@@ -8,7 +8,7 @@ window.PLAN = S => S.plans([
   { a: ['s2', 'canal'], type: 'canal', etat: 'route', t: 'CANAL|DE SUEZ' },
   // s3 « Tu es à bord de l'Ever Given. Un des plus grands porte-conteneurs du monde. »
   { a: ['s3', 0], type: 'navire', t: 'À BORD DE|L’EVER GIVEN' },
-  { a: ['s3', 'un'], type: 'navire', zoom: true, t: 'UN DES PLUS GRANDS|PORTE-CONTENEURS', sous: 'du monde' },
+  { a: ['s3', 'un'], type: 'navire', zoom: true, t: 'UN DES PLUS GRANDS|PORTE-CONTENEURS' },
   // s4 « 400 mètres. Plus long que la tour Eiffel n'est haute. »
   { a: ['s4', 0], type: 'navire', eiffel: true },
   // s5 « Tempête de sable. Le vent pousse tes conteneurs comme une voile. »

@@ -1,7 +1,7 @@
 // Plans propres au short Ever Given (« Un seul bateau »), dans le style du modèle A (archives : noir, crème, or, rouge).
 // O = outils du modèle (carte, multi, tampon, barreRouge, petitTitre, fondImg, C = couleurs).
 // Le canal est vu du ciel, nord en haut : le navire remonte vers la Méditerranée, la file d'attente est au sud (mer Rouge).
-window.SANS_ST_A = ['canal', 'argent', 'route', 'choke'];
+window.SANS_ST_A = ['canal', 'argent', 'route', 'choke', 'pelleteuse', 'chantier', 'lune', 'maree'];
 window.PROPRES_A = ['canal', 'navire', 'tempete', 'route', 'argent', 'pelleteuse', 'chantier', 'lune', 'maree', 'choke'];
 window.TYPES_A = O => {
   const { g, W, H, cl, lerp, pr, eo, back, rnd } = S;
@@ -66,7 +66,7 @@ window.TYPES_A = O => {
     g.strokeStyle = CREME; g.lineWidth = 5; [CX0, CX1].forEach(x => { g.beginPath(); g.moveTo(x, CY0); g.lineTo(x, CY1); g.stroke(); });
     S.texte('CANAL DE SUEZ', 175, 300, { taille: 30, coul: CREME, poids: 700, esp: 3 });
     S.texte('N ↑', 960, 300, { taille: 40, coul: CREME });
-    S.texte('MER ROUGE ↓', W / 2, CY1 + 350, { taille: 26, coul: GRIS, esp: 6, poids: 600 });
+    S.texte('MER ROUGE ↓', W / 2, CY1 + 30, { taille: 26, coul: GRIS, esp: 6, poids: 600 });
   }
   function sable(t, a, force = 1) {
     for (let i = 0; i < 90; i++) { const v = 700 + rnd(i * 3) * 900, x = ((rnd(i) * W + (t - a) * v) % (W + 200)) - 100, y = 280 + rnd(i + 7) * 1250;
@@ -95,21 +95,21 @@ window.TYPES_A = O => {
       for (let i = 0; i < n; i++) {
         let x, y, w = 22, h = 54;
         if (i < 4) { x = 540 + (i % 2 ? 60 : -60); y = 880 + Math.floor(i / 2) * 75 - 40; }
-        else { const j = i - 4, c = j % 24, r = Math.floor(j / 24); x = 60 + c * 41; y = CY1 + 30 + r * 19; w = 30; h = 12; if (r > 16) continue; }
+        else { const j = i - 4, c = j % 24, r = Math.floor(j / 24); x = 60 + c * 41; y = CY1 + 62 + r * 18; w = 30; h = 12; if (r > 15) continue; }
         g.fillStyle = i % 7 ? CREME : OR; g.globalAlpha = .9; g.fillRect(x - w / 2, y, w, h);
       }
       g.globalAlpha = 1;
       const kn = back(pr(t, t0, .3)); g.save(); g.translate(W / 2, 1470); g.scale(lerp(1.4, 1, kn), lerp(1.4, 1, kn));
-      S.texte((v >= 400 ? '+ DE ' : '') + n, 0, 0, { taille: 170, police: 'Spectral', poids: 600, coul: v >= 400 ? ROUGE : OR, contour: NOIR, contourL: 12 }); g.restore();
+      S.texte((n >= 400 ? '+ DE ' : '') + n, 0, 0, { taille: 170, police: 'Spectral', poids: 600, coul: v >= 400 ? ROUGE : OR, contour: NOIR, contourL: 12 }); g.restore();
       S.texte('NAVIRES BLOQUÉS', W / 2, 1590, { taille: 50, coul: CREME, esp: 6, contour: NOIR, contourL: 8 });
     }
-    navireHaut(cx, cy, L, l, ang);
+    g.save(); g.beginPath(); g.rect(0, CY0, W, 1200); g.clip(); navireHaut(cx, cy, L, l, ang); g.restore();
     if (p.sable) sable(t, p.a, 1);
     // chocs contre les berges
     const proue = [cx + Math.sin(ang) * L / 2, cy - Math.cos(ang) * L / 2], poupe = [cx - Math.sin(ang) * L / 2, cy + Math.cos(ang) * L / 2];
     if (p.avant) bouffee(...proue, pr(t, tps(p.avant), .7));
     if (p.arriere) bouffee(...poupe, pr(t, tps(p.arriere), .7));
-    if (p.bloque && t >= tps(p.bloque)) O.tampon('BLOQUÉ', W / 2, 1460, pr(t, tps(p.bloque), .3), -.1, 130);
+    if (p.bloque && t >= tps(p.bloque)) O.tampon('BLOQUÉ', W / 2, 800, pr(t, tps(p.bloque), .3), -.1, 130);
     if (p.t && e !== 'file') deux(p.t, 1470, p.taille || 105);
   }
 
@@ -287,7 +287,7 @@ window.TYPES_A = O => {
   function lune(p, t) {
     const k = eo(pr(t, p.a, .8));
     g.save(); g.beginPath(); g.arc(W / 2, lerp(900, 780, k), 330, 0, 7); g.clip();
-    const im = S.img('lune'); if (im) { g.filter = 'grayscale(1) contrast(1.2) brightness(1.05) sepia(.35)'; S.cover(im, W / 2 - 330, lerp(900, 780, k) - 330, 660, 660, 1.15 + (t - p.a) * .03, .5, .5); g.filter = 'none'; }
+    const im = S.img('lune'); if (im) { g.filter = 'grayscale(1) contrast(1.2) brightness(1.05) sepia(.35)'; S.cover(im, W / 2 - 330, lerp(900, 780, k) - 330, 660, 660, 4.0 + (t - p.a) * .08, .508, .525); g.filter = 'none'; }
     g.restore();
     g.save(); g.shadowColor = 'rgba(217,180,90,.6)'; g.shadowBlur = 80; g.strokeStyle = 'rgba(239,230,210,.6)'; g.lineWidth = 4; g.beginPath(); g.arc(W / 2, lerp(900, 780, k), 332, 0, 7); g.stroke(); g.restore();
     if (p.t) deux(p.t, 1360, p.taille || 130);
