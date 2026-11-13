@@ -23,18 +23,18 @@ SUIVANT = "Thème 1 · Objet de travail conclusif · La Chine : à la conquête 
 RYTHME = "vivant"
 PRONONCIATION = {"milles marins": "mil marins", "milles": "mil marins", "ISS": "I S S", "NASA": "Nasa", "Roscosmos": "Roscosmosse",
                  "Freedom": "Fridomme", "Reagan": "Rèïgane", "Zarya": "Zaria", "Zvezda": "Zvezda", "Columbus": "Colombusse",
-                 "Kibo": "Kibo", "Crew": "Crou", "Dragon": "Dragonne", "SpaceX": "Spèïce X", "Tiangong": "Tiane-gongue",
+                 "Kibo": "Kibo", "Unity": "Iouniti", "Crew": "Crou", "Dragon": "Dragonne", "SpaceX": "Spèïce X", "Tiangong": "Tiane-gongue",
                  "Wolf": "Woulf", "Artemis": "Artémisse", "ILRS": "I L R S", "Pesquet": "Pesquet", "Proxima": "Proxima",
                  "Truman": "Trouman", "CLPC": "C L P C", "OMI": "O M I", "OMC": "O M C", "AIFM": "A I F M",
                  "Atalanta": "Atalannta", "Clarion-Clipperton": "Clarionne-Clipeurtonne", "Ifremer": "Ifrémère",
                  "Trump": "Treumpe", "The Metals Company": "Ze Métalse Compagnie", "NOAA": "N O A A",
-                 "Galápagos": "Galapagosse", "BBNJ": "B B N J", "Kunming": "Kounminngue", "Kingston": "Kinngstonne",
+                 "Galápagos": "Galapagosse", "BBNJ": "B B N J", "Kingston": "Kinngstonne",
                  "Montego": "Montégo", "Bay": "Bèï", "ZEE": "Z E E", "URSS": "U R S S", "ONU": "O N U",
                  "Baïkonour": "Baïkonour", "Hambourg": "Hambour", "Costa Rica": "Costa Rica"}
 
 # ---------------------------------------------------------------- étapes de cartes propres à la vidéo
 ESP_A = [
-    dict(date="1984", titre="Le projet américain « Freedom »", montre=["us", "ust", "freedom"], accent=["us"]),
+    dict(date="1984", titre="Le projet américain de station", montre=["us", "ust", "freedom"], accent=["us"]),
     dict(date="1993", titre="La Russie rejoint le projet", montre=["ru", "rut", "mir"], accent=["ru"]),
     dict(date="29 janv. 1998", titre="Un accord à quinze pays", montre=["jp", "jpt", "ca", "cat", "esa", "a15"], cache=["freedom", "mir"], accent=["jp", "ca"]),
 ]
@@ -46,7 +46,7 @@ ESP_B = [
 ESP_C = [
     dict(date="13 oct. 2020", titre="Les accords Artemis", montre=["art", "artt"], cache=["us", "ru", "jp", "ca", "jpt", "cat", "esa", "cnt", "tg"], accent=["art"]),
     dict(date="Mars 2021", titre="La station lunaire sino-russe (ILRS)", montre=["ilrs", "ilrst"], cache=["cn"], accent=["ilrs"]),
-    dict(date="2022-2026", titre="Plus de 70 signataires pour Artemis", montre=["artfr", "artfrt", "art70"], accent=["artfr"]),
+    dict(date="2022-2026", titre="Des dizaines de signataires pour Artemis", montre=["artfr", "artfrt", "art70"], accent=["artfr"]),
 ]
 MERS_A = [
     dict(date="1958-1976", titre="Les « guerres de la morue »", montre=["uk", "isl", "morue"], accent=["isl", "uk"]),
@@ -92,7 +92,7 @@ SCENES = [
         "Des cosmonautes russes voleront dans des capsules américaines. Et des astronautes américains, dans des fusées russes.",
         "{-o2}{q1}Comment deux rivaux peuvent-ils encore coopérer… au-dessus de nos têtes ?",
         ("P", 0.6),
-        "{-q1}{oe}{oe.g}L'espace {oe.d}et les océans sont des terrains de rivalité. Mais ce sont aussi des terrains de coopération. "
+        "{-q1}{oe}{oe.g}L'espace {oe.d}et les océans sont des terrains de rivalité. Mais aussi de coopération. "
         "Parce que certains problèmes sont trop grands, ou trop chers, pour un seul État.",
         "{-oe}{plan}Voici le dossier. {plan.1}D'abord, la Station spatiale internationale : un modèle de coopération… et ses limites. "
         "{plan.2}Ensuite, le partage des mers, de Montego Bay aux zones économiques exclusives. "
@@ -119,7 +119,7 @@ SCENES = [
          retenir="ISS : projet américain Freedom (1984), la Russie le rejoint en 1993 ; accord du 29 janvier 1998 entre 15 pays ; premier module Zarya (20 nov. 1998) ; occupée en permanence depuis le 2 nov. 2000.",
          beats=[
         "{esa}Remontons le temps. {esa.1}En 1984, en pleine guerre froide, le président américain Ronald Reagan annonce un projet de station spatiale. "
-        "Son nom : Freedom. La liberté. Tout un programme.",
+        "Elle sera baptisée Freedom. La liberté. Tout un programme.",
         "{esa.2}Puis l'URSS disparaît. Et en 1993, la Russie rejoint le projet. Elle apporte une expérience précieuse : "
         "celle de sa station Mir, en orbite de 1986 à 2001.",
         "{esa.3}Le 29 janvier 1998, un accord intergouvernemental réunit quinze pays : les États-Unis, la Russie, le Japon, le Canada, "
@@ -151,7 +151,7 @@ SCENES = [
         "{rech.2}On y fait aussi de la physique des fluides, de la biologie. {rech.3}Et on y observe la Terre.",
         "{-rech}{pes}Un exemple que tu peux citer. {pes.1}Le Français Thomas Pesquet y a fait deux séjours. "
         "La mission Proxima, en 2016 et 2017. {pes.2}Puis la mission Alpha, en 2021, dont il est le commandant. "
-        "Il y mène de nombreuses expériences scientifiques.",
+        "Il y a mené de nombreuses expériences scientifiques.",
         "{-pes}{ch3}{ch3.1}Et il n'est pas seul. En 2024, environ deux cent quatre-vingts personnes, venues de plus de vingt pays, étaient montées à bord.",
     ], vis={
         "tab_iss": dict(type="tableau", img="t1a2-iss", de=[1.0, .5, .5], a=[1.16, .5, .45],
@@ -175,7 +175,7 @@ SCENES = [
          retenir="Deux segments indispensables l'un à l'autre : propulsion russe, électricité américaine. Columbus (2008), Kibo, bras canadien. De 2011 à 2020, la NASA dépend des Soyouz russes.",
          beats=[
         "{m1}Maintenant, la question clé. Pourquoi cette coopération tient-elle ? Réponse : parce que personne ne peut partir sans les autres.",
-        "{-m1}{iss2}{iss2.1}La station est faite de deux segments : un américain, un russe. Et ils ne peuvent pas fonctionner l'un sans l'autre. "
+        "{-m1}{iss2}{iss2.1}En 2001, le laboratoire américain Destiny rejoint les modules russes. La station est faite de deux segments : un américain, un russe. Et ils ne peuvent pas fonctionner l'un sans l'autre. "
         "Les Russes assurent notamment le maintien en orbite. Les Américains, l'essentiel de l'électricité.",
         "{iss2.2}Les autres partenaires ont aussi leur pièce. L'Europe fournit le laboratoire Columbus, en 2008. "
         "Le Japon, le module Kibo. Et le Canada, le bras robotique.",
@@ -197,7 +197,7 @@ SCENES = [
         "Moscou menace de quitter la station… mais la station continue de voler.",
         "{-cr}{esb}Mais attention, elle a aussi ses limites. Et la première, c'est qui elle laisse dehors. "
         "{esb.1}En 2011, une loi américaine, l'amendement Wolf, interdit à la NASA de coopérer avec Pékin. "
-        "La Chine est donc exclue de l'ISS. Sa réponse ? Elle construit sa propre station : Tiangong, assemblée en 2021 et 2022.",
+        "La porte de l'ISS est donc fermée à la Chine. Sa réponse ? Elle développe sa propre station : Tiangong, assemblée en 2021 et 2022.",
         "{esb.2}Et pendant la guerre en Ukraine ? Revenons à notre accord de juillet 2022. Quelques mois après l'invasion, "
         "la NASA et Roscosmos s'échangent des sièges : des cosmonautes sur Crew Dragon, des astronautes américains sur Soyouz.",
         "{-esb}{f2}La coopération spatiale reste l'un des {!derniers canaux ouverts}derniers canaux ouverts entre Washington et Moscou.",
@@ -216,7 +216,7 @@ SCENES = [
 
     # ================================================================ V. après l'ISS
     dict(id="apres", chap="Après l'ISS : des blocs rivaux", fond="orbite", humeur="tension",
-         retenir="ISS désorbitée vers 2030 (véhicule commandé à SpaceX, juin 2024). Sur la Lune, deux coalitions : accords Artemis (13 oct. 2020, plus de 70 signataires en 2026, France en juin 2022) contre ILRS sino-russe (mars 2021).",
+         retenir="ISS désorbitée vers 2030 (véhicule commandé à SpaceX, juin 2024). Sur la Lune, deux coalitions : accords Artemis (13 oct. 2020, des dizaines de signataires, France en juin 2022) contre ILRS sino-russe (mars 2021).",
          beats=[
         "{iss3}Et la suite ? {iss3.1}L'ISS doit être exploitée jusqu'en 2030. Puis elle sera désorbitée, et détruite en rentrant dans l'atmosphère, "
         "au-dessus du Pacifique. Le véhicule qui la poussera a été commandé à SpaceX, par un contrat de juin 2024.",
@@ -225,7 +225,7 @@ SCENES = [
         "{-ap}{esc}Et sur la Lune ? Deux coalitions se forment. "
         "{esc.1}Le 13 octobre 2020, les États-Unis proposent les accords Artemis, pour encadrer l'exploration lunaire. "
         "{esc.2}En mars 2021, la Chine et la Russie répondent par leur propre projet : une station internationale de recherche lunaire, l'ILRS.",
-        "{esc.3}La France signe les accords Artemis en juin 2022. Et en 2026, ils comptent plus de soixante-dix signataires.",
+        "{esc.3}La France signe les accords Artemis en juin 2022. Et aujourd'hui, ils réunissent des dizaines de pays.",
         "{-esc}{f3}La coopération de l'ISS laisse place à des {!blocs rivaux}blocs rivaux.",
     ], vis={
         "iss3": dict(type="scene", anim="iss", pas=[6], fs=20),
@@ -313,7 +313,7 @@ SCENES = [
          beats=[
         "{q4}Alors, Montego Bay a-t-elle réglé tous les conflits ? Pas du tout. Elle en a même fait naître de nouveaux.",
         "{-q4}{nr}{nr.1}D'abord là où les ZEE se chevauchent : il faut tracer une ligne. "
-        "{nr.2}Ensuite autour des îlots : un rocher bien placé peut valoir deux cents milles de mer. "
+        "{nr.2}Ensuite autour des îlots : un îlot bien placé peut valoir deux cents milles marins. "
         "{nr.3}Et sous la mer : un État peut demander d'étendre son plateau continental jusqu'à trois cent cinquante milles. "
         "Il dépose un dossier devant une commission spécialisée, la CLPC.",
         "{-nr}{msb}Et quand on ne s'entend pas ? On peut aller devant un juge. "
@@ -328,7 +328,7 @@ SCENES = [
     ], vis={
         "q4": dict(type="question", t="Montego Bay a-t-elle réglé tous les conflits ?"),
         "nr": dict(type="liste", titre="Les nouvelles rivalités", items=[
-            "Des ZEE qui se chevauchent : il faut délimiter", "Des îlots qui valent 200 milles de mer",
+            "Des ZEE qui se chevauchent : il faut délimiter", "Des îlots qui peuvent valoir 200 milles marins",
             "Le plateau continental jusqu'à 350 milles, sur dossier (CLPC)"], marques=["1", "2", "3"], x=170, y=170, w=940),
         "msb": dict(type="scene", anim="mers", etapes=MERS_B, fs=20,
                     cam={"0": [0, 0, 1000, 437], "1": [380, 10, 260, 114]}),
@@ -382,12 +382,12 @@ SCENES = [
 
     # ================================================================ XII. exploiter ou protéger
     dict(id="debat", chap="Exploiter ou protéger ?", fond="crise", humeur="tension",
-         retenir="Pour : les métaux de la transition énergétique. Contre : des écosystèmes mal connus, qui mettraient des siècles à se reconstituer ; une trentaine d'États, dont la France, demandent un moratoire. 24 avril 2025 : décret américain pour accélérer les permis ; l'AIFM dénonce une atteinte au droit international.",
+         retenir="Pour : les métaux de la transition énergétique. Contre : des écosystèmes mal connus, qui mettraient des siècles à se reconstituer ; plus d'une trentaine d'États, dont la France, demandent un moratoire. 24 avril 2025 : décret américain pour accélérer les permis ; l'AIFM dénonce une atteinte au droit international.",
          beats=[
         "{dbt}Alors, faut-il exploiter ces fonds ? C'est un vrai débat géopolitique. "
         "{dbt.g}Pour : la transition énergétique a besoin de métaux. Pour les batteries, pour les réseaux électriques. "
         "{dbt.d}Contre : on connaît très mal ces écosystèmes. Et ils mettraient des siècles à se reconstituer.",
-        "{-dbt}{mor}Une trentaine d'États, dont la France, demandent un {!moratoire}moratoire : une pause, avant toute exploitation.",
+        "{-dbt}{mor}Plus d'une trentaine d'États, dont la France, demandent un {!moratoire}moratoire : une pause, avant toute exploitation.",
         "{-mor}{fdb}Et les États-Unis ? Ils n'ont pas ratifié la convention. Ils veulent délivrer eux-mêmes des permis. "
         "{fdb.1}Le 24 avril 2025, un décret du président Trump ordonne d'accélérer la délivrance de permis miniers en eaux profondes. "
         "Y compris en haute mer. Il s'appuie sur une loi américaine de 1980.",
@@ -397,7 +397,7 @@ SCENES = [
     ], vis={
         "dbt": dict(type="cols", g="Exploiter", gq="les métaux de la transition énergétique", d="Protéger",
                     dq="des écosystèmes mal connus, des siècles pour se reconstituer", vs="?"),
-        "mor": dict(type="chiffres", items=[dict(v=30, avant="≈ ", t="États demandent un moratoire", src="dont la France")], y=190),
+        "mor": dict(type="chiffres", items=[dict(v=30, avant="plus de ", t="États demandent un moratoire", src="dont la France")], y=190),
         "fdb": dict(type="scene", anim="fonds", etapes=FONDS_US, depart=["ccz", "cczt", "haw", "mex", "ifr", "kgn"], fs=20,
                     cam={"0": [0, 50, 420, 184], "1": [0, 50, 420, 184]}),
         "tmc": dict(type="liste", titre="Les États-Unis agissent seuls", items=[
@@ -437,7 +437,7 @@ SCENES = [
         "{m4}C'est pour combler ce vide qu'est né le traité BBNJ. Quatre lettres pour un nom à rallonge : "
         "l'accord sur la biodiversité marine des zones situées au-delà de la juridiction nationale.",
         "{-m4}{bb}Suis bien son parcours, c'est une vraie leçon de droit international. "
-        "{bb.1}Il faut près de vingt ans de discussions. "
+        "{bb.1}Il a fallu près de vingt ans de discussions. "
         "{bb.2}Le texte est adopté à l'ONU le 19 juin 2023. "
         "{bb.3}Il est ouvert à la signature le 20 septembre 2023. Mais attention : signer n'est pas ratifier. Seule la ratification engage l'État.",
         "{bb.4}Alors les ratifications s'accumulent, une à une. Il en faut soixante. "
@@ -492,8 +492,8 @@ SCENES = [
 
     # ================================================================ XVI. au bac : la dissertation
     dict(id="dissert", chap="Au bac : la dissertation", fond="archive", humeur="calme", beats=[
-        "{bac}Passons au bac. {bac.1}À l'écrit, ce thème n'est pas au programme de la session 2027 : il revient en 2028. "
-        "{bac.2}Et le sujet de 2028 peut porter sur lui. {bac.3}En attendant, il reste un excellent terrain pour le Grand oral, chaque année.",
+        "{bac}Passons au bac. {bac.1}À l'écrit, ce thème n'est pas évaluable à la session 2027 : il le sera en 2028. "
+        "{bac.2}Le sujet de 2028 pourra donc porter sur lui. {bac.3}En attendant, il reste un excellent terrain pour le Grand oral, chaque année.",
         "{-bac}{sujet}Voici un sujet de dissertation, inventé pour l'entraînement : "
         "« Coopérer dans les océans et dans l'espace : un idéal impossible ? »",
         "{sujet.1}Analyse les termes. « Coopérer » : agir ensemble, entre États rivaux, et avec d'autres acteurs. "
@@ -506,10 +506,10 @@ SCENES = [
         "{-pb}{pl}Et le plan, en trois parties. "
         "{pl.1}Un : des coopérations réelles, fondées sur des intérêts communs. L'ISS, avec l'accord de 1998 et une station occupée depuis 2000. "
         "Montego Bay, en 1982. L'opération Atalanta, en 2008. Et le traité BBNJ, en vigueur en 2026.",
-        "{pl.2}Deux : des coopérations limitées par les rivalités de puissance. La Chine exclue de l'ISS en 2011. "
+        "{pl.2}Deux : des coopérations limitées par les rivalités de puissance. La Chine tenue à l'écart de l'ISS en 2011. "
         "Les blocs lunaires : Artemis contre l'ILRS. La sentence de 2016, rejetée par Pékin. Et le décret américain sur les grands fonds, en 2025.",
         "{pl.3}Trois : une coopération qui progresse quand l'intérêt commun est évident. L'échange de sièges, malgré la guerre, en 2022. "
-        "L'accord de l'OMC sur la pêche, en vigueur en 2025. Et le traité BBNJ, entré en vigueur dès 2026.",
+        "L'accord de l'OMC sur la pêche, en vigueur en 2025. Et les ratifications rapides du traité BBNJ.",
         "{-pl}{rep}Ta réponse finale ? Ce n'est pas un idéal impossible. C'est un idéal {!limité}limité : "
         "la coopération avance quand elle sert les intérêts des puissances.",
         "{-rep}{me}Un dernier conseil de méthode. Chaque paragraphe tient en quatre temps : une idée, une explication, "
@@ -527,7 +527,7 @@ SCENES = [
         "pl": dict(type="liste", titre="Un plan possible", items=[
             "Des coopérations réelles, fondées sur des intérêts communs — ISS (1998, occupée depuis 2000), Montego Bay (1982), Atalanta (2008), BBNJ (2026)",
             "Des coopérations limitées par les rivalités — Chine exclue (2011), Artemis contre ILRS, sentence de 2016 rejetée, décret américain (2025)",
-            "Une coopération qui progresse quand l'intérêt commun est évident — échange de sièges (2022), accord de l'OMC sur la pêche (2025), BBNJ"],
+            "Une coopération qui progresse quand l'intérêt commun est évident — échange de sièges (2022), accord de l'OMC sur la pêche (2025), ratifications de BBNJ"],
             marques=["I", "II", "III"], x=130, y=110, w=1020),
         "rep": dict(type="mot", t="Un idéal limité", g="la coopération avance quand elle sert les intérêts des puissances", taille=110, y=250),
         "me": dict(type="note", titre="Méthode", t="Un paragraphe = une idée, une explication, un exemple précis et daté, une phrase de liaison.", y=230),
@@ -581,7 +581,7 @@ SCENES = [
     dict(id="recap", chap="Récap pour le bac", fond="crise", humeur="lumiere", beats=[
         "{dat}Il est temps de tout ranger. Les dates, d'abord. {dat.1}1982, Montego Bay. {dat.2}1994, son entrée en vigueur. "
         "{dat.3}1998, l'accord sur l'ISS. {dat.4}2000, la station occupée pour de bon. {dat.5}2008, Atalanta. "
-        "{dat.6}2011, la Chine exclue. {dat.7}2016, la sentence sur la mer de Chine méridionale. "
+        "{dat.6}2011, la porte fermée à la Chine. {dat.7}2016, la sentence sur la mer de Chine méridionale. "
         "{dat.8}2022, l'échange de sièges. {dat.9}2025, le décret américain sur les grands fonds. "
         "{dat.10}Et 2026, le traité BBNJ en vigueur.",
         ("P", 1.8),
@@ -611,6 +611,22 @@ SCENES = [
     }),
 ]
 
+# ---------------------------------------------------------------- nombres en lettres dans le texte lu (voix et sous-titres)
+import re as _re
+from num2words import num2words as _n2w
+
+
+def _lettres(txt):
+    """Écrit en lettres les nombres du texte lu, hors repères {…} (les visuels gardent les chiffres)."""
+    morceaux = _re.split(r"(\{[^}]*\})", txt)
+    t = "".join(m if m.startswith("{") else _re.sub(r"\d+", lambda x: _n2w(int(x.group()), lang="fr"), m) for m in morceaux)
+    # majuscule en début de phrase (« mille neuf cent… » après un point et des repères)
+    return _re.sub(r"((?:^|[.!?]\s+)(?:\{[^}]*\})*)([a-zà-ÿ])", lambda x: x.group(1) + x.group(2).upper(), t)
+
+
+for _sc in SCENES:
+    _sc["beats"] = [_lettres(b) if isinstance(b, str) else b for b in _sc["beats"]]
+
 QUIZ = [
     dict(q="Depuis quand l'ISS est-elle occupée en permanence ?", r=["1986", "20 novembre 1998", "2 novembre 2000", "2011"], ok=2,
          ex="Le 20 novembre 1998, c'est le lancement du premier module, Zarya ; l'occupation permanente commence le 2 novembre 2000.", voir="iss1"),
@@ -621,7 +637,7 @@ QUIZ = [
          ex="Après l'arrêt de la navette (juillet 2011), seuls les Soyouz russes y menaient, jusqu'à Crew Dragon (mai 2020).", voir="iss2"),
     dict(q="Les accords Artemis (2020) sont…", r=["un traité de l'ONU", "des accords proposés par les États-Unis pour encadrer l'exploration lunaire",
                                                  "un accord sino-russe", "un accord sur la pêche"], ok=1,
-         ex="Proposés par les États-Unis le 13 octobre 2020, plus de 70 signataires en 2026 ; la Chine et la Russie portent un projet rival (ILRS).", voir="esc"),
+         ex="Proposés par les États-Unis le 13 octobre 2020, signés par des dizaines de pays ; la Chine et la Russie portent un projet rival (ILRS).", voir="esc"),
     dict(q="En quelle année la convention de Montego Bay entre-t-elle en vigueur ?", r=["1958", "1982", "1994", "2023"], ok=2,
          ex="Signée le 10 décembre 1982, elle entre en vigueur le 16 novembre 1994.", voir="msa"),
     dict(q="Quel pays possède le deuxième domaine maritime (ZEE) du monde ?", r=["La Chine", "La France", "Le Royaume-Uni", "La Russie"], ok=1,
@@ -648,7 +664,7 @@ QUIZ = [
 CREDITS = [
     "Cartes : fond Natural Earth (domaine public), projections d3-geo (licence ISC) ; ZEE françaises approchées par des cercles de 200 milles, "
     "zone de Clarion-Clipperton et ligne en neuf traits : tracés schématiques.",
-    "Schémas animés : la Station spatiale internationale, la course aux mers, le traité BBNJ (site Ligne rouge).",
+    "Schémas et cartes animés du site Ligne rouge : la Station spatiale internationale, la course aux mers, la mer de Chine méridionale, le traité BBNJ.",
     "Photographie : la Station spatiale internationale vue depuis la navette Atlantis, mai 2010, NASA (domaine public), via Wikimedia Commons.",
     "Sujet de dissertation inventé pour l'entraînement.",
 ]
