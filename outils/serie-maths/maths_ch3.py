@@ -69,7 +69,7 @@ SCENES = [
     # ================================================================ ouverture
     dict(id="ouverture", chap="Ouverture", fond="ardoise", humeur="mystere", carton=False, beats=[
         "{q1}{q1.1}Voici une fonction : f de x égale deux x plus un, sur x moins un. "
-        "Elle a un défaut : en un, le dénominateur vaut zéro. Elle n'y est pas définie.",
+        "Elle a un défaut : en un, le dénominateur vaut zéro. Elle n'est pas définie en ce point.",
         "Alors posons deux questions. Que devient f de x quand x devient très grand ? Et que se passe-t-il quand x s'approche de un ?",
         "{q1.2}Calculons. f de mille : environ deux virgule zéro zéro trois. "
         "{q1.3}f d'un million : deux virgule zéro zéro zéro zéro zéro trois. On dirait que ça se rapproche de deux.",
@@ -101,7 +101,7 @@ SCENES = [
                    ax=dict(x=[-4, 6], y=[-6, 10], gx=[-2, 2, 4], gy=[-4, 4, 8], lx="$x$", ly="$y$"),
                    el=[dict(type="courbe", pts=F1_G, c="iv", ep=3.4),
                        dict(type="courbe", pts=F1_D, c="iv", ep=3.4),
-                       dict(type="droite", pts=[[-4, 2], [6, 2]], c="sa", ep=2.6, tir=True, lbl="$y=2$", lp=[4.6, 3.1]),
+                       dict(type="droite", pts=[[-4, 2], [6, 2]], c="sa", ep=2.6, tir=True, lbl="$y=2$", lp=[-3, 2.8]),
                        dict(type="droite", pts=[[1, -6], [1, 10]], c="ca", ep=2.6, tir=True, lbl="$x=1$", lp=[2.1, 8.9])]),
         "plan": dict(type="liste", titre="Le chemin", items=[
             "Limites en l'infini, asymptotes horizontales", "Limites en un réel, asymptotes verticales",
@@ -123,7 +123,7 @@ SCENES = [
         "{g_seuil.3}À partir d'un certain x, ici six, la courbe passe au-dessus du seuil, {g_seuil.4}et elle n'en redescend plus. "
         "Si c'est vrai pour n'importe quel seuil, même un milliard, alors la limite est plus l'infini.",
         "{-g_seuil}{def_lim}Deuxième situation : une limite finie. f de x tend vers un réel L si tout intervalle ouvert contenant L "
-        "contient toutes les valeurs f de x, pour x assez grand. Aussi étroit que soit l'intervalle, la courbe finit par y entrer, et par y rester.",
+        "contient toutes les valeurs f de x, pour x assez grand. Aussi étroit que soit l'intervalle, la courbe finit par entrer dans l'intervalle, et n'en sort plus.",
         "{def_lim.1}Et dans ce cas, la droite d'équation y égale L est {!asymptote horizontale}asymptote horizontale à la courbe, en plus l'infini.",
         "{-def_lim}{moins}Et en moins l'infini ? Mêmes définitions. On remplace « x assez grand » par « x assez petit », "
         "c'est-à-dire x inférieur ou égal à un certain nombre B.",
@@ -150,7 +150,7 @@ SCENES = [
                         el=[dict(type="courbe", pts=SEUIL, c="iv", ep=3.4),
                             dict(type="droite", pts=[[0, 9], [8.6, 9]], c="sa", ep=2.6, tir=True, lbl="seuil $A=9$", lp=[1.6, 10.3]),
                             dict(type="point", x=6, y=9, c="ca", proj=True),
-                            dict(type="texte", x=6.4, y=14.6, t="pour $x\\geq6$ : $f(x)\\geq A$", c="ca")]),
+                            dict(type="texte", x=3.4, y=14.6, t="pour $x\\geq6$ : $f(x)\\geq A$", c="ca")]),
         "def_lim": dict(type="def", terme="Limite finie en $+\\infty$", cles=["intervalle", "ouvert"],
                         t="$\\lim_{x\\to+\\infty}f(x)=\\ell$ si tout intervalle ouvert contenant $\\ell$ contient toutes les valeurs $f(x)$ pour $x$ assez grand.",
                         etape="La droite d'équation $y=\\ell$ est alors asymptote horizontale en $+\\infty$.", x=150, y=170, w=980),
@@ -233,7 +233,7 @@ SCENES = [
                       ax=dict(x=[-4, 4], y=[0, 6.3], gx=[-2, 2], gy=[2, 4, 6], lx="$x$", ly="$y$"),
                       el=[dict(type="courbe", pts=INV2_D, c="iv", ep=3.4),
                           dict(type="courbe", pts=INV2_G, c="iv", ep=3.4),
-                          dict(type="texte", x=2.4, y=4.6, t="$+\\infty$ des deux côtés", c="sa")]),
+                          dict(type="texte", x=2.0, y=4.6, t="$+\\infty$ des deux côtés", c="sa")]),
         "ex_f": dict(type="formule", copie=True, titre="$f(x)=\\dfrac{2x+1}{x-1}$ quand $x\\to1$", x=110, y=86, w=1060, lignes=[
             dict(f="$\\lim_{x\\to1}(2x+1)=3$", m="numérateur", taille=34),
             dict(f="$\\lim_{x\\to1}(x-1)=0$", m="dénominateur", taille=34),
@@ -278,7 +278,7 @@ SCENES = [
         "{g_exp.3}À gauche, elle s'écrase sur l'axe des abscisses, sans jamais le toucher : l'exponentielle est strictement positive. "
         "L'axe des abscisses est donc asymptote horizontale à la courbe, en moins l'infini.",
         "Ces deux limites sont une démonstration exigible. Pour la faire, il nous manque un outil, le théorème de comparaison. "
-        "On y revient un peu plus loin.",
+        "On la fera un peu plus loin.",
         "{-g_exp}",
     ], vis={
         "ref": dict(type="formule", titre="Les fonctions de référence", x=110, y=100, w=1060, lignes=[
@@ -292,7 +292,7 @@ SCENES = [
             dict(f="$\\lim_{x\\to-\\infty}\\e^x=0$", cadre=True, taille=50)]),
         "g_exp": dict(type="graphe", titre="La courbe de l'exponentielle", x=270, y=110, w=740, h=560,
                       ax=dict(x=[-5, 2.8], y=[0, 13.3], gx=[-4, -2, 1, 2], gy=[1, 5, 10], lx="$x$", ly="$y$"),
-                      el=[dict(type="point", x=0, y=1, c="sa", lbl="$(0;1)$", lp=[0.7, 2.5]),
+                      el=[dict(type="point", x=0, y=1, c="sa", lbl="$(0;1)$", lp=[-1.3, 2.6]),
                           dict(type="courbe", pts=EXP, c="iv", ep=3.4),
                           dict(type="droite", pts=[[-5, 0], [0, 0]], c="ca", ep=3.4, lbl="asymptote en $-\\infty$", lp=[-2.6, 2.4])]),
     }),
@@ -328,7 +328,7 @@ SCENES = [
         "{zz.1}La limite en un de x au carré moins un, sur x moins un. En un, le numérateur et le dénominateur valent zéro. "
         "{zz.2}Mais x au carré moins un, c'est x moins un, fois x plus un. {zz.3}Pour x différent de un, on simplifie : il reste x plus un. "
         "{zz.4}Qui tend vers deux.",
-        "{-zz}{taux}Et un dernier zéro sur zéro, qui tombe souvent : exponentielle de x moins un, sur x, en zéro. "
+        "{-zz}{taux}Et un dernier zéro sur zéro, qui tombe souvent : exponentielle de x, moins un, le tout sur x, en zéro. "
         "{taux.1}Pas de factorisation ici. Mais reconnais un taux d'accroissement : exponentielle de x moins exponentielle de zéro, sur x moins zéro. "
         "{taux.2}Sa limite, c'est le nombre dérivé de l'exponentielle en zéro : exponentielle de zéro, c'est-à-dire un.",
         "{-taux}",
@@ -371,20 +371,20 @@ SCENES = [
     dict(id="composition", chap="La composition", fond="ardoise", humeur="calme",
          retenir="Si $\\lim_{x\\to a}u(x)=b$ et $\\lim_{X\\to b}v(X)=c$, alors $\\lim_{x\\to a}v(u(x))=c$. Rédaction : « on pose $X=u(x)$ ».",
          beats=[
-        "{q_comp}Comment trouver la limite de exponentielle de moins x au carré, en plus l'infini ? "
+        "{q_comp}Comment trouver la limite d'exponentielle de moins x au carré, en plus l'infini ? "
         "Ce n'est ni une somme, ni un produit, ni un quotient : c'est une fonction dans une fonction. Une composée.",
         "{-q_comp}{thm_c}Le théorème de composition dit ceci. {thm_c.1}Si u de x tend vers b quand x tend vers a, "
         "{thm_c.2}et si v de grand X tend vers c quand grand X tend vers b, {thm_c.3}alors v de u de x tend vers c quand x tend vers a.",
         "{thm_c.4}Et a, b, c peuvent être des réels, ou plus ou moins l'infini. L'idée est simple : on suit la valeur, étage par étage.",
         "{-thm_c}{red_c}Rédigeons notre exemple, comme sur une copie. {red_c.1}On pose grand X égale moins x au carré. "
         "{red_c.2}Quand x tend vers plus l'infini, grand X tend vers moins l'infini. "
-        "{red_c.3}Or la limite de exponentielle de grand X, quand grand X tend vers moins l'infini, vaut zéro. "
+        "{red_c.3}Or la limite d'exponentielle de grand X, quand grand X tend vers moins l'infini, vaut zéro. "
         "{red_c.4}Donc, par composition, exponentielle de moins x au carré tend vers zéro en plus l'infini.",
         "{-red_c}{g_gauss}Voici sa courbe : une cloche. {g_gauss.1}Elle culmine à un, en zéro, {g_gauss.2}et s'aplatit sur l'axe des abscisses des deux côtés. "
         "En moins l'infini aussi, la limite vaut zéro : moins x au carré tend encore vers moins l'infini.",
-        "{-g_gauss}{autres}Deux autres exemples, pour prendre le réflexe. {autres.1}Exponentielle de un sur x, en plus l'infini : "
+        "{-g_gauss}{autres}Deux autres exemples, pour prendre le réflexe. {autres.1}Exponentielle de, un sur x, en plus l'infini : "
         "un sur x tend vers zéro, et exponentielle de zéro vaut un. La limite est un. "
-        "{autres.2}Racine carrée de un moins deux x, en moins l'infini : un moins deux x tend vers plus l'infini, "
+        "{autres.2}Racine carrée de, un moins deux x, en moins l'infini : un moins deux x tend vers plus l'infini, "
         "et la racine carrée aussi. La limite est plus l'infini.",
         "{-autres}{phrase}Retiens la phrase type, mot pour mot. {phrase.1}On pose grand X égale u de x. Quand x tend vers a, grand X tend vers b. "
         "Or la limite de v en b vaut c. Par composition, la limite de v de u de x vaut c. Quatre phrases, et tous les points.",
@@ -420,7 +420,7 @@ SCENES = [
         "{q_cmp}Que faire quand la fonction contient un cosinus ou un sinus, qui oscille sans limite ? On l'encadre.",
         "{-q_cmp}{thm_cmp}Premier théorème, la {!comparaison}comparaison. {thm_cmp.1}Si f de x est supérieur ou égal à g de x pour x assez grand, "
         "et si g de x tend vers plus l'infini, alors f de x tend aussi vers plus l'infini. "
-        "Celle qui est au-dessus est poussée vers le haut. {thm_cmp.2}Et de même, une fonction au-dessous d'une fonction qui tend vers moins l'infini tend vers moins l'infini.",
+        "Celle qui est au-dessus est poussée vers le haut. {thm_cmp.2}Et vers le bas, c'est pareil : sous une fonction qui tend vers moins l'infini, on est entraîné vers moins l'infini.",
         "{-thm_cmp}{thm_g}Deuxième théorème, les {!gendarmes}gendarmes. {thm_g.1}Si g de x est inférieur ou égal à f de x, lui-même inférieur ou égal à h de x, "
         "pour x assez grand, {thm_g.2}et si g et h ont la même limite finie L, alors f de x tend aussi vers L. Coincée entre les deux, elle n'a pas le choix.",
         "{-thm_g}{g_gend}Exemple : f de x égale cosinus de x, sur x, pour x positif. {g_gend.1}La courbe oscille, de moins en moins fort. "
@@ -483,7 +483,7 @@ SCENES = [
         "{-duel}{py_d}Où se fait le dépassement ? Ce programme le cherche par dichotomie, une méthode que tu verras au chapitre suivant. "
         "{py_d.s}Réponse : vers trente-cinq virgule soixante-dix-sept. Au-delà, l'exponentielle est devant, pour toujours.",
         "{-py_d}{thm_cc}C'est le théorème des {!croissances comparées}croissances comparées. Pour tout entier n supérieur ou égal à un : "
-        "{thm_cc.1}en plus l'infini, exponentielle de x sur x puissance n tend vers plus l'infini. "
+        "{thm_cc.1}en plus l'infini, exponentielle de x, divisée par x puissance n, tend vers plus l'infini. "
         "{thm_cc.2}En plus l'infini, x puissance n fois exponentielle de moins x tend vers zéro. "
         "{thm_cc.3}Et en moins l'infini, x puissance n fois exponentielle de x tend vers zéro.",
         "{thm_cc.4}Une seule phrase pour tout retenir : l'exponentielle l'emporte sur toute puissance.",
@@ -493,12 +493,12 @@ SCENES = [
         "{dem_cc.3}Donc h est croissante, et h de x est supérieur ou égal à h de zéro, qui vaut un.",
         "{dem_cc.4}Ainsi exponentielle de x est plus grand que x au carré sur deux. On divise par x, positif : "
         "exponentielle de x sur x est plus grand que x sur deux. {dem_cc.5}Et x sur deux tend vers plus l'infini. Par comparaison, exponentielle de x sur x aussi.",
-        "{-dem_cc}{dem_n}{dem_n.1}Étape deux, pour n quelconque. L'astuce : écrire exponentielle de x comme exponentielle de x sur n, à la puissance n. "
+        "{-dem_cc}{dem_n}{dem_n.1}Étape deux, pour n quelconque. L'astuce : écrire exponentielle de x comme : exponentielle de, x sur n, le tout à la puissance n. "
         "{dem_n.2}On obtient : un sur n puissance n, fois, exponentielle de x sur n, sur x sur n, le tout à la puissance n.",
         "{dem_n.3}On pose grand X égale x sur n, qui tend vers plus l'infini. D'après l'étape un, exponentielle de grand X sur grand X tend vers plus l'infini. "
         "{dem_n.4}Sa puissance n-ième aussi, et le produit par la constante positive un sur n puissance n aussi. C'est démontré.",
         "{-dem_n}{-tag_bo2}{csq}Les deux autres limites s'en déduisent. {csq.1}x puissance n fois exponentielle de moins x, "
-        "c'est l'inverse de exponentielle de x sur x puissance n. L'inverse de quelque chose qui tend vers plus l'infini tend vers zéro.",
+        "c'est l'inverse du quotient : exponentielle de x, divisée par x puissance n. L'inverse de quelque chose qui tend vers plus l'infini tend vers zéro.",
         "{csq.2}Et en moins l'infini, on pose grand X égale moins x : x puissance n fois exponentielle de x devient, au signe près, "
         "grand X puissance n fois exponentielle de moins grand X. Qui tend vers zéro.",
         "{-csq}{g_x2e}Regarde la courbe de x au carré, fois exponentielle de moins x. {g_x2e.1}Au début, la puissance domine : la courbe monte. "
@@ -512,7 +512,7 @@ SCENES = [
         "{bac26.2}Faux ! On développe : x fois exponentielle de moins x, plus exponentielle de moins x. "
         "{bac26.3}Le premier tend vers zéro par croissances comparées, le second vers zéro. La limite vaut zéro.",
         "{-bac26}{obl}Pour aller plus loin, et ce n'est pas exigible : les asymptotes obliques. "
-        "Si f de x moins, a x plus b, tend vers zéro en plus l'infini, la droite d'équation y égale a x plus b est asymptote oblique.",
+        "Si l'écart entre f de x et a x plus b tend vers zéro en plus l'infini, la droite d'équation y égale a x plus b est asymptote oblique.",
         "{-obl}",
     ], vis={
         "q_cc": dict(type="question", t="$\\dfrac{\\e^x}{x}$ en $+\\infty$ : forme $\\frac\\infty\\infty$. Qui gagne ?"),
@@ -531,7 +531,7 @@ SCENES = [
         "tag_bo2": dict(type="tag", style="plus", t="Démonstration exigible au bac", x=650, y=40, w=560),
         "dem_cc": dict(type="formule", copie=True, titre="Démonstration : $\\dfrac{\\e^x}{x}\\to+\\infty$", x=100, y=100, w=1080, lignes=[
             dict(lab="Étape 1.", f="$h(x)=\\e^x-\\dfrac{x^2}2$ sur $[0;+\\infty[$", taille=32),
-            dict(f="$h'(x)=\\e^x-x>0$", ind=True, m="vu juste avant", taille=32),
+            dict(f="$h'(x)=\\e^x-x>0$", ind=True, m="démonstration précédente", taille=32),
             dict(f="$h$ croissante : $h(x)\\geq h(0)=1>0$", ind=True, taille=32),
             dict(f="$\\e^x>\\dfrac{x^2}2$, donc pour $x>0$ : $\\dfrac{\\e^x}x>\\dfrac x2$", ind=True, taille=32),
             dict(f="$\\dfrac x2\\to+\\infty$ : par comparaison, $\\dfrac{\\e^x}x\\to+\\infty$", ind=True, cadre=True, taille=32)]),
@@ -565,7 +565,7 @@ SCENES = [
     dict(id="pieges", chap="Les pièges classiques", fond="craie", humeur="tension",
          retenir="Le côté en une valeur interdite ; jamais « $\\frac30$ » ; une courbe peut couper son asymptote ; en $0$, le plus bas degré ; l'exponentielle gagne toujours.",
          beats=[
-        "{pieges}Faisons le tour des pièges. {pieges.1}Un : oublier le côté. La limite en un de un sur x moins un n'existe pas : "
+        "{pieges}Faisons le tour des pièges. {pieges.1}Un : oublier le côté. La limite en un de un sur, x moins un, n'existe pas : "
         "plus l'infini à droite, moins l'infini à gauche. Fais toujours le tableau de signes du dénominateur.",
         "{pieges.2}Deux : écrire « trois sur zéro ». On ne divise pas par zéro, on étudie un dénominateur qui tend vers zéro, avec son signe.",
         "{pieges.3}Trois : croire qu'une courbe ne coupe jamais son asymptote. Sinus de x sur x la traverse une infinité de fois.",
@@ -657,11 +657,11 @@ SCENES = [
         "négatif avant moins un demi, positif après.",
         "{s23.5}Donc f décroît, depuis la limite zéro en moins l'infini, jusqu'à son minimum en moins un demi. "
         "{s23.6}Le minimum vaut deux fois moins un demi, moins un, c'est-à-dire moins deux, fois exponentielle de moins un demi. "
-        "Environ moins un virgule deux un trois. {s23.7}Puis f croît vers plus l'infini.",
+        "Environ moins un virgule deux cent treize. {s23.7}Puis f croît vers plus l'infini.",
         "{-s23}{ex2c.q4}{s24}{s24.1}Question quatre. Exponentielle de x n'est jamais nulle. Donc f de x égale zéro équivaut à deux x moins un égale zéro, "
         "c'est-à-dire x égale un demi. {s24.2}Le signe de f est celui de deux x moins un : f est négative avant un demi, positive après.",
         "{-s24}{g_bac}{g_bac.1}{g_bac.2}Et voici la courbe, qui résume tout. {g_bac.3}En moins l'infini, elle se colle à l'axe des abscisses, "
-        "par en dessous, puisque f y est négative. {g_bac.4}Elle descend jusqu'au minimum, en moins un demi, "
+        "par en dessous, puisque f est négative de ce côté. {g_bac.4}Elle descend jusqu'au minimum, en moins un demi, "
         "{g_bac.5}remonte, coupe l'axe en un demi, et file vers plus l'infini.",
         "{-g_bac}{-ex2c}",
     ], vis={
@@ -741,7 +741,7 @@ QUIZ = [
          r=["la droite x = 3 est asymptote verticale", "la droite y = 3 est asymptote horizontale en +∞", "f(x) < 3 pour tout x"],
          ok=1, ex="Limite finie en l'infini : asymptote horizontale. La position relative demande l'étude du signe de f(x) − 3.", voir="def_lim"),
     dict(q="lim 1/(x − 2) quand x → 2 avec x < 2 vaut…", r=["+∞", "−∞", "0"], ok=1,
-         ex="Pour x < 2, x − 2 est négatif et tend vers 0 : le quotient tend vers −∞.", voir="ex_f"),
+         ex="Pour x < 2, x − 2 est négatif et tend vers 0 : le quotient tend vers −∞.", voir="cotes"),
     dict(q="lim eˣ quand x → −∞ vaut…", r=["−∞", "0", "1"], ok=1,
          ex="L'axe des abscisses est asymptote à la courbe de l'exponentielle en −∞.", voir="g_exp"),
     dict(q="lim x⁵e⁻ˣ quand x → +∞ vaut…", r=["+∞", "0", "on ne peut pas savoir"], ok=1,

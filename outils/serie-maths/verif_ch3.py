@@ -89,6 +89,6 @@ assert fb(1.13) < 4.2
 lu = " ".join(b if isinstance(b, str) else (b[0] if isinstance(b[0], str) and b[0] not in ("P", "C") else "")
               for s in M.SCENES for b in s["beats"])
 lu = re.sub(r"\{[^}]*\}", "", lu)
-assert not re.search(r"\by a\b|\by avoir\b", lu), "« y a » dans le texte lu"
+assert not re.search(r"(?<![\w'’-])y(?![\w'’-])(?! égale)", lu), re.findall(r".{30}(?<![\w'’-])y(?![\w'’-])(?! égale).{10}", lu)
 assert not re.search(r"\d", lu), re.findall(r".{20}\d.{20}", lu)
 print("ok : tous les calculs de maths_ch3 sont justes")
