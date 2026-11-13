@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A120B">
+<title>Les interférences : quand deux ondes se rencontrent</title>
+<link rel="stylesheet" href="moteur.css?v=4">
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <p><a href="../#anim-interferences">← Retour au cours</a> · Chapitre 6 : sources cohérentes, différence de marche, constructives et destructives, fentes d'Young et interfrange</p>
+    <h1>Les interférences : quand deux ondes se rencontrent</h1>
+  </header>
+  <div class="player">
+    <figure class="stage">
+      <svg id="scene" viewBox="0 0 400 430" role="img" aria-label="Animation : deux sources synchrones dans une cuve à ondes, lignes de calme et d'agitation, différence de marche, cohérence, fentes d'Young et interfrange, lumière blanche, casque anti-bruit">
+        <defs>
+          <radialGradient id="field" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#1E1A2E"/><stop offset=".7" stop-color="#110E1A"/><stop offset="1" stop-color="#08070D"/></radialGradient>
+          <radialGradient id="cyto" gradientUnits="userSpaceOnUse" cx="200" cy="190" r="240"><stop offset="0" stop-color="#1A2E52"/><stop offset="1" stop-color="#0F1B33"/></radialGradient>
+          <radialGradient id="halo"><stop offset="0" stop-color="#FF8B3E" stop-opacity=".65"/><stop offset="1" stop-color="#FF8B3E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="flash"><stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/><stop offset=".4" stop-color="#FFE3C4" stop-opacity=".6"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+          <linearGradient id="arcenciel" x1="0" x2="1"><stop offset="0" stop-color="#7A3CFF"/><stop offset=".17" stop-color="#3B6CFF"/><stop offset=".33" stop-color="#22B0C8"/><stop offset=".5" stop-color="#3CC23C"/><stop offset=".67" stop-color="#F2D22B"/><stop offset=".83" stop-color="#FF8A1F"/><stop offset="1" stop-color="#E3261B"/></linearGradient>
+          <filter id="glow" filterUnits="userSpaceOnUse" x="-50" y="-50" width="500" height="530">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <clipPath id="cellClip"><path id="clipP" d="M0 0Z"/></clipPath>
+        </defs>
+        <rect width="400" height="430" fill="url(#field)"/>
+        <g id="world">
+          <g id="cells"></g>
+          <g id="ves" clip-path="url(#cellClip)"></g>
+          <g id="nucleus"></g>
+          <g id="spindle"></g>
+          <g id="chromo" filter="url(#glow)"></g>
+          <g id="letters" font-family="system-ui, sans-serif" font-weight="700" font-size="10.5" fill="#0A1222" text-anchor="middle"></g>
+          <g id="fx"></g>
+          <g id="callouts" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+          <g id="labels" font-family="system-ui, sans-serif" text-anchor="middle"></g>
+        </g>
+      </svg>
+      <button class="bigplay" id="bigplay" type="button">
+        <span class="ic" aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 18"><path d="M2 1.5v15l13-7.5z" fill="currentColor"/></svg></span>
+        <span id="bigplayLabel">Lancer l'animation</span>
+      </button>
+    </figure>
+    <section class="panel" aria-label="Explications et commandes">
+      <ul class="legend">
+        <li><span class="sw" style="background:#7FD3FF"></span>onde issue de S₁</li>
+        <li><span class="sw" style="background:#FF8FB1"></span>onde issue de S₂</li>
+        <li><span class="sw" style="background:#FFD24A"></span>lignes de calme (destructives)</li>
+        <li><span class="sw" style="background:#7CE08A"></span>amplitude maximale (constructives)</li>
+      </ul>
+      <div class="cap" id="cap" aria-live="polite">
+        <p class="stepno" id="stepNo"></p>
+        <h2 id="capTitle"></h2>
+        <p class="txt" id="capText"></p>
+        <p class="state"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="7" r="2" fill="currentColor"/></svg><span id="capState"></span></p>
+        <div class="capact">
+          <button class="btn" id="optBtn" type="button" hidden></button>
+          <a class="btn primary" id="toQuiz" href="#quiz" hidden>Passer au quiz</a>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="scrub">
+          <input type="range" id="scrub" min="0" max="600" step="1" value="0" aria-label="Position dans l'animation">
+          <div class="ticks" id="ticks"></div>
+        </div>
+        <div class="bar">
+          <div class="side"><span class="time" id="time">0:00</span></div>
+          <button class="ctl" id="prev" type="button" aria-label="Étape précédente"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 3v12M15 3 6 9l9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <button class="ctl play" id="play" type="button" aria-label="Lecture"><svg id="playIc" width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"></svg></button>
+          <button class="ctl" id="next" type="button" aria-label="Étape suivante"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M15 3v12M3 3l9 6-9 6z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+          <div class="side r"><button class="ctl" id="mute" type="button" aria-label="Couper le son" aria-pressed="false"><svg id="muteIc" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"></svg></button></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="stepMode"><span class="tr"></span>Pause après chaque étape</label>
+      </div>
+    </section>
+  </div>
+  <p class="note">Dessin qualitatif. Dans la cuve, les crêtes de chaque onde sont tracées et les lignes de calme et d'agitation sont calculées exactement (hyperboles). Pour les fentes d'Young, l'écart des fentes et les angles sont très agrandis ; la figure vue de face et la valeur de i sont calculées avec i = λD/a, sous l'enveloppe de diffraction de fentes de 80 µm.</p>
+  <section class="quiz" id="quiz" aria-labelledby="quizTitle">
+    <h2 id="quizTitle">Vérifie que tu as compris</h2>
+    <div class="qcard" id="qcard">
+      <div id="qMain">
+        <div class="qhead"><span id="qNum"></span><span class="dots" id="qDots"></span></div>
+        <p class="qtext" id="qText"></p>
+        <div class="opts" id="qOpts"></div>
+        <p class="qex" id="qEx" hidden></p>
+        <button class="btn primary" id="qNext" type="button" hidden></button>
+      </div>
+      <div class="qend" id="qEnd" hidden>
+        <p class="big" id="qScore"></p>
+        <p id="qMsg"></p>
+        <button class="btn" id="qAgain" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="moteur.js?v=4"></script>
+<script>
+(() => {
+const {clamp, ease, lerp, f, op, label} = ANIM.H;
+const BLANC = '#F2F5FA', GRIS = '#9C93AE', OR = '#FFD24A', VERT = '#7CE08A', KO = '#FF6B5B', EAU = '#7FD3FF', ROSE = '#FF8FB1';
+const kAt = (tt,a,b) => ease(clamp((tt-a)/(b-a),0,1));
+const virg = (x,n=1) => x.toFixed(n).replace('.', ',');
+function couleur(l){
+  let r = 0, g = 0, b = 0;
+  if(l < 440){ r = -(l - 440)/60; b = 1; } else if(l < 490){ g = (l - 440)/50; b = 1; } else if(l < 510){ g = 1; b = -(l - 510)/20; }
+  else if(l < 580){ r = (l - 510)/70; g = 1; } else if(l < 645){ r = 1; g = -(l - 645)/65; } else { r = 1; }
+  const h = v => Math.round(255*clamp(v, 0, 1)).toString(16).padStart(2, '0');
+  return '#' + h(r) + h(g) + h(b);
+}
+const sinc2 = u => Math.abs(u) < 1e-6 ? 1 : Math.pow(Math.sin(u)/u, 2);
+function cote(x1, y1, x2, y2, txt, col, o, dx=0, dy=0, taille=10){
+  if(o <= 0) return '';
+  const n = Math.hypot(x2 - x1, y2 - y1) || 1, ux = (x2 - x1)/n, uy = (y2 - y1)/n, px = -uy, py = ux;
+  let s = `<g opacity="${op(o)}" stroke="${col}" stroke-width="1.3" fill="none"><line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/>`;
+  s += `<path d="M${f(x1 + 6*ux + 3.5*px)} ${f(y1 + 6*uy + 3.5*py)} L${f(x1)} ${f(y1)} L${f(x1 + 6*ux - 3.5*px)} ${f(y1 + 6*uy - 3.5*py)} M${f(x2 - 6*ux + 3.5*px)} ${f(y2 - 6*uy + 3.5*py)} L${f(x2)} ${f(y2)} L${f(x2 - 6*ux - 3.5*px)} ${f(y2 - 6*uy - 3.5*py)}"/></g>`;
+  s += `<text x="${f((x1 + x2)/2 + dx)}" y="${f((y1 + y2)/2 + dy)}" font-size="${taille}" font-weight="700" fill="${col}" opacity="${op(o)}" dy=".35em">${txt}</text>`;
+  return s;
+}
+
+/* ---------- la cuve : deux sources ponctuelles S1, S2 ---------- */
+const C = {x0:10, x1:390, y0:40, y1:262, S1:[150, 151], S2:[250, 151], lam:30};
+function cuve(t, o, deph, aff){
+  if(o <= 0) return {fond:'', cr:'', lg:''};
+  const {x0, x1, y0, y1, S1, S2, lam} = C;
+  let fond = `<rect x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" rx="10" fill="#0D2238" opacity="${op(o)}"/>`;
+  let cr = '', lg = '';
+  /* crêtes : cercles de rayon (v t + phase) mod λ + n λ, coupés au bord de la cuve */
+  const v = 24;
+  const clip = 'url(#cuveClip)';
+  for(const [S, ph, col] of [[S1, 0, EAU], [S2, deph, ROSE]]){
+    const s0 = (((v*t - ph/(2*Math.PI)*lam) % lam) + lam) % lam;
+    for(let r = s0; r < 330; r += lam){
+      if(r < 2) continue;
+      cr += `<circle cx="${S[0]}" cy="${S[1]}" r="${f(r)}" fill="none" stroke="${col}" stroke-width="1.6" opacity="${op(o*clamp(1.2 - r/330, .25, .9))}" clip-path="${clip}"/>`;
+    }
+  }
+  /* lignes d'interférences : |d1 − d2| = constante (hyperboles) */
+  if(aff && aff.o > 0){
+    const d = S2[0] - S1[0], cx = (S1[0] + S2[0])/2, cy = S1[1];
+    const lignes = [];
+    for(let k = -3; k <= 3; k++){
+      const destr = (k + .5)*lam - deph/(2*Math.PI)*lam, cons = k*lam - deph/(2*Math.PI)*lam;
+      if(aff.calme) lignes.push([destr, OR, '']);
+      if(aff.max) lignes.push([cons, VERT, '4 4']);
+    }
+    for(const [delta, col, tir] of lignes){
+      if(Math.abs(delta) >= d - 1) continue;
+      /* hyperbole : points où d1 − d2 = delta ; paramétrage par y */
+      const A = delta/2, B2 = (d/2)*(d/2) - A*A;
+      const pts = [];
+      for(let yy = y0 + 2; yy <= y1 - 2; yy += 4){
+        const Y = yy - cy;
+        const X = Math.sign(A)*Math.abs(A)*Math.sqrt(1 + Y*Y/B2);
+        const xx = cx + (Math.abs(A) < 1e-6 ? 0 : X);
+        if(xx > x0 && xx < x1) pts.push([xx, yy]);
+      }
+      if(pts.length > 1) lg += `<path d="${pts.map((q, i) => (i ? 'L' : 'M') + f(q[0]) + ' ' + f(q[1])).join(' ')}" fill="none" stroke="${col}" stroke-width="${tir ? 1.4 : 2.2}" ${tir ? `stroke-dasharray="${tir}"` : ''} opacity="${op(aff.o*.95)}"/>`;
+    }
+  }
+  /* sources */
+  for(const [S, col, nom] of [[S1, EAU, 'S₁'], [S2, ROSE, 'S₂']]){
+    const pulse = 3.5 + 1.5*Math.sin(2*Math.PI*v/lam*t);
+    cr += `<circle cx="${S[0]}" cy="${S[1]}" r="${f(pulse)}" fill="${col}" opacity="${op(o)}"/>`;
+    lg += `<text x="${S[0]}" y="${S[1] + 20}" font-size="10" font-weight="700" fill="${col}" opacity="${op(o)}">${nom}</text>`;
+  }
+  return {fond, cr, lg};
+}
+/* petit oscillogramme : les deux signaux reçus en M et leur somme */
+function oscillo(x, y, w, h, t, deph, o, titre){
+  if(o <= 0) return '';
+  let s = `<g opacity="${op(o)}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="#0A1222" stroke="${GRIS}" stroke-opacity=".4"/>`;
+  const courbe = (fn, col, w2) => { let d = ''; for(let i = 0; i <= 80; i++){ const u = i/80, tt = t*1.2 + u*2.2; d += (i ? 'L' : 'M') + f(x + 6 + u*(w - 12)) + ' ' + f(y + h/2 - fn(tt)*h*.18); } return `<path d="${d}" fill="none" stroke="${col}" stroke-width="${w2}"/>`; };
+  s += courbe(tt => Math.cos(2*Math.PI*tt), EAU, 1.3) + courbe(tt => Math.cos(2*Math.PI*tt + deph), ROSE, 1.3);
+  s += courbe(tt => Math.cos(2*Math.PI*tt) + Math.cos(2*Math.PI*tt + deph), BLANC, 2.2);
+  s += `<text x="${x + 8}" y="${y + 12}" font-size="8" fill="${GRIS}" text-anchor="start">${titre}</text></g>`;
+  return s;
+}
+
+function draw(c){
+  const {t, k} = c;
+  const st = {};
+  let cells = '', nuc = '', sp = '', chr = '', fx = '', lab = '';
+  cells += `<defs><clipPath id="cuveClip"><rect x="${C.x0}" y="${C.y0}" width="${C.x1 - C.x0}" height="${C.y1 - C.y0}" rx="10"/></clipPath></defs>`;
+
+  /* ===== A : la cuve (étapes 1 à 4) ===== */
+  const oA = 1 - k(45.4, 46.2);
+  if(oA > 0){
+    /* étape 4 : sources non cohérentes : le déphasage dérive */
+    let deph = 0;
+    if(t > 34 && t < 45.6) deph = 2.2*(t - 34) + Math.sin(t*1.7);
+    const affO = k(9, 10.5)*(t < 34 || t > 45 ? 1 : 1 - k(34, 35));
+    const W = cuve(t, oA, deph, {o: affO, calme: true, max: t > 13});
+    cells += W.fond; chr += W.cr; sp += W.lg;
+    lab += `<text x="20" y="32" font-size="9" fill="${GRIS}" text-anchor="start" opacity="${op(oA)}">cuve à ondes vue de dessus : deux pointes vibrent ensemble</text>`;
+    lab += cote(C.S1[0], C.S1[1] - 34, C.S2[0], C.S2[1] - 34, 'a', BLANC, oA*k(3, 4)*(1 - k(9, 9.6)), 0, -9, 11);
+    lab += label(200, 296, 'deux sources synchrones : même fréquence, même phase', BLANC, 8.8, k(2, 2.8)*(1 - k(8.6, 9.2)));
+    lab += label(200, 324, 'les deux ondes se superposent : elles s\'ajoutent', GRIS, 8.6, k(4.5, 5.3)*(1 - k(8.6, 9.2)));
+    lab += label(200, 296, 'lignes jaunes : l\'eau reste immobile (lignes de calme)', OR, 8.6, k(10, 10.8)*(1 - k(22.6, 23.2)));
+    lab += label(200, 324, 'pointillés verts : amplitude maximale', VERT, 8.6, k(13.2, 14)*(1 - k(22.6, 23.2)));
+    lab += label(200, 354, 'ce partage stable de l\'espace : des interférences', BLANC, 9.4, k(16, 16.8)*(1 - k(22.6, 23.2)));
+    /* étapes 2-3 : un point M, d1, d2, δ */
+    const o23 = k(23, 23.8)*(1 - k(33.6, 34.2));
+    if(o23 > 0){
+      const lam = C.lam, d = C.S2[0] - C.S1[0];
+      const surCalme = t > 28.5;
+      /* M sur une ligne de calme (δ = λ/2) ou de maximum (δ = λ) à la hauteur y = 70 */
+      const delta = surCalme ? lam*1.5 : lam*1, A = delta/2, B2 = (d/2)*(d/2) - A*A, Y = 70 - C.S1[1];
+      const M = [(C.S1[0] + C.S2[0])/2 - Math.abs(A)*Math.sqrt(1 + Y*Y/B2), 70];
+      sp += `<line x1="${C.S1[0]}" y1="${C.S1[1]}" x2="${f(M[0])}" y2="${M[1]}" stroke="${EAU}" stroke-width="1.6" opacity="${op(o23)}"/>`;
+      sp += `<line x1="${C.S2[0]}" y1="${C.S2[1]}" x2="${f(M[0])}" y2="${M[1]}" stroke="${ROSE}" stroke-width="1.6" opacity="${op(o23)}"/>`;
+      fx += `<circle cx="${f(M[0])}" cy="${M[1]}" r="5" fill="${surCalme ? OR : VERT}" opacity="${op(o23)}"/>`;
+      lab += `<text x="${f(M[0] - 10)}" y="${M[1] - 8}" font-size="11" font-weight="700" fill="${BLANC}" opacity="${op(o23)}">M</text>`;
+      lab += `<text x="${f((C.S1[0] + M[0])/2 - 14)}" y="${f((C.S1[1] + M[1])/2)}" font-size="10" font-weight="700" fill="${EAU}" opacity="${op(o23)}">d₁</text>`;
+      lab += `<text x="${f((C.S2[0] + M[0])/2 + 12)}" y="${f((C.S2[1] + M[1])/2)}" font-size="10" font-weight="700" fill="${ROSE}" opacity="${op(o23)}">d₂</text>`;
+      lab += label(200, 288, 'différence de marche : δ = d₂ − d₁', BLANC, 9.6, o23*k(23.6, 24.4));
+      const oC = o23*k(24.6, 25.4)*(1 - k(28.2, 28.6)), oD = o23*k(29, 29.8);
+      lab += label(200, 314, 'δ = k λ : les crêtes arrivent ensemble → constructives', VERT, 8.6, oC);
+      lab += label(200, 314, 'δ = (k + ½) λ : crête contre creux → destructives', OR, 8.6, oD);
+      nuc += oscillo(90, 330, 220, 78, t, surCalme ? Math.PI : 0, Math.max(oC, oD), surCalme ? 'en M : opposition de phase, somme nulle' : 'en M : en phase, amplitude doublée');
+    }
+    /* étape 4 : cohérence */
+    const o4 = k(34.2, 35)*(1 - k(45, 45.6));
+    lab += label(200, 296, 'sources non synchrones : le déphasage change sans cesse', KO, 8.6, o4);
+    lab += label(200, 324, 'les lignes de calme bougent : rien de stable à observer', GRIS, 8.6, o4*k(36.5, 37.3));
+    lab += label(200, 358, 'condition : deux sources cohérentes', VERT, 10.5, o4*k(39, 39.8));
+    lab += label(200, 386, '(même fréquence, déphasage constant)', BLANC, 8.8, o4*k(39.6, 40.4));
+  }
+
+  /* ===== B : les fentes d'Young (étapes 5 à 7) ===== */
+  const oB = k(46, 47)*(1 - k(79.4, 80.2));
+  if(oB > 0){
+    let lnm = 650, a = .40, D = 2.0;
+    lnm = lerp(lnm, 470, kAt(t, 64, 66.5)); lnm = lerp(lnm, 650, kAt(t, 68.5, 70));
+    a = lerp(a, .20, kAt(t, 60, 62.5)); a = lerp(a, .40, kAt(t, 68.5, 70));
+    const i = lnm*1e-9*D/(a*1e-3)*1000;                 /* interfrange en mm */
+    const blanc = t > 70.5;
+    const col = couleur(lnm), YL = 140, XF = 116, XE = 330;
+    const e = 10 + 20*(a - .2)/.2;                     /* écart des fentes, dessiné très agrandi */
+    const PXmm = 14;                                    /* 14 px pour 1 mm sur l'écran */
+    cells += `<g opacity="${op(oB)}"><rect x="12" y="${YL - 11}" width="46" height="22" rx="4" fill="#2A2733" stroke="${GRIS}" stroke-width="1.2"/></g>`;
+    lab += `<text x="35" y="${YL + 26}" font-size="9" fill="${GRIS}" opacity="${op(oB)}">${blanc ? 'lumière blanche' : 'laser'}</text>`;
+    chr += `<line x1="58" y1="${YL}" x2="${XF}" y2="${YL}" stroke="${blanc ? '#FFFFFF' : col}" stroke-width="6" opacity="${op(oB*.8)}"/>`;
+    /* plaque à deux fentes */
+    cells += `<g opacity="${op(oB)}" fill="#C9C2D6"><rect x="${XF - 3}" y="40" width="6" height="${f(YL - e/2 - 2 - 40)}"/><rect x="${XF - 3}" y="${f(YL - e/2 + 2)}" width="6" height="${f(e - 4)}"/><rect x="${XF - 3}" y="${f(YL + e/2 + 2)}" width="6" height="${f(240 - YL - e/2 - 2)}"/></g>`;
+    lab += `<text x="${XF}" y="34" font-size="9" fill="${GRIS}" opacity="${op(oB)}">deux fentes</text>`;
+    lab += cote(XF - 16, YL - e/2, XF - 16, YL + e/2, 'a', OR, oB*k(48, 48.8), -10, 0, 10);
+    /* écran, rayons vers M */
+    nuc += `<line x1="${XE}" y1="40" x2="${XE}" y2="244" stroke="${BLANC}" stroke-width="2.4" opacity="${op(oB)}"/>`;
+    lab += `<text x="${XE}" y="34" font-size="9" fill="${GRIS}" opacity="${op(oB)}">écran</text>`;
+    const oR = k(49, 49.8)*(1 - k(59.4, 60))*oB;
+    if(oR > 0){
+      const xm = 2*i*PXmm*.5;                            /* M sur la 1re frange brillante (vue de côté, agrandie) */
+      const yM = YL - Math.min(80, i*PXmm*2.2);
+      sp += `<line x1="${XF}" y1="${f(YL - e/2)}" x2="${XE}" y2="${f(yM)}" stroke="${EAU}" stroke-width="1.3" opacity="${op(oR)}"/>`;
+      sp += `<line x1="${XF}" y1="${f(YL + e/2)}" x2="${XE}" y2="${f(yM)}" stroke="${ROSE}" stroke-width="1.3" opacity="${op(oR)}"/>`;
+      fx += `<circle cx="${XE}" cy="${f(yM)}" r="4" fill="${VERT}" opacity="${op(oR)}"/>`;
+      lab += `<text x="${XE + 10}" y="${f(yM)}" font-size="10" font-weight="700" fill="${BLANC}" dy=".35em" opacity="${op(oR)}">M</text>`;
+      lab += cote(XE + 24, YL, XE + 24, yM, 'x', BLANC, oR*k(50.6, 51.4), 10, 0, 10);
+      lab += cote(XF, 252, XE, 252, 'D', BLANC, oR*k(50.6, 51.4), 0, -8, 10);
+    }
+    /* figure vue de face : franges sous l'enveloppe de diffraction */
+    const oF = k(48.6, 49.6)*oB;
+    if(oF > 0){
+      const y = 270, h = 30, xc = 200, n = 120;
+      const bande = (id, lam, colr, mul) => {
+        const ii = lam*1e-9*D/(a*1e-3)*1000*PXmm;   /* interfrange en px */
+        const env = 2*lam*1e-9*D/(0.08e-3)*1000*PXmm/2; /* demi-largeur de la tache de diffraction (fentes de 80 µm) */
+        let s = '';
+        for(let j = 0; j <= n; j++){
+          const x = 24 + 352*j/n, u = x - xc;
+          const I = Math.pow(Math.cos(Math.PI*u/ii), 2)*sinc2(Math.PI*u/env);
+          s += `<stop offset="${f(100*j/n)}%" stop-color="${colr}" stop-opacity="${op(Math.min(1, Math.pow(I, .6)*mul))}"/>`;
+        }
+        return `<defs><linearGradient id="${id}" x1="0" x2="1">${s}</linearGradient></defs><rect x="24" y="${y}" width="352" height="${h}" rx="6" fill="url(#${id})" ${mul < 1 ? 'style="mix-blend-mode:screen"' : ''} opacity="${op(oF)}"/>`;
+      };
+      cells += `<rect x="24" y="${y}" width="352" height="${h}" rx="6" fill="#050608" opacity="${op(oF)}"/>`;
+      if(!blanc) cells += bande('gy', lnm, col, 1.05);
+      else [440, 490, 530, 570, 610, 650, 690].forEach((l, j) => { cells += bande('gw' + j, l, couleur(l), .75); });
+      lab += `<text x="200" y="${y - 7}" font-size="8.4" fill="${GRIS}" opacity="${op(oF*(1 - k(70.5, 71)))}">sur l'écran, vu de face : des franges régulières</text>`;
+      /* une interfrange marquée */
+      const ii = i*PXmm;
+      lab += cote(xc, y + h + 9, xc + ii, y + h + 9, 'i', OR, oF*k(52, 52.8)*(blanc ? 0 : 1), 0, 10, 11);
+    }
+    const o5 = oB*(1 - k(59.4, 60));
+    lab += label(200, 340, 'en M : δ = a x / D (relation donnée)', BLANC, 9, o5*k(51.6, 52.4)*(1 - k(56.8, 57.2)));
+    lab += label(200, 366, 'frange brillante si δ = k λ, soit x = k λ D / a', VERT, 8.8, o5*k(53.6, 54.4));
+    lab += label(200, 394, 'interfrange : i = λ D / a', OR, 12, o5*k(55.8, 56.6));
+    const o6 = oB*k(60, 60.6)*(1 - k(70.4, 70.8));
+    lab += label(200, 340, `λ = ${Math.round(lnm)} nm · a = ${virg(a, 2)} mm · D = 2,0 m`, BLANC, 9, o6);
+    lab += label(200, 366, `i = λ D / a = ${virg(i, 1)} mm`, OR, 11, o6);
+    lab += label(200, 394, 'fentes deux fois plus proches : franges deux fois plus espacées', BLANC, 8.2, oB*k(62.6, 63.2)*(1 - k(63.8, 64.2)));
+    lab += label(200, 394, 'λ plus courte (bleu) : franges plus serrées', BLANC, 8.6, oB*k(66.6, 67.2)*(1 - k(68.2, 68.6)));
+    const o7 = oB*k(71, 71.8)*(1 - k(79.4, 80));
+    lab += label(200, 340, 'lumière blanche : chaque couleur a son interfrange', BLANC, 8.8, o7);
+    lab += label(200, 366, 'au centre (δ = 0), toutes constructives : frange blanche', VERT, 8.6, o7*k(72.6, 73.4));
+    lab += label(200, 394, 'plus loin, les couleurs se séparent : irisations', ROSE, 8.8, o7*k(74.6, 75.4));
+    lab += label(200, 340, 'l\'enveloppe des franges : la diffraction par chaque fente', GRIS, 8.4, oB*k(57.2, 58)*(1 - k(59.4, 60)));
+  }
+  if(t > 79.4){
+    /* étape 8 : interférences destructives voulues, le casque anti-bruit */
+    const o8 = k(80, 81);
+    const tt = t;
+    nuc += oscillo(40, 60, 320, 90, tt, Math.PI, o8, 'bruit (bleu) + son opposé émis par le casque (rose) = silence (blanc)');
+    lab += label(200, 190, 'casque à réduction de bruit : un micro capte le bruit', BLANC, 8.6, k(81, 81.8));
+    lab += label(200, 216, 'le haut-parleur émet le même son en opposition de phase', ROSE, 8.6, k(82.6, 83.4));
+    lab += label(200, 242, 'interférences destructives dans l\'oreille', VERT, 9.6, k(84.2, 85));
+    lab += label(200, 290, 'irisations des bulles et des CD, couleurs de certaines ailes', GRIS, 8.4, k(86, 86.8));
+    lab += label(200, 316, 'd\'insectes ou plumes, mesure de distances au nanomètre :', GRIS, 8.4, k(86, 86.8));
+    lab += label(200, 342, 'toujours la même règle, δ = k λ ou (k + ½) λ', OR, 9.4, k(87.6, 88.4));
+  }
+  return {cells, nuc, sp, chr, fx, lab, st};
+}
+
+const SCENES = [
+ {t:0, e:9, title:"1. Deux sources qui vibrent ensemble",
+  text:"Dans une cuve à ondes, deux pointes S₁ et S₂ frappent l'eau <strong>ensemble</strong> : même fréquence, même phase. Chacune crée des ondes circulaires de même longueur d'onde λ. Là où les deux ondes se rencontrent, leurs élongations <strong>s'ajoutent</strong> : c'est la superposition.",
+  state:"Deux sources synchrones"},
+ {t:9, e:23, title:"2. Des lignes de calme et des lignes d'agitation",
+  text:"La surface se partage de façon <strong>stable</strong> : sur certaines lignes (en jaune), l'eau reste immobile, les deux ondes s'annulent ; entre elles (pointillés verts), l'amplitude est maximale, les deux ondes se renforcent. Ce phénomène est appelé <strong>interférences</strong>. Les lignes sont des hyperboles centrées sur les deux sources.",
+  state:"Interférences : zones calmes et zones agitées, fixes"},
+ {t:23, e:34, title:"3. La différence de marche δ décide",
+  text:"En un point M, l'onde de S₁ a parcouru d₁, celle de S₂ a parcouru d₂. La <strong>différence de marche</strong> est δ = d₂ − d₁. Si δ est un nombre entier de longueurs d'onde (<strong>δ = kλ</strong>), les crêtes arrivent ensemble : interférences <strong>constructives</strong>. Si δ vaut un nombre entier de longueurs d'onde plus une demie (<strong>δ = (k + ½)λ</strong>), une crête rencontre un creux : interférences <strong>destructives</strong>.",
+  state:"δ = kλ : constructives · δ = (k + ½)λ : destructives"},
+ {t:34, e:46, title:"4. La condition : des sources cohérentes",
+  text:"Si les deux sources ne sont pas réglées ensemble, le déphasage entre elles change sans cesse : les lignes de calme se déplacent tout le temps, et l'œil ne voit qu'un brouillage. Pour observer des interférences stables, il faut deux sources <strong>cohérentes</strong> : <strong>même fréquence</strong> et <strong>déphasage constant</strong>. En optique, on les obtient en partageant la lumière d'une seule source.",
+  state:"Sources cohérentes : même fréquence, déphasage constant"},
+ {t:46, e:60, title:"5. Les fentes d'Young",
+  text:"Un laser éclaire deux fentes fines très proches, distantes de a : elles se comportent comme deux sources cohérentes. Sur un écran à la distance D, on observe des <strong>franges</strong> brillantes et sombres régulièrement espacées. En un point M d'abscisse x, la différence de marche vaut <strong>δ = a x / D</strong> (relation donnée). Les franges brillantes sont en x = kλD/a ; deux franges brillantes voisines sont séparées de l'<strong>interfrange i = λD/a</strong>.",
+  state:"i = λ D / a"},
+ {t:60, e:70.5, title:"6. Ce qui fait varier l'interfrange",
+  text:"Avec λ = 650 nm, a = 0,40 mm et D = 2,0 m, i = 3,3 mm. Rapproche les fentes (a = 0,20 mm) : les franges s'écartent, i double. Prends un laser bleu : elles se resserrent. L'interfrange est proportionnelle à λ et à D, inversement proportionnelle à a. On s'en sert pour mesurer λ, ou une très petite distance a.",
+  state:"i ∝ λ · i ∝ D · i ∝ 1/a"},
+ {t:70.5, e:80, title:"7. En lumière blanche",
+  text:"Chaque couleur donne son propre système de franges, avec sa propre interfrange. Au centre de l'écran (δ = 0), toutes les couleurs sont constructives : la frange centrale est <strong>blanche</strong>. Plus loin, les franges des différentes couleurs ne coïncident plus : on voit quelques franges <strong>irisées</strong>, puis un mélange blanchâtre.",
+  state:"Frange centrale blanche, franges irisées"},
+ {t:80, e:90, title:"8. Des interférences voulues… ou subies",
+  text:"Un casque à réduction de bruit capte le bruit ambiant et émet le <strong>même son en opposition de phase</strong> : dans l'oreille, les interférences sont destructives. Une enceinte près d'un mur crée au contraire des zones où certains sons s'annulent. Les couleurs des bulles de savon, des CD ou de certaines plumes viennent aussi d'interférences, et les interféromètres mesurent des distances plus petites que le nanomètre.",
+  state:"Applications : antibruit, irisations, mesures"}
+];
+
+const CALL = [
+  {a:10.6, b:16, text:"ligne de calme", lab:[90,70], anc:()=>[[200 - 7.5*Math.sqrt(1 + (70 - 151)*(70 - 151)/(50*50 - 7.5*7.5)), 70]], col:OR},
+  {a:47.4, b:53, text:"frange brillante", lab:[300,262], anc:()=>[[200, 285]], col:VERT}
+];
+
+const CUES = [[.2,'step'],[9.2,'step'],[10.4,'pop'],[13.4,'pop'],[23.2,'step'],[24.8,'good'],[29.2,'error'],[34.2,'step'],[39,'pop'],[46.2,'step'],[49,'spark'],[56,'good'],[60.2,'step'],[62,'whoosh'],[65,'whoosh'],[70.6,'step'],[71.4,'spark'],[80.2,'step'],[88,'final']];
+
+const QUIZ = [
+ {q:"Deux ondes produisent des interférences stables si elles sont…",
+  o:["de même amplitude","cohérentes : même fréquence et déphasage constant","émises par deux sources différentes quelconques"], a:1,
+  ex:"Sans déphasage constant, les zones calmes et agitées bougent sans cesse : on n'observe rien de stable."},
+ {q:"En un point M, δ = d₂ − d₁ = 2,5 λ. Les interférences y sont…",
+  o:["constructives","destructives","impossibles à prévoir"], a:1,
+  ex:"2,5 λ = (2 + ½) λ : une crête arrive avec un creux, les ondes s'annulent."},
+ {q:"Fentes d'Young : λ = 600 nm, a = 0,30 mm, D = 1,5 m. L'interfrange vaut…",
+  o:["3,0 mm","0,30 mm","3,0 cm"], a:0,
+  ex:"i = λD/a = 600 × 10⁻⁹ × 1,5 / 0,30 × 10⁻³ = 3,0 × 10⁻³ m = 3,0 mm."},
+ {q:"On écarte davantage les deux fentes (a augmente). Les franges…",
+  o:["s'écartent","se resserrent","ne changent pas"], a:1,
+  ex:"i = λD/a : l'interfrange est inversement proportionnelle à a."}
+];
+
+ANIM.lancer({id:'interferences', END:90, SCENES, CALL, CUES, QUIZ, draw, graine:7});
+})();
+</script>
+</body>
+</html>

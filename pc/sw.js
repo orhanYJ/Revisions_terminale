@@ -1,7 +1,7 @@
-const CACHE = 'pc-v48';
+const CACHE = 'pc-v49';
 /* Les animations (anim/*.html) sont des pages à part : elles ont leur propre
    entrée de cache, pour ne jamais écraser la page d'accueil. */
-const ANIMS = ['photon', 'photoelec', 'cellule', 'acidebase', 'beerlambert', 'conductivite', 'titrage', 'lunette', 'diffraction'];
+const ANIMS = ['photon', 'photoelec', 'cellule', 'acidebase', 'beerlambert', 'conductivite', 'titrage', 'lunette', 'diffraction', 'interferences'];
 const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png',
   './anim/moteur.css?v=4', './anim/moteur.js?v=4', './elements.css?v=2', './elements.js?v=2', './lumiere.css?v=1',
   './polices/plex-sans-400.woff2', './polices/plex-sans-400i.woff2', './polices/plex-sans-600.woff2', './polices/plex-sans-700.woff2',
