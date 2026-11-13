@@ -6,4 +6,5 @@ PASSAGES = [
     ("s1", "Peut-on être heureux sans être libre ? Problématique : le bonheur dépend-il de nous ? Première partie, on peut le croire. Deuxième partie, pourtant non.", 0.3),
     ("s2", "La conscience en résumé. Descartes : je pense donc je suis. Freud : l'inconscient. Nietzsche : une surface.", 0.3),
     ("s3", "Vrai ou faux ? Tes mitochondries viennent d'une bactérie. Réponse : vrai, c'est l'endosymbiose.", 0.3),
+    ("s4", "Qui a dit ça ? Le bonheur est un idéal de l'imagination. Kant, Épicure ou Nietzsche ? Réponse : Kant.", 0.3),
 ]

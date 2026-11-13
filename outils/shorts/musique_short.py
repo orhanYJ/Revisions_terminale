@@ -449,6 +449,94 @@ def v_quiz2(dur, niveau):
     return _quiz(dur, niveau, 120, "D3", False)
 
 
+# ---------------------------------------------------------------- musiques ajoutées le 13/11/2026
+def lyre(f, d=.8):
+    n = int(d * SR); t = np.arange(n) / SR
+    return (np.sin(2 * np.pi * f * t) + .45 * np.sin(4 * np.pi * f * t) * np.exp(-t * 6) + .2 * np.sin(6 * np.pi * f * t) * np.exp(-t * 9)) * ar(n, .002, .35)
+
+
+def tambour_cadre(d=.4, f0=110):
+    n = int(d * SR); t = np.arange(n) / SR
+    return np.sin(2 * np.pi * f0 * (1 + .3 * np.exp(-t * 30)) * t) * np.exp(-t / .12) + bp(R.standard_normal(n), 300, 2500) * np.exp(-t / .02) * .4
+
+
+def v_grec(dur, niveau):
+    """antique : lyre en mode dorien (ré), tambour sur cadre, bourdon grave"""
+    gam = ["D3", "E3", "F3", "G3", "A3", "B3", "C4", "D4"]
+    mel = [0, 2, 4, 3, 4, 5, 4, 2, 0, 1, 2, 4, 7, 6, 4, 2]
+    def f(y, i, t, pos, m, nv, s16):
+        if pos == 0: poser(y, nappe([hz("D2"), hz("A2")], 16 * s16 + .05, 600), t, .22)
+        if pos % 2 == 0: poser(y, lyre(hz(gam[mel[(pos // 2 + 8 * (m % 2)) % 16]]) * 2), t, .28)
+        if nv >= 2:
+            if pos in (0, 6, 10): poser(y, tambour_cadre(), t, .5)
+            if pos in (3, 13): poser(y, tambour_cadre(.2, 220), t, .25)
+        if nv >= 3 and pos in (4, 12): poser(y, clap(), t, .25)
+    return _boucle(100, dur, niveau, f)
+
+
+def v_boom_bap(dur, niveau):
+    """hip-hop boom bap (90 bpm) : piano jazz en boucle, grosse caisse ronde, caisse claire sèche, contrebasse"""
+    acc = [["D3", "F3", "A3", "C4"], ["G3", "B3", "D4", "F4"], ["C3", "E3", "G3", "B3"], ["A2", "C3", "E3", "G3"]]
+    bas = ["D2", "G1", "C2", "A1"]
+    def f(y, i, t, pos, m, nv, s16):
+        k = m % 4; sw = s16 * .25 if pos % 2 else 0
+        if pos in (0, 7):
+            for x in acc[k]: poser(y, piano(hz(x) * 2, .7), t, .12)
+        if pos in (0, 3, 10): poser(y, lp(kick(.45), 2500), t, .75)
+        if pos in (4, 12): poser(y, clap(.3) * .6 + caisse_feutree(.3) * .6, t, .5)
+        if nv >= 2 and pos % 2 == 0: poser(y, charley(), t + sw, .1)
+        if nv >= 2 and pos in (0, 6, 10): poser(y, basse(hz(bas[k]) * 2, s16 * 3, 350), t, .4)
+        if nv >= 3 and pos == 14: poser(y, charley(.15, True), t, .12)
+    y = _boucle(90, dur, niveau, f)
+    return y + craquement(dur)[:len(y)] * .3
+
+
+def carre(f, d, rapport=.5):
+    n = int(d * SR); t = np.arange(n) / SR
+    return np.where((t * f) % 1 < rapport, 1.0, -1.0) * ar(n, .002, d * .6)
+
+
+def v_chiptune(dur, niveau):
+    """8 bits (jeu vidéo) : mélodie en signaux carrés, basse en triangle, bruit blanc pour la batterie"""
+    mel = ["C5", "E5", "G5", "E5", "A5", "G5", "E5", "D5", "C5", "D5", "E5", "G5", "E5", "D5", "C5", None]
+    bas = ["C2", "C2", "A1", "A1", "F1", "F1", "G1", "G1"]
+    def f(y, i, t, pos, m, nv, s16):
+        if pos % 2 == 0:
+            b = hz(bas[(m * 2 + pos // 8) % 8]) * 2
+            n = int(s16 * 1.8 * SR); tt = np.arange(n) / SR
+            tri = 2 * np.abs(2 * ((tt * b) % 1) - 1) - 1
+            poser(y, tri * ar(n, .002, .2), t, .3)
+        note = mel[pos] if m % 2 == 0 else mel[(pos + 4) % 16]
+        if nv >= 1 and note and pos % 1 == 0 and (nv >= 2 or pos % 2 == 0): poser(y, carre(hz(note), s16 * .9, .25), t, .07)
+        if nv >= 2:
+            if pos % 4 == 0: poser(y, lp(bruit_court(.08), 1500), t, .5)
+            if pos % 8 == 4: poser(y, bp(bruit_court(.1), 1500, 8000), t, .3)
+        if nv >= 3 and pos % 2 == 1: poser(y, hp(bruit_court(.03), 8000), t, .12)
+    return _boucle(140, dur, niveau, f)
+
+
+def bruit_court(d):
+    n = int(d * SR); return R.standard_normal(n) * np.exp(-np.arange(n) / SR / (d / 4))
+
+
+def v_ambient_mer(dur, niveau):
+    """ambiance marine : nappes larges, gouttes d'eau, houle filtrée, battement léger qui s'installe"""
+    acc = [["E3", "B3", "F#4", "G#4"], ["C#3", "G#3", "E4", "B4"], ["A2", "E3", "C#4", "B4"], ["B2", "F#3", "D#4", "A4"]]
+    n = int(dur * SR); tt = np.arange(n) / SR
+    houle = lp(R.standard_normal(n), 400) * (.5 + .5 * np.sin(2 * np.pi * tt / 6)) * .25
+    def f(y, i, t, pos, m, nv, s16):
+        k = m % 4
+        if pos == 0: poser(y, nappe([hz(x) for x in acc[k]], 16 * s16 + .3, 1400), t, .3)
+        if pos in (3, 11) or (pos == 7 and m % 2): poser(y, cloche(hz(acc[k][(pos + m) % 4]) * 2, .9), t, .1)
+        if nv >= 2:
+            if pos in (0, 10): poser(y, lp(kick(.5), 600), t, .45)
+            if pos % 4 == 2: poser(y, shaker(), t, .06)
+        if nv >= 3 and pos in (4, 12): poser(y, caisse_feutree(), t, .2)
+    y = _boucle(96, dur, niveau, f)
+    return y + houle[:len(y)]
+
+
+VARIANTES.update({"grec": v_grec, "boom_bap": v_boom_bap, "chiptune": v_chiptune, "ambient_mer": v_ambient_mer})
 VARIANTES.update({"piano": v_piano, "lofi2": v_lofi2, "house": v_house, "pop": v_pop, "quiz": v_quiz, "quiz2": v_quiz2})
 
 
