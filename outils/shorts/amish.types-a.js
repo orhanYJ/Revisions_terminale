@@ -175,9 +175,9 @@ window.TYPES_A = O => {
   // ---------- le syndrome : p.etape 'nom' | 'signes' (repères p.taille et p.doigt)
   function main6(x, y, s) {
     g.save(); g.translate(x, y); g.scale(s, s); g.fillStyle = '#2a241d'; g.strokeStyle = CREME; g.lineWidth = 7; g.lineJoin = 'round';
-    // paume et pouce
+    // pouce, puis paume par-dessus
+    g.save(); g.translate(-80, 130); g.rotate(-.8); g.beginPath(); g.roundRect(-28, -190, 56, 200, 28); g.fill(); g.stroke(); g.restore();
     g.beginPath(); g.roundRect(-110, -40, 230, 230, 60); g.fill(); g.stroke();
-    g.save(); g.translate(-100, 90); g.rotate(-.9); g.beginPath(); g.roundRect(-28, -150, 56, 160, 28); g.fill(); g.stroke(); g.restore();
     // quatre doigts + un sixième doigt côté auriculaire
     [[-70, 200], [-15, 230], [40, 215], [92, 180], [140, 130]].forEach(([dx, L], i) => {
       g.save(); g.translate(dx, -30); g.rotate(i === 4 ? .35 : (i - 1.5) * .06); g.beginPath(); g.roundRect(-24, -L, 48, L + 20, 24); g.fill();

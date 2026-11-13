@@ -7,7 +7,7 @@ window.PLAN = S => S.plans([
   { a: ['s2', 0], type: 'mot', t: 'PENDANT PLUS|DE 200 ANS' },
   { a: ['s2', 'sans'], type: 'mot', t: 'SANS LE SAVOIR.', sombre: true, choc: true },
   // s3 « XVIIIe siècle. Tu es amish, en couple, et tu quittes l'Europe pour la Pennsylvanie. »
-  { a: ['s3', 0], type: 'mot', t: 'XVIIIᵉ|SIÈCLE', ch: 1 },
+  { a: ['s3', 0], type: 'mot', t: 'XVIIIe|SIÈCLE', ch: 1 },
   { a: ['s3', 'tu'], type: 'mot', img: 'amish', t: 'TU ES AMISH,|EN COUPLE' },
   { a: ['s3', 'quittes'], type: 'traversee', t: 'DE L’EUROPE|À LA PENNSYLVANIE' },
   // s4 « Quelques immigrants fondent une communauté à l'écart. On se marie au sein du groupe. »
