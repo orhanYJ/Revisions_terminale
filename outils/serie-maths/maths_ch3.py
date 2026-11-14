@@ -22,7 +22,8 @@ RYTHME = "vivant"
 # bloc repris du chapitre 1 (lettres des formules en majuscules, sans liaison ; « plusse » et « moin » devant une lettre
 # ou un nombre), complété par les lettres de ce chapitre (g, h, y) ; le texte lu évite « il y a » pour que « y » isolé
 # soit toujours l'ordonnée
-PRONONCIATION = {"§n": "N", "§k": "K", "§f": "F", "§x": "X", "§b": "B", "§v": "V", "§m": "M", "§q": "Q",
+# en maths, pas de liaison devant une lettre : « deux x » (2x) est dit « deux fois x »
+PRONONCIATION = {"deux x": "deux fois x", "trois x": "trois fois x", "§n": "N", "§k": "K", "§f": "F", "§x": "X", "§b": "B", "§v": "V", "§m": "M", "§q": "Q",
                  "§g": "G", "§h": "H", "§y": "Y"}
 for _tok in ("un", "une", "huit", "onze", "a", "u", "N", "F", "X", "M", "R", "A", "U", "L", "H", "Y"):
     PRONONCIATION["plus " + _tok] = "plusse " + _tok
