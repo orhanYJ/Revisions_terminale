@@ -422,9 +422,9 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
   background-image:linear-gradient(rgba(118,140,92,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(118,140,92,.13) 1px,transparent 1px);
   background-size:40px 40px;background-position:-1px -1px;box-shadow:0 10px 34px rgba(0,0,0,.42),inset 0 0 80px rgba(120,96,50,.14)}
 .cn-marge{position:absolute;left:88px;top:0;bottom:0;width:2px;background:rgba(190,120,96,.35)}
-.cn-grain{position:absolute;inset:0;opacity:.55;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .36 0 0 0 0 .24 0 0 0 -1.4 1.05'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23g)'/%3E%3C/svg%3E")}
-.cn-lavis{position:absolute;mix-blend-mode:multiply;will-change:transform,border-radius}
+.cn-grain{position:absolute;inset:0;opacity:.55;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .40 0 0 0 0 .33 0 0 0 0 .20 0 0 0 -1.4 1.05'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23g)'/%3E%3C/svg%3E")}
+.cn-lavis{position:absolute;will-change:transform,opacity;backface-visibility:hidden}
 .cn-vie{position:absolute;inset:0}
 .cn-anneaux{position:absolute;left:0;top:0;width:1280px;height:60px}
 .voile{background:radial-gradient(ellipse at 50% 45%,transparent 60%,rgba(70,55,20,.16) 100%)}
@@ -494,7 +494,7 @@ sub{font-size:.62em;vertical-align:-.28em;line-height:0}
 .g-halo{background:radial-gradient(circle,rgba(183,217,76,.30),transparent 62%)}
 .g-haut{color:var(--safran)}
 .g-ligne{height:6px;border-radius:3px;background:linear-gradient(90deg,transparent,rgba(183,217,76,.9),transparent)}
-.g-balai{background:linear-gradient(90deg,transparent,rgba(183,217,76,.35),transparent);mix-blend-mode:multiply}
+.g-balai{background:linear-gradient(90deg,transparent,rgba(183,217,76,.24),transparent)}
 .fr-fond{background:radial-gradient(ellipse at center,rgba(246,240,224,.98),rgba(242,234,214,.93))}
 .fr-mot{color:#1b2a20;background:linear-gradient(transparent 58%,rgba(183,217,76,.85) 58%,rgba(183,217,76,.85) 90%,transparent 90%);
   -webkit-background-clip:border-box;background-clip:border-box;text-shadow:none;padding:0 .1em}
