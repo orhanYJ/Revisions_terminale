@@ -109,7 +109,7 @@ window.ANIMS["e3-spirale"] = {
 
   SERIE_ILLU.chomage = function (s, v) {
     var g = window.GRAPHES["e3-chomage"], W_ = v.w, H_ = v.h, xs = g.x;
-    var ml = 78, mr = 150, mt = 92, mb = 78, pw = W_ - ml - mr, ph = H_ - mt - mb, ymax = 12;
+    var ml = 78, mr = 150, mt = 124, mb = 78, pw = W_ - ml - mr, ph = H_ - mt - mb, ymax = 12;
     function X(a) { return ml + (a - xs[0]) / (xs[xs.length - 1] - xs[0]) * pw; }
     function Y(y) { return mt + (1 - y / ymax) * ph; }
     var gg = sv("g", {}, s), fond = sv("g", {}, gg);

@@ -21,13 +21,13 @@ RYTHME = "vivant"
 PRONONCIATION = {"Highland Park": "Haïlande Parque", "Five Dollar Day": "Faïve Dolar Dé", "New Jersey": "Niou Djersé",
                  "fast-foods": "fast-foudes", "insiders": "inn-saïdeurze", "outsiders": "aoute-saïdeurze",
                  "Maynard": "Mé-narde", "John": "Djone", "Keynes": "Kéïnze", "Shapiro": "Chapiro", "Stiglitz": "Stiglitse",
-                 "Carl": "Carle", "Joseph": "Jozèf", "Card": "Carde", "Krueger": "Crougueure", "Alan": "Alane",
+                 "Carl": "Carle", "Joseph": "Djozèf", "Card": "Carde", "Krueger": "Crougueure", "Alan": "Alane",
                  "David": "Dévid", "Lindbeck": "Lindbèque", "Snower": "Sno-eure", "Assar": "Assare", "Dennis": "Dénisse",
-                 "Diamond": "Daïmonde", "Mortensen": "Mortènnsène", "Pissarides": "Pissaridèsse", "Peter": "Piteur",
+                 "Diamond": "Daïmonde", "Mortensen": "Mortènnsène", "Pissarides": "Pissaridisse", "Peter": "Piteur",
                  "Dale": "Dèle", "Christopher": "Christofeur", "Beveridge": "Bévéridje", "Henry": "Henri", "Ford": "Forde",
                  "Akerlof": "Akeurlof", "Spence": "Spènce", "Insee": "Inssé", "BIT": "bé-i-té", "CDI": "cé-dé-i",
                  "CDD": "cé-dé-dé", "CICE": "cé-i-cé-eu", "PIB": "pé-i-bé", "SES": "èss-eu-èss", "AEI": "a, eu, i",
-                 "SMIC": "smic"}
+                 "SMIC": "smic", "CAP": "cé-a-pé", "BEP": "bé-eu-pé"}
 
 D = site_ses.donnees()
 G, CHN, CH = D["graphes"], D["chaines"], D["ch"]["e3"]
@@ -71,7 +71,7 @@ SCENES = [
         "{li_bit.1}Un : être sans emploi pendant une semaine donnée. Pas même une heure de travail. "
         "{li_bit.2}Deux : être disponible pour travailler dans les deux semaines.",
         "{li_bit.3}Trois : avoir cherché activement un emploi dans les quatre dernières semaines. Ou en avoir trouvé un qui commence dans moins de trois mois. "
-        "Et on parle des personnes de quinze ans ou plus.",
+        "Tout cela, à partir de quinze ans.",
         "{-li_bit}{cols_ft}Qui compte ces chômeurs ? {cols_ft.g}L'Insee, chaque trimestre, par une grande enquête : l'enquête Emploi. "
         "Avec cette définition internationale. {cols_ft.d}Attention, ce n'est pas le nombre d'inscrits à France Travail, l'ancien Pôle emploi. "
         "Les inscriptions suivent des règles administratives. Les deux chiffres sont différents.",
@@ -83,7 +83,7 @@ SCENES = [
         "{fo_calc.2}La population active : trente et un millions huit cent trente-quatre mille. "
         "{fo_calc.3}Et le taux de chômage : sept virgule sept pour cent.",
         "{-fo_calc}{cf_emp}Et le taux d'emploi des quinze à soixante-quatre ans ? {cf_emp.1}Soixante-neuf virgule trois pour cent. "
-        "Son plus haut niveau depuis que l'Insee le mesure, en mille neuf cent soixante-quinze.",
+        "Son plus haut niveau depuis le début de la série, en mille neuf cent soixante-quinze.",
         "Tu vois ? Le chômage monte un peu… et l'emploi est au plus haut. Les deux indicateurs ne disent pas la même chose.",
         "{-cf_emp}{cols_jeunes}Un piège classique, maintenant. Le taux de chômage des quinze-vingt-quatre ans atteint dix-neuf virgule huit pour cent. "
         "Est-ce qu'un jeune sur cinq est au chômage ? {cols_jeunes.g}Non ! Dix-neuf virgule huit pour cent des jeunes {!actifs}actifs. "
@@ -125,7 +125,7 @@ SCENES = [
             dict(f="Population active = 29 383 000 + 2 451 000 = 31 834 000", taille=32),
             dict(f="[[2 451|31 834]] × 100 ≈ 7,7 %", cadre=True, taille=38)]),
         "cf_emp": dict(type="chiffres", x=170, y=170, w=940, items=[
-            dict(n="69,3 %", l="Taux d'emploi des 15-64 ans en 2025 : son plus haut niveau depuis 1975.", s="Insee, enquête Emploi 2025")]),
+            dict(n="69,3 %", l="Taux d'emploi des 15-64 ans en 2025 : record depuis le début de la mesure (1975).", s="Insee, enquête Emploi 2025")]),
         "cols_jeunes": dict(type="cols", g="Taux de chômage : 19,8 %", gq="Chômeurs ÷ jeunes actifs de 15 à 24 ans.",
                             d="Part de chômage : 8,5 %", dq="Chômeurs ÷ tous les 15-24 ans, étudiants compris.", vs="≠",
                             repere="15-24 ans, 2025 (Insee)"),
@@ -164,7 +164,7 @@ SCENES = [
         "Même quand le bon poste existe, il faut du temps. C'est le chômage {!frictionnel}frictionnel. Inévitable, dans une économie où les gens changent d'emploi.",
         "{an_app.4}Ensuite, l'inadéquation de qualifications. Un poste de technicien informatique ne convient pas à un ancien ouvrier du textile sans formation. "
         "C'est souvent l'effet de la destruction créatrice : les emplois se déplacent d'un secteur à l'autre.",
-        "{an_app.5}Et l'inadéquation spatiale. L'emploi est à Lyon. Le chômeur, à quatre cents kilomètres. Déménager coûte cher : "
+        "{an_app.5}Et l'inadéquation spatiale. L'emploi est à Lyon. Le chômeur, à Lille, à des centaines de kilomètres. Déménager coûte cher : "
         "il faut un logement, et le conjoint a peut-être son propre emploi.",
         "{an_app.6}Résultat : des chômeurs et des emplois vacants coexistent, durablement. C'est du chômage structurel.",
         "{-an_app}{ch_fr}{ch_fr.1}La chaîne causale, à savoir dérouler. Des emplois sont vacants, pendant que des personnes cherchent un emploi. "
@@ -199,7 +199,7 @@ SCENES = [
         "La rotation de la main-d'œuvre atteignait environ trois cent soixante-dix pour cent en mille neuf cent treize, selon l'entreprise. "
         "{li_ford.4}Avec ce salaire, les démissions et l'absentéisme chutent.",
         "Une nuance, quand même. Une partie de la somme était versée comme participation aux bénéfices, sous conditions de conduite. "
-        "Et les historiens discutent encore de la part de ce motif. C'est un exemple classique d'histoire économique, mais hors des documents du programme.",
+        "Et les historiens discutent encore de la part de ce motif. C'est un exemple classique d'histoire économique, pour aller plus loin : le programme ne le cite pas.",
         "{-li_ford}{au_ss}La théorie, elle, a été formalisée en mille neuf cent quatre-vingt-quatre par Carl Shapiro et Joseph Stiglitz. "
         "Leur modèle montre qu'avec un salaire d'efficience, le chômage est {!involontaire}involontaire et durable. "
         "Il sert même de discipline : la peur du chômage incite les salariés à l'effort. "
@@ -244,7 +244,7 @@ SCENES = [
         "{-def_inst}{def_smic}La première, c'est le salaire minimum. En France, le {!SMIC}SMIC, le salaire minimum interprofessionnel de croissance. "
         "C'est le salaire horaire en dessous duquel aucun salarié ne peut être payé.",
         "{def_smic.1}Il est revalorisé chaque premier janvier, et automatiquement en cours d'année si l'inflation dépasse deux pour cent. "
-        "En novembre deux mille vingt-six : douze euros trente et un brut de l'heure. Soit mille huit cent soixante-sept euros brut par mois, à temps plein.",
+        "Depuis juin deux mille vingt-six : douze euros trente et un brut de l'heure. Soit mille huit cent soixante-sept euros brut par mois, à temps plein.",
         "{-def_smic}{ch_smic}{ch_smic.1}Alors, un salaire minimum plus élevé, ça crée du chômage, ou pas ? Ça dépend. Et c'est toute la subtilité. "
         "{ch_smic.2}Il y a deux effets possibles, en même temps. D'un côté, le coût du travail peu qualifié augmente. "
         "S'il dépasse la productivité de certains travailleurs, les jeunes, les peu qualifiés, les employeurs ne les embauchent pas.",
@@ -252,7 +252,7 @@ SCENES = [
         "Et le salaire minimum fonctionne comme un salaire d'efficience : des salariés plus stables, plus motivés, plus productifs.",
         "{ch_smic.3}Donc l'effet net sur le chômage dépend du niveau du salaire minimum : par rapport au salaire médian, et par rapport à la productivité.",
         "{-ch_smic}{au_ck}Une étude célèbre a relancé ce débat. David Card et Alan Krueger, en mille neuf cent quatre-vingt-quatorze. "
-        "En mille neuf cent quatre-vingt-douze, le salaire minimum augmente au New Jersey. Pas dans la Pennsylvanie voisine. "
+        "En mille neuf cent quatre-vingt-douze, le salaire minimum augmente au New Jersey. Pas en Pennsylvanie, juste à côté. "
         "Ils comparent les fast-foods des deux côtés de la frontière… et ils ne trouvent pas de baisse de l'emploi au New Jersey.",
         "C'est une {!expérience naturelle}expérience naturelle : deux régions semblables, une seule différence. Card a reçu le prix Nobel en deux mille vingt et un.",
         "{-au_ck}{note_all}Et en France ? Pour limiter l'effet négatif sur l'emploi peu qualifié sans baisser le salaire du salarié, "
@@ -278,7 +278,7 @@ SCENES = [
                          etape="Salaire minimum, contrats, licenciements, assurance chômage, négociation collective.", x=170, y=180, w=940),
         "def_smic": dict(type="def", terme="SMIC · salaire minimum interprofessionnel de croissance", cles=["horaire"],
                          t="Le salaire horaire en dessous duquel aucun salarié ne peut être payé en France.",
-                         etape="12,31 € brut de l'heure, soit 1 867,02 € brut par mois à temps plein (novembre 2026, service-public.fr).",
+                         etape="12,31 € brut de l'heure, soit 1 867,02 € brut par mois à temps plein (depuis juin 2026, service-public.fr).",
                          x=150, y=170, w=980),
         "ch_smic": dict(type="chaine", c=CHN["e3-smic"], x=150, w=980),
         "au_ck": dict(type="auteur", mono="CK", nom="David Card et Alan Krueger", info="1994 · Nobel 2021 pour Card", cles=["New", "baisse"],
@@ -352,7 +352,7 @@ SCENES = [
                            dict(flux=[dict(de="usine", a="maisons", k="emplois", l="licenciements")],
                                 etiquette=dict(h="Chômage ↑", s="des emplois sont supprimés", sur="maisons")),
                            dict(flux=[dict(de="usine", a="maisons", k="revenus", l="salaires", n=0.6)], foule=0.5,
-                                etiquette=dict(h="Revenus ↓", s="on consomme moins, on épargne par précaution", sur="maisons")),
+                                etiquette=dict(h="Revenus ↓", s="on consomme moins, on épargne par précaution", sur="maisons"), cam="tout"),
                            dict(foule=0.35, flux=[dict(de="usine", a="magasin", k="biens", n=0.35)],
                                 etiquette=dict(h="Demande ↓ encore", s="le cercle vicieux s'auto-entretient", sur="magasin"), cam="tout")]),
         "ch_cj": dict(type="chaine", c=CHN["e3-conj"], x=170, w=940),
@@ -516,7 +516,7 @@ SCENES = [
         "{s_c1.2}Trente et un millions huit cent trente-quatre mille.",
         "{s_c1.3}Le taux de chômage : deux mille quatre cent cinquante et un, divisé par trente et un mille huit cent trente-quatre, en milliers. "
         "À la main : dix pour cent, ce serait environ trois mille cent quatre-vingts. On est en dessous. Sept pour cent, environ deux mille deux cent vingt-huit. "
-        "Il reste environ deux cent vingt-trois, soit un peu plus de zéro virgule sept point. Donc environ sept virgule sept pour cent.",
+        "Il reste environ deux cent vingt-trois. Or un pour cent, c'est environ trois cent dix-huit. Deux cent vingt-trois, c'est à peu près sept dixièmes de trois cent dix-huit : zéro virgule sept point. Donc environ sept virgule sept pour cent.",
         "{-s_c1}{ex_cc.q2}{s_c2}{s_c2.1}Deux. Le taux de chômage rapporte les chômeurs aux actifs. {s_c2.2}La part de chômage les rapporte à toute la classe d'âge. "
         "{s_c2.3}Or beaucoup de quinze-vingt-quatre ans étudient : ils sont inactifs. Le dénominateur est bien plus grand, donc la part est plus faible.",
         "{-s_c2}{-ex_cc}",
@@ -554,7 +554,7 @@ SCENES = [
         "{-s_p12}{ex_p1c.q3}{s_p13}Deuxième paragraphe : les inadéquations. {s_p13.1}De qualifications : avec la destruction créatrice, "
         "les emplois créés demandent souvent des compétences que n'ont pas les personnes dont l'emploi a disparu. "
         "{s_p13.2}L'exemple chiffré : en deux mille vingt-cinq, selon l'Insee, quatorze virgule sept pour cent de chômage chez les actifs sans diplôme ou avec le brevet, "
-        "contre cinq virgule trois pour les diplômés du supérieur.",
+        "contre cinq virgule trois pour les diplômés de bac plus deux ou plus.",
         "{s_p13.3}Et l'inadéquation spatiale : les emplois sont concentrés dans certaines métropoles, et des chômeurs vivent dans des territoires en déclin, "
         "sans pouvoir déménager facilement. {s_p13.4}Dans ces deux cas, le chômage persiste même si la demande globale est soutenue : il est structurel.",
         "{-s_p13}{-ex_p1c}",
@@ -575,9 +575,9 @@ SCENES = [
             "Chômage frictionnel, même en forte activité"]),
         "s_p13": dict(type="liste", titre="Paragraphe 2 · les inadéquations", x=540, y=120, w=700, petit=True, items=[
             "Qualifications : la destruction créatrice déplace les emplois",
-            "2025 : 14,7 % sans diplôme ou brevet, 5,3 % au-delà de bac + 2 (Insee)",
+            "2025 : 14,7 % sans diplôme ou brevet, 5,3 % à bac + 2 ou plus (Insee)",
             "Spatiale : emplois dans les métropoles, chômeurs dans des territoires en déclin",
-            "Le chômage persiste même avec une demande soutenue : structurel"], marques=["1", "I", "2", "→"]),
+            "Le chômage persiste même avec une demande soutenue : structurel"], marques=["1", "+", "2", "→"]),
     }),
 
     # ================================================================ X. partie 2
@@ -718,10 +718,10 @@ SCENES = [
             dict(t="Le structurel", items=["Appariement : frictions, inadéquations", "Salaire d'efficience (Shapiro et Stiglitz)"]),
             dict(t="Institutions et conjoncture", items=["Salaire minimum, protection : effets ambigus", "Demande effective (Keynes), hystérèse"]),
             dict(t="Les politiques", items=["Relance de la demande", "Coût du travail, formation, flexibilité"])]),
-        "fr_r": dict(type="frise", de=1900, a=2020, items=[
+        "fr_r": dict(type="frise", de=1900, a=2030, items=[
             dict(d=1914, nom="Ford", q="5 dollars par jour"), dict(d=1936, nom="Keynes", q="demande effective"),
             dict(d=1984, nom="Shapiro, Stiglitz", q="salaire d'efficience"), dict(d=1988, nom="Lindbeck, Snower", q="insiders / outsiders"),
-            dict(d=1994, nom="Card, Krueger", q="salaire minimum"), dict(d=2010, nom="Diamond, Mortensen, Pissarides", q="Nobel : frictions")]),
+            dict(d=1994, nom="Card, Krueger", q="salaire minimum"), dict(d=2010, nom="Diamond et al.", q="Nobel : frictions")]),
         "cf_r": dict(type="chiffres", titre="Trois chiffres à citer", x=90, y=150, w=1100,
                      items=[dict(n=c["n"], l=c["l"], s=c["s"]) for c in CHIF]),
         "fin": dict(type="titre", sur="Faits & Courbes · SES Terminale", t="Fiches, quiz et animations",
@@ -764,7 +764,7 @@ QUIZ = [
 
 CREDITS = [
     "Données : Insee, enquête Emploi 2025 (Emploi, chômage, revenus du travail, juillet 2026 ; séries longues sur le marché du travail) ; "
-    "Insee, comptes nationaux ; SMIC : service-public.fr (novembre 2026).",
+    "Insee, comptes nationaux ; SMIC : service-public.fr (montant en vigueur depuis juin 2026).",
     "Graphiques, chaînes causales, animations et sujets : site Faits & Courbes (SES Terminale) ; les sujets sont inventés pour le site.",
     "Polices : IBM Plex Sans Condensed, Archivo, Spectral, JetBrains Mono (SIL Open Font License).",
 ]
