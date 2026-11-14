@@ -21,7 +21,7 @@ NUM = 2
 TITRE = "Conquêtes, affirmations de puissance et rivalités"
 SUIVANT = "Thème 1 · Axe 2 · Enjeux diplomatiques et coopérations"
 RYTHME = "vivant"
-PRONONCIATION = {"milles marins": "mil marins", "milles": "mil marins",
+PRONONCIATION = {"milles marins": "mil marins", "milles": "mil marins", "six avril": "siz-avril", "dix avril": "diz-avril",
                  "Wernher von Braun": "Vèrnère fonne Braoune", "R-7": "R sept", "Baïkonour": "Baï-konour",
                  "Laïka": "La-ïka", "Vostok": "Vostoque", "Terechkova": "Térechkova", "Leonov": "Léonov",
                  "Alexeï": "Alexéï", "Khrouchtchev": "Krouchtchève", "Explorer": "Èxploreur",
