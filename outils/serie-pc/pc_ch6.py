@@ -19,7 +19,7 @@ NUM = 6
 TITRE = "Interférences et diffraction"
 SUIVANT = "Les autres chapitres de physique-chimie"
 PRONONCIATION = {"Young": "Yongue", "Fresnel": "Frénel", "Huygens": "Huiguens", "tweeter": "touiteur", "woofer": "woufeur",
-                 "Blu-ray": "Blou-rè", "§l": "èle"}
+                 "Blu-ray": "Blou-rè", "§l": "èle", "§d": "dé"}
 
 
 def fr(a, b):
@@ -61,7 +61,7 @@ SCENES = [
     dict(id="ouverture", chap="Ouverture", fond="cosmos", humeur="mystere", carton=False, beats=[
         "{q1}Quelqu'un parle dans le couloir, derrière une porte ouverte. Tu l'entends parfaitement. Mais tu ne le vois pas.",
         "{-q1}{q2}Le son passe le coin du mur. La lumière, non. Pourquoi une telle différence ?",
-        ("Parce que ce sont deux ondes de tailles très différentes.", {"rate": "-6%"}),
+        ("Parce que ces deux ondes ont des longueurs d'onde très différentes.", {"rate": "-6%"}),
         "{-q2}{q3}Deuxième énigme. Une bulle de savon est faite d'eau, sans couleur. "
         "Et pourtant, elle brille de toutes les couleurs. D'où viennent-elles ?",
         "{-q3}{q4}Les deux réponses tiennent dans ce chapitre. Deux comportements que seules les ondes savent avoir : "
@@ -96,7 +96,7 @@ SCENES = [
         "{def_o.1}Elle transporte de l'énergie, mais pas de matière. Le son et les vagues ont besoin d'un milieu. La lumière, elle, traverse aussi le vide.",
         "{-def_o}{onde}Une onde périodique se répète dans le temps, avec une période T, et une fréquence f égale à un sur T. "
         "{onde.1}Et elle se répète dans l'espace : la distance entre deux crêtes successives, c'est la longueur d'onde, lambda.",
-        "{onde.c}Pour la lumière, la célérité vaut trois cent mille kilomètres par seconde. "
+        "{onde.c}Pour la lumière dans le vide, la célérité vaut trois cent mille kilomètres par seconde. "
         "Et pendant une période, toute onde avance d'exactement une longueur d'onde.",
         "{-onde}{f_l}{f_l.1}D'où la relation à connaître : lambda égale v fois T, c'est-à-dire v sur f. "
         "{f_l.2}Lambda en mètres, v en mètres par seconde, T en secondes, f en hertz.",
@@ -104,7 +104,7 @@ SCENES = [
         "lambda vaut zéro virgule cinquante mètre.",
         "{-f_l}{og}Garde en tête trois ordres de grandeur : ils vont tout expliquer. "
         "{og.1}Le son dans l'air : de un virgule sept centimètre à dix-sept mètres. Une voix : environ un mètre. "
-        "{og.2}La houle : de dix à cent mètres. "
+        "{og.2}La houle : de quelques dizaines à quelques centaines de mètres. "
         "{og.3}Et la lumière visible : de quatre cents à huit cents nanomètres. Environ un demi-micromètre.",
         "{-og}{piege_u}Et voici l'erreur la plus fréquente du chapitre : mélanger les unités. "
         "{piege_u.1}Avant le moindre calcul, on convertit tout en mètres. "
@@ -124,7 +124,7 @@ SCENES = [
             dict(f="Son à 680 Hz : λ = " + fr("340", "680") + " = 0,50 m", taille=36)]),
         "og": dict(type="liste", titre="Trois ordres de grandeur", items=[
             "Son dans l'air : de 1,7 cm (20 kHz) à 17 m (20 Hz) · une voix ≈ 1 m",
-            "Houle : de 10 à 100 m",
+            "Houle : de quelques dizaines à quelques centaines de m",
             "Lumière visible : de 400 à 800 nm, environ 0,5 µm"], marques=["1", "2", "3"], x=150, y=170, w=980),
         "piege_u": dict(type="note", titre="Tout en mètres", cles=["mètres"],
                         t="λ en nm, a en µm, D en m, L en cm : on convertit tout en mètres avant de calculer.",
@@ -188,7 +188,7 @@ SCENES = [
         "{cond.2}Si a est de l'ordre de lambda, ou plus petite, la diffraction est importante : l'onde s'étale presque partout. "
         "{cond.3}Si a est très grande devant lambda, l'étalement devient négligeable. On retrouve la propagation en ligne droite : "
         "c'est le domaine de l'optique géométrique, celui des rayons lumineux.",
-        "{cond.4}Et pour la lumière, on la voit encore très bien avec une fente de zéro virgule un millimètre : environ cent cinquante fois lambda.",
+        "{cond.4}Et pour la lumière, on voit encore très bien la diffraction avec une fente de zéro virgule un millimètre : environ cent cinquante fois lambda.",
         "{-cond}{piege_p}Le piège classique : « l'ouverture est petite, donc il y a diffraction ». Non : il faut toujours comparer a à lambda. "
         "{piege_p.1}Une fente d'un millimètre est minuscule pour un son d'un mètre, mais énorme pour des rayons X.",
         "{-piege_p}{an2}{pts2}{pts2.1}{an2.1}Mesurons maintenant cet étalement. Derrière une fente, l'onde diffractée n'est pas répartie uniformément. "
@@ -215,7 +215,7 @@ SCENES = [
             "Diffraction d'autant plus marquée que a est petite devant λ",
             "a de l'ordre de λ, ou plus petite : diffraction importante",
             "a ≫ λ : étalement négligeable, propagation rectiligne",
-            "Lumière : bien visible pour a jusqu'à une centaine de λ environ"], marques=["1", "2", "3", "4"], x=150, y=150, w=980),
+            "Lumière : encore bien visible pour a = 0,1 mm, environ 150 λ"], marques=["1", "2", "3", "4"], x=150, y=150, w=980),
         "piege_p": dict(type="note", titre="« Petite » par rapport à quoi ?", cles=["comparer"],
                         t="Il faut toujours comparer a à λ, jamais juger une ouverture « petite » dans l'absolu.",
                         etape="Fente de 1 mm : diffraction totale pour un son de 1 m, aucune pour des rayons X de 0,1 nm.", x=170, y=200, w=940),
@@ -252,7 +252,7 @@ SCENES = [
         "{pts3.2}Sur l'écran, on n'observe pas un trait de la largeur de la fente. On voit une tache centrale très lumineuse, de largeur L. "
         "{pts3.3}De part et d'autre, des taches secondaires, moins lumineuses et deux fois moins larges. "
         "Et entre elles, des extinctions : aucune lumière.",
-        "{-pts3}{pts4}{pts4.1}{an3.2}Reste à relier thêta à ce qu'on mesure sur l'écran : c'est la démonstration demandée dans presque tous les sujets. "
+        "{-pts3}{pts4}{pts4.1}{an3.2}Reste à relier thêta à ce qu'on mesure sur l'écran : c'est une démonstration très souvent demandée. "
         "{pts4.2}On regarde le triangle formé par la fente, le milieu de la tache centrale, et sa première extinction.",
         "{-pts4}{-an3}{demo}Voici la démonstration, à savoir refaire. {demo.1}Dans ce triangle, le côté adjacent à thêta vaut D. "
         "Le côté opposé vaut la moitié de la tache : L sur deux. Donc tangente de thêta égale L sur deux D.",
@@ -260,7 +260,7 @@ SCENES = [
         "D'où : thêta égale L sur deux D.",
         "{demo.3}Et pour une fente, thêta égale lambda sur a. {demo.4}On égale les deux expressions : L sur deux D égale lambda sur a. "
         "{demo.5}Soit L égale deux lambda D sur a.",
-        "{-demo}{pa_ang}Pourquoi a-t-on le droit d'écrire tangente de thêta égale thêta ? "
+        "{-demo}{pa_ang}Pourquoi a-t-on le droit d'écrire tangente de thêta presque égale à thêta ? "
         "Pour quelques milliradians, l'écart est inférieur à un millième. Mais seulement en radians !",
         "{-pa_ang}{ex_L}Un calcul complet, avec six cent cinquante nanomètres, cent micromètres, et deux virgule zéro zéro mètres. "
         "{ex_L.1}{ex_L.2}L égale deux fois six virgule cinquante fois dix puissance moins sept, fois deux virgule zéro zéro, "
@@ -278,7 +278,7 @@ SCENES = [
             "Une tache centrale très lumineuse, de largeur L",
             "Des taches secondaires deux fois moins larges, séparées par des extinctions"]),
         "pts4": dict(type="liste", petit=True, titre="Relier θ à l'écran", x=680, y=150, w=560, items=[
-            "La démonstration demandée dans presque tous les sujets",
+            "Une démonstration très souvent demandée",
             "Le triangle : fente, milieu de la tache, première extinction"]),
         "demo": dict(type="formule", titre="Démontrer L = 2λD/a", x=150, y=96, w=980, lignes=[
             dict(f="tan θ = " + fr("L/2", "D") + " = " + fr("L", "2D"), taille=40),
@@ -318,7 +318,7 @@ SCENES = [
         "{ex_ch.2}a égale deux fois six virgule cinquante fois dix puissance moins sept, fois deux virgule zéro zéro, "
         "divisé par trois virgule trois fois dix puissance moins deux. "
         "{ex_ch.3}Environ sept virgule neuf fois dix puissance moins cinq mètre : soixante-dix-neuf micromètres.",
-        "{ex_ch.4}Une mesure au millimètre donne un diamètre au micromètre près : la diffraction joue le rôle d'un amplificateur.",
+        "{ex_ch.4}Une mesure au millimètre près donne le diamètre à quelques micromètres près : la diffraction joue le rôle d'un amplificateur.",
         "{-ex_ch}{lireL}Une question de méthode, qui coûte souvent des points. "
         "{lireL.1}L, c'est la largeur de la tache centrale, d'une extinction à l'autre. Pas celle de toute la figure. "
         "{lireL.2}Sur une photographie, on passe par l'échelle, par proportionnalité. "
@@ -341,7 +341,7 @@ SCENES = [
             dict(f="a = " + fr("2λD", "L"), taille=40),
             dict(f="a = " + fr("2 × 6,50 × 10^-7 × 2,00", "3,3 × 10^-2"), taille=36),
             dict(f="a ≈ 7,9 × 10^-5 m ≈ 79 µm", cadre=True, taille=40),
-            dict(f="L au millimètre → a au micromètre : un amplificateur", txt=True, pt=True)]),
+            dict(f="L à 1 mm près → a à environ 2 µm près : un amplificateur", txt=True, pt=True)]),
         "lireL": dict(type="liste", titre="Bien lire L", items=[
             "D'une extinction à l'autre : la tache centrale seule",
             "Sur une photographie : par l'échelle (proportionnalité)",
@@ -362,7 +362,7 @@ SCENES = [
         "L égale k fois un sur a, avec k égale deux lambda D.",
         "{why.2}Donc si on trace L en fonction de un sur a, et pas en fonction de a, on doit obtenir une droite qui passe par l'origine. "
         "Sa pente vaut deux lambda D. {why.3}En fonction de a, on obtiendrait une courbe décroissante, une hyperbole : inexploitable directement.",
-        "{-why}{gr_th}Voici une série de mesures classique. Sept fentes, de trente à deux cents micromètres, un écran à un virgule huit mètre. "
+        "{-why}{gr_th}Voici une série de mesures classique. Sept fentes, de trente à deux cents micromètres, un écran à un virgule quatre-vingts mètre. "
         "On calcule thêta, égal à L sur deux D, et on le trace en fonction de un sur a. {gr_th.1}Les points s'alignent.",
         "{gr_th.2}On les modélise par une droite, qui passe pratiquement par l'origine : la relation est vérifiée. "
         "{gr_th.3}Et puisque thêta égale lambda fois un sur a, la pente vaut directement lambda. "
@@ -377,7 +377,7 @@ SCENES = [
         "{inc.2}On arrondit u de a par excès. "
         "{inc.3}Puis on calcule z : l'écart à la valeur de référence, divisé par u de a. Compatible si z est inférieur ou égal à deux.",
         "{-inc}{ex_inc}Un exemple : un brin de brosse à dents. {ex_inc.1}La droite d'étalonnage donne k égale un virgule quatre-vingt-seize fois dix puissance moins six "
-        "mètre carré, à zéro virgule zéro trois près. La tache mesure un virgule quatre-vingt-neuf centimètre, à un millimètre près. "
+        "mètre carré, à zéro virgule zéro trois fois dix puissance moins six près. La tache mesure un virgule quatre-vingt-neuf centimètre, à un millimètre près. "
         "{ex_inc.2}a égale k sur L : un virgule zéro quatre fois dix puissance moins quatre mètre. Cent quatre micromètres.",
         "{ex_inc.3}La formule donne u de a égale environ six micromètres. "
         "{ex_inc.4}Le fabricant annonce cent micromètres. z égale quatre sur six : environ zéro virgule sept. "
@@ -626,14 +626,14 @@ SCENES = [
         "{-ex_i}{pieges_y}Trois pièges. {pieges_y.1}Un : on mesure plusieurs interfranges, puis on divise, pour être plus précis. "
         "{pieges_y.2}Deux : six franges brillantes consécutives, c'est cinq intervalles, pas six. "
         "{pieges_y.3}Trois : en diffraction, a est la largeur d'une fente ; chez Young, c'est l'écart entre les deux fentes. "
-        "Certains sujets écrivent b pour l'une des deux : lis bien l'énoncé.",
+        "Certains sujets notent b l'écart entre les fentes, ou la largeur d'une fente : lis bien l'énoncé.",
         "{-pieges_y}",
     ], vis={
         "frise": dict(type="frise", items=[
             dict(d=1690, nom="Huygens", q="la lumière, une onde"), dict(d=1704, nom="Newton", q="des corpuscules"),
             dict(d=1801, nom="Young", q="interférences de la lumière"), dict(d=1818, nom="Fresnel", q="théorie de la diffraction")]),
         "dua": dict(type="illu", nom="dualite", x=200, y=100, w=880, h=520),
-        "an9": dict(type="anim", nom="interferences", x=40, y=72, h=624, seg=[[46.2, 58.9]]),
+        "an9": dict(type="anim", nom="interferences", x=40, y=72, h=624, seg=[[46.2, 51.3]]),
         "pts12": dict(type="liste", petit=True, titre="Les fentes d'Young", x=680, y=120, w=560, items=[
             "Deux fentes séparées de a, éclairées par le même laser : sources cohérentes",
             "Sur l'écran : franges brillantes et sombres, régulièrement espacées",
@@ -701,13 +701,13 @@ SCENES = [
 
     # ================================================================ XII. interférences dans la vie courante
     dict(id="vie", chap="Des interférences dans la vie courante", fond="cosmos", humeur="lumiere",
-         retenir="Casque anti-bruit : le même son en opposition de phase. Enceinte près d'un mur : δ = 2D. Irisations : bulles, CD, plumes. Mesure de très petites distances.",
+         retenir="Casque anti-bruit : le même son en opposition de phase. Auditeur près d'un mur : δ = 2D. Irisations : bulles, CD, plumes. Mesure de très petites distances.",
          beats=[
         "{an12}{pts15}{pts15.1}{an12.1}Des interférences, il y en a partout, voulues ou subies. "
         "{pts15.2}Le casque à réduction de bruit. Un micro capte le bruit ambiant. Le casque émet le même son, en opposition de phase. "
         "Dans l'oreille, les deux ondes interfèrent de façon destructive : le bruit s'atténue. Surtout les sons graves et réguliers.",
-        "{-pts15}{-an12}{mur}L'enceinte posée près d'un mur. {mur.1}L'onde réfléchie interfère avec l'onde directe. "
-        "À la distance D du mur, l'onde réfléchie a fait un aller-retour de plus : delta égale deux D. "
+        "{-pts15}{-an12}{mur}L'auditeur assis près d'un mur. {mur.1}Le son direct de l'enceinte interfère avec le son réfléchi par le mur, derrière lui. "
+        "S'il est à la distance D du mur, l'onde réfléchie a fait un aller-retour de plus : delta égale deux D. "
         "{mur.2}Là où deux D égale k plus un demi, fois lambda, le son s'éteint. {mur.3}Un rideau, qui absorbe l'onde réfléchie, règle le problème.",
         "{-mur}{iris}{iris.1}Les irisations. Les couleurs d'une bulle de savon, d'une flaque d'essence, d'un CD, des ailes de certains papillons, "
         "des plumes de certains oiseaux. Elles viennent d'interférences entre ondes lumineuses réfléchies par des structures très fines, de l'ordre de lambda. "
@@ -723,8 +723,8 @@ SCENES = [
         "pts15": dict(type="liste", petit=True, titre="Voulues ou subies", x=680, y=150, w=560, items=[
             "Des interférences partout autour de nous",
             "Casque anti-bruit : le même son en opposition de phase → destructives"]),
-        "mur": dict(type="liste", titre="L'enceinte près d'un mur", items=[
-            "Onde directe + onde réfléchie : à la distance D du mur, δ = 2D",
+        "mur": dict(type="liste", titre="L'auditeur près d'un mur", items=[
+            "Onde directe + onde réfléchie : auditeur à la distance D du mur, δ = 2D",
             "2D = (k + ½)λ : le son s'éteint ; pour les aigus, des « trous » rapprochés",
             "Un rideau absorbe l'onde réfléchie : plus de problème"], marques=["1", "2", "3"], x=150, y=170, w=980),
         "iris": dict(type="liste", titre="Encore des interférences", items=[
@@ -860,8 +860,8 @@ SCENES = [
 
     # ================================================================ XV. exercice 3 (type bac)
     # Partie A : D = 2,00 m ; L = 2λD × (1/a) = k × (1/a), k = 2λD
-    # droite d'étalonnage (moindres carrés par l'origine) : pente 2,557 mm par 10³ m⁻¹ ; point lu sur la droite : 1/a = 20 × 10³ m⁻¹,
-    # L ≈ 51 mm → k = 51e-3 / 20e3 = 2,55e-6 m² → λ = k/(2D) = 2,55e-6 / 4,00 = 6,4e-7 m = 640 nm (6,38e-7 ; régression : 6,39e-7)
+    # droite d'étalonnage (moindres carrés par l'origine) : pente 2,557 mm par 10³ m⁻¹ ; point lu sur la droite, loin de l'origine : 1/a = 27 × 10³ m⁻¹,
+    # L ≈ 69 mm → k = 69e-3 / 27e3 = 2,56e-6 m² → λ = k/(2D) = 2,56e-6 / 4,00 = 6,4e-7 m = 640 nm (6,39e-7 ; régression : 6,39e-7)
     # Partie B : 10 i = 25,5 mm → i = 2,55 mm ; a = λD/i = 640e-9 × 2,00 / 2,55e-3 = 5,02e-4 m = 0,502 mm
     # u(i) = 0,5/10 = 0,05 mm ; u(a)/a = √[(10/640)² + (0,01/2,00)² + (0,05/2,55)²] = √(2,44e-4 + 2,5e-5 + 3,84e-4) = 0,0256
     # u(a) = 0,502 × 0,0256 = 0,0128 mm → 0,013 mm (par excès) ; z = |0,502 − 0,500| / 0,013 = 0,15 ≤ 2 : compatible
@@ -871,16 +871,16 @@ SCENES = [
         "Partie B : ce même laser éclaire deux fentes d'Young, et dix interfranges mesurent vingt-cinq virgule cinq millimètres.",
         "{-ex3}{ex3b}Cinq questions : le choix du graphique, la longueur d'onde, la démonstration de l'interfrange, "
         "l'écart entre les fentes, et son incertitude, à comparer à la valeur du fabricant.",
-        "{-ex3b}{pa3}C'est un vrai sujet de bac : prends vingt minutes. Mets sur pause, et rédige.",
+        "{-ex3b}{pa3}C'est un exercice au format du bac : prends vingt minutes. Mets sur pause, et rédige.",
         "{pa3.stop}{-pa3}{ex3c}{ex3c.q1}Correction. {s31}{s31.1}Question un. L égale deux lambda D sur a, c'est-à-dire L égale k fois un sur a, avec k égale deux lambda D. "
         "{s31.2}Lambda et D sont fixes : L est proportionnelle à un sur a. Le graphique L en fonction de un sur a doit être une droite passant par l'origine, "
         "de pente deux lambda D.",
         "{-s31}{gr_ex3}{gr_ex3.1}Voici les cinq points. {gr_ex3.2}Ils s'alignent sur une droite qui passe par l'origine.",
         "{-gr_ex3}{ex3c.q2}{gr_ex3b}{gr_ex3b.1}Question deux. On lit la pente sur la droite, pas sur un point de mesure. "
-        "{gr_ex3b.2}Au point d'abscisse vingt fois dix puissance trois mètre puissance moins un, on lit L égale cinquante et un millimètres.",
-        "{-gr_ex3b}{s32}{s32.1}La pente k vaut donc cinquante et un fois dix puissance moins trois, divisé par vingt fois dix puissance trois. "
-        "Deux virgule cinquante-cinq fois dix puissance moins six mètre carré. "
-        "{s32.2}Et lambda égale k sur deux D : deux virgule cinquante-cinq fois dix puissance moins six, divisé par quatre virgule zéro zéro. "
+        "{gr_ex3b.2}On prend un point de la droite, loin de l'origine : à l'abscisse vingt-sept fois dix puissance trois mètre puissance moins un, on lit L égale soixante-neuf millimètres.",
+        "{-gr_ex3b}{s32}{s32.1}La pente k vaut donc soixante-neuf fois dix puissance moins trois, divisé par vingt-sept fois dix puissance trois. "
+        "Deux virgule cinquante-six fois dix puissance moins six mètre carré. "
+        "{s32.2}Et lambda égale k sur deux D : deux virgule cinquante-six fois dix puissance moins six, divisé par quatre virgule zéro zéro. "
         "{s32.3}Six virgule quatre fois dix puissance moins sept mètre : six cent quarante nanomètres. Un laser rouge.",
         "{-s32}{ex3c.q3}{s33}Question trois : la démonstration de tout à l'heure, à rédiger en entier. "
         "{s33.1}Delta égale a x sur D. {s33.2}Frange brillante : delta égale k lambda, donc x k égale k lambda D sur a. "
@@ -925,10 +925,10 @@ SCENES = [
                         ax=dict(x=[0, 28], y=[0, 75], gx=[5, 10, 15, 20, 25], gy=[10, 20, 30, 40, 50, 60, 70],
                                 lx="1/a (× 10³ m⁻¹)", ly="L (mm)"),
                         el=[dict(type="droite", pts=[[0, 0], [27, round(27 * EX3_K, 1)]], c="el", ep=3, dur=.8),
-                            dict(type="point", x=20, y=51, c="ca", proj=True, lbl="(20 × 10³ m⁻¹ ; 51 mm)", lp=[12, 64])]),
+                            dict(type="point", x=27, y=69, c="ca", proj=True, lbl="(27 × 10³ m⁻¹ ; 69 mm)", lp=[15, 71])]),
         "s32": dict(type="formule", titre="2 · La pente, puis λ", x=540, y=140, w=700, lignes=[
-            dict(f="k = " + fr("51 × 10^-3", "20 × 10^3") + " = 2,55 × 10^-6 m^{2}", taille=34),
-            dict(f="λ = " + fr("k", "2D") + " = " + fr("2,55 × 10^-6", "4,00"), taille=34),
+            dict(f="k = " + fr("69 × 10^-3", "27 × 10^3") + " = 2,56 × 10^-6 m^{2}", taille=34),
+            dict(f="λ = " + fr("k", "2D") + " = " + fr("2,56 × 10^-6", "4,00"), taille=34),
             dict(f="λ ≈ 6,4 × 10^-7 m = 640 nm (rouge)", cadre=True, taille=36)]),
         "s33": dict(type="formule", titre="3 · Établir i = λD/a", x=540, y=140, w=700, lignes=[
             dict(f="δ = " + fr("a x", "D") + " (donnée)", taille=36),
