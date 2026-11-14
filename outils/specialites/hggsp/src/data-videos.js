@@ -3,5 +3,6 @@
    dispo est vrai (vidéo publiée avec sa voix) ; avant, il reste masqué (visible pour un test avec ?video dans l'adresse).
    Le lecteur hggsp/serie/<code>.html?embed=1 est monté en iframe au premier clic (hauteur reçue par le message serie-h). */
 var VIDEOS = {
-  "t1-intro": { code: "hggsp-t1-intro", min: 21, dispo: true }
+  "t1-intro": { code: "hggsp-t1-intro", min: 21, dispo: true },
+  "t1-a2": { code: "hggsp-t1-a2", min: 24, dispo: true }
 };
