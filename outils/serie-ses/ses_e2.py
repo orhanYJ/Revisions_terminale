@@ -774,8 +774,10 @@ SCENES = [
         "et des avantages qui se construisent. {cm_r.2}Entre pays comparables : la différenciation, horizontale et verticale, et les économies d'échelle de Krugman.",
         "{cm_r.3}La compétitivité : prix et hors-prix, portée par les firmes les plus productives. Et la chaîne de valeur mondiale : les multinationales, l'iPhone. "
         "{cm_r.4}Enfin, les effets : des prix plus bas, moins d'inégalités entre pays, davantage au sein des pays. Et le débat entre libre-échange et protectionnisme.",
-        "{-cm_r}{fr_r}Les auteurs, dans l'ordre. {fr_r.1}Smith, mille sept cent soixante-seize. {fr_r.2}Ricardo, mille huit cent dix-sept. "
-        "{fr_r.3}List, mille huit cent quarante et un. {fr_r.4}Ohlin, mille neuf cent trente-trois : le modèle HOS. {fr_r.5}Leontief, mille neuf cent cinquante-trois. "
+        "{-cm_r}{fr_r}Les auteurs, dans l'ordre. {fr_r.1}Smith, mille sept cent soixante-seize. {fr_r.2}Ricardo, mille huit cent dix-sept.",
+        ("P", 0.3),
+        "{fr_r.3}List, mille huit cent quarante et un. {fr_r.4}Ohlin, mille neuf cent trente-trois : le modèle HOS. {fr_r.5}Leontief, mille neuf cent cinquante-trois.",
+        ("P", 0.3),
         "{fr_r.6}Krugman, mille neuf cent soixante-dix-neuf. {fr_r.7}Melitz, deux mille trois. {fr_r.8}Et Autor, Dorn et Hanson, deux mille treize.",
         ("P", 4.0),
         "{-fr_r}{cf_r}{cf_r.1}Et trois chiffres à citer. Vingt-quatre mille quatre cent trente milliards de dollars d'exportations mondiales de marchandises, en deux mille vingt-quatre. "
