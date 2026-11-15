@@ -455,8 +455,8 @@ SCENES = [
         "En face : l'indépendance stratégique. La santé, l'énergie, la défense, les semi-conducteurs.",
         "{cmp_arg.4}Et enfin : le protectionnisme entraîne des représailles, et coûte aux consommateurs. "
         "En face : répondre à une concurrence jugée déloyale. Des subventions, du dumping social ou environnemental.",
-        "{-cmp_arg}{fr_hist}L'histoire donne des leçons. {fr_hist.1}Juin mille neuf cent trente : les États-Unis adoptent le tarif Smoot-Hawley. "
-        "Les représailles suivent. Et tout cela accompagne l'effondrement du commerce mondial pendant la Grande Dépression.",
+        "{-cmp_arg}{fr_hist}L'histoire donne des leçons. {fr_hist.1}En juin mille neuf cent trente, le Congrès américain adopte le tarif Smoot-Hawley. "
+        "Les représailles suivent. Et l'ensemble accompagne l'effondrement du commerce mondial pendant la Grande Dépression.",
         "{fr_hist.2}Après la guerre, le GATT, en mille neuf cent quarante-sept, {fr_hist.3}puis l'OMC, créée le premier janvier mille neuf cent quatre-vingt-quinze, "
         "organisent la baisse négociée des droits de douane.",
         "{fr_hist.4}Et le deux avril deux mille vingt-cinq, les États-Unis annoncent des droits de douane dits « réciproques » : "
@@ -778,7 +778,9 @@ SCENES = [
         ("P", 0.3),
         "{fr_r.3}List, mille huit cent quarante et un. {fr_r.4}Ohlin, mille neuf cent trente-trois : le modèle HOS. {fr_r.5}Leontief, mille neuf cent cinquante-trois.",
         ("P", 0.3),
-        "{fr_r.6}Krugman, mille neuf cent soixante-dix-neuf. {fr_r.7}Melitz, deux mille trois. {fr_r.8}Et Autor, Dorn et Hanson, deux mille treize.",
+        "{fr_r.6}Krugman, mille neuf cent soixante-dix-neuf. {fr_r.7}Melitz, deux mille trois.",
+        ("P", 0.3),
+        "{fr_r.8}Et enfin, deux mille treize : Autor, Dorn et Hanson.",
         ("P", 4.0),
         "{-fr_r}{cf_r}{cf_r.1}Et trois chiffres à citer. Vingt-quatre mille quatre cent trente milliards de dollars d'exportations mondiales de marchandises, en deux mille vingt-quatre. "
         "{cf_r.2}Trois virgule six pour cent : la part de l'assemblage chinois dans le coût d'un iPhone trois G. "
